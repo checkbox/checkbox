@@ -9,16 +9,12 @@ from hwtest.contrib.persist import Persist
 
 from hwtest import VERSION
 
-from hwtest.plugins import (DeviceInfo, DistributionInfo,
-    PackageInfo, MessageExchange)
-from hwtest.plugin import PluginManager
-
 from hwtest.gui import Gui
 from hwtest.message_store import MessageStore
+from hwtest.plugin import PluginManager
 from hwtest.question import parse_file
 from hwtest.reactor import Reactor
 from hwtest.test import Test, TestManager
-from hwtest.transport import HTTPTransport
 from hwtest.constants import SHARE_DIR
 
 
@@ -28,7 +24,7 @@ class Application(object):
 
     intro = "Please specify the type of hardware being tested:"
  
-    def __init__(self, transport, reactor, questions, data_path,
+    def __init__(self, reactor, questions, data_path,
                  log_handlers=None, log_level=None):
 
         # Logging setup
@@ -67,18 +63,11 @@ class Application(object):
         # Plugin manager setup
         self.plugin_manager = PluginManager(self.reactor, self.message_store,
             self.persist, persist_filename)
-
-        # Default plugins
-        plugins = self.get_default_plugins()
-        for plugin in plugins:
-            self.plugin_manager.add(plugin)
+        self.plugin_manager.load(os.path.join(SHARE_DIR, 'plugins'))
 
         # Test plugins
         for test in tests:
             self.plugin_manager.add(test)
-
-        # Required plugins
-        self.plugin_manager.add(MessageExchange(transport))
 
     def get_persist(self, persist_filename):
         persist = Persist()
@@ -87,11 +76,6 @@ class Application(object):
             persist.load(persist_filename)
         persist.save(persist_filename)
         return persist
-
-    def get_default_plugins(self):
-        return [DistributionInfo(),
-                DeviceInfo(),
-                PackageInfo()]
 
     def run(self):
         try:
@@ -111,9 +95,6 @@ def make_parser():
     parser.add_option("-q", "--questions", metavar="FILE",
                       default=os.path.join(SHARE_DIR, "questions.txt"),
                       help="The file containing certification questions.")
-    parser.add_option("-u", "--url",
-                      default="https://certification.canonical.com/message",
-                      help="The server URL to connect to.")
     parser.add_option("-d", "--data-path", metavar="PATH",
                       default="~/.hwtest",
                       help="The directory to store data files in.")
@@ -135,14 +116,13 @@ def make_application(options):
         log_filename = options.log
         log_handlers.append(FileHandler(log_filename))
 
-    transport = HTTPTransport(options.url)
     reactor = Reactor()
 
     data_path = os.path.expanduser(options.data_path)
 
-    return Application(transport, reactor,
-        questions=options.questions, data_path=data_path,
-        log_handlers=log_handlers, log_level=log_level)
+    return Application(reactor, questions=options.questions,
+        data_path=data_path, log_handlers=log_handlers,
+        log_level=log_level)
 
 def run(args):
     """Parse command line options, construct an application, and run it."""

@@ -1,10 +1,13 @@
 from hwtest.plugin import Plugin
+from hwtest.transport import HTTPTransport
 
 
 class MessageExchange(Plugin):
+    transport_factory = HTTPTransport
+    transport_url = 'https://launchpad.net/hwdb/submit-hardware-data'
 
-    def __init__(self, transport):
-        self._transport = transport
+    def __init__(self):
+        self._transport = self.transport_factory(self.transport_url)
 
     def register(self, manager):
         self._manager = manager
@@ -25,3 +28,6 @@ class MessageExchange(Plugin):
         message_store = self._manager.message_store
         messages = message_store.get_pending_messages()
         return {"messages": messages}
+
+
+factory = MessageExchange

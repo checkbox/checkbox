@@ -29,3 +29,6 @@ class PackageInfo(Plugin):
         for package in self._package_manager.get_packages():
             properties = package.properties
             self._package_info.append(properties)
+
+
+factory = PackageInfo

@@ -36,3 +36,6 @@ class DistributionInfo(Plugin):
                 key = self.lsb_release_keys[key.strip()]
                 value = value.strip().strip('"')
                 self._distribution_info[key] = value
+
+
+factory = DistributionInfo

@@ -1,4 +1,5 @@
 import os
+import sys
 import logging
 
 from hwtest.log import format_object
@@ -15,6 +16,16 @@ class PluginManager(object):
         self._persist_filename = persist_filename
         if persist_filename and os.path.exists(persist_filename):
             self.persist.load(persist_filename)
+
+    def load(self, directory):
+        logging.info("Loading plugins from %s.", directory)
+        sys.path.insert(0, directory)
+        for name in [file for file in os.listdir(directory)
+                     if file.endswith(".py")]:
+            module_name = name.rstrip('.py')
+            module = __import__(module_name)
+            self.add(module.factory())
+        del sys.path[0]
 
     def add(self, plugin):
         logging.info("Registering plugin %s.", format_object(plugin))

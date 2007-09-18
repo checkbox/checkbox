@@ -28,3 +28,6 @@ class DeviceInfo(Plugin):
 
         for device in self._device_manager.get_devices():
             self._device_info.append(device.properties)
+
+
+factory = DeviceInfo
