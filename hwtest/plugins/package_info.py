@@ -10,7 +10,7 @@ class PackageInfo(Plugin):
 
     def register(self, manager):
         self._manager = manager
-        self._manager.reactor.call_on("exchange", self.exchange)
+        self._manager.reactor.call_on("gather_information", self.gather_information)
         self._manager.reactor.call_on("run", self.run)
 
     def create_message(self):
@@ -18,7 +18,7 @@ class PackageInfo(Plugin):
         self._package_info = []
         return {"type": "package-info", "package-info": package_info}
 
-    def exchange(self):
+    def gather_information(self):
         message = self.create_message()
         if len(message["package-info"]):
                self._manager.message_store.add(message)

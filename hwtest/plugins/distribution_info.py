@@ -15,7 +15,7 @@ class DistributionInfo(Plugin):
     def register(self, manager):
         self._manager = manager
         self._persist = self._manager.persist.root_at("distribution-info")
-        self._manager.reactor.call_on("exchange", self.exchange)
+        self._manager.reactor.call_on("gather_information", self.gather_information)
         self._manager.reactor.call_on("run", self.run)
 
     def create_message(self):
@@ -23,7 +23,7 @@ class DistributionInfo(Plugin):
         self._distribution_info = {}
         return {"type": "distribution-info", "distribution-info": distribution_info}
 
-    def exchange(self):
+    def gather_information(self):
         message = self.create_message()
         if len(message["distribution-info"]):
                self._manager.message_store.add(message)

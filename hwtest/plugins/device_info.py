@@ -10,7 +10,7 @@ class DeviceInfo(Plugin):
 
     def register(self, manager):
         self._manager = manager
-        self._manager.reactor.call_on("exchange", self.exchange)
+        self._manager.reactor.call_on("gather_information", self.gather_information)
         self._manager.reactor.call_on("run", self.run)
 
     def create_message(self):
@@ -18,7 +18,7 @@ class DeviceInfo(Plugin):
         self._device_info = []
         return {"type": "device-info", "device-info": device_info}
 
-    def exchange(self):
+    def gather_information(self):
         message = self.create_message()
         if len(message["device-info"]):
                self._manager.message_store.add(message)
