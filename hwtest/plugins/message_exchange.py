@@ -9,7 +9,7 @@ class MessageExchange(Plugin):
     def register(self, manager):
         self._manager = manager
         self._persist = manager.persist.root_at("message-exchange")
-        self._manager.reactor.call_on("exchange", self.exchange, priority=500)
+        self._manager.reactor.call_on("exchange", self.exchange)
 
     def exchange(self):
         payload = self.make_payload()
