@@ -87,7 +87,7 @@ class Test(Plugin):
     def register(self, manager):
         self._manager = manager
         self._persist = self._manager.persist.root_at(self.name)
-        self._manager.reactor.call_on("exchange", self.exchange)
+        self._manager.reactor.call_on("gather_information", self.gather_information)
 
     def create_message(self):
         message = {}
@@ -107,7 +107,7 @@ class Test(Plugin):
                 "data": result.data}
         return message
 
-    def exchange(self):
+    def gather_information(self):
         message = self.create_message()
         if len(message["result-info"]):
                self._manager.message_store.add(message)
