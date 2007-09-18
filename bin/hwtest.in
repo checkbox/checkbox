@@ -1,17 +1,11 @@
 #!/usr/bin/env python
 
-# Directory where shared files are located.
-SHARE_DIR = '@SHARE_DIR@'
-
 import os
 import sys
 
-LIB_DIR = os.path.join(SHARE_DIR, 'lib')
-sys.path.append(LIB_DIR)
-
 import hwtest.constants
 
-hwtest.constants.SHARE_DIR = SHARE_DIR
+hwtest.constants.SHARE_DIR = '@SHARE_DIR@'
 
 from hwtest.application import run
 

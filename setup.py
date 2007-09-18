@@ -18,11 +18,6 @@ applications_subdir = os.path.join('share', 'applications')
 pixmaps_subdir = os.path.join('share', 'pixmaps')
 share_subdir = os.path.join('share', project_name)
 gui_subdir = os.path.join(share_subdir, 'gui')
-lib_subdir = os.path.join(share_subdir, 'lib')
-lib_hwtest_subdir = os.path.join(lib_subdir, 'hwtest')
-lib_hwtest_contrib_subdir = os.path.join(lib_hwtest_subdir, 'contrib')
-lib_hwtest_lib_subdir = os.path.join(lib_hwtest_subdir, 'lib')
-lib_hwtest_plugins_subdir = os.path.join(lib_hwtest_subdir, 'plugins')
 
 class my_install_data (install_data.install_data, object):
     def finalize_options (self):
@@ -103,9 +98,11 @@ setup(
     author = 'Marc Tardif',
     author_email = 'marc.tardif@canonical.com',
     license = 'GPL',
-    description = 'Self Certification',
+    description = 'Hardware Test',
     long_description = '''
-Tool to perform hardware certification.
+This project provides an interfaces for gathering hardware details
+and prompting the user for tests. This information can then be sent
+to Launchpad.
 ''',
     data_files = [
         ({'path': applications_subdir,
@@ -119,22 +116,8 @@ Tool to perform hardware certification.
          [('questions.txt', 0644)]),
         ({'path': gui_subdir,
           'mode': 0755},
-         [('gui/*', 0644)]),
-        ({'path': lib_subdir,
-          'mode': 0755},
-         []),
-        ({'path': lib_hwtest_subdir,
-          'mode': 0755},
-         [('hwtest/*.py', 0664)]),
-        ({'path': lib_hwtest_contrib_subdir,
-          'mode': 0755},
-         [('hwtest/contrib/*.py', 0664)]),
-        ({'path': lib_hwtest_lib_subdir,
-          'mode': 0755},
-         [('hwtest/lib/*.py', 0664)]),
-        ({'path': lib_hwtest_plugins_subdir,
-          'mode': 0755},
-         [('hwtest/plugins/*.py', 0664)])],
+         [('gui/*', 0644)])],
+    packages=['hwtest', 'hwtest.contrib', 'hwtest.lib', 'hwtest.plugins'],
     cmdclass = {
         'install_data': my_install_data}
 )

@@ -20,8 +20,12 @@ class Action:
         sound_file = os.path.join(SHARE_DIR, "gui", "sound.wav")
         gnome.sound_play(sound_file)
 
-        fd = file('/proc/asound/card0/id')
-        device = fd.readline().strip()
+        try:
+            fd = file('/proc/asound/card0/id')
+            device = fd.readline().strip()
+        except IOError:
+            device = 'None'
+
         return device
 
     def action_resolution(self):
