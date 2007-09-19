@@ -24,10 +24,10 @@ class MessageExchange(Plugin):
         spayload = bpickle.dumps(payload)
         if logging.getLogger().getEffectiveLevel() <= logging.DEBUG:
             logging.debug("Sending payload:\n%s", pprint.pformat(payload))
-        ret = self._transport.exchange(payload, message_store.get_secure_id())
+        ret = self._transport.exchange(spayload, message_store.get_secure_id())
         if not ret:
             # HACK: this should return a useful error message
-            self._manager.set_error("Invalid Secure ID")
+            self._manager.set_error("Invalid Secure ID or submission failure")
             return
 
         self._manager.set_error()
