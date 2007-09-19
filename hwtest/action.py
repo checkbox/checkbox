@@ -39,7 +39,7 @@ class Action:
         else:
             retval = None
             res, freq = None, None
-            contents = (test_output or os.popen(command)).strip()
+            contents = (test_output or os.popen(command).read()).strip()
             for line in contents.splitlines():
                 if line.endswith("*"):
                     # gutsy
