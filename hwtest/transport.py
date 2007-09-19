@@ -1,12 +1,14 @@
 from cStringIO import StringIO
 import time
 import logging
+import urllib2
 
 import pycurl
 
 from hwtest import API, VERSION
 from hwtest.constants import MACHINE_ID_HEADER, MESSAGE_API_HEADER
 from hwtest.log import format_delta
+from hwtest.contrib import urllib2_file
 
 
 class HTTPTransport(object):
@@ -19,48 +21,24 @@ class HTTPTransport(object):
     def get_url(self):
         return self._url
 
-    def _post(self, payload, machine_id):
-        curl = pycurl.Curl()
-        curl.setopt(pycurl.URL, self._url)
-        curl.setopt(pycurl.FOLLOWLOCATION, True)
-        curl.setopt(pycurl.MAXREDIRS, 5)
+    def _post(self, form):
+        opener = urllib2.build_opener()
+        opener.addheaders = [(MESSAGE_API_HEADER, API),
+                             ("User-Agent", "hwtest/%s" % (VERSION,))]
+        import pdb; pdb.set_trace()
+        ret = opener.open(self._url, form)
+        return ret
 
-        headers = ["%s: %s" % (MESSAGE_API_HEADER, API,),
-                   "User-Agent: hwtest/%s" % (VERSION,),
-                   "Content-Type: application/octet-stream"]
-        if machine_id:
-            headers.append("%s: %s" % (MACHINE_ID_HEADER, machine_id,))
-
-        curl.setopt(pycurl.HTTPHEADER, headers)
-        curl.setopt(pycurl.POST, True)
-
-        # HACK: waiting for pubkey from IS team
-        curl.setopt(pycurl.SSL_VERIFYHOST, 1)
-        curl.setopt(pycurl.SSL_VERIFYPEER, False)
-
-        if self._url.startswith("https") and self._pubkey is not None:
-            curl.setopt(pycurl.CAINFO, self._pubkey)
-
-        # HACK: curl can't get size if data has a \0
-        curl.setopt(pycurl.POSTFIELDSIZE, len(payload))
-        curl.setopt(pycurl.POSTFIELDS, payload)
-
-        io = StringIO()
-        curl.setopt(pycurl.WRITEFUNCTION, io.write)
-
-        curl.perform()
-        return curl, io.getvalue()
-
-    def exchange(self, payload, machine_id=None):
+    def exchange(self, form):
         """Exchange message data with the server.
 
         THREAD SAFE (HOPEFULLY)
         """
         try:
             start_time = time.time()
-            curly, data = self._post(payload, machine_id)
+            curly, data = self._post(form)
             logging.info("Sent %d bytes and received %d bytes in %s.",
-                         len(payload), len(data),
+                         666, len(data),
                          format_delta(time.time() - start_time))
         except:
             logging.exception("Error contacting the server")

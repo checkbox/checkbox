@@ -44,9 +44,11 @@ class Gui(Ui):
 
     def show_intro(self):
         # Fade intro
-        text = "<big><b>%s</b></big>\n%s" % (self.application.title, self.application.intro)
+        text = "<big><b>%s</b></big>\n%s" % (
+            self.application.title, self.application.intro)
         self.intro = self.root.add(gnomecanvas.CanvasText,
-            markup=text, size=9000, fill_color_rgba=self.start_color, x=220, y=80)
+            markup=text, size=9000, fill_color_rgba=self.start_color,
+            x=220, y=80)
         self._fade_in(self.intro)
 
         # Vertical and horizontal boxes
@@ -55,7 +57,8 @@ class Gui(Ui):
         for category in ALL_CATEGORIES:
             button_name = '%s_button' % category
             type_button = self.wTree.get_widget(button_name)
-            type_button.connect("clicked", lambda w, category=category: self.do_intro(category))
+            type_button.connect("clicked", lambda w,
+                category=category: self.do_intro(category))
             type_button.show()
             self.vbox2.pack_start(type_button, False, False, 2)
 
