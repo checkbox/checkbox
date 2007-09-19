@@ -1,14 +1,8 @@
-from cStringIO import StringIO
-import time
 import logging
 import urllib2
 
-import pycurl
-
 from hwtest import API, VERSION
-from hwtest.constants import MACHINE_ID_HEADER, MESSAGE_API_HEADER
-from hwtest.log import format_delta
-from hwtest.contrib import urllib2_file
+from hwtest.constants import MESSAGE_API_HEADER
 
 
 class HTTPTransport(object):
@@ -25,7 +19,6 @@ class HTTPTransport(object):
         opener = urllib2.build_opener()
         opener.addheaders = [(MESSAGE_API_HEADER, API),
                              ("User-Agent", "hwtest/%s" % (VERSION,))]
-        import pdb; pdb.set_trace()
         ret = opener.open(self._url, form)
         return ret
 
@@ -35,21 +28,16 @@ class HTTPTransport(object):
         THREAD SAFE (HOPEFULLY)
         """
         try:
-            start_time = time.time()
-            curly, data = self._post(form)
-            logging.info("Sent %d bytes and received %d bytes in %s.",
-                         666, len(data),
-                         format_delta(time.time() - start_time))
+            ret = self._post(form)
         except:
             logging.exception("Error contacting the server")
             return None
 
-        code = curly.getinfo(pycurl.RESPONSE_CODE)
-        if code != 200:
-            logging.error("Server returned non-expected result: %d" % (code,))
+        if ret.code != 200:
+            logging.error("Server returned non-expected result: %d" % ret.code)
             return None
 
-        return data
+        return ret
 
 
 class StubTransport(object):

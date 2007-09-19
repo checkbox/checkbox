@@ -1,3 +1,4 @@
+import time
 import logging
 import pprint
 import StringIO
@@ -5,6 +6,7 @@ import StringIO
 from hwtest.plugin import Plugin
 from hwtest.transport import HTTPTransport
 from hwtest.contrib import bpickle
+from hwtest.log import format_delta
 
 
 class MessageExchange(Plugin):
@@ -64,25 +66,33 @@ class MessageExchange(Plugin):
 
         if logging.getLogger().getEffectiveLevel() <= logging.DEBUG:
             logging.debug("Sending payload:\n%s", pprint.pformat(payload))
-        ret = self._transport.exchange(form)
 
-        # XXX: fix beyond this point
+        start_time = time.time()
+
+        ret = self._transport.exchange(form)
 
         if not ret:
             # HACK: this should return a useful error message
             self._manager.set_error("Invalid Secure ID or submission failure")
             return
 
-        self._manager.set_error()
+        response = ret.read()
+        logging.info("Sent %d bytes and received %d bytes in %s.",
+                     len(spayload), len(response),
+                     format_delta(time.time() - start_time))
 
-        try:
-            response = bpickle.loads(ret)
-            if logging.getLogger().getEffectiveLevel() <= logging.DEBUG:
-                logging.debug("Received payload:\n%s",
-                              pprint.pformat(response))
-        except:
+        if logging.getLogger().getEffectiveLevel() <= logging.DEBUG:
+            logging.debug("Received payload:\n%s",
+                          pprint.pformat(response))
+        if not self._check_response(response):
             logging.exception("Server returned invalid data: %r" % ret)
             return None
+
+        self._manager.set_error()
+
+    def _check_response(self, response):
+        """XXX"""
+        return True
 
     def make_payload(self):
         message_store = self._manager.message_store
