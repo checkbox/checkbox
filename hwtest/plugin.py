@@ -5,6 +5,10 @@ import logging
 from hwtest.log import format_object
 
 
+class InvalidPluginError(Exception):
+    """XXX"""
+
+
 class PluginManager(object):
     def __init__(self, reactor, message_store, persist, persist_filename=None):
         self.reactor = reactor
@@ -24,6 +28,9 @@ class PluginManager(object):
                      if file.endswith(".py")]:
             module_name = name.rstrip('.py')
             module = __import__(module_name)
+            if not hasattr(module, "factory"):
+                raise InvalidPluginError("Plugin %r lacks a factory method"
+                                         % module)
             self.add(module.factory())
         del sys.path[0]
 
