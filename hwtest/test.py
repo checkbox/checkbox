@@ -10,6 +10,7 @@ from hwtest.plugin import Plugin
 from hwtest.result import Result, FAIL, SKIP
 from hwtest.template import convert_string
 
+from hwtest.report_helpers import createElement, createTypedElement
 
 DESKTOP = 'desktop'
 LAPTOP = 'laptop'
@@ -18,8 +19,7 @@ ALL_CATEGORIES = [DESKTOP, LAPTOP, SERVER]
 
 
 class TestManager(object):
-    def __init__(self, message_store):
-        self.message_store = message_store
+    def __init__(self):
         self.tests = []
 
     def add(self, test):
@@ -89,28 +89,22 @@ class Test(Plugin):
         self._persist = self._manager.persist.root_at(self.name)
         self._manager.reactor.call_on("gather_information", self.gather_information)
 
-    def create_message(self):
-        message = {}
-        message["type"] = "result-info"
-        message["test-info"] = {
-            "suite": "tool",
-            "name": self.name,
-            "description": self.description,
-            "command": "",
-            "architectures": [],
-            "categories": self.categories,
-            "optional": self.optional}
-        if self.result:
-            result = self.result
-            message["result-info"] = {
-                "status": result.status,
-                "data": result.data}
-        return message
-
     def gather_information(self):
-        message = self.create_message()
-        if len(message["result-info"]):
-               self._manager.message_store.add(message)
+        report = self._manager.report
+        test = createElement(report, 'test', report.root)
+        createElement(report, 'suite', test, 'tool')
+        createElement(report, 'name', test, self.name)
+        createElement(report, 'description', test, self.description)
+        createElement(report, 'command', test)
+        createElement(report, 'architectures', test)
+        createTypedElement(report, 'categories', test, None, self.categories,
+                           True, 'category')
+        createElement(report, 'optional', test, self.optional)
+
+        if self.result:
+            result = createElement(report, 'result', test)
+            createElement(report, 'status', result, self.result.status)
+            createElement(report, 'data', result, self.result.data)
 
     def create_result(self, status, data='', auto=False):
         self.result = Result(self, status, data, auto)

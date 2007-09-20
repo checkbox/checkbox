@@ -5,13 +5,12 @@ import StringIO
 
 from hwtest.plugin import Plugin
 from hwtest.transport import HTTPTransport
-from hwtest.contrib import bpickle
 from hwtest.log import format_delta
 
 
 class MessageExchange(Plugin):
     transport_factory = HTTPTransport
-    transport_url = 'https://launchpad.net/hwdb/submit-hardware-data'
+    transport_url = 'https://launchpad.net/hwdb/+submit'
 
     def __init__(self):
         self._transport = self.transport_factory(self.transport_url)
@@ -22,7 +21,7 @@ class MessageExchange(Plugin):
         self._manager.reactor.call_on("exchange", self.exchange)
 
     def exchange(self):
-        message_store = self._manager.message_store
+        report = self._manager.report
 
         # 'field.date_created':    u'2007-08-01',
         # 'field.format':          u'VERSION_1',
@@ -38,30 +37,23 @@ class MessageExchange(Plugin):
         # 'field.submission_data': data,
         # 'field.actions.upload':  u'Upload'}
 
-        fields = {
-            # XXX: these need to be pulled out of the message store
-            'field.date_created':    u'2007-08-01',
-            'field.format':          u'VERSION_1',
-            'field.private':         u'',
-            'field.contactable':     u'',
-            'field.distribution':    u'ubuntu',
-            'field.distrorelease':   u'5.04',
-            'field.architecture':    u'i386',
-            'field.system':          u'HP 6543',
-            'field.emailaddress':    u'test@canonical.com',
-            'field.submission_id':   message_store.get_secure_id(),
-            'field.actions.upload':  u'Upload'}
+        report.info['emailaddress'] = 'test@canonical.com'
+        report.finalise()
 
         form = []
-        for k, v in fields.items():
-            form.append((k, v.encode("utf-8")))
+        for k, v in report.info.items():
+            form.append(('field.%s' % k, str(v).encode("utf-8")))
 
-        payload = self.make_payload()
-        spayload = bpickle.dumps(payload)
-        f = StringIO.StringIO(spayload)
+        form.append(('field.actions.upload', u'Upload'))
+
+        payload = report.toxml()
+        f = StringIO.StringIO(payload)
         f.name = 'hwdb.data'
-        f.size = len(spayload)
+        f.size = len(payload)
         form.append(('field.submission_data', f))
+
+        logging.info("System ID: %s", report.info['system'])
+        logging.info("Submission ID: %s", report.info['submission_id'])
 
         if logging.getLogger().getEffectiveLevel() <= logging.DEBUG:
             logging.debug("Sending payload:\n%s", pprint.pformat(payload))
@@ -88,7 +80,7 @@ class MessageExchange(Plugin):
 
         response = ret.read()
         logging.info("Sent %d bytes and received %d bytes in %s.",
-                     len(spayload), len(response),
+                     len(payload), len(response),
                      format_delta(time.time() - start_time))
 
         if not self._check_response(response):
@@ -100,11 +92,6 @@ class MessageExchange(Plugin):
     def _check_response(self, response):
         """XXX"""
         return True
-
-    def make_payload(self):
-        message_store = self._manager.message_store
-        messages = message_store.get_pending_messages()
-        return {"messages": messages}
 
 
 factory = MessageExchange

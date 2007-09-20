@@ -1,5 +1,7 @@
 from hwtest.plugin import Plugin
 
+from hwtest.report_helpers import createTypedElement
+
 
 class DistributionInfo(Plugin):
 
@@ -18,15 +20,17 @@ class DistributionInfo(Plugin):
         self._manager.reactor.call_on("gather_information", self.gather_information)
         self._manager.reactor.call_on("run", self.run)
 
-    def create_message(self):
-        distribution_info = self._distribution_info
-        self._distribution_info = {}
-        return {"type": "distribution-info", "distribution-info": distribution_info}
-
     def gather_information(self):
-        message = self.create_message()
-        if len(message["distribution-info"]):
-               self._manager.message_store.add(message)
+        report = self._manager.report
+        content = self._distribution_info 
+
+        # Store summary information
+        report.info['distribution'] = content['distributor-id']
+        report.info['distrorelease'] = content['release']
+
+        # Store data in report
+        createTypedElement(report, 'distribution', report.root, None,
+                           content, True)
 
     def run(self):
         fd = file(self._source_filename, "r")
