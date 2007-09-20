@@ -10,12 +10,12 @@ from hwtest.contrib.persist import Persist
 from hwtest import VERSION
 
 from hwtest.gui import Gui
-from hwtest.message_store import MessageStore
 from hwtest.plugin import PluginManager
 from hwtest.question import parse_file
 from hwtest.reactor import Reactor
 from hwtest.test import Test, TestManager
 from hwtest.constants import SHARE_DIR
+from hwtest.report import Report
 
 
 class Application(object):
@@ -47,12 +47,11 @@ class Application(object):
         persist_filename = os.path.join(data_path, "data.bpickle")
         self.persist = self.get_persist(persist_filename)
 
-        # Message store setup
-        directory = os.path.join(data_path, "messages")
-        self.message_store = MessageStore(reactor, self.persist, directory)
+        # Report setup
+        self.report = Report()
 
         # Test manager setup
-        self.test_manager = TestManager(self.message_store)
+        self.test_manager = TestManager()
 
         # Questions
         questions = parse_file(questions)
@@ -61,7 +60,7 @@ class Application(object):
             self.test_manager.add(test)
 
         # Plugin manager setup
-        self.plugin_manager = PluginManager(self.reactor, self.message_store,
+        self.plugin_manager = PluginManager(self.reactor, self.report,
             self.persist, persist_filename)
         self.plugin_manager.load(os.path.join(SHARE_DIR, 'plugins'))
 
@@ -86,8 +85,6 @@ class Application(object):
             logging.exception("Error running reactor.")
             bpickle_dbus.uninstall()
             raise
-
-        self.message_store.delete()
 
 
 def make_parser():

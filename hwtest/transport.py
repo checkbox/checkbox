@@ -59,15 +59,14 @@ class HTTPTransport(object):
 
         THREAD SAFE (HOPEFULLY)
         """
-        spayload = bpickle.dumps(payload)
         try:
             start_time = time.time()
             if logging.getLogger().getEffectiveLevel() <= logging.DEBUG:
-                logging.debug("Sending payload:\n%s", pprint.pformat(payload))
+                logging.debug("Sending payload:\n%s", payload)
 
-            curly, data = self._curl(spayload, machine_id)
+            curly, data = self._curl(payload, machine_id)
             logging.info("Sent %d bytes and received %d bytes in %s.",
-                         len(spayload), len(data),
+                         len(payload), len(data),
                          format_delta(time.time() - start_time))
         except:
             logging.exception("Error contacting the server")
