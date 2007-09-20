@@ -62,14 +62,14 @@ class MessageExchange(Plugin):
 
         ret = self._transport.exchange(form)
 
-        if logging.getLogger().getEffectiveLevel() <= logging.DEBUG:
-            logging.debug("Response headers:\n%s",
-                          pprint.pformat(ret.headers.items()))
-
         if not ret:
             # HACK: this should return a useful error message
             self._manager.set_error("Communication failure")
             return
+
+        if logging.getLogger().getEffectiveLevel() <= logging.DEBUG:
+            logging.debug("Response headers:\n%s",
+                          pprint.pformat(ret.headers.items()))
 
         headers = ret.headers.getheaders("x-launchpad-hwdb-submission")
         for header in headers:
