@@ -79,11 +79,12 @@ class MessageExchange(Plugin):
             self._manager.set_error("Communication failure")
             return
 
-        header = ret.headers.get("x-launchpad-hwdb-submission")
-        if header and "Error" in header:
-            # HACK: this should return a useful error message
-            self._manager.set_error("Submission failure")
-            return
+        headers = ret.headers.getheaders("x-launchpad-hwdb-submission")
+        for header in headers:
+            if "Error" in header:
+                # HACK: this should return a useful error message
+                self._manager.set_error("Submission failure")
+                return
 
         response = ret.read()
         logging.info("Sent %d bytes and received %d bytes in %s.",
