@@ -76,6 +76,7 @@ class MessageExchange(Plugin):
             if "Error" in header:
                 # HACK: this should return a useful error message
                 self._manager.set_error("Submission failure")
+                log.error(header)
                 return
 
         response = ret.read()

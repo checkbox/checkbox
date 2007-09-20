@@ -44,7 +44,7 @@ class HTTPTransport(object):
             return None
 
         if ret.code != 200:
-            logging.error("Server returned non-expected result: %d" % ret.code)
+            logging.error("Server returned non-expected code: %d" % ret.code)
             return None
 
         return ret
