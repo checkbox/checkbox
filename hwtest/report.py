@@ -4,16 +4,14 @@ import md5
 import zlib
 
 from datetime import datetime
-from UserDict import UserDict
 from xml.dom.minidom import Document
 
 from hwtest.report_helpers import createElement, createTypedElement
 
-class ReportInfo(UserDict):
+class ReportInfo(dict):
     """Simple class to contain report summary information."""
 
     def __init__(self):
-        UserDict.__init__(self)
         self['format'] = 'VERSION_1'
         self['private'] = False
         self['contactable'] = False
