@@ -5,7 +5,7 @@ import sys
 
 import hwtest.constants
 
-hwtest.constants.SHARE_DIR = '@SHARE_DIR@'
+hwtest.constants.SHARE_DIR = os.environ.get("SHARE_DIR") or '@SHARE_DIR@'
 
 from hwtest.application import run
 

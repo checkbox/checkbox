@@ -27,7 +27,7 @@ class Report(object):
         self.summary = createElement(self, 'summary', self.root)
 
     def finalise(self):
-        self['date_created'] = datetime.utcnow()
+        self.info['date_created'] = datetime.utcnow()
 
         for child in self.summary.childNodes:
             self.summary.removeChild(child)

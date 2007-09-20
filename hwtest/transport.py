@@ -1,20 +1,15 @@
-from cStringIO import StringIO
-import time
 import logging
-import pprint
-
-import pycurl
-
-from hwtest.contrib import bpickle
+import urllib2
+import socket
 
 from hwtest import API, VERSION
-from hwtest.constants import MACHINE_ID_HEADER, MESSAGE_API_HEADER
-from hwtest.log import format_delta
+from hwtest.constants import MESSAGE_API_HEADER
+from hwtest.contrib import urllib2_file
 
 
 class HTTPTransport(object):
     """Transport makes a request to exchange message data over HTTP."""
-    
+
     def __init__(self, url, pubkey=None):
         self._url = url
         self._pubkey = pubkey
@@ -22,71 +17,36 @@ class HTTPTransport(object):
     def get_url(self):
         return self._url
 
-    def _curl(self, payload, machine_id):
-        curl = pycurl.Curl()
-        curl.setopt(pycurl.URL, self._url)
-        curl.setopt(pycurl.FOLLOWLOCATION, True)
-        curl.setopt(pycurl.MAXREDIRS, 5)
+    def _post(self, form):
+        """Actually POSTs the form to the server."""
+        opener = urllib2.build_opener()
+        opener.addheaders = [(MESSAGE_API_HEADER, API),
+                             ("User-Agent", "hwtest/%s" % (VERSION,))]
+        ret = opener.open(self._url, form)
+        return ret
 
-        headers = ["%s: %s" % (MESSAGE_API_HEADER, API,),
-                   "User-Agent: hwtest/%s" % (VERSION,),
-                   "Content-Type: application/octet-stream"]
-        if machine_id:
-            headers.append("%s: %s" % (MACHINE_ID_HEADER, machine_id,))
-
-        curl.setopt(pycurl.HTTPHEADER, headers)
-        curl.setopt(pycurl.POST, True)
-
-        # HACK: waiting for pubkey from IS team
-        curl.setopt(pycurl.SSL_VERIFYHOST, 1)
-        curl.setopt(pycurl.SSL_VERIFYPEER, False)
-
-        if self._url.startswith("https") and self._pubkey is not None:
-            curl.setopt(pycurl.CAINFO, self._pubkey)
-
-        # HACK: curl can't get size if data has a \0
-        curl.setopt(pycurl.POSTFIELDSIZE, len(payload))
-        curl.setopt(pycurl.POSTFIELDS, payload)
-
-        io = StringIO()
-        curl.setopt(pycurl.WRITEFUNCTION, io.write)
-
-        curl.perform()
-        return curl, io.getvalue()
-
-    def exchange(self, payload, machine_id=None):
+    def exchange(self, form):
         """Exchange message data with the server.
 
         THREAD SAFE (HOPEFULLY)
         """
+        socket.setdefaulttimeout(10)
         try:
-            start_time = time.time()
-            if logging.getLogger().getEffectiveLevel() <= logging.DEBUG:
-                logging.debug("Sending payload:\n%s", payload)
-
-            curly, data = self._curl(payload, machine_id)
-            logging.info("Sent %d bytes and received %d bytes in %s.",
-                         len(payload), len(data),
-                         format_delta(time.time() - start_time))
-        except:
+            ret = self._post(form)
+        except URLError:
             logging.exception("Error contacting the server")
             return None
-
-        code = curly.getinfo(pycurl.RESPONSE_CODE)
-        if code != 200:
-            logging.error("Server returned non-expected result: %d" % (code,))
+        except HTTPError:
+            logging.exception("Failure submitting data to server")
+            logging.error("Response headers: %s",
+                          pprint.pformat(ret.headers.items()))
             return None
 
-        try:
-            response = bpickle.loads(data)
-            if logging.getLogger().getEffectiveLevel() <= logging.DEBUG:
-                logging.debug("Received payload:\n%s",
-                              pprint.pformat(response))
-        except:
-            logging.exception("Server returned invalid data: %r" % data)
+        if ret.code != 200:
+            logging.error("Server returned non-expected result: %d" % ret.code)
             return None
 
-        return response
+        return ret
 
 
 class StubTransport(object):
@@ -108,3 +68,4 @@ class StubTransport(object):
                   "messages": self.responses}
         result.update(self.extra)
         return result
+

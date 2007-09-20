@@ -28,7 +28,7 @@ class Action:
 
         return device
 
-    def action_resolution(self):
+    def action_resolution(self, test_output=None):
         ati_brain_damage = []
         command = 'xrandr -q'
         for item in os.popen('lsmod | grep fglrx'):
@@ -37,13 +37,30 @@ class Action:
         if len(ati_brain_damage):
             retval = "impossible with fglrx"
         else:
-           for line in os.popen(command):
-              fields = string.splitfields(line, '  ')
-              if fields[0].startswith('*'):
-                 freq = fields[4].strip('*')
-                 if fields[4].strip('*') == '\n':
-                     freq = "N/A"
-                 retval = fields[1] + " @ " + freq + " Hz"
+            retval = None
+            res, freq = None, None
+            contents = (test_output or os.popen(command).read()).strip()
+            for line in contents.splitlines():
+                if line.endswith("*"):
+                    # gutsy
+                    fields = line.replace("*", "").split()
+                    if len(fields) == 2:
+                        res, freq = fields
+                    else:
+                        res, freq = fields[0], "N/A"
+                    break
+                elif line.startswith("*"):
+                    # dapper
+                    fields = line.replace("*", "").split('  ')
+                    res = fields[1].replace(" ", "")
+                    if len(fields) < 4:
+                        freq = "N/A"
+                    else:
+                        freq = fields[4]
+                    break
+
+            if res:
+                retval = "%s @ %d Hz" % (res, float(freq))
 
         return retval
 
@@ -75,10 +92,10 @@ class Action:
             return "Connection established by problematic"
 
 
-def execute(name):
+def execute(name, *args):
     result = ''
     action = Action()
     action_name = 'action_%s' % name
     if hasattr(action, action_name):
-        result = getattr(action, action_name)()
+        result = getattr(action, action_name)(*args)
     return result
