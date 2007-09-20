@@ -54,6 +54,9 @@ class MessageExchange(Plugin):
         f.size = len(payload)
         form.append(('field.submission_data', f))
 
+        logging.info("System ID: %s", report.info['system'])
+        logging.info("Submission ID: %s", report.info['submission_id'])
+
         if logging.getLogger().getEffectiveLevel() <= logging.DEBUG:
             logging.debug("Sending payload:\n%s", pprint.pformat(payload))
 
