@@ -3,6 +3,7 @@ import urllib2
 
 from hwtest import API, VERSION
 from hwtest.constants import MESSAGE_API_HEADER
+from hwtest.contrib import urllib2_file
 
 
 class HTTPTransport(object):
