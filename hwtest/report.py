@@ -1,5 +1,6 @@
 #! /usr/bin/python
 
+import md5
 import zlib
 
 from datetime import datetime
@@ -39,6 +40,10 @@ class Report(object):
 
             self._finalised = True
 
+        submission = md5.new()
+        submission.update(self.info['system'])
+        submission.update(str(datetime.utcnow()))
+        self.info['submission_id'] = submission.hexdigest()
 
     def toxml(self):
         self.finalise()

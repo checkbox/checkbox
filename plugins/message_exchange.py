@@ -10,7 +10,9 @@ from hwtest.log import format_delta
 
 class MessageExchange(Plugin):
     transport_factory = HTTPTransport
-    transport_url = 'https://launchpad.net/hwdb/+submit'
+    #transport_url = 'https://launchpad.net/hwdb/+submit'
+    #transport_url = 'http://192.168.99.193:8086/hwdb/+submit'
+    transport_url = 'http://192.168.99.193:8086/hwdb/submit-hardware-data'
 
     def __init__(self):
         self._transport = self.transport_factory(self.transport_url)
