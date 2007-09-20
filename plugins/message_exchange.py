@@ -70,9 +70,19 @@ class MessageExchange(Plugin):
 
         ret = self._transport.exchange(form)
 
+        if logging.getLogger().getEffectiveLevel() <= logging.DEBUG:
+            logging.debug("Response headers:\n%s",
+                          pprint.pformat(ret.headers.items()))
+
         if not ret:
             # HACK: this should return a useful error message
-            self._manager.set_error("Invalid Secure ID or submission failure")
+            self._manager.set_error("Communication failure")
+            return
+
+        header = ret.headers.get("x-launchpad-hwdb-submission")
+        if header and "Error" in header:
+            # HACK: this should return a useful error message
+            self._manager.set_error("Submission failure")
             return
 
         response = ret.read()
