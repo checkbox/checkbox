@@ -17,7 +17,6 @@ class MessageExchange(Plugin):
     def exchange(self):
         payload = self._manager.report.toxml()
         secure_id = self._manager.report.info['submission_id']
-        import pdb; pdb.set_trace()
         ret = self._transport.exchange(payload, secure_id)
 
         if ret:
