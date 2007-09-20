@@ -11,7 +11,7 @@ from hwtest.log import format_delta
 
 class MessageExchange(Plugin):
     transport_factory = HTTPTransport
-    transport_url = 'http://192.168.99.193:8086/hwdb/submit-hardware-data'
+    transport_url = 'https://launchpad.net/hwdb/submit-hardware-data'
 
     def __init__(self):
         self._transport = self.transport_factory(self.transport_url)
@@ -53,10 +53,16 @@ class MessageExchange(Plugin):
             'field.submission_id':   report.info['submission_id'],
             'field.actions.upload':  u'Upload'}
 
-        form = []
-        for k, v in fields.items():
-            form.append((k, v.encode("utf-8")))
+        report.info['emailaddress'] = 'test@canonical.com'
+        report.finalise()
 
+        form = []
+        for k, v in report.info.items():
+            form.append(('field.%s' % k, str(v).encode("utf-8")))
+
+        form.append(('field.actions.upload', u'Upload'))
+
+        import pdb; pdb.set_trace()
         payload = report.toxml()
         f = StringIO.StringIO(payload)
         f.name = 'hwdb.data'
