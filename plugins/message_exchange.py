@@ -5,13 +5,12 @@ import StringIO
 
 from hwtest.plugin import Plugin
 from hwtest.transport import HTTPTransport
-from hwtest.contrib import bpickle
 from hwtest.log import format_delta
 
 
 class MessageExchange(Plugin):
     transport_factory = HTTPTransport
-    transport_url = 'https://launchpad.net/hwdb/submit-hardware-data'
+    transport_url = 'https://launchpad.net/hwdb/+submit'
 
     def __init__(self):
         self._transport = self.transport_factory(self.transport_url)
@@ -38,21 +37,6 @@ class MessageExchange(Plugin):
         # 'field.submission_data': data,
         # 'field.actions.upload':  u'Upload'}
 
-        fields = {
-            # XXX: these need to be pulled out of the message store
-            'field.date_created':    u'2007-08-01',
-            'field.format':          u'VERSION_1',
-            'field.livecd':          u'',
-            'field.private':         u'',
-            'field.contactable':     u'',
-            'field.distribution':    u'ubuntu',
-            'field.distrorelease':   u'5.04',
-            'field.architecture':    u'i386',
-            'field.system':          u'HP 6543',
-            'field.emailaddress':    u'test@canonical.com',
-            'field.submission_id':   report.info['submission_id'],
-            'field.actions.upload':  u'Upload'}
-
         report.info['emailaddress'] = 'test@canonical.com'
         report.finalise()
 
@@ -62,7 +46,6 @@ class MessageExchange(Plugin):
 
         form.append(('field.actions.upload', u'Upload'))
 
-        import pdb; pdb.set_trace()
         payload = report.toxml()
         f = StringIO.StringIO(payload)
         f.name = 'hwdb.data'

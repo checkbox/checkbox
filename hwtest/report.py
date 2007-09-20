@@ -28,7 +28,7 @@ class Report(object):
         self._finalised = False
 
     def finalise(self):
-        if self._finalised:
+        if not self._finalised:
             self.info['date_created'] = datetime.utcnow()
 
             for child in self.summary.childNodes:
