@@ -39,23 +39,22 @@ class MessageExchange(Plugin):
         # 'field.actions.upload':  u'Upload'}
 
         fields = {
+            # XXX: these need to be pulled out of the message store
             'field.date_created':    u'2007-08-01',
             'field.format':          u'VERSION_1',
             'field.private':         u'',
             'field.contactable':     u'',
-            'field.livecd':          u'',
-            'field.submission_id':   message_store.get_secure_id(),
-            'field.emailaddress':    u'test@canonical.com',
             'field.distribution':    u'ubuntu',
             'field.distrorelease':   u'5.04',
             'field.architecture':    u'i386',
             'field.system':          u'HP 6543',
+            'field.emailaddress':    u'test@canonical.com',
+            'field.submission_id':   message_store.get_secure_id(),
             'field.actions.upload':  u'Upload'}
 
         form = []
         for k, v in fields.items():
             form.append((k, v.encode("utf-8")))
-
 
         payload = self.make_payload()
         spayload = bpickle.dumps(payload)
@@ -81,9 +80,6 @@ class MessageExchange(Plugin):
                      len(spayload), len(response),
                      format_delta(time.time() - start_time))
 
-        if logging.getLogger().getEffectiveLevel() <= logging.DEBUG:
-            logging.debug("Received payload:\n%s",
-                          pprint.pformat(response))
         if not self._check_response(response):
             logging.exception("Server returned invalid data: %r" % ret)
             return None

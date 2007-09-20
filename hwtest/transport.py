@@ -1,5 +1,6 @@
 import logging
 import urllib2
+import socket
 
 from hwtest import API, VERSION
 from hwtest.constants import MESSAGE_API_HEADER
@@ -17,6 +18,7 @@ class HTTPTransport(object):
         return self._url
 
     def _post(self, form):
+        """Actually POSTs the form to the server."""
         opener = urllib2.build_opener()
         opener.addheaders = [(MESSAGE_API_HEADER, API),
                              ("User-Agent", "hwtest/%s" % (VERSION,))]
@@ -28,10 +30,16 @@ class HTTPTransport(object):
 
         THREAD SAFE (HOPEFULLY)
         """
+        socket.setdefaulttimeout(10)
         try:
             ret = self._post(form)
-        except:
+        except URLError:
             logging.exception("Error contacting the server")
+            return None
+        except HTTPError:
+            logging.exception("Failure submitting data to server")
+            logging.error("Response headers: %s",
+                          pprint.pformat(ret.headers.items()))
             return None
 
         if ret.code != 200:
