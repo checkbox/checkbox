@@ -31,6 +31,11 @@ class Gui(Ui):
         self.root.add(gnomecanvas.CanvasPixbuf, pixbuf=canvas_bg, x=0,
             y=0, anchor="nw")
 
+        # Header Image
+        header = self.wTree.get_widget('header_image')
+        header.set_from_file(os.path.join(GUI_DIR, 'hwtest_head.png'))
+
+
         # Window
         window = self.wTree.get_widget("window")
         window.set_resizable(False)
