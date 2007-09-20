@@ -26,7 +26,7 @@ class DistributionInfo(Plugin):
 
         # Store summary information
         report.info['distribution'] = content['distributor-id']
-        report.info['distrorelease'] = content['release']
+        report.info['distroseries'] = content['release']
 
         # Store data in report
         createTypedElement(report, 'distribution', report.root, None,
