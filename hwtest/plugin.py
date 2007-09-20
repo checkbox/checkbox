@@ -10,9 +10,9 @@ class InvalidPluginError(Exception):
 
 
 class PluginManager(object):
-    def __init__(self, reactor, message_store, persist, persist_filename=None):
+    def __init__(self, reactor, report, persist, persist_filename=None):
         self.reactor = reactor
-        self.message_store = message_store
+        self.report = report
         self._plugins = []
         self._error = None
 
