@@ -25,15 +25,19 @@ class Report(object):
         self.root = createElement(self, 'system', self.xml)
         self.root.setAttribute('version', '1.0')
         self.summary = createElement(self, 'summary', self.root)
+        self._finalised = False
 
     def finalise(self):
-        self.info['date_created'] = datetime.utcnow()
+        if self._finalised:
+            self.info['date_created'] = datetime.utcnow()
 
-        for child in self.summary.childNodes:
-            self.summary.removeChild(child)
+            for child in self.summary.childNodes:
+                self.summary.removeChild(child)
 
-        for key in self.info.keys():
-            createElement(self, key, self.summary, self.info[key])
+            for key in self.info.keys():
+                createElement(self, key, self.summary, self.info[key])
+
+            self._finalised = True
 
 
     def toxml(self):
