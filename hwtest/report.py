@@ -41,7 +41,7 @@ class Report(object):
         submission = md5.new()
         submission.update(self.info['system'])
         submission.update(str(datetime.utcnow()))
-        self.info['submission_id'] = submission.hexdigest()
+        self.info['submission_key'] = submission.hexdigest()
 
     def toxml(self):
         self.finalise()
