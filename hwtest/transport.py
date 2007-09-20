@@ -1,6 +1,7 @@
 import logging
 import urllib2
 import socket
+import pprint
 
 from hwtest import API, VERSION
 from hwtest.constants import MESSAGE_API_HEADER
@@ -33,10 +34,10 @@ class HTTPTransport(object):
         socket.setdefaulttimeout(10)
         try:
             ret = self._post(form)
-        except URLError:
+        except urllib2.URLError:
             logging.exception("Error contacting the server")
             return None
-        except HTTPError:
+        except urllib2.HTTPError:
             logging.exception("Failure submitting data to server")
             logging.error("Response headers: %s",
                           pprint.pformat(ret.headers.items()))
