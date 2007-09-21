@@ -28,10 +28,10 @@ class Report(object):
         self.root = createElement(self, 'system', self.xml)
         self.root.setAttribute('version', self.version)
         self.summary = createElement(self, 'summary', self.root)
-        self._finalised = False
+        self.finalised = False
 
     def finalise(self):
-        if not self._finalised:
+        if not self.finalised:
             self.info['date_created'] = datetime.utcnow()
 
             for child in self.summary.childNodes:
@@ -40,7 +40,7 @@ class Report(object):
             for key in self.info.keys():
                 createElement(self, key, self.summary, self.info[key])
 
-            self._finalised = True
+            self.finalised = True
 
         submission = md5.new()
         submission.update(self.info['system'])
