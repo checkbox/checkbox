@@ -2,6 +2,9 @@ import time
 import logging
 import pprint
 import StringIO
+import bz2
+
+from socket import gethostname
 
 from hwtest.plugin import Plugin
 from hwtest.transport import HTTPTransport
@@ -10,7 +13,7 @@ from hwtest.log import format_delta
 
 class MessageExchange(Plugin):
     transport_factory = HTTPTransport
-    transport_url = 'https://launchpad.net/hwdb/+submit'
+    transport_url = 'http://192.168.99.181:8086/hwdb/+submit'
 
     def __init__(self):
         self._transport = self.transport_factory(self.transport_url)
@@ -46,10 +49,15 @@ class MessageExchange(Plugin):
 
         form.append(('field.actions.upload', u'Upload'))
 
+        # Set the filename based on the hostname
+        filename = '%s.xml.bz2' % str(gethostname())
+        
+        # bzip2 compress the payload and attach it to the form
         payload = report.toxml()
-        f = StringIO.StringIO(payload)
-        f.name = 'hwdb.data'
-        f.size = len(payload)
+        cpayload = bz2.compress(payload)
+        f = StringIO.StringIO(cpayload)
+        f.name = filename
+        f.size = len(cpayload)
         form.append(('field.submission_data', f))
 
         logging.info("System ID: %s", report.info['system'])
@@ -76,12 +84,12 @@ class MessageExchange(Plugin):
             if "Error" in header:
                 # HACK: this should return a useful error message
                 self._manager.set_error("Submission failure")
-                log.error(header)
+                logging.error(header)
                 return
 
         response = ret.read()
         logging.info("Sent %d bytes and received %d bytes in %s.",
-                     len(payload), len(response),
+                     len(form), len(response),
                      format_delta(time.time() - start_time))
 
         if not self._check_response(response):
