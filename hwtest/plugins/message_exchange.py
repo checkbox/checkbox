@@ -45,6 +45,7 @@ class MessageExchange(Plugin):
         for k, v in report.info.items():
             form.append(('field.%s' % k, str(v).encode("utf-8")))
 
+ 
         form.append(('field.format', u'VERSION_1'))
         form.append(('field.emailaddress', report.email))
         form.append(('field.actions.upload', u'Upload'))

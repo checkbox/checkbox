@@ -37,18 +37,19 @@ class DistributionInfo(Plugin):
 
     def gather_information(self):
         report = self._manager.report
-        content = self._distribution_info 
+        if not report.finalised:
+            content = self._distribution_info 
 
-        # Determine Architecture
-        report.info['architecture'] = self.determine_architecture() 
+            # Determine Architecture
+            report.info['architecture'] = self.determine_architecture() 
 
-        # Store summary information
-        report.info['distribution'] = content['distributor-id']
-        report.info['distroseries'] = content['release']
+            # Store summary information
+            report.info['distribution'] = content['distributor-id']
+            report.info['distroseries'] = content['release']
 
-        # Store data in report
-        createTypedElement(report, 'distribution', report.root, None,
-                           content, True)
+            # Store data in report
+            createTypedElement(report, 'distribution', report.root, None,
+                               content, True)
 
     def run(self):
         fd = file(self._source_filename, "r")

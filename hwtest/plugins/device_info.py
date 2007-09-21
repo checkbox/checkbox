@@ -100,19 +100,20 @@ class DeviceInfo(Plugin):
     
     def gather_information(self):
         report = self._manager.report
-        computer = self._device_manager.devices[self._device_manager.computer_id]
+        if not report.finalised:
+            computer = self._device_manager.devices[self._device_manager.computer_id]
 
-        # Generate system fingerprint
-        fingerprint = md5.new()
-        fingerprint.update(computer.properties['system.vendor'])
-        fingerprint.update(computer.properties['system.product'])
+            # Generate system fingerprint
+            fingerprint = md5.new()
+            fingerprint.update(computer.properties['system.vendor'])
+            fingerprint.update(computer.properties['system.product'])
 
-        # Store summary information
-        if not report.info.has_key('architecture'):
-            report.info['architecture'] = computer.properties['system.kernel.machine']
+            # Store summary information
+            if not report.info.has_key('architecture'):
+                report.info['architecture'] = computer.properties['system.kernel.machine']
 
-        report.info['system'] = fingerprint.hexdigest()
+            report.info['system'] = fingerprint.hexdigest()
 
-        self._device_manager.toxml(self._manager.report)
+            self._device_manager.toxml(self._manager.report)
 
 factory = DeviceInfo

@@ -91,20 +91,21 @@ class Test(Plugin):
 
     def gather_information(self):
         report = self._manager.report
-        test = createElement(report, 'test', report.root)
-        createElement(report, 'suite', test, 'tool')
-        createElement(report, 'name', test, self.name)
-        createElement(report, 'description', test, self.description)
-        createElement(report, 'command', test)
-        createElement(report, 'architectures', test)
-        createTypedElement(report, 'categories', test, None, self.categories,
-                           True, 'category')
-        createElement(report, 'optional', test, self.optional)
+        if not report.finalised:
+            test = createElement(report, 'test', report.root)
+            createElement(report, 'suite', test, 'tool')
+            createElement(report, 'name', test, self.name)
+            createElement(report, 'description', test, self.description)
+            createElement(report, 'command', test)
+            createElement(report, 'architectures', test)
+            createTypedElement(report, 'categories', test, None, self.categories,
+                               True, 'category')
+            createElement(report, 'optional', test, self.optional)
 
-        if self.result:
-            result = createElement(report, 'result', test)
-            createElement(report, 'status', result, self.result.status)
-            createElement(report, 'data', result, self.result.data)
+            if self.result:
+                result = createElement(report, 'result', test)
+                createElement(report, 'status', result, self.result.status)
+                createElement(report, 'data', result, self.result.data)
 
     def create_result(self, status, data='', auto=False):
         self.result = Result(self, status, data, auto)
