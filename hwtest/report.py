@@ -12,7 +12,6 @@ class ReportInfo(dict):
     """Simple class to contain report summary information."""
 
     def __init__(self):
-        self['format'] = 'VERSION_1'
         self['private'] = False
         self['contactable'] = False
         self['livecd'] = False
@@ -20,9 +19,14 @@ class ReportInfo(dict):
 class Report(object):
     def __init__(self):
         self.info = ReportInfo()
+        
+        self.email = 'test@canonical.com'
+        self.secureid = ''
+        self.version = '1.0'
+
         self.xml = Document()
         self.root = createElement(self, 'system', self.xml)
-        self.root.setAttribute('version', '1.0')
+        self.root.setAttribute('version', self.version)
         self.summary = createElement(self, 'summary', self.root)
         self._finalised = False
 

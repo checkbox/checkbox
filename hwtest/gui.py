@@ -253,7 +253,7 @@ to the machine being tested."""
             error = '''Must provide a secure ID.'''
         else:
             application = self.application
-            application.report.info['secure_id'] = secure_id
+            application.report.secure_id = secure_id
             application.run()
             error = self.application.plugin_manager.get_error()
 

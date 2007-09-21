@@ -27,7 +27,6 @@ class MessageExchange(Plugin):
         report = self._manager.report
 
         # 'field.date_created':    u'2007-08-01',
-        # 'field.format':          u'VERSION_1',
         # 'field.private':         u'',
         # 'field.contactable':     u'',
         # 'field.livecd':          u'',
@@ -40,14 +39,16 @@ class MessageExchange(Plugin):
         # 'field.submission_data': data,
         # 'field.actions.upload':  u'Upload'}
 
-        report.info['emailaddress'] = 'ubuntu-schwuk@schwuk.com'
         report.finalise()
 
         form = []
         for k, v in report.info.items():
             form.append(('field.%s' % k, str(v).encode("utf-8")))
 
+        form.append(('field.format', u'VERSION_1'))
+        form.append(('field.emailaddress', report.email))
         form.append(('field.actions.upload', u'Upload'))
+
 
         # Set the filename based on the hostname
         filename = '%s.xml.bz2' % str(gethostname())
