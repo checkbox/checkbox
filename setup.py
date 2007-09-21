@@ -18,7 +18,6 @@ applications_subdir = os.path.join('share', 'applications')
 pixmaps_subdir = os.path.join('share', 'pixmaps')
 share_subdir = os.path.join('share', project_name)
 gui_subdir = os.path.join(share_subdir, 'gui')
-plugins_subdir = os.path.join(share_subdir, 'plugins')
 
 class my_install_data (install_data.install_data, object):
     def finalize_options (self):
@@ -117,11 +116,8 @@ to Launchpad.
          [('questions.txt', 0644)]),
         ({'path': gui_subdir,
           'mode': 0755},
-         [('gui/*', 0644)]),
-        ({'path': plugins_subdir,
-          'mode': 0755},
-         [('plugins/*', 0644)])],
-    packages=['hwtest', 'hwtest.contrib', 'hwtest.lib'],
+         [('gui/*', 0644)])],
+    packages=['hwtest', 'hwtest.contrib', 'hwtest.lib', 'hwtest.plugins'],
     cmdclass = {
         'install_data': my_install_data}
 )
