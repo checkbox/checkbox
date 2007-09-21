@@ -58,8 +58,8 @@ class ProcessorInfo(Plugin):
         report = self._manager.report
         content = self._processors
 
+        processors = createElement(report, 'processors', report.root)
         for processor in self._processors:
-            processors = createElement(report, 'processors', report.root)
             createTypedElement(report, 'processor', processors,
             str(self._processors.index(processor)), processor.properties,
                            True)
