@@ -52,6 +52,7 @@ class MessageExchange(Plugin):
         # Set the filename based on the hostname
         filename = '%s.xml.bz2' % str(gethostname())
         
+        import pdb; pdb.set_trace()
         # bzip2 compress the payload and attach it to the form
         payload = report.toxml()
         cpayload = bz2.compress(payload)
