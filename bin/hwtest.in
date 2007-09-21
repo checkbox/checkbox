@@ -7,6 +7,7 @@ import hwtest.constants
 
 hwtest.constants.SHARE_DIR = os.environ.get("SHARE_DIR") or '@SHARE_DIR@'
 
-from hwtest.application import run
+from hwtest.application import ApplicationManager
 
-sys.exit(run(sys.argv))
+manager = ApplicationManager()
+sys.exit(manager.run(sys.argv))

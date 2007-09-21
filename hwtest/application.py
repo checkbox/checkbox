@@ -20,7 +20,7 @@ from hwtest.constants import SHARE_DIR
 
 class Application(object):
 
-    title = "Hardware Usability Tool"
+    title = "Hardware Testing Tool"
 
     intro = "Please specify the type of hardware being tested:"
  
@@ -63,7 +63,7 @@ class Application(object):
         # Plugin manager setup
         self.plugin_manager = PluginManager(self.reactor, self.message_store,
             self.persist, persist_filename)
-        self.plugin_manager.load(os.path.join(SHARE_DIR, 'plugins'))
+        self.plugin_manager.load(os.path.join(os.path.dirname(__file__), 'plugins'))
 
         # Test plugins
         for test in tests:
@@ -90,46 +90,50 @@ class Application(object):
         self.message_store.delete()
 
 
-def make_parser():
-    parser = OptionParser(version=VERSION)
-    parser.add_option("-q", "--questions", metavar="FILE",
-                      default=os.path.join(SHARE_DIR, "questions.txt"),
-                      help="The file containing certification questions.")
-    parser.add_option("-d", "--data-path", metavar="PATH",
-                      default="~/.hwtest",
-                      help="The directory to store data files in.")
-    parser.add_option("-l", "--log", metavar="FILE",
-                      help="The file to write the log to.")
-    parser.add_option("--log-level",
-                      default="critical",
-                      help="One of debug, info, warning, error or critical.")
-    parser.add_option("-c", "--command-line",
-                      default=False,
-                      help="Run the tool from the command line.")
-    return parser
- 
-def make_application(options):
-    log_level = logging.getLevelName(options.log_level.upper())
-    log_handlers = []
-    log_handlers.append(StreamHandler())
-    if options.log:
-        log_filename = options.log
-        log_handlers.append(FileHandler(log_filename))
+class ApplicationManager(object):
 
-    reactor = Reactor()
+    application_factory = Application
 
-    data_path = os.path.expanduser(options.data_path)
+    def make_parser(self):
+        parser = OptionParser(version=VERSION)
+        parser.add_option("-q", "--questions", metavar="FILE",
+                          default=os.path.join(SHARE_DIR, "questions.txt"),
+                          help="The file containing certification questions.")
+        parser.add_option("-d", "--data-path", metavar="PATH",
+                          default="~/.hwtest",
+                          help="The directory to store data files in.")
+        parser.add_option("-l", "--log", metavar="FILE",
+                          help="The file to write the log to.")
+        parser.add_option("--log-level",
+                          default="critical",
+                          help="One of debug, info, warning, error or critical.")
+        parser.add_option("-c", "--command-line",
+                          default=False,
+                          help="Run the tool from the command line.")
+        return parser
+     
+    def make_application(self, options):
+        log_level = logging.getLevelName(options.log_level.upper())
+        log_handlers = []
+        log_handlers.append(StreamHandler())
+        if options.log:
+            log_filename = options.log
+            log_handlers.append(FileHandler(log_filename))
 
-    return Application(reactor, questions=options.questions,
-        data_path=data_path, log_handlers=log_handlers,
-        log_level=log_level)
+        reactor = Reactor()
 
-def run(args):
-    """Parse command line options, construct an application, and run it."""
-    parser = make_parser()
-    options = parser.parse_args(args)[0]
-    application = make_application(options)
+        data_path = os.path.expanduser(options.data_path)
 
-    ui = Gui(application)
-    ui.main()
-    return 0
+        return self.application_factory(reactor, questions=options.questions,
+            data_path=data_path, log_handlers=log_handlers,
+            log_level=log_level)
+
+    def run(self, args):
+        """Parse command line options, construct an application, and run it."""
+        parser = self.make_parser()
+        options = parser.parse_args(args)[0]
+        application = self.make_application(options)
+
+        ui = Gui(application)
+        ui.main()
+        return 0
