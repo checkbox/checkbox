@@ -108,7 +108,9 @@ class DeviceInfo(Plugin):
         fingerprint.update(computer.properties['system.product'])
 
         # Store summary information
-        report.info['architecture'] = computer.properties['system.kernel.machine']
+        if not report.info.has_key('architecture'):
+            report.info['architecture'] = computer.properties['system.kernel.machine']
+
         report.info['system'] = fingerprint.hexdigest()
 
         self._device_manager.toxml(self._manager.report)

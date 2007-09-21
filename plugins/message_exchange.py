@@ -13,7 +13,7 @@ from hwtest.log import format_delta
 
 class MessageExchange(Plugin):
     transport_factory = HTTPTransport
-    transport_url = 'http://192.168.99.181:8086/hwdb/+submit'
+    transport_url = 'https://launchpad.net/hwdb/+submit'
 
     def __init__(self):
         self._transport = self.transport_factory(self.transport_url)
@@ -40,7 +40,7 @@ class MessageExchange(Plugin):
         # 'field.submission_data': data,
         # 'field.actions.upload':  u'Upload'}
 
-        report.info['emailaddress'] = 'test@canonical.com'
+        report.info['emailaddress'] = 'ubuntu-schwuk@schwuk.com'
         report.finalise()
 
         form = []
