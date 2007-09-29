@@ -65,11 +65,8 @@ class DeviceManager(object):
             id = indexOf(device_list, device)
             device_obj = self._bus.get_object("org.freedesktop.Hal", device)
             properties = device_obj.GetAllProperties(dbus_interface="org.freedesktop.Hal.Device")
-            try:
-                parent = properties["info.parent"]
-            except KeyError:
-                # No parent.
-                parent = None
+            parent = properties.get("info.parent")
+            if parent:
                 self.computer_id = id
             self.devices.append(Device(id, device, parent, properties))
         
