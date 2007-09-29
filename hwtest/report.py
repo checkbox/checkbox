@@ -1,5 +1,3 @@
-#! /usr/bin/python
-
 import md5
 import zlib
 
