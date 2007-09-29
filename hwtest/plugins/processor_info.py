@@ -42,6 +42,7 @@ class ProcessorManager(object):
 
         return processors
 
+
 class ProcessorInfo(Plugin):
     
     def __init__(self, processor_manager=None):
@@ -67,5 +68,6 @@ class ProcessorInfo(Plugin):
 
     def run(self):
         self._processors = self._processor_manager.get_processors()
+
 
 factory = ProcessorInfo
