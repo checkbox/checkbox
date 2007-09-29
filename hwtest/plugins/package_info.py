@@ -40,6 +40,7 @@ class PackageManager(object):
 
         return packages
 
+
 class PackageInfo(Plugin):
 
     def __init__(self, package_manager=None):
