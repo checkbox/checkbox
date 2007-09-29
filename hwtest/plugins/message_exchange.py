@@ -94,15 +94,5 @@ class MessageExchange(Plugin):
                      len(form), len(response),
                      format_delta(time.time() - start_time))
 
-        if not self._check_response(response):
-            logging.exception("Server returned invalid data: %r" % ret)
-            return None
-
-        self._manager.set_error()
-
-    def _check_response(self, response):
-        """XXX"""
-        return True
-
 
 factory = MessageExchange
