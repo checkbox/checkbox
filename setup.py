@@ -21,8 +21,8 @@ and prompting the user for tests. This information can then be sent
 to Launchpad.
 ''',
     data_files=[
-        ('share/applications/', ['gtk/hwtest.desktop']),
-        ('share/pixmaps/', ['gtk/hwtest.xpm']),
+        ('share/applications/', ['gtk/hwtest-gtk.desktop']),
+        ('share/pixmaps/', ['gtk/hwtest-gtk.xpm']),
         ('share/hwtest/', ['questions.txt']),
         ('share/hwtest/gtk/', ['gtk/hwtest-gtk.glade'] + glob('gtk/*.png')),
         ('share/hwtest/data/', glob('data/*'))],
