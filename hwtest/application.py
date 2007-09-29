@@ -9,7 +9,6 @@ from hwtest.contrib.persist import Persist
 
 from hwtest import VERSION
 
-from hwtest.gui import Gui
 from hwtest.plugin import PluginManager
 from hwtest.question import parse_file
 from hwtest.reactor import Reactor
@@ -76,6 +75,9 @@ class Application(object):
         persist.save(persist_filename)
         return persist
 
+    def get_tests(self):
+        return self.test_manager.get_iterator()
+
     def run(self):
         try:
             bpickle_dbus.install()
@@ -91,25 +93,7 @@ class ApplicationManager(object):
 
     application_factory = Application
 
-    def make_parser(self):
-        parser = OptionParser(version=VERSION)
-        parser.add_option("-q", "--questions", metavar="FILE",
-                          default=os.path.join(SHARE_DIR, "questions.txt"),
-                          help="The file containing certification questions.")
-        parser.add_option("-d", "--data-path", metavar="PATH",
-                          default="~/.hwtest",
-                          help="The directory to store data files in.")
-        parser.add_option("-l", "--log", metavar="FILE",
-                          help="The file to write the log to.")
-        parser.add_option("--log-level",
-                          default="critical",
-                          help="One of debug, info, warning, error or critical.")
-        parser.add_option("-c", "--command-line",
-                          default=False,
-                          help="Run the tool from the command line.")
-        return parser
-     
-    def make_application(self, options):
+    def create(self, options):
         log_level = logging.getLevelName(options.log_level.upper())
         log_handlers = []
         log_handlers.append(StreamHandler())
@@ -124,13 +108,3 @@ class ApplicationManager(object):
         return self.application_factory(reactor, questions=options.questions,
             data_path=data_path, log_handlers=log_handlers,
             log_level=log_level)
-
-    def run(self, args):
-        """Parse command line options, construct an application, and run it."""
-        parser = self.make_parser()
-        options = parser.parse_args(args)[0]
-        application = self.make_application(options)
-
-        ui = Gui(application)
-        ui.main()
-        return 0

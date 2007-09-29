@@ -17,7 +17,7 @@ class Action:
 
     def action_audio(self):
         gnome.sound_init("localhost")
-        sound_file = os.path.join(SHARE_DIR, "gui", "sound.wav")
+        sound_file = os.path.join(SHARE_DIR, "data", "sound.wav")
         gnome.sound_play(sound_file)
 
         try:
