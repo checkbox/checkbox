@@ -12,16 +12,14 @@ from hwtest.log import format_delta
 
 
 class MessageExchange(Plugin):
+
     transport_factory = HTTPTransport
-    transport_url = 'https://launchpad.net/hwdb/+submit'
+    transport_url = "https://launchpad.net/hwdb/+submit"
+
+    persist_name = "message-exchange"
 
     def __init__(self):
         self._transport = self.transport_factory(self.transport_url)
-
-    def register(self, manager):
-        self._manager = manager
-        self._persist = manager.persist.root_at("message-exchange")
-        self._manager.reactor.call_on("exchange", self.exchange)
 
     def exchange(self):
         report = self._manager.report

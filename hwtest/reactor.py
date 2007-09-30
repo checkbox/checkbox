@@ -48,6 +48,6 @@ class Reactor(object):
 
     def run(self):
         self.fire("run")
-        self.fire("gather_information")
+        self.fire("gather")
         self.fire("exchange")
         self.fire("stop")

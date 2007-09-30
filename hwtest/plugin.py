@@ -6,6 +6,7 @@ from hwtest.log import format_object
 
 
 class PluginManager(object):
+
     def __init__(self, reactor, report, persist, persist_filename=None):
         self.reactor = reactor
         self.report = report
@@ -25,8 +26,7 @@ class PluginManager(object):
             module_name = name.rstrip('.py')
             module = __import__(module_name)
             if not hasattr(module, "factory"):
-                raise Exception, "Plugin %r lacks a factory method"
-                                         % module
+                raise Exception, "Plugin %r lacks a factory method" % module
             self.add(module.factory())
         del sys.path[0]
 
@@ -60,4 +60,16 @@ class PluginManager(object):
 
 
 class Plugin(object):
-    pass
+
+    persist_name = None
+
+    def register(self, manager):
+        self._manager = manager
+        if hasattr(self, "gather"):
+            manager.reactor.call_on("gather", self.gather)
+        if hasattr(self, "run"):
+            manager.reactor.call_on("run", self.run)
+        if hasattr(self, "exchange"):
+            manager.reactor.call_on("exchange", self.exchange)
+        if self.persist_name is not None:
+            self._persist = manager.persist.root_at(self.persist_name)

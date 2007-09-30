@@ -91,11 +91,7 @@ class DeviceInfo(Plugin):
         super(DeviceInfo, self).__init__()
         self._device_manager = device_manager or DeviceManager()
 
-    def register(self, manager):
-        self._manager = manager
-        self._manager.reactor.call_on("gather_information", self.gather_information)
-    
-    def gather_information(self):
+    def gather(self):
         report = self._manager.report
         if not report.finalised:
             computer = self._device_manager.devices[self._device_manager.computer_id]

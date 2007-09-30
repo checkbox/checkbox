@@ -60,8 +60,9 @@ class TestManager(object):
 
 class Test(Plugin):
 
+
     def __init__(self, name, desc, deps=None, cats=None, optional=False):
-        self.name = name
+        self.name = self.persist_name = name
         self.desc = desc
         self.deps = deps and re.split('\s*,\s*', deps) or []
         self.cats = cats and re.split('\s*,\s*', cats) or ALL_CATEGORIES
@@ -84,12 +85,7 @@ class Test(Plugin):
     def categories(self):
         return self.cats
 
-    def register(self, manager):
-        self._manager = manager
-        self._persist = self._manager.persist.root_at(self.name)
-        self._manager.reactor.call_on("gather_information", self.gather_information)
-
-    def gather_information(self):
+    def gather(self):
         report = self._manager.report
         if not report.finalised:
             test = createElement(report, 'test', report.root)

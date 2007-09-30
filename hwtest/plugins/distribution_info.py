@@ -13,18 +13,14 @@ class DistributionInfo(Plugin):
                         "DISTRIB_RELEASE": "release",
                         "DISTRIB_CODENAME": "codename"}
 
-    dpkg_path = '/usr/bin/dpkg'
-    dpkg_command = '%s --print-architecture' % dpkg_path
+    dpkg_path = "/usr/bin/dpkg"
+    dpkg_command = "%s --print-architecture" % dpkg_path
+
+    persist_name = "distribution-info"
 
     def __init__(self, source_filename="/etc/lsb-release"):
         self._source_filename = source_filename
         self._distribution_info = {}
-
-    def register(self, manager):
-        self._manager = manager
-        self._persist = self._manager.persist.root_at("distribution-info")
-        self._manager.reactor.call_on("gather_information", self.gather_information)
-        self._manager.reactor.call_on("run", self.run)
 
     def determine_architecture(self):
         architecture = 'Unknown'
@@ -35,7 +31,7 @@ class DistributionInfo(Plugin):
 
         return architecture
 
-    def gather_information(self):
+    def gather(self):
         report = self._manager.report
         if not report.finalised:
             content = self._distribution_info 
