@@ -77,6 +77,7 @@ class Action:
         command = "ping -q -w4 -c2 %s" % TEST_DOMAIN
         reg = re.compile(r"(\d) received")
         ping = os.popen(command)
+        num_packets = 0
         while 1:
             line = ping.readline()
             if not line: break
