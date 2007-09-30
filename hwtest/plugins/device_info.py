@@ -1,7 +1,4 @@
 import dbus
-if getattr(dbus, "version", (0,0,0)) >= (0,41,0):
-    import dbus.glib
-
 import md5
 
 from commands import getoutput
@@ -9,7 +6,6 @@ from operator import indexOf
 from string import rsplit
 
 from hwtest.plugin import Plugin
-
 from hwtest.report_helpers import createDevice, createProperty, createElement
 
 class Device(object):
