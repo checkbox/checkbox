@@ -10,9 +10,8 @@ from hwtest.contrib.persist import Persist
 from hwtest import VERSION
 
 from hwtest.plugin import PluginManager
-from hwtest.question import parse_file
 from hwtest.reactor import Reactor
-from hwtest.test import Test, TestManager
+from hwtest.question import Question, QuestionManager, parse_file
 from hwtest.constants import SHARE_DIR
 from hwtest.report import Report
 
@@ -45,23 +44,23 @@ class Application(object):
         # Report setup
         self.report = Report()
 
-        # Test manager setup
-        self.test_manager = TestManager()
+        # Question manager setup
+        self.question_manager = QuestionManager()
 
         # Questions
-        questions = parse_file(questions)
-        tests = [Test(**q) for q in questions]
-        for test in tests:
-            self.test_manager.add(test)
+        parsed_questions = parse_file(questions)
+        questions = [Question(**q) for q in parsed_questions]
+        for question in questions:
+            self.question_manager.add(question)
 
         # Plugin manager setup
         self.plugin_manager = PluginManager(self.reactor, self.report,
             self.persist, persist_filename)
         self.plugin_manager.load(os.path.join(os.path.dirname(__file__), 'plugins'))
 
-        # Test plugins
-        for test in tests:
-            self.plugin_manager.add(test)
+        # Question plugins
+        for question in questions:
+            self.plugin_manager.add(question)
 
     def get_persist(self, persist_filename):
         persist = Persist()
@@ -71,8 +70,8 @@ class Application(object):
         persist.save(persist_filename)
         return persist
 
-    def get_tests(self):
-        return self.test_manager.get_iterator()
+    def get_questions(self):
+        return self.question_manager.get_iterator()
 
     def run(self):
         try:

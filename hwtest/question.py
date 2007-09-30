@@ -1,3 +1,112 @@
+import re
+
+from hwtest.excluder import Excluder
+from hwtest.iterator import Iterator
+from hwtest.repeater import PreRepeater
+from hwtest.resolver import Resolver
+
+from hwtest.action import execute
+from hwtest.answer import Answer, FAIL, SKIP
+from hwtest.plugin import Plugin
+from hwtest.template import convert_string
+
+from hwtest.report_helpers import createElement, createTypedElement
+
+DESKTOP = 'desktop'
+LAPTOP = 'laptop'
+SERVER = 'server'
+ALL_CATEGORIES = [DESKTOP, LAPTOP, SERVER]
+
+
+class QuestionManager(object):
+    def __init__(self):
+        self.questions = []
+
+    def add(self, question):
+        self.questions.append(question)
+
+    def get_iterator(self):
+        def repeat_func(question, resolver):
+            answer = question.answer
+            if answer and (answer.status == FAIL or answer.status == SKIP):
+                for dependent in resolver.get_dependents(question):
+                    dependent.create_answer(SKIP, auto=True)
+
+        def exclude_next_func(question):
+            return question.answer != None
+
+        def exclude_prev_func(question):
+            if question.answer and question.answer.auto == True:
+                question.answer = None
+                return True
+            else:
+                return False
+
+        resolver = Resolver()
+        question_dict = dict((question.name, question) for question in self.questions)
+        for question in self.questions:
+            question_deps = [question_dict[dep] for dep in question.deps]
+            resolver.add(question, *question_deps)
+
+        questions = resolver.get_dependents()
+        questions_iter = Iterator(questions)
+        repeater_iter = PreRepeater(questions_iter,
+            lambda question, resolver=resolver: repeat_func(question, resolver))
+        excluder_iter = Excluder(repeater_iter,
+            exclude_next_func, exclude_prev_func)
+
+        return excluder_iter
+
+
+class Question(Plugin):
+
+    def __init__(self, name, desc, deps=None, cats=None, optional=False):
+        self.name = self.persist_name = name
+        self.desc = desc
+        self.deps = deps and re.split('\s*,\s*', deps) or []
+        self.cats = cats and re.split('\s*,\s*', cats) or ALL_CATEGORIES
+        self.optional = optional
+        self.answer = None
+
+    def __str__(self):
+        return self.name
+    
+    @property
+    def description(self):
+        description = self.desc
+        result = execute(self.name)
+        if self.desc.find('$result') != -1:
+            description = convert_string(self.desc, {'result': result})
+
+        return description
+
+    @property
+    def categories(self):
+        return self.cats
+
+    def gather(self):
+        report = self._manager.report
+        if not report.finalised:
+            question = createElement(report, 'question', report.root)
+            createElement(report, 'suite', question, 'tool')
+            createElement(report, 'name', question, self.name)
+            createElement(report, 'description', question, self.description)
+            createElement(report, 'command', question)
+            createElement(report, 'architectures', question)
+            createTypedElement(report, 'categories', question, None, self.categories,
+                               True, 'category')
+            createElement(report, 'optional', question, self.optional)
+
+            if self.answer:
+                answer = createElement(report, 'answer', question)
+                createElement(report, 'status', answer, self.answer.status)
+                createElement(report, 'data', answer, self.answer.data)
+
+    def create_answer(self, status, data='', auto=False):
+        self.answer = Answer(self, status, data, auto)
+        return self.answer
+
+
 def parse_lines(lines):
     """Parse question lines and return the resulting list of
     dictionaries.

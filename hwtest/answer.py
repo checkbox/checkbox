@@ -4,7 +4,7 @@ SKIP = 'skip'
 ALL_STATUS = [PASS, FAIL, SKIP]
 
 
-class Result:
+class Answer:
 
     def __init__(self, test, status, data, auto):
         self.test = test

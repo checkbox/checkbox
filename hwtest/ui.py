@@ -20,33 +20,33 @@ class UserInterface(object):
     def __init__(self):
         self.gettext_domain = 'hwtest'
         self.application = None
-        self.tests = None
+        self.questions = None
 
         gettext.textdomain(self.gettext_domain)
         self.parse_argv()
 
-    def run_tests(self):
+    def run_questions(self):
         # Determine category
         category = self.ui_present_categories(_("Hardware Categories"),
             _("Please specify the type of hardware being tested:"))
-        exclude_func = lambda test, category=category: \
-                       category not in test.categories
+        exclude_func = lambda question, category=category: \
+                       category not in question.categories
 
-        # Iterate over tests
-        manager_tests = self.application.get_tests()
-        tests = Excluder(manager_tests, exclude_func, exclude_func)
+        # Iterate over questions
+        manager_questions = self.application.get_questions()
+        questions = Excluder(manager_questions, exclude_func, exclude_func)
 
         direction = DIRECTION_NEXT
-        while tests.has_next():
+        while questions.has_next():
             if direction == DIRECTION_NEXT:
-                test = tests.next()
+                question = questions.next()
             elif direction == DIRECTION_PREVIOUS:
-                test = tests.prev()
+                question = questions.prev()
             else:
                 raise Exception, "invalid direction: %s" % direction
-            direction = self.ui_present_question(test, tests.has_prev(), tests.has_next())
+            direction = self.ui_present_question(question, questions.has_prev(), questions.has_next())
 
-        # Exchange test results
+        # Exchange question answers
         error = None
         while True:
             secure_id = self.ui_present_exchange(error)
@@ -58,7 +58,7 @@ class UserInterface(object):
 
     def run_argv(self):
         self.application = ApplicationManager().create(self.options)
-        self.run_tests()
+        self.run_questions()
 
     def parse_argv(self):
         optparser = optparse.OptionParser('%prog [options]')
@@ -79,7 +79,7 @@ class UserInterface(object):
     def ui_present_categories(self, title, text):
         raise NotImplementedError, 'this function must be overridden by subclasses'
 
-    def ui_present_question(self, test, has_prev, has_next):
+    def ui_present_question(self, question, has_prev, has_next):
         raise NotImplementedError, 'this function must be overridden by subclasses'
 
     def ui_present_exchange(self, error):

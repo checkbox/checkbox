@@ -68,10 +68,10 @@ class GTKUserInterface(ui.UserInterface):
         self._notebook.set_current_page(1)
 
         # Default answers
-        if question.result:
-            result = question.result
-            self._set_textview('textview_answer', result.data)
-            self._get_widget('radiobutton_%s' % result.status).set_active(True)
+        if question.answer:
+            answer = question.answer
+            self._set_textview('textview_answer', answer.data)
+            self._get_widget('radiobutton_%s' % answer.status).set_active(True)
         else:
             self._set_textview('textview_answer', '')
             self._get_widget('radiobutton_yes').set_active(True)
@@ -80,14 +80,14 @@ class GTKUserInterface(ui.UserInterface):
         while gtk.events_pending():
             gtk.main_iteration(False)
 
-        # Get result if next button is pressed
+        # Get answer if next button is pressed
         if response:
             status = self._get_radiobutton({
                 'radiobutton_yes': 'yes',
                 'radiobutton_no': 'no',
                 'radiobutton_skip': 'skip'})
             data = self._get_textview('textview_answer')
-            result = question.create_result(status, data)
+            answer = question.create_answer(status, data)
 
         return response
 
