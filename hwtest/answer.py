@@ -1,7 +1,7 @@
-FAIL = 'fail'
-PASS = 'pass'
+NO = 'no'
+YES = 'yes'
 SKIP = 'skip'
-ALL_STATUS = [PASS, FAIL, SKIP]
+ALL_STATUS = [YES, NO, SKIP]
 
 
 class Answer:

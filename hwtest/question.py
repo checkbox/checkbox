@@ -6,7 +6,7 @@ from hwtest.repeater import PreRepeater
 from hwtest.resolver import Resolver
 
 from hwtest.action import execute
-from hwtest.answer import Answer, FAIL, SKIP
+from hwtest.answer import Answer, NO, SKIP
 from hwtest.plugin import Plugin
 from hwtest.template import convert_string
 
@@ -28,7 +28,7 @@ class QuestionManager(object):
     def get_iterator(self):
         def repeat_func(question, resolver):
             answer = question.answer
-            if answer and (answer.status == FAIL or answer.status == SKIP):
+            if answer and (answer.status == NO or answer.status == SKIP):
                 for dependent in resolver.get_dependents(question):
                     dependent.create_answer(SKIP, auto=True)
 
