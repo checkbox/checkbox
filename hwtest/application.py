@@ -19,10 +19,6 @@ from hwtest.report import Report
 
 class Application(object):
 
-    title = "Hardware Testing Tool"
-
-    intro = "Please specify the type of hardware being tested:"
- 
     def __init__(self, reactor, questions, data_path,
                  log_handlers=None, log_level=None):
 
