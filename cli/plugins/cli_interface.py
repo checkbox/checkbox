@@ -1,4 +1,5 @@
-import sys, re
+import re
+import sys
 import termios
 
 from hwtest.user_interface import UserInterfacePlugin
@@ -17,17 +18,20 @@ class CLIDialog(object):
     '''Command line dialog wrapper.'''
 
     def __init__(self, heading, text):
-        self.heading = '\n*** ' + heading + '\n'
+        self.heading = heading
         self.text = text
-        self.keys = []
-        self.buttons = []
         self.visible = False
 
-    def raw_input_char(self, text):
-        """ raw_input, but read only one character """
+    def put(self, text):
+        sys.stdout.write(text)
 
-        sys.stdout.write(text + ' ')
+    def put_line(self, line):
+        self.put("%s\n" % line)
 
+    def put_newline(self):
+        self.put("\n")
+
+    def get(self, limit=1):
         file = sys.stdin.fileno()
         saved_attributes = termios.tcgetattr(file)
         attributes = termios.tcgetattr(file)
@@ -36,79 +40,146 @@ class CLIDialog(object):
         attributes[6][termios.VTIME] = 0
         termios.tcsetattr(file, termios.TCSANOW, attributes)
 
+        input = ''
         try:
-            ch = str(sys.stdin.read(1))
+            while len(input) < limit:
+                ch = str(sys.stdin.read(1))
+                if ord(ch) == termios.CEOT:
+                    break
+                input += ch
         finally:
             termios.tcsetattr(file, termios.TCSANOW, saved_attributes)
 
-        print
-        return ch
+        self.put_newline()
+        return input
+
+    def get_with_label(self, label, limit=1):
+        self.put(label)
+        return self.get(limit)
 
     def show(self):
         self.visible = True
-        print self.heading
-        print self.text
+        self.put_newline()
+        self.put_line('*** %s' % self.heading)
+        self.put_newline()
+        self.put_line(self.text)
+
+
+class CLIChoiceDialog(CLIDialog):
+
+    def __init__(self, heading, text):
+        super(CLIChoiceDialog, self).__init__(heading, text)
+        self.keys = []
+        self.buttons = []
 
     def run(self):
         if not self.visible:
             self.show()
 
-        print
+        self.put_newline()
         try:
             # Only one button
             if len (self.keys) <= 1:
-                self.raw_input_char(_('Press any key to continue...'))
+                self.get_with_label(_('Press any key to continue...'))
                 return 0
             # Multiple choices
             while True:
-                print _('What would you like to do? Your options are:')
+                self.put_line(_('What would you like to do? Your options are:'))
                 for index, button in enumerate(self.buttons):
-                    print '  %s: %s' % (self.keys[index], button)
+                    self.put_line('  %s: %s' % (self.keys[index], button))
 
-                response = self.raw_input_char(_('Please choose (%s):') % ('/'.join(self.keys)))
+                response = self.get_with_label(_('Please choose (%s): ') % ('/'.join(self.keys)))
                 try:
                     return self.keys.index(response[0].upper()) + 1
                 except ValueError:
                     pass
         except KeyboardInterrupt:
-            print
+            self.put_newline()
             sys.exit(1)
 
-    def addbutton(self, button):
+    def add_button(self, button):
         self.keys.append(re.search('&(.)', button).group(1).upper())
         self.buttons.append(re.sub('&', '', button))
         return len(self.keys)
  
 
+class CLIInputDialog(CLIDialog):
+
+    def run(self, limit=80):
+        if not self.visible:
+            self.show()
+
+        self.put_newline()
+        try:
+            response = self.get_with_label(_('Please type here and press Ctrl-D when finished:\n'), limit)
+            return response
+        except KeyboardInterrupt:
+            self.put_newline()
+            sys.exit(1)
+
+
+class CLIProgressDialog(CLIDialog):
+    '''Command line progress dialog wrapper.'''
+
+    def __init__(self, heading, text):
+        super(CLIProgressDialog, self).__init__(heading, text)
+        self.progress_count = 0
+
+    def set(self, progress=None):
+        self.progress_count = (self.progress_count + 1) % 5
+        if self.progress_count:
+            return
+
+        if progress != None:
+            self.put('\r%u%%' % (progress * 100))
+        else:
+            self.put('.')
+        sys.stdout.flush()
+
+
 class CLIInterface(UserInterface):
 
-    def show_categories(self, title, text):
-        dialog = CLIDialog(title, text)
+    def show_categories(self):
+        title = "Hardware Test"
+        text = "Please select the category of your hardware."
+        dialog = CLIChoiceDialog(title, text)
         categories = ['desktop', 'laptop', 'server']
         for category in categories:
-            report = dialog.addbutton('&%s' % category)
+            dialog.add_button('&%s' % category)
 
         # show categories dialog
         response = dialog.run()
         return categories[response - 1]
 
     def show_question(self, question, has_prev=False, has_next=False):
-        dialog = CLIDialog(question.name, question.description)
+        dialog = CLIChoiceDialog(question.name, question.description)
         answers = ['yes', 'no', 'skip']
         for answer in answers:
-            report = dialog.addbutton('&%s' % answer)
+            dialog.add_button('&%s' % answer)
 
         # show answers dialog
         response = dialog.run()
-        if answers[response - 1] is 'no':
-            # prompt for comment
-            pass
+        status = answers[response - 1]
+        data = ''
+        if status is 'no':
+            text = 'Please provide comments about the failure.'
+            dialog = CLIInputDialog(question.name, text)
+            data = dialog.run()
+
+        question.create_answer(status, data)
 
         return 1
 
     def show_authentication(self, error=None):
-        # TODO: prompt for email
-        pass
+        title = "Authentication"
+        text = "Please provide your email address."
+        dialog = CLIInputDialog(title, text)
+
+        if error:
+            dialog.put('ERROR: %s' % error)
+
+        email = dialog.run()
+        return email
 
 
 class CLIInterfacePlugin(UserInterfacePlugin):
