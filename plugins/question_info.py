@@ -66,7 +66,6 @@ characters in a text area.
 Is your keyboard working properly?"""}]]
 
     def command_audio(self):
-        print 'here'
         gnome.sound_init("localhost")
         sound_file = os.path.join(HWTEST_DIR, "data", "sound.wav")
         gnome.sound_play(sound_file)
@@ -77,7 +76,6 @@ Is your keyboard working properly?"""}]]
         except IOError:
             device = 'None'
 
-        print 'there'
         return device
 
     def command_resolution(self, test_output=None):
