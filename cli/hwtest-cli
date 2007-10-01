@@ -11,7 +11,7 @@ def main():
     manager = ApplicationManager()
     application = manager.create_application(sys.argv)
     application.plugin_manager.load_directory(os.path.join(HWTEST_DIR, 'plugins'))
-    application.plugin_manager.load_directory(os.path.join(HWTEST_DIR, 'gtk', 'plugins'))
+    application.plugin_manager.load_directory(os.path.join(HWTEST_DIR, 'cli', 'plugins'))
     application.run()
 
 

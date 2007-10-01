@@ -6,10 +6,8 @@ from distutils.core import setup
 from hwtest import VERSION
 
 
-project_name = 'hwtest'
-
 setup(
-    name = project_name,
+    name = 'hwtest',
     version = VERSION,
     author = 'Marc Tardif',
     author_email = 'marc.tardif@canonical.com',
@@ -23,9 +21,11 @@ to Launchpad.
     data_files=[
         ('share/applications/', ['gtk/hwtest-gtk.desktop']),
         ('share/pixmaps/', ['gtk/hwtest-gtk.xpm']),
-        ('share/hwtest/', ['questions.txt']),
+        ('share/hwtest/data/', glob('data/*')),
+        ('share/hwtest/plugins/', glob('plugins/*')),
         ('share/hwtest/gtk/', ['gtk/hwtest-gtk.glade'] + glob('gtk/*.png')),
-        ('share/hwtest/data/', glob('data/*'))],
-    scripts=['gtk/hwtest-gtk'],
-    packages=['hwtest', 'hwtest.contrib', 'hwtest.lib', 'hwtest.plugins']
+        ('share/hwtest/gtk/plugins/', glob('gtk/plugins/*')),
+        ('share/hwtest/cli/plugins/', glob('cli/plugins/*'))],
+    scripts=['cli/hwtest-cli', 'gtk/hwtest-gtk'],
+    packages=['hwtest', 'hwtest.contrib', 'hwtest.lib']
 )

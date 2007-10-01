@@ -2,12 +2,12 @@
 
 DEB_PYTHON_SYSTEM := pysupport
 
-include /usr/share/cdbs/1/rules/buildcore.mk
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/python-distutils.mk
 include /usr/share/cdbs/1/rules/simple-patchsys.mk
 
-DEB_COMPRESS_EXCLUDE += .py
+DEB_DH_INSTALL_SOURCEDIR := debian/tmp
+DEB_PYTHON_INSTALL_ARGS_ALL := --no-compile --install-scripts usr/share/hwtest
 
 clean::
 	-find . -name \*.mo -exec rm {} \;
