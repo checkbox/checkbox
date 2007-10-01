@@ -27,5 +27,5 @@ to Launchpad.
         ('share/hwtest/gtk/plugins/', glob('gtk/plugins/*')),
         ('share/hwtest/cli/plugins/', glob('cli/plugins/*'))],
     scripts=['cli/hwtest-cli', 'gtk/hwtest-gtk'],
-    packages=['hwtest', 'hwtest.contrib', 'hwtest.lib']
+    packages=['hwtest', 'hwtest.contrib', 'hwtest.lib', 'hwtest_cli', 'hwtest_gtk']
 )

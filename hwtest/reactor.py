@@ -31,6 +31,9 @@ class Reactor(object):
         else:
             raise InvalidID("EventID instance expected, received %r" % id)
 
+    def cancel_all_calls(self, event_type):
+        del self._event_handlers[id._event_type]
+
     def fire(self, event_type, *args, **kwargs):
         logging.debug("Started firing %s.", event_type)
         for handler, priority in self._event_handlers.get(event_type, ()):
