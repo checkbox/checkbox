@@ -48,6 +48,7 @@ class ProcessorInfo(Plugin):
     persist_name = "processor-info"
     
     def __init__(self, processor_manager=None):
+        super(ProcessorInfo, self).__init__()
         self._processors = []
         self._processor_manager = processor_manager or ProcessorManager()
 
