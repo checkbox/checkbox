@@ -1,7 +1,4 @@
 import dbus
-if getattr(dbus, "version", (0,0,0)) >= (0,41,0):
-    import dbus.glib
-
 import md5
 
 from commands import getoutput
@@ -9,7 +6,6 @@ from operator import indexOf
 from string import rsplit
 
 from hwtest.plugin import Plugin
-
 from hwtest.report_helpers import createDevice, createProperty, createElement
 
 class Device(object):
@@ -65,11 +61,8 @@ class DeviceManager(object):
             id = indexOf(device_list, device)
             device_obj = self._bus.get_object("org.freedesktop.Hal", device)
             properties = device_obj.GetAllProperties(dbus_interface="org.freedesktop.Hal.Device")
-            try:
-                parent = properties["info.parent"]
-            except KeyError:
-                # No parent.
-                parent = None
+            parent = properties.get("info.parent")
+            if parent:
                 self.computer_id = id
             self.devices.append(Device(id, device, parent, properties))
         
@@ -88,20 +81,19 @@ class DeviceManager(object):
         for device in self.devices:
             device.toxml(report, hal)
 
+
 class DeviceInfo(Plugin):
 
     def __init__(self, device_manager=None):
         super(DeviceInfo, self).__init__()
         self._device_manager = device_manager or DeviceManager()
 
-    def register(self, manager):
-        self._manager = manager
-        self._manager.reactor.call_on("gather_information", self.gather_information)
-    
-    def gather_information(self):
+    def gather(self):
         report = self._manager.report
         if not report.finalised:
-            computer = self._device_manager.devices[self._device_manager.computer_id]
+            udi = '/org/freedesktop/Hal/devices/computer'
+            computer = filter(lambda d: d.properties['info.udi'] == udi,
+                self._device_manager.devices)[0]
 
             # Generate system fingerprint
             fingerprint = md5.new()
@@ -115,5 +107,6 @@ class DeviceInfo(Plugin):
             report.info['system'] = fingerprint.hexdigest()
 
             self._device_manager.toxml(self._manager.report)
+
 
 factory = DeviceInfo

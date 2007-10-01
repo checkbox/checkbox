@@ -1,10 +1,10 @@
-FAIL = 'fail'
-PASS = 'pass'
+NO = 'no'
+YES = 'yes'
 SKIP = 'skip'
-ALL_STATUS = [PASS, FAIL, SKIP]
+ALL_STATUS = [YES, NO, SKIP]
 
 
-class Result:
+class Answer:
 
     def __init__(self, test, status, data, auto):
         self.test = test

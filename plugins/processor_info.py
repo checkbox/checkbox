@@ -42,19 +42,17 @@ class ProcessorManager(object):
 
         return processors
 
+
 class ProcessorInfo(Plugin):
+
+    persist_name = "processor-info"
     
     def __init__(self, processor_manager=None):
+        super(ProcessorInfo, self).__init__()
         self._processors = []
         self._processor_manager = processor_manager or ProcessorManager()
 
-    def register(self, manager):
-        self._manager = manager
-        self._persist = self._manager.persist.root_at('processor_info')
-        self._manager.reactor.call_on('gather_information', self.gather_information)
-        self._manager.reactor.call_on('run', self.run)
-
-    def gather_information(self):
+    def gather(self):
         report = self._manager.report
         if not report.finalised:
             content = self._processors
@@ -67,5 +65,6 @@ class ProcessorInfo(Plugin):
 
     def run(self):
         self._processors = self._processor_manager.get_processors()
+
 
 factory = ProcessorInfo

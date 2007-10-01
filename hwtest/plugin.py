@@ -5,11 +5,8 @@ import logging
 from hwtest.log import format_object
 
 
-class InvalidPluginError(Exception):
-    """XXX"""
-
-
 class PluginManager(object):
+
     def __init__(self, reactor, report, persist, persist_filename=None):
         self.reactor = reactor
         self.report = report
@@ -21,21 +18,28 @@ class PluginManager(object):
         if persist_filename and os.path.exists(persist_filename):
             self.persist.load(persist_filename)
 
-    def load(self, directory):
-        logging.info("Loading plugins from %s.", directory)
-        sys.path.insert(0, directory)
+    def load_directory(self, directory):
+        logging.info("Loading plugins from directory: %s", directory)
         for name in [file for file in os.listdir(directory)
                      if file.endswith(".py")]:
-            module_name = name.rstrip('.py')
-            module = __import__(module_name)
-            if not hasattr(module, "factory"):
-                raise InvalidPluginError("Plugin %r lacks a factory method"
-                                         % module)
-            self.add(module.factory())
+            self.load_path(os.path.join(directory, name))
+
+    def load_path(self, path):
+        logging.info("Loading plugin from path: %s", path)
+        directory = os.path.dirname(path)
+        filename = os.path.basename(path)
+
+        sys.path.insert(0, directory)
+        name = filename.rstrip('.py')
+        module = __import__(name)
+        if not hasattr(module, "factory"):
+            raise Exception, "Factory variable not found: %s" % module
+        self.load(module.factory())
+
         del sys.path[0]
 
-    def add(self, plugin):
-        logging.info("Registering plugin %s.", format_object(plugin))
+    def load(self, plugin):
+        logging.info("Registering plugin: %s", format_object(plugin))
         self._plugins.append(plugin)
         plugin.register(self)
 
@@ -64,4 +68,16 @@ class PluginManager(object):
 
 
 class Plugin(object):
-    pass
+
+    persist_name = None
+
+    def register(self, manager):
+        self._manager = manager
+        if hasattr(self, "gather"):
+            manager.reactor.call_on("gather", self.gather)
+        if hasattr(self, "run"):
+            manager.reactor.call_on("run", self.run)
+        if hasattr(self, "exchange"):
+            manager.reactor.call_on("exchange", self.exchange)
+        if self.persist_name is not None:
+            self._persist = manager.persist.root_at(self.persist_name)

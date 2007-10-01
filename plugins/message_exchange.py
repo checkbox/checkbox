@@ -12,16 +12,14 @@ from hwtest.log import format_delta
 
 
 class MessageExchange(Plugin):
+
     transport_factory = HTTPTransport
-    transport_url = 'https://launchpad.net/hwdb/+submit'
+    transport_url = "https://launchpad.net/hwdb/+submit"
+
+    persist_name = "message-exchange"
 
     def __init__(self):
         self._transport = self.transport_factory(self.transport_url)
-
-    def register(self, manager):
-        self._manager = manager
-        self._persist = manager.persist.root_at("message-exchange")
-        self._manager.reactor.call_on("exchange", self.exchange)
 
     def exchange(self):
         report = self._manager.report
@@ -93,16 +91,6 @@ class MessageExchange(Plugin):
         logging.info("Sent %d bytes and received %d bytes in %s.",
                      len(form), len(response),
                      format_delta(time.time() - start_time))
-
-        if not self._check_response(response):
-            logging.exception("Server returned invalid data: %r" % ret)
-            return None
-
-        self._manager.set_error()
-
-    def _check_response(self, response):
-        """XXX"""
-        return True
 
 
 factory = MessageExchange

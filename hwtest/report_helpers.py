@@ -1,5 +1,3 @@
-#! /usr/bin/python
-
 import re
 
 import xml.dom.minidom

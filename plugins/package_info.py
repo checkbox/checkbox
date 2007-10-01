@@ -40,18 +40,14 @@ class PackageManager(object):
 
         return packages
 
+
 class PackageInfo(Plugin):
 
     def __init__(self, package_manager=None):
         super(PackageInfo, self).__init__()
         self._package_manager = package_manager or PackageManager()
 
-    def register(self, manager):
-        self._manager = manager
-        self._manager.reactor.call_on("gather_information", self.gather_information)
-        self._manager.reactor.call_on("run", self.run)
-
-    def gather_information(self):
+    def gather(self):
         report = self._manager.report
         if not report.finalised:
             content = self._package_info

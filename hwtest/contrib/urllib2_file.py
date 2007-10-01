@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 ####
 # Version: 0.2.0
 #  - UTF-8 filenames are now allowed (Eli Golovinsky)<br/>

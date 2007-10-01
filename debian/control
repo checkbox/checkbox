@@ -7,8 +7,27 @@ Build-Depends-Indep: cdbs (>= 0.4.34), debhelper (>= 5.0.7), python-dev (>= 2.4)
 
 Package: hwtest
 Architecture: all
-Depends: python (>= 2.4), python-gnome2, python-glade2, python-dbus | python2.4-dbus, python-apt | python2.4-apt, hal, fping, xbase-clients, libxrandr2
-Description: Hardware Test
- This project provides an interfaces for gathering hardware details
- and prompting the user for tests. This information can then be sent
- to Launchpad.
+Depends: python (>= 2.4), hwtest-lib
+Description: Hardware test
+ This project provides an interface for gathering hardware details
+ and prompting the user for questions. This information can then be
+ sent to Launchpad.
+
+Package: hwtest-lib
+Section: python
+Architecture: all
+Depends: ${python:Depends}, python-dbus | python2.4-dbus, python-apt | python2.4-apt, hal, fping, xbase-clients, libxrandr2
+Description: Hardware test library
+ This python package provides high-level functions for managing
+ hwtest questions
+
+Package: hwtest-gtk
+Section: gnome
+Architecture: all
+Depends: python (>= 2.4), hwtest-lib, python-gtk2, python-glade2, hwtest
+Description: GTK frontend for the hwtest program
+ This project provides an interface for gathering hardware details
+ and prompting the user for questions. This information can then be
+ sent to Launchpad.
+ .
+ This package provides a GTK frontend for answering questions.

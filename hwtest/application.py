@@ -1,4 +1,5 @@
 import os
+import sys
 import logging
 
 from logging import StreamHandler, FileHandler, Formatter
@@ -9,23 +10,15 @@ from hwtest.contrib.persist import Persist
 
 from hwtest import VERSION
 
-from hwtest.gui import Gui
 from hwtest.plugin import PluginManager
-from hwtest.question import parse_file
 from hwtest.reactor import Reactor
-from hwtest.test import Test, TestManager
-from hwtest.constants import SHARE_DIR
+from hwtest.constants import HWTEST_DIR
 from hwtest.report import Report
 
 
 class Application(object):
 
-    title = "Hardware Testing Tool"
-
-    intro = "Please specify the type of hardware being tested:"
- 
-    def __init__(self, reactor, questions, data_path,
-                 log_handlers=None, log_level=None):
+    def __init__(self, reactor, data_path, log_handlers=None, log_level=None):
 
         # Logging setup
         format = ("%(asctime)s %(levelname)-8s %(message)s")
@@ -45,30 +38,16 @@ class Application(object):
 
         # Persist setup
         persist_filename = os.path.join(data_path, "data.bpickle")
-        self.persist = self.get_persist(persist_filename)
+        self.persist = self._get_persist(persist_filename)
 
         # Report setup
         self.report = Report()
 
-        # Test manager setup
-        self.test_manager = TestManager()
-
-        # Questions
-        questions = parse_file(questions)
-        tests = [Test(**q) for q in questions]
-        for test in tests:
-            self.test_manager.add(test)
-
         # Plugin manager setup
         self.plugin_manager = PluginManager(self.reactor, self.report,
             self.persist, persist_filename)
-        self.plugin_manager.load(os.path.join(os.path.dirname(__file__), 'plugins'))
 
-        # Test plugins
-        for test in tests:
-            self.plugin_manager.add(test)
-
-    def get_persist(self, persist_filename):
+    def _get_persist(self, persist_filename):
         persist = Persist()
 
         if os.path.exists(persist_filename):
@@ -93,9 +72,6 @@ class ApplicationManager(object):
 
     def make_parser(self):
         parser = OptionParser(version=VERSION)
-        parser.add_option("-q", "--questions", metavar="FILE",
-                          default=os.path.join(SHARE_DIR, "questions.txt"),
-                          help="The file containing certification questions.")
         parser.add_option("-d", "--data-path", metavar="PATH",
                           default="~/.hwtest",
                           help="The directory to store data files in.")
@@ -104,12 +80,12 @@ class ApplicationManager(object):
         parser.add_option("--log-level",
                           default="critical",
                           help="One of debug, info, warning, error or critical.")
-        parser.add_option("-c", "--command-line",
-                          default=False,
-                          help="Run the tool from the command line.")
         return parser
-     
-    def make_application(self, options):
+
+    def create_application(self, args=sys.argv):
+        parser = self.make_parser()
+        options = parser.parse_args(args)[0]
+
         log_level = logging.getLevelName(options.log_level.upper())
         log_handlers = []
         log_handlers.append(StreamHandler())
@@ -121,16 +97,6 @@ class ApplicationManager(object):
 
         data_path = os.path.expanduser(options.data_path)
 
-        return self.application_factory(reactor, questions=options.questions,
+        return self.application_factory(reactor,
             data_path=data_path, log_handlers=log_handlers,
             log_level=log_level)
-
-    def run(self, args):
-        """Parse command line options, construct an application, and run it."""
-        parser = self.make_parser()
-        options = parser.parse_args(args)[0]
-        application = self.make_application(options)
-
-        ui = Gui(application)
-        ui.main()
-        return 0
