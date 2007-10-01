@@ -3,8 +3,7 @@ import urllib2
 import socket
 import pprint
 
-from hwtest import API, VERSION
-from hwtest.constants import MESSAGE_API_HEADER
+from hwtest import VERSION
 from hwtest.contrib import urllib2_file
 
 
@@ -21,8 +20,7 @@ class HTTPTransport(object):
     def _post(self, form):
         """Actually POSTs the form to the server."""
         opener = urllib2.build_opener()
-        opener.addheaders = [(MESSAGE_API_HEADER, API),
-                             ("User-Agent", "hwtest/%s" % (VERSION,))]
+        opener.addheaders = [("User-Agent", "hwtest/%s" % (VERSION,))]
         ret = opener.open(self._url, form)
         return ret
 
