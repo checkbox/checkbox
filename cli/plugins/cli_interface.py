@@ -107,7 +107,7 @@ class CLIInterface(UserInterface):
         return 1
 
     def show_exchange(self, error=None):
-        # TODO: prompt for secure_id
+        # TODO: prompt for email
 
 
 class CLIInterfacePlugin(UserInterfacePlugin):

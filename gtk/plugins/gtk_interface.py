@@ -99,15 +99,15 @@ class GTKInterface(UserInterface):
 
         if error is not None:
             markup= '<span color="#FF0000"><b>%s</b></span>' % error
-            self._get_widget('label_exchange_error').set_markup(markup)
+            self._get_widget('label_authentication_error').set_markup(markup)
 
         response = self._dialog.run()
         while gtk.events_pending():
             gtk.main_iteration(False)
 
-        secure_id = self._get_widget('entry_secure_id').get_text()
+        email = self._get_widget('entry_email').get_text()
         
-        return secure_id
+        return email
 
     def on_dialog_hwtest_delete(self, widget, event=None):
         sys.exit(0)
