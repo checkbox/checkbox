@@ -5,7 +5,6 @@ from hwtest.iterator import Iterator
 from hwtest.repeater import PreRepeater
 from hwtest.resolver import Resolver
 
-from hwtest.action import execute
 from hwtest.answer import Answer, NO, SKIP
 from hwtest.plugin import Plugin
 from hwtest.template import convert_string
@@ -60,12 +59,13 @@ class QuestionManager(object):
 
 class Question(Plugin):
 
-    def __init__(self, name, desc, deps=None, cats=None, optional=False):
+    def __init__(self, name, desc, deps=[], cats=ALL_CATEGORIES, optional=False, command=None):
         self.name = self.persist_name = name
         self.desc = desc
-        self.deps = deps and re.split('\s*,\s*', deps) or []
-        self.cats = cats and re.split('\s*,\s*', cats) or ALL_CATEGORIES
+        self.deps = deps
+        self.cats = cats
         self.optional = optional
+        self.command = command
         self.answer = None
 
     def __str__(self):
@@ -74,8 +74,8 @@ class Question(Plugin):
     @property
     def description(self):
         description = self.desc
-        result = execute(self.name)
-        if self.desc.find('$result') != -1:
+        if self.command:
+            result = self.command()
             description = convert_string(self.desc, {'result': result})
 
         return description
