@@ -108,6 +108,7 @@ class CLIInterface(UserInterface):
 
     def show_exchange(self, error=None):
         # TODO: prompt for email
+        pass
 
 
 class CLIInterfacePlugin(UserInterfacePlugin):
