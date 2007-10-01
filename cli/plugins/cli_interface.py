@@ -106,7 +106,7 @@ class CLIInterface(UserInterface):
 
         return 1
 
-    def show_exchange(self, error=None):
+    def show_authentication(self, error=None):
         # TODO: prompt for email
         pass
 
