@@ -55,5 +55,4 @@ class Reactor(object):
     def run(self):
         self.fire("run")
         self.fire("gather")
-        self.fire("exchange")
         self.fire("stop")
