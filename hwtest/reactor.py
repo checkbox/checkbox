@@ -25,6 +25,12 @@ class Reactor(object):
 
         return EventID(event_type, pair)
 
+    def cancel_call(self, id):
+        if type(id) is EventID:
+            self._event_handlers[id._event_type].remove(id._pair)
+        else:
+            raise InvalidID("EventID instance expected, received %r" % id)
+
     def fire(self, event_type, *args, **kwargs):
         logging.debug("Started firing %s.", event_type)
         for handler, priority in self._event_handlers.get(event_type, ()):
