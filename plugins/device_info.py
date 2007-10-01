@@ -81,6 +81,7 @@ class DeviceManager(object):
         for device in self.devices:
             device.toxml(report, hal)
 
+
 class DeviceInfo(Plugin):
 
     def __init__(self, device_manager=None):
@@ -90,7 +91,9 @@ class DeviceInfo(Plugin):
     def gather(self):
         report = self._manager.report
         if not report.finalised:
-            computer = self._device_manager.devices[self._device_manager.computer_id]
+            udi = '/org/freedesktop/Hal/devices/computer'
+            computer = filter(lambda d: d.properties['info.udi'] == udi,
+                self._device_manager.devices)[0]
 
             # Generate system fingerprint
             fingerprint = md5.new()
@@ -104,5 +107,6 @@ class DeviceInfo(Plugin):
             report.info['system'] = fingerprint.hexdigest()
 
             self._device_manager.toxml(self._manager.report)
+
 
 factory = DeviceInfo
