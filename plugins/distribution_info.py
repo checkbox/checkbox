@@ -1,5 +1,5 @@
 from hwtest.plugin import Plugin
-from hwtest.report_helpers import createTypedElement
+from hwtest.report_helpers import createElement, createTypedElement
 
 
 class DistributionInfo(Plugin):
@@ -23,7 +23,11 @@ class DistributionInfo(Plugin):
             report.info['distroseries'] = content['release']
 
             # Store data in report
-            createTypedElement(report, 'distribution', report.root, None,
+            software = getattr(report, 'software', None)
+            if software is None:
+                software = createElement(report, 'software', report.root)
+                report.software = software
+            createTypedElement(report, 'lsbrelease', software, None,
                                content, True)
 
     def get_content(self):

@@ -98,21 +98,27 @@ class QuestionPlugin(Plugin):
     def gather(self):
         report = self._manager.report
         if not report.finalised:
-            for q in self.questions:
-                question = createElement(report, 'question', report.root)
-                createElement(report, 'suite', question, 'tool')
-                createElement(report, 'name', question, q.name)
-                createElement(report, 'description', question, q.description)
-                createElement(report, 'command', question)
-                createElement(report, 'architectures', question)
-                createTypedElement(report, 'categories', question, None, q.categories,
-                                   True, 'category')
-                createElement(report, 'optional', question, q.optional)
+            for question in self.questions:
+                tests = getattr(report, 'tests', None)
+                if tests is None:
+                    tests = createElement(report, 'tests', report.root)
+                    report.tests = tests
+                test = createElement(report, 'test', tests)
+                createElement(report, 'suite', test, 'tool')
+                createElement(report, 'name', test, question.name)
+                createElement(report, 'description', test, question.description)
+                createElement(report, 'command', test)
+                createElement(report, 'architectures', test)
+                createTypedElement(report, 'categories', test, None,
+                    question.categories, True, 'category')
+                createElement(report, 'optional', test, question.optional)
 
-                if q.answer:
-                    answer = createElement(report, 'answer', question)
-                    createElement(report, 'status', answer, q.answer.status)
-                    createElement(report, 'data', answer, q.answer.data)
+                if question.answer:
+                    result = createElement(report, 'result', test)
+                    createElement(report, 'result_status', result,
+                        question.answer.status)
+                    createElement(report, 'result_data', result,
+                        question.answer.data)
 
     def run(self):
         for question in self.questions:

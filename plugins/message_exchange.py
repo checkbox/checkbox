@@ -40,14 +40,15 @@ class MessageExchange(Plugin):
         report.finalise()
 
         form = []
-        for k, v in report.info.items():
-            form.append(('field.%s' % k, str(v).encode("utf-8")))
+        name_map = {'system_id': 'system'}
 
+        for k, v in report.info.items():
+            form_field = name_map.get(k, k)
+            form.append(('field.%s' % form_field, str(v).encode("utf-8")))
  
         form.append(('field.format', u'VERSION_1'))
         form.append(('field.emailaddress', report.email))
         form.append(('field.actions.upload', u'Upload'))
-
 
         # Set the filename based on the hostname
         filename = '%s.xml.bz2' % str(gethostname())
@@ -60,7 +61,7 @@ class MessageExchange(Plugin):
         f.size = len(cpayload)
         form.append(('field.submission_data', f))
 
-        logging.info("System ID: %s", report.info['system'])
+        logging.info("System ID: %s", report.info['system_id'])
         logging.info("Submission ID: %s", report.info['submission_key'])
 
         if logging.getLogger().getEffectiveLevel() <= logging.DEBUG:

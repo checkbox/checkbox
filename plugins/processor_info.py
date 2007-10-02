@@ -57,7 +57,7 @@ class ProcessorInfo(Plugin):
         if not report.finalised:
             content = self.get_content()
 
-            processors = createElement(report, 'processors', report.root)
+            processors = createElement(report, 'processors', report.hardware)
             for processor in self._processors:
                 createTypedElement(report, 'processor', processors,
                 str(self._processors.index(processor)), processor.properties,

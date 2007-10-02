@@ -76,6 +76,7 @@ class DeviceManager(object):
 
     def toxml(self, report):
         hardware = createElement(report, 'hardware', report.root)
+        report.hardware = hardware
         hal = createElement(report, 'hal', hardware)
         version = hal.setAttribute('version', str(self.hal_version))
         for device in self.devices:
@@ -104,7 +105,7 @@ class DeviceInfo(Plugin):
             if not report.info.has_key('architecture'):
                 report.info['architecture'] = computer.properties['system.kernel.machine']
 
-            report.info['system'] = fingerprint.hexdigest()
+            report.info['system_id'] = fingerprint.hexdigest()
 
             self._device_manager.toxml(self._manager.report)
 

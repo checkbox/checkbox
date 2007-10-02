@@ -38,7 +38,7 @@ def createElement(document, name, parent=None, value=None):
     if parent:
         parent.appendChild(element)
 
-    if value:
+    if value is not None:
         element_value = document.xml.createTextNode(str(value))
         element.appendChild(element_value)
 

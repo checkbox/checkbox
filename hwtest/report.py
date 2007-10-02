@@ -1,5 +1,6 @@
 import md5
 import zlib
+import logging
 
 from datetime import datetime
 from xml.dom.minidom import Document
@@ -12,7 +13,7 @@ class ReportInfo(dict):
     def __init__(self):
         self['private'] = False
         self['contactable'] = False
-        self['livecd'] = False
+        self['live_cd'] = False
 
 class Report(object):
     def __init__(self):
@@ -35,13 +36,21 @@ class Report(object):
             for child in self.summary.childNodes:
                 self.summary.removeChild(child)
 
-            for key in self.info.keys():
-                createElement(self, key, self.summary, self.info[key])
+            for key in ('live_cd', 'format', 'system_id', 'submission_id',
+                        'distribution', 'distroseries', 'architecture',
+                        'private', 'contactable', 'date_created',
+                        'secure_id'):
+                value = self.info.get(key, None)
+                if value is not None:
+                    element = createElement(self, key, self.summary)
+                    element.setAttribute('value', str(value))
+                else:
+                    logging.info("no system info %s" % key)
 
             self.finalised = True
 
         submission = md5.new()
-        submission.update(self.info['system'])
+        submission.update(self.info['system_id'])
         submission.update(str(datetime.utcnow()))
         self.info['submission_key'] = submission.hexdigest()
 

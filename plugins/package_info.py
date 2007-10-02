@@ -51,7 +51,11 @@ class PackageInfo(Plugin):
         report = self._manager.report
         if not report.finalised:
             content = self.get_content()
-            packages = createElement(report, 'packages', report.root)
+            software = getattr(report, 'software', None)
+            if software is None:
+                software = createElement(report, 'software', report.root)
+                report.software = software
+            packages = createElement(report, 'packages', software)
             for package in content:
                 name = package['name']
                 del package['name']
