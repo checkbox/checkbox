@@ -2,21 +2,17 @@ import os
 import re
 import gnome
 
-from hwtest.pci import get_pci_devices
-from hwtest.pci_ids import get_class, get_device
-from hwtest.plugin import Plugin
-from hwtest.excluder import Excluder
-from hwtest.question import Question, QuestionManager
+from hwtest.question import Question, QuestionPlugin
 from hwtest.constants import HWTEST_DIR
 
 
 TEST_DOMAIN = "canonical.com"
 
 
-class QuestionRepository(object):
+class QuestionInfo(QuestionPlugin):
 
     def __init__(self):
-        self.devices = get_pci_devices()
+        super(QuestionInfo, self).__init__(self)
         self.questions = [Question(**kwargs) for kwargs in [
             {"name": "audio",
              "cats": ["laptop", "desktop"],
@@ -115,9 +111,13 @@ Is your keyboard working properly?"""}]]
         return retval
 
     def command_network(self):
+        from hwtest.pci import get_pci_devices
+        from hwtest.pci_ids import get_class, get_device
+
+        devices = get_pci_devices()
         network_devices = filter(
             lambda x: get_class(x["class_name"]) == "Network controller",
-            self.devices)
+            devices)
         network_strings = map(
             lambda x: get_device(x["vendor"], x["device"]),
             network_devices)
@@ -141,46 +141,6 @@ Is your keyboard working properly?"""}]]
             return "Internet connection fully established"
         else:
             return "Connection established by problematic"
-
-
-class QuestionInfo(Plugin):
-
-    def __init__(self, question_manager=None):
-        super(QuestionInfo, self).__init__()
-        question_manager = question_manager or QuestionManager()
-        question_repository = QuestionRepository()
-        for question in question_repository.questions:
-            question_manager.add(question)
-        self.questions = question_manager.get_iterator()
-        self.question = self.questions.next()
-
-    def register(self, manager):
-        self._manager = manager
-        self._manager.reactor.call_on("run", self.run, -200)
-        self._manager.reactor.call_on(("question", "category"), self.set_category)
-        self._manager.reactor.call_on(("question", "direction"), self.set_direction)
-
-    def run(self):
-        while self.question:
-            self._manager.reactor.fire(("interface", "question"),
-                self.question, self.questions.has_prev(),
-                self.questions.has_next())
-
-    def exchange(self):
-        # TODO: gather question information
-        pass
-
-    def set_category(self, category):
-        exclude_func = lambda question, c=category: c not in question.categories
-        self.questions = iter(Excluder(self.questions, exclude_func, exclude_func))
-        self.question = self.questions.next()
-
-    def set_direction(self, direction):
-        questions = self.questions
-        if direction is 1:
-            self.question = questions.has_next() and questions.next() or None
-        else:
-            self.question = questions.has_prev() and questions.prev() or None
 
 
 factory = QuestionInfo

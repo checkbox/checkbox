@@ -25,15 +25,6 @@ class Reactor(object):
 
         return EventID(event_type, pair)
 
-    def cancel_call(self, id):
-        if type(id) is EventID:
-            self._event_handlers[id._event_type].remove(id._pair)
-        else:
-            raise InvalidID("EventID instance expected, received %r" % id)
-
-    def cancel_all_calls(self, event_type):
-        del self._event_handlers[id._event_type]
-
     def fire(self, event_type, *args, **kwargs):
         logging.debug("Started firing %s.", event_type)
         for handler, priority in self._event_handlers.get(event_type, ()):
@@ -46,7 +37,6 @@ class Reactor(object):
                                   "handler %s for event type %r with "
                                   "args %r %r.", format_object(handler),
                                   event_type, args, kwargs)
-                self.stop()
                 raise
             except:
                 logging.exception("Error running event handler %s for "
@@ -55,7 +45,15 @@ class Reactor(object):
                                   args, kwargs)
         logging.debug("Finished firing %s.", event_type)
 
+    def cancel_call(self, id):
+        if type(id) is EventID:
+            self._event_handlers[id._event_type].remove(id._pair)
+        else:
+            raise InvalidID("EventID instance expected, received %r" % id)
+
+    def cancel_all_calls(self, event_type):
+        del self._event_handlers[id._event_type]
+
     def run(self):
         self.fire("run")
-        self.fire("gather")
         self.fire("stop")

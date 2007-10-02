@@ -12,12 +12,11 @@ class DistributionInfo(Plugin):
     def __init__(self, source_filename="/etc/lsb-release"):
         super(DistributionInfo, self).__init__()
         self._source_filename = source_filename
-        self._distribution_info = {}
 
     def gather(self):
         report = self._manager.report
         if not report.finalised:
-            content = self._distribution_info 
+            content = self.get_content()
 
             # Store summary information
             report.info['distribution'] = content['distributor-id']
@@ -27,14 +26,17 @@ class DistributionInfo(Plugin):
             createTypedElement(report, 'distribution', report.root, None,
                                content, True)
 
-    def run(self):
+    def get_content(self):
+        content = {}
         fd = file(self._source_filename, "r")
         for line in fd.readlines():
             key, value = line.split("=")
             if key in self.lsb_release_keys:
                 key = self.lsb_release_keys[key.strip()]
                 value = value.strip().strip('"')
-                self._distribution_info[key] = value
+                content[key] = value
+
+        return content
 
 
 factory = DistributionInfo

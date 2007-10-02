@@ -2,6 +2,7 @@ import optparse, gettext
 from gettext import gettext as _
 
 from hwtest.plugin import Plugin
+from hwtest.contrib.REThread import REThread
 
 
 class UserInterface(object):
@@ -23,7 +24,7 @@ class UserInterface(object):
     def show_question(self, question, has_prev, has_next):
         raise NotImplementedError, 'this function must be overridden by subclasses'
 
-    def show_authentication(self, error):
+    def show_exchange(self, error):
         raise NotImplementedError, 'this function must be overridden by subclasses'
 
 
@@ -35,24 +36,40 @@ class UserInterfacePlugin(Plugin):
 
     def register(self, manager):
         super(UserInterfacePlugin, self).register(manager)
-        self._manager.reactor.call_on(("interface", "categories"), self.show_categories)
-        self._manager.reactor.call_on(("interface", "question"), self.show_question)
-        self._manager.reactor.call_on(("interface", "authentication"), self.show_authentication)
+        self._manager.reactor.call_on(("interface", "show-categories"), self.show_categories)
+        self._manager.reactor.call_on(("interface", "show-question"), self.show_question)
+        self._manager.reactor.call_on(("interface", "show-gather"), self.show_gather)
+        self._manager.reactor.call_on(("interface", "show-exchange"), self.show_exchange)
 
     def show_categories(self):
         category = self._user_interface.show_categories()
-        self._manager.reactor.fire(("question", "category"), category)
+        self._manager.reactor.fire(("prompt", "set-category"), category)
 
     def show_question(self, question, has_prev, has_next):
         direction = self._user_interface.show_question(question, has_prev,
                                                        has_next)
-        self._manager.reactor.fire(("question", "direction"), direction)
+        self._manager.reactor.fire(("prompt", "set-direction"), direction)
 
-    def show_authentication(self):
+    def do_gather(self):
+        self._manager.reactor.fire("gather")
+
+    def show_gather(self):
+        self._user_interface.show_gather()
+        thread = REThread(target=self.do_gather, name='do_gather')
+        thread.start()
+        while thread.isAlive():
+            self._user_interface.pulse_gather()
+            try:
+                thread.join(0.1)
+            except KeyboardInterrupt:
+                sys.exit(1)
+        thread.exc_raise()
+
+    def show_exchange(self):
         error = None
         while True:
-            self._manager.report.secure_id = self._user_interface.show_authentication(error)
-            self._manager.reactor.fire("authentication")
+            self._manager.report.secure_id = self._user_interface.show_exchange(error)
+            self._manager.reactor.fire("exchange")
             error = self._manager.get_error()
             if not error:
                 break

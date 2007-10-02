@@ -162,7 +162,7 @@ class CLIInterface(UserInterface):
 
         return 1
 
-    def show_authentication(self, error=None):
+    def show_exchange(self, error=None):
         title = "Authentication"
         text = "Please provide your email address."
         dialog = CLIInputDialog(title, text)

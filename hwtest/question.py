@@ -4,9 +4,9 @@ from hwtest.excluder import Excluder
 from hwtest.iterator import Iterator
 from hwtest.repeater import PreRepeater
 from hwtest.resolver import Resolver
+from hwtest.plugin import Plugin
 
 from hwtest.answer import Answer, NO, SKIP
-from hwtest.plugin import Plugin
 from hwtest.template import convert_string
 
 from hwtest.report_helpers import createElement, createTypedElement
@@ -57,7 +57,7 @@ class QuestionManager(object):
         return excluder_iter
 
 
-class Question(Plugin):
+class Question(object):
 
     def __init__(self, name, desc, deps=[], cats=ALL_CATEGORIES, optional=False, command=None):
         self.name = self.persist_name = name
@@ -84,110 +84,36 @@ class Question(Plugin):
     def categories(self):
         return self.cats
 
-    def gather(self):
-        report = self._manager.report
-        if not report.finalised:
-            question = createElement(report, 'question', report.root)
-            createElement(report, 'suite', question, 'tool')
-            createElement(report, 'name', question, self.name)
-            createElement(report, 'description', question, self.description)
-            createElement(report, 'command', question)
-            createElement(report, 'architectures', question)
-            createTypedElement(report, 'categories', question, None, self.categories,
-                               True, 'category')
-            createElement(report, 'optional', question, self.optional)
-
-            if self.answer:
-                answer = createElement(report, 'answer', question)
-                createElement(report, 'status', answer, self.answer.status)
-                createElement(report, 'data', answer, self.answer.data)
-
     def create_answer(self, status, data='', auto=False):
         self.answer = Answer(self, status, data, auto)
         return self.answer
 
 
-def parse_lines(lines):
-    """Parse question lines and return the resulting list of
-    dictionaries.
+class QuestionPlugin(Plugin):
 
-    Keyword arguments:
-    lines -- lines containing a question
-    """
+    run_priority = -500
 
-    question = {}
     questions = []
-    line_number = 0
-    for line in lines:
-        line_number += 1
 
-        # Ignore comments
-        if not line.startswith('#'):
-            line = line.strip("\n")
-            # Empty line is a dictionary separator
-            if not line:
-                if question:
-                    questions.append(question)
-                    question = {}
-            # Starting space continues previous line
-            elif line.startswith(' '):
-                value = line.strip()
-                if value:
-                    if not question[key].endswith('\n\n'):
-                        question[key] += ' '
-                    question[key] += value
-                else:
-                    question[key] += '\n\n'
-            # Otherwise, directory entry
-            else:
-                key, value = line.split(':', 1)
-                value = value.strip()
-                question[key] = value
+    def gather(self):
+        report = self._manager.report
+        if not report.finalised:
+            for q in self.questions:
+                question = createElement(report, 'question', report.root)
+                createElement(report, 'suite', question, 'tool')
+                createElement(report, 'name', question, q.name)
+                createElement(report, 'description', question, q.description)
+                createElement(report, 'command', question)
+                createElement(report, 'architectures', question)
+                createTypedElement(report, 'categories', question, None, q.categories,
+                                   True, 'category')
+                createElement(report, 'optional', question, q.optional)
 
-    # Append last entry
-    if question:
-        questions.append(question)
+                if q.answer:
+                    answer = createElement(report, 'answer', question)
+                    createElement(report, 'status', answer, q.answer.status)
+                    createElement(report, 'data', answer, q.answer.data)
 
-    return questions
-
-def parse_string(string):
-    """Parse a question string and return the resulting list of
-    dictionaries.
-
-    Keyword arguments:
-    string -- string containing a question
-    """
-
-    return parse_lines(string.split('\n'))
-
-def parse_file(name):
-    """Parse a question file and return the resulting list of
-    dictionaries.
-
-    Keyword arguments:
-    name -- name of the question file
-    """
-
-    fd = file(name, 'r')
-    questions = parse_lines(fd.readlines())
-    fd.close()
-
-    return questions
-
-def parse_dir(name):
-    """Parse a question directory and return the resulting list
-    of dictionaries.
-
-    Keyword arguments:
-    name -- name of the question directory
-    """
-
-    # Iterate over each file in directory
-    questions = []
-    for root, dirnames, filenames in os.walk(name):
-        for filename in filenames:
-            if filename.endswith('.txt'):
-                abs_filename = os.path.join(root, filename)
-                questions.extend(parse_file(abs_filename))
-
-    return questions
+    def run(self):
+        for question in self.questions:
+            self._manager.reactor.fire(("prompt", "add-question"), question)

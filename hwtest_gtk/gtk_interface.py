@@ -7,7 +7,7 @@ from hwtest.user_interface import UserInterface
 
 
 class GTKInterface(UserInterface):
- 
+
     def __init__(self):
         super(GTKInterface, self).__init__()
 
@@ -85,21 +85,37 @@ class GTKInterface(UserInterface):
 
         return response
 
-    def show_authentication(self, error=None):
-        self._get_widget('button_previous').hide()
+    def show_gather(self, error=None):
+        self._get_widget('button_previous').set_sensitive(False)
+        self._get_widget('button_next').set_sensitive(False)
+        self._get_widget('progressbar_gather').set_fraction(0)
         self._notebook.set_current_page(2)
+
+        response = self._dialog.show()
+        while gtk.events_pending():
+            gtk.main_iteration(False)
+
+    def pulse_gather(self, error=None):
+        self._get_widget('progressbar_gather').pulse()
+        while gtk.events_pending():
+            gtk.main_iteration(False)
+
+    def show_exchange(self, error=None):
+        self._get_widget('button_previous').set_sensitive(False)
+        self._get_widget('button_next').set_sensitive(True)
+        self._notebook.set_current_page(3)
 
         if error is not None:
             markup= '<span color="#FF0000"><b>%s</b></span>' % error
-            self._get_widget('label_authentication_error').set_markup(markup)
+            self._get_widget('label_exchange_error').set_markup(markup)
 
         response = self._dialog.run()
         while gtk.events_pending():
             gtk.main_iteration(False)
 
-        email = self._get_widget('entry_email').get_text()
-        
-        return email
+        authentication = self._get_widget('entry_authentication').get_text()
+
+        return authentication
 
     def on_dialog_hwtest_delete(self, widget, event=None):
         sys.exit(0)

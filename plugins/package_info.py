@@ -50,7 +50,7 @@ class PackageInfo(Plugin):
     def gather(self):
         report = self._manager.report
         if not report.finalised:
-            content = self._package_info
+            content = self.get_content()
             packages = createElement(report, 'packages', report.root)
             for package in content:
                 name = package['name']
@@ -58,12 +58,14 @@ class PackageInfo(Plugin):
                 createTypedElement(report, 'package', packages, name, package,
                                    True)
 
-    def run(self):
-        self._package_info = []
+    def get_content(self):
+        content = []
 
         for package in self._package_manager.get_packages():
             properties = package.properties
-            self._package_info.append(properties)
+            content.append(properties)
+
+        return content
 
 
 factory = PackageInfo

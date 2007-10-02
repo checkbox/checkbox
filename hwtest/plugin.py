@@ -69,15 +69,19 @@ class PluginManager(object):
 
 class Plugin(object):
 
+    run_priority = 0
+    gather_priority = 0
+    exchange_priority = 0
+
     persist_name = None
 
     def register(self, manager):
         self._manager = manager
-        if hasattr(self, "gather"):
-            manager.reactor.call_on("gather", self.gather)
         if hasattr(self, "run"):
-            manager.reactor.call_on("run", self.run)
+            manager.reactor.call_on("run", self.run, self.run_priority)
+        if hasattr(self, "gather"):
+            manager.reactor.call_on("gather", self.gather, self.gather_priority)
         if hasattr(self, "exchange"):
-            manager.reactor.call_on("exchange", self.exchange)
+            manager.reactor.call_on("exchange", self.exchange, self.exchange_priority)
         if self.persist_name is not None:
             self._persist = manager.persist.root_at(self.persist_name)

@@ -64,7 +64,7 @@ class MessageExchange(Plugin):
         logging.info("Submission ID: %s", report.info['submission_key'])
 
         if logging.getLogger().getEffectiveLevel() <= logging.DEBUG:
-            logging.debug("Sending payload:\n%s", pprint.pformat(payload))
+            logging.debug("Uncompressed payload length: %d", len(payload))
 
         start_time = time.time()
 

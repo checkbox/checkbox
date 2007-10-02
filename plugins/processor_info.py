@@ -55,7 +55,7 @@ class ProcessorInfo(Plugin):
     def gather(self):
         report = self._manager.report
         if not report.finalised:
-            content = self._processors
+            content = self.get_content()
 
             processors = createElement(report, 'processors', report.root)
             for processor in self._processors:
@@ -63,8 +63,8 @@ class ProcessorInfo(Plugin):
                 str(self._processors.index(processor)), processor.properties,
                                True)
 
-    def run(self):
-        self._processors = self._processor_manager.get_processors()
+    def get_content(self):
+        return self._processor_manager.get_processors()
 
 
 factory = ProcessorInfo
