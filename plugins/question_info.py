@@ -85,8 +85,9 @@ Is your keyboard working properly?"""}]]
         else:
             retval = None
             res, freq = None, None
-            contents = (test_output or os.popen(command).read()).strip()
+            contents = test_output or os.popen(command).read()
             for line in contents.splitlines():
+                line = line.strip()
                 if line.endswith("*"):
                     # gutsy
                     fields = line.replace("*", "").split()
