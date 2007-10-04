@@ -4,14 +4,11 @@ from hwtest.report_helpers import createElement, createTypedElement
 
 class DistributionInfo(Plugin):
 
+    lsb_source = "/etc/lsb-release"
     lsb_release_keys = {"DISTRIB_ID": "distributor-id",
                         "DISTRIB_DESCRIPTION": "description",
                         "DISTRIB_RELEASE": "release",
                         "DISTRIB_CODENAME": "codename"}
-
-    def __init__(self, source_filename="/etc/lsb-release"):
-        super(DistributionInfo, self).__init__()
-        self._source_filename = source_filename
 
     def gather(self):
         report = self._manager.report
@@ -32,7 +29,7 @@ class DistributionInfo(Plugin):
 
     def get_content(self):
         content = {}
-        fd = file(self._source_filename, "r")
+        fd = file(self.lsb_source, "r")
         for line in fd.readlines():
             key, value = line.split("=")
             if key in self.lsb_release_keys:

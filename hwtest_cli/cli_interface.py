@@ -24,13 +24,13 @@ class CLIDialog(object):
         self.put("\n")
 
     def get(self, limit=1):
-        file = sys.stdin.fileno()
-        saved_attributes = termios.tcgetattr(file)
-        attributes = termios.tcgetattr(file)
+        fileno = sys.stdin.fileno()
+        saved_attributes = termios.tcgetattr(fileno)
+        attributes = termios.tcgetattr(fileno)
         attributes[3] = attributes[3] & ~(termios.ICANON)
         attributes[6][termios.VMIN] = 1
         attributes[6][termios.VTIME] = 0
-        termios.tcsetattr(file, termios.TCSANOW, attributes)
+        termios.tcsetattr(fileno, termios.TCSANOW, attributes)
 
         input = ''
         try:
@@ -40,7 +40,7 @@ class CLIDialog(object):
                     break
                 input += ch
         finally:
-            termios.tcsetattr(file, termios.TCSANOW, saved_attributes)
+            termios.tcsetattr(fileno, termios.TCSANOW, saved_attributes)
 
         self.put_newline()
         return input
@@ -158,7 +158,7 @@ class CLIInterface(UserInterface):
             dialog = CLIInputDialog(question.name, text)
             data = dialog.run()
 
-        question.create_answer(status, data)
+        question.set_answer(status, data)
 
         return 1
 

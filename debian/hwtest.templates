@@ -1,0 +1,14 @@
+Template: hwtest/transport_url
+Type: string
+Default: https://launchpad.net/hwdb/+submit
+Description: Transport URL
+ The URL where to exchange hardware messages.
+
+
+Template: hwtest/override
+Type: boolean
+Default: true
+Description: Make debconf change your config?
+ hwtest has been moved to use debconf for its configuration. Should
+ the settings in debconf be applied to the configuration?  Package
+ upgrades will use your answer here going forward.

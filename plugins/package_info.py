@@ -43,8 +43,8 @@ class PackageManager(object):
 
 class PackageInfo(Plugin):
 
-    def __init__(self, package_manager=None):
-        super(PackageInfo, self).__init__()
+    def __init__(self, config, package_manager=None):
+        super(PackageInfo, self).__init__(config)
         self._package_manager = package_manager or PackageManager()
 
     def gather(self):

@@ -1,0 +1,27 @@
+#!/usr/bin/python
+
+import os
+import re
+
+
+TEST_DOMAIN = "canonical.com"
+
+command = "ping -q -w4 -c2 %s" % TEST_DOMAIN
+reg = re.compile(r"(\d) received")
+ping = os.popen(command)
+num_packets = 0
+while 1:
+    line = ping.readline()
+    if not line: break
+    received = re.findall(reg, line)
+    if received:
+        num_packets = int(received[0])
+
+if num_packets == 0:
+    status = "No internet connection"
+elif num_packets == 2:
+    status = "Internet connection fully established"
+else:
+    status = "Connection established by problematic"
+
+print status

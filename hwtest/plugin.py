@@ -7,9 +7,10 @@ from hwtest.log import format_object
 
 class PluginManager(object):
 
-    def __init__(self, reactor, report, persist, persist_filename=None):
+    def __init__(self, reactor, report, config, persist, persist_filename=None):
         self.reactor = reactor
         self.report = report
+        self._config = config
         self._plugins = []
         self._error = None
 
@@ -20,8 +21,8 @@ class PluginManager(object):
 
     def load_directory(self, directory):
         logging.info("Loading plugins from directory: %s", directory)
-        for name in [file for file in os.listdir(directory)
-                     if file.endswith(".py")]:
+        for name in [name for name in os.listdir(directory)
+                     if name.endswith(".py")]:
             self.load_path(os.path.join(directory, name))
 
     def load_path(self, path):
@@ -34,7 +35,9 @@ class PluginManager(object):
         module = __import__(name)
         if not hasattr(module, "factory"):
             raise Exception, "Factory variable not found: %s" % module
-        self.load(module.factory())
+
+        section = self._config.get_section(name)
+        self.load(module.factory(section))
 
         del sys.path[0]
 
@@ -42,10 +45,6 @@ class PluginManager(object):
         logging.info("Registering plugin: %s", format_object(plugin))
         self._plugins.append(plugin)
         plugin.register(self)
-
-    def get_plugins(self):
-        """Get the list of plugins."""
-        return self._plugins
 
     def flush(self):
         self.reactor.fire("flush")
@@ -74,6 +73,9 @@ class Plugin(object):
     exchange_priority = 0
 
     persist_name = None
+
+    def __init__(self, config):
+        self.config = config
 
     def register(self, manager):
         self._manager = manager

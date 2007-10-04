@@ -1,0 +1,15 @@
+#!/usr/bin/python
+
+from hwtest.pci import get_pci_devices
+from hwtest.pci_ids import get_class, get_device
+
+
+devices = get_pci_devices()
+network_devices = filter(
+    lambda x: get_class(x["class_name"]) == "Network controller",
+    devices)
+network_strings = map(
+    lambda x: get_device(x["vendor"], x["device"]),
+    network_devices)
+
+print "\n".join(network_strings)

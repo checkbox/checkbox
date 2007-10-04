@@ -85,8 +85,8 @@ class DeviceManager(object):
 
 class DeviceInfo(Plugin):
 
-    def __init__(self, device_manager=None):
-        super(DeviceInfo, self).__init__()
+    def __init__(self, config, device_manager=None):
+        super(DeviceInfo, self).__init__(config)
         self._device_manager = device_manager or DeviceManager()
 
     def gather(self):

@@ -1,0 +1,57 @@
+name: audio
+type: manual
+categories: laptop, desktop
+command: audio_question
+description:
+ Testing detected soundcard:
+ .
+ $output
+ .
+ Did you hear a sound?
+
+name: resolution
+type: manual
+categories: laptop, desktop
+command: resolution_question
+description:
+ Testing detected resolution:
+ .
+ $output
+ .
+ Is your video display hardware working properly?
+
+name: mouse
+type: manual
+categories: laptop, desktop
+description:
+ Moving the mouse should move the cursor on the screen.
+ .
+ Is your mouse working properly?
+
+name: network
+type: manual
+command: network_question
+description:
+ Detecting your network controller(s):
+ .
+ $output
+ .
+ Is this correct?
+
+name: internet
+type: manual
+command: internet_question
+description:
+ Testing your internet connection:
+ .
+ $output
+ .
+ Is your internet connection working properly?
+
+name: keyboard
+type: manual
+description:
+ Typing keys on your keyboard should display the corresponding
+ characters in a text area.
+ .
+ Is your keyboard working properly?

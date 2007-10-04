@@ -81,7 +81,7 @@ class GTKInterface(UserInterface):
                 'radiobutton_no': 'no',
                 'radiobutton_skip': 'skip'})
             data = self._get_textview('textview_answer')
-            question.create_answer(status, data)
+            question.set_answer(status, data)
 
         return response
 

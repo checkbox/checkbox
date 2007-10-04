@@ -9,16 +9,15 @@ from hwtest.contrib import bpickle_dbus
 from hwtest.contrib.persist import Persist
 
 from hwtest import VERSION
-
+from hwtest.config import Config
 from hwtest.plugin import PluginManager
 from hwtest.reactor import Reactor
-from hwtest.constants import HWTEST_DIR
 from hwtest.report import Report
 
 
 class Application(object):
 
-    def __init__(self, reactor, data_path, log_handlers=None, log_level=None):
+    def __init__(self, config_file, data_dir, log_handlers=None, log_level=None):
 
         # Logging setup
         format = ("%(asctime)s %(levelname)-8s %(message)s")
@@ -32,20 +31,23 @@ class Application(object):
             logging.disable(logging.CRITICAL)
 
         # Reactor setup
-        if reactor is None:
-            reactor = Reactor()
-        self.reactor = reactor
+        self.reactor = Reactor()
 
         # Persist setup
-        persist_filename = os.path.join(data_path, "data.bpickle")
+        persist_filename = os.path.join(data_dir, "data.bpickle")
         self.persist = self._get_persist(persist_filename)
+
+        # Config setup
+        self.config = Config()
+        if os.path.exists(config_file):
+            self.config.load_path(config_file)
 
         # Report setup
         self.report = Report()
 
         # Plugin manager setup
         self.plugin_manager = PluginManager(self.reactor, self.report,
-            self.persist, persist_filename)
+            self.config, self.persist, persist_filename)
 
     def _get_persist(self, persist_filename):
         persist = Persist()
@@ -54,6 +56,9 @@ class Application(object):
             persist.load(persist_filename)
         persist.save(persist_filename)
         return persist
+
+    def load_plugins(self, directory):
+        self.plugin_manager.load_directory(directory)
 
     def run(self):
         try:
@@ -70,21 +75,23 @@ class ApplicationManager(object):
 
     application_factory = Application
 
-    def make_parser(self):
+    def parse_options(self, args):
         parser = OptionParser(version=VERSION)
-        parser.add_option("-d", "--data-path", metavar="PATH",
+        parser.add_option("-c", "--config-file", metavar="PATH",
+                          default="/etc/default/hwtest.conf",
+                          help="The file name of the configuration.")
+        parser.add_option("-d", "--data-dir", metavar="PATH",
                           default="~/.hwtest",
-                          help="The directory to store data files in.")
+                          help="The directory to store data files.")
         parser.add_option("-l", "--log", metavar="FILE",
                           help="The file to write the log to.")
         parser.add_option("--log-level",
                           default="critical",
                           help="One of debug, info, warning, error or critical.")
-        return parser
+        return parser.parse_args(args)[0]
 
     def create_application(self, args=sys.argv):
-        parser = self.make_parser()
-        options = parser.parse_args(args)[0]
+        options = self.parse_options(args)
 
         log_level = logging.getLevelName(options.log_level.upper())
         log_handlers = []
@@ -93,10 +100,9 @@ class ApplicationManager(object):
             log_filename = options.log
             log_handlers.append(FileHandler(log_filename))
 
-        reactor = Reactor()
+        data_dir = os.path.expanduser(options.data_dir)
+        config_file = os.path.expanduser(options.config_file)
 
-        data_path = os.path.expanduser(options.data_path)
-
-        return self.application_factory(reactor,
-            data_path=data_path, log_handlers=log_handlers,
-            log_level=log_level)
+        return self.application_factory(
+            config_file=config_file, data_dir=data_dir,
+            log_handlers=log_handlers, log_level=log_level)

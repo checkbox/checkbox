@@ -1,5 +1,3 @@
-import os
-
 from hwtest.plugin import Plugin
 from hwtest.report_helpers import createElement, createTypedElement
 from hwtest.lib.conversion import string_to_int
@@ -13,7 +11,7 @@ class Processor(object):
 
 class ProcessorManager(object):
 
-    default_filename = os.path.join(os.sep, 'proc', 'cpuinfo')
+    default_filename = "/proc/cpuinfo"
 
     def __init__(self, filename=None):
         self._filename = filename or self.default_filename
@@ -47,8 +45,8 @@ class ProcessorInfo(Plugin):
 
     persist_name = "processor-info"
     
-    def __init__(self, processor_manager=None):
-        super(ProcessorInfo, self).__init__()
+    def __init__(self, config, processor_manager=None):
+        super(ProcessorInfo, self).__init__(config)
         self._processors = []
         self._processor_manager = processor_manager or ProcessorManager()
 

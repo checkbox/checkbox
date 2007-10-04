@@ -30,8 +30,8 @@ class UserInterface(object):
 
 class UserInterfacePlugin(Plugin):
 
-    def __init__(self, user_interface):
-        super(UserInterfacePlugin, self).__init__()
+    def __init__(self, config, user_interface):
+        super(UserInterfacePlugin, self).__init__(config)
         self._user_interface = user_interface
 
     def register(self, manager):
@@ -68,7 +68,7 @@ class UserInterfacePlugin(Plugin):
     def show_exchange(self):
         error = None
         while True:
-            self._manager.report.secure_id = self._user_interface.show_exchange(error)
+            self._manager.report.email = self._user_interface.show_exchange(error)
             self._manager.reactor.fire("exchange")
             error = self._manager.get_error()
             if not error:

@@ -1,0 +1,91 @@
+#!/bin/sh -e
+
+#DEBHELPER#
+
+PACKAGE=hwtest
+# configuration variables
+DEFAULT_CONF="/etc/default/$PACKAGE.conf"
+
+add_missing()
+{
+	# FIXME: it would be nice to get the prototype from a template.
+	
+	parameter=$1
+	value=$2
+	echo "$parameter=$value" >> $DEFAULT_CONF
+}
+
+change_value()
+{
+	parameter=$1
+	value=$2
+	commented=0 ; notthere=0
+	egrep -i -q "^$parameter=" $DEFAULT_CONF || notthere=1
+	if [ "$notthere" = "1" ]; then
+		if ( egrep -i -q "^# *$parameter=" $DEFAULT_CONF ); then
+			notthere=0
+			commented=1	
+		fi
+	fi
+
+	if [ "$notthere" = "1" ]; then
+		add_missing $parameter $value
+	else
+		replacestring="^$parameter=.*"	
+		if [ "$commented" = "1" ]; then
+			replacestring="^# *$parameter=.*"	
+		fi
+		# i really need a better way to do this...
+		# currently we replace only the first match, we need a better
+		# way of dealing with multiple hits.
+		perl -i -p -e "s|$replacestring|$parameter=$value|i 
+			and \$match=1 if (\$match != 1)" $DEFAULT_CONF
+	fi
+}
+
+disable_param()
+{
+	parameter=$1
+	enabled=0
+	egrep -q "^$parameter=" $DEFAULT_CONF && enabled=1
+	if [ "$enabled" = "1" ]; then
+		perl -i -p -e "s|^($parameter=.*)|#\$1|i" $DEFAULT_CONF
+	fi
+}
+	
+. /usr/share/debconf/confmodule
+
+# Configure package
+examplefile=/usr/share/$PACKAGE/examples/$PACKAGE.conf
+if [ ! -e $DEFAULT_CONF ] && [ -e $examplefile ]; then
+	cat > $DEFAULT_CONF << EOM
+###DEBCONF###
+# the configuration of this file will be done by debconf as long as the
+# first line of the file says '###DEBCONF###'
+#
+# you should use dpkg-reconfigure to configure this file
+#
+EOM
+	cat $examplefile >> $DEFAULT_CONF
+	chmod 0644 $DEFAULT_CONF
+	db_set $PACKAGE/override true
+fi
+
+db_get $PACKAGE/override
+if [ "$RET" = "true" ]; then
+	if ( head -1 $DEFAULT_CONF | grep -q -v '^###DEBCONF###$' ); then
+		mv $DEFAULT_CONF $DEFAULT_CONF.tmp
+		cat > $DEFAULT_CONF << EOM
+###DEBCONF###
+EOM
+		cat $DEFAULT_CONF.tmp >> $DEFAULT_CONF
+		rm -f $DEFAULT_CONF.tmp
+		chmod 0644 $DEFAULT_CONF
+	fi
+
+	for config in transport_url; do
+		db_get $PACKAGE/$config
+		change_value $config "$RET"
+	done
+fi
+db_stop

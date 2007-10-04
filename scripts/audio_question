@@ -1,0 +1,18 @@
+#!/usr/bin/python
+
+import gnome
+import os
+
+from hwtest.constants import HWTEST_DIR
+
+gnome.sound_init("localhost")
+sound_file = os.path.join(HWTEST_DIR, "data", "sound.wav")
+gnome.sound_play(sound_file)
+
+device = "None"
+path = "/proc/asound/card0/id"
+if os.path.exists(path):
+    fd = file(path, "r")
+    device = fd.readline().strip()
+
+print device

@@ -13,13 +13,13 @@ from hwtest.log import format_delta
 
 class MessageExchange(Plugin):
 
-    transport_factory = HTTPTransport
-    transport_url = "https://launchpad.net/hwdb/+submit"
-
     persist_name = "message-exchange"
 
-    def __init__(self):
-        self._transport = self.transport_factory(self.transport_url)
+    transport_factory = HTTPTransport
+
+    def __init__(self, config):
+        super(MessageExchange, self).__init__(config)
+        self._transport = self.transport_factory(self.config.transport_url)
 
     def exchange(self):
         report = self._manager.report
@@ -55,6 +55,7 @@ class MessageExchange(Plugin):
         
         # bzip2 compress the payload and attach it to the form
         payload = report.toxml()
+        file("/tmp/a.xml", "w").write(payload)
         cpayload = bz2.compress(payload)
         f = StringIO.StringIO(cpayload)
         f.name = filename
@@ -81,10 +82,11 @@ class MessageExchange(Plugin):
                           pprint.pformat(ret.headers.items()))
 
         headers = ret.headers.getheaders("x-launchpad-hwdb-submission")
+        self._manager.set_error()
         for header in headers:
             if "Error" in header:
                 # HACK: this should return a useful error message
-                self._manager.set_error("Submission failure")
+                self._manager.set_error(header)
                 logging.error(header)
                 return
 
