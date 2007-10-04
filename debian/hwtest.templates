@@ -1,9 +1,21 @@
+Template: hwtest/question_dirs
+Type: string
+Default: /usr/share/hwtest/questions
+Description: Question directories
+ Directory where questions files are stored.
+
+Template: hwtest/scripts_path
+Type: string
+Default: /usr/share/hwtest/scripts
+Description: Scripts path
+ Executable path for running scripts. These might be
+ referenced from the above questions for example.
+
 Template: hwtest/transport_url
 Type: string
 Default: https://launchpad.net/hwdb/+submit
 Description: Transport URL
- The URL where to exchange hardware messages.
-
+ URL where to send hardware submissions
 
 Template: hwtest/override
 Type: boolean

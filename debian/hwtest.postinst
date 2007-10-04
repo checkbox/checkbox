@@ -83,7 +83,7 @@ EOM
 		chmod 0644 $DEFAULT_CONF
 	fi
 
-	for config in transport_url; do
+	for config in question_dirs scripts_path transport_url; do
 		db_get $PACKAGE/$config
 		change_value $config "$RET"
 	done
