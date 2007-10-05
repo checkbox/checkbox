@@ -16,17 +16,17 @@ from hwtest.report_helpers import (createDevice, createElement,
     createProperty, createTypedElement)
 
 
-class LaunchpadReport(Plugin):
+class LaunchpadExchange(Plugin):
 
     transport_factory = HTTPTransport
 
     def __init__(self, config, report=None):
-        super(LaunchpadReport, self).__init__(config)
+        super(LaunchpadExchange, self).__init__(config)
         self._report = report or Report()
         self._transport = self.transport_factory(self.config.transport_url)
 
     def register(self, manager):
-        super(LaunchpadReport, self).register(manager)
+        super(LaunchpadExchange, self).register(manager)
         c = self._manager.reactor.call_on
         c(("report", "set-architecture"), self.set_architecture)
         c(("report", "set-email"), self.set_email)
@@ -222,4 +222,4 @@ class LaunchpadReport(Plugin):
                      format_delta(time.time() - start_time))
 
 
-factory = LaunchpadReport
+factory = LaunchpadExchange
