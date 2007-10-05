@@ -27,8 +27,8 @@ class DeviceManager(object):
                                        "/org/freedesktop/Hal/Manager")
         self._manager = Interface(manager, "org.freedesktop.Hal.Manager")
 
-        hald = getoutput('/usr/sbin/hald --version')
-        self.version = hald.rsplit(': ')[1]
+        version = getoutput('/usr/sbin/hald --version')
+        self.version = version.rsplit(': ')[1]
 
     def get_devices(self):
         devices = []
