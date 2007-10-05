@@ -7,9 +7,8 @@ from hwtest.log import format_object
 
 class PluginManager(object):
 
-    def __init__(self, reactor, report, config, persist, persist_filename=None):
+    def __init__(self, reactor, config, persist, persist_filename=None):
         self.reactor = reactor
-        self.report = report
         self._config = config
         self._plugins = []
         self._error = None
