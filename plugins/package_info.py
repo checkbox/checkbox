@@ -8,6 +8,10 @@ class PackageInfo(Plugin):
         super(PackageInfo, self).__init__(config)
         self._package_manager = package_manager or PackageManager()
 
+    def register(self, manager):
+        super(PackageInfo, self).register(manager)
+        self._manager.reactor.call_on("gather", self.gather)
+
     def gather(self):
         message = self.create_message()
         self._manager.reactor.fire(("report", "set-packages"), message)

@@ -28,6 +28,7 @@ class LaunchpadExchange(Plugin):
     def register(self, manager):
         super(LaunchpadExchange, self).register(manager)
         c = self._manager.reactor.call_on
+        c("exchange", self.exchange)
         c(("report", "set-architecture"), self.set_architecture)
         c(("report", "set-email"), self.set_email)
         c(("report", "set-device-manager"), self.set_device_manager)

@@ -10,6 +10,10 @@ class ArchitectureInfo(Plugin):
     dpkg_path = "/usr/bin/dpkg"
     dpkg_command = "%s --print-architecture" % dpkg_path
 
+    def register(self, manager):
+        super(ArchitectureInfo, self).register(manager)
+        self._manager.reactor.call_on("gather", self.gather)
+
     def gather(self):
         message = self.create_message()
         self._manager.reactor.fire(("report", "set-architecture"), message)

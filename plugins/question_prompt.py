@@ -8,7 +8,7 @@ from hwtest.question import QuestionManager, QuestionParser
 
 class QuestionPrompt(Plugin):
 
-    run_priority = -300
+    priority = -300
 
     def __init__(self, config, question_manager=None):
         super(QuestionPrompt, self).__init__(config)
@@ -18,9 +18,11 @@ class QuestionPrompt(Plugin):
 
     def register(self, manager):
         super(QuestionPrompt, self).register(manager)
-        self._manager.reactor.call_on(("prompt", "add-question"), self.add_question)
-        self._manager.reactor.call_on(("prompt", "set-category"), self.set_category)
-        self._manager.reactor.call_on(("prompt", "set-direction"), self.set_direction)
+        c = self._manager.reactor.call_on
+        c("gather", self.gather)
+        c(("prompt", "add-question"), self.add_question)
+        c(("prompt", "set-category"), self.set_category)
+        c(("prompt", "set-direction"), self.set_direction)
 
     def run(self):
         self.questions = self.get_questions()
