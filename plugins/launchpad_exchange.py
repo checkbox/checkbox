@@ -91,11 +91,9 @@ class LaunchpadExchange(Plugin):
         report.info['distroseries'] = distribution['release']
 
         # Store data in report
-        software_element = getattr(report, 'software', None)
-        if software_element is None:
-            software_element = createElement(report, 'software', report.root)
-            report.software = software_element
-        createTypedElement(report, 'lsbrelease', software_element, None,
+        if not hasattr(report, 'software'):
+            report.software = createElement(report, 'software', report.root)
+        createTypedElement(report, 'lsbrelease', report.software, None,
                            distribution, True)
 
     def set_packages(self, packages):
@@ -103,11 +101,9 @@ class LaunchpadExchange(Plugin):
         if report.finalised:
             return
 
-        software_element = getattr(report, 'software', None)
-        if software_element is None:
-            software_element = createElement(report, 'software', report.root)
-            report.software = software_element
-        packages_element = createElement(report, 'packages', software_element)
+        if not hasattr(report, 'software'):
+            report.software = createElement(report, 'software', report.root)
+        packages_element = createElement(report, 'packages', report.software)
         for package in packages:
             name = package.pop('name')
             createTypedElement(report, 'package', packages_element,
@@ -128,12 +124,11 @@ class LaunchpadExchange(Plugin):
         if report.finalised:
             return
 
+        if not hasattr(report, 'tests'):
+            report.tests = createElement(report, 'tests', report.root)
+
         for question in questions:
-            tests_element = getattr(report, 'tests', None)
-            if tests_element is None:
-                tests_element = createElement(report, 'tests', report.root)
-                report.tests = tests_element
-            test_element = createElement(report, 'test', tests_element)
+            test_element = createElement(report, 'test', report.tests)
             createElement(report, 'suite', test_element, 'tool')
             createElement(report, 'name', test_element, question.name)
             createElement(report, 'description', test_element, question.description)
