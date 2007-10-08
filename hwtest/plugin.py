@@ -7,9 +7,8 @@ from hwtest.log import format_object
 
 class PluginManager(object):
 
-    def __init__(self, reactor, report, config, persist, persist_filename=None):
+    def __init__(self, reactor, config, persist, persist_filename=None):
         self.reactor = reactor
-        self.report = report
         self._config = config
         self._plugins = []
         self._error = None
@@ -50,11 +49,6 @@ class PluginManager(object):
         self.reactor.fire("flush")
         self._save_persist()
 
-    def exchange(self):
-        self.flush()
-        self.reactor.fire("exchange")
-        self._save_persist()
-
     def _save_persist(self):
         if self._persist_filename:
             self.persist.save(self._persist_filename)
@@ -68,10 +62,7 @@ class PluginManager(object):
 
 class Plugin(object):
 
-    run_priority = 0
-    gather_priority = 0
-    exchange_priority = 0
-
+    priority = 0
     persist_name = None
 
     def __init__(self, config):
@@ -80,10 +71,6 @@ class Plugin(object):
     def register(self, manager):
         self._manager = manager
         if hasattr(self, "run"):
-            manager.reactor.call_on("run", self.run, self.run_priority)
-        if hasattr(self, "gather"):
-            manager.reactor.call_on("gather", self.gather, self.gather_priority)
-        if hasattr(self, "exchange"):
-            manager.reactor.call_on("exchange", self.exchange, self.exchange_priority)
+            manager.reactor.call_on("run", self.run, self.priority)
         if self.persist_name is not None:
             self._persist = manager.persist.root_at(self.persist_name)

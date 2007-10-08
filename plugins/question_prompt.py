@@ -4,12 +4,11 @@ from hwtest.plugin import Plugin
 from hwtest.iterator import Iterator
 from hwtest.excluder import Excluder
 from hwtest.question import QuestionManager, QuestionParser
-from hwtest.report_helpers import createElement, createTypedElement
 
 
 class QuestionPrompt(Plugin):
 
-    run_priority = -300
+    priority = -300
 
     def __init__(self, config, question_manager=None):
         super(QuestionPrompt, self).__init__(config)
@@ -19,9 +18,11 @@ class QuestionPrompt(Plugin):
 
     def register(self, manager):
         super(QuestionPrompt, self).register(manager)
-        self._manager.reactor.call_on(("prompt", "add-question"), self.add_question)
-        self._manager.reactor.call_on(("prompt", "set-category"), self.set_category)
-        self._manager.reactor.call_on(("prompt", "set-direction"), self.set_direction)
+        c = self._manager.reactor.call_on
+        c("gather", self.gather)
+        c(("prompt", "add-question"), self.add_question)
+        c(("prompt", "set-category"), self.set_category)
+        c(("prompt", "set-direction"), self.set_direction)
 
     def run(self):
         self.questions = self.get_questions()
@@ -33,29 +34,11 @@ class QuestionPrompt(Plugin):
                 self.questions.has_next())
 
     def gather(self):
-        report = self._manager.report
-        if not report.finalised:
-            for question in iter(self.questions.iterator):
-                tests = getattr(report, 'tests', None)
-                if tests is None:
-                    tests = createElement(report, 'tests', report.root)
-                    report.tests = tests
-                test = createElement(report, 'test', tests)
-                createElement(report, 'suite', test, 'tool')
-                createElement(report, 'name', test, question.name)
-                createElement(report, 'description', test, question.description)
-                createElement(report, 'command', test)
-                createElement(report, 'architectures', test)
-                createTypedElement(report, 'categories', test, None,
-                    question.categories, True, 'category')
-                createElement(report, 'optional', test, question.optional)
+        message = self.create_message()
+        self._manager.reactor.fire(("report", "set-questions"), message)
 
-                if question.answer:
-                    result = createElement(report, 'result', test)
-                    createElement(report, 'result_status', result,
-                        question.answer.status)
-                    createElement(report, 'result_data', result,
-                        question.answer.data)
+    def create_message(self):
+        return [q for q in iter(self.questions.iterator)]
 
     def add_question(self, question):
         self.question_manager.add_question(question)

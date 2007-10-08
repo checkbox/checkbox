@@ -68,7 +68,8 @@ class UserInterfacePlugin(Plugin):
     def show_exchange(self):
         error = None
         while True:
-            self._manager.report.email = self._user_interface.show_exchange(error)
+            email = self._user_interface.show_exchange(error)
+            self._manager.reactor.fire(("report", "set-email"), email)
             self._manager.reactor.fire("exchange")
             error = self._manager.get_error()
             if not error:

@@ -12,7 +12,6 @@ from hwtest import VERSION
 from hwtest.config import Config
 from hwtest.plugin import PluginManager
 from hwtest.reactor import Reactor
-from hwtest.report import Report
 
 
 class Application(object):
@@ -42,11 +41,8 @@ class Application(object):
         if os.path.exists(config_file):
             self.config.load_path(config_file)
 
-        # Report setup
-        self.report = Report()
-
         # Plugin manager setup
-        self.plugin_manager = PluginManager(self.reactor, self.report,
+        self.plugin_manager = PluginManager(self.reactor,
             self.config, self.persist, persist_filename)
 
     def _get_persist(self, persist_filename):
