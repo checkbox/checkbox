@@ -131,7 +131,7 @@ class CLIProgressDialog(CLIDialog):
 
 class CLIInterface(UserInterface):
 
-    def show_categories(self):
+    def show_category(self):
         title = "Hardware Test"
         text = "Please select the category of your hardware."
         dialog = CLIChoiceDialog(title, text)

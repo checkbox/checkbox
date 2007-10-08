@@ -56,9 +56,9 @@ class LaunchpadExchange(Plugin):
         if report.finalised:
             return
 
-        hardware_element = createElement(report, 'hardware', report.root)
-        report.hardware = hardware_element
-        hal_element = createElement(report, 'hal', hardware_element)
+        if not hasattr(report, 'hardware'):
+            report.hardware = createElement(report, 'hardware', report.root)
+        hal_element = createElement(report, 'hal', report.hardware)
         hal_element.setAttribute('version', str(device_manager.version))
 
         devices = device_manager.get_devices()
@@ -114,6 +114,8 @@ class LaunchpadExchange(Plugin):
         if report.finalised:
             return
 
+        if not hasattr(report, 'hardware'):
+            report.hardware = createElement(report, 'hardware', report.root)
         processors_element = createElement(report, 'processors', report.hardware)
         for processor in processors:
             createTypedElement(report, 'processor', processors_element,

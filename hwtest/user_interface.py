@@ -18,7 +18,7 @@ class UserInterface(object):
 
         gettext.textdomain(self.gettext_domain)
 
-    def show_categories(self):
+    def show_category(self):
         raise NotImplementedError, 'this function must be overridden by subclasses'
 
     def show_question(self, question, has_prev, has_next):
@@ -36,13 +36,14 @@ class UserInterfacePlugin(Plugin):
 
     def register(self, manager):
         super(UserInterfacePlugin, self).register(manager)
-        self._manager.reactor.call_on(("interface", "show-categories"), self.show_categories)
+        self._manager.reactor.call_on(("interface", "show-category"), self.show_category)
         self._manager.reactor.call_on(("interface", "show-question"), self.show_question)
         self._manager.reactor.call_on(("interface", "show-gather"), self.show_gather)
         self._manager.reactor.call_on(("interface", "show-exchange"), self.show_exchange)
 
-    def show_categories(self):
-        category = self._user_interface.show_categories()
+    def show_category(self, category=None):
+        if not category:
+            category = self._user_interface.show_category()
         self._manager.reactor.fire(("prompt", "set-category"), category)
 
     def show_question(self, question, has_prev, has_next):

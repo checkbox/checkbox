@@ -1,0 +1,32 @@
+package=`basename $0 .postinst`
+config="/etc/hwtest.d/$package.conf"
+
+case "$1" in
+    configure)
+        # Make our version of a program available
+        if [ "$package" != "hwtest" ]; then
+            update-alternatives --install /usr/bin/$package $package \
+                /usr/share/hwtest/hwtest 100
+        fi
+
+        # Create a temporary file to generate the suggested
+        # configuration file.
+        tempfile=`tempfile -m 0644 -p hwtest`
+
+        # Update the temporary file with preseeded values.
+        `dirname $0`/$package.config write $tempfile
+
+        # Invoke ucf, which will take care of the rest, and ask
+        # the user if he wants to update his file, if it is modified.
+        ucf $tempfile $config
+
+        # Now clear up the cruft.
+        rm -f $tempfile
+        ;;
+    abort-upgrade|abort-remove|abort-deconfigure)
+        ;;
+    *)
+        echo "$0: didn't understand being called with \`$1'" 1>&2
+        exit 0
+        ;;
+esac

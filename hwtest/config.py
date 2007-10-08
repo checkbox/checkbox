@@ -50,9 +50,10 @@ class ConfigDefaults(ConfigSection):
 class Config(object):
 
     def __init__(self, config_parser=None):
+        self.sections = {}
+
         self._parser = config_parser or ConfigParser()
         self._parser._defaults = IncludeDict(self._parser)
-        self.sections = {}
 
     def load_path(self, path):
         self._parser.read(path)

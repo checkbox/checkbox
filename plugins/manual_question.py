@@ -12,17 +12,17 @@ class Manual(Question):
 
     required_fields = Question.required_fields + ["path"]
 
+    def __init__(self, config, *args, **kwargs):
+        super(Manual, self).__init__(*args, **kwargs)
+        self.config = config
+
     def __getattr__(self, attr):
         if attr is "description":
             return self.get_description()
+        elif attr is "command":
+            return self.get_command()
         else:
             return super(Manual, self).__getattr__(attr)
-
-    def run_command(self):
-        add_path(self.path)
-        output = getoutput(self.command)
-        remove_path(self.path)
-        return output
 
     def get_description(self):
         if self.command:
@@ -31,6 +31,18 @@ class Manual(Question):
         else:
             description = self.data["description"]
         return description
+
+    def get_command(self):
+        command = self.data.get("command")
+        if command is not None:
+            command = convert_string(command, self.config._kwargs)
+        return command
+
+    def run_command(self):
+        add_path(self.path)
+        output = getoutput(self.command)
+        remove_path(self.path)
+        return output
 
 
 class ManualQuestion(Plugin):
@@ -46,7 +58,7 @@ class ManualQuestion(Plugin):
 
     def add_question(self, *args, **kwargs):
         kwargs["path"] = self.config.scripts_path
-        question = self._question_factory(*args, **kwargs)
+        question = self._question_factory(self.config, *args, **kwargs)
         self._manager.reactor.fire(("prompt", "add-question"), question)
 
 

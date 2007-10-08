@@ -1,0 +1,18 @@
+Template: DEFAULT/include
+Type: string
+Default: /etc/hwtest.d/hwtest.conf
+Description: GTK include file
+ File to include as a dependency for the GTK
+ interface.
+
+Template: hwtest-gtk/plugins/directory
+Type: string
+Default: /usr/share/hwtest-gtk/plugins
+Description: GTK plugins directory
+ Directory where GTK plugins are stored.
+
+Template: hwtest-gtk/plugins/gtk_interface/gtk_path
+Type: string
+Default: /usr/share/hwtest-gtk
+Description: GTK path
+ Path where GTK files are stored.
