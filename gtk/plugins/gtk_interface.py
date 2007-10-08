@@ -4,7 +4,7 @@ from hwtest_gtk.gtk_interface import GTKInterface
 
 class GTKInterfacePlugin(UserInterfacePlugin):
     def __init__(self, config):
-        super(GTKInterfacePlugin, self).__init__(config, GTKInterface())
+        super(GTKInterfacePlugin, self).__init__(config, GTKInterface(config.gtk_path))
 
 
 factory = GTKInterfacePlugin
