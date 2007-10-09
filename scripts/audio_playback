@@ -1,0 +1,111 @@
+#!/usr/bin/python
+
+import os
+import sys
+import time
+
+from optparse import OptionParser
+
+import pygst
+pygst.require("0.10")
+import gst
+
+import gobject
+
+DEFAULT_FILENAME = 'audio_playback'
+
+class Player:
+    """
+    A simple class that plays sounds via GStreamer.
+    """
+
+    def __init__(self, filename=None):
+        self._mainloop = gobject.MainLoop()
+
+        self._pipeline = gst.Pipeline("my_pipeline")
+
+        self._filesrc = gst.element_factory_make("filesrc", "source")
+        self._pipeline.add(self._filesrc)
+
+        self._decode = gst.element_factory_make("decodebin", "decode")
+        self._decode.connect("new-decoded-pad", self._on_dynamic_pad)
+        self._pipeline.add(self._decode)
+
+        self._filesrc.link(self._decode)
+
+        self._convert = gst.element_factory_make("audioconvert", "convert")
+        self._pipeline.add(self._convert)
+
+        self._sink = gst.element_factory_make("alsasink", "sink")
+        self._pipeline.add(self._sink)
+
+        self._convert.link(self._sink)
+
+
+        # If we've been passed a filename, go and play it
+        self._bus = self._pipeline.get_bus()
+        self._bus.connect("message", self._on_message)
+        self._bus.add_signal_watch()
+
+        if filename:
+            self.load(filename)
+            self.play()
+
+    def _on_dynamic_pad(self, dbin, pad, islast):
+        pad.link(self._convert.get_pad("sink"))
+
+    def _on_message(self, bus, message):
+        t = message.type
+
+        # XXX We need to handle other messages here, just to be safe
+        if t == gst.MESSAGE_EOS:
+            self._mainloop.quit()
+
+    def load(self, filename):
+        self._filesrc.set_property("location", filename)
+
+    def play(self, filename=None):
+        if filename:
+            self.load(filename)
+
+        self._pipeline.set_state(gst.STATE_PLAYING)
+        self._mainloop.run()
+
+def parse_options(args):
+    parser = OptionParser()
+    parser.add_option("-f", "--file", dest="filename", help="The file to play")
+    parser.add_option("-t", "--type", dest="type", help="The type of audio to test. One of ogg, flac or wav")
+    parser.add_option("-p", "--path", dest="path", help="The path where the audio files can be found. Defaults to the current folder", default=".")
+
+    return parser.parse_args(args)[0]
+
+def detect_device():
+    """
+    Detect the sound card.
+    """
+
+    # XXX This works, but really we should be using HAL for this.
+
+    device = 'None'
+    path = "/proc/asound/card0/id"
+
+    if os.path.exists(path):
+        fd = file(path, 'r')
+        device = fd.readline().strip()
+
+    return device
+
+
+if __name__ == "__main__":
+    options = parse_options(sys.argv)
+
+    print detect_device()
+
+    if options.type:
+        filename = os.path.join(options.path, DEFAULT_FILENAME + "." + options.type)
+    
+    if options.filename:
+        filename = options.filename
+
+    if filename and os.path.exists(filename):
+        player = Player(filename)
