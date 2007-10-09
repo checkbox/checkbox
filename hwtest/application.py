@@ -12,12 +12,12 @@ from hwtest import VERSION
 from hwtest.config import Config
 from hwtest.plugin import PluginManager
 from hwtest.reactor import Reactor
-from hwtest.report import Report
 
 
 class Application(object):
 
-    def __init__(self, config_file, data_dir, log_handlers=None, log_level=None):
+    def __init__(self, config_file, data_dir, log_handlers=None,
+                 log_level=None):
 
         # Logging setup
         format = ("%(asctime)s %(levelname)-8s %(message)s")
@@ -42,11 +42,8 @@ class Application(object):
         if os.path.exists(config_file):
             self.config.load_path(config_file)
 
-        # Report setup
-        self.report = Report()
-
         # Plugin manager setup
-        self.plugin_manager = PluginManager(self.reactor, self.report,
+        self.plugin_manager = PluginManager(self.reactor,
             self.config, self.persist, persist_filename)
 
     def _get_persist(self, persist_filename):
@@ -56,9 +53,6 @@ class Application(object):
             persist.load(persist_filename)
         persist.save(persist_filename)
         return persist
-
-    def load_plugins(self, directory):
-        self.plugin_manager.load_directory(directory)
 
     def run(self):
         try:
@@ -76,17 +70,22 @@ class ApplicationManager(object):
     application_factory = Application
 
     def parse_options(self, args):
+        basename = os.path.basename(args[0])
+        default_config_file = "/etc/hwtest.d/%s.conf" % basename
+        default_data_dir = "~/.%s" % basename
+        default_log_level = "critical"
+
         parser = OptionParser(version=VERSION)
         parser.add_option("-c", "--config-file", metavar="PATH",
-                          default="/etc/default/hwtest.conf",
+                          default=default_config_file,
                           help="The file name of the configuration.")
         parser.add_option("-d", "--data-dir", metavar="PATH",
-                          default="~/.hwtest",
+                          default=default_data_dir,
                           help="The directory to store data files.")
         parser.add_option("-l", "--log", metavar="FILE",
                           help="The file to write the log to.")
         parser.add_option("--log-level",
-                          default="critical",
+                          default=default_log_level,
                           help="One of debug, info, warning, error or critical.")
         return parser.parse_args(args)[0]
 

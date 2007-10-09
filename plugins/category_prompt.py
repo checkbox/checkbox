@@ -3,10 +3,11 @@ from hwtest.plugin import Plugin
 
 class CategoryPrompt(Plugin):
 
-    run_priority = -400
+    priority = -400
 
     def run(self):
-        self._manager.reactor.fire(("interface", "show-categories"))
+        self._manager.reactor.fire(("interface", "show-category"),
+            category=self.config.category)
 
 
 factory = CategoryPrompt

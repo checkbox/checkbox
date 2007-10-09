@@ -2,19 +2,18 @@ import os.path, sys
 import gtk, gtk.glade
 from gettext import gettext as _
 
-from hwtest.constants import HWTEST_DIR
 from hwtest.user_interface import UserInterface
 
 
 class GTKInterface(UserInterface):
 
-    def __init__(self):
+    def __init__(self, gtk_path):
         super(GTKInterface, self).__init__()
 
         # load UI
         gtk.window_set_default_icon_name("hwtest")
         gtk.glade.textdomain(self.gettext_domain)
-        self.widgets = gtk.glade.XML(os.path.join(HWTEST_DIR, 'gtk',
+        self.widgets = gtk.glade.XML(os.path.join(gtk_path,
             'hwtest-gtk.glade'))
         self.widgets.signal_autoconnect(self)
 
@@ -42,7 +41,7 @@ class GTKInterface(UserInterface):
         textview = self._get_widget(name)
         textview.set_buffer(buffer)
 
-    def show_categories(self):
+    def show_category(self):
         self._get_widget('button_previous').hide()
         self._notebook.set_current_page(0)
 

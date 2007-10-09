@@ -3,7 +3,6 @@ import os.path
 from commands import getoutput
 
 from hwtest.plugin import Plugin
-from hwtest.report_helpers import createTypedElement
 
 
 class ArchitectureInfo(Plugin):
@@ -11,19 +10,22 @@ class ArchitectureInfo(Plugin):
     dpkg_path = "/usr/bin/dpkg"
     dpkg_command = "%s --print-architecture" % dpkg_path
 
-    def gather(self):
-        report = self._manager.report
-        if not report.finalised:
-            content = self.get_content()
-            report.info['architecture'] = content
+    def register(self, manager):
+        super(ArchitectureInfo, self).register(manager)
+        self._manager.reactor.call_on("gather", self.gather)
 
-    def get_content(self):
-        content = 'Unknown'
+    def gather(self):
+        message = self.create_message()
+        self._manager.reactor.fire(("report", "set-architecture"), message)
+
+    def create_message(self):
+        message = 'Unknown'
 
         # Debian and derivatives
         if os.path.exists(self.dpkg_path):
-            content = getoutput(self.dpkg_command)
+            message = getoutput(self.dpkg_command)
 
-        return content
+        return message
+
 
 factory = ArchitectureInfo

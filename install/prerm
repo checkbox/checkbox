@@ -1,0 +1,16 @@
+package=`basename $0 .prerm`
+
+case "$1" in
+    remove)
+        if [ "$package" != "hwtest" ]; then
+            update-alternatives --remove $package \
+                /usr/share/hwtest/hwtest
+        fi
+        ;;
+    purge|disappear|upgrade|failed-upgrade|abort-install|abort-upgrade)
+        ;;
+    *)
+        echo "$0: didn't understand being called with \`$1'" 1>&2
+        exit 0
+        ;;
+esac

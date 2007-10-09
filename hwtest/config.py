@@ -2,7 +2,35 @@ import os
 from ConfigParser import ConfigParser
 
 
+class IncludeDict(dict):
+
+    def __init__(self, parser):
+        super(IncludeDict, self).__init__()
+        self._parser = parser
+
+    def __setitem__(self, key, value):
+        if key == "include":
+            self._parser.read(value)
+        else:
+            super(IncludeDict, self).__setitem__(key, value)
+
+
 class ConfigSection(object):
+
+    def __init__(self, **kwargs):
+        self._kwargs = kwargs
+
+    def _get_value(self, attr):
+        return self._kwargs.get(attr)
+
+    def __getattr__(self, attr):
+        if attr in self._kwargs:
+            return self._get_value(attr)
+        else:
+            return None
+
+
+class ConfigDefaults(ConfigSection):
 
     def __init__(self, **kwargs):
         self._kwargs = kwargs
@@ -10,8 +38,7 @@ class ConfigSection(object):
     def _get_value(self, attr):
         return os.environ.get(attr.upper()) \
             or os.environ.get(attr.lower()) \
-            or self._kwargs.get(attr.upper()) \
-            or self._kwargs.get(attr.lower())
+            or super(ConfigDefaults, self)._get_value(attr)
 
     def __getattr__(self, attr):
         if attr in self._kwargs:
@@ -23,16 +50,17 @@ class ConfigSection(object):
 class Config(object):
 
     def __init__(self, config_parser=None):
-        self._parser = config_parser or ConfigParser()
         self.sections = {}
 
-    def load_directory(self, directory):
-        for name in [name for name in os.listdir(directory)
-                     if name.endswith(".conf")]:
-            self.load_path(os.path.join(directory, name))
+        self._parser = config_parser or ConfigParser()
+        self._parser._defaults = IncludeDict(self._parser)
 
     def load_path(self, path):
         self._parser.read(path)
+
+    def get_defaults(self):
+        kwargs = self._parser.defaults()
+        return ConfigDefaults(**kwargs)
 
     def get_section(self, section):
         if section in self._parser.sections():
