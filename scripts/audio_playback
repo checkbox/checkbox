@@ -107,5 +107,8 @@ if __name__ == "__main__":
     if options.filename:
         filename = options.filename
 
+    if not options.type and not options.filename:
+        filename = sys.argv[1]
+
     if filename and os.path.exists(filename):
         player = Player(filename)
