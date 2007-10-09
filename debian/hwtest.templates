@@ -1,26 +1,31 @@
-Template: hwtest/question_dirs
+Template: hwtest/plugins/directory
+Type: string
+Default: /usr/share/hwtest/plugins
+Description: Plugins directory
+ Directory where plugins are stored.
+
+Template: hwtest/plugins/question_prompt/questions_path
 Type: string
 Default: /usr/share/hwtest/questions
-Description: Question directories
- Directory where questions files are stored.
+Description: Questions path
+ Path consisting of a colon separated list of
+ directories where question files are stored.
 
-Template: hwtest/scripts_path
+Template: hwtest/plugins/manual_question/scripts_path
 Type: string
 Default: /usr/share/hwtest/scripts
 Description: Scripts path
  Executable path for running scripts. These might be
  referenced from the above questions for example.
 
-Template: hwtest/transport_url
+Template: hwtest/plugins/manual_question/data_path
+Type: string
+Default: /usr/share/hwtest/data
+Description: Data path
+ Data path containing files for scripts.
+
+Template: hwtest/plugins/launchpad_exchange/transport_url
 Type: string
 Default: https://launchpad.net/hwdb/+submit
 Description: Transport URL
  URL where to send hardware submissions
-
-Template: hwtest/override
-Type: boolean
-Default: true
-Description: Make debconf change your config?
- hwtest has been moved to use debconf for its configuration. Should
- the settings in debconf be applied to the configuration?  Package
- upgrades will use your answer here going forward.

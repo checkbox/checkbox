@@ -1,18 +1,26 @@
 #!/usr/bin/python
 
-import gnome
 import os
+import sys
+import gnome
 
-from hwtest.constants import HWTEST_DIR
 
-gnome.sound_init("localhost")
-sound_file = os.path.join(HWTEST_DIR, "data", "sound.wav")
-gnome.sound_play(sound_file)
+def main(args):
+    if len(args) < 1:
+        raise Exception, "Missing sound file as argument."
 
-device = "None"
-path = "/proc/asound/card0/id"
-if os.path.exists(path):
-    fd = file(path, "r")
-    device = fd.readline().strip()
+    gnome.sound_init("localhost")
+    sound_file = os.path.join(args[0])
+    gnome.sound_play(sound_file)
 
-print device
+    device = "None"
+    path = "/proc/asound/card0/id"
+    if os.path.exists(path):
+        fd = file(path, "r")
+        device = fd.readline().strip()
+
+    print device
+
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv[1:]))

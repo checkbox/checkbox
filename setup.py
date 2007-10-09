@@ -22,13 +22,13 @@ to Launchpad.
         ('share/applications/', ['gtk/hwtest-gtk.desktop']),
         ('share/pixmaps/', ['gtk/hwtest-gtk.xpm']),
         ('share/hwtest/data/', glob('data/*')),
-        ('share/hwtest/examples/', glob('examples/*')),
+        ('share/hwtest/install/', glob('install/*')),
         ('share/hwtest/plugins/', glob('plugins/*')),
         ('share/hwtest/questions/', glob('questions/*')),
         ('share/hwtest/scripts/', glob('scripts/*')),
-        ('share/hwtest/gtk/', ['gtk/hwtest-gtk.glade'] + glob('gtk/*.png')),
-        ('share/hwtest/gtk/plugins/', glob('gtk/plugins/*')),
-        ('share/hwtest/cli/plugins/', glob('cli/plugins/*'))],
-    scripts=['cli/hwtest-cli', 'gtk/hwtest-gtk'],
+        ('share/hwtest-gtk/', ['gtk/hwtest-gtk.glade'] + glob('gtk/*.png')),
+        ('share/hwtest-gtk/plugins/', glob('gtk/plugins/*')),
+        ('share/hwtest-cli/plugins/', glob('cli/plugins/*'))],
+    scripts=['bin/hwtest'],
     packages=['hwtest', 'hwtest.contrib', 'hwtest.lib', 'hwtest_cli', 'hwtest_gtk']
 )

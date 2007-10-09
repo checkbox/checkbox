@@ -1,5 +1,3 @@
-import re
-
 from hwtest.plugin import Plugin
 from hwtest.iterator import Iterator
 from hwtest.excluder import Excluder
@@ -55,7 +53,7 @@ class QuestionPrompt(Plugin):
 
     def get_questions(self):
         parser = QuestionParser()
-        for directory in re.split(r"\s*,\s*", self.config.question_dirs):
+        for directory in self.config.questions_path.split(":"):
             parser.load_directory(directory)
 
         for question_kwargs in parser.questions:

@@ -1,5 +1,7 @@
 import inspect
 
+def format_class(cls):
+    return "%s.%s" % (cls.__module__, cls.__name)
 
 def format_object(object):
     """
@@ -16,8 +18,7 @@ def format_object(object):
     elif inspect.isfunction(object):
         name = repr(object).split(" ")[1]
         return "%s.%s()" % (object.__module__, name)
-    return "%s.%s" % (object.__class__.__module__, object.__class__.__name__)
-
+    return format_class(object.__class__)
 
 def format_delta(seconds):
     if not seconds:
