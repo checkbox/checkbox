@@ -8,35 +8,34 @@ from optparse import OptionParser
 
 import pygst
 pygst.require("0.10")
-import gst
 
 import gobject
-
-DEFAULT_FILENAME = 'audio_playback'
 
 class Player:
     """
     A simple class that plays sounds via GStreamer.
     """
 
+    import gst
+
     def __init__(self, filename=None):
         self._mainloop = gobject.MainLoop()
 
-        self._pipeline = gst.Pipeline("my_pipeline")
+        self._pipeline = self.gst.Pipeline("my_pipeline")
 
-        self._filesrc = gst.element_factory_make("filesrc", "source")
+        self._filesrc = self.gst.element_factory_make("filesrc", "source")
         self._pipeline.add(self._filesrc)
 
-        self._decode = gst.element_factory_make("decodebin", "decode")
+        self._decode = self.gst.element_factory_make("decodebin", "decode")
         self._decode.connect("new-decoded-pad", self._on_dynamic_pad)
         self._pipeline.add(self._decode)
 
         self._filesrc.link(self._decode)
 
-        self._convert = gst.element_factory_make("audioconvert", "convert")
+        self._convert = self.gst.element_factory_make("audioconvert", "convert")
         self._pipeline.add(self._convert)
 
-        self._sink = gst.element_factory_make("alsasink", "sink")
+        self._sink = self.gst.element_factory_make("alsasink", "sink")
         self._pipeline.add(self._sink)
 
         self._convert.link(self._sink)
@@ -58,7 +57,7 @@ class Player:
         t = message.type
 
         # XXX We need to handle other messages here, just to be safe
-        if t == gst.MESSAGE_EOS:
+        if t == self.gst.MESSAGE_EOS:
             self._mainloop.quit()
 
     def load(self, filename):
@@ -68,16 +67,9 @@ class Player:
         if filename:
             self.load(filename)
 
-        self._pipeline.set_state(gst.STATE_PLAYING)
+        self._pipeline.set_state(self.gst.STATE_PLAYING)
         self._mainloop.run()
 
-def parse_options(args):
-    parser = OptionParser()
-    parser.add_option("-f", "--file", dest="filename", help="The file to play")
-    parser.add_option("-t", "--type", dest="type", help="The type of audio to test. One of ogg, flac or wav")
-    parser.add_option("-p", "--path", dest="path", help="The path where the audio files can be found. Defaults to the current folder", default=".")
-
-    return parser.parse_args(args)[0]
 
 def detect_device():
     """
@@ -97,18 +89,12 @@ def detect_device():
 
 
 if __name__ == "__main__":
-    options = parse_options(sys.argv)
-
-    print detect_device()
-
-    if options.type:
-        filename = os.path.join(options.path, DEFAULT_FILENAME + "." + options.type)
-    
-    if options.filename:
-        filename = options.filename
-
-    if not options.type and not options.filename:
+    if len(sys.argv) == 1:
+        print "Usage: %s FILENAME" % os.path.basename(sys.argv[0])
+    else:
         filename = sys.argv[1]
 
-    if filename and os.path.exists(filename):
-        player = Player(filename)
+        if filename and os.path.exists(filename):
+            print detect_device()
+            player = Player()
+            player.play(filename)

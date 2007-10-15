@@ -1,7 +1,7 @@
 name: audio
 type: manual
 categories: laptop, desktop
-command: audio_playback -f $data_path/audio_playback.wav
+command: audio_playback $data_path/audio_playback.wav
 description:
  Testing detected soundcard:
  .
