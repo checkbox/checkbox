@@ -18,37 +18,38 @@ class Player:
 
     import gst
 
-    def __init__(self, filename=None):
+    def __init__(self):
         self._mainloop = gobject.MainLoop()
 
         self._pipeline = self.gst.Pipeline("my_pipeline")
 
+        # File source
         self._filesrc = self.gst.element_factory_make("filesrc", "source")
         self._pipeline.add(self._filesrc)
 
+        # Decoder
         self._decode = self.gst.element_factory_make("decodebin", "decode")
+        # We need to do this as this is a dynamic pad - it won'y exist until
+        # is used.
         self._decode.connect("new-decoded-pad", self._on_dynamic_pad)
         self._pipeline.add(self._decode)
 
         self._filesrc.link(self._decode)
 
+        # Audio converter
         self._convert = self.gst.element_factory_make("audioconvert", "convert")
         self._pipeline.add(self._convert)
 
+        # ALSA sink
+        # XXX: We should be detecting which sink to use?
         self._sink = self.gst.element_factory_make("alsasink", "sink")
         self._pipeline.add(self._sink)
 
         self._convert.link(self._sink)
 
-
-        # If we've been passed a filename, go and play it
         self._bus = self._pipeline.get_bus()
         self._bus.connect("message", self._on_message)
         self._bus.add_signal_watch()
-
-        if filename:
-            self.load(filename)
-            self.play()
 
     def _on_dynamic_pad(self, dbin, pad, islast):
         pad.link(self._convert.get_pad("sink"))
@@ -61,9 +62,17 @@ class Player:
             self._mainloop.quit()
 
     def load(self, filename):
+        """
+        Specifies the filename to play.
+        """
+
         self._filesrc.set_property("location", filename)
 
     def play(self, filename=None):
+        """
+        Plays the file (if specified) or the file already loaded.
+        """
+
         if filename:
             self.load(filename)
 
