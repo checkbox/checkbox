@@ -14,10 +14,10 @@ class ProcessorInfo(Plugin):
 
     def gather(self):
         message = self.create_message()
-        self._manager.reactor.fire(("report", "set-processors"), message)
+        self._manager.reactor.fire(("report", "processor"), message)
 
     def create_message(self):
-        return self._processor_manager.get_processors()
+        return [p.properties for p in self._processor_manager.get_processors()]
 
 
 factory = ProcessorInfo

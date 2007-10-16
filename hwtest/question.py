@@ -23,26 +23,26 @@ class QuestionParser(object):
     def __init__(self):
         self.questions = []
 
-    def load_data(self, **data):
-        if "name" not in data:
+    def load_properties(self, **properties):
+        if "name" not in properties:
             raise Exception, \
-                "Question data does not contain a 'name': %s" % data
+                "Question properties does not contain a 'name': %s" % properties
 
-        logging.info("Loading question data for: %s", data["name"])
+        logging.info("Loading question properties for: %s", properties["name"])
 
-        if filter(lambda q: q["name"] == data["name"], self.questions):
+        if filter(lambda q: q["name"] == properties["name"], self.questions):
             raise Exception, \
                 "Question %s already has a question of the same name." \
-                % data["name"]
+                % properties["name"]
 
-        self.questions.append(data)
+        self.questions.append(properties)
 
     def load_path(self, path):
         logging.info("Loading question from path: %s", path)
 
         fd = file(path, "r")
         for string in reader(fd):
-            data = {}
+            properties = {}
 
             def save(field, value, extended, path):
                 if value and extended:
@@ -50,11 +50,11 @@ class QuestionParser(object):
                         "Path %s has both a value and an extended value." % path
                 extended = extended.rstrip("\n")
                 if field:
-                    if data.has_key(field):
+                    if properties.has_key(field):
                         raise Exception, \
                             "Path %s has a duplicate field '%s' with a new value '%s'." \
                             % (path, field, value)
-                    data[field] = value or extended
+                    properties[field] = value or extended
 
             string = string.strip("\n")
             field = value = extended = ''
@@ -95,7 +95,7 @@ class QuestionParser(object):
                     % (path, line)
 
             save(field, value, extended, path)
-            self.load_data(**data)
+            self.load_properties(**properties)
 
     def load_directory(self, directory):
         logging.info("Loading questions from directory: %s", directory)
@@ -156,33 +156,33 @@ class Question(object):
         "optional": False}
 
     def __init__(self, **kwargs):
-        self.data = kwargs
+        self.properties = kwargs
         self.answer = None
         self._validate()
 
     def _validate(self):
-        for field in self.data.keys():
+        for field in self.properties.keys():
             if field not in self.required_fields + self.optional_fields.keys():
                 raise Exception, \
-                    "Question data contains unknown field: %s" \
+                    "Question properties contains unknown field: %s" \
                     % field
 
         for field in self.required_fields:
-            if not self.data.has_key(field):
+            if not self.properties.has_key(field):
                 raise Exception, \
-                    "Question data does not contain a '%s': %s" \
-                    % (field, data)
+                    "Question properties does not contain a '%s': %s" \
+                    % (field, properties)
 
         for field in self.optional_fields.keys():
-            if not self.data.has_key(field):
-                self.data[field] = self.optional_fields[field]
+            if not self.properties.has_key(field):
+                self.properties[field] = self.optional_fields[field]
 
     def __str__(self):
         return self.name
 
     def __getattr__(self, attr):
-        if attr in self.data:
-            return self.data[attr]
+        if attr in self.properties:
+            return self.properties[attr]
 
         raise AttributeError, attr
 

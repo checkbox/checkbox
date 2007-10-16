@@ -6,6 +6,12 @@ class Processor(object):
     def __init__(self, **kwargs):
         self.properties = kwargs
 
+    def __getattr__(self, attr):
+        if self.properties.has_key(attr):
+            return self.properties[attr]
+
+        raise AttributeError, attr
+
 
 class ProcessorManager(object):
 

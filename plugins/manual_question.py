@@ -27,13 +27,13 @@ class Manual(Question):
     def get_description(self):
         if self.command:
             output = self.run_command()
-            description = convert_string(self.data["description"], {'output': output})
+            description = convert_string(self.properties["description"], {'output': output})
         else:
-            description = self.data["description"]
+            description = self.properties["description"]
         return description
 
     def get_command(self):
-        command = self.data.get("command")
+        command = self.properties.get("command")
         if command is not None:
             command = convert_string(command, self.config._kwargs)
         return command

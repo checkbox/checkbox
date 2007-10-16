@@ -2,19 +2,22 @@ import time
 import pprint
 import StringIO
 import bz2
-import md5
 import logging
 
-from operator import indexOf, itemgetter
+from datetime import datetime
 from socket import gethostname
 
 from hwtest.plugin import Plugin
 from hwtest.transport import HTTPTransport
 from hwtest.log import format_delta
-from hwtest.report import Report
-from hwtest.report_helpers import (createDevice, createElement,
-    createProperty, createTypedElement)
+from hwtest.lib.type import recursiveupdate
 
+from hwtest.report import ReportManager
+from hwtest.reports.data import DataReport
+from hwtest.reports.summary import SummaryReport
+from hwtest.reports.processor import ProcessorReport
+from hwtest.reports.package import PackageReport
+from hwtest.reports.hal import HalReport
 
 class LaunchpadExchange(Plugin):
 
@@ -22,180 +25,92 @@ class LaunchpadExchange(Plugin):
 
     def __init__(self, config, report=None):
         super(LaunchpadExchange, self).__init__(config)
-        self._report = report or Report()
         self._transport = self.transport_factory(self.config.transport_url)
+        self._report = {
+            "summary": {
+                "private": False,
+                "contactable": False,
+                "live_cd": False,
+                "date_created": str(datetime.utcnow()).split(".")[0]},
+            "hardware": {},
+            "software": {},
+            "tests": {}}
+        self._form = [
+            ('field.format', u'VERSION_1'),
+            ('field.actions.upload', u'Upload')]
 
     def register(self, manager):
         super(LaunchpadExchange, self).register(manager)
-        c = self._manager.reactor.call_on
-        c("exchange", self.exchange)
-        c(("report", "set-architecture"), self.set_architecture)
-        c(("report", "set-email"), self.set_email)
-        c(("report", "set-device-manager"), self.set_device_manager)
-        c(("report", "set-distribution"), self.set_distribution)
-        c(("report", "set-packages"), self.set_packages)
-        c(("report", "set-processors"), self.set_processors)
-        c(("report", "set-questions"), self.set_questions)
+        self._manager.reactor.call_on("exchange", self.exchange)
+        self._manager.reactor.call_on(("report", "architecture"), self.report_architecture)
+        self._manager.reactor.call_on(("report", "submission_id"), self.report_submission_id)
+        self._manager.reactor.call_on(("report", "system_id"), self.report_system_id)
+        self._manager.reactor.call_on(("report", "distribution"), self.report_distribution)
+        self._manager.reactor.call_on(("report", "package"), self.report_package)
+        self._manager.reactor.call_on(("report", "device"), self.report_device)
+        self._manager.reactor.call_on(("report", "processor"), self.report_processor)
+        self._manager.reactor.call_on(("report", "email"), self.report_email)
 
-    def set_architecture(self, architecture):
-        report = self._report
-        if report.finalised:
-            return
+    def report_architecture(self, message):
+        self._report["summary"]["architecture"] = message
 
-        report.info['architecture'] = architecture
+    def report_submission_id(self, message):
+        logging.info("Submission ID: %s", message)
+        self._form.append(('field.submission_key', message))
 
-    def set_email(self, email):
-        report = self._report
-        if report.finalised:
-            return
+    def report_system_id(self, message):
+        logging.info("System ID: %s", message)
+        self._report["summary"]["system_id"] = message
 
-        report.email = email
+    def report_distribution(self, message):
+        self._report["software"]["lsbrelease"] = message
+        self._report["summary"]["distribution"] = message["distributor-id"]
+        self._report["summary"]["distroseries"] = message["release"]
 
-    def set_device_manager(self, device_manager):
-        report = self._report
-        if report.finalised:
-            return
+    def report_package(self, message):
+        self._report["software"]["packages"] = message
 
-        if not hasattr(report, 'hardware'):
-            report.hardware = createElement(report, 'hardware', report.root)
-        hal_element = createElement(report, 'hal', report.hardware)
-        hal_element.setAttribute('version', str(device_manager.version))
+    def report_device(self, message):
+        self._report["hardware"]["hal"] = message
 
-        devices = device_manager.get_devices()
-        for device in devices:
-            id = indexOf(devices, device)
-            device_element = createDevice(report, hal_element, id, device.udi,
-                                  getattr(device.parent, 'id', None))
-            properties_element = createElement(report, 'properties',
-                device_element)
-            for key, value in sorted(device.properties.iteritems(),
-                                     key=itemgetter(0)):
-                createProperty(report, properties_element, key, value)
+    def report_processor(self, message):
+        self._report["hardware"]["processors"] = message
 
-        # Generate system fingerprint
-        udi = '/org/freedesktop/Hal/devices/computer'
-        computer = filter(lambda d: d.properties['info.udi'] == udi, devices)[0]
+    def report_processor(self, message):
+        self._report["hardware"]["processors"] = message
 
-        fingerprint = md5.new()
-        fingerprint.update(computer.properties['system.vendor'])
-        fingerprint.update(computer.properties['system.product'])
-        report.info['system_id'] = fingerprint.hexdigest()
-
-    def set_distribution(self, distribution):
-        report = self._report
-        if report.finalised:
-            return
-
-        # Store summary information
-        report.info['distribution'] = distribution['distributor-id']
-        report.info['distroseries'] = distribution['release']
-
-        # Store data in report
-        if not hasattr(report, 'software'):
-            report.software = createElement(report, 'software', report.root)
-        createTypedElement(report, 'lsbrelease', report.software, None,
-                           distribution, True)
-
-    def set_packages(self, packages):
-        report = self._report
-        if report.finalised:
-            return
-
-        if not hasattr(report, 'software'):
-            report.software = createElement(report, 'software', report.root)
-        packages_element = createElement(report, 'packages', report.software)
-        for package in packages:
-            name = package.pop('name')
-            createTypedElement(report, 'package', packages_element,
-                               name, package, True)
-
-    def set_processors(self, processors):
-        report = self._report
-        if report.finalised:
-            return
-
-        if not hasattr(report, 'hardware'):
-            report.hardware = createElement(report, 'hardware', report.root)
-        processors_element = createElement(report, 'processors', report.hardware)
-        for processor in processors:
-            createTypedElement(report, 'processor', processors_element,
-            str(processors.index(processor)), processor.properties, True)
-
-    def set_questions(self, questions):
-        report = self._report
-        if report.finalised:
-            return
-
-        if not hasattr(report, 'tests'):
-            report.tests = createElement(report, 'tests', report.root)
-
-        for question in questions:
-            test_element = createElement(report, 'test', report.tests)
-            createElement(report, 'suite', test_element, 'tool')
-            createElement(report, 'name', test_element, question.name)
-            createElement(report, 'description', test_element, question.description)
-            createElement(report, 'command', test_element)
-            createElement(report, 'architectures', test_element)
-            createTypedElement(report, 'categories', test_element, None,
-                question.categories, True, 'category')
-            createElement(report, 'optional', test_element, question.optional)
-
-            if question.answer:
-                result_element = createElement(report, 'result', test_element)
-                createElement(report, 'result_status', result_element,
-                    question.answer.status)
-                createElement(report, 'result_data', result_element,
-                    question.answer.data)
+    def report_email(self, message):
+        self._form.append(('field.emailaddress', message))
 
     def exchange(self):
-        report = self._report
-        report.finalise()
+        # Combine summary with form data
+        for k, v in self._report['summary'].items():
+            form_field = k.replace("system_id", "system")
+            self._form.append(('field.%s' % form_field, str(v).encode("utf-8")))
 
-        # 'field.date_created':    u'2007-08-01',
-        # 'field.private':         u'',
-        # 'field.contactable':     u'',
-        # 'field.livecd':          u'',
-        # 'field.submission_id':   u'unique ID 1',
-        # 'field.emailaddress':    u'test@canonical.com',
-        # 'field.distribution':    u'ubuntu',
-        # 'field.distrorelease':   u'5.04',
-        # 'field.architecture':    u'i386',
-        # 'field.system':          u'HP 6543',
-        # 'field.submission_data': data,
-        # 'field.actions.upload':  u'Upload'}
+        # Prepare the report manager
+        report_manager = ReportManager("system", "1.0")
+        report_manager.add(DataReport())
+        report_manager.add(SummaryReport())
+        report_manager.add(ProcessorReport())
+        report_manager.add(PackageReport())
+        report_manager.add(HalReport())
 
-        form = []
-        name_map = {'system_id': 'system'}
-
-        for k, v in report.info.items():
-            form_field = name_map.get(k, k)
-            form.append(('field.%s' % form_field, str(v).encode("utf-8")))
- 
-        form.append(('field.format', u'VERSION_1'))
-        form.append(('field.emailaddress', report.email))
-        form.append(('field.actions.upload', u'Upload'))
-
-        # Set the filename based on the hostname
-        filename = '%s.xml.bz2' % str(gethostname())
-        
         # bzip2 compress the payload and attach it to the form
-        payload = report.toxml()
+        filename = '%s.xml.bz2' % str(gethostname())
+        payload = report_manager.dumps(self._report).toprettyxml("")
+        file("/tmp/payload.xml", "w").write(payload)
         cpayload = bz2.compress(payload)
         f = StringIO.StringIO(cpayload)
         f.name = filename
         f.size = len(cpayload)
-        form.append(('field.submission_data', f))
-
-        logging.info("System ID: %s", report.info['system_id'])
-        logging.info("Submission ID: %s", report.info['submission_key'])
+        self._form.append(('field.submission_data', f))
 
         if logging.getLogger().getEffectiveLevel() <= logging.DEBUG:
             logging.debug("Uncompressed payload length: %d", len(payload))
 
         start_time = time.time()
-
-        ret = self._transport.exchange(form)
-
+        ret = self._transport.exchange(self._form)
         if not ret:
             # HACK: this should return a useful error message
             self._manager.set_error("Communication failure")
@@ -216,7 +131,7 @@ class LaunchpadExchange(Plugin):
 
         response = ret.read()
         logging.info("Sent %d bytes and received %d bytes in %s.",
-                     len(form), len(response),
+                     len(self._form), len(response),
                      format_delta(time.time() - start_time))
 
 

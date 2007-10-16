@@ -30,12 +30,27 @@ class DeviceManager(object):
         version = getoutput('/usr/sbin/hald --version')
         self.version = version.rsplit(': ')[1]
 
+    def _create_device(self, hal_device):
+        hal_device = Interface(hal_device, "org.freedesktop.Hal.Device")
+        device = Device(hal_device)
+        return device
+
+    def get_devices_by_match(self, key, value):
+        devices = []
+        for match in self._manager.FindDeviceStringMatch(key, value):
+            hal_device = self._bus.get_object("org.freedesktop.Hal", match)
+            devices.append(self._create_device(hal_device))
+
+        return devices
+
+    def get_device_by_udi(self, value):
+        return self.get_devices_by_match("info.udi", value)[0]
+
     def get_devices(self):
         devices = []
         for udi in self._manager.GetAllDevices():
             hal_device = self._bus.get_object("org.freedesktop.Hal", udi)
-            hal_device = Interface(hal_device, "org.freedesktop.Hal.Device")
-            device = Device(hal_device)
+            device = self._create_device(hal_device)
             devices.append(device)
 
         return devices
