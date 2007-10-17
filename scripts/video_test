@@ -1,0 +1,52 @@
+#!/usr/bin/python
+
+import os
+import sys
+import time
+
+from optparse import OptionParser
+
+import pygst
+pygst.require("0.10")
+
+import gobject
+
+class VideoTest:
+    """
+    A simple class that displays a test image via GStreamer.
+    """
+
+    import gst
+
+    def __init__(self):
+        self._mainloop = gobject.MainLoop()
+
+        self._pipeline = self.gst.Pipeline("my_pipeline")
+
+        # File source
+        self._source = self.gst.element_factory_make("videotestsrc", "source")
+        self._pipeline.add(self._source)
+
+        # XImage sink
+        self._sink = self.gst.element_factory_make("xvimagesink", "sink")
+        self._pipeline.add(self._sink)
+
+        print self._sink.get_property("display")
+
+        self._source.link(self._sink)
+
+    def display(self):
+        """
+        Displays the test image.
+        """
+
+        self._pipeline.set_state(self.gst.STATE_PLAYING)
+        for i in range(0,12):
+            self._source.set_property("pattern", i)
+            time.sleep(3)
+        self._pipeline.set_state(self.gst.STATE_READY)
+
+
+if __name__ == "__main__":
+    video = VideoTest()
+    video.display()
