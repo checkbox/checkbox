@@ -3,6 +3,8 @@ import re
 import types
 import logging
 
+from StringIO import StringIO
+
 from hwtest.excluder import Excluder
 from hwtest.iterator import Iterator
 from hwtest.repeater import PreRepeater
@@ -23,7 +25,7 @@ class QuestionParser(object):
     def __init__(self):
         self.questions = []
 
-    def load_properties(self, **properties):
+    def _load_properties(self, **properties):
         if "name" not in properties:
             raise Exception, \
                 "Question properties does not contain a 'name': %s" % properties
@@ -37,23 +39,23 @@ class QuestionParser(object):
 
         self.questions.append(properties)
 
-    def load_path(self, path):
-        logging.info("Loading question from path: %s", path)
-
-        fd = file(path, "r")
+    def _load_descriptor(self, fd, name):
         for string in reader(fd):
+            if not string:
+                break
+
             properties = {}
 
-            def save(field, value, extended, path):
+            def _save(field, value, extended, name):
                 if value and extended:
                     raise Exception, \
-                        "Path %s has both a value and an extended value." % path
+                        "Path %s has both a value and an extended value." % name
                 extended = extended.rstrip("\n")
                 if field:
                     if properties.has_key(field):
                         raise Exception, \
                             "Path %s has a duplicate field '%s' with a new value '%s'." \
-                            % (path, field, value)
+                            % (name, field, value)
                     properties[field] = value or extended
 
             string = string.strip("\n")
@@ -62,7 +64,7 @@ class QuestionParser(object):
                 line.strip()
                 match = re.search(r"^([-_.A-Za-z0-9]*):\s?(.*)", line)
                 if match:
-                    save(field, value, extended, path)
+                    _save(field, value, extended, name)
                     field = match.groups()[0].lower()
                     value = match.groups()[1].rstrip()
                     extended = ''
@@ -92,10 +94,21 @@ class QuestionParser(object):
                     continue
 
                 raise Exception, "Path %s parse error at: %s" \
-                    % (path, line)
+                    % (name, line)
 
-            save(field, value, extended, path)
-            self.load_properties(**properties)
+            _save(field, value, extended, name)
+            self._load_properties(**properties)
+
+    def load_string(self, str):
+        logging.info("Loading question from string")
+        fd = StringIO(str)
+        self._load_descriptor(fd, "string")
+
+    def load_path(self, path):
+        logging.info("Loading question from path: %s", path)
+
+        fd = file(path, "r")
+        self._load_descriptor(fd, path)
 
     def load_directory(self, directory):
         logging.info("Loading questions from directory: %s", directory)

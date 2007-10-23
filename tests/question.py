@@ -1,63 +1,73 @@
 import unittest
 
-from hwtest.question import (parse_file, parse_string)
+from hwtest.question import QuestionParser
 
 
-class QuestionTest(unittest.TestCase):
-    def test_parse_file(self):
-        questions = parse_file("questions.txt")
-        self.assertTrue(len(questions) > 0)
+class QuestionParserTest(unittest.TestCase):
+    def test_load_path(self):
+        parser = QuestionParser()
+        parser.load_path("questions/manual.txt")
+        self.assertTrue(len(parser.questions) > 0)
 
-    def test_parse_string_empty(self):
-        questions = parse_string("")
-        self.assertTrue(questions == [])
-        self.assertTrue(len(questions) == 0)
+    def test_load_string_empty(self):
+        parser = QuestionParser()
+        parser.load_string("")
+        self.assertTrue(parser.questions == [])
+        self.assertTrue(len(parser.questions) == 0)
 
-    def test_parse_string_one_line(self):
-        questions = parse_string("""
-key: value
+    def test_load_string_one_line(self):
+        parser = QuestionParser()
+        parser.load_string("""
+name: value
 """)
-        self.assertTrue(questions)
-        self.assertTrue(len(questions) == 1)
+        self.assertTrue(parser.questions)
+        self.assertTrue(len(parser.questions) == 1)
 
-        question = questions[0]
-        self.assertTrue(question.has_key('key'))
-        self.assertTrue(question['key'] == 'value')
+        question = parser.questions[0]
+        self.assertTrue(question.has_key('name'))
+        self.assertTrue(question['name'] == 'value')
 
-        questions = parse_string("""
-key: value
+    def test_load_string_one_line_continued(self):
+        parser = QuestionParser()
+        parser.load_string("""\
+name:
+  value
   continued
 """)
-        self.assertTrue(questions)
-        self.assertTrue(len(questions) == 1)
+        self.assertTrue(parser.questions)
+        self.assertTrue(len(parser.questions) == 1)
 
-        question = questions[0]
-        self.assertTrue(question.has_key('key'))
-        self.assertTrue(question['key'] == 'value continued')
+        question = parser.questions[0]
+        self.assertTrue(question.has_key('name'))
+        self.assertTrue(question['name'] == """\
+ value
+ continued""")
 
     def test_parse_string_two_lines(self):
-        table = [['key1', 'value1'], ['key2', 'value2']]
-        questions = parse_string(
+        parser = QuestionParser()
+        table = [['name', 'value'], ['foo', 'bar']]
+        parser.load_string(
             '\n'.join([': '.join(t) for t in table]))
 
-        self.assertTrue(questions)
-        self.assertTrue(len(questions) == 1)
+        self.assertTrue(parser.questions)
+        self.assertTrue(len(parser.questions) == 1)
 
-        question = questions[0]
+        question = parser.questions[0]
         for key, value in table:
             self.assertTrue(question.has_key(key))
             self.assertTrue(question[key] == value)
 
     def test_parse_string_two_questions(self):
-        table = [['question1', 'value1'], ['question2', 'value2']]
-        questions = parse_string(
+        parser = QuestionParser()
+        table = [['name', 'value1'], ['name', 'value2']]
+        parser.load_string(
             '\n\n'.join([': '.join(t) for t in table]))
 
-        self.assertTrue(questions)
-        self.assertTrue(len(questions) == 2)
+        self.assertTrue(parser.questions)
+        self.assertTrue(len(parser.questions) == 2)
 
         for i in range(len(table)):
-            question = questions[i]
+            question = parser.questions[i]
             key, value = table[i]
             self.assertTrue(question.has_key(key))
             self.assertTrue(question[key] == value)
