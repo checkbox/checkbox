@@ -16,11 +16,11 @@ class QuestionPrompt(Plugin):
 
     def register(self, manager):
         super(QuestionPrompt, self).register(manager)
-        c = self._manager.reactor.call_on
-        c("gather", self.gather)
-        c(("prompt", "add-question"), self.add_question)
-        c(("prompt", "set-category"), self.set_category)
-        c(("prompt", "set-direction"), self.set_direction)
+        for (rt, rh) in [("gather", self.gather),
+                         (("prompt", "add-question"), self.add_question),
+                         (("prompt", "set-category"), self.set_category),
+                         (("prompt", "set-direction"), self.set_direction)]:
+            self._manager.reactor.call_on(rt, rh)
 
     def run(self):
         self.questions = self.get_questions()

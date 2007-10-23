@@ -41,15 +41,16 @@ class LaunchpadExchange(Plugin):
 
     def register(self, manager):
         super(LaunchpadExchange, self).register(manager)
-        self._manager.reactor.call_on("exchange", self.exchange)
-        self._manager.reactor.call_on(("report", "architecture"), self.report_architecture)
-        self._manager.reactor.call_on(("report", "submission_id"), self.report_submission_id)
-        self._manager.reactor.call_on(("report", "system_id"), self.report_system_id)
-        self._manager.reactor.call_on(("report", "distribution"), self.report_distribution)
-        self._manager.reactor.call_on(("report", "package"), self.report_package)
-        self._manager.reactor.call_on(("report", "device"), self.report_device)
-        self._manager.reactor.call_on(("report", "processor"), self.report_processor)
-        self._manager.reactor.call_on(("report", "email"), self.report_email)
+        for (rt, rh) in [("exchange", self.exchange),
+                         (("report", "architecture"), self.report_architecture),
+                         (("report", "submission_id"), self.report_submission_id),
+                         (("report", "system_id"), self.report_system_id),
+                         (("report", "distribution"), self.report_distribution),
+                         (("report", "package"), self.report_package),
+                         (("report", "device"), self.report_device),
+                         (("report", "processor"), self.report_processor),
+                         (("report", "email"), self.report_email)]:
+            self._manager.reactor.call_on(rt, rh)
 
     def report_architecture(self, message):
         self._report["summary"]["architecture"] = message
