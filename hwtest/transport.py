@@ -1,10 +1,8 @@
 import logging
-import urllib2
 import socket
 import pprint
 
 from hwtest import VERSION
-from hwtest.contrib import urllib2_file
 
 
 class HTTPTransport(object):
@@ -19,6 +17,7 @@ class HTTPTransport(object):
 
     def _post(self, form):
         """Actually POSTs the form to the server."""
+        import urllib2
         opener = urllib2.build_opener()
         opener.addheaders = [("User-Agent", "hwtest/%s" % (VERSION,))]
         ret = opener.open(self._url, form)
@@ -29,6 +28,7 @@ class HTTPTransport(object):
 
         THREAD SAFE (HOPEFULLY)
         """
+        import urllib2
         socket.setdefaulttimeout(10)
         try:
             ret = self._post(form)
