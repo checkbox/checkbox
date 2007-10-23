@@ -2,6 +2,7 @@ from hwtest.report import Report
 
 
 class PackageReport(Report):
+    """Report for package related data types."""
 
     def register_dumps(self):
         self._manager.handle_dumps("packages", self.dumps_packages)

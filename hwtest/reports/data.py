@@ -2,6 +2,7 @@ from hwtest.report import Report
 
 
 class DataReport(Report):
+    """Report for basic data types."""
 
     def register_dumps(self):
         for (dt, dh) in [(bool, self.dumps_bool),

@@ -5,6 +5,7 @@ from hwtest.report import Report
 
 
 class SummaryReport(Report):
+    """Report for summary related data types."""
 
     def register_dumps(self):
         for (dt, dh) in [("live_cd", self.dumps_value),

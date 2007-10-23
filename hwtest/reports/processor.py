@@ -2,6 +2,7 @@ from hwtest.report import Report
 
 
 class ProcessorReport(Report):
+    """Report for processor related data types."""
 
     def register_dumps(self):
         self._manager.handle_dumps("processors", self.dumps_processors)

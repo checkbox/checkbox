@@ -4,6 +4,7 @@ from hwtest.reports.data import DataReport
 
 
 class HalReport(DataReport):
+    """Report for HAL related data types."""
 
     def register_dumps(self):
         for (dt, dh) in [(dbus.Boolean, self.dumps_bool),
