@@ -1,6 +1,5 @@
 import os.path, sys
 import gtk, gtk.glade
-from gettext import gettext as _
 
 from hwtest.user_interface import UserInterface
 
