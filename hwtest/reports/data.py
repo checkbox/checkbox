@@ -4,30 +4,28 @@ from hwtest.report import Report
 class DataReport(Report):
 
     def register_dumps(self):
-        dumps_handlers = { bool: self.dumps_bool,
-                            int: self.dumps_int,
-                           long: self.dumps_int,
-                          float: self.dumps_float,
-                            str: self.dumps_str,
-                        unicode: self.dumps_unicode,
-                           list: self.dumps_list,
-                          tuple: self.dumps_list,
-                           dict: self.dumps_dict,
-                     type(None): self.dumps_none}
-        for dt, dh in dumps_handlers.items():
+        for (dt, dh) in [(bool, self.dumps_bool),
+                         (int, self.dumps_int),
+                         (long, self.dumps_int),
+                         (float, self.dumps_float),
+                         (str, self.dumps_str),
+                         (unicode, self.dumps_unicode),
+                         (list, self.dumps_list),
+                         (tuple, self.dumps_list),
+                         (dict, self.dumps_dict),
+                         (type(None), self.dumps_none)]:
             self._manager.handle_dumps(dt, dh)
 
     def register_loads(self):
-        loads_handlers = { "bool": self.loads_bool,
-                            "int": self.loads_int,
-                           "long": self.loads_int,
-                          "float": self.loads_float,
-                            "str": self.loads_str,
-                        "unicode": self.loads_str,
-                       "property": self.loads_property,
-                     "properties": self.loads_properties,
-                       type(None): self.loads_none}
-        for lt, lh in loads_handlers.items():
+        for (lt, lh) in [("bool", self.loads_bool),
+                         ("int", self.loads_int),
+                         ("long", self.loads_int),
+                         ("float", self.loads_float),
+                         ("str", self.loads_str),
+                         ("unicode", self.loads_str),
+                         ("property", self.loads_property),
+                         ("properties", self.loads_properties),
+                         (type(None), self.loads_none)]:
             self._manager.handle_loads(lt, lh)
 
     def _dumps_text(self, obj, parent, type):

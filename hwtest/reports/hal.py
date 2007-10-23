@@ -1,13 +1,27 @@
-from hwtest.report import Report
+import dbus
+
+from hwtest.reports.data import DataReport
 
 
-class HalReport(Report):
+class HalReport(DataReport):
 
     def register_dumps(self):
-        self._manager.handle_dumps("hal", self.dumps_hal)
+        for (dt, dh) in [(dbus.Boolean, self.dumps_bool),
+                         (dbus.Int32, self.dumps_int),
+                         (dbus.UInt64, self.dumps_uint64),
+                         (dbus.String, self.dumps_str),
+                         (dbus.Array, self.dumps_list),
+                         (dbus.Dictionary, self.dumps_dictionary),
+                         ("hal", self.dumps_hal)]:
+            self._manager.handle_dumps(dt, dh)
 
     def register_loads(self):
-        self._manager.handle_loads("hal", self.loads_hal)
+        for (lt, lh) in [("hal", self.loads_hal),
+                         ("uint64", self.loads_int)]:
+            self._manager.handle_loads(lt, lh)
+
+    def dumps_uint64(self, obj, parent):
+        self._dumps_text(str(obj), parent, "int64")
 
     def dumps_hal(self, obj, parent):
         parent.setAttribute("version", obj["version"])
