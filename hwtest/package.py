@@ -1,9 +1,3 @@
-import warnings
-warnings.filterwarnings(action='ignore', category=FutureWarning)
-
-from apt.cache import Cache
-
-
 class Package(object):
 
     def __init__(self, apt_package):
@@ -26,13 +20,21 @@ class Package(object):
 class PackageManager(object):
 
     def __init__(self):
-        self._cache = Cache()
+        self._packages = []
 
     def get_packages(self):
-        packages = []
-        for apt_package in self._cache:
-            if apt_package.isInstalled:
-                package = Package(apt_package)
-                packages.append(package)
+        if not self._packages:
+            # The apt API not stable yet, so this filters warnings
+            import warnings
+            warnings.filterwarnings(action='ignore', category=FutureWarning)
 
-        return packages
+            # Importing from the cache module is expensive, so this
+            # delays the call until absolutely necessary
+            from apt.cache import Cache
+
+            for apt_package in Cache():
+                if apt_package.isInstalled:
+                    package = Package(apt_package)
+                    self._packages.append(package)
+
+        return self._packages

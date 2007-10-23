@@ -19,7 +19,7 @@ class DeviceInfo(Plugin):
     def create_message(self):
         message = {}
         message["devices"] = []
-        message["version"] = self._device_manager.version
+        message["version"] = self._device_manager.get_version()
         for device in self._device_manager.get_devices():
             message["devices"].append(device.properties)
 

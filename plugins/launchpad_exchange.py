@@ -10,7 +10,6 @@ from socket import gethostname
 from hwtest.plugin import Plugin
 from hwtest.transport import HTTPTransport
 from hwtest.log import format_delta
-from hwtest.lib.type import recursiveupdate
 
 from hwtest.report import ReportManager
 from hwtest.reports.data import DataReport
@@ -21,11 +20,8 @@ from hwtest.reports.hal import HalReport
 
 class LaunchpadExchange(Plugin):
 
-    transport_factory = HTTPTransport
-
     def __init__(self, config, report=None):
         super(LaunchpadExchange, self).__init__(config)
-        self._transport = self.transport_factory(self.config.transport_url)
         self._report = {
             "summary": {
                 "private": False,
@@ -100,6 +96,8 @@ class LaunchpadExchange(Plugin):
         # bzip2 compress the payload and attach it to the form
         filename = '%s.xml.bz2' % str(gethostname())
         payload = report_manager.dumps(self._report).toprettyxml("")
+        file("/tmp/payload.xml", "w").write(payload)
+        return
         cpayload = bz2.compress(payload)
         f = StringIO.StringIO(cpayload)
         f.name = filename
@@ -110,7 +108,8 @@ class LaunchpadExchange(Plugin):
             logging.debug("Uncompressed payload length: %d", len(payload))
 
         start_time = time.time()
-        ret = self._transport.exchange(self._form)
+        transport = HTTPTransport(self.config.transport_url)
+        ret = transport.exchange(self._form)
         if not ret:
             # HACK: this should return a useful error message
             self._manager.set_error("Communication failure")
