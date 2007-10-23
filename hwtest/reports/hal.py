@@ -11,7 +11,7 @@ class HalReport(DataReport):
                          (dbus.UInt64, self.dumps_uint64),
                          (dbus.String, self.dumps_str),
                          (dbus.Array, self.dumps_list),
-                         (dbus.Dictionary, self.dumps_dictionary),
+                         (dbus.Dictionary, self.dumps_dict),
                          ("hal", self.dumps_hal)]:
             self._manager.handle_dumps(dt, dh)
 
@@ -21,7 +21,7 @@ class HalReport(DataReport):
             self._manager.handle_loads(lt, lh)
 
     def dumps_uint64(self, obj, parent):
-        self._dumps_text(str(obj), parent, "int64")
+        self._dumps_text(str(obj), parent, "uint64")
 
     def dumps_hal(self, obj, parent):
         parent.setAttribute("version", obj["version"])
