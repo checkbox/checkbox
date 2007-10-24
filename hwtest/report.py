@@ -1,8 +1,4 @@
-import logging
-
 from xml.dom.minidom import Document, Node, parseString
-
-from hwtest.log import format_object
 
 
 class ReportManager(object):
@@ -54,7 +50,6 @@ class ReportManager(object):
         """
         Add a new report to the manager.
         """
-        logging.info("Registering report %s.", format_object(report))
         report.register(self)
 
     def dumps(self, obj):
@@ -92,7 +87,7 @@ class ReportManager(object):
         except KeyError, e:
             raise ValueError, "Unsupported type: %s" % e
 
-        return ret["system"]
+        return ret
 
 
 class Report(object):
