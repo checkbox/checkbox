@@ -19,7 +19,7 @@ class HalReport(DataReport):
 
     def register_loads(self):
         for (lt, lh) in [("hal", self.loads_hal),
-                         ("uint64", self.loads_int)]:
+                         ("uint64", self.loads_int),
                          ("double", self.loads_float)]:
             self._manager.handle_loads(lt, lh)
 
