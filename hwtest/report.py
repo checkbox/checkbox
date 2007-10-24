@@ -92,7 +92,7 @@ class ReportManager(object):
         except KeyError, e:
             raise ValueError, "Unsupported type: %s" % e
 
-        return ret
+        return ret["system"]
 
 
 class Report(object):
