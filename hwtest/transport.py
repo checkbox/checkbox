@@ -15,36 +15,39 @@ class HTTPTransport(object):
     def get_url(self):
         return self._url
 
-    def _post(self, form):
-        """Actually POSTs the form to the server."""
+    def _post(self, payload, headers={}):
+        """Actually POSTs the payload to the server."""
+
         import urllib2
         import hwtest.contrib.urllib2_file
+
+        headers.setdefault("User-Agent", "hwtest/%s" % VERSION)
+        headers.setdefault("Content-Type", "application/xml")
+
         opener = urllib2.build_opener()
-        opener.addheaders = [("User-Agent", "hwtest/%s" % (VERSION,))]
-        ret = opener.open(self._url, form)
+        opener.addheaders = list(headers.items())
+        ret = opener.open(self._url, payload)
         return ret
 
-    def exchange(self, form):
-        """Exchange message data with the server.
+    def exchange(self, payload, headers={}):
+        """Exchange the payload with the server."""
 
-        THREAD SAFE (HOPEFULLY)
-        """
         import urllib2
+
+        ret = None
         socket.setdefaulttimeout(10)
         try:
-            ret = self._post(form)
+            ret = self._post(payload, headers)
         except urllib2.URLError:
             logging.exception("Error contacting the server")
-            return None
         except urllib2.HTTPError:
             logging.exception("Failure submitting data to server")
             logging.error("Response headers: %s",
                           pprint.pformat(ret.headers.items()))
-            return None
-
-        if ret.code != 200:
-            logging.error("Server returned non-expected code: %d" % ret.code)
-            return None
+        else:
+            if ret.code != 200:
+                logging.error("Server returned non-expected code: %d" % ret.code)
+                ret = None
 
         return ret
 
@@ -61,7 +64,7 @@ class StubTransport(object):
     def get_url(self):
         return ""
 
-    def exchange(self, payload, machine_id=None):
+    def exchange(self, payload, headers={}):
         self.payloads.append(payload)
         self.next_expected_sequence += len(payload.get("messages", []))
         result = {"next-expected-sequence": self.next_expected_sequence,
