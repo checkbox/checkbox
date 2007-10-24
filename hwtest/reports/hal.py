@@ -10,6 +10,7 @@ class HalReport(DataReport):
         for (dt, dh) in [(dbus.Boolean, self.dumps_bool),
                          (dbus.Int32, self.dumps_int),
                          (dbus.UInt64, self.dumps_uint64),
+                         (dbus.Double, self.dumps_double),
                          (dbus.String, self.dumps_str),
                          (dbus.Array, self.dumps_list),
                          (dbus.Dictionary, self.dumps_dict),
@@ -19,10 +20,14 @@ class HalReport(DataReport):
     def register_loads(self):
         for (lt, lh) in [("hal", self.loads_hal),
                          ("uint64", self.loads_int)]:
+                         ("double", self.loads_float)]:
             self._manager.handle_loads(lt, lh)
 
     def dumps_uint64(self, obj, parent):
         self._dumps_text(str(obj), parent, "uint64")
+
+    def dumps_double(self, obj, parent):
+        self._dumps_text(str(obj), parent, "double")
 
     def dumps_hal(self, obj, parent):
         parent.setAttribute("version", obj["version"])
