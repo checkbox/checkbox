@@ -1,4 +1,4 @@
-from xml.dom.minidom import Document, Node, parseString
+from xml.dom.minidom import Document, Node, Element, parseString
 
 
 class ReportManager(object):
@@ -42,6 +42,9 @@ class ReportManager(object):
         """
         if self.loads_table.has_key(node.localName):
             ret = self.loads_table[node.localName](node)
+        elif isinstance(node, Element) and node.hasAttribute("type"):
+            type = node.getAttribute("type")
+            ret = self.loads_table[type](node)
         else:
             ret = self.loads_table["default"](node)
         return ret

@@ -1,3 +1,5 @@
+from xml.dom.minidom import Node
+
 from hwtest.report import Report
 
 
@@ -24,6 +26,7 @@ class DataReport(Report):
                          ("float", self.loads_float),
                          ("str", self.loads_str),
                          ("unicode", self.loads_str),
+                         ("list", self.loads_list),
                          ("property", self.loads_property),
                          ("properties", self.loads_properties),
                          (type(None), self.loads_none)]:
@@ -52,8 +55,8 @@ class DataReport(Report):
         parent.setAttribute("type", "list")
         for val in obj:
             # HACK: lists are supposedly expressed as properties
-            property = self._create_element("properties", parent)
-            self._manager.call_dumps(val, property)
+            properties = self._create_element("properties", parent)
+            self._manager.call_dumps(val, properties)
         
     def dumps_dict(self, obj, parent):
         for key in sorted(obj.keys()):
@@ -87,14 +90,25 @@ class DataReport(Report):
     def loads_str(self, node):
         return str(node.data.strip())
 
+    def loads_list(self, node):
+        nodes = []
+        for child in node.childNodes:
+            if child.nodeType != Node.TEXT_NODE:
+                nodes.append(self._manager.call_loads(child))
+        return nodes
+
     def loads_property(self, node):
         type = node.getAttribute("type")
-        if type == "list":
+        if type is "list" or type is "":
             # HACK: see above in dumps_list
             ret = []
             for property in node.getElementsByTagName("property"):
                 value = self._manager.call_loads(property)
-                ret.append(value)
+                if property.hasAttribute("name"):
+                    name = property.getAttribute("name")
+                    ret.append({name: value})
+                else:
+                    ret.append(value)
         else:
             child = node.firstChild
             ret = self._manager.loads_table[type](child)
