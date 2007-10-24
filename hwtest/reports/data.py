@@ -52,7 +52,7 @@ class DataReport(Report):
         parent.setAttribute("type", "list")
         for val in obj:
             # HACK: lists are supposedly expressed as properties
-            property = self._create_element("property", parent)
+            property = self._create_element("properties", parent)
             self._manager.call_dumps(val, property)
         
     def dumps_dict(self, obj, parent):
