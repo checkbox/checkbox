@@ -1,9 +1,9 @@
 import time
 import pprint
-import StringIO
 import bz2
 import logging
 
+from StringIO import StringIO
 from datetime import datetime
 from socket import gethostname
 
@@ -95,7 +95,7 @@ class LaunchpadExchange(Plugin):
         filename = '%s.xml.bz2' % str(gethostname())
         payload = report_manager.dumps(self._report).toprettyxml("")
         cpayload = bz2.compress(payload)
-        f = StringIO.StringIO(cpayload)
+        f = StringIO(cpayload)
         f.name = filename
         f.size = len(cpayload)
         form["field.submission_data"] = f
@@ -105,7 +105,7 @@ class LaunchpadExchange(Plugin):
 
         start_time = time.time()
         transport = HTTPTransport(self.config.transport_url)
-        ret = transport.exchange(list(form.items()))
+        ret = transport.exchange(form)
         if not ret:
             # HACK: this should return a useful error message
             self._manager.set_error("Communication failure")
