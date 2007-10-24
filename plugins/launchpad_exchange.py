@@ -20,7 +20,7 @@ from hwtest.reports.hal import HalReport
 
 class LaunchpadExchange(Plugin):
 
-    def __init__(self, config, report=None):
+    def __init__(self, config):
         super(LaunchpadExchange, self).__init__(config)
         self._report = {
             "summary": {
@@ -31,9 +31,9 @@ class LaunchpadExchange(Plugin):
             "hardware": {},
             "software": {},
             "tests": {}}
-        self._form = [
-            ('field.format', u'VERSION_1'),
-            ('field.actions.upload', u'Upload')]
+        self._form = {
+            "field.format": u'VERSION_1',
+            "field.actions.upload": u'Upload'}
 
     def register(self, manager):
         super(LaunchpadExchange, self).register(manager)
@@ -53,7 +53,7 @@ class LaunchpadExchange(Plugin):
 
     def report_submission_id(self, message):
         logging.info("Submission ID: %s", message)
-        self._form.append(('field.submission_key', message))
+        self._form["field.submission_key"] = message
 
     def report_system_id(self, message):
         logging.info("System ID: %s", message)
@@ -73,17 +73,15 @@ class LaunchpadExchange(Plugin):
     def report_processor(self, message):
         self._report["hardware"]["processors"] = message
 
-    def report_processor(self, message):
-        self._report["hardware"]["processors"] = message
-
     def report_email(self, message):
-        self._form.append(('field.emailaddress', message))
+        self._form["field.emailaddress"] = message
 
     def exchange(self):
         # Combine summary with form data
+        form = dict(self._form)
         for k, v in self._report['summary'].items():
             form_field = k.replace("system_id", "system")
-            self._form.append(('field.%s' % form_field, str(v).encode("utf-8")))
+            form["field.%s" % form_field] = str(v).encode("utf-8")
 
         # Prepare the report manager
         report_manager = ReportManager("system", "1.0")
@@ -100,14 +98,14 @@ class LaunchpadExchange(Plugin):
         f = StringIO.StringIO(cpayload)
         f.name = filename
         f.size = len(cpayload)
-        self._form.append(('field.submission_data', f))
+        form["field.submission_data"] = f
 
         if logging.getLogger().getEffectiveLevel() <= logging.DEBUG:
             logging.debug("Uncompressed payload length: %d", len(payload))
 
         start_time = time.time()
         transport = HTTPTransport(self.config.transport_url)
-        ret = transport.exchange(self._form)
+        ret = transport.exchange(list(form.items()))
         if not ret:
             # HACK: this should return a useful error message
             self._manager.set_error("Communication failure")
@@ -128,7 +126,7 @@ class LaunchpadExchange(Plugin):
 
         response = ret.read()
         logging.info("Sent %d bytes and received %d bytes in %s.",
-                     len(self._form), len(response),
+                     f.size, len(response),
                      format_delta(time.time() - start_time))
 
 
