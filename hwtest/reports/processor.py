@@ -11,7 +11,7 @@ class ProcessorReport(Report):
         self._manager.handle_loads("processors", self.loads_processors)
 
     def dumps_processors(self, obj, parent):
-        for processor in obj:
+        for processor in [dict(p) for p in obj]:
             element = self._create_element("processor", parent)
             name = processor.pop("processor")
             element.setAttribute("name", str(name))

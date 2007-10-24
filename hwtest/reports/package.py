@@ -11,7 +11,7 @@ class PackageReport(Report):
         self._manager.handle_loads("packages", self.loads_packages)
 
     def dumps_packages(self, obj, parent):
-        for package in obj:
+        for package in [dict(p) for p in obj]:
             element = self._create_element("package", parent)
             name = package.pop("name")
             element.setAttribute("name", str(name))
