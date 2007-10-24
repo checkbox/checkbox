@@ -18,6 +18,7 @@ class HTTPTransport(object):
     def _post(self, form):
         """Actually POSTs the form to the server."""
         import urllib2
+        import hwtest.contrib.urllib2_file
         opener = urllib2.build_opener()
         opener.addheaders = [("User-Agent", "hwtest/%s" % (VERSION,))]
         ret = opener.open(self._url, form)
