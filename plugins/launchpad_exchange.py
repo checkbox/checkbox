@@ -96,8 +96,6 @@ class LaunchpadExchange(Plugin):
         # bzip2 compress the payload and attach it to the form
         filename = '%s.xml.bz2' % str(gethostname())
         payload = report_manager.dumps(self._report).toprettyxml("")
-        file("/tmp/payload.xml", "w").write(payload)
-        return
         cpayload = bz2.compress(payload)
         f = StringIO.StringIO(cpayload)
         f.name = filename
