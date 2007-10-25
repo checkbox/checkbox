@@ -33,10 +33,10 @@ class QuestionPrompt(Plugin):
 
     def gather(self):
         message = self.create_message()
-        self._manager.reactor.fire(("report", "question"), message)
+        self._manager.reactor.fire(("report", "questions"), message)
 
     def create_message(self):
-        return [q.properties for q in iter(self.questions.iterator)]
+        return [q.get_properties() for q in iter(self.questions.iterator.iterator)]
 
     def add_question(self, question):
         self.question_manager.add_question(question)

@@ -13,10 +13,12 @@ from hwtest.log import format_delta
 
 from hwtest.report import ReportManager
 from hwtest.reports.data import DataReport
-from hwtest.reports.summary import SummaryReport
-from hwtest.reports.processor import ProcessorReport
-from hwtest.reports.package import PackageReport
 from hwtest.reports.hal import HalReport
+from hwtest.reports.package import PackageReport
+from hwtest.reports.processor import ProcessorReport
+from hwtest.reports.question import QuestionReport
+from hwtest.reports.summary import SummaryReport
+
 
 class LaunchpadExchange(Plugin):
 
@@ -30,7 +32,7 @@ class LaunchpadExchange(Plugin):
                 "date_created": str(datetime.utcnow()).split(".")[0]},
             "hardware": {},
             "software": {},
-            "tests": {}}
+            "questions": []}
         self._form = {
             "field.format": u'VERSION_1',
             "field.actions.upload": u'Upload'}
@@ -45,7 +47,8 @@ class LaunchpadExchange(Plugin):
                          (("report", "package"), self.report_package),
                          (("report", "device"), self.report_device),
                          (("report", "processor"), self.report_processor),
-                         (("report", "email"), self.report_email)]:
+                         (("report", "email"), self.report_email),
+                         (("report", "questions"), self.report_questions)]:
             self._manager.reactor.call_on(rt, rh)
 
     def report_architecture(self, message):
@@ -76,6 +79,9 @@ class LaunchpadExchange(Plugin):
     def report_email(self, message):
         self._form["field.emailaddress"] = message
 
+    def report_questions(self, message):
+        self._report["questions"] = message
+
     def exchange(self):
         # Combine summary with form data
         form = dict(self._form)
@@ -86,10 +92,11 @@ class LaunchpadExchange(Plugin):
         # Prepare the report manager
         report_manager = ReportManager("system", "1.0")
         report_manager.add(DataReport())
-        report_manager.add(SummaryReport())
-        report_manager.add(ProcessorReport())
-        report_manager.add(PackageReport())
         report_manager.add(HalReport())
+        report_manager.add(PackageReport())
+        report_manager.add(ProcessorReport())
+        report_manager.add(QuestionReport())
+        report_manager.add(SummaryReport())
 
         # bzip2 compress the payload and attach it to the form
         filename = '%s.xml.bz2' % str(gethostname())
