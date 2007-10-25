@@ -19,6 +19,11 @@ LAPTOP = 'laptop'
 SERVER = 'server'
 ALL_CATEGORIES = [DESKTOP, LAPTOP, SERVER]
 
+I386 = 'i386'
+AMD64 = 'amd64'
+SPARC = 'sparc'
+ALL_ARCHITECTURES = [I386, AMD64, SPARC]
+
 
 class QuestionParser(object):
 
@@ -163,6 +168,7 @@ class Question(object):
 
     required_fields = ["name", "description"]
     optional_fields = {
+        "architectures": ALL_ARCHITECTURES,
         "categories": ALL_CATEGORIES,
         "depends": [],
         "command": None,
@@ -173,19 +179,31 @@ class Question(object):
         self.answer = None
         self._validate()
 
+    def get_properties(self):
+        return dict((f, self.properties[f]) \
+            for f in Question.required_fields + Question.optional_fields.keys())
+
     def _validate(self):
+        # Unknown fields
         for field in self.properties.keys():
             if field not in self.required_fields + self.optional_fields.keys():
                 raise Exception, \
                     "Question properties contains unknown field: %s" \
                     % field
 
+        # Required fields
         for field in self.required_fields:
             if not self.properties.has_key(field):
                 raise Exception, \
                     "Question properties does not contain a '%s': %s" \
                     % (field, properties)
 
+        # Typed fields
+        for field in ["architectures", "categories", "depends"]:
+            if self.properties.has_key(field):
+                self.properties[field] = re.split(r"\s*,\s*", self.properties[field])
+
+        # Optional fields
         for field in self.optional_fields.keys():
             if not self.properties.has_key(field):
                 self.properties[field] = self.optional_fields[field]
