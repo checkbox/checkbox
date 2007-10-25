@@ -6,7 +6,8 @@ class ExchangePrompt(Plugin):
     priority = -100
 
     def run(self):
-        self._manager.reactor.fire(("interface", "show-exchange"))
+        self._manager.reactor.fire(("interface", "show-exchange"),
+            email=self.config.email)
 
 
 factory = ExchangePrompt
