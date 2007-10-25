@@ -69,7 +69,7 @@ class UserInterfacePlugin(Plugin):
     def show_exchange(self, email=None):
         # Prompt for email the first time unless it is provided.
         if not email:
-            email = self._user_interface.show_exchange(error)
+            email = self._user_interface.show_exchange()
         while True:
             self._manager.reactor.fire(("report", "email"), email)
             self._manager.reactor.fire("exchange")
