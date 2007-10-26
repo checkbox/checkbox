@@ -1,4 +1,4 @@
-from hwtest.lib.conversion import string_to_int
+from hwtest.lib.conversion import string_to_type
 
 
 class Processor(object):
@@ -39,7 +39,7 @@ class ProcessorManager(object):
                 if key == 'flags':
                     value = value.split()
                 else:
-                    value = string_to_int(value)
+                    value = string_to_type(value)
                 cpuinfo[key] = value
 
         return processors
