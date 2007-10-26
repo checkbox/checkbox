@@ -107,17 +107,12 @@ class DataReport(Report):
         nodes = []
         for child in node.childNodes:
             if child.nodeType != Node.TEXT_NODE:
-                # HACK: property within a list is confusing
-                if child.localName == "property" \
-                   and not child.hasAttribute("type"):
-                    nodes = self._manager.call_loads(child)
-                else:
-                    nodes.append(self._manager.call_loads(child))
+                nodes.append(self._manager.call_loads(child))
         return nodes
 
     def loads_property(self, node):
         type = node.getAttribute("type")
-        if type == "list" or not type:
+        if type == "list":
             # HACK: see above in dumps_list
             ret = []
             for property in (p for p in node.childNodes if p.localName == "property"):
@@ -127,6 +122,14 @@ class DataReport(Report):
                     ret.append({name: value})
                 else:
                     ret.append(value)
+        elif not type:
+            # HACK: assuming no type means a dictionary
+            ret = {}
+            for property in (p for p in node.childNodes if p.localName == "property"):
+                assert property.hasAttribute("name")
+                name = property.getAttribute("name")
+                value = self._manager.call_loads(property)
+                ret[name] = value
         else:
             child = node.firstChild
             ret = self._manager.loads_table[type](child)
