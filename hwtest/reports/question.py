@@ -14,7 +14,10 @@ class QuestionReport(Report):
                          ("depends", self.dumps_depends),
                          ("description", self.dumps_text),
                          ("command", self.dumps_text),
-                         ("optional", self.dumps_text)]:
+                         ("optional", self.dumps_text),
+                         ("data", self.dumps_text),
+                         ("status", self.dumps_text),
+                         ("auto", self.dumps_text)]:
             self._manager.handle_dumps(dt, dh)
 
     def register_loads(self):
@@ -24,7 +27,10 @@ class QuestionReport(Report):
                          ("depends", self.loads_list),
                          ("command", self.loads_data),
                          ("description", self.loads_data),
-                         ("optional", self.loads_bool)]:
+                         ("optional", self.loads_bool),
+                         ("data", self.loads_data),
+                         ("status", self.loads_data),
+                         ("auto", self.loads_bool)]:
             self._manager.handle_loads(lt, lh)
 
     def dumps_questions(self, obj, parent):
