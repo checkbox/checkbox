@@ -180,8 +180,12 @@ class Question(object):
         self._validate()
 
     def get_properties(self):
-        return dict((f, self.properties[f]) \
-            for f in Question.required_fields + Question.optional_fields.keys())
+        properties = {}
+        for f in Question.required_fields + Question.optional_fields.keys():
+            properties[f] = self.properties[f]
+        if self.answer:
+            properties['answer'] = self.answer.get_properties()
+        return properties
 
     def _validate(self):
         # Unknown fields
