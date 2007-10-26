@@ -110,12 +110,13 @@ class LaunchpadExchange(Plugin):
         if logging.getLogger().getEffectiveLevel() <= logging.DEBUG:
             logging.debug("Uncompressed payload length: %d", len(payload))
 
+        self._manager.set_error()
         start_time = time.time()
         transport = HTTPTransport(self.config.transport_url)
-        ret = transport.exchange(form)
+        ret = transport.exchange(list(form.items()))
         if not ret:
             # HACK: this should return a useful error message
-            self._manager.set_error("Communication failure")
+            self._manager.set_error("Communication failure.")
             return
 
         if logging.getLogger().getEffectiveLevel() <= logging.DEBUG:
@@ -123,7 +124,10 @@ class LaunchpadExchange(Plugin):
                           pprint.pformat(ret.headers.items()))
 
         headers = ret.headers.getheaders("x-launchpad-hwdb-submission")
-        self._manager.set_error()
+        if not headers:
+            self._manager.set_error("Information was not posted to Launchpad.")
+            return
+
         for header in headers:
             if "Error" in header:
                 # HACK: this should return a useful error message
