@@ -113,7 +113,7 @@ class LaunchpadExchange(Plugin):
         self._manager.set_error()
         start_time = time.time()
         transport = HTTPTransport(self.config.transport_url)
-        ret = transport.exchange(list(form.items()))
+        ret = transport.exchange(form)
         if not ret:
             # HACK: this should return a useful error message
             self._manager.set_error("Communication failure.")
