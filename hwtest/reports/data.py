@@ -107,7 +107,12 @@ class DataReport(Report):
         nodes = []
         for child in node.childNodes:
             if child.nodeType != Node.TEXT_NODE:
-                nodes.append(self._manager.call_loads(child))
+                # HACK: property within a list is confusing
+                if child.localName == "property" \
+                   and not child.hasAttribute("type"):
+                    nodes = self._manager.call_loads(child)
+                else:
+                    nodes.append(self._manager.call_loads(child))
         return nodes
 
     def loads_property(self, node):
