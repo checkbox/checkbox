@@ -19,7 +19,7 @@ class ProcessorReport(Report):
 
     def loads_processors(self, node):
         processors = []
-        for processor in node.getElementsByTagName("processor"):
+        for processor in (p for p in node.childNodes if p.localName == "processor"):
             value = self._manager.call_loads(processor)
             value["processor"] = processor.getAttribute("name")
             processors.append(value)

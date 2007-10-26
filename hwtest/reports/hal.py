@@ -42,7 +42,7 @@ class HalReport(DataReport):
         hal = {}
         hal["version"] = node.getAttribute("version")
         hal["devices"] = []
-        for device in node.getElementsByTagName("device"):
+        for device in (d for d in node.childNodes if d.localName == "device"):
             properties = device.getElementsByTagName("properties")[0]
             value = self._manager.call_loads(properties)
             hal["devices"].append(value)

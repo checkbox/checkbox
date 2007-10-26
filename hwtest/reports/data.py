@@ -1,3 +1,5 @@
+import re
+
 from xml.dom.minidom import Node
 
 from hwtest.report import Report
@@ -20,7 +22,8 @@ class DataReport(Report):
             self._manager.handle_dumps(dt, dh)
 
     def register_loads(self):
-        for (lt, lh) in [("bool", self.loads_bool),
+        for (lt, lh) in [("default", self.loads_default),
+                         ("bool", self.loads_bool),
                          ("int", self.loads_int),
                          ("long", self.loads_int),
                          ("float", self.loads_float),
@@ -78,8 +81,18 @@ class DataReport(Report):
     def dumps_none(self, obj, parent):
         self._create_element("none", parent)
 
+    def loads_default(self, node):
+        default = {}
+        for child in (c for c in node.childNodes if c.nodeType != Node.TEXT_NODE):
+            if child.hasAttribute("name"):
+                name = child.getAttribute("name")
+            else:
+                name = child.localName
+            default[name] = self._manager.call_loads(child)
+        return default
+
     def loads_bool(self, node):
-        return bool(node.data)
+        return convert_bool(node.data.strip())
 
     def loads_int(self, node):
         return int(node.data)
@@ -99,10 +112,10 @@ class DataReport(Report):
 
     def loads_property(self, node):
         type = node.getAttribute("type")
-        if type is "list" or type is "":
+        if type == "list" or not type:
             # HACK: see above in dumps_list
             ret = []
-            for property in node.getElementsByTagName("property"):
+            for property in (p for p in node.childNodes if p.localName == "property"):
                 value = self._manager.call_loads(property)
                 if property.hasAttribute("name"):
                     name = property.getAttribute("name")
@@ -116,7 +129,7 @@ class DataReport(Report):
 
     def loads_properties(self, node):
         properties = {}
-        for property in node.getElementsByTagName("property"):
+        for property in (p for p in node.childNodes if p.localName == "property"):
             key = property.getAttribute("name")
             value = self._manager.call_loads(property)
             properties[key] = value
@@ -125,3 +138,12 @@ class DataReport(Report):
 
     def loads_none(self, node):
         return None
+
+
+def convert_bool(string):
+    if re.match('^(yes|true)$', string, re.IGNORECASE):
+        return True
+    elif re.match('^(no|false)$', string, re.IGNORECASE):
+        return False
+    else:
+        raise Exception, "Invalid boolean type: %s" % string

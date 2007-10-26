@@ -19,7 +19,7 @@ class PackageReport(Report):
 
     def loads_packages(self, node):
         packages = []
-        for package in node.getElementsByTagName("package"):
+        for package in (p for p in node.childNodes if p.localName == "package"):
             value = self._manager.call_loads(package)
             value["package"] = package.getAttribute("name")
             packages.append(value)

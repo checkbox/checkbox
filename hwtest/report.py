@@ -20,12 +20,16 @@ class ReportManager(object):
         """
         Call back method for reports to register dump handlers.
         """
+        if type in self.dumps_table:
+            raise Exception, "Dumps type already handled: %s" % type
         self.dumps_table[type] = handler
 
     def handle_loads(self, type, handler):
         """
         Call back method for reports to register load handlers.
         """
+        if type in self.loads_table:
+            raise Exception, "Loads type already handled: %s" % type
         self.loads_table[type] = handler
 
     def call_dumps(self, obj, node):
@@ -113,19 +117,7 @@ class Report(object):
 
     def register(self, manager):
         self._manager = manager
-        self._manager.handle_loads("default", self.loads_default)
         if hasattr(self, "register_dumps"):
             self.register_dumps()
         if hasattr(self, "register_loads"):
             self.register_loads()
-
-    def loads_default(self, node):
-        default = {}
-        for child in node.childNodes:
-            if child.nodeType != Node.TEXT_NODE:
-                if child.hasAttribute("name"):
-                    name = child.getAttribute("name")
-                else:
-                    name = child.localName
-                default[name] = self._manager.call_loads(child)
-        return default

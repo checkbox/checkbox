@@ -2,6 +2,7 @@ from time import strptime
 from datetime import datetime
 
 from hwtest.report import Report
+from hwtest.reports.data import convert_bool
 
 
 class SummaryReport(Report):
@@ -36,7 +37,7 @@ class SummaryReport(Report):
         parent.setAttribute("value", str(obj).split(".")[0])
 
     def loads_bool(self, node):
-        return bool(node.getAttribute("value"))
+        return convert_bool(node.getAttribute("value"))
 
     def loads_str(self, node):
         return str(node.getAttribute("value"))

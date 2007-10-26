@@ -1,20 +1,31 @@
+from xml.dom.minidom import Node
+
 from hwtest.report import Report
+from hwtest.reports.data import convert_bool
 
 
 class QuestionReport(Report):
     """Report for question related data types."""
 
     def register_dumps(self):
-        self._manager.handle_dumps("questions", self.dumps_questions)
-        self._manager.handle_dumps("architectures", self.dumps_architectures)
-        self._manager.handle_dumps("categories", self.dumps_categories)
-        self._manager.handle_dumps("depends", self.dumps_depends)
-        self._manager.handle_dumps("description", self.dumps_text)
-        self._manager.handle_dumps("command", self.dumps_text)
-        self._manager.handle_dumps("optional", self.dumps_text)
+        for (dt, dh) in [("questions", self.dumps_questions),
+                         ("architectures", self.dumps_architectures),
+                         ("categories", self.dumps_categories),
+                         ("depends", self.dumps_depends),
+                         ("description", self.dumps_text),
+                         ("command", self.dumps_text),
+                         ("optional", self.dumps_text)]:
+            self._manager.handle_dumps(dt, dh)
 
     def register_loads(self):
-        self._manager.handle_loads("questions", self.loads_questions)
+        for (lt, lh) in [("questions", self.loads_questions),
+                         ("categories", self.loads_list),
+                         ("architectures", self.loads_list),
+                         ("depends", self.loads_list),
+                         ("command", self.loads_data),
+                         ("description", self.loads_data),
+                         ("optional", self.loads_bool)]:
+            self._manager.handle_loads(lt, lh)
 
     def dumps_questions(self, obj, parent):
         for question in [dict(p) for p in obj]:
@@ -43,8 +54,21 @@ class QuestionReport(Report):
 
     def loads_questions(self, node):
         questions = []
-        for question in node.getElementsByTagName("question"):
+        for question in (q for q in node.childNodes if q.localName == "question"):
             value = self._manager.call_loads(question)
             value["question"] = question.getAttribute("name")
             questions.append(value)
         return questions
+
+    def loads_list(self, node):
+        list = []
+        for child in (c for c in node.childNodes if c.nodeType != Node.TEXT_NODE):
+            value = self.loads_data(child)
+            list.append(value)
+        return list
+
+    def loads_data(self, node):
+        return node.firstChild.data.strip()
+
+    def loads_bool(self, node):
+        return convert_bool(self.loads_data(node))
