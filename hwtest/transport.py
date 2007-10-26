@@ -22,7 +22,6 @@ class HTTPTransport(object):
         import hwtest.contrib.urllib2_file
 
         headers.setdefault("User-Agent", "hwtest/%s" % VERSION)
-        headers.setdefault("Content-Type", "application/xml")
 
         opener = urllib2.build_opener()
         opener.addheaders = list(headers.items())
