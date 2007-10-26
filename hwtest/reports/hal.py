@@ -34,9 +34,10 @@ class HalReport(DataReport):
         id = 0
         for device in obj["devices"]:
             element = self._create_element("device", parent)
+            properties = self._create_element("properties", element)
             element.setAttribute("id", str(id)); id += 1
             element.setAttribute("udi", device["info.udi"])
-            self._manager.call_dumps({"properties": device}, element)
+            self._manager.call_dumps(device, properties)
 
     def loads_hal(self, node):
         hal = {}
