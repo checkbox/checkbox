@@ -17,6 +17,7 @@ class QuestionReport(Report):
                          ("optional", self.dumps_text),
                          ("data", self.dumps_text),
                          ("status", self.dumps_text),
+                         ("suite", self.dumps_text),
                          ("auto", self.dumps_text)]:
             self._manager.handle_dumps(dt, dh)
 
@@ -30,6 +31,7 @@ class QuestionReport(Report):
                          ("optional", self.loads_bool),
                          ("data", self.loads_data),
                          ("status", self.loads_data),
+                         ("suite", self.loads_data),
                          ("auto", self.loads_bool)]:
             self._manager.handle_loads(lt, lh)
 

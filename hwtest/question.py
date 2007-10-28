@@ -50,6 +50,7 @@ class QuestionParser(object):
                 break
 
             properties = {}
+            properties["suite"] = os.path.basename(name)
 
             def _save(field, value, extended, name):
                 if value and extended:
@@ -166,7 +167,7 @@ class QuestionManager(object):
 
 class Question(object):
 
-    required_fields = ["name", "description"]
+    required_fields = ["name", "description", "suite"]
     optional_fields = {
         "architectures": ALL_ARCHITECTURES,
         "categories": ALL_CATEGORIES,
