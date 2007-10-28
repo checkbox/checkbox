@@ -88,7 +88,7 @@ class DataReport(Report):
                 name = child.getAttribute("name")
             else:
                 name = child.localName
-            default[name] = self._manager.call_loads(child)
+            default[str(name)] = self._manager.call_loads(child)
         return default
 
     def loads_bool(self, node):
@@ -129,7 +129,7 @@ class DataReport(Report):
                 assert property.hasAttribute("name")
                 name = property.getAttribute("name")
                 value = self._manager.call_loads(property)
-                ret[name] = value
+                ret[str(name)] = value
         else:
             child = node.firstChild
             ret = self._manager.loads_table[type](child)
@@ -140,7 +140,7 @@ class DataReport(Report):
         for property in (p for p in node.childNodes if p.localName == "property"):
             key = property.getAttribute("name")
             value = self._manager.call_loads(property)
-            properties[key] = value
+            properties[str(key)] = value
 
         return properties
 
