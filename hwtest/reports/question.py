@@ -64,7 +64,7 @@ class QuestionReport(Report):
         questions = []
         for question in (q for q in node.childNodes if q.localName == "question"):
             value = self._manager.call_loads(question)
-            value["question"] = question.getAttribute("name")
+            value["name"] = question.getAttribute("name")
             questions.append(value)
         return questions
 
