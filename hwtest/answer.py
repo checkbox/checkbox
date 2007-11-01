@@ -14,3 +14,6 @@ class Answer:
 
     def __str__(self):
         return self.test.name
+
+    def get_properties(self):
+        return dict((p, getattr(self, p)) for p in ("status", "data", "auto"))

@@ -66,12 +66,15 @@ class UserInterfacePlugin(Plugin):
                 sys.exit(1)
         thread.exc_raise()
 
-    def show_exchange(self):
-        error = None
+    def show_exchange(self, email=None):
+        # Prompt for email the first time unless it is provided.
+        if not email:
+            email = self._user_interface.show_exchange()
         while True:
-            email = self._user_interface.show_exchange(error)
-            self._manager.reactor.fire(("report", "set-email"), email)
+            self._manager.reactor.fire(("report", "email"), email)
             self._manager.reactor.fire("exchange")
             error = self._manager.get_error()
             if not error:
                 break
+            # Always prompt for the email subsequent times.
+            email = self._user_interface.show_exchange(error)

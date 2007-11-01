@@ -13,8 +13,16 @@ class DeviceInfo(Plugin):
         self._manager.reactor.call_on("gather", self.gather)
 
     def gather(self):
-        self._manager.reactor.fire(("report", "set-device-manager"),
-            self._device_manager)
+        message = self.create_message()
+        self._manager.reactor.fire(("report", "device"), message)
 
+    def create_message(self):
+        message = {}
+        message["devices"] = []
+        message["version"] = self._device_manager.get_version()
+        for device in self._device_manager.get_devices():
+            message["devices"].append(device.properties)
+
+        return message
 
 factory = DeviceInfo
