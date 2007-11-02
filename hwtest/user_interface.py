@@ -11,21 +11,23 @@ class UserInterface(object):
 
        A concrete subclass must implement all the abstract ui_* methods.'''
 
+    title = "Hardware Testing"
+
     def __init__(self):
-        self.gettext_domain = 'hwtest'
+        self.gettext_domain = "hwtest"
         self.application = None
         self.questions = None
 
         gettext.textdomain(self.gettext_domain)
 
     def show_category(self):
-        raise NotImplementedError, 'this function must be overridden by subclasses'
+        raise NotImplementedError, "this function must be overridden by subclasses"
 
     def show_question(self, question, has_prev, has_next):
-        raise NotImplementedError, 'this function must be overridden by subclasses'
+        raise NotImplementedError, "this function must be overridden by subclasses"
 
     def show_exchange(self, error):
-        raise NotImplementedError, 'this function must be overridden by subclasses'
+        raise NotImplementedError, "this function must be overridden by subclasses"
 
 
 class UserInterfacePlugin(Plugin):
@@ -56,7 +58,7 @@ class UserInterfacePlugin(Plugin):
 
     def show_gather(self):
         self._user_interface.show_gather()
-        thread = REThread(target=self.do_gather, name='do_gather')
+        thread = REThread(target=self.do_gather, name="do_gather")
         thread.start()
         while thread.isAlive():
             self._user_interface.pulse_gather()
