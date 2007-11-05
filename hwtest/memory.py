@@ -1,6 +1,6 @@
 import os
 
-from hwtest.lib.conversion import string_to_int
+from hwtest.lib.conversion import string_to_type
 
 
 class Memory(object):
@@ -21,6 +21,6 @@ class Memory(object):
                 key = key.strip()
                 key = key.replace(' ', '_')
                 value = value.strip()
-                meminfo[key] = string_to_int(value)
+                meminfo[key] = string_to_type(value)
 
         return meminfo

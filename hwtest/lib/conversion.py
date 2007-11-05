@@ -2,7 +2,7 @@ import re
 import types
 
 
-def string_to_int(string):
+def string_to_type(string):
     conversion_table = {
         '(yes|true)': lambda v: True,
         '(no|false)': lambda v: False,

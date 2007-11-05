@@ -5,7 +5,6 @@ import logging
 from logging import StreamHandler, FileHandler, Formatter
 from optparse import OptionParser
 
-from hwtest.contrib import bpickle_dbus
 from hwtest.contrib.persist import Persist
 
 from hwtest import VERSION
@@ -56,12 +55,9 @@ class Application(object):
 
     def run(self):
         try:
-            bpickle_dbus.install()
             self.reactor.run()
-            bpickle_dbus.uninstall()
         except:
             logging.exception("Error running reactor.")
-            bpickle_dbus.uninstall()
             raise
 
 

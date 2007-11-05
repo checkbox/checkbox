@@ -1,73 +1,123 @@
-import md5
-import zlib
-import logging
+from xml.dom.minidom import Document, Node, Element, parseString
 
-from datetime import datetime
-from xml.dom.minidom import Document
 
-from hwtest.report_helpers import createElement, createTypedElement
+class ReportManager(object):
+    """The central point for dumping and loading information.
 
-class ReportInfo(dict):
-    """Simple class to contain report summary information."""
+    This keeps references to all reports which have been added to the
+    instance of this manager. These reports will be able to register
+    handlers to understand the formats for dumping and loading actions.
+    """
 
-    def __init__(self):
-        self['private'] = False
-        self['contactable'] = False
-        self['live_cd'] = False
+    def __init__(self, name, version=None):
+        self.name = name
+        self.version = version
+        self.dumps_table = {}
+        self.loads_table = {}
+        self.document = None
+
+    def handle_dumps(self, type, handler):
+        """
+        Call back method for reports to register dump handlers.
+        """
+        if type in self.dumps_table:
+            raise Exception, "Dumps type already handled: %s" % type
+        self.dumps_table[type] = handler
+
+    def handle_loads(self, type, handler):
+        """
+        Call back method for reports to register load handlers.
+        """
+        if type in self.loads_table:
+            raise Exception, "Loads type already handled: %s" % type
+        self.loads_table[type] = handler
+
+    def call_dumps(self, obj, node):
+        """
+        Convenience method for reports to call the dump handler
+        corresponding to the type of the given object.
+        """
+        return self.dumps_table[type(obj)](obj, node)
+
+    def call_loads(self, node):
+        """
+        Convenience method for reports to call the load handler
+        corresponding to the content of the given node.
+        """
+        if self.loads_table.has_key(node.localName):
+            ret = self.loads_table[node.localName](node)
+        elif isinstance(node, Element) and node.hasAttribute("type"):
+            type = node.getAttribute("type")
+            ret = self.loads_table[type](node)
+        else:
+            ret = self.loads_table["default"](node)
+        return ret
+
+    def add(self, report):
+        """
+        Add a new report to the manager.
+        """
+        report.register(self)
+
+    def dumps(self, obj):
+        """
+        Dump the given object which may be a container of any objects
+        supported by the reports added to the manager.
+        """
+        self.document = Document()
+        node = self.document.createElement(self.name)
+        self.document.appendChild(node)
+
+        if self.version:
+            node.setAttribute("version", self.version)
+
+        try:
+            self.call_dumps(obj, node)
+        except KeyError, e:
+            raise ValueError, "Unsupported type: %s" % e
+
+        document = self.document
+        self.document = None
+        return document
+
+    def loads(self, str):
+        """
+        Load the given string which may be a container of any nodes
+        supported by the reports added to the manager.
+        """
+        document = parseString(str)
+        node = document.childNodes[0]
+        assert(node.localName == self.name)
+
+        try:
+            ret = self.call_loads(document)
+        except KeyError, e:
+            raise ValueError, "Unsupported type: %s" % e
+
+        return ret
+
 
 class Report(object):
-    def __init__(self):
-        self.info = ReportInfo()
-        
-        self.email = 'test@canonical.com'
-        self.secureid = ''
-        self.version = '1.0'
+    """A convenience for writing reports.
 
-        self.xml = Document()
-        self.root = createElement(self, 'system', self.xml)
-        self.root.setAttribute('version', self.version)
-        self.summary = createElement(self, 'summary', self.root)
-        self.finalised = False
+    This provides a register method which will set the manager attribute
+    and optionally call the C{register_dumps} and C{register_loads}
+    methods.
+    """
 
-    def finalise(self):
-        if not self.finalised:
-            self.info['date_created'] = datetime.utcnow()
+    def _create_element(self, name, parent):
+        element = self._manager.document.createElement(name)
+        parent.appendChild(element)
+        return element
 
-            for child in self.summary.childNodes:
-                self.summary.removeChild(child)
+    def _create_text_node(self, text, parent):
+        text_node = self._manager.document.createTextNode(text)
+        parent.appendChild(text_node)
+        return text_node
 
-            for key in ('live_cd', 'format', 'system_id', 'submission_id',
-                        'distribution', 'distroseries', 'architecture',
-                        'private', 'contactable', 'date_created',
-                        'secure_id'):
-                value = self.info.get(key, None)
-                if value is not None:
-                    element = createElement(self, key, self.summary)
-                    element.setAttribute('value', str(value))
-                else:
-                    logging.info("no system info %s" % key)
-
-            self.finalised = True
-
-        submission = md5.new()
-        submission.update(self.info['system_id'])
-        submission.update(str(datetime.utcnow()))
-        self.info['submission_key'] = submission.hexdigest()
-
-    def toxml(self):
-        self.finalise()
-        return self.xml.toxml()
-
-    def display(self):
-        self.finalise()
-        print self.xml.toprettyxml('')
-
-    def save(self, filename='system.hwi', compress=False):
-        #self.finalise()
-        report_file = open(filename, 'w')
-        if compress:
-            contents = zlib.compress(self.xml.toxml(), 9)
-        else:
-            contents = self.xml.toxml()
-        report_file.write(contents)
-        report_file.close()
+    def register(self, manager):
+        self._manager = manager
+        if hasattr(self, "register_dumps"):
+            self.register_dumps()
+        if hasattr(self, "register_loads"):
+            self.register_loads()

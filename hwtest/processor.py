@@ -1,10 +1,16 @@
-from hwtest.lib.conversion import string_to_int
+from hwtest.lib.conversion import string_to_type
 
 
 class Processor(object):
 
     def __init__(self, **kwargs):
         self.properties = kwargs
+
+    def __getattr__(self, attr):
+        if self.properties.has_key(attr):
+            return self.properties[attr]
+
+        raise AttributeError, attr
 
 
 class ProcessorManager(object):
@@ -33,7 +39,7 @@ class ProcessorManager(object):
                 if key == 'flags':
                     value = value.split()
                 else:
-                    value = string_to_int(value)
+                    value = string_to_type(value)
                 cpuinfo[key] = value
 
         return processors

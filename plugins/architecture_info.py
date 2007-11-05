@@ -16,7 +16,7 @@ class ArchitectureInfo(Plugin):
 
     def gather(self):
         message = self.create_message()
-        self._manager.reactor.fire(("report", "set-architecture"), message)
+        self._manager.reactor.fire(("report", "architecture"), message)
 
     def create_message(self):
         message = 'Unknown'

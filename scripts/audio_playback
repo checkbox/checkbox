@@ -29,8 +29,8 @@ class Player:
 
         # Decoder
         self._decode = self.gst.element_factory_make("decodebin", "decode")
-        # We need to do this as this is a dynamic pad - it won'y exist until
-        # is used.
+        # We need to do this as this is a dynamic pad - it won't exist until
+        # it is used.
         self._decode.connect("new-decoded-pad", self._on_dynamic_pad)
         self._pipeline.add(self._decode)
 
@@ -57,27 +57,20 @@ class Player:
     def _on_message(self, bus, message):
         t = message.type
 
-        # XXX We need to handle other messages here, just to be safe
-        if t == self.gst.MESSAGE_EOS:
+        # XXX We ought to handle other messages here, just to be safe
+        if t == self.gst.MESSAGE_EOS or t == self.gst.MESSAGE_ERROR:
             self._mainloop.quit()
 
-    def load(self, filename):
+    def play(self, filename):
         """
-        Specifies the filename to play.
-        """
-
-        self._filesrc.set_property("location", filename)
-
-    def play(self, filename=None):
-        """
-        Plays the file (if specified) or the file already loaded.
+        Plays the specified file.
         """
 
-        if filename:
-            self.load(filename)
+        if os.path.exists(filename):
+            self._filesrc.set_property("location", filename)
 
-        self._pipeline.set_state(self.gst.STATE_PLAYING)
-        self._mainloop.run()
+            self._pipeline.set_state(self.gst.STATE_PLAYING)
+            self._mainloop.run()
 
 
 def detect_device():
@@ -103,7 +96,9 @@ if __name__ == "__main__":
     else:
         filename = sys.argv[1]
 
-        if filename and os.path.exists(filename):
-            print detect_device()
+        device = detect_device()
+
+        if device != 'None' and filename and os.path.exists(filename):
+            print device
             player = Player()
             player.play(filename)
