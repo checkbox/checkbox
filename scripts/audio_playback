@@ -1,0 +1,125 @@
+#!/usr/bin/python
+
+import os
+import sys
+import time
+
+from optparse import OptionParser
+
+import pygst
+pygst.require("0.10")
+
+import gobject
+
+class Player:
+    """
+    A simple class that plays sounds via GStreamer.
+    """
+
+    import gst
+
+    def __init__(self):
+        self._error = None
+
+        self._mainloop = gobject.MainLoop()
+
+        self._pipeline = self.gst.Pipeline("my_pipeline")
+
+        # File source
+        self._filesrc = self.gst.element_factory_make("filesrc", "source")
+        self._pipeline.add(self._filesrc)
+
+        # Decoder
+        self._decode = self.gst.element_factory_make("decodebin", "decode")
+        # We need to do this as this is a dynamic pad - it won't exist until
+        # it is used.
+        self._decode.connect("new-decoded-pad", self._on_dynamic_pad)
+        self._pipeline.add(self._decode)
+
+        self._filesrc.link(self._decode)
+
+        # Audio converter
+        self._convert = self.gst.element_factory_make("audioconvert", "convert")
+        self._pipeline.add(self._convert)
+
+        # ALSA sink
+        # XXX: We should be detecting which sink to use?
+        self._sink = self.gst.element_factory_make("alsasink", "sink")
+        self._pipeline.add(self._sink)
+
+        self._convert.link(self._sink)
+
+        self._bus = self._pipeline.get_bus()
+        self._bus.connect("message", self._on_message)
+        self._bus.add_signal_watch()
+
+    def _on_dynamic_pad(self, dbin, pad, islast):
+        """
+        Links the dynamically created pad to the _convert pad
+        """
+
+        pad.link(self._convert.get_pad("sink"))
+
+    def _on_message(self, bus, message):
+        """
+        Handles GStreamer messages.
+        """
+
+        t = message.type
+
+        # XXX We maybe ought to handle other messages here, just to be safe
+        if t == self.gst.MESSAGE_EOS:
+            self._error = None
+            self._mainloop.quit()
+        elif t == self.gst.MESSAGE_ERROR:
+            self._error = "Error encountered during playback."
+            self._mainloop.quit()
+
+    def play(self, filename):
+        """
+        Plays the specified file.
+        """
+
+        if os.path.exists(filename):
+            self._filesrc.set_property("location", filename)
+
+            self._pipeline.set_state(self.gst.STATE_PLAYING)
+            self._mainloop.run()
+        else:
+            self._error = "File not found."
+
+        return self._error
+
+
+def detect_device():
+    """
+    Detect the sound card.
+    """
+
+    # XXX This works, but could we be use HAL for this?
+
+    device = 'None'
+    path = "/proc/asound/card0/id"
+
+    if os.path.exists(path):
+        fd = file(path, 'r')
+        device = fd.readline().strip()
+
+    return device
+
+
+if __name__ == "__main__":
+    if len(sys.argv) == 1:
+        print "Usage: %s FILENAME" % os.path.basename(sys.argv[0])
+        sys.exit(2)
+    else:
+        filename = sys.argv[1]
+
+        device = detect_device()
+        print device
+
+        if device != 'None' and filename:
+            player = Player()
+            sys.exit(player.play(filename))
+        else:
+            sys.exit(1)
