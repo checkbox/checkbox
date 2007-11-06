@@ -19,6 +19,8 @@ class Player:
     import gst
 
     def __init__(self):
+        self._error = None
+
         self._mainloop = gobject.MainLoop()
 
         self._pipeline = self.gst.Pipeline("my_pipeline")
@@ -52,13 +54,25 @@ class Player:
         self._bus.add_signal_watch()
 
     def _on_dynamic_pad(self, dbin, pad, islast):
+        """
+        Links the dynamically created pad to the _convert pad
+        """
+
         pad.link(self._convert.get_pad("sink"))
 
     def _on_message(self, bus, message):
+        """
+        Handles GStreamer messages.
+        """
+
         t = message.type
 
-        # XXX We ought to handle other messages here, just to be safe
-        if t == self.gst.MESSAGE_EOS or t == self.gst.MESSAGE_ERROR:
+        # XXX We maybe ought to handle other messages here, just to be safe
+        if t == self.gst.MESSAGE_EOS:
+            self._error = None
+            self._mainloop.quit()
+        elif t == self.gst.MESSAGE_ERROR:
+            self._error = "Error encountered during playback."
             self._mainloop.quit()
 
     def play(self, filename):
@@ -71,6 +85,10 @@ class Player:
 
             self._pipeline.set_state(self.gst.STATE_PLAYING)
             self._mainloop.run()
+        else:
+            self._error = "File not found."
+
+        return self._error
 
 
 def detect_device():
@@ -78,7 +96,7 @@ def detect_device():
     Detect the sound card.
     """
 
-    # XXX This works, but really we should be using HAL for this.
+    # XXX This works, but could we be use HAL for this?
 
     device = 'None'
     path = "/proc/asound/card0/id"
@@ -93,12 +111,15 @@ def detect_device():
 if __name__ == "__main__":
     if len(sys.argv) == 1:
         print "Usage: %s FILENAME" % os.path.basename(sys.argv[0])
+        sys.exit(2)
     else:
         filename = sys.argv[1]
 
         device = detect_device()
+        print device
 
-        if device != 'None' and filename and os.path.exists(filename):
-            print device
+        if device != 'None' and filename:
             player = Player()
-            player.play(filename)
+            sys.exit(player.play(filename))
+        else:
+            sys.exit(1)
