@@ -10,6 +10,7 @@ from hwtest.contrib.persist import Persist
 from hwtest import VERSION
 from hwtest.config import Config
 from hwtest.plugin import PluginManager
+from hwtest.registry import RegistryManager
 from hwtest.reactor import Reactor
 
 
@@ -41,9 +42,13 @@ class Application(object):
         if os.path.exists(config_file):
             self.config.load_path(config_file)
 
+        # Registry manager setup
+        self.registry = RegistryManager(self.config)
+
         # Plugin manager setup
-        self.plugin_manager = PluginManager(self.reactor,
-            self.config, self.persist, persist_filename)
+        self.plugin_manager = PluginManager(self.config,
+            self.registry, self.reactor, self.persist,
+            persist_filename)
 
     def _get_persist(self, persist_filename):
         persist = Persist()

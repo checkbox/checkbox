@@ -1,11 +1,16 @@
-import re
-
 from xml.dom.minidom import Node
 
-from hwtest.report import Report
+from hwtest.report import Report, ReportManager
 
 
-class DataReport(Report):
+class XmlReportManager(ReportManager):
+
+    def __init__(self, *args, **kwargs):
+        super(XmlReportManager, self).__init__(*args, **kwargs)
+        self.add(XmlReport())
+
+
+class XmlReport(Report):
     """Report for basic data types."""
 
     def register_dumps(self):
@@ -146,12 +151,3 @@ class DataReport(Report):
 
     def loads_none(self, node):
         return None
-
-
-def convert_bool(string):
-    if re.match('^(yes|true)$', string, re.IGNORECASE):
-        return True
-    elif re.match('^(no|false)$', string, re.IGNORECASE):
-        return False
-    else:
-        raise Exception, "Invalid boolean type: %s" % string

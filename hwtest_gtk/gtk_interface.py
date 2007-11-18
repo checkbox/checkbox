@@ -66,10 +66,10 @@ class GTKInterface(UserInterface):
         # Default answers
         if question.answer:
             answer = question.answer
-            self._set_textview("textview_answer", answer.data)
+            self._set_textview("textview_comment", answer.data)
             self._get_widget("radiobutton_%s" % answer.status).set_active(True)
         else:
-            self._set_textview("textview_answer", "")
+            self._set_textview("textview_comment", "")
             self._get_widget("radiobutton_yes").set_active(True)
 
         response = self._dialog.run()
@@ -82,7 +82,7 @@ class GTKInterface(UserInterface):
                 "radiobutton_yes": "yes",
                 "radiobutton_no": "no",
                 "radiobutton_skip": "skip"})
-            data = self._get_textview("textview_answer")
+            data = self._get_textview("textview_comment")
             question.set_answer(status, data)
 
         return response

@@ -17,7 +17,8 @@ class IncludeDict(dict):
 
 class ConfigSection(object):
 
-    def __init__(self, **kwargs):
+    def __init__(self, parent, **kwargs):
+        self.parent = parent
         self._kwargs = kwargs
 
     def _get_value(self, attr):
@@ -31,9 +32,6 @@ class ConfigSection(object):
 
 
 class ConfigDefaults(ConfigSection):
-
-    def __init__(self, **kwargs):
-        self._kwargs = kwargs
 
     def _get_value(self, attr):
         return os.environ.get(attr.upper()) \
@@ -60,12 +58,12 @@ class Config(object):
 
     def get_defaults(self):
         kwargs = self._parser.defaults()
-        return ConfigDefaults(**kwargs)
+        return ConfigDefaults(self, **kwargs)
 
     def get_section(self, section):
         if section in self._parser.sections():
             kwargs = dict(self._parser.items(section))
-            return ConfigSection(**kwargs)
+            return ConfigSection(self, **kwargs)
 
         return None
 

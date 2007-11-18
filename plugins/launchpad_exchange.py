@@ -7,17 +7,10 @@ from StringIO import StringIO
 from datetime import datetime
 from socket import gethostname
 
-from hwtest.plugin import Plugin
-from hwtest.transport import HTTPTransport
 from hwtest.log import format_delta
-
-from hwtest.report import ReportManager
-from hwtest.reports.data import DataReport
-from hwtest.reports.hal import HalReport
-from hwtest.reports.package import PackageReport
-from hwtest.reports.processor import ProcessorReport
-from hwtest.reports.question import QuestionReport
-from hwtest.reports.summary import SummaryReport
+from hwtest.plugin import Plugin
+from hwtest.reports.launchpad_report import LaunchpadReportManager
+from hwtest.transport import HTTPTransport
 
 
 class LaunchpadExchange(Plugin):
@@ -44,7 +37,6 @@ class LaunchpadExchange(Plugin):
                          (("report", "submission_id"), self.report_submission_id),
                          (("report", "system_id"), self.report_system_id),
                          (("report", "distribution"), self.report_distribution),
-                         (("report", "package"), self.report_package),
                          (("report", "device"), self.report_device),
                          (("report", "processor"), self.report_processor),
                          (("report", "email"), self.report_email),
@@ -63,12 +55,9 @@ class LaunchpadExchange(Plugin):
         self._report["summary"]["system_id"] = message
 
     def report_distribution(self, message):
-        self._report["software"]["lsbrelease"] = message
-        self._report["summary"]["distribution"] = message["distributor-id"]
-        self._report["summary"]["distroseries"] = message["release"]
-
-    def report_package(self, message):
-        self._report["software"]["packages"] = message
+        self._report["software"]["lsbrelease"] = dict(message)
+        self._report["summary"]["distribution"] = message.distributor_id
+        self._report["summary"]["distroseries"] = message.release
 
     def report_device(self, message):
         self._report["hardware"]["hal"] = message
@@ -89,21 +78,12 @@ class LaunchpadExchange(Plugin):
             form_field = k.replace("system_id", "system")
             form["field.%s" % form_field] = str(v).encode("utf-8")
 
-        # Prepare the report manager
-        report_manager = ReportManager("system", "1.0")
-        report_manager.add(DataReport())
-        report_manager.add(HalReport())
-        report_manager.add(PackageReport())
-        report_manager.add(ProcessorReport())
-        report_manager.add(QuestionReport())
-        report_manager.add(SummaryReport())
-
-        # bzip2 compress the payload and attach it to the form
-        filename = '%s.xml.bz2' % str(gethostname())
+        # Prepare the payload and attach it to the form
+        report_manager = LaunchpadReportManager("system", "1.0")
         payload = report_manager.dumps(self._report).toprettyxml("")
         cpayload = bz2.compress(payload)
         f = StringIO(cpayload)
-        f.name = filename
+        f.name = '%s.xml.bz2' % str(gethostname())
         f.size = len(cpayload)
         form["field.submission_data"] = f
 

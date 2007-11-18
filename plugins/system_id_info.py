@@ -1,4 +1,3 @@
-from hwtest.system import get_system_id
 from hwtest.plugin import Plugin
 
 
@@ -9,8 +8,11 @@ class SystemIdInfo(Plugin):
         self._manager.reactor.call_on("gather", self.gather)
 
     def gather(self):
-        message = get_system_id()
+        message = self.create_message()
         self._manager.reactor.fire(("report", "system_id"), message)
+
+    def create_message(self):
+        return self._manager.registry.system.id
 
 
 factory = SystemIdInfo

@@ -1,14 +1,7 @@
-import os.path
-
-from commands import getoutput
-
 from hwtest.plugin import Plugin
 
 
 class ArchitectureInfo(Plugin):
-
-    dpkg_path = "/usr/bin/dpkg"
-    dpkg_command = "%s --print-architecture" % dpkg_path
 
     def register(self, manager):
         super(ArchitectureInfo, self).register(manager)
@@ -19,13 +12,7 @@ class ArchitectureInfo(Plugin):
         self._manager.reactor.fire(("report", "architecture"), message)
 
     def create_message(self):
-        message = 'Unknown'
-
-        # Debian and derivatives
-        if os.path.exists(self.dpkg_path):
-            message = getoutput(self.dpkg_command)
-
-        return message
+        return self._manager.registry.dpkg.architecture
 
 
 factory = ArchitectureInfo

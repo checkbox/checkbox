@@ -1,3 +1,9 @@
+Template: hwtest/registries/directory
+Type: string
+Default: /usr/share/hwtest/registries
+Description: Plugins directory
+ Directory where registries are stored.
+
 Template: hwtest/plugins/directory
 Type: string
 Default: /usr/share/hwtest/plugins
