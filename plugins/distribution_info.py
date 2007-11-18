@@ -1,4 +1,3 @@
-from hwtest.distribution import get_distribution
 from hwtest.plugin import Plugin
 
 
