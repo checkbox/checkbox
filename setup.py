@@ -24,6 +24,7 @@ to Launchpad.
         ('share/hwtest/data/', glob('data/*')),
         ('share/hwtest/install/', glob('install/*')),
         ('share/hwtest/plugins/', glob('plugins/*')),
+        ('share/hwtest/registries/', glob('registries/*')),
         ('share/hwtest/questions/', glob('questions/*')),
         ('share/hwtest/scripts/', glob('scripts/*')),
         ('share/hwtest-gtk/', ['gtk/hwtest-gtk.glade'] + glob('gtk/*.png')),
