@@ -6,6 +6,11 @@ from file import FileRegistry
 
 
 class ProcessorRegistry(DataRegistry):
+    """Registry for processor information.
+
+    Each item contained in this registry consists of the information
+    for a single processor in the /proc/cpuinfo file.
+    """
 
     @cache
     def items(self):
@@ -36,6 +41,11 @@ class ProcessorRegistry(DataRegistry):
 
 
 class CpuinfoRegistry(FileRegistry):
+    """Registry for cpuinfo information.
+
+    Each item contained in this registry consists of the processor number
+    as key and the corresponding processor registry as value.
+    """
 
     default_filename = "/proc/cpuinfo"
 

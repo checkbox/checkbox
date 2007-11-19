@@ -6,8 +6,12 @@ from hwtest.lib.cache import cache
 
 class Registry(Repository):
 
+    _id = 0
+
     def __init__(self, config):
         super(Registry, self).__init__(config)
+        self.id = Registry._id
+        Registry._id += 1
 
     def __str__(self):
         raise NotImplementedError, "this function must be overridden by subclasses"
@@ -71,6 +75,8 @@ class Registry(Repository):
             if k == key:
                 return v
 
+        raise KeyError
+
     def __setitem__(self, key, value):
         raise Exception, "Cannot set setitem on registry."
 
@@ -79,6 +85,24 @@ class Registry(Repository):
 
     def update(self, foreign):
         raise Exception, "Cannot call update on registry."
+
+    def eval(self, str):
+        try:
+            if eval(str, {}, self):
+                return True
+        except Exception:
+            pass
+
+        return False
+
+    def eval_recursive(self, str):
+        ret = []
+        if self.eval(str):
+            ret.append(self)
+        for key, value in self.items():
+            if isinstance(value, Registry):
+                ret.extend(value.eval_recursive(str))
+        return ret
 
 
 class RegistryManager(RepositoryManager, Registry):

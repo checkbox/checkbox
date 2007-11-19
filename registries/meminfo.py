@@ -7,6 +7,11 @@ from file import FileRegistry
 
 
 class MeminfoRegistry(FileRegistry):
+    """Registry for memory information.
+
+    Each item contained in this registry consists of the information
+    in the /proc/meminfo file.
+    """
 
     default_filename = "/proc/meminfo"
 

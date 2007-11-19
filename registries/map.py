@@ -5,6 +5,10 @@ from hwtest.registry import Registry
 
 
 class MapRegistry(Registry):
+    """Registry for maps.
+
+    The default behavior is to express the given maps as a tree of items.
+    """
 
     def __init__(self, config, map={}):
         super(MapRegistry, self).__init__(config)

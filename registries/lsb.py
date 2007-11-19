@@ -2,17 +2,22 @@ import re
 
 from hwtest.lib.cache import cache
 
-from file import FileRegistry
+from command import CommandRegistry
 
 
-class LsbRegistry(FileRegistry):
+class LsbRegistry(CommandRegistry):
+    """Registry for LSB information.
 
-    default_filename = "/etc/lsb-release"
+    Each item contained in this registry consists of the information
+    returned by the lsb_release command.
+    """
+
+    default_command = "lsb_release -a"
     default_map = {
-        "DISTRIB_ID": "distributor_id",
-        "DISTRIB_DESCRIPTION": "description",
-        "DISTRIB_RELEASE": "release",
-        "DISTRIB_CODENAME": "codename"}
+        "Distributor ID": "distributor_id",
+        "Description": "description",
+        "Release": "release",
+        "Codename": "codename"}
 
     def __init__(self, config, filename=None, map=None):
         super(LsbRegistry, self).__init__(config, filename)
@@ -21,14 +26,11 @@ class LsbRegistry(FileRegistry):
     @cache
     def items(self):
         items = []
-        for line in self.split("\n"):
-            match = re.match(r"(.*)=(.*)", line)
-            if match:
-                key = match.group(1)
-                if key in self.map:
-                    key = self.map[key]
-                    value = match.group(2).strip('"')
-                    items.append((key, value))
+        for line in [l for l in self.split("\n") if l]:
+            (key, value) = line.split(":\t", 1)
+            if key in self.map:
+                key = self.map[key]
+                items.append((key, value))
 
         return items
 

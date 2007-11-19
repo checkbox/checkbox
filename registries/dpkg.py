@@ -4,6 +4,12 @@ from command import CommandRegistry
 
 
 class DpkgRegistry(CommandRegistry):
+    """Registry for dpkg information.
+
+    For the moment, this registry only contains items for the version
+    and architecture as returned by the dpkg command.
+    """
+
 
     default_command = "dpkg --version"
 

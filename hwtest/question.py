@@ -172,10 +172,12 @@ class Question(object):
         "architectures": ALL_ARCHITECTURES,
         "categories": ALL_CATEGORIES,
         "depends": [],
+        "relations": None,
         "command": None,
         "optional": False}
 
-    def __init__(self, **kwargs):
+    def __init__(self, registry, **kwargs):
+        self.registry = registry
         self.properties = kwargs
         self.answer = None
         self._validate()
@@ -212,6 +214,9 @@ class Question(object):
         for field in self.optional_fields.keys():
             if not self.properties.has_key(field):
                 self.properties[field] = self.optional_fields[field]
+
+        if self.properties.has_key("relations"):
+            self.properties["relations"] = self.registry.eval_recursive(self.properties["relations"])
 
     def __str__(self):
         return self.name

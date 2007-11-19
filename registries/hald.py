@@ -2,7 +2,12 @@ from command import CommandRegistry
 
 
 class HaldRegistry(CommandRegistry):
+    """Registry for HAL daemon information.
 
+    For the moment, this registry only contains an item for the version
+    as returned by the hald command.
+    """
+ 
     default_command = "hald --version 2>&1"
 
     def __str__(self):

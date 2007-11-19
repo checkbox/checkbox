@@ -12,8 +12,8 @@ class Manual(Question):
 
     required_fields = Question.required_fields + ["path"]
 
-    def __init__(self, config, *args, **kwargs):
-        super(Manual, self).__init__(*args, **kwargs)
+    def __init__(self, registry, config, *args, **kwargs):
+        super(Manual, self).__init__(registry, *args, **kwargs)
         self.config = config
 
     def __getattr__(self, attr):
@@ -58,7 +58,8 @@ class ManualQuestion(Plugin):
 
     def add_question(self, *args, **kwargs):
         kwargs["path"] = self.config.scripts_path
-        question = self._question_factory(self.config, *args, **kwargs)
+        question = self._question_factory(self._manager.registry, self.config,
+            *args, **kwargs)
         self._manager.reactor.fire(("prompt", "add-question"), question)
 
 

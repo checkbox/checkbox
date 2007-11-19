@@ -30,7 +30,7 @@ Package: hwtest-gtk
 Section: gnome
 Architecture: all
 Pre-Depends: ${python:Depends}, ${misc:Depends}
-Depends: python-gtk2, python-glade2, hwtest
+Depends: python-gtk2, python-glade2, gksu, hwtest
 Description: GTK interface for the hwtest program
  This project provides an interface for gathering hardware details and
  prompting the user for questions. This information can then be sent

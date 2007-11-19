@@ -10,11 +10,15 @@ from map import MapRegistry
 
 
 class DeviceRegistry(DataRegistry):
+    """Registry for HAL device information.
+
+    Each item contained in this registry consists of the properties of
+    the corresponding HAL device.
+    """
 
     @cache
     def items(self):
         all = {}
-        items = []
         current = None
         for line in self.split("\n"):
             match = re.match(r"  (.*) = (.*) \((.*?)\)", line)
@@ -43,6 +47,7 @@ class DeviceRegistry(DataRegistry):
 
                 recursiveupdate(all, value)
 
+        items = []
         for key, value in all.items():
             value = MapRegistry(self.config, value)
             items.append((key, value))
@@ -51,6 +56,11 @@ class DeviceRegistry(DataRegistry):
 
 
 class HalRegistry(CommandRegistry):
+    """Registry for HAL information.
+
+    Each item contained in this registry consists of the udi as key and
+    the corresponding device registry as value.
+    """
 
     default_command = "lshal"
 

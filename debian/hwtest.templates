@@ -34,4 +34,10 @@ Template: hwtest/plugins/launchpad_exchange/transport_url
 Type: string
 Default: https://launchpad.net/+hwdb/+submit
 Description: Transport URL
- URL where to send hardware submissions
+ URL where to send hardware submissions.
+
+Template: hwtest/plugins/launchpad_exchange/cache_file
+Type: string
+Default: /var/cache/hwtest/submission.xml
+Description: Cache file
+ File where submission information is cached.

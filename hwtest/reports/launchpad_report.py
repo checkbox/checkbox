@@ -48,10 +48,9 @@ class HalReport(XmlReport):
 
     def dumps_hal(self, obj, parent):
         parent.setAttribute("version", obj["version"])
-        id = 0
         for device in obj["devices"].values():
             element = self._create_element("device", parent)
-            element.setAttribute("id", str(id)); id += 1
+            element.setAttribute("id", str(device.id))
             element.setAttribute("udi", device.info.udi)
             properties = self._create_element("properties", element)
             self.dumps_device(device, properties)
@@ -87,6 +86,7 @@ class ProcessorReport(Report):
     def dumps_processors(self, obj, parent):
         for name, processor in obj.items():
             element = self._create_element("processor", parent)
+            element.setAttribute("id", str(processor.id))
             element.setAttribute("name", str(name))
             self._manager.call_dumps(dict(processor), element)
 
@@ -108,6 +108,7 @@ class QuestionReport(Report):
         for (dt, dh) in [("questions", self.dumps_questions),
                          ("architectures", self.dumps_architectures),
                          ("categories", self.dumps_categories),
+                         ("relations", self.dumps_relations),
                          ("depends", self.dumps_depends),
                          ("description", self.dumps_text),
                          ("command", self.dumps_text),
@@ -148,6 +149,11 @@ class QuestionReport(Report):
         for category in obj:
             element = self._create_element("category", parent)
             self.dumps_text(category, element)
+
+    def dumps_relations(self, obj, parent):
+        for relation in obj:
+            element = self._create_element("relation", parent)
+            self.dumps_text(relation.id, element)
 
     def dumps_depends(self, obj, parent):
         for depend in obj:

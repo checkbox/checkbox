@@ -34,8 +34,8 @@ class LaunchpadExchange(Plugin):
         super(LaunchpadExchange, self).register(manager)
         for (rt, rh) in [("exchange", self.exchange),
                          (("report", "architecture"), self.report_architecture),
-                         (("report", "submission_id"), self.report_submission_id),
-                         (("report", "system_id"), self.report_system_id),
+                         (("report", "submission_key"), self.report_submission_key),
+                         (("report", "system_key"), self.report_system_key),
                          (("report", "distribution"), self.report_distribution),
                          (("report", "device"), self.report_device),
                          (("report", "processor"), self.report_processor),
@@ -46,12 +46,12 @@ class LaunchpadExchange(Plugin):
     def report_architecture(self, message):
         self._report["summary"]["architecture"] = message
 
-    def report_submission_id(self, message):
-        logging.info("Submission ID: %s", message)
+    def report_submission_key(self, message):
+        logging.info("Submission key: %s", message)
         self._form["field.submission_key"] = message
 
-    def report_system_id(self, message):
-        logging.info("System ID: %s", message)
+    def report_system_key(self, message):
+        logging.info("System key: %s", message)
         self._report["summary"]["system_id"] = message
 
     def report_distribution(self, message):
@@ -81,6 +81,9 @@ class LaunchpadExchange(Plugin):
         # Prepare the payload and attach it to the form
         report_manager = LaunchpadReportManager("system", "1.0")
         payload = report_manager.dumps(self._report).toprettyxml("")
+        if self.config.cache_file:
+            file(self.config.cache_file, "w").write(payload)
+
         cpayload = bz2.compress(payload)
         f = StringIO(cpayload)
         f.name = '%s.xml.bz2' % str(gethostname())

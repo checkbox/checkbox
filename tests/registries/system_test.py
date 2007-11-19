@@ -8,7 +8,7 @@ from system import SystemRegistry
 
 class SystemRegistryTest(unittest.TestCase):
 
-    def test_id(self):
+    def test_key(self):
         registry = SystemRegistry(None)
-        self.assertTrue(registry.id)
-        self.assertTrue(re.search(r"^[\w]+$", registry.id))
+        self.assertTrue(registry.key)
+        self.assertTrue(re.search(r"^[\w]+$", registry.key))
