@@ -119,6 +119,15 @@ class GTKInterface(UserInterface):
 
         return authentication
 
+    def show_error_message(self, title, text):
+        md = gtk.MessageDialog(type=gtk.MESSAGE_ERROR,
+            buttons=gtk.BUTTONS_CLOSE, message_format=text)
+        md.set_title(title)
+        md.run()
+        md.hide()
+        while gtk.events_pending():
+            gtk.main_iteration(False)
+
     def on_dialog_hwtest_delete(self, widget, event=None):
         sys.exit(0)
         return True

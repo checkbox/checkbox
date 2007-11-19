@@ -10,10 +10,14 @@ class EventID(object):
         self._pair = pair
 
 
+class EventException(Exception):
+
+    pass
+
+
 class Reactor(object):
 
     def __init__(self):
-        super(Reactor, self).__init__()
         self._event_handlers = {}
 
     def call_on(self, event_type, handler, priority=0):
@@ -32,6 +36,8 @@ class Reactor(object):
                 logging.debug("Calling %s for %s with priority %d.",
                               format_object(handler), event_type, priority)
                 handler(*args, **kwargs)
+            except EventException:
+                break
             except KeyboardInterrupt:
                 logging.exception("Keyboard interrupt while running event "
                                   "handler %s for event type %r with "
@@ -43,6 +49,7 @@ class Reactor(object):
                                   "event type %r with args %r %r.",
                                   format_object(handler), event_type,
                                   args, kwargs)
+
         logging.debug("Finished firing %s.", event_type)
 
     def cancel_call(self, id):
@@ -52,8 +59,11 @@ class Reactor(object):
             raise InvalidID("EventID instance expected, received %r" % id)
 
     def cancel_all_calls(self, event_type):
-        del self._event_handlers[id._event_type]
+        del self._event_handlers[event_type]
 
     def run(self):
         self.fire("run")
         self.fire("stop")
+
+    def stop(self):
+        raise EventException

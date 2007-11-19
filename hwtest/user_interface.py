@@ -1,5 +1,5 @@
-import optparse, gettext
-from gettext import gettext as _
+import sys
+import gettext
 
 from hwtest.plugin import Plugin
 from hwtest.contrib.REThread import REThread
@@ -29,6 +29,9 @@ class UserInterface(object):
     def show_exchange(self, error):
         raise NotImplementedError, "this function must be overridden by subclasses"
 
+    def show_error_message(self, error):
+        raise NotImplementedError, "this function must be overridden by subclasses"
+
 
 class UserInterfacePlugin(Plugin):
 
@@ -42,6 +45,7 @@ class UserInterfacePlugin(Plugin):
         self._manager.reactor.call_on(("interface", "show-question"), self.show_question)
         self._manager.reactor.call_on(("interface", "show-gather"), self.show_gather)
         self._manager.reactor.call_on(("interface", "show-exchange"), self.show_exchange)
+        self._manager.reactor.call_on(("interface", "show-error-message"), self.show_error_message)
 
     def show_category(self, category=None):
         if not category:
@@ -80,3 +84,6 @@ class UserInterfacePlugin(Plugin):
                 break
             # Always prompt for the email subsequent times.
             email = self._user_interface.show_exchange(error)
+
+    def show_error_message(self, title, text):
+        self._user_interface.show_error_message(title, text)

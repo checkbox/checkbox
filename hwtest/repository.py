@@ -19,7 +19,8 @@ class RepositorySection(object):
     def get_names(self):
         if self._names is None:
             directory_names = [p.replace('.py', '')
-                for p in os.listdir(self.directory) if p.endswith('.py')]
+                for p in os.listdir(self.directory)
+                if p.endswith('.py') and p != "__init__.py"]
             blacklist_names = re.split(r"\s+", self._config.blacklist or '')
             self._names = list(set(directory_names).difference(set(blacklist_names)))
 
