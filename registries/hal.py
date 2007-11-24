@@ -2,7 +2,7 @@ import re
 import dbus
 
 from hwtest.lib.cache import cache
-from hwtest.lib.update import recursiveupdate
+from hwtest.lib.update import recursive_update
 
 from command import CommandRegistry
 from data import DataRegistry
@@ -45,7 +45,7 @@ class DeviceRegistry(DataRegistry):
                 for key in reversed(keys):
                     value = {key: value}
 
-                recursiveupdate(all, value)
+                recursive_update(all, value)
 
         items = []
         for key, value in all.items():

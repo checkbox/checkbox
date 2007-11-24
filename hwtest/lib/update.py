@@ -1,8 +1,8 @@
-def recursiveupdate(dst, src):
-    irecursiveupdate(dst, src.iteritems())
+def recursive_update(dst, src):
+    irecursive_update(dst, src.iteritems())
     return dst
 
-def irecursiveupdate(a, biter):
+def irecursive_update(a, biter):
     try:
         stack = []
         while biter:
