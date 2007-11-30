@@ -5,6 +5,14 @@ from hwtest.lib.cache import cache
 
 
 class Registry(Repository):
+    """
+    Registry base class which should be inherited by each registry
+    implementation. This class basically provides methods to represent
+    the items in the registry as attributes. If some items cannot
+    be represented as attributes, if there are spaces in the name
+    for example, this class also provides methods to reprent them as
+    dictionary elements.
+    """
 
     _id = 0
 
@@ -106,6 +114,11 @@ class Registry(Repository):
 
 
 class RegistryManager(RepositoryManager, Registry):
+    """
+    Registry manager which is essentially the root of the registry
+    tree. The first level in this tree consists of the module names
+    which have been loaded from the registries configuration parameter.
+    """
 
     @cache
     def items(self):
