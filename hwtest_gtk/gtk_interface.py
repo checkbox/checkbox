@@ -108,7 +108,7 @@ class GTKInterface(UserInterface):
         self._notebook.set_current_page(3)
 
         if error is not None:
-            markup= "<span color="#FF0000"><b>%s</b></span>" % error
+            markup= "<span color='#FF0000'><b>%s</b></span>" % error
             self._get_widget("label_exchange_error").set_markup(markup)
 
         response = self._dialog.run()
