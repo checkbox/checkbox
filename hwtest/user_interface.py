@@ -1,5 +1,5 @@
-import optparse, gettext
-from gettext import gettext as _
+import sys
+import gettext
 
 from hwtest.plugin import Plugin
 from hwtest.contrib.REThread import REThread
@@ -11,21 +11,26 @@ class UserInterface(object):
 
        A concrete subclass must implement all the abstract ui_* methods.'''
 
+    title = "Hardware Testing"
+
     def __init__(self):
-        self.gettext_domain = 'hwtest'
+        self.gettext_domain = "hwtest"
         self.application = None
         self.questions = None
 
         gettext.textdomain(self.gettext_domain)
 
     def show_category(self):
-        raise NotImplementedError, 'this function must be overridden by subclasses'
+        raise NotImplementedError, "this function must be overridden by subclasses"
 
     def show_question(self, question, has_prev, has_next):
-        raise NotImplementedError, 'this function must be overridden by subclasses'
+        raise NotImplementedError, "this function must be overridden by subclasses"
 
     def show_exchange(self, error):
-        raise NotImplementedError, 'this function must be overridden by subclasses'
+        raise NotImplementedError, "this function must be overridden by subclasses"
+
+    def show_error_message(self, error):
+        raise NotImplementedError, "this function must be overridden by subclasses"
 
 
 class UserInterfacePlugin(Plugin):
@@ -40,6 +45,7 @@ class UserInterfacePlugin(Plugin):
         self._manager.reactor.call_on(("interface", "show-question"), self.show_question)
         self._manager.reactor.call_on(("interface", "show-gather"), self.show_gather)
         self._manager.reactor.call_on(("interface", "show-exchange"), self.show_exchange)
+        self._manager.reactor.call_on(("interface", "show-error-message"), self.show_error_message)
 
     def show_category(self, category=None):
         if not category:
@@ -56,7 +62,7 @@ class UserInterfacePlugin(Plugin):
 
     def show_gather(self):
         self._user_interface.show_gather()
-        thread = REThread(target=self.do_gather, name='do_gather')
+        thread = REThread(target=self.do_gather, name="do_gather")
         thread.start()
         while thread.isAlive():
             self._user_interface.pulse_gather()
@@ -78,3 +84,6 @@ class UserInterfacePlugin(Plugin):
                 break
             # Always prompt for the email subsequent times.
             email = self._user_interface.show_exchange(error)
+
+    def show_error_message(self, title, text):
+        self._user_interface.show_error_message(title, text)

@@ -1,4 +1,4 @@
-from tests.iterator import IteratorTest
+from hwtest.tests.iterator import IteratorTest
 
 from hwtest.excluder import Excluder
 

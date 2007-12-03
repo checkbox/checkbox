@@ -24,21 +24,70 @@ import optparse
 import os
 import sys
 
-cur_dir = os.path.abspath(os.path.dirname(__file__))
-lib_dir = os.path.join(cur_dir, 'lib')
+lib_dir = os.path.abspath(os.path.dirname(__file__))
 sys.path.insert(0, lib_dir)
 
-import tests
+import hwtest
+
+
+def find_tests(testpaths=()):
+    """Find all test paths, or test paths contained in the provided sequence.
+
+    @param testpaths: If provided, only tests in the given sequence will
+                      be considered.  If not provided, all tests are
+                      considered.
+    @return: (unittests, doctests) tuple, with lists of unittests and
+             doctests found, respectively.
+    """
+    topdir = os.path.abspath(os.path.dirname(__file__))
+    testdir = os.path.dirname(hwtest.__file__)
+    testpaths = set(testpaths)
+    unittests = []
+    doctests = []
+    for root, dirnames, filenames in os.walk(topdir):
+        for filename in filenames:
+            filepath = os.path.join(root, filename)
+            relpath = filepath[len(topdir)+1:]
+
+            if (filename == "__init__.py"
+               or filename.endswith(".pyc")
+               or "/tests/" not in relpath):
+                # Skip non-tests.
+                continue
+
+            if testpaths:
+                # Skip any tests not in testpaths.
+                for testpath in testpaths:
+                    if relpath.startswith(testpath):
+                        break
+                else:
+                    continue
+
+            if filename.endswith(".py"):
+                unittests.append(relpath)
+            elif filename.endswith(".txt"):
+                doctests.append(relpath)
+
+    return unittests, doctests
+
+def parse_sys_argv():
+    """Extract any arguments not starting with '-' from sys.argv."""
+    testpaths = []
+    for i in range(len(sys.argv)-1,0,-1):
+        arg = sys.argv[i]
+        if not arg.startswith("-"):
+            testpaths.append(arg)
+            del sys.argv[i]
+    return testpaths
 
 def test_with_py_test():
     import py
 
-    if not [x for x in sys.argv[1:] if not x.startswith("-")]:
-        tests_dir = os.path.join(os.path.dirname(__file__), "tests/")
-        # For timestamp checking when looping:
-        hwtest_dir = os.path.join(lib_dir, "hwtest")
-        sys.argv.extend([tests_dir, hwtest_dir])
-
+    unittests, doctests = find_tests(parse_sys_argv())
+    sys.argv.extend(unittests)
+    sys.argv.extend(doctests)
+    # For timestamp checking when looping:
+    sys.argv.append(os.path.join(os.path.dirname(__file__), "hwtest/"))
     py.test.cmdline.main()
 
 def test_with_unittest():
@@ -59,22 +108,7 @@ def test_with_unittest():
         runner.verbosity = 2
         
     loader = unittest.TestLoader()
-    topdir = os.path.abspath(os.path.dirname(__file__))
-    testdir = os.path.dirname(tests.__file__)
-    doctest_flags = doctest.ELLIPSIS
-    unittests = []
-    doctests = []
-    for root, dirnames, filenames in os.walk(testdir):
-        for filename in filenames:
-            filepath = os.path.join(root, filename)
-            relpath = filepath[len(topdir)+1:]
-            if (filename == "__init__.py" or filename.endswith(".pyc") or
-                opts.args and relpath not in opts.args):
-                pass
-            elif filename.endswith(".py"):
-                unittests.append(relpath)
-            elif filename.endswith(".txt"):
-                doctests.append(relpath)
+    unittests, doctests = find_tests(args)
 
     class Summary:
         def __init__(self):
@@ -105,6 +139,7 @@ def test_with_unittest():
 
     if doctests:
         print "Running doctests..."
+        doctest_flags = doctest.ELLIPSIS
         for relpath in doctests:
             print "[%s]" % relpath
             failures, total = doctest.testfile(relpath,

@@ -172,3 +172,8 @@ class CLIInterface(UserInterface):
 
         email = dialog.run()
         return email
+
+    def show_error_message(self, title, text):
+        dialog = CLIDialog('Error: %s' % title, text)
+        dialog.addbutton('&Confirm')
+        dialog.run()

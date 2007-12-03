@@ -1,6 +1,7 @@
 name: audio
 type: manual
 categories: laptop, desktop
+relations: alsa.type == 'control'
 command: audio_playback $data_path/audio_playback.wav
 description:
  Testing detected soundcard:
@@ -12,6 +13,7 @@ description:
 name: resolution
 type: manual
 categories: laptop, desktop
+relations: pci.device_class == 3
 command: resolution_question
 description:
  Testing detected resolution:
@@ -23,6 +25,7 @@ description:
 name: mouse
 type: manual
 categories: laptop, desktop
+relations: 'input.mouse' in info.capabilities
 description:
  Moving the mouse should move the cursor on the screen.
  .
@@ -31,6 +34,7 @@ description:
 name: network
 type: manual
 command: network_question
+relations: 'net' in info.capabilities
 description:
  Detecting your network controller(s):
  .
@@ -41,6 +45,7 @@ description:
 name: internet
 type: manual
 command: internet_question
+relations: 'net' in info.capabilities
 description:
  Testing your internet connection:
  .
@@ -50,6 +55,7 @@ description:
 
 name: keyboard
 type: manual
+relations: 'input.keyboard' in info.capabilities
 description:
  Typing keys on your keyboard should display the corresponding
  characters in a text area.
