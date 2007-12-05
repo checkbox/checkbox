@@ -133,16 +133,20 @@ class QuestionManager(object):
         self._questions.append(question)
 
     def get_iterator(self):
-        def repeat_func(question, resolver):
+        def dependent_repeat_func(question, resolver):
             answer = question.answer
             if answer and (answer.status == NO or answer.status == SKIP):
                 for dependent in resolver.get_dependents(question):
                     dependent.set_answer(SKIP, auto=True)
 
-        def exclude_next_func(question):
+        def requires_exclude_func(question):
+            return isinstance(question.requires, list) \
+                   and len(question.requires) == 0
+
+        def answered_exclude_next_func(question):
             return question.answer != None
 
-        def exclude_prev_func(question):
+        def answered_exclude_prev_func(question):
             if question.answer and question.answer.auto == True:
                 question.answer = None
                 return True
@@ -157,12 +161,15 @@ class QuestionManager(object):
 
         questions = resolver.get_dependents()
         questions_iter = Iterator(questions)
-        repeater_iter = PreRepeater(questions_iter,
-            lambda question, resolver=resolver: repeat_func(question, resolver))
-        excluder_iter = Excluder(repeater_iter,
-            exclude_next_func, exclude_prev_func)
+        questions_iter = PreRepeater(questions_iter,
+            lambda question, resolver=resolver: \
+                   dependent_repeat_func(question, resolver))
+        questions_iter = Excluder(questions_iter,
+            requires_exclude_func, requires_exclude_func)
+        questions_iter = Excluder(questions_iter,
+            answered_exclude_next_func, answered_exclude_prev_func)
 
-        return excluder_iter
+        return questions_iter
 
 
 class Question(object):
@@ -172,6 +179,7 @@ class Question(object):
         "architectures": ALL_ARCHITECTURES,
         "categories": ALL_CATEGORIES,
         "depends": [],
+        "requires": None,
         "relations": None,
         "command": None,
         "optional": False}
@@ -208,15 +216,19 @@ class Question(object):
         # Typed fields
         for field in ["architectures", "categories", "depends"]:
             if self.properties.has_key(field):
-                self.properties[field] = re.split(r"\s*,\s*", self.properties[field])
+                self.properties[field] = re.split(r"\s*,\s*",
+                    self.properties[field])
+
+        # Eval fields
+        for field in ["relations", "requires"]:
+            if self.properties.has_key(field):
+                self.properties[field] = self.registry.eval_recursive(
+                    self.properties[field])
 
         # Optional fields
         for field in self.optional_fields.keys():
             if not self.properties.has_key(field):
                 self.properties[field] = self.optional_fields[field]
-
-        if self.properties.has_key("relations"):
-            self.properties["relations"] = self.registry.eval_recursive(self.properties["relations"])
 
     def __str__(self):
         return self.name
