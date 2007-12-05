@@ -39,10 +39,21 @@ class VideoTest:
         """
         Displays the test image.
         """
+        version = self.gst.version()[2]
+
+        if version >= 13:
+            patterns = range(12)
+        elif version >= 11:
+            patterns = range(11)
+        elif version == 10 :
+            patterns = range(7)
+        else:
+            patterns = range(3)
 
         self._pipeline.set_state(self.gst.STATE_PLAYING)
-        for i in range(0,12):
-            self._source.set_property("pattern", i)
+
+        for pattern in patterns:
+            self._source.set_property("pattern", pattern)
             time.sleep(3)
         self._pipeline.set_state(self.gst.STATE_READY)
 
