@@ -1,6 +1,22 @@
+#!/usr/bin/python
+#
+# This program is meant to be called by the debian installer in order to
+# create configuration files for the hwtest package and derived packages
+# based on the preseed values. The arguments are the same as used by
+# debconf when calling the .config script in the package. The stdin
+# provides defines the package to be configured. For example:
+# 
+# [DEFAULT]
+# package = my_package
+# variables =
+#   preseed_var1
+#   preseed_var2
+
 import os
+import re
 import sys
 import ConfigParser
+from optparse import OptionParser
 
 from debconf import Debconf, DebconfCommunicator, DebconfError, MEDIUM
 
@@ -86,3 +102,33 @@ class Install(object):
                     step -= 1
                 else:
                     step += 1
+
+
+def main(args):
+    parser = OptionParser()
+    parser.add_option("-v", "--variables",
+      default=[],
+      action="append",
+      help="List of preseed variables.")
+    args = sys.argv[1:]
+    (options, args) = parser.parse_args(args)
+
+    if len(args) < 2:
+        return 1
+
+    package = args[0]
+    variables = options.variables
+    install = Install(package, variables=variables)
+
+    command = args[1]
+    if command == "write":
+        output = args[2]
+        install.write(output)
+    elif command == "configure":
+        install.configure()
+
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv[1:]))
