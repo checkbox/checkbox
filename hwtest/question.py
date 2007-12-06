@@ -26,6 +26,11 @@ ALL_ARCHITECTURES = [I386, AMD64, SPARC]
 
 
 class QuestionParser(object):
+    """
+    Question parser which can take a string, a file or a directory. The
+    content is parsed and the populates the 'questions' attributes of
+    the parser.
+    """
 
     def __init__(self):
         self.questions = []
@@ -125,14 +130,27 @@ class QuestionParser(object):
 
 
 class QuestionManager(object):
+    """
+    Question manager which is essentially a container of questions.
+    """
 
     def __init__(self):
         self._questions = []
 
     def add_question(self, question):
+        """
+        Add a question to the manager.
+        """
         self._questions.append(question)
 
     def get_iterator(self):
+        """
+        Get an iterator over the questions added to the manager. The
+        purpose of this iterator is that it orders questions based on
+        dependencies and enforces constraints defined in fields. For
+        example, the requires field will be evaluated and the question
+        will be skipped if this fails.
+        """
         def dependent_repeat_func(question, resolver):
             answer = question.answer
             if answer and (answer.status == NO or answer.status == SKIP):
@@ -173,6 +191,31 @@ class QuestionManager(object):
 
 
 class Question(object):
+    """
+    Question base class which should be inherited by each question
+    implementation. A question instance contains the following required
+    fields:
+
+    name:         Unique name for a question.
+    description:  Long description of what the question does.
+    suite:        Name of the suite containing this question.
+
+    An instance also contains the following optional fields:
+
+    architecture: List of architectures for which this question is relevant:
+                  amd64, i386, powerpc and/or sparc
+    categories:   List of categories for which this question is relevant:
+                  desktop, laptop and/or server
+    depends:      List of names on which this question depends. So, if
+                  the other question fails, this question will be skipped.
+    requires:     Registry expression which is required to ask this
+                  question. For example: lsb.release == '6.06'
+    relations:    Registry expression which points to the relations for this
+                  question. For example: 'input.mouse' in info.capabilities
+    command:      Command to run for the question.
+    optional:     Boolean expression set to True if this question is optional
+                  or False if this question is required.
+    """
 
     required_fields = ["name", "description", "suite"]
     optional_fields = {
