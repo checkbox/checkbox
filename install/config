@@ -2,15 +2,12 @@
 #
 # This program is meant to be called by the debian installer in order to
 # create configuration files for the hwtest package and derived packages
-# based on the preseed values. The arguments are the same as used by
-# debconf when calling the .config script in the package. The stdin
-# provides defines the package to be configured. For example:
-# 
-# [DEFAULT]
-# package = my_package
-# variables =
-#   preseed_var1
-#   preseed_var2
+# based on the preseed values. The arguments are almost the same as used
+# by debconf. The only difference is that the first argument passed to
+# the script must be the name of the package. Also, the following options
+# are supported:
+#
+# -v, --variable  Optional variables to preseed in the configuration file.
 
 import os
 import re
@@ -22,7 +19,14 @@ from debconf import Debconf, DebconfCommunicator, DebconfError, MEDIUM
 
 
 class Install(object):
+    """Install module for generating hwtest configuration files.
 
+    The hwtest module and derivatives use a configuration file format
+    compatible with ConfigParser. The values for the keys defined in
+    this file can be preseeded during the installation of the package by
+    using this module during the config phase of the package installation
+    process.
+    """
     separator = "/"
     config_base = "/etc/hwtest.d/%(name)s.conf"
     example_base = "/usr/share/doc/%(name)s/examples/%(name)s.conf"
@@ -43,16 +47,11 @@ class Install(object):
         else:
             self._debconf = DebconfCommunicator(self.name)
 
-    def set_example(self, path):
-        self._example_path = path
-
-    def set_config(self, path):
-        self._config_path = path
-
-    def set_variables(self, variables):
-        self._variables = variables
-
     def write(self, output):
+        """
+        Write phase of the config process which takes an output file
+        as argument.
+        """
         for path in [self._example_path, self._config_path]:
             if path and os.path.isfile(path):
                 self._config.read(path)
@@ -69,6 +68,9 @@ class Install(object):
         f.close()
 
     def configure(self, priority=MEDIUM):
+        """
+        Configure phase of the config process.
+        """
         path = self._config_path
         if path and os.path.isfile(path):
             self._config.read(path)
