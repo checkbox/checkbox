@@ -43,8 +43,6 @@ class GTKInterface(UserInterface):
         textview.set_buffer(buffer)
 
     def show_category(self):
-        self._get_widget("label_title").set_markup("<big><b>%s</b></big>" % self.title)
-
         self._get_widget("button_previous").hide()
         self._notebook.set_current_page(0)
 
