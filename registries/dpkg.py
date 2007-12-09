@@ -10,9 +10,6 @@ class DpkgRegistry(CommandRegistry):
     and architecture as returned by the dpkg command.
     """
 
-
-    default_command = "dpkg --version"
-
     def items(self):
         items = []
         match = re.search(r"([\d\.]+) \((.*)\)", str(self))

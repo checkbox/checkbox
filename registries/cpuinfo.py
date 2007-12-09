@@ -47,8 +47,6 @@ class CpuinfoRegistry(FileRegistry):
     as key and the corresponding processor registry as value.
     """
 
-    default_filename = "/proc/cpuinfo"
-
     @cache
     def items(self):
         items = []

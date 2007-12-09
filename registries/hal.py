@@ -62,8 +62,6 @@ class HalRegistry(CommandRegistry):
     the corresponding device registry as value.
     """
 
-    default_command = "lshal"
-
     @cache
     def items(self):
         items = []

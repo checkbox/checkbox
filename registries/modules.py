@@ -42,8 +42,6 @@ class ModulesRegistry(FileRegistry):
     in the /proc/modules file.
     """
 
-    default_filename = "/proc/modules"
-
     @cache
     def items(self):
         items = []
