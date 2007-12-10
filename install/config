@@ -10,7 +10,6 @@
 # -v, --variable  Optional variables to preseed in the configuration file.
 
 import os
-import re
 import sys
 import ConfigParser
 from optparse import OptionParser
@@ -63,9 +62,9 @@ class Install(object):
             self._config.set(section, name, value)
 
         # Write config
-        f = open(output, "w")
-        self._config.write(f)
-        f.close()
+        descriptor = open(output, "w")
+        self._config.write(descriptor)
+        descriptor.close()
 
     def configure(self, priority=MEDIUM):
         """
@@ -89,16 +88,16 @@ class Install(object):
             variable = self._variables[step]
             try:
                 self._debconf.input(priority, variable)
-            except DebconfError, e:
-                if e.args[0] != 30:
+            except DebconfError, error:
+                if error.args[0] != 30:
                     raise
                 # Question preivously answered and skipped.
                 step += 1
             else:
                 try:
                     self._debconf.go()
-                except DebconfError, e:
-                    if e.args[0] != 30:
+                except DebconfError, error:
+                    if error.args[0] != 30:
                         raise
                     # User requested to go back.
                     step -= 1
@@ -107,6 +106,13 @@ class Install(object):
 
 
 def main(args):
+    """
+    Main routine for running this script. The arguments are:
+
+    package_name   Name of the package to configure.
+    command        Name of the command to run as defined by debconf.
+    optional       Optional arguments specific to the given command.
+    """
     parser = OptionParser()
     parser.add_option("-v", "--variables",
       default=[],
