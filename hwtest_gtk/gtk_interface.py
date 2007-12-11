@@ -98,7 +98,7 @@ class GTKInterface(UserInterface):
             self._get_widget("radiobutton_%s" % answer.status).set_active(True)
         else:
             self._set_textview("textview_comment", "")
-            self._get_widget("radiobutton_yes").set_active(True)
+            self._get_widget("radiobutton_skip").set_active(True)
 
         self._dialog.show()
         self.run_question(question)
