@@ -1,14 +1,12 @@
-import sys
-import unittest
-
-sys.path.insert(0, "registries")
-from modules import ModulesRegistry
+from registries.modules import ModulesRegistry
+from registries.tests.helpers import TestHelper
 
 
-class ModulesRegistryTest(unittest.TestCase):
+class ModulesRegistryTest(TestHelper):
 
     def setUp(self):
-        self.registry = ModulesRegistry(None, "registries/tests/modules_test.txt")
+        super(ModulesRegistryTest, self).setUp()
+        self.registry = ModulesRegistry(self.config, "registries/tests/modules_test.txt")
 
     def test_name(self):
         self.assertTrue(self.registry["ieee80211_crypt_ccmp"] is not None)

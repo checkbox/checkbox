@@ -1,15 +1,12 @@
-import sys
-import unittest
-
-sys.path.insert(0, "registries")
-from map import MapRegistry
+from registries.map import MapRegistry
+from registries.tests.helpers import TestHelper
 
 
-class MapRegistryTest(unittest.TestCase):
+class MapRegistryTest(TestHelper):
 
     def test_map(self):
         map = {'a': 1}
-        registry = MapRegistry(None, map)
+        registry = MapRegistry(self.config, map)
         self.assertTrue(registry.a)
         self.assertTrue(registry.a == 1)
         self.assertFalse(registry.b)

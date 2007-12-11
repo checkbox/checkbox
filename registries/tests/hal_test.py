@@ -1,13 +1,9 @@
-import re
-import sys
-import unittest
-
-sys.path.insert(0, "registries")
-from hal import HalRegistry
+from registries.hal import HalRegistry
+from registries.tests.helpers import TestHelper
 
 
-class HalRegistryTest(unittest.TestCase):
+class HalRegistryTest(TestHelper):
 
     def test_system_vendor(self):
-        registry = HalRegistry(None)
+        registry = HalRegistry(self.config)
         self.assertTrue(registry.computer.system.vendor is not None)

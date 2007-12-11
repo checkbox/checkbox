@@ -1,18 +1,16 @@
 import re
-import sys
-import unittest
 
-sys.path.insert(0, "registries")
-from dpkg import DpkgRegistry
+from registries.dpkg import DpkgRegistry
+from registries.tests.helpers import TestHelper
 
 
-class DpkgRegistryTest(unittest.TestCase):
+class DpkgRegistryTest(TestHelper):
 
     def test_version(self):
-        registry = DpkgRegistry(None)
+        registry = DpkgRegistry(self.config)
         self.assertTrue(registry.version)
         self.assertTrue(re.search(r"^[\d\.]+$", registry.version))
 
     def test_architecture(self):
-        registry = DpkgRegistry(None)
+        registry = DpkgRegistry(self.config)
         self.assertTrue(registry.architecture)

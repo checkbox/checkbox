@@ -1,14 +1,12 @@
 import re
-import sys
-import unittest
 
-sys.path.insert(0, "registries")
-from hald import HaldRegistry
+from registries.hald import HaldRegistry
+from registries.tests.helpers import TestHelper
 
 
-class HaldRegistryTest(unittest.TestCase):
+class HaldRegistryTest(TestHelper):
 
     def test_version(self):
-        registry = HaldRegistry(None)
+        registry = HaldRegistry(self.config)
         self.assertTrue(registry.version)
         self.assertTrue(re.search(r"^[\d\.]+$", registry.version))

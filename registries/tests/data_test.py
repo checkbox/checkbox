@@ -1,13 +1,10 @@
-import sys
-import unittest
-
-sys.path.insert(0, "registries")
-from data import DataRegistry
+from registries.data import DataRegistry
+from registries.tests.helpers import TestHelper
 
 
-class DataRegistryTest(unittest.TestCase):
+class DataRegistryTest(TestHelper):
 
     def test_data(self):
-        registry = DataRegistry(None, "foo")
+        registry = DataRegistry(self.config, "foo")
         self.assertTrue(str(registry) is not None)
         self.assertTrue(str(registry) == "foo")

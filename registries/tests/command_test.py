@@ -1,13 +1,10 @@
-import sys
-import unittest
-
-sys.path.insert(0, "registries")
-from command import CommandRegistry
+from registries.command import CommandRegistry
+from registries.tests.helpers import TestHelper
 
 
-class CommandRegistryTest(unittest.TestCase):
+class CommandRegistryTest(TestHelper):
 
     def test_command(self):
-        registry = CommandRegistry(None, "echo -n foo")
+        registry = CommandRegistry(self.config, "echo -n foo")
         self.assertTrue(str(registry) is not None)
         self.assertTrue(str(registry) == "foo")

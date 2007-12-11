@@ -1,15 +1,11 @@
-import re
-import sys
-import unittest
-
-sys.path.insert(0, "registries")
-from lsb import LsbRegistry
+from registries.lsb import LsbRegistry
+from registries.tests.helpers import TestHelper
 
 
-class LsbRegistryTest(unittest.TestCase):
+class LsbRegistryTest(TestHelper):
 
     def test_keys(self):
-        registry = LsbRegistry(None)
+        registry = LsbRegistry(self.config)
         self.assertTrue(registry.distributor_id)
         self.assertTrue(registry.description)
         self.assertTrue(registry.release)

@@ -1,13 +1,10 @@
-import sys
-import unittest
-
-sys.path.insert(0, "registries")
-from file import FileRegistry
+from registries.file import FileRegistry
+from registries.tests.helpers import TestHelper
 
 
-class FileRegistryTest(unittest.TestCase):
+class FileRegistryTest(TestHelper):
 
     def test_file(self):
-        registry = FileRegistry(None, "test")
+        registry = FileRegistry(self.config, "test")
         self.assertTrue(str(registry) is not None)
         self.assertTrue(len(str(registry)) > 0)

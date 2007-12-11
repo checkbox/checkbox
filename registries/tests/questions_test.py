@@ -1,12 +1,8 @@
-import re
-import sys
-import unittest
-
-sys.path.insert(0, "registries")
-from question import QuestionsRegistry
+from registries.questions import QuestionsRegistry
+from registries.tests.helpers import TestHelper
 
 
-class QuestionsRegistryTest(unittest.TestCase):
+class QuestionsRegistryTest(TestHelper):
 
     def test_name(self):
-        registry = QuestionsRegistry(None)
+        registry = QuestionsRegistry(self.config)
