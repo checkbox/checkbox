@@ -1,5 +1,3 @@
-import re
-
 from hwtest.lib.cache import cache
 
 from command import CommandRegistry
