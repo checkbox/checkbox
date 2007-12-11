@@ -8,8 +8,6 @@ class HaldRegistry(CommandRegistry):
     as returned by the hald command.
     """
  
-    default_command = "hald --version 2>&1"
-
     def __str__(self):
         str = super(HaldRegistry, self).__str__()
         return str.strip().rsplit(": ")[1]

@@ -27,9 +27,7 @@ to Launchpad.
         ('share/hwtest/registries/', glob('registries/*.py')),
         ('share/hwtest/questions/', glob('questions/*')),
         ('share/hwtest/scripts/', glob('scripts/*')),
-        ('share/hwtest-gtk/', ['gtk/hwtest-gtk.glade'] + glob('gtk/*.png')),
-        ('share/hwtest-gtk/plugins/', glob('gtk/plugins/*.py')),
-        ('share/hwtest-cli/plugins/', glob('cli/plugins/*.py'))],
+        ('share/hwtest-gtk/', ['gtk/hwtest-gtk.glade'] + glob('gtk/*.png'))],
     scripts=['bin/hwtest'],
     packages=['hwtest', 'hwtest.contrib', 'hwtest.lib', 'hwtest.reports',
         'hwtest_cli', 'hwtest_gtk']

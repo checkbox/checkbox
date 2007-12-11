@@ -8,11 +8,8 @@ class ProcessorInfo(Plugin):
         self._manager.reactor.call_on("gather", self.gather)
 
     def gather(self):
-        message = self.create_message()
+        message = self._manager.registry.cpuinfo
         self._manager.reactor.fire(("report", "processor"), message)
-
-    def create_message(self):
-        return self._manager.registry.cpuinfo
 
 
 factory = ProcessorInfo

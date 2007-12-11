@@ -2,7 +2,6 @@
 
 import os
 import sys
-import time
 
 from optparse import OptionParser
 
@@ -98,28 +97,40 @@ def detect_device():
 
     # XXX This works, but could we be use HAL for this?
 
-    device = 'None'
+    device = "None"
     path = "/proc/asound/card0/id"
 
     if os.path.exists(path):
-        fd = file(path, 'r')
+        fd = file(path, "r")
         device = fd.readline().strip()
 
     return device
 
+def error(message):
+    sys.stderr.write("Error: %s\n" % message)
+    sys.exit(1)
+
+def main(args):
+    parser = OptionParser()
+    parser.add_option("-v", "--view",
+        action="store_true",
+        help="View audio device.")
+    (options, args) = parser.parse_args(args)
+ 
+    device = detect_device()
+    if options.view:
+        print device
+        return 0
+
+    if len(args) == 0:
+        error("Must provide an OPTION or FILENAME")
+
+    if device == "None":
+        error("No device detected")
+
+    player = Player()
+    return player.play(args[0])
+
 
 if __name__ == "__main__":
-    if len(sys.argv) == 1:
-        print "Usage: %s FILENAME" % os.path.basename(sys.argv[0])
-        sys.exit(2)
-    else:
-        filename = sys.argv[1]
-
-        device = detect_device()
-        print device
-
-        if device != 'None' and filename:
-            player = Player()
-            sys.exit(player.play(filename))
-        else:
-            sys.exit(1)
+    sys.exit(main(sys.argv[1:]))

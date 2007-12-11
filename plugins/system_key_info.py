@@ -8,11 +8,8 @@ class SystemKeyInfo(Plugin):
         self._manager.reactor.call_on("gather", self.gather)
 
     def gather(self):
-        message = self.create_message()
+        message = self._manager.registry.system.key
         self._manager.reactor.fire(("report", "system_key"), message)
-
-    def create_message(self):
-        return self._manager.registry.system.key
 
 
 factory = SystemKeyInfo

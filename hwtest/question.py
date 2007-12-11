@@ -6,11 +6,9 @@ automatic. Either way, this module provides the base common to each type
 of question.
 """
 
-import os
 import re
 import logging
-
-from StringIO import StringIO
+from subprocess import Popen, PIPE
 
 from hwtest.excluder import Excluder
 from hwtest.iterator import Iterator
@@ -18,7 +16,6 @@ from hwtest.repeater import PreRepeater
 from hwtest.resolver import Resolver
 
 from hwtest.answer import Answer, NO, SKIP
-from hwtest.lib.file import reader
 
 
 DESKTOP = 'desktop'
@@ -30,119 +27,6 @@ I386 = 'i386'
 AMD64 = 'amd64'
 SPARC = 'sparc'
 ALL_ARCHITECTURES = [I386, AMD64, SPARC]
-
-
-class QuestionParser(object):
-    """
-    Question parser which can take a string, a file or a directory. The
-    content is parsed and the populates the 'questions' attributes of
-    the parser.
-    """
-
-    def __init__(self):
-        self.questions = []
-
-    def _load_properties(self, **properties):
-        if "name" not in properties:
-            raise Exception, \
-                "Question properties does not contain a 'name': %s" % properties
-
-        logging.info("Loading question properties for: %s", properties["name"])
-
-        if [q for q in self.questions if q["name"] == properties["name"]]:
-            raise Exception, \
-                "Question %s already has a question of the same name." \
-                % properties["name"]
-
-        self.questions.append(properties)
-
-    def _load_descriptor(self, descriptor, name):
-        for string in reader(descriptor):
-            if not string:
-                break
-
-            properties = {}
-            properties["suite"] = os.path.basename(name)
-
-            def _save(field, value, extended, name):
-                if value and extended:
-                    raise Exception, \
-                        "Path %s has both a value and an extended value." % name
-                extended = extended.rstrip("\n")
-                if field:
-                    if properties.has_key(field):
-                        raise Exception, \
-                            "Path %s has a duplicate field '%s'" \
-                            " with a new value '%s'." \
-                            % (name, field, value)
-                    properties[field] = value or extended
-
-            string = string.strip("\n")
-            field = value = extended = ''
-            for line in string.split("\n"):
-                line.strip()
-                match = re.search(r"^([-_.A-Za-z0-9]*):\s?(.*)", line)
-                if match:
-                    _save(field, value, extended, name)
-                    field = match.groups()[0].lower()
-                    value = match.groups()[1].rstrip()
-                    extended = ''
-                    continue
-
-                if re.search(r"^\s\.$", line):
-                    extended += "\n\n"
-                    continue
-
-                match = re.search(r"^\s(\s+.*)", line)
-                if match:
-                    bit = match.groups()[0].rstrip()
-                    if len(extended) and not re.search(r"[\n ]$", extended):
-                        extended += "\n"
-
-                    extended += bit + "\n"
-                    continue
-
-                match = re.search(r"^\s(.*)", line)
-                if match:
-                    bit = match.groups()[0].rstrip()
-                    if len(extended) and not re.search(r"[\n ]$", extended):
-                        extended += " "
-
-                    extended += bit
-                    continue
-
-                raise Exception, "Path %s parse error at: %s" \
-                    % (name, line)
-
-            _save(field, value, extended, name)
-            self._load_properties(**properties)
-
-    def load_string(self, string):
-        """
-        Parse questions from given string.
-        """
-        logging.info("Loading question from string")
-        descriptor = StringIO(string)
-        self._load_descriptor(descriptor, "string")
-
-    def load_path(self, path):
-        """
-        Parse questions from filename in given path.
-        """
-        logging.info("Loading question from path: %s", path)
-
-        descriptor = file(path, "r")
-        self._load_descriptor(descriptor, path)
-
-    def load_directory(self, directory):
-        """
-        Parse questions from each filename in the given directory.
-        """
-        logging.info("Loading questions from directory: %s", directory)
-        for name in [name for name in os.listdir(directory)
-                     if name.endswith(".txt")]:
-            path = os.path.join(directory, name)
-            self.load_path(path)
 
 
 class QuestionManager(object):
@@ -242,7 +126,7 @@ class Question(object):
                   or False if this question is required.
     """
 
-    required_fields = ["name", "description", "suite"]
+    required_fields = ["name", "type", "description", "suite"]
     optional_fields = {
         "architectures": ALL_ARCHITECTURES,
         "categories": ALL_CATEGORIES,
@@ -306,6 +190,14 @@ class Question(object):
             return self.properties[attr]
 
         raise AttributeError, attr
+
+    def run_command(self):
+        logging.info("Running command: %s" % self.command)
+        process = Popen([self.command], shell=True,
+            stdin=None, stdout=PIPE, stderr=PIPE,
+            close_fds=True)
+        (stdout, stderr) = process.communicate()
+        return (stdout, stderr, process.wait())
 
     def set_answer(self, status, data='', auto=False):
         self.answer = Answer(self, status, data, auto)

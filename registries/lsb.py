@@ -1,5 +1,3 @@
-import re
-
 from hwtest.lib.cache import cache
 
 from command import CommandRegistry
@@ -12,7 +10,6 @@ class LsbRegistry(CommandRegistry):
     returned by the lsb_release command.
     """
 
-    default_command = "lsb_release -a"
     default_map = {
         "Distributor ID": "distributor_id",
         "Description": "description",

@@ -13,8 +13,6 @@ class MeminfoRegistry(FileRegistry):
     in the /proc/meminfo file.
     """
 
-    default_filename = "/proc/meminfo"
-
     @cache
     def items(self):
         items = []

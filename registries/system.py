@@ -15,7 +15,7 @@ class SystemRegistry(Registry):
 
     @cache
     def __str__(self):
-        hal_registry = HalRegistry(None)
+        hal_registry = HalRegistry(None, "lshal")
 
         fingerprint = md5.new()
         fingerprint.update(hal_registry.computer.system.vendor)
