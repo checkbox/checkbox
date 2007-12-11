@@ -1,18 +1,19 @@
 import os.path, sys
 import gtk, gtk.glade
 
+from hwtest.lib.environ import add_variable, remove_variable
 from hwtest.user_interface import UserInterface
 
 
 class GTKInterface(UserInterface):
 
-    def __init__(self, gtk_path):
+    def __init__(self, config):
         super(GTKInterface, self).__init__()
 
         # load UI
         gtk.window_set_default_icon_name("hwtest")
         gtk.glade.textdomain(self.gettext_domain)
-        self.widgets = gtk.glade.XML(os.path.join(gtk_path,
+        self.widgets = gtk.glade.XML(os.path.join(config.gtk_path,
             "hwtest-gtk.glade"))
         self.widgets.signal_autoconnect(self)
 
@@ -30,6 +31,10 @@ class GTKInterface(UserInterface):
                 return value
         raise Exception, "failed to map radiobutton"
 
+    def _set_label(self, name, text):
+        label = self._get_widget(name)
+        label.set_text(text)
+
     def _get_textview(self, name):
         textview = self._get_widget(name)
         buffer = textview.get_buffer()
@@ -41,6 +46,10 @@ class GTKInterface(UserInterface):
         buffer.set_text(data)
         textview = self._get_widget(name)
         textview.set_buffer(buffer)
+
+    def _set_sensitive(self, name, boolean):
+        widget = self._get_widget(name)
+        widget.set_sensitive(boolean)
 
     def show_category(self):
         self._get_widget("button_previous").hide()
@@ -55,11 +64,32 @@ class GTKInterface(UserInterface):
             "radiobutton_laptop": "laptop",
             "radiobutton_server": "server"})
 
+    def run_question(self, question):
+        # Run test
+        if question.command != None:
+            output = question.run_command()[0].strip()
+            self._set_sensitive("button_test_again", True)
+        else:
+            output = ''
+            self._set_sensitive("button_test_again", False)
+
+        add_variable("output", output)
+        self._set_label("label_question", question.description)
+        remove_variable("output")
+
     def show_question(self, question, has_prev=False, has_next=False):
-        self._set_textview("textview_question", question.description)
-        self._get_widget("button_previous").set_sensitive(has_prev)
+        # Set buttons
+        self._set_sensitive("button_test_again", False)
+        self._set_sensitive("button_previous", has_prev)
         self._get_widget("button_previous").show()
         self._notebook.set_current_page(1)
+
+        # Set test again button
+        button_test_again = self._get_widget("button_test_again")
+        if hasattr(self, "handler_id"):
+            button_test_again.disconnect(self.handler_id)
+        self.handler_id = button_test_again.connect("clicked",
+            lambda w, question=question: self.run_question(question))
 
         # Default answers
         if question.answer:
@@ -69,6 +99,9 @@ class GTKInterface(UserInterface):
         else:
             self._set_textview("textview_comment", "")
             self._get_widget("radiobutton_yes").set_active(True)
+
+        self._dialog.show()
+        self.run_question(question)
 
         response = self._dialog.run()
         while gtk.events_pending():
@@ -86,8 +119,8 @@ class GTKInterface(UserInterface):
         return response
 
     def show_gather(self, error=None):
-        self._get_widget("button_previous").set_sensitive(False)
-        self._get_widget("button_next").set_sensitive(False)
+        self._set_sensitive("button_previous", False)
+        self._set_sensitive("button_next", False)
         self._get_widget("progressbar_gather").set_fraction(0)
         self._notebook.set_current_page(2)
 
@@ -101,8 +134,8 @@ class GTKInterface(UserInterface):
             gtk.main_iteration(False)
 
     def show_exchange(self, error=None):
-        self._get_widget("button_previous").set_sensitive(False)
-        self._get_widget("button_next").set_sensitive(True)
+        self._set_sensitive("button_previous", False)
+        self._set_sensitive("button_next", True)
         self._notebook.set_current_page(3)
 
         if error is not None:
