@@ -1,12 +1,30 @@
+import sys
+
+from hwtest.contrib.REThread import REThread
+
 from hwtest.plugin import Plugin
 
 
 class GatherPrompt(Plugin):
 
-    priority = -200
+    def register(self, manager):
+        super(GatherPrompt, self).register(manager)
+        self._manager.reactor.call_on(("interface", "show-gather"), self.show_gather)
+ 
+    def do_gather(self):
+        self._manager.reactor.fire("gather")
 
-    def run(self):
-        self._manager.reactor.fire(("interface", "show-gather"))
+    def show_gather(self, interface):
+        interface.show_gather()
+        thread = REThread(target=self.do_gather, name="do_gather")
+        thread.start()
+        while thread.isAlive():
+            interface.pulse_gather()
+            try:
+                thread.join(0.1)
+            except KeyboardInterrupt:
+                sys.exit(1)
+        thread.exc_raise()
 
 
 factory = GatherPrompt

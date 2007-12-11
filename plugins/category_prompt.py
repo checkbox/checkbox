@@ -3,9 +3,11 @@ from hwtest.plugin import Plugin
 
 class CategoryPrompt(Plugin):
 
-    priority = -400
+    def register(self, manager):
+        super(CategoryPrompt, self).register(manager)
+        self._manager.reactor.call_on(("interface", "show-category"), self.show_category)
 
-    def run(self):
+    def show_category(self, interface):
         category = self.config.category
         registry = self._manager.registry
 
@@ -27,8 +29,11 @@ class CategoryPrompt(Plugin):
             if version.endswith("-server"):
                 category = "server"
 
-        self._manager.reactor.fire(("interface", "show-category"),
-            category=category)
+        if not category:
+            category = interface.show_category()
+
+        self._manager.reactor.fire(("prompt", "set-category"),
+            category)
 
 
 factory = CategoryPrompt
