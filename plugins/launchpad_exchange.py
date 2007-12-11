@@ -69,7 +69,7 @@ class LaunchpadExchange(Plugin):
         self._form["field.emailaddress"] = message
 
     def report_questions(self, message):
-        self._report["questions"] = message
+        self._report["questions"].extend(message)
 
     def exchange(self):
         # Combine summary with form data
