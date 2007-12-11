@@ -8,11 +8,8 @@ class DistributionInfo(Plugin):
         self._manager.reactor.call_on("gather", self.gather)
 
     def gather(self):
-        message = self.create_message()
+        message = self._manager.registry.lsb
         self._manager.reactor.fire(("report", "distribution"), message)
-
-    def create_message(self):
-        return self._manager.registry.lsb
 
 
 factory = DistributionInfo

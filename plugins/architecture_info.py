@@ -8,11 +8,8 @@ class ArchitectureInfo(Plugin):
         self._manager.reactor.call_on("gather", self.gather)
 
     def gather(self):
-        message = self.create_message()
+        message = self._manager.registry.dpkg.architecture
         self._manager.reactor.fire(("report", "architecture"), message)
-
-    def create_message(self):
-        return self._manager.registry.dpkg.architecture
 
 
 factory = ArchitectureInfo

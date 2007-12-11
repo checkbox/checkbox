@@ -9,11 +9,8 @@ class SubmissionKeyInfo(Plugin):
         self._manager.reactor.call_on("gather", self.gather)
 
     def gather(self):
-        message = self.create_message()
+        message = get_submission_key(self._manager.registry)
         self._manager.reactor.fire(("report", "submission_key"), message)
-
-    def create_message(self):
-        return get_submission_key(self._manager.registry)
 
 
 factory = SubmissionKeyInfo
