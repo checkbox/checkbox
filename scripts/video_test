@@ -1,6 +1,5 @@
 #!/usr/bin/python
 
-import os
 import sys
 import time
 
@@ -31,13 +30,12 @@ class VideoTest:
         self._sink = self.gst.element_factory_make("xvimagesink", "sink")
         self._pipeline.add(self._sink)
 
-        print self._sink.get_property("display")
-
         self._source.link(self._sink)
 
-    def display(self):
+    def _get_patterns(self):
         """
-        Displays the test image.
+        Returns a range of possible patterns appropriate to the available
+        version of GStreamer.
         """
         version = self.gst.version()[2]
 
@@ -50,14 +48,48 @@ class VideoTest:
         else:
             patterns = range(3)
 
+        return patterns
+
+    def list(self):
+        """
+        Display a list of test patterns.
+        """
+        patterns = self._get_patterns()
+
+        pattern_names = []
+        for pattern in patterns:
+            self._source.set_property("pattern", pattern)
+            pattern_names.append(self._source.get_property("pattern").value_name)
+        print ", ".join(pattern_names)
+
+    def display(self):
+        """
+        Displays the test patterns.
+        """
+        patterns = self._get_patterns()
+
         self._pipeline.set_state(self.gst.STATE_PLAYING)
 
         for pattern in patterns:
             self._source.set_property("pattern", pattern)
             time.sleep(3)
+
         self._pipeline.set_state(self.gst.STATE_READY)
 
 
+def parse_options(args):
+    """
+    Parse command line options.
+    """
+    parser = OptionParser()
+    parser.add_option("-l", "--list", action="store_true",
+                      help="List patterns that will be displayed.")
+    return parser.parse_args(args)[0]
+
 if __name__ == "__main__":
+    options = parse_options(sys.argv)
     video = VideoTest()
-    video.display()
+    if options.list:
+        video.list()
+    else:
+        video.display()
