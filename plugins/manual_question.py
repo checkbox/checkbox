@@ -1,5 +1,4 @@
 import os
-import logging
 
 from hwtest.lib.environ import add_path, remove_path, add_variable, remove_variable
 
@@ -20,7 +19,6 @@ class Manual(Question):
     def get_description(self):
         add_path(self.scripts_path)
         command = "cat <<EOF\n%s\nEOF\n" % self.properties["description"]
-        logging.info("Running command: %s" % command)
         description = os.popen(command).read()
         remove_path(self.scripts_path)
         return description

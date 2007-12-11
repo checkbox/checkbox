@@ -1,4 +1,5 @@
 import re
+import logging
 from subprocess import Popen, PIPE
 
 from hwtest.excluder import Excluder
@@ -124,6 +125,7 @@ class Question(object):
         raise AttributeError, attr
 
     def run_command(self):
+        logging.info("Running command: %s" % self.command)
         process = Popen([self.command], shell=True,
             stdin=None, stdout=PIPE, stderr=PIPE,
             close_fds=True)
