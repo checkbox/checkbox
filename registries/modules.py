@@ -22,7 +22,7 @@ class ModuleRegistry(DataRegistry):
 
     @cache
     def items(self):
-        (size, instances, dependencies, state, offset) = self.split(" ")
+        (size, instances, dependencies, state, offset) = self.split(" ", 4)
 
         items = []
         items.append(("size", int(size)))
