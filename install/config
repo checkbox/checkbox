@@ -1,12 +1,31 @@
+#!/usr/bin/python
+#
+# This program is meant to be called by the debian installer in order to
+# create configuration files for the hwtest package and derived packages
+# based on the preseed values. The arguments are almost the same as used
+# by debconf. The only difference is that the first argument passed to
+# the script must be the name of the package. Also, the following options
+# are supported:
+#
+# -v, --variable  Optional variables to preseed in the configuration file.
+
 import os
 import sys
 import ConfigParser
+from optparse import OptionParser
 
 from debconf import Debconf, DebconfCommunicator, DebconfError, MEDIUM
 
 
 class Install(object):
+    """Install module for generating hwtest configuration files.
 
+    The hwtest module and derivatives use a configuration file format
+    compatible with ConfigParser. The values for the keys defined in
+    this file can be preseeded during the installation of the package by
+    using this module during the config phase of the package installation
+    process.
+    """
     separator = "/"
     config_base = "/etc/hwtest.d/%(name)s.conf"
     example_base = "/usr/share/doc/%(name)s/examples/%(name)s.conf"
@@ -27,16 +46,11 @@ class Install(object):
         else:
             self._debconf = DebconfCommunicator(self.name)
 
-    def set_example(self, path):
-        self._example_path = path
-
-    def set_config(self, path):
-        self._config_path = path
-
-    def set_variables(self, variables):
-        self._variables = variables
-
     def write(self, output):
+        """
+        Write phase of the config process which takes an output file
+        as argument.
+        """
         for path in [self._example_path, self._config_path]:
             if path and os.path.isfile(path):
                 self._config.read(path)
@@ -48,11 +62,14 @@ class Install(object):
             self._config.set(section, name, value)
 
         # Write config
-        f = open(output, "w")
-        self._config.write(f)
-        f.close()
+        descriptor = open(output, "w")
+        self._config.write(descriptor)
+        descriptor.close()
 
     def configure(self, priority=MEDIUM):
+        """
+        Configure phase of the config process.
+        """
         path = self._config_path
         if path and os.path.isfile(path):
             self._config.read(path)
@@ -71,18 +88,55 @@ class Install(object):
             variable = self._variables[step]
             try:
                 self._debconf.input(priority, variable)
-            except DebconfError, e:
-                if e.args[0] != 30:
+            except DebconfError, error:
+                if error.args[0] != 30:
                     raise
                 # Question preivously answered and skipped.
                 step += 1
             else:
                 try:
                     self._debconf.go()
-                except DebconfError, e:
-                    if e.args[0] != 30:
+                except DebconfError, error:
+                    if error.args[0] != 30:
                         raise
                     # User requested to go back.
                     step -= 1
                 else:
                     step += 1
+
+
+def main(args):
+    """
+    Main routine for running this script. The arguments are:
+
+    package_name   Name of the package to configure.
+    command        Name of the command to run as defined by debconf.
+    optional       Optional arguments specific to the given command.
+    """
+    parser = OptionParser()
+    parser.add_option("-v", "--variables",
+      default=[],
+      action="append",
+      help="List of preseed variables.")
+    args = sys.argv[1:]
+    (options, args) = parser.parse_args(args)
+
+    if len(args) < 2:
+        return 1
+
+    package = args[0]
+    variables = options.variables
+    install = Install(package, variables=variables)
+
+    command = args[1]
+    if command == "write":
+        output = args[2]
+        install.write(output)
+    elif command == "configure":
+        install.configure()
+
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv[1:]))
