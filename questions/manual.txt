@@ -6,7 +6,7 @@ command: audio_playback $data_path/audio_playback.wav
 description:
  Testing detected soundcard:
  .
- $output
+ $(audio_playback --view)
  .
  Did you hear a sound?
 
@@ -14,11 +14,10 @@ name: resolution
 type: manual
 categories: laptop, desktop
 relations: pci.device_class == 3
-command: resolution_question
 description:
  Testing detected resolution:
  .
- $output
+ $(resolution_question)
  .
  Is your video display hardware working properly?
 
@@ -33,19 +32,18 @@ description:
 
 name: network
 type: manual
-command: network_question
-relations: 'net' in info.capabilities
+relations: pci.device_class == 2
 description:
  Detecting your network controller(s):
  .
- $output
+ $(network_question)
  .
  Is this correct?
 
 name: internet
 type: manual
 command: internet_question
-relations: 'net' in info.capabilities
+relations: pci.device_class == 2
 description:
  Testing your internet connection:
  .
@@ -57,7 +55,7 @@ name: keyboard
 type: manual
 relations: 'input.keyboard' in info.capabilities
 description:
- Typing keys on your keyboard should display the corresponding
- characters in a text area.
+ Typing keys on your keyboard should display
+ the corresponding characters in a text area.
  .
  Is your keyboard working properly?
