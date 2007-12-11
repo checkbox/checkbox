@@ -4,9 +4,3 @@ Default: /etc/hwtest.d/hwtest.conf
 Description: CLI include file
  File to include as a dependency for the CLI
  interface.
-
-Template: hwtest-cli/plugins/directory
-Type: string
-Default: /usr/share/hwtest-cli/plugins
-Description: CLI plugins directory
- Directory where CLI plugins are stored.
