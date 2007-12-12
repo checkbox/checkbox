@@ -4,3 +4,9 @@ Default: /etc/hwtest.d/hwtest.conf
 Description: GTK include file
  File to include as a dependency for the GTK
  interface.
+
+Template: hwtest/plugins/user_interface/gtk_path
+Type: string
+Default: /usr/share/hwtest-gtk
+Description: GTK path
+ Path where GTK files are stored.
