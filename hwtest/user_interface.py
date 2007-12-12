@@ -9,11 +9,13 @@ class UserInterface(object):
 
     title = "Hardware Testing"
 
-    def __init__(self):
-        self.gettext_domain = "hwtest"
+    def __init__(self, config):
+        self.config = config
+
         self.application = None
         self.questions = None
 
+        self.gettext_domain = "hwtest"
         gettext.textdomain(self.gettext_domain)
 
     def show_category(self):

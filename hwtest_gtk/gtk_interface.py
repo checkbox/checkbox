@@ -8,7 +8,7 @@ from hwtest.user_interface import UserInterface
 class GTKInterface(UserInterface):
 
     def __init__(self, config):
-        super(GTKInterface, self).__init__()
+        super(GTKInterface, self).__init__(config)
 
         # load UI
         gtk.window_set_default_icon_name("hwtest")
