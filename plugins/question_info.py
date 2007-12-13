@@ -3,18 +3,17 @@ from hwtest.plugin import Plugin
 
 class QuestionInfo(Plugin):
 
-    priority = -100
-
     def register(self, manager):
         super(QuestionInfo, self).register(manager)
         self._manager.reactor.call_on("gather", self.gather)
+        self._manager.reactor.call_on("report", self.report)
 
-    def run(self):
+    def gather(self):
         for (name, question) in self._manager.registry.questions.items():
             self._manager.reactor.fire((question.type, "add-question"),
                 **dict(question.items() + [('name', name)]))
 
-    def gather(self):
+    def report(self):
         message = self._manager.registry.questions
         self._manager.reactor.fire(("report", "questions"), message)
 

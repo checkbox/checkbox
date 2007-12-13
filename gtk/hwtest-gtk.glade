@@ -517,16 +517,15 @@ please select one of the following:</property>
 	  </child>
 
 	  <child>
-	    <widget class="GtkVBox" id="vbox_gather">
+	    <widget class="GtkVBox" id="vbox_wait">
 	      <property name="visible">True</property>
 	      <property name="homogeneous">False</property>
 	      <property name="spacing">0</property>
 
 	      <child>
-		<widget class="GtkLabel" id="label_gather">
+		<widget class="GtkLabel" id="label_wait">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">Please wait while information is
-being gathered from your system.</property>
+		  <property name="label" translatable="yes">Please wait...</property>
 		  <property name="use_underline">False</property>
 		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -549,7 +548,7 @@ being gathered from your system.</property>
 	      </child>
 
 	      <child>
-		<widget class="GtkProgressBar" id="progressbar_gather">
+		<widget class="GtkProgressBar" id="progressbar_wait">
 		  <property name="visible">True</property>
 		  <property name="orientation">GTK_PROGRESS_LEFT_TO_RIGHT</property>
 		  <property name="fraction">0</property>
@@ -570,9 +569,9 @@ being gathered from your system.</property>
 	  </child>
 
 	  <child>
-	    <widget class="GtkLabel" id="label_tab_gather">
+	    <widget class="GtkLabel" id="label_tab_wait">
 	      <property name="visible">True</property>
-	      <property name="label" translatable="yes">_Gather</property>
+	      <property name="label" translatable="yes">_Wait</property>
 	      <property name="use_underline">False</property>
 	      <property name="use_markup">False</property>
 	      <property name="justify">GTK_JUSTIFY_LEFT</property>

@@ -81,6 +81,7 @@ class GTKInterface(UserInterface):
         # Set buttons
         self._set_sensitive("button_test_again", False)
         self._set_sensitive("button_previous", has_prev)
+        self._set_sensitive("button_next", has_next)
         self._get_widget("button_previous").show()
         self._notebook.set_current_page(1)
 
@@ -118,18 +119,20 @@ class GTKInterface(UserInterface):
 
         return response
 
-    def show_gather(self, error=None):
+    def show_wait(self, message=None, error=None):
         self._set_sensitive("button_previous", False)
         self._set_sensitive("button_next", False)
-        self._get_widget("progressbar_gather").set_fraction(0)
+
+        self._set_label("label_wait", message)
+        self._get_widget("progressbar_wait").set_fraction(0)
         self._notebook.set_current_page(2)
 
         response = self._dialog.show()
         while gtk.events_pending():
             gtk.main_iteration(False)
 
-    def pulse_gather(self, error=None):
-        self._get_widget("progressbar_gather").pulse()
+    def pulse_wait(self, error=None):
+        self._get_widget("progressbar_wait").pulse()
         while gtk.events_pending():
             gtk.main_iteration(False)
 

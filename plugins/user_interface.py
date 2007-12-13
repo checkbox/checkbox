@@ -12,9 +12,10 @@ class UserInterface(Plugin):
 
     def run(self):
         for event_type in [("interface", "show-permission"),
+                           ("interface", "show-gather"),
                            ("interface", "show-category"),
                            ("interface", "show-question"),
-                           ("interface", "show-gather"),
+                           ("interface", "show-report"),
                            ("interface", "show-exchange")]:
             self._manager.reactor.fire(event_type, self.interface)
 

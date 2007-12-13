@@ -53,7 +53,7 @@ class ManualQuestion(Plugin):
         while question:
             has_prev = questions.has_prev()
             has_next = questions.has_next()
-            direction = interface.show_question(question, has_prev, has_next)
+            direction = interface.show_question(question, has_prev, True)
             if direction is 1:
                 question = has_next and questions.next() or None
             else:

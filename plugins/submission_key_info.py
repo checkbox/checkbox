@@ -6,9 +6,9 @@ class SubmissionKeyInfo(Plugin):
 
     def register(self, manager):
         super(SubmissionKeyInfo, self).register(manager)
-        self._manager.reactor.call_on("gather", self.gather)
+        self._manager.reactor.call_on("report", self.report)
 
-    def gather(self):
+    def report(self):
         message = get_submission_key(self._manager.registry)
         self._manager.reactor.fire(("report", "submission_key"), message)
 

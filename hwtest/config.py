@@ -57,6 +57,8 @@ class Config(object):
         self._parser._defaults = IncludeDict(self._parser)
 
     def load_path(self, path):
+        if not os.path.exists(path):
+            raise Exception, "No such configuration file: %s" % path
         self._parser.read(path)
 
     def get_defaults(self):

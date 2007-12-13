@@ -123,8 +123,9 @@ class RegistryManager(RepositoryManager, Registry):
     @cache
     def items(self):
         items = []
-        sections = self._config.get_defaults().registries
-        for section_name in re.split(r"\s+", sections):
+        registries = self._config.get_defaults().registries
+        section_names = re.split(r"\s+", registries)
+        for section_name in section_names:
             section = self.load_section(section_name)
             for name in section.get_names():
                 entry = section.load_entry(name)
