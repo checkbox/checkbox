@@ -1,4 +1,7 @@
+import sys
 import gettext
+
+from hwtest.contrib.REThread import REThread
 
 
 class UserInterface(object):
@@ -18,6 +21,24 @@ class UserInterface(object):
         self.gettext_domain = "hwtest"
         gettext.textdomain(self.gettext_domain)
 
+    def do_wait(self, function, message):
+        self.show_wait(message)
+        thread = REThread(target=function, name="do_wait")
+        thread.start()
+        while thread.isAlive():
+            self.show_pulse()
+            try:
+                thread.join(0.1)
+            except KeyboardInterrupt:
+                sys.exit(1)
+        thread.exc_raise()
+
+    def show_wait(self, message):
+        raise NotImplementedError, "this function must be overridden by subclasses"
+
+    def show_pulse(self):
+        raise NotImplementedError, "this function must be overridden by subclasses"
+
     def show_category(self):
         raise NotImplementedError, "this function must be overridden by subclasses"
 
@@ -27,5 +48,5 @@ class UserInterface(object):
     def show_exchange(self, error):
         raise NotImplementedError, "this function must be overridden by subclasses"
 
-    def show_error_message(self, error):
+    def show_error_message(self, title, text):
         raise NotImplementedError, "this function must be overridden by subclasses"

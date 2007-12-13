@@ -131,6 +131,14 @@ class CLIProgressDialog(CLIDialog):
 
 class CLIInterface(UserInterface):
 
+    def show_wait(self, message):
+        title = "Hardware Test"
+        self.progress = CLIProgressDialog(title, message)
+        self.progress.show()
+
+    def show_pulse(self):
+        self.progress.set()
+
     def show_category(self):
         title = "Hardware Test"
         text = "Please select the category of your hardware."
