@@ -1,4 +1,4 @@
-from xml.dom.minidom import Document, Node, Element, parseString
+from xml.dom.minidom import Document, Element, parseString
 
 
 class ReportManager(object):
