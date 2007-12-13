@@ -49,15 +49,19 @@ class ManualQuestion(Plugin):
 
     def show_question(self, interface):
         questions = self._question_manager.get_iterator()
-        question = questions.next()
-        while question:
-            has_prev = questions.has_prev()
-            has_next = questions.has_next()
-            direction = interface.show_question(question, has_prev, True)
+
+        direction = 1
+        while True:
             if direction is 1:
-                question = has_next and questions.next() or None
+                question = questions.has_next() and questions.next() or None
             else:
-                question = has_prev and questions.prev() or None
+                question = questions.has_prev() and questions.prev() or None
+
+            if not question:
+                break
+
+            direction = interface.show_question(question,
+                questions.has_prev(), True)
 
     def add_question(self, *args, **kwargs):
         kwargs["data_path"] = self.config.data_path

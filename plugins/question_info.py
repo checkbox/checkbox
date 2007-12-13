@@ -1,3 +1,5 @@
+import logging
+
 from hwtest.plugin import Plugin
 
 
@@ -9,6 +11,10 @@ class QuestionInfo(Plugin):
         self._manager.reactor.call_on("report", self.report)
 
     def gather(self):
+        if not self._manager.registry.questions:
+            logging.info("No questions found.")
+            return
+
         for (name, question) in self._manager.registry.questions.items():
             self._manager.reactor.fire((question.type, "add-question"),
                 **dict(question.items() + [('name', name)]))
