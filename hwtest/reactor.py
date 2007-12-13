@@ -56,7 +56,7 @@ class Reactor(object):
         if type(id) is EventID:
             self._event_handlers[id._event_type].remove(id._pair)
         else:
-            raise InvalidID("EventID instance expected, received %r" % id)
+            raise Exception, "EventID instance expected, received %r" % id
 
     def cancel_all_calls(self, event_type):
         del self._event_handlers[event_type]
