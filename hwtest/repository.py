@@ -14,7 +14,7 @@ class RepositorySection(object):
     def __init__(self, config, name):
         """
         Constructor which takes a configuration instance and name as
-        argument. The former is expected to contain a directory and
+        argument. The former is expected to contain directories and
         blacklist.
         """
         self._config = config
@@ -23,23 +23,24 @@ class RepositorySection(object):
         self._entries = {}
 
     @property
-    def directory(self):
+    def directories(self):
         """
         Directory contained for this sections.
         """
-        return os.path.expanduser(self._config.directory)
+        directories = re.split(r"\s+", self._config.directories)
+        return [os.path.expanduser(d) for d in directories]
 
     def get_names(self):
         """
-        Get all the module names contained in the directory for this
+        Get all the module names contained in the directories for this
         section.
         """
         if self._names is None:
-            directory_names = [p.replace('.py', '')
-                for p in os.listdir(self.directory)
-                if p.endswith('.py') and p != "__init__.py"]
-            blacklist_names = re.split(r"\s+", self._config.blacklist or '')
-            self._names = list(set(directory_names).difference(set(blacklist_names)))
+            for directory in self.directories:
+                names = [p.replace('.py', '') for p in os.listdir(directory)
+                    if p.endswith('.py') and p != "__init__.py"]
+                blacklist_names = re.split(r"\s+", self._config.blacklist or '')
+                self._names = list(set(names).difference(set(blacklist_names)))
 
         return self._names
 
@@ -66,9 +67,9 @@ class RepositorySection(object):
             logging.info("Loading name %s from section %s",
                 name, self.name)
 
-            sys.path.insert(0, self.directory)
+            sys.path[:0] = self.directories
             module = __import__(name)
-            del sys.path[0]
+            del sys.path[len(self.directories) - 1]
 
             if not hasattr(module, "factory"):
                 raise Exception, "Factory variable not found: %s" % module

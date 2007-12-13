@@ -103,10 +103,18 @@ class QuestionsRegistry(Registry):
 
         return questions
 
+    def _load_directories(self, directories):
+        questions = []
+        for directory in directories:
+            questions.extend(self._load_directory(directory))
+
+        return questions
+
     @cache
     def items(self):
         items = []
-        questions = self._load_directory(self.config.directory)
+        directories = re.split("\s+", self.config.directories)
+        questions = self._load_directories(directories)
         for question in questions:
             key = question.pop("name")
             value = MapRegistry(self.config, question)

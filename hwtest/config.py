@@ -1,4 +1,6 @@
+import re
 import os
+
 from ConfigParser import ConfigParser
 
 
@@ -9,10 +11,11 @@ class IncludeDict(dict):
         self._parser = parser
 
     def __setitem__(self, key, value):
-        if key == "include":
-            self._parser.read(value)
-        else:
-            super(IncludeDict, self).__setitem__(key, value)
+        if key == "includes":
+            for path in re.split(r"\s+", value):
+                self._parser.read(path)
+
+        super(IncludeDict, self).__setitem__(key, value)
 
 
 class ConfigSection(object):
