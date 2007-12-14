@@ -1,5 +1,6 @@
 import re
 import dbus
+import logging
 
 from time import strptime
 from datetime import datetime
@@ -47,6 +48,7 @@ class HalReport(XmlReport):
         self._dumps_text(str(obj), parent, "double")
 
     def dumps_hal(self, obj, parent):
+        logging.debug("Dumping hal")
         parent.setAttribute("version", obj["version"])
         for device in obj["devices"].values():
             element = self._create_element("device", parent)
@@ -64,6 +66,7 @@ class HalReport(XmlReport):
                 self._manager.call_dumps({key: value}, parent)
 
     def loads_hal(self, node):
+        logging.debug("Loading hal")
         hal = {}
         hal["version"] = node.getAttribute("version")
         hal["devices"] = []
@@ -84,6 +87,7 @@ class ProcessorReport(Report):
         self._manager.handle_loads("processors", self.loads_processors)
 
     def dumps_processors(self, obj, parent):
+        logging.debug("Dumping processors")
         for name, processor in obj.items():
             element = self._create_element("processor", parent)
             element.setAttribute("id", str(processor.id))
@@ -91,6 +95,7 @@ class ProcessorReport(Report):
             self._manager.call_dumps(dict(processor), element)
 
     def loads_processors(self, node):
+        logging.debug("Loading processors")
         processors = {}
         for processor in (p for p in node.childNodes if p.localName == "processor"):
             value = self._manager.call_loads(processor)
@@ -134,6 +139,7 @@ class QuestionReport(Report):
             self._manager.handle_loads(lt, lh)
 
     def dumps_questions(self, obj, parent):
+        logging.debug("Dumping questions")
         for question in [dict(p) for p in obj]:
             element = self._create_element("question", parent)
             name = question.pop("name")
@@ -164,6 +170,7 @@ class QuestionReport(Report):
         self._create_text_node(str(obj), parent)
 
     def loads_questions(self, node):
+        logging.debug("Loading questions")
         questions = []
         for question in (q for q in node.childNodes if q.localName == "question"):
             value = self._manager.call_loads(question)
