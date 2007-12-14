@@ -1,8 +1,7 @@
-from commands import getoutput
-
 from hwtest.lib.environ import add_path, remove_path
 
 from hwtest.plugin import Plugin
+from hwtest.answer import YES, NO
 from hwtest.question import Question, QuestionManager
 
 
@@ -12,9 +11,9 @@ class Auto(Question):
 
     def run_command(self):
         add_path(self.path)
-        output = getoutput(self.command)
+        (stdout, stderr, wait) = super(Auto, self).run_command()
         remove_path(self.path)
-        return output
+        return (stdout, stderr, wait)
 
 
 class AutoQuestion(Plugin):
@@ -32,13 +31,16 @@ class AutoQuestion(Plugin):
 
     def show_question(self, interface):
         for question in self._question_manager.get_iterator():
-            output = question.run_command()
-            question.set_answer(1, output)
+            (stdout, stderr, wait) = question.run_command()
+            status = wait == 0 and YES or NO
+            question.set_answer(status, stdout)
+            self._manager.reactor.fire(("report", "add_question"),
+                question.properties)
 
-    def add_question(self, *args, **kwargs):
+    def add_question(self, question):
+        kwargs = dict(question)
         kwargs["path"] = self.config.scripts_path
-        question = self._question_factory(self._manager.registry,
-            *args, **kwargs)
+        question = self._question_factory(self._manager.registry, **kwargs)
         self._question_manager.add_question(question)
 
 

@@ -49,20 +49,11 @@ class GTKInterface(UserInterface):
 
     def _set_sensitive(self, name, boolean):
         widget = self._get_widget(name)
-        widget.set_sensitive(boolean)
+        widget.set_sensitive(bool(boolean))
 
-    def _run_question(self, question):
-        # Run test
-        if question.command != None:
-            output = question.run_command()[0].strip()
-            self._set_sensitive("button_test_again", True)
-        else:
-            output = ''
-            self._set_sensitive("button_test_again", False)
-
-        add_variable("output", output)
+    def _test_again(self, question):
+        question.run()
         self._set_label("label_question", question.description)
-        remove_variable("output")
 
     def show_wait(self, message=None):
         self._set_sensitive("button_previous", False)
@@ -94,9 +85,9 @@ class GTKInterface(UserInterface):
             "radiobutton_laptop": "laptop",
             "radiobutton_server": "server"})
 
-    def show_question(self, question, has_prev=False, has_next=False):
+    def show_question(self, question, has_prev=True, has_next=True):
         # Set buttons
-        self._set_sensitive("button_test_again", False)
+        self._set_sensitive("button_test_again", question.command)
         self._set_sensitive("button_previous", has_prev)
         self._set_sensitive("button_next", has_next)
         self._get_widget("button_previous").show()
@@ -107,7 +98,7 @@ class GTKInterface(UserInterface):
         if hasattr(self, "handler_id"):
             button_test_again.disconnect(self.handler_id)
         self.handler_id = button_test_again.connect("clicked",
-            lambda w, question=question: self._run_question(question))
+            lambda w, question=question: self._test_again(question))
 
         # Default answers
         if question.answer:
@@ -118,8 +109,7 @@ class GTKInterface(UserInterface):
             self._set_textview("textview_comment", "")
             self._get_widget("radiobutton_skip").set_active(True)
 
-        self._dialog.show()
-        self._run_question(question)
+        self._test_again(question)
 
         response = self._dialog.run()
         while gtk.events_pending():

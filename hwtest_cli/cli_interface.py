@@ -152,6 +152,7 @@ class CLIInterface(UserInterface):
         return categories[response - 1]
 
     def show_question(self, question, has_prev=False, has_next=False):
+        question.run()
         dialog = CLIChoiceDialog(question.name, question.description)
         answers = ['yes', 'no', 'skip']
         for answer in answers:

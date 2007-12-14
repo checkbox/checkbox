@@ -116,7 +116,7 @@ class QuestionsRegistry(Registry):
         directories = re.split("\s+", self.config.directories)
         questions = self._load_directories(directories)
         for question in questions:
-            key = question.pop("name")
+            key = question["name"]
             value = MapRegistry(self.config, question)
             items.append((key, value))
 

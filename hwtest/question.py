@@ -7,6 +7,7 @@ of question.
 """
 
 import re
+import os
 import logging
 from subprocess import Popen, PIPE
 
@@ -14,8 +15,9 @@ from hwtest.excluder import Excluder
 from hwtest.iterator import Iterator
 from hwtest.repeater import PreRepeater
 from hwtest.resolver import Resolver
-
 from hwtest.answer import Answer, NO, SKIP
+
+from hwtest.lib.environ import add_variable, remove_variable
 
 
 DESKTOP = 'desktop'
@@ -131,8 +133,8 @@ class Question(object):
         "architectures": ALL_ARCHITECTURES,
         "categories": ALL_CATEGORIES,
         "depends": [],
+        "relations": [],
         "requires": None,
-        "relations": None,
         "command": None,
         "optional": False}
 
@@ -140,15 +142,8 @@ class Question(object):
         self.registry = registry
         self.properties = kwargs
         self.answer = None
+        self._cache = {}
         self._validate()
-
-    def get_properties(self):
-        properties = {}
-        for field in Question.required_fields + Question.optional_fields.keys():
-            properties[field] = self.properties[field]
-        if self.answer:
-            properties['answer'] = self.answer.get_properties()
-        return properties
 
     def _validate(self):
         # Unknown fields
@@ -191,13 +186,40 @@ class Question(object):
 
         raise AttributeError, attr
 
+    def run(self):
+        self.run_command()
+        self.run_description()
+        return self._output
+
     def run_command(self):
-        logging.info("Running command: %s" % self.command)
-        process = Popen([self.command], shell=True,
-            stdin=None, stdout=PIPE, stderr=PIPE,
-            close_fds=True)
-        (stdout, stderr) = process.communicate()
-        return (stdout, stderr, process.wait())
+        if self.command:
+            logging.info("Running command: %s" % self.command)
+            process = Popen([self.command], shell=True,
+                stdin=None, stdout=PIPE, stderr=PIPE,
+                close_fds=True)
+            (stdout, stderr) = process.communicate()
+            self._output = (stdout, stderr, process.wait())
+        else:
+            self._output = ('', '', 0)
+
+        return self._output
+
+    def run_description(self):
+        if not hasattr(self, "_description"):
+            self._description = self.properties["description"]
+        add_variable("output", self._output[0])
+        command = "cat <<EOF\n%s\nEOF\n" % self._description
+        self.properties["description"] = os.popen(command).read()
+        remove_variable("output")
+        return self.properties["description"]
+
+    def get_properties(self):
+        properties = {}
+        for field in Question.required_fields + Question.optional_fields.keys():
+            properties[field] = self.properties[field]
+        if self.answer:
+            properties['answer'] = self.answer.get_properties()
+        return properties
 
     def set_answer(self, status, data='', auto=False):
         self.answer = Answer(self, status, data, auto)

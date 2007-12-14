@@ -10,16 +10,9 @@ class Manual(Question):
 
     required_fields = Question.required_fields + ["data_path", "scripts_path"]
 
-    def __getattr__(self, attr):
-        if attr is "description":
-            return self.get_description()
-        else:
-            return super(Manual, self).__getattr__(attr)
-
-    def get_description(self):
+    def run_description(self):
         add_path(self.scripts_path)
-        command = "cat <<EOF\n%s\nEOF\n" % self.properties["description"]
-        description = os.popen(command).read()
+        description = super(Manual, self).run_description()
         remove_path(self.scripts_path)
         return description
 
@@ -34,6 +27,7 @@ class Manual(Question):
 
 class ManualQuestion(Plugin):
 
+    # Manual questions should be asked first.
     priority = -100
 
     def __init__(self, config, question_factory=None):
@@ -52,22 +46,23 @@ class ManualQuestion(Plugin):
 
         direction = 1
         while True:
-            if direction is 1:
-                question = questions.has_next() and questions.next() or None
-            else:
-                question = questions.has_prev() and questions.prev() or None
-
-            if not question:
+            try:
+                if direction == 1:
+                    question = questions.next()
+                else:
+                    question = questions.prev()
+            except StopIteration:
                 break
 
-            direction = interface.show_question(question,
-                questions.has_prev(), True)
+            direction = interface.show_question(question, questions.has_prev())
+            self._manager.reactor.fire(("report", "add-question"),
+                question.properties)
 
-    def add_question(self, *args, **kwargs):
+    def add_question(self, question):
+        kwargs = dict(question)
         kwargs["data_path"] = self.config.data_path
         kwargs["scripts_path"] = self.config.scripts_path
-        question = self._question_factory(self._manager.registry,
-            *args, **kwargs)
+        question = self._question_factory(self._manager.registry, **kwargs)
         self._question_manager.add_question(question)
 
 
