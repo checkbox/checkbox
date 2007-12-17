@@ -19,7 +19,6 @@ class HTTPTransport(object):
         """Actually POSTs the payload to the server."""
 
         import urllib2
-        import hwtest.contrib.urllib2_file
 
         headers.setdefault("User-Agent", "hwtest/%s" % VERSION)
 
@@ -28,13 +27,13 @@ class HTTPTransport(object):
         ret = opener.open(self._url, payload)
         return ret
 
-    def exchange(self, payload, headers={}):
+    def exchange(self, payload, headers={}, timeout=120):
         """Exchange the payload with the server."""
 
         import urllib2
 
         ret = None
-        socket.setdefaulttimeout(10)
+        socket.setdefaulttimeout(timeout)
         try:
             ret = self._post(payload, headers)
         except urllib2.URLError:

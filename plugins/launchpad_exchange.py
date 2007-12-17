@@ -58,6 +58,8 @@ class LaunchpadExchange(Plugin):
         self._payload = message
 
     def exchange(self):
+        import hwtest.contrib.urllib2_file
+
         # Encode form data
         form = {}
         for field, value in self._form.items():
