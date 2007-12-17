@@ -39,8 +39,7 @@ class Application(object):
 
         # Config setup
         self.config = Config()
-        if os.path.exists(config_file):
-            self.config.load_path(config_file)
+        self.config.load_path(config_file)
 
         # Registry manager setup
         self.registry = RegistryManager(self.config)
