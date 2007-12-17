@@ -1,3 +1,5 @@
+import re
+
 from xml.dom.minidom import Node
 
 from hwtest.report import Report, ReportManager
@@ -151,3 +153,12 @@ class XmlReport(Report):
 
     def loads_none(self, node):
         return None
+
+
+def convert_bool(string):
+    if re.match('^(yes|true|1)$', string, re.IGNORECASE):
+        return True
+    elif re.match('^(no|false|0)$', string, re.IGNORECASE):
+        return False
+    else:
+        raise Exception, "Invalid boolean type: %s" % string

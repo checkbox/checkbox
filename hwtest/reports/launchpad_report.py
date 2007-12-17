@@ -1,4 +1,3 @@
-import re
 import dbus
 import logging
 
@@ -9,7 +8,8 @@ from xml.dom.minidom import Node
 
 from hwtest.registry import Registry
 from hwtest.report import Report
-from hwtest.reports.xml_report import XmlReportManager, XmlReport
+from hwtest.reports.xml_report import (XmlReportManager, XmlReport,
+    convert_bool)
 
 
 class LaunchpadReportManager(XmlReportManager):
@@ -232,12 +232,3 @@ class SummaryReport(Report):
     def loads_datetime(self, node):
         value = node.getAttribute("value")
         return datetime(*strptime(value, "%Y-%m-%d %H:%M:%S")[0:7])
-
-
-def convert_bool(string):
-    if re.match('^(yes|true)$', string, re.IGNORECASE):
-        return True
-    elif re.match('^(no|false)$', string, re.IGNORECASE):
-        return False
-    else:
-        raise Exception, "Invalid boolean type: %s" % string
