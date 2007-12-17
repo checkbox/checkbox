@@ -9,7 +9,7 @@ Package: hwtest
 XB-Python-Version: ${python:Versions}
 Section: python
 Architecture: all
-Pre-Depends: ${python:Depends}, ${misc:Depends}
+Pre-Depends: ${misc:Depends}
 Depends: python-dbus | python2.4-dbus, python-apt | python2.4-apt, hal, fping, xbase-clients, libxrandr2
 Description: Hardware test
  This project provides an interface for gathering hardware details and
@@ -19,7 +19,7 @@ Description: Hardware test
 Package: hwtest-cli
 XB-Python-Version: ${python:Versions}
 Architecture: all
-Pre-Depends: ${python:Depends}, ${misc:Depends}
+Pre-Depends: ${misc:Depends}
 Depends: hwtest
 Description: CLI interface for the hwtest program
  This project provides an interface for gathering hardware details and
@@ -32,7 +32,7 @@ Package: hwtest-gtk
 XB-Python-Version: ${python:Versions}
 Section: gnome
 Architecture: all
-Pre-Depends: ${python:Depends}, ${misc:Depends}
+Pre-Depends: ${misc:Depends}
 Depends: python-gtk2, python-glade2, gksu, hwtest
 Description: GTK interface for the hwtest program
  This project provides an interface for gathering hardware details and
