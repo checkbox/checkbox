@@ -11,10 +11,37 @@
 
 import os
 import sys
-import ConfigParser
+from ConfigParser import ConfigParser
 from optparse import OptionParser
 
 from debconf import Debconf, DebconfCommunicator, DebconfError, MEDIUM
+
+
+DEFAULTSECT = "DEFAULT"
+
+
+# HACK: This writes the includes line first.
+class Config(ConfigParser):
+
+    def write(self, fp):
+        """Write an .ini-format representation of the configuration state."""
+        if self._defaults:
+            fp.write("[%s]\n" % DEFAULTSECT)
+            defaults = dict(self._defaults)
+            if 'includes' in defaults:
+                key = 'includes'
+                value = defaults.pop(key)
+                fp.write("%s = %s\n" % (key, str(value).replace('\n', '\n\t')))
+            for (key, value) in defaults.items():
+                fp.write("%s = %s\n" % (key, str(value).replace('\n', '\n\t')))
+            fp.write("\n")
+        for section in self._sections:
+            fp.write("[%s]\n" % section)
+            for (key, value) in self._sections[section].items():
+                if key != "__name__":
+                    fp.write("%s = %s\n" %
+                             (key, str(value).replace('\n', '\n\t')))
+            fp.write("\n")
 
 
 class Install(object):
@@ -36,7 +63,7 @@ class Install(object):
         self._config_path = config_path or self.config_base % {"name": name}
         self._example_path = example_path or self.example_base % {"name": name}
 
-        self._config = ConfigParser.ConfigParser()
+        self._config = Config()
         if os.environ.get("DEBIAN_HAS_FRONTEND"):
             if os.environ.get("DEBCONF_REDIR"):
                 write = os.fdopen(3, "w")
