@@ -46,12 +46,11 @@ class Plugin(Repository):
     is defined.
     """
 
-    priority = 0
     persist_name = None
 
     def register(self, manager):
         self._manager = manager
         if hasattr(self, "run"):
-            manager.reactor.call_on("run", self.run, self.priority)
+            manager.reactor.call_on("run", self.run)
         if self.persist_name is not None:
             self._persist = manager.persist.root_at(self.persist_name)

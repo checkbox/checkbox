@@ -25,8 +25,9 @@ class AutoQuestion(Plugin):
 
     def register(self, manager):
         super(AutoQuestion, self).register(manager)
-        for (rt, rh) in [(("auto", "add-question"), self.add_question),
-                         (("interface", "show-question"), self.show_question)]:
+        for (rt, rh) in [
+             (("auto", "add-question"), self.add_question),
+             (("interface", "show-question"), self.show_question)]:
             self._manager.reactor.call_on(rt, rh)
 
     def show_question(self, interface):

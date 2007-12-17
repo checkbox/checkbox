@@ -11,12 +11,13 @@ class UserInterface(Plugin):
         self.interface = interface_class(config)
 
     def run(self):
-        for event_type in [("interface", "show-permission"),
-                           ("interface", "show-gather"),
-                           ("interface", "show-category"),
-                           ("interface", "show-question"),
-                           ("interface", "show-report"),
-                           ("interface", "show-exchange")]:
+        for event_type in [
+             ("interface", "show-permission"),
+             ("interface", "show-gather"),
+             ("interface", "show-category"),
+             ("interface", "show-question"),
+             ("interface", "show-report"),
+             ("interface", "show-exchange")]:
             self._manager.reactor.fire(event_type, self.interface)
 
 

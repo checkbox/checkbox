@@ -1,3 +1,5 @@
+import logging
+
 from hwtest.submission import get_submission_key
 from hwtest.plugin import Plugin
 
@@ -10,6 +12,7 @@ class SubmissionKeyInfo(Plugin):
 
     def report(self):
         message = get_submission_key(self._manager.registry)
+        logging.info("Submission key: %s", message)
         self._manager.reactor.fire(("report", "submission_key"), message)
 
 

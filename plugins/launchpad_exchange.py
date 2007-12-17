@@ -4,12 +4,10 @@ import bz2
 import logging
 
 from StringIO import StringIO
-from datetime import datetime
 from socket import gethostname
 
 from hwtest.log import format_delta
 from hwtest.plugin import Plugin
-from hwtest.reports.launchpad_report import LaunchpadReportManager
 from hwtest.transport import HTTPTransport
 
 
@@ -17,81 +15,63 @@ class LaunchpadExchange(Plugin):
 
     def __init__(self, config):
         super(LaunchpadExchange, self).__init__(config)
-        self._report = {
-            "summary": {
-                "private": False,
-                "contactable": False,
-                "live_cd": False,
-                "date_created": str(datetime.utcnow()).split(".")[0]},
-            "hardware": {},
-            "software": {},
-            "questions": []}
         self._form = {
+            "field.private": False,
+            "field.contactable": False,
+            "field.live_cd": False,
             "field.format": u'VERSION_1',
             "field.actions.upload": u'Upload'}
 
     def register(self, manager):
         super(LaunchpadExchange, self).register(manager)
-        for (rt, rh) in [("exchange", self.exchange),
-                         (("report", "architecture"), self.report_architecture),
-                         (("report", "submission_key"), self.report_submission_key),
-                         (("report", "system_key"), self.report_system_key),
-                         (("report", "distribution"), self.report_distribution),
-                         (("report", "device"), self.report_device),
-                         (("report", "processor"), self.report_processor),
-                         (("report", "email"), self.report_email),
-                         (("report", "questions"), self.report_questions)]:
+        for (rt, rh) in [
+             ("exchange", self.exchange),
+             (("report", "datetime"), self.report_datetime),
+             (("report", "architecture"), self.report_architecture),
+             (("report", "submission_key"), self.report_submission_key),
+             (("report", "system_key"), self.report_system_key),
+             (("report", "distribution"), self.report_distribution),
+             (("report", "email"), self.report_email),
+             (("report", "launchpad"), self.report_launchpad)]:
             self._manager.reactor.call_on(rt, rh)
 
+    def report_datetime(self, message):
+        self._form["field.date_created"] = message
+
     def report_architecture(self, message):
-        self._report["summary"]["architecture"] = message
+        self._form["field.architecture"] = message
 
     def report_submission_key(self, message):
-        logging.info("Submission key: %s", message)
         self._form["field.submission_key"] = message
 
     def report_system_key(self, message):
-        logging.info("System key: %s", message)
-        self._report["summary"]["system_id"] = message
+        self._form["field.system"] = message
 
     def report_distribution(self, message):
-        self._report["software"]["lsbrelease"] = dict(message)
-        self._report["summary"]["distribution"] = message.distributor_id
-        self._report["summary"]["distroseries"] = message.release
-
-    def report_device(self, message):
-        self._report["hardware"]["hal"] = message
-
-    def report_processor(self, message):
-        self._report["hardware"]["processors"] = message
+        self._form["field.distribution"] = message.distributor_id
+        self._form["field.distroseries"] = message.release
 
     def report_email(self, message):
         self._form["field.emailaddress"] = message
 
-    def report_questions(self, message):
-        self._report["questions"].extend(message)
+    def report_launchpad(self, message):
+        self._payload = message
 
     def exchange(self):
-        # Combine summary with form data
-        form = dict(self._form)
-        for k, v in self._report['summary'].items():
-            form_field = k.replace("system_id", "system")
-            form["field.%s" % form_field] = str(v).encode("utf-8")
+        # Encode form data
+        form = {}
+        for field, value in self._form.items():
+            form[field] = str(value).encode("utf-8")
 
-        # Prepare the payload and attach it to the form
-        report_manager = LaunchpadReportManager("system", "1.0")
-        payload = report_manager.dumps(self._report).toprettyxml("")
-        if self.config.cache_file:
-            file(self.config.cache_file, "w").write(payload)
-
-        cpayload = bz2.compress(payload)
+        # Compress and add payload to form
+        cpayload = bz2.compress(self._payload)
         f = StringIO(cpayload)
         f.name = '%s.xml.bz2' % str(gethostname())
         f.size = len(cpayload)
         form["field.submission_data"] = f
 
         if logging.getLogger().getEffectiveLevel() <= logging.DEBUG:
-            logging.debug("Uncompressed payload length: %d", len(payload))
+            logging.debug("Uncompressed payload length: %d", len(self._payload))
 
         self._manager.set_error()
         start_time = time.time()

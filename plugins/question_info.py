@@ -11,9 +11,11 @@ class QuestionInfo(Plugin):
 
     def register(self, manager):
         super(QuestionInfo, self).register(manager)
-        self._manager.reactor.call_on("gather", self.gather)
-        self._manager.reactor.call_on("report", self.report)
-        self._manager.reactor.call_on(("report", "add-question"), self.add_question)
+        for (rt, rh) in [
+             ("gather", self.gather),
+             ("report", self.report),
+             (("report", "add-question"), self.add_question)]:
+            self._manager.reactor.call_on(rt, rh)
 
     def gather(self):
         if not self._manager.registry.questions:

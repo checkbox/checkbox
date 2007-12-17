@@ -27,9 +27,6 @@ class Manual(Question):
 
 class ManualQuestion(Plugin):
 
-    # Manual questions should be asked first.
-    priority = -100
-
     def __init__(self, config, question_factory=None):
         super(ManualQuestion, self).__init__(config)
         self._question_factory = question_factory or Manual
@@ -37,9 +34,12 @@ class ManualQuestion(Plugin):
 
     def register(self, manager):
         super(ManualQuestion, self).register(manager)
-        for (rt, rh) in [(("manual", "add-question"), self.add_question),
-                         (("interface", "show-question"), self.show_question)]:
-            self._manager.reactor.call_on(rt, rh)
+
+        # Manual questions should be asked first.
+        for (rt, rh, rp) in [
+             (("manual", "add-question"), self.add_question, -100),
+             (("interface", "show-question"), self.show_question, 0)]:
+            self._manager.reactor.call_on(rt, rh, rp)
 
     def show_question(self, interface):
         questions = self._question_manager.get_iterator()
