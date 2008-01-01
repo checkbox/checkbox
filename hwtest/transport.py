@@ -2,8 +2,6 @@ import logging
 import socket
 import pprint
 
-from hwtest import VERSION
-
 
 class HTTPTransport(object):
     """Transport makes a request to exchange message data over HTTP."""
@@ -20,7 +18,7 @@ class HTTPTransport(object):
 
         import urllib2
 
-        headers.setdefault("User-Agent", "hwtest/%s" % VERSION)
+        headers.setdefault("User-Agent", "hwtest")
 
         opener = urllib2.build_opener()
         opener.addheaders = list(headers.items())

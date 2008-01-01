@@ -13,8 +13,10 @@ from hwtest.transport import HTTPTransport
 
 class LaunchpadExchange(Plugin):
 
-    def __init__(self, config):
-        super(LaunchpadExchange, self).__init__(config)
+    attributes = ["transport_url"]
+
+    def __init__(self, *args, **kwargs):
+        super(LaunchpadExchange, self).__init__(*args, **kwargs)
         self._form = {
             "field.private": False,
             "field.contactable": False,

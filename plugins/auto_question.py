@@ -18,9 +18,10 @@ class Auto(Question):
 
 class AutoQuestion(Plugin):
 
-    def __init__(self, config, question_factory=None):
-        super(AutoQuestion, self).__init__(config)
-        self._question_factory = question_factory or Auto
+    attributes = ["scripts_path"]
+
+    def __init__(self, *args, **kwargs):
+        super(AutoQuestion, self).__init__(*args, **kwargs)
         self._question_manager = QuestionManager()
 
     def register(self, manager):
@@ -41,7 +42,7 @@ class AutoQuestion(Plugin):
     def add_question(self, question):
         kwargs = dict(question)
         kwargs["path"] = self.config.scripts_path
-        question = self._question_factory(self._manager.registry, **kwargs)
+        question = Auto(self._manager.registry, **kwargs)
         self._question_manager.add_question(question)
 
 

@@ -4,8 +4,10 @@ from hwtest.reports.launchpad_report import LaunchpadReportManager
 
 class LaunchpadReport(Plugin):
 
-    def __init__(self, config):
-        super(LaunchpadReport, self).__init__(config)
+    attributes = ["cache_file"]
+
+    def __init__(self, *args, **kwargs):
+        super(LaunchpadReport, self).__init__(*args, **kwargs)
         self._report = {
             "summary": {
                 "private": False,

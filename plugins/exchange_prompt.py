@@ -3,6 +3,8 @@ from hwtest.plugin import Plugin
 
 class ExchangePrompt(Plugin):
 
+    attributes = ["email"]
+
     def register(self, manager):
         super(ExchangePrompt, self).register(manager)
         self._manager.reactor.call_on(("interface", "show-exchange"),

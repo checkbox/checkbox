@@ -3,12 +3,14 @@ from hwtest.plugin import Plugin
 
 class UserInterface(Plugin):
 
-    def __init__(self, config):
-        super(UserInterface, self).__init__(config)
+    attributes = ["interface_module", "interface_class"]
+
+    def __init__(self, *args, **kwargs):
+        super(UserInterface, self).__init__(*args, **kwargs)
         interface_module = __import__(self.config.interface_module,
             None, None, [''])
         interface_class = getattr(interface_module, self.config.interface_class)
-        self.interface = interface_class(config)
+        self.interface = interface_class(self.config)
 
     def run(self):
         for event_type in [

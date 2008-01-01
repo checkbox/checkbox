@@ -3,6 +3,8 @@ from hwtest.plugin import Plugin
 
 class CategoryPrompt(Plugin):
 
+    attributes = ["category"]
+
     def register(self, manager):
         super(CategoryPrompt, self).register(manager)
         self._manager.reactor.call_on(("interface", "show-category"), self.show_category)
