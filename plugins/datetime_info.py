@@ -10,7 +10,7 @@ class DatetimeInfo(Plugin):
         self._manager.reactor.call_on("report", self.report)
 
     def report(self):
-        message = str(datetime.utcnow()).split(".")[0]
+        message = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%S")
         self._manager.reactor.fire(("report", "datetime"), message)
 
 
