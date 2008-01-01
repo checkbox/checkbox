@@ -12,7 +12,7 @@ config.load_path("examples/hwtest.conf")
 
 setup(
     name = 'hwtest',
-    version = config.defaults().version,
+    version = config.get_defaults().version,
     author = 'Marc Tardif',
     author_email = 'marc.tardif@canonical.com',
     license = 'GPL',
