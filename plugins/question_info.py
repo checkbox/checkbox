@@ -26,10 +26,12 @@ class QuestionInfo(Plugin):
             self._manager.reactor.fire((question.type, "add-question"), question)
 
     def add_question(self, question):
-        self.questions[question["name"]] = question
+        self.questions[question.name] = question
 
     def report(self):
-        message = self.questions.values()
+        message = []
+        for question in self.questions.values():
+            message.append(question.get_properties())
         self._manager.reactor.fire(("report", "questions"), message)
 
 

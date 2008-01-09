@@ -36,8 +36,7 @@ class AutoQuestion(Plugin):
             (stdout, stderr, wait) = question.run_command()
             status = wait == 0 and YES or NO
             question.set_answer(status, stdout)
-            self._manager.reactor.fire(("report", "add_question"),
-                question.properties)
+            self._manager.reactor.fire(("report", "add-question"), question)
 
     def add_question(self, question):
         kwargs = dict(question)

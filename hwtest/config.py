@@ -51,13 +51,13 @@ class ConfigDefaults(ConfigSection):
 
 class Config(object):
 
-    def __init__(self, config_parser=None):
+    def __init__(self, path):
+        self.path = path
         self.sections = {}
 
-        self._parser = config_parser or ConfigParser()
+        self._parser = ConfigParser()
         self._parser._defaults = IncludeDict(self._parser)
 
-    def load_path(self, path):
         if not os.path.exists(path):
             raise Exception, "No such configuration file: %s" % path
         self._parser.read(path)

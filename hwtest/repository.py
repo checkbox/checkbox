@@ -130,16 +130,11 @@ class Repository(object):
         can be used to pass options to repositories.
         """
         self.config = config
-        self._validate()
 
-    def _validate(self):
-        """
-        Validation routine to make sure the repository instance is sane.
-        """
         if self.attributes and not self.config:
             raise Exception, \
-                "Missing configuration section '%s'" \
-                % self.config.name
+                "Missing configuration section for attributes: %s" \
+                % ", ".join(self.attributes)
         for attribute in self.attributes:
             if not hasattr(self.config, attribute):
                 raise Exception, \

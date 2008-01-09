@@ -10,6 +10,5 @@ class TestHelper(unittest.TestCase):
         section_class_name = section_test_class_name.replace("Test", "")
         section_name = section_class_name.replace("Registry", "").lower()
 
-        config = Config()
-        config.load_path("./examples/hwtest.conf")
+        config = Config("./examples/hwtest.conf")
         self.config = config.get_section("hwtest/registries/%s" % section_name)

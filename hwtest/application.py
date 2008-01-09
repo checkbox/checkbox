@@ -94,8 +94,7 @@ class ApplicationManager(object):
 
         # Config setup
         config_file = os.path.expanduser(options.config_file)
-        config = Config()
-        config.load_path(config_file)
+        config = Config(config_file)
 
         # Check options
         if options.version:

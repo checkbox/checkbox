@@ -6,8 +6,7 @@ from distutils.core import setup
 from hwtest.config import Config
 
 
-config = Config()
-config.load_path("examples/hwtest.conf")
+config = Config("examples/hwtest.conf")
 
 
 setup(

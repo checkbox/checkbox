@@ -56,8 +56,7 @@ class ManualQuestion(Plugin):
                 break
 
             direction = interface.show_question(question, questions.has_prev())
-            self._manager.reactor.fire(("report", "add-question"),
-                question.properties)
+            self._manager.reactor.fire(("report", "add-question"), question)
 
     def add_question(self, question):
         kwargs = dict(question)

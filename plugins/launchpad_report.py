@@ -23,14 +23,18 @@ class LaunchpadReport(Plugin):
         # Launchpad report should be generated last.
         for (rt, rh, rp) in [
              ("report", self.report, 100),
+             (("report", "client"), self.report_client, 0),
              (("report", "datetime"), self.report_datetime, 0),
              (("report", "architecture"), self.report_architecture, 0),
              (("report", "system_key"), self.report_system_key, 0),
              (("report", "distribution"), self.report_distribution, 0),
              (("report", "device"), self.report_device, 0),
              (("report", "processor"), self.report_processor, 0),
-             (("report", "questions"), self.report_questions,0 )]:
+             (("report", "questions"), self.report_questions, 0)]:
             self._manager.reactor.call_on(rt, rh, rp)
+
+    def report_client(self, message):
+        self._report["summary"]["client"] = message
 
     def report_datetime(self, message):
         self._report["summary"]["date_created"] = message
