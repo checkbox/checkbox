@@ -66,7 +66,7 @@ class Config(object):
         kwargs = self._parser.defaults()
         return ConfigDefaults(self, 'DEFAULT', **kwargs)
 
-    def get_section(self, section):
+    def get_section(self, section_name):
         if section_name in self._parser.sections():
             kwargs = dict(self._parser.items(section_name))
             return ConfigSection(self, section_name, **kwargs)
