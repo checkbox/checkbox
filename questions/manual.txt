@@ -1,5 +1,5 @@
 name: audio
-type: manual
+plugin: manual
 categories: laptop, desktop
 relations: alsa.type == 'control'
 command: audio_playback $data_path/audio_playback.wav
@@ -11,7 +11,7 @@ description:
  Did you hear a sound?
 
 name: resolution
-type: manual
+plugin: manual
 categories: laptop, desktop
 relations: pci.device_class == 3
 description:
@@ -22,7 +22,7 @@ description:
  Is your video display hardware working properly?
 
 name: mouse
-type: manual
+plugin: manual
 categories: laptop, desktop
 relations: 'input.mouse' in info.capabilities
 description:
@@ -31,7 +31,7 @@ description:
  Is your mouse working properly?
 
 name: network
-type: manual
+plugin: manual
 relations: pci.device_class == 2
 description:
  Detecting your network controller(s):
@@ -41,7 +41,7 @@ description:
  Is this correct?
 
 name: internet
-type: manual
+plugin: manual
 command: internet_question
 relations: pci.device_class == 2
 description:
@@ -52,7 +52,7 @@ description:
  Is your internet connection working properly?
 
 name: keyboard
-type: manual
+plugin: manual
 relations: 'input.keyboard' in info.capabilities
 description:
  Typing keys on your keyboard should display

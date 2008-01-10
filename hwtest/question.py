@@ -108,6 +108,7 @@ class Question(object):
     fields:
 
     name:         Unique name for a question.
+    plugin:       Plugin name to handle this question.
     description:  Long description of what the question does.
     suite:        Name of the suite containing this question.
 
@@ -119,16 +120,16 @@ class Question(object):
                   desktop, laptop and/or server
     depends:      List of names on which this question depends. So, if
                   the other question fails, this question will be skipped.
-    requires:     Registry expression which is required to ask this
-                  question. For example: lsb.release == '6.06'
     relations:    Registry expression which points to the relations for this
                   question. For example: 'input.mouse' in info.capabilities
+    requires:     Registry expression which is required to ask this
+                  question. For example: lsb.release == '6.06'
     command:      Command to run for the question.
     optional:     Boolean expression set to True if this question is optional
                   or False if this question is required.
     """
 
-    required_fields = ["name", "type", "description", "suite"]
+    required_fields = ["name", "plugin", "description", "suite"]
     optional_fields = {
         "architectures": ALL_ARCHITECTURES,
         "categories": ALL_CATEGORIES,

@@ -23,7 +23,7 @@ class QuestionInfo(Plugin):
             return
 
         for (name, question) in self._manager.registry.questions.items():
-            self._manager.reactor.fire((question.type, "add-question"), question)
+            self._manager.reactor.fire((question.plugin, "add-question"), question)
 
     def add_question(self, question):
         self.questions[question.name] = question
