@@ -5,6 +5,7 @@ import logging
 from logging import StreamHandler, FileHandler, Formatter
 from optparse import OptionParser
 
+from hwtest.contrib import bpickle_registry
 from hwtest.contrib.persist import Persist
 
 from hwtest.config import Config
@@ -43,7 +44,9 @@ class Application(object):
 
     def run(self):
         try:
+            bpickle_registry.install()
             self.reactor.run()
+            bpickle_registry.uninstall()
         except:
             logging.exception("Error running reactor.")
             raise
