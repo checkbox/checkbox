@@ -73,7 +73,9 @@ class GTKInterface(UserInterface):
             gtk.main_iteration(False)
 
     def show_category(self):
-        self._get_widget("button_previous").hide()
+        # Set buttons
+        self._set_sensitive("button_previous", False)
+        self._set_sensitive("button_next", True)
         self._notebook.set_current_page(0)
 
         response = self._dialog.run()

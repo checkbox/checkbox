@@ -27,7 +27,7 @@ class CategoryPrompt(Plugin):
 
         # Try to determine category from kernel version
         if not category:
-            version = registry.hal.system.kernel.version
+            version = registry.hal.computer.system.kernel.version
             if version.endswith("-server"):
                 category = "server"
 
