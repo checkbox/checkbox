@@ -19,7 +19,10 @@ class ExchangePrompt(Plugin):
 
         while True:
             self._manager.reactor.fire(("report", "email"), email)
-            self._manager.reactor.fire("exchange")
+            interface.do_wait(lambda: self._manager.reactor.fire("exchange"),
+                "Please wait while information is being"
+                " exchanged with the server.")
+
             error = self._manager.get_error()
             if not error:
                 break
