@@ -208,7 +208,7 @@ class Question(object):
     def run_description(self):
         if not hasattr(self, "_description"):
             self._description = self.properties["description"]
-        add_variable("output", self._output[0])
+        add_variable("output", self._output[0].strip())
         command = "cat <<EOF\n%s\nEOF\n" % self._description
         self.properties["description"] = os.popen(command).read()
         remove_variable("output")
