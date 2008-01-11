@@ -36,5 +36,7 @@ else:
 
     if res:
         resolution = "%s @ %d Hz" % (res, float(freq))
+    else:
+        resolution = "Not detected."
 
 print resolution
