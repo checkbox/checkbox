@@ -10,8 +10,6 @@ class UserInterface(object):
 
        A concrete subclass must implement all the abstract ui_* methods.'''
 
-    title = "Hardware Testing"
-
     def __init__(self, config):
         self.config = config
 
@@ -45,7 +43,10 @@ class UserInterface(object):
     def show_question(self, question, has_prev, has_next):
         raise NotImplementedError, "this function must be overridden by subclasses"
 
-    def show_exchange(self, error):
+    def show_exchange(self, message, error):
+        raise NotImplementedError, "this function must be overridden by subclasses"
+
+    def show_final(self, message):
         raise NotImplementedError, "this function must be overridden by subclasses"
 
     def show_error_message(self, title, text):

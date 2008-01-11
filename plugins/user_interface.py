@@ -19,7 +19,8 @@ class UserInterface(Plugin):
              ("interface", "show-category"),
              ("interface", "show-question"),
              ("interface", "show-report"),
-             ("interface", "show-exchange")]:
+             ("interface", "show-exchange"),
+             ("interface", "show-final")]:
             self._manager.reactor.fire(event_type, self.interface)
 
 

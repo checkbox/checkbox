@@ -171,9 +171,9 @@ class CLIInterface(UserInterface):
 
         return 1
 
-    def show_exchange(self, error=None):
+    def show_exchange(self, message=None, error=None):
         title = "Authentication"
-        text = "Please provide your email address."
+        text = message or "Please provide your Launchpad email address:"
         dialog = CLIInputDialog(title, text)
 
         if error:
@@ -181,6 +181,13 @@ class CLIInterface(UserInterface):
 
         email = dialog.run()
         return email
+
+    def show_final(self, message=None):
+        title = "Done"
+        text = "Successfully sent information to server!"
+        dialog = CLIInputDialog(title, text)
+
+        return dialog.run()
 
     def show_error_message(self, title, text):
         dialog = CLIDialog('Error: %s' % title, text)

@@ -1,3 +1,5 @@
+import re
+
 from hwtest.plugin import Plugin
 
 
@@ -11,6 +13,7 @@ class ExchangePrompt(Plugin):
             self.show_exchange)
  
     def show_exchange(self, interface):
+        email_regexp = re.compile(r"^\S+@\S+.\S+$", re.I)
         email = self.config.email
 
         # Prompt for email the first time unless it is provided.
@@ -18,16 +21,19 @@ class ExchangePrompt(Plugin):
             email = interface.show_exchange()
 
         while True:
-            self._manager.reactor.fire(("report", "email"), email)
-            interface.do_wait(lambda: self._manager.reactor.fire("exchange"),
-                "Please wait while information is being"
-                " exchanged with the server.")
+            if not email_regexp.match(email):
+                error = "Email address must be in a proper format."
 
-            error = self._manager.get_error()
-            if not error:
-                break
+            else:
+                self._manager.reactor.fire(("report", "email"), email)
+                interface.do_wait(lambda: self._manager.reactor.fire("exchange"),
+                    "Exchanging information with the server...")
+                error = self._manager.get_error()
+                if not error:
+                    break
+
             # Always prompt for the email subsequent times.
-            email = interface.show_exchange(error)
+            email = interface.show_exchange(error=error)
 
 
 factory = ExchangePrompt
