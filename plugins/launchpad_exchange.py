@@ -57,7 +57,7 @@ class LaunchpadExchange(Plugin):
         self._form["field.emailaddress"] = message
 
     def report_launchpad(self, message):
-        self._payload = message
+        self._file = message
 
     def exchange(self):
         import hwtest.contrib.urllib2_file
@@ -68,14 +68,15 @@ class LaunchpadExchange(Plugin):
             form[field] = str(value).encode("utf-8")
 
         # Compress and add payload to form
-        cpayload = bz2.compress(self._payload)
+        payload = file(self._file, "r").read()
+        cpayload = bz2.compress(payload)
         f = StringIO(cpayload)
         f.name = '%s.xml.bz2' % str(gethostname())
         f.size = len(cpayload)
         form["field.submission_data"] = f
 
         if logging.getLogger().getEffectiveLevel() <= logging.DEBUG:
-            logging.debug("Uncompressed payload length: %d", len(self._payload))
+            logging.debug("Uncompressed payload length: %d", len(payload))
 
         self._manager.set_error()
         start_time = time.time()

@@ -63,10 +63,10 @@ class LaunchpadReport(Plugin):
         # Prepare the payload and attach it to the form
         report_manager = LaunchpadReportManager("system", "1.0")
         payload = report_manager.dumps(self._report).toprettyxml("")
-        if self.config.cache_file:
-            file(self.config.cache_file, "w").write(payload)
 
-        self._manager.reactor.fire(("report", "launchpad"), payload)
+        cache_file = self.config.cache_file
+        file(cache_file, "w").write(payload)
+        self._manager.reactor.fire(("report", "launchpad"), cache_file)
 
 
 factory = LaunchpadReport
