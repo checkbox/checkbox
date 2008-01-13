@@ -37,6 +37,7 @@ class XmlReport(Report):
                          ("str", self.loads_str),
                          ("unicode", self.loads_str),
                          ("list", self.loads_list),
+                         ("value", self.loads_value),
                          ("property", self.loads_property),
                          ("properties", self.loads_properties),
                          (type(None), self.loads_none)]:
@@ -47,6 +48,7 @@ class XmlReport(Report):
         text_node = self._create_text_node(obj, parent)
 
     def dumps_bool(self, obj, parent):
+        obj = convert_bool(str(obj))
         self._dumps_text(str(obj), parent, "bool")
 
     def dumps_int(self, obj, parent):
@@ -63,27 +65,27 @@ class XmlReport(Report):
 
     def dumps_list(self, obj, parent):
         parent.setAttribute("type", "list")
-        for val in obj:
+        for value in obj:
             # HACK: lists are supposedly expressed as a property
-            properties = self._create_element("property", parent)
-            self._manager.call_dumps(val, properties)
+            element = self._create_element("value", parent)
+            self._manager.call_dumps(value, element)
         
     def dumps_dict(self, obj, parent):
         for key in sorted(obj.keys()):
-            val = obj[key]
+            value = obj[key]
             if self._manager.dumps_table.has_key(key):
                 # Custom dumps handler
                 element = self._create_element(key, parent)
-                self._manager.dumps_table[key](val, element)
-            elif type(val) == dict:
-                # <key type="">val</key>
+                self._manager.dumps_table[key](value, element)
+            elif type(value) == dict:
+                # <key type="">value</key>
                 element = self._create_element(key, parent)
-                self._manager.call_dumps(val, element)
+                self._manager.call_dumps(value, element)
             else:
-                # <property name="key" type="">val</property>
+                # <property name="key" type="">value</property>
                 property = self._create_element("property", parent)
                 property.setAttribute("name", key)
-                self._manager.call_dumps(val, property)
+                self._manager.call_dumps(value, property)
 
     def dumps_none(self, obj, parent):
         self._create_element("none", parent)
@@ -116,6 +118,10 @@ class XmlReport(Report):
             if child.nodeType != Node.TEXT_NODE:
                 nodes.append(self._manager.call_loads(child))
         return nodes
+
+    def loads_value(self, node):
+        child = node.firstChild
+        return self.loads_str(child)
 
     def loads_property(self, node):
         type = node.getAttribute("type")

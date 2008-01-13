@@ -20,8 +20,9 @@ class IncludeDict(dict):
 
 class ConfigSection(object):
 
-    def __init__(self, parent, **kwargs):
+    def __init__(self, parent, name, **kwargs):
         self.parent = parent
+        self.name = name
         self._kwargs = kwargs
 
     def _get_value(self, attr):
@@ -30,8 +31,8 @@ class ConfigSection(object):
     def __getattr__(self, attr):
         if attr in self._kwargs:
             return self._get_value(attr)
-        else:
-            return None
+
+        raise AttributeError, attr
 
 
 class ConfigDefaults(ConfigSection):
@@ -50,25 +51,25 @@ class ConfigDefaults(ConfigSection):
 
 class Config(object):
 
-    def __init__(self, config_parser=None):
+    def __init__(self, path):
+        self.path = path
         self.sections = {}
 
-        self._parser = config_parser or ConfigParser()
+        self._parser = ConfigParser()
         self._parser._defaults = IncludeDict(self._parser)
 
-    def load_path(self, path):
         if not os.path.exists(path):
             raise Exception, "No such configuration file: %s" % path
         self._parser.read(path)
 
     def get_defaults(self):
         kwargs = self._parser.defaults()
-        return ConfigDefaults(self, **kwargs)
+        return ConfigDefaults(self, 'DEFAULT', **kwargs)
 
-    def get_section(self, section):
-        if section in self._parser.sections():
-            kwargs = dict(self._parser.items(section))
-            return ConfigSection(self, **kwargs)
+    def get_section(self, section_name):
+        if section_name in self._parser.sections():
+            kwargs = dict(self._parser.items(section_name))
+            return ConfigSection(self, section_name, **kwargs)
 
         return None
 

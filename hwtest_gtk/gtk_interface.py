@@ -18,7 +18,7 @@ class GTKInterface(UserInterface):
         self.widgets.signal_autoconnect(self)
 
         self._dialog = self._get_widget("dialog_hwtest")
-        self._dialog.set_title(self.title)
+        self._dialog.set_title(config.title)
 
         self._notebook = self._get_widget("notebook_hwtest")
 
@@ -73,7 +73,9 @@ class GTKInterface(UserInterface):
             gtk.main_iteration(False)
 
     def show_category(self):
-        self._get_widget("button_previous").hide()
+        # Set buttons
+        self._set_sensitive("button_previous", False)
+        self._set_sensitive("button_next", True)
         self._notebook.set_current_page(0)
 
         response = self._dialog.run()
@@ -126,10 +128,13 @@ class GTKInterface(UserInterface):
 
         return response
 
-    def show_exchange(self, error=None):
+    def show_exchange(self, message=None, error=None):
         self._set_sensitive("button_previous", False)
         self._set_sensitive("button_next", True)
         self._notebook.set_current_page(3)
+
+        if message is not None:
+            self._get_widget("label_exchange").set_markup(message)
 
         if error is not None:
             markup= "<span color='#FF0000'><b>%s</b></span>" % error
@@ -142,6 +147,20 @@ class GTKInterface(UserInterface):
         authentication = self._get_widget("entry_authentication").get_text()
 
         return authentication
+
+    def show_final(self, message=None):
+        self._set_sensitive("button_previous", False)
+        self._set_sensitive("button_next", True)
+        self._notebook.set_current_page(4)
+
+        if message is not None:
+            self._get_widget("label_final").set_markup(message)
+
+        response = self._dialog.run()
+        while gtk.events_pending():
+            gtk.main_iteration(False)
+
+        return response
 
     def show_error_message(self, title, text):
         md = gtk.MessageDialog(type=gtk.MESSAGE_ERROR,

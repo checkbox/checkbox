@@ -27,9 +27,10 @@ class Manual(Question):
 
 class ManualQuestion(Plugin):
 
-    def __init__(self, config, question_factory=None):
-        super(ManualQuestion, self).__init__(config)
-        self._question_factory = question_factory or Manual
+    attributes = ["data_path", "scripts_path"]
+
+    def __init__(self, *args, **kwargs):
+        super(ManualQuestion, self).__init__(*args, **kwargs)
         self._question_manager = QuestionManager()
 
     def register(self, manager):
@@ -55,14 +56,13 @@ class ManualQuestion(Plugin):
                 break
 
             direction = interface.show_question(question, questions.has_prev())
-            self._manager.reactor.fire(("report", "add-question"),
-                question.properties)
+            self._manager.reactor.fire(("report", "add-question"), question)
 
     def add_question(self, question):
         kwargs = dict(question)
         kwargs["data_path"] = self.config.data_path
         kwargs["scripts_path"] = self.config.scripts_path
-        question = self._question_factory(self._manager.registry, **kwargs)
+        question = Manual(self._manager.registry, **kwargs)
         self._question_manager.add_question(question)
 
 

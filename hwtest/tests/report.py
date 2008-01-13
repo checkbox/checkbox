@@ -1,6 +1,6 @@
 import unittest
 
-from xml.dom.minidom import Document, Node, parseString
+from xml.dom.minidom import Document
 
 from hwtest.report import ReportManager, Report
 
@@ -32,7 +32,7 @@ class ReportManagerTest(unittest.TestCase):
 
     def create_text_node(self, name, text):
         element = self.create_element(name)
-        text_node = document.createTextNode(text)
+        text_node = element.createTextNode(text)
         element.appendChild(text_node)
         return text_node
 

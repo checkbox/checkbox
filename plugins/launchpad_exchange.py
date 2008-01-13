@@ -13,8 +13,10 @@ from hwtest.transport import HTTPTransport
 
 class LaunchpadExchange(Plugin):
 
-    def __init__(self, config):
-        super(LaunchpadExchange, self).__init__(config)
+    attributes = ["transport_url"]
+
+    def __init__(self, *args, **kwargs):
+        super(LaunchpadExchange, self).__init__(*args, **kwargs)
         self._form = {
             "field.private": False,
             "field.contactable": False,
@@ -55,7 +57,7 @@ class LaunchpadExchange(Plugin):
         self._form["field.emailaddress"] = message
 
     def report_launchpad(self, message):
-        self._payload = message
+        self._file = message
 
     def exchange(self):
         import hwtest.contrib.urllib2_file
@@ -66,20 +68,21 @@ class LaunchpadExchange(Plugin):
             form[field] = str(value).encode("utf-8")
 
         # Compress and add payload to form
-        cpayload = bz2.compress(self._payload)
+        payload = file(self._file, "r").read()
+        cpayload = bz2.compress(payload)
         f = StringIO(cpayload)
         f.name = '%s.xml.bz2' % str(gethostname())
         f.size = len(cpayload)
         form["field.submission_data"] = f
 
         if logging.getLogger().getEffectiveLevel() <= logging.DEBUG:
-            logging.debug("Uncompressed payload length: %d", len(self._payload))
+            logging.debug("Uncompressed payload length: %d", len(payload))
 
         self._manager.set_error()
         start_time = time.time()
         transport = HTTPTransport(self.config.transport_url)
         ret = transport.exchange(form)
-        if not ret:
+        if not ret or ret.code != 200:
             # HACK: this should return a useful error message
             self._manager.set_error("Communication failure.")
             return

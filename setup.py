@@ -3,12 +3,15 @@
 from glob import glob
 from distutils.core import setup
 
-from hwtest import VERSION
+from hwtest.config import Config
+
+
+config = Config("examples/hwtest.conf")
 
 
 setup(
     name = 'hwtest',
-    version = VERSION,
+    version = config.get_defaults().version,
     author = 'Marc Tardif',
     author_email = 'marc.tardif@canonical.com',
     license = 'GPL',

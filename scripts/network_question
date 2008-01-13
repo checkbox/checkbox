@@ -4,8 +4,7 @@ from hwtest.registry import RegistryManager
 from hwtest.config import Config
 
 
-config = Config()
-config.load_path("/etc/hwtest.d/hwtest.conf")
+config = Config("/etc/hwtest.d/hwtest.conf")
 
 registry = RegistryManager(config)
 network_devices = registry.hal.eval_recursive("pci.device_class == 2")

@@ -22,6 +22,6 @@ if num_packets == 0:
 elif num_packets == 2:
     status = "Internet connection fully established"
 else:
-    status = "Connection established by problematic"
+    status = "Connection established lost a packet"
 
 print status

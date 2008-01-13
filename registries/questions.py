@@ -12,6 +12,8 @@ from map import MapRegistry
 
 class QuestionsRegistry(Registry):
 
+    attributes = ["directories", "blacklist"]
+
     def _load_filename(self, filename):
         logging.info("Loading questions from filename: %s", filename)
 
@@ -92,21 +94,22 @@ class QuestionsRegistry(Registry):
 
         return questions
 
-    def _load_directory(self, directory):
+    def _load_directory(self, directory, blacklist):
         logging.info("Loading questions from directory: %s", directory)
 
         questions = []
         for name in [name for name in os.listdir(directory)
                      if name.endswith(".txt")]:
-            filename = os.path.join(directory, name)
-            questions.extend(self._load_filename(filename))
+            if name not in blacklist:
+                filename = os.path.join(directory, name)
+                questions.extend(self._load_filename(filename))
 
         return questions
 
-    def _load_directories(self, directories):
+    def _load_directories(self, directories, blacklist):
         questions = []
         for directory in directories:
-            questions.extend(self._load_directory(directory))
+            questions.extend(self._load_directory(directory, blacklist))
 
         return questions
 
@@ -114,7 +117,8 @@ class QuestionsRegistry(Registry):
     def items(self):
         items = []
         directories = re.split("\s+", self.config.directories)
-        questions = self._load_directories(directories)
+        blacklist = re.split("\s+", self.config.blacklist)
+        questions = self._load_directories(directories, blacklist)
         for question in questions:
             key = question["name"]
             value = MapRegistry(self.config, question)

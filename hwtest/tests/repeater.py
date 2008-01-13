@@ -1,6 +1,6 @@
 from hwtest.tests.iterator import IteratorTest
 
-from hwtest.repeater import PreRepeater, PostRepeater
+from hwtest.repeater import PostRepeater
 
 
 class PostRepeaterTest(IteratorTest):

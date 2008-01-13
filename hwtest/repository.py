@@ -122,9 +122,21 @@ class Repository(object):
     implementation.
     """
 
+    attributes = []
+
     def __init__(self, config):
         """
         Constructor which takes a configuration instance as argument. This
         can be used to pass options to repositories.
         """
         self.config = config
+
+        if self.attributes and not self.config:
+            raise Exception, \
+                "Missing configuration section for attributes: %s" \
+                % ", ".join(self.attributes)
+        for attribute in self.attributes:
+            if not hasattr(self.config, attribute):
+                raise Exception, \
+                    "Configuration section '%s' missing attribute: %s" \
+                    % (self.config.name, attribute)

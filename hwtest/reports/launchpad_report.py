@@ -4,9 +4,6 @@ import logging
 from time import strptime
 from datetime import datetime
 
-from xml.dom.minidom import Node
-
-from hwtest.registry import Registry
 from hwtest.report import Report
 from hwtest.reports.xml_report import (XmlReportManager, XmlReport,
     convert_bool)
@@ -17,6 +14,7 @@ class LaunchpadReportManager(XmlReportManager):
     def __init__(self, *args, **kwargs):
         super(LaunchpadReportManager, self).__init__(*args, **kwargs)
         self.add(HalReport())
+        self.add(LsbReport())
         self.add(ProcessorReport())
         self.add(QuestionReport())
         self.add(SummaryReport())
@@ -37,15 +35,15 @@ class HalReport(XmlReport):
 
     def register_loads(self):
         for (lt, lh) in [("hal", self.loads_hal),
-                         ("uint64", self.loads_int),
-                         ("double", self.loads_float)]:
+                         ("dbus.UInt64", self.loads_int),
+                         ("dbus.Double", self.loads_float)]:
             self._manager.handle_loads(lt, lh)
 
     def dumps_uint64(self, obj, parent):
-        self._dumps_text(str(obj), parent, "uint64")
+        self._dumps_text(str(obj), parent, "dbus.UInt64")
 
     def dumps_double(self, obj, parent):
-        self._dumps_text(str(obj), parent, "double")
+        self._dumps_text(str(obj), parent, "dbus.Double")
 
     def dumps_hal(self, obj, parent):
         logging.debug("Dumping hal")
@@ -54,10 +52,11 @@ class HalReport(XmlReport):
             element = self._create_element("device", parent)
             element.setAttribute("id", str(device.id))
             element.setAttribute("udi", device.info.udi)
-            properties = self._create_element("properties", element)
-            self.dumps_device(device, properties)
+            self.dumps_device(device, element)
 
     def dumps_device(self, obj, parent, keys=[]):
+        from hwtest.registry import Registry
+
         for key, value in obj.items():
             if isinstance(value, Registry):
                 self.dumps_device(value, parent, keys + [key])
@@ -71,10 +70,23 @@ class HalReport(XmlReport):
         hal["version"] = node.getAttribute("version")
         hal["devices"] = []
         for device in (d for d in node.childNodes if d.localName == "device"):
-            properties = device.getElementsByTagName("properties")[0]
-            value = self._manager.call_loads(properties)
+            value = self._manager.call_loads(device)
             hal["devices"].append(value)
         return hal
+
+
+class LsbReport(Report):
+
+    def register_dumps(self):
+        for (dt, dh) in [("lsbrelease", self.dumps_lsbrelease)]:
+            self._manager.handle_dumps(dt, dh)
+
+    def dumps_lsbrelease(self, obj, parent):
+        logging.debug("Dumping lsbrelease")
+        for key, value in obj.items():
+            property = self._create_element("property", parent)
+            property.setAttribute("name", key)
+            self._manager.call_dumps(value, property)
 
 
 class ProcessorReport(Report):
@@ -110,61 +122,39 @@ class QuestionReport(Report):
     """Report for question related data types."""
 
     def register_dumps(self):
-        for (dt, dh) in [("questions", self.dumps_questions),
-                         ("architectures", self.dumps_architectures),
-                         ("categories", self.dumps_categories),
-                         ("relations", self.dumps_relations),
-                         ("depends", self.dumps_depends),
-                         ("description", self.dumps_text),
-                         ("command", self.dumps_text),
-                         ("optional", self.dumps_text),
-                         ("data", self.dumps_text),
-                         ("status", self.dumps_text),
-                         ("suite", self.dumps_text),
-                         ("auto", self.dumps_text)]:
+        for (dt, dh) in [("questions", self.dumps_questions)]:
             self._manager.handle_dumps(dt, dh)
 
     def register_loads(self):
         for (lt, lh) in [("questions", self.loads_questions),
-                         ("categories", self.loads_list),
-                         ("architectures", self.loads_list),
-                         ("depends", self.loads_list),
-                         ("command", self.loads_data),
-                         ("description", self.loads_data),
-                         ("optional", self.loads_bool),
-                         ("data", self.loads_data),
-                         ("status", self.loads_data),
-                         ("suite", self.loads_data),
-                         ("auto", self.loads_bool)]:
+                         ("answer", self.loads_data),
+                         ("answer_choices", self.loads_none),
+                         ("comment", self.loads_data)]:
             self._manager.handle_loads(lt, lh)
 
     def dumps_questions(self, obj, parent):
         logging.debug("Dumping questions")
-        for question in [dict(p) for p in obj]:
+        for question in obj:
             element = self._create_element("question", parent)
-            name = question.pop("name")
-            element.setAttribute("name", str(name))
-            self._manager.call_dumps(question, element)
+            element.setAttribute("name", question["name"])
+            self.dumps_answer(question["answer"]["status"], element)
+            self.dumps_comment(question["answer"]["data"], element)
 
-    def dumps_architectures(self, obj, parent):
-        for architecture in obj:
-            element = self._create_element("architecture", parent)
-            self.dumps_text(architecture, element)
+    def dumps_answer(self, obj, parent):
+        from hwtest.answer import ALL_STATUS
 
-    def dumps_categories(self, obj, parent):
-        for category in obj:
-            element = self._create_element("category", parent)
-            self.dumps_text(category, element)
+        answer = self._create_element("answer", parent)
+        answer.setAttribute("type", "multiple_choice")
+        self._create_text_node(str(obj), answer)
 
-    def dumps_relations(self, obj, parent):
-        for relation in obj:
-            element = self._create_element("relation", parent)
-            self.dumps_text(relation.id, element)
+        answer_choices = self._create_element("answer_choices", parent)
+        for choice in ALL_STATUS:
+            value = self._create_element("value", answer_choices)
+            self._manager.call_dumps(choice, value)
 
-    def dumps_depends(self, obj, parent):
-        for depend in obj:
-            element = self._create_element("depend", parent)
-            self.dumps_text(depend, element)
+    def dumps_comment(self, obj, parent):
+        comment = self._create_element("comment", parent)
+        self._create_text_node(str(obj), comment)
 
     def dumps_text(self, obj, parent):
         self._create_text_node(str(obj), parent)
@@ -178,18 +168,11 @@ class QuestionReport(Report):
             questions.append(value)
         return questions
 
-    def loads_list(self, node):
-        list = []
-        for child in (c for c in node.childNodes if c.nodeType != Node.TEXT_NODE):
-            value = self.loads_data(child)
-            list.append(value)
-        return list
+    def loads_none(self, node):
+        return None
 
     def loads_data(self, node):
         return node.firstChild.data.strip()
-
-    def loads_bool(self, node):
-        return convert_bool(self.loads_data(node))
 
 
 class SummaryReport(Report):
@@ -203,7 +186,8 @@ class SummaryReport(Report):
                          ("architecture", self.dumps_value),
                          ("private", self.dumps_value),
                          ("contactable", self.dumps_value),
-                         ("date_created", self.dumps_datetime)]:
+                         ("date_created", self.dumps_datetime),
+                         ("client", self.dumps_client)]:
             self._manager.handle_dumps(dt, dh)
 
     def register_loads(self):
@@ -214,7 +198,8 @@ class SummaryReport(Report):
                          ("architecture", self.loads_str),
                          ("private", self.loads_bool),
                          ("contactable", self.loads_bool),
-                         ("date_created", self.loads_datetime)]:
+                         ("date_created", self.loads_datetime),
+                         ("client", self.loads_client)]:
             self._manager.handle_loads(lt, lh)
 
     def dumps_value(self, obj, parent):
@@ -222,6 +207,10 @@ class SummaryReport(Report):
 
     def dumps_datetime(self, obj, parent):
         parent.setAttribute("value", str(obj).split(".")[0])
+
+    def dumps_client(self, obj, parent):
+        parent.setAttribute("name", obj["name"])
+        parent.setAttribute("version", obj["version"])
 
     def loads_bool(self, node):
         return convert_bool(node.getAttribute("value"))
@@ -231,4 +220,9 @@ class SummaryReport(Report):
 
     def loads_datetime(self, node):
         value = node.getAttribute("value")
-        return datetime(*strptime(value, "%Y-%m-%d %H:%M:%S")[0:7])
+        return datetime(*strptime(value, "%Y-%m-%dT%H:%M:%S")[0:7])
+
+    def loads_client(self, node):
+        name = node.getAttribute("name")
+        version = node.getAttribute("version")
+        return {"name": name, "version": version}

@@ -5,10 +5,15 @@ loads_table = {}
 def dumps(obj, _dt=None):
     if not _dt:
         _dt = dumps_table
-    try:
-        return _dt[type(obj)](obj)
-    except KeyError, e:
-        raise ValueError, "Unsupported type: %s" % e
+
+    type_names = [type(obj)]
+    for type_name in type_names:
+        if _dt.has_key(type_name):
+            return _dt[type_name](obj)
+
+        type_names.extend(type_name.__bases__)
+
+    raise ValueError, "Unsupported type: %s" % type(obj)
 
 
 def loads(str, _lt=loads_table):
@@ -38,26 +43,20 @@ def dumps_unicode(obj):
     return "u%s:%s" % (len(obj), obj)
 
 def dumps_list(obj, _dt=None):
-    if not _dt:
-        _dt = dumps_table
-    return "l%s;" % "".join([_dt[type(val)](val) for val in obj])
+    return "l%s;" % "".join([dumps(val, _dt) for val in obj])
 
 def dumps_tuple(obj, _dt=None):
-    if not _dt:
-        _dt = dumps_table
-    return "t%s;" % "".join([_dt[type(val)](val) for val in obj])
+    return "t%s;" % "".join([dumps(val, _dt) for val in obj])
 
 def dumps_dict(obj, _dt=None):
-    if not _dt:
-        _dt = dumps_table
     keys = obj.keys()
     keys.sort()
     res = []
     append = res.append
     for key in keys:
         val = obj[key]
-        append(_dt[type(key)](key))
-        append(_dt[type(val)](val))
+        append(dumps(key, _dt))
+        append(dumps(val, _dt))
     return "d%s;" % "".join(res)
 
 def dumps_none(obj):

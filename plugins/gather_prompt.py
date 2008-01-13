@@ -10,8 +10,7 @@ class GatherPrompt(Plugin):
  
     def show_gather(self, interface):
         interface.do_wait(lambda: self._manager.reactor.fire("gather"),
-            "Please wait while information is being"
-            " gathered from your system.")
+            "Gathering information from your system...")
 
 
 factory = GatherPrompt

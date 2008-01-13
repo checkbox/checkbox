@@ -1,40 +1,56 @@
 #!/usr/bin/python
 
 import os
+import re
+import sys
 
 
-ati_brain_damage = []
-command = 'xrandr -q'
-for item in os.popen('lsmod | grep fglrx'):
-    ati_brain_damage.append(item)
+def error(message):
+    sys.stderr.write("ERROR: %s\n" % message)
+    sys.exit(1)
 
-if len(ati_brain_damage):
-    resolution = "impossible with fglrx"
-else:
-    resolution = None
-    res, freq = None, None
-    contents = os.popen(command).read()
-    for line in contents.splitlines():
-        line = line.strip()
-        if line.endswith("*"):
-            # gutsy
-            fields = line.replace("*", "").split()
-            if len(fields) == 2:
-                res, freq = fields
-            else:
-                res, freq = fields[0], "N/A"
-            break
-        elif line.startswith("*"):
-            # dapper
-            fields = line.replace("*", "").split('  ')
-            res = fields[1].replace(" ", "")
-            if len(fields) < 4:
-                freq = "N/A"
-            else:
-                freq = fields[4]
-            break
+def check_ati():
+    command = "lsmod | grep fglrx"
+    fglrx_lines = os.popen(command).readlines()
+    if len(fglrx_lines) != 0:
+        print "impossible with fglrx"
+        return True
 
-    if res:
-        resolution = "%s @ %d Hz" % (res, float(freq))
+    return False
 
-print resolution
+def check_resolution():
+    if check_ati():
+        return True
+
+    command = "xrandr -q"
+    xrandr_lines = os.popen(command).readlines()
+    star_lines = [l for l in xrandr_lines if l.find("*") != -1]
+    if len(star_lines) != 1:
+        error("%s should return a single line with '*'" % command)
+
+    star_line = star_lines[0]
+    match = re.search(r"(\d+)\s?x\s?(\d+)", star_line)
+    if not match:
+        error("%s should return pixels like '1024 x 768'" % command)
+
+    horizontal = match.group(1)
+    vertical = match.group(2)
+
+    fields = re.split(r"\s+", star_line)
+    star_fields = [f for f in fields if f.find("*") != -1]
+    if len(star_fields) < 1:
+        error("%s should return a refresh rate with '*'" % command)
+
+    frequency = star_fields[-1].strip("*")
+    print "%s x %s @ %s" % (horizontal, vertical, frequency)
+    return True
+
+def main(args):
+    if check_resolution():
+        return 0
+
+    return 1
+
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv[1:]))
