@@ -15,6 +15,7 @@ class UserInterface(Plugin):
     def run(self):
         for event_type in [
              ("interface", "show-permission"),
+             ("interface", "show-intro"),
              ("interface", "show-gather"),
              ("interface", "show-category"),
              ("interface", "show-question"),
