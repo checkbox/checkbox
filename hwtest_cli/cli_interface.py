@@ -148,8 +148,25 @@ class CLIInterface(UserInterface):
     def show_pulse(self):
         self.progress.set()
 
+    def show_intro(self):
+        title = "Introduction"
+        text = """\
+First, this tool will gather information from your hardware. Second,
+you will be asked questions to confirm that the hardware is working
+properly. Last, you will be asked for your Launchpad email address
+in order to submit the information and your answers.
+
+If you do not have a Launchpad account, you can register here:
+
+  https://edge.launchpad.net/+login
+
+Thank you for taking the time to test your hardware."""
+
+        dialog = CLIChoiceDialog(title, text)
+        dialog.run()
+
     def show_category(self):
-        title = "Hardware Test"
+        title = "Category"
         text = "Please select the category of your hardware."
         dialog = CLIChoiceDialog(title, text)
         categories = ["desktop", "laptop", "server"]

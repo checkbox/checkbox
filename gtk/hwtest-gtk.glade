@@ -97,6 +97,65 @@
 	  <property name="enable_popup">False</property>
 
 	  <child>
+	    <widget class="GtkLabel" id="label_intro">
+	      <property name="visible">True</property>
+	      <property name="label" translatable="yes">
+&lt;b&gt;Welcome to the hardware testing tool!&lt;/b&gt;
+
+First, this tool will gather information from your hardware. Second,
+you will be asked questions to confirm that the hardware is working
+properly. Last, you will be asked for your Launchpad email address
+in order to submit the information and your answers.
+
+If you do not have a Launchpad account, please register here:
+
+  https://edge.launchpad.net/+login
+
+Thank you for taking the time to test your hardware.</property>
+	      <property name="use_underline">False</property>
+	      <property name="use_markup">True</property>
+	      <property name="justify">GTK_JUSTIFY_LEFT</property>
+	      <property name="wrap">False</property>
+	      <property name="selectable">False</property>
+	      <property name="xalign">0.5</property>
+	      <property name="yalign">0.5</property>
+	      <property name="xpad">0</property>
+	      <property name="ypad">0</property>
+	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
+	      <property name="width_chars">-1</property>
+	      <property name="single_line_mode">False</property>
+	      <property name="angle">0</property>
+	    </widget>
+	    <packing>
+	      <property name="tab_expand">False</property>
+	      <property name="tab_fill">True</property>
+	    </packing>
+	  </child>
+
+	  <child>
+	    <widget class="GtkLabel" id="label_tab_intro">
+	      <property name="visible">True</property>
+	      <property name="label" translatable="yes">_Intro</property>
+	      <property name="use_underline">False</property>
+	      <property name="use_markup">False</property>
+	      <property name="justify">GTK_JUSTIFY_LEFT</property>
+	      <property name="wrap">False</property>
+	      <property name="selectable">False</property>
+	      <property name="xalign">0.5</property>
+	      <property name="yalign">0.5</property>
+	      <property name="xpad">0</property>
+	      <property name="ypad">0</property>
+	      <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
+	      <property name="width_chars">-1</property>
+	      <property name="single_line_mode">False</property>
+	      <property name="angle">0</property>
+	    </widget>
+	    <packing>
+	      <property name="type">tab</property>
+	    </packing>
+	  </child>
+
+	  <child>
 	    <widget class="GtkVBox" id="vbox_category">
 	      <property name="visible">True</property>
 	      <property name="homogeneous">False</property>
@@ -105,11 +164,7 @@
 	      <child>
 		<widget class="GtkLabel" id="label_title">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">&lt;big&gt;&lt;b&gt;Hardware Testing&lt;/b&gt;&lt;/big&gt;
-
-The category of your hardware could
-not be determined automatically, so
-please select one of the following:</property>
+		  <property name="label" translatable="yes">What kind of computer is this?</property>
 		  <property name="use_underline">False</property>
 		  <property name="use_markup">True</property>
 		  <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -598,31 +653,6 @@ please select one of the following:</property>
 	      <property name="spacing">0</property>
 
 	      <child>
-		<widget class="GtkLabel" id="label_exchange">
-		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">Please provide your Launchpad email address:</property>
-		  <property name="use_underline">False</property>
-		  <property name="use_markup">True</property>
-		  <property name="justify">GTK_JUSTIFY_LEFT</property>
-		  <property name="wrap">False</property>
-		  <property name="selectable">False</property>
-		  <property name="xalign">0.5</property>
-		  <property name="yalign">0.5</property>
-		  <property name="xpad">0</property>
-		  <property name="ypad">0</property>
-		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
-		  <property name="width_chars">-1</property>
-		  <property name="single_line_mode">False</property>
-		  <property name="angle">0</property>
-		</widget>
-		<packing>
-		  <property name="padding">80</property>
-		  <property name="expand">False</property>
-		  <property name="fill">False</property>
-		</packing>
-	      </child>
-
-	      <child>
 		<widget class="GtkLabel" id="label_exchange_error">
 		  <property name="visible">True</property>
 		  <property name="label" translatable="yes"></property>
@@ -641,7 +671,32 @@ please select one of the following:</property>
 		  <property name="angle">0</property>
 		</widget>
 		<packing>
-		  <property name="padding">0</property>
+		  <property name="padding">40</property>
+		  <property name="expand">False</property>
+		  <property name="fill">False</property>
+		</packing>
+	      </child>
+
+	      <child>
+		<widget class="GtkLabel" id="label_exchange">
+		  <property name="visible">True</property>
+		  <property name="label" translatable="yes">Please provide your Launchpad email address:</property>
+		  <property name="use_underline">False</property>
+		  <property name="use_markup">True</property>
+		  <property name="justify">GTK_JUSTIFY_LEFT</property>
+		  <property name="wrap">False</property>
+		  <property name="selectable">False</property>
+		  <property name="xalign">0.5</property>
+		  <property name="yalign">0.5</property>
+		  <property name="xpad">0</property>
+		  <property name="ypad">0</property>
+		  <property name="ellipsize">PANGO_ELLIPSIZE_NONE</property>
+		  <property name="width_chars">-1</property>
+		  <property name="single_line_mode">False</property>
+		  <property name="angle">0</property>
+		</widget>
+		<packing>
+		  <property name="padding">40</property>
 		  <property name="expand">False</property>
 		  <property name="fill">False</property>
 		</packing>
@@ -661,8 +716,8 @@ please select one of the following:</property>
 		</widget>
 		<packing>
 		  <property name="padding">0</property>
-		  <property name="expand">True</property>
-		  <property name="fill">True</property>
+		  <property name="expand">False</property>
+		  <property name="fill">False</property>
 		</packing>
 	      </child>
 	    </widget>

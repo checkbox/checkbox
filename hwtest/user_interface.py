@@ -4,6 +4,9 @@ import gettext
 from hwtest.contrib.REThread import REThread
 
 
+PREVIOUS = 0
+NEXT = 1
+
 class UserInterface(object):
     '''Abstract base class for encapsulating the workflow and common code for
        any user interface implementation (like GTK, Qt, or CLI).
@@ -35,6 +38,9 @@ class UserInterface(object):
         raise NotImplementedError, "this function must be overridden by subclasses"
 
     def show_pulse(self):
+        raise NotImplementedError, "this function must be overridden by subclasses"
+
+    def show_intro(self):
         raise NotImplementedError, "this function must be overridden by subclasses"
 
     def show_category(self):

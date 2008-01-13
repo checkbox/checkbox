@@ -51,7 +51,14 @@ class GTKInterface(UserInterface):
         widget = self._get_widget(name)
         widget.set_sensitive(bool(boolean))
 
-    def _test_again(self, question):
+    def _run_dialog(self):
+        response = self._dialog.run()
+        while gtk.events_pending():
+            gtk.main_iteration(False)
+
+        return response
+
+    def _run_question(self, question):
         question.run()
         self._set_label("label_question", question.description)
 
@@ -61,26 +68,30 @@ class GTKInterface(UserInterface):
 
         self._set_label("label_wait", message)
         self._get_widget("progressbar_wait").set_fraction(0)
-        self._notebook.set_current_page(2)
+        self._notebook.set_current_page(3)
 
-        response = self._dialog.show()
-        while gtk.events_pending():
-            gtk.main_iteration(False)
+        self._dialog.show()
 
     def show_pulse(self):
         self._get_widget("progressbar_wait").pulse()
         while gtk.events_pending():
             gtk.main_iteration(False)
 
-    def show_category(self):
+    def show_intro(self):
         # Set buttons
         self._set_sensitive("button_previous", False)
         self._set_sensitive("button_next", True)
         self._notebook.set_current_page(0)
 
-        response = self._dialog.run()
-        while gtk.events_pending():
-            gtk.main_iteration(True)
+        self._run_dialog()
+
+    def show_category(self):
+        # Set buttons
+        self._set_sensitive("button_previous", False)
+        self._set_sensitive("button_next", True)
+        self._notebook.set_current_page(1)
+
+        self._run_dialog()
 
         return self._get_radiobutton({
             "radiobutton_desktop": "desktop",
@@ -93,14 +104,14 @@ class GTKInterface(UserInterface):
         self._set_sensitive("button_previous", has_prev)
         self._set_sensitive("button_next", has_next)
         self._get_widget("button_previous").show()
-        self._notebook.set_current_page(1)
+        self._notebook.set_current_page(2)
 
         # Set test again button
         button_test_again = self._get_widget("button_test_again")
         if hasattr(self, "handler_id"):
             button_test_again.disconnect(self.handler_id)
         self.handler_id = button_test_again.connect("clicked",
-            lambda w, question=question: self._test_again(question))
+            lambda w, question=question: self._run_question(question))
 
         # Default answers
         if question.answer:
@@ -111,27 +122,22 @@ class GTKInterface(UserInterface):
             self._set_textview("textview_comment", "")
             self._get_widget("radiobutton_skip").set_active(True)
 
-        self._test_again(question)
+        self._run_question(question)
+        response = self._run_dialog()
 
-        response = self._dialog.run()
-        while gtk.events_pending():
-            gtk.main_iteration(False)
-
-        # Get answer if next button is pressed
-        if response:
-            status = self._get_radiobutton({
-                "radiobutton_yes": "yes",
-                "radiobutton_no": "no",
-                "radiobutton_skip": "skip"})
-            data = self._get_textview("textview_comment")
-            question.set_answer(status, data)
+        status = self._get_radiobutton({
+            "radiobutton_yes": "yes",
+            "radiobutton_no": "no",
+            "radiobutton_skip": "skip"})
+        data = self._get_textview("textview_comment")
+        question.set_answer(status, data)
 
         return response
 
     def show_exchange(self, message=None, error=None):
         self._set_sensitive("button_previous", False)
         self._set_sensitive("button_next", True)
-        self._notebook.set_current_page(3)
+        self._notebook.set_current_page(4)
 
         if message is not None:
             self._get_widget("label_exchange").set_markup(message)
@@ -140,10 +146,7 @@ class GTKInterface(UserInterface):
             markup= "<span color='#FF0000'><b>%s</b></span>" % error
             self._get_widget("label_exchange_error").set_markup(markup)
 
-        response = self._dialog.run()
-        while gtk.events_pending():
-            gtk.main_iteration(False)
-
+        response = self._run_dialog()
         authentication = self._get_widget("entry_authentication").get_text()
 
         return authentication
@@ -151,14 +154,12 @@ class GTKInterface(UserInterface):
     def show_final(self, message=None):
         self._set_sensitive("button_previous", False)
         self._set_sensitive("button_next", True)
-        self._notebook.set_current_page(4)
+        self._notebook.set_current_page(5)
 
         if message is not None:
             self._get_widget("label_final").set_markup(message)
 
-        response = self._dialog.run()
-        while gtk.events_pending():
-            gtk.main_iteration(False)
+        response = self._run_dialog()
 
         return response
 
