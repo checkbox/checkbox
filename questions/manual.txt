@@ -45,11 +45,11 @@ plugin: manual
 command: internet_question
 relations: pci.device_class == 2
 description:
- Testing your internet connection:
+ Testing your connection to the Internet:
  .
  $output
  .
- Is your internet connection working properly?
+ Are you connected to the Internet?
 
 name: keyboard
 plugin: manual
