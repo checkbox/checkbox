@@ -3,10 +3,9 @@ Section: base
 Priority: optional
 Maintainer: Marc Tardif <marc.tardif@canonical.com>
 Standards-Version: 3.6.2.0
-Build-Depends-Indep: cdbs (>= 0.4.34), debhelper (>= 5.0.7), python-dev (>= 2.4)
+Build-Depends: cdbs (>= 0.4.43), debhelper (>= 5.0.37.2), python-support (>= 0.3), python-dev (>= 2.4)
 
 Package: hwtest
-XB-Python-Version: ${python:Versions}
 Section: python
 Architecture: all
 Pre-Depends: ${misc:Depends}
@@ -17,7 +16,6 @@ Description: Hardware test
  to Launchpad.
 
 Package: hwtest-cli
-XB-Python-Version: ${python:Versions}
 Architecture: all
 Pre-Depends: ${misc:Depends}
 Depends: hwtest
@@ -29,7 +27,6 @@ Description: CLI interface for the hwtest program
  This package provides a command-line interface for answering questions.
 
 Package: hwtest-gtk
-XB-Python-Version: ${python:Versions}
 Section: gnome
 Architecture: all
 Pre-Depends: ${misc:Depends}
