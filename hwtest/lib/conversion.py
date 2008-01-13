@@ -1,5 +1,4 @@
 import re
-import types
 
 
 def string_to_type(string):

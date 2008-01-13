@@ -365,7 +365,7 @@ def path_string_to_tuple(path):
                 try:
                     result.append(int(token[1:-1]))
                 except ValueError:
-                    raise Error("Invalid path index: %r" % token)
+                    raise PersistError("Invalid path index: %r" % token)
             else:
                 result.append(token.replace(r"\.", "."))
     return tuple(result)

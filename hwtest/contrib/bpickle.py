@@ -13,7 +13,7 @@ def dumps(obj, _dt=None):
 
         type_names.extend(type_name.__bases__)
 
-    raise ValueError, "Unsupported type: %s" % e
+    raise ValueError, "Unsupported type: %s" % type(obj)
 
 
 def loads(str, _lt=loads_table):
