@@ -158,7 +158,7 @@ in order to submit the information and your answers.
 
 If you do not have a Launchpad account, you can register here:
 
-  https://edge.launchpad.net/+login
+  https://launchpad.net/+login
 
 Thank you for taking the time to test your hardware."""
 
