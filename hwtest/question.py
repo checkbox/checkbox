@@ -12,10 +12,10 @@ import logging
 from subprocess import Popen, PIPE
 
 from hwtest.excluder import Excluder
-from hwtest.iterator import Iterator
 from hwtest.repeater import PreRepeater
 from hwtest.resolver import Resolver
 from hwtest.answer import Answer, NO, SKIP
+from hwtest.iterator import Iterator, NEXT, PREV
 
 from hwtest.lib.environ import add_variable, remove_variable
 
@@ -53,7 +53,7 @@ class QuestionManager(object):
     def set_category(self, category):
         self._category = category
 
-    def get_iterator(self):
+    def get_iterator(self, direction=NEXT):
         """
         Get an iterator over the questions added to the manager. The
         purpose of this iterator is that it orders questions based on
@@ -85,21 +85,6 @@ class QuestionManager(object):
                field exists and doesn't meet the given requirements."""
             return category and category not in question.categories
 
-        def answered_exclude_next_func(question):
-            """Excluder function which is called when clicking on the next
-               button to skip questions which have been answered already."""
-            return question.answer != None
-
-        def answered_exclude_prev_func(question):
-            """Excluder function which is called when clicking on the
-               previous button when the question has been automatically
-               answered."""
-            if question.answer and question.answer.auto == True:
-                question.answer = None
-                return True
-            else:
-                return False
-
         resolver = Resolver()
         question_dict = dict((q.name, q) for q in self._questions)
         for question in self._questions:
@@ -118,8 +103,13 @@ class QuestionManager(object):
         questions_iter = Excluder(questions_iter,
             lambda question, category=self._category: \
                    category_exclude_func(question, category))
-        questions_iter = Excluder(questions_iter,
-            answered_exclude_next_func, answered_exclude_prev_func)
+
+        if direction == PREV:
+            while True:
+                try:
+                    questions_iter.next()
+                except StopIteration:
+                    break
 
         return questions_iter
 
