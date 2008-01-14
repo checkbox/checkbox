@@ -5,12 +5,10 @@ from hwtest.plugin import Plugin
 
 class QuestionInfo(Plugin):
 
-    def __init__(self, *args, **kwargs):
-        super(QuestionInfo, self).__init__(*args, **kwargs)
-        self.questions = {}
-
     def register(self, manager):
         super(QuestionInfo, self).register(manager)
+        self.questions = {}
+
         for (rt, rh) in [
              ("gather", self.gather),
              ("report", self.report),

@@ -15,8 +15,8 @@ class LaunchpadExchange(Plugin):
 
     attributes = ["transport_url"]
 
-    def __init__(self, *args, **kwargs):
-        super(LaunchpadExchange, self).__init__(*args, **kwargs)
+    def register(self, manager):
+        super(LaunchpadExchange, self).register(manager)
         self._form = {
             "field.private": False,
             "field.contactable": False,
@@ -24,8 +24,6 @@ class LaunchpadExchange(Plugin):
             "field.format": u'VERSION_1',
             "field.actions.upload": u'Upload'}
 
-    def register(self, manager):
-        super(LaunchpadExchange, self).register(manager)
         for (rt, rh) in [
              ("exchange", self.exchange),
              (("report", "datetime"), self.report_datetime),

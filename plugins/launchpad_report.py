@@ -6,8 +6,8 @@ class LaunchpadReport(Plugin):
 
     attributes = ["cache_file"]
 
-    def __init__(self, *args, **kwargs):
-        super(LaunchpadReport, self).__init__(*args, **kwargs)
+    def register(self, manager):
+        super(LaunchpadReport, self).register(manager)
         self._report = {
             "summary": {
                 "private": False,
@@ -16,9 +16,6 @@ class LaunchpadReport(Plugin):
             "hardware": {},
             "software": {},
             "questions": []}
-
-    def register(self, manager):
-        super(LaunchpadReport, self).register(manager)
 
         # Launchpad report should be generated last.
         for (rt, rh, rp) in [
