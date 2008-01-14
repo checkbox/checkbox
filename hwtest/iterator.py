@@ -1,3 +1,6 @@
+NEXT = 0
+PREV = 1
+
 class Iterator:
     def __init__(self, elements=[]):
         self.elements = elements
@@ -37,3 +40,13 @@ class Iterator:
         """Iterate one beyond the first element."""
         if self.index > -1:
             self.index -= 1
+
+    def go(self, direction):
+        if direction == NEXT:
+            element = self.next()
+        elif direction == PREV:
+            element = self.prev()
+        else:
+            raise Exception, "Unknown direction: %s" % direction
+
+        return element

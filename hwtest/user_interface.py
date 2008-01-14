@@ -4,9 +4,6 @@ import gettext
 from hwtest.contrib.REThread import REThread
 
 
-PREVIOUS = 0
-NEXT = 1
-
 class UserInterface(object):
     '''Abstract base class for encapsulating the workflow and common code for
        any user interface implementation (like GTK, Qt, or CLI).
