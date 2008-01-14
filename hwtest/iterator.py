@@ -1,5 +1,5 @@
-NEXT = 0
-PREV = 1
+PREV = 0
+NEXT = 1
 
 class Iterator:
     def __init__(self, elements=[]):
