@@ -9,10 +9,10 @@ class ExchangePrompt(Plugin):
 
     def register(self, manager):
         super(ExchangePrompt, self).register(manager)
-        self._manager.reactor.call_on(("interface", "show-exchange"),
-            self.show_exchange)
+        self._manager.reactor.call_on(("prompt", "exchange"),
+            self.prompt_exchange)
  
-    def show_exchange(self, interface):
+    def prompt_exchange(self, interface):
         email_regexp = re.compile(r"^\S+@\S+.\S+$", re.I)
         email = self.config.email
 
