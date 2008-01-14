@@ -10,7 +10,6 @@ class IntroPrompt(Plugin):
 
     def prompt_intro(self, interface):
         interface.show_intro()
-        self._manager.reactor.fire(("interface", "direction"), NEXT)
 
 
 factory = IntroPrompt
