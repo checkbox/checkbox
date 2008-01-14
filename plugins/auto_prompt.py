@@ -1,7 +1,6 @@
 from hwtest.plugin import Plugin
 from hwtest.question import QuestionManager
 from hwtest.answer import YES, NO
-from hwtest.iterator import NEXT
 
 
 class AutoPrompt(Plugin):
