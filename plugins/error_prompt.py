@@ -5,11 +5,11 @@ class ErrorPrompt(Plugin):
 
     def register(self, manager):
         super(ErrorPrompt, self).register(manager)
-        self._manager.reactor.call_on(("interface", "show-error"),
-            self.show_error)
+        self._manager.reactor.call_on(("prompt", "error"),
+            self.prompt_error)
 
-    def show_error(self, interface, title, text):
-        interface.show_error_message(title, text)
+    def prompt_error(self, interface, title, text):
+        interface.show_error(title, text)
 
 
 factory = ErrorPrompt

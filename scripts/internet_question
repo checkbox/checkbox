@@ -18,7 +18,7 @@ while 1:
         num_packets = int(received[0])
 
 if num_packets == 0:
-    status = "No internet connection"
+    status = "No Internet connection"
 elif num_packets == 2:
     status = "Internet connection fully established"
 else:

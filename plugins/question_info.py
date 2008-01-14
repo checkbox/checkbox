@@ -5,16 +5,14 @@ from hwtest.plugin import Plugin
 
 class QuestionInfo(Plugin):
 
-    def __init__(self, *args, **kwargs):
-        super(QuestionInfo, self).__init__(*args, **kwargs)
-        self.questions = {}
-
     def register(self, manager):
         super(QuestionInfo, self).register(manager)
+        self.questions = {}
+
         for (rt, rh) in [
              ("gather", self.gather),
              ("report", self.report),
-             (("report", "add-question"), self.add_question)]:
+             (("report", "question"), self.report_question)]:
             self._manager.reactor.call_on(rt, rh)
 
     def gather(self):
@@ -23,9 +21,9 @@ class QuestionInfo(Plugin):
             return
 
         for (name, question) in self._manager.registry.questions.items():
-            self._manager.reactor.fire((question.plugin, "add-question"), question)
+            self._manager.reactor.fire(("question", question.plugin), question)
 
-    def add_question(self, question):
+    def report_question(self, question):
         self.questions[question.name] = question
 
     def report(self):

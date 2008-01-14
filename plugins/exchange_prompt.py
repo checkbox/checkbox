@@ -1,6 +1,7 @@
 import re
 
 from hwtest.plugin import Plugin
+from hwtest.iterator import NEXT, PREV
 
 
 class ExchangePrompt(Plugin):
@@ -9,23 +10,25 @@ class ExchangePrompt(Plugin):
 
     def register(self, manager):
         super(ExchangePrompt, self).register(manager)
-        self._manager.reactor.call_on(("interface", "show-exchange"),
-            self.show_exchange)
+        self._email = self.config.email
+        self._email_regexp = re.compile(r"^\S+@\S+.\S+$", re.I)
+
+        for (rt, rh) in [
+             (("prompt", "exchange"), self.prompt_exchange)]:
+            self._manager.reactor.call_on(rt, rh)
  
-    def show_exchange(self, interface):
-        email_regexp = re.compile(r"^\S+@\S+.\S+$", re.I)
-        email = self.config.email
-
+    def prompt_exchange(self, interface):
         # Prompt for email the first time unless it is provided.
-        if not email:
-            email = interface.show_exchange()
+        self._email = interface.show_exchange(self._email or "")
 
+        error = None
         while True:
-            if not email_regexp.match(email):
+            if not self._email or interface.direction == PREV:
+                break
+            elif not self._email_regexp.match(self._email):
                 error = "Email address must be in a proper format."
-
-            else:
-                self._manager.reactor.fire(("report", "email"), email)
+            elif interface.direction == NEXT:
+                self._manager.reactor.fire(("report", "email"), self._email)
                 interface.do_wait(lambda: self._manager.reactor.fire("exchange"),
                     "Exchanging information with the server...")
                 error = self._manager.get_error()
@@ -33,7 +36,7 @@ class ExchangePrompt(Plugin):
                     break
 
             # Always prompt for the email subsequent times.
-            email = interface.show_exchange(error=error)
+            self._email = interface.show_exchange(self._email, error=error)
 
 
 factory = ExchangePrompt

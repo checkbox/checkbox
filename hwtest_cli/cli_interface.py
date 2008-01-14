@@ -4,6 +4,7 @@ import termios
 
 from gettext import gettext as _
 from hwtest.user_interface import UserInterface
+from hwtest.question import ALL_CATEGORIES
 
 
 class CLIDialog(object):
@@ -145,15 +146,34 @@ class CLIInterface(UserInterface):
         self.progress = CLIProgressDialog(title, message)
         self.progress.show()
 
+    def show_wait_end(self):
+        pass
+
     def show_pulse(self):
         self.progress.set()
 
-    def show_category(self):
-        title = "Hardware Test"
+    def show_intro(self):
+        title = "Introduction"
+        text = """\
+First, this tool will gather information from your hardware. Second,
+you will be asked questions to confirm that the hardware is working
+properly. Last, you will be asked for your Launchpad email address
+in order to submit the information and your answers.
+
+If you do not have a Launchpad account, you can register here:
+
+  https://launchpad.net/+login
+
+Thank you for taking the time to test your hardware."""
+
+        dialog = CLIChoiceDialog(title, text)
+        dialog.run()
+
+    def show_category(self, category=None):
+        title = "Category"
         text = "Please select the category of your hardware."
         dialog = CLIChoiceDialog(title, text)
-        categories = ["desktop", "laptop", "server"]
-        for category in categories:
+        for category in ALL_CATEGORIES:
             dialog.add_button("&%s" % category)
 
         # show categories dialog
@@ -181,7 +201,7 @@ class CLIInterface(UserInterface):
 
         return 1
 
-    def show_exchange(self, message=None, error=None):
+    def show_exchange(self, authentication, message=None, error=None):
         title = "Authentication"
         text = message or "Please provide your Launchpad email address:"
         dialog = CLILineDialog(title, text)
@@ -189,8 +209,8 @@ class CLIInterface(UserInterface):
         if error:
             dialog.put("ERROR: %s" % error)
 
-        email = dialog.run()
-        return email
+        authentication = dialog.run()
+        return authentication
 
     def show_final(self, message=None):
         title = "Done"
@@ -199,7 +219,7 @@ class CLIInterface(UserInterface):
 
         return dialog.run()
 
-    def show_error_message(self, title, text):
+    def show_error(self, title, text):
         dialog = CLIDialog("Error: %s" % title, text)
         dialog.addbutton("&Confirm")
         dialog.run()

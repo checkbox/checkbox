@@ -12,10 +12,10 @@ import logging
 from subprocess import Popen, PIPE
 
 from hwtest.excluder import Excluder
-from hwtest.iterator import Iterator
 from hwtest.repeater import PreRepeater
 from hwtest.resolver import Resolver
 from hwtest.answer import Answer, NO, SKIP
+from hwtest.iterator import Iterator, NEXT, PREV
 
 from hwtest.lib.environ import add_variable, remove_variable
 
@@ -38,6 +38,8 @@ class QuestionManager(object):
 
     def __init__(self):
         self._questions = []
+        self._architecture = None
+        self._category = None
 
     def add_question(self, question):
         """
@@ -45,7 +47,13 @@ class QuestionManager(object):
         """
         self._questions.append(question)
 
-    def get_iterator(self):
+    def set_architecture(self, architecture):
+        self._architecture = architecture
+
+    def set_category(self, category):
+        self._category = category
+
+    def get_iterator(self, direction=NEXT):
         """
         Get an iterator over the questions added to the manager. The
         purpose of this iterator is that it orders questions based on
@@ -67,20 +75,15 @@ class QuestionManager(object):
             return isinstance(question.requires, list) \
                    and len(question.requires) == 0
 
-        def answered_exclude_next_func(question):
-            """Excluder function which is called when clicking on the next
-               button to skip questions which have been answered already."""
-            return question.answer != None
+        def architecture_exclude_func(question, architecture):
+            """Excluder function which removes question when the architectures
+               field exists and doesn't meet the given requirements."""
+            return architecture and architecture not in question.architectures
 
-        def answered_exclude_prev_func(question):
-            """Excluder function which is called when clicking on the
-               previous button when the question has been automatically
-               answered."""
-            if question.answer and question.answer.auto == True:
-                question.answer = None
-                return True
-            else:
-                return False
+        def category_exclude_func(question, category):
+            """Excluder function which removes question when the categories
+               field exists and doesn't meet the given requirements."""
+            return category and category not in question.categories
 
         resolver = Resolver()
         question_dict = dict((q.name, q) for q in self._questions)
@@ -93,10 +96,20 @@ class QuestionManager(object):
         questions_iter = PreRepeater(questions_iter,
             lambda question, resolver=resolver: \
                    dependent_prerepeat_func(question, resolver))
+        questions_iter = Excluder(questions_iter, requires_exclude_func)
         questions_iter = Excluder(questions_iter,
-            requires_exclude_func, requires_exclude_func)
+            lambda question, architecture=self._architecture: \
+                   architecture_exclude_func(question, architecture))
         questions_iter = Excluder(questions_iter,
-            answered_exclude_next_func, answered_exclude_prev_func)
+            lambda question, category=self._category: \
+                   category_exclude_func(question, category))
+
+        if direction == PREV:
+            while True:
+                try:
+                    questions_iter.next()
+                except StopIteration:
+                    break
 
         return questions_iter
 
@@ -114,7 +127,7 @@ class Question(object):
 
     An instance also contains the following optional fields:
 
-    architecture: List of architectures for which this question is relevant:
+    architectures: List of architectures for which this question is relevant:
                   amd64, i386, powerpc and/or sparc
     categories:   List of categories for which this question is relevant:
                   desktop, laptop and/or server

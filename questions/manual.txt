@@ -15,11 +15,11 @@ plugin: manual
 categories: laptop, desktop
 relations: pci.device_class == 3
 description:
- Testing detected resolution:
+ The following resolution was detected for your display:
  .
  $(resolution_question)
  .
- Is your video display hardware working properly?
+ Is this a good resolution for your display?
 
 name: mouse
 plugin: manual
@@ -45,11 +45,11 @@ plugin: manual
 command: internet_question
 relations: pci.device_class == 2
 description:
- Testing your internet connection:
+ Testing your connection to the Internet:
  .
  $output
  .
- Is your internet connection working properly?
+ Are you connected to the Internet?
 
 name: keyboard
 plugin: manual
