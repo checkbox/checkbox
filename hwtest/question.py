@@ -38,12 +38,20 @@ class QuestionManager(object):
 
     def __init__(self):
         self._questions = []
+        self._architecture = None
+        self._category = None
 
     def add_question(self, question):
         """
         Add a question to the manager.
         """
         self._questions.append(question)
+
+    def set_architecture(self, architecture):
+        self._architecture = architecture
+
+    def set_category(self, category):
+        self._category = category
 
     def get_iterator(self):
         """
@@ -66,6 +74,16 @@ class QuestionManager(object):
                field exists and doesn't meet the given requirements."""
             return isinstance(question.requires, list) \
                    and len(question.requires) == 0
+
+        def architecture_exclude_func(question, architecture):
+            """Excluder function which removes question when the architectures
+               field exists and doesn't meet the given requirements."""
+            return architecture and architecture not in question.architectures
+
+        def category_exclude_func(question, category):
+            """Excluder function which removes question when the categories
+               field exists and doesn't meet the given requirements."""
+            return category and category not in question.categories
 
         def answered_exclude_next_func(question):
             """Excluder function which is called when clicking on the next
@@ -93,8 +111,13 @@ class QuestionManager(object):
         questions_iter = PreRepeater(questions_iter,
             lambda question, resolver=resolver: \
                    dependent_prerepeat_func(question, resolver))
+        questions_iter = Excluder(questions_iter, requires_exclude_func)
         questions_iter = Excluder(questions_iter,
-            requires_exclude_func, requires_exclude_func)
+            lambda question, architecture=self._architecture: \
+                   architecture_exclude_func(question, architecture))
+        questions_iter = Excluder(questions_iter,
+            lambda question, category=self._category: \
+                   category_exclude_func(question, category))
         questions_iter = Excluder(questions_iter,
             answered_exclude_next_func, answered_exclude_prev_func)
 
@@ -114,7 +137,7 @@ class Question(object):
 
     An instance also contains the following optional fields:
 
-    architecture: List of architectures for which this question is relevant:
+    architectures: List of architectures for which this question is relevant:
                   amd64, i386, powerpc and/or sparc
     categories:   List of categories for which this question is relevant:
                   desktop, laptop and/or server
