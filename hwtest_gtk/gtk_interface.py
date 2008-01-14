@@ -41,27 +41,27 @@ class GTKInterface(UserInterface):
         text = buffer.get_text(buffer.get_start_iter(), buffer.get_end_iter())
         return text
 
-    def _set_label(self, name, text):
+    def _set_markup(self, name, markup=""):
+        widget = self._get_widget(name)
+        widget.set_markup(markup)
+
+    def _set_text(self, name, text=""):
         widget = self._get_widget(name)
         widget.set_text(text)
 
-    def _set_text(self, name, text):
-        widget = self._get_widget(name)
-        widget.set_text(text)
-
-    def _set_textview(self, name, text):
+    def _set_textview(self, name, text=""):
         buffer = gtk.TextBuffer()
         buffer.set_text(text)
         widget = self._get_widget(name)
         widget.set_buffer(buffer)
 
-    def _set_active(self, name, boolean):
+    def _set_active(self, name, value=True):
         widget = self._get_widget(name)
-        widget.set_active(bool(boolean))
+        widget.set_active(bool(value))
 
-    def _set_sensitive(self, name, boolean):
+    def _set_sensitive(self, name, value=True):
         widget = self._get_widget(name)
-        widget.set_sensitive(bool(boolean))
+        widget.set_sensitive(bool(value))
 
     def _run_dialog(self):
         self.direction = self._dialog.run()
@@ -70,13 +70,13 @@ class GTKInterface(UserInterface):
 
     def _run_question(self, question):
         question.run()
-        self._set_label("label_question", question.description)
+        self._set_text("label_question", question.description)
 
     def show_wait(self, message=None):
         self._set_sensitive("button_previous", False)
         self._set_sensitive("button_next", False)
 
-        self._set_label("label_wait", message)
+        self._set_text("label_wait", message)
         self._get_widget("progressbar_wait").set_fraction(0)
         self._notebook.set_current_page(3)
 
@@ -105,7 +105,7 @@ class GTKInterface(UserInterface):
         self._notebook.set_current_page(1)
 
         if category:
-            self._set_active("radiobutton_%s" % category, True)
+            self._set_active("radiobutton_%s" % category)
 
         self._run_dialog()
 
@@ -130,10 +130,10 @@ class GTKInterface(UserInterface):
         if question.answer:
             answer = question.answer
             self._set_textview("textview_comment", answer.data)
-            self._set_active("radiobutton_%s" % answer.status, True)
+            self._set_active("radiobutton_%s" % answer.status)
         else:
             self._set_textview("textview_comment", "")
-            self._set_active("radiobutton_skip", True)
+            self._set_active("radiobutton_skip")
 
         self._run_question(question)
         self._run_dialog()
@@ -147,14 +147,18 @@ class GTKInterface(UserInterface):
 
     def show_exchange(self, authentication, message=None, error=None):
         self._notebook.set_current_page(4)
-        self._set_text("entry_authentication", authentication)
+
+        if authentication is not None:
+            self._set_text("entry_authentication", authentication)
 
         if message is not None:
-            self._get_widget("label_exchange").set_markup(message)
+            self._set_markup("label_exchange", message)
 
         if error is not None:
             markup= "<span color='#FF0000'><b>%s</b></span>" % error
-            self._get_widget("label_exchange_error").set_markup(markup)
+            self._set_markup("label_exchange_error", markup)
+        else:
+            self._set_markup("label_exchange_error")
 
         self._run_dialog()
         authentication = self._get_text("entry_authentication")
@@ -165,7 +169,7 @@ class GTKInterface(UserInterface):
         self._notebook.set_current_page(5)
 
         if message is not None:
-            self._get_widget("label_final").set_markup(message)
+            self._set_markup("label_final", message)
 
         self._run_dialog()
 
