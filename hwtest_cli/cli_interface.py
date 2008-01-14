@@ -155,9 +155,9 @@ class CLIInterface(UserInterface):
     def show_intro(self):
         title = "Introduction"
         text = """\
-First, this tool will gather information from your hardware. Second,
+This application will gather information from your hardware. Then,
 you will be asked questions to confirm that the hardware is working
-properly. Last, you will be asked for your Launchpad email address
+properly. Finally, you will be asked for your Launchpad email address
 in order to submit the information and your answers.
 
 If you do not have a Launchpad account, you can register here:
