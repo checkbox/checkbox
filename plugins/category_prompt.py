@@ -1,4 +1,5 @@
 from hwtest.plugin import Plugin
+from hwtest.iterator import NEXT
 
 
 class CategoryPrompt(Plugin):
@@ -7,9 +8,9 @@ class CategoryPrompt(Plugin):
 
     def register(self, manager):
         super(CategoryPrompt, self).register(manager)
-        self._manager.reactor.call_on(("interface", "show-category"), self.show_category)
+        self._manager.reactor.call_on(("prompt", "category"), self.prompt_category)
 
-    def show_category(self, interface):
+    def prompt_category(self, interface):
         category = self.config.category
         registry = self._manager.registry
 
@@ -34,8 +35,8 @@ class CategoryPrompt(Plugin):
         if not category:
             category = interface.show_category()
 
-        self._manager.reactor.fire(("prompt", "set-category"),
-            category)
+        self._manager.reactor.fire(("interface", "category"), category)
+        self._manager.reactor.fire(("interface", "direction"), NEXT)
 
 
 factory = CategoryPrompt
