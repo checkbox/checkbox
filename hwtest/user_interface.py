@@ -55,5 +55,5 @@ class UserInterface(object):
     def show_final(self, message):
         raise NotImplementedError, "this function must be overridden by subclasses"
 
-    def show_error_message(self, title, text):
+    def show_error(self, title, text):
         raise NotImplementedError, "this function must be overridden by subclasses"

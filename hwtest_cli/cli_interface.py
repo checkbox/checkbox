@@ -4,6 +4,7 @@ import termios
 
 from gettext import gettext as _
 from hwtest.user_interface import UserInterface
+from hwtest.question import ALL_CATEGORIES
 
 
 class CLIDialog(object):
@@ -169,8 +170,7 @@ Thank you for taking the time to test your hardware."""
         title = "Category"
         text = "Please select the category of your hardware."
         dialog = CLIChoiceDialog(title, text)
-        categories = ["desktop", "laptop", "server"]
-        for category in categories:
+        for category in ALL_CATEGORIES:
             dialog.add_button("&%s" % category)
 
         # show categories dialog
@@ -216,7 +216,7 @@ Thank you for taking the time to test your hardware."""
 
         return dialog.run()
 
-    def show_error_message(self, title, text):
+    def show_error(self, title, text):
         dialog = CLIDialog("Error: %s" % title, text)
         dialog.addbutton("&Confirm")
         dialog.run()

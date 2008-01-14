@@ -163,7 +163,7 @@ class GTKInterface(UserInterface):
 
         return response
 
-    def show_error_message(self, title, text):
+    def show_error(self, title, text):
         md = gtk.MessageDialog(type=gtk.MESSAGE_ERROR,
             buttons=gtk.BUTTONS_CLOSE, message_format=text)
         md.set_title(title)
