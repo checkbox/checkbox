@@ -1,5 +1,4 @@
 from hwtest.plugin import Plugin
-from hwtest.iterator import NEXT
 
 
 class IntroPrompt(Plugin):

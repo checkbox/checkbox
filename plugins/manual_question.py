@@ -1,4 +1,5 @@
-from hwtest.lib.environ import add_path, remove_path, add_variable, remove_variable
+from hwtest.lib.environ import (add_path, remove_path, add_variable,
+    remove_variable)
 
 from hwtest.plugin import Plugin
 from hwtest.question import Question
