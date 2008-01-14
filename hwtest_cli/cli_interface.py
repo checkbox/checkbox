@@ -146,6 +146,9 @@ class CLIInterface(UserInterface):
         self.progress = CLIProgressDialog(title, message)
         self.progress.show()
 
+    def show_wait_end(self):
+        pass
+
     def show_pulse(self):
         self.progress.set()
 
@@ -166,7 +169,7 @@ Thank you for taking the time to test your hardware."""
         dialog = CLIChoiceDialog(title, text)
         dialog.run()
 
-    def show_category(self):
+    def show_category(self, category=None):
         title = "Category"
         text = "Please select the category of your hardware."
         dialog = CLIChoiceDialog(title, text)
@@ -198,7 +201,7 @@ Thank you for taking the time to test your hardware."""
 
         return 1
 
-    def show_exchange(self, message=None, error=None):
+    def show_exchange(self, authentication, message=None, error=None):
         title = "Authentication"
         text = message or "Please provide your Launchpad email address:"
         dialog = CLILineDialog(title, text)
@@ -206,8 +209,8 @@ Thank you for taking the time to test your hardware."""
         if error:
             dialog.put("ERROR: %s" % error)
 
-        email = dialog.run()
-        return email
+        authentication = dialog.run()
+        return authentication
 
     def show_final(self, message=None):
         title = "Done"

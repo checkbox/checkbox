@@ -31,32 +31,42 @@ class GTKInterface(UserInterface):
                 return value
         raise Exception, "failed to map radiobutton"
 
-    def _set_label(self, name, text):
-        label = self._get_widget(name)
-        label.set_text(text)
+    def _get_text(self, name):
+        widget = self._get_widget(name)
+        return widget.get_text()
 
     def _get_textview(self, name):
-        textview = self._get_widget(name)
-        buffer = textview.get_buffer()
-        data = buffer.get_text(buffer.get_start_iter(), buffer.get_end_iter())
-        return data
+        widget = self._get_widget(name)
+        buffer = widget.get_buffer()
+        text = buffer.get_text(buffer.get_start_iter(), buffer.get_end_iter())
+        return text
 
-    def _set_textview(self, name, data):
+    def _set_label(self, name, text):
+        widget = self._get_widget(name)
+        widget.set_text(text)
+
+    def _set_text(self, name, text):
+        widget = self._get_widget(name)
+        widget.set_text(text)
+
+    def _set_textview(self, name, text):
         buffer = gtk.TextBuffer()
-        buffer.set_text(data)
-        textview = self._get_widget(name)
-        textview.set_buffer(buffer)
+        buffer.set_text(text)
+        widget = self._get_widget(name)
+        widget.set_buffer(buffer)
+
+    def _set_active(self, name, boolean):
+        widget = self._get_widget(name)
+        widget.set_active(bool(boolean))
 
     def _set_sensitive(self, name, boolean):
         widget = self._get_widget(name)
         widget.set_sensitive(bool(boolean))
 
     def _run_dialog(self):
-        response = self._dialog.run()
+        self.direction = self._dialog.run()
         while gtk.events_pending():
             gtk.main_iteration(False)
-
-        return response
 
     def _run_question(self, question):
         question.run()
@@ -72,6 +82,10 @@ class GTKInterface(UserInterface):
 
         self._dialog.show()
 
+    def show_wait_end(self):
+        self._set_sensitive("button_previous", True)
+        self._set_sensitive("button_next", True)
+
     def show_pulse(self):
         self._get_widget("progressbar_wait").pulse()
         while gtk.events_pending():
@@ -80,16 +94,18 @@ class GTKInterface(UserInterface):
     def show_intro(self):
         # Set buttons
         self._set_sensitive("button_previous", False)
-        self._set_sensitive("button_next", True)
         self._notebook.set_current_page(0)
 
         self._run_dialog()
 
-    def show_category(self):
+        self._set_sensitive("button_previous", True)
+
+    def show_category(self, category=None):
         # Set buttons
-        self._set_sensitive("button_previous", False)
-        self._set_sensitive("button_next", True)
         self._notebook.set_current_page(1)
+
+        if category:
+            self._set_active("radiobutton_%s" % category, True)
 
         self._run_dialog()
 
@@ -101,9 +117,6 @@ class GTKInterface(UserInterface):
     def show_question(self, question, has_prev=True, has_next=True):
         # Set buttons
         self._set_sensitive("button_test_again", question.command)
-        self._set_sensitive("button_previous", has_prev)
-        self._set_sensitive("button_next", has_next)
-        self._get_widget("button_previous").show()
         self._notebook.set_current_page(2)
 
         # Set test again button
@@ -117,13 +130,13 @@ class GTKInterface(UserInterface):
         if question.answer:
             answer = question.answer
             self._set_textview("textview_comment", answer.data)
-            self._get_widget("radiobutton_%s" % answer.status).set_active(True)
+            self._set_active("radiobutton_%s" % answer.status, True)
         else:
             self._set_textview("textview_comment", "")
-            self._get_widget("radiobutton_skip").set_active(True)
+            self._set_active("radiobutton_skip", True)
 
         self._run_question(question)
-        response = self._run_dialog()
+        self._run_dialog()
 
         status = self._get_radiobutton({
             "radiobutton_yes": "yes",
@@ -132,12 +145,9 @@ class GTKInterface(UserInterface):
         data = self._get_textview("textview_comment")
         question.set_answer(status, data)
 
-        return response
-
-    def show_exchange(self, message=None, error=None):
-        self._set_sensitive("button_previous", False)
-        self._set_sensitive("button_next", True)
+    def show_exchange(self, authentication, message=None, error=None):
         self._notebook.set_current_page(4)
+        self._set_text("entry_authentication", authentication)
 
         if message is not None:
             self._get_widget("label_exchange").set_markup(message)
@@ -146,22 +156,18 @@ class GTKInterface(UserInterface):
             markup= "<span color='#FF0000'><b>%s</b></span>" % error
             self._get_widget("label_exchange_error").set_markup(markup)
 
-        response = self._run_dialog()
-        authentication = self._get_widget("entry_authentication").get_text()
+        self._run_dialog()
+        authentication = self._get_text("entry_authentication")
 
         return authentication
 
     def show_final(self, message=None):
-        self._set_sensitive("button_previous", False)
-        self._set_sensitive("button_next", True)
         self._notebook.set_current_page(5)
 
         if message is not None:
             self._get_widget("label_final").set_markup(message)
 
-        response = self._run_dialog()
-
-        return response
+        self._run_dialog()
 
     def show_error(self, title, text):
         md = gtk.MessageDialog(type=gtk.MESSAGE_ERROR,
