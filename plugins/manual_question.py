@@ -1,9 +1,7 @@
-import os
-
 from hwtest.lib.environ import add_path, remove_path, add_variable, remove_variable
 
 from hwtest.plugin import Plugin
-from hwtest.question import Question, QuestionManager
+from hwtest.question import Question
 
 
 class Manual(Question):
@@ -29,41 +27,18 @@ class ManualQuestion(Plugin):
 
     attributes = ["data_path", "scripts_path"]
 
-    def __init__(self, *args, **kwargs):
-        super(ManualQuestion, self).__init__(*args, **kwargs)
-        self._question_manager = QuestionManager()
-
     def register(self, manager):
         super(ManualQuestion, self).register(manager)
+        for (rt, rh) in [
+             (("question", "manual"), self.question_manual)]:
+            self._manager.reactor.call_on(rt, rh)
 
-        # Manual questions should be asked first.
-        for (rt, rh, rp) in [
-             (("manual", "add-question"), self.add_question, -100),
-             (("interface", "show-question"), self.show_question, 0)]:
-            self._manager.reactor.call_on(rt, rh, rp)
-
-    def show_question(self, interface):
-        questions = self._question_manager.get_iterator()
-
-        direction = 1
-        while True:
-            try:
-                if direction == 1:
-                    question = questions.next()
-                else:
-                    question = questions.prev()
-            except StopIteration:
-                break
-
-            direction = interface.show_question(question, questions.has_prev())
-            self._manager.reactor.fire(("report", "add-question"), question)
-
-    def add_question(self, question):
+    def question_manual(self, question):
         kwargs = dict(question)
         kwargs["data_path"] = self.config.data_path
         kwargs["scripts_path"] = self.config.scripts_path
         question = Manual(self._manager.registry, **kwargs)
-        self._question_manager.add_question(question)
+        self._manager.reactor.fire(("prompt", "manual"), question)
 
 
 factory = ManualQuestion
