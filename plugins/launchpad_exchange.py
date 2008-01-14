@@ -80,9 +80,13 @@ class LaunchpadExchange(Plugin):
         start_time = time.time()
         transport = HTTPTransport(self.config.transport_url)
         ret = transport.exchange(form)
-        if not ret or ret.code != 200:
-            # HACK: this should return a useful error message
-            self._manager.set_error("Communication failure.")
+        if not ret:
+            self._manager.set_error("Failed to contact the server,\n"
+                " are you connected to the Internet.")
+            return
+        elif ret.code != 200:
+            self._manager.set_error("Failed to upload to server,\n"
+                " please try again later.")
             return
 
         if logging.getLogger().getEffectiveLevel() <= logging.DEBUG:
