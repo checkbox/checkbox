@@ -220,6 +220,5 @@ Thank you for taking the time to test your hardware."""
         return dialog.run()
 
     def show_error(self, title, text):
-        dialog = CLIDialog("Error: %s" % title, text)
-        dialog.addbutton("&Confirm")
+        dialog = CLIChoiceDialog("Error: %s" % title, text)
         dialog.run()
