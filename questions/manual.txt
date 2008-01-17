@@ -21,6 +21,17 @@ description:
  .
  Is this a good resolution for your display?
 
+name: video
+plugin: manual
+categories: laptop, desktop
+command: video_test
+description:
+ Video Test Patterns:
+ .
+ $(video_test --list)
+ .
+ Did you see a series of video test screens?
+
 name: mouse
 plugin: manual
 categories: laptop, desktop

@@ -1,0 +1,95 @@
+#!/usr/bin/python
+
+import sys
+import time
+
+from optparse import OptionParser
+
+import pygst
+pygst.require("0.10")
+
+import gobject
+
+class VideoTest:
+    """
+    A simple class that displays a test image via GStreamer.
+    """
+
+    import gst
+
+    def __init__(self):
+        self._mainloop = gobject.MainLoop()
+
+        self._pipeline = self.gst.Pipeline("my_pipeline")
+
+        # File source
+        self._source = self.gst.element_factory_make("videotestsrc", "source")
+        self._pipeline.add(self._source)
+
+        # XImage sink
+        self._sink = self.gst.element_factory_make("xvimagesink", "sink")
+        self._pipeline.add(self._sink)
+
+        self._source.link(self._sink)
+
+    def _get_patterns(self):
+        """
+        Returns a range of possible patterns appropriate to the available
+        version of GStreamer.
+        """
+        version = self.gst.version()[2]
+
+        if version >= 13:
+            patterns = range(12)
+        elif version >= 11:
+            patterns = range(11)
+        elif version == 10 :
+            patterns = range(7)
+        else:
+            patterns = range(3)
+
+        return patterns
+
+    def list(self):
+        """
+        Display a list of test patterns.
+        """
+        patterns = self._get_patterns()
+
+        pattern_names = []
+        for pattern in patterns:
+            self._source.set_property("pattern", pattern)
+            pattern_names.append(self._source.get_property("pattern").value_name)
+        print "\n".join(pattern_names)
+
+    def display(self):
+        """
+        Displays the test patterns.
+        """
+        patterns = self._get_patterns()
+
+        self._pipeline.set_state(self.gst.STATE_PLAYING)
+
+        for pattern in patterns:
+            self._source.set_property("pattern", pattern)
+            time.sleep(3)
+
+        self._pipeline.set_state(self.gst.STATE_READY)
+
+
+def parse_options(args):
+    """
+    Parse command line options.
+    """
+    parser = OptionParser()
+    parser.add_option("-l", "--list", action="store_true",
+                      help="List patterns that will be displayed.")
+    return parser.parse_args(args)[0]
+
+if __name__ == "__main__":
+    options = parse_options(sys.argv)
+    video = VideoTest()
+    if options.list:
+        video.list()
+    else:
+        video.display()
