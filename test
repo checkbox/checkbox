@@ -27,8 +27,6 @@ import sys
 lib_dir = os.path.abspath(os.path.dirname(__file__))
 sys.path.insert(0, lib_dir)
 
-import hwtest
-
 
 def find_tests(testpaths=()):
     """Find all test paths, or test paths contained in the provided sequence.
@@ -40,7 +38,6 @@ def find_tests(testpaths=()):
              doctests found, respectively.
     """
     topdir = os.path.abspath(os.path.dirname(__file__))
-    testdir = os.path.dirname(hwtest.__file__)
     testpaths = set(testpaths)
     unittests = []
     doctests = []
@@ -79,16 +76,6 @@ def parse_sys_argv():
             testpaths.append(arg)
             del sys.argv[i]
     return testpaths
-
-def test_with_py_test():
-    import py
-
-    unittests, doctests = find_tests(parse_sys_argv())
-    sys.argv.extend(unittests)
-    sys.argv.extend(doctests)
-    # For timestamp checking when looping:
-    sys.argv.append(os.path.join(os.path.dirname(__file__), "hwtest/"))
-    py.test.cmdline.main()
 
 def test_with_unittest():
     import unittest
