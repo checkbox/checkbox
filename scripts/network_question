@@ -1,13 +1,14 @@
 #!/usr/bin/python
 
-from hwtest.registry import RegistryManager
-from hwtest.config import Config
+import dbus
 
+bus = dbus.SystemBus()
+manager_obj = bus.get_object("org.freedesktop.Hal", "/org/freedesktop/Hal/Manager")
+manager = dbus.Interface(manager_obj, "org.freedesktop.Hal.Manager")
 
-config = Config("/etc/hwtest.d/hwtest.conf")
-
-registry = RegistryManager(config)
-network_devices = registry.hal.eval_recursive("pci.device_class == 2")
-
-for network_device in network_devices:
-    print "%s %s" % (network_device.pci.vendor, network_device.pci.product)
+for device in manager.GetAllDevices():
+    device_obj = bus.get_object("org.freedesktop.Hal", device)
+    properties = device_obj.GetAllProperties(dbus_interface="org.freedesktop.Hal.Device")
+    device_class = properties.get("pci.device_class")
+    if device_class and device_class == 2:
+        print properties.get("pci.vendor"), properties.get("pci.product")
