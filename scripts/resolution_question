@@ -41,7 +41,7 @@ def check_resolution():
     if len(star_fields) < 1:
         error("%s should return a refresh rate with '*'" % command)
 
-    frequency = star_fields[-1].strip("*")
+    frequency = re.sub(r"[\*\+]", "", star_fields[-1])
     print "%s x %s @ %s" % (horizontal, vertical, frequency)
     return True
 
