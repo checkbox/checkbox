@@ -21,6 +21,9 @@ class QuestionInfo(Plugin):
             return
 
         for (name, question) in self._manager.registry.questions.items():
+            if not question.plugin:
+                raise Exception, \
+                    "Question does not contain 'plugin' attribute: %s" % name
             self._manager.reactor.fire(("question", question.plugin), question)
 
     def report_question(self, question):
