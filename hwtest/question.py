@@ -236,4 +236,4 @@ class Question(object):
         return properties
 
     def set_answer(self, status, data='', auto=False):
-        self.answer = Answer(self, status, data, auto)
+        self.answer = Answer(status, data, auto)
