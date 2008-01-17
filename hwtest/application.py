@@ -40,7 +40,6 @@ class Application(object):
 
         if os.path.exists(persist_filename):
             persist.load(persist_filename)
-        persist.save(persist_filename)
         return persist
 
     def run(self):
