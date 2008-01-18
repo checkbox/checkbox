@@ -178,7 +178,7 @@ Thank you for taking the time to test your hardware."""
 
         # show categories dialog
         response = dialog.run()
-        return categories[response - 1]
+        return ALL_CATEGORIES[response - 1]
 
     def show_question(self, question, has_prev=False, has_next=False):
         question.run()
