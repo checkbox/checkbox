@@ -1,5 +1,5 @@
-from registries.map import MapRegistry
-from registries.tests.helpers import TestHelper
+from hwtest.registries.map import MapRegistry
+from hwtest.registries.tests.helpers import TestHelper
 
 
 class MapRegistryTest(TestHelper):

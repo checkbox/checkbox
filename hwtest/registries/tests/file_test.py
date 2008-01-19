@@ -1,5 +1,5 @@
-from registries.file import FileRegistry
-from registries.tests.helpers import TestHelper
+from hwtest.registries.file import FileRegistry
+from hwtest.registries.tests.helpers import TestHelper
 
 
 class FileRegistryTest(TestHelper):

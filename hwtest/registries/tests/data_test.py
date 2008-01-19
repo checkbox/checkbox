@@ -1,5 +1,5 @@
-from registries.data import DataRegistry
-from registries.tests.helpers import TestHelper
+from hwtest.registries.data import DataRegistry
+from hwtest.registries.tests.helpers import TestHelper
 
 
 class DataRegistryTest(TestHelper):

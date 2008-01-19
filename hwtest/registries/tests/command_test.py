@@ -1,5 +1,5 @@
-from registries.command import CommandRegistry
-from registries.tests.helpers import TestHelper
+from hwtest.registries.command import CommandRegistry
+from hwtest.registries.tests.helpers import TestHelper
 
 
 class CommandRegistryTest(TestHelper):
