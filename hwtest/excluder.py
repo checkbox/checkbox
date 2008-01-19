@@ -8,7 +8,7 @@ from hwtest.iterator import Iterator
 class Excluder(Iterator):
     def __init__(self, elements=[],
                  next_func=lambda x: False,
-                 prev_func=None):
+                 prev_func=lambda x: False):
         if type(elements) is types.ListType:
             self.iterator = Iterator(elements)
         elif isinstance(elements, Iterator):
@@ -16,7 +16,7 @@ class Excluder(Iterator):
         else:
             raise Exception, "%s: invalid iterator type" % type(elements)
         self.next_func = next_func
-        self.prev_func = prev_func or next_func
+        self.prev_func = prev_func
 
     def __iter__(self):
         self.iterator = iter(self.iterator)
