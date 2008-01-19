@@ -1,8 +1,8 @@
 from hwtest.lib.cache import cache
 from hwtest.lib.conversion import string_to_type
 
-from data import DataRegistry
-from file import FileRegistry
+from hwtest.registries.data import DataRegistry
+from hwtest.registries.file import FileRegistry
 
 
 class ProcessorRegistry(DataRegistry):

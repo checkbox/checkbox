@@ -1,5 +1,6 @@
+from hwtest.registries.tests.helpers import TestHelper
+
 from registries.hal import HalRegistry
-from registries.tests.helpers import TestHelper
 
 
 class HalRegistryTest(TestHelper):

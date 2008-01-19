@@ -1,5 +1,6 @@
+from hwtest.registries.tests.helpers import TestHelper
+
 from registries.lsb import LsbRegistry
-from registries.tests.helpers import TestHelper
 
 
 class LsbRegistryTest(TestHelper):

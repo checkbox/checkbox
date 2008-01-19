@@ -1,6 +1,6 @@
 from hwtest.lib.cache import cache
 
-from command import CommandRegistry
+from hwtest.registries.command import CommandRegistry
 
 
 class LsbRegistry(CommandRegistry):

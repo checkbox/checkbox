@@ -1,7 +1,8 @@
 import re
 
+from hwtest.registries.tests.helpers import TestHelper
+
 from registries.dpkg import DpkgRegistry
-from registries.tests.helpers import TestHelper
 
 
 class DpkgRegistryTest(TestHelper):

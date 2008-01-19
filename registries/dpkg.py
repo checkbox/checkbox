@@ -1,6 +1,6 @@
 import re
 
-from command import CommandRegistry
+from hwtest.registries.command import CommandRegistry
 
 
 class DpkgRegistry(CommandRegistry):

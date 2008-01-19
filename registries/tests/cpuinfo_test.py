@@ -1,5 +1,6 @@
+from hwtest.registries.tests.helpers import TestHelper
+
 from registries.cpuinfo import CpuinfoRegistry
-from registries.tests.helpers import TestHelper
 
 
 class CpuinfoRegistryTest(TestHelper):

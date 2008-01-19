@@ -1,7 +1,8 @@
 import re
 
+from hwtest.registries.tests.helpers import TestHelper
+
 from registries.hald import HaldRegistry
-from registries.tests.helpers import TestHelper
 
 
 class HaldRegistryTest(TestHelper):

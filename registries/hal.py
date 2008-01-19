@@ -4,9 +4,9 @@ import dbus
 from hwtest.lib.cache import cache
 from hwtest.lib.update import recursive_update
 
-from command import CommandRegistry
-from data import DataRegistry
-from map import MapRegistry
+from hwtest.registries.command import CommandRegistry
+from hwtest.registries.data import DataRegistry
+from hwtest.registries.map import MapRegistry
 
 
 class DeviceRegistry(DataRegistry):

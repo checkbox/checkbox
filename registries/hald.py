@@ -1,4 +1,4 @@
-from command import CommandRegistry
+from hwtest.registries.command import CommandRegistry
 
 
 class HaldRegistry(CommandRegistry):
