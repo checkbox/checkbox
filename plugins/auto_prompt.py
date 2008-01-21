@@ -1,6 +1,6 @@
 from hwtest.plugin import Plugin
 from hwtest.question import QuestionManager
-from hwtest.answer import YES, NO
+from hwtest.answer import Answer, YES, NO
 
 
 class AutoPrompt(Plugin):
@@ -26,10 +26,11 @@ class AutoPrompt(Plugin):
         if not self._done:
             def run_questions(self):
                 for question in self._question_manager.get_iterator():
-                    (stdout, stderr, wait) = question.run_command()
+                    (stdout, stderr, wait) = question.command()
                     status = wait == 0 and YES or NO
-                    question.set_answer(status, stdout)
-                    self._manager.reactor.fire(("report", "question"), question)
+                    question.answer = Answer(status, stdout)
+                    self._manager.reactor.fire(("report", "question"),
+                        question)
 
             interface.do_wait(lambda self=self: run_questions(self),
                 "Running automatic questions...")

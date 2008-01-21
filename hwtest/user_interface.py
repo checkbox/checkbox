@@ -22,7 +22,7 @@ class UserInterface(object):
         gettext.textdomain(self.gettext_domain)
 
     def do_wait(self, function, message):
-        self.show_wait(message)
+        self.show_wait_begin(message)
         thread = REThread(target=function, name="do_wait")
         thread.start()
         while thread.isAlive():
@@ -34,7 +34,23 @@ class UserInterface(object):
         thread.exc_raise()
         self.show_wait_end()
 
-    def show_wait(self, message):
+    def do_question(self, question):
+        if str(question.command):
+            self.show_question_begin("Running question %s..." % question.name)
+            thread = REThread(target=question.command, name="do_question")
+            thread.start()
+            while thread.isAlive():
+                self.show_pulse()
+                try:
+                    thread.join(0.1)
+                except KeyboardInterrupt:
+                    sys.exit(1)
+            thread.exc_raise()
+
+        question.description()
+        self.show_question_end(question)
+
+    def show_wait_begin(self, message):
         raise NotImplementedError, "this function must be overridden by subclasses"
 
     def show_wait_end(self):
@@ -49,7 +65,10 @@ class UserInterface(object):
     def show_category(self, category):
         raise NotImplementedError, "this function must be overridden by subclasses"
 
-    def show_question(self, question, has_prev, has_next):
+    def show_question_begin(self, message):
+        raise NotImplementedError, "this function must be overridden by subclasses"
+
+    def show_question_end(self, question):
         raise NotImplementedError, "this function must be overridden by subclasses"
 
     def show_exchange(self, authentication, message, error):

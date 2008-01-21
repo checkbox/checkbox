@@ -3,8 +3,9 @@ import sys
 import termios
 
 from gettext import gettext as _
-from hwtest.user_interface import UserInterface
+from hwtest.answer import Answer
 from hwtest.question import ALL_CATEGORIES
+from hwtest.user_interface import UserInterface
 
 
 class CLIDialog(object):
@@ -141,7 +142,7 @@ class CLIProgressDialog(CLIDialog):
 
 class CLIInterface(UserInterface):
 
-    def show_wait(self, message):
+    def show_wait_begin(self, message):
         title = "Hardware Test"
         self.progress = CLIProgressDialog(title, message)
         self.progress.show()
@@ -180,8 +181,12 @@ Thank you for taking the time to test your hardware."""
         response = dialog.run()
         return ALL_CATEGORIES[response - 1]
 
-    def show_question(self, question, has_prev=False, has_next=False):
-        question.run()
+    def show_question_begin(self, message=None):
+        title = "Hardware Test"
+        self.progress = CLIProgressDialog(title, message)
+        self.progress.show()
+
+    def show_question_end(self, question):
         dialog = CLIChoiceDialog(question.name, question.description)
         answers = ["yes", "no", "skip"]
         for answer in answers:
@@ -197,7 +202,7 @@ Thank you for taking the time to test your hardware."""
             data = dialog.run("Please type here and press"
                 " Ctrl-D when finished:\n")
 
-        question.set_answer(status, data)
+        question.answer = Answer(status, data)
 
         return 1
 

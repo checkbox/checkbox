@@ -30,7 +30,7 @@ class ManualPrompt(Plugin):
             except StopIteration:
                 break
 
-            interface.show_question(question, questions.has_prev())
+            interface.do_question(question)
             self._manager.reactor.fire(("report", "question"), question)
 
 
