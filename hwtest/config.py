@@ -13,6 +13,8 @@ class IncludeDict(dict):
     def __setitem__(self, key, value):
         if key == "includes":
             for path in re.split(r"\s+", value):
+                if not os.path.exists(path):
+                    raise Exception, "No such configuration file: %s" % path
                 self._parser.read(path)
 
         super(IncludeDict, self).__setitem__(key, value)
