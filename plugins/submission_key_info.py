@@ -8,6 +8,8 @@ from hwtest.plugin import Plugin
 
 class SubmissionKeyInfo(Plugin):
 
+    attributes = ["submission_key"]
+
     def register(self, manager):
         super(SubmissionKeyInfo, self).register(manager)
         self._system_key = None
@@ -21,11 +23,14 @@ class SubmissionKeyInfo(Plugin):
         self._system_key = system_key
 
     def report(self):
-        fingerprint = md5.new()
-        fingerprint.update(self._system_key)
-        fingerprint.update(str(datetime.utcnow()))
+        submission_key = self.config.submission_key
+        if not submission_key:
+            fingerprint = md5.new()
+            fingerprint.update(self._system_key)
+            fingerprint.update(str(datetime.utcnow()))
+            submission_key = fingerprint.hexdigest()
 
-        message = fingerprint.hexdigest()
+        message = submission_key
         logging.info("Submission key: %s", message)
         self._manager.reactor.fire(("report", "submission_key"), message)
 
