@@ -1,9 +1,14 @@
-import logging
+import os
+import re
 
 from hwtest.plugin import Plugin
+from hwtest.question import Question
+from hwtest.template import Template
 
 
 class QuestionInfo(Plugin):
+
+    attributes = ["directories", "blacklist"]
 
     def register(self, manager):
         super(QuestionInfo, self).register(manager)
@@ -16,14 +21,18 @@ class QuestionInfo(Plugin):
             self._manager.reactor.call_on(rt, rh)
 
     def gather(self):
-        if not self._manager.registry.questions:
-            logging.info("No questions found.")
-            return
+        def validator(template, element):
+            element["suite"] = os.path.basename(template.filename)
+            if [e for e in template.elements if e["name"] == element["name"]]:
+                raise Exception, "Element %s already exists." % element["name"]
 
-        for (name, question) in self._manager.registry.questions.items():
-            if not question.plugin:
-                raise Exception, \
-                    "Question does not contain 'plugin' attribute: %s" % name
+        directories = re.split("\s+", self.config.directories)
+        blacklist = re.split("\s+", self.config.blacklist)
+        template = Template(validator)
+        elements = template.load_directories(directories, blacklist)
+
+        for element in elements:
+            question = Question(self._manager.registry, **element)
             self._manager.reactor.fire(("question", question.plugin), question)
 
     def report_question(self, question):
@@ -32,7 +41,11 @@ class QuestionInfo(Plugin):
     def report(self):
         message = []
         for question in self.questions.values():
-            message.append(question.get_properties())
+            properties = question.properties
+            properties["command"] = str(question.command)
+            properties["description"] = str(question.description)
+            properties["answer"] = question.answer.properties
+            message.append(properties)
         self._manager.reactor.fire(("report", "questions"), message)
 
 

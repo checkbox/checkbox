@@ -4,13 +4,6 @@ Default: /usr/share/hwtest/registries
 Description: Registries directories
  Directories where registries are stored.
 
-Template: hwtest/registries/questions/directories
-Type: string
-Default: /usr/share/hwtest/questions
-Description: Questions path
- Path consisting of a colon separated list of
- directories where question files are stored.
-
 Template: hwtest/plugins/directories
 Type: string
 Default: /usr/share/hwtest/plugins
@@ -23,6 +16,13 @@ Default: /usr/share/hwtest/scripts
 Description: Scripts path
  Executable path for running scripts. These might be
  referenced from the above questions for example.
+
+Template: hwtest/plugins/question_info/directories
+Type: string
+Default: /usr/share/hwtest/questions
+Description: Questions path
+ Path consisting of a colon separated list of
+ directories where question files are stored.
 
 Template: hwtest/plugins/manual_question/data_path
 Type: string

@@ -2,29 +2,39 @@ import os
 import re
 import logging
 
-from hwtest.lib.file import reader
-from hwtest.lib.cache import cache
 
-from hwtest.registry import Registry
+class Template(object):
 
-from map import MapRegistry
+    def __init__(self, validator=lambda t, e: True):
+        self._validator = validator
 
+        self.filename = None
+        self.elements = []
 
-class QuestionsRegistry(Registry):
+    def _reader(self, fd, size=4096, delimiter="\n\n"):
+        buffer = ''
+        while True:
+            lines = (buffer + fd.read(size)).split(delimiter)
+            buffer = lines.pop(-1)
+            if not lines:
+                break
+            for line in lines:
+                yield line
 
-    attributes = ["directories", "blacklist"]
+        yield buffer
 
-    def _load_filename(self, filename):
-        logging.info("Loading questions from filename: %s", filename)
+    def load_filename(self, filename):
+        logging.info("Loading elements from filename: %s", filename)
 
-        questions = []
+        self.filename = filename
+
+        elements = []
         descriptor = file(filename, "r")
-        for string in reader(descriptor):
+        for string in self._reader(descriptor):
             if not string:
                 break
 
-            question = {}
-            question["suite"] = os.path.basename(filename)
+            element = {}
 
             def _save(field, value, extended):
                 if value and extended:
@@ -33,12 +43,12 @@ class QuestionsRegistry(Registry):
                             % filename
                 extended = extended.rstrip("\n")
                 if field:
-                    if question.has_key(field):
+                    if element.has_key(field):
                         raise Exception, \
                             "Path %s has a duplicate field '%s'" \
                             " with a new value '%s'." \
                                 % (filename, field, value)
-                    question[field] = value or extended
+                    element[field] = value or extended
 
             string = string.strip("\n")
             field = value = extended = ''
@@ -80,51 +90,26 @@ class QuestionsRegistry(Registry):
 
             _save(field, value, extended)
 
-            if "name" not in question:
-                raise Exception, \
-                    "Question does not contain a 'name': %s" \
-                        % question
+            self._validator(self, element)
 
-            if [q for q in questions if q["name"] == question["name"]]:
-                raise Exception, \
-                    "Question %s already has a question of the same name." \
-                        % question["name"]
+            elements.append(element)
 
-            questions.append(question)
+        return elements
 
-        return questions
+    def load_directory(self, directory, blacklist=[]):
+        logging.info("Loading elements from directory: %s", directory)
 
-    def _load_directory(self, directory, blacklist):
-        logging.info("Loading questions from directory: %s", directory)
-
-        questions = []
-        for name in [name for name in os.listdir(directory)
-                     if name.endswith(".txt")]:
+        elements = []
+        for name in os.listdir(directory):
             if name not in blacklist:
                 filename = os.path.join(directory, name)
-                questions.extend(self._load_filename(filename))
+                elements.extend(self.load_filename(filename))
 
-        return questions
+        return elements
 
-    def _load_directories(self, directories, blacklist):
-        questions = []
+    def load_directories(self, directories, blacklist=[]):
+        elements = []
         for directory in directories:
-            questions.extend(self._load_directory(directory, blacklist))
+            elements.extend(self.load_directory(directory, blacklist))
 
-        return questions
-
-    @cache
-    def items(self):
-        items = []
-        directories = re.split("\s+", self.config.directories)
-        blacklist = re.split("\s+", self.config.blacklist)
-        questions = self._load_directories(directories, blacklist)
-        for question in questions:
-            key = question["name"]
-            value = MapRegistry(self.config, question)
-            items.append((key, value))
-
-        return items
-
-
-factory = QuestionsRegistry
+        return elements
