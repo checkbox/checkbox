@@ -63,7 +63,6 @@ class QuestionManager(object):
                dependents when a question has a status of NO or SKIP."""
             answer = question.answer
             if answer and (answer.status == NO or answer.status == SKIP):
-                import pdb; pdb.set_trace()
                 for dependent in resolver.get_dependents(question):
                     dependent.answer.status = SKIP
 
