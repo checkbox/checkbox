@@ -1,15 +1,41 @@
-NO = 'no'
-YES = 'yes'
-SKIP = 'skip'
+NO = "no"
+YES = "yes"
+SKIP = "skip"
 ALL_STATUS = [YES, NO, SKIP]
 
 
-class Answer:
+class Answer(object):
 
-    def __init__(self, status, data, auto):
-        self.status = status
-        self.data = data
-        self.auto = auto
+    required_fields = ["status", "data"]
 
-    def get_properties(self):
-        return dict((p, getattr(self, p)) for p in ("status", "data", "auto"))
+    def __init__(self, status=SKIP, data=""):
+        self.properties = self._validate(**{
+            "status": status,
+            "data": data})
+
+    def _validate(self, **kwargs):
+        # Unknown fields
+        for field in kwargs.keys():
+            if field not in self.required_fields:
+                raise Exception, \
+                    "Answer properties contains unknown field: %s" % field
+
+        # Required fields
+        for field in self.required_fields:
+            if not kwargs.has_key(field):
+                raise Exception, \
+                    "Answer properties does not contain a '%s': %s" \
+                    % (field, kwargs)
+
+        # Status field
+        if kwargs["status"] not in ALL_STATUS:
+            raise Exception, \
+                "Unknown status: %s" % kwargs["status"]
+
+        return kwargs
+
+    def __getattr__(self, attr):
+        if attr in self.properties:
+            return self.properties[attr]
+
+        raise AttributeError, attr
