@@ -15,11 +15,11 @@ config.read("examples/hwtest.conf")
 config_directory = '/etc/hwtest.d'
 
 
-class my_install_data(install_data.install_data, object):
+class hwtest_install_data(install_data.install_data, object):
 
     def finalize_options(self):
         """Add wildcard support for filenames.  Generate defaults.py"""
-        super(my_install_data, self).finalize_options()
+        super(hwtest_install_data, self).finalize_options()
 
         for f in self.data_files:
             if type(f) != str:
@@ -80,7 +80,7 @@ to Launchpad.
         ('share/hwtest-gtk/', ['gtk/hwtest-gtk.glade', 'gtk/*.png'])],
     scripts = ['bin/hwtest', 'bin/hwtest-gtk', 'bin/hwtest-cli'],
     packages = ['hwtest', 'hwtest.contrib', 'hwtest.lib', 'hwtest.reports',
-        'hwtest_cli', 'hwtest_gtk'],
+        'hwtest.registries', 'hwtest_cli', 'hwtest_gtk'],
     cmdclass = {
-        'install_data': my_install_data}
+        'install_data': hwtest_install_data}
 )
