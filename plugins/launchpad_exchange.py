@@ -82,11 +82,11 @@ class LaunchpadExchange(Plugin):
         ret = transport.exchange(form)
         if not ret:
             self._manager.set_error("Failed to contact the server,\n"
-                " are you connected to the Internet.")
+                "are you connected to the Internet.")
             return
         elif ret.code != 200:
             self._manager.set_error("Failed to upload to server,\n"
-                " please try again later.")
+                "please try again later.")
             return
 
         if logging.getLogger().getEffectiveLevel() <= logging.DEBUG:
