@@ -153,9 +153,9 @@ class CLIInterface(UserInterface):
     def show_pulse(self):
         self.progress.set()
 
-    def show_intro(self):
-        title = "Introduction"
-        text = """\
+    def show_intro(self, title=None, text=None):
+        title = title or "Welcome to the hardware testing application!"
+        text = text or """\
 This application will gather information from your hardware. Then,
 you will be asked questions to confirm that the hardware is working
 properly. Finally, you will be asked for your Launchpad email address

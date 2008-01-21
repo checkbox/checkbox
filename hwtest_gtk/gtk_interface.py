@@ -89,10 +89,16 @@ class GTKInterface(UserInterface):
         while gtk.events_pending():
             gtk.main_iteration(False)
 
-    def show_intro(self):
+    def show_intro(self, title=None, text=None):
         # Set buttons
         self._set_sensitive("button_previous", False)
         self._notebook.set_current_page(0)
+
+        if title:
+            title = "<b>%s</b>" % title
+            self._set_markup("label_intro_title", title)
+        if text:
+            self._set_text("label_intro_text", text)
 
         self._run_dialog()
 

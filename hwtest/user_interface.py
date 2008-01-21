@@ -59,7 +59,7 @@ class UserInterface(object):
     def show_pulse(self):
         raise NotImplementedError, "this function must be overridden by subclasses"
 
-    def show_intro(self):
+    def show_intro(self, title, text):
         raise NotImplementedError, "this function must be overridden by subclasses"
 
     def show_category(self, category):
