@@ -69,6 +69,10 @@ class GTKInterface(UserInterface):
             widget.hide()
 
     def _set_sensitive(self, name, value=True):
+        # Hack to workaround Gnome bug #56070
+        self._set_show(name, False)
+        self._set_show(name, True)
+
         widget = self._get_widget(name)
         widget.set_sensitive(bool(value))
 
