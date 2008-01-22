@@ -6,12 +6,12 @@ from datetime import datetime
 from hwtest.plugin import Plugin
 
 
-class SubmissionKeyInfo(Plugin):
+class SubmissionInfo(Plugin):
 
     attributes = ["submission_id"]
 
     def register(self, manager):
-        super(SubmissionKeyInfo, self).register(manager)
+        super(SubmissionInfo, self).register(manager)
         self._system_id = None
 
         for (rt, rh) in [
@@ -35,4 +35,4 @@ class SubmissionKeyInfo(Plugin):
         self._manager.reactor.fire(("report", "submission_id"), message)
 
 
-factory = SubmissionKeyInfo
+factory = SubmissionInfo

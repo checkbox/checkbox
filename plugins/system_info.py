@@ -4,12 +4,12 @@ import logging
 from hwtest.plugin import Plugin
 
 
-class SystemKeyInfo(Plugin):
+class SystemInfo(Plugin):
 
     attributes = ["system_id"]
 
     def register(self, manager):
-        super(SystemKeyInfo, self).register(manager)
+        super(SystemInfo, self).register(manager)
 
         # System report should be generated early.
         for (rt, rh, rp) in [
@@ -33,4 +33,4 @@ class SystemKeyInfo(Plugin):
         self._manager.reactor.fire(("report", "system_id"), message)
 
 
-factory = SystemKeyInfo
+factory = SystemInfo
