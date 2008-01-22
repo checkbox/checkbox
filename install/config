@@ -31,9 +31,12 @@ class Config(ConfigParser):
             if 'includes' in defaults:
                 key = 'includes'
                 value = defaults.pop(key)
-                fp.write("%s = %s\n" % (key, str(value).replace('\n', '\n\t')))
+                value = str(value).replace('\n', '\n\t')
+                value = value.replace('./examples', '/etc/hwtest.d')
+                fp.write("%s = %s\n" % (key, value))
             for (key, value) in defaults.items():
-                fp.write("%s = %s\n" % (key, str(value).replace('\n', '\n\t')))
+                value = str(value).replace('\n', '\n\t')
+                fp.write("%s = %s\n" % (key, value))
             fp.write("\n")
         for section in self._sections:
             fp.write("[%s]\n" % section)
