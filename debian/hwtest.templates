@@ -10,13 +10,6 @@ Default: /usr/share/hwtest/plugins
 Description: Plugins directories
  Directories where plugins are stored.
 
-Template: hwtest/plugins/manual_question/scripts_path
-Type: string
-Default: /usr/share/hwtest/scripts
-Description: Scripts path
- Executable path for running scripts. These might be
- referenced from the above questions for example.
-
 Template: hwtest/plugins/question_info/directories
 Type: string
 Default: /usr/share/hwtest/questions
@@ -24,11 +17,25 @@ Description: Questions path
  Path consisting of a colon separated list of
  directories where question files are stored.
 
+Template: hwtest/plugins/auto_question/scripts_path
+Type: string
+Default: /usr/share/hwtest/scripts
+Description: Scripts path
+ Executable path for running scripts. These might be
+ referenced from the above questions for example.
+
 Template: hwtest/plugins/manual_question/data_path
 Type: string
 Default: /usr/share/hwtest/data
 Description: Data path
  Data path containing files for scripts.
+
+Template: hwtest/plugins/manual_question/scripts_path
+Type: string
+Default: /usr/share/hwtest/scripts
+Description: Scripts path
+ Executable path for running scripts. These might be
+ referenced from the above questions for example.
 
 Template: hwtest/plugins/launchpad_exchange/transport_url
 Type: string
