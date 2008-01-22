@@ -11,3 +11,4 @@ DEB_PYTHON_INSTALL_ARGS_ALL := --no-compile --install-scripts usr/share/hwtest
 
 clean::
 	-find . -name \*.mo -exec rm {} \;
+	debconf-updatepo
