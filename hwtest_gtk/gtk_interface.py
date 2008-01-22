@@ -61,6 +61,13 @@ class GTKInterface(UserInterface):
         widget = self._get_widget(name)
         widget.set_active(bool(value))
 
+    def _set_show(self, name, value=True):
+        widget = self._get_widget(name)
+        if value:
+            widget.show()
+        else:
+            widget.hide()
+
     def _set_sensitive(self, name, value=True):
         widget = self._get_widget(name)
         widget.set_sensitive(bool(value))
@@ -122,11 +129,11 @@ class GTKInterface(UserInterface):
         # Set buttons
         self._set_sensitive("button_previous", False)
         self._set_sensitive("button_next", False)
-        self._set_sensitive("button_test_again", False)
+        self._set_show("button_test_again", False)
 
         # Set interface
         self._set_text("label_question", message)
-        self._get_widget("progressbar_question").show()
+        self._set_show("progressbar_question")
         self._notebook.set_current_page(2)
 
         self._dialog.show()
@@ -135,11 +142,11 @@ class GTKInterface(UserInterface):
         # Set buttons
         self._set_sensitive("button_previous", True)
         self._set_sensitive("button_next", True)
-        self._set_sensitive("button_test_again", str(question.command))
+        self._set_show("button_test_again", str(question.command))
 
         # Set interface
         self._set_text("label_question", str(question.description))
-        self._get_widget("progressbar_question").hide()
+        self._set_show("progressbar_question", False)
         self._notebook.set_current_page(2)
 
         # Set test again button
