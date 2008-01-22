@@ -28,8 +28,8 @@ class LaunchpadExchange(Plugin):
              ("exchange", self.exchange),
              (("report", "datetime"), self.report_datetime),
              (("report", "architecture"), self.report_architecture),
-             (("report", "submission_key"), self.report_submission_key),
-             (("report", "system_key"), self.report_system_key),
+             (("report", "submission_id"), self.report_submission_id),
+             (("report", "system_id"), self.report_system_id),
              (("report", "distribution"), self.report_distribution),
              (("report", "email"), self.report_email),
              (("report", "launchpad"), self.report_launchpad)]:
@@ -41,10 +41,10 @@ class LaunchpadExchange(Plugin):
     def report_architecture(self, message):
         self._form["field.architecture"] = message
 
-    def report_submission_key(self, message):
+    def report_submission_id(self, message):
         self._form["field.submission_key"] = message
 
-    def report_system_key(self, message):
+    def report_system_id(self, message):
         self._form["field.system"] = message
 
     def report_distribution(self, message):

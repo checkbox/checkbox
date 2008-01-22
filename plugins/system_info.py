@@ -6,6 +6,8 @@ from hwtest.plugin import Plugin
 
 class SystemKeyInfo(Plugin):
 
+    attributes = ["system_id"]
+
     def register(self, manager):
         super(SystemKeyInfo, self).register(manager)
 
@@ -19,13 +21,16 @@ class SystemKeyInfo(Plugin):
         if "hardware" in system_registry:
             system_registry = system_registry.hardware
 
-        fingerprint = md5.new()
-        fingerprint.update(system_registry.vendor)
-        fingerprint.update(system_registry.product)
+        system_id = self.config.system_id
+        if not system_id:
+            fingerprint = md5.new()
+            fingerprint.update(system_registry.vendor)
+            fingerprint.update(system_registry.product)
+            system_id = fingerprint.hexdigest()
 
-        message = fingerprint.hexdigest()
-        logging.info("System key: %s", message)
-        self._manager.reactor.fire(("report", "system_key"), message)
+        message = system_id
+        logging.info("System ID: %s", message)
+        self._manager.reactor.fire(("report", "system_id"), message)
 
 
 factory = SystemKeyInfo
