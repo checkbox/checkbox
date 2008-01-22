@@ -26,9 +26,10 @@ class AutoPrompt(Plugin):
         if not self._done:
             def run_questions(self):
                 for question in self._question_manager.get_iterator():
-                    (stdout, stderr, wait) = question.command()
-                    status = wait == 0 and YES or NO
-                    question.answer = Answer(status, stdout)
+                    question.command()
+                    question.description()
+                    question.answer = Answer(question.command.get_status(),
+                        question.command.get_data())
                     self._manager.reactor.fire(("report", "question"),
                         question)
 
