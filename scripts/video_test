@@ -32,29 +32,32 @@ class VideoTest:
 
         self._source.link(self._sink)
 
-    def _get_patterns(self):
+    def _get_patterns(self, all_patterns=False):
         """
         Returns a range of possible patterns appropriate to the available
         version of GStreamer.
         """
-        version = self.gst.version()[2]
+        if all_patterns:
+            version = self.gst.version()[2]
 
-        if version >= 13:
-            patterns = range(12)
-        elif version >= 11:
-            patterns = range(11)
-        elif version == 10 :
-            patterns = range(7)
+            if version >= 13:
+                patterns = range(12)
+            elif version >= 11:
+                patterns = range(11)
+            elif version == 10 :
+                patterns = range(7)
+            else:
+                patterns = range(3)
         else:
-            patterns = range(3)
+            patterns = range(1)
 
         return patterns
 
-    def list(self):
+    def list(self, all_patterns=False):
         """
         Display a list of test patterns.
         """
-        patterns = self._get_patterns()
+        patterns = self._get_patterns(all_patterns)
 
         pattern_names = []
         for pattern in patterns:
@@ -62,11 +65,11 @@ class VideoTest:
             pattern_names.append(self._source.get_property("pattern").value_name)
         print "\n".join(pattern_names)
 
-    def display(self):
+    def display(self, all_patterns=False):
         """
         Displays the test patterns.
         """
-        patterns = self._get_patterns()
+        patterns = self._get_patterns(all_patterns)
 
         self._pipeline.set_state(self.gst.STATE_PLAYING)
 
@@ -84,12 +87,14 @@ def parse_options(args):
     parser = OptionParser()
     parser.add_option("-l", "--list", action="store_true",
                       help="List patterns that will be displayed.")
+    parser.add_option("-a", "--all", action="store_true",
+                      help="Runs all available test patterns instead of the default one.")
     return parser.parse_args(args)[0]
 
 if __name__ == "__main__":
     options = parse_options(sys.argv)
     video = VideoTest()
     if options.list:
-        video.list()
+        video.list(options.all)
     else:
-        video.display()
+        video.display(options.all)
