@@ -12,14 +12,14 @@ class AutoPrompt(Plugin):
 
         for (rt, rh) in [
              (("interface", "category"), self.interface_category),
-             (("prompt", "auto"), self.prompt_auto),
+             (("question", "auto"), self.question_auto),
              (("prompt", "questions"), self.prompt_questions)]:
             self._manager.reactor.call_on(rt, rh)
 
     def interface_category(self, category):
         self._question_manager.set_category(category)
 
-    def prompt_auto(self, question):
+    def question_auto(self, question):
         self._question_manager.add_question(question)
 
     def prompt_questions(self, interface):

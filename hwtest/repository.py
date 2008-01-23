@@ -36,11 +36,18 @@ class RepositorySection(object):
         section.
         """
         if self._names is None:
-            for directory in self.directories:
-                names = [p.replace('.py', '') for p in os.listdir(directory)
-                    if p.endswith('.py') and p != "__init__.py"]
-                blacklist_names = re.split(r"\s+", self._config.blacklist or '')
-                self._names = list(set(names).difference(set(blacklist_names)))
+            whitelist = self._config.whitelist
+            if whitelist:
+                self._names = re.split(r"\s+", whitelist)
+            else:
+                blacklist = self._config.blacklist
+                for directory in self.directories:
+                    names = [p.replace('.py', '')
+                        for p in os.listdir(directory)
+                        if p.endswith('.py') and p != "__init__.py"]
+                    blacklist_names = re.split(r"\s+", blacklist or '')
+                    self._names = list(set(names) \
+                        .difference(set(blacklist_names)))
 
         return self._names
 

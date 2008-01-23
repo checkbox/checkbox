@@ -8,7 +8,7 @@ from hwtest.template import Template
 
 class QuestionInfo(Plugin):
 
-    attributes = ["directories", "blacklist"]
+    attributes = ["directories", "blacklist", "whitelist"]
 
     def register(self, manager):
         super(QuestionInfo, self).register(manager)
@@ -28,11 +28,14 @@ class QuestionInfo(Plugin):
 
         directories = re.split("\s+", self.config.directories)
         blacklist = re.split("\s+", self.config.blacklist)
+        whitelist = re.split("\s+", self.config.whitelist)
         template = Template(validator)
-        elements = template.load_directories(directories, blacklist)
+        elements = template.load_directories(directories, blacklist, whitelist)
 
         for element in elements:
             question = Question(self._manager.registry, **element)
+            question.command.add_path(self.config.scripts_path)
+            question.command.add_variable("data_path", self.config.data_path)
             self._manager.reactor.fire(("question", question.plugin), question)
 
     def report_question(self, question):

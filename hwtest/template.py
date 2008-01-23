@@ -96,20 +96,24 @@ class Template(object):
 
         return elements
 
-    def load_directory(self, directory, blacklist=[]):
+    def load_directory(self, directory, blacklist=[], whitelist=[]):
         logging.info("Loading elements from directory: %s", directory)
 
         elements = []
-        for name in os.listdir(directory):
-            if name not in blacklist:
-                filename = os.path.join(directory, name)
-                elements.extend(self.load_filename(filename))
+        if whitelist:
+            names = whitelist
+        else:
+            names = [n for n in os.listdir(directory) if n not in blacklist]
+
+        for name in names:
+            filename = os.path.join(directory, name)
+            elements.extend(self.load_filename(filename))
 
         return elements
 
-    def load_directories(self, directories, blacklist=[]):
+    def load_directories(self, directories, blacklist=[], whitelist=[]):
         elements = []
         for directory in directories:
-            elements.extend(self.load_directory(directory, blacklist))
+            elements.extend(self.load_directory(directory, blacklist, whitelist))
 
         return elements
