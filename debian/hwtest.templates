@@ -1,19 +1,19 @@
 Template: hwtest/registries/directories
 Type: string
 Default: /usr/share/hwtest/registries
-Description: Registries directories
+_Description: Registries directories:
  Directories where registries are stored.
 
 Template: hwtest/plugins/directories
 Type: string
 Default: /usr/share/hwtest/plugins
-Description: Plugins directories
+_Description: Plugins directories:
  Directories where plugins are stored.
 
 Template: hwtest/plugins/question_info/directories
 Type: string
 Default: /usr/share/hwtest/questions
-Description: Questions path
+_Description: Questions path:
  Path consisting of a colon separated list of
  directories where question files are stored.
 
@@ -27,24 +27,24 @@ Description: Scripts path
 Template: hwtest/plugins/manual_question/data_path
 Type: string
 Default: /usr/share/hwtest/data
-Description: Data path
+_Description: Data path:
  Data path containing files for scripts.
 
 Template: hwtest/plugins/manual_question/scripts_path
 Type: string
 Default: /usr/share/hwtest/scripts
-Description: Scripts path
+_Description: Scripts path:
  Executable path for running scripts. These might be
  referenced from the above questions for example.
 
 Template: hwtest/plugins/launchpad_exchange/transport_url
 Type: string
 Default: https://launchpad.net/+hwdb/+submit
-Description: Transport URL
+_Description: Transport URL:
  URL where to send hardware submissions.
 
 Template: hwtest/plugins/launchpad_exchange/cache_file
 Type: string
 Default: /var/cache/hwtest/submission.xml
-Description: Cache file
+_Description: Cache file:
  File where submission information is cached.

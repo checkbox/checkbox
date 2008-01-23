@@ -1,15 +1,15 @@
 Source: hwtest
 Section: base
 Priority: optional
-Maintainer: Marc Tardif <marc.tardif@canonical.com>
-Standards-Version: 3.6.2.0
-Build-Depends: cdbs (>= 0.4.43), debhelper (>= 5.0.37.2), python-support (>= 0.3), python-dev (>= 2.4)
+XSBC-Original-Maintainer: Marc Tardif <marc.tardif@canonical.com>
+Maintainer: Ubuntu MOTU Developers <ubuntu-motu@lists.ubuntu.com>
+Standards-Version: 3.7.3
+Build-Depends: cdbs (>= 0.4.43), debhelper (>= 5.0.37.2), python-support (>= 0.3), python-dev (>= 2.4), po-debconf
 
 Package: hwtest
 Section: python
 Architecture: all
-Pre-Depends: ${misc:Depends}
-Depends: python-dbus | python2.4-dbus, python-apt | python2.4-apt, hal, fping, xbase-clients, libxrandr2
+Depends: ${python:Depends}, ${misc:Depends}, python-dbus, python-apt, hal, fping, xbase-clients
 Description: Hardware test
  This project provides an interface for gathering hardware details and
  prompting the user for questions. This information can then be sent
@@ -17,8 +17,7 @@ Description: Hardware test
 
 Package: hwtest-cli
 Architecture: all
-Pre-Depends: ${misc:Depends}
-Depends: hwtest
+Depends: hwtest, ${python:Depends}, ${misc:Depends}
 Description: CLI interface for the hwtest program
  This project provides an interface for gathering hardware details and
  prompting the user for questions. This information can then be sent
@@ -29,8 +28,7 @@ Description: CLI interface for the hwtest program
 Package: hwtest-gtk
 Section: gnome
 Architecture: all
-Pre-Depends: ${misc:Depends}
-Depends: python-gtk2, python-glade2, gksu, hwtest
+Depends: python-gtk2, python-glade2, gksu, hwtest, ${misc:Depends}, ${python:Depends}
 Description: GTK interface for the hwtest program
  This project provides an interface for gathering hardware details and
  prompting the user for questions. This information can then be sent
