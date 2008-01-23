@@ -10,6 +10,7 @@
 # -v, --variable  Optional variables to preseed in the configuration file.
 
 import os
+import re
 import sys
 from ConfigParser import ConfigParser
 from optparse import OptionParser
@@ -20,30 +21,49 @@ from debconf import Debconf, DebconfCommunicator, DebconfError, MEDIUM
 DEFAULTSECT = "DEFAULT"
 
 
-# HACK: This writes the includes line first.
 class Config(ConfigParser):
+
+    def get_version(self):
+        changelog = "debian/changelog"
+        if os.path.exists(changelog):
+            head=open(changelog).readline()
+            match = re.compile(".*\((.*)\).*").match(head)
+            if match:
+                version = match.group(1)
+
+        return version
 
     def write(self, fp):
         """Write an .ini-format representation of the configuration state."""
         if self._defaults:
             fp.write("[%s]\n" % DEFAULTSECT)
             defaults = dict(self._defaults)
+
+            # Write includes first
             if 'includes' in defaults:
                 key = 'includes'
                 value = defaults.pop(key)
                 value = str(value).replace('\n', '\n\t')
                 value = value.replace('./examples', '/etc/hwtest.d')
                 fp.write("%s = %s\n" % (key, value))
+
+            # Replace version value
+            if 'version' in defaults:
+                defaults["version"] = self.get_version()
+
             for (key, value) in defaults.items():
                 value = str(value).replace('\n', '\n\t')
                 fp.write("%s = %s\n" % (key, value))
+
             fp.write("\n")
+
         for section in self._sections:
             fp.write("[%s]\n" % section)
             for (key, value) in self._sections[section].items():
                 if key != "__name__":
                     fp.write("%s = %s\n" %
                              (key, str(value).replace('\n', '\n\t')))
+
             fp.write("\n")
 
 
