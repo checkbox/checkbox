@@ -3,11 +3,12 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: ubuntu-motu@lists.ubuntu.com\n"
-"POT-Creation-Date: 2008-01-22 18:47+0000\n"
+"POT-Creation-Date: 2008-01-23 11:58-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,13 +18,13 @@ msgstr ""
 
 #. Type: string
 #. Description
-#: ../hwtest-cli.templates:1001
+#: ../hwtest-cli.templates:4
 msgid "CLI include files:"
 msgstr ""
 
 #. Type: string
 #. Description
-#: ../hwtest-cli.templates:1001
+#: ../hwtest-cli.templates:4
 msgid ""
 "Space separated list of files to include as a dependency for the CLI "
 "interface."
@@ -31,13 +32,13 @@ msgstr ""
 
 #. Type: string
 #. Description
-#: ../hwtest-gtk.templates:1001
+#: ../hwtest-gtk.templates:4
 msgid "GTK include files:"
 msgstr ""
 
 #. Type: string
 #. Description
-#: ../hwtest-gtk.templates:1001
+#: ../hwtest-gtk.templates:4
 msgid ""
 "Space separated list of files to include as a dependency for the GTK "
 "interface."
@@ -45,63 +46,49 @@ msgstr ""
 
 #. Type: string
 #. Description
-#: ../hwtest-gtk.templates:2001
+#: ../hwtest-gtk.templates:11
 msgid "GTK path:"
 msgstr ""
 
 #. Type: string
 #. Description
-#: ../hwtest-gtk.templates:2001
+#: ../hwtest-gtk.templates:11
 msgid "Path where GTK files are stored."
 msgstr ""
 
 #. Type: string
 #. Description
-#: ../hwtest.templates:1001
+#: ../hwtest.templates:4
 msgid "Registries directories:"
 msgstr ""
 
 #. Type: string
 #. Description
-#: ../hwtest.templates:1001
+#: ../hwtest.templates:4
 msgid "Directories where registries are stored."
 msgstr ""
 
 #. Type: string
 #. Description
-#: ../hwtest.templates:2001
+#: ../hwtest.templates:10
 msgid "Plugins directories:"
 msgstr ""
 
 #. Type: string
 #. Description
-#: ../hwtest.templates:2001
+#: ../hwtest.templates:10
 msgid "Directories where plugins are stored."
 msgstr ""
 
 #. Type: string
 #. Description
-#: ../hwtest.templates:3001
-msgid "Scripts path:"
-msgstr ""
-
-#. Type: string
-#. Description
-#: ../hwtest.templates:3001
-msgid ""
-"Executable path for running scripts. These might be referenced from the "
-"above questions for example."
-msgstr ""
-
-#. Type: string
-#. Description
-#: ../hwtest.templates:4001
+#: ../hwtest.templates:16
 msgid "Questions path:"
 msgstr ""
 
 #. Type: string
 #. Description
-#: ../hwtest.templates:4001
+#: ../hwtest.templates:16
 msgid ""
 "Path consisting of a colon separated list of directories where question "
 "files are stored."
@@ -109,36 +96,50 @@ msgstr ""
 
 #. Type: string
 #. Description
-#: ../hwtest.templates:5001
+#: ../hwtest.templates:30
 msgid "Data path:"
 msgstr ""
 
 #. Type: string
 #. Description
-#: ../hwtest.templates:5001
+#: ../hwtest.templates:30
 msgid "Data path containing files for scripts."
 msgstr ""
 
 #. Type: string
 #. Description
-#: ../hwtest.templates:6001
+#: ../hwtest.templates:36
+msgid "Scripts path:"
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../hwtest.templates:36
+msgid ""
+"Executable path for running scripts. These might be referenced from the "
+"above questions for example."
+msgstr ""
+
+#. Type: string
+#. Description
+#: ../hwtest.templates:43
 msgid "Transport URL:"
 msgstr ""
 
 #. Type: string
 #. Description
-#: ../hwtest.templates:6001
+#: ../hwtest.templates:43
 msgid "URL where to send hardware submissions."
 msgstr ""
 
 #. Type: string
 #. Description
-#: ../hwtest.templates:7001
+#: ../hwtest.templates:49
 msgid "Cache file:"
 msgstr ""
 
 #. Type: string
 #. Description
-#: ../hwtest.templates:7001
+#: ../hwtest.templates:49
 msgid "File where submission information is cached."
 msgstr ""

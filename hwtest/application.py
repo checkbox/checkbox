@@ -6,7 +6,6 @@ from logging import StreamHandler, FileHandler, Formatter
 from optparse import OptionParser
 
 from hwtest.contrib import bpickle_dbus, bpickle_registry
-from hwtest.contrib.persist import Persist
 
 from hwtest.defaults import CONFIG_DIRECTORY
 from hwtest.config import Config
@@ -23,24 +22,12 @@ class Application(object):
         # Reactor setup
         self.reactor = Reactor()
 
-        # Persist setup
-        persist_filename = os.path.join("/tmp", "data.bpickle")
-        self.persist = self._get_persist(persist_filename)
-
         # Registry manager setup
         self.registry = RegistryManager(self.config)
 
         # Plugin manager setup
         self.plugin_manager = PluginManager(self.config,
-            self.registry, self.reactor, self.persist,
-            persist_filename)
-
-    def _get_persist(self, persist_filename):
-        persist = Persist()
-
-        if os.path.exists(persist_filename):
-            persist.load(persist_filename)
-        return persist
+            self.registry, self.reactor)
 
     def run(self):
         try:
