@@ -9,7 +9,7 @@ Build-Depends: cdbs (>= 0.4.43), debhelper (>= 5.0.37.2), python-support (>= 0.3
 Package: hwtest
 Section: python
 Architecture: all
-Depends: ${python:Depends}, ${misc:Depends}, python-dbus, python-apt, hal, fping, xbase-clients
+Depends: ${misc:Depends}, python-dbus | python2.4-dbus, python-apt | python2.4-apt, hal, fping, xbase-clients
 Description: Hardware test
  This project provides an interface for gathering hardware details and
  prompting the user for questions. This information can then be sent
@@ -17,7 +17,7 @@ Description: Hardware test
 
 Package: hwtest-cli
 Architecture: all
-Depends: hwtest, ${python:Depends}, ${misc:Depends}
+Depends: hwtest
 Description: CLI interface for the hwtest program
  This project provides an interface for gathering hardware details and
  prompting the user for questions. This information can then be sent
@@ -28,7 +28,7 @@ Description: CLI interface for the hwtest program
 Package: hwtest-gtk
 Section: gnome
 Architecture: all
-Depends: python-gtk2, python-glade2, gksu, hwtest, ${misc:Depends}, ${python:Depends}
+Depends: python-gtk2, python-glade2, gksu, hwtest
 Description: GTK interface for the hwtest program
  This project provides an interface for gathering hardware details and
  prompting the user for questions. This information can then be sent

@@ -27,8 +27,10 @@ class QuestionInfo(Plugin):
                 raise Exception, "Element %s already exists." % element["name"]
 
         directories = re.split("\s+", self.config.directories)
-        blacklist = re.split("\s+", self.config.blacklist)
-        whitelist = re.split("\s+", self.config.whitelist)
+        blacklist = self.config.blacklist \
+            and re.split("\s+", self.config.blacklist) or []
+        whitelist = self.config.whitelist \
+            and re.split("\s+", self.config.whitelist) or []
         template = Template(validator)
         elements = template.load_directories(directories, blacklist, whitelist)
 
