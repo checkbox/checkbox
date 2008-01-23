@@ -43,6 +43,10 @@ class GTKInterface(UserInterface):
         text = buffer.get_text(buffer.get_start_iter(), buffer.get_end_iter())
         return text
 
+    def _set_label(self, name, label=""):
+        widget = self._get_widget(name)
+        widget.set_label(label)
+
     def _set_markup(self, name, markup=""):
         widget = self._get_widget(name)
         widget.set_markup(markup)
@@ -199,12 +203,15 @@ class GTKInterface(UserInterface):
         return authentication
 
     def show_final(self, message=None):
+        self._set_label("button_next", "_Finish")
         self._notebook.set_current_page(5)
 
         if message is not None:
             self._set_markup("label_final", message)
 
         self._run_dialog()
+
+        self._set_label("button_next", "Ne_xt")
 
     def show_error(self, title, text):
         md = gtk.MessageDialog(type=gtk.MESSAGE_ERROR,
