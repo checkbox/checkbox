@@ -9,6 +9,8 @@ from distutils import sysconfig
 from distutils.core import setup
 from distutils.command import install_data
 
+from DistUtilsExtra.command.build_extra import build_extra
+from DistUtilsExtra.command.build_i18n import build_i18n
 
 config = ConfigParser()
 config.read("examples/hwtest.conf")
@@ -82,5 +84,7 @@ to Launchpad.
     packages = ['hwtest', 'hwtest.contrib', 'hwtest.lib', 'hwtest.reports',
         'hwtest.registries', 'hwtest_cli', 'hwtest_gtk'],
     cmdclass = {
-        'install_data': hwtest_install_data}
+        'install_data': hwtest_install_data,
+	"build" : build_extra,
+	"build_i18n" :  build_i18n }
 )
