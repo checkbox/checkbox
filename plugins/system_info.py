@@ -6,7 +6,7 @@ from hwtest.plugin import Plugin
 
 class SystemInfo(Plugin):
 
-    attributes = ["system_id"]
+    optional_attributes = ["system_id"]
 
     def register(self, manager):
         super(SystemInfo, self).register(manager)

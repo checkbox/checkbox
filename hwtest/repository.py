@@ -129,7 +129,8 @@ class Repository(object):
     implementation.
     """
 
-    attributes = []
+    required_attributes = []
+    optional_attributes = []
 
     def __init__(self, config):
         """
@@ -138,12 +139,19 @@ class Repository(object):
         """
         self.config = config
 
-        if self.attributes and not self.config:
+        if self.required_attributes and not self.config:
             raise Exception, \
-                "Missing configuration section for attributes: %s" \
-                % ", ".join(self.attributes)
-        for attribute in self.attributes:
+                "Missing configuration section for required attributes: %s" \
+                % ", ".join(self.required_attributes)
+
+        for attribute in self.required_attributes:
             if not hasattr(self.config, attribute):
                 raise Exception, \
-                    "Configuration section '%s' missing attribute: %s" \
+                    "Configuration section '%s' missing required attribute: %s" \
                     % (self.config.name, attribute)
+
+        for attribute in self.config.attributes.keys():
+            if attribute not in self.required_attributes + self.optional_attributes:
+                raise Exception, \
+                    "Configuration section '%s' contains unknown attribute: %s" \
+                     % (self.config.name, attribute)

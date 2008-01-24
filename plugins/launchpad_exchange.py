@@ -13,7 +13,7 @@ from hwtest.transport import HTTPTransport
 
 class LaunchpadExchange(Plugin):
 
-    attributes = ["transport_url"]
+    required_attributes = ["transport_url"]
 
     def register(self, manager):
         super(LaunchpadExchange, self).register(manager)

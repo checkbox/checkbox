@@ -4,7 +4,7 @@ from hwtest.reports.launchpad_report import LaunchpadReportManager
 
 class LaunchpadReport(Plugin):
 
-    attributes = ["cache_file"]
+    required_attributes = ["cache_file"]
 
     def register(self, manager):
         super(LaunchpadReport, self).register(manager)

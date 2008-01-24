@@ -156,21 +156,21 @@ class Question(object):
 
     def __init__(self, registry, **kwargs):
         self.registry = registry
-        self.properties = self._validate(**kwargs)
+        self.attributes = self._validate(**kwargs)
 
     def _validate(self, **kwargs):
         # Unknown fields
         for field in kwargs.keys():
             if field not in self.required_fields + self.optional_fields.keys():
                 raise Exception, \
-                    "Question properties contains unknown field: %s" \
+                    "Question attributes contains unknown field: %s" \
                     % field
 
         # Required fields
         for field in self.required_fields:
             if not kwargs.has_key(field):
                 raise Exception, \
-                    "Question properties does not contain '%s': %s" \
+                    "Question attributes does not contain '%s': %s" \
                     % (field, kwargs)
 
         # Typed fields
@@ -200,8 +200,8 @@ class Question(object):
 
         return kwargs
 
-    def __getattr__(self, attr):
-        if attr in self.properties:
-            return self.properties[attr]
+    def __getattr__(self, name):
+        if name in self.attributes:
+            return self.attributes[name]
 
-        raise AttributeError, attr
+        raise AttributeError, name

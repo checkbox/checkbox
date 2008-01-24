@@ -9,7 +9,7 @@ class Answer(object):
     required_fields = ["status", "data"]
 
     def __init__(self, status=SKIP, data=""):
-        self.properties = self._validate(**{
+        self.attributes = self._validate(**{
             "status": status,
             "data": data})
 
@@ -18,13 +18,13 @@ class Answer(object):
         for field in kwargs.keys():
             if field not in self.required_fields:
                 raise Exception, \
-                    "Answer properties contains unknown field: %s" % field
+                    "Answer attributes contains unknown field: %s" % field
 
         # Required fields
         for field in self.required_fields:
             if not kwargs.has_key(field):
                 raise Exception, \
-                    "Answer properties does not contain a '%s': %s" \
+                    "Answer attributes does not contain a '%s': %s" \
                     % (field, kwargs)
 
         # Status field
@@ -34,8 +34,8 @@ class Answer(object):
 
         return kwargs
 
-    def __getattr__(self, attr):
-        if attr in self.properties:
-            return self.properties[attr]
+    def __getattr__(self, name):
+        if name in self.attributes:
+            return self.attributes[name]
 
-        raise AttributeError, attr
+        raise AttributeError, name

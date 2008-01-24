@@ -3,7 +3,7 @@ from hwtest.plugin import Plugin
 
 class CategoryPrompt(Plugin):
 
-    attributes = ["category"]
+    optional_attributes = ["category"]
 
     def register(self, manager):
         super(CategoryPrompt, self).register(manager)

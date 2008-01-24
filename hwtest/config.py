@@ -22,33 +22,33 @@ class IncludeDict(dict):
 
 class ConfigSection(object):
 
-    def __init__(self, parent, name, **kwargs):
+    def __init__(self, parent, name, **attributes):
         self.parent = parent
         self.name = name
-        self._kwargs = kwargs
+        self.attributes = attributes
 
-    def _get_value(self, attr):
-        return self._kwargs.get(attr)
+    def _get_value(self, name):
+        return self.attributes.get(name)
 
-    def __getattr__(self, attr):
-        if attr in self._kwargs:
-            return self._get_value(attr)
+    def __getattr__(self, name):
+        if name in self.attributes:
+            return self._get_value(name)
 
-        raise AttributeError, attr
+        raise AttributeError, name
 
 
 class ConfigDefaults(ConfigSection):
 
-    def _get_value(self, attr):
-        return os.environ.get(attr.upper()) \
-            or os.environ.get(attr.lower()) \
-            or super(ConfigDefaults, self)._get_value(attr)
+    def _get_value(self, name):
+        return os.environ.get(name.upper()) \
+            or os.environ.get(name.lower()) \
+            or super(ConfigDefaults, self)._get_value(name)
 
-    def __getattr__(self, attr):
-        if attr in self._kwargs:
-            return self._get_value(attr)
+    def __getattr__(self, name):
+        if name in self.attributes:
+            return self._get_value(name)
 
-        raise AttributeError, attr
+        raise AttributeError, name
 
 
 class Config(object):
@@ -65,13 +65,13 @@ class Config(object):
         self._parser.read(path)
 
     def get_defaults(self):
-        kwargs = self._parser.defaults()
-        return ConfigDefaults(self, 'DEFAULT', **kwargs)
+        attributes = self._parser.defaults()
+        return ConfigDefaults(self, 'DEFAULT', **attributes)
 
     def get_section(self, section_name):
         if section_name in self._parser.sections():
-            kwargs = dict(self._parser.items(section_name))
-            return ConfigSection(self, section_name, **kwargs)
+            attributes = dict(self._parser.items(section_name))
+            return ConfigSection(self, section_name, **attributes)
 
         return None
 

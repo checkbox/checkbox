@@ -8,7 +8,7 @@ from hwtest.plugin import Plugin
 
 class SubmissionInfo(Plugin):
 
-    attributes = ["submission_id"]
+    optional_attributes = ["submission_id"]
 
     def register(self, manager):
         super(SubmissionInfo, self).register(manager)

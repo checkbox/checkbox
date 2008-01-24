@@ -6,7 +6,7 @@ from hwtest.iterator import PREV
 
 class ExchangePrompt(Plugin):
 
-    attributes = ["email"]
+    optional_attributes = ["email"]
 
     def register(self, manager):
         super(ExchangePrompt, self).register(manager)

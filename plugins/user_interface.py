@@ -6,7 +6,7 @@ from hwtest.iterator import Iterator
 
 class UserInterface(Plugin):
 
-    attributes = ["interface_module", "interface_class"]
+    required_attributes = ["interface_module", "interface_class"]
 
     def run(self):
         interface_module = __import__(self.config.interface_module,
