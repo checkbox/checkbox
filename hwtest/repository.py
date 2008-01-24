@@ -36,18 +36,18 @@ class RepositorySection(object):
         section.
         """
         if self._names is None:
-            whitelist = self._config.whitelist
-            if whitelist:
-                self._names = re.split(r"\s+", whitelist)
+            if "whitelist" in self._config.attributes:
+                self._names = re.split(r"\s+", self._config.whitelist)
             else:
-                blacklist = self._config.blacklist
+                blacklist = []
+                if "blacklist" in self._config.attributes:
+                    blacklist = re.split(r"\s", self._config.blacklist)
+
                 for directory in self.directories:
                     names = [p.replace('.py', '')
                         for p in os.listdir(directory)
                         if p.endswith('.py') and p != "__init__.py"]
-                    blacklist_names = re.split(r"\s+", blacklist or '')
-                    self._names = list(set(names) \
-                        .difference(set(blacklist_names)))
+                    self._names = list(set(names).difference(set(blacklist)))
 
         return self._names
 
@@ -138,20 +138,32 @@ class Repository(object):
         can be used to pass options to repositories.
         """
         self.config = config
+        self._validate()
 
+    def _validate(self):
         if self.required_attributes and not self.config:
             raise Exception, \
                 "Missing configuration section for required attributes: %s" \
                 % ", ".join(self.required_attributes)
 
+        for attribute in self.optional_attributes:
+            if not self.config or attribute not in self.config.attributes:
+                self.config.attributes[attribute] = None
+
+        if not self.config:
+            return
+
         for attribute in self.required_attributes:
-            if not hasattr(self.config, attribute):
+            if attribute not in self.config.attributes:
                 raise Exception, \
                     "Configuration section '%s' missing required attribute: %s" \
                     % (self.config.name, attribute)
 
+        all_attributes = self.required_attributes \
+            + self.optional_attributes \
+            + self.config.parent.get_defaults().attributes.keys()
         for attribute in self.config.attributes.keys():
-            if attribute not in self.required_attributes + self.optional_attributes:
+            if attribute not in all_attributes:
                 raise Exception, \
                     "Configuration section '%s' contains unknown attribute: %s" \
                      % (self.config.name, attribute)
