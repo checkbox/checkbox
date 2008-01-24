@@ -17,25 +17,18 @@ _Description: Questions path:
  Path consisting of a colon separated list of
  directories where question files are stored.
 
-Template: hwtest/plugins/auto_question/scripts_path
+Template: hwtest/plugins/question_info/scripts_path
 Type: string
 Default: /usr/share/hwtest/scripts
 _Description: Scripts path
  Executable path for running scripts. These might be
  referenced from the above questions for example.
 
-Template: hwtest/plugins/manual_question/data_path
+Template: hwtest/plugins/question_info/data_path
 Type: string
 Default: /usr/share/hwtest/data
 _Description: Data path:
  Data path containing files for scripts.
-
-Template: hwtest/plugins/manual_question/scripts_path
-Type: string
-Default: /usr/share/hwtest/scripts
-_Description: Scripts path:
- Executable path for running scripts. These might be
- referenced from the above questions for example.
 
 Template: hwtest/plugins/launchpad_exchange/transport_url
 Type: string
