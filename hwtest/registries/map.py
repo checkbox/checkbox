@@ -24,6 +24,3 @@ class MapRegistry(Registry):
             items.append((key, value))
 
         return items
-
-
-factory = MapRegistry

@@ -49,7 +49,7 @@ class DeviceRegistry(DataRegistry):
 
         items = []
         for key, value in all.items():
-            value = MapRegistry(self.config, value)
+            value = MapRegistry(None, value)
             items.append((key, value))
 
         return items
@@ -76,7 +76,7 @@ class HalRegistry(CommandRegistry):
                     break
 
             if lines:
-                value = DeviceRegistry(self.config, "\n".join(lines))
+                value = DeviceRegistry(None, "\n".join(lines))
                 items.append((key, value))
 
         return items

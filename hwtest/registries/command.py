@@ -14,6 +14,8 @@ class CommandRegistry(Registry):
     Subclasses should define a command configuration parameter.
     """
 
+    optional_attributes = ["command"]
+
     def __init__(self, config, command=None):
         super(CommandRegistry, self).__init__(config)
         self.command = command or self.config.command
@@ -25,6 +27,3 @@ class CommandRegistry(Registry):
 
     def items(self):
         return []
-
-
-factory = CommandRegistry

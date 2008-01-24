@@ -7,6 +7,7 @@ from hwtest.iterator import Iterator
 class UserInterface(Plugin):
 
     required_attributes = ["interface_module", "interface_class"]
+    optional_attributes = ["title", "gtk_path"]
 
     def run(self):
         interface_module = __import__(self.config.interface_module,

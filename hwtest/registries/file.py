@@ -11,6 +11,8 @@ class FileRegistry(Registry):
     Subclasses should define a filename configuration parameter.
     """
 
+    optional_attributes = ["filename"]
+
     def __init__(self, config, filename=None):
         super(FileRegistry, self).__init__(config)
         self.filename = filename or self.config.filename
@@ -21,6 +23,3 @@ class FileRegistry(Registry):
 
     def items(self):
         return []
-
-
-factory = FileRegistry

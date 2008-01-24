@@ -17,6 +17,3 @@ class DataRegistry(Registry):
 
     def items(self):
         return []
-
-
-factory = DataRegistry

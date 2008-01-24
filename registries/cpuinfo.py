@@ -52,7 +52,7 @@ class CpuinfoRegistry(FileRegistry):
         items = []
         for data in [d.strip() for d in self.split("\n\n") if d]:
             key = len(items)
-            value = ProcessorRegistry(self.config, data)
+            value = ProcessorRegistry(None, data)
             items.append((key, value))
 
         return items
