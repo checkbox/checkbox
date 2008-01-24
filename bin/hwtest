@@ -15,7 +15,7 @@ elif basename.endswith("cli"):
     packages.append("hwtest-cli")
 
 for package in packages:
-    sys.path[:0] = [os.path.join(directory, package)]
+    sys.path.append(os.path.join(directory, package))
 
 
 from hwtest.application import ApplicationManager
