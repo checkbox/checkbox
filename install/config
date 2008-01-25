@@ -23,16 +23,6 @@ DEFAULTSECT = "DEFAULT"
 
 class Config(ConfigParser):
 
-    def get_version(self):
-        changelog = "debian/changelog"
-        if os.path.exists(changelog):
-            head=open(changelog).readline()
-            match = re.compile(".*\((.*)\).*").match(head)
-            if match:
-                version = match.group(1)
-
-        return version
-
     def write(self, fp):
         """Write an .ini-format representation of the configuration state."""
         if self._defaults:
@@ -44,12 +34,7 @@ class Config(ConfigParser):
                 key = 'includes'
                 value = defaults.pop(key)
                 value = str(value).replace('\n', '\n\t')
-                value = value.replace('./examples', '/etc/hwtest.d')
                 fp.write("%s = %s\n" % (key, value))
-
-            # Replace version value
-            if 'version' in defaults:
-                defaults["version"] = self.get_version()
 
             for (key, value) in defaults.items():
                 value = str(value).replace('\n', '\n\t')
@@ -78,7 +63,7 @@ class Install(object):
     """
     separator = "/"
     config_base = "/etc/hwtest.d/%(name)s.conf"
-    example_base = "/usr/share/doc/%(name)s/examples/%(name)s.conf"
+    example_base = "/usr/share/%(name)s/examples/%(name)s.conf"
 
     def __init__(self, name, config_path=None, example_path=None, variables=[]):
         self.name = name
