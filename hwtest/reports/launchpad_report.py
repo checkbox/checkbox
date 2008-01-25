@@ -1,4 +1,3 @@
-import dbus
 import logging
 
 from time import strptime
@@ -24,26 +23,12 @@ class HalReport(XmlReport):
     """Report for HAL related data types."""
 
     def register_dumps(self):
-        for (dt, dh) in [(dbus.Boolean, self.dumps_bool),
-                         (dbus.Int32, self.dumps_int),
-                         (dbus.UInt64, self.dumps_uint64),
-                         (dbus.Double, self.dumps_double),
-                         (dbus.String, self.dumps_str),
-                         (dbus.Array, self.dumps_list),
-                         ("hal", self.dumps_hal)]:
+        for (dt, dh) in [("hal", self.dumps_hal)]:
             self._manager.handle_dumps(dt, dh)
 
     def register_loads(self):
-        for (lt, lh) in [("hal", self.loads_hal),
-                         ("dbus.UInt64", self.loads_int),
-                         ("dbus.Double", self.loads_float)]:
+        for (lt, lh) in [("hal", self.loads_hal)]:
             self._manager.handle_loads(lt, lh)
-
-    def dumps_uint64(self, obj, parent):
-        self._dumps_text(str(obj), parent, "dbus.UInt64")
-
-    def dumps_double(self, obj, parent):
-        self._dumps_text(str(obj), parent, "dbus.Double")
 
     def dumps_hal(self, obj, parent):
         logging.debug("Dumping hal")

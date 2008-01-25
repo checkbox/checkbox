@@ -1,5 +1,4 @@
 import re
-import dbus
 
 from hwtest.lib.cache import cache
 from hwtest.lib.update import recursive_update
@@ -27,18 +26,16 @@ class DeviceRegistry(DataRegistry):
                 value = match.group(2).strip()
                 type_name = match.group(3)
                 if type_name == "bool":
-                    value = dbus.Boolean(value == "true")
+                    value = bool(value == "true")
                 elif type_name == "double":
-                    value = dbus.Double(float(value.split()[0]))
-                elif type_name == "int":
-                    value = dbus.Int32(int(value.split()[0]))
+                    value = float(value.split()[0])
+                elif type_name == "int" or type_name == "uint64":
+                    value = int(value.split()[0])
                 elif type_name == "string":
-                    value = dbus.String(value.strip("'"))
+                    value = str(value.strip("'"))
                 elif type_name == "string list":
-                    value = dbus.Array([v.strip("'")
-                            for v in value.strip("{}").split(", ")])
-                elif type_name == "uint64":
-                    value = dbus.UInt64(int(value.split()[0]))
+                    value = [v.strip("'")
+                            for v in value.strip("{}").split(", ")]
                 else:
                     raise Exception, "Unknown type: %s" % type_name
 

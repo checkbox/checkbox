@@ -5,7 +5,7 @@ import logging
 from logging import StreamHandler, FileHandler, Formatter
 from optparse import OptionParser
 
-from hwtest.contrib import bpickle_dbus, bpickle_registry
+from hwtest.contrib import bpickle_registry
 
 from hwtest.defaults import CONFIG_DIRECTORY
 from hwtest.config import Config
@@ -31,11 +31,9 @@ class Application(object):
 
     def run(self):
         try:
-            bpickle_dbus.install()
             bpickle_registry.install()
             self.reactor.run()
             bpickle_registry.uninstall()
-            bpickle_dbus.uninstall()
         except:
             logging.exception("Error running reactor.")
             raise
