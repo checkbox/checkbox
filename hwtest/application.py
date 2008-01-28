@@ -3,6 +3,8 @@ import sys
 import logging
 
 from gettext import gettext as _
+from time import sleep
+
 from logging import StreamHandler, FileHandler, Formatter
 from optparse import OptionParser
 
@@ -49,6 +51,7 @@ class ApplicationManager(object):
         default_config_file = os.path.join(CONFIG_DIRECTORY,
             "%s.conf" % basename)
         default_log_level = "critical"
+        default_delay = 0
 
         parser = OptionParser()
         parser.add_option("--version", action='store_true',
@@ -61,6 +64,10 @@ class ApplicationManager(object):
         parser.add_option("--log-level",
                           default=default_log_level,
                           help=_("One of debug, info, warning, error or critical."))
+        parser.add_option("--delay",
+                          default=default_delay,
+                          type="int",
+                          help=_("Delay before running the application."))
         return parser.parse_args(args)[0]
 
     def create_application(self, args=sys.argv):
@@ -92,5 +99,8 @@ class ApplicationManager(object):
         if options.version:
             print config.get_defaults().version
             sys.exit(0)
+
+        if options.delay:
+            sleep(options.delay)
 
         return self.application_factory(config)
