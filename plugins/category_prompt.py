@@ -21,19 +21,19 @@ class CategoryPrompt(Plugin):
         # Try to determine category from HAL formfactor
         if not self._category:
             formfactor = registry.hal.computer.system.formfactor
-            if formfactor != "unknown":
+            if formfactor is not "unknown":
                 self._category = formfactor
 
         # Try to determine category from dpkg architecture
         if not self._category:
             architecture = registry.dpkg.architecture
-            if architecture == "sparc":
+            if architecture is "sparc":
                 self._category = "server"
 
         # Try to determine category from kernel version
         if not self._category:
             version = registry.hal.computer.system.kernel.version
-            if version.endswith("-server"):
+            if str(version).endswith("-server"):
                 self._category = "server"
 
         self._category = interface.show_category(_("Category"),

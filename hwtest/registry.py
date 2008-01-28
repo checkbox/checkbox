@@ -37,7 +37,11 @@ class Registry(Repository):
         try:
             return self.__getitem__(key)
         except KeyError:
-            return default
+            if default == None:
+                from hwtest.registries.none import NoneRegistry
+                return NoneRegistry(None)
+            else:
+                return default
 
     def has_key(self, key):
         return key in self.keys()
