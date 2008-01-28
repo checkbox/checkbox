@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hwtest 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-28 09:21-0500\n"
+"POT-Creation-Date: 2008-01-28 09:36-0500\n"
 "PO-Revision-Date: 2008-01-28 08:23-0500\n"
 "Last-Translator: Marc Tardif <marc.tardif@canonical.com>\n"
 "Language-Team: French <fr@li.org>\n"
@@ -22,7 +22,7 @@ msgstr "<b>Commentaire:</b>"
 msgid "Hardware Testing"
 msgstr "Test matériel"
 
-#: ../gtk/hwtest-gtk.glade.h:3
+#: ../gtk/hwtest-gtk.glade.h:3 ../hwtest_gtk/gtk_interface.py:215
 msgid "Ne_xt"
 msgstr "Sui_vant"
 
@@ -90,6 +90,10 @@ msgstr "Taper une touche pour continuer..."
 #, python-format
 msgid "Please choose (%s): "
 msgstr "Veuillez chosir (%s): "
+
+#: ../hwtest_gtk/gtk_interface.py:207
+msgid "_Finish"
+msgstr "_Fin"
 
 #: ../hwtest/user_interface.py:41
 #, python-format

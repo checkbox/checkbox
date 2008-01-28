@@ -1,6 +1,8 @@
 import os.path, sys
 import gtk, gtk.glade
 
+from gettext import gettext as _
+
 from hwtest.lib.environ import add_variable, remove_variable
 
 from hwtest.answer import Answer
@@ -202,7 +204,7 @@ class GTKInterface(UserInterface):
         return authentication
 
     def show_final(self, message=None):
-        self._set_label("button_next", "_Finish")
+        self._set_label("button_next", _("_Finish"))
         self._notebook.set_current_page(5)
 
         if message is not None:
@@ -210,7 +212,7 @@ class GTKInterface(UserInterface):
 
         self._run_dialog()
 
-        self._set_label("button_next", "Ne_xt")
+        self._set_label("button_next", _("Ne_xt"))
 
     def show_error(self, title, text):
         md = gtk.MessageDialog(type=gtk.MESSAGE_ERROR,
