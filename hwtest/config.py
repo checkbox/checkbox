@@ -22,7 +22,7 @@ class IncludeDict(dict):
 
 class ConfigSection(object):
 
-    def __init__(self, parent, name, **attributes):
+    def __init__(self, parent, name, attributes={}):
         self.parent = parent
         self.name = name
         self.attributes = attributes
@@ -66,12 +66,12 @@ class Config(object):
 
     def get_defaults(self):
         attributes = self._parser.defaults()
-        return ConfigDefaults(self, 'DEFAULT', **attributes)
+        return ConfigDefaults(self, 'DEFAULT', attributes)
 
     def get_section(self, section_name):
         if section_name in self._parser.sections():
             attributes = dict(self._parser.items(section_name))
-            return ConfigSection(self, section_name, **attributes)
+            return ConfigSection(self, section_name, attributes)
 
         return None
 

@@ -85,7 +85,7 @@ class GTKInterface(UserInterface):
         while gtk.events_pending():
             gtk.main_iteration(False)
 
-    def show_wait_begin(self, message=None):
+    def show_wait_begin(self, message):
         self._set_sensitive("button_previous", False)
         self._set_sensitive("button_next", False)
 
@@ -104,25 +104,24 @@ class GTKInterface(UserInterface):
         while gtk.events_pending():
             gtk.main_iteration(False)
 
-    def show_intro(self, title=None, text=None):
+    def show_intro(self, title, text):
         # Set buttons
         self._set_sensitive("button_previous", False)
         self._notebook.set_current_page(0)
 
-        if title:
-            title = "<b>%s</b>" % title
-            self._set_markup("label_intro_title", title)
-        if text:
-            self._set_text("label_intro_text", text)
+        markup = "<b>%s</b>" % title
+        self._set_markup("label_intro_title", markup)
+        self._set_text("label_intro_text", text)
 
         self._run_dialog()
 
         self._set_sensitive("button_previous", True)
 
-    def show_category(self, category=None):
+    def show_category(self, title, text, category=None):
         # Set buttons
         self._notebook.set_current_page(1)
 
+        self._set_text("label_category", text)
         if category:
             self._set_active("radiobutton_%s" % category)
 
@@ -162,7 +161,9 @@ class GTKInterface(UserInterface):
         if hasattr(self, "handler_id"):
             button_test_again.disconnect(self.handler_id)
         self.handler_id = button_test_again.connect("clicked",
-            lambda w, question=question: self.do_question(question))
+            lambda w, question=question: self.do_question(
+                 "Running question %s..." % question.name,
+                 question))
 
         # Default answers
         if question.answer:

@@ -1,3 +1,5 @@
+from gettext import gettext as _
+
 from hwtest.plugin import Plugin
 from hwtest.question import QuestionManager
 from hwtest.answer import Answer, YES, NO
@@ -33,8 +35,8 @@ class AutoPrompt(Plugin):
                     self._manager.reactor.fire(("report", "question"),
                         question)
 
-            interface.do_wait(lambda self=self: run_questions(self),
-                "Running automatic questions...")
+            interface.do_wait(_("Running automatic questions..."),
+                lambda self=self: run_questions(self))
             self._done = True
 
 

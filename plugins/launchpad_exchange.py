@@ -3,8 +3,9 @@ import pprint
 import bz2
 import logging
 
-from StringIO import StringIO
+from gettext import gettext as _
 from socket import gethostname
+from StringIO import StringIO
 
 from hwtest.log import format_delta
 from hwtest.plugin import Plugin
@@ -81,12 +82,12 @@ class LaunchpadExchange(Plugin):
         transport = HTTPTransport(self.config.transport_url)
         ret = transport.exchange(form)
         if not ret:
-            self._manager.set_error("Failed to contact the server,\n"
-                "are you connected to the Internet.")
+            self._manager.set_error(_("Failed to contact the server,\n"
+                "are you connected to the Internet."))
             return
         elif ret.code != 200:
-            self._manager.set_error("Failed to upload to server,\n"
-                "please try again later.")
+            self._manager.set_error(_("Failed to upload to server,\n"
+                "please try again later."))
             return
 
         if logging.getLogger().getEffectiveLevel() <= logging.DEBUG:
@@ -95,7 +96,7 @@ class LaunchpadExchange(Plugin):
 
         headers = ret.headers.getheaders("x-launchpad-hwdb-submission")
         if not headers:
-            self._manager.set_error("Information was not posted to Launchpad.")
+            self._manager.set_error(_("Information was not posted to Launchpad."))
             return
 
         for header in headers:

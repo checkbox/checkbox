@@ -1,7 +1,7 @@
 class Resolver:
-    '''
+    """
     Main class. Instantiate with the root directory of your names.
-    '''
+    """
 
     def __init__(self):
         # detect repeated resolution attempts - these indicate some circular dependency
@@ -15,26 +15,26 @@ class Resolver:
 
     def add(self, name, *dependencies):
         if name in self.names:
-            raise Exception, '%s: name already exists' % name
+            raise Exception, "%s: name already exists" % name
         self.names[name] = set(dependencies)
 
     def remove(self, name):
         del self.names[name]
 
     def resolve(self, name, found=None):
-        '''
+        """
         the center piece.
         recursively resolve dependencies of scripts
         return them as a flat list, sorted according to ancestral relationships
-        '''
+        """
         resolved = self.dependencies.get(name, None)
         if resolved is not None:
             return resolved
 
         if name not in self.names:
-            msg = 'no dependencies found for %s' % name
+            msg = "no dependencies found for %s" % name
             if found:
-                msg += ' while resolving %s' % found
+                msg += " while resolving %s" % found
             raise Exception, msg
 
 
@@ -48,7 +48,7 @@ class Resolver:
                     scapegoat = found
                 else:
                     scapegoat = dependency
-                raise Exception, 'circular dependency involving %s and %s' % (name, scapegoat)
+                raise Exception, "circular dependency involving %s and %s" % (name, scapegoat)
             self.reentrant_resolution.add(resolution_step)
             resolved.update(self.resolve(dependency, found=name)) # and its dependencies, if any
 

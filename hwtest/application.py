@@ -2,6 +2,7 @@ import os
 import sys
 import logging
 
+from gettext import gettext as _
 from logging import StreamHandler, FileHandler, Formatter
 from optparse import OptionParser
 
@@ -51,15 +52,15 @@ class ApplicationManager(object):
 
         parser = OptionParser()
         parser.add_option("--version", action='store_true',
-                          help="Print version information and exit.")
+                          help=_("Print version information and exit."))
         parser.add_option("-c", "--config-file", metavar="PATH",
                           default=default_config_file,
-                          help="The file name of the configuration.")
+                          help=_("The file name of the configuration."))
         parser.add_option("-l", "--log", metavar="FILE",
-                          help="The file to write the log to.")
+                          help=_("The file to write the log to."))
         parser.add_option("--log-level",
                           default=default_log_level,
-                          help="One of debug, info, warning, error or critical.")
+                          help=_("One of debug, info, warning, error or critical."))
         return parser.parse_args(args)[0]
 
     def create_application(self, args=sys.argv):

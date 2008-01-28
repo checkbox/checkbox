@@ -105,7 +105,7 @@
 	      <child>
 		<widget class="GtkLabel" id="label_intro_title">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">&lt;b&gt;Welcome to the hardware testing application!&lt;/b&gt;</property>
+		  <property name="label" translatable="yes"></property>
 		  <property name="use_underline">False</property>
 		  <property name="use_markup">True</property>
 		  <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -131,17 +131,7 @@
 		<widget class="GtkLabel" id="label_intro_text">
 		  <property name="visible">True</property>
 		  <property name="can_focus">True</property>
-		  <property name="label" translatable="yes">This application will gather information from your hardware. Then,
-you will be asked questions to confirm that the hardware is working
-properly. Finally, you will be asked for your Launchpad email address
-in order to submit the information and your answers.
-
-If you do not have a Launchpad account, please register here:
-
-  https://launchpad.net/+login
-
-Thank you for taking the time to test your hardware.
-</property>
+		  <property name="label" translatable="yes"></property>
 		  <property name="use_underline">False</property>
 		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -199,9 +189,9 @@ Thank you for taking the time to test your hardware.
 	      <property name="spacing">0</property>
 
 	      <child>
-		<widget class="GtkLabel" id="label_title">
+		<widget class="GtkLabel" id="label_category">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">What kind of computer is this?</property>
+		  <property name="label"></property>
 		  <property name="use_underline">False</property>
 		  <property name="use_markup">True</property>
 		  <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -318,7 +308,7 @@ Thank you for taking the time to test your hardware.
 	  <child>
 	    <widget class="GtkLabel" id="label_tab_category">
 	      <property name="visible">True</property>
-	      <property name="label" translatable="yes">_Category</property>
+	      <property name="label">_Category</property>
 	      <property name="use_underline">False</property>
 	      <property name="use_markup">False</property>
 	      <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -347,7 +337,7 @@ Thank you for taking the time to test your hardware.
 	      <child>
 		<widget class="GtkLabel" id="label_question">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes"></property>
+		  <property name="label"></property>
 		  <property name="use_underline">False</property>
 		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -395,7 +385,7 @@ Thank you for taking the time to test your hardware.
 		      <property name="visible">True</property>
 		      <property name="can_default">True</property>
 		      <property name="can_focus">True</property>
-		      <property name="label" translatable="yes">_Test again</property>
+		      <property name="label" translatable="yes">_Test Again</property>
 		      <property name="use_underline">True</property>
 		      <property name="relief">GTK_RELIEF_NORMAL</property>
 		      <property name="focus_on_click">True</property>
@@ -424,7 +414,7 @@ Thank you for taking the time to test your hardware.
 		      <child>
 			<widget class="GtkLabel" id="label_status">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes"></property>
+			  <property name="label"></property>
 			  <property name="use_underline">False</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -569,7 +559,7 @@ Thank you for taking the time to test your hardware.
 			      <property name="left_margin">0</property>
 			      <property name="right_margin">0</property>
 			      <property name="indent">0</property>
-			      <property name="text" translatable="yes"></property>
+			      <property name="text"></property>
 			    </widget>
 			  </child>
 			</widget>
@@ -603,7 +593,7 @@ Thank you for taking the time to test your hardware.
 	  <child>
 	    <widget class="GtkLabel" id="label_tab_question">
 	      <property name="visible">True</property>
-	      <property name="label" translatable="yes">_Question</property>
+	      <property name="label">_Question</property>
 	      <property name="use_underline">False</property>
 	      <property name="use_markup">False</property>
 	      <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -632,7 +622,7 @@ Thank you for taking the time to test your hardware.
 	      <child>
 		<widget class="GtkLabel" id="label_wait">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">Please wait...</property>
+		  <property name="label"></property>
 		  <property name="use_underline">False</property>
 		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -678,7 +668,7 @@ Thank you for taking the time to test your hardware.
 	  <child>
 	    <widget class="GtkLabel" id="label_tab_wait">
 	      <property name="visible">True</property>
-	      <property name="label" translatable="yes">_Wait</property>
+	      <property name="label">_Wait</property>
 	      <property name="use_underline">False</property>
 	      <property name="use_markup">False</property>
 	      <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -707,7 +697,7 @@ Thank you for taking the time to test your hardware.
 	      <child>
 		<widget class="GtkLabel" id="label_exchange_error">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes"></property>
+		  <property name="label"></property>
 		  <property name="use_underline">False</property>
 		  <property name="use_markup">True</property>
 		  <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -761,7 +751,7 @@ Thank you for taking the time to test your hardware.
 		  <property name="editable">True</property>
 		  <property name="visibility">True</property>
 		  <property name="max_length">0</property>
-		  <property name="text" translatable="yes"></property>
+		  <property name="text"></property>
 		  <property name="has_frame">True</property>
 		  <property name="invisible_char">●</property>
 		  <property name="activates_default">False</property>
@@ -782,7 +772,7 @@ Thank you for taking the time to test your hardware.
 	  <child>
 	    <widget class="GtkLabel" id="label_tab_exchange">
 	      <property name="visible">True</property>
-	      <property name="label" translatable="yes">_Exchange</property>
+	      <property name="label">_Exchange</property>
 	      <property name="use_underline">False</property>
 	      <property name="use_markup">False</property>
 	      <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -829,7 +819,7 @@ Thank you for taking the time to test your hardware.
 	  <child>
 	    <widget class="GtkLabel" id="label_tab_final">
 	      <property name="visible">True</property>
-	      <property name="label" translatable="yes">_Final</property>
+	      <property name="label">_Final</property>
 	      <property name="use_underline">False</property>
 	      <property name="use_markup">False</property>
 	      <property name="justify">GTK_JUSTIFY_LEFT</property>

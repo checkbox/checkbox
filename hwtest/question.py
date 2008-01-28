@@ -154,13 +154,13 @@ class Question(object):
         "command": None,
         "optional": False}
 
-    def __init__(self, registry, **kwargs):
+    def __init__(self, registry, attributes={}):
         self.registry = registry
-        self.attributes = self._validate(**kwargs)
+        self.attributes = self._validate(attributes)
 
-    def _validate(self, **kwargs):
+    def _validate(self, attributes):
         # Unknown fields
-        for field in kwargs.keys():
+        for field in attributes.keys():
             if field not in self.required_fields + self.optional_fields.keys():
                 raise Exception, \
                     "Question attributes contains unknown field: %s" \
@@ -168,37 +168,38 @@ class Question(object):
 
         # Required fields
         for field in self.required_fields:
-            if not kwargs.has_key(field):
+            if not attributes.has_key(field):
                 raise Exception, \
                     "Question attributes does not contain '%s': %s" \
-                    % (field, kwargs)
+                    % (field, attributes)
 
         # Typed fields
         for field in ["architectures", "categories", "depends"]:
-            if kwargs.has_key(field):
-                kwargs[field] = re.split(r"\s*,\s*", kwargs[field])
+            if attributes.has_key(field):
+                attributes[field] = re.split(r"\s*,\s*", attributes[field])
 
         # Eval fields
         for field in ["relations", "requires"]:
-            if kwargs.has_key(field):
-                kwargs[field] = self.registry.eval_recursive(kwargs[field])
+            if attributes.has_key(field):
+                attributes[field] = self.registry.eval_recursive(
+                    attributes[field])
 
         # Optional fields
         for field in self.optional_fields.keys():
-            if not kwargs.has_key(field):
-                kwargs[field] = self.optional_fields[field]
+            if not attributes.has_key(field):
+                attributes[field] = self.optional_fields[field]
 
         # Command field
-        kwargs["command"] = Command(kwargs.get("command"))
+        attributes["command"] = Command(attributes.get("command"))
 
         # Description field
-        kwargs["description"] = Description(kwargs["description"],
+        attributes["description"] = Description(attributes["description"],
             variables={"question": self})
 
         # Answer field
-        kwargs["answer"] = Answer()
+        attributes["answer"] = Answer()
 
-        return kwargs
+        return attributes
 
     def __getattr__(self, name):
         if name in self.attributes:

@@ -153,26 +153,11 @@ class CLIInterface(UserInterface):
     def show_pulse(self):
         self.progress.set()
 
-    def show_intro(self, title=None, text=None):
-        title = title or "Welcome to the hardware testing application!"
-        text = text or """\
-This application will gather information from your hardware. Then,
-you will be asked questions to confirm that the hardware is working
-properly. Finally, you will be asked for your Launchpad email address
-in order to submit the information and your answers.
-
-If you do not have a Launchpad account, you can register here:
-
-  https://launchpad.net/+login
-
-Thank you for taking the time to test your hardware."""
-
+    def show_intro(self, title, text):
         dialog = CLIChoiceDialog(title, text)
         dialog.run()
 
-    def show_category(self, category=None):
-        title = "Category"
-        text = "Please select the category of your hardware."
+    def show_category(self, title, text, category=None):
         dialog = CLIChoiceDialog(title, text)
         for category in ALL_CATEGORIES:
             dialog.add_button("&%s" % category)

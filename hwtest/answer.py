@@ -9,30 +9,30 @@ class Answer(object):
     required_fields = ["status", "data"]
 
     def __init__(self, status=SKIP, data=""):
-        self.attributes = self._validate(**{
+        self.attributes = self._validate({
             "status": status,
             "data": data})
 
-    def _validate(self, **kwargs):
+    def _validate(self, attributes):
         # Unknown fields
-        for field in kwargs.keys():
+        for field in attributes.keys():
             if field not in self.required_fields:
                 raise Exception, \
                     "Answer attributes contains unknown field: %s" % field
 
         # Required fields
         for field in self.required_fields:
-            if not kwargs.has_key(field):
+            if not attributes.has_key(field):
                 raise Exception, \
                     "Answer attributes does not contain a '%s': %s" \
-                    % (field, kwargs)
+                    % (field, attributes)
 
         # Status field
-        if kwargs["status"] not in ALL_STATUS:
+        if attributes["status"] not in ALL_STATUS:
             raise Exception, \
-                "Unknown status: %s" % kwargs["status"]
+                "Unknown status: %s" % attributes["status"]
 
-        return kwargs
+        return attributes
 
     def __getattr__(self, name):
         if name in self.attributes:

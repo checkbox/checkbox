@@ -1,3 +1,5 @@
+from gettext import gettext as _
+
 from hwtest.plugin import Plugin
 from hwtest.question import QuestionManager
 
@@ -30,7 +32,8 @@ class ManualPrompt(Plugin):
             except StopIteration:
                 break
 
-            interface.do_question(question)
+            interface.do_question(_("Running question %s...") % question.name,
+                question)
             self._manager.reactor.fire(("report", "question"), question)
 
 

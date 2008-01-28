@@ -1,5 +1,7 @@
 import re
 
+from gettext import gettext as _
+
 from hwtest.plugin import Plugin
 from hwtest.iterator import PREV
 
@@ -25,11 +27,12 @@ class ExchangePrompt(Plugin):
             if interface.direction == PREV:
                 break
             elif not self._email_regexp.match(self._email):
-                error = "Email address must be in a proper format."
+                error = _("Email address must be in a proper format.")
             else:
                 self._manager.reactor.fire(("report", "email"), self._email)
-                interface.do_wait(lambda: self._manager.reactor.fire("exchange"),
-                    "Exchanging information with the server...")
+                interface.do_wait(
+                    _("Exchanging information with the server..."),
+                    lambda: self._manager.reactor.fire("exchange"))
                 error = self._manager.get_error()
                 if not error:
                     break

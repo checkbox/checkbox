@@ -39,6 +39,9 @@ class Registry(Repository):
         except KeyError:
             return default
 
+    def has_key(self, key):
+        return key in self.keys()
+
     def iteritems(self):
         for k, v in self.items():
             yield k, v

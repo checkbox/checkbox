@@ -1,5 +1,7 @@
 import os
 
+from gettext import gettext as _
+
 from hwtest.plugin import Plugin
 from hwtest.iterator import Iterator
 
@@ -17,7 +19,8 @@ class UserInterface(Plugin):
 
         if os.getuid() != 0:
             self._manager.reactor.fire(("prompt", "error"), interface,
-                "Invalid permission", "Application must be run as root")
+                _("Administrator Access Needed"),
+                _("You need to be an administrator to use this application."))
             self._manager.reactor.stop()
 
         iterator = Iterator([

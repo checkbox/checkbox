@@ -1,3 +1,5 @@
+from gettext import gettext as _
+
 from hwtest.plugin import Plugin
 
 
@@ -34,7 +36,9 @@ class CategoryPrompt(Plugin):
             if version.endswith("-server"):
                 self._category = "server"
 
-        self._category = interface.show_category(self._category)
+        self._category = interface.show_category(_("Category"),
+            _("Please select the category of your hardware."),
+            self._category)
 
         self._manager.reactor.fire(("interface", "category"), self._category)
 
