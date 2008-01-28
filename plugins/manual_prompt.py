@@ -32,8 +32,7 @@ class ManualPrompt(Plugin):
             except StopIteration:
                 break
 
-            interface.do_question(_("Running question %s...") % question.name,
-                question)
+            interface.do_question(question)
             self._manager.reactor.fire(("report", "question"), question)
 
 

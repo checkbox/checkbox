@@ -1,6 +1,8 @@
 import sys
 import gettext
 
+from gettext import gettext as _
+
 from hwtest.contrib.REThread import REThread
 from hwtest.iterator import NEXT
 
@@ -34,9 +36,9 @@ class UserInterface(object):
         thread.exc_raise()
         self.show_wait_end()
 
-    def do_question(self, message, question):
+    def do_question(self, question):
         if str(question.command):
-            self.show_question_begin(message)
+            self.show_question_begin(_("Running question %s...") % question.name)
             thread = REThread(target=question.command, name="do_question")
             thread.start()
             while thread.isAlive():

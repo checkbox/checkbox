@@ -31,7 +31,7 @@ class GTKInterface(UserInterface):
         for radiobutton, value in map.items():
             if self._get_widget(radiobutton).get_active():
                 return value
-        raise Exception, "failed to map radiobutton"
+        raise Exception, "Failed to map radiobutton."
 
     def _get_text(self, name):
         widget = self._get_widget(name)
@@ -161,9 +161,7 @@ class GTKInterface(UserInterface):
         if hasattr(self, "handler_id"):
             button_test_again.disconnect(self.handler_id)
         self.handler_id = button_test_again.connect("clicked",
-            lambda w, question=question: self.do_question(
-                 "Running question %s..." % question.name,
-                 question))
+            lambda w, q=question: self.do_question(q))
 
         # Default answers
         if question.answer:
