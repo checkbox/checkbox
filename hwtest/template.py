@@ -79,7 +79,9 @@ class Template(object):
                     field = "%s-%s" % (key, language)
                     if field in element:
                         filter[key] = element[field]
-                        continue
+                        break
+                if key in filter:
+                    continue
             elif not re.search(r"-c$", key):
                 field = "%s-c" % key
                 if field in element:

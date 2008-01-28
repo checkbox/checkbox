@@ -9,6 +9,12 @@ description:
  $(audio_playback --view)
  .
  Did you hear a sound?
+description-fr:
+ Test pour carte de son:
+ .
+ $(audio_playback --view)
+ .
+ Avez-vous entendu un son?
 
 name: resolution
 plugin: manual
@@ -20,6 +26,12 @@ description:
  $(resolution_question)
  .
  Is this a good resolution for your display?
+description-fr:
+ La résolution suivante est détectée pour votre écran:
+ .
+ $(resolution_question)
+ .
+ Est-ce une bonne résolution pour votre écran? 
 
 name: video
 plugin: manual
@@ -31,6 +43,12 @@ description:
  $(video_test --list)
  .
  Did you see a series of video test screens?
+description-fr:
+ Test pour carte vidéo:
+ .
+ $(video_test --list)
+ .
+ Avez-vous vu ce test sur votre écran?
 
 name: mouse
 plugin: manual
@@ -40,6 +58,10 @@ description:
  Moving the mouse should move the cursor on the screen.
  .
  Is your mouse working properly?
+description-fr:
+ Déplacer la souris devrait bouger le curseur sur l'écran.
+ .
+ Est-ce que votre souris fonctionne bien?
 
 name: network
 plugin: manual
@@ -50,6 +72,12 @@ description:
  $(network_question)
  .
  Is this correct?
+description-fr:
+ Détection de votre/vos carte(s) réseau:
+ .
+ $(network_question)
+ .
+ Est-ce que c'est correct?
 
 name: internet
 plugin: manual
@@ -61,6 +89,12 @@ description:
  $output
  .
  Are you connected to the Internet?
+description-fr:
+ Test pour la connection Internet:
+ .
+ $output
+ .
+ Est-ce que vous êtes bien connecté?
 
 name: keyboard
 plugin: manual
@@ -70,3 +104,9 @@ description:
  the corresponding characters in a text area.
  .
  Is your keyboard working properly?
+description-fr:
+ Taper des touches sur votre clavier devrait
+ montrer les touches correspondantes dans le
+ champ texte.
+ .
+ Est-ce que votre clavier fonctionne bien?

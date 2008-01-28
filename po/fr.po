@@ -7,122 +7,122 @@ msgstr ""
 "Project-Id-Version: hwtest 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-01-28 09:21-0500\n"
-"PO-Revision-Date: 2008-01-28 09:27-0500\n"
+"PO-Revision-Date: 2008-01-28 08:23-0500\n"
 "Last-Translator: Marc Tardif <marc.tardif@canonical.com>\n"
-"Language-Team: English <en@li.org>\n"
+"Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../gtk/hwtest-gtk.glade.h:1
 msgid "<b>Comment:</b>"
-msgstr ""
+msgstr "<b>Commentaire:</b>"
 
 #: ../gtk/hwtest-gtk.glade.h:2
 msgid "Hardware Testing"
-msgstr ""
+msgstr "Test matériel"
 
 #: ../gtk/hwtest-gtk.glade.h:3
 msgid "Ne_xt"
-msgstr ""
+msgstr "Sui_vant"
 
 #: ../gtk/hwtest-gtk.glade.h:4
 msgid "Please provide your Launchpad email address:"
-msgstr ""
+msgstr "Veuillez procurer votre adresse de courriel Launchpad:"
 
 #: ../gtk/hwtest-gtk.glade.h:5
 msgid "Successfully sent information!"
-msgstr ""
+msgstr "Information envoyée avec succès!"
 
 #: ../gtk/hwtest-gtk.glade.h:6
 msgid "_Desktop"
-msgstr ""
+msgstr "_Bureau"
 
 #: ../gtk/hwtest-gtk.glade.h:7
 msgid "_Laptop"
-msgstr ""
+msgstr "_Portatif"
 
 #: ../gtk/hwtest-gtk.glade.h:8
 msgid "_No"
-msgstr ""
+msgstr "_Non"
 
 #: ../gtk/hwtest-gtk.glade.h:9
 msgid "_Previous"
-msgstr ""
+msgstr "Pré_cédent"
 
 #: ../gtk/hwtest-gtk.glade.h:10
 msgid "_Server"
-msgstr ""
+msgstr "_Serveur"
 
 #: ../gtk/hwtest-gtk.glade.h:11
 msgid "_Skip this question"
-msgstr ""
+msgstr "_Sauter cette question"
 
 #: ../gtk/hwtest-gtk.glade.h:12
 msgid "_Test Again"
-msgstr ""
+msgstr "_Tester Encore"
 
 #: ../gtk/hwtest-gtk.glade.h:13
 msgid "_Yes"
-msgstr ""
+msgstr "_Oui"
 
 #: ../hwtest/application.py:55
 msgid "Print version information and exit."
-msgstr ""
+msgstr "Afficher le nom et la version du logiciel"
 
 #: ../hwtest/application.py:58
 msgid "The file name of the configuration."
-msgstr ""
+msgstr "Le fichier contenant la configuration."
 
 #: ../hwtest/application.py:60
 msgid "The file to write the log to."
-msgstr ""
+msgstr "Le fichier pour écrire un log."
 
 #: ../hwtest/application.py:63
 msgid "One of debug, info, warning, error or critical."
-msgstr ""
+msgstr "Soit debug, info, warning, error ou critical."
 
 #: ../hwtest_cli/cli_interface.py:76
 msgid "Press any key to continue..."
-msgstr ""
+msgstr "Taper une touche pour continuer..."
 
 #: ../hwtest_cli/cli_interface.py:85
 #, python-format
 msgid "Please choose (%s): "
-msgstr ""
+msgstr "Veuillez chosir (%s): "
 
 #: ../hwtest/user_interface.py:41
 #, python-format
 msgid "Running question %s..."
-msgstr ""
+msgstr "Exécution de la question %s..."
 
 #: ../plugins/auto_prompt.py:38
 msgid "Running automatic questions..."
-msgstr ""
+msgstr "Exécution des questions automatiques..."
 
 #: ../plugins/category_prompt.py:39
 msgid "Category"
-msgstr ""
+msgstr "Categorie"
 
 #: ../plugins/category_prompt.py:40
 msgid "Please select the category of your hardware."
-msgstr ""
+msgstr "Veuillez choisir la categorie de votre ordinateur."
 
 #: ../plugins/exchange_prompt.py:30
 msgid "Email address must be in a proper format."
-msgstr ""
+msgstr "Adresse de courriel doit être dans un bon format."
 
 #: ../plugins/exchange_prompt.py:34
 msgid "Exchanging information with the server..."
-msgstr ""
+msgstr "Échange d'information avec le serveur..."
 
 #: ../plugins/gather_prompt.py:16
 msgid "Gathering information from your system..."
-msgstr ""
+msgstr "Cueillette d'information de votre système..."
 
 #: ../plugins/intro_prompt.py:13
 msgid "Welcome to Hardware Testing!"
-msgstr ""
+msgstr "Bienvenue au Test matériel!"
 
 #: ../plugins/intro_prompt.py:14
 msgid ""
@@ -138,27 +138,44 @@ msgid ""
 "\n"
 "Thank you for taking the time to test your hardware."
 msgstr ""
+"Cette application cueillera de l'information de votre ordinateur.\n"
+"Ensuite, vous serez demandé des questions pour confirmer le bon\n"
+"fonctionnement de votre ordinateur. Finalement, vous serez demandé\n"
+"l'adresse de courriel que vous utilisez sur Launchpad afin de\n"
+"soumettre l'information et vos réponses.\n"
+"\n"
+"Si vous n'avez pas de compte Launchpad, veuillez vous enregistrer\n"
+"ici:\n"
+"\n"
+"  https://launchpad.net/+login\n"
+"\n"
+"Merci de prendre le temps de tester votre matériel."
 
 #: ../plugins/launchpad_exchange.py:85
 msgid ""
 "Failed to contact the server,\n"
 "are you connected to the Internet."
 msgstr ""
+"Erreur de connection au serveur,\n"
+"êtes-vous branché à Internet?"
 
 #: ../plugins/launchpad_exchange.py:89
 msgid ""
 "Failed to upload to server,\n"
 "please try again later."
 msgstr ""
+"Erreur de téléchargement au serveur,\n"
+"veuillez essayer à nouveau plus tard."
 
 #: ../plugins/launchpad_exchange.py:99
 msgid "Information was not posted to Launchpad."
-msgstr ""
+msgstr "Information envoyée sur Launchpad."
 
 #: ../plugins/user_interface.py:22
 msgid "Administrator Access Needed"
-msgstr ""
+msgstr "Accès administrateur requis"
 
 #: ../plugins/user_interface.py:23
 msgid "You need to be an administrator to use this application."
 msgstr ""
+"Vous avez besoin d'être un administrateur pour utiliser cette application."

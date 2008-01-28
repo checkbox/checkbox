@@ -1,6 +1,14 @@
+[encoding: UTF-8]
 gtk/hwtest-gtk.glade
 hwtest/application.py
-hwtest/user_interface.py
 hwtest_cli/cli_interface.py
 hwtest_gtk/gtk_interface.py
-plugins/*.py
+hwtest/user_interface.py
+plugins/auto_prompt.py
+plugins/category_prompt.py
+plugins/exchange_prompt.py
+plugins/gather_prompt.py
+plugins/intro_prompt.py
+plugins/launchpad_exchange.py
+plugins/manual_prompt.py
+plugins/user_interface.py
