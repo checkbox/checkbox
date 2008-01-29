@@ -49,7 +49,7 @@ class ApplicationManager(object):
     def parse_options(self, args):
         basename = os.path.basename(args[0])
         default_config_file = os.path.join(CONFIG_DIRECTORY,
-            "%s.conf" % basename)
+            "%s.ini" % basename)
         default_log_level = "critical"
         default_delay = 0
 

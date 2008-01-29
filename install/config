@@ -62,14 +62,12 @@ class Install(object):
     process.
     """
     separator = "/"
-    config_base = "/etc/hwtest.d/%(name)s.conf"
-    example_base = "/usr/share/%(name)s/examples/%(name)s.conf"
+    config_base = "/usr/share/%(name)s/configs/%(name)s.ini"
 
     def __init__(self, name, config_path=None, example_path=None, variables=[]):
         self.name = name
         self._variables = variables
         self._config_path = config_path or self.config_base % {"name": name}
-        self._example_path = example_path or self.example_base % {"name": name}
 
         self._config = Config()
         if os.environ.get("DEBIAN_HAS_FRONTEND"):
@@ -86,9 +84,9 @@ class Install(object):
         Write phase of the config process which takes an output file
         as argument.
         """
-        for path in [self._example_path, self._config_path]:
-            if path and os.path.isfile(path):
-                self._config.read(path)
+        path = self._config_path
+        if path and os.path.isfile(path):
+            self._config.read(path)
 
         # Set configuration variables
         for variable in self._variables:

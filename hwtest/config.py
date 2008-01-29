@@ -1,5 +1,5 @@
-import re
 import os
+import re
 
 from ConfigParser import ConfigParser
 
@@ -10,14 +10,20 @@ class IncludeDict(dict):
         super(IncludeDict, self).__init__()
         self._parser = parser
 
+        for (key, value) in os.environ.items():
+            super(IncludeDict, self).__setitem__(key.lower(), value)
+
     def __setitem__(self, key, value):
         if key == "includes":
             for path in re.split(r"\s+", value):
+                path = self._parser._interpolate("DEFAULT", None, path, self)
                 if not os.path.exists(path):
                     raise Exception, "No such configuration file: %s" % path
                 self._parser.read(path)
 
-        super(IncludeDict, self).__setitem__(key, value)
+        # Environment has precedence over configuration
+        elif key.upper() not in os.environ.keys():
+            super(IncludeDict, self).__setitem__(key, value)
 
 
 class ConfigSection(object):
