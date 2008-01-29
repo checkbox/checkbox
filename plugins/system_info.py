@@ -17,12 +17,14 @@ class SystemInfo(Plugin):
             self._manager.reactor.call_on(rt, rh, rp)
 
     def report(self):
-        system_registry = self._manager.registry.hal.computer.system
-        if "hardware" in system_registry:
-            system_registry = system_registry.hardware
-
         system_id = self.config.system_id
         if not system_id:
+            system_registry = self._manager.registry.hal.computer.system
+            if "hardware" in system_registry:
+                system_registry = system_registry.hardware
+            if not system_registry:
+                return
+
             fingerprint = md5.new()
             fingerprint.update(system_registry.vendor)
             fingerprint.update(system_registry.product)

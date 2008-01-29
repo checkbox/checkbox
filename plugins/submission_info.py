@@ -25,6 +25,9 @@ class SubmissionInfo(Plugin):
     def report(self):
         submission_id = self.config.submission_id
         if not submission_id:
+            if not self._system_id:
+                return
+
             fingerprint = md5.new()
             fingerprint.update(self._system_id)
             fingerprint.update(str(datetime.utcnow()))
