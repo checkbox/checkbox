@@ -1,5 +1,6 @@
 package=`basename $0 .postinst`
-config="/etc/hwtest.d/$package.conf"
+base_package=`echo $package | sed 's/\(-gtk\|-cli\)$//'`
+config="/usr/share/$base_package/configs/$package.ini"
 
 case "$1" in
     configure)

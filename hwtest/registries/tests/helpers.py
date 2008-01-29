@@ -5,7 +5,7 @@ from hwtest.config import Config
 
 class TestHelper(unittest.TestCase):
 
-    config_path = "./examples/hwtest.conf"
+    config_path = "./configs/hwtest.ini"
     config_section = "hwtest/registries"
 
     def setUp(self):

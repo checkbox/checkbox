@@ -1,35 +1,3 @@
-Template: hwtest/registries/directories
-Type: string
-Default: /usr/share/hwtest/registries
-_Description: Registries directories:
- Directories where registries are stored.
-
-Template: hwtest/plugins/directories
-Type: string
-Default: /usr/share/hwtest/plugins
-_Description: Plugins directories:
- Directories where plugins are stored.
-
-Template: hwtest/plugins/question_info/directories
-Type: string
-Default: /usr/share/hwtest/questions
-_Description: Questions path:
- Path consisting of a colon separated list of
- directories where question files are stored.
-
-Template: hwtest/plugins/question_info/scripts_path
-Type: string
-Default: /usr/share/hwtest/scripts
-_Description: Scripts path
- Executable path for running scripts. These might be
- referenced from the above questions for example.
-
-Template: hwtest/plugins/question_info/data_path
-Type: string
-Default: /usr/share/hwtest/data
-_Description: Data path:
- Data path containing files for scripts.
-
 Template: hwtest/plugins/launchpad_exchange/transport_url
 Type: string
 Default: https://launchpad.net/+hwdb/+submit

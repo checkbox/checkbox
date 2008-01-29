@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hwtest 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-28 09:36-0500\n"
+"POT-Creation-Date: 2008-01-29 15:31-0500\n"
 "PO-Revision-Date: 2008-01-28 08:23-0500\n"
 "Last-Translator: Marc Tardif <marc.tardif@canonical.com>\n"
 "Language-Team: French <fr@li.org>\n"
@@ -66,21 +66,25 @@ msgstr "_Tester Encore"
 msgid "_Yes"
 msgstr "_Oui"
 
-#: ../hwtest/application.py:55
+#: ../hwtest/application.py:61
 msgid "Print version information and exit."
 msgstr "Afficher le nom et la version du logiciel"
 
-#: ../hwtest/application.py:58
+#: ../hwtest/application.py:64
 msgid "The file name of the configuration."
 msgstr "Le fichier contenant la configuration."
 
-#: ../hwtest/application.py:60
+#: ../hwtest/application.py:66
 msgid "The file to write the log to."
 msgstr "Le fichier pour écrire un log."
 
-#: ../hwtest/application.py:63
+#: ../hwtest/application.py:69
 msgid "One of debug, info, warning, error or critical."
 msgstr "Soit debug, info, warning, error ou critical."
+
+#: ../hwtest/application.py:73
+msgid "Delay before running the application."
+msgstr ""
 
 #: ../hwtest_cli/cli_interface.py:76
 msgid "Press any key to continue..."

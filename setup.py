@@ -55,12 +55,12 @@ class hwtest_install_data(install_data, object):
 
         # Substitute version in examples
         version = changelog_version()
-        outfiles = [o for o in self.outfiles if o.endswith(".conf")]
+        outfiles = [o for o in self.outfiles if o.endswith(".ini")]
         for outfile in outfiles:
             infile = os.path.join("examples", os.path.basename(outfile))
             self._substitute(infile, outfile, {
                 "version = dev": "version = %s" % version,
-                "./examples": "/etc/hwtest.d"})
+                "hwtest_directory = .": "hwtest_directory = /usr/share/hwtest"})
 
         # Substitute directory in defaults.py
         infile = "hwtest/defaults.py"
@@ -76,7 +76,7 @@ class hwtest_install_data(install_data, object):
             outfile = os.path.join(root, outfile)
 
         self._substitute(infile, outfile, {
-            "./examples": "/etc/hwtest.d"})
+            "./configs": "/usr/share/%(base_name)s/configs"})
 
 
 
@@ -96,15 +96,13 @@ to Launchpad.
         ("share/applications/", ["gtk/hwtest-gtk.desktop"]),
         ("share/pixmaps/", ["gtk/hwtest-gtk.xpm"]),
         ("share/hwtest/data/", ["data/*"]),
-        ("share/hwtest/examples/", ["examples/hwtest.conf"]),
+        ("share/hwtest/examples/", ["examples/*"]),
         ("share/hwtest/install/", ["install/*"]),
         ("share/hwtest/plugins/", ["plugins/*.py"]),
         ("share/hwtest/registries/", ["registries/*.py"]),
         ("share/hwtest/questions/", ["questions/*"]),
         ("share/hwtest/scripts/", ["scripts/*"]),
-        ("share/hwtest-gtk/", ["gtk/hwtest-gtk.glade", "gtk/*.png"]),
-        ("share/hwtest-gtk/examples/", ["examples/hwtest-gtk.conf"]),
-        ("share/hwtest-cli/examples/", ["examples/hwtest-cli.conf"])],
+        ("share/hwtest/gtk/", ["gtk/hwtest-gtk.glade", "gtk/*.png"])],
     scripts = ["bin/hwtest", "bin/hwtest-gtk", "bin/hwtest-cli"],
     packages = ["hwtest", "hwtest.contrib", "hwtest.lib", "hwtest.reports",
         "hwtest.registries", "hwtest_cli", "hwtest_gtk"],

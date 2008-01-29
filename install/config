@@ -29,6 +29,14 @@ class Config(ConfigParser):
             fp.write("[%s]\n" % DEFAULTSECT)
             defaults = dict(self._defaults)
 
+            directories = [d for d in defaults.keys()
+                           if d.endswith("_directory")]
+            if directories:
+                for directory in directories:
+                    value = defaults.pop(directory)
+                    value = str(value).replace('\n', '\n\t')
+                    fp.write("%s = %s\n" % (directory, value))
+
             # Write includes first
             if 'includes' in defaults:
                 key = 'includes'
@@ -62,14 +70,22 @@ class Install(object):
     process.
     """
     separator = "/"
-    config_base = "/etc/hwtest.d/%(name)s.conf"
-    example_base = "/usr/share/%(name)s/examples/%(name)s.conf"
+    configs_base = "/usr/share/%(base_name)s/configs/%(name)s.ini"
+    examples_base = "/usr/share/%(base_name)s/examples/%(name)s.ini"
 
     def __init__(self, name, config_path=None, example_path=None, variables=[]):
         self.name = name
+        self.base_name = re.sub(r"(-gtk|-cli)$", "", name)
         self._variables = variables
-        self._config_path = config_path or self.config_base % {"name": name}
-        self._example_path = example_path or self.example_base % {"name": name}
+        self._configs_path = config_path or self.configs_base \
+            % {"name": name, "base_name": self.base_name}
+        self._examples_path = example_path or self.examples_base \
+            % {"name": name, "base_name": self.base_name}
+
+        # Create config directory
+        dirname = os.path.dirname(self._configs_path)
+        if not os.path.exists(dirname):
+            os.mkdir(dirname)
 
         self._config = Config()
         if os.environ.get("DEBIAN_HAS_FRONTEND"):
@@ -86,7 +102,7 @@ class Install(object):
         Write phase of the config process which takes an output file
         as argument.
         """
-        for path in [self._example_path, self._config_path]:
+        for path in [self._examples_path, self._configs_path]:
             if path and os.path.isfile(path):
                 self._config.read(path)
 
@@ -96,7 +112,7 @@ class Install(object):
             value = self._debconf.get(variable)
             self._config.set(section, name, value)
 
-        # Write config
+        # Write config file
         descriptor = open(output, "w")
         self._config.write(descriptor)
         descriptor.close()
@@ -105,7 +121,7 @@ class Install(object):
         """
         Configure phase of the config process.
         """
-        path = self._config_path
+        path = self._configs_path
         if path and os.path.isfile(path):
             self._config.read(path)
 

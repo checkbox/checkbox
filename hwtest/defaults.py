@@ -1,2 +1,2 @@
 # These values will be substituted at build time.
-CONFIG_DIRECTORY = "./examples"
+CONFIG_FILE = "./configs/%(name)s.ini"
