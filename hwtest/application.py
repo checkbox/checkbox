@@ -1,4 +1,5 @@
 import os
+import re
 import sys
 import logging
 
@@ -10,7 +11,7 @@ from optparse import OptionParser
 
 from hwtest.contrib import bpickle_registry
 
-from hwtest.defaults import CONFIG_DIRECTORY
+from hwtest.defaults import CONFIG_FILE
 from hwtest.config import Config
 from hwtest.plugin import PluginManager
 from hwtest.registry import RegistryManager
@@ -47,9 +48,11 @@ class ApplicationManager(object):
     application_factory = Application
 
     def parse_options(self, args):
-        basename = os.path.basename(args[0])
-        default_config_file = os.path.join(CONFIG_DIRECTORY,
-            "%s.ini" % basename)
+        name = os.path.basename(args[0])
+        base_name = re.sub(r"(-gtk|-cli)$", "", name)
+
+        default_config_file = CONFIG_FILE \
+            % {"name": name, "base_name": base_name}
         default_log_level = "critical"
         default_delay = 0
 
