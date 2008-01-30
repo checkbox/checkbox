@@ -4,12 +4,6 @@ config="/usr/share/$base_package/configs/$package.ini"
 
 case "$1" in
     configure)
-        # Make our version of a program available
-        if [ "$package" != "hwtest" ]; then
-            update-alternatives --install /usr/bin/$package $package \
-                /usr/share/hwtest/hwtest 100
-        fi
-
         # Create a temporary file to generate the suggested
         # configuration file.
         tempfile=`tempfile -m 0644 -p hwtest`

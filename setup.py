@@ -59,25 +59,14 @@ class hwtest_install_data(install_data, object):
         for outfile in outfiles:
             infile = os.path.join("examples", os.path.basename(outfile))
             self._substitute(infile, outfile, {
-                "version = dev": "version = %s" % version,
-                "hwtest_directory = .": "hwtest_directory = /usr/share/hwtest"})
+                "version = dev": "version = %s" % version})
 
         # Substitute directory in defaults.py
-        infile = "hwtest/defaults.py"
-        outfile = os.path.join(sysconfig.get_python_lib(), infile)
-        if self.root:
-            root = self.root
-            if root.endswith("/"):
-                root = root.rstrip("/")
-
-            outfile = os.path.normpath(outfile)
-            if os.path.isabs(outfile):
-                outfile = outfile[1:]
-            outfile = os.path.join(root, outfile)
-
-        self._substitute(infile, outfile, {
-            "./configs": "/usr/share/%(base_name)s/configs"})
-
+        outfiles = [o for o in self.outfiles if o.find("/bin/") != -1]
+        for outfile in outfiles:
+            infile = os.path.join("bin", os.path.basename(outfile))
+            self._substitute(infile, outfile, {
+                "HWTEST_DIRECTORY=.": "HWTEST_DIRECTORY=/usr/share/hwtest"})
 
 
 setup(
@@ -95,6 +84,7 @@ to Launchpad.
     data_files = [
         ("share/applications/", ["gtk/hwtest-gtk.desktop"]),
         ("share/pixmaps/", ["gtk/hwtest-gtk.xpm"]),
+        ("share/hwtest/", ["hwtest.py"]),
         ("share/hwtest/data/", ["data/*"]),
         ("share/hwtest/examples/", ["examples/*"]),
         ("share/hwtest/install/", ["install/*"]),
@@ -103,7 +93,7 @@ to Launchpad.
         ("share/hwtest/questions/", ["questions/*"]),
         ("share/hwtest/scripts/", ["scripts/*"]),
         ("share/hwtest/gtk/", ["gtk/hwtest-gtk.glade", "gtk/*.png"])],
-    scripts = ["bin/hwtest", "bin/hwtest-gtk", "bin/hwtest-cli"],
+    scripts = ["bin/hwtest-gtk", "bin/hwtest-cli"],
     packages = ["hwtest", "hwtest.contrib", "hwtest.lib", "hwtest.reports",
         "hwtest.registries", "hwtest_cli", "hwtest_gtk"],
     cmdclass = {

@@ -29,14 +29,6 @@ class Config(ConfigParser):
             fp.write("[%s]\n" % DEFAULTSECT)
             defaults = dict(self._defaults)
 
-            directories = [d for d in defaults.keys()
-                           if d.endswith("_directory")]
-            if directories:
-                for directory in directories:
-                    value = defaults.pop(directory)
-                    value = str(value).replace('\n', '\n\t')
-                    fp.write("%s = %s\n" % (directory, value))
-
             # Write includes first
             if 'includes' in defaults:
                 key = 'includes'

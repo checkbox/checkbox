@@ -1,5 +1,4 @@
 import os
-import re
 import sys
 import logging
 
@@ -11,7 +10,6 @@ from optparse import OptionParser
 
 from hwtest.contrib import bpickle_registry
 
-from hwtest.defaults import CONFIG_FILE
 from hwtest.config import Config
 from hwtest.plugin import PluginManager
 from hwtest.registry import RegistryManager
@@ -48,20 +46,12 @@ class ApplicationManager(object):
     application_factory = Application
 
     def parse_options(self, args):
-        name = os.path.basename(args[0])
-        base_name = re.sub(r"(-gtk|-cli)$", "", name)
-
-        default_config_file = CONFIG_FILE \
-            % {"name": name, "base_name": base_name}
         default_log_level = "critical"
         default_delay = 0
 
         parser = OptionParser()
         parser.add_option("--version", action='store_true',
                           help=_("Print version information and exit."))
-        parser.add_option("-c", "--config-file", metavar="PATH",
-                          default=default_config_file,
-                          help=_("The file name of the configuration."))
         parser.add_option("-l", "--log", metavar="FILE",
                           help=_("The file to write the log to."))
         parser.add_option("--log-level",
@@ -71,10 +61,10 @@ class ApplicationManager(object):
                           default=default_delay,
                           type="int",
                           help=_("Delay before running the application."))
-        return parser.parse_args(args)[0]
+        return parser.parse_args(args)
 
     def create_application(self, args=sys.argv):
-        options = self.parse_options(args)
+        (options, args) = self.parse_options(args)
 
         log_level = logging.getLevelName(options.log_level.upper())
         log_handlers = []
@@ -95,7 +85,11 @@ class ApplicationManager(object):
             logging.disable(logging.CRITICAL)
 
         # Config setup
-        config_file = os.path.expanduser(options.config_file)
+        if len(args) != 2:
+            sys.stderr.write("Missing configuration file as argument.\n")
+            sys.exit(1)
+
+        config_file = os.path.expanduser(args[1])
         config = Config(config_file)
 
         # Check options
