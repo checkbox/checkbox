@@ -7,7 +7,7 @@ include /usr/share/cdbs/1/class/python-distutils.mk
 include /usr/share/cdbs/1/rules/simple-patchsys.mk
 
 DEB_DH_INSTALL_SOURCEDIR := debian/tmp
-DEB_PYTHON_INSTALL_ARGS_ALL := --no-compile --install-scripts usr/share/hwtest
+DEB_PYTHON_INSTALL_ARGS_ALL := --no-compile
 
 clean::
 	-find . -name \*.mo -exec rm {} \;
