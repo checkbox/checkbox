@@ -2,8 +2,4 @@
 
 export HWTEST_DIRECTORY=.
 
-SCRIPT=`basename $0`
-
-CONFIG_FILE=$HWTEST_DIRECTORY/configs/$SCRIPT.ini
-
-python $HWTEST_DIRECTORY/hwtest.py "$@" $CONFIG_FILE
+python $HWTEST_DIRECTORY/run "$@" $CONFIG_FILE $HWTEST_DIRECTORY/configs/$(basename $0).ini
