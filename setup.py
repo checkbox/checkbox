@@ -70,8 +70,7 @@ class hwtest_install_scripts(install_scripts, object):
         super(hwtest_install_scripts, self).run()
 
         # Substitute directory in defaults.py
-        outfiles = [o for o in self.outfiles if o.find("/bin/") != -1]
-        for outfile in outfiles:
+        for outfile in self.outfiles:
             infile = os.path.join("bin", os.path.basename(outfile))
             substitute_variables(infile, outfile, {
                 "HWTEST_DIRECTORY=.": "HWTEST_DIRECTORY=/usr/share/hwtest"})
