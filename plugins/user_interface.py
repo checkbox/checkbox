@@ -1,7 +1,3 @@
-import os
-
-from gettext import gettext as _
-
 from hwtest.plugin import Plugin
 from hwtest.iterator import Iterator
 
@@ -17,13 +13,8 @@ class UserInterface(Plugin):
         interface_class = getattr(interface_module, self.config.interface_class)
         interface = interface_class(self.config)
 
-        if os.getuid() != 0:
-            self._manager.reactor.fire(("prompt", "error"), interface,
-                _("Administrator Access Needed"),
-                _("You need to be an administrator to use this application."))
-            self._manager.reactor.stop()
-
         iterator = Iterator([
+             ("prompt", "permission"),
              ("prompt", "intro"),
              ("prompt", "gather"),
              ("prompt", "category"),

@@ -10,7 +10,12 @@ class EventID(object):
         self._pair = pair
 
 
-class EventException(Exception):
+class StopException(Exception):
+
+    pass
+
+
+class StopAllException(Exception):
 
     pass
 
@@ -36,8 +41,10 @@ class Reactor(object):
                 logging.debug("Calling %s for %s with priority %d.",
                               format_object(handler), event_type, priority)
                 handler(*args, **kwargs)
-            except EventException:
+            except StopException:
                 break
+            except StopAllException:
+                raise
             except KeyboardInterrupt:
                 logging.exception("Keyboard interrupt while running event "
                                   "handler %s for event type %r with "
@@ -62,8 +69,13 @@ class Reactor(object):
         del self._event_handlers[event_type]
 
     def run(self):
-        self.fire("run")
-        self.fire("stop")
+        try:
+            self.fire("run")
+        except StopAllException:
+            pass
 
     def stop(self):
-        raise EventException
+        raise StopException
+
+    def stop_all(self):
+        raise StopAllException
