@@ -86,7 +86,7 @@ class ApplicationManager(object):
 
         # Config setup
         if len(args) != 2:
-            sys.stderr.write("Missing configuration file as argument.\n")
+            sys.stderr.write(_("Missing configuration file as argument.\n"))
             sys.exit(1)
 
         config_file = os.path.expanduser(args[1])
