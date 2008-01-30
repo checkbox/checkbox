@@ -8,6 +8,7 @@ from distutils import sysconfig
 from distutils.core import setup
 
 from distutils.command.install_data import install_data
+from distutils.command.install_scripts import install_scripts
 from DistUtilsExtra.command.build_extra import build_extra
 from DistUtilsExtra.command.build_i18n import build_i18n
 
@@ -22,16 +23,16 @@ def changelog_version(changelog="debian/changelog"):
 
     return version
 
+def substitute_variables(infile, outfile, variables={}):
+    f_in = file(infile, "r")
+    f_out = file(outfile, "w")
+    for line in f_in.readlines():
+        for key, value in variables.items():
+            line = line.replace(key, value)
+        f_out.write(line)
+
 
 class hwtest_install_data(install_data, object):
-
-    def _substitute(self, infile, outfile, variables={}):
-        f_in = file(infile, "r")
-        f_out = file(outfile, "w")
-        for line in f_in.readlines():
-            for key, value in variables.items():
-                line = line.replace(key, value)
-            f_out.write(line)
 
     def finalize_options(self):
         """Add wildcard support for filenames."""
@@ -58,14 +59,21 @@ class hwtest_install_data(install_data, object):
         outfiles = [o for o in self.outfiles if o.endswith(".ini")]
         for outfile in outfiles:
             infile = os.path.join("examples", os.path.basename(outfile))
-            self._substitute(infile, outfile, {
+            substitute_variables(infile, outfile, {
                 "version = dev": "version = %s" % version})
+
+
+class hwtest_install_scripts(install_scripts, object):
+
+    def run(self):
+        """Run substitutions on files."""
+        super(hwtest_install_scripts, self).run()
 
         # Substitute directory in defaults.py
         outfiles = [o for o in self.outfiles if o.find("/bin/") != -1]
         for outfile in outfiles:
             infile = os.path.join("bin", os.path.basename(outfile))
-            self._substitute(infile, outfile, {
+            substitute_variables(infile, outfile, {
                 "HWTEST_DIRECTORY=.": "HWTEST_DIRECTORY=/usr/share/hwtest"})
 
 
@@ -84,7 +92,7 @@ to Launchpad.
     data_files = [
         ("share/applications/", ["gtk/hwtest-gtk.desktop"]),
         ("share/pixmaps/", ["gtk/hwtest-gtk.xpm"]),
-        ("share/hwtest/", ["hwtest.py"]),
+        ("share/hwtest/", ["run"]),
         ("share/hwtest/data/", ["data/*"]),
         ("share/hwtest/examples/", ["examples/*"]),
         ("share/hwtest/install/", ["install/*"]),
@@ -98,6 +106,7 @@ to Launchpad.
         "hwtest.registries", "hwtest_cli", "hwtest_gtk"],
     cmdclass = {
         "install_data": hwtest_install_data,
+        "install_scripts": hwtest_install_scripts,
         "build" : build_extra,
         "build_i18n" :  build_i18n }
 )
