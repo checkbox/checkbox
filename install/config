@@ -67,7 +67,7 @@ class Install(object):
 
     def __init__(self, name, config_path=None, example_path=None, variables=[]):
         self.name = name
-        self.base_name = re.sub(r"(-gtk|-cli)$", "", name)
+        self.base_name = re.sub(r"-[^-]+$", "", name)
         self._variables = variables
         self._configs_path = config_path or self.configs_base \
             % {"name": name, "base_name": self.base_name}

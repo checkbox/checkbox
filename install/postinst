@@ -1,5 +1,5 @@
 package=`basename $0 .postinst`
-base_package=`echo $package | sed 's/\(-gtk\|-cli\)$//'`
+base_package=`echo $package | sed 's/-[^-]*$//'`
 config="/usr/share/$base_package/configs/$package.ini"
 
 case "$1" in
