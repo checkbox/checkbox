@@ -138,7 +138,7 @@ class GTKInterface(UserInterface):
         # Set buttons
         self._set_sensitive("button_previous", False)
         self._set_sensitive("button_next", False)
-        self._set_show("button_test_again", False)
+        self._set_show("button_test", False)
 
         # Set interface
         self._set_text("label_question", message)
@@ -151,7 +151,11 @@ class GTKInterface(UserInterface):
         # Set buttons
         self._set_sensitive("button_previous", True)
         self._set_sensitive("button_next", True)
-        self._set_show("button_test_again", str(question.command))
+        if str(question.command):
+            self._set_show("button_test")
+            self._set_label("button_test", _("_Test Again"))
+        else:
+            self._set_show("button_test", False)
 
         # Set interface
         self._set_text("label_question", str(question.description))
@@ -159,10 +163,10 @@ class GTKInterface(UserInterface):
         self._notebook.set_current_page(2)
 
         # Set test again button
-        button_test_again = self._get_widget("button_test_again")
+        button_test = self._get_widget("button_test")
         if hasattr(self, "handler_id"):
-            button_test_again.disconnect(self.handler_id)
-        self.handler_id = button_test_again.connect("clicked",
+            button_test.disconnect(self.handler_id)
+        self.handler_id = button_test.connect("clicked",
             lambda w, q=question: self.do_question(q))
 
         # Default answers

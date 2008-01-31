@@ -1,21 +1,24 @@
 import os
 import logging
-from subprocess import Popen, PIPE
 
 from hwtest.answer import YES, NO, SKIP
-from hwtest.lib.environ import (add_variable, remove_variable, add_path,
-    remove_path)
+from hwtest.lib.process import Process
+from hwtest.lib.signal import signal_to_name, signal_to_description
+from hwtest.lib.environ import (get_variables, add_variable, remove_variable,
+    get_paths, add_path, remove_path)
 
 
 class Command(object):
 
-    def __init__(self, command="", paths=[], variables={}):
-        self._command = command or ""
-        self._paths = paths
-        self._variables = variables
+    def __init__(self, command="", timeout=None):
+        self._command = command
+        self._timeout = timeout
 
-        self._status = SKIP
         self._data = ""
+        self._status = SKIP
+
+        self._variables = {}
+        self._paths = []
 
     def __str__(self):
         return self.get_command()
@@ -23,19 +26,31 @@ class Command(object):
     def __call__(self):
         self.execute()
 
-    def execute(self, timeout=None):
+    def execute(self):
         command = self.get_command()
         if not command:
             return
 
         self.pre_execute()
 
+        # Sanitize environment
+        env = get_variables()
+        env["PATH"] = ":".join(get_paths())
+
         logging.info("Running command: %s" % command)
-        process = Popen([command], shell=True,
-            stdin=None, stdout=PIPE, stderr=PIPE,
-            close_fds=True)
-        (stdout, stderr) = process.communicate()
-        wait = process.wait()
+        process = Process(command, env)
+        if process.read(self._timeout):
+            logging.info("Command timed out, killing process.")
+            process.kill()
+
+            self.set_data("Command timed out after %s seconds" % self._timeout)
+            self.set_status(SKIP)
+            self.post_execute()
+            return
+
+        stdout = process.outdata
+        stderr = process.errdata
+        wait = process.cleanup()
 
         self.post_execute()
         self.parse_process(stdout, stderr, wait)
@@ -82,7 +97,7 @@ class Command(object):
             self.set_status(YES)
         elif exit_code == 127:
             self.set_status(SKIP)
-            self.set_data("Failed to run command, skipping.")
+            self.set_data("Command failed, skipping.")
         else:
             self.set_status(NO)
 

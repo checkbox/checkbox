@@ -140,6 +140,7 @@ class Question(object):
     requires:      Registry expression which is required to ask this
                    question. For example: lsb.release == '6.06'
     command:       Command to run for the question.
+    timeout:       Timeout for running the command.
     optional:      Boolean expression set to True if this question is optional
                    or False if this question is required.
     """
@@ -151,7 +152,8 @@ class Question(object):
         "depends": [],
         "relations": [],
         "requires": None,
-        "command": None,
+        "command": "",
+        "timeout": 60,
         "optional": False}
 
     def __init__(self, registry, attributes={}):
@@ -177,6 +179,9 @@ class Question(object):
         for field in ["architectures", "categories", "depends"]:
             if attributes.has_key(field):
                 attributes[field] = re.split(r"\s*,\s*", attributes[field])
+        for field in ["timeout"]:
+            if attributes.has_key(field):
+                attributes[field] = int(attributes[field])
 
         # Eval fields
         for field in ["relations", "requires"]:
@@ -190,11 +195,13 @@ class Question(object):
                 attributes[field] = self.optional_fields[field]
 
         # Command field
-        attributes["command"] = Command(attributes.get("command"))
+        attributes["command"] = Command(attributes.get("command"),
+            attributes.get("timeout"))
 
         # Description field
         attributes["description"] = Description(attributes["description"],
-            variables={"question": self})
+            attributes.get("timeout"))
+        attributes["description"].add_variable("question", self)
 
         # Answer field
         attributes["answer"] = Answer()

@@ -1,6 +1,9 @@
 from os import environ
 
 
+def get_variables():
+    return dict(environ)
+
 def get_variable(name):
     """Get the value of an environment variable name.
 
@@ -11,7 +14,7 @@ def get_variable(name):
     if name in environ:
         value = environ[name]
     else:
-        value = ''
+        value = ""
 
     return value
 
@@ -35,6 +38,13 @@ def remove_variable(name):
     if name in environ:
         del environ[name]
 
+def get_paths():
+    paths = []
+    if "PATH" in environ:
+        paths = environ["PATH"].split(":")
+
+    return paths
+
 def add_path(path):
     """Add a path to the PATH environment variable if it doesn't exist
     already.
@@ -43,10 +53,10 @@ def add_path(path):
     path -- path to add
     """
 
-    environ_path = get_variable('PATH').split(':')
+    environ_path = get_variable("PATH").split(":")
     if path not in environ_path:
         environ_path.insert(0, path)
-        environ['PATH'] = ':'.join(environ_path)
+        environ["PATH"] = ":".join(environ_path)
 
 def remove_path(path):
     """Remove a path from the PATH environment variable if it exists
@@ -56,7 +66,7 @@ def remove_path(path):
     path -- path to remove
     """
 
-    environ_path = get_variable('PATH').split(':')
+    environ_path = get_variable("PATH").split(":")
     if path in environ_path:
         environ_path.remove(path)
-        environ['PATH'] = ':'.join(environ_path)
+        environ["PATH"] = ":".join(environ_path)
