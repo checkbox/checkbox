@@ -7,11 +7,15 @@ from xml.dom.minidom import parseString
 
 
 def main(args):
-    command = "lshw -xml 2>/dev/null"
-    xml = os.popen(command).read()
-    dom = parseString(xml)
+    command = "lshw -xml -class network 2>/dev/null"
+    # HACK: Workaround for invalid xml generated when specifying a class
+    xml_lines = os.popen(command).readlines()
+    xml_lines[1:1] = ["<node>"]
+    xml_lines.append("</node>")
+
+    dom = parseString("".join(xml_lines))
     nodes = [n for n in dom.getElementsByTagName("node")
-        if n.getAttribute("class") == "network" and n.getAttribute("handle")]
+        if n.getAttribute("handle")]
     if nodes:
         for node in nodes:
             print node.getElementsByTagName("vendor")[0].firstChild.data, \
