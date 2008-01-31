@@ -1,63 +1,21 @@
 #!/usr/bin/python
 
 import os
-import re
 import sys
 
+from xml.dom.minidom import parseString
 
-def get_devices():
-    devices = []
-    data = os.popen("lshal").read()
-    for block in data.split("\n\n"):
-        lines = block.split("\n")
-        while lines:
-            line = lines.pop(0)
-            match = re.match(r"udi = '(.*)'", line)
-            if match:
-                udi = match.group(1)
-                key = udi.split("/")[-1]
-                break
-
-        device = {}
-        for line in lines:
-            match = re.match(r"  (.*) = (.*) \((.*?)\)", line)
-            if match:
-                key = match.group(1).strip()
-                value = match.group(2).strip()
-                type_name = match.group(3)
-                if type_name == "bool":
-                    value = bool(value == "true")
-                elif type_name == "double":
-                    value = float(value.split()[0])
-                elif type_name == "int" or type_name == "uint64":
-                    value = int(value.split()[0])
-                elif type_name == "string":
-                    value = str(value.strip("'"))
-                elif type_name == "string list":
-                    value = [v.strip("'")
-                            for v in value.strip("{}").split(", ")]
-                else:
-                    raise Exception, "Unknown type: %s" % type_name
-
-                device[key] = value
-
-        devices.append(device)
-
-    return devices
-
-def get_devices_by_match(key, value):
-    devices = []
-    for device in get_devices():
-        if device.has_key(key) and device[key] == value:
-            devices.append(device)
-
-    return devices
 
 def main(args):
-    devices = get_devices_by_match("pci.device_class", 2)
-    if devices:
-        for device in devices:
-            print device.get("pci.vendor"), device.get("pci.product")
+    command = "lshw -xml 2>/dev/null"
+    xml = os.popen(command).read()
+    dom = parseString(xml)
+    nodes = [n for n in dom.getElementsByTagName("node")
+        if n.getAttribute("class") == "network" and n.getAttribute("handle")]
+    if nodes:
+        for node in nodes:
+            print node.getElementsByTagName("vendor")[0].firstChild.data, \
+                  node.getElementsByTagName("product")[0].firstChild.data
     else:
         print "Not found."
 
