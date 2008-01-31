@@ -6,15 +6,7 @@ import sys
 
 # Workaround for python-support on older systems
 directory = "/usr/share/python-support"
-packages = ["hwtest"]
-
-basename = os.path.basename(sys.argv[0])
-if basename.endswith("gtk"):
-    packages.append("hwtest-gtk")
-elif basename.endswith("cli"):
-    packages.append("hwtest-cli")
-
-for package in packages:
+for package in ["hwtest", "hwtest-cli", "hwtest-gtk"]:
     sys.path.append(os.path.join(directory, package))
 
 
