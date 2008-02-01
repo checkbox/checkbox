@@ -13,7 +13,7 @@ class GatherPrompt(Plugin):
  
     def prompt_gather(self, interface):
         if not self._done:
-            interface.do_wait(_("Gathering information from your system..."),
+            interface.show_wait(_("Gathering information from your system..."),
                 lambda: self._manager.reactor.fire("gather"))
             self._done = True
 

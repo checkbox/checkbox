@@ -25,6 +25,7 @@ class Command(object):
 
     def __call__(self):
         self.execute()
+        return str(self)
 
     def execute(self):
         command = self.get_command()

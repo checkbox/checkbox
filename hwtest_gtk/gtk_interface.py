@@ -9,6 +9,24 @@ from hwtest.answer import Answer
 from hwtest.user_interface import UserInterface
 
 
+# HACK: Setting and unsetting previous and next buttons to workaround
+#       for gnome bug #56070.
+class GTKHack(object):
+    def __init__(self, function):
+        self._function = function
+
+    def __get__(self, instance, cls=None):
+        self._instance = instance
+        return self
+
+    def __call__(self, *args, **kwargs):
+        self._instance._set_sensitive("button_previous", False)
+        self._instance._set_sensitive("button_next", False)
+        self._instance._set_sensitive("button_previous", True)
+        self._instance._set_sensitive("button_next", True)
+        return self._function(self._instance, *args, **kwargs)
+
+
 class GTKInterface(UserInterface):
 
     def __init__(self, config):
@@ -25,6 +43,7 @@ class GTKInterface(UserInterface):
         self._dialog.set_title(config.title)
 
         self._notebook = self._get_widget("notebook_hwtest")
+        self._handler_id = None
 
     def _get_widget(self, widget):
         return self.widgets.get_widget(widget)
@@ -87,18 +106,21 @@ class GTKInterface(UserInterface):
         while gtk.events_pending():
             gtk.main_iteration(False)
 
-    def show_wait_begin(self, message):
+    def do_function(self, function):
         self._set_sensitive("button_previous", False)
         self._set_sensitive("button_next", False)
 
-        self._set_text("label_wait", message)
-        self._notebook.set_current_page(3)
+        super(GTKInterface, self).do_function(function)
 
-        self._dialog.show()
-
-    def show_wait_end(self):
         self._set_sensitive("button_previous", True)
         self._set_sensitive("button_next", True)
+
+    def show_wait(self, message, function):
+        self._set_text("label_wait", message)
+        self._notebook.set_current_page(3)
+        self._dialog.show()
+
+        self.do_function(function)
 
     def show_pulse(self):
         self._get_widget("progressbar_wait").pulse()
@@ -106,6 +128,7 @@ class GTKInterface(UserInterface):
         while gtk.events_pending():
             gtk.main_iteration(False)
 
+    @GTKHack
     def show_intro(self, title, text):
         # Set buttons
         self._set_sensitive("button_previous", False)
@@ -119,6 +142,7 @@ class GTKInterface(UserInterface):
 
         self._set_sensitive("button_previous", True)
 
+    @GTKHack
     def show_category(self, title, text, category=None):
         # Set buttons
         self._notebook.set_current_page(1)
@@ -134,40 +158,38 @@ class GTKInterface(UserInterface):
             "radiobutton_laptop": "laptop",
             "radiobutton_server": "server"})
 
-    def show_question_begin(self, message=None):
-        # Set buttons
-        self._set_sensitive("button_previous", False)
-        self._set_sensitive("button_next", False)
+    @GTKHack
+    def show_question(self, question, run_question=True):
         self._set_show("button_test", False)
-
-        # Set interface
-        self._set_text("label_question", message)
-        self._set_show("progressbar_question")
         self._notebook.set_current_page(2)
 
-        self._dialog.show()
+        # Run question
+        if str(question.command) and run_question:
+            self._set_text("label_question",
+                _("Running question %s...") % question.name)
+            self._set_show("progressbar_question")
+            self._dialog.show()
 
-    def show_question_end(self, question):
+            self.do_function(question.command)
+
+            self._set_show("progressbar_question", False)
+
+        # Set question
+        self._set_text("label_question", question.description())
+
         # Set buttons
-        self._set_sensitive("button_previous", True)
-        self._set_sensitive("button_next", True)
+        self._set_show("button_test", str(question.command))
         if str(question.command):
-            self._set_show("button_test")
-            self._set_label("button_test", _("_Test Again"))
-        else:
-            self._set_show("button_test", False)
+            if run_question:
+                self._set_label("button_test", _("_Test Again"))
+            else:
+                self._set_label("button_test", _("_Test"))
 
-        # Set interface
-        self._set_text("label_question", str(question.description))
-        self._set_show("progressbar_question", False)
-        self._notebook.set_current_page(2)
-
-        # Set test again button
-        button_test = self._get_widget("button_test")
-        if hasattr(self, "handler_id"):
-            button_test.disconnect(self.handler_id)
-        self.handler_id = button_test.connect("clicked",
-            lambda w, q=question: self.do_question(q))
+            button_test = self._get_widget("button_test")
+            if self._handler_id:
+                button_test.disconnect(self._handler_id)
+            self._handler_id = button_test.connect("clicked",
+                lambda w, q=question: self.show_question(q))
 
         # Default answers
         if question.answer:
@@ -187,6 +209,7 @@ class GTKInterface(UserInterface):
         data = self._get_textview("textview_comment")
         question.answer = Answer(status, data)
 
+    @GTKHack
     def show_exchange(self, authentication, message=None, error=None):
         self._notebook.set_current_page(4)
 
@@ -207,6 +230,7 @@ class GTKInterface(UserInterface):
 
         return authentication
 
+    @GTKHack
     def show_final(self, message=None):
         self._set_label("button_next", _("_Finish"))
         self._notebook.set_current_page(5)

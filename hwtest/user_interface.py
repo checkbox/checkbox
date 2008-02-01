@@ -16,16 +16,12 @@ class UserInterface(object):
     def __init__(self, config):
         self.config = config
 
-        self.application = None
-        self.questions = None
         self.direction = NEXT
-
         self.gettext_domain = "hwtest"
         gettext.textdomain(self.gettext_domain)
 
-    def do_wait(self, message, function):
-        self.show_wait_begin(message)
-        thread = REThread(target=function, name="do_wait")
+    def do_function(self, function):
+        thread = REThread(target=function, name="do_function")
         thread.start()
         while thread.isAlive():
             self.show_pulse()
@@ -34,28 +30,8 @@ class UserInterface(object):
             except KeyboardInterrupt:
                 sys.exit(1)
         thread.exc_raise()
-        self.show_wait_end()
 
-    def do_question(self, question):
-        if str(question.command):
-            self.show_question_begin(_("Running question %s...") % question.name)
-            thread = REThread(target=question.command, name="do_question")
-            thread.start()
-            while thread.isAlive():
-                self.show_pulse()
-                try:
-                    thread.join(0.1)
-                except KeyboardInterrupt:
-                    sys.exit(1)
-            thread.exc_raise()
-
-        question.description()
-        self.show_question_end(question)
-
-    def show_wait_begin(self, message):
-        raise NotImplementedError, "this function must be overridden by subclasses"
-
-    def show_wait_end(self):
+    def show_wait(self, message, function):
         raise NotImplementedError, "this function must be overridden by subclasses"
 
     def show_pulse(self):
@@ -67,10 +43,7 @@ class UserInterface(object):
     def show_category(self, title, text, category):
         raise NotImplementedError, "this function must be overridden by subclasses"
 
-    def show_question_begin(self, message):
-        raise NotImplementedError, "this function must be overridden by subclasses"
-
-    def show_question_end(self, question):
+    def show_question(self, question, run_question):
         raise NotImplementedError, "this function must be overridden by subclasses"
 
     def show_exchange(self, authentication, message, error):

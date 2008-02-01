@@ -142,13 +142,11 @@ class CLIProgressDialog(CLIDialog):
 
 class CLIInterface(UserInterface):
 
-    def show_wait_begin(self, message):
+    def show_wait(self, message, function):
         title = "Hardware Test"
         self.progress = CLIProgressDialog(title, message)
         self.progress.show()
-
-    def show_wait_end(self):
-        pass
+        self.do_function(function)
 
     def show_pulse(self):
         self.progress.set()
@@ -166,18 +164,22 @@ class CLIInterface(UserInterface):
         response = dialog.run()
         return ALL_CATEGORIES[response - 1]
 
-    def show_question_begin(self, message=None):
-        title = "Hardware Test"
-        self.progress = CLIProgressDialog(title, message)
-        self.progress.show()
+    def show_question(self, question, run_question=True):
+        if str(question.command) and run_question:
+            title = "Hardware Test"
+            self.progress = CLIProgressDialog(title,
+                _("Running question %s...") % question.name)
+            self.progress.show()
 
-    def show_question_end(self, question):
-        dialog = CLIChoiceDialog(question.name, question.description)
+            self.do_function(question.command)
+
+        # show answers dialog
+        dialog = CLIChoiceDialog(question.name, question.description())
         answers = ["yes", "no", "skip"]
         for answer in answers:
             dialog.add_button("&%s" % answer)
 
-        # show answers dialog
+        # get answer from dialog
         response = dialog.run()
         status = answers[response - 1]
         data = ""

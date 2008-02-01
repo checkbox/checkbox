@@ -30,7 +30,7 @@ class ExchangePrompt(Plugin):
                 error = _("Email address must be in a proper format.")
             else:
                 self._manager.reactor.fire(("report", "email"), self._email)
-                interface.do_wait(
+                interface.show_wait(
                     _("Exchanging information with the server..."),
                     lambda: self._manager.reactor.fire("exchange"))
                 error = self._manager.get_error()
