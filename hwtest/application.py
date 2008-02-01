@@ -68,10 +68,11 @@ class ApplicationManager(object):
 
         log_level = logging.getLevelName(options.log_level.upper())
         log_handlers = []
-        log_handlers.append(StreamHandler())
         if options.log:
             log_filename = options.log
             log_handlers.append(FileHandler(log_filename))
+        else:
+            log_handlers.append(StreamHandler())
 
         # Logging setup
         format = ("%(asctime)s %(levelname)-8s %(message)s")
