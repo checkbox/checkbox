@@ -207,6 +207,8 @@ class Template(object):
         else:
             names = [n for n in os.listdir(directory) if n not in blacklist]
 
+        names = [n for n in names if n.endswith(".txt")]
+
         for name in names:
             filename = os.path.join(directory, name)
             elements.extend(self.load_filename(filename))
