@@ -10,7 +10,7 @@ Package: hwtest
 Section: python
 Architecture: all
 Depends: ${misc:Depends}, python-apt | python2.4-apt, ucf
-Recommends: hal
+Recommends: hal, python-gst
 Description: Hardware test
  This project provides an interface for gathering hardware details and
  prompting the user for questions. This information can then be sent
