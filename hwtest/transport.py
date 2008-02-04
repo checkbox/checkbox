@@ -25,13 +25,14 @@ class HTTPTransport(object):
         ret = opener.open(self._url, payload)
         return ret
 
-    def exchange(self, payload, headers={}, timeout=120):
+    def exchange(self, payload, headers={}, timeout=0):
         """Exchange the payload with the server."""
 
         import urllib2
 
         ret = None
-        socket.setdefaulttimeout(timeout)
+        if timeout:
+            socket.setdefaulttimeout(timeout)
         try:
             ret = self._post(payload, headers)
         except urllib2.URLError:

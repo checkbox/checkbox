@@ -14,7 +14,7 @@ from hwtest.transport import HTTPTransport
 
 class LaunchpadExchange(Plugin):
 
-    required_attributes = ["transport_url"]
+    required_attributes = ["transport_url", "timeout"]
 
     def register(self, manager):
         super(LaunchpadExchange, self).register(manager)
@@ -80,7 +80,7 @@ class LaunchpadExchange(Plugin):
         self._manager.set_error()
         start_time = time.time()
         transport = HTTPTransport(self.config.transport_url)
-        ret = transport.exchange(form)
+        ret = transport.exchange(form, timeout=int(self.config.timeout))
         if not ret:
             self._manager.set_error(_("Failed to contact the server,\n"
                 "are you connected to the Internet."))
