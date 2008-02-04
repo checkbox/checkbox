@@ -6,13 +6,13 @@ from hwtest.question import Question
 from hwtest.template import Template
 
 
-class QuestionInfo(Plugin):
+class QuestionsInfo(Plugin):
 
     required_attributes = ["directories"]
     optional_attributes = ["blacklist", "whitelist"]
 
     def register(self, manager):
-        super(QuestionInfo, self).register(manager)
+        super(QuestionsInfo, self).register(manager)
         self.questions = {}
 
         for (rt, rh) in [
@@ -48,4 +48,4 @@ class QuestionInfo(Plugin):
         self._manager.reactor.fire(("report", "questions"), message)
 
 
-factory = QuestionInfo
+factory = QuestionsInfo

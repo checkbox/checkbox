@@ -25,8 +25,8 @@ class LaunchpadReport(Plugin):
              (("report", "architecture"), self.report_architecture, 0),
              (("report", "system_id"), self.report_system_id, 0),
              (("report", "distribution"), self.report_distribution, 0),
-             (("report", "device"), self.report_device, 0),
-             (("report", "processor"), self.report_processor, 0),
+             (("report", "devices"), self.report_devices, 0),
+             (("report", "processors"), self.report_processors, 0),
              (("report", "questions"), self.report_questions, 0)]:
             self._manager.reactor.call_on(rt, rh, rp)
 
@@ -47,10 +47,10 @@ class LaunchpadReport(Plugin):
         self._report["summary"]["distribution"] = message.distributor_id
         self._report["summary"]["distroseries"] = message.release
 
-    def report_device(self, message):
+    def report_devices(self, message):
         self._report["hardware"]["hal"] = message
 
-    def report_processor(self, message):
+    def report_processors(self, message):
         self._report["hardware"]["processors"] = message
 
     def report_questions(self, message):
