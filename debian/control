@@ -9,7 +9,7 @@ Build-Depends: cdbs (>= 0.4.43), debhelper (>= 5.0.37.2), python-support (>= 0.3
 Package: hwtest
 Section: python
 Architecture: all
-Depends: ${misc:Depends}, python-apt | python2.4-apt, ucf
+Depends: ${misc:Depends}, python, python-apt | python2.4-apt, ucf
 Recommends: hal, python-gst
 Description: Hardware test
  This project provides an interface for gathering hardware details and
