@@ -6,6 +6,7 @@ from gettext import gettext as _
 from hwtest.answer import Answer
 from hwtest.question import ALL_CATEGORIES
 from hwtest.user_interface import UserInterface
+from hwtest.lib.environ import remove_variable
 
 
 class CLIDialog(object):
@@ -141,6 +142,10 @@ class CLIProgressDialog(CLIDialog):
 
 
 class CLIInterface(UserInterface):
+
+    def __init__(self, config):
+        super(CLIInterface, self).__init__(config)
+        remove_variable("DISPLAY")
 
     def show_wait(self, message, function):
         title = "Hardware Test"
