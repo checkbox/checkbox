@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hwtest 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-30 15:01-0500\n"
+"POT-Creation-Date: 2008-02-04 18:05-0500\n"
 "PO-Revision-Date: 2008-01-28 08:23-0500\n"
 "Last-Translator: Marc Tardif <marc.tardif@canonical.com>\n"
 "Language-Team: French <fr@li.org>\n"
@@ -22,7 +22,7 @@ msgstr "<b>Commentaire:</b>"
 msgid "Hardware Testing"
 msgstr "Test matériel"
 
-#: ../gtk/hwtest-gtk.glade.h:3 ../hwtest_gtk/gtk_interface.py:215
+#: ../gtk/hwtest-gtk.glade.h:3 ../hwtest_gtk/gtk_interface.py:243
 msgid "Ne_xt"
 msgstr "Sui_vant"
 
@@ -58,9 +58,9 @@ msgstr "_Serveur"
 msgid "_Skip this question"
 msgstr "_Sauter cette question"
 
-#: ../gtk/hwtest-gtk.glade.h:12
-msgid "_Test Again"
-msgstr "_Tester Encore"
+#: ../gtk/hwtest-gtk.glade.h:12 ../hwtest_gtk/gtk_interface.py:186
+msgid "_Test"
+msgstr "_Tester"
 
 #: ../gtk/hwtest-gtk.glade.h:13
 msgid "_Yes"
@@ -82,27 +82,31 @@ msgstr "Soit debug, info, warning, error ou critical."
 msgid "Delay before running the application."
 msgstr "Délais avant d'exécuter l'application."
 
-#: ../hwtest/application.py:89
+#: ../hwtest/application.py:90
 msgid "Missing configuration file as argument.\n"
 msgstr "Fichier de configuration manquant en argument.\n"
 
-#: ../hwtest_cli/cli_interface.py:76
+#: ../hwtest_cli/cli_interface.py:77
 msgid "Press any key to continue..."
 msgstr "Taper une touche pour continuer..."
 
-#: ../hwtest_cli/cli_interface.py:85
+#: ../hwtest_cli/cli_interface.py:86
 #, python-format
 msgid "Please choose (%s): "
 msgstr "Veuillez chosir (%s): "
 
-#: ../hwtest_gtk/gtk_interface.py:207
-msgid "_Finish"
-msgstr "_Fin"
-
-#: ../hwtest/user_interface.py:41
+#: ../hwtest_cli/cli_interface.py:176 ../hwtest_gtk/gtk_interface.py:169
 #, python-format
 msgid "Running question %s..."
 msgstr "Exécution de la question %s..."
+
+#: ../hwtest_gtk/gtk_interface.py:184
+msgid "_Test Again"
+msgstr "_Tester Encore"
+
+#: ../hwtest_gtk/gtk_interface.py:235
+msgid "_Finish"
+msgstr "_Fin"
 
 #: ../plugins/auto_prompt.py:38
 msgid "Running automatic questions..."
@@ -178,12 +182,3 @@ msgstr ""
 #: ../plugins/launchpad_exchange.py:99
 msgid "Information was not posted to Launchpad."
 msgstr "Information envoyée sur Launchpad."
-
-#: ../plugins/user_interface.py:22
-msgid "Administrator Access Needed"
-msgstr "Accès administrateur requis"
-
-#: ../plugins/user_interface.py:23
-msgid "You need to be an administrator to use this application."
-msgstr ""
-"Vous avez besoin d'être un administrateur pour utiliser cette application."
