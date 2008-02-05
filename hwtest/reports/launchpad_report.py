@@ -14,6 +14,7 @@ class LaunchpadReportManager(XmlReportManager):
         super(LaunchpadReportManager, self).__init__(*args, **kwargs)
         self.add(HalReport())
         self.add(LsbReport())
+        self.add(PackageReport())
         self.add(ProcessorReport())
         self.add(QuestionReport())
         self.add(SummaryReport())
@@ -72,6 +73,35 @@ class LsbReport(Report):
             property = self._create_element("property", parent)
             property.setAttribute("name", key)
             self._manager.call_dumps(value, property)
+
+
+class PackageReport(Report):
+    """Report for package related data types."""
+
+    def register_dumps(self):
+        self._manager.handle_dumps("packages", self.dumps_packages)
+
+    def register_loads(self):
+        self._manager.handle_loads("packages", self.loads_packages)
+
+    def dumps_packages(self, obj, parent):
+        logging.debug("Dumping packages")
+        for name, package in obj.items():
+            element = self._create_element("package", parent)
+            element.setAttribute("id", str(package.id))
+            element.setAttribute("name", str(package.pop("name")))
+            self._manager.call_dumps(dict(package), element)
+
+    def loads_packages(self, node):
+        logging.debug("Loading packages")
+        packages = {}
+        for package in (p for p in node.childNodes if p.localName == "package"):
+            value = self._manager.call_loads(package)
+            name = package.getAttribute("name")
+            value["package"] = name
+            packages[int(name)] = value.pop("name")
+
+        return packages
 
 
 class ProcessorReport(Report):
