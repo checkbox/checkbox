@@ -15,7 +15,7 @@ class AutoPrompt(Plugin):
         for (rt, rh) in [
              (("interface", "category"), self.interface_category),
              (("question", "auto"), self.question_auto),
-             (("prompt", "questions"), self.prompt_questions)]:
+             (("prompt", "auto"), self.prompt_auto)]:
             self._manager.reactor.call_on(rt, rh)
 
     def interface_category(self, category):
@@ -24,7 +24,7 @@ class AutoPrompt(Plugin):
     def question_auto(self, question):
         self._question_manager.add_question(question)
 
-    def prompt_questions(self, interface):
+    def prompt_auto(self, interface):
         if not self._done:
             def run_questions(self):
                 for question in self._question_manager.get_iterator():

@@ -13,12 +13,12 @@ class ManualPrompt(Plugin):
         self._question_manager = QuestionManager()
 
         # Manual questions should be asked first.
-        for (rt, rh, rp) in [
-             (("interface", "category"), self.interface_category, 0),
-             (("question", "manual"), self.question_manual, 0),
-             (("question", "interactive"), self.question_manual, 0),
-             (("prompt", "questions"), self.prompt_questions, -100)]:
-            self._manager.reactor.call_on(rt, rh, rp)
+        for (rt, rh) in [
+             (("interface", "category"), self.interface_category),
+             (("question", "manual"), self.question_manual),
+             (("question", "interactive"), self.question_manual),
+             (("prompt", "manual"), self.prompt_manual)]:
+            self._manager.reactor.call_on(rt, rh)
 
     def interface_category(self, category):
         self._question_manager.set_category(category)
@@ -30,7 +30,7 @@ class ManualPrompt(Plugin):
 
         self._question_manager.add_question(question)
 
-    def prompt_questions(self, interface):
+    def prompt_manual(self, interface):
         questions = self._question_manager.get_iterator(interface.direction)
 
         while True:

@@ -18,7 +18,8 @@ class UserInterface(Plugin):
              ("prompt", "intro"),
              ("prompt", "gather"),
              ("prompt", "category"),
-             ("prompt", "questions"),
+             ("prompt", "manual"),
+             ("prompt", "auto"),
              ("prompt", "report"),
              ("prompt", "exchange"),
              ("prompt", "final")])
