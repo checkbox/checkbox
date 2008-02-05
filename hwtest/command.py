@@ -10,6 +10,9 @@ from hwtest.lib.environ import (get_variables, add_variable, remove_variable,
 
 class Command(object):
 
+    paths = []
+    variables = {}
+
     def __init__(self, command="", timeout=None):
         self._command = command
         self._timeout = timeout
@@ -17,8 +20,8 @@ class Command(object):
         self._data = ""
         self._status = SKIP
 
-        self._variables = {}
-        self._paths = []
+        self._paths = list(self.paths)
+        self._variables = dict(self.variables)
 
     def __str__(self):
         return self.get_command()
