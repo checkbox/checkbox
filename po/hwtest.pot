@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-30 15:01-0500\n"
+"POT-Creation-Date: 2008-02-04 18:05-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,7 +24,7 @@ msgstr ""
 msgid "Hardware Testing"
 msgstr ""
 
-#: ../gtk/hwtest-gtk.glade.h:3 ../hwtest_gtk/gtk_interface.py:215
+#: ../gtk/hwtest-gtk.glade.h:3 ../hwtest_gtk/gtk_interface.py:243
 msgid "Ne_xt"
 msgstr ""
 
@@ -60,8 +60,8 @@ msgstr ""
 msgid "_Skip this question"
 msgstr ""
 
-#: ../gtk/hwtest-gtk.glade.h:12
-msgid "_Test Again"
+#: ../gtk/hwtest-gtk.glade.h:12 ../hwtest_gtk/gtk_interface.py:186
+msgid "_Test"
 msgstr ""
 
 #: ../gtk/hwtest-gtk.glade.h:13
@@ -84,26 +84,30 @@ msgstr ""
 msgid "Delay before running the application."
 msgstr ""
 
-#: ../hwtest/application.py:89
+#: ../hwtest/application.py:90
 msgid "Missing configuration file as argument.\n"
 msgstr ""
 
-#: ../hwtest_cli/cli_interface.py:76
+#: ../hwtest_cli/cli_interface.py:77
 msgid "Press any key to continue..."
 msgstr ""
 
-#: ../hwtest_cli/cli_interface.py:85
+#: ../hwtest_cli/cli_interface.py:86
 #, python-format
 msgid "Please choose (%s): "
 msgstr ""
 
-#: ../hwtest_gtk/gtk_interface.py:207
-msgid "_Finish"
-msgstr ""
-
-#: ../hwtest/user_interface.py:41
+#: ../hwtest_cli/cli_interface.py:176 ../hwtest_gtk/gtk_interface.py:169
 #, python-format
 msgid "Running question %s..."
+msgstr ""
+
+#: ../hwtest_gtk/gtk_interface.py:184
+msgid "_Test Again"
+msgstr ""
+
+#: ../hwtest_gtk/gtk_interface.py:235
+msgid "_Finish"
 msgstr ""
 
 #: ../plugins/auto_prompt.py:38
@@ -163,12 +167,4 @@ msgstr ""
 
 #: ../plugins/launchpad_exchange.py:99
 msgid "Information was not posted to Launchpad."
-msgstr ""
-
-#: ../plugins/user_interface.py:22
-msgid "Administrator Access Needed"
-msgstr ""
-
-#: ../plugins/user_interface.py:23
-msgid "You need to be an administrator to use this application."
 msgstr ""

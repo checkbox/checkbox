@@ -1,5 +1,5 @@
 Source: hwtest
-Section: base
+Section: utils
 Priority: optional
 XSBC-Original-Maintainer: Marc Tardif <marc.tardif@canonical.com>
 Maintainer: Ubuntu MOTU Developers <ubuntu-motu@lists.ubuntu.com>
@@ -18,7 +18,7 @@ Description: Hardware test
 
 Package: hwtest-cli
 Architecture: all
-Depends: hwtest
+Depends: hwtest, debconf
 Description: CLI interface for the hwtest program
  This project provides an interface for gathering hardware details and
  prompting the user for questions. This information can then be sent
@@ -29,7 +29,7 @@ Description: CLI interface for the hwtest program
 Package: hwtest-gtk
 Section: gnome
 Architecture: all
-Depends: python-gtk2, python-glade2, gksu, hwtest
+Depends: python-gtk2, python-glade2, hwtest, debconf
 Description: GTK interface for the hwtest program
  This project provides an interface for gathering hardware details and
  prompting the user for questions. This information can then be sent
