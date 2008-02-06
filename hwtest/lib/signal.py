@@ -62,7 +62,7 @@ def signal_to_description(signal):
     signal -- number of the signal as returned by wait
     """
 
-    name = convert_to_name(signal)
+    name = signal_to_name(signal)
     if signal_description_table.has_key(name):
         return signal_description_table[name]
     return "Unknown signal"
