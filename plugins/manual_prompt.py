@@ -6,8 +6,6 @@ from hwtest.question import QuestionManager
 
 class ManualPrompt(Plugin):
 
-    required_attributes = ["data_path", "scripts_path"]
-
     def register(self, manager):
         super(ManualPrompt, self).register(manager)
         self._question_manager = QuestionManager()
@@ -24,10 +22,6 @@ class ManualPrompt(Plugin):
         self._question_manager.set_category(category)
 
     def question_manual(self, question):
-        for command in question.command, question.description:
-            command.add_path(self.config.scripts_path)
-            command.add_variable("data_path", self.config.data_path)
-
         self._question_manager.add_question(question)
 
     def prompt_manual(self, interface):

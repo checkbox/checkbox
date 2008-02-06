@@ -7,7 +7,7 @@ from hwtest.template import Template
 
 class QuestionsInfo(Plugin):
 
-    required_attributes = ["directories"]
+    required_attributes = ["directories", "scripts_path", "data_path"]
     optional_attributes = ["blacklist", "whitelist"]
 
     def register(self, manager):
@@ -31,6 +31,10 @@ class QuestionsInfo(Plugin):
 
         for element in elements:
             question = Question(self._manager.registry, element)
+            for command in question.command, question.description:
+                command.add_path(self.config.scripts_path)
+                command.add_variable("data_path", self.config.data_path)
+
             self._manager.reactor.fire(("question", question.plugin), question)
 
     def report_question(self, question):
