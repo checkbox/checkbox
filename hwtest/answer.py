@@ -1,3 +1,6 @@
+import logging
+
+
 NO = "no"
 YES = "yes"
 SKIP = "skip"
@@ -22,8 +25,8 @@ class Answer(object):
         # Unknown fields
         for field in attributes.keys():
             if field not in self.required_fields + self.optional_fields.keys():
-                raise Exception, \
-                    "Answer attributes contains unknown field: %s" % field
+                logging.info("Answer attributes contains unknown field: %s" \
+                    % field)
 
         # Required fields
         for field in self.required_fields:

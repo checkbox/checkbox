@@ -169,6 +169,5 @@ class Repository(object):
             + self.config.parent.get_defaults().attributes.keys()
         for attribute in self.config.attributes.keys():
             if attribute not in all_attributes:
-                raise Exception, \
-                    "Configuration section '%s' contains unknown attribute: %s" \
-                     % (self.config.name, attribute)
+                logging.info("Configuration section '%s'" % self.config.name
+                    + " contains unknown attribute: %s" % attribute)

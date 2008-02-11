@@ -7,6 +7,7 @@ of question.
 """
 
 import re
+import logging
 
 from hwtest.excluder import Excluder
 from hwtest.repeater import PreRepeater
@@ -164,9 +165,8 @@ class Question(object):
         # Unknown fields
         for field in attributes.keys():
             if field not in self.required_fields + self.optional_fields.keys():
-                raise Exception, \
-                    "Question attributes contains unknown field: %s" \
-                    % field
+                logging.info("Question attributes contains unknown field: %s" \
+                    % field)
 
         # Required fields
         for field in self.required_fields:
