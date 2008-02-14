@@ -1,4 +1,3 @@
-import os
 import re
 
 from hwtest.repository import Repository, RepositoryManager

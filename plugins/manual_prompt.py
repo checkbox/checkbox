@@ -1,5 +1,3 @@
-from gettext import gettext as _
-
 from hwtest.plugin import Plugin
 from hwtest.question import QuestionManager
 

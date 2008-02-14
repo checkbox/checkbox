@@ -1,8 +1,6 @@
 import sys
 import gettext
 
-from gettext import gettext as _
-
 from hwtest.contrib.REThread import REThread
 from hwtest.iterator import NEXT
 

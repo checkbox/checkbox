@@ -230,8 +230,6 @@ if __name__ == '__main__':
     import getopt
     import urllib2
     import urllib2_file
-    import string
-    import sys
 
     def usage(progname):
         print """

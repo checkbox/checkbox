@@ -2,7 +2,7 @@ from gettext import gettext as _
 
 from hwtest.plugin import Plugin
 from hwtest.question import QuestionManager
-from hwtest.answer import Answer, YES, NO
+from hwtest.answer import Answer
 
 
 class AutoPrompt(Plugin):
