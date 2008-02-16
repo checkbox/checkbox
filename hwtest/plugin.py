@@ -1,4 +1,5 @@
 import re
+import logging
 
 from hwtest.repository import Repository, RepositoryManager
 
@@ -18,8 +19,9 @@ class PluginManager(RepositoryManager):
         sections = self._config.get_defaults().plugins
         for section_name in re.split(r"\s+", sections):
             section = self.load_section(section_name)
-            for name in section.load_all():
-                name.register(self)
+            for module in section.load_all():
+                logging.debug("Registering %s", module.name)
+                module.register(self)
 
 
 class Plugin(Repository):

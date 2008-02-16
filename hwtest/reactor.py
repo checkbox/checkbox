@@ -28,6 +28,7 @@ class Reactor(object):
     def call_on(self, event_type, handler, priority=0):
         pair = (handler, priority)
 
+        logging.debug("Calling on %s.", event_type)
         handlers = self._event_handlers.setdefault(event_type, [])
         handlers.append(pair)
         handlers.sort(key=lambda pair: pair[1])
