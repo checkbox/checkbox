@@ -52,8 +52,8 @@ class PackagesRegistry(Registry):
 
     def __str__(self):
         strings = []
-        for package in self:
-            strings.append("%s - %s" % (self["name"], self["summary"]))
+        for name, package in self.items():
+            strings.append("%s - %s" % (name, package["summary"]))
 
         return "\n".join(strings)
 
