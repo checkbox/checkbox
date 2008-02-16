@@ -89,7 +89,7 @@ class PackageReport(Report):
         for name, package in obj.items():
             element = self._create_element("package", parent)
             element.setAttribute("id", str(package.id))
-            element.setAttribute("name", str(package.pop("name")))
+            element.setAttribute("name", str(package.name))
             self._manager.call_dumps(dict(package), element)
 
     def loads_packages(self, node):
