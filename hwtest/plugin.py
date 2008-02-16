@@ -20,7 +20,6 @@ class PluginManager(RepositoryManager):
         for section_name in re.split(r"\s+", sections):
             section = self.load_section(section_name)
             for module in section.load_all():
-                logging.debug("Registering %s", module.name)
                 module.register(self)
 
 
