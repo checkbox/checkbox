@@ -20,7 +20,6 @@ class RepositorySection(object):
         self._config = config
         self.name = name
         self._names = None
-        self._entries = {}
 
     @property
     def directories(self):
@@ -55,10 +54,11 @@ class RepositorySection(object):
         """
         Load all modules contained in this section.
         """
+        entries = []
         for name in self.get_names():
-            self.load_entry(name)
+            entries.append(self.load_entry(name))
 
-        return self._entries.values()
+        return entries
 
     def has_entry(self, name):
         """
@@ -68,24 +68,26 @@ class RepositorySection(object):
 
     def load_entry(self, name):
         """
-        Load a single moduble by name from this section.
+        Load a single module by name from this section.
         """
-        if name not in self._entries:
-            logging.info("Loading name %s from section %s",
-                name, self.name)
+        logging.info("Loading name %s from section %s",
+            name, self.name)
 
-            sys.path[:0] = self.directories
-            module = __import__(name)
-            del sys.path[len(self.directories) - 1]
+        for directory in self.directories:
+            path = os.path.join(directory, "%s.py" % name)
+            if os.path.exists(path):
+                globals = {}
+                exec file(path) in globals
+                if "factory" not in globals:
+                    raise Exception, "Variable 'factory' not found: %s" % path
 
-            if not hasattr(module, "factory"):
-                raise Exception, "Factory variable not found: %s" % module
+                config_name = "/".join([self.name, name])
+                config = self._config.parent.get_section(config_name)
 
-            config_name = "/".join([self.name, name])
-            config = self._config.parent.get_section(config_name)
-            self._entries[name] = module.factory(config)
+                return globals["factory"](config)
 
-        return self._entries[name]
+        raise Exception, "Failed to find module '%s' in directories: %s" \
+            % (name, self.directories)
 
 
 class RepositoryManager(object):
@@ -102,19 +104,15 @@ class RepositoryManager(object):
         """
         self._config = config
         self._error = None
-        self._sections = {}
 
     def load_section(self, name):
         """
         Load a section by name which must correspond to an entry in the
         configuration instance pased as argument to the constructor.
         """
-        if name not in self._sections:
-            logging.info("Loading repository section %s", name)
-            config = self._config.get_section(name)
-            self._sections[name] = self._section_factory(config, name)
-
-        return self._sections[name]
+        logging.info("Loading repository section %s", name)
+        config = self._config.get_section(name)
+        return self._section_factory(config, name)
 
     def set_error(self, error=None):
         self._error = error
