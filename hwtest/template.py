@@ -199,7 +199,7 @@ class Template(object):
         return elements
 
     def load_directory(self, directory, blacklist=[], whitelist=[]):
-        logging.info("Loading elements from directory: %s", directory)
+        logging.info("Loading filenames from directory: %s", directory)
 
         elements = []
         if whitelist:
@@ -207,9 +207,11 @@ class Template(object):
         else:
             names = [n for n in os.listdir(directory) if n not in blacklist]
 
-        names = [n for n in names if n.endswith(".txt")]
-
         for name in names:
+            if name.startswith("."):
+                logging.info("Ignoring filename: %s", name)
+                continue
+
             filename = os.path.join(directory, name)
             elements.extend(self.load_filename(filename))
 
