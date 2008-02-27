@@ -1,3 +1,13 @@
+hwtest (0.1-0ubuntu3) hardy; urgency=low
+
+  * Fixed hwtest_cli so that it doesn't strip the DISPLAY environment
+    variable.
+  * Fixed system_info plugin so that it does a better effort for
+    gathering system information instead of relying on non standard
+    information from HAL.
+
+ -- Marc Tardif <marc@interunion.ca>  Wed, 27 Feb 2008 10:52:33 -0500
+
 hwtest (0.1-0ubuntu2) hardy; urgency=low
 
   * Fixed packaging following lintian error.
