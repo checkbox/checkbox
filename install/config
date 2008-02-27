@@ -74,9 +74,11 @@ class Install(object):
         self._examples_path = example_path or self.examples_base \
             % {"name": name, "base_name": self.base_name}
 
-        # Create config directory
+        # Create configs directory
         dirname = os.path.dirname(self._configs_path)
         if not os.path.exists(dirname):
+            if os.path.islink(dirname):
+                dirname = os.readlink(dirname)
             os.mkdir(dirname)
 
         self._config = Config()
