@@ -51,6 +51,9 @@ class QuestionManager(object):
     def set_category(self, category):
         self._category = category
 
+    def get_count(self):
+        return len(self._questions)
+
     def get_iterator(self, direction=NEXT):
         """
         Get an iterator over the questions added to the manager. The
