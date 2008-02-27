@@ -1,3 +1,5 @@
+from hwtest.lib.safe import safe_make_directory
+
 from hwtest.plugin import Plugin
 from hwtest.reports.launchpad_report import LaunchpadReportManager
 
@@ -66,6 +68,9 @@ class LaunchpadReport(Plugin):
         payload = report_manager.dumps(self._report).toprettyxml("")
 
         cache_file = self.config.cache_file
+        cache_directory = os.path.dirname(cache_file)
+        safe_make_directory(cache_directory)
+
         file(cache_file, "w").write(payload)
         self._manager.reactor.fire(("report", "launchpad"), cache_file)
 
