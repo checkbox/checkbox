@@ -1,7 +1,7 @@
 import os
 
 
-def safe_create_directory(path, mode=0777):
+def safe_make_directory(path, mode=0777):
     if os.path.exists(path):
         if not os.path.isdir(path):
             raise Exception, "Path is not a directory: %s" % path
