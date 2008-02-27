@@ -4,8 +4,8 @@ import os
 import re
 from glob import glob
 
-from distutils import sysconfig
 from distutils.core import setup
+from distutils.util import change_root, convert_path
 
 from distutils.command.install_data import install_data
 from distutils.command.install_scripts import install_scripts
@@ -54,13 +54,34 @@ class hwtest_install_data(install_data, object):
         """Run substitutions on files."""
         super(hwtest_install_data, self).run()
 
-        # Substitute version in examples
+        examplesfiles = [o for o in self.outfiles
+            if o.find("examples") != -1]
+        if not examplesfiles:
+            return
+
+        # Create etc directory
+        etcdir = convert_path("/etc/hwtest.d")
+        if not os.path.isabs(etcdir):
+            etcdir = os.path.join(self.install_dir, etcdir)
+        elif self.root:
+            etcdir = change_root(self.root, etcdir)
+        self.mkpath(etcdir)
+
+        # Create configs symbolic link
+        dstdir = os.path.dirname(examplesfiles[0]).replace("examples",
+            "configs")
+        os.symlink(etcdir, dstdir)
+
+        # Substitute version in examplesfiles and etcfiles
         version = changelog_version()
-        outfiles = [o for o in self.outfiles if o.endswith(".ini")]
-        for outfile in outfiles:
-            infile = os.path.join("examples", os.path.basename(outfile))
-            substitute_variables(infile, outfile, {
-                "version = dev": "version = %s" % version})
+        for examplesfile in examplesfiles:
+            etcfile = os.path.join(etcdir,
+                os.path.basename(examplesfile))
+            infile = os.path.join("examples",
+                os.path.basename(examplesfile))
+            for outfile in examplesfile, etcfile:
+                substitute_variables(infile, outfile, {
+                    "version = dev": "version = %s" % version})
 
 
 class hwtest_install_scripts(install_scripts, object):
