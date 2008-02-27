@@ -38,17 +38,17 @@ plugin: manual
 categories: laptop, desktop
 command: video_test
 description:
- Video Test Patterns:
+ Video test:
  .
  $(video_test --list)
  .
- Did you see a series of video test screens?
+ Did you see color bars and static?
 description-fr:
  Test pour carte vidéo:
  .
  $(video_test --list)
  .
- Avez-vous vu ce test sur votre écran?
+ Avez-vous vu des barres en couleur?
 
 name: mouse
 plugin: manual
