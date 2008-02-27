@@ -29,7 +29,7 @@ Description: CLI interface for the hwtest program
 Package: hwtest-gtk
 Section: gnome
 Architecture: all
-Depends: python-gtk2, python-glade2, hwtest, debconf
+Depends: python-gtk2, python-glade2, hwtest, menu, debconf
 Description: GTK interface for the hwtest program
  This project provides an interface for gathering hardware details and
  prompting the user for questions. This information can then be sent
