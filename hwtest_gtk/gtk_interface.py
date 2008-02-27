@@ -166,7 +166,7 @@ class GTKInterface(UserInterface):
         # Run question
         if str(question.command) and run_question:
             self._set_text("label_question",
-                _("Running question %s...") % question.name)
+                _("Running test: %s") % question.name)
             self._set_show("progressbar_question")
             self._dialog.show()
 

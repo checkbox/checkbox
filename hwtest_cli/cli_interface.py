@@ -168,7 +168,7 @@ class CLIInterface(UserInterface):
         if str(question.command) and run_question:
             title = "Hardware Test"
             self.progress = CLIProgressDialog(title,
-                _("Running question %s...") % question.name)
+                _("Running test: %s") % question.name)
             self.progress.show()
 
             self.do_function(question.command)
