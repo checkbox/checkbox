@@ -19,15 +19,27 @@ class SystemInfo(Plugin):
     def report(self):
         system_id = self.config.system_id
         if not system_id:
-            system_registry = self._manager.registry.hal.computer.system
-            if "hardware" in system_registry:
-                system_registry = system_registry.hardware
-            if not system_registry:
+            system = self._manager.registry.hal.computer.system
+            if not system:
                 return
 
+            # Old versions of HAL didn't have the hardware namespace
+            if "hardware" in system:
+                hardware = system.hardware
+            else:
+                hardware = system
+
             fingerprint = md5.new()
-            fingerprint.update(system_registry.vendor)
-            fingerprint.update(system_registry.product)
+            for field in [
+                    system.info.product,
+                    system.info.subsystem,
+                    system.product,
+                    system.vendor,
+                    system.formfactor,
+                    hardware.vendor,
+                    hardware.produdct]:
+                fingerprint.update(str(field))
+
             system_id = fingerprint.hexdigest()
 
         message = system_id
