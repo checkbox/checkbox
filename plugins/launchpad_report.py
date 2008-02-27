@@ -1,3 +1,5 @@
+import os
+
 from hwtest.lib.safe import safe_make_directory
 
 from hwtest.plugin import Plugin
