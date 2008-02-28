@@ -1,68 +1,51 @@
-# The apt API not stable yet, so this filters warnings
-import warnings
-warnings.filterwarnings(action='ignore', category=FutureWarning)
-
-# Importing from the cache module is expensive, so this delays the call
-# until absolutely necessary
-from apt.cache import Cache
-
 from hwtest.lib.cache import cache
 
 from hwtest.registry import Registry
+from hwtest.registries.command import CommandRegistry
+
+
+COLUMNS = ["name", "version", "description"]
 
 
 class PackageRegistry(Registry):
-
-    attribute_map = {
-        "name": "name",
-        "priority": "priority",
-        "section": "section",
-        "summary": "summary",
-        "installedSize": "size",
-        "installedVersion": "version"}
 
     def __init__(self, config, package):
         super(PackageRegistry, self).__init__(config)
         self.package = package
 
-    def _attribute_to_string(self, attribute):
-        key = attribute.capitalize()
-        value = getattr(self.package, attribute)
-        return "%s: %s" % (key, value)
-
     def __str__(self):
-        strings = []
-        for attribute, name in self.attribute_map.items():
-            value = getattr(self.package, attribute)
-            strings.append("%s: %s" % (name, value))
+        strings = ["%s: %s" % (k, v) for k, v in self.package.items()]
 
         return "\n".join(strings)
 
     @cache
     def items(self):
-        items = []
-        for attribute, name in self.attribute_map.items():
-            value = getattr(self.package, attribute)
-            items.append((name, value))
-
-        return items
+        return [(k, v) for k, v in self.package.items()]
 
 
-class PackagesRegistry(Registry):
-
-    def __str__(self):
-        strings = []
-        for name, package in self.items():
-            strings.append("%s - %s" % (name, package["summary"]))
-
-        return "\n".join(strings)
+class PackagesRegistry(CommandRegistry):
+    """Registry for packages."""
 
     @cache
     def items(self):
         items = []
-        for package in Cache():
-            if package.isInstalled:
-                key = package.name
+        for line in [l for l in self.split("\n") if l]:
+            # Determine the lengths of dpkg columns and
+            # strip status column.
+            if line.startswith("+++"):
+                lengths = [len(i) for i in line.split("-")]
+                lengths[0] += 1
+                for i in range(1, len(lengths)):
+                    lengths[i] += lengths[i - 1] + 1
+
+            # Parse information from installed packages.
+            if line.startswith("ii"):
+                package = {}
+                for i in range(len(COLUMNS)):
+                    key = COLUMNS[i]
+                    value = line[lengths[i]:lengths[i+1]-1].strip()
+                    package[key] = value
+
                 value = PackageRegistry(None, package)
                 items.append((key, value))
 
