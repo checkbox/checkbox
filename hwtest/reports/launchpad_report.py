@@ -14,9 +14,9 @@ class LaunchpadReportManager(XmlReportManager):
         super(LaunchpadReportManager, self).__init__(*args, **kwargs)
         self.add(HalReport())
         self.add(LsbReport())
-        self.add(PackageReport())
-        self.add(ProcessorReport())
-        self.add(QuestionReport())
+        self.add(PackagesReport())
+        self.add(ProcessorsReport())
+        self.add(QuestionsReport())
         self.add(SummaryReport())
 
 
@@ -75,7 +75,7 @@ class LsbReport(Report):
             self._manager.call_dumps(value, property)
 
 
-class PackageReport(Report):
+class PackagesReport(Report):
     """Report for package related data types."""
 
     def register_dumps(self):
@@ -104,7 +104,7 @@ class PackageReport(Report):
         return packages
 
 
-class ProcessorReport(Report):
+class ProcessorsReport(Report):
     """Report for processor related data types."""
 
     def register_dumps(self):
@@ -133,7 +133,7 @@ class ProcessorReport(Report):
         return processors
 
 
-class QuestionReport(Report):
+class QuestionsReport(Report):
     """Report for question related data types."""
 
     def register_dumps(self):
