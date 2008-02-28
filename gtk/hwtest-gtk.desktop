@@ -1,8 +1,10 @@
 [Desktop Entry]
 Encoding=UTF-8
 Name=Hardware Testing
+Name[fr]=Test matériel
 Comment=Tool to perform hardware test
-Exec=su-to-root -X -c /usr/bin/hwtest-gtk
+Comment[fr]=Outil pour effectuer des tests matériel
+Exec=gksu /usr/bin/hwtest-gtk
 Terminal=false
 Type=Application
 Icon=hwtest-gtk.png
