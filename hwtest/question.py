@@ -177,7 +177,7 @@ class Question(object):
         "relations": [],
         "requires": None,
         "command": "",
-        "timeout": 60,
+        "timeout": None,
         "optional": False}
 
     def __init__(self, registry, attributes={}):

@@ -76,17 +76,17 @@ class Process:
                 tocheck.append(self.outr)
             if not self._erreof:
                 tocheck.append(self.errr)
-            ready = select.select(tocheck,[],[],timeout)
+            ready = select.select(tocheck, [], [], timeout)
             if len(ready[0]) == 0: #no data timeout
                 return 1
             else:
                 if self.outr in ready[0]:
-                    outchunk = os.read(self.outr,self.BUFSIZ)
+                    outchunk = os.read(self.outr, self.BUFSIZ)
                     if outchunk == "":
                         self._outeof = 1
                     self.outdata += outchunk
                 if self.errr in ready[0]:
-                    errchunk = os.read(self.errr,self.BUFSIZ)
+                    errchunk = os.read(self.errr, self.BUFSIZ)
                     if errchunk == "":
                         self._erreof = 1
                     self.errdata += errchunk
