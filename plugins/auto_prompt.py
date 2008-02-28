@@ -24,23 +24,20 @@ class AutoPrompt(Plugin):
     def question_auto(self, question):
         self._question_manager.add_question(question)
 
+    def _run_auto(self):
+        for question in self._question_manager.get_iterator():
+            question.command()
+            question.description()
+            question.answer = Answer(question.command.get_status(),
+                question.command.get_data())
+            self._manager.reactor.fire(("report", "question"),
+                question)
+
     def prompt_auto(self, interface):
-        if not self._question_manager.get_count() or self._done:
-            return
-
-        def run_questions(self):
-            for question in self._question_manager.get_iterator():
-                question.command()
-                question.description()
-                question.answer = Answer(question.command.get_status(),
-                    question.command.get_data())
-                self._manager.reactor.fire(("report", "question"),
-                    question)
-
-        interface.show_wait(_("Running automatic questions..."),
-            lambda self=self: run_questions(self))
-
-        self._done = True
+        if self._question_manager.get_count() or not self._done:
+            interface.show_wait(_("Running automatic questions..."),
+                self._run_auto)
+            self._done = True
 
 
 factory = AutoPrompt
