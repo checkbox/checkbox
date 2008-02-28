@@ -27,7 +27,7 @@ class HaldRegistry(CommandRegistry):
     For the moment, this registry only contains an item for the version
     as returned by the hald command.
     """
- 
+
     def __str__(self):
         str = super(HaldRegistry, self).__str__()
         return str.strip().rsplit(": ")[1]

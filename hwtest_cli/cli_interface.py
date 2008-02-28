@@ -115,7 +115,7 @@ class CLIChoiceDialog(CLIDialog):
         self.keys.append(re.search("&(.)", button).group(1).upper())
         self.buttons.append(re.sub("&", "", button))
         return len(self.keys)
- 
+
 
 class CLITextDialog(CLIDialog):
 

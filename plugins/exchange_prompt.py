@@ -38,7 +38,7 @@ class ExchangePrompt(Plugin):
         for (rt, rh) in [
              (("prompt", "exchange"), self.prompt_exchange)]:
             self._manager.reactor.call_on(rt, rh)
- 
+
     def prompt_exchange(self, interface):
         error = None
         while True:

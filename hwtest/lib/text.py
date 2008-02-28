@@ -58,6 +58,6 @@ def wrap(text, limit=72):
                     inside = False
                     lines.append('')
                 lines.append('')
-                current = -1 
+                current = -1
 
     return "\n".join(lines)

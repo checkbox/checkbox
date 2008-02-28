@@ -89,7 +89,7 @@ class XmlReport(Report):
             # HACK: lists are supposedly expressed as a property
             element = self._create_element("value", parent)
             self._manager.call_dumps(value, element)
-        
+
     def dumps_dict(self, obj, parent):
         for key in sorted(obj.keys()):
             value = obj[key]

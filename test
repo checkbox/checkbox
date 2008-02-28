@@ -93,7 +93,7 @@ def test_with_unittest():
 
     if opts.verbose:
         runner.verbosity = 2
-        
+
     loader = unittest.TestLoader()
     unittests, doctests = find_tests(args)
 

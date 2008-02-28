@@ -108,7 +108,7 @@ class Command(object):
             parse_func(parse_string)
             if self.get_data():
                 break
- 
+
     def parse_stdout(self, stdout):
         self.set_data(stdout)
 

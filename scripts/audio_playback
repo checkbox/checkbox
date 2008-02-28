@@ -116,7 +116,7 @@ def main(args):
         action="store_true",
         help="View audio device.")
     (options, args) = parser.parse_args(args)
- 
+
     device = detect_device()
     if options.view:
         print device
