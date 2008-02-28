@@ -1,19 +1,31 @@
+#
+# Copyright (c) 2008 Canonical
+#
+# Written by Marc Tardif <marc@interunion.ca>
+#
+# This file is part of HWTest.
+#
+# HWTest is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# HWTest is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with HWTest.  If not, see <http://www.gnu.org/licenses/>.
+#
 import os
 import time
 import select
 
 
 class Process:
-    """Class representing a child process. It's like popen2.Popen3
-       but there are three main differences.
-       1. This makes the new child process group leader (using setpgrp())
-          so that all children can be killed.
-       2. The output function (read) is optionally non blocking returning in
-          specified timeout if nothing is read, or as close to specified
-          timeout as possible if data is read.
-       3. The output from both stdout & stderr is read (into outdata and
-          errdata). Reading from multiple outputs while not deadlocking
-          is not trivial and is often done in a non robust manner."""
+    """Class representing a child process which is non blocking. This makes
+       it possible to return within a specified timeout."""
 
     def __init__(self, cmd, env={}, bufsize=8192):
         """The parameter 'cmd' is the shell command to execute in a
