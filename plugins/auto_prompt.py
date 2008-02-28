@@ -34,7 +34,7 @@ class AutoPrompt(Plugin):
                 question)
 
     def prompt_auto(self, interface):
-        if self._question_manager.get_count() or not self._done:
+        if self._question_manager.get_count() and not self._done:
             interface.show_wait(_("Running automatic questions..."),
                 self._run_auto)
             self._done = True
