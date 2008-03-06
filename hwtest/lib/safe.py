@@ -19,6 +19,7 @@
 # along with HWTest.  If not, see <http://www.gnu.org/licenses/>.
 #
 import os
+import shutil
 
 
 def safe_make_directory(path, mode=0777):
@@ -35,7 +36,7 @@ def safe_remove_directory(path):
         if not os.path.isdir(path):
             raise Exception, "Path is not a directory: %s" % path
 
-        os.removedirs(path)
+        shutil.rmtree(path)
 
 def safe_remove_file(path):
     if os.path.exists(path):
