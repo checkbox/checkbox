@@ -55,8 +55,8 @@ msgid "_Server"
 msgstr "_Serveur"
 
 #: ../gtk/hwtest-gtk.glade.h:11
-msgid "_Skip this question"
-msgstr "_Sauter cette question"
+msgid "_Skip this test"
+msgstr "_Sauter ce test"
 
 #: ../gtk/hwtest-gtk.glade.h:12 ../hwtest_gtk/gtk_interface.py:186
 msgid "_Test"
@@ -97,8 +97,8 @@ msgstr "Veuillez chosir (%s): "
 
 #: ../hwtest_cli/cli_interface.py:176 ../hwtest_gtk/gtk_interface.py:169
 #, python-format
-msgid "Running question %s..."
-msgstr "Exécution de la question %s..."
+msgid "Running test %s..."
+msgstr "Exécution du test %s..."
 
 #: ../hwtest_gtk/gtk_interface.py:184
 msgid "_Test Again"
@@ -109,8 +109,8 @@ msgid "_Finish"
 msgstr "_Fin"
 
 #: ../plugins/auto_prompt.py:38
-msgid "Running automatic questions..."
-msgstr "Exécution des questions automatiques..."
+msgid "Running automatic tests..."
+msgstr "Exécution des tests automatiques..."
 
 #: ../plugins/category_prompt.py:39
 msgid "Category"
@@ -139,10 +139,10 @@ msgstr "Bienvenue au Test matériel!"
 #: ../plugins/intro_prompt.py:14
 msgid ""
 "This application will gather information from your hardware. Then,\n"
-"you will be asked questions to confirm that the hardware is working\n"
+"you will be asked manual tests to confirm that the hardware is working\n"
 "properly. Finally, you will be asked for the e-mail address you use\n"
 "to sign in to Launchpad in order to submit the information and your\n"
-"answers.\n"
+"results.\n"
 "\n"
 "If you do not have a Launchpad account, please register here:\n"
 "\n"
@@ -151,7 +151,7 @@ msgid ""
 "Thank you for taking the time to test your hardware."
 msgstr ""
 "Cette application cueillera de l'information de votre ordinateur.\n"
-"Ensuite, vous serez demandé des questions pour confirmer le bon\n"
+"Ensuite, vous serez demandé des tests manuels pour confirmer le bon\n"
 "fonctionnement de votre ordinateur. Finalement, vous serez demandé\n"
 "l'adresse de courriel que vous utilisez sur Launchpad afin de\n"
 "soumettre l'information et vos réponses.\n"

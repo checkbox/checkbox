@@ -21,7 +21,7 @@
 import os
 import logging
 
-from hwtest.answer import YES, NO, SKIP
+from hwtest.result import YES, NO, SKIP
 from hwtest.lib.process import Process
 from hwtest.lib.signal import signal_to_name, signal_to_description
 from hwtest.lib.environ import (get_variables, add_variable, remove_variable,

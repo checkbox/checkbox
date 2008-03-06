@@ -23,13 +23,13 @@ relations: pci.device_class == 3
 description:
  The following resolution was detected for your display:
  .
- $(resolution_question)
+ $(resolution_test)
  .
  Is this a good resolution for your display?
 description-fr:
  La résolution suivante est détectée pour votre écran:
  .
- $(resolution_question)
+ $(resolution_test)
  .
  Est-ce une bonne résolution pour votre écran?
 
@@ -69,19 +69,19 @@ relations: pci.device_class == 2
 description:
  Detecting your network controller(s):
  .
- $(network_question)
+ $(network_test)
  .
  Is this correct?
 description-fr:
  Détection de votre/vos carte(s) réseau:
  .
- $(network_question)
+ $(network_test)
  .
  Est-ce que c'est correct?
 
 name: internet
 plugin: manual
-command: internet_question
+command: internet_test
 relations: pci.device_class == 2
 description:
  Testing your connection to the Internet:

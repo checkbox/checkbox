@@ -23,8 +23,8 @@ import sys
 import termios
 
 from gettext import gettext as _
-from hwtest.answer import Answer
-from hwtest.question import ALL_CATEGORIES
+from hwtest.result import Result
+from hwtest.test import ALL_CATEGORIES
 from hwtest.user_interface import UserInterface
 
 
@@ -163,7 +163,7 @@ class CLIProgressDialog(CLIDialog):
 class CLIInterface(UserInterface):
 
     def show_wait(self, message, function):
-        title = "Hardware Test"
+        title = "Hardware Testing"
         self.progress = CLIProgressDialog(title, message)
         self.progress.show()
         self.do_function(function)
@@ -184,32 +184,32 @@ class CLIInterface(UserInterface):
         response = dialog.run()
         return ALL_CATEGORIES[response - 1]
 
-    def show_question(self, question, run_question=True):
-        if str(question.command) and run_question:
-            title = "Hardware Test"
+    def show_test(self, test, run_test=True):
+        if str(test.command) and run_test:
+            title = "Hardware Testing"
             self.progress = CLIProgressDialog(title,
-                _("Running test: %s") % question.name)
+                _("Running test: %s") % test.name)
             self.progress.show()
 
-            self.do_function(question.command)
+            self.do_function(test.command)
 
-        # show answers dialog
-        dialog = CLIChoiceDialog(question.name, question.description())
-        answers = ["yes", "no", "skip"]
-        for answer in answers:
-            dialog.add_button("&%s" % answer)
+        # show results dialog
+        dialog = CLIChoiceDialog(test.name, test.description())
+        results = ["yes", "no", "skip"]
+        for result in results:
+            dialog.add_button("&%s" % result)
 
-        # get answer from dialog
+        # get result from dialog
         response = dialog.run()
-        status = answers[response - 1]
+        status = results[response - 1]
         data = ""
         if status is "no":
             text = "Please provide comments about the failure."
-            dialog = CLITextDialog(question.name, text)
+            dialog = CLITextDialog(test.name, text)
             data = dialog.run("Please type here and press"
                 " Ctrl-D when finished:\n")
 
-        question.answer = Answer(status, data)
+        test.result = Result(status, data)
 
         return 1
 

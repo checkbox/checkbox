@@ -39,7 +39,7 @@ class LaunchpadReport(Plugin):
                 "live_cd": False},
             "hardware": {},
             "software": {},
-            "questions": []}
+            "tests": []}
 
         # Launchpad report should be generated last.
         for (rt, rh, rp) in [
@@ -52,7 +52,7 @@ class LaunchpadReport(Plugin):
              (("report", "devices"), self.report_devices, 0),
              (("report", "packages"), self.report_packages, 0),
              (("report", "processors"), self.report_processors, 0),
-             (("report", "questions"), self.report_questions, 0)]:
+             (("report", "tests"), self.report_tests, 0)]:
             self._manager.reactor.call_on(rt, rh, rp)
 
     def report_client(self, message):
@@ -81,8 +81,8 @@ class LaunchpadReport(Plugin):
     def report_processors(self, message):
         self._report["hardware"]["processors"] = message
 
-    def report_questions(self, message):
-        self._report["questions"].extend(message)
+    def report_tests(self, message):
+        self._report["tests"].extend(message)
 
     def report(self):
         # Prepare the payload and attach it to the form

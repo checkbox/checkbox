@@ -19,40 +19,40 @@
 # along with HWTest.  If not, see <http://www.gnu.org/licenses/>.
 #
 from hwtest.plugin import Plugin
-from hwtest.question import QuestionManager
+from hwtest.test import TestManager
 
 
 class ManualPrompt(Plugin):
 
     def register(self, manager):
         super(ManualPrompt, self).register(manager)
-        self._question_manager = QuestionManager()
+        self._test_manager = TestManager()
 
-        # Manual questions should be asked first.
+        # Manual tests should be asked first.
         for (rt, rh) in [
              (("interface", "category"), self.interface_category),
-             (("question", "manual"), self.question_manual),
-             (("question", "interactive"), self.question_manual),
+             (("test", "manual"), self.test_manual),
+             (("test", "interactive"), self.test_manual),
              (("prompt", "manual"), self.prompt_manual)]:
             self._manager.reactor.call_on(rt, rh)
 
     def interface_category(self, category):
-        self._question_manager.set_category(category)
+        self._test_manager.set_category(category)
 
-    def question_manual(self, question):
-        self._question_manager.add_question(question)
+    def test_manual(self, test):
+        self._test_manager.add_test(test)
 
     def prompt_manual(self, interface):
-        questions = self._question_manager.get_iterator(interface.direction)
+        tests = self._test_manager.get_iterator(interface.direction)
 
         while True:
             try:
-                question = questions.go(interface.direction)
+                test = tests.go(interface.direction)
             except StopIteration:
                 break
 
-            interface.show_question(question, question.plugin == "manual")
-            self._manager.reactor.fire(("report", "question"), question)
+            interface.show_test(test, test.plugin == "manual")
+            self._manager.reactor.fire(("report", "test"), test)
 
 
 factory = ManualPrompt

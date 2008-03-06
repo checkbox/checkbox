@@ -27,7 +27,7 @@ SKIP = "skip"
 ALL_STATUS = [YES, NO, SKIP]
 
 
-class Answer(object):
+class Result(object):
 
     required_fields = ["status", "data"]
     optional_fields = {
@@ -45,14 +45,14 @@ class Answer(object):
         # Unknown fields
         for field in attributes.keys():
             if field not in self.required_fields + self.optional_fields.keys():
-                logging.info("Answer attributes contains unknown field: %s" \
+                logging.info("Result attributes contains unknown field: %s" \
                     % field)
 
         # Required fields
         for field in self.required_fields:
             if not attributes.has_key(field):
                 raise Exception, \
-                    "Answer attributes does not contain a '%s': %s" \
+                    "Result attributes does not contain a '%s': %s" \
                     % (field, attributes)
 
         # Optional fields

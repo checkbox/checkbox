@@ -136,7 +136,7 @@ class Install(object):
             except DebconfError, error:
                 if error.args[0] != 30:
                     raise
-                # Question preivously answered and skipped.
+                # Question previously answered and skipped.
                 step += 1
             else:
                 try:

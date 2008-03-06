@@ -25,7 +25,7 @@ from gettext import gettext as _
 
 from hwtest.lib.environ import add_variable, remove_variable
 
-from hwtest.answer import Answer
+from hwtest.result import Result
 from hwtest.user_interface import UserInterface
 
 
@@ -144,7 +144,7 @@ class GTKInterface(UserInterface):
 
     def show_pulse(self):
         self._get_widget("progressbar_wait").pulse()
-        self._get_widget("progressbar_question").pulse()
+        self._get_widget("progressbar_test").pulse()
         while gtk.events_pending():
             gtk.main_iteration(False)
 
@@ -179,28 +179,28 @@ class GTKInterface(UserInterface):
             "radiobutton_server": "server"})
 
     @GTKHack
-    def show_question(self, question, run_question=True):
+    def show_test(self, test, run_test=True):
         self._set_show("button_test", False)
         self._notebook.set_current_page(2)
 
-        # Run question
-        if str(question.command) and run_question:
-            self._set_text("label_question",
-                _("Running test: %s") % question.name)
-            self._set_show("progressbar_question")
+        # Run test
+        if str(test.command) and run_test:
+            self._set_text("label_test",
+                _("Running test: %s") % test.name)
+            self._set_show("progressbar_test")
             self._dialog.show()
 
-            self.do_function(question.command)
+            self.do_function(test.command)
 
-            self._set_show("progressbar_question", False)
+            self._set_show("progressbar_test", False)
 
-        # Set question
-        self._set_text("label_question", question.description())
+        # Set test
+        self._set_text("label_test", test.description())
 
         # Set buttons
-        self._set_show("button_test", str(question.command))
-        if str(question.command):
-            if run_question:
+        self._set_show("button_test", str(test.command))
+        if str(test.command):
+            if run_test:
                 self._set_label("button_test", _("_Test Again"))
             else:
                 self._set_label("button_test", _("_Test"))
@@ -209,13 +209,13 @@ class GTKInterface(UserInterface):
             if self._handler_id:
                 button_test.disconnect(self._handler_id)
             self._handler_id = button_test.connect("clicked",
-                lambda w, q=question: self.show_question(q))
+                lambda w, q=test: self.show_test(q))
 
-        # Default answers
-        if question.answer:
-            answer = question.answer
-            self._set_textview("textview_comment", answer.data)
-            self._set_active("radiobutton_%s" % answer.status)
+        # Default results
+        if test.result:
+            result = test.result
+            self._set_textview("textview_comment", result.data)
+            self._set_active("radiobutton_%s" % result.status)
         else:
             self._set_textview("textview_comment", "")
             self._set_active("radiobutton_skip")
@@ -227,7 +227,7 @@ class GTKInterface(UserInterface):
             "radiobutton_no": "no",
             "radiobutton_skip": "skip"})
         data = self._get_textview("textview_comment")
-        question.answer = Answer(status, data)
+        test.result = Result(status, data)
 
     @GTKHack
     def show_exchange(self, authentication, message=None, error=None):

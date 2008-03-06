@@ -19,23 +19,23 @@
 # along with HWTest.  If not, see <http://www.gnu.org/licenses/>.
 #
 """
-The purpose of a question is to encapsulate the concept of a test
-which might be presented in several ways. For example, a question might
-require manual intervention whereas another question might be completely
+The purpose of this module is to encapsulate the concept of a test
+which might be presented in several ways. For example, a test might
+require manual intervention whereas another test might be completely
 automatic. Either way, this module provides the base common to each type
-of question.
+of test.
 """
 
 import re
 import logging
 
-from hwtest.excluder import Excluder
-from hwtest.repeater import PreRepeater
-from hwtest.resolver import Resolver
-from hwtest.answer import Answer, NO, SKIP
 from hwtest.command import Command
 from hwtest.description import Description
+from hwtest.excluder import Excluder
 from hwtest.iterator import Iterator, NEXT, PREV
+from hwtest.repeater import PreRepeater
+from hwtest.resolver import Resolver
+from hwtest.result import Result, NO, SKIP
 
 
 DESKTOP = "desktop"
@@ -49,21 +49,21 @@ SPARC = "sparc"
 ALL_ARCHITECTURES = [I386, AMD64, SPARC]
 
 
-class QuestionManager(object):
+class TestManager(object):
     """
-    Question manager which is essentially a container of questions.
+    Test manager which is essentially a container of tests.
     """
 
     def __init__(self):
-        self._questions = []
+        self._tests = []
         self._architecture = None
         self._category = None
 
-    def add_question(self, question):
+    def add_test(self, test):
         """
-        Add a question to the manager.
+        Add a test to the manager.
         """
-        self._questions.append(question)
+        self._tests.append(test)
 
     def set_architecture(self, architecture):
         self._architecture = architecture
@@ -72,101 +72,101 @@ class QuestionManager(object):
         self._category = category
 
     def get_count(self):
-        return len(self._questions)
+        return len(self._tests)
 
     def get_iterator(self, direction=NEXT):
         """
-        Get an iterator over the questions added to the manager. The
-        purpose of this iterator is that it orders questions based on
+        Get an iterator over the tests added to the manager. The
+        purpose of this iterator is that it orders tests based on
         dependencies and enforces constraints defined in fields. For
-        example, the requires field will be evaluated and the question
+        example, the requires field will be evaluated and the test
         will be skipped if this fails.
         """
-        def dependent_prerepeat_func(question, resolver):
+        def dependent_prerepeat_func(test, resolver):
             """Pre repeater function which assigns the SKIP status to
-               dependents when a question has a status of NO or SKIP."""
-            answer = question.answer
-            if answer and (answer.status == NO or answer.status == SKIP):
-                for dependent in resolver.get_dependents(question):
-                    dependent.answer.status = SKIP
+               dependents when a test has a status of NO or SKIP."""
+            result = test.result
+            if result and (result.status == NO or result.status == SKIP):
+                for dependent in resolver.get_dependents(test):
+                    dependent.result.status = SKIP
 
-        def requires_exclude_func(question):
-            """Excluder function which removes question when the requires
+        def requires_exclude_func(test):
+            """Excluder function which removes test when the requires
                field exists and doesn't meet the given requirements."""
-            return isinstance(question.requires, list) \
-                   and len(question.requires) == 0
+            return isinstance(test.requires, list) \
+                   and len(test.requires) == 0
 
-        def architecture_exclude_func(question, architecture):
-            """Excluder function which removes question when the architectures
+        def architecture_exclude_func(test, architecture):
+            """Excluder function which removes test when the architectures
                field exists and doesn't meet the given requirements."""
-            return architecture and architecture not in question.architectures
+            return architecture and architecture not in test.architectures
 
-        def category_exclude_func(question, category):
-            """Excluder function which removes question when the categories
+        def category_exclude_func(test, category):
+            """Excluder function which removes test when the categories
                field exists and doesn't meet the given requirements."""
-            return category and category not in question.categories
+            return category and category not in test.categories
 
         resolver = Resolver()
-        question_dict = dict((q.name, q) for q in self._questions)
-        for question in self._questions:
-            question_depends = [question_dict[d] for d in question.depends]
-            resolver.add(question, *question_depends)
+        test_dict = dict((q.name, q) for q in self._tests)
+        for test in self._tests:
+            test_depends = [test_dict[d] for d in test.depends]
+            resolver.add(test, *test_depends)
 
-        questions = resolver.get_dependents()
-        questions_iter = Iterator(questions)
-        questions_iter = PreRepeater(questions_iter,
-            lambda question, resolver=resolver: \
-                   dependent_prerepeat_func(question, resolver))
-        questions_iter = Excluder(questions_iter,
+        tests = resolver.get_dependents()
+        tests_iter = Iterator(tests)
+        tests_iter = PreRepeater(tests_iter,
+            lambda test, resolver=resolver: \
+                   dependent_prerepeat_func(test, resolver))
+        tests_iter = Excluder(tests_iter,
             requires_exclude_func, requires_exclude_func)
-        questions_iter = Excluder(questions_iter,
-            lambda question, architecture=self._architecture: \
-                   architecture_exclude_func(question, architecture),
-            lambda question, architecture=self._architecture: \
-                   architecture_exclude_func(question, architecture))
-        questions_iter = Excluder(questions_iter,
-            lambda question, category=self._category: \
-                   category_exclude_func(question, category),
-            lambda question, category=self._category: \
-                   category_exclude_func(question, category))
+        tests_iter = Excluder(tests_iter,
+            lambda test, architecture=self._architecture: \
+                   architecture_exclude_func(test, architecture),
+            lambda test, architecture=self._architecture: \
+                   architecture_exclude_func(test, architecture))
+        tests_iter = Excluder(tests_iter,
+            lambda test, category=self._category: \
+                   category_exclude_func(test, category),
+            lambda test, category=self._category: \
+                   category_exclude_func(test, category))
 
         if direction == PREV:
             while True:
                 try:
-                    questions_iter.next()
+                    tests_iter.next()
                 except StopIteration:
                     break
 
-        return questions_iter
+        return tests_iter
 
 
-class Question(object):
+class Test(object):
     """
-    Question base class which should be inherited by each question
-    implementation. A question instance contains the following required
+    Test base class which should be inherited by each test
+    implementation. A test instance contains the following required
     fields:
 
-    name:          Unique name for a question.
-    plugin:        Plugin name to handle this question.
-    description:   Long description of what the question does.
-    suite:         Name of the suite containing this question.
+    name:          Unique name for a test.
+    plugin:        Plugin name to handle this test.
+    description:   Long description of what the test does.
+    suite:         Name of the suite containing this test.
 
     An instance also contains the following optional fields:
 
-    architectures: List of architectures for which this question is relevant:
+    architectures: List of architectures for which this test is relevant:
                    amd64, i386, powerpc and/or sparc
-    categories:    List of categories for which this question is relevant:
+    categories:    List of categories for which this test is relevant:
                    desktop, laptop and/or server
-    depends:       List of names on which this question depends. So, if
-                   the other question fails, this question will be skipped.
+    depends:       List of names on which this test depends. So, if
+                   the other test fails, this test will be skipped.
     relations:     Registry expression which points to the relations for this
-                   question. For example: 'input.mouse' in info.capabilities
+                   test. For example: 'input.mouse' in info.capabilities
     requires:      Registry expression which is required to ask this
-                   question. For example: lsb.release == '6.06'
-    command:       Command to run for the question.
+                   test. For example: lsb.release == '6.06'
+    command:       Command to run for the test.
     timeout:       Timeout for running the command.
-    optional:      Boolean expression set to True if this question is optional
-                   or False if this question is required.
+    optional:      Boolean expression set to True if this test is optional
+                   or False if this test is required.
     """
 
     required_fields = ["name", "plugin", "description", "suite"]
@@ -188,14 +188,14 @@ class Question(object):
         # Unknown fields
         for field in attributes.keys():
             if field not in self.required_fields + self.optional_fields.keys():
-                logging.info("Question attributes contains unknown field: %s" \
+                logging.info("Test attributes contains unknown field: %s" \
                     % field)
 
         # Required fields
         for field in self.required_fields:
             if not attributes.has_key(field):
                 raise Exception, \
-                    "Question attributes does not contain '%s': %s" \
+                    "Test attributes does not contain '%s': %s" \
                     % (field, attributes)
 
         # Typed fields
@@ -224,10 +224,10 @@ class Question(object):
         # Description field
         attributes["description"] = Description(attributes["description"],
             attributes.get("timeout"))
-        attributes["description"].add_variable("question", self)
+        attributes["description"].add_variable("test", self)
 
-        # Answer field
-        attributes["answer"] = Answer()
+        # Result field
+        attributes["result"] = Result()
 
         return attributes
 

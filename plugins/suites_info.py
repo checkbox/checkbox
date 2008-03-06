@@ -21,23 +21,23 @@
 import re
 
 from hwtest.plugin import Plugin
-from hwtest.question import Question
 from hwtest.template import Template
+from hwtest.test import Test
 
 
-class QuestionsInfo(Plugin):
+class SuitesInfo(Plugin):
 
     required_attributes = ["directories", "scripts_path", "data_path"]
     optional_attributes = ["blacklist", "whitelist"]
 
     def register(self, manager):
-        super(QuestionsInfo, self).register(manager)
-        self.questions = {}
+        super(SuitesInfo, self).register(manager)
+        self.tests = {}
 
         for (rt, rh) in [
              ("gather", self.gather),
              ("report", self.report),
-             (("report", "question"), self.report_question)]:
+             (("report", "test"), self.report_test)]:
             self._manager.reactor.call_on(rt, rh)
 
     def gather(self):
@@ -50,25 +50,25 @@ class QuestionsInfo(Plugin):
         elements = template.load_directories(directories, blacklist, whitelist)
 
         for element in elements:
-            question = Question(self._manager.registry, element)
-            for command in question.command, question.description:
+            test = Test(self._manager.registry, element)
+            for command in test.command, test.description:
                 command.add_path(self.config.scripts_path)
                 command.add_variable("data_path", self.config.data_path)
 
-            self._manager.reactor.fire(("question", question.plugin), question)
+            self._manager.reactor.fire(("test", test.plugin), test)
 
-    def report_question(self, question):
-        self.questions[question.name] = question
+    def report_test(self, test):
+        self.tests[test.name] = test
 
     def report(self):
         message = []
-        for question in self.questions.values():
-            attributes = dict(question.attributes)
-            attributes["command"] = str(question.command)
-            attributes["description"] = str(question.description)
-            attributes["answer"] = question.answer.attributes
+        for test in self.tests.values():
+            attributes = dict(test.attributes)
+            attributes["command"] = str(test.command)
+            attributes["description"] = str(test.description)
+            attributes["result"] = test.result.attributes
             message.append(attributes)
-        self._manager.reactor.fire(("report", "questions"), message)
+        self._manager.reactor.fire(("report", "tests"), message)
 
 
-factory = QuestionsInfo
+factory = SuitesInfo
