@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hwtest 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-04 18:05-0500\n"
+"POT-Creation-Date: 2008-03-09 14:25-0400\n"
 "PO-Revision-Date: 2008-01-28 08:23-0500\n"
 "Last-Translator: Marc Tardif <marc.tardif@canonical.com>\n"
 "Language-Team: French <fr@li.org>\n"
@@ -22,7 +22,7 @@ msgstr "<b>Commentaire:</b>"
 msgid "Hardware Testing"
 msgstr "Test matériel"
 
-#: ../gtk/hwtest-gtk.glade.h:3 ../hwtest_gtk/gtk_interface.py:243
+#: ../gtk/hwtest-gtk.glade.h:3 ../hwtest_gtk/gtk_interface.py:263
 msgid "Ne_xt"
 msgstr "Sui_vant"
 
@@ -58,7 +58,7 @@ msgstr "_Serveur"
 msgid "_Skip this test"
 msgstr "_Sauter ce test"
 
-#: ../gtk/hwtest-gtk.glade.h:12 ../hwtest_gtk/gtk_interface.py:186
+#: ../gtk/hwtest-gtk.glade.h:12 ../hwtest_gtk/gtk_interface.py:206
 msgid "_Test"
 msgstr "_Tester"
 
@@ -66,77 +66,80 @@ msgstr "_Tester"
 msgid "_Yes"
 msgstr "_Oui"
 
-#: ../hwtest/application.py:54
+#: ../hwtest/application.py:73
 msgid "Print version information and exit."
 msgstr "Afficher le nom et la version du logiciel"
 
-#: ../hwtest/application.py:56
+#: ../hwtest/application.py:76
+msgid "The type of reactor to use."
+msgstr "Le type de réacteur à utiliser."
+
+#: ../hwtest/application.py:78
 msgid "The file to write the log to."
 msgstr "Le fichier pour écrire un log."
 
-#: ../hwtest/application.py:59
+#: ../hwtest/application.py:81
 msgid "One of debug, info, warning, error or critical."
 msgstr "Soit debug, info, warning, error ou critical."
 
-#: ../hwtest/application.py:63
+#: ../hwtest/application.py:85
 msgid "Delay before running the application."
 msgstr "Délais avant d'exécuter l'application."
 
-#: ../hwtest/application.py:90
+#: ../hwtest/application.py:112
 msgid "Missing configuration file as argument.\n"
 msgstr "Fichier de configuration manquant en argument.\n"
 
-#: ../hwtest_cli/cli_interface.py:77
+#: ../hwtest_cli/cli_interface.py:96
 msgid "Press any key to continue..."
 msgstr "Taper une touche pour continuer..."
 
-#: ../hwtest_cli/cli_interface.py:86
+#: ../hwtest_cli/cli_interface.py:105
 #, python-format
 msgid "Please choose (%s): "
 msgstr "Veuillez chosir (%s): "
 
-#: ../hwtest_cli/cli_interface.py:176 ../hwtest_gtk/gtk_interface.py:169
-#, python-format
-msgid "Running test %s..."
-msgstr "Exécution du test %s..."
+#: ../hwtest_cli/cli_interface.py:191 ../hwtest_gtk/gtk_interface.py:189
+msgid "Running test: %s"
+msgstr "Exécution du test: %s"
 
-#: ../hwtest_gtk/gtk_interface.py:184
+#: ../hwtest_gtk/gtk_interface.py:204
 msgid "_Test Again"
 msgstr "_Tester Encore"
 
-#: ../hwtest_gtk/gtk_interface.py:235
+#: ../hwtest_gtk/gtk_interface.py:255
 msgid "_Finish"
 msgstr "_Fin"
 
-#: ../plugins/auto_prompt.py:38
+#: ../plugins/auto_prompt.py:58
 msgid "Running automatic tests..."
 msgstr "Exécution des tests automatiques..."
 
-#: ../plugins/category_prompt.py:39
+#: ../plugins/category_prompt.py:59
 msgid "Category"
 msgstr "Categorie"
 
-#: ../plugins/category_prompt.py:40
+#: ../plugins/category_prompt.py:60
 msgid "Please select the category of your hardware."
 msgstr "Veuillez choisir la categorie de votre ordinateur."
 
-#: ../plugins/exchange_prompt.py:30
+#: ../plugins/exchange_prompt.py:50
 msgid "Email address must be in a proper format."
 msgstr "Adresse de courriel doit être dans un bon format."
 
-#: ../plugins/exchange_prompt.py:34
+#: ../plugins/exchange_prompt.py:54
 msgid "Exchanging information with the server..."
 msgstr "Échange d'information avec le serveur..."
 
-#: ../plugins/gather_prompt.py:16
+#: ../plugins/gather_prompt.py:36
 msgid "Gathering information from your system..."
 msgstr "Cueillette d'information de votre système..."
 
-#: ../plugins/intro_prompt.py:13
+#: ../plugins/intro_prompt.py:33
 msgid "Welcome to Hardware Testing!"
 msgstr "Bienvenue au Test matériel!"
 
-#: ../plugins/intro_prompt.py:14
+#: ../plugins/intro_prompt.py:34
 msgid ""
 "This application will gather information from your hardware. Then,\n"
 "you will be asked manual tests to confirm that the hardware is working\n"
@@ -163,7 +166,7 @@ msgstr ""
 "\n"
 "Merci de prendre le temps de tester votre matériel."
 
-#: ../plugins/launchpad_exchange.py:85
+#: ../plugins/launchpad_exchange.py:105
 msgid ""
 "Failed to contact the server,\n"
 "are you connected to the Internet."
@@ -171,7 +174,7 @@ msgstr ""
 "Erreur de connection au serveur,\n"
 "êtes-vous branché à Internet?"
 
-#: ../plugins/launchpad_exchange.py:89
+#: ../plugins/launchpad_exchange.py:109
 msgid ""
 "Failed to upload to server,\n"
 "please try again later."
@@ -179,6 +182,6 @@ msgstr ""
 "Erreur de téléchargement au serveur,\n"
 "veuillez essayer à nouveau plus tard."
 
-#: ../plugins/launchpad_exchange.py:99
+#: ../plugins/launchpad_exchange.py:119
 msgid "Information was not posted to Launchpad."
 msgstr "Information envoyée sur Launchpad."
