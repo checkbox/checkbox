@@ -2,21 +2,27 @@
 
 package=`basename $0 .postrm`
 base_package=`echo $package | sed 's/\(-cli\|-gtk\)$//'`
-config="/usr/share/$base_package/configs/$package.ini"
+config_file="/usr/share/$base_package/configs/$package.ini"
 
 case "$1" in
     purge)
-        # we mimic dpkg as closely as possible, so we remove configuration
+        # Workaround for python-support on Dapper
+        python_support_dir="/usr/share/python-support/$package"
+	if [ -d "$python_support_dir" ]; then
+            find $python_support_dir -name \*.pyc | xargs -r rm
+	fi
+
+        # mimic dpkg as closely as possible, so remove configuration
         # files with dpkg backup extensions too:
         for ext in '~' '%' .bak .dpkg-tmp .dpkg-new .dpkg-old .dpkg-dist;  do
-            rm -f $config$ext
+            rm -f $config_file$ext
         done
 
         # remove the configuration file itself
-        rm -f $config
+        rm -f $config_file
 
         # and finally clear it out from the ucf database
-        ucf --purge $config
+        ucf --purge $config_file
         ;;
     remove|disappear|upgrade|failed-upgrade|abort-install|abort-upgrade)
         ;;
