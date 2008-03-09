@@ -30,10 +30,10 @@ class ManualPrompt(Plugin):
 
         # Manual tests should be asked first.
         for (rt, rh) in [
-             (("interface", "category"), self.interface_category),
-             (("test", "manual"), self.test_manual),
-             (("test", "interactive"), self.test_manual),
-             (("prompt", "manual"), self.prompt_manual)]:
+             ("interface-category", self.interface_category),
+             ("test-manual", self.test_manual),
+             ("test-interactive", self.test_manual),
+             ("prompt-manual", self.prompt_manual)]:
             self._manager.reactor.call_on(rt, rh)
 
     def interface_category(self, category):
@@ -52,7 +52,7 @@ class ManualPrompt(Plugin):
                 break
 
             interface.show_test(test, test.plugin == "manual")
-            self._manager.reactor.fire(("report", "test"), test)
+            self._manager.reactor.fire("report-test", test)
 
 
 factory = ManualPrompt

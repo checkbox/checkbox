@@ -36,7 +36,7 @@ class SubmissionInfo(Plugin):
 
         for (rt, rh) in [
              ("report", self.report),
-             (("report", "system_id"), self.report_system_id)]:
+             ("report-system_id", self.report_system_id)]:
             self._manager.reactor.call_on(rt, rh)
 
     def report_system_id(self, system_id):
@@ -55,7 +55,7 @@ class SubmissionInfo(Plugin):
 
         message = submission_id
         logging.info("Submission ID: %s", message)
-        self._manager.reactor.fire(("report", "submission_id"), message)
+        self._manager.reactor.fire("report-submission_id", message)
 
 
 factory = SubmissionInfo

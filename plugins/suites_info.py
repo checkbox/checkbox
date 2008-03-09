@@ -37,7 +37,7 @@ class SuitesInfo(Plugin):
         for (rt, rh) in [
              ("gather", self.gather),
              ("report", self.report),
-             (("report", "test"), self.report_test)]:
+             ("report-test", self.report_test)]:
             self._manager.reactor.call_on(rt, rh)
 
     def gather(self):
@@ -55,7 +55,7 @@ class SuitesInfo(Plugin):
                 command.add_path(self.config.scripts_path)
                 command.add_variable("data_path", self.config.data_path)
 
-            self._manager.reactor.fire(("test", test.plugin), test)
+            self._manager.reactor.fire("test-%s" % test.plugin, test)
 
     def report_test(self, test):
         self.tests[test.name] = test
@@ -68,7 +68,7 @@ class SuitesInfo(Plugin):
             attributes["description"] = str(test.description)
             attributes["result"] = test.result.attributes
             message.append(attributes)
-        self._manager.reactor.fire(("report", "tests"), message)
+        self._manager.reactor.fire("report-tests", message)
 
 
 factory = SuitesInfo

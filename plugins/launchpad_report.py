@@ -44,15 +44,15 @@ class LaunchpadReport(Plugin):
         # Launchpad report should be generated last.
         for (rt, rh, rp) in [
              ("report", self.report, 100),
-             (("report", "client"), self.report_client, 0),
-             (("report", "datetime"), self.report_datetime, 0),
-             (("report", "architecture"), self.report_architecture, 0),
-             (("report", "system_id"), self.report_system_id, 0),
-             (("report", "distribution"), self.report_distribution, 0),
-             (("report", "devices"), self.report_devices, 0),
-             (("report", "packages"), self.report_packages, 0),
-             (("report", "processors"), self.report_processors, 0),
-             (("report", "tests"), self.report_tests, 0)]:
+             ("report-client", self.report_client, 0),
+             ("report-datetime", self.report_datetime, 0),
+             ("report-architecture", self.report_architecture, 0),
+             ("report-system_id", self.report_system_id, 0),
+             ("report-distribution", self.report_distribution, 0),
+             ("report-devices", self.report_devices, 0),
+             ("report-packages", self.report_packages, 0),
+             ("report-processors", self.report_processors, 0),
+             ("report-tests", self.report_tests, 0)]:
             self._manager.reactor.call_on(rt, rh, rp)
 
     def report_client(self, message):
@@ -94,7 +94,7 @@ class LaunchpadReport(Plugin):
         safe_make_directory(cache_directory)
 
         file(cache_file, "w").write(payload)
-        self._manager.reactor.fire(("report", "launchpad"), cache_file)
+        self._manager.reactor.fire("report-launchpad", cache_file)
 
 
 factory = LaunchpadReport

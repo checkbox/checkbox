@@ -29,7 +29,7 @@ class GatherPrompt(Plugin):
         super(GatherPrompt, self).register(manager)
         self._done = False
 
-        self._manager.reactor.call_on(("prompt", "gather"), self.prompt_gather)
+        self._manager.reactor.call_on("prompt-gather", self.prompt_gather)
 
     def prompt_gather(self, interface):
         if not self._done:

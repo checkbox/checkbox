@@ -47,13 +47,13 @@ class LaunchpadExchange(Plugin):
 
         for (rt, rh) in [
              ("exchange", self.exchange),
-             (("report", "datetime"), self.report_datetime),
-             (("report", "architecture"), self.report_architecture),
-             (("report", "submission_id"), self.report_submission_id),
-             (("report", "system_id"), self.report_system_id),
-             (("report", "distribution"), self.report_distribution),
-             (("report", "email"), self.report_email),
-             (("report", "launchpad"), self.report_launchpad)]:
+             ("report-datetime", self.report_datetime),
+             ("report-architecture", self.report_architecture),
+             ("report-submission_id", self.report_submission_id),
+             ("report-system_id", self.report_system_id),
+             ("report-distribution", self.report_distribution),
+             ("report-email", self.report_email),
+             ("report-launchpad", self.report_launchpad)]:
             self._manager.reactor.call_on(rt, rh)
 
     def report_datetime(self, message):

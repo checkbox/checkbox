@@ -31,7 +31,7 @@ class DatetimeInfo(Plugin):
 
     def report(self):
         message = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%S")
-        self._manager.reactor.fire(("report", "datetime"), message)
+        self._manager.reactor.fire("report-datetime", message)
 
 
 factory = DatetimeInfo

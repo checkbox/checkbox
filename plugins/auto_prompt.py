@@ -33,9 +33,9 @@ class AutoPrompt(Plugin):
         self._done = False
 
         for (rt, rh) in [
-             (("interface", "category"), self.interface_category),
-             (("test", "auto"), self.test_auto),
-             (("prompt", "auto"), self.prompt_auto)]:
+             ("interface-category", self.interface_category),
+             ("test-auto", self.test_auto),
+             ("prompt-auto", self.prompt_auto)]:
             self._manager.reactor.call_on(rt, rh)
 
     def interface_category(self, category):
@@ -50,7 +50,7 @@ class AutoPrompt(Plugin):
             test.description()
             test.result = Result(test.command.get_status(),
                 test.command.get_data())
-            self._manager.reactor.fire(("report", "test"),
+            self._manager.reactor.fire("report-test",
                 test)
 
     def prompt_auto(self, interface):
