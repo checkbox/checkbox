@@ -22,7 +22,7 @@ import os
 import shutil
 
 
-def safe_make_directory(path, mode=0777):
+def safe_make_directory(path, mode=0755):
     if os.path.exists(path):
         if not os.path.isdir(path):
             raise Exception, "Path is not a directory: %s" % path
@@ -44,3 +44,12 @@ def safe_remove_file(path):
             raise Exception, "Path is not a file: %s" % path
 
         os.remove(path)
+
+def safe_rename(old, new):
+    if old != new:
+        if not os.path.exists(old):
+            raise Exception, "Old path does not exist: %s" % old
+        if os.path.exists(new):
+            raise Exception, "New path exists already: %s" % new
+
+        os.rename(old, new)
