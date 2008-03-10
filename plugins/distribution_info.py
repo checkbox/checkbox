@@ -29,7 +29,8 @@ class DistributionInfo(Plugin):
 
     def report(self):
         message = self._manager.registry.lsb
-        self._manager.reactor.fire("report-distribution", message)
+        if message:
+            self._manager.reactor.fire("report-distribution", message)
 
 
 factory = DistributionInfo

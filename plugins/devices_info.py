@@ -31,7 +31,8 @@ class DevicesInfo(Plugin):
         message = {}
         message["version"] = self._manager.registry.hald.version
         message["devices"] = self._manager.registry.hal
-        self._manager.reactor.fire("report-devices", message)
+        if message["devices"]:
+            self._manager.reactor.fire("report-devices", message)
 
 
 factory = DevicesInfo
