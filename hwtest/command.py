@@ -130,8 +130,6 @@ class Command(object):
                 self.set_data("Received signal %s: %s" %
                     (signal_to_name(signal),
                      signal_to_description(signal)))
-            else:
-                self.set_data("Returned exit code: %d" % exit_code)
 
     def add_path(self, path):
         self._paths.append(path)
