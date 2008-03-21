@@ -58,11 +58,13 @@ class Reactor(object):
 
     def fire(self, event_type, *args, **kwargs):
         logging.debug("Started firing %s.", event_type)
-        for key, value in self._event_handlers.items():
-            if not re.match(key, event_type):
-                continue
 
-            handler, priority = value[0]
+        event_handlers = []
+        for key, value in self._event_handlers.items():
+            if re.match("^%s$" % key, event_type):
+                event_handlers.extend(value)
+
+        for handler, priority in event_handlers:
             try:
                 logging.debug("Calling %s for %s with priority %d.",
                               format_object(handler), event_type, priority)
