@@ -18,6 +18,7 @@
 # You should have received a copy of the GNU General Public License
 # along with HWTest.  If not, see <http://www.gnu.org/licenses/>.
 #
+import re
 import logging
 
 from hwtest.log import format_object
@@ -57,7 +58,11 @@ class Reactor(object):
 
     def fire(self, event_type, *args, **kwargs):
         logging.debug("Started firing %s.", event_type)
-        for handler, priority in self._event_handlers.get(event_type, ()):
+        for key, value in self._event_handlers.items():
+            if not re.match(key, event_type):
+                continue
+
+            handler, priority = value[0]
             try:
                 logging.debug("Calling %s for %s with priority %d.",
                               format_object(handler), event_type, priority)
