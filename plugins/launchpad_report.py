@@ -39,7 +39,7 @@ class LaunchpadReport(Plugin):
                 "live_cd": False},
             "hardware": {},
             "software": {},
-            "tests": []}
+            "questions": []}
 
         # Launchpad report should be generated last.
         for (rt, rh, rp) in [
@@ -82,7 +82,7 @@ class LaunchpadReport(Plugin):
         self._report["hardware"]["processors"] = message
 
     def report_tests(self, message):
-        self._report["tests"].extend(message)
+        self._report["questions"].extend(message)
 
     def report(self):
         # Prepare the payload and attach it to the form

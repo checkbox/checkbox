@@ -72,7 +72,10 @@ class XmlReport(Report):
         self._dumps_text(str(obj), parent, "bool")
 
     def dumps_int(self, obj, parent):
-        self._dumps_text(str(obj), parent, "int")
+        if obj >= 2**31:
+            self._dumps_text(str(obj), parent, "long")
+        else:
+            self._dumps_text(str(obj), parent, "int")
 
     def dumps_float(self, obj, parent):
         self._dumps_text(str(obj), parent, "float")
