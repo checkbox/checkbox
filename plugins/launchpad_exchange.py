@@ -18,6 +18,7 @@
 # You should have received a copy of the GNU General Public License
 # along with HWTest.  If not, see <http://www.gnu.org/licenses/>.
 #
+import os
 import time
 import pprint
 import bz2
@@ -102,8 +103,13 @@ class LaunchpadExchange(Plugin):
         transport = HTTPTransport(self.config.transport_url)
         ret = transport.exchange(form, timeout=int(self.config.timeout))
         if not ret:
-            self._manager.set_error(_("Failed to contact the server,\n"
-                "are you connected to the Internet."))
+            self._manager.set_error(_("""\
+Failed to contact server. Please try
+again or upload the following file:
+%s
+
+directly to the hardware database:
+https://launchpad.net/+hwdb/+submit""" % os.path.abspath(self._file)))
             return
         elif ret.code != 200:
             self._manager.set_error(_("Failed to upload to server,\n"
