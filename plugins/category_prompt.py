@@ -56,9 +56,11 @@ class CategoryPrompt(Plugin):
             if str(version).endswith("-server"):
                 self._category = "server"
 
-        self._category = interface.show_category(_("Category"),
-            _("Please select the category of your hardware."),
-            self._category)
+        # Prompt for the category explicitly
+        if not self._category:
+            self._category = interface.show_category(_("Category"),
+                _("Please select the category of your hardware."),
+                self._category)
 
         self._manager.reactor.fire("interface-category", self._category)
 
