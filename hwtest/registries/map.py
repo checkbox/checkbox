@@ -34,6 +34,11 @@ class MapRegistry(Registry):
         super(MapRegistry, self).__init__(config)
         self.map = map
 
+    def __str__(self):
+        strings = ["%s: %s" % (k, v) for k, v in self.map.items()]
+
+        return "\n".join(strings)
+
     @cache
     def items(self):
         items = []
