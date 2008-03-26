@@ -22,6 +22,7 @@ from hwtest.lib.cache import cache
 
 from hwtest.registry import Registry
 from hwtest.registries.command import CommandRegistry
+from hwtest.registries.link import LinkRegistry
 
 
 COLUMNS = ["name", "version", "description"]
@@ -40,7 +41,10 @@ class PackageRegistry(Registry):
 
     @cache
     def items(self):
-        return [(k, v) for k, v in self.package.items()]
+        items = [(k, v) for k, v in self.package.items()]
+        items.append(("package", LinkRegistry(None, self)))
+
+        return items
 
 
 class PackagesRegistry(CommandRegistry):

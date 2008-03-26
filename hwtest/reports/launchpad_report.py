@@ -106,20 +106,21 @@ class PackagesReport(Report):
 
     def dumps_packages(self, obj, parent):
         logging.debug("Dumping packages")
-        for name, package in obj.items():
+        for package in obj:
             element = self._create_element("package", parent)
             element.setAttribute("id", str(package.id))
-            element.setAttribute("name", str(package.name))
-            self._manager.call_dumps(dict(package), element)
+
+            package = dict(package)
+            element.setAttribute("name", package.pop("name"))
+            self._manager.call_dumps(package, element)
 
     def loads_packages(self, node):
         logging.debug("Loading packages")
-        packages = {}
+        packages = []
         for package in (p for p in node.childNodes if p.localName == "package"):
             value = self._manager.call_loads(package)
-            name = package.getAttribute("name")
-            value["package"] = name
-            packages[int(name)] = value.pop("name")
+            value["name"] = package.getAttribute("name")
+            packages.append(value)
 
         return packages
 
@@ -135,22 +136,25 @@ class ProcessorsReport(Report):
 
     def dumps_processors(self, obj, parent):
         logging.debug("Dumping processors")
-        for name, processor in obj.items():
+        for processor in obj:
             element = self._create_element("processor", parent)
             element.setAttribute("id", str(processor.id))
-            element.setAttribute("name", str(name))
-            self._manager.call_dumps(dict(processor), element)
+
+            processor = dict(processor)
+            element.setAttribute("name", processor.pop("name"))
+            self._manager.call_dumps(processor, element)
 
     def loads_processors(self, node):
         logging.debug("Loading processors")
-        processors = {}
+        processors = []
         for processor in (p for p in node.childNodes if p.localName == "processor"):
             value = self._manager.call_loads(processor)
-            name = processor.getAttribute("name")
-            value["processor"] = name
-            processors[int(name)] = value
+            value["name"] = package.getAttribute("name")
+            processors.append(value)
 
         return processors
+
+
 class SummaryReport(Report):
     """Report for summary related data types."""
 

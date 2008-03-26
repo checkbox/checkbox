@@ -18,19 +18,27 @@
 # You should have received a copy of the GNU General Public License
 # along with HWTest.  If not, see <http://www.gnu.org/licenses/>.
 #
-from hwtest.plugin import Plugin
+from hwtest.registry import Registry
 
 
-class PackagesInfo(Plugin):
+class LinkRegistry(Registry):
+    """Registry for links.
 
-    def register(self, manager):
-        super(PackagesInfo, self).register(manager)
-        self._manager.reactor.call_on("report", self.report)
+    The default behavior is to express the given maps as a tree of items.
+    """
 
-    def report(self):
-        message = self._manager.registry.packages.values()
-        if message:
-            self._manager.reactor.fire("report-packages", message)
+    def __init__(self, config, link):
+        super(LinkRegistry, self).__init__(config)
+        self.link = link
 
+    def __str__(self):
+        return str(self.link)
 
-factory = PackagesInfo
+    def items(self):
+        items = []
+        for k, v in self.link.items():
+            if isinstance(v, LinkRegistry):
+                continue
+            items.append([k, v])
+
+        return items
