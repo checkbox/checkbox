@@ -66,6 +66,7 @@ class PackagesRegistry(CommandRegistry):
                     value = line[lengths[i]:lengths[i+1]-1].strip()
                     package[key] = value
 
+                key = package["name"]
                 value = PackageRegistry(None, package)
                 items.append((key, value))
 
