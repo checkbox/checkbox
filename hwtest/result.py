@@ -21,10 +21,10 @@
 import logging
 
 
-NO = "no"
-YES = "yes"
+FAIL = "fail"
+PASS = "pass"
 SKIP = "skip"
-ALL_STATUS = [YES, NO, SKIP]
+ALL_STATUS = [PASS, FAIL, SKIP]
 
 
 class Result(object):

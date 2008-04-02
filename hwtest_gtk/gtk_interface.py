@@ -25,7 +25,7 @@ from gettext import gettext as _
 
 from hwtest.lib.environ import add_variable, remove_variable
 
-from hwtest.result import Result
+from hwtest.result import Result, FAIL, PASS, SKIP
 from hwtest.user_interface import UserInterface
 
 
@@ -215,17 +215,19 @@ class GTKInterface(UserInterface):
         if test.result:
             result = test.result
             self._set_textview("textview_comment", result.data)
-            self._set_active("radiobutton_%s" % result.status)
+            answer = {PASS: "yes", FAIL: "no", SKIP: "skip"}[result.status]
+            self._set_active("radiobutton_%s" % answer)
         else:
             self._set_textview("textview_comment", "")
             self._set_active("radiobutton_skip")
 
         self._run_dialog()
 
-        status = self._get_radiobutton({
+        answer = self._get_radiobutton({
             "radiobutton_yes": "yes",
             "radiobutton_no": "no",
             "radiobutton_skip": "skip"})
+        status = {"no": FAIL, "yes": PASS, "skip": SKIP}[answer]
         data = self._get_textview("textview_comment")
         test.result = Result(status, data)
 

@@ -23,7 +23,8 @@ import sys
 import termios
 
 from gettext import gettext as _
-from hwtest.result import Result
+
+from hwtest.result import Result, PASS, FAIL, SKIP
 from hwtest.test import ALL_CATEGORIES
 from hwtest.user_interface import UserInterface
 
@@ -163,7 +164,7 @@ class CLIProgressDialog(CLIDialog):
 class CLIInterface(UserInterface):
 
     def show_wait(self, message, function):
-        title = "Hardware Testing"
+        title = _("Hardware Testing")
         self.progress = CLIProgressDialog(title, message)
         self.progress.show()
         self.do_function(function)
@@ -186,47 +187,48 @@ class CLIInterface(UserInterface):
 
     def show_test(self, test, run_test=True):
         if str(test.command) and run_test:
-            title = "Hardware Testing"
+            title = _("Hardware Testing")
             self.progress = CLIProgressDialog(title,
                 _("Running test: %s") % test.name)
             self.progress.show()
 
             self.do_function(test.command)
 
-        # show results dialog
+        # show answer dialog
         dialog = CLIChoiceDialog(test.name, test.description())
-        results = ["yes", "no", "skip"]
-        for result in results:
-            dialog.add_button("&%s" % result)
+        answers = [_("yes"), _("no"), _("skip")]
+        for answer in answers:
+            dialog.add_button("&%s" % answer)
 
-        # get result from dialog
+        # get answer from dialog
         response = dialog.run()
-        status = results[response - 1]
+        answer = answers[response - 1]
         data = ""
-        if status is "no":
-            text = "Please provide comments about the failure."
+        if answer is _("no"):
+            text = _("Please provide comments about the failure.")
             dialog = CLITextDialog(test.name, text)
-            data = dialog.run("Please type here and press"
-                " Ctrl-D when finished:\n")
+            data = dialog.run(_("Please type here and press"
+                " Ctrl-D when finished:\n"))
 
+        status = {_("no"): FAIL, _("yes"): PASS, _("skip"): SKIP}[answer]
         test.result = Result(status, data)
 
         return 1
 
     def show_exchange(self, authentication, message=None, error=None):
-        title = "Authentication"
-        text = message or "Please provide your Launchpad email address:"
+        title = _("Authentication")
+        text = message or _("Please provide your Launchpad email address:")
         dialog = CLILineDialog(title, text)
 
         if error:
-            dialog.put("ERROR: %s" % error)
+            dialog.put("Error: %s" % error)
 
         authentication = dialog.run()
         return authentication
 
     def show_final(self, message=None):
-        title = "Done"
-        text = "Successfully sent information to server!"
+        title = _("Done")
+        text = _("Successfully sent information to server!")
         dialog = CLIChoiceDialog(title, text)
 
         return dialog.run()

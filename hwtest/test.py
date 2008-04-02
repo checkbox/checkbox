@@ -35,7 +35,7 @@ from hwtest.excluder import Excluder
 from hwtest.iterator import Iterator, NEXT, PREV
 from hwtest.repeater import PreRepeater
 from hwtest.resolver import Resolver
-from hwtest.result import Result, NO, SKIP
+from hwtest.result import Result, FAIL, SKIP
 
 
 DESKTOP = "desktop"
@@ -84,9 +84,9 @@ class TestManager(object):
         """
         def dependent_prerepeat_func(test, resolver):
             """Pre repeater function which assigns the SKIP status to
-               dependents when a test has a status of NO or SKIP."""
+               dependents when a test has a status of FAIL or SKIP."""
             result = test.result
-            if result and (result.status == NO or result.status == SKIP):
+            if result and (result.status == FAIL or result.status == SKIP):
                 for dependent in resolver.get_dependents(test):
                     dependent.result.status = SKIP
 
