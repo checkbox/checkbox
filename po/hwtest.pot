@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-21 16:26-0400\n"
+"POT-Creation-Date: 2008-04-02 15:36-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,19 +16,24 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: ../gtk/hwtest-gtk.desktop.in.h:1 ../gtk/hwtest-gtk.glade.h:2
+#: ../hwtest_cli/cli_interface.py:167 ../hwtest_cli/cli_interface.py:190
+msgid "Hardware Testing"
+msgstr ""
+
+#: ../gtk/hwtest-gtk.desktop.in.h:2
+msgid "Tool to perform hardware test"
+msgstr ""
+
 #: ../gtk/hwtest-gtk.glade.h:1
 msgid "<b>Comment:</b>"
 msgstr ""
 
-#: ../gtk/hwtest-gtk.glade.h:2
-msgid "Hardware Testing"
-msgstr ""
-
-#: ../gtk/hwtest-gtk.glade.h:3 ../hwtest_gtk/gtk_interface.py:263
+#: ../gtk/hwtest-gtk.glade.h:3 ../hwtest_gtk/gtk_interface.py:265
 msgid "Ne_xt"
 msgstr ""
 
-#: ../gtk/hwtest-gtk.glade.h:4
+#: ../gtk/hwtest-gtk.glade.h:4 ../hwtest_cli/cli_interface.py:220
 msgid "Please provide your Launchpad email address:"
 msgstr ""
 
@@ -92,37 +97,70 @@ msgstr ""
 msgid "Missing configuration file as argument.\n"
 msgstr ""
 
-#: ../hwtest_cli/cli_interface.py:96
+#: ../hwtest_cli/cli_interface.py:97
 msgid "Press any key to continue..."
 msgstr ""
 
-#: ../hwtest_cli/cli_interface.py:105
+#: ../hwtest_cli/cli_interface.py:106
 #, python-format
 msgid "Please choose (%s): "
 msgstr ""
 
-#: ../hwtest_cli/cli_interface.py:191 ../hwtest_gtk/gtk_interface.py:189
+#: ../hwtest_cli/cli_interface.py:192 ../hwtest_gtk/gtk_interface.py:189
 #, python-format
 msgid "Running test: %s"
+msgstr ""
+
+#: ../hwtest_cli/cli_interface.py:199 ../hwtest_cli/cli_interface.py:213
+msgid "yes"
+msgstr ""
+
+#: ../hwtest_cli/cli_interface.py:199 ../hwtest_cli/cli_interface.py:207
+#: ../hwtest_cli/cli_interface.py:213
+msgid "no"
+msgstr ""
+
+#: ../hwtest_cli/cli_interface.py:199 ../hwtest_cli/cli_interface.py:213
+msgid "skip"
+msgstr ""
+
+#: ../hwtest_cli/cli_interface.py:208
+msgid "Please provide comments about the failure."
+msgstr ""
+
+#: ../hwtest_cli/cli_interface.py:210
+msgid "Please type here and press Ctrl-D when finished:\n"
+msgstr ""
+
+#: ../hwtest_cli/cli_interface.py:219
+msgid "Authentication"
+msgstr ""
+
+#: ../hwtest_cli/cli_interface.py:230
+msgid "Done"
+msgstr ""
+
+#: ../hwtest_cli/cli_interface.py:231
+msgid "Successfully sent information to server!"
 msgstr ""
 
 #: ../hwtest_gtk/gtk_interface.py:204
 msgid "_Test Again"
 msgstr ""
 
-#: ../hwtest_gtk/gtk_interface.py:255
+#: ../hwtest_gtk/gtk_interface.py:257
 msgid "_Finish"
 msgstr ""
 
-#: ../plugins/auto_prompt.py:58
+#: ../plugins/auto_prompt.py:60
 msgid "Running automatic tests..."
 msgstr ""
 
-#: ../plugins/category_prompt.py:59
+#: ../plugins/category_prompt.py:61
 msgid "Category"
 msgstr ""
 
-#: ../plugins/category_prompt.py:60
+#: ../plugins/category_prompt.py:62
 msgid "Please select the category of your hardware."
 msgstr ""
 
@@ -134,7 +172,7 @@ msgstr ""
 msgid "Exchanging information with the server..."
 msgstr ""
 
-#: ../plugins/gather_prompt.py:36
+#: ../plugins/gather_prompt.py:37
 msgid "Gathering information from your system..."
 msgstr ""
 
@@ -157,18 +195,23 @@ msgid ""
 "Thank you for taking the time to test your hardware."
 msgstr ""
 
-#: ../plugins/launchpad_exchange.py:105
+#: ../plugins/launchpad_exchange.py:106
+#, python-format
 msgid ""
-"Failed to contact the server,\n"
-"are you connected to the Internet."
+"Failed to contact server. Please try\n"
+"again or upload the following file:\n"
+"%s\n"
+"\n"
+"directly to the hardware database:\n"
+"https://launchpad.net/+hwdb/+submit"
 msgstr ""
 
-#: ../plugins/launchpad_exchange.py:109
+#: ../plugins/launchpad_exchange.py:115
 msgid ""
 "Failed to upload to server,\n"
 "please try again later."
 msgstr ""
 
-#: ../plugins/launchpad_exchange.py:119
+#: ../plugins/launchpad_exchange.py:125
 msgid "Information was not posted to Launchpad."
 msgstr ""
