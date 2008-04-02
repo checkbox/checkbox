@@ -20,6 +20,8 @@
 #
 from gettext import gettext as _
 
+from hwtest.lib.cache import cache
+
 from hwtest.plugin import Plugin
 from hwtest.test import TestManager
 from hwtest.result import Result
@@ -30,7 +32,6 @@ class AutoPrompt(Plugin):
     def register(self, manager):
         super(AutoPrompt, self).register(manager)
         self._test_manager = TestManager()
-        self._done = False
 
         for (rt, rh) in [
              ("interface-category", self.interface_category),
@@ -53,11 +54,11 @@ class AutoPrompt(Plugin):
             self._manager.reactor.fire("report-test",
                 test)
 
+    @cache
     def prompt_auto(self, interface):
-        if self._test_manager.get_count() and not self._done:
+        if self._test_manager.get_count():
             interface.show_wait(_("Running automatic tests..."),
                 self._run_auto)
-            self._done = True
 
 
 factory = AutoPrompt
