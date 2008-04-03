@@ -4,13 +4,15 @@ Priority: optional
 XSBC-Original-Maintainer: Marc Tardif <marc.tardif@canonical.com>
 Maintainer: Ubuntu MOTU Developers <ubuntu-motu@lists.ubuntu.com>
 Standards-Version: 3.7.3
-Build-Depends: cdbs (>= 0.4.43), debhelper (>= 5.0.37.2), python-support (>= 0.3), python-dev (>= 2.4), po-debconf, python-distutils-extra
+XS-Python-Version: current
+Build-Depends: cdbs (>= 0.4.43), debhelper (>= 5.0.37.2), python-central, python-dev (>= 2.4), po-debconf, python-distutils-extra
 
 Package: hwtest
 Section: python
 Architecture: all
-Depends: ${misc:Depends}, python, debconf, ucf
+Depends: ${misc:Depends}, ${python:Depends}, debconf, ucf
 Recommends: dpkg, hal, lsb-release, python-gst
+XB-Python-Version: ${python:Versions}
 Description: Hardware test
  This project provides an interface for gathering hardware details and
  prompting the user for questions. This information can then be sent
@@ -19,6 +21,7 @@ Description: Hardware test
 Package: hwtest-cli
 Architecture: all
 Depends: hwtest
+XB-Python-Version: ${python:Versions}
 Description: CLI interface for the hwtest program
  This project provides an interface for gathering hardware details and
  prompting the user for questions. This information can then be sent
@@ -30,6 +33,7 @@ Package: hwtest-gtk
 Section: gnome
 Architecture: all
 Depends: hwtest, gksu, python-gtk2, python-glade2
+XB-Python-Version: ${python:Versions}
 Description: GTK interface for the hwtest program
  This project provides an interface for gathering hardware details and
  prompting the user for questions. This information can then be sent
