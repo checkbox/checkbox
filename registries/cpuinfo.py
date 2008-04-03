@@ -23,6 +23,7 @@ from hwtest.lib.conversion import string_to_type
 
 from hwtest.registries.data import DataRegistry
 from hwtest.registries.file import FileRegistry
+from hwtest.registries.link import LinkRegistry
 
 
 class ProcessorRegistry(DataRegistry):
@@ -36,26 +37,28 @@ class ProcessorRegistry(DataRegistry):
     def items(self):
         items = []
         for line in [l.strip() for l in self.split("\n")]:
-            (key, value) = line.split(':', 1)
+            (key, value) = line.split(":", 1)
 
             # Sanitize key so that it can be expressed as
             # an attribute
             key = key.strip()
-            key = key.replace(' ', '_')
+            key = key.replace(" ", "_")
             key = key.lower()
 
-            # Srip processor entry because it is redundant
-            if key == 'processor':
-                continue
+            # Rename processor entry to name
+            if key == "processor":
+                key = "name"
 
             # Express value as a list if it is flags
             value = value.strip()
-            if key == 'flags':
+            if key == "flags":
                 value = value.split()
             else:
                 value = string_to_type(value)
 
             items.append((key, value))
+
+        items.append(("processor", LinkRegistry(None, self)))
 
         return items
 

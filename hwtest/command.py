@@ -21,7 +21,7 @@
 import os
 import logging
 
-from hwtest.answer import YES, NO, SKIP
+from hwtest.result import PASS, FAIL, SKIP
 from hwtest.lib.process import Process
 from hwtest.lib.signal import signal_to_name, signal_to_description
 from hwtest.lib.environ import (get_variables, add_variable, remove_variable,
@@ -118,20 +118,18 @@ class Command(object):
     def parse_wait(self, wait):
         exit_code = os.WEXITSTATUS(wait)
         if exit_code == 0:
-            self.set_status(YES)
+            self.set_status(PASS)
         elif exit_code == 127:
             self.set_status(SKIP)
             self.set_data("Command failed, skipping.")
         else:
-            self.set_status(NO)
+            self.set_status(FAIL)
 
             if exit_code > 128:
                 signal = exit_code - 128
                 self.set_data("Received signal %s: %s" %
                     (signal_to_name(signal),
                      signal_to_description(signal)))
-            else:
-                self.set_data("Returned exit code: %d" % exit_code)
 
     def add_path(self, path):
         self._paths.append(path)

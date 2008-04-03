@@ -28,8 +28,9 @@ class ProcessorsInfo(Plugin):
         self._manager.reactor.call_on("report", self.report)
 
     def report(self):
-        message = self._manager.registry.cpuinfo
-        self._manager.reactor.fire(("report", "processors"), message)
+        message = self._manager.registry.cpuinfo.values()
+        if message:
+            self._manager.reactor.fire("report-processors", message)
 
 
 factory = ProcessorsInfo

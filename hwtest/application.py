@@ -28,21 +28,19 @@ from time import sleep
 from logging import StreamHandler, FileHandler, Formatter
 from optparse import OptionParser
 
+from hwtest import reactor
 from hwtest.contrib import bpickle_registry
 
 from hwtest.config import Config
 from hwtest.plugin import PluginManager
 from hwtest.registry import RegistryManager
-from hwtest.reactor import Reactor
 
 
 class Application(object):
 
-    def __init__(self, config):
+    def __init__(self, config, reactor_object):
         self.config = config
-
-        # Reactor setup
-        self.reactor = Reactor()
+        self.reactor = reactor_object
 
         # Registry manager setup
         self.registry = RegistryManager(self.config)
@@ -65,20 +63,24 @@ class ApplicationManager(object):
 
     application_factory = Application
 
-    def parse_options(self, args):
-        default_log_level = "critical"
-        default_delay = 0
+    default_delay = 0
+    default_log_level = "critical"
+    default_reactor = "Reactor"
 
+    def parse_options(self, args):
         parser = OptionParser()
         parser.add_option("--version", action='store_true',
                           help=_("Print version information and exit."))
+        parser.add_option("-r", "--reactor", metavar="NAME",
+                          default=self.default_reactor,
+                          help=_("The type of reactor to use."))
         parser.add_option("-l", "--log", metavar="FILE",
                           help=_("The file to write the log to."))
         parser.add_option("--log-level",
-                          default=default_log_level,
+                          default=self.default_log_level,
                           help=_("One of debug, info, warning, error or critical."))
         parser.add_option("--delay",
-                          default=default_delay,
+                          default=self.default_delay,
                           type="int",
                           help=_("Delay before running the application."))
         return parser.parse_args(args)
@@ -121,4 +123,8 @@ class ApplicationManager(object):
         if options.delay:
             sleep(options.delay)
 
-        return self.application_factory(config)
+        # Reactor setup
+        reactor_class = getattr(reactor, options.reactor)
+        reactor_object = reactor_class()
+
+        return self.application_factory(config, reactor_object)

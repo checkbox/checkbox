@@ -36,8 +36,8 @@ class LaunchpadReportManager(XmlReportManager):
         self.add(LsbReport())
         self.add(PackagesReport())
         self.add(ProcessorsReport())
-        self.add(QuestionsReport())
         self.add(SummaryReport())
+        self.add(QuestionsReport())
 
 
 class HalReport(XmlReport):
@@ -106,20 +106,21 @@ class PackagesReport(Report):
 
     def dumps_packages(self, obj, parent):
         logging.debug("Dumping packages")
-        for name, package in obj.items():
+        for package in obj:
             element = self._create_element("package", parent)
             element.setAttribute("id", str(package.id))
-            element.setAttribute("name", str(package.name))
-            self._manager.call_dumps(dict(package), element)
+
+            package = dict(package)
+            element.setAttribute("name", package.pop("name"))
+            self._manager.call_dumps(package, element)
 
     def loads_packages(self, node):
         logging.debug("Loading packages")
-        packages = {}
+        packages = []
         for package in (p for p in node.childNodes if p.localName == "package"):
             value = self._manager.call_loads(package)
-            name = package.getAttribute("name")
-            value["package"] = name
-            packages[int(name)] = value.pop("name")
+            value["name"] = package.getAttribute("name")
+            packages.append(value)
 
         return packages
 
@@ -135,79 +136,23 @@ class ProcessorsReport(Report):
 
     def dumps_processors(self, obj, parent):
         logging.debug("Dumping processors")
-        for name, processor in obj.items():
+        for processor in obj:
             element = self._create_element("processor", parent)
             element.setAttribute("id", str(processor.id))
-            element.setAttribute("name", str(name))
-            self._manager.call_dumps(dict(processor), element)
+
+            processor = dict(processor)
+            element.setAttribute("name", processor.pop("name"))
+            self._manager.call_dumps(processor, element)
 
     def loads_processors(self, node):
         logging.debug("Loading processors")
-        processors = {}
+        processors = []
         for processor in (p for p in node.childNodes if p.localName == "processor"):
             value = self._manager.call_loads(processor)
-            name = processor.getAttribute("name")
-            value["processor"] = name
-            processors[int(name)] = value
+            value["name"] = package.getAttribute("name")
+            processors.append(value)
 
         return processors
-
-
-class QuestionsReport(Report):
-    """Report for question related data types."""
-
-    def register_dumps(self):
-        for (dt, dh) in [("questions", self.dumps_questions)]:
-            self._manager.handle_dumps(dt, dh)
-
-    def register_loads(self):
-        for (lt, lh) in [("questions", self.loads_questions),
-                         ("answer", self.loads_data),
-                         ("answer_choices", self.loads_none),
-                         ("comment", self.loads_data)]:
-            self._manager.handle_loads(lt, lh)
-
-    def dumps_questions(self, obj, parent):
-        logging.debug("Dumping questions")
-        for question in obj:
-            element = self._create_element("question", parent)
-            element.setAttribute("name", question["name"])
-            self.dumps_answer(question["answer"]["status"], element)
-            self.dumps_comment(question["answer"]["data"], element)
-
-    def dumps_answer(self, obj, parent):
-        from hwtest.answer import ALL_STATUS
-
-        answer = self._create_element("answer", parent)
-        answer.setAttribute("type", "multiple_choice")
-        self._create_text_node(str(obj), answer)
-
-        answer_choices = self._create_element("answer_choices", parent)
-        for choice in ALL_STATUS:
-            value = self._create_element("value", answer_choices)
-            self._manager.call_dumps(choice, value)
-
-    def dumps_comment(self, obj, parent):
-        comment = self._create_element("comment", parent)
-        self._create_text_node(str(obj), comment)
-
-    def dumps_text(self, obj, parent):
-        self._create_text_node(str(obj), parent)
-
-    def loads_questions(self, node):
-        logging.debug("Loading questions")
-        questions = []
-        for question in (q for q in node.childNodes if q.localName == "question"):
-            value = self._manager.call_loads(question)
-            value["name"] = question.getAttribute("name")
-            questions.append(value)
-        return questions
-
-    def loads_none(self, node):
-        return None
-
-    def loads_data(self, node):
-        return node.firstChild.data.strip()
 
 
 class SummaryReport(Report):
@@ -261,3 +206,62 @@ class SummaryReport(Report):
         name = node.getAttribute("name")
         version = node.getAttribute("version")
         return {"name": name, "version": version}
+
+
+class QuestionsReport(Report):
+    """Report for question related data types."""
+
+    def register_dumps(self):
+        for (dt, dh) in [("questions", self.dumps_questions)]:
+            self._manager.handle_dumps(dt, dh)
+
+    def register_loads(self):
+        for (lt, lh) in [("questions", self.loads_questions),
+                         ("answer", self.loads_data),
+                         ("answer_choices", self.loads_none),
+                         ("comment", self.loads_data)]:
+            self._manager.handle_loads(lt, lh)
+
+    def dumps_questions(self, obj, parent):
+        logging.debug("Dumping questions")
+        for question in obj:
+            element = self._create_element("question", parent)
+            element.setAttribute("name", question["name"])
+            self.dumps_answer(question["result"]["status"], element)
+            self.dumps_comment(question["result"]["data"], element)
+
+    def dumps_answer(self, obj, parent):
+        from hwtest.result import ALL_STATUS
+
+        answer = self._create_element("answer", parent)
+        answer.setAttribute("type", "multiple_choice")
+        self._create_text_node(str(obj), answer)
+
+        answer_choices = self._create_element("answer_choices", parent)
+        for choice in ALL_STATUS:
+            value = self._create_element("value", answer_choices)
+            self._manager.call_dumps(choice, value)
+
+    def dumps_comment(self, obj, parent):
+        comment = self._create_element("comment", parent)
+        self._create_text_node(str(obj), comment)
+
+    def dumps_text(self, obj, parent):
+        self._create_text_node(str(obj), parent)
+
+    def loads_questions(self, node):
+        logging.debug("Loading questions")
+        questions = []
+        for question in (q for q in node.childNodes if q.localName == "question"):
+            value = self._manager.call_loads(question)
+            value["name"] = question.getAttribute("name")
+            questions.append(value)
+        return questions
+
+    def loads_none(self, node):
+        return None
+
+    def loads_data(self, node):
+        return node.firstChild.data.strip()
+
+

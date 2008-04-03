@@ -19,14 +19,19 @@
 # along with HWTest.  If not, see <http://www.gnu.org/licenses/>.
 #
 import os
+import shutil
+
+from stat import ST_MODE, S_IMODE
 
 
-def safe_make_directory(path, mode=0777):
+def safe_make_directory(path, mode=0755):
     if os.path.exists(path):
         if not os.path.isdir(path):
             raise Exception, "Path is not a directory: %s" % path
 
-        os.chmod(path, mode)
+        old_mode = os.stat(path)[ST_MODE]
+        if mode != S_IMODE(old_mode):
+            os.chmod(path, mode)
     else:
         os.makedirs(path, mode)
 
@@ -35,7 +40,7 @@ def safe_remove_directory(path):
         if not os.path.isdir(path):
             raise Exception, "Path is not a directory: %s" % path
 
-        os.removedirs(path)
+        shutil.rmtree(path)
 
 def safe_remove_file(path):
     if os.path.exists(path):
@@ -43,3 +48,12 @@ def safe_remove_file(path):
             raise Exception, "Path is not a file: %s" % path
 
         os.remove(path)
+
+def safe_rename(old, new):
+    if old != new:
+        if not os.path.exists(old):
+            raise Exception, "Old path does not exist: %s" % old
+        if os.path.exists(new):
+            raise Exception, "New path exists already: %s" % new
+
+        os.rename(old, new)

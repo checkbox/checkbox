@@ -32,4 +32,4 @@ class Description(Command):
 
     def get_variables(self):
         variables = super(Description, self).get_variables()
-        return {"output": variables["question"].command.get_data().strip()}
+        return {"output": variables["test"].command.get_data().strip()}

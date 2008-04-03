@@ -103,14 +103,13 @@ setup(
     author = "Marc Tardif",
     author_email = "marc.tardif@canonical.com",
     license = "GPL",
-    description = "Hardware Test",
+    description = "Hardware Testing",
     long_description = """
 This project provides an interfaces for gathering hardware details
 and prompting the user for tests. This information can then be sent
 to Launchpad.
 """,
     data_files = [
-        ("share/applications/", ["gtk/hwtest-gtk.desktop"]),
         ("share/pixmaps/", ["gtk/hwtest-gtk.xpm"]),
         ("share/hwtest/", ["run"]),
         ("share/hwtest/data/", ["data/*"]),
@@ -118,8 +117,8 @@ to Launchpad.
         ("share/hwtest/install/", ["install/*"]),
         ("share/hwtest/plugins/", ["plugins/*.py"]),
         ("share/hwtest/registries/", ["registries/*.py"]),
-        ("share/hwtest/questions/", ["questions/*"]),
         ("share/hwtest/scripts/", ["scripts/*"]),
+        ("share/hwtest/suites/", ["suites/*"]),
         ("share/hwtest/gtk/", ["gtk/hwtest-gtk.glade", "gtk/*.png"])],
     scripts = ["bin/hwtest-gtk", "bin/hwtest-cli"],
     packages = ["hwtest", "hwtest.contrib", "hwtest.lib", "hwtest.reports",

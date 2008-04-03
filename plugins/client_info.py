@@ -33,7 +33,7 @@ class ClientInfo(Plugin):
         message = {}
         message["name"] = os.path.basename(self.config.parent.path)
         message["version"] = self.config.parent.get_defaults().version
-        self._manager.reactor.fire(("report", "client"), message)
+        self._manager.reactor.fire("report-client", message)
 
 
 factory = ClientInfo

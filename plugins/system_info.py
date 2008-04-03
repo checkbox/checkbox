@@ -64,7 +64,7 @@ class SystemInfo(Plugin):
 
         message = system_id
         logging.info("System ID: %s", message)
-        self._manager.reactor.fire(("report", "system_id"), message)
+        self._manager.reactor.fire("report-system_id", message)
 
 
 factory = SystemInfo

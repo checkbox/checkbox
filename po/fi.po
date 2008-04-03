@@ -1,25 +1,24 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Copyright (C) 2008 Timo Jyrinki
+# This file is distributed under the same license as the hwtest package.
+# Timo Jyrinki <timo.jyrinki@iki.fi>, 2008.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: hwtest\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-04-02 15:36-0400\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2008-04-02 15:46+0300\n"
+"Last-Translator: Timo Jyrinki <timo.jyrinki@iki.fi>\n"
+"Language-Team: Finnish <ubuntu-l10n-fin@lists.ubuntu.com>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #: ../gtk/hwtest-gtk.desktop.in.h:1 ../gtk/hwtest-gtk.glade.h:2
 #: ../hwtest_cli/cli_interface.py:167 ../hwtest_cli/cli_interface.py:190
 msgid "Hardware Testing"
-msgstr ""
+msgstr "Laitteiston testaus"
 
 #: ../gtk/hwtest-gtk.desktop.in.h:2
 msgid "Tool to perform hardware test"
@@ -27,55 +26,55 @@ msgstr ""
 
 #: ../gtk/hwtest-gtk.glade.h:1
 msgid "<b>Comment:</b>"
-msgstr ""
+msgstr "<b>Kommentti:</b>"
 
 #: ../gtk/hwtest-gtk.glade.h:3 ../hwtest_gtk/gtk_interface.py:265
 msgid "Ne_xt"
-msgstr ""
+msgstr "Seu_raava"
 
 #: ../gtk/hwtest-gtk.glade.h:4 ../hwtest_cli/cli_interface.py:220
 msgid "Please provide your Launchpad email address:"
-msgstr ""
+msgstr "Syötä Launchpad-sähköpostiosoitteesi:"
 
 #: ../gtk/hwtest-gtk.glade.h:5
 msgid "Successfully sent information!"
-msgstr ""
+msgstr "Tiedot lähetettiin onnistuneesti."
 
 #: ../gtk/hwtest-gtk.glade.h:6
 msgid "_Desktop"
-msgstr ""
+msgstr "_Pöytäkone"
 
 #: ../gtk/hwtest-gtk.glade.h:7
 msgid "_Laptop"
-msgstr ""
+msgstr "_Kannettava"
 
 #: ../gtk/hwtest-gtk.glade.h:8
 msgid "_No"
-msgstr ""
+msgstr "_Ei"
 
 #: ../gtk/hwtest-gtk.glade.h:9
 msgid "_Previous"
-msgstr ""
+msgstr "_Edellinen"
 
 #: ../gtk/hwtest-gtk.glade.h:10
 msgid "_Server"
-msgstr ""
+msgstr "_Palvelin"
 
 #: ../gtk/hwtest-gtk.glade.h:11
 msgid "_Skip this test"
-msgstr ""
+msgstr "Ohita tämä te_sti"
 
 #: ../gtk/hwtest-gtk.glade.h:12 ../hwtest_gtk/gtk_interface.py:206
 msgid "_Test"
-msgstr ""
+msgstr "_Testaa"
 
 #: ../gtk/hwtest-gtk.glade.h:13
 msgid "_Yes"
-msgstr ""
+msgstr "K_yllä"
 
 #: ../hwtest/application.py:73
 msgid "Print version information and exit."
-msgstr ""
+msgstr "Tulosta versiotiedot ja poistu."
 
 #: ../hwtest/application.py:76
 msgid "The type of reactor to use."
@@ -83,33 +82,33 @@ msgstr ""
 
 #: ../hwtest/application.py:78
 msgid "The file to write the log to."
-msgstr ""
+msgstr "Tiedosto, johon loki kirjoitetaan."
 
 #: ../hwtest/application.py:81
 msgid "One of debug, info, warning, error or critical."
-msgstr ""
+msgstr "Yksi seuraavista: debug, info, warning, error tai critical."
 
 #: ../hwtest/application.py:85
 msgid "Delay before running the application."
-msgstr ""
+msgstr "Viive ennen sovelluksen suorittamista."
 
 #: ../hwtest/application.py:112
 msgid "Missing configuration file as argument.\n"
-msgstr ""
+msgstr "Argumenttina ei annettu asetustiedostoa.\n"
 
 #: ../hwtest_cli/cli_interface.py:97
 msgid "Press any key to continue..."
-msgstr ""
+msgstr "Paina mitä tahansa näppäintä jatkaaksesi..."
 
 #: ../hwtest_cli/cli_interface.py:106
 #, python-format
 msgid "Please choose (%s): "
-msgstr ""
+msgstr "Valitse (%s): "
 
 #: ../hwtest_cli/cli_interface.py:192 ../hwtest_gtk/gtk_interface.py:189
 #, python-format
 msgid "Running test: %s"
-msgstr ""
+msgstr "Suoritetaan testiä: %s"
 
 #: ../hwtest_cli/cli_interface.py:199 ../hwtest_cli/cli_interface.py:213
 msgid "yes"
@@ -125,8 +124,9 @@ msgid "skip"
 msgstr ""
 
 #: ../hwtest_cli/cli_interface.py:208
+#, fuzzy
 msgid "Please provide comments about the failure."
-msgstr ""
+msgstr "Syötä Launchpad-sähköpostiosoitteesi:"
 
 #: ../hwtest_cli/cli_interface.py:210
 msgid "Please type here and press Ctrl-D when finished:\n"
@@ -141,44 +141,45 @@ msgid "Done"
 msgstr ""
 
 #: ../hwtest_cli/cli_interface.py:231
+#, fuzzy
 msgid "Successfully sent information to server!"
-msgstr ""
+msgstr "Tiedot lähetettiin onnistuneesti."
 
 #: ../hwtest_gtk/gtk_interface.py:204
 msgid "_Test Again"
-msgstr ""
+msgstr "_Testaa uudelleen"
 
 #: ../hwtest_gtk/gtk_interface.py:257
 msgid "_Finish"
-msgstr ""
+msgstr "_Valmis"
 
 #: ../plugins/auto_prompt.py:60
 msgid "Running automatic tests..."
-msgstr ""
+msgstr "Suoritetaan automaattisia testejä"
 
 #: ../plugins/category_prompt.py:61
 msgid "Category"
-msgstr ""
+msgstr "Luokka"
 
 #: ../plugins/category_prompt.py:62
 msgid "Please select the category of your hardware."
-msgstr ""
+msgstr "Valitse laiteluokka."
 
 #: ../plugins/exchange_prompt.py:50
 msgid "Email address must be in a proper format."
-msgstr ""
+msgstr "Sähköpostiosoitteen tulee olla oikeassa muodossa."
 
 #: ../plugins/exchange_prompt.py:54
 msgid "Exchanging information with the server..."
-msgstr ""
+msgstr "Vaihdetaan tietoja palvelimen kanssa..."
 
 #: ../plugins/gather_prompt.py:37
 msgid "Gathering information from your system..."
-msgstr ""
+msgstr "Kerätään tietoja järjestelmästä..."
 
 #: ../plugins/intro_prompt.py:33
 msgid "Welcome to Hardware Testing!"
-msgstr ""
+msgstr "Tervetuloa laitteiston testaukseen."
 
 #: ../plugins/intro_prompt.py:34
 msgid ""
@@ -194,6 +195,17 @@ msgid ""
 "\n"
 "Thank you for taking the time to test your hardware."
 msgstr ""
+"Tämä sovellus kerää tietoja laitteistostasi. Sen jälkeen sinua\n"
+"pyydetään suorittamaan joitain testejä itse, jotta laitteiston\n"
+"oikeanlainen toimivuus varmistetaan. Lopuksi kysytään Launchpad-\n"
+"sivustolle kirjautumiseen käyttämääsi sähköpostiosoitetta, jotta\n"
+"tiedot voidaan lähettää.\n"
+"\n"
+"Jos sinulla ei ole Launchpad-käyttäjätiliä, rekisteröidy täällä:\n"
+"\n"
+"  https://launchpad.net/+login\n"
+"\n"
+"Kiitos laitteiston testaamiseen käyttämästäsi ajasta."
 
 #: ../plugins/launchpad_exchange.py:106
 #, python-format
@@ -211,7 +223,9 @@ msgid ""
 "Failed to upload to server,\n"
 "please try again later."
 msgstr ""
+"Palvelimelle ei voi lähettää tietoja,\n"
+"yritä myöhemmin uudelleen."
 
 #: ../plugins/launchpad_exchange.py:125
 msgid "Information was not posted to Launchpad."
-msgstr ""
+msgstr "Tietoja ei lähetetty Launchpadiin."

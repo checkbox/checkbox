@@ -14,9 +14,9 @@ Architecture: all
 Depends: ${misc:Depends}, ${python:Depends}, debconf, ucf
 Recommends: dpkg, hal, lsb-release, python-gst
 XB-Python-Version: ${python:Versions}
-Description: Hardware test
+Description: Hardware Testing
  This project provides an interface for gathering hardware details and
- prompting the user for questions. This information can then be sent
+ prompting the user for tests. This information can then be sent
  to Launchpad.
 
 Package: hwtest-cli
@@ -25,10 +25,10 @@ Depends: hwtest
 XB-Python-Version: ${python:Versions}
 Description: CLI interface for the hwtest program
  This project provides an interface for gathering hardware details and
- prompting the user for questions. This information can then be sent
+ prompting the user for tests. This information can then be sent
  to Launchpad.
  .
- This package provides a command-line interface for answering questions.
+ This package provides a command-line interface for answering tests.
 
 Package: hwtest-gtk
 Section: gnome
@@ -37,7 +37,7 @@ Depends: hwtest, gksu, python-gtk2, python-glade2
 XB-Python-Version: ${python:Versions}
 Description: GTK interface for the hwtest program
  This project provides an interface for gathering hardware details and
- prompting the user for questions. This information can then be sent
+ prompting the user for tests. This information can then be sent
  to Launchpad.
  .
- This package provides a GTK interface for answering questions.
+ This package provides a GTK interface for answering tests.

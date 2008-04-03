@@ -71,15 +71,23 @@ class Registry(Repository):
             yield k, v
 
     def iterkeys(self):
+        from hwtest.registries.link import LinkRegistry
+
         for k, v in self.items():
-            yield k
+            # Prevent returning links in a dict() context
+            if not isinstance(v, LinkRegistry):
+                yield k
 
     def keys(self):
         return list(self.iterkeys())
 
     def itervalues(self):
+        from hwtest.registries.link import LinkRegistry
+
         for k, v in self.items():
-            yield v
+            # Prevent returning links in a values() context
+            if not isinstance(v, LinkRegistry):
+                yield v
 
     def values(self):
         return list(self.itervalues())

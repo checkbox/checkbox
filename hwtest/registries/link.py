@@ -18,20 +18,27 @@
 # You should have received a copy of the GNU General Public License
 # along with HWTest.  If not, see <http://www.gnu.org/licenses/>.
 #
-from datetime import datetime
-
-from hwtest.plugin import Plugin
+from hwtest.registry import Registry
 
 
-class DatetimeInfo(Plugin):
+class LinkRegistry(Registry):
+    """Registry for links.
 
-    def register(self, manager):
-        super(DatetimeInfo, self).register(manager)
-        self._manager.reactor.call_on("report", self.report)
+    The default behavior is to express the given maps as a tree of items.
+    """
 
-    def report(self):
-        message = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%S")
-        self._manager.reactor.fire("report-datetime", message)
+    def __init__(self, config, link):
+        super(LinkRegistry, self).__init__(config)
+        self.link = link
 
+    def __str__(self):
+        return str(self.link)
 
-factory = DatetimeInfo
+    def items(self):
+        items = []
+        for k, v in self.link.items():
+            if isinstance(v, LinkRegistry):
+                continue
+            items.append([k, v])
+
+        return items

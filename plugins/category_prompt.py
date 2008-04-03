@@ -32,7 +32,7 @@ class CategoryPrompt(Plugin):
         self._category = self.config.category
 
         for (rt, rh) in [
-             (("prompt", "category"), self.prompt_category)]:
+             ("prompt-category", self.prompt_category)]:
             self._manager.reactor.call_on(rt, rh)
 
     def prompt_category(self, interface):
@@ -56,11 +56,13 @@ class CategoryPrompt(Plugin):
             if str(version).endswith("-server"):
                 self._category = "server"
 
-        self._category = interface.show_category(_("Category"),
-            _("Please select the category of your hardware."),
-            self._category)
+        # Prompt for the category explicitly
+        if not self._category:
+            self._category = interface.show_category(_("Category"),
+                _("Please select the category of your hardware."),
+                self._category)
 
-        self._manager.reactor.fire(("interface", "category"), self._category)
+        self._manager.reactor.fire("interface-category", self._category)
 
 
 factory = CategoryPrompt

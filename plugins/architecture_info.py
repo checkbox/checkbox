@@ -29,7 +29,8 @@ class ArchitectureInfo(Plugin):
 
     def report(self):
         message = self._manager.registry.dpkg.architecture
-        self._manager.reactor.fire(("report", "architecture"), message)
+        if message:
+            self._manager.reactor.fire("report-architecture", message)
 
 
 factory = ArchitectureInfo
