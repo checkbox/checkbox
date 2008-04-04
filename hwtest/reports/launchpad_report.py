@@ -141,7 +141,7 @@ class ProcessorsReport(Report):
             element.setAttribute("id", str(processor.id))
 
             processor = dict(processor)
-            element.setAttribute("name", processor.pop("name"))
+            element.setAttribute("name", str(processor.pop("name")))
             self._manager.call_dumps(processor, element)
 
     def loads_processors(self, node):
