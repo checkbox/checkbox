@@ -1,0 +1,139 @@
+#!/usr/bin/python
+#
+# This program is meant to be called by the debian installer in order to
+# create configuration files for the hwtest package and derived packages
+# based on the preseed values.
+
+import os
+import re
+import sys
+from ConfigParser import ConfigParser
+from optparse import OptionParser
+
+from debconf import Debconf, DebconfCommunicator
+
+
+DEFAULT_SECTION = "DEFAULT"
+
+
+class Config(ConfigParser):
+
+    def write(self, fp):
+        """Write an .ini-format representation of the configuration state."""
+        if self._defaults:
+            fp.write("[%s]\n" % DEFAULT_SECTION)
+            defaults = dict(self._defaults)
+
+            # Write includes first
+            if 'includes' in defaults:
+                key = 'includes'
+                value = defaults.pop(key)
+                value = str(value).replace('\n', '\n\t')
+                fp.write("%s = %s\n" % (key, value))
+
+            for (key, value) in defaults.items():
+                value = str(value).replace('\n', '\n\t')
+                fp.write("%s = %s\n" % (key, value))
+
+            fp.write("\n")
+
+        for section in self._sections:
+            fp.write("[%s]\n" % section)
+            for (key, value) in self._sections[section].items():
+                if key != "__name__":
+                    fp.write("%s = %s\n" %
+                             (key, str(value).replace('\n', '\n\t')))
+
+            fp.write("\n")
+
+
+class Install(object):
+    """Install module for generating hwtest configuration files.
+
+    The hwtest module and derivatives use a configuration file format
+    compatible with ConfigParser. The values for the keys defined in
+    this file can be preseeded during the installation of the package by
+    using this module during the config phase of the package installation
+    process.
+    """
+    separator = "/"
+    configs_base = "/usr/share/%(base_name)s/configs/%(name)s.ini"
+    examples_base = "/usr/share/%(base_name)s/examples/%(name)s.ini"
+    templates_base = "/var/lib/dpkg/info/%(name)s.templates"
+
+    def __init__(self, name, configs_path=None, examples_path=None,
+                 templates_path=None):
+        self.name = name
+        self.base_name = re.sub(r"(-cli|-gtk)$", "", name)
+        self._configs_path = configs_path or self.configs_base \
+            % {"name": name, "base_name": self.base_name}
+        self._examples_path = examples_path or self.examples_base \
+            % {"name": name, "base_name": self.base_name}
+        self._templates_path = templates_path or self.templates_base \
+            % {"name": name, "base_name": self.base_name}
+
+        self._config = Config()
+        if os.environ.get("DEBIAN_HAS_FRONTEND"):
+            if os.environ.get("DEBCONF_REDIR"):
+                write = os.fdopen(3, "w")
+            else:
+                write = sys.stdout
+            self._debconf = Debconf(write=write)
+        else:
+            self._debconf = DebconfCommunicator(self.name)
+
+    def write(self, descriptor):
+        """
+        Write phase of the config process which takes a descriptor
+        as argument.
+        """
+        for path in [self._examples_path, self._configs_path]:
+            if path and os.path.isfile(path):
+                self._config.read(path)
+
+        # Hack to retrieve questions from templates file
+        if os.path.exists(self._templates_path):
+            templates_descriptor = file(self._templates_path)
+            for line in templates_descriptor.readlines():
+                match = re.match(r"Template: (.*)", line)
+                if match:
+                    question = match.group(1)
+                    value = self._debconf.get(question)
+
+                    section, name = question.rsplit(self.separator, 1)
+                    self._config.set(section, name, value)
+
+        # Write config file
+        self._config.write(descriptor)
+
+
+def main(args):
+    """
+    Main routine for running this script. The arguments are:
+
+    package_name    Name of the package to configure.
+    optional        Optional arguments specific to the given command.
+    """
+    parser = OptionParser()
+    parser.add_option("-o", "--output",
+      default="-",
+      help="Output file, - for stdout.")
+    (options, args) = parser.parse_args(args)
+
+    if len(args) < 1:
+        return 1
+
+    package = args.pop(0)
+    install = Install(package)
+
+    if options.output == "-":
+         descriptor = sys.stdout
+    else:
+         descriptor = file(options.output, "w")
+    install.write(descriptor)
+
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv[1:]))

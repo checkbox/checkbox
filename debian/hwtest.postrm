@@ -1,8 +1,7 @@
 #! /bin/sh -e
 
 package=`basename $0 .postrm`
-base_package=`echo $package | sed 's/\(-cli\|-gtk\)$//'`
-config_file="/usr/share/$base_package/configs/$package.ini"
+config_file="/etc/hwtest.d/$package.ini"
 
 case "$1" in
     purge)
