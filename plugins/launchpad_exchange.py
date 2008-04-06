@@ -109,7 +109,7 @@ again or upload the following file:
 %s
 
 directly to the hardware database:
-https://launchpad.net/+hwdb/+submit""" % os.path.abspath(self._file)))
+https://launchpad.net/+hwdb/+submit""") % os.path.abspath(self._file))
             return
         elif ret.code != 200:
             self._manager.set_error(_("Failed to upload to server,\n"

@@ -24,6 +24,7 @@ import locale
 import logging
 
 from os import environ
+from gettext import gettext as _
 
 
 class Template(object):
@@ -86,11 +87,19 @@ class Template(object):
 
         return [l.lower() for l in languages]
 
+    def _filter_field(self, field):
+        lines = []
+        separator = "\n\n"
+        for line in field.split(separator):
+            lines.append(_(line))
+
+        return separator.join(lines)
+
     def _filter_languages(self, element):
         filter = {}
         basekeys = {}
         for key in element.keys():
-            basekey = re.sub(r"-.+$", "", key)
+            basekey = re.sub(r"^_?([^-]+).*$", "\\1", key)
             basekeys[basekey] = None
 
         for key in basekeys.keys():
@@ -102,20 +111,19 @@ class Template(object):
                         break
                 if key in filter:
                     continue
-            elif not re.search(r"-c$", key):
+            else:
                 field = "%s-c" % key
                 if field in element:
                     filter[key] = element[field]
                     continue
 
             if key in element:
-                filter[key] = element[key]
+                filter[key] = self._filter_field(element[key])
                 continue
-
-            if re.search(r"-c$", key):
-                field = re.sub(r"-c$", "", key)
+            else:
+                field = "_%s" % key
                 if field in element:
-                    filter[key] = element[field]
+                    filter[key] = self._filter_field(element[field])
                     continue
 
             raise Exception, "No language found for key: %s" % key

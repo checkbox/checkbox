@@ -1,6 +1,7 @@
 [encoding: UTF-8]
-gtk/hwtest-gtk.desktop.in
 gtk/hwtest-gtk.glade
+[type: gettext/rfc822deb] gtk/hwtest-gtk.desktop.in
+[type: gettext/rfc822deb] suites/manual.txt.in
 hwtest/application.py
 hwtest_cli/cli_interface.py
 hwtest_gtk/gtk_interface.py
@@ -12,4 +13,5 @@ plugins/gather_prompt.py
 plugins/intro_prompt.py
 plugins/launchpad_exchange.py
 plugins/manual_prompt.py
+plugins/report_prompt.py
 plugins/user_interface.py
