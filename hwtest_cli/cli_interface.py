@@ -53,23 +53,32 @@ class CLIDialog(object):
         fileno = sys.stdin.fileno()
         saved_attributes = termios.tcgetattr(fileno)
         attributes = termios.tcgetattr(fileno)
-        attributes[3] = attributes[3] & ~(termios.ICANON)
+        attributes[3] = attributes[3] & ~(termios.ICANON | termios.ECHO)
         attributes[6][termios.VMIN] = 1
         attributes[6][termios.VTIME] = 0
         termios.tcsetattr(fileno, termios.TCSANOW, attributes)
 
-        input = ""
+        input = []
         try:
             while len(input) < limit:
                 ch = str(sys.stdin.read(1))
                 if ord(ch) == separator:
                     break
-                input += ch
+                elif ord(ch) == termios.CERASE or ord(ch) == 010:
+                    if len(input):
+                        self.put("\010 \010")
+                        del input[-1]
+                elif ord(ch) == termios.CKILL:
+		    self.put("\010 \010" * len(input))
+                    input = []
+                else:
+                    input.append(ch)
+                    self.put(ch)
         finally:
             termios.tcsetattr(fileno, termios.TCSANOW, saved_attributes)
 
         self.put_newline()
-        return input
+        return "".join(input)
 
     def show(self):
         self.visible = True
