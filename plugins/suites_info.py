@@ -66,8 +66,10 @@ class SuitesInfo(Plugin):
             attributes = dict(test.attributes)
             attributes["command"] = str(test.command)
             attributes["description"] = str(test.description)
-            attributes["devices"] = [d.id for d in test.devices]
-            attributes["packages"] = [p.id for p in test.packages]
+            if test.devices is not None:
+                attributes["devices"] = [d.id for d in test.devices]
+            if test.packages is not None:
+                attributes["packages"] = [p.id for p in test.packages]
             attributes["result"] = test.result.attributes
             message.append(attributes)
         self._manager.reactor.fire("report-tests", message)
