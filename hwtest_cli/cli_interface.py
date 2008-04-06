@@ -59,11 +59,14 @@ class CLIDialog(object):
         termios.tcsetattr(fileno, termios.TCSANOW, attributes)
 
         input = []
+        escape = 0
         try:
             while len(input) < limit:
                 ch = str(sys.stdin.read(1))
                 if ord(ch) == separator:
                     break
+                elif ord(ch) == 033: # ESC
+                    escape = 1
                 elif ord(ch) == termios.CERASE or ord(ch) == 010:
                     if len(input):
                         self.put("\010 \010")
@@ -72,8 +75,16 @@ class CLIDialog(object):
 		    self.put("\010 \010" * len(input))
                     input = []
                 else:
-                    input.append(ch)
-                    self.put(ch)
+                    if not escape:
+                        input.append(ch)
+                        self.put(ch)
+                    elif escape == 1:
+                        if ch == "[":
+                            escape = 2
+                        else:
+                            escape = 0
+                    elif escape == 2:
+                        escape = 0 
         finally:
             termios.tcsetattr(fileno, termios.TCSANOW, saved_attributes)
 
