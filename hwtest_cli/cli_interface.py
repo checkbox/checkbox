@@ -204,7 +204,7 @@ class CLIInterface(UserInterface):
         response = dialog.run()
         answer = answers[response - 1]
         data = ""
-        if answer is _("no"):
+        if answer == _("no"):
             text = _("Please provide comments about the failure.")
             dialog = CLITextDialog(test.name, text)
             data = dialog.run(_("Please type here and press"
