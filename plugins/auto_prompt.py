@@ -50,7 +50,8 @@ class AutoPrompt(Plugin):
             test.command()
             test.description()
             test.result = Result(test.command.get_status(),
-                test.command.get_data())
+                test.command.get_data(),
+                test.command.get_duration())
             self._manager.reactor.fire("report-test",
                 test)
 

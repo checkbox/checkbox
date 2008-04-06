@@ -39,6 +39,7 @@ class Command(object):
 
         self._data = ""
         self._status = SKIP
+        self._duration = 0
 
         self._paths = list(self.paths)
         self._variables = dict(self.variables)
@@ -75,6 +76,7 @@ class Command(object):
         stdout = process.outdata
         stderr = process.errdata
         wait = process.cleanup()
+        self._duration = int(process.endtime - process.starttime)
 
         self.post_execute()
         self.parse_process(stdout, stderr, wait)
@@ -157,3 +159,6 @@ class Command(object):
 
     def get_data(self):
         return self._data
+
+    def get_duration(self):
+        return self._duration

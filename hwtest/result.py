@@ -31,15 +31,13 @@ class Result(object):
 
     required_fields = ["status", "data"]
     optional_fields = {
-        "start_time": None,
-        "end_time": None}
+        "duration": None}
 
-    def __init__(self, status=SKIP, data="", start_time=None, end_time=None):
+    def __init__(self, status=SKIP, data="", duration=None):
         self.attributes = self._validate({
             "status": status,
             "data": data,
-            "start_time": start_time,
-            "end_time": end_time})
+            "duration": duration})
 
     def _validate(self, attributes):
         # Unknown fields
