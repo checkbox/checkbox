@@ -78,9 +78,7 @@ class TestManager(object):
         """
         Get an iterator over the tests added to the manager. The
         purpose of this iterator is that it orders tests based on
-        dependencies and enforces constraints defined in fields. For
-        example, the requires field will be evaluated and the test
-        will be skipped if this fails.
+        dependencies and enforces constraints defined in fields.
         """
         def dependent_prerepeat_func(test, resolver):
             """Pre repeater function which assigns the SKIP status to
@@ -90,21 +88,45 @@ class TestManager(object):
                 for dependent in resolver.get_dependents(test):
                     dependent.result.status = SKIP
 
-        def requires_exclude_func(test):
-            """Excluder function which removes test when the requires
+        def packages_exclude_func(test):
+            """Excluder function which removes test when the packages
                field exists and doesn't meet the given requirements."""
-            return isinstance(test.requires, list) \
-                   and len(test.requires) == 0
+            if test.packages is not None and len(test.packages) == 0:
+                logging.debug("Package not available for test: %s"
+                    % test.name)
+                return True
+
+            return False
+
+        def devices_exclude_func(test):
+            """Excluder function which removes test when the devices
+               field exists and doesn't meet the given requirements."""
+            if test.devices is not None and len(test.devices) == 0:
+                logging.debug("Device not available for test: %s"
+                    % test.name)
+                return True
+
+            return False
 
         def architecture_exclude_func(test, architecture):
             """Excluder function which removes test when the architectures
                field exists and doesn't meet the given requirements."""
-            return architecture and architecture not in test.architectures
+            if architecture and architecture not in test.architectures:
+                logging.debug("Architecture not available for test: %s"
+                    % test.name)
+                return True
+
+            return False
 
         def category_exclude_func(test, category):
             """Excluder function which removes test when the categories
                field exists and doesn't meet the given requirements."""
-            return category and category not in test.categories
+            if category and category not in test.categories:
+                logging.debug("Category not available for test: %s"
+                    % test.name)
+                return True
+
+            return False
 
         resolver = Resolver()
         test_dict = dict((q.name, q) for q in self._tests)
@@ -118,7 +140,9 @@ class TestManager(object):
             lambda test, resolver=resolver: \
                    dependent_prerepeat_func(test, resolver))
         tests_iter = Excluder(tests_iter,
-            requires_exclude_func, requires_exclude_func)
+            devices_exclude_func, devices_exclude_func)
+        tests_iter = Excluder(tests_iter,
+            packages_exclude_func, packages_exclude_func)
         tests_iter = Excluder(tests_iter,
             lambda test, architecture=self._architecture: \
                    architecture_exclude_func(test, architecture),
@@ -157,13 +181,13 @@ class Test(object):
                    amd64, i386, powerpc and/or sparc
     categories:    List of categories for which this test is relevant:
                    desktop, laptop and/or server
+    command:       Command to run for the test.
     depends:       List of names on which this test depends. So, if
                    the other test fails, this test will be skipped.
-    relations:     Registry expression which points to the relations for this
+    devices:       Registry expression which points to the devices for this
                    test. For example: 'input.mouse' in info.capabilities
-    requires:      Registry expression which is required to ask this
-                   test. For example: lsb.release == '6.06'
-    command:       Command to run for the test.
+    packages:      Same as devices except for packages. For example:
+                   name == 'xserver-xorg'
     timeout:       Timeout for running the command.
     optional:      Boolean expression set to True if this test is optional
                    or False if this test is required.
@@ -173,10 +197,10 @@ class Test(object):
     optional_fields = {
         "architectures": ALL_ARCHITECTURES,
         "categories": ALL_CATEGORIES,
-        "depends": [],
-        "relations": [],
-        "requires": None,
         "command": "",
+        "depends": [],
+        "devices": None,
+        "packages": None,
         "timeout": None,
         "optional": False}
 
@@ -207,10 +231,14 @@ class Test(object):
                 attributes[field] = int(attributes[field])
 
         # Eval fields
-        for field in ["relations", "requires"]:
+        for field, registry in [("packages", self.registry.packages),
+                                ("devices", self.registry.hal)]:
             if attributes.has_key(field):
-                attributes[field] = self.registry.eval_recursive(
-                    attributes[field])
+                registry_expression = attributes[field]
+                attributes[field] = []
+                for value in registry.values():
+                    if value.eval(registry_expression):
+                        attributes[field].append(value)
 
         # Optional fields
         for field in self.optional_fields.keys():
