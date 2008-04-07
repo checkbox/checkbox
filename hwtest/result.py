@@ -34,8 +34,8 @@ class Result(object):
         "status": SKIP,
         "data": "",
         "duration": None,
-        "devices": None,
-        "packages": None}
+        "devices": [],
+        "packages": []}
 
     def __init__(self, **attributes):
         # Optional fields

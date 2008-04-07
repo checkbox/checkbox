@@ -66,6 +66,7 @@ class SuitesInfo(Plugin):
             attributes = dict(test.attributes)
             attributes["command"] = str(test.command)
             attributes["description"] = str(test.description)
+            attributes["requires"] = str(test.requires)
 
             result = test.result
             attributes["result"] = dict(result.attributes)

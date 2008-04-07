@@ -34,6 +34,7 @@ from hwtest.description import Description
 from hwtest.excluder import Excluder
 from hwtest.iterator import Iterator, NEXT, PREV
 from hwtest.repeater import PreRepeater
+from hwtest.requires import Requires
 from hwtest.resolver import Resolver
 from hwtest.result import Result, FAIL, SKIP
 
@@ -88,22 +89,12 @@ class TestManager(object):
                 for dependent in resolver.get_dependents(test):
                     dependent.result.status = SKIP
 
-        def packages_exclude_func(test):
-            """Excluder function which removes test when the packages
-               field exists and doesn't meet the given requirements."""
-            if test.packages is not None and len(test.packages) == 0:
-                logging.debug("Package not available for test: %s"
-                    % test.name)
-                return True
-
-            return False
-
-        def devices_exclude_func(test):
-            """Excluder function which removes test when the devices
-               field exists and doesn't meet the given requirements."""
-            if test.devices is not None and len(test.devices) == 0:
-                logging.debug("Device not available for test: %s"
-                    % test.name)
+        def requires_exclude_func(test):
+            """Excluder function which removes test when the requires
+               field contains a False value."""
+            if False in test.requires.get_mask():
+                logging.debug("Test '%s' does not pass requires field: %s"
+                    % (test.name, test.requires))
                 return True
 
             return False
@@ -140,9 +131,7 @@ class TestManager(object):
             lambda test, resolver=resolver: \
                    dependent_prerepeat_func(test, resolver))
         tests_iter = Excluder(tests_iter,
-            devices_exclude_func, devices_exclude_func)
-        tests_iter = Excluder(tests_iter,
-            packages_exclude_func, packages_exclude_func)
+            requires_exclude_func, requires_exclude_func)
         tests_iter = Excluder(tests_iter,
             lambda test, architecture=self._architecture: \
                    architecture_exclude_func(test, architecture),
@@ -184,10 +173,8 @@ class Test(object):
     command:       Command to run for the test.
     depends:       List of names on which this test depends. So, if
                    the other test fails, this test will be skipped.
-    devices:       Registry expression which points to the devices for this
-                   test. For example: 'input.mouse' in info.capabilities
-    packages:      Same as devices except for packages. For example:
-                   name == 'xserver-xorg'
+    requires:      List of registry expressions on which are requirements
+                   for this test: 'input.mouse' in info.capabilities
     timeout:       Timeout for running the command.
     optional:      Boolean expression set to True if this test is optional
                    or False if this test is required.
@@ -197,14 +184,15 @@ class Test(object):
     optional_fields = {
         "architectures": ALL_ARCHITECTURES,
         "categories": ALL_CATEGORIES,
-        "command": "",
+        "command": None,
         "depends": [],
-        "devices": None,
-        "packages": None,
+        "requires": None,
         "timeout": None,
         "optional": False}
 
     def __init__(self, registry, **attributes):
+        super(Test, self).__setattr__("attributes", attributes)
+
         # Typed fields
         for field in ["architectures", "categories", "depends"]:
             if attributes.has_key(field):
@@ -213,24 +201,13 @@ class Test(object):
             if attributes.has_key(field):
                 attributes[field] = int(attributes[field])
 
-        # Eval result fields
-        result = Result()
-        if registry is not None:
-            for field, registry_section in [("packages", registry.packages),
-                                            ("devices", registry.hal)]:
-                if attributes.has_key(field):
-                    registry_matches = []
-                    registry_expression = attributes[field]
-                    for value in registry_section.values():
-                        if value.eval(registry_expression):
-                            registry_matches.append(value)
-
-                    setattr(result, field, registry_matches)
-
         # Optional fields
         for field in self.optional_fields.keys():
             if not attributes.has_key(field):
                 attributes[field] = self.optional_fields[field]
+
+        # Requires field
+        attributes["requires"] = Requires(attributes["requires"], registry)
 
         # Command field
         attributes["command"] = Command(attributes["command"],
@@ -241,10 +218,11 @@ class Test(object):
             attributes["timeout"])
         attributes["description"].add_variable("test", self)
 
-        # Instance attributes
-        for name, value in [("attributes", attributes),
-                            ("result", result)]:
-            super(Test, self).__setattr__(name, value)
+        # Result attribute
+        result = Result()
+        result.packages = attributes["requires"].get_packages()
+        result.devices = attributes["requires"].get_devices()
+        super(Test, self).__setattr__("result", result)
 
         self._validate()
 

@@ -33,7 +33,7 @@ class Command(object):
     paths = []
     variables = {}
 
-    def __init__(self, command="", timeout=None):
+    def __init__(self, command=None, timeout=None):
         self._command = command
         self._timeout = timeout
 
@@ -45,7 +45,7 @@ class Command(object):
         self._variables = dict(self.variables)
 
     def __str__(self):
-        return self.get_command()
+        return self.get_command() or ""
 
     def __call__(self):
         self.execute()
@@ -53,7 +53,7 @@ class Command(object):
 
     def execute(self):
         command = self.get_command()
-        if not command:
+        if command is None:
             return
 
         self.pre_execute()
