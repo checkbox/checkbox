@@ -19,7 +19,6 @@
 # along with HWTest.  If not, see <http://www.gnu.org/licenses/>.
 #
 import re
-import logging
 
 from hwtest.repository import Repository, RepositoryManager
 
