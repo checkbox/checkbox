@@ -24,7 +24,6 @@ from hwtest.lib.cache import cache
 
 from hwtest.plugin import Plugin
 from hwtest.test import TestManager
-from hwtest.result import Result
 
 
 class AutoPrompt(Plugin):
@@ -49,11 +48,13 @@ class AutoPrompt(Plugin):
         for test in self._test_manager.get_iterator():
             test.command()
             test.description()
-            test.result = Result(test.command.get_status(),
-                test.command.get_data(),
-                test.command.get_duration())
-            self._manager.reactor.fire("report-test",
-                test)
+
+            result = test.result
+            result.status = test.command.get_status()
+            result.data = test.command.get_data()
+            result.duration = test.command.get_duration()
+
+            self._manager.reactor.fire("report-test", test)
 
     @cache
     def prompt_auto(self, interface):

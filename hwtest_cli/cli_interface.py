@@ -24,7 +24,7 @@ import termios
 
 from gettext import gettext as _
 
-from hwtest.result import Result, PASS, FAIL, SKIP
+from hwtest.result import PASS, FAIL, SKIP
 from hwtest.test import ALL_CATEGORIES
 from hwtest.user_interface import UserInterface
 
@@ -230,10 +230,8 @@ class CLIInterface(UserInterface):
             data = dialog.run(_("Please type here and press"
                 " Ctrl-D when finished:\n"))
 
-        status = {_("no"): FAIL, _("yes"): PASS, _("skip"): SKIP}[answer]
-        test.result = Result(status, data)
-
-        return 1
+        test.result.status = {_("no"): FAIL, _("yes"): PASS, _("skip"): SKIP}[answer]
+        test.result.data = data
 
     def show_exchange(self, authentication, message=None, error=None):
         title = _("Authentication")

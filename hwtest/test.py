@@ -204,24 +204,7 @@ class Test(object):
         "timeout": None,
         "optional": False}
 
-    def __init__(self, registry, attributes={}):
-        self.registry = registry
-        self.attributes = self._validate(attributes)
-
-    def _validate(self, attributes):
-        # Unknown fields
-        for field in attributes.keys():
-            if field not in self.required_fields + self.optional_fields.keys():
-                logging.info("Test attributes contains unknown field: %s" \
-                    % field)
-
-        # Required fields
-        for field in self.required_fields:
-            if not attributes.has_key(field):
-                raise Exception, \
-                    "Test attributes does not contain '%s': %s" \
-                    % (field, attributes)
-
+    def __init__(self, registry, **attributes):
         # Typed fields
         for field in ["architectures", "categories", "depends"]:
             if attributes.has_key(field):
@@ -230,15 +213,19 @@ class Test(object):
             if attributes.has_key(field):
                 attributes[field] = int(attributes[field])
 
-        # Eval fields
-        for field, registry in [("packages", self.registry.packages),
-                                ("devices", self.registry.hal)]:
-            if attributes.has_key(field):
-                registry_expression = attributes[field]
-                attributes[field] = []
-                for value in registry.values():
-                    if value.eval(registry_expression):
-                        attributes[field].append(value)
+        # Eval result fields
+        result = Result()
+        if registry is not None:
+            for field, registry_section in [("packages", registry.packages),
+                                            ("devices", registry.hal)]:
+                if attributes.has_key(field):
+                    registry_matches = []
+                    registry_expression = attributes[field]
+                    for value in registry_section.values():
+                        if value.eval(registry_expression):
+                            registry_matches.append(value)
+
+                    setattr(result, field, registry_matches)
 
         # Optional fields
         for field in self.optional_fields.keys():
@@ -246,21 +233,44 @@ class Test(object):
                 attributes[field] = self.optional_fields[field]
 
         # Command field
-        attributes["command"] = Command(attributes.get("command"),
-            attributes.get("timeout"))
+        attributes["command"] = Command(attributes["command"],
+            attributes["timeout"])
 
         # Description field
         attributes["description"] = Description(attributes["description"],
-            attributes.get("timeout"))
+            attributes["timeout"])
         attributes["description"].add_variable("test", self)
 
-        # Result field
-        attributes["result"] = Result()
+        # Instance attributes
+        for name, value in [("attributes", attributes),
+                            ("result", result)]:
+            super(Test, self).__setattr__(name, value)
 
-        return attributes
+        self._validate()
+
+    def _validate(self):
+        # Unknown fields
+        for field in self.attributes.keys():
+            if field not in self.required_fields + self.optional_fields.keys():
+                logging.info("Test attributes contains unknown field: %s" \
+                    % field)
+
+        # Required fields
+        for field in self.required_fields:
+            if not self.attributes.has_key(field):
+                raise Exception, \
+                    "Test attributes does not contain '%s': %s" \
+                    % (field, self.attributes)
 
     def __getattr__(self, name):
-        if name in self.attributes:
-            return self.attributes[name]
+        if name not in self.attributes:
+            raise AttributeError, name
 
-        raise AttributeError, name
+        return self.attributes[name]
+
+    def __setattr__(self, name, value):
+        if name not in self.attributes:
+            raise AttributeError, name
+
+        self.attributes[name] = value
+        self._validate()
