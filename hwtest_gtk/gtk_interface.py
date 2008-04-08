@@ -25,7 +25,7 @@ from gettext import gettext as _
 
 from hwtest.lib.environ import add_variable, remove_variable
 
-from hwtest.result import Result, FAIL, PASS, SKIP
+from hwtest.result import FAIL, PASS, SKIP
 from hwtest.user_interface import UserInterface
 
 
@@ -227,9 +227,9 @@ class GTKInterface(UserInterface):
             "radiobutton_yes": "yes",
             "radiobutton_no": "no",
             "radiobutton_skip": "skip"})
-        status = {"no": FAIL, "yes": PASS, "skip": SKIP}[answer]
-        data = self._get_textview("textview_comment")
-        test.result = Result(status, data)
+
+        test.result.status = {"no": FAIL, "yes": PASS, "skip": SKIP}[answer]
+        test.result.data = self._get_textview("textview_comment")
 
     @GTKHack
     def show_exchange(self, authentication, message=None, error=None):

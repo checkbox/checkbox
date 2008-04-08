@@ -1,0 +1,72 @@
+name: audio
+plugin: manual
+categories: laptop, desktop
+devices: alsa.type == 'control'
+command: audio_playback $data_path/audio_playback.wav
+_description:
+ Testing detected sound card:
+ .
+ $(audio_playback --view)
+ .
+ Did you hear a sound?
+
+name: resolution
+plugin: manual
+categories: laptop, desktop
+devices: pci.device_class == 3
+_description:
+ The following resolution was detected for your display:
+ .
+ $(resolution_test)
+ .
+ Is this a good resolution for your display?
+
+name: video
+plugin: manual
+categories: laptop, desktop
+command: video_test
+_description:
+ Video test:
+ .
+ $(video_test --list)
+ .
+ Did you see color bars and static?
+
+name: mouse
+plugin: manual
+categories: laptop, desktop
+devices: 'input.mouse' in info.capabilities
+_description:
+ Moving the mouse should move the cursor on the screen.
+ .
+ Is your mouse working properly?
+
+name: network
+plugin: manual
+devices: pci.device_class == 2
+_description:
+ Detecting your network controller(s):
+ .
+ $(network_test)
+ .
+ Is this correct?
+
+name: internet
+plugin: manual
+command: internet_test
+devices: pci.device_class == 2
+_description:
+ Testing your connection to the Internet:
+ .
+ $output
+ .
+ Are you connected to the Internet?
+
+name: keyboard
+plugin: manual
+devices: 'input.keyboard' in info.capabilities
+_description:
+ Typing keys on your keyboard should display
+ the corresponding characters in a text area.
+ .
+ Is your keyboard working properly?

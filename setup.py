@@ -118,7 +118,6 @@ to Launchpad.
         ("share/hwtest/plugins/", ["plugins/*.py"]),
         ("share/hwtest/registries/", ["registries/*.py"]),
         ("share/hwtest/scripts/", ["scripts/*"]),
-        ("share/hwtest/suites/", ["suites/*"]),
         ("share/hwtest/gtk/", ["gtk/hwtest-gtk.glade", "gtk/*.png"])],
     scripts = ["bin/hwtest-gtk", "bin/hwtest-cli"],
     packages = ["hwtest", "hwtest.contrib", "hwtest.lib", "hwtest.reports",

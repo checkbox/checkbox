@@ -34,6 +34,7 @@ from hwtest.description import Description
 from hwtest.excluder import Excluder
 from hwtest.iterator import Iterator, NEXT, PREV
 from hwtest.repeater import PreRepeater
+from hwtest.requires import Requires
 from hwtest.resolver import Resolver
 from hwtest.result import Result, FAIL, SKIP
 
@@ -78,9 +79,7 @@ class TestManager(object):
         """
         Get an iterator over the tests added to the manager. The
         purpose of this iterator is that it orders tests based on
-        dependencies and enforces constraints defined in fields. For
-        example, the requires field will be evaluated and the test
-        will be skipped if this fails.
+        dependencies and enforces constraints defined in fields.
         """
         def dependent_prerepeat_func(test, resolver):
             """Pre repeater function which assigns the SKIP status to
@@ -92,19 +91,33 @@ class TestManager(object):
 
         def requires_exclude_func(test):
             """Excluder function which removes test when the requires
-               field exists and doesn't meet the given requirements."""
-            return isinstance(test.requires, list) \
-                   and len(test.requires) == 0
+               field contains a False value."""
+            if False in test.requires.get_mask():
+                logging.debug("Test '%s' does not pass requires field: %s"
+                    % (test.name, test.requires))
+                return True
+
+            return False
 
         def architecture_exclude_func(test, architecture):
             """Excluder function which removes test when the architectures
                field exists and doesn't meet the given requirements."""
-            return architecture and architecture not in test.architectures
+            if architecture and architecture not in test.architectures:
+                logging.debug("Architecture not available for test: %s"
+                    % test.name)
+                return True
+
+            return False
 
         def category_exclude_func(test, category):
             """Excluder function which removes test when the categories
                field exists and doesn't meet the given requirements."""
-            return category and category not in test.categories
+            if category and category not in test.categories:
+                logging.debug("Category not available for test: %s"
+                    % test.name)
+                return True
+
+            return False
 
         resolver = Resolver()
         test_dict = dict((q.name, q) for q in self._tests)
@@ -157,13 +170,11 @@ class Test(object):
                    amd64, i386, powerpc and/or sparc
     categories:    List of categories for which this test is relevant:
                    desktop, laptop and/or server
+    command:       Command to run for the test.
     depends:       List of names on which this test depends. So, if
                    the other test fails, this test will be skipped.
-    relations:     Registry expression which points to the relations for this
-                   test. For example: 'input.mouse' in info.capabilities
-    requires:      Registry expression which is required to ask this
-                   test. For example: lsb.release == '6.06'
-    command:       Command to run for the test.
+    requires:      List of registry expressions on which are requirements
+                   for this test: 'input.mouse' in info.capabilities
     timeout:       Timeout for running the command.
     optional:      Boolean expression set to True if this test is optional
                    or False if this test is required.
@@ -173,30 +184,14 @@ class Test(object):
     optional_fields = {
         "architectures": ALL_ARCHITECTURES,
         "categories": ALL_CATEGORIES,
+        "command": None,
         "depends": [],
-        "relations": [],
         "requires": None,
-        "command": "",
         "timeout": None,
         "optional": False}
 
-    def __init__(self, registry, attributes={}):
-        self.registry = registry
-        self.attributes = self._validate(attributes)
-
-    def _validate(self, attributes):
-        # Unknown fields
-        for field in attributes.keys():
-            if field not in self.required_fields + self.optional_fields.keys():
-                logging.info("Test attributes contains unknown field: %s" \
-                    % field)
-
-        # Required fields
-        for field in self.required_fields:
-            if not attributes.has_key(field):
-                raise Exception, \
-                    "Test attributes does not contain '%s': %s" \
-                    % (field, attributes)
+    def __init__(self, registry, **attributes):
+        super(Test, self).__setattr__("attributes", attributes)
 
         # Typed fields
         for field in ["architectures", "categories", "depends"]:
@@ -206,33 +201,54 @@ class Test(object):
             if attributes.has_key(field):
                 attributes[field] = int(attributes[field])
 
-        # Eval fields
-        for field in ["relations", "requires"]:
-            if attributes.has_key(field):
-                attributes[field] = self.registry.eval_recursive(
-                    attributes[field])
-
         # Optional fields
         for field in self.optional_fields.keys():
             if not attributes.has_key(field):
                 attributes[field] = self.optional_fields[field]
 
+        # Requires field
+        attributes["requires"] = Requires(attributes["requires"], registry)
+
         # Command field
-        attributes["command"] = Command(attributes.get("command"),
-            attributes.get("timeout"))
+        attributes["command"] = Command(attributes["command"],
+            attributes["timeout"])
 
         # Description field
         attributes["description"] = Description(attributes["description"],
-            attributes.get("timeout"))
+            attributes["timeout"])
         attributes["description"].add_variable("test", self)
 
-        # Result field
-        attributes["result"] = Result()
+        # Result attribute
+        result = Result()
+        result.packages = attributes["requires"].get_packages()
+        result.devices = attributes["requires"].get_devices()
+        super(Test, self).__setattr__("result", result)
 
-        return attributes
+        self._validate()
+
+    def _validate(self):
+        # Unknown fields
+        for field in self.attributes.keys():
+            if field not in self.required_fields + self.optional_fields.keys():
+                logging.info("Test attributes contains unknown field: %s" \
+                    % field)
+
+        # Required fields
+        for field in self.required_fields:
+            if not self.attributes.has_key(field):
+                raise Exception, \
+                    "Test attributes does not contain '%s': %s" \
+                    % (field, self.attributes)
 
     def __getattr__(self, name):
-        if name in self.attributes:
-            return self.attributes[name]
+        if name not in self.attributes:
+            raise AttributeError, name
 
-        raise AttributeError, name
+        return self.attributes[name]
+
+    def __setattr__(self, name, value):
+        if name not in self.attributes:
+            raise AttributeError, name
+
+        self.attributes[name] = value
+        self._validate()

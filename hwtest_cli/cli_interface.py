@@ -24,7 +24,7 @@ import termios
 
 from gettext import gettext as _
 
-from hwtest.result import Result, PASS, FAIL, SKIP
+from hwtest.result import PASS, FAIL, SKIP
 from hwtest.test import ALL_CATEGORIES
 from hwtest.user_interface import UserInterface
 
@@ -53,23 +53,43 @@ class CLIDialog(object):
         fileno = sys.stdin.fileno()
         saved_attributes = termios.tcgetattr(fileno)
         attributes = termios.tcgetattr(fileno)
-        attributes[3] = attributes[3] & ~(termios.ICANON)
+        attributes[3] = attributes[3] & ~(termios.ICANON | termios.ECHO)
         attributes[6][termios.VMIN] = 1
         attributes[6][termios.VTIME] = 0
         termios.tcsetattr(fileno, termios.TCSANOW, attributes)
 
-        input = ""
+        input = []
+        escape = 0
         try:
             while len(input) < limit:
                 ch = str(sys.stdin.read(1))
                 if ord(ch) == separator:
                     break
-                input += ch
+                elif ord(ch) == 033: # ESC
+                    escape = 1
+                elif ord(ch) == termios.CERASE or ord(ch) == 010:
+                    if len(input):
+                        self.put("\010 \010")
+                        del input[-1]
+                elif ord(ch) == termios.CKILL:
+		    self.put("\010 \010" * len(input))
+                    input = []
+                else:
+                    if not escape:
+                        input.append(ch)
+                        self.put(ch)
+                    elif escape == 1:
+                        if ch == "[":
+                            escape = 2
+                        else:
+                            escape = 0
+                    elif escape == 2:
+                        escape = 0 
         finally:
             termios.tcsetattr(fileno, termios.TCSANOW, saved_attributes)
 
         self.put_newline()
-        return input
+        return "".join(input)
 
     def show(self):
         self.visible = True
@@ -204,16 +224,14 @@ class CLIInterface(UserInterface):
         response = dialog.run()
         answer = answers[response - 1]
         data = ""
-        if answer is _("no"):
+        if answer == _("no"):
             text = _("Please provide comments about the failure.")
             dialog = CLITextDialog(test.name, text)
             data = dialog.run(_("Please type here and press"
                 " Ctrl-D when finished:\n"))
 
-        status = {_("no"): FAIL, _("yes"): PASS, _("skip"): SKIP}[answer]
-        test.result = Result(status, data)
-
-        return 1
+        test.result.status = {_("no"): FAIL, _("yes"): PASS, _("skip"): SKIP}[answer]
+        test.result.data = data
 
     def show_exchange(self, authentication, message=None, error=None):
         title = _("Authentication")

@@ -29,46 +29,51 @@ ALL_STATUS = [PASS, FAIL, SKIP]
 
 class Result(object):
 
-    required_fields = ["status", "data"]
+    required_fields = []
     optional_fields = {
-        "start_time": None,
-        "end_time": None}
+        "status": SKIP,
+        "data": "",
+        "duration": None,
+        "devices": [],
+        "packages": []}
 
-    def __init__(self, status=SKIP, data="", start_time=None, end_time=None):
-        self.attributes = self._validate({
-            "status": status,
-            "data": data,
-            "start_time": start_time,
-            "end_time": end_time})
+    def __init__(self, **attributes):
+        # Optional fields
+        for field in self.optional_fields.keys():
+            if not attributes.has_key(field):
+                attributes[field] = self.optional_fields[field]
 
-    def _validate(self, attributes):
+        super(Result, self).__setattr__("attributes", attributes)
+        self._validate()
+
+    def _validate(self):
         # Unknown fields
-        for field in attributes.keys():
+        for field in self.attributes.keys():
             if field not in self.required_fields + self.optional_fields.keys():
                 logging.info("Result attributes contains unknown field: %s" \
                     % field)
 
         # Required fields
         for field in self.required_fields:
-            if not attributes.has_key(field):
+            if not self.attributes.has_key(field):
                 raise Exception, \
                     "Result attributes does not contain a '%s': %s" \
-                    % (field, attributes)
-
-        # Optional fields
-        for field in self.optional_fields.keys():
-            if not attributes.has_key(field):
-                attributes[field] = self.optional_fields[field]
+                    % (field, self.attributes)
 
         # Status field
-        if attributes["status"] not in ALL_STATUS:
+        if self.attributes["status"] not in ALL_STATUS:
             raise Exception, \
-                "Unknown status: %s" % attributes["status"]
-
-        return attributes
+                "Unknown status: %s" % self.attributes["status"]
 
     def __getattr__(self, name):
-        if name in self.attributes:
-            return self.attributes[name]
+        if name not in self.attributes:
+            raise AttributeError, name
 
-        raise AttributeError, name
+        return self.attributes[name]
+
+    def __setattr__(self, name, value):
+        if name not in self.attributes:
+            raise AttributeError, name
+
+        self.attributes[name] = value
+        self._validate()

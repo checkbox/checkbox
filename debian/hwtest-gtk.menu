@@ -1,5 +1,5 @@
 ?package(hwtest-gtk):needs="X11" section="Applications/System/Administration"\
   title="Hardware Testing"\
   description="Interface for hardware details and tests."\
-  command="su-to-root -X -c /usr/bin/hwtest-gtk"\
+  command="gksu /usr/bin/hwtest-gtk"\
   icon="/usr/share/pixmaps/hwtest-gtk.xpm"

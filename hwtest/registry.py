@@ -129,23 +129,34 @@ class Registry(Repository):
     def update(self, foreign):
         raise Exception, "Cannot call update on registry."
 
-    def eval(self, str):
+    def eval(self, source):
         try:
-            if eval(str, {}, self):
+            if eval(source, {}, self):
                 return True
         except Exception:
             pass
 
         return False
 
-    def eval_recursive(self, str):
-        ret = []
-        if self.eval(str):
-            ret.append(self)
+    def eval_recursive(self, source, mask=[False]):
+        values = []
+
+        value = self.eval(source)
+        if type(value) is bool and value is True:
+            values.append(self)
+            mask[0] = True
+        elif type(value) is tuple and True in value:
+            for i in range(len(value)):
+                if value[i] is True or i >= len(mask):
+                    mask[i:i+1] = [value[i]]
+
+            values.append(self)
+       
         for key, value in self.items():
             if isinstance(value, Registry):
-                ret.extend(value.eval_recursive(str))
-        return ret
+                values.extend(value.eval_recursive(source, mask))
+
+        return values
 
 
 class RegistryManager(RepositoryManager, Registry):

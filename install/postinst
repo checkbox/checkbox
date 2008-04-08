@@ -1,6 +1,5 @@
 package=`basename $0 .postinst`
-base_package=`echo $package | sed 's/\(-cli\|-gtk\)$//'`
-config="/usr/share/$base_package/configs/$package.ini"
+config="/etc/hwtest.d/$package.ini"
 
 case "$1" in
     configure)
@@ -9,7 +8,7 @@ case "$1" in
         tempfile=`tempfile -m 0644 -p hwtest`
 
         # Update the temporary file with preseeded values.
-        `dirname $0`/$package.config write $tempfile
+        /usr/share/hwtest/install/config --output=$tempfile $package
 
         # Invoke ucf, which will take care of the rest, and ask
         # the user if he wants to update his file, if it is modified.

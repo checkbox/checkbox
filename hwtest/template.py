@@ -24,6 +24,7 @@ import locale
 import logging
 
 from os import environ
+from gettext import gettext as _
 
 
 class Template(object):
@@ -34,42 +35,42 @@ class Template(object):
 
         self._languages = self._get_languages()
 
-    def _add_modifier(self, locale, modifier):
-        return "%s.%s" % (locale, modifier)
+    def _add_modifier(self, language, modifier):
+        return "%s.%s" % (language, modifier)
 
-    def _add_territory(self, locale, territory):
-        return re.sub(r"([^_@.]+)", "\\1%s" % territory, locale)
+    def _add_territory(self, language, territory):
+        return re.sub(r"([^_@.]+)", "\\1%s" % territory, language)
 
-    def _add_charset(self, locale, charset):
-        return re.sub(r"([^@.]+)", "\\1%s" % charset, locale)
+    def _add_charset(self, language, charset):
+        return re.sub(r"([^@.]+)", "\\1%s" % charset, language)
 
     def _merge_lists(self, primaries, secondaries):
         for primary, secondary in zip(primaries, secondaries):
             yield primary
             yield secondary
 
-    def _get_locale_list(self, locale):
+    def _get_language_list(self, language):
         regex = re.compile(r"(@[^.]+)")
-        modifier_match = regex.search(locale)
-        locale = regex.sub("", locale)
+        modifier_match = regex.search(language)
+        language = regex.sub("", language)
 
-        locale_match = re.match(r"([^_@.]+)(_[^_@.]+)?(\..+)?", locale)
-        if not locale_match:
-            raise Exception, "Unknown locale format: %s" % locale
+        language_match = re.match(r"([^_@.]+)(_[^_@.]+)?(\..+)?", language)
+        if not language_match:
+            raise Exception, "Unknown language format: %s" % language
 
-        ret = [locale_match.group(1)]
+        ret = [language_match.group(1)]
         if modifier_match:
             modifier = modifier_match.group(1)
             modifiers = [self._add_modifier(r, modifier) for r in ret]
             ret = self._merge_lists(modifiers, ret)
 
-        if locale_match.group(2):
-            territory = locale_match.group(2)
+        if language_match.group(2):
+            territory = language_match.group(2)
             territories = [self._add_territory(r, territory) for r in ret]
             ret = self._merge_lists(territories, ret)
 
-        if locale_match.group(3):
-            charset = locale_match.group(3)
+        if language_match.group(3):
+            charset = language_match.group(3)
             charsets = [self._add_charset(r, charset) for r in ret]
             ret = self._merge_lists(charsets, ret)
 
@@ -79,18 +80,26 @@ class Template(object):
         languages = []
         if environ.has_key("LANGUAGE") and environ["LANGUAGE"]:
             for language in environ["LANGUAGE"].split(":"):
-                languages.extend(self._get_locale_list(language))
+                languages.extend(self._get_language_list(language))
 
         language = locale.setlocale(locale.LC_MESSAGES)
-        languages.extend(self._get_locale_list(language))
+        languages.extend(self._get_language_list(language))
 
         return [l.lower() for l in languages]
+
+    def _filter_field(self, field):
+        lines = []
+        separator = "\n\n"
+        for line in field.split(separator):
+            lines.append(_(line))
+
+        return separator.join(lines)
 
     def _filter_languages(self, element):
         filter = {}
         basekeys = {}
         for key in element.keys():
-            basekey = re.sub(r"-.+$", "", key)
+            basekey = re.sub(r"^_?([^-]+).*$", "\\1", key)
             basekeys[basekey] = None
 
         for key in basekeys.keys():
@@ -102,20 +111,19 @@ class Template(object):
                         break
                 if key in filter:
                     continue
-            elif not re.search(r"-c$", key):
+            else:
                 field = "%s-c" % key
                 if field in element:
                     filter[key] = element[field]
                     continue
 
             if key in element:
-                filter[key] = element[key]
+                filter[key] = self._filter_field(element[key])
                 continue
-
-            if re.search(r"-c$", key):
-                field = re.sub(r"-c$", "", key)
+            else:
+                field = "_%s" % key
                 if field in element:
-                    filter[key] = element[field]
+                    filter[key] = self._filter_field(element[field])
                     continue
 
             raise Exception, "No language found for key: %s" % key

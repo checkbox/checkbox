@@ -50,7 +50,7 @@ class SuitesInfo(Plugin):
         elements = template.load_directories(directories, blacklist, whitelist)
 
         for element in elements:
-            test = Test(self._manager.registry, element)
+            test = Test(self._manager.registry, **element)
             for command in test.command, test.description:
                 command.add_path(self.config.scripts_path)
                 command.add_variable("data_path", self.config.data_path)
@@ -66,7 +66,17 @@ class SuitesInfo(Plugin):
             attributes = dict(test.attributes)
             attributes["command"] = str(test.command)
             attributes["description"] = str(test.description)
-            attributes["result"] = test.result.attributes
+            attributes["requires"] = str(test.requires)
+
+            result = test.result
+            attributes["result"] = dict(result.attributes)
+            if result.devices is not None:
+                attributes["result"]["devices"] = [d.id
+                    for d in result.devices]
+            if result.packages is not None:
+                attributes["result"]["packages"] = [p.id
+                    for p in result.packages]
+
             message.append(attributes)
         self._manager.reactor.fire("report-tests", message)
 
