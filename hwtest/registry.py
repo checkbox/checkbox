@@ -129,35 +129,6 @@ class Registry(Repository):
     def update(self, foreign):
         raise Exception, "Cannot call update on registry."
 
-    def eval(self, source):
-        try:
-            if eval(source, {}, self):
-                return True
-        except Exception:
-            pass
-
-        return False
-
-    def eval_recursive(self, source, mask=[False]):
-        values = []
-
-        value = self.eval(source)
-        if type(value) is bool and value is True:
-            values.append(self)
-            mask[0] = True
-        elif type(value) is tuple and True in value:
-            for i in range(len(value)):
-                if value[i] is True or i >= len(mask):
-                    mask[i:i+1] = [value[i]]
-
-            values.append(self)
-       
-        for key, value in self.items():
-            if isinstance(value, Registry):
-                values.extend(value.eval_recursive(source, mask))
-
-        return values
-
 
 class RegistryManager(RepositoryManager, Registry):
     """
@@ -177,3 +148,48 @@ class RegistryManager(RepositoryManager, Registry):
                 entry = section.load_entry(name)
                 items.append((name, entry))
         return items
+
+
+def registry_flatten(registry):
+    def get_properties(properties, key, value):
+        if isinstance(value, Registry):
+            for dict_key, dict_value in value.items():
+                get_properties(properties,
+                    ".".join([key, dict_key]), dict_value)
+        else:
+            properties[key] = value
+
+    properties = {}
+    for key, value in registry.items():
+        get_properties(properties, key, value)
+
+    return properties
+
+def registry_eval(registry, source):
+    try:
+        if eval(source, {}, registry):
+            return True
+    except Exception:
+        pass
+
+    return False
+
+def registry_eval_recursive(registry, source, mask=[False]):
+    values = []
+
+    value = registry_eval(registry, source)
+    if type(value) is bool and value is True:
+        values.append(registry)
+        mask[0] = True
+    elif type(value) is tuple and True in value:
+        for i in range(len(value)):
+            if value[i] is True or i >= len(mask):
+                mask[i:i+1] = [value[i]]
+
+        values.append(registry)
+   
+    for key, value in registry.items():
+        if isinstance(value, Registry):
+            values.extend(registry_eval_recursive(value, source, mask))
+
+    return values

@@ -19,6 +19,7 @@
 # along with HWTest.  If not, see <http://www.gnu.org/licenses/>.
 #
 from hwtest.plugin import Plugin
+from hwtest.registry import registry_eval_recursive
 
 
 class RegistryInfo(Plugin):
@@ -29,7 +30,7 @@ class RegistryInfo(Plugin):
 
     def gather(self):
         # Recursively evaluate a false expression to walk the registry.
-        self._manager.registry.eval_recursive("False")
+        registry_eval_recursive(self._manager.registry, "False")
 
 
 factory = RegistryInfo

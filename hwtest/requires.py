@@ -1,5 +1,7 @@
 from hwtest.lib.cache import cache
 
+from hwtest.registry import registry_eval_recursive
+
 
 class Requires(object):
 
@@ -17,7 +19,8 @@ class Requires(object):
             self._mask = [True]
             return []
 
-        return self._registry.eval_recursive(self._source, self._mask)
+        return registry_eval_recursive(self._registry,
+            self._source, self._mask)
 
     def get_packages(self):
         packages = []
