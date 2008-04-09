@@ -232,6 +232,7 @@ class Test(object):
             if field not in self.required_fields + self.optional_fields.keys():
                 logging.info("Test attributes contains unknown field: %s" \
                     % field)
+                del self.attributes[field]
 
         # Required fields
         for field in self.required_fields:
