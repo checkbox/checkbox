@@ -232,22 +232,26 @@ class GTKInterface(UserInterface):
         test.result.data = self._get_textview("textview_comment")
 
     @GTKHack
-    def show_exchange(self, authentication, message=None, error=None):
+    def show_exchange(self, authentication, reports=[], message=None,
+                      error=None):
         self._notebook.set_current_page(4)
 
         if authentication is not None:
             self._set_text("entry_authentication", authentication)
 
+        all_reports = ["distribution", "devices", "processors",
+                       "packages", "tests"]
+        for report in all_reports:
+            self._set_show("label_%s" % report, report in reports)
+
         if message is not None:
             self._set_markup("label_exchange", message)
 
         if error is not None:
-            markup= "<span color='#FF0000'><b>%s</b></span>" % error
-            self._set_markup("label_exchange_error", markup)
-        else:
-            self._set_markup("label_exchange_error")
+            self.show_error(_("Exchange"), error)
 
         self._run_dialog()
+
         authentication = self._get_text("entry_authentication")
 
         return authentication

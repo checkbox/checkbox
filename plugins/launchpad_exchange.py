@@ -47,21 +47,25 @@ class LaunchpadExchange(Plugin):
             "field.actions.upload": u'Upload'}
 
         for (rt, rh) in [
-             ("exchange", self.exchange),
-             ("report-datetime", self.report_datetime),
              ("report-architecture", self.report_architecture),
+             ("report-datetime", self.report_datetime),
+             ("report-distribution", self.report_distribution),
              ("report-submission_id", self.report_submission_id),
              ("report-system_id", self.report_system_id),
-             ("report-distribution", self.report_distribution),
-             ("report-email", self.report_email),
-             ("report-launchpad", self.report_launchpad)]:
+             ("exchange-email", self.exchange_email),
+             ("exchange-report", self.exchange_report),
+             ("exchange", self.exchange)]:
             self._manager.reactor.call_on(rt, rh)
+
+    def report_architecture(self, message):
+        self._form["field.architecture"] = message
 
     def report_datetime(self, message):
         self._form["field.date_created"] = message
 
-    def report_architecture(self, message):
-        self._form["field.architecture"] = message
+    def report_distribution(self, message):
+        self._form["field.distribution"] = message.distributor_id
+        self._form["field.distroseries"] = message.release
 
     def report_submission_id(self, message):
         self._form["field.submission_key"] = message
@@ -69,15 +73,11 @@ class LaunchpadExchange(Plugin):
     def report_system_id(self, message):
         self._form["field.system"] = message
 
-    def report_distribution(self, message):
-        self._form["field.distribution"] = message.distributor_id
-        self._form["field.distroseries"] = message.release
-
-    def report_email(self, message):
+    def exchange_email(self, message):
         self._form["field.emailaddress"] = message
 
-    def report_launchpad(self, message):
-        self._file = message
+    def exchange_report(self, message):
+        self._report = message
 
     def exchange(self):
         import hwtest.contrib.urllib2_file
@@ -88,7 +88,7 @@ class LaunchpadExchange(Plugin):
             form[field] = str(value).encode("utf-8")
 
         # Compress and add payload to form
-        payload = file(self._file, "r").read()
+        payload = file(self._report, "r").read()
         cpayload = bz2.compress(payload)
         f = StringIO(cpayload)
         f.name = '%s.xml.bz2' % str(gethostname())
@@ -109,7 +109,7 @@ again or upload the following file:
 %s
 
 directly to the hardware database:
-https://launchpad.net/+hwdb/+submit""") % os.path.abspath(self._file))
+https://launchpad.net/+hwdb/+submit""") % os.path.abspath(self._report))
             return
         elif ret.code != 200:
             self._manager.set_error(_("Failed to upload to server,\n"

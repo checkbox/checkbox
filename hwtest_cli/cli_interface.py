@@ -233,7 +233,8 @@ class CLIInterface(UserInterface):
         test.result.status = {_("no"): FAIL, _("yes"): PASS, _("skip"): SKIP}[answer]
         test.result.data = data
 
-    def show_exchange(self, authentication, message=None, error=None):
+    def show_exchange(self, authentication, reports=[], message=None,
+                      error=None):
         title = _("Authentication")
         text = message or _("Please provide your Launchpad email address:")
         dialog = CLILineDialog(title, text)
