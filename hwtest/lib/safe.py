@@ -21,19 +21,35 @@
 import os
 import shutil
 
-from stat import ST_MODE, S_IMODE
+from stat import ST_MODE, S_IMODE, S_ISFIFO
 
+
+def safe_change_mode(path, mode):
+    if not os.path.exists(path):
+        raise Exception, "Path does not exist: %s" % path
+
+    old_mode = os.stat(path)[ST_MODE]
+    if mode != S_IMODE(old_mode):
+        os.chmod(path, mode)
 
 def safe_make_directory(path, mode=0755):
     if os.path.exists(path):
         if not os.path.isdir(path):
             raise Exception, "Path is not a directory: %s" % path
 
-        old_mode = os.stat(path)[ST_MODE]
-        if mode != S_IMODE(old_mode):
-            os.chmod(path, mode)
+        safe_change_mode(path, mode)
     else:
         os.makedirs(path, mode)
+
+def safe_make_fifo(path, mode=0666):
+    if os.path.exists(path):
+        mode = os.stat(path)[ST_MODE]
+        if not S_ISFIFO(mode):
+            raise Exception, "Path is not a FIFO: %s" % path
+
+        safe_change_mode(path, mode)
+    else:
+        os.mkfifo(path, mode)
 
 def safe_remove_directory(path):
     if os.path.exists(path):
