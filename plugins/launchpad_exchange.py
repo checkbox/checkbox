@@ -28,9 +28,10 @@ from gettext import gettext as _
 from socket import gethostname
 from StringIO import StringIO
 
+from hwtest.lib.transport import HTTPTransport
+
 from hwtest.log import format_delta
 from hwtest.plugin import Plugin
-from hwtest.transport import HTTPTransport
 
 
 class LaunchpadExchange(Plugin):
@@ -39,6 +40,7 @@ class LaunchpadExchange(Plugin):
 
     def register(self, manager):
         super(LaunchpadExchange, self).register(manager)
+        self._headers = {}
         self._form = {
             "field.private": False,
             "field.contactable": False,
@@ -48,6 +50,7 @@ class LaunchpadExchange(Plugin):
 
         for (rt, rh) in [
              ("report-architecture", self.report_architecture),
+             ("report-client", self.report_client),
              ("report-datetime", self.report_datetime),
              ("report-distribution", self.report_distribution),
              ("report-submission_id", self.report_submission_id),
@@ -59,6 +62,10 @@ class LaunchpadExchange(Plugin):
 
     def report_architecture(self, message):
         self._form["field.architecture"] = message
+
+    def report_client(self, message):
+        user_agent = "%s/%s" % (message["name"], message["version"])
+        self._headers["User-Agent"] = user_agent
 
     def report_datetime(self, message):
         self._form["field.date_created"] = message
@@ -80,20 +87,18 @@ class LaunchpadExchange(Plugin):
         self._report = message
 
     def exchange(self):
-        import hwtest.contrib.urllib2_file
-
         # Encode form data
         form = {}
         for field, value in self._form.items():
-            form[field] = str(value).encode("utf-8")
+            form[field] = str(value).encode("UTF-8")
 
         # Compress and add payload to form
         payload = file(self._report, "r").read()
-        cpayload = bz2.compress(payload)
-        f = StringIO(cpayload)
-        f.name = '%s.xml.bz2' % str(gethostname())
-        f.size = len(cpayload)
-        form["field.submission_data"] = f
+        compressed_payload = bz2.compress(payload)
+        descriptor = StringIO(compressed_payload)
+        descriptor.name = '%s.xml.bz2' % str(gethostname())
+        descriptor.size = len(compressed_payload)
+        form["field.submission_data"] = descriptor
 
         if logging.getLogger().getEffectiveLevel() <= logging.DEBUG:
             logging.debug("Uncompressed payload length: %d", len(payload))
@@ -101,8 +106,9 @@ class LaunchpadExchange(Plugin):
         self._manager.set_error()
         start_time = time.time()
         transport = HTTPTransport(self.config.transport_url)
-        ret = transport.exchange(form, timeout=int(self.config.timeout))
-        if not ret:
+        response = transport.exchange(form, self._headers,
+            timeout=int(self.config.timeout))
+        if not response:
             self._manager.set_error(_("""\
 Failed to contact server. Please try
 again or upload the following file:
@@ -111,31 +117,27 @@ again or upload the following file:
 directly to the hardware database:
 https://launchpad.net/+hwdb/+submit""") % os.path.abspath(self._report))
             return
-        elif ret.code != 200:
+        elif response.status != 200:
             self._manager.set_error(_("Failed to upload to server,\n"
                 "please try again later."))
             return
 
         if logging.getLogger().getEffectiveLevel() <= logging.DEBUG:
             logging.debug("Response headers:\n%s",
-                          pprint.pformat(ret.headers.items()))
+                pprint.pformat(response.getheaders()))
 
-        headers = ret.headers.getheaders("x-launchpad-hwdb-submission")
-        if not headers:
-            self._manager.set_error(_("Information was not posted to Launchpad."))
-            return
-
-        for header in headers:
-            if "Error" in header:
-                # HACK: this should return a useful error message
-                self._manager.set_error(header)
-                logging.error(header)
-                return
-
-        response = ret.read()
-        logging.info("Sent %d bytes and received %d bytes in %s.",
-                     f.size, len(response),
-                     format_delta(time.time() - start_time))
+        header = response.getheader("x-launchpad-hwdb-submission")
+        if not header:
+            self._manager.set_error(_("Information not posted to Launchpad."))
+        elif "Error" in header:
+            # HACK: this should return a useful error message
+            self._manager.set_error(header)
+            logging.error(header)
+        else:
+            text = response.read()
+            delta = format_delta(time.time() - start_time)
+            logging.info("Sent %d bytes and received %d bytes in %s.",
+                descriptor.size, len(text), delta)
 
 
 factory = LaunchpadExchange
