@@ -92,7 +92,7 @@ class ReportManagerTest(unittest.TestCase):
 
         document = rm.dumps("test1")
         str = document.toprettyxml("")
-        self.assertTrue(str.find("test1") != -1)
+        self.assertTrue("test1" in str)
 
         data = rm.loads(str)
         self.assertTrue(data.has_key("test"))

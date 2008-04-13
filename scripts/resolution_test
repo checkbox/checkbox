@@ -24,7 +24,7 @@ def check_resolution():
 
     command = "xrandr -q"
     xrandr_lines = os.popen(command).readlines()
-    star_lines = [l for l in xrandr_lines if l.find("*") != -1]
+    star_lines = [l for l in xrandr_lines if "*" in l]
     if len(star_lines) != 1:
         error("%s should return a single line with '*'" % command)
 
@@ -37,7 +37,7 @@ def check_resolution():
     vertical = match.group(2)
 
     fields = re.split(r"\s+", star_line)
-    star_fields = [f for f in fields if f.find("*") != -1]
+    star_fields = [f for f in fields if "*" in f]
     if len(star_fields) < 1:
         error("%s should return a refresh rate with '*'" % command)
 
