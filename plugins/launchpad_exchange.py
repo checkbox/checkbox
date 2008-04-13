@@ -104,10 +104,13 @@ class LaunchpadExchange(Plugin):
             logging.debug("Uncompressed payload length: %d", len(payload))
 
         self._manager.set_error()
-        start_time = time.time()
         transport = HTTPTransport(self.config.transport_url)
+
+        start_time = time.time()
         response = transport.exchange(form, self._headers,
             timeout=int(self.config.timeout))
+        end_time = time.time()
+
         if not response:
             self._manager.set_error(_("""\
 Failed to contact server. Please try
@@ -135,9 +138,8 @@ https://launchpad.net/+hwdb/+submit""") % os.path.abspath(self._report))
             logging.error(header)
         else:
             text = response.read()
-            delta = format_delta(time.time() - start_time)
             logging.info("Sent %d bytes and received %d bytes in %s.",
-                descriptor.size, len(text), delta)
+                descriptor.size, len(text), format_delta(end_time - start_time))
 
 
 factory = LaunchpadExchange
