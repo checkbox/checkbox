@@ -1,11 +1,32 @@
+Template: hwtest/plugins/category_prompt/category
+Type: string
+_Description: Hardware Category
+ Category of the hardware: desktop, laptop or server
+
+Template: hwtest/plugins/exchange_prompt/email
+Type: string
+_Description: Launchpad E-mail
+ E-mail address used to sign in to Launchpad.
+
 Template: hwtest/plugins/launchpad_exchange/transport_url
 Type: string
 Default: https://launchpad.net/+hwdb/+submit
-_Description: Transport URL:
+_Description: Transport URL
  URL where to send hardware submissions.
 
 Template: hwtest/plugins/launchpad_report/cache_file
 Type: string
 Default: /var/cache/hwtest/submission.xml
-_Description: Cache file:
+_Description: Cache File
  File where submission information is cached.
+
+Template: hwtest/plugins/proxy_info/http_proxy
+Type: string
+_Description: HTTP Proxy
+ HTTP proxy to use instead of the one specified in environment.
+
+Template: hwtest/plugins/proxy_info/https_proxy
+Type: string
+_Description: HTTPS Proxy
+ HTTPS proxy to use instead of the one specified in environment.
+
