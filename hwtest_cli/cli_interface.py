@@ -72,7 +72,7 @@ class CLIDialog(object):
                         self.put("\010 \010")
                         del input[-1]
                 elif ord(ch) == termios.CKILL:
-		    self.put("\010 \010" * len(input))
+                    self.put("\010 \010" * len(input))
                     input = []
                 else:
                     if not escape:
