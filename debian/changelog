@@ -1,11 +1,21 @@
 hwtest (0.1-0ubuntu8) hardy; urgency=low
 
-  * Fixed packaging bugs.
+  * Fixed internet_test to ping default gateway rather than canonical.com.
+  * Fixed python-support issues to support upgrades of hwtest.
+  * Fixed tooltip to be HIG compliant.
+  * Fixed category to use GTK;System;Settings;.
+  * Fixed command line interface to support escape characters.
+  * Using python-central instead of python-support.
+  * Added support to i18n the .desktop file.
+  * Added support for http_proxy and https_proxy.
+  * Added summary of information being submitted.
 
- -- Marc Tardif <marc@interunion.ca>  Wed, 02 Apr 2008 17:48:38 -0400
+ -- Marc Tardif <marc@interunion.ca>  Thu, 17 Apr 2008 12:01:50 -0400
 
 hwtest (0.1-0ubuntu7) hardy; urgency=low
 
+  * Fixed packaging bugs.
+  * Improved internationalization.
   * Renamed questions and answers to tests and results.
 
  -- Marc Tardif <marc@interunion.ca>  Thu,  6 Mar 2008 10:58:43 -0500
