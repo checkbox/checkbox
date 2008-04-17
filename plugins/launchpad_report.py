@@ -94,7 +94,7 @@ class LaunchpadReport(Plugin):
         safe_make_directory(cache_directory)
 
         file(cache_file, "w").write(payload)
-        self._manager.reactor.fire("report-launchpad", cache_file)
+        self._manager.reactor.fire("exchange-report", cache_file)
 
 
 factory = LaunchpadReport

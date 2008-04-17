@@ -3,6 +3,13 @@ config="/etc/hwtest.d/$package.ini"
 
 case "$1" in
     configure)
+        # Workaround python-support which doesn't remove packages
+        # under /usr/lib/python*
+        for support_dir in python2.4 python2.5; do
+            package_dir="/usr/lib/$support_dir/site-packages/$package"
+            [ -e "$package_dir" ] && rm -fr $package_dir
+        done
+
         # Create a temporary file to generate the suggested
         # configuration file.
         tempfile=`tempfile -m 0644 -p hwtest`

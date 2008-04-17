@@ -18,19 +18,24 @@
 # You should have received a copy of the GNU General Public License
 # along with HWTest.  If not, see <http://www.gnu.org/licenses/>.
 #
+from hwtest.lib.environ import add_variable
+
 from hwtest.plugin import Plugin
-from hwtest.registry import registry_eval_recursive
 
 
-class RegistryInfo(Plugin):
+class ProxyInfo(Plugin):
+
+    optional_attributes = ["http_proxy", "https_proxy"]
 
     def register(self, manager):
-        super(RegistryInfo, self).register(manager)
+        super(ProxyInfo, self).register(manager)
         self._manager.reactor.call_on("gather", self.gather)
 
     def gather(self):
-        # Recursively evaluate a false expression to walk the registry.
-        registry_eval_recursive(self._manager.registry, "False")
+        for attribute in self.optional_attributes:
+            value = getattr(self.config, attribute)
+            if value:
+                add_variable(attribute, value)
 
 
-factory = RegistryInfo
+factory = ProxyInfo

@@ -43,7 +43,7 @@ class hwtest_install_data(install_data, object):
                 files = f[1]
                 i = 0
                 while i < len(files):
-                    if files[i].find("*") > -1:
+                    if "*" in files[i]:
                         for e in glob(files[i]):
                             files.append(e)
                         files.pop(i)
@@ -54,8 +54,7 @@ class hwtest_install_data(install_data, object):
         """Run substitutions on files."""
         super(hwtest_install_data, self).run()
 
-        examplesfiles = [o for o in self.outfiles
-            if o.find("examples") != -1]
+        examplesfiles = [o for o in self.outfiles if "examples" in o]
         if not examplesfiles:
             return
 

@@ -5,12 +5,6 @@ config_file="/etc/hwtest.d/$package.ini"
 
 case "$1" in
     purge)
-        # Workaround for python-support on Dapper
-        python_support_dir="/usr/share/python-support/$package"
-	if [ -d "$python_support_dir" ]; then
-            find $python_support_dir -name \*.pyc | xargs -r rm
-	fi
-
         # mimic dpkg as closely as possible, so remove configuration
         # files with dpkg backup extensions too:
         for ext in '~' '%' .bak .dpkg-tmp .dpkg-new .dpkg-old .dpkg-dist;  do
