@@ -1,11 +1,5 @@
 hwtest (0.1-0ubuntu9) hardy; urgency=low
 
-  * Incremented release because distro bumped it already.
-
- -- Marc Tardif <marc@interunion.ca>  Thu, 17 Apr 2008 15:08:33 -0400
-
-hwtest (0.1-0ubuntu8) hardy; urgency=low
-
   * Fixed internet_test to ping default gateway rather than canonical.com.
   * Fixed python-support issues to support upgrades of hwtest.
   * Fixed tooltip to be HIG compliant.
@@ -17,6 +11,14 @@ hwtest (0.1-0ubuntu8) hardy; urgency=low
   * Added summary of information being submitted.
 
  -- Marc Tardif <marc@interunion.ca>  Thu, 17 Apr 2008 12:01:50 -0400
+
+hwtest (0.1-0ubuntu8) hardy; urgency=low
+
+  * debian/patches/01_change_menu_category.patch:
+    - change the category so the item is moved to system, administration and not
+      the only entry in applications, system tools on a default installation
+
+ -- Sebastien Bacher <seb128@canonical.com>  Mon, 14 Apr 2008 15:49:06 +0200
 
 hwtest (0.1-0ubuntu7) hardy; urgency=low
 
