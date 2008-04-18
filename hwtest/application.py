@@ -28,19 +28,19 @@ from time import sleep
 from logging import StreamHandler, FileHandler, Formatter
 from optparse import OptionParser
 
-from hwtest import reactor
 from hwtest.contrib import bpickle_registry
 
 from hwtest.config import Config
 from hwtest.plugin import PluginManager
+from hwtest.reactor import Reactor
 from hwtest.registry import RegistryManager
 
 
 class Application(object):
 
-    def __init__(self, config, reactor_object):
+    def __init__(self, config, reactor):
         self.config = config
-        self.reactor = reactor_object
+        self.reactor = reactor
 
         # Registry manager setup
         self.registry = RegistryManager(self.config)
@@ -65,15 +65,11 @@ class ApplicationManager(object):
 
     default_delay = 0
     default_log_level = "critical"
-    default_reactor = "Reactor"
 
     def parse_options(self, args):
         parser = OptionParser()
         parser.add_option("--version", action='store_true',
                           help=_("Print version information and exit."))
-        parser.add_option("-r", "--reactor", metavar="NAME",
-                          default=self.default_reactor,
-                          help=_("The type of reactor to use."))
         parser.add_option("-l", "--log", metavar="FILE",
                           help=_("The file to write the log to."))
         parser.add_option("--log-level",
@@ -124,7 +120,6 @@ class ApplicationManager(object):
             sleep(options.delay)
 
         # Reactor setup
-        reactor_class = getattr(reactor, options.reactor)
-        reactor_object = reactor_class()
+        reactor = Reactor()
 
-        return self.application_factory(config, reactor_object)
+        return self.application_factory(config, reactor)

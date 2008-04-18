@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-06 18:40-0400\n"
+"POT-Creation-Date: 2008-04-17 15:09-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,52 +20,68 @@ msgstr ""
 msgid "<b>Comment:</b>"
 msgstr ""
 
-#: ../gtk/hwtest-gtk.glade.h:2 ../hwtest_cli/cli_interface.py:187
+#: ../gtk/hwtest-gtk.glade.h:2
+msgid "Device information"
+msgstr ""
+
+#: ../gtk/hwtest-gtk.glade.h:3
+msgid "Distribution details"
+msgstr ""
+
+#: ../gtk/hwtest-gtk.glade.h:4 ../hwtest_cli/cli_interface.py:187
 #: ../hwtest_cli/cli_interface.py:210
 msgid "Hardware Testing"
 msgstr ""
 
-#: ../gtk/hwtest-gtk.glade.h:3 ../hwtest_gtk/gtk_interface.py:265
+#: ../gtk/hwtest-gtk.glade.h:5 ../hwtest_gtk/gtk_interface.py:269
 msgid "Ne_xt"
 msgstr ""
 
-#: ../gtk/hwtest-gtk.glade.h:4 ../hwtest_cli/cli_interface.py:240
-msgid "Please provide your Launchpad email address:"
-msgstr ""
-
-#: ../gtk/hwtest-gtk.glade.h:5
-msgid "Successfully sent information!"
-msgstr ""
-
 #: ../gtk/hwtest-gtk.glade.h:6
-msgid "_Desktop"
+msgid "Packages installed"
 msgstr ""
 
 #: ../gtk/hwtest-gtk.glade.h:7
-msgid "_Laptop"
+msgid "Processor information"
 msgstr ""
 
 #: ../gtk/hwtest-gtk.glade.h:8
-msgid "_No"
+msgid "Successfully sent information!"
 msgstr ""
 
 #: ../gtk/hwtest-gtk.glade.h:9
-msgid "_Previous"
+msgid "Test results"
 msgstr ""
 
 #: ../gtk/hwtest-gtk.glade.h:10
-msgid "_Server"
+msgid "_Desktop"
 msgstr ""
 
 #: ../gtk/hwtest-gtk.glade.h:11
-msgid "_Skip this test"
+msgid "_Laptop"
 msgstr ""
 
-#: ../gtk/hwtest-gtk.glade.h:12 ../hwtest_gtk/gtk_interface.py:206
-msgid "_Test"
+#: ../gtk/hwtest-gtk.glade.h:12
+msgid "_No"
 msgstr ""
 
 #: ../gtk/hwtest-gtk.glade.h:13
+msgid "_Previous"
+msgstr ""
+
+#: ../gtk/hwtest-gtk.glade.h:14
+msgid "_Server"
+msgstr ""
+
+#: ../gtk/hwtest-gtk.glade.h:15
+msgid "_Skip this test"
+msgstr ""
+
+#: ../gtk/hwtest-gtk.glade.h:16 ../hwtest_gtk/gtk_interface.py:206
+msgid "_Test"
+msgstr ""
+
+#: ../gtk/hwtest-gtk.glade.h:17
 msgid "_Yes"
 msgstr ""
 
@@ -166,27 +182,23 @@ msgstr ""
 msgid "Is your keyboard working properly?"
 msgstr ""
 
-#: ../hwtest/application.py:73
+#: ../hwtest/application.py:72
 msgid "Print version information and exit."
 msgstr ""
 
-#: ../hwtest/application.py:76
-msgid "The type of reactor to use."
-msgstr ""
-
-#: ../hwtest/application.py:78
+#: ../hwtest/application.py:74
 msgid "The file to write the log to."
 msgstr ""
 
-#: ../hwtest/application.py:81
+#: ../hwtest/application.py:77
 msgid "One of debug, info, warning, error or critical."
 msgstr ""
 
-#: ../hwtest/application.py:85
+#: ../hwtest/application.py:81
 msgid "Delay before running the application."
 msgstr ""
 
-#: ../hwtest/application.py:112
+#: ../hwtest/application.py:108
 msgid "Missing configuration file as argument.\n"
 msgstr ""
 
@@ -225,15 +237,19 @@ msgstr ""
 msgid "Please type here and press Ctrl-D when finished:\n"
 msgstr ""
 
-#: ../hwtest_cli/cli_interface.py:239
+#: ../hwtest_cli/cli_interface.py:238
 msgid "Authentication"
 msgstr ""
 
-#: ../hwtest_cli/cli_interface.py:250
+#: ../hwtest_cli/cli_interface.py:239
+msgid "Please provide your Launchpad email address:"
+msgstr ""
+
+#: ../hwtest_cli/cli_interface.py:249
 msgid "Done"
 msgstr ""
 
-#: ../hwtest_cli/cli_interface.py:251
+#: ../hwtest_cli/cli_interface.py:250
 msgid "Successfully sent information to server!"
 msgstr ""
 
@@ -241,11 +257,15 @@ msgstr ""
 msgid "_Test Again"
 msgstr ""
 
-#: ../hwtest_gtk/gtk_interface.py:257
+#: ../hwtest_gtk/gtk_interface.py:251
+msgid "Exchange"
+msgstr ""
+
+#: ../hwtest_gtk/gtk_interface.py:261
 msgid "_Finish"
 msgstr ""
 
-#: ../plugins/auto_prompt.py:61
+#: ../plugins/auto_prompt.py:62
 msgid "Running automatic tests..."
 msgstr ""
 
@@ -257,11 +277,18 @@ msgstr ""
 msgid "Please select the category of your hardware."
 msgstr ""
 
-#: ../plugins/exchange_prompt.py:50
+#: ../plugins/exchange_prompt.py:67
+msgid ""
+"The following information will be sent to the Launchpad\n"
+"hardware database. Please provide the e-mail address you\n"
+"use to sign in to Launchpad to submit this information."
+msgstr ""
+
+#: ../plugins/exchange_prompt.py:75
 msgid "Email address must be in a proper format."
 msgstr ""
 
-#: ../plugins/exchange_prompt.py:54
+#: ../plugins/exchange_prompt.py:79
 msgid "Exchanging information with the server..."
 msgstr ""
 
@@ -288,7 +315,7 @@ msgid ""
 "Thank you for taking the time to test your hardware."
 msgstr ""
 
-#: ../plugins/launchpad_exchange.py:106
+#: ../plugins/launchpad_exchange.py:115
 #, python-format
 msgid ""
 "Failed to contact server. Please try\n"
@@ -299,14 +326,14 @@ msgid ""
 "https://launchpad.net/+hwdb/+submit"
 msgstr ""
 
-#: ../plugins/launchpad_exchange.py:115
+#: ../plugins/launchpad_exchange.py:124
 msgid ""
 "Failed to upload to server,\n"
 "please try again later."
 msgstr ""
 
-#: ../plugins/launchpad_exchange.py:125
-msgid "Information was not posted to Launchpad."
+#: ../plugins/launchpad_exchange.py:134
+msgid "Information not posted to Launchpad."
 msgstr ""
 
 #: ../plugins/report_prompt.py:35
