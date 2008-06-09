@@ -20,8 +20,9 @@
 #
 import re
 
+from hwtest.lib.template_i18n import TemplateI18n
+
 from hwtest.plugin import Plugin
-from hwtest.template import Template
 from hwtest.test import Test
 
 
@@ -46,7 +47,7 @@ class SuitesInfo(Plugin):
             and re.split("\s+", self.config.blacklist) or []
         whitelist = self.config.whitelist \
             and re.split("\s+", self.config.whitelist) or []
-        template = Template("suite", ["name"])
+        template = TemplateI18n("suite", ["name"])
         elements = template.load_directories(directories, blacklist, whitelist)
 
         for element in elements:
