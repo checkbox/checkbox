@@ -61,7 +61,9 @@ class Template(object):
                             "Template %s has a duplicate field '%s'" \
                             " with a new value '%s'." \
                                 % (filename, field, value)
-                    element[field] = value or extended
+                    element[field] = value
+                    if extended:
+                        element["%s_extended" % field] = extended
 
             string = string.strip("\n")
             field = value = extended = ""

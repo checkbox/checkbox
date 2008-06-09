@@ -51,6 +51,9 @@ class SuitesInfo(Plugin):
         elements = template.load_directories(directories, blacklist, whitelist)
 
         for element in elements:
+            if "description_extended" in element:
+                element["description"] = element.pop("description_extended")
+
             test = Test(self._manager.registry, **element)
             for command in test.command, test.description:
                 command.add_path(self.config.scripts_path)
