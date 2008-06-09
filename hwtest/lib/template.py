@@ -50,10 +50,6 @@ class Template(object):
             element = {}
 
             def _save(field, value, extended):
-                if value and extended:
-                    raise Exception, \
-                        "Template %s has both a value and an extended value." \
-                            % filename
                 extended = extended.rstrip("\n")
                 if field:
                     if element.has_key(field):
