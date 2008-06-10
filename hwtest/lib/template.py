@@ -135,7 +135,7 @@ class Template(object):
             names = [n for n in os.listdir(directory) if n not in blacklist]
 
         for name in names:
-            if name.startswith("."):
+            if name.startswith(".") or name.endswith("~"):
                 logging.info("Ignoring filename: %s", name)
                 continue
 
