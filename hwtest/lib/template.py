@@ -30,16 +30,19 @@ class Template(object):
         self._unique_fields = unique_fields
 
     def _reader(self, fd, size=4096, delimiter="\n\n"):
-        buffer = ""
+        buffer_old = ""
         while True:
-            lines = (buffer + fd.read(size)).split(delimiter)
-            buffer = lines.pop(-1)
-            if not lines:
+            buffer_new = fd.read(size)
+            if not buffer_new:
                 break
+
+            lines = (buffer_old + buffer_new).split(delimiter)
+            buffer_old = lines.pop(-1)
+
             for line in lines:
                 yield line
 
-        yield buffer
+        yield buffer_old
 
     def load_descriptor(self, descriptor, filename="<stream>"):
         elements = []
