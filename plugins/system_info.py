@@ -57,7 +57,7 @@ class SystemInfo(Plugin):
                     system.vendor,
                     system.formfactor,
                     hardware.vendor,
-                    hardware.produdct]:
+                    hardware.product]:
                 fingerprint.update(str(field))
 
             system_id = fingerprint.hexdigest()
