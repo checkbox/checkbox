@@ -30,10 +30,7 @@ class CategoryPrompt(Plugin):
     def register(self, manager):
         super(CategoryPrompt, self).register(manager)
         self._category = self.config.category
-
-        for (rt, rh) in [
-             ("prompt-category", self.prompt_category)]:
-            self._manager.reactor.call_on(rt, rh)
+        self._manager.reactor.call_on("prompt-category", self.prompt_category)
 
     def prompt_category(self, interface):
         registry = self._manager.registry

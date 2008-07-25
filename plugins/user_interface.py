@@ -34,15 +34,14 @@ class UserInterface(Plugin):
         interface = interface_class(self.config)
 
         iterator = Iterator([
-             "prompt-permission",
-             "prompt-intro",
+             "prompt-begin",
              "prompt-gather",
              "prompt-category",
              "prompt-manual",
              "prompt-auto",
              "prompt-report",
              "prompt-exchange",
-             "prompt-final"])
+             "prompt-finish"])
 
         while True:
             try:

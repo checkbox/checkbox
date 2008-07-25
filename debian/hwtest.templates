@@ -1,7 +1,13 @@
+Template: hwtest/plugins/boot_prompt/enable
+Type: boolean
+Default: false
+_Description: Boot Enable
+ Enable running hwtest at boot time.
+
 Template: hwtest/plugins/category_prompt/category
 Type: string
 _Description: Hardware Category
- Category of the hardware: desktop, laptop or server
+ Category of the hardware: desktop, laptop or server.
 
 Template: hwtest/plugins/exchange_prompt/email
 Type: string

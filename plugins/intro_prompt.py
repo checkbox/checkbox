@@ -27,9 +27,10 @@ class IntroPrompt(Plugin):
 
     def register(self, manager):
         super(IntroPrompt, self).register(manager)
-        self._manager.reactor.call_on("prompt-intro", self.prompt_intro)
+        # Introduction should be prompted last
+        self._manager.reactor.call_on("prompt-begin", self.prompt_begin, 100)
 
-    def prompt_intro(self, interface):
+    def prompt_begin(self, interface):
         interface.show_intro(_("Welcome to Hardware Testing!"),
             _("""\
 This application will gather information from your hardware. Then,

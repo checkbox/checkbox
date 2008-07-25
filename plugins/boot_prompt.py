@@ -18,17 +18,22 @@
 # You should have received a copy of the GNU General Public License
 # along with HWTest.  If not, see <http://www.gnu.org/licenses/>.
 #
+from hwtest.lib.conversion import string_to_type
+from hwtest.lib.environ import get_variable
+
 from hwtest.plugin import Plugin
 
 
-class FinalPrompt(Plugin):
+class BootPrompt(Plugin):
 
     def register(self, manager):
-        super(FinalPrompt, self).register(manager)
-        self._manager.reactor.call_on("prompt-finish", self.prompt_finish)
+        super(BootPrompt, self).register(manager)
+        self._manager.reactor.call_on("prompt-begin", self.prompt_begin)
 
-    def prompt_finish(self, interface):
-        interface.show_final()
+    def prompt_begin(self, interface):
+        enable = string_to_type(self.config.enable)
+        if get_variable("UPSTART_JOB") and not enable:
+            self._manager.reactor.stop_all()
 
 
-factory = FinalPrompt
+factory = BootPrompt

@@ -29,11 +29,9 @@ class PermissionPrompt(Plugin):
 
     def register(self, manager):
         super(PermissionPrompt, self).register(manager)
-        for (rt, rh) in [
-             ("prompt-permission", self.prompt_permission)]:
-            self._manager.reactor.call_on(rt, rh)
+        self._manager.reactor.call_on("prompt-begin", self.prompt_begin)
 
-    def prompt_permission(self, interface):
+    def prompt_begin(self, interface):
         if os.getuid() != 0:
             self._manager.reactor.fire("prompt-error", interface,
                 _("Administrator Access Needed"),

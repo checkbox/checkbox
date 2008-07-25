@@ -32,9 +32,7 @@ class SystemInfo(Plugin):
         super(SystemInfo, self).register(manager)
 
         # System report should be generated early.
-        for (rt, rh, rp) in [
-             ("report", self.report, -10)]:
-            self._manager.reactor.call_on(rt, rh, rp)
+        self._manager.reactor.call_on("report", self.report, -10)
 
     def report(self):
         system_id = self.config.system_id

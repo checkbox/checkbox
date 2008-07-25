@@ -18,17 +18,20 @@
 # You should have received a copy of the GNU General Public License
 # along with HWTest.  If not, see <http://www.gnu.org/licenses/>.
 #
+from time import sleep
+
 from hwtest.plugin import Plugin
 
 
-class FinalPrompt(Plugin):
+class DelayPrompt(Plugin):
 
-    def register(self, manager):
-        super(FinalPrompt, self).register(manager)
-        self._manager.reactor.call_on("prompt-finish", self.prompt_finish)
+    required_attributes = ["timeout"]
 
-    def prompt_finish(self, interface):
-        interface.show_final()
+    def __init__(self, *args, **kwargs):
+        super(DelayPrompt, self).__init__(*args, **kwargs)
+        # Force delay as early as possible
+        timeout = float(self.config.timeout)
+        sleep(timeout)
 
 
-factory = FinalPrompt
+factory = DelayPrompt

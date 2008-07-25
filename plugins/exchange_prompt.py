@@ -60,9 +60,19 @@ class ExchangePrompt(Plugin):
     def report_tests(self, message):
         self._reports.append("tests")
 
+    def fire_exchange(self, interface):
+        self._manager.reactor.fire("exchange-email", self._email)
+        interface.show_wait(
+            _("Exchanging information with the server..."),
+            lambda: self._manager.reactor.fire("exchange"))
+        return self._manager.get_error()
+
     def prompt_exchange(self, interface):
         error = None
-        while True:
+        if self._email:
+            error = self.fire_exchange(interface)
+
+        while error:
             self._email = interface.show_exchange(self._email, self._reports,
                 _("""\
 The following information will be sent to the Launchpad
@@ -74,13 +84,7 @@ use to sign in to Launchpad to submit this information."""), error=error)
             elif not self._email_regexp.match(self._email):
                 error = _("Email address must be in a proper format.")
             else:
-                self._manager.reactor.fire("exchange-email", self._email)
-                interface.show_wait(
-                    _("Exchanging information with the server..."),
-                    lambda: self._manager.reactor.fire("exchange"))
-                error = self._manager.get_error()
-                if not error:
-                    break
+                error = self.fire_exchange(interface)
 
 
 factory = ExchangePrompt

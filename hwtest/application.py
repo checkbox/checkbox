@@ -23,7 +23,6 @@ import sys
 import logging
 
 from gettext import gettext as _
-from time import sleep
 
 from logging import StreamHandler, FileHandler, Formatter
 from optparse import OptionParser
@@ -63,22 +62,24 @@ class ApplicationManager(object):
 
     application_factory = Application
 
-    default_delay = 0
     default_log_level = "critical"
 
     def parse_options(self, args):
         parser = OptionParser()
-        parser.add_option("--version", action='store_true',
+        parser.add_option("--version",
+                          action="store_true",
                           help=_("Print version information and exit."))
-        parser.add_option("-l", "--log", metavar="FILE",
+        parser.add_option("-l", "--log",
+                          metavar="FILE",
                           help=_("The file to write the log to."))
         parser.add_option("--log-level",
                           default=self.default_log_level,
                           help=_("One of debug, info, warning, error or critical."))
-        parser.add_option("--delay",
-                          default=self.default_delay,
-                          type="int",
-                          help=_("Delay before running the application."))
+        parser.add_option("-c", "--config",
+                          action="append",
+                          type="string",
+                          default=[],
+                          help=_("Configuration override parameters."))
         return parser.parse_args(args)
 
     def create_application(self, args=sys.argv):
@@ -109,15 +110,12 @@ class ApplicationManager(object):
             sys.exit(1)
 
         config_file = os.path.expanduser(args[1])
-        config = Config(config_file)
+        config = Config(config_file, options.config)
 
         # Check options
         if options.version:
             print config.get_defaults().version
             sys.exit(0)
-
-        if options.delay:
-            sleep(options.delay)
 
         # Reactor setup
         reactor = Reactor()

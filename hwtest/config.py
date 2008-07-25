@@ -79,9 +79,8 @@ class ConfigDefaults(ConfigSection):
 
 class Config(object):
 
-    def __init__(self, path):
+    def __init__(self, path, configs=[]):
         self.path = path
-        self.sections = {}
 
         self._parser = ConfigParser()
         self._parser._defaults = IncludeDict(self._parser)
@@ -90,14 +89,25 @@ class Config(object):
             raise Exception, "No such configuration file: %s" % path
         self._parser.read(path)
 
+        for config in configs:
+            match = re.match("(.*)/([^/]+)=(.*)", config)
+            if not match:
+                raise Exception, "Invalid config string: %s" % config
+
+            (name, option, value) = match.groups()
+            if not self._parser.has_section(name):
+                self._parser.add_section(name)
+
+            self._parser.set(name, option, value)
+
     def get_defaults(self):
         attributes = self._parser.defaults()
         return ConfigDefaults(self, 'DEFAULT', attributes)
 
-    def get_section(self, section_name):
-        if section_name in self._parser.sections():
-            attributes = dict(self._parser.items(section_name))
-            return ConfigSection(self, section_name, attributes)
+    def get_section(self, name):
+        if self._parser.has_section(name):
+            attributes = dict(self._parser.items(name))
+            return ConfigSection(self, name, attributes)
 
         return None
 
