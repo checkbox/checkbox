@@ -1,7 +1,7 @@
 #!/usr/bin/python
 #
 # This program is meant to be called by the debian installer in order to
-# create configuration files for the hwtest package and derived packages
+# create configuration files for the checkbox package and derived packages
 # based on the preseed values.
 
 import os
@@ -48,9 +48,9 @@ class Config(ConfigParser):
 
 
 class Install(object):
-    """Install module for generating hwtest configuration files.
+    """Install module for generating checkbox configuration files.
 
-    The hwtest module and derivatives use a configuration file format
+    The checkbox module and derivatives use a configuration file format
     compatible with ConfigParser. The values for the keys defined in
     this file can be preseeded during the installation of the package by
     using this module during the config phase of the package installation

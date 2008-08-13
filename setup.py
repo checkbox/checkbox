@@ -32,11 +32,11 @@ def substitute_variables(infile, outfile, variables={}):
         f_out.write(line)
 
 
-class hwtest_install_data(install_data, object):
+class checkbox_install_data(install_data, object):
 
     def finalize_options(self):
         """Add wildcard support for filenames."""
-        super(hwtest_install_data, self).finalize_options()
+        super(checkbox_install_data, self).finalize_options()
 
         for f in self.data_files:
             if type(f) != str:
@@ -52,14 +52,14 @@ class hwtest_install_data(install_data, object):
 
     def run(self):
         """Run substitutions on files."""
-        super(hwtest_install_data, self).run()
+        super(checkbox_install_data, self).run()
 
         examplesfiles = [o for o in self.outfiles if "examples" in o]
         if not examplesfiles:
             return
 
         # Create etc directory
-        etcdir = convert_path("/etc/hwtest.d")
+        etcdir = convert_path("/etc/checkbox.d")
         if not os.path.isabs(etcdir):
             etcdir = os.path.join(self.install_dir, etcdir)
         elif self.root:
@@ -83,47 +83,46 @@ class hwtest_install_data(install_data, object):
                     "version = dev": "version = %s" % version})
 
 
-class hwtest_install_scripts(install_scripts, object):
+class checkbox_install_scripts(install_scripts, object):
 
     def run(self):
         """Run substitutions on files."""
-        super(hwtest_install_scripts, self).run()
+        super(checkbox_install_scripts, self).run()
 
         # Substitute directory in defaults.py
         for outfile in self.outfiles:
             infile = os.path.join("bin", os.path.basename(outfile))
             substitute_variables(infile, outfile, {
-                "HWTEST_DIRECTORY=.": "HWTEST_DIRECTORY=/usr/share/hwtest"})
+                "CHECKBOX_DIRECTORY=.": "CHECKBOX_DIRECTORY=/usr/share/checkbox"})
 
 
 setup(
-    name = "hwtest",
+    name = "checkbox",
     version = changelog_version(),
     author = "Marc Tardif",
     author_email = "marc.tardif@canonical.com",
     license = "GPL",
-    description = "Hardware Testing",
+    description = "Checkbox System Testing",
     long_description = """
-This project provides an interfaces for gathering hardware details
-and prompting the user for tests. This information can then be sent
-to Launchpad.
+This project provides an extensible interface for system testing. The
+results can then be sent to Launchpad.
 """,
     data_files = [
-        ("share/pixmaps/", ["gtk/hwtest-gtk.xpm"]),
-        ("share/hwtest/", ["run"]),
-        ("share/hwtest/data/", ["data/*"]),
-        ("share/hwtest/examples/", ["examples/*"]),
-        ("share/hwtest/install/", ["install/*"]),
-        ("share/hwtest/plugins/", ["plugins/*.py"]),
-        ("share/hwtest/registries/", ["registries/*.py"]),
-        ("share/hwtest/scripts/", ["scripts/*"]),
-        ("share/hwtest/gtk/", ["gtk/hwtest-gtk.glade", "gtk/*.png"])],
-    scripts = ["bin/hwtest-gtk", "bin/hwtest-cli"],
-    packages = ["hwtest", "hwtest.contrib", "hwtest.lib", "hwtest.reports",
-        "hwtest.registries", "hwtest_cli", "hwtest_gtk"],
+        ("share/pixmaps/", ["gtk/checkbox-gtk.xpm"]),
+        ("share/checkbox/", ["run"]),
+        ("share/checkbox/data/", ["data/*"]),
+        ("share/checkbox/examples/", ["examples/*"]),
+        ("share/checkbox/install/", ["install/*"]),
+        ("share/checkbox/plugins/", ["plugins/*.py"]),
+        ("share/checkbox/registries/", ["registries/*.py"]),
+        ("share/checkbox/scripts/", ["scripts/*"]),
+        ("share/checkbox/gtk/", ["gtk/checkbox-gtk.glade", "gtk/*.png"])],
+    scripts = ["bin/checkbox-gtk", "bin/checkbox-cli"],
+    packages = ["checkbox", "checkbox.contrib", "checkbox.lib", "checkbox.reports",
+        "checkbox.registries", "checkbox_cli", "checkbox_gtk"],
     cmdclass = {
-        "install_data": hwtest_install_data,
-        "install_scripts": hwtest_install_scripts,
+        "install_data": checkbox_install_data,
+        "install_scripts": checkbox_install_scripts,
         "build" : build_extra,
         "build_i18n" :  build_i18n }
 )

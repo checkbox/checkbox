@@ -1,6 +1,0 @@
-#! /bin/sh -e
-
-package=`dirname $0`
-. $package/hwtest.postrm
-
-#DEBHELPER#

@@ -1,5 +1,5 @@
 package=`basename $0 .postinst`
-config="/etc/hwtest.d/$package.ini"
+config="/etc/checkbox.d/$package.ini"
 
 case "$1" in
     configure)
@@ -12,10 +12,10 @@ case "$1" in
 
         # Create a temporary file to generate the suggested
         # configuration file.
-        tempfile=`tempfile -m 0644 -p hwtest`
+        tempfile=`tempfile -m 0644 -p checkbox`
 
         # Update the temporary file with preseeded values.
-        /usr/share/hwtest/install/config --output=$tempfile $package
+        /usr/share/checkbox/install/config --output=$tempfile $package
 
         # Invoke ucf, which will take care of the rest, and ask
         # the user if he wants to update his file, if it is modified.

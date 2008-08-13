@@ -1,4 +1,4 @@
-Source: hwtest
+Source: checkbox
 Section: utils
 Priority: optional
 XSBC-Original-Maintainer: Marc Tardif <marc.tardif@canonical.com>
@@ -6,38 +6,66 @@ Maintainer: Ubuntu MOTU Developers <ubuntu-motu@lists.ubuntu.com>
 Standards-Version: 3.7.3
 XS-Python-Version: current
 Build-Depends: cdbs (>= 0.4.43), debhelper (>= 5.0.37.2), python-central, python-dev (>= 2.4), po-debconf, python-distutils-extra
-Vcs-Bzr: https://code.launchpad.net/~hardware-certification/hwtest/trunk
+Vcs-Bzr: https://code.launchpad.net/~hardware-certification/checkbox/trunk
+
+Package: checkbox
+Section: python
+Architecture: all
+Replaces: hwtest (<< 0.1-0ubuntu12)
+Provides: hwtest
+Depends: ${misc:Depends}, ${python:Depends}, debconf, ucf
+Recommends: dpkg, hal, lsb-release, python-gst
+Conflicts: hwtest (<< 0.1-0ubuntu12)
+XB-Python-Version: ${python:Versions}
+Description: Checkbox System Testing
+ This project provides an extensible interface for system testing. The
+ results can then be sent to Launchpad.
+
+Package: checkbox-cli
+Architecture: all
+Replaces: hwtest-cli (<< 0.1-0ubuntu12)
+Provides: hwtest-cli
+Depends: checkbox
+Conflicts: hwtest-cli (<< 0.1-0ubuntu12)
+XB-Python-Version: ${python:Versions}
+Description: Checkbox CLI
+ This project provides an extensible interface for system testing. The
+ results can then be sent to Launchpad.
+ .
+ This package provides a command line interface for answering tests.
+
+Package: checkbox-gtk
+Section: gnome
+Architecture: all
+Replaces: hwtest-gtk (<< 0.1-0ubuntu12)
+Provides: hwtest-gtk
+Depends: checkbox, gksu, python-gtk2, python-glade2
+Conflicts: hwtest-gtk (<< 0.1-0ubuntu12)
+XB-Python-Version: ${python:Versions}
+Description: Checkbox GTK Interface
+ This project provides an extensible interface for system testing. The
+ results can then be sent to Launchpad.
+ .
+ This package provides a GTK interface for answering tests.
 
 Package: hwtest
 Section: python
 Architecture: all
-Depends: ${misc:Depends}, ${python:Depends}, debconf, ucf
-Recommends: dpkg, hal, lsb-release, python-gst
-XB-Python-Version: ${python:Versions}
-Description: Hardware Testing
- This project provides an interface for gathering hardware details and
- prompting the user for tests. This information can then be sent
- to Launchpad.
+Depends: checkbox
+Description: Transitional package to checkbox
+ This package is a transitional package for renaming hwtest to checkbox.
 
 Package: hwtest-cli
 Architecture: all
-Depends: hwtest
-XB-Python-Version: ${python:Versions}
-Description: CLI interface for the hwtest program
- This project provides an interface for gathering hardware details and
- prompting the user for tests. This information can then be sent
- to Launchpad.
- .
- This package provides a command-line interface for answering tests.
+Depends: checkbox-cli
+Description: Transitional package to checkbox-cli
+ This package is a transitional package for renaming hwtest-cli to
+ checkbox-cli.
 
 Package: hwtest-gtk
 Section: gnome
 Architecture: all
-Depends: hwtest, gksu, python-gtk2, python-glade2
-XB-Python-Version: ${python:Versions}
-Description: GTK interface for the hwtest program
- This project provides an interface for gathering hardware details and
- prompting the user for tests. This information can then be sent
- to Launchpad.
- .
- This package provides a GTK interface for answering tests.
+Depends: checkbox-gtk
+Description: Transitional package to checkbox-gtk
+ This package is a transitional package for renaming hwtest-gtk to
+ checkbox-gtk.

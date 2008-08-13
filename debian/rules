@@ -9,8 +9,8 @@ include /usr/share/cdbs/1/rules/simple-patchsys.mk
 DEB_DH_INSTALL_SOURCEDIR := debian/tmp
 DEB_PYTHON_INSTALL_ARGS_ALL := --no-compile
 
-binary-install/hwtest::
-	dh_link /etc/hwtest.d usr/share/hwtest/configs
+binary-install/checkbox::
+	dh_link /etc/checkbox.d usr/share/checkbox/configs
 
 clean::
 	-find . -name \*.mo -exec rm {} \;

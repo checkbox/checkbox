@@ -1,0 +1,5 @@
+#!/bin/bash
+
+export CHECKBOX_DIRECTORY=.
+
+python $CHECKBOX_DIRECTORY/run "$@" $CHECKBOX_DIRECTORY/configs/$(basename $0).ini

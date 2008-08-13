@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: hwtest 0.1\n"
+"Project-Id-Version: checkbox 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-04-06 16:03-0400\n"
 "PO-Revision-Date: 2008-04-02 20:50+0000\n"
@@ -16,56 +16,56 @@ msgstr ""
 "X-Launchpad-Export-Date: 2008-04-03 00:48+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
-#: ../gtk/hwtest-gtk.glade.h:1
+#: ../gtk/checkbox-gtk.glade.h:1
 msgid "<b>Comment:</b>"
 msgstr "<b>Commentaire :</b>"
 
-#: ../gtk/hwtest-gtk.glade.h:2 ../hwtest_cli/cli_interface.py:167
-#: ../hwtest_cli/cli_interface.py:190
-msgid "Hardware Testing"
+#: ../gtk/checkbox-gtk.glade.h:2 ../checkbox_cli/cli_interface.py:167
+#: ../checkbox_cli/cli_interface.py:190
+msgid "System Testing"
 msgstr "Test du matériel"
 
-#: ../gtk/hwtest-gtk.glade.h:3 ../hwtest_gtk/gtk_interface.py:265
+#: ../gtk/checkbox-gtk.glade.h:3 ../checkbox_gtk/gtk_interface.py:265
 msgid "Ne_xt"
 msgstr "Sui_vant"
 
-#: ../gtk/hwtest-gtk.glade.h:4 ../hwtest_cli/cli_interface.py:220
+#: ../gtk/checkbox-gtk.glade.h:4 ../checkbox_cli/cli_interface.py:220
 msgid "Please provide your Launchpad email address:"
 msgstr "Veuillez donner votre adresse de courriel Launchpad :"
 
-#: ../gtk/hwtest-gtk.glade.h:5
+#: ../gtk/checkbox-gtk.glade.h:5
 msgid "Successfully sent information!"
 msgstr "Informations envoyées avec succès !"
 
-#: ../gtk/hwtest-gtk.glade.h:6
+#: ../gtk/checkbox-gtk.glade.h:6
 msgid "_Desktop"
 msgstr "_Bureau"
 
-#: ../gtk/hwtest-gtk.glade.h:7
+#: ../gtk/checkbox-gtk.glade.h:7
 msgid "_Laptop"
 msgstr "_Portable"
 
-#: ../gtk/hwtest-gtk.glade.h:8
+#: ../gtk/checkbox-gtk.glade.h:8
 msgid "_No"
 msgstr "_Non"
 
-#: ../gtk/hwtest-gtk.glade.h:9
+#: ../gtk/checkbox-gtk.glade.h:9
 msgid "_Previous"
 msgstr "_Précédent"
 
-#: ../gtk/hwtest-gtk.glade.h:10
+#: ../gtk/checkbox-gtk.glade.h:10
 msgid "_Server"
 msgstr "_Serveur"
 
-#: ../gtk/hwtest-gtk.glade.h:11
+#: ../gtk/checkbox-gtk.glade.h:11
 msgid "_Skip this test"
 msgstr "Pa_sser ce test"
 
-#: ../gtk/hwtest-gtk.glade.h:12 ../hwtest_gtk/gtk_interface.py:206
+#: ../gtk/checkbox-gtk.glade.h:12 ../checkbox_gtk/gtk_interface.py:206
 msgid "_Test"
 msgstr "_Tester"
 
-#: ../gtk/hwtest-gtk.glade.h:13
+#: ../gtk/checkbox-gtk.glade.h:13
 msgid "_Yes"
 msgstr "_Oui"
 
@@ -168,82 +168,82 @@ msgstr ""
 msgid "Is your keyboard working properly?"
 msgstr "Est-ce que votre clavier fonctionne bien?"
 
-#: ../hwtest/application.py:73
+#: ../checkbox/application.py:73
 msgid "Print version information and exit."
 msgstr "Affiche les informations de version et quitte."
 
-#: ../hwtest/application.py:76
+#: ../checkbox/application.py:76
 msgid "The type of reactor to use."
 msgstr "Le type de réacteur à utiliser."
 
-#: ../hwtest/application.py:78
+#: ../checkbox/application.py:78
 msgid "The file to write the log to."
 msgstr "Le fichier où écrire le journal."
 
-#: ../hwtest/application.py:81
+#: ../checkbox/application.py:81
 msgid "One of debug, info, warning, error or critical."
 msgstr "Soit debug, info, warning, error ou critical."
 
-#: ../hwtest/application.py:85
+#: ../checkbox/application.py:85
 msgid "Delay before running the application."
 msgstr "Délai avant d'exécuter l'application."
 
-#: ../hwtest/application.py:112
+#: ../checkbox/application.py:112
 msgid "Missing configuration file as argument.\n"
 msgstr "Fichier de configuration manquant en argument.\n"
 
-#: ../hwtest_cli/cli_interface.py:97
+#: ../checkbox_cli/cli_interface.py:97
 msgid "Press any key to continue..."
 msgstr "Appuyez sur n'importe quelle touche pour continuer..."
 
-#: ../hwtest_cli/cli_interface.py:106
+#: ../checkbox_cli/cli_interface.py:106
 #, python-format
 msgid "Please choose (%s): "
 msgstr "Veuillez choisir (%s) : "
 
-#: ../hwtest_cli/cli_interface.py:192 ../hwtest_gtk/gtk_interface.py:189
+#: ../checkbox_cli/cli_interface.py:192 ../checkbox_gtk/gtk_interface.py:189
 #, python-format
 msgid "Running test: %s"
 msgstr "Exécution du test : %s"
 
-#: ../hwtest_cli/cli_interface.py:199 ../hwtest_cli/cli_interface.py:213
+#: ../checkbox_cli/cli_interface.py:199 ../checkbox_cli/cli_interface.py:213
 msgid "yes"
 msgstr "oui"
 
-#: ../hwtest_cli/cli_interface.py:199 ../hwtest_cli/cli_interface.py:207
-#: ../hwtest_cli/cli_interface.py:213
+#: ../checkbox_cli/cli_interface.py:199 ../checkbox_cli/cli_interface.py:207
+#: ../checkbox_cli/cli_interface.py:213
 msgid "no"
 msgstr "non"
 
-#: ../hwtest_cli/cli_interface.py:199 ../hwtest_cli/cli_interface.py:213
+#: ../checkbox_cli/cli_interface.py:199 ../checkbox_cli/cli_interface.py:213
 msgid "skip"
 msgstr "passer"
 
-#: ../hwtest_cli/cli_interface.py:208
+#: ../checkbox_cli/cli_interface.py:208
 msgid "Please provide comments about the failure."
 msgstr "Veuillez procurer des commentaires de l'erreur."
 
-#: ../hwtest_cli/cli_interface.py:210
+#: ../checkbox_cli/cli_interface.py:210
 msgid "Please type here and press Ctrl-D when finished:\n"
 msgstr "Veuillez taper ici et peser Ctrl-D lorsque fini:\n"
 
-#: ../hwtest_cli/cli_interface.py:219
+#: ../checkbox_cli/cli_interface.py:219
 msgid "Authentication"
 msgstr "Authentification"
 
-#: ../hwtest_cli/cli_interface.py:230
+#: ../checkbox_cli/cli_interface.py:230
 msgid "Done"
 msgstr "Fini"
 
-#: ../hwtest_cli/cli_interface.py:231
+#: ../checkbox_cli/cli_interface.py:231
 msgid "Successfully sent information to server!"
 msgstr "Informations envoyées avec succès !"
 
-#: ../hwtest_gtk/gtk_interface.py:204
+#: ../checkbox_gtk/gtk_interface.py:204
 msgid "_Test Again"
 msgstr "_Tester à nouveau"
 
-#: ../hwtest_gtk/gtk_interface.py:257
+#: ../checkbox_gtk/gtk_interface.py:257
 msgid "_Finish"
 msgstr "_Terminer"
 
@@ -256,7 +256,7 @@ msgid "Category"
 msgstr "Catégorie"
 
 #: ../plugins/category_prompt.py:62
-msgid "Please select the category of your hardware."
+msgid "Please select the category of your system."
 msgstr "Veuillez choisir la catégorie de votre matériel."
 
 #: ../plugins/exchange_prompt.py:50
@@ -272,13 +272,13 @@ msgid "Gathering information from your system..."
 msgstr "Rassemblement d'informations sur votre système..."
 
 #: ../plugins/intro_prompt.py:33
-msgid "Welcome to Hardware Testing!"
+msgid "Welcome to System Testing!"
 msgstr "Bienvenue sur le test de matériel !"
 
 #: ../plugins/intro_prompt.py:34
 msgid ""
-"This application will gather information from your hardware. Then,\n"
-"you will be asked manual tests to confirm that the hardware is working\n"
+"This application will gather information from your system. Then,\n"
+"you will be asked manual tests to confirm that the system is working\n"
 "properly. Finally, you will be asked for the e-mail address you use\n"
 "to sign in to Launchpad in order to submit the information and your\n"
 "results.\n"
@@ -287,7 +287,7 @@ msgid ""
 "\n"
 "  https://launchpad.net/+login\n"
 "\n"
-"Thank you for taking the time to test your hardware."
+"Thank you for taking the time to test your system."
 msgstr ""
 "Cette application rassemblera des informations sur votre matériel.\n"
 "Il vous sera ensuite demandé d'effectuer des tests manuels pour\n"
@@ -308,7 +308,7 @@ msgid ""
 "again or upload the following file:\n"
 "%s\n"
 "\n"
-"directly to the hardware database:\n"
+"directly to the system database:\n"
 "https://launchpad.net/+hwdb/+submit"
 msgstr ""
 "Échec pour contacter le serveur. Veuillez\n"

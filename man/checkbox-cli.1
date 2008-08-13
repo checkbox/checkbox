@@ -1,0 +1,45 @@
+.TH checkbox\-cli 1 "February 04, 2008" "Marc Tardif"
+
+.SH NAME
+
+checkbox\-cli \- Command line interface for system testing
+
+.SH SYNOPSIS
+
+.B checkbox\-cli
+.RI [ OPTIONS ]
+
+.SH DESCRIPTION
+
+This application will gather information from your system. Then,
+you will be asked manual tests to confirm that the system is working
+properly. Finally, you will be asked for the e-mail address you use
+to sign in to Launchpad in order to submit the information and your
+results.
+
+.SH OPTIONS
+
+.TP
+.B \-l \fIfile\fR, \fB\-\-log\fR=\fIfile
+The file to write the log to.
+
+.TP
+.B \-\-log-level
+One of debug, info, warning, error or critical.
+
+.TP
+.B \-\-delay
+Delay before running the application.
+
+.TP
+.B \-\-version
+Print version information and exit.
+
+.TP
+.B \-\-help
+Print a usage message briefly summarizing these command-line options.
+
+.SH AUTHOR
+.B checkbox
+and the accompanying tools are developed by Marc Tardif
+<marc.tardif@canonical.com>.

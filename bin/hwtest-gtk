@@ -1,5 +1,0 @@
-#!/bin/bash
-
-export HWTEST_DIRECTORY=.
-
-python $HWTEST_DIRECTORY/run "$@" $HWTEST_DIRECTORY/configs/$(basename $0).ini
