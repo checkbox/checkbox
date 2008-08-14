@@ -102,20 +102,30 @@ class TestManager(object):
         def architecture_exclude_func(test, architecture):
             """Excluder function which removes test when the architectures
                field exists and doesn't meet the given requirements."""
-            if architecture and architecture not in test.architectures:
-                logging.debug("Architecture not available for test: %s"
-                    % test.name)
-                return True
+            if test.architectures:
+                if not architecture:
+                    logging.debug("No system architecture, "
+                        "skipping test: %s" % test.name)
+                    return True
+                elif architecture not in test.architectures:
+                    logging.debug("System architecture not supported, "
+                        "skipping test: %s" % test.name)
+                    return True
 
             return False
 
         def category_exclude_func(test, category):
             """Excluder function which removes test when the categories
                field exists and doesn't meet the given requirements."""
-            if category and category not in test.categories:
-                logging.debug("Category not available for test: %s"
-                    % test.name)
-                return True
+            if test.categories:
+                if not category:
+                    logging.debug("No system category, "
+                        "skipping test: %s" % test.name)
+                    return True
+                elif category not in test.categories:
+                    logging.debug("System category not supported, "
+                        "skipping test: %s" % test.name)
+                    return True
 
             return False
 
@@ -173,8 +183,8 @@ class Test(object):
     command:       Command to run for the test.
     depends:       List of names on which this test depends. So, if
                    the other test fails, this test will be skipped.
-    requires:      List of registry expressions on which are requirements
-                   for this test: 'input.mouse' in info.capabilities
+    requires:      Registry expressions which are requirements for
+                   this test: 'input.mouse' in info.capabilities
     timeout:       Timeout for running the command.
     optional:      Boolean expression set to True if this test is optional
                    or False if this test is required.
@@ -182,8 +192,8 @@ class Test(object):
 
     required_fields = ["name", "plugin", "description", "suite"]
     optional_fields = {
-        "architectures": ALL_ARCHITECTURES,
-        "categories": ALL_CATEGORIES,
+        "architectures": [],
+        "categories": [],
         "command": None,
         "depends": [],
         "requires": None,
