@@ -18,7 +18,9 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
+import os
 import re
+import logging
 
 from checkbox.lib.cache import cache
 
@@ -28,10 +30,10 @@ from checkbox.registries.map import MapRegistry
 
 
 class DeviceRegistry(DataRegistry):
-    """Registry for HAL device information.
+    """Registry for HW device information.
 
     Each item contained in this registry consists of the properties of
-    the corresponding HAL device.
+    the corresponding HW device.
     """
 
     @cache
@@ -108,6 +110,21 @@ class HwRegistry(CommandRegistry):
     Each item contained in this registry consists of the hardware id as
     key and the corresponding device registry as value.
     """
+
+    optional_attributes = CommandRegistry.optional_attributes + ["version"]
+
+    @cache
+    def __str__(self):
+        logging.info("Running command: %s", self.config.version)
+        version = os.popen(self.config.version).read().strip()
+        numbers = version.split(".")
+        if len(numbers) == 3 \
+           and numbers[0] == "B" \
+           and int(numbers[1]) == 2 \
+           and int(numbers[2]) < 13:
+            self.command = self.command.replace(" -numeric", "")
+
+        return super(HwRegistry, self).__str__()
 
     @cache
     def items(self):
