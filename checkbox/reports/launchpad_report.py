@@ -149,7 +149,7 @@ class ProcessorsReport(Report):
         processors = []
         for processor in (p for p in node.childNodes if p.localName == "processor"):
             value = self._manager.call_loads(processor)
-            value["name"] = package.getAttribute("name")
+            value["name"] = processor.getAttribute("name")
             processors.append(value)
 
         return processors
