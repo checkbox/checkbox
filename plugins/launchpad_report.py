@@ -44,16 +44,22 @@ class LaunchpadReport(Plugin):
         # Launchpad report should be generated last.
         for (rt, rh, rp) in [
              ("report", self.report, 100),
+             ("report-architecture", self.report_architecture, 0),
              ("report-client", self.report_client, 0),
              ("report-datetime", self.report_datetime, 0),
-             ("report-architecture", self.report_architecture, 0),
-             ("report-system_id", self.report_system_id, 0),
              ("report-distribution", self.report_distribution, 0),
-             ("report-devices", self.report_devices, 0),
+             ("report-hal", self.report_hal, 0),
              ("report-packages", self.report_packages, 0),
              ("report-processors", self.report_processors, 0),
+             ("report-system_id", self.report_system_id, 0),
              ("report-tests", self.report_tests, 0)]:
             self._manager.reactor.call_on(rt, rh, rp)
+
+    def report_architecture(self, message):
+        self._report["summary"]["architecture"] = message
+
+    def report_hal(self, message):
+        self._report["hardware"]["hal"] = message
 
     def report_client(self, message):
         self._report["summary"]["client"] = message
@@ -61,25 +67,19 @@ class LaunchpadReport(Plugin):
     def report_datetime(self, message):
         self._report["summary"]["date_created"] = message
 
-    def report_architecture(self, message):
-        self._report["summary"]["architecture"] = message
-
-    def report_system_id(self, message):
-        self._report["summary"]["system_id"] = message
-
     def report_distribution(self, message):
         self._report["software"]["lsbrelease"] = dict(message)
         self._report["summary"]["distribution"] = message.distributor_id
         self._report["summary"]["distroseries"] = message.release
-
-    def report_devices(self, message):
-        self._report["hardware"]["hal"] = message
 
     def report_packages(self, message):
         self._report["software"]["packages"] = message
 
     def report_processors(self, message):
         self._report["hardware"]["processors"] = message
+
+    def report_system_id(self, message):
+        self._report["summary"]["system_id"] = message
 
     def report_tests(self, message):
         self._report["questions"].extend(message)

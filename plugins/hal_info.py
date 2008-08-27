@@ -21,10 +21,10 @@
 from checkbox.plugin import Plugin
 
 
-class DevicesInfo(Plugin):
+class HalInfo(Plugin):
 
     def register(self, manager):
-        super(DevicesInfo, self).register(manager)
+        super(HalInfo, self).register(manager)
         self._manager.reactor.call_on("report", self.report)
 
     def report(self):
@@ -32,7 +32,7 @@ class DevicesInfo(Plugin):
         message["version"] = self._manager.registry.hald.version
         message["devices"] = self._manager.registry.hal
         if message["devices"]:
-            self._manager.reactor.fire("report-devices", message)
+            self._manager.reactor.fire("report-hal", message)
 
 
-factory = DevicesInfo
+factory = HalInfo
