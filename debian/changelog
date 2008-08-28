@@ -4,28 +4,28 @@ checkbox (0.1-0ubuntu13) intrepid; urgency=low
 
  -- Marc Tardif <marc@interunion.ca>  Wed, 13 Aug 2008 11:29:26 -0400
 
-checkbox (0.1-0ubuntu12) intrepid; urgency=low
+hwtest (0.1-0ubuntu12) intrepid; urgency=low
 
   * Added newlines to German introduction message.
 
  -- Marc Tardif <marc@interunion.ca>  Mon, 16 Jun 2008 11:03:29 -0400
 
-checkbox (0.1-0ubuntu11) intrepid; urgency=low
+hwtest (0.1-0ubuntu11) intrepid; urgency=low
 
   * Ignore editor backup files when loading test suites (LP: #237954)
 
  -- Steve Magoun <steve.magoun@canonical.com>  Fri, 06 Jun 2008 13:38:43 -0400
 
-checkbox (0.1-0ubuntu10) hardy; urgency=low
+hwtest (0.1-0ubuntu10) hardy; urgency=low
 
   * Fixed xalign and yalign in exchange summary.
 
  -- Marc Tardif <marc@interunion.ca>  Mon, 21 Apr 2008 15:07:39 -0400
 
-checkbox (0.1-0ubuntu9) hardy; urgency=low
+hwtest (0.1-0ubuntu9) hardy; urgency=low
 
   * Fixed internet_test to ping default gateway rather than canonical.com.
-  * Fixed python-support issues to support upgrades of checkbox.
+  * Fixed python-support issues to support upgrades of hwtest.
   * Fixed tooltip to be HIG compliant.
   * Fixed category to use GTK;System;Settings;.
   * Fixed command line interface to support escape characters.
@@ -36,7 +36,7 @@ checkbox (0.1-0ubuntu9) hardy; urgency=low
 
  -- Marc Tardif <marc@interunion.ca>  Thu, 17 Apr 2008 12:01:50 -0400
 
-checkbox (0.1-0ubuntu8) hardy; urgency=low
+hwtest (0.1-0ubuntu8) hardy; urgency=low
 
   * debian/patches/01_change_menu_category.patch:
     - change the category so the item is moved to system, administration and not
@@ -44,7 +44,7 @@ checkbox (0.1-0ubuntu8) hardy; urgency=low
 
  -- Sebastien Bacher <seb128@canonical.com>  Mon, 14 Apr 2008 15:49:06 +0200
 
-checkbox (0.1-0ubuntu7) hardy; urgency=low
+hwtest (0.1-0ubuntu7) hardy; urgency=low
 
   * Fixed packaging bugs.
   * Improved internationalization.
@@ -52,14 +52,14 @@ checkbox (0.1-0ubuntu7) hardy; urgency=low
 
  -- Marc Tardif <marc@interunion.ca>  Thu,  6 Mar 2008 10:58:43 -0500
 
-checkbox (0.1-0ubuntu6) hardy; urgency=low
+hwtest (0.1-0ubuntu6) hardy; urgency=low
 
   * Upload to hardy/universe (without the .bzr files).
   * Make package conformant with current Python policy.
 
  -- Matthias Klose <doko@ubuntu.com>  Tue, 11 Mar 2008 14:06:02 +0000
 
-checkbox (0.1-0ubuntu5) hardy; urgency=low
+hwtest (0.1-0ubuntu5) hardy; urgency=low
 
   * Set default timeout to None instead of 60 seconds.
   * Updated copyright information.
@@ -68,7 +68,7 @@ checkbox (0.1-0ubuntu5) hardy; urgency=low
 
  -- Marc Tardif <marc@interunoin.ca>  Thu, 28 Feb 2008 17:07:07 -0500
 
-checkbox (0.1-0ubuntu4) hardy; urgency=low
+hwtest (0.1-0ubuntu4) hardy; urgency=low
 
   * Improved text in questions text file.
   * Improved user experience by only showing auto questions
@@ -78,9 +78,9 @@ checkbox (0.1-0ubuntu4) hardy; urgency=low
 
  -- Marc Tardif <marc@interunion.ca>  Wed, 27 Feb 2008 23:12:24 -0500
 
-checkbox (0.1-0ubuntu3) hardy; urgency=low
+hwtest (0.1-0ubuntu3) hardy; urgency=low
 
-  * Fixed checkbox_cli so that it doesn't strip the DISPLAY environment
+  * Fixed hwtest_cli so that it doesn't strip the DISPLAY environment
     variable.
   * Fixed system_info plugin so that it does a better effort for
     gathering system information instead of relying on non standard
@@ -88,14 +88,14 @@ checkbox (0.1-0ubuntu3) hardy; urgency=low
 
  -- Marc Tardif <marc@interunion.ca>  Wed, 27 Feb 2008 10:52:33 -0500
 
-checkbox (0.1-0ubuntu2) hardy; urgency=low
+hwtest (0.1-0ubuntu2) hardy; urgency=low
 
   * Fixed packaging following lintian error.
   * Added packages registry and plugin.
 
  -- Marc Tardif <marc@interunion.ca>  Tue,  5 Feb 2008 15:02:26 -0500
 
-checkbox (0.1-0ubuntu1) hardy; urgency=low
+hwtest (0.1-0ubuntu1) hardy; urgency=low
 
   * Initial Release.
 
