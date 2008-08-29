@@ -20,7 +20,7 @@
 #
 import unittest
 
-from checkbox.iterator import Iterator
+from checkbox.iterator import Iterator, IteratorExclude, IteratorPostRepeat
 
 
 class IteratorTest(unittest.TestCase):
@@ -124,3 +124,73 @@ class IteratorTest(unittest.TestCase):
         self.assertTrue(i.next() == 'a')
         i = iter(i)
         self.assertTrue(i.next() == 'a')
+
+
+class IteratorExcludeTest(IteratorTest):
+
+    iterator_class = IteratorExclude
+
+    def test_next_func(self):
+        e = self.iterator_class(['a', 'b'], next_func=lambda x: x == 'a')
+        # next until after last element
+        self.assertTrue(e.next() == 'b')
+        try: e.next()
+        except StopIteration: pass
+        else: self.fail('next should raise exception')
+        # prev until before first element
+        self.assertTrue(e.prev() == 'b')
+        self.assertTrue(e.prev() == 'a')
+        try: e.prev()
+        except StopIteration: pass
+        else: self.fail('prev should raise exception')
+
+    def test_prev_func(self):
+        e = self.iterator_class(['a', 'b'], prev_func=lambda x: x == 'a')
+        # next until after last element
+        self.assertTrue(e.next() == 'a')
+        self.assertTrue(e.next() == 'b')
+        try: e.next()
+        except StopIteration: pass
+        else: self.fail('next should raise exception')
+        # prev until before first element
+        self.assertTrue(e.prev() == 'b')
+        try: e.prev()
+        except StopIteration: pass
+        else: self.fail('prev should raise exception')
+
+
+class IteratorPostRepeatTest(IteratorTest):
+
+    iterator_class = IteratorPostRepeat
+
+    i = 0
+    def increment(self):
+        self.i += 1
+
+    def test_next_func(self):
+        self.i = 0
+        r = self.iterator_class([1, 2], lambda x: self.increment())
+        self.assertTrue(self.i == 0)
+        self.assertTrue(r.next() == 1)
+        self.assertTrue(self.i == 1)
+        self.assertTrue(r.next() == 2)
+        self.assertTrue(self.i == 2)
+        try: r.next()
+        except StopIteration: pass
+        else: self.fail('next should raise exception')
+        self.assertTrue(self.i == 2)
+
+    def test_prev_func(self):
+        self.i = 0
+        r = self.iterator_class([1, 2], lambda x: self.increment())
+        self.assertTrue(self.i == 0)
+        self.assertTrue(r.next() == 1)
+        self.assertTrue(self.i == 1)
+        self.assertTrue(r.next() == 2)
+        self.assertTrue(self.i == 2)
+        self.assertTrue(r.prev() == 1)
+        self.assertTrue(self.i == 2)
+        try: r.prev()
+        except StopIteration: pass
+        else: self.fail('prev should raise exception')
+        self.assertTrue(self.i == 2)
