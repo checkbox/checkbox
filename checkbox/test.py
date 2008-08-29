@@ -31,9 +31,8 @@ import logging
 
 from checkbox.command import Command
 from checkbox.description import Description
-from checkbox.excluder import Excluder
-from checkbox.iterator import Iterator, NEXT, PREV
-from checkbox.repeater import PreRepeater
+from checkbox.iterator import (Iterator, IteratorExclude,
+    IteratorPreRepeat, NEXT, PREV)
 from checkbox.requires import Requires
 from checkbox.resolver import Resolver
 from checkbox.result import Result, FAIL, SKIP
@@ -82,7 +81,7 @@ class TestManager(object):
         dependencies and enforces constraints defined in fields.
         """
         def dependent_prerepeat_func(test, resolver):
-            """Pre repeater function which assigns the SKIP status to
+            """IteratorPreRepeat function which assigns the SKIP status to
                dependents when a test has a status of FAIL or SKIP."""
             result = test.result
             if result and (result.status == FAIL or result.status == SKIP):
@@ -90,8 +89,8 @@ class TestManager(object):
                     dependent.result.status = SKIP
 
         def requires_exclude_func(test):
-            """Excluder function which removes test when the requires
-               field contains a False value."""
+            """IteratorExclude function which removes test when the
+               requires field contains a False value."""
             if False in test.requires.get_mask():
                 logging.debug("Test '%s' does not pass requires field: %s"
                     % (test.name, test.requires))
@@ -100,8 +99,9 @@ class TestManager(object):
             return False
 
         def architecture_exclude_func(test, architecture):
-            """Excluder function which removes test when the architectures
-               field exists and doesn't meet the given requirements."""
+            """IteratorExclude function which removes test when the
+               architectures field exists and doesn't meet the given
+               requirements."""
             if test.architectures:
                 if not architecture:
                     logging.debug("No system architecture, "
@@ -115,8 +115,9 @@ class TestManager(object):
             return False
 
         def category_exclude_func(test, category):
-            """Excluder function which removes test when the categories
-               field exists and doesn't meet the given requirements."""
+            """IteratorExclude function which removes test when
+               the categories field exists and doesn't meet the given
+               requirements."""
             if test.categories:
                 if not category:
                     logging.debug("No system category, "
@@ -137,17 +138,17 @@ class TestManager(object):
 
         tests = resolver.get_dependents()
         tests_iter = Iterator(tests)
-        tests_iter = PreRepeater(tests_iter,
+        tests_iter = IteratorPreRepeat(tests_iter,
             lambda test, resolver=resolver: \
                    dependent_prerepeat_func(test, resolver))
-        tests_iter = Excluder(tests_iter,
+        tests_iter = IteratorExclude(tests_iter,
             requires_exclude_func, requires_exclude_func)
-        tests_iter = Excluder(tests_iter,
+        tests_iter = IteratorExclude(tests_iter,
             lambda test, architecture=self._architecture: \
                    architecture_exclude_func(test, architecture),
             lambda test, architecture=self._architecture: \
                    architecture_exclude_func(test, architecture))
-        tests_iter = Excluder(tests_iter,
+        tests_iter = IteratorExclude(tests_iter,
             lambda test, category=self._category: \
                    category_exclude_func(test, category),
             lambda test, category=self._category: \
