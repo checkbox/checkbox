@@ -37,9 +37,11 @@ from checkbox.registry import RegistryManager
 
 class Application(object):
 
-    def __init__(self, config, reactor):
+    reactor_factory = Reactor
+
+    def __init__(self, config):
         self.config = config
-        self.reactor = reactor
+        self.reactor = self.reactor_factory()
 
         # Registry manager setup
         self.registry = RegistryManager(self.config)
@@ -117,7 +119,4 @@ class ApplicationManager(object):
             print config.get_defaults().version
             sys.exit(0)
 
-        # Reactor setup
-        reactor = Reactor()
-
-        return self.application_factory(config, reactor)
+        return self.application_factory(config)
