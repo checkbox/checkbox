@@ -23,7 +23,9 @@ class Resolver:
     Main class. Instantiate with the root directory of your names.
     """
 
-    def __init__(self):
+    def __init__(self, cmp=None):
+        self.cmp = cmp
+
         # detect repeated resolution attempts - these indicate some circular dependency
         self.reentrant_resolution = set()
 
@@ -84,7 +86,7 @@ class Resolver:
     def get_dependencies(self, name):
         return self.resolve(name)
 
-    def get_dependents(self, name=None, cmp=None):
+    def get_dependents(self, name=None):
         dependents = []
         if name:
             # Immediate dependents
@@ -95,7 +97,7 @@ class Resolver:
             dependents = filter(lambda x : len(self.resolve(x)) == 1, self.names)
 
         index = 0
-        dependents = sorted(dependents, cmp)
+        dependents = sorted(dependents, self.cmp)
         while index < len(dependents):
             sub_dependents = self.get_dependents(dependents[index])
             if sub_dependents:
