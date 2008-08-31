@@ -41,7 +41,7 @@ class ExchangePrompt(Plugin):
              ("report-distribution", self.report_distribution),
              ("report-packages", self.report_packages),
              ("report-processors", self.report_processors),
-             ("report-tests", self.report_tests),
+             ("report-results", self.report_results),
              ("prompt-exchange", self.prompt_exchange)]:
             self._manager.reactor.call_on(rt, rh)
 
@@ -57,7 +57,7 @@ class ExchangePrompt(Plugin):
     def report_processors(self, message):
         self._reports.append("processors")
 
-    def report_tests(self, message):
+    def report_results(self, message):
         self._reports.append("tests")
 
     def fire_exchange(self, interface):

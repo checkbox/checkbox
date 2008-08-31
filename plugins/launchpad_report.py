@@ -52,7 +52,7 @@ class LaunchpadReport(Plugin):
              ("report-packages", self.report_packages, 0),
              ("report-processors", self.report_processors, 0),
              ("report-system_id", self.report_system_id, 0),
-             ("report-tests", self.report_tests, 0)]:
+             ("report-results", self.report_results, 0)]:
             self._manager.reactor.call_on(rt, rh, rp)
 
     def report_architecture(self, message):
@@ -81,7 +81,7 @@ class LaunchpadReport(Plugin):
     def report_system_id(self, message):
         self._report["summary"]["system_id"] = message
 
-    def report_tests(self, message):
+    def report_results(self, message):
         self._report["questions"].extend(message)
 
     def report(self):

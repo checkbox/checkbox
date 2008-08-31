@@ -33,12 +33,12 @@ class SuitesInfo(Plugin):
 
     def register(self, manager):
         super(SuitesInfo, self).register(manager)
-        self.tests = {}
+        self.results = {}
 
         for (rt, rh) in [
              ("gather", self.gather),
              ("report", self.report),
-             ("report-test", self.report_test)]:
+             ("report-result", self.report_result)]:
             self._manager.reactor.call_on(rt, rh)
 
     def gather(self):
@@ -61,19 +61,22 @@ class SuitesInfo(Plugin):
 
             self._manager.reactor.fire("test-%s" % test.plugin, test)
 
-    def report_test(self, test):
-        self.tests[test.name] = test
+    def report_result(self, result):
+        self.results[result.test.name] = result
 
     def report(self):
         message = []
-        for test in self.tests.values():
+        for result in self.results.values():
+            test = result.test
             attributes = dict(test.attributes)
             attributes["command"] = str(test.command)
             attributes["description"] = str(test.description)
             attributes["requires"] = str(test.requires)
+            attributes["result"] = dict(result.attributes)
 
             message.append(attributes)
-        self._manager.reactor.fire("report-tests", message)
+
+        self._manager.reactor.fire("report-results", message)
 
 
 factory = SuitesInfo
