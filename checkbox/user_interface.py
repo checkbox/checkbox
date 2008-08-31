@@ -38,8 +38,9 @@ class UserInterface(object):
         self.gettext_domain = "checkbox"
         gettext.textdomain(self.gettext_domain)
 
-    def do_function(self, function):
-        thread = REThread(target=function, name="do_function")
+    def do_function(self, function, *args, **kwargs):
+        thread = REThread(target=function, name="do_function",
+            args=args, kwargs=kwargs)
         thread.start()
 
         while thread.isAlive():
@@ -49,6 +50,8 @@ class UserInterface(object):
             except KeyboardInterrupt:
                 sys.exit(1)
         thread.exc_raise()
+
+        return thread.return_value()
 
     def show_wait(self, message, function):
         raise NotImplementedError, \
