@@ -23,7 +23,7 @@ import re
 from gettext import gettext as _
 
 from checkbox.plugin import Plugin
-from checkbox.iterator import PREV
+from checkbox.iterator import NEXT, PREV
 
 
 class ExchangePrompt(Plugin):
@@ -32,8 +32,8 @@ class ExchangePrompt(Plugin):
 
     def register(self, manager):
         super(ExchangePrompt, self).register(manager)
-        self._email = self.config.email
         self._email_regexp = re.compile(r"^\S+@\S+.\S+$", re.I)
+        self._email = None
         self._reports = []
 
         for (rt, rh) in [
@@ -69,7 +69,8 @@ class ExchangePrompt(Plugin):
 
     def prompt_exchange(self, interface):
         error = None
-        if self._email:
+        if self.config.email and interface.direction == NEXT:
+            self._email = self.config.email
             error = self.fire_exchange(interface)
             if not error:
                 return
