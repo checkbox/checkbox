@@ -59,7 +59,7 @@ class CategoryPrompt(Plugin):
                 _("Please select the category of your system."),
                 self._category)
 
-        self._manager.reactor.fire("interface-category", self._category)
+        self._manager.reactor.fire("report-category", self._category)
 
 
 factory = CategoryPrompt

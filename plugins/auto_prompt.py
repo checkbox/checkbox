@@ -20,47 +20,26 @@
 #
 from gettext import gettext as _
 
-from checkbox.lib.cache import cache
-
 from checkbox.plugin import Plugin
-from checkbox.test import TestManager
 
 
 class AutoPrompt(Plugin):
 
     def register(self, manager):
         super(AutoPrompt, self).register(manager)
-        self._test_manager = TestManager()
 
-        for (rt, rh) in [
-             ("interface-category", self.interface_category),
-             ("test-auto", self.test_auto),
-             ("prompt-auto", self.prompt_auto)]:
-            self._manager.reactor.call_on(rt, rh)
+        for (rt, rh, rp) in [
+             ("prompt-test-.*", self.prompt_test_auto, 100)]:
+            self._manager.reactor.call_on(rt, rh, rp)
 
-    def interface_category(self, category):
-        self._test_manager.set_category(category)
+    def _run_auto(self, test):
+        result = test.command()
+        self._manager.reactor.fire("report-result", result)
 
-    def test_auto(self, test):
-        self._test_manager.add_test(test)
-
-    def _run_auto(self):
-        for test in self._test_manager.get_iterator():
-            test.command()
-            test.description()
-
-            result = test.result
-            result.status = test.command.get_status()
-            result.data = test.command.get_data()
-            result.duration = test.command.get_duration()
-
-            self._manager.reactor.fire("report-test", test)
-
-    @cache
-    def prompt_auto(self, interface):
-        if self._test_manager.get_count():
+    def prompt_test_auto(self, interface, test):
+        if str(test.command):
             interface.show_wait(_("Running automatic tests..."),
-                self._run_auto)
+                self._run_auto, test)
 
 
 factory = AutoPrompt

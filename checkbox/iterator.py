@@ -21,10 +21,12 @@
 import types
 
 
-PREV = 0
+PREV = -1
 NEXT = 1
 
+
 class Iterator(object):
+
     def __init__(self, elements=[]):
         self.elements = elements
         self.index = -1
@@ -33,11 +35,11 @@ class Iterator(object):
         self.index = -1
         return self
 
-    def has_next(self):
+    def has_next(self, *args, **kwargs):
         return self.index < len(self.elements) - 1
 
-    def next(self):
-        if not self.has_next():
+    def next(self, *args, **kwargs):
+        if not self.has_next(*args, **kwargs):
             self.index = len(self.elements)
             raise StopIteration
 
@@ -49,11 +51,11 @@ class Iterator(object):
         if self.index < len(self.elements):
             self.index += 1
 
-    def has_prev(self):
+    def has_prev(self, *args, **kwargs):
         return self.index > 0
 
-    def prev(self):
-        if not self.has_prev():
+    def prev(self, *args, **kwargs):
+        if not self.has_prev(*args, **kwargs):
             raise StopIteration
 
         self.index -= 1
@@ -64,11 +66,20 @@ class Iterator(object):
         if self.index > -1:
             self.index -= 1
 
-    def go(self, direction):
+    def last(self, *args, **kwargs):
+        while True:
+            try:
+                self.next(*args, **kwargs)
+            except StopIteration:
+                break
+
+        return self
+
+    def go(self, direction, *args, **kwargs):
         if direction == NEXT:
-            element = self.next()
+            element = self.next(*args, **kwargs)
         elif direction == PREV:
-            element = self.prev()
+            element = self.prev(*args, **kwargs)
         else:
             raise Exception, "Unknown direction: %s" % direction
 
@@ -76,9 +87,8 @@ class Iterator(object):
 
 
 class IteratorExclude(Iterator):
-    def __init__(self, elements=[],
-                 next_func=lambda x: False,
-                 prev_func=lambda x: False):
+
+    def __init__(self, elements=[], next_func=None, prev_func=None):
         if type(elements) is types.ListType:
             self.iterator = Iterator(elements)
         elif isinstance(elements, Iterator):
@@ -92,44 +102,46 @@ class IteratorExclude(Iterator):
         self.iterator = iter(self.iterator)
         return self
 
-    def has_next(self):
-        if self.iterator.has_next():
-            element = self.iterator.next()
-            if self.next_func(element):
-                return self.has_next()
+    def has_next(self, *args, **kwargs):
+        if self.iterator.has_next(*args, **kwargs):
+            element = self.iterator.next(*args, **kwargs)
+            if self.next_func is None \
+               or self.next_func(element, *args, **kwargs):
+                return self.has_next(*args, **kwargs)
             else:
                 self.iterator._force_prev()
                 return True
 
         return False
 
-    def next(self):
-        if not self.has_next():
+    def next(self, *args, **kwargs):
+        if not self.has_next(*args, **kwargs):
             self.iterator._force_next()
             raise StopIteration
 
-        element = self.iterator.next()
+        element = self.iterator.next(*args, **kwargs)
         return element
 
     def _force_next(self):
         self.iterator._force_next()
 
-    def has_prev(self):
-        if self.iterator.has_prev():
-            element = self.iterator.prev()
-            if self.prev_func(element):
-                return self.has_prev()
+    def has_prev(self, *args, **kwargs):
+        if self.iterator.has_prev(*args, **kwargs):
+            element = self.iterator.prev(*args, **kwargs)
+            if self.prev_func is None \
+               or self.prev_func(element, *args, **kwargs):
+                return self.has_prev(*args, **kwargs)
             else:
                 self.iterator._force_next()
                 return True
 
         return False
 
-    def prev(self):
-        if not self.has_prev():
+    def prev(self, *args, **kwargs):
+        if not self.has_prev(*args, **kwargs):
             raise StopIteration
 
-        element = self.iterator.prev()
+        element = self.iterator.prev(*args, **kwargs)
         return element
 
     def _force_prev(self):
@@ -137,14 +149,16 @@ class IteratorExclude(Iterator):
 
 
 class IteratorRepeat(Iterator):
-    def __init__(self, elements=[], repeat_func=lambda x: x):
+
+    def __init__(self, elements=[], next_func=None, prev_func=None):
         if type(elements) is types.ListType:
             self.iterator = Iterator(elements)
         elif isinstance(elements, Iterator):
             self.iterator = elements
         else:
             raise Exception, "%s: invalid iterator type" % type(elements)
-        self.repeat_func = repeat_func
+        self.next_func = next_func
+        self.prev_func = prev_func
         self.element = None
 
     def __iter__(self):
@@ -152,39 +166,53 @@ class IteratorRepeat(Iterator):
         self.element = None
         return self
 
-    def has_next(self):
-        return self.iterator.has_next()
+    def has_next(self, *args, **kwargs):
+        return self.iterator.has_next(*args, **kwargs)
 
-    def next(self):
-        self.element = self.iterator.next()
+    def next(self, *args, **kwargs):
+        self.element = self.iterator.next(*args, **kwargs)
         return self.element
 
     def _force_next(self):
         self.iterator._force_next()
 
-    def has_prev(self):
-        return self.iterator.has_prev()
+    def has_prev(self, *args, **kwargs):
+        return self.iterator.has_prev(*args, **kwargs)
 
-    def prev(self):
-        self.element = self.iterator.prev()
+    def prev(self, *args, **kwargs):
+        self.element = self.iterator.prev(*args, **kwargs)
         return self.element
 
     def _force_prev(self):
         self.iterator._force_prev()
 
 
-# Before before retrieving an element. Note that the last element will
+# Before retrieving an element. Note that the last element will
 # be repeated.
 class IteratorPreRepeat(IteratorRepeat):
-    def next(self):
-        if self.element:
-            self.repeat_func(self.element)
-        return super(IteratorPreRepeat, self).next()
+
+    def next(self, *args, **kwargs):
+        if self.element and self.next_func is not None:
+            self.next_func(self.element, *args, **kwargs)
+        return super(IteratorPreRepeat, self).next(*args, **kwargs)
+
+    def prev(self, *args, **kwargs):
+        if self.element and self.prev_func is not None:
+            self.prev_func(self.element, *args, **kwargs)
+        return super(IteratorPreRepeat, self).prev(*args, **kwargs)
 
 
 # After retrieving an element
 class IteratorPostRepeat(IteratorRepeat):
-    def next(self):
-        element = super(IteratorPostRepeat, self).next()
-        self.repeat_func(element)
+
+    def next(self, *args, **kwargs):
+        element = super(IteratorPostRepeat, self).next(*args, **kwargs)
+        if self.next_func is not None:
+            self.next_func(element, *args, **kwargs)
+        return element
+
+    def prev(self, *args, **kwargs):
+        element = super(IteratorPostRepeat, self).prev(*args, **kwargs)
+        if self.prev_func is not None:
+            self.prev_func(element, *args, **kwargs)
         return element

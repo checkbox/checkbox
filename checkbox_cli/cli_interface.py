@@ -24,7 +24,7 @@ import termios
 
 from gettext import gettext as _
 
-from checkbox.result import PASS, FAIL, SKIP
+from checkbox.result import Result, PASS, FAIL, SKIP
 from checkbox.test import ALL_CATEGORIES
 from checkbox.user_interface import UserInterface
 
@@ -183,11 +183,11 @@ class CLIProgressDialog(CLIDialog):
 
 class CLIInterface(UserInterface):
 
-    def show_wait(self, message, function):
+    def show_wait(self, message, function, *args, **kwargs):
         title = _("System Testing")
         self.progress = CLIProgressDialog(title, message)
         self.progress.show()
-        self.do_function(function)
+        self.do_function(function, *args, **kwargs)
 
     def show_pulse(self):
         self.progress.set()
@@ -205,17 +205,19 @@ class CLIInterface(UserInterface):
         response = dialog.run()
         return ALL_CATEGORIES[response - 1]
 
-    def show_test(self, test, run_test=True):
-        if str(test.command) and run_test:
+    def show_test(self, test, result=None):
+        if str(test.command):
             title = _("System Testing")
             self.progress = CLIProgressDialog(title,
                 _("Running test: %s") % test.name)
             self.progress.show()
 
-            self.do_function(test.command)
+            result = self.do_function(test.command)
+        else:
+            result = None
 
         # show answer dialog
-        dialog = CLIChoiceDialog(test.name, test.description())
+        dialog = CLIChoiceDialog(test.name, test.description(result).data)
         answers = [_("yes"), _("no"), _("skip")]
         for answer in answers:
             dialog.add_button("&%s" % answer)
@@ -230,8 +232,8 @@ class CLIInterface(UserInterface):
             data = dialog.run(_("Please type here and press"
                 " Ctrl-D when finished:\n"))
 
-        test.result.status = {_("no"): FAIL, _("yes"): PASS, _("skip"): SKIP}[answer]
-        test.result.data = data
+        status = {_("no"): FAIL, _("yes"): PASS, _("skip"): SKIP}[answer]
+        return Result(test, status=status, data=data)
 
     def show_exchange(self, authentication, reports=[], message=None,
                       error=None):

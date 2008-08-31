@@ -37,8 +37,7 @@ class UserInterface(Plugin):
              "prompt-begin",
              "prompt-gather",
              "prompt-category",
-             "prompt-manual",
-             "prompt-auto",
+             "prompt-tests",
              "prompt-report",
              "prompt-exchange",
              "prompt-finish"])

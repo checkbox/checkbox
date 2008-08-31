@@ -21,7 +21,7 @@
 import os
 import logging
 
-from checkbox.result import PASS, FAIL, SKIP
+from checkbox.result import Result, PASS, FAIL, SKIP
 from checkbox.lib.process import Process
 from checkbox.lib.signal import signal_to_name, signal_to_description
 from checkbox.lib.environ import (get_variables, add_variable, remove_variable,
@@ -30,58 +30,53 @@ from checkbox.lib.environ import (get_variables, add_variable, remove_variable,
 
 class Command(object):
 
-    paths = []
-    variables = {}
-
-    def __init__(self, command=None, timeout=None):
+    def __init__(self, command=None, timeout=None,
+            paths=[], variables={}):
         self._command = command
         self._timeout = timeout
 
-        self._data = ""
-        self._status = SKIP
-        self._duration = 0
-
-        self._paths = list(self.paths)
-        self._variables = dict(self.variables)
+        self._paths = paths
+        self._variables = variables
 
     def __str__(self):
         return self.get_command() or ""
 
-    def __call__(self):
-        self.execute()
-        return str(self)
+    def __call__(self, *args, **kwargs):
+        return self.execute(*args, **kwargs)
 
-    def execute(self):
+    def execute(self, *args, **kwargs):
         command = self.get_command()
         if command is None:
             return
 
-        self.pre_execute()
+        self.pre_execute(*args, **kwargs)
 
         # Sanitize environment
         env = get_variables()
         env["PATH"] = ":".join(get_paths())
 
-        logging.info("Running command: %s" % command)
+        logging.info("Running command: %s", command)
         process = Process(command, env)
         if process.read(self._timeout):
             logging.info("Command timed out, killing process.")
             process.kill()
 
-            self.set_data("Command timed out after %s seconds" % self._timeout)
-            self.set_status(SKIP)
-            self.post_execute()
-            return
+            result = Result(self)
+            result.duration = self._timeout
+            result.data = "Command timed out after %s seconds" \
+                % self._timeout
+        else:
+            stdout = process.outdata
+            stderr = process.errdata
+            wait = process.cleanup()
 
-        stdout = process.outdata
-        stderr = process.errdata
-        wait = process.cleanup()
-        self._duration = int(process.endtime - process.starttime)
+            result = self.parse_process(stdout, stderr, wait)
+            result.duration = int(process.endtime - process.starttime)
 
-        self.post_execute()
-        self.parse_process(stdout, stderr, wait)
+        self.post_execute(result)
+        return result
 
-    def pre_execute(self):
+    def pre_execute(self, *args, **kwargs):
         variables = self.get_variables()
         for key, value in variables.items():
             add_variable(key, value)
@@ -90,7 +85,7 @@ class Command(object):
         for path in paths:
             add_path(path)
 
-    def post_execute(self):
+    def post_execute(self, result):
         paths = self.get_paths()
         for path in paths:
             remove_path(path)
@@ -100,6 +95,8 @@ class Command(object):
             remove_variable(key)
 
     def parse_process(self, stdout, stderr, wait):
+        result = Result(self)
+
         # Ordering is relevant
         parse_table = [
             [self.parse_wait, wait],
@@ -107,43 +104,39 @@ class Command(object):
             [self.parse_stderr, stderr]]
 
         for parse_func, parse_string in parse_table:
-            parse_func(parse_string)
-            if self.get_data():
+            parse_func(result, parse_string)
+            if result.data:
                 break
 
-    def parse_stdout(self, stdout):
-        self.set_data(stdout)
+        return result
 
-    def parse_stderr(self, stderr):
-        self.set_data(stderr)
+    def parse_stdout(self, result, stdout):
+        result.data = stdout
 
-    def parse_wait(self, wait):
+    def parse_stderr(self, result, stderr):
+        result.data = stderr
+
+    def parse_wait(self, result, wait):
         exit_code = os.WEXITSTATUS(wait)
         if exit_code == 0:
-            self.set_status(PASS)
+            result.status = PASS
         elif exit_code == 127:
-            self.set_status(SKIP)
-            self.set_data("Command failed, skipping.")
+            result.status = SKIP
+            result.data = "Command failed, skipping."
         else:
-            self.set_status(FAIL)
+            result.status = FAIL
 
             if exit_code > 128:
                 signal = exit_code - 128
-                self.set_data("Received signal %s: %s" %
+                result.data = "Received signal %s: %s" % \
                     (signal_to_name(signal),
-                     signal_to_description(signal)))
+                     signal_to_description(signal))
 
     def add_path(self, path):
         self._paths.append(path)
 
     def add_variable(self, key, value):
         self._variables[key] = value
-
-    def set_status(self, status):
-        self._status = status
-
-    def set_data(self, data):
-        self._data = data
 
     def get_command(self):
         return self._command
@@ -153,12 +146,3 @@ class Command(object):
 
     def get_variables(self):
         return self._variables
-
-    def get_status(self):
-        return self._status
-
-    def get_data(self):
-        return self._data
-
-    def get_duration(self):
-        return self._duration

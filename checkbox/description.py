@@ -19,17 +19,20 @@
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
 from checkbox.command import Command
+from checkbox.lib.environ import add_variable, remove_variable
 
 
 class Description(Command):
-
-    def __str__(self):
-        return self.get_data()
 
     def get_command(self):
         command = super(Description, self).get_command()
         return "cat <<EOF\n%s\nEOF\n" % command
 
-    def get_variables(self):
-        variables = super(Description, self).get_variables()
-        return {"output": variables["test"].command.get_data().strip()}
+    def pre_execute(self, command_result=None):
+        super(Description, self).pre_execute(command_result)
+        if command_result is not None:
+            add_variable("output", command_result.data.strip())
+
+    def post_execute(self, result):
+        super(Description, self).post_execute(result)
+        remove_variable("output")

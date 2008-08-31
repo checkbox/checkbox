@@ -69,7 +69,7 @@ class UserInterface(object):
         raise NotImplementedError, \
             "this function must be overridden by subclasses"
 
-    def show_test(self, test, run_test):
+    def show_test(self, test, result):
         raise NotImplementedError, \
             "this function must be overridden by subclasses"
 

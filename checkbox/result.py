@@ -33,16 +33,15 @@ class Result(object):
     optional_fields = {
         "status": SKIP,
         "data": "",
-        "duration": None,
-        "devices": [],
-        "packages": []}
+        "duration": None}
 
-    def __init__(self, **attributes):
+    def __init__(self, test, **attributes):
         # Optional fields
         for field in self.optional_fields.keys():
             if not attributes.has_key(field):
                 attributes[field] = self.optional_fields[field]
 
+        super(Result, self).__setattr__("test", test)
         super(Result, self).__setattr__("attributes", attributes)
         self._validate()
 
@@ -50,8 +49,8 @@ class Result(object):
         # Unknown fields
         for field in self.attributes.keys():
             if field not in self.required_fields + self.optional_fields.keys():
-                logging.info("Result attributes contains unknown field: %s" \
-                    % field)
+                logging.info("Result attributes contains unknown field: %s",
+                    field)
 
         # Required fields
         for field in self.required_fields:
@@ -77,3 +76,11 @@ class Result(object):
 
         self.attributes[name] = value
         self._validate()
+
+    @property
+    def devices(self):
+        return self.test.requires.get_devices()
+
+    @property
+    def packages(self):
+        return self.test.requires.get_packages()

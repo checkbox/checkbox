@@ -71,7 +71,6 @@ class SuitesInfo(Plugin):
             attributes["command"] = str(test.command)
             attributes["description"] = str(test.description)
             attributes["requires"] = str(test.requires)
-            attributes["result"] = dict(test.result.attributes)
 
             message.append(attributes)
         self._manager.reactor.fire("report-tests", message)

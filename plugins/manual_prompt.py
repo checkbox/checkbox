@@ -19,40 +19,25 @@
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
 from checkbox.plugin import Plugin
-from checkbox.test import TestManager
 
 
 class ManualPrompt(Plugin):
 
     def register(self, manager):
         super(ManualPrompt, self).register(manager)
-        self._test_manager = TestManager()
+        self._results = {}
 
         # Manual tests should be asked first.
         for (rt, rh) in [
-             ("interface-category", self.interface_category),
-             ("test-manual", self.test_manual),
-             ("test-interactive", self.test_manual),
-             ("prompt-manual", self.prompt_manual)]:
+             ("prompt-test-manual", self.prompt_test_manual)]:
             self._manager.reactor.call_on(rt, rh)
 
-    def interface_category(self, category):
-        self._test_manager.set_category(category)
-
-    def test_manual(self, test):
-        self._test_manager.add_test(test)
-
-    def prompt_manual(self, interface):
-        tests = self._test_manager.get_iterator(interface.direction)
-
-        while True:
-            try:
-                test = tests.go(interface.direction)
-            except StopIteration:
-                break
-
-            interface.show_test(test, test.plugin == "manual")
-            self._manager.reactor.fire("report-test", test)
+    def prompt_test_manual(self, interface, test):
+        result = self._results.get((test.suite, test.name))
+        result = interface.show_test(test, result)
+        self._results[(test.suite, test.name)] = result
+        self._manager.reactor.fire("report-result", result)
+        self._manager.reactor.stop()
 
 
 factory = ManualPrompt

@@ -18,14 +18,13 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-import os.path, sys
+import os
+import sys
 import gtk, gtk.glade
 
 from gettext import gettext as _
 
-from checkbox.lib.environ import add_variable, remove_variable
-
-from checkbox.result import FAIL, PASS, SKIP
+from checkbox.result import Result, FAIL, PASS, SKIP
 from checkbox.user_interface import UserInterface
 
 
@@ -126,21 +125,24 @@ class GTKInterface(UserInterface):
         while gtk.events_pending():
             gtk.main_iteration(False)
 
-    def do_function(self, function):
+    def do_function(self, function, *args, **kwargs):
         self._set_sensitive("button_previous", False)
         self._set_sensitive("button_next", False)
 
-        super(GTKInterface, self).do_function(function)
+        result = super(GTKInterface, self).do_function(function,
+            *args, **kwargs)
 
         self._set_sensitive("button_previous", True)
         self._set_sensitive("button_next", True)
 
-    def show_wait(self, message, function):
+        return result
+
+    def show_wait(self, message, function, *args, **kwargs):
         self._set_text("label_wait", message)
         self._notebook.set_current_page(3)
         self._dialog.show()
 
-        self.do_function(function)
+        self.do_function(function, *args, **kwargs)
 
     def show_pulse(self):
         self._get_widget("progressbar_wait").pulse()
@@ -179,41 +181,38 @@ class GTKInterface(UserInterface):
             "radiobutton_server": "server"})
 
     @GTKHack
-    def show_test(self, test, run_test=True):
+    def show_test(self, test, result=None):
         self._set_show("button_test", False)
         self._notebook.set_current_page(2)
 
         # Run test
-        if str(test.command) and run_test:
+        if str(test.command):
             self._set_text("label_test",
                 _("Running test: %s") % test.name)
             self._set_show("progressbar_test")
             self._dialog.show()
 
-            self.do_function(test.command)
+            command_result = self.do_function(test.command)
 
             self._set_show("progressbar_test", False)
+        else:
+            command_result = None
 
         # Set test
-        self._set_text("label_test", test.description())
+        self._set_text("label_test", test.description(command_result).data)
 
         # Set buttons
-        self._set_show("button_test", str(test.command))
         if str(test.command):
-            if run_test:
-                self._set_label("button_test", _("_Test Again"))
-            else:
-                self._set_label("button_test", _("_Test"))
+            self._set_show("button_test", True)
 
             button_test = self._get_widget("button_test")
             if self._handler_id:
                 button_test.disconnect(self._handler_id)
             self._handler_id = button_test.connect("clicked",
-                lambda w, q=test: self.show_test(q))
+                lambda w, t=test: self.show_test(t))
 
         # Default results
-        if test.result:
-            result = test.result
+        if result:
             self._set_textview("textview_comment", result.data)
             answer = {PASS: "yes", FAIL: "no", SKIP: "skip"}[result.status]
             self._set_active("radiobutton_%s" % answer)
@@ -223,13 +222,12 @@ class GTKInterface(UserInterface):
 
         self._run_dialog()
 
-        answer = self._get_radiobutton({
-            "radiobutton_yes": "yes",
-            "radiobutton_no": "no",
-            "radiobutton_skip": "skip"})
-
-        test.result.status = {"no": FAIL, "yes": PASS, "skip": SKIP}[answer]
-        test.result.data = self._get_textview("textview_comment")
+        status = self._get_radiobutton({
+            "radiobutton_yes": PASS,
+            "radiobutton_no": FAIL,
+            "radiobutton_skip": SKIP})
+        data = self._get_textview("textview_comment")
+        return Result(test, status=status, data=data)
 
     @GTKHack
     def show_exchange(self, authentication, reports=[], message=None,

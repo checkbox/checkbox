@@ -52,23 +52,27 @@ class Reactor(object):
         logging.debug("Calling on %s.", event_type)
         handlers = self._event_handlers.setdefault(event_type, [])
         handlers.append(pair)
-        handlers = sorted(handlers, key=lambda pair: pair[1])
 
         return EventID(event_type, pair)
 
     def fire(self, event_type, *args, **kwargs):
         logging.debug("Started firing %s.", event_type)
 
-        event_handlers = []
+        results = []
+        handlers = []
         for key, value in self._event_handlers.items():
             if re.match("^%s$" % key, event_type):
-                event_handlers.extend(value)
+                handlers.extend(value)
 
-        for handler, priority in event_handlers:
+        handlers = sorted(handlers, key=lambda pair: pair[1])
+        if not handlers:
+            logging.debug("No handlers found for event type: %s", event_type)
+
+        for handler, priority in handlers:
             try:
                 logging.debug("Calling %s for %s with priority %d.",
                               format_object(handler), event_type, priority)
-                handler(*args, **kwargs)
+                results.append(handler(*args, **kwargs))
             except StopException:
                 break
             except StopAllException:
@@ -86,6 +90,7 @@ class Reactor(object):
                                   args, kwargs)
 
         logging.debug("Finished firing %s.", event_type)
+        return results
 
     def cancel_call(self, id):
         if type(id) is EventID:
