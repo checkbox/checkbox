@@ -46,19 +46,19 @@ class ExchangePrompt(Plugin):
             self._manager.reactor.call_on(rt, rh)
 
     def report_hal(self, message):
-        self._reports.append("HAL")
+        self._reports.append("devices")
 
     def report_distribution(self, message):
-        self._reports.append("Distribution")
+        self._reports.append("distribution")
 
     def report_packages(self, message):
-        self._reports.append("Packages")
+        self._reports.append("packages")
 
     def report_processors(self, message):
-        self._reports.append("Processors")
+        self._reports.append("processors")
 
     def report_tests(self, message):
-        self._reports.append("Tests")
+        self._reports.append("tests")
 
     def fire_exchange(self, interface):
         self._manager.reactor.fire("exchange-email", self._email)
@@ -71,8 +71,10 @@ class ExchangePrompt(Plugin):
         error = None
         if self._email:
             error = self.fire_exchange(interface)
+            if not error:
+                return
 
-        while error:
+        while True:
             self._email = interface.show_exchange(self._email, self._reports,
                 _("""\
 The following information will be sent to the Launchpad
@@ -85,6 +87,8 @@ use to sign in to Launchpad to submit this information."""), error=error)
                 error = _("Email address must be in a proper format.")
             else:
                 error = self.fire_exchange(interface)
+                if not error:
+                    break
 
 
 factory = ExchangePrompt
