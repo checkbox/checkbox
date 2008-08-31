@@ -52,7 +52,7 @@ class Reactor(object):
         logging.debug("Calling on %s.", event_type)
         handlers = self._event_handlers.setdefault(event_type, [])
         handlers.append(pair)
-        handlers.sort(key=lambda pair: pair[1])
+        handlers = sorted(handlers, key=lambda pair: pair[1])
 
         return EventID(event_type, pair)
 

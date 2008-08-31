@@ -72,11 +72,10 @@ class Resolver:
             self.reentrant_resolution.add(resolution_step)
             resolved.update(self.resolve(dependency, found=name)) # and its dependencies, if any
 
-        resolved = list(resolved)
         # now it's time for sorting hierarchically... Since circular dependencies are excluded,
         # ancestors will always have fewer dependencies than descendants, so sorting by the
         # number of dependencies will give the desired order.
-        resolved.sort(key = lambda x : len(self.dependencies[x]))
+        resolved = sorted(resolved, key=lambda x : len(self.dependencies[x]))
         resolved.append(name)
         self.dependencies[name] = resolved
 
@@ -85,7 +84,7 @@ class Resolver:
     def get_dependencies(self, name):
         return self.resolve(name)
 
-    def get_dependents(self, name=None):
+    def get_dependents(self, name=None, cmp=None):
         dependents = []
         if name:
             # Immediate dependents
@@ -96,7 +95,7 @@ class Resolver:
             dependents = filter(lambda x : len(self.resolve(x)) == 1, self.names)
 
         index = 0
-        dependents.sort()
+        dependents = sorted(dependents, cmp)
         while index < len(dependents):
             sub_dependents = self.get_dependents(dependents[index])
             if sub_dependents:

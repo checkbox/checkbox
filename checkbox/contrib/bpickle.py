@@ -80,9 +80,8 @@ def dumps_tuple(obj, _dt=None):
     return "t%s;" % "".join([dumps(val, _dt) for val in obj])
 
 def dumps_dict(obj, _dt=None):
-    keys = obj.keys()
-    keys.sort()
     res = []
+    keys = sorted(obj.keys())
     append = res.append
     for key in keys:
         val = obj[key]
