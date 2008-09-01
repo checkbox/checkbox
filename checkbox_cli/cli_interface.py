@@ -24,7 +24,7 @@ import termios
 
 from gettext import gettext as _
 
-from checkbox.result import Result, PASS, FAIL, SKIP
+from checkbox.result import Result, ALL_STATUS, FAIL
 from checkbox.test import ALL_CATEGORIES
 from checkbox.user_interface import UserInterface
 
@@ -201,7 +201,7 @@ class CLIInterface(UserInterface):
         for category in ALL_CATEGORIES:
             dialog.add_button("&%s" % category)
 
-        # show categories dialog
+        # Show categories dialog
         response = dialog.run()
         return ALL_CATEGORIES[response - 1]
 
@@ -212,27 +212,28 @@ class CLIInterface(UserInterface):
                 _("Running test: %s") % test.name)
             self.progress.show()
 
-            result = self.do_function(test.command)
+            command_result = self.do_function(test.command)
         else:
-            result = None
+            command_result = None
 
-        # show answer dialog
-        dialog = CLIChoiceDialog(test.name, test.description(result).data)
+        # Show answer dialog
+        dialog = CLIChoiceDialog(test.name, test.description(command_result).data)
         answers = [_("yes"), _("no"), _("skip")]
         for answer in answers:
             dialog.add_button("&%s" % answer)
 
-        # get answer from dialog
+        # Get answer from dialog
         response = dialog.run()
         answer = answers[response - 1]
-        data = ""
-        if answer == _("no"):
+        status = dict(zip(answers, ALL_STATUS))[answer]
+        if status == FAIL:
             text = _("Please provide comments about the failure.")
             dialog = CLITextDialog(test.name, text)
             data = dialog.run(_("Please type here and press"
                 " Ctrl-D when finished:\n"))
+        else:
+            data = ""
 
-        status = {_("no"): FAIL, _("yes"): PASS, _("skip"): SKIP}[answer]
         return Result(test, status=status, data=data)
 
     def show_exchange(self, authentication, reports=[], message=None,
