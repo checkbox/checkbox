@@ -29,37 +29,38 @@ class CategoryPrompt(Plugin):
 
     def register(self, manager):
         super(CategoryPrompt, self).register(manager)
-        self._category = self.config.category
         self._manager.reactor.call_on("prompt-category", self.prompt_category)
 
     def prompt_category(self, interface):
+        category = self.persist.get("category") or self.config.category
         registry = self._manager.registry
 
         # Try to determine category from HAL formfactor
-        if not self._category:
+        if not category:
             formfactor = registry.hal.computer.system.formfactor
             if formfactor is not "unknown":
-                self._category = formfactor
+                category = formfactor
 
         # Try to determine category from dpkg architecture
-        if not self._category:
+        if not category:
             architecture = registry.dpkg.architecture
             if architecture is "sparc":
-                self._category = "server"
+                category = "server"
 
         # Try to determine category from kernel version
-        if not self._category:
+        if not category:
             version = registry.hal.computer.system.kernel.version
             if str(version).endswith("-server"):
-                self._category = "server"
+                category = "server"
 
         # Prompt for the category explicitly
-        if not self._category:
-            self._category = interface.show_category(_("Category"),
+        if not category:
+            category = interface.show_category(_("Category"),
                 _("Please select the category of your system."),
-                self._category)
+                category)
 
-        self._manager.reactor.fire("report-category", self._category)
+        self.persist.set("category", category)
+        self._manager.reactor.fire("report-category", category)
 
 
 factory = CategoryPrompt
