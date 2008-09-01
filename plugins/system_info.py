@@ -35,7 +35,7 @@ class SystemInfo(Plugin):
         self._manager.reactor.call_on("report", self.report, -10)
 
     def report(self):
-        system_id = self.config.system_id
+        system_id = self.config.system_id or self.persist.get("system_id")
         if not system_id:
             system = self._manager.registry.hal.computer.system
             if not system:
@@ -59,6 +59,7 @@ class SystemInfo(Plugin):
                 fingerprint.update(str(field))
 
             system_id = fingerprint.hexdigest()
+            self.persist.set("system_id", system_id)
 
         message = system_id
         logging.info("System ID: %s", message)
