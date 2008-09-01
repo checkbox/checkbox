@@ -101,8 +101,8 @@ def detect_device():
     path = "/proc/asound/card0/id"
 
     if os.path.exists(path):
-        fd = file(path, "r")
-        device = fd.readline().strip()
+        descriptor = open(path, "r")
+        device = descriptor.readline().strip()
 
     return device
 

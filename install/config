@@ -93,7 +93,7 @@ class Install(object):
 
         # Hack to retrieve questions from templates file
         if os.path.exists(self._templates_path):
-            templates_descriptor = file(self._templates_path)
+            templates_descriptor = open(self._templates_path)
             for line in templates_descriptor.readlines():
                 match = re.match(r"Template: (.*)", line)
                 if match:
@@ -129,7 +129,7 @@ def main(args):
     if options.output == "-":
          descriptor = sys.stdout
     else:
-         descriptor = file(options.output, "w")
+         descriptor = open(options.output, "w")
     install.write(descriptor)
 
     return 0

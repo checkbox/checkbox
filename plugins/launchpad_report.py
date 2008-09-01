@@ -94,7 +94,7 @@ class LaunchpadReport(Plugin):
         directory = os.path.dirname(filename)
         safe_make_directory(directory)
 
-        file(filename, "w").write(payload)
+        open(filename, "w").write(payload)
         self._manager.reactor.fire("exchange-report", filename)
 
 

@@ -32,7 +32,7 @@ class Route(object):
         """
         logging.debug("Reading default gateway information from /proc")
         try:
-            descriptor = file("/proc/net/route")
+            descriptor = open("/proc/net/route")
             route = descriptor.read()
         except:
             logging.error("Failed to read def gateway from /proc")

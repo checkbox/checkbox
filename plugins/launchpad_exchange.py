@@ -93,7 +93,7 @@ class LaunchpadExchange(Plugin):
             form[field] = str(value).encode("UTF-8")
 
         # Compress and add payload to form
-        payload = file(self._report, "r").read()
+        payload = open(self._report, "r").read()
         compressed_payload = bz2.compress(payload)
         descriptor = StringIO(compressed_payload)
         descriptor.name = '%s.xml.bz2' % str(gethostname())

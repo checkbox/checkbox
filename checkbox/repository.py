@@ -102,7 +102,7 @@ class RepositorySection(object):
             path = os.path.join(directory, "%s.py" % name)
             if os.path.exists(path):
                 globals = {}
-                exec file(path) in globals
+                exec open(path) in globals
                 if "factory" not in globals:
                     raise Exception, "Variable 'factory' not found: %s" % path
 

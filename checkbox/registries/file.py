@@ -39,7 +39,7 @@ class FileRegistry(Registry):
 
     def __str__(self):
         logging.info("Reading filename: %s", self.filename)
-        return file(self.filename, "r").read()
+        return open(self.filename, "r").read()
 
     def items(self):
         return []

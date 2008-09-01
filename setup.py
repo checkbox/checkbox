@@ -24,12 +24,12 @@ def changelog_version(changelog="debian/changelog"):
     return version
 
 def substitute_variables(infile, outfile, variables={}):
-    f_in = file(infile, "r")
-    f_out = file(outfile, "w")
-    for line in f_in.readlines():
+    descriptor_in = open(infile, "r")
+    descriptor_out = open(outfile, "w")
+    for line in descriptor_in.readlines():
         for key, value in variables.items():
             line = line.replace(key, value)
-        f_out.write(line)
+        descriptor_out.write(line)
 
 
 class checkbox_install_data(install_data, object):
