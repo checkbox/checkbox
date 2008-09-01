@@ -32,7 +32,7 @@ class ExchangePrompt(Plugin):
 
     def register(self, manager):
         super(ExchangePrompt, self).register(manager)
-        self._reports = []
+        self._reports = set()
 
         for (rt, rh) in [
              ("report-hal", self.report_hal),
@@ -44,19 +44,19 @@ class ExchangePrompt(Plugin):
             self._manager.reactor.call_on(rt, rh)
 
     def report_hal(self, message):
-        self._reports.append("devices")
+        self._reports.add("devices")
 
     def report_distribution(self, message):
-        self._reports.append("distribution")
+        self._reports.add("distribution")
 
     def report_packages(self, message):
-        self._reports.append("packages")
+        self._reports.add("packages")
 
     def report_processors(self, message):
-        self._reports.append("processors")
+        self._reports.add("processors")
 
     def report_results(self, message):
-        self._reports.append("tests")
+        self._reports.add("tests")
 
     def fire_exchange(self, interface, email):
         self._manager.reactor.fire("exchange-email", email)
