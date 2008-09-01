@@ -23,7 +23,7 @@ import re
 from gettext import gettext as _
 
 from checkbox.plugin import Plugin
-from checkbox.iterator import NEXT, PREV
+from checkbox.iterator import PREV
 
 
 class ExchangePrompt(Plugin):
@@ -32,8 +32,6 @@ class ExchangePrompt(Plugin):
 
     def register(self, manager):
         super(ExchangePrompt, self).register(manager)
-        self._email_regexp = re.compile(r"^\S+@\S+.\S+$", re.I)
-        self._email = None
         self._reports = []
 
         for (rt, rh) in [
@@ -60,23 +58,26 @@ class ExchangePrompt(Plugin):
     def report_results(self, message):
         self._reports.append("tests")
 
-    def fire_exchange(self, interface):
-        self._manager.reactor.fire("exchange-email", self._email)
+    def fire_exchange(self, interface, email):
+        self._manager.reactor.fire("exchange-email", email)
         interface.show_wait(
             _("Exchanging information with the server..."),
-            lambda: self._manager.reactor.fire("exchange"))
+            self._manager.reactor.fire, "exchange")
         return self._manager.get_error()
 
     def prompt_exchange(self, interface):
+        email = self.persist.get("email") or self.config.email
+
+        # Try to automatically exchange information
         error = None
-        if self.config.email and interface.direction == NEXT:
-            self._email = self.config.email
-            error = self.fire_exchange(interface)
+        if self.config.email:
+            error = self.fire_exchange(interface, email)
             if not error:
                 return
 
+        # Otherwise, prompt for email address
         while True:
-            self._email = interface.show_exchange(self._email, self._reports,
+            email = interface.show_exchange(email, self._reports,
                 _("""\
 The following information will be sent to the Launchpad
 hardware database. Please provide the e-mail address you
@@ -84,12 +85,14 @@ use to sign in to Launchpad to submit this information."""), error=error)
 
             if interface.direction == PREV:
                 break
-            elif not self._email_regexp.match(self._email):
+            elif not re.match(r"^\S+@\S+.\S+$", email, re.I):
                 error = _("Email address must be in a proper format.")
             else:
-                error = self.fire_exchange(interface)
+                error = self.fire_exchange(interface, email)
                 if not error:
                     break
+
+        self.persist.set("email", email)
 
 
 factory = ExchangePrompt

@@ -69,6 +69,12 @@ class RepositorySection(object):
 
         return self._names
 
+    def get_arguments(self, name):
+        config_name = "/".join([self.name, name])
+        config = self._config.parent.get_section(config_name)
+
+        return [config]
+
     def load_all(self):
         """
         Load all modules contained in this section.
@@ -100,10 +106,8 @@ class RepositorySection(object):
                 if "factory" not in globals:
                     raise Exception, "Variable 'factory' not found: %s" % path
 
-                config_name = "/".join([self.name, name])
-                config = self._config.parent.get_section(config_name)
-
-                return globals["factory"](config)
+                arguments = self.get_arguments(name)
+                return globals["factory"](*arguments)
 
         raise Exception, "Failed to find module '%s' in directories: %s" \
             % (name, self.directories)

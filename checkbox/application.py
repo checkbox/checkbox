@@ -48,7 +48,7 @@ class Application(object):
 
         # Plugin manager setup
         self.plugin_manager = PluginManager(self.config,
-            self.registry, self.reactor)
+            self.reactor, self.registry)
 
     def run(self):
         try:
@@ -58,6 +58,8 @@ class Application(object):
         except:
             logging.exception("Error running reactor.")
             raise
+
+        self.plugin_manager.flush()
 
 
 class ApplicationManager(object):

@@ -20,7 +20,27 @@
 #
 import re
 
-from checkbox.repository import Repository, RepositoryManager
+from checkbox.repository import Repository, RepositoryManager, RepositorySection
+from checkbox.contrib.persist import Persist
+
+
+class PluginSection(RepositorySection):
+
+    def __init__(self, *args, **kwargs):
+        super(PluginSection, self).__init__(*args, **kwargs)
+
+        self._persist = Persist(filename=self._config.filename)
+
+    def get_arguments(self, name):
+        """Add a rooted persist object to the parent arguments."""
+        arguments = super(PluginSection, self).get_arguments(name)
+        arguments.append(self._persist.root_at(name))
+
+        return arguments
+
+    def flush(self):
+        """Flush data to disk."""
+        self._persist.save()
 
 
 class PluginManager(RepositoryManager):
@@ -28,18 +48,25 @@ class PluginManager(RepositoryManager):
     Plugin manager which extends the repository to support the concepts
     of a reactor.
     """
+    _section_factory = PluginSection
 
-    def __init__(self, config, registry, reactor):
+    def __init__(self, config, reactor, registry):
         super(PluginManager, self).__init__(config)
-        self.registry = registry
         self.reactor = reactor
+        self.registry = registry
 
         # Load sections
-        sections = self._config.get_defaults().plugins
-        for section_name in re.split(r"\s+", sections):
+        self.sections = []
+        section_names = self._config.get_defaults().plugins
+        for section_name in re.split(r"\s+", section_names):
             section = self.load_section(section_name)
+            self.sections.append(section)
             for module in section.load_all():
                 module.register(self)
+
+    def flush(self):
+        for section in self.sections:
+            section.flush()
 
 
 class Plugin(Repository):
@@ -48,6 +75,9 @@ class Plugin(Repository):
     implementation. This class extends the repository to automatically
     call the run method if defined.
     """
+    def __init__(self, config, persist):
+        super(Plugin, self).__init__(config)
+        self.persist = persist
 
     def register(self, manager):
         self._manager = manager
