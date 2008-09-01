@@ -38,7 +38,8 @@ class LaunchpadReport(Plugin):
                 "contactable": False,
                 "live_cd": False},
             "hardware": {},
-            "software": {},
+            "software": {
+                "packages": []},
             "questions": []}
 
         # Launchpad report should be generated last.
@@ -73,7 +74,7 @@ class LaunchpadReport(Plugin):
         self._report["summary"]["distroseries"] = message.release
 
     def report_packages(self, message):
-        self._report["software"]["packages"] = message
+        self._report["software"]["packages"].extend(message)
 
     def report_processors(self, message):
         self._report["hardware"]["processors"] = message

@@ -23,13 +23,18 @@ from checkbox.plugin import Plugin
 
 class PackagesInfo(Plugin):
 
+    required_attributes = ["max_per_request"]
+
     def register(self, manager):
         super(PackagesInfo, self).register(manager)
+        self._max_per_request = int(self.config.max_per_request)
         self._manager.reactor.call_on("report", self.report)
 
     def report(self):
-        message = self._manager.registry.packages.values()
-        if message:
+        packages = self._manager.registry.packages.values()
+        while packages:
+            message = packages[:self._max_per_request]
+            del packages[:self._max_per_request]
             self._manager.reactor.fire("report-packages", message)
 
 
