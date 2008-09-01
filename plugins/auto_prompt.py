@@ -27,10 +27,8 @@ class AutoPrompt(Plugin):
 
     def register(self, manager):
         super(AutoPrompt, self).register(manager)
-
-        for (rt, rh, rp) in [
-             ("prompt-test-.*", self.prompt_test_auto, 100)]:
-            self._manager.reactor.call_on(rt, rh, rp)
+        self._manager.reactor.call_on("prompt-test-.*",
+            self.prompt_test_auto, 100)
 
     def _run_auto(self, test):
         result = test.command()

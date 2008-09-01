@@ -29,13 +29,12 @@ class GatherPrompt(Plugin):
 
     def register(self, manager):
         super(GatherPrompt, self).register(manager)
-
         self._manager.reactor.call_on("prompt-gather", self.prompt_gather)
 
     @cache
     def prompt_gather(self, interface):
         interface.show_wait(_("Gathering information from your system..."),
-            lambda: self._manager.reactor.fire("gather"))
+            self._manager.reactor.fire, "gather")
 
 
 factory = GatherPrompt

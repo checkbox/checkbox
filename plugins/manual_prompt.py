@@ -28,9 +28,8 @@ class ManualPrompt(Plugin):
         self._results = {}
 
         # Manual tests should be asked first.
-        for (rt, rh) in [
-             ("prompt-test-manual", self.prompt_test_manual)]:
-            self._manager.reactor.call_on(rt, rh)
+        self._manager.reactor.call_on("prompt-test-manual",
+            self.prompt_test_manual)
 
     def prompt_test_manual(self, interface, test):
         result = self._results.get((test.suite, test.name))
