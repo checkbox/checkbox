@@ -93,7 +93,8 @@ class checkbox_install_scripts(install_scripts, object):
         for outfile in self.outfiles:
             infile = os.path.join("bin", os.path.basename(outfile))
             substitute_variables(infile, outfile, {
-                "CHECKBOX_DIRECTORY=.": "CHECKBOX_DIRECTORY=/usr/share/checkbox"})
+                "CHECKBOX_SHARE=.": "CHECKBOX_SHARE=/usr/share/checkbox",
+                "CHECKBOX_DATA=.": "CHECKBOX_DATA=/var/lib/checkbox"})
 
 
 setup(

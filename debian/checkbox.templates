@@ -20,12 +20,6 @@ Default: https://launchpad.net/+hwdb/+submit
 _Description: Transport URL
  URL where to send submissions.
 
-Template: checkbox/plugins/launchpad_report/cache_file
-Type: string
-Default: /var/cache/checkbox/submission.xml
-_Description: Cache File
- File where submission information is cached.
-
 Template: checkbox/plugins/proxy_info/http_proxy
 Type: string
 _Description: HTTP Proxy

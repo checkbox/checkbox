@@ -28,7 +28,7 @@ from checkbox.reports.launchpad_report import LaunchpadReportManager
 
 class LaunchpadReport(Plugin):
 
-    required_attributes = ["cache_file"]
+    required_attributes = ["filename"]
 
     def register(self, manager):
         super(LaunchpadReport, self).register(manager)
@@ -90,12 +90,12 @@ class LaunchpadReport(Plugin):
         report_manager = LaunchpadReportManager("system", "1.0")
         payload = report_manager.dumps(self._report).toprettyxml("")
 
-        cache_file = self.config.cache_file
-        cache_directory = os.path.dirname(cache_file)
-        safe_make_directory(cache_directory)
+        filename = self.config.filename
+        directory = os.path.dirname(filename)
+        safe_make_directory(directory)
 
-        file(cache_file, "w").write(payload)
-        self._manager.reactor.fire("exchange-report", cache_file)
+        file(filename, "w").write(payload)
+        self._manager.reactor.fire("exchange-report", filename)
 
 
 factory = LaunchpadReport
