@@ -43,18 +43,18 @@ class LaunchpadReport(Plugin):
             "questions": []}
 
         # Launchpad report should be generated last.
-        for (rt, rh, rp) in [
-             ("report", self.report, 100),
-             ("report-architecture", self.report_architecture, 0),
-             ("report-client", self.report_client, 0),
-             ("report-datetime", self.report_datetime, 0),
-             ("report-distribution", self.report_distribution, 0),
-             ("report-hal", self.report_hal, 0),
-             ("report-packages", self.report_packages, 0),
-             ("report-processors", self.report_processors, 0),
-             ("report-system_id", self.report_system_id, 0),
-             ("report-results", self.report_results, 0)]:
-            self._manager.reactor.call_on(rt, rh, rp)
+        self._manager.reactor.call_on("report", self.report, 100)
+        for (rt, rh) in [
+             ("report-architecture", self.report_architecture),
+             ("report-client", self.report_client),
+             ("report-datetime", self.report_datetime),
+             ("report-distribution", self.report_distribution),
+             ("report-hal", self.report_hal),
+             ("report-packages", self.report_packages),
+             ("report-processors", self.report_processors),
+             ("report-system_id", self.report_system_id),
+             ("report-results", self.report_results)]:
+            self._manager.reactor.call_on(rt, rh)
 
     def report_architecture(self, message):
         self._report["summary"]["architecture"] = message
