@@ -29,7 +29,7 @@ class PluginSection(RepositorySection):
     def __init__(self, *args, **kwargs):
         super(PluginSection, self).__init__(*args, **kwargs)
 
-        self._persist = Persist(filename=self._config.filename)
+        self._persist = Persist(filename=self._config.persist_filename)
 
     def get_arguments(self, name):
         """Add a rooted persist object to the parent arguments."""
