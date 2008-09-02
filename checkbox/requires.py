@@ -25,9 +25,9 @@ from checkbox.registry import registry_eval_recursive
 
 class Requires(object):
 
-    def __init__(self, source, registry):
-        self._source = source
+    def __init__(self, registry, source):
         self._registry = registry
+        self._source = source
         self._mask = [False]
 
     def __str__(self):

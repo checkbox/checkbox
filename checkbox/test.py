@@ -29,12 +29,13 @@ of test.
 import re
 import logging
 
+from checkbox.lib.environ import add_variable, remove_variable
+from checkbox.lib.signal import signal_to_name, signal_to_description
+
 from checkbox.command import Command
-from checkbox.description import Description
 from checkbox.iterator import Iterator, IteratorExclude, IteratorPreRepeat, IteratorPostRepeat
 from checkbox.requires import Requires
 from checkbox.resolver import Resolver
-from checkbox.result import FAIL, SKIP
 
 
 DESKTOP = "desktop"
@@ -46,6 +47,11 @@ I386 = "i386"
 AMD64 = "amd64"
 SPARC = "sparc"
 ALL_ARCHITECTURES = [I386, AMD64, SPARC]
+
+FAIL = "fail"
+PASS = "pass"
+SKIP = "skip"
+ALL_STATUS = [PASS, FAIL, SKIP]
 
 
 class TestManager(object):
@@ -201,6 +207,102 @@ class TestManager(object):
         return iterator
 
 
+class TestResult(object):
+
+    def __init__(self, test, status, data, duration=None):
+        self.test = test
+        self.status = status
+        self.data = data
+        self.duration = duration
+
+    @property
+    def attributes(self):
+        return {
+            "status": self.status,
+            "data": self.data,
+            "duration": self.duration}
+
+    @property
+    def devices(self):
+        return self.test.requires.get_devices()
+
+    @property
+    def packages(self):
+        return self.test.requires.get_packages()
+
+    def _get_status(self):
+        return self._status
+
+    def _set_status(self, status):
+        if status not in ALL_STATUS:
+            raise Exception, "Invalid status: %s" % status
+
+        self._status = status
+
+    status = property(_get_status, _set_status)
+
+
+class TestCommand(Command):
+
+    def __init__(self, test):
+        super(TestCommand, self).__init__(test.command, test.timeout)
+        self.test = test
+
+    def post_execute(self, result):
+        result = super(TestCommand, self).post_execute(result)
+
+        if result.if_exited:
+            exit_status = result.exit_status
+            if exit_status == 0:
+                status = PASS
+                data = result.stdout
+                if not data:
+                    data = result.stderr
+            elif exit_status == 127:
+                status = SKIP
+                data = "Command failed, skipping."
+            else:
+                status = FAIL
+                data = result.stderr
+        elif result.if_signaled:
+            status = SKIP
+            term_signal = result.term_signal
+            data = "Received terminate signal %s: %s" % \
+                (signal_to_name(term_signal),
+                 signal_to_description(term_signal))
+        else:
+            raise Exception, "Command not terminated: %s" % self.command
+
+        duration = result.duration
+        return TestResult(self.test, status=status, data=data, duration=duration)
+
+
+class TestDescription(Command):
+
+    def __init__(self, test):
+        super(TestDescription, self).__init__(test.description, test.timeout)
+        self.test = test
+
+    def get_command(self):
+        command = super(TestDescription, self).get_command()
+        return "cat <<EOF\n%s\nEOF\n" % command
+
+    def pre_execute(self, command_result=None):
+        super(TestDescription, self).pre_execute(command_result)
+        if command_result is not None:
+            add_variable("output", command_result.data.strip())
+
+    def post_execute(self, result):
+        result = super(TestDescription, self).post_execute(result)
+        remove_variable("output")
+
+        if not result.if_exited \
+           or result.exit_status != 0:
+            raise Exception, "Description failed: %s" % self.command
+
+        return result.stdout
+
+
 class Test(object):
     """
     Test base class which should be inherited by each test
@@ -255,15 +357,13 @@ class Test(object):
                 attributes[field] = self.optional_fields[field]
 
         # Requires field
-        attributes["requires"] = Requires(attributes["requires"], registry)
+        attributes["requires"] = Requires(registry, attributes["requires"])
 
         # Command field
-        attributes["command"] = Command(attributes["command"],
-            attributes["timeout"])
+        attributes["command"] = TestCommand(self)
 
         # Description field
-        attributes["description"] = Description(attributes["description"],
-            attributes["timeout"])
+        attributes["description"] = TestDescription(self)
 
         self._validate()
 

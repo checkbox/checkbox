@@ -231,7 +231,7 @@ class QuestionsReport(Report):
             self.dumps_comment(question["result"]["data"], element)
 
     def dumps_answer(self, obj, parent):
-        from checkbox.result import ALL_STATUS
+        from checkbox.test import ALL_STATUS
 
         answer = self._create_element("answer", parent)
         answer.setAttribute("type", "multiple_choice")

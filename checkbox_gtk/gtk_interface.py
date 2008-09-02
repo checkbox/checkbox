@@ -24,7 +24,7 @@ import gtk, gtk.glade
 
 from gettext import gettext as _
 
-from checkbox.result import Result, FAIL, PASS, SKIP
+from checkbox.test import ALL_STATUS, TestResult
 from checkbox.user_interface import UserInterface
 
 
@@ -199,7 +199,7 @@ class GTKInterface(UserInterface):
             command_result = None
 
         # Set test
-        self._set_text("label_test", test.description(command_result).data)
+        self._set_text("label_test", test.description(command_result))
 
         # Set buttons
         if str(test.command):
@@ -212,9 +212,10 @@ class GTKInterface(UserInterface):
                 lambda w, t=test: self.show_test(t))
 
         # Default results
+        answers = ["yes", "no", "skip"]
         if result:
             self._set_textview("textview_comment", result.data)
-            answer = {PASS: "yes", FAIL: "no", SKIP: "skip"}[result.status]
+            answer = dict(zip(ALL_STATUS, answers))[result.status]
             self._set_active("radiobutton_%s" % answer)
         else:
             self._set_textview("textview_comment", "")
@@ -222,12 +223,10 @@ class GTKInterface(UserInterface):
 
         self._run_dialog()
 
-        status = self._get_radiobutton({
-            "radiobutton_yes": PASS,
-            "radiobutton_no": FAIL,
-            "radiobutton_skip": SKIP})
+        radiobuttons = ["radiobutton_%s" % a for a in answers]
+        status = self._get_radiobutton(dict(zip(radiobuttons, ALL_STATUS)))
         data = self._get_textview("textview_comment")
-        return Result(test, status=status, data=data)
+        return TestResult(test, status, data)
 
     @GTKHack
     def show_exchange(self, authentication, reports=[], message=None,

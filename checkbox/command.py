@@ -21,20 +21,65 @@
 import os
 import logging
 
-from checkbox.result import Result, PASS, FAIL, SKIP
 from checkbox.lib.process import Process
-from checkbox.lib.signal import signal_to_name, signal_to_description
 from checkbox.lib.environ import (get_variables, add_variable, remove_variable,
     get_paths, add_path, remove_path)
 
 
+SUCCESS = 0
+FAILURE = 1
+ALL_STATUS = [SUCCESS, FAILURE]
+
+
+class CommandResult(object):
+
+    def __init__(self, command, status, stdout, stderr, start_time, end_time):
+        self.command = command
+        self.status = status
+        self.stdout = stdout
+        self.stderr = stderr
+        self.start_time = start_time
+        self.end_time = end_time
+
+        self.if_exited = os.WIFEXITED(self.status)
+        self.if_signaled = os.WIFSIGNALED(self.status)
+        self.if_stopped = os.WIFSTOPPED(self.status)
+        self.if_continued = os.WIFCONTINUED(self.status)
+
+    @property
+    def exit_status(self):
+        if not self.if_exited:
+            raise Exception, "Command not exited: %s" % self.command
+
+        return os.WEXITSTATUS(self.status)
+
+    @property
+    def term_signal(self):
+        if not self.if_signaled:
+            raise Exception, "Command not signaled: %s" % self.command
+
+        return os.WTERMSIG(self.status)
+
+    @property
+    def stop_signal(self):
+        if not self.if_stopped:
+            raise Exception, "Command not stopped: %s" % self.command
+
+        return os.WSTOPSIG(self.status)
+
+    @property
+    def duration(self):
+        if not self.end_time:
+            raise Exception, "Command timed out: %s" % self.command
+
+        return self.end_time - self.start_time
+
+
 class Command(object):
 
-    def __init__(self, command=None, timeout=None,
-            paths=[], variables={}):
+    def __init__(self, command=None, timeout=None, paths=[], variables={}):
         self._command = command
         self._timeout = timeout
-
         self._paths = paths
         self._variables = variables
 
@@ -61,20 +106,11 @@ class Command(object):
             logging.info("Command timed out, killing process.")
             process.kill()
 
-            result = Result(self)
-            result.duration = self._timeout
-            result.data = "Command timed out after %s seconds" \
-                % self._timeout
-        else:
-            stdout = process.outdata
-            stderr = process.errdata
-            wait = process.cleanup()
+        status = process.cleanup()
+        result = CommandResult(self, status, process.outdata, process.errdata,
+            process.starttime, process.endtime)
 
-            result = self.parse_process(stdout, stderr, wait)
-            result.duration = int(process.endtime - process.starttime)
-
-        self.post_execute(result)
-        return result
+        return self.post_execute(result)
 
     def pre_execute(self, *args, **kwargs):
         variables = self.get_variables()
@@ -94,43 +130,7 @@ class Command(object):
         for key in variables.keys():
             remove_variable(key)
 
-    def parse_process(self, stdout, stderr, wait):
-        result = Result(self)
-
-        # Ordering is relevant
-        parse_table = [
-            [self.parse_wait, wait],
-            [self.parse_stdout, stdout],
-            [self.parse_stderr, stderr]]
-
-        for parse_func, parse_string in parse_table:
-            parse_func(result, parse_string)
-            if result.data:
-                break
-
         return result
-
-    def parse_stdout(self, result, stdout):
-        result.data = stdout
-
-    def parse_stderr(self, result, stderr):
-        result.data = stderr
-
-    def parse_wait(self, result, wait):
-        exit_code = os.WEXITSTATUS(wait)
-        if exit_code == 0:
-            result.status = PASS
-        elif exit_code == 127:
-            result.status = SKIP
-            result.data = "Command failed, skipping."
-        else:
-            result.status = FAIL
-
-            if exit_code > 128:
-                signal = exit_code - 128
-                result.data = "Received signal %s: %s" % \
-                    (signal_to_name(signal),
-                     signal_to_description(signal))
 
     def add_path(self, path):
         self._paths.append(path)

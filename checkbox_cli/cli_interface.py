@@ -24,8 +24,7 @@ import termios
 
 from gettext import gettext as _
 
-from checkbox.result import Result, ALL_STATUS, FAIL
-from checkbox.test import ALL_CATEGORIES
+from checkbox.test import ALL_CATEGORIES, ALL_STATUS, FAIL, TestResult
 from checkbox.user_interface import UserInterface
 
 
@@ -217,7 +216,7 @@ class CLIInterface(UserInterface):
             command_result = None
 
         # Show answer dialog
-        dialog = CLIChoiceDialog(test.name, test.description(command_result).data)
+        dialog = CLIChoiceDialog(test.name, test.description(command_result))
         answers = [_("yes"), _("no"), _("skip")]
         for answer in answers:
             dialog.add_button("&%s" % answer)
@@ -234,7 +233,7 @@ class CLIInterface(UserInterface):
         else:
             data = ""
 
-        return Result(test, status=status, data=data)
+        return TestResult(test, status, data)
 
     def show_exchange(self, authentication, reports=[], message=None,
                       error=None):

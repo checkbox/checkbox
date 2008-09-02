@@ -105,10 +105,10 @@ class Process:
         self.cleaned = True
         os.close(self.outr)
         os.close(self.errr)
-        pid, sts = os.waitpid(self.pid, 0)
+        pid, status = os.waitpid(self.pid, 0)
         if pid == self.pid:
-            self.sts = sts
-        return self.sts
+            self.status = status
+        return self.status
 
     def __del__(self):
         if not self.cleaned:
