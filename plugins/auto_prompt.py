@@ -20,6 +20,8 @@
 #
 from gettext import gettext as _
 
+from checkbox.lib.cache import cache
+
 from checkbox.plugin import Plugin
 
 
@@ -34,6 +36,7 @@ class AutoPrompt(Plugin):
         result = test.command()
         self._manager.reactor.fire("report-result", result)
 
+    @cache
     def prompt_test_auto(self, interface, test):
         if str(test.command):
             interface.show_wait(_("Running automatic tests..."),
