@@ -25,7 +25,7 @@ from checkbox.registries.command import CommandRegistry
 from checkbox.registries.link import LinkRegistry
 
 
-COLUMNS = ["name", "version", "description"]
+COLUMNS = ["name", "version"]
 
 
 class PackageRegistry(Registry):
