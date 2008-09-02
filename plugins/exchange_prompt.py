@@ -68,17 +68,11 @@ class ExchangePrompt(Plugin):
     def prompt_exchange(self, interface):
         email = self.persist.get("email") or self.config.email
 
-        # Try to automatically exchange information
         error = None
-        if self.config.email:
-            error = self.fire_exchange(interface, email)
-            if not error:
-                return
-
-        # Otherwise, prompt for email address
         while True:
-            email = interface.show_exchange(email, self._reports,
-                _("""\
+            if error or not self.config.email:
+                email = interface.show_exchange(email, self._reports,
+                    _("""\
 The following information will be sent to the Launchpad
 hardware database. Please provide the e-mail address you
 use to sign in to Launchpad to submit this information."""), error=error)
