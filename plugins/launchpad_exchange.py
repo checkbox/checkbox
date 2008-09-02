@@ -55,7 +55,6 @@ class LaunchpadExchange(Plugin):
              ("report-distribution", self.report_distribution),
              ("report-submission_id", self.report_submission_id),
              ("report-system_id", self.report_system_id),
-             ("exchange-email", self.exchange_email),
              ("exchange-report", self.exchange_report),
              ("exchange", self.exchange)]:
             self._manager.reactor.call_on(rt, rh)
@@ -80,15 +79,12 @@ class LaunchpadExchange(Plugin):
     def report_system_id(self, message):
         self._form["field.system"] = message
 
-    def exchange_email(self, message):
-        self._form["field.emailaddress"] = message
-
     def exchange_report(self, message):
         self._report = message
 
-    def exchange(self):
+    def exchange(self, email):
         # Encode form data
-        form = {}
+        form = {"field.emailaddress": email}
         for field, value in self._form.items():
             form[field] = str(value).encode("UTF-8")
 

@@ -58,13 +58,6 @@ class ExchangePrompt(Plugin):
     def report_results(self, message):
         self._reports.add("tests")
 
-    def fire_exchange(self, interface, email):
-        self._manager.reactor.fire("exchange-email", email)
-        interface.show_wait(
-            _("Exchanging information with the server..."),
-            self._manager.reactor.fire, "exchange")
-        return self._manager.get_error()
-
     def prompt_exchange(self, interface):
         email = self.persist.get("email") or self.config.email
 
@@ -82,7 +75,10 @@ use to sign in to Launchpad to submit this information."""), error=error)
             elif not re.match(r"^\S+@\S+.\S+$", email, re.I):
                 error = _("Email address must be in a proper format.")
             else:
-                error = self.fire_exchange(interface, email)
+                interface.show_wait(
+                    _("Exchanging information with the server..."),
+                    self._manager.reactor.fire, "exchange", email)
+                error = self._manager.get_error()
                 if not error:
                     break
 

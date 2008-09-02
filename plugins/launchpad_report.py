@@ -56,34 +56,41 @@ class LaunchpadReport(Plugin):
              ("report-results", self.report_results)]:
             self._manager.reactor.call_on(rt, rh)
 
-    def report_architecture(self, message):
-        self._report["summary"]["architecture"] = message
+    def report_architecture(self, architecture):
+        self._report["summary"]["architecture"] = architecture
 
-    def report_hal(self, message):
-        self._report["hardware"]["hal"] = message
+    def report_hal(self, hal):
+        self._report["hardware"]["hal"] = hal
 
-    def report_client(self, message):
-        self._report["summary"]["client"] = message
+    def report_client(self, client):
+        self._report["summary"]["client"] = client
 
-    def report_datetime(self, message):
-        self._report["summary"]["date_created"] = message
+    def report_datetime(self, datetime):
+        self._report["summary"]["date_created"] = datetime
 
-    def report_distribution(self, message):
-        self._report["software"]["lsbrelease"] = dict(message)
-        self._report["summary"]["distribution"] = message.distributor_id
-        self._report["summary"]["distroseries"] = message.release
+    def report_distribution(self, distribution):
+        self._report["software"]["lsbrelease"] = dict(distribution)
+        self._report["summary"]["distribution"] = distribution.distributor_id
+        self._report["summary"]["distroseries"] = distribution.release
 
-    def report_packages(self, message):
-        self._report["software"]["packages"].extend(message)
+    def report_packages(self, packages):
+        self._report["software"]["packages"].extend(packages)
 
-    def report_processors(self, message):
-        self._report["hardware"]["processors"] = message
+    def report_processors(self, processors):
+        self._report["hardware"]["processors"] = processors
 
-    def report_system_id(self, message):
-        self._report["summary"]["system_id"] = message
+    def report_system_id(self, system_id):
+        self._report["summary"]["system_id"] = system_id
 
-    def report_results(self, message):
-        self._report["questions"].extend(message)
+    def report_results(self, results):
+        for result in results:
+            test = result.test
+            question = dict(test.attributes)
+            question["command"] = str(test.command)
+            question["description"] = str(test.description)
+            question["requires"] = str(test.requires)
+            question["result"] = dict(result.attributes)
+            self._report["questions"].append(question)
 
     def report(self):
         # Prepare the payload and attach it to the form

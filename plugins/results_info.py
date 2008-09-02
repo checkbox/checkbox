@@ -19,7 +19,6 @@
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
 from checkbox.plugin import Plugin
-from checkbox.registry import registry_flatten
 
 
 class ResultsInfo(Plugin):
@@ -37,18 +36,7 @@ class ResultsInfo(Plugin):
             self._manager.reactor.call_on(rt, rh)
 
     def report_result(self, result):
-        test = result.test
-        message = dict(test.attributes)
-        message["command"] = str(test.command)
-        message["description"] = str(test.description)
-        message["requires"] = str(test.requires)
-        message["result"] = dict(result.attributes)
-        message["result"]["devices"] = [registry_flatten(d)
-            for d in result.devices]
-        message["result"]["packages"] = [registry_flatten(d)
-            for d in result.packages]
-
-        self._results.append(message)
+        self._results.append(result)
         if len(self._results) >= self._max_per_request:
             self.report()
 
