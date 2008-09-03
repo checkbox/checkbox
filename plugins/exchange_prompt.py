@@ -75,9 +75,10 @@ use to sign in to Launchpad to submit this information."""), error=error)
             elif not re.match(r"^\S+@\S+.\S+$", email, re.I):
                 error = _("Email address must be in a proper format.")
             else:
+                self._manager.reactor.fire("report-email", email)
                 interface.show_wait(
                     _("Exchanging information with the server..."),
-                    self._manager.reactor.fire, "exchange", email)
+                    self._manager.reactor.fire, "exchange")
                 error = self._manager.get_error()
                 if not error:
                     break
