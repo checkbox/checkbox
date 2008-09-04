@@ -26,6 +26,8 @@ from checkbox.plugin import Plugin
 
 class BootPrompt(Plugin):
 
+    required_attributes = ["enable"]
+
     def register(self, manager):
         super(BootPrompt, self).register(manager)
         self._manager.reactor.call_on("prompt-begin", self.prompt_begin)
