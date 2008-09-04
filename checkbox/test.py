@@ -244,8 +244,9 @@ class TestResult(object):
 
 class TestCommand(Command):
 
-    def __init__(self, test):
-        super(TestCommand, self).__init__(test.command, test.timeout)
+    def __init__(self, test, *args, **kwargs):
+        super(TestCommand, self).__init__(str(test.command), test.timeout,
+            *args, **kwargs)
         self.test = test
 
     def post_execute(self, result):
