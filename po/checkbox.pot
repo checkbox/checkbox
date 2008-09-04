@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-17 15:09-0400\n"
+"POT-Creation-Date: 2008-09-04 13:06-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,25 +28,25 @@ msgstr ""
 msgid "Distribution details"
 msgstr ""
 
-#: ../gtk/checkbox-gtk.glade.h:4 ../checkbox_cli/cli_interface.py:187
-#: ../checkbox_cli/cli_interface.py:210
-msgid "System Testing"
-msgstr ""
-
-#: ../gtk/checkbox-gtk.glade.h:5 ../checkbox_gtk/gtk_interface.py:269
+#: ../gtk/checkbox-gtk.glade.h:4 ../checkbox_gtk/gtk_interface.py:266
 msgid "Ne_xt"
 msgstr ""
 
-#: ../gtk/checkbox-gtk.glade.h:6
+#: ../gtk/checkbox-gtk.glade.h:5
 msgid "Packages installed"
 msgstr ""
 
-#: ../gtk/checkbox-gtk.glade.h:7
+#: ../gtk/checkbox-gtk.glade.h:6
 msgid "Processor information"
 msgstr ""
 
-#: ../gtk/checkbox-gtk.glade.h:8
+#: ../gtk/checkbox-gtk.glade.h:7
 msgid "Successfully sent information!"
+msgstr ""
+
+#: ../gtk/checkbox-gtk.glade.h:8 ../checkbox_cli/cli_interface.py:186
+#: ../checkbox_cli/cli_interface.py:209
+msgid "System Testing"
 msgstr ""
 
 #: ../gtk/checkbox-gtk.glade.h:9
@@ -77,8 +77,8 @@ msgstr ""
 msgid "_Skip this test"
 msgstr ""
 
-#: ../gtk/checkbox-gtk.glade.h:16 ../checkbox_gtk/gtk_interface.py:206
-msgid "_Test"
+#: ../gtk/checkbox-gtk.glade.h:16
+msgid "_Test Again"
 msgstr ""
 
 #: ../gtk/checkbox-gtk.glade.h:17
@@ -182,125 +182,120 @@ msgstr ""
 msgid "Is your keyboard working properly?"
 msgstr ""
 
-#: ../checkbox/application.py:72
+#: ../checkbox/application.py:75
 msgid "Print version information and exit."
 msgstr ""
 
-#: ../checkbox/application.py:74
+#: ../checkbox/application.py:78
 msgid "The file to write the log to."
 msgstr ""
 
-#: ../checkbox/application.py:77
+#: ../checkbox/application.py:81
 msgid "One of debug, info, warning, error or critical."
 msgstr ""
 
-#: ../checkbox/application.py:81
-msgid "Delay before running the application."
+#: ../checkbox/application.py:86
+msgid "Configuration override parameters."
 msgstr ""
 
-#: ../checkbox/application.py:108
+#: ../checkbox/application.py:113
 msgid "Missing configuration file as argument.\n"
 msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:117
+#: ../checkbox_cli/cli_interface.py:116
 msgid "Press any key to continue..."
 msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:126
+#: ../checkbox_cli/cli_interface.py:125
 #, python-format
 msgid "Please choose (%s): "
 msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:212 ../checkbox_gtk/gtk_interface.py:189
+#: ../checkbox_cli/cli_interface.py:211 ../checkbox_gtk/gtk_interface.py:191
 #, python-format
 msgid "Running test: %s"
 msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:219 ../checkbox_cli/cli_interface.py:233
+#: ../checkbox_cli/cli_interface.py:220
 msgid "yes"
 msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:219 ../checkbox_cli/cli_interface.py:227
-#: ../checkbox_cli/cli_interface.py:233
+#: ../checkbox_cli/cli_interface.py:220
 msgid "no"
 msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:219 ../checkbox_cli/cli_interface.py:233
+#: ../checkbox_cli/cli_interface.py:220
 msgid "skip"
 msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:228
+#: ../checkbox_cli/cli_interface.py:229
 msgid "Please provide comments about the failure."
 msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:230
+#: ../checkbox_cli/cli_interface.py:231
 msgid "Please type here and press Ctrl-D when finished:\n"
 msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:238
+#: ../checkbox_cli/cli_interface.py:240
 msgid "Authentication"
 msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:239
+#: ../checkbox_cli/cli_interface.py:241
 msgid "Please provide your Launchpad email address:"
 msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:249
+#: ../checkbox_cli/cli_interface.py:251
 msgid "Done"
 msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:250
+#: ../checkbox_cli/cli_interface.py:252
 msgid "Successfully sent information to server!"
 msgstr ""
 
-#: ../checkbox_gtk/gtk_interface.py:204
-msgid "_Test Again"
-msgstr ""
-
-#: ../checkbox_gtk/gtk_interface.py:251
+#: ../checkbox_gtk/gtk_interface.py:248
 msgid "Exchange"
 msgstr ""
 
-#: ../checkbox_gtk/gtk_interface.py:261
+#: ../checkbox_gtk/gtk_interface.py:258
 msgid "_Finish"
 msgstr ""
 
-#: ../plugins/auto_prompt.py:62
+#: ../plugins/auto_prompt.py:42
 msgid "Running automatic tests..."
 msgstr ""
 
-#: ../plugins/category_prompt.py:61
+#: ../plugins/category_prompt.py:58
 msgid "Category"
 msgstr ""
 
-#: ../plugins/category_prompt.py:62
+#: ../plugins/category_prompt.py:59
 msgid "Please select the category of your system."
 msgstr ""
 
-#: ../plugins/exchange_prompt.py:67
+#: ../plugins/exchange_prompt.py:68
 msgid ""
 "The following information will be sent to the Launchpad\n"
 "hardware database. Please provide the e-mail address you\n"
 "use to sign in to Launchpad to submit this information."
 msgstr ""
 
-#: ../plugins/exchange_prompt.py:75
+#: ../plugins/exchange_prompt.py:76
 msgid "Email address must be in a proper format."
 msgstr ""
 
-#: ../plugins/exchange_prompt.py:79
+#: ../plugins/exchange_prompt.py:80
 msgid "Exchanging information with the server..."
 msgstr ""
 
-#: ../plugins/gather_prompt.py:37
+#: ../plugins/gather_prompt.py:36
 msgid "Gathering information from your system..."
 msgstr ""
 
-#: ../plugins/intro_prompt.py:33
+#: ../plugins/intro_prompt.py:34
 msgid "Welcome to System Testing!"
 msgstr ""
 
-#: ../plugins/intro_prompt.py:34
+#: ../plugins/intro_prompt.py:35
 msgid ""
 "This application will gather information from your system. Then,\n"
 "you will be asked manual tests to confirm that the system is working\n"
