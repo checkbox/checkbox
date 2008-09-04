@@ -330,6 +330,9 @@ class RootedPersist(object):
     def assert_writable(self):
         self.parent.assert_writable()
 
+    def save(self):
+        self.parent.save()
+
     def has(self, path, value=NOTHING, soft=False, hard=False, weak=False):
         if type(path) is str:
             path = path_string_to_tuple(path)
