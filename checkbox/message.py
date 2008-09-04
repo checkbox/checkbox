@@ -64,7 +64,8 @@ class MessageStore(object):
         return self._persist.get("accepted-types", ())
 
     def accepts(self, type):
-        return type in self.get_accepted_types()
+        accepted_types = self.get_accepted_types()
+        return not accepted_types or type in accepted_types
 
     def get_sequence(self):
         """
@@ -113,7 +114,6 @@ class MessageStore(object):
 
     def get_pending_messages(self, max=None):
         """Get any pending messages that aren't being held, up to max."""
-        accepted_types = self.get_accepted_types()
         messages = []
         for filename in self._walk_pending_messages():
             if max is not None and len(messages) >= max:
@@ -125,7 +125,7 @@ class MessageStore(object):
                 logging.exception(e)
                 self._add_flags(filename, BROKEN)
             else:
-                if message["type"] not in accepted_types:
+                if not self.accepts(message["type"]):
                     self._add_flags(filename, HELD)
                 else:
                     messages.append(message)
@@ -192,7 +192,8 @@ class MessageStore(object):
         @return: message_id, which is an identifier for the added message.
         """
         assert "type" in message
-        message = self._schemas[message["type"]].coerce(message)
+        if message["type"] in self._schemas:
+            message = self._schemas[message["type"]].coerce(message)
 
         message_data = bpickle.dumps(message)
 
@@ -278,7 +279,6 @@ class MessageStore(object):
         """
         offset = 0
         pending_offset = self.get_pending_offset()
-        accepted_types = self.get_accepted_types()
         for old_filename in self._walk_messages():
             flags = self._get_flags(old_filename)
             try:
@@ -288,7 +288,7 @@ class MessageStore(object):
                 if HELD not in flags:
                     offset += 1
             else:
-                accepted = message["type"] in accepted_types
+                accepted = self.accepts(message["type"])
                 if HELD in flags:
                     if accepted:
                         new_filename = self._get_next_message_filename()
