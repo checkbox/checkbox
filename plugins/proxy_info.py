@@ -29,7 +29,7 @@ class ProxyInfo(Plugin):
 
     def register(self, manager):
         super(ProxyInfo, self).register(manager)
-        self._manager.reactor.call_on("gather", self.gather)
+        self._manager.reactor.call_on("gather", self.gather, -1000)
 
     def gather(self):
         for attribute in self.optional_attributes:
