@@ -55,7 +55,7 @@ class Persist(object):
     """
 
 
-    def __init__(self, backend=None, filename=None):
+    def __init__(self, filename=None, backend=None):
         """
         @param backend: The backend to use. If none is specified,
             L{BPickleBackend} will be used.
