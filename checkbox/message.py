@@ -131,21 +131,15 @@ class MessageStore(object):
                     messages.append(message)
         return messages
 
-    def get_message(self, message_id):
-        """Delete a message given the corresponding id."""
-        message = None
-        for filename in self._walk_messages(exclude=BROKEN):
-            if os.stat(filename).st_ino == message_id:
-                content = self._get_content(filename)
-                message = bpickle.loads(content)
+    def set_pending_flags(self, flags):
+        for filename in self._walk_pending_messages():
+            self._set_flags(filename, flags)
+            break
 
-        return message
-
-    def delete_message(self, message_id):
-        """Delete a message given the corresponding id."""
-        for filename in self._walk_messages():
-            if os.stat(filename).st_ino == message_id:
-                os.unlink(filename)
+    def add_pending_flags(self, flags):
+        for filename in self._walk_pending_messages():
+            self._add_flags(filename, flags)
+            break
 
     def delete_old_messages(self):
         """Delete messages which are unlikely to be needed in the future."""
@@ -315,7 +309,6 @@ class MessageStore(object):
 
     def _add_flags(self, path, flags):
         self._set_flags(path, self._get_flags(path)+flags)
-
 
 
 class Message(KeyDict):
