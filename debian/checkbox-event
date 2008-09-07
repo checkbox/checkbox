@@ -10,4 +10,4 @@ start on stopped rc3
 
 console output
 
-exec /usr/bin/checkbox-cli -c "checkbox/plugins/blacklist=manual_prompt intro_prompt final_prompt" --log-level=debug --log=/var/log/checkbox-cli.log
+exec /usr/bin/checkbox-cli -c "checkbox/plugins/blacklist=manual_prompt intro_prompt final_prompt" --log-level=debug --log=/var/log/checkbox.log
