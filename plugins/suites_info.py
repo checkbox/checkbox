@@ -45,8 +45,11 @@ class SuitesInfo(Plugin):
         elements = template.load_directories(directories, blacklist, whitelist)
 
         for element in elements:
-            if "description_extended" in element:
-                element["description"] = element.pop("description_extended")
+            long_ext = "_extended"
+            for long_key in element.keys():
+                if long_key.endswith(long_ext):
+                    short_key = long_key.replace(long_ext, "")
+                    element[short_key] = element.pop(long_key)
 
             test = Test(self._manager.registry, **element)
             for command in test.command, test.description:
