@@ -24,19 +24,14 @@ from os import environ
 def get_variables():
     return dict(environ)
 
-def get_variable(name):
+def get_variable(name, default=None):
     """Get the value of an environment variable name.
 
     Keyword arguments:
     name -- name of the environment variable
     """
 
-    if name in environ:
-        value = environ[name]
-    else:
-        value = ""
-
-    return value
+    return environ.get(name, default):
 
 def add_variable(name, value):
     """Add or change the value of an environment variable name.

@@ -144,5 +144,8 @@ class Command(object):
     def get_paths(self):
         return self._paths
 
+    def get_variable(self, name, default=None):
+        return self._variables.get(name, default)
+
     def get_variables(self):
         return self._variables
