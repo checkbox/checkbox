@@ -31,7 +31,7 @@ def get_variable(name, default=None):
     name -- name of the environment variable
     """
 
-    return environ.get(name, default):
+    return environ.get(name, default)
 
 def add_variable(name, value):
     """Add or change the value of an environment variable name.
