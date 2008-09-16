@@ -1,21 +1,22 @@
 #! /bin/sh -e
 
-package=`basename $0 .postrm`
-config_file="/etc/checkbox.d/$package.ini"
+name=`basename $0 .postrm`
+base=`echo $name | cut -d "-" -f "1"`
+file="/etc/$base.d/$name.ini"
 
 case "$1" in
     purge)
         # mimic dpkg as closely as possible, so remove configuration
         # files with dpkg backup extensions too:
         for ext in '~' '%' .bak .dpkg-tmp .dpkg-new .dpkg-old .dpkg-dist;  do
-            rm -f $config_file$ext
+            rm -f $file$ext
         done
 
         # remove the configuration file itself
-        rm -f $config_file
+        rm -f $file
 
         # and finally clear it out from the ucf database
-        ucf --purge $config_file
+        ucf --purge $file
         ;;
     remove|disappear|upgrade|failed-upgrade|abort-install|abort-upgrade)
         ;;
