@@ -43,7 +43,7 @@ class SubmissionInfo(Plugin):
         self._system_id = system_id
 
     def report(self):
-        submission_id = self.config.submission_id
+        submission_id = self._config.submission_id
         if not submission_id:
             if not self._system_id:
                 return

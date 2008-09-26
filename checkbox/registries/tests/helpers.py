@@ -34,5 +34,5 @@ class TestHelper(unittest.TestCase):
         section_name = section_class_name.replace("Registry", "").lower()
 
         config = Config(self.config_path)
-        self.config = config.get_section("%s/%s" \
+        self._config = config.get_section("%s/%s" \
             % (self.config_section, section_name))

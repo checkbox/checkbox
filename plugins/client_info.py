@@ -31,9 +31,9 @@ class ClientInfo(Plugin):
 
     def report(self):
         message = {}
-        message["name"] = os.path.basename(self.config.parent.path) \
+        message["name"] = os.path.basename(self._config.parent.path) \
             .replace(".ini", "")
-        message["version"] = self.config.parent.get_defaults().version
+        message["version"] = self._config.parent.get_defaults().version
         self._manager.reactor.fire("report-client", message)
 
 

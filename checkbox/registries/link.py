@@ -29,16 +29,16 @@ class LinkRegistry(Registry):
 
     def __init__(self, config, link):
         super(LinkRegistry, self).__init__(config)
-        self.link = link
+        self._link = link
 
     def __str__(self):
-        return str(self.link)
+        return str(self._link)
 
     def items(self):
         items = []
-        for k, v in self.link.items():
+        for k, v in self._link.items():
             if isinstance(v, LinkRegistry):
                 continue
-            items.append([k, v])
+            items.append((k, v))
 
         return items

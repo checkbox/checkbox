@@ -33,7 +33,7 @@ class BootPrompt(Plugin):
         self._manager.reactor.call_on("prompt-begin", self.prompt_begin)
 
     def prompt_begin(self, interface):
-        enable = string_to_type(self.config.enable)
+        enable = string_to_type(self._config.enable)
         if get_variable("UPSTART_JOB") and not enable:
             self._manager.reactor.stop_all()
 

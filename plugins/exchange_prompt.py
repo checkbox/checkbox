@@ -59,11 +59,11 @@ class ExchangePrompt(Plugin):
         self._reports.add("tests")
 
     def prompt_exchange(self, interface):
-        email = self.persist.get("email") or self.config.email
+        email = self._persist.get("email") or self._config.email
 
         error = None
         while True:
-            if error or not self.config.email:
+            if error or not self._config.email:
                 email = interface.show_exchange(email, self._reports,
                     _("""\
 The following information will be sent to the Launchpad
@@ -83,7 +83,7 @@ use to sign in to Launchpad to submit this information."""), error=error)
                 if not error:
                     break
 
-        self.persist.set("email", email)
+        self._persist.set("email", email)
 
 
 factory = ExchangePrompt

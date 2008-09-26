@@ -167,12 +167,9 @@ def registry_flatten(registry):
 
 def registry_eval(registry, source):
     try:
-        if eval(source, {}, registry):
-            return True
+        return eval(source, {}, registry)
     except Exception:
-        pass
-
-    return False
+        return False
 
 def registry_eval_recursive(registry, source, mask=[False]):
     values = []

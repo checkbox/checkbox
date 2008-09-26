@@ -25,6 +25,6 @@ from checkbox.registries.tests.helpers import TestHelper
 class DataRegistryTest(TestHelper):
 
     def test_data(self):
-        registry = DataRegistry(self.config, "foo")
+        registry = DataRegistry(self._config, "foo")
         self.assertTrue(str(registry) is not None)
         self.assertTrue(str(registry) == "foo")

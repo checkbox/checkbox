@@ -27,7 +27,7 @@ class ResultsInfo(Plugin):
 
     def register(self, manager):
         super(ResultsInfo, self).register(manager)
-        self._max_per_request = int(self.config.max_per_request)
+        self._max_per_request = int(self._config.max_per_request)
         self._results = []
 
         for (rt, rh) in [

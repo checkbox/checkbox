@@ -28,10 +28,10 @@ class UserInterface(Plugin):
     optional_attributes = ["title", "gtk_path"]
 
     def run(self):
-        interface_module = __import__(self.config.interface_module,
+        interface_module = __import__(self._config.interface_module,
             None, None, [''])
-        interface_class = getattr(interface_module, self.config.interface_class)
-        interface = interface_class(self.config)
+        interface_class = getattr(interface_module, self._config.interface_class)
+        interface = interface_class(self._config)
 
         iterator = Iterator([
              "prompt-begin",

@@ -30,10 +30,10 @@ class DataRegistry(Registry):
 
     def __init__(self, config, data=None):
         super(DataRegistry, self).__init__(config)
-        self.data = data
+        self._data = data
 
     def __str__(self):
-        return self.data
+        return self._data
 
     def items(self):
         return []

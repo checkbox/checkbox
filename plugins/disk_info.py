@@ -34,7 +34,7 @@ class DiskInfo(Plugin):
 
     def report(self):
         # Found label 'Ubuntu 8.04.1 _Hardy Heron_ - Release amd64 (20080702.1)'
-        filename = self.config.filename
+        filename = self._config.filename
         if os.path.exists(filename):
             descriptor = open(filename)
             regex = re.compile(r"Found label '([\w\-]+) ([\d\.]+) _([^_]+)_ "

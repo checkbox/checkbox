@@ -38,15 +38,15 @@ class LsbRegistry(CommandRegistry):
 
     def __init__(self, config, filename=None, map=None):
         super(LsbRegistry, self).__init__(config, filename)
-        self.map = map or self.default_map
+        self._map = map or self.default_map
 
     @cache
     def items(self):
         items = []
         for line in [l for l in self.split("\n") if l]:
             (key, value) = line.split(":\t", 1)
-            if key in self.map:
-                key = self.map[key]
+            if key in self._map:
+                key = self._map[key]
                 items.append((key, value))
 
         return items

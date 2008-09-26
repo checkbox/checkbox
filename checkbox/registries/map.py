@@ -32,19 +32,19 @@ class MapRegistry(Registry):
 
     def __init__(self, config, map={}):
         super(MapRegistry, self).__init__(config)
-        self.map = map
+        self._map = map
 
     def __str__(self):
-        strings = ["%s: %s" % (k, v) for k, v in self.map.items()]
+        strings = ["%s: %s" % (k, v) for k, v in self._map.items()]
 
         return "\n".join(strings)
 
     @cache
     def items(self):
         items = []
-        for key, value in self.map.items():
+        for key, value in self._map.items():
             if type(value) is types.DictType:
-                value = MapRegistry(self.config, value)
+                value = MapRegistry(self._config, value)
 
             items.append((key, value))
 

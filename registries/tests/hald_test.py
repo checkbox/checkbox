@@ -28,6 +28,6 @@ from registries.hald import HaldRegistry
 class HaldRegistryTest(TestHelper):
 
     def test_version(self):
-        registry = HaldRegistry(self.config)
+        registry = HaldRegistry(self._config)
         self.assertTrue(registry.version)
         self.assertTrue(re.search(r"^[\d\.]+$", registry.version))

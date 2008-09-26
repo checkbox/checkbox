@@ -33,8 +33,8 @@ class PromptTest(Plugin):
         self.iterator = None
         self.result = None
 
-        plugin_priorities = self.config.plugin_priorities \
-            and re.split("\s+", self.config.plugin_priorities) or []
+        plugin_priorities = self._config.plugin_priorities \
+            and re.split("\s+", self._config.plugin_priorities) or []
         self.test_manager = TestManager(plugin_priorities=plugin_priorities)
 
         for (rt, rh) in [

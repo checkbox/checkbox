@@ -32,7 +32,7 @@ class CategoryPrompt(Plugin):
         self._manager.reactor.call_on("prompt-category", self.prompt_category)
 
     def prompt_category(self, interface):
-        category = self.persist.get("category") or self.config.category
+        category = self._persist.get("category") or self._config.category
         registry = self._manager.registry
 
         # Try to determine category from HAL formfactor
@@ -59,7 +59,7 @@ class CategoryPrompt(Plugin):
                 _("Please select the category of your system."),
                 category)
 
-        self.persist.set("category", category)
+        self._persist.set("category", category)
         self._manager.reactor.fire("report-category", category)
 
 

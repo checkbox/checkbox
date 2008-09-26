@@ -104,11 +104,11 @@ class LaunchpadExchange(Plugin):
             logging.debug("Uncompressed payload length: %d", len(payload))
 
         self._manager.set_error()
-        transport = HTTPTransport(self.config.transport_url)
+        transport = HTTPTransport(self._config.transport_url)
 
         start_time = time.time()
         response = transport.exchange(form, self._headers,
-            timeout=int(self.config.timeout))
+            timeout=int(self._config.timeout))
         end_time = time.time()
 
         if not response:

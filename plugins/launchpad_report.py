@@ -97,7 +97,7 @@ class LaunchpadReport(Plugin):
         report_manager = LaunchpadReportManager("system", "1.0")
         payload = report_manager.dumps(self._report).toprettyxml("")
 
-        filename = self.config.filename
+        filename = self._config.filename
         directory = os.path.dirname(filename)
         safe_make_directory(directory)
 

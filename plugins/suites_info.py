@@ -36,11 +36,11 @@ class SuitesInfo(Plugin):
         self._manager.reactor.call_on("gather", self.gather)
 
     def gather(self):
-        directories = re.split("\s+", self.config.directories)
-        blacklist = self.config.blacklist \
-            and re.split("\s+", self.config.blacklist) or []
-        whitelist = self.config.whitelist \
-            and re.split("\s+", self.config.whitelist) or []
+        directories = re.split("\s+", self._config.directories)
+        blacklist = self._config.blacklist \
+            and re.split("\s+", self._config.blacklist) or []
+        whitelist = self._config.whitelist \
+            and re.split("\s+", self._config.whitelist) or []
         template = TemplateI18n("suite", ["name"])
         elements = template.load_directories(directories, blacklist, whitelist)
 
@@ -53,8 +53,8 @@ class SuitesInfo(Plugin):
 
             test = Test(self._manager.registry, **element)
             for command in test.command, test.description:
-                command.add_path(self.config.scripts_path)
-                command.add_variable("data_path", self.config.data_path)
+                command.add_path(self._config.scripts_path)
+                command.add_variable("data_path", self._config.data_path)
 
             self._manager.reactor.fire("test-%s" % test.plugin, test)
 

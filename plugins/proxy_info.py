@@ -33,7 +33,7 @@ class ProxyInfo(Plugin):
 
     def gather(self):
         for attribute in self.optional_attributes:
-            value = getattr(self.config, attribute)
+            value = getattr(self._config, attribute)
             if value:
                 add_variable(attribute, value)
 

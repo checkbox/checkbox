@@ -27,7 +27,7 @@ class PackagesInfo(Plugin):
 
     def register(self, manager):
         super(PackagesInfo, self).register(manager)
-        self._max_per_request = int(self.config.max_per_request)
+        self._max_per_request = int(self._config.max_per_request)
         self._manager.reactor.call_on("report", self.report)
 
     def report(self):

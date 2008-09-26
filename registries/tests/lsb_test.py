@@ -26,7 +26,7 @@ from registries.lsb import LsbRegistry
 class LsbRegistryTest(TestHelper):
 
     def test_keys(self):
-        registry = LsbRegistry(self.config)
+        registry = LsbRegistry(self._config)
         self.assertTrue(registry.distributor_id)
         self.assertTrue(registry.description)
         self.assertTrue(registry.release)

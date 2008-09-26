@@ -32,7 +32,7 @@ class UserInterface(object):
        A concrete subclass must implement all the abstract show_* methods."""
 
     def __init__(self, config):
-        self.config = config
+        self._config = config
 
         self.direction = NEXT
         self.gettext_domain = "checkbox"

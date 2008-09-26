@@ -36,7 +36,7 @@ class LockPrompt(Plugin):
         self._manager.reactor.call_on("prompt-begin", self.prompt_begin)
 
     def prompt_begin(self, interface):
-        self._lock = GlobalLock(self.config.filename)
+        self._lock = GlobalLock(self._config.filename)
         try:
             self._lock.acquire()
         except LockAlreadyAcquired:

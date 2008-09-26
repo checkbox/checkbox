@@ -26,11 +26,11 @@ from registries.cpuinfo import CpuinfoRegistry
 class CpuinfoRegistryTest(TestHelper):
 
     def test_processors(self):
-        registry = CpuinfoRegistry(self.config)
+        registry = CpuinfoRegistry(self._config)
         self.assertTrue(registry.keys() > 0)
         self.assertTrue(registry[0])
 
     def test_vendor_id(self):
-        registry = CpuinfoRegistry(self.config)
+        registry = CpuinfoRegistry(self._config)
         processor = registry[0]
         self.assertTrue(processor.vendor_id)

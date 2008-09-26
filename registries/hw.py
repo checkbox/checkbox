@@ -115,14 +115,14 @@ class HwRegistry(CommandRegistry):
 
     @cache
     def __str__(self):
-        logging.info("Running command: %s", self.config.version)
-        version = os.popen(self.config.version).read().strip()
+        logging.info("Running command: %s", self._config.version)
+        version = os.popen(self._config.version).read().strip()
         numbers = version.split(".")
         if len(numbers) == 3 \
            and numbers[0] == "B" \
            and int(numbers[1]) == 2 \
            and int(numbers[2]) < 13:
-            self.command = self.command.replace(" -numeric", "")
+            self._command = self._command.replace(" -numeric", "")
 
         return super(HwRegistry, self).__str__()
 

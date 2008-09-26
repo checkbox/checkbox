@@ -32,16 +32,16 @@ class PackageRegistry(Registry):
 
     def __init__(self, config, package):
         super(PackageRegistry, self).__init__(config)
-        self.package = package
+        self._package = package
 
     def __str__(self):
-        strings = ["%s: %s" % (k, v) for k, v in self.package.items()]
+        strings = ["%s: %s" % (k, v) for k, v in self._package.items()]
 
         return "\n".join(strings)
 
     @cache
     def items(self):
-        items = [(k, v) for k, v in self.package.items()]
+        items = [(k, v) for k, v in self._package.items()]
         items.append(("package", LinkRegistry(None, self)))
 
         return items

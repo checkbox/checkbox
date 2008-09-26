@@ -40,14 +40,14 @@ class Application(object):
     reactor_factory = Reactor
 
     def __init__(self, config):
-        self.config = config
+        self._config = config
         self.reactor = self.reactor_factory()
 
         # Registry manager setup
-        self.registry = RegistryManager(self.config)
+        self.registry = RegistryManager(self._config)
 
         # Plugin manager setup
-        self.plugin_manager = PluginManager(self.config,
+        self.plugin_manager = PluginManager(self._config,
             self.reactor, self.registry)
 
     def run(self):

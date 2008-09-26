@@ -30,7 +30,7 @@ class DelayPrompt(Plugin):
     def __init__(self, *args, **kwargs):
         super(DelayPrompt, self).__init__(*args, **kwargs)
         # Force delay as early as possible
-        timeout = float(self.config.timeout)
+        timeout = float(self._config.timeout)
         sleep(timeout)
 
 

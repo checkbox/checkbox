@@ -38,12 +38,12 @@ class CommandRegistry(Registry):
 
     def __init__(self, config, command=None):
         super(CommandRegistry, self).__init__(config)
-        self.command = command or self.config.command
+        self._command = command or self._config.command
 
     @cache
     def __str__(self):
-        logging.info("Running command: %s", self.command)
-        return os.popen(self.command).read()
+        logging.info("Running command: %s", self._command)
+        return os.popen(self._command).read()
 
     def items(self):
         return []

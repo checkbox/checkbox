@@ -35,11 +35,11 @@ class FileRegistry(Registry):
 
     def __init__(self, config, filename=None):
         super(FileRegistry, self).__init__(config)
-        self.filename = filename or self.config.filename
+        self._filename = filename or self._config.filename
 
     def __str__(self):
-        logging.info("Reading filename: %s", self.filename)
-        return open(self.filename, "r").read()
+        logging.info("Reading filename: %s", self._filename)
+        return open(self._filename, "r").read()
 
     def items(self):
         return []

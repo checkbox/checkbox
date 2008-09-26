@@ -77,7 +77,7 @@ class Plugin(Repository):
     """
     def __init__(self, config, persist):
         super(Plugin, self).__init__(config)
-        self.persist = persist
+        self._persist = persist
 
     def register(self, manager):
         self._manager = manager
