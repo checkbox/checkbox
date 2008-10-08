@@ -21,7 +21,7 @@
 import re
 import logging
 
-from checkbox.log import format_object
+from checkbox.lib.log import format_object
 
 
 class EventID(object):

@@ -28,9 +28,9 @@ from gettext import gettext as _
 from socket import gethostname
 from StringIO import StringIO
 
+from checkbox.lib.log import format_delta
 from checkbox.lib.transport import HTTPTransport
 
-from checkbox.log import format_delta
 from checkbox.plugin import Plugin
 
 
