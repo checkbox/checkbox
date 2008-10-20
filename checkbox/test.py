@@ -33,7 +33,8 @@ from checkbox.lib.environ import add_variable, remove_variable
 from checkbox.lib.signal import signal_to_name, signal_to_description
 
 from checkbox.command import Command
-from checkbox.iterator import Iterator, IteratorExclude, IteratorPreRepeat, IteratorPostRepeat
+from checkbox.iterator import (Iterator, IteratorExclude,
+    IteratorPreRepeat, IteratorPostRepeat)
 from checkbox.requires import Requires
 from checkbox.resolver import Resolver
 
