@@ -39,7 +39,6 @@ class PackageRegistry(Registry):
 
         return "\n".join(strings)
 
-    @cache
     def items(self):
         items = [(k, v) for k, v in self._package.items()]
         items.append(("package", LinkRegistry(None, self)))

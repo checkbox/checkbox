@@ -33,7 +33,6 @@ class ProcessorRegistry(DataRegistry):
     for a single processor in the /proc/cpuinfo file.
     """
 
-    @cache
     def items(self):
         items = []
         for line in [l.strip() for l in self.split("\n")]:
