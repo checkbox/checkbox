@@ -8,36 +8,6 @@ _description:
  .
  Did you hear a sound?
 
-name: playback_alsa
-plugin: manual
-categories: laptop, desktop
-requires: alsa.type == 'playback'
-command: gst_pipeline_test -t 2 'audiotestsrc wave=sine freq=512 ! audioconvert ! audioresample ! alsasink'
-_description:
- Testing ALSA (Advanced Linux Sound Architecture) playback device.
- .
- Did you hear a sound?
-
-name: playback_oss
-plugin: manual
-categories: laptop, desktop
-requires: alsa.type == 'playback'
-command: gst_pipeline_test -t 2 'audiotestsrc wave=sine freq=512 ! audioconvert ! audioresample ! osssink'
-_description:
- Testing OSS (Open Sound System) playback device.
- .
- Did you hear a sound?
-
-name: playback_pulse
-plugin: manual
-categories: laptop, desktop
-requires: alsa.type == 'playback'
-command: gst_pipeline_test -t 2 'audiotestsrc wave=sine freq=512 ! audioconvert ! audioresample ! pulsesink'
-_description:
- Testing PulseAudio Sound Server playback device.
- .
- Did you hear a sound?
-
 name: resolution
 plugin: manual
 categories: laptop, desktop
