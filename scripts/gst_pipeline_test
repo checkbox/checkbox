@@ -1,0 +1,38 @@
+#!/usr/bin/python
+
+import sys
+import time
+
+import pygst
+pygst.require("0.10")
+
+from optparse import OptionParser
+
+
+def main(args):
+    import gst
+
+    usage = "Usage: %prog [OPTIONS] PIPELINE"
+    parser = OptionParser(usage=usage)
+    parser.add_option("-t", "--timeout",
+        type="int",
+        default=0,
+        help="Timeout for running the pipeline.")
+    (options, args) = parser.parse_args(args)
+
+    if len(args) != 1:
+        parser.error("Must provide a PIPELINE")
+
+    pipeline = args[0]
+    element = gst.parse_launch(pipeline)
+    element.set_state(gst.STATE_PLAYING)
+
+    if options.timeout:
+        time.sleep(options.timeout)
+
+    element.set_state(gst.STATE_NULL)
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv[1:]))
