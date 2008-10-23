@@ -4,7 +4,7 @@ categories: laptop, desktop
 requires: alsa.type == 'playback'
 command: gst_pipeline_test -t 2 'audiotestsrc wave=sine freq=512 ! audioconvert ! audioresample ! gconfaudiosink'
 _description:
- Testing automatically detected payback device.
+ Testing automatically detected playback device.
  .
  Did you hear a sound?
 
