@@ -162,31 +162,42 @@ class Repository(object):
         self._validate()
 
     def _validate(self):
-        if self.required_attributes and not self._config:
+        all_required_attributes = []
+        all_optional_attributes = []
+
+        cls = type(self)
+        for cls_mro in cls.__mro__:
+            for attr, descr in cls_mro.__dict__.iteritems():
+                if attr == "required_attributes":
+                    all_required_attributes.extend(descr)
+                elif attr == "optional_attributes":
+                    all_optional_attributes.extend(descr)
+
+        if all_required_attributes and not self._config:
             raise Exception, \
                 "Missing configuration section for required attributes: %s" \
-                % ", ".join(self.required_attributes)
+                % ", ".join(all_required_attributes)
 
-        if self.optional_attributes and not self._config:
+        if all_optional_attributes and not self._config:
             raise Exception, \
                 "Missing configuration section for optional attributes: %s" \
-                % ", ".join(self.optional_attributes)
+                % ", ".join(all_optional_attributes)
 
         if not self._config:
             return
 
-        for attribute in self.required_attributes:
+        for attribute in all_required_attributes:
             if attribute not in self._config.attributes:
                 raise Exception, \
                     "Configuration section '%s' missing required attribute: %s" \
                     % (self._config.name, attribute)
 
-        for attribute in self.optional_attributes:
+        for attribute in all_optional_attributes:
             if attribute not in self._config.attributes:
                 self._config.attributes[attribute] = None
 
-        all_attributes = self.required_attributes \
-            + self.optional_attributes \
+        all_attributes = all_required_attributes \
+            + all_optional_attributes \
             + self._config.parent.get_defaults().attributes.keys()
         for attribute in self._config.attributes.keys():
             if attribute not in all_attributes:

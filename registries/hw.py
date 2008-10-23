@@ -111,7 +111,7 @@ class HwRegistry(CommandRegistry):
     key and the corresponding device registry as value.
     """
 
-    optional_attributes = CommandRegistry.optional_attributes + ["version"]
+    optional_attributes = ["version"]
 
     @cache
     def __str__(self):
