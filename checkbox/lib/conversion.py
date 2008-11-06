@@ -25,7 +25,7 @@ def string_to_type(string):
     conversion_table = {
         "(yes|true)": lambda v: True,
         "(no|false)": lambda v: False,
-        "\d+.\d+": lambda v: float(v.group(0)),
+        "\d+\.\d+": lambda v: float(v.group(0)),
         "(\d+)( b)?": lambda v: int(v.group(1)),
         "(\d+) kb": lambda v: int(v.group(1)) * 1024,
         "(\d+) mb": lambda v: int(v.group(1)) * 1024 * 1024,
