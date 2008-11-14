@@ -29,10 +29,31 @@ from optparse import OptionParser
 
 from checkbox.contrib import bpickle_registry
 
+from checkbox.lib.environ import get_variable
+
 from checkbox.config import Config
 from checkbox.plugin import PluginManager
 from checkbox.reactor import Reactor
 from checkbox.registry import RegistryManager
+
+
+def parse_string(options):
+    args = []
+    while True:
+        options = options.strip()
+        if not options:
+            break
+
+        index = 0
+        while index < len(options) \
+              and (not options[index].isspace() \
+                  or options[index - 1] == "\\"):
+           index += 1
+
+        args.append(options[:index])
+        options = options[index:]
+
+    return args
 
 
 class Application(object):
@@ -87,6 +108,9 @@ class ApplicationManager(object):
         return parser.parse_args(args)
 
     def create_application(self, args=sys.argv):
+        # Prepend environment options
+        string_options = get_variable("CHECKBOX_OPTIONS", "")
+        args[:0] = parse_string(string_options)
         (options, args) = self.parse_options(args)
 
         log_level = logging.getLevelName(options.log_level.upper())
