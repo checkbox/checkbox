@@ -45,6 +45,7 @@ class Reactor(object):
 
     def __init__(self):
         self._event_handlers = {}
+        self._event_stack = []
 
     def call_on(self, event_type, handler, priority=0):
         pair = (handler, priority)
@@ -57,6 +58,12 @@ class Reactor(object):
 
     def fire(self, event_type, *args, **kwargs):
         logging.debug("Started firing %s.", event_type)
+
+        if event_type in self._event_stack:
+            raise StopAllException, "Loop detected for event type: %s." \
+                % event_type
+
+        self._event_stack.append(event_type)
 
         results = []
         handlers = []
@@ -89,6 +96,8 @@ class Reactor(object):
                                   format_object(handler), event_type,
                                   args, kwargs)
 
+        self._event_stack.pop(-1)
+
         logging.debug("Finished firing %s.", event_type)
         return results
 
@@ -104,8 +113,8 @@ class Reactor(object):
     def run(self):
         try:
             self.fire("run")
-        except StopAllException:
-            pass
+        except StopAllException, e:
+            logging.critical(e)
 
     def stop(self):
         raise StopException
