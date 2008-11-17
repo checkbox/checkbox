@@ -90,7 +90,8 @@ class ApplicationManager(object):
     default_log_level = "critical"
 
     def parse_options(self, args):
-        parser = OptionParser()
+        usage = _("Usage: checkbox [OPTIONS]")
+        parser = OptionParser(usage=usage)
         parser.add_option("--version",
                           action="store_true",
                           help=_("Print version information and exit."))
