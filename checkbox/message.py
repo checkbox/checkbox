@@ -336,7 +336,7 @@ class Message(KeyDict):
         super(Message, self).__init__(schema, optional=optional)
 
 
-def got_next_sequence(store, next_sequence):
+def got_next_sequence(message_store, next_sequence):
     """Our peer has told us what it expects our next message's sequence to be.
 
     Call this with the message store and sequence number that the peer
@@ -361,11 +361,11 @@ def got_next_sequence(store, next_sequence):
     we have, then L{ANCIENT} will be returned.
     """
     ret = None
-    old_sequence = store.get_sequence()
+    old_sequence = message_store.get_sequence()
     if next_sequence > old_sequence:
-        store.delete_old_messages()
+        message_store.delete_old_messages()
         pending_offset = next_sequence - old_sequence
-    elif next_sequence < (old_sequence - store.get_pending_offset()):
+    elif next_sequence < (old_sequence - message_store.get_pending_offset()):
         # "Ancient": The other side wants messages we don't have,
         # so let's just reset our counter to what it expects.
         pending_offset = 0
@@ -374,9 +374,9 @@ def got_next_sequence(store, next_sequence):
         # No messages transferred, or
         # "Old": We'll try to send these old messages that the
         # other side still wants.
-        pending_offset = (store.get_pending_offset() + next_sequence
+        pending_offset = (message_store.get_pending_offset() + next_sequence
                           - old_sequence)
 
-    store.set_pending_offset(pending_offset)
-    store.set_sequence(next_sequence)
+    message_store.set_pending_offset(pending_offset)
+    message_store.set_sequence(next_sequence)
     return ret
