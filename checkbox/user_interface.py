@@ -53,13 +53,11 @@ class UserInterface(object):
 
         return thread.return_value()
 
-    def show_wait(self, message, function):
-        raise NotImplementedError, \
-            "this function must be overridden by subclasses"
+    def show_wait(self, message, function, *args, **kwargs):
+        self.do_function(function, *args, **kwargs)
 
     def show_pulse(self):
-        raise NotImplementedError, \
-            "this function must be overridden by subclasses"
+        pass
 
     def show_intro(self, title, text):
         raise NotImplementedError, \
