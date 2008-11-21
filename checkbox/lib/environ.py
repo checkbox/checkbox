@@ -18,7 +18,10 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
+import os
+
 from os import environ
+from stat import ST_MODE, S_IEXEC
 
 
 def get_variables():
@@ -59,6 +62,16 @@ def get_paths():
         paths = environ["PATH"].split(":")
 
     return paths
+
+def get_path(command):
+    for path in get_paths():
+        absolute = os.path.join(path, command)
+        if os.path.exists(absolute):
+            mode = os.stat(absolute)[ST_MODE]
+            if mode & S_IEXEC:
+                return absolute
+
+    return None
 
 def add_path(path):
     """Add a path to the PATH environment variable if it doesn't exist
