@@ -24,12 +24,20 @@ from checkbox.repository import Repository, RepositoryManager, RepositorySection
 from checkbox.contrib.persist import Persist
 
 
+plugin_persist_filenames = []
+
 class PluginSection(RepositorySection):
 
     def __init__(self, *args, **kwargs):
         super(PluginSection, self).__init__(*args, **kwargs)
 
-        self._persist = Persist(self._config.persist_filename)
+        persist_filename = self._config.persist_filename
+        if persist_filename is not None:
+            if persist_filename in plugin_persist_filenames:
+                raise Exception, "Persist filename already used: %s" \
+                    % persist_filename
+            plugin_persist_filenames.append(persist_filename)
+        self._persist = Persist(persist_filename)
 
     def get_arguments(self, name):
         """Add a rooted persist object to the parent arguments."""
