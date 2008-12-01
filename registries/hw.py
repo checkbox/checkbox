@@ -90,8 +90,11 @@ class DeviceRegistry(DataRegistry):
                         items.append(("vendor_id", int(match.group(2), 16)))
                 elif key.endswith("s"):
                     value = values
-                elif not [v for v in values if not "=" in v]:
-                    value = dict((v.split("=") for v in values))
+                elif [v for v in values if "=" in v]:
+                    for index, value in enumerate(values):
+                        if index != 0 and "=" not in value:
+                            values[index - 1] += " %s" % values.pop(index)
+                    value = dict((v.split("=", 1) for v in values))
                     value = MapRegistry(None, value)
 
                 items.append((key, value))
