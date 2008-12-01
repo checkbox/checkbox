@@ -81,20 +81,6 @@ class MessageStore(object):
         """
         self._persist.set("sequence", number)
 
-    def get_server_sequence(self):
-        """
-        Get the sequence number of the message that we will ask the server to
-        send to us on the next exchange.
-        """
-        return self._persist.get("server_sequence", 0)
-
-    def set_server_sequence(self, number):
-        """
-        Set the sequence number of the message that we will ask the server to
-        send to us on the next exchange.
-        """
-        self._persist.set("server_sequence", number)
-
     def get_pending_offset(self):
         return self._persist.get("pending_offset", 0)
 
