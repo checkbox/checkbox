@@ -44,10 +44,10 @@ class Route(object):
                 if w.group("def_gateway"):
                     return self._num_to_dotted_quad(self._hex_to_dec(w.group("def_gateway")))
                 else:
-                    logging.error("Could not find def gateway info in /proc") 
+                    logging.error("Could not find def gateway info in /proc")
                     return None
             else:
-                logging.error("Could not find def gateway info in /proc") 
+                logging.error("Could not find def gateway info in /proc")
                 return None
 
     def _get_default_gateway_from_bin_route(self):
@@ -68,7 +68,7 @@ class Route(object):
 
         if def_gateway:
             return def_gateway
-        
+
         logging.error("Could not find default gateway by running route")
         return None
 

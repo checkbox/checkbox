@@ -184,7 +184,7 @@ def registry_eval_recursive(registry, source, mask=[False]):
                 mask[i:i+1] = [value[i]]
 
         values.append(registry)
-   
+
     for key, value in registry.items():
         if isinstance(value, Registry):
             values.extend(registry_eval_recursive(value, source, mask))

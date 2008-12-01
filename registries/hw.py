@@ -96,7 +96,6 @@ class DeviceRegistry(DataRegistry):
 
                 items.append((key, value))
 
-     
         if lines:
             value = DeviceRegistry(None, "\n".join(lines))
             items.append((id, value))

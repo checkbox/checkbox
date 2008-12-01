@@ -83,7 +83,7 @@ class CLIDialog(object):
                         else:
                             escape = 0
                     elif escape == 2:
-                        escape = 0 
+                        escape = 0
         finally:
             termios.tcsetattr(fileno, termios.TCSANOW, saved_attributes)
 

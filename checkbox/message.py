@@ -182,7 +182,7 @@ class MessageStore(object):
 
     def add(self, message):
         """Queue a message for delivery.
-        
+
         @return: message_id, which is an identifier for the added message.
         """
         assert "type" in message

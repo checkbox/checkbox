@@ -57,7 +57,7 @@ class SourceRegistry(DataRegistry):
                     lines = []
 
                     items.append((id, value))
- 
+
                 id = match.group(3).split("/")[-1].rstrip(":")
             else:
                 (key, value) = match.group(3).split(" = ", 1)
