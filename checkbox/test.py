@@ -33,10 +33,7 @@ from checkbox.lib.environ import add_variable, remove_variable
 from checkbox.lib.signal import signal_to_name, signal_to_description
 
 from checkbox.command import Command
-from checkbox.iterator import (Iterator, IteratorExclude,
-    IteratorPreRepeat, IteratorPostRepeat)
 from checkbox.requires import Requires
-from checkbox.resolver import Resolver
 
 
 DESKTOP = "desktop"
@@ -46,166 +43,14 @@ ALL_CATEGORIES = [DESKTOP, LAPTOP, SERVER]
 
 I386 = "i386"
 AMD64 = "amd64"
+LPIA = "lpia"
 SPARC = "sparc"
-ALL_ARCHITECTURES = [I386, AMD64, SPARC]
+ALL_ARCHITECTURES = [I386, AMD64, LPIA, SPARC]
 
 FAIL = "fail"
 PASS = "pass"
 SKIP = "skip"
 ALL_STATUS = [PASS, FAIL, SKIP]
-
-
-class TestManager(object):
-    """
-    Test manager which is essentially a container of tests.
-    """
-
-    def __init__(self, tests=[], plugin_priorities=[]):
-        self._tests = tests
-        self._plugin_priorities = plugin_priorities
-
-        self._architecture = None
-        self._category = None
-
-        self._dependent_next = []
-        self._dependent_prev = []
-
-    def add_test(self, test):
-        """
-        Add a test to the manager.
-        """
-        self._tests.append(test)
-
-    def set_architecture(self, architecture):
-        self._architecture = architecture
-
-    def set_category(self, category):
-        self._category = category
-
-    def _compare_func(self, a, b):
-        if a.plugin in self._plugin_priorities:
-            if b.plugin in self._plugin_priorities:
-                ia = self._plugin_priorities.index(a.plugin)
-                ib = self._plugin_priorities.index(b.plugin)
-                if ia != ib:
-                    return cmp(ia, ib)
-            else:
-                return -1
-        elif b.plugin in self._plugin_priorities:
-            return 1
-
-        return cmp((a.suite, a.name), (b.suite, b.name))
-
-    def _dependent_prerepeat_next_func(self, test, result, resolver):
-        """IteratorPreRepeat function which completely skips dependents
-           of tests which either have a status of FAIL or SKIP."""
-        if result and result.test == test:
-            if result.status == FAIL or result.status == SKIP:
-                self._dependent_next = resolver.get_dependents(test)
-            else:
-                self._dependent_next = []
-
-        self._dependent_prev.append(test)
-
-    def _dependent_prerepeat_prev_func(self, test, result, resolver):
-        """IteratorPreRepeat function which supplements the above by
-           keeping track of a stack of previously run tests."""
-        self._dependent_prev.pop()
-
-    def _dependent_exclude_next_func(self, test, result):
-        if test in self._dependent_next:
-            logging.info("Test '%s' dependent on failed or skipped test",
-                test.name)
-            return True
-
-        return False
-
-    def _dependent_exclude_prev_func(self, test, result):
-        if self._dependent_prev[-1] != test:
-            logging.info("Test '%s' dependent on failed or skipped test",
-                test.name)
-            return True
-
-        return False
-
-    def _requires_exclude_func(self, test, result):
-        """IteratorExclude function which removes test when the
-           requires field contains a False value."""
-        if False in test.requires.get_mask():
-            logging.info("Test '%s' does not pass requires field: %s",
-                test.name, test.requires)
-            return True
-
-        return False
-
-    def _architecture_exclude_func(self, test, result):
-        """IteratorExclude function which removes test when the
-           architectures field exists and doesn't meet the given
-           requirements."""
-        if test.architectures:
-            if not self._architecture:
-                logging.info("No system architecture, "
-                    "skipping test: %s", test.name)
-                return True
-            elif self._architecture not in test.architectures:
-                logging.info("System architecture not supported, "
-                    "skipping test: %s", test.name)
-                return True
-
-        return False
-
-    def _category_exclude_func(self, test, result):
-        """IteratorExclude function which removes test when
-           the categories field exists and doesn't meet the given
-           requirements."""
-        if test.categories:
-            if not self._category:
-                logging.info("No system category, "
-                    "skipping test: %s", test.name)
-                return True
-            elif self._category not in test.categories:
-                logging.info("System category not supported, "
-                    "skipping test: %s", test.name)
-                return True
-
-        return False
-
-    def get_iterator(self):
-        """
-        Get an iterator over the tests added to the manager. The
-        purpose of this iterator is that it orders tests based on
-        dependencies and enforces constraints defined in fields.
-        """
-        resolver = Resolver(self._compare_func)
-
-        # Express dependents as objects rather than string names
-        test_dict = dict(((t.suite, t.name), t) for t in self._tests)
-        for test in self._tests:
-            test_depends = [test_dict[(test.suite, d)] for d in test.depends]
-            resolver.add(test, *test_depends)
-
-        tests = resolver.get_dependents()
-        iterator = Iterator(tests)
-        iterator = IteratorExclude(iterator,
-            self._requires_exclude_func,
-            self._requires_exclude_func)
-        iterator = IteratorExclude(iterator,
-            self._architecture_exclude_func,
-            self._architecture_exclude_func)
-        iterator = IteratorExclude(iterator,
-            self._category_exclude_func,
-            self._category_exclude_func)
-        iterator = IteratorExclude(iterator,
-            self._dependent_exclude_next_func,
-            self._dependent_exclude_prev_func)
-        iterator = IteratorPreRepeat(iterator,
-            lambda test, result, resolver=resolver: \
-                   self._dependent_prerepeat_next_func(test, result, resolver))
-        iterator = IteratorPostRepeat(iterator,
-            prev_func=lambda test, result, resolver=resolver: \
-                   self._dependent_prerepeat_prev_func(test, result, resolver))
-
-        return iterator
 
 
 class TestResult(object):
