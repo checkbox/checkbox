@@ -22,7 +22,8 @@ import sys
 import gettext
 
 from checkbox.contrib.REThread import REThread
-from checkbox.iterator import NEXT
+
+from checkbox.lib.iterator import NEXT
 
 
 class UserInterface(object):

@@ -20,7 +20,7 @@
 #
 import unittest
 
-from checkbox.iterator import Iterator, IteratorExclude, IteratorPostRepeat
+from checkbox.lib.iterator import Iterator, IteratorExclude, IteratorPostRepeat
 
 
 class IteratorTest(unittest.TestCase):

@@ -18,8 +18,9 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
+from checkbox.lib.iterator import Iterator
+
 from checkbox.plugin import Plugin
-from checkbox.iterator import Iterator
 
 
 class UserInterface(Plugin):
