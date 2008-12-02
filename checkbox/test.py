@@ -91,7 +91,7 @@ class TestResult(object):
 class TestCommand(Command):
 
     def __init__(self, test, *args, **kwargs):
-        super(TestCommand, self).__init__(str(test.command), test.timeout,
+        super(TestCommand, self).__init__(test.command, test.timeout,
             *args, **kwargs)
         self.test = test
 
@@ -129,15 +129,23 @@ class TestDescription(Command):
     def __init__(self, test):
         super(TestDescription, self).__init__(test.description, test.timeout)
         self.test = test
+        self.output = None
 
     def get_command(self):
         command = super(TestDescription, self).get_command()
         return "cat <<EOF\n%s\nEOF\n" % command
 
-    def pre_execute(self, command_result=None):
-        super(TestDescription, self).pre_execute(command_result)
-        if command_result is not None:
-            add_variable("output", command_result.data.strip())
+    def pre_execute(self, result=None):
+        super(TestDescription, self).pre_execute()
+        if re.search(r"\$output", self.get_command()):
+            if not self.output and not result:
+                result = self.test.command()
+
+            if result:
+                self.output = result.data.strip()
+                result.data = ""
+
+            add_variable("output", self.output)
 
     def post_execute(self, result):
         result = super(TestDescription, self).post_execute(result)

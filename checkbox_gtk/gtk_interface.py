@@ -24,6 +24,8 @@ import gtk, gtk.glade
 
 from gettext import gettext as _
 
+from checkbox.lib.iterator import NEXT, PREV
+
 from checkbox.test import ALL_STATUS, TestResult
 from checkbox.user_interface import UserInterface
 
@@ -142,7 +144,7 @@ class GTKInterface(UserInterface):
         self._notebook.set_current_page(3)
         self._dialog.show()
 
-        self.do_function(function, *args, **kwargs)
+        return self.do_function(function, *args, **kwargs)
 
     def show_pulse(self):
         self._get_widget("progressbar_wait").pulse()
@@ -180,26 +182,25 @@ class GTKInterface(UserInterface):
             "radiobutton_laptop": "laptop",
             "radiobutton_server": "server"})
 
+    def _run_test(self, test):
+        self._set_text("label_test", _("Running test %s...") % test.name)
+        self._set_show("progressbar_test")
+        self._dialog.show()
+
+        result = self.do_function(test.command)
+
+        self._set_show("progressbar_test", False)
+        self._set_label("button_test", _("_Test Again"))
+        return self.show_test(test, result)
+
     @GTKHack
     def show_test(self, test, result=None):
         self._set_show("button_test", False)
         self._notebook.set_current_page(2)
 
-        # Run test
-        if str(test.command):
-            self._set_text("label_test",
-                _("Running test: %s") % test.name)
-            self._set_show("progressbar_test")
-            self._dialog.show()
-
-            command_result = self.do_function(test.command)
-
-            self._set_show("progressbar_test", False)
-        else:
-            command_result = None
-
-        # Set test
-        self._set_text("label_test", test.description(command_result))
+        # Set test description
+        description = self.do_function(test.description, result)
+        self._set_label("label_test", description)
 
         # Set buttons
         if str(test.command):
@@ -209,7 +210,7 @@ class GTKInterface(UserInterface):
             if self._handler_id:
                 button_test.disconnect(self._handler_id)
             self._handler_id = button_test.connect("clicked",
-                lambda w, t=test: self.show_test(t))
+                lambda w, t=test: self._run_test(t))
 
         # Default results
         answers = ["yes", "no", "skip"]
@@ -222,6 +223,10 @@ class GTKInterface(UserInterface):
             self._set_active("radiobutton_skip")
 
         self._run_dialog()
+
+        # Reset labels
+        self._set_label("label_test")
+        self._set_label("button_test", _("_Test"))
 
         radiobuttons = ["radiobutton_%s" % a for a in answers]
         status = self._get_radiobutton(dict(zip(radiobuttons, ALL_STATUS)))
