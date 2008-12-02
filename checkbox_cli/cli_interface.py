@@ -205,26 +205,33 @@ class CLIInterface(UserInterface):
         return ALL_CATEGORIES[response - 1]
 
     def show_test(self, test, result=None):
+        answers = [_("yes"), _("no"), _("skip")]
         if str(test.command):
+            answers.append(_("test"))
+
+        while True:
+            # Show answer dialog
+            description = test.description(result)
+            dialog = CLIChoiceDialog(test.name, description)
+
+            for answer in answers:
+                dialog.add_button("&%s" % answer)
+
+            # Get answer from dialog
+            response = dialog.run()
+            answer = answers[response - 1]
+            if response <= len(ALL_STATUS):
+                break
+
             title = _("System Testing")
             self.progress = CLIProgressDialog(title,
                 _("Running test: %s") % test.name)
             self.progress.show()
 
-            command_result = self.do_function(test.command)
-        else:
-            command_result = None
+            result = self.do_function(test.command)
+            answers[-1] = _("test again")
 
-        # Show answer dialog
-        dialog = CLIChoiceDialog(test.name, test.description(command_result))
-        answers = [_("yes"), _("no"), _("skip")]
-        for answer in answers:
-            dialog.add_button("&%s" % answer)
-
-        # Get answer from dialog
-        response = dialog.run()
-        answer = answers[response - 1]
-        status = dict(zip(answers, ALL_STATUS))[answer]
+        status = dict(zip(answers[0:len(ALL_STATUS)], ALL_STATUS))[answer]
         if status == FAIL:
             text = _("Please provide comments about the failure.")
             dialog = CLITextDialog(test.name, text)
