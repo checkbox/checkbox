@@ -1,3 +1,18 @@
+checkbox (0.1-0ubuntu14) hardy; urgency=low
+
+  * Added support for CHECKBOX_OPTIONS environment variable.
+  * Added usage information.
+  * Added gconf registry.
+  * Added logging to checkbox event.
+  * Added locking plugin.
+  * Added message store and schema types.
+  * Added caching to automatic tests so that they are not run multiple times.
+  * Added persistence to category and system_id.
+  * Added lshw registry and plugin.
+  * Miscellaneous bug fixes.
+
+ -- Marc Tardif <marc@interunion.ca>  Mon, 01 Dec 2008 21:38:28 -0500
+
 checkbox (0.1-0ubuntu13) intrepid; urgency=low
 
   * Renamed hwtest to checkbox.
