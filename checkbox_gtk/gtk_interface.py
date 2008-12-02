@@ -24,8 +24,6 @@ import gtk, gtk.glade
 
 from gettext import gettext as _
 
-from checkbox.lib.iterator import NEXT, PREV
-
 from checkbox.test import ALL_STATUS, TestResult
 from checkbox.user_interface import UserInterface
 

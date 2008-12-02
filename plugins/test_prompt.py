@@ -19,11 +19,9 @@
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
 import re
-import logging
 
 from checkbox.plugin import Plugin
-from checkbox.resolver import Resolver
-from checkbox.test import TestResult, FAIL, SKIP
+from checkbox.test import TestResult, SKIP
 from checkbox.traverser import Traverser, TraverserCallbacks
 
 
