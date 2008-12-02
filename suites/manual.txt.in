@@ -4,9 +4,9 @@ categories: laptop, desktop
 requires: alsa.type == 'playback'
 command: gst_pipeline_test -t 2 'audiotestsrc wave=sine freq=512 ! audioconvert ! audioresample ! gconfaudiosink'
 _description:
- Testing automatically detected playback device.
+ Run the test for the automatically detected playback device.
  .
- Did you hear a sound?
+ Do you hear a sound?
 
 name: resolution
 plugin: manual
@@ -24,9 +24,9 @@ plugin: manual
 categories: laptop, desktop
 command: gst_pipeline_test -t 2 'videotestsrc ! ffmpegcolorspace ! gconfvideosink'
 _description:
- Video test.
+ Run the video test.
  .
- Did you see color bars and static?
+ Do you see color bars and static?
 
 name: mouse
 plugin: manual
