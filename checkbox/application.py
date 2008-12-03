@@ -18,9 +18,9 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-import os
 import sys
 import logging
+import posixpath
 
 from gettext import gettext as _
 
@@ -138,7 +138,7 @@ class ApplicationManager(object):
             sys.stderr.write(_("Missing configuration file as argument.\n"))
             sys.exit(1)
 
-        config_file = os.path.expanduser(args[1])
+        config_file = posixpath.expanduser(args[1])
         config = Config(config_file, options.config)
 
         # Check options

@@ -21,6 +21,7 @@
 import os
 import re
 import logging
+import posixpath
 
 
 class RepositorySection(object):
@@ -46,7 +47,7 @@ class RepositorySection(object):
         Directory contained for this sections.
         """
         directories = re.split(r"\s+", self._config.directories)
-        return [os.path.expanduser(d) for d in directories]
+        return [posixpath.expanduser(d) for d in directories]
 
     def get_names(self):
         """
@@ -99,8 +100,8 @@ class RepositorySection(object):
             name, self.name)
 
         for directory in self.directories:
-            path = os.path.join(directory, "%s.py" % name)
-            if os.path.exists(path):
+            path = posixpath.join(directory, "%s.py" % name)
+            if posixpath.exists(path):
                 globals = {}
                 exec open(path) in globals
                 if "factory" not in globals:

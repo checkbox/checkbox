@@ -2,6 +2,7 @@
 
 import os
 import re
+import posixpath
 from glob import glob
 
 from distutils.core import setup
@@ -15,7 +16,7 @@ from DistUtilsExtra.command.build_i18n import build_i18n
 
 def changelog_version(changelog="debian/changelog"):
     version = "dev"
-    if os.path.exists(changelog):
+    if posixpath.exists(changelog):
         head=open(changelog).readline()
         match = re.compile(".*\((.*)\).*").match(head)
         if match:
@@ -60,24 +61,24 @@ class checkbox_install_data(install_data, object):
 
         # Create etc directory
         etcdir = convert_path("/etc/checkbox.d")
-        if not os.path.isabs(etcdir):
-            etcdir = os.path.join(self.install_dir, etcdir)
+        if not posixpath.isabs(etcdir):
+            etcdir = posixpath.join(self.install_dir, etcdir)
         elif self.root:
             etcdir = change_root(self.root, etcdir)
         self.mkpath(etcdir)
 
         # Create configs symbolic link
-        dstdir = os.path.dirname(examplesfiles[0]).replace("examples",
+        dstdir = posixpath.dirname(examplesfiles[0]).replace("examples",
             "configs")
         os.symlink(etcdir, dstdir)
 
         # Substitute version in examplesfiles and etcfiles
         version = changelog_version()
         for examplesfile in examplesfiles:
-            etcfile = os.path.join(etcdir,
-                os.path.basename(examplesfile))
-            infile = os.path.join("examples",
-                os.path.basename(examplesfile))
+            etcfile = posixpath.join(etcdir,
+                posixpath.basename(examplesfile))
+            infile = posixpath.join("examples",
+                posixpath.basename(examplesfile))
             for outfile in examplesfile, etcfile:
                 substitute_variables(infile, outfile, {
                     "version = dev": "version = %s" % version})
@@ -91,7 +92,7 @@ class checkbox_install_scripts(install_scripts, object):
 
         # Substitute directory in defaults.py
         for outfile in self.outfiles:
-            infile = os.path.join("bin", os.path.basename(outfile))
+            infile = posixpath.join("bin", posixpath.basename(outfile))
             substitute_variables(infile, outfile, {
                 "CHECKBOX_SHARE:-.": "CHECKBOX_SHARE:-/usr/share/checkbox",
                 "CHECKBOX_DATA:-.": "CHECKBOX_DATA:-/var/lib/checkbox"})

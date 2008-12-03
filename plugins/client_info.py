@@ -18,7 +18,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-import os
+import posixpath
 
 from checkbox.plugin import Plugin
 
@@ -31,7 +31,7 @@ class ClientInfo(Plugin):
 
     def report(self):
         message = {}
-        message["name"] = os.path.basename(self._config.parent.path) \
+        message["name"] = posixpath.basename(self._config.parent.path) \
             .replace(".ini", "")
         message["version"] = self._config.parent.get_defaults().version
         self._manager.reactor.fire("report-client", message)

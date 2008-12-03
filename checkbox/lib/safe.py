@@ -19,13 +19,14 @@
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
 import os
+import posixpath
 import shutil
 
 from stat import ST_MODE, S_IMODE, S_ISFIFO
 
 
 def safe_change_mode(path, mode):
-    if not os.path.exists(path):
+    if not posixpath.exists(path):
         raise Exception, "Path does not exist: %s" % path
 
     old_mode = os.stat(path)[ST_MODE]
@@ -33,8 +34,8 @@ def safe_change_mode(path, mode):
         os.chmod(path, mode)
 
 def safe_make_directory(path, mode=0755):
-    if os.path.exists(path):
-        if not os.path.isdir(path):
+    if posixpath.exists(path):
+        if not posixpath.isdir(path):
             raise Exception, "Path is not a directory: %s" % path
 
         safe_change_mode(path, mode)
@@ -42,7 +43,7 @@ def safe_make_directory(path, mode=0755):
         os.makedirs(path, mode)
 
 def safe_make_fifo(path, mode=0666):
-    if os.path.exists(path):
+    if posixpath.exists(path):
         mode = os.stat(path)[ST_MODE]
         if not S_ISFIFO(mode):
             raise Exception, "Path is not a FIFO: %s" % path
@@ -52,24 +53,24 @@ def safe_make_fifo(path, mode=0666):
         os.mkfifo(path, mode)
 
 def safe_remove_directory(path):
-    if os.path.exists(path):
-        if not os.path.isdir(path):
+    if posixpath.exists(path):
+        if not posixpath.isdir(path):
             raise Exception, "Path is not a directory: %s" % path
 
         shutil.rmtree(path)
 
 def safe_remove_file(path):
-    if os.path.exists(path):
-        if not os.path.isfile(path):
+    if posixpath.exists(path):
+        if not posixpath.isfile(path):
             raise Exception, "Path is not a file: %s" % path
 
         os.remove(path)
 
 def safe_rename(old, new):
     if old != new:
-        if not os.path.exists(old):
+        if not posixpath.exists(old):
             raise Exception, "Old path does not exist: %s" % old
-        if os.path.exists(new):
+        if posixpath.exists(new):
             raise Exception, "New path exists already: %s" % new
 
         os.rename(old, new)

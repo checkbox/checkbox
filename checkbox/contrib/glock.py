@@ -29,7 +29,7 @@ __doc__ += '\n@author: %s (U{%s})\n@version: %s' % (__author__[0],
 __all__ = ['GlobalLock', 'GlobalLockError', 'LockAlreadyAcquired', 'NotOwner']
 
 # Imports:
-import sys, string, os, errno, re
+import sys, string, os, errno, re, posixpath
 
 # System-dependent imports for locking implementation:
 _windows = (sys.platform == 'win32')
@@ -116,7 +116,7 @@ class GlobalLock:
         '''
         self.logger = logger
         self.fpath = fpath
-        if os.path.exists(fpath):
+        if posixpath.exists(fpath):
             self.previous_lockfile_present = True
         else:
             self.previous_lockfile_present = False
@@ -270,7 +270,7 @@ def test():
     lockName = 'myFirstLock'
     l = GlobalLock(lockName)
     if not _windows:
-        assert os.path.exists(lockName)
+        assert posixpath.exists(lockName)
     l.acquire()
     l.acquire() # reentrant lock, must not block
     l.release()

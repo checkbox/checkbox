@@ -17,9 +17,11 @@
 # along with this Python module; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
-import sys, os
+import os
+import sys
 import copy
 import re
+import posixpath
 
 
 __all__ = ["Persist", "PickleBackend", "BPickleBackend",
@@ -74,7 +76,7 @@ class Persist(object):
         self._modified = False
         self._config = self
         self.filename = filename
-        if filename is not None and os.path.exists(filename):
+        if filename is not None and posixpath.exists(filename):
             self.load(filename)
 
     def _get_readonly(self):
@@ -97,17 +99,17 @@ class Persist(object):
             raise PersistReadOnlyError("Configuration is in readonly mode.")
 
     def load(self, filepath):
-        filepath = os.path.expanduser(filepath)
-        if not os.path.isfile(filepath):
+        filepath = posixpath.expanduser(filepath)
+        if not posixpath.isfile(filepath):
             raise PersistError("File not found: %s" % filepath)
-        if os.path.getsize(filepath) == 0:
+        if posixpath.getsize(filepath) == 0:
             return
         try:
             self._hardmap = self._backend.load(filepath)
         except:
             filepathold = filepath+".old"
-            if (os.path.isfile(filepathold) and
-                os.path.getsize(filepathold) > 0):
+            if (posixpath.isfile(filepathold) and
+                posixpath.getsize(filepathold) > 0):
                 # warning("Broken configuration file at %s" % filepath)
                 # warning("Trying backup at %s" % filepathold)
                 try:
@@ -129,11 +131,11 @@ class Persist(object):
             if self.filename is None:
                 raise PersistError("Need a filename!")
             filepath = self.filename
-        filepath = os.path.expanduser(filepath)
-        if os.path.isfile(filepath):
+        filepath = posixpath.expanduser(filepath)
+        if posixpath.isfile(filepath):
             os.rename(filepath, filepath+".old")
-        dirname = os.path.dirname(filepath)
-        if dirname and not os.path.isdir(dirname):
+        dirname = posixpath.dirname(filepath)
+        if dirname and not posixpath.isdir(dirname):
             os.makedirs(dirname)
         self._backend.save(filepath, self._hardmap)
 

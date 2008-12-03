@@ -21,6 +21,7 @@
 import os
 import re
 import logging
+import posixpath
 
 
 class Template(object):
@@ -109,7 +110,7 @@ class Template(object):
                     raise Exception, \
                         "Template %s already contains filename field: %s" \
                         % (filename, self._filename_field)
-                element[self._filename_field] = os.path.basename(filename)
+                element[self._filename_field] = posixpath.basename(filename)
 
             for unique_field in self._unique_fields:
                 if [e for e in elements \
@@ -142,7 +143,7 @@ class Template(object):
                 logging.info("Ignoring filename: %s", name)
                 continue
 
-            filename = os.path.join(directory, name)
+            filename = posixpath.join(directory, name)
             elements.extend(self.load_filename(filename))
 
         return elements

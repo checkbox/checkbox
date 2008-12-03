@@ -20,6 +20,7 @@
 #
 import os
 import re
+import posixpath
 
 from checkbox.lib.cache import cache
 from checkbox.lib.conversion import string_to_type
@@ -132,7 +133,7 @@ class GconfRegistry(DirectoryRegistry):
                 continue
 
             source = self._config.source.replace("$user", user)
-            if not os.path.isdir(source):
+            if not posixpath.isdir(source):
                 continue
 
             users.append(user)

@@ -23,6 +23,7 @@ import logging
 import os
 import stat
 import sys
+import posixpath
 
 import mimetools
 import mimetypes
@@ -148,7 +149,7 @@ class HTTPTransport(object):
             else:
                 length = os.fstat(descriptor.fileno())[stat.ST_SIZE]
 
-            filename = os.path.basename(descriptor.name)
+            filename = posixpath.basename(descriptor.name)
             if isinstance(filename, unicode):
                 filename = filename.encode("UTF-8")
 

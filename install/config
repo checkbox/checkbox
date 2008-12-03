@@ -7,6 +7,8 @@
 import os
 import re
 import sys
+import posixpath
+
 from ConfigParser import ConfigParser
 from optparse import OptionParser
 
@@ -88,11 +90,11 @@ class Install(object):
         as argument.
         """
         for path in [self._examples_path, self._configs_path]:
-            if path and os.path.isfile(path):
+            if path and posixpath.isfile(path):
                 self._config.read(path)
 
         # Hack to retrieve questions from templates file
-        if os.path.exists(self._templates_path):
+        if posixpath.exists(self._templates_path):
             templates_descriptor = open(self._templates_path)
             for line in templates_descriptor.readlines():
                 match = re.match(r"Template: (.*)", line)

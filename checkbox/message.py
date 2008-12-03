@@ -18,9 +18,10 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-import itertools
-import logging
 import os
+import logging
+import itertools
+import posixpath
 
 from checkbox.contrib import bpickle
 from checkbox.schema import Any, Constant, Float, KeyDict, String
@@ -42,7 +43,7 @@ class MessageStore(object):
         self._original_persist = persist
         self._persist = persist.root_at("message-store")
         message_dir = self._message_dir()
-        if not os.path.isdir(message_dir):
+        if not posixpath.isdir(message_dir):
             os.makedirs(message_dir)
 
     def commit(self):
@@ -133,7 +134,7 @@ class MessageStore(object):
         for fn in itertools.islice(self._walk_messages(exclude=HELD+BROKEN),
                                    self.get_pending_offset()):
             os.unlink(fn)
-            containing_dir = os.path.split(fn)[0]
+            containing_dir = posixpath.split(fn)[0]
             if not os.listdir(containing_dir):
                 os.rmdir(containing_dir)
 
@@ -214,7 +215,7 @@ class MessageStore(object):
         else:
             newest_dir = self._message_dir(str(int(newest_dir) + 1))
             os.makedirs(newest_dir)
-            filename = os.path.join(newest_dir, "0")
+            filename = posixpath.join(newest_dir, "0")
 
         return filename
 
@@ -243,7 +244,7 @@ class MessageStore(object):
         return message_files
 
     def _message_dir(self, *args):
-        return os.path.join(self._directory, *args)
+        return posixpath.join(self._directory, *args)
 
     def _get_content(self, filename):
         descriptor = open(filename)
@@ -280,14 +281,14 @@ class MessageStore(object):
                     offset += 1
 
     def _get_flags(self, path):
-        basename = os.path.basename(path)
+        basename = posixpath.basename(path)
         if "_" in basename:
             return basename.split("_")[1]
         return ""
 
     def _set_flags(self, path, flags):
-        dirname, basename = os.path.split(path)
-        new_path = os.path.join(dirname, basename.split("_")[0])
+        dirname, basename = posixpath.split(path)
+        new_path = posixpath.join(dirname, basename.split("_")[0])
         if flags:
             new_path += "_"+"".join(sorted(set(flags)))
         os.rename(path, new_path)

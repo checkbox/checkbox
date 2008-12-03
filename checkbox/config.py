@@ -20,6 +20,7 @@
 #
 import os
 import re
+import posixpath
 
 from ConfigParser import ConfigParser
 
@@ -37,7 +38,7 @@ class IncludeDict(dict):
         if key == "includes":
             for path in re.split(r"\s+", value):
                 path = self._parser._interpolate("DEFAULT", None, path, self)
-                if not os.path.exists(path):
+                if not posixpath.exists(path):
                     raise Exception, "No such configuration file: %s" % path
                 self._parser.read(path)
 
@@ -85,7 +86,7 @@ class Config(object):
         self._parser = ConfigParser()
         self._parser._defaults = IncludeDict(self._parser)
 
-        if not os.path.exists(path):
+        if not posixpath.exists(path):
             raise Exception, "No such configuration file: %s" % path
         self._parser.read(path)
 

@@ -18,8 +18,8 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-import os
 import sys
+import posixpath
 import gtk, gtk.glade
 
 from gettext import gettext as _
@@ -54,7 +54,7 @@ class GTKInterface(UserInterface):
         # load UI
         gtk.window_set_default_icon_name("checkbox")
         gtk.glade.textdomain(self.gettext_domain)
-        self.widgets = gtk.glade.XML(os.path.join(config.gtk_path,
+        self.widgets = gtk.glade.XML(posixpath.join(config.gtk_path,
             "checkbox-gtk.glade"))
         self.widgets.signal_autoconnect(self)
 

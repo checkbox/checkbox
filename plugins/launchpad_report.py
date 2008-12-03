@@ -18,7 +18,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-import os
+import posixpath
 
 from checkbox.lib.safe import safe_make_directory
 
@@ -98,7 +98,7 @@ class LaunchpadReport(Plugin):
         payload = report_manager.dumps(self._report).toprettyxml("")
 
         filename = self._config.filename
-        directory = os.path.dirname(filename)
+        directory = posixpath.dirname(filename)
         safe_make_directory(directory)
 
         open(filename, "w").write(payload)

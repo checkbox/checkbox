@@ -19,6 +19,7 @@
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
 import os
+import posixpath
 
 from os import environ
 from stat import ST_MODE, S_IEXEC
@@ -65,8 +66,8 @@ def get_paths():
 
 def get_path(command):
     for path in get_paths():
-        absolute = os.path.join(path, command)
-        if os.path.exists(absolute):
+        absolute = posixpath.join(path, command)
+        if posixpath.exists(absolute):
             mode = os.stat(absolute)[ST_MODE]
             if mode & S_IEXEC:
                 return absolute

@@ -18,11 +18,11 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-import os
 import time
 import pprint
 import bz2
 import logging
+import posixpath
 
 from gettext import gettext as _
 from socket import gethostname
@@ -118,7 +118,7 @@ again or upload the following file:
 %s
 
 directly to the system database:
-https://launchpad.net/+hwdb/+submit""") % os.path.abspath(self._report))
+https://launchpad.net/+hwdb/+submit""") % posixpath.abspath(self._report))
             return
         elif response.status != 200:
             self._manager.set_error(_("Failed to upload to server,\n"

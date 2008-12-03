@@ -18,8 +18,8 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-import os
 import re
+import posixpath
 
 from checkbox.plugin import Plugin
 
@@ -35,7 +35,7 @@ class DiskInfo(Plugin):
     def report(self):
         # Found label 'Ubuntu 8.04.1 _Hardy Heron_ - Release amd64 (20080702.1)'
         filename = self._config.filename
-        if os.path.exists(filename):
+        if posixpath.exists(filename):
             descriptor = open(filename)
             regex = re.compile(r"Found label '([\w\-]+) ([\d\.]+) _([^_]+)_ "
                 "- ([\w ]+) (i386|amd64|powerpc|sparc) "
