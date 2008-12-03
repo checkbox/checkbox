@@ -37,8 +37,6 @@ def safe_make_directory(path, mode=0755):
     if posixpath.exists(path):
         if not posixpath.isdir(path):
             raise Exception, "Path is not a directory: %s" % path
-
-        safe_change_mode(path, mode)
     else:
         os.makedirs(path, mode)
 
@@ -47,8 +45,6 @@ def safe_make_fifo(path, mode=0666):
         mode = os.stat(path)[ST_MODE]
         if not S_ISFIFO(mode):
             raise Exception, "Path is not a FIFO: %s" % path
-
-        safe_change_mode(path, mode)
     else:
         os.mkfifo(path, mode)
 
