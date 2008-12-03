@@ -33,25 +33,27 @@ class DiskInfo(Plugin):
         self._manager.reactor.call_on("report", self.report)
 
     def report(self):
+        # Try to open the disk info file logged by the installer
+        try:
+            file = open(self._config.filename)
+        except IOError:
+            return
         # Found label 'Ubuntu 8.04.1 _Hardy Heron_ - Release amd64 (20080702.1)'
-        filename = self._config.filename
-        if posixpath.exists(filename):
-            file = open(filename)
-            regex = re.compile(r"Found label '([\w\-]+) ([\d\.]+) _([^_]+)_ "
-                "- ([\w ]+) (i386|amd64|powerpc|sparc) "
-                "(Binary-\d+ )?\(([^\)]+)\)'")
-            for line in file.readlines():
-                match = regex.match(line)
-                if match:
-                    message = {
-                        "distributor": match.group(1),
-                        "release": match.group(2),
-                        "codename": match.group(3),
-                        "official": match.group(4),
-                        "architecture": match.group(5),
-                        "date": match.group(7)}
-                    self._manager.reactor.fire("report-disk", message)
-                    break
+        regex = re.compile(r"Found label '([\w\-]+) ([\d\.]+) _([^_]+)_ "
+            "- ([\w ]+) (i386|amd64|powerpc|sparc) "
+            "(Binary-\d+ )?\(([^\)]+)\)'")
+        for line in file.readlines():
+            match = regex.match(line)
+            if match:
+                message = {
+                    "distributor": match.group(1),
+                    "release": match.group(2),
+                    "codename": match.group(3),
+                    "official": match.group(4),
+                    "architecture": match.group(5),
+                    "date": match.group(7)}
+                self._manager.reactor.fire("report-disk", message)
+                break
 
 
 factory = DiskInfo
