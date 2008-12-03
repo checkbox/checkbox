@@ -180,9 +180,9 @@ class MessageStore(object):
 
         filename = self._get_next_message_filename()
 
-        descriptor = open(filename + ".tmp", "w")
-        descriptor.write(message_data)
-        descriptor.close()
+        file = open(filename + ".tmp", "w")
+        file.write(message_data)
+        file.close()
         os.rename(filename + ".tmp", filename)
 
         if not self.accepts(message["type"]):
@@ -247,11 +247,11 @@ class MessageStore(object):
         return posixpath.join(self._directory, *args)
 
     def _get_content(self, filename):
-        descriptor = open(filename)
+        file = open(filename)
         try:
-            return descriptor.read()
+            return file.read()
         finally:
-            descriptor.close()
+            file.close()
 
     def _reprocess_holding(self):
         """

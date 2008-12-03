@@ -95,10 +95,10 @@ class LaunchpadExchange(Plugin):
         # Compress and add payload to form
         payload = open(self._report, "r").read()
         compressed_payload = bz2.compress(payload)
-        descriptor = StringIO(compressed_payload)
-        descriptor.name = '%s.xml.bz2' % str(gethostname())
-        descriptor.size = len(compressed_payload)
-        form["field.submission_data"] = descriptor
+        file = StringIO(compressed_payload)
+        file.name = '%s.xml.bz2' % str(gethostname())
+        file.size = len(compressed_payload)
+        form["field.submission_data"] = file
 
         if logging.getLogger().getEffectiveLevel() <= logging.DEBUG:
             logging.debug("Uncompressed payload length: %d", len(payload))
@@ -114,7 +114,7 @@ class LaunchpadExchange(Plugin):
         if not response:
             self._manager.set_error(_("""\
 Failed to contact server. Please try
-again or upload the following file:
+again or upload the following file name:
 %s
 
 directly to the system database:
@@ -139,7 +139,7 @@ https://launchpad.net/+hwdb/+submit""") % posixpath.abspath(self._report))
         else:
             text = response.read()
             logging.info("Sent %d bytes and received %d bytes in %s.",
-                descriptor.size, len(text), format_delta(end_time - start_time))
+                file.size, len(text), format_delta(end_time - start_time))
 
 
 factory = LaunchpadExchange

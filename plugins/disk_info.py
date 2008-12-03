@@ -36,11 +36,11 @@ class DiskInfo(Plugin):
         # Found label 'Ubuntu 8.04.1 _Hardy Heron_ - Release amd64 (20080702.1)'
         filename = self._config.filename
         if posixpath.exists(filename):
-            descriptor = open(filename)
+            file = open(filename)
             regex = re.compile(r"Found label '([\w\-]+) ([\d\.]+) _([^_]+)_ "
                 "- ([\w ]+) (i386|amd64|powerpc|sparc) "
                 "(Binary-\d+ )?\(([^\)]+)\)'")
-            for line in descriptor.readlines():
+            for line in file.readlines():
                 match = regex.match(line)
                 if match:
                     message = {

@@ -30,10 +30,10 @@ class Template(object):
         self._filename_field = filename_field
         self._unique_fields = unique_fields
 
-    def _reader(self, descriptor, size=4096, delimiter="\n\n"):
+    def _reader(self, file, size=4096, delimiter="\n\n"):
         buffer_old = ""
         while True:
-            buffer_new = descriptor.read(size)
+            buffer_new = file.read(size)
             if not buffer_new:
                 break
 
@@ -45,9 +45,9 @@ class Template(object):
 
         yield buffer_old
 
-    def load_descriptor(self, descriptor, filename="<stream>"):
+    def load_file(self, file, filename="<stream>"):
         elements = []
-        for string in self._reader(descriptor):
+        for string in self._reader(file):
             if not string:
                 break
 
@@ -126,8 +126,8 @@ class Template(object):
     def load_filename(self, filename):
         logging.info("Loading elements from filename: %s", filename)
 
-        descriptor = open(filename, "r")
-        return self.load_descriptor(descriptor, filename)
+        file = open(filename, "r")
+        return self.load_file(file, filename)
 
     def load_directory(self, directory, blacklist=[], whitelist=[]):
         logging.info("Loading filenames from directory: %s", directory)

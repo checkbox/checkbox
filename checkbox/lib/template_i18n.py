@@ -129,7 +129,7 @@ class TemplateI18n(Template):
 
         return filter
 
-    def load_descriptor(self, *args, **kwargs):
-        elements = super(TemplateI18n, self).load_descriptor(*args, **kwargs)
+    def load_file(self, *args, **kwargs):
+        elements = super(TemplateI18n, self).load_file(*args, **kwargs)
 
         return [self._filter_languages(e) for e in elements]

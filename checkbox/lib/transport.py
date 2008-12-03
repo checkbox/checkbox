@@ -143,13 +143,13 @@ class HTTPTransport(object):
             lines.append("")
             lines.append(value)
 
-        for (key, descriptor) in files:
-            if hasattr(descriptor, "size"):
-                length = descriptor.size
+        for (key, file) in files:
+            if hasattr(file, "size"):
+                length = file.size
             else:
-                length = os.fstat(descriptor.fileno())[stat.ST_SIZE]
+                length = os.fstat(file.fileno())[stat.ST_SIZE]
 
-            filename = posixpath.basename(descriptor.name)
+            filename = posixpath.basename(file.name)
             if isinstance(filename, unicode):
                 filename = filename.encode("UTF-8")
 
@@ -161,9 +161,9 @@ class HTTPTransport(object):
             lines.append("Content-Length: %s" % length)
             lines.append("")
 
-            if hasattr(descriptor, "seek"):
-                descriptor.seek(0)
-            lines.append(descriptor.read())
+            if hasattr(file, "seek"):
+                file.seek(0)
+            lines.append(file.read())
 
         lines.append("--" + boundary + "--")
         lines.append("")

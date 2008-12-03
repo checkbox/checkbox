@@ -84,9 +84,9 @@ class Install(object):
         else:
             self._debconf = DebconfCommunicator(self.name)
 
-    def write(self, descriptor):
+    def write(self, file):
         """
-        Write phase of the config process which takes a descriptor
+        Write phase of the config process which takes a file object
         as argument.
         """
         for path in [self._examples_path, self._configs_path]:
@@ -95,8 +95,8 @@ class Install(object):
 
         # Hack to retrieve questions from templates file
         if posixpath.exists(self._templates_path):
-            templates_descriptor = open(self._templates_path)
-            for line in templates_descriptor.readlines():
+            templates_file = open(self._templates_path)
+            for line in templates_file.readlines():
                 match = re.match(r"Template: (.*)", line)
                 if match:
                     question = match.group(1)
@@ -106,7 +106,7 @@ class Install(object):
                     self._config.set(section, name, value)
 
         # Write config file
-        self._config.write(descriptor)
+        self._config.write(file)
 
 
 def main(args):
@@ -129,10 +129,10 @@ def main(args):
     install = Install(package)
 
     if options.output == "-":
-         descriptor = sys.stdout
+         file = sys.stdout
     else:
-         descriptor = open(options.output, "w")
-    install.write(descriptor)
+         file = open(options.output, "w")
+    install.write(file)
 
     return 0
 
