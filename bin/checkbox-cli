@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export CHECKBOX_DATA=.
-export CHECKBOX_SHARE=.
+export CHECKBOX_DATA=${CHECKBOX_DATA:-.}
+export CHECKBOX_SHARE=${CHECKBOX_SHARE:-.}
 
 python $CHECKBOX_SHARE/run "$@" $CHECKBOX_SHARE/configs/$(basename $0).ini
