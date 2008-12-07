@@ -25,20 +25,38 @@ def string_to_type(string):
     conversion_table = {
         "(yes|true)": lambda v: True,
         "(no|false)": lambda v: False,
+        "\d+": lambda v: int(v.group(0)),
         "\d+\.\d+": lambda v: float(v.group(0)),
-        "(\d+)( b)?": lambda v: int(v.group(1)),
-        "(\d+) kb": lambda v: int(v.group(1)) * 1024,
-        "(\d+) mb": lambda v: int(v.group(1)) * 1024 * 1024,
-        "(\d+) gb": lambda v: int(v.group(1)) * 1024 * 1024 * 1024,
-        "(\d+)( hz)?": lambda v: int(v.group(1)),
-        "(\d+) khz": lambda v: int(v.group(1)) * 1024,
-        "(\d+) mhz": lambda v: int(v.group(1)) * 1024 * 1024,
-        "(\d+) ghz": lambda v: int(v.group(1)) * 1024 * 1024 * 1024}
+        "(\d+) ?([kmgt]?b?)": lambda v: int(v.group(1)),
+        "(\d+\.\d+) ?([kmgt]?b?)": lambda v: float(v.group(1)),
+        "(\d+) ?([kmgt]?hz?)": lambda v: int(v.group(1)),
+        "(\d+\.\d+) ?([kmgt]?hz?)": lambda v: float(v.group(1))}
 
-    for regex, func in conversion_table.items():
+    multiplier_table = {
+        "b": 1,
+        "kb?": 1024,
+        "mb?": 1024 * 1024,
+        "gb?": 1024 * 1024 * 1024,
+        "tb?": 1024 * 1024 * 1024 * 1024,
+        "hz": 1,
+        "khz?": 1024,
+        "mhz?": 1024 * 1024,
+        "ghz?": 1024 * 1024 * 1024,
+        "thz?": 1024 * 1024 * 1024 * 1024}
+
+    for regex, conversion in conversion_table.items():
         match = re.match("^%s$" % regex, string, re.IGNORECASE)
         if match:
-            return func(match)
+            value = conversion(match)
+            if len(match.groups()) > 1:
+                string = match.group(2)
+                for regex, multiplier in multiplier_table.items():
+                    match = re.match("^%s$" % regex, string, re.IGNORECASE)
+                    if match:
+                        value *= multiplier
+                        return value
+
+            return value
 
     return string
 
