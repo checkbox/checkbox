@@ -21,44 +21,46 @@
 import re
 
 
-def string_to_type(string):
-    conversion_table = {
-        "(yes|true)": lambda v: True,
-        "(no|false)": lambda v: False,
-        "\d+": lambda v: int(v.group(0)),
-        "\d+\.\d+": lambda v: float(v.group(0)),
-        "(\d+) ?([kmgt]?b?)": lambda v: int(v.group(1)),
-        "(\d+\.\d+) ?([kmgt]?b?)": lambda v: float(v.group(1)),
-        "(\d+) ?([kmgt]?hz?)": lambda v: int(v.group(1)),
-        "(\d+\.\d+) ?([kmgt]?hz?)": lambda v: float(v.group(1))}
+def string_to_type(value):
+    conversion_table = (
+        ("(yes|true)", lambda v: True),
+        ("(no|false)", lambda v: False),
+        ("\d+", lambda v: int(v.group(0))),
+        ("\d+\.\d+", lambda v: float(v.group(0))),
+        ("(\d+) ?([kmgt]?b?)", lambda v: int(v.group(1))),
+        ("(\d+\.\d+) ?([kmgt]?b?)", lambda v: float(v.group(1))),
+        ("(\d+) ?([kmgt]?hz?)", lambda v: int(v.group(1))),
+        ("(\d+\.\d+) ?([kmgt]?hz?)", lambda v: float(v.group(1))))
 
-    multiplier_table = {
-        "b": 1,
-        "kb?": 1024,
-        "mb?": 1024 * 1024,
-        "gb?": 1024 * 1024 * 1024,
-        "tb?": 1024 * 1024 * 1024 * 1024,
-        "hz": 1,
-        "khz?": 1024,
-        "mhz?": 1024 * 1024,
-        "ghz?": 1024 * 1024 * 1024,
-        "thz?": 1024 * 1024 * 1024 * 1024}
+    multiplier_table = (
+        ("b", 1),
+        ("kb?", 1024),
+        ("mb?", 1024 * 1024),
+        ("gb?", 1024 * 1024 * 1024),
+        ("tb?", 1024 * 1024 * 1024 * 1024),
+        ("hz", 1),
+        ("khz?", 1024),
+        ("mhz?", 1024 * 1024),
+        ("ghz?", 1024 * 1024 * 1024),
+        ("thz?", 1024 * 1024 * 1024 * 1024))
 
-    for regex, conversion in conversion_table.items():
-        match = re.match("^%s$" % regex, string, re.IGNORECASE)
+    for regex, conversion in conversion_table:
+        match = re.match("^%s$" % regex, value, re.IGNORECASE)
         if match:
             value = conversion(match)
-            if len(match.groups()) > 1:
-                string = match.group(2)
-                for regex, multiplier in multiplier_table.items():
-                    match = re.match("^%s$" % regex, string, re.IGNORECASE)
-                    if match:
-                        value *= multiplier
-                        return value
+            if len(match.groups()) < 2:
+                return value
 
-            return value
+            unit = match.group(2)
+            for regex, multiplier in multiplier_table:
+                match = re.match("^%s$" % regex, unit, re.IGNORECASE)
+                if match:
+                    value *= multiplier
+                    return value
+            else:
+                raise Exception, "Unknown multiplier: %s" % unit
 
-    return string
+    return value
 
 def sizeof_bytes(bytes):
     for x in ["bytes", "KB", "MB", "GB", "TB"]:
