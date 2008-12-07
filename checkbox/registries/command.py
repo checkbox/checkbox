@@ -43,7 +43,11 @@ class CommandRegistry(Registry):
     @cache
     def __str__(self):
         logging.info("Running command: %s", self._command)
-        return os.popen(self._command).read()
+        (stdin, stdout, stderr) = os.popen3(self._command)
+        error = stderr.read()
+        if error:
+            logging.debug("Error running command: %s", error)
+        return stdout.read()
 
     def items(self):
         return []
