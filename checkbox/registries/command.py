@@ -18,10 +18,10 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-import os
 import logging
 
 from checkbox.lib.cache import cache
+from checkbox.lib.process import Process
 
 from checkbox.registry import Registry
 
@@ -43,11 +43,13 @@ class CommandRegistry(Registry):
     @cache
     def __str__(self):
         logging.info("Running command: %s", self._command)
-        (stdin, stdout, stderr) = os.popen3(self._command)
-        error = stderr.read().strip()
-        if error:
-            logging.debug("Error running command: %s", error)
-        return stdout.read()
+        process = Process(self._command)
+        while process.read():
+            pass
+
+        if process.errdata:
+            logging.debug("Error running command: %s", process.errdata.strip())
+        return process.outdata
 
     def items(self):
         return []
