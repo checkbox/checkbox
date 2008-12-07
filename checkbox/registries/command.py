@@ -44,7 +44,7 @@ class CommandRegistry(Registry):
     def __str__(self):
         logging.info("Running command: %s", self._command)
         (stdin, stdout, stderr) = os.popen3(self._command)
-        error = stderr.read()
+        error = stderr.read().strip()
         if error:
             logging.debug("Error running command: %s", error)
         return stdout.read()
