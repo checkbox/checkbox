@@ -25,8 +25,8 @@ from checkbox.registries.file import FileRegistry
 from checkbox.registries.map import MapRegistry
 
 
-class MtabRegistry(FileRegistry):
-    """Registry for mtab information.
+class MountsRegistry(FileRegistry):
+    """Registry for mounts information.
 
     Each item contained in this registry consists information about
     the mount point.
@@ -39,10 +39,11 @@ class MtabRegistry(FileRegistry):
         for line in [l for l in self.split("\n") if l]:
             values = [string_to_type(v) for v in line.split(" ")]
             map = dict(zip(keys, values))
+            map["options"] = map["options"].split(",")
             value = MapRegistry(None, map)
             items.append((map["mount_point"], value))
 
         return items
 
 
-factory = MtabRegistry
+factory = MountsRegistry
