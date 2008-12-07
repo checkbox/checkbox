@@ -18,13 +18,13 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-from checkbox.registries.file import FileRegistry
+from checkbox.registries.filename import FilenameRegistry
 from checkbox.registries.tests.helpers import TestHelper
 
 
-class FileRegistryTest(TestHelper):
+class FilenameRegistryTest(TestHelper):
 
     def test_file(self):
-        registry = FileRegistry(self._config, "test")
+        registry = FilenameRegistry(self._config, "test")
         self.assertTrue(str(registry) is not None)
         self.assertTrue(len(str(registry)) > 0)

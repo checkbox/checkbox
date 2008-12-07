@@ -21,11 +21,11 @@
 from checkbox.lib.cache import cache
 from checkbox.lib.conversion import string_to_type
 
-from checkbox.registries.file import FileRegistry
+from checkbox.registries.filename import FilenameRegistry
 from checkbox.registries.map import MapRegistry
 
 
-class MountsRegistry(FileRegistry):
+class MountsRegistry(FilenameRegistry):
     """Registry for mounts information.
 
     Each item contained in this registry consists information about

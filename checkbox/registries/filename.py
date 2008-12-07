@@ -23,7 +23,7 @@ import logging
 from checkbox.registry import Registry
 
 
-class FileRegistry(Registry):
+class FilenameRegistry(Registry):
     """Base registry for containing files.
 
     The default behavior is to return the content of the file.
@@ -34,7 +34,7 @@ class FileRegistry(Registry):
     optional_attributes = ["filename"]
 
     def __init__(self, config, filename=None):
-        super(FileRegistry, self).__init__(config)
+        super(FilenameRegistry, self).__init__(config)
         self._filename = filename or self._config.filename
 
     def __str__(self):

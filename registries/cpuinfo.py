@@ -22,7 +22,7 @@ from checkbox.lib.cache import cache
 from checkbox.lib.conversion import string_to_type
 
 from checkbox.registries.data import DataRegistry
-from checkbox.registries.file import FileRegistry
+from checkbox.registries.filename import FilenameRegistry
 from checkbox.registries.link import LinkRegistry
 
 
@@ -62,7 +62,7 @@ class ProcessorRegistry(DataRegistry):
         return items
 
 
-class CpuinfoRegistry(FileRegistry):
+class CpuinfoRegistry(FilenameRegistry):
     """Registry for cpuinfo information.
 
     Each item contained in this registry consists of the processor number
