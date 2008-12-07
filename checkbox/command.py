@@ -23,7 +23,7 @@ import logging
 
 from checkbox.lib.process import Process
 from checkbox.lib.environ import (get_variables, add_variable, remove_variable,
-    get_paths, add_path, remove_path)
+    get_paths, prepend_path, remove_path)
 
 
 SUCCESS = 0
@@ -119,7 +119,7 @@ class Command(object):
 
         paths = self.get_paths()
         for path in paths:
-            add_path(path)
+            prepend_path(path)
 
     def post_execute(self, result):
         paths = self.get_paths()

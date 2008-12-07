@@ -74,9 +74,22 @@ def get_path(command):
 
     return None
 
-def add_path(path):
-    """Add a path to the PATH environment variable if it doesn't exist
-    already.
+def append_path(path):
+    """Prepend a path to the PATH environment variable if it doesn't
+    exist already.
+
+    Keyword arguments:
+    path -- path to add
+    """
+
+    environ_path = get_variable("PATH").split(":")
+    if path not in environ_path:
+        environ_path.append(path)
+        environ["PATH"] = ":".join(environ_path)
+
+def prepend_path(path):
+    """Prepend a path to the PATH environment variable if it doesn't
+    exist already.
 
     Keyword arguments:
     path -- path to add
