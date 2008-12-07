@@ -175,7 +175,7 @@ def registry_eval_recursive(registry, source, mask=[False]):
     values = []
 
     value = registry_eval(registry, source)
-    if type(value) is bool and value is True:
+    if type(value) in (bool, int) and value:
         values.append(registry)
         mask[0] = True
     elif type(value) is tuple and True in value:
