@@ -179,11 +179,6 @@ class Repository(object):
                 "Missing configuration section for required attributes: %s" \
                 % ", ".join(all_required_attributes)
 
-        if all_optional_attributes and not self._config:
-            raise Exception, \
-                "Missing configuration section for optional attributes: %s" \
-                % ", ".join(all_optional_attributes)
-
         if not self._config:
             return
 

@@ -129,8 +129,8 @@ class IteratorExclude(IteratorContain):
     def has_next(self, *args, **kwargs):
         if self.iterator.has_next(*args, **kwargs):
             element = self.iterator.next(*args, **kwargs)
-            if self.next_func is None \
-               or self.next_func(element, *args, **kwargs):
+            if self.next_func is not None \
+               and self.next_func(element, *args, **kwargs):
                 return self.has_next(*args, **kwargs)
             else:
                 self.iterator._force_prev()
@@ -149,8 +149,8 @@ class IteratorExclude(IteratorContain):
     def has_prev(self, *args, **kwargs):
         if self.iterator.has_prev(*args, **kwargs):
             element = self.iterator.prev(*args, **kwargs)
-            if self.prev_func is None \
-               or self.prev_func(element, *args, **kwargs):
+            if self.prev_func is not None \
+               and self.prev_func(element, *args, **kwargs):
                 return self.has_prev(*args, **kwargs)
             else:
                 self.iterator._force_next()

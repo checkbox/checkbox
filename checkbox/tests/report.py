@@ -20,7 +20,7 @@
 #
 import unittest
 
-from xml.dom.minidom import Document
+from xml.dom.minidom import Document, Node
 
 from checkbox.report import ReportManager, Report
 
@@ -32,6 +32,7 @@ class StubReport(Report):
 
     def register_loads(self):
         self._manager.handle_loads("test", self.loads_test)
+        self._manager.handle_loads("default", self.loads_default)
 
     def dumps_test(self, obj, parent):
         text_node = self._manager.document.createTextNode(obj)
@@ -39,6 +40,17 @@ class StubReport(Report):
 
     def loads_test(self, node):
         return node.childNodes[0].nodeValue.strip()
+
+    def loads_default(self, node):
+        default = {}
+        for child in (c for c in node.childNodes if c.nodeType != Node.TEXT_NODE):
+            if child.hasAttribute("name"):
+                name = child.getAttribute("name")
+            else:
+                name = child.localName
+            default[str(name)] = self._manager.call_loads(child)
+        return default
+
 
 class ReportManagerTest(unittest.TestCase):
 
