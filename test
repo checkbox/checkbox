@@ -78,25 +78,39 @@ def parse_sys_argv():
             del sys.argv[i]
     return testpaths
 
-def test_with_unittest():
+def test_with_subunit(options):
+    import unittest
+    import subunit
+
+    runner = unittest.TextTestRunner()
+    if options.verbose:
+        runner.verbosity = 2
+
+    result = subunit.IsolatedTestSuite()
+    loader = unittest.TestLoader()
+    unittests, doctests = find_tests(options.args)
+
+    if unittests:
+        for relpath in unittests:
+            modpath = relpath.replace('/', '.')[:-3]
+            module = __import__(modpath, None, None, [""])
+            tests = loader.loadTestsFromModule(module)
+            result.addTests(tests)
+
+        runner.run(result)
+
+    return 0
+
+def test_with_unittest(options):
     import unittest
     import doctest
 
-    usage = "test [options] [<test filename>, ...]"
-
-    parser = optparse.OptionParser(usage=usage)
-
-    parser.add_option('--verbose', action='store_true')
-    opts, args = parser.parse_args()
-    opts.args = args
-
     runner = unittest.TextTestRunner()
-
-    if opts.verbose:
+    if options.verbose:
         runner.verbosity = 2
 
     loader = unittest.TestLoader()
-    unittests, doctests = find_tests(args)
+    unittests, doctests = find_tests(options.args)
 
     class Summary:
         def __init__(self):
@@ -147,15 +161,21 @@ def test_with_unittest():
                   doctest_summary.total_failures or
                   doctest_summary.total_errors)
 
-    sys.exit(failed)
+    return failed
 
 if __name__ == "__main__":
-    runner = os.environ.get("CHECKBOX_TEST_RUNNER")
-    if not runner:
-        runner = "unittest"
+    usage = "test [options] [<test filename>, ...]"
+
+    parser = optparse.OptionParser(usage=usage)
+    parser.add_option('--verbose', action='store_true')
+    opts, args = parser.parse_args()
+    opts.args = args
+
+    runner = os.environ.get("CHECKBOX_TEST_RUNNER", "unittest")
     runner_func = globals().get("test_with_%s" % runner.replace(".", "_"))
     if not runner_func:
         sys.exit("Test runner not found: %s" % runner)
-    runner_func()
+
+    sys.exit(runner_func(opts))
 
 # vim:ts=4:sw=4:et
