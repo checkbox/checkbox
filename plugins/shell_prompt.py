@@ -25,22 +25,22 @@ from checkbox.lib.cache import cache
 from checkbox.plugin import Plugin
 
 
-class AutoPrompt(Plugin):
+class ShellPrompt(Plugin):
 
     def register(self, manager):
-        super(AutoPrompt, self).register(manager)
+        super(ShellPrompt, self).register(manager)
         self._manager.reactor.call_on("prompt-test-.*",
-            self.prompt_test_auto, 100)
+            self.prompt_test_shell, 100)
 
-    def _run_auto(self, test):
+    def _run_shell(self, test):
         result = test.command()
         self._manager.reactor.fire("report-result", result)
 
     @cache
-    def prompt_test_auto(self, interface, test):
+    def prompt_test_shell(self, interface, test):
         if str(test.command):
-            interface.show_wait(_("Running automatic tests..."),
-                self._run_auto, test)
+            interface.show_wait(_("Running shell tests..."),
+                self._run_shell, test)
 
 
-factory = AutoPrompt
+factory = ShellPrompt
