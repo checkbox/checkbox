@@ -1,3 +1,17 @@
+checkbox (0.1-0ubuntu15) hardy; urgency=low
+
+  * Renamed auto tests to shell tests.
+  * Added subunit to the test suite.
+  * Added the subunit_report plugin to produce a standard test report.
+  * Added pvs registry.
+  * Added support for int return values to recursive registry eval.
+  * Added debug information when a command registry returns an error.
+  * Added mounts registry.
+  * Added patches to upgrade the configuration files.
+  * Using posixpath instead of os.path.
+
+ -- Marc Tardif <marc@interunion.ca>  Sun, 14 Dec 2008 19:35:24 -0500
+
 checkbox (0.1-0ubuntu14) hardy; urgency=low
 
   * Added support for CHECKBOX_OPTIONS environment variable.
