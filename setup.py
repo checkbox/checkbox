@@ -115,6 +115,7 @@ results can then be sent to Launchpad.
         ("share/checkbox/data/", ["data/*"]),
         ("share/checkbox/examples/", ["examples/*"]),
         ("share/checkbox/install/", ["install/*"]),
+        ("share/checkbox/patches/", ["patches/*"]),
         ("share/checkbox/plugins/", ["plugins/*.py"]),
         ("share/checkbox/registries/", ["registries/*.py"]),
         ("share/checkbox/scripts/", ["scripts/*"]),
