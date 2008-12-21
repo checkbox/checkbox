@@ -18,11 +18,18 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
+import posixpath
+
 from checkbox.lib.environ import get_path
 
 
 def get_globals(script):
+    path = posixpath.expanduser(script)
+    if not posixpath.exists(path):
+        path = get_path(script)
+        if not path:
+            raise Exception, "Script not found in PATH: %s" % script
+
     globals = {}
-    script = get_path(script)
-    execfile(script, globals)
+    execfile(path, globals)
     return globals
