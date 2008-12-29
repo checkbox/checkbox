@@ -72,7 +72,8 @@ class UserInterface(object):
         raise NotImplementedError, \
             "this function must be overridden by subclasses"
 
-    def show_exchange(self, authentication, reports, message, error):
+    def show_exchange(self, authentication, reports=[], message=None,
+                      error=None):
         raise NotImplementedError, \
             "this function must be overridden by subclasses"
 
