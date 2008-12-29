@@ -50,7 +50,7 @@ class Reactor(object):
     def call_on(self, event_type, handler, priority=0):
         pair = (handler, priority)
 
-        logging.debug("Calling on %s.", event_type)
+        logging.debug("Calling %s on %s.", format_object(handler), event_type)
         handlers = self._event_handlers.setdefault(event_type, [])
         handlers.append(pair)
 

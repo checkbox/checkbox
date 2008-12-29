@@ -20,6 +20,7 @@
 #
 import inspect
 
+
 def format_class(cls):
     return "%s.%s" % (cls.__module__, cls.__name__)
 
