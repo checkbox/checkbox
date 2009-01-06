@@ -20,6 +20,7 @@
 #
 import sys
 import gettext
+import logging
 
 from checkbox.contrib.REThread import REThread
 
@@ -54,6 +55,9 @@ class UserInterface(object):
 
         return thread.return_value()
 
+    def show_error(self, title, text):
+        logging.error("%s: %s", title, text)
+
     def show_wait(self, message, function, *args, **kwargs):
         self.do_function(function, *args, **kwargs)
 
@@ -78,9 +82,5 @@ class UserInterface(object):
             "this function must be overridden by subclasses"
 
     def show_final(self, message):
-        raise NotImplementedError, \
-            "this function must be overridden by subclasses"
-
-    def show_error(self, title, text):
         raise NotImplementedError, \
             "this function must be overridden by subclasses"
