@@ -41,6 +41,7 @@ class ExchangePrompt(Plugin):
              ("report-packages", self.report_packages),
              ("report-processors", self.report_processors),
              ("report-results", self.report_results),
+             ("exchange-error", self.exchange_error),
              ("prompt-exchange", self.prompt_exchange)]:
             self._manager.reactor.call_on(rt, rh)
 
@@ -59,29 +60,31 @@ class ExchangePrompt(Plugin):
     def report_results(self, message):
         self._reports.add("tests")
 
+    def exchange_error(self, error):
+        self._error = error
+
     def prompt_exchange(self, interface):
         email = self._persist.get("email") or self._config.email
 
-        error = None
+        self._error = None
         while True:
-            if error or not self._config.email:
+            if self._error or not self._config.email:
                 email = interface.show_exchange(email, self._reports,
                     _("""\
 The following information will be sent to the Launchpad
 hardware database. Please provide the e-mail address you
-use to sign in to Launchpad to submit this information."""), error=error)
+use to sign in to Launchpad to submit this information."""), error=self._error)
 
             if interface.direction == PREV:
                 break
             elif not re.match(r"^\S+@\S+.\S+$", email, re.I):
-                error = _("Email address must be in a proper format.")
+                self._error = _("Email address must be in a proper format.")
             else:
                 self._manager.reactor.fire("report-email", email)
                 interface.show_wait(
                     _("Exchanging information with the server..."),
                     self._manager.reactor.fire, "exchange")
-                error = self._manager.get_error()
-                if not error:
+                if not self._error:
                     break
 
         self._persist.set("email", email)

@@ -19,7 +19,6 @@
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
 import re
-import posixpath
 
 from checkbox.plugin import Plugin
 

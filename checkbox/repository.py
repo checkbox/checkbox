@@ -127,7 +127,6 @@ class RepositoryManager(object):
         will be used to load sections by name.
         """
         self._config = config
-        self._error = None
 
     def load_section(self, name):
         """
@@ -137,12 +136,6 @@ class RepositoryManager(object):
         logging.info("Loading repository section %s", name)
         config = self._config.get_section(name)
         return self._section_factory(config, name)
-
-    def set_error(self, error=None):
-        self._error = error
-
-    def get_error(self):
-        return self._error
 
 
 class Repository(object):

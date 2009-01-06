@@ -103,7 +103,6 @@ class LaunchpadExchange(Plugin):
         if logging.getLogger().getEffectiveLevel() <= logging.DEBUG:
             logging.debug("Uncompressed payload length: %d", len(payload))
 
-        self._manager.set_error()
         transport = HTTPTransport(self._config.transport_url)
 
         start_time = time.time()
@@ -112,7 +111,7 @@ class LaunchpadExchange(Plugin):
         end_time = time.time()
 
         if not response:
-            self._manager.set_error(_("""\
+            self._manager.reactor.fire("exchange-error", _("""\
 Failed to contact server. Please try
 again or upload the following file name:
 %s
@@ -121,8 +120,9 @@ directly to the system database:
 https://launchpad.net/+hwdb/+submit""") % posixpath.abspath(self._report))
             return
         elif response.status != 200:
-            self._manager.set_error(_("Failed to upload to server,\n"
-                "please try again later."))
+            self._manager.reactor.fire("exchange-error", _("""\
+Failed to upload to server,
+please try again later."""))
             return
 
         if logging.getLogger().getEffectiveLevel() <= logging.DEBUG:
@@ -131,10 +131,11 @@ https://launchpad.net/+hwdb/+submit""") % posixpath.abspath(self._report))
 
         header = response.getheader("x-launchpad-hwdb-submission")
         if not header:
-            self._manager.set_error(_("Information not posted to Launchpad."))
+            self._manager.reactor.fire("exchange-error",
+                _("Information not posted to Launchpad."))
         elif "Error" in header:
             # HACK: this should return a useful error message
-            self._manager.set_error(header)
+            self._manager.reactor.fire("exchange-error", header)
             logging.error(header)
         else:
             text = response.read()
