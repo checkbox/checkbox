@@ -105,7 +105,7 @@ class MessageStore(object):
         for filename in self._walk_pending_messages():
             if max is not None and len(messages) >= max:
                 break
-            data = self._get_content(self._message_dir(filename))
+            data = self._get_content(filename)
             try:
                 message = bpickle.loads(data)
             except ValueError, e:
