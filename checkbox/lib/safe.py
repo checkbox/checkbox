@@ -19,6 +19,7 @@
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
 import os
+import md5
 import posixpath
 import shutil
 
@@ -70,3 +71,18 @@ def safe_rename(old, new):
             raise Exception, "New path exists already: %s" % new
 
         os.rename(old, new)
+
+def safe_md5sum(name):
+    md5sum = None
+    if posixpath.exists(name):
+        file = open(name)
+        digest = md5.new()
+        while 1:
+            buf = file.read(4096)
+            if buf == "":
+                break
+            digest.update(buf)
+        file.close()
+        md5sum = digest.hexdigest()
+
+    return md5sum
