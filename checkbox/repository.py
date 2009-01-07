@@ -63,9 +63,9 @@ class RepositorySection(object):
                     blacklist = re.split(r"\s", self._config.blacklist)
 
                 for directory in self.directories:
-                    names = [p.replace('.py', '')
+                    names = [p.replace(".py", "")
                         for p in os.listdir(directory)
-                        if p.endswith('.py') and p != "__init__.py"]
+                        if p.endswith(".py") and p != "__init__.py"]
                     self._names = list(set(names).difference(set(blacklist)))
 
         return self._names
@@ -179,6 +179,10 @@ class Repository(object):
             if attribute not in self._config.attributes:
                 raise Exception, \
                     "Configuration section '%s' missing required attribute: %s" \
+                    % (self._config.name, attribute)
+            elif self._config.attributes[attribute] == "":
+                raise Exception, \
+                    "Configuration section '%s' has empty required attribute: %s" \
                     % (self._config.name, attribute)
 
         for attribute in all_optional_attributes:
