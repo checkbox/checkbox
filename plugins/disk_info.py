@@ -37,20 +37,29 @@ class DiskInfo(Plugin):
             file = open(self._config.filename)
         except IOError:
             return
+
         # Found label 'Ubuntu 8.04.1 _Hardy Heron_ - Release amd64 (20080702.1)'
-        regex = re.compile(r"Found label '([\w\-]+) ([\d\.]+) _([^_]+)_ "
-            "- ([\w ]+) (i386|amd64|powerpc|sparc) "
-            "(Binary-\d+ )?\(([^\)]+)\)'")
+        distributor_regex = r"(?P<distributor>[\w\-]+)"
+        release_regex = r"(?P<release>[\d\.]+)"
+        codename_regex = r"(?P<codename>[^_]+)"
+        official_regex = r"(?P<official>[\w ]+)"
+        architecture_regex = r"(?P<architecture>[\w\+]+)"
+        type_regex = r"(?P<type>Binary-\d+)"
+        date_regex = r"(?P<date>[^\)]+)"
+
+        info_regex = r"%s %s _%s_ - %s %s (%s )?\(%s\)" % (distributor_regex,
+            release_regex, codename_regex, official_regex, architecture_regex,
+            type_regex, date_regex)
+        line_regex = r"Found label '%s'" % info_regex
+        line_pattern = re.compile(line_regex)
+
         for line in file.readlines():
-            match = regex.match(line)
+            match = line_pattern.match(line)
             if match:
-                message = {
-                    "distributor": match.group(1),
-                    "release": match.group(2),
-                    "codename": match.group(3),
-                    "official": match.group(4),
-                    "architecture": match.group(5),
-                    "date": match.group(7)}
+                keys = ["distributor", "release", "codename", "official",
+                    "architecture", "date"]
+                values = [match.group(k) for k in keys]
+                message = dict(zip(keys, values))
                 self._manager.reactor.fire("report-disk", message)
                 break
 
