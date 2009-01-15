@@ -30,7 +30,7 @@ import mimetypes
 import socket
 import urllib
 
-from httplib import FakeSocket, HTTPConnection, HTTPSConnection
+from httplib import BadStatusLine, FakeSocket, HTTPConnection, HTTPSConnection
 
 
 class ProxyHTTPConnection(HTTPConnection):
@@ -232,10 +232,14 @@ class HTTPTransport(object):
         except socket.timeout:
             logging.warning("Timeout connecting to %s", self.url)
         else:
-            response = connection.getresponse()
-            if response.status == 302:
-                # TODO prevent infinite redirect loop
-                self.url = self._get_location_header(response)
-                response = self.exchange(body, headers, timeout)
+            try:
+                response = connection.getresponse()
+            except BadStatusLine:
+                logging.warning("Service unavailable on %s", self.url)
+            else:
+                if response.status == 302:
+                    # TODO prevent infinite redirect loop
+                    self.url = self._get_location_header(response)
+                    response = self.exchange(body, headers, timeout)
 
         return response
