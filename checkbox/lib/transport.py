@@ -28,14 +28,13 @@ import posixpath
 import mimetools
 import mimetypes
 import socket
+import httplib
 import urllib
 
-from httplib import BadStatusLine, FakeSocket, HTTPConnection, HTTPSConnection
 
+class ProxyHTTPConnection(httplib.HTTPConnection):
 
-class ProxyHTTPConnection(HTTPConnection):
-
-    _ports = {"http" : 80, "https" : 443}
+    _ports = {"http" : httplib.HTTP_PORT, "https" : httplib.HTTPS_PORT}
 
     def request(self, method, url, body=None, headers={}):
         #request is called before connect, so can interpret url and get
@@ -55,10 +54,10 @@ class ProxyHTTPConnection(HTTPConnection):
                 raise ValueError, "unknown protocol for: %s" % url
         self._real_host = host
         self._real_port = port
-        HTTPConnection.request(self, method, url, body, headers)
+        httplib.HTTPConnection.request(self, method, url, body, headers)
 
     def connect(self):
-        HTTPConnection.connect(self)
+        httplib.HTTPConnection.connect(self)
         #send proxy CONNECT request
         self.send("CONNECT %s:%d HTTP/1.0\r\n\r\n" % (self._real_host, self._real_port))
         #expect a HTTP/1.0 200 Connection established
@@ -79,7 +78,7 @@ class ProxyHTTPConnection(HTTPConnection):
 
 class ProxyHTTPSConnection(ProxyHTTPConnection):
 
-    default_port = 443
+    default_port = httplib.HTTPS_PORT
 
     def __init__(self, host, port=None, key_file=None, cert_file=None, strict=None):
         ProxyHTTPConnection.__init__(self, host, port)
@@ -90,7 +89,7 @@ class ProxyHTTPSConnection(ProxyHTTPConnection):
         ProxyHTTPConnection.connect(self)
         #make the sock ssl-aware
         ssl = socket.ssl(self.sock, self.key_file, self.cert_file)
-        self.sock = FakeSocket(self.sock, ssl)
+        self.sock = httplib.FakeSocket(self.sock, ssl)
 
 
 class HTTPTransport(object):
@@ -120,14 +119,14 @@ class HTTPTransport(object):
             else:
                 host, port = self._unpack_host_and_port(self.url)
 
-            connection = HTTPConnection(host, port)
+            connection = httplib.HTTPConnection(host, port)
         elif scheme == "https":
             if self.https_proxy:
                 host, port = self._unpack_host_and_port(self.https_proxy)
                 connection = ProxyHTTPSConnection(host, port)
             else:
                 host, port = self._unpack_host_and_port(self.url)
-                connection = HTTPSConnection(host, port)
+                connection = httplib.HTTPSConnection(host, port)
         else:
             raise Exception, "Unknown URL scheme: %s" % scheme
 
@@ -234,12 +233,16 @@ class HTTPTransport(object):
         else:
             try:
                 response = connection.getresponse()
-            except BadStatusLine:
+            except httplib.BadStatusLine:
                 logging.warning("Service unavailable on %s", self.url)
             else:
-                if response.status == 302:
+                if response.status == httplib.FOUND:
                     # TODO prevent infinite redirect loop
                     self.url = self._get_location_header(response)
                     response = self.exchange(body, headers, timeout)
+                elif response.status != httplib.OK:
+                    logging.warning("Server returned: %s",
+                        httplib.responses[response.status])
+                    response = None
 
         return response
