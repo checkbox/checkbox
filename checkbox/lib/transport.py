@@ -240,9 +240,5 @@ class HTTPTransport(object):
                     # TODO prevent infinite redirect loop
                     self.url = self._get_location_header(response)
                     response = self.exchange(body, headers, timeout)
-                elif response.status != httplib.OK:
-                    logging.warning("Server returned: %s",
-                        httplib.responses[response.status])
-                    response = None
 
         return response
