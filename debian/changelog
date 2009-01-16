@@ -1,57 +1,47 @@
-checkbox (0.2-0ubuntu4) hardy; urgency=low
+checkbox (0.3) jaunty; urgency=low
 
-  * Added watch file.
-  * Fixed get_globals to support both relative and absolute paths.
-  * Added README file pointing to the Ubuntu wiki.
+  * New upstream version:
+    * Renamed hwtest to checkbox.
+    * Renamed auto tests to shell tests.
+    * Added watch file.
+    * Added README file pointing to the Ubuntu wiki.
+    * Added subunit to the test suite.
+    * Added the subunit_report plugin to produce a standard test report.
+    * Added pvs registry.
+    * Added support for int return values to recursive registry eval.
+    * Added debug information when a command registry returns an error.
+    * Added mounts registry.
+    * Added patches to upgrade the configuration files.
+    * Added support for CHECKBOX_OPTIONS environment variable.
+    * Added usage information.
+    * Added gconf registry.
+    * Added logging to checkbox event.
+    * Added locking plugin.
+    * Added message store and schema types.
+    * Added caching to automatic tests so that they are not run multiple
+      times.
+    * Added persistence to category and system_id.
+    * Added lshw registry and plugin.
+    * Added newlines to German introduction message.
+  * Fixed e-mail address should be remembered (LP: #156725)
+  * Fixed $output variable does not seem to be reinterpolated when
+    testing again (LP: #189404)
+  * Fixed command line interface does not provide a test nor test again
+    option (LP: #189423)
+  * Fixed translation template unavailable, even though hwtest is in main
+    (LP: #202447)
+  * Fixed internet_test should support providing a destination other
+    than canonical.com (LP: #216111)
+  * Fixed hwtest loads editor backup files from suite dir (LP: #237954)
+  * Fixed application should only have one instance running (LP: #266899)
+  * Fixed disk information should be gathered (LP: #267889)
+  * Fixed typo: payback device (LP: #288331)
+  * Fixed tests skipped by constraint should be reported (LP: #304176)
+  * Fixed manual tests which have commands should not be run automatically
+    (LP: #304231)
+  * Fixed CHECKBOX_DATA mapping is not working (LP: #304736)
 
- -- Marc Tardif <marc@interunion.ca>  Tue, 23 Dec 2008 13:41:47 -0500
-
-checkbox (0.2-0ubuntu3) hardy; urgency=low
-
-  * Renamed auto tests to shell tests.
-  * Added subunit to the test suite.
-  * Added the subunit_report plugin to produce a standard test report.
-  * Added pvs registry.
-  * Added support for int return values to recursive registry eval.
-  * Added debug information when a command registry returns an error.
-  * Added mounts registry.
-  * Added patches to upgrade the configuration files.
-  * Using posixpath instead of os.path.
-
- -- Marc Tardif <marc@interunion.ca>  Sun, 14 Dec 2008 19:35:24 -0500
-
-checkbox (0.2-0ubuntu2) hardy; urgency=low
-
-  * Added support for CHECKBOX_OPTIONS environment variable.
-  * Added usage information.
-  * Added gconf registry.
-  * Added logging to checkbox event.
-  * Added locking plugin.
-  * Added message store and schema types.
-  * Added caching to automatic tests so that they are not run multiple times.
-  * Added persistence to category and system_id.
-  * Added lshw registry and plugin.
-  * Miscellaneous bug fixes.
-
- -- Marc Tardif <marc@interunion.ca>  Mon, 01 Dec 2008 21:38:28 -0500
-
-checkbox (0.2-0ubuntu1) hardy; urgency=low
-
-  * Renamed hwtest to checkbox.
-
- -- Marc Tardif <marc@interunion.ca>  Wed, 13 Aug 2008 11:29:26 -0400
-
-hwtest (0.1-0ubuntu12) hardy; urgency=low
-
-  * Added newlines to German introduction message.
-
- -- Marc Tardif <marc@interunion.ca>  Mon, 16 Jun 2008 11:03:29 -0400
-
-hwtest (0.1-0ubuntu11) hardy; urgency=low
-
-  * Ignore editor backup files when loading test suites (LP: #237954)
-
- -- Steve Magoun <steve.magoun@canonical.com>  Fri, 06 Jun 2008 13:38:43 -0400
+ -- Marc Tardif <marc@ubuntu.com>  Fri, 16 Jan 2009 12:05:32 -0500
 
 hwtest (0.1-0ubuntu10) hardy; urgency=low
 
