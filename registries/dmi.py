@@ -18,18 +18,11 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-from checkbox.plugin import Plugin
+from checkbox.registries.command import CommandRegistry
 
 
-class DmidecodeInfo(Plugin):
-
-    def register(self, manager):
-        super(DmidecodeInfo, self).register(manager)
-        self._manager.reactor.call_on("report", self.report)
-
-    def report(self):
-        self._manager.reactor.fire("report-dmidecode",
-            self._manager.registry.dmidecode)
+class DmiRegistry(CommandRegistry):
+    """Registry for dmi information."""
 
 
-factory = DmidecodeInfo
+factory = DmiRegistry
