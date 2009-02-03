@@ -82,7 +82,7 @@ class LaunchpadReport(Plugin):
         self._report["software"]["packages"].extend(packages)
 
     def report_pci(self, pci):
-        self._report["hardware"]["pci"] = pci
+        self._report["hardware"]["lspci"] = pci
 
     def report_processors(self, processors):
         self._report["hardware"]["processors"] = processors
