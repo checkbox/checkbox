@@ -36,6 +36,7 @@ class LaunchpadReportManager(XmlReportManager):
         self.add(HalReport())
         self.add(LsbReport())
         self.add(PackagesReport())
+        self.add(PciReport())
         self.add(ProcessorsReport())
         self.add(SummaryReport())
         self.add(QuestionsReport())
@@ -56,6 +57,7 @@ class DmiReport(XmlReport):
         self._create_text_node(str(obj), parent)
 
     def loads_dmi(self, node):
+        logging.debug("Loading dmi")
         return node.firstChild.data.strip()
 
 
@@ -142,6 +144,25 @@ class PackagesReport(Report):
             packages.append(value)
 
         return packages
+
+
+class PciReport(XmlReport):
+
+    def register_dumps(self):
+        for (dt, dh) in [("pci", self.dumps_pci)]:
+            self._manager.handle_dumps(dt, dh)
+
+    def register_loads(self):
+        for (lt, lh) in [("pci", self.loads_pci)]:
+            self._manager.handle_loads(lt, lh)
+
+    def dumps_pci(self, obj, parent):
+        logging.debug("Dumping pci")
+        self._create_text_node(str(obj), parent)
+
+    def loads_pci(self, node):
+        logging.debug("Loading pci")
+        return node.firstChild.data.strip()
 
 
 class ProcessorsReport(Report):

@@ -52,6 +52,7 @@ class LaunchpadReport(Plugin):
              ("report-dmi", self.report_dmi),
              ("report-hal", self.report_hal),
              ("report-packages", self.report_packages),
+             ("report-pci", self.report_pci),
              ("report-processors", self.report_processors),
              ("report-system_id", self.report_system_id),
              ("report-results", self.report_results)]:
@@ -79,6 +80,9 @@ class LaunchpadReport(Plugin):
 
     def report_packages(self, packages):
         self._report["software"]["packages"].extend(packages)
+
+    def report_pci(self, pci):
+        self._report["hardware"]["pci"] = pci
 
     def report_processors(self, processors):
         self._report["hardware"]["processors"] = processors
