@@ -49,6 +49,7 @@ class LaunchpadReport(Plugin):
              ("report-client", self.report_client),
              ("report-datetime", self.report_datetime),
              ("report-distribution", self.report_distribution),
+             ("report-dmidecode", self.report_dmidecode),
              ("report-hal", self.report_hal),
              ("report-packages", self.report_packages),
              ("report-processors", self.report_processors),
@@ -72,6 +73,9 @@ class LaunchpadReport(Plugin):
         self._report["software"]["lsbrelease"] = dict(distribution)
         self._report["summary"]["distribution"] = distribution.distributor_id
         self._report["summary"]["distroseries"] = distribution.release
+
+    def report_dmidecode(self, dmidecode):
+        self._report["hardware"]["dmi"] = dmidecode
 
     def report_packages(self, packages):
         self._report["software"]["packages"].extend(packages)
