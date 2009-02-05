@@ -36,10 +36,16 @@ class SubunitReport(Plugin):
 
     def register(self, manager):
         super(SubunitReport, self).register(manager)
+        self._file = None
+
+        for (rt, rh) in [
+             ("gather", self.gather),
+             ("report-result", self.report_result)]:
+            self._manager.reactor.call_on(rt, rh)
+
+    def gather(self):
         logging.debug("Opening filename: %s", self._config.filename)
         self._file = open(self._config.filename, "w")
-
-        self._manager.reactor.call_on("report-result", self.report_result)
 
     def report_result(self, result):
         # Test
