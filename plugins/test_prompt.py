@@ -52,7 +52,7 @@ class PromptTestCallbacks(TraverserCallbacks):
 
     def unsupported_requires(self, test, result):
         result = TestResult(test, status=SKIP,
-            data="Test does not support requires field.")
+            data="System does not meet test requirements.")
         self._plugin._manager.reactor.fire("report-result", result)
 
     def undefined_architecture(self, test, result):
