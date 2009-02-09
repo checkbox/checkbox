@@ -53,13 +53,18 @@ class GTKInterface(UserInterface):
     def __init__(self, config):
         super(GTKInterface, self).__init__(config)
 
-        # load UI
+        # Load UI
         gtk.window_set_default_icon_name("checkbox")
         gtk.glade.textdomain(self.gettext_domain)
         self.widgets = gtk.glade.XML(posixpath.join(config.gtk_path,
             "checkbox-gtk.glade"))
         self.widgets.signal_autoconnect(self)
 
+        # Set background color for head
+        eventbox_head = self._get_widget("eventbox_head")
+        eventbox_head.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse("white"))
+
+        # Set dialog title
         self._dialog = self._get_widget("dialog_checkbox")
         self._dialog.set_title(config.title)
 
