@@ -132,15 +132,22 @@ class Template(object):
     def load_directory(self, directory, blacklist=[], whitelist=[]):
         logging.info("Loading filenames from directory: %s", directory)
 
-        elements = []
-        if whitelist:
-            names = whitelist
-        else:
-            names = [n for n in os.listdir(directory) if n not in blacklist]
+        whitelist_patterns = [re.compile(r"^%s$" % r) for r in whitelist]
+        blacklist_patterns = [re.compile(r"^%s$" % r) for r in blacklist]
 
-        for name in names:
+        elements = []
+        for name in os.listdir(directory):
+            if whitelist_patterns:
+                if not [p.match(name) for p in whitelist_patterns]:
+                    logging.info("Not whitelisted filename: %s", name)
+                    continue
+            elif blacklist_patterns:
+                if [p.match(name) for p in blacklist_patterns]:
+                    logging.info("Blacklisted filename: %s", name)
+                    continue
+
             if name.startswith(".") or name.endswith("~"):
-                logging.info("Ignoring filename: %s", name)
+                logging.info("Ignored filename: %s", name)
                 continue
 
             filename = posixpath.join(directory, name)

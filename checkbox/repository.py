@@ -56,17 +56,29 @@ class RepositorySection(object):
         """
         if self._names is None:
             if "whitelist" in self._config.attributes:
-                self._names = re.split(r"\s+", self._config.whitelist)
-            else:
-                blacklist = []
-                if "blacklist" in self._config.attributes:
-                    blacklist = re.split(r"\s", self._config.blacklist)
+                whitelist_regexes = re.split(r"\s+", self._config.whitelist)
+                whitelist_patterns = [re.compile(r"^%s$" % r)
+                    for r in whitelist_regexes]
 
-                for directory in self.directories:
-                    names = [p.replace(".py", "")
-                        for p in os.listdir(directory)
-                        if p.endswith(".py") and p != "__init__.py"]
-                    self._names = list(set(names).difference(set(blacklist)))
+            if "blacklist" in self._config.attributes:
+                blacklist_regexes = re.split(r"\s+", self._config.blacklist)
+                blacklist_patterns = [re.compile(r"^%s$" % r)
+                    for r in blacklist_regexes]
+
+            self._names = []
+            for directory in self.directories:
+                names = [p.replace(".py", "")
+                    for p in os.listdir(directory)
+                    if p.endswith(".py") and p != "__init__.py"]
+                for name in names:
+                    if "whitelist" in self._config.attributes:
+                        if not [p.match(name) for p in whitelist_patterns]:
+                            continue
+                    elif "blacklist" in self._config.attributes:
+                        if [p.match(name) for p in blacklist_patterns]:
+                            continue
+
+                    self._names.append(name)
 
         return self._names
 
