@@ -24,6 +24,8 @@ import gtk, gtk.glade
 
 from gettext import gettext as _
 
+from checkbox.lib.paragraph import unwrap
+
 from checkbox.test import ALL_STATUS, TestResult
 from checkbox.user_interface import UserInterface
 
@@ -93,7 +95,7 @@ class GTKInterface(UserInterface):
 
     def _set_text(self, name, text=""):
         widget = self._get_widget(name)
-        widget.set_text(text)
+        widget.set_text(unwrap(text))
 
     def _set_textview(self, name, text=""):
         buffer = gtk.TextBuffer()

@@ -61,3 +61,8 @@ def wrap(text, limit=72):
                 current = -1
 
     return "\n".join(lines)
+
+def unwrap(text):
+    lines = text.split("\n")
+    lines = [l.strip() for l in lines]
+    return " ".join(lines)

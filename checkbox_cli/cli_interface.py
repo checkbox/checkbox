@@ -24,6 +24,8 @@ import termios
 
 from gettext import gettext as _
 
+from checkbox.lib.paragraph import wrap
+
 from checkbox.test import ALL_CATEGORIES, ALL_STATUS, FAIL, TestResult
 from checkbox.user_interface import UserInterface
 
@@ -37,7 +39,7 @@ class CLIDialog(object):
         self.visible = False
 
     def put(self, text):
-        sys.stdout.write(text)
+        sys.stdout.write(wrap(text))
 
     def put_line(self, line):
         self.put("%s\n" % line)
