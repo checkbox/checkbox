@@ -7,280 +7,330 @@ msgid ""
 msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-06 16:03-0400\n"
-"PO-Revision-Date: 2008-03-25 15:02+0000\n"
-"Last-Translator: Vinzenz Vietzke <Unknown>\n"
+"POT-Creation-Date: 2009-02-09 09:04-0500\n"
+"PO-Revision-Date: 2009-01-17 12:29+0000\n"
+"Last-Translator: Abel Deuring <abel.deuring@canonical.com>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-04-03 00:56+0000\n"
+"X-Launchpad-Export-Date: 2009-02-09 13:40+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../gtk/checkbox-gtk.glade.h:1
 msgid "<b>Comment:</b>"
 msgstr "<b>Kommentar:</b>"
 
-#: ../gtk/checkbox-gtk.glade.h:2 ../checkbox_cli/cli_interface.py:167
-#: ../checkbox_cli/cli_interface.py:190
-msgid "System Testing"
-msgstr "Untersuche Hardware"
+#: ../gtk/checkbox-gtk.glade.h:2
+msgid "Device information"
+msgstr "Geräteinformation"
 
-#: ../gtk/checkbox-gtk.glade.h:3 ../checkbox_gtk/gtk_interface.py:265
+#: ../gtk/checkbox-gtk.glade.h:3
+msgid "Distribution details"
+msgstr "Distributionsdetails"
+
+#: ../gtk/checkbox-gtk.glade.h:4 ../checkbox_gtk/gtk_interface.py:269
 msgid "Ne_xt"
 msgstr "_Weiter"
 
-#: ../gtk/checkbox-gtk.glade.h:4 ../checkbox_cli/cli_interface.py:220
-msgid "Please provide your Launchpad email address:"
-msgstr "Bitte geben sie ihre Launchpad-Emailadresse an:"
-
 #: ../gtk/checkbox-gtk.glade.h:5
+msgid "Packages installed"
+msgstr "Installierte Pakete"
+
+#: ../gtk/checkbox-gtk.glade.h:6
+msgid "Processor information"
+msgstr "Prozessorinformationen"
+
+#: ../gtk/checkbox-gtk.glade.h:7
 msgid "Successfully sent information!"
 msgstr "Informationen erfolgreich versandt!"
 
-#: ../gtk/checkbox-gtk.glade.h:6
+#: ../gtk/checkbox-gtk.glade.h:8 ../gtk/checkbox-gtk.desktop.in.h:1
+#: ../checkbox_cli/cli_interface.py:186 ../checkbox_cli/cli_interface.py:226
+#, fuzzy
+msgid "System Testing"
+msgstr "Untersuche Hardware"
+
+#: ../gtk/checkbox-gtk.glade.h:9
+msgid "Test results"
+msgstr "Testergebnisse"
+
+#: ../gtk/checkbox-gtk.glade.h:10
 msgid "_Desktop"
 msgstr "_Desktop"
 
-#: ../gtk/checkbox-gtk.glade.h:7
+#: ../gtk/checkbox-gtk.glade.h:11
 msgid "_Laptop"
 msgstr "_Laptop"
 
-#: ../gtk/checkbox-gtk.glade.h:8
+#: ../gtk/checkbox-gtk.glade.h:12
 msgid "_No"
-msgstr "_Nein"
+msgstr ""
 
-#: ../gtk/checkbox-gtk.glade.h:9
+#: ../gtk/checkbox-gtk.glade.h:13
 msgid "_Previous"
-msgstr "_Vorheriges"
+msgstr "_Zurück"
 
-#: ../gtk/checkbox-gtk.glade.h:10
+#: ../gtk/checkbox-gtk.glade.h:14
 msgid "_Server"
 msgstr "_Server"
 
-#: ../gtk/checkbox-gtk.glade.h:11
+#: ../gtk/checkbox-gtk.glade.h:15
 msgid "_Skip this test"
 msgstr "Diesen Test _überspringen"
 
-#: ../gtk/checkbox-gtk.glade.h:12 ../checkbox_gtk/gtk_interface.py:206
+#: ../gtk/checkbox-gtk.glade.h:16 ../checkbox_gtk/gtk_interface.py:227
 msgid "_Test"
 msgstr "_Test"
 
-#: ../gtk/checkbox-gtk.glade.h:13
+#: ../gtk/checkbox-gtk.glade.h:17
 msgid "_Yes"
 msgstr "_Ja"
 
-#. description
-#: ../suites/manual.txt.in:6
-msgid "Testing detected sound card:"
+#: ../gtk/checkbox-gtk.desktop.in.h:2
+msgid "Test and report system information"
 msgstr ""
 
 #. description
 #: ../suites/manual.txt.in:6
-msgid "$(audio_playback --view)"
+msgid "Run the test for the automatically detected playback device."
 msgstr ""
 
 #. description
 #: ../suites/manual.txt.in:6
-msgid "Did you hear a sound?"
-msgstr ""
+#, fuzzy
+msgid "Do you hear a sound?"
+msgstr "Haben Sie den Sound gehört?"
 
 #. description
-#: ../suites/manual.txt.in:17
+#: ../suites/manual.txt.in:15
 msgid "The following resolution was detected for your display:"
-msgstr ""
+msgstr "Die folgende Auflösung wurde für Ihren Bildschirm erkannt:"
 
 #. description
-#: ../suites/manual.txt.in:17
+#: ../suites/manual.txt.in:15
 msgid "$(resolution_test)"
-msgstr ""
+msgstr "$(resolution_test)"
 
 #. description
-#: ../suites/manual.txt.in:17
+#: ../suites/manual.txt.in:15
 msgid "Is this a good resolution for your display?"
-msgstr ""
+msgstr "Ist diese Auflösung passend für Ihren Bildschirm?"
 
 #. description
-#: ../suites/manual.txt.in:28
-msgid "Video test:"
-msgstr ""
+#: ../suites/manual.txt.in:26
+#, fuzzy
+msgid "Run the video test."
+msgstr "Videotest:"
 
 #. description
-#: ../suites/manual.txt.in:28
-msgid "$(video_test --list)"
-msgstr ""
+#: ../suites/manual.txt.in:26
+#, fuzzy
+msgid "Do you see color bars and static?"
+msgstr "Haben Sie die Farbstreifen und Felder gesehen?"
 
 #. description
-#: ../suites/manual.txt.in:28
-msgid "Did you see color bars and static?"
-msgstr ""
-
-#. description
-#: ../suites/manual.txt.in:39
+#: ../suites/manual.txt.in:35
 msgid "Moving the mouse should move the cursor on the screen."
 msgstr ""
+"Durch bewegen Ihrer Maus sollte sich der Mauszeiger auf dem Bildschirm "
+"bewegen."
 
 #. description
-#: ../suites/manual.txt.in:39
+#: ../suites/manual.txt.in:35
 msgid "Is your mouse working properly?"
-msgstr ""
+msgstr "Funktioniert Ihre Maus einwandfrei?"
 
 #. description
-#: ../suites/manual.txt.in:47
+#: ../suites/manual.txt.in:43
 msgid "Detecting your network controller(s):"
-msgstr ""
+msgstr "Erkenne Ihr(e) Netzwerkgerät(e):"
 
 #. description
-#: ../suites/manual.txt.in:47
+#: ../suites/manual.txt.in:43
 msgid "$(network_test)"
-msgstr ""
+msgstr "$(network_test)"
 
 #. description
-#: ../suites/manual.txt.in:47
+#: ../suites/manual.txt.in:43
 msgid "Is this correct?"
-msgstr ""
+msgstr "Ist das korrekt?"
 
 #. description
-#: ../suites/manual.txt.in:58
+#: ../suites/manual.txt.in:54
 msgid "Testing your connection to the Internet:"
-msgstr ""
+msgstr "Teste Ihre Verbindung zum Internet:"
 
 #. description
-#: ../suites/manual.txt.in:58
+#: ../suites/manual.txt.in:54
 msgid "$output"
-msgstr ""
+msgstr "$output"
 
 #. description
-#: ../suites/manual.txt.in:58
-#, fuzzy
+#: ../suites/manual.txt.in:54
 msgid "Are you connected to the Internet?"
-msgstr ""
-"Kontakt zum Server fehlgeschlagen,\n"
-"sind sie mit dem Internet verbunden."
+msgstr "Sind Sie mit dem Internet verbunden?"
 
 #. description
-#: ../suites/manual.txt.in:68
+#: ../suites/manual.txt.in:64
 msgid ""
 "Typing keys on your keyboard should display the corresponding characters in "
 "a text area."
 msgstr ""
+"Durch Drücken von Tasten auf Ihrer Tastatur sollten die entsprechenden "
+"Zeichen in einem Textfeld erscheinen."
 
 #. description
-#: ../suites/manual.txt.in:68
+#: ../suites/manual.txt.in:64
 msgid "Is your keyboard working properly?"
+msgstr "Funktioniert Ihre Tastatur einwandfrei?"
+
+#: ../checkbox/application.py:93
+msgid "Usage: checkbox [OPTIONS]"
 msgstr ""
 
-#: ../checkbox/application.py:73
+#: ../checkbox/application.py:97
 msgid "Print version information and exit."
 msgstr "Versionsinformationen ausgeben und beenden."
 
-#: ../checkbox/application.py:76
-#, fuzzy
-msgid "The type of reactor to use."
-msgstr "Der von ihnen verwendete Reaktortyp"
-
-#: ../checkbox/application.py:78
+#: ../checkbox/application.py:100
 msgid "The file to write the log to."
 msgstr "Die Datei in welche der Mitschnitt geschrieben wird."
 
-#: ../checkbox/application.py:81
+#: ../checkbox/application.py:103
 msgid "One of debug, info, warning, error or critical."
 msgstr "Einen von debug, info, warning, error oder critical."
 
-#: ../checkbox/application.py:85
-msgid "Delay before running the application."
-msgstr "Wartezeit bevor die Anwendung ausgeführt wird."
+#: ../checkbox/application.py:108
+msgid "Configuration override parameters."
+msgstr ""
 
-#: ../checkbox/application.py:112
+#: ../checkbox/application.py:138
 msgid "Missing configuration file as argument.\n"
 msgstr "Konfigurationsdatei fehlt als Argument.\n"
 
-#: ../checkbox_cli/cli_interface.py:97
+#: ../checkbox_cli/cli_interface.py:116
 msgid "Press any key to continue..."
 msgstr "Eine Taste drücken um fortzufahren..."
 
-#: ../checkbox_cli/cli_interface.py:106
+#: ../checkbox_cli/cli_interface.py:125
 #, python-format
 msgid "Please choose (%s): "
 msgstr "Bitte wählen sie (%s): "
 
-#: ../checkbox_cli/cli_interface.py:192 ../checkbox_gtk/gtk_interface.py:189
+#: ../checkbox_cli/cli_interface.py:208
+msgid "yes"
+msgstr "Ja"
+
+#: ../checkbox_cli/cli_interface.py:208
+msgid "no"
+msgstr "Nein"
+
+#: ../checkbox_cli/cli_interface.py:208
+msgid "skip"
+msgstr "Überspringen"
+
+#: ../checkbox_cli/cli_interface.py:210
+#, fuzzy
+msgid "test"
+msgstr "_Test"
+
+#: ../checkbox_cli/cli_interface.py:228
 #, python-format
 msgid "Running test: %s"
 msgstr "Führe Test durch: %s"
 
-#: ../checkbox_cli/cli_interface.py:199 ../checkbox_cli/cli_interface.py:213
-msgid "yes"
-msgstr ""
-
-#: ../checkbox_cli/cli_interface.py:199 ../checkbox_cli/cli_interface.py:207
-#: ../checkbox_cli/cli_interface.py:213
-msgid "no"
-msgstr ""
-
-#: ../checkbox_cli/cli_interface.py:199 ../checkbox_cli/cli_interface.py:213
-msgid "skip"
-msgstr ""
-
-#: ../checkbox_cli/cli_interface.py:208
+#: ../checkbox_cli/cli_interface.py:232
 #, fuzzy
-msgid "Please provide comments about the failure."
-msgstr "Bitte geben sie ihre Launchpad-Emailadresse an:"
+msgid "test again"
+msgstr "Erneut _testen"
 
-#: ../checkbox_cli/cli_interface.py:210
+#: ../checkbox_cli/cli_interface.py:236
+msgid "Please provide comments about the failure."
+msgstr "Bitte fügen Sie Kommentare über den Fehler an."
+
+#: ../checkbox_cli/cli_interface.py:238
 msgid "Please type here and press Ctrl-D when finished:\n"
 msgstr ""
+"Bitte schreiben Sie hier und drücken Sie Strg+D, wenn Sie fertig sind:\n"
 
-#: ../checkbox_cli/cli_interface.py:219
+#: ../checkbox_cli/cli_interface.py:247
 msgid "Authentication"
-msgstr ""
+msgstr "Authentifizierung"
 
-#: ../checkbox_cli/cli_interface.py:230
+#: ../checkbox_cli/cli_interface.py:248
+msgid "Please provide your Launchpad email address:"
+msgstr "Bitte geben Sie Ihre Launchpad-Email-Adresse an:"
+
+#: ../checkbox_cli/cli_interface.py:258
 msgid "Done"
-msgstr ""
+msgstr "Fertig"
 
-#: ../checkbox_cli/cli_interface.py:231
-#, fuzzy
+#: ../checkbox_cli/cli_interface.py:259
 msgid "Successfully sent information to server!"
-msgstr "Informationen erfolgreich versandt!"
+msgstr "Informationen erfolgreich zum Server gesandt!"
 
-#: ../checkbox_gtk/gtk_interface.py:204
+#: ../checkbox_gtk/gtk_interface.py:184
+#, fuzzy, python-format
+msgid "Running test %s..."
+msgstr "Führe Test durch: %s"
+
+#: ../checkbox_gtk/gtk_interface.py:191
 msgid "_Test Again"
 msgstr "Erneut _testen"
 
-#: ../checkbox_gtk/gtk_interface.py:257
+#: ../checkbox_gtk/gtk_interface.py:251
+msgid "Exchange"
+msgstr "Austauschen"
+
+#: ../checkbox_gtk/gtk_interface.py:261
 msgid "_Finish"
 msgstr "_Fertigstellen"
 
-#: ../plugins/shell_prompt.py:61
-msgid "Running automatic tests..."
+#: ../plugins/shell_prompt.py:42
+#, fuzzy
+msgid "Running shell tests..."
 msgstr "Führe automatische Tests durch..."
 
-#: ../plugins/category_prompt.py:61
+#: ../plugins/category_prompt.py:58
 msgid "Category"
 msgstr "Kategorie"
 
-#: ../plugins/category_prompt.py:62
+#: ../plugins/category_prompt.py:59
+#, fuzzy
 msgid "Please select the category of your system."
 msgstr "Bitte wählen sie die Kategorie ihrer Hardware."
 
-#: ../plugins/exchange_prompt.py:50
+#: ../plugins/exchange_prompt.py:75
+msgid ""
+"The following information will be sent to the Launchpad\n"
+"hardware database. Please provide the e-mail address you\n"
+"use to sign in to Launchpad to submit this information."
+msgstr ""
+"Die folgenden Informationen werden an die Launchpad\n"
+"Hardware-Datenbank geschickt. Bitte geben Sie die Email-\n"
+"Adresse an, mit der Sie sich bei Launchpad angemeldet\n"
+"haben, um diese Informationen zu übermitteln."
+
+#: ../plugins/exchange_prompt.py:83
 msgid "Email address must be in a proper format."
 msgstr "Email-Adresse muss das richtige Format haben."
 
-#: ../plugins/exchange_prompt.py:54
+#: ../plugins/exchange_prompt.py:87
 msgid "Exchanging information with the server..."
 msgstr "Tausche Informationen mit dem Server aus..."
 
-#: ../plugins/gather_prompt.py:37
+#: ../plugins/gather_prompt.py:36
 msgid "Gathering information from your system..."
 msgstr "Sammle Informationen von ihrem System..."
 
-#: ../plugins/intro_prompt.py:33
+#: ../plugins/intro_prompt.py:34
+#, fuzzy
 msgid "Welcome to System Testing!"
 msgstr "Willkommen beim Hardwaretest!"
 
-#: ../plugins/intro_prompt.py:34
+#: ../plugins/intro_prompt.py:35
+#, fuzzy
 msgid ""
 "This application will gather information from your system. Then,\n"
 "you will be asked manual tests to confirm that the system is working\n"
@@ -306,29 +356,35 @@ msgstr ""
 "\n"
 "Danke, dass sie sich die Zeit nehmen, ihre Hardware zu testen."
 
-#: ../plugins/launchpad_exchange.py:106
-#, python-format
+#: ../plugins/launchpad_exchange.py:114
+#, fuzzy, python-format
 msgid ""
 "Failed to contact server. Please try\n"
-"again or upload the following file:\n"
+"again or upload the following file name:\n"
 "%s\n"
 "\n"
 "directly to the system database:\n"
 "https://launchpad.net/+hwdb/+submit"
 msgstr ""
+"Kann Server nicht kontaktieren. Bitte\n"
+"versuchhen Sie es erneut oder laden\n"
+"Sie folgende Datei: %s\n"
+"\n"
+"direkt in die Hardwaredatenbank hoch:\n"
+"https://launchpad.net/+hwdb/+submit"
 
-#: ../plugins/launchpad_exchange.py:115
+#: ../plugins/launchpad_exchange.py:123
 msgid ""
 "Failed to upload to server,\n"
 "please try again later."
 msgstr ""
 "Upload zum Server fehlgeschlagen,\n"
-"bitte versuchen sie es später noch einmal."
+"bitte versuchen Sie es später noch einmal."
 
-#: ../plugins/launchpad_exchange.py:125
-msgid "Information was not posted to Launchpad."
-msgstr "Informationen wurden nicht bei Launchpad eingetragen."
+#: ../plugins/launchpad_exchange.py:135
+msgid "Information not posted to Launchpad."
+msgstr "Informationen nicht auf Launchpad eingetragen"
 
-#: ../plugins/report_prompt.py:35
+#: ../plugins/report_prompt.py:36
 msgid "Building report..."
-msgstr ""
+msgstr "Erstelle Bericht..."

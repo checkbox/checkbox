@@ -1,4 +1,4 @@
-# English (United Kingdom) translation for checkbox
+# Romanian translation for checkbox
 # Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
 # This file is distributed under the same license as the checkbox package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
@@ -8,9 +8,9 @@ msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-02-09 09:04-0500\n"
-"PO-Revision-Date: 2009-01-26 10:04+0000\n"
-"Last-Translator: Jen Ockwell <jenfraggleubuntu@googlemail.com>\n"
-"Language-Team: English (United Kingdom) <en_GB@li.org>\n"
+"PO-Revision-Date: 2008-04-07 19:41+0000\n"
+"Last-Translator: Bogdan BOTEZ <bmbogdan@gmail.com>\n"
+"Language-Team: Romanian <ro@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,41 +19,41 @@ msgstr ""
 
 #: ../gtk/checkbox-gtk.glade.h:1
 msgid "<b>Comment:</b>"
-msgstr "<b>Comment:</b>"
+msgstr "<b>Comentariu:</b>"
 
 #: ../gtk/checkbox-gtk.glade.h:2
 msgid "Device information"
-msgstr "Device information"
+msgstr ""
 
 #: ../gtk/checkbox-gtk.glade.h:3
 msgid "Distribution details"
-msgstr "Distribution details"
+msgstr ""
 
 #: ../gtk/checkbox-gtk.glade.h:4 ../checkbox_gtk/gtk_interface.py:269
 msgid "Ne_xt"
-msgstr "Ne_xt"
+msgstr "Continuă"
 
 #: ../gtk/checkbox-gtk.glade.h:5
 msgid "Packages installed"
-msgstr "Packages installed"
+msgstr ""
 
 #: ../gtk/checkbox-gtk.glade.h:6
 msgid "Processor information"
-msgstr "Processor information"
+msgstr ""
 
 #: ../gtk/checkbox-gtk.glade.h:7
 msgid "Successfully sent information!"
-msgstr "Information sent successfully!"
+msgstr ""
 
 #: ../gtk/checkbox-gtk.glade.h:8 ../gtk/checkbox-gtk.desktop.in.h:1
 #: ../checkbox_cli/cli_interface.py:186 ../checkbox_cli/cli_interface.py:226
 #, fuzzy
 msgid "System Testing"
-msgstr "Hardware Testing"
+msgstr "Testare hardware"
 
 #: ../gtk/checkbox-gtk.glade.h:9
 msgid "Test results"
-msgstr "Test results"
+msgstr ""
 
 #: ../gtk/checkbox-gtk.glade.h:10
 msgid "_Desktop"
@@ -65,11 +65,11 @@ msgstr "_Laptop"
 
 #: ../gtk/checkbox-gtk.glade.h:12
 msgid "_No"
-msgstr "_No"
+msgstr "_Nu"
 
 #: ../gtk/checkbox-gtk.glade.h:13
 msgid "_Previous"
-msgstr "_Previous"
+msgstr "_Precedentul"
 
 #: ../gtk/checkbox-gtk.glade.h:14
 msgid "_Server"
@@ -77,7 +77,7 @@ msgstr "_Server"
 
 #: ../gtk/checkbox-gtk.glade.h:15
 msgid "_Skip this test"
-msgstr "_Skip this test"
+msgstr ""
 
 #: ../gtk/checkbox-gtk.glade.h:16 ../checkbox_gtk/gtk_interface.py:227
 msgid "_Test"
@@ -85,7 +85,7 @@ msgstr "_Test"
 
 #: ../gtk/checkbox-gtk.glade.h:17
 msgid "_Yes"
-msgstr "_Yes"
+msgstr "_Da"
 
 #: ../gtk/checkbox-gtk.desktop.in.h:2
 msgid "Test and report system information"
@@ -100,64 +100,63 @@ msgstr ""
 #: ../suites/manual.txt.in:6
 #, fuzzy
 msgid "Do you hear a sound?"
-msgstr "Did you hear a sound?"
+msgstr "Aţi auzit un sunet?"
 
 #. description
 #: ../suites/manual.txt.in:15
 msgid "The following resolution was detected for your display:"
-msgstr "The following resolution was detected for your display:"
+msgstr "Următoarea rezoluţie a fost detectată pentru monitorul dumneavoastră:"
 
 #. description
 #: ../suites/manual.txt.in:15
 msgid "$(resolution_test)"
-msgstr "$(resolution_test)"
+msgstr ""
 
 #. description
 #: ../suites/manual.txt.in:15
 msgid "Is this a good resolution for your display?"
-msgstr "Is this a good resolution for your display?"
+msgstr "Această rezoluţie este bună pentru ecranul dumneavoastră?"
 
 #. description
 #: ../suites/manual.txt.in:26
 #, fuzzy
 msgid "Run the video test."
-msgstr "Video test:"
+msgstr "Test video:"
 
 #. description
 #: ../suites/manual.txt.in:26
-#, fuzzy
 msgid "Do you see color bars and static?"
-msgstr "Did you see color bars and static?"
+msgstr ""
 
 #. description
 #: ../suites/manual.txt.in:35
 msgid "Moving the mouse should move the cursor on the screen."
-msgstr "Moving the mouse should move the cursor on the screen."
+msgstr ""
 
 #. description
 #: ../suites/manual.txt.in:35
 msgid "Is your mouse working properly?"
-msgstr "Is your mouse working properly?"
+msgstr ""
 
 #. description
 #: ../suites/manual.txt.in:43
 msgid "Detecting your network controller(s):"
-msgstr "Detecting your network controller(s):"
+msgstr "Detecţia plăcii(lor) de reţea:"
 
 #. description
 #: ../suites/manual.txt.in:43
 msgid "$(network_test)"
-msgstr "$(network_test)"
+msgstr ""
 
 #. description
 #: ../suites/manual.txt.in:43
 msgid "Is this correct?"
-msgstr "Is this correct?"
+msgstr "Este corect?"
 
 #. description
 #: ../suites/manual.txt.in:54
 msgid "Testing your connection to the Internet:"
-msgstr "Testing your connection to the Internet:"
+msgstr "Testarea conexiunii la Internet:"
 
 #. description
 #: ../suites/manual.txt.in:54
@@ -167,7 +166,7 @@ msgstr "$output"
 #. description
 #: ../suites/manual.txt.in:54
 msgid "Are you connected to the Internet?"
-msgstr "Are you connected to the Internet?"
+msgstr "Sunteţi conectat la Internet?"
 
 #. description
 #: ../suites/manual.txt.in:64
@@ -175,13 +174,13 @@ msgid ""
 "Typing keys on your keyboard should display the corresponding characters in "
 "a text area."
 msgstr ""
-"Typing keys on your keyboard should display the corresponding characters in "
-"a text area."
+"Folosirea tastaturii ar trebui să afişeze caracterele corespunzătoare într-o "
+"zonă text."
 
 #. description
 #: ../suites/manual.txt.in:64
 msgid "Is your keyboard working properly?"
-msgstr "Is your keyboard working properly?"
+msgstr "Tastatura dumneavoastră funcţionează corect?"
 
 #: ../checkbox/application.py:93
 msgid "Usage: checkbox [OPTIONS]"
@@ -189,15 +188,15 @@ msgstr ""
 
 #: ../checkbox/application.py:97
 msgid "Print version information and exit."
-msgstr "Print version information and exit."
+msgstr "Tipăreşte informaţia despre versiune şi iese."
 
 #: ../checkbox/application.py:100
 msgid "The file to write the log to."
-msgstr "The file to write the log to."
+msgstr "Fişierul în care va fi scris logul."
 
 #: ../checkbox/application.py:103
 msgid "One of debug, info, warning, error or critical."
-msgstr "One of debug, info, warning, error or critical."
+msgstr ""
 
 #: ../checkbox/application.py:108
 msgid "Configuration override parameters."
@@ -205,28 +204,28 @@ msgstr ""
 
 #: ../checkbox/application.py:138
 msgid "Missing configuration file as argument.\n"
-msgstr "Missing configuration file as argument.\n"
+msgstr ""
 
 #: ../checkbox_cli/cli_interface.py:116
 msgid "Press any key to continue..."
-msgstr "Press any key to continue..."
+msgstr "Apăsaţi orice tastă pentru a continua..."
 
 #: ../checkbox_cli/cli_interface.py:125
 #, python-format
 msgid "Please choose (%s): "
-msgstr "Please choose (%s): "
+msgstr "Vă rog alegeţi (%s): "
 
 #: ../checkbox_cli/cli_interface.py:208
 msgid "yes"
-msgstr "yes"
+msgstr "Da"
 
 #: ../checkbox_cli/cli_interface.py:208
 msgid "no"
-msgstr "no"
+msgstr "nu"
 
 #: ../checkbox_cli/cli_interface.py:208
 msgid "skip"
-msgstr "skip"
+msgstr ""
 
 #: ../checkbox_cli/cli_interface.py:210
 #, fuzzy
@@ -236,67 +235,66 @@ msgstr "_Test"
 #: ../checkbox_cli/cli_interface.py:228
 #, python-format
 msgid "Running test: %s"
-msgstr "Running test: %s"
+msgstr ""
 
 #: ../checkbox_cli/cli_interface.py:232
 #, fuzzy
 msgid "test again"
-msgstr "_Test Again"
+msgstr "_Testează din nou"
 
 #: ../checkbox_cli/cli_interface.py:236
 msgid "Please provide comments about the failure."
-msgstr "Please provide comments about the failure."
+msgstr "Câteva comentarii despre eşec."
 
 #: ../checkbox_cli/cli_interface.py:238
 msgid "Please type here and press Ctrl-D when finished:\n"
-msgstr "Please type here and press Ctrl-D when finished:\n"
+msgstr "Vă rog scrieţi aici şi apăsaţi Ctrl-D când aţi terminat:\n"
 
 #: ../checkbox_cli/cli_interface.py:247
 msgid "Authentication"
-msgstr "Authentication"
+msgstr "Autentificare"
 
 #: ../checkbox_cli/cli_interface.py:248
 msgid "Please provide your Launchpad email address:"
-msgstr "Please provide your Launchpad email address:"
+msgstr ""
 
 #: ../checkbox_cli/cli_interface.py:258
 msgid "Done"
-msgstr "Done"
+msgstr "Gata"
 
 #: ../checkbox_cli/cli_interface.py:259
 msgid "Successfully sent information to server!"
-msgstr "Successfully sent information to server!"
+msgstr "Informaţia trimisă cu succes serverului!"
 
 #: ../checkbox_gtk/gtk_interface.py:184
 #, fuzzy, python-format
 msgid "Running test %s..."
-msgstr "Running test: %s"
+msgstr "Execuţie teste automate..."
 
 #: ../checkbox_gtk/gtk_interface.py:191
 msgid "_Test Again"
-msgstr "_Test Again"
+msgstr "_Testează din nou"
 
 #: ../checkbox_gtk/gtk_interface.py:251
 msgid "Exchange"
-msgstr "Exchange"
+msgstr ""
 
 #: ../checkbox_gtk/gtk_interface.py:261
 msgid "_Finish"
-msgstr "_Finish"
+msgstr "_Finalizează"
 
 #: ../plugins/shell_prompt.py:42
 #, fuzzy
 msgid "Running shell tests..."
-msgstr "Running automatic tests..."
+msgstr "Execuţie teste automate..."
 
 #: ../plugins/category_prompt.py:58
 msgid "Category"
-msgstr "Category"
+msgstr "Categorie"
 
 #: ../plugins/category_prompt.py:59
-#, fuzzy
 msgid "Please select the category of your system."
-msgstr "Please select the category of your hardware."
+msgstr ""
 
 #: ../plugins/exchange_prompt.py:75
 msgid ""
@@ -304,26 +302,23 @@ msgid ""
 "hardware database. Please provide the e-mail address you\n"
 "use to sign in to Launchpad to submit this information."
 msgstr ""
-"The following information will be sent to the Launchpad\n"
-"hardware database. Please provide the e-mail address you\n"
-"use to sign in to Launchpad to submit this information."
 
 #: ../plugins/exchange_prompt.py:83
 msgid "Email address must be in a proper format."
-msgstr "Email address must be formatted properly."
+msgstr "Adresa de email trebuie să fie într-un format corect."
 
 #: ../plugins/exchange_prompt.py:87
 msgid "Exchanging information with the server..."
-msgstr "Exchanging information with the server..."
+msgstr ""
 
 #: ../plugins/gather_prompt.py:36
 msgid "Gathering information from your system..."
-msgstr "Gathering information from your system..."
+msgstr "Culegere informaţii despre sistem..."
 
 #: ../plugins/intro_prompt.py:34
 #, fuzzy
 msgid "Welcome to System Testing!"
-msgstr "Welcome to Hardware Testing!"
+msgstr "Bine aţi venit la Hardware Testing!"
 
 #: ../plugins/intro_prompt.py:35
 #, fuzzy
@@ -340,17 +335,18 @@ msgid ""
 "\n"
 "Thank you for taking the time to test your system."
 msgstr ""
-"This application will gather information from your hardware. Then,\n"
-"you will be asked manual tests to confirm that the hardware is working\n"
-"properly. Finally, you will be asked for the e-mail address you use\n"
-"to sign in to Launchpad in order to submit the information and your\n"
-"results.\n"
+"Această aplicaţie va colecta informaţii despre hardware-ul dumneavoastră. "
+"După,\n"
+"veţi fi întrebat în urma unor teste manuale dacă hardware-ul funcţionează \n"
+"corect. În final, vi se va cere adresa de email folosită pentru "
+"autentificarea\n"
+"în Launchpad pentru a trimite informaţiile si rezultatele dumneavoastră.\n"
 "\n"
-"If you do not have a Launchpad account, please register here:\n"
+"Dacă nu aveţi deja un cont Launchpad, vă puteţi înregistra aici:\n"
 "\n"
 "  https://launchpad.net/+login\n"
 "\n"
-"Thank you for taking the time to test your hardware."
+"Vă mulţumim pentru timpul acordat testării hardware-ului dvs."
 
 #: ../plugins/launchpad_exchange.py:114
 #, fuzzy, python-format
@@ -362,11 +358,11 @@ msgid ""
 "directly to the system database:\n"
 "https://launchpad.net/+hwdb/+submit"
 msgstr ""
-"Failed to contact server. Please try\n"
-"again or upload the following file:\n"
+"Eşec în contactarea serverului. Vă rog \n"
+"încercaţi din nou sau trimiteţi fişierul:\n"
 "%s\n"
 "\n"
-"directly to the hardware database:\n"
+"direct în baza de date hardware:\n"
 "https://launchpad.net/+hwdb/+submit"
 
 #: ../plugins/launchpad_exchange.py:123
@@ -374,13 +370,13 @@ msgid ""
 "Failed to upload to server,\n"
 "please try again later."
 msgstr ""
-"Failed to upload to server,\n"
-"please try again later."
+"Eşec în trimiterea datelor la server,\n"
+"vă rugăm încercaţi din nou mai târziu."
 
 #: ../plugins/launchpad_exchange.py:135
 msgid "Information not posted to Launchpad."
-msgstr "Information not posted to Launchpad."
+msgstr ""
 
 #: ../plugins/report_prompt.py:36
 msgid "Building report..."
-msgstr "Building report..."
+msgstr "Raportul este generat..."
