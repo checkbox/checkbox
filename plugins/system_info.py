@@ -37,7 +37,11 @@ class SystemInfo(Plugin):
     def report(self):
         system_id = self._config.system_id or self._persist.get("system_id")
         if not system_id:
-            system = self._manager.registry.hal.computer.system
+            computer = self._manager.registry.hal.computer
+            if not computer:
+                return
+
+            system = computer.system
             if not system:
                 return
 
@@ -49,8 +53,8 @@ class SystemInfo(Plugin):
 
             fingerprint = md5.new()
             for field in [
-                    system.info.product,
-                    system.info.subsystem,
+                    computer.info.product,
+                    computer.info.subsystem,
                     system.product,
                     system.vendor,
                     system.formfactor,
