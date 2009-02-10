@@ -18,7 +18,6 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-import sys
 import gettext
 import logging
 
@@ -47,10 +46,7 @@ class UserInterface(object):
 
         while thread.isAlive():
             self.show_pulse()
-            try:
-                thread.join(0.1)
-            except KeyboardInterrupt:
-                sys.exit(1)
+            thread.join(0.1)
         thread.exc_raise()
 
         return thread.return_value()

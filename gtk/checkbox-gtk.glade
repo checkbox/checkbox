@@ -24,7 +24,6 @@
   <property name="focus_on_map">True</property>
   <property name="urgency_hint">False</property>
   <property name="has_separator">False</property>
-  <signal name="delete_event" handler="on_dialog_checkbox_delete"/>
 
   <child internal-child="vbox">
     <widget class="GtkVBox" id="dialog-vbox">

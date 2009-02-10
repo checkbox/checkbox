@@ -18,7 +18,6 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-import sys
 import posixpath
 import gtk, gtk.glade
 
@@ -127,10 +126,17 @@ class GTKInterface(UserInterface):
         widget = self._get_widget(name)
         widget.set_sensitive(bool(value))
 
-    def _run_dialog(self):
-        self.direction = self._dialog.run()
-        while gtk.events_pending():
-            gtk.main_iteration(False)
+    def _run_dialog(self, dialog=None):
+        def on_dialog_response(dialog, response, self):
+            self.direction = response
+            gtk.main_quit()
+
+        dialog = dialog or self._dialog
+        dialog.connect("response", on_dialog_response, self)
+        dialog.show()
+        gtk.main()
+        if self.direction == gtk.RESPONSE_DELETE_EVENT:
+            raise KeyboardInterrupt
 
     def do_function(self, function, *args, **kwargs):
         self._set_sensitive("button_previous", False)
@@ -155,7 +161,7 @@ class GTKInterface(UserInterface):
         self._get_widget("progressbar_wait").pulse()
         self._get_widget("progressbar_test").pulse()
         while gtk.events_pending():
-            gtk.main_iteration(False)
+            gtk.main_iteration()
 
     @GTKHack
     def show_intro(self, title, text):
@@ -276,14 +282,7 @@ class GTKInterface(UserInterface):
         self._set_label("button_next", _("Ne_xt"))
 
     def show_error(self, title, text):
-        md = gtk.MessageDialog(type=gtk.MESSAGE_ERROR,
+        message_dialog = gtk.MessageDialog(type=gtk.MESSAGE_ERROR,
             buttons=gtk.BUTTONS_CLOSE, message_format=text)
-        md.set_title(title)
-        md.run()
-        md.hide()
-        while gtk.events_pending():
-            gtk.main_iteration(False)
-
-    def on_dialog_checkbox_delete(self, widget, event=None):
-        sys.exit(0)
-        return True
+        message_dialog.set_title(title)
+        self._run_dialog(message_dialog)

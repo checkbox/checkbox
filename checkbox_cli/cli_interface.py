@@ -131,7 +131,7 @@ class CLIChoiceDialog(CLIDialog):
                     pass
         except KeyboardInterrupt:
             self.put_newline()
-            sys.exit(1)
+            raise
 
     def add_button(self, button):
         self.keys.append(re.search("&(.)", button).group(1).upper())
@@ -154,7 +154,7 @@ class CLITextDialog(CLIDialog):
             return response
         except KeyboardInterrupt:
             self.put_newline()
-            sys.exit(1)
+            raise
 
 
 class CLILineDialog(CLITextDialog):

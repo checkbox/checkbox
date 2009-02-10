@@ -89,7 +89,7 @@ class Reactor(object):
                                   "handler %s for event type %r with "
                                   "args %r %r.", format_object(handler),
                                   event_type, args, kwargs)
-                raise
+                self.stop_all()
             except:
                 logging.exception("Error running event handler %s for "
                                   "event type %r with args %r %r.",
