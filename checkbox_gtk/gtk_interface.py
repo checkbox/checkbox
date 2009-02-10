@@ -286,3 +286,4 @@ class GTKInterface(UserInterface):
             buttons=gtk.BUTTONS_CLOSE, message_format=text)
         message_dialog.set_title(title)
         self._run_dialog(message_dialog)
+        message_dialog.hide()
