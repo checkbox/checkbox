@@ -57,17 +57,13 @@ class Route(object):
         logging.debug("Reading default gateway information from route binary")
         routebin = commands.getstatusoutput("export LANGUAGE=C; /usr/bin/env route -n")
 
-        if routebin[0] != 0:
-            logging.error("Error while trying to run route")
-            return None
-
-        h = re.compile("\n0.0.0.0\s+(?P<def_gateway>[\w.]+)\s+")
-        w = h.search(routebin[1])
-        if w:
-            def_gateway = w.group("def_gateway")
-
-        if def_gateway:
-            return def_gateway
+        if routebin[0] == 0:
+            h = re.compile("\n0.0.0.0\s+(?P<def_gateway>[\w.]+)\s+")
+            w = h.search(routebin[1])
+            if w:
+                def_gateway = w.group("def_gateway")
+                if def_gateway:
+                    return def_gateway
 
         logging.error("Could not find default gateway by running route")
         return None
@@ -117,7 +113,9 @@ def main(args):
         route = Route()
         host = route.get_default_gateway()
 
-    received_packets = ping(host, options.count, options.deadline)
+    received_packets = 0
+    if host:
+        received_packets = ping(host, options.count, options.deadline)
 
     if received_packets == 0:
         print "No Internet connection"
