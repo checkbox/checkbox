@@ -48,19 +48,19 @@ class ExchangePrompt(Plugin):
             self._manager.reactor.call_on(rt, rh)
 
     def report_devices(self, message):
-        self._reports.add("devices")
+        self._reports.add(_("Device information"))
 
     def report_distribution(self, message):
-        self._reports.add("distribution")
+        self._reports.add(_("Distribution details"))
 
     def report_packages(self, message):
-        self._reports.add("packages")
+        self._reports.add(_("Packages installed"))
 
     def report_processors(self, message):
-        self._reports.add("processors")
+        self._reports.add(_("Processor information"))
 
     def report_results(self, message):
-        self._reports.add("tests")
+        self._reports.add(_("Test results"))
 
     def exchange_error(self, error):
         self._error = error
@@ -73,8 +73,8 @@ class ExchangePrompt(Plugin):
             if self._error or not self._config.email:
                 email = interface.show_exchange(email, self._reports,
                     _("""\
-The following information will be sent to the Launchpad
-hardware database. Please provide the e-mail address you
+The following information will be sent to the Launchpad \
+hardware database. Please provide the e-mail address you \
 use to sign in to Launchpad to submit this information."""), error=self._error)
 
             if interface.direction == PREV:

@@ -24,8 +24,6 @@ import termios
 
 from gettext import gettext as _
 
-from checkbox.lib.paragraph import wrap
-
 from checkbox.test import ALL_CATEGORIES, ALL_STATUS, FAIL, TestResult
 from checkbox.user_interface import UserInterface
 
@@ -39,7 +37,7 @@ class CLIDialog(object):
         self.visible = False
 
     def put(self, text):
-        sys.stdout.write(wrap(text))
+        sys.stdout.write(text)
 
     def put_line(self, line):
         self.put("%s\n" % line)
@@ -235,7 +233,7 @@ class CLIInterface(UserInterface):
 
         status = dict(zip(answers[0:len(ALL_STATUS)], ALL_STATUS))[answer]
         if status == FAIL:
-            text = _("Please provide comments about the failure.")
+            text = _("Further information:")
             dialog = CLITextDialog(test.name, text)
             data = dialog.run(_("Please type here and press"
                 " Ctrl-D when finished:\n"))
@@ -247,7 +245,13 @@ class CLIInterface(UserInterface):
     def show_exchange(self, authentication, reports=[], message=None,
                       error=None):
         title = _("Authentication")
-        text = message or _("Please provide your Launchpad email address:")
+        paragraphs = []
+        if message:
+            paragraphs.append(message)
+        if reports:
+            paragraphs.append("\n".join(["* %s" % r for r in reports]))
+
+        text = "\n\n".join(paragraphs)
         dialog = CLILineDialog(title, text)
 
         if error:

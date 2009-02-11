@@ -23,8 +23,6 @@ import gtk, gtk.glade
 
 from gettext import gettext as _
 
-from checkbox.lib.paragraph import unwrap
-
 from checkbox.test import ALL_STATUS, TestResult
 from checkbox.user_interface import UserInterface
 
@@ -64,10 +62,17 @@ class GTKInterface(UserInterface):
         eventbox_head.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse("white"))
 
         # Set dialog title
-        self._dialog = self._get_widget("dialog_checkbox")
+        self._dialog = self._get_widget("dialog_main")
         self._dialog.set_title(config.title)
 
-        self._notebook = self._get_widget("notebook_checkbox")
+        # Set wait transient for dialog
+        self._wait = self._get_widget("window_wait")
+        self._wait.set_transient_for(self._dialog)
+        self._wait.realize()
+        self._wait.window.set_functions(gtk.gdk.FUNC_MOVE)
+
+        # Set shorthand for notebook
+        self._notebook = self._get_widget("notebook_main")
         self._handler_id = None
 
     def _get_widget(self, widget):
@@ -93,13 +98,9 @@ class GTKInterface(UserInterface):
         widget = self._get_widget(name)
         widget.set_label(label)
 
-    def _set_markup(self, name, markup=""):
-        widget = self._get_widget(name)
-        widget.set_markup(markup)
-
     def _set_text(self, name, text=""):
         widget = self._get_widget(name)
-        widget.set_text(unwrap(text))
+        widget.set_text(text)
 
     def _set_textview(self, name, text=""):
         buffer = gtk.TextBuffer()
@@ -152,14 +153,15 @@ class GTKInterface(UserInterface):
 
     def show_wait(self, message, function, *args, **kwargs):
         self._set_text("label_wait", message)
-        self._notebook.set_current_page(3)
-        self._dialog.show()
+        self._wait.show()
 
-        return self.do_function(function, *args, **kwargs)
+        result = self.do_function(function, *args, **kwargs)
+
+        self._wait.hide()
+        return result
 
     def show_pulse(self):
         self._get_widget("progressbar_wait").pulse()
-        self._get_widget("progressbar_test").pulse()
         while gtk.events_pending():
             gtk.main_iteration()
 
@@ -169,9 +171,8 @@ class GTKInterface(UserInterface):
         self._set_sensitive("button_previous", False)
         self._notebook.set_current_page(0)
 
-        markup = "<b>%s</b>" % title
-        self._set_markup("label_intro_title", markup)
-        self._set_text("label_intro_text", text)
+        intro = "\n\n".join([title, text])
+        self._set_textview("textview_intro_text", intro)
 
         self._run_dialog()
 
@@ -182,7 +183,7 @@ class GTKInterface(UserInterface):
         # Set buttons
         self._notebook.set_current_page(1)
 
-        self._set_text("label_category", text)
+        self._set_textview("textview_category", text)
         if category:
             self._set_active("radiobutton_%s" % category)
 
@@ -194,28 +195,29 @@ class GTKInterface(UserInterface):
             "radiobutton_server": "server"})
 
     def _run_test(self, test):
-        self._set_text("label_test", _("Running test %s...") % test.name)
-        self._set_show("progressbar_test")
-        self._dialog.show()
+        self._set_sensitive("button_test", False)
 
-        result = self.do_function(test.command)
+        message = _("Running test %s...") % test.name
+        result = self.show_wait(message, test.command)
 
-        self._set_show("progressbar_test", False)
+        description = self.do_function(test.description, result)
+        self._set_textview("textview_test", description)
+
+        self._set_sensitive("button_test", True)
         self._set_label("button_test", _("_Test Again"))
-        return self.show_test(test, result)
 
     @GTKHack
     def show_test(self, test, result=None):
-        self._set_show("button_test", False)
+        self._set_sensitive("button_test", False)
         self._notebook.set_current_page(2)
 
         # Set test description
         description = self.do_function(test.description, result)
-        self._set_label("label_test", description)
+        self._set_textview("textview_test", description)
 
         # Set buttons
         if str(test.command):
-            self._set_show("button_test", True)
+            self._set_sensitive("button_test", True)
 
             button_test = self._get_widget("button_test")
             if self._handler_id:
@@ -230,13 +232,13 @@ class GTKInterface(UserInterface):
             answer = dict(zip(ALL_STATUS, answers))[result.status]
             self._set_active("radiobutton_%s" % answer)
         else:
-            self._set_textview("textview_comment", "")
+            self._set_textview("textview_comment")
             self._set_active("radiobutton_skip")
 
         self._run_dialog()
 
         # Reset labels
-        self._set_label("label_test")
+        self._set_textview("textview_test")
         self._set_label("button_test", _("_Test"))
 
         radiobuttons = ["radiobutton_%s" % a for a in answers]
@@ -247,18 +249,18 @@ class GTKInterface(UserInterface):
     @GTKHack
     def show_exchange(self, authentication, reports=[], message=None,
                       error=None):
-        self._notebook.set_current_page(4)
+        self._notebook.set_current_page(3)
 
         if authentication is not None:
             self._set_text("entry_authentication", authentication)
 
-        all_reports = ["distribution", "devices", "processors",
-                       "packages", "tests"]
-        for report in all_reports:
-            self._set_show("label_%s" % report, report in reports)
-
-        if message is not None:
-            self._set_markup("label_exchange", message)
+        paragraphs = []
+        if message:
+            paragraphs.append(message)
+        if reports:
+            paragraphs.append("\n".join(["* %s" % r for r in reports]))
+        text = "\n\n".join(paragraphs)
+        self._set_textview("textview_exchange", text)
 
         if error is not None:
             self.show_error(_("Exchange"), error)
@@ -272,18 +274,21 @@ class GTKInterface(UserInterface):
     @GTKHack
     def show_final(self, message=None):
         self._set_label("button_next", _("_Finish"))
-        self._notebook.set_current_page(5)
+        self._notebook.set_current_page(4)
 
         if message is not None:
-            self._set_markup("label_final", message)
+            self._set_textview("textview_final", message)
 
         self._run_dialog()
 
         self._set_label("button_next", _("Ne_xt"))
 
     def show_error(self, title, text):
-        message_dialog = gtk.MessageDialog(type=gtk.MESSAGE_ERROR,
-            buttons=gtk.BUTTONS_CLOSE, message_format=text)
+        message_dialog = gtk.MessageDialog(parent=self._dialog,
+            type=gtk.MESSAGE_ERROR,
+            buttons=gtk.BUTTONS_CLOSE,
+            message_format=text)
+        message_dialog.set_modal(True)
         message_dialog.set_title(title)
         self._run_dialog(message_dialog)
         message_dialog.hide()

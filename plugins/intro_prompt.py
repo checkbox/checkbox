@@ -33,10 +33,10 @@ class IntroPrompt(Plugin):
     def prompt_begin(self, interface):
         interface.show_intro(_("Welcome to System Testing!"),
             _("""\
-This application will gather information from your system. Then,
-you will be asked manual tests to confirm that the system is working
-properly. Finally, you will be asked for the e-mail address you use
-to sign in to Launchpad in order to submit the information and your
+This application will gather information from your system. Then, \
+you will be asked manual tests to confirm that the system is working \
+properly. Finally, you will be asked for the e-mail address you use \
+to sign in to Launchpad in order to submit the information and your \
 results.
 
 If you do not have a Launchpad account, please register here:
