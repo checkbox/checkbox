@@ -242,8 +242,7 @@ class CLIInterface(UserInterface):
 
         return TestResult(test, status, data)
 
-    def show_exchange(self, authentication, reports=[], message=None,
-                      error=None):
+    def show_exchange(self, authentication, reports=[], message=None):
         title = _("Authentication")
         paragraphs = []
         if message:
@@ -253,9 +252,6 @@ class CLIInterface(UserInterface):
 
         text = "\n\n".join(paragraphs)
         dialog = CLILineDialog(title, text)
-
-        if error:
-            dialog.put("Error: %s" % error)
 
         authentication = dialog.run()
         return authentication

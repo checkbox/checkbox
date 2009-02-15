@@ -77,17 +77,21 @@ class ExchangePrompt(Plugin):
         self._error = None
         while True:
             if self._error or not self.email:
+                if self._error:
+                    interface.show_error(_("Exchange"), self._error)
+
                 email = interface.show_exchange(email, self._reports,
                     _("""\
 The following information will be sent to the Launchpad \
 hardware database. Please provide the e-mail address you \
-use to sign in to Launchpad to submit this information."""), error=self._error)
+use to sign in to Launchpad to submit this information."""))
 
             if interface.direction == PREV:
                 break
-            elif not re.match(r"^\S+@\S+.\S+$", email, re.I):
+            elif not re.match(r"^\S+@\S+\.\S+$", email, re.I):
                 self._error = _("Email address must be in a proper format.")
             else:
+                self._error = None
                 self._manager.reactor.fire("report-email", email)
                 interface.show_wait(
                     _("Exchanging information with the server..."),

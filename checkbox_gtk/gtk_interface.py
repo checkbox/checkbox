@@ -247,8 +247,7 @@ class GTKInterface(UserInterface):
         return TestResult(test, status, data)
 
     @GTKHack
-    def show_exchange(self, authentication, reports=[], message=None,
-                      error=None):
+    def show_exchange(self, authentication, reports=[], message=None):
         self._notebook.set_current_page(3)
 
         if authentication is not None:
@@ -261,9 +260,6 @@ class GTKInterface(UserInterface):
             paragraphs.append("\n".join(["* %s" % r for r in reports]))
         text = "\n\n".join(paragraphs)
         self._set_textview("textview_exchange", text)
-
-        if error is not None:
-            self.show_error(_("Exchange"), error)
 
         self._run_dialog()
 
