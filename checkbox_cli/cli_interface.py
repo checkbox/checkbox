@@ -225,7 +225,7 @@ class CLIInterface(UserInterface):
 
             title = _("System Testing")
             self.progress = CLIProgressDialog(title,
-                _("Running test: %s") % test.name)
+                _("Running test %s...") % test.name)
             self.progress.show()
 
             result = self.do_function(test.command)
