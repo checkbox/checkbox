@@ -14,11 +14,9 @@ plugin: manual
 categories: laptop, desktop
 requires: pci.device_class == 3
 _description:
- The following resolution and refresh rate were detected for your display:
+ This display is using $(resolution_test) resolution.
  .
- $(resolution_test)
- .
- Is this a good resolution for your display?
+ Is this acceptable for your display?
 
 name: video
 plugin: manual
