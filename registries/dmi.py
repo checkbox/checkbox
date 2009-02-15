@@ -18,11 +18,15 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
+from checkbox.properties import String
 from checkbox.registries.command import CommandRegistry
 
 
 class DmiRegistry(CommandRegistry):
     """Registry for dmi information."""
+
+    # Command to retrieve dmi information.
+    command = String(default="dmidecode")
 
 
 factory = DmiRegistry

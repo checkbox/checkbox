@@ -18,19 +18,19 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-from checkbox.registries.tests.helpers import TestHelper
+import unittest
 
 from registries.cpuinfo import CpuinfoRegistry
 
 
-class CpuinfoRegistryTest(TestHelper):
+class CpuinfoRegistryTest(unittest.TestCase):
 
     def test_processors(self):
-        registry = CpuinfoRegistry(self._config)
+        registry = CpuinfoRegistry()
         self.assertTrue(registry.keys() > 0)
         self.assertTrue(registry[0])
 
     def test_vendor_id(self):
-        registry = CpuinfoRegistry(self._config)
+        registry = CpuinfoRegistry()
         processor = registry[0]
         self.assertTrue(processor.vendor_id)

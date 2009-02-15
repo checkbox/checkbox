@@ -20,6 +20,8 @@
 #
 import posixpath
 
+from glob import glob
+
 
 def path_split(path):
     return path.split(posixpath.sep)
@@ -44,3 +46,23 @@ def path_relative(p1, p2):
 
     p = p + l2
     return posixpath.join( *p )
+
+def path_expand(path):
+    path = posixpath.expanduser(path)
+    return glob(path)
+
+def path_expand_recursive(path):
+    paths = []
+    for path in path_expand(path):
+        if posixpath.isdir(path):
+            def walk_func(arg, directory, names):
+                for name in names:
+                    path = posixpath.join(directory, name)
+                    if not posixpath.isdir(path):
+                        arg.append(path)
+
+            posixpath.walk(path, walk_func, paths)
+        else:
+            paths.append(path)
+
+    return paths

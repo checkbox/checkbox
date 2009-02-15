@@ -29,9 +29,9 @@ from optparse import OptionParser
 
 from checkbox.contrib import bpickle_registry
 
+from checkbox.lib.config import Config
 from checkbox.lib.environ import get_variable
 
-from checkbox.config import Config
 from checkbox.plugin import PluginManager
 from checkbox.reactor import Reactor
 from checkbox.registry import RegistryManager
@@ -79,8 +79,6 @@ class Application(object):
         except:
             logging.exception("Error running reactor.")
             raise
-
-        self.plugin_manager.flush()
 
 
 class ApplicationManager(object):

@@ -47,13 +47,13 @@ class GTKHack(object):
 
 class GTKInterface(UserInterface):
 
-    def __init__(self, config):
-        super(GTKInterface, self).__init__(config)
+    def __init__(self, title, data_path):
+        super(GTKInterface, self).__init__(title, data_path)
 
         # Load UI
         gtk.window_set_default_icon_name("checkbox")
         gtk.glade.textdomain(self.gettext_domain)
-        self.widgets = gtk.glade.XML(posixpath.join(config.gtk_path,
+        self.widgets = gtk.glade.XML(posixpath.join(data_path,
             "checkbox-gtk.glade"))
         self.widgets.signal_autoconnect(self)
 
@@ -63,7 +63,7 @@ class GTKInterface(UserInterface):
 
         # Set dialog title
         self._dialog = self._get_widget("dialog_main")
-        self._dialog.set_title(config.title)
+        self._dialog.set_title(title)
 
         # Set wait transient for dialog
         self._wait = self._get_widget("window_wait")

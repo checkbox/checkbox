@@ -18,23 +18,24 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
+from checkbox.properties import Int
 from checkbox.plugin import Plugin
 
 
 class PackagesInfo(Plugin):
 
-    required_attributes = ["max_per_request"]
+    # Maximum number of packages per request
+    max_per_request = Int(default=100)
 
     def register(self, manager):
         super(PackagesInfo, self).register(manager)
-        self._max_per_request = int(self._config.max_per_request)
         self._manager.reactor.call_on("report", self.report)
 
     def report(self):
         packages = self._manager.registry.packages.values()
         while packages:
-            message = packages[:self._max_per_request]
-            del packages[:self._max_per_request]
+            message = packages[:self.max_per_request]
+            del packages[:self.max_per_request]
             self._manager.reactor.fire("report-packages", message)
 
 

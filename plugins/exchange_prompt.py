@@ -24,18 +24,21 @@ from gettext import gettext as _
 
 from checkbox.lib.iterator import PREV
 
+from checkbox.properties import String
 from checkbox.plugin import Plugin
 
 
 class ExchangePrompt(Plugin):
 
-    optional_attributes = ["email"]
+    # E-mail address used to sign in to Launchpad.
+    email = String(required=False)
 
     def register(self, manager):
         super(ExchangePrompt, self).register(manager)
         self._reports = set()
 
         for (rt, rh) in [
+             ("gather-persist", self.gather_persist),
              ("report-hal", self.report_devices),
              ("report-distribution", self.report_distribution),
              ("report-dmi", self.report_devices),
@@ -46,6 +49,9 @@ class ExchangePrompt(Plugin):
              ("exchange-error", self.exchange_error),
              ("prompt-exchange", self.prompt_exchange)]:
             self._manager.reactor.call_on(rt, rh)
+
+    def gather_persist(self, persist):
+        self.persist = persist.root_at("exchange_prompt")
 
     def report_devices(self, message):
         self._reports.add(_("Device information"))
@@ -66,11 +72,11 @@ class ExchangePrompt(Plugin):
         self._error = error
 
     def prompt_exchange(self, interface):
-        email = self._persist.get("email") or self._config.email
+        email = self.persist.get("email") or self.email
 
         self._error = None
         while True:
-            if self._error or not self._config.email:
+            if self._error or not self.email:
                 email = interface.show_exchange(email, self._reports,
                     _("""\
 The following information will be sent to the Launchpad \
@@ -89,7 +95,7 @@ use to sign in to Launchpad to submit this information."""), error=self._error)
                 if not self._error:
                     break
 
-        self._persist.set("email", email)
+        self.persist.set("email", email)
 
 
 factory = ExchangePrompt

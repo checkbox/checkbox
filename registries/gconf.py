@@ -25,6 +25,7 @@ import posixpath
 from checkbox.lib.cache import cache
 from checkbox.lib.conversion import string_to_type
 
+from checkbox.properties import String
 from checkbox.registries.command import CommandRegistry
 from checkbox.registries.data import DataRegistry
 from checkbox.registries.directory import DirectoryRegistry
@@ -54,7 +55,7 @@ class SourceRegistry(DataRegistry):
                 lines.append(line)
             elif match.group(2) is not None:
                 if id is not None:
-                    value = SourceRegistry(None, "\n".join(lines))
+                    value = SourceRegistry("\n".join(lines))
                     lines = []
 
                     items.append((id, value))
@@ -78,22 +79,13 @@ class SourceRegistry(DataRegistry):
                 items.append((key, value))
 
         if lines:
-            value = SourceRegistry(None, "\n".join(lines))
+            value = SourceRegistry("\n".join(lines))
             items.append((id, value))
 
         return items
 
 
 class UserRegistry(CommandRegistry):
-
-    def __init__(self, config, command, user):
-        super(UserRegistry, self).__init__(config, command)
-        self._command_template = command
-        self._user = user
-
-    def __str__(self):
-        self._command = self._command_template.replace("$user", self._user)
-        return super(UserRegistry, self).__str__()
 
     def items(self):
         items = []
@@ -103,14 +95,14 @@ class UserRegistry(CommandRegistry):
         for line in self.split("\n"):
             if line.startswith(" /"):
                 if lines:
-                    value = SourceRegistry(None, "\n".join(lines))
+                    value = SourceRegistry("\n".join(lines))
                     items.append((key, value))
                 key = line.strip().lstrip("/").rstrip(":")
             else:
                 lines.append(line)
 
         if lines:
-            value = SourceRegistry(None, "\n".join(lines))
+            value = SourceRegistry("\n".join(lines))
             items.append((key, value))
 
         return items
@@ -123,7 +115,15 @@ class GconfRegistry(DirectoryRegistry):
     the corresponding device registry as value.
     """
 
-    required_attributes = ["command", "source"]
+    # Home directory for users.
+    directory = String(default="/home")
+
+    # Configuration source to use for a user.
+    source = String(default="/home/$user/.gconf")
+
+    # Command to retrieve gconf information.
+    command = String(default="gconftool-2 -R / "
+        "--config-source xml:readwrite:$source")
 
     @cache
     def __str__(self):
@@ -132,7 +132,7 @@ class GconfRegistry(DirectoryRegistry):
             if user == "." or user == "..":
                 continue
 
-            source = self._config.source.replace("$user", user)
+            source = self.source.replace("$user", user)
             if not posixpath.isdir(source):
                 continue
 
@@ -144,7 +144,9 @@ class GconfRegistry(DirectoryRegistry):
     def items(self):
         items = []
         for user in self.split("\n"):
-            value = UserRegistry(self._config, self._config.command, user)
+            source = self.source.replace("$user", user)
+            command = self.command.replace("$source", source)
+            value = UserRegistry(command)
             items.append((user, value))
 
         return items

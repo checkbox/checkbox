@@ -21,12 +21,14 @@
 import md5
 import logging
 
+from checkbox.properties import String
 from checkbox.plugin import Plugin
 
 
 class SystemInfo(Plugin):
 
-    optional_attributes = ["system_id"]
+    # System ID to exchange information with the server.
+    system_id = String(required=False)
 
     def register(self, manager):
         super(SystemInfo, self).register(manager)
@@ -34,8 +36,13 @@ class SystemInfo(Plugin):
         # System report should be generated early.
         self._manager.reactor.call_on("report", self.report, -10)
 
+        self._manager.reactor.call_on("gather-persist", self.gather_persist)
+
+    def gather_persist(self, persist):
+        self.persist = persist.root_at("system_info")
+
     def report(self):
-        system_id = self._config.system_id or self._persist.get("system_id")
+        system_id = self.system_id or self.persist.get("system_id")
         if not system_id:
             computer = self._manager.registry.hal.computer
             if not computer:
@@ -63,7 +70,7 @@ class SystemInfo(Plugin):
                 fingerprint.update(str(field))
 
             system_id = fingerprint.hexdigest()
-            self._persist.set("system_id", system_id)
+            self.persist.set("system_id", system_id)
 
         message = system_id
         logging.info("System ID: %s", message)

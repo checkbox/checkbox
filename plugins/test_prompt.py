@@ -18,8 +18,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-import re
-
+from checkbox.properties import List, String
 from checkbox.plugin import Plugin
 from checkbox.test import TestResult, SKIP
 from checkbox.traverser import Traverser, TraverserCallbacks
@@ -78,7 +77,8 @@ class PromptTestCallbacks(TraverserCallbacks):
 
 class PromptTest(Plugin):
 
-    required_attributes = ["plugin_priorities"]
+    # Plugin priorities for running tests
+    plugin_priorities = List(type=String(), default_factory=lambda:"manual")
 
     def register(self, manager):
         super(PromptTest, self).register(manager)
@@ -88,8 +88,7 @@ class PromptTest(Plugin):
 
         self.architecture = None
         self.category = None
-        self.priorities = self._config.plugin_priorities \
-            and re.split("\s+", self._config.plugin_priorities) or []
+        self.priorities = self.plugin_priorities
 
         for (rt, rh) in [
              ("report-architecture", self.report_architecture),

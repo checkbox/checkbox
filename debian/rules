@@ -26,6 +26,6 @@ build/hwtest-gtk::
 
 clean::
 	-find . -name \*.mo -exec rm {} \;
-	-rm debian/checkbox-cli.postrm debian/checkbox-gtk.postrm
-	-rm debian/hwtest-cli.postrm debian/hwtest-gtk.postrm
+	-rm -f debian/checkbox-cli.postrm debian/checkbox-gtk.postrm
+	-rm -f debian/hwtest-cli.postrm debian/hwtest-gtk.postrm
 	debconf-updatepo

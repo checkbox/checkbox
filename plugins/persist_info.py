@@ -18,24 +18,35 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-from checkbox.lib.environ import get_variable
+from checkbox.contrib.persist import Persist
 
-from checkbox.properties import Bool
+from checkbox.properties import String
 from checkbox.plugin import Plugin
 
 
-class BootPrompt(Plugin):
+class PersistInfo(Plugin):
 
-    # Enable running checkbox at boot time.
-    enable = Bool(default=False)
+    # E-mail address used to sign in to Launchpad.
+    filename = String(default="%(checkbox_data)s/plugins.bpickle")
 
     def register(self, manager):
-        super(BootPrompt, self).register(manager)
-        self._manager.reactor.call_on("prompt-begin", self.prompt_begin)
+        super(PersistInfo, self).register(manager)
 
-    def prompt_begin(self, interface):
-        if get_variable("UPSTART_JOB") and not self.enable:
-            self._manager.reactor.stop_all()
+        self.persist = None
+
+        for (rt, rh) in [
+             ("gather", self.gather),
+             ("stop", self.stop)]:
+            self._manager.reactor.call_on(rt, rh)
+
+    def gather(self):
+        self.persist = Persist(self.filename)
+        self._manager.reactor.fire("gather-persist", self.persist)
+
+    def stop(self):
+        """Flush data to disk."""
+        if self.persist:
+            self.persist.save()
 
 
-factory = BootPrompt
+factory = PersistInfo

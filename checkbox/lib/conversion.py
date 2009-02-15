@@ -44,21 +44,22 @@ def string_to_type(value):
         ("ghz?", 1024 * 1024 * 1024),
         ("thz?", 1024 * 1024 * 1024 * 1024))
 
-    for regex, conversion in conversion_table:
-        match = re.match("^%s$" % regex, value, re.IGNORECASE)
-        if match:
-            value = conversion(match)
-            if len(match.groups()) < 2:
-                return value
-
-            unit = match.group(2)
-            for regex, multiplier in multiplier_table:
-                match = re.match("^%s$" % regex, unit, re.IGNORECASE)
-                if match:
-                    value *= multiplier
+    if isinstance(value, basestring):
+        for regex, conversion in conversion_table:
+            match = re.match("^%s$" % regex, value, re.IGNORECASE)
+            if match:
+                value = conversion(match)
+                if len(match.groups()) < 2:
                     return value
-            else:
-                raise Exception, "Unknown multiplier: %s" % unit
+
+                unit = match.group(2)
+                for regex, multiplier in multiplier_table:
+                    match = re.match("^%s$" % regex, unit, re.IGNORECASE)
+                    if match:
+                        value *= multiplier
+                        return value
+                else:
+                    raise Exception, "Unknown multiplier: %s" % unit
 
     return value
 

@@ -20,12 +20,14 @@
 #
 import re
 
+from checkbox.properties import String
 from checkbox.plugin import Plugin
 
 
 class DiskInfo(Plugin):
 
-    required_attributes = ["filename"]
+    # Filename where casper logs installation information.
+    filename = String(default="/var/log/installer/casper.log")
 
     def register(self, manager):
         super(DiskInfo, self).register(manager)
@@ -34,7 +36,7 @@ class DiskInfo(Plugin):
     def report(self):
         # Try to open the disk info file logged by the installer
         try:
-            file = open(self._config.filename)
+            file = open(self.filename)
         except IOError:
             return
 

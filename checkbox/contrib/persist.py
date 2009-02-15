@@ -74,7 +74,6 @@ class Persist(object):
         self._weakmap = {}
         self._readonly = False
         self._modified = False
-        self._config = self
         self.filename = filename
         if filename is not None and posixpath.exists(filename):
             self.load(filename)

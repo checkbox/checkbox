@@ -21,6 +21,7 @@
 from checkbox.lib.cache import cache
 from checkbox.lib.conversion import string_to_type
 
+from checkbox.properties import String
 from checkbox.registries.filename import FilenameRegistry
 from checkbox.registries.map import MapRegistry
 
@@ -32,6 +33,9 @@ class MountsRegistry(FilenameRegistry):
     the mount point.
     """
 
+    # Filename where mounts arel stored.
+    filename = String(default="/proc/mounts")
+
     @cache
     def items(self):
         keys = ["file_system", "mount_point", "type", "options", "dump", "pass"]
@@ -40,7 +44,7 @@ class MountsRegistry(FilenameRegistry):
             values = [string_to_type(v) for v in line.split(" ")]
             map = dict(zip(keys, values))
             map["options"] = map["options"].split(",")
-            value = MapRegistry(None, map)
+            value = MapRegistry(map)
             items.append((map["mount_point"], value))
 
         return items

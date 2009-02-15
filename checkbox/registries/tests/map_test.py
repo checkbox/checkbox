@@ -18,15 +18,16 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
+import unittest
+
 from checkbox.registries.map import MapRegistry
-from checkbox.registries.tests.helpers import TestHelper
 
 
-class MapRegistryTest(TestHelper):
+class MapRegistryTest(unittest.TestCase):
 
     def test_map(self):
         map = {'a': 1}
-        registry = MapRegistry(self._config, map)
+        registry = MapRegistry(map)
         self.assertTrue(registry.a)
         self.assertTrue(registry.a == 1)
         self.assertFalse(registry.b)

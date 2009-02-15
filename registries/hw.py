@@ -24,6 +24,7 @@ import logging
 
 from checkbox.lib.cache import cache
 
+from checkbox.properties import String
 from checkbox.registries.command import CommandRegistry
 from checkbox.registries.data import DataRegistry
 from checkbox.registries.map import MapRegistry
@@ -58,7 +59,7 @@ class DeviceRegistry(DataRegistry):
                 lines.append(line)
             elif match.group(2) is not None:
                 if id is not None:
-                    value = DeviceRegistry(None, "\n".join(lines))
+                    value = DeviceRegistry("\n".join(lines))
                     lines = []
 
                     items.append((id, value))
@@ -95,12 +96,12 @@ class DeviceRegistry(DataRegistry):
                         if index != 0 and "=" not in value:
                             values[index - 1] += " %s" % values.pop(index)
                     value = dict((v.split("=", 1) for v in values))
-                    value = MapRegistry(None, value)
+                    value = MapRegistry(value)
 
                 items.append((key, value))
 
         if lines:
-            value = DeviceRegistry(None, "\n".join(lines))
+            value = DeviceRegistry("\n".join(lines))
             items.append((id, value))
 
         return items
@@ -113,12 +114,16 @@ class HwRegistry(CommandRegistry):
     key and the corresponding device registry as value.
     """
 
-    optional_attributes = ["version"]
+    # Command to retrieve hw information.
+    command = String(default="lshw -numeric 2>/dev/null")
+
+    # Command to retrieve the hw version.
+    version = String(default="lshw -version 2>/dev/null")
 
     @cache
     def __str__(self):
-        logging.info("Running command: %s", self._config.version)
-        version = os.popen(self._config.version).read().strip()
+        logging.info("Running command: %s", self.version)
+        version = os.popen(self.version).read().strip()
         numbers = version.split(".")
         if len(numbers) == 3 \
            and numbers[0] == "B" \
@@ -133,7 +138,7 @@ class HwRegistry(CommandRegistry):
         lines = self.split("\n")
 
         key = lines.pop(0)
-        value = DeviceRegistry(None, "\n".join(lines))
+        value = DeviceRegistry("\n".join(lines))
 
         return [(key, value)]
 

@@ -18,13 +18,14 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
+import unittest
+
 from checkbox.registries.command import CommandRegistry
-from checkbox.registries.tests.helpers import TestHelper
 
 
-class CommandRegistryTest(TestHelper):
+class CommandRegistryTest(unittest.TestCase):
 
     def test_command(self):
-        registry = CommandRegistry(self._config, "echo -n foo")
+        registry = CommandRegistry("echo -n foo")
         self.assertTrue(str(registry) is not None)
         self.assertTrue(str(registry) == "foo")

@@ -19,19 +19,18 @@
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
 import re
-
-from checkbox.registries.tests.helpers import TestHelper
+import unittest
 
 from registries.dpkg import DpkgRegistry
 
 
-class DpkgRegistryTest(TestHelper):
+class DpkgRegistryTest(unittest.TestCase):
 
     def test_version(self):
-        registry = DpkgRegistry(self._config)
+        registry = DpkgRegistry()
         self.assertTrue(registry.version)
         self.assertTrue(re.search(r"^[\d\.]+$", registry.version))
 
     def test_architecture(self):
-        registry = DpkgRegistry(self._config)
+        registry = DpkgRegistry()
         self.assertTrue(registry.architecture)

@@ -22,12 +22,14 @@ from gettext import gettext as _
 
 from checkbox.contrib.glock import GlobalLock, LockAlreadyAcquired
 
+from checkbox.properties import String
 from checkbox.plugin import Plugin
 
 
 class LockPrompt(Plugin):
 
-    required_attributes = ["filename"]
+    # Filename where the application lock is stored.
+    filename = String(default="%(checkbox_data)s/lock")
 
     def register(self, manager):
         super(LockPrompt, self).register(manager)
@@ -36,7 +38,7 @@ class LockPrompt(Plugin):
         self._manager.reactor.call_on("prompt-begin", self.prompt_begin)
 
     def prompt_begin(self, interface):
-        self._lock = GlobalLock(self._config.filename)
+        self._lock = GlobalLock(self.filename)
         try:
             self._lock.acquire()
         except LockAlreadyAcquired:

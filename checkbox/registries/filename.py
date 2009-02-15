@@ -20,6 +20,7 @@
 #
 import logging
 
+from checkbox.properties import String
 from checkbox.registry import Registry
 
 
@@ -28,14 +29,14 @@ class FilenameRegistry(Registry):
 
     The default behavior is to return the content of the file.
 
-    Subclasses should define a filename configuration parameter.
+    Subclasses should define a filename parameter.
     """
 
-    optional_attributes = ["filename"]
+    filename = String(required=False)
 
-    def __init__(self, config, filename=None):
-        super(FilenameRegistry, self).__init__(config)
-        self._filename = filename or self._config.filename
+    def __init__(self, filename=None):
+        super(FilenameRegistry, self).__init__()
+        self._filename = filename or self.filename
 
     def __str__(self):
         logging.info("Reading filename: %s", self._filename)

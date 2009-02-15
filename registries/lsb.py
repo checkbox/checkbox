@@ -20,6 +20,7 @@
 #
 from checkbox.lib.cache import cache
 
+from checkbox.properties import String
 from checkbox.registries.command import CommandRegistry
 
 
@@ -30,14 +31,17 @@ class LsbRegistry(CommandRegistry):
     returned by the lsb_release command.
     """
 
+    # Command to retrieve LSB information.
+    command = String(default="lsb_release -a 2>/dev/null")
+
     default_map = {
         "Distributor ID": "distributor_id",
         "Description": "description",
         "Release": "release",
         "Codename": "codename"}
 
-    def __init__(self, config, filename=None, map=None):
-        super(LsbRegistry, self).__init__(config, filename)
+    def __init__(self, filename=None, map=None):
+        super(LsbRegistry, self).__init__(filename)
         self._map = map or self.default_map
 
     @cache

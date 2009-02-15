@@ -21,6 +21,7 @@
 import os
 import logging
 
+from checkbox.properties import String
 from checkbox.registry import Registry
 
 
@@ -30,14 +31,14 @@ class DirectoryRegistry(Registry):
     The default behavior is to return the files within a directory
     separated by newlines.
 
-    Subclasses should define a directory configuration parameter.
+    Subclasses should define a directory parameter.
     """
 
-    optional_attributes = ["directory"]
+    directory = String(required=False)
 
-    def __init__(self, config, directory=None):
-        super(DirectoryRegistry, self).__init__(config)
-        self._directory = directory or self._config.directory
+    def __init__(self, directory=None):
+        super(DirectoryRegistry, self).__init__()
+        self._directory = directory or self.directory
 
     def __str__(self):
         logging.info("Reading directory: %s", self._directory)

@@ -18,13 +18,14 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
+import unittest
+
 from checkbox.registries.data import DataRegistry
-from checkbox.registries.tests.helpers import TestHelper
 
 
-class DataRegistryTest(TestHelper):
+class DataRegistryTest(unittest.TestCase):
 
     def test_data(self):
-        registry = DataRegistry(self._config, "foo")
+        registry = DataRegistry("foo")
         self.assertTrue(str(registry) is not None)
         self.assertTrue(str(registry) == "foo")

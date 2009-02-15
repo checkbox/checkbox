@@ -18,15 +18,15 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-from checkbox.registries.tests.helpers import TestHelper
+import unittest
 
 from registries.lsb import LsbRegistry
 
 
-class LsbRegistryTest(TestHelper):
+class LsbRegistryTest(unittest.TestCase):
 
     def test_keys(self):
-        registry = LsbRegistry(self._config)
+        registry = LsbRegistry()
         self.assertTrue(registry.distributor_id)
         self.assertTrue(registry.description)
         self.assertTrue(registry.release)

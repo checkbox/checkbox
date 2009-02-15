@@ -39,7 +39,8 @@ class Config(ConfigParser):
 
             fp.write("\n")
 
-        for section in self._sections:
+        sections = sorted(self._sections)
+        for section in sections:
             fp.write("[%s]\n" % section)
             for (key, value) in self._sections[section].items():
                 if key != "__name__":
@@ -58,7 +59,9 @@ class Install(object):
     using this module during the config phase of the package installation
     process.
     """
-    separator = "/"
+    question_separator = "/"
+    template_separator = ": "
+
     configs_base = "/usr/share/%(base_name)s/configs/%(name)s.ini"
     examples_base = "/usr/share/%(base_name)s/examples/%(name)s.ini"
     templates_base = "/var/lib/dpkg/info/%(name)s.templates"
@@ -96,14 +99,29 @@ class Install(object):
         # Hack to retrieve questions from templates file
         if posixpath.exists(self._templates_path):
             templates_file = open(self._templates_path)
-            for line in templates_file.readlines():
-                match = re.match(r"Template: (.*)", line)
-                if match:
-                    question = match.group(1)
-                    value = self._debconf.get(question)
+            buffer = templates_file.read()
+            for block in re.split(r"\n{2,}", buffer):
+                if not block:
+                    continue
 
-                    section, name = question.rsplit(self.separator, 1)
-                    self._config.set(section, name, value)
+                element = {}
+                for line in block.split("\n"):
+                    if line.startswith(" "):
+                        continue
+
+                    (key, value) = line.split(self.template_separator, 1)
+                    key = key.lower()
+                    element[key] = value
+
+                question = element["template"]
+                old_value = element.get("default", "")
+                new_value = self._debconf.get(question)
+                # Only set different values
+                if old_value != new_value:
+                    section, name = question.rsplit(self.question_separator, 1)
+                    if not self._config.has_section(section):
+                        self._config.add_section(section)
+                    self._config.set(section, name, new_value)
 
         # Write config file
         self._config.write(file)

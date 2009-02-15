@@ -23,12 +23,14 @@ import logging
 
 from datetime import datetime
 
+from checkbox.properties import String
 from checkbox.plugin import Plugin
 
 
 class SubmissionInfo(Plugin):
 
-    optional_attributes = ["submission_id"]
+    # Submission ID to exchange information with the server.
+    submission_id = String(required=False)
 
     def register(self, manager):
         super(SubmissionInfo, self).register(manager)
@@ -43,7 +45,7 @@ class SubmissionInfo(Plugin):
         self._system_id = system_id
 
     def report(self):
-        submission_id = self._config.submission_id
+        submission_id = self.submission_id
         if not submission_id:
             if not self._system_id:
                 return

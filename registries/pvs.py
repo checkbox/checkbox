@@ -23,6 +23,7 @@ import re
 from checkbox.lib.cache import cache
 from checkbox.lib.conversion import string_to_type
 
+from checkbox.properties import String
 from checkbox.registries.command import CommandRegistry
 from checkbox.registries.map import MapRegistry
 
@@ -33,6 +34,9 @@ class PvsRegistry(CommandRegistry):
     Each item contained in this registry consists information about
     the mount point.
     """
+
+    # Command to retrieve physical volume information
+    command = String(default="pvs")
 
     @cache
     def items(self):
@@ -45,7 +49,7 @@ class PvsRegistry(CommandRegistry):
             for line in lines:
                 values = [string_to_type(v) for v in re.split(r"\s+", line)]
                 map = dict(zip(keys, values))
-                value = MapRegistry(None, map)
+                value = MapRegistry(map)
                 items.append((map["pv"], value))
 
         return items

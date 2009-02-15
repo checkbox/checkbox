@@ -24,7 +24,6 @@ import itertools
 import posixpath
 
 from checkbox.contrib import bpickle
-from checkbox.schema import Any, Constant, Float, KeyDict, String
 
 
 HELD = "h"
@@ -296,31 +295,6 @@ class MessageStore(object):
 
     def _add_flags(self, path, flags):
         self._set_flags(path, self._get_flags(path)+flags)
-
-
-class Message(KeyDict):
-    """
-    Like {KeyDict}, but with three predefined keys: C{type}, C{api},
-    and C{timestamp}. Of these, C{api} and C{timestamp} are optional.
-
-
-    @param type: The type of the message. The C{type} key will need to
-        match this as a constant.
-
-    @param schema: A dict of additional schema in a format L{KeyDict}
-        will accept.
-    @param optional: An optional list of keys that should be optional.
-    """
-    def __init__(self, type, schema, optional=None):
-        self.type = type
-        schema["timestamp"] = Float()
-        schema["api"] = Any(String(), Constant(None))
-        schema["type"] = Constant(type)
-        if optional is not None:
-            optional.extend(["timestamp", "api"])
-        else:
-            optional = ["timestamp", "api"]
-        super(Message, self).__init__(schema, optional=optional)
 
 
 def got_next_sequence(message_store, next_sequence):

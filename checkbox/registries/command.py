@@ -23,6 +23,7 @@ import logging
 from checkbox.lib.cache import cache
 from checkbox.lib.process import Process
 
+from checkbox.properties import String
 from checkbox.registry import Registry
 
 
@@ -31,14 +32,14 @@ class CommandRegistry(Registry):
 
     The default behavior is to return the output of the command.
 
-    Subclasses should define a command configuration parameter.
+    Subclasses should define a command parameter.
     """
 
-    optional_attributes = ["command"]
+    command = String(required=False)
 
-    def __init__(self, config, command=None):
-        super(CommandRegistry, self).__init__(config)
-        self._command = command or self._config.command
+    def __init__(self, command=None):
+        super(CommandRegistry, self).__init__()
+        self._command = command or self.command
 
     @cache
     def __str__(self):

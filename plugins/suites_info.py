@@ -18,31 +18,40 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-import re
-
 from checkbox.lib.template_i18n import TemplateI18n
 
+from checkbox.properties import List, String
 from checkbox.plugin import Plugin
 from checkbox.test import Test
 
 
 class SuitesInfo(Plugin):
 
-    required_attributes = ["directories", "scripts_path", "data_path"]
-    optional_attributes = ["blacklist", "whitelist"]
+    # Space separated list of directories where suite files are stored.
+    directories = List(type=String(),
+        default_factory=lambda:"%(checkbox_share)s/suites")
+
+    # Executable path for running scripts. These might be
+    # referenced from the above suites for example.
+    scripts_path = String(default="%(checkbox_share)s/scripts")
+
+    # Data path containing files for scripts.
+    data_path = String(default="%(checkbox_share)s/data")
+
+    # List of suites to blacklist
+    blacklist = List(type=String(), default_factory=lambda:"")
+
+    # List of suites to whitelist
+    whitelist = List(type=String(), default_factory=lambda:"")
 
     def register(self, manager):
         super(SuitesInfo, self).register(manager)
         self._manager.reactor.call_on("gather", self.gather)
 
     def gather(self):
-        directories = re.split("\s+", self._config.directories)
-        blacklist = self._config.blacklist \
-            and re.split("\s+", self._config.blacklist) or []
-        whitelist = self._config.whitelist \
-            and re.split("\s+", self._config.whitelist) or []
         template = TemplateI18n("suite", ["name"])
-        elements = template.load_directories(directories, blacklist, whitelist)
+        elements = template.load_directories(self.directories,
+            self.blacklist, self.whitelist)
 
         for element in elements:
             long_ext = "_extended"
@@ -53,8 +62,8 @@ class SuitesInfo(Plugin):
 
             test = Test(self._manager.registry, **element)
             for command in test.command, test.description:
-                command.add_path(self._config.scripts_path)
-                command.add_variable("data_path", self._config.data_path)
+                command.add_path(self.scripts_path)
+                command.add_variable("data_path", self.data_path)
 
             self._manager.reactor.fire("test-%s" % test.plugin, test)
 

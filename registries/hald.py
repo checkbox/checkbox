@@ -18,6 +18,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
+from checkbox.properties import String
 from checkbox.registries.command import CommandRegistry
 
 
@@ -27,6 +28,9 @@ class HaldRegistry(CommandRegistry):
     For the moment, this registry only contains an item for the version
     as returned by the hald command.
     """
+
+    # Command to retrieve hald information.
+    command = String(default="hald --version 2>&1")
 
     def __str__(self):
         str = super(HaldRegistry, self).__str__()

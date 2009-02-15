@@ -20,6 +20,7 @@
 #
 import os
 import re
+import logging
 import posixpath
 
 from ConfigParser import ConfigParser
@@ -36,11 +37,24 @@ class IncludeDict(dict):
 
     def __setitem__(self, key, value):
         if key == "includes":
-            for path in re.split(r"\s+", value):
+            for path in re.split(r"\s*,?\s+", value):
                 path = self._parser._interpolate("DEFAULT", None, path, self)
+                path = posixpath.expanduser(path)
                 if not posixpath.exists(path):
                     raise Exception, "No such configuration file: %s" % path
-                self._parser.read(path)
+                if posixpath.isdir(path):
+                    logging.info("Parsing config filenames from directory: %s",
+                        path)
+                    def walk_func(arg, directory, names):
+                        for name in names:
+                            path = posixpath.join(directory, name)
+                            if not posixpath.isdir(path):
+                                arg._parser.read(path)
+
+                    posixpath.walk(path, walk_func, self)
+                else:
+                    logging.info("Parsing config filename: %s", path)
+                    self._parser.read(path)
 
         # Environment has precedence over configuration
         elif key.upper() not in os.environ.keys():
@@ -54,28 +68,31 @@ class ConfigSection(object):
         self.name = name
         self.attributes = attributes
 
-    def _get_value(self, name):
-        return self.attributes.get(name)
-
     def __getattr__(self, name):
         if name in self.attributes:
-            return self._get_value(name)
+            return self.get(name)
 
         raise AttributeError, name
+
+    def __contains__(self, name):
+        return name in self.attributes
+
+    def get(self, name):
+        return self.attributes.get(name, "")
 
 
 class ConfigDefaults(ConfigSection):
 
-    def _get_value(self, name):
-        return os.environ.get(name.upper()) \
-            or os.environ.get(name.lower()) \
-            or super(ConfigDefaults, self)._get_value(name)
-
     def __getattr__(self, name):
         if name in self.attributes:
-            return self._get_value(name)
+            return self.get(name)
 
         raise AttributeError, name
+
+    def get(self, name):
+        return os.environ.get(name.upper()) \
+            or os.environ.get(name.lower()) \
+            or super(ConfigDefaults, self).get(name)
 
 
 class Config(object):

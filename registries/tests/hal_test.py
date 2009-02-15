@@ -18,13 +18,13 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-from checkbox.registries.tests.helpers import TestHelper
+import unittest
 
 from registries.hal import HalRegistry
 
 
-class HalRegistryTest(TestHelper):
+class HalRegistryTest(unittest.TestCase):
 
     def test_system_vendor(self):
-        registry = HalRegistry(self._config)
+        registry = HalRegistry()
         self.assertTrue(registry.computer.system.vendor is not None)

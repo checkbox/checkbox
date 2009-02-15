@@ -19,15 +19,14 @@
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
 import re
-
-from checkbox.registries.tests.helpers import TestHelper
+import unittest
 
 from registries.hald import HaldRegistry
 
 
-class HaldRegistryTest(TestHelper):
+class HaldRegistryTest(unittest.TestCase):
 
     def test_version(self):
-        registry = HaldRegistry(self._config)
+        registry = HaldRegistry()
         self.assertTrue(registry.version)
         self.assertTrue(re.search(r"^[\d\.rc]+$", registry.version))

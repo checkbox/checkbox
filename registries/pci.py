@@ -18,11 +18,15 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
+from checkbox.properties import String
 from checkbox.registries.command import CommandRegistry
 
 
 class PciRegistry(CommandRegistry):
     """Registry for pci information."""
+
+    # Command to retrieve pci information.
+    command = String(default="lspci -vvnn")
 
 
 factory = PciRegistry

@@ -20,18 +20,19 @@
 #
 from time import sleep
 
+from checkbox.properties import Float
 from checkbox.plugin import Plugin
 
 
 class DelayPrompt(Plugin):
 
-    required_attributes = ["timeout"]
+    # Timeout for an initial delay
+    timeout = Float(default=0.0)
 
-    def __init__(self, *args, **kwargs):
-        super(DelayPrompt, self).__init__(*args, **kwargs)
+    def __init__(self):
+        super(DelayPrompt, self).__init__()
         # Force delay as early as possible
-        timeout = float(self._config.timeout)
-        sleep(timeout)
+        sleep(self.timeout)
 
 
 factory = DelayPrompt

@@ -21,6 +21,7 @@
 from checkbox.lib.cache import cache
 from checkbox.lib.conversion import string_to_type
 
+from checkbox.properties import String
 from checkbox.registries.data import DataRegistry
 from checkbox.registries.filename import FilenameRegistry
 from checkbox.registries.link import LinkRegistry
@@ -57,7 +58,7 @@ class ProcessorRegistry(DataRegistry):
 
             items.append((key, value))
 
-        items.append(("processor", LinkRegistry(None, self)))
+        items.append(("processor", LinkRegistry(self)))
 
         return items
 
@@ -69,12 +70,15 @@ class CpuinfoRegistry(FilenameRegistry):
     as key and the corresponding processor registry as value.
     """
 
+    # Filename where cpuinfo is stored.
+    filename = String(default="/proc/cpuinfo")
+
     @cache
     def items(self):
         items = []
         for data in [d.strip() for d in self.split("\n\n") if d]:
             key = len(items)
-            value = ProcessorRegistry(None, data)
+            value = ProcessorRegistry(data)
             items.append((key, value))
 
         return items

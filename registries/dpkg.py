@@ -20,6 +20,7 @@
 #
 import re
 
+from checkbox.properties import String
 from checkbox.registries.command import CommandRegistry
 
 
@@ -29,6 +30,9 @@ class DpkgRegistry(CommandRegistry):
     For the moment, this registry only contains items for the version
     and architecture as returned by the dpkg command.
     """
+
+    # Command to retrieve dpkg information.
+    command = String(default="dpkg --version")
 
     def items(self):
         items = []

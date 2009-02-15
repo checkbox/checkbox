@@ -28,8 +28,8 @@ class DataRegistry(Registry):
     to the constructor.
     """
 
-    def __init__(self, config, data=None):
-        super(DataRegistry, self).__init__(config)
+    def __init__(self, data=None):
+        super(DataRegistry, self).__init__()
         self._data = data
 
     def __str__(self):

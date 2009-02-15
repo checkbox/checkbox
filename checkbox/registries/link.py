@@ -27,8 +27,8 @@ class LinkRegistry(Registry):
     The default behavior is to express the given maps as a tree of items.
     """
 
-    def __init__(self, config, link):
-        super(LinkRegistry, self).__init__(config)
+    def __init__(self, link):
+        super(LinkRegistry, self).__init__()
         self._link = link
 
     def __str__(self):

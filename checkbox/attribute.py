@@ -18,21 +18,26 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-import unittest
-
-from checkbox.config import Config
+from checkbox.variables import Variable
 
 
-class TestHelper(unittest.TestCase):
+class Attribute(object):
 
-    config_path = "./configs/checkbox.ini"
-    config_section = "checkbox/registries"
+    def __init__(self, name, cls, variable_factory=None):
+        self.name = name
+        self.cls = cls
+        self.variable_factory = variable_factory or Variable
 
-    def setUp(self):
-        section_test_class_name = self.__class__.__name__
-        section_class_name = section_test_class_name.replace("Test", "")
-        section_name = section_class_name.replace("Registry", "").lower()
 
-        config = Config(self.config_path)
-        self._config = config.get_section("%s/%s" \
-            % (self.config_section, section_name))
+def get_attributes(cls):
+    if "__checkbox_attributes__" in cls.__dict__:
+        return cls.__dict__["__checkbox_attributes__"]
+    else:
+        attributes = {}
+        for name in dir(cls):
+            attribute = getattr(cls, name, None)
+            if isinstance(attribute, Attribute):
+                attributes[name] = attribute
+
+        cls.__checkbox_attributes__ = attributes
+        return cls.__checkbox_attributes__

@@ -19,6 +19,7 @@
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
 class Cache(object):
+
     def __init__(self, function):
         self._cache = {}
         self._function = function

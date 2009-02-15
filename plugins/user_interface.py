@@ -20,19 +20,31 @@
 #
 from checkbox.lib.iterator import Iterator
 
+from checkbox.properties import String
 from checkbox.plugin import Plugin
 
 
 class UserInterface(Plugin):
 
-    required_attributes = ["interface_module", "interface_class"]
-    optional_attributes = ["title", "gtk_path"]
+    interface_module = String()
+    interface_class = String()
+    
+    # Title of the user interface
+    title = String(default="System Testing")
+
+    # Path where data files are stored.
+    data_path = String(required=False)
+
+    def register(self, manager):
+        super(UserInterface, self).register(manager)
+             
+        self._manager.reactor.call_on("run", self.run)
 
     def run(self):
-        interface_module = __import__(self._config.interface_module,
+        interface_module = __import__(self.interface_module,
             None, None, [''])
-        interface_class = getattr(interface_module, self._config.interface_class)
-        interface = interface_class(self._config)
+        interface_class = getattr(interface_module, self.interface_class)
+        interface = interface_class(self.title, self.data_path)
 
         iterator = Iterator([
              "prompt-begin",

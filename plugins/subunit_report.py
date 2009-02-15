@@ -22,12 +22,14 @@ import logging
 
 from checkbox.test import FAIL, PASS, SKIP
 
+from checkbox.properties import String
 from checkbox.plugin import Plugin
 
 
 class SubunitReport(Plugin):
 
-    required_attributes = ["filename"]
+    # Filename where to store the subunit report
+    filename = String(default="%(checkbox_data)s/subunit.log")
 
     result_status_table = {
         FAIL: "failure",
@@ -44,8 +46,8 @@ class SubunitReport(Plugin):
             self._manager.reactor.call_on(rt, rh)
 
     def gather(self):
-        logging.debug("Opening filename: %s", self._config.filename)
-        self._file = open(self._config.filename, "w")
+        logging.debug("Opening filename: %s", self.filename)
+        self._file = open(self.filename, "w")
 
     def report_result(self, result):
         # Test

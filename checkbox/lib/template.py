@@ -137,18 +137,18 @@ class Template(object):
 
         elements = []
         for name in os.listdir(directory):
-            if whitelist_patterns:
-                if not [p.match(name) for p in whitelist_patterns]:
-                    logging.info("Not whitelisted filename: %s", name)
-                    continue
-            elif blacklist_patterns:
-                if [p.match(name) for p in blacklist_patterns]:
-                    logging.info("Blacklisted filename: %s", name)
-                    continue
-
             if name.startswith(".") or name.endswith("~"):
                 logging.info("Ignored filename: %s", name)
                 continue
+
+            if whitelist_patterns:
+                if not [name for p in whitelist_patterns if p.match(name)]:
+                    logging.info("Not whitelisted filename: %s", name)
+                    continue
+            elif blacklist_patterns:
+                if [name for p in blacklist_patterns if p.match(name)]:
+                    logging.info("Blacklisted filename: %s", name)
+                    continue
 
             filename = posixpath.join(directory, name)
             elements.extend(self.load_filename(filename))

@@ -20,11 +20,12 @@
 #
 import re
 
-from checkbox.repository import Repository, RepositoryManager
 from checkbox.lib.cache import cache
 
+from checkbox.component import ComponentManager
 
-class Registry(Repository):
+
+class Registry(object):
     """
     Registry base class which should be inherited by each registry
     implementation. This class basically provides methods to represent
@@ -36,8 +37,8 @@ class Registry(Repository):
 
     _id = 0
 
-    def __init__(self, config):
-        super(Registry, self).__init__(config)
+    def __init__(self):
+        super(Registry, self).__init__()
         self.id = Registry._id
         Registry._id += 1
 
@@ -59,7 +60,7 @@ class Registry(Repository):
         except KeyError:
             if default == None:
                 from checkbox.registries.none import NoneRegistry
-                return NoneRegistry(None)
+                return NoneRegistry()
             else:
                 return default
 
@@ -130,7 +131,7 @@ class Registry(Repository):
         raise Exception, "Cannot call update on registry."
 
 
-class RegistryManager(RepositoryManager, Registry):
+class RegistryManager(ComponentManager, Registry):
     """
     Registry manager which is essentially the root of the registry
     tree. The first level in this tree consists of the module names
@@ -145,8 +146,9 @@ class RegistryManager(RepositoryManager, Registry):
         for section_name in section_names:
             section = self.load_section(section_name)
             for name in section.get_names():
-                entry = section.load_entry(name)
-                items.append((name, entry))
+                module = section.load_module(name)
+                items.append((name, module))
+
         return items
 
 

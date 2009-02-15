@@ -20,6 +20,7 @@
 #
 from checkbox.lib.cache import cache
 
+from checkbox.properties import String
 from checkbox.registry import Registry
 from checkbox.registries.command import CommandRegistry
 from checkbox.registries.link import LinkRegistry
@@ -30,8 +31,8 @@ COLUMNS = ["name", "version"]
 
 class PackageRegistry(Registry):
 
-    def __init__(self, config, package):
-        super(PackageRegistry, self).__init__(config)
+    def __init__(self, package):
+        super(PackageRegistry, self).__init__()
         self._package = package
 
     def __str__(self):
@@ -41,13 +42,16 @@ class PackageRegistry(Registry):
 
     def items(self):
         items = [(k, v) for k, v in self._package.items()]
-        items.append(("package", LinkRegistry(None, self)))
+        items.append(("package", LinkRegistry(self)))
 
         return items
 
 
 class PackagesRegistry(CommandRegistry):
     """Registry for packages."""
+
+    # Command to retrieve packages.
+    command = String(default="COLUMNS=200 dpkg -l")
 
     @cache
     def items(self):
@@ -70,7 +74,7 @@ class PackagesRegistry(CommandRegistry):
                     package[key] = value
 
                 key = package["name"]
-                value = PackageRegistry(None, package)
+                value = PackageRegistry(package)
                 items.append((key, value))
 
         return items

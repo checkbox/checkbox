@@ -20,22 +20,28 @@
 #
 from checkbox.lib.environ import add_variable
 
+from checkbox.properties import String
 from checkbox.plugin import Plugin
 
 
 class ProxyInfo(Plugin):
 
-    optional_attributes = ["http_proxy", "https_proxy"]
+    # HTTP proxy to use instead of the one specified in environment.
+    http_proxy = String(required=False)
+    
+    # HTTPS proxy to use instead of the one specified in environment.
+    https_proxy = String(required=False)
 
     def register(self, manager):
         super(ProxyInfo, self).register(manager)
         self._manager.reactor.call_on("gather", self.gather, -1000)
 
     def gather(self):
-        for attribute in self.optional_attributes:
-            value = getattr(self._config, attribute)
-            if value:
-                add_variable(attribute, value)
+        if self.http_proxy:
+            add_variable("http_proxy", self.http_proxy)
+
+        if self.https_proxy:
+            add_variable("https_proxy", self.https_proxy)
 
 
 factory = ProxyInfo

@@ -28,15 +28,21 @@ from gettext import gettext as _
 from socket import gethostname
 from StringIO import StringIO
 
+from checkbox.lib.conversion import string_to_type
 from checkbox.lib.log import format_delta
 from checkbox.lib.transport import HTTPTransport
 
+from checkbox.properties import Int, String
 from checkbox.plugin import Plugin
 
 
 class LaunchpadExchange(Plugin):
 
-    required_attributes = ["transport_url", "timeout"]
+    # Timeout value for each submission.
+    timeout = Int(default=120)
+
+    # URL where to send submissions.
+    transport_url = String(default="https://launchpad.net/+hwdb/+submit")
 
     def register(self, manager):
         super(LaunchpadExchange, self).register(manager)
@@ -103,11 +109,11 @@ class LaunchpadExchange(Plugin):
         if logging.getLogger().getEffectiveLevel() <= logging.DEBUG:
             logging.debug("Uncompressed payload length: %d", len(payload))
 
-        transport = HTTPTransport(self._config.transport_url)
+        transport = HTTPTransport(self.transport_url)
 
         start_time = time.time()
         response = transport.exchange(form, self._headers,
-            timeout=int(self._config.timeout))
+            timeout=string_to_type(self.timeout))
         end_time = time.time()
 
         if not response:

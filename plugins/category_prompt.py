@@ -20,19 +20,28 @@
 #
 from gettext import gettext as _
 
+from checkbox.properties import String
 from checkbox.plugin import Plugin
 
 
 class CategoryPrompt(Plugin):
 
-    optional_attributes = ["category"]
+    # Category of the system: desktop, laptop or server
+    category = String(required=False)
 
     def register(self, manager):
         super(CategoryPrompt, self).register(manager)
-        self._manager.reactor.call_on("prompt-category", self.prompt_category)
+
+        for (rt, rh) in [
+             ("gather-persist", self.gather_persist),
+             ("prompt-category", self.prompt_category)]:
+            self._manager.reactor.call_on(rt, rh)
+
+    def gather_persist(self, persist):
+        self.persist = persist.root_at("category_prompt")
 
     def prompt_category(self, interface):
-        category = self._persist.get("category") or self._config.category
+        category = self.persist.get("category") or self.category
         registry = self._manager.registry
 
         # Try to determine category from HAL formfactor
@@ -59,7 +68,7 @@ class CategoryPrompt(Plugin):
                 _("Please select the category of your system."),
                 category)
 
-        self._persist.set("category", category)
+        self.persist.set("category", category)
         self._manager.reactor.fire("report-category", category)
 
 

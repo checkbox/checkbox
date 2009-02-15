@@ -115,6 +115,7 @@ class Reactor(object):
             self.fire("run")
         except StopAllException, e:
             logging.critical(e)
+        self.fire("stop")
 
     def stop(self):
         raise StopException

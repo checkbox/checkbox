@@ -20,40 +20,17 @@
 #
 import re
 
-from checkbox.repository import Repository, RepositoryManager, RepositorySection
-from checkbox.contrib.persist import Persist
+from checkbox.component import ComponentManager, ComponentSection
 
 
-plugin_persist_filenames = []
+class PluginSection(ComponentSection):
 
-class PluginSection(RepositorySection):
-
-    def __init__(self, *args, **kwargs):
-        super(PluginSection, self).__init__(*args, **kwargs)
-
-        persist_filename = self._config.persist_filename
-        if persist_filename is not None:
-            if persist_filename in plugin_persist_filenames:
-                raise Exception, "Persist filename already used: %s" \
-                    % persist_filename
-            plugin_persist_filenames.append(persist_filename)
-        self._persist = Persist(persist_filename)
-
-    def get_arguments(self, name):
-        """Add a rooted persist object to the parent arguments."""
-        arguments = super(PluginSection, self).get_arguments(name)
-        arguments.append(self._persist.root_at(name))
-
-        return arguments
-
-    def flush(self):
-        """Flush data to disk."""
-        self._persist.save()
+    pass
 
 
-class PluginManager(RepositoryManager):
+class PluginManager(ComponentManager):
     """
-    Plugin manager which extends the repository to support the concepts
+    Plugin manager which extends the component to support the concepts
     of a reactor.
     """
     _section_factory = PluginSection
@@ -69,25 +46,15 @@ class PluginManager(RepositoryManager):
         for section_name in re.split(r"\s+", section_names):
             section = self.load_section(section_name)
             self.sections.append(section)
-            for module in section.load_all():
+            for module in section.load_modules():
                 module.register(self)
 
-    def flush(self):
-        for section in self.sections:
-            section.flush()
 
-
-class Plugin(Repository):
+class Plugin(object):
     """
     Plugin base class which should be inherited by each plugin
-    implementation. This class extends the repository to automatically
+    implementation. This class extends the component to automatically
     call the run method if defined.
     """
-    def __init__(self, config, persist):
-        super(Plugin, self).__init__(config)
-        self._persist = persist
-
     def register(self, manager):
         self._manager = manager
-        if hasattr(self, "run"):
-            manager.reactor.call_on("run", self.run)

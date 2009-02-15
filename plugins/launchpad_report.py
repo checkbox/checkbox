@@ -22,13 +22,15 @@ import posixpath
 
 from checkbox.lib.safe import safe_make_directory
 
+from checkbox.properties import String
 from checkbox.plugin import Plugin
 from checkbox.reports.launchpad_report import LaunchpadReportManager
 
 
 class LaunchpadReport(Plugin):
 
-    required_attributes = ["filename"]
+    # Filename where submission information is cached.
+    filename = String(default="%(checkbox_data)s/submission.xml")
 
     def register(self, manager):
         super(LaunchpadReport, self).register(manager)
@@ -105,12 +107,11 @@ class LaunchpadReport(Plugin):
         report_manager = LaunchpadReportManager("system", "1.0")
         payload = report_manager.dumps(self._report).toprettyxml("")
 
-        filename = self._config.filename
-        directory = posixpath.dirname(filename)
+        directory = posixpath.dirname(self.filename)
         safe_make_directory(directory)
 
-        open(filename, "w").write(payload)
-        self._manager.reactor.fire("exchange-report", filename)
+        open(self.filename, "w").write(payload)
+        self._manager.reactor.fire("exchange-report", self.filename)
 
 
 factory = LaunchpadReport

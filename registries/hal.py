@@ -23,6 +23,7 @@ import re
 from checkbox.lib.cache import cache
 from checkbox.lib.update import recursive_update
 
+from checkbox.properties import String
 from checkbox.registries.command import CommandRegistry
 from checkbox.registries.data import DataRegistry
 from checkbox.registries.map import MapRegistry
@@ -66,7 +67,7 @@ class DeviceRegistry(DataRegistry):
 
         items = []
         for key, value in all.items():
-            value = MapRegistry(None, value)
+            value = MapRegistry(value)
             items.append((key, value))
 
         return items
@@ -78,6 +79,9 @@ class HalRegistry(CommandRegistry):
     Each item contained in this registry consists of the udi as key and
     the corresponding device registry as value.
     """
+
+    # Command to retrieve hal information.
+    command = String(default="lshal")
 
     @cache
     def items(self):
@@ -93,7 +97,7 @@ class HalRegistry(CommandRegistry):
                     break
 
             if lines:
-                value = DeviceRegistry(None, "\n".join(lines))
+                value = DeviceRegistry("\n".join(lines))
                 items.append((key, value))
 
         return items

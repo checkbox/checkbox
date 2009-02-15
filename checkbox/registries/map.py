@@ -30,8 +30,8 @@ class MapRegistry(Registry):
     The default behavior is to express the given maps as a tree of items.
     """
 
-    def __init__(self, config, map={}):
-        super(MapRegistry, self).__init__(config)
+    def __init__(self, map={}):
+        super(MapRegistry, self).__init__()
         self._map = map
 
     def __str__(self):
@@ -44,7 +44,7 @@ class MapRegistry(Registry):
         items = []
         for key, value in self._map.items():
             if type(value) is types.DictType:
-                value = MapRegistry(self._config, value)
+                value = MapRegistry(value)
 
             items.append((key, value))
 
