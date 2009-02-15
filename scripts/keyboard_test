@@ -52,7 +52,7 @@ def gtk_prompt():
     hbox = gtk.HBox(False, 0)
     vbox.add(hbox)
     hbox.show()
-                              
+
     button = gtk.Button(stock=gtk.STOCK_CLOSE)
     button.connect("clicked", lambda w: gtk.main_quit())
     vbox.pack_start(button, False, False, 0)

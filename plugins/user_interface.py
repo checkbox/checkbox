@@ -28,7 +28,7 @@ class UserInterface(Plugin):
 
     interface_module = String()
     interface_class = String()
-    
+
     # Title of the user interface
     title = String(default="System Testing")
 
@@ -37,7 +37,7 @@ class UserInterface(Plugin):
 
     def register(self, manager):
         super(UserInterface, self).register(manager)
-             
+
         self._manager.reactor.call_on("run", self.run)
 
     def run(self):

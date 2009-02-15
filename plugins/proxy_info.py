@@ -28,7 +28,7 @@ class ProxyInfo(Plugin):
 
     # HTTP proxy to use instead of the one specified in environment.
     http_proxy = String(required=False)
-    
+
     # HTTPS proxy to use instead of the one specified in environment.
     https_proxy = String(required=False)
 
