@@ -18,13 +18,27 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-import posixpath
+import re
 import gtk, gtk.glade
+import posixpath
+import webbrowser
 
 from gettext import gettext as _
 
 from checkbox.test import ALL_STATUS, TestResult
 from checkbox.user_interface import UserInterface
+
+# Import to register HyperTextView type with gtk
+from checkbox_gtk.hyper_text_view import HyperTextView
+
+
+def _open_link(widget, uri):
+    for command in ['sensible-browser', 'xdg-open']:
+        if webbrowser._iscommand(command):
+            webbrowser._tryorder.insert(0, '%s "%%s"' % command)
+    webbrowser.open(uri)
+
+gtk.link_button_set_uri_hook(_open_link)
 
 
 # HACK: Setting and unsetting previous and next buttons to workaround
@@ -78,17 +92,17 @@ class GTKInterface(UserInterface):
     def _get_widget(self, widget):
         return self.widgets.get_widget(widget)
 
-    def _get_radiobutton(self, map):
-        for radiobutton, value in map.items():
-            if self._get_widget(radiobutton).get_active():
+    def _get_radio_button(self, map):
+        for radio_button, value in map.items():
+            if self._get_widget(radio_button).get_active():
                 return value
-        raise Exception, "Failed to map radiobutton."
+        raise Exception, "Failed to map radio_button."
 
     def _get_text(self, name):
         widget = self._get_widget(name)
         return widget.get_text()
 
-    def _get_textview(self, name):
+    def _get_text_view(self, name):
         widget = self._get_widget(name)
         buffer = widget.get_buffer()
         text = buffer.get_text(buffer.get_start_iter(), buffer.get_end_iter())
@@ -102,11 +116,30 @@ class GTKInterface(UserInterface):
         widget = self._get_widget(name)
         widget.set_text(text)
 
-    def _set_textview(self, name, text=""):
+    def _set_text_view(self, name, text=""):
         buffer = gtk.TextBuffer()
         buffer.set_text(text)
         widget = self._get_widget(name)
         widget.set_buffer(buffer)
+
+    def _set_hyper_text_view(self, name, text=""):
+        def clicked(widget, text, anchor, button):
+            _open_link(widget, anchor)
+
+        widget = self._get_widget(name)
+        widget.connect("anchor-clicked", clicked)
+
+        buffer = gtk.TextBuffer()
+        widget.set_buffer(buffer)
+
+        in_hyper_text = False
+        for part in re.split(r"(https?://[^\s]+)", text):
+            if in_hyper_text:
+                in_hyper_text = False
+                widget.insert_with_anchor(part, part)
+            else:
+                in_hyper_text = True
+                widget.insert(part)
 
     def _set_active(self, name, value=True):
         widget = self._get_widget(name)
@@ -172,7 +205,7 @@ class GTKInterface(UserInterface):
         self._notebook.set_current_page(0)
 
         intro = "\n\n".join([title, text])
-        self._set_textview("textview_intro_text", intro)
+        self._set_hyper_text_view("hyper_text_view_intro_text", intro)
 
         self._run_dialog()
 
@@ -183,16 +216,16 @@ class GTKInterface(UserInterface):
         # Set buttons
         self._notebook.set_current_page(1)
 
-        self._set_textview("textview_category", text)
+        self._set_hyper_text_view("hyper_text_view_category", text)
         if category:
-            self._set_active("radiobutton_%s" % category)
+            self._set_active("radio_button_%s" % category)
 
         self._run_dialog()
 
-        return self._get_radiobutton({
-            "radiobutton_desktop": "desktop",
-            "radiobutton_laptop": "laptop",
-            "radiobutton_server": "server"})
+        return self._get_radio_button({
+            "radio_button_desktop": "desktop",
+            "radio_button_laptop": "laptop",
+            "radio_button_server": "server"})
 
     def _run_test(self, test):
         self._set_sensitive("button_test", False)
@@ -201,7 +234,7 @@ class GTKInterface(UserInterface):
         result = self.show_wait(message, test.command)
 
         description = self.do_function(test.description, result)
-        self._set_textview("textview_test", description)
+        self._set_hyper_text_view("hyper_text_view_test", description)
 
         self._set_sensitive("button_test", True)
         self._set_label("button_test", _("_Test Again"))
@@ -213,7 +246,7 @@ class GTKInterface(UserInterface):
 
         # Set test description
         description = self.do_function(test.description, result)
-        self._set_textview("textview_test", description)
+        self._set_hyper_text_view("hyper_text_view_test", description)
 
         # Set buttons
         if str(test.command):
@@ -228,22 +261,22 @@ class GTKInterface(UserInterface):
         # Default results
         answers = ["yes", "no", "skip"]
         if result:
-            self._set_textview("textview_comment", result.data)
+            self._set_text_view("text_view_comment", result.data)
             answer = dict(zip(ALL_STATUS, answers))[result.status]
-            self._set_active("radiobutton_%s" % answer)
+            self._set_active("radio_button_%s" % answer)
         else:
-            self._set_textview("textview_comment")
-            self._set_active("radiobutton_skip")
+            self._set_text_view("text_view_comment")
+            self._set_active("radio_button_skip")
 
         self._run_dialog()
 
         # Reset labels
-        self._set_textview("textview_test")
+        self._set_hyper_text_view("hyper_text_view_test")
         self._set_label("button_test", _("_Test"))
 
-        radiobuttons = ["radiobutton_%s" % a for a in answers]
-        status = self._get_radiobutton(dict(zip(radiobuttons, ALL_STATUS)))
-        data = self._get_textview("textview_comment")
+        radio_buttons = ["radio_button_%s" % a for a in answers]
+        status = self._get_radio_button(dict(zip(radio_buttons, ALL_STATUS)))
+        data = self._get_text_view("text_view_comment")
         return TestResult(test, status, data)
 
     @GTKHack
@@ -259,7 +292,7 @@ class GTKInterface(UserInterface):
         if reports:
             paragraphs.append("\n".join(["* %s" % r for r in reports]))
         text = "\n\n".join(paragraphs)
-        self._set_textview("textview_exchange", text)
+        self._set_hyper_text_view("hyper_text_view_exchange", text)
 
         self._run_dialog()
 
@@ -273,7 +306,7 @@ class GTKInterface(UserInterface):
         self._notebook.set_current_page(4)
 
         if message is not None:
-            self._set_textview("textview_final", message)
+            self._set_hyper_text_view("hyper_text_view_final", message)
 
         self._run_dialog()
 
