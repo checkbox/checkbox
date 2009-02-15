@@ -4,7 +4,8 @@ categories: laptop, desktop
 requires: alsa.type == 'playback'
 command: gst_pipeline_test -t 2 'audiotestsrc wave=sine freq=512 ! audioconvert ! audioresample ! gconfaudiosink'
 _description:
- Run the test for the automatically detected playback device.
+ Click the Test button to play a sound on the automatically detected
+ playback device.
  .
  Do you hear a sound?
 
@@ -13,7 +14,7 @@ plugin: manual
 categories: laptop, desktop
 requires: pci.device_class == 3
 _description:
- The following resolution was detected for your display:
+ The following resolution and refresh rate were detected for your display:
  .
  $(resolution_test)
  .
@@ -24,7 +25,7 @@ plugin: manual
 categories: laptop, desktop
 command: gst_pipeline_test -t 2 'videotestsrc ! ffmpegcolorspace ! gconfvideosink'
 _description:
- Run the video test.
+ Click the Test button to display a video test.
  .
  Do you see color bars and static?
 
@@ -60,9 +61,10 @@ _description:
 
 name: keyboard
 plugin: manual
+command: keyboard_test
 requires: 'input.keyboard' in info.capabilities
 _description:
- Typing keys on your keyboard should display
- the corresponding characters in a text area.
+ Click the Test button to open a text area where to type keys on your
+ keyboard.
  .
  Is your keyboard working properly?

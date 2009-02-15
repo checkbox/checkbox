@@ -1,0 +1,75 @@
+#!/usr/bin/python
+
+import os
+import sys
+
+def cli_prompt():
+    import termios
+
+    limit = 50
+    separator = ord("\n")
+    fileno = sys.stdin.fileno()
+    saved_attributes = termios.tcgetattr(fileno)
+    attributes = termios.tcgetattr(fileno)
+    attributes[3] = attributes[3] & ~(termios.ICANON)
+    attributes[6][termios.VMIN] = 1
+    attributes[6][termios.VTIME] = 0
+    termios.tcsetattr(fileno, termios.TCSANOW, attributes)
+
+    sys.stdout.write("Enter text:\n")
+
+    input = ""
+    try:
+        while len(input) < limit:
+            ch = str(sys.stdin.read(1))
+            if ord(ch) == separator:
+                break
+            input += ch
+    finally:
+        termios.tcsetattr(fileno, termios.TCSANOW, saved_attributes)
+
+def gtk_prompt():
+    import pygtk
+    pygtk.require('2.0')
+    import gtk
+
+    # create a new window
+    window = gtk.Window(gtk.WINDOW_TOPLEVEL)
+    window.set_size_request(200, 100)
+    window.set_resizable(False)
+    window.set_title("Type Text")
+    window.connect("delete_event", lambda w,e: gtk.main_quit())
+
+    vbox = gtk.VBox(False, 0)
+    window.add(vbox)
+    vbox.show()
+
+    entry = gtk.Entry()
+    entry.set_max_length(50)
+    vbox.pack_start(entry, True, True, 0)
+    entry.show()
+
+    hbox = gtk.HBox(False, 0)
+    vbox.add(hbox)
+    hbox.show()
+                              
+    button = gtk.Button(stock=gtk.STOCK_CLOSE)
+    button.connect("clicked", lambda w: gtk.main_quit())
+    vbox.pack_start(button, False, False, 0)
+    button.set_flags(gtk.CAN_DEFAULT)
+    button.grab_default()
+    button.show()
+    window.show()
+
+    gtk.main()
+
+def main(args):
+    if "DISPLAY" in os.environ:
+        gtk_prompt()
+    else:
+        cli_prompt()
+
+    return 0
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv[1:]))
