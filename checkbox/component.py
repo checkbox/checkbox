@@ -145,14 +145,6 @@ class ComponentSection(object):
                                 "required attribute: %s" \
                                 % (config_name, attribute.name)
 
-                    # Check unknown attributes
-                    if config:
-                        for config_name in config.attributes.keys():
-                            if config_name not in variables:
-                                logging.info("Configuration '%s' contains " \
-                                    "unknown attribute: %s", config_name,
-                                    attribute)
-
                     return module
 
         raise Exception, "Failed to find module '%s' in: %s" % (name, filenames)
