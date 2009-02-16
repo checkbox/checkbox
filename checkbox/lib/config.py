@@ -78,6 +78,10 @@ class ConfigSection(object):
     def get(self, name):
         return self.attributes.get(name, "")
 
+    def set(self, name, value):
+        self.parent._parser.set(self.name, name, value)
+        self.attributes[name] = value
+
 
 class ConfigDefaults(ConfigSection):
 
@@ -116,6 +120,11 @@ class Config(object):
 
             self._parser.set(name, option, value)
 
+        # Copy attributes from the parser to avoid one additional
+        # function call on each access.
+        for attr in ["has_section", "remove_section"]:
+            setattr(self, attr, getattr(self._parser, attr))
+
     def get_defaults(self):
         attributes = self._parser.defaults()
         return ConfigDefaults(self, 'DEFAULT', attributes)
@@ -129,3 +138,7 @@ class Config(object):
 
     def get_section_names(self):
         return self._parser.sections()
+
+    def add_section(self, name):
+        self._parser.add_section(name)
+        return self.get_section(name)

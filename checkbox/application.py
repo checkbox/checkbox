@@ -137,6 +137,14 @@ class ApplicationManager(object):
         config_file = posixpath.expanduser(args[1])
         config = Config(config_file, options.config)
 
+        section_name = "checkbox/plugins/client_info"
+        section = config.get_section(section_name)
+        if not section:
+            section = config.add_section(section_name)
+        section.set("name", posixpath.basename(config.path) \
+            .replace(".ini", ""))
+        section.set("version", config.get_defaults().version)
+
         # Check options
         if options.version:
             print config.get_defaults().version
