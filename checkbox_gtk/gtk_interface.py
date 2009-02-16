@@ -21,7 +21,6 @@
 import re
 import gtk, gtk.glade
 import posixpath
-import webbrowser
 
 from gettext import gettext as _
 
@@ -30,15 +29,6 @@ from checkbox.user_interface import UserInterface
 
 # Import to register HyperTextView type with gtk
 from checkbox_gtk.hyper_text_view import HyperTextView
-
-
-def _open_link(widget, uri):
-    for command in ['sensible-browser', 'xdg-open']:
-        if webbrowser._iscommand(command):
-            webbrowser._tryorder.insert(0, '%s "%%s"' % command)
-    webbrowser.open(uri)
-
-gtk.link_button_set_uri_hook(_open_link)
 
 
 # HACK: Setting and unsetting previous and next buttons to workaround
@@ -124,7 +114,7 @@ class GTKInterface(UserInterface):
 
     def _set_hyper_text_view(self, name, text=""):
         def clicked(widget, text, anchor, button):
-            _open_link(widget, anchor)
+            self.show_url(anchor)
 
         widget = self._get_widget(name)
         widget.connect("anchor-clicked", clicked)
