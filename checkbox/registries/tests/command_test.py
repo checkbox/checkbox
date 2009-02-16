@@ -1,9 +1,7 @@
 #
-# Copyright (c) 2008 Canonical
-#
-# Written by Marc Tardif <marc@interunion.ca>
-#
 # This file is part of Checkbox.
+#
+# Copyright 2008 Canonical Ltd.
 #
 # Checkbox is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
