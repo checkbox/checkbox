@@ -55,7 +55,7 @@ update_configuration()
 
         # Invoke ucf, which will take care of the rest, and ask
         # the user if he wants to update his file, if it is modified.
-        [ -e "$config" ] && ucf $tempfile $config || cp $tempfile $config
+        [ -e "$config" ] && ucf --debconf-ok $tempfile $config || cp $tempfile $config
 
         # Now clear up the cruft.
         rm -f $tempfile
