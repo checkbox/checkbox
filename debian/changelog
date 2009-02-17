@@ -1,6 +1,18 @@
-checkbox (0.5) UNRELEASED; urgency=low
+checkbox (0.5) jaunty; urgency=low
 
-  * Updated maintainer details in debian/control file.
+  * New upstream version:
+    * Added concept of hyper text view to display clickable links.
+    * Added concept of properties to components.
+    * Added pci information to launchpad report.
+    * Added dmi information to launchpad report.
+    * Added text area to keyboard test.
+    * Removed sourcing of base postrm script.
+    * Updated translations from Launchpad.
+  * Fixed handling of interrupt signal (LP: #327810)
+  * Fixed display of text in graphical interface (LP: #240374)
+  * Fixed support for regexes in blacklist and whitelist (LP: #327177)
+  * Fixed opening of subunit log file (LP: #325737)
+  * Fixed internet test.
 
  -- Marc Tardif <marc@ubuntu.com>  Tue, 20 Jan 2009 18:55:20 -0500
 
