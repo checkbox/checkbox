@@ -106,7 +106,7 @@ class Install(object):
 
                 element = {}
                 for line in block.split("\n"):
-                    if line.startswith(" "):
+                    if not line or line.startswith(" "):
                         continue
 
                     (key, value) = line.split(self.template_separator, 1)
