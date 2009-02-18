@@ -29,6 +29,8 @@ class LaunchpadReport(Plugin):
 
     # Filename where submission information is cached.
     filename = String(default="%(checkbox_data)s/submission.xml")
+    # XSL Stylesheet
+    stylesheet = String(default="%(checkbox_share)s/report/checkbox.xsl")
 
     def register(self, manager):
         super(LaunchpadReport, self).register(manager)
@@ -102,7 +104,8 @@ class LaunchpadReport(Plugin):
 
     def report(self):
         # Prepare the payload and attach it to the form
-        report_manager = LaunchpadReportManager("system", "1.0")
+        xsl = posixpath.abspath(self.stylesheet)
+        report_manager = LaunchpadReportManager("system", "1.0", xsl)
         payload = report_manager.dumps(self._report).toprettyxml("")
 
         directory = posixpath.dirname(self.filename)

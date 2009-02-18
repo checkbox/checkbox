@@ -1,0 +1,88 @@
+body {
+    font-size:75%;
+    color:#222;
+    background:#fff;
+    font-family:"Helvetica Neue", Arial, Helvetica, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight:normal;color:#111;
+}
+
+h1 {
+    font-size:3em;
+    line-height:1;
+    margin-bottom:0.5em;
+}
+
+h2 {
+    font-size:2em;
+    margin-bottom:0.75em;
+}
+
+h3 {
+    font-size:1.5em;
+    line-height:1;
+    margin-bottom:1em;
+}
+
+p {
+    margin:0 0 1.5em;
+}
+
+a {
+    color:#009;
+    text-decoration:underline;
+}
+
+pre {
+    margin:1.5em 0;
+    white-space:pre;
+}
+
+pre, code, tt {
+    font:1em 'andale mono', 'lucida console', monospace;
+    line-height:1.5;
+}
+
+li ul, li ol {
+    margin:0 1.5em;
+}
+
+ul, ol {
+    margin:0 1.5em 1.5em 1.5em;
+}
+
+ul {
+    list-style-type:disc;
+}
+
+ol {
+    list-style-type:decimal;
+}
+
+table {
+    margin-bottom:1.4em;
+    width:100%;
+}
+
+th {
+    text-align:left;
+    font-weight:bold;
+}
+
+thead th {
+    background:#c3d9ff;
+}
+
+th, td {
+    padding:4px 10px 4px 5px;
+}
+
+td.label {    
+    background: #eee;
+}
+
+td.property {
+    font:1em 'andale mono', 'lucida console', monospace;
+}

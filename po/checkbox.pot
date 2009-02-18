@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-16 21:13-0500\n"
+"POT-Creation-Date: 2009-02-18 23:25+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,7 +20,7 @@ msgstr ""
 msgid "Further information:"
 msgstr ""
 
-#: ../gtk/checkbox-gtk.glade.h:2 ../checkbox_gtk/gtk_interface.py:301
+#: ../gtk/checkbox-gtk.glade.h:2 ../checkbox_gtk/gtk_interface.py:308
 msgid "Ne_xt"
 msgstr ""
 
@@ -57,7 +57,7 @@ msgstr ""
 msgid "_Skip this test"
 msgstr ""
 
-#: ../gtk/checkbox-gtk.glade.h:11 ../checkbox_gtk/gtk_interface.py:263
+#: ../gtk/checkbox-gtk.glade.h:11 ../checkbox_gtk/gtk_interface.py:270
 msgid "_Test"
 msgstr ""
 
@@ -197,7 +197,7 @@ msgstr ""
 msgid "test"
 msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:226 ../checkbox_gtk/gtk_interface.py:221
+#: ../checkbox_cli/cli_interface.py:226 ../checkbox_gtk/gtk_interface.py:228
 #, python-format
 msgid "Running test %s..."
 msgstr ""
@@ -222,11 +222,11 @@ msgstr ""
 msgid "Successfully sent information to server!"
 msgstr ""
 
-#: ../checkbox_gtk/gtk_interface.py:228
+#: ../checkbox_gtk/gtk_interface.py:235
 msgid "_Test Again"
 msgstr ""
 
-#: ../checkbox_gtk/gtk_interface.py:293
+#: ../checkbox_gtk/gtk_interface.py:300
 msgid "_Finish"
 msgstr ""
 
@@ -251,42 +251,46 @@ msgstr ""
 msgid "Please select the category of your system."
 msgstr ""
 
-#: ../plugins/exchange_prompt.py:55
+#: ../plugins/exchange_prompt.py:57
 msgid "Device information"
 msgstr ""
 
-#: ../plugins/exchange_prompt.py:58
+#: ../plugins/exchange_prompt.py:60
 msgid "Distribution details"
 msgstr ""
 
-#: ../plugins/exchange_prompt.py:61
+#: ../plugins/exchange_prompt.py:63
 msgid "Packages installed"
 msgstr ""
 
-#: ../plugins/exchange_prompt.py:64
+#: ../plugins/exchange_prompt.py:66
 msgid "Processor information"
 msgstr ""
 
-#: ../plugins/exchange_prompt.py:67
+#: ../plugins/exchange_prompt.py:69
 msgid "Test results"
 msgstr ""
 
-#: ../plugins/exchange_prompt.py:79
+#: ../plugins/exchange_prompt.py:81
 msgid "Exchange"
 msgstr ""
 
-#: ../plugins/exchange_prompt.py:82
+#: ../plugins/exchange_prompt.py:87
+#, python-format
 msgid ""
-"The following information will be sent to the Launchpad hardware database. "
+"The following information will be sent to the Launchpad hardware database.\n"
+"\n"
+"[[%s|View Report]]\n"
+"\n"
 "Please provide the e-mail address you use to sign in to Launchpad to submit "
 "this information."
 msgstr ""
 
-#: ../plugins/exchange_prompt.py:90
+#: ../plugins/exchange_prompt.py:98
 msgid "Email address must be in a proper format."
 msgstr ""
 
-#: ../plugins/exchange_prompt.py:95
+#: ../plugins/exchange_prompt.py:103
 msgid "Exchanging information with the server..."
 msgstr ""
 

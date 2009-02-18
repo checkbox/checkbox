@@ -118,6 +118,7 @@ results can then be sent to Launchpad.
         ("share/checkbox/patches/", ["patches/*"]),
         ("share/checkbox/plugins/", ["plugins/*.py"]),
         ("share/checkbox/registries/", ["registries/*.py"]),
+        ("share/checkbox/report/", ["report/*"]),
         ("share/checkbox/scripts/", ["scripts/*"]),
         ("share/checkbox/gtk/", ["gtk/checkbox-gtk.glade", "gtk/*.png"])],
     scripts = ["bin/checkbox-gtk", "bin/checkbox-cli"],
