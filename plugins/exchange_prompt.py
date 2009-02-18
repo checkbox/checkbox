@@ -16,6 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
+import posixpath
 import re
 
 from gettext import gettext as _
@@ -30,6 +31,7 @@ class ExchangePrompt(Plugin):
 
     # E-mail address used to sign in to Launchpad.
     email = String(required=False)
+    report = String(default="%(checkbox_data)s/submission.xml")
 
     def register(self, manager):
         super(ExchangePrompt, self).register(manager)
@@ -78,11 +80,17 @@ class ExchangePrompt(Plugin):
                 if self._error:
                     interface.show_error(_("Exchange"), self._error)
 
+                url = "file://%s" % posixpath.abspath(self.report)
+                print url
+
                 email = interface.show_exchange(email, self._reports,
                     _("""\
 The following information will be sent to the Launchpad \
-hardware database. Please provide the e-mail address you \
-use to sign in to Launchpad to submit this information."""))
+hardware database.\n
+[[%s|View Report]]\n
+Please provide the e-mail address you use to sign in to Launchpad to \
+submit this information.""" % url))
+
 
             if interface.direction == PREV:
                 break
