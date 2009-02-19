@@ -28,5 +28,8 @@ class DmiRegistry(CommandRegistry):
     # Command to retrieve dmi information.
     command = String(default="dmidecode")
 
+    # User to run dmi command
+    user = String(default="root")
+
 
 factory = DmiRegistry

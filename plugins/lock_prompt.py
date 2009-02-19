@@ -22,14 +22,14 @@ from gettext import gettext as _
 
 from checkbox.contrib.glock import GlobalLock, LockAlreadyAcquired
 
-from checkbox.properties import String
+from checkbox.properties import Path
 from checkbox.plugin import Plugin
 
 
 class LockPrompt(Plugin):
 
     # Filename where the application lock is stored.
-    filename = String(default="%(checkbox_data)s/lock")
+    filename = Path(default="%(checkbox_data)s/lock")
 
     def register(self, manager):
         super(LockPrompt, self).register(manager)

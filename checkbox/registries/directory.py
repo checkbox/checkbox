@@ -21,7 +21,7 @@
 import os
 import logging
 
-from checkbox.properties import String
+from checkbox.properties import Path
 from checkbox.registry import Registry
 
 
@@ -34,7 +34,7 @@ class DirectoryRegistry(Registry):
     Subclasses should define a directory parameter.
     """
 
-    directory = String(required=False)
+    directory = Path(required=False)
 
     def __init__(self, directory=None):
         super(DirectoryRegistry, self).__init__()

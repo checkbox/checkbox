@@ -22,14 +22,14 @@ import logging
 
 from checkbox.test import FAIL, PASS, SKIP
 
-from checkbox.properties import String
+from checkbox.properties import Path
 from checkbox.plugin import Plugin
 
 
 class SubunitReport(Plugin):
 
     # Filename where to store the subunit report
-    filename = String(default="%(checkbox_data)s/subunit.log")
+    filename = Path(default="%(checkbox_data)s/subunit.log")
 
     result_status_table = {
         FAIL: "failure",

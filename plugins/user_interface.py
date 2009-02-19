@@ -20,7 +20,7 @@
 #
 from checkbox.lib.iterator import Iterator
 
-from checkbox.properties import String
+from checkbox.properties import Path, String
 from checkbox.plugin import Plugin
 
 
@@ -33,7 +33,7 @@ class UserInterface(Plugin):
     title = String(default="System Testing")
 
     # Path where data files are stored.
-    data_path = String(required=False)
+    data_path = Path(required=False)
 
     def register(self, manager):
         super(UserInterface, self).register(manager)

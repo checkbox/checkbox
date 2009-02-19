@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE policyconfig PUBLIC
+ "-//freedesktop//DTD PolicyKit Policy Configuration 1.0//EN"
+ "http://www.freedesktop.org/standards/PolicyKit/1.0/policyconfig.dtd">
+<policyconfig>
+
+  <!--
+    Policy definitions for checkbox system actions.
+    (C) 2008 Canonical Ltd.
+    Author: Marc Tardif <marc.tardif@canonical.com>
+  -->
+
+  <vendor>Checkbox System Testing</vendor>
+  <vendor_url>https://launchpad.net/checkbox</vendor_url>
+  <icon_name>checkbox</icon_name>
+
+  <action id="com.ubuntu.checkbox.test">
+    <description>Run system tests</description>
+    <message>System policy prevents running system tests</message>
+    <defaults>
+      <allow_any>yes</allow_any>
+      <allow_inactive>yes</allow_inactive>
+      <allow_active>yes</allow_active>
+    </defaults>
+  </action>
+
+  <action id="com.ubuntu.checkbox.info">
+    <description>Get system information</description>
+    <message>System policy prevents getting system information</message>
+    <defaults>
+      <allow_any>yes</allow_any>
+      <allow_inactive>yes</allow_inactive>
+      <allow_active>yes</allow_active>
+    </defaults>
+  </action>
+</policyconfig>

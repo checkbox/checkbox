@@ -20,14 +20,14 @@
 #
 import re
 
-from checkbox.properties import String
+from checkbox.properties import Path
 from checkbox.plugin import Plugin
 
 
 class DiskInfo(Plugin):
 
     # Filename where casper logs installation information.
-    filename = String(default="/var/log/installer/casper.log")
+    filename = Path(default="/var/log/installer/casper.log")
 
     def register(self, manager):
         super(DiskInfo, self).register(manager)

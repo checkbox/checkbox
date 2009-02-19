@@ -23,6 +23,7 @@ import re
 from checkbox.lib.cache import cache
 
 from checkbox.component import ComponentManager
+from checkbox.properties import String
 
 
 class Registry(object):
@@ -36,6 +37,8 @@ class Registry(object):
     """
 
     _id = 0
+
+    user = String(required=False)
 
     def __init__(self):
         super(Registry, self).__init__()

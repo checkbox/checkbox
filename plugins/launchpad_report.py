@@ -22,7 +22,7 @@ import posixpath
 
 from checkbox.lib.safe import safe_make_directory
 
-from checkbox.properties import String
+from checkbox.properties import Path
 from checkbox.plugin import Plugin
 from checkbox.reports.launchpad_report import LaunchpadReportManager
 
@@ -30,7 +30,7 @@ from checkbox.reports.launchpad_report import LaunchpadReportManager
 class LaunchpadReport(Plugin):
 
     # Filename where submission information is cached.
-    filename = String(default="%(checkbox_data)s/submission.xml")
+    filename = Path(default="%(checkbox_data)s/submission.xml")
 
     def register(self, manager):
         super(LaunchpadReport, self).register(manager)

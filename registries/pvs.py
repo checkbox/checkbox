@@ -38,6 +38,9 @@ class PvsRegistry(CommandRegistry):
     # Command to retrieve physical volume information
     command = String(default="pvs")
 
+    # User to run pvs command
+    user = String(default="root")
+
     @cache
     def items(self):
         items = []

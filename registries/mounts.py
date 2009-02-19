@@ -21,7 +21,7 @@
 from checkbox.lib.cache import cache
 from checkbox.lib.conversion import string_to_type
 
-from checkbox.properties import String
+from checkbox.properties import Path
 from checkbox.registries.filename import FilenameRegistry
 from checkbox.registries.map import MapRegistry
 
@@ -34,7 +34,7 @@ class MountsRegistry(FilenameRegistry):
     """
 
     # Filename where mounts arel stored.
-    filename = String(default="/proc/mounts")
+    filename = Path(default="/proc/mounts")
 
     @cache
     def items(self):

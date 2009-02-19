@@ -20,12 +20,7 @@
 #
 import re
 
-from checkbox.component import ComponentManager, ComponentSection
-
-
-class PluginSection(ComponentSection):
-
-    pass
+from checkbox.component import ComponentManager
 
 
 class PluginManager(ComponentManager):
@@ -33,8 +28,6 @@ class PluginManager(ComponentManager):
     Plugin manager which extends the component to support the concepts
     of a reactor.
     """
-    _section_factory = PluginSection
-
     def __init__(self, config, reactor, registry):
         super(PluginManager, self).__init__(config)
         self.reactor = reactor
