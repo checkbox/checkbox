@@ -1,10 +1,29 @@
-checkbox (0.5) UNRELEASED; urgency=low
+checkbox (0.6) UNRELEASED; urgency=low
 
   * New upstream version:
+    * Added suspend_test script - for more details see:
+      https://wiki.ubuntu.com/KernelTeam/SuspendResumeTesting
+    * Added XSL Stylesheet and the ability to view generated reports
+    * Added support for PolicyKit to run the application as a user
+  * Fixed calling ucf was run via debconf (LP: #330502)
+
+ -- Marc Tardif <marc@ubuntu.com>  Tue, 17 Feb 2009 15:36:05 +0000
+
+checkbox (0.5) jaunty; urgency=low
+
+  * New upstream version:
+    * Added concept of hyper text view to display clickable links.
+    * Added concept of properties to components.
     * Added pci information to launchpad report.
     * Added dmi information to launchpad report.
-  * Fixed postrm script by not sourcing base script (LP: #324215)
+    * Added text area to keyboard test.
+    * Removed sourcing of base postrm script.
+    * Updated translations from Launchpad.
+  * Fixed handling of interrupt signal (LP: #327810)
+  * Fixed display of text in graphical interface (LP: #240374)
+  * Fixed support for regexes in blacklist and whitelist (LP: #327177)
   * Fixed opening of subunit log file (LP: #325737)
+  * Fixed internet test.
 
  -- Marc Tardif <marc@ubuntu.com>  Tue, 20 Jan 2009 18:55:20 -0500
 

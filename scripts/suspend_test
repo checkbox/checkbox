@@ -1,0 +1,317 @@
+#!/bin/bash
+#
+# Script to automate suspend / resume
+#
+# Copyright (C) 2008-2009 Canonical Ltd.
+#
+# Authors:
+#  Michael Frey <michael.frey@canonical.com>
+#  Andy Whitcroft <apw@canonical.com>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License version 2,
+# as published by the Free Software Foundation.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+#
+# Script to automate suspend / resume
+#
+# We set a RTC alarm that wakes the system back up and then sleep
+# for  seconds before we go back to sleep.
+#
+# Changelog:
+#
+# V5:
+#  - send dbus messages as the original user
+#  - stop clearing the dmesg as we go
+#  - stop using trace generally as this affects the wakeups
+#  - do a single dbus test then move to pm-suspend to avoid screensaver
+#  - timeout waiting for a suspend to complete catching failure to go down
+#
+# V4:
+#  - update the help output
+#  - add --comprehensive to do AC related tests
+#  - add --extensive to do a range of time related tests
+#  - add --full to enable all harder tests
+#  - add fallback to pm-suspend for Kbuntu
+#  - collect dmesg output
+#  - remove hwclock update
+#
+# V3:
+#  - fix typo in fallback acpi interface
+#  - when recording the RTC clock do not go direct
+#  - pmi is now deprecated suspend using dbus
+#
+# V2:
+#  - support newer rtc sysfs wakealarm interface
+#  - move to using pmi action suspend
+#  - allow the user to specify the number of iterations
+#  - ensure we are running as root
+#  - report the iterations to the user
+#  - clean up the output and put it in a standard logfile
+#  - add a descriptive warning and allow user cancel
+#  - add tracing enable/disable
+#  - fix logfile location
+#  - add a failure cleanup mode
+#  - make time sleep time and delay time configurable
+#  - ensure the log directory exists
+#  - clock will be fixed automatically on network connect
+#  - default sleep before wakeup to 20s
+#  - do not use dates after we have corrupted the clock
+#  - sort out the copyright information
+#  - we do not have any failure cleanup currently
+#
+# V1:
+#  - add the suspend test scripts
+#
+P="test-suspend"
+
+LOGDIR='/var/lib/pm-utils'
+LOGFILE="$LOGDIR/stress.log"
+
+setup_wakeup_timer ()
+{
+	timeout="$1"
+
+	#
+	# Request wakeup from the RTC or ACPI alarm timers.  Set the timeout
+	# at 'now' + $timeout seconds.
+	#
+	ctl='/sys/class/rtc/rtc0/wakealarm'
+	if [ -f "$ctl" ]; then
+		time=`date '+%s' -d "+ $timeout seconds"`
+		# Cancel any outstanding timers.
+		echo "0" >"$ctl"
+		# rtcN/wakealarm uses absolute time in seconds
+		echo "$time" >"$ctl"
+		return 0
+	fi
+	ctl='/proc/acpi/alarm'
+	if [ -f "$ctl" ]; then
+		echo `date '+%F %H:%M:%S' -d '+ '$timeout' seconds'` >"$ctl"
+		return 0
+	fi
+
+	echo "no method to awaken machine automatically" 1>&2
+	exit 1
+}
+
+suspend_system ()
+{
+	setup_wakeup_timer "$timer_sleep"
+
+	dmesg >"$LOGFILE.dmesg.A"
+
+	# Send a dbus message to initiate Suspend.
+	if [ "$suspend_dbus" -eq 1 ]; then
+		sudo -u $SUDO_USER dbus-send --session --type=method_call \
+			--dest=org.freedesktop.PowerManagement \
+			/org/freedesktop/PowerManagement \
+			org.freedesktop.PowerManagement.Suspend \
+			>> "$LOGFILE" || {
+				ECHO "FAILED: dbus suspend failed"
+				return
+			}
+	else
+		pm-suspend >> "$LOGFILE"
+	fi
+
+	# Wait on the machine coming back up -- pulling the dmesg over.
+	echo "v---" >>"$LOGFILE"
+	retry=30
+	while [ "$retry" -gt 0 ]; do
+		let "retry=$retry-1"
+
+		# Accumulate the dmesg delta.
+		dmesg >"$LOGFILE.dmesg.B"
+		diff "$LOGFILE.dmesg.A" "$LOGFILE.dmesg.B" | \
+			grep '^>' >"$LOGFILE.dmesg"
+		mv "$LOGFILE.dmesg.B" "$LOGFILE.dmesg.A"
+
+		echo "Waiting for suspend to complete $retry to go ..." \
+							>> "$LOGFILE"
+		cat "$LOGFILE.dmesg" >> "$LOGFILE"
+
+		if [ "`grep -c 'Back to C!' $LOGFILE.dmesg`" -ne 0 ]; then
+			break;
+		fi
+		sleep 1
+	done
+	echo "^---" >>"$LOGFILE"
+	rm -f "$LOGFILE.dmesg"*
+	if [ "$retry" -eq 0 ]; then
+		ECHO "SUSPEND FAILED, did not go to sleep"
+	fi
+}
+
+delay_system ()
+{
+	#
+	# wait for $timer_delay seconds after system resume from S3
+	#
+	ECHO "wait for $timer_delay seconds"
+	sleep $timer_delay
+}
+
+ECHO ()
+{
+	echo "$@" | tee -a "$LOGFILE"
+}
+
+run_suspend ()
+{
+	CNT=1
+	TOTAL=$1
+	ECHO "Suspend Test starting on $(date '+%F %H:%M:%S') ($TOTAL cycles)"
+	while [ "$CNT" -le "$TOTAL" ]
+	do
+		ECHO "Suspend iteration $CNT of $TOTAL"
+
+		suspend_system "$START"
+		delay_system
+
+		(( CNT++ ))
+	done
+	ECHO "Suspend Test completed"
+}
+
+enable_trace()
+{
+    echo 1 > '/sys/power/pm_trace'
+}
+
+disable_trace()
+{
+    echo 0 > '/sys/power/pm_trace'
+}
+
+#
+# MAIN
+#
+USAGE="$P [--sleep <seconds>] [--delay <seconds>] [<iterations>]"
+# We need TEMP as the `eval set --' would nuke the return value of getopt.
+TEMP=`getopt -o '' -l sleep:,delay:,comprehensive,exhaustive,full -n "$P" -- "$@"`
+if [ $? != 0 ] ; then
+	echo "$USAGE"
+        exit 1
+fi
+
+# Note the quotes around `$TEMP': they are essential!
+eval set -- "$TEMP"
+
+# Options handling.
+iterations=10
+timer_sleep=20
+timer_delay=10
+comprehensive=0
+exhaustive=0
+
+while :
+do
+        case "$1" in
+	--sleep)		timer_sleep="$2"; shift 2 ;;
+	--delay)		timer_delay="$2"; shift 2 ;;
+	--comprehensive)	comprehensive=1; shift 1 ;;
+	--exhaustive)		exhaustive=1; shift 1 ;;
+	--full)			comprehensive=1; exhaustive=1; shift 1 ;;
+        --)                     shift; break ;;
+        esac
+done
+
+if [ "$#" -gt 1 ]; then
+	echo "Usage: $USAGE" 1>&2
+	exit 1
+fi
+if [ "$#" -eq 1 ]; then
+	iterations="$1"
+fi
+
+suspend_dbus=0
+
+# Check we are running as root as we are going to fiddle with the clock
+# and use the rtc wakeups.
+id=`id -u`
+if [ "$id" -ne 0 ]; then
+	echo "ERROR: must be run as root to perform this test, use sudo:" 1>&2
+	echo "       sudo $0 $@" 1>&2
+	exit 1
+fi
+
+phase=0
+phase_last=0
+phase()
+{
+	let phase="$phase+1"
+
+	cat - <<-EOM
+
+	*** TEST $phase -- $@
+	*** TEST $phase -- machine will suspend for $timer_sleep seconds, press return when ready
+	EOM
+	if [ "$phase_last" -eq 1 ]; then
+		echo "*** NOTE: there will be no further user interaction from this point"
+	fi
+	read x
+	echo ""
+}
+
+cat - <<EOM
+This script will attempt to suspend and resume your computer a number of times.
+Should the machine fail to resume, first attempt to manually resume it.  If
+that fails power your system off and on which will generate an apport bug
+report automatically.
+
+Press CTRL-C now to abort testing ...
+EOM
+
+# Ensure the log directory exists.
+mkdir -p "$LOGDIR"
+
+if [ "$comprehensive" -eq 1 ]; then
+	suspend_dbus=1
+	phase "testing suspend via dbus"
+	suspend_system
+	suspend_dbus=0
+
+	phase "please ensure your AC cord is detached"
+	suspend_system
+
+	phase "please ensure your AC cord is attached"
+	suspend_system
+	
+	phase "please remove the AC cord while the machine is suspended"
+	suspend_system
+
+	phase "please insert the AC cord while the machine is suspended"
+	suspend_system
+
+fi
+if [ "$exhaustive" -eq 1 ]; then
+	timer_delay=60
+	phase_last=1
+	phase "exhaustive $timer_delay iteration variable delay suspend/resume stress test"
+	while [ "$timer_delay" -gt 0 ]; do
+		echo "*** delay $timer_delay ..."
+		suspend_system
+		delay_system
+		let timer_delay="$timer_delay - 2"
+	done
+else
+
+	phase "basic $iterations iteration suspend/resume stress test"
+	#enable_trace
+	run_suspend "$iterations"
+	#disable_trace
+fi
+
+# XXX: apw: any positive report needs to be triggered here
+
+# All suceessful, clean up.
+rm -f "$LOGFILE"

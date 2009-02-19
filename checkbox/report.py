@@ -1,9 +1,7 @@
 #
-# Copyright (c) 2008 Canonical
-#
-# Written by Marc Tardif <marc@interunion.ca>
-#
 # This file is part of Checkbox.
+#
+# Copyright 2008 Canonical Ltd.
 #
 # Checkbox is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -29,9 +27,10 @@ class ReportManager(object):
     handlers to understand the formats for dumping and loading actions.
     """
 
-    def __init__(self, name, version=None):
+    def __init__(self, name, version=None, stylesheet=None):
         self.name = name
         self.version = version
+        self.stylesheet = stylesheet
         self.dumps_table = {}
         self.loads_table = {}
         self.document = None
@@ -85,6 +84,14 @@ class ReportManager(object):
         supported by the reports added to the manager.
         """
         self.document = Document()
+
+        if self.stylesheet: 
+            type = "text/xsl"
+            href = "file://%s" % self.stylesheet
+            style = self.document.createProcessingInstruction("xml-stylesheet",
+                "type=\"%s\" href=\"%s\"" % (type, href))
+            self.document.appendChild(style)
+
         node = self.document.createElement(self.name)
         self.document.appendChild(node)
 
