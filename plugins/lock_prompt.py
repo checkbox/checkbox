@@ -16,9 +16,13 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
+import posixpath
+
 from gettext import gettext as _
 
 from checkbox.contrib.glock import GlobalLock, LockAlreadyAcquired
+
+from checkbox.lib.safe import safe_make_directory
 
 from checkbox.properties import Path
 from checkbox.plugin import Plugin
@@ -36,6 +40,9 @@ class LockPrompt(Plugin):
         self._manager.reactor.call_on("prompt-begin", self.prompt_begin)
 
     def prompt_begin(self, interface):
+        directory = posixpath.dirname(self.filename)
+        safe_make_directory(directory)
+
         self._lock = GlobalLock(self.filename)
         try:
             self._lock.acquire()
