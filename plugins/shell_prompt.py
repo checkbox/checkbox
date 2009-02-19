@@ -40,7 +40,5 @@ class ShellPrompt(Plugin):
             interface.show_wait(_("Running shell tests..."),
                 self._run_shell, test)
 
-        self._manager.reactor.stop()
-
 
 factory = ShellPrompt

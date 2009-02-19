@@ -111,13 +111,11 @@ class PromptTest(Plugin):
     def test_all(self, test):
         self._tests.append(test)
 
-        self._manager.reactor.call_on("prompt-test-shell",
-            self.prompt_test_shell)
-
     def prompt_test(self, interface, test):
-        result = TestResult(test, status=SKIP,
-            data="Test not handled by any plugin.")
-        self._manager.reactor.fire("report-result", result)
+        if not self._result or self._result.test != test:
+            result = TestResult(test, status=SKIP,
+                data="Test not handled by any plugin.")
+            self._manager.reactor.fire("report-result", result)
 
     def prompt_tests(self, interface):
         if not self._traverser:

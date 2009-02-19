@@ -34,7 +34,6 @@ class ManualPrompt(Plugin):
         result = interface.show_test(test, result)
         self._results[(test.suite, test.name)] = result
         self._manager.reactor.fire("report-result", result)
-        self._manager.reactor.stop()
 
 
 factory = ManualPrompt
