@@ -43,7 +43,7 @@ class Config(ConfigParser):
         sections = sorted(self._sections)
         for section in sections:
             fp.write("[%s]\n" % section)
-            options = self._sections[section].items()
+            options = self._sections[section]
             options = [(k, options[k]) for k in sorted(options.keys())]
             for (key, value) in options:
                 if key != "__name__":
