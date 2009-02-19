@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-18 23:29-0500\n"
+"POT-Creation-Date: 2009-02-18 23:41-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,11 +16,11 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../gtk/checkbox-gtk.glade.h:1 ../checkbox_cli/cli_interface.py:236
+#: ../gtk/checkbox-gtk.glade.h:1 ../checkbox_cli/cli_interface.py:234
 msgid "Further information:"
 msgstr ""
 
-#: ../gtk/checkbox-gtk.glade.h:2 ../checkbox_gtk/gtk_interface.py:303
+#: ../gtk/checkbox-gtk.glade.h:2 ../checkbox_gtk/gtk_interface.py:308
 msgid "Ne_xt"
 msgstr ""
 
@@ -29,7 +29,7 @@ msgid "Successfully sent information!"
 msgstr ""
 
 #: ../gtk/checkbox-gtk.glade.h:4 ../gtk/checkbox-gtk.desktop.in.h:1
-#: ../checkbox_cli/cli_interface.py:186 ../checkbox_cli/cli_interface.py:226
+#: ../checkbox_cli/cli_interface.py:184 ../checkbox_cli/cli_interface.py:224
 msgid "System Testing"
 msgstr ""
 
@@ -57,7 +57,7 @@ msgstr ""
 msgid "_Skip this test"
 msgstr ""
 
-#: ../gtk/checkbox-gtk.glade.h:11 ../checkbox_gtk/gtk_interface.py:265
+#: ../gtk/checkbox-gtk.glade.h:11 ../checkbox_gtk/gtk_interface.py:270
 msgid "_Test"
 msgstr ""
 
@@ -148,106 +148,106 @@ msgstr ""
 msgid "Is your keyboard working properly?"
 msgstr ""
 
-#: ../checkbox/application.py:91
+#: ../checkbox/application.py:89
 msgid "Usage: checkbox [OPTIONS]"
 msgstr ""
 
-#: ../checkbox/application.py:95
+#: ../checkbox/application.py:93
 msgid "Print version information and exit."
 msgstr ""
 
-#: ../checkbox/application.py:98
+#: ../checkbox/application.py:96
 msgid "The file to write the log to."
 msgstr ""
 
-#: ../checkbox/application.py:101
+#: ../checkbox/application.py:99
 msgid "One of debug, info, warning, error or critical."
 msgstr ""
 
-#: ../checkbox/application.py:106
+#: ../checkbox/application.py:104
 msgid "Configuration override parameters."
 msgstr ""
 
-#: ../checkbox/application.py:136
+#: ../checkbox/application.py:134
 msgid "Missing configuration file as argument.\n"
 msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:116
+#: ../checkbox_cli/cli_interface.py:114
 msgid "Press any key to continue..."
 msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:125
+#: ../checkbox_cli/cli_interface.py:123
 #, python-format
 msgid "Please choose (%s): "
 msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:208
+#: ../checkbox_cli/cli_interface.py:206
 msgid "yes"
 msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:208
+#: ../checkbox_cli/cli_interface.py:206
 msgid "no"
 msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:208
+#: ../checkbox_cli/cli_interface.py:206
 msgid "skip"
 msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:210
+#: ../checkbox_cli/cli_interface.py:208
 msgid "test"
 msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:228 ../checkbox_gtk/gtk_interface.py:223
+#: ../checkbox_cli/cli_interface.py:226 ../checkbox_gtk/gtk_interface.py:228
 #, python-format
 msgid "Running test %s..."
 msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:232
+#: ../checkbox_cli/cli_interface.py:230
 msgid "test again"
 msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:238
+#: ../checkbox_cli/cli_interface.py:236
 msgid "Please type here and press Ctrl-D when finished:\n"
 msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:246
+#: ../checkbox_cli/cli_interface.py:244
 msgid "Authentication"
 msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:260
+#: ../checkbox_cli/cli_interface.py:258
 msgid "Done"
 msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:261
+#: ../checkbox_cli/cli_interface.py:259
 msgid "Successfully sent information to server!"
 msgstr ""
 
-#: ../checkbox_gtk/gtk_interface.py:230
+#: ../checkbox_gtk/gtk_interface.py:235
 msgid "_Test Again"
 msgstr ""
 
-#: ../checkbox_gtk/gtk_interface.py:295
+#: ../checkbox_gtk/gtk_interface.py:300
 msgid "_Finish"
 msgstr ""
 
-#: ../checkbox/user_interface.py:103
+#: ../checkbox/user_interface.py:101
 msgid "Unable to start web browser"
 msgstr ""
 
-#: ../checkbox/user_interface.py:104
+#: ../checkbox/user_interface.py:102
 #, python-format
 msgid "Unable to start web browser to open %s."
 msgstr ""
 
-#: ../plugins/shell_prompt.py:42
+#: ../plugins/shell_prompt.py:40
 msgid "Running shell tests..."
 msgstr ""
 
-#: ../plugins/category_prompt.py:67
+#: ../plugins/category_prompt.py:65
 msgid "Category"
 msgstr ""
 
-#: ../plugins/category_prompt.py:68
+#: ../plugins/category_prompt.py:66
 msgid "Please select the category of your system."
 msgstr ""
 
@@ -271,34 +271,38 @@ msgstr ""
 msgid "Test results"
 msgstr ""
 
-#: ../plugins/exchange_prompt.py:81
+#: ../plugins/exchange_prompt.py:84
 msgid "Exchange"
 msgstr ""
 
-#: ../plugins/exchange_prompt.py:84
+#: ../plugins/exchange_prompt.py:89
+#, python-format
 msgid ""
-"The following information will be sent to the Launchpad hardware database. "
+"The following information will be sent to the Launchpad hardware database.\n"
+"\n"
+"[[%s|View Report]]\n"
+"\n"
 "Please provide the e-mail address you use to sign in to Launchpad to submit "
 "this information."
 msgstr ""
 
-#: ../plugins/exchange_prompt.py:92
+#: ../plugins/exchange_prompt.py:100
 msgid "Email address must be in a proper format."
 msgstr ""
 
-#: ../plugins/exchange_prompt.py:97
+#: ../plugins/exchange_prompt.py:105
 msgid "Exchanging information with the server..."
 msgstr ""
 
-#: ../plugins/gather_prompt.py:36
+#: ../plugins/gather_prompt.py:34
 msgid "Gathering information from your system..."
 msgstr ""
 
-#: ../plugins/intro_prompt.py:34
+#: ../plugins/intro_prompt.py:32
 msgid "Welcome to System Testing!"
 msgstr ""
 
-#: ../plugins/intro_prompt.py:35
+#: ../plugins/intro_prompt.py:33
 msgid ""
 "This application will gather information from your system. Then, you will be "
 "asked manual tests to confirm that the system is working properly. Finally, "
@@ -312,7 +316,7 @@ msgid ""
 "Thank you for taking the time to test your system."
 msgstr ""
 
-#: ../plugins/launchpad_exchange.py:120
+#: ../plugins/launchpad_exchange.py:118
 #, python-format
 msgid ""
 "Failed to contact server. Please try\n"
@@ -323,16 +327,16 @@ msgid ""
 "https://launchpad.net/+hwdb/+submit"
 msgstr ""
 
-#: ../plugins/launchpad_exchange.py:129
+#: ../plugins/launchpad_exchange.py:127
 msgid ""
 "Failed to upload to server,\n"
 "please try again later."
 msgstr ""
 
-#: ../plugins/launchpad_exchange.py:141
+#: ../plugins/launchpad_exchange.py:139
 msgid "Information not posted to Launchpad."
 msgstr ""
 
-#: ../plugins/report_prompt.py:36
+#: ../plugins/report_prompt.py:34
 msgid "Building report..."
 msgstr ""
