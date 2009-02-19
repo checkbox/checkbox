@@ -95,7 +95,7 @@ class checkbox_install_scripts(install_scripts, object):
             infile = posixpath.join("bin", posixpath.basename(outfile))
             substitute_variables(infile, outfile, {
                 "CHECKBOX_SHARE:-.": "CHECKBOX_SHARE:-/usr/share/checkbox",
-                "CHECKBOX_DATA:-.": "CHECKBOX_DATA:-/var/lib/checkbox"})
+                "CHECKBOX_DATA:-.": "CHECKBOX_DATA:-~/.checkbox"})
 
 
 setup(
@@ -110,6 +110,7 @@ This project provides an extensible interface for system testing. The
 results can then be sent to Launchpad.
 """,
     data_files = [
+        ("/etc/dbus-1/system.d/", ["backend/*.conf"]),
         ("share/pixmaps/", ["gtk/checkbox-gtk.xpm"]),
         ("share/checkbox/", ["run"]),
         ("share/checkbox/data/", ["data/*"]),
@@ -118,9 +119,11 @@ results can then be sent to Launchpad.
         ("share/checkbox/patches/", ["patches/*"]),
         ("share/checkbox/plugins/", ["plugins/*.py"]),
         ("share/checkbox/registries/", ["registries/*.py"]),
+        ("share/checkbox/report/", ["report/*"]),
         ("share/checkbox/scripts/", ["scripts/*"]),
-        ("share/checkbox/gtk/", ["gtk/checkbox-gtk.glade", "gtk/*.png"])],
-    scripts = ["bin/checkbox-gtk", "bin/checkbox-cli"],
+        ("share/checkbox/gtk/", ["gtk/checkbox-gtk.glade", "gtk/*.png"]),
+        ("share/dbus-1/system-services", ["backend/*.service"])],
+    scripts = ["bin/checkbox-backend", "bin/checkbox-cli", "bin/checkbox-gtk"],
     packages = ["checkbox", "checkbox.contrib", "checkbox.lib", "checkbox.reports",
         "checkbox.registries", "checkbox_cli", "checkbox_gtk"],
     cmdclass = {

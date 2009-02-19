@@ -115,6 +115,7 @@ class ComponentSection(object):
                             % filename
 
                     module = globals["factory"]()
+                    module.__module__ = name
 
                     config_name = "/".join([self.name, name])
                     config = self._config.parent.get_section(config_name)

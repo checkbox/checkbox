@@ -18,7 +18,7 @@
 #
 from checkbox.lib.template_i18n import TemplateI18n
 
-from checkbox.properties import List, String
+from checkbox.properties import List, Path, String
 from checkbox.plugin import Plugin
 from checkbox.test import Test
 
@@ -26,15 +26,15 @@ from checkbox.test import Test
 class SuitesInfo(Plugin):
 
     # Space separated list of directories where suite files are stored.
-    directories = List(type=String(),
+    directories = List(type=Path(),
         default_factory=lambda:"%(checkbox_share)s/suites")
 
     # Executable path for running scripts. These might be
     # referenced from the above suites for example.
-    scripts_path = String(default="%(checkbox_share)s/scripts")
+    scripts_path = Path(default="%(checkbox_share)s/scripts")
 
     # Data path containing files for scripts.
-    data_path = String(default="%(checkbox_share)s/data")
+    data_path = Path(default="%(checkbox_share)s/data")
 
     # List of suites to blacklist
     blacklist = List(type=String(), default_factory=lambda:"")

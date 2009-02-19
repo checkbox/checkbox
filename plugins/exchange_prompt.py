@@ -16,6 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
+import posixpath
 import re
 
 from gettext import gettext as _
@@ -45,6 +46,7 @@ class ExchangePrompt(Plugin):
              ("report-processors", self.report_processors),
              ("report-results", self.report_results),
              ("exchange-error", self.exchange_error),
+             ("exchange-report", self.exchange_report),
              ("prompt-exchange", self.prompt_exchange)]:
             self._manager.reactor.call_on(rt, rh)
 
@@ -69,6 +71,9 @@ class ExchangePrompt(Plugin):
     def exchange_error(self, error):
         self._error = error
 
+    def exchange_report(self, report):
+        self._report = report
+
     def prompt_exchange(self, interface):
         email = self.persist.get("email") or self.email
 
@@ -78,11 +83,16 @@ class ExchangePrompt(Plugin):
                 if self._error:
                     interface.show_error(_("Exchange"), self._error)
 
+                url = "file://%s" % posixpath.abspath(self._report)
+
                 email = interface.show_exchange(email, self._reports,
                     _("""\
 The following information will be sent to the Launchpad \
-hardware database. Please provide the e-mail address you \
-use to sign in to Launchpad to submit this information."""))
+hardware database.\n
+[[%s|View Report]]\n
+Please provide the e-mail address you use to sign in to Launchpad to \
+submit this information.""" % url))
+
 
             if interface.direction == PREV:
                 break

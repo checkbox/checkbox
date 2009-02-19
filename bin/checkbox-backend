@@ -1,0 +1,7 @@
+#!/bin/bash
+
+export CHECKBOX_DATA=${CHECKBOX_DATA:-.}
+export CHECKBOX_SHARE=${CHECKBOX_SHARE:-.}
+export CHECKBOX_OPTIONS="--log-level=debug --log=/var/log/checkbox.log"
+
+python $CHECKBOX_SHARE/run "$@" $CHECKBOX_SHARE/configs/$(basename $0).ini

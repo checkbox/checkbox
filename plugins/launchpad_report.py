@@ -17,10 +17,11 @@
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
 import posixpath
+import shutil
 
 from checkbox.lib.safe import safe_make_directory
 
-from checkbox.properties import String
+from checkbox.properties import Path
 from checkbox.plugin import Plugin
 from checkbox.reports.launchpad_report import LaunchpadReportManager
 
@@ -28,7 +29,11 @@ from checkbox.reports.launchpad_report import LaunchpadReportManager
 class LaunchpadReport(Plugin):
 
     # Filename where submission information is cached.
-    filename = String(default="%(checkbox_data)s/submission.xml")
+    filename = Path(default="%(checkbox_data)s/submission.xml")
+
+    # XSL Stylesheet
+    xsl_source = Path(default="%(checkbox_share)s/report/checkbox.xsl")
+    xsl_destination = Path(default="%(checkbox_data)s/checkbox.xsl")
 
     def register(self, manager):
         super(LaunchpadReport, self).register(manager)
@@ -102,7 +107,9 @@ class LaunchpadReport(Plugin):
 
     def report(self):
         # Prepare the payload and attach it to the form
-        report_manager = LaunchpadReportManager("system", "1.0")
+        shutil.copy(self.xsl_source, self.xsl_destination)
+        xsl = posixpath.abspath(self.xsl_destination)
+        report_manager = LaunchpadReportManager("system", "1.0", xsl)
         payload = report_manager.dumps(self._report).toprettyxml("")
 
         directory = posixpath.dirname(self.filename)

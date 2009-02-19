@@ -80,7 +80,7 @@ def append_path(path):
     path -- path to add
     """
 
-    environ_path = get_variable("PATH").split(":")
+    environ_path = get_paths()
     if path not in environ_path:
         environ_path.append(path)
         environ["PATH"] = ":".join(environ_path)
@@ -93,7 +93,7 @@ def prepend_path(path):
     path -- path to add
     """
 
-    environ_path = get_variable("PATH").split(":")
+    environ_path = get_paths()
     if path not in environ_path:
         environ_path.insert(0, path)
         environ["PATH"] = ":".join(environ_path)
@@ -106,7 +106,7 @@ def remove_path(path):
     path -- path to remove
     """
 
-    environ_path = get_variable("PATH").split(":")
+    environ_path = get_paths()
     if path in environ_path:
         environ_path.remove(path)
         environ["PATH"] = ":".join(environ_path)

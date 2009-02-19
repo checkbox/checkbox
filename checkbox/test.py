@@ -31,6 +31,7 @@ from checkbox.lib.environ import add_variable, remove_variable
 from checkbox.lib.signal import signal_to_name, signal_to_description
 
 from checkbox.command import Command
+from checkbox.frontend import frontend
 from checkbox.requires import Requires
 
 
@@ -93,6 +94,10 @@ class TestCommand(Command):
             *args, **kwargs)
         self.test = test
 
+    @frontend("get_test_result")
+    def execute(self, *args, **kwargs):
+        return super(TestCommand, self).execute(*args, **kwargs)
+
     def post_execute(self, result):
         result = super(TestCommand, self).post_execute(result)
 
@@ -116,10 +121,11 @@ class TestCommand(Command):
                 (signal_to_name(term_signal),
                  signal_to_description(term_signal))
         else:
-            raise Exception, "Command not terminated: %s" % self.command
+            raise Exception, "Command not terminated: %s" \
+                % self.get_command()
 
         duration = result.duration
-        return TestResult(self.test, status=status, data=data, duration=duration)
+        return TestResult(self.test, status, data, duration)
 
 
 class TestDescription(Command):
@@ -145,13 +151,18 @@ class TestDescription(Command):
 
             add_variable("output", self.output)
 
+    @frontend("get_test_description")
+    def execute(self, *args, **kwargs):
+        return super(TestDescription, self).execute(*args, **kwargs)
+
     def post_execute(self, result):
         result = super(TestDescription, self).post_execute(result)
         remove_variable("output")
 
         if not result.if_exited \
            or result.exit_status != 0:
-            raise Exception, "Description failed: %s" % self.command
+            raise Exception, "Description failed: %s" \
+                % self.get_command()
 
         return result.stdout
 
@@ -179,6 +190,7 @@ class Test(object):
     requires:      Registry expressions which are requirements for
                    this test: 'input.mouse' in info.capabilities
     timeout:       Timeout for running the command.
+    user:          User to run the command.
     optional:      Boolean expression set to True if this test is optional
                    or False if this test is required.
     """
@@ -191,6 +203,7 @@ class Test(object):
         "depends": [],
         "requires": None,
         "timeout": None,
+        "user": None,
         "optional": False}
 
     def __init__(self, registry, **attributes):

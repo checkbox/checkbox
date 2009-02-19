@@ -17,6 +17,7 @@
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
 import re
+import posixpath
 
 
 # Implementation of partial function in Python 2.5+
@@ -84,6 +85,13 @@ class StringVariable(Variable):
 
     def parse_get(self, value):
         return str(value)
+
+
+class PathVariable(StringVariable):
+
+    def parse_get(self, value):
+        path = super(PathVariable, self).parse_get(value)
+        return posixpath.expanduser(path)
 
 
 class IntVariable(Variable):

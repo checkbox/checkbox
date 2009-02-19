@@ -120,11 +120,18 @@ class GTKInterface(UserInterface):
         buffer = gtk.TextBuffer()
         widget.set_buffer(buffer)
 
+        url_regex = r"https?://[^\s]+"
+        tag_regex = r"\[\[[^\]]+\]\]"
         in_hyper_text = False
-        for part in re.split(r"(https?://[^\s]+)", text):
+        for part in re.split(r"(%s|%s)" % (url_regex, tag_regex), text):
             if in_hyper_text:
                 in_hyper_text = False
-                widget.insert_with_anchor(part, part)
+                anchor = part
+                if re.match("^%s$" % tag_regex, part):
+                    part = part.lstrip("[").rstrip("]")
+                    if "|" in part:
+                        (anchor, part) = part.split("|", 1)
+                widget.insert_with_anchor(part, anchor)
             else:
                 in_hyper_text = True
                 widget.insert(part)

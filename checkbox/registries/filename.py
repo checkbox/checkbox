@@ -18,7 +18,7 @@
 #
 import logging
 
-from checkbox.properties import String
+from checkbox.properties import Path
 from checkbox.registry import Registry
 
 
@@ -30,7 +30,7 @@ class FilenameRegistry(Registry):
     Subclasses should define a filename parameter.
     """
 
-    filename = String(required=False)
+    filename = Path(required=False)
 
     def __init__(self, filename=None):
         super(FilenameRegistry, self).__init__()

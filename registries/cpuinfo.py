@@ -19,7 +19,7 @@
 from checkbox.lib.cache import cache
 from checkbox.lib.conversion import string_to_type
 
-from checkbox.properties import String
+from checkbox.properties import Path
 from checkbox.registries.data import DataRegistry
 from checkbox.registries.filename import FilenameRegistry
 from checkbox.registries.link import LinkRegistry
@@ -69,7 +69,7 @@ class CpuinfoRegistry(FilenameRegistry):
     """
 
     # Filename where cpuinfo is stored.
-    filename = String(default="/proc/cpuinfo")
+    filename = Path(default="/proc/cpuinfo")
 
     @cache
     def items(self):

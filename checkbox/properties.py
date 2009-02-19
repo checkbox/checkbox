@@ -18,8 +18,8 @@
 #
 from checkbox.attribute import Attribute
 from checkbox.variables import (BoolVariable, StringVariable,
-    IntVariable, FloatVariable, ListVariable, VariableFactory, Variable,
-    get_variable)
+    PathVariable, IntVariable, FloatVariable, ListVariable,
+    VariableFactory, Variable, get_variable)
 
 
 class Property(object):
@@ -97,6 +97,11 @@ class Bool(PropertyType):
 class String(PropertyType):
 
     variable_class = StringVariable
+
+
+class Path(PropertyType):
+
+    variable_class = PathVariable
 
 
 class Int(PropertyType):

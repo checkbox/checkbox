@@ -1,8 +1,17 @@
-checkbox (0.6) UNRELEASED; urgency=low
+checkbox (0.7) UNRELEASED; urgency=low
+
+  * Fixed viewing of report files in Firefox 3 (LP: #331481)
+
+ -- David Murphy <schwuk@ubuntu.com>  Thu, 19 Feb 2009 11:09:04 +0000
+
+checkbox (0.6) jaunty; urgency=low
 
   * New upstream version:
     * Added suspend_test script - for more details see:
       https://wiki.ubuntu.com/KernelTeam/SuspendResumeTesting
+    * Added XSL Stylesheet and the ability to view generated reports
+    * Added support for PolicyKit to run the application as a user
+    * Added logging for backend and logrotation script.
   * Fixed calling ucf was run via debconf (LP: #330502)
 
  -- Marc Tardif <marc@ubuntu.com>  Tue, 17 Feb 2009 15:36:05 +0000
