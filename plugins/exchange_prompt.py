@@ -31,7 +31,6 @@ class ExchangePrompt(Plugin):
 
     # E-mail address used to sign in to Launchpad.
     email = String(required=False)
-    report = String(default="%(checkbox_data)s/submission.xml")
 
     def register(self, manager):
         super(ExchangePrompt, self).register(manager)
@@ -47,6 +46,7 @@ class ExchangePrompt(Plugin):
              ("report-processors", self.report_processors),
              ("report-results", self.report_results),
              ("exchange-error", self.exchange_error),
+             ("exchange-report", self.exchange_report),
              ("prompt-exchange", self.prompt_exchange)]:
             self._manager.reactor.call_on(rt, rh)
 
@@ -71,6 +71,9 @@ class ExchangePrompt(Plugin):
     def exchange_error(self, error):
         self._error = error
 
+    def exchange_report(self, report):
+        self._report = report
+
     def prompt_exchange(self, interface):
         email = self.persist.get("email") or self.email
 
@@ -80,8 +83,7 @@ class ExchangePrompt(Plugin):
                 if self._error:
                     interface.show_error(_("Exchange"), self._error)
 
-                url = "file://%s" % posixpath.abspath(self.report)
-                print url
+                url = "file://%s" % posixpath.abspath(self._report)
 
                 email = interface.show_exchange(email, self._reports,
                     _("""\
