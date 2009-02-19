@@ -123,7 +123,7 @@ results can then be sent to Launchpad.
         ("share/checkbox/scripts/", ["scripts/*"]),
         ("share/checkbox/gtk/", ["gtk/checkbox-gtk.glade", "gtk/*.png"]),
         ("share/dbus-1/system-services", ["backend/*.service"])],
-    scripts = ["bin/checkbox-gtk", "bin/checkbox-cli"],
+    scripts = ["bin/checkbox-backend", "bin/checkbox-cli", "bin/checkbox-gtk"],
     packages = ["checkbox", "checkbox.contrib", "checkbox.lib", "checkbox.reports",
         "checkbox.registries", "checkbox_cli", "checkbox_gtk"],
     cmdclass = {
