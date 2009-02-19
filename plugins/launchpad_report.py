@@ -32,8 +32,7 @@ class LaunchpadReport(Plugin):
     filename = Path(default="%(checkbox_data)s/submission.xml")
 
     # XSL Stylesheet
-    xsl_source = Path(default="%(checkbox_share)s/report/checkbox.xsl")
-    xsl_destination = Path(default="%(checkbox_data)s/checkbox.xsl")
+    stylesheet = Path(default="%(checkbox_share)s/report/checkbox.xsl")
 
     def register(self, manager):
         super(LaunchpadReport, self).register(manager)
@@ -106,10 +105,15 @@ class LaunchpadReport(Plugin):
             self._report["questions"].append(question)
 
     def report(self):
+        # Copy stylesheet to report directory
+        stylesheet = posixpath.join(
+            posixpath.dirname(self._report),
+            posixpath.basename(self.stylesheet))
+        shutil.copy(self.stylesheet, stylesheet)
+
         # Prepare the payload and attach it to the form
-        shutil.copy(self.xsl_source, self.xsl_destination)
-        xsl = posixpath.abspath(self.xsl_destination)
-        report_manager = LaunchpadReportManager("system", "1.0", xsl)
+        stylesheet = posixpath.abspath(stylesheet)
+        report_manager = LaunchpadReportManager("system", "1.0", stylesheet)
         payload = report_manager.dumps(self._report).toprettyxml("")
 
         directory = posixpath.dirname(self.filename)
