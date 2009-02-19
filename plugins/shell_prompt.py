@@ -27,8 +27,8 @@ class ShellPrompt(Plugin):
 
     def register(self, manager):
         super(ShellPrompt, self).register(manager)
-        self._manager.reactor.call_on("prompt-test-.*",
-            self.prompt_test_shell, 100)
+        self._manager.reactor.call_on("prompt-test-shell",
+            self.prompt_test_shell)
 
     def _run_shell(self, test):
         result = test.command()
@@ -39,6 +39,8 @@ class ShellPrompt(Plugin):
         if str(test.command):
             interface.show_wait(_("Running shell tests..."),
                 self._run_shell, test)
+
+        self._manager.reactor.stop()
 
 
 factory = ShellPrompt

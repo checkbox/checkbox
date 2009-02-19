@@ -96,6 +96,9 @@ class PromptTest(Plugin):
              ("prompt-tests", self.prompt_tests)]:
             self._manager.reactor.call_on(rt, rh)
 
+        self._manager.reactor.call_on("prompt-test-.*",
+            self.prompt_test, 100)
+
     def report_architecture(self, architecture):
         self.architecture = architecture
 
@@ -107,6 +110,14 @@ class PromptTest(Plugin):
 
     def test_all(self, test):
         self._tests.append(test)
+
+        self._manager.reactor.call_on("prompt-test-shell",
+            self.prompt_test_shell)
+
+    def prompt_test(self, interface, test):
+        result = TestResult(test, status=SKIP,
+            data="Test not handled by any plugin.")
+        self._manager.reactor.fire("report-result", result)
 
     def prompt_tests(self, interface):
         if not self._traverser:
