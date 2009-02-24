@@ -28,6 +28,12 @@
 #
 # Changelog:
 #
+# V6:
+#  - move an --enable/--disable interface for tests
+#  - add --set to allow setting of approved parameters
+#  - fix up prompting for interactive and non-interactive tests
+#  - supply a sensible default for testing on servers (apw, kirkland)
+#
 # V5:
 #  - send dbus messages as the original user
 #  - stop clearing the dmesg as we go
@@ -195,42 +201,107 @@ disable_trace()
 #
 # MAIN
 #
-USAGE="$P [--sleep <seconds>] [--delay <seconds>] [<iterations>]"
+usage() {
+	cat - 1>&2 <<EOM
+Usage: $P [<options>]
+Options:
+ --sleep <seconds>         - how long the machine wait before waking
+ --delay <seconds>         - default delay between iterations
+
+ --enable <test>           - enable a specific test
+ --disable <test>          - disable a specific test
+ --set <test>.<var>=<val>  - set a test specific variable
+     dbus                    - perform a suspend via dbus
+     ac                      - perform tests involving removing ac power
+     timed                   - perform a variable timing test
+     repeat                  - perform a longer repeat test
+       .iterations             - the number of iterations in the repeat
+ 
+ --full                    - run a basic set of tests
+ --server                  - run those test appropriate for a server
+EOM
+}
+
 # We need TEMP as the `eval set --' would nuke the return value of getopt.
-TEMP=`getopt -o '' -l sleep:,delay:,comprehensive,exhaustive,full -n "$P" -- "$@"`
+TEMP=`getopt -o '' -l sleep:,delay:,enable:,disable:,set:,full,desktop,server -n "$P" -- "$@"`
 if [ $? != 0 ] ; then
-	echo "$USAGE"
+	usage
         exit 1
 fi
 
 # Note the quotes around `$TEMP': they are essential!
 eval set -- "$TEMP"
 
+# Options helpers.
+chk_test ()
+{
+	if ! declare -p "test_$1" 2>/dev/null 1>&2; then
+		echo "$P: $1: test unknown" 1>&2
+		exit 1
+	fi
+}
+handle_set ()
+{
+	stmt=`echo "$1" | sed -e 's/\./_/g'`
+
+	test="${stmt%%_*}"
+	var="${stmt%%=*}"
+
+	chk_test "$test"
+	if ! declare -p "args_$var" 2>/dev/null 1>&2; then
+		echo "$P: $var: test variable unknown" 1>&2
+		exit 1
+	fi
+	
+	RET="args_$stmt"
+}
+chk_number() {
+	eval "val=\"\$$1\""
+	let num="0+$val"
+	if [ "$val" != "$num" ]; then
+		name=`echo "$1" | sed -e 's/args_//' -e 's/_/./'`
+		echo "$P: $name: $val: non-numeric value" 1>&2
+		exit 1
+	fi
+}
+
 # Options handling.
-iterations=10
 timer_sleep=20
 timer_delay=10
-comprehensive=0
-exhaustive=0
+
+test_dbus=0
+test_ac=0
+test_timed=0
+test_repeat=0
+args_repeat_iterations=10
 
 while :
 do
         case "$1" in
 	--sleep)		timer_sleep="$2"; shift 2 ;;
 	--delay)		timer_delay="$2"; shift 2 ;;
-	--comprehensive)	comprehensive=1; shift 1 ;;
-	--exhaustive)		exhaustive=1; shift 1 ;;
-	--full)			comprehensive=1; exhaustive=1; shift 1 ;;
+	--disable)		chk_test "$2"; declare "test_$1=0"; shift 2 ;;
+	--enable)		chk_test "$2"; declare "test_$2=1"; shift 2 ;;
+	--set)			handle_set "$2"; declare "$RET"; shift 2 ;;
+	--desktop|--full)	test_dbus=1; test_ac=1; test_timed=1; shift 1 ;;
+	--server)		test_timed=1; shift 1 ;;
         --)                     shift; break ;;
+	*)			echo "$1: ERROR"; exit 1 ;;
         esac
 done
 
+chk_number "args_repeat_iterations"
+
+tests=`set | grep ^test_ | grep -c =1`
+
 if [ "$#" -gt 1 ]; then
-	echo "Usage: $USAGE" 1>&2
+	usage
 	exit 1
 fi
-if [ "$#" -eq 1 ]; then
-	iterations="$1"
+if [ "$tests" -eq 0 ]; then
+	usage
+	echo "$P: no tests selected" 1>&2
+	exit 1
 fi
 
 suspend_dbus=0
@@ -245,7 +316,8 @@ if [ "$id" -ne 0 ]; then
 fi
 
 phase=0
-phase_last=0
+phase_first=1
+phase_interactive=1
 phase()
 {
 	let phase="$phase+1"
@@ -253,12 +325,19 @@ phase()
 	cat - <<-EOM
 
 	*** TEST $phase -- $@
-	*** TEST $phase -- machine will suspend for $timer_sleep seconds, press return when ready
+	*** TEST $phase -- machine will suspend for $timer_sleep seconds
 	EOM
-	if [ "$phase_last" -eq 1 ]; then
+
+	if [ "$phase_interactive" -eq 1 ]; then
+		echo "*** press return when ready"
+		read x
+
+	elif [ "$phase_first" -eq 1 ]; then
 		echo "*** NOTE: there will be no further user interaction from this point"
+		echo "*** press return when ready"
+		phase_first=0
+		read x
 	fi
-	read x
 	echo ""
 }
 
@@ -274,12 +353,14 @@ EOM
 # Ensure the log directory exists.
 mkdir -p "$LOGDIR"
 
-if [ "$comprehensive" -eq 1 ]; then
+phase_interactive=1
+if [ "$test_dbus" -eq 1 ]; then
 	suspend_dbus=1
 	phase "testing suspend via dbus"
 	suspend_system
 	suspend_dbus=0
-
+fi
+if [ "$test_ac" -eq 1 ]; then
 	phase "please ensure your AC cord is detached"
 	suspend_system
 
@@ -293,25 +374,21 @@ if [ "$comprehensive" -eq 1 ]; then
 	suspend_system
 
 fi
-if [ "$exhaustive" -eq 1 ]; then
+phase_interactive=0
+if [ "$test_timed" -eq 1 ]; then
 	timer_delay=60
-	phase_last=1
-	phase "exhaustive $timer_delay iteration variable delay suspend/resume stress test"
+	phase "$timer_delay iteration variable delay suspend/resume stress test"
 	while [ "$timer_delay" -gt 0 ]; do
-		echo "*** delay $timer_delay ..."
+		echo "delay $timer_delay ..."
 		suspend_system
 		delay_system
 		let timer_delay="$timer_delay - 2"
 	done
-else
-
-	phase "basic $iterations iteration suspend/resume stress test"
-	#enable_trace
-	run_suspend "$iterations"
-	#disable_trace
 fi
-
-# XXX: apw: any positive report needs to be triggered here
+if [ "$test_repeat" -eq 1 ]; then
+	phase "basic $args_repeat_iterations iteration suspend/resume stress test"
+	run_suspend "$args_repeat_iterations"
+fi
 
 # All suceessful, clean up.
 rm -f "$LOGFILE"
