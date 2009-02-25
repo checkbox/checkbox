@@ -90,9 +90,12 @@ class DeviceRegistry(DataRegistry):
                 elif key.endswith("s"):
                     value = values
                 elif [v for v in values if "=" in v]:
-                    for index, value in enumerate(values):
-                        if index != 0 and "=" not in value:
+                    index = 1
+                    for value in values[1:]:
+                        if "=" not in value:
                             values[index - 1] += " %s" % values.pop(index)
+                        else:
+                            index += 1
                     value = dict((v.split("=", 1) for v in values))
                     value = MapRegistry(value)
 
