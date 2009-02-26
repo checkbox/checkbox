@@ -284,6 +284,7 @@ timer_sleep=20
 timer_delay=10
 
 test_dbus=0
+test_pmsuspend=0
 test_ac=0
 test_timed=0
 test_repeat=0
@@ -378,6 +379,10 @@ if [ "$test_dbus" -eq 1 ]; then
 	phase "testing suspend via dbus"
 	suspend_system
 	suspend_dbus=0
+fi
+if [ "$test_pmsuspend" -eq 1 ]; then
+	phase "test suspend via pm-suspend"
+	suspend_system
 fi
 if [ "$test_ac" -eq 1 ]; then
 	phase "please ensure your AC cord is detached"
