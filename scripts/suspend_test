@@ -217,6 +217,7 @@ usage() {
 	cat - 1>&2 <<EOM
 Usage: $P [<options>]
 Options:
+ --quiet                   - produce less output for use in automation
  --sleep <seconds>         - how long the machine wait before waking
  --delay <seconds>         - default delay between iterations
 
@@ -235,7 +236,7 @@ EOM
 }
 
 # We need TEMP as the `eval set --' would nuke the return value of getopt.
-TEMP=`getopt -o '' -l sleep:,delay:,dry-run,enable:,disable:,set:,full,desktop,server -n "$P" -- "$@"`
+TEMP=`getopt -o '' -l dry-run,quiet,,sleep:,delay:,enable:,disable:,set:,full,desktop,server -n "$P" -- "$@"`
 if [ $? != 0 ] ; then
 	usage
         exit 1
@@ -279,6 +280,7 @@ chk_number() {
 
 # Options handling.
 dry=0
+verbose=1
 timer_sleep=20
 timer_delay=10
 
@@ -292,6 +294,7 @@ while :
 do
         case "$1" in
 	--dry-run)		dry=1; shift 1 ;;
+	--quiet)		verbose=0; shift 1 ;;
 	--sleep)		timer_sleep="$2"; shift 2 ;;
 	--delay)		timer_delay="$2"; shift 2 ;;
 	--disable)		chk_test "$2"; declare "test_$1=0"; shift 2 ;;
@@ -355,7 +358,7 @@ phase()
 	echo ""
 }
 
-cat - <<EOM
+[ "$verbose" -eq 1 ] && cat - <<EOM
 This script will attempt to suspend and resume your computer a number of times.
 Should the machine fail to resume, first attempt to manually resume it.  If
 that fails power your system off and on which will generate an apport bug
