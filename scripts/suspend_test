@@ -111,6 +111,12 @@ setup_wakeup_timer ()
 
 suspend_system ()
 {
+	if [ "$dry" -eq 1 ]; then
+		echo "DRY-RUN: suspend machine for $timer_sleep"
+		sleep 1
+		return
+	fi
+
 	setup_wakeup_timer "$timer_sleep"
 
 	dmesg >"$LOGFILE.dmesg.A"
@@ -159,6 +165,12 @@ suspend_system ()
 
 delay_system ()
 {
+	if [ "$dry" -eq 1 ]; then
+		echo "DRY-RUN: stay awake for $timer_delay"
+		sleep 1
+		return
+	fi
+
 	#
 	# wait for $timer_delay seconds after system resume from S3
 	#
@@ -223,7 +235,7 @@ EOM
 }
 
 # We need TEMP as the `eval set --' would nuke the return value of getopt.
-TEMP=`getopt -o '' -l sleep:,delay:,enable:,disable:,set:,full,desktop,server -n "$P" -- "$@"`
+TEMP=`getopt -o '' -l sleep:,delay:,dry-run,enable:,disable:,set:,full,desktop,server -n "$P" -- "$@"`
 if [ $? != 0 ] ; then
 	usage
         exit 1
@@ -266,6 +278,7 @@ chk_number() {
 }
 
 # Options handling.
+dry=0
 timer_sleep=20
 timer_delay=10
 
@@ -278,6 +291,7 @@ args_repeat_iterations=10
 while :
 do
         case "$1" in
+	--dry-run)		dry=1; shift 1 ;;
 	--sleep)		timer_sleep="$2"; shift 2 ;;
 	--delay)		timer_delay="$2"; shift 2 ;;
 	--disable)		chk_test "$2"; declare "test_$1=0"; shift 2 ;;
