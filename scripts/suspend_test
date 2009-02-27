@@ -400,6 +400,7 @@ if [ "$test_ac" -eq 1 ]; then
 fi
 phase_interactive=0
 if [ "$test_timed" -eq 1 ]; then
+	save_timer_delay="$timer_delay"
 	timer_delay=60
 	phase "$timer_delay iteration variable delay suspend/resume stress test"
 	while [ "$timer_delay" -gt 0 ]; do
@@ -408,6 +409,7 @@ if [ "$test_timed" -eq 1 ]; then
 		delay_system
 		let timer_delay="$timer_delay - 2"
 	done
+	timer_delay="$save_timer_delay"
 fi
 if [ "$test_repeat" -eq 1 ]; then
 	phase "basic $args_repeat_iterations iteration suspend/resume stress test"
