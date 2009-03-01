@@ -49,8 +49,8 @@ class LaunchpadExchange(Plugin):
             "field.private": False,
             "field.contactable": False,
             "field.live_cd": False,
-            "field.format": u'VERSION_1',
-            "field.actions.upload": u'Upload'}
+            "field.format": u"VERSION_1",
+            "field.actions.upload": u"Upload"}
 
         for (rt, rh) in [
              ("report-architecture", self.report_architecture),
@@ -100,7 +100,7 @@ class LaunchpadExchange(Plugin):
         payload = open(self._report, "r").read()
         compressed_payload = bz2.compress(payload)
         file = StringIO(compressed_payload)
-        file.name = '%s.xml.bz2' % str(gethostname())
+        file.name = "%s.xml.bz2" % str(gethostname())
         file.size = len(compressed_payload)
         form["field.submission_data"] = file
 

@@ -119,7 +119,10 @@ class LaunchpadReport(Plugin):
         directory = posixpath.dirname(self.filename)
         safe_make_directory(directory)
 
-        open(self.filename, "w").write(payload)
+        file = open(self.filename, "w")
+        file.write(payload)
+        file.close()
+
         self._manager.reactor.fire("exchange-report", self.filename)
 
 
