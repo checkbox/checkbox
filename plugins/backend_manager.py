@@ -46,7 +46,7 @@ class BackendManager(dbus.service.Object):
 
     DBUS_BUS_NAME = "com.ubuntu.checkbox"
 
-    timeout = Int(default=0)
+    timeout = Int(default=600)
     path = String(default="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin")
 
     def __init__(self):
