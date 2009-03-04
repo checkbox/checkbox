@@ -13,7 +13,7 @@ Section: python
 Architecture: all
 Replaces: hwtest (<< 0.1-0ubuntu12)
 Provides: hwtest
-Depends: ${misc:Depends}, ${python:Depends}, debconf, ucf
+Depends: ${misc:Depends}, ${python:Depends}, debconf, hal, ucf
 Recommends: dpkg, hal, lsb-release, lshw, policykit, python-dbus, python-gst
 Conflicts: hwtest (<< 0.1-0ubuntu12)
 XB-Python-Version: ${python:Versions}
