@@ -30,33 +30,40 @@ class LaunchpadReportManager(XmlReportManager):
 
     def __init__(self, *args, **kwargs):
         super(LaunchpadReportManager, self).__init__(*args, **kwargs)
-        self.add(DmiReport())
+        self.add(ContextReport())
         self.add(HalReport())
         self.add(LsbReport())
         self.add(PackagesReport())
-        self.add(LspciReport())
         self.add(ProcessorsReport())
         self.add(SummaryReport())
         self.add(QuestionsReport())
 
 
-class DmiReport(XmlReport):
+class ContextReport(XmlReport):
 
     def register_dumps(self):
-        for (dt, dh) in [("dmi", self.dumps_dmi)]:
+        for (dt, dh) in [("context", self.dumps_context)]:
             self._manager.handle_dumps(dt, dh)
 
     def register_loads(self):
-        for (lt, lh) in [("dmi", self.loads_dmi)]:
+        for (lt, lh) in [("context", self.loads_context)]:
             self._manager.handle_loads(lt, lh)
 
-    def dumps_dmi(self, obj, parent):
-        logging.debug("Dumping dmi")
-        self._create_text_node(str(obj), parent)
+    def dumps_context(self, obj, parent):
+        logging.debug("Dumping context")
+        for info in obj:
+            element = self._create_element("info", parent)
+            element.setAttribute("command", info.command)
+            self._create_text_node(str(info), element)
 
-    def loads_dmi(self, node):
-        logging.debug("Loading dmi")
-        return node.firstChild.data.strip()
+    def loads_context(self, node):
+        logging.debug("Loading context")
+        context = []
+        for info in (i for i in node.childNodes if d.localName == "info"):
+            value = self._manager.call_loads(info)
+            context.append(value)
+
+        return context
 
 
 class HalReport(XmlReport):
@@ -142,25 +149,6 @@ class PackagesReport(Report):
             packages.append(value)
 
         return packages
-
-
-class LspciReport(XmlReport):
-
-    def register_dumps(self):
-        for (dt, dh) in [("lspci", self.dumps_lspci)]:
-            self._manager.handle_dumps(dt, dh)
-
-    def register_loads(self):
-        for (lt, lh) in [("lspci", self.loads_lspci)]:
-            self._manager.handle_loads(lt, lh)
-
-    def dumps_lspci(self, obj, parent):
-        logging.debug("Dumping lspci")
-        self._create_text_node(str(obj), parent)
-
-    def loads_lspci(self, node):
-        logging.debug("Loading lspci")
-        return node.firstChild.data.strip()
 
 
 class ProcessorsReport(Report):
