@@ -56,6 +56,7 @@ class LaunchpadReport(Plugin):
              ("report-distribution", self.report_distribution),
              ("report-dmi", self.report_context),
              ("report-hal", self.report_hal),
+             ("report-modules", self.report_context),
              ("report-packages", self.report_packages),
              ("report-pci", self.report_context),
              ("report-processors", self.report_processors),
