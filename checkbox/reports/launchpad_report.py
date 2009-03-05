@@ -38,6 +38,7 @@ class LaunchpadReportManager(XmlReportManager):
         self.add(ProcessorsReport())
         self.add(SummaryReport())
         self.add(QuestionsReport())
+        self.add(ContextReport())
 
 
 class DmiReport(XmlReport):
@@ -301,3 +302,23 @@ class QuestionsReport(Report):
 
     def loads_data(self, node):
         return node.firstChild.data.strip()
+
+class ContextReport(Report):
+    """Report for context data."""
+
+    def register_dumps(self):
+        for (dt, dh) in [("context", self.dumps_context)]:
+            self._manager.handle_dumps(dt, dh)
+
+    def register_loads(self):
+        pass
+
+    def dumps_context(self, obj, parent):
+        logging.debug("Dumping context")
+        for info in obj:
+            element = self._create_element("info", parent)
+            element.setAttribute("command", info["command"])
+            self._create_text_node(info["data"], element)
+
+    def loads_context(self, node):
+        pass
