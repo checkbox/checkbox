@@ -44,8 +44,8 @@ class LaunchpadReport(Plugin):
             "hardware": {},
             "software": {
                 "packages": []},
-            "context": [],
-            "questions": []}
+            "questions": [],
+            "context": []}
 
         # Launchpad report should be generated last.
         self._manager.reactor.call_on("report", self.report, 100)
@@ -54,12 +54,14 @@ class LaunchpadReport(Plugin):
              ("report-client", self.report_client),
              ("report-datetime", self.report_datetime),
              ("report-distribution", self.report_distribution),
-             ("report-dmi", self.report_dmi),
+             ("report-dmi", self.report_context),
              ("report-hal", self.report_hal),
-             ("report-modules", self.report_modules),
+             ("report-modprobe", self.report_context),
+             ("report-modules", self.report_context),
              ("report-packages", self.report_packages),
-             ("report-pci", self.report_pci),
+             ("report-pci", self.report_context),
              ("report-processors", self.report_processors),
+             ("report-sysctl", self.report_context),
              ("report-system_id", self.report_system_id),
              ("report-results", self.report_results)]:
             self._manager.reactor.call_on(rt, rh)
@@ -81,17 +83,8 @@ class LaunchpadReport(Plugin):
         self._report["summary"]["distribution"] = distribution.distributor_id
         self._report["summary"]["distroseries"] = distribution.release
 
-    def report_dmi(self, dmi):
-        self._report["context"].append(dmi)
-
-    def report_modules(self, modules):
-        self._report["context"].append(modules)
-
     def report_packages(self, packages):
         self._report["software"]["packages"].extend(packages)
-
-    def report_pci(self, pci):
-        self._report["context"].append(pci)
 
     def report_processors(self, processors):
         self._report["hardware"]["processors"] = processors
@@ -108,6 +101,22 @@ class LaunchpadReport(Plugin):
             question["requires"] = str(test.requires)
             question["result"] = dict(result.attributes)
             self._report["questions"].append(question)
+
+    def report_context(self, sources):
+        # sources should be a list - make it so
+        if not isinstance(sources, list):
+            sources = [sources]
+
+        for source in sources:
+            if isinstance(source, tuple):
+                source = source[1]
+            info = {}
+            if 'command' in dir(source):
+                info["command"] = source.command
+            if 'filename' in dir(source):
+                info["command"] = source.filename
+            info["data"] = str(source)
+            self._report["context"].append(info)
 
     def report(self):
         # Copy stylesheet to report directory
