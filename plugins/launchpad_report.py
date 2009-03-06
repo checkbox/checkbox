@@ -56,6 +56,7 @@ class LaunchpadReport(Plugin):
              ("report-distribution", self.report_distribution),
              ("report-dmi", self.report_context),
              ("report-hal", self.report_hal),
+             ("report-modprobe", self.report_context),
              ("report-modules", self.report_context),
              ("report-packages", self.report_packages),
              ("report-pci", self.report_context),
@@ -106,11 +107,20 @@ class LaunchpadReport(Plugin):
             question["result"] = dict(result.attributes)
             self._report["questions"].append(question)
 
-    def report_context(self, source):
-        info = {}
-        info["command"] = source.command
-        info["data"] = str(source)
-        self._report["context"].append(info)
+    def report_context(self, sources):
+        # sources should be a list - make it so
+        if not isinstance(sources, list):
+            sources = [sources]
+
+        import pdb; pdb.set_trace()
+        for source in sources:
+            info = {}
+            if 'command' in dir(source):
+                info["command"] = source.command
+            if 'filename' in dir(source):
+                info["command"] = source.filename
+            info["data"] = str(source)
+            self._report["context"].append(info)
 
     def report(self):
         # Copy stylesheet to report directory
