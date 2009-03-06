@@ -307,6 +307,7 @@ test_timed=0
 test_repeat=0
 args_repeat_iterations=10
 test_power=0
+args_power_sleep=1200
 
 while :
 do
@@ -326,6 +327,7 @@ do
 done
 
 chk_number "args_repeat_iterations"
+chk_number "args_power_sleep"
 
 tests=`set | grep ^test_ | grep -c =1`
 
@@ -419,7 +421,7 @@ fi
 if [ "$test_power" -eq 1 ]; then
 	save_timer_sleep="$timer_sleep"
     
-	let timer_sleep="20*60"
+	let timer_sleep="$args_power_sleep"
 	phase "please ensure your AC cord is removed"
 
 	# get start values
