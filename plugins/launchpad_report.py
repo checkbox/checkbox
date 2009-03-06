@@ -56,6 +56,7 @@ class LaunchpadReport(Plugin):
              ("report-distribution", self.report_distribution),
              ("report-dmi", self.report_dmi),
              ("report-hal", self.report_hal),
+             ("report-modules", self.report_modules),
              ("report-packages", self.report_packages),
              ("report-pci", self.report_pci),
              ("report-processors", self.report_processors),
@@ -82,6 +83,9 @@ class LaunchpadReport(Plugin):
 
     def report_dmi(self, dmi):
         self._report["context"].append(dmi)
+
+    def report_modules(self, modules):
+        self._report["context"].append(modules)
 
     def report_packages(self, packages):
         self._report["software"]["packages"].extend(packages)
