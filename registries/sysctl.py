@@ -41,7 +41,8 @@ class SysctlRegistry(RecursiveDirectoryRegistry):
         for file in files:
             info = FilenameRegistry(file)
             info.filename = file
-            items.append(info)
+            key = len(items)
+            items.append((key, info))
 
         return items
 

@@ -108,6 +108,8 @@ class LaunchpadReport(Plugin):
             sources = [sources]
 
         for source in sources:
+            if isinstance(source, tuple):
+                source = source[1]
             info = {}
             if 'command' in dir(source):
                 info["command"] = source.command

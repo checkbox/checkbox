@@ -33,7 +33,8 @@ class ModprobeRegistry(RecursiveDirectoryRegistry):
             filename = posixpath.join(str(self.directory), file)
             info = FilenameRegistry(filename)
             info.filename = filename
-            items.append(info)
+            key = len(items)
+            items.append((key, info))
 
         return items
 
