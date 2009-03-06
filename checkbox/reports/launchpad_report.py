@@ -271,7 +271,8 @@ class ContextReport(Report):
             self._manager.handle_dumps(dt, dh)
 
     def register_loads(self):
-        pass
+        for (lt, lh) in [("context", self.loads_context)]:
+            self._manager.handle_loads(lt, lh)
 
     def dumps_context(self, obj, parent):
         logging.debug("Dumping context")
@@ -281,4 +282,10 @@ class ContextReport(Report):
             self._create_text_node(info["data"], element)
 
     def loads_context(self, node):
-        pass
+        logging.debug("Loading context")
+        context = []
+        for info in (i for i in node.childNodes if d.localName ==  "info"):
+            value = self._manager.call_loads(info)
+            context.append(value)
+
+        return context
