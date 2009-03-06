@@ -83,14 +83,8 @@ class LaunchpadReport(Plugin):
         self._report["summary"]["distribution"] = distribution.distributor_id
         self._report["summary"]["distroseries"] = distribution.release
 
-    def report_dmi(self, dmi):
-        self._report["context"]["dmi"] = dmi
-
     def report_packages(self, packages):
         self._report["software"]["packages"].extend(packages)
-
-    def report_pci(self, pci):
-        self._report["context"]["lspci"] = pci
 
     def report_processors(self, processors):
         self._report["hardware"]["processors"] = processors

@@ -30,34 +30,13 @@ class LaunchpadReportManager(XmlReportManager):
 
     def __init__(self, *args, **kwargs):
         super(LaunchpadReportManager, self).__init__(*args, **kwargs)
-        self.add(DmiReport())
         self.add(HalReport())
         self.add(LsbReport())
         self.add(PackagesReport())
-        self.add(LspciReport())
         self.add(ProcessorsReport())
         self.add(SummaryReport())
         self.add(QuestionsReport())
         self.add(ContextReport())
-
-
-class DmiReport(XmlReport):
-
-    def register_dumps(self):
-        for (dt, dh) in [("dmi", self.dumps_dmi)]:
-            self._manager.handle_dumps(dt, dh)
-
-    def register_loads(self):
-        for (lt, lh) in [("dmi", self.loads_dmi)]:
-            self._manager.handle_loads(lt, lh)
-
-    def dumps_dmi(self, obj, parent):
-        logging.debug("Dumping dmi")
-        self._create_text_node(str(obj), parent)
-
-    def loads_dmi(self, node):
-        logging.debug("Loading dmi")
-        return node.firstChild.data.strip()
 
 
 class HalReport(XmlReport):
@@ -143,25 +122,6 @@ class PackagesReport(Report):
             packages.append(value)
 
         return packages
-
-
-class LspciReport(XmlReport):
-
-    def register_dumps(self):
-        for (dt, dh) in [("lspci", self.dumps_lspci)]:
-            self._manager.handle_dumps(dt, dh)
-
-    def register_loads(self):
-        for (lt, lh) in [("lspci", self.loads_lspci)]:
-            self._manager.handle_loads(lt, lh)
-
-    def dumps_lspci(self, obj, parent):
-        logging.debug("Dumping lspci")
-        self._create_text_node(str(obj), parent)
-
-    def loads_lspci(self, node):
-        logging.debug("Loading lspci")
-        return node.firstChild.data.strip()
 
 
 class ProcessorsReport(Report):
