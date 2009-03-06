@@ -61,6 +61,7 @@ class LaunchpadReport(Plugin):
              ("report-packages", self.report_packages),
              ("report-pci", self.report_context),
              ("report-processors", self.report_processors),
+             ("report-sysctl", self.report_context),
              ("report-system_id", self.report_system_id),
              ("report-results", self.report_results)]:
             self._manager.reactor.call_on(rt, rh)
@@ -112,7 +113,6 @@ class LaunchpadReport(Plugin):
         if not isinstance(sources, list):
             sources = [sources]
 
-        import pdb; pdb.set_trace()
         for source in sources:
             info = {}
             if 'command' in dir(source):
