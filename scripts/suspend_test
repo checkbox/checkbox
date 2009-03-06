@@ -217,6 +217,15 @@ disable_trace()
 }
 
 # Battery
+battery_count()
+{
+	cat /proc/acpi/battery/*/state 2>/dev/null | \
+	awk '
+		BEGIN			{ total = 0 }
+		/present:.*yes/		{ total += 1 }
+		END			{ print total }
+	'
+}
 battery_capacity()
 {
 	cat /proc/acpi/battery/*/state 2>/dev/null | \
@@ -341,6 +350,8 @@ if [ "$tests" -eq 0 ]; then
 	exit 1
 fi
 
+battery_count=`battery_count`
+
 suspend_dbus=0
 
 # Check we are running as root as we are going to fiddle with the clock
@@ -404,7 +415,9 @@ if [ "$test_pmsuspend" -eq 1 ]; then
 	phase "test suspend via pm-suspend"
 	suspend_system
 fi
-if [ "$test_ac" -eq 1 ]; then
+if [ "$test_ac" -eq 1 -a "$battery_count" -eq 0 ]; then
+	ECHO "*** no BATTERY detected ac tests skipped ..."
+elif [ "$test_ac" -eq 1 ]; then
 	phase "please ensure your AC cord is detached"
 	suspend_system
 
@@ -416,9 +429,10 @@ if [ "$test_ac" -eq 1 ]; then
 
 	phase "please insert the AC cord while the machine is suspended"
 	suspend_system
-
 fi
-if [ "$test_power" -eq 1 ]; then
+if [ "$test_power" -eq 1 -a "$battery_count" -eq 0 ]; then
+	ECHO "*** no BATTERY detected power test skipped ..."
+elif [ "$test_power" -eq 1 ]; then
 	save_timer_sleep="$timer_sleep"
     
 	let timer_sleep="$args_power_sleep"
