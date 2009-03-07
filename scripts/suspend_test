@@ -387,21 +387,21 @@ phase()
 	let phase="$phase+1"
 
 	echo ""
+	echo "*** TEST $phase -- $1"
+	shift 1
 	for line in "$@"
 	do
-		echo "*** TEST $phase -- $line"
+		echo "*** $line"
 	done
 	if [ "$ac_needed" -ne "$ac_is" ]; then
 		case "$ac_needed" in
-		0) echo "*** TEST $phase --" \
-			"please ensure your AC cord is detached" ;;
-		1) echo "*** TEST $phase --" \
-			"please ensure your AC cord is attached" ;;
+		0) echo "*** please ensure your AC cord is detached" ;;
+		1) echo "*** please ensure your AC cord is attached" ;;
 		esac
 		ac_is="$ac_needed"
 	fi
 			
-	echo "*** TEST $phase -- machine will suspend for $timer_sleep seconds"
+	echo "*** machine will suspend for $timer_sleep seconds"
 
 	if [ "$auto" -eq 1 ]; then
 		:
