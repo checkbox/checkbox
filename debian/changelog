@@ -5,8 +5,9 @@ checkbox (0.8) intrepid; urgency=low
     from a patch by Pete Graner.
   * suspend_test: power -- made the sleep time configurable
   * suspend_test: detect batteries and disable ac/power tests
+  * suspend_test: disable dbus tests when we have no primary user
 
- -- Andy Whitcroft <apw@canonical.com>  Fri, 06 Mar 2009 16:29:09 +0000
+ -- Andy Whitcroft <apw@canonical.com>  Sat, 07 Mar 2009 11:17:26 +0000
 
 checkbox (0.7) UNRELEASED; urgency=low
 

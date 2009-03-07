@@ -405,7 +405,10 @@ EOM
 mkdir -p "$LOGDIR"
 
 phase_interactive=1
-if [ "$test_dbus" -eq 1 ]; then
+if [ "$test_dbus" -eq 1 -a \
+		\( "$SUDO_USER" = "" -o "$SUDO_USER" = "root" \) ]; then
+	ECHO "*** no primary user (via sudo) dbus tests skipped ..."
+elif [ "$test_dbus" -eq 1 ]; then
 	suspend_dbus=1
 	phase "testing suspend via dbus"
 	suspend_system
