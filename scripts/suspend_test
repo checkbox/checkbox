@@ -328,7 +328,8 @@ do
 	--disable)		chk_test "$2"; declare "test_$1=0"; shift 2 ;;
 	--enable)		chk_test "$2"; declare "test_$2=1"; shift 2 ;;
 	--set)			handle_set "$2"; declare "$RET"; shift 2 ;;
-	--desktop|--full)	test_dbus=1; test_ac=1; test_timed=1; shift 1 ;;
+	--desktop|--full)	test_dbus=1; test_ac=1; test_timed=1;
+				test_power=1; shift 1 ;;
 	--server)		test_timed=1; shift 1 ;;
         --)                     shift; break ;;
 	*)			echo "$1: ERROR"; exit 1 ;;
