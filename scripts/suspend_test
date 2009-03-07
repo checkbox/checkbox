@@ -363,6 +363,21 @@ if [ "$id" -ne 0 ]; then
 	exit 1
 fi
 
+ac_needed=-1
+ac_is=-1
+ac_required()
+{
+	ac_needed="$1"
+}
+ac_changed()
+{
+	if [ "$ac_is" -eq 0 ]; then
+		ac_is="1"
+	else
+		ac_is="0"
+	fi
+}
+
 phase=0
 phase_first=1
 phase_interactive=1
@@ -370,11 +385,22 @@ phase()
 {
 	let phase="$phase+1"
 
-	cat - <<-EOM
-
-	*** TEST $phase -- $@
-	*** TEST $phase -- machine will suspend for $timer_sleep seconds
-	EOM
+	echo ""
+	for line in "$@"
+	do
+		echo "*** TEST $phase -- $line"
+	done
+	if [ "$ac_needed" -ne "$ac_is" ]; then
+		case "$ac_needed" in
+		0) echo "*** TEST $phase --" \
+			"please ensure your AC cord is detached" ;;
+		1) echo "*** TEST $phase --" \
+			"please ensure your AC cord is attached" ;;
+		esac
+		ac_is="$ac_needed"
+	fi
+			
+	echo "*** TEST $phase -- machine will suspend for $timer_sleep seconds"
 
 	if [ "$auto" -eq 1 ]; then
 		:
@@ -409,37 +435,49 @@ if [ "$test_dbus" -eq 1 -a \
 		\( "$SUDO_USER" = "" -o "$SUDO_USER" = "root" \) ]; then
 	ECHO "*** no primary user (via sudo) dbus tests skipped ..."
 elif [ "$test_dbus" -eq 1 ]; then
+	ac_required 1
 	suspend_dbus=1
-	phase "testing suspend via dbus"
+	phase "suspend triggered via dbus message"
 	suspend_system
 	suspend_dbus=0
 fi
 if [ "$test_pmsuspend" -eq 1 ]; then
-	phase "test suspend via pm-suspend"
+	ac_required 1
+	phase "suspend triggered via pm-suspend"
 	suspend_system
 fi
 if [ "$test_ac" -eq 1 -a "$battery_count" -eq 0 ]; then
 	ECHO "*** no BATTERY detected ac tests skipped ..."
 elif [ "$test_ac" -eq 1 ]; then
-	phase "please ensure your AC cord is detached"
+	ac_required 0
+	phase "suspend with AC disconnected"
 	suspend_system
 
-	phase "please ensure your AC cord is attached"
+	ac_required 1
+	phase "suspend with AC connected"
 	suspend_system
 	
-	phase "please remove the AC cord while the machine is suspended"
+	ac_required 1
+	phase "loss of AC while suspended" \
+	      "please remove the AC cord while the machine is suspended"
 	suspend_system
+	ac_changed
 
-	phase "please insert the AC cord while the machine is suspended"
+	ac_required 0
+	phase "return of AC while suspended" \
+	      "please insert the AC cord while the machine is suspended"
 	suspend_system
+	ac_changed
 fi
 if [ "$test_power" -eq 1 -a "$battery_count" -eq 0 ]; then
 	ECHO "*** no BATTERY detected power test skipped ..."
 elif [ "$test_power" -eq 1 ]; then
 	save_timer_sleep="$timer_sleep"
-    
 	let timer_sleep="$args_power_sleep"
-	phase "please ensure your AC cord is removed"
+
+	ac_required 0
+	phase "battery drain during suspend" \
+	      "calculates overall power drain during a long-term suspend"
 
 	# get start values
 	date_before=`date +%s`
@@ -477,7 +515,9 @@ phase_interactive=0
 if [ "$test_timed" -eq 1 ]; then
 	save_timer_delay="$timer_delay"
 	timer_delay=60
-	phase "$timer_delay iteration variable delay suspend/resume stress test"
+
+	ac_required 1
+	phase "30 iteration variable delay suspend/resume stress test"
 	while [ "$timer_delay" -gt 0 ]; do
 		echo "delay $timer_delay ..."
 		suspend_system
@@ -487,6 +527,7 @@ if [ "$test_timed" -eq 1 ]; then
 	timer_delay="$save_timer_delay"
 fi
 if [ "$test_repeat" -eq 1 ]; then
+	ac_required 1
 	phase "basic $args_repeat_iterations iteration suspend/resume stress test"
 	run_suspend "$args_repeat_iterations"
 fi
