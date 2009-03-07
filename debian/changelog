@@ -11,8 +11,9 @@ checkbox (0.8) intrepid; urgency=low
   * suspend_test: reduce the noise in the test instructions
   * suspend_test: use minutes in output when that is more appropriate
   * suspend_test: track actual AC transitions and report them
+  * suspend_test: only mention AC at all if we have a battery
 
- -- Andy Whitcroft <apw@canonical.com>  Sat, 07 Mar 2009 12:45:41 +0000
+ -- Andy Whitcroft <apw@canonical.com>  Sat, 07 Mar 2009 13:10:09 +0000
 
 checkbox (0.7) UNRELEASED; urgency=low
 

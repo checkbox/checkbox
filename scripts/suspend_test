@@ -427,7 +427,7 @@ phase()
 	do
 		echo "*** $line"
 	done
-	if [ "$ac_needed" -ne "$ac_is" ]; then
+	if [ "$battery_count" -ne 0 -a "$ac_needed" -ne "$ac_is" ]; then
 		case "$ac_needed" in
 		0) echo "*** please ensure your AC cord is detached" ;;
 		1) echo "*** please ensure your AC cord is attached" ;;
