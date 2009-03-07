@@ -384,6 +384,8 @@ phase_first=1
 phase_interactive=1
 phase()
 {
+	typeset sleep
+
 	let phase="$phase+1"
 
 	echo ""
@@ -400,8 +402,14 @@ phase()
 		esac
 		ac_is="$ac_needed"
 	fi
-			
-	echo "*** machine will suspend for $timer_sleep seconds"
+	
+	if [ "$timer_sleep" -gt 60 ]; then
+		let sleep="$timer_sleep / 60"
+		sleep="$sleep minutes"
+	else
+		sleep="$timer_sleep seconds"
+	fi
+	echo "*** machine will suspend for $sleep"
 
 	if [ "$auto" -eq 1 ]; then
 		:
