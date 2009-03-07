@@ -366,17 +366,49 @@ fi
 
 ac_needed=-1
 ac_is=-1
+ac_becomes=-1
 ac_required()
 {
+	ac_check
+
 	ac_needed="$1"
+	ac_becomes="$1"
 }
-ac_changed()
+ac_transitions()
 {
-	if [ "$ac_is" -eq 0 ]; then
-		ac_is="1"
-	else
-		ac_is="0"
+	ac_check
+
+	ac_needed="$1"
+	ac_becomes="$2"
+}
+ac_online()
+{
+	cat /proc/acpi/ac_adapter/*/state 2>/dev/null | \
+	awk '
+		BEGIN			{ online = 0; offline = 0 }
+		/on-line/		{ online = 1 }
+		/off-line/		{ offline = 1 }
+		END			{
+						if (online) {
+							print "1"
+						} else if (offline) {
+							print "0"
+						} else {
+							print "-1"
+						}
+					}
+	'
+}
+ac_check()
+{
+	typeset ac_current=`ac_online`
+
+	if [ "$ac_becomes" -ne -1 -a "$ac_current" -ne -1 -a \
+			"$ac_current" -ne "$ac_becomes" ]; then
+		ECHO "*** WARNING: AC power not in expected state" \
+			"($ac_becomes) after test"
 	fi
+	ac_is="$ac_becomes"
 }
 
 phase=0
@@ -466,17 +498,15 @@ elif [ "$test_ac" -eq 1 ]; then
 	phase "suspend with AC connected"
 	suspend_system
 	
-	ac_required 1
+	ac_transitions 1 0
 	phase "loss of AC while suspended" \
 	      "please remove the AC cord while the machine is suspended"
 	suspend_system
-	ac_changed
 
-	ac_required 0
+	ac_transitions 0 1
 	phase "return of AC while suspended" \
 	      "please insert the AC cord while the machine is suspended"
 	suspend_system
-	ac_changed
 fi
 if [ "$test_power" -eq 1 -a "$battery_count" -eq 0 ]; then
 	ECHO "*** no BATTERY detected power test skipped ..."
@@ -540,6 +570,8 @@ if [ "$test_repeat" -eq 1 ]; then
 	phase "basic $args_repeat_iterations iteration suspend/resume stress test"
 	run_suspend "$args_repeat_iterations"
 fi
+
+ac_check
 
 # All suceessful, clean up.
 rm -f "$LOGFILE"
