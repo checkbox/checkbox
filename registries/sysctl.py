@@ -16,33 +16,37 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
+import logging
 import posixpath
 
+from checkbox.lib.path import path_expand
+
 from checkbox.properties import Path
+from checkbox.registry import Registry
 from checkbox.registries.directory import RecursiveDirectoryRegistry
 from checkbox.registries.filename import FilenameRegistry
 
-class SysctlRegistry(RecursiveDirectoryRegistry):
+
+class SysctlRegistry(Registry):
     """Registry for files contained in /etc/modprobe.d."""
 
-    directory = Path(default="/etc/sysctl.d")
-    filename = Path(default="/etc/sysctl.conf")
+    path = Path(default="/etc/sysctl.*")
 
     def items(self):
         items = []
 
-        # Convert filenames to full paths
-        files = [posixpath.join(str(self.directory), f) for f in 
-            self.split("\n")]
+        paths = path_expand(self.path)
+        for path in paths:
+            key = posixpath.basename(path)
+            if posixpath.isfile(path):
+                value = FilenameRegistry(path)
+            elif posixpath.isdir(path):
+                value = RecursiveDirectoryRegistry(path)
+            else:
+                logging.info("Unknown sysctl path: %s", path)
+                continue
 
-        # Special case for sysctl.conf
-        files.insert(0, self.filename)
-
-        for file in files:
-            info = FilenameRegistry(file)
-            info.filename = file
-            key = len(items)
-            items.append((key, info))
+            items.append((key, value))
 
         return items
 

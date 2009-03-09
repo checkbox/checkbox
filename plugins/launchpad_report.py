@@ -115,6 +115,8 @@ class LaunchpadReport(Plugin):
                 info["command"] = source.command
             if 'filename' in dir(source):
                 info["command"] = source.filename
+            if 'directory' in dir(source):
+                info["command"] = source.directory
             info["data"] = str(source)
             self._report["context"].append(info)
 

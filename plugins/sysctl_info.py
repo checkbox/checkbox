@@ -27,7 +27,7 @@ class SysctlInfo(Plugin):
 
     def report(self):
         self._manager.reactor.fire("report-sysctl", 
-            self._manager.registry.sysctl.items())
+            self._manager.registry.sysctl.values())
 
 
 factory = SysctlInfo
