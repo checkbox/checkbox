@@ -98,8 +98,6 @@ class ProxyHTTPSConnection(ProxyHTTPConnection):
 
     def connect(self):
         ProxyHTTPConnection.connect(self)
-        #make the sock ssl-aware
-        ssl = socket.ssl(self.sock, self.key_file, self.cert_file)
         self.sock = _ssl_wrap_socket(self.sock, self.key_file, self.cert_file)
 
 
