@@ -7,7 +7,7 @@ include /usr/share/cdbs/1/class/python-distutils.mk
 include /usr/share/cdbs/1/rules/simple-patchsys.mk
 
 DEB_DH_INSTALL_SOURCEDIR := debian/tmp
-DEB_PYTHON_INSTALL_ARGS_ALL := --no-compile
+DEB_PYTHON_INSTALL_ARGS_ALL := --no-compile --install-layout=deb
 
 binary-install/checkbox::
 	dh_link /etc/checkbox.d usr/share/checkbox/configs
