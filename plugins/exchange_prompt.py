@@ -34,17 +34,9 @@ class ExchangePrompt(Plugin):
 
     def register(self, manager):
         super(ExchangePrompt, self).register(manager)
-        self._reports = set()
 
         for (rt, rh) in [
              ("gather-persist", self.gather_persist),
-             ("report-hal", self.report_devices),
-             ("report-distribution", self.report_distribution),
-             ("report-dmi", self.report_devices),
-             ("report-packages", self.report_packages),
-             ("report-pci", self.report_devices),
-             ("report-processors", self.report_processors),
-             ("report-results", self.report_results),
              ("exchange-error", self.exchange_error),
              ("exchange-report", self.exchange_report),
              ("prompt-exchange", self.prompt_exchange)]:
@@ -52,21 +44,6 @@ class ExchangePrompt(Plugin):
 
     def gather_persist(self, persist):
         self.persist = persist.root_at("exchange_prompt")
-
-    def report_devices(self, message):
-        self._reports.add(_("Device information"))
-
-    def report_distribution(self, message):
-        self._reports.add(_("Distribution details"))
-
-    def report_packages(self, message):
-        self._reports.add(_("Packages installed"))
-
-    def report_processors(self, message):
-        self._reports.add(_("Processor information"))
-
-    def report_results(self, message):
-        self._reports.add(_("Test results"))
 
     def exchange_error(self, error):
         self._error = error
@@ -85,8 +62,7 @@ class ExchangePrompt(Plugin):
 
                 url = "file://%s" % posixpath.abspath(self._report)
 
-                email = interface.show_exchange(email, self._reports,
-                    _("""\
+                email = interface.show_exchange(email, _("""\
 The following information will be sent to the Launchpad \
 hardware database.\n
 [[%s|View Report]]\n

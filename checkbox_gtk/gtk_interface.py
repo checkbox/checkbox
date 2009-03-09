@@ -275,19 +275,14 @@ class GTKInterface(UserInterface):
         return TestResult(test, status, data)
 
     @GTKHack
-    def show_exchange(self, authentication, reports=[], message=None):
+    def show_exchange(self, authentication, message=None):
         self._notebook.set_current_page(3)
 
         if authentication is not None:
             self._set_text("entry_authentication", authentication)
 
-        paragraphs = []
-        if message:
-            paragraphs.append(message)
-        if reports:
-            paragraphs.append("\n".join(["* %s" % r for r in reports]))
-        text = "\n\n".join(paragraphs)
-        self._set_hyper_text_view("hyper_text_view_exchange", text)
+        if message is not None:
+            self._set_hyper_text_view("hyper_text_view_exchange", message)
 
         self._run_dialog()
 

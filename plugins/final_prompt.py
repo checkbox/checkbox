@@ -16,6 +16,8 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
+from gettext import gettext as _
+
 from checkbox.plugin import Plugin
 
 
@@ -26,7 +28,7 @@ class FinalPrompt(Plugin):
         self._manager.reactor.call_on("prompt-finish", self.prompt_finish)
 
     def prompt_finish(self, interface):
-        interface.show_final()
+        interface.show_final(_("Successfully sent information!"))
 
 
 factory = FinalPrompt

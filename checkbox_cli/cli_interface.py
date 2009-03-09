@@ -240,24 +240,18 @@ class CLIInterface(UserInterface):
 
         return TestResult(test, status, data)
 
-    def show_exchange(self, authentication, reports=[], message=None):
-        title = _("Authentication")
-        paragraphs = []
-        if message:
-            paragraphs.append(message)
-        if reports:
-            paragraphs.append("\n".join(["* %s" % r for r in reports]))
-
-        text = "\n\n".join(paragraphs)
-        dialog = CLILineDialog(title, text)
+    def show_exchange(self, authentication, message=None):
+        if message is not None:
+            title = _("Authentication")
+            dialog = CLILineDialog(title, message)
 
         authentication = dialog.run()
         return authentication
 
     def show_final(self, message=None):
-        title = _("Done")
-        text = _("Successfully sent information to server!")
-        dialog = CLIChoiceDialog(title, text)
+        if message is not None:
+            title = _("Done")
+            dialog = CLIChoiceDialog(title, message)
 
         return dialog.run()
 
