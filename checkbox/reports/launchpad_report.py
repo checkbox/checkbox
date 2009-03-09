@@ -53,8 +53,8 @@ class ContextReport(XmlReport):
         logging.debug("Dumping context")
         for info in obj:
             element = self._create_element("info", parent)
-            element.setAttribute("command", info.command)
-            self._create_text_node(str(info), element)
+            element.setAttribute("command", info["command"])
+            self._create_text_node(info["data"], element)
 
     def loads_context(self, node):
         logging.debug("Loading context")

@@ -15,8 +15,6 @@
         <ul>
             <li><a href="#hal">HAL</a></li>
             <li><a href="#processors">Processors</a></li>
-            <li><a href="#dmi">DMI</a></li>
-            <li><a href="#lspci">PCI</a></li>
         </ul></li>
         <li>Software
         <ul>
@@ -24,15 +22,17 @@
             <li><a href="#lsb_release">LSB</a></li>
         </ul></li>
         <li><a href="#questions">Questions</a></li>
+        <li><a href="#context">Contextual Information</a></li>
+        <xsl:apply-templates select=".//context" mode="navigation" />
      </ol>
     <xsl:apply-templates select=".//summary" />
     <xsl:apply-templates select=".//hardware/hal" />
     <xsl:apply-templates select=".//hardware/processors" />
-    <xsl:apply-templates select=".//hardware/dmi" />
     <xsl:apply-templates select=".//hardware/lspci" />
     <xsl:apply-templates select=".//software/packages" />
     <xsl:apply-templates select=".//software/lsb_release" />
     <xsl:apply-templates select=".//questions" />
+    <xsl:apply-templates select=".//context" />
     </body>
     </html>
 </xsl:template>
@@ -83,18 +83,6 @@
     <p class="navigation"><a href="#toc">Back to Table of Contents</a></p>
 </xsl:template>
 
-<xsl:template match="hardware/dmi">
-    <h2 id="dmi">DMI</h2>
-    <pre><xsl:value-of select="." /></pre>
-    <p class="navigation"><a href="#toc">Back to Table of Contents</a></p>
-</xsl:template>
-
-<xsl:template match="hardware/lspci">
-    <h2 id="lspci">PCI</h2>
-    <pre><xsl:value-of select="." /></pre>
-    <p class="navigation"><a href="#toc">Back to Table of Contents</a></p>
-</xsl:template>
-
 <xsl:template match="software/packages">
     <h2 id="packages">Packages</h2>
     <table>
@@ -142,6 +130,25 @@
         </xsl:for-each>
     </table>
     <p class="navigation"><a href="#toc">Back to Table of Contents</a></p>
+</xsl:template>
+
+<xsl:template match="context" mode="navigation">
+    <ul>
+    <xsl:for-each select="info">
+        <li>
+            <a href="#{generate-id(.)}"><xsl:value-of select="@command" /></a>
+        </li>
+    </xsl:for-each>
+    </ul>
+</xsl:template>
+
+<xsl:template match="context">
+    <h2 id="context">Contextual Information</h2>
+    <xsl:for-each select="info">
+        <h3 id="{generate-id(.)}"><xsl:value-of select="@command" /></h3>
+        <pre><xsl:value-of select="." /></pre>
+        <p class="navigation"><a href="#toc">Back to Table of Contents</a></p>
+    </xsl:for-each>
 </xsl:template>
 
 </xsl:stylesheet>

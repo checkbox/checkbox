@@ -16,18 +16,27 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-from checkbox.plugin import Plugin
+import posixpath
+
+from checkbox.properties import Path
+from checkbox.registries.directory import RecursiveDirectoryRegistry
+from checkbox.registries.filename import FilenameRegistry
+
+class ModprobeRegistry(RecursiveDirectoryRegistry):
+    """Registry for files contained in /etc/modprobe.d."""
+
+    directory = Path(default="/etc/modprobe.d")
+
+    def items(self):
+        items = []
+        for file in self.split("\n"):
+            filename = posixpath.join(str(self.directory), file)
+            info = FilenameRegistry(filename)
+            info.filename = filename
+            key = len(items)
+            items.append((key, info))
+
+        return items
 
 
-class ModulesInfo(Plugin):
-
-    def register(self, manager):
-        super(ModulesInfo, self).register(manager)
-        self._manager.reactor.call_on("report", self.report)
-
-    def report(self):
-        self._manager.reactor.fire("report-modules", 
-            self._manager.registry.modules)
-
-
-factory = ModulesInfo
+factory = ModprobeRegistry

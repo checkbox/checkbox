@@ -44,3 +44,23 @@ class DirectoryRegistry(Registry):
 
     def items(self):
         return []
+
+class RecursiveDirectoryRegistry(DirectoryRegistry):
+    """Variant of the DirectoryRegistry that recurses into subdirectories."""
+
+    def __str__(self):
+        logging.info("Reading directory: %s", self._directory)
+        return "\n".join(self._listdir(self._directory))
+
+    def _listdir(self, root, path=""):
+        files = []
+        try:
+            for file in os.listdir(os.path.join(root, path)):
+                pathname = os.path.join(path, file)
+                if os.path.isdir(os.path.join(root, pathname)):
+                    files.extend(self._listdir(root, pathname))
+                else:
+                    files.append(pathname)
+        except OSError:
+            pass
+        return files

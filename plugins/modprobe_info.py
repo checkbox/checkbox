@@ -19,15 +19,15 @@
 from checkbox.plugin import Plugin
 
 
-class ModulesInfo(Plugin):
+class ModprobeInfo(Plugin):
 
     def register(self, manager):
-        super(ModulesInfo, self).register(manager)
+        super(ModprobeInfo, self).register(manager)
         self._manager.reactor.call_on("report", self.report)
 
     def report(self):
-        self._manager.reactor.fire("report-modules", 
-            self._manager.registry.modules)
+        self._manager.reactor.fire("report-modprobe", 
+            self._manager.registry.modprobe.items())
 
 
-factory = ModulesInfo
+factory = ModprobeInfo
