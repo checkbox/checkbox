@@ -17,7 +17,6 @@
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
 import os
-import md5
 import posixpath
 import shutil
 
@@ -70,11 +69,22 @@ def safe_rename(old, new):
 
         os.rename(old, new)
 
-def safe_md5sum(name):
+def safe_md5sum():
+    try:
+        import hashlib
+        digest = hashlib.md5()
+    except ImportError:
+        # for Python << 2.5
+        import md5
+        digest = md5.new()
+
+    return digest
+
+def safe_md5sum_file(name):
     md5sum = None
     if posixpath.exists(name):
         file = open(name)
-        digest = md5.new()
+        digest = safe_md5sum()
         while 1:
             buf = file.read(4096)
             if buf == "":

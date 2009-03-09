@@ -16,8 +16,9 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-import md5
 import logging
+
+from checkbox.lib.safe import safe_md5sum
 
 from checkbox.properties import String
 from checkbox.plugin import Plugin
@@ -56,7 +57,7 @@ class SystemInfo(Plugin):
             else:
                 hardware = system
 
-            fingerprint = md5.new()
+            fingerprint = safe_md5sum()
             for field in [
                     computer.info.product,
                     computer.info.subsystem,

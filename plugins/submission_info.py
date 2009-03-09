@@ -16,10 +16,11 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-import md5
 import logging
 
 from datetime import datetime
+
+from checkbox.lib.safe import safe_md5sum
 
 from checkbox.properties import String
 from checkbox.plugin import Plugin
@@ -48,7 +49,7 @@ class SubmissionInfo(Plugin):
             if not self._system_id:
                 return
 
-            fingerprint = md5.new()
+            fingerprint = safe_md5sum()
             fingerprint.update(self._system_id)
             fingerprint.update(str(datetime.utcnow()))
             submission_id = fingerprint.hexdigest()
