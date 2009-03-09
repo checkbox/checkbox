@@ -30,6 +30,19 @@ import httplib
 import urllib
 
 
+# Build the appropriate socket wrapper for ssl
+try:
+    # Python 2.6 introduced a better ssl package
+    import ssl
+    _ssl_wrap_socket = ssl.wrap_socket
+except ImportError:
+    # Python versions prior to 2.6 don't have ssl and ssl.wrap_socket instead
+    # they use httplib.FakeSocket
+    def _ssl_wrap_socket(sock, key_file, cert_file):
+        ssl_sock = socket.ssl(sock, key_file, cert_file)
+        return httplib.FakeSocket(sock, ssl_sock)
+
+
 class ProxyHTTPConnection(httplib.HTTPConnection):
 
     _ports = {"http" : httplib.HTTP_PORT, "https" : httplib.HTTPS_PORT}
@@ -87,7 +100,7 @@ class ProxyHTTPSConnection(ProxyHTTPConnection):
         ProxyHTTPConnection.connect(self)
         #make the sock ssl-aware
         ssl = socket.ssl(self.sock, self.key_file, self.cert_file)
-        self.sock = httplib.FakeSocket(self.sock, ssl)
+        self.sock = _ssl_wrap_socket(self.sock, self.key_file, self.cert_file)
 
 
 class HTTPTransport(object):
