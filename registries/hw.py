@@ -130,7 +130,7 @@ class HwRegistry(CommandRegistry):
            and numbers[0] == "B" \
            and int(numbers[1]) == 2 \
            and int(numbers[2]) < 13:
-            self._command = self._command.replace(" -numeric", "")
+            self.command = self.command.replace(" -numeric", "")
 
         return super(HwRegistry, self).__str__()
 

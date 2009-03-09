@@ -32,25 +32,27 @@ class DirectoryRegistry(Registry):
     Subclasses should define a directory parameter.
     """
 
-    directory = Path(required=False)
+    directory = Path()
 
     def __init__(self, directory=None):
         super(DirectoryRegistry, self).__init__()
-        self._directory = directory or self.directory
+        if directory is not None:
+            self.directory = directory
 
     def __str__(self):
-        logging.info("Reading directory: %s", self._directory)
-        return "\n".join(os.listdir(self._directory))
+        logging.info("Reading directory: %s", self.directory)
+        return "\n".join(os.listdir(self.directory))
 
     def items(self):
         return []
+
 
 class RecursiveDirectoryRegistry(DirectoryRegistry):
     """Variant of the DirectoryRegistry that recurses into subdirectories."""
 
     def __str__(self):
-        logging.info("Reading directory: %s", self._directory)
-        return "\n".join(self._listdir(self._directory))
+        logging.info("Reading directory: %s", self.directory)
+        return "\n".join(self._listdir(self.directory))
 
     def _listdir(self, root, path=""):
         files = []

@@ -33,16 +33,17 @@ class CommandRegistry(Registry):
     Subclasses should define a command parameter.
     """
 
-    command = String(required=False)
+    command = String()
 
     def __init__(self, command=None):
         super(CommandRegistry, self).__init__()
-        self._command = command or self.command
+        if command is not None:
+            self.command = command
 
     @frontend("get_registry")
     def __str__(self):
-        logging.info("Running command: %s", self._command)
-        process = Process(self._command)
+        logging.info("Running command: %s", self.command)
+        process = Process(self.command)
         while process.read():
             pass
 

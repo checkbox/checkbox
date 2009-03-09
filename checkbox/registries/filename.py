@@ -30,15 +30,16 @@ class FilenameRegistry(Registry):
     Subclasses should define a filename parameter.
     """
 
-    filename = Path(required=False)
+    filename = Path()
 
     def __init__(self, filename=None):
         super(FilenameRegistry, self).__init__()
-        self._filename = filename or self.filename
+        if filename is not None:
+            self.filename = filename
 
     def __str__(self):
-        logging.info("Reading filename: %s", self._filename)
-        return open(self._filename, "r").read()
+        logging.info("Reading filename: %s", self.filename)
+        return open(self.filename, "r").read()
 
     def items(self):
         return []

@@ -96,7 +96,7 @@ class GconfRegistry(CommandRegistry):
     def __init__(self, *args, **kwargs):
         super(GconfRegistry, self).__init__(*args, **kwargs)
 
-        self._command = self.command.replace("$source", self.source)
+        self.command = self.command.replace("$source", self.source)
 
     def items(self):
         items = []
