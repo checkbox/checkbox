@@ -545,13 +545,14 @@ elif [ "$test_power" -eq 1 ]; then
 	ECHO "sleep seconds: $elapsed sec"
 	ECHO "overall usage: $usage mW"
 	 
+	report_battery="$usage mW"
+
 	if [ $elapsed -lt 1200 ]
 	then
 		ECHO "WARNING: the suspend was less than 20 minutes"
 		ECHO "         to get reliable numbers increase the sleep time"
+		report_battery="$report_battery (unreliable)"
 	fi
-
-	report_battery="$usage"
 
 	timer_sleep="$save_timer_sleep"
 fi
