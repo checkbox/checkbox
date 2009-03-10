@@ -8,6 +8,7 @@ from glob import glob
 from distutils.core import setup
 from distutils.util import change_root, convert_path
 
+from distutils.command.install import install
 from distutils.command.install_data import install_data
 from distutils.command.install_scripts import install_scripts
 from DistUtilsExtra.command.build_extra import build_extra
@@ -31,6 +32,19 @@ def substitute_variables(infile, outfile, variables={}):
         for key, value in variables.items():
             line = line.replace(key, value)
         file_out.write(line)
+
+
+# Hack to workaround unsupported option in Python << 2.5
+class checkbox_install(install, object):
+
+    user_options = install.user_options + [
+        ('install-layout=', None,
+         "installation layout to choose (known values: deb)")]
+
+    def initialize_options(self):
+        super(checkbox_install, self).initialize_options()
+
+        self.install_layout = None
 
 
 class checkbox_install_data(install_data, object):
@@ -127,6 +141,7 @@ results can then be sent to Launchpad.
     packages = ["checkbox", "checkbox.contrib", "checkbox.lib", "checkbox.reports",
         "checkbox.registries", "checkbox_cli", "checkbox_gtk"],
     cmdclass = {
+        "install": checkbox_install,
         "install_data": checkbox_install_data,
         "install_scripts": checkbox_install_scripts,
         "build" : build_extra,
