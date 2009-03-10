@@ -353,6 +353,8 @@ fi
 
 battery_count=`battery_count`
 
+report_battery=''
+
 suspend_dbus=0
 
 # Check we are running as root as we are going to fiddle with the clock
@@ -547,6 +549,8 @@ elif [ "$test_power" -eq 1 ]; then
 		ECHO "         to get reliable numbers increase the sleep time"
 	fi
 
+	report_battery="$usage"
+
 	timer_sleep="$save_timer_sleep"
 fi
 
@@ -572,6 +576,23 @@ if [ "$test_repeat" -eq 1 ]; then
 fi
 
 ac_check
+
+#
+# REPORT: final report stage.
+#
+report_this()
+{	
+	if [ "$2" != "" ]; then
+		echo "  $1 $2"
+	fi
+}
+if [ "$auto" -eq 0 ]; then
+	echo ""
+	echo "*** Please report your results on the Ubuntu WIKI:"
+	echo "    https://wiki.ubuntu.com/KernelTeam/SuspendResumeTesting"
+	echo ""
+	report_this "Battery Consumption:" "$report_battery"
+fi
 
 # All suceessful, clean up.
 rm -f "$LOGFILE"
