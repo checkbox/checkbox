@@ -28,6 +28,17 @@
 #
 # Changelog:
 #
+# V8:
+#  - add a new suspend battery drain test
+#  - track batteries disabling tests which require them automatically
+#  - disable dbus tests when we have no primary user
+#  - include the new power drain test in --full
+#  - handle AC transitions better
+#  - use minutes in messages where appropriate
+#  - report AC transition failures
+#  - only mention AC when we have batteries
+#  - report results at the bottom for easy posting
+#
 # V7:
 #  - add a --dry-run mode to simplify developement
 #  - add a automation mode for checkbox integration
