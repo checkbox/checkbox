@@ -1,7 +1,15 @@
 checkbox (0.7) UNRELEASED; urgency=low
 
-  [ David Murphy ]
+  [ Dave Murphy ]
   * Fixed viewing of report files in Firefox 3 (LP: #331481)
+  * Added additional contextual information
+   * /etc/sysctl* (LP: #331055)
+   * /etc/modprobe.d (LP: #331056)
+   * /etc/modules (LP: #331057)
+  * Fixed packaging for Jaunty
+   * https://lists.ubuntu.com/archives/ubuntu-devel/2009-February/027439.html
+   * Uses --install-layout=deb
+   * Installs to dist-packages instead of site-packages
 
   [ Andy Whitcroft ]
   * suspend_test: update suspend_test to version V6 matching kernel version.
@@ -13,7 +21,7 @@ checkbox (0.7) UNRELEASED; urgency=low
     time test.
   * suspend_test: release v7.
 
- -- Andy Whitcroft <apw@canonical.com>  Fri, 27 Feb 2009 14:27:31 +0000
+ -- Dave Murphy <schwuk@ubuntu.com>  Mon, 09 Mar 2009 23:31:31 +0000
 
 checkbox (0.6) jaunty; urgency=low
 
