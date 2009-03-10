@@ -586,7 +586,7 @@ ac_check
 report_this()
 {	
 	if [ "$2" != "" ]; then
-		echo "  $1 $2"
+		echo "      $1 $2"
 	fi
 }
 if [ "$auto" -eq 0 ]; then
