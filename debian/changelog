@@ -1,3 +1,4 @@
+
 checkbox (0.7) UNRELEASED; urgency=low
 
   [ Dave Murphy ]
@@ -20,8 +21,24 @@ checkbox (0.7) UNRELEASED; urgency=low
   * suspend_test: record and restore timer_delay around the variable
     time test.
   * suspend_test: release v7.
+  * suspend_test: initial version of suspend power consumption test
+    from a patch by Pete Graner.
+  * suspend_test: power -- made the sleep time configurable
+  * suspend_test: detect batteries and disable ac/power tests
+  * suspend_test: disable dbus tests when we have no primary user
+  * suspend_test: handle AC transitions better
+  * suspend_test: enable power test as part of --full
+  * suspend_test: reduce the noise in the test instructions
+  * suspend_test: use minutes in output when that is more appropriate
+  * suspend_test: track actual AC transitions and report them
+  * suspend_test: only mention AC at all if we have a battery
+  * suspend_test: report useful data at the bottom for posting
+  * suspend_test: document the new power test in the usage
+  * suspend_test: power -- indicate when the result is unreliable
+  * suspend_test: report -- fix up spacing issues
+  * suspend_test: release v8
 
- -- Dave Murphy <schwuk@ubuntu.com>  Mon, 09 Mar 2009 23:31:31 +0000
+ -- Andy Whitcroft <apw@canonical.com>  Tue, 10 Mar 2009 17:05:57 +0000
 
 checkbox (0.6) jaunty; urgency=low
 
