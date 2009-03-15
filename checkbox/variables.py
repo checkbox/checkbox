@@ -78,7 +78,12 @@ class Variable(object):
 class BoolVariable(Variable):
 
     def parse_get(self, value):
-        return bool(value)
+        if re.match(r"(yes|true)", value, re.IGNORECASE):
+            return True
+        elif re.match(r"(no|false)", value, re.IGNORECASE):
+            return False
+        else:
+            return bool(int(value))
 
 
 class StringVariable(Variable):
