@@ -13,6 +13,7 @@ from distutils.command.install_data import install_data
 from distutils.command.install_scripts import install_scripts
 from DistUtilsExtra.command.build_extra import build_extra
 from DistUtilsExtra.command.build_i18n import build_i18n
+from DistUtilsExtra.command.build_icons import build_icons
 
 
 def changelog_version(changelog="debian/changelog"):
@@ -125,9 +126,8 @@ results can then be sent to Launchpad.
 """,
     data_files = [
         ("/etc/dbus-1/system.d/", ["backend/*.conf"]),
-        ("share/pixmaps/", ["gtk/checkbox-gtk.xpm"]),
         ("share/checkbox/", ["run"]),
-        ("share/checkbox/data/", ["data/*"]),
+        ("share/checkbox/data/", ["data/*.txt"]),
         ("share/checkbox/examples/", ["examples/*"]),
         ("share/checkbox/install/", ["install/*"]),
         ("share/checkbox/patches/", ["patches/*"]),
@@ -144,6 +144,7 @@ results can then be sent to Launchpad.
         "install": checkbox_install,
         "install_data": checkbox_install_data,
         "install_scripts": checkbox_install_scripts,
-        "build" : build_extra,
-        "build_i18n" :  build_i18n }
+        "build": build_extra,
+        "build_i18n":  build_i18n,
+        "build_icons":  build_icons }
 )

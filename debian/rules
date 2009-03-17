@@ -24,6 +24,9 @@ build/hwtest-cli::
 build/hwtest-gtk::
 	cp debian/hwtest.postrm debian/hwtest-gtk.postrm
 
+binary-install/checkbox-gtk::
+	dh_icons -p$(cdbs_curpkg)
+
 clean::
 	-find . -name \*.mo -exec rm {} \;
 	-rm -f debian/checkbox-cli.postrm debian/checkbox-gtk.postrm
