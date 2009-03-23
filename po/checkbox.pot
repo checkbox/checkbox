@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-03-23 15:09+0000\n"
+"POT-Creation-Date: 2009-03-23 12:39-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -43,7 +43,7 @@ msgstr ""
 #. Title of the user interface
 #: ../gtk/checkbox-gtk.glade.h:3 ../gtk/checkbox-gtk.desktop.in.h:1
 #: ../checkbox_cli/cli_interface.py:184 ../checkbox_cli/cli_interface.py:224
-#: ../plugins/user_interface.py:35
+#: ../plugins/user_interface.py:37
 msgid "System Testing"
 msgstr ""
 
@@ -186,23 +186,97 @@ msgstr ""
 msgid "Missing configuration file as argument.\n"
 msgstr ""
 
-#: ../checkbox/test.py:83
-#, python-format
-msgid "Invalid status: %s"
-msgstr ""
-
-#: ../checkbox/test.py:113
+#: ../checkbox/test.py:115
 msgid "Command failed, skipping."
 msgstr ""
 
-#: ../checkbox/test.py:120
+#: ../checkbox/test.py:122
 #, python-format
 msgid "Received terminate signal %s: %s"
 msgstr ""
 
-#: ../checkbox/test.py:124
-#, python-format
-msgid "Command not terminated: %s"
+#: ../checkbox/lib/signal.py:23
+msgid "Hangup detected on controlling terminal or death of controlling process"
+msgstr ""
+
+#: ../checkbox/lib/signal.py:24
+msgid "Interrupt from keyboard"
+msgstr ""
+
+#: ../checkbox/lib/signal.py:25
+msgid "Quit from keyboard"
+msgstr ""
+
+#: ../checkbox/lib/signal.py:26
+msgid "Illegal Instruction"
+msgstr ""
+
+#: ../checkbox/lib/signal.py:27
+msgid "Abort signal from abort(3)"
+msgstr ""
+
+#: ../checkbox/lib/signal.py:28
+msgid "Floating point exception"
+msgstr ""
+
+#: ../checkbox/lib/signal.py:29
+msgid "Kill signal"
+msgstr ""
+
+#: ../checkbox/lib/signal.py:30
+msgid "Invalid memory reference"
+msgstr ""
+
+#: ../checkbox/lib/signal.py:31
+msgid "Broken pipe: write to pipe with no readers"
+msgstr ""
+
+#: ../checkbox/lib/signal.py:32
+msgid "Timer signal from alarm(2)"
+msgstr ""
+
+#: ../checkbox/lib/signal.py:33
+msgid "Termination signal"
+msgstr ""
+
+#: ../checkbox/lib/signal.py:34
+msgid "User-defined signal 1"
+msgstr ""
+
+#: ../checkbox/lib/signal.py:35
+msgid "User-defined signal 2"
+msgstr ""
+
+#: ../checkbox/lib/signal.py:36
+msgid "Child stopped or terminated"
+msgstr ""
+
+#: ../checkbox/lib/signal.py:37
+msgid "Continue if stopped"
+msgstr ""
+
+#: ../checkbox/lib/signal.py:38
+msgid "Stop process"
+msgstr ""
+
+#: ../checkbox/lib/signal.py:39
+msgid "Stop typed at tty"
+msgstr ""
+
+#: ../checkbox/lib/signal.py:40
+msgid "tty input for background process"
+msgstr ""
+
+#: ../checkbox/lib/signal.py:41
+msgid "tty output for background process"
+msgstr ""
+
+#: ../checkbox/lib/signal.py:77
+msgid "UNKNOWN"
+msgstr ""
+
+#: ../checkbox/lib/signal.py:89
+msgid "Unknown signal"
 msgstr ""
 
 #: ../checkbox_cli/cli_interface.py:114
