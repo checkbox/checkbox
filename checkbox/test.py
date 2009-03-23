@@ -27,6 +27,8 @@ of test.
 import re
 import logging
 
+from gettext import gettext as _
+
 from checkbox.lib.environ import add_variable, remove_variable
 from checkbox.lib.signal import signal_to_name, signal_to_description
 
@@ -80,7 +82,7 @@ class TestResult(object):
 
     def _set_status(self, status):
         if status not in ALL_STATUS:
-            raise Exception, _("Invalid status: %s") % status
+            raise Exception, "Invalid status: %s" % status
 
         self._status = status
 
@@ -121,7 +123,7 @@ class TestCommand(Command):
                 (signal_to_name(term_signal),
                  signal_to_description(term_signal))
         else:
-            raise Exception, _("Command not terminated: %s") \
+            raise Exception, "Command not terminated: %s" \
                 % self.get_command()
 
         duration = result.duration
