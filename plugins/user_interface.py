@@ -29,7 +29,7 @@ class UserInterface(Plugin):
     interface_module = String()
     interface_class = String()
 
-    # HACK: this is only a temporary workaround to internatioalize the
+    # HACK: this is only a temporary workaround to internationalize the
     # user interface title and should be eventually removed.
     gettext.textdomain("checkbox")
 
