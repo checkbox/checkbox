@@ -21,14 +21,18 @@ from checkbox.lib.iterator import Iterator
 from checkbox.properties import Path, String
 from checkbox.plugin import Plugin
 
+import gettext
+from gettext import gettext as _
 
 class UserInterface(Plugin):
 
     interface_module = String()
     interface_class = String()
 
+    gettext.textdomain("checkbox")
+
     # Title of the user interface
-    title = String(default="System Testing")
+    title = String(default=_("System Testing"))
 
     # Path where data files are stored.
     data_path = Path(required=False)
