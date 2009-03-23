@@ -80,7 +80,7 @@ class TestResult(object):
 
     def _set_status(self, status):
         if status not in ALL_STATUS:
-            raise Exception, "Invalid status: %s" % status
+            raise Exception, _("Invalid status: %s") % status
 
         self._status = status
 
@@ -110,18 +110,18 @@ class TestCommand(Command):
                     data = result.stderr
             elif exit_status == 127:
                 status = SKIP
-                data = "Command failed, skipping."
+                data = _("Command failed, skipping.")
             else:
                 status = FAIL
                 data = result.stderr
         elif result.if_signaled:
             status = SKIP
             term_signal = result.term_signal
-            data = "Received terminate signal %s: %s" % \
+            data = _("Received terminate signal %s: %s") % \
                 (signal_to_name(term_signal),
                  signal_to_description(term_signal))
         else:
-            raise Exception, "Command not terminated: %s" \
+            raise Exception, _("Command not terminated: %s") \
                 % self.get_command()
 
         duration = result.duration
