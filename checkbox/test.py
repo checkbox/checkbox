@@ -27,6 +27,8 @@ of test.
 import re
 import logging
 
+from gettext import gettext as _
+
 from checkbox.lib.environ import add_variable, remove_variable
 from checkbox.lib.signal import signal_to_name, signal_to_description
 
@@ -110,14 +112,14 @@ class TestCommand(Command):
                     data = result.stderr
             elif exit_status == 127:
                 status = SKIP
-                data = "Command failed, skipping."
+                data = _("Command failed, skipping.")
             else:
                 status = FAIL
                 data = result.stderr
         elif result.if_signaled:
             status = SKIP
             term_signal = result.term_signal
-            data = "Received terminate signal %s: %s" % \
+            data = _("Received terminate signal %s: %s") % \
                 (signal_to_name(term_signal),
                  signal_to_description(term_signal))
         else:

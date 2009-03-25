@@ -8,13 +8,29 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-03-17 14:23-0400\n"
+"POT-Creation-Date: 2009-03-23 12:39-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: ../backend/com.ubuntu.checkbox.policy.in.h:1
+msgid "Get system information"
+msgstr ""
+
+#: ../backend/com.ubuntu.checkbox.policy.in.h:2
+msgid "Run system tests"
+msgstr ""
+
+#: ../backend/com.ubuntu.checkbox.policy.in.h:3
+msgid "System policy prevents getting system information"
+msgstr ""
+
+#: ../backend/com.ubuntu.checkbox.policy.in.h:4
+msgid "System policy prevents running system tests"
+msgstr ""
 
 #: ../gtk/checkbox-gtk.glade.h:1 ../checkbox_cli/cli_interface.py:234
 msgid "Further information:"
@@ -24,8 +40,10 @@ msgstr ""
 msgid "Ne_xt"
 msgstr ""
 
+#. Title of the user interface
 #: ../gtk/checkbox-gtk.glade.h:3 ../gtk/checkbox-gtk.desktop.in.h:1
 #: ../checkbox_cli/cli_interface.py:184 ../checkbox_cli/cli_interface.py:224
+#: ../plugins/user_interface.py:37
 msgid "System Testing"
 msgstr ""
 
@@ -168,6 +186,99 @@ msgstr ""
 msgid "Missing configuration file as argument.\n"
 msgstr ""
 
+#: ../checkbox/test.py:115
+msgid "Command failed, skipping."
+msgstr ""
+
+#: ../checkbox/test.py:122
+#, python-format
+msgid "Received terminate signal %s: %s"
+msgstr ""
+
+#: ../checkbox/lib/signal.py:23
+msgid "Hangup detected on controlling terminal or death of controlling process"
+msgstr ""
+
+#: ../checkbox/lib/signal.py:24
+msgid "Interrupt from keyboard"
+msgstr ""
+
+#: ../checkbox/lib/signal.py:25
+msgid "Quit from keyboard"
+msgstr ""
+
+#: ../checkbox/lib/signal.py:26
+msgid "Illegal Instruction"
+msgstr ""
+
+#: ../checkbox/lib/signal.py:27
+msgid "Abort signal from abort(3)"
+msgstr ""
+
+#: ../checkbox/lib/signal.py:28
+msgid "Floating point exception"
+msgstr ""
+
+#: ../checkbox/lib/signal.py:29
+msgid "Kill signal"
+msgstr ""
+
+#: ../checkbox/lib/signal.py:30
+msgid "Invalid memory reference"
+msgstr ""
+
+#: ../checkbox/lib/signal.py:31
+msgid "Broken pipe: write to pipe with no readers"
+msgstr ""
+
+#: ../checkbox/lib/signal.py:32
+msgid "Timer signal from alarm(2)"
+msgstr ""
+
+#: ../checkbox/lib/signal.py:33
+msgid "Termination signal"
+msgstr ""
+
+#: ../checkbox/lib/signal.py:34
+msgid "User-defined signal 1"
+msgstr ""
+
+#: ../checkbox/lib/signal.py:35
+msgid "User-defined signal 2"
+msgstr ""
+
+#: ../checkbox/lib/signal.py:36
+msgid "Child stopped or terminated"
+msgstr ""
+
+#: ../checkbox/lib/signal.py:37
+msgid "Continue if stopped"
+msgstr ""
+
+#: ../checkbox/lib/signal.py:38
+msgid "Stop process"
+msgstr ""
+
+#: ../checkbox/lib/signal.py:39
+msgid "Stop typed at tty"
+msgstr ""
+
+#: ../checkbox/lib/signal.py:40
+msgid "tty input for background process"
+msgstr ""
+
+#: ../checkbox/lib/signal.py:41
+msgid "tty output for background process"
+msgstr ""
+
+#: ../checkbox/lib/signal.py:77
+msgid "UNKNOWN"
+msgstr ""
+
+#: ../checkbox/lib/signal.py:89
+msgid "Unknown signal"
+msgstr ""
+
 #: ../checkbox_cli/cli_interface.py:114
 msgid "Press any key to continue..."
 msgstr ""
@@ -266,6 +377,10 @@ msgstr ""
 msgid "Exchanging information with the server..."
 msgstr ""
 
+#: ../plugins/final_prompt.py:31
+msgid "Successfully sent information!"
+msgstr ""
+
 #: ../plugins/gather_prompt.py:34
 msgid "Gathering information from your system..."
 msgstr ""
@@ -307,6 +422,14 @@ msgstr ""
 
 #: ../plugins/launchpad_exchange.py:139
 msgid "Information not posted to Launchpad."
+msgstr ""
+
+#: ../plugins/lock_prompt.py:51
+msgid "Another checkbox is running"
+msgstr ""
+
+#: ../plugins/lock_prompt.py:52
+msgid "There is another checkbox running. Please close it first."
 msgstr ""
 
 #: ../plugins/report_prompt.py:34
