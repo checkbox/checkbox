@@ -53,9 +53,8 @@ update_configuration()
         # Update the temporary file with preseeded values.
         /usr/share/checkbox/install/config --output=$tempfile $package
 
-        # Invoke ucf, which will take care of the rest, and ask
-        # the user if he wants to update his file, if it is modified.
-        [ -e "$config" ] && ucf --debconf-ok $tempfile $config || cp $tempfile $config
+        # Clobber the old config file.
+        cp $tempfile $config
 
         # Now clear up the cruft.
         rm -f $tempfile
