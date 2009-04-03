@@ -40,7 +40,7 @@
 <xsl:template match="summary">
     <h2 id="summary">Summary</h2>
     <p>This report was created using <xsl:value-of select="client/@name" /> <xsl:text> </xsl:text><xsl:value-of select="client/@version" /> on <xsl:value-of select="date_created/@value" />, on <xsl:value-of select="distribution/@value" /><xsl:text> </xsl:text><xsl:value-of select="distroseries/@value" /> (<xsl:value-of select="architecture/@value" />).</p>
-    <p>You can view other reports for this system <a href="https://launchpad.net/+hwdb/+submission/{system_id/@value}">here</a>.</p>
+    <p>You can view other reports for this system <a href="https://launchpad.net/+hwdb/+fingerprint/{system_id/@value}">here</a>.</p>
 </xsl:template>
 
 <xsl:template match="hardware/hal">
