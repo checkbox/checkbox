@@ -14,9 +14,6 @@ case "$1" in
 
         # remove the configuration file itself
         rm -f $file
-
-        # and finally clear it out from the ucf database
-        ucf --purge $file
         ;;
     remove|disappear|upgrade|failed-upgrade|abort-install|abort-upgrade)
         ;;

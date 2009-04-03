@@ -1,20 +1,12 @@
-checkbox (0.7-jaunty1-ppa2) jaunty; urgency=low
+checkbox (0.7.1) jaunty; urgency=low
 
-  * Changed icon.
+  * New icon
+  * Fixed pygst dependency (LP: #334442)
+  * Fixed configuration file updates during install (LP: #330596) and
+    and DBus exceptions (LP: #344916)
+  * Expanded and fixed translations (LP: #347038)
 
- -- Marc Tardif <marc@ubuntu.com>  Tue, 17 Mar 2009 20:30:04 +0000
-
-checkbox (0.7-intrepid1-ppa2) intrepid; urgency=low
-
-  * Changed icon.
-
- -- Marc Tardif <marc@ubuntu.com>  Tue, 17 Mar 2009 20:29:53 +0000
-
-checkbox (0.7-hardy1-ppa2) hardy; urgency=low
-
-  * Changed icon.
-
- -- Marc Tardif <marc@ubuntu.com>  Tue, 17 Mar 2009 20:29:42 +0000
+ -- Dave Murphy <schwuk@ubuntu.com>  Tue, 31 Mar 2009 13:54:12 +0100
 
 checkbox (0.7) jaunty; urgency=low
 
