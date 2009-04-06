@@ -183,7 +183,7 @@ class Test(object):
     An instance also contains the following optional fields:
 
     architectures: List of architectures for which this test is relevant:
-                   amd64, i386, powerpc and/or sparc
+                   amd64, i386, lpia, powerpc and/or sparc
     categories:    List of categories for which this test is relevant:
                    desktop, laptop and/or server
     command:       Command to run for the test.
@@ -214,7 +214,7 @@ class Test(object):
         # Typed fields
         for field in ["architectures", "categories", "depends"]:
             if attributes.has_key(field):
-                attributes[field] = re.split(r"\s*,\s*", attributes[field])
+                attributes[field] = re.split(r"\n", attributes[field])
         for field in ["timeout"]:
             if attributes.has_key(field):
                 attributes[field] = int(attributes[field])
