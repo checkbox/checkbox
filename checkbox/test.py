@@ -169,6 +169,25 @@ class TestDescription(Command):
         return result.stdout
 
 
+class TestAttachment(object):
+
+    def __init__(self, name):
+        self.name = name
+
+    @property
+    def content(self):
+        command = Command(self.name)
+        result = command.execute()
+        if result.exit_status == 127:
+            return "No such file or directory"
+        elif result.exit_status == 126:
+            return file(self.name).read()
+        elif result.exit_status:
+            return result.stderr
+        else:
+            return result.stdout
+
+
 class Test(object):
     """
     Test base class which should be inherited by each test
@@ -184,6 +203,8 @@ class Test(object):
 
     architectures: List of architectures for which this test is relevant:
                    amd64, i386, lpia, powerpc and/or sparc
+    attachments:   List of commands or filenames attached to the test
+                   results.
     categories:    List of categories for which this test is relevant:
                    desktop, laptop and/or server
     command:       Command to run for the test.
@@ -200,6 +221,7 @@ class Test(object):
     required_fields = ["name", "plugin", "description", "suite"]
     optional_fields = {
         "architectures": [],
+        "attachments": [],
         "categories": [],
         "command": None,
         "depends": [],
@@ -212,7 +234,7 @@ class Test(object):
         super(Test, self).__setattr__("attributes", attributes)
 
         # Typed fields
-        for field in ["architectures", "categories", "depends"]:
+        for field in ["architectures", "attachments", "categories", "depends"]:
             if attributes.has_key(field):
                 attributes[field] = re.split(r"\n", attributes[field])
         for field in ["timeout"]:
@@ -226,6 +248,10 @@ class Test(object):
 
         # Requires field
         attributes["requires"] = Requires(registry, attributes["requires"])
+
+        # Attachments field
+        attributes["attachments"] = [TestAttachment(a)
+            for a in attributes["attachments"]]
 
         # Command field
         attributes["command"] = TestCommand(self)
