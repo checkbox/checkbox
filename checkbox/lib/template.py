@@ -92,7 +92,10 @@ class Template(object):
                 if match:
                     bit = match.groups()[0].rstrip()
                     if len(extended) and not re.search(r"[\n ]$", extended):
-                        extended += " "
+                        if extended.endswith("\\"):
+                            extended = extended[:-1].rstrip() + " "
+                        else:
+                            extended += "\n"
 
                     extended += bit
                     continue

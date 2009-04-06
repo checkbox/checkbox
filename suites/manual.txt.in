@@ -4,7 +4,7 @@ categories: laptop, desktop
 requires: alsa.type == 'playback'
 command: gst_pipeline_test -t 2 'audiotestsrc wave=sine freq=512 ! audioconvert ! audioresample ! gconfaudiosink'
 _description:
- Click the Test button to play a sound on the automatically detected
+ Click the Test button to play a sound on the automatically detected \
  playback device.
  .
  Do you hear a sound?
@@ -62,7 +62,7 @@ plugin: manual
 command: keyboard_test
 requires: 'input.keyboard' in info.capabilities
 _description:
- Click the Test button to open a text area where to type keys on your
+ Click the Test button to open a text area where to type keys on your \
  keyboard.
  .
  Is your keyboard working properly?
