@@ -181,7 +181,7 @@ class TestAttachment(object):
         if result.exit_status == 127:
             return "No such file or directory"
         elif result.exit_status == 126:
-            return file(self.name).read()
+            return open(self.name).read()
         elif result.exit_status:
             return result.stderr
         else:
