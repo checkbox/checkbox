@@ -16,7 +16,10 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
+import os
 import posixpath
+
+from time import time
 
 from gettext import gettext as _
 
@@ -24,7 +27,7 @@ from checkbox.contrib.glock import GlobalLock, LockAlreadyAcquired
 
 from checkbox.lib.safe import safe_make_directory
 
-from checkbox.properties import Path
+from checkbox.properties import Int, Path
 from checkbox.plugin import Plugin
 
 
@@ -32,6 +35,9 @@ class LockPrompt(Plugin):
 
     # Filename where the application lock is stored.
     filename = Path(default="%(checkbox_data)s/lock")
+
+    # Timeout after which to show an error prompt.
+    timeout = Int(default=0)
 
     def register(self, manager):
         super(LockPrompt, self).register(manager)
@@ -47,9 +53,10 @@ class LockPrompt(Plugin):
         try:
             self._lock.acquire()
         except LockAlreadyAcquired:
-            self._manager.reactor.fire("prompt-error", interface,
-                _("Another checkbox is running"),
-                _("There is another checkbox running. Please close it first."))
+            if time() - os.stat(self.filename).st_atime > self.timeout:
+                self._manager.reactor.fire("prompt-error", interface,
+                    _("Another checkbox is running"),
+                    _("There is another checkbox running. Please close it first."))
             self._manager.reactor.stop_all()
 
 
