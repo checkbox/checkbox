@@ -111,8 +111,8 @@ class Reactor(object):
     def run(self):
         try:
             self.fire("run")
-        except StopAllException, e:
-            logging.critical(e)
+        except StopAllException:
+            pass
         self.fire("stop")
 
     def stop(self):
