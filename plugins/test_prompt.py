@@ -92,7 +92,7 @@ class PromptTest(Plugin):
              ("report-architecture", self.report_architecture),
              ("report-category", self.report_category),
              ("report-result", self.report_result),
-             ("test-.*", self.test_all),
+             ("report-test", self.report_test),
              ("prompt-tests", self.prompt_tests)]:
             self._manager.reactor.call_on(rt, rh)
 
@@ -108,7 +108,7 @@ class PromptTest(Plugin):
     def report_result(self, result):
         self._result = result
 
-    def test_all(self, test):
+    def report_test(self, test):
         self._tests.append(test)
 
     def prompt_test(self, interface, test):

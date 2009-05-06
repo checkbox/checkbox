@@ -84,7 +84,7 @@ class LaunchpadReport(Plugin):
         self._report["summary"]["distroseries"] = distribution.release
 
     def report_packages(self, packages):
-        self._report["software"]["packages"].extend(packages)
+        self._report["software"]["packages"] = packages
 
     def report_processors(self, processors):
         self._report["hardware"]["processors"] = processors

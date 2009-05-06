@@ -63,7 +63,7 @@ class SuitesInfo(Plugin):
                 command.add_path(self.scripts_path)
                 command.add_variable("data_path", self.data_path)
 
-            self._manager.reactor.fire("test-%s" % test.plugin, test)
+            self._manager.reactor.fire("report-test", test)
 
 
 factory = SuitesInfo

@@ -19,22 +19,22 @@
 from checkbox.plugin import Plugin
 
 
-class ResultsInfo(Plugin):
+class TestsInfo(Plugin):
 
     def register(self, manager):
-        super(ResultsInfo, self).register(manager)
-        self._results = []
+        super(TestsInfo, self).register(manager)
+        self._tests = []
 
         for (rt, rh) in [
              ("report", self.report),
-             ("report-result", self.report_result)]:
+             ("report-test", self.report_test)]:
             self._manager.reactor.call_on(rt, rh)
 
-    def report_result(self, result):
-        self._results.append(result)
+    def report_test(self, test):
+        self._tests.append(test)
 
     def report(self):
-        self._manager.reactor.fire("report-results", self._results)
+        self._manager.reactor.fire("report-tests", self._tests)
 
 
-factory = ResultsInfo
+factory = TestsInfo

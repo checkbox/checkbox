@@ -70,7 +70,7 @@ class BackendManager(dbus.service.Object):
 
         self._manager = manager
         for (rt, rh) in [
-             ("test-.*", self.test_all),
+             ("report-test", self.report_test),
              ("run", self.run)]:
             self._manager.reactor.call_on(rt, rh)
 
@@ -109,7 +109,7 @@ class BackendManager(dbus.service.Object):
         test = self.tests[(suite, name)]
         return test.description()
 
-    def test_all(self, test):
+    def report_test(self, test):
         self.tests[(test.suite, test.name)] = test
 
     def run(self):
