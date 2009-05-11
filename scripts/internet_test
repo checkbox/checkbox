@@ -8,9 +8,11 @@ import commands
 import logging
 import socket
 import struct
+import gettext
+
+from gettext import gettext as _
 
 from optparse import OptionParser
-
 
 class Route(object):
     """Gets routing information from the system.
@@ -92,6 +94,9 @@ def ping(host, count, deadline):
     return packets_received
 
 def main(args):
+
+    gettext.textdomain("checkbox")
+
     default_count = 2
     default_delay = 4
 
@@ -118,11 +123,11 @@ def main(args):
         received_packets = ping(host, options.count, options.deadline)
 
     if received_packets == 0:
-        print "No Internet connection"
+        print _("No Internet connection")
     elif received_packets != options.count:
-        print "Connection established lost a packet"
+        print _("Connection established lost a packet")
     else:
-        print "Internet connection fully established"
+        print _("Internet connection fully established")
 
     return 0
 
