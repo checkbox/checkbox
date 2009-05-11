@@ -67,7 +67,7 @@ The following information will be sent to the Launchpad \
 hardware database.\n
 [[%s|View Report]]\n
 Please provide the e-mail address you use to sign in to Launchpad to \
-submit this information.""" % url))
+submit this information.""") % url)
 
 
             if interface.direction == PREV:
