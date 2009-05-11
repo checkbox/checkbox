@@ -2,6 +2,8 @@
 
 import os
 import sys
+from gettext import gettext as _
+import gettext
 
 def cli_prompt():
     import termios
@@ -16,7 +18,7 @@ def cli_prompt():
     attributes[6][termios.VTIME] = 0
     termios.tcsetattr(fileno, termios.TCSANOW, attributes)
 
-    sys.stdout.write("Enter text:\n")
+    sys.stdout.write(_("Enter text:\n"))
 
     input = ""
     try:
@@ -37,7 +39,7 @@ def gtk_prompt():
     window = gtk.Window(gtk.WINDOW_TOPLEVEL)
     window.set_size_request(200, 100)
     window.set_resizable(False)
-    window.set_title("Type Text")
+    window.set_title(_("Type Text"))
     window.connect("delete_event", lambda w,e: gtk.main_quit())
 
     vbox = gtk.VBox(False, 0)
@@ -64,6 +66,9 @@ def gtk_prompt():
     gtk.main()
 
 def main(args):
+
+    gettext.textdomain("checkbox")
+
     if "DISPLAY" in os.environ:
         gtk_prompt()
     else:
