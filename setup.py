@@ -121,8 +121,7 @@ setup(
     license = "GPL",
     description = "Checkbox System Testing",
     long_description = """
-This project provides an extensible interface for system testing. The
-results can then be sent to Launchpad.
+This project provides an extensible interface for system testing.
 """,
     data_files = [
         ("/etc/dbus-1/system.d/", ["backend/*.conf"]),

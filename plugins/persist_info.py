@@ -24,7 +24,7 @@ from checkbox.plugin import Plugin
 
 class PersistInfo(Plugin):
 
-    # E-mail address used to sign in to Launchpad.
+    # Filename where to persist information
     filename = Path(default="%(checkbox_data)s/plugins.bpickle")
 
     def register(self, manager):
