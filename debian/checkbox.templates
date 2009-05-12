@@ -9,16 +9,16 @@ Type: string
 _Description: Hardware Category
  Category of the system: desktop, laptop or server.
 
-Template: checkbox/plugins/exchange_prompt/email
-Type: string
-_Description: Launchpad E-mail
- E-mail address used to sign in to Launchpad.
-
 Template: checkbox/plugins/launchpad_exchange/transport_url
 Type: string
 Default: https://launchpad.net/+hwdb/+submit
 _Description: Transport URL
  URL where to send submissions.
+
+Template: checkbox/plugins/launchpad_prompt/email
+Type: string
+_Description: Launchpad E-mail
+ E-mail address used to sign in to Launchpad.
 
 Template: checkbox/plugins/proxy_info/http_proxy
 Type: string
