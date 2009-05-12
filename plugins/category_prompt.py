@@ -20,6 +20,7 @@ from gettext import gettext as _
 
 from checkbox.properties import String
 from checkbox.plugin import Plugin
+from checkbox.test import ALL_CATEGORIES
 
 
 class CategoryPrompt(Plugin):
@@ -62,8 +63,9 @@ class CategoryPrompt(Plugin):
 
         # Prompt for the category explicitly
         if not category:
-            category = interface.show_category(_("Category"),
+            category = interface.show_options(
                 _("Please select the category of your system."),
+                ALL_CATEGORIES,
                 category)
 
         self.persist.set("category", category)

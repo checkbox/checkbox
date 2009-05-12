@@ -22,15 +22,14 @@ import termios
 
 from gettext import gettext as _
 
-from checkbox.test import ALL_CATEGORIES, ALL_STATUS, FAIL, TestResult
+from checkbox.test import ALL_STATUS, FAIL, TestResult
 from checkbox.user_interface import UserInterface
 
 
 class CLIDialog(object):
     """Command line dialog wrapper."""
 
-    def __init__(self, heading, text):
-        self.heading = heading
+    def __init__(self, text):
         self.text = text
         self.visible = False
 
@@ -91,15 +90,13 @@ class CLIDialog(object):
     def show(self):
         self.visible = True
         self.put_newline()
-        self.put_line("*** %s" % self.heading)
-        self.put_newline()
         self.put_line(self.text)
 
 
 class CLIChoiceDialog(CLIDialog):
 
-    def __init__(self, heading, text):
-        super(CLIChoiceDialog, self).__init__(heading, text)
+    def __init__(self, text):
+        super(CLIChoiceDialog, self).__init__(text)
         self.keys = []
         self.buttons = []
 
@@ -162,8 +159,8 @@ class CLILineDialog(CLITextDialog):
 class CLIProgressDialog(CLIDialog):
     """Command line progress dialog wrapper."""
 
-    def __init__(self, heading, text):
-        super(CLIProgressDialog, self).__init__(heading, text)
+    def __init__(self, text):
+        super(CLIProgressDialog, self).__init__(text)
         self.progress_count = 0
 
     def set(self, progress=None):
@@ -180,27 +177,32 @@ class CLIProgressDialog(CLIDialog):
 
 class CLIInterface(UserInterface):
 
-    def show_wait(self, message, function, *args, **kwargs):
-        title = _("System Testing")
-        self.progress = CLIProgressDialog(title, message)
+    def show_wait(self, text, function, *args, **kwargs):
+        self.progress = CLIProgressDialog(text)
         self.progress.show()
         self.do_function(function, *args, **kwargs)
 
     def show_pulse(self):
         self.progress.set()
 
-    def show_intro(self, title, text):
-        dialog = CLIChoiceDialog(title, text)
+    def show_text(self, text, previous=None, next=None):
+        dialog = CLIChoiceDialog(text)
         dialog.run()
 
-    def show_category(self, title, text, category=None):
-        dialog = CLIChoiceDialog(title, text)
-        for category in ALL_CATEGORIES:
-            dialog.add_button("&%s" % category)
+    def show_entry(self, text, value, previous=None, next=None):
+        dialog = CLILineDialog(text)
+
+        return dialog.run()
+
+    def show_options(self, text, options=[], default=None):
+        dialog = CLIChoiceDialog(text)
+        for option in options:
+            label = "&%s" % option.capitalize()
+            dialog.add_button(label)
 
         # Show categories dialog
         response = dialog.run()
-        return ALL_CATEGORIES[response - 1]
+        return options[response - 1]
 
     def show_test(self, test, result=None):
         answers = [_("yes"), _("no"), _("skip")]
@@ -221,8 +223,7 @@ class CLIInterface(UserInterface):
             if response <= len(ALL_STATUS):
                 break
 
-            title = _("System Testing")
-            self.progress = CLIProgressDialog(title,
+            self.progress = CLIProgressDialog(
                 _("Running test %s...") % test.name)
             self.progress.show()
 
@@ -240,21 +241,6 @@ class CLIInterface(UserInterface):
 
         return TestResult(test, status, data)
 
-    def show_exchange(self, authentication, message=None):
-        if message is not None:
-            title = _("Authentication")
-            dialog = CLILineDialog(title, message)
-
-        authentication = dialog.run()
-        return authentication
-
-    def show_final(self, message=None):
-        if message is not None:
-            title = _("Done")
-            dialog = CLIChoiceDialog(title, message)
-
-        return dialog.run()
-
-    def show_error(self, title, text):
-        dialog = CLIChoiceDialog("Error: %s" % title, text)
+    def show_error(self, text):
+        dialog = CLIChoiceDialog("Error: %s" % text)
         dialog.run()

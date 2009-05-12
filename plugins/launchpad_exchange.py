@@ -57,11 +57,11 @@ class LaunchpadExchange(Plugin):
              ("report-client", self.report_client),
              ("report-datetime", self.report_datetime),
              ("report-distribution", self.report_distribution),
-             ("report-email", self.report_email),
              ("report-submission_id", self.report_submission_id),
              ("report-system_id", self.report_system_id),
-             ("exchange-report", self.exchange_report),
-             ("exchange", self.exchange)]:
+             ("launchpad-email", self.launchpad_email),
+             ("launchpad-report", self.launchpad_report),
+             ("launchpad-exchange", self.launchpad_exchange)]:
             self._manager.reactor.call_on(rt, rh)
 
     def report_architecture(self, message):
@@ -78,26 +78,26 @@ class LaunchpadExchange(Plugin):
         self._form["field.distribution"] = message.distributor_id
         self._form["field.distroseries"] = message.release
 
-    def report_email(self, message):
-        self._form["field.emailaddress"] = message
-
     def report_submission_id(self, message):
         self._form["field.submission_key"] = message
 
     def report_system_id(self, message):
         self._form["field.system"] = message
 
-    def exchange_report(self, message):
-        self._report = message
+    def launchpad_email(self, message):
+        self._form["field.emailaddress"] = message
 
-    def exchange(self):
+    def launchpad_report(self, report):
+        self._launchpad_report = report
+
+    def launchpad_exchange(self):
         # Encode form data
         form = {}
         for field, value in self._form.items():
             form[field] = str(value).encode("UTF-8")
 
         # Compress and add payload to form
-        payload = open(self._report, "r").read()
+        payload = open(self._launchpad_report, "r").read()
         compressed_payload = bz2.compress(payload)
         file = StringIO(compressed_payload)
         file.name = "%s.xml.bz2" % str(gethostname())
@@ -121,7 +121,7 @@ again or upload the following file name:
 %s
 
 directly to the system database:
-https://launchpad.net/+hwdb/+submit""") % posixpath.abspath(self._report))
+https://launchpad.net/+hwdb/+submit""") % posixpath.abspath(self._launchpad_report))
             return
         elif response.status != 200:
             self._manager.reactor.fire("exchange-error", _("""\

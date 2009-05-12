@@ -59,8 +59,8 @@ class UserInterface(object):
 
         return thread.return_value()
 
-    def show_error(self, title, text):
-        logging.error("%s: %s", title, text)
+    def show_error(self, text):
+        logging.error(text)
 
     def show_wait(self, message, function, *args, **kwargs):
         self.do_function(function, *args, **kwargs)
@@ -68,23 +68,19 @@ class UserInterface(object):
     def show_pulse(self):
         pass
 
-    def show_intro(self, title, text):
+    def show_text(self, text, previous=None, next=None):
         raise NotImplementedError, \
             "this function must be overridden by subclasses"
 
-    def show_category(self, title, text, category):
+    def show_entry(self, text, value, previous=None, next=None):
+        raise NotImplementedError, \
+            "this function must be overridden by subclasses"
+
+    def show_options(self, text, options=[], default=None):
         raise NotImplementedError, \
             "this function must be overridden by subclasses"
 
     def show_test(self, test, result):
-        raise NotImplementedError, \
-            "this function must be overridden by subclasses"
-
-    def show_exchange(self, authentication, message=None):
-        raise NotImplementedError, \
-            "this function must be overridden by subclasses"
-
-    def show_final(self, message):
         raise NotImplementedError, \
             "this function must be overridden by subclasses"
 
@@ -98,12 +94,11 @@ class UserInterface(object):
             os.close(w)
             (pid, status) = os.wait()
             if status:
-                title = _("Unable to start web browser")
-                error = _("Unable to start web browser to open %s." % url)
+                text = _("Unable to start web browser to open %s." % url)
                 message = os.fdopen(r).readline()
                 if message:
-                    error += "\n" + message
-                self.show_error(title, error)
+                    text += "\n" + message
+                self.show_error(text)
             try:
                 os.close(r)
             except OSError:

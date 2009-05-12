@@ -139,7 +139,7 @@ class LaunchpadReport(Plugin):
         file.write(payload)
         file.close()
 
-        self._manager.reactor.fire("exchange-report", self.filename)
+        self._manager.reactor.fire("launchpad-report", self.filename)
 
 
 factory = LaunchpadReport

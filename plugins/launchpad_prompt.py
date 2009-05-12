@@ -16,8 +16,8 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-import posixpath
 import re
+import posixpath
 
 from gettext import gettext as _
 
@@ -27,29 +27,29 @@ from checkbox.properties import String
 from checkbox.plugin import Plugin
 
 
-class ExchangePrompt(Plugin):
+class LaunchpadPrompt(Plugin):
 
     # E-mail address used to sign in to Launchpad.
     email = String(required=False)
 
     def register(self, manager):
-        super(ExchangePrompt, self).register(manager)
+        super(LaunchpadPrompt, self).register(manager)
 
         for (rt, rh) in [
-             ("gather-persist", self.gather_persist),
              ("exchange-error", self.exchange_error),
-             ("exchange-report", self.exchange_report),
+             ("gather-persist", self.gather_persist),
+             ("launchpad-report", self.launchpad_report),
              ("prompt-exchange", self.prompt_exchange)]:
             self._manager.reactor.call_on(rt, rh)
-
-    def gather_persist(self, persist):
-        self.persist = persist.root_at("exchange_prompt")
 
     def exchange_error(self, error):
         self._error = error
 
-    def exchange_report(self, report):
-        self._report = report
+    def gather_persist(self, persist):
+        self.persist = persist.root_at("launchpad_prompt")
+
+    def launchpad_report(self, report):
+        self._launchpad_report = report
 
     def prompt_exchange(self, interface):
         email = self.persist.get("email") or self.email
@@ -58,32 +58,36 @@ class ExchangePrompt(Plugin):
         while True:
             if self._error or not self.email:
                 if self._error:
-                    interface.show_error(_("Exchange"), self._error)
+                    interface.show_error(self._error)
 
-                url = "file://%s" % posixpath.abspath(self._report)
+                url = "file://%s" % posixpath.abspath(self._launchpad_report)
 
-                email = interface.show_exchange(email, _("""\
-The following information will be sent to the Launchpad \
-hardware database.\n
-[[%s|View Report]]\n
-Please provide the e-mail address you use to sign in to Launchpad to \
-submit this information.""") % url)
+                email = interface.show_entry(_("""\
+The following report has been generated for submission to the Launchpad \
+hardware database:
 
+  [[%s|View Report]]
 
-            if interface.direction == PREV:
+You can submit this information about your system by providing the e-mail \
+address you use to sign in to Launchpad. If you do not have a Launchpad \
+account, please register here:
+
+  https://launchpad.net/+login""") % url, email)
+
+            if interface.direction == PREV or not email:
                 break
             elif not re.match(r"^\S+@\S+\.\S+$", email, re.I):
                 self._error = _("Email address must be in a proper format.")
             else:
                 self._error = None
-                self._manager.reactor.fire("report-email", email)
+                self._manager.reactor.fire("launchpad-email", email)
                 interface.show_wait(
                     _("Exchanging information with the server..."),
-                    self._manager.reactor.fire, "exchange")
+                    self._manager.reactor.fire, "launchpad-exchange")
                 if not self._error:
                     break
 
         self.persist.set("email", email)
 
 
-factory = ExchangePrompt
+factory = LaunchpadPrompt

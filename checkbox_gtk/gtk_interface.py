@@ -77,14 +77,18 @@ class GTKInterface(UserInterface):
         self._notebook = self._get_widget("notebook_main")
         self._handler_id = None
 
-    def _get_widget(self, widget):
-        return self.widgets.get_widget(widget)
+    def _get_widget(self, name):
+        return self.widgets.get_widget(name)
 
     def _get_radio_button(self, map):
         for radio_button, value in map.items():
             if self._get_widget(radio_button).get_active():
                 return value
         raise Exception, "Failed to map radio_button."
+
+    def _get_label(self, name):
+        widget = self._get_widget(name)
+        return widget.get_label()
 
     def _get_text(self, name):
         widget = self._get_widget(name)
@@ -155,6 +159,19 @@ class GTKInterface(UserInterface):
         widget = self._get_widget(name)
         widget.set_sensitive(bool(value))
 
+    def _set_button(self, name, value=None):
+        if value is None:
+            state = value
+        else:
+            state = self._get_label(name)
+            if value == "":
+                self._set_sensitive(name, False)
+            else:
+                self._set_sensitive(name, True)
+                self._set_label(name, value)
+
+        return state
+
     def _run_dialog(self, dialog=None):
         def on_dialog_response(dialog, response, self):
             self.direction = response
@@ -194,33 +211,70 @@ class GTKInterface(UserInterface):
             gtk.main_iteration()
 
     @GTKHack
-    def show_intro(self, title, text):
+    def show_text(self, text, previous=None, next=None):
         # Set buttons
-        self._set_sensitive("button_previous", False)
+        previous_state = self._set_button("button_previous", previous)
+        next_state = self._set_button("button_next", next)
+
         self._notebook.set_current_page(0)
 
-        intro = "\n\n".join([title, text])
-        self._set_hyper_text_view("hyper_text_view_intro_text", intro)
+        self._set_hyper_text_view("hyper_text_view_text", text)
 
         self._run_dialog()
 
-        self._set_sensitive("button_previous", True)
+        # Unset buttons
+        self._set_button("button_previous", previous_state)
+        self._set_button("button_next", next_state)
 
     @GTKHack
-    def show_category(self, title, text, category=None):
+    def show_entry(self, text, value, previous=None, next=None):
+        # Set buttons
+        previous_state = self._set_button("button_previous", previous)
+        next_state = self._set_button("button_next", next)
+
+        self._notebook.set_current_page(3)
+
+        if value is not None:
+            self._set_text("entry", value)
+
+        self._set_hyper_text_view("hyper_text_view_entry", text)
+
+        self._run_dialog()
+
+        # Unset buttons
+        self._set_button("button_previous", previous_state)
+        self._set_button("button_next", next_state)
+
+        return self._get_text("entry")
+
+    @GTKHack
+    def show_options(self, text, options=[], default=None):
         # Set buttons
         self._notebook.set_current_page(1)
 
+        # Set options
+        option_group = None
+        option_table = {}
+        vbox = self._get_widget("vbox_category")
+        for option in options:
+            label = "_%s" % option.capitalize()
+            radio_button = gtk.RadioButton(option_group, label)
+            radio_button.show()
+            option_table[option] = radio_button
+            vbox.pack_start(radio_button, False, False, 0)
+            if option_group is None:
+                option_group = radio_button
+            if option == default:
+                radio_button.set_active(True)
+
         self._set_hyper_text_view("hyper_text_view_category", text)
-        if category:
-            self._set_active("radio_button_%s" % category)
 
         self._run_dialog()
 
-        return self._get_radio_button({
-            "radio_button_desktop": "desktop",
-            "radio_button_laptop": "laptop",
-            "radio_button_server": "server"})
+        # Get option
+        for option, radio_button in option_table.items():
+            if radio_button.get_active():
+                return option
 
     def _run_test(self, test):
         self._set_sensitive("button_test", False)
@@ -274,40 +328,12 @@ class GTKInterface(UserInterface):
         data = self._get_text_view("text_view_comment")
         return TestResult(test, status, data)
 
-    @GTKHack
-    def show_exchange(self, authentication, message=None):
-        self._notebook.set_current_page(3)
-
-        if authentication is not None:
-            self._set_text("entry_authentication", authentication)
-
-        if message is not None:
-            self._set_hyper_text_view("hyper_text_view_exchange", message)
-
-        self._run_dialog()
-
-        authentication = self._get_text("entry_authentication")
-
-        return authentication
-
-    @GTKHack
-    def show_final(self, message=None):
-        self._set_label("button_next", _("_Finish"))
-        self._notebook.set_current_page(4)
-
-        if message is not None:
-            self._set_hyper_text_view("hyper_text_view_final", message)
-
-        self._run_dialog()
-
-        self._set_label("button_next", _("Ne_xt"))
-
-    def show_error(self, title, text):
+    def show_error(self, text):
         message_dialog = gtk.MessageDialog(parent=self._dialog,
             type=gtk.MESSAGE_ERROR,
             buttons=gtk.BUTTONS_CLOSE,
             message_format=text)
         message_dialog.set_modal(True)
-        message_dialog.set_title(title)
+        message_dialog.set_title(_("Error"))
         self._run_dialog(message_dialog)
         message_dialog.hide()

@@ -28,7 +28,8 @@ class FinalPrompt(Plugin):
         self._manager.reactor.call_on("prompt-finish", self.prompt_finish)
 
     def prompt_finish(self, interface):
-        interface.show_final(_("Successfully sent information!"))
+        interface.show_text(_("Successfully finished testing!"),
+            next=_("_Finish"))
 
 
 factory = FinalPrompt

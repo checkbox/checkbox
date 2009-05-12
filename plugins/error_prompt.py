@@ -26,8 +26,8 @@ class ErrorPrompt(Plugin):
         self._manager.reactor.call_on("prompt-error",
             self.prompt_error)
 
-    def prompt_error(self, interface, title, text):
-        interface.show_error(title, text)
+    def prompt_error(self, interface, text):
+        interface.show_error(text)
 
 
 factory = ErrorPrompt

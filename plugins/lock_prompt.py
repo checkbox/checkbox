@@ -55,7 +55,6 @@ class LockPrompt(Plugin):
         except LockAlreadyAcquired:
             if time() - os.stat(self.filename).st_atime > self.timeout:
                 self._manager.reactor.fire("prompt-error", interface,
-                    _("Another checkbox is running"),
                     _("There is another checkbox running. Please close it first."))
             self._manager.reactor.stop_all()
 

@@ -26,22 +26,17 @@ class IntroPrompt(Plugin):
     def register(self, manager):
         super(IntroPrompt, self).register(manager)
         # Introduction should be prompted last
+
         self._manager.reactor.call_on("prompt-begin", self.prompt_begin, 100)
 
     def prompt_begin(self, interface):
-        interface.show_intro(_("Welcome to System Testing!"),
-            _("""\
-This application will gather information from your system. Then, \
-you will be asked manual tests to confirm that the system is working \
-properly. Finally, you will be asked for the e-mail address you use \
-to sign in to Launchpad in order to submit the information and your \
-results.
+        interface.show_text(_("""\
+Welcome to System Testing!
 
-If you do not have a Launchpad account, please register here:
-
-  https://launchpad.net/+login
-
-Thank you for taking the time to test your system."""))
+Checkbox provides tests to confirm that your system is working \
+properly. Once you are finished running the tests, you can view \
+a summary report for your system."""),
+            previous="")
 
 
 factory = IntroPrompt
