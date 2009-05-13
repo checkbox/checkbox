@@ -36,7 +36,6 @@ class MessageStore(object):
     def __init__(self, persist, directory, directory_size=1000):
         self._directory = directory
         self._directory_size = directory_size
-        self._schemas = {}
         self._original_persist = persist
         self._persist = persist.root_at("message-store")
         message_dir = self._message_dir()
@@ -46,24 +45,6 @@ class MessageStore(object):
     def commit(self):
         """Save metadata to disk."""
         self._original_persist.save()
-
-    def set_accepted_types(self, types):
-        """Specify the types of messages that the server will expect from us.
-
-        If messages are added to the store which are not currently
-        accepted, they will be saved but ignored until their type is
-        accepted.
-        """
-        assert type(types) in (tuple, list, set)
-        self._persist.set("accepted-types", sorted(set(types)))
-        self._reprocess_holding()
-
-    def get_accepted_types(self):
-        return self._persist.get("accepted-types", ())
-
-    def accepts(self, type):
-        accepted_types = self.get_accepted_types()
-        return not accepted_types or type in accepted_types
 
     def get_sequence(self):
         """
@@ -109,10 +90,7 @@ class MessageStore(object):
                 logging.exception(e)
                 self._add_flags(filename, BROKEN)
             else:
-                if not self.accepts(message["type"]):
-                    self._add_flags(filename, HELD)
-                else:
-                    messages.append(message)
+                messages.append(message)
         return messages
 
     def set_pending_flags(self, flags):
@@ -141,13 +119,6 @@ class MessageStore(object):
         for filename in self._walk_messages():
             os.unlink(filename)
 
-    def add_schema(self, schema):
-        """Add a schema to be applied to messages of the given type.
-
-        The schema must be an instance of L{landscape.schema.Message}.
-        """
-        self._schemas[schema.type] = schema
-
     def is_pending(self, message_id):
         """Return bool indicating if C{message_id} still hasn't been delivered.
 
@@ -170,8 +141,6 @@ class MessageStore(object):
         @return: message_id, which is an identifier for the added message.
         """
         assert "type" in message
-        if message["type"] in self._schemas:
-            message = self._schemas[message["type"]].coerce(message)
 
         message_data = bpickle.dumps(message)
 
@@ -181,9 +150,6 @@ class MessageStore(object):
         file.write(message_data)
         file.close()
         os.rename(filename + ".tmp", filename)
-
-        if not self.accepts(message["type"]):
-            filename = self._set_flags(filename, HELD)
 
         # For now we use the inode as the message id, as it will work
         # correctly even faced with holding/unholding.  It will break
@@ -249,33 +215,6 @@ class MessageStore(object):
             return file.read()
         finally:
             file.close()
-
-    def _reprocess_holding(self):
-        """
-        Unhold accepted messages left behind, and hold unaccepted
-        pending messages.
-        """
-        offset = 0
-        pending_offset = self.get_pending_offset()
-        for old_filename in self._walk_messages():
-            flags = self._get_flags(old_filename)
-            try:
-                message = bpickle.loads(self._get_content(old_filename))
-            except ValueError, e:
-                logging.exception(e)
-                if HELD not in flags:
-                    offset += 1
-            else:
-                accepted = self.accepts(message["type"])
-                if HELD in flags:
-                    if accepted:
-                        new_filename = self._get_next_message_filename()
-                        os.rename(old_filename, new_filename)
-                        self._set_flags(new_filename, set(flags)-set(HELD))
-                else:
-                    if not accepted and offset >= pending_offset:
-                        self._set_flags(old_filename, set(flags)|set(HELD))
-                    offset += 1
 
     def _get_flags(self, path):
         basename = posixpath.basename(path)
