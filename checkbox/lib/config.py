@@ -99,16 +99,16 @@ class ConfigDefaults(ConfigSection):
 
 class Config(object):
 
-    def __init__(self, path, configs=[]):
-        self.path = path
-
+    def __init__(self):
         self._parser = ConfigParser()
         self._parser._defaults = IncludeDict(self._parser)
 
-        if not posixpath.exists(path):
-            raise Exception, "No such configuration file: %s" % path
-        self._parser.read(path)
+        # Copy attributes from the parser to avoid one additional
+        # function call on each access.
+        for attr in ["has_section", "remove_section"]:
+            setattr(self, attr, getattr(self._parser, attr))
 
+    def read_configs(self, configs):
         for config in configs:
             match = re.match("(.*)/([^/]+)=(.*)", config)
             if not match:
@@ -120,10 +120,17 @@ class Config(object):
 
             self._parser.set(name, option, value)
 
-        # Copy attributes from the parser to avoid one additional
-        # function call on each access.
-        for attr in ["has_section", "remove_section"]:
-            setattr(self, attr, getattr(self._parser, attr))
+    def read_file(self, file, filename="<stream>"):
+        logging.info("Reading configurations from: %s", filename)
+
+        self._parser.readfp(file, filename)
+
+    def read_filename(self, filename):
+        if not posixpath.exists(filename):
+            raise Exception, "No such configuration file: %s" % filename
+
+        file = open(filename, "r")
+        return self.read_file(file, filename)
 
     def get_defaults(self):
         attributes = self._parser.defaults()

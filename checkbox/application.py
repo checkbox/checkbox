@@ -134,14 +134,16 @@ class ApplicationManager(object):
             sys.stderr.write(_("Missing configuration file as argument.\n"))
             sys.exit(1)
 
-        config_file = posixpath.expanduser(args[1])
-        config = Config(config_file, options.config)
+        config = Config()
+        config_filename = posixpath.expanduser(args[1])
+        config.read_filename(config_filename)
+        config.read_configs(options.config)
 
         section_name = "checkbox/plugins/client_info"
         section = config.get_section(section_name)
         if not section:
             section = config.add_section(section_name)
-        section.set("name", posixpath.basename(config.path) \
+        section.set("name", posixpath.basename(args[1]) \
             .replace(".ini", ""))
         section.set("version", config.get_defaults().version)
 
