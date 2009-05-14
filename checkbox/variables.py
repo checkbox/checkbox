@@ -51,12 +51,8 @@ class Variable(object):
         if value_factory is not None:
             self.set(value_factory())
 
-    def get(self, default=None):
-        value = self._value
-        if value is None:
-            return default
-        else:
-            return self.parse_get(value)
+    def get(self):
+        return self._value
 
     def set(self, value):
         if value is None:
@@ -64,21 +60,32 @@ class Variable(object):
                 raise Exception, "None isn't an acceptable value"
             new_value = None
         else:
-            new_value = self.parse_set(value)
+            new_value = self.coerce(value)
 
         self._value = new_value
 
-    def parse_get(self, value):
+    def coerce(self, value):
         return value
 
-    def parse_set(self, value):
-        return str(value)
+
+class ConstantVariable(Variable):
+
+    def __init__(self, item_factory, *args, **kwargs):
+        self._item_factory = item_factory
+        super(ConstantVariable, self).__init__(*args, **kwargs)
+
+    def coerce(self, value):
+        if self._value is not None and value != self._value:
+            raise TypeError("%r != %r" % (value, self._value))
+        return self._item_factory(value=value).get()
 
 
 class BoolVariable(Variable):
 
-    def parse_get(self, value):
-        if re.match(r"(yes|true)", value, re.IGNORECASE):
+    def coerce(self, value):
+        if isinstance(value, bool):
+            return value
+        elif re.match(r"(yes|true)", value, re.IGNORECASE):
             return True
         elif re.match(r"(no|false)", value, re.IGNORECASE):
             return False
@@ -88,49 +95,120 @@ class BoolVariable(Variable):
 
 class StringVariable(Variable):
 
-    def parse_get(self, value):
+    def coerce(self, value):
         return str(value)
 
 
 class PathVariable(StringVariable):
 
-    def parse_get(self, value):
-        path = super(PathVariable, self).parse_get(value)
+    def coerce(self, value):
+        path = super(PathVariable, self).coerce(value)
         return posixpath.expanduser(path)
+
+
+class UnicodeVariable(Variable):
+
+    def coerce(self, value):
+        return unicode(value)
 
 
 class IntVariable(Variable):
 
-    def parse_get(self, value):
+    def coerce(self, value):
         return int(value)
 
 
 class FloatVariable(Variable):
 
-    def parse_get(self, value):
+    def coerce(self, value):
         return float(value)
 
 
 class ListVariable(Variable):
 
     def __init__(self, item_factory, *args, **kwargs):
-        super(ListVariable, self).__init__(*args, **kwargs)
         self._item_factory = item_factory
+        super(ListVariable, self).__init__(*args, **kwargs)
 
-    def parse_get(self, value):
+    def coerce(self, values):
         item_factory = self._item_factory
-        if not len(value):
+        if not len(values):
             values = []
-        else:
-            values = re.split(r"\s*,?\s+", value)
+        elif not isinstance(values, (list, tuple,)):
+            values = re.split(r"\s*,?\s+", values)
 
         return [item_factory(value=v).get() for v in values]
 
-    def parse_set(self, value):
-        if isinstance(value, list):
-            return ", ".join(value)
-        else:
-            return value
+
+class TupleVariable(ListVariable):
+
+    def coerce(self, values):
+        values = super(TupleVariable, self).coerce(values)
+        return tuple(values)
+
+
+class AnyVariable(Variable):
+
+    def __init__(self, schemas, *args, **kwargs):
+        self._schemas = schemas
+        super(AnyVariable, self).__init__(*args, **kwargs)
+
+    def coerce(self, value):
+        for schema in self._schemas:
+            try:
+                # Only check that the value can be coerced
+                dummy = schema(value=value).get()
+                return value
+            except TypeError:
+                pass
+
+        raise TypeError("%r did not match any schema" % value)
+
+
+class DictVariable(Variable):
+
+    def __init__(self, key_schema, value_schema, *args, **kwargs):
+        self._key_schema = key_schema
+        self._value_schema = value_schema
+        super(DictVariable, self).__init__(*args, **kwargs)
+
+    def coerce(self, value):
+        if not isinstance(value, dict):
+            raise TypeError("%r is not a dict." % (value,))
+        new_dict = {}
+        for k, v in value.items():
+            new_dict[self._key_schema(value=k).get()] = \
+                self._value_schema(value=v).get()
+        return new_dict
+
+
+class MapVariable(Variable):
+
+    def __init__(self, schema, optional, *args, **kwargs):
+        self._schema = schema
+        self._optional = set(optional)
+        super(MapVariable, self).__init__(*args, **kwargs)
+
+    def coerce(self, value):
+        new_dict = {}
+        if not isinstance(value, dict):
+            raise TypeError("%r is not a dict." % (value,))
+        for k, v in value.iteritems():
+            if k not in self._schema:
+                raise TypeError("%r is not a valid key as per %r"
+                                   % (k, self._schema))
+            try:
+                new_dict[k] = self._schema[k](value=v).get()
+            except TypeError, e:
+                raise TypeError(
+                    "Value of %r key of dict %r could not be converted: %s"
+                    % (k, value, e))
+        new_keys = set(new_dict.keys())
+        required_keys = set(self._schema.keys()) - self._optional
+        missing = required_keys - new_keys
+        if missing:
+            raise TypeError("Missing keys %s" % (missing,))
+        return new_dict
 
 
 def get_variable(obj, attribute):
