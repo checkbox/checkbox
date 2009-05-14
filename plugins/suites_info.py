@@ -26,7 +26,7 @@ from checkbox.test import Test
 class SuitesInfo(Plugin):
 
     # Space separated list of directories where suite files are stored.
-    directories = List(type=Path(),
+    directories = List(Path(),
         default_factory=lambda:"%(checkbox_share)s/suites")
 
     # Executable path for running scripts. These might be
@@ -37,10 +37,10 @@ class SuitesInfo(Plugin):
     data_path = Path(default="%(checkbox_share)s/data")
 
     # List of suites to blacklist
-    blacklist = List(type=String(), default_factory=lambda:"")
+    blacklist = List(String(), default_factory=lambda:"")
 
     # List of suites to whitelist
-    whitelist = List(type=String(), default_factory=lambda:"")
+    whitelist = List(String(), default_factory=lambda:"")
 
     def register(self, manager):
         super(SuitesInfo, self).register(manager)

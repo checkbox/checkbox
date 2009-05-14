@@ -76,7 +76,7 @@ class PromptTestCallbacks(TraverserCallbacks):
 class PromptTest(Plugin):
 
     # Plugin priorities for running tests
-    plugin_priorities = List(type=String(), default_factory=lambda:"manual")
+    plugin_priorities = List(String(), default_factory=lambda:"manual")
 
     def register(self, manager):
         super(PromptTest, self).register(manager)
