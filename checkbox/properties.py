@@ -17,9 +17,10 @@
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
 from checkbox.attribute import Attribute
-from checkbox.variables import (BoolVariable, StringVariable,
-    PathVariable, IntVariable, FloatVariable, ListVariable,
-    VariableFactory, Variable, get_variable)
+from checkbox.variables import (ConstantVariable, BoolVariable, StringVariable,
+    PathVariable, UnicodeVariable, IntVariable, FloatVariable, ListVariable,
+    TupleVariable, AnyVariable, DictVariable, MapVariable, VariableFactory,
+    Variable, get_variable)
 
 
 class Property(object):
@@ -66,6 +67,9 @@ class Property(object):
 
         return attribute
 
+    def coerce(self, value):
+        return self._variable_class(**self._variable_kwargs).coerce(value)
+
 
 class PropertyAttribute(Attribute):
 
@@ -89,6 +93,24 @@ class PropertyType(Property):
         super(PropertyType, self).__init__(self.variable_class, kwargs)
 
 
+class PropertyFactory(PropertyType):
+
+    def __init__(self, type=None, **kwargs):
+        if "default" in kwargs:
+            raise ValueError("'default' not allowed for factories. "
+                             "Use 'default_factory' instead.")
+        if type is None:
+            type = Property()
+        kwargs["item_factory"] = VariableFactory(type._variable_class,
+            **type._variable_kwargs)
+        super(PropertyFactory, self).__init__(**kwargs)
+
+
+class Constant(PropertyFactory):
+
+    variable_class = ConstantVariable
+
+
 class Bool(PropertyType):
 
     variable_class = BoolVariable
@@ -104,6 +126,11 @@ class Path(PropertyType):
     variable_class = PathVariable
 
 
+class Unicode(PropertyType):
+
+    variable_class = UnicodeVariable
+
+
 class Int(PropertyType):
 
     variable_class = IntVariable
@@ -114,17 +141,56 @@ class Float(PropertyType):
     variable_class = FloatVariable
 
 
-class List(PropertyType):
+class List(PropertyFactory):
 
     variable_class = ListVariable
 
-    def __init__(self, **kwargs):
-        if "default" in kwargs:
-            raise ValueError("'default' not allowed for List. "
-                             "Use 'default_factory' instead.")
-        type = kwargs.pop("type", None)
-        if type is None:
-            type = Property()
-        kwargs["item_factory"] = VariableFactory(type._variable_class,
-                                                 **type._variable_kwargs)
-        super(List, self).__init__(**kwargs)
+
+class Tuple(PropertyFactory):
+
+    variable_class = TupleVariable
+
+
+class Any(PropertyType):
+
+    variable_class = AnyVariable
+
+    def __init__(self, schemas=[], **kwargs):
+        kwargs["schemas"] = [VariableFactory(schema._variable_class,
+            **schema._variable_kwargs) for schema in schemas]
+        self.schemas = schemas
+        super(Any, self).__init__(**kwargs)
+
+
+class Dict(PropertyType):
+
+    variable_class = DictVariable
+
+    def __init__(self, key, value, **kwargs):
+        kwargs["key_schema"] = VariableFactory(key._variable_class,
+            **key._variable_kwargs)
+        kwargs["value_schema"] = VariableFactory(value._variable_class,
+            **value._variable_kwargs)
+        super(Dict, self).__init__(**kwargs)
+
+
+class Map(PropertyType):
+
+    variable_class = MapVariable
+
+    def __init__(self, schema={}, **kwargs):
+        for key, type in schema.items():
+            schema[key] = VariableFactory(type._variable_class,
+                **type._variable_kwargs)
+
+        kwargs["schema"] = schema
+        kwargs.setdefault("optional", [])
+        super(Map, self).__init__(**kwargs)
+
+
+class Message(Map):
+
+    def __init__(self, type, schema={}, **kwargs):
+        self.type = type
+        schema["type"] = Constant(default_factory=lambda: type, type=String())
+        super(Message, self).__init__(schema, **kwargs)
