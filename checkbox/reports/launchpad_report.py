@@ -59,7 +59,7 @@ class ContextReport(XmlReport):
     def loads_context(self, node):
         logging.debug("Loading context")
         context = []
-        for info in (i for i in node.childNodes if d.localName == "info"):
+        for info in (i for i in node.childNodes if i.localName == "info"):
             value = self._manager.call_loads(info)
             context.append(value)
 
