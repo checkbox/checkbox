@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-03-23 12:39-0400\n"
+"POT-Creation-Date: 2009-05-15 18:26-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,50 +32,37 @@ msgstr ""
 msgid "System policy prevents running system tests"
 msgstr ""
 
-#: ../gtk/checkbox-gtk.glade.h:1 ../checkbox_cli/cli_interface.py:234
+#: ../gtk/checkbox-gtk.glade.h:1 ../checkbox_cli/cli_interface.py:235
 msgid "Further information:"
 msgstr ""
 
-#: ../gtk/checkbox-gtk.glade.h:2 ../checkbox_gtk/gtk_interface.py:303
+#: ../gtk/checkbox-gtk.glade.h:2
 msgid "Ne_xt"
 msgstr ""
 
 #. Title of the user interface
 #: ../gtk/checkbox-gtk.glade.h:3 ../gtk/checkbox-gtk.desktop.in.h:1
-#: ../checkbox_cli/cli_interface.py:184 ../checkbox_cli/cli_interface.py:224
 #: ../plugins/user_interface.py:37
 msgid "System Testing"
 msgstr ""
 
 #: ../gtk/checkbox-gtk.glade.h:4
-msgid "_Desktop"
-msgstr ""
-
-#: ../gtk/checkbox-gtk.glade.h:5
-msgid "_Laptop"
-msgstr ""
-
-#: ../gtk/checkbox-gtk.glade.h:6
 msgid "_No"
 msgstr ""
 
-#: ../gtk/checkbox-gtk.glade.h:7
+#: ../gtk/checkbox-gtk.glade.h:5
 msgid "_Previous"
 msgstr ""
 
-#: ../gtk/checkbox-gtk.glade.h:8
-msgid "_Server"
-msgstr ""
-
-#: ../gtk/checkbox-gtk.glade.h:9
+#: ../gtk/checkbox-gtk.glade.h:6
 msgid "_Skip this test"
 msgstr ""
 
-#: ../gtk/checkbox-gtk.glade.h:10 ../checkbox_gtk/gtk_interface.py:270
+#: ../gtk/checkbox-gtk.glade.h:7 ../checkbox_gtk/gtk_interface.py:324
 msgid "_Test"
 msgstr ""
 
-#: ../gtk/checkbox-gtk.glade.h:11
+#: ../gtk/checkbox-gtk.glade.h:8
 msgid "_Yes"
 msgstr ""
 
@@ -84,81 +71,81 @@ msgid "Test and report system information"
 msgstr ""
 
 #. description
-#: ../suites/manual.txt.in:6
+#: ../suites/manual.txt.in:8
 msgid ""
-"Click the Test button to play a sound on the automatically detected playback "
-"device."
+"Click the Test button to play a sound on the automatically detected \\ "
+"playback device."
 msgstr ""
 
 #. description
-#: ../suites/manual.txt.in:6
+#: ../suites/manual.txt.in:8
 msgid "Do you hear a sound?"
 msgstr ""
 
 #. description
-#: ../suites/manual.txt.in:16
+#: ../suites/manual.txt.in:20
 msgid "This display is using $(resolution_test) resolution."
 msgstr ""
 
 #. description
-#: ../suites/manual.txt.in:16
+#: ../suites/manual.txt.in:20
 msgid "Is this acceptable for your display?"
 msgstr ""
 
 #. description
-#: ../suites/manual.txt.in:25
+#: ../suites/manual.txt.in:31
 msgid "Click the Test button to display a video test."
 msgstr ""
 
 #. description
-#: ../suites/manual.txt.in:25
+#: ../suites/manual.txt.in:31
 msgid "Do you see color bars and static?"
 msgstr ""
 
 #. description
-#: ../suites/manual.txt.in:34
+#: ../suites/manual.txt.in:42
 msgid "Moving the mouse should move the cursor on the screen."
 msgstr ""
 
 #. description
-#: ../suites/manual.txt.in:34
+#: ../suites/manual.txt.in:42
 msgid "Is your mouse working properly?"
 msgstr ""
 
 #. description
-#: ../suites/manual.txt.in:42
+#: ../suites/manual.txt.in:50
 msgid "Detecting your network controller(s):"
 msgstr ""
 
 #. description
-#: ../suites/manual.txt.in:42
+#: ../suites/manual.txt.in:50
 msgid "$(network_test)"
 msgstr ""
 
 #. description
-#: ../suites/manual.txt.in:53
+#: ../suites/manual.txt.in:61
 msgid "Testing your connection to the Internet:"
 msgstr ""
 
 #. description
-#: ../suites/manual.txt.in:53
+#: ../suites/manual.txt.in:61
 msgid "$output"
 msgstr ""
 
 #. description
-#: ../suites/manual.txt.in:53
+#: ../suites/manual.txt.in:61
 msgid "Is this correct?"
 msgstr ""
 
 #. description
-#: ../suites/manual.txt.in:64
+#: ../suites/manual.txt.in:72
 msgid ""
-"Click the Test button to open a text area where to type keys on your "
+"Click the Test button to open a text area where to type keys on your \\ "
 "keyboard."
 msgstr ""
 
 #. description
-#: ../suites/manual.txt.in:64
+#: ../suites/manual.txt.in:72
 msgid "Is your keyboard working properly?"
 msgstr ""
 
@@ -279,65 +266,53 @@ msgstr ""
 msgid "Unknown signal"
 msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:114
+#: ../checkbox_cli/cli_interface.py:111
 msgid "Press any key to continue..."
 msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:123
+#: ../checkbox_cli/cli_interface.py:120
 #, python-format
 msgid "Please choose (%s): "
 msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:206
+#: ../checkbox_cli/cli_interface.py:208
 msgid "yes"
 msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:206
+#: ../checkbox_cli/cli_interface.py:208
 msgid "no"
 msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:206
+#: ../checkbox_cli/cli_interface.py:208
 msgid "skip"
 msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:208
+#: ../checkbox_cli/cli_interface.py:210
 msgid "test"
 msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:226 ../checkbox_gtk/gtk_interface.py:228
+#: ../checkbox_cli/cli_interface.py:227 ../checkbox_gtk/gtk_interface.py:282
 #, python-format
 msgid "Running test %s..."
 msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:230
+#: ../checkbox_cli/cli_interface.py:231
 msgid "test again"
 msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:236
+#: ../checkbox_cli/cli_interface.py:237
 msgid "Please type here and press Ctrl-D when finished:\n"
 msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:245
-msgid "Authentication"
-msgstr ""
-
-#: ../checkbox_cli/cli_interface.py:253
-msgid "Done"
-msgstr ""
-
-#: ../checkbox_gtk/gtk_interface.py:235
+#: ../checkbox_gtk/gtk_interface.py:289
 msgid "_Test Again"
 msgstr ""
 
-#: ../checkbox_gtk/gtk_interface.py:295
-msgid "_Finish"
+#: ../checkbox_gtk/gtk_interface.py:337
+msgid "Error"
 msgstr ""
 
-#: ../checkbox/user_interface.py:101
-msgid "Unable to start web browser"
-msgstr ""
-
-#: ../checkbox/user_interface.py:102
+#: ../checkbox/user_interface.py:97
 #, python-format
 msgid "Unable to start web browser to open %s."
 msgstr ""
@@ -346,61 +321,29 @@ msgstr ""
 msgid "Running shell tests..."
 msgstr ""
 
-#: ../plugins/category_prompt.py:65
-msgid "Category"
-msgstr ""
-
-#: ../plugins/category_prompt.py:66
+#: ../plugins/category_prompt.py:67
 msgid "Please select the category of your system."
 msgstr ""
 
-#: ../plugins/exchange_prompt.py:61
-msgid "Exchange"
-msgstr ""
-
-#: ../plugins/exchange_prompt.py:65
-#, python-format
-msgid ""
-"The following information will be sent to the Launchpad hardware database.\n"
-"\n"
-"[[%s|View Report]]\n"
-"\n"
-"Please provide the e-mail address you use to sign in to Launchpad to submit "
-"this information."
-msgstr ""
-
-#: ../plugins/exchange_prompt.py:76
-msgid "Email address must be in a proper format."
-msgstr ""
-
-#: ../plugins/exchange_prompt.py:81
-msgid "Exchanging information with the server..."
-msgstr ""
-
 #: ../plugins/final_prompt.py:31
-msgid "Successfully sent information!"
+msgid "Successfully finished testing!"
+msgstr ""
+
+#: ../plugins/final_prompt.py:32
+msgid "_Finish"
 msgstr ""
 
 #: ../plugins/gather_prompt.py:34
 msgid "Gathering information from your system..."
 msgstr ""
 
-#: ../plugins/intro_prompt.py:32
-msgid "Welcome to System Testing!"
-msgstr ""
-
 #: ../plugins/intro_prompt.py:33
 msgid ""
-"This application will gather information from your system. Then, you will be "
-"asked manual tests to confirm that the system is working properly. Finally, "
-"you will be asked for the e-mail address you use to sign in to Launchpad in "
-"order to submit the information and your results.\n"
+"Welcome to System Testing!\n"
 "\n"
-"If you do not have a Launchpad account, please register here:\n"
-"\n"
-"  https://launchpad.net/+login\n"
-"\n"
-"Thank you for taking the time to test your system."
+"Checkbox provides tests to confirm that your system is working properly. "
+"Once you are finished running the tests, you can view a summary report for "
+"your system."
 msgstr ""
 
 #: ../plugins/launchpad_exchange.py:118
@@ -424,14 +367,53 @@ msgstr ""
 msgid "Information not posted to Launchpad."
 msgstr ""
 
-#: ../plugins/lock_prompt.py:51
-msgid "Another checkbox is running"
+#: ../plugins/launchpad_prompt.py:66
+#, python-format
+msgid ""
+"The following report has been generated for submission to the Launchpad "
+"hardware database:\n"
+"\n"
+"  [[%s|View Report]]\n"
+"\n"
+"You can submit this information about your system by providing the e-mail "
+"address you use to sign in to Launchpad. If you do not have a Launchpad "
+"account, please register here:\n"
+"\n"
+"  https://launchpad.net/+login"
 msgstr ""
 
-#: ../plugins/lock_prompt.py:52
+#: ../plugins/launchpad_prompt.py:81
+msgid "Email address must be in a proper format."
+msgstr ""
+
+#: ../plugins/launchpad_prompt.py:86
+msgid "Exchanging information with the server..."
+msgstr ""
+
+#: ../plugins/lock_prompt.py:58
 msgid "There is another checkbox running. Please close it first."
 msgstr ""
 
 #: ../plugins/report_prompt.py:34
 msgid "Building report..."
+msgstr ""
+
+#: ../scripts/keyboard_test:21
+msgid "Enter text:\n"
+msgstr ""
+
+#: ../scripts/keyboard_test:42
+msgid "Type Text"
+msgstr ""
+
+#: ../scripts/internet_test:126
+msgid "No Internet connection"
+msgstr ""
+
+#: ../scripts/internet_test:128
+msgid "Connection established lost a packet"
+msgstr ""
+
+#: ../scripts/internet_test:130
+msgid "Internet connection fully established"
 msgstr ""
