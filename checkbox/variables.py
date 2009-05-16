@@ -20,6 +20,14 @@ import re
 import posixpath
 
 
+def raise_none_error(attribute):
+    if not attribute:
+        raise ValueError("None isn't acceptable as a value")
+    else:
+        name = attribute.name
+        raise ValueError("None isn't acceptable as a value for %s" % name)
+
+
 # Implementation of partial function in Python 2.5+
 def VariableFactory(cls, **old_kwargs):
     def variable_factory(**new_kwargs):
@@ -52,12 +60,16 @@ class Variable(object):
             self.set(value_factory())
 
     def get(self):
+        if self._value is None and self._required is True:
+            raise_none_error(self.attribute)
+
         return self._value
 
     def set(self, value):
         if value is None:
             if self._required is True:
-                raise Exception, "None isn't an acceptable value"
+                raise_none_error(self.attribute)
+
             new_value = None
         else:
             new_value = self.coerce(value)
@@ -76,27 +88,33 @@ class ConstantVariable(Variable):
 
     def coerce(self, value):
         if self._value is not None and value != self._value:
-            raise TypeError("%r != %r" % (value, self._value))
+            raise ValueError("%r != %r" % (value, self._value))
         return self._item_factory(value=value).get()
 
 
 class BoolVariable(Variable):
 
     def coerce(self, value):
-        if isinstance(value, bool):
-            return value
-        elif re.match(r"(yes|true)", value, re.IGNORECASE):
-            return True
-        elif re.match(r"(no|false)", value, re.IGNORECASE):
-            return False
-        else:
-            return bool(int(value))
+        if isinstance(value, str):
+            if re.match(r"(yes|true)", value, re.IGNORECASE):
+                value = True
+            elif re.match(r"(no|false)", value, re.IGNORECASE):
+                value = False
+            else:
+                raise ValueError("%r is not a bool string" % (value,))
+        elif not isinstance(value, bool):
+            raise ValueError("%r is not a bool" % (value,))
+
+        return value
 
 
 class StringVariable(Variable):
 
     def coerce(self, value):
-        return str(value)
+        if not isinstance(value, str):
+            raise ValueError("%r is not a str" % (value,))
+
+        return value
 
 
 class PathVariable(StringVariable):
@@ -109,19 +127,34 @@ class PathVariable(StringVariable):
 class UnicodeVariable(Variable):
 
     def coerce(self, value):
-        return unicode(value)
+        if isinstance(value, str):
+            value = unicode(value)
+        elif not isinstance(value, unicode):
+            raise ValueError("%r is not a unicode" % (value,))
+
+        return value
 
 
 class IntVariable(Variable):
 
     def coerce(self, value):
-        return int(value)
+        if isinstance(value, str):
+            value = int(value)
+        elif not isinstance(value, (int, long)):
+            raise ValueError("%r is not an int nor long" % (value,))
+
+        return value
 
 
 class FloatVariable(Variable):
 
     def coerce(self, value):
-        return float(value)
+        if isinstance(value, str):
+            value = float(value)
+        elif not isinstance(value, (int, long, float)):
+            raise ValueError("%r is not a float" % (value,))
+
+        return value
 
 
 class ListVariable(Variable):
@@ -132,10 +165,10 @@ class ListVariable(Variable):
 
     def coerce(self, values):
         item_factory = self._item_factory
-        if not len(values):
-            values = []
-        elif not isinstance(values, (list, tuple,)):
-            values = re.split(r"\s*,?\s+", values)
+        if isinstance(values, str):
+            values = values and re.split(r"\s*,?\s+", values) or []
+        elif not isinstance(values, (list, tuple)):
+            raise ValueError("%r is not a list or tuple" % (values,))
 
         return [item_factory(value=v).get() for v in values]
 
@@ -159,10 +192,10 @@ class AnyVariable(Variable):
                 # Only check that the value can be coerced
                 dummy = schema(value=value).get()
                 return value
-            except TypeError:
+            except ValueError:
                 pass
 
-        raise TypeError("%r did not match any schema" % value)
+        raise ValueError("%r did not match any schema" % value)
 
 
 class DictVariable(Variable):
@@ -174,7 +207,7 @@ class DictVariable(Variable):
 
     def coerce(self, value):
         if not isinstance(value, dict):
-            raise TypeError("%r is not a dict." % (value,))
+            raise ValueError("%r is not a dict." % (value,))
         new_dict = {}
         for k, v in value.items():
             new_dict[self._key_schema(value=k).get()] = \
@@ -184,30 +217,32 @@ class DictVariable(Variable):
 
 class MapVariable(Variable):
 
-    def __init__(self, schema, optional, *args, **kwargs):
+    def __init__(self, schema, *args, **kwargs):
         self._schema = schema
-        self._optional = set(optional)
         super(MapVariable, self).__init__(*args, **kwargs)
 
     def coerce(self, value):
-        new_dict = {}
         if not isinstance(value, dict):
-            raise TypeError("%r is not a dict." % (value,))
+            raise ValueError("%r is not a dict." % (value,))
+
         for k, v in value.iteritems():
             if k not in self._schema:
-                raise TypeError("%r is not a valid key as per %r"
+                raise ValueError("%r is not a valid key as per %r"
                                    % (k, self._schema))
+
+        new_dict = {}
+        for attribute, variable in self._schema.iteritems():
+            old_value = value.get(attribute)
             try:
-                new_dict[k] = self._schema[k](value=v).get()
-            except TypeError, e:
-                raise TypeError(
+                new_value = variable(value=old_value).get()
+            except ValueError, e:
+                raise ValueError(
                     "Value of %r key of dict %r could not be converted: %s"
                     % (k, value, e))
-        new_keys = set(new_dict.keys())
-        required_keys = set(self._schema.keys()) - self._optional
-        missing = required_keys - new_keys
-        if missing:
-            raise TypeError("Missing keys %s" % (missing,))
+
+            if attribute in value:
+                new_dict[attribute] = new_value
+
         return new_dict
 
 

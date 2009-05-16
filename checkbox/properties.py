@@ -184,7 +184,6 @@ class Map(PropertyType):
                 **type._variable_kwargs)
 
         kwargs["schema"] = schema
-        kwargs.setdefault("optional", [])
         super(Map, self).__init__(**kwargs)
 
 
