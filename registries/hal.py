@@ -27,7 +27,7 @@ from checkbox.registries.data import DataRegistry
 from checkbox.registries.map import MapRegistry
 
 
-class DeviceRegistry(DataRegistry):
+class HalDeviceRegistry(DataRegistry):
     """Registry for HAL device information.
 
     Each item contained in this registry consists of the properties of
@@ -95,7 +95,7 @@ class HalRegistry(CommandRegistry):
                     break
 
             if lines:
-                value = DeviceRegistry("\n".join(lines))
+                value = HalDeviceRegistry("\n".join(lines))
                 items.append((key, value))
 
         return items

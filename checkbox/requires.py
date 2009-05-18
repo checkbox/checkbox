@@ -53,7 +53,7 @@ class Requires(object):
         devices = []
         values = self.get_values()
         for value in values:
-            if value.__class__.__name__ == "DeviceRegistry":
+            if value.__class__.__name__ == "HalDeviceRegistry":
                 devices.append(value)
 
         return devices

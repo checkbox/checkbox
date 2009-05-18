@@ -28,7 +28,7 @@ from checkbox.registries.data import DataRegistry
 from checkbox.registries.map import MapRegistry
 
 
-class DeviceRegistry(DataRegistry):
+class HwDeviceRegistry(DataRegistry):
     """Registry for HW device information.
 
     Each item contained in this registry consists of the properties of
@@ -57,7 +57,7 @@ class DeviceRegistry(DataRegistry):
                 lines.append(line)
             elif match.group(2) is not None:
                 if id is not None:
-                    value = DeviceRegistry("\n".join(lines))
+                    value = HwDeviceRegistry("\n".join(lines))
                     lines = []
 
                     items.append((id, value))
@@ -102,7 +102,7 @@ class DeviceRegistry(DataRegistry):
                 items.append((key, value))
 
         if lines:
-            value = DeviceRegistry("\n".join(lines))
+            value = HwDeviceRegistry("\n".join(lines))
             items.append((id, value))
 
         return items
@@ -139,7 +139,7 @@ class HwRegistry(CommandRegistry):
         lines = self.split("\n")
 
         key = lines.pop(0)
-        value = DeviceRegistry("\n".join(lines))
+        value = HwDeviceRegistry("\n".join(lines))
 
         return [(key, value)]
 
