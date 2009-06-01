@@ -18,6 +18,7 @@
 #
 import re
 import logging
+import threading
 
 from checkbox.lib.log import format_object
 
@@ -43,7 +44,15 @@ class Reactor(object):
 
     def __init__(self):
         self._event_handlers = {}
-        self._event_stack = []
+        self._local = threading.local()
+
+    @property
+    def _event_stack(self):
+        try:
+            return self._local._event_stack
+        except AttributeError:
+            self._local._event_stack = []
+            return self._local._event_stack
 
     def call_on(self, event_type, handler, priority=0):
         pair = (handler, priority)
