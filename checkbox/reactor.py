@@ -16,6 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
+import os
 import re
 import logging
 import threading
@@ -44,6 +45,7 @@ class Reactor(object):
 
     def __init__(self):
         self._event_handlers = {}
+        self._handler_stack = []
         self._local = threading.local()
 
     @property
@@ -86,6 +88,7 @@ class Reactor(object):
             try:
                 logging.debug("Calling %s for %s with priority %d.",
                               format_object(handler), event_type, priority)
+                self._handler_stack.append(handler)
                 results.append(handler(*args, **kwargs))
             except StopException:
                 break
@@ -102,6 +105,8 @@ class Reactor(object):
                                   "event type %r with args %r %r.",
                                   format_object(handler), event_type,
                                   args, kwargs)
+            finally:
+                self._handler_stack.pop(-1)
 
         self._event_stack.pop(-1)
 
