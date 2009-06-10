@@ -285,6 +285,7 @@ class GTKInterface(UserInterface):
         description = self.do_function(test.description, result)
         self._set_hyper_text_view("hyper_text_view_test", description)
 
+        self._set_active("radio_button_%s" % result.status)
         self._set_sensitive("button_test", True)
         self._set_label("button_test", _("_Test Again"))
 
@@ -308,11 +309,9 @@ class GTKInterface(UserInterface):
                 lambda w, t=test: self._run_test(t))
 
         # Default results
-        answers = ["yes", "no", "skip"]
         if result:
             self._set_text_view("text_view_comment", result.data)
-            answer = dict(zip(ALL_STATUS, answers))[result.status]
-            self._set_active("radio_button_%s" % answer)
+            self._set_active("radio_button_%s" % result.status)
         else:
             self._set_text_view("text_view_comment")
             self._set_active("radio_button_skip")
@@ -323,7 +322,7 @@ class GTKInterface(UserInterface):
         self._set_hyper_text_view("hyper_text_view_test")
         self._set_label("button_test", _("_Test"))
 
-        radio_buttons = ["radio_button_%s" % a for a in answers]
+        radio_buttons = ["radio_button_%s" % s for s in ALL_STATUS]
         status = self._get_radio_button(dict(zip(radio_buttons, ALL_STATUS)))
         data = self._get_text_view("text_view_comment")
         return TestResult(test, status, data)
