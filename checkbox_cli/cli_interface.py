@@ -212,7 +212,7 @@ class CLIInterface(UserInterface):
         while True:
             # Show answer dialog
             description = test.description(result)
-            dialog = CLIChoiceDialog(test.name, description)
+            dialog = CLIChoiceDialog(description)
 
             for answer in answers:
                 dialog.add_button("&%s" % answer)
