@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-from checkbox.lib.environ import add_variable
+from checkbox.lib.environ import add_variable, get_variable
 
 from checkbox.properties import String
 from checkbox.plugin import Plugin
@@ -35,11 +35,43 @@ class ProxyInfo(Plugin):
         self._manager.reactor.call_on("gather", self.gather, -1000)
 
     def gather(self):
-        if self.http_proxy:
-            add_variable("http_proxy", self.http_proxy)
+        # 1. Environment
+        http_proxy = get_variable("http_proxy")
+        https_proxy = get_variable("https_proxy")
 
-        if self.https_proxy:
-            add_variable("https_proxy", self.https_proxy)
+        # 2. Gconf
+        gconf = self._manager.registry.gconf
+        if not http_proxy and gconf.system.http_proxy.use_http_proxy:
+            if gconf.system.http_proxy.use_authentication:
+                http_proxy = "http://%s:%s@%s:%s" % (
+                    gconf.system.http_proxy.authentication_user,
+                    gconf.system.http_proxy.authentication_password,
+                    gconf.system.http_proxy.host,
+                    gconf.system.http_proxy.port)
+            elif gconf.system.http_proxy.host:
+                http_proxy = "http://%s:%s" % (
+                    gconf.system.http_proxy.host,
+                    gconf.system.http_proxy.port)
+
+        if not https_proxy and gconf.system.http_proxy.use_http_proxy:
+            if gconf.system.http_proxy.use_same_proxy:
+                https_proxy = http_proxy
+            elif gconf.system.proxy.secure_host:
+                https_proxy = "https://%s:%s" % (
+                    gconf.system.proxy.secure_host,
+                    gconf.system.proxy.secure_port)
+
+        # 3. Config
+        if not http_proxy:
+            http_proxy = self.http_proxy
+        if not https_proxy:
+            https_proxy = self.https_proxy
+
+        # Add to environment
+        if http_proxy:
+            add_variable("http_proxy", http_proxy)
+        if https_proxy:
+            add_variable("https_proxy", https_proxy)
 
 
 factory = ProxyInfo
