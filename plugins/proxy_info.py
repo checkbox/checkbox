@@ -61,8 +61,8 @@ class ProxyInfo(Plugin):
                     gconf.system.proxy.secure_port)
 
         # Environment has highest precedence
-        http_proxy = get_variable("http_proxy", http_proxy):
-        https_proxy = get_variable("https_proxy", https_proxy):
+        http_proxy = get_variable("http_proxy", http_proxy)
+        https_proxy = get_variable("https_proxy", https_proxy)
 
         add_variable("http_proxy", http_proxy)
         add_variable("https_proxy", https_proxy)
