@@ -32,10 +32,8 @@ class PersistInfo(Plugin):
 
         self.persist = None
 
-        for (rt, rh) in [
-             ("gather", self.gather),
-             ("stop", self.stop)]:
-            self._manager.reactor.call_on(rt, rh)
+        self._manager.reactor.call_on("gather", self.gather)
+        self._manager.reactor.call_on("stop", self.stop, 1000)
 
     def gather(self):
         self.persist = Persist(self.filename)
