@@ -35,13 +35,13 @@ class ProxyInfo(Plugin):
         self._manager.reactor.call_on("gather", self.gather, -1000)
 
     def gather(self):
-        # 1. Environment
-        http_proxy = get_variable("http_proxy")
-        https_proxy = get_variable("https_proxy")
+        # Config has lowest precedence
+        http_proxy = self.http_proxy
+        https_proxy = self.https_proxy
 
-        # 2. Gconf
+        # Gconf has higher precedence
         gconf = self._manager.registry.gconf
-        if not http_proxy and gconf.system.http_proxy.use_http_proxy:
+        if gconf.system.http_proxy.use_http_proxy:
             if gconf.system.http_proxy.use_authentication:
                 http_proxy = "http://%s:%s@%s:%s" % (
                     gconf.system.http_proxy.authentication_user,
@@ -53,7 +53,6 @@ class ProxyInfo(Plugin):
                     gconf.system.http_proxy.host,
                     gconf.system.http_proxy.port)
 
-        if not https_proxy and gconf.system.http_proxy.use_http_proxy:
             if gconf.system.http_proxy.use_same_proxy:
                 https_proxy = http_proxy
             elif gconf.system.proxy.secure_host:
@@ -61,17 +60,12 @@ class ProxyInfo(Plugin):
                     gconf.system.proxy.secure_host,
                     gconf.system.proxy.secure_port)
 
-        # 3. Config
-        if not http_proxy:
-            http_proxy = self.http_proxy
-        if not https_proxy:
-            https_proxy = self.https_proxy
+        # Environment has highest precedence
+        http_proxy = get_variable("http_proxy", http_proxy):
+        https_proxy = get_variable("https_proxy", https_proxy):
 
-        # Add to environment
-        if http_proxy:
-            add_variable("http_proxy", http_proxy)
-        if https_proxy:
-            add_variable("https_proxy", https_proxy)
+        add_variable("http_proxy", http_proxy)
+        add_variable("https_proxy", https_proxy)
 
 
 factory = ProxyInfo

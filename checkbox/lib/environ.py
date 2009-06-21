@@ -43,7 +43,8 @@ def add_variable(name, value):
     value -- value given to the environment variable
     """
 
-    environ[name] = value
+    if value is not None:
+        environ[name] = value
 
 def remove_variable(name):
     """Remove an environment variable name.
