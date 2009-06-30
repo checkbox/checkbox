@@ -16,6 +16,9 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
+import re
+
+
 def indent(text, count=1, step=2):
     """Intend each line of text by a given step.
 
@@ -27,6 +30,37 @@ def indent(text, count=1, step=2):
 
     indent = ' ' * step
     return "\n".join([indent * count + t for t in text.split("\n")])
+
+def split(text, separator=r"\s", flags=0):
+    parts = []
+    while True:
+        # Strip leading separators
+        index = 0
+        while index < len(text):
+            if re.match(separator, text[index], flags):
+                index += 1
+            else:
+                break
+
+        text = text[index:]
+        if not text:
+            break
+
+        # Split on following separator
+        index = 0
+        while index < len(text):
+            if re.match(separator, text[index], flags):
+                if text[index - 1] == "\\":
+                    text = text[:index-1] + text[index:]
+                else:
+                    break
+            else:
+                index += 1
+
+        parts.append(text[:index])
+        text = text[index:]
+
+    return parts
 
 def wrap(text, limit=72):
     """Wrap text into lines up to limit characters excluding newline.
