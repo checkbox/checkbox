@@ -28,14 +28,14 @@ class Template(object):
         self._filename_field = filename_field
         self._unique_fields = unique_fields
 
-    def _reader(self, file, size=4096, delimiter="\n\n"):
+    def _reader(self, file, size=4096, delimiter=r"\n{2,}"):
         buffer_old = ""
         while True:
             buffer_new = file.read(size)
             if not buffer_new:
                 break
 
-            lines = (buffer_old + buffer_new).split(delimiter)
+            lines = re.split(delimiter, buffer_old + buffer_new)
             buffer_old = lines.pop(-1)
 
             for line in lines:
