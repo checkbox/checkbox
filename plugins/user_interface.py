@@ -53,7 +53,6 @@ class UserInterface(Plugin):
         iterator = Iterator([
              "prompt-begin",
              "prompt-gather",
-             "prompt-category",
              "prompt-tests",
              "prompt-report",
              "prompt-exchange",

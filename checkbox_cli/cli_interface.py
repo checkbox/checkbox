@@ -200,7 +200,7 @@ class CLIInterface(UserInterface):
             label = "&%s" % option.capitalize()
             dialog.add_button(label)
 
-        # Show categories dialog
+        # Show options dialog
         response = dialog.run()
         return options[response - 1]
 

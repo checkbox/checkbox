@@ -31,9 +31,6 @@ class PromptTestCallbacks(TraverserCallbacks):
     def get_architecture(self):
         return self._plugin.architecture
 
-    def get_category(self):
-        return self._plugin.category
-
     def get_priorities(self):
         return self._plugin.priorities
 
@@ -62,16 +59,6 @@ class PromptTestCallbacks(TraverserCallbacks):
             data="System architecture not supported.")
         self._plugin._manager.reactor.fire("report-result", result)
 
-    def undefined_category(self, test, result):
-        result = TestResult(test, status=SKIP,
-            data="No system category defined.")
-        self._plugin._manager.reactor.fire("report-result", result)
-
-    def unsupported_category(self, test, result):
-        result = TestResult(test, status=SKIP,
-            data="System category not supported.")
-        self._plugin._manager.reactor.fire("report-result", result)
-
 
 class PromptTest(Plugin):
 
@@ -85,12 +72,10 @@ class PromptTest(Plugin):
         self._traverser = None
 
         self.architecture = None
-        self.category = None
         self.priorities = self.plugin_priorities
 
         for (rt, rh) in [
              ("report-architecture", self.report_architecture),
-             ("report-category", self.report_category),
              ("report-result", self.report_result),
              ("report-test", self.report_test),
              ("prompt-tests", self.prompt_tests)]:
@@ -101,9 +86,6 @@ class PromptTest(Plugin):
 
     def report_architecture(self, architecture):
         self.architecture = architecture
-
-    def report_category(self, category):
-        self.category = category
 
     def report_result(self, result):
         self._result = result

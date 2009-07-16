@@ -37,11 +37,6 @@ from checkbox.frontend import frontend
 from checkbox.requires import Requires
 
 
-DESKTOP = "desktop"
-LAPTOP = "laptop"
-SERVER = "server"
-ALL_CATEGORIES = [DESKTOP, LAPTOP, SERVER]
-
 I386 = "i386"
 AMD64 = "amd64"
 LPIA = "lpia"
@@ -205,8 +200,6 @@ class Test(object):
                    amd64, i386, lpia, powerpc and/or sparc
     attachments:   List of commands or filenames attached to the test
                    results.
-    categories:    List of categories for which this test is relevant:
-                   desktop, laptop and/or server
     command:       Command to run for the test.
     depends:       List of names on which this test depends. So, if
                    the other test fails, this test will be skipped.
@@ -222,7 +215,6 @@ class Test(object):
     optional_fields = {
         "architectures": [],
         "attachments": [],
-        "categories": [],
         "command": None,
         "depends": [],
         "requires": None,
@@ -234,7 +226,7 @@ class Test(object):
         super(Test, self).__setattr__("attributes", attributes)
 
         # Typed fields
-        for field in ["architectures", "attachments", "categories", "depends"]:
+        for field in ["architectures", "attachments", "depends"]:
             if attributes.has_key(field):
                 attributes[field] = re.split(r"\n", attributes[field])
         for field in ["timeout"]:

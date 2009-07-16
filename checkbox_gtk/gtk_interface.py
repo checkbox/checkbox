@@ -255,7 +255,7 @@ class GTKInterface(UserInterface):
         # Set options
         option_group = None
         option_table = {}
-        vbox = self._get_widget("vbox_category")
+        vbox = self._get_widget("vbox_options")
         for option in options:
             label = "_%s" % option.capitalize()
             radio_button = gtk.RadioButton(option_group, label)
@@ -267,7 +267,7 @@ class GTKInterface(UserInterface):
             if option == default:
                 radio_button.set_active(True)
 
-        self._set_hyper_text_view("hyper_text_view_category", text)
+        self._set_hyper_text_view("hyper_text_view_options", text)
 
         self._run_dialog()
 

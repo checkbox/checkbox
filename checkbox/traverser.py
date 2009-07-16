@@ -36,9 +36,6 @@ class TraverserCallbacks(object):
     def get_architecture(self):
         return None
 
-    def get_category(self):
-        return None
-
     def get_priorities(self):
         return []
 
@@ -60,14 +57,6 @@ class TraverserCallbacks(object):
 
     def unsupported_architecture(self, test, result):
         logging.info("System architecture not supported, skipping test: %s",
-            test.name)
-
-    def undefined_category(self, test, result):
-        logging.info("No system category defined, skipping test: %s",
-            test.name)
-
-    def unsupported_category(self, test, result):
-        logging.info("System category not supported, skipping test: %s",
             test.name)
 
 
@@ -95,9 +84,6 @@ class Traverser(IteratorContain):
         iterator = IteratorExclude(iterator,
             self._architecture_exclude_func,
             self._architecture_exclude_func)
-        iterator = IteratorExclude(iterator,
-            self._category_exclude_func,
-            self._category_exclude_func)
         iterator = IteratorExclude(iterator,
             self._dependent_exclude_next_func,
             self._dependent_exclude_prev_func)
@@ -178,21 +164,6 @@ class Traverser(IteratorContain):
                 return True
             elif architecture not in test.architectures:
                 self._callbacks.unsupported_architecture(test, result)
-                return True
-
-        return False
-
-    def _category_exclude_func(self, test, result):
-        """IteratorExclude function which removes test when
-           the categories field exists and doesn't meet the given
-           requirements."""
-        if test.categories:
-            category = self._callbacks.get_category()
-            if category is None:
-                self._callbacks.undefined_category(test, result)
-                return True
-            elif category not in test.categories:
-                self._callbacks.unsupported_category(test, result)
                 return True
 
         return False
