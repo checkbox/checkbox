@@ -33,9 +33,6 @@ from checkbox.test import FAIL, SKIP
 
 class TraverserCallbacks(object):
 
-    def get_architecture(self):
-        return None
-
     def get_priorities(self):
         return []
 
@@ -50,14 +47,6 @@ class TraverserCallbacks(object):
     def unsupported_requires(self, test, result):
         logging.info("Test '%s' does not support requires field: %s",
             test.name, test.requires)
-
-    def undefined_architecture(self, test, result):
-        logging.info("No system architecture defined, skipping test: %s",
-            test.name)
-
-    def unsupported_architecture(self, test, result):
-        logging.info("System architecture not supported, skipping test: %s",
-            test.name)
 
 
 class Traverser(IteratorContain):
@@ -81,9 +70,6 @@ class Traverser(IteratorContain):
         iterator = IteratorExclude(iterator,
             self._requires_exclude_func,
             self._requires_exclude_func)
-        iterator = IteratorExclude(iterator,
-            self._architecture_exclude_func,
-            self._architecture_exclude_func)
         iterator = IteratorExclude(iterator,
             self._dependent_exclude_next_func,
             self._dependent_exclude_prev_func)
@@ -150,20 +136,5 @@ class Traverser(IteratorContain):
         if False in test.requires.get_mask():
             self._callbacks.unsupported_requires(test, result)
             return True
-
-        return False
-
-    def _architecture_exclude_func(self, test, result):
-        """IteratorExclude function which removes test when the
-           architectures field exists and doesn't meet the given
-           requirements."""
-        if test.architectures:
-            architecture = self._callbacks.get_architecture()
-            if architecture is None:
-                self._callbacks.undefined_architecture(test, result)
-                return True
-            elif architecture not in test.architectures:
-                self._callbacks.unsupported_architecture(test, result)
-                return True
 
         return False

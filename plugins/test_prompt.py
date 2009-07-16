@@ -28,9 +28,6 @@ class PromptTestCallbacks(TraverserCallbacks):
         super(PromptTestCallbacks, self).__init__()
         self._plugin = plugin
 
-    def get_architecture(self):
-        return self._plugin.architecture
-
     def get_priorities(self):
         return self._plugin.priorities
 
@@ -49,16 +46,6 @@ class PromptTestCallbacks(TraverserCallbacks):
             data="System does not meet test requirements.")
         self._plugin._manager.reactor.fire("report-result", result)
 
-    def undefined_architecture(self, test, result):
-        result = TestResult(test, status=SKIP,
-            data="No system architecture defined.")
-        self._plugin._manager.reactor.fire("report-result", result)
-
-    def unsupported_architecture(self, test, result):
-        result = TestResult(test, status=SKIP,
-            data="System architecture not supported.")
-        self._plugin._manager.reactor.fire("report-result", result)
-
 
 class PromptTest(Plugin):
 
@@ -71,11 +58,9 @@ class PromptTest(Plugin):
         self._result = None
         self._traverser = None
 
-        self.architecture = None
         self.priorities = self.plugin_priorities
 
         for (rt, rh) in [
-             ("report-architecture", self.report_architecture),
              ("report-result", self.report_result),
              ("report-test", self.report_test),
              ("prompt-tests", self.prompt_tests)]:
@@ -83,9 +68,6 @@ class PromptTest(Plugin):
 
         self._manager.reactor.call_on("prompt-test-.*",
             self.prompt_test, 100)
-
-    def report_architecture(self, architecture):
-        self.architecture = architecture
 
     def report_result(self, result):
         self._result = result

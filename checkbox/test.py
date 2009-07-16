@@ -37,12 +37,6 @@ from checkbox.frontend import frontend
 from checkbox.requires import Requires
 
 
-I386 = "i386"
-AMD64 = "amd64"
-LPIA = "lpia"
-SPARC = "sparc"
-ALL_ARCHITECTURES = [I386, AMD64, LPIA, SPARC]
-
 FAIL = "fail"
 PASS = "pass"
 SKIP = "skip"
@@ -196,8 +190,6 @@ class Test(object):
 
     An instance also contains the following optional fields:
 
-    architectures: List of architectures for which this test is relevant:
-                   amd64, i386, lpia, powerpc and/or sparc
     attachments:   List of commands or filenames attached to the test
                    results.
     command:       Command to run for the test.
@@ -213,7 +205,6 @@ class Test(object):
 
     required_fields = ["name", "plugin", "description", "suite"]
     optional_fields = {
-        "architectures": [],
         "attachments": [],
         "command": None,
         "depends": [],
@@ -226,7 +217,7 @@ class Test(object):
         super(Test, self).__setattr__("attributes", attributes)
 
         # Typed fields
-        for field in ["architectures", "attachments", "depends"]:
+        for field in ["attachments", "depends"]:
             if attributes.has_key(field):
                 attributes[field] = re.split(r"\n", attributes[field])
         for field in ["timeout"]:
