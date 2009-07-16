@@ -23,6 +23,8 @@ import posixpath
 
 from ConfigParser import ConfigParser
 
+from checkbox.lib.text import split
+
 
 class IncludeDict(dict):
 
@@ -35,7 +37,7 @@ class IncludeDict(dict):
 
     def __setitem__(self, key, value):
         if key == "includes":
-            for path in re.split(r"\s*,?\s+", value):
+            for path in split(value):
                 path = self._parser._interpolate("DEFAULT", None, path, self)
                 path = posixpath.expanduser(path)
                 if not posixpath.exists(path):

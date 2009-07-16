@@ -19,6 +19,8 @@
 import re
 import posixpath
 
+from checkbox.lib.text import split
+
 
 def raise_none_error(attribute):
     if not attribute:
@@ -166,7 +168,7 @@ class ListVariable(Variable):
     def coerce(self, values):
         item_factory = self._item_factory
         if isinstance(values, str):
-            values = values and re.split(r"\s*,?\s+", values) or []
+            values = split(values) if values else []
         elif not isinstance(values, (list, tuple)):
             raise ValueError("%r is not a list or tuple" % (values,))
 
