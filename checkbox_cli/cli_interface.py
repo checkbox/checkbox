@@ -98,7 +98,7 @@ class CLIChoiceDialog(CLIDialog):
     def __init__(self, text):
         super(CLIChoiceDialog, self).__init__(text)
         self.keys = []
-        self.buttons = []
+        self.options = []
 
     def run(self, label=None):
         if not self.visible:
@@ -106,7 +106,7 @@ class CLIChoiceDialog(CLIDialog):
 
         self.put_newline()
         try:
-            # Only one button
+            # Only one option
             if len (self.keys) <= 1:
                 self.get(_("Press any key to continue..."))
                 return 0
@@ -114,8 +114,8 @@ class CLIChoiceDialog(CLIDialog):
             while True:
                 if label is not None:
                     self.put_line(label)
-                for index, button in enumerate(self.buttons):
-                    self.put_line("  %s: %s" % (self.keys[index], button))
+                for index, option in enumerate(self.options):
+                    self.put_line("  %s: %s" % (self.keys[index], option))
 
                 response = self.get(_("Please choose (%s): ") % ("/".join(self.keys)))
                 try:
@@ -126,10 +126,15 @@ class CLIChoiceDialog(CLIDialog):
             self.put_newline()
             raise
 
-    def add_button(self, button):
-        self.keys.append(re.search("&(.)", button).group(1).upper())
-        self.buttons.append(re.sub("&", "", button))
-        return len(self.keys)
+    def add_option(self, option):
+        if "&" in option:
+            key = re.search("&(.)", option, re.S).group(1).upper()
+            option = re.sub("&", "", option)
+        else:
+            key = " "
+
+        self.keys.append(key)
+        self.options.append(option)
 
 
 class CLITextDialog(CLIDialog):
@@ -194,11 +199,30 @@ class CLIInterface(UserInterface):
 
         return dialog.run()
 
-    def show_options(self, text, options=[], default=None):
+    def show_check(self, text, options=[], default=[]):
         dialog = CLIChoiceDialog(text)
         for option in options:
             label = "&%s" % option.capitalize()
-            dialog.add_button(label)
+            dialog.add_option(label)
+
+        dialog.add_option("& Space when finished")
+
+        results = {}
+        while True:
+            response = dialog.run()
+            if response > len(options):
+                break
+
+            result = options[response - 1]
+            results[result] = True
+
+        return results.keys()
+
+    def show_radio(self, text, options=[], default=None):
+        dialog = CLIChoiceDialog(text)
+        for option in options:
+            label = "&%s" % option.capitalize()
+            dialog.add_option(label)
 
         # Show options dialog
         response = dialog.run()
@@ -215,7 +239,7 @@ class CLIInterface(UserInterface):
             dialog = CLIChoiceDialog(description)
 
             for answer in answers:
-                dialog.add_button("&%s" % answer)
+                dialog.add_option("&%s" % answer)
 
             # Get answer from dialog
             response = dialog.run()

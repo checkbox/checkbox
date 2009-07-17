@@ -248,7 +248,36 @@ class GTKInterface(UserInterface):
         return self._get_text("entry")
 
     @GTKHack
-    def show_options(self, text, options=[], default=None):
+    def show_check(self, text, options=[], default=[]):
+        # Set buttons
+        self._notebook.set_current_page(1)
+
+        # Set options
+        option_table = {}
+        vbox = self._get_widget("vbox_options")
+        for option in options:
+            label = "_%s" % option.capitalize()
+            radio_button = gtk.CheckButton(label)
+            radio_button.show()
+            option_table[option] = radio_button
+            vbox.pack_start(radio_button, False, False, 0)
+            if option in default:
+                radio_button.set_active(True)
+
+        self._set_hyper_text_view("hyper_text_view_options", text)
+
+        self._run_dialog()
+
+        # Get options
+        results = []
+        for option, radio_button in option_table.items():
+            if radio_button.get_active():
+                results.append(option)
+
+        return results
+
+    @GTKHack
+    def show_radio(self, text, options=[], default=None):
         # Set buttons
         self._notebook.set_current_page(1)
 

@@ -76,7 +76,11 @@ class UserInterface(object):
         raise NotImplementedError, \
             "this function must be overridden by subclasses"
 
-    def show_options(self, text, options=[], default=None):
+    def show_check(self, text, options=[], default=[]):
+        raise NotImplementedError, \
+            "this function must be overridden by subclasses"
+
+    def show_radio(self, text, options=[], default=None):
         raise NotImplementedError, \
             "this function must be overridden by subclasses"
 
