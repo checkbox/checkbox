@@ -19,6 +19,12 @@
 import os
 import time
 import select
+import fcntl, termios
+
+
+STDIN_FILENO = 0
+STDOUT_FILENO = 1
+STDERR_FILENO = 2
 
 
 class Process:
@@ -47,16 +53,20 @@ class Process:
         # overhead like EOL conversion. So I think it's handier to use os.read()
         self.outdata = self.errdata = ""
         self.starttime = self.endtime = None
-        self._outeof = self._erreof = 0
+        self._outeof = self._erreof = False
 
     def _child(self, cmd, env):
         # Note sh below doesn't setup a seperate group (job control)
         # for non interactive shells (hmm maybe -m option does?)
         os.setpgrp() #seperate group so we can kill it
-        os.dup2(self.outw,1) #stdout to write side of pipe
-        os.dup2(self.errw,2) #stderr to write side of pipe
-        #stdout & stderr connected to pipe, so close all other files
-        map(os.close, [self.outr,self.outw,self.errr,self.errw])
+        # Disable input
+        fcntl.ioctl(STDIN_FILENO, termios.TIOCNOTTY)
+        os.close(STDIN_FILENO)
+        # stdout and stderr to write side of pipe
+        os.dup2(self.outw, STDOUT_FILENO)
+        os.dup2(self.errw, STDERR_FILENO)
+        # stdout and stderr connected to pipe, so close all other files
+        map(os.close, [self.outr, self.outw, self.errr, self.errw])
         try:
             cmd = ["/bin/sh", "-c", cmd]
             os.execve(cmd[0], cmd, env)
@@ -64,36 +74,36 @@ class Process:
             os._exit(1)
 
     def read(self, timeout=None):
-        """return 0 when finished
-           else return 1 every timeout seconds
+        """return False when finished
+           else return True every timeout seconds
            data will be in outdata and errdata"""
         self.starttime = time.time()
-        while 1:
+        while True:
             tocheck=[]
             if not self._outeof:
                 tocheck.append(self.outr)
             if not self._erreof:
                 tocheck.append(self.errr)
             ready = select.select(tocheck, [], [], timeout)
-            if len(ready[0]) == 0: #no data timeout
-                return 1
+            if not len(ready[0]): # no data timeout
+                return True
             else:
                 if self.outr in ready[0]:
                     outchunk = os.read(self.outr, self.BUFSIZ)
                     if outchunk == "":
-                        self._outeof = 1
+                        self._outeof = True
                     self.outdata += outchunk
                 if self.errr in ready[0]:
                     errchunk = os.read(self.errr, self.BUFSIZ)
                     if errchunk == "":
-                        self._erreof = 1
+                        self._erreof = True
                     self.errdata += errchunk
                 if self._outeof and self._erreof:
                     self.endtime = time.time()
-                    return 0
+                    return False
                 elif timeout:
                     if (time.time() - self.starttime) > timeout:
-                        return 1 # may be more data but time to go
+                        return True # may be more data but time to go
 
     def kill(self):
         os.kill(-self.pid, 15) # SIGTERM whole group
