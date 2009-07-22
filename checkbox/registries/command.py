@@ -18,6 +18,7 @@
 #
 import logging
 
+from checkbox.lib.cache import cache
 from checkbox.lib.process import Process
 
 from checkbox.frontend import frontend
@@ -51,6 +52,7 @@ class CommandRegistry(Registry):
             logging.error("Failed to run command: %s", process.errdata.strip())
         return process.outdata
 
+    @cache
     def items(self):
         # Force running the command
         item = str(self)

@@ -16,6 +16,8 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
+from checkbox.lib.cache import cache
+
 from checkbox.properties import String
 from checkbox.registries.command import CommandRegistry
 
@@ -34,6 +36,7 @@ class HaldRegistry(CommandRegistry):
         str = super(HaldRegistry, self).__str__()
         return str.strip().rsplit(": ")[1]
 
+    @cache
     def items(self):
         return [("version", str(self))]
 

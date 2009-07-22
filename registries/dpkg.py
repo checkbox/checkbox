@@ -18,6 +18,8 @@
 #
 import re
 
+from checkbox.lib.cache import cache
+
 from checkbox.properties import String
 from checkbox.registries.command import CommandRegistry
 
@@ -32,6 +34,7 @@ class DpkgRegistry(CommandRegistry):
     # Command to retrieve dpkg information.
     command = String(default="dpkg --version")
 
+    @cache
     def items(self):
         items = []
         match = re.search(r"([\d\.]+) \((.*)\)", str(self))
