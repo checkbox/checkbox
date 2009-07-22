@@ -37,7 +37,7 @@ class DependsIterator(IteratorContain):
         resolver = Resolver(compare=compare, key=lambda e: e["name"])
         element_dict = dict((e["name"], e) for e in elements)
         for element in elements:
-            depends = element.get("depends", "").split()
+            depends = element.get("depends", [])
             depends = [element_dict[d] for d in depends]
             resolver.add(element, *depends)
 

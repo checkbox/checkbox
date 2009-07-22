@@ -161,14 +161,15 @@ class FloatVariable(Variable):
 
 class ListVariable(Variable):
 
-    def __init__(self, item_factory, *args, **kwargs):
+    def __init__(self, item_factory, separator, *args, **kwargs):
         self._item_factory = item_factory
+        self._separator = separator
         super(ListVariable, self).__init__(*args, **kwargs)
 
     def coerce(self, values):
         item_factory = self._item_factory
         if isinstance(values, str):
-            values = split(values) if values else []
+            values = split(values, self._separator) if values else []
         elif not isinstance(values, (list, tuple)):
             raise ValueError("%r is not a list or tuple" % (values,))
 

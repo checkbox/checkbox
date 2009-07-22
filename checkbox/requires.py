@@ -38,14 +38,13 @@ class RequiresIterator(IteratorContain):
            requires field contains a False value."""
         from checkbox.job import UNSUPPORTED
 
-        if self._registry and "requires" in element:
-            name = element["name"]
-            if name not in self._requires_mask:
-                self._requires_mask[name] = [False]
-                registry_eval_recursive(self._registry, element["requires"],
-                    self._requires_mask[name])
+        if self._registry:
+            mask = []
+            for require in element.get("requires", []):
+                result = registry_eval_recursive(self._registry, require)
+                mask.append(bool(result))
 
-            if False in self._requires_mask[name]:
+            if False in mask:
                 element["status"] = UNSUPPORTED
                 element["data"] = "Test requirements not met."
                 return True

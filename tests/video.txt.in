@@ -1,7 +1,9 @@
 type: test
 plugin: manual
 name: resolution
-requires: pci.device_class == 3, package.name == 'x11-xserver-utils'
+requires:
+ pci.device_class == 3
+ package.name == 'x11-xserver-utils'
 command: resolution_test
 _description:
  This display is using $output resolution.

@@ -145,6 +145,10 @@ class List(PropertyFactory):
 
     variable_class = ListVariable
 
+    def __init__(self, *args, **kwargs):
+        kwargs["separator"] = kwargs.pop("separator", r"\s")
+        super(List, self).__init__(*args, **kwargs)
+
 
 class Tuple(PropertyFactory):
 
