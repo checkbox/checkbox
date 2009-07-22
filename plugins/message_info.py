@@ -26,16 +26,16 @@ from checkbox.lib.template_i18n import TemplateI18n
 from checkbox.job import Job, PASS
 from checkbox.plugin import Plugin
 from checkbox.arguments import coerce_arguments
-from checkbox.properties import (Any, Bool, Dict, Float, Int, List,
-    Map, String, Unicode)
+from checkbox.properties import Int, List, Map, String, Unicode
 
 
 message_schema = Map({
     "type": String(),
-    "plugin": String(),
     "name": String(),
+    "status": String(required=False),
+    "plugin": String(required=False),
     "suite": String(required=False),
-    "description": String(required=False),
+    "description": Unicode(required=False),
     "command": String(required=False),
     "depends": List(String(), required=False),
     "requires": List(String(), separator=r"\n", required=False),
