@@ -25,6 +25,22 @@ from checkbox.lib.template_i18n import TemplateI18n
 
 from checkbox.job import Job, PASS
 from checkbox.plugin import Plugin
+from checkbox.arguments import coerce_arguments
+from checkbox.properties import (Any, Bool, Dict, Float, Int, List,
+    Map, String, Unicode)
+
+
+message_schema = Map({
+    "type": String(),
+    "plugin": String(),
+    "name": String(),
+    "suite": String(required=False),
+    "description": String(required=False),
+    "command": String(required=False),
+    "depends": List(String(), required=False),
+    "requires": List(String(), separator=r"\n", required=False),
+    "timeout": Int(required=False),
+    "user": String(required=False)})
 
 
 class MessageInfo(Plugin):
@@ -44,6 +60,7 @@ class MessageInfo(Plugin):
              ("message-string", self.message_string)]:
             self._manager.reactor.call_on(rt, rh)
 
+    @coerce_arguments(message=message_schema)
     def message(self, message):
         self._manager.reactor.fire("report-%s" % message["type"], message)
 
