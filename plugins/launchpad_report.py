@@ -63,7 +63,7 @@ class LaunchpadReport(Plugin):
              ("report-processors", self.report_processors),
              ("report-sysctl", self.report_context),
              ("report-system_id", self.report_system_id),
-             ("report-results", self.report_results)]:
+             ("report-tests", self.report_tests)]:
             self._manager.reactor.call_on(rt, rh)
 
     def report_architecture(self, architecture):
@@ -92,14 +92,12 @@ class LaunchpadReport(Plugin):
     def report_system_id(self, system_id):
         self._report["summary"]["system_id"] = system_id
 
-    def report_results(self, results):
-        for result in results:
-            test = result.test
-            question = dict(test.attributes)
-            question["command"] = str(test.command)
-            question["description"] = str(test.description)
-            question["requires"] = str(test.requires)
-            question["result"] = dict(result.attributes)
+    def report_tests(self, tests):
+        for test in tests:
+            question = {
+                "name": test["name"],
+                "answer": test["status"],
+                "comment": test.get("data", "")}
             self._report["questions"].append(question)
 
     def report_context(self, sources):

@@ -19,7 +19,6 @@
 import os
 import time
 import select
-import fcntl, termios
 
 
 STDIN_FILENO = 0
@@ -60,7 +59,6 @@ class Process:
         # for non interactive shells (hmm maybe -m option does?)
         os.setpgrp() #seperate group so we can kill it
         # Disable input
-        fcntl.ioctl(STDIN_FILENO, termios.TIOCNOTTY)
         os.close(STDIN_FILENO)
         # stdout and stderr to write side of pipe
         os.dup2(self.outw, STDOUT_FILENO)

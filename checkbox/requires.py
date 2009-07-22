@@ -16,51 +16,38 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-from checkbox.lib.cache import cache
+from checkbox.lib.iterator import IteratorContain, IteratorExclude
 
 from checkbox.registry import registry_eval_recursive
 
 
-class Requires(object):
+class RequiresIterator(IteratorContain):
 
-    def __init__(self, registry, source):
+    def __init__(self, elements=[], registry=None):
         self._registry = registry
-        self._source = source
-        self._mask = [False]
+        self._requires_mask = {}
 
-    def __str__(self):
-        return self.get_source() or ""
+        iterator = IteratorExclude(elements,
+            self._requires_exclude_func,
+            self._requires_exclude_func)
 
-    @cache
-    def get_values(self):
-        if self._source is None:
-            self._mask = [True]
-            return []
+        super(RequiresIterator, self).__init__(iterator)
 
-        return registry_eval_recursive(self._registry,
-            self._source, self._mask)
+    def _requires_exclude_func(self, element):
+        """IteratorExclude function which removes element when the
+           requires field contains a False value."""
+        from checkbox.job import UNSUPPORTED
 
-    def get_packages(self):
-        packages = []
-        values = self.get_values()
-        for value in values:
-            if value.__class__.__name__ == "PackageRegistry":
-                packages.append(value)
+        if self._registry and "requires" in element:
+            name = element["name"]
+            if name not in self._requires_mask:
+                self._requires_mask[name] = [False]
+                registry_eval_recursive(self._registry, element["requires"],
+                    self._requires_mask[name])
 
-        return packages
+            if False in self._requires_mask[name]:
+                element["status"] = UNSUPPORTED
+                element["data"] = "Test requirements not met."
+                return True
 
-    def get_devices(self):
-        devices = []
-        values = self.get_values()
-        for value in values:
-            if value.__class__.__name__ == "HalDeviceRegistry":
-                devices.append(value)
-
-        return devices
-
-    def get_source(self):
-        return self._source
-
-    def get_mask(self):
-        self.get_values()
-        return self._mask
+        return False

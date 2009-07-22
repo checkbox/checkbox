@@ -28,9 +28,30 @@ import gettext
 from gettext import gettext as _
 
 from checkbox.contrib.REThread import REThread
+from checkbox.job import (FAIL, PASS, UNINITIATED,
+    UNRESOLVED, UNSUPPORTED, UNTESTED)
 
 from checkbox.lib.environ import add_variable, get_variable, remove_variable
 from checkbox.lib.iterator import NEXT
+
+
+YES_ANSWER = "yes"
+NO_ANSWER = "no"
+SKIP_ANSWER = "skip"
+ALL_ANSWERS = [YES_ANSWER, NO_ANSWER, SKIP_ANSWER]
+
+ANSWER_TO_STATUS = {
+    NO_ANSWER: FAIL,
+    YES_ANSWER: PASS,
+    SKIP_ANSWER: UNTESTED}
+
+STATUS_TO_ANSWER = {
+    FAIL: NO_ANSWER,
+    PASS: YES_ANSWER,
+    UNINITIATED: SKIP_ANSWER,
+    UNRESOLVED: NO_ANSWER,
+    UNSUPPORTED: SKIP_ANSWER,
+    UNTESTED: SKIP_ANSWER}
 
 
 class UserInterface(object):

@@ -26,7 +26,7 @@ class ModulesInfo(Plugin):
         self._manager.reactor.call_on("report", self.report)
 
     def report(self):
-        self._manager.reactor.fire("report-modules", 
+        self._manager.reactor.fire("report-modules",
             self._manager.registry.modules)
 
 

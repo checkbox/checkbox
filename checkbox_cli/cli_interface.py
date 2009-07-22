@@ -21,9 +21,19 @@ import sys
 import termios
 
 from gettext import gettext as _
+from string import Template
 
-from checkbox.test import ALL_STATUS, FAIL, TestResult
-from checkbox.user_interface import UserInterface
+from checkbox.job import Job
+from checkbox.user_interface import (UserInterface, ANSWER_TO_STATUS,
+    ALL_ANSWERS, YES_ANSWER, NO_ANSWER, SKIP_ANSWER)
+
+
+ANSWER_TO_OPTION = {
+    YES_ANSWER: _("yes"),
+    NO_ANSWER: _("no"),
+    SKIP_ANSWER: _("skip")}
+
+OPTION_TO_ANSWER = dict((o, a) for a, o in ANSWER_TO_OPTION.items())
 
 
 class CLIDialog(object):
@@ -127,14 +137,8 @@ class CLIChoiceDialog(CLIDialog):
             raise
 
     def add_option(self, option):
-        if "&" in option:
-            key = re.search("&(.)", option, re.S).group(1).upper()
-            option = re.sub("&", "", option)
-        else:
-            key = " "
-
-        self.keys.append(key)
-        self.options.append(option)
+        self.keys.append(re.search("&(.)", option, re.S).group(1).upper())
+        self.options.append(re.sub("&", "", option))
 
 
 class CLITextDialog(CLIDialog):
@@ -228,42 +232,48 @@ class CLIInterface(UserInterface):
         response = dialog.run()
         return options[response - 1]
 
-    def show_test(self, test, result=None):
-        answers = [_("yes"), _("no"), _("skip")]
-        if str(test.command):
-            answers.append(_("test"))
+    def _run_test(self, test):
+        message = _("Running test %s...") % test["name"]
+        job = Job(test["command"], test.get("environ"), test.get("timeout"))
+        self.show_wait(message, job.execute)
+
+    def show_test(self, test):
+        options = list([ANSWER_TO_OPTION[a] for a in ALL_ANSWERS])
+        if "command" in test:
+            options.append(_("test"))
+
+        if re.search(r"\$output", test["description"]):
+            self._run_test(test)
 
         while True:
-            # Show answer dialog
-            description = test.description(result)
+            # Show option dialog
+            description = Template(test["description"]).substitute({
+                "output": test.get("data", "").strip()})
             dialog = CLIChoiceDialog(description)
 
-            for answer in answers:
-                dialog.add_option("&%s" % answer)
+            for option in options:
+                dialog.add_option("&%s" % option)
 
-            # Get answer from dialog
+            # Get option from dialog
             response = dialog.run()
-            answer = answers[response - 1]
-            if response <= len(ALL_STATUS):
+            option = options[response - 1]
+            if response <= len(ALL_ANSWERS):
                 break
 
-            self.progress = CLIProgressDialog(
-                _("Running test %s...") % test.name)
-            self.progress.show()
+            self._run_test(test)
 
-            result = self.do_function(test.command)
-            answers[-1] = _("test again")
+            options[-1] = _("test again")
 
-        status = dict(zip(answers[0:len(ALL_STATUS)], ALL_STATUS))[answer]
-        if status == FAIL:
+        answer = OPTION_TO_ANSWER[option]
+        if answer == NO_ANSWER:
             text = _("Further information:")
             dialog = CLITextDialog(test.name, text)
-            data = dialog.run(_("Please type here and press"
+            test["data"] = dialog.run(_("Please type here and press"
                 " Ctrl-D when finished:\n"))
         else:
-            data = ""
+            test["data"] = ""
 
-        return TestResult(test, status, data)
+        test["status"] = ANSWER_TO_STATUS[answer]
 
     def show_error(self, text):
         dialog = CLIChoiceDialog("Error: %s" % text)

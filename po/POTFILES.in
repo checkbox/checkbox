@@ -2,14 +2,17 @@
 backend/com.ubuntu.checkbox.policy.in
 gtk/checkbox-gtk.glade
 gtk/checkbox-gtk.desktop.in
-[type: gettext/rfc822deb] suites/manual.txt.in
+[type: gettext/rfc822deb]
+suites/internal.txt.in
+tests/audio.txt.in
+tests/network.txt.in
+tests/peripheral.txt.in
+tests/video.txt.in
 checkbox/application.py
-checkbox/test.py
 checkbox/lib/signal.py
 checkbox_cli/cli_interface.py
 checkbox_gtk/gtk_interface.py
 checkbox/user_interface.py
-plugins/shell_prompt.py
 plugins/final_prompt.py
 plugins/gather_prompt.py
 plugins/intro_prompt.py
@@ -17,6 +20,9 @@ plugins/launchpad_exchange.py
 plugins/launchpad_prompt.py
 plugins/lock_prompt.py
 plugins/report_prompt.py
+plugins/shell_test.py
+plugins/suites_prompt.py
 plugins/user_interface.py
 scripts/keyboard_test
 scripts/internet_test
+

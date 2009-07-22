@@ -253,11 +253,11 @@ class QuestionsReport(Report):
         for question in obj:
             element = self._create_element("question", parent)
             element.setAttribute("name", question["name"])
-            self.dumps_answer(question["result"]["status"], element)
-            self.dumps_comment(question["result"]["data"], element)
+            self.dumps_answer(question["answer"], element)
+            self.dumps_comment(question["comment"], element)
 
     def dumps_answer(self, obj, parent):
-        from checkbox.test import ALL_STATUS
+        from checkbox.job import ALL_STATUS
 
         answer = self._create_element("answer", parent)
         answer.setAttribute("type", "multiple_choice")

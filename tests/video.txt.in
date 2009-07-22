@@ -1,0 +1,19 @@
+type: test
+plugin: manual
+name: resolution
+requires: pci.device_class == 3, package.name == 'x11-xserver-utils'
+command: resolution_test
+_description:
+ This display is using $output resolution.
+ .
+ Is this acceptable for your display?
+
+type: test
+plugin: manual
+name: video
+requires: package.name == 'python-gst0.10'
+command: gst_pipeline_test -t 2 'videotestsrc ! ffmpegcolorspace ! gconfvideosink'
+_description:
+ Click the Test button to display a video test.
+ .
+ Do you see color bars and static?

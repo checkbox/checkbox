@@ -16,25 +16,23 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
+from checkbox.lib.environ import prepend_path
+
 from checkbox.plugin import Plugin
+from checkbox.properties import Path
 
 
-class ResultsInfo(Plugin):
+class ScriptsInfo(Plugin):
+
+    # Executable path for running scripts.
+    scripts_path = Path(default="%(checkbox_share)s/scripts")
 
     def register(self, manager):
-        super(ResultsInfo, self).register(manager)
-        self._results = []
+        super(ScriptsInfo, self).register(manager)
+        self._manager.reactor.call_on("gather", self.gather, -1000)
 
-        for (rt, rh) in [
-             ("report", self.report),
-             ("report-result", self.report_result)]:
-            self._manager.reactor.call_on(rt, rh)
-
-    def report_result(self, result):
-        self._results.append(result)
-
-    def report(self):
-        self._manager.reactor.fire("report-results", self._results)
+    def gather(self):
+        prepend_path(self.scripts_path)
 
 
-factory = ResultsInfo
+factory = ScriptsInfo

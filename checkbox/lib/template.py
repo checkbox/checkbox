@@ -16,17 +16,14 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-import os
 import re
 import logging
-import posixpath
+
+
+EXTENDED_STRING = "_extended"
 
 
 class Template(object):
-
-    def __init__(self, filename_field=None, unique_fields=[]):
-        self._filename_field = filename_field
-        self._unique_fields = unique_fields
 
     def _reader(self, file, size=4096, delimiter=r"\n{2,}"):
         buffer_old = ""
@@ -61,7 +58,7 @@ class Template(object):
                                 % (filename, field, value)
                     element[field] = value
                     if extended:
-                        element["%s_extended" % field] = extended
+                        element["%s%s" % (field, EXTENDED_STRING)] = extended
 
             string = string.strip("\n")
             field = value = extended = ""
@@ -105,21 +102,6 @@ class Template(object):
 
             _save(field, value, extended)
 
-            # Sanity checks
-            if self._filename_field:
-                if self._filename_field in element:
-                    raise Exception, \
-                        "Template %s already contains filename field: %s" \
-                        % (filename, self._filename_field)
-                element[self._filename_field] = posixpath.basename(filename)
-
-            for unique_field in self._unique_fields:
-                if [e for e in elements \
-                   if e[unique_field] == element[unique_field]]:
-                    raise Exception, \
-                        "Template %s contains duplicate fields: %s" \
-                        % (filename, unique_field)
-
             elements.append(element)
 
         return elements
@@ -129,36 +111,3 @@ class Template(object):
 
         file = open(filename, "r")
         return self.load_file(file, filename)
-
-    def load_directory(self, directory, blacklist=[], whitelist=[]):
-        logging.info("Loading filenames from directory: %s", directory)
-
-        whitelist_patterns = [re.compile(r"^%s$" % r) for r in whitelist]
-        blacklist_patterns = [re.compile(r"^%s$" % r) for r in blacklist]
-
-        elements = []
-        for name in os.listdir(directory):
-            if name.startswith(".") or name.endswith("~"):
-                logging.info("Ignored filename: %s", name)
-                continue
-
-            if whitelist_patterns:
-                if not [name for p in whitelist_patterns if p.match(name)]:
-                    logging.info("Not whitelisted filename: %s", name)
-                    continue
-            elif blacklist_patterns:
-                if [name for p in blacklist_patterns if p.match(name)]:
-                    logging.info("Blacklisted filename: %s", name)
-                    continue
-
-            filename = posixpath.join(directory, name)
-            elements.extend(self.load_filename(filename))
-
-        return elements
-
-    def load_directories(self, directories, blacklist=[], whitelist=[]):
-        elements = []
-        for directory in directories:
-            elements.extend(self.load_directory(directory, blacklist, whitelist))
-
-        return elements

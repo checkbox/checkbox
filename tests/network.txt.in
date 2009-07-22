@@ -1,0 +1,23 @@
+type: test
+plugin: manual
+name: network
+requires: pci.device_class == 2
+command: network_test
+_description:
+ Detecting your network controller(s):
+ .
+ $output
+ .
+ Is this correct?
+
+type: test
+plugin: manual
+name: internet
+depends: network
+command: internet_test
+_description:
+ Testing your connection to the Internet:
+ .
+ $output
+ .
+ Is this correct?

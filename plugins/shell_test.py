@@ -16,25 +16,29 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
+from gettext import gettext as _
+
+from checkbox.job import Job, UNINITIATED
 from checkbox.plugin import Plugin
 
 
-class TestsInfo(Plugin):
+class ShellTest(Plugin):
 
     def register(self, manager):
-        super(TestsInfo, self).register(manager)
-        self._tests = []
+        super(ShellTest, self).register(manager)
+        self._manager.reactor.call_on("prompt-test-shell",
+            self.prompt_test_shell)
 
-        for (rt, rh) in [
-             ("report", self.report),
-             ("report-test", self.report_test)]:
-            self._manager.reactor.call_on(rt, rh)
+    def prompt_test_shell(self, interface, test):
+        command = test.get("command")
+        status = test.get("status", UNINITIATED)
+        if command and status != UNINITIATED:
+            job = Job(command, test.get("environ"), test.get("timeout"))
+            interface.show_wait(_("Running shell tests..."),
+                job.execute)
+            test["data"] = job.data
+            test["duration"] = job.duration
+            test["status"] = job.status
 
-    def report_test(self, test):
-        self._tests.append(test)
 
-    def report(self):
-        self._manager.reactor.fire("report-tests", self._tests)
-
-
-factory = TestsInfo
+factory = ShellTest

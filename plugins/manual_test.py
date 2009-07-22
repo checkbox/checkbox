@@ -16,29 +16,20 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-from gettext import gettext as _
-
-from checkbox.lib.cache import cache
-
 from checkbox.plugin import Plugin
 
 
-class ShellPrompt(Plugin):
+class ManualTest(Plugin):
 
     def register(self, manager):
-        super(ShellPrompt, self).register(manager)
-        self._manager.reactor.call_on("prompt-test-shell",
-            self.prompt_test_shell)
+        super(ManualTest, self).register(manager)
 
-    def _run_shell(self, test):
-        result = test.command()
-        self._manager.reactor.fire("report-result", result)
+        # Manual tests should be asked first.
+        self._manager.reactor.call_on("prompt-test-manual",
+            self.prompt_test_manual)
 
-    @cache
-    def prompt_test_shell(self, interface, test):
-        if str(test.command):
-            interface.show_wait(_("Running shell tests..."),
-                self._run_shell, test)
+    def prompt_test_manual(self, interface, test):
+        interface.show_test(test)
 
 
-factory = ShellPrompt
+factory = ManualTest

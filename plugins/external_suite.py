@@ -19,21 +19,17 @@
 from checkbox.plugin import Plugin
 
 
-class ManualPrompt(Plugin):
+class ExternalSuite(Plugin):
 
     def register(self, manager):
-        super(ManualPrompt, self).register(manager)
-        self._results = {}
+        super(ExternalSuite, self).register(manager)
 
-        # Manual tests should be asked first.
-        self._manager.reactor.call_on("prompt-test-manual",
-            self.prompt_test_manual)
+        self._manager.reactor.call_on("prompt-suite-external",
+            self.prompt_suite_external)
 
-    def prompt_test_manual(self, interface, test):
-        result = self._results.get((test.suite, test.name))
-        result = interface.show_test(test, result)
-        self._results[(test.suite, test.name)] = result
-        self._manager.reactor.fire("report-result", result)
+    def prompt_suite_external(self, interface, suite):
+        self._manager.reactor.fire("message-exec", suite)
+        self._manager.reactor.fire("prompt-tests", interface)
 
 
-factory = ManualPrompt
+factory = ExternalSuite

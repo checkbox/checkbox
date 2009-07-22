@@ -85,7 +85,7 @@ class ReportManager(object):
         """
         self.document = Document()
 
-        if self.stylesheet: 
+        if self.stylesheet:
             type = "text/xsl"
             href = "file://%s" % self.stylesheet
             style = self.document.createProcessingInstruction("xml-stylesheet",

@@ -64,19 +64,9 @@ class Frontend(object):
             return self.globals.setdefault("client", client)
 
     def get_test_result(self, *args, **kwargs):
-        from checkbox.test import TestResult
-
         test = self._instance.test
-        if test.user:
-            (status, data, duration) = self.client.get_test_result(test.suite, test.name)
-            return TestResult(self.test, status, data, float(duration))
-        else:
-            return self._function(self._instance, *args, **kwargs)
-
-    def get_test_description(self, *args, **kwargs):
-        test = self._instance.test
-        if test.user:
-            return self.client.get_test_description(test.suite, test.name)
+        if test.get("user"):
+            return self.client.get_test_result(test["suite"], test["name"])
         else:
             return self._function(self._instance, *args, **kwargs)
 

@@ -18,58 +18,62 @@
 #
 import logging
 
-from checkbox.test import FAIL, PASS, SKIP
-
+from checkbox.job import (FAIL, PASS, UNINITIATED,
+    UNRESOLVED, UNSUPPORTED, UNTESTED)
 from checkbox.properties import Path
 from checkbox.plugin import Plugin
 
+
+STATUS_TO_SUBUNIT = {
+    FAIL: "failure",
+    PASS: "success",
+    UNINITIATED: "skip",
+    UNRESOLVED: "error",
+    UNSUPPORTED: "skip",
+    UNTESTED: "skip"}
 
 class SubunitReport(Plugin):
 
     # Filename where to store the subunit report
     filename = Path(default="%(checkbox_data)s/subunit.log")
 
-    result_status_table = {
-        FAIL: "failure",
-        PASS: "success",
-        SKIP: "skip"}
-
     def register(self, manager):
         super(SubunitReport, self).register(manager)
-        self._file = None
+        self._tests = {}
 
         for (rt, rh) in [
-             ("gather", self.gather),
-             ("report-result", self.report_result)]:
+             ("report-test", self.report_test),
+             ("report", self.report)]:
             self._manager.reactor.call_on(rt, rh)
 
-    def gather(self):
+    def report_test(self, test):
+        key = (test["suite"], test["name"],)
+        if key not in self._tests:
+            self._tests[key] = test
+
+    def report(self):
         logging.debug("Opening filename: %s", self.filename)
-        self._file = open(self.filename, "w")
+        file = open(self.filename, "w")
 
-    def report_result(self, result):
-        # Test
-        test = result.test
-        name = "%s %s" % (test.suite, test.name)
-        self._file.write("test: %s\n" % name)
+        for test in self._tests.values():
+            # Test
+            name = "%s %s" % (test["suite"], test["name"])
+            file.write("test: %s\n" % name)
 
-        # Tags
-        tags = []
-        if result.packages:
-            tags.extend(["package:%s-%s" % (p.name, p.version)
-                for p in result.packages])
-        if tags:
-            self._file.write("tags: %s\n" % " ".join(tags))
+            # TODO: determine where to handle requires
 
-        # Status
-        status = self.result_status_table[result.status]
-        self._file.write("%s: %s" % (status, name))
-        if result.data:
-            # Prepend whitespace to the data
-            data = result.data.replace("\n", "\n ").strip()
-            self._file.write(" [\n %s\n]\n" % data)
-        else:
-            self._file.write("\n")
+            # Status
+            status = STATUS_TO_SUBUNIT[test["status"]]
+            file.write("%s: %s" % (status, name))
+
+            # Data
+            data = test.get("data")
+            if data is not None:
+                # Prepend whitespace to the data
+                data = data.replace("\n", "\n ").strip()
+                file.write(" [\n %s\n]" % data)
+
+            file.write("\n")
 
 
 factory = SubunitReport

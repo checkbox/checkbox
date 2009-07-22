@@ -21,12 +21,27 @@ import gtk, gtk.glade
 import posixpath
 
 from gettext import gettext as _
+from string import Template
 
-from checkbox.test import ALL_STATUS, TestResult
-from checkbox.user_interface import UserInterface
+from checkbox.job import Job, UNINITIATED
+from checkbox.user_interface import (UserInterface,
+    YES_ANSWER, NO_ANSWER, SKIP_ANSWER,
+    ANSWER_TO_STATUS, STATUS_TO_ANSWER)
 
 # Import to register HyperTextView type with gtk
 from checkbox_gtk.hyper_text_view import HyperTextView
+
+
+ANSWER_TO_BUTTON = {
+    YES_ANSWER: "radio_button_yes",
+    NO_ANSWER: "radio_button_no",
+    SKIP_ANSWER: "radio_button_skip"}
+
+BUTTON_TO_STATUS = dict((b, ANSWER_TO_STATUS[a])
+    for a, b in ANSWER_TO_BUTTON.items())
+
+STATUS_TO_BUTTON = dict((s, ANSWER_TO_BUTTON[a])
+    for s, a in STATUS_TO_ANSWER.items())
 
 
 # HACK: Setting and unsetting previous and next buttons to workaround
@@ -270,9 +285,10 @@ class GTKInterface(UserInterface):
 
         # Get options
         results = []
-        for option, radio_button in option_table.items():
-            if radio_button.get_active():
+        for option, check_button in option_table.items():
+            if check_button.get_active():
                 results.append(option)
+            vbox.remove(check_button)
 
         return results
 
@@ -301,49 +317,52 @@ class GTKInterface(UserInterface):
         self._run_dialog()
 
         # Get option
+        result = None
         for option, radio_button in option_table.items():
             if radio_button.get_active():
-                return option
+                result = option
+            vbox.remove(radio_button)
+
+        return result
 
     def _run_test(self, test):
         self._set_sensitive("button_test", False)
 
-        message = _("Running test %s...") % test.name
-        result = self.show_wait(message, test.command)
+        message = _("Running test %s...") % test["name"]
+        job = Job(test["command"], test.get("environ"), test.get("timeout"))
+        self.show_wait(message, job.execute)
 
-        description = self.do_function(test.description, result)
+        description = Template(test["description"]).substitute({
+            "output": job.data.strip()})
         self._set_hyper_text_view("hyper_text_view_test", description)
 
-        self._set_active("radio_button_%s" % result.status)
-        self._set_sensitive("button_test", True)
+        self._set_active(STATUS_TO_BUTTON[job.status])
         self._set_label("button_test", _("_Test Again"))
+        self._set_sensitive("button_test", True)
 
     @GTKHack
-    def show_test(self, test, result=None):
+    def show_test(self, test):
         self._set_sensitive("button_test", False)
         self._notebook.set_current_page(2)
 
         # Set test description
-        description = self.do_function(test.description, result)
-        self._set_hyper_text_view("hyper_text_view_test", description)
+        if re.search(r"\$output", test["description"]):
+            self._run_test(test)
+        else:
+            self._set_hyper_text_view("hyper_text_view_test",
+                test["description"])
 
         # Set buttons
-        if str(test.command):
+        if "command" in test:
             self._set_sensitive("button_test", True)
-
             button_test = self._get_widget("button_test")
             if self._handler_id:
                 button_test.disconnect(self._handler_id)
             self._handler_id = button_test.connect("clicked",
                 lambda w, t=test: self._run_test(t))
 
-        # Default results
-        if result:
-            self._set_text_view("text_view_comment", result.data)
-            self._set_active("radio_button_%s" % result.status)
-        else:
-            self._set_text_view("text_view_comment")
-            self._set_active("radio_button_skip")
+        self._set_text_view("text_view_comment", test.get("data", ""))
+        self._set_active(STATUS_TO_BUTTON[test.get("status", UNINITIATED)])
 
         self._run_dialog()
 
@@ -351,10 +370,8 @@ class GTKInterface(UserInterface):
         self._set_hyper_text_view("hyper_text_view_test")
         self._set_label("button_test", _("_Test"))
 
-        radio_buttons = ["radio_button_%s" % s for s in ALL_STATUS]
-        status = self._get_radio_button(dict(zip(radio_buttons, ALL_STATUS)))
-        data = self._get_text_view("text_view_comment")
-        return TestResult(test, status, data)
+        test["data"] = self._get_text_view("text_view_comment")
+        test["status"] = self._get_radio_button(BUTTON_TO_STATUS)
 
     def show_error(self, text):
         message_dialog = gtk.MessageDialog(parent=self._dialog,

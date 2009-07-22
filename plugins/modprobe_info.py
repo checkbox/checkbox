@@ -26,7 +26,7 @@ class ModprobeInfo(Plugin):
         self._manager.reactor.call_on("report", self.report)
 
     def report(self):
-        self._manager.reactor.fire("report-modprobe", 
+        self._manager.reactor.fire("report-modprobe",
             self._manager.registry.modprobe.items())
 
 

@@ -26,6 +26,7 @@ import dbus.mainloop.glib
 
 from checkbox.lib.environ import append_path
 
+from checkbox.job import Job
 from checkbox.properties import Int, String
 
 
@@ -94,23 +95,12 @@ class BackendManager(dbus.service.Object):
                 "Suite/test not found: %s/%s" % (suite, name)
 
         test = self.tests[(suite, name)]
-        result = test.command()
-        return (result.status, result.data, str(result.duration))
-
-    @dbus.service.method(DBUS_INTERFACE_NAME,
-        in_signature="ss", out_signature="s", sender_keyword="sender",
-        connection_keyword="conn")
-    def get_test_description(self, suite, name, sender=None, conn=None):
-        self._check_polkit_privilege(sender, conn, "com.ubuntu.checkbox.test")
-        if (suite, name) not in self.tests:
-            raise UnknownTestException, \
-                "Suite/test not found: %s/%s" % (suite, name)
-
-        test = self.tests[(suite, name)]
-        return test.description()
+        job = Job(test["command"], test.get("environ"), test.get("timeout"))
+        job.execute()
+        return (job.status, job.data, str(job.duration))
 
     def report_test(self, test):
-        self.tests[(test.suite, test.name)] = test
+        self.tests[(test["suite"], test["name"])] = test
 
     def run(self):
         self._manager.reactor.fire("gather")
