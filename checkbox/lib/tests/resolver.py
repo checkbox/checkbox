@@ -18,7 +18,7 @@
 #
 import unittest
 
-from checkbox.resolver import Resolver
+from checkbox.lib.resolver import Resolver
 
 
 class ResolverTest(unittest.TestCase):
