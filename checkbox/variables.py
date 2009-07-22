@@ -241,7 +241,7 @@ class MapVariable(Variable):
             except ValueError, e:
                 raise ValueError(
                     "Value of %r key of dict %r could not be converted: %s"
-                    % (k, value, e))
+                    % (attribute, value, e))
 
             if attribute in value:
                 new_dict[attribute] = new_value
