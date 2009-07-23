@@ -27,8 +27,9 @@ class DelayPrompt(Plugin):
     # Timeout for an initial delay
     timeout = Float(default=0.0)
 
-    def __init__(self):
-        super(DelayPrompt, self).__init__()
+    def register(self, manager):
+        super(DelayPrompt, self).register(manager)
+
         # Force delay as early as possible
         sleep(self.timeout)
 
