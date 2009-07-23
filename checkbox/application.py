@@ -29,6 +29,7 @@ from checkbox.contrib import bpickle_registry
 
 from checkbox.lib.config import Config
 from checkbox.lib.environ import get_variable
+from checkbox.lib.safe import safe_make_directory
 from checkbox.lib.text import split
 
 from checkbox.plugin import PluginManager
@@ -87,6 +88,10 @@ class ApplicationManager(object):
         return parser.parse_args(args)
 
     def create_application(self, args=sys.argv):
+        # Create data directory
+        data_directory = get_variable("CHECKBOX_DATA", ".")
+        safe_make_directory(data_directory)
+
         # Prepend environment options
         string_options = get_variable("CHECKBOX_OPTIONS", "")
         args[:0] = split(string_options)
