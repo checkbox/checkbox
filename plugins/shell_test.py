@@ -32,7 +32,7 @@ class ShellTest(Plugin):
     def prompt_test_shell(self, interface, test):
         command = test.get("command")
         status = test.get("status", UNINITIATED)
-        if command and status != UNINITIATED:
+        if command and status == UNINITIATED:
             job = Job(command, test.get("environ"), test.get("timeout"))
             interface.show_wait(_("Running shell tests..."),
                 job.execute)
