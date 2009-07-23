@@ -5,6 +5,7 @@ checkbox (0.8) karmic; urgency=low
     * Added timeout property to lock_prompt plugin.
     * Added concept of attachments to tests.
     * Added support for backslahes in templates to wrap lines.
+    * Introduced the concept of jobs for suites, tests and attachments.
   * Fixed pygst dependency (LP: #334442)
   * Fixed configuration file updates during install (LP: #330596)
   * Fixed DBus exceptions (LP: #344916, #359440)
@@ -12,6 +13,7 @@ checkbox (0.8) karmic; urgency=low
   * Fixed ignored system proxy settings (LP: #345548)
   * Fixed parsing blank lines in templates (LP: #393907)
   * Fixed escaping of lists (LP: #394001)
+  * Fixed timeout in manual tests (LP: #377986)
   * Fixed CLI interface dialog.
 
   [ Gabor Keleman ]

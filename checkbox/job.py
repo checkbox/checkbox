@@ -64,7 +64,7 @@ class Job(object):
 
         logging.info("Running command: %s", self.command)
         process = Process(self.command, process_environ)
-        if process.read(self.timeout):
+        if not process.read(self.timeout):
             logging.info("Command timed out, killing process.")
             process.kill()
 

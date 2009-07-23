@@ -22,7 +22,7 @@ from checkbox.lib.cache import cache
 from checkbox.lib.process import Process
 
 from checkbox.frontend import frontend
-from checkbox.properties import String
+from checkbox.properties import Int, String
 from checkbox.registry import Registry
 
 
@@ -36,6 +36,8 @@ class CommandRegistry(Registry):
 
     command = String()
 
+    timeout = Int(required=False)
+
     def __init__(self, command=None):
         super(CommandRegistry, self).__init__()
         if command is not None:
@@ -45,11 +47,10 @@ class CommandRegistry(Registry):
     def __str__(self):
         logging.info("Running command: %s", self.command)
         process = Process(self.command)
-        while process.read():
-            pass
-
-        if process.errdata:
+        if not process.read(self.timeout):
             logging.error("Failed to run command: %s", process.errdata.strip())
+            process.kill()
+
         return process.outdata
 
     @cache

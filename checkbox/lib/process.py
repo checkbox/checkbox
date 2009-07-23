@@ -75,6 +75,7 @@ class Process:
         """return False when finished
            else return True every timeout seconds
            data will be in outdata and errdata"""
+        has_finished = True
         self.starttime = time.time()
         while True:
             tocheck=[]
@@ -84,7 +85,8 @@ class Process:
                 tocheck.append(self.errr)
             ready = select.select(tocheck, [], [], timeout)
             if not len(ready[0]): # no data timeout
-                return True
+                has_finished = False
+                break
             else:
                 if self.outr in ready[0]:
                     outchunk = os.read(self.outr, self.BUFSIZ)
@@ -97,11 +99,14 @@ class Process:
                         self._erreof = True
                     self.errdata += errchunk
                 if self._outeof and self._erreof:
-                    self.endtime = time.time()
-                    return False
+                    break
                 elif timeout:
                     if (time.time() - self.starttime) > timeout:
-                        return True # may be more data but time to go
+                        has_finished = False
+                        break # may be more data but time to go
+
+        self.endtime = time.time()
+        return has_finished
 
     def kill(self):
         os.kill(-self.pid, 15) # SIGTERM whole group

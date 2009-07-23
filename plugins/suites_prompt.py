@@ -97,7 +97,8 @@ class SuitesPrompt(Plugin):
             self._suites[key] = suite
 
     def report_test(self, test):
-        test.setdefault("suite", self._suite["name"])
+        if self._suite:
+            test.setdefault("suite", self._suite["name"])
 
     def prompt_gather(self, interface):
         suites = self._suites.values()
