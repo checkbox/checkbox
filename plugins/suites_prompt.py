@@ -59,9 +59,8 @@ class SuitesPrompt(Plugin):
         return cmp(a["name"], b["name"])
 
     def _suites_exclude(self, suite):
-        suites_default = self.persist.get("default")
-        if suites_default is not None and \
-           suite["description"] not in suites_default:
+        suites_ignore = self.persist.get("ignore", [])
+        if suite["description"] in suites_ignore:
             return True
 
         return False
@@ -95,6 +94,14 @@ class SuitesPrompt(Plugin):
         if key not in self._suites:
             suite.setdefault("plugin", self.plugin_default)
             self._suites[key] = suite
+            self._iterator = JobIterator(self._suites.values(),
+                self._manager.registry, self._suites_compare)
+            self._iterator = IteratorExclude(self._iterator,
+                self._suites_exclude, self._suites_exclude)
+            if self._suite:
+                for suite in self._iterator:
+                    if suite == self._suite:
+                        break
 
     def report_test(self, test):
         if self._suite:
@@ -103,18 +110,14 @@ class SuitesPrompt(Plugin):
     def prompt_gather(self, interface):
         suites = self._suites.values()
         if len(suites) > 1:
-            suites_table = dict((s["description"], s) for s in suites)
-            suites_default = self.persist.get("default", suites_table)
-            suites_default = interface.show_check(
+            suites_all = set([s["description"] for s in suites])
+            suites_ignore = set(self.persist.get("ignore", []))
+            suites_default = suites_all.difference(suites_ignore)
+            suites_default = set(interface.show_check(
                 _("Select the suites to test"),
-                sorted(suites_table.keys()),
-                suites_default)
-            self.persist.set("default", suites_default)
-
-        self._iterator = JobIterator(suites,
-            self._manager.registry, self._suites_compare)
-        self._iterator = IteratorExclude(self._iterator,
-            self._suites_exclude, self._suites_exclude)
+                sorted(suites_all), suites_default))
+            suites_ignore = suites_all.difference(suites_default)
+            self.persist.set("ignore", list(suites_ignore))
 
     def prompt_suites(self, interface):
         while True:

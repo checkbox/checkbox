@@ -38,6 +38,7 @@ message_schema = Map({
     "description": Unicode(required=False),
     "command": String(required=False),
     "depends": List(String(), required=False),
+    "environ": List(String(), required=False),
     "requires": List(String(), separator=r"\n", required=False),
     "timeout": Int(required=False),
     "user": String(required=False)})
