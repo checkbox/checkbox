@@ -19,9 +19,9 @@
 import logging
 
 from checkbox.lib.cache import cache
-from checkbox.lib.process import Process
 
 from checkbox.frontend import frontend
+from checkbox.job import Job
 from checkbox.properties import Int, String
 from checkbox.registry import Registry
 
@@ -46,12 +46,9 @@ class CommandRegistry(Registry):
     @frontend("get_registry")
     def __str__(self):
         logging.info("Running command: %s", self.command)
-        process = Process(self.command)
-        if not process.read(self.timeout):
-            logging.error("Failed to run command: %s", process.errdata.strip())
-            process.kill()
-
-        return process.outdata
+        job = Job(self.command, timeout=self.timeout)
+        job.execute()
+        return job.data
 
     @cache
     def items(self):

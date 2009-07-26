@@ -18,6 +18,7 @@
 #
 import re
 
+from checkbox.lib.cache import cache
 from checkbox.lib.conversion import string_to_type
 
 from checkbox.properties import Path, String
@@ -98,6 +99,7 @@ class GconfRegistry(CommandRegistry):
 
         self.command = self.command.replace("$source", self.source)
 
+    @cache
     def items(self):
         items = []
 
