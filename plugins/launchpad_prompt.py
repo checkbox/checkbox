@@ -75,18 +75,25 @@ account, please register here:
 
   https://launchpad.net/+login""") % url, email)
 
-            if interface.direction == PREV or not email:
+            if interface.direction == PREV:
                 break
-            elif not re.match(r"^\S+@\S+\.\S+$", email, re.I):
+
+            if not email:
+                self._manager.reactor.fire("prompt-error", interface,
+                    _("No e-mail address provided, not submitting to Launchpad."))
+                break
+
+            if not re.match(r"^\S+@\S+\.\S+$", email, re.I):
                 self._error = _("Email address must be in a proper format.")
-            else:
-                self._error = None
-                self._manager.reactor.fire("launchpad-email", email)
-                interface.show_wait(
-                    _("Exchanging information with the server..."),
-                    self._manager.reactor.fire, "launchpad-exchange")
-                if not self._error:
-                    break
+                continue
+
+            self._error = None
+            self._manager.reactor.fire("launchpad-email", email)
+            interface.show_wait(
+                _("Exchanging information with the server..."),
+                self._manager.reactor.fire, "launchpad-exchange")
+            if not self._error:
+                break
 
         self.persist.set("email", email)
 

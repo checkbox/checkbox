@@ -87,27 +87,22 @@ class UserInterface(object):
         self.do_function(function, *args, **kwargs)
 
     def show_pulse(self):
-        pass
+        return
 
     def show_text(self, text, previous=None, next=None):
-        raise NotImplementedError, \
-            "this function must be overridden by subclasses"
+        return
 
     def show_entry(self, text, value, previous=None, next=None):
-        raise NotImplementedError, \
-            "this function must be overridden by subclasses"
+        return value
 
     def show_check(self, text, options=[], default=[]):
-        raise NotImplementedError, \
-            "this function must be overridden by subclasses"
+        return default
 
     def show_radio(self, text, options=[], default=None):
-        raise NotImplementedError, \
-            "this function must be overridden by subclasses"
+        return default
 
     def show_test(self, test):
-        raise NotImplementedError, \
-            "this function must be overridden by subclasses"
+        test["status"] = UNTESTED
 
     def show_url(self, url):
         """Open the given URL in a new browser window.

@@ -23,6 +23,8 @@ import posixpath
 from gettext import gettext as _
 from string import Template
 
+from checkbox.lib.iterator import NEXT
+
 from checkbox.job import Job, UNINITIATED
 from checkbox.user_interface import (UserInterface,
     YES_ANSWER, NO_ANSWER, SKIP_ANSWER,
@@ -376,9 +378,11 @@ class GTKInterface(UserInterface):
     def show_error(self, text):
         message_dialog = gtk.MessageDialog(parent=self._dialog,
             type=gtk.MESSAGE_ERROR,
-            buttons=gtk.BUTTONS_CLOSE,
+            buttons=gtk.BUTTONS_NONE,
             message_format=text)
         message_dialog.set_modal(True)
         message_dialog.set_title(_("Error"))
+        message_dialog.set_default_response(1)
+        message_dialog.add_buttons(gtk.STOCK_CLOSE, NEXT)
         self._run_dialog(message_dialog)
         message_dialog.hide()

@@ -26,8 +26,11 @@ from gettext import gettext as _
 
 class UserInterface(Plugin):
 
-    interface_module = String()
-    interface_class = String()
+    # Module where the user interface implementation is defined.
+    interface_module = String(default="checkbox.user_interface")
+
+    # Class implementing the UserInterface interface.
+    interface_class = String(default="UserInterface")
 
     # HACK: this is only a temporary workaround to internationalize the
     # user interface title and should be eventually removed.
