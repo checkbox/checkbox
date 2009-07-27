@@ -26,7 +26,7 @@ from checkbox.lib.template_i18n import TemplateI18n
 from checkbox.job import Job, PASS
 from checkbox.plugin import Plugin
 from checkbox.arguments import coerce_arguments
-from checkbox.properties import Int, List, Map, String, Unicode
+from checkbox.properties import Float, Int, List, Map, String, Unicode
 
 
 message_schema = Map({
@@ -38,6 +38,7 @@ message_schema = Map({
     "description": Unicode(required=False),
     "command": String(required=False),
     "depends": List(String(), required=False),
+    "duration": Float(required=False),
     "environ": List(String(), required=False),
     "requires": List(String(), separator=r"\n", required=False),
     "timeout": Int(required=False),
