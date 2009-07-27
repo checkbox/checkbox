@@ -16,6 +16,8 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
+import re
+
 from checkbox.lib.iterator import IteratorExclude
 
 from checkbox.job import JobIterator
@@ -59,6 +61,17 @@ class SuitesPrompt(Plugin):
         return cmp(a["name"], b["name"])
 
     def _suites_exclude(self, suite):
+        whitelist_patterns = [re.compile(r"^%s$" % r) for r in self.whitelist if r]
+        blacklist_patterns = [re.compile(r"^%s$" % r) for r in self.blacklist if r]
+
+        name = suite["name"]
+        if whitelist_patterns:
+            if not [name for p in whitelist_patterns if p.match(name)]:
+                return True
+        elif blacklist_patterns:
+            if [name for p in blacklist_patterns if p.match(name)]:
+                return True
+
         suites_ignore = self.persist.get("ignore", [])
         if suite["description"] in suites_ignore:
             return True
@@ -83,8 +96,7 @@ class SuitesPrompt(Plugin):
 
     def gather(self):
         for directory in self.directories:
-            self._manager.reactor.fire("message-directory",
-                directory, self.blacklist, self.whitelist)
+            self._manager.reactor.fire("message-directory", directory)
 
     def gather_persist(self, persist):
         self.persist = persist.root_at("suites_prompt")

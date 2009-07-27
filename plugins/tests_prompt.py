@@ -16,11 +16,13 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-from checkbox.lib.iterator import PREV
+import re
+
+from checkbox.lib.iterator import IteratorExclude, PREV
 
 from checkbox.job import JobIterator, UNINITIATED
 from checkbox.plugin import Plugin
-from checkbox.properties import String
+from checkbox.properties import List, String
 
 
 class TestsPrompt(Plugin):
@@ -30,6 +32,26 @@ class TestsPrompt(Plugin):
 
     # Status default for test types
     status_default = String(default=UNINITIATED)
+
+    # List of suites to blacklist
+    blacklist = List(String(), default_factory=lambda:"")
+
+    # List of suites to whitelist
+    whitelist = List(String(), default_factory=lambda:"")
+
+    def _tests_exclude(self, test):
+        whitelist_patterns = [re.compile(r"^%s$" % r) for r in self.whitelist if r]
+        blacklist_patterns = [re.compile(r"^%s$" % r) for r in self.blacklist if r]
+
+        name = test["name"]
+        if whitelist_patterns:
+            if not [name for p in whitelist_patterns if p.match(name)]:
+                return True
+        elif blacklist_patterns:
+            if [name for p in blacklist_patterns if p.match(name)]:
+                return True
+
+        return False
 
     def register(self, manager):
         super(TestsPrompt, self).register(manager)
@@ -61,9 +83,12 @@ class TestsPrompt(Plugin):
             self._tests[key] = test
 
     def prompt_tests(self, interface, blacklist=[], whitelist=[]):
+        # TODO: blacklist and whitelist are being ignored
         if not self._iterator:
             tests = [self._tests[k] for k in self._keys]
             self._iterator = JobIterator(tests, self._manager.registry)
+            self._iterator = IteratorExclude(self._iterator,
+                self._tests_exclude, self._tests_exclude)
             if interface.direction == PREV:
                 self._iterator = self._iterator.last()
 
