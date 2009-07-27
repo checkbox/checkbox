@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-07-26 15:54-0400\n"
+"POT-Creation-Date: 2009-07-26 23:51-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -42,7 +42,7 @@ msgstr ""
 
 #. Title of the user interface
 #: ../gtk/checkbox-gtk.glade.h:3 ../gtk/checkbox-gtk.desktop.in.h:1
-#: ../plugins/user_interface.py:37
+#: ../plugins/user_interface.py:40
 msgid "System Testing"
 msgstr ""
 
@@ -58,7 +58,7 @@ msgstr ""
 msgid "_Skip this test"
 msgstr ""
 
-#: ../gtk/checkbox-gtk.glade.h:7 ../checkbox_gtk/gtk_interface.py:371
+#: ../gtk/checkbox-gtk.glade.h:7 ../checkbox_gtk/gtk_interface.py:373
 msgid "_Test"
 msgstr ""
 
@@ -199,7 +199,7 @@ msgstr ""
 msgid "Please choose (%s): "
 msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:236 ../checkbox_gtk/gtk_interface.py:331
+#: ../checkbox_cli/cli_interface.py:236 ../checkbox_gtk/gtk_interface.py:333
 #, python-format
 msgid "Running test %s..."
 msgstr ""
@@ -216,15 +216,15 @@ msgstr ""
 msgid "Please type here and press Ctrl-D when finished:\n"
 msgstr ""
 
-#: ../checkbox_gtk/gtk_interface.py:340
+#: ../checkbox_gtk/gtk_interface.py:342
 msgid "_Test Again"
 msgstr ""
 
-#: ../checkbox_gtk/gtk_interface.py:382
+#: ../checkbox_gtk/gtk_interface.py:384
 msgid "Error"
 msgstr ""
 
-#: ../checkbox/user_interface.py:122
+#: ../checkbox/user_interface.py:117
 #, python-format
 msgid "Unable to start web browser to open %s."
 msgstr ""
@@ -286,11 +286,15 @@ msgid ""
 "  https://launchpad.net/+login"
 msgstr ""
 
-#: ../plugins/launchpad_prompt.py:81
+#: ../plugins/launchpad_prompt.py:83
+msgid "No e-mail address provided, not submitting to Launchpad."
+msgstr ""
+
+#: ../plugins/launchpad_prompt.py:87
 msgid "Email address must be in a proper format."
 msgstr ""
 
-#: ../plugins/launchpad_prompt.py:86
+#: ../plugins/launchpad_prompt.py:93
 msgid "Exchanging information with the server..."
 msgstr ""
 
