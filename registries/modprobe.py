@@ -18,6 +18,8 @@
 #
 import posixpath
 
+from checkbox.lib.cache import cache
+
 from checkbox.properties import Path
 from checkbox.registries.directory import RecursiveDirectoryRegistry
 from checkbox.registries.filename import FilenameRegistry
@@ -27,6 +29,7 @@ class ModprobeRegistry(RecursiveDirectoryRegistry):
 
     directory = Path(default="/etc/modprobe.d")
 
+    @cache
     def items(self):
         items = []
         for file in self.split("\n"):

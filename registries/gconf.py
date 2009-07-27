@@ -111,7 +111,7 @@ class GconfRegistry(CommandRegistry):
                     value = SourceRegistry("\n".join(lines))
                     items.append((key, value))
                 key = line.strip().lstrip("/").rstrip(":")
-            else:
+            elif line:
                 lines.append(line)
 
         if lines:
