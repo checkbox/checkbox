@@ -92,7 +92,7 @@ class GconfRegistry(CommandRegistry):
 
     # Command to retrieve gconf information.
     command = String(default="gconftool-2 -R / "
-        "--config-source xml:readwrite:$source")
+        "--direct --config-source xml:readwrite:$source")
 
     def __init__(self, *args, **kwargs):
         super(GconfRegistry, self).__init__(*args, **kwargs)

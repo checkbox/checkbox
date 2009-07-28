@@ -103,6 +103,7 @@ class UserInterface(object):
 
     def show_test(self, test):
         test["status"] = UNTESTED
+        test["data"] = "Manual test run non interactively."
 
     def show_url(self, url):
         """Open the given URL in a new browser window.
