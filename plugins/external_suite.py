@@ -24,12 +24,17 @@ class ExternalSuite(Plugin):
     def register(self, manager):
         super(ExternalSuite, self).register(manager)
 
-        self._manager.reactor.call_on("prompt-suite-external",
-            self.prompt_suite_external)
+        for (rt, rh) in [
+             ("prompt-external", self.prompt_external),
+             ("report-external", self.report_external)]:
+            self._manager.reactor.call_on(rt, rh)
 
-    def prompt_suite_external(self, interface, suite):
+    def prompt_external(self, interface, suite):
         self._manager.reactor.fire("message-exec", suite)
         self._manager.reactor.fire("prompt-tests", interface)
+
+    def report_external(self, suite):
+        self._manager.reactor.fire("report-suite", suite)
 
 
 factory = ExternalSuite

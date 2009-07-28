@@ -1,4 +1,3 @@
-type: test
 plugin: manual
 name: mouse
 requires: 'input.mouse' in info.capabilities
@@ -7,7 +6,6 @@ _description:
  .
  Is your mouse working properly?
 
-type: test
 plugin: manual
 name: keyboard
 command: keyboard_test

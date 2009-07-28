@@ -26,10 +26,13 @@ class ShellTest(Plugin):
 
     def register(self, manager):
         super(ShellTest, self).register(manager)
-        self._manager.reactor.call_on("prompt-test-shell",
-            self.prompt_test_shell)
 
-    def prompt_test_shell(self, interface, test):
+        for (rt, rh) in [
+             ("prompt-shell", self.prompt_shell),
+             ("report-shell", self.report_shell)]:
+            self._manager.reactor.call_on(rt, rh)
+
+    def prompt_shell(self, interface, test):
         command = test.get("command")
         status = test.get("status", UNINITIATED)
         if command and status == UNINITIATED:
@@ -39,6 +42,9 @@ class ShellTest(Plugin):
             test["data"] = job.data
             test["duration"] = job.duration
             test["status"] = job.status
+
+    def report_shell(self, test):
+        self._manager.reactor.fire("report-test", test)
 
 
 factory = ShellTest

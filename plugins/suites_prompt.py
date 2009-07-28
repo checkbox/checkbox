@@ -88,6 +88,7 @@ class SuitesPrompt(Plugin):
              ("gather", self.gather),
              ("gather-persist", self.gather_persist),
              ("report-suite", self.report_suite),
+             ("prompt-suite", self.prompt_suite),
              ("prompt-suites", self.prompt_suites)]:
             self._manager.reactor.call_on(rt, rh)
 
@@ -131,6 +132,10 @@ class SuitesPrompt(Plugin):
             suites_ignore = suites_all.difference(suites_default)
             self.persist.set("ignore", list(suites_ignore))
 
+    def prompt_suite(self, interface, suite):
+        self._manager.reactor.fire("prompt-%s" % suite["plugin"],
+            interface, suite)
+
     def prompt_suites(self, interface):
         while True:
             try:
@@ -138,9 +143,7 @@ class SuitesPrompt(Plugin):
             except StopIteration:
                 break
 
-            self._manager.reactor.fire(
-                "prompt-suite-%s" % self._suite["plugin"],
-                interface, self._suite)
+            self._manager.reactor.fire("prompt-suite", interface, self._suite)
 
 
 factory = SuitesPrompt

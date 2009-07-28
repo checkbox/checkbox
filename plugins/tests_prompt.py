@@ -27,12 +27,6 @@ from checkbox.properties import List, String
 
 class TestsPrompt(Plugin):
 
-    # Plugin default for running test types
-    plugin_default = String(default="shell")
-
-    # Status default for test types
-    status_default = String(default=UNINITIATED)
-
     # List of suites to blacklist
     blacklist = List(String(), default_factory=lambda:"")
 
@@ -62,12 +56,13 @@ class TestsPrompt(Plugin):
         for (rt, rh) in [
              ("report", self.report),
              ("report-test", self.report_test),
+             ("prompt-test", self.prompt_test),
              ("prompt-tests", self.prompt_tests)]:
             self._manager.reactor.call_on(rt, rh)
 
-        self._manager.reactor.call_on("prompt-suite-.*", self.prompt_suite_all, -100)
+        self._manager.reactor.call_on("prompt-suite", self.prompt_suite, -100)
 
-    def prompt_suite_all(self, interface, suite):
+    def prompt_suite(self, interface, suite):
         self._iterator = None
         self._keys = []
 
@@ -78,9 +73,12 @@ class TestsPrompt(Plugin):
         key = (test["suite"], test["name"],)
         self._keys.append(key)
         if key not in self._tests:
-            test.setdefault("plugin", self.plugin_default)
-            test.setdefault("status", self.status_default)
+            test.setdefault("status", UNINITIATED)
             self._tests[key] = test
+
+    def prompt_test(self, interface, test):
+        self._manager.reactor.fire("prompt-%s" % test["plugin"],
+            interface, test)
 
     def prompt_tests(self, interface, blacklist=[], whitelist=[]):
         # TODO: blacklist and whitelist are being ignored
@@ -98,8 +96,7 @@ class TestsPrompt(Plugin):
             except StopIteration:
                 break
 
-            self._manager.reactor.fire("prompt-test-%s" % test["plugin"],
-                interface, test)
+            self._manager.reactor.fire("prompt-test", interface, test)
 
 
 factory = TestsPrompt

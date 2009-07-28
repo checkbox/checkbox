@@ -30,10 +30,9 @@ from checkbox.properties import Float, Int, List, Map, String, Unicode
 
 
 message_schema = Map({
-    "type": String(),
+    "plugin": String(),
     "name": String(),
     "status": String(required=False),
-    "plugin": String(required=False),
     "suite": String(required=False),
     "description": Unicode(required=False),
     "command": String(required=False),
@@ -64,7 +63,7 @@ class MessageInfo(Plugin):
 
     @coerce_arguments(message=message_schema)
     def message(self, message):
-        self._manager.reactor.fire("report-%s" % message["type"], message)
+        self._manager.reactor.fire("report-%s" % message["plugin"], message)
 
     def messages(self, messages):
         for message in messages:

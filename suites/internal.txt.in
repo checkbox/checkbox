@@ -1,22 +1,18 @@
-type: suite
 name: audio
 plugin: internal
 _description: Audio tests
 command: cat $CHECKBOX_SHARE/tests/audio.txt*
 
-type: suite
 name: network
 plugin: internal
 _description: Network tests
 command: cat $CHECKBOX_SHARE/tests/network.txt*
 
-type: suite
 name: peripheral
 plugin: internal
 _description: Peripheral tests
 command: cat $CHECKBOX_SHARE/tests/peripheral.txt*
 
-type: suite
 name: video
 plugin: internal
 _description: Video tests

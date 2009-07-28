@@ -26,20 +26,25 @@ class InternalSuite(Plugin):
     def register(self, manager):
         super(InternalSuite, self).register(manager)
 
-        self._manager.reactor.call_on("prompt-suite-.*",
-            self.prompt_suite_all, -100)
-        self._manager.reactor.call_on("prompt-suite-internal",
-            self.prompt_suite_internal)
+        for (rt, rh) in [
+             ("prompt-internal", self.prompt_internal),
+             ("report-internal", self.report_internal)]:
+            self._manager.reactor.call_on(rt, rh)
 
-    def prompt_suite_all(self, interface, suite):
+        self._manager.reactor.call_on("prompt-suite", self.prompt_suite, -100)
+
+    def prompt_suite(self, interface, suite):
         if suite["plugin"] != "internal" and interface.direction == NEXT:
             self._manager.reactor.fire("prompt-tests", interface,
                 blacklist=["plugin=manual"])
 
-    def prompt_suite_internal(self, interface, suite):
+    def prompt_internal(self, interface, suite):
         self._manager.reactor.fire("message-exec", suite)
         self._manager.reactor.fire("prompt-tests", interface,
             whitelist=["plugin=manual"])
+
+    def report_internal(self, suite):
+        self._manager.reactor.fire("report-suite", suite)
 
 
 factory = InternalSuite

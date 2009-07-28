@@ -18,6 +18,7 @@
 #
 import os
 import time
+import fcntl
 import select
 
 
@@ -60,6 +61,18 @@ class Process:
         os.setpgrp() #seperate group so we can kill it
         # Disable input
         os.close(STDIN_FILENO)
+        # Force FD_CLOEXEC on all inherited descriptors
+        try:
+            open_max = os.sysconf('SC_OPEN_MAX')
+        except (AttributeError, ValueError):
+            open_max = 1024
+        for fileno in range(STDERR_FILENO+1, open_max):
+            try:
+                flags = fcntl.fcntl(fileno, fcntl.F_GETFD)
+            except IOError:
+                continue
+            flags |= fcntl.FD_CLOEXEC
+            fcntl.fcntl(fileno, fcntl.F_SETFD, flags)
         # stdout and stderr to write side of pipe
         os.dup2(self.outw, STDOUT_FILENO)
         os.dup2(self.errw, STDERR_FILENO)

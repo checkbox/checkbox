@@ -24,12 +24,16 @@ class ManualTest(Plugin):
     def register(self, manager):
         super(ManualTest, self).register(manager)
 
-        # Manual tests should be asked first.
-        self._manager.reactor.call_on("prompt-test-manual",
-            self.prompt_test_manual)
+        for (rt, rh) in [
+             ("prompt-manual", self.prompt_manual),
+             ("report-manual", self.report_manual)]:
+            self._manager.reactor.call_on(rt, rh)
 
-    def prompt_test_manual(self, interface, test):
+    def prompt_manual(self, interface, test):
         interface.show_test(test)
+
+    def report_manual(self, test):
+        self._manager.reactor.fire("report-test", test)
 
 
 factory = ManualTest
