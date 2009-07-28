@@ -18,10 +18,10 @@
 #
 import re
 import sys
+import string
 import termios
 
 from gettext import gettext as _
-from string import Template
 
 from checkbox.job import Job
 from checkbox.user_interface import (UserInterface, ANSWER_TO_STATUS,
@@ -124,8 +124,8 @@ class CLIChoiceDialog(CLIDialog):
             while True:
                 if label is not None:
                     self.put_line(label)
-                for index, option in enumerate(self.options):
-                    self.put_line("  %s: %s" % (self.keys[index], option))
+                for key, option in zip(self.keys, self.options):
+                    self.put_line("  %s: %s" % (key, option))
 
                 response = self.get(_("Please choose (%s): ") % ("/".join(self.keys)))
                 try:
@@ -136,9 +136,11 @@ class CLIChoiceDialog(CLIDialog):
             self.put_newline()
             raise
 
-    def add_option(self, option):
-        self.keys.append(re.search("&(.)", option, re.S).group(1).upper())
-        self.options.append(re.sub("&", "", option))
+    def add_option(self, option, key=None):
+        if key is None:
+            key = string.lowercase[len(self.keys)]
+        self.keys.append(key)
+        self.options.append(option)
 
 
 class CLITextDialog(CLIDialog):
@@ -206,12 +208,11 @@ class CLIInterface(UserInterface):
     def show_check(self, text, options=[], default=[]):
         dialog = CLIChoiceDialog(text)
         for option in options:
-            label = "&%s" % option.capitalize()
-            dialog.add_option(label)
+            dialog.add_option(option.capitalize())
 
-        dialog.add_option("& Space when finished")
+        dialog.add_option("Space when finished", " ")
 
-        results = {}
+        results = dict((d, True) for d in default)
         while True:
             response = dialog.run()
             if response > len(options):
@@ -225,8 +226,7 @@ class CLIInterface(UserInterface):
     def show_radio(self, text, options=[], default=None):
         dialog = CLIChoiceDialog(text)
         for option in options:
-            label = "&%s" % option.capitalize()
-            dialog.add_option(label)
+            dialog.add_option(option.capitalize())
 
         # Show options dialog
         response = dialog.run()
@@ -247,12 +247,12 @@ class CLIInterface(UserInterface):
 
         while True:
             # Show option dialog
-            description = Template(test["description"]).substitute({
+            description = string.Template(test["description"]).substitute({
                 "output": test.get("data", "").strip()})
             dialog = CLIChoiceDialog(description)
 
             for option in options:
-                dialog.add_option("&%s" % option)
+                dialog.add_option(option.capitalize())
 
             # Get option from dialog
             response = dialog.run()

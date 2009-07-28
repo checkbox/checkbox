@@ -25,7 +25,7 @@ Package: checkbox-cli
 Architecture: all
 Replaces: hwtest-cli (<< 0.1-0ubuntu12)
 Provides: hwtest-cli
-Depends: checkbox
+Depends: checkbox (= ${source:Version})
 Conflicts: hwtest-cli (<< 0.1-0ubuntu12)
 XB-Python-Version: ${python:Versions}
 Description: Checkbox CLI
@@ -39,7 +39,7 @@ Section: gnome
 Architecture: all
 Replaces: hwtest-gtk (<< 0.1-0ubuntu12)
 Provides: hwtest-gtk
-Depends: checkbox, gksu, python-gtk2, python-glade2
+Depends: checkbox (= ${source:Version}), gksu, python-gtk2, python-glade2
 Conflicts: hwtest-gtk (<< 0.1-0ubuntu12)
 XB-Python-Version: ${python:Versions}
 Description: Checkbox GTK Interface
