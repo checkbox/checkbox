@@ -32,7 +32,7 @@ class PersistInfo(Plugin):
 
         self.persist = None
 
-        self._manager.reactor.call_on("gather", self.gather)
+        self._manager.reactor.call_on("gather", self.gather, -1000)
         self._manager.reactor.call_on("stop", self.stop, 1000)
 
     def gather(self):
