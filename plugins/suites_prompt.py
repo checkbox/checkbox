@@ -93,7 +93,8 @@ class SuitesPrompt(Plugin):
             self._manager.reactor.call_on(rt, rh)
 
         self._manager.reactor.call_on("prompt-gather", self.prompt_gather, 100)
-        self._manager.reactor.call_on("report-test", self.report_test, -100)
+        self._manager.reactor.call_on("report-(attachment|test)",
+            self.report_attachment_or_test, -100)
 
     def gather(self):
         for directory in self.directories:
@@ -101,6 +102,10 @@ class SuitesPrompt(Plugin):
 
     def gather_persist(self, persist):
         self.persist = persist.root_at("suites_prompt")
+
+    def report_attachment_or_test(self, element):
+        if self._suite:
+            element.setdefault("suite", self._suite["name"])
 
     def report_suite(self, suite):
         key = suite["name"]
@@ -115,10 +120,6 @@ class SuitesPrompt(Plugin):
                 for suite in self._iterator:
                     if suite == self._suite:
                         break
-
-    def report_test(self, test):
-        if self._suite:
-            test.setdefault("suite", self._suite["name"])
 
     def prompt_gather(self, interface):
         suites = self._suites.values()
