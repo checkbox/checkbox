@@ -51,23 +51,25 @@ class LaunchpadReport(Plugin):
         self._manager.reactor.call_on("report", self.report, 100)
         for (rt, rh) in [
              ("report-architecture", self.report_architecture),
+             ("report-attachments", self.report_attachments),
              ("report-client", self.report_client),
              ("report-datetime", self.report_datetime),
              ("report-distribution", self.report_distribution),
-             ("report-dmi", self.report_context),
              ("report-hal", self.report_hal),
-             ("report-modprobe", self.report_context),
-             ("report-modules", self.report_context),
              ("report-packages", self.report_packages),
-             ("report-pci", self.report_context),
              ("report-processors", self.report_processors),
-             ("report-sysctl", self.report_context),
              ("report-system_id", self.report_system_id),
              ("report-tests", self.report_tests)]:
             self._manager.reactor.call_on(rt, rh)
 
     def report_architecture(self, architecture):
         self._report["summary"]["architecture"] = architecture
+
+    def report_attachments(self, attachments):
+        for attachment in attachments:
+            self._report["context"].append({
+                "command": attachment["command"],
+                "data": attachment["data"]})
 
     def report_hal(self, hal):
         self._report["hardware"]["hal"] = hal
@@ -99,24 +101,6 @@ class LaunchpadReport(Plugin):
                 "answer": test["status"],
                 "comment": test.get("data", "")}
             self._report["questions"].append(question)
-
-    def report_context(self, sources):
-        # sources should be a list - make it so
-        if not isinstance(sources, list):
-            sources = [sources]
-
-        for source in sources:
-            if isinstance(source, tuple):
-                source = source[1]
-            info = {}
-            if 'command' in dir(source):
-                info["command"] = source.command
-            if 'filename' in dir(source):
-                info["command"] = source.filename
-            if 'directory' in dir(source):
-                info["command"] = source.directory
-            info["data"] = str(source)
-            self._report["context"].append(info)
 
     def report(self):
         # Copy stylesheet to report directory

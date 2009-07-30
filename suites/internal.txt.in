@@ -17,3 +17,24 @@ name: video
 plugin: internal
 _description: Video tests
 command: cat $CHECKBOX_SHARE/tests/video.txt*
+
+name: dmidecode
+plugin: attachment
+user: root
+command: dmidecode
+
+name: lspci
+plugin: attachment
+command: lspci -vvnn
+
+name: modprobe
+plugin: attachment
+command: find /etc/modprobe.* -name \*.conf | xargs cat
+
+name: modules
+plugin: attachment
+command: cat /etc/modules
+
+name: sysctl
+plugin: attachment
+command: find /etc/sysctl.* -name \*.conf | xargs cat
