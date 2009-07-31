@@ -19,6 +19,7 @@
 import posixpath
 import shutil
 
+from checkbox.lib.file import write
 from checkbox.lib.safe import safe_make_directory
 
 from checkbox.properties import Path
@@ -117,9 +118,10 @@ class LaunchpadReport(Plugin):
         directory = posixpath.dirname(self.filename)
         safe_make_directory(directory)
 
-        file = open(self.filename, "w")
-        file.write(payload)
-        file.close()
+        write(self.filename, payload)
+        #file = open(self.filename, "w")
+        #file.write(payload)
+        #file.close()
 
         self._manager.reactor.fire("launchpad-report", self.filename)
 
