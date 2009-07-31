@@ -18,9 +18,10 @@
 #
 import logging
 
+from checkbox.lib.file import write
 from checkbox.lib.safe import safe_md5sum
 
-from checkbox.properties import String
+from checkbox.properties import Path, String
 from checkbox.plugin import Plugin
 
 
@@ -28,6 +29,9 @@ class SystemInfo(Plugin):
 
     # System ID to exchange information with the server.
     system_id = String(required=False)
+
+    # Filename where System ID is cached
+    filename = Path(default="%(checkbox_data)s/system")
 
     def register(self, manager):
         super(SystemInfo, self).register(manager)
@@ -73,6 +77,7 @@ class SystemInfo(Plugin):
 
         message = system_id
         logging.info("System ID: %s", message)
+        write(self.filename, message)
         self._manager.reactor.fire("report-system_id", message)
 
 
