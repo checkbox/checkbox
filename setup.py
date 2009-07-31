@@ -110,7 +110,7 @@ class checkbox_install_scripts(install_scripts, object):
             infile = posixpath.join("bin", posixpath.basename(outfile))
             substitute_variables(infile, outfile, {
                 "CHECKBOX_SHARE:-.": "CHECKBOX_SHARE:-/usr/share/checkbox",
-                "CHECKBOX_DATA:-.": "CHECKBOX_DATA:-~/.checkbox"})
+                "CHECKBOX_DATA:-.": "CHECKBOX_DATA:-$XDG_CACHE_HOME/checkbox"})
 
 
 setup(

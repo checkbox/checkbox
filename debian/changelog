@@ -1,4 +1,4 @@
-checkbox (0.8) karmic; urgency=low
+checkbox (0.8~alpha2) karmic; urgency=low
 
   * New upstream version:
     * Changed icon.
@@ -15,12 +15,13 @@ checkbox (0.8) karmic; urgency=low
   * Fixed escaping of lists (LP: #394001)
   * Fixed timeout in manual tests (LP: #377986)
   * Fixed CLI interface dialog.
+  * Fixed support for FreeDesktop XDG base directory specification (LP: #363549)
 
   [ Gabor Keleman ]
   * Fixed untranslated strings in tests (LP: #374666)
   * Fixed untranslated last screen (LP: #374646)
 
- -- Marc Tardif <marc@ubuntu.com>  Tue, 31 Mar 2009 13:54:12 +0100
+ -- Dave Murphy <schwuk@ubuntu.com>  Thu, 30 Jul 2009 19:17:25 +0100
 
 checkbox (0.7) jaunty; urgency=low
 
