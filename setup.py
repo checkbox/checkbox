@@ -110,7 +110,7 @@ class checkbox_install_scripts(install_scripts, object):
             infile = posixpath.join("bin", posixpath.basename(outfile))
             substitute_variables(infile, outfile, {
                 "CHECKBOX_SHARE:-.": "CHECKBOX_SHARE:-/usr/share/checkbox",
-                "CHECKBOX_DATA:-.": "CHECKBOX_DATA:-~/.checkbox"})
+                "CHECKBOX_DATA:-.": "CHECKBOX_DATA:-$XDG_CACHE_HOME/checkbox"})
 
 
 setup(
@@ -135,7 +135,9 @@ This project provides an extensible interface for system testing.
         ("share/checkbox/report/", ["report/*"]),
         ("share/checkbox/scripts/", ["scripts/*"]),
         ("share/checkbox/gtk/", ["gtk/checkbox-gtk.glade", "gtk/*.png"]),
-        ("share/dbus-1/system-services", ["backend/*.service"])],
+        ("share/dbus-1/system-services", ["backend/*.service"]),
+        ("share/apport/package-hooks/", ["apport/source_checkbox.py"]),
+        ("share/apport/general-hooks/", ["apport/checkbox.py"])],
     scripts = ["bin/checkbox-backend", "bin/checkbox-cli", "bin/checkbox-gtk"],
     packages = ["checkbox", "checkbox.contrib", "checkbox.lib", "checkbox.reports",
         "checkbox.registries", "checkbox_cli", "checkbox_gtk"],

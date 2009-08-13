@@ -66,4 +66,5 @@ class DependsIterator(IteratorContain):
             else:
                 for dependent in resolver.get_dependents(element):
                     dependent["status"] = UNINITIATED
-                    del dependent["auto"]
+                    if "auto" in dependent:
+                        del dependent["auto"]
