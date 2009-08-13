@@ -18,6 +18,10 @@ plugin: internal
 _description: Video tests
 command: cat $CHECKBOX_SHARE/tests/video.txt*
 
+name: cpuinfo
+plugin: attachment
+command: cat /proc/cpuinfo
+
 name: dmidecode
 plugin: attachment
 user: root
