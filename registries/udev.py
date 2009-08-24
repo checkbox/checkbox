@@ -109,13 +109,17 @@ class UdevDevice(Registry):
         self._attributes = attributes
 
     def __str__(self):
-        device = dict(self.items())
-        return "(%(vendor_id)s:%(product_id)s:%(subvendor_id)s:%(subproduct_id)s) %(bus)s, %(driver)s, %(category)s, %(vendor)s, %(model)s, %(type)s" % device
+        strings = ["%s: %s" % (k, v) for k, v in self.items()
+            if not isinstance(v, LinkRegistry)]
+
+        return "\n".join(strings)
 
     @cache
     def _load_ids(cls, filename):
-        vendor_re = re.compile(r"^(?P<id>[%s]{4})\s+(?P<name>.*\S)\s*$" % string.hexdigits)
-        device_re = re.compile(r"^\t(?P<id>[%s]{4})\s+(?P<name>.*\S)\s*$" % string.hexdigits)
+        vendor_re = re.compile(r"^(?P<id>[%s]{4})\s+(?P<name>.*\S)\s*$"
+            % string.hexdigits)
+        device_re = re.compile(r"^\t(?P<id>[%s]{4})\s+(?P<name>.*\S)\s*$"
+            % string.hexdigits)
 
         ids = {}
         file = open(filename, "r")
@@ -280,7 +284,8 @@ class UdevDevice(Registry):
         else:
             bus = self._get_bus()
             if bus == "usb" and "PRODUCT" in self._environment:
-                vendor_id, product_id, revision_bcd = self._environment["PRODUCT"].split("/")
+                product = self._environment["PRODUCT"]
+                vendor_id, product_id, revision_bcd = product.split("/")
                 return int(vendor_id, 16)
 
         return None
@@ -296,21 +301,24 @@ class UdevDevice(Registry):
         else:
             bus = self._get_bus()
             if bus == "usb" and "PRODUCT" in self._environment:
-                vendor_id, product_id, revision_bcd = self._environment["PRODUCT"].split("/")
+                product = self._environment["PRODUCT"]
+                vendor_id, product_id, revision_bcd = product.split("/")
                 return int(product_id, 16)
 
         return None
 
     def _get_subvendor_id(self):
         if "PCI_SUBSYS_ID" in self._environment:
-            subvendor_id, subproduct_id = self._environment["PCI_SUBSYS_ID"].split(":")
+            pci_subsys_id = self._environment["PCI_SUBSYS_ID"]
+            subvendor_id, subproduct_id = pci_subsys_id.split(":")
             return int(subvendor_id, 16)
 
         return None
 
     def _get_subproduct_id(self):
         if "PCI_SUBSYS_ID" in self._environment:
-            subvendor_id, subproduct_id = self._environment["PCI_SUBSYS_ID"].split(":")
+            pci_subsys_id = self._environment["PCI_SUBSYS_ID"]
+            subvendor_id, subproduct_id = pci_subsys_id.split(":")
             return int(subproduct_id, 16)
 
         return None
@@ -325,7 +333,8 @@ class UdevDevice(Registry):
 
     def _get_vendor(self):
         if "ID_VENDOR_ENC" in self._environment:
-            return self._environment["ID_VENDOR_ENC"].decode("string_escape").strip()
+            id_vendor_enc = self._environment["ID_VENDOR_ENC"]
+            return id_vendor_enc.decode("string_escape").strip()
         elif "POWER_SUPPLY_MANUFACTURER" in self._environment:
             return self._environment["POWER_SUPPLY_MANUFACTURER"]
         elif "board_vendor" in self._attributes:
@@ -356,7 +365,8 @@ class UdevDevice(Registry):
         if "NAME" in self._environment:
             return self._environment["NAME"].strip('"')
         elif "ID_MODEL_ENC" in self._environment:
-            return self._environment["ID_MODEL_ENC"].decode("string_escape").strip()
+            id_model_enc = self._environment["ID_MODEL_ENC"]
+            return id_model_enc.decode("string_escape").strip()
         elif "POWER_SUPPLY_MODEL_NAME" in self._environment:
             return self._environment["POWER_SUPPLY_MODEL_NAME"]
         elif "RFKILL_NAME" in self._environment:
@@ -375,7 +385,8 @@ class UdevDevice(Registry):
         else:
             vendor_id = self._get_vendor_id()
             product_id = self._get_product_id()
-            return self._get_model_by_vendor_and_product_id(vendor_id, product_id)
+            return self._get_model_by_vendor_and_product_id(vendor_id,
+                product_id)
 
     def items(self):
         return (
