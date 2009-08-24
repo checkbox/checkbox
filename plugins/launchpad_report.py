@@ -56,11 +56,12 @@ class LaunchpadReport(Plugin):
              ("report-client", self.report_client),
              ("report-datetime", self.report_datetime),
              ("report-distribution", self.report_distribution),
-             ("report-hal", self.report_hal),
+             ("report-dmi", self.report_dmi),
              ("report-packages", self.report_packages),
              ("report-processors", self.report_processors),
              ("report-system_id", self.report_system_id),
-             ("report-tests", self.report_tests)]:
+             ("report-tests", self.report_tests),
+             ("report-udev", self.report_udev)]:
             self._manager.reactor.call_on(rt, rh)
 
     def report_architecture(self, architecture):
@@ -72,9 +73,6 @@ class LaunchpadReport(Plugin):
                 "command": attachment["command"],
                 "data": attachment["data"]})
 
-    def report_hal(self, hal):
-        self._report["hardware"]["hal"] = hal
-
     def report_client(self, client):
         self._report["summary"]["client"] = client
 
@@ -85,6 +83,9 @@ class LaunchpadReport(Plugin):
         self._report["software"]["lsbrelease"] = dict(distribution)
         self._report["summary"]["distribution"] = distribution.distributor_id
         self._report["summary"]["distroseries"] = distribution.release
+
+    def report_dmi(self, dmi):
+        self._report["hardware"]["dmi"] = dmi
 
     def report_packages(self, packages):
         self._report["software"]["packages"] = packages
@@ -102,6 +103,19 @@ class LaunchpadReport(Plugin):
                 "answer": test["status"],
                 "comment": test.get("data", "")}
             self._report["questions"].append(question)
+
+    def report_udev(self, udev):
+        self._report["hardware"]["udev"] = udev
+
+        scsi_devices = []
+        for path, device in udev.items():
+            if device.bus == "scsi":
+                for name in "vendor", "model", "type":
+                    scsi_device = "%s=%s" % (posixpath.join(path, name),
+                        device[name])
+                    scsi_devices.append(scsi_device)
+
+        self._report["hardware"]["scsi-devices"] = "\n".join(scsi_devices)
 
     def report(self):
         # Copy stylesheet to report directory

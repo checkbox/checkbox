@@ -13,7 +13,9 @@
         <li><a href="#summary">Summary</a></li>
         <li>Hardware
         <ul>
-            <li><a href="#hal">HAL</a></li>
+            <li><a href="#udev">udev</a></li>
+            <li><a href="#dmi">dmi</a></li>
+            <li><a href="#scsi-devices">scsi-devices</a></li>
             <li><a href="#processors">Processors</a></li>
         </ul></li>
         <li>Software
@@ -26,7 +28,9 @@
         <xsl:apply-templates select=".//context" mode="navigation" />
      </ol>
     <xsl:apply-templates select=".//summary" />
-    <xsl:apply-templates select=".//hardware/hal" />
+    <xsl:apply-templates select=".//hardware/udev" />
+    <xsl:apply-templates select=".//hardware/dmi" />
+    <xsl:apply-templates select=".//hardware/scsi-devices" />
     <xsl:apply-templates select=".//hardware/processors" />
     <xsl:apply-templates select=".//hardware/lspci" />
     <xsl:apply-templates select=".//software/packages" />
@@ -43,24 +47,19 @@
     <p>You can view other reports for this system <a href="https://launchpad.net/+hwdb/+fingerprint/{system_id/@value}">here</a>.</p>
 </xsl:template>
 
-<xsl:template match="hardware/hal">
-    <h2 id="hal">HAL</h2>
-    <xsl:for-each select="device">
-        <h3><xsl:value-of select='property[@name="info.product"]' /></h3>
-        <table>
-            <tr>
-                <th>Property</th>
-                <th>Value</th>
-            </tr>
-        <xsl:for-each select="property">  
-            <tr>
-                <td class="label"><xsl:value-of select="@name" /></td>
-                <td class="property"><xsl:value-of select="." /></td>
-            </tr>
-        </xsl:for-each>
-        </table>
-    </xsl:for-each>
-    <p class="navigation"><a href="#toc">Back to Table of Contents</a></p>
+<xsl:template match="hardware/udev">
+    <h2 id="udev">udev</h2>
+    <pre><xsl:value-of select="." /></pre>
+</xsl:template>
+
+<xsl:template match="hardware/dmi">
+    <h2 id="dmi">dmi</h2>
+    <pre><xsl:value-of select="." /></pre>
+</xsl:template>
+
+<xsl:template match="hardware/scsi-devices">
+    <h2 id="scsi-devices">scsi-devices</h2>
+    <pre><xsl:value-of select="." /></pre>
 </xsl:template>
 
 <xsl:template match="hardware/processors">

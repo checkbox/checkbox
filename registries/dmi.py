@@ -16,21 +16,15 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-from checkbox.plugin import Plugin
+from checkbox.properties import String
+from checkbox.registries.command import CommandRegistry
 
 
-class HalInfo(Plugin):
+class DmiRegistry(CommandRegistry):
+    """Registry for dmi information."""
 
-    def register(self, manager):
-        super(HalInfo, self).register(manager)
-        self._manager.reactor.call_on("report", self.report)
-
-    def report(self):
-        message = {}
-        message["version"] = self._manager.registry.hald.version
-        message["devices"] = self._manager.registry.hal
-        if message["devices"]:
-            self._manager.reactor.fire("report-hal", message)
+    # Command to retrieve dmi information.
+    command = String(default="grep -r . /sys/class/dmi/id/ 2>/dev/null")
 
 
-factory = HalInfo
+factory = DmiRegistry

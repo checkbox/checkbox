@@ -16,29 +16,17 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-from checkbox.lib.cache import cache
-
-from checkbox.properties import String
-from checkbox.registries.command import CommandRegistry
+from checkbox.plugin import Plugin
 
 
-class HaldRegistry(CommandRegistry):
-    """Registry for HAL daemon information.
+class UdevInfo(Plugin):
 
-    For the moment, this registry only contains an item for the version
-    as returned by the hald command.
-    """
+    def register(self, manager):
+        super(UdevInfo, self).register(manager)
+        self._manager.reactor.call_on("report", self.report)
 
-    # Command to retrieve hald information.
-    command = String(default="hald --version 2>&1")
-
-    def __str__(self):
-        str = super(HaldRegistry, self).__str__()
-        return str.strip().rsplit(": ")[1]
-
-    @cache
-    def items(self):
-        return [("version", str(self))]
+    def report(self):
+        self._manager.reactor.fire("report-udev", self._manager.registry.udev)
 
 
-factory = HaldRegistry
+factory = UdevInfo
