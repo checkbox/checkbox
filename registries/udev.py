@@ -28,6 +28,7 @@ from checkbox.lib.cache import cache
 from checkbox.properties import String
 from checkbox.registry import Registry
 from checkbox.registries.command import CommandRegistry
+from checkbox.registries.link import LinkRegistry
 from checkbox.registries.none import NoneRegistry
 
 
@@ -387,7 +388,8 @@ class UdevDevice(Registry):
             ("subproduct_id", self._get_subproduct_id()),
             ("vendor", self._get_vendor()),
             ("model", self._get_model()),
-            ("type", self._get_type()))
+            ("type", self._get_type()),
+            ("device", LinkRegistry(self)))
 
 
 class UdevRegistry(CommandRegistry):
