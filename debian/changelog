@@ -5,7 +5,10 @@ checkbox (0.8~alpha4) karmic; urgency=low
     * Added timeout property to lock_prompt plugin.
     * Added concept of attachments to tests.
     * Added support for backslahes in templates to wrap lines.
+    * Added support blacklisting and whitelisting both tests and suites.
     * Introduced the concept of jobs for suites, tests and attachments.
+    * Removed upstart event which is no longer needed.
+    * Replaced architecture and category with requires in test definitions.
   * Fixed pygst dependency (LP: #334442)
   * Fixed configuration file updates during install (LP: #330596)
   * Fixed DBus exceptions (LP: #344916, #359440)
