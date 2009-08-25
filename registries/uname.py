@@ -26,6 +26,9 @@ from checkbox.registry import Registry
 class UnameRegistry(Registry):
     """Registry for uname information."""
 
+    def __str__(self):
+        return " ".join(self.values())
+
     @cache
     def items(self):
         keys = ("name", "node", "release", "version", "machine")
