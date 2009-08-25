@@ -61,7 +61,8 @@ class LaunchpadReport(Plugin):
              ("report-processors", self.report_processors),
              ("report-system_id", self.report_system_id),
              ("report-tests", self.report_tests),
-             ("report-udev", self.report_udev)]:
+             ("report-udev", self.report_udev),
+             ("report-uname", self.report_uname)]:
             self._manager.reactor.call_on(rt, rh)
 
     def report_architecture(self, architecture):
@@ -116,6 +117,9 @@ class LaunchpadReport(Plugin):
                     scsi_devices.append(scsi_device)
 
         self._report["hardware"]["scsi-devices"] = "\n".join(scsi_devices)
+
+    def report_uname(self, uname):
+        self._report["summary"]["kernel-release"] = uname.release
 
     def report(self):
         # Copy stylesheet to report directory
