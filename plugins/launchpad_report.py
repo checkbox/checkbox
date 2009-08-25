@@ -108,15 +108,16 @@ class LaunchpadReport(Plugin):
     def report_udev(self, udev):
         self._report["hardware"]["udev"] = udev
 
-        scsi_devices = []
+        sysfs_attributes = []
         for path, device in udev.items():
-            if device.bus == "scsi":
-                for name in "vendor", "model", "type":
-                    scsi_device = "%s=%s" % (posixpath.join(path, name),
-                        device[name])
-                    scsi_devices.append(scsi_device)
+            sysfs_attribute = []
+            sysfs_attribute.append("P: %s" % path)
+            for key, value in device.attributes.items():
+                sysfs_attribute.append("A: %s=%s" % (key, value))
 
-        self._report["hardware"]["scsi-devices"] = "\n".join(scsi_devices)
+            sysfs_attributes.append("\n".join(sysfs_attribute))
+
+        self._report["hardware"]["sysfs-attributes"] = "\n\n".join(sysfs_attributes)
 
     def report_uname(self, uname):
         self._report["summary"]["kernel-release"] = uname.release

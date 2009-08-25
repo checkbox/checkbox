@@ -29,6 +29,7 @@ from checkbox.properties import String
 from checkbox.registry import Registry
 from checkbox.registries.command import CommandRegistry
 from checkbox.registries.link import LinkRegistry
+from checkbox.registries.map import MapRegistry
 from checkbox.registries.none import NoneRegistry
 
 
@@ -100,17 +101,17 @@ PCI_CLASS_SERIAL_FIBER =        4
 PCI_CLASS_SERIAL_SMBUS =        5
 
 
-class UdevDevice(Registry):
+class DeviceRegistry(Registry):
 
     def __init__(self, parent, environment, attributes):
-        super(UdevDevice, self).__init__()
+        super(DeviceRegistry, self).__init__()
         self._parent = parent
         self._environment = environment
         self._attributes = attributes
 
     def __str__(self):
         strings = ["%s: %s" % (k, v) for k, v in self.items()
-            if not isinstance(v, LinkRegistry)]
+            if not isinstance(v, Registry)]
 
         return "\n".join(strings)
 
@@ -142,9 +143,9 @@ class UdevDevice(Registry):
     def _get_ids(self):
         bus = self._get_bus()
         if bus == "pci":
-            return UdevDevice._load_ids(PCI_IDS)
+            return DeviceRegistry._load_ids(PCI_IDS)
         elif bus == "usb":
-            return UdevDevice._load_ids(USB_IDS)
+            return DeviceRegistry._load_ids(USB_IDS)
         else:
             return None
         
@@ -400,6 +401,7 @@ class UdevDevice(Registry):
             ("vendor", self._get_vendor()),
             ("model", self._get_model()),
             ("type", self._get_type()),
+            ("attributes", MapRegistry(self._attributes)),
             ("device", LinkRegistry(self)))
 
 
@@ -493,7 +495,7 @@ class UdevRegistry(CommandRegistry):
             # Determine attributes
             attributes = self._get_attributes(path)
 
-            device = UdevDevice(parent, environment, attributes)
+            device = DeviceRegistry(parent, environment, attributes)
             if not self._ignore_device(device):
                 items.append((path, device))
 

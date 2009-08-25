@@ -15,7 +15,7 @@
         <ul>
             <li><a href="#udev">udev</a></li>
             <li><a href="#dmi">dmi</a></li>
-            <li><a href="#scsi-devices">scsi-devices</a></li>
+            <li><a href="#sysfs-attributes">sysfs-attributes</a></li>
             <li><a href="#processors">Processors</a></li>
         </ul></li>
         <li>Software
@@ -30,7 +30,7 @@
     <xsl:apply-templates select=".//summary" />
     <xsl:apply-templates select=".//hardware/udev" />
     <xsl:apply-templates select=".//hardware/dmi" />
-    <xsl:apply-templates select=".//hardware/scsi-devices" />
+    <xsl:apply-templates select=".//hardware/sysfs-attributes" />
     <xsl:apply-templates select=".//hardware/processors" />
     <xsl:apply-templates select=".//hardware/lspci" />
     <xsl:apply-templates select=".//software/packages" />
@@ -57,8 +57,8 @@
     <pre><xsl:value-of select="." /></pre>
 </xsl:template>
 
-<xsl:template match="hardware/scsi-devices">
-    <h2 id="scsi-devices">scsi-devices</h2>
+<xsl:template match="hardware/sysfs-attributes">
+    <h2 id="sysfs-attributes">sysfs-attributes</h2>
     <pre><xsl:value-of select="." /></pre>
 </xsl:template>
 

@@ -71,13 +71,13 @@ class HardwareReport(Report):
 
     def register_dumps(self):
         for (dt, dh) in [("dmi", self.dumps_hardware),
-                         ("scsi-devices", self.dumps_hardware),
+                         ("sysfs-attributes", self.dumps_hardware),
                          ("udev", self.dumps_hardware)]:
             self._manager.handle_dumps(dt, dh)
 
     def register_loads(self):
         for (dt, dh) in [("dmi", self.loads_hardware),
-                         ("scsi-devices", self.loads_hardware),
+                         ("sysfs-attributes", self.loads_hardware),
                          ("udev", self.loads_hardware)]:
             self._manager.handle_loads(dt, dh)
 
