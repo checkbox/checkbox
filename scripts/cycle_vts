@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# NB: This script must be run with root privileges in order to have any effect!
+
+CURRENT_VT=`/bin/fgconsole`
+
+if [ "$CURRENT_VT" == "" ]
+then
+    echo "Unable to determine current virtual terminal." >&2
+    exit 1
+fi
+
+if [ "$CURRENT_VT" -ne "1" ]
+then
+    chvt 1
+else
+    chvt 2
+fi
+
+sleep 2
+chvt "$CURRENT_VT"

@@ -1,0 +1,14 @@
+plugin: manual
+name: chvt
+requires:
+ package.name == 'kbd'
+command: gksudo cycle_vts
+_description:
+ Click Test to switch to another virtual terminal and then back to X.  Your \
+ screen will change temporarily to a text console and then switch back to your \
+ current session.
+ .
+ Note that this test may require you to enter your password.
+ .
+ Did the screen change temporarily to a text console?
+

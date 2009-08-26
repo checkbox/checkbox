@@ -18,3 +18,41 @@ _description:
  .
  Do you see color bars and static?
 
+plugin: manual
+name: xrandr_detect_modes
+requires:
+ package.name == 'x11-xserver-utils'
+command: xrandr
+_description:
+ The following screens and video modes have been detected on your system:
+ .
+ $output
+ .
+ Is this correct?
+
+plugin: manual
+name: xrandr_cycle
+depends: xrandr_detect_modes
+requires:
+ package.name == 'x11-xserver-utils'
+command: xrandr_cycle
+_description:
+ Click Test to cycle through the detected video modes for your system.
+ .
+ Did the screen appear to be working for each mode?
+
+plugin: shell
+name: compiz_check
+command: run_compiz_check
+_description:
+ Check that hardware is able to run compiz.
+
+plugin: manual
+name: external_monitor
+_description:
+ Plug video output to an external monitor. Is the image displayed correctly?
+ .
+ Please repeat the test for each kind of video output supported (VGA, DVI, DisplayPort and HDMI).
+ .
+ For HDMI, please also check that sound is played in the monitor speakers.
+

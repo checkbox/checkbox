@@ -1,9 +1,14 @@
-checkbox (0.8~alpha5) karmic; urgency=low
+checkbox (0.8.1) karmic; urgency=low
 
   * Fixed dependency on hal and using udev instead (LP: #399319)
   * Fixed calling ubuntu-bug when a test fails (LP: #418978)
+  * Added disk tests.
+  * Added fingerprint reader tests.
+  * Added firewire tets.
+  * Added kms tests.
+  * Added media tests.
 
- -- Marc Tardif <marc@ubuntu.com>  Tue, 25 Aug 2009 19:36:05 -0500
+ -- Marc Tardif <marc@ubuntu.com>  Tue, 26 Aug 2009 17:36:05 -0500
 
 checkbox (0.8~alpha4) karmic; urgency=low
 

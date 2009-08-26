@@ -3,6 +3,26 @@ plugin: internal
 _description: Audio tests
 command: cat $CHECKBOX_SHARE/tests/audio.txt*
 
+name: disk
+plugin: internal
+_description: Disk tests
+command: cat $CHECKBOX_SHARE/tests/disk.txt*
+
+name: fingerprint
+plugin: internal
+_description: Fingerprint reader tests
+command: cat $CHECKBOX_SHARE/tests/fingerprint.txt*
+
+name: firewire
+plugin: internal
+_description: Firewire disk tests
+command: cat $CHECKBOX_SHARE/tests/firewire.txt*
+
+name: kms
+plugin: internal
+_description: Kernel modesetting tests
+command: cat $CHECKBOX_SHARE/tests/kms.txt*
+
 name: network
 plugin: internal
 _description: Network tests

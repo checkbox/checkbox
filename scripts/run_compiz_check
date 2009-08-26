@@ -1,0 +1,20 @@
+#!/usr/bin/python
+import os, sys, re
+from subprocess import Popen, PIPE
+
+def main():
+    """
+    Run compiz check and return any error code
+    """
+    compiz_check = os.path.join(os.path.dirname(__file__), 'compiz-check')
+    process = Popen(compiz_check, stdout=PIPE)
+    output = process.communicate()[0]
+
+    # Remove colored output (not handled correctly in checkbox report)
+    output = re.sub(r'\[([0-8])?(;3[0-7])?(;4[0-7])?m', '', output)
+    print output
+
+    return process.returncode
+
+if __name__ == "__main__":
+    sys.exit(main())

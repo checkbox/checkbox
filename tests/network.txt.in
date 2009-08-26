@@ -1,6 +1,6 @@
 plugin: manual
 name: network
-requires: pci.device_class == 2
+requires: device.category == 'NETWORK'
 command: network_test
 _description:
  Detecting your network controller(s):
@@ -19,4 +19,21 @@ _description:
  $output
  .
  Is this correct?
+
+plugin: manual
+name: modem
+command: network_check
+_description:
+ Built-in modem network connection procedure:
+ 1.- Connect the telephone line to the computer
+ 2.- Right click on the Network Manager applet
+ 3.- Select 'Edit Connections'
+ 4.- Select the 'DSL' tab
+ 5.- Click on add 'Add' button
+ 6.- Configure the connection parameters properly
+ 7.- Notify OSD should confirm that the connection has been established
+ 8.- Select Test to verify that it's possible to establish both http \
+ and ftp connections
+ .
+ Was the connection correctly established?
 
