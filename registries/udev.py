@@ -262,6 +262,9 @@ class DeviceRegistry(Registry):
 
         return "Unknown"
 
+    def _get_path(self):
+        return self._environment["DEVPATH"]
+
     def _get_type(self):
         if "TYPE" in self._environment:
             return self._environment["TYPE"]
@@ -394,6 +397,7 @@ class DeviceRegistry(Registry):
             ("category", self._get_category()),
             ("bus", self._get_bus()),
             ("driver", self._get_driver()),
+            ("path", self._get_path()),
             ("vendor_id", self._get_vendor_id()),
             ("product_id", self._get_product_id()),
             ("subvendor_id", self._get_subvendor_id()),
