@@ -7,9 +7,12 @@ debian/checkbox-cli
 debian/hwtest
 debian/hwtest-gtk
 debian/hwtest-cli
-debian/*.debhelper
-debian/*.substvars
 debian/stamp-patched
+debian/*.debhelper
+debian/*.log
+debian/*.substvars
+debian/*-cli.postrm
+debian/*-gtk.postrm
 gtk/checkbox-gtk.glade.bak
 gtk/checkbox-gtk.gladep
 gtk/checkbox-gtk.gladep.bak
