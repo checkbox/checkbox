@@ -16,21 +16,24 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-from checkbox.plugin import Plugin
+import os
+
+from checkbox.lib.cache import cache
+
+from checkbox.registry import Registry
 
 
-class HalInfo(Plugin):
+class UnameRegistry(Registry):
+    """Registry for uname information."""
 
-    def register(self, manager):
-        super(HalInfo, self).register(manager)
-        self._manager.reactor.call_on("report", self.report)
+    def __str__(self):
+        return " ".join(self.values())
 
-    def report(self):
-        message = {}
-        message["version"] = self._manager.registry.hald.version
-        message["devices"] = self._manager.registry.hal
-        if message["devices"]:
-            self._manager.reactor.fire("report-hal", message)
+    @cache
+    def items(self):
+        keys = ("name", "node", "release", "version", "machine")
+        values = os.uname()
+        return zip(keys, values)
 
 
-factory = HalInfo
+factory = UnameRegistry

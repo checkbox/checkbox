@@ -31,7 +31,7 @@ class LaunchpadReportManager(XmlReportManager):
     def __init__(self, *args, **kwargs):
         super(LaunchpadReportManager, self).__init__(*args, **kwargs)
         self.add(ContextReport())
-        self.add(HalReport())
+        self.add(HardwareReport())
         self.add(LsbReport())
         self.add(PackagesReport())
         self.add(ProcessorsReport())
@@ -66,45 +66,28 @@ class ContextReport(XmlReport):
         return context
 
 
-class HalReport(XmlReport):
-    """Report for HAL related data types."""
+class HardwareReport(Report):
+    """Report for hardware related data types."""
 
     def register_dumps(self):
-        for (dt, dh) in [("hal", self.dumps_hal)]:
+        for (dt, dh) in [("dmi", self.dumps_hardware),
+                         ("sysfs-attributes", self.dumps_hardware),
+                         ("udev", self.dumps_hardware)]:
             self._manager.handle_dumps(dt, dh)
 
     def register_loads(self):
-        for (lt, lh) in [("hal", self.loads_hal)]:
-            self._manager.handle_loads(lt, lh)
+        for (dt, dh) in [("dmi", self.loads_hardware),
+                         ("sysfs-attributes", self.loads_hardware),
+                         ("udev", self.loads_hardware)]:
+            self._manager.handle_loads(dt, dh)
 
-    def dumps_hal(self, obj, parent):
-        logging.debug("Dumping hal")
-        parent.setAttribute("version", obj["version"])
-        for device in obj["devices"].values():
-            element = self._create_element("device", parent)
-            element.setAttribute("id", str(device.id))
-            element.setAttribute("udi", device.info.udi)
-            self.dumps_device(device, element)
+    def dumps_hardware(self, obj, parent):
+        logging.debug("Dumping hardware")
+        self._create_text_node(str(obj), parent)
 
-    def dumps_device(self, obj, parent, keys=[]):
-        from checkbox.registry import Registry
-
-        for key, value in obj.items():
-            if isinstance(value, Registry):
-                self.dumps_device(value, parent, keys + [key])
-            else:
-                key = ".".join(keys + [key])
-                self._manager.call_dumps({key: value}, parent)
-
-    def loads_hal(self, node):
-        logging.debug("Loading hal")
-        hal = {}
-        hal["version"] = node.getAttribute("version")
-        hal["devices"] = []
-        for device in (d for d in node.childNodes if d.localName == "device"):
-            value = self._manager.call_loads(device)
-            hal["devices"].append(value)
-        return hal
+    def loads_hardware(self, node):
+        logging.debug("Loading hardware")
+        return self._manager.call_loads(node)
 
 
 class LsbReport(Report):
@@ -190,6 +173,7 @@ class SummaryReport(Report):
                          ("distribution", self.dumps_value),
                          ("distroseries", self.dumps_value),
                          ("architecture", self.dumps_value),
+                         ("kernel-release", self.dumps_value),
                          ("private", self.dumps_value),
                          ("contactable", self.dumps_value),
                          ("date_created", self.dumps_datetime),
@@ -202,6 +186,7 @@ class SummaryReport(Report):
                          ("distribution", self.loads_str),
                          ("distroseries", self.loads_str),
                          ("architecture", self.loads_str),
+                         ("kernel-release", self.loads_str),
                          ("private", self.loads_bool),
                          ("contactable", self.loads_bool),
                          ("date_created", self.loads_datetime),

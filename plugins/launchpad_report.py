@@ -56,11 +56,13 @@ class LaunchpadReport(Plugin):
              ("report-client", self.report_client),
              ("report-datetime", self.report_datetime),
              ("report-distribution", self.report_distribution),
-             ("report-hal", self.report_hal),
+             ("report-dmi", self.report_dmi),
              ("report-packages", self.report_packages),
              ("report-processors", self.report_processors),
              ("report-system_id", self.report_system_id),
-             ("report-tests", self.report_tests)]:
+             ("report-tests", self.report_tests),
+             ("report-udev", self.report_udev),
+             ("report-uname", self.report_uname)]:
             self._manager.reactor.call_on(rt, rh)
 
     def report_architecture(self, architecture):
@@ -72,9 +74,6 @@ class LaunchpadReport(Plugin):
                 "command": attachment["command"],
                 "data": attachment["data"]})
 
-    def report_hal(self, hal):
-        self._report["hardware"]["hal"] = hal
-
     def report_client(self, client):
         self._report["summary"]["client"] = client
 
@@ -85,6 +84,9 @@ class LaunchpadReport(Plugin):
         self._report["software"]["lsbrelease"] = dict(distribution)
         self._report["summary"]["distribution"] = distribution.distributor_id
         self._report["summary"]["distroseries"] = distribution.release
+
+    def report_dmi(self, dmi):
+        self._report["hardware"]["dmi"] = dmi
 
     def report_packages(self, packages):
         self._report["software"]["packages"] = packages
@@ -102,6 +104,23 @@ class LaunchpadReport(Plugin):
                 "answer": test["status"],
                 "comment": test.get("data", "")}
             self._report["questions"].append(question)
+
+    def report_udev(self, udev):
+        self._report["hardware"]["udev"] = udev
+
+        sysfs_attributes = []
+        for path, device in udev.items():
+            sysfs_attribute = []
+            sysfs_attribute.append("P: %s" % path)
+            for key, value in device.attributes.items():
+                sysfs_attribute.append("A: %s=%s" % (key, value))
+
+            sysfs_attributes.append("\n".join(sysfs_attribute))
+
+        self._report["hardware"]["sysfs-attributes"] = "\n\n".join(sysfs_attributes)
+
+    def report_uname(self, uname):
+        self._report["summary"]["kernel-release"] = uname.release
 
     def report(self):
         # Copy stylesheet to report directory

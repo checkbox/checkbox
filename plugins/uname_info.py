@@ -19,17 +19,14 @@
 from checkbox.plugin import Plugin
 
 
-class HwInfo(Plugin):
+class UnameInfo(Plugin):
 
     def register(self, manager):
-        super(HwInfo, self).register(manager)
+        super(UnameInfo, self).register(manager)
         self._manager.reactor.call_on("report", self.report)
 
     def report(self):
-        message = {}
-        message["devices"] = self._manager.registry.hw
-        if message["devices"]:
-            self._manager.reactor.fire("report-hw", message)
+        self._manager.reactor.fire("report-uname", self._manager.registry.uname)
 
 
-factory = HwInfo
+factory = UnameInfo
