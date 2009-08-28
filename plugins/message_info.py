@@ -41,7 +41,8 @@ message_schema = Map({
     "environ": List(String(), required=False),
     "requires": List(String(), separator=r"\n", required=False),
     "timeout": Int(required=False),
-    "user": String(required=False)})
+    "user": String(required=False),
+    "data": String(required=False)})
 
 
 class MessageInfo(Plugin):
