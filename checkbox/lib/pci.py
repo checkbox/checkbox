@@ -16,12 +16,8 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-from checkbox.lib.ids import get_ids
 
-
-PCI_IDS = "/usr/share/misc/pci.ids"
-
-
+# See /usr/share/misc/pci.ids
 class Pci:
     BASE_CLASS_STORAGE =        1
     CLASS_STORAGE_SCSI =        0
@@ -86,7 +82,3 @@ class Pci:
     CLASS_SERIAL_USB =          3
     CLASS_SERIAL_FIBER =        4
     CLASS_SERIAL_SMBUS =        5
-
-
-def get_pci_ids():
-    return get_ids(PCI_IDS)

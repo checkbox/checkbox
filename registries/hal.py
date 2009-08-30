@@ -17,6 +17,7 @@
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
 import re
+import string
 import posixpath
 
 from checkbox.lib.cache import cache
@@ -135,8 +136,7 @@ class DeviceRegistry(Registry):
             if drive_type == "floppy":
                 return "FLOPPY"
 
-        if "pci.vendor_id" in self._properties \
-           or "usb_device.vendor_id" in self._properties:
+        if self._get_product_id():
             return "OTHER"
 
         return None
@@ -213,6 +213,13 @@ class DeviceRegistry(Registry):
             if product_id in self._properties:
                 return self._properties[product_id]
 
+        # pnp
+        if "pnp.id" in self._properties:
+            match = re.match(r"^(?P<vendor_name>.*)(?P<product_id>[%s]{4})$"
+                % string.hexdigits, self._properties["pnp.id"])
+            if match:
+                return int(match.group("product_id"), 16)
+
         return None
 
     def _get_subvendor_id(self):
@@ -225,9 +232,16 @@ class DeviceRegistry(Registry):
     def _get_vendor(self):
         bus = self._get_bus()
 
-        # Ignore subsystems using parent for vendor
-        if bus in ("drm", "rfkill"):
+        # Ignore subsystems using parent or generated names
+        if bus in ("drm", "pci", "rfkill", "usb"):
             return UNKNOWN
+
+        # pnp
+        if "pnp.id" in self._properties:
+            match = re.match(r"^(?P<vendor_name>.*)(?P<product_id>[%s]{4})$"
+                % string.hexdigits, self._properties["pnp.id"])
+            if match:
+                return match.group("vendor_name")
 
         for property in ("battery.vendor",
                          "ieee1394.vendor",
@@ -242,9 +256,9 @@ class DeviceRegistry(Registry):
     def _get_product(self):
         bus = self._get_bus()
 
-        # Ignore subsystems using parent for product
-        if bus in ("drm", "net", "platform", "scsi_generic",
-                   "scsi_host", "tty", "video4linux"):
+        # Ignore subsystems using parent or generated names
+        if bus in ("drm", "net", "platform", "pci", "pnp", "scsi_generic",
+                   "scsi_host", "tty", "usb", "video4linux"):
             return UNKNOWN
 
         if "usb.interface.number" in self._properties:
@@ -261,7 +275,6 @@ class DeviceRegistry(Registry):
                          "killswitch.name",
                          "oss.device_id",
                          "scsi.model",
-                         "pnp.id",
                          "info.product"):
             if property in self._properties:
                 return self._properties[property]
@@ -296,7 +309,7 @@ class HalRegistry(CommandRegistry):
     def _ignore_device(self, device):
         # Ignore devices without bus or product information
         if device.bus == UNKNOWN \
-           or device.product == UNKNOWN:
+           or (device.product == UNKNOWN and not device.product_id):
             return True
 
         # Ignore virtual devices

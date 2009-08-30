@@ -26,8 +26,7 @@ from curses.ascii import isprint
 from checkbox.lib.bit import get_bitmask, test_bit
 from checkbox.lib.cache import cache
 from checkbox.lib.input import Input
-from checkbox.lib.pci import Pci, get_pci_ids
-from checkbox.lib.usb import get_usb_ids
+from checkbox.lib.pci import Pci
 
 from checkbox.properties import String
 from checkbox.registry import Registry
@@ -51,20 +50,6 @@ class DeviceRegistry(Registry):
             if not isinstance(v, Registry)]
 
         return "\n".join(strings)
-
-    @cache
-    def _get_bus_ids(cls, bus):
-        if bus == "pci":
-            return get_pci_ids()
-
-        if bus == "usb":
-            return get_usb_ids()
-
-        return None
-
-    def _get_ids(self):
-        bus = self._get_bus()
-        return DeviceRegistry._get_bus_ids(bus)
 
     def _get_bus(self):
         sys_path = posixpath.join("/sys%s" % self._environment["DEVPATH"], "subsystem")
@@ -166,7 +151,7 @@ class DeviceRegistry(Registry):
             if "ID_DRIVE_FLOPPY" in self._environment:
                 return "FLOPPY"
 
-        if self._get_vendor_id():
+        if self._get_product_id():
             return "OTHER"
 
         return None
@@ -191,10 +176,18 @@ class DeviceRegistry(Registry):
         return None
 
     def _get_vendor_id(self):
+        # pci
         if "PCI_ID" in self._environment:
             vendor_id, product_id = self._environment["PCI_ID"].split(":")
             return int(vendor_id, 16)
 
+        # usb interface
+        if "PRODUCT" in self._environment \
+           and self._environment.get("DEVTYPE") == "usb_interface":
+            vendor_id, product_id, revision = self._environment["PRODUCT"].split("/")
+            return int(vendor_id, 16)
+
+        # usb device
         if "idVendor" in self._attributes:
             return int(self._attributes["idVendor"], 16)
 
@@ -207,13 +200,28 @@ class DeviceRegistry(Registry):
         return None
 
     def _get_product_id(self):
+        # pci
         if "PCI_ID" in self._environment:
             vendor_id, product_id = self._environment["PCI_ID"].split(":")
             return int(product_id, 16)
 
+        # usb interface
+        if "PRODUCT" in self._environment \
+           and self._environment.get("DEVTYPE") == "usb_interface":
+            vendor_id, product_id, revision = self._environment["PRODUCT"].split("/")
+            return int(product_id, 16)
+
+        # usb device and ieee1394
         for attribute in ("idProduct", "model_id"):
             if attribute in self._attributes:
                 return int(self._attributes[attribute], 16)
+
+        # pnp
+        if "id" in self._attributes:
+            match = re.match(r"^(?P<vendor_name>.*)(?P<product_id>[%s]{4})$"
+                % string.hexdigits, self._attributes["id"])
+            if match:
+                return int(match.group("product_id"), 16)
 
         return None
 
@@ -245,16 +253,17 @@ class DeviceRegistry(Registry):
             if not re.match(r"^0x[%s]{4}$" % string.hexdigits, vendor):
                 return vendor
 
+        # pnp
+        if "id" in self._attributes:
+            match = re.match(r"^(?P<vendor_name>.*)(?P<product_id>[%s]{4})$"
+                % string.hexdigits, self._attributes["id"])
+            if match:
+                return match.group("vendor_name")
+
         # ieee1394
         vendor_path = posixpath.join(self._get_path(), "../vendor_oui")
         if posixpath.exists(vendor_path):
             return open(vendor_path, "r").read().strip()
-
-        ids = self._get_ids()
-        vendor_id = self._get_vendor_id()
-        if ids \
-           and vendor_id in ids:
-            return ids[vendor_id]["name"]
 
         return UNKNOWN
 
@@ -263,7 +272,7 @@ class DeviceRegistry(Registry):
             if element in self._environment:
                 return self._environment[element].strip('"')
 
-        for attribute in ("description", "model_name_kv", "model", "id"):
+        for attribute in ("description", "model_name_kv", "model"):
             if attribute in self._attributes:
                 return self._attributes[attribute]
 
@@ -307,14 +316,6 @@ class DeviceRegistry(Registry):
                     match = re.match(r"name: (?P<name>.*)", line)
                     if match:
                         return match.group("name")
-
-        ids = self._get_ids()
-        vendor_id = self._get_vendor_id()
-        product_id = self._get_product_id()
-        if ids \
-           and vendor_id in ids \
-           and product_id in ids[vendor_id]["devices"]:
-            return ids[vendor_id]["devices"][product_id]["name"]
 
         return UNKNOWN
 
@@ -372,7 +373,7 @@ class UdevRegistry(CommandRegistry):
 
     def _ignore_device(self, device):
         # Ignore devices without product information
-        if device.product == UNKNOWN:
+        if device.product == UNKNOWN and not device.product_id:
             return True
 
         # Ignore virtual devices
