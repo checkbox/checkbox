@@ -38,7 +38,7 @@ class UnknownName(object):
 
     def __call__(self, *args, **kwargs):
         name = self._function(self._instance, *args, **kwargs)
-        if name.startswith("Unknown ("):
+        if name and name.startswith("Unknown ("):
             name = None
 
         return name
