@@ -81,7 +81,8 @@ class Job(object):
                 self.data = _("Command not found.")
             else:
                 self.status = FAIL
-                self.data = process.errdata
+                self.data = (process.errdata
+                             or process.outdata)
         elif os.WIFSIGNALED(status):
             self.status = UNRESOLVED
             term_signal = os.WTERMSIG(status)
