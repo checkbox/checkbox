@@ -28,9 +28,6 @@ from checkbox.registry import Registry
 from checkbox.registries.command import CommandRegistry
 
 
-UNKNOWN = "Unknown"
-
-
 class UnknownName(object):
     def __init__(self, function):
         self._function = function
@@ -42,7 +39,7 @@ class UnknownName(object):
     def __call__(self, *args, **kwargs):
         name = self._function(self._instance, *args, **kwargs)
         if name.startswith("Unknown ("):
-            name = UNKNOWN
+            name = None
 
         return name
 
@@ -142,10 +139,10 @@ class DeviceRegistry(Registry):
         return None
 
     def _get_bus(self):
-        return self._properties.get("linux.subsystem", UNKNOWN)
+        return self._properties.get("linux.subsystem")
 
     def _get_driver(self):
-        return self._properties.get("info.linux.driver", UNKNOWN)
+        return self._properties.get("info.linux.driver")
 
     def _get_path(self):
         return self._properties.get("linux.sysfs_path", "").replace("/sys", "")
@@ -234,7 +231,7 @@ class DeviceRegistry(Registry):
 
         # Ignore subsystems using parent or generated names
         if bus in ("drm", "pci", "rfkill", "usb"):
-            return UNKNOWN
+            return None
 
         # pnp
         if "pnp.id" in self._properties:
@@ -250,7 +247,7 @@ class DeviceRegistry(Registry):
             if property in self._properties:
                 return self._properties[property]
 
-        return UNKNOWN
+        return None
 
     @UnknownName
     def _get_product(self):
@@ -259,13 +256,13 @@ class DeviceRegistry(Registry):
         # Ignore subsystems using parent or generated names
         if bus in ("drm", "net", "platform", "pci", "pnp", "scsi_generic",
                    "scsi_host", "tty", "usb", "video4linux"):
-            return UNKNOWN
+            return None
 
         if "usb.interface.number" in self._properties:
-            return UNKNOWN
+            return None
 
         if self._properties.get("info.category") == "ac_adapter":
-            return UNKNOWN
+            return None
 
         for property in ("alsa.device_id",
                          "alsa.card_id",
@@ -279,7 +276,7 @@ class DeviceRegistry(Registry):
             if property in self._properties:
                 return self._properties[property]
 
-        return UNKNOWN
+        return None
 
     def items(self):
         return (
@@ -308,8 +305,8 @@ class HalRegistry(CommandRegistry):
 
     def _ignore_device(self, device):
         # Ignore devices without bus or product information
-        if device.bus == UNKNOWN \
-           or (device.product == UNKNOWN and not device.product_id):
+        if not device.bus \
+           or (not device.product and device.product_id is None):
             return True
 
         # Ignore virtual devices

@@ -35,9 +35,6 @@ from checkbox.registries.link import LinkRegistry
 from checkbox.registries.map import MapRegistry
 
 
-UNKNOWN = "Unknown"
-
-
 class DeviceRegistry(Registry):
 
     def __init__(self, environment, attributes):
@@ -58,7 +55,7 @@ class DeviceRegistry(Registry):
             if "/" in link:
                 return posixpath.basename(link)
 
-        return UNKNOWN
+        return None
 
     def _get_category(self):
         if "IFINDEX" in self._environment:
@@ -163,7 +160,7 @@ class DeviceRegistry(Registry):
         if "ID_USB_DRIVER" in self._environment:
             return self._environment["ID_USB_DRIVER"]
 
-        return UNKNOWN
+        return None
 
     def _get_path(self):
         return self._environment.get("DEVPATH")
@@ -243,7 +240,7 @@ class DeviceRegistry(Registry):
 
     def _get_vendor(self):
         if "RFKILL_NAME" in self._environment:
-            return UNKNOWN
+            return None
 
         if "POWER_SUPPLY_MANUFACTURER" in self._environment:
             return self._environment["POWER_SUPPLY_MANUFACTURER"]
@@ -265,7 +262,7 @@ class DeviceRegistry(Registry):
         if posixpath.exists(vendor_path):
             return open(vendor_path, "r").read().strip()
 
-        return UNKNOWN
+        return None
 
     def _get_product(self):
         for element in ("NAME", "RFKILL_NAME", "POWER_SUPPLY_MODEL_NAME"):
@@ -317,7 +314,7 @@ class DeviceRegistry(Registry):
                     if match:
                         return match.group("name")
 
-        return UNKNOWN
+        return None
 
     def items(self):
         return (
@@ -373,7 +370,7 @@ class UdevRegistry(CommandRegistry):
 
     def _ignore_device(self, device):
         # Ignore devices without product information
-        if device.product == UNKNOWN and not device.product_id:
+        if not device.product and device.product_id is None:
             return True
 
         # Ignore virtual devices
