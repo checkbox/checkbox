@@ -16,6 +16,8 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
+import os
+
 from checkbox.lib.cache import cache
 
 from checkbox.properties import String
@@ -54,6 +56,10 @@ class PackagesRegistry(CommandRegistry):
     @cache
     def items(self):
         items = []
+
+        aliases = {
+            "linux-image-" + os.uname()[2]: "linux"}
+
         for line in [l for l in self.split("\n") if l]:
             # Determine the lengths of dpkg columns and
             # strip status column.
@@ -72,6 +78,9 @@ class PackagesRegistry(CommandRegistry):
                     package[key] = value
 
                 key = package["name"]
+                if key in aliases:
+                    package["alias"] = aliases[key]
+
                 value = PackageRegistry(package)
                 items.append((key, value))
 
