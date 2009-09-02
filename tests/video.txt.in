@@ -1,7 +1,7 @@
 plugin: manual
 name: resolution
 requires:
- pci.device_class == 3
+ device.category == 'VIDEO'
  package.name == 'x11-xserver-utils'
 command: resolution_test
 _description:

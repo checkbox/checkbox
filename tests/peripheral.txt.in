@@ -1,6 +1,6 @@
 plugin: manual
 name: mouse
-requires: 'input.mouse' in info.capabilities
+requires: device.category == 'MOUSE'
 _description:
  Moving the mouse should move the cursor on the screen.
  .
@@ -9,7 +9,7 @@ _description:
 plugin: manual
 name: keyboard
 command: keyboard_test
-requires: 'input.keyboard' in info.capabilities
+requires: device.category == 'KEYBOARD'
 _description:
  Click the Test button to open a text area where to type keys on your \
  keyboard.

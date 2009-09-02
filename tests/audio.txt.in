@@ -1,7 +1,7 @@
 plugin: manual
 name: playback_auto
 requires:
- alsa.type == 'playback'
+ device.category == 'AUDIO'
  package.name == 'python-gst0.10'
 command: gst_pipeline_test -t 2 'audiotestsrc wave=sine freq=512 ! audioconvert ! audioresample ! gconfaudiosink'
 _description:
@@ -13,7 +13,7 @@ _description:
 plugin: manual
 name: list_audio_devices
 requires:
- alsa.type == 'playback'
+ device.category == 'AUDIO'
  package.name == 'alsa-base'
 command: cat /proc/asound/cards
 _description:
@@ -26,8 +26,7 @@ _description:
 plugin: manual
 name: alsa_record_playback_internal
 requires:
- alsa.type == 'record'
- alsa.type == 'playback'
+ device.category == 'AUDIO'
  package.name == 'alsa-base'
 command: alsa_record_playback
 _description:
@@ -40,8 +39,7 @@ _description:
 plugin: manual
 name: alsa_record_playback_external
 requires:
- alsa.type == 'record'
- alsa.type == 'playback'
+ device.category == 'AUDIO'
  package.name == 'alsa-base'
 command: alsa_record_playback
 _description:
@@ -54,8 +52,7 @@ _description:
 plugin: manual
 name: alsa_record_playback_bluetooth
 requires:
- alsa.type == 'record'
- alsa.type == 'playback'
+ device.category == 'AUDIO'
  package.name == 'alsa-base'
 command: alsa_record_playback
 _description:
@@ -73,8 +70,7 @@ plugin: automatic
 name: audio_detect_silence
 requires:
  package.name == 'sox'
- alsa.type == 'record'
- alsa.type == 'playback'
+ device.category == 'AUDIO'
 command: audio_detect_silence
 _description:
  Play back a sound on the default output and listen for it on the default \
@@ -84,8 +80,7 @@ _description:
 plugin: manual
 name: alsa_record_playback_usb
 requires:
- alsa.type == 'record'
- alsa.type == 'playback'
+ device.category == 'AUDIO'
  package.name == 'alsa-base'
 command: alsa_record_playback
 _description:
@@ -102,8 +97,7 @@ _description:
 plugin: manual
 name: alsa_record_playback_alternates
 requires:
- alsa.type == 'record'
- alsa.type == 'playback'
+ device.category == 'AUDIO'
  package.name == 'alsa-base'
 command: alsa_record_playback
 _description:

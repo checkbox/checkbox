@@ -2,7 +2,7 @@ plugin: manual
 name: dvd_playback
 command: totem /media/cdrom
 requires:
- storage.cdrom.dvd == True
+ device.category == 'CDROM'
  package.name == 'totem'
 _description:
  Insert a DVD.  Then click Test to play the DVD in Totem.
