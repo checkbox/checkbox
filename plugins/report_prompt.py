@@ -31,7 +31,7 @@ class ReportPrompt(Plugin):
 
     def prompt_report(self, interface):
         if interface.direction != PREV:
-            interface.show_wait(_("Building report..."),
+            interface.show_progress(_("Building report..."),
                 self._manager.reactor.fire, "report")
 
 

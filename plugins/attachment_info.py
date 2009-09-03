@@ -45,7 +45,7 @@ class AttachmentInfo(Plugin):
                test["name"] in attachment.get("depends", []):
                 job = Job(attachment["command"], attachment.get("environ"),
                     attachment.get("timeout"))
-                interface.show_wait(_("Running attachment..."), job.execute)
+                interface.show_progress(_("Running attachment..."), job.execute)
                 attachment = dict(attachment)
                 attachment["test"] = test["name"]
                 attachment["suite"] = test["suite"]

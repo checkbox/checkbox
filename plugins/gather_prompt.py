@@ -31,7 +31,7 @@ class GatherPrompt(Plugin):
 
     @cache
     def prompt_gather(self, interface):
-        interface.show_wait(_("Gathering information from your system..."),
+        interface.show_progress(_("Gathering information from your system..."),
             self._manager.reactor.fire, "gather")
 
 

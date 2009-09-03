@@ -89,7 +89,7 @@ account, please register here:
 
             self._error = None
             self._manager.reactor.fire("launchpad-email", email)
-            interface.show_wait(
+            interface.show_progress(
                 _("Exchanging information with the server..."),
                 self._manager.reactor.fire, "launchpad-exchange")
             if not self._error:

@@ -14,7 +14,7 @@ Architecture: all
 Replaces: hwtest (<< 0.1-0ubuntu12)
 Provides: hwtest
 Depends: ${misc:Depends}, ${python:Depends}, debconf, udev
-Recommends: dpkg, lsb-release, policykit, python-dbus, python-gst0.10
+Recommends: dpkg, lsb-release, policykit, python-apport, python-dbus, python-gst0.10
 Conflicts: hwtest (<< 0.1-0ubuntu12)
 XB-Python-Version: ${python:Versions}
 Description: Checkbox System Testing

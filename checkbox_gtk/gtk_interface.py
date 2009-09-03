@@ -201,28 +201,20 @@ class GTKInterface(UserInterface):
         if self.direction == gtk.RESPONSE_DELETE_EVENT:
             raise KeyboardInterrupt
 
-    def do_function(self, function, *args, **kwargs):
+    def show_progress_start(self, message):
         self._set_sensitive("button_previous", False)
         self._set_sensitive("button_next", False)
 
-        result = super(GTKInterface, self).do_function(function,
-            *args, **kwargs)
+        self._set_text("label_wait", message)
+        self._wait.show()
+
+    def show_progress_stop(self):
+        self._wait.hide()
 
         self._set_sensitive("button_previous", True)
         self._set_sensitive("button_next", True)
 
-        return result
-
-    def show_wait(self, message, function, *args, **kwargs):
-        self._set_text("label_wait", message)
-        self._wait.show()
-
-        result = self.do_function(function, *args, **kwargs)
-
-        self._wait.hide()
-        return result
-
-    def show_pulse(self):
+    def show_progress_pulse(self):
         self._get_widget("progressbar_wait").pulse()
         while gtk.events_pending():
             gtk.main_iteration()
@@ -332,7 +324,7 @@ class GTKInterface(UserInterface):
 
         message = _("Running test %s...") % test["name"]
         job = Job(test["command"], test.get("environ"), test.get("timeout"))
-        self.show_wait(message, job.execute)
+        self.show_progress(message, job.execute)
 
         description = Template(test["description"]).substitute({
             "output": job.data.strip()})
@@ -374,6 +366,25 @@ class GTKInterface(UserInterface):
 
         test["data"] = self._get_text_view("text_view_comment")
         test["status"] = self._get_radio_button(BUTTON_TO_STATUS)
+
+    def show_info(self, text, options=[], default=None):
+        message_dialog = gtk.MessageDialog(parent=self._dialog,
+            type=gtk.MESSAGE_INFO,
+            buttons=gtk.BUTTONS_NONE,
+            message_format=text)
+        message_dialog.set_modal(True)
+        message_dialog.set_title(_("Info"))
+
+        for index, option in enumerate(options):
+            button = getattr(gtk, "STOCK_%s" % option.upper())
+            message_dialog.add_buttons(button, index)
+
+        self._run_dialog(message_dialog)
+        message_dialog.hide()
+
+        response = self.direction
+        self.direction = NEXT
+        return options[response]
 
     def show_error(self, text):
         message_dialog = gtk.MessageDialog(parent=self._dialog,

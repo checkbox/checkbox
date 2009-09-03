@@ -188,12 +188,11 @@ class CLIProgressDialog(CLIDialog):
 
 class CLIInterface(UserInterface):
 
-    def show_wait(self, text, function, *args, **kwargs):
+    def show_progress_start(self, text):
         self.progress = CLIProgressDialog(text)
         self.progress.show()
-        self.do_function(function, *args, **kwargs)
 
-    def show_pulse(self):
+    def show_progress_pulse(self):
         self.progress.set()
 
     def show_text(self, text, previous=None, next=None):
@@ -235,7 +234,7 @@ class CLIInterface(UserInterface):
     def _run_test(self, test):
         message = _("Running test %s...") % test["name"]
         job = Job(test["command"], test.get("environ"), test.get("timeout"))
-        self.show_wait(message, job.execute)
+        self.show_progress(message, job.execute)
 
     def show_test(self, test):
         options = list([ANSWER_TO_OPTION[a] for a in ALL_ANSWERS])
@@ -274,6 +273,9 @@ class CLIInterface(UserInterface):
             test["data"] = ""
 
         test["status"] = ANSWER_TO_STATUS[answer]
+
+    def show_info(self, text, options=[], default=None):
+        return self.show_radio(text, options, default)
 
     def show_error(self, text):
         dialog = CLIChoiceDialog("Error: %s" % text)

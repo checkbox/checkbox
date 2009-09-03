@@ -68,25 +68,35 @@ class UserInterface(object):
         self.gettext_domain = "checkbox"
         gettext.textdomain(self.gettext_domain)
 
-    def do_function(self, function, *args, **kwargs):
-        thread = REThread(target=function, name="do_function",
-            args=args, kwargs=kwargs)
-        thread.start()
-
-        while thread.isAlive():
-            self.show_pulse()
-            thread.join(0.1)
-        thread.exc_raise()
-
-        return thread.return_value()
+    def show_info(self, text, default=None):
+        logging.info(text)
+        return default
 
     def show_error(self, text):
         logging.error(text)
 
-    def show_wait(self, message, function, *args, **kwargs):
-        self.do_function(function, *args, **kwargs)
+    def show_progress(self, message, function, *args, **kwargs):
+        self.show_progress_start(message)
 
-    def show_pulse(self):
+        thread = REThread(target=function, name="progress",
+            args=args, kwargs=kwargs)
+        thread.start()
+
+        while thread.isAlive():
+            self.show_progress_pulse()
+            thread.join(0.1)
+        thread.exc_raise()
+
+        self.show_progress_stop()
+        return thread.return_value()
+
+    def show_progress_start(self, message):
+        return
+
+    def show_progress_stop(self):
+        return
+
+    def show_progress_pulse(self):
         return
 
     def show_text(self, text, previous=None, next=None):

@@ -37,7 +37,7 @@ class ShellTest(Plugin):
         status = test.get("status", UNINITIATED)
         if command and status == UNINITIATED:
             job = Job(command, test.get("environ"), test.get("timeout"))
-            interface.show_wait(_("Running shell tests..."),
+            interface.show_progress(_("Running shell tests..."),
                 job.execute)
             test["data"] = job.data
             test["duration"] = job.duration
