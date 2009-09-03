@@ -133,6 +133,14 @@ class DeviceRegistry(Registry):
             if drive_type == "floppy":
                 return "FLOPPY"
 
+        if "scsi.type" in self._properties:
+            type = self._properties["scsi.type"]
+            if type == "cdrom":
+                return "CDROM"
+
+            if type == "disk":
+                return "DISK"
+
         if self._get_product_id():
             return "OTHER"
 

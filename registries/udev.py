@@ -130,14 +130,12 @@ class DeviceRegistry(Registry):
             key = self._environment["KEY"].strip("=")
             bitmask = get_bitmask(key)
 
-            # keyboard
             for i in range(Input.KEY_Q, Input.KEY_P+1):
                 if not test_bit(i, bitmask):
                     break
             else:
                 return "KEYBOARD"
 
-            # mouse
             if test_bit(Input.BTN_MOUSE, bitmask):
                 return "MOUSE"
 
@@ -147,6 +145,20 @@ class DeviceRegistry(Registry):
 
             if "ID_DRIVE_FLOPPY" in self._environment:
                 return "FLOPPY"
+
+        if self._environment.get("DEVTYPE") == "scsi_device":
+            type = int(self._get_type())
+            if type in (0, 7, 14):
+                return "DISK"
+
+            if type in (4, 5):
+                return "CDROM"
+
+            if type == 6:
+                return "SCANNER"
+
+            if type == 12:
+                return "RAID"
 
         if self._get_product_id():
             return "OTHER"
