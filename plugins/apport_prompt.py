@@ -60,6 +60,14 @@ class ApportUserInterface(UserInterface):
         self.interface.show_progress_pulse()
 
     def ui_stop_info_collection_progress(self):
+        # tags
+        if "Tags" in self.report:
+            self.report["Tags"] += " "
+        else:
+            self.report["Tags"] = ""
+
+        self.report["Tags"] += "checkbox-bug"
+
         self.interface.show_progress_stop()
 
     def ui_start_upload_progress(self):
