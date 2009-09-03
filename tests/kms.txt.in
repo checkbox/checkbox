@@ -1,6 +1,7 @@
 plugin: manual
 name: chvt
 requires:
+ package.alias == 'linux'
  package.name == 'kbd'
 command: gksudo cycle_vts
 _description:
