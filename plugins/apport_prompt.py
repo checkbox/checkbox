@@ -28,9 +28,10 @@ from checkbox.registry import registry_eval_recursive
 
 class ApportOptions(object):
 
-    def __init__(self, package, pid=None):
+    def __init__(self, package, test):
         self.package = package
-        self.pid = pid
+        self.test = test
+        self.pid = None
 
 
 class ApportUserInterface(UserInterface):
@@ -67,6 +68,16 @@ class ApportUserInterface(UserInterface):
             self.report["Tags"] = ""
 
         self.report["Tags"] += "checkbox-bug"
+
+        # checkbox
+        test = self.options.test
+        self.report["CheckboxTest"] = test["name"]
+        if test.get("data"):
+            self.report["CheckboxData"] = test["data"]
+        if test.get("command"):
+            self.report["CheckboxCommand"] = test["command"]
+        if test.get("environ"):
+            self.report["CheckboxEnvironment"] = test["environ"]
 
         self.interface.show_progress_stop()
 
@@ -112,7 +123,7 @@ class ApportPrompt(Plugin):
             package = "linux"
 
         try:
-            options = ApportOptions(package)
+            options = ApportOptions(package, test)
             apport_interface = ApportUserInterface(interface, options)
         except ImportError, e:
             interface.show_error("Is a package upgrade in process? Error: %s" % e)
