@@ -16,6 +16,8 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
+import posixpath
+
 from checkbox.properties import String
 from checkbox.registries.command import CommandRegistry
 
@@ -26,5 +28,17 @@ class DmiRegistry(CommandRegistry):
     # Command to retrieve dmi information.
     command = String(default="grep -r . /sys/class/dmi/id/ 2>/dev/null || true")
 
+    def items(self):
+        items = []
+        for line in str(self).split("\n"):
+            if not line:
+                continue
+
+            path, value = line.split(":", 1)
+            key = posixpath.basename(path)
+            items.append((key, value))
+
+        return items
+ 
 
 factory = DmiRegistry
