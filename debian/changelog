@@ -2,8 +2,9 @@ checkbox (0.8.2) karmic; urgency=low
 
   * Fixed adding test information when reporting with apport (LP: #423798)
   * Fixed tagging bugs when reporting with apport (LP: #423799)
-  * Fixed supporting package aliases for the linux package (LP: #423805)
-  * Fixed supporting the disk category in devices (LP: #423864)
+  * Fixed expressing package aliases for the linux package (LP: #423805)
+  * Fixed detecting the disk category in devices (LP: #423864)
+  * Fixed supporting apport symptoms when reporting bugs (LP: #424063)
 
   [Javier Collado]
   * Fixed reporting of output in shell plugin (LP: #393894)

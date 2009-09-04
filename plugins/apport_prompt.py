@@ -26,11 +26,20 @@ from checkbox.plugin import Plugin
 from checkbox.registry import registry_eval_recursive
 
 
+CATEGORY_TO_PACKAGE = {
+    "VIDEO": "xorg",
+    "SOUND": "alsa-base"}
+
+CATEGORY_TO_SYMPTOM = {
+    "DISK":  "storage"}
+
+
 class ApportOptions(object):
 
-    def __init__(self, package, test):
-        self.package = package
+    def __init__(self, test, package, symptom):
         self.test = test
+        self.package = package
+        self.symptom = symptom
         self.pid = None
 
 
@@ -50,6 +59,7 @@ class ApportUserInterface(UserInterface):
         self.interface.show_info(text, ["close"])
 
     def ui_error_message(self, title, text):
+        self.interface.show_progress_stop()
         self.interface.show_error(text)
 
     def ui_start_info_collection_progress(self):
@@ -62,10 +72,9 @@ class ApportUserInterface(UserInterface):
 
     def ui_stop_info_collection_progress(self):
         # tags
-        if "Tags" in self.report:
+        self.report.setdefault("Tags", "")
+        if self.report["Tags"]:
             self.report["Tags"] += " "
-        else:
-            self.report["Tags"] = ""
 
         self.report["Tags"] += "checkbox-bug"
 
@@ -95,6 +104,16 @@ class ApportUserInterface(UserInterface):
     def ui_present_report_details(self):
         return "full"
 
+    def ui_question_choice(self, text, options, multiple):
+        self.interface.show_progress_stop()
+
+        if multiple:
+            results = self.interface.show_check(text, options)
+        else:
+            results = [self.interface.show_radio(text, options)]
+
+        return [options.index(r) for r in results]
+
 
 class ApportPrompt(Plugin):
 
@@ -108,29 +127,47 @@ class ApportPrompt(Plugin):
             return
 
         response = interface.show_info("Do you want to report a bug?",
-            ["ok", "cancel"])
+            ["ok", "cancel"], "cancel")
         if response == "cancel":
             return
 
+        # Default to ubuntu package and no symptom
+        package = "ubuntu"
+        symptom = None
+
+        # Give lowest priority to required packages
         for require in test.get("requires", []):
             packages = registry_eval_recursive(self._manager.registry.packages,
                 require)
             if packages:
-                # Check that apport has a corresponding hook
                 package = packages[0].name
                 break
-        else:
-            package = "linux"
+
+        # Give highest priority to required devices
+        for require in test.get("requires", []):
+            devices = registry_eval_recursive(self._manager.registry.udev,
+                require)
+            for device in devices:
+                if device.category in CATEGORY_TO_PACKAGE:
+                    package = CATEGORY_TO_PACKAGE[device.category]
+                    break
+
+                if device.category in CATEGORY_TO_SYMPTOM:
+                    symptom = CATEGORY_TO_SYMPTOM[device.category]
+                    break
 
         try:
-            options = ApportOptions(package, test)
+            options = ApportOptions(test, package, symptom)
             apport_interface = ApportUserInterface(interface, options)
         except ImportError, e:
             interface.show_error("Is a package upgrade in process? Error: %s" % e)
             return
 
         try:
-            apport_interface.run_report_bug()
+            if symptom and hasattr(apport_interface, "run_symptom"):
+                apport_interface.run_symptom()
+            else:
+                apport_interface.run_report_bug()
         except SystemExit, e:
             # In case of error, show_error already have been called
             pass
