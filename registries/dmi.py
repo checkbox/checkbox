@@ -24,7 +24,7 @@ class DmiRegistry(CommandRegistry):
     """Registry for dmi information."""
 
     # Command to retrieve dmi information.
-    command = String(default="grep -r . /sys/class/dmi/id/ 2>/dev/null")
+    command = String(default="grep -r . /sys/class/dmi/id/ 2>/dev/null || true")
 
 
 factory = DmiRegistry
