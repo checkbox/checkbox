@@ -1,7 +1,7 @@
 plugin: manual
 name: disk_bench
 requires: device.category == 'DISK'
-command: gksudo disk_bench_test
+command: gksudo $CHECKBOX_SHARE/scripts/disk_bench_test
 _description:
  Disk benchmark:
  .
