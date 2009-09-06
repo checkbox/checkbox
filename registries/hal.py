@@ -21,6 +21,7 @@ import string
 import posixpath
 
 from checkbox.lib.cache import cache
+from checkbox.lib.dmi import Dmi, DmiNotAvailable
 from checkbox.lib.pci import Pci
 
 from checkbox.properties import String
@@ -59,7 +60,13 @@ class DeviceRegistry(Registry):
 
         return "\n".join(strings)
 
+    def _get_bus(self):
+        return self._properties.get("linux.subsystem")
+
     def _get_category(self):
+        if "system.hardware.vendor" in self._properties:
+            return "SYSTEM"
+
         if "net.interface" in self._properties:
             return "NETWORK"
 
@@ -146,9 +153,6 @@ class DeviceRegistry(Registry):
 
         return None
 
-    def _get_bus(self):
-        return self._properties.get("linux.subsystem")
-
     def _get_driver(self):
         return self._properties.get("info.linux.driver")
 
@@ -161,7 +165,9 @@ class DeviceRegistry(Registry):
                          "ccwgroup.lcs.type",
                          "ibmebus.type",
                          "mmc.type",
-                         "net.arp_proto_hw_id"):
+                         "net.arp_proto_hw_id",
+                         "storage.firmware_version",
+                         "system.hardware.version"):
             if property in self._properties:
                 return self._properties[property]
 
@@ -201,6 +207,9 @@ class DeviceRegistry(Registry):
                 "raid": "12"}
             if name in name_to_type:
                 return name_to_type[name]
+
+        if "usb_device.version" in self._properties:
+            return "%.2f" % self._properties["usb_device.version"]
 
         return None
 
@@ -251,6 +260,7 @@ class DeviceRegistry(Registry):
         for property in ("battery.vendor",
                          "ieee1394.vendor",
                          "scsi.vendor",
+                         "system.hardware.vendor",
                          "info.vendor"):
             if property in self._properties:
                 return self._properties[property]
@@ -280,6 +290,7 @@ class DeviceRegistry(Registry):
                          "killswitch.name",
                          "oss.device_id",
                          "scsi.model",
+                         "system.hardware.product",
                          "info.product"):
             if property in self._properties:
                 return self._properties[property]
@@ -299,6 +310,62 @@ class DeviceRegistry(Registry):
             ("subproduct_id", self._get_subproduct_id()),
             ("vendor", self._get_vendor()),
             ("product", self._get_product()))
+
+
+class DmiDeviceRegistry(DeviceRegistry):
+
+    _category_to_property = {
+        "BIOS": "system.firmware",
+        "BOARD": "system.board",
+        "CHASSIS": "system.chassis"}
+
+    def __init__(self, properties, category):
+        super(DmiDeviceRegistry, self).__init__(properties)
+        if category not in self._category_to_property:
+            raise Exception, "Unsupported category: %s" % category
+
+        self._category = category
+
+    @property
+    def _property(self):
+        return self._category_to_property[self._category]
+
+    def _get_category(self):
+        return self._category
+
+    def _get_path(self):
+        path = super(DmiDeviceRegistry, self)._get_path()
+        return posixpath.join(path, self._category.lower())
+
+    @DmiNotAvailable
+    def _get_type(self):
+        version_property = "%s.version" % self._property
+        if version_property in self._properties:
+            return self._properties[version_property]
+
+        type_property = "%s.type" % self._property
+        if type_property in self._properties:
+            chassis_name = self._properties[type_property]
+            return str(Dmi.chassis_names.index(chassis_name))
+
+        return None
+
+    @DmiNotAvailable
+    def _get_vendor(self):
+        for subproperty in "vendor", "manufacturer":
+            property = "%s.%s" % (self._property, subproperty)
+            if property in self._properties:
+                return self._properties[property]
+
+        return None
+
+    @DmiNotAvailable
+    def _get_product(self):
+        product_property = "%s.product" % self._property
+        if product_property in self._properties:
+            return self._properties[product_property]
+
+        return None
 
 
 class HalRegistry(CommandRegistry):
@@ -330,13 +397,13 @@ class HalRegistry(CommandRegistry):
             if not record:
                 continue
 
-            path = None
+            name = None
             properties = {}
             for line in record.split("\n"):
                 match = re.match(r"udi = '(.*)'", line)
                 if match:
                     udi = match.group(1)
-                    path = udi.split("/")[-1]
+                    name = udi.split("/")[-1]
                     continue
 
                 match = re.match(r"  (.*) = (.*) \((.*?)\)", line)
@@ -360,9 +427,19 @@ class HalRegistry(CommandRegistry):
 
                     properties[key] = value
 
-            device = DeviceRegistry(properties)
-            if not self._ignore_device(device):
-                items.append((path, device))
+            if name == "computer":
+                properties["linux.subsystem"] = "dmi"
+                properties["linux.sysfs_path"] = "/sys/devices/virtual/dmi/id"
+
+                device = DeviceRegistry(properties)
+                items.append((device.path, device))
+                for category in "BIOS", "BOARD", "CHASSIS":
+                    device = DmiDeviceRegistry(properties, category)
+                    items.append((device.path, device))
+            else:
+                device = DeviceRegistry(properties)
+                if not self._ignore_device(device):
+                    items.append((device.path, device))
 
         return items
 

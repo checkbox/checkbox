@@ -25,6 +25,7 @@ from curses.ascii import isprint
 
 from checkbox.lib.bit import get_bitmask, test_bit
 from checkbox.lib.cache import cache
+from checkbox.lib.dmi import DmiNotAvailable
 from checkbox.lib.input import Input
 from checkbox.lib.pci import Pci
 
@@ -58,6 +59,9 @@ class DeviceRegistry(Registry):
         return None
 
     def _get_category(self):
+        if "sys_vendor" in self._attributes:
+            return "SYSTEM"
+
         if "IFINDEX" in self._environment:
             return "NETWORK"
 
@@ -178,9 +182,16 @@ class DeviceRegistry(Registry):
         return self._environment.get("DEVPATH")
 
     def _get_type(self):
-        type = self._attributes.get("type")
-        if type:
-            return type.lower()
+        if "type" in self._attributes:
+            return self._attributes.get("type").lower()
+
+        for attribute in "product_version", "rev":
+            if attribute in self._attributes:
+                return self._attributes[attribute]
+
+        bus = self._get_bus()
+        if bus != "pci" and "version" in self._attributes:
+            return self._attributes.get("version")
 
         return None
 
@@ -221,7 +232,7 @@ class DeviceRegistry(Registry):
             return int(product_id, 16)
 
         # usb device and ieee1394
-        for attribute in ("idProduct", "model_id"):
+        for attribute in "idProduct", "model_id":
             if attribute in self._attributes:
                 return int(self._attributes[attribute], 16)
 
@@ -262,6 +273,10 @@ class DeviceRegistry(Registry):
             if not re.match(r"^0x[%s]{4}$" % string.hexdigits, vendor):
                 return vendor
 
+        # dmi
+        if "sys_vendor" in self._attributes:
+            return self._attributes["sys_vendor"]
+
         # pnp
         if "id" in self._attributes:
             match = re.match(r"^(?P<vendor_name>.*)(?P<product_id>[%s]{4})$"
@@ -277,11 +292,16 @@ class DeviceRegistry(Registry):
         return None
 
     def _get_product(self):
-        for element in ("NAME", "RFKILL_NAME", "POWER_SUPPLY_MODEL_NAME"):
+        for element in ("NAME",
+                        "RFKILL_NAME",
+                        "POWER_SUPPLY_MODEL_NAME"):
             if element in self._environment:
                 return self._environment[element].strip('"')
 
-        for attribute in ("description", "model_name_kv", "model"):
+        for attribute in ("description",
+                          "model_name_kv",
+                          "model",
+                          "product_name"):
             if attribute in self._attributes:
                 return self._attributes[attribute]
 
@@ -343,6 +363,45 @@ class DeviceRegistry(Registry):
             ("product", self._get_product()),
             ("attributes", MapRegistry(self._attributes)),
             ("device", LinkRegistry(self)))
+
+
+class DmiDeviceRegistry(DeviceRegistry):
+
+    def __init__(self, environment, attributes, category):
+        super(DmiDeviceRegistry, self).__init__(environment, attributes)
+        self._category = category
+
+    def _get_category(self):
+        return self._category
+
+    def _get_path(self):
+        path = super(DmiDeviceRegistry, self)._get_path()
+        return posixpath.join(path, self._category.lower())
+
+    @DmiNotAvailable
+    def _get_type(self):
+        for name in "type", "version":
+            attribute = "%s_%s" % (self._category.lower(), name)
+            if attribute in self._attributes:
+                return self._attributes[attribute]
+
+        return None
+
+    @DmiNotAvailable
+    def _get_product(self):
+        attribute = "%s_name" % self._category.lower()
+        if attribute in self._attributes:
+            return self._attributes[attribute]
+
+        return None
+
+    @DmiNotAvailable
+    def _get_vendor(self):
+        attribute = "%s_vendor" % self._category.lower()
+        if attribute in self._attributes:
+            return self._attributes[attribute]
+
+        return None
 
 
 class UdevRegistry(CommandRegistry):
@@ -425,9 +484,16 @@ class UdevRegistry(CommandRegistry):
             # Determine attributes
             attributes = self._get_attributes(path)
 
-            device = DeviceRegistry(environment, attributes)
-            if not self._ignore_device(device):
+            if path == "/devices/virtual/dmi/id":
+                device = DeviceRegistry(environment, attributes)
                 items.append((path, device))
+                for category in "BIOS", "BOARD", "CHASSIS":
+                    device = DmiDeviceRegistry(environment, attributes, category)
+                    items.append((device.path, device))
+            else:
+                device = DeviceRegistry(environment, attributes)
+                if not self._ignore_device(device):
+                    items.append((path, device))
 
         return items
 
