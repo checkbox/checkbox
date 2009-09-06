@@ -18,6 +18,7 @@
 #
 import logging
 
+from checkbox.lib.dmi import Dmi
 from checkbox.lib.file import write
 from checkbox.lib.safe import safe_md5sum
 
@@ -25,41 +26,6 @@ from checkbox.properties import Path, String
 from checkbox.plugin import Plugin
 from checkbox.registry import registry_eval_recursive
 
-
-# See also 3.3.4.1 of the "System Management BIOS Reference Specification,
-# Version 2.6.1" (Preliminary Standard) document, available from
-# http://www.dmtf.org/standards/smbios.
-formfactor_table = (
-    "unknown",  # Undefined
-    "unknown",  # Other
-    "unknown",  # Unknown
-    "desktop",  # Desktop
-    "desktop",  # Low Profile Desktop
-    "server",   # Pizza Box
-    "desktop",  # Mini Tower
-    "desktop",  # Tower
-    "laptop",   # Portable
-    "laptop",   # Laptop
-    "laptop",   # Notebook
-    "handheld", # Hand Held
-    "laptop",   # Docking Station
-    "unknown",  # All In One
-    "laptop",   # Sub Notebook
-    "desktop",  # Space-saving
-    "unknown",  # Lunch Box
-    "server",   # Main Server Chassis
-    "unknown",  # Expansion Chassis
-    "unknown",  # Sub Chassis
-    "unknown",  # Bus Expansion Chassis
-    "unknown",  # Peripheral Chassis
-    "unknown",  # RAID Chassis
-    "unknown",  # Rack Mount Chassis
-    "unknown",  # Sealed-case PC
-    "unknown",  # Multi-system
-    "unknonw",  # CompactPCI
-    "unknown",  # AdvancedTCA
-    "server",   # Blade
-    "unknown")  # Blade Enclosure
 
 class SystemInfo(Plugin):
 
@@ -83,8 +49,8 @@ class SystemInfo(Plugin):
     def report(self):
         system_id = self.system_id or self.persist.get("system_id")
         if not system_id:
-            devices = registry_eval_recursive(self._manager.registry.udev,
-                "bus == 'dmi'")
+            devices = registry_eval_recursive(self._manager.registry,
+                "device.category == 'CHASSIS'")
             if not devices:
                 return
 
@@ -92,13 +58,13 @@ class SystemInfo(Plugin):
             if not device:
                 return
 
-            formfactor = formfactor_table[int(device.type)]
+            chassis_type = Dmi.chassis_types[int(device.type)]
 
             fingerprint = safe_md5sum()
             for field in [
                     "Computer",
                     "unknown",
-                    formfactor,
+                    chassis_type,
                     device.vendor,
                     device.model]:
                 fingerprint.update(str(field))
