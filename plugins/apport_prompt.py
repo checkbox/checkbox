@@ -131,8 +131,7 @@ class ApportPrompt(Plugin):
         if response == "cancel":
             return
 
-        # Default to ubuntu package and no symptom
-        package = "ubuntu"
+        package = None
         symptom = None
 
         # Give lowest priority to required packages
@@ -155,6 +154,10 @@ class ApportPrompt(Plugin):
                 if device.category in CATEGORY_TO_SYMPTOM:
                     symptom = CATEGORY_TO_SYMPTOM[device.category]
                     break
+
+        # Do not report a bug if no package nor symptom is defined
+        if not package and not symptom:
+            return
 
         try:
             options = ApportOptions(test, package, symptom)
