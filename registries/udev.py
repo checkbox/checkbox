@@ -445,7 +445,7 @@ class UdevRegistry(CommandRegistry):
             return True
 
         # Ignore virtual devices
-        if "virtual" in device.path.split(posixpath.sep):
+        if device.bus != "dmi" and "virtual" in device.path.split(posixpath.sep):
             return True
 
         return False

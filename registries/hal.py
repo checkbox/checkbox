@@ -435,7 +435,7 @@ class HalRegistry(CommandRegistry):
             return True
 
         # Ignore virtual devices
-        if "virtual" in device.path.split(posixpath.sep):
+        if device.bus != "dmi" and "virtual" in device.path.split(posixpath.sep):
             return True
 
         return False
@@ -453,7 +453,7 @@ class HalRegistry(CommandRegistry):
                 match = re.match(r"udi = '(.*)'", line)
                 if match:
                     udi = match.group(1)
-                    name = udi.split("/")[-1]
+                    name = udi.split(posixpath.sep)[-1]
                     continue
 
                 match = re.match(r"  (?P<key>.*) = (?P<value>.*) \((?P<type>.*?)\)", line)
