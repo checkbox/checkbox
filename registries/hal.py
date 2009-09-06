@@ -378,6 +378,56 @@ class HalRegistry(CommandRegistry):
     # Command to retrieve hal information.
     command = String(default="lshal")
 
+    # See also section "Deprecated Properties" of the "HAL 0.5.10 Specification",
+    # available from http://people.freedesktop.org/~david/hal-spec/hal-spec.html
+    _deprecated_expressions = (
+        (r"info\.bus",                             "info.subsystem"),
+        (r"([^\.]+)\.physical_device",             "\1.originating_device"),
+        (r"power_management\.can_suspend_to_ram",  "power_management.can_suspend"),
+        (r"power_management\.can_suspend_to_disk", "power_management.can_hibernate"),
+        (r"smbios\.system\.manufacturer",          "system.hardware.vendor"),
+        (r"smbios\.system\.product",               "system.hardware.product"),
+        (r"smbios\.system\.version",               "system.hardware.version"),
+        (r"smbios\.system\.serial",                "system.hardware.serial"),
+        (r"smbios\.system\.uuid",                  "system.hardware.uuid"),
+        (r"smbios\.bios\.vendor",                  "system.firmware.vendor"),
+        (r"smbios\.bios\.version",                 "system.firmware.version"),
+        (r"smbios\.bios\.release_date",            "system.firmware.release_date"),
+        (r"smbios\.chassis\.manufacturer",         "system.chassis.manufacturer"),
+        (r"smbios\.chassis\.type",                 "system.chassis.type"),
+        (r"system\.vendor",                        "system.hardware.vendor"),
+        (r"usb_device\.speed_bcd",                 "usb_device.speed"),
+        (r"usb_device\.version_bcd",               "usb_device.version"))
+
+    def __init__(self, *args, **kwargs):
+        super(HalRegistry, self).__init__(*args, **kwargs)
+        self._deprecated_patterns = ((re.compile("^%s$" % a), b)
+            for (a, b) in self._deprecated_expressions)
+
+    def _get_key(self, key):
+        for (old, new) in self._deprecated_patterns:
+            key = old.sub(new, key)
+
+        return key
+
+    def _get_value(self, value, type):
+        value = value.strip()
+        if type == "bool":
+            value = bool(value == "true")
+        elif type == "double":
+            value = float(value.split()[0])
+        elif type == "int" or type == "uint64":
+            value = int(value.split()[0])
+        elif type == "string":
+            value = str(value.strip("'"))
+        elif type == "string list":
+            value = [v.strip("'")
+                    for v in value.strip("{}").split(", ")]
+        else:
+            raise Exception, "Unknown type: %s" % type
+
+        return value
+
     def _ignore_device(self, device):
         # Ignore devices without bus or product information
         if not device.bus \
@@ -406,25 +456,11 @@ class HalRegistry(CommandRegistry):
                     name = udi.split("/")[-1]
                     continue
 
-                match = re.match(r"  (.*) = (.*) \((.*?)\)", line)
+                match = re.match(r"  (?P<key>.*) = (?P<value>.*) \((?P<type>.*?)\)", line)
                 if match:
-                    key = match.group(1)
-                    value = match.group(2).strip()
-                    type_name = match.group(3)
-                    if type_name == "bool":
-                        value = bool(value == "true")
-                    elif type_name == "double":
-                        value = float(value.split()[0])
-                    elif type_name == "int" or type_name == "uint64":
-                        value = int(value.split()[0])
-                    elif type_name == "string":
-                        value = str(value.strip("'"))
-                    elif type_name == "string list":
-                        value = [v.strip("'")
-                                for v in value.strip("{}").split(", ")]
-                    else:
-                        raise Exception, "Unknown type: %s" % type_name
-
+                    key = self._get_key(match.group("key"))
+                    value = self._get_value(match.group("value"),
+                        match.group("type"))
                     properties[key] = value
 
             if name == "computer":
