@@ -153,25 +153,6 @@ class RegistryManager(ComponentManager, Registry):
         return items
 
 
-def registry_flatten(registry):
-    from checkbox.registries.link import LinkRegistry
-
-    def get_properties(properties, key, value):
-        if isinstance(value, Registry):
-            # Prevent looping over links
-            if not isinstance(value, LinkRegistry):
-                for dict_key, dict_value in value.items():
-                    get_properties(properties,
-                        ".".join([key, dict_key]), dict_value)
-        else:
-            properties[key] = value
-
-    properties = {}
-    for key, value in registry.items():
-        get_properties(properties, key, value)
-
-    return properties
-
 def registry_eval(registry, source):
     try:
         return eval(source, {}, registry)
