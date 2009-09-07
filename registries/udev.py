@@ -440,12 +440,14 @@ class UdevRegistry(CommandRegistry):
         return attributes
 
     def _ignore_device(self, device):
-        # Ignore devices without product information
-        if not device.product and device.product_id is None:
+        # Ignore devices without product nor vendor information
+        if not device.product and device.product_id is None \
+           and not device.vendor and device.vendor_id is None:
             return True
 
-        # Ignore virtual devices
-        if device.bus != "dmi" and "virtual" in device.path.split(posixpath.sep):
+        # Ignore virtual devices except for dmi information
+        if device.bus != "dmi" \
+           and "virtual" in device.path.split(posixpath.sep):
             return True
 
         return False
