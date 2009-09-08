@@ -25,7 +25,7 @@ from curses.ascii import isprint
 
 from checkbox.lib.bit import get_bitmask, test_bit
 from checkbox.lib.cache import cache
-from checkbox.lib.dmi import DmiNotAvailable
+from checkbox.lib.dmi import Dmi, DmiNotAvailable
 from checkbox.lib.input import Input
 from checkbox.lib.pci import Pci
 
@@ -151,7 +151,7 @@ class DeviceRegistry(Registry):
                 return "FLOPPY"
 
         if self._environment.get("DEVTYPE") == "scsi_device":
-            type = int(self._get_type())
+            type = int(self._attributes.get("type", "-1"))
             if type in (0, 7, 14):
                 return "DISK"
 
@@ -186,20 +186,6 @@ class DeviceRegistry(Registry):
 
     def _get_path(self):
         return self._environment.get("DEVPATH")
-
-    def _get_type(self):
-        if "type" in self._attributes:
-            return self._attributes.get("type").lower()
-
-        for attribute in "product_version", "rev":
-            if attribute in self._attributes:
-                return self._attributes[attribute]
-
-        bus = self._get_bus()
-        if bus != "pci" and "version" in self._attributes:
-            return self._attributes.get("version")
-
-        return None
 
     def _get_vendor_id(self):
         # pci
@@ -360,7 +346,6 @@ class DeviceRegistry(Registry):
             ("bus", self._get_bus()),
             ("category", self._get_category()),
             ("driver", self._get_driver()),
-            ("type", self._get_type()),
             ("vendor_id", self._get_vendor_id()),
             ("product_id", self._get_product_id()),
             ("subvendor_id", self._get_subvendor_id()),
@@ -385,19 +370,14 @@ class DmiDeviceRegistry(DeviceRegistry):
         return posixpath.join(path, self._category.lower())
 
     @DmiNotAvailable
-    def _get_type(self):
-        for name in "type", "version":
-            attribute = "%s_%s" % (self._category.lower(), name)
-            if attribute in self._attributes:
-                return self._attributes[attribute]
-
-        return None
-
-    @DmiNotAvailable
     def _get_product(self):
         attribute = "%s_name" % self._category.lower()
         if attribute in self._attributes:
             return self._attributes[attribute]
+
+        if self._category == "CHASSIS":
+            type = int(self._attributes["chassis_type"])
+            return Dmi.chassis_names[type]
 
         return None
 
