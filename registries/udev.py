@@ -155,6 +155,12 @@ class DeviceRegistry(Registry):
             if type in (0, 7, 14):
                 return "DISK"
 
+            if type == 1:
+                return "TAPE"
+
+            if type == 2:
+                return "PRINTER"
+
             if type in (4, 5):
                 return "CDROM"
 

@@ -142,11 +142,23 @@ class DeviceRegistry(Registry):
 
         if "scsi.type" in self._properties:
             type = self._properties["scsi.type"]
+            if type == "disk":
+                return "DISK"
+
+            if type == "tape":
+                return "TAPE"
+
+            if type == "printer":
+                return "PRINTER"
+
             if type == "cdrom":
                 return "CDROM"
 
-            if type == "disk":
-                return "DISK"
+            if type == "scanner":
+                return "SCANNER"
+
+            if type == "raid":
+                return "RAID"
 
         if self._get_product_id():
             return "OTHER"
