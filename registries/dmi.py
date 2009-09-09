@@ -18,6 +18,8 @@
 #
 import posixpath
 
+from checkbox.lib.cache import cache
+
 from checkbox.properties import String
 from checkbox.registries.command import CommandRegistry
 
@@ -28,6 +30,7 @@ class DmiRegistry(CommandRegistry):
     # Command to retrieve dmi information.
     command = String(default="grep -r . /sys/class/dmi/id/ 2>/dev/null || true")
 
+    @cache
     def items(self):
         items = []
         for line in str(self).split("\n"):
