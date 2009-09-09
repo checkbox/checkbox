@@ -58,7 +58,7 @@ class SystemInfo(Plugin):
             if not device:
                 return
 
-            chassis_type = Dmi.chassis_types[int(device.type)]
+            chassis_type = Dmi.chassis_name_to_type[device.product]
 
             fingerprint = safe_md5sum()
             for field in [
