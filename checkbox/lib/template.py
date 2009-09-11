@@ -40,6 +40,34 @@ class Template(object):
 
         yield buffer_old
 
+    def dump_file(self, elements, file, filename="<stream>"):
+        for element in elements:
+            for long_key in element.keys():
+                if long_key.endswith(EXTENDED_STRING):
+                    short_key = long_key.replace(EXTENDED_STRING, "")
+                    del element[short_key]
+
+            for key, value in element.items():
+                if key.endswith(EXTENDED_STRING):
+                    key = key.replace(EXTENDED_STRING, "")
+                    file.write("%s:\n" % key)
+                    for line in value.split("\n"):
+                        file.write(" %s\n" % line)
+                elif isinstance(value, (list, tuple)):
+                    file.write("%s:\n" % key)
+                    for v in value:
+                        file.write(" %s\n" % v)
+                else:
+                    file.write("%s: %s\n" % (key, value))
+
+            file.write("\n")
+
+    def dump_filename(self, elements, filename):
+        logging.info("Dumping elements to filename: %s", filename)
+
+        file = open(filename, "w")
+        return self.dump_file(elements, file, filename)
+
     def load_file(self, file, filename="<stream>"):
         elements = []
         for string in self._reader(file):
