@@ -187,30 +187,6 @@ class DeviceRegistry(Registry):
     def _get_path(self):
         return self._environment.get("DEVPATH")
 
-    def _get_vendor_id(self):
-        # pci
-        if "PCI_ID" in self._environment:
-            vendor_id, product_id = self._environment["PCI_ID"].split(":")
-            return int(vendor_id, 16)
-
-        # usb interface
-        if "PRODUCT" in self._environment \
-           and self._environment.get("DEVTYPE") == "usb_interface":
-            vendor_id, product_id, revision = self._environment["PRODUCT"].split("/")
-            return int(vendor_id, 16)
-
-        # usb device
-        if "idVendor" in self._attributes:
-            return int(self._attributes["idVendor"], 16)
-
-        # ieee1394
-        vendor_id_path = posixpath.join(self._get_path(), "../vendor_id")
-        if posixpath.exists(vendor_id_path):
-            vendor_id = open(vendor_id_path, "r").read().strip()
-            return int(vendor_id, 16)
-
-        return None
-
     def _get_product_id(self):
         # pci
         if "PCI_ID" in self._environment:
@@ -237,11 +213,27 @@ class DeviceRegistry(Registry):
 
         return None
 
-    def _get_subvendor_id(self):
-        if "PCI_SUBSYS_ID" in self._environment:
-            pci_subsys_id = self._environment["PCI_SUBSYS_ID"]
-            subvendor_id, subproduct_id = pci_subsys_id.split(":")
-            return int(subvendor_id, 16)
+    def _get_vendor_id(self):
+        # pci
+        if "PCI_ID" in self._environment:
+            vendor_id, product_id = self._environment["PCI_ID"].split(":")
+            return int(vendor_id, 16)
+
+        # usb interface
+        if "PRODUCT" in self._environment \
+           and self._environment.get("DEVTYPE") == "usb_interface":
+            vendor_id, product_id, revision = self._environment["PRODUCT"].split("/")
+            return int(vendor_id, 16)
+
+        # usb device
+        if "idVendor" in self._attributes:
+            return int(self._attributes["idVendor"], 16)
+
+        # ieee1394
+        vendor_id_path = posixpath.join(self._get_path(), "../vendor_id")
+        if posixpath.exists(vendor_id_path):
+            vendor_id = open(vendor_id_path, "r").read().strip()
+            return int(vendor_id, 16)
 
         return None
 
@@ -253,33 +245,11 @@ class DeviceRegistry(Registry):
 
         return None
 
-    def _get_vendor(self):
-        if "RFKILL_NAME" in self._environment:
-            return None
-
-        if "POWER_SUPPLY_MANUFACTURER" in self._environment:
-            return self._environment["POWER_SUPPLY_MANUFACTURER"]
-
-        if "vendor" in self._attributes:
-            vendor = self._attributes["vendor"]
-            if not re.match(r"^0x[%s]{4}$" % string.hexdigits, vendor):
-                return vendor
-
-        # dmi
-        if "sys_vendor" in self._attributes:
-            return self._attributes["sys_vendor"]
-
-        # pnp
-        if "id" in self._attributes:
-            match = re.match(r"^(?P<vendor_name>.*)(?P<product_id>[%s]{4})$"
-                % string.hexdigits, self._attributes["id"])
-            if match:
-                return match.group("vendor_name")
-
-        # ieee1394
-        vendor_path = posixpath.join(self._get_path(), "../vendor_oui")
-        if posixpath.exists(vendor_path):
-            return open(vendor_path, "r").read().strip()
+    def _get_subvendor_id(self):
+        if "PCI_SUBSYS_ID" in self._environment:
+            pci_subsys_id = self._environment["PCI_SUBSYS_ID"]
+            subvendor_id, subproduct_id = pci_subsys_id.split(":")
+            return int(subvendor_id, 16)
 
         return None
 
@@ -340,18 +310,48 @@ class DeviceRegistry(Registry):
 
         return None
 
+    def _get_vendor(self):
+        if "RFKILL_NAME" in self._environment:
+            return None
+
+        if "POWER_SUPPLY_MANUFACTURER" in self._environment:
+            return self._environment["POWER_SUPPLY_MANUFACTURER"]
+
+        if "vendor" in self._attributes:
+            vendor = self._attributes["vendor"]
+            if not re.match(r"^0x[%s]{4}$" % string.hexdigits, vendor):
+                return vendor
+
+        # dmi
+        if "sys_vendor" in self._attributes:
+            return self._attributes["sys_vendor"]
+
+        # pnp
+        if "id" in self._attributes:
+            match = re.match(r"^(?P<vendor_name>.*)(?P<product_id>[%s]{4})$"
+                % string.hexdigits, self._attributes["id"])
+            if match:
+                return match.group("vendor_name")
+
+        # ieee1394
+        vendor_path = posixpath.join(self._get_path(), "../vendor_oui")
+        if posixpath.exists(vendor_path):
+            return open(vendor_path, "r").read().strip()
+
+        return None
+
     def items(self):
         return (
             ("path", self._get_path()),
             ("bus", self._get_bus()),
             ("category", self._get_category()),
             ("driver", self._get_driver()),
-            ("vendor_id", self._get_vendor_id()),
             ("product_id", self._get_product_id()),
-            ("subvendor_id", self._get_subvendor_id()),
+            ("vendor_id", self._get_vendor_id()),
             ("subproduct_id", self._get_subproduct_id()),
-            ("vendor", self._get_vendor()),
+            ("subvendor_id", self._get_subvendor_id()),
             ("product", self._get_product()),
+            ("vendor", self._get_vendor()),
             ("attributes", MapRegistry(self._attributes)),
             ("device", LinkRegistry(self)))
 
@@ -369,15 +369,16 @@ class DmiDeviceRegistry(DeviceRegistry):
         path = super(DmiDeviceRegistry, self)._get_path()
         return posixpath.join(path, self._category.lower())
 
-    @DmiNotAvailable
     def _get_product(self):
-        attribute = "%s_name" % self._category.lower()
-        if attribute in self._attributes:
-            return self._attributes[attribute]
-
         if self._category == "CHASSIS":
             type = int(self._attributes["chassis_type"])
             return Dmi.chassis_names[type]
+
+        for name in "name", "version":
+            attribute = "%s_%s" % (self._category.lower(), name)
+            product = self._attributes.get(attribute)
+            if product and product != "Not Available":
+                return product
 
         return None
 
@@ -426,9 +427,13 @@ class UdevRegistry(CommandRegistry):
         return attributes
 
     def _ignore_device(self, device):
-        # Ignore devices without product nor vendor information
-        if not device.product and device.product_id is None \
-           and not device.vendor and device.vendor_id is None:
+        # Ignore devices without product information
+        if not device.product and device.product_id is None:
+            return True
+
+        # Ignore invalid subsystem information
+        if (device.subproduct_id is None and device.subvendor_id is not None) \
+           or (device.subproduct_id is not None and device.subvendor_id is None):
             return True
 
         # Ignore virtual devices except for dmi information
@@ -440,7 +445,7 @@ class UdevRegistry(CommandRegistry):
 
     @cache
     def items(self):
-        items = []
+        devices = []
         line_pattern = re.compile(r"(?P<key>\w):\s*(?P<value>.*)")
         multi_pattern = re.compile(r"(?P<key>\w+)=(?P<value>.*)")
 
@@ -474,16 +479,15 @@ class UdevRegistry(CommandRegistry):
 
             if path == "/devices/virtual/dmi/id":
                 device = DeviceRegistry(environment, attributes)
-                items.append((path, device))
+                devices.append(device)
                 for category in "BIOS", "BOARD", "CHASSIS":
                     device = DmiDeviceRegistry(environment, attributes, category)
-                    items.append((device.path, device))
+                    devices.append(device)
             else:
                 device = DeviceRegistry(environment, attributes)
-                if not self._ignore_device(device):
-                    items.append((path, device))
+                devices.append(device)
 
-        return items
+        return [(d.path, d) for d in devices if not self._ignore_device(d)]
 
 
 factory = UdevRegistry
