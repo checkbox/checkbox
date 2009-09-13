@@ -26,8 +26,8 @@ class PackagesInfo(Plugin):
         self._manager.reactor.call_on("report", self.report)
 
     def report(self):
-        message = self._manager.registry.packages.values()
-        self._manager.reactor.fire("report-packages", message)
+        self._manager.reactor.fire("report-packages",
+            self._manager.registry.packages)
 
 
 factory = PackagesInfo

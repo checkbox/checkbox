@@ -89,7 +89,7 @@ class LaunchpadReport(Plugin):
         self._report["hardware"]["dmi"] = dmi
 
     def report_packages(self, packages):
-        self._report["software"]["packages"] = packages
+        self._report["software"]["packages"] = packages.values()
 
     def report_processors(self, processors):
         self._report["hardware"]["processors"] = processors
