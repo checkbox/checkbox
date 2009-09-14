@@ -29,6 +29,7 @@ from checkbox.properties import String
 from checkbox.registry import Registry
 from checkbox.registries.command import CommandRegistry
 from checkbox.registries.link import LinkRegistry
+from checkbox.registries.map import MapRegistry
 
 
 class UnknownName(object):
@@ -294,6 +295,7 @@ class DeviceRegistry(Registry):
             ("subvendor_id", self._get_subvendor_id()),
             ("product", self._get_product()),
             ("vendor", self._get_vendor()),
+            ("properties", MapRegistry(self._properties)),
             ("device", LinkRegistry(self)))
 
 
