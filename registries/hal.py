@@ -58,7 +58,8 @@ class DeviceRegistry(Registry):
         self._properties = properties
 
     def __str__(self):
-        strings = ["%s: %s" % (k, v) for k, v in self.items()]
+        strings = ["%s: %s" % (k, v) for k, v in self.items()
+            if not isinstance(v, Registry)]
 
         return "\n".join(strings)
 
@@ -406,7 +407,7 @@ class HalRegistry(CommandRegistry):
             return True
 
         # Ignore devices without product information
-        if not device.product and device.product_id:
+        if not device.product and device.product_id is None:
             return True
 
         # Ignore invalid subsystem information
