@@ -46,6 +46,7 @@ class SystemInfo(Plugin):
     def gather_persist(self, persist):
         self.persist = persist.root_at("system_info")
 
+    # TODO: report this upon gathering
     def report(self):
         system_id = self.system_id or self.persist.get("system_id")
         if not system_id:

@@ -47,6 +47,7 @@ class SubmissionInfo(Plugin):
     def report_system_id(self, system_id):
         self._system_id = system_id
 
+    # TODO: report this upon gathering
     def report(self):
         submission_id = self.submission_id
         if not submission_id:
