@@ -378,6 +378,7 @@ class DeviceRegistry(Registry):
             ("product", self._get_product()),
             ("vendor", self._get_vendor()),
             ("attributes", MapRegistry(self._attributes)),
+            ("environment", MapRegistry(self._environment)),
             ("device", LinkRegistry(self)))
 
 
