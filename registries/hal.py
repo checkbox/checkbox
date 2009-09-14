@@ -23,6 +23,7 @@ import posixpath
 from checkbox.lib.cache import cache
 from checkbox.lib.dmi import DmiNotAvailable
 from checkbox.lib.pci import Pci
+from checkbox.lib.usb import Usb
 
 from checkbox.properties import String
 from checkbox.registry import Registry
@@ -110,7 +111,8 @@ class DeviceRegistry(Registry):
                 if subclass_id == Pci.CLASS_MULTIMEDIA_VIDEO:
                     return "CAPTURE"
 
-                if subclass_id == Pci.CLASS_MULTIMEDIA_AUDIO:
+                if subclass_id == Pci.CLASS_MULTIMEDIA_AUDIO \
+                   or subclass_id == Pci.CLASS_MULTIMEDIA_AUDIO_DEVICE: \
                     return "AUDIO"
 
             if class_id == Pci.BASE_CLASS_SERIAL \
@@ -121,6 +123,29 @@ class DeviceRegistry(Registry):
                and (subclass_id == Pci.CLASS_BRIDGE_PCMCIA \
                     or subclass_id == Pci.CLASS_BRIDGE_CARDBUS):
                 return "SOCKET"
+
+        if "usb.interface.class" in self._properties:
+            interface_class = self._properties["usb.interface.class"]
+            interface_subclass = self._properties["usb.interface.subclass"]
+
+            if interface_class == Usb.BASE_CLASS_AUDIO:
+                return "AUDIO"
+
+            if interface_class == Usb.BASE_CLASS_PRINTER:
+                return "PRINTER"
+
+            if interface_class == Usb.BASE_CLASS_STORAGE:
+                if interface_subclass == Usb.CLASS_STORAGE_FLOPPY:
+                    return "FLOPPY"
+
+                if interface_subclass == Usb.CLASS_STORAGE_SCSI:
+                    return "SCSI"
+
+            if interface_class == Usb.BASE_CLASS_VIDEO:
+                return "VIDEO"
+
+            if interface_class == Usb.BASE_CLASS_WIRELESS:
+                return "NETWORK"
 
         if "info.capabilities" in self._properties:
             capabilities = self._properties["info.capabilities"]
