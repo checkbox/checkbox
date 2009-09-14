@@ -126,11 +126,6 @@ class ApportPrompt(Plugin):
         if test["status"] != FAIL:
             return
 
-        response = interface.show_info("Do you want to report a bug?",
-            ["ok", "cancel"], "cancel")
-        if response == "cancel":
-            return
-
         package = None
         symptom = None
 
@@ -157,6 +152,11 @@ class ApportPrompt(Plugin):
 
         # Do not report a bug if no package nor symptom is defined
         if not package and not symptom:
+            return
+
+        response = interface.show_info("Do you want to report a bug?",
+            ["ok", "cancel"], "cancel")
+        if response == "cancel":
             return
 
         try:
