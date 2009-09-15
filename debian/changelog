@@ -2,6 +2,7 @@ checkbox (0.8.4) karmic; urgency=low
 
   * Fixed failing dependencies when not available (LP: #430051)
   * Fixed supporting udevadm not providing DEVPATH variable (LP: #430084)
+  * Fixed supporting audio devices without a /proc/asound entry (LP: #430086)
 
  -- Marc Tardif <marc@ubuntu.com>  Tue, 15 Sep 2009 10:03:33 -0400
 

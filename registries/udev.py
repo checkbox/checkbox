@@ -326,7 +326,7 @@ class DeviceRegistry(Registry):
                 card = match.group("card") or 0
                 path = "/proc/asound/card%s/pcm0p/info" % card
 
-            if path:
+            if path and posixpath.exists(path):
                 file = open(path, "r")
                 for line in file.readlines():
                     match = re.match(r"name: (?P<name>.*)", line)
