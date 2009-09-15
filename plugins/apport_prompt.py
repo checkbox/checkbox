@@ -18,12 +18,18 @@
 #
 from gettext import gettext as _
 
-from apport.ui import UserInterface
-from apport.crashdb import get_crashdb
-
 from checkbox.job import FAIL
 from checkbox.plugin import Plugin
 from checkbox.registry import registry_eval_recursive
+
+class DummyUserInterface:
+    pass
+
+try:
+    from apport.ui import UserInterface
+    from apport.crashdb import get_crashdb
+except:
+    UserInterface = DummyUserInterface
 
 
 CATEGORY_TO_PACKAGE = {
@@ -119,6 +125,9 @@ class ApportPrompt(Plugin):
 
     def register(self, manager):
         super(ApportPrompt, self).register(manager)
+
+        if isinstance(ApportUserInterface, DummyUserInterface):
+            return
 
         self._manager.reactor.call_on("prompt-test", self.prompt_test, 100)
 
