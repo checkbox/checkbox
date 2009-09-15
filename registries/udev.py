@@ -500,6 +500,9 @@ class UdevRegistry(CommandRegistry):
                             "Device property not supported: %s" % value
                     environment[match.group("key")] = match.group("value")
 
+            # Set default DEVPATH
+            environment.setdefault("DEVPATH", path)
+
             # Determine attributes
             attributes = self._get_attributes(path)
 
