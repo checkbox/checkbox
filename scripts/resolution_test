@@ -13,7 +13,7 @@ def check_ati():
     command = "lsmod | grep fglrx"
     fglrx_lines = os.popen(command).readlines()
     if len(fglrx_lines) != 0:
-        print "impossible with fglrx"
+        print "unknown (impossible to determine resolution with fglrx)"
         return True
 
     return False
