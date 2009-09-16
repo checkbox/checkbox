@@ -129,7 +129,7 @@ class CLIChoiceDialog(CLIDialog):
 
                 response = self.get(_("Please choose (%s): ") % ("/".join(self.keys)))
                 try:
-                    return self.keys.index(response[0].upper()) + 1
+                    return self.keys.index(response[0]) + 1
                 except ValueError:
                     pass
         except KeyboardInterrupt:
@@ -251,7 +251,7 @@ class CLIInterface(UserInterface):
             dialog = CLIChoiceDialog(description)
 
             for option in options:
-                dialog.add_option(option.capitalize())
+                dialog.add_option(option.capitalize(), option[0])
 
             # Get option from dialog
             response = dialog.run()
