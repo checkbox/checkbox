@@ -16,6 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
+import os
 import re
 
 from checkbox.lib.cache import cache
@@ -97,7 +98,8 @@ class GconfRegistry(CommandRegistry):
     def __init__(self, *args, **kwargs):
         super(GconfRegistry, self).__init__(*args, **kwargs)
 
-        self.command = self.command.replace("$source", self.source)
+        source = os.path.expanduser(self.source)
+        self.command = self.command.replace("$source", source)
 
     @cache
     def items(self):
