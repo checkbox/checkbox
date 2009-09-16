@@ -168,8 +168,8 @@ class ApportPrompt(Plugin):
             return
 
         response = interface.show_info("Do you want to report a bug?",
-            ["ok", "cancel"], "cancel")
-        if response == "cancel":
+            ["yes", "no"], "no")
+        if response == "no":
             return
 
         try:
