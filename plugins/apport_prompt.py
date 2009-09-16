@@ -20,6 +20,7 @@ from gettext import gettext as _
 
 from checkbox.job import FAIL
 from checkbox.plugin import Plugin
+from checkbox.reactor import StopAllException
 from checkbox.registry import registry_eval_recursive
 
 class DummyUserInterface:
@@ -120,6 +121,9 @@ class ApportUserInterface(UserInterface):
 
         return [options.index(r) for r in results]
 
+    def open_url(self, url):
+        self.interface.show_url(url)
+
 
 class ApportPrompt(Plugin):
 
@@ -182,7 +186,7 @@ class ApportPrompt(Plugin):
                 apport_interface.run_report_bug()
         except SystemExit, e:
             # In case of error, show_error already have been called
-            pass
+            raise StopAllException
 
 
 factory = ApportPrompt
