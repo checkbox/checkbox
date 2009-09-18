@@ -16,8 +16,8 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-import os
 import re
+import posixpath
 
 from checkbox.lib.cache import cache
 from checkbox.lib.conversion import string_to_type
@@ -98,7 +98,7 @@ class GconfRegistry(CommandRegistry):
     def __init__(self, *args, **kwargs):
         super(GconfRegistry, self).__init__(*args, **kwargs)
 
-        source = os.path.expanduser(self.source)
+        source = posixpath.expanduser(self.source)
         self.command = self.command.replace("$source", source)
 
     @cache
