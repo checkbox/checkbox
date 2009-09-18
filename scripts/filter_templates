@@ -62,7 +62,7 @@ def match_elements(elements, whitelist=[], blacklist=[]):
 
 def parse_file(file, *args, **kwargs):
     template = Template()
-    matches = match_elements(template.load_file(file))
+    matches = match_elements(template.load_file(file), *args, **kwargs)
     template.dump_file(matches, sys.stdout)
 
 def parse_path(path, *args, **kwargs):
