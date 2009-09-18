@@ -453,6 +453,10 @@ class UdevRegistry(CommandRegistry):
         return attributes
 
     def _ignore_device(self, device):
+        # Ignore devices without bus information
+        if not device.bus:
+            return True
+
         # Ignore devices without product information
         if not device.product and device.product_id is None:
             return True
