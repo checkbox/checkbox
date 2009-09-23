@@ -14,7 +14,7 @@ def main():
     compiz_check = posixpath.join(posixpath.dirname(__file__), "compiz-check")
     # Answer 'n' to all questions
     command = "yes n | %s" % compiz_check
-    process = Popen(command, stdout=PIPE)
+    process = Popen(command, shell=True, stdout=PIPE)
     output = process.communicate()[0]
 
     # Remove colored output (not handled correctly in checkbox report)
