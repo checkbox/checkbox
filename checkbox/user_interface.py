@@ -68,7 +68,7 @@ class UserInterface(object):
         self.gettext_domain = "checkbox"
         gettext.textdomain(self.gettext_domain)
 
-    def show_info(self, text, default=None):
+    def show_info(self, text, options=[], default=None):
         logging.info(text)
         return default
 
