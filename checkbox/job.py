@@ -59,7 +59,7 @@ class Job(object):
         process_environ = dict(os.environ)
         for environ in self.environ:
             key, value = environ.split("=", 1)
-            value = Template(value).substitute(process_environ)
+            value = Template(value).safe_substitute(process_environ)
             process_environ[key] = value
 
         logging.info("Running command: %s", self.command)
