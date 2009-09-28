@@ -24,6 +24,7 @@ from checkbox.lib.safe import safe_make_directory
 
 from checkbox.properties import Path
 from checkbox.plugin import Plugin
+from checkbox.registries.map import MapRegistry
 from checkbox.reports.launchpad_report import LaunchpadReportManager
 
 
@@ -58,7 +59,7 @@ class LaunchpadReport(Plugin):
              ("report-distribution", self.report_distribution),
              ("report-dmi", self.report_dmi),
              ("report-packages", self.report_packages),
-             ("report-processors", self.report_processors),
+             ("report-processor", self.report_processor),
              ("report-system_id", self.report_system_id),
              ("report-tests", self.report_tests),
              ("report-udev", self.report_udev),
@@ -91,7 +92,14 @@ class LaunchpadReport(Plugin):
     def report_packages(self, packages):
         self._report["software"]["packages"] = packages.values()
 
-    def report_processors(self, processors):
+    def report_processor(self, processor):
+        processors = []
+        for i in range(processor.count):
+            map = dict(processor.items())
+            map["name"] = i
+            p = MapRegistry(map)
+            processors.append(p)
+            
         self._report["hardware"]["processors"] = processors
 
     def report_system_id(self, system_id):
