@@ -45,29 +45,29 @@ def cpuinfo_to_processor(uname, cpuinfo):
     platform_to_conversion = {
         ("i386", "i486", "i586", "i686", "x86_64",): {
             "type": "vendor_id",
-            "model": "model_name",
-            "model_number": "cpu_family",
+            "model": "model name",
+            "model_number": "cpu family",
             "model_version": "model",
             "model_revision": "stepping",
-            "cache": "cache_size",
+            "cache": "cache size",
             "other": "flags",
-            "speed": "cpu_mhz"},
+            "speed": "cpu mhz"},
         ("alpha", "alphaev6",): {
-            "count": "cpus_detected",
+            "count": "cpus detected",
             "type": "cpu",
-            "model": "cpu_model",
-            "model_number": "cpu_variation",
-            "model_version": ("system_type", "system_variation",),
-            "model_revision": "cpu_revision",
-            "other": "platform_string",
-            "speed": "cycle_frequency_[Hz]"},
+            "model": "cpu model",
+            "model_number": "cpu variation",
+            "model_version": ("system type", "system variation",),
+            "model_revision": "cpu revision",
+            "other": "platform string",
+            "speed": "cycle frequency [Hz]"},
         ("ia64",): {
             "type": "vendor",
             "model": "family",
             "model_version": "archrev",
             "model_revision": "revision",
             "other": "features",
-            "speed": "cpu_mhz"},
+            "speed": "cpu mhz"},
         ("ppc64", "ppc",): {
             "type": "platform",
             "model": "cpu",
@@ -75,7 +75,7 @@ def cpuinfo_to_processor(uname, cpuinfo):
             "vendor": "machine",
             "speed": "clock"},
         ("sparc64", "sparc",): {
-            "count": "ncpus_probed",
+            "count": "ncpus probed",
             "type": "type",
             "model": "cpu",
             "model_version": "type",
@@ -163,11 +163,7 @@ class CpuinfoRegistry(FilenameRegistry):
                     continue
 
                 key, value = line.split(":")
-
-                # Sanitize key and value
-                key = key.strip()
-                key = key.replace(" ", "_")
-                value = value.strip()
+                key, value = key.strip(), value.strip()
 
                 # Handle bogomips on sparc
                 if key.endswith("Bogo"):
