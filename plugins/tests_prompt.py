@@ -73,6 +73,7 @@ class TestsPrompt(Plugin):
         key = (test["suite"], test["name"],)
         self._keys.append(key)
         if key not in self._tests:
+            test.setdefault("type", "test")
             test.setdefault("status", UNINITIATED)
             self._tests[key] = test
 
