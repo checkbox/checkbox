@@ -83,6 +83,7 @@ class Variable(object):
 
 
 class ConstantVariable(Variable):
+    __slots__ = ("_item_factory")
 
     def __init__(self, item_factory, *args, **kwargs):
         self._item_factory = item_factory
@@ -95,6 +96,7 @@ class ConstantVariable(Variable):
 
 
 class BoolVariable(Variable):
+    __slots__ = ()
 
     def coerce(self, value):
         if isinstance(value, str):
@@ -111,6 +113,7 @@ class BoolVariable(Variable):
 
 
 class StringVariable(Variable):
+    __slots__ = ()
 
     def coerce(self, value):
         if not isinstance(value, str):
@@ -120,6 +123,7 @@ class StringVariable(Variable):
 
 
 class PathVariable(StringVariable):
+    __slots__ = ()
 
     def coerce(self, value):
         path = super(PathVariable, self).coerce(value)
@@ -127,6 +131,7 @@ class PathVariable(StringVariable):
 
 
 class UnicodeVariable(Variable):
+    __slots__ = ()
 
     def coerce(self, value):
         if isinstance(value, str):
@@ -138,6 +143,7 @@ class UnicodeVariable(Variable):
 
 
 class IntVariable(Variable):
+    __slots__ = ()
 
     def coerce(self, value):
         if isinstance(value, str):
@@ -149,6 +155,7 @@ class IntVariable(Variable):
 
 
 class FloatVariable(Variable):
+    __slots__ = ()
 
     def coerce(self, value):
         if isinstance(value, str):
@@ -160,6 +167,7 @@ class FloatVariable(Variable):
 
 
 class ListVariable(Variable):
+    __slots__ = ("_item_factory", "_separator")
 
     def __init__(self, item_factory, separator, *args, **kwargs):
         self._item_factory = item_factory
@@ -184,6 +192,7 @@ class TupleVariable(ListVariable):
 
 
 class AnyVariable(Variable):
+    __slots__ = ("_schemas")
 
     def __init__(self, schemas, *args, **kwargs):
         self._schemas = schemas
@@ -202,6 +211,7 @@ class AnyVariable(Variable):
 
 
 class DictVariable(Variable):
+    __slots__ = ("_key_schema", "_value_schema")
 
     def __init__(self, key_schema, value_schema, *args, **kwargs):
         self._key_schema = key_schema
@@ -219,6 +229,7 @@ class DictVariable(Variable):
 
 
 class MapVariable(Variable):
+    __slots__ = ("_schema")
 
     def __init__(self, schema, *args, **kwargs):
         self._schema = schema
