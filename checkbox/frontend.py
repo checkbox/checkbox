@@ -24,6 +24,10 @@ DBUS_INTERFACE_NAME = "com.ubuntu.checkbox"
 DBUS_BUS_NAME = "com.ubuntu.checkbox"
 
 
+class FrontendException(Exception):
+
+    pass
+
 class Frontend(object):
 
     globals = {}
@@ -58,7 +62,11 @@ class Frontend(object):
         else:
             dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
             bus = dbus.SystemBus()
-            obj = bus.get_object(DBUS_BUS_NAME, '/checkbox')
+            try:
+                obj = bus.get_object(DBUS_BUS_NAME, '/checkbox')
+            except dbus.DBusException:
+                raise FrontendException, "Failed to connect to DBus backend"
+
             client = dbus.Interface(obj, DBUS_INTERFACE_NAME)
 
             return self.globals.setdefault("client", client)

@@ -21,6 +21,7 @@ import re
 from checkbox.lib.cache import cache
 
 from checkbox.component import ComponentManager
+from checkbox.frontend import FrontendException
 from checkbox.properties import String
 
 
@@ -173,8 +174,12 @@ def registry_eval_recursive(registry, source, mask=[False]):
 
         values.append(registry)
 
-    for key, value in registry.items():
-        if isinstance(value, Registry):
-            values.extend(registry_eval_recursive(value, source, mask))
+    try:
+        for key, value in registry.items():
+            if isinstance(value, Registry):
+                values.extend(registry_eval_recursive(value, source, mask))
+    except FrontendException:
+        # Failing to call the backend should result in a failed eval
+        mask[0] = False
 
     return values
