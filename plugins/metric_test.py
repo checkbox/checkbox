@@ -36,12 +36,13 @@ class MetricTest(Plugin):
         command = test.get("command")
         status = test.get("status", UNINITIATED)
         if command and status == UNINITIATED:
-            job = Job(command, test.get("environ"), test.get("timeout"))
-            interface.show_progress(_("Running metric tests..."),
-                job.execute)
-            test["data"] = job.data
-            test["duration"] = job.duration
-            test["status"] = job.status
+            job = Job(command, test.get("environ"),
+                test.get("timeout"), test.get("user"))
+            (status, data, duration) = interface.show_progress(
+                _("Running metric tests..."), job.execute)
+            test["data"] = data
+            test["duration"] = duration
+            test["status"] = status
 
     def report_metric(self, test):
         test["type"] = "metric"

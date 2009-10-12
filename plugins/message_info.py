@@ -70,8 +70,8 @@ class MessageInfo(Plugin):
         for message in messages:
             self._manager.reactor.fire("message", message)
 
-    def message_command(self, command, environ=[], timeout=None):
-        job = Job(command, environ, timeout)
+    def message_command(self, command, environ=[], timeout=None, user=None):
+        job = Job(command, environ, timeout, user)
         self._manager.reactor.fire("message-job", job)
 
     def message_directory(self, directory, blacklist=[], whitelist=[]):
@@ -95,7 +95,7 @@ class MessageInfo(Plugin):
 
     def message_exec(self, message):
         self._manager.reactor.fire("message-command", message["command"],
-            message.get("environ"), message.get("timeout"))
+            message.get("environ"), message.get("timeout"), message.get("user"))
 
     def message_file(self, file, filename="<stream>"):
         template = TemplateI18n()
@@ -114,9 +114,9 @@ class MessageInfo(Plugin):
         self._manager.reactor.fire("message-file", file, filename)
 
     def message_job(self, job):
-        job.execute()
-        if job.status == PASS:
-            self._manager.reactor.fire("message-string", job.data)
+        (status, data, duration) = job.execute()
+        if status == PASS:
+            self._manager.reactor.fire("message-string", data)
 
     def message_string(self, string):
         file = StringIO(string)

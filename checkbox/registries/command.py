@@ -47,8 +47,8 @@ class CommandRegistry(Registry):
     def __str__(self):
         logging.info("Running command: %s", self.command)
         job = Job(self.command, timeout=self.timeout)
-        job.execute()
-        return job.data
+        (status, data, duration) = job.execute()
+        return data
 
     @cache
     def items(self):

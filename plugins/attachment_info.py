@@ -44,14 +44,15 @@ class AttachmentInfo(Plugin):
             if test["suite"] == attachment.get("suite", None) and \
                test["name"] in attachment.get("depends", []):
                 job = Job(attachment["command"], attachment.get("environ"),
-                    attachment.get("timeout"))
-                interface.show_progress(_("Running attachment..."), job.execute)
+                    attachment.get("timeout"), attachment.get("user"))
+                (status, data, duration) = interface.show_progress(
+                    _("Running attachment..."), job.execute)
                 attachment = dict(attachment)
                 attachment["test"] = test["name"]
                 attachment["suite"] = test["suite"]
-                attachment["data"] = job.data
-                attachment["duration"] = job.duration
-                attachment["status"] = job.status
+                attachment["data"] = data
+                attachment["duration"] = duration
+                attachment["status"] = status
                 attachments.append(attachment)
 
         if attachments:
@@ -63,11 +64,11 @@ class AttachmentInfo(Plugin):
             if not attachment.get("depends", []):
                 job = Job(attachment["command"], attachment.get("environ"),
                     attachment.get("timeout"))
-                job.execute()
+                (status, data, duration) = job.execute()
                 attachment = dict(attachment)
-                attachment["data"] = job.data
-                attachment["duration"] = job.duration
-                attachment["status"] = job.status
+                attachment["data"] = data
+                attachment["duration"] = duration
+                attachment["status"] = status
                 attachments.append(attachment)
 
         if attachments:

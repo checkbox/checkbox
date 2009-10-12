@@ -233,7 +233,8 @@ class CLIInterface(UserInterface):
 
     def _run_test(self, test):
         message = _("Running test %s...") % test["name"]
-        job = Job(test["command"], test.get("environ"), test.get("timeout"))
+        job = Job(test["command"], test.get("environ"),
+            test.get("timeout"), test.get("user"))
         self.show_progress(message, job.execute)
 
     def show_test(self, test):

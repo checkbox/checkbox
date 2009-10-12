@@ -27,6 +27,7 @@ from checkbox.lib.process import Process
 from checkbox.lib.signal import signal_to_name, signal_to_description
 
 from checkbox.depends import DependsIterator
+from checkbox.frontend import frontend
 from checkbox.requires import RequiresIterator
 
 
@@ -42,18 +43,16 @@ ALL_STATUS = [FAIL, PASS, UNINITIATED, UNRESOLVED, UNSUPPORTED, UNTESTED]
 
 class Job(object):
 
-    def __init__(self, command, environ=None, timeout=None):
+    def __init__(self, command, environ=None, timeout=None, user=None):
         if environ is None:
             environ = []
 
         self.command = command
         self.environ = environ
         self.timeout = timeout
+        self.user = user
 
-        self.data = None
-        self.duration = -1
-        self.status = UNINITIATED
-
+    @frontend("get_job_result")
     def execute(self):
         # Sanitize environment
         process_environ = dict(os.environ)
@@ -68,32 +67,34 @@ class Job(object):
             logging.info("Command timed out, killing process.")
             process.kill()
 
-        status = process.cleanup()
-        if os.WIFEXITED(status):
-            exit_status = os.WEXITSTATUS(status)
+        process_status = process.cleanup()
+        if os.WIFEXITED(process_status):
+            exit_status = os.WEXITSTATUS(process_status)
             if exit_status == 0:
-                self.status = PASS
-                self.data = process.outdata
-                if not self.data:
-                    self.data = process.errdata
+                status = PASS
+                data = process.outdata
+                if not data:
+                    data = process.errdata
             elif exit_status == 127:
-                self.status = UNRESOLVED
-                self.data = _("Command not found.")
+                status = UNRESOLVED
+                data = _("Command not found.")
             else:
-                self.status = FAIL
-                self.data = (process.errdata
+                status = FAIL
+                data = (process.errdata
                              or process.outdata)
-        elif os.WIFSIGNALED(status):
-            self.status = UNRESOLVED
-            term_signal = os.WTERMSIG(status)
-            self.data = _("Command received signal %s: %s") % \
+        elif os.WIFSIGNALED(process_status):
+            status = UNRESOLVED
+            term_signal = os.WTERMSIG(process_status)
+            data = _("Command received signal %s: %s") % \
                 (signal_to_name(term_signal),
                  signal_to_description(term_signal))
         else:
             raise Exception, "Command not terminated: %s" \
                 % self.command
 
-        self.duration = process.endtime - process.starttime
+        duration = process.endtime - process.starttime
+
+        return (status, data, duration)
 
 
 class JobIterator(IteratorContain):

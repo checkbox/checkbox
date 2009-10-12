@@ -17,8 +17,6 @@
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-import logging
-
 import gobject
 import dbus
 import dbus.service
@@ -28,6 +26,7 @@ from checkbox.lib.environ import append_path
 
 from checkbox.job import Job
 from checkbox.properties import Int, String
+from checkbox.user_interface import UserInterface
 
 
 class PermissionDeniedByPolicy(dbus.DBusException):
@@ -37,7 +36,7 @@ class PermissionDeniedByPolicy(dbus.DBusException):
 class UnknownRegistryException(dbus.DBusException):
     _dbus_error_name = 'com.ubuntu.DeviceDriver.InvalidDriverDBException'
 
-class UnknownTestException(dbus.DBusException):
+class UnknownJobException(dbus.DBusException):
     _dbus_error_name = 'com.ubuntu.DeviceDriver.InvalidDriverDBException'
 
 
@@ -54,7 +53,7 @@ class BackendManager(dbus.service.Object):
         self.dbus_info = None
         self.polkit = None
         self.loop = False
-        self.tests = {}
+        self.tests = []
 
     def __repr__(self):
         return "<BackendManager>"
@@ -79,31 +78,34 @@ class BackendManager(dbus.service.Object):
         in_signature="s", out_signature="s", sender_keyword="sender",
         connection_keyword="conn")
     def get_registry(self, name, sender=None, conn=None):
-        self._check_polkit_privilege(sender, conn, "com.ubuntu.checkbox.info")
         if name not in self._manager.registry:
             raise UnknownRegistryException, "Registry not found: %s" % name
 
         return str(self._manager.registry[name])
 
     @dbus.service.method(DBUS_INTERFACE_NAME,
-        in_signature="ss", out_signature="as", sender_keyword="sender",
+        in_signature="s", out_signature="as", sender_keyword="sender",
         connection_keyword="conn")
-    def get_test_result(self, suite, name, sender=None, conn=None):
-        self._check_polkit_privilege(sender, conn, "com.ubuntu.checkbox.test")
-        if (suite, name) not in self.tests:
-            raise UnknownTestException, \
-                "Suite/test not found: %s/%s" % (suite, name)
+    def get_job_result(self, command, sender=None, conn=None):
+        for test in self.tests:
+            if test.get("command") == command:
+                break
+        else:
+            raise UnknownJobException, \
+                "Job not found for command: %s" % command
 
-        test = self.tests[(suite, name)]
-        job = Job(test["command"], test.get("environ"), test.get("timeout"))
-        job.execute()
-        return (job.status, job.data, str(job.duration))
+        job = Job(test["command"], test.get("environ"),
+            test.get("timeout"), test.get("user"))
+        (status, data, duration) = job.execute()
+        return (status, data, str(duration))
 
     def report_test(self, test):
-        self.tests[(test["suite"], test["name"])] = test
+        self.tests.append(test)
 
     def run(self):
-        self._manager.reactor.fire("gather")
+        interface = UserInterface("System Testing Backend")
+        self._manager.reactor.fire("prompt-gather", interface)
+        self._manager.reactor.fire("prompt-suites", interface)
 
         # Delay instantiating the service after register
         dbus.service.Object.__init__(self, self.bus, "/checkbox")
@@ -120,48 +122,6 @@ class BackendManager(dbus.service.Object):
             if self.timeout:
                 self.loop = True
             main_loop.run()
-
-    def _check_polkit_privilege(self, sender, conn, privilege):
-        """Verify that sender has a given PolicyKit privilege.
-
-        sender is the sender's (private) D-BUS name, such as ":1:42"
-        (sender_keyword in @dbus.service.methods). conn is
-        the dbus.Connection object (connection_keyword in
-        @dbus.service.methods). privilege is the PolicyKit privilege string.
-
-        This method returns if the caller is privileged, and otherwise throws a
-        PermissionDeniedByPolicy exception.
-        """
-        if sender is None and conn is None:
-            # called locally, not through D-BUS
-            return
-
-        # get peer PID
-        if self.dbus_info is None:
-            self.dbus_info = dbus.Interface(conn.get_object("org.freedesktop.DBus",
-                "/org/freedesktop/DBus/Bus", False), "org.freedesktop.DBus")
-        pid = self.dbus_info.GetConnectionUnixProcessID(sender)
-
-        # query PolicyKit
-        if self.polkit is None:
-            self.polkit = dbus.Interface(dbus.SystemBus().get_object(
-                "org.freedesktop.PolicyKit", "/", False),
-                "org.freedesktop.PolicyKit")
-        try:
-            res = self.polkit.IsProcessAuthorized(privilege, pid, True)
-        except dbus.DBusException, e:
-            if e._dbus_error_name == "org.freedesktop.DBus.Error.ServiceUnknown":
-                # polkitd timed out, connect again
-                self.polkit = None
-                return self._check_polkit_privilege(sender, conn, privilege)
-            else:
-                raise
-
-        if res != "yes":
-            logging.debug("_check_polkit_privilege: sender %s "
-                "on connection %s pid %i requested %s: %s",
-                sender, conn, pid, privilege, res)
-            raise PermissionDeniedByPolicy(privilege + " " + res)
 
 
 factory = BackendManager

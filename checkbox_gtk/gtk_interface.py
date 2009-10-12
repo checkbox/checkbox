@@ -323,14 +323,15 @@ class GTKInterface(UserInterface):
         self._set_sensitive("button_test", False)
 
         message = _("Running test %s...") % test["name"]
-        job = Job(test["command"], test.get("environ"), test.get("timeout"))
-        self.show_progress(message, job.execute)
+        job = Job(test["command"], test.get("environ"),
+            test.get("timeout"), test.get("user"))
+        (status, data, duration) = self.show_progress(message, job.execute)
 
         description = Template(test["description"]).substitute({
-            "output": job.data.strip()})
+            "output": data.strip()})
         self._set_hyper_text_view("hyper_text_view_test", description)
 
-        self._set_active(STATUS_TO_BUTTON[job.status])
+        self._set_active(STATUS_TO_BUTTON[status])
         self._set_label("button_test", _("_Test Again"))
         self._set_sensitive("button_test", True)
 

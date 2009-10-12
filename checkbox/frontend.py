@@ -71,10 +71,9 @@ class Frontend(object):
 
             return self.globals.setdefault("client", client)
 
-    def get_test_result(self, *args, **kwargs):
-        test = self._instance.test
-        if test.get("user"):
-            return self.client.get_test_result(test["suite"], test["name"])
+    def get_job_result(self, *args, **kwargs):
+        if self._instance.user:
+            return self.client.get_job_result(self._instance.command)
         else:
             return self._function(self._instance, *args, **kwargs)
 
