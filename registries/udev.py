@@ -68,9 +68,11 @@ class DeviceRegistry(Registry):
 
         if "PCI_CLASS" in self._environment:
             pci_class = self._environment["PCI_CLASS"]
-            prog_if = int(pci_class[-2:], 16)
-            subclass_id = int(pci_class[-4:-2], 16)
-            class_id = int(pci_class[:-4], 16)
+            if len(pci_class) > 4:
+                pci_class = pci_class[:-2]
+
+            subclass_id = int(pci_class[-2:], 16)
+            class_id = int(pci_class[:-2], 16)
 
             if class_id == Pci.BASE_CLASS_NETWORK:
                 return "NETWORK"
