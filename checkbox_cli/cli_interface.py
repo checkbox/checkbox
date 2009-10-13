@@ -110,7 +110,7 @@ class CLIChoiceDialog(CLIDialog):
         self.keys = []
         self.options = []
 
-    def run(self, label=None):
+    def run(self, label=None, defaults=[]):
         if not self.visible:
             self.show()
 
@@ -125,7 +125,8 @@ class CLIChoiceDialog(CLIDialog):
                 if label is not None:
                     self.put_line(label)
                 for key, option in zip(self.keys, self.options):
-                    self.put_line("  %s: %s" % (key, option))
+                    default = "*" if option in defaults else " "
+                    self.put_line("%s %s: %s" % (default, key, option))
 
                 response = self.get(_("Please choose (%s): ") % ("/".join(self.keys)))
                 try:
@@ -213,14 +214,15 @@ class CLIInterface(UserInterface):
 
         results = dict((d, True) for d in default)
         while True:
-            response = dialog.run()
+            defaults = [k for k, v in results.items() if v]
+            response = dialog.run(defaults=defaults)
             if response > len(options):
                 break
 
             result = options[response - 1]
-            results[result] = True
+            results[result] = not results[result]
 
-        return results.keys()
+        return [k for k, v in results.items() if v]
 
     def show_radio(self, text, options=[], default=None):
         dialog = CLIChoiceDialog(text)
