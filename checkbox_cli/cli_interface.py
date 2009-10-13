@@ -235,7 +235,8 @@ class CLIInterface(UserInterface):
         message = _("Running test %s...") % test["name"]
         job = Job(test["command"], test.get("environ"),
             test.get("timeout"), test.get("user"))
-        self.show_progress(message, job.execute)
+        (status, data, duration) = self.show_progress(message, job.execute)
+        return data
 
     def show_test(self, test):
         options = list([ANSWER_TO_OPTION[a] for a in ALL_ANSWERS])
@@ -243,12 +244,14 @@ class CLIInterface(UserInterface):
             options.append(_("test"))
 
         if re.search(r"\$output", test["description"]):
-            self._run_test(test)
+            output = self._run_test(test)
+        else:
+            output = ""
 
         while True:
             # Show option dialog
             description = string.Template(test["description"]).substitute({
-                "output": test.get("data", "").strip()})
+                "output": output.strip()})
             dialog = CLIChoiceDialog(description)
 
             for option in options:
@@ -260,7 +263,7 @@ class CLIInterface(UserInterface):
             if response <= len(ALL_ANSWERS):
                 break
 
-            self._run_test(test)
+            output = self._run_test(test)
 
             options[-1] = _("test again")
 
