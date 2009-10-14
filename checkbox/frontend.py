@@ -61,8 +61,8 @@ class Frontend(object):
             return self.globals["client"]
         else:
             dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
-            bus = dbus.SystemBus()
             try:
+                bus = dbus.SystemBus()
                 obj = bus.get_object(DBUS_BUS_NAME, '/checkbox')
             except dbus.DBusException:
                 raise FrontendException, "Failed to connect to DBus backend"
