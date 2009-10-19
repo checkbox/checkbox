@@ -83,7 +83,7 @@ class Variable(object):
 
 
 class ConstantVariable(Variable):
-    __slots__ = ("_item_factory")
+    __slots__ = ("_item_factory",)
 
     def __init__(self, item_factory, *args, **kwargs):
         self._item_factory = item_factory
@@ -192,7 +192,7 @@ class TupleVariable(ListVariable):
 
 
 class AnyVariable(Variable):
-    __slots__ = ("_schemas")
+    __slots__ = ("_schemas",)
 
     def __init__(self, schemas, *args, **kwargs):
         self._schemas = schemas
@@ -229,7 +229,7 @@ class DictVariable(Variable):
 
 
 class MapVariable(Variable):
-    __slots__ = ("_schema")
+    __slots__ = ("_schema",)
 
     def __init__(self, schema, *args, **kwargs):
         self._schema = schema
