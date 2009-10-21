@@ -1,16 +1,16 @@
 [encoding: UTF-8]
 gtk/checkbox-gtk.glade
 gtk/checkbox-gtk.desktop.in
-suites/internal.txt.in
-tests/audio.txt.in
-tests/disk.txt.in
-tests/fingerprint.txt.in
-tests/firewire.txt.in
-tests/kms.txt.in
-tests/media.txt.in
-tests/network.txt.in
-tests/peripheral.txt.in
-tests/video.txt.in
+[type: gettext/rfc822deb] suites/internal.txt.in
+[type: gettext/rfc822deb] tests/audio.txt.in
+[type: gettext/rfc822deb] tests/disk.txt.in
+[type: gettext/rfc822deb] tests/fingerprint.txt.in
+[type: gettext/rfc822deb] tests/firewire.txt.in
+[type: gettext/rfc822deb] tests/kms.txt.in
+[type: gettext/rfc822deb] tests/media.txt.in
+[type: gettext/rfc822deb] tests/network.txt.in
+[type: gettext/rfc822deb] tests/peripheral.txt.in
+[type: gettext/rfc822deb] tests/video.txt.in
 checkbox/application.py
 checkbox/lib/signal.py
 checkbox_cli/cli_interface.py
