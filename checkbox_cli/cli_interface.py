@@ -212,7 +212,7 @@ class CLIInterface(UserInterface):
 
         dialog.add_option("Space when finished", " ")
 
-        results = dict((d, True) for d in default)
+        results = dict((d, d in default) for d in options)
         while True:
             defaults = [k for k, v in results.items() if v]
             response = dialog.run(defaults=defaults)
