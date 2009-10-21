@@ -21,7 +21,7 @@ import logging
 from checkbox.lib.cache import cache
 
 from checkbox.frontend import frontend
-from checkbox.job import Job
+from checkbox.job import Job, PASS
 from checkbox.properties import Int, String
 from checkbox.registry import Registry
 
@@ -48,6 +48,10 @@ class CommandRegistry(Registry):
         logging.info("Running command: %s", self.command)
         job = Job(self.command, timeout=self.timeout)
         (status, data, duration) = job.execute()
+        # Return empty string if the job failed
+        if status != PASS:
+            return ""
+
         return data
 
     @cache
