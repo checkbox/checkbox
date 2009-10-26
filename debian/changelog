@@ -4,9 +4,12 @@ checkbox (0.8.5) karmic; urgency=low
   * Fixed checking the status of command registries (LP: #457502)
   * Fixed selecting suites in the command line (LP: #457559)
   * Fixed reporting of bugs to contain test description (LP: #427932)
-  * Updated translation files
+  * Fixed execute permissions on scripts (LP: #459606)
+  * Renamed processors_info plugin to singular because processor
+    information is reported as a single structure with a count attribute
+  * Updated translation files.
 
- -- Marc Tardif <marc@ubuntu.com>  Wed, 21 Oct 2009 14:41:45 -0400
+ -- Marc Tardif <marc@ubuntu.com>  Mon, 26 Oct 2009 12:17:30 -0400
 
 checkbox (0.8.4) karmic; urgency=low
 
