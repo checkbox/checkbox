@@ -7,353 +7,573 @@ msgid ""
 msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-09 09:03-0500\n"
-"PO-Revision-Date: 2008-08-07 15:14+0000\n"
-"Last-Translator: Nizar Kerkeni <nizar.kerkeni@gmail.com>\n"
+"POT-Creation-Date: 2009-10-21 10:54-0400\n"
+"PO-Revision-Date: 2009-10-21 21:55+0000\n"
+"Last-Translator: Nizar Kerkeni <nizarus@nizarus.org>\n"
 "Language-Team: Arabic <ar@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-02-09 13:40+0000\n"
+"X-Launchpad-Export-Date: 2009-10-26 14:04+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
-#: ../gtk/checkbox-gtk.glade.h:1
-msgid "<b>Comment:</b>"
-msgstr "<b>تعليق:</b>"
+#: ../gtk/checkbox-gtk.glade.h:1 ../checkbox_cli/cli_interface.py:274
+msgid "Further information:"
+msgstr "مزيد من المعلومات:"
 
 #: ../gtk/checkbox-gtk.glade.h:2
-msgid "Device information"
-msgstr "معلومات الجهاز"
-
-#: ../gtk/checkbox-gtk.glade.h:3
-msgid "Distribution details"
-msgstr "تفاصيل التوزيعة"
-
-#: ../gtk/checkbox-gtk.glade.h:4 ../checkbox_gtk/gtk_interface.py:269
 msgid "Ne_xt"
 msgstr "ال_تالي"
 
-#: ../gtk/checkbox-gtk.glade.h:5
-msgid "Packages installed"
-msgstr "الحزم المثبتة"
-
-#: ../gtk/checkbox-gtk.glade.h:6
-msgid "Processor information"
-msgstr "معلومات المعالج"
-
-#: ../gtk/checkbox-gtk.glade.h:7
-msgid "Successfully sent information!"
-msgstr "أُرسلت المعلومات بنجاح."
-
-#: ../gtk/checkbox-gtk.glade.h:8 ../gtk/checkbox-gtk.desktop.in.h:1
-#: ../checkbox_cli/cli_interface.py:186 ../checkbox_cli/cli_interface.py:226
-#, fuzzy
+#. Title of the user interface
+#: ../gtk/checkbox-gtk.glade.h:3 ../gtk/checkbox-gtk.desktop.in.h:1
+#: ../plugins/user_interface.py:40
 msgid "System Testing"
-msgstr "اختبار العتاد"
+msgstr "اختبار النظام"
 
-#: ../gtk/checkbox-gtk.glade.h:9
-msgid "Test results"
-msgstr "نتائج الاختبار"
-
-#: ../gtk/checkbox-gtk.glade.h:10
-msgid "_Desktop"
-msgstr "_حاسوب مكتبي"
-
-#: ../gtk/checkbox-gtk.glade.h:11
-msgid "_Laptop"
-msgstr "حاسوب _محمول"
-
-#: ../gtk/checkbox-gtk.glade.h:12
+#: ../gtk/checkbox-gtk.glade.h:4
 msgid "_No"
 msgstr "_لا"
 
-#: ../gtk/checkbox-gtk.glade.h:13
+#: ../gtk/checkbox-gtk.glade.h:5
 msgid "_Previous"
 msgstr "ال_سابق"
 
-#: ../gtk/checkbox-gtk.glade.h:14
-msgid "_Server"
-msgstr "ال_خادوم"
-
-#: ../gtk/checkbox-gtk.glade.h:15
+#: ../gtk/checkbox-gtk.glade.h:6
 msgid "_Skip this test"
 msgstr "تخ_طى هذا الاختبار"
 
-#: ../gtk/checkbox-gtk.glade.h:16 ../checkbox_gtk/gtk_interface.py:227
+#: ../gtk/checkbox-gtk.glade.h:7 ../checkbox_gtk/gtk_interface.py:366
 msgid "_Test"
 msgstr "اخ_تبر"
 
-#: ../gtk/checkbox-gtk.glade.h:17
+#: ../gtk/checkbox-gtk.glade.h:8
 msgid "_Yes"
 msgstr "_نعم"
 
 #: ../gtk/checkbox-gtk.desktop.in.h:2
 msgid "Test and report system information"
-msgstr ""
+msgstr "اختبر و قدّم تقرير عن معلومات النظام"
 
 #. description
-#: ../suites/manual.txt.in:6
-msgid "Run the test for the automatically detected playback device."
-msgstr ""
+#: ../suites/internal.txt.in:3
+msgid "Audio tests"
+msgstr "اختبارات الصوت"
 
 #. description
-#: ../suites/manual.txt.in:6
-#, fuzzy
+#: ../suites/internal.txt.in:8
+msgid "Disk tests"
+msgstr "اختبارات القرص"
+
+#. description
+#: ../suites/internal.txt.in:13
+msgid "Fingerprint reader tests"
+msgstr "اختبارات قارئ البصمة"
+
+#. description
+#: ../suites/internal.txt.in:18
+msgid "Firewire disk tests"
+msgstr "اختبارات قرص Firewire"
+
+#. description
+#: ../suites/internal.txt.in:23
+msgid "Kernel modesetting tests"
+msgstr "اختبارات ضبط الفديو في النواة"
+
+#. description
+#: ../suites/internal.txt.in:28
+msgid "Network tests"
+msgstr "اختبارات الشبكة"
+
+#. description
+#: ../suites/internal.txt.in:33
+msgid "Peripheral tests"
+msgstr "اختبارات الملحقات"
+
+#. description
+#: ../suites/internal.txt.in:38
+msgid "Video tests"
+msgstr "اختبارات الفديو"
+
+#. description
+#: ../tests/audio.txt.in:7
+msgid ""
+"Click the Test button to play a sound on the automatically detected \\ "
+"playback device."
+msgstr "انقر زر الاختبار لتشغيل صوت على جهاز الصوت المكتشف تلقائيا."
+
+#. description
+#: ../tests/audio.txt.in:7
 msgid "Do you hear a sound?"
 msgstr "هل تسمع صوتا؟"
 
 #. description
-#: ../suites/manual.txt.in:15
-msgid "The following resolution was detected for your display:"
-msgstr "تم الكشف عن هذه الدقة لشاشة العرض الخاصة بك:"
+#: ../tests/audio.txt.in:19
+msgid "Detecting your sound device(s):"
+msgstr "يكتشف أجهزة الصوت:"
 
 #. description
-#: ../suites/manual.txt.in:15
-msgid "$(resolution_test)"
-msgstr "$(resolution_test)"
-
-#. description
-#: ../suites/manual.txt.in:15
-msgid "Is this a good resolution for your display?"
-msgstr "هل هذه الدقة لشاشة العرض الخاصة بك صحيحة؟"
-
-#. description
-#: ../suites/manual.txt.in:26
-#, fuzzy
-msgid "Run the video test."
-msgstr "اختبار الفيديو:"
-
-#. description
-#: ../suites/manual.txt.in:26
-#, fuzzy
-msgid "Do you see color bars and static?"
-msgstr "هل رأيت الأعمدة الملونة و الساكنة؟"
-
-#. description
-#: ../suites/manual.txt.in:35
-msgid "Moving the mouse should move the cursor on the screen."
-msgstr "تحريك الفأرة ينبغي ان يحرك المؤشر على الشاشه."
-
-#. description
-#: ../suites/manual.txt.in:35
-msgid "Is your mouse working properly?"
-msgstr "هل تعمل الفأرة بشكل صحيح؟"
-
-#. description
-#: ../suites/manual.txt.in:43
-msgid "Detecting your network controller(s):"
-msgstr "الكشف عن مراقب أو مراقبي الشبكة الخاصين بك:"
-
-#. description
-#: ../suites/manual.txt.in:43
-msgid "$(network_test)"
-msgstr "$(network_test)"
-
-#. description
-#: ../suites/manual.txt.in:43
-msgid "Is this correct?"
-msgstr "هل هذا صحيح؟"
-
-#. description
-#: ../suites/manual.txt.in:54
-msgid "Testing your connection to the Internet:"
-msgstr "اختبار اتصالك بالانترنت:"
-
-#. description
-#: ../suites/manual.txt.in:54
+#: ../tests/audio.txt.in:19 ../tests/disk.txt.in:6 ../tests/network.txt.in:16
+#: ../tests/video.txt.in:28
 msgid "$output"
 msgstr "$output"
 
 #. description
-#: ../suites/manual.txt.in:54
-msgid "Are you connected to the Internet?"
-msgstr "هل أنت متصل بالأنترنت؟"
+#: ../tests/audio.txt.in:19 ../tests/network.txt.in:16
+#: ../tests/video.txt.in:28
+msgid "Is this correct?"
+msgstr "هل هذا صحيح؟"
 
 #. description
-#: ../suites/manual.txt.in:64
+#: ../tests/audio.txt.in:32
 msgid ""
-"Typing keys on your keyboard should display the corresponding characters in "
-"a text area."
+"Disconnect any external microphones that you have plugged in.  \\ Click the "
+"Test button, then speak into your internal microphone.  \\ After a few "
+"seconds, your speech will be played back to you."
 msgstr ""
-"الضغط على المفاتيح في لوحة مفاتيحك يفترض أن يعرض الحرف المقابل لها في منطقة "
-"النص."
+"افصل أي ميكروفون خارجي موصّل بالجهاز. \\ انقر على زر الاختبار ثم تكلم في "
+"الميكروفون الداخلي. \\ بعد عدة ثوان سيُشغّل الصوت الذي سجلته."
 
 #. description
-#: ../suites/manual.txt.in:64
+#: ../tests/audio.txt.in:45
+msgid ""
+"Connect a microphone to your microphone port.  \\ Click the Test button, "
+"then speak into the microphone.  \\ After a few seconds, your speech will be "
+"played back to you."
+msgstr ""
+"وصل ميكروفونا بمقبس الميكروفون. \\ انقر على زر الاختبار ثم تكلم في "
+"الميكروفون. \\ بعد عدة ثوان سيُشغّل الصوت الذي سجلته."
+
+#. description
+#: ../tests/audio.txt.in:58
+msgid ""
+"Pair a Bluetooth headset with your system.  Then open the \\ volume control "
+"application by right-clicking on the speaker \\ icon in the panel and "
+"selecting \"Sound Preferences\".  Select \\ the \"Input\" tab and choose "
+"your Bluetooth device.  Select the \\ \"Output\" tab and choose your "
+"Bluetooth device.  When you are done, \\ click the Test button, then speak "
+"into the microphone.  \\ After a few seconds, your speech will be played "
+"back to you."
+msgstr ""
+
+#. description
+#: ../tests/audio.txt.in:75
+msgid ""
+"Play back a sound on the default output and listen for it on the default \\ "
+"input.  This makes the most sense when the output and input are directly \\ "
+"connected, as with a patch cable."
+msgstr ""
+
+#. description
+#: ../tests/audio.txt.in:86
+msgid ""
+"Connect a USB audio device to your system.  Then open the \\ volume control "
+"application by right-clicking on the speaker \\ icon in the panel and "
+"selecting \"Sound Preferences\".  Select \\ the \"Input\" tab and choose "
+"your USB device.  Select the \\ \"Output\" tab and choose your USB device.  "
+"When you are done, \\ click the Test button, then speak into the microphone. "
+" \\ After a few seconds, your speech will be played back to you."
+msgstr ""
+
+#. description
+#: ../tests/audio.txt.in:103
+msgid ""
+"Open the volume control application by right-clicking on the speaker \\ icon "
+"in the panel and selecting \"Sound Preferences\".  Select \\ the \"Input\" "
+"tab and choose any alternate (non-default) device(s).  Select the \\ "
+"\"Output\" tab and choose any alternate (non-default) device(s).  When you "
+"are \\ done, click the Test button, then speak into the microphone.  \\ "
+"After a few seconds, your speech will be played back to you."
+msgstr ""
+
+#. description
+#: ../tests/audio.txt.in:103
+msgid "Did you hear your speech played back?"
+msgstr "هل سمعت الصوت؟"
+
+#. description
+#: ../tests/disk.txt.in:6
+msgid "Disk benchmark:"
+msgstr "معايرة القرص:"
+
+#. description
+#: ../tests/disk.txt.in:6
+msgid "Is this ok?"
+msgstr "هل هذا سليم؟"
+
+#. description
+#: ../tests/fingerprint.txt.in:3
+msgid ""
+"Prerequisites: This test case assumes that there's a testing account \\ from "
+"which test cases are run and a personal account that the tester \\ uses to "
+"verify the fingerprint reader"
+msgstr ""
+
+#. description
+#: ../tests/fingerprint.txt.in:3
+msgid ""
+"Fingerprint unlock verification procedure: 1.- Click on the user switcher "
+"applet 2.- Select your user name 3.- A window should appear that provides "
+"the ability to login either \\ typing your password or using fingerprint "
+"authentication 4.- Use the fingerprint reader to login 5.- Click on the user "
+"switcher applet 6.- Select the testing account to continue running tests"
+msgstr ""
+
+#. description
+#: ../tests/fingerprint.txt.in:21
+msgid ""
+"Fingerprint unlock verification procedure: 1.- Click on the user switcher "
+"applet 2.- Select 'Lock screen' 3.- Press any key or move the mouse 3.- A "
+"window should appear that provides the ability to unlock either \\ typing "
+"your password or using fingerprint authentication 4.- Use the fingerprint "
+"reader to unlock 5.- Screen should be unlocked"
+msgstr ""
+
+#. description
+#: ../tests/fingerprint.txt.in:21
+msgid "Did the authentication procedure work correctly?"
+msgstr "هل عملت إجراءات الاستيثاق بشكل سليم؟"
+
+#. description
+#: ../tests/firewire.txt.in:3
+msgid ""
+"Firewire HDD verification procedure: 1.- Plug a Firewire HDD into the "
+"computer 2.- A window should be opened asking which action should be "
+"performed (open folder, photo manager, etc). 3.- Copy some files from the "
+"internal/firewire HDD to the firewire/internal HDD"
+msgstr ""
+
+#. description
+#: ../tests/firewire.txt.in:3
+msgid "Do the copy operations work as expected?"
+msgstr "هل جرت عملية النسخ كما ينبغي؟"
+
+#. description
+#: ../tests/kms.txt.in:8
+msgid ""
+"Click Test to switch to another virtual terminal and then back to X.  Your \\"
+" screen will change temporarily to a text console and then switch back to "
+"your \\ current session."
+msgstr ""
+
+#. description
+#: ../tests/kms.txt.in:8
+msgid "Note that this test may require you to enter your password."
+msgstr "لاحظ أن هذا الاختبار قد يتطلب إدخال كلمة السر"
+
+#. description
+#: ../tests/kms.txt.in:8
+msgid "Did the screen change temporarily to a text console?"
+msgstr ""
+
+#. description
+#: ../tests/media.txt.in:7
+msgid "Insert a DVD.  Then click Test to play the DVD in Totem."
+msgstr ""
+
+#. description
+#: ../tests/media.txt.in:7
+msgid "Did the file play?"
+msgstr "هل اشتغل الملف؟"
+
+#. description
+#: ../tests/network.txt.in:5
+msgid "Detecting your network controller(s):"
+msgstr "يكشف عن متحكم الشبكة:"
+
+#. description
+#: ../tests/network.txt.in:16
+msgid "Testing your connection to the Internet:"
+msgstr "يختبر اتصالك بالانترنت:"
+
+#. description
+#: ../tests/network.txt.in:26
+msgid ""
+"Built-in modem network connection procedure: 1.- Connect the telephone line "
+"to the computer 2.- Right click on the Network Manager applet 3.- Select "
+"'Edit Connections' 4.- Select the 'DSL' tab 5.- Click on add 'Add' button 6.-"
+" Configure the connection parameters properly 7.- Notify OSD should confirm "
+"that the connection has been established 8.- Select Test to verify that it's "
+"possible to establish both http \\ and ftp connections"
+msgstr ""
+
+#. description
+#: ../tests/network.txt.in:26
+msgid "Was the connection correctly established?"
+msgstr "هل تأسس الاتصال بالإنترنت؟"
+
+#. description
+#: ../tests/peripheral.txt.in:4
+msgid "Moving the mouse should move the cursor on the screen."
+msgstr "تحريك الفأرة ينبغي أن يحرك المؤشر على الشاشه."
+
+#. description
+#: ../tests/peripheral.txt.in:4
+msgid "Is your mouse working properly?"
+msgstr "هل تعمل الفأرة بشكل صحيح؟"
+
+#. description
+#: ../tests/peripheral.txt.in:13
+msgid ""
+"Click the Test button to open a text area where to type keys on your \\ "
+"keyboard."
+msgstr ""
+
+#. description
+#: ../tests/peripheral.txt.in:13
 msgid "Is your keyboard working properly?"
 msgstr "هل تعمل لوحة المفاتيح بشكل صحيح؟"
 
-#: ../checkbox/application.py:93
+#. description
+#: ../tests/video.txt.in:7
+msgid "This display is using the following resolution:"
+msgstr ""
+
+#. description
+#: ../tests/video.txt.in:7
+msgid "Is this acceptable for your display?"
+msgstr "هل هذا مناسب؟"
+
+#. description
+#: ../tests/video.txt.in:18
+msgid "Click the Test button to display a video test."
+msgstr "انقر على زر اختبر لعرض اختبار الفديو"
+
+#. description
+#: ../tests/video.txt.in:18
+msgid "Do you see color bars and static?"
+msgstr "هل ترى أشرطةً ملونة و ثابتة ؟"
+
+#. description
+#: ../tests/video.txt.in:28
+msgid ""
+"The following screens and video modes have been detected on your system:"
+msgstr ""
+
+#. description
+#: ../tests/video.txt.in:41
+msgid "Click Test to cycle through the detected video modes for your system."
+msgstr ""
+
+#. description
+#: ../tests/video.txt.in:41
+msgid "Did the screen appear to be working for each mode?"
+msgstr ""
+
+#. description
+#: ../tests/video.txt.in:49
+msgid "Check that hardware is able to run compiz."
+msgstr ""
+
+#. description
+#: ../tests/video.txt.in:54
+msgid ""
+"Plug video output to an external monitor. Is the image displayed correctly?"
+msgstr ""
+
+#. description
+#: ../tests/video.txt.in:54
+msgid ""
+"Please repeat the test for each kind of video output supported (VGA, DVI, "
+"DisplayPort and HDMI)."
+msgstr ""
+
+#. description
+#: ../tests/video.txt.in:54
+msgid ""
+"For HDMI, please also check that sound is played in the monitor speakers."
+msgstr ""
+
+#: ../checkbox/application.py:72
 msgid "Usage: checkbox [OPTIONS]"
 msgstr ""
 
-#: ../checkbox/application.py:97
+#: ../checkbox/application.py:76
 msgid "Print version information and exit."
 msgstr "اطبع بيانات الإصدار واخرج."
 
-#: ../checkbox/application.py:100
+#: ../checkbox/application.py:79
 msgid "The file to write the log to."
 msgstr "الملف الذي سيكتب فيه السجل."
 
-#: ../checkbox/application.py:103
+#: ../checkbox/application.py:82
 msgid "One of debug, info, warning, error or critical."
 msgstr ""
 
-#: ../checkbox/application.py:108
+#: ../checkbox/application.py:87
 msgid "Configuration override parameters."
-msgstr ""
+msgstr "مُعامِلات تجاوز التضبيط."
 
-#: ../checkbox/application.py:138
+#: ../checkbox/application.py:121
 msgid "Missing configuration file as argument.\n"
+msgstr "ملف التضبيط مفقود كمُعطى.\n"
+
+#: ../checkbox/lib/signal.py:23
+msgid ""
+"Hangup detected on controlling terminal or death of controlling process"
 msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:116
-msgid "Press any key to continue..."
-msgstr "اضغط على اي مفتاح للمواصلة..."
+#: ../checkbox/lib/signal.py:24
+msgid "Interrupt from keyboard"
+msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:125
-#, python-format
-msgid "Please choose (%s): "
-msgstr "الرجاء اختيار (%s): "
+#: ../checkbox/lib/signal.py:25
+msgid "Quit from keyboard"
+msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:208
+#: ../checkbox/lib/signal.py:26
+msgid "Illegal Instruction"
+msgstr ""
+
+#: ../checkbox/lib/signal.py:27
+msgid "Abort signal from abort(3)"
+msgstr ""
+
+#: ../checkbox/lib/signal.py:28
+msgid "Floating point exception"
+msgstr "استثناء الفاصلة العائمة"
+
+#: ../checkbox/lib/signal.py:29
+msgid "Kill signal"
+msgstr ""
+
+#: ../checkbox/lib/signal.py:30
+msgid "Invalid memory reference"
+msgstr ""
+
+#: ../checkbox/lib/signal.py:31
+msgid "Broken pipe: write to pipe with no readers"
+msgstr ""
+
+#: ../checkbox/lib/signal.py:32
+msgid "Timer signal from alarm(2)"
+msgstr ""
+
+#: ../checkbox/lib/signal.py:33
+msgid "Termination signal"
+msgstr ""
+
+#: ../checkbox/lib/signal.py:34
+msgid "User-defined signal 1"
+msgstr ""
+
+#: ../checkbox/lib/signal.py:35
+msgid "User-defined signal 2"
+msgstr ""
+
+#: ../checkbox/lib/signal.py:36
+msgid "Child stopped or terminated"
+msgstr ""
+
+#: ../checkbox/lib/signal.py:37
+msgid "Continue if stopped"
+msgstr "أكمل إذا أوقِف"
+
+#: ../checkbox/lib/signal.py:38
+msgid "Stop process"
+msgstr "أوقف العملية"
+
+#: ../checkbox/lib/signal.py:39
+msgid "Stop typed at tty"
+msgstr ""
+
+#: ../checkbox/lib/signal.py:40
+msgid "tty input for background process"
+msgstr ""
+
+#: ../checkbox/lib/signal.py:41
+msgid "tty output for background process"
+msgstr ""
+
+#: ../checkbox/lib/signal.py:77
+msgid "UNKNOWN"
+msgstr "مجهول"
+
+#: ../checkbox/lib/signal.py:89
+msgid "Unknown signal"
+msgstr "إشارة مجهولة"
+
+#: ../checkbox_cli/cli_interface.py:32
 msgid "yes"
 msgstr "نعم"
 
-#: ../checkbox_cli/cli_interface.py:208
+#: ../checkbox_cli/cli_interface.py:33
 msgid "no"
 msgstr "لا"
 
-#: ../checkbox_cli/cli_interface.py:208
+#: ../checkbox_cli/cli_interface.py:34
 msgid "skip"
 msgstr "تخطى"
 
-#: ../checkbox_cli/cli_interface.py:210
-#, fuzzy
-msgid "test"
-msgstr "اخ_تبر"
+#: ../checkbox_cli/cli_interface.py:121
+msgid "Press any key to continue..."
+msgstr "اضغط على أي مفتاح للمواصلة..."
 
-#: ../checkbox_cli/cli_interface.py:228
+#: ../checkbox_cli/cli_interface.py:131
 #, python-format
-msgid "Running test: %s"
-msgstr "اجراء الاختبار: %s"
+msgid "Please choose (%s): "
+msgstr "من فضلك اختر (%s): "
 
-#: ../checkbox_cli/cli_interface.py:232
-#, fuzzy
-msgid "test again"
-msgstr "أ_عد الاختبار"
-
-#: ../checkbox_cli/cli_interface.py:236
-msgid "Please provide comments about the failure."
-msgstr "الرجاء تقديم تعليقات عن الفشل."
-
-#: ../checkbox_cli/cli_interface.py:238
-msgid "Please type here and press Ctrl-D when finished:\n"
-msgstr "الرجاء الكتابة هنا و الضغط على Ctrl-D عند الانتهاء:\n"
-
-#: ../checkbox_cli/cli_interface.py:247
-msgid "Authentication"
-msgstr "الاستيثاق"
-
-#: ../checkbox_cli/cli_interface.py:248
-msgid "Please provide your Launchpad email address:"
-msgstr "يرجى تزويدنا بعنوان بريدك الالكتروني في Launchpad:"
-
-#: ../checkbox_cli/cli_interface.py:258
-msgid "Done"
-msgstr "تم"
-
-#: ../checkbox_cli/cli_interface.py:259
-msgid "Successfully sent information to server!"
-msgstr "تم ارسال المعلومات الى الخادوم بنجاح!"
-
-#: ../checkbox_gtk/gtk_interface.py:184
-#, fuzzy, python-format
+#: ../checkbox_cli/cli_interface.py:237 ../checkbox_gtk/gtk_interface.py:325
+#, python-format
 msgid "Running test %s..."
-msgstr "اجراء الاختبار: %s"
+msgstr "يجري الاختبار %s..."
 
-#: ../checkbox_gtk/gtk_interface.py:191
+#: ../checkbox_cli/cli_interface.py:246
+msgid "test"
+msgstr "اختبار"
+
+#: ../checkbox_cli/cli_interface.py:270
+msgid "test again"
+msgstr "اختبر مجددا"
+
+#: ../checkbox_cli/cli_interface.py:276
+msgid "Please type here and press Ctrl-D when finished:\n"
+msgstr "يرجى الكتابة هنا و الضغط على Ctrl-D عند الانتهاء:\n"
+
+#: ../checkbox_gtk/gtk_interface.py:335
 msgid "_Test Again"
 msgstr "أ_عد الاختبار"
 
-#: ../checkbox_gtk/gtk_interface.py:251
-msgid "Exchange"
-msgstr "تبادل"
+#: ../checkbox_gtk/gtk_interface.py:377
+msgid "Info"
+msgstr "بيان"
 
-#: ../checkbox_gtk/gtk_interface.py:261
+#: ../checkbox_gtk/gtk_interface.py:396
+msgid "Error"
+msgstr "عطل"
+
+#: ../checkbox/user_interface.py:128
+#, python-format
+msgid "Unable to start web browser to open %s."
+msgstr "تعذّر تشغيل المتصفح لفتح %s."
+
+#: ../plugins/final_prompt.py:31
+msgid "Successfully finished testing!"
+msgstr "اكتملت الاختبارات بنجاح"
+
+#: ../plugins/final_prompt.py:32
 msgid "_Finish"
 msgstr "أ_نهِ"
 
-#: ../plugins/shell_prompt.py:42
-#, fuzzy
-msgid "Running shell tests..."
-msgstr "اجراء الاختبارات التلقائية..."
-
-#: ../plugins/category_prompt.py:58
-msgid "Category"
-msgstr "الفئة"
-
-#: ../plugins/category_prompt.py:59
-#, fuzzy
-msgid "Please select the category of your system."
-msgstr "رجاء اختر فئة جهازك."
-
-#: ../plugins/exchange_prompt.py:75
-msgid ""
-"The following information will be sent to the Launchpad\n"
-"hardware database. Please provide the e-mail address you\n"
-"use to sign in to Launchpad to submit this information."
-msgstr ""
-"لمعلومات التالية سيتم ارسالها لقاعدة بيانات الاجهزة في\n"
-"Launchpad. يرجى تقديم عنوان بريدك الالكتروني المستخدم\n"
-"لتسجيل الدخول الى Launchpad ليتم ارسال هذه المعلومات."
-
-#: ../plugins/exchange_prompt.py:83
-msgid "Email address must be in a proper format."
-msgstr "عنوان البريد الالكتروني يجب ان يكون بنسق سليم."
-
-#: ../plugins/exchange_prompt.py:87
-msgid "Exchanging information with the server..."
-msgstr "يجري تبادل المعلومات مع الخادوم..."
-
-#: ../plugins/gather_prompt.py:36
+#: ../plugins/gather_prompt.py:34
 msgid "Gathering information from your system..."
-msgstr "يجري جمع المعلومات من نظامك..."
+msgstr "يجري جمع المعلومات عن نظامك..."
 
-#: ../plugins/intro_prompt.py:34
-#, fuzzy
-msgid "Welcome to System Testing!"
-msgstr "مرحبا بكم في اختبار العتاد"
-
-#: ../plugins/intro_prompt.py:35
-#, fuzzy
+#: ../plugins/intro_prompt.py:33
 msgid ""
-"This application will gather information from your system. Then,\n"
-"you will be asked manual tests to confirm that the system is working\n"
-"properly. Finally, you will be asked for the e-mail address you use\n"
-"to sign in to Launchpad in order to submit the information and your\n"
-"results.\n"
+"Welcome to System Testing!\n"
 "\n"
-"If you do not have a Launchpad account, please register here:\n"
-"\n"
-"  https://launchpad.net/+login\n"
-"\n"
-"Thank you for taking the time to test your system."
+"Checkbox provides tests to confirm that your system is working properly. "
+"Once you are finished running the tests, you can view a summary report for "
+"your system."
 msgstr ""
-"هذا التطبيق سيجمع المعلومات من أجهزتك. ثم، سيطلب منك\n"
-"القيام باختبارات للتأكد من ان الاجهزة تعمل كما يجب. وأخيرا،\n"
-"سوف يطلب منك عنوان البريد الالكتروني الذي تستخدمه\n"
-"لتسجيل الدخول الى launchpad من اجل تقديم المعلومات\n"
-"و النتائج الخاصة بك.\n"
-"\n"
-"اذا لم يكن لديك حساب launchpad ، من فضلك سجل هنا :\n"
-"\n"
-"  https://launchpad.net/+login\n"
-"\n"
-"شكرا لكم على اخذ الوقت لاختبار الأجهزة."
+"مرحبا في اختبار النظام,\n"
+"يوفر هذا البرنامج اختبارات لتتحقق من عمل النظام بكفاءة. بعد انتهاء "
+"الاختبارات، تستطيع الاطلاع على تقرير ملخص عن نظامك."
 
-#: ../plugins/launchpad_exchange.py:114
-#, fuzzy, python-format
+#: ../plugins/launchpad_exchange.py:118
+#, python-format
 msgid ""
 "Failed to contact server. Please try\n"
 "again or upload the following file name:\n"
@@ -362,25 +582,168 @@ msgid ""
 "directly to the system database:\n"
 "https://launchpad.net/+hwdb/+submit"
 msgstr ""
-"تعذر الاتصال بالخادوم. الرجاء المحاولة\n"
-"مرة أخرى أو رفع الملفات التالية :\n"
+"فشلت عملية مخاطبة الخادوم. رجاءً أعد المحاولة\n"
+"أو ارفع الملف:\n"
 "%s\n"
-"\n"
-"مباشرة إلى قاعدة بيانات العتاد:\n"
+"مباشرةً إلى قاعدة بيانات النظام:\n"
 "https://launchpad.net/+hwdb/+submit"
 
-#: ../plugins/launchpad_exchange.py:123
+#: ../plugins/launchpad_exchange.py:127
 msgid ""
 "Failed to upload to server,\n"
 "please try again later."
 msgstr ""
-"فشل الرفع إلى الخادم،\n"
+"فشل الرفع إلى الخادوم،\n"
 "يرجى إعادة المحاولة لاحقا."
 
-#: ../plugins/launchpad_exchange.py:135
+#: ../plugins/launchpad_exchange.py:139
 msgid "Information not posted to Launchpad."
-msgstr "المعلومات لم ترسل لLaunchpad."
+msgstr "لم تُرسل المعلومات إلى لنشباد"
 
-#: ../plugins/report_prompt.py:36
+#: ../plugins/launchpad_prompt.py:66
+#, python-format
+msgid ""
+"The following report has been generated for submission to the Launchpad "
+"hardware database:\n"
+"\n"
+"  [[%s|View Report]]\n"
+"\n"
+"You can submit this information about your system by providing the e-mail "
+"address you use to sign in to Launchpad. If you do not have a Launchpad "
+"account, please register here:\n"
+"\n"
+"  https://launchpad.net/+login"
+msgstr ""
+
+#: ../plugins/launchpad_prompt.py:83
+msgid "No e-mail address provided, not submitting to Launchpad."
+msgstr "لم يُعطى أي عنوان بريد إلكتروني، لذا لن يُرسل إلى لنشباد."
+
+#: ../plugins/launchpad_prompt.py:87
+msgid "Email address must be in a proper format."
+msgstr "عنوان البريد الإلكتروني يجب أن يكون بنسق سليم."
+
+#: ../plugins/launchpad_prompt.py:93
+msgid "Exchanging information with the server..."
+msgstr "يجري تبادل المعلومات مع الخادوم..."
+
+#: ../plugins/lock_prompt.py:58
+msgid "There is another checkbox running. Please close it first."
+msgstr "يعمل صندوق اختبار آخر. أغلقه أولا."
+
+#: ../plugins/report_prompt.py:34
 msgid "Building report..."
-msgstr "جاري انجاز التقرير..."
+msgstr "يُعِد التقرير..."
+
+#: ../plugins/shell_test.py:42
+msgid "Running shell tests..."
+msgstr "يجري اختبارات الصدفة..."
+
+#: ../plugins/suites_prompt.py:131
+msgid "Select the suites to test"
+msgstr "اختر حزمة اختبارات"
+
+#: ../scripts/keyboard_test:21
+msgid "Enter text:\n"
+msgstr "أدخل نصا:\n"
+
+#: ../scripts/keyboard_test:42
+msgid "Type Text"
+msgstr "اكتب نصا"
+
+#: ../scripts/internet_test:126
+msgid "No Internet connection"
+msgstr "لا اتصال بالإنترنت"
+
+#: ../scripts/internet_test:128
+msgid "Connection established lost a packet"
+msgstr "الاتصال المُؤسَّس انقطعت إشارته"
+
+#: ../scripts/internet_test:130
+msgid "Internet connection fully established"
+msgstr "أُسس الاتصال بالإنترنت"
+
+#~ msgid "Successfully sent information!"
+#~ msgstr "أُرسلت المعلومات بنجاح."
+
+#~ msgid "_Desktop"
+#~ msgstr "_حاسوب مكتبي"
+
+#~ msgid "_Laptop"
+#~ msgstr "حاسوب _محمول"
+
+#~ msgid "_Server"
+#~ msgstr "ال_خادوم"
+
+#~ msgid "$(network_test)"
+#~ msgstr "$(network_test)"
+
+#~ msgid "Authentication"
+#~ msgstr "الاستيثاق"
+
+#~ msgid "Done"
+#~ msgstr "تم"
+
+#~ msgid "Exchange"
+#~ msgstr "تبادل"
+
+#~ msgid "Category"
+#~ msgstr "الفئة"
+
+#~ msgid "<b>Comment:</b>"
+#~ msgstr "<b>تعليق:</b>"
+
+#~ msgid "Device information"
+#~ msgstr "معلومات الجهاز"
+
+#~ msgid "Distribution details"
+#~ msgstr "تفاصيل التوزيعة"
+
+#~ msgid "Packages installed"
+#~ msgstr "الحزم المثبتة"
+
+#~ msgid "Processor information"
+#~ msgstr "معلومات المعالج"
+
+#~ msgid "Test results"
+#~ msgstr "نتائج الاختبار"
+
+#~ msgid "The following resolution was detected for your display:"
+#~ msgstr "تم الكشف عن هذه الدقة لشاشة العرض الخاصة بك:"
+
+#~ msgid "$(resolution_test)"
+#~ msgstr "$(resolution_test)"
+
+#~ msgid "Is this a good resolution for your display?"
+#~ msgstr "هل هذه الدقة لشاشة العرض الخاصة بك صحيحة؟"
+
+#~ msgid "Are you connected to the Internet?"
+#~ msgstr "هل أنت متصل بالأنترنت؟"
+
+#~ msgid ""
+#~ "Typing keys on your keyboard should display the corresponding characters in "
+#~ "a text area."
+#~ msgstr ""
+#~ "الضغط على المفاتيح في لوحة مفاتيحك يفترض أن يعرض الحرف المقابل لها في منطقة "
+#~ "النص."
+
+#~ msgid "Running test: %s"
+#~ msgstr "اجراء الاختبار: %s"
+
+#~ msgid "Please provide comments about the failure."
+#~ msgstr "الرجاء تقديم تعليقات عن الفشل."
+
+#~ msgid "Please provide your Launchpad email address:"
+#~ msgstr "يرجى تزويدنا بعنوان بريدك الالكتروني في Launchpad:"
+
+#~ msgid "Successfully sent information to server!"
+#~ msgstr "تم ارسال المعلومات الى الخادوم بنجاح!"
+
+#~ msgid ""
+#~ "The following information will be sent to the Launchpad\n"
+#~ "hardware database. Please provide the e-mail address you\n"
+#~ "use to sign in to Launchpad to submit this information."
+#~ msgstr ""
+#~ "لمعلومات التالية سيتم ارسالها لقاعدة بيانات الاجهزة في\n"
+#~ "Launchpad. يرجى تقديم عنوان بريدك الالكتروني المستخدم\n"
+#~ "لتسجيل الدخول الى Launchpad ليتم ارسال هذه المعلومات."

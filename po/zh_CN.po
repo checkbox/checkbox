@@ -7,349 +7,569 @@ msgid ""
 msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-09 09:04-0500\n"
-"PO-Revision-Date: 2008-09-13 15:05+0000\n"
-"Last-Translator: Aron Xu <Unknown>\n"
+"POT-Creation-Date: 2009-10-21 10:54-0400\n"
+"PO-Revision-Date: 2009-10-22 05:54+0000\n"
+"Last-Translator: Aron Xu <happyaron.xu@gmail.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-02-09 13:40+0000\n"
+"X-Launchpad-Export-Date: 2009-10-26 14:04+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
-#: ../gtk/checkbox-gtk.glade.h:1
-msgid "<b>Comment:</b>"
-msgstr "<b>注释：</b>"
+#: ../gtk/checkbox-gtk.glade.h:1 ../checkbox_cli/cli_interface.py:274
+msgid "Further information:"
+msgstr "进一步的信息："
 
 #: ../gtk/checkbox-gtk.glade.h:2
-msgid "Device information"
-msgstr "设备信息"
-
-#: ../gtk/checkbox-gtk.glade.h:3
-msgid "Distribution details"
-msgstr "发布详情"
-
-#: ../gtk/checkbox-gtk.glade.h:4 ../checkbox_gtk/gtk_interface.py:269
 msgid "Ne_xt"
-msgstr "下一个(_X)"
+msgstr "下一步(_X)"
 
-#: ../gtk/checkbox-gtk.glade.h:5
-msgid "Packages installed"
-msgstr "软件包已安装"
-
-#: ../gtk/checkbox-gtk.glade.h:6
-msgid "Processor information"
-msgstr "处理器信息"
-
-#: ../gtk/checkbox-gtk.glade.h:7
-msgid "Successfully sent information!"
-msgstr "发送信息成功！"
-
-#: ../gtk/checkbox-gtk.glade.h:8 ../gtk/checkbox-gtk.desktop.in.h:1
-#: ../checkbox_cli/cli_interface.py:186 ../checkbox_cli/cli_interface.py:226
-#, fuzzy
+#. Title of the user interface
+#: ../gtk/checkbox-gtk.glade.h:3 ../gtk/checkbox-gtk.desktop.in.h:1
+#: ../plugins/user_interface.py:40
 msgid "System Testing"
-msgstr "硬件测试"
+msgstr "系统测试"
 
-#: ../gtk/checkbox-gtk.glade.h:9
-msgid "Test results"
-msgstr "测试结果"
-
-#: ../gtk/checkbox-gtk.glade.h:10
-msgid "_Desktop"
-msgstr "桌面(_D)"
-
-#: ../gtk/checkbox-gtk.glade.h:11
-msgid "_Laptop"
-msgstr "笔记本(_L)"
-
-#: ../gtk/checkbox-gtk.glade.h:12
+#: ../gtk/checkbox-gtk.glade.h:4
 msgid "_No"
 msgstr "否(_N)"
 
-#: ../gtk/checkbox-gtk.glade.h:13
+#: ../gtk/checkbox-gtk.glade.h:5
 msgid "_Previous"
-msgstr "前一个(_P)"
+msgstr "上一步(_P)"
 
-#: ../gtk/checkbox-gtk.glade.h:14
-msgid "_Server"
-msgstr "服务器(_S)"
-
-#: ../gtk/checkbox-gtk.glade.h:15
+#: ../gtk/checkbox-gtk.glade.h:6
 msgid "_Skip this test"
 msgstr "跳过这个测试(_S)"
 
-#: ../gtk/checkbox-gtk.glade.h:16 ../checkbox_gtk/gtk_interface.py:227
+#: ../gtk/checkbox-gtk.glade.h:7 ../checkbox_gtk/gtk_interface.py:366
 msgid "_Test"
 msgstr "测试(_T)"
 
-#: ../gtk/checkbox-gtk.glade.h:17
+#: ../gtk/checkbox-gtk.glade.h:8
 msgid "_Yes"
 msgstr "是(_Y)"
 
 #: ../gtk/checkbox-gtk.desktop.in.h:2
 msgid "Test and report system information"
-msgstr ""
+msgstr "测试并报告系统信息"
 
 #. description
-#: ../suites/manual.txt.in:6
-msgid "Run the test for the automatically detected playback device."
-msgstr ""
+#: ../suites/internal.txt.in:3
+msgid "Audio tests"
+msgstr "音频测试"
 
 #. description
-#: ../suites/manual.txt.in:6
-#, fuzzy
+#: ../suites/internal.txt.in:8
+msgid "Disk tests"
+msgstr "磁盘测试"
+
+#. description
+#: ../suites/internal.txt.in:13
+msgid "Fingerprint reader tests"
+msgstr "指纹阅读器测试"
+
+#. description
+#: ../suites/internal.txt.in:18
+msgid "Firewire disk tests"
+msgstr "火线磁盘测试"
+
+#. description
+#: ../suites/internal.txt.in:23
+msgid "Kernel modesetting tests"
+msgstr "内核模块设置测试"
+
+#. description
+#: ../suites/internal.txt.in:28
+msgid "Network tests"
+msgstr "网络测试"
+
+#. description
+#: ../suites/internal.txt.in:33
+msgid "Peripheral tests"
+msgstr "外围设备测试"
+
+#. description
+#: ../suites/internal.txt.in:38
+msgid "Video tests"
+msgstr "视频测试"
+
+#. description
+#: ../tests/audio.txt.in:7
+msgid ""
+"Click the Test button to play a sound on the automatically detected \\ "
+"playback device."
+msgstr "点击测试按钮以使用自动检测的回放设备播放一段声音。"
+
+#. description
+#: ../tests/audio.txt.in:7
 msgid "Do you hear a sound?"
-msgstr "你听到声音了吗？"
+msgstr "您听到声音了吗？"
 
 #. description
-#: ../suites/manual.txt.in:15
-msgid "The following resolution was detected for your display:"
-msgstr "检测到了你所使用的下列分辨率："
+#: ../tests/audio.txt.in:19
+msgid "Detecting your sound device(s):"
+msgstr "正在检测您的音频设备："
 
 #. description
-#: ../suites/manual.txt.in:15
-msgid "$(resolution_test)"
-msgstr "$(resolution_test)"
-
-#. description
-#: ../suites/manual.txt.in:15
-msgid "Is this a good resolution for your display?"
-msgstr "这是一个对你的显示比较好的分辨率吗？"
-
-#. description
-#: ../suites/manual.txt.in:26
-#, fuzzy
-msgid "Run the video test."
-msgstr "视频测试："
-
-#. description
-#: ../suites/manual.txt.in:26
-#, fuzzy
-msgid "Do you see color bars and static?"
-msgstr "您是否看到一些静止的彩色条？"
-
-#. description
-#: ../suites/manual.txt.in:35
-msgid "Moving the mouse should move the cursor on the screen."
-msgstr "移动鼠标将移动屏幕上的指针。"
-
-#. description
-#: ../suites/manual.txt.in:35
-msgid "Is your mouse working properly?"
-msgstr "你的鼠标是否工作正常?"
-
-#. description
-#: ../suites/manual.txt.in:43
-msgid "Detecting your network controller(s):"
-msgstr "检测你的网络控制器："
-
-#. description
-#: ../suites/manual.txt.in:43
-msgid "$(network_test)"
-msgstr "$(network_test)"
-
-#. description
-#: ../suites/manual.txt.in:43
-msgid "Is this correct?"
-msgstr "这是正确的吗？"
-
-#. description
-#: ../suites/manual.txt.in:54
-msgid "Testing your connection to the Internet:"
-msgstr "测试你的互联网链接："
-
-#. description
-#: ../suites/manual.txt.in:54
+#: ../tests/audio.txt.in:19 ../tests/disk.txt.in:6 ../tests/network.txt.in:16
+#: ../tests/video.txt.in:28
 msgid "$output"
 msgstr "$output"
 
 #. description
-#: ../suites/manual.txt.in:54
-msgid "Are you connected to the Internet?"
-msgstr "你连接到了互联网吗？"
+#: ../tests/audio.txt.in:19 ../tests/network.txt.in:16
+#: ../tests/video.txt.in:28
+msgid "Is this correct?"
+msgstr "这是正确的吗？"
 
 #. description
-#: ../suites/manual.txt.in:64
+#: ../tests/audio.txt.in:32
 msgid ""
-"Typing keys on your keyboard should display the corresponding characters in "
-"a text area."
-msgstr "在您的键盘上打字，应该可以在某个文本区域显示出对应的字符。"
+"Disconnect any external microphones that you have plugged in.  \\ Click the "
+"Test button, then speak into your internal microphone.  \\ After a few "
+"seconds, your speech will be played back to you."
+msgstr ""
 
 #. description
-#: ../suites/manual.txt.in:64
+#: ../tests/audio.txt.in:45
+msgid ""
+"Connect a microphone to your microphone port.  \\ Click the Test button, "
+"then speak into the microphone.  \\ After a few seconds, your speech will be "
+"played back to you."
+msgstr ""
+
+#. description
+#: ../tests/audio.txt.in:58
+msgid ""
+"Pair a Bluetooth headset with your system.  Then open the \\ volume control "
+"application by right-clicking on the speaker \\ icon in the panel and "
+"selecting \"Sound Preferences\".  Select \\ the \"Input\" tab and choose "
+"your Bluetooth device.  Select the \\ \"Output\" tab and choose your "
+"Bluetooth device.  When you are done, \\ click the Test button, then speak "
+"into the microphone.  \\ After a few seconds, your speech will be played "
+"back to you."
+msgstr ""
+
+#. description
+#: ../tests/audio.txt.in:75
+msgid ""
+"Play back a sound on the default output and listen for it on the default \\ "
+"input.  This makes the most sense when the output and input are directly \\ "
+"connected, as with a patch cable."
+msgstr ""
+
+#. description
+#: ../tests/audio.txt.in:86
+msgid ""
+"Connect a USB audio device to your system.  Then open the \\ volume control "
+"application by right-clicking on the speaker \\ icon in the panel and "
+"selecting \"Sound Preferences\".  Select \\ the \"Input\" tab and choose "
+"your USB device.  Select the \\ \"Output\" tab and choose your USB device.  "
+"When you are done, \\ click the Test button, then speak into the microphone. "
+" \\ After a few seconds, your speech will be played back to you."
+msgstr ""
+
+#. description
+#: ../tests/audio.txt.in:103
+msgid ""
+"Open the volume control application by right-clicking on the speaker \\ icon "
+"in the panel and selecting \"Sound Preferences\".  Select \\ the \"Input\" "
+"tab and choose any alternate (non-default) device(s).  Select the \\ "
+"\"Output\" tab and choose any alternate (non-default) device(s).  When you "
+"are \\ done, click the Test button, then speak into the microphone.  \\ "
+"After a few seconds, your speech will be played back to you."
+msgstr ""
+
+#. description
+#: ../tests/audio.txt.in:103
+msgid "Did you hear your speech played back?"
+msgstr "您听到回放的声音了吗？"
+
+#. description
+#: ../tests/disk.txt.in:6
+msgid "Disk benchmark:"
+msgstr "磁盘评分："
+
+#. description
+#: ../tests/disk.txt.in:6
+msgid "Is this ok?"
+msgstr "这样可以吗？"
+
+#. description
+#: ../tests/fingerprint.txt.in:3
+msgid ""
+"Prerequisites: This test case assumes that there's a testing account \\ from "
+"which test cases are run and a personal account that the tester \\ uses to "
+"verify the fingerprint reader"
+msgstr ""
+
+#. description
+#: ../tests/fingerprint.txt.in:3
+msgid ""
+"Fingerprint unlock verification procedure: 1.- Click on the user switcher "
+"applet 2.- Select your user name 3.- A window should appear that provides "
+"the ability to login either \\ typing your password or using fingerprint "
+"authentication 4.- Use the fingerprint reader to login 5.- Click on the user "
+"switcher applet 6.- Select the testing account to continue running tests"
+msgstr ""
+
+#. description
+#: ../tests/fingerprint.txt.in:21
+msgid ""
+"Fingerprint unlock verification procedure: 1.- Click on the user switcher "
+"applet 2.- Select 'Lock screen' 3.- Press any key or move the mouse 3.- A "
+"window should appear that provides the ability to unlock either \\ typing "
+"your password or using fingerprint authentication 4.- Use the fingerprint "
+"reader to unlock 5.- Screen should be unlocked"
+msgstr ""
+
+#. description
+#: ../tests/fingerprint.txt.in:21
+msgid "Did the authentication procedure work correctly?"
+msgstr "认证过程工作正常吗？"
+
+#. description
+#: ../tests/firewire.txt.in:3
+msgid ""
+"Firewire HDD verification procedure: 1.- Plug a Firewire HDD into the "
+"computer 2.- A window should be opened asking which action should be "
+"performed (open folder, photo manager, etc). 3.- Copy some files from the "
+"internal/firewire HDD to the firewire/internal HDD"
+msgstr ""
+
+#. description
+#: ../tests/firewire.txt.in:3
+msgid "Do the copy operations work as expected?"
+msgstr "复制操作工作正常吗？"
+
+#. description
+#: ../tests/kms.txt.in:8
+msgid ""
+"Click Test to switch to another virtual terminal and then back to X.  Your \\"
+" screen will change temporarily to a text console and then switch back to "
+"your \\ current session."
+msgstr ""
+
+#. description
+#: ../tests/kms.txt.in:8
+msgid "Note that this test may require you to enter your password."
+msgstr "注意此测试可能要求您输入密码。"
+
+#. description
+#: ../tests/kms.txt.in:8
+msgid "Did the screen change temporarily to a text console?"
+msgstr ""
+
+#. description
+#: ../tests/media.txt.in:7
+msgid "Insert a DVD.  Then click Test to play the DVD in Totem."
+msgstr "请插入一张 DVD，然后点击测试以使用 Totem 播放 DVD 内容。"
+
+#. description
+#: ../tests/media.txt.in:7
+msgid "Did the file play?"
+msgstr "播放正常吗？"
+
+#. description
+#: ../tests/network.txt.in:5
+msgid "Detecting your network controller(s):"
+msgstr "检测你的网络控制器："
+
+#. description
+#: ../tests/network.txt.in:16
+msgid "Testing your connection to the Internet:"
+msgstr "测试你的互联网链接："
+
+#. description
+#: ../tests/network.txt.in:26
+msgid ""
+"Built-in modem network connection procedure: 1.- Connect the telephone line "
+"to the computer 2.- Right click on the Network Manager applet 3.- Select "
+"'Edit Connections' 4.- Select the 'DSL' tab 5.- Click on add 'Add' button 6.-"
+" Configure the connection parameters properly 7.- Notify OSD should confirm "
+"that the connection has been established 8.- Select Test to verify that it's "
+"possible to establish both http \\ and ftp connections"
+msgstr ""
+
+#. description
+#: ../tests/network.txt.in:26
+msgid "Was the connection correctly established?"
+msgstr "连接正常建立了吗？"
+
+#. description
+#: ../tests/peripheral.txt.in:4
+msgid "Moving the mouse should move the cursor on the screen."
+msgstr "移动鼠标将移动屏幕上的指针。"
+
+#. description
+#: ../tests/peripheral.txt.in:4
+msgid "Is your mouse working properly?"
+msgstr "你的鼠标是否工作正常?"
+
+#. description
+#: ../tests/peripheral.txt.in:13
+msgid ""
+"Click the Test button to open a text area where to type keys on your \\ "
+"keyboard."
+msgstr ""
+
+#. description
+#: ../tests/peripheral.txt.in:13
 msgid "Is your keyboard working properly?"
 msgstr "你的键盘工作的正常吗？"
 
-#: ../checkbox/application.py:93
-msgid "Usage: checkbox [OPTIONS]"
+#. description
+#: ../tests/video.txt.in:7
+msgid "This display is using the following resolution:"
+msgstr "当前处于以下分辨率："
+
+#. description
+#: ../tests/video.txt.in:7
+msgid "Is this acceptable for your display?"
+msgstr "您的显示可以接受吗？"
+
+#. description
+#: ../tests/video.txt.in:18
+msgid "Click the Test button to display a video test."
+msgstr "点击测试按钮来显示一段视频测试。"
+
+#. description
+#: ../tests/video.txt.in:18
+msgid "Do you see color bars and static?"
 msgstr ""
 
-#: ../checkbox/application.py:97
+#. description
+#: ../tests/video.txt.in:28
+msgid ""
+"The following screens and video modes have been detected on your system:"
+msgstr ""
+
+#. description
+#: ../tests/video.txt.in:41
+msgid "Click Test to cycle through the detected video modes for your system."
+msgstr ""
+
+#. description
+#: ../tests/video.txt.in:41
+msgid "Did the screen appear to be working for each mode?"
+msgstr "在每种模式下显示都正常吗？"
+
+#. description
+#: ../tests/video.txt.in:49
+msgid "Check that hardware is able to run compiz."
+msgstr "检查硬件可以运行 compiz。"
+
+#. description
+#: ../tests/video.txt.in:54
+msgid ""
+"Plug video output to an external monitor. Is the image displayed correctly?"
+msgstr ""
+
+#. description
+#: ../tests/video.txt.in:54
+msgid ""
+"Please repeat the test for each kind of video output supported (VGA, DVI, "
+"DisplayPort and HDMI)."
+msgstr ""
+
+#. description
+#: ../tests/video.txt.in:54
+msgid ""
+"For HDMI, please also check that sound is played in the monitor speakers."
+msgstr ""
+
+#: ../checkbox/application.py:72
+msgid "Usage: checkbox [OPTIONS]"
+msgstr "用法： checkbox [选项]"
+
+#: ../checkbox/application.py:76
 msgid "Print version information and exit."
 msgstr "显示版本信息并退出。"
 
-#: ../checkbox/application.py:100
+#: ../checkbox/application.py:79
 msgid "The file to write the log to."
 msgstr "写入到日志的文件。"
 
-#: ../checkbox/application.py:103
+#: ../checkbox/application.py:82
 msgid "One of debug, info, warning, error or critical."
-msgstr "调试，信息，警告，错误或者批评之一。"
+msgstr "调试，信息，警告，错误或者致命错误之一。"
 
-#: ../checkbox/application.py:108
+#: ../checkbox/application.py:87
 msgid "Configuration override parameters."
-msgstr ""
+msgstr "配置覆盖参数。"
 
-#: ../checkbox/application.py:138
+#: ../checkbox/application.py:121
 msgid "Missing configuration file as argument.\n"
 msgstr "丢失配置文件作为参数。\n"
 
-#: ../checkbox_cli/cli_interface.py:116
+#: ../checkbox/lib/signal.py:23
+msgid ""
+"Hangup detected on controlling terminal or death of controlling process"
+msgstr "在控制终端或控制进程死掉时检测到了挂起"
+
+#: ../checkbox/lib/signal.py:24
+msgid "Interrupt from keyboard"
+msgstr "从键盘中断"
+
+#: ../checkbox/lib/signal.py:25
+msgid "Quit from keyboard"
+msgstr "从键盘退出"
+
+#: ../checkbox/lib/signal.py:26
+msgid "Illegal Instruction"
+msgstr "非法指令"
+
+#: ../checkbox/lib/signal.py:27
+msgid "Abort signal from abort(3)"
+msgstr "来自 abort(3) 的取消信号"
+
+#: ../checkbox/lib/signal.py:28
+msgid "Floating point exception"
+msgstr "浮点异常"
+
+#: ../checkbox/lib/signal.py:29
+msgid "Kill signal"
+msgstr "杀死信号"
+
+#: ../checkbox/lib/signal.py:30
+msgid "Invalid memory reference"
+msgstr "无效内存调用"
+
+#: ../checkbox/lib/signal.py:31
+msgid "Broken pipe: write to pipe with no readers"
+msgstr "管道中断：写向管道时没有读入者"
+
+#: ../checkbox/lib/signal.py:32
+msgid "Timer signal from alarm(2)"
+msgstr "来自 alarm(2) 的时间信号"
+
+#: ../checkbox/lib/signal.py:33
+msgid "Termination signal"
+msgstr "终止信号"
+
+#: ../checkbox/lib/signal.py:34
+msgid "User-defined signal 1"
+msgstr "用户定义信号1"
+
+#: ../checkbox/lib/signal.py:35
+msgid "User-defined signal 2"
+msgstr "用户定义信号2"
+
+#: ../checkbox/lib/signal.py:36
+msgid "Child stopped or terminated"
+msgstr "子信号被停止或终止"
+
+#: ../checkbox/lib/signal.py:37
+msgid "Continue if stopped"
+msgstr "若被停止就继续"
+
+#: ../checkbox/lib/signal.py:38
+msgid "Stop process"
+msgstr "停止进程"
+
+#: ../checkbox/lib/signal.py:39
+msgid "Stop typed at tty"
+msgstr "在 tty 上输入了 Stop"
+
+#: ../checkbox/lib/signal.py:40
+msgid "tty input for background process"
+msgstr "为幕后进程的 tty 输入"
+
+#: ../checkbox/lib/signal.py:41
+msgid "tty output for background process"
+msgstr "为幕后进程的 tty 输出"
+
+#: ../checkbox/lib/signal.py:77
+msgid "UNKNOWN"
+msgstr "未知"
+
+#: ../checkbox/lib/signal.py:89
+msgid "Unknown signal"
+msgstr "未知信号"
+
+#: ../checkbox_cli/cli_interface.py:32
+msgid "yes"
+msgstr "是"
+
+#: ../checkbox_cli/cli_interface.py:33
+msgid "no"
+msgstr "否"
+
+#: ../checkbox_cli/cli_interface.py:34
+msgid "skip"
+msgstr "跳过"
+
+#: ../checkbox_cli/cli_interface.py:121
 msgid "Press any key to continue..."
 msgstr "按下任何一个键继续…"
 
-#: ../checkbox_cli/cli_interface.py:125
+#: ../checkbox_cli/cli_interface.py:131
 #, python-format
 msgid "Please choose (%s): "
 msgstr "请选择 (%s)： "
 
-#: ../checkbox_cli/cli_interface.py:208
-msgid "yes"
-msgstr "是"
-
-#: ../checkbox_cli/cli_interface.py:208
-msgid "no"
-msgstr "否"
-
-#: ../checkbox_cli/cli_interface.py:208
-msgid "skip"
-msgstr "跳过"
-
-#: ../checkbox_cli/cli_interface.py:210
-#, fuzzy
-msgid "test"
-msgstr "测试(_T)"
-
-#: ../checkbox_cli/cli_interface.py:228
+#: ../checkbox_cli/cli_interface.py:237 ../checkbox_gtk/gtk_interface.py:325
 #, python-format
-msgid "Running test: %s"
-msgstr "运行测试： %s"
+msgid "Running test %s..."
+msgstr "正在运行测试 %s..."
 
-#: ../checkbox_cli/cli_interface.py:232
-#, fuzzy
+#: ../checkbox_cli/cli_interface.py:246
+msgid "test"
+msgstr "测试"
+
+#: ../checkbox_cli/cli_interface.py:270
 msgid "test again"
-msgstr "再次测试(_T)"
+msgstr "再次测试"
 
-#: ../checkbox_cli/cli_interface.py:236
-msgid "Please provide comments about the failure."
-msgstr "请提供有关这个错误的评论。"
-
-#: ../checkbox_cli/cli_interface.py:238
+#: ../checkbox_cli/cli_interface.py:276
 msgid "Please type here and press Ctrl-D when finished:\n"
 msgstr "请在这里输入并在结束时按下 Ctrl-D ：\n"
 
-#: ../checkbox_cli/cli_interface.py:247
-msgid "Authentication"
-msgstr "验证"
-
-#: ../checkbox_cli/cli_interface.py:248
-msgid "Please provide your Launchpad email address:"
-msgstr "请提供你的 Launchpad 电子邮件地址："
-
-#: ../checkbox_cli/cli_interface.py:258
-msgid "Done"
-msgstr "完成"
-
-#: ../checkbox_cli/cli_interface.py:259
-msgid "Successfully sent information to server!"
-msgstr "成功地发送信息到服务器！"
-
-#: ../checkbox_gtk/gtk_interface.py:184
-#, fuzzy, python-format
-msgid "Running test %s..."
-msgstr "运行测试： %s"
-
-#: ../checkbox_gtk/gtk_interface.py:191
+#: ../checkbox_gtk/gtk_interface.py:335
 msgid "_Test Again"
 msgstr "再次测试(_T)"
 
-#: ../checkbox_gtk/gtk_interface.py:251
-msgid "Exchange"
-msgstr "交换"
+#: ../checkbox_gtk/gtk_interface.py:377
+msgid "Info"
+msgstr "信息"
 
-#: ../checkbox_gtk/gtk_interface.py:261
+#: ../checkbox_gtk/gtk_interface.py:396
+msgid "Error"
+msgstr "错误"
+
+#: ../checkbox/user_interface.py:128
+#, python-format
+msgid "Unable to start web browser to open %s."
+msgstr "无法用浏览器打开 %s。"
+
+#: ../plugins/final_prompt.py:31
+msgid "Successfully finished testing!"
+msgstr "成功完成测试！"
+
+#: ../plugins/final_prompt.py:32
 msgid "_Finish"
 msgstr "完成(_F)"
 
-#: ../plugins/shell_prompt.py:42
-#, fuzzy
-msgid "Running shell tests..."
-msgstr "运行自动测试..."
-
-#: ../plugins/category_prompt.py:58
-msgid "Category"
-msgstr "分类"
-
-#: ../plugins/category_prompt.py:59
-#, fuzzy
-msgid "Please select the category of your system."
-msgstr "请选择你的硬件类别。"
-
-#: ../plugins/exchange_prompt.py:75
-msgid ""
-"The following information will be sent to the Launchpad\n"
-"hardware database. Please provide the e-mail address you\n"
-"use to sign in to Launchpad to submit this information."
-msgstr ""
-"下面的信息将被发送到Lauchpad硬件数据库，请输入用于登录Lauchpad的电子邮件地址"
-"以便发送这些信息。"
-
-#: ../plugins/exchange_prompt.py:83
-msgid "Email address must be in a proper format."
-msgstr "电子邮件地址必须有正确的格式。"
-
-#: ../plugins/exchange_prompt.py:87
-msgid "Exchanging information with the server..."
-msgstr "和服务器交换信息..."
-
-#: ../plugins/gather_prompt.py:36
+#: ../plugins/gather_prompt.py:34
 msgid "Gathering information from your system..."
-msgstr "从你的系统上收集信息..."
+msgstr "正在从您的系统上收集信息..."
 
-#: ../plugins/intro_prompt.py:34
-#, fuzzy
-msgid "Welcome to System Testing!"
-msgstr "欢迎使用硬件测试！"
-
-#: ../plugins/intro_prompt.py:35
-#, fuzzy
+#: ../plugins/intro_prompt.py:33
 msgid ""
-"This application will gather information from your system. Then,\n"
-"you will be asked manual tests to confirm that the system is working\n"
-"properly. Finally, you will be asked for the e-mail address you use\n"
-"to sign in to Launchpad in order to submit the information and your\n"
-"results.\n"
+"Welcome to System Testing!\n"
 "\n"
-"If you do not have a Launchpad account, please register here:\n"
-"\n"
-"  https://launchpad.net/+login\n"
-"\n"
-"Thank you for taking the time to test your system."
+"Checkbox provides tests to confirm that your system is working properly. "
+"Once you are finished running the tests, you can view a summary report for "
+"your system."
 msgstr ""
-"这个程序将收集你的硬件信息。然后，你将被要\n"
-"求手动测试来确认硬件是正常工作的。最后，你\n"
-"将被询问你在 Launchpad 上使用的电子地址来发\n"
-"送信息和你的结果。\n"
+"欢迎使用系统测试程序！\n"
 "\n"
-"如果你没有一个 Launchpad 帐户，请在这里注册：\n"
-"\n"
-"  https://launchpad.net/+login\n"
-"\n"
-"感谢你花费时间来测试你的硬件。"
+"Checkbox 提供一系列测试来验证您的系统工作正常。当您完成这些测试后，可以察看对系统的总结报告。"
 
-#: ../plugins/launchpad_exchange.py:114
-#, fuzzy, python-format
+#: ../plugins/launchpad_exchange.py:118
+#, python-format
 msgid ""
 "Failed to contact server. Please try\n"
 "again or upload the following file name:\n"
@@ -358,14 +578,14 @@ msgid ""
 "directly to the system database:\n"
 "https://launchpad.net/+hwdb/+submit"
 msgstr ""
-"连接服务器失败。请重\n"
-"试或者上载下列文件：\n"
+"联结服务器失败。请再试试\n"
+"或上载下列文件名：\n"
 "%s\n"
 "\n"
-"目录到硬件数据库：\n"
+"直接到系统数据库：\n"
 "https://launchpad.net/+hwdb/+submit"
 
-#: ../plugins/launchpad_exchange.py:123
+#: ../plugins/launchpad_exchange.py:127
 msgid ""
 "Failed to upload to server,\n"
 "please try again later."
@@ -373,10 +593,156 @@ msgstr ""
 "上载到服务器失败，\n"
 "请一会儿重新尝试。"
 
-#: ../plugins/launchpad_exchange.py:135
+#: ../plugins/launchpad_exchange.py:139
 msgid "Information not posted to Launchpad."
 msgstr "不会发布到 Launchpad 上的信息。"
 
-#: ../plugins/report_prompt.py:36
+#: ../plugins/launchpad_prompt.py:66
+#, python-format
+msgid ""
+"The following report has been generated for submission to the Launchpad "
+"hardware database:\n"
+"\n"
+"  [[%s|View Report]]\n"
+"\n"
+"You can submit this information about your system by providing the e-mail "
+"address you use to sign in to Launchpad. If you do not have a Launchpad "
+"account, please register here:\n"
+"\n"
+"  https://launchpad.net/+login"
+msgstr ""
+"生成了下列报告来提交到 Launchpad 硬件数据库：\n"
+"\n"
+"  [[%s|浏览报告]]\n"
+"\n"
+"您可以通过提供您在 Launchpad 上登录用的电子邮件地址来提交这个关于您系统的信息。如果您没有一个 Launchpad 账户，请在这里注册：\n"
+"\n"
+"  https://launchpad.net/+login"
+
+#: ../plugins/launchpad_prompt.py:83
+msgid "No e-mail address provided, not submitting to Launchpad."
+msgstr "没有提供电子邮件地址，不会提交到 Launchpad。"
+
+#: ../plugins/launchpad_prompt.py:87
+msgid "Email address must be in a proper format."
+msgstr "电子邮件地址必须有正确的格式。"
+
+#: ../plugins/launchpad_prompt.py:93
+msgid "Exchanging information with the server..."
+msgstr "和服务器交换信息..."
+
+#: ../plugins/lock_prompt.py:58
+msgid "There is another checkbox running. Please close it first."
+msgstr "有另一个 Checkbox 正在运行。请先关闭它。"
+
+#: ../plugins/report_prompt.py:34
 msgid "Building report..."
 msgstr "正在创建报告..."
+
+#: ../plugins/shell_test.py:42
+msgid "Running shell tests..."
+msgstr "正在运行 shell 测试 %s..."
+
+#: ../plugins/suites_prompt.py:131
+msgid "Select the suites to test"
+msgstr "选择套件来测试"
+
+#: ../scripts/keyboard_test:21
+msgid "Enter text:\n"
+msgstr "输入文本：\n"
+
+#: ../scripts/keyboard_test:42
+msgid "Type Text"
+msgstr "键入文本"
+
+#: ../scripts/internet_test:126
+msgid "No Internet connection"
+msgstr "没有互联网连接"
+
+#: ../scripts/internet_test:128
+msgid "Connection established lost a packet"
+msgstr "连接建立但丢失了一个软件包"
+
+#: ../scripts/internet_test:130
+msgid "Internet connection fully established"
+msgstr "互联网连接完整建立"
+
+#~ msgid "Successfully sent information!"
+#~ msgstr "发送信息成功！"
+
+#~ msgid "_Desktop"
+#~ msgstr "桌面(_D)"
+
+#~ msgid "_Laptop"
+#~ msgstr "笔记本(_L)"
+
+#~ msgid "_Server"
+#~ msgstr "服务器(_S)"
+
+#~ msgid "$(network_test)"
+#~ msgstr "$(network_test)"
+
+#~ msgid "Authentication"
+#~ msgstr "验证"
+
+#~ msgid "Done"
+#~ msgstr "完成"
+
+#~ msgid "Exchange"
+#~ msgstr "交换"
+
+#~ msgid "Category"
+#~ msgstr "分类"
+
+#~ msgid "<b>Comment:</b>"
+#~ msgstr "<b>注释：</b>"
+
+#~ msgid "Device information"
+#~ msgstr "设备信息"
+
+#~ msgid "Distribution details"
+#~ msgstr "发布详情"
+
+#~ msgid "Packages installed"
+#~ msgstr "软件包已安装"
+
+#~ msgid "Processor information"
+#~ msgstr "处理器信息"
+
+#~ msgid "Test results"
+#~ msgstr "测试结果"
+
+#~ msgid "The following resolution was detected for your display:"
+#~ msgstr "检测到了你所使用的下列分辨率："
+
+#~ msgid "$(resolution_test)"
+#~ msgstr "$(resolution_test)"
+
+#~ msgid "Is this a good resolution for your display?"
+#~ msgstr "这是一个对你的显示比较好的分辨率吗？"
+
+#~ msgid "Are you connected to the Internet?"
+#~ msgstr "你连接到了互联网吗？"
+
+#~ msgid ""
+#~ "Typing keys on your keyboard should display the corresponding characters in "
+#~ "a text area."
+#~ msgstr "在您的键盘上打字，应该可以在某个文本区域显示出对应的字符。"
+
+#~ msgid "Running test: %s"
+#~ msgstr "运行测试： %s"
+
+#~ msgid "Please provide comments about the failure."
+#~ msgstr "请提供有关这个错误的评论。"
+
+#~ msgid "Please provide your Launchpad email address:"
+#~ msgstr "请提供你的 Launchpad 电子邮件地址："
+
+#~ msgid "Successfully sent information to server!"
+#~ msgstr "成功地发送信息到服务器！"
+
+#~ msgid ""
+#~ "The following information will be sent to the Launchpad\n"
+#~ "hardware database. Please provide the e-mail address you\n"
+#~ "use to sign in to Launchpad to submit this information."
+#~ msgstr "下面的信息将被发送到Lauchpad硬件数据库，请输入用于登录Lauchpad的电子邮件地址以便发送这些信息。"

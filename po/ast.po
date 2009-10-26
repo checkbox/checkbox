@@ -1,16 +1,16 @@
-# Romanian translation for checkbox
-# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# Asturian translation for checkbox
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
 # This file is distributed under the same license as the checkbox package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: checkbox\n"
-"Report-Msgid-Bugs-To: \n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2009-10-21 10:54-0400\n"
-"PO-Revision-Date: 2009-10-21 22:44+0000\n"
-"Last-Translator: Adi Roiban <adi@roiban.ro>\n"
-"Language-Team: Romanian <ro@li.org>\n"
+"PO-Revision-Date: 2009-10-22 08:51+0000\n"
+"Last-Translator: Iñigo Varela <malditoastur@gmail.com>\n"
+"Language-Team: Asturian <ast@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,81 +19,81 @@ msgstr ""
 
 #: ../gtk/checkbox-gtk.glade.h:1 ../checkbox_cli/cli_interface.py:274
 msgid "Further information:"
-msgstr "Alte informații:"
+msgstr "Más información:"
 
 #: ../gtk/checkbox-gtk.glade.h:2
 msgid "Ne_xt"
-msgstr "Continuă"
+msgstr "_Siguiente"
 
 #. Title of the user interface
 #: ../gtk/checkbox-gtk.glade.h:3 ../gtk/checkbox-gtk.desktop.in.h:1
 #: ../plugins/user_interface.py:40
 msgid "System Testing"
-msgstr "Testarea sistemului"
+msgstr "Pruebes del Sistema"
 
 #: ../gtk/checkbox-gtk.glade.h:4
 msgid "_No"
-msgstr "_Nu"
+msgstr "_Non"
 
 #: ../gtk/checkbox-gtk.glade.h:5
 msgid "_Previous"
-msgstr "_Precedentul"
+msgstr "_Anterior"
 
 #: ../gtk/checkbox-gtk.glade.h:6
 msgid "_Skip this test"
-msgstr "Omite ace_st test"
+msgstr "_Saltase esta prueba"
 
 #: ../gtk/checkbox-gtk.glade.h:7 ../checkbox_gtk/gtk_interface.py:366
 msgid "_Test"
-msgstr "_Test"
+msgstr "_Prueba"
 
 #: ../gtk/checkbox-gtk.glade.h:8
 msgid "_Yes"
-msgstr "_Da"
+msgstr "_Sí"
 
 #: ../gtk/checkbox-gtk.desktop.in.h:2
 msgid "Test and report system information"
-msgstr "Testați și comunicați informațiile de sistem"
+msgstr "Probar y reportar información de sistema"
 
 #. description
 #: ../suites/internal.txt.in:3
 msgid "Audio tests"
-msgstr "Teste audio"
+msgstr "Prebes de soníu"
 
 #. description
 #: ../suites/internal.txt.in:8
 msgid "Disk tests"
-msgstr "Teste disk"
+msgstr "Prebes de discu"
 
 #. description
 #: ../suites/internal.txt.in:13
 msgid "Fingerprint reader tests"
-msgstr "Teste cititor amprente"
+msgstr "Prebes de llector de buelga dactilar"
 
 #. description
 #: ../suites/internal.txt.in:18
 msgid "Firewire disk tests"
-msgstr "Teste disc firewire"
+msgstr "Prebes de discos firewire"
 
 #. description
 #: ../suites/internal.txt.in:23
 msgid "Kernel modesetting tests"
-msgstr "Teste modesetting kernel"
+msgstr "Prebes de «kernel modesetting»"
 
 #. description
 #: ../suites/internal.txt.in:28
 msgid "Network tests"
-msgstr "Teste rețea"
+msgstr "Prebes de rede"
 
 #. description
 #: ../suites/internal.txt.in:33
 msgid "Peripheral tests"
-msgstr "Teste periferice"
+msgstr "Prebes de periféricos"
 
 #. description
 #: ../suites/internal.txt.in:38
 msgid "Video tests"
-msgstr "Teste video"
+msgstr "Prebes de vídeu"
 
 #. description
 #: ../tests/audio.txt.in:7
@@ -101,18 +101,18 @@ msgid ""
 "Click the Test button to play a sound on the automatically detected \\ "
 "playback device."
 msgstr ""
-"Faceți clic pe butonul Test pentru a reda un sune pe dispozitivul de redare "
-"detectat automat."
+"Calque nel botón de Preba pa reproducir un soníu nel preséu de reproducción "
+"\\ deteutáu automáticamente."
 
 #. description
 #: ../tests/audio.txt.in:7
 msgid "Do you hear a sound?"
-msgstr "Auziți vre-un sunet?"
+msgstr "¿Sentiste un soníu?"
 
 #. description
 #: ../tests/audio.txt.in:19
 msgid "Detecting your sound device(s):"
-msgstr "Se detectează dispozitive(le) de sunet:"
+msgstr "Deteutando los sos preseos de soníu:"
 
 #. description
 #: ../tests/audio.txt.in:19 ../tests/disk.txt.in:6 ../tests/network.txt.in:16
@@ -124,7 +124,7 @@ msgstr "$output"
 #: ../tests/audio.txt.in:19 ../tests/network.txt.in:16
 #: ../tests/video.txt.in:28
 msgid "Is this correct?"
-msgstr "Este corect?"
+msgstr "¿Ye ésto correuto?"
 
 #. description
 #: ../tests/audio.txt.in:32
@@ -133,6 +133,9 @@ msgid ""
 "Test button, then speak into your internal microphone.  \\ After a few "
 "seconds, your speech will be played back to you."
 msgstr ""
+"Desconeute cualesquier micrófonu esternu que tenga coneutáu. \\ Calque nel "
+"botón Preba y fale al micrófonu internu. \\ Tres dellos segundos, "
+"reproduciráse la so voz."
 
 #. description
 #: ../tests/audio.txt.in:45
@@ -141,6 +144,8 @@ msgid ""
 "then speak into the microphone.  \\ After a few seconds, your speech will be "
 "played back to you."
 msgstr ""
+"Coneute un micrófonu na clavixa del micrófonu. \\ Calque nel botón Preba y "
+"fale al micrófonu. \\ Tres dellos segundos, reproduciráse la so voz."
 
 #. description
 #: ../tests/audio.txt.in:58
@@ -153,6 +158,13 @@ msgid ""
 "into the microphone.  \\ After a few seconds, your speech will be played "
 "back to you."
 msgstr ""
+"Empareya unos auriculares Bluetooth col so sistema. Llueu abri la \\ "
+"aplicación de control de volume calcando col botón drechu \\ sobro l'iconu "
+"del altavoz allugáu nel panel y esbille «Preferencies de soníu». Esbille \\ "
+"la llingüeta «Entrada» y llueu el so preséu Bluetooth. Esbille \\ la "
+"llingüeta «Salida» y llueu el so preséu Bluetooth. Cuando tenga finao, \\  "
+"calque nel botón Preba y fale al micrófonu. \\ Tres dellos segundos, "
+"reproduciráse la so voz."
 
 #. description
 #: ../tests/audio.txt.in:75
@@ -161,6 +173,9 @@ msgid ""
 "input.  This makes the most sense when the output and input are directly \\ "
 "connected, as with a patch cable."
 msgstr ""
+"Reproduza un soníu pola salida predeterminada y escúchela pola \\ entrada "
+"predeterminada. Esto tien más xacíu cuando la salida y la entrada tán "
+"coneutaes \\ direutamente, por exemplu con un cable de conexón."
 
 #. description
 #: ../tests/audio.txt.in:86
@@ -172,6 +187,12 @@ msgid ""
 "When you are done, \\ click the Test button, then speak into the microphone. "
 " \\ After a few seconds, your speech will be played back to you."
 msgstr ""
+"Coneute a so sistema un preséu de soníu USB. Llueu abri la \\ aplicación de "
+"control de volume calcando col botón drechu \\ sobro l'iconu del altavoz "
+"allugáu nel panel y esbille «Preferencies de soníu». Esbille \\ la llingüeta "
+"«Entrada» y llueu el so preséu USB. Esbille \\ la llingüeta «Salida» y llueu "
+"el so preséu USB. Cuando tenga finao, \\  calque nel botón Preba y fale al "
+"micrófonu. \\ Tres dellos segundos, reproduciráse la so voz."
 
 #. description
 #: ../tests/audio.txt.in:103
@@ -183,21 +204,27 @@ msgid ""
 "are \\ done, click the Test button, then speak into the microphone.  \\ "
 "After a few seconds, your speech will be played back to you."
 msgstr ""
+"Abri la aplicación de control de volume calcando col botón drechu \\ sobro "
+"l'iconu del altavoz allugáu nel panel y esbille «Preferencies de soníu». "
+"Esbille \\ la llingüeta «Entrada» y llueu el so preséu (non predetermináu). "
+"Esbille \\ la llingüeta «Salida» y llueu cualesquier otru preséu (non "
+"predetermináu). Cuando tenga finao, \\  calque nel botón Preba y fale al "
+"micrófonu. \\ Tres dellos segundos, reproduciráse la so voz."
 
 #. description
 #: ../tests/audio.txt.in:103
 msgid "Did you hear your speech played back?"
-msgstr ""
+msgstr "¿Oyisti la to voz?"
 
 #. description
 #: ../tests/disk.txt.in:6
 msgid "Disk benchmark:"
-msgstr ""
+msgstr "Evaluación del rendimientu del discu:"
 
 #. description
 #: ../tests/disk.txt.in:6
 msgid "Is this ok?"
-msgstr "Este bine?"
+msgstr "¿Ye correuto?"
 
 #. description
 #: ../tests/fingerprint.txt.in:3
@@ -206,6 +233,9 @@ msgid ""
 "which test cases are run and a personal account that the tester \\ uses to "
 "verify the fingerprint reader"
 msgstr ""
+"Requisitos previos: esti casu de preba supón qu'esiste una cuenta de \\ "
+"preba dende'l qu'executar los casos de preba y una cuenta personal que'l "
+"comprobador \\ usará pa verificar el llector de buelga dactilar."
 
 #. description
 #: ../tests/fingerprint.txt.in:3
@@ -226,11 +256,17 @@ msgid ""
 "your password or using fingerprint authentication 4.- Use the fingerprint "
 "reader to unlock 5.- Screen should be unlocked"
 msgstr ""
+"Procedimientu de verificación de desbloquéu de buelga dactilar: 1.- Calque "
+"na miniaplicación de cambéu d'usuariu 2.- Esbille «Candar pantalla» 3.- "
+"Calque cualesquier tecla o mueva'l mur 4.- Apaecerá una ventana que-y "
+"permite aniciar \\ una sesión tecleando la so contraseña o usando "
+"l'autenticación por buelga dactilar 5.- Use'l llector de buelga dactilar pa "
+"desbloquiar 6.- La pantalla tendría de desbloquiase"
 
 #. description
 #: ../tests/fingerprint.txt.in:21
 msgid "Did the authentication procedure work correctly?"
-msgstr "Procedura de autentificare a funcționat corect?"
+msgstr "¿Funcionó correcho el procedimientu d'autenticación?"
 
 #. description
 #: ../tests/firewire.txt.in:3
@@ -240,11 +276,15 @@ msgid ""
 "performed (open folder, photo manager, etc). 3.- Copy some files from the "
 "internal/firewire HDD to the firewire/internal HDD"
 msgstr ""
+"Procedimientu de verificación de discu duru firewire: 1.- Coneute un discu "
+"duru firewire al equipu 2.- Apaecerá una ventana entrugándo-y qué aición "
+"quier tomar (abrir carpeta, xestor de semeyes, etc.) 3.- Copie dalgunos "
+"ficheros del discu duru internu al firewire y viceversa."
 
 #. description
 #: ../tests/firewire.txt.in:3
 msgid "Do the copy operations work as expected?"
-msgstr "Operația de copiere a funcționat conform așteptărilor?"
+msgstr "¿Funcionaron como s'esperaba les operaciones de copia?"
 
 #. description
 #: ../tests/kms.txt.in:8
@@ -253,36 +293,42 @@ msgid ""
 " screen will change temporarily to a text console and then switch back to "
 "your \\ current session."
 msgstr ""
+"Calque Preba pa pasar a otra terminal virtual y volver llueu a X-Window. \\ "
+"La pantalla cambiará temporalmente a una consola de testu y llueu tornará a "
+"la \\ so sesión actual."
 
 #. description
 #: ../tests/kms.txt.in:8
 msgid "Note that this test may require you to enter your password."
 msgstr ""
+"Decátese de que pa esta preba puede que-y seya necesario introducir la "
+"contraseña."
 
 #. description
 #: ../tests/kms.txt.in:8
 msgid "Did the screen change temporarily to a text console?"
-msgstr "Ecranul s-a schimbat temporar într-o consolă text?"
+msgstr "¿Cambió la pantalla temporalmente a una consola de testu?"
 
 #. description
 #: ../tests/media.txt.in:7
 msgid "Insert a DVD.  Then click Test to play the DVD in Totem."
-msgstr "Introduceți un DVD, apoi apăsați Test pentru a reda DVD-ul în Totem."
+msgstr ""
+"Inxerte un DVD. Darréu, calque en Preba pa reproducir el DVD en Totem."
 
 #. description
 #: ../tests/media.txt.in:7
 msgid "Did the file play?"
-msgstr "A fost redat fișierul?"
+msgstr "¿Reprodúxose'l ficheru?"
 
 #. description
 #: ../tests/network.txt.in:5
 msgid "Detecting your network controller(s):"
-msgstr "Detecţia plăcii(lor) de reţea:"
+msgstr "Deteutando'l controlador(es) de rede:"
 
 #. description
 #: ../tests/network.txt.in:16
 msgid "Testing your connection to the Internet:"
-msgstr "Testarea conexiunii la Internet:"
+msgstr "Probando la conexón a Internet:"
 
 #. description
 #: ../tests/network.txt.in:26
@@ -298,17 +344,17 @@ msgstr ""
 #. description
 #: ../tests/network.txt.in:26
 msgid "Was the connection correctly established?"
-msgstr "Conexiunea a fost stabilită cu succes?"
+msgstr "¿Afitóse la conexón correutamente?"
 
 #. description
 #: ../tests/peripheral.txt.in:4
 msgid "Moving the mouse should move the cursor on the screen."
-msgstr "Mișcând mausul ar trebui să se miște și cursorul pe ecran."
+msgstr "Ximielgando'l mur tendría de ximielgase'l cursor na pantalla."
 
 #. description
 #: ../tests/peripheral.txt.in:4
 msgid "Is your mouse working properly?"
-msgstr "Mausul dumneavoastră funcționeaza corect?"
+msgstr "¿Tá furrulando correutamente'l  to mur?"
 
 #. description
 #: ../tests/peripheral.txt.in:13
@@ -316,63 +362,62 @@ msgid ""
 "Click the Test button to open a text area where to type keys on your \\ "
 "keyboard."
 msgstr ""
-"Clic pe butonul Test pentru a deschide o zonă text unde să puteți apăsa "
-"taste \\ de pe tastatură."
+"Calque'l botón Preba p'abrir un área de testu au calcar tecles \\ del so "
+"tecláu."
 
 #. description
 #: ../tests/peripheral.txt.in:13
 msgid "Is your keyboard working properly?"
-msgstr "Tastatura dumneavoastră funcţionează corect?"
+msgstr "¿Funciona correutamente'l to tecláu?"
 
 #. description
 #: ../tests/video.txt.in:7
 msgid "This display is using the following resolution:"
-msgstr "Acest ecran folosește următoarea rezoluție:"
+msgstr "Esta pantalla ta usando la siguiente resolución:"
 
 #. description
 #: ../tests/video.txt.in:7
 msgid "Is this acceptable for your display?"
-msgstr "Este acceptabil pentru ecranul dumneavoastră?"
+msgstr "¿Esto ye aceptable pa la to pantalla?"
 
 #. description
 #: ../tests/video.txt.in:18
 msgid "Click the Test button to display a video test."
-msgstr "Faceți clic pe butonul de Test pentru testare video."
+msgstr "Calca nel botón Prueba para ver una prueba de videu."
 
 #. description
 #: ../tests/video.txt.in:18
 msgid "Do you see color bars and static?"
-msgstr "Vedeți bare colorate și pureci?"
+msgstr "¿Adiques barres de color y estática?"
 
 #. description
 #: ../tests/video.txt.in:28
 msgid ""
 "The following screens and video modes have been detected on your system:"
-msgstr "Următoarele ecrane și moduri video au fost detectate în sistem:"
+msgstr ""
+"Deteutáronse nel so sistema les siguientes pantalles y modos de vídeu:"
 
 #. description
 #: ../tests/video.txt.in:41
 msgid "Click Test to cycle through the detected video modes for your system."
-msgstr ""
-"Clic Test pentru a comuta între modurile video detectate pentru sistemul "
-"dumneavoastră."
+msgstr "Calque Preba pa pasar pelos modos de vídeo deteutaos nel so sistema."
 
 #. description
 #: ../tests/video.txt.in:41
 msgid "Did the screen appear to be working for each mode?"
-msgstr "Ecranul a funcționat pentru fiecare mod în parte?"
+msgstr "¿Paez funcionar la pantalla en cada mou?"
 
 #. description
 #: ../tests/video.txt.in:49
 msgid "Check that hardware is able to run compiz."
-msgstr "Verifică dacă hardwareul poate rula compiz."
+msgstr "Compruebe que'l hardware pueda executar Compiz."
 
 #. description
 #: ../tests/video.txt.in:54
 msgid ""
 "Plug video output to an external monitor. Is the image displayed correctly?"
 msgstr ""
-"Conectați ieșirea video la un monitor extern. Imaginea este afișată corect?"
+"Coneute la salida de vídeo a un monitor esternu. ¿Amuésase la imaxe correcho?"
 
 #. description
 #: ../tests/video.txt.in:54
@@ -380,193 +425,193 @@ msgid ""
 "Please repeat the test for each kind of video output supported (VGA, DVI, "
 "DisplayPort and HDMI)."
 msgstr ""
-"Repetați testul pentru fiecare tip de ieșire video suportată (VGA, DVI, "
-"DisplayPort și HDMI)."
+"Por favor, repiti la preba pa cada triba de salida de vídeu soportada (VGA, "
+"DVI, DisplayPort y HDMI)."
 
 #. description
 #: ../tests/video.txt.in:54
 msgid ""
 "For HDMI, please also check that sound is played in the monitor speakers."
 msgstr ""
-"Pentru HDMI, verificați de asemenea că boxele monitorului pot reda sunetul."
+"Pal HDMI, compruebe tamién que se reproduz el soníu nos altavoces del "
+"monitor."
 
 #: ../checkbox/application.py:72
 msgid "Usage: checkbox [OPTIONS]"
-msgstr "Utilizare: checkbox [OPȚIUNI]"
+msgstr "Usu: checkbox [ESCOYETES]"
 
 #: ../checkbox/application.py:76
 msgid "Print version information and exit."
-msgstr "Tipăreşte informaţia despre versiune şi iese."
+msgstr "Amuesa información de la versión y fina."
 
 #: ../checkbox/application.py:79
 msgid "The file to write the log to."
-msgstr "Fişierul în care va fi scris logul."
+msgstr "L'archivu au s'escribirá'l rexistru."
 
 #: ../checkbox/application.py:82
 msgid "One of debug, info, warning, error or critical."
-msgstr "Una dintre „debug”, „info”, „error” sau „critical”."
+msgstr "Unu d'ente: debug, info, warning, error o critical."
 
 #: ../checkbox/application.py:87
 msgid "Configuration override parameters."
-msgstr "Configurația suprascrie parametrii."
+msgstr "Parámetros pa saltar la configuración"
 
 #: ../checkbox/application.py:121
 msgid "Missing configuration file as argument.\n"
-msgstr "Fișierul de configurație lipsește ca argument.\n"
+msgstr "Falta como argumentu l'archivu de configuración.\n"
 
 #: ../checkbox/lib/signal.py:23
 msgid ""
 "Hangup detected on controlling terminal or death of controlling process"
 msgstr ""
-"S-a detectat întreruperea conexiunii către terminalul de control sau moartea "
-"procesului de control"
+"Deteutose'l cuelgue del terminal de control, o morrió'l procesu controlador"
 
 #: ../checkbox/lib/signal.py:24
 msgid "Interrupt from keyboard"
-msgstr "Întrerupere de la tastatură"
+msgstr "Interrupción dende'l tecláu"
 
 #: ../checkbox/lib/signal.py:25
 msgid "Quit from keyboard"
-msgstr ""
+msgstr "Salida dende'l tecláu"
 
 #: ../checkbox/lib/signal.py:26
 msgid "Illegal Instruction"
-msgstr "Instrucțiune ilegală"
+msgstr "Instrucción ilegal"
 
 #: ../checkbox/lib/signal.py:27
 msgid "Abort signal from abort(3)"
-msgstr "Semnal de abandonare a execuției de la abort(3)"
+msgstr "Señal d'encaboxar dende abort(3)"
 
 #: ../checkbox/lib/signal.py:28
 msgid "Floating point exception"
-msgstr "Excepție de virgulă mobilă"
+msgstr "Esceición de coma flotante"
 
 #: ../checkbox/lib/signal.py:29
 msgid "Kill signal"
-msgstr "Semnal de omorâre a aplicației"
+msgstr "Señal kill"
 
 #: ../checkbox/lib/signal.py:30
 msgid "Invalid memory reference"
-msgstr "Referință invalidă la memorie"
+msgstr "Referencia de memoria non válida"
 
 #: ../checkbox/lib/signal.py:31
 msgid "Broken pipe: write to pipe with no readers"
-msgstr "Pipe deteriorat: scriere într-un pipe fără cititori"
+msgstr "Tubu frañáu: escritura a un tubu ensin llectores"
 
 #: ../checkbox/lib/signal.py:32
 msgid "Timer signal from alarm(2)"
-msgstr "Semnal de ceas de la alarm(2)"
+msgstr "Señal del temporizador dende alarm(2)"
 
 #: ../checkbox/lib/signal.py:33
 msgid "Termination signal"
-msgstr "Semnal de terminare"
+msgstr "Señal de terminación"
 
 #: ../checkbox/lib/signal.py:34
 msgid "User-defined signal 1"
-msgstr "Semnal definit de utilizator 1"
+msgstr "Señal 1 definida pol usuariu"
 
 #: ../checkbox/lib/signal.py:35
 msgid "User-defined signal 2"
-msgstr "Semnal definit de utilizator 2"
+msgstr "Señal 2 definida pol usuariu"
 
 #: ../checkbox/lib/signal.py:36
 msgid "Child stopped or terminated"
-msgstr "Procesul copil s-a oprit sau a încheiat execuția"
+msgstr "Fiu paráu o termináu"
 
 #: ../checkbox/lib/signal.py:37
 msgid "Continue if stopped"
-msgstr "Continuă dacă e oprit"
+msgstr "Continuar si se para"
 
 #: ../checkbox/lib/signal.py:38
 msgid "Stop process"
-msgstr "Oprește procesul"
+msgstr "Parar procesu"
 
 #: ../checkbox/lib/signal.py:39
 msgid "Stop typed at tty"
-msgstr "Stop tastat la tty"
+msgstr "Parar tecliao en tty"
 
 #: ../checkbox/lib/signal.py:40
 msgid "tty input for background process"
-msgstr "intrări de la tty pentru un proces de fundal"
+msgstr "Entrada de tty pa procesu en segundu planu"
 
 #: ../checkbox/lib/signal.py:41
 msgid "tty output for background process"
-msgstr "ieșiri către tty pentru un proces de fundal"
+msgstr "Salida de tty para procesu en segundu planu"
 
 #: ../checkbox/lib/signal.py:77
 msgid "UNKNOWN"
-msgstr "NECUNOSCUT"
+msgstr "DESCONOCÍO"
 
 #: ../checkbox/lib/signal.py:89
 msgid "Unknown signal"
-msgstr "Semnal necunoscut"
+msgstr "Señal desconocida"
 
 #: ../checkbox_cli/cli_interface.py:32
 msgid "yes"
-msgstr "Da"
+msgstr "sí"
 
 #: ../checkbox_cli/cli_interface.py:33
 msgid "no"
-msgstr "nu"
+msgstr "non"
 
 #: ../checkbox_cli/cli_interface.py:34
 msgid "skip"
-msgstr "omite"
+msgstr "saltar"
 
 #: ../checkbox_cli/cli_interface.py:121
 msgid "Press any key to continue..."
-msgstr "Apăsaţi orice tastă pentru a continua..."
+msgstr "Calca una tecla pa siguir..."
 
 #: ../checkbox_cli/cli_interface.py:131
 #, python-format
 msgid "Please choose (%s): "
-msgstr "Vă rog alegeţi (%s): "
+msgstr "Por favor, escueye (%s): "
 
 #: ../checkbox_cli/cli_interface.py:237 ../checkbox_gtk/gtk_interface.py:325
 #, python-format
 msgid "Running test %s..."
-msgstr "Se testează %s..."
+msgstr "Executando la prueba %s..."
 
 #: ../checkbox_cli/cli_interface.py:246
 msgid "test"
-msgstr "testare"
+msgstr "prueba"
 
 #: ../checkbox_cli/cli_interface.py:270
 msgid "test again"
-msgstr "testează din nou"
+msgstr "volver a probar"
 
 #: ../checkbox_cli/cli_interface.py:276
 msgid "Please type here and press Ctrl-D when finished:\n"
-msgstr "Vă rog scrieţi aici şi apăsaţi Ctrl-D când aţi terminat:\n"
+msgstr "Escribe equí y calca Ctrl-D cuando fines:\n"
 
 #: ../checkbox_gtk/gtk_interface.py:335
 msgid "_Test Again"
-msgstr "_Testează din nou"
+msgstr "_Probar otra vuelta"
 
 #: ../checkbox_gtk/gtk_interface.py:377
 msgid "Info"
-msgstr "Informații"
+msgstr "Información"
 
 #: ../checkbox_gtk/gtk_interface.py:396
 msgid "Error"
-msgstr "Eroare"
+msgstr "Fallu"
 
 #: ../checkbox/user_interface.py:128
 #, python-format
 msgid "Unable to start web browser to open %s."
-msgstr "Navigatorul web nu poate deschide %s."
+msgstr "Nun pue arrancase'l ñavegador web p'abrir %s."
 
 #: ../plugins/final_prompt.py:31
 msgid "Successfully finished testing!"
-msgstr "Testare finalizată cu succes!"
+msgstr "La comprobación finó correcho!"
 
 #: ../plugins/final_prompt.py:32
 msgid "_Finish"
-msgstr "_Finalizează"
+msgstr "_Finar"
 
 #: ../plugins/gather_prompt.py:34
 msgid "Gathering information from your system..."
-msgstr "Culegere informaţii despre sistem..."
+msgstr "Recoyendo información del to sistema..."
 
 #: ../plugins/intro_prompt.py:33
 msgid ""
@@ -576,11 +621,11 @@ msgid ""
 "Once you are finished running the tests, you can view a summary report for "
 "your system."
 msgstr ""
-"Bun venit la testarea sistemului!\n"
+"Bienllegáu/ada a la comprobación del sistema.\n"
 "\n"
-"Checkbox oferă teste pentru a confirma faptul că sistemul funcționează "
-"corespunzător. După ce ați terminat de rulat testele, veți putea vedea un "
-"raport pentru sistem."
+"Checkbox proporciona prebes pa confirmar que'l so sistema furrula correcho. "
+"Una vegada tenga finao les prebes, puede ver un informe resume del so "
+"sistema."
 
 #: ../plugins/launchpad_exchange.py:118
 #, python-format
@@ -592,11 +637,11 @@ msgid ""
 "directly to the system database:\n"
 "https://launchpad.net/+hwdb/+submit"
 msgstr ""
-"Contactarea serverului a eșuat. Încercați din nou\n"
-"sau încărcați următorul fișier:\n"
+"Falló al contautar col sirvidor. Por favor téntelo\n"
+"otra vegada o xuba'l siguiente ficheru nomáu:\n"
 "%s\n"
 "\n"
-"direct în baza de date Launchpad:\n"
+"direutamente a la base de datos del sistema:\n"
 "https://launchpad.net/+hwdb/+submit"
 
 #: ../plugins/launchpad_exchange.py:127
@@ -604,12 +649,12 @@ msgid ""
 "Failed to upload to server,\n"
 "please try again later."
 msgstr ""
-"Eşec în trimiterea datelor la server,\n"
-"vă rugăm încercaţi din nou mai târziu."
+"Fallu al xubir archivos al sirvidor,\n"
+"por favor inténtelo otra vuelta más sero."
 
 #: ../plugins/launchpad_exchange.py:139
 msgid "Information not posted to Launchpad."
-msgstr "Informațiile nu au fost publicate pe Launchpad."
+msgstr "Información non unviada a Launchpad"
 
 #: ../plugins/launchpad_prompt.py:66
 #, python-format
@@ -625,106 +670,62 @@ msgid ""
 "\n"
 "  https://launchpad.net/+login"
 msgstr ""
-"A fost generat următorul raport, pentru a fi:\n"
+"Xeneráronse los siguientes informes pa unviar a la base de datos de hardware "
+"de Launchpad:\n"
 "\n"
 "  [[%s|View Report]]\n"
 "\n"
-"Puteți trimite aceste informații despre sistem prin oferirea unei adrese de "
-"e-mail folosite la autentificarea pe Launchpad. Dacă nu aveți un cont "
-"Launchpad, vă puteți înregistra aici:\n"
+"Puede unviar esta información sobro'l so sistema proporcionando la direición "
+"de corréu electrónicu qu'usa p'acceder a Launchpad. Si nun tien una cuenta "
+"de Launchpad, por favor, rexístrese equí:\n"
 "\n"
 "  https://launchpad.net/+login"
 
 #: ../plugins/launchpad_prompt.py:83
 msgid "No e-mail address provided, not submitting to Launchpad."
-msgstr "Nici o adresă email oferită, nu se trimite la Launchpad."
+msgstr ""
+"Nun se proporcionó una direición de corréu-e, nun s'unviará res a Launchpad."
 
 #: ../plugins/launchpad_prompt.py:87
 msgid "Email address must be in a proper format."
-msgstr "Adresa de email trebuie să fie într-un format corect."
+msgstr "Les señes de corréu han de tar nun formatu afayadizu."
 
 #: ../plugins/launchpad_prompt.py:93
 msgid "Exchanging information with the server..."
-msgstr "Se schimbă date cu serverul..."
+msgstr "Intercambiando información col sirvidor..."
 
 #: ../plugins/lock_prompt.py:58
 msgid "There is another checkbox running. Please close it first."
-msgstr ""
-"Un alt checkbox este în execuție. Închideți-l pe primul înainte de a lansa "
-"checkbox din nou."
+msgstr "Hai otru checkbox executándose. Piésllalu primero."
 
 #: ../plugins/report_prompt.py:34
 msgid "Building report..."
-msgstr "Raportul este generat..."
+msgstr "Construyendo informe..."
 
 #: ../plugins/shell_test.py:42
 msgid "Running shell tests..."
-msgstr "Se rulează testele de terminal..."
+msgstr "Executando pruebes de shell..."
 
 #: ../plugins/suites_prompt.py:131
 msgid "Select the suites to test"
-msgstr "Alegeți seriile de teste"
+msgstr "Esbille los conxuntos a prebar"
 
 #: ../scripts/keyboard_test:21
 msgid "Enter text:\n"
-msgstr "Introduceți text:\n"
+msgstr "Introduza'l testu:\n"
 
 #: ../scripts/keyboard_test:42
 msgid "Type Text"
-msgstr "Tastare text"
+msgstr "Teclee'l testu"
 
 #: ../scripts/internet_test:126
 msgid "No Internet connection"
-msgstr "Nici o conexiune Internet"
+msgstr "Nyn hai conexón a Internet"
 
 #: ../scripts/internet_test:128
 msgid "Connection established lost a packet"
-msgstr "Conexiunea stabilită a pierdut un pachet"
+msgstr "La conexón actual perdió un paquete"
 
 #: ../scripts/internet_test:130
 msgid "Internet connection fully established"
-msgstr "Conexiune la Internet stabilită complet"
-
-#~ msgid "_Desktop"
-#~ msgstr "_Desktop"
-
-#~ msgid "_Laptop"
-#~ msgstr "_Laptop"
-
-#~ msgid "_Server"
-#~ msgstr "_Server"
-
-#~ msgid "Authentication"
-#~ msgstr "Autentificare"
-
-#~ msgid "Done"
-#~ msgstr "Gata"
-
-#~ msgid "Category"
-#~ msgstr "Categorie"
-
-#~ msgid "<b>Comment:</b>"
-#~ msgstr "<b>Comentariu:</b>"
-
-#~ msgid "The following resolution was detected for your display:"
-#~ msgstr ""
-#~ "Următoarea rezoluţie a fost detectată pentru monitorul dumneavoastră:"
-
-#~ msgid "Is this a good resolution for your display?"
-#~ msgstr "Această rezoluţie este bună pentru ecranul dumneavoastră?"
-
-#~ msgid "Are you connected to the Internet?"
-#~ msgstr "Sunteţi conectat la Internet?"
-
-#~ msgid ""
-#~ "Typing keys on your keyboard should display the corresponding characters in "
-#~ "a text area."
-#~ msgstr ""
-#~ "Folosirea tastaturii ar trebui să afişeze caracterele corespunzătoare într-o "
-#~ "zonă text."
-
-#~ msgid "Please provide comments about the failure."
-#~ msgstr "Câteva comentarii despre eşec."
-
-#~ msgid "Successfully sent information to server!"
-#~ msgstr "Informaţia trimisă cu succes serverului!"
+msgstr "Conexón a Internet afitada dafechu"
