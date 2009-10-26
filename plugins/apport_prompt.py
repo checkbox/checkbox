@@ -88,6 +88,8 @@ class ApportUserInterface(UserInterface):
         # checkbox
         test = self.options.test
         self.report["CheckboxTest"] = test["name"]
+        if test.get("description"):
+            self.report["CheckboxDescription"] = test["description"]
         if test.get("data"):
             self.report["CheckboxData"] = test["data"]
         if test.get("command"):
