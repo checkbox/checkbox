@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-26 10:27-0400\n"
+"POT-Creation-Date: 2009-10-27 10:29-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -207,7 +207,7 @@ msgstr ""
 #. description
 #: ../tests/fingerprint.txt.in:3
 msgid ""
-"Fingerprint unlock verification procedure: 1.- Click on the user switcher "
+"Fingerprint login verification procedure: 1.- Click on the user switcher "
 "applet 2.- Select your user name 3.- A window should appear that provides "
 "the ability to login either \\ typing your password or using fingerprint "
 "authentication 4.- Use the fingerprint reader to login 5.- Click on the user "
@@ -218,10 +218,10 @@ msgstr ""
 #: ../tests/fingerprint.txt.in:21
 msgid ""
 "Fingerprint unlock verification procedure: 1.- Click on the user switcher "
-"applet 2.- Select 'Lock screen' 3.- Press any key or move the mouse 3.- A "
+"applet 2.- Select 'Lock screen' 3.- Press any key or move the mouse 4.- A "
 "window should appear that provides the ability to unlock either \\ typing "
-"your password or using fingerprint authentication 4.- Use the fingerprint "
-"reader to unlock 5.- Screen should be unlocked"
+"your password or using fingerprint authentication 5.- Use the fingerprint "
+"reader to unlock 6.- Screen should be unlocked"
 msgstr ""
 
 #. description
@@ -284,17 +284,20 @@ msgstr ""
 #. description
 #: ../tests/network.txt.in:26
 msgid ""
-"Built-in modem network connection procedure: 1.- Connect the telephone line "
-"to the computer 2.- Right click on the Network Manager applet 3.- Select "
-"'Edit Connections' 4.- Select the 'DSL' tab 5.- Click on add 'Add' button "
-"6.- Configure the connection parameters properly 7.- Notify OSD should "
-"confirm that the connection has been established 8.- Select Test to verify "
-"that it's possible to establish both http \\ and ftp connections"
+"Built-in modem network connection procedure: 1.- Open System -> "
+"Administration -> Network 2.- Press Unlock and type your password to unlock "
+"the settings 3.- Select the Connections tab. 4.- Select Point to point "
+"connection and press Properties. 5.- Tick Enable this connection 6.- Choose "
+"Serial Modem from the Connection Type drop down. 7.- Under Internet Service "
+"Provider data, enter the phone number and dial prefix. 8.- Under Account "
+"Data enter your password and username. 9.- Click the Modem tab. 10.- Choose "
+"the modem settings you require. 11.- Click OK. 12.- Select the DNS tab and "
+"enter the DNS addresses of your ISP. 13.- Click Close."
 msgstr ""
 
 #. description
 #: ../tests/network.txt.in:26
-msgid "Was the connection correctly established?"
+msgid "Can you successfully establish a network connection?"
 msgstr ""
 
 #. description
@@ -563,7 +566,12 @@ msgid ""
 "your system."
 msgstr ""
 
-#: ../plugins/launchpad_exchange.py:118
+#: ../plugins/launchpad_exchange.py:113
+#, python-format
+msgid "Failed to process form: %s"
+msgstr ""
+
+#: ../plugins/launchpad_exchange.py:136
 #, python-format
 msgid ""
 "Failed to contact server. Please try\n"
@@ -574,13 +582,13 @@ msgid ""
 "https://launchpad.net/+hwdb/+submit"
 msgstr ""
 
-#: ../plugins/launchpad_exchange.py:127
+#: ../plugins/launchpad_exchange.py:145
 msgid ""
 "Failed to upload to server,\n"
 "please try again later."
 msgstr ""
 
-#: ../plugins/launchpad_exchange.py:139
+#: ../plugins/launchpad_exchange.py:157
 msgid "Information not posted to Launchpad."
 msgstr ""
 
