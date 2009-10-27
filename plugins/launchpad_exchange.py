@@ -30,8 +30,23 @@ from checkbox.lib.conversion import string_to_type
 from checkbox.lib.log import format_delta
 from checkbox.lib.transport import HTTPTransport
 
-from checkbox.properties import Int, String
+from checkbox.properties import Int, Map, String
 from checkbox.plugin import Plugin
+
+
+FORM = Map({
+    "field.private": String(),
+    "field.contactable": String(),
+    "field.format": String(),
+    "field.actions.upload": String(),
+    "field.architecture": String(),
+    "field.date_created": String(),
+    "field.distribution": String(),
+    "field.distroseries": String(),
+    "field.submission_key": String(),
+    "field.system": String(),
+    "field.emailaddress": String(),
+    "field.live_cd": String()})
 
 
 class LaunchpadExchange(Plugin):
@@ -46,11 +61,11 @@ class LaunchpadExchange(Plugin):
         super(LaunchpadExchange, self).register(manager)
         self._headers = {}
         self._form = {
-            "field.private": False,
-            "field.contactable": False,
-            "field.live_cd": False,
-            "field.format": u"VERSION_1",
-            "field.actions.upload": u"Upload"}
+            "field.private": "False",
+            "field.contactable": "False",
+            "field.live_cd": "False",
+            "field.format": "VERSION_1",
+            "field.actions.upload": "Upload"}
 
         for (rt, rh) in [
              ("report-architecture", self.report_architecture),
@@ -92,9 +107,12 @@ class LaunchpadExchange(Plugin):
 
     def launchpad_exchange(self):
         # Encode form data
-        form = {}
-        for field, value in self._form.items():
-            form[field] = str(value).encode("UTF-8")
+        try:
+            form = FORM.coerce(self._form)
+        except ValueError, e:
+            self._manager.reactor.fire("exchange-error", _("""\
+Failed to process form: %s""" % e))
+            return
 
         # Compress and add payload to form
         payload = open(self._launchpad_report, "r").read()
