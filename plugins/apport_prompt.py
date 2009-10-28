@@ -20,6 +20,7 @@ from gettext import gettext as _
 
 from checkbox.job import FAIL
 from checkbox.plugin import Plugin
+from checkbox.properties import String
 from checkbox.reactor import StopAllException
 from checkbox.registry import registry_eval_recursive
 
@@ -129,6 +130,8 @@ class ApportUserInterface(UserInterface):
 
 class ApportPrompt(Plugin):
 
+    default_package = String(required=False)
+
     def register(self, manager):
         super(ApportPrompt, self).register(manager)
 
@@ -164,6 +167,10 @@ class ApportPrompt(Plugin):
                 if device.category in CATEGORY_TO_SYMPTOM:
                     symptom = CATEGORY_TO_SYMPTOM[device.category]
                     break
+
+        # Default to configuration
+        if self.default_package:
+            package = self.default_package
 
         # Do not report a bug if no package nor symptom is defined
         if not package and not symptom:
