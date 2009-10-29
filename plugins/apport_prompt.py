@@ -169,7 +169,7 @@ class ApportPrompt(Plugin):
                     break
 
         # Default to configuration
-        if self.default_package:
+        if not package:
             package = self.default_package
 
         # Do not report a bug if no package nor symptom is defined
