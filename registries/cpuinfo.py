@@ -61,6 +61,13 @@ def cpuinfo_to_processor(uname, cpuinfo):
             "model_revision": "cpu revision",
             "other": "platform string",
             "speed": "cycle frequency [Hz]"},
+        ("armv7l",): {
+            "type": "hardware",
+            "model": "processor",
+            "model_number": "cpu variant",
+            "model_version": "cpu architecture",
+            "model_revision": "cpu revision",
+            "other": "features"},
         ("ia64",): {
             "type": "vendor",
             "model": "family",
