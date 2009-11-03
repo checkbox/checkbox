@@ -4,6 +4,12 @@ checkbox (0.8.6) karmic; urgency=low
   * Fixed client side validation of Launchpad form (LP: #438671)
   * Added support for armv7l processor
 
+  [Bryce Harrington]
+  * Turn off filing bug reports against xorg.  Too many of the problems
+    have been non-bugs, or have not been described well enough to
+    troubleshoot.  This is consuming too much triaging effort for
+    too little gain. (LP: #465447)
+
  -- Marc Tardif <marc@ubuntu.com>  Tue, 27 Oct 2009 10:32:09 -0400
 
 checkbox (0.8.5) karmic; urgency=low

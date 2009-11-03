@@ -35,7 +35,6 @@ except:
 
 
 CATEGORY_TO_PACKAGE = {
-    "VIDEO": "xorg",
     "SOUND": "alsa-base"}
 
 CATEGORY_TO_SYMPTOM = {

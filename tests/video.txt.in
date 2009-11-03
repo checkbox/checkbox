@@ -2,7 +2,6 @@ plugin: manual
 name: resolution
 requires:
  device.category == 'VIDEO'
- package.name == 'x11-xserver-utils'
 command: resolution_test
 _description:
  This display is using the following resolution:
@@ -22,8 +21,6 @@ _description:
 
 plugin: manual
 name: xrandr_detect_modes
-requires:
- package.name == 'x11-xserver-utils'
 command: xrandr
 _description:
  The following screens and video modes have been detected on your system:
@@ -35,8 +32,6 @@ _description:
 plugin: manual
 name: xrandr_cycle
 depends: xrandr_detect_modes
-requires:
- package.name == 'x11-xserver-utils'
 command: xrandr_cycle
 _description:
  Click Test to cycle through the detected video modes for your system.
