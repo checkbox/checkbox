@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-import posixpath
+from subprocess import Popen, PIPE
 
 from gettext import gettext as _
 
@@ -149,17 +149,9 @@ class ApportPrompt(Plugin):
         self._manager.reactor.call_on("prompt-test", self.prompt_test, 100)
 
     def gather(self):
-        if posixpath.exists(self.default_filename):
-            default_file = open(self.default_filename)
-            for line in default_file.readlines():
-                line = line.strip()
-                if line \
-                   and line[0] != "#" \
-                   and "/" in line:
-                    key, value = line.split("=", 1)
-                    key = key.strip()
-                    if key == "enabled":
-                        self._enabled = value.strip() != "0"
+        value = Popen(". %s && echo ${enabled}" % self.default_filename,
+            shell=True, stdout=PIPE, stderr=PIPE).communicate()[0]
+        self._enabled = value.strip() == "1"
 
     def prompt_test(self, interface, test):
         if not self._enabled:
