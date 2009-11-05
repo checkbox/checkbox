@@ -1,16 +1,11 @@
-checkbox (0.8.6) karmic; urgency=low
+checkbox (0.9) karmic; urgency=low
 
   * Fixed strings in fingerprint and modem tests (LP: #457759)
   * Fixed client side validation of Launchpad form (LP: #438671)
+  * Added support for apport default configuration (LP: #465447)
   * Added support for armv7l processor
 
-  [ Bryce Harrington ]
-  * Turn off filing bug reports against xorg.  Too many of the problems
-    have been non-bugs, or have not been described well enough to
-    troubleshoot.  This is consuming too much triaging effort for
-    too little gain. (LP: #465447)
-
- -- Marc Tardif <marc@ubuntu.com>  Tue, 27 Oct 2009 10:32:09 -0400
+ -- Marc Tardif <marc@ubuntu.com>  Wed, 04 Nov 2009 19:36:09 -0400
 
 checkbox (0.8.5) karmic; urgency=low
 

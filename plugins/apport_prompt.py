@@ -16,11 +16,13 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
+import posixpath
+
 from gettext import gettext as _
 
 from checkbox.job import FAIL
 from checkbox.plugin import Plugin
-from checkbox.properties import String
+from checkbox.properties import Path, String
 from checkbox.reactor import StopAllException
 from checkbox.registry import registry_eval_recursive
 
@@ -35,6 +37,7 @@ except:
 
 
 CATEGORY_TO_PACKAGE = {
+    "VIDEO": "xorg",
     "SOUND": "alsa-base"}
 
 CATEGORY_TO_SYMPTOM = {
@@ -129,6 +132,10 @@ class ApportUserInterface(UserInterface):
 
 class ApportPrompt(Plugin):
 
+    # Default configuration filename
+    default_filename = Path(default="/etc/default/apport")
+
+    # Default package if none is detected
     default_package = String(required=False)
 
     def register(self, manager):
@@ -137,9 +144,27 @@ class ApportPrompt(Plugin):
         if isinstance(ApportUserInterface, DummyUserInterface):
             return
 
+        self._enabled = False
+        self._manager.reactor.call_on("gather", self.gather)
         self._manager.reactor.call_on("prompt-test", self.prompt_test, 100)
 
+    def gather(self):
+        if posixpath.exists(self.default_filename):
+            default_file = open(self.default_filename)
+            for line in default_file.readlines():
+                line = line.strip()
+                if line \
+                   and line[0] != "#" \
+                   and "/" in line:
+                    key, value = line.split("=", 1)
+                    key = key.strip()
+                    if key == "enabled":
+                        self._enabled = value.strip() != "0"
+
     def prompt_test(self, interface, test):
+        if not self._enabled:
+            return
+
         if test["status"] != FAIL:
             return
 
