@@ -149,7 +149,7 @@ class ApportPrompt(Plugin):
         self._manager.reactor.call_on("prompt-test", self.prompt_test, 100)
 
     def gather(self):
-        value = Popen(". %s && echo ${enabled}" % self.default_filename,
+        value = Popen("unset enabled && . %s && echo ${enabled}" % self.default_filename,
             shell=True, stdout=PIPE, stderr=PIPE).communicate()[0]
         self._enabled = value.strip() == "1"
 
