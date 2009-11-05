@@ -263,7 +263,7 @@ class GTKInterface(UserInterface):
 
         # Set options
         option_table = {}
-        vbox = self._get_widget("vbox_options")
+        vbox = self._get_widget("vbox_options_list")
         for option in options:
             label = "_%s" % option.capitalize()
             radio_button = gtk.CheckButton(label)
@@ -294,7 +294,7 @@ class GTKInterface(UserInterface):
         # Set options
         option_group = None
         option_table = {}
-        vbox = self._get_widget("vbox_options")
+        vbox = self._get_widget("vbox_options_list")
         for option in options:
             label = "_%s" % option.capitalize()
             radio_button = gtk.RadioButton(option_group, label)
