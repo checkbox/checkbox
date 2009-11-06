@@ -265,13 +265,14 @@ class GTKInterface(UserInterface):
         option_table = {}
         vbox = self._get_widget("vbox_options_list")
         for option in options:
-            label = "_%s" % option.capitalize()
-            radio_button = gtk.CheckButton(label)
-            radio_button.show()
-            option_table[option] = radio_button
-            vbox.pack_start(radio_button, False, False, 0)
+            label = "_%s%s" % (option[0].upper(), option[1:])
+            check_button = gtk.CheckButton(label)
+            check_button.get_child().set_line_wrap(True)
+            check_button.show()
+            option_table[option] = check_button
+            vbox.pack_start(check_button, False, False, 0)
             if option in default:
-                radio_button.set_active(True)
+                check_button.set_active(True)
 
         self._set_hyper_text_view("hyper_text_view_options", text)
 
@@ -296,8 +297,9 @@ class GTKInterface(UserInterface):
         option_table = {}
         vbox = self._get_widget("vbox_options_list")
         for option in options:
-            label = "_%s" % option.capitalize()
+            label = "_%s%s" % (option[0].upper(), option[1:])
             radio_button = gtk.RadioButton(option_group, label)
+            radio_button.get_child().set_line_wrap(True)
             radio_button.show()
             option_table[option] = radio_button
             vbox.pack_start(radio_button, False, False, 0)
