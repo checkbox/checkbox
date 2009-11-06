@@ -50,10 +50,44 @@ _description:
  Check that hardware is able to run compiz.
 
 plugin: manual
-name: external_monitor
+name: video-vga
 _description:
- Plug video output to an external monitor. Is the image displayed correctly?
+ If your system does not have a VGA port, please skip this test.
  .
- Please repeat the test for each kind of video output supported (VGA, DVI, DisplayPort and HDMI).
+ Connect a display (if not already connected) to the VGA port on your system. Is the image displayed correctly?
+
+plugin: manual
+name: video-dvi
+_description:
+ If your system does not have a DVI port, please skip this test.
  .
- For HDMI, please also check that sound is played from the monitor speakers.
+ Connect a display (if not already connected) to the DVI port on your system. Is the image displayed correctly?
+
+plugin: manual
+name: video-displayport
+_description:
+ If your system does not have DisplayPort, please skip this test.
+ .
+ Connect a display (if not already connected) to the DisplayPort on your system. Is the image displayed correctly?
+
+plugin: manual
+name: video-hdmi
+_description:
+ If your system does not have a HDMI port, please skip this test.
+ .
+ Connect a display (if not already connected) to the HDMI port on your system. Is the image displayed correctly?
+ .
+
+plugin: manual
+name: video-svideo
+_description:
+ If your system does not have a S-VIDEO port, please skip this test.
+ .
+ Connect a display (if not already connected) to the S-VIDEO port on your system. Is the image displayed correctly?
+
+plugin: manual
+name: video-rca
+_description:
+ If your system does not have a RCA port, please skip this test.
+ .
+ Connect a display (if not already connected) to the RCA port on your system. Is the image displayed correctly?
