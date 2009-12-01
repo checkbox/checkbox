@@ -1,7 +1,7 @@
 plugin: external
 name: qa-regression-testing
 user: root
-description: QA regression tests (destructive)
+_description: QA regression tests (destructive)
 requires:
  package.name == 'bzr'
 command: qa_regression_suite test-kernel-security.py test-kernel.py
