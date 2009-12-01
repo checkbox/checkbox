@@ -34,7 +34,7 @@ def print_element(element):
 def set_sudoers_nopasswd(user):
     sudoers_line = "%s ALL=NOPASSWD: ALL" % user
 
-    filename = "/tmp/sudoers"
+    filename = "/etc/sudoers"
     file = open(filename)
     for line in file.readlines():
         line = line.strip()
