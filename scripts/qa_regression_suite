@@ -14,7 +14,7 @@ DEFAULT_DIRECTORY = "/tmp/checkbox.qa.regression"
 DEFAULT_LOCATION = "http://bazaar.launchpad.net/%7Eubuntu-bugcontrol/qa-regression-testing/master"
 DEFAULT_SUDO_PASSWORD = "insecure"
 
-COMMAND_TEMPLATE = "cd %(scripts)s; SUDO_PASSWORD=%(sudo_password)s python %(script)s"
+COMMAND_TEMPLATE = "cd %(scripts)s; python %(script)s"
 
 
 def print_line(key, value):
@@ -30,6 +30,32 @@ def print_element(element):
         print_line(key, value)
 
     print
+
+def set_sudoers_nopasswd(user):
+    sudoers_line = "%s ALL=NOPASSWD: ALL" % user
+
+    filename = "/tmp/sudoers"
+    file = open(filename)
+    for line in file.readlines():
+        line = line.strip()
+        # Skip blank or comment lines
+        if not line or line.startswith("#"):
+            continue
+
+        # Check for existing sudoers line
+        sudoers_user = line.split()[0]
+        if sudoers_user == user:
+            if line == sudoers_line:
+                return True
+            else:
+                sys.stderr.write("Cannot overwrite existing sudoers line: %s\n"
+                    % line)
+                return False
+
+    file = open(filename, "a")
+    file.write("%s\n" % sudoers_line)
+
+    return True
 
 def branch_qa_regression(location, directory):
     if posixpath.exists(directory):
@@ -54,7 +80,7 @@ def list_qa_regression(location, directory, dry_run):
         if script_pattern.match(script):
             yield script
 
-def run_qa_regression(scripts, sudo_password, location, directory, dry_run):
+def run_qa_regression(scripts, location, directory, dry_run):
     if not dry_run:
         branch_qa_regression(location, directory)
 
@@ -66,7 +92,6 @@ def run_qa_regression(scripts, sudo_password, location, directory, dry_run):
         test["plugin"] = "shell"
         test["name"] = posixpath.splitext(script)[0]
         test["command"] = COMMAND_TEMPLATE % {
-            "sudo_password": sudo_password,
             "scripts": posixpath.dirname(path),
             "script": posixpath.basename(path)}
 
@@ -130,18 +155,25 @@ def main(args):
     parser.add_option("-l", "--location",
         default=DEFAULT_LOCATION,
         help="Location from where to branch qa-regression-testing")
-    parser.add_option("-s", "--sudo-password",
-        default=DEFAULT_SUDO_PASSWORD,
-        help="Sudo password when running some tests")
 
     (options, scripts) = parser.parse_args(args)
+
+    if os.getuid() != 0:
+        parser.error("Must be run as root with sudo.")
+
+    user = os.environ.get("SUDO_USER")
+    if not user:
+        parser.error("SUDO_USER variable not found, must be run with sudo.")
+
+    if not set_sudoers_nopasswd(user):
+        parser.error("Failed to set sudoers for running with no password.")
 
     if not scripts:
         scripts = list_qa_regression(options.location, options.directory,
             options.dry_run)
 
-    tests = run_qa_regression(scripts, options.sudo_password,
-        options.location, options.directory, options.dry_run)
+    tests = run_qa_regression(scripts, options.location, options.directory,
+        options.dry_run)
     if not tests:
         return 1
 
