@@ -206,8 +206,6 @@ class CLIInterface(UserInterface):
         return dialog.run()
 
     def show_check(self, text, options=[], default=[]):
-        print 'options: %s' % options
-        print 'default: %s' % default
         dialog = CLIChoiceDialog(text)
         for option in options:
             dialog.add_option(option)
