@@ -16,13 +16,12 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-
 import gobject
 import dbus
 import dbus.service
 import dbus.mainloop.glib
 
-from checkbox.lib.environ import append_path
+from checkbox.lib.environ import add_variable, append_path
 
 from checkbox.job import Job
 from checkbox.properties import Int, String
@@ -53,7 +52,7 @@ class BackendManager(dbus.service.Object):
         self.dbus_info = None
         self.polkit = None
         self.loop = False
-        self.tests = []
+        self.jobs = []
 
     def __repr__(self):
         return "<BackendManager>"
@@ -70,37 +69,43 @@ class BackendManager(dbus.service.Object):
 
         self._manager = manager
         for (rt, rh) in [
+             ("report-suite", self.report_suite),
              ("report-test", self.report_test),
              ("run", self.run)]:
             self._manager.reactor.call_on(rt, rh)
 
     @dbus.service.method(DBUS_INTERFACE_NAME,
-        in_signature="s", out_signature="s", sender_keyword="sender",
+        in_signature="ss", out_signature="s", sender_keyword="sender",
         connection_keyword="conn")
-    def get_registry(self, name, sender=None, conn=None):
+    def get_registry(self, name, user, sender=None, conn=None):
         if name not in self._manager.registry:
             raise UnknownRegistryException, "Registry not found: %s" % name
 
+        add_variable("SUDO_USER", user)
         return str(self._manager.registry[name])
 
     @dbus.service.method(DBUS_INTERFACE_NAME,
-        in_signature="s", out_signature="as", sender_keyword="sender",
+        in_signature="ss", out_signature="as", sender_keyword="sender",
         connection_keyword="conn")
-    def get_job_result(self, command, sender=None, conn=None):
-        for test in self.tests:
-            if test.get("command") == command:
+    def get_job_result(self, command, user, sender=None, conn=None):
+        for job in self.jobs:
+            if job.get("command") == command:
                 break
         else:
             raise UnknownJobException, \
                 "Job not found for command: %s" % command
 
-        job = Job(test["command"], test.get("environ"),
-            test.get("timeout"), test.get("user"))
+        add_variable("SUDO_USER", user)
+        job = Job(job["command"], job.get("environ"),
+            job.get("timeout"), job.get("user"))
         (status, data, duration) = job.execute()
         return (status, data, str(duration))
 
+    def report_suite(self, suite):
+        self.jobs.append(suite)
+
     def report_test(self, test):
-        self.tests.append(test)
+        self.jobs.append(test)
 
     def run(self):
         interface = UserInterface("System Testing Backend")

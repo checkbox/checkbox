@@ -135,10 +135,10 @@ def run_qa_regression(scripts, location, directory, dry_run):
                 packages.extend(["package.name == '%s'" % v for v in values])
 
             elif match.group("key") == "QRT-Alternates":
-                packages.append("(%s)" % " or ".join(["package.name == '%s'" % v for v in values]))
+                packages.append("%s" % " or ".join(["package.name == '%s'" % v for v in values]))
 
         if packages:
-            test["requires"] = " and ".join(packages)
+            test["requires"] = packages
 
         yield test
 
