@@ -1,6 +1,6 @@
 plugin: external
 name: qa-regression-testing
-description: Tests and build test information for use when doing QA tests for Ubuntu packages.
+description: QA regression tests
 requires:
  package.name == 'bzr'
 command: qa_regression_suite test-kernel-security.py test-kernel.py
