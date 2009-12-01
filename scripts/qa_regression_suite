@@ -1,0 +1,155 @@
+#!/usr/bin/python
+
+import os
+import re
+import sys
+import posixpath
+
+from subprocess import Popen
+
+from optparse import OptionParser
+
+
+DEFAULT_DIRECTORY = "/tmp/checkbox.qa.regression"
+DEFAULT_LOCATION = "http://bazaar.launchpad.net/%7Eubuntu-bugcontrol/qa-regression-testing/master"
+DEFAULT_SUDO_PASSWORD = "insecure"
+
+COMMAND_TEMPLATE = "cd %(scripts)s; SUDO_PASSWORD=%(sudo_password)s python %(script)s"
+
+
+def print_line(key, value):
+    if type(value) is list:
+        print "%s:" % key
+        for v in value:
+            print " %s" % v
+    else:
+        print "%s: %s" % (key, value)
+
+def print_element(element):
+    for key, value in element.items():
+        print_line(key, value)
+
+    print
+
+def branch_qa_regression(location, directory):
+    if posixpath.exists(directory):
+        return
+
+    dirname = posixpath.dirname(directory)
+    if not posixpath.exists(dirname):
+        os.makedirs(dirname)
+
+    process = Popen(["bzr", "branch", location, directory])
+    if process.wait():
+        raise Exception, "Failed to branch mago from %s" % location
+
+def list_qa_regression(location, directory, dry_run):
+    if not dry_run:
+        branch_qa_regression(location, directory)
+
+    script_pattern = re.compile(r"^test\-.*\.py$")
+
+    directory = posixpath.join(directory, "scripts")
+    for script in os.listdir(directory):
+        if script_pattern.match(script):
+            yield script
+
+def run_qa_regression(scripts, sudo_password, location, directory, dry_run):
+    if not dry_run:
+        branch_qa_regression(location, directory)
+
+    for script in scripts:
+        path = posixpath.join(directory, "scripts", script)
+
+        # Initialize test structure
+        test = {}
+        test["plugin"] = "shell"
+        test["name"] = posixpath.splitext(script)[0]
+        test["command"] = COMMAND_TEMPLATE % {
+            "sudo_password": sudo_password,
+            "scripts": posixpath.dirname(path),
+            "script": posixpath.basename(path)}
+
+        # Get description from first commented paragraph
+        description = ""
+        in_paragraph = True
+        file = open(path)
+        for line in file.readlines():
+            if in_paragraph == True:
+                if line.startswith("#") and not line.startswith("#!"):
+                    in_paragraph = False
+
+            elif in_paragraph == False:
+                line = re.sub(r"#\s+", "", line).strip()
+                if line:
+                    test["description"] = line
+                    break
+
+        else:
+            test["description"] = "No description found"
+
+        # Get package requirements from QRT-Packages and QRT-Alternates
+        pattern = re.compile(r"# (?P<key>[^ ]+): (?P<value>.*)$")
+        packages = []
+        file = open(path)
+        for line in file.readlines():
+            line = line.strip()
+            match = pattern.match(line)
+            # Check for match
+            if not match:
+                continue
+
+            # Check for value with content
+            value = match.group("value").strip()
+            if not value:
+                continue
+
+            # Check for QRT-Packages and QRT-Alternates
+            values = re.split(r"\s+", value)
+            if match.group("key") == "QRT-Packages":
+                packages.extend(["package.name == '%s'" % v for v in values])
+
+            elif match.group("key") == "QRT-Alternates":
+                packages.append("(%s)" % " or ".join(["package.name == '%s'" % v for v in values]))
+
+        if packages:
+            test["requires"] = " and ".join(packages)
+
+        yield test
+
+def main(args):
+    usage = "Usage: %prog [OPTIONS] [SCRIPTS]"
+    parser = OptionParser(usage=usage)
+    parser.add_option("--dry-run",
+        default=False,
+        action="store_true",
+        help="Dry run to avoid branching from the given location.")
+    parser.add_option("-d", "--directory",
+        default=DEFAULT_DIRECTORY,
+        help="Directory where to branch qa-regression-testing")
+    parser.add_option("-l", "--location",
+        default=DEFAULT_LOCATION,
+        help="Location from where to branch qa-regression-testing")
+    parser.add_option("-s", "--sudo-password",
+        default=DEFAULT_SUDO_PASSWORD,
+        help="Sudo password when running some tests")
+
+    (options, scripts) = parser.parse_args(args)
+
+    if not scripts:
+        scripts = list_qa_regression(options.location, options.directory,
+            options.dry_run)
+
+    tests = run_qa_regression(scripts, options.sudo_password,
+        options.location, options.directory, options.dry_run)
+    if not tests:
+        return 1
+
+    for test in tests:
+        print_element(test)
+
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv[1:]))
