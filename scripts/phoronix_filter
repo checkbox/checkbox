@@ -1,0 +1,148 @@
+#!/usr/bin/python
+
+import os
+import sys
+
+import logging
+import pexpect
+import posixpath
+
+from logging import StreamHandler, FileHandler, Formatter
+
+from optparse import OptionParser
+
+from xml.dom import minidom
+
+
+DEFAULT_DIRECTORY = "/tmp/checkbox.phoronix"
+DEFAULT_LOG_LEVEL = "critical"
+DEFAULT_SAVE_NAME = "checkbox"
+DEFAULT_TIMEOUT = 10 * 60
+
+UNIQUE_NAME_CHARACTERS = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+
+def unique_name(length=15):
+    l = len(UNIQUE_NAME_CHARACTERS)
+    return "".join([UNIQUE_NAME_CHARACTERS[ord(c)%l] for c in os.urandom(length)])
+
+def get_benchmark(node, name):
+    for benchmark in node.getElementsByTagName("Benchmark"):
+        for child in benchmark.childNodes:
+            if child.nodeName == "TestName" \
+               and child.firstChild.data == name:
+                return benchmark
+
+    return None
+
+def get_result(node, name):
+    for entry in node.getElementsByTagName("Entry"):
+        for child in entry.childNodes:
+            if child.nodeName == "Identifier" \
+               and child.firstChild.data == name:
+                return entry
+
+    return None
+
+def parse_phoronix(options, suite):
+    file = posixpath.expanduser("~/.phoronix-test-suite/test-results/%s/composite.xml"
+        % options.save_name)
+    tree = minidom.parse(file)
+    benchmark = get_benchmark(tree, suite)
+    if benchmark:
+        result = get_result(benchmark, options.run_name)
+        if result:
+            value = result.getElementsByTagName("Value")[0]
+            return value.firstChild.data
+
+    return None
+
+def run_phoronix(options, suite):
+    question_answer = [
+        ("Enter a name to save these results: ", options.save_name),
+        ("Enter a unique name for this test run: ", options.run_name)]
+
+    command = posixpath.join(options.directory, "phoronix-test-suite")
+    args = ["batch-benchmark", suite]
+    connection = pexpect.spawn(command, args=args,
+        cwd=options.directory,
+        timeout=options.timeout)
+    if logging.getLogger().getEffectiveLevel() == logging.DEBUG:
+        # Backward compatibility for pexpect
+        if hasattr(connection, "logfile"):
+            connection.logfile = sys.stdout
+        else:
+            connection.setlog(sys.stdout)
+
+    while True:
+        questions = [qa[0] for qa in question_answer]
+        index = connection.expect_exact(questions + [pexpect.EOF])
+        if index >= len(question_answer):
+            break
+
+        answer = question_answer[index][1]
+        if answer is None:
+            answer = unique_name()
+
+        connection.send("%s\n" % answer)
+
+    return parse_phoronix(options, suite)
+
+def main(args):
+    usage = "Usage: %prog [OPTIONS] SUITE"
+    parser = OptionParser(usage=usage)
+    parser.add_option("-l", "--log", metavar="FILE",
+        help="log file where to send output")
+    parser.add_option("--log-level",
+        default=DEFAULT_LOG_LEVEL,
+        help="one of debug, info, warning, error or critical")
+    parser.add_option("-d", "--directory",
+        default=DEFAULT_DIRECTORY,
+        help="Directory where phoronix was cloned (default %default)")
+    parser.add_option("-r", "--run-name",
+        default=unique_name(),
+        help="Unique name for this test run (default is random)")
+    parser.add_option("-s", "--save-name",
+        default=DEFAULT_SAVE_NAME,
+        help="Name to save these results (default %default)")
+    parser.add_option("-t", "--timeout",
+        default=DEFAULT_TIMEOUT,
+        help="Timeout to run the tests (default %default)")
+    (options, args) = parser.parse_args(args)
+
+    # Set logging early
+    log_level = logging.getLevelName(options.log_level.upper())
+    log_handlers = []
+    log_handlers.append(StreamHandler())
+    if options.log:
+        log_filename = options.log
+        log_handlers.append(FileHandler(log_filename))
+
+    format = ("%(asctime)s %(levelname)-8s %(message)s")
+    if log_handlers:
+        for handler in log_handlers:
+            handler.setFormatter(Formatter(format))
+            logging.getLogger().addHandler(handler)
+        if log_level:
+            logging.getLogger().setLevel(log_level)
+    elif not logging.getLogger().handlers:
+        logging.disable(logging.CRITICAL)
+
+    # Parse args
+    if not args:
+        parser.error("Must specify a SUITE")
+    elif len(args) > 1:
+        parser.error("Must specify a single SUITE")
+
+    suite = args[0]
+    value = run_phoronix(options, suite)
+    if value is None:
+        return 1
+
+    print value
+
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv[1:]))

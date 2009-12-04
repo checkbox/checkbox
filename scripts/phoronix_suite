@@ -1,0 +1,298 @@
+#!/usr/bin/python
+
+import os
+import re
+import sys
+
+import pexpect
+import posixpath
+import subprocess
+
+from xml.dom import minidom
+
+from urlparse import urlparse
+from optparse import OptionParser
+
+
+DEFAULT_DIRECTORY = "/tmp/checkbox.phoronix"
+DEFAULT_LOCATION = "http://www.phorogit.com/repo/phoronix-test-suite.git"
+DEFAULT_TIMEOUT = 300
+
+COMMAND_TEMPLATE = "phoronix_filter --directory=%(directory)s '%(suite)s'"
+
+
+def print_line(key, value):
+    if type(value) is list:
+        print "%s:" % key
+        for v in value:
+            print " %s" % v
+    else:
+        print "%s: %s" % (key, value)
+
+def print_element(element):
+    for key, value in element.items():
+        print_line(key, value)
+
+    print
+
+def print_elements(elements):
+    for element in elements:
+        print_element(element)
+
+def parse_url(url):
+    scheme, host, path, params, query, fragment = urlparse(url)
+
+    if "@" in host:
+        username, host = host.rsplit("@", 1)
+        if ":" in username:
+            username, password = username.split(":", 1)
+        else:
+            password = None
+    else:
+        username = password = None
+
+    if ":" in host:
+        host, port = host.split(":")
+        assert port.isdigit()
+        port = int(port)
+    else:
+        port = None
+
+    return scheme, username, password, host, port, path, params, query, fragment
+
+def lsb_release():
+    key_map = {
+        "Distributor ID": "distributor_id",
+        "Description": "description",
+        "Release": "release",
+        "Codename": "codename"}
+
+    command = "lsb_release -a 2>/dev/null"
+    process = subprocess.Popen(command, shell=True,
+        stdout=subprocess.PIPE)
+
+    lsb = {}
+    for line in process.stdout.readlines():
+        line = line.strip()
+        if not line:
+            continue
+
+        (key, value) = line.split(":\t", 1)
+        if key in key_map:
+            key = key_map[key]
+            lsb[key] = value
+
+    return lsb
+
+def phoronix_packages(directory):
+    lsb = lsb_release()
+    distributor = lsb["distributor_id"].lower()
+    file = posixpath.join(directory, "pts-core", "static", "distro-xml",
+        "%s-packages.xml" % distributor)
+    if not posixpath.exists(file):
+        raise Exception, "Packages file does not exist: %s" % file
+
+    packages = {}
+    tree = minidom.parse(file)
+    for package in tree.getElementsByTagName("Package"):
+        generic_node = package.getElementsByTagName("GenericName")[0]
+        package_node = package.getElementsByTagName("PackageName")[0]
+        packages[generic_node.firstChild.data] = package_node.firstChild.data
+
+    return packages
+
+def phoronix_dependencies():
+    dependencies = []
+    if os.uname()[4] == "x86_64":
+        dependencies.append("ia32-libs")
+
+    return dependencies
+
+def phoronix_profile(directory, name):
+    file = posixpath.join(directory, "pts", "test-profiles", "%s.xml" % name)
+    if not posixpath.exists(file):
+        raise Exception, "Profile file does not exist: %s" % file
+
+    profile = {}
+    profile["Directory"] = directory
+    profile["Name"] = name
+
+    tree = minidom.parse(file)
+    suite = tree.getElementsByTagName("PhoronixTestSuite")[0]
+    for child in suite.childNodes:
+        if isinstance(child, minidom.Text):
+            continue
+
+        if child.nodeName in ("TestProfile", "TestInformation"):
+            profile.setdefault(child.nodeName, {})
+            for subchild in child.childNodes:
+                if isinstance(subchild, minidom.Text):
+                    continue
+
+                if subchild.firstChild:
+                    profile[child.nodeName][subchild.nodeName] = \
+                        subchild.firstChild.data
+
+    return profile
+
+def phoronix_profiles(directory):
+    profiles = []
+    profiles_directory = posixpath.join(directory, "pts", "test-profiles")
+    names = os.listdir(profiles_directory)
+    for name in names:
+        if name.endswith(".xml"):
+            name = name.replace(".xml", "")
+            try:
+                profile = phoronix_profile(directory, name)
+            except Exception:
+                continue
+            profiles.append(profile)
+
+    return profiles
+
+def phoronix_clone(location, directory):
+    if posixpath.exists(directory):
+        return
+
+    dirname = posixpath.dirname(directory)
+    if not posixpath.exists(dirname):
+        os.makedirs(dirname)
+
+    process = subprocess.Popen(["git", "clone", location, directory],
+        stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    stdout, stderr = process.communicate()
+    if process.wait():
+        raise Exception, "Failed to clone phoronix from %s" % location
+
+def phoronix_batch_setup(location, directory):
+    command = posixpath.join(directory, "phoronix-test-suite")
+    args = ["batch-setup"]
+    connection = pexpect.spawn(command, args=args, cwd=directory)
+
+    question_answer = [
+        ("Do you agree to these terms and wish to proceed (Y/n)? ", "y"),
+        ("Do you wish to enable anonymous usage / statistics reporting (Y/n)? ", "n"),
+        ("Save test results when in batch mode (Y/n)? ", "y"),
+        ("Open the web browser automatically when in batch mode (y/N)? ", "n"),
+        ("Auto upload the results to Phoronix Global (Y/n)? ", "n"),
+        ("Prompt for test identifier (Y/n)? ", "y"),
+        ("Prompt for test description (Y/n)? ", "n"),
+        ("Prompt for saved results file-name (Y/n)? ", "y"),
+        ("Run all test options (Y/n)? ", "y")]
+
+    while True:
+        questions = [qa[0] for qa in question_answer]
+        index = connection.expect_exact(questions + [pexpect.EOF])
+        if index >= len(question_answer):
+            break
+
+        answer = question_answer[index][1]
+        connection.send("%s\n" % answer)
+
+def phoronix_network_setup(location, directory):
+    command = posixpath.join(directory, "phoronix-test-suite")
+    args = ["network-setup"]
+    connection = pexpect.spawn(command, args=args, cwd=directory)
+
+    if "http_proxy" in os.environ:
+        has_proxy = "y"
+        proxy_host, proxy_port = parse_url(os.environ["http_proxy"])[3:5]
+    else:
+        has_proxy, proxy_host, proxy_port = "n", "", ""
+
+    question_answer = [
+        ("Configure the Phoronix Test Suite to use a HTTP proxy (y/N)? ", has_proxy),
+        ("Enter IP address / server name of proxy: ", proxy_host),
+        ("Enter TCP port for proxy server: ", proxy_port)]
+
+    while True:
+        questions = [qa[0] for qa in question_answer]
+        index = connection.expect_exact(questions + [pexpect.EOF])
+        if index >= len(question_answer):
+            break
+
+        answer = question_answer[index][1]
+        connection.send("%s\n" % answer)
+
+def phoronix_setup(location, directory):
+    phoronix_clone(location, directory)
+    phoronix_batch_setup(location, directory)
+    phoronix_network_setup(location, directory)
+
+def profile_to_test(profile, packages, timeout=None):
+    # Default values
+    test = {
+        "plugin": "metric",
+        "depends": "phoronix",
+        "timeout": timeout,
+        "requires": []}
+
+    # Profile values
+    test["name"] = profile["Name"]
+    test["command"] = COMMAND_TEMPLATE % {
+        "directory": profile["Directory"],
+        "suite": profile["Name"]}
+    test["environ"] = [
+        "PATH=%s" % ":".join([profile["Directory"], os.environ.get("PATH", "")])]
+
+    dependencies = phoronix_dependencies()
+    if dependencies:
+        test["requires"].extend(["package.name == '%s'" % d
+            for d in dependencies])
+
+    if "TestProfile" in profile:
+        test_profile = profile["TestProfile"]
+        external_dependencies = test_profile.get("ExternalDependencies")
+        if external_dependencies:
+            generic_names = re.split(r",\s+", external_dependencies)
+            package_names = []
+            for generic_name in generic_names:
+                package_names.extend(re.split(r"\s+", packages[generic_name]))
+            test["requires"].extend(["package.name == '%s'" % n
+                for n in package_names])
+
+    if "TestInformation" in profile:
+        test_information = profile["TestInformation"]
+        if "Description" in test_information:
+            test["description"] = test_information["Description"]
+
+    return test
+
+def profiles_to_tests(profiles, packages, timeout=None):
+    tests = []
+    for profile in profiles:
+        test = profile_to_test(profile, packages, timeout)
+        tests.append(test)
+
+    return tests
+
+def main(args):
+    usage = "Usage: %prog [OPTIONS]"
+    parser = OptionParser(usage=usage)
+    parser.add_option("-d", "--directory",
+        default=DEFAULT_DIRECTORY,
+        help="Directory where to clone phoronix (default %default)")
+    parser.add_option("-l", "--location",
+        default=DEFAULT_LOCATION,
+        help="Location from which to clone phoronix (default %default)")
+    parser.add_option("-t", "--timeout",
+        default=DEFAULT_TIMEOUT,
+        type="int",
+        help="Timeout when running phoronix (default %default)")
+    (options, args) = parser.parse_args(args)
+
+    phoronix_setup(options.location, options.directory)
+
+    profiles = phoronix_profiles(options.directory)
+    if not profiles:
+        return 1
+
+    packages = phoronix_packages(options.directory)
+    tests = profiles_to_tests(profiles, packages, options.timeout)
+    print_elements(tests)
+
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv[1:]))

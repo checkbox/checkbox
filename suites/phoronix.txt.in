@@ -1,0 +1,8 @@
+plugin: external
+name: phoronix
+requires:
+ package.name == 'git-core'
+ package.name == 'php5-cli'
+ package.name == 'python-pexpect'
+command: phoronix_suite | filter_templates --whitelist='name=encode-ogg' --whitelist='name=unigine-sanctuary' --whitelist='name=unigine-tropics' --whitelist='name=lightsmark' --whitelist='name=norsetto-shadow'
+_description: Automated benchmark testing
