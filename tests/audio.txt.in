@@ -109,3 +109,19 @@ _description:
  After a few seconds, your speech will be played back to you.
  .
  Did you hear your speech played back?
+
+plugin: manual
+name: playback_headphones
+requires:
+ device.category == 'AUDIO'
+ package.name == 'python-gst0.10'
+command: gst_pipeline_test -t 2 'audiotestsrc wave=sine freq=512 ! audioconvert ! audioresample ! gconfaudiosink'
+_description:
+ Please connect a pair of headphones to your audio device.
+ .
+ Click the Test button to play a sound on the automatically detected \
+ playback device.
+ .
+ Do you hear a sound through the headphones?
+
+
