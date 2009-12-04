@@ -6,16 +6,16 @@ import gtk
 
 class Application:
     def __init__(self):
-    self.colors = iter(["red", "green", "blue", "white", "black"])
+        self.colors = iter(["red", "green", "blue", "white", "black"])
         self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)
-    self.window.set_decorated(False)
-    self.window.fullscreen()
-    self.window.modify_bg(gtk.STATE_NORMAL,
+        self.window.set_decorated(False)
+        self.window.fullscreen()
+        self.window.modify_bg(gtk.STATE_NORMAL,
                               gtk.gdk.color_parse(self.colors.next()))
 
-    self.window.connect("key-press-event", self.rotate_bg_color)
+        self.window.connect("key-press-event", self.rotate_bg_color)
         self.window.add_events(gtk.gdk.BUTTON_PRESS_MASK)
-    self.window.connect("button-press-event", self.rotate_bg_color)
+        self.window.connect("button-press-event", self.rotate_bg_color)
 
         self.window.show()
 
