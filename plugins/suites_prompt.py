@@ -122,7 +122,7 @@ class SuitesPrompt(Plugin):
                         break
 
     def prompt_gather(self, interface):
-        suites = self._suites.values()
+        suites = [s for s in self._iterator]
         if len(suites) > 1:
             suites_all = set([s["description"] for s in suites])
             suites_ignore = set(self.persist.get("ignore", []))
