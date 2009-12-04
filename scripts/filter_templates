@@ -51,7 +51,7 @@ def match_elements(elements, whitelist=[], blacklist=[]):
 
     matches = []
     for element in elements:
-        if False in match_patterns(whitelist_patterns, element):
+        if True not in match_patterns(whitelist_patterns, element):
             continue
         if True in match_patterns(blacklist_patterns, element):
             continue
