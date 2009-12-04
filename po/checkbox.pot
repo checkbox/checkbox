@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-27 10:29-0400\n"
+"POT-Creation-Date: 2009-12-04 17:26-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -42,7 +42,7 @@ msgstr ""
 msgid "_Skip this test"
 msgstr ""
 
-#: ../gtk/checkbox-gtk.glade.h:7 ../checkbox_gtk/gtk_interface.py:366
+#: ../gtk/checkbox-gtk.glade.h:7 ../checkbox_gtk/gtk_interface.py:368
 msgid "_Test"
 msgstr ""
 
@@ -96,13 +96,6 @@ msgstr ""
 
 #. description
 #: ../tests/audio.txt.in:7
-msgid ""
-"Click the Test button to play a sound on the automatically detected \\ "
-"playback device."
-msgstr ""
-
-#. description
-#: ../tests/audio.txt.in:7
 msgid "Do you hear a sound?"
 msgstr ""
 
@@ -113,13 +106,13 @@ msgstr ""
 
 #. description
 #: ../tests/audio.txt.in:19 ../tests/disk.txt.in:6 ../tests/network.txt.in:16
-#: ../tests/video.txt.in:28
+#: ../tests/video.txt.in:25
 msgid "$output"
 msgstr ""
 
 #. description
 #: ../tests/audio.txt.in:19 ../tests/network.txt.in:16
-#: ../tests/video.txt.in:28
+#: ../tests/video.txt.in:25
 msgid "Is this correct?"
 msgstr ""
 
@@ -184,6 +177,23 @@ msgstr ""
 #. description
 #: ../tests/audio.txt.in:103
 msgid "Did you hear your speech played back?"
+msgstr ""
+
+#. description
+#: ../tests/audio.txt.in:119
+msgid "Please connect a pair of headphones to your audio device."
+msgstr ""
+
+#. description
+#: ../tests/audio.txt.in:119
+msgid ""
+"Click the Test button to play a sound on the automatically detected \\ "
+"playback device."
+msgstr ""
+
+#. description
+#: ../tests/audio.txt.in:119
+msgid "Do you hear a sound through the headphones?"
 msgstr ""
 
 #. description
@@ -323,63 +333,116 @@ msgid "Is your keyboard working properly?"
 msgstr ""
 
 #. description
-#: ../tests/video.txt.in:7
+#: ../tests/video.txt.in:6
 msgid "This display is using the following resolution:"
 msgstr ""
 
 #. description
-#: ../tests/video.txt.in:7
+#: ../tests/video.txt.in:6
 msgid "Is this acceptable for your display?"
 msgstr ""
 
 #. description
-#: ../tests/video.txt.in:18
+#: ../tests/video.txt.in:17
 msgid "Click the Test button to display a video test."
 msgstr ""
 
 #. description
-#: ../tests/video.txt.in:18
+#: ../tests/video.txt.in:17
 msgid "Do you see color bars and static?"
 msgstr ""
 
 #. description
-#: ../tests/video.txt.in:28
+#: ../tests/video.txt.in:25
 msgid ""
 "The following screens and video modes have been detected on your system:"
 msgstr ""
 
 #. description
-#: ../tests/video.txt.in:41
+#: ../tests/video.txt.in:36
 msgid "Click Test to cycle through the detected video modes for your system."
 msgstr ""
 
 #. description
-#: ../tests/video.txt.in:41
+#: ../tests/video.txt.in:36
 msgid "Did the screen appear to be working for each mode?"
 msgstr ""
 
 #. description
-#: ../tests/video.txt.in:49
+#: ../tests/video.txt.in:44
 msgid "Check that hardware is able to run compiz."
 msgstr ""
 
 #. description
-#: ../tests/video.txt.in:54
-msgid ""
-"Plug video output to an external monitor. Is the image displayed correctly?"
+#: ../tests/video.txt.in:49
+msgid "If your system does not have a VGA port, please skip this test."
 msgstr ""
 
 #. description
-#: ../tests/video.txt.in:54
+#: ../tests/video.txt.in:49
 msgid ""
-"Please repeat the test for each kind of video output supported (VGA, DVI, "
-"DisplayPort and HDMI)."
+"Connect a display (if not already connected) to the VGA port on your system. "
+"Is the image displayed correctly?"
 msgstr ""
 
 #. description
-#: ../tests/video.txt.in:54
+#: ../tests/video.txt.in:56
+msgid "If your system does not have a DVI port, please skip this test."
+msgstr ""
+
+#. description
+#: ../tests/video.txt.in:56
 msgid ""
-"For HDMI, please also check that sound is played in the monitor speakers."
+"Connect a display (if not already connected) to the DVI port on your system. "
+"Is the image displayed correctly?"
+msgstr ""
+
+#. description
+#: ../tests/video.txt.in:63
+msgid "If your system does not have DisplayPort, please skip this test."
+msgstr ""
+
+#. description
+#: ../tests/video.txt.in:63
+msgid ""
+"Connect a display (if not already connected) to the DisplayPort on your "
+"system. Is the image displayed correctly?"
+msgstr ""
+
+#. description
+#: ../tests/video.txt.in:70
+msgid "If your system does not have a HDMI port, please skip this test."
+msgstr ""
+
+#. description
+#: ../tests/video.txt.in:70
+msgid ""
+"Connect a display (if not already connected) to the HDMI port on your "
+"system. Is the image displayed correctly?"
+msgstr ""
+
+#. description
+#: ../tests/video.txt.in:78
+msgid "If your system does not have a S-VIDEO port, please skip this test."
+msgstr ""
+
+#. description
+#: ../tests/video.txt.in:78
+msgid ""
+"Connect a display (if not already connected) to the S-VIDEO port on your "
+"system. Is the image displayed correctly?"
+msgstr ""
+
+#. description
+#: ../tests/video.txt.in:85
+msgid "If your system does not have a RCA port, please skip this test."
+msgstr ""
+
+#. description
+#: ../tests/video.txt.in:85
+msgid ""
+"Connect a display (if not already connected) to the RCA port on your system. "
+"Is the image displayed correctly?"
 msgstr ""
 
 #: ../checkbox/application.py:72
@@ -511,7 +574,7 @@ msgstr ""
 msgid "Please choose (%s): "
 msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:237 ../checkbox_gtk/gtk_interface.py:325
+#: ../checkbox_cli/cli_interface.py:237 ../checkbox_gtk/gtk_interface.py:327
 #, python-format
 msgid "Running test %s..."
 msgstr ""
@@ -528,15 +591,15 @@ msgstr ""
 msgid "Please type here and press Ctrl-D when finished:\n"
 msgstr ""
 
-#: ../checkbox_gtk/gtk_interface.py:335
+#: ../checkbox_gtk/gtk_interface.py:337
 msgid "_Test Again"
 msgstr ""
 
-#: ../checkbox_gtk/gtk_interface.py:377
+#: ../checkbox_gtk/gtk_interface.py:379
 msgid "Info"
 msgstr ""
 
-#: ../checkbox_gtk/gtk_interface.py:396
+#: ../checkbox_gtk/gtk_interface.py:398
 msgid "Error"
 msgstr ""
 
