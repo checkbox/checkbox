@@ -22,13 +22,13 @@ import posixpath
 
 from gettext import gettext as _
 
-from logging import StreamHandler, FileHandler, Formatter
 from optparse import OptionParser
 
 from checkbox.contrib import bpickle_registry
 
 from checkbox.lib.config import Config
 from checkbox.lib.environ import get_variable
+from checkbox.lib.log import set_logging
 from checkbox.lib.safe import safe_make_directory
 from checkbox.lib.text import split
 
@@ -97,24 +97,8 @@ class ApplicationManager(object):
         args[:0] = split(string_options)
         (options, args) = self.parse_options(args)
 
-        log_level = logging.getLevelName(options.log_level.upper())
-        log_handlers = []
-        if options.log:
-            log_filename = options.log
-            log_handlers.append(FileHandler(log_filename))
-        else:
-            log_handlers.append(StreamHandler())
-
-        # Logging setup
-        format = ("%(asctime)s %(levelname)-8s %(message)s")
-        if log_handlers:
-            for handler in log_handlers:
-                handler.setFormatter(Formatter(format))
-                logging.getLogger().addHandler(handler)
-            if log_level:
-                logging.getLogger().setLevel(log_level)
-        elif not logging.getLogger().handlers:
-            logging.disable(logging.CRITICAL)
+        # Set logging early
+        set_logging(options.log_level, options.log)
 
         # Config setup
         if len(args) != 2:

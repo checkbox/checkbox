@@ -17,6 +17,9 @@
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
 import inspect
+import logging
+
+from logging import StreamHandler, FileHandler, Formatter
 
 
 def format_class(cls):
@@ -43,3 +46,23 @@ def format_delta(seconds):
     if not seconds:
         seconds = 0.0
     return "%.02fs" % float(seconds)
+
+def set_logging(level, log=None):
+    log_level = logging.getLevelName(level.upper())
+    log_handlers = []
+    if log:
+        log_filename = log
+        log_handlers.append(FileHandler(log_filename))
+    else:
+        log_handlers.append(StreamHandler())
+
+    # Log setup
+    format = ("%(asctime)s %(levelname)-8s %(message)s")
+    if log_handlers:
+        for handler in log_handlers:
+            handler.setFormatter(Formatter(format))
+            logging.getLogger().addHandler(handler)
+        if log_level:
+            logging.getLogger().setLevel(log_level)
+    elif not logging.getLogger().handlers:
+        logging.disable(logging.CRITICAL)
