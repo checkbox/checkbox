@@ -99,7 +99,7 @@ class BoolVariable(Variable):
     __slots__ = ()
 
     def coerce(self, value):
-        if isinstance(value, str):
+        if isinstance(value, (str, unicode)):
             if re.match(r"(yes|true)", value, re.IGNORECASE):
                 value = True
             elif re.match(r"(no|false)", value, re.IGNORECASE):
@@ -116,7 +116,9 @@ class StringVariable(Variable):
     __slots__ = ()
 
     def coerce(self, value):
-        if not isinstance(value, str):
+        if isinstance(value, unicode):
+            value = str(value)
+        elif not isinstance(value, str):
             raise ValueError("%r is not a str" % (value,))
 
         return value
@@ -146,7 +148,7 @@ class IntVariable(Variable):
     __slots__ = ()
 
     def coerce(self, value):
-        if isinstance(value, str):
+        if isinstance(value, (str, unicode)):
             value = int(value)
         elif not isinstance(value, (int, long)):
             raise ValueError("%r is not an int nor long" % (value,))
@@ -158,7 +160,7 @@ class FloatVariable(Variable):
     __slots__ = ()
 
     def coerce(self, value):
-        if isinstance(value, str):
+        if isinstance(value, (str, unicode)):
             value = float(value)
         elif not isinstance(value, (int, long, float)):
             raise ValueError("%r is not a float" % (value,))
@@ -176,7 +178,7 @@ class ListVariable(Variable):
 
     def coerce(self, values):
         item_factory = self._item_factory
-        if isinstance(values, str):
+        if isinstance(values, (str, unicode)):
             values = split(values, self._separator) if values else []
         elif not isinstance(values, (list, tuple)):
             raise ValueError("%r is not a list or tuple" % (values,))

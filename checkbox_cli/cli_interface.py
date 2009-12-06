@@ -208,7 +208,7 @@ class CLIInterface(UserInterface):
     def show_check(self, text, options=[], default=[]):
         dialog = CLIChoiceDialog(text)
         for option in options:
-            dialog.add_option(option.capitalize())
+            dialog.add_option(option)
 
         dialog.add_option("Space when finished", " ")
 
@@ -227,7 +227,7 @@ class CLIInterface(UserInterface):
     def show_radio(self, text, options=[], default=None):
         dialog = CLIChoiceDialog(text)
         for option in options:
-            dialog.add_option(option.capitalize())
+            dialog.add_option(option)
 
         # Show options dialog
         response = dialog.run()
@@ -257,7 +257,7 @@ class CLIInterface(UserInterface):
             dialog = CLIChoiceDialog(description)
 
             for option in options:
-                dialog.add_option(option.capitalize(), option[0])
+                dialog.add_option(option, option[0])
 
             # Get option from dialog
             response = dialog.run()
