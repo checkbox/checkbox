@@ -42,7 +42,16 @@ plugin: shell
 name: compiz_check
 command: run_compiz_check
 _description:
- Check that hardware is able to run compiz.
+ Check that the hardware is able to run compiz.
+
+plugin: manual
+name: glxgears
+requires: package.name == 'mesa-utils'
+command: glxgears
+description:
+ Click Test to execute glxgears to ensure that minimal 3d graphics support is in place.
+ .
+ Did the 3d animation appear?
 
 plugin: manual
 name: video-vga
