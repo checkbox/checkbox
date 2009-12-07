@@ -59,8 +59,6 @@ class Process:
         # Note sh below doesn't setup a seperate group (job control)
         # for non interactive shells (hmm maybe -m option does?)
         os.setpgrp() #seperate group so we can kill it
-        # Disable input
-        os.close(STDIN_FILENO)
         # Force FD_CLOEXEC on all inherited descriptors
         try:
             open_max = os.sysconf('SC_OPEN_MAX')
