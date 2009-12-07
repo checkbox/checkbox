@@ -162,7 +162,7 @@ def phoronix_clone(location, directory):
     process = subprocess.Popen(["git", "clone", location, directory],
         stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     stdout, stderr = process.communicate()
-    if process.wait():
+    if process.returncode:
         raise Exception, "Failed to clone phoronix from %s" % location
 
 def phoronix_batch_setup(location, directory):
@@ -288,6 +288,7 @@ def main(args):
         pw = pwd.getpwnam(user)
         os.setgid(pw.pw_gid)
         os.setuid(pw.pw_uid)
+        os.chdir(pw.pw_dir)
 
     phoronix_setup(options.location, options.directory)
 
