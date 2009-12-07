@@ -30,6 +30,7 @@ from gettext import gettext as _
 from checkbox.contrib.REThread import REThread
 from checkbox.job import (FAIL, PASS, UNINITIATED,
     UNRESOLVED, UNSUPPORTED, UNTESTED)
+from checkbox.reactor import StopAllException
 
 from checkbox.lib.environ import add_variable, get_variable, remove_variable
 from checkbox.lib.iterator import NEXT
@@ -74,6 +75,7 @@ class UserInterface(object):
 
     def show_error(self, text):
         logging.error(text)
+        raise StopAllException, "Error: %s" % text
 
     def show_progress(self, message, function, *args, **kwargs):
         self.show_progress_start(message)
