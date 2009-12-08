@@ -58,7 +58,7 @@ def set_sudoers_nopasswd(user):
 
     return True
 
-def branch_qa_regression(location, directory):
+def fetch_qa_regression(location, directory):
     if posixpath.exists(directory):
         return
 
@@ -66,15 +66,15 @@ def branch_qa_regression(location, directory):
     if not posixpath.exists(dirname):
         os.makedirs(dirname)
 
-    process = subprocess.Popen(["bzr", "branch", location, directory],
+    process = subprocess.Popen(["bzr", "export", directory, location],
         stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     stdout, stderr = process.communicate()
     if process.returncode:
-        raise Exception, "Failed to branch mago from %s" % location
+        raise Exception, "Failed to fetch from %s" % location
 
 def list_qa_regression(location, directory, dry_run):
     if not dry_run:
-        branch_qa_regression(location, directory)
+        fetch_qa_regression(location, directory)
 
     script_pattern = re.compile(r"^test\-.*\.py$")
 
@@ -85,7 +85,7 @@ def list_qa_regression(location, directory, dry_run):
 
 def run_qa_regression(scripts, location, directory, dry_run):
     if not dry_run:
-        branch_qa_regression(location, directory)
+        fetch_qa_regression(location, directory)
 
     for script in scripts:
         path = posixpath.join(directory, "scripts", script)
@@ -151,13 +151,13 @@ def main(args):
     parser.add_option("--dry-run",
         default=False,
         action="store_true",
-        help="Dry run to avoid branching from the given location.")
+        help="Dry run to avoid fetching from the given location.")
     parser.add_option("-d", "--directory",
         default=DEFAULT_DIRECTORY,
-        help="Directory where to branch qa-regression-testing")
+        help="Directory where to fetch qa-regression-testing")
     parser.add_option("-l", "--location",
         default=DEFAULT_LOCATION,
-        help="Location from where to branch qa-regression-testing")
+        help="Location from where to fetch qa-regression-testing")
 
     (options, scripts) = parser.parse_args(args)
 
