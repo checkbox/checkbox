@@ -1,0 +1,12 @@
+name: ltp
+plugin: external
+_description: Linux Test Project
+requires:
+ package.alias == 'linux'
+ package.name == 'cvs'
+ package.name == 'flex'
+ package.name == 'make'
+ package.name == 'autoconf'
+user: root
+timeout: 1200
+command: ltp_suite | filter_templates --whitelist='name=syscalls'
