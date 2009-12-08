@@ -73,13 +73,17 @@ class Frontend(object):
 
     def get_job_result(self, *args, **kwargs):
         if self._instance.user:
-            return self.client.get_job_result(self._instance.command, self.user)
+            timeout = self._instance.timeout if self._instance.timeout else 600
+            timeout += 300
+            return self.client.get_job_result(self._instance.command, self.user,
+                timeout=timeout)
         else:
             return self._function(self._instance, *args, **kwargs)
 
     def get_registry(self, *args, **kwargs):
         if self._instance.user:
-            return self.client.get_registry(self._instance.__module__, self.user)
+            return self.client.get_registry(self._instance.__module__, self.user,
+                timeout=600)
         else:
             return self._function(self._instance, *args, **kwargs)
 

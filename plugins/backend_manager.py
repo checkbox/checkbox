@@ -78,6 +78,7 @@ class BackendManager(dbus.service.Object):
         in_signature="ss", out_signature="s", sender_keyword="sender",
         connection_keyword="conn")
     def get_registry(self, name, user, sender=None, conn=None):
+        self.loop = False
         if name not in self._manager.registry:
             raise UnknownRegistryException, "Registry not found: %s" % name
 
@@ -88,6 +89,7 @@ class BackendManager(dbus.service.Object):
         in_signature="ss", out_signature="as", sender_keyword="sender",
         connection_keyword="conn")
     def get_job_result(self, command, user, sender=None, conn=None):
+        self.loop = False
         for job in self.jobs:
             if job.get("command") == command:
                 break
