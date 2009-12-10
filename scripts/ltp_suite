@@ -15,7 +15,7 @@ DEFAULT_DIRECTORY = "/tmp/checkbox.ltp"
 DEFAULT_LOCATION = ":pserver:anonymous:@ltp.cvs.sourceforge.net:/cvsroot/ltp"
 DEFAULT_TIMEOUT = 10800
 
-COMMAND_TEMPLATE = "cd %(directory)s && ./runltp -f %(suite)s -r %(directory)s -p -q 2>/dev/null | ltp_filter --suite=%(suite)s"
+COMMAND_TEMPLATE = "cd '%(directory)s' && ./runltp -f %(suite)s -r '%(directory)s' -p -q 2>/dev/null | ltp_filter --suite=%(suite)s"
 
 def print_line(key, value):
     if type(value) is list:
@@ -69,12 +69,12 @@ def checkout_ltp(location, directory):
     os.environ["SKIP_IDCHECK"] = "1"
 
     for command_template in [
-            "cvs -d %(location)s login",
-            "cvs -z3 -d %(location)s co -d %(target_directory)s ltp",
-            "make -C %(target_directory)s autotools",
-            "cd %(target_directory)s && ./configure",
-            "make -C %(target_directory)s",
-            "make -C %(target_directory)s install"]:
+            "cvs -d '%(location)s' login",
+            "cvs -z3 -d '%(location)s' co -d %(target_directory)s ltp",
+            "make -C '%(target_directory)s' autotools",
+            "cd '%(target_directory)s' && ./configure",
+            "make -C '%(target_directory)s'",
+            "make -C '%(target_directory)s' install"]:
         command = command_template % {
             "location": location,
             "target_directory": target_directory}
