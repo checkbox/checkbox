@@ -73,7 +73,7 @@ class SuitesPrompt(Plugin):
                 return True
 
         suites_ignore = self.persist.get("ignore", [])
-        if suite["description"] in suites_ignore:
+        if "description" in suite and suite["description"] in suites_ignore:
             return True
 
         return False
@@ -125,7 +125,7 @@ class SuitesPrompt(Plugin):
         suites = [s for s in self._iterator]
         self._iterator = iter(self._iterator)
         if len(suites) > 1:
-            suites_all = set([s["description"] for s in suites])
+            suites_all = set([s["description"] for s in suites if "description" in s])
             suites_ignore = set(self.persist.get("ignore", []))
             suites_default = suites_all.difference(suites_ignore)
             suites_default = set(interface.show_check(
