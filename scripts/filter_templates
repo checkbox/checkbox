@@ -51,9 +51,11 @@ def match_elements(elements, whitelist=[], blacklist=[]):
 
     matches = []
     for element in elements:
-        if True not in match_patterns(whitelist_patterns, element):
+        if whitelist_patterns \
+           and True not in match_patterns(whitelist_patterns, element):
             continue
-        if True in match_patterns(blacklist_patterns, element):
+        if blacklist_patterns \
+           and True in match_patterns(blacklist_patterns, element):
             continue
 
         matches.append(element)
