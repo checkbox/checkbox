@@ -21,3 +21,11 @@ requires:
  package.name == 'bzr'
 user: root
 command: qa_regression_suite test-glibc-security.py | filter_packages
+
+name: qa-regression-testing-cpio
+plugin: external
+_description: QA regression tests for cpio (destructive)
+requires:
+ package.name == 'bzr'
+user: root
+command: qa_regression_suite test-cpio.py | filter_packages
