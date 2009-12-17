@@ -1,7 +1,23 @@
-name: qa-regression-testing
+name: qa-regression-testing-kernel
 plugin: external
-_description: QA regression tests (destructive)
+_description: QA regression tests for the kernel (destructive)
 requires:
  package.name == 'bzr'
 user: root
 command: qa_regression_suite test-kernel-security.py test-kernel.py | filter_packages
+
+name: qa-regression-testing-openssl
+plugin: external
+_description: QA regression tests for openssl (destructive)
+requires:
+ package.name == 'bzr'
+user: root
+command: qa_regression_suite test-openssl.py | filter_packages
+
+name: qa-regression-testing-glibc
+plugin: external
+_description: QA regression tests for glibc (destructive)
+requires:
+ package.name == 'bzr'
+user: root
+command: qa_regression_suite test-glibc-security.py | filter_packages
