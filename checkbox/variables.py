@@ -168,6 +168,12 @@ class FloatVariable(Variable):
         return value
 
 
+class TimeVariable(FloatVariable):
+    __slots__ = ()
+
+    pass
+
+
 class ListVariable(Variable):
     __slots__ = ("_item_factory", "_separator")
 
