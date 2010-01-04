@@ -16,8 +16,6 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-import logging
-
 from checkbox.lib.cache import cache
 
 from checkbox.frontend import frontend
@@ -45,7 +43,6 @@ class CommandRegistry(Registry):
 
     @frontend("get_registry")
     def __str__(self):
-        logging.info("Running command: %s", self.command)
         job = Job(self.command, timeout=self.timeout)
         (status, data, duration) = job.execute()
         # Return empty string if the job failed
