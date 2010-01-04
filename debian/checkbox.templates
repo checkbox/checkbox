@@ -1,3 +1,13 @@
+Template: checkbox/plugins/apport_prompt/default_enabled
+Type: boolean
+_Description: Default Enabled
+ Default enabled state.
+
+Template: checkbox/plugins/apport_prompt/default_package
+Type: string
+_Description: Default Package
+ Default package if none is detected.
+
 Template: checkbox/plugins/launchpad_exchange/transport_url
 Type: string
 Default: https://launchpad.net/+hwdb/+submit
