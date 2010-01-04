@@ -4,4 +4,4 @@ _description: QA regression tests (destructive)
 requires:
  package.name == 'bzr'
 user: root
-command: qa_regression_suite test-kernel-security.py test-kernel.py | filter_packages
+command: qa_regression_suite test-kernel-security.py test-kernel.py test-cron.py | filter_packages

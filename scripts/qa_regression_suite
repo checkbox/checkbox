@@ -132,13 +132,16 @@ def run_qa_regression(scripts, location, directory, dry_run):
             if not value:
                 continue
 
-            # Check for QRT-Packages and QRT-Alternates
+            # Check for QRT-*
             values = re.split(r"\s+", value)
             if match.group("key") == "QRT-Packages":
                 packages.extend(["package.name == '%s'" % v for v in values])
 
             elif match.group("key") == "QRT-Alternates":
                 packages.append("%s" % " or ".join(["package.name == '%s'" % v for v in values]))
+
+            elif match.group("key") == "QRT-Privilege":
+                test["user"] = value
 
         if packages:
             test["requires"] = packages
