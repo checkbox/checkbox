@@ -38,3 +38,11 @@ requires:
 user: root
 command: qa_regression_suite test-curl.py | filter_packages
 
+name: qa-regression-testing-exiv2
+plugin: external
+_description: QA regression tests for exiv2 (destructive)
+requires:
+ package.name == 'bzr'
+user: root
+command: qa_regression_suite test-exiv2.py | filter_packages
+
