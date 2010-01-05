@@ -1,4 +1,17 @@
 plugin: manual
+name: disk
+timeout: 10
+requires: package.name == 'lshw'
+user: root
+command: $CHECKBOX_SHARE/scripts/disk_test
+_description:
+ The following hard drives were detected:
+ .
+ $output
+ .
+ Is this correct?
+
+plugin: manual
 name: disk_bench
 requires: device.category == 'DISK'
 user: root

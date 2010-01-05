@@ -18,15 +18,15 @@
 #
 import os
 
-from checkbox.lib.cache import cache
-
-from checkbox.properties import String
+from checkbox.properties import String, Time
 from checkbox.registry import Registry
 from checkbox.registries.command import CommandRegistry
 from checkbox.registries.link import LinkRegistry
 
 
-COLUMNS = ["name", "version"]
+DPKG_COLUMNS = ["name", "version"]
+
+DPKG_LOG = "/var/log/dpkg.log"
 
 
 class PackageRegistry(Registry):
@@ -51,40 +51,59 @@ class PackagesRegistry(CommandRegistry):
     """Registry for packages."""
 
     # Command to retrieve packages.
-    command = String(default="COLUMNS=200 dpkg -l")
+    command = String(default="DPKG_COLUMNS=200 dpkg -l")
 
-    @cache
-    def items(self):
-        items = []
+    # Last modified timestamp of the dpkg log
+    last_modified = Time(default=0.0)
 
-        aliases = {
+    def _get_aliases(self):
+        return {
             "linux-image-" + os.uname()[2]: "linux"}
 
-        for line in [l for l in self.split("\n") if l]:
-            # Determine the lengths of dpkg columns and
-            # strip status column.
-            if line.startswith("+++"):
-                lengths = [len(i) for i in line.split("-")]
-                lengths[0] += 1
-                for i in range(1, len(lengths)):
-                    lengths[i] += lengths[i - 1] + 1
+    def _get_last_modified(self):
+        last_modified = 0.0
+        if os.path.exists(DPKG_LOG):
+            last_modified = os.stat(DPKG_LOG).st_mtime
 
-            # Parse information from installed packages.
-            if line.startswith("ii"):
-                package = {}
-                for i in range(len(COLUMNS)):
-                    key = COLUMNS[i]
-                    value = line[lengths[i]:lengths[i+1]-1].strip()
-                    package[key] = value
+        return last_modified
 
-                key = package["name"]
-                if key in aliases:
-                    package["alias"] = aliases[key]
+    def items(self):
+        new_last_modified = self._get_last_modified()
+        if not new_last_modified:
+            return []
 
-                value = PackageRegistry(package)
-                items.append((key, value))
+        if self.last_modified < new_last_modified:
+            self.last_modified = new_last_modified
 
-        return items
+            cache = []
+            aliases = self._get_aliases()
+            for line in [l for l in self.split("\n") if l]:
+                # Determine the lengths of dpkg columns and
+                # strip status column.
+                if line.startswith("+++"):
+                    lengths = [len(i) for i in line.split("-")]
+                    lengths[0] += 1
+                    for i in range(1, len(lengths)):
+                        lengths[i] += lengths[i - 1] + 1
+
+                # Parse information from installed packages.
+                if line.startswith("ii"):
+                    package = {}
+                    for i in range(len(DPKG_COLUMNS)):
+                        key = DPKG_COLUMNS[i]
+                        value = line[lengths[i]:lengths[i+1]-1].strip()
+                        package[key] = value
+
+                    key = package["name"]
+                    if key in aliases:
+                        package["alias"] = aliases[key]
+
+                    value = PackageRegistry(package)
+                    cache.append((key, value))
+
+            self._cache = cache
+
+        return self._cache
 
 
 factory = PackagesRegistry

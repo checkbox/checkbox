@@ -18,9 +18,9 @@
 #
 from checkbox.attribute import Attribute
 from checkbox.variables import (ConstantVariable, BoolVariable, StringVariable,
-    PathVariable, UnicodeVariable, IntVariable, FloatVariable, ListVariable,
-    TupleVariable, AnyVariable, DictVariable, MapVariable, VariableFactory,
-    Variable, get_variable)
+    PathVariable, UnicodeVariable, IntVariable, FloatVariable, TimeVariable,
+    ListVariable, TupleVariable, AnyVariable, DictVariable, MapVariable,
+    VariableFactory, Variable, get_variable)
 
 
 class Property(object):
@@ -139,6 +139,11 @@ class Int(PropertyType):
 class Float(PropertyType):
 
     variable_class = FloatVariable
+
+
+class Time(PropertyType):
+
+    variable_class = TimeVariable
 
 
 class List(PropertyFactory):
