@@ -29,3 +29,12 @@ requires:
  package.name == 'bzr'
 user: root
 command: qa_regression_suite test-cpio.py | filter_packages
+
+name: qa-regression-testing-curl
+plugin: external
+_description: QA regression tests for curl (destructive)
+requires:
+ package.name == 'bzr'
+user: root
+command: qa_regression_suite test-curl.py | filter_packages
+
