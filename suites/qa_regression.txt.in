@@ -38,6 +38,14 @@ requires:
 user: root
 command: qa_regression_suite test-file.py | filter_packages
 
+name: qa-regression-testing-gcc-security
+plugin: external
+_description: QA regression tests for gcc
+requires:
+ package.name == 'bzr'
+user: root
+command: qa_regression_suite test-gcc-security.py | filter_packages
+
 name: qa-regression-testing-glibc
 plugin: external
 _description: QA regression tests for glibc (destructive)
