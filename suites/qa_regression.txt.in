@@ -6,22 +6,6 @@ requires:
 user: root
 command: qa_regression_suite test-kernel-security.py test-kernel.py | filter_packages
 
-name: qa-regression-testing-openssl
-plugin: external
-_description: QA regression tests for openssl (destructive)
-requires:
- package.name == 'bzr'
-user: root
-command: qa_regression_suite test-openssl.py | filter_packages
-
-name: qa-regression-testing-glibc
-plugin: external
-_description: QA regression tests for glibc (destructive)
-requires:
- package.name == 'bzr'
-user: root
-command: qa_regression_suite test-glibc-security.py | filter_packages
-
 name: qa-regression-testing-cpio
 plugin: external
 _description: QA regression tests for cpio (destructive)
@@ -45,4 +29,28 @@ requires:
  package.name == 'bzr'
 user: root
 command: qa_regression_suite test-exiv2.py | filter_packages
+
+name: qa-regression-testing-file
+plugin: external
+_description: QA regression tests for file
+requires:
+ package.name == 'bzr'
+user: root
+command: qa_regression_suite test-file.py | filter_packages
+
+name: qa-regression-testing-glibc
+plugin: external
+_description: QA regression tests for glibc (destructive)
+requires:
+ package.name == 'bzr'
+user: root
+command: qa_regression_suite test-glibc-security.py | filter_packages
+
+name: qa-regression-testing-openssl
+plugin: external
+_description: QA regression tests for openssl (destructive)
+requires:
+ package.name == 'bzr'
+user: root
+command: qa_regression_suite test-openssl.py | filter_packages
 
