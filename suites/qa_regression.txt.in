@@ -6,38 +6,6 @@ requires:
 user: root
 command: qa_regression_suite test-kernel-security.py test-kernel.py | filter_packages
 
-name: qa-regression-testing-cpio
-plugin: external
-_description: QA regression tests for cpio (destructive)
-requires:
- package.name == 'bzr'
-user: root
-command: qa_regression_suite test-cpio.py | filter_packages
-
-name: qa-regression-testing-curl
-plugin: external
-_description: QA regression tests for curl (destructive)
-requires:
- package.name == 'bzr'
-user: root
-command: qa_regression_suite test-curl.py | filter_packages
-
-name: qa-regression-testing-exiv2
-plugin: external
-_description: QA regression tests for exiv2 (destructive)
-requires:
- package.name == 'bzr'
-user: root
-command: qa_regression_suite test-exiv2.py | filter_packages
-
-name: qa-regression-testing-file
-plugin: external
-_description: QA regression tests for file
-requires:
- package.name == 'bzr'
-user: root
-command: qa_regression_suite test-file.py | filter_packages
-
 name: qa-regression-testing-gcc-security
 plugin: external
 _description: QA regression tests for gcc
@@ -46,37 +14,45 @@ requires:
 user: root
 command: qa_regression_suite test-gcc-security.py | filter_packages
 
-name: qa-regression-testing-ghostscript
-plugin: external
-_description: QA regression tests for ghostscript
-requires:
- package.name == 'bzr'
-user: root
-command: qa_regression_suite test-ghostscript.py | filter_packages
-
-name: qa-regression-testing-git-core
-plugin: external
-_description: QA regression tests for git-core
-requires:
- package.name == 'bzr'
-user: root
-command: qa_regression_suite test-git-core.py | filter_packages
-
-name: qa-regression-testing-glib2.0
-plugin: external
-_description: QA regression tests for glib2.0
-requires:
- package.name == 'bzr'
-user: root
-command: qa_regression_suite test-glib2.0.py | filter_packages
-
 name: qa-regression-testing-glibc
 plugin: external
-_description: QA regression tests for glibc (destructive)
+_description: QA regression tests for glibc
 requires:
  package.name == 'bzr'
 user: root
 command: qa_regression_suite test-glibc-security.py | filter_packages
+
+name: qa-regression-testing-core-utilities
+plugin: external
+_description: QA regression tests for core utilities (destructive)
+requires:
+ package.name == 'bzr'
+user: root
+command: qa_regression_suite test-cpio.py test-curl.py test-file.py test-ghostscript.py test-git-core.py test-openssl.py | filter_packages
+
+name: qa-regression-testing-libraries
+plugin: external
+_description: QA regression tests for libraries (destructive)
+requires:
+ package.name == 'bzr'
+user: root
+command: qa_regression_suite test-glib2.0.py test-mpfr.py | filter_packages
+
+name: qa-regression-testing-image-libraries
+plugin: external
+_description: QA regression tests for image libraries (destructive)
+requires:
+ package.name == 'bzr'
+user: root
+command: qa_regression_suite test-exiv2.py test-libexif.py test-libgd2.py test-netpbm-free.py test-libwmf.py test-poppler.py | filter_packages
+
+name: qa-regression-testing-perl
+plugin: external
+_description: QA regression tests for perl (destructive)
+requires:
+ package.name == 'bzr'
+user: root
+command: qa_regression_suite test-perl.py test-libcompress-raw-zlib-perl.py | filter_packages
 
 name: qa-regression-testing-lcms
 plugin: external
@@ -86,19 +62,11 @@ requires:
 user: root
 command: qa_regression_suite test-lcms.py | filter_packages
 
-name: qa-regression-testing-libcompress-raw-zlib-perl
+name: qa-regression-testing-mimetex
 plugin: external
-_description: QA regression tests for libcompress-raw-zlib-perl
+_description: QA regression tests for mimetex
 requires:
  package.name == 'bzr'
 user: root
-command: qa_regression_suite test-libcompress-raw-zlib-perl.py | filter_packages
-
-name: qa-regression-testing-openssl
-plugin: external
-_description: QA regression tests for openssl (destructive)
-requires:
- package.name == 'bzr'
-user: root
-command: qa_regression_suite test-openssl.py | filter_packages
+command: qa_regression_suite test-mimetex.py | filter_packages
 
