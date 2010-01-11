@@ -51,6 +51,7 @@ class ApportOptions(object):
         self.package = package
         self.symptom = symptom
         self.pid = None
+        self.save = False
 
 
 class ApportUserInterface(UserInterface):
@@ -113,7 +114,7 @@ class ApportUserInterface(UserInterface):
     def ui_stop_upload_progress(self):
         self.interface.show_progress_stop()
 
-    def ui_present_report_details(self):
+    def ui_present_report_details(self, *args):
         return "full"
 
     def ui_question_choice(self, text, options, multiple):
