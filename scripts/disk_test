@@ -10,8 +10,14 @@ from xml.dom.minidom import parseString
 def main(args):
     command = "lshw -xml 2>/dev/null"
     xml = os.popen(command).read()
+
+    # Safely encode assuming latin1
+    xml = unicode(xml, "latin1")
     xml = re.sub(ur"[^\x09\x0a\x0d\x20-\ud7ff\ue000-\ufffd]", "", xml,
         re.UNICODE)
+
+    # Safely reencode using utf8
+    xml = xml.encode("utf8")
     dom = parseString(xml)
     nodes = [n for n in dom.getElementsByTagName("node")
         if n.getAttribute("id") in ("disk", "storage")]
