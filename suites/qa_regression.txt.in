@@ -86,6 +86,14 @@ requires:
 user: root
 command: qa_regression_suite test-lcms.py | filter_packages
 
+name: qa-regression-testing-libcompress-raw-zlib-perl
+plugin: external
+_description: QA regression tests for libcompress-raw-zlib-perl
+requires:
+ package.name == 'bzr'
+user: root
+command: qa_regression_suite test-libcompress-raw-zlib-perl.py | filter_packages
+
 name: qa-regression-testing-openssl
 plugin: external
 _description: QA regression tests for openssl (destructive)
