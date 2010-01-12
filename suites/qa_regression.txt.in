@@ -28,7 +28,7 @@ _description: QA regression tests for core utilities (destructive)
 requires:
  package.name == 'bzr'
 user: root
-command: qa_regression_suite test-cpio.py test-curl.py test-file.py test-ghostscript.py test-git-core.py test-openssl.py | filter_packages
+command: qa_regression_suite test-cpio.py test-curl.py test-file.py test-ghostscript.py test-git-core.py test-openssl.py test-tar.py | filter_packages
 
 name: qa-regression-testing-libraries
 plugin: external
@@ -44,7 +44,7 @@ _description: QA regression tests for image libraries (destructive)
 requires:
  package.name == 'bzr'
 user: root
-command: qa_regression_suite test-exiv2.py test-libexif.py test-libgd2.py test-netpbm-free.py test-libwmf.py test-poppler.py | filter_packages
+command: qa_regression_suite test-exiv2.py test-libexif.py test-libgd2.py test-netpbm-free.py test-libwmf.py test-poppler.py test-tiff.py | filter_packages
 
 name: qa-regression-testing-perl
 plugin: external
@@ -62,11 +62,11 @@ requires:
 user: root
 command: qa_regression_suite test-lcms.py | filter_packages
 
-name: qa-regression-testing-mimetex
+name: qa-regression-testing-tex
 plugin: external
-_description: QA regression tests for mimetex
+_description: QA regression tests for tex packages
 requires:
  package.name == 'bzr'
 user: root
-command: qa_regression_suite test-mimetex.py | filter_packages
+command: qa_regression_suite test-mimetex.py test-tetex_texlive.py | filter_packages
 
