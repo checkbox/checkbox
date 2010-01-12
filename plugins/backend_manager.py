@@ -23,7 +23,7 @@ import dbus.mainloop.glib
 
 from checkbox.lib.environ import add_variable, append_path
 
-from checkbox.job import Job
+from checkbox.job import Job, PASS
 from checkbox.properties import Int, String
 from checkbox.user_interface import UserInterface
 
@@ -101,6 +101,9 @@ class BackendManager(dbus.service.Object):
         job = Job(job["command"], job.get("environ"),
             job.get("timeout"), job.get("user"))
         (status, data, duration) = job.execute()
+        if status == PASS:
+            self._manager.reactor.fire("message-string", data)
+
         return (status, data, str(duration))
 
     def report_suite(self, suite):

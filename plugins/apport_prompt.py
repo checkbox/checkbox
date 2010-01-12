@@ -22,7 +22,7 @@ from gettext import gettext as _
 
 from checkbox.job import FAIL
 from checkbox.plugin import Plugin
-from checkbox.properties import Path, String
+from checkbox.properties import Bool, Path, String
 from checkbox.reactor import StopAllException
 from checkbox.registry import registry_eval_recursive
 
@@ -51,6 +51,7 @@ class ApportOptions(object):
         self.package = package
         self.symptom = symptom
         self.pid = None
+        self.save = False
 
 
 class ApportUserInterface(UserInterface):
@@ -113,7 +114,7 @@ class ApportUserInterface(UserInterface):
     def ui_stop_upload_progress(self):
         self.interface.show_progress_stop()
 
-    def ui_present_report_details(self):
+    def ui_present_report_details(self, *args):
         return "full"
 
     def ui_question_choice(self, text, options, multiple):
@@ -135,6 +136,9 @@ class ApportPrompt(Plugin):
     # Default configuration filename
     default_filename = Path(default="/etc/default/apport")
 
+    # Default enabled state
+    default_enabled = Bool(required=False)
+
     # Default package if none is detected
     default_package = String(required=False)
 
@@ -144,17 +148,18 @@ class ApportPrompt(Plugin):
         if isinstance(ApportUserInterface, DummyUserInterface):
             return
 
-        self._enabled = False
         self._manager.reactor.call_on("gather", self.gather)
         self._manager.reactor.call_on("prompt-test", self.prompt_test, 100)
 
     def gather(self):
-        value = Popen("unset enabled && . %s && echo ${enabled}" % self.default_filename,
-            shell=True, stdout=PIPE, stderr=PIPE).communicate()[0]
-        self._enabled = value.strip() == "1"
+        if self.default_enabled is None:
+            value = Popen("unset enabled && . %s && echo ${enabled}"
+                % self.default_filename,
+                shell=True, stdout=PIPE, stderr=PIPE).communicate()[0]
+            self.default_enabled = value.strip() == "1"
 
     def prompt_test(self, interface, test):
-        if not self._enabled:
+        if not self.default_enabled:
             return
 
         if test["status"] != FAIL:

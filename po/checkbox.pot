@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-12-07 10:08-0500\n"
+"POT-Creation-Date: 2010-01-11 16:01-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -105,13 +105,13 @@ msgid "Detecting your sound device(s):"
 msgstr ""
 
 #. description
-#: ../tests/audio.txt.in:19 ../tests/disk.txt.in:6 ../tests/network.txt.in:16
+#: ../tests/audio.txt.in:19 ../tests/disk.txt.in:19 ../tests/network.txt.in:16
 #: ../tests/video.txt.in:25
 msgid "$output"
 msgstr ""
 
 #. description
-#: ../tests/audio.txt.in:19 ../tests/network.txt.in:16
+#: ../tests/audio.txt.in:19 ../tests/disk.txt.in:7 ../tests/network.txt.in:16
 #: ../tests/video.txt.in:25
 msgid "Is this correct?"
 msgstr ""
@@ -197,12 +197,17 @@ msgid "Do you hear a sound through the headphones?"
 msgstr ""
 
 #. description
-#: ../tests/disk.txt.in:6
+#: ../tests/disk.txt.in:7
+msgid "The following hard drives were detected:"
+msgstr ""
+
+#. description
+#: ../tests/disk.txt.in:19
 msgid "Disk benchmark:"
 msgstr ""
 
 #. description
-#: ../tests/disk.txt.in:6
+#: ../tests/disk.txt.in:19
 msgid "Is this ok?"
 msgstr ""
 
@@ -371,6 +376,18 @@ msgstr ""
 #. description
 #: ../tests/video.txt.in:44
 msgid "Check that the hardware is able to run compiz."
+msgstr ""
+
+#. description
+#: ../tests/video.txt.in:51
+msgid ""
+"Click Test to execute glxgears to ensure that minimal 3d graphics support is "
+"in place."
+msgstr ""
+
+#. description
+#: ../tests/video.txt.in:51
+msgid "Did the 3d animation appear?"
 msgstr ""
 
 #. description
