@@ -36,7 +36,7 @@ _description: QA regression tests for server package (destructive)
 requires:
  package.name == 'bzr'
 user: root
-command: qa_regression_suite test-php5.py | filter_packages
+command: qa_regression_suite test-bind9.py test-cups.py test-php5.py | filter_packages
 
 name: qa-regression-testing-libraries
 plugin: external
