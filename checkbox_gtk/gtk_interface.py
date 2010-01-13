@@ -191,6 +191,10 @@ class GTKInterface(UserInterface):
 
     def _run_dialog(self, dialog=None):
         def on_dialog_response(dialog, response, self):
+            # Keep dialog alive when the button that has been clicked
+            # isn't meant to move to a previous/next window
+            # To do this, please link the RESPONSE_REJECT code to such
+            # button in the glade file
             if response != gtk.RESPONSE_REJECT:
                 self.direction = response
                 gtk.main_quit()
