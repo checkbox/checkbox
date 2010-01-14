@@ -28,7 +28,7 @@ _description: QA regression tests for core utilities (destructive)
 requires:
  package.name == 'bzr'
 user: root
-command: qa_regression_suite test-cpio.py test-cron.py test-curl.py test-file.py test-ghostscript.py test-git-core.py test-openssl.py test-shadow.py test-tar.py | filter_packages
+command: qa_regression_suite test-cpio.py test-cron.py test-curl.py test-file.py test-ghostscript.py test-git-core.py test-openldap.py test-openssl.py test-shadow.py test-sudo.py test-tar.py | filter_packages
 
 name: qa-regression-testing-server
 plugin: external
@@ -36,7 +36,7 @@ _description: QA regression tests for server package (destructive)
 requires:
  package.name == 'bzr'
 user: root
-command: qa_regression_suite test-bind9.py test-cups.py test-dovecot.py test-moin.py test-php5.py | filter_packages
+command: qa_regression_suite test-bind9.py test-cups.py test-dovecot.py test-moin.py test-mysql.py test-php5.py test-postgresql.py test-tomcat6.py | filter_packages
 
 name: qa-regression-testing-libraries
 plugin: external
