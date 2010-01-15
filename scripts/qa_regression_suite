@@ -140,7 +140,7 @@ def run_qa_regression(scripts, location, directory, dry_run):
             elif match.group("key") == "QRT-Alternates":
                 packages.append("%s" % " or ".join(["package.name == '%s'" % v for v in values]))
 
-            elif match.group("key") == "QRT-Privilege":
+            elif match.group("key") == "QRT-Privilege" and value == "root":
                 test["user"] = value
 
         if packages:
