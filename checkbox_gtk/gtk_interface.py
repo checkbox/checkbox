@@ -191,8 +191,13 @@ class GTKInterface(UserInterface):
 
     def _run_dialog(self, dialog=None):
         def on_dialog_response(dialog, response, self):
-            self.direction = response
-            gtk.main_quit()
+            # Keep dialog alive when the button that has been clicked
+            # isn't meant to move to a previous/next window
+            # To do this, please link the RESPONSE_REJECT code to such
+            # button in the glade file
+            if response != gtk.RESPONSE_REJECT:
+                self.direction = response
+                gtk.main_quit()
 
         dialog = dialog or self._dialog
         dialog.connect("response", on_dialog_response, self)
@@ -261,6 +266,20 @@ class GTKInterface(UserInterface):
         # Set buttons
         self._notebook.set_current_page(1)
 
+        select_buttons = [self._get_widget(name)
+                          for name in ["button_select_all",
+                                       "button_deselect_all"]]
+        for button in select_buttons:
+            button.show()
+
+        def select_all(widget, option_table):
+            for check_button in option_table.itervalues():
+                check_button.set_active(True)
+
+        def deselect_all(widget, option_table):
+            for check_button in option_table.itervalues():
+                check_button.set_active(False)
+
         # Set options
         option_table = {}
         vbox = self._get_widget("vbox_options_list")
@@ -276,7 +295,18 @@ class GTKInterface(UserInterface):
 
         self._set_hyper_text_view("hyper_text_view_options", text)
 
+        for button in select_buttons:
+            callback_name = button.name.split('_', 1)[1]
+            callback = locals()[callback_name]
+            handler_id = button.connect("clicked", callback, option_table)
+            button.set_data("handler_id", handler_id)
+
         self._run_dialog()
+
+        for button in select_buttons:
+            handler_id = button.get_data("handler_id")
+            button.disconnect(handler_id)
+            button.hide()
 
         # Get options
         results = []
