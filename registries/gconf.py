@@ -29,6 +29,7 @@ from checkbox.registries.data import DataRegistry
 
 class SourceRegistry(DataRegistry):
 
+    @cache
     def items(self):
         items = []
         lines = []
