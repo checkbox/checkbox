@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-01-21 15:19-0500\n"
+"POT-Creation-Date: 2010-01-21 15:24-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,22 +31,30 @@ msgid "System Testing"
 msgstr ""
 
 #: ../gtk/checkbox-gtk.glade.h:4
-msgid "_No"
+msgid "_Deselect All"
 msgstr ""
 
 #: ../gtk/checkbox-gtk.glade.h:5
-msgid "_Previous"
+msgid "_No"
 msgstr ""
 
 #: ../gtk/checkbox-gtk.glade.h:6
-msgid "_Skip this test"
+msgid "_Previous"
 msgstr ""
 
-#: ../gtk/checkbox-gtk.glade.h:7 ../checkbox_gtk/gtk_interface.py:368
-msgid "_Test"
+#: ../gtk/checkbox-gtk.glade.h:7
+msgid "_Select All"
 msgstr ""
 
 #: ../gtk/checkbox-gtk.glade.h:8
+msgid "_Skip this test"
+msgstr ""
+
+#: ../gtk/checkbox-gtk.glade.h:9 ../checkbox_gtk/gtk_interface.py:398
+msgid "_Test"
+msgstr ""
+
+#: ../gtk/checkbox-gtk.glade.h:10
 msgid "_Yes"
 msgstr ""
 
@@ -591,7 +599,7 @@ msgstr ""
 msgid "Please choose (%s): "
 msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:237 ../checkbox_gtk/gtk_interface.py:327
+#: ../checkbox_cli/cli_interface.py:237 ../checkbox_gtk/gtk_interface.py:357
 #, python-format
 msgid "Running test %s..."
 msgstr ""
@@ -608,15 +616,15 @@ msgstr ""
 msgid "Please type here and press Ctrl-D when finished:\n"
 msgstr ""
 
-#: ../checkbox_gtk/gtk_interface.py:337
+#: ../checkbox_gtk/gtk_interface.py:367
 msgid "_Test Again"
 msgstr ""
 
-#: ../checkbox_gtk/gtk_interface.py:379
+#: ../checkbox_gtk/gtk_interface.py:409
 msgid "Info"
 msgstr ""
 
-#: ../checkbox_gtk/gtk_interface.py:398
+#: ../checkbox_gtk/gtk_interface.py:428
 msgid "Error"
 msgstr ""
 
