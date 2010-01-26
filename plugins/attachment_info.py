@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-from checkbox.job import Job, FAIL, UNINITIATED
+from checkbox.job import Job, JobIterator, FAIL, UNINITIATED
 from checkbox.plugin import Plugin
 
 from gettext import gettext as _
@@ -60,7 +60,8 @@ class AttachmentInfo(Plugin):
 
     def report(self):
         attachments = []
-        for attachment in self._attachments:
+        iterator = JobIterator(self._attachments, self._manager.registry)
+        for job in iterator:
             if not attachment.get("depends", []):
                 job = Job(attachment["command"], attachment.get("environ"),
                     attachment.get("timeout"))
