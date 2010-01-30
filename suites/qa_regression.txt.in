@@ -6,21 +6,13 @@ requires:
 user: root
 command: qa_regression_suite test-kernel-security.py test-kernel.py | filter_packages
 
-name: qa-regression-testing-gcc-security
+name: qa-regression-testing-build-security
 plugin: external
-_description: QA regression tests for gcc
+_description: QA regression tests for build security
 requires:
  package.name == 'bzr'
 user: root
-command: qa_regression_suite test-gcc-security.py | filter_packages
-
-name: qa-regression-testing-glibc
-plugin: external
-_description: QA regression tests for glibc
-requires:
- package.name == 'bzr'
-user: root
-command: qa_regression_suite test-glibc-security.py | filter_packages
+command: qa_regression_suite test-built-binaries.py test-gcc-security.py test-glibc-security.py | filter_packages
 
 name: qa-regression-testing-core-utilities
 plugin: external
