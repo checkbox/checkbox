@@ -1,15 +1,15 @@
 #!/usr/bin/python
 
-import os
 import re
 import sys
 
+from subprocess import Popen, PIPE
 from xml.dom.minidom import parseString
 
 
 def main(args):
-    command = "lshw -xml 2>/dev/null"
-    xml = os.popen(command).read()
+    xml = Popen("lshw -xml -C system -C disk", shell=True,
+        stdout=PIPE, stderr=PIPE).communicate()[0]
 
     # Safely encode assuming latin1
     xml = unicode(xml, "latin1")
