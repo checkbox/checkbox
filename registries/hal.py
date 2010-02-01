@@ -283,6 +283,7 @@ class DeviceRegistry(Registry):
 
         return None
 
+    @cache
     def items(self):
         return (
             ("path", self._get_path()),

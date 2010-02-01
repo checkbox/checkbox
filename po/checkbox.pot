@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-01-11 16:01-0500\n"
+"POT-Creation-Date: 2010-01-26 15:27-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,22 +31,30 @@ msgid "System Testing"
 msgstr ""
 
 #: ../gtk/checkbox-gtk.glade.h:4
-msgid "_No"
+msgid "_Deselect All"
 msgstr ""
 
 #: ../gtk/checkbox-gtk.glade.h:5
-msgid "_Previous"
+msgid "_No"
 msgstr ""
 
 #: ../gtk/checkbox-gtk.glade.h:6
-msgid "_Skip this test"
+msgid "_Previous"
 msgstr ""
 
-#: ../gtk/checkbox-gtk.glade.h:7 ../checkbox_gtk/gtk_interface.py:368
-msgid "_Test"
+#: ../gtk/checkbox-gtk.glade.h:7
+msgid "_Select All"
 msgstr ""
 
 #: ../gtk/checkbox-gtk.glade.h:8
+msgid "_Skip this test"
+msgstr ""
+
+#: ../gtk/checkbox-gtk.glade.h:9 ../checkbox_gtk/gtk_interface.py:398
+msgid "_Test"
+msgstr ""
+
+#: ../gtk/checkbox-gtk.glade.h:10
 msgid "_Yes"
 msgstr ""
 
@@ -100,99 +108,98 @@ msgid "Do you hear a sound?"
 msgstr ""
 
 #. description
-#: ../tests/audio.txt.in:19
+#: ../tests/audio.txt.in:18
 msgid "Detecting your sound device(s):"
 msgstr ""
 
 #. description
-#: ../tests/audio.txt.in:19 ../tests/disk.txt.in:19 ../tests/network.txt.in:16
+#: ../tests/audio.txt.in:18 ../tests/disk.txt.in:19 ../tests/network.txt.in:16
 #: ../tests/video.txt.in:25
 msgid "$output"
 msgstr ""
 
 #. description
-#: ../tests/audio.txt.in:19 ../tests/disk.txt.in:7 ../tests/network.txt.in:16
+#: ../tests/audio.txt.in:18 ../tests/disk.txt.in:7 ../tests/network.txt.in:16
 #: ../tests/video.txt.in:25
 msgid "Is this correct?"
 msgstr ""
 
 #. description
-#: ../tests/audio.txt.in:32
+#: ../tests/audio.txt.in:31
 msgid ""
-"Disconnect any external microphones that you have plugged in.  \\ Click the "
-"Test button, then speak into your internal microphone.  \\ After a few "
-"seconds, your speech will be played back to you."
+"Disconnect any external microphones that you have plugged in.  Click the "
+"Test button, then speak into your internal microphone.  After a few seconds, "
+"your speech will be played back to you."
 msgstr ""
 
 #. description
-#: ../tests/audio.txt.in:45
+#: ../tests/audio.txt.in:42
 msgid ""
-"Connect a microphone to your microphone port.  \\ Click the Test button, "
-"then speak into the microphone.  \\ After a few seconds, your speech will be "
-"played back to you."
-msgstr ""
-
-#. description
-#: ../tests/audio.txt.in:58
-msgid ""
-"Pair a Bluetooth headset with your system.  Then open the \\ volume control "
-"application by right-clicking on the speaker \\ icon in the panel and "
-"selecting \"Sound Preferences\".  Select \\ the \"Input\" tab and choose "
-"your Bluetooth device.  Select the \\ \"Output\" tab and choose your "
-"Bluetooth device.  When you are done, \\ click the Test button, then speak "
-"into the microphone.  \\ After a few seconds, your speech will be played "
+"Connect a microphone to your microphone port.  Click the Test button, then "
+"speak into the microphone.  After a few seconds, your speech will be played "
 "back to you."
 msgstr ""
 
 #. description
-#: ../tests/audio.txt.in:75
+#: ../tests/audio.txt.in:53
 msgid ""
-"Play back a sound on the default output and listen for it on the default \\ "
-"input.  This makes the most sense when the output and input are directly \\ "
+"Pair a Bluetooth headset with your system.  Then open the volume control "
+"application by right-clicking on the speaker icon in the panel and selecting "
+"\"Sound Preferences\".  Select the \"Input\" tab and choose your Bluetooth "
+"device.  Select the \"Output\" tab and choose your Bluetooth device.  When "
+"you are done, click the Test button, then speak into the microphone.  After "
+"a few seconds, your speech will be played back to you."
+msgstr ""
+
+#. description
+#: ../tests/audio.txt.in:64
+msgid ""
+"Play back a sound on the default output and listen for it on the default "
+"input.  This makes the most sense when the output and input are directly "
 "connected, as with a patch cable."
 msgstr ""
 
 #. description
-#: ../tests/audio.txt.in:86
+#: ../tests/audio.txt.in:73
 msgid ""
-"Connect a USB audio device to your system.  Then open the \\ volume control "
-"application by right-clicking on the speaker \\ icon in the panel and "
-"selecting \"Sound Preferences\".  Select \\ the \"Input\" tab and choose "
-"your USB device.  Select the \\ \"Output\" tab and choose your USB device.  "
-"When you are done, \\ click the Test button, then speak into the "
-"microphone.  \\ After a few seconds, your speech will be played back to you."
-msgstr ""
-
-#. description
-#: ../tests/audio.txt.in:103
-msgid ""
-"Open the volume control application by right-clicking on the speaker \\ icon "
-"in the panel and selecting \"Sound Preferences\".  Select \\ the \"Input\" "
-"tab and choose any alternate (non-default) device(s).  Select the \\ \"Output"
-"\" tab and choose any alternate (non-default) device(s).  When you are \\ "
-"done, click the Test button, then speak into the microphone.  \\ After a few "
+"Connect a USB audio device to your system.  Then open the volume control "
+"application by right-clicking on the speaker icon in the panel and selecting "
+"\"Sound Preferences\".  Select the \"Input\" tab and choose your USB "
+"device.  Select the \"Output\" tab and choose your USB device.  When you are "
+"done, click the Test button, then speak into the microphone.  After a few "
 "seconds, your speech will be played back to you."
 msgstr ""
 
 #. description
-#: ../tests/audio.txt.in:103
+#: ../tests/audio.txt.in:84
+msgid ""
+"Open the volume control application by right-clicking on the speaker icon in "
+"the panel and selecting \"Sound Preferences\".  Select the \"Input\" tab and "
+"choose any alternate (non-default) device(s).  Select the \"Output\" tab and "
+"choose any alternate (non-default) device(s).  When you are done, click the "
+"Test button, then speak into the microphone.  After a few seconds, your "
+"speech will be played back to you."
+msgstr ""
+
+#. description
+#: ../tests/audio.txt.in:84
 msgid "Did you hear your speech played back?"
 msgstr ""
 
 #. description
-#: ../tests/audio.txt.in:119
+#: ../tests/audio.txt.in:95
 msgid "Please connect a pair of headphones to your audio device."
 msgstr ""
 
 #. description
-#: ../tests/audio.txt.in:119
+#: ../tests/audio.txt.in:95
 msgid ""
-"Click the Test button to play a sound on the automatically detected \\ "
-"playback device."
+"Click the Test button to play a sound on the automatically detected playback "
+"device."
 msgstr ""
 
 #. description
-#: ../tests/audio.txt.in:119
+#: ../tests/audio.txt.in:95
 msgid "Do you hear a sound through the headphones?"
 msgstr ""
 
@@ -214,8 +221,8 @@ msgstr ""
 #. description
 #: ../tests/fingerprint.txt.in:3
 msgid ""
-"Prerequisites: This test case assumes that there's a testing account \\ from "
-"which test cases are run and a personal account that the tester \\ uses to "
+"Prerequisites: This test case assumes that there's a testing account from "
+"which test cases are run and a personal account that the tester uses to "
 "verify the fingerprint reader"
 msgstr ""
 
@@ -224,23 +231,23 @@ msgstr ""
 msgid ""
 "Fingerprint login verification procedure: 1.- Click on the user switcher "
 "applet 2.- Select your user name 3.- A window should appear that provides "
-"the ability to login either \\ typing your password or using fingerprint "
+"the ability to login either typing your password or using fingerprint "
 "authentication 4.- Use the fingerprint reader to login 5.- Click on the user "
 "switcher applet 6.- Select the testing account to continue running tests"
 msgstr ""
 
 #. description
-#: ../tests/fingerprint.txt.in:21
+#: ../tests/fingerprint.txt.in:18
 msgid ""
 "Fingerprint unlock verification procedure: 1.- Click on the user switcher "
 "applet 2.- Select 'Lock screen' 3.- Press any key or move the mouse 4.- A "
-"window should appear that provides the ability to unlock either \\ typing "
-"your password or using fingerprint authentication 5.- Use the fingerprint "
-"reader to unlock 6.- Screen should be unlocked"
+"window should appear that provides the ability to unlock either typing your "
+"password or using fingerprint authentication 5.- Use the fingerprint reader "
+"to unlock 6.- Screen should be unlocked"
 msgstr ""
 
 #. description
-#: ../tests/fingerprint.txt.in:21
+#: ../tests/fingerprint.txt.in:18
 msgid "Did the authentication procedure work correctly?"
 msgstr ""
 
@@ -262,8 +269,8 @@ msgstr ""
 #: ../tests/kms.txt.in:8
 msgid ""
 "Click Test to switch to another virtual terminal and then back to X.  Your "
-"\\ screen will change temporarily to a text console and then switch back to "
-"your \\ current session."
+"screen will change temporarily to a text console and then switch back to "
+"your current session."
 msgstr ""
 
 #. description
@@ -328,7 +335,7 @@ msgstr ""
 #. description
 #: ../tests/peripheral.txt.in:13
 msgid ""
-"Click the Test button to open a text area where to type keys on your \\ "
+"Click the Test button to open a text area where to type keys on your "
 "keyboard."
 msgstr ""
 
@@ -591,7 +598,7 @@ msgstr ""
 msgid "Please choose (%s): "
 msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:237 ../checkbox_gtk/gtk_interface.py:327
+#: ../checkbox_cli/cli_interface.py:237 ../checkbox_gtk/gtk_interface.py:357
 #, python-format
 msgid "Running test %s..."
 msgstr ""
@@ -608,15 +615,15 @@ msgstr ""
 msgid "Please type here and press Ctrl-D when finished:\n"
 msgstr ""
 
-#: ../checkbox_gtk/gtk_interface.py:337
+#: ../checkbox_gtk/gtk_interface.py:367
 msgid "_Test Again"
 msgstr ""
 
-#: ../checkbox_gtk/gtk_interface.py:379
+#: ../checkbox_gtk/gtk_interface.py:409
 msgid "Info"
 msgstr ""
 
-#: ../checkbox_gtk/gtk_interface.py:398
+#: ../checkbox_gtk/gtk_interface.py:428
 msgid "Error"
 msgstr ""
 
