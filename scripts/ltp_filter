@@ -39,6 +39,7 @@ def parse_file(file):
                 element = {
                     "plugin": "shell",
                     "name": "%s.%s" % (match.group("case"), match.group("number")),
+                    "requires": "package.alias == 'linux'",
                     "description": "%s.%s" % (match.group("case"), match.group("number")),
                     "status": ltp_to_checkox_status[match.group("status")],
                     "data": match.group("data")}

@@ -18,6 +18,8 @@
 #
 import os
 
+from checkbox.lib.cache import cache
+
 from checkbox.properties import String, Time
 from checkbox.registry import Registry
 from checkbox.registries.command import CommandRegistry
@@ -40,6 +42,7 @@ class PackageRegistry(Registry):
 
         return "\n".join(strings)
 
+    @cache
     def items(self):
         items = [(k, v) for k, v in self._package.items()]
         items.append(("package", LinkRegistry(self)))
