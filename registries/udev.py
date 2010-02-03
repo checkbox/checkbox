@@ -491,21 +491,16 @@ class UdevRegistry(CommandRegistry):
             environment = {}
             for line in record.split("\n"):
                 match = line_pattern.match(line)
-                if not match:
-                    raise Exception, \
-                        "Device line not supported: %s" % line
+                if match:
+                    key = match.group("key")
+                    value = match.group("value")
 
-                key = match.group("key")
-                value = match.group("value")
-
-                if key == "P":
-                    path= value
-                elif key == "E":
-                    match = multi_pattern.match(value)
-                    if not match:
-                        raise Exception, \
-                            "Device property not supported: %s" % value
-                    environment[match.group("key")] = match.group("value")
+                    if key == "P":
+                        path= value
+                    elif key == "E":
+                        match = multi_pattern.match(value)
+                        if match:
+                            environment[match.group("key")] = match.group("value")
 
             # Set default DEVPATH
             environment.setdefault("DEVPATH", path)
