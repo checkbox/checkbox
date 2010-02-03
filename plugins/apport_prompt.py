@@ -46,8 +46,9 @@ CATEGORY_TO_SYMPTOM = {
 
 class ApportOptions(object):
 
-    def __init__(self, test, package, symptom):
+    def __init__(self, test, device, package, symptom):
         self.test = test
+        self.device = device
         self.package = package
         self.symptom = symptom
         self.pid = None
@@ -83,11 +84,16 @@ class ApportUserInterface(UserInterface):
 
     def ui_stop_info_collection_progress(self):
         # tags
-        self.report.setdefault("Tags", "")
-        if self.report["Tags"]:
-            self.report["Tags"] += " "
+        if "Tags" in self.report:
+            tags = self.report["Tags"].split(" ")
+        else:
+            tags = []
 
-        self.report["Tags"] += "checkbox-bug"
+        tags.append("checkbox-bug")
+        if self.options.device:
+            tags.append(self.options.device)
+
+        self.report["Tags"] = " ".join(tags)
 
         # checkbox
         test = self.options.test
@@ -165,6 +171,7 @@ class ApportPrompt(Plugin):
         if test["status"] != FAIL:
             return
 
+        device = None
         package = None
         symptom = None
 
@@ -202,8 +209,16 @@ class ApportPrompt(Plugin):
         if response == "no":
             return
 
+        # Determine corresponding device
+        for require in test.get("requires", []):
+            devices = registry_eval_recursive(self._manager.registry.udev,
+                require)
+            if devices:
+                device = devices[0].category.lower()
+                break
+
         try:
-            options = ApportOptions(test, package, symptom)
+            options = ApportOptions(test, device, package, symptom)
             apport_interface = ApportUserInterface(interface, options)
         except ImportError, e:
             interface.show_error("Is a package upgrade in process? Error: %s" % e)
