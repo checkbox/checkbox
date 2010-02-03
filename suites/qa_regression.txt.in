@@ -28,7 +28,7 @@ _description: QA regression tests for server package (destructive)
 requires:
  package.name == 'bzr'
 user: root
-command: qa_regression_suite test-bind9.py test-cups.py test-dovecot.py test-moin.py test-mysql.py test-php5.py test-postgresql.py test-tomcat6.py | filter_packages
+command: qa_regression_suite test-bind9.py test-cups.py test-dovecot.py test-moin.py test-mysql.py test-ntp.py test-php5.py test-postgresql.py test-postfix.py test-tomcat6.py | filter_packages
 
 name: qa-regression-testing-libraries
 plugin: external
@@ -38,13 +38,13 @@ requires:
 user: root
 command: qa_regression_suite test-cyrus-sasl2.py test-glib2.0.py test-mpfr.py | filter_packages
 
-name: qa-regression-testing-image-libraries
+name: qa-regression-testing-media-libraries
 plugin: external
 _description: QA regression tests for image libraries (destructive)
 requires:
  package.name == 'bzr'
 user: root
-command: qa_regression_suite test-exiv2.py test-libexif.py test-libgd2.py test-netpbm-free.py test-libwmf.py test-poppler.py test-tiff.py | filter_packages
+command: qa_regression_suite test-exiv2.py test-libexif.py test-libgd2.py test-jasper.py test-libsndfile.py test-libvorbis.py test-netpbm-free.py test-libwmf.py test-poppler.py test-tiff.py | filter_packages
 
 name: qa-regression-testing-perl
 plugin: external
