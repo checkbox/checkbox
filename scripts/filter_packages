@@ -95,6 +95,7 @@ def install_package_names(names):
         if name in cache:
             cache[name].markInstall()
 
+    os.environ['DEBIAN_FRONTEND'] = 'noninteractive'
     install_progress = CapturedInstallProgress()
 
     try:
