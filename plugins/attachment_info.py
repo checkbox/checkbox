@@ -61,7 +61,7 @@ class AttachmentInfo(Plugin):
     def report(self):
         attachments = []
         iterator = JobIterator(self._attachments, self._manager.registry)
-        for job in iterator:
+        for attachment in iterator:
             if not attachment.get("depends", []):
                 job = Job(attachment["command"], attachment.get("environ"),
                     attachment.get("timeout"))
