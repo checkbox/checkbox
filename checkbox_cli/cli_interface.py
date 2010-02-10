@@ -54,6 +54,7 @@ class CLIDialog(object):
 
     def get(self, label=None, limit=1, separator=termios.CEOT):
         if label is not None:
+            self.put_newline()
             self.put(label)
 
         fileno = sys.stdin.fileno()
@@ -94,7 +95,6 @@ class CLIDialog(object):
         finally:
             termios.tcsetattr(fileno, termios.TCSANOW, saved_attributes)
 
-        self.put_newline()
         return "".join(input)
 
     def show(self):
@@ -110,29 +110,36 @@ class CLIChoiceDialog(CLIDialog):
         self.keys = []
         self.options = []
 
+    def get(self, *args, **kwargs):
+        response = super(CLIChoiceDialog, self).get(*args, **kwargs)
+        try:
+            return self.keys.index(response[0])
+        except ValueError:
+            return -1
+
     def run(self, label=None, defaults=[]):
         if not self.visible:
             self.show()
 
-        self.put_newline()
         try:
             # Only one option
-            if len (self.keys) <= 1:
+            if len(self.keys) <= 1:
                 self.get(_("Press any key to continue..."))
                 return 0
             # Multiple choices
             while True:
-                if label is not None:
-                    self.put_line(label)
+                self.put_newline()
                 for key, option in zip(self.keys, self.options):
                     default = "*" if option in defaults else " "
                     self.put_line("%s %s: %s" % (default, key, option))
 
                 response = self.get(_("Please choose (%s): ") % ("/".join(self.keys)))
-                try:
-                    return self.keys.index(response[0]) + 1
-                except ValueError:
-                    pass
+                if response >= 0:
+                    return response
+
+                if label is not None:
+                    self.put_line(label)
+
         except KeyboardInterrupt:
             self.put_newline()
             raise
@@ -155,8 +162,7 @@ class CLITextDialog(CLIDialog):
 
         self.put_newline()
         try:
-            response = self.get(label, self.limit, self.separator)
-            return response
+            return self.get(label, self.limit, self.separator)
         except KeyboardInterrupt:
             self.put_newline()
             raise
@@ -212,17 +218,16 @@ class CLIInterface(UserInterface):
 
         dialog.add_option("Space when finished", " ")
 
-        results = dict((d, d in default) for d in options)
+        results = default
         while True:
-            defaults = [k for k, v in results.items() if v]
-            response = dialog.run(defaults=defaults)
-            if response > len(options):
+            response = dialog.run(defaults=results)
+            if response >= len(options):
                 break
 
-            result = options[response - 1]
-            results[result] = not results[result]
+            result = options[response]
+            self._toggle_results(result, options, results)
 
-        return [k for k, v in results.items() if v]
+        return results
 
     def show_radio(self, text, options=[], default=None):
         dialog = CLIChoiceDialog(text)
@@ -231,7 +236,55 @@ class CLIInterface(UserInterface):
 
         # Show options dialog
         response = dialog.run()
-        return options[response - 1]
+        return options[response]
+
+    def show_tree(self, text, options={}, default={}):
+        keys = sorted(options.keys())
+        values = [options[k] for k in keys]
+
+        dialog = CLIChoiceDialog(text)
+        for option in keys:
+            dialog.add_option(option)
+
+        dialog.add_option("Plus to expand options", "+")
+        dialog.add_option("Space when finished", " ")
+
+        do_expand = False
+        results = default
+        while True:
+            response = dialog.run(defaults=results)
+            if response > len(options):
+                break
+
+            elif response == len(options):
+                response = dialog.get()
+                do_expand = True
+
+            # Invalid response
+            if response < 0:
+                continue
+
+            # Toggle results
+            result = keys[response]
+            if not do_expand:
+                self._toggle_results(result, options, results)
+                continue
+
+            dialog.visible = False
+            if result not in results:
+                self._toggle_results(result, options, results)
+
+            # Expand tree or check
+            value = values[response]
+            if isinstance(value, dict):
+                self.show_tree(result, options[result], results[result])
+
+            elif isinstance(value, (list, tuple,)):
+                self.show_check(result, options[result], results[result])
+
+            do_expand = False
+
+        return results
 
     def _run_test(self, test):
         message = _("Running test %s...") % test["name"]
@@ -261,8 +314,8 @@ class CLIInterface(UserInterface):
 
             # Get option from dialog
             response = dialog.run()
-            option = options[response - 1]
-            if response <= len(ALL_ANSWERS):
+            option = options[response]
+            if response < len(ALL_ANSWERS):
                 break
 
             output = self._run_test(test)
