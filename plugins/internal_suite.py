@@ -39,12 +39,12 @@ class InternalSuite(Plugin):
                 blacklist=["plugin=manual"])
 
     def prompt_internal(self, interface, suite):
-        self._manager.reactor.fire("message-exec", suite)
         self._manager.reactor.fire("prompt-tests", interface,
             whitelist=["plugin=manual"])
 
     def report_internal(self, suite):
         self._manager.reactor.fire("report-suite", suite)
+        self._manager.reactor.fire("message-exec", suite)
 
 
 factory = InternalSuite

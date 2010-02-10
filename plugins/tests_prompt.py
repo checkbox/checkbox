@@ -34,48 +34,48 @@ class TestsPrompt(Plugin):
     whitelist = List(String(), default_factory=lambda:"")
 
     def _tests_exclude(self, test):
-        whitelist_patterns = [re.compile(r"^%s$" % r) for r in self.whitelist if r]
-        blacklist_patterns = [re.compile(r"^%s$" % r) for r in self.blacklist if r]
-
-        name = test["name"]
-        if whitelist_patterns:
-            if not [name for p in whitelist_patterns if p.match(name)]:
-                return True
-        elif blacklist_patterns:
-            if [name for p in blacklist_patterns if p.match(name)]:
-                return True
+        if test["name"] in self._ignore:
+            return True
 
         return False
 
     def register(self, manager):
         super(TestsPrompt, self).register(manager)
         self._iterator = None
-        self._keys = []
+        self._ignore = []
         self._tests = {}
 
         for (rt, rh) in [
              ("report", self.report),
              ("report-test", self.report_test),
+             ("ignore-tests", self.ignore_tests),
              ("prompt-test", self.prompt_test),
              ("prompt-tests", self.prompt_tests)]:
             self._manager.reactor.call_on(rt, rh)
-
-        self._manager.reactor.call_on("prompt-suite", self.prompt_suite, -100)
-
-    def prompt_suite(self, interface, suite):
-        self._iterator = None
-        self._keys = []
 
     def report(self):
         self._manager.reactor.fire("report-tests", self._tests.values())
 
     def report_test(self, test):
+        whitelist_patterns = [re.compile(r"^%s$" % r) for r in self.whitelist if r]
+        blacklist_patterns = [re.compile(r"^%s$" % r) for r in self.blacklist if r]
+
+        name = test["name"]
+        if whitelist_patterns:
+            if not [name for p in whitelist_patterns if p.match(name)]:
+                return
+        elif blacklist_patterns:
+            if [name for p in blacklist_patterns if p.match(name)]:
+                return
+
         key = (test["suite"], test["name"],)
-        self._keys.append(key)
         if key not in self._tests:
             test.setdefault("type", "test")
             test.setdefault("status", UNINITIATED)
             self._tests[key] = test
+
+    def ignore_tests(self, tests):
+        self._ignore = tests
 
     def prompt_test(self, interface, test):
         self._manager.reactor.fire("prompt-%s" % test["plugin"],
@@ -84,7 +84,7 @@ class TestsPrompt(Plugin):
     def prompt_tests(self, interface, blacklist=[], whitelist=[]):
         # TODO: blacklist and whitelist are being ignored
         if not self._iterator:
-            tests = [self._tests[k] for k in self._keys]
+            tests = self._tests.values()
             self._iterator = JobIterator(tests, self._manager.registry)
             self._iterator = IteratorExclude(self._iterator,
                 self._tests_exclude, self._tests_exclude)

@@ -66,10 +66,6 @@ class Reactor(object):
     def fire(self, event_type, *args, **kwargs):
         logging.debug("Started firing %s.", event_type)
 
-        if event_type in self._event_stack:
-            raise StopAllException, "Loop detected for event type: %s." \
-                % event_type
-
         self._event_stack.append(event_type)
 
         results = []

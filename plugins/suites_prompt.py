@@ -61,17 +61,6 @@ class SuitesPrompt(Plugin):
         return cmp(a["name"], b["name"])
 
     def _suites_exclude(self, suite):
-        whitelist_patterns = [re.compile(r"^%s$" % r) for r in self.whitelist if r]
-        blacklist_patterns = [re.compile(r"^%s$" % r) for r in self.blacklist if r]
-
-        name = suite["name"]
-        if whitelist_patterns:
-            if not [name for p in whitelist_patterns if p.match(name)]:
-                return True
-        elif blacklist_patterns:
-            if [name for p in blacklist_patterns if p.match(name)]:
-                return True
-
         suites_ignore = self.persist.get("ignore", [])
         if "description" in suite and suite["description"] in suites_ignore:
             return True
@@ -83,6 +72,7 @@ class SuitesPrompt(Plugin):
         self._iterator = None
         self._suite = None
         self._suites = {}
+        self._tests = {}
 
         for (rt, rh) in [
              ("gather", self.gather),
@@ -106,39 +96,62 @@ class SuitesPrompt(Plugin):
     def report_attachment_or_test(self, element):
         if self._suite:
             element.setdefault("suite", self._suite["name"])
+            if element["plugin"] != "attachment":
+                self._tests.setdefault(self._suite["name"], [])
+                self._tests[self._suite["name"]].append(element["name"])
 
     def report_suite(self, suite):
-        key = suite["name"]
-        if key not in self._suites:
+        whitelist_patterns = [re.compile(r"^%s$" % r) for r in self.whitelist if r]
+        blacklist_patterns = [re.compile(r"^%s$" % r) for r in self.blacklist if r]
+
+        name = suite["name"]
+        if whitelist_patterns:
+            if not [name for p in whitelist_patterns if p.match(name)]:
+                return
+        elif blacklist_patterns:
+            if [name for p in blacklist_patterns if p.match(name)]:
+                return
+
+        if suite["name"] not in self._suites:
             suite.setdefault("plugin", self.plugin_default)
-            self._suites[key] = suite
-            self._iterator = JobIterator(self._suites.values(),
-                self._manager.registry, self._suites_compare)
-            self._iterator = IteratorExclude(self._iterator,
-                self._suites_exclude, self._suites_exclude)
-            if self._suite:
-                for suite in self._iterator:
-                    if suite == self._suite:
-                        break
+            self._suites[suite["name"]] = self._suite = suite
 
     def prompt_gather(self, interface):
-        suites = [s for s in self._iterator]
-        self._iterator = iter(self._iterator)
-        if len(suites) > 1:
-            suites_all = set([s["description"] for s in suites if "description" in s])
-            suites_ignore = set(self.persist.get("ignore", []))
-            suites_default = suites_all.difference(suites_ignore)
-            suites_default = set(interface.show_check(
+        if len(self._suites) > 1:
+            suites_tree = dict((s["description"], self._tests.get(s["name"], []))
+                for s in self._suites.values() if "description" in s)
+            suites_default = self.persist.get("default")
+            if suites_default is None:
+                suites_default = dict(suites_tree)
+
+            suites_results = interface.show_tree(
                 _("Select the suites to test"),
-                sorted(suites_all), suites_default))
-            suites_ignore = suites_all.difference(suites_default)
-            self.persist.set("ignore", list(suites_ignore))
+                suites_tree, suites_default)
+            self.persist.set("default", suites_results)
+
+            ignore_tests = []
+            for suite, tests in suites_tree.items():
+                if suite not in suites_results:
+                    ignore_tests.extend(tests)
+
+                else:
+                    for test in tests:
+                        if test not in suites_results[suite]:
+                            ignore_tests.append(test)
+
+            self._manager.reactor.fire("ignore-tests", ignore_tests)
 
     def prompt_suite(self, interface, suite):
         self._manager.reactor.fire("prompt-%s" % suite["plugin"],
             interface, suite)
 
     def prompt_suites(self, interface):
+        if not self._iterator:
+            self._iterator = JobIterator(self._suites.values(),
+                self._manager.registry, self._suites_compare)
+            self._iterator = IteratorExclude(self._iterator,
+                self._suites_exclude, self._suites_exclude)
+
         while True:
             try:
                 self._suite = self._iterator.go(interface.direction)
