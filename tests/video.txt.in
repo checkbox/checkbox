@@ -21,6 +21,7 @@ _description:
 
 plugin: manual
 name: xrandr_detect_modes
+requires: package.name == 'xorg'
 command: xrandr
 _description:
  The following screens and video modes have been detected on your system:
@@ -31,6 +32,7 @@ _description:
 
 plugin: manual
 name: xrandr_cycle
+requires: package.name == 'xorg'
 depends: xrandr_detect_modes
 command: xrandr_cycle
 _description:
