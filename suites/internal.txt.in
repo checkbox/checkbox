@@ -67,3 +67,9 @@ command: cat /etc/modules
 name: sysctl
 plugin: attachment
 command: find /etc/sysctl.* -name \*.conf | xargs cat
+
+name: gcov.tgz
+plugin: attachment
+requires: package.name == 'lcov'
+user: root
+command: gcov_tarball
