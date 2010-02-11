@@ -3,14 +3,15 @@
 (c) 2009 Canonical Ltd.
 Author: David Murphy <schwuk@ubuntu.com>
 '''
+import os
 
-from apport.hookutils import *
-from os import path
-from xdg.BaseDirectory import xdg_cache_home
 
 def add_info(report):
-    SYSTEM = path.join(xdg_cache_home, 'checkbox', 'system')
-    SUBMISSION = path.join(xdg_cache_home, 'checkbox', 'submission')
+    HOME = os.environ.get('HOME', '/')
+    CACHE_HOME = os.environ.get('XDG_CACHE_HOME',
+        os.path.join(HOME, '.cache'))
+    SYSTEM = os.path.join(CACHE_HOME, 'checkbox', 'system')
+    SUBMISSION = os.path.join(CACHE_HOME, 'checkbox', 'submission')
 
     try:
         report['CheckboxSystem'] = open(SYSTEM).read()
