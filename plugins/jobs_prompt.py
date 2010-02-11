@@ -17,6 +17,7 @@
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
 import re
+import logging
 
 from checkbox.job import UNINITIATED
 from checkbox.properties import List, Path, String
@@ -38,8 +39,14 @@ class JobsPrompt(Plugin):
     # List of jobs to blacklist
     blacklist = List(String(), default_factory=lambda:"")
 
+    # Path to blacklist file
+    blacklist_file = Path(required=False)
+
     # List of jobs to whitelist
     whitelist = List(String(), default_factory=lambda:"")
+
+    # Path to whitelist file
+    whitelist_file = Path(required=False)
 
     def register(self, manager):
         super(JobsPrompt, self).register(manager)
@@ -57,8 +64,29 @@ class JobsPrompt(Plugin):
             self._manager.reactor.fire("message-directory", directory)
 
     def report_job(self, job):
-        whitelist_patterns = [re.compile(r"^%s$" % r) for r in self.whitelist if r]
-        blacklist_patterns = [re.compile(r"^%s$" % r) for r in self.blacklist if r]
+        def readlist(name):
+            try:
+                file = open(name)
+            except IOError, e:
+                logging.info("Failed to open file '%s': %s",
+                    name, e.strerror)
+                return []
+            else:
+                return [l.strip() for l in file.readlines()]
+
+        # Build whitelist patterns
+        whitelist = self.whitelist
+        if self.whitelist_file:
+            whitelist.extend(readlist(self.whitelist_file))
+
+        whitelist_patterns = [re.compile(r"^%s$" % r) for r in whitelist if r]
+
+        # Build blacklist patterns
+        blacklist = self.blacklist
+        if self.blacklist_file:
+            blacklist.extend(readlist(self.blacklist_file))
+
+        blacklist_patterns = [re.compile(r"^%s$" % r) for r in blacklist if r]
 
         # Stop if job not in whitelist or in blacklist
         name = job["name"]

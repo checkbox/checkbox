@@ -87,8 +87,12 @@ class ApplicationManager(object):
                           help=_("Configuration override parameters."))
         parser.add_option("-b", "--blacklist",
                           help=_("Shorthand for --config=checkbox/plugins/jobs_prompt/blacklist."))
+        parser.add_option("-B", "--blacklist-file",
+                          help=_("Shorthand for --config=checkbox/plugins/jobs_prompt/blacklist_file."))
         parser.add_option("-w", "--whitelist",
                           help=_("Shorthand for --config=checkbox/plugins/jobs_prompt/whitelist."))
+        parser.add_option("-W", "--whitelist-file",
+                          help=_("Shorthand for --config=checkbox/plugins/jobs_prompt/whitelist_file."))
         return parser.parse_args(args)
 
     def create_application(self, args=sys.argv):
@@ -102,11 +106,11 @@ class ApplicationManager(object):
         (options, args) = self.parse_options(args)
 
         # Replace shorthands
-        for shorthand in "blacklist", "whitelist":
-            key = "checkbox/plugins/job_prompt/%s" % shorthand
+        for shorthand in "blacklist", "blacklist_file", "whitelist", "whitelist_file":
+            key = "checkbox/plugins/jobs_prompt/%s" % shorthand
             value = getattr(options, shorthand)
             if value:
-                options.config.append("=".join(key, value))
+                options.config.append("=".join([key, value]))
 
         # Set logging early
         set_logging(options.log_level, options.log)
