@@ -195,6 +195,31 @@ class CLIProgressDialog(CLIDialog):
 
 class CLIInterface(UserInterface):
 
+    def _toggle_results(self, key, options, results):
+        if isinstance(results, dict):
+            if key in results:
+                del results[key]
+
+            elif key in options:
+                if isinstance(options[key], dict):
+                    results[key] = {}
+                elif isinstance(options[key], (list, tuple,)):
+                    results[key] = []
+                else:
+                    raise Exception, "Unknown result type: %s" % type(results)
+
+                for k in options[key]:
+                    self._toggle_results(k, options[key], results[key])
+
+        elif isinstance(results, (list, tuple,)):
+            if key in results:
+                results.remove(key)
+            elif key in options:
+                results.append(key)
+
+        else:
+            raise Exception, "Unknown result type: %s" % type(results)
+
     def show_progress_start(self, text):
         self.progress = CLIProgressDialog(text)
         self.progress.show()
@@ -260,6 +285,9 @@ class CLIInterface(UserInterface):
                 response = dialog.get()
                 do_expand = True
 
+            else:
+                do_expand = False
+
             # Invalid response
             if response < 0:
                 continue
@@ -270,19 +298,13 @@ class CLIInterface(UserInterface):
                 self._toggle_results(result, options, results)
                 continue
 
+            # Expand tree
             dialog.visible = False
-            if result not in results:
-                self._toggle_results(result, options, results)
-
-            # Expand tree or check
-            value = values[response]
-            if isinstance(value, dict):
-                self.show_tree(result, options[result], results[result])
-
-            elif isinstance(value, (list, tuple,)):
-                self.show_check(result, options[result], results[result])
-
-            do_expand = False
+            if options[result]:
+                branch_results =  results.get(result, {})
+                self.show_tree(result, options[result], branch_results)
+                if branch_results and result not in results:
+                    results[result] = branch_results
 
         return results
 

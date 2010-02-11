@@ -17,6 +17,7 @@
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
 import re
+import copy
 
 from checkbox.lib.iterator import IteratorExclude
 
@@ -118,27 +119,29 @@ class SuitesPrompt(Plugin):
 
     def prompt_gather(self, interface):
         if len(self._suites) > 1:
-            suites_tree = dict((s["description"], self._tests.get(s["name"], []))
-                for s in self._suites.values() if "description" in s)
+            suites_tree = dict((s["description"], dict((t, {}) for t in self._tests[s["name"]]))
+                for s in self._suites.itervalues() if "description" in s)
             suites_default = self.persist.get("default")
             if suites_default is None:
-                suites_default = dict(suites_tree)
+                suites_default = copy.deepcopy(suites_tree)
 
             suites_results = interface.show_tree(
                 _("Select the suites to test"),
                 suites_tree, suites_default)
             self.persist.set("default", suites_results)
 
-            ignore_tests = []
-            for suite, tests in suites_tree.items():
-                if suite not in suites_results:
-                    ignore_tests.extend(tests)
+            def get_ignore_tests(options, results):
+                tests = []
+                for k, v in options.iteritems():
+                    if not v and k not in results:
+                        tests.append(k)
 
-                else:
-                    for test in tests:
-                        if test not in suites_results[suite]:
-                            ignore_tests.append(test)
+                    else:
+                        tests.extend(get_ignore_tests(options[k], results.get(k, {})))
 
+                return tests
+
+            ignore_tests = get_ignore_tests(suites_tree, suites_results)
             self._manager.reactor.fire("ignore-tests", ignore_tests)
 
     def prompt_suite(self, interface, suite):

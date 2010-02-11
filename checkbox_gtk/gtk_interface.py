@@ -189,25 +189,6 @@ class GTKInterface(UserInterface):
 
         return state
 
-    def _set_treestore(self, treestore, children, defaults, parent=None):
-        if type(children) == dict:
-            if type(defaults) != dict:
-                defaults = {}
-            for text, child in children.items():
-                active = text in defaults
-                iter = treestore.append(parent, [text, active, children, defaults])
-                self._set_treestore(treestore, child, defaults.get(text), iter)
-
-        elif type(children) in (list, tuple):
-            if type(defaults) not in (list, tuple):
-                defaults = []
-            for text in children:
-                active = text in defaults
-                treestore.append(parent, [text, active, children, defaults])
-
-        else:
-            raise Exception, "Unknown children type: %s" % type(children)
-
     def _run_dialog(self, dialog=None):
         def on_dialog_response(dialog, response, self):
             # Keep dialog alive when the button that has been clicked
@@ -363,7 +344,7 @@ class GTKInterface(UserInterface):
 
     @GTKHack
     def show_tree(self, text, options={}, default={}):
-        (COLUMN_TEXT, COLUMN_ACTIVE, COLUMN_OPTIONS, COLUMN_RESULTS) = range(4)
+        (COLUMN_TEXT, COLUMN_ACTIVE) = range(2)
 
         # Set buttons
         self._notebook.set_current_page(1)
@@ -371,54 +352,52 @@ class GTKInterface(UserInterface):
         self._set_show("button_deselect_all", True)
 
         # Set options
-        treestore = gtk.TreeStore(str, bool, object, object)
-        self._set_treestore(treestore, options, default)
-
+        treestore = gtk.TreeStore(str, bool)
         treeview = gtk.TreeView(treestore)
         treeview.set_headers_visible(False)
         treeview.show()
 
+        def set_options(options, default, parent=None):
+            for text, child in options.iteritems():
+                active = text in default
+                iter = treestore.append(parent, [text, active])
+                set_options(child, default.get(text, {}), iter)
+
+        set_options(options, default)
+
         vbox = self._get_widget("vbox_options_list")
         vbox.pack_start(treeview, False, False, 0)
 
-        # Toggle boxes
-        model = treeview.get_model()
-
-        def toggle_results(toggle, path, is_expand=False):
-            if isinstance(path, str):
-                iter = model.get_iter_from_string(path)
-            else:
-                iter = model.get_iter(path)
-
-            # Toggle results
-            key = model.get_value(iter, COLUMN_TEXT)
-            options = model.get_value(iter, COLUMN_OPTIONS)
-            results = model.get_value(iter, COLUMN_RESULTS)
-
-            if is_expand and key in results:
-                return
-
-            self._toggle_results(key, options, results)
-
+        def toggle_tree(iter, active=None):
             # Set value
-            active = not model.get_value(iter, COLUMN_ACTIVE)
-            model.set_value(iter, COLUMN_ACTIVE, active)
+            if active is None:
+                active = not treestore.get_value(iter, COLUMN_ACTIVE)
+            treestore.set_value(iter, COLUMN_ACTIVE, active)
+
+            # Set parents
+            def set_parents(iter):
+                parent = treestore.iter_parent(iter)
+                if parent:
+                    treestore.set_value(parent, COLUMN_ACTIVE, active)
+                    set_parents(parent)
+
+            if active:
+                set_parents(iter)
 
             # Set children
-            sibling = model.iter_children(iter)
-            while sibling:
-                model.set_value(sibling, COLUMN_ACTIVE, active)
-                if results and key in results:
-                    model.set_value(sibling, COLUMN_RESULTS, results[key])
-                sibling = model.iter_next(sibling)
+            def set_children(iter):
+                child = treestore.iter_children(iter)
+                while child:
+                    treestore.set_value(child, COLUMN_ACTIVE, active)
+                    set_children(child)
+                    child = treestore.iter_next(child)
 
-        # Make sure interfaces behave the same way
-        treeview.connect("row-expanded",
-            lambda tv, iter, path: toggle_results(iter, path, True))
+            set_children(iter)
 
         # Toggle column
         cell = gtk.CellRendererToggle()
-        cell.connect("toggled", toggle_results)
+        cell.connect("toggled",
+            lambda t, p: toggle_tree(treestore.get_iter_from_string(p)))
         col = gtk.TreeViewColumn(None, cell, active=COLUMN_ACTIVE)
         treeview.append_column(col)
 
@@ -429,13 +408,10 @@ class GTKInterface(UserInterface):
 
         # Select and deselect buttons
         def click_button(widget, active):
-            sibling = model.get_iter_first()
-            while sibling:
-                if model.get_value(sibling, COLUMN_ACTIVE) != active:
-                    path = model.get_path(sibling)
-                    toggle_results(None, path)
-
-                sibling = model.iter_next(sibling)
+            iter = treestore.get_iter_first()
+            while iter:
+                toggle_tree(iter, active)
+                iter = treestore.iter_next(iter)
 
         for button_name in "button_select_all", "button_deselect_all":
             button = self._get_widget(button_name)
@@ -449,9 +425,23 @@ class GTKInterface(UserInterface):
         self._set_show("button_deselect_all", False)
 
         # Get options
+        def get_results(iter):
+            results = {}
+            while iter:
+                active = treestore.get_value(iter, COLUMN_ACTIVE)
+                if active:
+                    text = treestore.get_value(iter, COLUMN_TEXT)
+                    children = treestore.iter_children(iter)
+                    results[text] = get_results(children)
+
+                iter = treestore.iter_next(iter)
+
+            return results
+
+        results = get_results(treestore.get_iter_first())
         vbox.remove(treeview)
 
-        return default
+        return results
 
     def _run_test(self, test):
         self._set_sensitive("button_test", False)
