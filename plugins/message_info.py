@@ -64,7 +64,7 @@ class MessageInfo(Plugin):
 
     @coerce_arguments(message=message_schema)
     def message(self, message):
-        self._manager.reactor.fire("report-%s" % message["plugin"], message)
+        self._manager.reactor.fire("report-job", message)
 
     def messages(self, messages):
         for message in messages:

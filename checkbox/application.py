@@ -85,6 +85,10 @@ class ApplicationManager(object):
                           type="string",
                           default=[],
                           help=_("Configuration override parameters."))
+        parser.add_option("-b", "--blacklist",
+                          help=_("Shorthand for --config=checkbox/plugins/jobs_prompt/blacklist."))
+        parser.add_option("-w", "--whitelist",
+                          help=_("Shorthand for --config=checkbox/plugins/jobs_prompt/whitelist."))
         return parser.parse_args(args)
 
     def create_application(self, args=sys.argv):
@@ -96,6 +100,13 @@ class ApplicationManager(object):
         string_options = get_variable("CHECKBOX_OPTIONS", "")
         args[:0] = split(string_options)
         (options, args) = self.parse_options(args)
+
+        # Replace shorthands
+        for shorthand in "blacklist", "whitelist":
+            key = "checkbox/plugins/job_prompt/%s" % shorthand
+            value = getattr(options, shorthand)
+            if value:
+                options.config.append("=".join(key, value))
 
         # Set logging early
         set_logging(options.log_level, options.log)

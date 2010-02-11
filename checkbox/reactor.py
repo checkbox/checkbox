@@ -46,14 +46,6 @@ class Reactor(object):
         self._event_handlers = {}
         self._local = threading.local()
 
-    @property
-    def _event_stack(self):
-        try:
-            return self._local._event_stack
-        except AttributeError:
-            self._local._event_stack = []
-            return self._local._event_stack
-
     def call_on(self, event_type, handler, priority=0):
         pair = (handler, priority)
 
@@ -65,8 +57,6 @@ class Reactor(object):
 
     def fire(self, event_type, *args, **kwargs):
         logging.debug("Started firing %s.", event_type)
-
-        self._event_stack.append(event_type)
 
         results = []
         handlers = []
@@ -98,8 +88,6 @@ class Reactor(object):
                                   "event type %r with args %r %r.",
                                   format_object(handler), event_type,
                                   args, kwargs)
-
-        self._event_stack.pop(-1)
 
         logging.debug("Finished firing %s.", event_type)
         return results

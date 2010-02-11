@@ -1,5 +1,5 @@
 plugin: manual
-name: network
+name: network_test
 requires: device.category == 'NETWORK'
 command: network_test
 _description:
@@ -10,7 +10,7 @@ _description:
  Is this correct?
 
 plugin: manual
-name: internet
+name: internet_test
 depends: network
 command: internet_test
 _description:
@@ -21,7 +21,7 @@ _description:
  Is this correct?
 
 plugin: manual
-name: modem
+name: modem_test
 command: network_check
 _description:
  Built-in modem network connection procedure:

@@ -44,7 +44,13 @@ class InternalSuite(Plugin):
 
     def report_internal(self, suite):
         self._manager.reactor.fire("report-suite", suite)
+
+        def report_job(job):
+            job["suite"] = suite["name"]
+
+        event_id = self._manager.reactor.call_on("report-job", report_job)
         self._manager.reactor.fire("message-exec", suite)
+        self._manager.reactor.cancel_call(event_id)
 
 
 factory = InternalSuite

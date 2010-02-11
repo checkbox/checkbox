@@ -69,31 +69,6 @@ class UserInterface(object):
         self.gettext_domain = "checkbox"
         gettext.textdomain(self.gettext_domain)
 
-    def _toggle_results(self, key, options, results):
-        if isinstance(results, dict):
-            if key in results:
-                del results[key]
-
-            elif key in options:
-                if isinstance(options[key], dict):
-                    results[key] = {}
-                elif isinstance(options[key], (list, tuple,)):
-                    results[key] = []
-                else:
-                    raise Exception, "Unknown result type: %s" % type(results)
-
-                for k in options[key]:
-                    self._toggle_results(k, options[key], results[key])
-
-        elif isinstance(results, (list, tuple,)):
-            if key in results:
-                results.remove(key)
-            elif key in options:
-                results.append(key)
-
-        else:
-            raise Exception, "Unknown result type: %s" % type(results)
-
     def show_info(self, text, options=[], default=None):
         logging.info(text)
         return default

@@ -8,6 +8,16 @@ Type: string
 _Description: Default Package
  Default package if none is detected.
 
+Template: checkbox/plugins/jobs_prompt/blacklist
+Type: string
+_Description: Suites Blacklist
+ List of jobs to blacklist
+
+Template: checkbox/plugins/jobs_prompt/whitelist
+Type: string
+_Description: Suites Whitelist
+ List of jobs to whitelist
+
 Template: checkbox/plugins/launchpad_exchange/transport_url
 Type: string
 Default: https://launchpad.net/+hwdb/+submit
@@ -28,24 +38,3 @@ Template: checkbox/plugins/proxy_info/https_proxy
 Type: string
 _Description: HTTPS Proxy
  HTTPS proxy to use instead of the one specified in environment.
-
-Template: checkbox/plugins/suites_prompt/blacklist
-Type: string
-_Description: Suites Blacklist
- List of suites to blacklist
-
-Template: checkbox/plugins/suites_prompt/whitelist
-Type: string
-_Description: Suites Whitelist
- List of suites to whitelist
-
-Template: checkbox/plugins/tests_prompt/blacklist
-Type: string
-_Description: Tests Blacklist
- List of tests to blacklist
-
-Template: checkbox/plugins/tests_prompt/whitelist
-Type: string
-_Description: Tests Whitelist
- List of tests to whitelist
-

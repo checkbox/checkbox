@@ -47,9 +47,8 @@ class SubunitReport(Plugin):
             self._manager.reactor.call_on(rt, rh)
 
     def report_test(self, test):
-        key = (test["suite"], test["name"],)
-        if key not in self._tests:
-            self._tests[key] = test
+        name = test["name"]
+        self._tests[name] = test
 
     def report(self):
         logging.debug("Opening filename: %s", self.filename)

@@ -11,7 +11,7 @@ _description:
  Is this acceptable for your display?
 
 plugin: manual
-name: video
+name: display
 requires: package.name == 'python-gst0.10'
 command: gst_pipeline_test -t 2 'videotestsrc ! ffmpegcolorspace ! gconfvideosink'
 _description:

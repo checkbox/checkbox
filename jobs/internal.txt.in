@@ -1,42 +1,52 @@
 name: audio
 plugin: internal
 _description: Audio tests
-command: cat $CHECKBOX_SHARE/tests/audio.txt*
+command: cat $CHECKBOX_SHARE/jobs/audio.txt*
 
 name: disk
 plugin: internal
 _description: Disk tests
-command: cat $CHECKBOX_SHARE/tests/disk.txt*
+command: cat $CHECKBOX_SHARE/jobs/disk.txt*
 
 name: fingerprint
 plugin: internal
 _description: Fingerprint reader tests
-command: cat $CHECKBOX_SHARE/tests/fingerprint.txt*
+command: cat $CHECKBOX_SHARE/jobs/fingerprint.txt*
 
 name: firewire
 plugin: internal
 _description: Firewire disk tests
-command: cat $CHECKBOX_SHARE/tests/firewire.txt*
+command: cat $CHECKBOX_SHARE/jobs/firewire.txt*
 
 name: kms
 plugin: internal
 _description: Kernel modesetting tests
-command: cat $CHECKBOX_SHARE/tests/kms.txt*
+command: cat $CHECKBOX_SHARE/jobs/kms.txt*
+
+name: media
+plugin: internal
+_description: Media tests
+command: cat $CHECKBOX_SHARE/jobs/media.txt*
+
+name: monitor
+plugin: internal
+_description: Monitor tests
+command: cat $CHECKBOX_SHARE/jobs/monitor.txt*
 
 name: network
 plugin: internal
 _description: Network tests
-command: cat $CHECKBOX_SHARE/tests/network.txt*
+command: cat $CHECKBOX_SHARE/jobs/network.txt*
 
 name: peripheral
 plugin: internal
 _description: Peripheral tests
-command: cat $CHECKBOX_SHARE/tests/peripheral.txt*
+command: cat $CHECKBOX_SHARE/jobs/peripheral.txt*
 
 name: video
 plugin: internal
 _description: Video tests
-command: cat $CHECKBOX_SHARE/tests/video.txt*
+command: cat $CHECKBOX_SHARE/jobs/video.txt*
 
 name: codecs
 plugin: attachment
