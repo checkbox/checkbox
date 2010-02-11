@@ -1,72 +1,7 @@
-name: qa-regression-testing-kernel
+name: qa-regression-testing
 plugin: external
-_description: QA regression tests for the kernel (destructive)
+_description: QA regression tests (destructive)
 requires:
  package.name == 'bzr'
 user: root
-command: qa_regression_suite test-kernel-security.py test-kernel.py | filter_packages
-
-name: qa-regression-testing-build-security
-plugin: external
-_description: QA regression tests for build security
-requires:
- package.name == 'bzr'
-user: root
-command: qa_regression_suite test-built-binaries.py test-gcc-security.py test-glibc-security.py | filter_packages
-
-name: qa-regression-testing-core-utilities
-plugin: external
-_description: QA regression tests for core utilities (destructive)
-requires:
- package.name == 'bzr'
-user: root
-command: qa_regression_suite test-coreutils.py test-cpio.py test-cron.py test-curl.py test-file.py test-ghostscript.py test-git-core.py test-openldap.py test-openssl.py test-shadow.py test-sudo.py test-tar.py test-tcpdump.py test-util-linux.py | filter_packages
-
-name: qa-regression-testing-server
-plugin: external
-_description: QA regression tests for server package (destructive)
-requires:
- package.name == 'bzr'
-user: root
-command: qa_regression_suite test-bind9.py test-cups.py test-dovecot.py test-moin.py test-mysql.py test-php5.py test-postgresql.py test-postfix.py test-tomcat6.py | filter_packages
-
-name: qa-regression-testing-libraries
-plugin: external
-_description: QA regression tests for libraries (destructive)
-requires:
- package.name == 'bzr'
-user: root
-command: qa_regression_suite test-cyrus-sasl2.py test-glib2.0.py test-mpfr.py | filter_packages
-
-name: qa-regression-testing-media-libraries
-plugin: external
-_description: QA regression tests for image libraries (destructive)
-requires:
- package.name == 'bzr'
-user: root
-command: qa_regression_suite test-exiv2.py test-libexif.py test-libgd2.py test-jasper.py test-libsndfile.py test-libvorbis.py test-netpbm-free.py test-libwmf.py test-poppler.py test-tiff.py | filter_packages
-
-name: qa-regression-testing-perl
-plugin: external
-_description: QA regression tests for perl (destructive)
-requires:
- package.name == 'bzr'
-user: root
-command: qa_regression_suite test-perl.py test-libcompress-raw-zlib-perl.py test-libhtml-parser-perl.py | filter_packages
-
-name: qa-regression-testing-misc
-plugin: external
-_description: QA regression tests for lcms
-requires:
- package.name == 'bzr'
-user: root
-command: qa_regression_suite test-avahi.py test-lcms.py | filter_packages
-
-name: qa-regression-testing-tex
-plugin: external
-_description: QA regression tests for tex packages
-requires:
- package.name == 'bzr'
-user: root
-command: qa_regression_suite test-mimetex.py test-tetex_texlive.py | filter_packages
-
+command: qa_regression_suite test-cpio.py test-cron.py test-curl.py test-exiv2.py test-file.py test-gcc-security.py test-ghostscript.py test-git-core.py test-glib2.0.py test-glibc-security.py test-kernel.py test-kernel-security.py test-lcms.py test-libcompress-raw-zlib-perl.py test-libexif.py test-libgd2.py test-libwmf.py test-mimetex.py test-mpfr.py test-netpbm-free.py test-openssl.py test-perl.py test-php5.py test-poppler.py test-tar.py test-tetex_texlive.py test-tiff.py | filter_packages
