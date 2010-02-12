@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-02 15:37-0500\n"
+"POT-Creation-Date: 2010-02-12 08:44-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../gtk/checkbox-gtk.glade.h:1 ../checkbox_cli/cli_interface.py:274
+#: ../gtk/checkbox-gtk.glade.h:1 ../checkbox_cli/cli_interface.py:349
 msgid "Further information:"
 msgstr ""
 
@@ -50,7 +50,7 @@ msgstr ""
 msgid "_Skip this test"
 msgstr ""
 
-#: ../gtk/checkbox-gtk.glade.h:9 ../checkbox_gtk/gtk_interface.py:398
+#: ../gtk/checkbox-gtk.glade.h:9 ../checkbox_gtk/gtk_interface.py:492
 msgid "_Test"
 msgstr ""
 
@@ -63,86 +63,46 @@ msgid "Test and report system information"
 msgstr ""
 
 #. description
-#: ../suites/internal.txt.in:3
-msgid "Audio tests"
-msgstr ""
-
-#. description
-#: ../suites/internal.txt.in:8
-msgid "Disk tests"
-msgstr ""
-
-#. description
-#: ../suites/internal.txt.in:13
-msgid "Fingerprint reader tests"
-msgstr ""
-
-#. description
-#: ../suites/internal.txt.in:18
-msgid "Firewire disk tests"
-msgstr ""
-
-#. description
-#: ../suites/internal.txt.in:23
-msgid "Kernel modesetting tests"
-msgstr ""
-
-#. description
-#: ../suites/internal.txt.in:28
-msgid "Network tests"
-msgstr ""
-
-#. description
-#: ../suites/internal.txt.in:33
-msgid "Peripheral tests"
-msgstr ""
-
-#. description
-#: ../suites/internal.txt.in:38
-msgid "Video tests"
-msgstr ""
-
-#. description
-#: ../tests/audio.txt.in:7
+#: ../jobs/audio.txt.in:7
 msgid "Detecting your sound device(s):"
 msgstr ""
 
 #. description
-#: ../tests/audio.txt.in:7 ../tests/disk.txt.in:19 ../tests/network.txt.in:16
-#: ../tests/video.txt.in:25
+#: ../jobs/audio.txt.in:7 ../jobs/disk.txt.in:19 ../jobs/network.txt.in:16
+#: ../jobs/video.txt.in:26
 msgid "$output"
 msgstr ""
 
 #. description
-#: ../tests/audio.txt.in:7 ../tests/disk.txt.in:7 ../tests/network.txt.in:16
-#: ../tests/video.txt.in:25
+#: ../jobs/audio.txt.in:7 ../jobs/disk.txt.in:7 ../jobs/network.txt.in:16
+#: ../jobs/video.txt.in:26
 msgid "Is this correct?"
 msgstr ""
 
 #. description
-#: ../tests/audio.txt.in:21
+#: ../jobs/audio.txt.in:21
 msgid "Do you hear a sound?"
 msgstr ""
 
 #. description
-#: ../tests/audio.txt.in:33
+#: ../jobs/audio.txt.in:33
 msgid "Please connect a pair of headphones to your audio device."
 msgstr ""
 
 #. description
-#: ../tests/audio.txt.in:33
+#: ../jobs/audio.txt.in:33
 msgid ""
 "Click the Test button to play a sound on the automatically detected playback "
 "device."
 msgstr ""
 
 #. description
-#: ../tests/audio.txt.in:33
+#: ../jobs/audio.txt.in:33
 msgid "Do you hear a sound through the headphones?"
 msgstr ""
 
 #. description
-#: ../tests/audio.txt.in:47
+#: ../jobs/audio.txt.in:47
 msgid ""
 "Disconnect any external microphones that you have plugged in.  Click the "
 "Test button, then speak into your internal microphone.  After a few seconds, "
@@ -150,7 +110,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../tests/audio.txt.in:59
+#: ../jobs/audio.txt.in:59
 msgid ""
 "Connect a microphone to your microphone port.  Click the Test button, then "
 "speak into the microphone.  After a few seconds, your speech will be played "
@@ -158,27 +118,32 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../tests/audio.txt.in:59 ../tests/peripheral.txt.in:24
+#: ../jobs/audio.txt.in:59 ../jobs/peripheral.txt.in:24
 msgid "Did you hear your speech played back?"
 msgstr ""
 
 #. description
-#: ../tests/disk.txt.in:7
+#: ../jobs/autotest.txt.in:3
+msgid "Autotest suite (destructive)"
+msgstr ""
+
+#. description
+#: ../jobs/disk.txt.in:7
 msgid "The following hard drives were detected:"
 msgstr ""
 
 #. description
-#: ../tests/disk.txt.in:19
+#: ../jobs/disk.txt.in:19
 msgid "Disk benchmark:"
 msgstr ""
 
 #. description
-#: ../tests/disk.txt.in:19
+#: ../jobs/disk.txt.in:19
 msgid "Is this ok?"
 msgstr ""
 
 #. description
-#: ../tests/fingerprint.txt.in:3
+#: ../jobs/fingerprint.txt.in:3
 msgid ""
 "Prerequisites: This test case assumes that there's a testing account from "
 "which test cases are run and a personal account that the tester uses to "
@@ -186,7 +151,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../tests/fingerprint.txt.in:3
+#: ../jobs/fingerprint.txt.in:3
 msgid ""
 "Fingerprint login verification procedure: 1.- Click on the user switcher "
 "applet 2.- Select your user name 3.- A window should appear that provides "
@@ -196,7 +161,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../tests/fingerprint.txt.in:18
+#: ../jobs/fingerprint.txt.in:18
 msgid ""
 "Fingerprint unlock verification procedure: 1.- Click on the user switcher "
 "applet 2.- Select 'Lock screen' 3.- Press any key or move the mouse 4.- A "
@@ -206,12 +171,12 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../tests/fingerprint.txt.in:18
+#: ../jobs/fingerprint.txt.in:18
 msgid "Did the authentication procedure work correctly?"
 msgstr ""
 
 #. description
-#: ../tests/firewire.txt.in:3
+#: ../jobs/firewire.txt.in:3
 msgid ""
 "Firewire HDD verification procedure: 1.- Plug a Firewire HDD into the "
 "computer 2.- A window should be opened asking which action should be "
@@ -220,12 +185,62 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../tests/firewire.txt.in:3
+#: ../jobs/firewire.txt.in:3
 msgid "Do the copy operations work as expected?"
 msgstr ""
 
 #. description
-#: ../tests/kms.txt.in:8
+#: ../jobs/internal.txt.in:3
+msgid "Audio tests"
+msgstr ""
+
+#. description
+#: ../jobs/internal.txt.in:8
+msgid "Disk tests"
+msgstr ""
+
+#. description
+#: ../jobs/internal.txt.in:13
+msgid "Fingerprint reader tests"
+msgstr ""
+
+#. description
+#: ../jobs/internal.txt.in:18
+msgid "Firewire disk tests"
+msgstr ""
+
+#. description
+#: ../jobs/internal.txt.in:23
+msgid "Kernel modesetting tests"
+msgstr ""
+
+#. description
+#: ../jobs/internal.txt.in:28
+msgid "Media tests"
+msgstr ""
+
+#. description
+#: ../jobs/internal.txt.in:33
+msgid "Monitor tests"
+msgstr ""
+
+#. description
+#: ../jobs/internal.txt.in:38
+msgid "Network tests"
+msgstr ""
+
+#. description
+#: ../jobs/internal.txt.in:43
+msgid "Peripheral tests"
+msgstr ""
+
+#. description
+#: ../jobs/internal.txt.in:48
+msgid "Video tests"
+msgstr ""
+
+#. description
+#: ../jobs/kms.txt.in:8
 msgid ""
 "Click Test to switch to another virtual terminal and then back to X.  Your "
 "screen will change temporarily to a text console and then switch back to "
@@ -233,37 +248,69 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../tests/kms.txt.in:8
+#: ../jobs/kms.txt.in:8
 msgid "Note that this test may require you to enter your password."
 msgstr ""
 
 #. description
-#: ../tests/kms.txt.in:8
+#: ../jobs/kms.txt.in:8
 msgid "Did the screen change temporarily to a text console?"
 msgstr ""
 
 #. description
-#: ../tests/media.txt.in:7
+#: ../jobs/ltp.txt.in:3
+msgid "Linux Test Project"
+msgstr ""
+
+#. description
+#: ../jobs/media.txt.in:7
 msgid "Insert a DVD.  Then click Test to play the DVD in Totem."
 msgstr ""
 
 #. description
-#: ../tests/media.txt.in:7
+#: ../jobs/media.txt.in:7
 msgid "Did the file play?"
 msgstr ""
 
 #. description
-#: ../tests/network.txt.in:5
+#: ../jobs/monitor.txt.in:4
+msgid ""
+"Monitor power saving verification procedure: 1.- Select Test to try the "
+"power saving capabilities of your monitor 2.- The monitor should go blank "
+"3.- Press any key or move the mouse to recover"
+msgstr ""
+
+#. description
+#: ../jobs/monitor.txt.in:4
+msgid "Did the monitor go blank?"
+msgstr ""
+
+#. description
+#: ../jobs/monitor.txt.in:15
+msgid ""
+"Dead pixel check procedure: 1.- Select Test to display a single color in "
+"full screen mode 2.- Check that all pixels are the same color 3.- Press any "
+"key and repeat the check for another color (red, green, blue, white and "
+"black)"
+msgstr ""
+
+#. description
+#: ../jobs/monitor.txt.in:15
+msgid "Did all the pixels change their color properly?"
+msgstr ""
+
+#. description
+#: ../jobs/network.txt.in:5
 msgid "Detecting your network controller(s):"
 msgstr ""
 
 #. description
-#: ../tests/network.txt.in:16
+#: ../jobs/network.txt.in:16
 msgid "Testing your connection to the Internet:"
 msgstr ""
 
 #. description
-#: ../tests/network.txt.in:26
+#: ../jobs/network.txt.in:26
 msgid ""
 "Built-in modem network connection procedure: 1.- Open System -> "
 "Administration -> Network 2.- Press Unlock and type your password to unlock "
@@ -277,34 +324,34 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../tests/network.txt.in:26
+#: ../jobs/network.txt.in:26
 msgid "Can you successfully establish a network connection?"
 msgstr ""
 
 #. description
-#: ../tests/peripheral.txt.in:4
+#: ../jobs/peripheral.txt.in:4
 msgid "Moving the mouse should move the cursor on the screen."
 msgstr ""
 
 #. description
-#: ../tests/peripheral.txt.in:4
+#: ../jobs/peripheral.txt.in:4
 msgid "Is your mouse working properly?"
 msgstr ""
 
 #. description
-#: ../tests/peripheral.txt.in:13
+#: ../jobs/peripheral.txt.in:13
 msgid ""
 "Click the Test button to open a text area where to type keys on your "
 "keyboard."
 msgstr ""
 
 #. description
-#: ../tests/peripheral.txt.in:13
+#: ../jobs/peripheral.txt.in:13
 msgid "Is your keyboard working properly?"
 msgstr ""
 
 #. description
-#: ../tests/peripheral.txt.in:24
+#: ../jobs/peripheral.txt.in:24
 msgid ""
 "Connect a USB audio device to your system.  Then open the volume control "
 "application by right-clicking on the speaker icon in the panel and selecting "
@@ -315,125 +362,135 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../tests/video.txt.in:6
+#: ../jobs/phoronix.txt.in:3
+msgid "Automated benchmark testing"
+msgstr ""
+
+#. description
+#: ../jobs/qa_regression.txt.in:3
+msgid "QA regression tests (destructive)"
+msgstr ""
+
+#. description
+#: ../jobs/video.txt.in:6
 msgid "This display is using the following resolution:"
 msgstr ""
 
 #. description
-#: ../tests/video.txt.in:6
+#: ../jobs/video.txt.in:6
 msgid "Is this acceptable for your display?"
 msgstr ""
 
 #. description
-#: ../tests/video.txt.in:17
+#: ../jobs/video.txt.in:17
 msgid "Click the Test button to display a video test."
 msgstr ""
 
 #. description
-#: ../tests/video.txt.in:17
+#: ../jobs/video.txt.in:17
 msgid "Do you see color bars and static?"
 msgstr ""
 
 #. description
-#: ../tests/video.txt.in:25
+#: ../jobs/video.txt.in:26
 msgid ""
 "The following screens and video modes have been detected on your system:"
 msgstr ""
 
 #. description
-#: ../tests/video.txt.in:36
+#: ../jobs/video.txt.in:38
 msgid "Click Test to cycle through the detected video modes for your system."
 msgstr ""
 
 #. description
-#: ../tests/video.txt.in:36
+#: ../jobs/video.txt.in:38
 msgid "Did the screen appear to be working for each mode?"
 msgstr ""
 
 #. description
-#: ../tests/video.txt.in:44
+#: ../jobs/video.txt.in:46
 msgid "Check that the hardware is able to run compiz."
 msgstr ""
 
 #. description
-#: ../tests/video.txt.in:51
+#: ../jobs/video.txt.in:53
 msgid ""
 "Click Test to execute glxgears to ensure that minimal 3d graphics support is "
 "in place."
 msgstr ""
 
 #. description
-#: ../tests/video.txt.in:51
+#: ../jobs/video.txt.in:53
 msgid "Did the 3d animation appear?"
 msgstr ""
 
 #. description
-#: ../tests/video.txt.in:58
+#: ../jobs/video.txt.in:60
 msgid "If your system does not have a VGA port, please skip this test."
 msgstr ""
 
 #. description
-#: ../tests/video.txt.in:58
+#: ../jobs/video.txt.in:60
 msgid ""
 "Connect a display (if not already connected) to the VGA port on your system. "
 "Is the image displayed correctly?"
 msgstr ""
 
 #. description
-#: ../tests/video.txt.in:65
+#: ../jobs/video.txt.in:67
 msgid "If your system does not have a DVI port, please skip this test."
 msgstr ""
 
 #. description
-#: ../tests/video.txt.in:65
+#: ../jobs/video.txt.in:67
 msgid ""
 "Connect a display (if not already connected) to the DVI port on your system. "
 "Is the image displayed correctly?"
 msgstr ""
 
 #. description
-#: ../tests/video.txt.in:72
+#: ../jobs/video.txt.in:74
 msgid "If your system does not have DisplayPort, please skip this test."
 msgstr ""
 
 #. description
-#: ../tests/video.txt.in:72
+#: ../jobs/video.txt.in:74
 msgid ""
 "Connect a display (if not already connected) to the DisplayPort on your "
 "system. Is the image displayed correctly?"
 msgstr ""
 
 #. description
-#: ../tests/video.txt.in:79
+#: ../jobs/video.txt.in:81
 msgid "If your system does not have a HDMI port, please skip this test."
 msgstr ""
 
 #. description
-#: ../tests/video.txt.in:79
+#: ../jobs/video.txt.in:81
 msgid ""
 "Connect a display (if not already connected) to the HDMI port on your "
 "system. Is the image displayed correctly?"
 msgstr ""
 
 #. description
-#: ../tests/video.txt.in:87
+#: ../jobs/video.txt.in:89
 msgid "If your system does not have a S-VIDEO port, please skip this test."
 msgstr ""
 
 #. description
-#: ../tests/video.txt.in:87
+#: ../jobs/video.txt.in:89
 msgid ""
 "Connect a display (if not already connected) to the S-VIDEO port on your "
 "system. Is the image displayed correctly?"
 msgstr ""
 
 #. description
-#: ../tests/video.txt.in:94
+#: ../jobs/video.txt.in:96
 msgid "If your system does not have a RCA port, please skip this test."
 msgstr ""
 
 #. description
-#: ../tests/video.txt.in:94
+#: ../jobs/video.txt.in:96
 msgid ""
 "Connect a display (if not already connected) to the RCA port on your system. "
 "Is the image displayed correctly?"
@@ -459,7 +516,23 @@ msgstr ""
 msgid "Configuration override parameters."
 msgstr ""
 
-#: ../checkbox/application.py:105
+#: ../checkbox/application.py:89
+msgid "Shorthand for --config=checkbox/plugins/jobs_prompt/blacklist."
+msgstr ""
+
+#: ../checkbox/application.py:91
+msgid "Shorthand for --config=checkbox/plugins/jobs_prompt/blacklist_file."
+msgstr ""
+
+#: ../checkbox/application.py:93
+msgid "Shorthand for --config=checkbox/plugins/jobs_prompt/whitelist."
+msgstr ""
+
+#: ../checkbox/application.py:95
+msgid "Shorthand for --config=checkbox/plugins/jobs_prompt/whitelist_file."
+msgstr ""
+
+#: ../checkbox/application.py:120
 msgid "Missing configuration file as argument.\n"
 msgstr ""
 
@@ -559,45 +632,45 @@ msgstr ""
 msgid "skip"
 msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:121
+#: ../checkbox_cli/cli_interface.py:127
 msgid "Press any key to continue..."
 msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:131
+#: ../checkbox_cli/cli_interface.py:136
 #, python-format
 msgid "Please choose (%s): "
 msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:237 ../checkbox_gtk/gtk_interface.py:357
+#: ../checkbox_cli/cli_interface.py:312 ../checkbox_gtk/gtk_interface.py:451
 #, python-format
 msgid "Running test %s..."
 msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:246
+#: ../checkbox_cli/cli_interface.py:321
 msgid "test"
 msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:270
+#: ../checkbox_cli/cli_interface.py:345
 msgid "test again"
 msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:276
+#: ../checkbox_cli/cli_interface.py:351
 msgid "Please type here and press Ctrl-D when finished:\n"
 msgstr ""
 
-#: ../checkbox_gtk/gtk_interface.py:367
+#: ../checkbox_gtk/gtk_interface.py:461
 msgid "_Test Again"
 msgstr ""
 
-#: ../checkbox_gtk/gtk_interface.py:409
+#: ../checkbox_gtk/gtk_interface.py:503
 msgid "Info"
 msgstr ""
 
-#: ../checkbox_gtk/gtk_interface.py:428
+#: ../checkbox_gtk/gtk_interface.py:522
 msgid "Error"
 msgstr ""
 
-#: ../checkbox/user_interface.py:130
+#: ../checkbox/user_interface.py:133
 #, python-format
 msgid "Unable to start web browser to open %s."
 msgstr ""
@@ -685,10 +758,12 @@ msgid "Building report..."
 msgstr ""
 
 #: ../plugins/shell_test.py:42
-msgid "Running shell tests..."
+#, python-format
+msgid "Running shell test %s..."
 msgstr ""
 
-#: ../plugins/suites_prompt.py:132
+#. Get results
+#: ../plugins/suites_prompt.py:97
 msgid "Select the suites to test"
 msgstr ""
 
