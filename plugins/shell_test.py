@@ -39,7 +39,7 @@ class ShellTest(Plugin):
             job = Job(command, test.get("environ"),
                 test.get("timeout"), test.get("user"))
             (status, data, duration) = interface.show_progress(
-                _("Running shell test %s..." % test.name), job.execute)
+                _("Running shell test %s..." % test.get("name")), job.execute)
             test["data"] = data
             test["duration"] = duration
             test["status"] = status
