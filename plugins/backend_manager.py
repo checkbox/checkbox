@@ -32,9 +32,6 @@ class PermissionDeniedByPolicy(dbus.DBusException):
     _dbus_error_name = "com.ubuntu.checkbox.PermissionDeniedByPolicy"
 
 
-class UnknownRegistryException(dbus.DBusException):
-    _dbus_error_name = 'com.ubuntu.DeviceDriver.InvalidDriverDBException'
-
 class UnknownJobException(dbus.DBusException):
     _dbus_error_name = 'com.ubuntu.DeviceDriver.InvalidDriverDBException'
 
@@ -73,17 +70,6 @@ class BackendManager(dbus.service.Object):
              ("report-test", self.report_test),
              ("run", self.run)]:
             self._manager.reactor.call_on(rt, rh)
-
-    @dbus.service.method(DBUS_INTERFACE_NAME,
-        in_signature="ss", out_signature="s", sender_keyword="sender",
-        connection_keyword="conn")
-    def get_registry(self, name, user, sender=None, conn=None):
-        self.loop = False
-        if name not in self._manager.registry:
-            raise UnknownRegistryException, "Registry not found: %s" % name
-
-        add_variable("SUDO_USER", user)
-        return str(self._manager.registry[name])
 
     @dbus.service.method(DBUS_INTERFACE_NAME,
         in_signature="ss", out_signature="as", sender_keyword="sender",

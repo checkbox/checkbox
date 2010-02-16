@@ -1,0 +1,107 @@
+#!/usr/bin/python
+#
+# This file is part of Checkbox.
+#
+# Copyright 2009 Canonical Ltd.
+#
+# Checkbox is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# Checkbox is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
+#
+import os
+import sys
+
+from subprocess import Popen, PIPE
+
+
+# Command to retrieve packages.
+COMMAND = "COLUMNS=200 dpkg -l"
+
+
+def get_packages():
+    desired_to_value = {
+        "u": "Unknown",
+        "i": "Install",
+        "r": "Remove",
+        "p": "Purge",
+        "h": "Hold"}
+
+    status_to_value = {
+        "n": "Not Installed",
+        "i": "Installed",
+        "c": "Cfg-files",
+        "u": "Unpacked",
+        "u": "Failed-cfg",
+        "h": "Half-inst"}
+
+    error_to_value = {
+        "":  None,
+        "h": "Hold",
+        "r": "Reinst-required",
+        "x": "both-problems"}
+
+    columns = ["desired", "status", "error", "name", "version", "description"]
+    aliases = {
+        "linux-image-" + os.uname()[2]: "linux"}
+
+    file = Popen(COMMAND, stdout=PIPE, shell=True).stdout
+
+    # Skip header lines
+    for i in range(4):
+        file.readline()
+
+    # Get length from separator
+    line = file.readline()
+    lengths = [0, 1, 2]
+    lengths.extend([len(i) + 1 for i in line.split("-")])
+    for i in range(4, len(lengths)):
+        lengths[i] += lengths[i - 1]
+
+    # Get remaining lines
+    for line in file.readlines():
+        package = {}
+        for i, column in enumerate(columns):
+            value = line[lengths[i]:lengths[i+1]].strip()
+
+            # Convert value
+            if column == "desired":
+                value = desired_to_value.get(value)
+            elif column == "status":
+                value = status_to_value.get(value)
+            elif column == "error":
+                value = error_to_value.get(value)
+
+            # Set value
+            if value:
+                package[column] = value
+
+        name = package["name"]
+        if name in aliases:
+            yield dict(package)
+            package["name"] = aliases[name]
+
+        yield package
+
+def main():
+    packages = get_packages()
+    for package in packages:
+        for key, value in package.items():
+            print "%s: %s" % (key, value)
+
+        # Empty line
+        print
+
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

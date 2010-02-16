@@ -80,13 +80,6 @@ class Frontend(object):
         else:
             return self._function(self._instance, *args, **kwargs)
 
-    def get_registry(self, *args, **kwargs):
-        if self._instance.user:
-            return self.client.get_registry(self._instance.__module__, self.user,
-                timeout=600)
-        else:
-            return self._function(self._instance, *args, **kwargs)
-
 
 def frontend(method):
     def wrapper(func):

@@ -1,7 +1,8 @@
+#!/usr/bin/python
 #
 # This file is part of Checkbox.
 #
-# Copyright 2008 Canonical Ltd.
+# Copyright 2009 Canonical Ltd.
 #
 # Checkbox is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,14 +18,47 @@
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
 import os
+import sys
 import posixpath
 
-from checkbox.lib.cache import cache
 from checkbox.lib.conversion import string_to_type
 
-from checkbox.properties import Path
-from checkbox.registries.filename import FilenameRegistry
 
+# Filename where cpuinfo is stored.
+CPUINFO_FILENAME = "/proc/cpuinfo"
+
+# Filename where maximum frequency is stored.
+FREQUENCY_FILENAME = "/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq"
+
+
+def cpuinfo_attributes(filename):
+    cpuinfo = open(filename, "r").read()
+
+    count = 0
+    attributes = {}
+    for block in cpuinfo.split("\n\n"):
+        if not block:
+            continue
+
+        count += 1
+        if count > 1:
+            continue
+
+        for line in block.split("\n"):
+            if not line:
+                continue
+
+            key, value = line.split(":")
+            key, value = key.strip(), value.strip()
+
+            # Handle bogomips on sparc
+            if key.endswith("Bogo"):
+                key = "bogomips"
+
+            attributes[key.lower()] = value
+
+    attributes["count"] = count
+    return attributes
 
 def cpuinfo_to_processor(uname, cpuinfo):
     # Default values
@@ -141,59 +175,22 @@ def cpuinfo_to_processor(uname, cpuinfo):
     return processor
 
 
-class CpuinfoRegistry(FilenameRegistry):
-    """Registry for cpuinfo information.
+def main():
+    uname = os.uname()[4].lower()
+    attributes = cpuinfo_attributes(CPUINFO_FILENAME)
+    processor = cpuinfo_to_processor(uname, attributes)
 
-    Each item contained in this registry consists of the processor number
-    as key and the corresponding processor registry as value.
-    """
+    # Check for frequency scaling
+    if posixpath.exists(FREQUENCY_FILENAME):
+        speed = open(FREQUENCY_FILENAME).read().strip()
+        processor["speed"] = int(speed) / 1000
 
-    # Filename where cpuinfo is stored.
-    filename = Path(default="/proc/cpuinfo")
+    for key, value in processor.iteritems():
+        if value is not None:
+            print "%s: %s" % (key, value)
 
-    # Filename where maximum frequency is stored.
-    frequency_filename = Path(default="/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq")
-
-    def _get_attributes(self):
-        count = 0
-        attributes = {}
-        for block in self.split("\n\n"):
-            if not block:
-                continue
-
-            count += 1
-            if count > 1:
-                continue
-
-            for line in block.split("\n"):
-                if not line:
-                    continue
-
-                key, value = line.split(":")
-                key, value = key.strip(), value.strip()
-
-                # Handle bogomips on sparc
-                if key.endswith("Bogo"):
-                    key = "bogomips"
-
-                attributes[key.lower()] = value
-
-        attributes["count"] = count
-        return attributes
-
-    @cache
-    def items(self):
-        uname = os.uname()[4].lower()
-        attributes = self._get_attributes()
-
-        processor = cpuinfo_to_processor(uname, attributes)
-
-        # Check for frequency scaling
-        if posixpath.exists(self.frequency_filename):
-            speed = open(self.frequency_filename).read().strip()
-            processor["speed"] = int(speed) / 1000
-
-        return processor.items()
+    return 0
 
 
-factory = CpuinfoRegistry
+if __name__ == "__main__":
+    sys.exit(main())

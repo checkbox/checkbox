@@ -41,6 +41,7 @@ class LockPrompt(Plugin):
 
     def register(self, manager):
         super(LockPrompt, self).register(manager)
+
         self._lock = None
 
         self._manager.reactor.call_on("prompt-begin", self.prompt_begin)

@@ -16,13 +16,13 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-from checkbox.lib.iterator import Iterator
-
-from checkbox.properties import Path, String
 from checkbox.plugin import Plugin
+from checkbox.properties import Path, String
+from checkbox.user_interface import PREV
 
 import gettext
 from gettext import gettext as _
+
 
 class UserInterface(Plugin):
 
@@ -53,21 +53,24 @@ class UserInterface(Plugin):
         interface_class = getattr(interface_module, self.interface_class)
         interface = interface_class(self.title, self.data_path)
 
-        iterator = Iterator([
+        event_types = [
              "prompt-begin",
              "prompt-gather",
-             "prompt-suites",
+             "prompt-jobs",
              "prompt-report",
              "prompt-exchange",
-             "prompt-finish"])
+             "prompt-finish"]
 
-        while True:
-            try:
-                event_type = iterator.go(interface.direction)
-            except StopIteration:
-                break
-
+        index = 0
+        while index < len(event_types):
+            event_type = event_types[index]
             self._manager.reactor.fire(event_type, interface)
+
+            if interface.direction == PREV:
+                if index > 0:
+                    index -= 1
+            else:
+                index += 1
 
 
 factory = UserInterface

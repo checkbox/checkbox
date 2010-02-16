@@ -31,6 +31,7 @@ class ManualTest(Plugin):
 
     def prompt_manual(self, interface, test):
         interface.show_test(test)
+        self._manager.reactor.fire("prompt-test", interface, test)
 
     def report_manual(self, test):
         self._manager.reactor.fire("report-test", test)

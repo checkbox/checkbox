@@ -28,13 +28,16 @@ import gettext
 from gettext import gettext as _
 
 from checkbox.contrib.REThread import REThread
+
+from checkbox.lib.environ import add_variable, get_variable, remove_variable
+
 from checkbox.job import (FAIL, PASS, UNINITIATED,
     UNRESOLVED, UNSUPPORTED, UNTESTED)
 from checkbox.reactor import StopAllException
 
-from checkbox.lib.environ import add_variable, get_variable, remove_variable
-from checkbox.lib.iterator import NEXT
 
+NEXT = 1
+PREV = -1
 
 YES_ANSWER = "yes"
 NO_ANSWER = "no"

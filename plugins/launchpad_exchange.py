@@ -59,6 +59,7 @@ class LaunchpadExchange(Plugin):
 
     def register(self, manager):
         super(LaunchpadExchange, self).register(manager)
+
         self._headers = {}
         self._form = {
             "field.private": "False",
@@ -68,19 +69,16 @@ class LaunchpadExchange(Plugin):
             "field.actions.upload": "Upload"}
 
         for (rt, rh) in [
-             ("report-architecture", self.report_architecture),
              ("report-client", self.report_client),
              ("report-datetime", self.report_datetime),
-             ("report-distribution", self.report_distribution),
+             ("report-dpkg", self.report_dpkg),
+             ("report-lsb", self.report_lsb),
              ("report-submission_id", self.report_submission_id),
              ("report-system_id", self.report_system_id),
              ("launchpad-email", self.launchpad_email),
              ("launchpad-report", self.launchpad_report),
              ("launchpad-exchange", self.launchpad_exchange)]:
             self._manager.reactor.call_on(rt, rh)
-
-    def report_architecture(self, message):
-        self._form["field.architecture"] = message
 
     def report_client(self, message):
         user_agent = "%s/%s" % (message["name"], message["version"])
@@ -89,9 +87,14 @@ class LaunchpadExchange(Plugin):
     def report_datetime(self, message):
         self._form["field.date_created"] = message
 
-    def report_distribution(self, message):
-        self._form["field.distribution"] = message.distributor_id
-        self._form["field.distroseries"] = message.release
+    def report_dpkg(self, resources):
+        dpkg = resources[0]
+        self._form["field.architecture"] = dpkg["architecture"]
+
+    def report_lsb(self, resources):
+        lsb = resources[0]
+        self._form["field.distribution"] = lsb["distributor_id"]
+        self._form["field.distroseries"] = lsb["release"]
 
     def report_submission_id(self, message):
         self._form["field.submission_key"] = message

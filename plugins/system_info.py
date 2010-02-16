@@ -24,7 +24,6 @@ from checkbox.lib.safe import safe_md5sum
 
 from checkbox.properties import Path, String
 from checkbox.plugin import Plugin
-from checkbox.registry import registry_eval_recursive
 
 
 class SystemInfo(Plugin):
@@ -38,6 +37,8 @@ class SystemInfo(Plugin):
     def register(self, manager):
         super(SystemInfo, self).register(manager)
 
+        self.resource = None
+
         # System report should be generated early.
         self._manager.reactor.call_on("report", self.report, -10)
 
@@ -46,28 +47,28 @@ class SystemInfo(Plugin):
     def gather_persist(self, persist):
         self.persist = persist.root_at("system_info")
 
+    def report_resource(self, resource):
+        if resource["suite"] == "device" \
+           and resource.get("category") == "CHASSIS":
+            self.resource = resource
+
     # TODO: report this upon gathering
     def report(self):
         system_id = self.system_id or self.persist.get("system_id")
         if not system_id:
-            devices = registry_eval_recursive(self._manager.registry,
-                "device.category == 'CHASSIS'")
-            if not devices:
+            resource = self.resource
+            if resource is None or "product" not in resource:
                 return
 
-            device = devices[0]
-            if not device:
-                return
-
-            chassis_type = Dmi.chassis_name_to_type[device.product]
+            chassis_type = Dmi.chassis_name_to_type[resource["product"]]
 
             fingerprint = safe_md5sum()
             for field in [
                     "Computer",
                     "unknown",
                     chassis_type,
-                    device.vendor,
-                    device.model]:
+                    resource.get("vendor", ""),
+                    resource.get("model", "")]:
                 fingerprint.update(str(field))
 
             system_id = fingerprint.hexdigest()

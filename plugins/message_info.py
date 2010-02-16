@@ -25,24 +25,6 @@ from checkbox.lib.template_i18n import TemplateI18n
 
 from checkbox.job import Job, PASS
 from checkbox.plugin import Plugin
-from checkbox.arguments import coerce_arguments
-from checkbox.properties import Float, Int, List, Map, String, Unicode
-
-
-message_schema = Map({
-    "plugin": String(),
-    "name": String(),
-    "status": String(required=False),
-    "suite": String(required=False),
-    "description": Unicode(required=False),
-    "command": String(required=False),
-    "depends": List(String(), required=False),
-    "duration": Float(required=False),
-    "environ": List(String(), required=False),
-    "requires": List(String(), separator=r"\n", required=False),
-    "timeout": Int(required=False),
-    "user": String(required=False),
-    "data": String(required=False)})
 
 
 class MessageInfo(Plugin):
@@ -51,8 +33,7 @@ class MessageInfo(Plugin):
         super(MessageInfo, self).register(manager)
 
         for (rt, rh) in [
-             ("message", self.message),
-             ("messages", self.messages),
+             ("report-messages", self.report_messages),
              ("message-command", self.message_command),
              ("message-directory", self.message_directory),
              ("message-exec", self.message_exec),
@@ -62,13 +43,9 @@ class MessageInfo(Plugin):
              ("message-string", self.message_string)]:
             self._manager.reactor.call_on(rt, rh)
 
-    @coerce_arguments(message=message_schema)
-    def message(self, message):
-        self._manager.reactor.fire("report-job", message)
-
-    def messages(self, messages):
+    def report_messages(self, messages):
         for message in messages:
-            self._manager.reactor.fire("message", message)
+            self._manager.reactor.fire("report-message", message)
 
     def message_command(self, command, environ=[], timeout=None, user=None):
         job = Job(command, environ, timeout, user)
@@ -107,7 +84,7 @@ class MessageInfo(Plugin):
                     short_key = long_key.replace(long_ext, "")
                     message[short_key] = message.pop(long_key)
 
-        self._manager.reactor.fire("messages", messages)
+        self._manager.reactor.fire("report-messages", messages)
 
     def message_filename(self, filename):
         file = open(filename, "r")
@@ -115,6 +92,8 @@ class MessageInfo(Plugin):
 
     def message_job(self, job):
         (status, data, duration) = job.execute()
+
+        # TODO: report status, so that errors can be caught
         if status == PASS:
             self._manager.reactor.fire("message-string", data)
 

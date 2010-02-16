@@ -24,8 +24,6 @@ from gettext import gettext as _
 
 from optparse import OptionParser
 
-from checkbox.contrib import bpickle_registry
-
 from checkbox.lib.config import Config
 from checkbox.lib.environ import get_variable
 from checkbox.lib.log import set_logging
@@ -34,7 +32,6 @@ from checkbox.lib.text import split
 
 from checkbox.plugin import PluginManager
 from checkbox.reactor import Reactor
-from checkbox.registry import RegistryManager
 
 
 class Application(object):
@@ -45,18 +42,13 @@ class Application(object):
         self._config = config
         self.reactor = self.reactor_factory()
 
-        # Registry manager setup
-        self.registry = RegistryManager(self._config)
-
         # Plugin manager setup
         self.plugin_manager = PluginManager(self._config,
-            self.reactor, self.registry)
+            self.reactor)
 
     def run(self):
         try:
-            bpickle_registry.install()
             self.reactor.run()
-            bpickle_registry.uninstall()
         except:
             logging.exception("Error running reactor.")
             raise

@@ -25,6 +25,7 @@ class DatetimeInfo(Plugin):
 
     def register(self, manager):
         super(DatetimeInfo, self).register(manager)
+
         self._manager.reactor.call_on("report", self.report)
 
     def report(self):

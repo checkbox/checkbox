@@ -1,7 +1,8 @@
+#!/usr/bin/python
 #
 # This file is part of Checkbox.
 #
-# Copyright 2008 Canonical Ltd.
+# Copyright 2009 Canonical Ltd.
 #
 # Checkbox is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,19 +18,14 @@
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
 import re
+import sys
+import dbus
 import string
 import posixpath
 
-from checkbox.lib.cache import cache
 from checkbox.lib.dmi import DmiNotAvailable
 from checkbox.lib.pci import Pci
 from checkbox.lib.usb import Usb
-
-from checkbox.properties import String
-from checkbox.registry import Registry
-from checkbox.registries.command import CommandRegistry
-from checkbox.registries.link import LinkRegistry
-from checkbox.registries.map import MapRegistry
 
 
 class UnknownName(object):
@@ -48,26 +44,18 @@ class UnknownName(object):
         return name
 
 
-class DeviceRegistry(Registry):
-    """Registry for HAL device information.
-
-    Each item contained in this registry consists of the properties of
-    the corresponding HAL device.
-    """
+class DeviceResource(object):
+    __slots__ = ("_properties")
 
     def __init__(self, properties):
         self._properties = properties
 
-    def __str__(self):
-        strings = ["%s: %s" % (k, v) for k, v in self.items()
-            if not isinstance(v, Registry)]
-
-        return "\n".join(strings)
-
-    def _get_bus(self):
+    @property
+    def bus(self):
         return self._properties.get("linux.subsystem")
 
-    def _get_category(self):
+    @property
+    def category(self):
         if "system.hardware.vendor" in self._properties:
             return "SYSTEM"
 
@@ -188,18 +176,21 @@ class DeviceRegistry(Registry):
             if type == "raid":
                 return "RAID"
 
-        if self._get_product_id():
+        if self.product_id:
             return "OTHER"
 
         return None
 
-    def _get_driver(self):
+    @property
+    def driver(self):
         return self._properties.get("info.linux.driver")
 
-    def _get_path(self):
+    @property
+    def path(self):
         return self._properties.get("linux.sysfs_path", "").replace("/sys", "")
 
-    def _get_product_id(self):
+    @property
+    def product_id(self):
         if "info.subsystem" in self._properties:
             product_id = "%s.product_id" % self._properties["info.subsystem"]
             if product_id in self._properties:
@@ -214,7 +205,8 @@ class DeviceRegistry(Registry):
 
         return None
 
-    def _get_vendor_id(self):
+    @property
+    def vendor_id(self):
         if "info.subsystem" in self._properties:
             vendor_id = "%s.vendor_id" % self._properties["info.subsystem"]
             if vendor_id in self._properties:
@@ -222,15 +214,21 @@ class DeviceRegistry(Registry):
 
         return None
 
-    def _get_subproduct_id(self):
+    @property
+    def subproduct_id(self):
         return self._properties.get("pci.subsys_product_id")
 
-    def _get_subvendor_id(self):
+    @property
+    def subvendor_id(self):
         return self._properties.get("pci.subsys_vendor_id")
+
+    @property
+    def product(self):
+        return self._get_product()
 
     @UnknownName
     def _get_product(self):
-        bus = self._get_bus()
+        bus = self.bus
 
         # Ignore subsystems using parent or generated names
         if bus in ("drm", "net", "platform", "pci", "pnp", "scsi_generic",
@@ -258,9 +256,13 @@ class DeviceRegistry(Registry):
 
         return None
 
+    @property
+    def vendor(self):
+        return self._get_vendor()
+
     @UnknownName
     def _get_vendor(self):
-        bus = self._get_bus()
+        bus = self.bus
 
         # Ignore subsystems using parent or generated names
         if bus in ("drm", "pci", "rfkill", "usb"):
@@ -283,24 +285,8 @@ class DeviceRegistry(Registry):
 
         return None
 
-    @cache
-    def items(self):
-        return (
-            ("path", self._get_path()),
-            ("bus", self._get_bus()),
-            ("category", self._get_category()),
-            ("driver", self._get_driver()),
-            ("product_id", self._get_product_id()),
-            ("vendor_id", self._get_vendor_id()),
-            ("subproduct_id", self._get_subproduct_id()),
-            ("subvendor_id", self._get_subvendor_id()),
-            ("product", self._get_product()),
-            ("vendor", self._get_vendor()),
-            ("properties", MapRegistry(self._properties)),
-            ("device", LinkRegistry(self)))
 
-
-class DmiDeviceRegistry(DeviceRegistry):
+class DmiDeviceResource(DeviceResource):
 
     _category_to_property = {
         "BIOS": "system.firmware",
@@ -308,7 +294,7 @@ class DmiDeviceRegistry(DeviceRegistry):
         "CHASSIS": "system.chassis"}
 
     def __init__(self, properties, category):
-        super(DmiDeviceRegistry, self).__init__(properties)
+        super(DmiDeviceResource, self).__init__(properties)
         if category not in self._category_to_property:
             raise Exception, "Unsupported category: %s" % category
 
@@ -318,14 +304,17 @@ class DmiDeviceRegistry(DeviceRegistry):
     def _property(self):
         return self._category_to_property[self._category]
 
-    def _get_category(self):
+    @property
+    def category(self):
         return self._category
 
-    def _get_path(self):
-        path = super(DmiDeviceRegistry, self)._get_path()
+    @property
+    def path(self):
+        path = super(DmiDeviceResource, self).path
         return posixpath.join(path, self._category.lower())
 
-    def _get_product(self):
+    @property
+    def product(self):
         for subproperty in "product", "type", "version":
             property = "%s.%s" % (self._property, subproperty)
             product = self._properties.get(property)
@@ -333,6 +322,10 @@ class DmiDeviceRegistry(DeviceRegistry):
                 return product
 
         return None
+
+    @property
+    def vendor(self):
+        return self._get_vendor()
 
     @DmiNotAvailable
     def _get_vendor(self):
@@ -344,15 +337,12 @@ class DmiDeviceRegistry(DeviceRegistry):
         return None
 
 
-class HalRegistry(CommandRegistry):
-    """Registry for HAL information.
+class HalResource(object):
+    """Resource for HAL information.
 
-    Each item contained in this registry consists of the udi as key and
-    the corresponding device registry as value.
+    Each item contained in this resource consists of the udi as key and
+    the corresponding device resource as value.
     """
-
-    # Command to retrieve hal information.
-    command = String(default="lshal")
 
     # See also section "Deprecated Properties" of the "HAL 0.5.10 Specification",
     # available from http://people.freedesktop.org/~david/hal-spec/hal-spec.html
@@ -375,34 +365,34 @@ class HalRegistry(CommandRegistry):
         (r"usb_device\.speed_bcd",                 "usb_device.speed"),
         (r"usb_device\.version_bcd",               "usb_device.version"))
 
+    _conversion_types = {
+        dbus.Boolean: bool,
+        dbus.Int16: int,
+        dbus.UInt16: int,
+        dbus.Int32: int,
+        dbus.UInt32: int,
+        dbus.Int64: int,
+        dbus.UInt64: int,
+        dbus.Double: float,
+        dbus.Array: list,
+        dbus.Dictionary: dict,
+        dbus.String: str,
+        dbus.UTF8String: unicode}
+
     def __init__(self, *args, **kwargs):
-        super(HalRegistry, self).__init__(*args, **kwargs)
+        super(HalResource, self).__init__(*args, **kwargs)
         self._deprecated_patterns = ((re.compile("^%s$" % a), b)
             for (a, b) in self._deprecated_expressions)
 
     def _get_key(self, key):
+        key = str(key)
         for (old, new) in self._deprecated_patterns:
             key = old.sub(new, key)
 
         return key
 
-    def _get_value(self, value, type):
-        value = value.strip()
-        if type == "bool":
-            value = bool(value == "true")
-        elif type == "double":
-            value = float(value.split()[0])
-        elif type == "int" or type == "uint64":
-            value = int(value.split()[0])
-        elif type == "string":
-            value = str(value.strip("'"))
-        elif type == "string list":
-            value = [v.strip("'")
-                    for v in value.strip("{}").split(", ")]
-        else:
-            raise Exception, "Unknown type: %s" % type
-
-        return value
+    def _get_value(self, value):
+        return self._conversion_types[type(value)](value)
 
     def _ignore_device(self, device):
         # Ignore devices without bus information
@@ -425,43 +415,55 @@ class HalRegistry(CommandRegistry):
 
         return False
 
-    @cache
-    def items(self):
+    @property
+    def devices(self):
         devices = []
-        for record in self.split("\n\n"):
-            if not record:
-                continue
+        bus = dbus.SystemBus()
+        manager_obj = bus.get_object("org.freedesktop.Hal", "/org/freedesktop/Hal/Manager")
+        manager = dbus.Interface(manager_obj, "org.freedesktop.Hal.Manager")
+        for udi in manager.GetAllDevices():
+            name = udi.split(posixpath.sep)[-1]
+            object = bus.get_object("org.freedesktop.Hal", udi)
+            interface = dbus.Interface(object, "org.freedesktop.Hal.Device")
 
-            name = None
             properties = {}
-            for line in record.split("\n"):
-                match = re.match(r"udi = '(.*)'", line)
-                if match:
-                    udi = match.group(1)
-                    name = udi.split(posixpath.sep)[-1]
-                    continue
-
-                match = re.match(r"  (?P<key>.*) = (?P<value>.*) \((?P<type>.*?)\)", line)
-                if match:
-                    key = self._get_key(match.group("key"))
-                    value = self._get_value(match.group("value"),
-                        match.group("type"))
-                    properties[key] = value
+            for key, value in interface.GetAllProperties().items():
+                key = self._get_key(key)
+                value = self._get_value(value)
+                properties[key] = value
 
             if name == "computer":
                 properties["linux.subsystem"] = "dmi"
                 properties["linux.sysfs_path"] = "/sys/devices/virtual/dmi/id"
 
-                device = DeviceRegistry(properties)
+                device = DeviceResource(properties)
                 devices.append(device)
                 for category in "BIOS", "BOARD", "CHASSIS":
-                    device = DmiDeviceRegistry(properties, category)
+                    device = DmiDeviceResource(properties, category)
                     devices.append(device)
             else:
-                device = DeviceRegistry(properties)
+                device = DeviceResource(properties)
                 devices.append(device)
 
-        return [(d.path, d) for d in devices if not self._ignore_device(d)]
+        return [d for d in devices if not self._ignore_device(d)]
 
 
-factory = HalRegistry
+def main():
+    attributes = ("path", "bus", "category", "driver", "product_id",
+        "vendor_id", "subproduct_id", "subvendor_id", "product", "vendor",)
+
+    hal = HalResource()
+    for device in hal.devices:
+        for attribute in attributes:
+            value = getattr(device, attribute)
+            if value is not None:
+                print "%s: %s" % (attribute, value)
+
+        # Empty line
+        print
+
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

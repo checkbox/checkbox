@@ -26,6 +26,17 @@ from checkbox.reports.xml_report import (XmlReportManager, XmlReport,
     convert_bool)
 
 
+class LaunchpadReport(Report):
+
+    _id = 0
+
+    @property
+    def id(self):
+        id = LaunchpadReport._id
+        LaunchpadReport._id += 1
+        return id
+
+
 class LaunchpadReportManager(XmlReportManager):
 
     def __init__(self, *args, **kwargs):
@@ -66,7 +77,7 @@ class ContextReport(XmlReport):
         return context
 
 
-class HardwareReport(Report):
+class HardwareReport(LaunchpadReport):
     """Report for hardware related data types."""
 
     def register_dumps(self):
@@ -90,7 +101,7 @@ class HardwareReport(Report):
         return self._manager.call_loads(node)
 
 
-class LsbReport(Report):
+class LsbReport(LaunchpadReport):
 
     def register_dumps(self):
         for (dt, dh) in [("lsbrelease", self.dumps_lsbrelease)]:
@@ -98,13 +109,13 @@ class LsbReport(Report):
 
     def dumps_lsbrelease(self, obj, parent):
         logging.debug("Dumping lsbrelease")
-        for key, value in obj.items():
+        for key, value in obj.iteritems():
             property = self._create_element("property", parent)
             property.setAttribute("name", key)
             self._manager.call_dumps(value, property)
 
 
-class PackagesReport(Report):
+class PackagesReport(LaunchpadReport):
     """Report for package related data types."""
 
     def register_dumps(self):
@@ -117,7 +128,7 @@ class PackagesReport(Report):
         logging.debug("Dumping packages")
         for package in obj:
             element = self._create_element("package", parent)
-            element.setAttribute("id", str(package.id))
+            element.setAttribute("id", str(self.id))
 
             package = dict(package)
             element.setAttribute("name", package.pop("name"))
@@ -134,7 +145,7 @@ class PackagesReport(Report):
         return packages
 
 
-class ProcessorsReport(Report):
+class ProcessorsReport(LaunchpadReport):
     """Report for processor related data types."""
 
     def register_dumps(self):
@@ -147,7 +158,7 @@ class ProcessorsReport(Report):
         logging.debug("Dumping processors")
         for processor in obj:
             element = self._create_element("processor", parent)
-            element.setAttribute("id", str(processor.id))
+            element.setAttribute("id", str(self.id))
 
             processor = dict(processor)
             element.setAttribute("name", str(processor.pop("name")))
@@ -164,7 +175,7 @@ class ProcessorsReport(Report):
         return processors
 
 
-class SummaryReport(Report):
+class SummaryReport(LaunchpadReport):
     """Report for summary related data types."""
 
     def register_dumps(self):
@@ -219,7 +230,7 @@ class SummaryReport(Report):
         return {"name": name, "version": version}
 
 
-class QuestionsReport(Report):
+class QuestionsReport(LaunchpadReport):
     """Report for question related data types."""
 
     def register_dumps(self):

@@ -16,9 +16,6 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-from gettext import gettext as _
-
-from checkbox.job import Job, UNINITIATED
 from checkbox.plugin import Plugin
 
 
@@ -33,18 +30,10 @@ class MetricTest(Plugin):
             self._manager.reactor.call_on(rt, rh)
 
     def prompt_metric(self, interface, test):
-        command = test.get("command")
-        status = test.get("status", UNINITIATED)
-        if command and status == UNINITIATED:
-            job = Job(command, test.get("environ"),
-                test.get("timeout"), test.get("user"))
-            (status, data, duration) = interface.show_progress(
-                _("Running metric tests..."), job.execute)
-            test["data"] = data
-            test["duration"] = duration
-            test["status"] = status
+        self._manager.reactor.fire("prompt-shell", interface, test)
 
     def report_metric(self, test):
+        # Overwrite test type
         test["type"] = "metric"
         self._manager.reactor.fire("report-test", test)
 

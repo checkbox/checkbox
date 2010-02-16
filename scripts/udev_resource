@@ -1,7 +1,8 @@
+#!/usr/bin/python
 #
 # This file is part of Checkbox.
 #
-# Copyright 2008 Canonical Ltd.
+# Copyright 2009 Canonical Ltd.
 #
 # Checkbox is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,40 +18,35 @@
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
 import os
+import sys
 import re
 import string
 import posixpath
 
 from curses.ascii import isprint
+from subprocess import Popen, PIPE
 
 from checkbox.lib.bit import get_bitmask, test_bit
-from checkbox.lib.cache import cache
 from checkbox.lib.dmi import Dmi, DmiNotAvailable
 from checkbox.lib.input import Input
 from checkbox.lib.pci import Pci
 from checkbox.lib.usb import Usb
 
-from checkbox.properties import String
-from checkbox.registry import Registry
-from checkbox.registries.command import CommandRegistry
-from checkbox.registries.link import LinkRegistry
-from checkbox.registries.map import MapRegistry
+
+# Command to retrieve udev information.
+COMMAND = "udevadm info --export-db"
 
 
-class DeviceRegistry(Registry):
+class DeviceResource(object):
+    __slots__ = ("_environment", "_attributes")
 
     def __init__(self, environment, attributes):
-        super(DeviceRegistry, self).__init__()
+        super(DeviceResource, self).__init__()
         self._environment = environment
         self._attributes = attributes
 
-    def __str__(self):
-        strings = ["%s: %s" % (k, v) for k, v in self.items()
-            if not isinstance(v, Registry)]
-
-        return "\n".join(strings)
-
-    def _get_bus(self):
+    @property
+    def bus(self):
         sys_path = posixpath.join("/sys%s" % self._environment["DEVPATH"], "subsystem")
         if posixpath.islink(sys_path):
             link = os.readlink(sys_path)
@@ -59,7 +55,8 @@ class DeviceRegistry(Registry):
 
         return None
 
-    def _get_category(self):
+    @property
+    def category(self):
         if "sys_vendor" in self._attributes:
             return "SYSTEM"
 
@@ -68,11 +65,9 @@ class DeviceRegistry(Registry):
 
         if "PCI_CLASS" in self._environment:
             pci_class = self._environment["PCI_CLASS"]
-            if len(pci_class) > 4:
-                pci_class = pci_class[:-2]
-
-            subclass_id = int(pci_class[-2:], 16)
-            class_id = int(pci_class[:-2], 16)
+            prog_if = int(pci_class[-2:], 16)
+            subclass_id = int(pci_class[-4:-2], 16)
+            class_id = int(pci_class[:-4], 16)
 
             if class_id == Pci.BASE_CLASS_NETWORK:
                 return "NETWORK"
@@ -197,12 +192,13 @@ class DeviceRegistry(Registry):
             if type == 12:
                 return "RAID"
 
-        if self._get_product_id():
+        if self.product:
             return "OTHER"
 
         return None
 
-    def _get_driver(self):
+    @property
+    def driver(self):
         if "DRIVER" in self._environment:
             return self._environment["DRIVER"]
 
@@ -211,10 +207,12 @@ class DeviceRegistry(Registry):
 
         return None
 
-    def _get_path(self):
+    @property
+    def path(self):
         return self._environment.get("DEVPATH")
 
-    def _get_product_id(self):
+    @property
+    def product_id(self):
         # pci
         if "PCI_ID" in self._environment:
             vendor_id, product_id = self._environment["PCI_ID"].split(":")
@@ -240,7 +238,8 @@ class DeviceRegistry(Registry):
 
         return None
 
-    def _get_vendor_id(self):
+    @property
+    def vendor_id(self):
         # pci
         if "PCI_ID" in self._environment:
             vendor_id, product_id = self._environment["PCI_ID"].split(":")
@@ -257,14 +256,15 @@ class DeviceRegistry(Registry):
             return int(self._attributes["idVendor"], 16)
 
         # ieee1394
-        vendor_id_path = posixpath.join(self._get_path(), "../vendor_id")
+        vendor_id_path = posixpath.join(self.path, "../vendor_id")
         if posixpath.exists(vendor_id_path):
             vendor_id = open(vendor_id_path, "r").read().strip()
             return int(vendor_id, 16)
 
         return None
 
-    def _get_subproduct_id(self):
+    @property
+    def subproduct_id(self):
         if "PCI_SUBSYS_ID" in self._environment:
             pci_subsys_id = self._environment["PCI_SUBSYS_ID"]
             subvendor_id, subproduct_id = pci_subsys_id.split(":")
@@ -272,7 +272,8 @@ class DeviceRegistry(Registry):
 
         return None
 
-    def _get_subvendor_id(self):
+    @property
+    def subvendor_id(self):
         if "PCI_SUBSYS_ID" in self._environment:
             pci_subsys_id = self._environment["PCI_SUBSYS_ID"]
             subvendor_id, subproduct_id = pci_subsys_id.split(":")
@@ -280,7 +281,8 @@ class DeviceRegistry(Registry):
 
         return None
 
-    def _get_product(self):
+    @property
+    def product(self):
         for element in ("NAME",
                         "RFKILL_NAME",
                         "POWER_SUPPLY_MODEL_NAME"):
@@ -295,7 +297,7 @@ class DeviceRegistry(Registry):
                 return self._attributes[attribute]
 
         # sound
-        bus = self._get_bus()
+        bus = self.bus
         if bus == "sound":
             device = posixpath.basename(self._environment["DEVPATH"])
             match = re.match(r"(card|controlC|hwC|midiC)(?P<card>\d+)", device)
@@ -337,7 +339,8 @@ class DeviceRegistry(Registry):
 
         return None
 
-    def _get_vendor(self):
+    @property
+    def vendor(self):
         if "RFKILL_NAME" in self._environment:
             return None
 
@@ -361,44 +364,30 @@ class DeviceRegistry(Registry):
                 return match.group("vendor_name")
 
         # ieee1394
-        vendor_path = posixpath.join(self._get_path(), "../vendor_oui")
+        vendor_path = posixpath.join(self.path, "../vendor_oui")
         if posixpath.exists(vendor_path):
             return open(vendor_path, "r").read().strip()
 
         return None
 
-    @cache
-    def items(self):
-        return (
-            ("path", self._get_path()),
-            ("bus", self._get_bus()),
-            ("category", self._get_category()),
-            ("driver", self._get_driver()),
-            ("product_id", self._get_product_id()),
-            ("vendor_id", self._get_vendor_id()),
-            ("subproduct_id", self._get_subproduct_id()),
-            ("subvendor_id", self._get_subvendor_id()),
-            ("product", self._get_product()),
-            ("vendor", self._get_vendor()),
-            ("attributes", MapRegistry(self._attributes)),
-            ("environment", MapRegistry(self._environment)),
-            ("device", LinkRegistry(self)))
 
-
-class DmiDeviceRegistry(DeviceRegistry):
+class DmiDeviceResource(DeviceResource):
 
     def __init__(self, environment, attributes, category):
-        super(DmiDeviceRegistry, self).__init__(environment, attributes)
+        super(DmiDeviceResource, self).__init__(environment, attributes)
         self._category = category
 
-    def _get_category(self):
+    @property
+    def category(self):
         return self._category
 
-    def _get_path(self):
-        path = super(DmiDeviceRegistry, self)._get_path()
+    @property
+    def path(self):
+        path = super(DmiDeviceResource, self).path
         return posixpath.join(path, self._category.lower())
 
-    def _get_product(self):
+    @property
+    def product(self):
         if self._category == "CHASSIS":
             type = int(self._attributes["chassis_type"])
             return Dmi.chassis_names[type]
@@ -419,12 +408,13 @@ class DmiDeviceRegistry(DeviceRegistry):
 
         return None
 
+    @property
+    def vendor(self):
+        return self._get_vendor()
 
-class UdevRegistry(CommandRegistry):
-    """Registry for udev information."""
 
-    # Command to retrieve udev information.
-    command = String(default="udevadm info --export-db")
+class UdevResource(object):
+    """Resource for udev information."""
 
     def _get_attributes(self, path):
         attributes = {}
@@ -476,13 +466,14 @@ class UdevRegistry(CommandRegistry):
 
         return False
 
-    @cache
-    def items(self):
+    @property
+    def devices(self):
         devices = []
         line_pattern = re.compile(r"(?P<key>\w):\s*(?P<value>.*)")
         multi_pattern = re.compile(r"(?P<key>\w+)=(?P<value>.*)")
 
-        for record in str(self).split("\n\n"):
+        output = Popen(COMMAND, stdout=PIPE, shell=True).communicate()[0]
+        for record in output.split("\n\n"):
             if not record:
                 continue
 
@@ -491,16 +482,21 @@ class UdevRegistry(CommandRegistry):
             environment = {}
             for line in record.split("\n"):
                 match = line_pattern.match(line)
-                if match:
-                    key = match.group("key")
-                    value = match.group("value")
+                if not match:
+                    raise Exception, \
+                        "Device line not supported: %s" % line
 
-                    if key == "P":
-                        path= value
-                    elif key == "E":
-                        match = multi_pattern.match(value)
-                        if match:
-                            environment[match.group("key")] = match.group("value")
+                key = match.group("key")
+                value = match.group("value")
+
+                if key == "P":
+                    path= value
+                elif key == "E":
+                    match = multi_pattern.match(value)
+                    if not match:
+                        raise Exception, \
+                            "Device property not supported: %s" % value
+                    environment[match.group("key")] = match.group("value")
 
             # Set default DEVPATH
             environment.setdefault("DEVPATH", path)
@@ -509,16 +505,34 @@ class UdevRegistry(CommandRegistry):
             attributes = self._get_attributes(path)
 
             if path == "/devices/virtual/dmi/id":
-                device = DeviceRegistry(environment, attributes)
+                device = DeviceResource(environment, attributes)
                 devices.append(device)
                 for category in "BIOS", "BOARD", "CHASSIS":
-                    device = DmiDeviceRegistry(environment, attributes, category)
+                    device = DmiDeviceResource(environment, attributes, category)
                     devices.append(device)
             else:
-                device = DeviceRegistry(environment, attributes)
+                device = DeviceResource(environment, attributes)
                 devices.append(device)
 
-        return [(d.path, d) for d in devices if not self._ignore_device(d)]
+        return [d for d in devices if not self._ignore_device(d)]
 
 
-factory = UdevRegistry
+def main():
+    attributes = ("path", "bus", "category", "driver", "product_id",
+        "vendor_id", "subproduct_id", "subvendor_id", "product", "vendor",)
+
+    udev = UdevResource()
+    for device in udev.devices:
+        for attribute in attributes:
+            value = getattr(device, attribute)
+            if value is not None:
+                print "%s: %s" % (attribute, value)
+
+        # Empty line
+        print
+
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

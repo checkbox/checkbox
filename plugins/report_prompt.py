@@ -18,9 +18,8 @@
 #
 from gettext import gettext as _
 
-from checkbox.lib.iterator import PREV
-
 from checkbox.plugin import Plugin
+from checkbox.user_interface import PREV
 
 
 class ReportPrompt(Plugin):

@@ -19,12 +19,10 @@
 import posixpath
 import shutil
 
-from checkbox.lib.file import write
 from checkbox.lib.safe import safe_make_directory
 
 from checkbox.properties import Path
 from checkbox.plugin import Plugin
-from checkbox.registries.map import MapRegistry
 from checkbox.reports.launchpad_report import LaunchpadReportManager
 
 
@@ -38,6 +36,7 @@ class LaunchpadReport(Plugin):
 
     def register(self, manager):
         super(LaunchpadReport, self).register(manager)
+
         self._report = {
             "summary": {
                 "private": False,
@@ -49,58 +48,68 @@ class LaunchpadReport(Plugin):
             "questions": [],
             "context": []}
 
-        # Launchpad report should be generated last.
-        self._manager.reactor.call_on("report", self.report, 100)
         for (rt, rh) in [
-             ("report-architecture", self.report_architecture),
              ("report-attachments", self.report_attachments),
              ("report-client", self.report_client),
+             ("report-cpuinfo", self.report_cpuinfo),
              ("report-datetime", self.report_datetime),
-             ("report-distribution", self.report_distribution),
-             ("report-dmi", self.report_dmi),
-             ("report-packages", self.report_packages),
-             ("report-processor", self.report_processor),
+             ("report-dpkg", self.report_dpkg),
+             ("report-lsb", self.report_lsb),
+             ("report-package", self.report_package),
+             ("report-uname", self.report_uname),
              ("report-system_id", self.report_system_id),
-             ("report-tests", self.report_tests),
-             ("report-udev", self.report_udev),
-             ("report-uname", self.report_uname)]:
+             ("report-tests", self.report_tests)]:
             self._manager.reactor.call_on(rt, rh)
 
-    def report_architecture(self, architecture):
-        self._report["summary"]["architecture"] = architecture
+        # Launchpad report should be generated last.
+        self._manager.reactor.call_on("report", self.report, 100)
 
     def report_attachments(self, attachments):
         for attachment in attachments:
-            self._report["context"].append({
-                "command": attachment["command"],
-                "data": attachment["data"]})
+            name = attachment["name"]
+            if name == "dmi":
+                self._report["hardware"]["dmi"] = attachment["data"]
+
+            elif name == "udev":
+                self._report["hardware"]["udev"] = attachment["data"]
+
+            else:
+                self._report["context"].append({
+                    "command": attachment["command"],
+                    "data": attachment["data"]})
 
     def report_client(self, client):
         self._report["summary"]["client"] = client
 
+    def report_cpuinfo(self, resources):
+        cpuinfo = resources[0]
+        processors = []
+        for i in range(int(cpuinfo["count"])):
+            cpuinfo = dict(cpuinfo)
+            cpuinfo["name"] = i
+            processors.append(cpuinfo)
+
+        self._report["hardware"]["processors"] = processors
+
     def report_datetime(self, datetime):
         self._report["summary"]["date_created"] = datetime
 
-    def report_distribution(self, distribution):
-        self._report["software"]["lsbrelease"] = dict(distribution)
-        self._report["summary"]["distribution"] = distribution.distributor_id
-        self._report["summary"]["distroseries"] = distribution.release
+    def report_dpkg(self, resources):
+        dpkg = resources[0]
+        self._report["summary"]["architecture"] = dpkg["architecture"]
 
-    def report_dmi(self, dmi):
-        self._report["hardware"]["dmi"] = dmi
+    def report_lsb(self, resources):
+        lsb = resources[0]
+        self._report["software"]["lsbrelease"] = dict(lsb)
+        self._report["summary"]["distribution"] = lsb["distributor_id"]
+        self._report["summary"]["distroseries"] = lsb["release"]
 
-    def report_packages(self, packages):
-        self._report["software"]["packages"] = packages.values()
+    def report_package(self, resources):
+        self._report["software"]["packages"] = resources
 
-    def report_processor(self, processor):
-        processors = []
-        for i in range(processor.count):
-            map = dict(processor.items())
-            map["name"] = i
-            p = MapRegistry(map)
-            processors.append(p)
-            
-        self._report["hardware"]["processors"] = processors
+    def report_uname(self, resources):
+        uname = resources[0]
+        self._report["summary"]["kernel-release"] = uname["release"]
 
     def report_system_id(self, system_id):
         self._report["summary"]["system_id"] = system_id
@@ -112,23 +121,6 @@ class LaunchpadReport(Plugin):
                 "answer": test["status"],
                 "comment": test.get("data", "")}
             self._report["questions"].append(question)
-
-    def report_udev(self, udev):
-        self._report["hardware"]["udev"] = udev
-
-        sysfs_attributes = []
-        for path, device in udev.items():
-            sysfs_attribute = []
-            sysfs_attribute.append("P: %s" % path)
-            for key, value in device.attributes.items():
-                sysfs_attribute.append("A: %s=%s" % (key, value))
-
-            sysfs_attributes.append("\n".join(sysfs_attribute))
-
-        self._report["hardware"]["sysfs-attributes"] = "\n\n".join(sysfs_attributes)
-
-    def report_uname(self, uname):
-        self._report["summary"]["kernel-release"] = uname.release
 
     def report(self):
         # Copy stylesheet to report directory
@@ -145,10 +137,9 @@ class LaunchpadReport(Plugin):
         directory = posixpath.dirname(self.filename)
         safe_make_directory(directory)
 
-        write(self.filename, payload)
-        #file = open(self.filename, "w")
-        #file.write(payload)
-        #file.close()
+        file = open(self.filename, "w")
+        file.write(payload)
+        file.close()
 
         self._manager.reactor.fire("launchpad-report", self.filename)
 

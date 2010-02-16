@@ -57,6 +57,10 @@ name: cpuinfo
 plugin: attachment
 command: cat /proc/cpuinfo
 
+name: dmi
+plugin: attachment
+command: grep -r . /sys/class/dmi/id/ 2>/dev/null
+
 name: dmidecode
 plugin: attachment
 user: root
@@ -77,6 +81,10 @@ command: cat /etc/modules
 name: sysctl
 plugin: attachment
 command: find /etc/sysctl.* -name \*.conf | xargs cat
+
+name: udev
+plugin: attachment
+command: udevadm info --export-db
 
 name: gcov.tgz
 plugin: attachment

@@ -25,6 +25,7 @@ class FinalPrompt(Plugin):
 
     def register(self, manager):
         super(FinalPrompt, self).register(manager)
+
         self._manager.reactor.call_on("prompt-finish", self.prompt_finish)
 
     def prompt_finish(self, interface):

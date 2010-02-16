@@ -19,22 +19,42 @@
 import re
 import logging
 
-from checkbox.job import UNINITIATED
-from checkbox.properties import List, Path, String
+from checkbox.arguments import coerce_arguments
+from checkbox.job import JobStore, UNINITIATED, UNTESTED
+from checkbox.properties import Float, Int, List, Map, Path, String, Unicode
 from checkbox.plugin import Plugin
+from checkbox.user_interface import NEXT, PREV
+
+
+job_schema = Map({
+    "plugin": String(),
+    "name": String(),
+    "type": String(required=False),
+    "status": String(required=False),
+    "suite": String(required=False),
+    "description": Unicode(required=False),
+    "command": String(required=False),
+    "depends": List(String(), required=False),
+    "duration": Float(required=False),
+    "environ": List(String(), required=False),
+    "requires": List(String(), separator=r"\n", required=False),
+    "resources": List(String(), required=False),
+    "timeout": Int(required=False),
+    "user": String(required=False),
+    "data": String(required=False)})
 
 
 class JobsPrompt(Plugin):
 
-    # Plugin default for running job types
-    plugin_default = String(default="external")
-
-    # Status default for jobs
-    status_default = String(default=UNINITIATED)
-
     # Space separated list of directories where job files are stored.
     directories = List(Path(),
         default_factory=lambda:"%(checkbox_share)s/jobs")
+
+    # Directory where messages are stored
+    store_directory = Path(default="%(checkbox_data)s/store")
+
+    # Maximum number of messages per directory
+    store_directory_size = Int(default=1000)
 
     # List of jobs to blacklist
     blacklist = List(String(), default_factory=lambda:"")
@@ -50,63 +70,104 @@ class JobsPrompt(Plugin):
 
     def register(self, manager):
         super(JobsPrompt, self).register(manager)
-        self._iterator = None
-        self._jobs = {}
+        self._ignore = []
+
+        self.whitelist_patterns = self.get_patterns(self.whitelist, self.whitelist_file)
+        self.blacklist_patterns = self.get_patterns(self.blacklist, self.blacklist_file)
 
         for (rt, rh) in [
              ("gather", self.gather),
-             ("report-job", self.report_job),
-             ("prompt-job", self.prompt_job)]:
+             ("gather-persist", self.gather_persist),
+             ("ignore-jobs", self.ignore_jobs),
+             ("prompt-job", self.prompt_job),
+             ("prompt-jobs", self.prompt_jobs),
+             ("prompt-finish", self.prompt_finish),
+             ("report", self.report)]:
             self._manager.reactor.call_on(rt, rh)
 
-    def gather(self):
-        for directory in self.directories:
-            self._manager.reactor.fire("message-directory", directory)
+        self._manager.reactor.call_on("report-job", self.report_job, 100)
 
-    def report_job(self, job):
-        def readlist(name):
+    def get_patterns(self, strings, filename=None):
+        if filename:
             try:
-                file = open(name)
+                file = open(filename)
             except IOError, e:
                 logging.info("Failed to open file '%s': %s",
-                    name, e.strerror)
-                return []
+                    filename, e.strerror)
             else:
-                return [l.strip() for l in file.readlines()]
+                strings.extend([l.strip() for l in file.readlines()])
 
-        # Build whitelist patterns
-        whitelist = self.whitelist
-        if self.whitelist_file:
-            whitelist.extend(readlist(self.whitelist_file))
+        return [re.compile(r"^%s$" % s) for s in strings if s]
 
-        whitelist_patterns = [re.compile(r"^%s$" % r) for r in whitelist if r]
+    def gather(self):
+        def report_message(message):
+            self._manager.reactor.fire("report-job", message)
 
-        # Build blacklist patterns
-        blacklist = self.blacklist
-        if self.blacklist_file:
-            blacklist.extend(readlist(self.blacklist_file))
+        event_id = self._manager.reactor.call_on("report-message", report_message, 100)
+        for directory in self.directories:
+            self._manager.reactor.fire("message-directory", directory)
+        self._manager.reactor.cancel_call(event_id)
 
-        blacklist_patterns = [re.compile(r"^%s$" % r) for r in blacklist if r]
+    def gather_persist(self, persist):
+        persist = persist.root_at("jobs_prompt")
+        self.store = JobStore(persist, self.store_directory,
+            self.store_directory_size)
 
+    def ignore_jobs(self, jobs):
+        self._ignore = jobs
+
+    @coerce_arguments(job=job_schema)
+    def report_job(self, job):
         # Stop if job not in whitelist or in blacklist
         name = job["name"]
-        if whitelist_patterns:
-            if not [name for p in whitelist_patterns if p.match(name)]:
+        if self.whitelist_patterns:
+            if not [name for p in self.whitelist_patterns if p.match(name)]:
                 self._manager.reactor.stop()
-        elif blacklist_patterns:
-            if [name for p in blacklist_patterns if p.match(name)]:
+        elif self.blacklist_patterns:
+            if [name for p in self.blacklist_patterns if p.match(name)]:
                 self._manager.reactor.stop()
 
         # Update job
-        job.update(self._jobs.get(name, {}))
-        job.setdefault("plugin", self.plugin_default)
-        job.setdefault("status", self.status_default)
-        self._jobs[name] = job
-
+        job.setdefault("status", UNINITIATED)
         self._manager.reactor.fire("report-%s" % job["plugin"], job)
 
+        self.store.add(job)
+
     def prompt_job(self, interface, job):
-        self._manager.reactor.fire("prompt-%s" % job["plugin"], interface, job)
+        attribute = "description" if job.get("type") == "suite" else "name"
+        if job[attribute] in self._ignore:
+            job["status"] = UNTESTED
+        else:
+            self._manager.reactor.fire("prompt-%s" % job["plugin"], interface, job)
+
+    def prompt_jobs(self, interface):
+        while True:
+            if interface.direction == PREV:
+                if not self.store.remove_pending_offset():
+                    break
+
+            messages = self.store.get_pending_messages(1)
+            if not messages:
+                break
+
+            job = messages[0]
+            self._manager.reactor.fire("prompt-job", interface, job)
+            self.store.update(job)
+
+            if interface.direction == NEXT:
+                self.store.add_pending_offset()
+
+    def prompt_finish(self, interface):
+        self.store.delete_all_messages()
+
+    def report(self):
+        self.store.set_pending_offset(0)
+        messages = self.store.get_pending_messages()
+        tests = [m for m in messages if m.get("type") in ("test", "metric")]
+        self._manager.reactor.fire("report-tests", tests)
+
+        attachments = [m for m in messages if m.get("type") == "attachment" and "data" in m]
+        self._manager.reactor.fire("report-attachments", attachments)
 
 
 factory = JobsPrompt

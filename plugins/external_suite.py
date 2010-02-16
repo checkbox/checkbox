@@ -30,14 +30,14 @@ class ExternalSuite(Plugin):
             self._manager.reactor.call_on(rt, rh)
 
     def prompt_external(self, interface, suite):
-        def report_job(job):
-            job["suite"] = suite["name"]
+        self._manager.reactor.fire("prompt-suite", interface, suite)
 
-        event_id = self._manager.reactor.call_on("report-job", report_job)
+        def report_message(message):
+            message["suite"] = suite["name"]
+
+        event_id = self._manager.reactor.call_on("report-message", report_message)
         self._manager.reactor.fire("message-exec", suite)
         self._manager.reactor.cancel_call(event_id)
-
-        self._manager.reactor.fire("prompt-tests", interface)
 
     def report_external(self, suite):
         self._manager.reactor.fire("report-suite", suite)

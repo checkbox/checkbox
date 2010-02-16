@@ -264,7 +264,7 @@ def test():
 #----------------------------------------------------------------------------
     ##TODO: a more serious test with distinct processes !
 
-    print 'Testing glock.py...' 
+    print 'Testing glock.py...'
 
     # unfortunately can't test inter-process lock here!
     lockName = 'myFirstLock'

@@ -25,8 +25,8 @@ class IntroPrompt(Plugin):
 
     def register(self, manager):
         super(IntroPrompt, self).register(manager)
-        # Introduction should be prompted last
 
+        # Introduction should be prompted last
         self._manager.reactor.call_on("prompt-begin", self.prompt_begin, 100)
 
     def prompt_begin(self, interface):

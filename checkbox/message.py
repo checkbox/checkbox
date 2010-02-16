@@ -30,6 +30,13 @@ BROKEN = "b"
 ANCIENT = 1
 
 
+class Message(dict):
+
+    def __init__(self, message, filename):
+        super(Message, self).__init__(message)
+        self.filename = filename
+
+
 class MessageStore(object):
     """A message store which stores its messages in a file system hierarchy."""
 
@@ -70,8 +77,16 @@ class MessageStore(object):
         """
         self._persist.set("pending_offset", val)
 
-    def add_pending_offset(self, val):
+    def add_pending_offset(self, val=1):
         self.set_pending_offset(self.get_pending_offset() + val)
+
+    def remove_pending_offset(self, val=1):
+        pending_offset = self.get_pending_offset()
+        if pending_offset - val < 0:
+            return False
+
+        self.set_pending_offset(pending_offset - val)
+        return True
 
     def count_pending_messages(self):
         """Return the number of pending messages."""
@@ -83,14 +98,14 @@ class MessageStore(object):
         for filename in self._walk_pending_messages():
             if max is not None and len(messages) >= max:
                 break
-            data = self._get_content(filename)
             try:
-                message = bpickle.loads(data)
+                message = self._read_message(filename)
             except ValueError, e:
                 logging.exception(e)
                 self._add_flags(filename, BROKEN)
             else:
                 messages.append(message)
+
         return messages
 
     def set_pending_flags(self, flags):
@@ -140,26 +155,12 @@ class MessageStore(object):
 
         @return: message_id, which is an identifier for the added message.
         """
-        assert "type" in message
-
-        message_data = bpickle.dumps(message)
-
         filename = self._get_next_message_filename()
 
-        file = open(filename + ".tmp", "w")
-        file.write(message_data)
-        file.close()
-        os.rename(filename + ".tmp", filename)
+        return self._write_message(message, filename)
 
-        # For now we use the inode as the message id, as it will work
-        # correctly even faced with holding/unholding.  It will break
-        # if the store is copied over for some reason, but this shouldn't
-        # present an issue given the current uses.  In the future we
-        # should have a nice transactional storage (e.g. sqlite) which
-        # will offer a more strong primary key.
-        message_id = os.stat(filename).st_ino
-
-        return message_id
+    def update(self, message):
+        return self._write_message(message)
 
     def _get_next_message_filename(self):
         message_dirs = self._get_sorted_filenames()
@@ -232,6 +233,36 @@ class MessageStore(object):
 
     def _add_flags(self, path, flags):
         self._set_flags(path, self._get_flags(path)+flags)
+
+    def _load_message(self, data):
+        return bpickle.loads(data)
+
+    def _dump_message(self, message):
+        return bpickle.dumps(message)
+
+    def _read_message(self, filename):
+        data = self._get_content(filename)
+        message = self._load_message(data)
+        return Message(message, filename)
+
+    def _write_message(self, message, filename=None):
+        if filename is None:
+            filename = message.filename
+
+        message_data = self._dump_message(message)
+
+        file = open(filename + ".tmp", "w")
+        file.write(message_data)
+        file.close()
+        os.rename(filename + ".tmp", filename)
+
+        # For now we use the inode as the message id, as it will work
+        # correctly even faced with holding/unholding.  It will break
+        # if the store is copied over for some reason, but this shouldn't
+        # present an issue given the current uses.  In the future we
+        # should have a nice transactional storage (e.g. sqlite) which
+        # will offer a more strong primary key.
+        return os.stat(filename).st_ino
 
 
 def got_next_sequence(message_store, next_sequence):

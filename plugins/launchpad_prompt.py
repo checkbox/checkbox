@@ -21,10 +21,9 @@ import posixpath
 
 from gettext import gettext as _
 
-from checkbox.lib.iterator import PREV
-
-from checkbox.properties import String
 from checkbox.plugin import Plugin
+from checkbox.properties import String
+from checkbox.user_interface import PREV
 
 
 class LaunchpadPrompt(Plugin):
