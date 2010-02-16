@@ -201,7 +201,7 @@ class ApportPrompt(Plugin):
         if not package and not symptom:
             return
 
-        response = interface.show_info("Do you want to report a bug?",
+        response = interface.show_info(_("Do you want to report a bug?"),
             ["yes", "no"], "no")
         if response == "no":
             return
@@ -216,7 +216,7 @@ class ApportPrompt(Plugin):
             options = ApportOptions(test, device, package, symptom)
             apport_interface = ApportUserInterface(interface, options)
         except ImportError, e:
-            interface.show_error("Is a package upgrade in process? Error: %s" % e)
+            interface.show_error(_("Is a package upgrade in process? Error: %s") % e)
             return
 
         try:
