@@ -45,7 +45,7 @@ def get_lsb_release():
 
 def main():
     lsb_release = get_lsb_release()
-    for key, value in lsb_release.items():
+    for key, value in lsb_release.iteritems():
         print "%s: %s" % (key, value)
 
     return 0

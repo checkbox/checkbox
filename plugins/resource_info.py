@@ -58,13 +58,13 @@ class ResourceInfo(Plugin):
             mask.append(bool(new_values))
             values.extend(new_values)
 
-        if False in mask:
+        if all(mask):
+            job["resources"] = values
+
+        else:
             job["status"] = UNSUPPORTED
             job["data"] = "Job requirements not met."
             self._manager.reactor.stop()
-
-        else:
-            job["resources"] = values
 
     def report_resource(self, resource):
         def report_messages(messages):

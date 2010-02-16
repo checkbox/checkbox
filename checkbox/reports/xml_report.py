@@ -92,7 +92,7 @@ class XmlReport(Report):
             self._manager.call_dumps(value, element)
 
     def dumps_dict(self, obj, parent):
-        for key in sorted(obj.keys()):
+        for key in sorted(obj.iterkeys()):
             value = obj[key]
             if self._manager.dumps_table.has_key(key):
                 # Custom dumps handler

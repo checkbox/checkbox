@@ -6,33 +6,6 @@ ubuntu.com
 from subprocess import call
 import urllib2
 
-def main():
-    """
-    Check HTTP and FTP connections
-    """
-    url = {"http": "http://cdimage.ubuntu.com/daily/current/",
-           "ftp": "ftp://cdimage.ubuntu.com/cdimage/daily/current/",}
-
-    results = {}
-    for protocol, value in url.iteritems():
-        results[protocol] = check_url(url[protocol])
-
-    bool2str = {True: 'Success', False: 'Failed'}
-    message = ("HTTP connection: %(http)s\n"
-               "FTP connection: %(ftp)s\n"
-               % dict([(protocol, bool2str[value])
-                       for protocol, value in results.iteritems()]))
-
-    command = ["zenity", "--title=Network",
-               "--text=%s" % message]
-
-    if all(results.values()):
-        command.append("--info")
-    else:
-        command.append("--error")
-
-    call(command)
-
 
 def check_url(url):
     """
@@ -44,6 +17,33 @@ def check_url(url):
         return False
 
     return True
+
+def main():
+    """
+    Check HTTP and FTP connections
+    """
+    url = {"http": "http://cdimage.ubuntu.com/daily/current/",
+           "ftp": "ftp://cdimage.ubuntu.com/cdimage/daily/current/",}
+
+    results = {}
+    for protocol, value in url.iteritems():
+        results[protocol] = check_url(value)
+
+    bool2str = {True: 'Success', False: 'Failed'}
+    message = ("HTTP connection: %(http)s\n"
+               "FTP connection: %(ftp)s\n"
+               % dict([(protocol, bool2str[value])
+                       for protocol, value in results.iteritems()]))
+
+    command = ["zenity", "--title=Network",
+               "--text=%s" % message]
+
+    if all(results.itervalues()):
+        command.append("--info")
+    else:
+        command.append("--error")
+
+    call(command)
 
 
 if __name__ == "__main__":

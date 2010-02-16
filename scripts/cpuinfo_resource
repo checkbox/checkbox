@@ -124,9 +124,9 @@ def cpuinfo_to_processor(uname, cpuinfo):
 
     processor["count"] = cpuinfo.get("count", 1)
     processor["bogomips"] = int(round(float(cpuinfo.get("bogomips", "0.0"))))
-    for platform, conversion in platform_to_conversion.items():
+    for platform, conversion in platform_to_conversion.iteritems():
         if uname in platform:
-            for pkey, ckey in conversion.items():
+            for pkey, ckey in conversion.iteritems():
                 if isinstance(ckey, (list, tuple)):
                     processor[pkey] = "/".join([cpuinfo[k] for k in ckey])
                 elif ckey in cpuinfo:

@@ -19,20 +19,20 @@
 from checkbox.plugin import Plugin
 
 
-class InternalSuite(Plugin):
+class LocalSuite(Plugin):
 
     def register(self, manager):
-        super(InternalSuite, self).register(manager)
+        super(LocalSuite, self).register(manager)
 
         for (rt, rh) in [
-             ("prompt-internal", self.prompt_internal),
-             ("report-internal", self.report_internal)]:
+             ("prompt-local", self.prompt_local),
+             ("report-local", self.report_local)]:
             self._manager.reactor.call_on(rt, rh)
 
-    def prompt_internal(self, interface, suite):
+    def prompt_local(self, interface, suite):
         self._manager.reactor.fire("prompt-suite", interface, suite)
 
-    def report_internal(self, suite):
+    def report_local(self, suite):
         self._manager.reactor.fire("report-suite", suite)
 
         def report_message(message):
@@ -43,4 +43,4 @@ class InternalSuite(Plugin):
         self._manager.reactor.cancel_call(event_id)
 
 
-factory = InternalSuite
+factory = LocalSuite

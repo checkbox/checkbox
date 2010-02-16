@@ -23,11 +23,9 @@ import posixpath
 from gettext import gettext as _
 from string import Template
 
-from checkbox.lib.iterator import NEXT
-
 from checkbox.job import Job, UNINITIATED
 from checkbox.user_interface import (UserInterface,
-    YES_ANSWER, NO_ANSWER, SKIP_ANSWER,
+    NEXT, YES_ANSWER, NO_ANSWER, SKIP_ANSWER,
     ANSWER_TO_STATUS, STATUS_TO_ANSWER)
 
 # Import to register HyperTextView type with gtk

@@ -230,7 +230,7 @@ class DictVariable(Variable):
         if not isinstance(value, dict):
             raise ValueError("%r is not a dict." % (value,))
         new_dict = {}
-        for k, v in value.items():
+        for k, v in value.iteritems():
             new_dict[self._key_schema(value=k).get()] = \
                 self._value_schema(value=v).get()
         return new_dict

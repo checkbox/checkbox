@@ -427,7 +427,7 @@ class HalResource(object):
             interface = dbus.Interface(object, "org.freedesktop.Hal.Device")
 
             properties = {}
-            for key, value in interface.GetAllProperties().items():
+            for key, value in interface.GetAllProperties().iteritems():
                 key = self._get_key(key)
                 value = self._get_value(value)
                 properties[key] = value

@@ -32,7 +32,7 @@ class IncludeDict(dict):
         super(IncludeDict, self).__init__()
         self._parser = parser
 
-        for (key, value) in os.environ.items():
+        for (key, value) in os.environ.iteritems():
             super(IncludeDict, self).__setitem__(key.lower(), value)
 
     def __setitem__(self, key, value):
@@ -57,7 +57,7 @@ class IncludeDict(dict):
                     self._parser.read(path)
 
         # Environment has precedence over configuration
-        elif key.upper() not in os.environ.keys():
+        elif key.upper() not in os.environ:
             super(IncludeDict, self).__setitem__(key, value)
 
 

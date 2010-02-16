@@ -71,7 +71,6 @@ class Resolver:
                 msg += " while resolving %s" % found
             raise Exception, msg
 
-
         dependencies = self.dependencies.get(key, set())
         resolved = set()
 
@@ -107,13 +106,13 @@ class Resolver:
             key = self.key(item)
             all_dependents = filter(
                 lambda x: key in self.resolve(x)[:-1],
-                self.items.values())
+                self.items.itervalues())
             dependents = filter(
                 lambda x: self.key(self.get_dependencies(x)[-2]) == key,
                 all_dependents)
         else:
             # First level of dependents
-            dependents = filter(lambda x: len(self.resolve(x)) == 1, self.items.values())
+            dependents = filter(lambda x: len(self.resolve(x)) == 1, self.items.itervalues())
 
         index = 0
         dependents = sorted(dependents, self.compare)

@@ -35,7 +35,7 @@ def compile_filters(filters):
 
 def match_patterns(patterns_table, element):
     matches = []
-    for key, patterns in patterns_table.items():
+    for key, patterns in patterns_table.iteritems():
         if key not in element:
             matches.append(False)
         else:

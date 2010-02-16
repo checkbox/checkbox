@@ -19,17 +19,17 @@
 from checkbox.plugin import Plugin
 
 
-class ExternalSuite(Plugin):
+class RemoteSuite(Plugin):
 
     def register(self, manager):
-        super(ExternalSuite, self).register(manager)
+        super(RemoteSuite, self).register(manager)
 
         for (rt, rh) in [
-             ("prompt-external", self.prompt_external),
-             ("report-external", self.report_external)]:
+             ("prompt-remote", self.prompt_remote),
+             ("report-remote", self.report_remote)]:
             self._manager.reactor.call_on(rt, rh)
 
-    def prompt_external(self, interface, suite):
+    def prompt_remote(self, interface, suite):
         self._manager.reactor.fire("prompt-suite", interface, suite)
 
         def report_message(message):
@@ -39,8 +39,8 @@ class ExternalSuite(Plugin):
         self._manager.reactor.fire("message-exec", suite)
         self._manager.reactor.cancel_call(event_id)
 
-    def report_external(self, suite):
+    def report_remote(self, suite):
         self._manager.reactor.fire("report-suite", suite)
 
 
-factory = ExternalSuite
+factory = RemoteSuite

@@ -1,50 +1,50 @@
 name: audio
-plugin: internal
+plugin: local
 _description: Audio tests
 command: cat $CHECKBOX_SHARE/jobs/audio.txt*
 
 name: disk
-plugin: internal
+plugin: local
 _description: Disk tests
 command: cat $CHECKBOX_SHARE/jobs/disk.txt*
 
 name: fingerprint
-plugin: internal
+plugin: local
 _description: Fingerprint reader tests
 command: cat $CHECKBOX_SHARE/jobs/fingerprint.txt*
 
 name: firewire
-plugin: internal
+plugin: local
 _description: Firewire disk tests
 command: cat $CHECKBOX_SHARE/jobs/firewire.txt*
 
 name: kms
-plugin: internal
+plugin: local
 _description: Kernel modesetting tests
 command: cat $CHECKBOX_SHARE/jobs/kms.txt*
 
 name: media
-plugin: internal
+plugin: local
 _description: Media tests
 command: cat $CHECKBOX_SHARE/jobs/media.txt*
 
 name: monitor
-plugin: internal
+plugin: local
 _description: Monitor tests
 command: cat $CHECKBOX_SHARE/jobs/monitor.txt*
 
 name: network
-plugin: internal
+plugin: local
 _description: Network tests
 command: cat $CHECKBOX_SHARE/jobs/network.txt*
 
 name: peripheral
-plugin: internal
+plugin: local
 _description: Peripheral tests
 command: cat $CHECKBOX_SHARE/jobs/peripheral.txt*
 
 name: video
-plugin: internal
+plugin: local
 _description: Video tests
 command: cat $CHECKBOX_SHARE/jobs/video.txt*
 
