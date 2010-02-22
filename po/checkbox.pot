@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-12 08:44-0500\n"
+"POT-Creation-Date: 2010-02-22 14:12-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -50,7 +50,7 @@ msgstr ""
 msgid "_Skip this test"
 msgstr ""
 
-#: ../gtk/checkbox-gtk.glade.h:9 ../checkbox_gtk/gtk_interface.py:492
+#: ../gtk/checkbox-gtk.glade.h:9 ../checkbox_gtk/gtk_interface.py:490
 msgid "_Test"
 msgstr ""
 
@@ -190,56 +190,6 @@ msgid "Do the copy operations work as expected?"
 msgstr ""
 
 #. description
-#: ../jobs/internal.txt.in:3
-msgid "Audio tests"
-msgstr ""
-
-#. description
-#: ../jobs/internal.txt.in:8
-msgid "Disk tests"
-msgstr ""
-
-#. description
-#: ../jobs/internal.txt.in:13
-msgid "Fingerprint reader tests"
-msgstr ""
-
-#. description
-#: ../jobs/internal.txt.in:18
-msgid "Firewire disk tests"
-msgstr ""
-
-#. description
-#: ../jobs/internal.txt.in:23
-msgid "Kernel modesetting tests"
-msgstr ""
-
-#. description
-#: ../jobs/internal.txt.in:28
-msgid "Media tests"
-msgstr ""
-
-#. description
-#: ../jobs/internal.txt.in:33
-msgid "Monitor tests"
-msgstr ""
-
-#. description
-#: ../jobs/internal.txt.in:38
-msgid "Network tests"
-msgstr ""
-
-#. description
-#: ../jobs/internal.txt.in:43
-msgid "Peripheral tests"
-msgstr ""
-
-#. description
-#: ../jobs/internal.txt.in:48
-msgid "Video tests"
-msgstr ""
-
-#. description
 #: ../jobs/kms.txt.in:8
 msgid ""
 "Click Test to switch to another virtual terminal and then back to X.  Your "
@@ -255,6 +205,56 @@ msgstr ""
 #. description
 #: ../jobs/kms.txt.in:8
 msgid "Did the screen change temporarily to a text console?"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:3
+msgid "Audio tests"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:8
+msgid "Disk tests"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:13
+msgid "Fingerprint reader tests"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:18
+msgid "Firewire disk tests"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:23
+msgid "Kernel modesetting tests"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:28
+msgid "Media tests"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:33
+msgid "Monitor tests"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:38
+msgid "Network tests"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:43
+msgid "Peripheral tests"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:48
+msgid "Video tests"
 msgstr ""
 
 #. description
@@ -496,43 +496,43 @@ msgid ""
 "Is the image displayed correctly?"
 msgstr ""
 
-#: ../checkbox/application.py:72
+#: ../checkbox/application.py:64
 msgid "Usage: checkbox [OPTIONS]"
 msgstr ""
 
-#: ../checkbox/application.py:76
+#: ../checkbox/application.py:68
 msgid "Print version information and exit."
 msgstr ""
 
-#: ../checkbox/application.py:79
+#: ../checkbox/application.py:71
 msgid "The file to write the log to."
 msgstr ""
 
-#: ../checkbox/application.py:82
+#: ../checkbox/application.py:74
 msgid "One of debug, info, warning, error or critical."
 msgstr ""
 
-#: ../checkbox/application.py:87
+#: ../checkbox/application.py:79
 msgid "Configuration override parameters."
 msgstr ""
 
-#: ../checkbox/application.py:89
+#: ../checkbox/application.py:81
 msgid "Shorthand for --config=checkbox/plugins/jobs_prompt/blacklist."
 msgstr ""
 
-#: ../checkbox/application.py:91
+#: ../checkbox/application.py:83
 msgid "Shorthand for --config=checkbox/plugins/jobs_prompt/blacklist_file."
 msgstr ""
 
-#: ../checkbox/application.py:93
+#: ../checkbox/application.py:85
 msgid "Shorthand for --config=checkbox/plugins/jobs_prompt/whitelist."
 msgstr ""
 
-#: ../checkbox/application.py:95
+#: ../checkbox/application.py:87
 msgid "Shorthand for --config=checkbox/plugins/jobs_prompt/whitelist_file."
 msgstr ""
 
-#: ../checkbox/application.py:120
+#: ../checkbox/application.py:112
 msgid "Missing configuration file as argument.\n"
 msgstr ""
 
@@ -641,7 +641,7 @@ msgstr ""
 msgid "Please choose (%s): "
 msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:312 ../checkbox_gtk/gtk_interface.py:451
+#: ../checkbox_cli/cli_interface.py:312 ../checkbox_gtk/gtk_interface.py:449
 #, python-format
 msgid "Running test %s..."
 msgstr ""
@@ -658,36 +658,57 @@ msgstr ""
 msgid "Please type here and press Ctrl-D when finished:\n"
 msgstr ""
 
-#: ../checkbox_gtk/gtk_interface.py:461
+#: ../checkbox_gtk/gtk_interface.py:459
 msgid "_Test Again"
 msgstr ""
 
-#: ../checkbox_gtk/gtk_interface.py:503
+#: ../checkbox_gtk/gtk_interface.py:501
 msgid "Info"
 msgstr ""
 
-#: ../checkbox_gtk/gtk_interface.py:522
+#: ../checkbox_gtk/gtk_interface.py:520
 msgid "Error"
 msgstr ""
 
-#: ../checkbox/user_interface.py:133
+#: ../checkbox/user_interface.py:136
 #, python-format
 msgid "Unable to start web browser to open %s."
 msgstr ""
 
-#: ../plugins/final_prompt.py:31
+#: ../plugins/apport_prompt.py:79
+msgid ""
+"Collecting information about this test.\n"
+"This might take a few minutes."
+msgstr ""
+
+#: ../plugins/apport_prompt.py:114
+msgid ""
+"Collected information is being sent for bug tracking.\n"
+"This might take a few minutes."
+msgstr ""
+
+#: ../plugins/apport_prompt.py:202
+msgid "Do you want to report a bug?"
+msgstr ""
+
+#: ../plugins/apport_prompt.py:217
+#, python-format
+msgid "Is a package upgrade in process? Error: %s"
+msgstr ""
+
+#: ../plugins/final_prompt.py:33
 msgid "Successfully finished testing!"
 msgstr ""
 
-#: ../plugins/final_prompt.py:32
+#: ../plugins/final_prompt.py:34
 msgid "_Finish"
 msgstr ""
 
-#: ../plugins/gather_prompt.py:34
+#: ../plugins/gather_prompt.py:35
 msgid "Gathering information from your system..."
 msgstr ""
 
-#: ../plugins/intro_prompt.py:33
+#: ../plugins/intro_prompt.py:43
 msgid ""
 "Welcome to System Testing!\n"
 "\n"
@@ -696,12 +717,12 @@ msgid ""
 "your system."
 msgstr ""
 
-#: ../plugins/launchpad_exchange.py:113
+#: ../plugins/launchpad_exchange.py:116
 #, python-format
 msgid "Failed to process form: %s"
 msgstr ""
 
-#: ../plugins/launchpad_exchange.py:136
+#: ../plugins/launchpad_exchange.py:139
 #, python-format
 msgid ""
 "Failed to contact server. Please try\n"
@@ -712,13 +733,13 @@ msgid ""
 "https://launchpad.net/+hwdb/+submit"
 msgstr ""
 
-#: ../plugins/launchpad_exchange.py:145
+#: ../plugins/launchpad_exchange.py:148
 msgid ""
 "Failed to upload to server,\n"
 "please try again later."
 msgstr ""
 
-#: ../plugins/launchpad_exchange.py:157
+#: ../plugins/launchpad_exchange.py:160
 msgid "Information not posted to Launchpad."
 msgstr ""
 
@@ -749,21 +770,27 @@ msgstr ""
 msgid "Exchanging information with the server..."
 msgstr ""
 
-#: ../plugins/lock_prompt.py:58
+#: ../plugins/lock_prompt.py:60
 msgid "There is another checkbox running. Please close it first."
+msgstr ""
+
+#: ../plugins/recover_prompt.py:43
+msgid ""
+"Checkbox did not finish completely.\n"
+"Do you want to recover from the previous run?"
 msgstr ""
 
 #: ../plugins/report_prompt.py:34
 msgid "Building report..."
 msgstr ""
 
-#: ../plugins/shell_test.py:42
+#: ../plugins/shell_test.py:44
 #, python-format
-msgid "Running shell test %s..."
+msgid "Running %s..."
 msgstr ""
 
 #. Get results
-#: ../plugins/suites_prompt.py:97
+#: ../plugins/suites_prompt.py:95
 msgid "Select the suites to test"
 msgstr ""
 
