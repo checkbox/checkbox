@@ -35,16 +35,12 @@ class LaunchpadPrompt(Plugin):
         super(LaunchpadPrompt, self).register(manager)
 
         for (rt, rh) in [
-             ("exchange-error", self.exchange_error),
-             ("gather-persist", self.gather_persist),
+             ("begin-persist", self.begin_persist),
              ("launchpad-report", self.launchpad_report),
              ("prompt-exchange", self.prompt_exchange)]:
             self._manager.reactor.call_on(rt, rh)
 
-    def exchange_error(self, error):
-        self._error = error
-
-    def gather_persist(self, persist):
+    def begin_persist(self, persist):
         self.persist = persist.root_at("launchpad_prompt")
 
     def launchpad_report(self, report):
@@ -53,12 +49,17 @@ class LaunchpadPrompt(Plugin):
     def prompt_exchange(self, interface):
         email = self.persist.get("email") or self.email
 
-        self._error = None
+        # Register temporary handler for exchange-error events
+        errors = []
+        def exchange_error(e):
+            errors.append(e)
+
+        event_id = self._manager.reactor.call_on("exchange-error", exchange_error)
+
         while True:
-            if self._error or not self.email:
-                if self._error:
-                    self._manager.reactor.fire("prompt-error", interface,
-                        self._error)
+            if errors or not self.email:
+                for error in errors:
+                    self._manager.reactor.fire("prompt-error", interface, error)
 
                 url = "file://%s" % posixpath.abspath(self._launchpad_report)
 
@@ -83,17 +84,18 @@ account, please register here:
                 break
 
             if not re.match(r"^\S+@\S+\.\S+$", email, re.I):
-                self._error = _("Email address must be in a proper format.")
+                errors.append(_("Email address must be in a proper format."))
                 continue
 
-            self._error = None
+            errors = []
             self._manager.reactor.fire("launchpad-email", email)
             interface.show_progress(
                 _("Exchanging information with the server..."),
                 self._manager.reactor.fire, "launchpad-exchange")
-            if not self._error:
+            if not errors:
                 break
 
+        self._manager.reactor.cancel_call(event_id)
         self.persist.set("email", email)
 
 

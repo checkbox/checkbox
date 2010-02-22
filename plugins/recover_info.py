@@ -1,0 +1,56 @@
+#
+# This file is part of Checkbox.
+#
+# Copyright 2010 Canonical Ltd.
+#
+# Checkbox is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# Checkbox is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
+#
+from gettext import gettext as _
+
+from checkbox.plugin import Plugin
+from checkbox.user_interface import NEXT
+
+
+class RecoverInfo(Plugin):
+
+    def register(self, manager):
+        super(RecoverInfo, self).register(manager)
+
+        for (rt, rh) in [
+             ("begin-persist", self.begin_persist),
+             ("prompt-begin", self.prompt_begin),
+             ("prompt-finish", self.prompt_finish)]:
+            self._manager.reactor.call_on(rt, rh)
+
+    def begin_persist(self, persist):
+        self.persist = persist.root_at("recover_info")
+
+    def prompt_begin(self, interface):
+        if interface.direction == NEXT \
+           and self.persist.get("recover", False):
+            response = interface.show_info(
+                _("Checkbox did not finish completely.\n"
+                  "Do you want to recover from the previous run?"),
+                ["yes", "no"], "yes")
+            if response == "yes":
+                self._manager.reactor.fire("begin-recover")
+
+        self.persist.set("recover", True)
+
+    def prompt_finish(self, interface):
+        if interface.direction == NEXT:
+            self.persist.set("recover", False)
+        
+
+factory = RecoverInfo

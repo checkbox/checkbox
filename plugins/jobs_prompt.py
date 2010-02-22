@@ -70,14 +70,15 @@ class JobsPrompt(Plugin):
 
     def register(self, manager):
         super(JobsPrompt, self).register(manager)
+
         self._ignore = []
 
         self.whitelist_patterns = self.get_patterns(self.whitelist, self.whitelist_file)
         self.blacklist_patterns = self.get_patterns(self.blacklist, self.blacklist_file)
 
         for (rt, rh) in [
+             ("begin-persist", self.begin_persist),
              ("gather", self.gather),
-             ("gather-persist", self.gather_persist),
              ("ignore-jobs", self.ignore_jobs),
              ("prompt-job", self.prompt_job),
              ("prompt-jobs", self.prompt_jobs),
@@ -99,7 +100,13 @@ class JobsPrompt(Plugin):
 
         return [re.compile(r"^%s$" % s) for s in strings if s]
 
+    def begin_persist(self, persist):
+        persist = persist.root_at("jobs_prompt")
+        self.store = JobStore(persist, self.store_directory,
+            self.store_directory_size)
+
     def gather(self):
+        # Register temporary handler for report-message events
         def report_message(message):
             self._manager.reactor.fire("report-job", message)
 
@@ -107,11 +114,6 @@ class JobsPrompt(Plugin):
         for directory in self.directories:
             self._manager.reactor.fire("message-directory", directory)
         self._manager.reactor.cancel_call(event_id)
-
-    def gather_persist(self, persist):
-        persist = persist.root_at("jobs_prompt")
-        self.store = JobStore(persist, self.store_directory,
-            self.store_directory_size)
 
     def ignore_jobs(self, jobs):
         self._ignore = jobs
@@ -158,11 +160,14 @@ class JobsPrompt(Plugin):
                 self.store.add_pending_offset()
 
     def prompt_finish(self, interface):
-        self.store.delete_all_messages()
+        if interface.direction == NEXT:
+            self.store.delete_all_messages()
 
     def report(self):
         self.store.set_pending_offset(0)
         messages = self.store.get_pending_messages()
+        self.store.add_pending_offset(len(messages))
+
         tests = [m for m in messages if m.get("type") in ("test", "metric")]
         self._manager.reactor.fire("report-tests", tests)
 

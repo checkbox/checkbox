@@ -44,7 +44,8 @@ class LockPrompt(Plugin):
 
         self._lock = None
 
-        self._manager.reactor.call_on("prompt-begin", self.prompt_begin)
+        self._manager.reactor.call_on(
+            "prompt-begin", self.prompt_begin, -1000)
 
     def prompt_begin(self, interface):
         directory = posixpath.dirname(self.filename)

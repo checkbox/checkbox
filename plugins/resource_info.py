@@ -39,7 +39,7 @@ class ResourceInfo(Plugin):
         self.resources = []
 
         self._manager.reactor.call_on("report-resource", self.report_resource)
-        self._manager.reactor.call_on("prompt-job", self.prompt_job, -100)
+        self._manager.reactor.call_on("prompt-job", self.prompt_job, -10)
 
     def prompt_job(self, interface, job):
         mask = []
@@ -67,6 +67,7 @@ class ResourceInfo(Plugin):
             self._manager.reactor.stop()
 
     def report_resource(self, resource):
+        # Register temporary handler for report-messages events
         def report_messages(messages):
             for message in messages:
                 message = Resource(message)

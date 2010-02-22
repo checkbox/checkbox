@@ -21,6 +21,7 @@ import copy
 from checkbox.lib.resolver import Resolver
 
 from checkbox.plugin import Plugin
+from checkbox.user_interface import PREV
 
 from gettext import gettext as _
 
@@ -30,11 +31,13 @@ class SuitesPrompt(Plugin):
     def register(self, manager):
         super(SuitesPrompt, self).register(manager)
 
-        self._jobs = {}
         self._depends = {}
+        self._jobs = {}
+        self._recover = False
 
         for (rt, rh) in [
-             ("gather-persist", self.gather_persist),
+             ("begin-persist", self.begin_persist),
+             ("begin-recover", self.begin_recover),
              ("report-suite", self.report_suite)]:
             self._manager.reactor.call_on(rt, rh)
 
@@ -44,8 +47,11 @@ class SuitesPrompt(Plugin):
              ("report-test", self.report_job)]:
             self._manager.reactor.call_on(rt, rh, 100)
 
-    def gather_persist(self, persist):
+    def begin_persist(self, persist):
         self.persist = persist.root_at("suites_prompt")
+
+    def begin_recover(self):
+        self._recover = True
 
     def report_suite(self, suite):
         suite.setdefault("type", "suite")
@@ -76,15 +82,19 @@ class SuitesPrompt(Plugin):
             for dependency in dependencies:
                 suboptions = suboptions.setdefault(self._jobs[dependency], {})
 
-        # Builds defaults
+        # Build defaults
         defaults = self.persist.get("default")
         if defaults is None:
             defaults = copy.deepcopy(options)
 
-        # Get results
-        results = interface.show_tree(_("Select the suites to test"),
-            options, defaults)
-        self.persist.set("default", results)
+        # Only prompt if not recovering
+        if interface.direction == PREV or not self._recover:
+            self._recover = False
+
+            # Get results
+            defaults = interface.show_tree(_("Select the suites to test"),
+                options, defaults)
+            self.persist.set("default", defaults)
 
         # Get tests to ignore
         def get_ignore_jobs(options, results):
@@ -98,7 +108,7 @@ class SuitesPrompt(Plugin):
 
             return jobs
 
-        ignore_jobs = get_ignore_jobs(options, results)
+        ignore_jobs = get_ignore_jobs(options, defaults)
         self._manager.reactor.fire("ignore-jobs", ignore_jobs)
 
 
