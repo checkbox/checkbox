@@ -57,21 +57,21 @@ class ProxyInfo(Plugin):
         if proxy.get("use_http_proxy", False):
             if proxy.get("use_authentication", False):
                 http_proxy = "http://%s:%s@%s:%s" % (
-                    proxy.get("authentication_user"),
-                    proxy.get("authentication_password"),
-                    proxy.get("host"),
-                    proxy.get("port"))
-            elif proxy.get("host"):
+                    proxy["authentication_user"],
+                    proxy["authentication_password"],
+                    proxy["host"],
+                    proxy["port"])
+            elif "host" in proxy:
                 http_proxy = "http://%s:%s" % (
-                    proxy.get("host"),
-                    proxy.get("port"))
+                    proxy["host"],
+                    proxy["port"])
 
             if proxy.get("use_same_proxy", False):
                 https_proxy = http_proxy
-            elif proxy.get("secure_host"):
+            elif "secure_host" in proxy:
                 https_proxy = "https://%s:%s" % (
-                    proxy.get("secure_host"),
-                    proxy.get("secure_port"))
+                    proxy["secure_host"],
+                    proxy["secure_port"])
 
         # Environment has highest precedence
         http_proxy = get_variable("http_proxy", http_proxy)

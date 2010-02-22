@@ -35,6 +35,7 @@ class LocalSuite(Plugin):
     def report_local(self, suite):
         self._manager.reactor.fire("report-suite", suite)
 
+        # Register temporary handler for report-message events
         def report_message(message):
             message["suite"] = suite["name"]
 

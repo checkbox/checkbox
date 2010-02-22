@@ -151,11 +151,9 @@ class ApportPrompt(Plugin):
     def register(self, manager):
         super(ApportPrompt, self).register(manager)
 
-        if isinstance(ApportUserInterface, DummyUserInterface):
-            return
-
-        self._manager.reactor.call_on("gather", self.gather)
-        self._manager.reactor.call_on("prompt-test", self.prompt_test, 100)
+        if not isinstance(ApportUserInterface, DummyUserInterface):
+            self._manager.reactor.call_on("gather", self.gather)
+            self._manager.reactor.call_on("prompt-test", self.prompt_test, 100)
 
     def gather(self):
         if self.default_enabled is None:

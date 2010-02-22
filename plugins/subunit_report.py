@@ -41,8 +41,6 @@ class SubunitReport(Plugin):
     def register(self, manager):
         super(SubunitReport, self).register(manager)
 
-        self._file = None
-
         for (rt, rh) in [
              ("gather", self.gather),
              ("prompt-test", self.prompt_test)]:

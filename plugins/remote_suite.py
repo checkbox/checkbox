@@ -32,6 +32,7 @@ class RemoteSuite(Plugin):
     def prompt_remote(self, interface, suite):
         self._manager.reactor.fire("prompt-suite", interface, suite)
 
+        # Register temporary handler for report-message events
         def report_message(message):
             message["suite"] = suite["name"]
 
