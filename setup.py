@@ -131,7 +131,6 @@ This project provides an extensible interface for system testing.
         ("share/checkbox/install/", ["install/*"]),
         ("share/checkbox/patches/", ["patches/*"]),
         ("share/checkbox/plugins/", ["plugins/*.py"]),
-        ("share/checkbox/registries/", ["registries/*.py"]),
         ("share/checkbox/report/", ["report/*"]),
         ("share/checkbox/scripts/", ["scripts/*"]),
         ("share/checkbox/gtk/", ["gtk/checkbox-gtk.glade", "gtk/*.png"]),
@@ -140,7 +139,7 @@ This project provides an extensible interface for system testing.
         ("share/apport/general-hooks/", ["apport/checkbox.py"])],
     scripts = ["bin/checkbox-backend", "bin/checkbox-cli", "bin/checkbox-gtk"],
     packages = ["checkbox", "checkbox.contrib", "checkbox.lib", "checkbox.reports",
-        "checkbox.registries", "checkbox_cli", "checkbox_gtk"],
+        "checkbox_cli", "checkbox_gtk"],
     cmdclass = {
         "install": checkbox_install,
         "install_data": checkbox_install_data,
