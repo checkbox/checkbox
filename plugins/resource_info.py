@@ -18,17 +18,7 @@
 #
 from checkbox.job import UNSUPPORTED
 from checkbox.plugin import Plugin
-
-
-class Resource(dict):
-
-    def __getattr__(self, name):
-        return self.get(name)
-
-    def __str__(self):
-        strings = ["%s: %s" % (k, v) for k, v in self.iteritems()]
-
-        return "\n".join(strings)
+from checkbox.resource import Resource
 
 
 class ResourceInfo(Plugin):
@@ -47,13 +37,8 @@ class ResourceInfo(Plugin):
         for require in job.get("requires", []):
             new_values = []
             for resource in self.resources:
-                try:
-                    value = eval(require, {}, resource)
-                    if (type(value) in (bool, int) and value) \
-                       or (type(value) is tuple and True in value):
+                if resource.eval(require) is not None:
                         new_values.append(resource)
-                except Exception:
-                    pass
 
             mask.append(bool(new_values))
             values.extend(new_values)
