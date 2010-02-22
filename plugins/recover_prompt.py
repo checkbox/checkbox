@@ -22,10 +22,10 @@ from checkbox.plugin import Plugin
 from checkbox.user_interface import NEXT
 
 
-class RecoverInfo(Plugin):
+class RecoverPrompt(Plugin):
 
     def register(self, manager):
-        super(RecoverInfo, self).register(manager)
+        super(RecoverPrompt, self).register(manager)
 
         for (rt, rh) in [
              ("begin-persist", self.begin_persist),
@@ -34,7 +34,7 @@ class RecoverInfo(Plugin):
             self._manager.reactor.call_on(rt, rh)
 
     def begin_persist(self, persist):
-        self.persist = persist.root_at("recover_info")
+        self.persist = persist.root_at("recover_prompt")
 
     def prompt_begin(self, interface):
         if interface.direction == NEXT \
@@ -53,4 +53,4 @@ class RecoverInfo(Plugin):
             self.persist.set("recover", False)
         
 
-factory = RecoverInfo
+factory = RecoverPrompt
