@@ -78,13 +78,13 @@ class ApplicationManager(object):
                           default=[],
                           help=_("Configuration override parameters."))
         parser.add_option("-b", "--blacklist",
-                          help=_("Shorthand for --config=checkbox/plugins/jobs_prompt/blacklist."))
+                          help=_("Shorthand for --config=checkbox/plugins/jobs_info/blacklist."))
         parser.add_option("-B", "--blacklist-file",
-                          help=_("Shorthand for --config=checkbox/plugins/jobs_prompt/blacklist_file."))
+                          help=_("Shorthand for --config=checkbox/plugins/jobs_info/blacklist_file."))
         parser.add_option("-w", "--whitelist",
-                          help=_("Shorthand for --config=checkbox/plugins/jobs_prompt/whitelist."))
+                          help=_("Shorthand for --config=checkbox/plugins/jobs_info/whitelist."))
         parser.add_option("-W", "--whitelist-file",
-                          help=_("Shorthand for --config=checkbox/plugins/jobs_prompt/whitelist_file."))
+                          help=_("Shorthand for --config=checkbox/plugins/jobs_info/whitelist_file."))
         return parser.parse_args(args)
 
     def create_application(self, args=sys.argv):
