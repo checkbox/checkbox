@@ -17,6 +17,7 @@
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
 import re
+import gettext
 import logging
 
 from checkbox.arguments import coerce_arguments
