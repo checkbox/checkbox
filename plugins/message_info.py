@@ -84,7 +84,8 @@ class MessageInfo(Plugin):
                     short_key = long_key.replace(long_ext, "")
                     message[short_key] = message.pop(long_key)
 
-        self._manager.reactor.fire("report-messages", messages)
+        if messages:
+            self._manager.reactor.fire("report-messages", messages)
 
     def message_filename(self, filename):
         file = open(filename, "r")
