@@ -11,7 +11,7 @@ import subprocess
 from optparse import OptionParser
 
 
-DEFAULT_DIRECTORY = "/tmp/checkbox.qa.regression"
+DEFAULT_DIRECTORY = "/var/cache/checkbox/qa-regression-testing"
 DEFAULT_LOCATION = "http://bazaar.launchpad.net/%7Eubuntu-bugcontrol/qa-regression-testing/master"
 DEFAULT_SUDO_PASSWORD = "insecure"
 

@@ -9,7 +9,7 @@ from optparse import OptionParser
 from urlparse import urlparse
 
 
-DEFAULT_DIRECTORY = "/tmp/checkbox.autotest"
+DEFAULT_DIRECTORY = "/var/cache/checkbox/autotest"
 DEFAULT_LOCATION = "http://test.kernel.org/svn/autotest/trunk/client/"
 DEFAULT_TIMEOUT = 900
 
