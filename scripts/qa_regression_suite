@@ -32,32 +32,6 @@ def print_element(element):
 
     print
 
-def set_sudoers_nopasswd(user):
-    sudoers_line = "%s ALL=NOPASSWD: ALL" % user
-
-    filename = "/etc/sudoers"
-    file = open(filename)
-    for line in file.readlines():
-        line = line.strip()
-        # Skip blank or comment lines
-        if not line or line.startswith("#"):
-            continue
-
-        # Check for existing sudoers line
-        sudoers_user = line.split()[0]
-        if sudoers_user == user:
-            if line == sudoers_line:
-                return True
-            else:
-                sys.stderr.write("Cannot overwrite existing sudoers line: %s\n"
-                    % line)
-                return False
-
-    file = open(filename, "a")
-    file.write("%s\n" % sudoers_line)
-
-    return True
-
 def fetch_qa_regression(location, directory):
     if posixpath.exists(directory):
         return
@@ -171,10 +145,6 @@ def main(args):
     user = os.environ.get("SUDO_USER")
     if not user:
         parser.error("SUDO_USER variable not found, must be run with sudo.")
-
-    # Set sudoers, uid and gid
-    if not set_sudoers_nopasswd(user):
-        parser.error("Failed to set sudoers for running with no password.")
 
     pw = pwd.getpwnam(user)
     os.setgid(pw.pw_gid)
