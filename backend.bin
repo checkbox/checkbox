@@ -1,0 +1,36 @@
+#!/usr/bin/python
+
+import sys
+
+from optparse import OptionParser
+from checkbox.lib.fifo import FifoReader, FifoWriter
+
+from checkbox.job import Job
+
+
+def main(args):
+    usage = "Usage: %prog INPUT OUTPUT"
+    parser = OptionParser(usage=usage)
+    (options, args) = parser.parse_args(args)
+
+    if len(args) < 2:
+        parser.error("Missing INPUT and OUTPUT")
+
+    reader = FifoReader(args[0])
+    writer = FifoWriter(args[1])
+
+    while True:
+        try:
+            message = reader.read_object()
+            job = Job(message["command"], message.get("environ"),
+                message.get("timeout"))
+            result = job.execute()
+            writer.write_object(result)
+        except IOError, e:
+            break
+
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv[1:]))

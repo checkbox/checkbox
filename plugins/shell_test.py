@@ -18,8 +18,7 @@
 #
 from gettext import gettext as _
 
-from checkbox.frontend import FrontendException
-from checkbox.job import Job, UNINITIATED, UNRESOLVED
+from checkbox.job import UNINITIATED
 from checkbox.plugin import Plugin
 
 
@@ -37,19 +36,22 @@ class ShellTest(Plugin):
         command = test.get("command")
         status = test.get("status", UNINITIATED)
         if command and status == UNINITIATED:
-            job = Job(command, test.get("environ"),
-                test.get("timeout"), test.get("user"))
-            try:
-                (status, data, duration) = interface.show_progress(
-                    _("Running %s..." % test["name"]), job.execute)
-            except FrontendException:
-                test["data"] = "Failed acquire privileges."
-                test["duration"] = 0
-                test["status"] = UNRESOLVED
-            else:
+            # Register temporary handler for message-result events
+            def message_result(status, data, duration):
+                test["status"] = status
                 test["data"] = data
                 test["duration"] = duration
-                test["status"] = status
+
+                # Don't fire any other message result
+                self._manager.reactor.stop()
+
+            event_id = self._manager.reactor.call_on("message-result", message_result, -100)
+
+            interface.show_progress(
+                _("Running %s..." % test["name"]), self._manager.reactor.fire,
+                "message-exec", test)
+
+            self._manager.reactor.cancel_call(event_id)
 
         self._manager.reactor.fire("prompt-test", interface, test)
 

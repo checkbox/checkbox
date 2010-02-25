@@ -310,8 +310,9 @@ class CLIInterface(UserInterface):
 
     def _run_test(self, test):
         message = _("Running test %s...") % test["name"]
+        # TODO: fix this to support running tests as root
         job = Job(test["command"], test.get("environ"),
-            test.get("timeout"), test.get("user"))
+            test.get("timeout"))
         (status, data, duration) = self.show_progress(message, job.execute)
         return data
 

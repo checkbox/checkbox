@@ -124,8 +124,7 @@ setup(
 This project provides an extensible interface for system testing.
 """,
     data_files = [
-        ("/etc/dbus-1/system.d/", ["backend/*.conf"]),
-        ("share/checkbox/", ["run"]),
+        ("share/checkbox/", ["backend", "run"]),
         ("share/checkbox/data/", ["data/*.txt"]),
         ("share/checkbox/examples/", ["examples/*"]),
         ("share/checkbox/install/", ["install/*"]),
@@ -134,10 +133,9 @@ This project provides an extensible interface for system testing.
         ("share/checkbox/report/", ["report/*"]),
         ("share/checkbox/scripts/", ["scripts/*"]),
         ("share/checkbox/gtk/", ["gtk/checkbox-gtk.glade", "gtk/*.png"]),
-        ("share/dbus-1/system-services", ["backend/*.service"]),
         ("share/apport/package-hooks/", ["apport/source_checkbox.py"]),
         ("share/apport/general-hooks/", ["apport/checkbox.py"])],
-    scripts = ["bin/checkbox-backend", "bin/checkbox-cli", "bin/checkbox-gtk"],
+    scripts = ["bin/checkbox-cli", "bin/checkbox-gtk"],
     packages = ["checkbox", "checkbox.contrib", "checkbox.lib", "checkbox.reports",
         "checkbox_cli", "checkbox_gtk"],
     cmdclass = {

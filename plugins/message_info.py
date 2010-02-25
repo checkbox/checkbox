@@ -34,22 +34,16 @@ class MessageInfo(Plugin):
 
         for (rt, rh) in [
              ("report-messages", self.report_messages),
-             ("message-command", self.message_command),
              ("message-directory", self.message_directory),
              ("message-exec", self.message_exec),
              ("message-file", self.message_file),
              ("message-filename", self.message_filename),
-             ("message-job", self.message_job),
-             ("message-string", self.message_string)]:
+             ("message-result", self.message_result)]:
             self._manager.reactor.call_on(rt, rh)
 
     def report_messages(self, messages):
         for message in messages:
             self._manager.reactor.fire("report-message", message)
-
-    def message_command(self, command, environ=[], timeout=None, user=None):
-        job = Job(command, environ, timeout, user)
-        self._manager.reactor.fire("message-job", job)
 
     def message_directory(self, directory, blacklist=[], whitelist=[]):
         whitelist_patterns = [re.compile(r"^%s$" % r) for r in whitelist if r]
@@ -71,8 +65,11 @@ class MessageInfo(Plugin):
             self._manager.reactor.fire("message-filename", filename)
 
     def message_exec(self, message):
-        self._manager.reactor.fire("message-command", message["command"],
-            message.get("environ"), message.get("timeout"), message.get("user"))
+        if "user" not in message:
+            job = Job(message["command"], message.get("environ"),
+                message.get("timeout"))
+            result = job.execute()
+            self._manager.reactor.fire("message-result", *result)
 
     def message_file(self, file, filename="<stream>"):
         template = TemplateI18n()
@@ -91,16 +88,10 @@ class MessageInfo(Plugin):
         file = open(filename, "r")
         self._manager.reactor.fire("message-file", file, filename)
 
-    def message_job(self, job):
-        (status, data, duration) = job.execute()
-
-        # TODO: report status, so that errors can be caught
+    def message_result(self, status, data, duration):
         if status == PASS:
-            self._manager.reactor.fire("message-string", data)
-
-    def message_string(self, string):
-        file = StringIO(string)
-        self._manager.reactor.fire("message-file", file)
+            file = StringIO(data)
+            self._manager.reactor.fire("message-file", file)
 
 
 factory = MessageInfo

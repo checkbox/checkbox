@@ -25,7 +25,6 @@ from string import Template
 from checkbox.lib.process import Process
 from checkbox.lib.signal import signal_to_name, signal_to_description
 
-from checkbox.frontend import frontend
 from checkbox.message import MessageStore
 
 
@@ -41,16 +40,14 @@ ALL_STATUS = [FAIL, PASS, UNINITIATED, UNRESOLVED, UNSUPPORTED, UNTESTED]
 
 class Job(object):
 
-    def __init__(self, command, environ=None, timeout=None, user=None):
+    def __init__(self, command, environ=None, timeout=None):
         if environ is None:
             environ = []
 
         self.command = command
         self.environ = environ
         self.timeout = timeout
-        self.user = user
 
-    @frontend("get_job_result")
     def execute(self):
         # Sanitize environment
         process_environ = dict(os.environ)

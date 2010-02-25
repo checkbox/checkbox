@@ -51,6 +51,6 @@ class RecoverPrompt(Plugin):
     def prompt_finish(self, interface):
         if interface.direction == NEXT:
             self.persist.set("recover", False)
-        
+
 
 factory = RecoverPrompt
