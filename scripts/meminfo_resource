@@ -42,7 +42,7 @@ def get_meminfo():
                 key = meminfo_map[key]
                 value = match.group("value")
                 (integer, factor) = value.split()
-                meminfo[key] = "%sK" % integer
+                meminfo[key] = integer * 1024
 
     return meminfo
 
