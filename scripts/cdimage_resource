@@ -55,8 +55,10 @@ def get_disk(filename):
             keys = ["distributor", "release", "codename", "official",
                 "architecture", "date"]
             values = [match.group(k) for k in keys]
-            return dict(zip(keys, values))
+            disk = dict(zip(keys, values))
+            break
 
+    return disk
 
 def main():
     disk = get_disk(FILENAME)
