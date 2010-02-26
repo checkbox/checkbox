@@ -17,6 +17,7 @@
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
 import os
+import signal
 
 from subprocess import call, PIPE
 
@@ -84,7 +85,9 @@ class BackendInfo(Plugin):
             self._manager.reactor.fire("message-result", *result)
 
     def stop(self):
+        os.kill(self.pid, signal.SIGHUP)
         os.waitpid(self.pid, 0)
+
         os.unlink(self.child_input)
         os.unlink(self.child_output)
 
