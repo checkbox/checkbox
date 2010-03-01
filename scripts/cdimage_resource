@@ -21,11 +21,36 @@ import re
 import sys
 
 
-# Filename where disk info is stored.
-FILENAME = "/var/log/installer/casper.log"
+# Filename containing casper logs
+CASPER_FILENAME = "/var/log/installer/casper.log"
+
+# Filename containing media info
+MEDIA_FILENAME = "/var/log/installer/media-info"
 
 
-def get_disk(filename):
+def get_disk_from_string(string):
+    # Ubuntu 8.04.1 "Hardy Heron" - Release amd64 (20080702.1)
+    distributor_regex = r"(?P<distributor>[\w\-]+)"
+    release_regex = r"(?P<release>[\d\.]+)"
+    codename_regex = r"(?P<codename>[^_\"]+)"
+    official_regex = r"(?P<official>[\w ]+)"
+    architecture_regex = r"(?P<architecture>[\w\+]+)"
+    type_regex = r"(?P<type>Binary-\d+)"
+    date_regex = r"(?P<date>[^\)]+)"
+
+    string_regex = r"%s %s [_\"]%s[_\"] - %s %s (%s )?\(%s\)" % (distributor_regex,
+        release_regex, codename_regex, official_regex, architecture_regex,
+        type_regex, date_regex)
+
+    disk = {}
+    match = re.match(string_regex, string)
+    if match:
+        disk = match.groupdict()
+        del disk["type"]
+
+    return disk
+
+def get_disk_from_casper(filename):
     disk = {}
 
     # Try to open the disk info file logged by the installer
@@ -34,34 +59,31 @@ def get_disk(filename):
     except IOError:
         return disk
 
-    # Found label 'Ubuntu 8.04.1 _Hardy Heron_ - Release amd64 (20080702.1)'
-    distributor_regex = r"(?P<distributor>[\w\-]+)"
-    release_regex = r"(?P<release>[\d\.]+)"
-    codename_regex = r"(?P<codename>[^_]+)"
-    official_regex = r"(?P<official>[\w ]+)"
-    architecture_regex = r"(?P<architecture>[\w\+]+)"
-    type_regex = r"(?P<type>Binary-\d+)"
-    date_regex = r"(?P<date>[^\)]+)"
-
-    info_regex = r"%s %s _%s_ - %s %s (%s )?\(%s\)" % (distributor_regex,
-        release_regex, codename_regex, official_regex, architecture_regex,
-        type_regex, date_regex)
-    line_regex = r"Found label '%s'" % info_regex
+    line_regex = r"Found label '(?P<string>[^']+)'"
     line_pattern = re.compile(line_regex)
 
     for line in file.readlines():
         match = line_pattern.match(line)
         if match:
-            keys = ["distributor", "release", "codename", "official",
-                "architecture", "date"]
-            values = [match.group(k) for k in keys]
-            disk = dict(zip(keys, values))
+            string = match.group("string")
+            disk = get_disk_from_string(string)
             break
 
     return disk
 
+def get_disk_from_media(filename):
+    try:
+        file = open(filename)
+    except IOError:
+        return {}
+
+    string = file.readline()
+    return get_disk_from_string(string)
+
 def main():
-    disk = get_disk(FILENAME)
+    disk = get_disk_from_media(MEDIA_FILENAME)
+    if not disk:
+        disk = get_disk_from_casper(CASPER_FILENAME)
 
     for key, value in disk.iteritems():
         print "%s: %s" % (key, value)
