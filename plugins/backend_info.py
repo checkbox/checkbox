@@ -17,9 +17,11 @@
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
 import os
+import shutil
 import signal
 
 from subprocess import call, PIPE
+from tempfile import mkdtemp
 
 from checkbox.lib.fifo import FifoReader, FifoWriter, create_fifo
 
@@ -64,16 +66,17 @@ class BackendInfo(Plugin):
         return prefix + command
 
     def gather(self):
-        self.child_input = create_fifo()
-        self.child_output = create_fifo()
+        self.directory = mkdtemp(prefix="checkbox")
+        child_input = create_fifo(os.path.join(self.directory, "input"), 0600)
+        child_output = create_fifo(os.path.join(self.directory, "output"), 0600)
 
         self.pid = os.fork()
         if self.pid > 0:
-            self.parent_writer = FifoWriter(self.child_input)
-            self.parent_reader = FifoReader(self.child_output)
+            self.parent_writer = FifoWriter(child_input)
+            self.parent_reader = FifoReader(child_output)
 
         else:
-            command = [self.command, self.child_input, self.child_output]
+            command = [self.command, child_input, child_output]
             root_command = self.get_root_command(command)
             os.execvp(root_command[0], root_command)
             # Should never get here
@@ -88,8 +91,7 @@ class BackendInfo(Plugin):
         os.kill(self.pid, signal.SIGHUP)
         os.waitpid(self.pid, 0)
 
-        os.unlink(self.child_input)
-        os.unlink(self.child_output)
+        shutil.rmtree(self.directory)
 
 
 factory = BackendInfo
