@@ -53,7 +53,7 @@ class BackendInfo(Plugin):
                     stdout=PIPE, stderr=PIPE) == 0 and \
                 call(["pgrep", "-x", "-u", str(uid), "ksmserver"],
                     stdout=PIPE, stderr=PIPE) == 0:
-            prefix = ["kdesudo", "-E", "--"]
+            prefix = ["kdesudo", "--"]
         elif os.getenv("DISPLAY") and \
                 call(["which", "gksu"],
                     stdout=PIPE, stderr=PIPE) == 0 and \
