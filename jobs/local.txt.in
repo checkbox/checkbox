@@ -90,4 +90,4 @@ name: gcov.tgz
 plugin: attachment
 requires: package.name == 'lcov'
 user: root
-command: gcov_tarball
+command: $CHECKBOX_SHARE/scripts/gcov_tarball
