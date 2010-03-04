@@ -18,7 +18,7 @@
 #
 from checkbox.job import UNSUPPORTED
 from checkbox.plugin import Plugin
-from checkbox.resource import Resource
+from checkbox.resource import ResourceMap
 
 
 class ResourceInfo(Plugin):
@@ -26,7 +26,7 @@ class ResourceInfo(Plugin):
     def register(self, manager):
         super(ResourceInfo, self).register(manager)
 
-        self.resources = []
+        self.resources = ResourceMap()
 
         self._manager.reactor.call_on("report-resource", self.report_resource)
         self._manager.reactor.call_on("prompt-job", self.prompt_job, -10)
@@ -35,11 +35,7 @@ class ResourceInfo(Plugin):
         mask = []
         values = []
         for require in job.get("requires", []):
-            new_values = []
-            for resource in self.resources:
-                if resource.eval(require) is not None:
-                        new_values.append(resource)
-
+            new_values = self.resources.eval(require)
             mask.append(bool(new_values))
             values.extend(new_values)
 
@@ -54,11 +50,7 @@ class ResourceInfo(Plugin):
     def report_resource(self, resource):
         # Register temporary handler for report-messages events
         def report_messages(messages):
-            for message in messages:
-                message = Resource(message)
-                message = Resource({resource["name"]: message})
-                self.resources.append(message)
-
+            self.resources[resource["name"]] = messages
             self._manager.reactor.fire("report-%s" % resource["name"], messages)
 
             # Don't report other messages
