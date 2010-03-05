@@ -95,11 +95,11 @@ class TemplateI18n(Template):
     def _filter_languages(self, element):
         filter = {}
         basekeys = {}
-        for key in element.keys():
+        for key in element.iterkeys():
             basekey = re.sub(r"^_?([^-]+).*$", "\\1", key)
             basekeys[basekey] = None
 
-        for key in basekeys.keys():
+        for key in basekeys.iterkeys():
             if self._languages:
                 for language in self._languages:
                     field = "%s-%s" % (key, language)

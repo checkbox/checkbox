@@ -37,6 +37,7 @@ class SubmissionInfo(Plugin):
 
     def register(self, manager):
         super(SubmissionInfo, self).register(manager)
+
         self._system_id = None
 
         for (rt, rh) in [

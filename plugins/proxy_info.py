@@ -16,6 +16,8 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
+import re
+
 from checkbox.lib.environ import add_variable, get_variable
 
 from checkbox.properties import String
@@ -32,7 +34,18 @@ class ProxyInfo(Plugin):
 
     def register(self, manager):
         super(ProxyInfo, self).register(manager)
-        self._manager.reactor.call_on("gather", self.gather, -1000)
+
+        self.proxy = {}
+
+        self._manager.reactor.call_on("report-gconf", self.report_gconf)
+        self._manager.reactor.call_on("gather", self.gather, 100)
+
+    def report_gconf(self, resources):
+        proxy_pattern = re.compile(r"/system/(http_)?proxy/(?P<name>[^/]+)$")
+        for resource in resources:
+            match = proxy_pattern.match(resource["name"])
+            if match:
+                self.proxy[match.group("name")] = resource["value"]
 
     def gather(self):
         # Config has lowest precedence
@@ -40,25 +53,25 @@ class ProxyInfo(Plugin):
         https_proxy = self.https_proxy
 
         # Gconf has higher precedence
-        gconf = self._manager.registry.gconf
-        if gconf.system.http_proxy.use_http_proxy:
-            if gconf.system.http_proxy.use_authentication:
+        proxy = self.proxy
+        if proxy.get("use_http_proxy", False):
+            if proxy.get("use_authentication", False):
                 http_proxy = "http://%s:%s@%s:%s" % (
-                    gconf.system.http_proxy.authentication_user,
-                    gconf.system.http_proxy.authentication_password,
-                    gconf.system.http_proxy.host,
-                    gconf.system.http_proxy.port)
-            elif gconf.system.http_proxy.host:
+                    proxy["authentication_user"],
+                    proxy["authentication_password"],
+                    proxy["host"],
+                    proxy["port"])
+            elif "host" in proxy:
                 http_proxy = "http://%s:%s" % (
-                    gconf.system.http_proxy.host,
-                    gconf.system.http_proxy.port)
+                    proxy["host"],
+                    proxy["port"])
 
-            if gconf.system.http_proxy.use_same_proxy:
+            if proxy.get("use_same_proxy", False):
                 https_proxy = http_proxy
-            elif gconf.system.proxy.secure_host:
+            elif "secure_host" in proxy:
                 https_proxy = "https://%s:%s" % (
-                    gconf.system.proxy.secure_host,
-                    gconf.system.proxy.secure_port)
+                    proxy["secure_host"],
+                    proxy["secure_port"])
 
         # Environment has highest precedence
         http_proxy = get_variable("http_proxy", http_proxy)

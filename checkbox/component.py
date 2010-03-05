@@ -122,7 +122,7 @@ class ComponentSection(object):
 
                     # Set configuration values
                     variables = get_variables(module)
-                    environ = dict([(k.lower(), v) for k, v in os.environ.items()])
+                    environ = dict([(k.lower(), v) for k, v in os.environ.iteritems()])
                     for attribute, variable in variables.iteritems():
                         if config and attribute.name in config:
                             value = config.get(attribute.name)

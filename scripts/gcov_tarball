@@ -7,5 +7,5 @@ tar -xzf gcov.tar.gz
 
 cd /tmp
 lcov -q -c -o gcov.info
-genhtml -q -o gcov gcov.info 2>&1
+genhtml -q -o gcov gcov.info 2>/dev/null
 tar -czf - gcov

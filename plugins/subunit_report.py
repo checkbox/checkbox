@@ -32,6 +32,7 @@ STATUS_TO_SUBUNIT = {
     UNSUPPORTED: "skip",
     UNTESTED: "skip"}
 
+
 class SubunitReport(Plugin):
 
     # Filename where to store the subunit report
@@ -39,41 +40,40 @@ class SubunitReport(Plugin):
 
     def register(self, manager):
         super(SubunitReport, self).register(manager)
-        self._tests = {}
 
         for (rt, rh) in [
-             ("report-test", self.report_test),
-             ("report", self.report)]:
+             ("gather", self.gather),
+             ("prompt-test", self.prompt_test)]:
             self._manager.reactor.call_on(rt, rh)
 
-    def report_test(self, test):
-        key = (test["suite"], test["name"],)
-        if key not in self._tests:
-            self._tests[key] = test
-
-    def report(self):
+    def gather(self):
         logging.debug("Opening filename: %s", self.filename)
-        file = open(self.filename, "w")
+        self.file = open(self.filename, "w")
 
-        for test in self._tests.values():
-            # Test
+    def prompt_test(self, interface, test):
+        file = self.file
+
+        # Test
+        if "suite" in test:
             name = "%s %s" % (test["suite"], test["name"])
-            file.write("test: %s\n" % name)
+        else:
+            name = test["name"]
+        file.write("test: %s\n" % name)
 
-            # TODO: determine where to handle requires
+        # TODO: determine where to handle requires
 
-            # Status
-            status = STATUS_TO_SUBUNIT[test["status"]]
-            file.write("%s: %s" % (status, name))
+        # Status
+        status = STATUS_TO_SUBUNIT[test["status"]]
+        file.write("%s: %s" % (status, name))
 
-            # Data
-            data = test.get("data")
-            if data is not None:
-                # Prepend whitespace to the data
-                data = data.replace("\n", "\n ").strip()
-                file.write(" [\n %s\n]" % data)
+        # Data
+        data = test.get("data")
+        if data:
+            # Prepend whitespace to the data
+            data = data.replace("\n", "\n ").strip()
+            file.write(" [\n %s\n]" % data)
 
-            file.write("\n")
+        file.write("\n")
 
 
 factory = SubunitReport

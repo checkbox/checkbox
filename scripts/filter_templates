@@ -35,7 +35,7 @@ def compile_filters(filters):
 
 def match_patterns(patterns_table, element):
     matches = []
-    for key, patterns in patterns_table.items():
+    for key, patterns in patterns_table.iteritems():
         if key not in element:
             matches.append(False)
         else:
@@ -45,10 +45,17 @@ def match_patterns(patterns_table, element):
 
     return matches
 
-def match_elements(elements, whitelist=[], blacklist=[]):
+def match_elements(elements, attributes=[], whitelist=[], blacklist=[]):
     whitelist_patterns = compile_filters(whitelist)
     blacklist_patterns = compile_filters(blacklist)
 
+    # Apply attributes
+    for element in elements:
+        for attribute in attributes:
+            name, value = attribute.split("=", 1)
+            element[name] = value
+        
+    # Apply whitelist and blacklist
     matches = []
     for element in elements:
         if whitelist_patterns \
@@ -83,16 +90,21 @@ def parse_paths(paths, *args, **kwargs):
 def main(args):
     usage = "Usage: %prog [OPTIONS] [FILE...]"
     parser = OptionParser(usage=usage)
-    parser.add_option("-w", "--whitelist",
+    parser.add_option("-a", "--attribute",
         action="append",
         type="string",
         default=[],
-        help="Whitelist of elements by name and value.")
+        help="Set additional attributes by name and value.")
     parser.add_option("-b", "--blacklist",
         action="append",
         type="string",
         default=[],
         help="Blacklist of elements by name and value.")
+    parser.add_option("-w", "--whitelist",
+        action="append",
+        type="string",
+        default=[],
+        help="Whitelist of elements by name and value.")
     (options, args) = parser.parse_args(args)
 
     if args:
@@ -102,7 +114,7 @@ def main(args):
         args = sys.stdin
         
     try:
-        parse_func(args, options.whitelist, options.blacklist)
+        parse_func(args, options.attribute, options.whitelist, options.blacklist)
     except FilterError, error:
         parser.error(error.args[0])
 

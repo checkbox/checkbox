@@ -24,7 +24,7 @@ from checkbox.job import FAIL
 from checkbox.plugin import Plugin
 from checkbox.properties import Bool, Path, String
 from checkbox.reactor import StopAllException
-from checkbox.registry import registry_eval_recursive
+
 
 class DummyUserInterface:
     pass
@@ -151,11 +151,9 @@ class ApportPrompt(Plugin):
     def register(self, manager):
         super(ApportPrompt, self).register(manager)
 
-        if isinstance(ApportUserInterface, DummyUserInterface):
-            return
-
-        self._manager.reactor.call_on("gather", self.gather)
-        self._manager.reactor.call_on("prompt-test", self.prompt_test, 100)
+        if not isinstance(ApportUserInterface, DummyUserInterface):
+            self._manager.reactor.call_on("gather", self.gather)
+            self._manager.reactor.call_on("prompt-test", self.prompt_test, 100)
 
     def gather(self):
         if self.default_enabled is None:
@@ -176,24 +174,21 @@ class ApportPrompt(Plugin):
         symptom = None
 
         # Give lowest priority to required packages
-        for require in test.get("requires", []):
-            packages = registry_eval_recursive(self._manager.registry.packages,
-                require)
-            if packages:
-                package = packages[0].name
+        for resource in test.get("resources", []):
+            if resource["suite"] == "package":
+                package = resource["name"]
                 break
 
         # Give highest priority to required devices
-        for require in test.get("requires", []):
-            devices = registry_eval_recursive(self._manager.registry.udev,
-                require)
-            for device in devices:
-                if device.category in CATEGORY_TO_PACKAGE:
-                    package = CATEGORY_TO_PACKAGE[device.category]
+        for resource in test.get("resources", []):
+            if resource["suite"] == "device":
+                category = resource["category"]
+                if category in CATEGORY_TO_PACKAGE:
+                    package = CATEGORY_TO_PACKAGE[category]
                     break
 
-                if device.category in CATEGORY_TO_SYMPTOM:
-                    symptom = CATEGORY_TO_SYMPTOM[device.category]
+                if category in CATEGORY_TO_SYMPTOM:
+                    symptom = CATEGORY_TO_SYMPTOM[category]
                     break
 
         # Default to configuration
@@ -204,24 +199,22 @@ class ApportPrompt(Plugin):
         if not package and not symptom:
             return
 
-        response = interface.show_info("Do you want to report a bug?",
+        response = interface.show_info(_("Do you want to report a bug?"),
             ["yes", "no"], "no")
         if response == "no":
             return
 
         # Determine corresponding device
-        for require in test.get("requires", []):
-            devices = registry_eval_recursive(self._manager.registry.udev,
-                require)
-            if devices:
-                device = devices[0].category.lower()
+        for resource in test.get("resources", []):
+            if resource["suite"] == "device":
+                device = resource["category"].lower()
                 break
 
         try:
             options = ApportOptions(test, device, package, symptom)
             apport_interface = ApportUserInterface(interface, options)
         except ImportError, e:
-            interface.show_error("Is a package upgrade in process? Error: %s" % e)
+            interface.show_error(_("Is a package upgrade in process? Error: %s") % e)
             return
 
         try:

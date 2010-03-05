@@ -1,7 +1,0 @@
-name: qa-regression-testing
-plugin: external
-_description: QA regression tests (destructive)
-requires:
- package.name == 'bzr'
-user: root
-command: qa_regression_suite test-cpio.py test-cron.py test-curl.py test-exiv2.py test-file.py test-gcc-security.py test-ghostscript.py test-git-core.py test-glib2.0.py test-glibc-security.py test-kernel.py test-kernel-security.py test-lcms.py test-libcompress-raw-zlib-perl.py test-libexif.py test-libgd2.py test-libwmf.py test-mimetex.py test-mpfr.py test-netpbm-free.py test-openssl.py test-perl.py test-php5.py test-poppler.py test-tar.py test-tetex_texlive.py test-tiff.py | filter_packages

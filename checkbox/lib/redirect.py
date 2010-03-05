@@ -24,53 +24,53 @@ import tempfile
 def _file_write(file):
     # file is a filename, a pipe-command, a fileno(), or a file
     # returns file.
-    if not hasattr(file, "write"):  
+    if not hasattr(file, "write"):
         if file[0] == "|":
             file = os.popen(file[1:], "w")
         else:
             file = open(file, "w")
 
-    return file 
+    return file
 
 def _file_read(file):
     # file is a filename, a pipe-command, or a file
     # returns file.
-    if not hasattr(file, "read"):  
+    if not hasattr(file, "read"):
         if file[-1] == "|":
             file = os.popen(file[1:], "r")
         else:
             file = open(file, "r")
 
-    return file 
+    return file
 
 def redirect_to_file(file, func, *args):
     # apply func(args), temporarily redirecting stdout to file.
     # file can be a file or any writable object, or a filename string.
-    # a "|cmd" string will pipe output to cmd. 
+    # a "|cmd" string will pipe output to cmd.
     # Returns value of apply(func, *args)
     ret = None
     file = _file_write(file)
-    sys.stdout, file = file, sys.stdout 
+    sys.stdout, file = file, sys.stdout
     try:
         ret = apply(func, args)
     finally:
         print ret
-        sys.stdout, file = file, sys.stdout     
+        sys.stdout, file = file, sys.stdout
     return ret
 
 def redirect_to_string(func, *args):
     # apply func(*args) with stdout redirected to return string.
     file = tempfile.TemporaryFile()
-    apply(redirect_to_file, (file, func) + args) 
+    apply(redirect_to_file, (file, func) + args)
     file.seek(0)
-    return file.read() 
+    return file.read()
 
 def redirect_to_lines(func, *args):
     # apply func(*args), returning a list of redirected stdout lines.
     file = tempfile.TemporaryFile()
-    apply(redirect_to_file, (file, func) + args) 
+    apply(redirect_to_file, (file, func) + args)
     file.seek(0)
-    return file.readlines() 
+    return file.readlines()
 
 
 class RedirectTee(object):
@@ -91,10 +91,10 @@ class RedirectTee(object):
         return self._files
 
     def write(self, what):
-        for eachfile in self._files: 
+        for eachfile in self._files:
             eachfile.write(what)
 
-    def writelines(self, lines): 
+    def writelines(self, lines):
         for eachline in lines: self.write(eachline)
 
     def flush(self):
@@ -107,8 +107,8 @@ class RedirectTee(object):
 
     def CLOSE(self):
         for eachfile in self._files:
-            self.remfile(eachfile) 
-            self.eachfile.close()         
+            self.remfile(eachfile)
+            self.eachfile.close()
 
     def isatty(self):
         return 0
@@ -121,7 +121,7 @@ class RedirectEcho(object):
         if output:
             self._output = _file_write(output[0])
         else:
-            self._output = None 
+            self._output = None
 
     def read(self, *howmuch):
         stuff = apply(self._infile.read, howmuch)
@@ -135,8 +135,8 @@ class RedirectEcho(object):
         return line
 
     def readlines(self):
-        out = [] 
-        while True: 
+        out = []
+        while True:
             out.append(self.readline())
             if not out[-1]:
                 return out[:-1]

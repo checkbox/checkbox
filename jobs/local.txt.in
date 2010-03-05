@@ -1,0 +1,97 @@
+name: audio
+plugin: local
+_description: Audio tests
+command: cat $CHECKBOX_SHARE/jobs/audio.txt*
+
+name: disk
+plugin: local
+_description: Disk tests
+command: cat $CHECKBOX_SHARE/jobs/disk.txt*
+
+name: fingerprint
+plugin: local
+_description: Fingerprint reader tests
+command: cat $CHECKBOX_SHARE/jobs/fingerprint.txt*
+
+name: firewire
+plugin: local
+_description: Firewire disk tests
+command: cat $CHECKBOX_SHARE/jobs/firewire.txt*
+
+name: kms
+plugin: local
+_description: Kernel modesetting tests
+command: cat $CHECKBOX_SHARE/jobs/kms.txt*
+
+name: media
+plugin: local
+_description: Media tests
+command: cat $CHECKBOX_SHARE/jobs/media.txt*
+
+name: monitor
+plugin: local
+_description: Monitor tests
+command: cat $CHECKBOX_SHARE/jobs/monitor.txt*
+
+name: network
+plugin: local
+_description: Network tests
+command: cat $CHECKBOX_SHARE/jobs/network.txt*
+
+name: peripheral
+plugin: local
+_description: Peripheral tests
+command: cat $CHECKBOX_SHARE/jobs/peripheral.txt*
+
+name: video
+plugin: local
+_description: Video tests
+command: cat $CHECKBOX_SHARE/jobs/video.txt*
+
+name: codecs
+plugin: attachment
+requires: device.driver == 'HDA Intel'
+command: cat /proc/asound/card*/codec#*
+
+name: cpuinfo
+plugin: attachment
+command: cat /proc/cpuinfo
+
+name: dmesg
+plugin: attachment
+command: cat /var/log/dmesg
+
+name: dmi
+plugin: attachment
+command: grep -r . /sys/class/dmi/id/ 2>/dev/null
+
+name: dmidecode
+plugin: attachment
+user: root
+command: dmidecode
+
+name: lspci
+plugin: attachment
+command: lspci -vvnn
+
+name: modprobe
+plugin: attachment
+command: find /etc/modprobe.* -name \*.conf | xargs cat
+
+name: modules
+plugin: attachment
+command: cat /etc/modules
+
+name: sysctl
+plugin: attachment
+command: find /etc/sysctl.* -name \*.conf | xargs cat
+
+name: udev
+plugin: attachment
+command: udevadm info --export-db
+
+name: gcov.tgz
+plugin: attachment
+requires: package.name == 'lcov'
+user: root
+command: $CHECKBOX_SHARE/scripts/gcov_tarball

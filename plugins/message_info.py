@@ -25,24 +25,6 @@ from checkbox.lib.template_i18n import TemplateI18n
 
 from checkbox.job import Job, PASS
 from checkbox.plugin import Plugin
-from checkbox.arguments import coerce_arguments
-from checkbox.properties import Float, Int, List, Map, String, Unicode
-
-
-message_schema = Map({
-    "plugin": String(),
-    "name": String(),
-    "status": String(required=False),
-    "suite": String(required=False),
-    "description": Unicode(required=False),
-    "command": String(required=False),
-    "depends": List(String(), required=False),
-    "duration": Float(required=False),
-    "environ": List(String(), required=False),
-    "requires": List(String(), separator=r"\n", required=False),
-    "timeout": Int(required=False),
-    "user": String(required=False),
-    "data": String(required=False)})
 
 
 class MessageInfo(Plugin):
@@ -51,28 +33,17 @@ class MessageInfo(Plugin):
         super(MessageInfo, self).register(manager)
 
         for (rt, rh) in [
-             ("message", self.message),
-             ("messages", self.messages),
-             ("message-command", self.message_command),
+             ("report-messages", self.report_messages),
              ("message-directory", self.message_directory),
              ("message-exec", self.message_exec),
              ("message-file", self.message_file),
              ("message-filename", self.message_filename),
-             ("message-job", self.message_job),
-             ("message-string", self.message_string)]:
+             ("message-result", self.message_result)]:
             self._manager.reactor.call_on(rt, rh)
 
-    @coerce_arguments(message=message_schema)
-    def message(self, message):
-        self._manager.reactor.fire("report-%s" % message["plugin"], message)
-
-    def messages(self, messages):
+    def report_messages(self, messages):
         for message in messages:
-            self._manager.reactor.fire("message", message)
-
-    def message_command(self, command, environ=[], timeout=None, user=None):
-        job = Job(command, environ, timeout, user)
-        self._manager.reactor.fire("message-job", job)
+            self._manager.reactor.fire("report-message", message)
 
     def message_directory(self, directory, blacklist=[], whitelist=[]):
         whitelist_patterns = [re.compile(r"^%s$" % r) for r in whitelist if r]
@@ -94,8 +65,11 @@ class MessageInfo(Plugin):
             self._manager.reactor.fire("message-filename", filename)
 
     def message_exec(self, message):
-        self._manager.reactor.fire("message-command", message["command"],
-            message.get("environ"), message.get("timeout"), message.get("user"))
+        if "user" not in message:
+            job = Job(message["command"], message.get("environ"),
+                message.get("timeout"))
+            result = job.execute()
+            self._manager.reactor.fire("message-result", *result)
 
     def message_file(self, file, filename="<stream>"):
         template = TemplateI18n()
@@ -107,20 +81,17 @@ class MessageInfo(Plugin):
                     short_key = long_key.replace(long_ext, "")
                     message[short_key] = message.pop(long_key)
 
-        self._manager.reactor.fire("messages", messages)
+        if messages:
+            self._manager.reactor.fire("report-messages", messages)
 
     def message_filename(self, filename):
         file = open(filename, "r")
         self._manager.reactor.fire("message-file", file, filename)
 
-    def message_job(self, job):
-        (status, data, duration) = job.execute()
+    def message_result(self, status, data, duration):
         if status == PASS:
-            self._manager.reactor.fire("message-string", data)
-
-    def message_string(self, string):
-        file = StringIO(string)
-        self._manager.reactor.fire("message-file", file)
+            file = StringIO(data)
+            self._manager.reactor.fire("message-file", file)
 
 
 factory = MessageInfo

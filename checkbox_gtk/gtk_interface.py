@@ -23,11 +23,9 @@ import posixpath
 from gettext import gettext as _
 from string import Template
 
-from checkbox.lib.iterator import NEXT
-
 from checkbox.job import Job, UNINITIATED
 from checkbox.user_interface import (UserInterface,
-    YES_ANSWER, NO_ANSWER, SKIP_ANSWER,
+    NEXT, YES_ANSWER, NO_ANSWER, SKIP_ANSWER,
     ANSWER_TO_STATUS, STATUS_TO_ANSWER)
 
 # Import to register HyperTextView type with gtk
@@ -265,20 +263,8 @@ class GTKInterface(UserInterface):
     def show_check(self, text, options=[], default=[]):
         # Set buttons
         self._notebook.set_current_page(1)
-
-        select_buttons = [self._get_widget(name)
-                          for name in ["button_select_all",
-                                       "button_deselect_all"]]
-        for button in select_buttons:
-            button.show()
-
-        def select_all(widget, option_table):
-            for check_button in option_table.itervalues():
-                check_button.set_active(True)
-
-        def deselect_all(widget, option_table):
-            for check_button in option_table.itervalues():
-                check_button.set_active(False)
+        self._set_show("button_select_all", True)
+        self._set_show("button_deselect_all", True)
 
         # Set options
         option_table = {}
@@ -295,18 +281,21 @@ class GTKInterface(UserInterface):
 
         self._set_hyper_text_view("hyper_text_view_options", text)
 
-        for button in select_buttons:
-            callback_name = button.name.split('_', 1)[1]
-            callback = locals()[callback_name]
-            handler_id = button.connect("clicked", callback, option_table)
-            button.set_data("handler_id", handler_id)
+        # Set callbacks
+        def click_button(widget, active):
+            for check_button in option_table.itervalues():
+                check_button.set_active(active)
+
+        for button_name in "button_select_all", "button_deselect_all":
+            button = self._get_widget(button_name)
+            button.connect("clicked", click_button,
+                "deselect" not in button_name)
 
         self._run_dialog()
 
-        for button in select_buttons:
-            handler_id = button.get_data("handler_id")
-            button.disconnect(handler_id)
-            button.hide()
+        # Unset buttons
+        self._set_show("button_select_all", False)
+        self._set_show("button_deselect_all", False)
 
         # Get options
         results = []
@@ -351,12 +340,116 @@ class GTKInterface(UserInterface):
 
         return result
 
+    @GTKHack
+    def show_tree(self, text, options={}, default={}):
+        (COLUMN_TEXT, COLUMN_ACTIVE) = range(2)
+
+        # Set buttons
+        self._notebook.set_current_page(1)
+        self._set_show("button_select_all", True)
+        self._set_show("button_deselect_all", True)
+
+        # Set options
+        treestore = gtk.TreeStore(str, bool)
+        treeview = gtk.TreeView(treestore)
+        treeview.set_headers_visible(False)
+        treeview.show()
+
+        def set_options(options, default, parent=None):
+            keys = sorted(options.keys())
+            values = [options[k] for k in keys]
+            for text, child in zip(keys, values):
+                active = text in default
+                iter = treestore.append(parent, [text, active])
+                set_options(child, default.get(text, {}), iter)
+
+        set_options(options, default)
+
+        vbox = self._get_widget("vbox_options_list")
+        vbox.pack_start(treeview, False, False, 0)
+
+        def toggle_tree(iter, active=None):
+            # Set value
+            if active is None:
+                active = not treestore.get_value(iter, COLUMN_ACTIVE)
+            treestore.set_value(iter, COLUMN_ACTIVE, active)
+
+            # Set parents
+            def set_parents(iter):
+                parent = treestore.iter_parent(iter)
+                if parent:
+                    treestore.set_value(parent, COLUMN_ACTIVE, active)
+                    set_parents(parent)
+
+            if active:
+                set_parents(iter)
+
+            # Set children
+            def set_children(iter):
+                child = treestore.iter_children(iter)
+                while child:
+                    treestore.set_value(child, COLUMN_ACTIVE, active)
+                    set_children(child)
+                    child = treestore.iter_next(child)
+
+            set_children(iter)
+
+        # Toggle column
+        cell = gtk.CellRendererToggle()
+        cell.connect("toggled",
+            lambda t, p: toggle_tree(treestore.get_iter_from_string(p)))
+        col = gtk.TreeViewColumn(None, cell, active=COLUMN_ACTIVE)
+        treeview.append_column(col)
+
+        # Text column
+        cell = gtk.CellRendererText()
+        col = gtk.TreeViewColumn(None, cell, text=COLUMN_TEXT)
+        treeview.append_column(col)
+
+        # Select and deselect buttons
+        def click_button(widget, active):
+            iter = treestore.get_iter_first()
+            while iter:
+                toggle_tree(iter, active)
+                iter = treestore.iter_next(iter)
+
+        for button_name in "button_select_all", "button_deselect_all":
+            button = self._get_widget(button_name)
+            button.connect("clicked", click_button,
+                "deselect" not in button_name)
+
+        self._run_dialog()
+
+        # Unset buttons
+        self._set_show("button_select_all", False)
+        self._set_show("button_deselect_all", False)
+
+        # Get options
+        def get_results(iter):
+            results = {}
+            while iter:
+                active = treestore.get_value(iter, COLUMN_ACTIVE)
+                if active:
+                    text = treestore.get_value(iter, COLUMN_TEXT)
+                    children = treestore.iter_children(iter)
+                    results[text] = get_results(children)
+
+                iter = treestore.iter_next(iter)
+
+            return results
+
+        results = get_results(treestore.get_iter_first())
+        vbox.remove(treeview)
+
+        return results
+
     def _run_test(self, test):
         self._set_sensitive("button_test", False)
 
         message = _("Running test %s...") % test["name"]
+        # TODO: fix this to support running tests as root
         job = Job(test["command"], test.get("environ"),
-            test.get("timeout"), test.get("user"))
+            test.get("timeout"))
         (status, data, duration) = self.show_progress(message, job.execute)
 
         description = Template(test["description"]).substitute({

@@ -23,6 +23,7 @@ class ErrorPrompt(Plugin):
 
     def register(self, manager):
         super(ErrorPrompt, self).register(manager)
+
         self._manager.reactor.call_on("prompt-error",
             self.prompt_error)
 

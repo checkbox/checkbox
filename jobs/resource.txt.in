@@ -1,0 +1,39 @@
+name: cpuinfo
+plugin: resource
+command: cpuinfo_resource
+
+name: cdimage
+plugin: resource
+command: cdimage_resource
+
+name: dpkg
+plugin: resource
+command: dpkg_resource
+
+name: gconf
+plugin: resource
+command: gconf_resource | filter_templates -w 'name=.*proxy.*'
+
+name: lsb
+plugin: resource
+command: lsb_resource
+
+name: meminfo
+plugin: resource
+command: meminfo_resource
+
+name: module
+plugin: resource
+command: module_resource
+
+name: package
+plugin: resource
+command: package_resource | filter_templates -w 'desired=Install' -w 'status=Installed'
+
+name: device
+plugin: resource
+command: udev_resource
+
+name: uname
+plugin: resource
+command: uname_resource

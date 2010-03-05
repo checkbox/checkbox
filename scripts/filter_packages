@@ -12,8 +12,7 @@ from checkbox.lib.log import set_logging
 from checkbox.lib.redirect import RedirectEcho, RedirectTee
 from checkbox.lib.template_i18n import TemplateI18n
 
-from checkbox.registry import Registry, registry_eval
-from checkbox.registries.link import LinkRegistry
+from checkbox.resource import Resource
 
 
 DEFAULT_LOG_LEVEL = "critical"
@@ -31,9 +30,10 @@ def get_redirect_file(input, output):
 
 def get_package_names(file):
     # Redirect stdout and stderr so that they can be logged
-    class PackageRegistry(Registry):
+    class PackageResource(Resource):
 
         def __init__(self, names, compare=0):
+            super(PackageResource, self).__init__({"package": Resource({"name": self})})
             self._names = names
             self._compare = compare
 
@@ -41,23 +41,18 @@ def get_package_names(file):
             self._names.append(other)
             return self._compare
 
-        def items(self):
-            return [
-                ("package", LinkRegistry(self)),
-                ("name", self)]
-
     names = []
     # In order to read the package names from the requires field
     # in messages, it is necessary to trick eval into thinking that
-    # package.name exists using the PackageRegistry. The problem is
+    # package.name exists using the PackageResource. The problem is
     # that since we don't have access to the expression tree, an 'or'
     # operator will only evaluate the left hand side if it is true
     # and an 'and' operator will only evaluate the left hand side if
     # it is false. The solution is to compare against both zero and
     # non-zero comparison results. Caveat, this doesn't work when
     # both operators are used: foo or (bar and baz)
-    registry_0 = PackageRegistry(names, compare=0)
-    registry_1 = PackageRegistry(names, compare=1)
+    resource_0 = PackageResource(names, compare=0)
+    resource_1 = PackageResource(names, compare=1)
 
     template = TemplateI18n()
     messages = template.load_file(file)
@@ -72,8 +67,8 @@ def get_package_names(file):
             requires = []
 
         for require in requires:
-            registry_eval(registry_0, require)
-            registry_eval(registry_1, require)
+            resource_0.eval(require)
+            resource_1.eval(require)
 
     # Uniquify names
     return list(set(names))
@@ -95,6 +90,7 @@ def install_package_names(names):
         if name in cache:
             cache[name].markInstall()
 
+    os.environ['DEBIAN_FRONTEND'] = 'noninteractive'
     install_progress = CapturedInstallProgress()
 
     try:

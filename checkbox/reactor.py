@@ -16,7 +16,6 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-import re
 import logging
 import threading
 
@@ -46,14 +45,6 @@ class Reactor(object):
         self._event_handlers = {}
         self._local = threading.local()
 
-    @property
-    def _event_stack(self):
-        try:
-            return self._local._event_stack
-        except AttributeError:
-            self._local._event_stack = []
-            return self._local._event_stack
-
     def call_on(self, event_type, handler, priority=0):
         pair = (handler, priority)
 
@@ -66,22 +57,12 @@ class Reactor(object):
     def fire(self, event_type, *args, **kwargs):
         logging.debug("Started firing %s.", event_type)
 
-        if event_type in self._event_stack:
-            raise StopAllException, "Loop detected for event type: %s." \
-                % event_type
-
-        self._event_stack.append(event_type)
-
-        results = []
-        handlers = []
-        for key, value in self._event_handlers.items():
-            if re.match("^%s$" % key, event_type):
-                handlers.extend(value)
-
-        handlers = sorted(handlers, key=lambda pair: pair[1])
+        handlers = self._event_handlers.get(event_type, ())
         if not handlers:
             logging.debug("No handlers found for event type: %s", event_type)
 
+        results = []
+        handlers = sorted(handlers, key=lambda pair: pair[1])
         for handler, priority in handlers:
             try:
                 logging.debug("Calling %s for %s with priority %d.",
@@ -103,10 +84,11 @@ class Reactor(object):
                                   format_object(handler), event_type,
                                   args, kwargs)
 
-        self._event_stack.pop(-1)
-
         logging.debug("Finished firing %s.", event_type)
         return results
+
+    def has_call(self, event_type):
+        return event_type in self._event_handlers
 
     def cancel_call(self, id):
         if type(id) is EventID:
