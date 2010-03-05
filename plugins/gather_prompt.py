@@ -27,6 +27,7 @@ class GatherPrompt(Plugin):
 
     def register(self, manager):
         super(GatherPrompt, self).register(manager)
+
         self._manager.reactor.call_on("prompt-gather", self.prompt_gather)
 
     @cache

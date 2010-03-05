@@ -19,24 +19,34 @@
 from gettext import gettext as _
 
 from checkbox.plugin import Plugin
+from checkbox.user_interface import PREV
 
 
 class IntroPrompt(Plugin):
 
     def register(self, manager):
         super(IntroPrompt, self).register(manager)
-        # Introduction should be prompted last
 
+        self._recover = False
+
+        self._manager.reactor.call_on("begin-recover", self.begin_recover)
+
+        # Introduction should be prompted last
         self._manager.reactor.call_on("prompt-begin", self.prompt_begin, 100)
 
+    def begin_recover(self):
+        self._recover = True
+
     def prompt_begin(self, interface):
-        interface.show_text(_("""\
+        if interface.direction == PREV or not self._recover:
+            self._recover = False
+            interface.show_text(_("""\
 Welcome to System Testing!
 
 Checkbox provides tests to confirm that your system is working \
 properly. Once you are finished running the tests, you can view \
 a summary report for your system."""),
-            previous="")
+                previous="")
 
 
 factory = IntroPrompt

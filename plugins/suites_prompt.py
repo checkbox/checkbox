@@ -16,136 +16,100 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-import re
+import copy
 
-from checkbox.lib.iterator import IteratorExclude
+from checkbox.lib.resolver import Resolver
 
-from checkbox.job import JobIterator
-from checkbox.properties import List, Path, String
 from checkbox.plugin import Plugin
+from checkbox.user_interface import PREV
 
 from gettext import gettext as _
 
 
 class SuitesPrompt(Plugin):
 
-    # Plugin default for running suite types
-    plugin_default = String(default="external")
-
-    # Plugin priorities for running suites
-    plugin_priorities = List(String(), default_factory=lambda:"internal")
-
-    # Space separated list of directories where suite files are stored.
-    directories = List(Path(),
-        default_factory=lambda:"%(checkbox_share)s/suites")
-
-    # List of suites to blacklist
-    blacklist = List(String(), default_factory=lambda:"")
-
-    # List of suites to whitelist
-    whitelist = List(String(), default_factory=lambda:"")
-
-    def _suites_compare(self, a, b):
-        priorities = self.plugin_priorities
-        if a["plugin"] in priorities:
-            if b["plugin"] in priorities:
-                ia = priorities.index(a["plugin"])
-                ib = priorities.index(b["plugin"])
-                if ia != ib:
-                    return cmp(ia, ib)
-            else:
-                return -1
-        elif b["plugin"] in priorities:
-            return 1
-
-        return cmp(a["name"], b["name"])
-
-    def _suites_exclude(self, suite):
-        whitelist_patterns = [re.compile(r"^%s$" % r) for r in self.whitelist if r]
-        blacklist_patterns = [re.compile(r"^%s$" % r) for r in self.blacklist if r]
-
-        name = suite["name"]
-        if whitelist_patterns:
-            if not [name for p in whitelist_patterns if p.match(name)]:
-                return True
-        elif blacklist_patterns:
-            if [name for p in blacklist_patterns if p.match(name)]:
-                return True
-
-        suites_ignore = self.persist.get("ignore", [])
-        if "description" in suite and suite["description"] in suites_ignore:
-            return True
-
-        return False
-
     def register(self, manager):
         super(SuitesPrompt, self).register(manager)
-        self._iterator = None
-        self._suite = None
-        self._suites = {}
+
+        self._depends = {}
+        self._jobs = {}
+        self._recover = False
 
         for (rt, rh) in [
-             ("gather", self.gather),
-             ("gather-persist", self.gather_persist),
-             ("report-suite", self.report_suite),
-             ("prompt-suite", self.prompt_suite),
-             ("prompt-suites", self.prompt_suites)]:
+             ("begin-persist", self.begin_persist),
+             ("begin-recover", self.begin_recover),
+             ("report-suite", self.report_suite)]:
             self._manager.reactor.call_on(rt, rh)
 
-        self._manager.reactor.call_on("prompt-gather", self.prompt_gather, 100)
-        self._manager.reactor.call_on("report-(attachment|test)",
-            self.report_attachment_or_test, -100)
+        for (rt, rh) in [
+             ("prompt-gather", self.prompt_gather),
+             ("report-suite", self.report_job),
+             ("report-test", self.report_job)]:
+            self._manager.reactor.call_on(rt, rh, 100)
 
-    def gather(self):
-        for directory in self.directories:
-            self._manager.reactor.fire("message-directory", directory)
-
-    def gather_persist(self, persist):
+    def begin_persist(self, persist):
         self.persist = persist.root_at("suites_prompt")
 
-    def report_attachment_or_test(self, element):
-        if self._suite:
-            element.setdefault("suite", self._suite["name"])
+    def begin_recover(self):
+        self._recover = True
 
     def report_suite(self, suite):
-        key = suite["name"]
-        if key not in self._suites:
-            suite.setdefault("plugin", self.plugin_default)
-            self._suites[key] = suite
-            self._iterator = JobIterator(self._suites.values(),
-                self._manager.registry, self._suites_compare)
-            self._iterator = IteratorExclude(self._iterator,
-                self._suites_exclude, self._suites_exclude)
-            if self._suite:
-                for suite in self._iterator:
-                    if suite == self._suite:
-                        break
+        suite.setdefault("type", "suite")
+
+    def report_job(self, job):
+        if job.get("type") == "suite":
+            attribute = "description"
+        else:
+            attribute = "name"
+
+        if attribute in job:
+            self._jobs[job["name"]] = job[attribute]
+            if "suite" in job:
+                self._depends[job["name"]] = [job["suite"]]
 
     def prompt_gather(self, interface):
-        suites = [s for s in self._iterator]
-        self._iterator = iter(self._iterator)
-        if len(suites) > 1:
-            suites_all = set([s["description"] for s in suites if "description" in s])
-            suites_ignore = set(self.persist.get("ignore", []))
-            suites_default = suites_all.difference(suites_ignore)
-            suites_default = set(interface.show_check(
-                _("Select the suites to test"),
-                sorted(suites_all), suites_default))
-            suites_ignore = suites_all.difference(suites_default)
-            self.persist.set("ignore", list(suites_ignore))
+        # Resolve dependencies
+        resolver = Resolver()
+        for key in self._jobs.iterkeys():
+            depends = self._depends.get(key, [])
+            resolver.add(key, *depends)
 
-    def prompt_suite(self, interface, suite):
-        self._manager.reactor.fire("prompt-%s" % suite["plugin"],
-            interface, suite)
+        # Build options
+        options = {}
+        for job in resolver.get_dependents():
+            suboptions = options
+            dependencies = resolver.get_dependencies(job)
+            for dependency in dependencies:
+                suboptions = suboptions.setdefault(self._jobs[dependency], {})
 
-    def prompt_suites(self, interface):
-        while True:
-            try:
-                self._suite = self._iterator.go(interface.direction)
-            except StopIteration:
-                break
+        # Build defaults
+        defaults = self.persist.get("default")
+        if defaults is None:
+            defaults = copy.deepcopy(options)
 
-            self._manager.reactor.fire("prompt-suite", interface, self._suite)
+        # Only prompt if not recovering
+        if interface.direction == PREV or not self._recover:
+            self._recover = False
+
+            # Get results
+            defaults = interface.show_tree(_("Select the suites to test"),
+                options, defaults)
+            self.persist.set("default", defaults)
+
+        # Get tests to ignore
+        def get_ignore_jobs(options, results):
+            jobs = []
+            for k, v in options.iteritems():
+                if not v and k not in results:
+                    jobs.append(k)
+
+                else:
+                    jobs.extend(get_ignore_jobs(options[k], results.get(k, {})))
+
+            return jobs
+
+        ignore_jobs = get_ignore_jobs(options, defaults)
+        self._manager.reactor.fire("ignore-jobs", ignore_jobs)
 
 
 factory = SuitesPrompt

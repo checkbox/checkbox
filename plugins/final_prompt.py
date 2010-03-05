@@ -25,7 +25,9 @@ class FinalPrompt(Plugin):
 
     def register(self, manager):
         super(FinalPrompt, self).register(manager)
-        self._manager.reactor.call_on("prompt-finish", self.prompt_finish)
+
+        # Final should be prompted first
+        self._manager.reactor.call_on("prompt-finish", self.prompt_finish, -100)
 
     def prompt_finish(self, interface):
         interface.show_text(_("Successfully finished testing!"),

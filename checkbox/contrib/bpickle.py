@@ -81,7 +81,7 @@ def dumps_tuple(obj, _dt=None):
 
 def dumps_dict(obj, _dt=None):
     res = []
-    keys = sorted(obj.keys())
+    keys = sorted(obj.iterkeys())
     append = res.append
     for key in keys:
         val = obj[key]

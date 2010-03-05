@@ -29,6 +29,7 @@ class ScriptsInfo(Plugin):
 
     def register(self, manager):
         super(ScriptsInfo, self).register(manager)
+
         self._manager.reactor.call_on("gather", self.gather, -1000)
 
     def gather(self):

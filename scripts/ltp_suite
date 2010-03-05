@@ -11,7 +11,7 @@ from urlparse import urlparse
 from optparse import OptionParser
 
 
-DEFAULT_DIRECTORY = "/tmp/checkbox.ltp"
+DEFAULT_DIRECTORY = "/var/cache/checkbox/ltp"
 DEFAULT_LOCATION = ":pserver:anonymous:@ltp.cvs.sourceforge.net:/cvsroot/ltp"
 DEFAULT_TIMEOUT = 10800
 
@@ -26,7 +26,7 @@ def print_line(key, value):
         print "%s: %s" % (key, value)
 
 def print_element(element):
-    for key, value in element.items():
+    for key, value in element.iteritems():
         print_line(key, value)
 
     print

@@ -22,14 +22,15 @@ from checkbox.plugin import Plugin
 
 class ClientInfo(Plugin):
 
-    # Version of the user agent
-    version = String()
-
     # Name of the user agent
     name = String()
 
+    # Version of the user agent
+    version = String()
+
     def register(self, manager):
         super(ClientInfo, self).register(manager)
+
         self._manager.reactor.call_on("report", self.report)
 
     def report(self):

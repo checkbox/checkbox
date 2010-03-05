@@ -22,13 +22,10 @@ import logging
 from gettext import gettext as _
 from string import Template
 
-from checkbox.lib.iterator import IteratorContain
 from checkbox.lib.process import Process
 from checkbox.lib.signal import signal_to_name, signal_to_description
 
-from checkbox.depends import DependsIterator
-from checkbox.frontend import frontend
-from checkbox.requires import RequiresIterator
+from checkbox.message import MessageStore
 
 
 FAIL = "fail"
@@ -43,16 +40,14 @@ ALL_STATUS = [FAIL, PASS, UNINITIATED, UNRESOLVED, UNSUPPORTED, UNTESTED]
 
 class Job(object):
 
-    def __init__(self, command, environ=None, timeout=None, user=None):
+    def __init__(self, command, environ=None, timeout=None):
         if environ is None:
             environ = []
 
         self.command = command
         self.environ = environ
         self.timeout = timeout
-        self.user = user
 
-    @frontend("get_job_result")
     def execute(self):
         # Sanitize environment
         process_environ = dict(os.environ)
@@ -97,10 +92,40 @@ class Job(object):
         return (status, data, duration)
 
 
-class JobIterator(IteratorContain):
+class JobStore(MessageStore):
+    """A job store which stores its jobs in a file system hierarchy."""
 
-    def __init__(self, iterator, registry, compare=None):
-        iterator = RequiresIterator(iterator, registry)
-        iterator = DependsIterator(iterator, compare)
+    def add(self, job):
+        # TODO: Order alphabetically within suite or non-suite
 
-        super(JobIterator, self).__init__(iterator)
+        # Remove the same job if it already exists without a suite
+        if "suite" in job:
+            for filename in self._find_matching_messages(name=job["name"], suite=None):
+                os.unlink(filename)
+
+        # Return if the same job is already in the store
+        if list(self._find_matching_messages(name=job["name"])):
+            return
+
+        message_id = super(JobStore, self).add(job)
+
+        # TODO: Apply dependencies
+        if "depends" in job:
+            for depends in job["depends"]:
+                for filename in self._find_matching_messages(suite=job.get("suite")):
+                    message = self._read_message(filename)
+                    if job["name"] in message.get("depends", []):
+                        new_filename = self._get_next_message_filename()
+                        os.rename(filename, new_filename)
+
+        return message_id
+
+    # TODO: Optimize by only searching backwards until a given condition
+    def _find_matching_messages(self, **kwargs):
+        for filename in self._walk_messages():
+            message = self._read_message(filename)
+            for key, value in kwargs.iteritems():
+                if message.get(key) != value:
+                    break
+            else:
+                yield filename

@@ -16,68 +16,24 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-from checkbox.job import Job, JobIterator, FAIL, UNINITIATED
 from checkbox.plugin import Plugin
-
-from gettext import gettext as _
 
 
 class AttachmentInfo(Plugin):
 
     def register(self, manager):
         super(AttachmentInfo, self).register(manager)
-        self._attachments = []
 
-        for (rt, rh) in [
-             ("report", self.report),
-             ("report-attachment", self.report_attachment)]:
-            self._manager.reactor.call_on(rt, rh)
-
-        self._manager.reactor.call_on("prompt-test", self.prompt_test, 100)
-
-    def prompt_test(self, interface, test):
-        if test.get("status", UNINITIATED) != FAIL:
-            return
-
-        attachments = []
-        for attachment in self._attachments:
-            if test["suite"] == attachment.get("suite", None) and \
-               test["name"] in attachment.get("depends", []):
-                job = Job(attachment["command"], attachment.get("environ"),
-                    attachment.get("timeout"), attachment.get("user"))
-                (status, data, duration) = interface.show_progress(
-                    _("Running attachment..."), job.execute)
-                attachment = dict(attachment)
-                attachment["test"] = test["name"]
-                attachment["suite"] = test["suite"]
-                attachment["data"] = data
-                attachment["duration"] = duration
-                attachment["status"] = status
-                attachments.append(attachment)
-
-        if attachments:
-            self._manager.reactor.fire("report-attachments", attachments)
-
-    def report(self):
-        attachments = []
-        iterator = JobIterator(self._attachments, self._manager.registry)
-        for attachment in iterator:
-            if not attachment.get("depends", []):
-                job = Job(attachment["command"], attachment.get("environ"),
-                    attachment.get("timeout"))
-                (status, data, duration) = job.execute()
-                attachment = dict(attachment)
-                attachment["data"] = data
-                attachment["duration"] = duration
-                attachment["status"] = status
-                attachments.append(attachment)
-
-        if attachments:
-            self._manager.reactor.fire("report-attachments", attachments)
+        self._manager.reactor.call_on("prompt-attachment",
+            self.prompt_attachment)
+        self._manager.reactor.call_on("report-attachment",
+            self.report_attachment, -10)
 
     def report_attachment(self, attachment):
-        if "command" in attachment:
-            self._attachments.append(attachment)
+        attachment["type"] = "attachment"
+
+    def prompt_attachment(self, interface, attachment):
+        self._manager.reactor.fire("prompt-shell", interface, attachment)
 
 
 factory = AttachmentInfo

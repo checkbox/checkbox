@@ -21,7 +21,7 @@
         <li>Software
         <ul>
             <li><a href="#packages">Packages</a></li>
-            <li><a href="#lsb_release">LSB</a></li>
+            <li><a href="#lsbrelease">LSB</a></li>
         </ul></li>
         <li><a href="#questions">Questions</a></li>
         <li><a href="#context">Contextual Information</a></li>
@@ -34,7 +34,7 @@
     <xsl:apply-templates select=".//hardware/processors" />
     <xsl:apply-templates select=".//hardware/lspci" />
     <xsl:apply-templates select=".//software/packages" />
-    <xsl:apply-templates select=".//software/lsb_release" />
+    <xsl:apply-templates select=".//software/lsbrelease" />
     <xsl:apply-templates select=".//questions" />
     <xsl:apply-templates select=".//context" />
     </body>
@@ -99,8 +99,8 @@
     <p class="navigation"><a href="#toc">Back to Table of Contents</a></p>
 </xsl:template>
 
-<xsl:template match="software/lsb_release">
-    <h2 id="lsb_release">LSB</h2>
+<xsl:template match="software/lsbrelease">
+    <h2 id="lsbrelease">LSB</h2>
     <table>
         <xsl:for-each select="property">
             <tr>

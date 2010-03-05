@@ -26,10 +26,9 @@ class PluginManager(ComponentManager):
     Plugin manager which extends the component to support the concepts
     of a reactor.
     """
-    def __init__(self, config, reactor, registry):
+    def __init__(self, config, reactor):
         super(PluginManager, self).__init__(config)
         self.reactor = reactor
-        self.registry = registry
 
         # Load sections
         self.sections = []

@@ -189,13 +189,16 @@ class ListVariable(Variable):
         elif not isinstance(values, (list, tuple)):
             raise ValueError("%r is not a list or tuple" % (values,))
 
-        return [item_factory(value=v).get() for v in values]
+        for i, v in enumerate(values):
+            values[i] = item_factory(value=v).get()
+
+        return values
 
 
 class TupleVariable(ListVariable):
 
     def coerce(self, values):
-        values = super(TupleVariable, self).coerce(values)
+        values = super(TupleVariable, self).coerce(list(values))
         return tuple(values)
 
 
@@ -229,11 +232,11 @@ class DictVariable(Variable):
     def coerce(self, value):
         if not isinstance(value, dict):
             raise ValueError("%r is not a dict." % (value,))
-        new_dict = {}
-        for k, v in value.items():
-            new_dict[self._key_schema(value=k).get()] = \
+
+        for k, v in value.iteritems():
+            value[self._key_schema(value=k).get()] = \
                 self._value_schema(value=v).get()
-        return new_dict
+        return value
 
 
 class MapVariable(Variable):
@@ -252,7 +255,6 @@ class MapVariable(Variable):
                 raise ValueError("%r is not a valid key as per %r"
                                    % (k, self._schema))
 
-        new_dict = {}
         for attribute, variable in self._schema.iteritems():
             old_value = value.get(attribute)
             try:
@@ -263,9 +265,9 @@ class MapVariable(Variable):
                     % (attribute, value, e))
 
             if attribute in value:
-                new_dict[attribute] = new_value
+                value[attribute] = new_value
 
-        return new_dict
+        return value
 
 
 def get_variable(obj, attribute):
