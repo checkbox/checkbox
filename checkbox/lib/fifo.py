@@ -19,8 +19,6 @@
 import os
 import struct
 
-from tempfile import mktemp
-
 from checkbox.contrib.bpickle import dumps, loads
 
 
@@ -74,9 +72,6 @@ class FifoWriter(FifoBase):
         return self.write_string(string)
 
 
-def create_fifo(path=None, mode=0666):
-    if not path:
-        path = mktemp()
-
+def create_fifo(path, mode=0666):
     os.mkfifo(path, mode)
     return path
