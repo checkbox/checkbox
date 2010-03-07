@@ -23,7 +23,7 @@ import posixpath
 from gettext import gettext as _
 from string import Template
 
-from checkbox.job import Job, UNINITIATED
+from checkbox.job import UNINITIATED
 from checkbox.user_interface import (UserInterface,
     NEXT, YES_ANSWER, NO_ANSWER, SKIP_ANSWER,
     ANSWER_TO_STATUS, STATUS_TO_ANSWER)
@@ -443,14 +443,10 @@ class GTKInterface(UserInterface):
 
         return results
 
-    def _run_test(self, test):
+    def _run_test(self, test, runner):
         self._set_sensitive("button_test", False)
 
-        message = _("Running test %s...") % test["name"]
-        # TODO: fix this to support running tests as root
-        job = Job(test["command"], test.get("environ"),
-            test.get("timeout"))
-        (status, data, duration) = self.show_progress(message, job.execute)
+        (status, data, duration) = runner(test)
 
         description = Template(test["description"]).substitute({
             "output": data.strip()})
@@ -461,13 +457,13 @@ class GTKInterface(UserInterface):
         self._set_sensitive("button_test", True)
 
     @GTKHack
-    def show_test(self, test):
+    def show_test(self, test, runner):
         self._set_sensitive("button_test", False)
         self._notebook.set_current_page(2)
 
         # Set test description
         if re.search(r"\$output", test["description"]):
-            self._run_test(test)
+            self._run_test(test, runner)
         else:
             self._set_hyper_text_view("hyper_text_view_test",
                 test["description"])
@@ -479,7 +475,7 @@ class GTKInterface(UserInterface):
             if self._handler_id:
                 button_test.disconnect(self._handler_id)
             self._handler_id = button_test.connect("clicked",
-                lambda w, t=test: self._run_test(t))
+                lambda w, t=test, r=runner: self._run_test(t, r))
 
         self._set_text_view("text_view_comment", test.get("data", ""))
         self._set_active(STATUS_TO_BUTTON[test.get("status", UNINITIATED)])

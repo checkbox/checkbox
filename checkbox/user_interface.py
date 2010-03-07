@@ -119,7 +119,7 @@ class UserInterface(object):
     def show_tree(self, text, options={}, default={}):
         return default
 
-    def show_test(self, test):
+    def show_test(self, test, runner):
         test["status"] = UNTESTED
         test["data"] = "Manual test run non interactively."
 

@@ -23,7 +23,6 @@ import termios
 
 from gettext import gettext as _
 
-from checkbox.job import Job
 from checkbox.user_interface import (UserInterface, ANSWER_TO_STATUS,
     ALL_ANSWERS, YES_ANSWER, NO_ANSWER, SKIP_ANSWER)
 
@@ -308,21 +307,13 @@ class CLIInterface(UserInterface):
 
         return results
 
-    def _run_test(self, test):
-        message = _("Running test %s...") % test["name"]
-        # TODO: fix this to support running tests as root
-        job = Job(test["command"], test.get("environ"),
-            test.get("timeout"))
-        (status, data, duration) = self.show_progress(message, job.execute)
-        return data
-
-    def show_test(self, test):
+    def show_test(self, test, runner):
         options = list([ANSWER_TO_OPTION[a] for a in ALL_ANSWERS])
         if "command" in test:
             options.append(_("test"))
 
         if re.search(r"\$output", test["description"]):
-            output = self._run_test(test)
+            output = runner(test)[1]
         else:
             output = ""
 
@@ -341,7 +332,7 @@ class CLIInterface(UserInterface):
             if response < len(ALL_ANSWERS):
                 break
 
-            output = self._run_test(test)
+            output = runner(test)[1]
 
             options[-1] = _("test again")
 

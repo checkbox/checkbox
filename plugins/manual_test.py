@@ -30,7 +30,13 @@ class ManualTest(Plugin):
             self._manager.reactor.call_on(rt, rh)
 
     def prompt_manual(self, interface, test):
-        interface.show_test(test)
+        def runner(test):
+            # Avoid modifying the content of test in place
+            temp = dict(test)
+            self._manager.reactor.fire("prompt-shell", interface, temp)
+            return (temp["status"], temp["data"], temp["duration"])
+
+        interface.show_test(test, runner)
         self._manager.reactor.fire("prompt-test", interface, test)
 
     def report_manual(self, test):
