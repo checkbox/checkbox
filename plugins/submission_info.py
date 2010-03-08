@@ -20,10 +20,9 @@ import logging
 
 from datetime import datetime
 
-from checkbox.lib.file import write
 from checkbox.lib.safe import safe_md5sum
 
-from checkbox.properties import Path, String
+from checkbox.properties import String
 from checkbox.plugin import Plugin
 
 
@@ -31,9 +30,6 @@ class SubmissionInfo(Plugin):
 
     # Submission ID to exchange information with the server.
     submission_id = String(required=False)
-
-    # Filename where Submission ID is cached
-    filename = Path(default="%(checkbox_data)s/submission")
 
     def register(self, manager):
         super(SubmissionInfo, self).register(manager)
@@ -62,7 +58,6 @@ class SubmissionInfo(Plugin):
 
         message = submission_id
         logging.info("Submission ID: %s", message)
-        write(self.filename, message)
         self._manager.reactor.fire("report-submission_id", message)
 
 

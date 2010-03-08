@@ -16,6 +16,8 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
+import logging
+
 from subprocess import Popen, PIPE
 
 from gettext import gettext as _
@@ -148,8 +150,23 @@ class ApportPrompt(Plugin):
     # Default package if none is detected
     default_package = String(required=False)
 
+    # Filename where Submission ID is cached
+    submission_filename = Path(default="%(checkbox_data)s/submission")
+
+    # Filename where System ID is cached
+    system_filename = Path(default="%(checkbox_data)s/system")
+
     def register(self, manager):
         super(ApportPrompt, self).register(manager)
+
+        self._submission_id = None
+        self._system_id = None
+
+        for (rt, rh) in [
+             ("exchange-success", self.exchange_success),
+             ("report-submission_id", self.report_submission_id),
+             ("report-system_id", self.report_system_id)]:
+            self._manager.reactor.call_on(rt, rh)
 
         if not isinstance(ApportUserInterface, DummyUserInterface):
             self._manager.reactor.call_on("gather", self.gather)
@@ -225,6 +242,26 @@ class ApportPrompt(Plugin):
         except SystemExit, e:
             # In case of error, show_error already have been called
             raise StopAllException
+
+    def exchange_success(self, response):
+        for message, filename in [
+             (self._submission_id, self.submission_filename),
+             (self._system_id, self.system_filename)]:
+            try:
+                file = open(filename, "w")
+                try:
+                    file.write(message)
+                finally:
+                    file.close()
+            except IOError, e:
+                logging.info("Failed to write to file '%s': %d %s",
+                    filename, e.errno, e.strerror)
+
+    def report_submission_id(self, submission_id):
+        self._submission_id = submission_id
+
+    def report_system_id(self, system_id):
+        self._system_id = system_id
 
 
 factory = ApportPrompt

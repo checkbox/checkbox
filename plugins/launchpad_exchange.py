@@ -164,6 +164,7 @@ please try again later."""))
             logging.error(header)
         else:
             text = response.read()
+            self._manager.reactor.fire("exchange-success", text)
             logging.info("Sent %d bytes and received %d bytes in %s.",
                 file.size, len(text), format_delta(end_time - start_time))
 
