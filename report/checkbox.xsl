@@ -71,7 +71,7 @@
                 <th>Property</th>
                 <th>Value</th>
             </tr>
-        <xsl:for-each select="property">  
+        <xsl:for-each select="property">
             <tr>
                 <td class="label"><xsl:value-of select="@name" /></td>
                 <td class="property"><xsl:value-of select="." /></td>
