@@ -42,7 +42,7 @@ class BackendInfo(Plugin):
             self._manager.reactor.call_on(rt, rh)
 
         # Backend should run as early as possible
-        self._manager.reactor.call_on("gather", self.gather, -1000)
+        self._manager.reactor.call_on("gather", self.gather, -100)
 
     def get_root_command(self, command):
         uid = os.getuid()
