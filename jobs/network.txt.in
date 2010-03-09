@@ -19,24 +19,3 @@ _description:
  $output
  .
  Is this correct?
-
-plugin: manual
-name: modem_test
-command: network_check
-_description:
- Built-in modem network connection procedure:
- 1.- Open System -> Administration -> Network
- 2.- Press Unlock and type your password to unlock the settings
- 3.- Select the Connections tab.
- 4.- Select Point to point connection and press Properties.
- 5.- Tick Enable this connection
- 6.- Choose Serial Modem from the Connection Type drop down.
- 7.- Under Internet Service Provider data, enter the phone number and dial prefix.
- 8.- Under Account Data enter your password and username.
- 9.- Click the Modem tab.
- 10.- Choose the modem settings you require.
- 11.- Click OK.
- 12.- Select the DNS tab and enter the DNS addresses of your ISP.
- 13.- Click Close.
- .
- Can you successfully establish a network connection?
