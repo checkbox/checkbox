@@ -63,7 +63,13 @@ class BackendInfo(Plugin):
         else:
             prefix = ["sudo", "-E"]
 
-        return prefix + command
+        # Append PATH
+        prefix.append("PATH=%s" % os.environ["PATH"])
+
+        # Extend command
+        prefix.extend(command)
+
+        return prefix
 
     def gather(self):
         self.directory = mkdtemp(prefix="checkbox")

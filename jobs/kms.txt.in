@@ -4,7 +4,7 @@ requires:
  package.alias == 'linux'
  package.name == 'kbd'
 user: root
-command: $CHECKBOX_SHARE/scripts/cycle_vts
+command: cycle_vts
 _description:
  Click Test to switch to another virtual terminal and then back to X.  Your screen will change temporarily to a text console and then switch back to your current session.
  .

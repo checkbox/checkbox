@@ -3,7 +3,7 @@ name: disk_test
 timeout: 10
 requires: package.name == 'lshw'
 user: root
-command: $CHECKBOX_SHARE/scripts/disk_test
+command: disk_test
 _description:
  The following hard drives were detected:
  .
@@ -15,7 +15,7 @@ plugin: manual
 name: disk_bench
 requires: device.category == 'DISK'
 user: root
-command: $CHECKBOX_SHARE/scripts/disk_bench_test
+command: disk_bench_test
 _description:
  Disk benchmark:
  .
