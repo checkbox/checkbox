@@ -12,7 +12,7 @@ from checkbox.lib.log import set_logging
 from checkbox.lib.redirect import RedirectEcho, RedirectTee
 from checkbox.lib.template_i18n import TemplateI18n
 
-from checkbox.resource import Resource
+from checkbox.resource import ResourceMap
 
 
 DEFAULT_LOG_LEVEL = "critical"
@@ -29,19 +29,16 @@ def get_redirect_file(input, output):
     return temp
 
 def get_package_names(file):
-    # Redirect stdout and stderr so that they can be logged
-    class PackageResource(Resource):
+    package_names = set()
+    class PackageObject(object):
 
-        def __init__(self, names, compare=0):
-            super(PackageResource, self).__init__({"package": Resource({"name": self})})
-            self._names = names
+        def __init__(self, compare):
             self._compare = compare
 
-        def __cmp__(self, other):
-            self._names.append(other)
+        def __eq__(self, other):
+            package_names.add(other)
             return self._compare
 
-    names = []
     # In order to read the package names from the requires field
     # in messages, it is necessary to trick eval into thinking that
     # package.name exists using the PackageResource. The problem is
@@ -51,8 +48,10 @@ def get_package_names(file):
     # it is false. The solution is to compare against both zero and
     # non-zero comparison results. Caveat, this doesn't work when
     # both operators are used: foo or (bar and baz)
-    resource_0 = PackageResource(names, compare=0)
-    resource_1 = PackageResource(names, compare=1)
+    resource_0 = ResourceMap()
+    resource_0["package"] = [{"name": PackageObject(compare=True)}]
+    resource_1 = ResourceMap()
+    resource_1["package"] = [{"name": PackageObject(compare=True)}]
 
     template = TemplateI18n()
     messages = template.load_file(file)
@@ -70,8 +69,7 @@ def get_package_names(file):
             resource_0.eval(require)
             resource_1.eval(require)
 
-    # Uniquify names
-    return list(set(names))
+    return list(package_names)
 
 def install_package_names(names):
     class CapturedInstallProgress(apt.InstallProgress):

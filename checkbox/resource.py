@@ -91,7 +91,6 @@ class ResourceGlobals(dict):
         self["__builtins__"] = None
 
         for name in names:
-            #function = getattr(globals()["__builtins__"], name)
             function = getattr(__builtin__, name)
             self[name] = ResourceBuiltin(function)
 
