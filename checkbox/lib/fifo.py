@@ -52,6 +52,9 @@ class FifoReader(FifoBase):
 
     def read_object(self):
         string = self.read_string()
+        if not string:
+            return None
+
         return loads(string)
 
 

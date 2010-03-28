@@ -22,10 +22,11 @@ def main(args):
     while True:
         try:
             message = reader.read_object()
-            job = Job(message["command"], message.get("environ"),
-                message.get("timeout"))
-            result = job.execute()
-            writer.write_object(result)
+            if message:
+                job = Job(message["command"], message.get("environ"),
+                    message.get("timeout"))
+                result = job.execute()
+                writer.write_object(result)
         except IOError, e:
             break
 

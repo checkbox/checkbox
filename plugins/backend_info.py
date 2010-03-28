@@ -91,7 +91,8 @@ class BackendInfo(Plugin):
         if "user" in message:
             self.parent_writer.write_object(message)
             result = self.parent_reader.read_object()
-            self._manager.reactor.fire("message-result", *result)
+            if result:
+                self._manager.reactor.fire("message-result", *result)
 
     def stop(self):
         os.kill(self.pid, signal.SIGHUP)
