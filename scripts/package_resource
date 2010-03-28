@@ -20,6 +20,7 @@
 import os
 import sys
 
+from optparse import OptionParser
 from subprocess import Popen, PIPE
 
 
@@ -27,7 +28,7 @@ from subprocess import Popen, PIPE
 COMMAND = "COLUMNS=200 dpkg -l"
 
 
-def get_packages():
+def get_packages(file):
     desired_to_value = {
         "u": "Unknown",
         "i": "Install",
@@ -53,14 +54,13 @@ def get_packages():
     aliases = {
         "linux-image-" + os.uname()[2]: "linux"}
 
-    file = Popen(COMMAND, stdout=PIPE, shell=True).stdout
-
     # Skip header lines
-    for i in range(4):
-        file.readline()
+    while True:
+        line = file.readline()
+        if line.startswith("+++"):
+            break
 
     # Get length from separator
-    line = file.readline()
     lengths = [0, 1, 2]
     lengths.extend([len(i) + 1 for i in line.split("-")])
     for i in range(4, len(lengths)):
@@ -91,8 +91,20 @@ def get_packages():
 
         yield package
 
-def main():
-    packages = get_packages()
+def main(args):
+    usage = "Usage: %prog [FILE...]"
+    parser = OptionParser(usage=usage)
+    parser.add_option("-i", "--input",
+        action="store_true",
+        help="Read packages from stdin")
+    (options, args) = parser.parse_args(args)
+
+    if options.input:
+        file = sys.stdin
+    else:
+        file = Popen(COMMAND, stdout=PIPE, shell=True).stdout
+
+    packages = get_packages(file)
     for package in packages:
         for key, value in package.iteritems():
             print "%s: %s" % (key, value)
@@ -104,4 +116,4 @@ def main():
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    sys.exit(main(sys.argv[1:]))
