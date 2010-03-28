@@ -1,37 +1,29 @@
 #!/usr/bin/python
 
-import re
+import os
 import sys
 
 from subprocess import Popen, PIPE
-from xml.dom.minidom import parseString
 
 
 def main(args):
-    xml = Popen("lshw -xml -C system -C disk", shell=True,
-        stdout=PIPE, stderr=PIPE).communicate()[0]
+    directory = os.path.dirname(__file__)
+    script = os.path.join(directory, "device_list")
+    disk_devices_string = Popen([script, "disk"], stdout=PIPE).communicate()[0]
 
-    # Safely encode assuming latin1
-    xml = unicode(xml, "latin1")
-    xml = re.sub(ur"[^\x09\x0a\x0d\x20-\ud7ff\ue000-\ufffd]", "", xml,
-        re.UNICODE)
+    disk_devices = disk_devices_string.strip().split("\n")
+    if not disk_devices:
+        print "None"
 
-    # Safely reencode using utf8
-    xml = xml.encode("utf8")
-    dom = parseString(xml)
-    nodes = [n for n in dom.getElementsByTagName("node")
-        if n.getAttribute("id") in ("disk", "storage")]
-    if nodes:
-        for node in nodes:
-            details = []
-            for name in ["product", "description"]:
-                if node.getElementsByTagName(name):
-                    detail = node.getElementsByTagName(name)[0].firstChild.data
-                    details.append(detail)
-
-            print " ".join(details)
-    else:
-        print "None."
+    for disk_device in disk_devices:
+        disk = os.path.basename(disk_device)
+        model_path = "/sys/block/%s/device/model" % disk
+        model_file = open(model_path)
+        try:
+            model_name = model_file.read().strip()
+            print model_name
+        finally:
+            model_file.close()
 
     return 0
 

@@ -1,8 +1,5 @@
 plugin: manual
 name: disk_test
-timeout: 10
-requires: package.name == 'lshw'
-user: root
 command: disk_test
 _description:
  The following hard drives were detected:
