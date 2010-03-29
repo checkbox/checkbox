@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-25 12:34-0500\n"
+"POT-Creation-Date: 2010-03-29 12:20-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../gtk/checkbox-gtk.glade.h:1 ../checkbox_cli/cli_interface.py:350
+#: ../gtk/checkbox-gtk.glade.h:1 ../checkbox_cli/cli_interface.py:341
 msgid "Further information:"
 msgstr ""
 
@@ -50,7 +50,7 @@ msgstr ""
 msgid "_Skip this test"
 msgstr ""
 
-#: ../gtk/checkbox-gtk.glade.h:9 ../checkbox_gtk/gtk_interface.py:491
+#: ../gtk/checkbox-gtk.glade.h:9 ../checkbox_gtk/gtk_interface.py:487
 msgid "_Test"
 msgstr ""
 
@@ -68,13 +68,13 @@ msgid "Detecting your sound device(s):"
 msgstr ""
 
 #. description
-#: ../jobs/audio.txt.in:7 ../jobs/disk.txt.in:19 ../jobs/network.txt.in:16
+#: ../jobs/audio.txt.in:7 ../jobs/disk.txt.in:16 ../jobs/network.txt.in:16
 #: ../jobs/video.txt.in:26
 msgid "$output"
 msgstr ""
 
 #. description
-#: ../jobs/audio.txt.in:7 ../jobs/disk.txt.in:7 ../jobs/network.txt.in:16
+#: ../jobs/audio.txt.in:7 ../jobs/disk.txt.in:4 ../jobs/network.txt.in:16
 #: ../jobs/video.txt.in:26
 msgid "Is this correct?"
 msgstr ""
@@ -128,17 +128,17 @@ msgid "Autotest suite (destructive)"
 msgstr ""
 
 #. description
-#: ../jobs/disk.txt.in:7
+#: ../jobs/disk.txt.in:4
 msgid "The following hard drives were detected:"
 msgstr ""
 
 #. description
-#: ../jobs/disk.txt.in:19
+#: ../jobs/disk.txt.in:16
 msgid "Disk benchmark:"
 msgstr ""
 
 #. description
-#: ../jobs/disk.txt.in:19
+#: ../jobs/disk.txt.in:16
 msgid "Is this ok?"
 msgstr ""
 
@@ -310,25 +310,6 @@ msgid "Testing your connection to the Internet:"
 msgstr ""
 
 #. description
-#: ../jobs/network.txt.in:26
-msgid ""
-"Built-in modem network connection procedure: 1.- Open System -> "
-"Administration -> Network 2.- Press Unlock and type your password to unlock "
-"the settings 3.- Select the Connections tab. 4.- Select Point to point "
-"connection and press Properties. 5.- Tick Enable this connection 6.- Choose "
-"Serial Modem from the Connection Type drop down. 7.- Under Internet Service "
-"Provider data, enter the phone number and dial prefix. 8.- Under Account "
-"Data enter your password and username. 9.- Click the Modem tab. 10.- Choose "
-"the modem settings you require. 11.- Click OK. 12.- Select the DNS tab and "
-"enter the DNS addresses of your ISP. 13.- Click Close."
-msgstr ""
-
-#. description
-#: ../jobs/network.txt.in:26
-msgid "Can you successfully establish a network connection?"
-msgstr ""
-
-#. description
 #: ../jobs/peripheral.txt.in:4
 msgid "Moving the mouse should move the cursor on the screen."
 msgstr ""
@@ -354,7 +335,7 @@ msgstr ""
 #: ../jobs/peripheral.txt.in:24
 msgid ""
 "Connect a USB audio device to your system.  Then open the volume control "
-"application by right-clicking on the speaker icon in the panel and selecting "
+"application by left-clicking on the speaker icon in the panel and selecting "
 "\"Sound Preferences\".  Select the \"Input\" tab and choose your USB "
 "device.  Select the \"Output\" tab and choose your USB device.  When you are "
 "done, click the Test button, then speak into the microphone.  After a few "
@@ -620,53 +601,48 @@ msgstr ""
 msgid "Unknown signal"
 msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:32
+#: ../checkbox_cli/cli_interface.py:31
 msgid "yes"
 msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:33
+#: ../checkbox_cli/cli_interface.py:32
 msgid "no"
 msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:34
+#: ../checkbox_cli/cli_interface.py:33
 msgid "skip"
 msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:127
+#: ../checkbox_cli/cli_interface.py:126
 msgid "Press any key to continue..."
 msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:136
+#: ../checkbox_cli/cli_interface.py:135
 #, python-format
 msgid "Please choose (%s): "
 msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:312 ../checkbox_gtk/gtk_interface.py:449
-#, python-format
-msgid "Running test %s..."
-msgstr ""
-
-#: ../checkbox_cli/cli_interface.py:322
+#: ../checkbox_cli/cli_interface.py:313
 msgid "test"
 msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:346
+#: ../checkbox_cli/cli_interface.py:337
 msgid "test again"
 msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:352
+#: ../checkbox_cli/cli_interface.py:343
 msgid "Please type here and press Ctrl-D when finished:\n"
 msgstr ""
 
-#: ../checkbox_gtk/gtk_interface.py:460
+#: ../checkbox_gtk/gtk_interface.py:456
 msgid "_Test Again"
 msgstr ""
 
-#: ../checkbox_gtk/gtk_interface.py:502
+#: ../checkbox_gtk/gtk_interface.py:498
 msgid "Info"
 msgstr ""
 
-#: ../checkbox_gtk/gtk_interface.py:521
+#: ../checkbox_gtk/gtk_interface.py:517
 msgid "Error"
 msgstr ""
 
@@ -675,23 +651,23 @@ msgstr ""
 msgid "Unable to start web browser to open %s."
 msgstr ""
 
-#: ../plugins/apport_prompt.py:79
+#: ../plugins/apport_prompt.py:81
 msgid ""
 "Collecting information about this test.\n"
 "This might take a few minutes."
 msgstr ""
 
-#: ../plugins/apport_prompt.py:114
+#: ../plugins/apport_prompt.py:116
 msgid ""
 "Collected information is being sent for bug tracking.\n"
 "This might take a few minutes."
 msgstr ""
 
-#: ../plugins/apport_prompt.py:202
+#: ../plugins/apport_prompt.py:219
 msgid "Do you want to report a bug?"
 msgstr ""
 
-#: ../plugins/apport_prompt.py:217
+#: ../plugins/apport_prompt.py:234
 #, python-format
 msgid "Is a package upgrade in process? Error: %s"
 msgstr ""

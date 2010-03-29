@@ -42,7 +42,7 @@ _description:
 
 plugin: shell
 name: compiz_check
-command: run_compiz_check
+command: run_compiz_check | ansi_parser
 _description:
  Check that the hardware is able to run compiz.
 
