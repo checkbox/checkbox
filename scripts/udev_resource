@@ -389,8 +389,9 @@ class DmiDeviceResource(DeviceResource):
     @property
     def product(self):
         if self._category == "CHASSIS":
-            type = int(self._attributes["chassis_type"])
-            return Dmi.chassis_names[type]
+            type_string = self._attributes.get("chassis_type", "0")
+            type_index = int(type_string)
+            return Dmi.chassis_names[type_index]
 
         for name in "name", "version":
             attribute = "%s_%s" % (self._category.lower(), name)
