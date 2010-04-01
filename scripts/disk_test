@@ -10,20 +10,21 @@ def main(args):
     directory = os.path.dirname(__file__)
     script = os.path.join(directory, "device_list")
     disk_devices_string = Popen([script, "disk"], stdout=PIPE).communicate()[0]
+    disk_devices_string = disk_devices_string.strip()
 
-    disk_devices = disk_devices_string.strip().split("\n")
-    if not disk_devices:
+    if not disk_devices_string:
         print "None"
-
-    for disk_device in disk_devices:
-        disk = os.path.basename(disk_device)
-        model_path = "/sys/block/%s/device/model" % disk
-        model_file = open(model_path)
-        try:
-            model_name = model_file.read().strip()
-            print model_name
-        finally:
-            model_file.close()
+    else:
+        disk_devices = disk_devices_string.split("\n")
+        for disk_device in disk_devices:
+            disk = os.path.basename(disk_device)
+            model_path = "/sys/block/%s/device/model" % disk
+            model_file = open(model_path)
+            try:
+                model_name = model_file.read().strip()
+                print model_name
+            finally:
+                model_file.close()
 
     return 0
 
