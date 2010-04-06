@@ -476,7 +476,7 @@ class UdevResource(object):
     def devices(self):
         devices = []
         line_pattern = re.compile(r"(?P<key>\w):\s*(?P<value>.*)")
-        multi_pattern = re.compile(r"(?P<key>\w+)=(?P<value>.*)")
+        multi_pattern = re.compile(r"(?P<key>[^=]+)=(?P<value>.*)")
 
         output = Popen(COMMAND, stdout=PIPE, shell=True).communicate()[0]
         for record in output.split("\n\n"):
