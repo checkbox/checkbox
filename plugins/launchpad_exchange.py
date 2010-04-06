@@ -60,7 +60,8 @@ class LaunchpadExchange(Plugin):
     def register(self, manager):
         super(LaunchpadExchange, self).register(manager)
 
-        self._headers = {}
+        self._headers = {
+            "Referer": self.transport_url}
         self._form = {
             "field.private": "False",
             "field.contactable": "False",
