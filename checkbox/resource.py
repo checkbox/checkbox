@@ -52,15 +52,16 @@ class ResourceObject(object):
         return self._try(other, lambda a, b: a != b)
 
     def _try(self, other, function, until=True, default=False):
+        found = False
         for item in self._list:
             if self._name in item:
                 value = self._convert(item[self._name])
                 if function(value, other) == until:
                     # Append item to list of results
                     self._list._map._results.append(item)
-                    return until
+                    found = True
 
-        return default
+        return until if found else default
 
 
 class ResourceList(list):
