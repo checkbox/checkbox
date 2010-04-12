@@ -1,5 +1,6 @@
 #!/usr/bin/python
 
+import os
 import sys
 
 from optparse import OptionParser
@@ -11,10 +12,15 @@ from checkbox.job import Job
 def main(args):
     usage = "Usage: %prog INPUT OUTPUT"
     parser = OptionParser(usage=usage)
+    parser.add_option("-p", "--path",
+        help="PATH variable to replace in the environment")
     (options, args) = parser.parse_args(args)
 
     if len(args) < 2:
         parser.error("Missing INPUT and OUTPUT")
+
+    if options.path:
+        os.environ["PATH"] = options.path
 
     reader = FifoReader(args[0])
     writer = FifoWriter(args[1])

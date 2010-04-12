@@ -44,7 +44,12 @@ class BackendInfo(Plugin):
         # Backend should run as early as possible
         self._manager.reactor.call_on("gather", self.gather, -100)
 
-    def get_root_command(self, command):
+    def get_command(self, *args):
+        command = [self.command, "--path=%s" % os.environ["PATH"]]
+
+        return command + list(args)
+        
+    def get_root_command(self, *args):
         uid = os.getuid()
         if uid == 0:
             prefix = []
@@ -59,17 +64,11 @@ class BackendInfo(Plugin):
                     stdout=PIPE, stderr=PIPE) == 0 and \
                 call(["pgrep", "-x", "-u", str(uid), "gnome-panel|gconfd-2"],
                     stdout=PIPE, stderr=PIPE) == 0:
-            prefix = ["gksu", "-k", "--"]
+            prefix = ["gksu", "--"]
         else:
-            prefix = ["sudo", "-E"]
+            prefix = ["sudo"]
 
-        # Append PATH
-        prefix.append("PATH=%s" % os.environ["PATH"])
-
-        # Extend command
-        prefix.extend(command)
-
-        return prefix
+        return prefix + self.get_command(*args)
 
     def gather(self):
         self.directory = mkdtemp(prefix="checkbox")
@@ -82,8 +81,7 @@ class BackendInfo(Plugin):
             self.parent_reader = FifoReader(child_output)
 
         else:
-            command = [self.command, child_input, child_output]
-            root_command = self.get_root_command(command)
+            root_command = self.get_root_command(child_input, child_output)
             os.execvp(root_command[0], root_command)
             # Should never get here
 
