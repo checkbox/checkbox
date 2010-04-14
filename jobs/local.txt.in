@@ -59,7 +59,7 @@ command: cat /proc/cpuinfo
 
 name: dmesg
 plugin: attachment
-command: cat /var/log/dmesg
+command: cat /var/log/dmesg | ansi_parser
 
 name: dmi
 plugin: attachment
