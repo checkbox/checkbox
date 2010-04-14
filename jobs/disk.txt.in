@@ -1,7 +1,6 @@
 plugin: manual
 name: disk_test
-user: root
-command: disk_test
+command: udev_resource | filter_templates -w "category=DISK" | awk -F': ' '$1 == "product" { print $2 }'
 _description:
  The following hard drives were detected:
  .
