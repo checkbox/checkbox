@@ -180,16 +180,21 @@ class UserInterface(object):
                     gct = subprocess.Popen(sudo_prefix + ["gconftool", "--get",
                         "/desktop/gnome/url-handlers/http/command"],
                         stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-                    if gct.returncode == 0:
+                    if gct.wait() == 0:
                         preferred_browser = gct.communicate()[0]
                         browser = re.match("((firefox|seamonkey|flock)[^\s]*)", preferred_browser)
                         if browser:
                             subprocess.call(sudo_prefix + [browser.group(0), "-new-window", url])
                             sys.exit(0)
+
                         browser = re.match("(epiphany[^\s]*)", preferred_browser)
                         if browser:
                             subprocess.call(sudo_prefix + [browser.group(0), "--new-window", url])
                             sys.exit(0)
+
+                        subprocess.call(sudo_prefix + [preferred_browser % url], shell=True)
+                        sys.exit(0)
+
                     if subprocess.call(sudo_prefix + ["gnome-open", url]) == 0:
                         sys.exit(0)
             except OSError:
