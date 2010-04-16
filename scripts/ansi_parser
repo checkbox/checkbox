@@ -150,7 +150,8 @@ def main(args):
         for arg in args:
             output.write(parse_filename(arg))
 
-    output.close()
+    if options.output and options.output != "-":
+        output.close()
 
     return 0
 
