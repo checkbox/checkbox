@@ -15,6 +15,7 @@ Replaces: hwtest (<< 0.1-0ubuntu12)
 Provides: hwtest
 Depends: ${misc:Depends}, ${python:Depends}, debconf, udev
 Recommends: dpkg, lsb-release, python-apport, python-apt, python-gst0.10
+Suggests: checkbox-cli | checkbox-gtk
 Conflicts: hwtest (<< 0.1-0ubuntu12)
 XB-Python-Version: ${python:Versions}
 Description: Checkbox System Testing
