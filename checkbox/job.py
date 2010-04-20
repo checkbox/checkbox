@@ -89,7 +89,7 @@ class Job(object):
 
         duration = process.endtime - process.starttime
 
-        return (status, data, duration)
+        return (status, data, duration,)
 
 
 class JobStore(MessageStore):

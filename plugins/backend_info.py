@@ -18,7 +18,6 @@
 #
 import os
 import shutil
-import signal
 
 from subprocess import call, PIPE
 from tempfile import mkdtemp
@@ -48,7 +47,7 @@ class BackendInfo(Plugin):
         command = [self.command, "--path=%s" % os.environ["PATH"]]
 
         return command + list(args)
-        
+
     def get_root_command(self, *args):
         uid = os.getuid()
         if uid == 0:
@@ -93,10 +92,11 @@ class BackendInfo(Plugin):
                 self._manager.reactor.fire("message-result", *result)
 
     def stop(self):
-        os.kill(self.pid, signal.SIGHUP)
-        os.waitpid(self.pid, 0)
-
+        self.parent_writer.close()
+        self.parent_reader.close()
         shutil.rmtree(self.directory)
+
+        os.waitpid(self.pid, 0)
 
 
 factory = BackendInfo

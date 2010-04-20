@@ -6,7 +6,7 @@ import sys
 from optparse import OptionParser
 from checkbox.lib.fifo import FifoReader, FifoWriter
 
-from checkbox.job import Job
+from checkbox.job import Job, FAIL
 
 
 def main(args):
@@ -28,11 +28,14 @@ def main(args):
     while True:
         try:
             message = reader.read_object()
-            if message:
+            if isinstance(message, dict) and "command" in message:
                 job = Job(message["command"], message.get("environ"),
                     message.get("timeout"))
                 result = job.execute()
-                writer.write_object(result)
+            else:
+                result = (FAIL, "", 0,)
+
+            writer.write_object(result)
         except IOError, e:
             break
 
