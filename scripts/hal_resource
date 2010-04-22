@@ -231,9 +231,16 @@ class DeviceResource(object):
         bus = self.bus
 
         # Ignore subsystems using parent or generated names
-        if bus in ("drm", "net", "platform", "pci", "pnp", "scsi_generic",
+        if bus in ("drm", "net", "pci", "pnp", "scsi_generic",
                    "scsi_host", "tty", "usb", "video4linux"):
             return None
+
+        # Treat the floppy device specifically
+        if bus == "platform":
+            if self.driver == "floppy":
+                return "Platform Device"
+            else:
+                return None
 
         if "usb.interface.number" in self._properties:
             return None

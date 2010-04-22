@@ -170,32 +170,38 @@ class DeviceResource(object):
             if test_bit(Input.BTN_MOUSE, bitmask):
                 return "MOUSE"
 
-        if self._environment.get("DEVTYPE") == "disk":
-            if "ID_CDROM" in self._environment:
-                return "CDROM"
+        if "DEVTYPE" in self._environment:
+            devtype = self._environment["DEVTYPE"]
+            if devtype == "disk":
+                if "ID_CDROM" in self._environment:
+                    return "CDROM"
+    
+                if "ID_DRIVE_FLOPPY" in self._environment:
+                    return "FLOPPY"
+    
+            if devtype == "scsi_device":
+                type = int(self._attributes.get("type", "-1"))
+                if type in (0, 7, 14):
+                    return "DISK"
+    
+                if type == 1:
+                    return "TAPE"
+    
+                if type == 2:
+                    return "PRINTER"
+    
+                if type in (4, 5):
+                    return "CDROM"
+    
+                if type == 6:
+                    return "SCANNER"
+    
+                if type == 12:
+                    return "RAID"
 
-            if "ID_DRIVE_FLOPPY" in self._environment:
+        if "DRIVER" in self._environment:
+            if self._environment["DRIVER"] == "floppy":
                 return "FLOPPY"
-
-        if self._environment.get("DEVTYPE") == "scsi_device":
-            type = int(self._attributes.get("type", "-1"))
-            if type in (0, 7, 14):
-                return "DISK"
-
-            if type == 1:
-                return "TAPE"
-
-            if type == 2:
-                return "PRINTER"
-
-            if type in (4, 5):
-                return "CDROM"
-
-            if type == 6:
-                return "SCANNER"
-
-            if type == 12:
-                return "RAID"
 
         if self.product:
             return "OTHER"
@@ -341,6 +347,10 @@ class DeviceResource(object):
                     match = re.match(r"name: (?P<name>.*)", line)
                     if match:
                         return match.group("name")
+
+        # floppy
+        if self.driver == "floppy":
+            return "Platform Device"
 
         return None
 
