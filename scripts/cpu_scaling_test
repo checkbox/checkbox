@@ -177,12 +177,11 @@ class CPUScalingTest(object):
         h = decimal.Decimal(3).sqrt()/2
         n = 6
         for i in range(170):
-            A = n*h*s/2  # A ... area of polygon
             s2 = ((1-h)**2+s**2/4)
             s = s2.sqrt()
             h = (1-s2/4).sqrt()
             n = 2*n
-        # print i,":",A
+
         return True
 
     def verifyMinimumFrequency(self, waitTime=5):
@@ -229,7 +228,6 @@ class CPUScalingTest(object):
 
         print ""
         print "Supported Governors: "
-        comma = False
         for governor in self.governors:
             print "    %s" % governor
 
@@ -483,6 +481,10 @@ def main(args):
         sys.stderr = open(os.devnull, 'a')
 
     test = CPUScalingTest()
+    if not os.path.exists(test.cpufreqDirectory):
+        print "CPU Frequency Scaling not supported"
+        return 0
+
     if not test.getSystemCapabilities():
         parser.error("Failed to get system capabilities")
 
@@ -494,7 +496,7 @@ def main(args):
         returnValues.append(test.runConservativeTests())
         test.restoreGovernors()
 
-    return False in returnValues
+    return 1 if False in returnValues else 0
 
 
 if __name__ == "__main__":
