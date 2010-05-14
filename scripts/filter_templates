@@ -76,6 +76,8 @@ def parse_file(file, *args, **kwargs):
 
 def parse_path(path, *args, **kwargs):
     for filename in path_expand_recursive(path):
+        print "# %s" % filename
+
         name = posixpath.basename(filename)
         if name.startswith(".") or name.endswith("~"):
             continue
