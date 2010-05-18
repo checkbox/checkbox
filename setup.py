@@ -113,6 +113,14 @@ class checkbox_install_scripts(install_scripts, object):
                 "CHECKBOX_DATA:-.": "CHECKBOX_DATA:-$XDG_CACHE_HOME/checkbox"})
 
 
+class checkbox_build_icons(build_icons, object):
+
+    def initialize_options(self):
+        super(checkbox_build_icons, self).initialize_options()
+
+        self.icon_dir = "icons"
+
+
 setup(
     name = "checkbox",
     version = changelog_version(),
@@ -144,5 +152,5 @@ This project provides an extensible interface for system testing.
         "install_scripts": checkbox_install_scripts,
         "build": build_extra,
         "build_i18n":  build_i18n,
-        "build_icons":  build_icons }
+        "build_icons":  checkbox_build_icons }
 )
