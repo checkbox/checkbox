@@ -125,7 +125,7 @@ This project provides an extensible interface for system testing.
 """,
     data_files = [
         ("share/checkbox/", ["backend", "run"]),
-        ("share/checkbox/data/", ["data/*.txt"]),
+        ("share/checkbox/data/", ["data/*"]),
         ("share/checkbox/examples/", ["examples/*"]),
         ("share/checkbox/install/", ["install/*"]),
         ("share/checkbox/patches/", ["patches/*"]),
