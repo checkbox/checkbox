@@ -1,12 +1,14 @@
-name: doc_test
-plugin: manual
+plugin: local
+name: Document Viewer Test
+requires: package.name == "ubuntu-desktop"
 description: Open several common file formats with their default apps via MIME lookup
-command: cat <<'EOF' | run_templates -s 'ls /usr/share/checkbox/data'
-name: '$0'_test$NR
-plugin: manual
-_description: 
- Attempting to open '$0' with it\'s default application
- .
- Did the application open the document properly?
-command: xdg-open '$0'
-EOF
+command: 
+ cat <<'EOF' | run_templates -s 'ls /usr/share/checkbox/data'
+ name: `basename $0`_test
+ plugin: manual
+ description: 
+  Attempting to open '$0' with it\'s default application
+  .
+  Did the application open the document properly?
+ command: xdg-open /usr/share/checkbox/data/$0
+ EOF
