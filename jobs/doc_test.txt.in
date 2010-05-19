@@ -1,0 +1,12 @@
+name: doc_test
+plugin: manual
+description: Open several common file formats with their default apps via MIME lookup
+command: cat <<'EOF' | run_templates -s 'ls /usr/share/checkbox/data'
+name: '$0'_test$NR
+plugin: manual
+_description: 
+ Attempting to open '$0' with it\'s default application
+ .
+ Did the application open the document properly?
+command: xdg-open '$0'
+EOF
