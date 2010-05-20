@@ -3,29 +3,14 @@ name: Document Viewer Test
 requires: package.name == "ubuntu-desktop"
 description: Common Document Types Test
 command: 
- cat <<'EOF' | run_templates -s 'ls /usr/share/checkbox/data'
+ cat <<'EOF' | run_templates -s "find $CHECKBOX_SHARE/data -type f"
  name: `basename $0`_test
  plugin: manual
  description: 
-  Now we will attempt to open the file '$0' with it's default viewer
-  After the viewer opens, check out the file that was opened and then
-  close the application (OpenOffice, Doc Viewer, Totem, etc.)
+  Now we will attempt to open the file '$0' with it's default viewer. After the viewer opens, check out the file that was opened and then close the application (OpenOffice, Doc Viewer, Totem, etc.)
   .
   Click Test to begin
   .
-  Did the application open the document properly? (e.g was it displayed
-  and did it function properly?)
- command: xdg-open /usr/share/checkbox/data/$0
+  Did the application open the document properly? (e.g was it displayed and did it function properly?)
+ command: xdg-open $0
  EOF
-
-plugin: manual
-name: Audio Player Test
-description: Test to see that default audio player works properly
-requires: package.name == "ubuntu-desktop"
-command: totem /usr/share/checkbox/data/FrustrationBlues-ColinRoss.oga
-
-plugin: manual
-name: Video Player Test
-description: Test to see that the default audio player works properly
-requires: package.name == "ubuntu-desktop"
-command: totem /usr/share/checkbox/data/UbuntuIsHumanity.ogv
