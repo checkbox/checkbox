@@ -31,12 +31,15 @@ class Dialog(object):
     Basic dialog class that displays some text
     """
     PALETTE = (('header', 'white', 'dark red'),
+               ('body', 'black', 'light gray'),
+               ('footer', 'white', 'dark red'),
                ('button', 'black', 'dark cyan'),
                ('button focused', 'white', 'dark blue'),
                ('highlight', 'black', 'dark cyan'),
                ('highlight focused', 'white', 'dark blue'),
-               ('body', 'black', 'light gray'),
                )
+    header = None
+    footer = None
 
     def __init__(self, text):
         self.text = text
@@ -55,10 +58,19 @@ class Dialog(object):
         text = urwid.Text(self.text)
         walker.append(text)
 
-        header = urwid.AttrMap(urwid.Text(_('Checkbox System Testing')),
-                               'header')
+        if self.header:
+            header = self.header
+        else:
+            header = urwid.AttrMap(urwid.Text(_('Checkbox System Testing')),
+                                   'header')
+
+        if self.footer:
+            footer = self.footer
+        else:
+            footer = urwid.AttrMap(urwid.Text('Arrow keys/Page Up/Page Down: Move'),
+                                   'footer')
         body = urwid.ListBox(walker)
-        frame = urwid.AttrMap(urwid.Frame(body, header), 'body')
+        frame = urwid.AttrMap(urwid.Frame(body, header, footer), 'body')
 
         self.walker = walker
         self.frame = frame
@@ -275,6 +287,11 @@ class TreeChoiceDialog(ChoiceDialog):
     """
     Choice dialog that shows a tree of options
     """
+    footer = urwid.AttrMap(urwid.Columns((urwid.Text('Arrow keys/Page Up/Page Down: Move'),
+                                          urwid.Text('Space: Select/Unselect'),
+                                          urwid.Text('+/-/Enter: Expand/Collapse'))),
+                           'footer')
+
     def __init__(self, text, options=None, default=None):
         Dialog.__init__(self, text)
         self.options = options
@@ -479,7 +496,7 @@ class TreeNodeWidget(urwid.WidgetWrap):
             if key in ('+', 'enter') and self.expanded == False:
                 urwid.signals.emit_signal(self, 'change')
                 return None
-            elif key in ('+', 'enter') and self.expanded == True:
+            elif key in ('-', 'enter') and self.expanded == True:
                 urwid.signals.emit_signal(self, 'change')
                 return None
 
