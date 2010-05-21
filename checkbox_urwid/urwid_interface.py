@@ -18,15 +18,20 @@
 #
 import urwid
 
+import re, string
 from gettext import gettext as _
 
-from checkbox.user_interface import UserInterface, NEXT, PREV
+from checkbox.user_interface import (UserInterface, NEXT, PREV,
+                                     YES_ANSWER, NO_ANSWER, SKIP_ANSWER,
+                                     ALL_ANSWERS, ANSWER_TO_STATUS)
 
 
 class Dialog(object):
     PALETTE = (('header', 'white', 'dark red'),
                ('button', 'black', 'dark cyan'),
                ('button focused', 'white', 'dark blue'),
+               ('highlight', 'black', 'dark cyan'),
+               ('highlight focused', 'white', 'dark blue'),
                ('body', 'black', 'light gray'),
                )
 
@@ -125,9 +130,99 @@ class ChoiceDialog(Dialog):
         self.walker.append(buttons_box)
 
 
+class InputChoiceDialog(ChoiceDialog):
+    """
+    Choice dialog with an extra input field for feedback
+    """
+    def __init__(self, text, options=None, buttons=None, default=None):
+        Dialog.__init__(self, text)
+        self.options = options
+        self.buttons = buttons
+        self.default = default
+
+
+    def next_button_clicked_cb(self, button):
+        """
+        Set direction, response and exit
+        """
+        self.direction = NEXT
+        self.response = self.selected
+        raise urwid.ExitMainLoop
+
+
+    def previous_button_clicked_cb(self, button):
+        """
+        Set direction, response and exit
+        """
+        self.direction = PREV
+        self.response = self.selected
+        raise urwid.ExitMainLoop
+
+
+    def create_radio_buttons(self, labels):
+        """
+        Create dialog radio buttons
+        """
+        self.radio_button_group = []
+
+        for label in labels:
+            urwid.RadioButton(self.radio_button_group, label)
+        return self.radio_button_group
+
+
+    def show(self):
+        """
+        Display dialog text, input field and option buttons
+        """
+        # Show text
+        Dialog.show(self)
+
+        # Show radio buttons
+        self.walker.append(urwid.Divider())
+        radio_button_group = self.create_radio_buttons(self.options)
+        self.walker.append(urwid.Pile(radio_button_group))
+
+        # Show input
+        self.walker.append(urwid.Divider())
+        self.walker.append(urwid.Text(_('Further information:')))
+        self.input_widget = urwid.Edit(multiline=True)
+        self.walker.append(urwid.AttrMap(self.input_widget,
+                                         'highlight', 'highlight focused'))
+
+        # Show buttons
+        self.walker.append(urwid.Divider())
+        default_buttons = [(_('Previous'), self.previous_button_clicked_cb),
+                           (_('Next'), self.next_button_clicked_cb)]
+        buttons_box = self.create_buttons(self.buttons + default_buttons)
+        self.walker.append(buttons_box)
+
+        # Buttons should have the focus when the dialog is displayed
+        # instead of the edit box
+        self.walker.set_focus(self.walker.index(buttons_box))
+
+
+    @property
+    def input(self):
+        """
+        Return text written by the user as feedback
+        """
+        return self.input_widget.get_edit_text()
+
+
+    @property
+    def selected(self):
+        """
+        Return the label of the selected radio button
+        """
+        label = (radio_button.get_label()
+                 for radio_button in self.radio_button_group
+                 if radio_button.get_state()).next()
+        return label
+
+
 class TreeChoiceDialog(ChoiceDialog):
     """
-    Choice Dialog that shows a tree of options
+    Choice dialog that shows a tree of options
     """
     def __init__(self, text, options=None, default=None):
         Dialog.__init__(self, text)
@@ -163,7 +258,7 @@ class TreeChoiceDialog(ChoiceDialog):
         Set direction, response and exit
         """
         self.direction = NEXT
-        self.button_clicked_cb(self, button)
+        self.button_clicked_cb(button)
 
 
     def previous_button_clicked_cb(self, button):
@@ -202,7 +297,8 @@ class TreeChoiceDialog(ChoiceDialog):
         urwid.signals.connect_signal(widget, 'change',
                                      widget.changed_cb, self.walker)
 
-        for children_name, children_data in data.iteritems():
+        items = sorted(data.iteritems(), key=lambda item: item[0])
+        for children_name, children_data in items:
             child_widget = self.create_tree(children_name, children_data, widget)
             widget.append(child_widget)
 
@@ -218,7 +314,8 @@ class TreeChoiceDialog(ChoiceDialog):
 
         # Show tree
         self.option_widgets = []
-        for name, data in self.options.iteritems():
+        items = sorted(self.options.iteritems(), key=lambda item: item[0])
+        for name, data in items:
             widget = self.create_tree(name, data)
             self.option_widgets.append(widget)
             self.walker.append(widget)
@@ -249,7 +346,7 @@ class TreeNodeWidget(urwid.WidgetWrap):
 
         # Use a checkbox as internal representation of the widget
         self.checkbox = urwid.CheckBox(self._get_label())
-        w = urwid.AttrMap(self.checkbox, 'button', 'button focused')
+        w = urwid.AttrMap(self.checkbox, 'highlight', 'highlight focused')
         super(TreeNodeWidget, self).__init__(w)
 
 
@@ -444,6 +541,14 @@ class UrwidInterface(UserInterface):
     """
     User-friendly CLI interface
     """
+    ANSWER_TO_OPTION = {
+        YES_ANSWER: _('yes'),
+        NO_ANSWER: _('no'),
+        SKIP_ANSWER: _('skip')}
+
+    OPTION_TO_ANSWER = dict((o, a)
+                            for a, o in ANSWER_TO_OPTION.items())
+
     def show_progress_start(self, text):
         """
         Show a progress bar
@@ -478,6 +583,14 @@ class UrwidInterface(UserInterface):
         return dialog.response
 
 
+    def show_entry(self, text, value, previous=None, next=None):
+        raise NotImplementedError
+
+
+    def show_check(self, text, options=[], default=None):
+        raise NotImplementedError
+
+
     def show_radio(self, text, options=[], default=None):
         """
         Show some options and let the user choose between them
@@ -497,8 +610,55 @@ class UrwidInterface(UserInterface):
         return dialog.response
 
 
+    def show_test(self, test, runner):
+        """
+        Show test description, radio buttons to set result
+        and text box for the tester to add feedback if required
+        """
+        # Run external command if needed
+        if re.search(r'\$output', test['description']):
+            output = runner(test)[1]
+        else:
+            output = ''
+
+        # Get options
+        options = list([self.ANSWER_TO_OPTION[a]
+                        for a in ALL_ANSWERS])
+
+        # Get buttons
+        buttons = []
+        if 'command' in test:
+            buttons.append(_('test'))
+
+        while True:
+            # Get description
+            description = (string.Template(test['description'])
+                           .substitute({'output': output.strip()}))
+
+            dialog = InputChoiceDialog(description, options, buttons).run()
+
+            if dialog.response in self.OPTION_TO_ANSWER:
+                break
+
+            # If option cannot be mapped to an answer,
+            # then 'test' button has been clicked
+            output = runner(test)[1]
+            buttons[0] = _('test again')
+
+        answer = self.OPTION_TO_ANSWER[dialog.response]
+        test['data'] = dialog.input
+        test['status'] = ANSWER_TO_STATUS[answer]
+
+
     def show_info(self, text, options=[], default=None):
         """
         Show some options and let the user choose between them
         """
         return self.show_radio(text, options, default)
+
+
+    def show_error(self, text):
+        """
+        Show an error message
+        """
+        return self.show_radio(text)
