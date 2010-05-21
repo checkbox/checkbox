@@ -27,6 +27,9 @@ from checkbox.user_interface import (UserInterface, NEXT, PREV,
 
 
 class Dialog(object):
+    """
+    Basic dialog class that displays some text
+    """
     PALETTE = (('header', 'white', 'dark red'),
                ('button', 'black', 'dark cyan'),
                ('button focused', 'white', 'dark blue'),
@@ -130,7 +133,58 @@ class ChoiceDialog(Dialog):
         self.walker.append(buttons_box)
 
 
-class InputChoiceDialog(ChoiceDialog):
+class InputDialog(ChoiceDialog):
+    """
+    Dialog the gets some input from user
+    """
+    def next_button_clicked_cb(self, button):
+        """
+        Set direction, response and exit
+        """
+        self.direction = NEXT
+        self.response = self.input
+        raise urwid.ExitMainLoop
+
+
+    def previous_button_clicked_cb(self, button):
+        """
+        Set direction, response and exit
+        """
+        self.direction = PREV
+        self.response = self.input
+        raise urwid.ExitMainLoop
+
+
+    def show(self):
+        """
+        Display text and input field
+        """
+        # Show text
+        Dialog.show(self)
+
+        # Show input
+        self.walker.append(urwid.Divider())
+        self.input_widget = urwid.Edit(multiline=True)
+        self.walker.append(urwid.AttrMap(self.input_widget,
+                                         'highlight', 'highlight focused'))
+
+        # Show buttons
+        self.walker.append(urwid.Divider())
+        buttons = ((_('Previous'), self.previous_button_clicked_cb),
+                   (_('Next'), self.next_button_clicked_cb))
+        buttons_box = self.create_buttons(buttons)
+        self.walker.append(buttons_box)
+
+
+    @property
+    def input(self):
+        """
+        Return text written by the user as feedback
+        """
+        return self.input_widget.get_edit_text()
+
+
+class TestDialog(ChoiceDialog):
     """
     Choice dialog with an extra input field for feedback
     """
@@ -172,7 +226,8 @@ class InputChoiceDialog(ChoiceDialog):
 
     def show(self):
         """
-        Display dialog text, input field and option buttons
+        Display dialog text, radio buttons,
+        input field and option buttons
         """
         # Show text
         Dialog.show(self)
@@ -195,10 +250,6 @@ class InputChoiceDialog(ChoiceDialog):
                            (_('Next'), self.next_button_clicked_cb)]
         buttons_box = self.create_buttons(self.buttons + default_buttons)
         self.walker.append(buttons_box)
-
-        # Buttons should have the focus when the dialog is displayed
-        # instead of the edit box
-        self.walker.set_focus(self.walker.index(buttons_box))
 
 
     @property
@@ -584,7 +635,9 @@ class UrwidInterface(UserInterface):
 
 
     def show_entry(self, text, value, previous=None, next=None):
-        raise NotImplementedError
+        dialog = InputDialog(text).run()
+        self.direction = dialog.direction
+        return dialog.response
 
 
     def show_check(self, text, options=[], default=None):
@@ -635,7 +688,7 @@ class UrwidInterface(UserInterface):
             description = (string.Template(test['description'])
                            .substitute({'output': output.strip()}))
 
-            dialog = InputChoiceDialog(description, options, buttons).run()
+            dialog = TestDialog(description, options, buttons).run()
 
             if dialog.response in self.OPTION_TO_ANSWER:
                 break
