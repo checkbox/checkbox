@@ -23,6 +23,7 @@ from gettext import gettext as _
 from checkbox.user_interface import (UserInterface, ANSWER_TO_STATUS,
     ALL_ANSWERS, YES_ANSWER, NO_ANSWER, SKIP_ANSWER)
 
+import ipdb as pdb
 
 class Dialog(object):
     PALETTE = (('header', 'white', 'dark red'),
@@ -158,6 +159,26 @@ class TreeChoiceDialog(ChoiceDialog):
             widget.set_children_state(new_value)
 
 
+    def next_clicked_cb(self, button):
+        """
+        Set response and exit
+        """
+        self.response = {}
+
+        def traverse_widget_state(widget, parent_response):
+            if widget.state:
+                response = {}
+                for child in widget.children:
+                    traverse_widget_state(child, response)
+                parent_response[widget.name] = response
+
+        # Add to response all widgets that have been set
+        for widget in self.option_widgets:
+            traverse_widget_state(widget, self.response)
+
+        raise urwid.ExitMainLoop
+
+
     def create_tree(self, name, data, parent=None):
         """
         Create a tree node and all its children
@@ -191,7 +212,7 @@ class TreeChoiceDialog(ChoiceDialog):
         labels = ((_('Select All'), self.select_all_clicked_cb),
                   (_('Deselect All'), self.deselect_all_clicked_cb),
                   _('Previous'),
-                  _('Next'))
+                  (_('Next'), self.next_clicked_cb))
         buttons_box = self.create_buttons(labels)
         self.walker.append(urwid.Divider())
         self.walker.append(buttons_box)
@@ -308,7 +329,10 @@ class TreeNodeWidget(urwid.WidgetWrap):
         """
         # Left click event
         if button == 1:
-            self.state = not self.state
+            new_state = not self.state
+            self.state = new_state
+            self.set_children_state(new_state)
+            self.set_ancestors_state(new_state)
         # Ignore button release event
         elif button == 0:
             pass
@@ -383,7 +407,7 @@ class ProgressDialog(Dialog):
     def show(self):
         super(ProgressDialog, self).show()
 
-        self.progress_bar = urwid.ProgressBar('pg normal', 'pg_complete')
+        self.progress_bar = urwid.ProgressBar('button', 'button focused')
         self.walker.append(self.progress_bar)
 
         self.loop = urwid.MainLoop(self.frame, self.PALETTE)
@@ -392,9 +416,13 @@ class ProgressDialog(Dialog):
 
 
     def set(self, progress=None):
-        self.progress_count = (self.progress_count + 1) % 5
-        self.progress_bar.set_completion(self.progress_count * 25)
+        self.progress_count = (self.progress_count + 1) % 11
+        self.progress_bar.set_completion(self.progress_count * 10)
         self.loop.draw_screen()
+
+
+    def close(self):
+        self.loop.screen.stop()
 
 
 class UrwidInterface(UserInterface):
@@ -405,7 +433,6 @@ class UrwidInterface(UserInterface):
         """
         Show a progress bar
         """
-        return
         self.progress = ProgressDialog(text)
         self.progress.show()
 
@@ -416,8 +443,14 @@ class UrwidInterface(UserInterface):
         Bar should have been created before
         with show_progress_start method
         """
-        return
         self.progress.set()
+
+
+    def show_progress_stop(self):
+        """
+        Close progress bar dialog
+        """
+        self.progress.close()
 
 
     def show_text(self, text, previous=None, next=None):
