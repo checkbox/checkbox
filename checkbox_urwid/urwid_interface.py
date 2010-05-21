@@ -20,10 +20,8 @@ import urwid
 
 from gettext import gettext as _
 
-from checkbox.user_interface import (UserInterface, ANSWER_TO_STATUS,
-    ALL_ANSWERS, YES_ANSWER, NO_ANSWER, SKIP_ANSWER)
+from checkbox.user_interface import UserInterface, NEXT, PREV
 
-import ipdb as pdb
 
 class Dialog(object):
     PALETTE = (('header', 'white', 'dark red'),
@@ -37,6 +35,7 @@ class Dialog(object):
 
         # Response selected by the user (if any)
         self.response = None
+        self.direction = NEXT
 
 
     def show(self):
@@ -64,7 +63,7 @@ class Dialog(object):
         self.show()
         loop = urwid.MainLoop(self.frame, self.PALETTE)
         loop.run()
-        return self.response
+        return self
 
 
 class ChoiceDialog(Dialog):
@@ -159,7 +158,23 @@ class TreeChoiceDialog(ChoiceDialog):
             widget.set_children_state(new_value)
 
 
-    def next_clicked_cb(self, button):
+    def next_button_clicked_cb(self, button):
+        """
+        Set direction, response and exit
+        """
+        self.direction = NEXT
+        self.button_clicked_cb(self, button)
+
+
+    def previous_button_clicked_cb(self, button):
+        """
+        Set direction, response and exit
+        """
+        self.direction = PREV
+        self.button_clicked_cb(button)
+
+
+    def button_clicked_cb(self, button):
         """
         Set response and exit
         """
@@ -211,8 +226,8 @@ class TreeChoiceDialog(ChoiceDialog):
         # Show buttons
         labels = ((_('Select All'), self.select_all_clicked_cb),
                   (_('Deselect All'), self.deselect_all_clicked_cb),
-                  _('Previous'),
-                  (_('Next'), self.next_clicked_cb))
+                  (_('Previous'), self.previous_button_clicked_cb),
+                  (_('Next'), self.next_button_clicked_cb))
         buttons_box = self.create_buttons(labels)
         self.walker.append(urwid.Divider())
         self.walker.append(buttons_box)
@@ -458,16 +473,18 @@ class UrwidInterface(UserInterface):
         Show just some text
         and wait for the user to select 'Continue'
         """
-        dialog = ChoiceDialog(text)
-        return dialog.run()
+        dialog = ChoiceDialog(text).run()
+        self.direction = dialog.direction
+        return dialog.response
 
 
     def show_radio(self, text, options=[], default=None):
         """
         Show some options and let the user choose between them
         """
-        dialog = ChoiceDialog(text, options, default)
-        return dialog.run()
+        dialog = ChoiceDialog(text, options, default).run()
+        self.direction = dialog.direction
+        return dialog.response
 
 
     def show_tree(self, text, options={}, default={}):
@@ -475,8 +492,9 @@ class UrwidInterface(UserInterface):
         Show some options in a tree hierarchy
         and let the user choose between them
         """
-        dialog = TreeChoiceDialog(text, options, default)
-        return dialog.run()
+        dialog = TreeChoiceDialog(text, options, default).run()
+        self.direction = dialog.direction
+        return dialog.response
 
 
     def show_info(self, text, options=[], default=None):
