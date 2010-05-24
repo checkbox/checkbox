@@ -346,7 +346,7 @@ class TreeChoiceDialog(ChoiceDialog):
         def traverse_widget_state(widget, parent_response):
             if widget.state:
                 response = {}
-                for child in widget.children:
+                for child in widget:
                     traverse_widget_state(child, response)
                 parent_response[widget.name] = response
 
@@ -373,6 +373,17 @@ class TreeChoiceDialog(ChoiceDialog):
         return widget
 
 
+    def _set_default(self, widgets, default):
+        """
+        Set selected nodes by default recursively
+        """
+        for name, default_children in default.iteritems():
+            for widget in widgets:
+                if widget.name == name:
+                    widget.state = True
+                    self._set_default(widget.children,
+                                      default_children)
+
     def show(self):
         """
         Display dialog text, options tree and buttons
@@ -387,6 +398,10 @@ class TreeChoiceDialog(ChoiceDialog):
             widget = self.create_tree(name, data)
             self.option_widgets.append(widget)
             self.walker.append(widget)
+
+        self._set_default([node for node in self.walker
+                           if isinstance(node, TreeNodeWidget)],
+                          self.default)
 
         # Show buttons
         labels = ((_('Select All'), self.select_all_clicked_cb),
@@ -416,6 +431,13 @@ class TreeNodeWidget(urwid.WidgetWrap):
         self.checkbox = urwid.CheckBox(self._get_label())
         w = urwid.AttrMap(self.checkbox, 'highlight', 'highlight focused')
         super(TreeNodeWidget, self).__init__(w)
+
+
+    def __iter__(self):
+        """
+        Iterate over children nodes
+        """
+        return iter(self.children)
 
 
     def append(self, child):
@@ -466,7 +488,7 @@ class TreeNodeWidget(urwid.WidgetWrap):
             parent = self.parent
             while parent:
                 if any((child.state
-                        for child in parent.children)):
+                        for child in parent)):
                     break
                 parent.state = new_state
                 parent = parent.parent
@@ -477,7 +499,7 @@ class TreeNodeWidget(urwid.WidgetWrap):
         Set the state of all children recursively
         """
         self.state = new_state
-        for child in self.children:
+        for child in self:
             child.set_children_state(new_state)
 
 
@@ -718,6 +740,8 @@ class UrwidInterface(UserInterface):
         answer = self.OPTION_TO_ANSWER[dialog.response]
         test['data'] = dialog.input
         test['status'] = ANSWER_TO_STATUS[answer]
+        self.direction = dialog.direction
+        return self.response
 
 
     def show_info(self, text, options=[], default=None):
