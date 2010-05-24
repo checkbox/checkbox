@@ -53,23 +53,26 @@ class Dialog(object):
         """
         Show dialog
         """
-        walker = urwid.SimpleListWalker([])
-
-        text = urwid.Text(self.text)
-        walker.append(text)
-
+        # Set header
         if self.header:
             header = self.header
         else:
             header = urwid.AttrMap(urwid.Text(_('Checkbox System Testing')),
                                    'header')
 
+        # Set footer
         if self.footer:
             footer = self.footer
         else:
             footer = urwid.AttrMap(urwid.Text('Arrow keys/Page Up/Page Down: Move'),
                                    'footer')
-        body = urwid.ListBox(walker)
+
+        # Set body
+        text = urwid.Text(self.text)
+        walker = urwid.SimpleListWalker([])
+        body = urwid.Pile((('flow', text),
+                           ('weight', 1, urwid.ListBox(walker))))
+
         frame = urwid.AttrMap(urwid.Frame(body, header, footer), 'body')
 
         self.walker = walker
@@ -444,6 +447,17 @@ class TreeNodeWidget(urwid.WidgetWrap):
         return iter(self.children)
 
 
+    def __len__(self):
+        """
+        Return the length of the visible widgets
+        """
+        length = 1
+        if self.expanded:
+            length += sum([len(child) for child in self])
+
+        return length
+
+
     def append(self, child):
         """
         Append a child
@@ -572,10 +586,15 @@ class TreeNodeWidget(urwid.WidgetWrap):
         self.checkbox.set_label(self._get_label())
 
 
-    def _get_widget(self):
+    def _collapse_children(self):
         """
-        Create widget used internally as node representation
+        Collapse all children
         """
+        for child in self:
+            if child.expanded:
+                child._collapse_children()
+                child.expanded = False
+                child._update_label()
 
 
     def changed_cb(self, walker):
@@ -587,8 +606,9 @@ class TreeNodeWidget(urwid.WidgetWrap):
         if self.expanded:
             del_start_position = walker.index(self) + 1
             del_end_position = (del_start_position +
-                                len(self.children))
+                                len(self) - 1)
             del walker[del_start_position:del_end_position]
+            self._collapse_children()
             self.expanded = False
         else:
             insert_position = position + 1
@@ -611,11 +631,12 @@ class ProgressDialog(Dialog):
 
 
     def show(self):
+        # Show body
         super(ProgressDialog, self).show()
-
         self.progress_bar = urwid.ProgressBar('button', 'button focused')
         self.walker.append(self.progress_bar)
 
+        # Run main loop
         self.loop = urwid.MainLoop(self.frame, self.PALETTE)
         self.loop.screen.start()
         self.loop.draw_screen()
