@@ -38,6 +38,15 @@ _description:
  Do you hear a sound through the headphones?
 
 plugin: manual
+name: sound_check
+depends: playback_auto
+requires:
+ device.category == 'AUDIO'
+ package.name == 'alsa-base'
+_description:
+ Do you hear any distortion, clicks or other strange noises from your speakers?
+
+plugin: manual
 name: alsa_record_playback_internal
 depends: playback_auto
 requires:
