@@ -49,7 +49,7 @@ class Dialog(object):
         self.direction = NEXT
 
 
-    def show(self):
+    def show(self, body=None):
         """
         Show dialog
         """
@@ -68,14 +68,14 @@ class Dialog(object):
                                    'footer')
 
         # Set body
-        text = urwid.Text(self.text)
-        walker = urwid.SimpleListWalker([])
-        body = urwid.Pile((('flow', text),
-                           ('weight', 1, urwid.ListBox(walker))))
+        if not body:
+            text = urwid.Text(self.text)
+            walker = urwid.SimpleListWalker([])
+            body = urwid.Pile((('flow', text),
+                               ('weight', 1, urwid.ListBox(walker))))
+            self.walker = walker
 
         frame = urwid.AttrMap(urwid.Frame(body, header, footer), 'body')
-
-        self.walker = walker
         self.frame = frame
 
 
@@ -625,16 +625,36 @@ class ProgressDialog(Dialog):
     Show progress through a bar
     and pulse it when needed
     """
+    MAX_VALUE = 10
+    BAR_LENGTH = 2
+
+    def _gen_coordinates(self):
+        while True:
+            for i in range(self.MAX_VALUE-self.BAR_LENGTH+1):
+                yield i, i+self.BAR_LENGTH
+
+            for i in range(self.MAX_VALUE-self.BAR_LENGTH+1):
+                yield self.MAX_VALUE-(i+self.BAR_LENGTH), self.MAX_VALUE-i
+
+
     def __init__(self, text):
         super(ProgressDialog, self).__init__(text)
-        self.progress_count = 0
+        self.progress_coordinates = self._gen_coordinates()
 
 
     def show(self):
+        # Progress bar is an urwid.BarGraph instead of a real urwid.ProgressBar
+        # because urwid.ProgressBar cannot pulse and always display
+        # the percentage of completion
+        self.progress_bar = urwid.BarGraph(['highlight', 'highlight focused'])
+
         # Show body
-        super(ProgressDialog, self).show()
-        self.progress_bar = urwid.ProgressBar('button', 'button focused')
-        self.walker.append(self.progress_bar)
+        body = urwid.Pile((('flow', urwid.Text(self.text)),
+                           ('fixed', 2, self.progress_bar),
+                           ('weight', 1, urwid.SolidFill()),
+                           ))
+
+        super(ProgressDialog, self).show(body)
 
         # Run main loop
         self.loop = urwid.MainLoop(self.frame, self.PALETTE)
@@ -643,8 +663,12 @@ class ProgressDialog(Dialog):
 
 
     def pulse(self, progress=None):
-        self.progress_count = (self.progress_count + 1) % 11
-        self.progress_bar.set_completion(self.progress_count * 10)
+        """
+        Pulse progress bar
+        """
+        start, end = self.progress_coordinates.next()
+        bar_data = [[0]]*start + [[1]]*(end-start) + [[0]]*(self.MAX_VALUE-end)
+        self.progress_bar.set_data(bar_data, 1)
         self.loop.draw_screen()
 
 
