@@ -37,7 +37,7 @@ Description: Checkbox CLI
 
 Package: checkbox-urwid
 Architecture: all
-Depends: checkbox (= ${source:Version})
+Depends: checkbox (= ${source:Version}), python-urwid
 XB-Python-Version: ${python:Versions}
 Description: Checkbox Urwid CLI
  This project provides an extensible interface for system testing. The
