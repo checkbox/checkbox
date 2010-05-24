@@ -720,7 +720,7 @@ class UrwidInterface(UserInterface):
         # Get buttons
         buttons = []
         if 'command' in test:
-            buttons.append(_('test'))
+            buttons.append(_('Test'))
 
         while True:
             # Get description
@@ -735,7 +735,7 @@ class UrwidInterface(UserInterface):
             # If option cannot be mapped to an answer,
             # then 'test' button has been clicked
             output = runner(test)[1]
-            buttons[0] = _('test again')
+            buttons[0] = _('Test Again')
 
         answer = self.OPTION_TO_ANSWER[dialog.response]
         test['data'] = dialog.input
