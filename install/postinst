@@ -5,7 +5,7 @@ patch_configuration()
 {
     version="$1"
     previous_version=""
-    base_package=`echo $package | sed -e 's/hwtest/checkbox/' -e 's/\(-cli\|-gtk\)//'`
+    base_package=`echo $package | sed -e 's/hwtest/checkbox/' -e 's/\(-cli\|-urwid\|-gtk\)//'`
 
     while [ -n "$version" ]; do
         patch_file=""

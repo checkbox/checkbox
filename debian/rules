@@ -12,6 +12,9 @@ DEB_PYTHON_INSTALL_ARGS_ALL := --no-compile --install-layout=deb
 build/checkbox-cli::
 	cp debian/checkbox.postrm debian/checkbox-cli.postrm
 
+build/checkbox-urwid::
+	cp debian/checkbox.postrm debian/checkbox-urwid.postrm
+
 build/checkbox-gtk::
 	cp debian/checkbox.postrm debian/checkbox-gtk.postrm
 
@@ -26,6 +29,6 @@ binary-install/checkbox-gtk::
 
 clean::
 	-find . -name \*.mo -exec rm {} \;
-	-rm -f debian/checkbox-cli.postrm debian/checkbox-gtk.postrm
+	-rm -f debian/checkbox-cli.postrm debian/checkbox-urwid.postrm debian/checkbox-gtk.postrm
 	-rm -f debian/hwtest-cli.postrm debian/hwtest-gtk.postrm
 	debconf-updatepo
