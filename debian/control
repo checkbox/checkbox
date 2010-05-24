@@ -35,6 +35,16 @@ Description: Checkbox CLI
  .
  This package provides a command line interface for answering tests.
 
+Package: checkbox-urwid
+Architecture: all
+Depends: checkbox (= ${source:Version})
+XB-Python-Version: ${python:Versions}
+Description: Checkbox Urwid CLI
+ This project provides an extensible interface for system testing. The
+ results can then be sent to Launchpad.
+ .
+ This package provides a command line interface (urwid version) for answering tests.
+
 Package: checkbox-gtk
 Section: gnome
 Architecture: all

@@ -72,7 +72,7 @@ class Install(object):
     def __init__(self, name, configs_path=None, examples_path=None,
                  templates_path=None):
         self.name = name
-        self.base_name = re.sub(r"(-cli|-gtk)$", "", name)
+        self.base_name = re.sub(r"(-cli|-urwid|-gtk)$", "", name)
         self._configs_path = configs_path or self.configs_base \
             % {"name": name, "base_name": self.base_name}
         self._examples_path = examples_path or self.examples_base \
