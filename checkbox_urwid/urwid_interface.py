@@ -141,8 +141,12 @@ class ChoiceDialog(Dialog):
 
         # Show option buttons
         buttons_box = self.create_buttons(self.options)
+        if self.default:
+            index = self.options.index(self.default)
+            buttons_box.set_focus(index)
         self.walker.append(urwid.Divider())
         self.walker.append(buttons_box)
+
 
 
 class InputDialog(ChoiceDialog):
@@ -617,7 +621,7 @@ class ProgressDialog(Dialog):
         self.loop.draw_screen()
 
 
-    def set(self, progress=None):
+    def pulse(self, progress=None):
         self.progress_count = (self.progress_count + 1) % 11
         self.progress_bar.set_completion(self.progress_count * 10)
         self.loop.draw_screen()
@@ -653,7 +657,7 @@ class UrwidInterface(UserInterface):
         Bar should have been created before
         with show_progress_start method
         """
-        self.progress.set()
+        self.progress.pulse()
 
 
     def show_progress_stop(self):
