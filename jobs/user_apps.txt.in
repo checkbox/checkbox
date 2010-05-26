@@ -1,4 +1,11 @@
 plugin: manual
+name: update_manager_finds_updates
+depends: network
+_description:
+ This test will execute Update Manager and check to see if there are any available updates for the system. Please follow the prompts and if updates are found, install them.
+command: update-manager --c
+
+plugin: manual
 name: nautilus_folder_create
 requires: package.name == 'nautilus'
 command: nautilus
