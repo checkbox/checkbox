@@ -9,11 +9,14 @@ name: resolution_before_suspend
 description: Record the current resolution before suspending.
 command: xrandr -q |grep '*'| awk '{print $1}' > $CHECKBOX_DATA/resolution_before_suspend.txt
 
-plugin: shell
+plugin: manual
 name: sleep_state_test
 depends: rtc network_before_suspend resolution_before_suspend
 requires: package.name == 'pm-utils'
-description: Power management Suspend and Resume test
+description: 
+ Power management Suspend and Resume test
+ .
+ Click test and your system will suspend for about 30 - 60 seconds. If your system does not wake itself up after 60 seconds, please press the power button momentarily to wake the system manually.
 user: root
 command: sleep_test
 
@@ -31,7 +34,7 @@ command: xrandr -q |grep '*'| awk '{print $1}' | diff $CHECKBOX_DATA/resolution_
 
 plugin: manual
 name: cycle_resolutions_after_suspend
-depends: sleep_state_test
+depends: sleep_state_test xrandr_cycle
 description: 
  This test will check to make sure that supported video modes work after a suspend and resume.  Click Test to Begin.
 command: xrandr_cycle
