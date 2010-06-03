@@ -1,10 +1,10 @@
-plugin: shell
+plugin: local
 name: network_before_suspend
 depends: network
 description: Test the network before suspending.
 command: internet_test
 
-plugin: shell
+plugin: local
 name: resolution_before_suspend
 description: Record the current resolution before suspending.
 command: xrandr -q |grep '*'| awk '{print $1}' > $CHECKBOX_DATA/resolution_before_suspend.txt
@@ -28,6 +28,27 @@ name: resolution_after_suspend
 depends: sleep_state_test resolution_before_suspend
 description: Test to see that we have the same resolution after resuming as before.
 command: xrandr -q |grep '*'| awk '{print $1}' | diff $CHECKBOX_DATA/resolution_before_suspend.txt -
+
+plugin: manual
+name: cycle_resolutions_after_suspend
+depends: sleep_state_test
+description: 
+ This test will check to make sure that supported video modes work after a suspend and resume.  Click Test to Begin.
+command: xrandr_cycle
+
+plugin: manual
+name: record_playback_after_suspend
+depends: sleep_state_test
+requires:
+ device.category == 'AUDIO'
+ package.name == 'alsa-base'
+command: alsa_record_playback
+description:
+ This will check to make sure that your audio device works properly after a suspend and resume.  You can use either internal or external microphone and speakers.
+ .
+ To execute this test, make sure your speaker and microphone are NOT muted and the volume is set sufficiently loud to record and play audio. Click the Test button and then speak into your microphone. After a few seconds, your speech will be played back to you.
+ .
+ Did you hear your speech played back?
 
 plugin: manual
 name: suspend_30_cycles
