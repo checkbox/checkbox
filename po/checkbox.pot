@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-20 15:05-0400\n"
+"POT-Creation-Date: 2010-06-03 10:50-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../gtk/checkbox-gtk.glade.h:1 ../checkbox_cli/cli_interface.py:341
+#: ../checkbox_urwid/urwid_interface.py:261
 msgid "Further information:"
 msgstr ""
 
@@ -102,7 +103,14 @@ msgid "Do you hear a sound through the headphones?"
 msgstr ""
 
 #. description
-#: ../jobs/audio.txt.in:47
+#: ../jobs/audio.txt.in:46
+msgid ""
+"Do you hear any distortion, clicks or other strange noises from your "
+"speakers?"
+msgstr ""
+
+#. description
+#: ../jobs/audio.txt.in:56
 msgid ""
 "Disconnect any external microphones that you have plugged in.  Click the "
 "Test button, then speak into your internal microphone.  After a few seconds, "
@@ -110,7 +118,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/audio.txt.in:59
+#: ../jobs/audio.txt.in:68
 msgid ""
 "Connect a microphone to your microphone port.  Click the Test button, then "
 "speak into the microphone.  After a few seconds, your speech will be played "
@@ -118,7 +126,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/audio.txt.in:59 ../jobs/peripheral.txt.in:24
+#: ../jobs/audio.txt.in:68 ../jobs/peripheral.txt.in:24
 msgid "Did you hear your speech played back?"
 msgstr ""
 
@@ -255,6 +263,11 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:48
 msgid "Video tests"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:53
+msgid "Sleep Tests"
 msgstr ""
 
 #. description
@@ -647,14 +660,17 @@ msgid "Unknown signal"
 msgstr ""
 
 #: ../checkbox_cli/cli_interface.py:31
+#: ../checkbox_urwid/urwid_interface.py:684
 msgid "yes"
 msgstr ""
 
 #: ../checkbox_cli/cli_interface.py:32
+#: ../checkbox_urwid/urwid_interface.py:685
 msgid "no"
 msgstr ""
 
 #: ../checkbox_cli/cli_interface.py:33
+#: ../checkbox_urwid/urwid_interface.py:686
 msgid "skip"
 msgstr ""
 
@@ -677,6 +693,43 @@ msgstr ""
 
 #: ../checkbox_cli/cli_interface.py:343
 msgid "Please type here and press Ctrl-D when finished:\n"
+msgstr ""
+
+#: ../checkbox_urwid/urwid_interface.py:60
+msgid "Checkbox System Testing"
+msgstr ""
+
+#: ../checkbox_urwid/urwid_interface.py:99
+msgid "Continue"
+msgstr ""
+
+#: ../checkbox_urwid/urwid_interface.py:192
+#: ../checkbox_urwid/urwid_interface.py:268
+#: ../checkbox_urwid/urwid_interface.py:416
+msgid "Previous"
+msgstr ""
+
+#: ../checkbox_urwid/urwid_interface.py:193
+#: ../checkbox_urwid/urwid_interface.py:269
+#: ../checkbox_urwid/urwid_interface.py:417
+msgid "Next"
+msgstr ""
+
+#. Show buttons
+#: ../checkbox_urwid/urwid_interface.py:414
+msgid "Select All"
+msgstr ""
+
+#: ../checkbox_urwid/urwid_interface.py:415
+msgid "Deselect All"
+msgstr ""
+
+#: ../checkbox_urwid/urwid_interface.py:772
+msgid "Test"
+msgstr ""
+
+#: ../checkbox_urwid/urwid_interface.py:787
+msgid "Test Again"
 msgstr ""
 
 #: ../checkbox_gtk/gtk_interface.py:456

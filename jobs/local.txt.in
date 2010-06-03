@@ -48,6 +48,11 @@ plugin: local
 _description: Video tests
 command: cat $CHECKBOX_SHARE/jobs/video.txt*
 
+name: sleep
+plugin: local
+_description: Sleep Tests
+command: cat $CHECKBOX_SHARE/jobs/sleep.txt*
+
 name: codecs
 plugin: attachment
 requires: device.driver == 'HDA Intel'
