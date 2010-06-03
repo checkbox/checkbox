@@ -65,6 +65,17 @@ description:
  Did the system successfully suspend and resume for 30 iterations?
 
 plugin: manual
+name: hibernate_once
+depends: rtc
+command: sleep_test -s disk -w 120 --debug
+description:
+ This will check to make sure your system can successfully hibernate (if supported).
+ .
+ Click the Test button to begin. The system will hibernate and should wake itself within 5 minutes.  If your system does not wake itself after 5 minutes, please press the power button to wake the system manually.
+ .
+ Did the system successfully hibernate and did it work properly after waking up?
+ 
+plugin: manual
 name: hibernate_30_cycles
 depends: rtc
 requires: package.name == 'pm-utils'
