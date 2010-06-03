@@ -1,39 +1,33 @@
-plugin: local
-name: sleep_tests
-description: Automated Suspend/Resume Test
-command:
- cat << 'EOF' | run_templates -i -
- plugin: shell
- name: network_before_suspend
- depends: network
- description: Test the network before suspending.
- command: internet_test
- 
- plugin: shell
- name: resolution_before_suspend
- description: Record the current resolution before suspending.
- command: xrandr -q |grep '*'| awk '{print $1}' > $CHECKBOX_DATA/resolution_before_suspend.txt
- 
- plugin: shell
- name: sleep_state_test
- depends: rtc network_before_suspend resolution_before_suspend
- requires: package.name == 'pm-utils'
- description: Power management Suspend and Resume test
- user: root
- command: sleep_test
- 
- plugin: shell
- name: network_after_suspend
- depends: sleep_state_test network_before_suspend
- description: Test the network after resuming.
- command: internet_test
- 
- plugin: shell
- name: resolution_after_suspend
- depends: sleep_state_test resolution_before_suspend
- description: Test to see that we have the same resolution after resuming as before.
- command: xrandr -q |grep '*'| awk '{print $1}' | diff $CHECKBOX_DATA/resolution_before_suspend.txt -
- EOF
+plugin: shell
+name: network_before_suspend
+depends: network
+description: Test the network before suspending.
+command: internet_test
+
+plugin: shell
+name: resolution_before_suspend
+description: Record the current resolution before suspending.
+command: xrandr -q |grep '*'| awk '{print $1}' > $CHECKBOX_DATA/resolution_before_suspend.txt
+
+plugin: shell
+name: sleep_state_test
+depends: rtc network_before_suspend resolution_before_suspend
+requires: package.name == 'pm-utils'
+description: Power management Suspend and Resume test
+user: root
+command: sleep_test
+
+plugin: shell
+name: network_after_suspend
+depends: sleep_state_test network_before_suspend
+description: Test the network after resuming.
+command: internet_test
+
+plugin: shell
+name: resolution_after_suspend
+depends: sleep_state_test resolution_before_suspend
+description: Test to see that we have the same resolution after resuming as before.
+command: xrandr -q |grep '*'| awk '{print $1}' | diff $CHECKBOX_DATA/resolution_before_suspend.txt -
 
 plugin: manual
 name: suspend_30_cycles
