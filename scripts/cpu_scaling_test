@@ -340,6 +340,8 @@ class CPUScalingTest(object):
                 if differenceSpeedUp > self.speedUpTolerance:
                     print "Error: measured speedup vs expected speedup is %.1f%% and is not within %.1f%% margin. " % (differenceSpeedUp, self.speedUpTolerance)
                     success = False
+            else:
+                print "Error: Not enough timing data to calculate speed differences."
 
         return success
 
@@ -367,15 +369,20 @@ class CPUScalingTest(object):
             # Repeat workload test
             onDemandTestTime = self.runLoadTest()
             if not onDemandTestTime:
+		print "Error: No On Demand load test time available."
                 success = False
-            print "On Demand load test time: %.2f" % onDemandTestTime
+            else:
+                print "On Demand load test time: %.2f" % onDemandTestTime
 
-            # Compare the timing to the max results from earlier, again time should be within self.speedUpTolerance
-            differenceOnDemandVsMaximum = (abs(onDemandTestTime-self.maximumFrequencyTestTime)/self.maximumFrequencyTestTime)*100
-            print "Percentage Difference vs. maximum frequency: %.1f%%" % differenceOnDemandVsMaximum
-            if differenceOnDemandVsMaximum > self.speedUpTolerance:
-                print "Error: on demand performance vs maximum of %.1f%% is not within %.1f%% margin" % (differenceOnDemandVsMaximum, self.speedUpTolerance)
-                success = False
+            if onDemandTestTime and self.maximumFrequencyTestTime:
+                # Compare the timing to the max results from earlier, again time should be within self.speedUpTolerance
+                differenceOnDemandVsMaximum = (abs(onDemandTestTime-self.maximumFrequencyTestTime)/self.maximumFrequencyTestTime)*100
+                print "Percentage Difference vs. maximum frequency: %.1f%%" % differenceOnDemandVsMaximum
+                if differenceOnDemandVsMaximum > self.speedUpTolerance:
+                    print "Error: on demand performance vs maximum of %.1f%% is not within %.1f%% margin" % (differenceOnDemandVsMaximum, self.speedUpTolerance)
+                    success = False
+            else:
+                print "Error: Not enough timing data to calculate speed differences."
 
             # Verify the current speed has returned to the lowest speed again
             if not self.verifyMinimumFrequency():
@@ -409,15 +416,20 @@ class CPUScalingTest(object):
             # Repeat work load test
             performanceTestTime = self.runLoadTest()
             if not performanceTestTime:
+		print "Error: No Performance load test time available."
                 success = False
-            print "Performance load test time: %.2f" % performanceTestTime
+            else:
+                print "Performance load test time: %.2f" % performanceTestTime
 
-            # Compare the timing to the max results
-            differencePerformanceVsMaximum = (abs(performanceTestTime-self.maximumFrequencyTestTime)/self.maximumFrequencyTestTime)*100
-            print "Percentage Difference vs. maximum frequency: %.1f%%" % differencePerformanceVsMaximum
-            if differencePerformanceVsMaximum > self.speedUpTolerance:
-                print "Error: performance setting vs maximum of %.1f%% is not within %.1f%% margin" % (differencePerformanceVsMaximum, self.speedUpTolerance)
-                success = False
+            if performanceTestTime and self.maximumFrequencyTestTime:
+                # Compare the timing to the max results
+                differencePerformanceVsMaximum = (abs(performanceTestTime-self.maximumFrequencyTestTime)/self.maximumFrequencyTestTime)*100
+                print "Percentage Difference vs. maximum frequency: %.1f%%" % differencePerformanceVsMaximum
+                if differencePerformanceVsMaximum > self.speedUpTolerance:
+                    print "Error: performance setting vs maximum of %.1f%% is not within %.1f%% margin" % (differencePerformanceVsMaximum, self.speedUpTolerance)
+                    success = False
+            else:
+                print "Error: Not enough timing data to calculate speed differences."
 
         return success
 
@@ -453,15 +465,20 @@ class CPUScalingTest(object):
             # Repeat work load test
             conservativeTestTime = self.runLoadTest()
             if not conservativeTestTime:
+		print "Error: No Conservative load test time available."
                 success = False
-            print "Conservative load test time: %.2f" % conservativeTestTime
+            else:
+                print "Conservative load test time: %.2f" % conservativeTestTime
 
-            # Compare the timing to the max results
-            differenceConservativeVsMinimum = (abs(conservativeTestTime-self.minimumFrequencyTestTime)/self.minimumFrequencyTestTime)*100
-            print "Percentage Difference vs. minimum frequency: %.1f%%" % differenceConservativeVsMinimum
-            if differenceConservativeVsMinimum > self.speedUpTolerance:
-                print "Error: performance setting vs minimum of %.1f%% is not within %.1f%% margin" % (differenceConservativeVsMinimum, self.speedUpTolerance)
-                success = False
+            if conservativeTestTime and self.minimumFrequencyTestTime:
+                # Compare the timing to the max results
+                differenceConservativeVsMinimum = (abs(conservativeTestTime-self.minimumFrequencyTestTime)/self.minimumFrequencyTestTime)*100
+                print "Percentage Difference vs. minimum frequency: %.1f%%" % differenceConservativeVsMinimum
+                if differenceConservativeVsMinimum > self.speedUpTolerance:
+                    print "Error: performance setting vs minimum of %.1f%% is not within %.1f%% margin" % (differenceConservativeVsMinimum, self.speedUpTolerance)
+                    success = False
+            else:
+                print "Error: Not enough timing data to calculate speed differences."
 
         return success
 
