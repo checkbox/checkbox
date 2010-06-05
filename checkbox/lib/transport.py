@@ -63,6 +63,9 @@ class ProxyHTTPConnection(httplib.HTTPConnection):
                 port = self._ports[scheme]
             except KeyError:
                 raise ValueError, "unknown protocol for: %s" % url
+        else:
+            port = int(port)
+
         self._real_host = host
         self._real_port = port
         httplib.HTTPConnection.request(self, method, url, body, headers)
@@ -115,6 +118,9 @@ class HTTPTransport(object):
         scheme, rest = urllib.splittype(string)
         host, rest = urllib.splithost(rest)
         host, port = urllib.splitport(host)
+        if port is not None:
+            port = int(port)
+
         return (host, port)
 
     def _get_connection(self, timeout=0):
