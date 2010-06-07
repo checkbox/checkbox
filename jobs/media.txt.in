@@ -53,3 +53,11 @@ _description:
  2.- An icon should appear on the desktop and in the "Places" menu at the top of the screen.
  .
  Does the icon automatically appear?
+
+plugin: manual
+name: media_after_suspend
+depends: sleep_state_test
+_description:
+ If this computer supports media cards (e.g. SD, SDHC, MMC, MS, MSP), please ensure they are still working.
+ .
+ Are all media card readers still working?
