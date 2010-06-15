@@ -2,8 +2,9 @@ build
 debian/tmp
 debian/files
 debian/checkbox
-debian/checkbox-gtk
 debian/checkbox-cli
+debian/checkbox-gtk
+debian/checkbox-urwid
 debian/hwtest
 debian/hwtest-gtk
 debian/hwtest-cli
@@ -13,6 +14,7 @@ debian/*.log
 debian/*.substvars
 debian/*-cli.postrm
 debian/*-gtk.postrm
+debian/*-urwid.postrm
 gtk/checkbox-gtk.glade.bak
 gtk/checkbox-gtk.gladep
 gtk/checkbox-gtk.gladep.bak

@@ -1,0 +1,121 @@
+plugin: manual
+name: update_manager_finds_updates
+depends: internet_test
+user: root
+requires: package.name == 'update-manager'
+_description:
+ This test will execute Update Manager and check to see if there are any available updates for the system. Please follow the prompts and if updates are found, install them. When Update Manager has finished, please close the app by clicking the Close button in the lower right corner.
+command: update-manager --check-dist-upgrades
+
+plugin: manual
+name: nautilus_folder_create
+requires: package.name == 'nautilus'
+command: nautilus
+_description:
+ Click the Test button to open the File Browser. On the menu bar, click File -> Create Folder. In the name box for the new folder, enter the name Test Folder and hit Enter.
+ .
+ Do you now have a new folder called Test Folder?
+ .
+ Close the File browser.
+
+plugin: manual
+name: nautilus_folder_copy
+depends: nautilus_folder_create
+command: nautilus
+_description:
+ Click the Test button to open the File Browser. Right click on the folder called Test Folder and click on Copy.  Right Click on any white area in the window and click on Paste.
+ .
+ Right click on the folder called Test Folder(copy) and click Rename. Enter the name Test Data in the name box and hit Enter.
+ .
+ Do you now have a folder called Test Data?
+ .
+ Close the File browser.
+
+plugin: manual
+name: nautilus_folder_move
+depends: nautilus_folder_copy
+command: nautilus
+_description:
+ Click the Test button to open the File Browser. Click and drag the folder called Test Data onto the icon called Test Folder. Release the button. 
+ .
+ Double click the folder called Test Folder to open it up.
+ .
+ Was the folder called Test Data successfully moved into the folder called Test Folder?
+ .
+ Close the File Browser.
+
+plugin: manual
+name: nautilus_file_create
+depends: nautilus_folder_create
+command: nautilus $HOME/"Test Folder"
+_description:
+ Click the Test button to open the File Browser. Right click in the white space and click Create Document -> Empty File. Enter the name Test File 1 in the name box and hit Enter.
+ .
+ Do you now have a file called Test File 1?
+ .
+ Close the File browser.
+
+plugin: manual
+name: nautilus_file_copy
+depends: nautilus_file_create
+command: nautilus $HOME/"Test Folder"
+_description:
+ Click the Test button to open the File Browser. Right click on the file called Test File 2 and click Copy. Right click in the white space and click Paste.
+ .
+ Right click on the file called Test File 1(copy) and click Rename. Enter the name Test File 2 in the name box and hit Enter.
+ .
+ Do you now have a file called Test File 2?
+ .
+ Close the File Browser.
+
+plugin: manual
+name: nautilus_file_move
+depends: nautilus_file_copy
+command: nautilus $HOME/"Test Folder"
+_description:
+ Click the Test button to open the File Browser. Click and drag the file called Test File 2 onto the icon for the folder called Test Data. Release the button.
+ .
+ Double click the icon for Test Data to open that folder up.
+ .
+ Was the file Test File 2 successfully moved into the Test Data folder?
+ .
+ Close the File Browser.
+
+plugin: manual
+name: nautilus_file_delete
+depends: nautilus_file_create
+command: nautilus $HOME/"Test Folder"
+_description:
+ Click the Test button to open the File Browser. Right click on the file called Test File 1 and click on Move To Trash.
+ .
+ Is Test File 1 now gone?
+ .
+ Close the File Browser.
+
+plugin: manual
+name: nautilus_folder_delete
+depends: nautilus_folder_create
+command: nautilus
+_description:
+ Click the Test button to open the File Browser. Right click on the folder called Test Folder and click on Move To Trash.
+ .
+ Has Test Folder been successfully deleted?
+ .
+ Close the File Browser.
+
+plugin: local
+name: Document Viewer Test
+requires: package.name == "ubuntu-desktop"
+description: Common Document Types Test
+command: 
+ cat <<'EOF' | run_templates -s "find $CHECKBOX_SHARE/data -type f"
+ name: `basename $0`_test
+ plugin: manual
+ description: 
+  Now we will attempt to open the file '$0' with it's default viewer. After the viewer opens, check out the file that was opened and then close the application (OpenOffice, Doc Viewer, Totem, etc.)
+  .
+  Click Test to begin
+  .
+  Did the application open the document properly? (e.g was it displayed and did it function properly?)
+ command: xdg-open $0
+ EOF
