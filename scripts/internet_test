@@ -80,13 +80,16 @@ class Route(object):
 
         return t1
 
-def ping(host, count, deadline):
-    command = "ping -q -c %s -w %s %s" % (count, deadline, host)
+def ping(host, count, deadline, verbose=False):
+    command = "ping -R -c %s -w %s %s" % (count, deadline, host)
     reg = re.compile(r"(\d) received")
     packets_received = 0
 
     output = os.popen(command)
     for line in output.readlines():
+        if verbose:
+            print line.rstrip()
+
         received = re.findall(reg, line)
         if received:
             packets_received = int(received[0])
@@ -110,6 +113,10 @@ def main(args):
         default=default_delay,
         type="int",
         help="Timeouts in seconds.")
+    parser.add_option("-v", "--verbose",
+        default=False,
+        action="store_true",
+        help="Be verbose.")
     (options, args) = parser.parse_args(args)
 
     if args:
@@ -120,7 +127,8 @@ def main(args):
 
     received_packets = 0
     if host:
-        received_packets = ping(host, options.count, options.deadline)
+        received_packets = ping(host, options.count, options.deadline,
+                                options.verbose)
 
     if received_packets == 0:
         print _("No Internet connection")
