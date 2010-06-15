@@ -43,6 +43,11 @@ plugin: local
 _description: Peripheral tests
 command: cat $CHECKBOX_SHARE/jobs/peripheral.txt*
 
+name: user_apps
+plugin: local
+_description: User Applications
+command: cat $CHECKBOX_SHARE/jobs/user_apps.txt*
+
 name: video
 plugin: local
 _description: Video tests
