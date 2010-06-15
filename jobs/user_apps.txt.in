@@ -1,7 +1,8 @@
 plugin: manual
 name: update_manager_finds_updates
-depends: network
-user: root, sudo
+depends: internat_test
+user: root
+requires: update-manager
 _description:
  This test will execute Update Manager and check to see if there are any available updates for the system. Please follow the prompts and if updates are found, install them. When Update Manager has finished, please close the app by clicking the Close button in the lower right corner.
 command: update-manager --c
