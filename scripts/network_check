@@ -3,8 +3,8 @@
 Check that it's possible to establish http and ftp connections against
 ubuntu.com
 """
-from subprocess import call
 import urllib2
+import sys
 
 
 def check_url(url):
@@ -28,23 +28,11 @@ def main():
     results = {}
     for protocol, value in url.iteritems():
         results[protocol] = check_url(value)
-
-    bool2str = {True: 'Success', False: 'Failed'}
-    message = ("HTTP connection: %(http)s\n"
-               "FTP connection: %(ftp)s\n"
-               % dict([(protocol, bool2str[value])
-                       for protocol, value in results.iteritems()]))
-
-    command = ["zenity", "--title=Network",
-               "--text=%s" % message]
-
+    
     if all(results.itervalues()):
-        command.append("--info")
+        return 0
     else:
-        command.append("--error")
-
-    call(command)
-
+        return 1
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())
