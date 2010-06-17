@@ -2,7 +2,7 @@ plugin: local
 name: network_before_suspend
 depends: network_test
 description: Test the network before suspending.
-command: network_check
+command: network_check -a
 
 plugin: local
 name: resolution_before_suspend

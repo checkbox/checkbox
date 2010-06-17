@@ -3,6 +3,8 @@
 Check that it's possible to establish http and ftp connections against
 ubuntu.com
 """
+from subprocess import call
+from optparse import OptionParser, Option
 import urllib2
 import sys
 
@@ -22,14 +24,40 @@ def main():
     """
     Check HTTP and FTP connections
     """
+    usage = 'Usage %prog [OPTIONS]'
+    parser = OptionParser(usage)
+    parser.add_option('-a', '--auto',
+                        action='store_true',
+                        default=False,
+                        help='Runs in Automated mode, with no visible output')
+    
+    (options,args) = parser.parse_args()
+
     url = {"http": "http://cdimage.ubuntu.com/daily/current/",
            "ftp": "ftp://cdimage.ubuntu.com/cdimage/daily/current/",}
 
     results = {}
     for protocol, value in url.iteritems():
         results[protocol] = check_url(value)
-    
+
+    bool2str = {True: 'Success', False: 'Failed'}
+    message = ("HTTP connection: %(http)s\n"
+               "FTP connection: %(ftp)s\n"
+               % dict([(protocol, bool2str[value])
+                       for protocol, value in results.iteritems()]))
+
+    command = ["zenity", "--title=Network",
+               "--text=%s" % message]
+
     if all(results.itervalues()):
+        command.append("--info")
+    else:
+        command.append("--error")
+
+    if not options.auto:
+        call(command)
+    
+    if any(results.itervalues()):
         return 0
     else:
         return 1
