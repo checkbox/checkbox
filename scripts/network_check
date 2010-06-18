@@ -4,7 +4,9 @@ Check that it's possible to establish http and ftp connections against
 ubuntu.com
 """
 from subprocess import call
+from optparse import OptionParser, Option
 import urllib2
+import sys
 
 
 def check_url(url):
@@ -22,6 +24,15 @@ def main():
     """
     Check HTTP and FTP connections
     """
+    usage = 'Usage %prog [OPTIONS]'
+    parser = OptionParser(usage)
+    parser.add_option('-a', '--auto',
+                        action='store_true',
+                        default=False,
+                        help='Runs in Automated mode, with no visible output')
+    
+    (options,args) = parser.parse_args()
+
     url = {"http": "http://cdimage.ubuntu.com/daily/current/",
            "ftp": "ftp://cdimage.ubuntu.com/cdimage/daily/current/",}
 
@@ -43,8 +54,13 @@ def main():
     else:
         command.append("--error")
 
-    call(command)
-
+    if not options.auto:
+        call(command)
+    
+    if any(results.itervalues()):
+        return 0
+    else:
+        return 1
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())
