@@ -10,6 +10,21 @@ description: Record the current resolution before suspending.
 command: xrandr -q |grep '*'| awk '{print $1}' > $CHECKBOX_DATA/resolution_before_suspend.txt
 
 plugin: manual
+name: wireless_before_suspend
+command: internet_test
+description:
+ Wireless network connection procedure:
+ 1.- Click on the Network Manager applet
+ 2.- Select a network below the 'Wireless networks' section
+ 3.- Notify OSD should confirm that the connection has been established
+ 4.- Select Test to verify connection and throughput
+ Output:
+ .
+ $output
+ .
+ Is this correct?
+
+plugin: manual
 name: sleep_state_test
 depends: rtc network_before_suspend resolution_before_suspend
 requires: package.name == 'pm-utils'
@@ -18,7 +33,7 @@ description:
  .
  Click test and your system will suspend for about 30 - 60 seconds. If your system does not wake itself up after 60 seconds, please press the power button momentarily to wake the system manually.
 user: root
-command: sleep_test
+command: sleep_test -d
 
 plugin: shell
 name: network_after_suspend
@@ -31,6 +46,22 @@ name: resolution_after_suspend
 depends: sleep_state_test resolution_before_suspend
 description: Test to see that we have the same resolution after resuming as before.
 command: xrandr -q |grep '*'| awk '{print $1}' | diff $CHECKBOX_DATA/resolution_before_suspend.txt -
+
+plugin: manual
+name: wireless_after_suspend
+depends: sleep_state_test
+command: internet_test
+description:
+ Wireless network connection procedure:
+ 1.- Click on the Network Manager applet
+ 2.- Select a network below the 'Wireless networks' section
+ 3.- Notify OSD should confirm that the connection has been established
+ 4.- Select Test to verify connection and throughput
+ Output:
+ .
+ $output
+ .
+ Is this correct?
 
 plugin: manual
 name: cycle_resolutions_after_suspend
