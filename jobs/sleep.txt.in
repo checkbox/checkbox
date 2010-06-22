@@ -15,9 +15,10 @@ command: internet_test
 description:
  Wireless network connection procedure:
  1.- Click on the Network Manager applet
- 2.- Select a network below the 'Wireless networks' section
- 3.- Notify OSD should confirm that the connection has been established
- 4.- Select Test to verify connection and throughput
+ 2.- Click on Disconnect under 'Wired Networks'
+ 3.- Select a network below the 'Wireless networks' section
+ 4.- Notify OSD should confirm that the connection has been established
+ 5.- Select Test to verify connection and throughput
  Output:
  .
  $output
@@ -54,9 +55,10 @@ command: internet_test
 description:
  Wireless network connection procedure:
  1.- Click on the Network Manager applet
- 2.- Select a network below the 'Wireless networks' section
- 3.- Notify OSD should confirm that the connection has been established
- 4.- Select Test to verify connection and throughput
+ 2.- If a wired connection is established, click its Disconnect option
+ 3.- Select a network below the 'Wireless networks' section
+ 4.- Notify OSD should confirm that the connection has been established
+ 5.- Select Test to verify connection and throughput
  Output:
  .
  $output
