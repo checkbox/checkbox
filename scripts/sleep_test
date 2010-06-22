@@ -77,6 +77,9 @@ import logging
 from subprocess import call
 from optparse import OptionParser
 
+from datetime import datetime, timedelta
+from time import sleep
+
 class ListDictHandler(logging.StreamHandler):
     '''
     Extends logging.StreamHandler to handle list, tuple and dict objects 
@@ -272,6 +275,75 @@ class SuspendTest():
 	    logging.debug('mode is %s so we\'re skipping success check' % mode)
             return False
 
+
+class NetworkManagerException(Exception):
+
+    pass
+
+
+class NetworkManager(object):
+
+    NM_SERVICE = "org.freedesktop.NetworkManager"
+    NM_PATH = "/org/freedesktop/NetworkManager"
+    NM_INTERFACE = NM_SERVICE
+
+    NM_PATH_DEVICES = "/org/freedesktop/NetworkManager/Devices"
+    NM_INTERFACE_DEVICES = "org.freedesktop.NetworkManager.Devices"
+
+    NMI_SERVICE = "org.freedesktop.NetworkManagerInfo"
+    NMI_PATH = "/org/freedesktop/NetworkManagerInfo"
+    NMI_INTERFACE = NMI_SERVICE
+
+    HAL_SERVICE = "org.freedesktop.Hal"
+    HAL_PATH = "/org/freedesktop/Hal/Manager"
+    HAL_INTERFACE = "org.freedesktop.Hal.Manager"
+    HAL_INTERFACE_DEVICE = "org.freedesktop.Hal.Device"
+
+    STATE_UNKNOWN = "unknown"
+    STATE_ASLEEP = "asleep"
+    STATE_CONNECTING = "connecting"
+    STATE_CONNECTED = "connected"
+    STATE_DISCONNECTED = "disconnected"
+
+    _state_table = [
+        STATE_UNKNOWN,
+        STATE_ASLEEP,
+        STATE_CONNECTING,
+        STATE_CONNECTED,
+        STATE_DISCONNECTED]
+
+    def __init__(self):
+        try:
+            import dbus
+        except ImportError:
+            raise NetworkManagerException, "Python module not found: dbus"
+
+        try:
+            self._bus = dbus.SystemBus()
+            self.nm_object  = self._bus.get_object(self.NM_SERVICE, self.NM_PATH)
+            self.nm_service = dbus.Interface(self.nm_object, self.NM_INTERFACE)
+        except dbus.exceptions.DBusException:
+            raise NetworkManagerException, "Failed to connect to dbus service"
+
+    def get_state(self):
+        state = self.nm_service.state()
+        return self._state_table[state]
+
+
+def check_network():
+    try:
+        nm = NetworkManager()
+    except NetworkManagerException:
+        return True
+
+    start = datetime.now()
+    while True:
+        if nm.get_state() == nm.STATE_CONNECTED:
+            return True
+        # give 60 seconds to NetworkManager to get to a CONNECTED state, then give up
+        if datetime.now() - start > timedelta(60):
+            return False
+        sleep(5)
             
 def main():
     usage = 'Usage: %prog [OPTIONS]'
@@ -352,6 +424,10 @@ def main():
             run_result[run_count] = 'Fail'
         else:
             run_result[run_count] = 'Pass'
+
+    # Be reasonably sure the network is up before returning, we want
+    # the network to be up for possible following tests.
+    network_is_live = check_network()
 
     if 'Fail' in run_result.values():
         logging.error('One or more suspend tests failed')
