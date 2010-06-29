@@ -104,18 +104,69 @@ _description:
  Close the File Browser.
 
 plugin: local
-name: Document Viewer Test
+name: Office Document Viewer Test
 requires: package.name == "ubuntu-desktop"
 description: Common Document Types Test
-command: 
- cat <<'EOF' | run_templates -s "find $CHECKBOX_SHARE/data -type f"
+command:
+ cat <<'EOF' | run_templates -s "find $CHECKBOX_SHARE/data/documents -type f"
  name: `basename $0`_test
  plugin: manual
- description: 
-  Now we will attempt to open the file '$0' with it's default viewer. After the viewer opens, check out the file that was opened and then close the application (OpenOffice, Doc Viewer, Totem, etc.)
+ description:
+  Now we will attempt to open the file '$0' with it's default viewer. After the viewer opens, check out the file that was opened and then close the application (OpenOffice, Doc Viewer, etc.)
   .
   Click Test to begin
   .
   Did the application open the document properly? (e.g was it displayed and did it function properly?)
+ command: xdg-open $0
+ EOF
+
+plugin: local
+name: Audio File Player Test
+requires: package.name == "ubuntu-desktop"
+description: Common Document Types Test
+command:
+ cat <<'EOF' | run_templates -s "find $CHECKBOX_SHARE/data/audio -type f"
+ name: `basename $0`_test
+ plugin: manual
+ description:
+  Now we will attempt to open the audio file '$0' with it's default player. After the player opens, listen to the sound and then close the application.
+  .
+  Click Test to begin
+  .
+  Did the application play the audio file properly? (no skips, crackles, etc)
+ command: xdg-open $0
+ EOF
+
+plugin: local
+name: Video File Player Test
+requires: package.name == "ubuntu-desktop"
+description: Common Document Types Test
+command:
+ cat <<'EOF' | run_templates -s "find $CHECKBOX_SHARE/data/video -type f"
+ name: `basename $0`_test
+ plugin: manual
+ description:
+  Now we will attempt to play the video '$0' with it's default player. After the video plays, close the application.
+  .
+  Click Test to begin
+  .
+  Did the application play '$0' proplerly (no video or audio issues with playback?)
+ command: xdg-open $0
+ EOF
+
+plugin: local
+name: Image File Viewer Test
+requires: package.name == "ubuntu-desktop"
+description: Common Document Types Test
+command:
+ cat <<'EOF' | run_templates -s "find $CHECKBOX_SHARE/data/images -type f"
+ name: `basename $0`_test
+ plugin: manual
+ description:
+  Now we will attempt to open the image '$0' with it's default viewer. After the viewer opens, check out the file that was opened and then close the application.
+  .
+  Click Test to begin
+  .
+  Did the image display properly?
  command: xdg-open $0
  EOF
