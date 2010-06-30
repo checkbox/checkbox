@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-06-29 15:12-0400\n"
+"POT-Creation-Date: 2010-06-30 11:32-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -70,13 +70,13 @@ msgstr ""
 
 #. description
 #: ../jobs/audio.txt.in:7 ../jobs/disk.txt.in:16 ../jobs/network.txt.in:16
-#: ../jobs/video.txt.in:50
+#: ../jobs/sleep.txt.in:55 ../jobs/video.txt.in:50
 msgid "$output"
 msgstr ""
 
 #. description
 #: ../jobs/audio.txt.in:7 ../jobs/disk.txt.in:4 ../jobs/network.txt.in:16
-#: ../jobs/video.txt.in:50
+#: ../jobs/sleep.txt.in:55 ../jobs/video.txt.in:50
 msgid "Is this correct?"
 msgstr ""
 
@@ -127,6 +127,7 @@ msgstr ""
 
 #. description
 #: ../jobs/audio.txt.in:68 ../jobs/peripheral.txt.in:24
+#: ../jobs/sleep.txt.in:82
 msgid "Did you hear your speech played back?"
 msgstr ""
 
@@ -423,6 +424,138 @@ msgstr ""
 #. description
 #: ../jobs/qa_regression.txt.in:3
 msgid "QA regression tests (destructive)"
+msgstr ""
+
+#. description
+#: ../jobs/sleep.txt.in:4
+msgid "Test the network before suspending."
+msgstr ""
+
+#. description
+#: ../jobs/sleep.txt.in:9
+msgid "Record the current resolution before suspending."
+msgstr ""
+
+#. description
+#: ../jobs/sleep.txt.in:15
+msgid ""
+"Wireless network connection procedure: 1.- Click on the Network Manager "
+"applet 2.- Click on Disconnect under 'Wired Networks' 3.- Select a network "
+"below the 'Wireless networks' section 4.- Notify OSD should confirm that the "
+"connection has been established 5.- Select Test to verify connection and "
+"throughput Output:"
+msgstr ""
+
+#. description
+#: ../jobs/sleep.txt.in:32
+msgid "Power management Suspend and Resume test"
+msgstr ""
+
+#. description
+#: ../jobs/sleep.txt.in:32
+msgid ""
+"Click test and your system will suspend for about 30 - 60 seconds. If your "
+"system does not wake itself up after 60 seconds, please press the power "
+"button momentarily to wake the system manually."
+msgstr ""
+
+#. description
+#: ../jobs/sleep.txt.in:42
+msgid "Test the network after resuming."
+msgstr ""
+
+#. description
+#: ../jobs/sleep.txt.in:48
+msgid "Test to see that we have the same resolution after resuming as before."
+msgstr ""
+
+#. description
+#: ../jobs/sleep.txt.in:55
+msgid ""
+"Wireless network connection procedure: 1.- Click on the Network Manager "
+"applet 2.- If a wired connection is established, click its Disconnect option "
+"3.- Select a network below the 'Wireless networks' section 4.- Notify OSD "
+"should confirm that the connection has been established 5.- Select Test to "
+"verify connection and throughput Output:"
+msgstr ""
+
+#. description
+#: ../jobs/sleep.txt.in:71
+msgid ""
+"This test will check to make sure that supported video modes work after a "
+"suspend and resume.  Click Test to Begin."
+msgstr ""
+
+#. description
+#: ../jobs/sleep.txt.in:82
+msgid ""
+"This will check to make sure that your audio device works properly after a "
+"suspend and resume.  You can use either internal or external microphone and "
+"speakers."
+msgstr ""
+
+#. description
+#: ../jobs/sleep.txt.in:82
+msgid ""
+"To execute this test, make sure your speaker and microphone are NOT muted "
+"and the volume is set sufficiently loud to record and play audio. Click the "
+"Test button and then speak into your microphone. After a few seconds, your "
+"speech will be played back to you."
+msgstr ""
+
+#. description
+#: ../jobs/sleep.txt.in:95
+msgid ""
+"Enter and resume from suspend state for 30 iterations. Please note that this "
+"is a lengthy test. Click Test to begin."
+msgstr ""
+
+#. description
+#: ../jobs/sleep.txt.in:95
+msgid "Did the system successfully suspend and resume for 30 iterations?"
+msgstr ""
+
+#. description
+#: ../jobs/sleep.txt.in:104
+msgid ""
+"This will check to make sure your system can successfully hibernate (if "
+"supported)."
+msgstr ""
+
+#. description
+#: ../jobs/sleep.txt.in:104
+msgid ""
+"Click the Test button to begin. The system will hibernate and should wake "
+"itself within 5 minutes.  If your system does not wake itself after 5 "
+"minutes, please press the power button to wake the system manually."
+msgstr ""
+
+#. description
+#: ../jobs/sleep.txt.in:104
+msgid ""
+"Did the system successfully hibernate and did it work properly after waking "
+"up?"
+msgstr ""
+
+#. description
+#: ../jobs/sleep.txt.in:117
+msgid ""
+"Enter and resume from hibernate for 30 iterations. Please note that this is "
+"a very lengthy test. Also, if your system does not wake itself after 2 "
+"minutes, you will need to press the power button to wake the system up."
+msgstr ""
+
+#. description
+#: ../jobs/sleep.txt.in:117
+msgid ""
+"Also, you will need to ensure your system has no power-on or HDD passwords "
+"set, and that grub is set to boot Ubuntu by default if you have a multi-boot "
+"set-up."
+msgstr ""
+
+#. description
+#: ../jobs/sleep.txt.in:117
+msgid "Did the system successfully hibernate and wake 30 times?"
 msgstr ""
 
 #. description

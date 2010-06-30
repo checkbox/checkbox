@@ -1,18 +1,18 @@
-plugin: local
+plugin: shell
 name: network_before_suspend
 depends: network_test
-description: Test the network before suspending.
+_description: Test the network before suspending.
 command: network_check -a
 
-plugin: local
+plugin: shell
 name: resolution_before_suspend
-description: Record the current resolution before suspending.
+_description: Record the current resolution before suspending.
 command: xrandr -q |grep '*'| awk '{print $1}' > $CHECKBOX_DATA/resolution_before_suspend.txt
 
 plugin: manual
 name: wireless_before_suspend
 command: internet_test
-description:
+_description:
  Wireless network connection procedure:
  1.- Click on the Network Manager applet
  2.- Click on Disconnect under 'Wired Networks'
@@ -29,7 +29,7 @@ plugin: manual
 name: sleep_state_test
 depends: rtc network_before_suspend resolution_before_suspend
 requires: package.name == 'pm-utils'
-description: 
+_description:
  Power management Suspend and Resume test
  .
  Click test and your system will suspend for about 30 - 60 seconds. If your system does not wake itself up after 60 seconds, please press the power button momentarily to wake the system manually.
@@ -39,20 +39,20 @@ command: sleep_test -d
 plugin: shell
 name: network_after_suspend
 depends: sleep_state_test network_before_suspend
-description: Test the network after resuming.
+_description: Test the network after resuming.
 command: internet_test
 
 plugin: shell
 name: resolution_after_suspend
 depends: sleep_state_test resolution_before_suspend
-description: Test to see that we have the same resolution after resuming as before.
+_description: Test to see that we have the same resolution after resuming as before.
 command: xrandr -q |grep '*'| awk '{print $1}' | diff $CHECKBOX_DATA/resolution_before_suspend.txt -
 
 plugin: manual
 name: wireless_after_suspend
 depends: sleep_state_test
 command: internet_test
-description:
+_description:
  Wireless network connection procedure:
  1.- Click on the Network Manager applet
  2.- If a wired connection is established, click its Disconnect option
@@ -68,7 +68,7 @@ description:
 plugin: manual
 name: cycle_resolutions_after_suspend
 depends: sleep_state_test xrandr_cycle
-description: 
+_description:
  This test will check to make sure that supported video modes work after a suspend and resume.  Click Test to Begin.
 command: xrandr_cycle
 
@@ -79,7 +79,7 @@ requires:
  device.category == 'AUDIO'
  package.name == 'alsa-base'
 command: alsa_record_playback
-description:
+_description:
  This will check to make sure that your audio device works properly after a suspend and resume.  You can use either internal or external microphone and speakers.
  .
  To execute this test, make sure your speaker and microphone are NOT muted and the volume is set sufficiently loud to record and play audio. Click the Test button and then speak into your microphone. After a few seconds, your speech will be played back to you.
@@ -92,7 +92,7 @@ depends: rtc
 requires: package.name == 'pm-utils'
 user: root
 command: sleep_test -i 30 -s mem --debug
-description: 
+_description:
  Enter and resume from suspend state for 30 iterations. Please note that this is a lengthy test. Click Test to begin.
  .
  Did the system successfully suspend and resume for 30 iterations?
@@ -101,20 +101,20 @@ plugin: manual
 name: hibernate_once
 depends: rtc
 command: sleep_test -s disk -w 120 --debug
-description:
+_description:
  This will check to make sure your system can successfully hibernate (if supported).
  .
  Click the Test button to begin. The system will hibernate and should wake itself within 5 minutes.  If your system does not wake itself after 5 minutes, please press the power button to wake the system manually.
  .
  Did the system successfully hibernate and did it work properly after waking up?
- 
+
 plugin: manual
 name: hibernate_30_cycles
 depends: rtc
 requires: package.name == 'pm-utils'
 user: root
 commnad: sleep_test -i 30 -s disk -w 120 --debug
-description:
+_description:
  Enter and resume from hibernate for 30 iterations. Please note that this is a very lengthy test. Also, if your system does not wake itself after 2 minutes, you will need to press the power button to wake the system up.
  .
  Also, you will need to ensure your system has no power-on or HDD passwords set, and that grub is set to boot Ubuntu by default if you have a multi-boot set-up.
