@@ -9,6 +9,11 @@ name: resolution_before_suspend
 _description: Record the current resolution before suspending.
 command: xrandr -q |grep '*'| awk '{print $1}' > $CHECKBOX_DATA/resolution_before_suspend.txt
 
+plugin: shell
+name: audio_before_suspend
+description: Test the audio before suspending.
+command: amixer > $CHECKBOX_DATA/audio_before_suspend.txt
+
 plugin: manual
 name: wireless_before_suspend
 command: internet_test
@@ -47,6 +52,12 @@ name: resolution_after_suspend
 depends: sleep_state_test resolution_before_suspend
 _description: Test to see that we have the same resolution after resuming as before.
 command: xrandr -q |grep '*'| awk '{print $1}' | diff $CHECKBOX_DATA/resolution_before_suspend.txt -
+
+plugin: shell
+name: audio_after_suspend
+depends: sleep_state_test
+description: Test the audio after resuming.
+command: amixer | diff $CHECKBOX_DATA/audio_before_suspend.txt -
 
 plugin: manual
 name: wireless_after_suspend
