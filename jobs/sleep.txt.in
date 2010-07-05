@@ -124,7 +124,7 @@ name: hibernate_30_cycles
 depends: rtc
 requires: package.name == 'pm-utils'
 user: root
-commnad: sleep_test -i 30 -s disk -w 120 --debug
+command: sleep_test -i 30 -s disk -w 120 --debug
 _description:
  Enter and resume from hibernate for 30 iterations. Please note that this is a very lengthy test. Also, if your system does not wake itself after 2 minutes, you will need to press the power button to wake the system up.
  .
