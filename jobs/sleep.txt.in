@@ -31,8 +31,34 @@ _description:
  Is this correct?
 
 plugin: manual
+name: bluetooth_detect_before_suspend
+requires: package.name == 'bluez'
+command: hcitool dev | tail -n+2 | awk '{print $2}'
+_description:
+ The address of your Bluetooth device is:
+ $output
+ .
+ Is this correct?
+
+plugin: manual
+name: bluetooth_mouse_before_suspend
+depends: bluetooth_detect_before_suspend
+_description:
+ Verify a bluetooth peripheral.  An example verification procedure for a bluetooth mouse is given.
+ .
+ Bluetooth mouse procedure:
+ 1.- Enable the bluetooth mouse
+ 2.- Click on the bluetooth icon in the menu bar
+ 3.- Select 'Setup new device'
+ 4.- Look for the device in the list and select it
+ 5.- Move the mouse around the screen
+ 6.- Perform some single/double/right click operations
+ .
+ Did all the steps work?
+
+plugin: manual
 name: sleep_state_test
-depends: rtc network_before_suspend resolution_before_suspend
+depends: rtc network_before_suspend resolution_before_suspend wireless_before_suspend bluetooth_detect_before_suspend bluetooth_mouse_before_suspend
 requires: package.name == 'pm-utils'
 _description:
  Power management Suspend and Resume test
@@ -61,7 +87,7 @@ command: amixer | diff $CHECKBOX_DATA/audio_before_suspend.txt -
 
 plugin: manual
 name: wireless_after_suspend
-depends: sleep_state_test
+depends: sleep_state_test wireless_before_suspend
 command: internet_test
 _description:
  Wireless network connection procedure:
@@ -75,6 +101,33 @@ _description:
  $output
  .
  Is this correct?
+
+plugin: manual
+name: bluetooth_detect_after_suspend
+depends: sleep_state_test bluetooth_detect_before_suspend
+requires: package.name == 'bluez'
+command: hcitool dev | tail -n+2 | awk '{print $2}'
+_description:
+ The address of your Bluetooth device is:
+ $output
+ .
+ Is this correct?
+
+plugin: manual
+name: bluetooth_mouse_after_suspend
+depends: sleep_state_test bluetooth_detect_after_suspend
+_description:
+ Verify a bluetooth peripheral.  An example verification procedure for a bluetooth mouse is given.
+ .
+ Bluetooth mouse procedure:
+ 1.- Enable the bluetooth mouse
+ 2.- Click on the bluetooth icon in the menu bar
+ 3.- Select 'Setup new device'
+ 4.- Look for the device in the list and select it
+ 5.- Move the mouse around the screen
+ 6.- Perform some single/double/right click operations
+ .
+ Did all the steps work?
 
 plugin: manual
 name: cycle_resolutions_after_suspend
