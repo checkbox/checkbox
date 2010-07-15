@@ -170,3 +170,52 @@ command:
   Did the image display properly?
  command: xdg-open $0
  EOF
+
+plugin: manual
+name: applications-firefox
+requires: package.name == 'firefox'
+command: firefox file://$CHECKBOX_SHARE/data/websites/testindex.html
+description:
+ Click the "Test" button to launch Firefox and view the test web page.
+ .
+ Did the Ubuntu Test page load correctly?
+
+plugin: manual
+name: applications-firefox-java
+depends: applications-firefox
+requires: package.name == 'firefox'
+command: firefox file://$CHECKBOX_SHARE/data/websites/javatest.html
+description:
+ Click the "Test" button to open Firefox with the Java test page, and follow the instructions there.
+ .
+ Did the applet display?
+
+plugin: manual
+name: applications-firefox-flash
+depends: applications-firefox
+requires: package.name == 'firefox'
+command: firefox file://$CHECKBOX_SHARE/data/websites/flashtest.html
+description:
+ Click the "Test" button to launch Firefox and view a sample Flash slide show.
+ .
+ Did you see the slideshow?
+
+plugin: manual
+name: applications-firefox-flash-video
+depends: applications-firefox-flash
+requires: package.name == 'firefox'
+command: firefox file://$CHECKBOX_SHARE/data/websites/flashvideo.html
+description:
+ Click the "Test" button to launch Firefox and view a short flash video.
+ .
+ Did the video play correctly?
+
+plugin: manual
+name: applications-firefox-totem
+depends: applications-firefox
+requires: package.name == 'firefox'
+command: firefox file://$CHECKBOX_SHARE/data/video/Quicktime_Video.mov
+description:
+ Click the "Test" button to launch Firefox with a sample video.
+ .
+ Did the video play using a plugin?
