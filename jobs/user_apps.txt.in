@@ -170,3 +170,58 @@ command:
   Did the image display properly?
  command: xdg-open $0
  EOF
+
+plugin: manual
+name: applications-empathy-facebook_chat
+requires: package.name == "empathy"
+command: empathy
+description:
+ Click the "Test" button to launch Empathy, then configure it to connect to the following service. Once you have completed the test, please quit Empathy to continue here.
+ .
+ Facebook Chat
+ .
+ Were you able to connect correctly and send/receive messages?
+
+plugin: manual
+name: applications-empathy-google_talk
+requires: package.name == "empathy"
+command: empathy
+description:
+ Click the "Test" button to launch Empathy, then configure it to connect to the following service. Once you have completed the test, please quit Empathy to continue here.
+ .
+ Google Talk
+ .
+ Were you able to connect correctly and send/receive messages?
+
+plugin: manual
+name: applications-empathy-jabber
+requires: package.name == "empathy"
+command: empathy
+description:
+ Click the "Test" button to launch Empathy, then configure it to connect to the following service. Once you have completed the test, please quit Empathy to continue here.
+ .
+ Jabber
+ .
+ Were you able to connect correctly and send/receive messages?
+
+plugin: manual
+name: applications-empathy-aim
+requires: package.name == "empathy"
+command: empathy
+description:
+ Click the "Test" button to launch Empathy, then configure it to connect to the following service. Once you have completed the test, please quit Empathy to continue here.
+ .
+ AIM
+ .
+ Were you able to connect correctly and send/receive messages?
+
+plugin: manual
+name: applications-empathy-msn
+requires: package.name == "empathy"
+command: empathy
+description:
+ Click the "Test" button to launch Empathy, then configure it to connect to the following service. Once you have completed the test, please quit Empathy to continue here.
+ .
+ MSN
+ .
+ Were you able to connect correctly and send/receive messages?
