@@ -36,7 +36,7 @@ name: nautilus_folder_move
 depends: nautilus_folder_copy
 command: nautilus
 _description:
- Click the Test button to open the File Browser. Click and drag the folder called Test Data onto the icon called Test Folder. Release the button. 
+ Click the Test button to open the File Browser. Click and drag the folder called Test Data onto the icon called Test Folder. Release the button.
  .
  Double click the folder called Test Folder to open it up.
  .
@@ -106,7 +106,7 @@ _description:
 plugin: local
 name: Office Document Viewer Test
 requires: package.name == "ubuntu-desktop"
-description: Common Document Types Test
+_description: Common Document Types Test
 command:
  cat <<'EOF' | run_templates -s "find $CHECKBOX_SHARE/data/documents -type f"
  name: `basename $0`_test
@@ -123,7 +123,7 @@ command:
 plugin: local
 name: Audio File Player Test
 requires: package.name == "ubuntu-desktop"
-description: Common Document Types Test
+_description: Common Document Types Test
 command:
  cat <<'EOF' | run_templates -s "find $CHECKBOX_SHARE/data/audio -type f"
  name: `basename $0`_test
@@ -140,7 +140,7 @@ command:
 plugin: local
 name: Video File Player Test
 requires: package.name == "ubuntu-desktop"
-description: Common Document Types Test
+_description: Common Document Types Test
 command:
  cat <<'EOF' | run_templates -s "find $CHECKBOX_SHARE/data/video -type f"
  name: `basename $0`_test
@@ -157,7 +157,7 @@ command:
 plugin: local
 name: Image File Viewer Test
 requires: package.name == "ubuntu-desktop"
-description: Common Document Types Test
+_description: Common Document Types Test
 command:
  cat <<'EOF' | run_templates -s "find $CHECKBOX_SHARE/data/images -type f"
  name: `basename $0`_test
@@ -170,3 +170,52 @@ command:
   Did the image display properly?
  command: xdg-open $0
  EOF
+
+plugin: manual
+name: applications-firefox
+requires: package.name == 'firefox'
+command: firefox $CHECKBOX_SHARE/data/websites/testindex.html
+_description:
+ Click the "Test" button to launch Firefox and view the test web page.
+ .
+ Did the Ubuntu Test page load correctly?
+
+plugin: manual
+name: applications-firefox-java
+depends: applications-firefox
+requires: package.name == 'firefox'
+command: firefox $CHECKBOX_SHARE/data/websites/javatest.html
+_description:
+ Click the "Test" button to open Firefox with the Java test page, and follow the instructions there.
+ .
+ Did the applet display?
+
+plugin: manual
+name: applications-firefox-flash
+depends: applications-firefox
+requires: package.name == 'firefox'
+command: firefox $CHECKBOX_SHARE/data/websites/flashtest.html
+_description:
+ Click the "Test" button to launch Firefox and view a sample Flash slide show.
+ .
+ Did you see the slideshow?
+
+plugin: manual
+name: applications-firefox-flash-video
+depends: applications-firefox-flash
+requires: package.name == 'firefox'
+command: firefox $CHECKBOX_SHARE/data/websites/flashvideo.html
+_description:
+ Click the "Test" button to launch Firefox and view a short flash video.
+ .
+ Did the video play correctly?
+
+plugin: manual
+name: applications-firefox-totem
+depends: applications-firefox
+requires: package.name == 'firefox'
+command: firefox $CHECKBOX_SHARE/data/video/Quicktime_Video.mov
+_description:
+ Click the "Test" button to launch Firefox with a sample video.
+ .
+ Did the video play using a plugin?

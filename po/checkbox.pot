@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-06-30 11:32-0400\n"
+"POT-Creation-Date: 2010-07-15 16:08-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -70,13 +70,13 @@ msgstr ""
 
 #. description
 #: ../jobs/audio.txt.in:7 ../jobs/disk.txt.in:16 ../jobs/network.txt.in:16
-#: ../jobs/sleep.txt.in:55 ../jobs/video.txt.in:50
+#: ../jobs/sleep.txt.in:92 ../jobs/video.txt.in:50
 msgid "$output"
 msgstr ""
 
 #. description
 #: ../jobs/audio.txt.in:7 ../jobs/disk.txt.in:4 ../jobs/network.txt.in:16
-#: ../jobs/sleep.txt.in:55 ../jobs/video.txt.in:50
+#: ../jobs/sleep.txt.in:110 ../jobs/video.txt.in:50
 msgid "Is this correct?"
 msgstr ""
 
@@ -127,7 +127,7 @@ msgstr ""
 
 #. description
 #: ../jobs/audio.txt.in:68 ../jobs/peripheral.txt.in:24
-#: ../jobs/sleep.txt.in:82
+#: ../jobs/sleep.txt.in:146
 msgid "Did you hear your speech played back?"
 msgstr ""
 
@@ -302,7 +302,17 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/media.txt.in:25
+#: ../jobs/media.txt.in:26
+msgid ""
+"Secure Digital (SD) media card support re-verification: 1.- Plug a SD media "
+"card into the computer. 2.- An icon should appear on the desktop and in the "
+"\"Places\" menu at the top of the screen. 3.- Right click on the deskop icon "
+"and select \"Safely Remove Drive\". 4.- The icon should disappear of both "
+"the deskop and the \"Places\" menu."
+msgstr ""
+
+#. description
+#: ../jobs/media.txt.in:37
 msgid ""
 "Secure Digital High Capacity (SDHC) media card support verification: 1.- "
 "Plug a SDHC media card into the computer. 2.- An icon should appear on the "
@@ -312,7 +322,17 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/media.txt.in:36
+#: ../jobs/media.txt.in:49
+msgid ""
+"Secure Digital High Capacity (SDHC) media card support re-verification: 1.- "
+"Plug a SDHC media card into the computer. 2.- An icon should appear on the "
+"desktop and in the \"Places\" menu at the top of the screen. 3.- Right click "
+"on the deskop icon and select \"Safely Remove Drive\". 4.- The icon should "
+"disappear of both the deskop and the \"Places\" menu."
+msgstr ""
+
+#. description
+#: ../jobs/media.txt.in:60
 msgid ""
 "Multi Media Card (MMC) media card support verification: 1.- Plug a MMC media "
 "card into the computer. 2.- An icon should appear on the desktop and in the "
@@ -322,7 +342,17 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/media.txt.in:47
+#: ../jobs/media.txt.in:72
+msgid ""
+"Multi Media Card (MMC) media card support re-verification: 1.- Plug a MMC "
+"media card into the computer. 2.- An icon should appear on the desktop and "
+"in the \"Places\" menu at the top of the screen. 3.- Right click on the "
+"deskop icon and select \"Safely Remove Drive\". 4.- The icon should "
+"disappear of both the deskop and the \"Places\" menu."
+msgstr ""
+
+#. description
+#: ../jobs/media.txt.in:83
 msgid ""
 "Memory Stick (MS) media card support verification: 1.- Plug a MS media card "
 "into the computer. 2.- An icon should appear on the desktop and in the "
@@ -332,7 +362,17 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/media.txt.in:58
+#: ../jobs/media.txt.in:95
+msgid ""
+"Memory Stick (MS) media card support re-verification: 1.- Plug a MS media "
+"card into the computer. 2.- An icon should appear on the desktop and in the "
+"\"Places\" menu at the top of the screen. 3.- Right click on the deskop icon "
+"and select \"Safely Remove Drive\". 4.- The icon should disappear of both "
+"the deskop and the \"Places\" menu."
+msgstr ""
+
+#. description
+#: ../jobs/media.txt.in:106
 msgid ""
 "Memory Stick Pro (MSP) media card support verification: 1.- Plug a MSP media "
 "card into the computer. 2.- An icon should appear on the desktop and in the "
@@ -342,7 +382,37 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/media.txt.in:58
+#: ../jobs/media.txt.in:118
+msgid ""
+"Memory Stick Pro (MSP) media card support re-verification: 1.- Plug a MSP "
+"media card into the computer. 2.- An icon should appear on the desktop and "
+"in the \"Places\" menu at the top of the screen. 3.- Right click on the "
+"deskop icon and select \"Safely Remove Drive\". 4.- The icon should "
+"disappear of both the deskop and the \"Places\" menu."
+msgstr ""
+
+#. description
+#: ../jobs/media.txt.in:129
+msgid ""
+"Compact Flash (CF) media card support verification: 1.- Plug a CF media card "
+"into the computer. 2.- An icon should appear on the desktop and in the "
+"\"Places\" menu at the top of the screen. 3.- Right click on the deskop icon "
+"and select \"Safely Remove Drive\". 4.- The icon should disappear of both "
+"the deskop and the \"Places\" menu."
+msgstr ""
+
+#. description
+#: ../jobs/media.txt.in:141
+msgid ""
+"Compact Flash (CF) media card support re-verification: 1.- Plug a CF media "
+"card into the computer. 2.- An icon should appear on the desktop and in the "
+"\"Places\" menu at the top of the screen. 3.- Right click on the deskop icon "
+"and select \"Safely Remove Drive\". 4.- The icon should disappear of both "
+"the deskop and the \"Places\" menu."
+msgstr ""
+
+#. description
+#: ../jobs/media.txt.in:141
 msgid "Does the icon automatically appear/disappear?"
 msgstr ""
 
@@ -437,7 +507,12 @@ msgid "Record the current resolution before suspending."
 msgstr ""
 
 #. description
-#: ../jobs/sleep.txt.in:15
+#: ../jobs/sleep.txt.in:14
+msgid "Test the audio before suspending."
+msgstr ""
+
+#. description
+#: ../jobs/sleep.txt.in:20
 msgid ""
 "Wireless network connection procedure: 1.- Click on the Network Manager "
 "applet 2.- Click on Disconnect under 'Wired Networks' 3.- Select a network "
@@ -447,12 +522,12 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/sleep.txt.in:32
+#: ../jobs/sleep.txt.in:63
 msgid "Power management Suspend and Resume test"
 msgstr ""
 
 #. description
-#: ../jobs/sleep.txt.in:32
+#: ../jobs/sleep.txt.in:63
 msgid ""
 "Click test and your system will suspend for about 30 - 60 seconds. If your "
 "system does not wake itself up after 60 seconds, please press the power "
@@ -460,17 +535,22 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/sleep.txt.in:42
+#: ../jobs/sleep.txt.in:73
 msgid "Test the network after resuming."
 msgstr ""
 
 #. description
-#: ../jobs/sleep.txt.in:48
+#: ../jobs/sleep.txt.in:79
 msgid "Test to see that we have the same resolution after resuming as before."
 msgstr ""
 
 #. description
-#: ../jobs/sleep.txt.in:55
+#: ../jobs/sleep.txt.in:85
+msgid "Test the audio after resuming."
+msgstr ""
+
+#. description
+#: ../jobs/sleep.txt.in:92
 msgid ""
 "Wireless network connection procedure: 1.- Click on the Network Manager "
 "applet 2.- If a wired connection is established, click its Disconnect option "
@@ -480,14 +560,40 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/sleep.txt.in:71
+#: ../jobs/sleep.txt.in:110
+msgid "The address of your Bluetooth device is: $output"
+msgstr ""
+
+#. description
+#: ../jobs/sleep.txt.in:119
+msgid ""
+"Verify a bluetooth peripheral.  An example verification procedure for a "
+"bluetooth mouse is given."
+msgstr ""
+
+#. description
+#: ../jobs/sleep.txt.in:119
+msgid ""
+"Bluetooth mouse procedure: 1.- Enable the bluetooth mouse 2.- Click on the "
+"bluetooth icon in the menu bar 3.- Select 'Setup new device' 4.- Look for "
+"the device in the list and select it 5.- Move the mouse around the screen "
+"6.- Perform some single/double/right click operations"
+msgstr ""
+
+#. description
+#: ../jobs/sleep.txt.in:119
+msgid "Did all the steps work?"
+msgstr ""
+
+#. description
+#: ../jobs/sleep.txt.in:135
 msgid ""
 "This test will check to make sure that supported video modes work after a "
 "suspend and resume.  Click Test to Begin."
 msgstr ""
 
 #. description
-#: ../jobs/sleep.txt.in:82
+#: ../jobs/sleep.txt.in:146
 msgid ""
 "This will check to make sure that your audio device works properly after a "
 "suspend and resume.  You can use either internal or external microphone and "
@@ -495,7 +601,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/sleep.txt.in:82
+#: ../jobs/sleep.txt.in:146
 msgid ""
 "To execute this test, make sure your speaker and microphone are NOT muted "
 "and the volume is set sufficiently loud to record and play audio. Click the "
@@ -504,26 +610,26 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/sleep.txt.in:95
+#: ../jobs/sleep.txt.in:159
 msgid ""
 "Enter and resume from suspend state for 30 iterations. Please note that this "
 "is a lengthy test. Click Test to begin."
 msgstr ""
 
 #. description
-#: ../jobs/sleep.txt.in:95
+#: ../jobs/sleep.txt.in:159
 msgid "Did the system successfully suspend and resume for 30 iterations?"
 msgstr ""
 
 #. description
-#: ../jobs/sleep.txt.in:104
+#: ../jobs/sleep.txt.in:168
 msgid ""
 "This will check to make sure your system can successfully hibernate (if "
 "supported)."
 msgstr ""
 
 #. description
-#: ../jobs/sleep.txt.in:104
+#: ../jobs/sleep.txt.in:168
 msgid ""
 "Click the Test button to begin. The system will hibernate and should wake "
 "itself within 5 minutes.  If your system does not wake itself after 5 "
@@ -531,14 +637,14 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/sleep.txt.in:104
+#: ../jobs/sleep.txt.in:168
 msgid ""
 "Did the system successfully hibernate and did it work properly after waking "
 "up?"
 msgstr ""
 
 #. description
-#: ../jobs/sleep.txt.in:117
+#: ../jobs/sleep.txt.in:181
 msgid ""
 "Enter and resume from hibernate for 30 iterations. Please note that this is "
 "a very lengthy test. Also, if your system does not wake itself after 2 "
@@ -546,7 +652,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/sleep.txt.in:117
+#: ../jobs/sleep.txt.in:181
 msgid ""
 "Also, you will need to ensure your system has no power-on or HDD passwords "
 "set, and that grub is set to boot Ubuntu by default if you have a multi-boot "
@@ -554,7 +660,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/sleep.txt.in:117
+#: ../jobs/sleep.txt.in:181
 msgid "Did the system successfully hibernate and wake 30 times?"
 msgstr ""
 
