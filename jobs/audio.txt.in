@@ -16,7 +16,7 @@ name: playback_auto
 depends: list_audio_devices
 requires:
  device.category == 'AUDIO'
- package.name == 'python-gst0.10'
+ package.name == 'alsa-base' and package.name == 'python-gst0.10'
 command: gst_pipeline_test -t 2 'audiotestsrc wave=sine freq=512 ! audioconvert ! audioresample ! gconfaudiosink'
 _description:
  Click the Test button to play a sound on the automatically detected playback device.
@@ -28,7 +28,7 @@ name: playback_headphones
 depends: list_audio_devices
 requires:
  device.category == 'AUDIO'
- package.name == 'python-gst0.10'
+ package.name == 'alsa-base' and package.name == 'python-gst0.10'
 command: gst_pipeline_test -t 2 'audiotestsrc wave=sine freq=512 ! audioconvert ! audioresample ! gconfaudiosink'
 _description:
  Please connect a pair of headphones to your audio device.
