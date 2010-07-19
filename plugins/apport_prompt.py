@@ -192,13 +192,13 @@ class ApportPrompt(Plugin):
 
         # Give lowest priority to required packages
         for resource in test.get("resources", []):
-            if resource["suite"] == "package":
+            if "version" in resource:
                 package = resource["name"]
                 break
 
         # Give highest priority to required devices
         for resource in test.get("resources", []):
-            if resource["suite"] == "device":
+            if "bus" in resource:
                 category = resource["category"]
                 if category in CATEGORY_TO_PACKAGE:
                     package = CATEGORY_TO_PACKAGE[category]
@@ -223,7 +223,7 @@ class ApportPrompt(Plugin):
 
         # Determine corresponding device
         for resource in test.get("resources", []):
-            if resource["suite"] == "device":
+            if "bus" in resource:
                 device = resource["category"].lower()
                 break
 
