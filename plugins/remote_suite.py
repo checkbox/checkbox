@@ -35,6 +35,7 @@ class RemoteSuite(Plugin):
         # Register temporary handler for report-message events
         def report_message(message):
             message["suite"] = suite["name"]
+            self._manager.reactor.fire("report-job", message)
 
         event_id = self._manager.reactor.call_on("report-message", report_message)
         self._manager.reactor.fire("message-exec", suite)
