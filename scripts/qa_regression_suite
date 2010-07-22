@@ -36,10 +36,6 @@ def fetch_qa_regression(location, directory):
     if posixpath.exists(directory):
         return
 
-    dirname = posixpath.dirname(directory)
-    if not posixpath.exists(dirname):
-        os.makedirs(dirname)
-
     process = subprocess.Popen(["bzr", "export", directory, location],
         stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     stdout, stderr = process.communicate()
@@ -145,6 +141,11 @@ def main(args):
     user = os.environ.get("SUDO_USER")
     if not user:
         parser.error("SUDO_USER variable not found, must be run with sudo.")
+
+    dirname = posixpath.dirname(options.directory)
+    if not posixpath.exists(dirname):
+        os.makedirs(dirname)
+        os.chmod(dirname, 0777)
 
     pw = pwd.getpwnam(user)
     os.setgid(pw.pw_gid)
