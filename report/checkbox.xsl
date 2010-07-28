@@ -1,71 +1,83 @@
 <?xml version="1.0"?>
+
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 <xsl:template match="/">
     <html>
     <head>
-        <title>Checkbox Report</title>
-        <link rel="stylesheet" type="text/css" href="file:///usr/share/checkbox/report/checkbox.css" media="all" />
+        <title>System Testing Report</title>
+        <link rel="stylesheet" type="text/css" href="styles.css" />
+	    <script type="text/javascript" src="checkbox.js">
+	    </script>
     </head>
-    <body>
-    <h1>Checkbox Report</h1>
-    <h2 id="toc">Table Of Contents</h2>
-    <ol>
-        <li><a href="#summary">Summary</a></li>
-        <li>Hardware
-        <ul>
-            <li><a href="#udev">udev</a></li>
-            <li><a href="#dmi">dmi</a></li>
-            <li><a href="#sysfs-attributes">sysfs-attributes</a></li>
-            <li><a href="#processors">Processors</a></li>
-        </ul></li>
-        <li>Software
-        <ul>
-            <li><a href="#packages">Packages</a></li>
-            <li><a href="#lsbrelease">LSB</a></li>
-        </ul></li>
-        <li><a href="#questions">Questions</a></li>
-        <li><a href="#context">Contextual Information</a></li>
-        <xsl:apply-templates select=".//context" mode="navigation" />
-     </ol>
-    <xsl:apply-templates select=".//summary" />
-    <xsl:apply-templates select=".//hardware/udev" />
-    <xsl:apply-templates select=".//hardware/dmi" />
-    <xsl:apply-templates select=".//hardware/sysfs-attributes" />
-    <xsl:apply-templates select=".//hardware/processors" />
-    <xsl:apply-templates select=".//hardware/lspci" />
-    <xsl:apply-templates select=".//software/packages" />
-    <xsl:apply-templates select=".//software/lsbrelease" />
-    <xsl:apply-templates select=".//questions" />
-    <xsl:apply-templates select=".//context" />
+    <body onLoad="prettyResults();">
+        <!-- Quick and dirty preload to have disclosure triangle images cached -->
+        <img src="images/open.png" style="display: none;" /><img src="images/closed.png" style="display: none;" />
+        <div id="container">
+            <div id="container-inner">
+
+                <div id="title">
+                    <h1>System Testing<span class="grey"> Report</span></h1>
+                </div>
+                <div id="content" class="clearfix">
+                    <h2>Hardware Information</h2>
+                    <xsl:apply-templates select=".//hardware/dmi" />
+                    <xsl:apply-templates select=".//hardware/sysfs-attributes" />
+                    <xsl:apply-templates select=".//hardware/processors" />
+                    <xsl:apply-templates select=".//hardware/lspci" />
+                </div>
+                <div id="content" class="clearfix">
+                    <h2>Software Information</h2>
+                    <xsl:apply-templates select=".//software/packages" />
+                    <xsl:apply-templates select=".//software/lsbrelease" />
+                </div>
+                <div id="content" class="clearfix">
+                    <h2>Tests Performed</h2>
+                    <xsl:apply-templates select=".//questions" />
+                </div>
+                <div id="content" class="clearfix">
+                    <h2>Log Files and Environment Information</h2>
+                    <xsl:apply-templates select=".//context" />
+                </div>
+            </div>
+        </div>
     </body>
     </html>
 </xsl:template>
 
 <xsl:template match="summary">
-    <h2 id="summary">Summary</h2>
+    <h3 id="summary">Summary</h3>
     <p>This report was created using <xsl:value-of select="client/@name" /> <xsl:text> </xsl:text><xsl:value-of select="client/@version" /> on <xsl:value-of select="date_created/@value" />, on <xsl:value-of select="distribution/@value" /><xsl:text> </xsl:text><xsl:value-of select="distroseries/@value" /> (<xsl:value-of select="architecture/@value" />).</p>
     <p>You can view other reports for this system <a href="https://launchpad.net/+hwdb/+fingerprint/{system_id/@value}">here</a>.</p>
 </xsl:template>
 
 <xsl:template match="hardware/udev">
-    <h2 id="udev">udev</h2>
-    <pre><xsl:value-of select="." /></pre>
+    <div onClick="showHide('udev');">
+        <h3 id="udev"><img class="disclosureimg" src="images/closed.png" />Devices detected in the system (udev)</h3>
+    </div>
+    <div class="data" id="udev-contents">
+        <pre><xsl:value-of select="." /></pre>
+    </div>
 </xsl:template>
 
 <xsl:template match="hardware/dmi">
-    <h2 id="dmi">dmi</h2>
-    <pre><xsl:value-of select="." /></pre>
+    <span onClick="showHide('dmi');"><h3 id="dmi"><img class="disclosureimg" src="images/closed.png" />Desktop Management Interface information</h3></span>
+    <div class="data" id="dmi-contents" style="overflow: auto;">
+        <pre><xsl:value-of select="." /></pre>
+    </div>
 </xsl:template>
 
 <xsl:template match="hardware/sysfs-attributes">
-    <h2 id="sysfs-attributes">sysfs-attributes</h2>
-    <pre><xsl:value-of select="." /></pre>
+    <span onClick="showHide('sysfs-attributes');"><h3 id="sysfs-attributes"><img class="disclosureimg" src="images/closed.png" />sysfs-attributes</h3></span>
+    <div class="data" id="sysfs-attributes-contents">
+        <pre><xsl:value-of select="." /></pre>
+    </div>
 </xsl:template>
 
 <xsl:template match="hardware/processors">
-    <h2 id="processors">Processors</h2>
+    <span onClick="showHide('processors');"><h3 id="processors"><img class="disclosureimg" src="images/closed.png" />Processors</h3></span>
+    <div class="data" id="processors-contents">
     <xsl:for-each select="processor">
-        <h3><xsl:value-of select='@name' /></h3>
+        <h3><u>Processor <xsl:value-of select='@name' /></u></h3>
         <table>
             <tr>
                 <th>Property</th>
@@ -78,29 +90,14 @@
             </tr>
         </xsl:for-each>
         </table>
+	<br />
     </xsl:for-each>
     <p class="navigation"><a href="#toc">Back to Table of Contents</a></p>
-</xsl:template>
-
-<xsl:template match="software/packages">
-    <h2 id="packages">Packages</h2>
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Version</th>
-        </tr>
-        <xsl:for-each select="package">
-            <tr>
-                <td class="label"><xsl:value-of select="@name" /></td>
-                <td><xsl:value-of select="property" /></td>
-            </tr>
-        </xsl:for-each>
-    </table>
-    <p class="navigation"><a href="#toc">Back to Table of Contents</a></p>
+    </div>
 </xsl:template>
 
 <xsl:template match="software/lsbrelease">
-    <h2 id="lsbrelease">LSB</h2>
+    <h3 id="lsbrelease">Installed version of Ubuntu</h3>
     <table>
         <xsl:for-each select="property">
             <tr>
@@ -111,19 +108,40 @@
     </table>
     <p class="navigation"><a href="#toc">Back to Table of Contents</a></p>
 </xsl:template>
-
-<xsl:template match="questions">
-    <h2 id="questions">Questions</h2>
-        <table>
+<xsl:template match="software/packages">
+    <span onClick="showHide('packages');"><h3 id="packages"><img class="disclosureimg" src="images/closed.png" />Packages Installed</h3></span>
+    <div class="data" id="packages-contents">
+    <table>
         <tr>
             <th>Name</th>
-            <th>Answer</th>
+            <th>Description</th>
+        </tr>
+        <xsl:for-each select="package">
+            <tr>
+                <td class="label"><xsl:value-of select="@name" /></td>
+                <td><xsl:value-of select="property" /></td>
+            </tr>
+        </xsl:for-each>
+    </table>
+    <p class="navigation"><a href="#toc">Back to Table of Contents</a></p>
+    </div>
+</xsl:template>
+
+
+<xsl:template match="questions">
+    <h3 id="questions">Tests</h3>
+        <table style="width: 700px">
+        <tr>
+            <th> </th>
+            <th>Name</th>
+            <th style="width: 15em;">Result</th>
             <th>Comment</th>
         </tr>
         <xsl:for-each select="question">
             <tr>
+                <td><span name="testGraphic"> </span></td>
                 <td class="label"><xsl:value-of select="@name" /></td>
-                <td><xsl:value-of select="answer" /></td>
+                <td><span name="testResult"><xsl:value-of select="answer" /></span></td>
                 <td><xsl:value-of select="comment" /></td>
             </tr>
         </xsl:for-each>
@@ -142,12 +160,16 @@
 </xsl:template>
 
 <xsl:template match="context">
-    <h2 id="context">Contextual Information</h2>
+    <div id="packages-contents">    
     <xsl:for-each select="info">
-        <h3 id="{generate-id(.)}"><xsl:value-of select="@command" /></h3>
-        <pre><xsl:value-of select="." /></pre>
-        <p class="navigation"><a href="#toc">Back to Table of Contents</a></p>
+	<span onClick="showHide('{generate-id(.)}');"><h3 id="{generate-id(.)}"><img class="disclosureimg" src="images/closed.png" />
+        <xsl:value-of select="@command" /></h3></span>
+	<div class="data" id="{generate-id(.)}-contents" style="overflow: auto;">
+	        <pre><xsl:value-of select="." /></pre>
+        	<p class="navigation"><a href="#toc">Back to Table of Contents</a></p>
+	</div>
     </xsl:for-each>
+    </div>
 </xsl:template>
 
 </xsl:stylesheet>
