@@ -16,6 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
+import os
 import posixpath
 import shutil
 
@@ -123,15 +124,16 @@ class LaunchpadReport(Plugin):
             self._report["questions"].append(question)
 
     def report(self):
-        # Copy stylesheet to report directory
-        stylesheet = posixpath.join(
+        # Convert stylesheet to report directory
+        stylesheet_data = open(self.stylesheet).read() % os.environ
+        stylesheet_path = posixpath.join(
             posixpath.dirname(self.filename),
             posixpath.basename(self.stylesheet))
-        shutil.copy(self.stylesheet, stylesheet)
+        open(stylesheet_path, "w").write(stylesheet_data)
 
         # Prepare the payload and attach it to the form
-        stylesheet = posixpath.abspath(stylesheet)
-        report_manager = LaunchpadReportManager("system", "1.0", stylesheet)
+        stylesheet_path = posixpath.abspath(stylesheet_path)
+        report_manager = LaunchpadReportManager("system", "1.0", stylesheet_path)
         payload = report_manager.dumps(self._report).toprettyxml("")
 
         directory = posixpath.dirname(self.filename)
