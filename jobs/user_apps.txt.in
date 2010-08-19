@@ -196,9 +196,9 @@ depends: applications-firefox
 requires: package.name == 'firefox'
 command: firefox $CHECKBOX_SHARE/data/websites/flashtest.html
 _description:
- Click the "Test" button to launch Firefox and view a sample Flash slide show.
+ Click the "Test" button to launch Firefox and view a sample Flash test.
  .
- Did you see the slideshow?
+ Did you see the text?
 
 plugin: manual
 name: applications-firefox-flash-video
