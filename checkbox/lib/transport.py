@@ -104,6 +104,26 @@ class ProxyHTTPSConnection(ProxyHTTPConnection):
         self.sock = _ssl_wrap_socket(self.sock, self.key_file, self.cert_file)
 
 
+class VerifiedHTTPSConnection(httplib.HTTPSConnection):
+
+    def connect(self):
+        # overrides the version in httplib so that we do
+        #    certificate verification
+        sock = socket.create_connection((self.host, self.port),
+                                        self.timeout)
+        if self._tunnel_host:
+            self.sock = sock
+            self._tunnel()
+
+        # wrap the socket using verification with the root
+        #    certs in trusted_root_certs
+        self.sock = _ssl_wrap_socket(sock,
+            self.key_file,
+            self.cert_file,
+            cert_reqs=ssl.CERT_REQUIRED,
+            ca_certs="/etc/ssl/certs/ca-certificates.crt")
+
+
 class HTTPTransport(object):
     """Transport makes a request to exchange message data over HTTP."""
 
@@ -141,7 +161,7 @@ class HTTPTransport(object):
                 connection = ProxyHTTPSConnection(host, port)
             else:
                 host, port = self._unpack_host_and_port(self.url)
-                connection = httplib.HTTPSConnection(host, port)
+                connection = VerifiedHTTPSConnection(host, port)
         else:
             raise Exception, "Unknown URL scheme: %s" % scheme
 
@@ -253,7 +273,7 @@ class HTTPTransport(object):
             else:
                 if response.status == httplib.FOUND:
                     # TODO prevent infinite redirect loop
-                    self.url = self._get_location_header(response)
+                    self.url = response.getheader('location')
                     response = self.exchange(body, headers, timeout)
 
         return response
