@@ -134,10 +134,10 @@ class Config(object):
 
             for section in sections:
                 logging.debug('Setting configuration parameter: '
-                              '{section}/{option} = {value}'
-                              .format(section=section,
-                                      option=option,
-                                      value=value))
+                              '%(section)s/%(option)s = %(value)s'
+                              % {'section': section,
+                                 'option': option,
+                                 'value': value})
                 self._parser.set(section, option, value)
 
     def read_file(self, file, filename="<stream>"):
