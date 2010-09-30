@@ -377,15 +377,22 @@ class GTKInterface(UserInterface):
                 active = not treestore.get_value(iter, COLUMN_ACTIVE)
             treestore.set_value(iter, COLUMN_ACTIVE, active)
 
-            # Set parents
-            def set_parents(iter):
-                parent = treestore.iter_parent(iter)
-                if parent:
-                    treestore.set_value(parent, COLUMN_ACTIVE, active)
-                    set_parents(parent)
+            # Set ancestors
+            def set_ancestors(iterator):
+                parent_row = treestore[iterator].parent
+                if active:
+                    while parent_row:
+                        parent_row[COLUMN_ACTIVE] = active
+                        parent_row = parent_row.parent
+                else:
+                    while parent_row:
+                        if any(child[COLUMN_ACTIVE]
+                               for child in parent_row.iterchildren()):
+                            break
+                        parent_row[COLUMN_ACTIVE] = active
+                        parent_row = parent_row.parent
 
-            if active:
-                set_parents(iter)
+            set_ancestors(iter)
 
             # Set children
             def set_children(iter):
