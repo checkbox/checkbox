@@ -421,6 +421,7 @@ class GTKInterface(UserInterface):
             button.connect("clicked", click_button,
                 "deselect" not in button_name)
 
+        self._set_hyper_text_view("hyper_text_view_options", text)
         self._run_dialog()
 
         # Unset buttons
