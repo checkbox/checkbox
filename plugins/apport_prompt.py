@@ -135,6 +135,11 @@ class ApportUserInterface(UserInterface):
 
         return [options.index(r) for r in results]
 
+    def ui_question_yesno(self, text):
+        self.interface.show_progress_stop()
+        result = self.interface.show_radio(text, ["Yes", "No"])
+        return result == "Yes"
+
     def open_url(self, url):
         self.interface.show_url(url)
 
