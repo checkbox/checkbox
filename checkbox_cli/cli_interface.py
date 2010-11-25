@@ -339,7 +339,7 @@ class CLIInterface(UserInterface):
         answer = OPTION_TO_ANSWER[option]
         if answer == NO_ANSWER:
             text = _("Further information:")
-            dialog = CLITextDialog(test.name, text)
+            dialog = CLITextDialog(text)
             test["data"] = dialog.run(_("Please type here and press"
                 " Ctrl-D when finished:\n"))
         else:
