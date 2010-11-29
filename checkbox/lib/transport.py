@@ -258,9 +258,7 @@ class HTTPTransport(object):
         connection = self._get_connection(timeout)
 
         try:
-            scheme, rest = urllib.splittype(self.url)
-            host, rest = urllib.splithost(rest)
-            connection.request(method, rest, body, headers)
+            connection.request(method, self.url, body, headers)
         except IOError:
             logging.warning("Can't connect to %s", self.url)
         except socket.error:
