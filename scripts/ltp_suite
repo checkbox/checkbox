@@ -101,7 +101,7 @@ def run_ltp(location, directory, timeout=None):
             if match:
                 description = match.group("description")
                 element = {}
-                element["plugin"] = "external"
+                element["plugin"] = "remote"
                 element["depends"] = "ltp"
                 element["timeout"] = timeout
                 element["name"] = suite_name

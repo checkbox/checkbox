@@ -75,7 +75,7 @@ def run_autotest(names, location, directory, timeout=None):
 
         # Initialize test structure
         test = {}
-        test["plugin"] = "external"
+        test["plugin"] = "remote"
         test["depends"] = "autotest"
         test["timeout"] = timeout
         test["name"] = name
