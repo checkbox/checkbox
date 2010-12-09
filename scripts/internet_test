@@ -132,12 +132,13 @@ def main(args):
 
     if received_packets == 0:
         print _("No Internet connection")
+        return 1
     elif received_packets != options.count:
         print _("Connection established lost a packet")
+        return 1
     else:
         print _("Internet connection fully established")
-
-    return 0
+        return 0
 
 if __name__ == "__main__":
     sys.exit(main(sys.argv[1:]))
