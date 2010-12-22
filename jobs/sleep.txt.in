@@ -19,11 +19,11 @@ name: wireless_before_suspend
 command: internet_test
 _description:
  Wireless network connection procedure:
- 1.- Click on the Network Manager applet
- 2.- Click on Disconnect under 'Wired Networks'
- 3.- Select a network below the 'Wireless networks' section
- 4.- Notify OSD should confirm that the connection has been established
- 5.- Select Test to verify connection and throughput
+  1.- Click on the Network Manager applet
+  2.- Click on Disconnect under 'Wired Networks'
+  3.- Select a network below the 'Wireless networks' section
+  4.- Notify OSD should confirm that the connection has been established
+  5.- Select Test to verify connection and throughput
  Output:
  .
  $output
@@ -47,12 +47,12 @@ _description:
  Verify a bluetooth peripheral.  An example verification procedure for a bluetooth mouse is given.
  .
  Bluetooth mouse procedure:
- 1.- Enable the bluetooth mouse
- 2.- Click on the bluetooth icon in the menu bar
- 3.- Select 'Setup new device'
- 4.- Look for the device in the list and select it
- 5.- Move the mouse around the screen
- 6.- Perform some single/double/right click operations
+  1.- Enable the bluetooth mouse
+  2.- Click on the bluetooth icon in the menu bar
+  3.- Select 'Setup new device'
+  4.- Look for the device in the list and select it
+  5.- Move the mouse around the screen
+  6.- Perform some single/double/right click operations
  .
  Did all the steps work?
 
@@ -91,11 +91,11 @@ depends: sleep_state_test wireless_before_suspend
 command: internet_test
 _description:
  Wireless network connection procedure:
- 1.- Click on the Network Manager applet
- 2.- If a wired connection is established, click its Disconnect option
- 3.- Select a network below the 'Wireless networks' section
- 4.- Notify OSD should confirm that the connection has been established
- 5.- Select Test to verify connection and throughput
+  1.- Click on the Network Manager applet
+  2.- If a wired connection is established, click its Disconnect option
+  3.- Select a network below the 'Wireless networks' section
+  4.- Notify OSD should confirm that the connection has been established
+  5.- Select Test to verify connection and throughput
  Output:
  .
  $output
@@ -120,12 +120,12 @@ _description:
  Verify a bluetooth peripheral.  An example verification procedure for a bluetooth mouse is given.
  .
  Bluetooth mouse procedure:
- 1.- Enable the bluetooth mouse
- 2.- Click on the bluetooth icon in the menu bar
- 3.- Select 'Setup new device'
- 4.- Look for the device in the list and select it
- 5.- Move the mouse around the screen
- 6.- Perform some single/double/right click operations
+  1.- Enable the bluetooth mouse
+  2.- Click on the bluetooth icon in the menu bar
+  3.- Select 'Setup new device'
+  4.- Look for the device in the list and select it
+  5.- Move the mouse around the screen
+  6.- Perform some single/double/right click operations
  .
  Did all the steps work?
 
