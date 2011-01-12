@@ -81,10 +81,10 @@ class JobsInfo(Plugin):
                 logging.info("Failed to open file '%s': %s",
                     filename, e.strerror)
             else:
-                strings.extend([l.strip() for l in file.readlines()
-                                if not l.startswith('#')])
+                strings.extend([l.strip() for l in file.readlines()])
 
-        return [re.compile(r"^%s$" % s) for s in strings if s]
+        return [re.compile(r"^%s$" % s) for s in strings
+            if s and not s.startswith("#")]
 
     def gather(self):
         # Register temporary handler for report-message events
