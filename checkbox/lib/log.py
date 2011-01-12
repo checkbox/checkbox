@@ -25,21 +25,29 @@ from logging import StreamHandler, FileHandler, Formatter
 def format_class(cls):
     return "%s.%s" % (cls.__module__, cls.__name__)
 
-def format_object(object):
+def format_object(object, *args, **kwargs):
     """
     Returns a fully-qualified name for the specified object, such as
     'checkbox.log.format_object()'.
     """
+    args_string = ""
+    if args:
+        args_string += ", ".join(str(a) for a in args)
+        if kwargs:
+            args_string += ", "
+    if kwargs:
+        args_string += ", ".join(["%s=%s" % (k, v) for k, v in kwargs.iteritems()])
+
     if inspect.ismethod(object):
         # FIXME If the method is implemented on a base class of
         # object's class, the module name and function name will be
         # from the base class and the method's class name will be from
         # object's class.
         name = repr(object).split(" ")[2]
-        return "%s.%s()" % (object.__module__, name)
+        return "%s.%s(%s)" % (object.__module__, name, args_string)
     elif inspect.isfunction(object):
         name = repr(object).split(" ")[1]
-        return "%s.%s()" % (object.__module__, name)
+        return "%s.%s(%s)" % (object.__module__, name, args_string)
     return format_class(object.__class__)
 
 def format_delta(seconds):

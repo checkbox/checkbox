@@ -44,6 +44,7 @@ class Reactor(object):
     def __init__(self):
         self._event_handlers = {}
         self._local = threading.local()
+        self._depth = 0
 
     def call_on(self, event_type, handler, priority=0):
         pair = (handler, priority)
@@ -55,18 +56,21 @@ class Reactor(object):
         return EventID(event_type, pair)
 
     def fire(self, event_type, *args, **kwargs):
-        logging.debug("Started firing %s.", event_type)
+        indent = "  " * self._depth
+        self._depth += 1
+        logging.debug("%sStarted firing %s.", indent, event_type)
 
         handlers = self._event_handlers.get(event_type, ())
         if not handlers:
-            logging.debug("No handlers found for event type: %s", event_type)
+            logging.debug("%sNo handlers found for event type: %s", indent, event_type)
 
         results = []
         handlers = sorted(handlers, key=lambda pair: pair[1])
         for handler, priority in handlers:
             try:
-                logging.debug("Calling %s for %s with priority %d.",
-                              format_object(handler), event_type, priority)
+                logging.debug("%sCalling %s for %s with priority %d.",
+                              indent, format_object(handler, *args, **kwargs),
+                              event_type, priority)
                 results.append(handler(*args, **kwargs))
             except StopException:
                 break
@@ -74,17 +78,18 @@ class Reactor(object):
                 raise
             except KeyboardInterrupt:
                 logging.exception("Keyboard interrupt while running event "
-                                  "handler %s for event type %r with "
-                                  "args %r %r.", format_object(handler),
-                                  event_type, args, kwargs)
+                                  "handler %s for event type %r",
+                                  format_object(handler, *args, **kwargs),
+                                  event_type)
                 self.stop_all()
             except:
                 logging.exception("Error running event handler %s for "
-                                  "event type %r with args %r %r.",
-                                  format_object(handler), event_type,
-                                  args, kwargs)
+                                  "event type %r",
+                                  format_object(handler, *args, **kwargs),
+                                  event_type)
 
-        logging.debug("Finished firing %s.", event_type)
+        logging.debug("%sFinished firing %s.", indent, event_type)
+        self._depth -= 1
         return results
 
     def has_call(self, event_type):
