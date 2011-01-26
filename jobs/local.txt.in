@@ -58,50 +58,54 @@ plugin: local
 _description: Sleep Tests
 command: cat $CHECKBOX_SHARE/jobs/sleep.txt*
 
-name: codecs
+name: codecs_attach
 plugin: attachment
 requires: device.driver == 'HDA Intel'
 command: cat /proc/asound/card*/codec#*
 
-name: cpuinfo
+name: cpuinfo_attach
 plugin: attachment
 command: cat /proc/cpuinfo
 
-name: dmesg
+name: dmesg_attach
 plugin: attachment
 command: cat /var/log/dmesg | ansi_parser
 
-name: dmi
+name: dmi_attach
 plugin: attachment
 command: grep -r . /sys/class/dmi/id/ 2>/dev/null
 
-name: dmidecode
+name: dmidecode_attach
 plugin: attachment
 user: root
 command: dmidecode
 
-name: lspci
+name: lspci_attach
 plugin: attachment
 command: lspci -vvnn
 
-name: modprobe
+name: modprobe_attach
 plugin: attachment
 command: find /etc/modprobe.* -name \*.conf | xargs cat
 
-name: modules
+name: modules_attach
 plugin: attachment
 command: cat /etc/modules
 
-name: sysctl
+name: sysctl_attach
 plugin: attachment
 command: find /etc/sysctl.* -name \*.conf | xargs cat
 
-name: udev
+name: udev_attach
 plugin: attachment
 command: udevadm info --export-db
 
-name: gcov.tgz
+name: gcov.tgz_attach
 plugin: attachment
 requires: package.name == 'lcov'
 user: root
 command: gcov_tarball
+
+name: lsmod_attach
+plugin: attachment
+command: lsmod
