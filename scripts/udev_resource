@@ -167,6 +167,9 @@ class DeviceResource(object):
             else:
                 return "KEYBOARD"
 
+            if test_bit(Input.BTN_TOUCH, bitmask):
+                return "TOUCH"
+
             if test_bit(Input.BTN_MOUSE, bitmask):
                 return "MOUSE"
 
