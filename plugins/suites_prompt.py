@@ -23,6 +23,8 @@ from checkbox.lib.resolver import Resolver
 from checkbox.plugin import Plugin
 from checkbox.user_interface import PREV
 
+from checkbox.contrib.persist import Persist, MemoryBackend
+
 from gettext import gettext as _
 
 
@@ -34,6 +36,8 @@ class SuitesPrompt(Plugin):
         self._depends = {}
         self._jobs = {}
         self._recover = False
+
+        self.persist = Persist(backend=MemoryBackend())
 
         for (rt, rh) in [
              ("begin-persist", self.begin_persist),

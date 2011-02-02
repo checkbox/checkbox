@@ -18,7 +18,6 @@
 #
 import os
 import posixpath
-import shutil
 
 from checkbox.lib.safe import safe_make_directory
 
