@@ -16,12 +16,12 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
+from checkbox.contrib.persist import Persist, MemoryBackend
+
 from checkbox.job import JobStore, UNINITIATED, UNTESTED
 from checkbox.properties import Int, Path
 from checkbox.plugin import Plugin
 from checkbox.user_interface import NEXT, PREV
-
-from checkbox.contrib.persist import Persist, MemoryBackend
 
 
 class JobsPrompt(Plugin):
@@ -31,6 +31,13 @@ class JobsPrompt(Plugin):
 
     # Maximum number of messages per directory
     store_directory_size = Int(default=1000)
+
+    @property
+    def persist(self):
+        if self._persist is None:
+            self._persist = Persist(backend=MemoryBackend())
+
+        return self._persist.root_at("jobs_prompt")
 
     @property
     def store(self):
@@ -44,10 +51,8 @@ class JobsPrompt(Plugin):
         super(JobsPrompt, self).register(manager)
 
         self._ignore = []
+        self._persist = None
         self._store = None
-
-        # Use memory backend for persistence by default
-        self.persist = Persist(backend=MemoryBackend())
 
         for (rt, rh) in [
              ("begin-persist", self.begin_persist),
@@ -60,7 +65,7 @@ class JobsPrompt(Plugin):
             self._manager.reactor.call_on(rt, rh)
 
     def begin_persist(self, persist):
-        self.persist = persist.root_at("jobs_prompt")
+        self._persist = persist
 
     def ignore_jobs(self, jobs):
         self._ignore = jobs

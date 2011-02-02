@@ -18,18 +18,25 @@
 #
 from gettext import gettext as _
 
+from checkbox.contrib.persist import Persist, MemoryBackend
+
 from checkbox.plugin import Plugin
 from checkbox.user_interface import NEXT
-
-from checkbox.contrib.persist import Persist, MemoryBackend
 
 
 class RecoverPrompt(Plugin):
 
+    @property
+    def persist(self):
+        if self._persist is None:
+            self._persist = Persist(backend=MemoryBackend())
+
+        return self._persist.root_at("recover_prompt")
+
     def register(self, manager):
         super(RecoverPrompt, self).register(manager)
 
-        self.persist = Persist(backend=MemoryBackend())
+        self._persist = None
 
         for (rt, rh) in [
              ("begin-persist", self.begin_persist),
@@ -38,7 +45,7 @@ class RecoverPrompt(Plugin):
             self._manager.reactor.call_on(rt, rh)
 
     def begin_persist(self, persist):
-        self.persist = persist.root_at("recover_prompt")
+        self._persist = persist
 
     def prompt_begin(self, interface):
         if interface.direction == NEXT \

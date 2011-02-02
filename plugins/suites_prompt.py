@@ -18,26 +18,32 @@
 #
 import copy
 
+from checkbox.contrib.persist import Persist, MemoryBackend
+
 from checkbox.lib.resolver import Resolver
 
 from checkbox.plugin import Plugin
 from checkbox.user_interface import PREV
-
-from checkbox.contrib.persist import Persist, MemoryBackend
 
 from gettext import gettext as _
 
 
 class SuitesPrompt(Plugin):
 
+    @property
+    def persist(self):
+        if self._persist is None:
+            self._persist = Persist(backend=MemoryBackend())
+
+        return self._persist.root_at("suites_prompt")
+
     def register(self, manager):
         super(SuitesPrompt, self).register(manager)
 
         self._depends = {}
         self._jobs = {}
+        self._persist = None
         self._recover = False
-
-        self.persist = Persist(backend=MemoryBackend())
 
         for (rt, rh) in [
              ("begin-persist", self.begin_persist),
@@ -52,7 +58,7 @@ class SuitesPrompt(Plugin):
             self._manager.reactor.call_on(rt, rh, 100)
 
     def begin_persist(self, persist):
-        self.persist = persist.root_at("suites_prompt")
+        self._persist = persist
 
     def begin_recover(self):
         self._recover = True
