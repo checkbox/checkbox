@@ -128,7 +128,7 @@ class Persist(object):
         """
         if filepath is None:
             if self.filename is None:
-                raise PersistError("Need a filename!")
+                return
             filepath = self.filename
         filepath = posixpath.expanduser(filepath)
         if posixpath.isfile(filepath):
