@@ -49,7 +49,6 @@ class MessageInfo(Plugin):
         whitelist_patterns = [re.compile(r"^%s$" % r) for r in whitelist if r]
         blacklist_patterns = [re.compile(r"^%s$" % r) for r in blacklist if r]
 
-        filenames = []
         for filename in path_expand_recursive(directory):
             name = posixpath.basename(filename)
             if name.startswith(".") or name.endswith("~"):

@@ -21,6 +21,8 @@ from checkbox.properties import Int, Path
 from checkbox.plugin import Plugin
 from checkbox.user_interface import NEXT, PREV
 
+from checkbox.contrib.persist import Persist, MemoryBackend
+
 
 class JobsPrompt(Plugin):
 
@@ -30,10 +32,22 @@ class JobsPrompt(Plugin):
     # Maximum number of messages per directory
     store_directory_size = Int(default=1000)
 
+    @property
+    def store(self):
+        if self._store is None:
+            self._store = JobStore(self.persist, self.store_directory,
+                self.store_directory_size)
+
+        return self._store
+
     def register(self, manager):
         super(JobsPrompt, self).register(manager)
 
         self._ignore = []
+        self._store = None
+
+        # Use memory backend for persistence by default
+        self.persist = Persist(backend=MemoryBackend())
 
         for (rt, rh) in [
              ("begin-persist", self.begin_persist),
@@ -46,9 +60,7 @@ class JobsPrompt(Plugin):
             self._manager.reactor.call_on(rt, rh)
 
     def begin_persist(self, persist):
-        persist = persist.root_at("jobs_prompt")
-        self.store = JobStore(persist, self.store_directory,
-            self.store_directory_size)
+        self.persist = persist.root_at("jobs_prompt")
 
     def ignore_jobs(self, jobs):
         self._ignore = jobs

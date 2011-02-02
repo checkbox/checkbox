@@ -21,11 +21,15 @@ from gettext import gettext as _
 from checkbox.plugin import Plugin
 from checkbox.user_interface import NEXT
 
+from checkbox.contrib.persist import Persist, MemoryBackend
+
 
 class RecoverPrompt(Plugin):
 
     def register(self, manager):
         super(RecoverPrompt, self).register(manager)
+
+        self.persist = Persist(backend=MemoryBackend())
 
         for (rt, rh) in [
              ("begin-persist", self.begin_persist),

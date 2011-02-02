@@ -24,7 +24,7 @@ import re
 import posixpath
 
 
-__all__ = ["Persist", "PickleBackend", "BPickleBackend",
+__all__ = ["Persist", "MemoryBackend", "PickleBackend", "BPickleBackend",
     "path_string_to_tuple", "path_tuple_to_string", "RootedPersist",
     "PersistError", "PersistReadOnlyError"]
 
@@ -410,7 +410,7 @@ def path_tuple_to_string(path):
 class Backend(object):
 
     def new(self):
-        raise NotImplementedError
+        return {}
 
     def load(self, filepath):
         raise NotImplementedError
@@ -494,14 +494,23 @@ class Backend(object):
         return NotImplemented
 
 
+class MemoryBackend(Backend):
+
+    def __init__(self):
+        self._store = {}
+
+    def load(self, filepath):
+        return self._store.get(filepath)
+
+    def save(self, filepath, map):
+        self._store[filepath] = map
+
+
 class PickleBackend(Backend):
 
     def __init__(self):
         import cPickle
         self._pickle = cPickle
-
-    def new(self):
-        return {}
 
     def load(self, filepath):
         file = open(filepath)
@@ -523,9 +532,6 @@ class BPickleBackend(Backend):
     def __init__(self):
         from checkbox.contrib import bpickle
         self._bpickle = bpickle
-
-    def new(self):
-        return {}
 
     def load(self, filepath):
         file = open(filepath)
