@@ -10,7 +10,9 @@ _description: Record the current resolution before suspending.
 command: xrandr -q |grep '*'| awk '{print $1}' > $CHECKBOX_DATA/resolution_before_suspend.txt
 
 plugin: shell
-requires: package.name == 'alsa-utils'
+requires:
+ device.category == 'AUDIO' 
+ package.name == 'alsa-base'
 name: audio_before_suspend
 _description: Test the audio before suspending.
 command: amixer > $CHECKBOX_DATA/audio_before_suspend.txt
@@ -82,7 +84,9 @@ command: xrandr -q |grep '*'| awk '{print $1}' | diff $CHECKBOX_DATA/resolution_
 
 plugin: shell
 name: audio_after_suspend
-requires: package.name == 'alsa-base'
+requires:
+ device.category == 'AUDIO' 
+ package.name == 'alsa-base'
 depends: sleep_state_test audio_before_suspend
 _description: Test the audio after resuming.
 command: amixer | diff $CHECKBOX_DATA/audio_before_suspend.txt -
