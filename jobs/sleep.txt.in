@@ -82,7 +82,7 @@ command: xrandr -q |grep '*'| awk '{print $1}' | diff $CHECKBOX_DATA/resolution_
 
 plugin: shell
 name: audio_after_suspend
-requires: package.name == 'alsa-utils'
+requires: package.name == 'alsa-base'
 depends: sleep_state_test audio_before_suspend
 _description: Test the audio after resuming.
 command: amixer | diff $CHECKBOX_DATA/audio_before_suspend.txt -
