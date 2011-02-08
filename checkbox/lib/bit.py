@@ -16,6 +16,9 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
+from struct import calcsize
+
+
 def get_bitmask(key):
     bitmask = []
     for value in reversed(key.split()):
@@ -34,7 +37,7 @@ def get_bitcount(bitmask):
     return bitcount
 
 def test_bit(bit, bitmask):
-    bits_per_long = 8 * 8
+    bits_per_long = calcsize("l") * 8
     offset = bit % bits_per_long
     long = int(bit / bits_per_long)
     if long >= len(bitmask):

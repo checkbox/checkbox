@@ -34,15 +34,17 @@ class PersistInfo(Plugin):
 
         for (rt, rh) in [
              ("begin", self.begin),
+             ("prompt-begin", self.begin),
              ("prompt-job", self.save)]:
             self._manager.reactor.call_on(rt, rh, -100)
 
         # Save persist data last
         self._manager.reactor.call_on("stop", self.save, 1000)
 
-    def begin(self):
-        self.persist = Persist(self.filename)
-        self._manager.reactor.fire("begin-persist", self.persist)
+    def begin(self, interface=None):
+        if self.persist is None:
+            self.persist = Persist(self.filename)
+            self._manager.reactor.fire("begin-persist", self.persist)
 
     def save(self, *args):
         # Flush data to disk

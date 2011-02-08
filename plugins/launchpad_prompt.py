@@ -34,6 +34,8 @@ class LaunchpadPrompt(Plugin):
     def register(self, manager):
         super(LaunchpadPrompt, self).register(manager)
 
+        self.persist = None
+
         for (rt, rh) in [
              ("begin-persist", self.begin_persist),
              ("launchpad-report", self.launchpad_report),
@@ -47,7 +49,10 @@ class LaunchpadPrompt(Plugin):
         self._launchpad_report = report
 
     def prompt_exchange(self, interface):
-        email = self.persist.get("email") or self.email
+        if self.persist and self.persist.has("email"):
+            email = self.persist.get("email")
+        else:
+            email = self.email
 
         # Register temporary handler for exchange-error events
         errors = []
@@ -96,7 +101,8 @@ account, please register here:
                 break
 
         self._manager.reactor.cancel_call(event_id)
-        self.persist.set("email", email)
+        if self.persist:
+            self.persist.set("email", email)
 
 
 factory = LaunchpadPrompt

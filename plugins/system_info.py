@@ -33,6 +33,7 @@ class SystemInfo(Plugin):
     def register(self, manager):
         super(SystemInfo, self).register(manager)
 
+        self.persist = None
         self.resource = None
 
         for (rt, rh) in [
@@ -53,7 +54,13 @@ class SystemInfo(Plugin):
 
     # TODO: report this upon gathering
     def report(self):
-        system_id = self.system_id or self.persist.get("system_id")
+        if self.system_id:
+            system_id = self.system_id
+        elif self.persist and self.persist.has("system_id"):
+            system_id = self.persist.get("system_id")
+        else:
+            system_id = None
+
         if not system_id:
             resource = self.resource
             if resource is None or "product" not in resource:
@@ -71,7 +78,8 @@ class SystemInfo(Plugin):
                 fingerprint.update(str(field))
 
             system_id = fingerprint.hexdigest()
-            self.persist.set("system_id", system_id)
+            if self.persist:
+                self.persist.set("system_id", system_id)
 
         message = system_id
         logging.info("System ID: %s", message)
