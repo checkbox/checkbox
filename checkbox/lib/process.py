@@ -16,15 +16,20 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
+from __future__ import absolute_import
+
 import os
 import time
 import fcntl
 import select
+import signal
 
 
 STDIN_FILENO = 0
 STDOUT_FILENO = 1
 STDERR_FILENO = 2
+
+DEFAULT_OPEN_MAX = 1024
 
 
 class Process:
@@ -56,14 +61,11 @@ class Process:
         self._outeof = self._erreof = False
 
     def _child(self, cmd, env):
-        # Note sh below doesn't setup a seperate group (job control)
-        # for non interactive shells (hmm maybe -m option does?)
-        os.setpgrp() #seperate group so we can kill it
         # Force FD_CLOEXEC on all inherited descriptors
         try:
             open_max = os.sysconf('SC_OPEN_MAX')
         except (AttributeError, ValueError):
-            open_max = 1024
+            open_max = DEFAULT_OPEN_MAX
         for fileno in range(STDERR_FILENO+1, open_max):
             try:
                 flags = fcntl.fcntl(fileno, fcntl.F_GETFD)
@@ -120,7 +122,7 @@ class Process:
         return has_finished
 
     def kill(self):
-        os.kill(-self.pid, 15) # SIGTERM whole group
+        os.kill(self.pid, signal.SIGTERM)
 
     def cleanup(self):
         """Wait for and return the exit status of the child process."""
