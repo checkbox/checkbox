@@ -16,6 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
+import os
 import sys
 import logging
 import posixpath
@@ -58,7 +59,8 @@ class ApplicationManager(object):
 
     application_factory = Application
 
-    default_log_level = "critical"
+    default_log = os.path.join(get_variable("CHECKBOX_DATA", "."), "checkbox.log")
+    default_log_level = "debug"
 
     def parse_options(self, args):
         usage = _("Usage: checkbox [OPTIONS]")
@@ -68,6 +70,7 @@ class ApplicationManager(object):
                           help=_("Print version information and exit."))
         parser.add_option("-l", "--log",
                           metavar="FILE",
+                          default=self.default_log,
                           help=_("The file to write the log to."))
         parser.add_option("--log-level",
                           default=self.default_log_level,
