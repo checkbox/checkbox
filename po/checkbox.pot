@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-02-02 15:27-0500\n"
+"POT-Creation-Date: 2011-02-14 18:06-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,46 +16,46 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../gtk/checkbox-gtk.glade.h:1 ../checkbox_cli/cli_interface.py:341
+#: ../gtk/checkbox-gtk.ui.h:1 ../checkbox_cli/cli_interface.py:341
 #: ../checkbox_urwid/urwid_interface.py:261
 msgid "Further information:"
 msgstr ""
 
-#: ../gtk/checkbox-gtk.glade.h:2
+#: ../gtk/checkbox-gtk.ui.h:2
 msgid "Ne_xt"
 msgstr ""
 
 #. Title of the user interface
-#: ../gtk/checkbox-gtk.glade.h:3 ../gtk/checkbox-gtk.desktop.in.h:1
+#: ../gtk/checkbox-gtk.ui.h:3 ../gtk/checkbox-gtk.desktop.in.h:1
 #: ../plugins/user_interface.py:40
 msgid "System Testing"
 msgstr ""
 
-#: ../gtk/checkbox-gtk.glade.h:4
+#: ../gtk/checkbox-gtk.ui.h:4
 msgid "_Deselect All"
 msgstr ""
 
-#: ../gtk/checkbox-gtk.glade.h:5
+#: ../gtk/checkbox-gtk.ui.h:5
 msgid "_No"
 msgstr ""
 
-#: ../gtk/checkbox-gtk.glade.h:6
+#: ../gtk/checkbox-gtk.ui.h:6
 msgid "_Previous"
 msgstr ""
 
-#: ../gtk/checkbox-gtk.glade.h:7
+#: ../gtk/checkbox-gtk.ui.h:7
 msgid "_Select All"
 msgstr ""
 
-#: ../gtk/checkbox-gtk.glade.h:8
+#: ../gtk/checkbox-gtk.ui.h:8
 msgid "_Skip this test"
 msgstr ""
 
-#: ../gtk/checkbox-gtk.glade.h:9 ../checkbox_gtk/gtk_interface.py:487
+#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:488
 msgid "_Test"
 msgstr ""
 
-#: ../gtk/checkbox-gtk.glade.h:10
+#: ../gtk/checkbox-gtk.ui.h:10
 msgid "_Yes"
 msgstr ""
 
@@ -70,13 +70,13 @@ msgstr ""
 
 #. description
 #: ../jobs/audio.txt.in:7 ../jobs/disk.txt.in:16 ../jobs/network.txt.in:16
-#: ../jobs/sleep.txt.in:92 ../jobs/video.txt.in:50
+#: ../jobs/sleep.txt.in:98 ../jobs/video.txt.in:50
 msgid "$output"
 msgstr ""
 
 #. description
 #: ../jobs/audio.txt.in:7 ../jobs/disk.txt.in:4 ../jobs/network.txt.in:16
-#: ../jobs/sleep.txt.in:110 ../jobs/video.txt.in:50
+#: ../jobs/sleep.txt.in:116 ../jobs/video.txt.in:50
 msgid "Is this correct?"
 msgstr ""
 
@@ -124,7 +124,7 @@ msgstr ""
 
 #. description
 #: ../jobs/audio.txt.in:59 ../jobs/peripheral.txt.in:24
-#: ../jobs/sleep.txt.in:146
+#: ../jobs/sleep.txt.in:152
 msgid "Did you hear your speech played back?"
 msgstr ""
 
@@ -504,12 +504,12 @@ msgid "Record the current resolution before suspending."
 msgstr ""
 
 #. description
-#: ../jobs/sleep.txt.in:14
+#: ../jobs/sleep.txt.in:17
 msgid "Test the audio before suspending."
 msgstr ""
 
 #. description
-#: ../jobs/sleep.txt.in:20
+#: ../jobs/sleep.txt.in:23
 msgid ""
 "Wireless network connection procedure: 1.- Click on the Network Manager "
 "applet 2.- Click on Disconnect under 'Wired Networks' 3.- Select a network "
@@ -519,12 +519,12 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/sleep.txt.in:63
+#: ../jobs/sleep.txt.in:66
 msgid "Power management Suspend and Resume test"
 msgstr ""
 
 #. description
-#: ../jobs/sleep.txt.in:63
+#: ../jobs/sleep.txt.in:66
 msgid ""
 "Click test and your system will suspend for about 30 - 60 seconds. If your "
 "system does not wake itself up after 60 seconds, please press the power "
@@ -532,22 +532,22 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/sleep.txt.in:73
+#: ../jobs/sleep.txt.in:76
 msgid "Test the network after resuming."
 msgstr ""
 
 #. description
-#: ../jobs/sleep.txt.in:79
+#: ../jobs/sleep.txt.in:82
 msgid "Test to see that we have the same resolution after resuming as before."
 msgstr ""
 
 #. description
-#: ../jobs/sleep.txt.in:85
+#: ../jobs/sleep.txt.in:91
 msgid "Test the audio after resuming."
 msgstr ""
 
 #. description
-#: ../jobs/sleep.txt.in:92
+#: ../jobs/sleep.txt.in:98
 msgid ""
 "Wireless network connection procedure: 1.- Click on the Network Manager "
 "applet 2.- If a wired connection is established, click its Disconnect option "
@@ -557,19 +557,19 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/sleep.txt.in:110
+#: ../jobs/sleep.txt.in:116
 msgid "The address of your Bluetooth device is: $output"
 msgstr ""
 
 #. description
-#: ../jobs/sleep.txt.in:119
+#: ../jobs/sleep.txt.in:125
 msgid ""
 "Verify a bluetooth peripheral.  An example verification procedure for a "
 "bluetooth mouse is given."
 msgstr ""
 
 #. description
-#: ../jobs/sleep.txt.in:119
+#: ../jobs/sleep.txt.in:125
 msgid ""
 "Bluetooth mouse procedure: 1.- Enable the bluetooth mouse 2.- Click on the "
 "bluetooth icon in the menu bar 3.- Select 'Setup new device' 4.- Look for "
@@ -578,19 +578,19 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/sleep.txt.in:119
+#: ../jobs/sleep.txt.in:125
 msgid "Did all the steps work?"
 msgstr ""
 
 #. description
-#: ../jobs/sleep.txt.in:135
+#: ../jobs/sleep.txt.in:141
 msgid ""
 "This test will check to make sure that supported video modes work after a "
 "suspend and resume.  Click Test to Begin."
 msgstr ""
 
 #. description
-#: ../jobs/sleep.txt.in:146
+#: ../jobs/sleep.txt.in:152
 msgid ""
 "This will check to make sure that your audio device works properly after a "
 "suspend and resume.  You can use either internal or external microphone and "
@@ -598,7 +598,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/sleep.txt.in:146
+#: ../jobs/sleep.txt.in:152
 msgid ""
 "To execute this test, make sure your speaker and microphone are NOT muted "
 "and the volume is set sufficiently loud to record and play audio. Click the "
@@ -607,26 +607,26 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/sleep.txt.in:159
+#: ../jobs/sleep.txt.in:165
 msgid ""
 "Enter and resume from suspend state for 30 iterations. Please note that this "
 "is a lengthy test. Click Test to begin."
 msgstr ""
 
 #. description
-#: ../jobs/sleep.txt.in:159
+#: ../jobs/sleep.txt.in:165
 msgid "Did the system successfully suspend and resume for 30 iterations?"
 msgstr ""
 
 #. description
-#: ../jobs/sleep.txt.in:168
+#: ../jobs/sleep.txt.in:174
 msgid ""
 "This will check to make sure your system can successfully hibernate (if "
 "supported)."
 msgstr ""
 
 #. description
-#: ../jobs/sleep.txt.in:168
+#: ../jobs/sleep.txt.in:174
 msgid ""
 "Click the Test button to begin. The system will hibernate and should wake "
 "itself within 5 minutes.  If your system does not wake itself after 5 "
@@ -634,14 +634,14 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/sleep.txt.in:168
+#: ../jobs/sleep.txt.in:174
 msgid ""
 "Did the system successfully hibernate and did it work properly after waking "
 "up?"
 msgstr ""
 
 #. description
-#: ../jobs/sleep.txt.in:181
+#: ../jobs/sleep.txt.in:187
 msgid ""
 "Enter and resume from hibernate for 30 iterations. Please note that this is "
 "a very lengthy test. Also, if your system does not wake itself after 2 "
@@ -649,7 +649,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/sleep.txt.in:181
+#: ../jobs/sleep.txt.in:187
 msgid ""
 "Also, you will need to ensure your system has no power-on or HDD passwords "
 "set, and that grub is set to boot Ubuntu by default if you have a multi-boot "
@@ -657,7 +657,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/sleep.txt.in:181
+#: ../jobs/sleep.txt.in:187
 msgid "Did the system successfully hibernate and wake 30 times?"
 msgstr ""
 
@@ -1245,15 +1245,15 @@ msgstr ""
 msgid "Test Again"
 msgstr ""
 
-#: ../checkbox_gtk/gtk_interface.py:456
+#: ../checkbox_gtk/gtk_interface.py:457
 msgid "_Test Again"
 msgstr ""
 
-#: ../checkbox_gtk/gtk_interface.py:498
+#: ../checkbox_gtk/gtk_interface.py:499
 msgid "Info"
 msgstr ""
 
-#: ../checkbox_gtk/gtk_interface.py:517
+#: ../checkbox_gtk/gtk_interface.py:518
 msgid "Error"
 msgstr ""
 
@@ -1357,11 +1357,11 @@ msgstr ""
 msgid "Exchanging information with the server..."
 msgstr ""
 
-#: ../plugins/lock_prompt.py:60
+#: ../plugins/lock_prompt.py:63
 msgid "There is another checkbox running. Please close it first."
 msgstr ""
 
-#: ../plugins/recover_prompt.py:47
+#: ../plugins/recover_prompt.py:54
 msgid ""
 "Checkbox did not finish completely.\n"
 "Do you want to recover from the previous run?"
@@ -1377,7 +1377,7 @@ msgid "Running %s..."
 msgstr ""
 
 #. Get results
-#: ../plugins/suites_prompt.py:99
+#: ../plugins/suites_prompt.py:105
 msgid "Select the suites to test"
 msgstr ""
 
