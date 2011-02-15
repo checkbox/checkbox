@@ -65,13 +65,14 @@ class LockPrompt(Plugin):
 
         # Stop the process if the lock is deleted
         def handler(signum, frame):
-            self._manager.reactor.stop_all()
+            if not posixpath.exists(self.filename):
+                self._manager.reactor.stop_all()
 
         signal.signal(signal.SIGIO, handler)
         fd = os.open(directory,  os.O_RDONLY)
 
         fcntl.fcntl(fd, fcntl.F_SETSIG, 0)
-        fcntl.fcntl(fd, fcntl.F_NOTIFY, fcntl.DN_DELETE)
+        fcntl.fcntl(fd, fcntl.F_NOTIFY, fcntl.DN_DELETE|fcntl.DN_MULTISHOT)
 
 
 factory = LockPrompt
