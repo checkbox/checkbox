@@ -7,6 +7,7 @@
 import os
 import re
 import sys
+import commands
 import posixpath
 
 from ConfigParser import ConfigParser
@@ -67,7 +68,6 @@ class Install(object):
 
     configs_base = "/usr/share/%(base_name)s/configs/%(name)s.ini"
     examples_base = "/usr/share/%(base_name)s/examples/%(name)s.ini"
-    templates_base = "/var/lib/dpkg/info/%(name)s.templates"
 
     def __init__(self, name, configs_path=None, examples_path=None,
                  templates_path=None):
@@ -77,8 +77,9 @@ class Install(object):
             % {"name": name, "base_name": self.base_name}
         self._examples_path = examples_path or self.examples_base \
             % {"name": name, "base_name": self.base_name}
-        self._templates_path = templates_path or self.templates_base \
-            % {"name": name, "base_name": self.base_name}
+        self._templates_path = commands.getoutput(
+            "dpkg-query --control-path %(name)s templates"
+            % {"name": name, "base_name": self.base_name})
 
         self._config = Config()
         if os.environ.get("DEBIAN_HAS_FRONTEND"):
