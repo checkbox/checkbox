@@ -19,7 +19,7 @@ requires:
  package.name == 'alsa-base' and package.name == 'python-gst0.10'
 command: gst_pipeline_test -t 2 'audiotestsrc wave=sine freq=512 ! audioconvert ! audioresample ! gconfaudiosink'
 _description:
- Click the Test button to play a sound on the automatically detected playback device.
+ Select Test to play a sound on the automatically detected playback device.
  .
  Did you hear a sound and was that sound free of any distortion, clicks or other strange noises?
 
@@ -33,7 +33,7 @@ command: gst_pipeline_test -t 2 'audiotestsrc wave=sine freq=512 ! audioconvert 
 _description:
  Please connect a pair of headphones to your audio device.
  .
- Click the Test button to play a sound on the automatically detected playback device.
+ Select Test to play a sound on the automatically detected playback device.
  .
  Did you hear a sound through the headphones and did the sound play without any distortion, clicks or other strange noises from your headphones?
 
@@ -45,7 +45,7 @@ requires:
  package.name == 'alsa-base'
 command: alsa_record_playback
 _description:
- Disconnect any external microphones that you have plugged in.  Click the Test button, then speak into your internal microphone.  After a few seconds, your speech will be played back to you.
+ Disconnect any external microphones that you have plugged in.  Select Test, then speak into your internal microphone.  After a few seconds, your speech will be played back to you.
  .
  Did you hear your speech played back?
 
@@ -57,6 +57,6 @@ requires:
  package.name == 'alsa-base'
 command: alsa_record_playback
 _description:
- Connect a microphone to your microphone port.  Click the Test button, then speak into the microphone.  After a few seconds, your speech will be played back to you.
+ Connect a microphone to your microphone port.  Select Test, then speak into the microphone.  After a few seconds, your speech will be played back to you.
  .
  Did you hear your speech played back?

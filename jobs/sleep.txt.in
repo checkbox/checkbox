@@ -66,7 +66,7 @@ requires: package.name == 'pm-utils'
 _description:
  Power management Suspend and Resume test
  .
- Click test and your system will suspend for about 30 - 60 seconds. If your system does not wake itself up after 60 seconds, please press the power button momentarily to wake the system manually.
+ Select test and your system will suspend for about 30 - 60 seconds. If your system does not wake itself up after 60 seconds, please press the power button momentarily to wake the system manually.
 user: root
 command: sleep_test -d
 
@@ -139,7 +139,7 @@ plugin: manual
 name: cycle_resolutions_after_suspend
 depends: sleep_state_test xrandr_cycle
 _description:
- This test will check to make sure that supported video modes work after a suspend and resume.  Click Test to Begin.
+ This test will check to make sure that supported video modes work after a suspend and resume.  Select Test to begin.
 command: xrandr_cycle
 
 plugin: manual
@@ -152,7 +152,7 @@ command: alsa_record_playback
 _description:
  This will check to make sure that your audio device works properly after a suspend and resume.  You can use either internal or external microphone and speakers.
  .
- To execute this test, make sure your speaker and microphone are NOT muted and the volume is set sufficiently loud to record and play audio. Click the Test button and then speak into your microphone. After a few seconds, your speech will be played back to you.
+ To execute this test, make sure your speaker and microphone are NOT muted and the volume is set sufficiently loud to record and play audio. Select Test and then speak into your microphone. After a few seconds, your speech will be played back to you.
  .
  Did you hear your speech played back?
 
@@ -163,7 +163,7 @@ requires: package.name == 'pm-utils'
 user: root
 command: sleep_test -i 30 -s mem --debug
 _description:
- Enter and resume from suspend state for 30 iterations. Please note that this is a lengthy test. Click Test to begin.
+ Enter and resume from suspend state for 30 iterations. Please note that this is a lengthy test. Select Test to begin.
  .
  Did the system successfully suspend and resume for 30 iterations?
 
@@ -174,7 +174,7 @@ command: sleep_test -s disk -w 120 --debug
 _description:
  This will check to make sure your system can successfully hibernate (if supported).
  .
- Click the Test button to begin. The system will hibernate and should wake itself within 5 minutes.  If your system does not wake itself after 5 minutes, please press the power button to wake the system manually.
+ Select Test to begin. The system will hibernate and should wake itself within 5 minutes.  If your system does not wake itself after 5 minutes, please press the power button to wake the system manually.
  .
  Did the system successfully hibernate and did it work properly after waking up?
 
