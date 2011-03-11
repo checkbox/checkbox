@@ -30,7 +30,7 @@ from checkbox.lib.conversion import string_to_type
 from checkbox.lib.log import format_delta
 from checkbox.lib.transport import HTTPTransport
 
-from checkbox.properties import Int, Map, String
+from checkbox.properties import File, Int, Map, String
 from checkbox.plugin import Plugin
 
 
@@ -46,7 +46,8 @@ FORM = Map({
     "field.submission_key": String(),
     "field.system": String(),
     "field.emailaddress": String(),
-    "field.live_cd": String()})
+    "field.live_cd": String(),
+    "field.submission_data": File(required=False)})
 
 
 class LaunchpadExchange(Plugin):

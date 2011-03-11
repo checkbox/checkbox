@@ -19,6 +19,8 @@
 import re
 import posixpath
 
+from StringIO import StringIO
+
 from checkbox.lib.text import split
 
 
@@ -266,6 +268,18 @@ class MapVariable(Variable):
 
             if attribute in value:
                 value[attribute] = new_value
+
+        return value
+
+
+class FileVariable(Variable):
+    __slots__ = ()
+
+    def coerce(self, value):
+        if isinstance(value, basestring):
+            value = StringIO(value)
+        elif not hasattr(value, "read"):
+            raise ValueError("%r is not a file" % (value,))
 
         return value
 
