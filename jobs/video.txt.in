@@ -39,7 +39,7 @@ name: display
 requires: package.name == 'xorg' and package.name == 'python-gst0.10'
 command: gst_pipeline_test -t 2 'videotestsrc ! ffmpegcolorspace ! gconfvideosink'
 _description:
- Click the Test button to display a video test.
+ Select Test to display a video test.
  .
  Do you see color bars and static?
 
@@ -60,7 +60,7 @@ requires: package.name == 'xorg'
 depends: xrandr_detect_modes
 command: xrandr_cycle
 _description:
- Click Test to cycle through the detected video modes for your system.
+ Select Test to cycle through the detected video modes for your system.
  .
  Did the screen appear to be working for each mode?
 
@@ -75,7 +75,7 @@ name: glxgears
 requires: package.name == 'mesa-utils'
 command: glxgears
 _description:
- Click Test to execute glxgears to ensure that minimal 3d graphics support is in place.
+ Select Test to execute glxgears to ensure that minimal 3d graphics support is in place.
  .
  Did the 3d animation appear?
 

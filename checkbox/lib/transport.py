@@ -42,6 +42,29 @@ except ImportError:
         ssl_sock = socket.ssl(sock, key_file, cert_file)
         return httplib.FakeSocket(sock, ssl_sock)
 
+try:
+    # Python 2.6 introduced create_connection convenience function
+    create_connection = socket.create_connection
+except AttributeError:
+    def create_connection(address, timeout=None):
+        msg = "getaddrinfo returns an empty list"
+        host, port = address
+        for res in socket.getaddrinfo(host, port, 0, socket.SOCK_STREAM):
+            af, socktype, proto, canonname, sa = res
+            sock = None
+            try:
+                sock = socket.socket(af, socktype, proto)
+                if timeout is not None:
+                    sock.settimeout(timeout)
+                sock.connect(sa)
+                return sock
+
+            except socket.error, msg:
+                if sock is not None:
+                    sock.close()
+
+        raise socket.error, msg
+
 
 class ProxyHTTPConnection(httplib.HTTPConnection):
 
@@ -106,22 +129,21 @@ class ProxyHTTPSConnection(ProxyHTTPConnection):
 
 class VerifiedHTTPSConnection(httplib.HTTPSConnection):
 
+    # Compatibility layer with Python 2.5
+    timeout = None
+    _tunnel_host = None
+
     def connect(self):
         # overrides the version in httplib so that we do
         #    certificate verification
-        sock = socket.create_connection((self.host, self.port),
-                                        self.timeout)
+        sock = create_connection((self.host, self.port), self.timeout)
         if self._tunnel_host:
             self.sock = sock
             self._tunnel()
 
         # wrap the socket using verification with the root
         #    certs in trusted_root_certs
-        self.sock = _ssl_wrap_socket(sock,
-            self.key_file,
-            self.cert_file,
-            cert_reqs=ssl.CERT_REQUIRED,
-            ca_certs="/etc/ssl/certs/ca-certificates.crt")
+        self.sock = _ssl_wrap_socket(sock, self.key_file, self.cert_file)
 
 
 class HTTPTransport(object):

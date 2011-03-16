@@ -11,7 +11,7 @@ name: keyboard
 command: keyboard_test
 requires: device.category == 'KEYBOARD'
 _description:
- Click the Test button to open a text area where to type keys on your keyboard.
+ Select Test to open a text area where to type keys on your keyboard.
  .
  Is your keyboard working properly?
 
@@ -22,6 +22,6 @@ requires:
  package.name == 'alsa-base'
 command: alsa_record_playback
 _description:
- Connect a USB audio device to your system.  Then open the volume control application by left-clicking on the speaker icon in the panel and selecting "Sound Preferences".  Select the "Input" tab and choose your USB device.  Select the "Output" tab and choose your USB device.  When you are done, click the Test button, then speak into the microphone.  After a few seconds, your speech will be played back to you.
+ Connect a USB audio device to your system.  Then open the volume control application by left-clicking on the speaker icon in the panel and selecting "Sound Preferences".  Select the "Input" tab and choose your USB device.  Select the "Output" tab and choose your USB device.  When you are done, select Test, then speak into the microphone.  After a few seconds, your speech will be played back to you.
  .
  Did you hear your speech played back?

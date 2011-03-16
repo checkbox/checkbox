@@ -1,5 +1,20 @@
-checkbox (0.11.0) natty; urgency=low
+checkbox (0.11.2) natty; urgency=low
 
+  * Added multiarch support to install script (LP: #727411)
+  * Fixed submitting data twice (LP: #531010)
+  * Fixed job descriptions for checkbox-cli (LP: #221400)
+
+  [Daniel Manrique]
+  * Fixed strings in audio tests and updated pot file (LP: #691241)
+
+  [Jochen Kemnade]
+  * Fixed grammar in user-apps tests (LP: #642001)
+
+  [Jeff Lane]
+  * Added reboot instructions to suspend/hibernate tests (LP: #420493)
+  * Made the firewire instructions make more sense (LP: #693068)
+  
+  [Michael Terry]
   * Fixed several strings appear in English although translated (LP: #514401)
     - jobs/fingerprint.txt.in
     - jobs/media.txt.in
@@ -10,11 +25,35 @@ checkbox (0.11.0) natty; urgency=low
   * Fixed grammar (LP: #525454)
     + jobs/fingerprint.txt.in
 
- -- Mahyuddin Susanto <udienz@gmail.com>  Wed, 22 Dec 2010 10:48:04 -0500
+ -- Jeff Lane <jeff@ubuntu.com>  Wed, 16 Mar 2011 17:50:05 -0400
+
+checkbox (0.11.1) natty; urgency=low
+
+  New upstream release (LP: #725110):
+  * Checking for lock file before firing stop-all event (LP: #719552)
+  * Changed description of nautilus_file_copy job (LP: #709688)
+
+  [Javier Collado]
+  * Fixed title in progress dialog
+
+ -- Marc Tardif <marc@ubuntu.com>  Fri, 25 Feb 2011 11:56:43 -0500
+
+checkbox (0.11) natty; urgency=low
+
+  New upstream release (LP: #719073):
+  * Changed support for persist plugin as optional (LP: #561816)
+
+  [Ara Pulido]
+  * Fixed lintian errors and warnings
+
+  [Eitan Isaacson]
+  * Migrate the UI from libglade to gtkbuilder  
+
+ -- Marc Tardif <marc@ubuntu.com>  Mon, 14 Feb 2011 18:19:27 -0500
 
 checkbox (0.10.4) maverick; urgency=low
 
-  * Initial release.
+  * Fixed parsing of config parameters (LP: #689140)
 
  -- Marc Tardif <marc@ubuntu.com>  Tue, 14 Sep 2010 12:43:51 -0400
 

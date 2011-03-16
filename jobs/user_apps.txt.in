@@ -12,7 +12,7 @@ name: nautilus_folder_create
 requires: package.name == 'nautilus'
 command: nautilus
 _description:
- Click the Test button to open the File Browser. On the menu bar, click File -> Create Folder. In the name box for the new folder, enter the name Test Folder and hit Enter.
+ Select Test to open the File Browser. On the menu bar, click File -> Create Folder. In the name box for the new folder, enter the name Test Folder and hit Enter.
  .
  Do you now have a new folder called Test Folder?
  .
@@ -23,7 +23,7 @@ name: nautilus_folder_copy
 depends: nautilus_folder_create
 command: nautilus
 _description:
- Click the Test button to open the File Browser. Right click on the folder called Test Folder and click on Copy.  Right Click on any white area in the window and click on Paste.
+ Select Test to open the File Browser. Right click on the folder called Test Folder and click on Copy.  Right Click on any white area in the window and click on Paste.
  .
  Right click on the folder called Test Folder(copy) and click Rename. Enter the name Test Data in the name box and hit Enter.
  .
@@ -36,7 +36,7 @@ name: nautilus_folder_move
 depends: nautilus_folder_copy
 command: nautilus
 _description:
- Click the Test button to open the File Browser. Click and drag the folder called Test Data onto the icon called Test Folder. Release the button.
+ Select Test to open the File Browser. Click and drag the folder called Test Data onto the icon called Test Folder. Release the button.
  .
  Double click the folder called Test Folder to open it up.
  .
@@ -49,7 +49,7 @@ name: nautilus_file_create
 depends: nautilus_folder_create
 command: nautilus $HOME/"Test Folder"
 _description:
- Click the Test button to open the File Browser. Right click in the white space and click Create Document -> Empty File. Enter the name Test File 1 in the name box and hit Enter.
+ Select Test to open the File Browser. Right click in the white space and click Create Document -> Empty File. Enter the name Test File 1 in the name box and hit Enter.
  .
  Do you now have a file called Test File 1?
  .
@@ -60,7 +60,7 @@ name: nautilus_file_copy
 depends: nautilus_file_create
 command: nautilus $HOME/"Test Folder"
 _description:
- Click the Test button to open the File Browser. Right click on the file called Test File 2 and click Copy. Right click in the white space and click Paste.
+ Select Test to open the File Browser. Right click on the file called Test File 1 and click Copy. Right click in the white space and click Paste.
  .
  Right click on the file called Test File 1(copy) and click Rename. Enter the name Test File 2 in the name box and hit Enter.
  .
@@ -73,7 +73,7 @@ name: nautilus_file_move
 depends: nautilus_file_copy
 command: nautilus $HOME/"Test Folder"
 _description:
- Click the Test button to open the File Browser. Click and drag the file called Test File 2 onto the icon for the folder called Test Data. Release the button.
+ Select Test to open the File Browser. Click and drag the file called Test File 2 onto the icon for the folder called Test Data. Release the button.
  .
  Double click the icon for Test Data to open that folder up.
  .
@@ -86,7 +86,7 @@ name: nautilus_file_delete
 depends: nautilus_file_create
 command: nautilus $HOME/"Test Folder"
 _description:
- Click the Test button to open the File Browser. Right click on the file called Test File 1 and click on Move To Trash.
+ Select Test to open the File Browser. Right click on the file called Test File 1 and click on Move To Trash.
  .
  Is Test File 1 now gone?
  .
@@ -97,7 +97,7 @@ name: nautilus_folder_delete
 depends: nautilus_folder_create
 command: nautilus
 _description:
- Click the Test button to open the File Browser. Right click on the folder called Test Folder and click on Move To Trash.
+ Select Test to open the File Browser. Right click on the folder called Test Folder and click on Move To Trash.
  .
  Has Test Folder been successfully deleted?
  .
@@ -112,9 +112,9 @@ command:
  name: `basename $0`_test
  plugin: manual
  description:
-  Now we will attempt to open the file '$0' with it's default viewer. After the viewer opens, check out the file that was opened and then close the application (OpenOffice, Doc Viewer, etc.)
+  Now we will attempt to open the file '$0' with its default viewer. After the viewer opens, check out the file that was opened and then close the application (OpenOffice, Doc Viewer, etc.)
   .
-  Click Test to begin
+  Select Test to begin
   .
   Did the application open the document properly? (e.g was it displayed and did it function properly?)
  command: xdg-open $0
@@ -129,9 +129,9 @@ command:
  name: `basename $0`_test
  plugin: manual
  description:
-  Now we will attempt to open the audio file '$0' with it's default player. After the player opens, listen to the sound and then close the application.
+  Now we will attempt to open the audio file '$0' with its default player. After the player opens, listen to the sound and then close the application.
   .
-  Click Test to begin
+  Select Test to begin
   .
   Did the application play the audio file properly? (no skips, crackles, etc)
  command: xdg-open $0
@@ -146,9 +146,9 @@ command:
  name: `basename $0`_test
  plugin: manual
  description:
-  Now we will attempt to play the video '$0' with it's default player. After the video plays, close the application.
+  Now we will attempt to play the video '$0' with its default player. After the video plays, close the application.
   .
-  Click Test to begin
+  Select Test to begin
   .
   Did the application play '$0' proplerly (no video or audio issues with playback?)
  command: xdg-open $0
@@ -163,9 +163,9 @@ command:
  name: `basename $0`_test
  plugin: manual
  description:
-  Now we will attempt to open the image '$0' with it's default viewer. After the viewer opens, check out the file that was opened and then close the application.
+  Now we will attempt to open the image '$0' with its default viewer. After the viewer opens, check out the file that was opened and then close the application.
   .
-  Click Test to begin
+  Select Test to begin
   .
   Did the image display properly?
  command: xdg-open $0
@@ -176,7 +176,7 @@ name: applications-firefox
 requires: package.name == 'firefox'
 command: firefox $CHECKBOX_SHARE/data/websites/testindex.html
 _description:
- Click the "Test" button to launch Firefox and view the test web page.
+ Select Test to launch Firefox and view the test web page.
  .
  Did the Ubuntu Test page load correctly?
 
@@ -186,7 +186,7 @@ depends: applications-firefox
 requires: package.name == 'firefox'
 command: firefox $CHECKBOX_SHARE/data/websites/javatest.html
 _description:
- Click the "Test" button to open Firefox with the Java test page, and follow the instructions there.
+ Select Test to open Firefox with the Java test page, and follow the instructions there.
  .
  Did the applet display?
 
@@ -196,7 +196,7 @@ depends: applications-firefox
 requires: package.name == 'firefox'
 command: firefox $CHECKBOX_SHARE/data/websites/flashtest.html
 _description:
- Click the "Test" button to launch Firefox and view a sample Flash test.
+ Select Test to launch Firefox and view a sample Flash test.
  .
  Did you see the text?
 
@@ -206,7 +206,7 @@ depends: applications-firefox-flash
 requires: package.name == 'firefox'
 command: firefox $CHECKBOX_SHARE/data/websites/flashvideo.html
 _description:
- Click the "Test" button to launch Firefox and view a short flash video.
+ Select Test to launch Firefox and view a short flash video.
  .
  Did the video play correctly?
 
@@ -216,7 +216,7 @@ depends: applications-firefox
 requires: package.name == 'firefox'
 command: firefox $CHECKBOX_SHARE/data/video/Quicktime_Video.mov
 _description:
- Click the "Test" button to launch Firefox with a sample video.
+ Select Test to launch Firefox with a sample video.
  .
  Did the video play using a plugin?
 
@@ -225,7 +225,7 @@ name: applications-empathy-facebook_chat
 requires: package.name == "empathy"
 command: empathy
 _description:
- Click the "Test" button to launch Empathy, then configure it to connect to the following service. Once you have completed the test, please quit Empathy to continue here.
+ Select Test to launch Empathy, then configure it to connect to the following service. Once you have completed the test, please quit Empathy to continue here.
  .
  Facebook Chat
  .
@@ -236,7 +236,7 @@ name: applications-empathy-google_talk
 requires: package.name == "empathy"
 command: empathy
 _description:
- Click the "Test" button to launch Empathy, then configure it to connect to the following service. Once you have completed the test, please quit Empathy to continue here.
+ Select Test to launch Empathy, then configure it to connect to the following service. Once you have completed the test, please quit Empathy to continue here.
  .
  Google Talk
  .
@@ -247,7 +247,7 @@ name: applications-empathy-jabber
 requires: package.name == "empathy"
 command: empathy
 _description:
- Click the "Test" button to launch Empathy, then configure it to connect to the following service. Once you have completed the test, please quit Empathy to continue here.
+ Select Test to launch Empathy, then configure it to connect to the following service. Once you have completed the test, please quit Empathy to continue here.
  .
  Jabber
  .
@@ -258,7 +258,7 @@ name: applications-empathy-aim
 requires: package.name == "empathy"
 command: empathy
 _description:
- Click the "Test" button to launch Empathy, then configure it to connect to the following service. Once you have completed the test, please quit Empathy to continue here.
+ Select Test to launch Empathy, then configure it to connect to the following service. Once you have completed the test, please quit Empathy to continue here.
  .
  AIM
  .
@@ -269,7 +269,7 @@ name: applications-empathy-msn
 requires: package.name == "empathy"
 command: empathy
 _description:
- Click the "Test" button to launch Empathy, then configure it to connect to the following service. Once you have completed the test, please quit Empathy to continue here.
+ Select Test to launch Empathy, then configure it to connect to the following service. Once you have completed the test, please quit Empathy to continue here.
  .
  MSN
  .

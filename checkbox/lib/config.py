@@ -37,6 +37,8 @@ class IncludeDict(dict):
 
     def __setitem__(self, key, value):
         if key == "includes":
+            if isinstance(value, list):
+                value = value[0]
             for path in split(value):
                 path = self._parser._interpolate("DEFAULT", None, path, self)
                 path = posixpath.expanduser(path)

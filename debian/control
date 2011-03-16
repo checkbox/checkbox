@@ -5,7 +5,7 @@ XSBC-Original-Maintainer: Marc Tardif <marc@ubuntu.com>
 Maintainer: Ubuntu Core Developers <ubuntu-devel-discuss@lists.ubuntu.com>
 Standards-Version: 3.7.3
 XS-Python-Version: current
-Build-Depends: cdbs (>= 0.4.43), debhelper (>= 5.0.37.2), python-central, python-dev (>= 2.4), po-debconf, python-distutils-extra
+Build-Depends: cdbs (>= 0.4.43), debhelper (>= 5.0.51~), python-central, python (>= 2.4), po-debconf, python-distutils-extra
 Vcs-Bzr: https://code.launchpad.net/~hardware-certification/checkbox/trunk
 
 Package: checkbox
@@ -14,11 +14,11 @@ Architecture: all
 Replaces: hwtest (<< 0.1-0ubuntu12)
 Provides: hwtest
 Depends: ${misc:Depends}, ${python:Depends}, debconf, udev
-Recommends: dpkg, lsb-release, python-apport, python-apt, python-gst0.10
+Recommends: dpkg, lsb-release, pm-utils, python-apport, python-apt, python-gst0.10
 Suggests: checkbox-cli | checkbox-gtk
 Conflicts: hwtest (<< 0.1-0ubuntu12)
 XB-Python-Version: ${python:Versions}
-Description: Checkbox System Testing
+Description: System testing application 
  This project provides an extensible interface for system testing. The
  results can then be sent to Launchpad.
 
@@ -29,7 +29,7 @@ Provides: hwtest-cli
 Depends: checkbox (= ${source:Version})
 Conflicts: hwtest-cli (<< 0.1-0ubuntu12)
 XB-Python-Version: ${python:Versions}
-Description: Checkbox CLI
+Description: Command line interface for checkbox 
  This project provides an extensible interface for system testing. The
  results can then be sent to Launchpad.
  .
@@ -39,21 +39,22 @@ Package: checkbox-urwid
 Architecture: all
 Depends: checkbox (= ${source:Version}), python-urwid
 XB-Python-Version: ${python:Versions}
-Description: Checkbox Urwid CLI
+Description: Urwid interface for checkbox 
  This project provides an extensible interface for system testing. The
  results can then be sent to Launchpad.
  .
- This package provides a command line interface (urwid version) for answering tests.
+ This package provides a command line interface (urwid version) for 
+ answering tests.
 
 Package: checkbox-gtk
 Section: gnome
 Architecture: all
 Replaces: hwtest-gtk (<< 0.1-0ubuntu12)
 Provides: hwtest-gtk
-Depends: checkbox (= ${source:Version}), gksu, python-gtk2, python-glade2
+Depends: checkbox (= ${source:Version}), gksu, python-gtk2
 Conflicts: hwtest-gtk (<< 0.1-0ubuntu12)
 XB-Python-Version: ${python:Versions}
-Description: Checkbox GTK Interface
+Description: GTK interface for checkbox
  This project provides an extensible interface for system testing. The
  results can then be sent to Launchpad.
  .

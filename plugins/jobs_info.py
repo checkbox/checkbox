@@ -83,7 +83,8 @@ class JobsInfo(Plugin):
             else:
                 strings.extend([l.strip() for l in file.readlines()])
 
-        return [re.compile(r"^%s$" % s) for s in strings if s]
+        return [re.compile(r"^%s$" % s) for s in strings
+            if s and not s.startswith("#")]
 
     def gather(self):
         # Register temporary handler for report-message events

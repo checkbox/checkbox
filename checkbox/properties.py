@@ -20,7 +20,7 @@ from checkbox.attribute import Attribute
 from checkbox.variables import (ConstantVariable, BoolVariable, StringVariable,
     PathVariable, UnicodeVariable, IntVariable, FloatVariable, TimeVariable,
     ListVariable, TupleVariable, AnyVariable, DictVariable, MapVariable,
-    VariableFactory, Variable, get_variable)
+    FileVariable, VariableFactory, Variable, get_variable)
 
 
 class Property(object):
@@ -194,6 +194,11 @@ class Map(PropertyType):
 
         kwargs["schema"] = schema
         super(Map, self).__init__(**kwargs)
+
+
+class File(PropertyType):
+
+    variable_class = FileVariable
 
 
 class Message(Map):

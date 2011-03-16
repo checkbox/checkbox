@@ -17,7 +17,7 @@
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
 import re
-import gtk, gtk.glade
+import gtk
 import posixpath
 
 from gettext import gettext as _
@@ -69,10 +69,11 @@ class GTKInterface(UserInterface):
 
         # Load UI
         gtk.window_set_default_icon_name("checkbox")
-        gtk.glade.textdomain(self.gettext_domain)
-        self.widgets = gtk.glade.XML(posixpath.join(data_path,
-            "checkbox-gtk.glade"))
-        self.widgets.signal_autoconnect(self)
+        self.widgets = gtk.Builder()
+        self.widgets.set_translation_domain(self.gettext_domain)
+        self.widgets.add_from_file(posixpath.join(data_path,
+            "checkbox-gtk.ui"))
+        self.widgets.connect_signals(self)
 
         # Set background color for head
         eventbox_head = self._get_widget("eventbox_head")
@@ -93,7 +94,7 @@ class GTKInterface(UserInterface):
         self._handler_id = None
 
     def _get_widget(self, name):
-        return self.widgets.get_widget(name)
+        return self.widgets.get_object(name)
 
     def _get_radio_button(self, map):
         for radio_button, value in map.items():

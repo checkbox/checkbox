@@ -17,7 +17,9 @@
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
 import os
+import fcntl
 import posixpath
+import signal
 
 from time import time
 
@@ -51,6 +53,7 @@ class LockPrompt(Plugin):
         directory = posixpath.dirname(self.filename)
         safe_make_directory(directory)
 
+        # Try to lock the process
         self._lock = GlobalLock(self.filename)
         try:
             self._lock.acquire()
@@ -59,6 +62,17 @@ class LockPrompt(Plugin):
                 self._manager.reactor.fire("prompt-error", interface,
                     _("There is another checkbox running. Please close it first."))
             self._manager.reactor.stop_all()
+
+        # Stop the process if the lock is deleted
+        def handler(signum, frame):
+            if not posixpath.exists(self.filename):
+                self._manager.reactor.stop_all()
+
+        signal.signal(signal.SIGIO, handler)
+        fd = os.open(directory,  os.O_RDONLY)
+
+        fcntl.fcntl(fd, fcntl.F_SETSIG, 0)
+        fcntl.fcntl(fd, fcntl.F_NOTIFY, fcntl.DN_DELETE|fcntl.DN_MULTISHOT)
 
 
 factory = LockPrompt

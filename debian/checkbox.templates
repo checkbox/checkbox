@@ -1,40 +1,40 @@
 Template: checkbox/plugins/apport_prompt/default_enabled
 Type: boolean
-_Description: Default Enabled
+_Description: Default Enabled?
  Default enabled state.
 
 Template: checkbox/plugins/apport_prompt/default_package
 Type: string
-_Description: Default Package
+_Description: Default Package:
  Default package if none is detected.
 
 Template: checkbox/plugins/jobs_info/blacklist
 Type: string
-_Description: Suites Blacklist
+_Description: Suites Blacklist:
  List of jobs to blacklist
 
 Template: checkbox/plugins/jobs_info/whitelist
 Type: string
-_Description: Suites Whitelist
+_Description: Suites Whitelist:
  List of jobs to whitelist
 
 Template: checkbox/plugins/launchpad_exchange/transport_url
 Type: string
 Default: https://launchpad.net/+hwdb/+submit
-_Description: Transport URL
+_Description: Transport URL:
  URL where to send submissions.
 
 Template: checkbox/plugins/launchpad_prompt/email
 Type: string
-_Description: Launchpad E-mail
+_Description: Launchpad E-mail:
  E-mail address used to sign in to Launchpad.
 
 Template: checkbox/plugins/proxy_info/http_proxy
 Type: string
-_Description: HTTP Proxy
+_Description: HTTP Proxy:
  HTTP proxy to use instead of the one specified in environment.
 
 Template: checkbox/plugins/proxy_info/https_proxy
 Type: string
-_Description: HTTPS Proxy
+_Description: HTTPS Proxy:
  HTTPS proxy to use instead of the one specified in environment.

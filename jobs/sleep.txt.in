@@ -11,6 +11,9 @@ command: xrandr -q |grep '*'| awk '{print $1}' > $CHECKBOX_DATA/resolution_befor
 
 plugin: shell
 name: audio_before_suspend
+requires:
+ device.category == 'AUDIO'
+ package.name == 'alsa-base'
 _description: Test the audio before suspending.
 command: amixer > $CHECKBOX_DATA/audio_before_suspend.txt
 
@@ -63,7 +66,7 @@ requires: package.name == 'pm-utils'
 _description:
  Power management Suspend and Resume test
  .
- Click test and your system will suspend for about 30 - 60 seconds. If your system does not wake itself up after 60 seconds, please press the power button momentarily to wake the system manually.
+ Select test and your system will suspend for about 30 - 60 seconds. If your system does not wake itself up after 60 seconds, please press the power button momentarily to wake the system manually. If your system fails to wake at all and must be rebooted, restart System Testing after reboot and mark this test as Failed.
 user: root
 command: sleep_test -d
 
@@ -81,6 +84,9 @@ command: xrandr -q |grep '*'| awk '{print $1}' | diff $CHECKBOX_DATA/resolution_
 
 plugin: shell
 name: audio_after_suspend
+requires:
+ device.category == 'AUDIO'
+ package.name == 'alsa-base'
 depends: sleep_state_test audio_before_suspend
 _description: Test the audio after resuming.
 command: amixer | diff $CHECKBOX_DATA/audio_before_suspend.txt -
@@ -133,7 +139,7 @@ plugin: manual
 name: cycle_resolutions_after_suspend
 depends: sleep_state_test xrandr_cycle
 _description:
- This test will check to make sure that supported video modes work after a suspend and resume.  Click Test to Begin.
+ This test will check to make sure that supported video modes work after a suspend and resume.  Select Test to begin.
 command: xrandr_cycle
 
 plugin: manual
@@ -146,7 +152,7 @@ command: alsa_record_playback
 _description:
  This will check to make sure that your audio device works properly after a suspend and resume.  You can use either internal or external microphone and speakers.
  .
- To execute this test, make sure your speaker and microphone are NOT muted and the volume is set sufficiently loud to record and play audio. Click the Test button and then speak into your microphone. After a few seconds, your speech will be played back to you.
+ To execute this test, make sure your speaker and microphone are NOT muted and the volume is set sufficiently loud to record and play audio. Select Test and then speak into your microphone. After a few seconds, your speech will be played back to you.
  .
  Did you hear your speech played back?
 
@@ -157,7 +163,7 @@ requires: package.name == 'pm-utils'
 user: root
 command: sleep_test -i 30 -s mem --debug
 _description:
- Enter and resume from suspend state for 30 iterations. Please note that this is a lengthy test. Click Test to begin.
+ Enter and resume from suspend state for 30 iterations. Please note that this is a lengthy test. Select Test to begin. If your system fails to wake and must be rebooted, please restart System Testing and mark this test as Failed.
  .
  Did the system successfully suspend and resume for 30 iterations?
 
@@ -168,7 +174,7 @@ command: sleep_test -s disk -w 120 --debug
 _description:
  This will check to make sure your system can successfully hibernate (if supported).
  .
- Click the Test button to begin. The system will hibernate and should wake itself within 5 minutes.  If your system does not wake itself after 5 minutes, please press the power button to wake the system manually.
+ Select Test to begin. The system will hibernate and should wake itself within 5 minutes.  If your system does not wake itself after 5 minutes, please press the power button to wake the system manually. If the system fails to resume from hibernate, please restart System Testing and mark this test as Failed.
  .
  Did the system successfully hibernate and did it work properly after waking up?
 
@@ -179,7 +185,7 @@ requires: package.name == 'pm-utils'
 user: root
 command: sleep_test -i 30 -s disk -w 120 --debug
 _description:
- Enter and resume from hibernate for 30 iterations. Please note that this is a very lengthy test. Also, if your system does not wake itself after 2 minutes, you will need to press the power button to wake the system up.
+ Enter and resume from hibernate for 30 iterations. Please note that this is a very lengthy test. Also, if your system does not wake itself after 2 minutes, you will need to press the power button to wake the system up. If the system fails to resume from hibernation and must be rebooted, please restart System Testing and mark this test as Failed.
  .
  Also, you will need to ensure your system has no power-on or HDD passwords set, and that grub is set to boot Ubuntu by default if you have a multi-boot set-up.
  .

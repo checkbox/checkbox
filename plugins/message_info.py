@@ -16,8 +16,11 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
+import os
 import re
 import posixpath
+import signal
+
 from StringIO import StringIO
 
 from checkbox.lib.path import path_expand_recursive
@@ -49,7 +52,6 @@ class MessageInfo(Plugin):
         whitelist_patterns = [re.compile(r"^%s$" % r) for r in whitelist if r]
         blacklist_patterns = [re.compile(r"^%s$" % r) for r in blacklist if r]
 
-        filenames = []
         for filename in path_expand_recursive(directory):
             name = posixpath.basename(filename)
             if name.startswith(".") or name.endswith("~"):
@@ -66,9 +68,17 @@ class MessageInfo(Plugin):
 
     def message_exec(self, message):
         if "user" not in message:
+            def stop():
+                os.kill(0, signal.SIGTERM)
+
             job = Job(message["command"], message.get("environ"),
                 message.get("timeout"))
+
+            # Kill the job if the stop event is fired during execution
+            event_id = self._manager.reactor.call_on("stop", stop)
             result = job.execute()
+            self._manager.reactor.cancel_call(event_id)
+
             self._manager.reactor.fire("message-result", *result)
 
     def message_file(self, file, filename="<stream>"):
