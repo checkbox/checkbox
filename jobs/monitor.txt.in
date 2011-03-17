@@ -3,9 +3,9 @@ name: monitor-powersaving
 command: xset dpms force off
 _description:
  Monitor power saving verification procedure:
- 1.- Select Test to try the power saving capabilities of your monitor
- 2.- The monitor should go blank
- 3.- Press any key or move the mouse to recover
+  1.- Select Test to try the power saving capabilities of your monitor
+  2.- The monitor should go blank
+  3.- Press any key or move the mouse to recover
  .
  Did the monitor go blank?
 
@@ -14,8 +14,8 @@ name: monitor-dead-pixel
 command: dead_pixel_test
 _description:
  Dead pixel check procedure:
- 1.- Select Test to display a single color in full screen mode
- 2.- Check that all pixels are the same color
- 3.- Press any key and repeat the check for another color (red, green, blue, white and black)
+  1.- Select Test to display a single color in full screen mode
+  2.- Check that all pixels are the same color
+  3.- Press any key and repeat the check for another color (red, green, blue, white and black)
  .
  Did all the pixels change their color properly?

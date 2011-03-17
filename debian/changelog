@@ -13,8 +13,19 @@ checkbox (0.11.2) natty; urgency=low
   [Jeff Lane]
   * Added reboot instructions to suspend/hibernate tests (LP: #420493)
   * Made the firewire instructions make more sense (LP: #693068)
+  
+  [Michael Terry]
+  * Fixed several strings appear in English although translated (LP: #514401)
+    - jobs/fingerprint.txt.in
+    - jobs/media.txt.in
+    - jobs/monitor.txt.in
+    - jobs/sleep.txt.in
+    - jobs/firewire.txt.in
+    - po/checkbox.pot
+  * Fixed grammar (LP: #525454)
+    + jobs/fingerprint.txt.in
 
- -- Jeff Lane <jeff@ubuntu.com>  Fri, 11 Mar 2011 19:26:00 -0500
+ -- Jeff Lane <jeff@ubuntu.com>  Wed, 16 Mar 2011 17:50:05 -0400
 
 checkbox (0.11.1) natty; urgency=low
 
