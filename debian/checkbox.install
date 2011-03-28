@@ -12,5 +12,5 @@ usr/share/checkbox/report/*
 usr/share/checkbox/scripts/*
 usr/share/checkbox/examples/checkbox.ini
 usr/lib/python*/*-packages/checkbox/*
-usr/share/apport/package-hooks/source_checkbox.py
-usr/share/apport/general-hooks/checkbox.py
+../apport/source_checkbox.py usr/share/apport/package-hooks/
+../apport/checkbox.py usr/share/apport/general-hooks/
