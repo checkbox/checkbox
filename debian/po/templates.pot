@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: checkbox@packages.debian.org\n"
-"POT-Creation-Date: 2011-02-08 10:53+0100\n"
+"POT-Creation-Date: 2011-03-29 15:19+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,49 +20,53 @@ msgstr ""
 #. Type: boolean
 #. Description
 #: ../checkbox.templates:1001
-msgid "Default Enabled?"
+msgid "Enable bug reporting by default? "
 msgstr ""
 
 #. Type: boolean
 #. Description
 #: ../checkbox.templates:1001
-msgid "Default enabled state."
+msgid ""
+"If this option is set to Yes, then checkbox will ask if the user wants to "
+"file a bug for failing tests, even if apport is not enabled."
 msgstr ""
 
 #. Type: string
 #. Description
 #: ../checkbox.templates:2001
-msgid "Default Package:"
+msgid "Default package to report bugs against:"
 msgstr ""
 
 #. Type: string
 #. Description
 #: ../checkbox.templates:2001
-msgid "Default package if none is detected."
+msgid ""
+"When filing a new bug through checkbox, if it does not guess the  package, "
+"the default package that the bug will be file against."
 msgstr ""
 
 #. Type: string
 #. Description
 #: ../checkbox.templates:3001
-msgid "Suites Blacklist:"
+msgid "Test suite blacklist:"
 msgstr ""
 
 #. Type: string
 #. Description
 #: ../checkbox.templates:3001
-msgid "List of jobs to blacklist"
+msgid "List of job files to never run when testing with checkbox."
 msgstr ""
 
 #. Type: string
 #. Description
 #: ../checkbox.templates:4001
-msgid "Suites Whitelist:"
+msgid "Test suite whitelist:"
 msgstr ""
 
 #. Type: string
 #. Description
 #: ../checkbox.templates:4001
-msgid "List of jobs to whitelist"
+msgid "List of jobs to run when testing with checkbox."
 msgstr ""
 
 #. Type: string
