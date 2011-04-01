@@ -55,6 +55,7 @@ class JobsPrompt(Plugin):
         self._store = None
 
         for (rt, rh) in [
+             ("msgstore", self.report_msgstore),
              ("begin-persist", self.begin_persist),
              ("ignore-jobs", self.ignore_jobs),
              ("prompt-job", self.prompt_job),
@@ -63,6 +64,9 @@ class JobsPrompt(Plugin):
              ("report", self.report),
              ("report-job", self.report_job)]:
             self._manager.reactor.call_on(rt, rh)
+
+    def report_msgstore(self):
+        self._manager.reactor.fire("store-access", self.store)
 
     def begin_persist(self, persist):
         self._persist = persist
