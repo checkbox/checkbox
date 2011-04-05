@@ -34,7 +34,9 @@ class ManualTest(Plugin):
             # Avoid modifying the content of test in place
             temp = dict(test)
             self._manager.reactor.fire("prompt-shell", interface, temp)
-            return (temp["status"], temp["data"], temp["duration"])
+            return (temp["status"],
+                temp.get("data", ""),
+                temp.get("duration", 0))
 
         interface.show_test(test, runner)
         self._manager.reactor.fire("prompt-test", interface, test)
