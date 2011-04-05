@@ -62,7 +62,6 @@ _description:
 plugin: manual
 name: sleep_state_test
 depends: rtc network_before_suspend resolution_before_suspend wireless_before_suspend bluetooth_detect_before_suspend bluetooth_mouse_before_suspend
-requires: package.name == 'pm-utils'
 _description:
  Power management Suspend and Resume test
  .
@@ -159,7 +158,6 @@ _description:
 plugin: manual
 name: suspend_30_cycles
 depends: rtc
-requires: package.name == 'pm-utils'
 user: root
 command: sleep_test -i 30 -s mem --debug
 _description:
@@ -170,6 +168,7 @@ _description:
 plugin: manual
 name: hibernate_once
 depends: rtc
+user: root
 command: sleep_test -s disk -w 120 --debug
 _description:
  This will check to make sure your system can successfully hibernate (if supported).
@@ -181,7 +180,6 @@ _description:
 plugin: manual
 name: hibernate_30_cycles
 depends: rtc
-requires: package.name == 'pm-utils'
 user: root
 command: sleep_test -i 30 -s disk -w 120 --debug
 _description:
