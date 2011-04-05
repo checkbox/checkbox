@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-29 21:54-0400\n"
+"POT-Creation-Date: 2011-04-05 12:01-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -70,13 +70,13 @@ msgstr ""
 
 #. description
 #: ../jobs/audio.txt.in:7 ../jobs/disk.txt.in:16 ../jobs/network.txt.in:16
-#: ../jobs/sleep.txt.in:98 ../jobs/video.txt.in:50
+#: ../jobs/sleep.txt.in:106 ../jobs/video.txt.in:50
 msgid "$output"
 msgstr ""
 
 #. description
 #: ../jobs/audio.txt.in:7 ../jobs/disk.txt.in:4 ../jobs/network.txt.in:16
-#: ../jobs/sleep.txt.in:116 ../jobs/video.txt.in:50
+#: ../jobs/sleep.txt.in:124 ../jobs/video.txt.in:50
 msgid "Is this correct?"
 msgstr ""
 
@@ -122,7 +122,7 @@ msgstr ""
 
 #. description
 #: ../jobs/audio.txt.in:59 ../jobs/peripheral.txt.in:24
-#: ../jobs/sleep.txt.in:152
+#: ../jobs/sleep.txt.in:160
 msgid "Did you hear your speech played back?"
 msgstr ""
 
@@ -539,12 +539,17 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/sleep.txt.in:66
+#: ../jobs/sleep.txt.in:67
+msgid "Make sure that the RTC (Real-Time Clock) device exists."
+msgstr ""
+
+#. description
+#: ../jobs/sleep.txt.in:74
 msgid "Power management Suspend and Resume test"
 msgstr ""
 
 #. description
-#: ../jobs/sleep.txt.in:66
+#: ../jobs/sleep.txt.in:74
 msgid ""
 "Select Test and your system will suspend for about 30 - 60 seconds. If your "
 "system does not wake itself up after 60 seconds, please press the power "
@@ -554,22 +559,22 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/sleep.txt.in:76
+#: ../jobs/sleep.txt.in:84
 msgid "Test the network after resuming."
 msgstr ""
 
 #. description
-#: ../jobs/sleep.txt.in:82
+#: ../jobs/sleep.txt.in:90
 msgid "Test to see that we have the same resolution after resuming as before."
 msgstr ""
 
 #. description
-#: ../jobs/sleep.txt.in:91
+#: ../jobs/sleep.txt.in:99
 msgid "Test the audio after resuming."
 msgstr ""
 
 #. description
-#: ../jobs/sleep.txt.in:98
+#: ../jobs/sleep.txt.in:106
 msgid ""
 "Wireless network connection procedure:\n"
 " 1.- Click on the Network Manager applet.\n"
@@ -581,19 +586,19 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/sleep.txt.in:116
+#: ../jobs/sleep.txt.in:124
 msgid "The address of your Bluetooth device is: $output"
 msgstr ""
 
 #. description
-#: ../jobs/sleep.txt.in:125
+#: ../jobs/sleep.txt.in:133
 msgid ""
 "Verify a bluetooth peripheral.  An example verification procedure for a "
 "bluetooth mouse is given."
 msgstr ""
 
 #. description
-#: ../jobs/sleep.txt.in:125
+#: ../jobs/sleep.txt.in:133
 msgid ""
 "Bluetooth mouse procedure:\n"
 " 1.- Enable the bluetooth mouse.\n"
@@ -605,19 +610,19 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/sleep.txt.in:125
+#: ../jobs/sleep.txt.in:133
 msgid "Did all the steps work?"
 msgstr ""
 
 #. description
-#: ../jobs/sleep.txt.in:141
+#: ../jobs/sleep.txt.in:149
 msgid ""
 "This test will check to make sure that supported video modes work after a "
 "suspend and resume.  Select Test to begin."
 msgstr ""
 
 #. description
-#: ../jobs/sleep.txt.in:152
+#: ../jobs/sleep.txt.in:160
 msgid ""
 "This will check to make sure that your audio device works properly after a "
 "suspend and resume.  You can use either internal or external microphone and "
@@ -625,7 +630,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/sleep.txt.in:152
+#: ../jobs/sleep.txt.in:160
 msgid ""
 "To execute this test, make sure your speaker and microphone are NOT muted "
 "and the volume is set sufficiently loud to record and play audio. Select "
@@ -634,7 +639,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/sleep.txt.in:165
+#: ../jobs/sleep.txt.in:173
 msgid ""
 "Enter and resume from suspend state for 30 iterations. Please note that this "
 "is a lengthy test. Select Test to begin. If your system fails to wake and "
@@ -642,19 +647,19 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/sleep.txt.in:165
+#: ../jobs/sleep.txt.in:173
 msgid "Did the system successfully suspend and resume for 30 iterations?"
 msgstr ""
 
 #. description
-#: ../jobs/sleep.txt.in:174
+#: ../jobs/sleep.txt.in:184
 msgid ""
 "This will check to make sure your system can successfully hibernate (if "
 "supported)."
 msgstr ""
 
 #. description
-#: ../jobs/sleep.txt.in:174
+#: ../jobs/sleep.txt.in:184
 msgid ""
 "Select Test to begin. The system will hibernate and should wake itself "
 "within 5 minutes.  If your system does not wake itself after 5 minutes, "
@@ -664,14 +669,14 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/sleep.txt.in:174
+#: ../jobs/sleep.txt.in:184
 msgid ""
 "Did the system successfully hibernate and did it work properly after waking "
 "up?"
 msgstr ""
 
 #. description
-#: ../jobs/sleep.txt.in:187
+#: ../jobs/sleep.txt.in:197
 msgid ""
 "Enter and resume from hibernate for 30 iterations. Please note that this is "
 "a very lengthy test. Also, if your system does not wake itself after 2 "
@@ -681,7 +686,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/sleep.txt.in:187
+#: ../jobs/sleep.txt.in:197
 msgid ""
 "Also, you will need to ensure your system has no power-on or HDD passwords "
 "set, and that grub is set to boot Ubuntu by default if you have a multi-boot "
@@ -689,7 +694,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/sleep.txt.in:187
+#: ../jobs/sleep.txt.in:197
 msgid "Did the system successfully hibernate and wake 30 times?"
 msgstr ""
 
