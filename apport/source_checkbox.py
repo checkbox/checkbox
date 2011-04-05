@@ -15,3 +15,6 @@ def add_info(report):
 
     SUBMISSION = os.path.join(CACHE_HOME, 'checkbox', 'submission.xml')
     attach_file_if_exists(report, SUBMISSION)
+    
+    CHECKBOX_LOG = os.path.join(CACHE_HOME, 'checkbox', 'checkbox.log')
+    attach_file_if_exists(report, CHECKBOX_LOG)
