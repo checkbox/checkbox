@@ -38,16 +38,17 @@ def format_object(object, *args, **kwargs):
     if kwargs:
         args_string += ", ".join(["%s=%s" % (k, v) for k, v in kwargs.iteritems()])
 
+    mod = object.__module__ if object.__module__ else inspect.getfile(object)
     if inspect.ismethod(object):
         # FIXME If the method is implemented on a base class of
         # object's class, the module name and function name will be
         # from the base class and the method's class name will be from
         # object's class.
         name = repr(object).split(" ")[2]
-        return "%s.%s(%s)" % (object.__module__, name, args_string)
+        return "%s %s(%s)" % (mod, name, args_string)
     elif inspect.isfunction(object):
         name = repr(object).split(" ")[1]
-        return "%s.%s(%s)" % (object.__module__, name, args_string)
+        return "%s %s(%s)" % (mod, name, args_string)
     return format_class(object.__class__)
 
 def format_delta(seconds):
