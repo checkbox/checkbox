@@ -75,8 +75,8 @@ class JobsInfo(Plugin):
         self.blacklist_patterns = self.get_patterns(self.blacklist, self.blacklist_file)
 
         self._manager.reactor.call_on("prompt-begin", self.prompt_begin)
-        self._manager.reactor.call_on("prompt-gather", self.prompt_gather, 100)
         self._manager.reactor.call_on("gather", self.gather)
+        self._manager.reactor.call_on("gather", self.post_gather, 100)
         self._manager.reactor.call_on("report-job", self.report_job, -100)
 
 
@@ -86,20 +86,7 @@ class JobsInfo(Plugin):
         to display errors
         """
         self.interface = interface
-
-
-    def prompt_gather(self, interface):
-        """
-        Verify that all patterns were used
-        """
-        if self.unused_patterns:
-            error = ('Unused patterns:\n'
-                     '{0}\n\n'
-                     'Is your whitelist file outdated?\n'
-                     .format('\n'.join(['- {0}'.format(p.pattern[1:-1])
-                                        for p in self.unused_patterns])))
-            self._manager.reactor.fire('prompt-error', self.interface, error)
-
+        self.unused_patterns = self.whitelist_patterns + self.blacklist_patterns
 
     def get_patterns(self, strings, filename=None):
         if filename:
@@ -116,6 +103,7 @@ class JobsInfo(Plugin):
 
         return [re.compile(r"^%s$" % s) for s in strings
             if s and not s.startswith("#")]
+
 
     def gather(self):
         # Register temporary handler for report-message events
@@ -159,9 +147,21 @@ class JobsInfo(Plugin):
         gettext.textdomain(old_domain)
 
 
+    def post_gather(self, interface):
+        """
+        Verify that all patterns were used
+        """
+        if self.unused_patterns:
+            error = ('Unused patterns:\n'
+                     '{0}\n\n'
+                     'Is your whitelist file outdated?\n'
+                     .format('\n'.join(['- {0}'.format(p.pattern[1:-1])
+                                        for p in self.unused_patterns])))
+            self._manager.reactor.fire('prompt-error', self.interface, error)
+
+
     @coerce_arguments(job=job_schema)
     def report_job(self, job):
-        self.unused_patterns = self.whitelist_patterns + self.blacklist_patterns
         name = job["name"]
 
         patterns = self.whitelist_patterns or self.blacklist_patterns
