@@ -147,7 +147,7 @@ class JobsInfo(Plugin):
         gettext.textdomain(old_domain)
 
 
-    def post_gather(self, interface):
+    def post_gather(self):
         """
         Verify that all patterns were used
         """
