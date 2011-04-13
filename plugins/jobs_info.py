@@ -75,6 +75,7 @@ class JobsInfo(Plugin):
         self.blacklist_patterns = self.get_patterns(self.blacklist, self.blacklist_file)
 
         self._manager.reactor.call_on("prompt-begin", self.prompt_begin)
+        self._manager.reactor.call_on("prompt-gather", self.prompt_gather, 100)
         self._manager.reactor.call_on("gather", self.gather)
         self._manager.reactor.call_on("report-job", self.report_job, -100)
 
@@ -85,6 +86,19 @@ class JobsInfo(Plugin):
         to display errors
         """
         self.interface = interface
+
+
+    def prompt_gather(self, interface):
+        """
+        Verify that all patterns were used
+        """
+        if self.unused_patterns:
+            error = ('Unused patterns:\n'
+                     '{0}\n\n'
+                     'Is your whitelist file outdated?\n'
+                     .format('\n'.join(['- {0}'.format(p.pattern[1:-1])
+                                        for p in self.unused_patterns])))
+            self._manager.reactor.fire('prompt-error', self.interface, error)
 
 
     def get_patterns(self, strings, filename=None):
@@ -143,15 +157,6 @@ class JobsInfo(Plugin):
         # Unset domain and event handler
         self._manager.reactor.cancel_call(event_id)
         gettext.textdomain(old_domain)
-
-        # Check if there are any unused patterns
-        if self.unused_patterns:
-            error = ('Unused patterns:\n'
-                     '{0}\n\n'
-                     'Is your whitelist file outdated?\n'
-                     .format('\n'.join(['- {0}'.format(p.pattern[1:-1])
-                                        for p in self.unused_patterns])))
-            self._manager.reactor.fire('prompt-error', self.interface, error)
 
 
     @coerce_arguments(job=job_schema)
