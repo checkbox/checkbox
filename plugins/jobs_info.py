@@ -165,14 +165,15 @@ class JobsInfo(Plugin):
         name = job["name"]
 
         patterns = self.whitelist_patterns or self.blacklist_patterns
-        match = next((p for p in patterns if p.match(name)), None)
-        if match:
-            # Keep track of which patterns didn't match any job
-            if match in self.unused_patterns:
-                self.unused_patterns.remove(match)
-        else:
-            # Stop if job not in whitelist or in blacklist
-            self._manager.reactor.stop()
+        if patterns:
+            match = next((p for p in patterns if p.match(name)), None)
+            if match:
+                # Keep track of which patterns didn't match any job
+                if match in self.unused_patterns:
+                    self.unused_patterns.remove(match)
+            else:
+                # Stop if job not in whitelist or in blacklist
+                self._manager.reactor.stop()
 
 
 factory = JobsInfo
