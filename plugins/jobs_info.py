@@ -74,8 +74,18 @@ class JobsInfo(Plugin):
         self.whitelist_patterns = self.get_patterns(self.whitelist, self.whitelist_file)
         self.blacklist_patterns = self.get_patterns(self.blacklist, self.blacklist_file)
 
+        self._manager.reactor.call_on("prompt-begin", self.prompt_begin)
         self._manager.reactor.call_on("gather", self.gather)
         self._manager.reactor.call_on("report-job", self.report_job, -100)
+
+
+    def prompt_begin(self, interface):
+        """
+        Capture interface object to use it later
+        to display errors
+        """
+        self.interface = interface
+
 
     def get_patterns(self, strings, filename=None):
         if filename:
@@ -134,16 +144,30 @@ class JobsInfo(Plugin):
         self._manager.reactor.cancel_call(event_id)
         gettext.textdomain(old_domain)
 
+        # Check if there are any unused patterns
+        if self.unused_patterns:
+            error = ('Unused patterns:\n'
+                     '{0}\n\n'
+                     'Is your whitelist file outdated?\n'
+                     .format('\n'.join(['- {0}'.format(p.pattern[1:-1])
+                                        for p in self.unused_patterns])))
+            self._manager.reactor.fire('prompt-error', self.interface, error)
+
+
     @coerce_arguments(job=job_schema)
     def report_job(self, job):
-        # Stop if job not in whitelist or in blacklist
+        self.unused_patterns = self.whitelist_patterns + self.blacklist_patterns
         name = job["name"]
-        if self.whitelist_patterns:
-            if not [name for p in self.whitelist_patterns if p.match(name)]:
-                self._manager.reactor.stop()
-        elif self.blacklist_patterns:
-            if [name for p in self.blacklist_patterns if p.match(name)]:
-                self._manager.reactor.stop()
+
+        patterns = self.whitelist_patterns or self.blacklist_patterns
+        match = next((p for p in patterns if p.match(name)), None)
+        if match:
+            # Keep track of which patterns didn't match any job
+            if match in self.unused_patterns:
+                self.unused_patterns.remove(match)
+        else:
+            # Stop if job not in whitelist or in blacklist
+            self._manager.reactor.stop()
 
 
 factory = JobsInfo
