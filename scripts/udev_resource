@@ -140,7 +140,7 @@ class DeviceResource(object):
                     return "SCSI"
 
             if interface_class == Usb.BASE_CLASS_VIDEO:
-                return "VIDEO"
+                return "CAPTURE"
 
             if interface_class == Usb.BASE_CLASS_WIRELESS:
                 return "NETWORK"
