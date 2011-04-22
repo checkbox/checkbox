@@ -8,14 +8,21 @@ _description:
  .
  Is this correct?
 
-plugin: manual
+plugin: local 
 name: disk_bench
 requires: device.category == 'DISK'
-user: root
-command: disk_bench_test
-_description:
- Disk benchmark:
- .
- $output
- .
- Is this ok?
+description: Benchmark for each disk 
+command: 
+ cat <<'EOF' | run_templates -t -s 'udev_resource | filter_templates -w "category=DISK"'
+ plugin: manual
+ name: disk_bench_test_`ls /sys$path/block`
+ requires: device.path == "$path" and package.name == 'linux'
+ user: root
+ command: hdparm -tT /dev/`ls /sys$path/block` | sed 's/:.*= */ = /' | grep -v "^$"
+ description:
+  Disk Benchmark:
+  .
+  \$output
+  .
+  Is this ok?
+ EOF
