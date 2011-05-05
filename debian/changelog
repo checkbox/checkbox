@@ -1,6 +1,7 @@
 checkbox (0.11.4) natty; urgency=low
 
   * Changed udev_resource to report CAPTURE for USB VIDEO devices
+  * Fixed eval of resources with names like list item names
   
   [Carl Milette]
   * Fixed hard coded disk in disk_bench_test so that it matches convention

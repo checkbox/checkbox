@@ -23,10 +23,10 @@ __all__ = ["ResourceMap"]
 
 
 class ResourceObject(object):
-    __slots__ = ("_list", "_name", "_convert",)
+    __slots__ = ("_iterator", "_name", "_convert",)
 
-    def __init__(self, list, name, convert=lambda x: x):
-        self._list = list
+    def __init__(self, iterator, name, convert=lambda x: x):
+        self._iterator = iterator
         self._name = name
         self._convert = convert
 
@@ -53,23 +53,27 @@ class ResourceObject(object):
 
     def _try(self, other, function, until=True, default=False):
         found = False
-        for item in self._list:
+        for item in self._iterator:
             if self._name in item:
                 value = self._convert(item[self._name])
                 if function(value, other) == until:
-                    # Append item to list of results
-                    self._list._map._results.append(item)
+                    # Append item to results
+                    self._iterator._map._results.append(item)
                     found = True
 
         return until if found else default
 
 
-class ResourceList(list):
-    __slots__ = ("_map",)
+class ResourceIterator(object):
+    __slots__ = ("_map", "_values",)
 
-    def __init__(self, map, *args, **kwargs):
-        super(ResourceList, self).__init__(*args, **kwargs)
+    def __init__(self, map, values):
         self._map = map
+        self._values = values
+
+    def __iter__(self):
+        for value in self._values:
+            yield value
 
     def __getattr__(self, name):
         return ResourceObject(self, name)
@@ -82,7 +86,7 @@ class ResourceBuiltin(object):
         self._function = function
 
     def __call__(self, object):
-        return ResourceObject(object._list, object._name, self._function)
+        return ResourceObject(object._iterator, object._name, self._function)
 
 
 class ResourceGlobals(dict):
@@ -102,7 +106,7 @@ class ResourceMap(dict):
     def __getitem__(self, key):
         value = super(ResourceMap, self).__getitem__(key)
         if isinstance(value, (list, tuple)):
-            return ResourceList(self, value)
+            return ResourceIterator(self, value)
 
         else:
             return value
