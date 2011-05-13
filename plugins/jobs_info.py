@@ -154,7 +154,7 @@ class JobsInfo(Plugin):
         if self.unused_patterns:
             error = ('Unused patterns:\n'
                      '{0}\n\n'
-                     "Please make sure that the patterns you used aren't outdated?\n"
+                     "Please make sure that the patterns you used aren up-to-date\n"
                      .format('\n'.join(['- {0}'.format(p.pattern[1:-1])
                                         for p in self.unused_patterns])))
             self._manager.reactor.fire('prompt-error', self.interface, error)
