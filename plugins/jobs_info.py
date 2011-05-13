@@ -76,7 +76,7 @@ class JobsInfo(Plugin):
 
         self._manager.reactor.call_on("prompt-begin", self.prompt_begin)
         self._manager.reactor.call_on("gather", self.gather)
-        self._manager.reactor.call_on("gather", self.post_gather, 100)
+        self._manager.reactor.call_on("prompt-gather", self.post_gather, 90)
         self._manager.reactor.call_on("report-job", self.report_job, -100)
 
 
@@ -147,14 +147,14 @@ class JobsInfo(Plugin):
         gettext.textdomain(old_domain)
 
 
-    def post_gather(self):
+    def post_gather(self, interface):
         """
         Verify that all patterns were used
         """
         if self.unused_patterns:
             error = ('Unused patterns:\n'
                      '{0}\n\n'
-                     "Please make sure that the patterns you used aren up-to-date\n"
+                     "Please make sure that the patterns you used are up-to-date\n"
                      .format('\n'.join(['- {0}'.format(p.pattern[1:-1])
                                         for p in self.unused_patterns])))
             self._manager.reactor.fire('prompt-error', self.interface, error)
