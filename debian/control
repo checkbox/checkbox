@@ -51,7 +51,7 @@ Section: gnome
 Architecture: all
 Replaces: hwtest-gtk (<< 0.1-0ubuntu12)
 Provides: hwtest-gtk
-Depends: checkbox (= ${source:Version}), gksu, python-gtk2
+Depends: checkbox (= ${source:Version}), gksu, python-gobject (>= 2.28), gir1.2-gtk-3.0
 Conflicts: hwtest-gtk (<< 0.1-0ubuntu12)
 XB-Python-Version: ${python:Versions}
 Description: GTK interface for checkbox

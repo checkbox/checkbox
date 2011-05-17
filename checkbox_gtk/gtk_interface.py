@@ -17,11 +17,12 @@
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
 import re
-import gtk
 import posixpath
 
 from gettext import gettext as _
 from string import Template
+
+from gi.repository import Gtk, Gdk
 
 from checkbox.job import UNINITIATED
 from checkbox.user_interface import (UserInterface,
@@ -68,8 +69,8 @@ class GTKInterface(UserInterface):
         super(GTKInterface, self).__init__(title, data_path)
 
         # Load UI
-        gtk.window_set_default_icon_name("checkbox")
-        self.widgets = gtk.Builder()
+        Gtk.Window.set_default_icon_name("checkbox")
+        self.widgets = Gtk.Builder()
         self.widgets.set_translation_domain(self.gettext_domain)
         self.widgets.add_from_file(posixpath.join(data_path,
             "checkbox-gtk.ui"))
@@ -77,7 +78,8 @@ class GTKInterface(UserInterface):
 
         # Set background color for head
         eventbox_head = self._get_widget("eventbox_head")
-        eventbox_head.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse("white"))
+        color = Gdk.color_parse("white")[1]
+        eventbox_head.modify_bg(Gtk.StateType.NORMAL, color)
 
         # Set dialog title
         self._dialog = self._get_widget("dialog_main")
@@ -87,7 +89,7 @@ class GTKInterface(UserInterface):
         self._wait = self._get_widget("window_wait")
         self._wait.set_transient_for(self._dialog)
         self._wait.realize()
-        self._wait.window.set_functions(gtk.gdk.FUNC_MOVE)
+        self._wait.get_window().set_functions(Gdk.WMFunction.MOVE)
 
         # Set shorthand for notebook
         self._notebook = self._get_widget("notebook_main")
@@ -125,7 +127,7 @@ class GTKInterface(UserInterface):
         widget.set_text(text)
 
     def _set_text_view(self, name, text=""):
-        buffer = gtk.TextBuffer()
+        buffer = Gtk.TextBuffer()
         buffer.set_text(text)
         widget = self._get_widget(name)
         widget.set_buffer(buffer)
@@ -137,7 +139,7 @@ class GTKInterface(UserInterface):
         widget = self._get_widget(name)
         widget.connect("anchor-clicked", clicked)
 
-        buffer = gtk.TextBuffer()
+        buffer = Gtk.TextBuffer()
         widget.set_buffer(buffer)
 
         url_regex = r"https?://[^\s]+"
@@ -194,15 +196,15 @@ class GTKInterface(UserInterface):
             # isn't meant to move to a previous/next window
             # To do this, please link the RESPONSE_REJECT code to such
             # button in the glade file
-            if response != gtk.RESPONSE_REJECT:
+            if response != Gtk.ResponseType.REJECT:
                 self.direction = response
-                gtk.main_quit()
+                Gtk.main_quit()
 
         dialog = dialog or self._dialog
         dialog.connect("response", on_dialog_response, self)
         dialog.show()
-        gtk.main()
-        if self.direction == gtk.RESPONSE_DELETE_EVENT:
+        Gtk.main()
+        if self.direction == Gtk.ResponseType.DELETE_EVENT:
             raise KeyboardInterrupt
 
     def show_progress_start(self, message):
@@ -220,8 +222,8 @@ class GTKInterface(UserInterface):
 
     def show_progress_pulse(self):
         self._get_widget("progressbar_wait").pulse()
-        while gtk.events_pending():
-            gtk.main_iteration()
+        while Gtk.events_pending():
+            Gtk.main_iteration()
 
     @GTKHack
     def show_text(self, text, previous=None, next=None):
@@ -272,7 +274,7 @@ class GTKInterface(UserInterface):
         vbox = self._get_widget("vbox_options_list")
         for option in options:
             label = "_%s%s" % (option[0].upper(), option[1:])
-            check_button = gtk.CheckButton(label)
+            check_button = Gtk.CheckButton(label)
             check_button.get_child().set_line_wrap(True)
             check_button.show()
             option_table[option] = check_button
@@ -318,7 +320,7 @@ class GTKInterface(UserInterface):
         vbox = self._get_widget("vbox_options_list")
         for option in options:
             label = "_%s%s" % (option[0].upper(), option[1:])
-            radio_button = gtk.RadioButton(option_group, label)
+            radio_button = Gtk.RadioButton(option_group, label)
             radio_button.get_child().set_line_wrap(True)
             radio_button.show()
             option_table[option] = radio_button
@@ -351,8 +353,8 @@ class GTKInterface(UserInterface):
         self._set_show("button_deselect_all", True)
 
         # Set options
-        treestore = gtk.TreeStore(str, bool)
-        treeview = gtk.TreeView(treestore)
+        treestore = Gtk.TreeStore(str, bool)
+        treeview = Gtk.TreeView(treestore)
         treeview.set_headers_visible(False)
         treeview.show()
 
@@ -396,15 +398,15 @@ class GTKInterface(UserInterface):
             set_children(iter)
 
         # Toggle column
-        cell = gtk.CellRendererToggle()
+        cell = Gtk.CellRendererToggle()
         cell.connect("toggled",
             lambda t, p: toggle_tree(treestore.get_iter_from_string(p)))
-        col = gtk.TreeViewColumn(None, cell, active=COLUMN_ACTIVE)
+        col = Gtk.TreeViewColumn(None, cell, active=COLUMN_ACTIVE)
         treeview.append_column(col)
 
         # Text column
-        cell = gtk.CellRendererText()
-        col = gtk.TreeViewColumn(None, cell, text=COLUMN_TEXT)
+        cell = Gtk.CellRendererText()
+        col = Gtk.TreeViewColumn(None, cell, text=COLUMN_TEXT)
         treeview.append_column(col)
 
         # Select and deselect buttons
@@ -491,9 +493,9 @@ class GTKInterface(UserInterface):
         test["status"] = self._get_radio_button(BUTTON_TO_STATUS)
 
     def show_info(self, text, options=[], default=None):
-        message_dialog = gtk.MessageDialog(parent=self._dialog,
-            type=gtk.MESSAGE_INFO,
-            buttons=gtk.BUTTONS_NONE,
+        message_dialog = Gtk.MessageDialog(parent=self._dialog,
+            type=Gtk.MessageType.INFO,
+            buttons=Gtk.ButtonsType.NONE,
             message_format=text)
         message_dialog.set_modal(True)
         message_dialog.set_title(_("Info"))
@@ -510,13 +512,13 @@ class GTKInterface(UserInterface):
         return options[response]
 
     def show_error(self, text):
-        message_dialog = gtk.MessageDialog(parent=self._dialog,
-            type=gtk.MESSAGE_ERROR,
-            buttons=gtk.BUTTONS_NONE,
+        message_dialog = Gtk.MessageDialog(parent=self._dialog,
+            type=Gtk.MessageType.ERROR,
+            buttons=Gtk.ButtonsType.NONE,
             message_format=text)
         message_dialog.set_modal(True)
         message_dialog.set_title(_("Error"))
         message_dialog.set_default_response(1)
-        message_dialog.add_buttons(gtk.STOCK_CLOSE, NEXT)
+        message_dialog.add_buttons(Gtk.STOCK_CLOSE, NEXT)
         self._run_dialog(message_dialog)
         message_dialog.hide()

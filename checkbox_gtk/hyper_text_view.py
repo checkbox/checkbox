@@ -16,18 +16,16 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-import gtk
-import gobject
-import pango
+from gi.repository import Gtk, GObject, Pango, Gdk
 
 
-class HyperTextView(gtk.TextView):
+class HyperTextView(Gtk.TextView):
     __gtype_name__ = "HyperTextView"
-    __gsignals__ = {"anchor-clicked": (gobject.SIGNAL_RUN_LAST, None, (str, str, int))}
+    __gsignals__ = {"anchor-clicked": (GObject.SignalFlags.RUN_LAST, None, (str, str, int))}
     __gproperties__ = {
-        "link":  (gobject.TYPE_PYOBJECT, "link color", "link color of TextView", gobject.PARAM_READWRITE),
-        "active":(gobject.TYPE_PYOBJECT, "active color", "active color of TextView", gobject.PARAM_READWRITE),
-        "hover": (gobject.TYPE_PYOBJECT, "link:hover color", "link:hover color of TextView", gobject.PARAM_READWRITE),
+        "link":  (GObject.TYPE_PYOBJECT, "link color", "link color of TextView", GObject.PARAM_READWRITE),
+        "active":(GObject.TYPE_PYOBJECT, "active color", "active color of TextView", GObject.PARAM_READWRITE),
+        "hover": (GObject.TYPE_PYOBJECT, "link:hover color", "link:hover color of TextView", GObject.PARAM_READWRITE),
         }
 
     def do_get_property(self, prop):
@@ -43,10 +41,10 @@ class HyperTextView(gtk.TextView):
             raise AttributeError, "unknown property %s" % prop.name
 
     def __init__(self, buffer=None):
-        super(HyperTextView, self).__init__(buffer)
-        self.link   = {"foreground": "blue", "underline": pango.UNDERLINE_SINGLE}
-        self.active = {"foreground": "red", "underline": pango.UNDERLINE_SINGLE}
-        self.hover  = {"foreground": "dark blue", "underline": pango.UNDERLINE_SINGLE}
+        super(HyperTextView, self).__init__(buffer=buffer)
+        self.link   = {"foreground": "blue", "underline": Pango.Underline.SINGLE}
+        self.active = {"foreground": "red", "underline": Pango.Underline.SINGLE}
+        self.hover  = {"foreground": "dark blue", "underline": Pango.Underline.SINGLE}
 
         self.set_editable(False)
         self.set_cursor_visible(False)
@@ -78,13 +76,13 @@ class HyperTextView(gtk.TextView):
     def _motion(self, view, ev):
         window = ev.window
         x, y, _ = window.get_pointer()
-        x, y = view.window_to_buffer_coords(gtk.TEXT_WINDOW_TEXT, x, y)
+        x, y = view.window_to_buffer_coords(Gtk.TextWindowType.TEXT, x, y)
         tags = view.get_iter_at_location(x, y).get_tags()
         for tag in tags:
             if tag.get_data("is_anchor"):
                 for t in set(self.__tags) - set([tag]):
                     self.__tag_reset(t, window)
-                self.__set_anchor(window, tag, gtk.gdk.Cursor(gtk.gdk.HAND2), self.get_property("hover"))
+                self.__set_anchor(window, tag, Gdk.Cursor.new(Gdk.HAND2), self.get_property("hover"))
                 break
         else:
             tag_table = self.get_buffer().get_tag_table()
@@ -92,12 +90,12 @@ class HyperTextView(gtk.TextView):
 
     def _tag_event(self, tag, view, ev, _iter, text, anchor):
         _type = ev.type
-        if _type == gtk.gdk.MOTION_NOTIFY:
+        if _type == Gdk.MOTION_NOTIFY:
             return
-        elif _type in [gtk.gdk.BUTTON_PRESS, gtk.gdk.BUTTON_RELEASE]:
+        elif _type in [Gdk.EventType.BUTTON_PRESS, Gdk.BUTTON_RELEASE]:
             button = ev.button
-            cursor = gtk.gdk.Cursor(gtk.gdk.HAND2)
-            if _type == gtk.gdk.BUTTON_RELEASE:
+            cursor = Gdk.Cursor.new(Gdk.HAND2)
+            if _type == Gdk.BUTTON_RELEASE:
                 self.emit("anchor-clicked", text, anchor, button)
                 self.__set_anchor(ev.window, tag, cursor, self.get_property("hover"))
             elif button in [1, 2]:
@@ -113,4 +111,4 @@ class HyperTextView(gtk.TextView):
             if val is not None:
                 tag.set_property(key, val)
 
-gobject.type_register(HyperTextView)
+GObject.type_register(HyperTextView)
