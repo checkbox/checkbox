@@ -35,7 +35,8 @@ class ShellTest(Plugin):
     def prompt_shell(self, interface, test):
         command = test.get("command")
         status = test.get("status", UNINITIATED)
-        if command and status == UNINITIATED:
+        plugin = test.get("plugin", "shell")
+        if command and (status == UNINITIATED or plugin != "shell"):
             # Register temporary handler for message-result events
             def message_result(status, data, duration):
                 test["status"] = status
