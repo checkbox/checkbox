@@ -1,11 +1,16 @@
 checkbox (0.12) oneiric; urgency=low
 
+  [ Marc Tardif ]
   * Removed dead pixel test.
 
   [Bilal Akhtar]
   * Port checkbox to Gtk3/PyGI (LP: #783822)
 
- -- Marc Tardif <marc@ubuntu.com>  Tue, 17 May 2011 09:48:07 -0400
+  [ Daniel Manrique ]
+  * Fix GUI definition file so main window uses "natural request", growing
+    when child widgets require so (LP: #776734)
+
+ -- Daniel Manrique <daniel.manrique@canonical.com>  Fri, 20 May 2011 17:21:59 -0400
 
 checkbox (0.11.4) natty; urgency=low
 
