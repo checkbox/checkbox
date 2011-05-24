@@ -150,10 +150,10 @@ class CLIChoiceDialog(CLIDialog):
             # we find one which is not used yet
             # we append the abc to the end of the option to make sure
             # we find an unused key to use
-            findkey = option+string.lowercase
-            while count<len(findkey) and findkey[count].lower() in self.keys:
-                count = count+1
-            key = option[count].lower()
+            findkey = option.lower()+string.lowercase
+            for key in findkey:
+                if key not in self.keys:
+                    break
         self.keys.append(key)
         self.options.append(option)
 
