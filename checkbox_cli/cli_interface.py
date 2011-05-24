@@ -145,13 +145,11 @@ class CLIChoiceDialog(CLIDialog):
 
     def add_option(self, option, key=None):
         if key is None:
-            count = 0
             # iterate over the characters of the option until
             # we find one which is not used yet
             # we append the abc to the end of the option to make sure
             # we find an unused key to use
-            findkey = option.lower()+string.lowercase
-            for key in findkey:
+            for key in option.lower()+string.lowercase:
                 if key not in self.keys:
                     break
         self.keys.append(key)
