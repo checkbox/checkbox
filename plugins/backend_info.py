@@ -57,13 +57,13 @@ class BackendInfo(Plugin):
                     stdout=PIPE, stderr=PIPE) == 0 and \
                 call(["pgrep", "-x", "-u", str(uid), "ksmserver"],
                     stdout=PIPE, stderr=PIPE) == 0:
-            prefix = ["kdesudo", "--"]
+            prefix = ["kdesudo", "--desktop", "/usr/share/applications/checkbox-gtk.desktop", "--"]
         elif os.getenv("DISPLAY") and \
                 call(["which", "gksu"],
                     stdout=PIPE, stderr=PIPE) == 0 and \
                 call(["pgrep", "-x", "-u", str(uid), "gnome-panel|gconfd-2"],
                     stdout=PIPE, stderr=PIPE) == 0:
-            prefix = ["gksu", "--"]
+            prefix = ["gksu", "--description", "/usr/share/applications/checkbox-gtk.desktop", "--"]
         else:
             prefix = ["sudo"]
 
