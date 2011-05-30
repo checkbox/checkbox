@@ -71,6 +71,15 @@ class ResourceIterator(object):
         self._map = map
         self._values = values
 
+    def __contains__(self, elt):
+        found = False
+        for value in self._values:
+            if elt in value:
+                self._map._results.append(value)
+                found = True
+
+        return found
+
     def __iter__(self):
         for value in self._values:
             yield value
@@ -108,6 +117,9 @@ class ResourceMap(dict):
         if isinstance(value, (list, tuple)):
             return ResourceIterator(self, value)
 
+        elif isinstance(value, dict):
+            return ResourceIterator(self, [value])
+
         else:
             return value
 
@@ -122,4 +134,4 @@ class ResourceMap(dict):
         except Exception:
             pass
 
-        return []
+        return None

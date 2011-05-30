@@ -149,8 +149,8 @@ This project provides an extensible interface for system testing.
         ("share/apport/package-hooks/", ["apport/source_checkbox.py"]),
         ("share/apport/general-hooks/", ["apport/checkbox.py"])],
     scripts = ["bin/checkbox-cli", "bin/checkbox-gtk", "bin/checkbox-urwid"],
-    packages = ["checkbox", "checkbox.contrib", "checkbox.lib", "checkbox.reports",
-        "checkbox_cli", "checkbox_gtk", "checkbox_urwid"],
+    packages = ["checkbox", "checkbox.contrib", "checkbox.lib", "checkbox.parsers",
+        "checkbox.reports", "checkbox_cli", "checkbox_gtk", "checkbox_urwid"],
     cmdclass = {
         "install": checkbox_install,
         "install_data": checkbox_install_data,
