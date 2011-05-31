@@ -36,8 +36,9 @@ class ResourceInfo(Plugin):
         values = []
         for require in job.get("requires", []):
             new_values = self.resources.eval(require)
-            mask.append(bool(new_values))
-            values.extend(new_values)
+            if new_values is not None:
+                mask.append(bool(new_values))
+                values.extend(new_values)
 
         if all(mask):
             job["resources"] = values

@@ -1,4 +1,3 @@
-#!/usr/bin/python
 #
 # This file is part of Checkbox.
 #
@@ -17,39 +16,9 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-import os
-import sys
-
-from checkbox.parsers.udev import UdevLocalParser
 
 
-# Command to retrieve udev information.
-COMMAND = "udevadm info --export-db"
-
-
-class UdevResult(object):
-
-    attributes = ("path", "bus", "category", "driver", "product_id",
-        "vendor_id", "subproduct_id", "subvendor_id", "product", "vendor",)
+class DeviceResult(object):
 
     def addDevice(self, device):
-        for attribute in self.attributes:
-            value = getattr(device, attribute)
-            if value is not None:
-                print "%s: %s" % (attribute, value)
-
-        print
-
-
-def main():
-    stream = os.popen(COMMAND)
-    udev = UdevLocalParser(stream)
-
-    result = UdevResult()
-    udev.run(result)
-
-    return 0
-
-
-if __name__ == "__main__":
-    sys.exit(main())
+        pass
