@@ -39,7 +39,9 @@ class FifoBase(object):
 
 class FifoReader(FifoBase):
 
-    mode = "r"
+    #on Linux, opening a FIFO in read-write mode is non-blocking and
+    #succeeds even if other end is not open as per FIFO(7)
+    mode = "w+"
 
     def read_string(self):
         size = struct.calcsize("i")
@@ -60,7 +62,9 @@ class FifoReader(FifoBase):
 
 class FifoWriter(FifoBase):
 
-    mode = "w"
+    #on Linux, opening a FIFO in read-write mode is non-blocking and
+    #succeeds even if other end is not open as per FIFO(7)
+    mode = "w+"
 
     def write_string(self, string):
         length = len(string)
