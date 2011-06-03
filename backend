@@ -28,6 +28,8 @@ def main(args):
     while True:
         try:
             message = reader.read_object()
+            if message == "stop":
+                break
             if isinstance(message, dict) and "command" in message:
                 job = Job(message["command"], message.get("environ"),
                     message.get("timeout"))

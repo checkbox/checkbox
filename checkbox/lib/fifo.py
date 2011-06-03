@@ -20,15 +20,16 @@ import os
 import struct
 
 from checkbox.contrib.bpickle import dumps, loads
-
+from checkbox.lib.selector import Selector, SelectorIO
 
 class FifoBase(object):
 
     mode = None
 
-    def __init__(self, path):
+    def __init__(self, path, timeout=None):
         self.path = path
         self.file = open(path, self.mode)
+        self._timeout = timeout
 
     def __del__(self):
         self.close()
@@ -36,12 +37,29 @@ class FifoBase(object):
     def close(self):
         self.file.close()
 
+    def wait_for(self, operation):
+        if self._timeout is not None:
+            selector = Selector()
+            selector.set_timeout(self._timeout)
+            selector.add_fd(self.file.fileno(), operation)
+
+            selector.execute()
+
+            if not selector.has_ready():
+                return False
+        return True
 
 class FifoReader(FifoBase):
 
-    mode = "r"
+    #on Linux, opening a FIFO in read-write mode is non-blocking and
+    #succeeds even if other end is not open as per FIFO(7)
+    mode = "w+"
 
     def read_string(self):
+        # Check if a connection arrived within the timeout
+        if not self.wait_for(SelectorIO.READ):
+            return None
+
         size = struct.calcsize("i")
         length_string = self.file.read(size)
         if not length_string:
@@ -60,9 +78,16 @@ class FifoReader(FifoBase):
 
 class FifoWriter(FifoBase):
 
-    mode = "w"
+    #on Linux, opening a FIFO in read-write mode is non-blocking and
+    #succeeds even if other end is not open as per FIFO(7)
+    mode = "w+"
 
     def write_string(self, string):
+
+        # Wait until I can write 
+        if not self.wait_for(SelectorIO.WRITE):
+            return None 
+
         length = len(string)
         length_string = struct.pack(">i", length)
         self.file.write(length_string)
