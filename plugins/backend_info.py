@@ -25,14 +25,14 @@ from tempfile import mkdtemp
 from checkbox.lib.fifo import FifoReader, FifoWriter, create_fifo
 
 from checkbox.plugin import Plugin
-from checkbox.properties import Path, String
+from checkbox.properties import Path, Float 
 
 
 class BackendInfo(Plugin):
 
     # how long to wait for I/O from/to the backend. If it takes longer
     # than this, the message is ignored.
-    timeout = String(required=False)
+    timeout = Float(default=15.0)
 
     command = Path(default="%(checkbox_share)s/backend")
 
@@ -80,7 +80,6 @@ class BackendInfo(Plugin):
 
         self.pid = os.fork()
         if self.pid > 0:
-            import pdb; pdb.set_trace()
             self.parent_writer = FifoWriter(child_input, timeout=self.timeout)
             self.parent_reader = FifoReader(child_output, timeout=self.timeout)
 

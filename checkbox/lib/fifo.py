@@ -37,6 +37,17 @@ class FifoBase(object):
     def close(self):
         self.file.close()
 
+    def wait_for(self, operation):
+        if self._timeout is not None:
+            selector = Selector()
+            selector.set_timeout(self._timeout)
+            selector.add_fd(self.file.fileno(), operation)
+
+            selector.execute()
+
+            if not selector.has_ready():
+                return False
+        return True
 
 class FifoReader(FifoBase):
 
@@ -46,15 +57,8 @@ class FifoReader(FifoBase):
 
     def read_string(self):
         # Check if a connection arrived within the timeout
-        if self._timeout is not None:
-            selector = Selector()
-            selector.set_timeout(self._timeout)
-            selector.add_fd(self.file.fileno(), SelectorIO.READ)
-
-            selector.execute()
-
-            if not selector.has_ready():
-                return None 
+        if not self.wait_for(SelectorIO.READ):
+            return None
 
         size = struct.calcsize("i")
         length_string = self.file.read(size)
@@ -80,16 +84,9 @@ class FifoWriter(FifoBase):
 
     def write_string(self, string):
 
-        if self._timeout is not None:
-            # Wait until I can write 
-            selector = Selector()
-            selector.set_timeout(self._timeout)
-            selector.add_fd(self.file.fileno(), SelectorIO.WRITE)
-
-            selector.execute()
-
-            if not selector.has_ready():
-                return None 
+        # Wait until I can write 
+        if not self.wait_for(SelectorIO.WRITE):
+            return None 
 
         length = len(string)
         length_string = struct.pack(">i", length)
