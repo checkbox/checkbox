@@ -76,8 +76,8 @@ class BackendInfo(Plugin):
 
         self.pid = os.fork()
         if self.pid > 0:
-            self.parent_writer = FifoWriter(child_input)
-            self.parent_reader = FifoReader(child_output)
+            self.parent_writer = FifoWriter(child_input, timeout=30)
+            self.parent_reader = FifoReader(child_output, timeout=30)
 
         else:
             root_command = self.get_root_command(child_input, child_output)

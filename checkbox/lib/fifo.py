@@ -20,15 +20,16 @@ import os
 import struct
 
 from checkbox.contrib.bpickle import dumps, loads
-
+from checkbox.lib.selector import Selector, SelectorIO
 
 class FifoBase(object):
 
     mode = None
 
-    def __init__(self, path):
+    def __init__(self, path, timeout=None):
         self.path = path
         self.file = open(path, self.mode)
+        self._timeout = timeout
 
     def __del__(self):
         self.close()
@@ -44,6 +45,17 @@ class FifoReader(FifoBase):
     mode = "w+"
 
     def read_string(self):
+        # Check if a connection arrived within the timeout
+        if self._timeout is not None:
+            selector = Selector()
+            selector.set_timeout(self._timeout)
+            selector.add_fd(self.file.fileno(), SelectorIO.READ)
+
+            selector.execute()
+
+            if not selector.has_ready():
+                return None 
+
         size = struct.calcsize("i")
         length_string = self.file.read(size)
         if not length_string:
@@ -67,6 +79,18 @@ class FifoWriter(FifoBase):
     mode = "w+"
 
     def write_string(self, string):
+
+        if self._timeout is not None:
+            # Wait until I can write 
+            selector = Selector()
+            selector.set_timeout(self._timeout)
+            selector.add_fd(self.file.fileno(), SelectorIO.WRITE)
+
+            selector.execute()
+
+            if not selector.has_ready():
+                return None 
+
         length = len(string)
         length_string = struct.pack(">i", length)
         self.file.write(length_string)
