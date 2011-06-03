@@ -3,11 +3,14 @@ checkbox (0.12.1) oneiric; urgency=low
   [Daniel Manrique]
   * Fix GUI definition file so main window uses "natural request", growing
     when child widgets require so (LP: #776734)
+  * Fix open/read blocking behavior and backend/frontend communications to
+    avoid hangs and lingering backends. (LP: #588539)
 
   [Robert Roth]
   * Improve command line key prompts (LP: #786924)
 
- -- Marc Tardif <marc@ubuntu.com>  Wed, 25 May 2011 10:09:22 -0400
+  
+ -- Daniel Manrique <daniel.manrique@canonical.com>  Fri, 03 Jun 2011 15:23:05 -0400
 
 checkbox (0.12) oneiric; urgency=low
 
