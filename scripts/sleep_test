@@ -337,11 +337,12 @@ def check_network():
         return True
 
     start = datetime.now()
+    logging.debug("Waiting 60 seconds for NetworkManager to reconnect.")
     while True:
         if nm.get_state() == nm.STATE_CONNECTED:
             return True
         # give 60 seconds to NetworkManager to get to a CONNECTED state, then give up
-        if datetime.now() - start > timedelta(60):
+        if datetime.now() - start > timedelta(seconds=60):
             return False
         sleep(5)
             
