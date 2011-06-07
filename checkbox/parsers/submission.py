@@ -25,7 +25,6 @@ from datetime import (
     datetime,
     timedelta,
     )
-from cStringIO import StringIO
 
 from checkbox.parsers.device import DeviceResult
 from checkbox.parsers.udev import UdevParser
@@ -47,6 +46,13 @@ _time_regex = re.compile(r"""
     """,
     re.VERBOSE)
 
+_xml_illegal_regex = re.compile(
+    u"([\u0000-\u0008\u000b-\u000c\u000e-\u001f\ufffe-\uffff])"
+    + u"|([%s-%s][^%s-%s])|([^%s-%s][%s-%s])|([%s-%s]$)|(^[%s-%s])" % (
+    unichr(0xd800),unichr(0xdbff),unichr(0xdc00),unichr(0xdfff),
+    unichr(0xd800),unichr(0xdbff),unichr(0xdc00),unichr(0xdfff),
+    unichr(0xd800),unichr(0xdbff),unichr(0xdc00),unichr(0xdfff)))
+
 
 class HALDevice(object):
 
@@ -56,12 +62,71 @@ class HALDevice(object):
         self.properties = properties
 
 
+class SubmissionStream(object):
+
+    default_size = 4096
+
+    def __init__(self, stream):
+        self.stream = stream
+        self._buffer = ""
+        self._buffers = []
+
+    def read(self, size=None):
+        if size is None:
+            size = self.default_size
+
+        info_start_regex = re.compile("^<info .*>$")
+        info_end_regex = re.compile("^</info>$")
+
+        in_info = False
+        length = sum(len(buffer) for buffer in self._buffers)
+
+        while length < size:
+            try:
+                buffer = self.stream.next()
+            except StopIteration:
+                break
+
+            if not in_info:
+                if info_start_regex.match(buffer):
+                    in_info = True
+                    self._buffer += "".join(self._buffers)
+                    self._buffers = [buffer]
+                else:
+                    length += len(buffer)
+                    self._buffers.append(buffer)
+            else:
+                self._buffers.append(buffer)
+                if info_end_regex.match(buffer):
+                    in_info = False
+
+                    buffer = "".join(self._buffers)
+                    self._buffers = []
+
+                    if not _xml_illegal_regex.search(buffer):
+                        length += len(buffer)
+                        self._buffer += buffer
+
+        if self._buffers:
+            self._buffer += "".join(self._buffers)
+            self._buffers = []
+
+        if not self._buffer:
+            return None
+
+        data = self._buffer[:size]
+        self._buffers = [self._buffer[size:]]
+        self._buffer = ""
+
+        return data
+
+
 class SubmissionParser(object):
 
     default_name = "unknown"
 
     def __init__(self, stream, name=None):
-        self.stream = stream
+        self.stream = SubmissionStream(stream)
         self.name = name or self.default_name
 
     def _getClient(self, node):
