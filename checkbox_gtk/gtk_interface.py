@@ -202,6 +202,7 @@ class GTKInterface(UserInterface):
 
         dialog = dialog or self._dialog
         dialog.connect("response", on_dialog_response, self)
+        dialog.set_default_response(NEXT)
         dialog.show()
         Gtk.main()
         if self.direction == Gtk.ResponseType.DELETE_EVENT:
@@ -518,7 +519,7 @@ class GTKInterface(UserInterface):
             message_format=text)
         message_dialog.set_modal(True)
         message_dialog.set_title(_("Error"))
-        message_dialog.set_default_response(1)
+        message_dialog.set_default_response(NEXT)
         message_dialog.add_buttons(Gtk.STOCK_CLOSE, NEXT)
         self._run_dialog(message_dialog)
         message_dialog.hide()
