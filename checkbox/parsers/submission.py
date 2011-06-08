@@ -19,12 +19,12 @@
 import re
 
 import logging
-import pytz
 
 from datetime import (
     datetime,
     timedelta,
     )
+from dateutil import tz
 
 from checkbox.parsers.device import DeviceResult
 from checkbox.parsers.udev import UdevParser
@@ -228,7 +228,7 @@ class SubmissionParser(object):
             milliseconds = 999999
 
         timestamp = datetime(year, month, day, hour, minute, second,
-                             milliseconds, tzinfo=pytz.timezone('utc'))
+                             milliseconds, tzinfo=tz.tzutc())
 
         tz_sign = time_parts['tz_sign']
         tz_hour = time_parts['tz_hour']

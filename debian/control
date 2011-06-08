@@ -14,7 +14,7 @@ Architecture: all
 Replaces: hwtest (<< 0.1-0ubuntu12)
 Provides: hwtest
 Depends: ${misc:Depends}, ${python:Depends}, debconf, udev
-Recommends: dpkg (>= 1.13), lsb-release, pm-utils, python-apport, python-apt, python-gst0.10
+Recommends: dpkg (>= 1.13), lsb-release, pm-utils, python-apport, python-apt, python-dateutil, python-gst0.10
 Suggests: checkbox-cli | checkbox-gtk
 Conflicts: hwtest (<< 0.1-0ubuntu12)
 XB-Python-Version: ${python:Versions}
