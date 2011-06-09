@@ -22,7 +22,7 @@ import posixpath
 from gettext import gettext as _
 from string import Template
 
-from gi.repository import Gtk, Gdk
+from gi.repository import Gtk, Gdk, Pango, PangoCairo
 import cairo
 
 from checkbox.job import UNINITIATED
@@ -85,12 +85,18 @@ class GTKInterface(UserInterface):
         self._dialog = self._get_widget("dialog_main")
         self._dialog.set_title(title)
 
-        #Render pixmap and translatable description text
-        self.image_head_png = posixpath.join(data_path,
+        #Setup and handler to render pixmap and translatable description text.
+        self.IMAGE_HEAD_BACKGROUND = posixpath.join(data_path,
             "checkbox-gtk-head.png")
+        self.FONT = "Ubuntu"
+        self.TEXT =_("hardware database")
 
         image_head=self._get_widget("image_head")
-        image_head.connect("expose-event",self.draw_image_head)
+        try:
+            image_head.connect("draw",self.draw_image_head)
+        except TypeError:
+            #Looks like GTK+ 2.x
+            image_head.connect("expose-event",self.draw_image_head)
 
         # Set wait transient for dialog
         self._wait = self._get_widget("window_wait")
@@ -531,16 +537,26 @@ class GTKInterface(UserInterface):
         message_dialog.hide()
 
     def draw_image_head(self, widget, data):
-        text=_('hardware database are belong to us FAIL FTW KTHXBYE')
-        img = cairo.ImageSurface.create_from_png(self.image_head_png)
-        ctk = Gdk.cairo_create(widget.get_window())
-        ctk.set_source_surface(img,0,0)
-        ctk.paint()
-        ctk.select_font_face('Ubuntu', 
-                cairo.FONT_SLANT_NORMAL, 
-                cairo.FONT_WEIGHT_NORMAL)
-        ctk.set_font_size(11)
-        ctk.move_to(100,54)
-        ctk.set_source_rgb(0,0,0)
-        ctk.show_text(text)
-        ctk.stroke()
+        #Render the background we read from an image
+        background_image = cairo.ImageSurface.create_from_png(
+                self.IMAGE_HEAD_BACKGROUND)
+        cairo_drawing_context = Gdk.cairo_create(widget.get_window())
+        cairo_drawing_context.set_source_surface(background_image,0,0)
+        cairo_drawing_context.paint()
+        #Text rendering with Pango is more involved but potentially
+        #better for l10n and i18n purposes
+        font_description = Pango.FontDescription()
+        font_description.set_family(self.FONT)
+        font_description.set_weight(Pango.Weight.NORMAL)
+        font_description.set_absolute_size(12 * Pango.SCALE)
+
+        pango_drawing_context = widget.get_pango_context()       
+        pango_text_layout = Pango.Layout(context=pango_drawing_context)
+        pango_text_layout.set_font_description(font_description)
+        pango_text_layout.set_text(self.TEXT, -1) 
+
+        #Color to render text
+        cairo_drawing_context.set_source_rgb(0,0,0)
+        #Position to render text
+        cairo_drawing_context.move_to(100,45)
+        PangoCairo.show_layout(cairo_drawing_context,pango_text_layout)
