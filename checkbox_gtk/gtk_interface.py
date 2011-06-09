@@ -23,6 +23,7 @@ from gettext import gettext as _
 from string import Template
 
 from gi.repository import Gtk, Gdk
+import cairo
 
 from checkbox.job import UNINITIATED
 from checkbox.user_interface import (UserInterface,
@@ -31,7 +32,6 @@ from checkbox.user_interface import (UserInterface,
 
 # Import to register HyperTextView type with gtk
 from checkbox_gtk.hyper_text_view import HyperTextView
-
 
 ANSWER_TO_BUTTON = {
     YES_ANSWER: "radio_button_yes",
@@ -84,6 +84,13 @@ class GTKInterface(UserInterface):
         # Set dialog title
         self._dialog = self._get_widget("dialog_main")
         self._dialog.set_title(title)
+
+        #Render pixmap and translatable description text
+        self.image_head_png = posixpath.join(data_path,
+            "checkbox-gtk-head.png")
+
+        image_head=self._get_widget("image_head")
+        image_head.connect("expose-event",self.draw_image_head)
 
         # Set wait transient for dialog
         self._wait = self._get_widget("window_wait")
@@ -501,7 +508,7 @@ class GTKInterface(UserInterface):
         message_dialog.set_title(_("Info"))
 
         for index, option in enumerate(options):
-            button = getattr(gtk, "STOCK_%s" % option.upper())
+            button = getattr(Gtk, "STOCK_%s" % option.upper())
             message_dialog.add_buttons(button, index)
 
         self._run_dialog(message_dialog)
@@ -522,3 +529,18 @@ class GTKInterface(UserInterface):
         message_dialog.add_buttons(Gtk.STOCK_CLOSE, NEXT)
         self._run_dialog(message_dialog)
         message_dialog.hide()
+
+    def draw_image_head(self, widget, data):
+        text=_('hardware database are belong to us FAIL FTW KTHXBYE')
+        img = cairo.ImageSurface.create_from_png(self.image_head_png)
+        ctk = Gdk.cairo_create(widget.get_window())
+        ctk.set_source_surface(img,0,0)
+        ctk.paint()
+        ctk.select_font_face('Ubuntu', 
+                cairo.FONT_SLANT_NORMAL, 
+                cairo.FONT_WEIGHT_NORMAL)
+        ctk.set_font_size(11)
+        ctk.move_to(100,54)
+        ctk.set_source_rgb(0,0,0)
+        ctk.show_text(text)
+        ctk.stroke()
