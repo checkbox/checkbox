@@ -8,6 +8,8 @@ checkbox (0.12.1) oneiric; urgency=low
     when child widgets require so (LP: #776734)
   * Fix open/read blocking behavior and backend/frontend communications to
     avoid hangs and lingering backends. (LP: #588539)
+  * Render header text dynamically over the image background, and updated pot
+    file with the new string. (LP: #621880)
 
   [Robert Roth]
   * Improve command line key prompts (LP: #786924)
