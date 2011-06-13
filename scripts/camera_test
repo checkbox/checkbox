@@ -1,0 +1,143 @@
+#!/usr/bin/python
+
+import sys, time, tempfile, re
+from subprocess import check_call as call
+from subprocess import CalledProcessError, Popen, PIPE, STDOUT
+
+from optparse import OptionParser
+
+import gobject
+
+class CameraTest:
+    """
+    A simple class that displays a test image via GStreamer.
+    """
+    def __init__(self):
+        self._mainloop = gobject.MainLoop()
+	self._width = 640
+	self._height = 480
+
+
+    def detect(self):
+        """
+        Display information regarding webcam hardware
+        """
+        process = Popen(["xawtv", "-hwscan"], stdout=PIPE, stderr=STDOUT)
+        (output, _) = process.communicate()
+
+        output = "\n".join([line for line in output.splitlines()[2:]
+                            if line])
+        print output
+
+        if re.search('^/dev/video\d+:\s+OK', output, re.M):
+            return 0
+        else:
+            return 1
+
+
+    def led(self):
+        """
+        Activate camera (switch on led), but don't display any output
+        """
+	pipespec=("autovideosrc "
+                  "! video/x-raw-yuv "
+                  "! ffmpegcolorspace "
+                  "! testsink")
+	self._pipeline = gst.parse_launch(pipespec)
+        self._pipeline.set_state(gst.STATE_PLAYING)
+        time.sleep(3)
+        self._pipeline.set_state(gst.STATE_READY)
+
+
+    def display(self):
+        """
+        Displays the preview window
+        """
+	pipespec=("autovideosrc "
+                  "! video/x-raw-yuv,width=%(width)d,height=%(height)d "
+                  "! ffmpegcolorspace "
+                  "! autovideosink"
+                  % {'width': self._width,
+                     'height': self._height})
+	self._pipeline = gst.parse_launch(pipespec)
+        self._pipeline.set_state(gst.STATE_PLAYING)
+        time.sleep(3)
+        self._pipeline.set_state(gst.STATE_READY)
+
+
+    def still(self):
+        """
+        Captures an image to a file
+        """
+        with tempfile.NamedTemporaryFile(prefix='camera_test_',
+                                         suffix='.jpg',
+                                         delete=True) as file:
+            try:
+                call(["v4lctl", "snap", "jpeg",
+                      "%dx%d" % (self._width, self._height), file.name])
+                call(["eog", file.name])
+            except CalledProcessError:
+                pipespec=("autovideosrc "
+                          "! video/x-raw-yuv,width=%(width)d,height=%(height)d "
+                          "! ffmpegcolorspace "
+                          "! jpegenc "
+                          "! filesink location=%(filename)s"
+                          % {'width': self._width,
+                             'height': self._height,
+                             'filename': file.name})
+                self._pipeline = gst.parse_launch(pipespec)
+                self._pipeline.set_state(gst.STATE_PLAYING)
+                time.sleep(3)
+                self._pipeline.set_state(gst.STATE_READY)
+                call(["eog", file.name])
+
+
+    def video(self, duration=5):
+        """
+        Captures a short movie to a file
+        """
+        with tempfile.NamedTemporaryFile(prefix='camera_test_',
+                                         suffix='.avi',
+                                         delete=True) as file:
+            pipespec=("autoaudiosrc "
+                      "! audio/x-raw-int,rate=44100,channels=2 "
+                      "! multiqueue ! mux. "
+                      "autovideosrc "
+                      "! video/x-raw-yuv,width=%(width)d,height=%(height)d "
+                      "! multiqueue ! mux. "
+                      "avimux name=mux "
+                      "! filesink location=%(filename)s"
+                      % {'width': self._width,
+                         'height': self._height,
+                         'filename': file.name})
+            self._pipeline = gst.parse_launch(pipespec)
+            self._pipeline.set_state(gst.STATE_PLAYING)
+            time.sleep(duration)
+            self._pipeline.set_state(gst.STATE_READY)
+            call(["totem", file.name])
+
+
+def parse_arguments(argv):
+    """
+    Parse command line arguments
+    """
+    tests = ['detect', 'display', 'still', 'video', 'led']
+    parser = OptionParser(description = "Run a camera-related test")
+    parser.add_option("-t", "--test", choices=tests,
+                      default=tests[0],
+                      help=("Test to execute (available choices: %s or %s)"
+                            % (", ".join(tests[:-1]), tests[-1])))
+    return parser.parse_args(argv)[0]
+
+
+if __name__ == "__main__":
+    options = parse_arguments(sys.argv[1:])
+
+    # Import gst only for the test cases that will need it
+    if options.test in ['display', 'still', 'video', 'led']:
+        import pygst
+        pygst.require("0.10")
+        import gst
+
+    camera = CameraTest()
+    sys.exit(getattr(camera, options.test)())

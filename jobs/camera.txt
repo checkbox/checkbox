@@ -1,0 +1,48 @@
+plugin: shell
+name: camera/detect
+requires:
+ package.name == 'xawtv'
+ device.category == 'CAPTURE'
+command: camera_test -t detect
+description: Automated test case that attempts to detect a camera
+
+plugin: manual
+name: camera/display
+depends: camera/detect
+requires: 
+ package.name == 'python-gst0.10'
+ device.category == 'CAPTURE'
+command: camera_test -t display
+description:
+ Select Test to display a video capture from the camera
+ .
+ Did you see the video capture?
+
+plugin: manual
+name: camera/still
+depends: camera/detect
+requires:
+ package.name == 'python-gst0.10'
+ package.name == 'eog'
+ package.name == 'xawtv'
+ device.category == 'CAPTURE'
+command: camera_test -t still
+description:
+ Select Test to display a still image from the camera
+ .
+ Did you see the image?
+
+plugin: manual
+name: camera/video
+depends: camera/detect
+requires:
+ package.name == 'python-gst0.10'
+ package.name == 'totem'
+ device.category == 'CAPTURE'
+command: camera_test -t video
+description:
+ Select Test to capture video to a file and open it in totem.
+ Please make sure that both audio and video is captured.
+ .
+ Did you see/hear the capture?
+
