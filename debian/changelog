@@ -1,8 +1,17 @@
 checkbox (0.12.2) oneiric; urgency=low
 
+  [ Marc Tardif ]
   * Incremented version.
 
- -- Marc Tardif <marc@ubuntu.com>  Mon, 13 Jun 2011 10:21:23 -0400
+  [ Daniel Manrique ]
+  * GTK GUI: Change assignment of TreeStore model to TreeView to account for
+    pygi-related API changes. Also seems to fix lingering select/deselect all
+    buttons. (LP: #796666) (LP: #796622)
+  * GTK GUI: Fix call to Gtk buffer get_text to add now-mandatory fourth
+    parameter, keeps the GUI from misbehaving in connection to fixed bug. 
+    (LP: #796827)
+
+ -- Daniel Manrique <daniel.manrique@canonical.com>  Mon, 13 Jun 2011 17:28:59 -0400
 
 checkbox (0.12.1) oneiric; urgency=low
 
