@@ -367,7 +367,8 @@ class GTKInterface(UserInterface):
 
         # Set options
         treestore = Gtk.TreeStore(str, bool)
-        treeview = Gtk.TreeView(treestore)
+        treeview = Gtk.TreeView()
+        treeview.set_model(treestore)
         treeview.set_headers_visible(False)
         treeview.show()
 
