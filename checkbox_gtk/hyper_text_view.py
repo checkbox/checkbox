@@ -75,7 +75,7 @@ class HyperTextView(Gtk.TextView):
 
     def _motion(self, view, ev):
         window = ev.window
-        x, y, _ = window.get_pointer()
+        _, x, y, _ = window.get_pointer()
         x, y = view.window_to_buffer_coords(Gtk.TextWindowType.TEXT, x, y)
         tags = view.get_iter_at_location(x, y).get_tags()
         for tag in tags:
