@@ -20,6 +20,8 @@ import os, sys, re
 import gettext
 import logging
 
+from collections import defaultdict
+
 from checkbox.arguments import coerce_arguments
 from checkbox.properties import Float, Int, List, Map, Path, String, Unicode
 from checkbox.plugin import Plugin
@@ -73,6 +75,7 @@ class JobsInfo(Plugin):
 
         self.whitelist_patterns = self.get_patterns(self.whitelist, self.whitelist_file)
         self.blacklist_patterns = self.get_patterns(self.blacklist, self.blacklist_file)
+        self.selected_jobs = defaultdict(list)
 
         self._manager.reactor.call_on("prompt-begin", self.prompt_begin)
         self._manager.reactor.call_on("gather", self.gather)
@@ -151,6 +154,22 @@ class JobsInfo(Plugin):
         """
         Verify that all patterns were used
         """
+        orphan_test_cases = []
+        for name, jobs in self.selected_jobs.iteritems():
+            is_test = any(job.get('type') == 'test' for job in jobs)
+            has_suite = any(job.get('suite') for job in jobs)
+            if is_test and not has_suite:
+                orphan_test_cases.append(name)
+
+        if orphan_test_cases:
+            error = ('Test cases not included in any test suite:\n'
+                     '{0}\n\n'
+                     'This might cause problems when uploading test cases results.\n'
+                     'Please make sure that the patterns you used are up-to-date\n'
+                     .format('\n'.join(['- {0}'.format(tc)
+                                        for tc in orphan_test_cases])))
+            self._manager.reactor.fire('prompt-error', self.interface, error)
+
         if self.unused_patterns:
             error = ('Unused patterns:\n'
                      '{0}\n\n'
@@ -171,6 +190,7 @@ class JobsInfo(Plugin):
                 # Keep track of which patterns didn't match any job
                 if match in self.unused_patterns:
                     self.unused_patterns.remove(match)
+                self.selected_jobs[name].append(job)
             else:
                 # Stop if job not in whitelist or in blacklist
                 self._manager.reactor.stop()
