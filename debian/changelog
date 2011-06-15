@@ -10,8 +10,10 @@ checkbox (0.12.2) oneiric; urgency=low
   * GTK GUI: Fix call to Gtk buffer get_text to add now-mandatory fourth
     parameter, keeps the GUI from misbehaving in connection to fixed bug. 
     (LP: #796827)
+  * GTK GUI: Fix handling of mouse events in gtk_hypertext_view.py which
+    prevented displaying the final report.
 
- -- Daniel Manrique <daniel.manrique@canonical.com>  Mon, 13 Jun 2011 17:28:59 -0400
+ -- Daniel Manrique <daniel.manrique@canonical.com>  Wed, 15 Jun 2011 17:37:23 -0400
 
 checkbox (0.12.1) oneiric; urgency=low
 
