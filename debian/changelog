@@ -1,10 +1,20 @@
 checkbox (0.12.2) oneiric; urgency=low
 
+  [Daniel Manrique]
+  * GTK GUI: Change assignment of TreeStore model to TreeView to account for
+    pygi-related API changes. Also seems to fix lingering select/deselect all
+    buttons. (LP: #796666) (LP: #796622)
+  * GTK GUI: Fix call to Gtk buffer get_text to add now-mandatory fourth
+    parameter, keeps the GUI from misbehaving in connection to fixed bug. 
+    (LP: #796827)
+  * GTK GUI: Fix handling of mouse events in gtk_hypertext_view.py which
+    prevented displaying the final report.
+
   [Sylvain Pineau]
   * Fix evaluation of job requirements (LP: #798200)
   * Added "in" operator to job requirements.
 
- -- Marc Tardif <marc@ubuntu.com>  Thu, 16 Jun 2011 09:46:27 -0400
+ -- Marc Tardif <marc@ubuntu.com>  Thu, 16 Jun 2011 09:51:49 -0400
 
 checkbox (0.12.1) oneiric; urgency=low
 

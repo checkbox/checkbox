@@ -21,7 +21,7 @@ from gi.repository import Gtk, GObject, Pango, Gdk
 
 class HyperTextView(Gtk.TextView):
     __gtype_name__ = "HyperTextView"
-    __gsignals__ = {"anchor-clicked": (GObject.SignalFlags.RUN_LAST, None, (str, str, int))}
+    __gsignals__ = {"anchor-clicked": (GObject.SignalFlags.RUN_LAST, GObject.TYPE_NONE, (str, str, int))}
     __gproperties__ = {
         "link":  (GObject.TYPE_PYOBJECT, "link color", "link color of TextView", GObject.PARAM_READWRITE),
         "active":(GObject.TYPE_PYOBJECT, "active color", "active color of TextView", GObject.PARAM_READWRITE),
@@ -82,7 +82,7 @@ class HyperTextView(Gtk.TextView):
             if tag.get_data("is_anchor"):
                 for t in set(self.__tags) - set([tag]):
                     self.__tag_reset(t, window)
-                self.__set_anchor(window, tag, Gdk.Cursor.new(Gdk.HAND2), self.get_property("hover"))
+                self.__set_anchor(window, tag, Gdk.Cursor.new(Gdk.CursorType.HAND2), self.get_property("hover"))
                 break
         else:
             tag_table = self.get_buffer().get_tag_table()
@@ -90,13 +90,13 @@ class HyperTextView(Gtk.TextView):
 
     def _tag_event(self, tag, view, ev, _iter, text, anchor):
         _type = ev.type
-        if _type == Gdk.MOTION_NOTIFY:
+        if _type == Gdk.EventType.MOTION_NOTIFY:
             return
-        elif _type in [Gdk.EventType.BUTTON_PRESS, Gdk.BUTTON_RELEASE]:
+        elif _type in [Gdk.EventType.BUTTON_PRESS, Gdk.EventType.BUTTON_RELEASE]:
             button = ev.button
-            cursor = Gdk.Cursor.new(Gdk.HAND2)
-            if _type == Gdk.BUTTON_RELEASE:
-                self.emit("anchor-clicked", text, anchor, button)
+            cursor = Gdk.Cursor.new(Gdk.CursorType.HAND2)
+            if _type == Gdk.EventType.BUTTON_RELEASE:
+                self.emit("anchor-clicked", text, anchor, button.button)
                 self.__set_anchor(ev.window, tag, cursor, self.get_property("hover"))
             elif button in [1, 2]:
                 self.__set_anchor(ev.window, tag, cursor, self.get_property("active"))

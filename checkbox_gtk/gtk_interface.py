@@ -128,7 +128,7 @@ class GTKInterface(UserInterface):
     def _get_text_view(self, name):
         widget = self._get_widget(name)
         buffer = widget.get_buffer()
-        text = buffer.get_text(buffer.get_start_iter(), buffer.get_end_iter())
+        text = buffer.get_text(buffer.get_start_iter(), buffer.get_end_iter(), True)
         return text
 
     def _set_label(self, name, label=""):
@@ -367,7 +367,8 @@ class GTKInterface(UserInterface):
 
         # Set options
         treestore = Gtk.TreeStore(str, bool)
-        treeview = Gtk.TreeView(treestore)
+        treeview = Gtk.TreeView()
+        treeview.set_model(treestore)
         treeview.set_headers_visible(False)
         treeview.show()
 
