@@ -81,9 +81,10 @@ class GTKInterface(UserInterface):
         color = Gdk.color_parse("white")[1]
         eventbox_head.modify_bg(Gtk.StateType.NORMAL, color)
 
-        # Set dialog title
+        # Set and apply initial/default dialog title
+        self._app_title = title
         self._dialog = self._get_widget("dialog_main")
-        self._dialog.set_title(title)
+        self._dialog.set_title(self._app_title)
 
         #Setup and handler to render pixmap and translatable description text.
         self.IMAGE_HEAD_BACKGROUND = posixpath.join(data_path,
@@ -203,6 +204,12 @@ class GTKInterface(UserInterface):
 
         return state
 
+    def _set_main_title(self, test_name=None):
+        title = self._app_title
+        if test_name:
+            title += " - %s" % test_name
+        self._get_widget("dialog_main").set_title(title)
+
     def _run_dialog(self, dialog=None):
         def on_dialog_response(dialog, response, self):
             # Keep dialog alive when the button that has been clicked
@@ -240,6 +247,8 @@ class GTKInterface(UserInterface):
 
     @GTKHack
     def show_text(self, text, previous=None, next=None):
+        #Reset window title
+        self._set_main_title()
         # Set buttons
         previous_state = self._set_button("button_previous", previous)
         next_state = self._set_button("button_next", next)
@@ -256,6 +265,8 @@ class GTKInterface(UserInterface):
 
     @GTKHack
     def show_entry(self, text, value, previous=None, next=None):
+        #Reset window title
+        self._set_main_title()
         # Set buttons
         previous_state = self._set_button("button_previous", previous)
         next_state = self._set_button("button_next", next)
@@ -358,6 +369,9 @@ class GTKInterface(UserInterface):
 
     @GTKHack
     def show_tree(self, text, options={}, default={}):
+        #Reset window title
+        self._set_main_title()
+
         (COLUMN_TEXT, COLUMN_ACTIVE) = range(2)
 
         # Set buttons
@@ -475,8 +489,12 @@ class GTKInterface(UserInterface):
 
     @GTKHack
     def show_test(self, test, runner):
+        #Set window title to reflect current test
+        self._set_main_title(test["name"])
+
         self._set_sensitive("button_test", False)
         self._notebook.set_current_page(2)
+
 
         # Set test description
         if re.search(r"\$output", test["description"]):
@@ -551,10 +569,10 @@ class GTKInterface(UserInterface):
         font_description.set_weight(Pango.Weight.NORMAL)
         font_description.set_absolute_size(12 * Pango.SCALE)
 
-        pango_drawing_context = widget.get_pango_context()       
+        pango_drawing_context = widget.get_pango_context()
         pango_text_layout = Pango.Layout(context=pango_drawing_context)
         pango_text_layout.set_font_description(font_description)
-        pango_text_layout.set_text(self.TEXT, -1) 
+        pango_text_layout.set_text(self.TEXT, -1)
 
         #Color to render text
         cairo_drawing_context.set_source_rgb(0,0,0)

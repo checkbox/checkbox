@@ -9,12 +9,14 @@ checkbox (0.12.2) oneiric; urgency=low
     (LP: #796827)
   * GTK GUI: Fix handling of mouse events in gtk_hypertext_view.py which
     prevented displaying the final report.
+  * Put test name as part of the window title, as an aid to
+    reporting/debugging (LP: #744190) 
 
   [Sylvain Pineau]
   * Fix evaluation of job requirements (LP: #798200)
   * Added "in" operator to job requirements.
 
- -- Marc Tardif <marc@ubuntu.com>  Thu, 16 Jun 2011 09:51:49 -0400
+ -- Marc Tardif <marc@ubuntu.com>  Thu, 16 Jun 2011 09:55:52 -0400
 
 checkbox (0.12.1) oneiric; urgency=low
 
