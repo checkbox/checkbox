@@ -80,8 +80,11 @@ class Route(object):
 
         return t1
 
-def ping(host, count, deadline, verbose=False):
+def ping(host, interface, count, deadline, verbose=False):
     command = "ping -R -c %s -w %s %s" % (count, deadline, host)
+    if interface:
+        command = "ping -I%s -R -c %s -w %s %s" % (interface, count, deadline, host)
+
     reg = re.compile(r"(\d) received")
     packets_received = 0
 
@@ -117,6 +120,8 @@ def main(args):
         default=False,
         action="store_true",
         help="Be verbose.")
+    parser.add_option("-I", "--interface",
+        help="Interface to ping from.")
     (options, args) = parser.parse_args(args)
 
     if args:
@@ -127,7 +132,7 @@ def main(args):
 
     received_packets = 0
     if host:
-        received_packets = ping(host, options.count, options.deadline,
+        received_packets = ping(host, options.interface, options.count, options.deadline,
                                 options.verbose)
 
     if received_packets == 0:
