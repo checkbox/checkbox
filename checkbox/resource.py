@@ -51,6 +51,9 @@ class ResourceObject(object):
     def __ne__(self, other):
         return self._try(other, lambda a, b: a != b)
 
+    def __contains__(self, other):
+        return self._try(other, lambda a, b: b in a)
+
     def _try(self, other, function, until=True, default=False):
         found = False
         for item in self._iterator:
