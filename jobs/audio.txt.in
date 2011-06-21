@@ -60,3 +60,14 @@ _description:
  Connect a microphone to your microphone port.  Select Test, then speak into the microphone.  After a few seconds, your speech will be played back to you.
  .
  Did you hear your speech played back?
+
+ plugin: shell
+ name: audio_detect_silence
+ requires:
+  package.name == 'sox'
+  device.category == 'AUDIO'
+ command: audio_detect_silence
+ description:
+  Play back a sound on the default output and listen for it on the \
+  default input.  This makes the most sense when the output and input \
+  are directly connected, as with a patch cable.
