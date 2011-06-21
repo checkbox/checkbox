@@ -4,7 +4,7 @@ requires:
  package.name == 'xawtv'
  device.category == 'CAPTURE'
 command: camera_test -t detect
-description: Automated test case that attempts to detect a camera
+_description: Automated test case that attempts to detect a camera
 
 plugin: manual
 name: camera/display
@@ -13,7 +13,7 @@ requires:
  package.name == 'python-gst0.10'
  device.category == 'CAPTURE'
 command: camera_test -t display
-description:
+_description:
  Select Test to display a video capture from the camera
  .
  Did you see the video capture?
@@ -27,7 +27,7 @@ requires:
  package.name == 'xawtv'
  device.category == 'CAPTURE'
 command: camera_test -t still
-description:
+_description:
  Select Test to display a still image from the camera
  .
  Did you see the image?
@@ -40,7 +40,7 @@ requires:
  package.name == 'totem'
  device.category == 'CAPTURE'
 command: camera_test -t video
-description:
+_description:
  Select Test to capture video to a file and open it in totem.
  Please make sure that both audio and video is captured.
  .
