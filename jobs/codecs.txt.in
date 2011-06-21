@@ -1,0 +1,25 @@
+plugin: manual
+name: codecs-ogg-vorbis
+requires:
+ package.name == 'gstreamer0.10-plugins-base'
+ package.name == 'totem' and package.name == 'ubuntu-sounds'
+command: totem /usr/share/sounds/ubuntu/stereo/system-ready.ogg
+_description:
+ Select Test to play an Ogg Vorbis file (.ogg)
+ .
+ (Please close Movie Player to proceed.)
+ .
+ Did the sample play correctly?
+
+plugin: manual
+name: codecs-wav
+requires:
+ package.name == 'gstreamer0.10-plugins-good'
+ package.name == 'totem' and package.name == 'alsa-utils'
+command: totem /usr/share/sounds/alsa/Noise.wav
+_description:
+ Select Test to play a Wave Audio format file (.wav)
+ .
+ (Please close Movie Player to proceed.)
+ .
+ Did the sample play correctly?
