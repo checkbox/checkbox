@@ -8,16 +8,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-09 16:18-0400\n"
+"POT-Creation-Date: 2011-06-21 09:43-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../gtk/checkbox-gtk.ui.h:1 ../checkbox_cli/cli_interface.py:341
+#: ../gtk/checkbox-gtk.ui.h:1 ../checkbox_cli/cli_interface.py:343
 #: ../checkbox_urwid/urwid_interface.py:261
 msgid "Further information:"
 msgstr ""
@@ -52,8 +51,7 @@ msgstr ""
 msgid "_Skip this test"
 msgstr ""
 
-#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:488
-#: checkbox_gtk/gtk_interface.py:503
+#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:522
 msgid "_Test"
 msgstr ""
 
@@ -71,7 +69,7 @@ msgid "Detecting your sound device(s):"
 msgstr ""
 
 #. description
-#: ../jobs/audio.txt.in:7 ../jobs/disk.txt.in:16 ../jobs/network.txt.in:16
+#: ../jobs/audio.txt.in:7 ../jobs/disk.txt.in:4 ../jobs/network.txt.in:16
 #: ../jobs/sleep.txt.in:106 ../jobs/video.txt.in:50
 msgid "$output"
 msgstr ""
@@ -136,16 +134,6 @@ msgstr ""
 #. description
 #: ../jobs/disk.txt.in:4
 msgid "The following hard drives were detected:"
-msgstr ""
-
-#. description
-#: ../jobs/disk.txt.in:16
-msgid "Disk benchmark:"
-msgstr ""
-
-#. description
-#: ../jobs/disk.txt.in:16
-msgid "Is this ok?"
 msgstr ""
 
 #. description
@@ -445,21 +433,6 @@ msgstr ""
 #. description
 #: ../jobs/monitor.txt.in:4
 msgid "Did the monitor go blank?"
-msgstr ""
-
-#. description
-#: ../jobs/monitor.txt.in:15
-msgid ""
-"Dead pixel check procedure:\n"
-" 1.- Select Test to display a single color in full screen mode.\n"
-" 2.- Check that all pixels are the same color.\n"
-" 3.- Press any key and repeat the check for another color (red, green, blue, "
-"white and black)."
-msgstr ""
-
-#. description
-#: ../jobs/monitor.txt.in:15
-msgid "Did all the pixels change their color properly?"
 msgstr ""
 
 #. description
@@ -1231,15 +1204,15 @@ msgstr ""
 msgid "Please choose (%s): "
 msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:313
+#: ../checkbox_cli/cli_interface.py:315
 msgid "test"
 msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:337
+#: ../checkbox_cli/cli_interface.py:339
 msgid "test again"
 msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:343
+#: ../checkbox_cli/cli_interface.py:345
 msgid "Please type here and press Ctrl-D when finished:\n"
 msgstr ""
 
@@ -1280,15 +1253,19 @@ msgstr ""
 msgid "Test Again"
 msgstr ""
 
-#: ../checkbox_gtk/gtk_interface.py:457 checkbox_gtk/gtk_interface.py:472
+#: ../checkbox_gtk/gtk_interface.py:93
+msgid "hardware database"
+msgstr ""
+
+#: ../checkbox_gtk/gtk_interface.py:487
 msgid "_Test Again"
 msgstr ""
 
-#: ../checkbox_gtk/gtk_interface.py:499 checkbox_gtk/gtk_interface.py:514
+#: ../checkbox_gtk/gtk_interface.py:533
 msgid "Info"
 msgstr ""
 
-#: ../checkbox_gtk/gtk_interface.py:518 checkbox_gtk/gtk_interface.py:533
+#: ../checkbox_gtk/gtk_interface.py:552
 msgid "Error"
 msgstr ""
 
@@ -1310,7 +1287,8 @@ msgid ""
 msgstr ""
 
 #: ../plugins/apport_prompt.py:219
-msgid "Do you want to report a bug?"
+#, python-format
+msgid "Test %s failed. Do you want to report a bug?"
 msgstr ""
 
 #: ../plugins/apport_prompt.py:234
@@ -1406,7 +1384,7 @@ msgstr ""
 msgid "Building report..."
 msgstr ""
 
-#: ../plugins/shell_test.py:51
+#: ../plugins/shell_test.py:52
 #, python-format
 msgid "Running %s..."
 msgstr ""
@@ -1420,22 +1398,18 @@ msgstr ""
 msgid "Enter text:\n"
 msgstr ""
 
-#: ../scripts/keyboard_test:42
+#: ../scripts/keyboard_test:40
 msgid "Type Text"
 msgstr ""
 
-#: ../scripts/internet_test:134
+#: ../scripts/internet_test:139
 msgid "No Internet connection"
 msgstr ""
 
-#: ../scripts/internet_test:137
+#: ../scripts/internet_test:142
 msgid "Connection established lost a packet"
 msgstr ""
 
-#: ../scripts/internet_test:140
+#: ../scripts/internet_test:145
 msgid "Internet connection fully established"
-msgstr ""
-
-#: checkbox_gtk/gtk_interface.py:92
-msgid "hardware database"
 msgstr ""

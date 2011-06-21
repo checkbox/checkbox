@@ -8,18 +8,20 @@ checkbox (0.12.2) oneiric; urgency=low
     pygi-related API changes. Also seems to fix lingering select/deselect all
     buttons. (LP: #796666) (LP: #796622)
   * GTK GUI: Fix call to Gtk buffer get_text to add now-mandatory fourth
-    parameter, keeps the GUI from misbehaving in connection to fixed bug. 
+    parameter, keeps the GUI from misbehaving in connection to fixed bug.
     (LP: #796827)
   * GTK GUI: Fix handling of mouse events in gtk_hypertext_view.py which
     prevented displaying the final report.
   * Put test name as part of the window title, as an aid to
-    reporting/debugging (LP: #744190) 
+    reporting/debugging (LP: #744190)
+  * plugins/apport_prompt.py: Add test name to "Do you want to report a bug?"
+    dialog to make it clearer.
 
   [Sylvain Pineau]
   * Fix evaluation of job requirements (LP: #798200)
   * Added "in" operator to job requirements.
 
- -- Marc Tardif <marc@ubuntu.com>  Thu, 16 Jun 2011 10:24:35 -0400
+ -- Marc Tardif <marc@ubuntu.com>  Tue, 21 Jun 2011 09:41:57 -0400
 
 checkbox (0.12.1) oneiric; urgency=low
 

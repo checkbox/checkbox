@@ -216,7 +216,8 @@ class ApportPrompt(Plugin):
         if not package and not symptom:
             return
 
-        response = interface.show_info(_("Do you want to report a bug?"),
+        response = interface.show_info(
+            _("Test %s failed. Do you want to report a bug?" % test["name"]),
             ["yes", "no"], "no")
         if response == "no":
             return
