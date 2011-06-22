@@ -1,0 +1,92 @@
+#!/usr/bin/python
+
+import sys
+from optparse import OptionParser
+from subprocess import Popen, PIPE
+
+TESTS = ['acpiinfo',
+         'acpitables',
+         'apicedge',
+         'apicinstance',
+         'bios_info',
+         'bios32',
+         'checksum',
+         'crs',
+         'dmesg_common',
+         'dmi_decode',
+         'ebda',
+         'fadt',
+         'fan',
+         'hda_audio',
+         'hpet_check',
+         'maxfreq',
+         'maxreadreq',
+         'mcfg',
+         'microcode',
+         'mtrr',
+         'nx',
+         'os2gap',
+         'osilinux',
+         'smbios',
+         'version',
+         'virt',
+         'wmi',
+         'cstates',
+         'dmar']
+
+def main():
+    usage = 'usage %prog [OPTIONS]'
+    parser = OptionParser(usage)
+    parser.add_option('-c','--cpufreq',
+                      action='store_true',
+                      help='Chose this option to run the CPU Frequency Scaling test only')
+    parser.add_option('-w','--wakealarm',
+                      action='store_true',
+                      help='Run the fwts wakealarm test only')
+    parser.add_option('-a','--all',
+                      action='store_true',
+                      help='Run ALL FWTS automated tests (assumes -w and -c)')
+    parser.add_option('-l','--log',
+                      default='/tmp/fwts_results.log',
+                      help='Specify the location and name of the log file. Default log path is %default')
+    (options, args) = parser.parse_args()
+
+    if options.cpufreq and options.wakealarm:
+        parser.error('cpufreq and wakealarm can not be chosen togehter. Choose -a instead')
+
+    tests = []
+    results = {}
+
+    if options.cpufreq:
+        tests += ['cpufreq']
+    elif options.wakealarm:
+        tests += ['wakealarm']
+    elif options.all:
+        tests += ['wakealarm','cpufreq'] + TESTS
+    else:
+        tests += TESTS
+
+    # run the tests we want
+    for test in tests:
+        command = 'fwts -q --stdout-summary -r %s %s' % (options.log,test)
+        results[test] = Popen(command, stdout=PIPE, shell=True).communicate()[0].strip()
+
+    # parse the summaries
+    passed = 0
+    failed = 0
+    for test in tests:
+        if results[test] == 'FAILED_CRITICAL' or \
+           results[test] == 'FAILED_HIGH':
+            failed += 1
+        elif results[test] == 'PASSED':
+            passed += 1
+        else:
+            continue
+
+    if failed != 0:
+        return 1
+    else:
+        return 0
+
+if __name__ == '__main__':
+    sys.exit(main())
