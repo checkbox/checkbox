@@ -4,20 +4,3 @@ DEB_VERSION=$(shell dpkg-parsechangelog | grep ^Version | cut -f2 -d\ |cut -f1 -
         
 %:
 	dh "$@" --with translations,python2
-
-build/checkbox-cli::
-	cp debian/checkbox.postrm debian/checkbox-cli.postrm
-
-build/checkbox-urwid::
-	cp debian/checkbox.postrm debian/checkbox-urwid.postrm
-
-build/checkbox-gtk::
-	cp debian/checkbox.postrm debian/checkbox-gtk.postrm
-
-build/hwtest-cli::
-	cp debian/hwtest.postrm debian/hwtest-cli.postrm
-
-build/hwtest-gtk::
-	cp debian/hwtest.postrm debian/hwtest-gtk.postrm
-
-
