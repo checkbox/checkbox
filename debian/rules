@@ -1,9 +1,7 @@
 #!/usr/bin/make -f
 
 DEB_VERSION=$(shell dpkg-parsechangelog | grep ^Version | cut -f2 -d\ |cut -f1 -d-)
-
-DEB_PYTHON_INSTALL_ARGS_ALL := --no-compile --install-layout=deb
-
+        
 %:
 	dh "$@" --with translations,python2
 
@@ -22,9 +20,4 @@ build/hwtest-cli::
 build/hwtest-gtk::
 	cp debian/hwtest.postrm debian/hwtest-gtk.postrm
 
-binary-install/checkbox-gtk::
-	dh_icons -pcheckbox-gtk
 
-clean::
-	-rm -f debian/checkbox-cli.postrm debian/checkbox-urwid.postrm debian/checkbox-gtk.postrm
-	-rm -f debian/hwtest-cli.postrm debian/hwtest-gtk.postrm
