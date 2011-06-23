@@ -5,7 +5,7 @@ XSBC-Original-Maintainer: Marc Tardif <marc@ubuntu.com>
 Maintainer: Ubuntu Core Developers <ubuntu-devel-discuss@lists.ubuntu.com>
 Standards-Version: 3.7.3
 X-Python-Version: >= 2.6
-Build-Depends: cdbs (>= 0.4.90~), debhelper (>= 5.0.51~), python (>= 2.6.6-3~), po-debconf, python-distutils-extra
+Build-Depends: debhelper (>= 7.0.50~), dh-translations, python (>= 2.6.6-3~), po-debconf, python-distutils-extra
 Vcs-Bzr: https://code.launchpad.net/~hardware-certification/checkbox/trunk
 
 Package: checkbox

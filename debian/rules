@@ -1,13 +1,11 @@
 #!/usr/bin/make -f
 
-DEB_PYTHON2_MODULE_PACKAGES := checkbox checkbox-cli checkbox-gtk checkbox-urwid
+DEB_VERSION=$(shell dpkg-parsechangelog | grep ^Version | cut -f2 -d\ |cut -f1 -d-)
 
-include /usr/share/cdbs/1/rules/debhelper.mk
-include /usr/share/cdbs/1/class/python-distutils.mk
-include /usr/share/cdbs/1/rules/simple-patchsys.mk
-
-DEB_DH_INSTALL_SOURCEDIR := debian/tmp
 DEB_PYTHON_INSTALL_ARGS_ALL := --no-compile --install-layout=deb
+
+%:
+	dh "$@" --with translations,python2
 
 build/checkbox-cli::
 	cp debian/checkbox.postrm debian/checkbox-cli.postrm
@@ -25,10 +23,8 @@ build/hwtest-gtk::
 	cp debian/hwtest.postrm debian/hwtest-gtk.postrm
 
 binary-install/checkbox-gtk::
-	dh_icons -p$(cdbs_curpkg)
+	dh_icons -pcheckbox-gtk
 
 clean::
-	-find . -name \*.mo -exec rm {} \;
 	-rm -f debian/checkbox-cli.postrm debian/checkbox-urwid.postrm debian/checkbox-gtk.postrm
 	-rm -f debian/hwtest-cli.postrm debian/hwtest-gtk.postrm
-	debconf-updatepo
