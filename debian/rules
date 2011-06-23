@@ -1,6 +1,6 @@
 #!/usr/bin/make -f
 
-DEB_PYTHON_SYSTEM := pycentral
+DEB_PYTHON2_MODULE_PACKAGES := checkbox checkbox-cli checkbox-gtk checkbox-urwid
 
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/python-distutils.mk
