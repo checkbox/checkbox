@@ -3,6 +3,21 @@ plugin: local
 _description: Audio tests
 command: cat $CHECKBOX_SHARE/jobs/audio.txt*
 
+name: camera
+plugin: local
+_description: Camera tests
+command: cat $CHECKBOX_SHARE/jobs/camera.txt*
+
+name: codecs
+plugin: local
+_description: Media Codec tests
+command: cat $CHECKBOX_SHARE/jobs/codecs.txt*
+
+name: cpu
+plugin: local
+_description: CPU tests
+command: cat $CHECKBOX_SHARE/jobs/cpu.txt*
+
 name: disk
 plugin: local
 _description: Disk tests
@@ -57,6 +72,11 @@ name: sleep
 plugin: local
 _description: Sleep Tests
 command: cat $CHECKBOX_SHARE/jobs/sleep.txt*
+
+name: stress
+plugin: local
+_description: Stress tests
+command: cat $CHECKBOX_SHARE/jobs/stress/stress.txt
 
 name: codecs_attachment
 plugin: attachment
