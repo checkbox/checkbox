@@ -23,14 +23,14 @@ _description:
 plugin: local
 name: network_info
 requires: device.category == 'NETWORK'
-_description: Network Information
+description: Network Information
 command:
  cat <<'EOF' | run_templates -s 'udev_resource | filter_templates -w "category=NETWORK" | awk "/path: / { print \$2 }" | xargs -n 1 sh -c "for i in \`ls /sys\$0/net 2>/dev/null\`; do echo \$0 \$i; done"'
  plugin: manual
  name: network_info_$2
  requires: device.path == "$1" and package.name == 'linux'
  command: network_info $2
- _description:
+ description:
   Please verify the following information for NIC $2?
   .
   \$output

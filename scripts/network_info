@@ -1,0 +1,49 @@
+#!/usr/bin/python
+
+import os
+import sys
+import socket
+import fcntl
+import struct
+
+SYS_PATH = '/sys/class/net'
+
+def _read_file(file):
+    source = open(file, 'r')
+    content = source.read()
+    source.close()
+    return content
+
+def get_connected(interface):
+    STATUS = ('No', 'Yes')
+    carrier_file = os.path.join(SYS_PATH, interface, 'carrier')
+    carrier = int(_read_file(carrier_file))
+    return STATUS[carrier]
+
+def get_ip_address(interface):
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    return socket.inet_ntoa(fcntl.ioctl(
+        s.fileno(),
+        0x8915,  # SIOCGIFADDR
+        struct.pack('256s', interface[:15])
+    )[20:24])
+
+def get_mac_address(interface):
+    address_file = os.path.join(SYS_PATH, interface, 'address')
+    return _read_file(address_file)
+
+def main(args):
+    for interface in args:
+        connected = get_connected(interface)
+        print "Interface: %s" % interface
+        print "Connected: %s" % connected
+        try:
+            print "IP: %s" % get_ip_address(interface)
+        except IOError:
+            print "IP: n/a"
+        print "MAC: %s\n" % get_mac_address(interface)
+
+    return 0
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv[1:]))

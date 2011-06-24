@@ -1,0 +1,98 @@
+#!/usr/bin/python
+
+import sys
+
+from xml.dom import minidom
+
+from optparse import OptionParser
+
+
+def print_line(key, value):
+    print "%s: %s" % (key, value)
+
+def print_element(element):
+    for key, value in element.items():
+        print_line(key, value)
+
+    print
+
+def parse_file(file):
+    elements = []
+    default_status = "pass"
+    tree = minidom.parse(file)
+    for suite in tree.getElementsByTagName("suite"):
+        element = {}
+        element["plugin"] = "local"
+        element["status"] = default_status
+        element["name"] = suite.getAttribute("name")
+        for child in suite.childNodes:
+            if child.nodeName == "description":
+                element["description"] = child.firstChild.data.strip()
+            elif child.nodeName == "result":
+                for subchild in child.childNodes:
+                    if subchild.nodeName == "pass":
+                        data = subchild.firstChild.data
+                        element["status"] = data == "1" and "pass" or "fail"
+                    elif subchild.nodeName == "error":
+                        element["status"] = "fail"
+
+                if element["status"] == "fail":
+                    default_status = "unresolved"
+
+        elements.append(element)
+
+        for case in suite.getElementsByTagName("case"):
+            element = {}
+            element["plugin"] = "shell"
+            element["status"] = default_status
+            element["suite"] = suite.getAttribute("name")
+            element["name"] = case.getAttribute("name")
+            for child in case.childNodes:
+                if child.nodeName == "description":
+                    element["description"] = child.firstChild.data.strip()
+                elif child.nodeName == "result":
+                    for subchild in child.childNodes:
+                        if subchild.nodeName == "time":
+                            data = subchild.firstChild.data
+                            element["duration"] = float(data)
+                        elif subchild.nodeName == "message":
+                            element["data"] = subchild.firstChild.data
+                        elif subchild.nodeName == "pass":
+                            data = subchild.firstChild.data
+                            element["status"] = data == "1" and "pass" or "fail"
+                        elif subchild.nodeName == "error":
+                            element["status"] = "fail"
+
+            elements.append(element)
+
+    return elements
+
+def parse_files(files):
+    elements = []
+    for file in files:
+        elements.extend(parse_file(file))
+
+    return elements
+
+def main(args):
+    usage = "Usage: %prog [FILE...]"
+    parser = OptionParser(usage=usage)
+    (options, args) = parser.parse_args(args)
+
+    if not args:
+        files = [sys.stdin]
+    else:
+        files = args
+
+    elements = parse_files(files)
+    if not elements:
+        return 1
+
+    for element in elements:
+        print_element(element)
+
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv[1:]))

@@ -1,0 +1,16 @@
+plugin: shell
+name: network_bandwidth
+requires:
+ package.name == 'linux'
+ package.name == 'ethtool' and package.name == 'nmap'
+ device.category == 'NETWORK'
+user: root
+command: network_bandwidth_test --log-level=info --scan=3
+description: Test to measure the network bandwidth
+
+plugin: shell
+name: network_ntp_test
+requires: package.name == 'ntpdate'
+user: root
+command: network_ntp_test
+description: Test to see if we can sync local clock to an NTP server

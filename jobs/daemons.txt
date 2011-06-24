@@ -1,0 +1,67 @@
+plugin: shell
+name: atd
+requires: package.name == 'at'
+command: pgrep -f '/usr/sbin/atd' >/dev/null
+description: Test if the atd daemon is running when the package is installed.
+
+plugin: shell
+name: cron
+requires: package.name == 'cron'
+command: pgrep -f '/usr/sbin/cron' >/dev/null
+description: Test if the cron daemon is running when the package is installed.
+
+plugin: shell
+name: cupsd
+requires: package.name == 'cupsys'
+command: pgrep -f '/usr/sbin/cupsd' >/dev/null
+description: Test if the cupsd daemon is running when the package is installed.
+
+plugin: shell
+name: getty
+requires: package.name == 'util-linux'
+command: pgrep -f '/sbin/getty' >/dev/null
+description: Test if the getty daemon is running when the package is installed.
+
+plugin: shell
+name: init
+requires: package.name == 'upstart'
+command: pgrep -f '/sbin/init' >/dev/null
+description: Test if the init daemon is running when the package is installed.
+
+plugin: shell
+name: klogd
+requires: package.name == 'klogd'
+command: pgrep -f '/sbin/klogd' >/dev/null
+description: Test if the klogd daemon is running when the package is installed.
+
+plugin: shell
+name: nmbd
+requires: package.name == 'samba'
+command: pgrep -f '/usr/sbin/nmbd' >/dev/null
+description: Test if the nmbd daemon is running when the package is installed.
+
+plugin: shell
+name: smbd
+requires: package.name == 'samba'
+command: pgrep -f '/usr/sbin/smbd' >/dev/null
+description: Test if the smbd daemon is running when the package is installed.
+
+plugin: shell
+name: syslogd
+requires: package.name == 'syslogd'
+command: pgrep -f '/sbin/syslogd' >/dev/null
+description: Test if the syslogd daemon is running when the package is installed.
+
+plugin: shell
+name: udevd
+requires:
+ package.name == 'udevd'
+ package.name == 'linux'
+command: pgrep -f '/sbin/udevd' >/dev/null
+description: Test if the udevd daemon is running when the package is installed.
+
+plugin: shell
+name: winbindd
+requires: package.name == 'winbind'
+command: pgrep -f '/usr/sbin/winbindd' >/dev/null
+description: Test if the winbindd daemon is running when the package is installed.

@@ -18,11 +18,6 @@ plugin: local
 _description: CPU tests
 command: cat $CHECKBOX_SHARE/jobs/cpu.txt*
 
-name: daemon
-plugin: local
-_description: System Daemon tests
-command: cat $CHECKBOX_SHARE/jobs/daemons.txt*
-
 name: disk
 plugin: local
 _description: Disk tests
@@ -52,11 +47,6 @@ name: monitor
 plugin: local
 _description: Monitor tests
 command: cat $CHECKBOX_SHARE/jobs/monitor.txt*
-
-name: netio
-plugin: local
-_description: Network IO tests
-command: cat $CHECKBOX_SHARE/jobs/netio.txt*
 
 name: network
 plugin: local

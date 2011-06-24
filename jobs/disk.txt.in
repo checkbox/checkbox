@@ -26,3 +26,69 @@ command:
   .
   Is this ok?
  EOF
+
+plugin: local
+name: disk_smart
+requires:
+ package.name == 'smartmontools'
+ package.name == 'linux'
+ device.category == 'DISK'
+description: SMART test
+command:
+ cat <<'EOF' | run_templates -t -s 'udev_resource | filter_templates -w "category=DISK"'
+ plugin: shell
+ name: disk_smart_`ls /sys$path/block`
+ requires: device.path == "$path"
+ description: SMART test for $product
+ user: root
+ command: disk_smart -b /dev/`ls /sys$path/block` -s 130
+ EOF
+
+plugin: local
+name: max_diskspace_used_test
+requires:
+ device.category == 'DISK'
+description: Maximum disk space used during a default installation test
+command:
+ cat <<'EOF' | run_templates -t -s 'udev_resource | filter_templates -w "category=DISK"'
+ plugin: shell
+ name: max_diskspace_used_`ls /sys$path/block`
+ requires: device.path == "$path"
+ description: Max disk space test for $product
+ user: root
+ command: max_diskspace_used `ls /sys$path/block`
+ EOF
+
+plugin: local
+name: disk_read_performance_test
+requires:
+ device.category == 'DISK'
+description: Verify system storage performs at or above baseline performance
+command:
+ cat <<'EOF' | run_templates -t -s 'udev_resource | filter_templates -w "category=DISK"'
+ plugin: shell
+ name: disk_read_performance_test_`ls /sys$path/block`
+ requires:
+  device.path == "$path"
+  package.name == 'linux'
+ description: Disk performance for $product
+ user: root
+ command: disk_read_performance_test `ls /sys$path/block`
+ EOF
+
+plugin: local
+name: storage_devices_test
+requires:
+ device.category == 'DISK'
+description: Verify that storage devices, such as Fibre Channel and RAID can be detected and perform under stress.
+command:
+ cat <<'EOF' | run_templates -t -s 'udev_resource | filter_templates -w "category=DISK"'
+ plugin: shell
+ name: storage_devices_test_`ls /sys$path/block`
+ user: root
+ requires:
+  device.path == "$path"
+  package.name == 'linux'
+ description: I/O stress test for $product
+ command: storage_test `ls /sys$path/block`
+ EOF

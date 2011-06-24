@@ -1,0 +1,28 @@
+plugin: manual
+name: disk_test
+command: udev_resource | filter_templates -w "category=DISK" | awk -F': ' '$1 == "product" { print $2 }'
+_description:
+ The following hard drives were detected:
+ .
+ $output
+ .
+ Is this correct?
+
+plugin: local 
+name: disk_bench
+requires: device.category == 'DISK'
+description: Benchmark for each disk 
+command: 
+ cat <<'EOF' | run_templates -t -s 'udev_resource | filter_templates -w "category=DISK"'
+ plugin: manual
+ name: disk_bench_test_`ls /sys$path/block`
+ requires: device.path == "$path" and package.name == 'linux'
+ user: root
+ command: hdparm -tT /dev/`ls /sys$path/block` | sed 's/:.*= */ = /' | grep -v "^$"
+ description:
+  Disk Benchmark:
+  .
+  \$output
+  .
+  Is this ok?
+ EOF
