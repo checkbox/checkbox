@@ -1,0 +1,10 @@
+plugin: manual
+name: panel_reboot_test
+requires: package.name == 'linux'
+_description:
+ Please restart your machine from the Ubuntu Panel.
+ .
+ Afterwards be sure to recover the previous Checkbox instance and \
+ answer the question below:
+ .
+ Did it restart and bring up the GUI login cleanly?

@@ -1,0 +1,52 @@
+plugin: manual
+name: applications-gcalctool
+requires: package.name == "gcalctool"
+command: gcalctool
+_description:
+ Click the "Test" button to open the calculator.
+ .
+ Did it launch correctly?
+
+plugin: manual
+name: applications-gcalctool-functions
+depends: applications-gcalctool
+requires: package.name == "gcalctool"
+command: gcalctool
+_description:
+ Click the "Test" button to open the calculator and perform:
+ .
+ 1. Simple math functions (+,-,/,*)
+ 2. Nested math functions ((,))
+ 3. Fractional math
+ 4. Decimal math
+ .
+ Did the functions perform as expected?
+
+plugin: manual
+name: applications-gcalctool-memory
+depends: applications-gcalctool
+requires: package.name == "gcalctool"
+command: gcalctool
+_description:
+ Click the "Test" button to open the calculator and perform:
+ .
+ 1. Memory set
+ 2. Memory reset
+ 3. Memory last clear
+ 4. Memory clear
+ .
+ Did the functions perform as expected?
+
+plugin: manual
+name: applications-gcalctool-clipboard
+depends: applications-gcalctool
+requires: package.name == "gcalctool"
+command: gcalctool
+_description:
+ Click the "Test" button to open the calculator and perform:
+ .
+ 1. Cut
+ 2. Copy
+ 3. Paste
+ .
+ Did the functions perform as expected?

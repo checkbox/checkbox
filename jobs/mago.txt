@@ -1,0 +1,8 @@
+plugin: remote
+name: mago
+description: Automated desktop testing
+requires:
+ package.name == 'bzr'
+ package.name == 'python-ldtp'
+ desktop.gnome.interface.accessibility == True
+command: mago_suite

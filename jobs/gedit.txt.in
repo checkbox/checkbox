@@ -1,0 +1,22 @@
+plugin: manual
+name: applications-gedit
+requires: package.name == "gedit"
+command: gedit
+_description:
+ Click the "Test" button to open gedit.
+ .
+ Enter some text and save the file (make a note of the file name you use), then close gedit.
+ .
+ Did this perform as expected?
+
+plugin: manual
+name: applications-gedit-read
+depends: applications-gedit
+requires: package.name == "gedit"
+command: gedit
+_description:
+ Click the "Test" button to open gedit, and re-open the file you created previously.
+ .
+ Edit then save the file, then close gedit.
+ .
+ Did this perform as expected?

@@ -1,0 +1,29 @@
+plugin: manual
+name: lid_close
+requires: device.product == 'Lid Switch' and package.name == 'linux'
+command:
+ for i in `seq 20`; do
+  state=`cat /proc/acpi/button/lid/LID/state | awk '{print $2}'`
+  [ "$state" = "closed" ] && exit 0 || sleep 0.5
+ done
+ exit 1
+_description:
+ Click the Test button, then close and open the lid.
+ .
+ Did the screen turn off while the lid was closed?
+
+plugin: manual
+name: lid_open
+requires: device.product == 'Lid Switch' and package.name == 'linux'
+command:
+ for i in `seq 20`; do
+  state=`cat /proc/acpi/button/lid/LID/state | awk '{print $2}'`
+  [ "$state" = "open" ] && exit 0 || sleep 0.5
+ done
+ exit 1
+_description:
+ Click the Test button, then close the lid and wait 5 seconds.
+ .
+ Open the lid.
+ .
+ Did the screen turn back on when the lid was opened?

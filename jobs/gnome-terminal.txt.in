@@ -1,0 +1,12 @@
+plugin: manual
+name: applications-gnome-terminal
+requires: package.name == "gnome-terminal"
+command: gnome-terminal
+_description:
+ Click the "Test" button to open Terminal.
+ .
+ Type 'ls' and press enter. You should see a list of files and folder in your home directory.
+ .
+ Close the terminal window.
+ .
+ Did this perform as expected?

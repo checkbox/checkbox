@@ -1,0 +1,25 @@
+plugin: manual
+name: media-pause-audio
+requires:
+ package.name == 'totem'
+ package.name == 'gstreamer0.10-plugins-base'
+command: totem $CHECKBOX_SHARE/data/FrustrationBlues-ColinRoss.oga
+description:
+ Select 'Test' to play some audio, and try pausing and resuming playback while the it is playing.
+ .
+ (Please close Movie Player to proceed.)
+ .
+ Did the audio play and pause as expected?
+
+plugin: manual
+name: media-pause-video
+requires:
+ package.name == 'totem'
+ package.name == 'gstreamer0.10-plugins-base'
+command: totem $CHECKBOX_SHARE/data/UbuntuIsHumanity.ogv
+description:
+ Select 'Test' to play a video, and try pausing and resuming playback while the video is playing.
+ .
+ (Please close Movie Player to proceed.)
+ .
+ Did the video play and pause as expected?
