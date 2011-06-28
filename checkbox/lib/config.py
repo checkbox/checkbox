@@ -33,7 +33,8 @@ class IncludeDict(dict):
         self._parser = parser
 
         for (key, value) in os.environ.iteritems():
-            super(IncludeDict, self).__setitem__(key.lower(), value)
+            if key.startswith("CHECKBOX"):
+                super(IncludeDict, self).__setitem__(key.lower(), value)
 
     def __setitem__(self, key, value):
         if key == "includes":
@@ -59,7 +60,7 @@ class IncludeDict(dict):
                     self._parser.read(path)
 
         # Environment has precedence over configuration
-        elif key.upper() not in os.environ:
+        elif not key.startswith("CHECKBOX") or key.upper() not in os.environ:
             super(IncludeDict, self).__setitem__(key, value)
 
 
@@ -96,9 +97,11 @@ class ConfigDefaults(ConfigSection):
         raise AttributeError, name
 
     def get(self, name):
-        return os.environ.get(name.upper()) \
-            or os.environ.get(name.lower()) \
-            or super(ConfigDefaults, self).get(name)
+        name_upper = name.upper()
+        if not name_upper.startswith("CHECKBOX") or name_upper not in os.environ:
+            return super(ConfigDefaults, self).get(name)
+        else:
+            return os.environ[name_upper]
 
 
 class Config(object):
