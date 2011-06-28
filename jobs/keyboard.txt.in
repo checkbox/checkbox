@@ -1,0 +1,72 @@
+plugin: manual
+name: brightness-keys
+requires: device.product == 'Notebook' or device.product == 'Laptop'
+_description:
+ Press the brightness buttons on the keyboard. A status window should \
+ appear and the brightness should change.
+ .
+ Do the buttons work?
+
+plugin: manual
+name: volume-buttons
+_description:
+ Press the volume buttons on the keyboard. A status window should \
+ appear and the volume should change.
+ .
+ Do the buttons work?
+
+plugin: manual
+name: mute-key
+requires: device.product == 'Notebook' or device.product == 'Laptop'
+_description:
+ Press the mute key on the keyboard. A status window should appear \
+ and the volume should mute/unmute when pressed multiple times.
+ .
+ Does the key work?
+
+plugin: manual
+name: sleep-key
+requires: device.product == 'Notebook' or device.product == 'Laptop'
+_description:
+ Press the sleep key on the keyboard. The computer should suspend and, \
+ after pressing the power button, resume successfully.
+ .
+ Does the key work?
+
+plugin: manual
+name: battery-info-key
+requires: device.product == 'Notebook' or device.product == 'Laptop'
+_description:
+ Press the battery information key on the keyboard. A status window \
+ should appear and the amount of battery remaining should be displayed.
+ .
+ Does the key work?
+
+plugin: manual
+name: wireless-key
+requires: device.product == 'Notebook' or device.product == 'Laptop'
+_description:
+ Press the wireless networking key on the keyboard. The bluetooth icon \
+ and the network connnection should go down if connected through the \
+ wifi interface.
+ .
+ Press the same key again and check that bluetooth icon is again \
+ displayed and that the network connection is re-established \
+ automatically.
+ .
+ Does the key work?
+
+plugin: manual
+name: media-control-keys
+requires: device.category == 'KEYBOARD'
+_description:
+ The keyboard may have dedicated keys for controlling media as follows:
+ .
+ * Play/Pause
+ * Stop
+ * Forward
+ * Backward (Rewind)
+ .
+ Play a media file and press each key in turn.
+ .
+ Do the keys work as expected?

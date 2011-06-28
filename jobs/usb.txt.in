@@ -1,0 +1,90 @@
+plugin: manual
+name: usb
+requires: package.name == 'linux'
+command: lsusb | sed 's/.*\(ID .*\)/\1/' | head -n 4
+_description:
+ The following USB controllers were detected:
+ .
+ $output
+ .
+ Is this correct?
+
+plugin: manual
+name: usb-keyboard
+depends: usb
+requires: package.name == 'linux'
+command: keyboard_test
+_description:
+ Plug a USB keyboard into the computer. Then, click on the Test button \
+ to enter text.
+ .
+ Does the keyboard work?
+
+plugin: manual
+name: usb-mouse
+depends: usb
+requires: package.name == 'linux'
+_description:
+ USB mouse verification procedure:
+ 1.- Plug a USB mouse into the computer
+ 2.- Perform some single/double/right click operations
+ .
+ Did all the steps work?
+
+plugin: manual
+name: usb-insert
+depends: usb
+requires: package.name == 'linux'
+command: watch_command -q -r 5 lsusb
+_description:
+ Click 'Test' and insert a USB device within 5 seconds.
+ If the test is successful, you should notice that 'Yes' is selected below.
+ Do not unplug the device if the test is successful.
+ .
+ If no USB device is inserted or the device is not recognized, the test will fail and 'No' will be selected below.
+
+plugin: manual
+name: usb-remove
+depends: usb-insert
+requires: package.name == 'linux'
+command: watch_command -q -r 5 lsusb
+_description:
+ Click 'Test' and remove the USB device you inserted within 5 seconds.
+ If the test is successful, you should notice that 'Yes' is selected below.
+ .
+ If the USB device isn't removed or the removal is not registered, the test will fail and 'No' will be selected below.
+
+plugin: manual
+name: usb-storage
+requires: package.name == 'linux'
+depends: usb
+_description:
+ Plug a USB storage device into the computer. An icon should appear \
+ on the desktop and in the "Places" menu at the top of the screen.
+ .
+ Does the window automatically appear?
+
+plugin: manual
+name: usb-storage-transfer
+requires: package.name == 'linux'
+depends: usb-storage
+_description:
+ USB HDD verification procedure:
+ 1.- Plug a USB HDD into the computer
+ 2.- An icon should appear on the desktop and in the "Places" menu at the top of the screen.
+ 3.- Copy some files from the internal/USB HDD to the USB/internal HDD
+ .
+ Do the copy operations work as expected?
+
+plugin: manual
+name: usb-panels
+requires: package.name == 'linux'
+depends: usb-storage
+_description:
+ Connect a USB storage device to an external USB slot on this computer. \
+ An icon should appear on the desktop and in the "Places" menu at the top of the screen.
+ .
+ Confirm that the icon appears, then eject the device. Repeat with each external \
+ USB slot.
+ .
+ Do all USB slots work with the device?

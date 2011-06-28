@@ -1,0 +1,91 @@
+plugin: manual
+name: bluetooth-detect
+requires: package.name == 'bluez'
+command: hcitool dev | tail -n+2 | awk '{print $2}'
+_description:
+ The address of your Bluetooth device is:
+ $output
+ .
+ Is this correct?
+
+plugin: shell
+name: bluetooth-detect-output
+requires: package.name == 'bluez'
+command: hcitool dev | tail -n+2 | awk '{print $2}'
+description:
+ Automated test to store output in checkbox report
+
+plugin: manual
+name: bluetooth-browse-files
+depends: bluetooth-detect
+_description:
+ Bluetooth browse files procedure:
+ 1.- Enable bluetooth on any mobile device (PDA, smartphone, etc.)
+ 2.- Click on the bluetooth icon in the menu bar
+ 3.- Select 'Setup new device'
+ 3.- Look for the device in the list and select it
+ 4.- In the device write the PIN code automatically chosen by the wizard
+ 5.- The device should pair with the computer
+ 6.- Right-click on the bluetooth icon and select browse files
+ 7.- Authorize the computer to browse the files in the device if needed
+ 8.- You should be able to browse the files
+ .
+ Did all the steps work?
+
+plugin: manual
+name: bluetooth-file-transfer
+depends: bluetooth-browse-files
+_description:
+ Bluetooth file transfer procedure:
+ 1.- Make sure that you're able to browse the files in your mobile device
+ 2.- Copy a file from the computer to the mobile device
+ 3.- Verify that the file was correctly copied
+ 4.- Copy a file from the mobile device to the computer
+ 5.- Verify that the file was correctly copied
+ .
+ Did all the steps work?
+
+plugin: manual
+name: bluetooth-audio
+depends: bluetooth-detect
+requires: package.name == 'alsa-utils'
+command: arecord -d 5 -D bluetooth -f S16_LE | aplay -D bluetooth -f S16_LE
+_description:
+ Bluetooth audio procedure:
+ 1.- Enable the bluetooth headset
+ 2.- Click on the bluetooth icon in the menu bar
+ 3.- Select 'Setup new device'
+ 4.- Look for the device in the list and select it
+ 5.- In the device write the PIN code automatically chosen by the wizard
+ 6.- The device should pair with the computer
+ 7.- Select Test to record for five seconds and reproduce in the bluetooth device
+ .
+ Did all the steps work?
+
+plugin: manual
+name: bluetooth-keyboard
+command: keyboard_test
+depends: bluetooth-detect
+_description:
+ Bluetooth keyboard procedure:
+ 1.- Enable the bluetooth keyboard
+ 2.- Click on the bluetooth icon in the menu bar
+ 3.- Select 'Setup new device'
+ 4.- Look for the device in the list and select it
+ 5.- Select Test to enter text
+ .
+ Did all the steps work?
+
+plugin: manual
+name: bluetooth-mouse
+depends: bluetooth-detect
+_description:
+ Bluetooth mouse procedure:
+ 1.- Enable the bluetooth mouse
+ 2.- Click on the bluetooth icon in the menu bar
+ 3.- Select 'Setup new device'
+ 4.- Look for the device in the list and select it
+ 5.- Move the mouse around the screen
+ 6.- Perform some single/double/right click operations
+ .
+ Did all the steps work?
