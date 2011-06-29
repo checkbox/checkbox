@@ -1,0 +1,13 @@
+plugin: shell
+name: screenshot
+requires:
+ package.name == 'xorg'
+ package.name == 'imagemagick'
+command: import -window root ${CHECKBOX_DATA}/screenshot.png
+_description:
+ Captures a screenshot.
+
+plugin: attachment
+name: screenshot.png
+depends: screenshot
+command: cat ${CHECKBOX_DATA}/screenshot.png

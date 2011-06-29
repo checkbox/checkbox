@@ -1,0 +1,39 @@
+plugin: shell
+name: cpu_scaling_test
+requires: 
+ package.name == 'linux'
+ package.name == 'fwts'
+user: root
+command: fwts_test -c -l $CHECKBOX_DATA/cpu_scaling_test.log
+_description:
+ Test the CPU scaling capabilities using Colin King's Firmware Test Suite tool.
+
+plugin: shell
+name: clocktest
+requires: package.name == 'linux'
+command: clocktest
+_description:
+ Test for clock jitter.
+
+plugin: shell
+name: cpu_offlining_test
+requires: package.name == 'linux'
+user: root
+command: cpu_offlining
+_description:
+ Test offlining CPUs in a multicore system.
+
+plugin: shell
+name: cpu_topology
+requires: int(cpuinfo.count) > 1 and (cpuinfo.platform == 'i386' or cpuinfo.platform == 'x86_64')
+command: cpu_topology
+_description:
+ Checks cpu topology for accuracy
+
+plugin: shell
+name: cpu_frequency_governors
+requires: package.name == 'linux'
+user: root
+command: nice -n -20 cpu_scaling_test 
+_description:
+ Checks that CPU frequency governors are obeyed when set.

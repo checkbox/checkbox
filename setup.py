@@ -8,6 +8,9 @@ from glob import glob
 from distutils.core import setup
 from distutils.util import change_root, convert_path
 
+from distutils.ccompiler import new_compiler
+from distutils.command.build import build
+from distutils.command.clean import clean
 from distutils.command.install import install
 from distutils.command.install_data import install_data
 from distutils.command.install_scripts import install_scripts
@@ -26,6 +29,33 @@ def changelog_version(changelog="debian/changelog"):
 
     return version
 
+def expand_data_files(data_files):
+    for f in data_files:
+        if type(f) != str:
+            files = f[1]
+            i = 0
+            while i < len(files):
+                if files[i].find("*") > -1:
+                    for e in glob(files[i]):
+                        files.append(e)
+                    files.pop(i)
+                    i -= 1
+                i += 1
+
+    return data_files
+
+def extract_sources_from_data_files(data_files):
+    all_sources = []
+    data_files = expand_data_files(data_files)
+    for destination, sources in data_files:
+        all_sources.extend([s for s in sources if s.endswith(".c")])
+
+    return all_sources
+
+def extract_executables_from_data_files(data_files):
+    sources = extract_sources_from_data_files(data_files)
+    return [os.path.splitext(s)[0] for s in sources]
+
 def substitute_variables(infile, outfile, variables={}):
     file_in = open(infile, "r")
     file_out = open(outfile, "w")
@@ -33,6 +63,50 @@ def substitute_variables(infile, outfile, variables={}):
         for key, value in variables.items():
             line = line.replace(key, value)
         file_out.write(line)
+
+
+class checkbox_build(build_extra, object):
+
+    def initialize_options(self):
+        super(checkbox_build, self).initialize_options()
+
+        self.sources = []
+
+    def finalize_options(self):
+        super(checkbox_build, self).finalize_options()
+
+        # Initialize sources
+        data_files = self.distribution.data_files
+        self.sources = extract_sources_from_data_files(data_files)
+
+    def run(self):
+        super(checkbox_build, self).run()
+
+        cc = new_compiler()
+        for source in self.sources:
+            executable = os.path.splitext(source)[0]
+            cc.link_executable([source], executable, libraries=["rt", "pthread"])
+
+
+class checkbox_clean(clean, object):
+
+    def initialize_options(self):
+        super(checkbox_clean, self).initialize_options()
+
+        self.executables = None
+
+    def finalize_options(self):
+        super(checkbox_clean, self).finalize_options()
+
+        # Initialize sources
+        data_files = self.distribution.data_files
+        self.executables = extract_executables_from_data_files(data_files)
+
+    def run(self):
+        super(checkbox_clean, self).run()
+
+        for executable in self.executables:
+            os.unlink(executable)
 
 
 # Hack to workaround unsupported option in Python << 2.5
@@ -154,10 +228,11 @@ This project provides an extensible interface for system testing.
     packages = ["checkbox", "checkbox.contrib", "checkbox.lib", "checkbox.parsers",
         "checkbox.reports", "checkbox_cli", "checkbox_gtk", "checkbox_urwid"],
     cmdclass = {
+        "build": checkbox_build,
+        "build_i18n":  build_i18n,
+        "build_icons":  checkbox_build_icons,
+        "clean": checkbox_clean,
         "install": checkbox_install,
         "install_data": checkbox_install_data,
-        "install_scripts": checkbox_install_scripts,
-        "build": build_extra,
-        "build_i18n":  build_i18n,
-        "build_icons":  checkbox_build_icons }
+        "install_scripts": checkbox_install_scripts}
 )

@@ -1,0 +1,39 @@
+plugin: shell
+name: open_ssh_test
+requires: package.name == 'ssh'
+command: pgrep sshd >/dev/null || (echo 'FAIL: sshd is not running.' 2>&1 && false)
+_description: sshd test
+
+plugin: shell
+name: print_server_test
+requires: package.name == 'cups'
+command: pgrep cupsd >/dev/null || (echo 'FAIL: cupsd is not running.' 2>&1 && false)
+_description: Print/CUPs server test
+
+plugin: shell
+name: dns_server_test
+requires: package.name == 'bind9' and package.name == 'dnsutils'
+user: root
+command: dns_server_test
+_description: DNS server test
+
+plugin: shell
+name: samba_test
+requires: package.name == 'samba' and package.name == 'winbind'
+user: root
+command: samba_test
+_description: Samba server test
+
+plugin: shell
+name: lamp_test
+requires: package.name == 'apache2' and package.name == 'php5-mysql' and package.name == 'libapache2-mod-php5' and package.name == 'mysql-server'
+user: root
+command: lamp_test
+_description: LAMP server test
+
+plugin: shell
+name: tomcat_test
+requires: package.name == 'tomcat6'
+user: root
+command: tomcat_test
+_description: Tomcat server test

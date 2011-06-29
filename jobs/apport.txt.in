@@ -1,0 +1,5 @@
+plugin: shell
+name: apport-directory
+requires: package.name == 'apport'
+command: ! test -d /var/crash || test $(find /var/crash -type f | wc -l) -eq 0
+_description: Test that the /var/crash directory doesn't contain anything.

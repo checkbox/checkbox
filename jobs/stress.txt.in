@@ -1,0 +1,9 @@
+plugin: shell
+name: cpu_stress_test
+requires:
+ package.name == 'linux'
+ package.name == 'stress'
+user: root
+command: stress --cpu `cpuinfo_resource | awk '/count:/ {print $2}'` --vm `awk '/MemTotal/ {num_vm = $2/262144; if (num_vm != int(num_vm)) num_vm = int(num_vm) + 1; print num_vm}' /proc/meminfo` --timeout 7200
+_description:
+ Hammer the CPU as hard as possible for two hours. Intention is to knock it dead.

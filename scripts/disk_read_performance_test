@@ -1,0 +1,39 @@
+#!/bin/bash
+#
+# Verify that disk storage performs at or above baseline performance
+#
+
+#Default to a lower bound of 15 MB/s
+DEFAULT_BUF_READ=15
+
+for disk in $@; do
+  disk_type=`udevadm info --name /dev/$disk --query property | grep "ID_BUS" | awk '{gsub(/ID_BUS=/," ")}{printf $1}'`
+
+  case $disk_type in
+    "usb" ) MIN_BUF_READ=15;; #Custom metrics are guesstimates for now...
+    "ide" ) MIN_BUF_READ=40;;
+    *     ) MIN_BUF_READ=$DEFAULT_BUF_READ;;
+  esac
+
+  max_speed=0
+  for iteration in `seq 1 10`; do
+    speed=`hdparm -t /dev/$disk 2>/dev/null | grep "Timing buffered disk reads" | awk -F"=" '{print $2}' | awk '{print $1}'`
+    if [ -z "$speed" ]; then
+      echo "SKIP: device is too small"
+      exit 0
+    fi
+
+    speed=${speed/.*}
+    if [ $speed -gt $max_speed ]; then
+      max_speed=$speed
+    fi
+  done
+
+  if [ $max_speed -gt $MIN_BUF_READ ]; then
+    echo "PASS: $max_speed is faster than MIN_BUF_READ of $MIN_BUF_READ"
+    exit 0
+  else
+    echo "FAIL: $max_speed is slower than MIN_BUF_READ of $MIN_BUF_READ"
+    exit 1
+  fi
+done

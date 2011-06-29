@@ -1,0 +1,30 @@
+#!/bin/bash
+
+echo "Beginning CPU Offlining Test"
+# Turn CPU cores off
+for cpu_num in `ls /sys/devices/system/cpu | grep -o cpu[0-9]*`;
+do
+	if [ -f /sys/devices/system/cpu/$cpu_num/online ]; then
+        echo "Offlining $cpu_num"
+		echo 0 > /sys/devices/system/cpu/$cpu_num/online
+		grep -i -q $cpu_num /proc/interrupts
+
+		if [ $? == 0 ]; then
+			return 1
+		fi
+	fi
+done
+
+# Back on again
+for cpu_num in `ls /sys/devices/system/cpu | grep -o cpu[0-9]*`;
+do
+    if [ -f /sys/devices/system/cpu/$cpu_num/online ]; then
+        echo "Onlining $cpu_num"
+        echo 1 > /sys/devices/system/cpu/$cpu_num/online
+        grep -i -q $cpu_num /proc/interrupts
+
+        if [ $? == 1 ]; then
+            return 1
+        fi
+    fi
+done

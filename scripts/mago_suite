@@ -1,0 +1,96 @@
+#!/usr/bin/python
+
+import os
+import sys
+import posixpath
+
+from subprocess import Popen
+
+from optparse import OptionParser
+
+
+DEFAULT_DIRECTORY = "/tmp/checkbox.mago"
+DEFAULT_LOCATION = "http://bazaar.launchpad.net/%7Emago-contributors/mago/mago"
+DEFAULT_TIMEOUT = 300
+
+COMMAND_TEMPLATE = "mago --log-level=debug -n '%(suite)s' 2>&1 >/dev/null | awk '/xsltproc/ {print $NF}' | xargs -r mago_filter"
+
+
+def print_line(key, value):
+    if type(value) is list:
+        print "%s:" % key
+        for v in value:
+            print " %s" % v
+    else:
+        print "%s: %s" % (key, value)
+
+def print_element(element):
+    for key, value in element.items():
+        print_line(key, value)
+
+    print
+
+def branch_mago(location, directory):
+    if posixpath.exists(directory):
+        return
+
+    dirname = posixpath.dirname(directory)
+    if not posixpath.exists(dirname):
+        os.makedirs(dirname)
+
+    process = Popen(["bzr", "branch", location, directory])
+    if process.wait():
+        raise Exception, "Failed to branch mago from %s" % location
+
+def run_mago(location, directory, timeout=None):
+    branch_mago(location, directory)
+
+    sys.path.insert(0, directory)
+    from mago.cmd.discovery import discover_applications
+
+    elements = []
+    for application in discover_applications([directory], [], [], [], []):
+        for suite in application.suites():
+            element = {}
+            element["plugin"] = "remote"
+            element["depends"] = "mago"
+            element["timeout"] = timeout
+            element["name"] = suite.name
+            element["description"] = suite.description.strip()
+            element["command"] = COMMAND_TEMPLATE % {"suite": suite.name}
+            element["environ"] = [
+                "PATH=%s:$PATH" % posixpath.join(directory, "bin"),
+                "PYTHONPATH=%s:$PYTHONPATH" % directory,
+                "MAGO_SHARE=%s" % directory]
+
+            elements.append(element)
+
+    return elements
+
+def main(args):
+    usage = "Usage: %prog [OPTIONS]"
+    parser = OptionParser(usage=usage)
+    parser.add_option("-d", "--directory",
+        default=DEFAULT_DIRECTORY,
+        help="Directory where to branch mago")
+    parser.add_option("-l", "--location",
+        default=DEFAULT_LOCATION,
+        help="Location from where to branch mago")
+    parser.add_option("-t", "--timeout",
+        default=DEFAULT_TIMEOUT,
+        type="int",
+        help="Timeout when running mago")
+    (options, args) = parser.parse_args(args)
+
+    suites = run_mago(options.location, options.directory, options.timeout)
+    if not suites:
+        return 1
+
+    for suite in suites:
+        print_element(suite)
+
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv[1:]))

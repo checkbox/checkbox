@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-21 09:43-0400\n"
+"POT-Creation-Date: 2011-06-29 09:31-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -114,6 +114,12 @@ msgid ""
 msgstr ""
 
 #. description
+#: ../jobs/audio.txt.in:47 ../jobs/peripheral.txt.in:24
+#: ../jobs/sleep.txt.in:160
+msgid "Did you hear your speech played back?"
+msgstr ""
+
+#. description
 #: ../jobs/audio.txt.in:59
 msgid ""
 "Connect a microphone to your microphone port.  Select Test, then speak into "
@@ -121,9 +127,16 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/audio.txt.in:59 ../jobs/peripheral.txt.in:24
-#: ../jobs/sleep.txt.in:160
-msgid "Did you hear your speech played back?"
+#: ../jobs/audio.txt.in:59
+msgid ""
+"Did you hear your speech played back?  plugin: shell name: "
+"audio_detect_silence requires:\n"
+" package.name == 'sox'\n"
+" device.category == 'AUDIO'\n"
+"command: audio_detect_silence description:\n"
+" Play back a sound on the default output and listen for it on the \\\n"
+" default input.  This makes the most sense when the output and input \\\n"
+" are directly connected, as with a patch cable."
 msgstr ""
 
 #. description
@@ -134,6 +147,33 @@ msgstr ""
 #. description
 #: ../jobs/disk.txt.in:4
 msgid "The following hard drives were detected:"
+msgstr ""
+
+#. description
+#: ../jobs/disk.txt.in:14
+msgid "Benchmark for each disk "
+msgstr ""
+
+#. description
+#: ../jobs/disk.txt.in:36
+msgid "SMART test"
+msgstr ""
+
+#. description
+#: ../jobs/disk.txt.in:51
+msgid "Maximum disk space used during a default installation test"
+msgstr ""
+
+#. description
+#: ../jobs/disk.txt.in:66
+msgid "Verify system storage performs at or above baseline performance"
+msgstr ""
+
+#. description
+#: ../jobs/disk.txt.in:83
+msgid ""
+"Verify that storage devices, such as Fibre Channel and RAID can be detected "
+"and perform under stress."
 msgstr ""
 
 #. description
@@ -216,57 +256,87 @@ msgstr ""
 
 #. description
 #: ../jobs/local.txt.in:8
-msgid "Disk tests"
+msgid "Camera tests"
 msgstr ""
 
 #. description
 #: ../jobs/local.txt.in:13
-msgid "Fingerprint reader tests"
+msgid "Media Codec tests"
 msgstr ""
 
 #. description
 #: ../jobs/local.txt.in:18
-msgid "Firewire disk tests"
+msgid "CPU tests"
 msgstr ""
 
 #. description
 #: ../jobs/local.txt.in:23
-msgid "Kernel modesetting tests"
+msgid "System Daemon tests"
 msgstr ""
 
 #. description
 #: ../jobs/local.txt.in:28
-msgid "Media tests"
+msgid "Disk tests"
 msgstr ""
 
 #. description
 #: ../jobs/local.txt.in:33
-msgid "Monitor tests"
+msgid "Fingerprint reader tests"
 msgstr ""
 
 #. description
 #: ../jobs/local.txt.in:38
-msgid "Network tests"
+msgid "Firewire disk tests"
 msgstr ""
 
 #. description
 #: ../jobs/local.txt.in:43
-msgid "Peripheral tests"
+msgid "Kernel modesetting tests"
 msgstr ""
 
 #. description
 #: ../jobs/local.txt.in:48
-msgid "User Applications"
+msgid "Media tests"
 msgstr ""
 
 #. description
 #: ../jobs/local.txt.in:53
-msgid "Video tests"
+msgid "Monitor tests"
 msgstr ""
 
 #. description
 #: ../jobs/local.txt.in:58
+msgid "Network IO tests"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:63
+msgid "Network tests"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:68
+msgid "Peripheral tests"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:73
+msgid "User Applications"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:78
+msgid "Video tests"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:83
 msgid "Sleep Tests"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:88
+msgid "Stress tests"
 msgstr ""
 
 #. description
@@ -446,6 +516,86 @@ msgid "Testing your connection to the Internet:"
 msgstr ""
 
 #. description
+#: ../jobs/network.txt.in:26
+msgid "Network Information"
+msgstr ""
+
+#. description
+#: ../jobs/network.txt.in:46
+msgid "Wireless scanning test."
+msgstr ""
+
+#. description
+#: ../jobs/network.txt.in:52
+msgid ""
+"Wireless network connection procedure: 1.- Click on the Network Manager "
+"applet 2.- Select a network below the 'Wireless networks' section 3.- Notify "
+"OSD should confirm that the connection has been established 4.- Select Test "
+"to verify that it's possible to establish an HTTP connection"
+msgstr ""
+
+#. description
+#: ../jobs/network.txt.in:64
+msgid ""
+"Wired network connection procedure: 1.- Click on the Network Manager applet "
+"2.- Select a network below the 'Wired network' section 3.- Notify OSD should "
+"confirm that the connection has been established 4.- Select Test to verify "
+"that it's possible to establish an HTTP connection"
+msgstr ""
+
+#. description
+#: ../jobs/network.txt.in:76
+msgid ""
+"Built-in modem network connection procedure: 1.- Connect the telephone line "
+"to the computer 2.- Right click on the Network Manager applet 3.- Select "
+"'Edit Connections' 4.- Select the 'DSL' tab 5.- Click on add 'Add' button "
+"6.- Configure the connection parameters properly 7.- Notify OSD should "
+"confirm that the connection has been established 8.- Select Test to verify "
+"that it's possible to establish an HTTP connection"
+msgstr ""
+
+#. description
+#: ../jobs/network.txt.in:76 ../jobs/peripheral.txt.in:43
+msgid "Was the connection correctly established?"
+msgstr ""
+
+#. description
+#: ../jobs/network.txt.in:92
+msgid ""
+"Automated test case to verify availability of some system on the network "
+"using ICMP ECHO packets."
+msgstr ""
+
+#. description
+#: ../jobs/network.txt.in:99 ../jobs/peripheral.txt.in:60
+msgid ""
+"Automated test case to make sure that it's possible to download files "
+"through HTTP"
+msgstr ""
+
+#. description
+#: ../jobs/network.txt.in:107
+msgid "Test to see if we can sync local clock to an NTP server"
+msgstr ""
+
+#. description
+#: ../jobs/network.txt.in:113
+msgid ""
+"Verify that an installation of checkbox-server on the network can be reached "
+"over SSH."
+msgstr ""
+
+#. description
+#: ../jobs/network.txt.in:119
+msgid "Try to enable a remote printer on the network and print a test page."
+msgstr ""
+
+#. description
+#: ../jobs/network.txt.in:124
+msgid "Multiple network cards"
+msgstr ""
+
+#. description
 #: ../jobs/peripheral.txt.in:4
 msgid "Moving the mouse should move the cursor on the screen."
 msgstr ""
@@ -474,6 +624,28 @@ msgid ""
 "device.  Select the \"Output\" tab and choose your USB device.  When you are "
 "done, select Test, then speak into the microphone.  After a few seconds, "
 "your speech will be played back to you."
+msgstr ""
+
+#. description
+#: ../jobs/peripheral.txt.in:31
+msgid ""
+"Printer configuration verification procedure: 1.- Make sure that a printer "
+"is available in your network 2.- Open Systems->Administration->Printing 3.- "
+"If the printer isn't already listed, click on New 4.- The printer should be "
+"detected and proper configuration values \\ should be displayed 5.- Print a "
+"test page"
+msgstr ""
+
+#. description
+#: ../jobs/peripheral.txt.in:43
+msgid ""
+"External USB modem network connection procedure: 1.- Connect the USB cable "
+"to the computer 2.- Right click on the Network Manager applet 3.- Select "
+"'Edit Connections' 4.- Select the 'DSL' (for ADSL modem) or 'Mobile "
+"Broadband' (for 3G modem) tab 5.- Click on add 'Add' button 6.- Configure "
+"the connection parameters properly 7.- Notify OSD should confirm that the "
+"connection has been established 8.- Select Test to verify that it's possible "
+"to establish an HTTP connection"
 msgstr ""
 
 #. description
@@ -1286,12 +1458,12 @@ msgid ""
 "This might take a few minutes."
 msgstr ""
 
-#: ../plugins/apport_prompt.py:219
+#: ../plugins/apport_prompt.py:220
 #, python-format
 msgid "Test %s failed. Do you want to report a bug?"
 msgstr ""
 
-#: ../plugins/apport_prompt.py:234
+#: ../plugins/apport_prompt.py:235
 #, python-format
 msgid "Is a package upgrade in process? Error: %s"
 msgstr ""
