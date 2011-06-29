@@ -109,6 +109,7 @@ class checkbox_install_scripts(install_scripts, object):
         for outfile in self.outfiles:
             infile = posixpath.join("bin", posixpath.basename(outfile))
             substitute_variables(infile, outfile, {
+                "CHECKBOX_OPTIONS:-": "CHECKBOX_OPTIONS:---whitelist-file=$CHECKBOX_SHARE/data/whitelists/default.whitelist",
                 "CHECKBOX_SHARE:-.": "CHECKBOX_SHARE:-/usr/share/checkbox",
                 "CHECKBOX_DATA:-.": "CHECKBOX_DATA:-$XDG_CACHE_HOME/checkbox"})
 
@@ -138,6 +139,7 @@ This project provides an extensible interface for system testing.
         ("share/checkbox/data/images/", ["data/images/*"]), 
         ("share/checkbox/data/video/", ["data/video/*"]), 
         ("share/checkbox/data/websites/", ["data/websites/*"]), 
+        ("share/checkbox/data/whitelists/", ["data/whitelists/*"]), 
         ("share/checkbox/examples/", ["examples/*"]),
         ("share/checkbox/install/", ["install/*"]),
         ("share/checkbox/patches/", ["patches/*"]),
