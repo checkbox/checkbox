@@ -1,34 +1,29 @@
 #!/usr/bin/make -f
 
-DEB_PYTHON_SYSTEM := pycentral
+%:
+	dh "$@" --with translations,python2
 
-include /usr/share/cdbs/1/rules/debhelper.mk
-include /usr/share/cdbs/1/class/python-distutils.mk
-include /usr/share/cdbs/1/rules/simple-patchsys.mk
-
-DEB_DH_INSTALL_SOURCEDIR := debian/tmp
-DEB_PYTHON_INSTALL_ARGS_ALL := --no-compile --install-layout=deb
-
-build/checkbox-cli::
+override_dh_installdeb:
 	cp debian/checkbox.postrm debian/checkbox-cli.postrm
-
-build/checkbox-urwid::
 	cp debian/checkbox.postrm debian/checkbox-urwid.postrm
-
-build/checkbox-gtk::
 	cp debian/checkbox.postrm debian/checkbox-gtk.postrm
-
-build/hwtest-cli::
 	cp debian/hwtest.postrm debian/hwtest-cli.postrm
-
-build/hwtest-gtk::
 	cp debian/hwtest.postrm debian/hwtest-gtk.postrm
+	dh_installdeb
 
-binary-install/checkbox-gtk::
-	dh_icons -p$(cdbs_curpkg)
+override_dh_installdocs:
+	dh_installdocs -pcheckbox ./README 
+	dh_installdocs -pcheckbox-cli ./README 
+	dh_installdocs -pcheckbox-urwid ./README 
+	dh_installdocs -pcheckbox-gtk ./README 
+	dh_installdocs -phwtest ./README 
+	dh_installdocs -phwtest-cli ./README 
+	dh_installdocs -phwtest-gtk ./README 
+	dh_installdocs
 
-clean::
+override_dh_clean:
 	-find . -name \*.mo -exec rm {} \;
 	-rm -f debian/checkbox-cli.postrm debian/checkbox-urwid.postrm debian/checkbox-gtk.postrm
 	-rm -f debian/hwtest-cli.postrm debian/hwtest-gtk.postrm
 	debconf-updatepo
+	dh_clean
