@@ -1,12 +1,17 @@
 checkbox (0.12.3) oneiric; urgency=low
 
+  [ Marc Tardif ]
   * Only reading CHECKBOX_* environment variables in config (LP: #802458)
   * Imported scripts and jobs from Platform Services.
 
   [Chad A. Davis]
   * Switch to dh_python2 and debhelper7 (LP: #788514)
 
- -- Marc Tardif <marc@ubuntu.com>  Wed, 29 Jun 2011 11:59:29 -0400
+  [Barry Warsaw]
+  * Fix checkbox_clean.run() to ignore missing executables, as is the case
+    in a fresh checkout.
+
+ -- Daniel Manrique <daniel.manrique@canonical.com>  Fri, 01 Jul 2011 11:37:27 -0400
 
 checkbox (0.12.2) oneiric; urgency=low
 

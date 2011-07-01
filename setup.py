@@ -2,6 +2,7 @@
 
 import os
 import re
+import errno
 import posixpath
 from glob import glob
 
@@ -106,7 +107,11 @@ class checkbox_clean(clean, object):
         super(checkbox_clean, self).run()
 
         for executable in self.executables:
-            os.unlink(executable)
+            try:
+                os.unlink(executable)
+            except OSError, error:
+                if error.errno != errno.ENOENT:
+                    raise
 
 
 # Hack to workaround unsupported option in Python << 2.5
