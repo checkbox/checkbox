@@ -1,3 +1,10 @@
+checkbox (0.12.4) oneiric; urgency=low
+
+  * Fix checkbox_clean.run() to ignore missing executables, as is the case
+    in a fresh checkout.
+
+ -- Barry Warsaw <barry@ubuntu.com>  Fri, 01 Jul 2011 14:14:24 +0100
+
 checkbox (0.12.3) oneiric; urgency=low
 
   * Only reading CHECKBOX_* environment variables in config (LP: #802458)
