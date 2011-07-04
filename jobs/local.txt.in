@@ -3,6 +3,11 @@ plugin: local
 _description: Audio tests
 command: cat $CHECKBOX_SHARE/jobs/audio.txt*
 
+name: bluetooth
+plugin: local
+_description: Bluetooth tests
+command: cat $CHECKBOX_SHARE/jobs/bluetooth.txt*
+
 name: camera
 plugin: local
 _description: Camera tests

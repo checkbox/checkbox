@@ -1,5 +1,5 @@
 plugin: manual
-name: list_audio_devices
+name: audio/list_devices
 requires:
  device.category == 'AUDIO'
  package.name == 'alsa-base'
@@ -12,8 +12,8 @@ _description:
  Is this correct?
 
 plugin: manual
-name: playback_auto
-depends: list_audio_devices
+name: audio/playback_auto
+depends: audio/list_devices
 requires:
  device.category == 'AUDIO'
  package.name == 'alsa-base' and package.name == 'python-gst0.10'
@@ -24,8 +24,8 @@ _description:
  Did you hear a sound and was that sound free of any distortion, clicks or other strange noises?
 
 plugin: manual
-name: playback_headphones
-depends: list_audio_devices
+name: audio/playback_headphones
+depends: audio/list_devices
 requires:
  device.category == 'AUDIO'
  package.name == 'alsa-base' and package.name == 'python-gst0.10'
@@ -38,8 +38,8 @@ _description:
  Did you hear a sound through the headphones and did the sound play without any distortion, clicks or other strange noises from your headphones?
 
 plugin: manual
-name: alsa_record_playback_internal
-depends: playback_auto
+name: audio/alsa_record_playback_internal
+depends: audio/playback_auto
 requires:
  device.category == 'AUDIO'
  package.name == 'alsa-base'
@@ -50,8 +50,8 @@ _description:
  Did you hear your speech played back?
 
 plugin: manual
-name: alsa_record_playback_external
-depends: playback_headphones
+name: audio/alsa_record_playback_external
+depends: audio/playback_headphones
 requires:
  device.category == 'AUDIO'
  package.name == 'alsa-base'
@@ -61,13 +61,13 @@ _description:
  .
  Did you hear your speech played back?
 
- plugin: shell
- name: audio_detect_silence
- requires:
-  package.name == 'sox'
-  device.category == 'AUDIO'
- command: audio_detect_silence
- description:
-  Play back a sound on the default output and listen for it on the \
-  default input.  This makes the most sense when the output and input \
-  are directly connected, as with a patch cable.
+plugin: shell
+name: audio/detect_silence
+requires:
+ package.name == 'sox'
+ device.category == 'AUDIO'
+command: audio_detect_silence
+_description:
+ Play back a sound on the default output and listen for it on the \
+ default input.  This makes the most sense when the output and input \
+ are directly connected, as with a patch cable.
