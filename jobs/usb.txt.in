@@ -1,5 +1,5 @@
 plugin: manual
-name: usb
+name: usb/detect
 requires: package.name == 'linux'
 command: lsusb | sed 's/.*\(ID .*\)/\1/' | head -n 4
 _description:
@@ -10,7 +10,7 @@ _description:
  Is this correct?
 
 plugin: manual
-name: usb-keyboard
+name: usb/keyboard
 depends: usb
 requires: package.name == 'linux'
 command: keyboard_test
@@ -21,7 +21,7 @@ _description:
  Does the keyboard work?
 
 plugin: manual
-name: usb-mouse
+name: usb/mouse
 depends: usb
 requires: package.name == 'linux'
 _description:
@@ -32,7 +32,7 @@ _description:
  Did all the steps work?
 
 plugin: manual
-name: usb-insert
+name: usb/insert
 depends: usb
 requires: package.name == 'linux'
 command: watch_command -q -r 5 lsusb
@@ -44,7 +44,7 @@ _description:
  If no USB device is inserted or the device is not recognized, the test will fail and 'No' will be selected below.
 
 plugin: manual
-name: usb-remove
+name: usb/remove
 depends: usb-insert
 requires: package.name == 'linux'
 command: watch_command -q -r 5 lsusb
@@ -55,7 +55,7 @@ _description:
  If the USB device isn't removed or the removal is not registered, the test will fail and 'No' will be selected below.
 
 plugin: manual
-name: usb-storage
+name: usb/storage
 requires: package.name == 'linux'
 depends: usb
 _description:
@@ -65,7 +65,7 @@ _description:
  Does the window automatically appear?
 
 plugin: manual
-name: usb-storage-transfer
+name: usb/storage-transfer
 requires: package.name == 'linux'
 depends: usb-storage
 _description:
@@ -77,7 +77,7 @@ _description:
  Do the copy operations work as expected?
 
 plugin: manual
-name: usb-panels
+name: usb/panels
 requires: package.name == 'linux'
 depends: usb-storage
 _description:

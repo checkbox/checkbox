@@ -1,16 +1,16 @@
 plugin: shell
-name: network_before_suspend
+name: power-management/network_before_suspend
 depends: network_test
 _description: Test the network before suspending.
 command: network_check -a
 
 plugin: shell
-name: resolution_before_suspend
+name: power-management/resolution_before_suspend
 _description: Record the current resolution before suspending.
 command: xrandr -q |grep '*'| awk '{print $1}' > $CHECKBOX_DATA/resolution_before_suspend.txt
 
 plugin: shell
-name: audio_before_suspend
+name: power-management/audio_before_suspend
 requires:
  device.category == 'AUDIO'
  package.name == 'alsa-base'
@@ -18,7 +18,7 @@ _description: Test the audio before suspending.
 command: amixer > $CHECKBOX_DATA/audio_before_suspend.txt
 
 plugin: manual
-name: wireless_before_suspend
+name: power-management/wireless_before_suspend
 command: internet_test
 _description:
  Wireless network connection procedure:
@@ -34,7 +34,7 @@ _description:
  Is this correct?
 
 plugin: manual
-name: bluetooth_detect_before_suspend
+name: power-management/bluetooth_detect_before_suspend
 requires: package.name == 'bluez'
 command: hcitool dev | tail -n+2 | awk '{print $2}'
 _description:
@@ -44,8 +44,8 @@ _description:
  Is this correct?
 
 plugin: manual
-name: bluetooth_mouse_before_suspend
-depends: bluetooth_detect_before_suspend
+name: power-management/bluetooth_mouse_before_suspend
+depends: power-management/bluetooth_detect_before_suspend
 _description:
  Verify a bluetooth peripheral.  An example verification procedure for a bluetooth mouse is given.
  .
@@ -60,7 +60,7 @@ _description:
  Did all the steps work?
 
 plugin: shell
-name: rtc
+name: power-management/rtc
 requires: package.name == 'linux'
 command:
  test -e /dev/rtc
@@ -68,8 +68,8 @@ _description:
  Make sure that the RTC (Real-Time Clock) device exists.
 
 plugin: manual
-name: sleep_state_test
-depends: rtc network_before_suspend resolution_before_suspend wireless_before_suspend bluetooth_detect_before_suspend bluetooth_mouse_before_suspend
+name: power-management/suspend
+depends: power-management/rtc power-management/network_before_suspend power-management/resolution_before_suspend power-management/wireless_before_suspend power-management/bluetooth_detect_before_suspend power-management/bluetooth_mouse_before_suspend
 requires: package.name == 'pm-utils'
 _description:
  Power management Suspend and Resume test
@@ -79,29 +79,29 @@ user: root
 command: sleep_test -d
 
 plugin: shell
-name: network_after_suspend
-depends: sleep_state_test network_before_suspend
+name: power-management/network_after_suspend
+depends: power-management/suspend power-management/network_before_suspend
 _description: Test the network after resuming.
 command: internet_test
 
 plugin: shell
-name: resolution_after_suspend
-depends: sleep_state_test resolution_before_suspend
+name: power-management/resolution_after_suspend
+depends: power-management/suspend power-management/resolution_before_suspend
 _description: Test to see that we have the same resolution after resuming as before.
 command: xrandr -q |grep '*'| awk '{print $1}' | diff $CHECKBOX_DATA/resolution_before_suspend.txt -
 
 plugin: shell
-name: audio_after_suspend
+name: power-management/audio_after_suspend
 requires:
  device.category == 'AUDIO'
  package.name == 'alsa-base'
-depends: sleep_state_test audio_before_suspend
+depends: power-management/suspend power-management/audio_before_suspend
 _description: Test the audio after resuming.
 command: amixer | diff $CHECKBOX_DATA/audio_before_suspend.txt -
 
 plugin: manual
-name: wireless_after_suspend
-depends: sleep_state_test wireless_before_suspend
+name: power-management/wireless_after_suspend
+depends: power-management/suspend power-management/wireless_before_suspend
 command: internet_test
 _description:
  Wireless network connection procedure:
@@ -117,8 +117,8 @@ _description:
  Is this correct?
 
 plugin: manual
-name: bluetooth_detect_after_suspend
-depends: sleep_state_test bluetooth_detect_before_suspend
+name: power-management/bluetooth_detect_after_suspend
+depends: power-management/suspend power-management/bluetooth_detect_before_suspend
 requires: package.name == 'bluez'
 command: hcitool dev | tail -n+2 | awk '{print $2}'
 _description:
@@ -128,8 +128,8 @@ _description:
  Is this correct?
 
 plugin: manual
-name: bluetooth_mouse_after_suspend
-depends: sleep_state_test bluetooth_detect_after_suspend
+name: power-management/bluetooth_mouse_after_suspend
+depends: power-management/suspend power-management/bluetooth_detect_after_suspend
 _description:
  Verify a bluetooth peripheral.  An example verification procedure for a bluetooth mouse is given.
  .
@@ -144,15 +144,15 @@ _description:
  Did all the steps work?
 
 plugin: manual
-name: cycle_resolutions_after_suspend
-depends: sleep_state_test xrandr_cycle
+name: power-management/cycle_resolutions_after_suspend
+depends: power-management/suspend graphics/xrandr_cycle
 _description:
  This test will check to make sure that supported video modes work after a suspend and resume.  Select Test to begin.
 command: xrandr_cycle
 
 plugin: manual
-name: record_playback_after_suspend
-depends: sleep_state_test
+name: power-management/record_playback_after_suspend
+depends: power-management/suspend
 requires:
  device.category == 'AUDIO'
  package.name == 'alsa-base'
@@ -165,8 +165,8 @@ _description:
  Did you hear your speech played back?
 
 plugin: manual
-name: suspend_30_cycles
-depends: rtc
+name: power-management/suspend_30_cycles
+depends: power-management/rtc
 requires: package.name == 'pm-utils'
 user: root
 command: sleep_test -i 30 -s mem --debug
@@ -176,8 +176,8 @@ _description:
  Did the system successfully suspend and resume for 30 iterations?
 
 plugin: manual
-name: hibernate_once
-depends: rtc
+name: power-management/hibernate
+depends: power-management/rtc
 requires: package.name == 'pm-utils'
 user: root
 command: sleep_test -s disk -w 120 --debug
@@ -189,8 +189,8 @@ _description:
  Did the system successfully hibernate and did it work properly after waking up?
 
 plugin: manual
-name: hibernate_30_cycles
-depends: rtc
+name: power-management/hibernate_30_cycles
+depends: power-management/rtc
 requires: package.name == 'pm-utils'
 user: root
 command: sleep_test -i 30 -s disk -w 120 --debug

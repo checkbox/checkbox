@@ -4,34 +4,34 @@ command: find $CHECKBOX_SHARE/jobs/ -name sru_suite.txt | xargs filter_templates
 _description: SRU Test Suite
 
 plugin: shell
-name: sru_compiz_check
+name: sru/graphics/compiz_check
 command: run_compiz_check | ansi_parser
 _description:
  Tests that SRU is able to run compiz
 
 plugin: shell
-name: sru_cpu_offlining_test
+name: sru/cpu/offlining_test
 command: cpu_offlining
 _description:
  Tests that SRU does not degrade CPU offlining ability on multicore systems
 
 plugin: shell
-name: sru_network_test
+name: sru/network/detect
 requires: device.category == 'NETWORK'
 command: network_test
 _description:
  Tests that SRU can see network devices
 
 plugin: shell
-name: sru_internet_test
-depends: sru_network_test
+name: sru/network/internet
+depends: sru/network/detect
 command: internet_test
 _description:
  Tests that the SRU can do some network activity
 
 plugin: shell
-name: sru_sleep_state_test
-depends: sru_rtc 
+name: sru/power-management/suspend
+depends: sru/power-management/rtc
 requires: 
  package.name == 'pm-utils'
 _description: Tests that a system after SRU can suspend and resume
@@ -39,30 +39,30 @@ user: root
 command: sleep_test -d
 
 plugin: shell
-name: sru_bluetooth-detect
+name: sru/bluetooth/detect
 requires: package.name == 'bluez'
 command: hcitool dev | tail -n+2 | awk '{print $2}'
 _description:
  Tests the SRU to make sure it sees BT if present
 
 plugin: shell
-name: sru_graphics-2d-output
+name: sru/graphics/2d-output
 command: xdpyinfo | grep "^X.Org version" | cut -d ':' -f 2 | tr -d ' '
 requires: package.name == "x11-utils"
 _description: Tests the SRU to ensure basic X availability
 
 plugin: shell
-name: sru_network-http
+name: sru/network/http
 command: if host "$TRANSFER_SERVER" >/dev/null 2>&1 ; then wget -SO /dev/null http://$TRANSFER_SERVER ; else false ; fi
 _description: Tests the SRU for basic network stack functionality
 
 plugin: shell
-name: sru_ping_test
+name: sru/network/ping_test
 command: internet_test $CHECKBOX_SERVER
 _description: Tests the SRU for basic network stack functionality
 
 plugin: shell
-name: sru_screenshot
+name: sru/graphics/screenshot
 requires:
  package.name == 'xorg'
  package.name == 'imagemagick'
@@ -70,7 +70,7 @@ command: import -window root png:$CHECKBOX_DATA/screenshot.png
 _description: Captures a screenshot showing X works
 
 plugin: shell
-name: sru_apt-get-gets-updates
+name: sru/software/apt-get-gets-updates
 requires: package.name == 'apt'
 user: root
 command: apt-get -d -y --force-yes dist-upgrade && true || false
@@ -78,7 +78,7 @@ _description:
  Tests SRU to ensure apt-get works so we can back out if the SRU hoses the system. (does not install updates)
 
 plugin: shell
-name: sru_fwts_cpu_scaling_test
+name: sru/cpu/fwts_cpu_scaling_test
 requires: 
  package.name == 'linux'
  package.name == 'fwts'
@@ -88,7 +88,7 @@ _description:
  Test the CPU scaling capabilities.
 
 plugin: shell
-name: sru_fwts_wakealarm
+name: sru/power-management/fwts_wakealarm
 requires:
  package.name == 'linux'
  package.name == 'fwts'
@@ -98,21 +98,21 @@ command:
  fwts_test -w -l $CHECKBOX_DATA/fwts_results.log
 
 plugin: shell
-name: sru_tickless_idle_test
+name: sru/miscellanea/tickless_idle
 requires: package.name == 'linux'
 _description: Ensure SRU does not turn off tickless idle
 command:
  zgrep 'CONFIG_NO_HZ=y' /boot/config-`uname -r` >/dev/null 2>&1
 
 plugin: local
-name: sru_disk_read_performance_test
+name: sru/disk/read_performance
 requires:
  device.category == 'DISK'
 _description: SRU disk read performance test.
 command:
  cat <<'EOF' | run_templates -t -s 'udev_resource | filter_templates -w "category=DISK"'
  plugin: shell
- name: sru_disk_read_performance_test_`ls /sys$path/block`
+ name: sru/disk/read_performance_`ls /sys$path/block`
  requires:
   device.path == "$path"
   package.name == 'linux'
@@ -122,7 +122,7 @@ command:
  EOF
 
 plugin: shell
-name: sru_memory_test
+name: sru/memory/check
 requires: package.name == 'linux'
 user: root
 command: memory_test
@@ -130,7 +130,7 @@ _description:
  Test the memory after applying an SRU
 
 plugin: shell
-name: sru_rtc
+name: sru/power-management/rtc
 requires: package.name == 'linux'
 _description:
  Make sure that the RTC (Real-Time Clock) device exists.
@@ -138,31 +138,31 @@ command:
  test -e /dev/rtc
 
 plugin: shell
-name: sru_usb
+name: sru/usb/detect
 requires: package.name == 'linux'
 command: lsusb | sed 's/.*\(ID .*\)/\1/' | head -n 4 && true || false
 _description:
  Test that the SRU still accesses USB controllers and lists devices
 
 plugin: shell
-name: sru_xorg_process
+name: sru/graphics/xorg_process
 requires: package.name == 'xorg' and package.name == 'procps'
 command: pgrep -f '/usr/bin/X' >/dev/null
 _description: Test that the X process is running.
 
 plugin: shell
-name: sru_xorg_failsafe
+name: sru/graphics/xorg_failsafe
 requires: package.name == 'xorg'
 command: ! test -e /var/log/Xorg.failsafe.log
 _description: Test that the X is not running in failsafe mode.
 
 plugin: attachment
-name: sru_screenshot.png
-depends: sru_screenshot
+name: sru/graphics/screenshot.png
+depends: sru/graphics/screenshot
 command: cat $CHECKBOX_DATA/screenshot.png
 
 plugin: attachment
-name: sru_fwts_log
+name: sru/info/fwts_log
 depends: fwts_test
 _description:
  Gather log from the firmware test suite run
@@ -170,57 +170,57 @@ command:
  cat $CHECKBOX_DATA/fwts_results.log
 
 plugin: shell
-name: sru_cpu_topology
+name: sru/cpu/topology
 requires: cpuinfo.platform == 'i386' or cpuinfo.platform == 'x86_64'
 command: cpu_topology
 _description: Checks cpu_topology for accuracy
 
 plugin: attachment
-name: sru_acpi_sleep_attachment
+name: sru/info/acpi_sleep_attachment
 command: cat /proc/acpi/sleep
 
-name: sru_codecs_attachment
+name: sru/info/codecs_attachment
 plugin: attachment
 requires: device.driver == 'HDA Intel'
 command: cat /proc/asound/card*/codec#*
 
-name: sru_cpuinfo_attachment
+name: sru/info/cpuinfo_attachment
 plugin: attachment
 command: cat /proc/cpuinfo
 
-name: sru_dmesg_attachment
+name: sru/info/dmesg_attachment
 plugin: attachment
 command: cat /var/log/dmesg | ansi_parser
 
-name: sru_dmi_attachment
+name: sru/info/dmi_attachment
 plugin: attachment
 command: grep -r . /sys/class/dmi/id/ 2>/dev/null
 
-name: sru_dmidecode_attachment
+name: sru/info/dmidecode_attachment
 plugin: attachment
 user: root
 command: dmidecode
 
-name: sru_lspci_attachment
+name: sru/info/lspci_attachment
 plugin: attachment
 command: lspci -vvnn
 
-name: sru_modprobe_attachment
+name: sru/info/modprobe_attachment
 plugin: attachment
 command: find /etc/modprobe.* -name \*.conf | xargs cat
 
-name: sru_modules_attachment
+name: sru/info/modules_attachment
 plugin: attachment
 command: cat /etc/modules
 
-name: sru_sysctl_attachment
+name: sru/info/sysctl_attachment
 plugin: attachment
 command: find /etc/sysctl.* -name \*.conf | xargs cat
 
-name: sru_udev_attachment
+name: sru/info/udev_attachment
 plugin: attachment
 command: udevadm info --export-db
 
-name: sru_lsmod_attachment
+name: sru/info/lsmod_attachment
 plugin: attachment
 command: lsmod

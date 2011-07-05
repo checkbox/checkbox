@@ -1,5 +1,5 @@
 plugin: manual
-name: disk_test
+name: disk/detect
 command: udev_resource | filter_templates -w "category=DISK" | awk -F': ' '$1 == "product" { print $2 }'
 _description:
  The following hard drives were detected:
@@ -9,13 +9,13 @@ _description:
  Is this correct?
 
 plugin: local 
-name: disk_bench
+name: disk/benchmarks
 requires: device.category == 'DISK'
 _description: Benchmark for each disk 
 command: 
  cat <<'EOF' | run_templates -t -s 'udev_resource | filter_templates -w "category=DISK"'
  plugin: manual
- name: disk_bench_test_`ls /sys$path/block`
+ name: disk/benchmark_`ls /sys$path/block`
  requires: device.path == "$path" and package.name == 'linux'
  user: root
  command: hdparm -tT /dev/`ls /sys$path/block` | sed 's/:.*= */ = /' | grep -v "^$"
@@ -28,7 +28,7 @@ command:
  EOF
 
 plugin: local
-name: disk_smart
+name: disk/smart
 requires:
  package.name == 'smartmontools'
  package.name == 'linux'
@@ -37,7 +37,7 @@ _description: SMART test
 command:
  cat <<'EOF' | run_templates -t -s 'udev_resource | filter_templates -w "category=DISK"'
  plugin: shell
- name: disk_smart_`ls /sys$path/block`
+ name: disk/smart_`ls /sys$path/block`
  requires: device.path == "$path"
  description: SMART test for $product
  user: root
@@ -45,7 +45,7 @@ command:
  EOF
 
 plugin: local
-name: max_diskspace_used_test
+name: disk/max_diskspace_used
 requires:
  device.category == 'DISK'
 _description: Maximum disk space used during a default installation test
@@ -60,7 +60,7 @@ command:
  EOF
 
 plugin: local
-name: disk_read_performance_test
+name: disk/read_performance
 requires:
  device.category == 'DISK'
 _description: Verify system storage performs at or above baseline performance
@@ -77,14 +77,14 @@ command:
  EOF
 
 plugin: local
-name: storage_devices_test
+name: disk/storage_devices
 requires:
  device.category == 'DISK'
 _description: Verify that storage devices, such as Fibre Channel and RAID can be detected and perform under stress.
 command:
  cat <<'EOF' | run_templates -t -s 'udev_resource | filter_templates -w "category=DISK"'
  plugin: shell
- name: storage_devices_test_`ls /sys$path/block`
+ name: disk/storage_device_`ls /sys$path/block`
  user: root
  requires:
   device.path == "$path"

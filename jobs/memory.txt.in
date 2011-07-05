@@ -1,17 +1,17 @@
-plugin: shell
-name: memory_test
-requires: package.name == 'linux'
-user: root
-command: memory_test
-_description:
- Test and exercise memory.
-
 plugin: manual
 name: memory
-command: memory_info
+command: memory/info
 _description:
  The following amount of memory was detected:
  .
  $output
  .
  Is this correct?
+
+plugin: shell
+name: memory/check
+requires: package.name == 'linux'
+user: root
+command: memory_test
+_description:
+ Test and exercise memory.

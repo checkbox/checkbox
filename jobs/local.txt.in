@@ -43,6 +43,11 @@ plugin: local
 _description: Firewire disk tests
 command: cat $CHECKBOX_SHARE/jobs/firewire.txt*
 
+name: graphics
+plugin: local
+_description: Graphics tests
+command: cat $CHECKBOX_SHARE/jobs/graphics.txt*
+
 name: kms
 plugin: local
 _description: Kernel modesetting tests
@@ -77,11 +82,6 @@ name: user_apps
 plugin: local
 _description: User Applications
 command: cat $CHECKBOX_SHARE/jobs/user_apps.txt*
-
-name: video
-plugin: local
-_description: Video tests
-command: cat $CHECKBOX_SHARE/jobs/video.txt*
 
 name: sleep
 plugin: local
