@@ -1,15 +1,4 @@
 plugin: manual
-name: dvd_playback
-command: totem /media/cdrom
-requires:
- device.category == 'CDROM'
- package.name == 'totem'
-_description:
- Insert a DVD.  Then select Test to play the DVD in Totem.
- .
- Did the file play?
-
-plugin: manual
 name: media-sd
 _description:
  Secure Digital (SD) media card support verification:

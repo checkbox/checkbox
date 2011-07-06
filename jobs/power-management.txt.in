@@ -1,3 +1,34 @@
+plugin: manual
+name: power-management/shutdown-boot
+_description:
+ Shutdown/boot cycle verification procedure:
+ 1.- Shutdown your machine
+ 2.- Boot your machine
+ 3.- Repeat steps 1 and 2 at least 5 times
+ .
+ Note: This test case has to be executed manually before checkbox execution
+
+plugin: manual
+name: power-management/suspend
+command: pm-suspend
+_description:
+ Run the computer suspend test. Then, press the power button to resume it.
+ .
+ Does your computer suspend and resume?
+
+plugin: manual
+name: power-management/hibernate
+command: pm-hibernate
+_description:
+ Run the computer hibernate test. Then, press the power button to restore it.
+ .
+ Does your computer hibernate and restore?
+
+plugin: manual
+name: power-management/lid
+_description:
+ Does closing your laptop lid cause your screen to blank?
+
 plugin: shell
 name: power-management/network_before_suspend
 depends: network_test
@@ -68,7 +99,7 @@ _description:
  Make sure that the RTC (Real-Time Clock) device exists.
 
 plugin: manual
-name: power-management/suspend
+name: power-management/suspend_advanced
 depends: power-management/rtc power-management/network_before_suspend power-management/resolution_before_suspend power-management/wireless_before_suspend power-management/bluetooth_detect_before_suspend power-management/bluetooth_mouse_before_suspend
 requires: package.name == 'pm-utils'
 _description:
@@ -176,7 +207,7 @@ _description:
  Did the system successfully suspend and resume for 30 iterations?
 
 plugin: manual
-name: power-management/hibernate
+name: power-management/hibernate_advanced
 depends: power-management/rtc
 requires: package.name == 'pm-utils'
 user: root

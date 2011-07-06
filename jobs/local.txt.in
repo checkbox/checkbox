@@ -78,15 +78,15 @@ plugin: local
 _description: Peripheral tests
 command: cat $CHECKBOX_SHARE/jobs/peripheral.txt*
 
+name: power-management
+plugin: local
+_description: Power Management tests
+command: cat $CHECKBOX_SHARE/jobs/power-management.txt*
+
 name: user_apps
 plugin: local
 _description: User Applications
 command: cat $CHECKBOX_SHARE/jobs/user_apps.txt*
-
-name: sleep
-plugin: local
-_description: Sleep Tests
-command: cat $CHECKBOX_SHARE/jobs/sleep.txt*
 
 name: stress
 plugin: local
