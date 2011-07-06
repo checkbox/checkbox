@@ -1,0 +1,16 @@
+plugin: manual
+name: input/mouse
+requires: device.category == 'MOUSE'
+_description:
+ Moving the mouse should move the cursor on the screen.
+ .
+ Is your mouse working properly?
+
+plugin: manual
+name: input/keyboard
+command: keyboard_test
+requires: device.category == 'KEYBOARD'
+_description:
+ Select Test to open a text area where to type keys on your keyboard.
+ .
+ Is your keyboard working properly?

@@ -231,3 +231,29 @@ _description:
  Also, you will need to ensure your system has no power-on or HDD passwords set, and that grub is set to boot Ubuntu by default if you have a multi-boot set-up.
  .
  Did the system successfully hibernate and wake 30 times?
+
+plugin: shell
+name: power-management/fwts_wakealarm
+_description: Run Colin Kings FWTS wakealarm test
+requires:
+ package.name == 'linux'
+ package.name == 'fwts'
+command: fwts_test -w -l $CHECKBOX_DATA/fwts-wakealarm.log
+
+plugin: shell
+name: power-management/tickless_idle
+requires: package.name == 'linux'
+_description: Check to see if CONFIG_NO_HZ is set in the kernel
+command:
+ zgrep 'CONFIG_NO_HZ=y' /boot/config-`uname -r` >/dev/null 2>&1
+
+plugin: shell
+name: power-management/suspend_advanced_auto
+depends: power-management/rtc power-management/network_before_suspend 
+requires: package.name == 'pm-utils'
+_description:
+ Automatic power management Suspend and Resume test
+ .
+ Select test and your system will suspend for about 30 - 60 seconds. If your system does not wake itself up after 60 seconds, please press the power button momentarily to wake the system manually. If your system fails to wake at all and must be rebooted, restart System Testing after reboot and mark this test as Failed.
+user: root
+command: sleep_test -d
