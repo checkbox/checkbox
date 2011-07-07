@@ -66,7 +66,7 @@ command: cat $CHECKBOX_SHARE/jobs/input.txt*
 name: __install__
 plugin: local
 _description: Software Installation tests
-command: cat $CHECKBOX_SHARE/jobs/software/install.txt*
+command: cat $CHECKBOX_SHARE/jobs/install.txt*
 
 name: __keys__
 plugin: local
@@ -116,7 +116,7 @@ command: cat $CHECKBOX_SHARE/jobs/unity.txt*
 name: __user_apps__
 plugin: local
 _description: User Applications
-command: cat $CHECKBOX_SHARE/jobs/software/user_apps.txt*
+command: cat $CHECKBOX_SHARE/jobs/user_apps.txt*
 
 name: stress
 plugin: local
