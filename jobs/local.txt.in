@@ -108,6 +108,11 @@ plugin: local
 _description: Power Management tests
 command: cat $CHECKBOX_SHARE/jobs/power-management.txt*
 
+name: __unity__
+plugin: local
+_description: Unity tests
+command: cat $CHECKBOX_SHARE/jobs/unity.txt*
+
 name: __user_apps__
 plugin: local
 _description: User Applications
