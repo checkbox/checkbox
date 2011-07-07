@@ -1,16 +1,77 @@
+plugin: manual
+name: power-management/shutdown-boot
+_description:
+ Shutdown/boot cycle verification procedure:
+ 1.- Shutdown your machine
+ 2.- Boot your machine
+ 3.- Repeat steps 1 and 2 at least 5 times
+ .
+ Note: This test case has to be executed manually before checkbox execution
+
+plugin: manual
+name: power-management/suspend
+command: pm-suspend
+_description:
+ Run the computer suspend test. Then, press the power button to resume it.
+ .
+ Does your computer suspend and resume?
+
+plugin: manual
+name: power-management/hibernate
+command: pm-hibernate
+_description:
+ Run the computer hibernate test. Then, press the power button to restore it.
+ .
+ Does your computer hibernate and restore?
+
+plugin: manual
+name: power-management/lid
+_description:
+ Does closing your laptop lid cause your screen to blank?
+
+plugin: manual
+name: power-management/lid_close
+requires: device.product == 'Lid Switch' and package.name == 'linux'
+command:
+ for i in `seq 20`; do
+  state=`cat /proc/acpi/button/lid/LID/state | awk '{print $2}'`
+  [ "$state" = "closed" ] && exit 0 || sleep 0.5
+ done
+ exit 1
+_description:
+ Click the Test button, then close and open the lid.
+ .
+ Did the screen turn off while the lid was closed?
+
+plugin: manual
+name: power-management/lid_open
+requires: device.product == 'Lid Switch' and package.name == 'linux'
+command:
+ for i in `seq 20`; do
+  state=`cat /proc/acpi/button/lid/LID/state | awk '{print $2}'`
+  [ "$state" = "open" ] && exit 0 || sleep 0.5
+ done
+ exit 1
+_description:
+ Click the Test button, then close the lid and wait 5 seconds.
+ .
+ Open the lid.
+ .
+ Did the screen turn back on when the lid was opened?
+
 plugin: shell
-name: network_before_suspend
+name: power-management/network_before_suspend
 depends: network_test
 _description: Test the network before suspending.
 command: network_check -a
 
 plugin: shell
-name: resolution_before_suspend
+name: power-management/resolution_before_suspend
 _description: Record the current resolution before suspending.
 command: xrandr -q |grep '*'| awk '{print $1}' > $CHECKBOX_DATA/resolution_before_suspend.txt
 
 plugin: shell
-name: audio_before_suspend
+name: power-management/audio_before_suspend
 requires:
  device.category == 'AUDIO'
  package.name == 'alsa-base'
@@ -18,7 +79,7 @@ _description: Test the audio before suspending.
 command: amixer > $CHECKBOX_DATA/audio_before_suspend.txt
 
 plugin: manual
-name: wireless_before_suspend
+name: power-management/wireless_before_suspend
 command: internet_test
 _description:
  Wireless network connection procedure:
@@ -34,7 +95,7 @@ _description:
  Is this correct?
 
 plugin: manual
-name: bluetooth_detect_before_suspend
+name: power-management/bluetooth_detect_before_suspend
 requires: package.name == 'bluez'
 command: hcitool dev | tail -n+2 | awk '{print $2}'
 _description:
@@ -44,8 +105,8 @@ _description:
  Is this correct?
 
 plugin: manual
-name: bluetooth_mouse_before_suspend
-depends: bluetooth_detect_before_suspend
+name: power-management/bluetooth_mouse_before_suspend
+depends: power-management/bluetooth_detect_before_suspend
 _description:
  Verify a bluetooth peripheral.  An example verification procedure for a bluetooth mouse is given.
  .
@@ -60,7 +121,7 @@ _description:
  Did all the steps work?
 
 plugin: shell
-name: rtc
+name: power-management/rtc
 requires: package.name == 'linux'
 command:
  test -e /dev/rtc
@@ -68,8 +129,8 @@ _description:
  Make sure that the RTC (Real-Time Clock) device exists.
 
 plugin: manual
-name: sleep_state_test
-depends: rtc network_before_suspend resolution_before_suspend wireless_before_suspend bluetooth_detect_before_suspend bluetooth_mouse_before_suspend
+name: power-management/suspend_advanced
+depends: power-management/rtc power-management/network_before_suspend power-management/resolution_before_suspend power-management/wireless_before_suspend power-management/bluetooth_detect_before_suspend power-management/bluetooth_mouse_before_suspend
 requires: package.name == 'pm-utils'
 _description:
  Power management Suspend and Resume test
@@ -79,29 +140,29 @@ user: root
 command: sleep_test -d
 
 plugin: shell
-name: network_after_suspend
-depends: sleep_state_test network_before_suspend
+name: power-management/network_after_suspend
+depends: power-management/suspend power-management/network_before_suspend
 _description: Test the network after resuming.
 command: internet_test
 
 plugin: shell
-name: resolution_after_suspend
-depends: sleep_state_test resolution_before_suspend
+name: power-management/resolution_after_suspend
+depends: power-management/suspend power-management/resolution_before_suspend
 _description: Test to see that we have the same resolution after resuming as before.
 command: xrandr -q |grep '*'| awk '{print $1}' | diff $CHECKBOX_DATA/resolution_before_suspend.txt -
 
 plugin: shell
-name: audio_after_suspend
+name: power-management/audio_after_suspend
 requires:
  device.category == 'AUDIO'
  package.name == 'alsa-base'
-depends: sleep_state_test audio_before_suspend
+depends: power-management/suspend power-management/audio_before_suspend
 _description: Test the audio after resuming.
 command: amixer | diff $CHECKBOX_DATA/audio_before_suspend.txt -
 
 plugin: manual
-name: wireless_after_suspend
-depends: sleep_state_test wireless_before_suspend
+name: power-management/wireless_after_suspend
+depends: power-management/suspend power-management/wireless_before_suspend
 command: internet_test
 _description:
  Wireless network connection procedure:
@@ -117,8 +178,8 @@ _description:
  Is this correct?
 
 plugin: manual
-name: bluetooth_detect_after_suspend
-depends: sleep_state_test bluetooth_detect_before_suspend
+name: power-management/bluetooth_detect_after_suspend
+depends: power-management/suspend power-management/bluetooth_detect_before_suspend
 requires: package.name == 'bluez'
 command: hcitool dev | tail -n+2 | awk '{print $2}'
 _description:
@@ -128,8 +189,8 @@ _description:
  Is this correct?
 
 plugin: manual
-name: bluetooth_mouse_after_suspend
-depends: sleep_state_test bluetooth_detect_after_suspend
+name: power-management/bluetooth_mouse_after_suspend
+depends: power-management/suspend power-management/bluetooth_detect_after_suspend
 _description:
  Verify a bluetooth peripheral.  An example verification procedure for a bluetooth mouse is given.
  .
@@ -144,15 +205,15 @@ _description:
  Did all the steps work?
 
 plugin: manual
-name: cycle_resolutions_after_suspend
-depends: sleep_state_test xrandr_cycle
+name: power-management/cycle_resolutions_after_suspend
+depends: power-management/suspend graphics/xrandr_cycle
 _description:
  This test will check to make sure that supported video modes work after a suspend and resume.  Select Test to begin.
 command: xrandr_cycle
 
 plugin: manual
-name: record_playback_after_suspend
-depends: sleep_state_test
+name: power-management/record_playback_after_suspend
+depends: power-management/suspend
 requires:
  device.category == 'AUDIO'
  package.name == 'alsa-base'
@@ -165,8 +226,8 @@ _description:
  Did you hear your speech played back?
 
 plugin: manual
-name: suspend_30_cycles
-depends: rtc
+name: power-management/suspend_30_cycles
+depends: power-management/rtc
 requires: package.name == 'pm-utils'
 user: root
 command: sleep_test -i 30 -s mem --debug
@@ -176,8 +237,8 @@ _description:
  Did the system successfully suspend and resume for 30 iterations?
 
 plugin: manual
-name: hibernate_once
-depends: rtc
+name: power-management/hibernate_advanced
+depends: power-management/rtc
 requires: package.name == 'pm-utils'
 user: root
 command: sleep_test -s disk -w 120 --debug
@@ -189,8 +250,8 @@ _description:
  Did the system successfully hibernate and did it work properly after waking up?
 
 plugin: manual
-name: hibernate_30_cycles
-depends: rtc
+name: power-management/hibernate_30_cycles
+depends: power-management/rtc
 requires: package.name == 'pm-utils'
 user: root
 command: sleep_test -i 30 -s disk -w 120 --debug
@@ -200,3 +261,29 @@ _description:
  Also, you will need to ensure your system has no power-on or HDD passwords set, and that grub is set to boot Ubuntu by default if you have a multi-boot set-up.
  .
  Did the system successfully hibernate and wake 30 times?
+
+plugin: shell
+name: power-management/fwts_wakealarm
+_description: Run Colin Kings FWTS wakealarm test
+requires:
+ package.name == 'linux'
+ package.name == 'fwts'
+command: fwts_test -w -l $CHECKBOX_DATA/fwts-wakealarm.log
+
+plugin: shell
+name: power-management/tickless_idle
+requires: package.name == 'linux'
+_description: Check to see if CONFIG_NO_HZ is set in the kernel
+command:
+ zgrep 'CONFIG_NO_HZ=y' /boot/config-`uname -r` >/dev/null 2>&1
+
+plugin: shell
+name: power-management/suspend_advanced_auto
+depends: power-management/rtc power-management/network_before_suspend 
+requires: package.name == 'pm-utils'
+_description:
+ Automatic power management Suspend and Resume test
+ .
+ Select test and your system will suspend for about 30 - 60 seconds. If your system does not wake itself up after 60 seconds, please press the power button momentarily to wake the system manually. If your system fails to wake at all and must be rebooted, restart System Testing after reboot and mark this test as Failed.
+user: root
+command: sleep_test -d

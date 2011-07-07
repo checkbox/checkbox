@@ -1,16 +1,5 @@
 plugin: manual
-name: dvd_playback
-command: totem /media/cdrom
-requires:
- device.category == 'CDROM'
- package.name == 'totem'
-_description:
- Insert a DVD.  Then select Test to play the DVD in Totem.
- .
- Did the file play?
-
-plugin: manual
-name: media-sd
+name: mediacard/sd
 _description:
  Secure Digital (SD) media card support verification:
   1.- Plug a SD media card into the computer.
@@ -21,8 +10,8 @@ _description:
  Does the icon automatically appear/disappear?
 
 plugin: manual
-name: media-sd-post-suspend
-depends: sleep_state_test media-sd
+name: mediacard/sd_after_suspend
+depends: power-management/suspend_advanced mediacard/sd
 _description:
  Secure Digital (SD) media card support re-verification:
   1.- Plug a SD media card into the computer.
@@ -33,7 +22,7 @@ _description:
  Does the icon automatically appear/disappear?
 
 plugin: manual
-name: media-sdhc
+name: mediacard/sdhc
 _description:
  Secure Digital High Capacity (SDHC) media card support verification:
   1.- Plug a SDHC media card into the computer.
@@ -44,8 +33,8 @@ _description:
  Does the icon automatically appear/disappear?
 
 plugin: manual
-name: media-sdhc-post-suspend
-depends: sleep_state_test
+name: mediacard/sdhc_after_suspend
+depends: power-management/suspend_advanced mediacard/sdhc
 _description:
  Secure Digital High Capacity (SDHC) media card support re-verification:
   1.- Plug a SDHC media card into the computer.
@@ -56,7 +45,7 @@ _description:
  Does the icon automatically appear/disappear?
 
 plugin: manual
-name: media-mmc
+name: mediacard/mmc
 _description:
  Multi Media Card (MMC) media card support verification:
   1.- Plug a MMC media card into the computer.
@@ -67,8 +56,8 @@ _description:
  Does the icon automatically appear/disappear?
 
 plugin: manual
-name: media-mmc-post-suspend
-depends: sleep_state_test media-mmc
+name: mediacard/mmc_after_suspend
+depends: power-management/suspend_advanced mediacard/mmc
 _description:
  Multi Media Card (MMC) media card support re-verification:
   1.- Plug a MMC media card into the computer.
@@ -79,7 +68,7 @@ _description:
  Does the icon automatically appear/disappear?
 
 plugin: manual
-name: media-ms
+name: mediacard/ms
 _description:
  Memory Stick (MS) media card support verification:
   1.- Plug a MS media card into the computer.
@@ -90,8 +79,8 @@ _description:
  Does the icon automatically appear/disappear?
 
 plugin: manual
-name: media-ms-post-suspend
-depends: sleep_state_test media-ms
+name: mediacardms_after_suspend
+depends: power-management/suspend_advanced mediacard/ms
 _description:
  Memory Stick (MS) media card support re-verification:
   1.- Plug a MS media card into the computer.
@@ -102,7 +91,7 @@ _description:
  Does the icon automatically appear/disappear?
 
 plugin: manual
-name: media-msp
+name: mediacard/msp
 _description:
  Memory Stick Pro (MSP) media card support verification:
   1.- Plug a MSP media card into the computer.
@@ -113,8 +102,8 @@ _description:
  Does the icon automatically appear/disappear?
 
 plugin: manual
-name: media-msp-post-suspend
-depends: sleep_state_test media-msp
+name: mediacard/msp_after_suspend
+depends: power-management/suspend_advanced mediacard/msp
 _description:
  Memory Stick Pro (MSP) media card support re-verification:
   1.- Plug a MSP media card into the computer.
@@ -125,7 +114,7 @@ _description:
  Does the icon automatically appear/disappear?
 
 plugin: manual
-name: media-cf
+name: mediacard/cf
 _description:
  Compact Flash (CF) media card support verification:
   1.- Plug a CF media card into the computer.
@@ -136,8 +125,8 @@ _description:
  Does the icon automatically appear/disappear?
 
 plugin: manual
-name: media-cf-post-suspend
-depends: sleep_state_test media-cf
+name: mediacard/cf_after_suspend
+depends: power-management/suspend_advanced mediacard/cf
 _description:
  Compact Flash (CF) media card support re-verification:
   1.- Plug a CF media card into the computer.

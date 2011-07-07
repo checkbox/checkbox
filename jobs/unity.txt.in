@@ -1,19 +1,14 @@
 plugin: local
-name: Unity_Suite
-command: filter_templates -b name=Unity_Suite $CHECKBOX_CERTIFICATION_SHARE/jobs/unity.txt
-_description: Unity Test Suite
-
-plugin: local
-name: check_and_install_xlib
+name: unity/check_and_install_xlib
 requires: package.name == 'unity'
 user: root
 command: dpkg -l | grep -iq 'python-xlib' || apt-get install -y  python-xlib
 _description: Xlib is required for unity testing. This checks for Xlib and installs it if not available.
 
 plugin: shell
-name: unity_autopilot_test
+name: unity/autopilot_test
 requires: package.name == 'unity'
-depends: check_and_install_xlib
+depends: unity/check_and_install_xlib
 command: check_unity
 _description:
  This test will verify that Unity is running and then run the autopilot.py test against the Unity interface.

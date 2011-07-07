@@ -1,5 +1,47 @@
 plugin: manual
-name: monitor-powersaving
+name: monitor/vga
+_description:
+ If your system does not have a VGA port, please skip this test.
+ .
+ Connect a display (if not already connected) to the VGA port on your system. Is the image displayed correctly?
+
+plugin: manual
+name: monitor/dvi
+_description:
+ If your system does not have a DVI port, please skip this test.
+ .
+ Connect a display (if not already connected) to the DVI port on your system. Is the image displayed correctly?
+
+plugin: manual
+name: monitor/displayport
+_description:
+ If your system does not have DisplayPort, please skip this test.
+ .
+ Connect a display (if not already connected) to the DisplayPort on your system. Is the image displayed correctly?
+
+plugin: manual
+name: monitor/hdmi
+_description:
+ If your system does not have a HDMI port, please skip this test.
+ .
+ Connect a display (if not already connected) to the HDMI port on your system. Is the image displayed correctly?
+
+plugin: manual
+name: monitor/svideo
+_description:
+ If your system does not have a S-VIDEO port, please skip this test.
+ .
+ Connect a display (if not already connected) to the S-VIDEO port on your system. Is the image displayed correctly?
+
+plugin: manual
+name: video-rca
+_description:
+ If your system does not have a RCA port, please skip this test.
+ .
+ Connect a display (if not already connected) to the RCA port on your system. Is the image displayed correctly?
+
+plugin: manual
+name: monitor/powersaving
 command: xset dpms force off
 _description:
  Monitor power saving verification procedure:

@@ -234,8 +234,8 @@ This project provides an extensible interface for system testing.
         "checkbox.reports", "checkbox_cli", "checkbox_gtk", "checkbox_urwid"],
     cmdclass = {
         "build": checkbox_build,
-        "build_i18n":  build_i18n,
-        "build_icons":  checkbox_build_icons,
+        "build_i18n": build_i18n,
+        "build_icons": checkbox_build_icons,
         "clean": checkbox_clean,
         "install": checkbox_install,
         "install_data": checkbox_install_data,

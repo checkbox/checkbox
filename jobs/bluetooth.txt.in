@@ -1,5 +1,5 @@
 plugin: manual
-name: bluetooth-detect
+name: bluetooth/detect
 requires: package.name == 'bluez'
 command: hcitool dev | tail -n+2 | awk '{print $2}'
 _description:
@@ -9,15 +9,15 @@ _description:
  Is this correct?
 
 plugin: shell
-name: bluetooth-detect-output
+name: bluetooth/detect-output
 requires: package.name == 'bluez'
 command: hcitool dev | tail -n+2 | awk '{print $2}'
 _description:
  Automated test to store output in checkbox report
 
 plugin: manual
-name: bluetooth-browse-files
-depends: bluetooth-detect
+name: bluetooth/browse-files
+depends: bluetooth/detect
 _description:
  Bluetooth browse files procedure:
  1.- Enable bluetooth on any mobile device (PDA, smartphone, etc.)
@@ -33,8 +33,8 @@ _description:
  Did all the steps work?
 
 plugin: manual
-name: bluetooth-file-transfer
-depends: bluetooth-browse-files
+name: bluetooth/file-transfer
+depends: bluetooth/browse-files
 _description:
  Bluetooth file transfer procedure:
  1.- Make sure that you're able to browse the files in your mobile device
@@ -46,8 +46,8 @@ _description:
  Did all the steps work?
 
 plugin: manual
-name: bluetooth-audio
-depends: bluetooth-detect
+name: bluetooth/audio
+depends: bluetooth/detect
 requires: package.name == 'alsa-utils'
 command: arecord -d 5 -D bluetooth -f S16_LE | aplay -D bluetooth -f S16_LE
 _description:
@@ -63,9 +63,9 @@ _description:
  Did all the steps work?
 
 plugin: manual
-name: bluetooth-keyboard
+name: bluetooth/keyboard
 command: keyboard_test
-depends: bluetooth-detect
+depends: bluetooth/detect
 _description:
  Bluetooth keyboard procedure:
  1.- Enable the bluetooth keyboard
@@ -77,8 +77,8 @@ _description:
  Did all the steps work?
 
 plugin: manual
-name: bluetooth-mouse
-depends: bluetooth-detect
+name: bluetooth/mouse
+depends: bluetooth/detect
 _description:
  Bluetooth mouse procedure:
  1.- Enable the bluetooth mouse

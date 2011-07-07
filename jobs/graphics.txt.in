@@ -1,0 +1,156 @@
+plugin: manual
+name: graphics/xorg-version
+requires: package.name == "x11-utils"
+command: xdpyinfo | grep "^X.Org version" | cut -d ':' -f 2 | tr -d ' '
+_description:
+ 2d graphics appears to be working, your running X.Org version is:
+ $output
+ .
+ Is this correct?
+
+plugin: shell
+name: graphics/xorg-version-output
+command: xdpyinfo | grep "^X.Org version" | cut -d ':' -f 2 | tr -d ' '
+requires: package.name == "x11-utils"
+_description:
+ Automated test to store output in checkbox report
+
+plugin: shell
+name: graphics/gtkperf
+depends: graphics/xorg-version
+requires: package.name == 'gtkperf'
+command: gtkperf -a
+_description:
+ Run gtkperf to make sure that GTK based test cases work
+ .
+ In the future add the returned time as a benchmark result to the checkbox report
+
+plugin: manual
+name: graphics/resolution-change
+depends: graphics/xorg-version
+_description:
+ Display resolution change procedure:
+ 1.- Open System->Preferences->Monitors
+ 2.- Select a new resolution from the dropdown list
+ 3.- Click on Apply
+ 4.- The resolution should change
+ 5.- Select the original resolution from the dropdown list
+ 6.- Click on Apply
+ 7.- The resolution should change again
+ .
+ Did the resolution change as expected?
+
+plugin: manual
+name: graphics/rotation
+depends: graphics/xorg-version
+_description:
+ Display rotation verification procedure:
+ 1.- Open System->Preferences->Monitors
+ 2.- Select a new rotation value from the dropdown list
+ 3.- Click on Apply
+ 4.- The display should be rotated according to the new configuration value
+ 5.- Click on Restore Previous Configuration
+ 6.- The display configuration change should be reverted
+ 7.- Repeat 2-6 for different rotation values
+ .
+ Did the display rotation change as expected?
+
+plugin: shell
+name: graphics/xorg-process
+requires: package.name == 'xorg' and package.name == 'procps'
+command: pgrep -f '/usr/bin/X' >/dev/null
+_description: Test that the X process is running.
+
+plugin: shell
+name: graphics/xorg-failsafe
+requires: package.name == 'xorg'
+command: ! test -e /var/log/Xorg.failsafe.log
+_description: Test that the X is not running in failsafe mode.
+
+plugin: shell
+name: graphics/xorg-memory
+requires: package.name == 'xorg' and device.driver == 'i915'
+user: root
+command: xorg_memory_test xeyes
+_description: Test that X does not leak memory when running programs.
+
+plugin: manual
+name: graphics/resolution
+requires:
+ device.category == 'VIDEO'
+command: resolution_test
+_description:
+ This display is using the following resolution:
+ .
+ $output
+ .
+ Is this acceptable for your display?
+
+plugin: shell
+name: graphics/minimum_resolution_desktop
+requires:
+ device.category == 'VIDEO'
+ package.name == 'ubuntu-desktop'
+command: resolution_test --horizontal 1024 --vertical 768
+_description:
+ Ensure the current resolution meets or exceeds the recommended minimum
+ resolution (1024 x 768). See here for details:
+ .
+ https://help.ubuntu.com/community/Installation/SystemRequirements
+
+plugin: shell
+name: graphics/minimum_resolution_netbook
+requires:
+ device.category == 'VIDEO'
+ package.name == 'ubuntu-netbook'
+command: resolution_test --horizontal 1024 --vertical 600
+_description:
+ Ensure the current resolution meets or exceeds the recommended minimum
+ resolution (1024 x 600). See here for details:
+ .
+ https://help.ubuntu.com/community/Installation/SystemRequirements
+
+plugin: manual
+name: graphics/display
+requires: package.name == 'xorg' and package.name == 'python-gst0.10'
+command: gst_pipeline_test -t 2 'videotestsrc ! ffmpegcolorspace ! gconfvideosink'
+_description:
+ Select Test to display a video test.
+ .
+ Do you see color bars and static?
+
+plugin: manual
+name: graphics/xrandr_detect_modes
+requires: package.name == 'xorg'
+command: xrandr
+_description:
+ The following screens and video modes have been detected on your system:
+ .
+ $output
+ .
+ Is this correct?
+
+plugin: manual
+name: graphics/xrandr_cycle
+requires: package.name == 'xorg'
+depends: xrandr_detect_modes
+command: xrandr_cycle
+_description:
+ Select Test to cycle through the detected video modes for your system.
+ .
+ Did the screen appear to be working for each mode?
+
+plugin: shell
+name: graphics/compiz_check
+command: run_compiz_check | ansi_parser
+_description:
+ Check that the hardware is able to run compiz.
+
+plugin: manual
+name: graphics/glxgears
+requires: package.name == 'mesa-utils'
+command: glxgears
+_description:
+ Select Test to execute glxgears to ensure that minimal 3d graphics support is in place.
+ .
+ Did the 3d animation appear?

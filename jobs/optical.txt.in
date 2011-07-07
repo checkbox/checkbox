@@ -1,5 +1,5 @@
 plugin: manual
-name: optical
+name: optical/detect
 requires: device.category == 'CDROM' 
 command:
  cat <<'EOF' | run_templates -t -s 'udev_resource | filter_templates -w "category=CDROM"' | sed '/^$/d'
@@ -13,15 +13,15 @@ _description:
  Is this correct?
 
 plugin: local
-name: optical-read
+name: optical/read
 requires: device.category == 'CDROM'
 _description: Optical Storage device read tests
 command:
  cat <<'EOF' | run_templates -t -s 'udev_resource | filter_templates -w "category=CDROM"'
  plugin: manual
- name: optical-read-`ls /sys$path/block`
+ name: optical/read_`ls /sys$path/block`
  requires: device.path == "$path" and package.name == 'linux'
- depends: optical
+ depends: optical/detect
  user: root
  command: optical_read_test /dev/`ls /sys$path/block`
  _description:
@@ -31,8 +31,8 @@ command:
  EOF
 
 plugin: manual
-name: cdrom-write
-depends: optical
+name: optical/cdrom-write
+depends: optical/detect
 requires: device.category == 'CDROM'
 _description:
  The detected optical drive seems to support writing. Enter a blank CDROM \
@@ -41,8 +41,8 @@ _description:
  Does writing work?
 
 plugin: manual
-name: cdrom-audio-playback
-depends: optical-read
+name: optical/cdrom-audio-playback
+depends: optical/read
 _description:
  CD audio playback procedure:
  1.- Insert an audio cd in your optical drive.
@@ -57,8 +57,8 @@ _description:
  Did all the steps work?
 
 plugin: manual
-name: dvd-write
-depends: optical
+name: optical/dvd-write
+depends: optical/detect
 requires: device.category == 'CDROM'
 _description:
  The detected optical drive seems to support writing. Enter a blank DVD \
@@ -67,8 +67,8 @@ _description:
  Does writing work?
 
 plugin: manual
-name: dvd-movie-playback
-depends: optical-read
+name: optical/dvd_movie_playback
+depends: optical/read
 _description:
  DVD movie playback procedure:
  1.- Insert a DVD that contains any movie in your optical drive.
@@ -80,3 +80,14 @@ _description:
  7.- The DVD should be ejected and the icon removed from the desktop.
  .
  Did all the steps work?
+
+plugin: manual
+name: optical/dvd_playback
+command: totem /media/cdrom
+requires:
+ device.category == 'CDROM'
+ package.name == 'totem'
+_description:
+ Insert a DVD.  Then select Test to play the DVD in Totem.
+ .
+ Did the file play?

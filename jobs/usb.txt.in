@@ -1,5 +1,5 @@
 plugin: manual
-name: usb
+name: usb/detect
 requires: package.name == 'linux'
 command: lsusb | sed 's/.*\(ID .*\)/\1/' | head -n 4
 _description:
@@ -10,8 +10,8 @@ _description:
  Is this correct?
 
 plugin: manual
-name: usb-keyboard
-depends: usb
+name: usb/keyboard
+depends: usb/detect
 requires: package.name == 'linux'
 command: keyboard_test
 _description:
@@ -21,8 +21,8 @@ _description:
  Does the keyboard work?
 
 plugin: manual
-name: usb-mouse
-depends: usb
+name: usb/mouse
+depends: usb/detect
 requires: package.name == 'linux'
 _description:
  USB mouse verification procedure:
@@ -32,8 +32,8 @@ _description:
  Did all the steps work?
 
 plugin: manual
-name: usb-insert
-depends: usb
+name: usb/insert
+depends: usb/detect
 requires: package.name == 'linux'
 command: watch_command -q -r 5 lsusb
 _description:
@@ -44,8 +44,8 @@ _description:
  If no USB device is inserted or the device is not recognized, the test will fail and 'No' will be selected below.
 
 plugin: manual
-name: usb-remove
-depends: usb-insert
+name: usb/remove
+depends: usb/insert
 requires: package.name == 'linux'
 command: watch_command -q -r 5 lsusb
 _description:
@@ -55,9 +55,9 @@ _description:
  If the USB device isn't removed or the removal is not registered, the test will fail and 'No' will be selected below.
 
 plugin: manual
-name: usb-storage
+name: usb/storage
 requires: package.name == 'linux'
-depends: usb
+depends: usb/detect
 _description:
  Plug a USB storage device into the computer. An icon should appear \
  on the desktop and in the "Places" menu at the top of the screen.
@@ -65,9 +65,9 @@ _description:
  Does the window automatically appear?
 
 plugin: manual
-name: usb-storage-transfer
+name: usb/storage-transfer
 requires: package.name == 'linux'
-depends: usb-storage
+depends: usb/storage
 _description:
  USB HDD verification procedure:
  1.- Plug a USB HDD into the computer
@@ -77,9 +77,9 @@ _description:
  Do the copy operations work as expected?
 
 plugin: manual
-name: usb-panels
+name: usb/panels
 requires: package.name == 'linux'
-depends: usb-storage
+depends: usb/storage
 _description:
  Connect a USB storage device to an external USB slot on this computer. \
  An icon should appear on the desktop and in the "Places" menu at the top of the screen.

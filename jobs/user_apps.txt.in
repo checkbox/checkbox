@@ -1,5 +1,5 @@
 plugin: manual
-name: update_manager_finds_updates
+name: software/update_manager_finds_updates
 depends: internet_test
 user: root
 requires: package.name == 'update-manager'
@@ -8,7 +8,7 @@ _description:
 command: update-manager --check-dist-upgrades
 
 plugin: manual
-name: nautilus_folder_create
+name: software/nautilus_folder_create
 requires: package.name == 'nautilus'
 command: nautilus
 _description:
@@ -19,8 +19,8 @@ _description:
  Close the File browser.
 
 plugin: manual
-name: nautilus_folder_copy
-depends: nautilus_folder_create
+name: software/nautilus_folder_copy
+depends: software/nautilus_folder_create
 command: nautilus
 _description:
  Select Test to open the File Browser. Right click on the folder called Test Folder and click on Copy.  Right Click on any white area in the window and click on Paste.
@@ -32,8 +32,8 @@ _description:
  Close the File browser.
 
 plugin: manual
-name: nautilus_folder_move
-depends: nautilus_folder_copy
+name: software/nautilus_folder_move
+depends: software/nautilus_folder_copy
 command: nautilus
 _description:
  Select Test to open the File Browser. Click and drag the folder called Test Data onto the icon called Test Folder. Release the button.
@@ -45,8 +45,8 @@ _description:
  Close the File Browser.
 
 plugin: manual
-name: nautilus_file_create
-depends: nautilus_folder_create
+name: software/nautilus_file_create
+depends: software/nautilus_folder_create
 command: nautilus $HOME/"Test Folder"
 _description:
  Select Test to open the File Browser. Right click in the white space and click Create Document -> Empty File. Enter the name Test File 1 in the name box and hit Enter.
@@ -56,8 +56,8 @@ _description:
  Close the File browser.
 
 plugin: manual
-name: nautilus_file_copy
-depends: nautilus_file_create
+name: software/nautilus_file_copy
+depends: software/nautilus_file_create
 command: nautilus $HOME/"Test Folder"
 _description:
  Select Test to open the File Browser. Right click on the file called Test File 1 and click Copy. Right click in the white space and click Paste.
@@ -69,8 +69,8 @@ _description:
  Close the File Browser.
 
 plugin: manual
-name: nautilus_file_move
-depends: nautilus_file_copy
+name: software/nautilus_file_move
+depends: software/nautilus_file_copy
 command: nautilus $HOME/"Test Folder"
 _description:
  Select Test to open the File Browser. Click and drag the file called Test File 2 onto the icon for the folder called Test Data. Release the button.
@@ -82,8 +82,8 @@ _description:
  Close the File Browser.
 
 plugin: manual
-name: nautilus_file_delete
-depends: nautilus_file_create
+name: software/nautilus_file_delete
+depends: software/nautilus_file_create
 command: nautilus $HOME/"Test Folder"
 _description:
  Select Test to open the File Browser. Right click on the file called Test File 1 and click on Move To Trash.
@@ -93,8 +93,8 @@ _description:
  Close the File Browser.
 
 plugin: manual
-name: nautilus_folder_delete
-depends: nautilus_folder_create
+name: software/nautilus_folder_delete
+depends: software/nautilus_folder_create
 command: nautilus
 _description:
  Select Test to open the File Browser. Right click on the folder called Test Folder and click on Move To Trash.
@@ -104,7 +104,7 @@ _description:
  Close the File Browser.
 
 plugin: local
-name: Office Document Viewer Test
+name: software/view_office_document
 requires: package.name == "ubuntu-desktop"
 _description: Common Document Types Test
 command:
@@ -121,7 +121,7 @@ command:
  EOF
 
 plugin: local
-name: Audio File Player Test
+name: software/audio_file_play
 requires: package.name == "ubuntu-desktop"
 _description: Common Document Types Test
 command:
@@ -138,7 +138,7 @@ command:
  EOF
 
 plugin: local
-name: Video File Player Test
+name: software/video_file_play
 requires: package.name == "ubuntu-desktop"
 _description: Common Document Types Test
 command:
@@ -155,7 +155,7 @@ command:
  EOF
 
 plugin: local
-name: Image File Viewer Test
+name: software/view_image_file
 requires: package.name == "ubuntu-desktop"
 _description: Common Document Types Test
 command:
@@ -172,7 +172,7 @@ command:
  EOF
 
 plugin: manual
-name: applications-firefox
+name: software/firefox
 requires: package.name == 'firefox'
 command: firefox $CHECKBOX_SHARE/data/websites/testindex.html
 _description:
@@ -181,8 +181,8 @@ _description:
  Did the Ubuntu Test page load correctly?
 
 plugin: manual
-name: applications-firefox-java
-depends: applications-firefox
+name: software/firefox-java
+depends: software/firefox
 requires: package.name == 'firefox'
 command: firefox $CHECKBOX_SHARE/data/websites/javatest.html
 _description:
@@ -191,8 +191,8 @@ _description:
  Did the applet display?
 
 plugin: manual
-name: applications-firefox-flash
-depends: applications-firefox
+name: software/firefox-flash
+depends: software/firefox
 requires: package.name == 'firefox'
 command: firefox $CHECKBOX_SHARE/data/websites/flashtest.html
 _description:
@@ -201,8 +201,8 @@ _description:
  Did you see the text?
 
 plugin: manual
-name: applications-firefox-flash-video
-depends: applications-firefox-flash
+name: software/firefox-flash-video
+depends: software/firefox-flash
 requires: package.name == 'firefox'
 command: firefox $CHECKBOX_SHARE/data/websites/flashvideo.html
 _description:
@@ -211,8 +211,8 @@ _description:
  Did the video play correctly?
 
 plugin: manual
-name: applications-firefox-totem
-depends: applications-firefox
+name: software/firefox-totem
+depends: software/firefox
 requires: package.name == 'firefox'
 command: firefox $CHECKBOX_SHARE/data/video/Quicktime_Video.mov
 _description:
@@ -221,7 +221,7 @@ _description:
  Did the video play using a plugin?
 
 plugin: manual
-name: applications-empathy-facebook_chat
+name: software/empathy-facebook_chat
 requires: package.name == "empathy"
 command: empathy
 _description:
@@ -232,7 +232,7 @@ _description:
  Were you able to connect correctly and send/receive messages?
 
 plugin: manual
-name: applications-empathy-google_talk
+name: software/empathy-google_talk
 requires: package.name == "empathy"
 command: empathy
 _description:
@@ -243,7 +243,7 @@ _description:
  Were you able to connect correctly and send/receive messages?
 
 plugin: manual
-name: applications-empathy-jabber
+name: software/empathy-jabber
 requires: package.name == "empathy"
 command: empathy
 _description:
@@ -254,7 +254,7 @@ _description:
  Were you able to connect correctly and send/receive messages?
 
 plugin: manual
-name: applications-empathy-aim
+name: software/empathy-aim
 requires: package.name == "empathy"
 command: empathy
 _description:
@@ -265,7 +265,7 @@ _description:
  Were you able to connect correctly and send/receive messages?
 
 plugin: manual
-name: applications-empathy-msn
+name: software/empathy-msn
 requires: package.name == "empathy"
 command: empathy
 _description:

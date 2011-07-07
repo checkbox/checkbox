@@ -1,5 +1,5 @@
 plugin: manual
-name: login
+name: fingerprint/login
 _description:
  Prerequisites: This test case assumes that there's a testing account from which test cases are run and a personal account that the tester uses to verify the fingerprint reader
  .
@@ -14,7 +14,7 @@ _description:
  Did the authentication procedure work correctly?
 
 plugin: manual
-name: unlock
+name: fingerprint/unlock
 _description:
  Fingerprint unlock verification procedure:
   1.- Click on the user switcher applet.

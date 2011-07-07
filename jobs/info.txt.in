@@ -1,0 +1,125 @@
+
+name: info/codecs_attachment
+plugin: attachment
+requires: device.driver == 'HDA Intel'
+command: cat /proc/asound/card*/codec#*
+
+name: info/cpuinfo_attachment
+plugin: attachment
+command: cat /proc/cpuinfo
+
+name: info/dmesg_attachment
+plugin: attachment
+command: cat /var/log/dmesg | ansi_parser
+
+name: info/dmi_attachment
+plugin: attachment
+command: grep -r . /sys/class/dmi/id/ 2>/dev/null
+
+name: info/dmidecode_attachment
+plugin: attachment
+user: root
+command: dmidecode
+
+name: info/lspci_attachment
+plugin: attachment
+command: lspci -vvnn
+
+name: info/modprobe_attachment
+plugin: attachment
+command: find /etc/modprobe.* -name \*.conf | xargs cat
+
+name: info/modules_attachment
+plugin: attachment
+command: cat /etc/modules
+
+name: info/sysctl_attachment
+plugin: attachment
+command: find /etc/sysctl.* -name \*.conf | xargs cat
+
+name: info/udev_attachment
+plugin: attachment
+command: udevadm info --export-db
+
+name: info/gcov_attachment
+plugin: attachment
+requires: package.name == 'lcov'
+user: root
+command: gcov_tarball
+
+name: info/lsmod_attachment
+plugin: attachment
+command: lsmod
+
+plugin: shell
+name: info/screenshot
+requires:
+ package.name == 'xorg'
+ package.name == 'imagemagick'
+command: import -window root ${CHECKBOX_DATA}/screenshot.png
+_description:
+ Captures a screenshot.
+
+plugin: attachment
+name: info/screenshot.png
+depends: screenshot
+command: cat ${CHECKBOX_DATA}/screenshot.png
+
+plugin: attachment
+name: info/fwts_log
+depends: fwts_test
+_description:
+ Gather log from the firmware test suite run
+command:
+ cat $CHECKBOX_DATA/fwts_results.log
+
+plugin: attachment
+name: info/acpi_sleep_attachment
+command: cat /proc/acpi/sleep
+
+plugin: local
+name: info/bootchart
+_description: Bootchart information.
+requires: package.name == 'bootchart' or package.name == 'pybootchartgui'
+user: root
+command:
+ process_wait -u root bootchart collector ureadahead; \
+ [ `ls /var/log/bootchart/*.tgz 2>/dev/null | wc -l` -lt 2 ] && reboot && sleep 100
+
+plugin: local
+name: info/hdparm
+requires:
+ package.name == 'hdparm'
+ device.category == 'DISK'
+command:
+ cat <<'EOF' | run_templates -t -s 'udev_resource | filter_templates -w "category=DISK"'
+ plugin: attachment
+ name: info/hdparm_`ls /sys$path/block`.txt
+ requires: device.path == "$path"
+ user: root
+ command: hdparm -I /dev/`ls /sys$path/block`
+ EOF
+
+plugin: attachment
+name: info/bootchart.png
+depends: info/bootchart
+requires: (package.name == 'bootchart' and float(lsb.release) < 9.04) or package.name == 'pybootchartgui'
+command:
+ file=`ls /var/log/bootchart/*.png 2>/dev/null | tail -1`; \
+ [ -e "$file" ] && cat "$file"
+
+plugin: attachment
+name: info/bootchart.tgz
+depends: info/bootchart
+requires: package.name == 'bootchart' and float(lsb.release) >= 9.04
+command:
+ file=`ls /var/log/bootchart/*.tgz 2>/dev/null | tail -1`; \
+ [ -e "$file" ] && cat "$file"
+
+plugin: attachment
+name: info/installer_bootchart.tgz
+command: [ -e /var/log/installer/bootchart.tgz ] && cat /var/log/installer/bootchart.tgz
+
+plugin: attachment
+name: info/installer_debug.gz
+command: [ -e /var/log/installer/debug ] && gzip -9 -c /var/log/installer/debug
