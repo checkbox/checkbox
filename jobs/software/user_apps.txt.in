@@ -8,7 +8,7 @@ _description:
 command: update-manager --check-dist-upgrades
 
 plugin: manual
-name: software/software/nautilus_folder_create
+name: software/nautilus_folder_create
 requires: package.name == 'nautilus'
 command: nautilus
 _description:
@@ -19,8 +19,8 @@ _description:
  Close the File browser.
 
 plugin: manual
-name: software/software/nautilus_folder_copy
-depends: software/software/nautilus_folder_create
+name: software/nautilus_folder_copy
+depends: software/nautilus_folder_create
 command: nautilus
 _description:
  Select Test to open the File Browser. Right click on the folder called Test Folder and click on Copy.  Right Click on any white area in the window and click on Paste.
@@ -32,8 +32,8 @@ _description:
  Close the File browser.
 
 plugin: manual
-name: software/software/nautilus_folder_move
-depends: software/software/nautilus_folder_copy
+name: software/nautilus_folder_move
+depends: software/nautilus_folder_copy
 command: nautilus
 _description:
  Select Test to open the File Browser. Click and drag the folder called Test Data onto the icon called Test Folder. Release the button.
@@ -45,8 +45,8 @@ _description:
  Close the File Browser.
 
 plugin: manual
-name: software/software/nautilus_file_create
-depends: software/software/nautilus_folder_create
+name: software/nautilus_file_create
+depends: software/nautilus_folder_create
 command: nautilus $HOME/"Test Folder"
 _description:
  Select Test to open the File Browser. Right click in the white space and click Create Document -> Empty File. Enter the name Test File 1 in the name box and hit Enter.
@@ -56,8 +56,8 @@ _description:
  Close the File browser.
 
 plugin: manual
-name: software/software/nautilus_file_copy
-depends: software/software/nautilus_file_create
+name: software/nautilus_file_copy
+depends: software/nautilus_file_create
 command: nautilus $HOME/"Test Folder"
 _description:
  Select Test to open the File Browser. Right click on the file called Test File 1 and click Copy. Right click in the white space and click Paste.
@@ -69,8 +69,8 @@ _description:
  Close the File Browser.
 
 plugin: manual
-name: software/software/nautilus_file_move
-depends: software/software/nautilus_file_copy
+name: software/nautilus_file_move
+depends: software/nautilus_file_copy
 command: nautilus $HOME/"Test Folder"
 _description:
  Select Test to open the File Browser. Click and drag the file called Test File 2 onto the icon for the folder called Test Data. Release the button.
@@ -82,7 +82,7 @@ _description:
  Close the File Browser.
 
 plugin: manual
-name: software/software/nautilus_file_delete
+name: software/nautilus_file_delete
 depends: software/nautilus_file_create
 command: nautilus $HOME/"Test Folder"
 _description:

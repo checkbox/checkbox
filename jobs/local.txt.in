@@ -43,6 +43,11 @@ plugin: local
 _description: Firewire disk tests
 command: cat $CHECKBOX_SHARE/jobs/firewire.txt*
 
+name: __floppy__
+plugin: local
+__description: Floppy disk tests
+command: cat $CHECKBOX_SHARE/jobs/floppy.txt*
+
 name: __graphics__
 plugin: local
 _description: Graphics tests
@@ -57,6 +62,16 @@ name: __input__
 plugin: local
 _description: Input Devices tests
 command: cat $CHECKBOX_SHARE/jobs/input.txt*
+
+name: __install__
+plugin: local
+_description: Software Installation tests
+command: cat $CHECKBOX_SHARE/jobs/software/install.txt*
+
+name: __keys__
+plugin: local
+_description: Hotkey tests
+command: cat $CHECKBOX_SHARE/jobs/keys.txt*
 
 name: __mediacard__
 plugin: local
@@ -77,6 +92,11 @@ name: __networking__
 plugin: local
 _description: Networking tests
 command: cat $CHECKBOX_SHARE/jobs/networking.txt*
+
+name: __pcmcia-pcix__
+plugin: local
+_description: PCMCIA/PCIX Card tests
+command: cat $CHECKBOX_SHARE/jobs/pcmcia-pcix.txt*
 
 name: __peripheral__
 plugin: local

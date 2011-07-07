@@ -11,7 +11,7 @@ _description:
 
 plugin: manual
 name: usb/keyboard
-depends: usb
+depends: usb/detect
 requires: package.name == 'linux'
 command: keyboard_test
 _description:
@@ -22,7 +22,7 @@ _description:
 
 plugin: manual
 name: usb/mouse
-depends: usb
+depends: usb/detect
 requires: package.name == 'linux'
 _description:
  USB mouse verification procedure:
@@ -33,7 +33,7 @@ _description:
 
 plugin: manual
 name: usb/insert
-depends: usb
+depends: usb/detect
 requires: package.name == 'linux'
 command: watch_command -q -r 5 lsusb
 _description:
@@ -45,7 +45,7 @@ _description:
 
 plugin: manual
 name: usb/remove
-depends: usb-insert
+depends: usb/insert
 requires: package.name == 'linux'
 command: watch_command -q -r 5 lsusb
 _description:
@@ -57,7 +57,7 @@ _description:
 plugin: manual
 name: usb/storage
 requires: package.name == 'linux'
-depends: usb
+depends: usb/detect
 _description:
  Plug a USB storage device into the computer. An icon should appear \
  on the desktop and in the "Places" menu at the top of the screen.
@@ -67,7 +67,7 @@ _description:
 plugin: manual
 name: usb/storage-transfer
 requires: package.name == 'linux'
-depends: usb-storage
+depends: usb/storage
 _description:
  USB HDD verification procedure:
  1.- Plug a USB HDD into the computer
@@ -79,7 +79,7 @@ _description:
 plugin: manual
 name: usb/panels
 requires: package.name == 'linux'
-depends: usb-storage
+depends: usb/storage
 _description:
  Connect a USB storage device to an external USB slot on this computer. \
  An icon should appear on the desktop and in the "Places" menu at the top of the screen.
