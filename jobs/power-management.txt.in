@@ -141,13 +141,13 @@ command: sleep_test -d
 
 plugin: shell
 name: power-management/network_after_suspend
-depends: power-management/suspend power-management/network_before_suspend
+depends: power-management/suspend_advanced power-management/network_before_suspend
 _description: Test the network after resuming.
 command: internet_test
 
 plugin: shell
 name: power-management/resolution_after_suspend
-depends: power-management/suspend power-management/resolution_before_suspend
+depends: power-management/suspend_advanced power-management/resolution_before_suspend
 _description: Test to see that we have the same resolution after resuming as before.
 command: xrandr -q |grep '*'| awk '{print $1}' | diff $CHECKBOX_DATA/resolution_before_suspend.txt -
 
@@ -156,13 +156,13 @@ name: power-management/audio_after_suspend
 requires:
  device.category == 'AUDIO'
  package.name == 'alsa-base'
-depends: power-management/suspend power-management/audio_before_suspend
+depends: power-management/suspend_advanced power-management/audio_before_suspend
 _description: Test the audio after resuming.
 command: amixer | diff $CHECKBOX_DATA/audio_before_suspend.txt -
 
 plugin: manual
 name: power-management/wireless_after_suspend
-depends: power-management/suspend power-management/wireless_before_suspend
+depends: power-management/suspend_advanced power-management/wireless_before_suspend
 command: internet_test
 _description:
  Wireless network connection procedure:
@@ -179,7 +179,7 @@ _description:
 
 plugin: manual
 name: power-management/bluetooth_detect_after_suspend
-depends: power-management/suspend power-management/bluetooth_detect_before_suspend
+depends: power-management/suspend_advanced power-management/bluetooth_detect_before_suspend
 requires: package.name == 'bluez'
 command: hcitool dev | tail -n+2 | awk '{print $2}'
 _description:
@@ -190,7 +190,7 @@ _description:
 
 plugin: manual
 name: power-management/bluetooth_mouse_after_suspend
-depends: power-management/suspend power-management/bluetooth_detect_after_suspend
+depends: power-management/suspend_advanced power-management/bluetooth_detect_after_suspend
 _description:
  Verify a bluetooth peripheral.  An example verification procedure for a bluetooth mouse is given.
  .
@@ -206,7 +206,7 @@ _description:
 
 plugin: manual
 name: power-management/cycle_resolutions_after_suspend
-depends: power-management/suspend graphics/xrandr_cycle
+depends: power-management/suspend_advanced graphics/xrandr_cycle
 _description:
  This test will check to make sure that supported video modes work after a suspend and resume.  Select Test to begin.
 command: xrandr_cycle
