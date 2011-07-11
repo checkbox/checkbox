@@ -7,3 +7,28 @@ user: root
 command: stress --cpu `cpuinfo_resource | awk '/count:/ {print $2}'` --vm `awk '/MemTotal/ {num_vm = $2/262144; if (num_vm != int(num_vm)) num_vm = int(num_vm) + 1; print num_vm}' /proc/meminfo` --timeout 7200
 _description:
  Hammer the CPU as hard as possible for two hours. Intention is to knock it dead.
+
+plugin: manual
+name: power-management/hibernate_30_cycles
+depends: power-management/rtc
+requires: package.name == 'pm-utils'
+user: root
+command: sleep_test -i 30 -s disk -w 120 --debug
+_description:
+ Enter and resume from hibernate for 30 iterations. Please note that this is a very lengthy test. Also, if your system does not wake itself after 2 minutes, you will need to press the power button to wake the system up. If the system fails to resume from hibernation and must be rebooted, please restart System Testing and mark this test as Failed.
+ .
+ Also, you will need to ensure your system has no power-on or HDD passwords set, and that grub is set to boot Ubuntu by default if you have a multi-boot set-up.
+ .
+ Did the system successfully hibernate and wake 30 times?
+
+plugin: manual
+name: power-management/suspend_30_cycles
+depends: power-management/rtc
+requires: package.name == 'pm-utils'
+user: root
+command: sleep_test -i 30 -s mem --debug
+_description:
+ Enter and resume from suspend state for 30 iterations. Please note that this is a lengthy test. Select Test to begin. If your system fails to wake and must be rebooted, please restart System Testing and mark this test as Failed.
+ .
+ Did the system successfully suspend and resume for 30 iterations?
+
