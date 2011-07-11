@@ -78,6 +78,13 @@ requires:
 _description: Test the audio before suspending.
 command: amixer > $CHECKBOX_DATA/audio_before_suspend.txt
 
+plugin: shell
+name: power-management/cpu_before_suspend
+requires:
+ package.name == 'linux'
+_description: Check all the CPUs are online before suspending
+command: cpuinfo_resource > $CHECKBOX_DATA/cpuinfo_before_suspend
+
 plugin: manual
 name: power-management/wireless_before_suspend
 command: internet_test
@@ -130,7 +137,7 @@ _description:
 
 plugin: manual
 name: power-management/suspend_advanced
-depends: power-management/rtc power-management/network_before_suspend power-management/resolution_before_suspend power-management/wireless_before_suspend power-management/bluetooth_detect_before_suspend power-management/bluetooth_mouse_before_suspend
+depends: power-management/rtc power-management/network_before_suspend power-management/resolution_before_suspend power-management/wireless_before_suspend power-management/bluetooth_detect_before_suspend power-management/bluetooth_mouse_before_suspend power-management/cpu_before_suspend
 requires: package.name == 'pm-utils'
 _description:
  Power management Suspend and Resume test
@@ -159,6 +166,14 @@ requires:
 depends: power-management/suspend_advanced power-management/audio_before_suspend
 _description: Test the audio after resuming.
 command: amixer | diff $CHECKBOX_DATA/audio_before_suspend.txt -
+
+plugin: shell
+name: power-management/cpu_after_suspend
+requires:
+ package.name == 'linux'
+depends: power-management/suspend_advanced power-management/cpu_before_suspend
+_description: Check all CPUs are online after resuming.
+command: cpuinfo_resource | diff $CHECKBOX_DATA/cpuinfo_before_suspend -
 
 plugin: manual
 name: power-management/wireless_after_suspend
@@ -213,7 +228,7 @@ command: xrandr_cycle
 
 plugin: manual
 name: power-management/record_playback_after_suspend
-depends: power-management/suspend
+depends: power-management/suspend_advanced
 requires:
  device.category == 'AUDIO'
  package.name == 'alsa-base'
