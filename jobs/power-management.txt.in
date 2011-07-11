@@ -83,7 +83,7 @@ name: power-management/cpu_before_suspend
 requires:
  package.name == 'linux'
 _description: Check all the CPUs are online before suspending
-command: cat /proc/cpuinfo > $CHECKBOX_DATA/cpuinfo_before_suspend && all_cpus_online --before
+command: ./cpuinfo_resource > $CHECKBOX_DATA/cpuinfo_before_suspend
 
 plugin: manual
 name: power-management/wireless_before_suspend
@@ -173,7 +173,7 @@ requires:
  package.name == 'linux'
 depends: power-management/suspend_advanced power-management/cpu_before_suspend
 _description: Check all CPUs are online after resuming.
-command: all_cpus_online --after
+command: ./cpuinfo_resource > $CHECKBOX_DATA/cpuinfo_after_suspend && diff $CHECKBOX_DATA/cpuinfo_before_suspend $CHECKBOX_DATA/cpuinfo_after_suspend
 
 plugin: manual
 name: power-management/wireless_after_suspend
