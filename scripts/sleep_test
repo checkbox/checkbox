@@ -2,7 +2,7 @@
 '''
 Program to automate system entering and resuming from sleep states
 
-Copyright (C) 2010 Canonical Ltd.
+Copyright (C) 2010,2011 Canonical Ltd.
 
 Author:
     Jeff Lane <jeffrey.lane@canonical.com>
@@ -44,10 +44,10 @@ The test will, in the most basic sense do the following:
 TO DO:
 * remove workaround once we get a fix for the pm scripts issue that causes the
   wakealarm and alarm_IRQ entries to not be reset after resume from S4
-* Add in post-resume check to determine of network has resumed
 * Add in checks to factor in the consumer-test hibernate/suspend test cases
 
 Changelog:
+v1.1:   Added handling of NetworkManager 0.9 status codes. 
 v1.0:   Added code to support Hibernate (S4) and allow choice between S3 and S4
         at run-time.
         Created mechanism in SuspendTest() class to check /proc/driver/rtc as a
@@ -299,18 +299,13 @@ class NetworkManager(object):
     HAL_INTERFACE = "org.freedesktop.Hal.Manager"
     HAL_INTERFACE_DEVICE = "org.freedesktop.Hal.Device"
 
-    STATE_UNKNOWN = "unknown"
-    STATE_ASLEEP = "asleep"
-    STATE_CONNECTING = "connecting"
-    STATE_CONNECTED = "connected"
-    STATE_DISCONNECTED = "disconnected"
 
-    _state_table = [
-        STATE_UNKNOWN,
-        STATE_ASLEEP,
-        STATE_CONNECTING,
-        STATE_CONNECTED,
-        STATE_DISCONNECTED]
+    #http://projects.gnome.org/NetworkManager/developers/
+    #NetworkManager D-Bus API Specifications, look for the
+    #NM_STATE enumeration to see which statuses indicate connection
+    #established and put them in this list. "3" works for NM 0.7 
+    #and 0.8, while "60" and "70" work for NM 0.9.
+    STATES_CONNECTED = [3, 60, 70]
 
     def __init__(self):
         try:
@@ -325,10 +320,9 @@ class NetworkManager(object):
         except dbus.exceptions.DBusException:
             raise NetworkManagerException, "Failed to connect to dbus service"
 
-    def get_state(self):
+    def is_connected(self):
         state = self.nm_service.state()
-        return self._state_table[state]
-
+        return state in self.STATES_CONNECTED
 
 def check_network():
     try:
@@ -339,7 +333,7 @@ def check_network():
     start = datetime.now()
     logging.debug("Waiting 60 seconds for NetworkManager to reconnect.")
     while True:
-        if nm.get_state() == nm.STATE_CONNECTED:
+        if nm.is_connected():
             return True
         # give 60 seconds to NetworkManager to get to a CONNECTED state, then give up
         if datetime.now() - start > timedelta(seconds=60):

@@ -1,14 +1,16 @@
 checkbox (0.12.4) oneiric; urgency=low
-
+ 
   * scripts/keyboard_test modified to account for pygi-related GTK API
     changes. (LP: #804369)
+  * scripts/sleep_test: improve handling of NetworkManager DBus API
+    changes. (LP: #808423)
 
   [ Brendan Donegan]
   * Refactored job definition files.
   * Fixed dependencies and test naming.
   * Added Online CPU before/after suspend test.
 
- -- Daniel Manrique <daniel.manrique@canonical.com>  Tue, 12 Jul 2011 12:23:08 -0400
+ -- Daniel Manrique <daniel.manrique@canonical.com>  Tue, 12 Jul 2011 15:25:57 -0400
 
 checkbox (0.12.3) oneiric; urgency=low
 
