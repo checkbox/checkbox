@@ -146,6 +146,7 @@ _description:
 plugin: manual
 name: power-management/suspend_advanced
 depends: power-management/rtc power-management/network_before_suspend power-management/resolution_before_suspend power-management/wireless_before_suspend power-management/bluetooth_detect_before_suspend power-management/bluetooth_mouse_before_suspend power-management/cpu_before_suspend
+power-management/memory_before_suspend
 requires: package.name == 'pm-utils'
 _description:
  Power management Suspend and Resume test
