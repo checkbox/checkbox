@@ -3,6 +3,7 @@
 import subprocess
 import time
 import sys
+import os
 
 device_context = ''   # track what device's modes we are looking at
 modes = []            # keep track of all the devices and modes discovered
@@ -53,6 +54,8 @@ for line in output:
 # Now we have a list of the modes we need to test.  So let's do just that.
 
 for mode in modes:
+    if 'VGA' in mode[0]:
+        import pdb; pdb.set_trace()
     cmd = 'xrandr --output ' + mode[0] + ' --mode ' + mode[1]
     retval = subprocess.call(cmd, shell=True)
     if retval != 0:
@@ -60,6 +63,13 @@ for mode in modes:
 	message = 'Failed to set mode ' + mode[1] + ' for output ' + mode[0]
         failure_messages.append(message)
     else:
+        # Update checkbox shutter profile to save the image as the right name
+        with open(os.environ['HOME'] + '/.shutter/profiles/checkbox.xml', 'r+') as profile:
+            content = profile.read() 
+            content = content.replace('@@screenshot@@', 'screen_' + mode[0] + '_' + mode[1], 1)
+            profile.seek(0)
+            profile.write(content)
+
         message = 'Set mode ' + mode[1] + ' for output ' + mode[0]
         success_messages.append(message)
     time.sleep(3) # let the hardware recover a bit
