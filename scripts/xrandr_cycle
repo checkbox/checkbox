@@ -53,9 +53,8 @@ for line in output:
 
 # Now we have a list of the modes we need to test.  So let's do just that.
 
+prev_mode_string = None
 for mode in modes:
-    if 'VGA' in mode[0]:
-        import pdb; pdb.set_trace()
     cmd = 'xrandr --output ' + mode[0] + ' --mode ' + mode[1]
     retval = subprocess.call(cmd, shell=True)
     if retval != 0:
@@ -64,11 +63,26 @@ for mode in modes:
         failure_messages.append(message)
     else:
         # Update checkbox shutter profile to save the image as the right name
-        with open(os.environ['HOME'] + '/.shutter/profiles/checkbox.xml', 'r+') as profile:
-            content = profile.read() 
-            content = content.replace('@@screenshot@@', 'screen_' + mode[0] + '_' + mode[1], 1)
-            profile.seek(0)
-            profile.write(content)
+        mode_string = mode[0] + '_' + mode[1]
+
+        profile_path = os.environ['HOME'] + '/.shutter/profiles/checkbox.xml'
+        search_pattern = '$$screen$$'
+
+        # This whole prev_mode_string thing is a dirty hack to work around a bug
+        # in Shutter. Don't ask.
+        if prev_mode_string:
+            profile_path = (os.environ['HOME'] + '/.shutter/profiles/checkbox_%s.xml') % prev_mode_string
+            search_pattern = 'screen_' + prev_mode_string 
+
+        with open(profile_path, 'r') as base_profile:
+            base_content = base_profile.read()
+            with open(os.environ['HOME'] + '/.shutter/profiles/checkbox_%s.xml' % mode_string, 'w') as screen_profile:
+                content = base_content.replace(search_pattern, 'screen_' + mode_string, 1)
+                screen_profile.write(content)
+
+        shuttercmd = 'shutter --profile=%s --full -e' % ('checkbox_' + mode_string)
+        retval = subprocess.call(shuttercmd, shell=True)
+        prev_mode_string = mode_string
 
         message = 'Set mode ' + mode[1] + ' for output ' + mode[0]
         success_messages.append(message)
