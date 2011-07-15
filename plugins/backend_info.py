@@ -18,6 +18,7 @@
 #
 import os
 import shutil
+import logging
 
 from subprocess import call, PIPE
 from tempfile import mkdtemp
@@ -26,13 +27,13 @@ from checkbox.lib.fifo import FifoReader, FifoWriter, create_fifo
 
 from checkbox.plugin import Plugin
 from checkbox.properties import Path, Float 
-
+from checkbox.job import FAIL
 
 class BackendInfo(Plugin):
 
-    # how long to wait for I/O from/to the backend. If it takes longer
-    # than this, the message is ignored.
-    timeout = Float(default=15.0)
+    # how long to wait for I/O from/to the backend before the call returns.
+    # How we behave if I/O times out is dependent on the situation.
+    timeout = Float(default=60.0)
 
     command = Path(default="%(checkbox_share)s/backend")
 
@@ -73,25 +74,59 @@ class BackendInfo(Plugin):
 
         return prefix + self.get_command(*args)
 
+    def spawn_backend(self, input_fifo, output_fifo):
+        self.pid = os.fork()
+        if self.pid == 0:
+            root_command = self.get_root_command(input_fifo, output_fifo)
+            os.execvp(root_command[0], root_command)
+            # Should never get here
+
+    def ping_backend(self):
+        if not self.parent_reader or not self.parent_writer:
+            return False
+        self.parent_writer.write_object("ping")
+        result = self.parent_reader.read_object()
+        return result == "pong"
+
+
     def gather(self):
         self.directory = mkdtemp(prefix="checkbox")
         child_input = create_fifo(os.path.join(self.directory, "input"), 0600)
         child_output = create_fifo(os.path.join(self.directory, "output"), 0600)
 
-        self.pid = os.fork()
-        if self.pid > 0:
+        self.backend_is_alive = False
+        for attempt in range(1,4):
+            self.spawn_backend(child_input, child_output)
+            #Only returns if I'm still the parent, so I can do parent stuff here
             self.parent_writer = FifoWriter(child_input, timeout=self.timeout)
             self.parent_reader = FifoReader(child_output, timeout=self.timeout)
+            if self.ping_backend():
+                logging.debug("Backend responded, continuing execution.")
+                self.backend_is_alive = True
+                break
+            else:
+                logging.debug("Backend didn't respond, trying to create again.")
 
-        else:
-            root_command = self.get_root_command(child_input, child_output)
-            os.execvp(root_command[0], root_command)
-            # Should never get here
+        if not self.backend_is_alive: 
+            logging.warning("Privileged backend not responding. " + 
+                            "jobs specifying user will not be run")
 
     def message_exec(self, message):
         if "user" in message:
-            self.parent_writer.write_object(message)
-            result = self.parent_reader.read_object()
+            if (self.backend_is_alive and not self.ping_backend()):
+                self.backend_is_alive = False
+
+            if self.backend_is_alive:
+                self.parent_writer.write_object(message)
+                while True:
+                    result = self.parent_reader.read_object()
+                    if result:
+                        break
+                    else:
+                        logging.info("Waiting for result...")
+            else:
+                result = (FAIL, "Unable to test. Privileges are " +
+                                "required for this job.", 0,)
             if result:
                 self._manager.reactor.fire("message-result", *result)
 
@@ -101,7 +136,8 @@ class BackendInfo(Plugin):
         self.parent_reader.close()
         shutil.rmtree(self.directory)
 
-        os.waitpid(self.pid, 0)
+        if self.backend_is_alive:
+            os.waitpid(self.pid, 0)
 
 
 factory = BackendInfo
