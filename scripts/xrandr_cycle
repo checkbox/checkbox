@@ -4,6 +4,7 @@ import subprocess
 import time
 import sys
 import os
+import re
 
 device_context = ''   # track what device's modes we are looking at
 modes = []            # keep track of all the devices and modes discovered
@@ -53,7 +54,11 @@ for line in output:
 
 # Now we have a list of the modes we need to test.  So let's do just that.
 
-prev_mode_string = None
+profile_path = os.environ['HOME'] + '/.shutter/profiles/checkbox.xml'
+regex = re.compile(r'filename=".*"')
+
+# Make a copy of the shutter profile before starting
+
 for mode in modes:
     cmd = 'xrandr --output ' + mode[0] + ' --mode ' + mode[1]
     retval = subprocess.call(cmd, shell=True)
@@ -65,29 +70,27 @@ for mode in modes:
         # Update checkbox shutter profile to save the image as the right name
         mode_string = mode[0] + '_' + mode[1]
 
-        profile_path = os.environ['HOME'] + '/.shutter/profiles/checkbox.xml'
-        search_pattern = '$$screen$$'
+        try:
+            with open(profile_path, 'r') as base_profile:
+                content = base_profile.read()
+                with open(profile_path, 'w') as screen_profile:
+                    filename='filename="xrandr_%s"' % mode_string 
+                    #content = content.replace(old_filename, 'xrandr_' + mode_string, 1)
+                    content = regex.sub(filename, content)
+                    screen_profile.write(content)
 
-        # This whole prev_mode_string thing is a dirty hack to work around a bug
-        # in Shutter. Don't ask.
-        if prev_mode_string:
-            profile_path = (os.environ['HOME'] + '/.shutter/profiles/checkbox_%s.xml') % prev_mode_string
-            search_pattern = 'screen_' + prev_mode_string 
+            shuttercmd = ['shutter','--profile=checkbox','--full','-e']
+            retval = subprocess.call(shuttercmd, shell=False)
 
-        with open(profile_path, 'r') as base_profile:
-            base_content = base_profile.read()
-            with open(os.environ['HOME'] + '/.shutter/profiles/checkbox_%s.xml' % mode_string, 'w') as screen_profile:
-                content = base_content.replace(search_pattern, 'screen_' + mode_string, 1)
-                screen_profile.write(content)
+            if retval != 0:
+                print "Could not capture screenshot - you may need to install the package 'shutter'."
 
-        shuttercmd = 'shutter --profile=%s --full -e' % ('checkbox_' + mode_string)
-        retval = subprocess.call(shuttercmd, shell=True)
-        prev_mode_string = mode_string
+        except:
+            print "Could not configure screenshot tool - you may need to install the package 'shutter', or check that %s exists." % profile_path
 
         message = 'Set mode ' + mode[1] + ' for output ' + mode[0]
         success_messages.append(message)
     time.sleep(3) # let the hardware recover a bit
-
 
 # Put things back the way we found them
 
