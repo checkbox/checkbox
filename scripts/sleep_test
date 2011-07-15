@@ -47,6 +47,7 @@ TO DO:
 * Add in checks to factor in the consumer-test hibernate/suspend test cases
 
 Changelog:
+v1.2:   Removed NetworkManager class and replaced with simple call to nmcli
 v1.1:   Added handling of NetworkManager 0.9 status codes. 
 v1.0:   Added code to support Hibernate (S4) and allow choice between S3 and S4
         at run-time.
@@ -74,7 +75,7 @@ V0:     First draft
 
 import sys
 import logging
-from subprocess import call
+from subprocess import call,check_output
 from optparse import OptionParser
 
 from datetime import datetime, timedelta
@@ -276,69 +277,21 @@ class SuspendTest():
             return False
 
 
-class NetworkManagerException(Exception):
-
-    pass
-
-
-class NetworkManager(object):
-
-    NM_SERVICE = "org.freedesktop.NetworkManager"
-    NM_PATH = "/org/freedesktop/NetworkManager"
-    NM_INTERFACE = NM_SERVICE
-
-    NM_PATH_DEVICES = "/org/freedesktop/NetworkManager/Devices"
-    NM_INTERFACE_DEVICES = "org.freedesktop.NetworkManager.Devices"
-
-    NMI_SERVICE = "org.freedesktop.NetworkManagerInfo"
-    NMI_PATH = "/org/freedesktop/NetworkManagerInfo"
-    NMI_INTERFACE = NMI_SERVICE
-
-    HAL_SERVICE = "org.freedesktop.Hal"
-    HAL_PATH = "/org/freedesktop/Hal/Manager"
-    HAL_INTERFACE = "org.freedesktop.Hal.Manager"
-    HAL_INTERFACE_DEVICE = "org.freedesktop.Hal.Device"
-
-
-    #http://projects.gnome.org/NetworkManager/developers/
-    #NetworkManager D-Bus API Specifications, look for the
-    #NM_STATE enumeration to see which statuses indicate connection
-    #established and put them in this list. "3" works for NM 0.7 
-    #and 0.8, while "60" and "70" work for NM 0.9.
-    STATES_CONNECTED = [3, 60, 70]
-
-    def __init__(self):
-        try:
-            import dbus
-        except ImportError:
-            raise NetworkManagerException, "Python module not found: dbus"
-
-        try:
-            self._bus = dbus.SystemBus()
-            self.nm_object  = self._bus.get_object(self.NM_SERVICE, self.NM_PATH)
-            self.nm_service = dbus.Interface(self.nm_object, self.NM_INTERFACE)
-        except dbus.exceptions.DBusException:
-            raise NetworkManagerException, "Failed to connect to dbus service"
-
-    def is_connected(self):
-        state = self.nm_service.state()
-        return state in self.STATES_CONNECTED
-
 def check_network():
-    try:
-        nm = NetworkManager()
-    except NetworkManagerException:
-        return True
-
     start = datetime.now()
     logging.debug("Waiting 60 seconds for NetworkManager to reconnect.")
     while True:
-        if nm.is_connected():
-            return True
-        # give 60 seconds to NetworkManager to get to a CONNECTED state, then give up
-        if datetime.now() - start > timedelta(seconds=60):
+        try:
+            if check_output(["/usr/bin/nmcli", "-t", "-f", 
+                "STATE", "nm"]).strip() == "connected":
+                return True
+            # give 60 seconds to NetworkManager to get to a CONNECTED state, then give up
+            if datetime.now() - start > timedelta(seconds=60):
+                return False
+            sleep(5)
+        except OSError as err:
+            logging.error("Unable to verify network status: %s" % err)
             return False
-        sleep(5)
             
 def main():
     usage = 'Usage: %prog [OPTIONS]'
