@@ -6,8 +6,10 @@ checkbox (0.12.4) oneiric; urgency=low
     from the backend, and test specifying "user" not being run.
   * scripts/keyboard_test modified to account for pygi-related GTK API
     changes. (LP: #804369)
-  * scripts/sleep_test: improve handling of NetworkManager DBus API
-    changes. (LP: #808423)
+  * scripts/sleep_test: improve handling of NetworkManager DBus API changes.
+    (LP: #808423)
+  * scripts/network_bandwidth_test: improve handling of NetworkManager DBus
+    API changes. (LP: #811178)
 
   [Javier Collado]
   * Checkbox exits with EX_NOINPUT if a whitelist or blacklist file is
