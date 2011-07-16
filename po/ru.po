@@ -7,19 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-21 10:54-0400\n"
-"PO-Revision-Date: 2009-10-22 17:17+0000\n"
-"Last-Translator: Shnatsel <Shnatsel@gmail.com>\n"
+"POT-Creation-Date: 2011-07-07 12:32-0400\n"
+"PO-Revision-Date: 2011-07-15 19:14+0000\n"
+"Last-Translator: Sergey \"Shnatsel\" Davidoff <Shnatsel@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-10-26 14:04+0000\n"
-"X-Generator: Launchpad (build Unknown)\n"
-
-#: ../gtk/checkbox-gtk.ui.h:1 ../checkbox_cli/cli_interface.py:274
-msgid "Further information:"
-msgstr "Дополнительная информация:"
+"X-Launchpad-Export-Date: 2011-07-16 04:32+0000\n"
+"X-Generator: Launchpad (build 13405)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:2
 msgid "Ne_xt"
@@ -31,434 +27,2682 @@ msgstr "_Далее"
 msgid "System Testing"
 msgstr "Проверка системы"
 
-#: ../gtk/checkbox-gtk.ui.h:4
+#: ../gtk/checkbox-gtk.ui.h:5
 msgid "_No"
 msgstr "_Нет"
 
-#: ../gtk/checkbox-gtk.ui.h:5
+#: ../gtk/checkbox-gtk.ui.h:6
 msgid "_Previous"
 msgstr "Н_азад"
 
-#: ../gtk/checkbox-gtk.ui.h:6
-msgid "_Skip this test"
-msgstr "_Пропустить этот тест"
-
-#: ../gtk/checkbox-gtk.ui.h:7 ../checkbox_gtk/gtk_interface.py:366
-msgid "_Test"
-msgstr "_Тест"
-
 #: ../gtk/checkbox-gtk.ui.h:8
+msgid "_Skip this test"
+msgstr "Пропустить этот тест"
+
+#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:522
+msgid "_Test"
+msgstr "_Проверить"
+
+#: ../gtk/checkbox-gtk.ui.h:10
 msgid "_Yes"
-msgstr "Д_а"
+msgstr "_Да"
 
 #: ../gtk/checkbox-gtk.desktop.in.h:2
 msgid "Test and report system information"
-msgstr "Тестирование и вывод информации о системе"
+msgstr "Проверка и отправка сведений о системе"
 
 #. description
-#: ../suites/internal.txt.in:3
-msgid "Audio tests"
-msgstr "Тесты звука"
-
-#. description
-#: ../suites/internal.txt.in:8
-msgid "Disk tests"
-msgstr "Тесты диска"
-
-#. description
-#: ../suites/internal.txt.in:13
-msgid "Fingerprint reader tests"
-msgstr "Тест сканера пальцев"
-
-#. description
-#: ../suites/internal.txt.in:18
-msgid "Firewire disk tests"
-msgstr "Проверка дисков Firewire"
-
-#. description
-#: ../suites/internal.txt.in:23
-msgid "Kernel modesetting tests"
-msgstr "Тесты режимов ядра"
-
-#. description
-#: ../suites/internal.txt.in:28
-msgid "Network tests"
-msgstr "Тесты сети"
-
-#. description
-#: ../suites/internal.txt.in:33
-msgid "Peripheral tests"
-msgstr "Тесты периферии"
-
-#. description
-#: ../suites/internal.txt.in:38
-msgid "Video tests"
-msgstr "Тесты видео"
-
-#. description
-#: ../tests/audio.txt.in:7
-msgid ""
-"Click the Test button to play a sound on the automatically detected \\ "
-"playback device."
-msgstr ""
-"Нажмите на кнопке Тест  для того, чтобы проиграть звук на автоматически "
-"определённом устройстве воспроизведения."
-
-#. description
-#: ../tests/audio.txt.in:7
-msgid "Do you hear a sound?"
-msgstr "Вы слышите звук?"
-
-#. description
-#: ../tests/audio.txt.in:19
-msgid "Detecting your sound device(s):"
-msgstr "Обнаружение ваших звуковых устройств"
-
-#. description
-#: ../tests/audio.txt.in:19 ../tests/disk.txt.in:6 ../tests/network.txt.in:16
-#: ../tests/video.txt.in:28
+#: ../jobs/audio.txt.in:7 ../jobs/disk.txt.in:4 ../jobs/graphics.txt.in:126
+#: ../jobs/memory.txt.in:4 ../jobs/networking.txt.in:16
+#: ../jobs/optical.txt.in:8 ../jobs/power-management.txt.in:167
+#: ../jobs/usb.txt.in:5
 msgid "$output"
 msgstr "$output"
 
 #. description
-#: ../tests/audio.txt.in:19 ../tests/network.txt.in:16
-#: ../tests/video.txt.in:28
+#: ../jobs/audio.txt.in:7 ../jobs/bluetooth.txt.in:5 ../jobs/disk.txt.in:4
+#: ../jobs/graphics.txt.in:126 ../jobs/memory.txt.in:4
+#: ../jobs/networking.txt.in:16 ../jobs/optical.txt.in:8
+#: ../jobs/power-management.txt.in:185 ../jobs/usb.txt.in:5
 msgid "Is this correct?"
 msgstr "Всё правильно?"
 
 #. description
-#: ../tests/audio.txt.in:32
-msgid ""
-"Disconnect any external microphones that you have plugged in.  \\ Click the "
-"Test button, then speak into your internal microphone.  \\ After a few "
-"seconds, your speech will be played back to you."
-msgstr ""
-"Отключите все внешние подключенные микрофоны. \\ Нажмите кнопку Проверка и "
-"скажите что-нибудь во встроенный микрофон. \\ Через несколько секунд ваша "
-"речь будет воспроизведена."
+#: ../jobs/graphics.txt.in:117
+msgid "Do you see color bars and static?"
+msgstr "Вы увидели цветные полосы?"
 
 #. description
-#: ../tests/audio.txt.in:45
-msgid ""
-"Connect a microphone to your microphone port.  \\ Click the Test button, "
-"then speak into the microphone.  \\ After a few seconds, your speech will be "
-"played back to you."
-msgstr ""
-"Подключите микрофон к микрофонному гнезду. \\ Нажмите кнопку Проверка и "
-"скажите что-нибудь в микрофон. \\ Через несколько секунд ваша речь будет "
-"воспроизведена."
-
-#. description
-#: ../tests/audio.txt.in:58
-msgid ""
-"Pair a Bluetooth headset with your system.  Then open the \\ volume control "
-"application by right-clicking on the speaker \\ icon in the panel and "
-"selecting \"Sound Preferences\".  Select \\ the \"Input\" tab and choose "
-"your Bluetooth device.  Select the \\ \"Output\" tab and choose your "
-"Bluetooth device.  When you are done, \\ click the Test button, then speak "
-"into the microphone.  \\ After a few seconds, your speech will be played "
-"back to you."
-msgstr ""
-"Подсоедините Bluetooth-гарнитуру к вашей системе. Откройте \\ Регулятор "
-"Громкости, щелкнув правой кнопкой мыши значок динамика \\ на панели и выбрав "
-"пункт \"Настройка звука\".  Выберите \\ вкладку \"Вход\" и выберите ваше "
-"устройство Bluetooth. Выберите \\ вкладку \"Выход\" и снова выберите ваше "
-"устройство. После этого \\ нажмите кнопку \"Проверка\" и скажите что-нибудь "
-"в микрофон. \\ Через несколько секунд ваша речь будет воспроизведена."
-
-#. description
-#: ../tests/audio.txt.in:75
-msgid ""
-"Play back a sound on the default output and listen for it on the default \\ "
-"input.  This makes the most sense when the output and input are directly \\ "
-"connected, as with a patch cable."
-msgstr ""
-
-#. description
-#: ../tests/audio.txt.in:86
-msgid ""
-"Connect a USB audio device to your system.  Then open the \\ volume control "
-"application by right-clicking on the speaker \\ icon in the panel and "
-"selecting \"Sound Preferences\".  Select \\ the \"Input\" tab and choose "
-"your USB device.  Select the \\ \"Output\" tab and choose your USB device.  "
-"When you are done, \\ click the Test button, then speak into the microphone. "
-" \\ After a few seconds, your speech will be played back to you."
-msgstr ""
-"Подсоедините USB аудио устройство к вашей системе. Откройте \\ Регулятор "
-"Громкости, щелкнув правой кнопкой мыши значок динамика \\ на панели и выбрав "
-"пункт \"Настройка звука\". Выберите \\ вкладку \"Вход\" и выберите ваше "
-"устройство Bluetooth. Выберите \\ вкладку \"Выход\" и снова выберите ваше "
-"устройство. После этого \\ нажмите кнопку \"Проверка\" и скажите что-нибудь "
-"в микрофон. \\ Через несколько секунд ваша речь будет воспроизведена."
-
-#. description
-#: ../tests/audio.txt.in:103
-msgid ""
-"Open the volume control application by right-clicking on the speaker \\ icon "
-"in the panel and selecting \"Sound Preferences\".  Select \\ the \"Input\" "
-"tab and choose any alternate (non-default) device(s).  Select the \\ "
-"\"Output\" tab and choose any alternate (non-default) device(s).  When you "
-"are \\ done, click the Test button, then speak into the microphone.  \\ "
-"After a few seconds, your speech will be played back to you."
-msgstr ""
-
-#. description
-#: ../tests/audio.txt.in:103
-msgid "Did you hear your speech played back?"
-msgstr "Вы услышали вашу воспроизведенную речь?"
-
-#. description
-#: ../tests/disk.txt.in:6
-msgid "Disk benchmark:"
-msgstr "Тест диска:"
-
-#. description
-#: ../tests/disk.txt.in:6
-msgid "Is this ok?"
-msgstr "Всё в порядке?"
-
-#. description
-#: ../tests/fingerprint.txt.in:3
-msgid ""
-"Prerequisites: This test case assumes that there's a testing account \\ from "
-"which test cases are run and a personal account that the tester \\ uses to "
-"verify the fingerprint reader"
-msgstr ""
-
-#. description
-#: ../tests/fingerprint.txt.in:3
-msgid ""
-"Fingerprint unlock verification procedure: 1.- Click on the user switcher "
-"applet 2.- Select your user name 3.- A window should appear that provides "
-"the ability to login either \\ typing your password or using fingerprint "
-"authentication 4.- Use the fingerprint reader to login 5.- Click on the user "
-"switcher applet 6.- Select the testing account to continue running tests"
-msgstr ""
-"Процедура проверки разблокирования сканером отпечатков пальцев: 1.- Щелкните "
-"на значке переключения пользователей 2.- Выберите своеё имя пользователя 3.- "
-"Появится окно, позволяющее осуществить вход либо указав пароль, \\ либо "
-"использовать идентификацию по отпечатку пальца 4.- Используйте сканер для "
-"входа 5.- Щелкните на значке переключения пользователей 6.- Выберите "
-"тестируемую учетную записть для продолжения теста"
-
-#. description
-#: ../tests/fingerprint.txt.in:21
-msgid ""
-"Fingerprint unlock verification procedure: 1.- Click on the user switcher "
-"applet 2.- Select 'Lock screen' 3.- Press any key or move the mouse 3.- A "
-"window should appear that provides the ability to unlock either \\ typing "
-"your password or using fingerprint authentication 4.- Use the fingerprint "
-"reader to unlock 5.- Screen should be unlocked"
-msgstr ""
-"Процедура проверки разблокирования сканером отпечатков пальцев: 1.- Щелкните "
-"на значке переключения пользователей 2.- Выберите \"Блокировка экрана\" 3.- "
-"Нажмите любую клавишу или сдвиньте мышь 3.- Появится окно, позволяющее снять "
-"блокировку либо указав пароль, \\ либо использовать идентификацию по "
-"отпечатку пальца 4.- Используйте сканер для разблокировки 5.- Экран должен "
-"быть разблокирован"
-
-#. description
-#: ../tests/fingerprint.txt.in:21
-msgid "Did the authentication procedure work correctly?"
-msgstr "Процедура идентификации прошла успешно?"
-
-#. description
-#: ../tests/firewire.txt.in:3
-msgid ""
-"Firewire HDD verification procedure: 1.- Plug a Firewire HDD into the "
-"computer 2.- A window should be opened asking which action should be "
-"performed (open folder, photo manager, etc). 3.- Copy some files from the "
-"internal/firewire HDD to the firewire/internal HDD"
-msgstr ""
-"Процедура проверки Firewire диска: 1.- Присоедините Firewire диск к "
-"компьютеру 2.- Должно открыться окно с возможными вариантами действий "
-"(открыть папку, менеджер фотографий и т.п.) 3.- Скопируйте несколько файлов "
-"с внутреннего диска на диск Firewire и наоборот."
-
-#. description
-#: ../tests/firewire.txt.in:3
-msgid "Do the copy operations work as expected?"
-msgstr "Операции по копированию прошли удачно?"
-
-#. description
-#: ../tests/kms.txt.in:8
-msgid ""
-"Click Test to switch to another virtual terminal and then back to X.  Your \\"
-" screen will change temporarily to a text console and then switch back to "
-"your \\ current session."
-msgstr ""
-"Нажмите \"Проверка\", чтобы переключиться на другой виртуальный терминал и "
-"обратно на X. Ваш экран \\ временно покажет текстовую консоль, а затем "
-"вернется к \\ текущему сеансу."
-
-#. description
-#: ../tests/kms.txt.in:8
-msgid "Note that this test may require you to enter your password."
-msgstr "Учтите, что для этого теста может потребоваться ваш пароль."
-
-#. description
-#: ../tests/kms.txt.in:8
-msgid "Did the screen change temporarily to a text console?"
-msgstr "Переключился ли экран временно на текстовую консоль?"
-
-#. description
-#: ../tests/media.txt.in:7
-msgid "Insert a DVD.  Then click Test to play the DVD in Totem."
-msgstr ""
-"Вставьте диск DVD. Затем нажмите \"Проверка\", чтобы воспроизвести его в "
-"Totem'е."
-
-#. description
-#: ../tests/media.txt.in:7
-msgid "Did the file play?"
-msgstr "Был ли файл воспроизведён?"
-
-#. description
-#: ../tests/network.txt.in:5
-msgid "Detecting your network controller(s):"
-msgstr "Обнаруженные сетевые устройства:"
-
-#. description
-#: ../tests/network.txt.in:16
-msgid "Testing your connection to the Internet:"
-msgstr "Проверка вашего подключения к интернет:"
-
-#. description
-#: ../tests/network.txt.in:26
-msgid ""
-"Built-in modem network connection procedure: 1.- Connect the telephone line "
-"to the computer 2.- Right click on the Network Manager applet 3.- Select "
-"'Edit Connections' 4.- Select the 'DSL' tab 5.- Click on add 'Add' button 6.-"
-" Configure the connection parameters properly 7.- Notify OSD should confirm "
-"that the connection has been established 8.- Select Test to verify that it's "
-"possible to establish both http \\ and ftp connections"
-msgstr ""
-"Процедура проверки связи через встроенный модем: 1.- Подключите телефонную "
-"линию  к компьютеру 2.- Щелкните правой кнопкой по значку \"Network "
-"manager\" 3.- Выберите 'Изменить соединения' 4.- Откройте вкладку 'DSL' 5.- "
-"Нажмите кнопку 'Добавить' 6.- Настройте параметры соединения 7.- Должно "
-"появиться окно, извещающее об установке соединения 8.- Нажмите \"Проверка\" "
-"чтобы убедиться, что соединения через \\ http и ftp работают нормально"
-
-#. description
-#: ../tests/network.txt.in:26
-msgid "Was the connection correctly established?"
-msgstr "Было ли установлено соединение?"
-
-#. description
-#: ../tests/peripheral.txt.in:4
+#: ../jobs/input.txt.in:4
 msgid "Moving the mouse should move the cursor on the screen."
-msgstr ""
-"Перемещение вашего манипулятора, должно передвигать курсор на экране."
+msgstr "Движение мыши должно перемещать указатель на экране."
 
 #. description
-#: ../tests/peripheral.txt.in:4
+#: ../jobs/input.txt.in:4
 msgid "Is your mouse working properly?"
 msgstr "Ваша мышь работает нормально?"
 
 #. description
-#: ../tests/peripheral.txt.in:13
-msgid ""
-"Click the Test button to open a text area where to type keys on your \\ "
-"keyboard."
-msgstr ""
-
-#. description
-#: ../tests/peripheral.txt.in:13
+#: ../jobs/input.txt.in:13
 msgid "Is your keyboard working properly?"
 msgstr "Ваша клавиатура нормально работает?"
 
 #. description
-#: ../tests/video.txt.in:7
+#: ../jobs/networking.txt.in:5
+msgid "Detecting your network controller(s):"
+msgstr "Обнаруженные сетевые устройства"
+
+#. description
+#: ../jobs/networking.txt.in:16
+msgid "Testing your connection to the Internet:"
+msgstr "Проверка подключения к интернету:"
+
+#: ../checkbox/application.py:66
+msgid "Usage: checkbox [OPTIONS]"
+msgstr "Использование: checkbox [OPTIONS]"
+
+#: ../checkbox/application.py:70
+msgid "Print version information and exit."
+msgstr "Вывести информацию о версии и выйти."
+
+#: ../checkbox/application.py:74
+msgid "The file to write the log to."
+msgstr "Файл журнала работы."
+
+#: ../checkbox/application.py:77
+msgid "One of debug, info, warning, error or critical."
+msgstr ""
+"Варианты: debug (отладка), info (справочная информация), warning "
+"(предупреждения), error (ошибки) или critical (критические ошибки)."
+
+#: ../checkbox/application.py:82
+msgid "Configuration override parameters."
+msgstr "Конфигурирование перезаписало параметры."
+
+#: ../checkbox/application.py:115
+msgid "Missing configuration file as argument.\n"
+msgstr "Отсутствует параметр файла конфигурации.\n"
+
+#: ../checkbox_cli/cli_interface.py:31
+#: ../checkbox_urwid/urwid_interface.py:684
+msgid "yes"
+msgstr "да"
+
+#: ../checkbox_cli/cli_interface.py:32
+#: ../checkbox_urwid/urwid_interface.py:685
+msgid "no"
+msgstr "нет"
+
+#: ../checkbox_cli/cli_interface.py:33
+#: ../checkbox_urwid/urwid_interface.py:686
+msgid "skip"
+msgstr "пропустить"
+
+#: ../checkbox_cli/cli_interface.py:126
+msgid "Press any key to continue..."
+msgstr "Чтобы продолжить, нажмите любую клавишу..."
+
+#: ../checkbox_cli/cli_interface.py:135
+#, python-format
+msgid "Please choose (%s): "
+msgstr "Выберите (%s): "
+
+#: ../checkbox_cli/cli_interface.py:315
+msgid "test"
+msgstr "тест"
+
+#: ../checkbox_cli/cli_interface.py:339
+msgid "test again"
+msgstr "повторить тест"
+
+#: ../checkbox_cli/cli_interface.py:345
+msgid "Please type here and press Ctrl-D when finished:\n"
+msgstr "Пожалуйста, введите текст и нажмите Ctrl-D, когда закончите:\n"
+
+#: ../checkbox_gtk/gtk_interface.py:487
+msgid "_Test Again"
+msgstr "Тестировать снова"
+
+#: ../plugins/final_prompt.py:34
+msgid "_Finish"
+msgstr "Закончить"
+
+#: ../plugins/gather_prompt.py:35
+msgid "Gathering information from your system..."
+msgstr "Сбор информации о вашей системе..."
+
+#: ../plugins/launchpad_exchange.py:141
+#, python-format
+msgid ""
+"Failed to contact server. Please try\n"
+"again or upload the following file name:\n"
+"%s\n"
+"\n"
+"directly to the system database:\n"
+"https://launchpad.net/+hwdb/+submit"
+msgstr ""
+"Не удалось соединиться с сервером. Пожалуйста, \n"
+"попробуйте снова или пришлите файл:\n"
+"%s\n"
+"вручную, с помощью страницы:\n"
+"https://launchpad.net/+hwdb/+submit"
+
+#: ../plugins/launchpad_exchange.py:150
+msgid ""
+"Failed to upload to server,\n"
+"please try again later."
+msgstr ""
+"Не удалось загрузить данные на сервер,\n"
+"пожалуйста попробуйте ещё раз."
+
+#: ../plugins/launchpad_exchange.py:162
+msgid "Information not posted to Launchpad."
+msgstr "Информация не была отправлена на Launchpad."
+
+#: ../plugins/launchpad_prompt.py:92
+msgid "Email address must be in a proper format."
+msgstr "Адрес электронной почты должен быть правильно написан."
+
+#: ../plugins/launchpad_prompt.py:98
+msgid "Exchanging information with the server..."
+msgstr "Обмен данными с сервером..."
+
+#: ../plugins/report_prompt.py:34
+msgid "Building report..."
+msgstr "Формирование отчета..."
+
+#~ msgid "<b>Comment:</b>"
+#~ msgstr "<b>Комментарий:</b>"
+
+#~ msgid "Are you connected to the Internet?"
+#~ msgstr "Вы подключены к интернету?"
+
+#~ msgid ""
+#~ "Typing keys on your keyboard should display the corresponding characters in "
+#~ "a text area."
+#~ msgstr ""
+#~ "При нажатии клавиш на вашей клавиатуре, соответствующие символы должны "
+#~ "появляться и в текстовом поле."
+
+#, python-format
+#~ msgid "Running test: %s"
+#~ msgstr "Работает тест: %s"
+
+#~ msgid "Please provide comments about the failure."
+#~ msgstr "Пожалуйста, прокоментируйте эту неудачу."
+
+#~ msgid "Please provide your Launchpad email address:"
+#~ msgstr "Пожалуйста, введите ваш почтовый адрес в Launchpad:"
+
+#~ msgid "Successfully sent information to server!"
+#~ msgstr "Информация отправлена на сервер!"
+
+#~ msgid "Welcome to System Testing!"
+#~ msgstr "Добро пожаловать в программу проверки системы!"
+
+#~ msgid "Processor information"
+#~ msgstr "Сведения о процессоре"
+
+#~ msgid "Test results"
+#~ msgstr "Результаты тестов"
+
+#~ msgid "Packages installed"
+#~ msgstr "Установленные пакеты"
+
+#~ msgid "Distribution details"
+#~ msgstr "Сведения о дистрибутиве"
+
+#~ msgid "_Server"
+#~ msgstr "_Сервер"
+
+#~ msgid "_Laptop"
+#~ msgstr "_Ноутбук"
+
+#~ msgid "Run the video test."
+#~ msgstr "Проверка воспроизведения видео"
+
+#~ msgid "Exchange"
+#~ msgstr "Обмен"
+
+#~ msgid "Please select the category of your system."
+#~ msgstr "Выберите тип вашего компьютера."
+
+#~ msgid "Successfully sent information!"
+#~ msgstr "Информация успешно отправлена!"
+
+#~ msgid "_Desktop"
+#~ msgstr "_Рабочая станция"
+
+#~ msgid "$(network_test)"
+#~ msgstr "$(network_test)"
+
+#~ msgid "$(resolution_test)"
+#~ msgstr "$(resolution_test)"
+
+#~ msgid ""
+#~ "This application will gather information from your system. Then,\n"
+#~ "you will be asked manual tests to confirm that the system is working\n"
+#~ "properly. Finally, you will be asked for the e-mail address you use\n"
+#~ "to sign in to Launchpad in order to submit the information and your\n"
+#~ "results.\n"
+#~ "\n"
+#~ "If you do not have a Launchpad account, please register here:\n"
+#~ "\n"
+#~ "  https://launchpad.net/+login\n"
+#~ "\n"
+#~ "Thank you for taking the time to test your system."
+#~ msgstr ""
+#~ "Это приложение соберёт информацию о вашем компьютере. Затем\n"
+#~ "она попросит вас ответить на несколько вопросов о работоспособности \n"
+#~ "вашей системы. В конце вас попросят ввести адрес электронной почты,\n"
+#~ "который вы используете для входа на Launchpad, чтобы отправить\n"
+#~ "собранную информацию и результаты тестов.\n"
+#~ "\n"
+#~ "Если у вас ещё нет учётной записи на «Launchpad», то \n"
+#~ "вы можете зарегистрироваться на странице \n"
+#~ "\n"
+#~ "  https://launchpad.net/+login\n"
+#~ "\n"
+#~ "Благодарим вас за потраченное время."
+
+#~ msgid "Running shell tests..."
+#~ msgstr "Запуск тестов оболочки..."
+
+#, python-format
+#~ msgid "Running test %s..."
+#~ msgstr "Выполняется тест %s..."
+
+#~ msgid "Device information"
+#~ msgstr "Сведения об устройстве"
+
+#~ msgid "Is this a good resolution for your display?"
+#~ msgstr "Это разрешение подходит для вашего экрана?"
+
+#~ msgid "The following resolution was detected for your display:"
+#~ msgstr "Для вашего экрана определено следующее разрешение:"
+
+#~ msgid "Authentication"
+#~ msgstr "Аутентификация"
+
+#~ msgid "Done"
+#~ msgstr "Выполнено"
+
+#~ msgid ""
+#~ "The following information will be sent to the Launchpad\n"
+#~ "hardware database. Please provide the e-mail address you\n"
+#~ "use to sign in to Launchpad to submit this information."
+#~ msgstr ""
+#~ "Приведённая ниже информация будет отправлена\n"
+#~ "в базу данных оборудования Launchpad.\n"
+#~ "Для отправки данных укажите, пожалуйста, адрес\n"
+#~ "электронной почты, который вы используете \n"
+#~ "для авторизации в Launchpad."
+
+#~ msgid "Category"
+#~ msgstr "Категория"
+
+#~ msgid "Run the test for the automatically detected playback device."
+#~ msgstr "Начать проверку обнаруженного устройства воспроизведения"
+
+#~ msgid "Do you hear a sound?"
+#~ msgstr "Слышите ли вы звук?"
+
+#: ../gtk/checkbox-gtk.ui.h:1 ../checkbox_cli/cli_interface.py:343
+#: ../checkbox_urwid/urwid_interface.py:261
+msgid "Further information:"
+msgstr "Дополнительная информация:"
+
+#: ../gtk/checkbox-gtk.ui.h:4
+msgid "_Deselect All"
+msgstr ""
+
+#: ../gtk/checkbox-gtk.ui.h:7
+msgid "_Select All"
+msgstr ""
+
+#. description
+#: ../jobs/apport.txt.in:5
+msgid "Test that the /var/crash directory doesn't contain anything."
+msgstr ""
+
+#. description
+#: ../jobs/audio.txt.in:7
+msgid "Detecting your sound device(s):"
+msgstr "Обнаружение ваших звуковых устройств:"
+
+#. description
+#: ../jobs/audio.txt.in:21
+msgid ""
+"Did you hear a sound and was that sound free of any distortion, clicks or "
+"other strange noises?"
+msgstr ""
+"Слышите ли вы звук, и  отсутствуют ли в нем какие-либо искажения, щелчки или "
+"другой посторонний шум?"
+
+#. description
+#: ../jobs/audio.txt.in:33
+msgid "Please connect a pair of headphones to your audio device."
+msgstr ""
+
+#. description
+#: ../jobs/audio.txt.in:33
+msgid ""
+"Select Test to play a sound on the automatically detected playback device."
+msgstr ""
+"Выберите Тест, чтобы воспроизвести звук на автоматически определенном "
+"устройстве."
+
+#. description
+#: ../jobs/audio.txt.in:33
+msgid ""
+"Did you hear a sound through the headphones and did the sound play without "
+"any distortion, clicks or other strange noises from your headphones?"
+msgstr ""
+"Слышите ли вы звук в наушниках, и  отсутствуют ли в нем какие-либо "
+"искажения, щелчки или другой посторонний шум?"
+
+#. description
+#: ../jobs/audio.txt.in:47
+msgid ""
+"Disconnect any external microphones that you have plugged in.  Select Test, "
+"then speak into your internal microphone.  After a few seconds, your speech "
+"will be played back to you."
+msgstr ""
+"Отсоедините все подключенные внешние микрофоны. Нажмите Тест и начните "
+"говорить во встроенный микрофон. Через несколько секунд записанный вами "
+"голос будет воспроизведён."
+
+#. description
+#: ../jobs/audio.txt.in:59
+msgid ""
+"Connect a microphone to your microphone port.  Select Test, then speak into "
+"the microphone.  After a few seconds, your speech will be played back to you."
+msgstr ""
+"Подсоедините микрофон к соответствующему разъёму. Нажмите Тест и начните "
+"говорить во встроенный микрофон. Через несколько секунд записанный вами "
+"голос будет воспроизведён."
+
+#. description
+#: ../jobs/audio.txt.in:70
+msgid ""
+"Connect a USB audio device to your system.  Then open the volume control "
+"application by left-clicking on the speaker icon in the panel and selecting "
+"\"Sound Preferences\".  Select the \"Input\" tab and choose your USB device. "
+" Select the \"Output\" tab and choose your USB device.  When you are done, "
+"select Test, then speak into the microphone.  After a few seconds, your "
+"speech will be played back to you."
+msgstr ""
+"Подключите звуковое устройство с интерфейсом USB к вашей системе.  Затем "
+"откройте апплет управления громкостью, щёлкнув левой кнопкой мыши на значке "
+"динамика и выберите «Параметры звука».  Перейдите на вкладку «Вход» и "
+"выберите ваше устройство с интерфейсом USB.  Перейдите на вкладку «Выход» и "
+"выберите ваше устройство с интерфейсом USB.  После завершения изменений, "
+"нажмите кнопку «Тест» и произнесите что-нибудь в микрофон.  Через несколько "
+"секунд, ваша речь будет воспроизведена."
+
+#. description
+#: ../jobs/audio.txt.in:70 ../jobs/power-management.txt.in:221
+msgid "Did you hear your speech played back?"
+msgstr "Вы услышали вашу воспроизведенную речь?"
+
+#. description
+#: ../jobs/audio.txt.in:81
+msgid ""
+"Play back a sound on the default output and listen for it on the \\ default "
+"input.  This makes the most sense when the output and input \\ are directly "
+"connected, as with a patch cable."
+msgstr ""
+
+#. description
+#: ../jobs/autotest.txt.in:3
+msgid "Autotest suite (destructive)"
+msgstr ""
+
+#. description
+#: ../jobs/bluetooth.txt.in:5 ../jobs/power-management.txt.in:185
+msgid "The address of your Bluetooth device is: $output"
+msgstr ""
+
+#. description
+#: ../jobs/bluetooth.txt.in:15 ../jobs/graphics.txt.in:15
+msgid "Automated test to store output in checkbox report"
+msgstr ""
+
+#. description
+#: ../jobs/bluetooth.txt.in:21
+msgid ""
+"Bluetooth browse files procedure: 1.- Enable bluetooth on any mobile device "
+"(PDA, smartphone, etc.) 2.- Click on the bluetooth icon in the menu bar 3.- "
+"Select 'Setup new device' 3.- Look for the device in the list and select it "
+"4.- In the device write the PIN code automatically chosen by the wizard 5.- "
+"The device should pair with the computer 6.- Right-click on the bluetooth "
+"icon and select browse files 7.- Authorize the computer to browse the files "
+"in the device if needed 8.- You should be able to browse the files"
+msgstr ""
+
+#. description
+#: ../jobs/bluetooth.txt.in:38
+msgid ""
+"Bluetooth file transfer procedure: 1.- Make sure that you're able to browse "
+"the files in your mobile device 2.- Copy a file from the computer to the "
+"mobile device 3.- Verify that the file was correctly copied 4.- Copy a file "
+"from the mobile device to the computer 5.- Verify that the file was "
+"correctly copied"
+msgstr ""
+
+#. description
+#: ../jobs/bluetooth.txt.in:53
+msgid ""
+"Bluetooth audio procedure: 1.- Enable the bluetooth headset 2.- Click on the "
+"bluetooth icon in the menu bar 3.- Select 'Setup new device' 4.- Look for "
+"the device in the list and select it 5.- In the device write the PIN code "
+"automatically chosen by the wizard 6.- The device should pair with the "
+"computer 7.- Select Test to record for five seconds and reproduce in the "
+"bluetooth device"
+msgstr ""
+
+#. description
+#: ../jobs/bluetooth.txt.in:69
+msgid ""
+"Bluetooth keyboard procedure: 1.- Enable the bluetooth keyboard 2.- Click on "
+"the bluetooth icon in the menu bar 3.- Select 'Setup new device' 4.- Look "
+"for the device in the list and select it 5.- Select Test to enter text"
+msgstr ""
+
+#. description
+#: ../jobs/bluetooth.txt.in:82
+msgid ""
+"Bluetooth mouse procedure: 1.- Enable the bluetooth mouse 2.- Click on the "
+"bluetooth icon in the menu bar 3.- Select 'Setup new device' 4.- Look for "
+"the device in the list and select it 5.- Move the mouse around the screen 6.-"
+" Perform some single/double/right click operations"
+msgstr ""
+
+#. description
+#: ../jobs/bluetooth.txt.in:82 ../jobs/optical.txt.in:72
+#: ../jobs/power-management.txt.in:194 ../jobs/usb.txt.in:27
+msgid "Did all the steps work?"
+msgstr ""
+
+#. description
+#: ../jobs/camera.txt.in:7
+msgid "Automated test case that attempts to detect a camera"
+msgstr ""
+
+#. description
+#: ../jobs/camera.txt.in:16
+msgid "Select Test to display a video capture from the camera"
+msgstr ""
+
+#. description
+#: ../jobs/camera.txt.in:16
+msgid "Did you see the video capture?"
+msgstr ""
+
+#. description
+#: ../jobs/camera.txt.in:30
+msgid "Select Test to display a still image from the camera"
+msgstr ""
+
+#. description
+#: ../jobs/camera.txt.in:30
+msgid "Did you see the image?"
+msgstr ""
+
+#. description
+#: ../jobs/camera.txt.in:43
+msgid ""
+"Select Test to capture video to a file and open it in totem. Please make "
+"sure that both audio and video is captured."
+msgstr ""
+
+#. description
+#: ../jobs/camera.txt.in:43
+msgid "Did you see/hear the capture?"
+msgstr ""
+
+#. description
+#: ../jobs/codecs.txt.in:7
+msgid "Select Test to play an Ogg Vorbis file (.ogg)"
+msgstr ""
+
+#. description
+#: ../jobs/codecs.txt.in:20
+msgid "Select Test to play a Wave Audio format file (.wav)"
+msgstr ""
+
+#. description
+#: ../jobs/codecs.txt.in:20
+msgid "Did the sample play correctly?"
+msgstr ""
+
+#. description
+#: ../jobs/codecs.txt.in:33
+msgid ""
+"Select 'Test' to play some audio, and try pausing and resuming playback "
+"while the it is playing."
+msgstr ""
+
+#. description
+#: ../jobs/codecs.txt.in:33
+msgid "Did the audio play and pause as expected?"
+msgstr ""
+
+#. description
+#: ../jobs/codecs.txt.in:46
+msgid ""
+"Select 'Test' to play a video, and try pausing and resuming playback while "
+"the video is playing."
+msgstr ""
+
+#. description
+#: ../jobs/codecs.txt.in:46
+msgid "(Please close Movie Player to proceed.)"
+msgstr ""
+
+#. description
+#: ../jobs/codecs.txt.in:46
+msgid "Did the video play and pause as expected?"
+msgstr ""
+
+#. description
+#: ../jobs/cpu.txt.in:8
+msgid ""
+"Test the CPU scaling capabilities using Colin King's Firmware Test Suite "
+"tool."
+msgstr ""
+
+#. description
+#: ../jobs/cpu.txt.in:15
+msgid "Test for clock jitter."
+msgstr ""
+
+#. description
+#: ../jobs/cpu.txt.in:23
+msgid "Test offlining CPUs in a multicore system."
+msgstr ""
+
+#. description
+#: ../jobs/cpu.txt.in:30
+msgid "Checks cpu topology for accuracy"
+msgstr ""
+
+#. description
+#: ../jobs/cpu.txt.in:38
+msgid "Checks that CPU frequency governors are obeyed when set."
+msgstr ""
+
+#. description
+#: ../jobs/daemons.txt.in:5
+msgid "Test if the atd daemon is running when the package is installed."
+msgstr ""
+
+#. description
+#: ../jobs/daemons.txt.in:11
+msgid "Test if the cron daemon is running when the package is installed."
+msgstr ""
+
+#. description
+#: ../jobs/daemons.txt.in:17
+msgid "Test if the cupsd daemon is running when the package is installed."
+msgstr ""
+
+#. description
+#: ../jobs/daemons.txt.in:23
+msgid "Test if the getty daemon is running when the package is installed."
+msgstr ""
+
+#. description
+#: ../jobs/daemons.txt.in:29
+msgid "Test if the init daemon is running when the package is installed."
+msgstr ""
+
+#. description
+#: ../jobs/daemons.txt.in:35
+msgid "Test if the klogd daemon is running when the package is installed."
+msgstr ""
+
+#. description
+#: ../jobs/daemons.txt.in:41
+msgid "Test if the nmbd daemon is running when the package is installed."
+msgstr ""
+
+#. description
+#: ../jobs/daemons.txt.in:47
+msgid "Test if the smbd daemon is running when the package is installed."
+msgstr ""
+
+#. description
+#: ../jobs/daemons.txt.in:53
+msgid "Test if the syslogd daemon is running when the package is installed."
+msgstr ""
+
+#. description
+#: ../jobs/daemons.txt.in:61
+msgid "Test if the udevd daemon is running when the package is installed."
+msgstr ""
+
+#. description
+#: ../jobs/daemons.txt.in:67
+msgid "Test if the winbindd daemon is running when the package is installed."
+msgstr ""
+
+#. description
+#: ../jobs/disk.txt.in:4
+msgid "The following hard drives were detected:"
+msgstr ""
+
+#. description
+#: ../jobs/disk.txt.in:14
+msgid "Benchmark for each disk "
+msgstr ""
+
+#. description
+#: ../jobs/disk.txt.in:36
+msgid "SMART test"
+msgstr ""
+
+#. description
+#: ../jobs/disk.txt.in:51
+msgid "Maximum disk space used during a default installation test"
+msgstr ""
+
+#. description
+#: ../jobs/disk.txt.in:66
+msgid "Verify system storage performs at or above baseline performance"
+msgstr ""
+
+#. description
+#: ../jobs/disk.txt.in:83
+msgid ""
+"Verify that storage devices, such as Fibre Channel and RAID can be detected "
+"and perform under stress."
+msgstr ""
+
+#. description
+#: ../jobs/evolution.txt.in:5
+msgid ""
+"Click the \"Test\" button to launch Evolution, then configure it to connect "
+"to a POP3 account."
+msgstr ""
+
+#. description
+#: ../jobs/evolution.txt.in:14
+msgid ""
+"Click the \"Test\" button to launch Evolution, then configure it to connect "
+"to a IMAP account."
+msgstr ""
+
+#. description
+#: ../jobs/evolution.txt.in:14
+msgid "Were you able to receive and read e-mail correctly?"
+msgstr ""
+
+#. description
+#: ../jobs/evolution.txt.in:23
+msgid ""
+"Click the \"Test\" button to launch Evolution, then configure it to connect "
+"to a SMTP account."
+msgstr ""
+
+#. description
+#: ../jobs/evolution.txt.in:23
+msgid "Were you able to send e-mail without errors?"
+msgstr ""
+
+#. description
+#: ../jobs/fingerprint.txt.in:3
+msgid ""
+"Prerequisites: This test case assumes that there's a testing account from "
+"which test cases are run and a personal account that the tester uses to "
+"verify the fingerprint reader"
+msgstr ""
+
+#. description
+#: ../jobs/fingerprint.txt.in:3
+msgid ""
+"Fingerprint login verification procedure:\n"
+" 1.- Click on the user switcher applet.\n"
+" 2.- Select your user name.\n"
+" 3.- A window should appear that provides the ability to login either typing "
+"your password or using fingerprint authentication.\n"
+" 4.- Use the fingerprint reader to login.\n"
+" 5.- Click on the user switcher applet.\n"
+" 6.- Select the testing account to continue running tests."
+msgstr ""
+
+#. description
+#: ../jobs/fingerprint.txt.in:18
+msgid ""
+"Fingerprint unlock verification procedure:\n"
+" 1.- Click on the user switcher applet.\n"
+" 2.- Select 'Lock screen'.\n"
+" 3.- Press any key or move the mouse.\n"
+" 4.- A window should appear that provides the ability to unlock either "
+"typing your password or using fingerprint authentication.\n"
+" 5.- Use the fingerprint reader to unlock.\n"
+" 6.- Your screen should be unlocked."
+msgstr ""
+
+#. description
+#: ../jobs/fingerprint.txt.in:18
+msgid "Did the authentication procedure work correctly?"
+msgstr "Процедура узнавания работает правильно?"
+
+#. description
+#: ../jobs/firewire.txt.in:3
+msgid ""
+"Firewire HDD verification procedure:\n"
+" 1.- Plug a Firewire HDD into the computer.\n"
+" 2.- A window should be opened asking which action should be performed (open "
+"folder, photo manager, etc).\n"
+" 3.- Copy some files from your internal HDD to the firewire HDD.\n"
+" 4.- Copy some files from the firewire HDD to your internal HDD."
+msgstr ""
+
+#. description
+#: ../jobs/firewire.txt.in:3 ../jobs/usb.txt.in:71
+msgid "Do the copy operations work as expected?"
+msgstr "Копирование файлов работает как ожидалось?"
+
+#. description
+#: ../jobs/floppy.txt.in:4
+msgid "Floppy test"
+msgstr ""
+
+#. description
+#: ../jobs/gcalctool.txt.in:5
+msgid "Click the \"Test\" button to open the calculator."
+msgstr ""
+
+#. description
+#: ../jobs/gcalctool.txt.in:5
+msgid "Did it launch correctly?"
+msgstr ""
+
+#. description
+#: ../jobs/gcalctool.txt.in:15
+msgid ""
+"1. Simple math functions (+,-,/,*) 2. Nested math functions ((,)) 3. "
+"Fractional math 4. Decimal math"
+msgstr ""
+
+#. description
+#: ../jobs/gcalctool.txt.in:30
+msgid "1. Memory set 2. Memory reset 3. Memory last clear 4. Memory clear"
+msgstr ""
+
+#. description
+#: ../jobs/gcalctool.txt.in:45
+msgid "Click the \"Test\" button to open the calculator and perform:"
+msgstr ""
+
+#. description
+#: ../jobs/gcalctool.txt.in:45
+msgid "1. Cut 2. Copy 3. Paste"
+msgstr ""
+
+#. description
+#: ../jobs/gcalctool.txt.in:45
+msgid "Did the functions perform as expected?"
+msgstr ""
+
+#. description
+#: ../jobs/gedit.txt.in:5
+msgid "Click the \"Test\" button to open gedit."
+msgstr ""
+
+#. description
+#: ../jobs/gedit.txt.in:5
+msgid ""
+"Enter some text and save the file (make a note of the file name you use), "
+"then close gedit."
+msgstr ""
+
+#. description
+#: ../jobs/gedit.txt.in:17
+msgid ""
+"Click the \"Test\" button to open gedit, and re-open the file you created "
+"previously."
+msgstr ""
+
+#. description
+#: ../jobs/gedit.txt.in:17
+msgid "Edit then save the file, then close gedit."
+msgstr ""
+
+#. description
+#: ../jobs/gedit.txt.in:17 ../jobs/gnome-terminal.txt.in:5
+msgid "Did this perform as expected?"
+msgstr ""
+
+#. description
+#: ../jobs/gnome-terminal.txt.in:5
+msgid "Click the \"Test\" button to open Terminal."
+msgstr ""
+
+#. description
+#: ../jobs/gnome-terminal.txt.in:5
+msgid ""
+"Type 'ls' and press enter. You should see a list of files and folder in your "
+"home directory."
+msgstr ""
+
+#. description
+#: ../jobs/gnome-terminal.txt.in:5
+msgid "Close the terminal window."
+msgstr ""
+
+#. description
+#: ../jobs/graphics.txt.in:5
+msgid ""
+"2d graphics appears to be working, your running X.Org version is: $output"
+msgstr ""
+
+#. description
+#: ../jobs/graphics.txt.in:23
+msgid "Run gtkperf to make sure that GTK based test cases work"
+msgstr ""
+
+#. description
+#: ../jobs/graphics.txt.in:23
+msgid ""
+"In the future add the returned time as a benchmark result to the checkbox "
+"report"
+msgstr ""
+
+#. description
+#: ../jobs/graphics.txt.in:31
+msgid ""
+"Display resolution change procedure: 1.- Open System->Preferences->Monitors "
+"2.- Select a new resolution from the dropdown list 3.- Click on Apply 4.- "
+"The resolution should change 5.- Select the original resolution from the "
+"dropdown list 6.- Click on Apply 7.- The resolution should change again"
+msgstr ""
+
+#. description
+#: ../jobs/graphics.txt.in:31
+msgid "Did the resolution change as expected?"
+msgstr ""
+
+#. description
+#: ../jobs/graphics.txt.in:46
+msgid ""
+"Display rotation verification procedure: 1.- Open System->Preferences-"
+">Monitors 2.- Select a new rotation value from the dropdown list 3.- Click "
+"on Apply 4.- The display should be rotated according to the new "
+"configuration value 5.- Click on Restore Previous Configuration 6.- The "
+"display configuration change should be reverted 7.- Repeat 2-6 for different "
+"rotation values"
+msgstr ""
+
+#. description
+#: ../jobs/graphics.txt.in:46
+msgid "Did the display rotation change as expected?"
+msgstr ""
+
+#. description
+#: ../jobs/graphics.txt.in:62 ../jobs/sru_suite.txt.in:151
+msgid "Test that the X process is running."
+msgstr ""
+
+#. description
+#: ../jobs/graphics.txt.in:68 ../jobs/sru_suite.txt.in:157
+msgid "Test that the X is not running in failsafe mode."
+msgstr ""
+
+#. description
+#: ../jobs/graphics.txt.in:75
+msgid "Test that X does not leak memory when running programs."
+msgstr ""
+
+#. description
+#: ../jobs/graphics.txt.in:82
 msgid "This display is using the following resolution:"
 msgstr "Этот монитор использует следующее разрешение:"
 
 #. description
-#: ../tests/video.txt.in:7
+#: ../jobs/graphics.txt.in:82
 msgid "Is this acceptable for your display?"
 msgstr "Для вашего экрана оно подходящее?"
 
 #. description
-#: ../tests/video.txt.in:18
-msgid "Click the Test button to display a video test."
-msgstr "Для проверки видео нажмите Тест."
+#: ../jobs/graphics.txt.in:95
+msgid ""
+"Ensure the current resolution meets or exceeds the recommended minimum "
+"resolution (1024 x 768). See here for details:"
+msgstr ""
 
 #. description
-#: ../tests/video.txt.in:18
-msgid "Do you see color bars and static?"
-msgstr "Видите ли вы цветные статичные полосы?"
+#: ../jobs/graphics.txt.in:107
+msgid ""
+"Ensure the current resolution meets or exceeds the recommended minimum "
+"resolution (1024 x 600). See here for details:"
+msgstr ""
 
 #. description
-#: ../tests/video.txt.in:28
+#: ../jobs/graphics.txt.in:107
+msgid "https://help.ubuntu.com/community/Installation/SystemRequirements"
+msgstr ""
+
+#. description
+#: ../jobs/graphics.txt.in:117
+msgid "Select Test to display a video test."
+msgstr "Нажмите кнопку «Тест» для выполнения видео теста."
+
+#. description
+#: ../jobs/graphics.txt.in:126
 msgid ""
 "The following screens and video modes have been detected on your system:"
 msgstr ""
 "Для вашей системы были определены следующие режимы видеокарты и монитора:"
 
 #. description
-#: ../tests/video.txt.in:41
-msgid "Click Test to cycle through the detected video modes for your system."
+#: ../jobs/graphics.txt.in:138
+msgid ""
+"Select Test to cycle through the detected video modes for your system."
 msgstr ""
+"Нажмите кнопку «Тест» для обзора видео режимов, определённых в вашей системе."
 
 #. description
-#: ../tests/video.txt.in:41
+#: ../jobs/graphics.txt.in:138
 msgid "Did the screen appear to be working for each mode?"
+msgstr "Экран правильно работает во всех режимах?"
+
+#. description
+#: ../jobs/graphics.txt.in:146
+msgid "Check that the hardware is able to run compiz."
 msgstr ""
 
 #. description
-#: ../tests/video.txt.in:49
-msgid "Check that hardware is able to run compiz."
-msgstr ""
-
-#. description
-#: ../tests/video.txt.in:54
+#: ../jobs/graphics.txt.in:153
 msgid ""
-"Plug video output to an external monitor. Is the image displayed correctly?"
+"Select Test to execute glxgears to ensure that minimal 3d graphics support "
+"is in place."
 msgstr ""
-"Подключите видеовыход ко внешнему монитору. Изображение показывается "
-"корректно?"
+"Нажмите кнопку «Тест» для выполнения теста glxgears на минимальную поддержку "
+"3-ёх мерной графики."
 
 #. description
-#: ../tests/video.txt.in:54
-msgid ""
-"Please repeat the test for each kind of video output supported (VGA, DVI, "
-"DisplayPort and HDMI)."
+#: ../jobs/graphics.txt.in:153
+msgid "Did the 3d animation appear?"
 msgstr ""
-"Повторите проверку для каждого поддерживаемого видеовыхода (VGA, DVI, "
-"DisplayPort и HDMI)."
 
 #. description
-#: ../tests/video.txt.in:54
+#: ../jobs/info.txt.in:60 ../jobs/screenshot.txt.in:7
+msgid "Captures a screenshot."
+msgstr ""
+
+#. description
+#: ../jobs/info.txt.in:71 ../jobs/sru_suite.txt.in:167
+msgid "Gather log from the firmware test suite run"
+msgstr ""
+
+#. description
+#: ../jobs/info.txt.in:82
+msgid "Bootchart information."
+msgstr ""
+
+#. description
+#: ../jobs/input.txt.in:13
+msgid "Select Test to open a text area where to type keys on your keyboard."
+msgstr ""
+"Нажмите «Тест» для отображения текстовой области, где вы сможете проверить "
+"метод ввода при помощи клавиатуры."
+
+#. description
+#: ../jobs/install.txt.in:6
 msgid ""
-"For HDMI, please also check that sound is played in the monitor speakers."
+"Tests to see that apt can access repositories and get updates (does not "
+"install updates)"
 msgstr ""
-"В случае с HDMI также проверьте, воспроизводится ли звук через динамики "
-"монитора."
 
-#: ../checkbox/application.py:72
-msgid "Usage: checkbox [OPTIONS]"
-msgstr "Использование: checkbox [OPTIONS]"
-
-#: ../checkbox/application.py:76
-msgid "Print version information and exit."
-msgstr "Вывести информацию о версии и выйти."
-
-#: ../checkbox/application.py:79
-msgid "The file to write the log to."
-msgstr "Файл журнала."
-
-#: ../checkbox/application.py:82
-msgid "One of debug, info, warning, error or critical."
+#. description
+#: ../jobs/keys.txt.in:4
+msgid ""
+"Press the brightness buttons on the keyboard. A status window should \\ "
+"appear and the brightness should change."
 msgstr ""
-"Одно из следующего: отладка, информация, предупреждение, ошибка, опасность."
 
-#: ../checkbox/application.py:87
-msgid "Configuration override parameters."
-msgstr "Параметры не приняты конфигурацией."
+#. description
+#: ../jobs/keys.txt.in:12
+msgid ""
+"Press the volume buttons on the keyboard. A status window should \\ appear "
+"and the volume should change."
+msgstr ""
 
-#: ../checkbox/application.py:121
-msgid "Missing configuration file as argument.\n"
-msgstr "Отсутствует параметр файла конфигурации.\n"
+#. description
+#: ../jobs/keys.txt.in:12
+msgid "Do the buttons work?"
+msgstr ""
+
+#. description
+#: ../jobs/keys.txt.in:21
+msgid ""
+"Press the mute key on the keyboard. A status window should appear \\ and the "
+"volume should mute/unmute when pressed multiple times."
+msgstr ""
+
+#. description
+#: ../jobs/keys.txt.in:30
+msgid ""
+"Press the sleep key on the keyboard. The computer should suspend and, \\ "
+"after pressing the power button, resume successfully."
+msgstr ""
+
+#. description
+#: ../jobs/keys.txt.in:39
+msgid ""
+"Press the battery information key on the keyboard. A status window \\ should "
+"appear and the amount of battery remaining should be displayed."
+msgstr ""
+
+#. description
+#: ../jobs/keys.txt.in:48
+msgid ""
+"Press the wireless networking key on the keyboard. The bluetooth icon \\ and "
+"the network connnection should go down if connected through the \\ wifi "
+"interface."
+msgstr ""
+
+#. description
+#: ../jobs/keys.txt.in:48
+msgid ""
+"Press the same key again and check that bluetooth icon is again \\ displayed "
+"and that the network connection is re-established \\ automatically."
+msgstr ""
+
+#. description
+#: ../jobs/keys.txt.in:48
+msgid "Does the key work?"
+msgstr ""
+
+#. description
+#: ../jobs/keys.txt.in:62
+msgid ""
+"The keyboard may have dedicated keys for controlling media as follows:"
+msgstr ""
+
+#. description
+#: ../jobs/keys.txt.in:62
+msgid "* Play/Pause * Stop * Forward * Backward (Rewind)"
+msgstr ""
+
+#. description
+#: ../jobs/keys.txt.in:62
+msgid "Play a media file and press each key in turn."
+msgstr ""
+
+#. description
+#: ../jobs/keys.txt.in:62
+msgid "Do the keys work as expected?"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:3
+msgid "Audio tests"
+msgstr "Проверка звука"
+
+#. description
+#: ../jobs/local.txt.in:8
+msgid "Bluetooth tests"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:13
+msgid "Camera tests"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:18
+msgid "Codec tests"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:23
+msgid "CPU tests"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:28
+msgid "System Daemon tests"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:33
+msgid "Disk tests"
+msgstr "Проверка диска"
+
+#. description
+#: ../jobs/local.txt.in:38
+msgid "Fingerprint reader tests"
+msgstr "Проверка сканера отпечатков пальцев"
+
+#. description
+#: ../jobs/local.txt.in:43
+msgid "Firewire disk tests"
+msgstr "Проверка дисков Firewire"
+
+#. description
+#: ../jobs/local.txt.in:48
+msgid "Floppy disk tests"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:53
+msgid "Graphics tests"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:58
+msgid "Informational tests"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:63
+msgid "Input Devices tests"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:68
+msgid "Software Installation tests"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:73
+msgid "Hotkey tests"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:78
+msgid "Media Card tests"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:83
+msgid "Miscellaneous tests"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:88
+msgid "Monitor tests"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:93
+msgid "Networking tests"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:98
+msgid "PCMCIA/PCIX Card tests"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:103
+msgid "Peripheral tests"
+msgstr "Проверка периферийного оборудования"
+
+#. description
+#: ../jobs/local.txt.in:108
+msgid "Power Management tests"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:113
+msgid "Unity tests"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:118
+msgid "User Applications"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:123
+msgid "Stress tests"
+msgstr ""
+
+#. description
+#: ../jobs/ltp.txt.in:3
+msgid "Linux Test Project"
+msgstr ""
+
+#. description
+#: ../jobs/mago.txt.in:3
+msgid "Automated desktop testing"
+msgstr ""
+
+#. description
+#: ../jobs/mediacard.txt.in:3
+msgid ""
+"Secure Digital (SD) media card support verification:\n"
+" 1.- Plug a SD media card into the computer.\n"
+" 2.- An icon should appear on the desktop and in the \"Places\" menu at the "
+"top of the screen.\n"
+" 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
+" 4.- The icon should disappear of both the deskop and the \"Places\" menu."
+msgstr ""
+"Процедура проверки используя сменные карты памяти Secure Digital (SD):\n"
+" 1.- Вставьте карту памяти SD, используя соответствующее устройство "
+"считывания компьютера.\n"
+" 2.- На рабочем столе должен появится значок, а также в верхней части экрана "
+"в меню «Переход».\n"
+" 3.- Щёлкните правой кнопкой мыши на значке и выберите  «Безопасное "
+"отключение устройства».\n"
+" 4.- Значок должен исчезнуть с рабочего стола и в меню «Переход»."
+
+#. description
+#: ../jobs/mediacard.txt.in:15
+msgid ""
+"Secure Digital (SD) media card support re-verification:\n"
+" 1.- Plug a SD media card into the computer.\n"
+" 2.- An icon should appear on the desktop and in the \"Places\" menu at the "
+"top of the screen.\n"
+" 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
+" 4.- The icon should disappear of both the deskop and the \"Places\" menu."
+msgstr ""
+"Процедура повторной верификации используя сменные карты памяти Secure "
+"Digital (SD):\n"
+" 1.- Вставьте карту памяти SD, используя соответствующее устройство "
+"считывания компьютера.\n"
+" 2.- На рабочем столе должен появится значок, а также в верхней части экрана "
+"в меню «Переход».\n"
+" 3.- Щёлкните правой кнопкой мыши на значке и выберите  «Безопасное "
+"отключение устройства».\n"
+" 4.- Значок должен исчезнуть с рабочего стола и в меню «Переход»."
+
+#. description
+#: ../jobs/mediacard.txt.in:26
+msgid ""
+"Secure Digital High Capacity (SDHC) media card support verification:\n"
+" 1.- Plug a SDHC media card into the computer.\n"
+" 2.- An icon should appear on the desktop and in the \"Places\" menu at the "
+"top of the screen.\n"
+" 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
+" 4.- The icon should disappear of both the deskop and the \"Places\" menu."
+msgstr ""
+"Процедура проверки, используя сменные карты памяти Secure Digital High "
+"Capacity (SDHC):\n"
+" 1.- Вставьте карту памяти SDHC, используя соответствующее устройство "
+"считывания компьютера.\n"
+" 2.- На рабочем столе должен появится значок, а также в верхней части экрана "
+"в меню «Переход».\n"
+" 3.- Щёлкните правой кнопкой мыши на значке и выберите  «Безопасное "
+"отключение устройства».\n"
+" 4.- Значок должен исчезнуть с рабочего стола и в меню «Переход»."
+
+#. description
+#: ../jobs/mediacard.txt.in:38
+msgid ""
+"Secure Digital High Capacity (SDHC) media card support re-verification:\n"
+" 1.- Plug a SDHC media card into the computer.\n"
+" 2.- An icon should appear on the desktop and in the \"Places\" menu at the "
+"top of the screen.\n"
+" 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
+" 4.- The icon should disappear of both the deskop and the \"Places\" menu."
+msgstr ""
+"Процедура повторной проверки, используя сменные карты памяти Secure Digital "
+"High Capacity (SDHC):\n"
+" 1.- Вставьте карту памяти SDHC, используя соответствующее устройство "
+"считывания компьютера.\n"
+" 2.- На рабочем столе должен появится значок, а также в верхней части экрана "
+"в меню «Переход».\n"
+" 3.- Щёлкните правой кнопкой мыши на значке и выберите  «Безопасное "
+"отключение устройства».\n"
+" 4.- Значок должен исчезнуть с рабочего стола и в меню «Переход»."
+
+#. description
+#: ../jobs/mediacard.txt.in:49
+msgid ""
+"Multi Media Card (MMC) media card support verification:\n"
+" 1.- Plug a MMC media card into the computer.\n"
+" 2.- An icon should appear on the desktop and in the \"Places\" menu at the "
+"top of the screen.\n"
+" 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
+" 4.- The icon should disappear of both the deskop and the \"Places\" menu."
+msgstr ""
+"Процедура проверки, используя сменные карты памяти Multi Media Card (MMC):\n"
+" 1.- Вставьте карту памяти MMC, используя соответствующее устройство "
+"считывания компьютера.\n"
+" 2.- На рабочем столе должен появится значок, а также в верхней части экрана "
+"в меню «Переход».\n"
+" 3.- Щёлкните правой кнопкой мыши на значке и выберите  «Безопасное "
+"отключение устройства».\n"
+" 4.- Значок должен исчезнуть с рабочего стола и в меню «Переход»."
+
+#. description
+#: ../jobs/mediacard.txt.in:61
+msgid ""
+"Multi Media Card (MMC) media card support re-verification:\n"
+" 1.- Plug a MMC media card into the computer.\n"
+" 2.- An icon should appear on the desktop and in the \"Places\" menu at the "
+"top of the screen.\n"
+" 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
+" 4.- The icon should disappear of both the deskop and the \"Places\" menu."
+msgstr ""
+"Процедура повторной проверки, используя сменные карты памяти Multi Media "
+"Card (MMC):\n"
+" 1.- Вставьте карту памяти MMC используя соответствующее устройство "
+"считывания компьютера.\n"
+" 2.- На рабочем столе должен появится значок, а также в верхней части экрана "
+"в меню «Переход».\n"
+" 3.- Щёлкните правой кнопкой мыши на значке и выберите  «Безопасное "
+"отключение устройства».\n"
+" 4.- Значок должен исчезнуть с рабочего стола и в меню «Переход»."
+
+#. description
+#: ../jobs/mediacard.txt.in:72
+msgid ""
+"Memory Stick (MS) media card support verification:\n"
+" 1.- Plug a MS media card into the computer.\n"
+" 2.- An icon should appear on the desktop and in the \"Places\" menu at the "
+"top of the screen.\n"
+" 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
+" 4.- The icon should disappear of both the deskop and the \"Places\" menu."
+msgstr ""
+"Процедура проверки, используя сменные карты памяти Memory Stick (MS):\n"
+" 1.- Вставьте карту памяти MS, используя соответствующее устройство "
+"считывания компьютера.\n"
+" 2.- На рабочем столе должен появится значок, а также в верхней части экрана "
+"в меню «Переход».\n"
+" 3.- Щёлкните правой кнопкой мыши на значке и выберите  «Безопасное "
+"отключение устройства».\n"
+" 4.- Значок должен исчезнуть с рабочего стола и в меню «Переход»."
+
+#. description
+#: ../jobs/mediacard.txt.in:84
+msgid ""
+"Memory Stick (MS) media card support re-verification:\n"
+" 1.- Plug a MS media card into the computer.\n"
+" 2.- An icon should appear on the desktop and in the \"Places\" menu at the "
+"top of the screen.\n"
+" 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
+" 4.- The icon should disappear of both the deskop and the \"Places\" menu."
+msgstr ""
+"Процедура повторной проверки, используя сменные карты памяти Memory Stick "
+"(MS):\n"
+" 1.- Вставьте карту памяти MS, используя соответствующее устройство "
+"считывания компьютера.\n"
+" 2.- На рабочем столе должен появится значок, а также в верхней части экрана "
+"в меню «Переход».\n"
+" 3.- Щёлкните правой кнопкой мыши на значке и выберите  «Безопасное "
+"отключение устройства».\n"
+" 4.- Значок должен исчезнуть с рабочего стола и в меню «Переход»."
+
+#. description
+#: ../jobs/mediacard.txt.in:95
+msgid ""
+"Memory Stick Pro (MSP) media card support verification:\n"
+" 1.- Plug a MSP media card into the computer.\n"
+" 2.- An icon should appear on the desktop and in the \"Places\" menu at the "
+"top of the screen.\n"
+" 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
+" 4.- The icon should disappear of both the deskop and the \"Places\" menu."
+msgstr ""
+"Процедура проверки, используя сменные карты памяти Memory Stick Pro (MSP):\n"
+" 1.- Вставьте карту памяти MSP, используя соответствующее устройство "
+"считывания компьютера.\n"
+" 2.- На рабочем столе должен появится значок, а также в верхней части экрана "
+"в меню «Переход».\n"
+" 3.- Щёлкните правой кнопкой мыши на значке и выберите  «Безопасное "
+"отключение устройства».\n"
+" 4.- Значок должен исчезнуть с рабочего стола и в меню «Переход»."
+
+#. description
+#: ../jobs/mediacard.txt.in:107
+msgid ""
+"Memory Stick Pro (MSP) media card support re-verification:\n"
+" 1.- Plug a MSP media card into the computer.\n"
+" 2.- An icon should appear on the desktop and in the \"Places\" menu at the "
+"top of the screen.\n"
+" 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
+" 4.- The icon should disappear of both the deskop and the \"Places\" menu."
+msgstr ""
+"Процедура повторной проверки, используя сменные карты памяти Memory Stick "
+"Pro (MSP):\n"
+" 1.- Вставьте карту памяти MSP, используя соответствующее устройство "
+"считывания компьютера.\n"
+" 2.- На рабочем столе должен появится значок, а также в верхней части экрана "
+"в меню «Переход».\n"
+" 3.- Щёлкните правой кнопкой мыши на значке и выберите  «Безопасное "
+"отключение устройства».\n"
+" 4.- Значок должен исчезнуть с рабочего стола и в меню «Переход»."
+
+#. description
+#: ../jobs/mediacard.txt.in:118
+msgid ""
+"Compact Flash (CF) media card support verification:\n"
+" 1.- Plug a CF media card into the computer.\n"
+" 2.- An icon should appear on the desktop and in the \"Places\" menu at the "
+"top of the screen.\n"
+" 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
+" 4.- The icon should disappear of both the deskop and the \"Places\" menu."
+msgstr ""
+"Процедура проверки, используя сменные карты памяти Compact Flash (CF):\n"
+" 1.- Вставьте карту памяти CF, используя соответствующее устройство "
+"считывания компьютера.\n"
+" 2.- На рабочем столе должен появится значок, а также в верхней части экрана "
+"в меню «Переход».\n"
+" 3.- Щёлкните правой кнопкой мыши на значке и выберите  «Безопасное "
+"отключение устройства».\n"
+" 4.- Значок должен исчезнуть с рабочего стола и в меню «Переход»."
+
+#. description
+#: ../jobs/mediacard.txt.in:130
+msgid ""
+"Compact Flash (CF) media card support re-verification:\n"
+" 1.- Plug a CF media card into the computer.\n"
+" 2.- An icon should appear on the desktop and in the \"Places\" menu at the "
+"top of the screen.\n"
+" 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
+" 4.- The icon should disappear of both the deskop and the \"Places\" menu."
+msgstr ""
+"Процедура повторной проверки, используя сменные карты памяти Compact Flash "
+"(CF):\n"
+" 1.- Вставьте карту памяти CF, используя соответствующее устройство "
+"считывания компьютера.\n"
+" 2.- На рабочем столе должен появится значок, а также в верхней части экрана "
+"в меню «Переход».\n"
+" 3.- Щёлкните правой кнопкой мыши на значке и выберите  «Безопасное "
+"отключение устройства».\n"
+" 4.- Значок должен исчезнуть с рабочего стола и в меню «Переход»."
+
+#. description
+#: ../jobs/mediacard.txt.in:130
+msgid "Does the icon automatically appear/disappear?"
+msgstr ""
+
+#. description
+#: ../jobs/memory.txt.in:4
+msgid "The following amount of memory was detected:"
+msgstr ""
+
+#. description
+#: ../jobs/memory.txt.in:16
+msgid "Test and exercise memory."
+msgstr ""
+
+#. description
+#: ../jobs/miscellanea.txt.in:8
+msgid ""
+"Select Test to switch to another virtual terminal and then back to X.  Your "
+"screen will change temporarily to a text console and then switch back to "
+"your current session."
+msgstr ""
+"Выберите Тест, чтобы переключиться в другой виртуальный терминал и затем "
+"обратно в графическую оболочку. На экране будет временно отображена "
+"текстовая консоль, затем снова текущая сессия."
+
+#. description
+#: ../jobs/miscellanea.txt.in:8
+msgid "Note that this test may require you to enter your password."
+msgstr "В этой проверке может потребоваться ввести ваш пароль."
+
+#. description
+#: ../jobs/miscellanea.txt.in:8
+msgid "Did the screen change temporarily to a text console?"
+msgstr "Переключался ли экран на текстовую консоль?"
+
+#. description
+#: ../jobs/miscellanea.txt.in:20
+msgid "Run Colin King's Firmware Test Suite automated tests."
+msgstr ""
+
+#. description
+#: ../jobs/miscellanea.txt.in:29
+msgid ""
+"ipmitool is required for ipmi testing. This checks for ipmitool and installs "
+"it if not available."
+msgstr ""
+
+#. description
+#: ../jobs/miscellanea.txt.in:36
+msgid ""
+"This will run some basic connectivity tests against a BMC, verifying that "
+"IPMI works."
+msgstr ""
+
+#. description
+#: ../jobs/monitor.txt.in:3
+msgid "If your system does not have a VGA port, please skip this test."
+msgstr ""
+
+#. description
+#: ../jobs/monitor.txt.in:3
+msgid ""
+"Connect a display (if not already connected) to the VGA port on your system. "
+"Is the image displayed correctly?"
+msgstr ""
+
+#. description
+#: ../jobs/monitor.txt.in:10
+msgid "If your system does not have a DVI port, please skip this test."
+msgstr ""
+
+#. description
+#: ../jobs/monitor.txt.in:10
+msgid ""
+"Connect a display (if not already connected) to the DVI port on your system. "
+"Is the image displayed correctly?"
+msgstr ""
+
+#. description
+#: ../jobs/monitor.txt.in:17
+msgid "If your system does not have DisplayPort, please skip this test."
+msgstr ""
+
+#. description
+#: ../jobs/monitor.txt.in:17
+msgid ""
+"Connect a display (if not already connected) to the DisplayPort on your "
+"system. Is the image displayed correctly?"
+msgstr ""
+
+#. description
+#: ../jobs/monitor.txt.in:24
+msgid "If your system does not have a HDMI port, please skip this test."
+msgstr ""
+
+#. description
+#: ../jobs/monitor.txt.in:24
+msgid ""
+"Connect a display (if not already connected) to the HDMI port on your "
+"system. Is the image displayed correctly?"
+msgstr ""
+
+#. description
+#: ../jobs/monitor.txt.in:31
+msgid "If your system does not have a S-VIDEO port, please skip this test."
+msgstr ""
+
+#. description
+#: ../jobs/monitor.txt.in:31
+msgid ""
+"Connect a display (if not already connected) to the S-VIDEO port on your "
+"system. Is the image displayed correctly?"
+msgstr ""
+
+#. description
+#: ../jobs/monitor.txt.in:38
+msgid "If your system does not have a RCA port, please skip this test."
+msgstr ""
+
+#. description
+#: ../jobs/monitor.txt.in:38
+msgid ""
+"Connect a display (if not already connected) to the RCA port on your system. "
+"Is the image displayed correctly?"
+msgstr ""
+
+#. description
+#: ../jobs/monitor.txt.in:46
+msgid ""
+"Monitor power saving verification procedure:\n"
+" 1.- Select Test to try the power saving capabilities of your monitor.\n"
+" 2.- The monitor should go blank.\n"
+" 3.- Press any key or move the mouse to recover."
+msgstr ""
+
+#. description
+#: ../jobs/monitor.txt.in:46
+msgid "Did the monitor go blank?"
+msgstr ""
+
+#. description
+#: ../jobs/networking.txt.in:26
+msgid "Network Information"
+msgstr ""
+
+#. description
+#: ../jobs/networking.txt.in:46
+msgid "Wireless scanning test."
+msgstr ""
+
+#. description
+#: ../jobs/networking.txt.in:52
+msgid ""
+"Wireless network connection procedure: 1.- Click on the Network Manager "
+"applet 2.- Select a network below the 'Wireless networks' section 3.- Notify "
+"OSD should confirm that the connection has been established 4.- Select Test "
+"to verify that it's possible to establish an HTTP connection"
+msgstr ""
+
+#. description
+#: ../jobs/networking.txt.in:64
+msgid ""
+"Wired network connection procedure: 1.- Click on the Network Manager applet "
+"2.- Select a network below the 'Wired network' section 3.- Notify OSD should "
+"confirm that the connection has been established 4.- Select Test to verify "
+"that it's possible to establish an HTTP connection"
+msgstr ""
+
+#. description
+#: ../jobs/networking.txt.in:76
+msgid ""
+"Built-in modem network connection procedure: 1.- Connect the telephone line "
+"to the computer 2.- Right click on the Network Manager applet 3.- Select "
+"'Edit Connections' 4.- Select the 'DSL' tab 5.- Click on add 'Add' button 6.-"
+" Configure the connection parameters properly 7.- Notify OSD should confirm "
+"that the connection has been established 8.- Select Test to verify that it's "
+"possible to establish an HTTP connection"
+msgstr ""
+
+#. description
+#: ../jobs/networking.txt.in:76 ../jobs/peripheral.txt.in:15
+msgid "Was the connection correctly established?"
+msgstr "Было ли соединение установлено правильно?"
+
+#. description
+#: ../jobs/networking.txt.in:92
+msgid ""
+"Automated test case to verify availability of some system on the network "
+"using ICMP ECHO packets."
+msgstr ""
+
+#. description
+#: ../jobs/networking.txt.in:99 ../jobs/peripheral.txt.in:32
+msgid ""
+"Automated test case to make sure that it's possible to download files "
+"through HTTP"
+msgstr ""
+
+#. description
+#: ../jobs/networking.txt.in:107
+msgid "Test to see if we can sync local clock to an NTP server"
+msgstr ""
+
+#. description
+#: ../jobs/networking.txt.in:113
+msgid ""
+"Verify that an installation of checkbox-server on the network can be reached "
+"over SSH."
+msgstr ""
+
+#. description
+#: ../jobs/networking.txt.in:119
+msgid "Try to enable a remote printer on the network and print a test page."
+msgstr ""
+
+#. description
+#: ../jobs/networking.txt.in:124
+msgid "Multiple network cards"
+msgstr ""
+
+#. description
+#: ../jobs/networking.txt.in:144
+msgid "Test to measure the network bandwidth"
+msgstr ""
+
+#. description
+#: ../jobs/optical.txt.in:8
+msgid "The following optical drives were detected:"
+msgstr ""
+
+#. description
+#: ../jobs/optical.txt.in:18
+msgid "Optical Storage device read tests"
+msgstr ""
+
+#. description
+#: ../jobs/optical.txt.in:37
+msgid ""
+"The detected optical drive seems to support writing. Enter a blank CDROM \\ "
+"into your drive and try writing to it."
+msgstr ""
+
+#. description
+#: ../jobs/optical.txt.in:46
+msgid ""
+"CD audio playback procedure: 1.- Insert an audio cd in your optical drive. "
+"2.- An icon should appear on the desktop. 3.- Right-click on the icon and "
+"select \"Open with Rhythmbox\". 4.- Select the CD as the playback source and "
+"press play button. 5.- The music should reproduce. 6.- Stop music "
+"reproduction after some time. 7.- Right click on the desktop icon and select "
+"\"Eject Volume\". 8.- The CD should be ejected and the icon removed from the "
+"desktop."
+msgstr ""
+
+#. description
+#: ../jobs/optical.txt.in:63
+msgid ""
+"The detected optical drive seems to support writing. Enter a blank DVD \\ "
+"into your drive and try writing to it."
+msgstr ""
+
+#. description
+#: ../jobs/optical.txt.in:63
+msgid "Does writing work?"
+msgstr ""
+
+#. description
+#: ../jobs/optical.txt.in:72
+msgid ""
+"DVD movie playback procedure: 1.- Insert a DVD that contains any movie in "
+"your optical drive. 2.- A window should appear with some actions that you "
+"may choose. Select 'Open Movie Player'. 3.- The player should be opened and "
+"the movie should reproduce. 4.- Stop movie reproduction after some time. 5.- "
+"An icon should appear in the desktop. 6.- Right click on the icon and select "
+"\"Eject Volume\". 7.- The DVD should be ejected and the icon removed from "
+"the desktop."
+msgstr ""
+
+#. description
+#: ../jobs/optical.txt.in:90
+msgid "Insert a DVD.  Then select Test to play the DVD in Totem."
+msgstr ""
+"Вставьте DVD. Затем выберите Тест, чтобы проиграть DVD в Видеопроигрывателе"
+
+#. description
+#: ../jobs/optical.txt.in:90
+msgid "Did the file play?"
+msgstr "Файл проигрывался?"
+
+#. description
+#: ../jobs/panel_clock_test.txt.in:4
+msgid ""
+"Is your gnome system clock displaying the correct date and time for \\ your "
+"timezone?"
+msgstr ""
+
+#. description
+#: ../jobs/panel_clock_test.txt.in:14
+msgid ""
+"Time verification procedure: 1.- Click the \"Test\" button and verify the "
+"clock moves ahead by 1 hour. \\ Note: It may take a minute or so for the "
+"gnome clock to refresh  2.- Now from the panel select System, Admistration, "
+"then Time and Date 3.- Ensure that your clock application is set to manual. "
+"4.- Change the time 1 hour back 5.- Close the window and reboot"
+msgstr ""
+
+#. description
+#: ../jobs/panel_clock_test.txt.in:14
+msgid ""
+"Is your system clock displaying the correct date and time for your \\ "
+"timezone?"
+msgstr ""
+
+#. description
+#: ../jobs/panel_reboot.txt.in:4
+msgid "Please restart your machine from the Ubuntu Panel."
+msgstr ""
+
+#. description
+#: ../jobs/panel_reboot.txt.in:4
+msgid ""
+"Afterwards be sure to recover the previous Checkbox instance and \\ answer "
+"the question below:"
+msgstr ""
+
+#. description
+#: ../jobs/panel_reboot.txt.in:4
+msgid "Did it restart and bring up the GUI login cleanly?"
+msgstr ""
+
+#. description
+#: ../jobs/pcmcia-pcix.txt.in:3
+msgid "Plug a PCMCIA device into the computer."
+msgstr ""
+
+#. description
+#: ../jobs/pcmcia-pcix.txt.in:3
+msgid "Is it detected?"
+msgstr ""
+
+#. description
+#: ../jobs/peripheral.txt.in:3
+msgid ""
+"Printer configuration verification procedure: 1.- Make sure that a printer "
+"is available in your network 2.- Open Systems->Administration->Printing 3.- "
+"If the printer isn't already listed, click on New 4.- The printer should be "
+"detected and proper configuration values \\ should be displayed 5.- Print a "
+"test page"
+msgstr ""
+
+#. description
+#: ../jobs/peripheral.txt.in:15
+msgid ""
+"External USB modem network connection procedure: 1.- Connect the USB cable "
+"to the computer 2.- Right click on the Network Manager applet 3.- Select "
+"'Edit Connections' 4.- Select the 'DSL' (for ADSL modem) or 'Mobile "
+"Broadband' (for 3G modem) tab 5.- Click on add 'Add' button 6.- Configure "
+"the connection parameters properly 7.- Notify OSD should confirm that the "
+"connection has been established 8.- Select Test to verify that it's possible "
+"to establish an HTTP connection"
+msgstr ""
+
+#. description
+#: ../jobs/phoronix.txt.in:3
+msgid "Automated benchmark testing"
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:3
+msgid ""
+"Shutdown/boot cycle verification procedure: 1.- Shutdown your machine 2.- "
+"Boot your machine 3.- Repeat steps 1 and 2 at least 5 times"
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:3
+msgid ""
+"Note: This test case has to be executed manually before checkbox execution"
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:14
+msgid ""
+"Run the computer suspend test. Then, press the power button to resume it."
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:14
+msgid "Does your computer suspend and resume?"
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:22
+msgid ""
+"Run the computer hibernate test. Then, press the power button to restore it."
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:22
+msgid "Does your computer hibernate and restore?"
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:29
+msgid "Does closing your laptop lid cause your screen to blank?"
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:41
+msgid "Click the Test button, then close and open the lid."
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:41
+msgid "Did the screen turn off while the lid was closed?"
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:55
+msgid "Click the Test button, then close the lid and wait 5 seconds."
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:55
+msgid "Open the lid."
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:55
+msgid "Did the screen turn back on when the lid was opened?"
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:65
+msgid "Test the network before suspending."
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:70
+msgid "Record the current resolution before suspending."
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:78
+msgid "Test the audio before suspending."
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:84
+msgid ""
+"Wireless network connection procedure:\n"
+" 1.- Click on the Network Manager applet.\n"
+" 2.- Click on Disconnect under 'Wired Networks'.\n"
+" 3.- Select a network below the 'Wireless networks' section.\n"
+" 4.- Notify OSD should confirm that the connection has been established.\n"
+" 5.- Select Test to verify connection and throughput.\n"
+"Output:"
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:128 ../jobs/sru_suite.txt.in:135
+msgid "Make sure that the RTC (Real-Time Clock) device exists."
+msgstr "Проверьте доступность RTC устройства."
+
+#. description
+#: ../jobs/power-management.txt.in:135
+msgid "Power management Suspend and Resume test"
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:135
+msgid ""
+"Select Test and your system will suspend for about 30 - 60 seconds. If your "
+"system does not wake itself up after 60 seconds, please press the power "
+"button momentarily to wake the system manually. If your system fails to wake "
+"at all and must be rebooted, restart System Testing after reboot and mark "
+"this test as Failed."
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:145
+msgid "Test the network after resuming."
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:151
+msgid ""
+"Test to see that we have the same resolution after resuming as before."
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:160
+msgid "Test the audio after resuming."
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:167
+msgid ""
+"Wireless network connection procedure:\n"
+" 1.- Click on the Network Manager applet.\n"
+" 2.- If a wired connection is established, click its Disconnect option.\n"
+" 3.- Select a network below the 'Wireless networks' section.\n"
+" 4.- Notify OSD should confirm that the connection has been established.\n"
+" 5.- Select Test to verify connection and throughput.\n"
+"Output:"
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:194
+msgid ""
+"Verify a bluetooth peripheral.  An example verification procedure for a "
+"bluetooth mouse is given."
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:194
+msgid ""
+"Bluetooth mouse procedure:\n"
+" 1.- Enable the bluetooth mouse.\n"
+" 2.- Click on the bluetooth icon in the menu bar.\n"
+" 3.- Select 'Setup new device'.\n"
+" 4.- Look for the device in the list and select it.\n"
+" 5.- Move the mouse around the screen.\n"
+" 6.- Perform some single/double/right click operations."
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:210
+msgid ""
+"This test will check to make sure that supported video modes work after a "
+"suspend and resume.  Select Test to begin."
+msgstr ""
+"Этот тест позволит убедиться в работоспособности видео режимов после режима "
+"ожидания и сна. Нажмите кнопку «Тест» для выполнения."
+
+#. description
+#: ../jobs/power-management.txt.in:221
+msgid ""
+"This will check to make sure that your audio device works properly after a "
+"suspend and resume.  You can use either internal or external microphone and "
+"speakers."
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:221
+msgid ""
+"To execute this test, make sure your speaker and microphone are NOT muted "
+"and the volume is set sufficiently loud to record and play audio. Select "
+"Test and then speak into your microphone. After a few seconds, your speech "
+"will be played back to you."
+msgstr ""
+"Для выполнения этого теста, убедитесь, что ваша акустическая система и "
+"микрофон включены, а громкость настроена на уровень необходимый для записи и "
+"воспроизведения звука. Нажмите кнопку «Тест»  и произнести что-нибудь в "
+"микрофон. Через несколько секунд ваша речь будет воспроизведена."
+
+#. description
+#: ../jobs/power-management.txt.in:234
+msgid ""
+"Enter and resume from suspend state for 30 iterations. Please note that this "
+"is a lengthy test. Select Test to begin. If your system fails to wake and "
+"must be rebooted, please restart System Testing and mark this test as Failed."
+msgstr ""
+"Вход и выход из ждущего режима с 30-кратной проверкой. Обратите внимание, "
+"это длительный тест. Нажмите кнопку «Тест» для выполнения. Если ваша система "
+"не вышла из ждущего режима и потребовалась перезагрузка системы, "
+"перезапустите программу Проверки системы и отметьте прохождение этого теста "
+"как неудачное."
+
+#. description
+#: ../jobs/power-management.txt.in:234
+msgid "Did the system successfully suspend and resume for 30 iterations?"
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:245
+msgid ""
+"This will check to make sure your system can successfully hibernate (if "
+"supported)."
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:245
+msgid ""
+"Select Test to begin. The system will hibernate and should wake itself "
+"within 5 minutes.  If your system does not wake itself after 5 minutes, "
+"please press the power button to wake the system manually. If the system "
+"fails to resume from hibernate, please restart System Testing and mark this "
+"test as Failed."
+msgstr ""
+"Нажмите кнопку «Тест» для выполнения. Система перейдёт в спящий режим и "
+"выйдет из него через 5 минут. Если ваша система не вышла автоматически из "
+"спящего режима после 5 минут, пожалуйста, нажмите кнопку питания для вывода "
+"система из спящего режима, затем перезапустите программу Проверки системы и "
+"отметьте прохождение этого теста как неудачное."
+
+#. description
+#: ../jobs/power-management.txt.in:245
+msgid ""
+"Did the system successfully hibernate and did it work properly after waking "
+"up?"
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:258
+msgid ""
+"Enter and resume from hibernate for 30 iterations. Please note that this is "
+"a very lengthy test. Also, if your system does not wake itself after 2 "
+"minutes, you will need to press the power button to wake the system up. If "
+"the system fails to resume from hibernation and must be rebooted, please "
+"restart System Testing and mark this test as Failed."
+msgstr ""
+"Вход и выход из ждущего режима с 30-кратной проверкой. Обратите внимание, "
+"это длительный тест. Если ваша система не вышла автоматически из спящего "
+"режима после 2 минут, пожалуйста, нажмите кнопку питания для вывода система "
+"из спящего режима. Если и в этом случае выход из спящего режима невозможен и "
+"требуется перезагрузка, запустите программу Проверки системы и отметьте "
+"прохождение этого теста как неудачное."
+
+#. description
+#: ../jobs/power-management.txt.in:258
+msgid ""
+"Also, you will need to ensure your system has no power-on or HDD passwords "
+"set, and that grub is set to boot Ubuntu by default if you have a multi-boot "
+"set-up."
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:258
+msgid "Did the system successfully hibernate and wake 30 times?"
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:267
+msgid "Run Colin Kings FWTS wakealarm test"
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:276
+msgid "Check to see if CONFIG_NO_HZ is set in the kernel"
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:284
+msgid "Automatic power management Suspend and Resume test"
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:284
+msgid ""
+"Select test and your system will suspend for about 30 - 60 seconds. If your "
+"system does not wake itself up after 60 seconds, please press the power "
+"button momentarily to wake the system manually. If your system fails to wake "
+"at all and must be rebooted, restart System Testing after reboot and mark "
+"this test as Failed."
+msgstr ""
+"Нажмите кнопку «Тест» и ваша система будет переведена в режим ожидания на 30-"
+"60 секунд. Если ваша система, после 60 секунд, не выйдет из этого режима "
+"автоматически, пожалуйста, нажмите кнопку питания для выхода из этого "
+"режима. Если ваша система не выходит из этого режима в обоих случаях, вам "
+"необходимо перезагрузить систему, перезапустить проверку системы и отметить "
+"прохождение этого теста как неудачное."
+
+#. description
+#: ../jobs/qa_regression.txt.in:3
+msgid "QA regression tests (destructive)"
+msgstr ""
+
+#. description
+#: ../jobs/server-services.txt.in:5
+msgid "sshd test"
+msgstr ""
+
+#. description
+#: ../jobs/server-services.txt.in:11
+msgid "Print/CUPs server test"
+msgstr ""
+
+#. description
+#: ../jobs/server-services.txt.in:18
+msgid "DNS server test"
+msgstr ""
+
+#. description
+#: ../jobs/server-services.txt.in:25
+msgid "Samba server test"
+msgstr ""
+
+#. description
+#: ../jobs/server-services.txt.in:32
+msgid "LAMP server test"
+msgstr ""
+
+#. description
+#: ../jobs/server-services.txt.in:39
+msgid "Tomcat server test"
+msgstr ""
+
+#. description
+#: ../jobs/sru_suite.txt.in:4
+msgid "SRU Test Suite"
+msgstr ""
+
+#. description
+#: ../jobs/sru_suite.txt.in:9
+msgid "Tests that SRU is able to run compiz"
+msgstr ""
+
+#. description
+#: ../jobs/sru_suite.txt.in:15
+msgid ""
+"Tests that SRU does not degrade CPU offlining ability on multicore systems"
+msgstr ""
+
+#. description
+#: ../jobs/sru_suite.txt.in:22
+msgid "Tests that SRU can see network devices"
+msgstr ""
+
+#. description
+#: ../jobs/sru_suite.txt.in:29
+msgid "Tests that the SRU can do some network activity"
+msgstr ""
+
+#. description
+#: ../jobs/sru_suite.txt.in:37
+msgid "Tests that a system after SRU can suspend and resume"
+msgstr ""
+
+#. description
+#: ../jobs/sru_suite.txt.in:45
+msgid "Tests the SRU to make sure it sees BT if present"
+msgstr ""
+
+#. description
+#: ../jobs/sru_suite.txt.in:52
+msgid "Tests the SRU to ensure basic X availability"
+msgstr ""
+
+#. description
+#: ../jobs/sru_suite.txt.in:62
+msgid "Tests the SRU for basic network stack functionality"
+msgstr ""
+
+#. description
+#: ../jobs/sru_suite.txt.in:70
+msgid "Captures a screenshot showing X works"
+msgstr ""
+
+#. description
+#: ../jobs/sru_suite.txt.in:77
+msgid ""
+"Tests SRU to ensure apt-get works so we can back out if the SRU hoses the "
+"system. (does not install updates)"
+msgstr ""
+
+#. description
+#: ../jobs/sru_suite.txt.in:87
+msgid "Test the CPU scaling capabilities."
+msgstr ""
+
+#. description
+#: ../jobs/sru_suite.txt.in:95
+msgid "Run Colin King's FWTS wakealarm test"
+msgstr ""
+
+#. description
+#: ../jobs/sru_suite.txt.in:103
+msgid "Ensure SRU does not turn off tickless idle"
+msgstr ""
+
+#. description
+#: ../jobs/sru_suite.txt.in:111
+msgid "SRU disk read performance test."
+msgstr ""
+
+#. description
+#: ../jobs/sru_suite.txt.in:129
+msgid "Test the memory after applying an SRU"
+msgstr ""
+
+#. description
+#: ../jobs/sru_suite.txt.in:144
+msgid "Test that the SRU still accesses USB controllers and lists devices"
+msgstr ""
+
+#. description
+#: ../jobs/sru_suite.txt.in:176
+msgid "Checks cpu_topology for accuracy"
+msgstr ""
+
+#. description
+#: ../jobs/stress.txt.in:8
+msgid ""
+"Hammer the CPU as hard as possible for two hours. Intention is to knock it "
+"dead."
+msgstr ""
+
+#. description
+#: ../jobs/unity.txt.in:6
+msgid ""
+"Xlib is required for unity testing. This checks for Xlib and installs it if "
+"not available."
+msgstr ""
+
+#. description
+#: ../jobs/unity.txt.in:13
+msgid ""
+"This test will verify that Unity is running and then run the autopilot.py "
+"test against the Unity interface."
+msgstr ""
+
+#. description
+#: ../jobs/usb.txt.in:5
+msgid "The following USB controllers were detected:"
+msgstr ""
+
+#. description
+#: ../jobs/usb.txt.in:17
+msgid ""
+"Plug a USB keyboard into the computer. Then, click on the Test button \\ to "
+"enter text."
+msgstr ""
+
+#. description
+#: ../jobs/usb.txt.in:17
+msgid "Does the keyboard work?"
+msgstr ""
+
+#. description
+#: ../jobs/usb.txt.in:27
+msgid ""
+"USB mouse verification procedure: 1.- Plug a USB mouse into the computer 2.- "
+"Perform some single/double/right click operations"
+msgstr ""
+
+#. description
+#: ../jobs/usb.txt.in:39
+msgid ""
+"Click 'Test' and insert a USB device within 5 seconds. If the test is "
+"successful, you should notice that 'Yes' is selected below. Do not unplug "
+"the device if the test is successful."
+msgstr ""
+
+#. description
+#: ../jobs/usb.txt.in:39
+msgid ""
+"If no USB device is inserted or the device is not recognized, the test will "
+"fail and 'No' will be selected below."
+msgstr ""
+
+#. description
+#: ../jobs/usb.txt.in:51
+msgid ""
+"Click 'Test' and remove the USB device you inserted within 5 seconds. If the "
+"test is successful, you should notice that 'Yes' is selected below."
+msgstr ""
+
+#. description
+#: ../jobs/usb.txt.in:51
+msgid ""
+"If the USB device isn't removed or the removal is not registered, the test "
+"will fail and 'No' will be selected below."
+msgstr ""
+
+#. description
+#: ../jobs/usb.txt.in:61
+msgid ""
+"Plug a USB storage device into the computer. An icon should appear \\ on the "
+"desktop and in the \"Places\" menu at the top of the screen."
+msgstr ""
+
+#. description
+#: ../jobs/usb.txt.in:61
+msgid "Does the window automatically appear?"
+msgstr ""
+
+#. description
+#: ../jobs/usb.txt.in:71
+msgid ""
+"USB HDD verification procedure: 1.- Plug a USB HDD into the computer 2.- An "
+"icon should appear on the desktop and in the \"Places\" menu at the top of "
+"the screen. 3.- Copy some files from the internal/USB HDD to the "
+"USB/internal HDD"
+msgstr ""
+
+#. description
+#: ../jobs/usb.txt.in:83
+msgid ""
+"Connect a USB storage device to an external USB slot on this computer. \\ An "
+"icon should appear on the desktop and in the \"Places\" menu at the top of "
+"the screen."
+msgstr ""
+
+#. description
+#: ../jobs/usb.txt.in:83
+msgid ""
+"Confirm that the icon appears, then eject the device. Repeat with each "
+"external \\ USB slot."
+msgstr ""
+
+#. description
+#: ../jobs/usb.txt.in:83
+msgid "Do all USB slots work with the device?"
+msgstr ""
+
+#. description
+#: ../jobs/user_apps.txt.in:6
+msgid ""
+"This test will execute Update Manager and check to see if there are any "
+"available updates for the system. Please follow the prompts and if updates "
+"are found, install them. When Update Manager has finished, please close the "
+"app by clicking the Close button in the lower right corner."
+msgstr ""
+
+#. description
+#: ../jobs/user_apps.txt.in:14
+msgid ""
+"Select Test to open the File Browser. On the menu bar, click File -> Create "
+"Folder. In the name box for the new folder, enter the name Test Folder and "
+"hit Enter."
+msgstr ""
+"Нажмите кнопку «Тест» для открытия обозревателя файлов. Или выберите из меню "
+"Файл -> Создать папку. В поле ввода названия папки введите имя Test Folder и "
+"нажмите клавишу Ввода [Enter]."
+
+#. description
+#: ../jobs/user_apps.txt.in:14
+msgid "Do you now have a new folder called Test Folder?"
+msgstr ""
+
+#. description
+#: ../jobs/user_apps.txt.in:25
+msgid ""
+"Select Test to open the File Browser. Right click on the folder called Test "
+"Folder and click on Copy.  Right Click on any white area in the window and "
+"click on Paste."
+msgstr ""
+"Нажмите кнопку «Тест» для открытия обозревателя файлов. Щёлкните правой "
+"кнопкой мыши на папке с названием Test Folder и нажмите Копировать. Щёлкните "
+"правой кнопкой мыши на любой свободной области в окне и нажмите Вставить."
+
+#. description
+#: ../jobs/user_apps.txt.in:25
+msgid ""
+"Right click on the folder called Test Folder(copy) and click Rename. Enter "
+"the name Test Data in the name box and hit Enter."
+msgstr ""
+
+#. description
+#: ../jobs/user_apps.txt.in:25
+msgid "Do you now have a folder called Test Data?"
+msgstr ""
+
+#. description
+#: ../jobs/user_apps.txt.in:38
+msgid ""
+"Select Test to open the File Browser. Click and drag the folder called Test "
+"Data onto the icon called Test Folder. Release the button."
+msgstr ""
+"Нажмите кнопку «Тест» для открытия обозревателя файлов. Нажмите и перенесите "
+"папку с именем Test Data на значок с названием Test Folder. Отпустите "
+"клавишу."
+
+#. description
+#: ../jobs/user_apps.txt.in:38
+msgid "Double click the folder called Test Folder to open it up."
+msgstr ""
+
+#. description
+#: ../jobs/user_apps.txt.in:38
+msgid ""
+"Was the folder called Test Data successfully moved into the folder called "
+"Test Folder?"
+msgstr ""
+
+#. description
+#: ../jobs/user_apps.txt.in:51
+msgid ""
+"Select Test to open the File Browser. Right click in the white space and "
+"click Create Document -> Empty File. Enter the name Test File 1 in the name "
+"box and hit Enter."
+msgstr ""
+"Нажмите кнопку «Тест» для открытия обозревателя файлов. Щёлкните правой "
+"кнопкой мыши на любом свободном месте в окне и нажмите Создать документ -> "
+"Пустой файл. Введите название файл Test File 1 и нажмите клавишу Ввод."
+
+#. description
+#: ../jobs/user_apps.txt.in:51
+msgid "Do you now have a file called Test File 1?"
+msgstr ""
+
+#. description
+#: ../jobs/user_apps.txt.in:51
+msgid "Close the File browser."
+msgstr ""
+
+#. description
+#: ../jobs/user_apps.txt.in:62
+msgid ""
+"Select Test to open the File Browser. Right click on the file called Test "
+"File 1 and click Copy. Right click in the white space and click Paste."
+msgstr ""
+"Нажмите кнопку «Тест» для открытия обозревателя файлов. Щёлкните правой "
+"кнопкой мыши на файле Test File 1 и нажмите Копировать.  Щёлкните правой "
+"кнопкой мыши на любом свободном месте в окне и нажмите Вставить."
+
+#. description
+#: ../jobs/user_apps.txt.in:62
+msgid ""
+"Right click on the file called Test File 1(copy) and click Rename. Enter the "
+"name Test File 2 in the name box and hit Enter."
+msgstr ""
+
+#. description
+#: ../jobs/user_apps.txt.in:62
+msgid "Do you now have a file called Test File 2?"
+msgstr ""
+
+#. description
+#: ../jobs/user_apps.txt.in:75
+msgid ""
+"Select Test to open the File Browser. Click and drag the file called Test "
+"File 2 onto the icon for the folder called Test Data. Release the button."
+msgstr ""
+"Нажмите кнопку «Тест» для открытия обозревателя файлов. Нажмите и перенесите "
+"папку с именем Test File 2 на значок с названием Test Data. Отпустите "
+"клавишу."
+
+#. description
+#: ../jobs/user_apps.txt.in:75
+msgid "Double click the icon for Test Data to open that folder up."
+msgstr ""
+
+#. description
+#: ../jobs/user_apps.txt.in:75
+msgid ""
+"Was the file Test File 2 successfully moved into the Test Data folder?"
+msgstr ""
+
+#. description
+#: ../jobs/user_apps.txt.in:88
+msgid ""
+"Select Test to open the File Browser. Right click on the file called Test "
+"File 1 and click on Move To Trash."
+msgstr ""
+"Нажмите кнопку «Тест» для открытия обозревателя файлов. Щёлкните правой "
+"кнопкой мыши на файле Test File 1 и нажмите Удалить."
+
+#. description
+#: ../jobs/user_apps.txt.in:88
+msgid "Is Test File 1 now gone?"
+msgstr ""
+
+#. description
+#: ../jobs/user_apps.txt.in:99
+msgid ""
+"Select Test to open the File Browser. Right click on the folder called Test "
+"Folder and click on Move To Trash."
+msgstr ""
+"Нажмите кнопку «Тест» для открытия обозревателя файлов. Щёлкните правой "
+"кнопкой мыши на папке Test Folder и нажмите Удалить."
+
+#. description
+#: ../jobs/user_apps.txt.in:99
+msgid "Has Test Folder been successfully deleted?"
+msgstr ""
+
+#. description
+#: ../jobs/user_apps.txt.in:99
+msgid "Close the File Browser."
+msgstr ""
+
+#. description
+#: ../jobs/user_apps.txt.in:160
+msgid "Common Document Types Test"
+msgstr ""
+
+#. description
+#: ../jobs/user_apps.txt.in:178
+msgid "Select Test to launch Firefox and view the test web page."
+msgstr ""
+"Нажмите кнопку «Тест» для запуска Firefox и просмотрите тестовую вэб-"
+"страницу."
+
+#. description
+#: ../jobs/user_apps.txt.in:178
+msgid "Did the Ubuntu Test page load correctly?"
+msgstr ""
+
+#. description
+#: ../jobs/user_apps.txt.in:188
+msgid ""
+"Select Test to open Firefox with the Java test page, and follow the "
+"instructions there."
+msgstr ""
+"Нажмите кнопку «Тест» для запуска Firefox и обзора тестовой вэб-страницы с "
+"Java и следуйте размещённым там инструкциям."
+
+#. description
+#: ../jobs/user_apps.txt.in:188
+msgid "Did the applet display?"
+msgstr ""
+
+#. description
+#: ../jobs/user_apps.txt.in:198
+msgid "Select Test to launch Firefox and view a sample Flash test."
+msgstr ""
+"Нажмите кнопку «Тест» для запуска Firefox и обзора тест простейшего Flash "
+"содержимого."
+
+#. description
+#: ../jobs/user_apps.txt.in:198
+msgid "Did you see the text?"
+msgstr ""
+
+#. description
+#: ../jobs/user_apps.txt.in:208
+msgid "Select Test to launch Firefox and view a short flash video."
+msgstr ""
+"Нажмите кнопку «Тест» для запуска Firefox и обзора короткого flash видео."
+
+#. description
+#: ../jobs/user_apps.txt.in:208
+msgid "Did the video play correctly?"
+msgstr ""
+
+#. description
+#: ../jobs/user_apps.txt.in:218
+msgid "Select Test to launch Firefox with a sample video."
+msgstr ""
+"Нажмите кнопку «Тест» для запуска Firefox и обзора тестового видеофрагмента."
+
+#. description
+#: ../jobs/user_apps.txt.in:218
+msgid "Did the video play using a plugin?"
+msgstr ""
+
+#. description
+#: ../jobs/user_apps.txt.in:227
+msgid "Facebook Chat"
+msgstr ""
+
+#. description
+#: ../jobs/user_apps.txt.in:238
+msgid "Google Talk"
+msgstr ""
+
+#. description
+#: ../jobs/user_apps.txt.in:249
+msgid "Jabber"
+msgstr ""
+
+#. description
+#: ../jobs/user_apps.txt.in:260
+msgid "AIM"
+msgstr ""
+
+#. description
+#: ../jobs/user_apps.txt.in:271
+msgid ""
+"Select Test to launch Empathy, then configure it to connect to the following "
+"service. Once you have completed the test, please quit Empathy to continue "
+"here."
+msgstr ""
+"Нажмите кнопку «Тест» для запуска Empathy, затем настройте его для "
+"подключения к следующей службе. После завершения теста выйдите из программы "
+"Empathy и продолжите выполнение здесь."
+
+#. description
+#: ../jobs/user_apps.txt.in:271
+msgid "MSN"
+msgstr ""
+
+#. description
+#: ../jobs/user_apps.txt.in:271
+msgid "Were you able to connect correctly and send/receive messages?"
+msgstr ""
+
+#: ../checkbox/application.py:84
+msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist."
+msgstr ""
+
+#: ../checkbox/application.py:86
+msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist_file."
+msgstr ""
+
+#: ../checkbox/application.py:88
+msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist."
+msgstr ""
+
+#: ../checkbox/application.py:90
+msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist_file."
+msgstr ""
 
 #: ../checkbox/lib/signal.py:23
 msgid ""
@@ -547,74 +2791,92 @@ msgstr ""
 msgid "Unknown signal"
 msgstr "Неизвестный сигнал"
 
-#: ../checkbox_cli/cli_interface.py:32
-msgid "yes"
-msgstr "да"
+#: ../checkbox_urwid/urwid_interface.py:60
+msgid "Checkbox System Testing"
+msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:33
-msgid "no"
-msgstr "нет"
+#: ../checkbox_urwid/urwid_interface.py:99
+msgid "Continue"
+msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:34
-msgid "skip"
-msgstr "пропустить"
+#: ../checkbox_urwid/urwid_interface.py:192
+#: ../checkbox_urwid/urwid_interface.py:268
+#: ../checkbox_urwid/urwid_interface.py:416
+msgid "Previous"
+msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:121
-msgid "Press any key to continue..."
-msgstr "Чтобы продолжить, нажмите любую клавишу..."
+#: ../checkbox_urwid/urwid_interface.py:193
+#: ../checkbox_urwid/urwid_interface.py:269
+#: ../checkbox_urwid/urwid_interface.py:417
+msgid "Next"
+msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:131
-#, python-format
-msgid "Please choose (%s): "
-msgstr "Пожалуйста, выберите (%s): "
+#. Show buttons
+#: ../checkbox_urwid/urwid_interface.py:414
+msgid "Select All"
+msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:237 ../checkbox_gtk/gtk_interface.py:325
-#, python-format
-msgid "Running test %s..."
-msgstr "Запуск теста %s..."
+#: ../checkbox_urwid/urwid_interface.py:415
+msgid "Deselect All"
+msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:246
-msgid "test"
-msgstr "тест"
+#: ../checkbox_urwid/urwid_interface.py:772
+msgid "Test"
+msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:270
-msgid "test again"
-msgstr "повтор теста"
+#: ../checkbox_urwid/urwid_interface.py:787
+msgid "Test Again"
+msgstr ""
 
-#: ../checkbox_cli/cli_interface.py:276
-msgid "Please type here and press Ctrl-D when finished:\n"
-msgstr "Введите здесь и нажмите Ctrl-D когда закончите:\n"
+#: ../checkbox_gtk/gtk_interface.py:93
+msgid "hardware database"
+msgstr ""
 
-#: ../checkbox_gtk/gtk_interface.py:335
-msgid "_Test Again"
-msgstr "Тестировать снова"
-
-#: ../checkbox_gtk/gtk_interface.py:377
+#: ../checkbox_gtk/gtk_interface.py:533
 msgid "Info"
-msgstr "Информация"
+msgstr "Инфо"
 
-#: ../checkbox_gtk/gtk_interface.py:396
+#: ../checkbox_gtk/gtk_interface.py:552
 msgid "Error"
 msgstr "Ошибка"
 
-#: ../checkbox/user_interface.py:128
+#: ../checkbox/user_interface.py:136
 #, python-format
 msgid "Unable to start web browser to open %s."
 msgstr "Невозможно запустить веб-браузер, чтобы открыть %s."
 
-#: ../plugins/final_prompt.py:31
+#: ../plugins/apport_prompt.py:81
+msgid ""
+"Collecting information about this test.\n"
+"This might take a few minutes."
+msgstr ""
+
+#: ../plugins/apport_prompt.py:116
+msgid ""
+"Collected information is being sent for bug tracking.\n"
+"This might take a few minutes."
+msgstr ""
+
+#: ../plugins/apport_prompt.py:225
+#, python-format
+msgid "Test %s from suite %s failed."
+msgstr ""
+
+#: ../plugins/apport_prompt.py:228
+#, python-format
+msgid "Test %s failed."
+msgstr ""
+
+#: ../plugins/apport_prompt.py:246
+#, python-format
+msgid "Is a package upgrade in process? Error: %s"
+msgstr ""
+
+#: ../plugins/final_prompt.py:33
 msgid "Successfully finished testing!"
 msgstr "Проверка успешно завершена!"
 
-#: ../plugins/final_prompt.py:32
-msgid "_Finish"
-msgstr "Закончить"
-
-#: ../plugins/gather_prompt.py:34
-msgid "Gathering information from your system..."
-msgstr "Сбор информации о вашей системе..."
-
-#: ../plugins/intro_prompt.py:33
+#: ../plugins/intro_prompt.py:43
 msgid ""
 "Welcome to System Testing!\n"
 "\n"
@@ -629,34 +2891,10 @@ msgstr ""
 
 #: ../plugins/launchpad_exchange.py:118
 #, python-format
-msgid ""
-"Failed to contact server. Please try\n"
-"again or upload the following file name:\n"
-"%s\n"
-"\n"
-"directly to the system database:\n"
-"https://launchpad.net/+hwdb/+submit"
+msgid "Failed to process form: %s"
 msgstr ""
-"Ошибка при соединении с сервером.\n"
-"Попробуйте, пожалуйста, ещё раз \n"
-"или загрузите файл:\n"
-"%s\n"
-"напрямую в базу данных оборудования:\n"
-"https://launchpad.net/+hwdb/+submit"
 
-#: ../plugins/launchpad_exchange.py:127
-msgid ""
-"Failed to upload to server,\n"
-"please try again later."
-msgstr ""
-"Не удалось загрузить данные на сервер,\n"
-"Пожалуйста, попробуйте позже."
-
-#: ../plugins/launchpad_exchange.py:139
-msgid "Information not posted to Launchpad."
-msgstr "Информация не опубликована на Launchpad."
-
-#: ../plugins/launchpad_prompt.py:66
+#: ../plugins/launchpad_prompt.py:71
 #, python-format
 msgid ""
 "The following report has been generated for submission to the Launchpad "
@@ -681,31 +2919,27 @@ msgstr ""
 "\n"
 "  https://launchpad.net/+login"
 
-#: ../plugins/launchpad_prompt.py:83
+#: ../plugins/launchpad_prompt.py:88
 msgid "No e-mail address provided, not submitting to Launchpad."
 msgstr "Не указан электронный адрес, отчёт не отправлен на Launchpad."
 
-#: ../plugins/launchpad_prompt.py:87
-msgid "Email address must be in a proper format."
-msgstr "Адрес электронной почты должен быть правильно написан."
-
-#: ../plugins/launchpad_prompt.py:93
-msgid "Exchanging information with the server..."
-msgstr "Обмен данными с сервером..."
-
-#: ../plugins/lock_prompt.py:58
+#: ../plugins/lock_prompt.py:63
 msgid "There is another checkbox running. Please close it first."
 msgstr "Checkbox уже запущен. Сначала завершите его."
 
-#: ../plugins/report_prompt.py:34
-msgid "Building report..."
-msgstr "Формирование отчета..."
+#: ../plugins/recover_prompt.py:54
+msgid ""
+"Checkbox did not finish completely.\n"
+"Do you want to recover from the previous run?"
+msgstr ""
 
-#: ../plugins/shell_test.py:42
-msgid "Running shell tests..."
-msgstr "Запуск тестов оболочки..."
+#: ../plugins/shell_test.py:52
+#, python-format
+msgid "Running %s..."
+msgstr ""
 
-#: ../plugins/suites_prompt.py:131
+#. Get results
+#: ../plugins/suites_prompt.py:105
 msgid "Select the suites to test"
 msgstr "Выберите компоненты для тестирования"
 
@@ -713,55 +2947,186 @@ msgstr "Выберите компоненты для тестирования"
 msgid "Enter text:\n"
 msgstr "Введите текст:\n"
 
-#: ../scripts/keyboard_test:42
+#: ../scripts/keyboard_test:40
 msgid "Type Text"
 msgstr "Напечатать текст"
 
-#: ../scripts/internet_test:126
+#: ../scripts/internet_test:139
 msgid "No Internet connection"
 msgstr "Нет подключения к Интернет"
 
-#: ../scripts/internet_test:128
+#: ../scripts/internet_test:142
 msgid "Connection established lost a packet"
 msgstr "Произошла потеря пакетов на установленном соединении"
 
-#: ../scripts/internet_test:130
+#: ../scripts/internet_test:145
 msgid "Internet connection fully established"
 msgstr "Интернет-подключение полностью работоспособно"
 
-#~ msgid "Authentication"
-#~ msgstr "Авторизация"
+#~ msgid "Click the Test button to display a video test."
+#~ msgstr "Для проверки видео нажмите Тест."
 
-#~ msgid "Done"
-#~ msgstr "Готово"
+#~ msgid "Network tests"
+#~ msgstr "Проверка сети"
 
-#~ msgid "<b>Comment:</b>"
-#~ msgstr "<b>Комментарий:</b>"
-
-#~ msgid "The following resolution was detected for your display:"
-#~ msgstr "Разрешение экрана, определенное тестом"
-
-#~ msgid "Is this a good resolution for your display?"
-#~ msgstr "Это подходящее для вашего монитора разрешение?"
-
-#~ msgid "Are you connected to the Internet?"
-#~ msgstr "Вы подключены к интернету?"
+#~ msgid "Video tests"
+#~ msgstr "Проверка видео"
 
 #~ msgid ""
-#~ "Typing keys on your keyboard should display the corresponding characters in "
-#~ "a text area."
+#~ "Click the Test button to play a sound on the automatically detected \\ "
+#~ "playback device."
 #~ msgstr ""
-#~ "При нажатии клавиш на вашей клавиатуре, соответствующие символы должны "
-#~ "появляться и в текстовом поле."
+#~ "Нажмите кнопку Тест, чтобы проиграть звук на автоматически определённом "
+#~ "устройстве воспроизведения."
 
-#~ msgid "Running test: %s"
-#~ msgstr "Работает тест: %s"
+#~ msgid "Kernel modesetting tests"
+#~ msgstr "Проверка установки ядром видеорежимов"
 
-#~ msgid "Please provide comments about the failure."
-#~ msgstr "Пожалуйста, прокоментируйте эту неудачу."
+#~ msgid ""
+#~ "Pair a Bluetooth headset with your system.  Then open the \\ volume control "
+#~ "application by right-clicking on the speaker \\ icon in the panel and "
+#~ "selecting \"Sound Preferences\".  Select \\ the \"Input\" tab and choose "
+#~ "your Bluetooth device.  Select the \\ \"Output\" tab and choose your "
+#~ "Bluetooth device.  When you are done, \\ click the Test button, then speak "
+#~ "into the microphone.  \\ After a few seconds, your speech will be played "
+#~ "back to you."
+#~ msgstr ""
+#~ "Подсоедините Bluetooth-гарнитуру к вашей системе. Откройте \\ Регулятор "
+#~ "Громкости, щелкнув правой кнопкой мыши значок динамика \\ на панели и выбрав "
+#~ "пункт \"Настройка звука\".  Выберите \\ вкладку \"Вход\" и выберите ваше "
+#~ "устройство Bluetooth. Выберите \\ вкладку \"Выход\" и снова выберите ваше "
+#~ "устройство. После этого \\ нажмите кнопку \"Проверка\" и скажите что-нибудь "
+#~ "в микрофон. \\ Через несколько секунд ваша речь будет воспроизведена."
 
-#~ msgid "Please provide your Launchpad email address:"
-#~ msgstr "Пожалуйста, введите ваш почтовый адрес в Launchpad:"
+#~ msgid ""
+#~ "Connect a microphone to your microphone port.  \\ Click the Test button, "
+#~ "then speak into the microphone.  \\ After a few seconds, your speech will be "
+#~ "played back to you."
+#~ msgstr ""
+#~ "Подключите микрофон к микрофонному гнезду. \\ Нажмите кнопку Проверка и "
+#~ "скажите что-нибудь в микрофон. \\ Через несколько секунд ваша речь будет "
+#~ "воспроизведена."
 
-#~ msgid "Successfully sent information to server!"
-#~ msgstr "Информация отправлена на сервер!"
+#~ msgid "Is this ok?"
+#~ msgstr "Всё в порядке?"
+
+#~ msgid ""
+#~ "Disconnect any external microphones that you have plugged in.  \\ Click the "
+#~ "Test button, then speak into your internal microphone.  \\ After a few "
+#~ "seconds, your speech will be played back to you."
+#~ msgstr ""
+#~ "Отключите все внешние подключенные микрофоны. \\ Нажмите кнопку Проверка и "
+#~ "скажите что-нибудь во встроенный микрофон. \\ Через несколько секунд ваша "
+#~ "речь будет воспроизведена."
+
+#~ msgid "Disk benchmark:"
+#~ msgstr "Проверка диска:"
+
+#~ msgid ""
+#~ "Play back a sound on the default output and listen for it on the default \\ "
+#~ "input.  This makes the most sense when the output and input are directly \\ "
+#~ "connected, as with a patch cable."
+#~ msgstr ""
+#~ "Проиграть звук на стандартный выход и прослушать его на \\ стандартном "
+#~ "входе. Это имеет смысл, когда вход и выход соединены \\ напрямую шнуром."
+
+#~ msgid ""
+#~ "Firewire HDD verification procedure: 1.- Plug a Firewire HDD into the "
+#~ "computer 2.- A window should be opened asking which action should be "
+#~ "performed (open folder, photo manager, etc). 3.- Copy some files from the "
+#~ "internal/firewire HDD to the firewire/internal HDD"
+#~ msgstr ""
+#~ "Процедура проверки жёсткого диска с интерфейсом Firewire : 1.- Подключите "
+#~ "диск к компьютеру 2.- Должно открыться окно с возможными вариантами действий "
+#~ "(открыть папку, менеджер фотографий и т.п.) 3.- Скопируйте несколько файлов "
+#~ "с внутреннего жёсткого диска на диск с Firewire и наоборот."
+
+#~ msgid "Insert a DVD.  Then click Test to play the DVD in Totem."
+#~ msgstr ""
+#~ "Вставьте DVD. Затем нажмите \"Проверка\", чтобы проиграть его в Totem'е."
+
+#~ msgid ""
+#~ "Plug video output to an external monitor. Is the image displayed correctly?"
+#~ msgstr ""
+#~ "Подключите видеовыход ко внешнему монитору. Изображение показывается "
+#~ "корректно?"
+
+#~ msgid ""
+#~ "Please repeat the test for each kind of video output supported (VGA, DVI, "
+#~ "DisplayPort and HDMI)."
+#~ msgstr ""
+#~ "Повторите проверку для каждого поддерживаемого видеовыхода (VGA, DVI, "
+#~ "DisplayPort и HDMI)."
+
+#~ msgid ""
+#~ "For HDMI, please also check that sound is played in the monitor speakers."
+#~ msgstr ""
+#~ "В случае с HDMI также проверьте, воспроизводится ли звук через динамики "
+#~ "монитора."
+
+#~ msgid ""
+#~ "Connect a USB audio device to your system.  Then open the \\ volume control "
+#~ "application by right-clicking on the speaker \\ icon in the panel and "
+#~ "selecting \"Sound Preferences\".  Select \\ the \"Input\" tab and choose "
+#~ "your USB device.  Select the \\ \"Output\" tab and choose your USB device.  "
+#~ "When you are done, \\ click the Test button, then speak into the microphone. "
+#~ " \\ After a few seconds, your speech will be played back to you."
+#~ msgstr ""
+#~ "Подсоедините USB аудио устройство к вашей системе. Откройте \\ Регулятор "
+#~ "Громкости, щелкнув правой кнопкой мыши значок динамика \\ на панели и выбрав "
+#~ "пункт \"Настройка звука\". Выберите \\ вкладку \"Вход\" и выберите ваше "
+#~ "устройство Bluetooth. Выберите \\ вкладку \"Выход\" и снова выберите ваше "
+#~ "устройство. После этого \\ нажмите кнопку \"Проверка\" и скажите что-нибудь "
+#~ "в микрофон. \\ Через несколько секунд ваша речь будет воспроизведена."
+
+#~ msgid ""
+#~ "Fingerprint unlock verification procedure: 1.- Click on the user switcher "
+#~ "applet 2.- Select your user name 3.- A window should appear that provides "
+#~ "the ability to login either \\ typing your password or using fingerprint "
+#~ "authentication 4.- Use the fingerprint reader to login 5.- Click on the user "
+#~ "switcher applet 6.- Select the testing account to continue running tests"
+#~ msgstr ""
+#~ "Процедура проверки разблокирования сканером отпечатков пальцев: 1.- Щелкните "
+#~ "на значке переключения пользователей 2.- Выберите своеё имя пользователя 3.- "
+#~ "Появится окно, позволяющее осуществить вход либо указав пароль, \\ либо "
+#~ "использовать идентификацию по отпечатку пальца 4.- Используйте сканер для "
+#~ "входа 5.- Щелкните на значке переключения пользователей 6.- Выберите "
+#~ "тестируемую учетную записть для продолжения теста"
+
+#~ msgid ""
+#~ "Fingerprint unlock verification procedure: 1.- Click on the user switcher "
+#~ "applet 2.- Select 'Lock screen' 3.- Press any key or move the mouse 3.- A "
+#~ "window should appear that provides the ability to unlock either \\ typing "
+#~ "your password or using fingerprint authentication 4.- Use the fingerprint "
+#~ "reader to unlock 5.- Screen should be unlocked"
+#~ msgstr ""
+#~ "Процедура проверки разблокирования сканером отпечатков пальцев: 1.- Щелкните "
+#~ "на значке переключения пользователей 2.- Выберите \"Блокировка экрана\" 3.- "
+#~ "Нажмите любую клавишу или сдвиньте мышь 3.- Появится окно, позволяющее снять "
+#~ "блокировку либо указав пароль, \\ либо использовать идентификацию по "
+#~ "отпечатку пальца 4.- Используйте сканер для разблокировки 5.- Экран должен "
+#~ "быть разблокирован"
+
+#~ msgid ""
+#~ "Click Test to switch to another virtual terminal and then back to X.  Your \\"
+#~ " screen will change temporarily to a text console and then switch back to "
+#~ "your \\ current session."
+#~ msgstr ""
+#~ "Нажмите \"Проверка\", чтобы переключиться на другой виртуальный терминал и "
+#~ "обратно на X. Ваш экран \\ временно покажет текстовую консоль, а затем "
+#~ "вернется к \\ текущему сеансу."
+
+#~ msgid ""
+#~ "Built-in modem network connection procedure: 1.- Connect the telephone line "
+#~ "to the computer 2.- Right click on the Network Manager applet 3.- Select "
+#~ "'Edit Connections' 4.- Select the 'DSL' tab 5.- Click on add 'Add' button 6.-"
+#~ " Configure the connection parameters properly 7.- Notify OSD should confirm "
+#~ "that the connection has been established 8.- Select Test to verify that it's "
+#~ "possible to establish both http \\ and ftp connections"
+#~ msgstr ""
+#~ "Процедура проверки связи через встроенный модем: 1.- Подключите телефонную "
+#~ "линию  к компьютеру 2.- Щелкните правой кнопкой по значку \"Network "
+#~ "manager\" 3.- Выберите 'Изменить соединения' 4.- Откройте вкладку 'DSL' 5.- "
+#~ "Нажмите кнопку 'Добавить' 6.- Настройте параметры соединения 7.- Должно "
+#~ "появиться окно, извещающее об установке соединения 8.- Нажмите \"Проверка\" "
+#~ "чтобы убедиться, что соединения через \\ http и ftp работают нормально"
