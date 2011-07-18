@@ -58,9 +58,12 @@ for line in output:
 profile_path = os.environ['HOME'] + '/.shutter/profiles/checkbox.xml'
 regex = re.compile(r'filename=".*"')
 
-# Keep the shutter profile in place before starting
-shutil.copy(os.environ['CHECKBOX_USR_SHARE'] + '/data/settings/checkbox.xml',
-            os.environ['HOME'] + '/.shutter/profiles/')
+try:
+    # Keep the shutter profile in place before starting
+    shutil.copy(os.environ['CHECKBOX_USR_SHARE'] + '/data/settings/checkbox.xml',
+                os.environ['HOME'] + '/.shutter/profiles/')
+except:
+    print "Couldn't set up Shutter. Make sure you have installed the package 'shutter'."
 
 for mode in modes:
     cmd = 'xrandr --output ' + mode[0] + ' --mode ' + mode[1]
