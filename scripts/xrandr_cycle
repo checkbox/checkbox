@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import subprocess
+import tarfile
 import shutil
 import time
 import sys
@@ -54,17 +55,27 @@ for line in output:
 
 
 # Now we have a list of the modes we need to test.  So let's do just that.
+import pdb; pdb.set_trace()
 
-profile_path = os.environ['HOME'] + '/.shutter/profiles/checkbox.xml'
+profile_path = os.environ['HOME'] + '/.shutter/profiles/shutter.xml'
 regex = re.compile(r'filename=".*"')
 
+# Keep the shutter profile in place before starting
 try:
-    # Keep the shutter profile in place before starting
-    shutil.copy(os.environ['CHECKBOX_USR_SHARE'] + '/data/settings/checkbox.xml',
-                os.environ['HOME'] + '/.shutter/profiles/')
+    shutil.copy(os.environ['CHECKBOX_SHARE'] + '/data/settings/shutter.xml', os.environ['HOME'] + '/.shutter/profiles/')
 except:
-    print "Couldn't set up Shutter. Make sure you have installed the package 'shutter'."
+    pass
 
+try:
+    with open(profile_path, 'r') as old_profile:
+        content = old_profile.read()
+        with open(profile_path, 'w') as new_profile:
+            folder = 'folder="' + os.environ['CHECKBOX_DATA'] + '/xrandr'
+            content = re.sub(r'folder=".*"', folder, content)
+            new_profile.write(content)
+except:
+    pass
+        
 for mode in modes:
     cmd = 'xrandr --output ' + mode[0] + ' --mode ' + mode[1]
     retval = subprocess.call(cmd, shell=True)
@@ -73,7 +84,7 @@ for mode in modes:
 	message = 'Failed to set mode ' + mode[1] + ' for output ' + mode[0]
         failure_messages.append(message)
     else:
-        # Update checkbox shutter profile to save the image as the right name
+        # Update shutter profile to save the image as the right name
         mode_string = mode[0] + '_' + mode[1]
 
         try:
@@ -81,11 +92,10 @@ for mode in modes:
                 content = base_profile.read()
                 with open(profile_path, 'w') as screen_profile:
                     filename='filename="xrandr_%s"' % mode_string 
-                    #content = content.replace(old_filename, 'xrandr_' + mode_string, 1)
                     content = regex.sub(filename, content)
                     screen_profile.write(content)
 
-            shuttercmd = ['shutter','--profile=checkbox','--full','-e']
+            shuttercmd = ['shutter','--shutter=checkbox','--full','-e']
             retval = subprocess.call(shuttercmd, shell=False)
 
             if retval != 0:
@@ -104,6 +114,12 @@ for mode in current_modes:
     cmd = 'xrandr --output ' + mode[0] + ' --mode ' + mode[1]
     subprocess.call(cmd, shell=True)
 
+# Tar up the screenshots for uploading
+try:
+    with tarfile.open(os.environ['CHECKBOX_DATA'] + '/xrandr_screens.tar.gz', 'w:gz') as screen_tar:
+        screen_tar.add(os.environ['CHECKBOX_DATA'] + '/xrandr')
+except:
+    pass
 
 # Output some fun facts and knock off for the day
 
