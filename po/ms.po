@@ -1,55 +1,108 @@
-# Japanese translation for checkbox
-# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# Malay translation for checkbox
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
 # This file is distributed under the same license as the checkbox package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: checkbox\n"
-"Report-Msgid-Bugs-To: \n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-07-07 12:32-0400\n"
-"PO-Revision-Date: 2009-04-02 11:23+0000\n"
-"Last-Translator: Fumihito YOSHIDA <hito@kugutsu.org>\n"
-"Language-Team: Japanese <ja@li.org>\n"
+"PO-Revision-Date: 2011-07-19 02:04+0000\n"
+"Last-Translator: Izzuddin Shah <dxplay@gmail.com>\n"
+"Language-Team: Malay <ms@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-07-16 04:31+0000\n"
+"X-Launchpad-Export-Date: 2011-07-19 04:30+0000\n"
 "X-Generator: Launchpad (build 13405)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:2
 msgid "Ne_xt"
-msgstr "次ヘ（_X)"
+msgstr "Se_lanjutnya"
 
 #. Title of the user interface
 #: ../gtk/checkbox-gtk.ui.h:3 ../gtk/checkbox-gtk.desktop.in.h:1
 #: ../plugins/user_interface.py:40
 msgid "System Testing"
-msgstr "システムテストツール"
+msgstr "Pengujian Sistem"
 
 #: ../gtk/checkbox-gtk.ui.h:5
 msgid "_No"
-msgstr "いいえ(_N)"
+msgstr "_Tidak"
 
 #: ../gtk/checkbox-gtk.ui.h:6
 msgid "_Previous"
-msgstr "前へ(_P)"
+msgstr "_Sebelumnya"
 
 #: ../gtk/checkbox-gtk.ui.h:8
 msgid "_Skip this test"
-msgstr "このテストをスキップします(_S)"
+msgstr "_Langkau test ini"
 
 #: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:522
 msgid "_Test"
-msgstr "テスト(_T)"
+msgstr "_Uji"
 
 #: ../gtk/checkbox-gtk.ui.h:10
 msgid "_Yes"
-msgstr "はい(_Y)"
+msgstr "_Ya"
 
 #: ../gtk/checkbox-gtk.desktop.in.h:2
 msgid "Test and report system information"
-msgstr "システム情報をテストし、レポートを作成します"
+msgstr "Uji dan laporkan maklumat sistem"
+
+#~ msgid "Successfully sent information!"
+#~ msgstr "Berjaya menghantar maklumat!"
+
+#~ msgid "Processor information"
+#~ msgstr "Maklumat prosesor"
+
+#~ msgid "Test results"
+#~ msgstr "Keputusan Test"
+
+#~ msgid "_Desktop"
+#~ msgstr "_Desktop"
+
+#~ msgid "Packages installed"
+#~ msgstr "Pakej telah dipasang"
+
+#~ msgid "Distribution details"
+#~ msgstr "Perincian distribusi"
+
+#~ msgid "<b>Comment:</b>"
+#~ msgstr "<b>Komen:</b>"
+
+#~ msgid "_Server"
+#~ msgstr "_Server"
+
+#~ msgid "_Laptop"
+#~ msgstr "_Laptop"
+
+#~ msgid "Do you hear a sound?"
+#~ msgstr "Adakah anda dengan apa-apa bunyi?"
+
+#: ../gtk/checkbox-gtk.ui.h:1 ../checkbox_cli/cli_interface.py:343
+#: ../checkbox_urwid/urwid_interface.py:261
+msgid "Further information:"
+msgstr "Maklumat lanjut:"
+
+#: ../gtk/checkbox-gtk.ui.h:4
+msgid "_Deselect All"
+msgstr "_Nyahpilih Semua"
+
+#: ../gtk/checkbox-gtk.ui.h:7
+msgid "_Select All"
+msgstr "_Pilih Semua"
+
+#. description
+#: ../jobs/apport.txt.in:5
+msgid "Test that the /var/crash directory doesn't contain anything."
+msgstr ""
+
+#. description
+#: ../jobs/audio.txt.in:7
+msgid "Detecting your sound device(s):"
+msgstr "Mengesan peranti bunyi anda:"
 
 #. description
 #: ../jobs/audio.txt.in:7 ../jobs/disk.txt.in:4 ../jobs/graphics.txt.in:126
@@ -65,304 +118,7 @@ msgstr "$output"
 #: ../jobs/networking.txt.in:16 ../jobs/optical.txt.in:8
 #: ../jobs/power-management.txt.in:185 ../jobs/usb.txt.in:5
 msgid "Is this correct?"
-msgstr "正しく検知されていますか？"
-
-#. description
-#: ../jobs/graphics.txt.in:117
-msgid "Do you see color bars and static?"
-msgstr "カラーバーと砂嵐は確認できましたか？"
-
-#. description
-#: ../jobs/input.txt.in:4
-msgid "Moving the mouse should move the cursor on the screen."
-msgstr "マウスを動かして、カーソルが正しく動くか確認してください。"
-
-#. description
-#: ../jobs/input.txt.in:4
-msgid "Is your mouse working properly?"
-msgstr "マウスは正しく動作していますか？"
-
-#. description
-#: ../jobs/input.txt.in:13
-msgid "Is your keyboard working properly?"
-msgstr "キーボードは正しく動作していますか？"
-
-#. description
-#: ../jobs/networking.txt.in:5
-msgid "Detecting your network controller(s):"
-msgstr "ネットワークコントローラを検知しました："
-
-#. description
-#: ../jobs/networking.txt.in:16
-msgid "Testing your connection to the Internet:"
-msgstr "インターネットへの接続状況をテストしました："
-
-#: ../checkbox/application.py:66
-msgid "Usage: checkbox [OPTIONS]"
-msgstr "Usage: checkbox [OPTIONS]"
-
-#: ../checkbox/application.py:70
-msgid "Print version information and exit."
-msgstr "バージョンを表示して終了します。"
-
-#: ../checkbox/application.py:74
-msgid "The file to write the log to."
-msgstr "指定したファイルに保存します。"
-
-#: ../checkbox/application.py:77
-msgid "One of debug, info, warning, error or critical."
-msgstr "debug、info、warning、error、criticalのどれか一つを指定してください。"
-
-#: ../checkbox/application.py:82
-msgid "Configuration override parameters."
-msgstr "設定を上書きするパラメータ。"
-
-#: ../checkbox/application.py:115
-msgid "Missing configuration file as argument.\n"
-msgstr "指定された設定ファイルが見つかりません。\n"
-
-#: ../checkbox_cli/cli_interface.py:31
-#: ../checkbox_urwid/urwid_interface.py:684
-msgid "yes"
-msgstr "はい"
-
-#: ../checkbox_cli/cli_interface.py:32
-#: ../checkbox_urwid/urwid_interface.py:685
-msgid "no"
-msgstr "いいえ"
-
-#: ../checkbox_cli/cli_interface.py:33
-#: ../checkbox_urwid/urwid_interface.py:686
-msgid "skip"
-msgstr "飛ばす"
-
-#: ../checkbox_cli/cli_interface.py:126
-msgid "Press any key to continue..."
-msgstr "続けるには何かキーを押してください……"
-
-#: ../checkbox_cli/cli_interface.py:135
-#, python-format
-msgid "Please choose (%s): "
-msgstr "選択してください(%s)： "
-
-#: ../checkbox_cli/cli_interface.py:315
-msgid "test"
-msgstr "テスト"
-
-#: ../checkbox_cli/cli_interface.py:339
-msgid "test again"
-msgstr "もう一度テスト"
-
-#: ../checkbox_cli/cli_interface.py:345
-msgid "Please type here and press Ctrl-D when finished:\n"
-msgstr "ここで入力を行い、終わったらCtrl-Dを押してください:\n"
-
-#: ../checkbox_gtk/gtk_interface.py:487
-msgid "_Test Again"
-msgstr "再テスト(_T)"
-
-#: ../plugins/final_prompt.py:34
-msgid "_Finish"
-msgstr "終了(_F)"
-
-#: ../plugins/gather_prompt.py:35
-msgid "Gathering information from your system..."
-msgstr "現在のシステム情報を確認中です……"
-
-#: ../plugins/launchpad_exchange.py:141
-#, python-format
-msgid ""
-"Failed to contact server. Please try\n"
-"again or upload the following file name:\n"
-"%s\n"
-"\n"
-"directly to the system database:\n"
-"https://launchpad.net/+hwdb/+submit"
-msgstr ""
-"サーバーに接続できませんでした。ファイル:\n"
-"%s\n"
-"\n"
-"を、直接システムデータベースに登録することを\n"
-"試してみてください:\n"
-"https://launchpad.net/+hwdb/+submit"
-
-#: ../plugins/launchpad_exchange.py:150
-msgid ""
-"Failed to upload to server,\n"
-"please try again later."
-msgstr ""
-"サーバへのアップロードに失敗しました。\n"
-"あとでもう一度、やり直してください。"
-
-#: ../plugins/launchpad_exchange.py:162
-msgid "Information not posted to Launchpad."
-msgstr "情報はLaunchpadへ登録されませんでした。"
-
-#: ../plugins/launchpad_prompt.py:92
-msgid "Email address must be in a proper format."
-msgstr "正しい書式のメールアドレスが入力されていません。"
-
-#: ../plugins/launchpad_prompt.py:98
-msgid "Exchanging information with the server..."
-msgstr "データをサーバに送信中です……"
-
-#: ../plugins/report_prompt.py:34
-msgid "Building report..."
-msgstr "レポートを作成中です……"
-
-#~ msgid "<b>Comment:</b>"
-#~ msgstr "<b>コメント：</b>"
-
-#~ msgid "Device information"
-#~ msgstr "デバイス情報"
-
-#~ msgid "Distribution details"
-#~ msgstr "ディストリビューションの詳細"
-
-#~ msgid "Processor information"
-#~ msgstr "プロセッサの情報"
-
-#~ msgid "Successfully sent information!"
-#~ msgstr "情報の送信が完了しました。"
-
-#~ msgid "Test results"
-#~ msgstr "テスト結果"
-
-#~ msgid "_Desktop"
-#~ msgstr "デスクトップ(_D)"
-
-#~ msgid "_Laptop"
-#~ msgstr "ラップトップ、ノートパソコン(_L)"
-
-#~ msgid "_Server"
-#~ msgstr "サーバ(_S)"
-
-#~ msgid "The following resolution was detected for your display:"
-#~ msgstr "現在の画面解像度は次のように設定されています："
-
-#~ msgid "$(resolution_test)"
-#~ msgstr "$(resolution_test)"
-
-#~ msgid "Is this a good resolution for your display?"
-#~ msgstr "このディスプレイにとって、正しい設定になっていますか？"
-
-#~ msgid "$(network_test)"
-#~ msgstr "$(network_test)"
-
-#~ msgid "Are you connected to the Internet?"
-#~ msgstr "インターネットへ接続できますか？"
-
-#~ msgid ""
-#~ "Typing keys on your keyboard should display the corresponding characters in "
-#~ "a text area."
-#~ msgstr "テキストエリア上でキーを入力し、正しい文字が表示されるか確認してください。"
-
-#, python-format
-#~ msgid "Running test: %s"
-#~ msgstr "テスト中：%s"
-
-#~ msgid "Authentication"
-#~ msgstr "認証"
-
-#~ msgid "Please provide your Launchpad email address:"
-#~ msgstr "Launchpadで登録したメールアドレスを入力ください："
-
-#~ msgid "Done"
-#~ msgstr "完了"
-
-#~ msgid "Successfully sent information to server!"
-#~ msgstr "サーバへの情報の送信が完了しました。"
-
-#~ msgid "Exchange"
-#~ msgstr "交換"
-
-#~ msgid "Category"
-#~ msgstr "分類"
-
-#~ msgid "Packages installed"
-#~ msgstr "パッケージがインストールされました"
-
-#~ msgid "Run the test for the automatically detected playback device."
-#~ msgstr "自動認識された再生デバイスを用いてテストを実行します。"
-
-#~ msgid "Do you hear a sound?"
-#~ msgstr "サウンドは聞こえましたか？"
-
-#~ msgid "Run the video test."
-#~ msgstr "ビデオテストの実行。"
-
-#~ msgid "Please provide comments about the failure."
-#~ msgstr "失敗の内容についてコメントを入力してください。"
-
-#, python-format
-#~ msgid "Running test %s..."
-#~ msgstr "テスト %s を実行..."
-
-#~ msgid "Running shell tests..."
-#~ msgstr "シェルテストを実行..."
-
-#~ msgid "Please select the category of your system."
-#~ msgstr "お使いのシステムのカテゴリを選択してください。"
-
-#~ msgid ""
-#~ "The following information will be sent to the Launchpad\n"
-#~ "hardware database. Please provide the e-mail address you\n"
-#~ "use to sign in to Launchpad to submit this information."
-#~ msgstr ""
-#~ "以下の情報はLaunchpadのハードウェアデータベースに送られます。\n"
-#~ "Launchpadにログインするために利用しているアカウントのEメール\n"
-#~ "アドレスを入力して、情報を登録してください。"
-
-#~ msgid "Welcome to System Testing!"
-#~ msgstr "システムテストにようこそ！"
-
-#~ msgid ""
-#~ "This application will gather information from your system. Then,\n"
-#~ "you will be asked manual tests to confirm that the system is working\n"
-#~ "properly. Finally, you will be asked for the e-mail address you use\n"
-#~ "to sign in to Launchpad in order to submit the information and your\n"
-#~ "results.\n"
-#~ "\n"
-#~ "If you do not have a Launchpad account, please register here:\n"
-#~ "\n"
-#~ "  https://launchpad.net/+login\n"
-#~ "\n"
-#~ "Thank you for taking the time to test your system."
-#~ msgstr ""
-#~ "このアプリケーションはお使いのシステムの情報を収集します。\n"
-#~ "テストが行われた後、手動でいくつかの質問に答えて頂くことで、\n"
-#~ "システムが正しく動作していることを確認します。最後にLaunchpadに\n"
-#~ "登録しているEメールアドレスを尋ね、システムの動作情報をレポートとして\n"
-#~ "登録します。\n"
-#~ "\n"
-#~ "もしLaunchadのアカウントを持っていなければ、以下から登録できます:\n"
-#~ "\n"
-#~ "  https://launchpad.net/+login\n"
-#~ "\n"
-#~ "システムテストのために貴重な時間を提供して頂き、ありがとうございます。"
-
-#: ../gtk/checkbox-gtk.ui.h:1 ../checkbox_cli/cli_interface.py:343
-#: ../checkbox_urwid/urwid_interface.py:261
-msgid "Further information:"
-msgstr "詳細情報:"
-
-#: ../gtk/checkbox-gtk.ui.h:4
-msgid "_Deselect All"
-msgstr ""
-
-#: ../gtk/checkbox-gtk.ui.h:7
-msgid "_Select All"
-msgstr ""
-
-#. description
-#: ../jobs/apport.txt.in:5
-msgid "Test that the /var/crash directory doesn't contain anything."
-msgstr ""
-
-#. description
-#: ../jobs/audio.txt.in:7
-msgid "Detecting your sound device(s):"
-msgstr ""
+msgstr "Adakah ini betul?"
 
 #. description
 #: ../jobs/audio.txt.in:21
@@ -370,6 +126,8 @@ msgid ""
 "Did you hear a sound and was that sound free of any distortion, clicks or "
 "other strange noises?"
 msgstr ""
+"Adakah anda mendengar bunyi dan bunyi tersebut bebas daripada pengherotan, "
+"klik atau bunyi bising yang pelik?"
 
 #. description
 #: ../jobs/audio.txt.in:33
@@ -381,6 +139,8 @@ msgstr ""
 msgid ""
 "Select Test to play a sound on the automatically detected playback device."
 msgstr ""
+"Pilih uji untuk mainkan bunyi pada peranti main balik yang dikesan secara "
+"automatik."
 
 #. description
 #: ../jobs/audio.txt.in:33
@@ -388,6 +148,9 @@ msgid ""
 "Did you hear a sound through the headphones and did the sound play without "
 "any distortion, clicks or other strange noises from your headphones?"
 msgstr ""
+"Adakah anda mendengar bunyi melalui fon kepala dan adakah bunyi dimainkan "
+"tanpa sebarang pengherotan, klik atau lain-lain bunyi yang pelik melalui fon "
+"kepala anda?"
 
 #. description
 #: ../jobs/audio.txt.in:47
@@ -396,6 +159,9 @@ msgid ""
 "then speak into your internal microphone.  After a few seconds, your speech "
 "will be played back to you."
 msgstr ""
+"Putuskan sebarang mikrofon luaran yang telah anda palamkan. Kemudian, pilih "
+"Uji, cakap menggunakan mikrofon dalaman anda. Selepas beberapa saat, "
+"percakapan anda akan dimainkan semula."
 
 #. description
 #: ../jobs/audio.txt.in:59
@@ -403,6 +169,9 @@ msgid ""
 "Connect a microphone to your microphone port.  Select Test, then speak into "
 "the microphone.  After a few seconds, your speech will be played back to you."
 msgstr ""
+"Sambungkan mikrofon ke port mikrofon. Kemudian pilih Uji, cakap menggunakan "
+"mikrofon tersebut. Selepas beberapa saat percakapan anda akan dimainkan "
+"semula."
 
 #. description
 #: ../jobs/audio.txt.in:70
@@ -414,11 +183,17 @@ msgid ""
 "select Test, then speak into the microphone.  After a few seconds, your "
 "speech will be played back to you."
 msgstr ""
+"Sambung peranti audio USB ke sistem anda. Kemudian, buka aplikasi kawalan "
+"volum dengan mengklik-kiri pada ikon pembesar suara pada panel dan pilih \\"
+"\"Keutamaan Bunyi\\\". Pilih tab \\\"Input\\\" dan klik peranti USB anda. "
+"pilih tab \\\"Output\\\" dan klik peranti USB anda. Seterusnya, klik butang "
+"Uji, dan cakap menggunakan mikrofon. Selepas beberapa saat, percakapan anda "
+"akan dimainkan balik."
 
 #. description
 #: ../jobs/audio.txt.in:70 ../jobs/power-management.txt.in:221
 msgid "Did you hear your speech played back?"
-msgstr ""
+msgstr "Adakah anda dengar percakapan anda dimainkan balik?"
 
 #. description
 #: ../jobs/audio.txt.in:81
@@ -431,12 +206,12 @@ msgstr ""
 #. description
 #: ../jobs/autotest.txt.in:3
 msgid "Autotest suite (destructive)"
-msgstr ""
+msgstr "Suit Ujian-Automatik (destruktif)"
 
 #. description
 #: ../jobs/bluetooth.txt.in:5 ../jobs/power-management.txt.in:185
 msgid "The address of your Bluetooth device is: $output"
-msgstr ""
+msgstr "Alamat peranti Bluetooth anda ialah: $output"
 
 #. description
 #: ../jobs/bluetooth.txt.in:15 ../jobs/graphics.txt.in:15
@@ -492,12 +267,16 @@ msgid ""
 "the device in the list and select it 5.- Move the mouse around the screen 6.-"
 " Perform some single/double/right click operations"
 msgstr ""
+"Prosedur tetikus Bluetooth: 1.- Benarkan tetikus bluetooth 2.- Klik pada "
+"ikon bluetooth pada palang menu 3.- Pilih 'Pasang peranti baru' 4.- Cari "
+"peranti didalam senarai dan pilih ia 5.- Gerakkan tetikus disekitar skrin 6.-"
+" Lakukan beberapa operasi klik sekali/dua kali/kanan"
 
 #. description
 #: ../jobs/bluetooth.txt.in:82 ../jobs/optical.txt.in:72
 #: ../jobs/power-management.txt.in:194 ../jobs/usb.txt.in:27
 msgid "Did all the steps work?"
-msgstr ""
+msgstr "Adakah semua langkah berfungsi?"
 
 #. description
 #: ../jobs/camera.txt.in:7
@@ -670,22 +449,22 @@ msgstr ""
 #. description
 #: ../jobs/disk.txt.in:14
 msgid "Benchmark for each disk "
-msgstr ""
+msgstr "Tanda aras untuk setiap cakera "
 
 #. description
 #: ../jobs/disk.txt.in:36
 msgid "SMART test"
-msgstr ""
+msgstr "Ujian SMART"
 
 #. description
 #: ../jobs/disk.txt.in:51
 msgid "Maximum disk space used during a default installation test"
-msgstr ""
+msgstr "Ruang cakera maksimum digunakan semasa ujian pemasangan lalai"
 
 #. description
 #: ../jobs/disk.txt.in:66
 msgid "Verify system storage performs at or above baseline performance"
-msgstr ""
+msgstr "Sahkan storan sistem dilakukan pada atau diatas prestasi garis dasar"
 
 #. description
 #: ../jobs/disk.txt.in:83
@@ -693,6 +472,8 @@ msgid ""
 "Verify that storage devices, such as Fibre Channel and RAID can be detected "
 "and perform under stress."
 msgstr ""
+"Sahkan peranti storan, seperti Saluran Fiber dan RAID boleh dikesan dan "
+"berfungsi dibawah tekanan."
 
 #. description
 #: ../jobs/evolution.txt.in:5
@@ -732,6 +513,9 @@ msgid ""
 "which test cases are run and a personal account that the tester uses to "
 "verify the fingerprint reader"
 msgstr ""
+"Prasyarat: Kes ujian ini menganggap terdapat akaun pengujian yang mana kes "
+"ujian telah dijalankan dan ada akaun peribadi penguji digunakan untuk "
+"mengesahkan pembaca cap jari."
 
 #. description
 #: ../jobs/fingerprint.txt.in:3
@@ -745,6 +529,14 @@ msgid ""
 " 5.- Click on the user switcher applet.\n"
 " 6.- Select the testing account to continue running tests."
 msgstr ""
+"Prosedur pengesahan daftar masuk cap jari:\n"
+" 1.- Klik pada aplet penukar pengguna.\n"
+" 2.- Pilih nama pengguna anda.\n"
+" 3.- Satu tetingkap akan muncul yang menyediakan keupayaan untuk mendaftar "
+"masuk sama ada menaip kata laluan atau gunakan pengesahihan cap jari.\n"
+" 4.- Guna pembaca cap jari untuk daftar masuk.\n"
+" 5.- Klik pada aplet penukar pengguna.\n"
+" 6.- Pilih uji akaun untuk terus jalankan ujian."
 
 #. description
 #: ../jobs/fingerprint.txt.in:18
@@ -758,11 +550,19 @@ msgid ""
 " 5.- Use the fingerprint reader to unlock.\n"
 " 6.- Your screen should be unlocked."
 msgstr ""
+"Prosedur pengesahan nyahkunci cap jari:\n"
+" 1.- Klik pada aplet penukar pengguna.\n"
+" 2.- Pilih 'Kunci skrin'.\n"
+" 3.- Tekan sebarang kekunci atau gerakkan tetikus.\n"
+" 4.- Satu tetingkap akan muncul yang menyediakan keupayaan untuk mendaftar "
+"masuk sama ada menaip kata laluan atau gunakan pengesahihan cap jari.\n"
+" 5.- Guna pembaca cap jari untuk membuka.\n"
+" 6.- Skrin anda sepatutnya dibuka."
 
 #. description
 #: ../jobs/fingerprint.txt.in:18
 msgid "Did the authentication procedure work correctly?"
-msgstr ""
+msgstr "Adakah prosedur pengesahihan berjalan dengan betul?"
 
 #. description
 #: ../jobs/firewire.txt.in:3
@@ -774,11 +574,17 @@ msgid ""
 " 3.- Copy some files from your internal HDD to the firewire HDD.\n"
 " 4.- Copy some files from the firewire HDD to your internal HDD."
 msgstr ""
+"Prosedur pengesahan HDD Firewire:\n"
+" 1.- Palamkam HDD Firewire ke komputer anda.\n"
+" 2.- Tetingkap akan dibuka dan meminta anda lakukan tindakan seperti berikut "
+"(buka folder, pengurus foto, dll).\n"
+" 3.- Salin beberapa fail kedalam HDD luaran anda ke HDD firewire.\n"
+" 4.- Salin beberapa fail dari HDD firewire ke HDD dalaman anda."
 
 #. description
 #: ../jobs/firewire.txt.in:3 ../jobs/usb.txt.in:71
 msgid "Do the copy operations work as expected?"
-msgstr ""
+msgstr "Adakah operasi menyalin berjalan seperti diharapkan?"
 
 #. description
 #: ../jobs/floppy.txt.in:4
@@ -934,12 +740,12 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:82
 msgid "This display is using the following resolution:"
-msgstr ""
+msgstr "Paparan ini menggunakan resolusi berikut:"
 
 #. description
 #: ../jobs/graphics.txt.in:82
 msgid "Is this acceptable for your display?"
-msgstr "これはディスプレイと合っていますか?"
+msgstr "Adakah ini boleh diterima untuk paparan anda?"
 
 #. description
 #: ../jobs/graphics.txt.in:95
@@ -947,6 +753,8 @@ msgid ""
 "Ensure the current resolution meets or exceeds the recommended minimum "
 "resolution (1024 x 768). See here for details:"
 msgstr ""
+"Pastikan resolusi semasa menepati atau melebihi resolusi minimum cadangan "
+"(1024 x 768). Rujuk disini untuk perincian:"
 
 #. description
 #: ../jobs/graphics.txt.in:107
@@ -954,38 +762,46 @@ msgid ""
 "Ensure the current resolution meets or exceeds the recommended minimum "
 "resolution (1024 x 600). See here for details:"
 msgstr ""
+"pastikan resolusi semasa menepati atau melebihi resolusi minimum cadangan "
+"(1024 x 600). Rujuk disini untuk perincian:"
 
 #. description
 #: ../jobs/graphics.txt.in:107
 msgid "https://help.ubuntu.com/community/Installation/SystemRequirements"
-msgstr ""
+msgstr "https://help.ubuntu.com/community/Installation/SystemRequirements"
 
 #. description
 #: ../jobs/graphics.txt.in:117
 msgid "Select Test to display a video test."
-msgstr ""
+msgstr "Pilih Uji untuk paparkan ujian video"
+
+#. description
+#: ../jobs/graphics.txt.in:117
+msgid "Do you see color bars and static?"
+msgstr "Adakah anda dapat melihat palang warna dan statik?"
 
 #. description
 #: ../jobs/graphics.txt.in:126
 msgid ""
 "The following screens and video modes have been detected on your system:"
-msgstr ""
+msgstr "Mod skrin dan video berikut telah dikesan pada sistem anda:"
 
 #. description
 #: ../jobs/graphics.txt.in:138
 msgid ""
 "Select Test to cycle through the detected video modes for your system."
 msgstr ""
+"Pilih Uji untuk kitarkan melalui mod video yang dikesan pada sistem anda."
 
 #. description
 #: ../jobs/graphics.txt.in:138
 msgid "Did the screen appear to be working for each mode?"
-msgstr ""
+msgstr "Adakah skrin yang muncul berfungsi pada setiap mod?"
 
 #. description
 #: ../jobs/graphics.txt.in:146
 msgid "Check that the hardware is able to run compiz."
-msgstr ""
+msgstr "Periksa sama ada perkakasan boleh menjalankan compiz."
 
 #. description
 #: ../jobs/graphics.txt.in:153
@@ -993,11 +809,13 @@ msgid ""
 "Select Test to execute glxgears to ensure that minimal 3d graphics support "
 "is in place."
 msgstr ""
+"Pilih uji untuk jalankan glxgears bagi memastikan sokongan grafik 3d minimum "
+"ditempatnya."
 
 #. description
 #: ../jobs/graphics.txt.in:153
 msgid "Did the 3d animation appear?"
-msgstr ""
+msgstr "Adakah animasi 3d muncul?"
 
 #. description
 #: ../jobs/info.txt.in:60 ../jobs/screenshot.txt.in:7
@@ -1015,9 +833,26 @@ msgid "Bootchart information."
 msgstr ""
 
 #. description
+#: ../jobs/input.txt.in:4
+msgid "Moving the mouse should move the cursor on the screen."
+msgstr "Menggerakkan tetikus sepatutnya menggerakkan kursor pada skrin."
+
+#. description
+#: ../jobs/input.txt.in:4
+msgid "Is your mouse working properly?"
+msgstr "Adakah tetikus anda berfungsi dengan sempurna?"
+
+#. description
 #: ../jobs/input.txt.in:13
 msgid "Select Test to open a text area where to type keys on your keyboard."
 msgstr ""
+"Pilih butang uji untuk membuka kawasan teks untuk menaip mengikut kekunci "
+"pada papan kekunci anda."
+
+#. description
+#: ../jobs/input.txt.in:13
+msgid "Is your keyboard working properly?"
+msgstr "Adakah papan kekunci anda berfungsi dengan sempurna?"
 
 #. description
 #: ../jobs/install.txt.in:6
@@ -1110,7 +945,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:3
 msgid "Audio tests"
-msgstr ""
+msgstr "Ujian audio"
 
 #. description
 #: ../jobs/local.txt.in:8
@@ -1120,7 +955,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:13
 msgid "Camera tests"
-msgstr ""
+msgstr "Ujian kamera"
 
 #. description
 #: ../jobs/local.txt.in:18
@@ -1130,27 +965,27 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:23
 msgid "CPU tests"
-msgstr ""
+msgstr "Ujian CPU"
 
 #. description
 #: ../jobs/local.txt.in:28
 msgid "System Daemon tests"
-msgstr ""
+msgstr "Ujian Daemon Sistem"
 
 #. description
 #: ../jobs/local.txt.in:33
 msgid "Disk tests"
-msgstr ""
+msgstr "Ujian cakera"
 
 #. description
 #: ../jobs/local.txt.in:38
 msgid "Fingerprint reader tests"
-msgstr ""
+msgstr "Ujian pembaca cap jari"
 
 #. description
 #: ../jobs/local.txt.in:43
 msgid "Firewire disk tests"
-msgstr ""
+msgstr "Ujian cakera FireWire"
 
 #. description
 #: ../jobs/local.txt.in:48
@@ -1210,7 +1045,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:103
 msgid "Peripheral tests"
-msgstr ""
+msgstr "Ujian peranti persisian"
 
 #. description
 #: ../jobs/local.txt.in:108
@@ -1230,7 +1065,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:123
 msgid "Stress tests"
-msgstr ""
+msgstr "Ujian Tekanan"
 
 #. description
 #: ../jobs/ltp.txt.in:3
@@ -1252,6 +1087,13 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"Pengesahan sokongan kad media SD:\n"
+" 1.- Palamkan kad media SD kedalam komputer.\n"
+" 2.- Ikon seharusnya muncul pada desktop dan juga didalam menu \"Tempat\" "
+"yang berada dibahagian atas skrin.\n"
+" 3.- Klik kanan pada ikon desktop dam pilij \"Tanggalkan Pemacu Dengan "
+"Selamat\".\n"
+" 4.- Ikon tersebut akan hilang didesktop dan juga pada menu \"Tempat\"."
 
 #. description
 #: ../jobs/mediacard.txt.in:15
@@ -1263,6 +1105,14 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"Pengesahan sokongan kad media Digital Selamat (SD): \n"
+" 1.- Palamkan kad media SD kedalam komputer. \n"
+" 2.- Ikon akan muncul pada desktop dan pada menu \\\"Tempat\\\" dibahagian "
+"atas skrin. \n"
+" 3.- Klik kanan pada ikon desktop dan pilih \\\"Tanggalkan Pemacu Dengan "
+"Selamat\\\". \n"
+" 4.- Ikon akan hilang pada kedua-dua tempat iaitu pada desktop dan menu \\"
+"\"Tempat\\\"."
 
 #. description
 #: ../jobs/mediacard.txt.in:26
@@ -1274,6 +1124,14 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"Pengesahan sokongan kad media Secure Digital High Capacity (SDHC): \n"
+" 1.- Palamkan kad media SDHC kedalam komputer. \n"
+" 2.- Ikon akan muncul pada desktop dan pada menu \\\"Tempat\\\" dibahagian "
+"atas skrin. \n"
+" 3.- Klik kanan pada ikon desktop dan pilih \\\"Tanggalkan Pemacu Dengan "
+"Selamat\\\". \n"
+" 4.- Ikon akan hilang pada kedua-dua tempat iaitu pada desktop dan menu \\"
+"\"Tempat\\\"."
 
 #. description
 #: ../jobs/mediacard.txt.in:38
@@ -1285,6 +1143,14 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"Pengesahan semula sokongan kad media Secure Digital High Capacity (SDHC): \n"
+" 1.- Palamkan kad media SDHC kedalam komputer. \n"
+" 2.- Ikon akan muncul pada desktop dan pada menu \\\"Tempat\\\" dibahagian "
+"atas skrin. \n"
+" 3.- Klik kanan pada ikon desktop dan pilih \\\"Tanggalkan Pemacu Dengan "
+"Selamat\\\". \n"
+" 4.- Ikon akan hilang pada kedua-dua tempat iaitu pada desktop dan menu \\"
+"\"Tempat\\\"."
 
 #. description
 #: ../jobs/mediacard.txt.in:49
@@ -1296,6 +1162,14 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"Pengesahan sokongan kad Multimedia (MMC): \n"
+" 1.- Palamkan kad media MMC kedalam komputer. \n"
+" 2.- Ikon akan muncul pada desktop dan pada menu \\\"Tempat\\\" dibahagian "
+"atas skrin. \n"
+" 3.- Klik kanan pada ikon desktop dan pilih \\\"Tanggalkan Pemacu Dengan "
+"Selamat\\\". \n"
+" 4.- Ikon akan hilang pada kedua-dua tempat iaitu pada desktop dan menu \\"
+"\"Tempat\\\"."
 
 #. description
 #: ../jobs/mediacard.txt.in:61
@@ -1307,6 +1181,14 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"Pengesahan semula sokongan kad Multimedia (MMC): \n"
+" 1.- Palamkan kad media MMC kedalam komputer. \n"
+" 2.- Ikon akan muncul pada desktop dan pada menu \\\"Tempat\\\" dibahagian "
+"atas skrin. \n"
+" 3.- Klik kanan pada ikon desktop dan pilih \\\"Tanggalkan Pemacu Dengan "
+"Selamat\\\". \n"
+" 4.- Ikon akan hilang pada kedua-dua tempat iaitu pada desktop dan menu \\"
+"\"Tempat\\\"."
 
 #. description
 #: ../jobs/mediacard.txt.in:72
@@ -1318,6 +1200,14 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"Pengesahan sokongan kad media Memory Stick (MS): \n"
+" 1.- Palamkan kad media MS kedalam komputer. \n"
+" 2.- Ikon akan muncul pada desktop dan pada menu \\\"Tempat\\\" dibahagian "
+"atas skrin. \n"
+" 3.- Klik kanan pada ikon desktop dan pilih \\\"Tanggalkan Pemacu Dengan "
+"Selamat\\\". \n"
+" 4.- Ikon akan hilang pada kedua-dua tempat iaitu pada desktop dan menu \\"
+"\"Tempat\\\"."
 
 #. description
 #: ../jobs/mediacard.txt.in:84
@@ -1329,6 +1219,14 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"Pengesahan semula sokongan kad media Memory Stick (MS): \n"
+" 1.- Palamkan kad media MS kedalam komputer. \n"
+" 2.- Ikon akan muncul pada desktop dan pada menu \\\"Tempat\\\" dibahagian "
+"atas skrin. \n"
+" 3.- Klik kanan pada ikon desktop dan pilih \\\"Tanggalkan Pemacu Dengan "
+"Selamat\\\". \n"
+" 4.- Ikon akan hilang pada kedua-dua tempat iaitu pada desktop dan menu \\"
+"\"Tempat\\\"."
 
 #. description
 #: ../jobs/mediacard.txt.in:95
@@ -1340,6 +1238,14 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"Pengesahan sokongan kad media Memory Stick Pro (MSP): \n"
+" 1.- Palamkan kad media MSP kedalam komputer. \n"
+" 2.- Ikon akan muncul pada desktop dan pada menu \\\"Tempat\\\" dibahagian "
+"atas skrin. \n"
+" 3.- Klik kanan pada ikon desktop dan pilih \\\"Tanggalkan Pemacu Dengan "
+"Selamat\\\". \n"
+" 4.- Ikon akan hilang pada kedua-dua tempat iaitu pada desktop dan menu \\"
+"\"Tempat\\\"."
 
 #. description
 #: ../jobs/mediacard.txt.in:107
@@ -1351,6 +1257,14 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"Pengesahan semula sokongan kad media Memory Stick (MSP): \n"
+" 1.- Palamkan kad media MSP kedalam komputer. \n"
+" 2.- Ikon akan muncul pada desktop dan pada menu \\\"Tempat\\\" dibahagian "
+"atas skrin. \n"
+" 3.- Klik kanan pada ikon desktop dan pilih \\\"Tanggalkan Pemacu Dengan "
+"Selamat\\\". \n"
+" 4.- Ikon akan hilang pada kedua-dua tempat iaitu pada desktop dan menu \\"
+"\"Tempat\\\"."
 
 #. description
 #: ../jobs/mediacard.txt.in:118
@@ -1362,6 +1276,14 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"Pengesahan sokongan kad media Compact Flash (CF): \n"
+" 1.- Palamkan kad media CF kedalam komputer. \n"
+" 2.- Ikon akan muncul pada desktop dan pada menu \\\"Tempat\\\" dibahagian "
+"atas skrin. \n"
+" 3.- Klik kanan pada ikon desktop dan pilih \\\"Tanggalkan Pemacu Dengan "
+"Selamat\\\". \n"
+" 4.- Ikon akan hilang pada kedua-dua tempat iaitu pada desktop dan menu \\"
+"\"Tempat\\\"."
 
 #. description
 #: ../jobs/mediacard.txt.in:130
@@ -1373,11 +1295,19 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"Pengesahan semula sokongan kad media Compact Flash (CF): \n"
+" 1.- Palamkan kad media CF kedalam komputer. \n"
+" 2.- Ikon akan muncul pada desktop dan pada menu \\\"Tempat\\\" dibahagian "
+"atas skrin. \n"
+" 3.- Klik kanan pada ikon desktop dan pilih \\\"Tanggalkan Pemacu Dengan "
+"Selamat\\\". \n"
+" 4.- Ikon akan hilang pada kedua-dua tempat iaitu pada desktop dan menu \\"
+"\"Tempat\\\"."
 
 #. description
 #: ../jobs/mediacard.txt.in:130
 msgid "Does the icon automatically appear/disappear?"
-msgstr ""
+msgstr "Adakah ikon muncul/hilang secara automatik?"
 
 #. description
 #: ../jobs/memory.txt.in:4
@@ -1396,16 +1326,21 @@ msgid ""
 "screen will change temporarily to a text console and then switch back to "
 "your current session."
 msgstr ""
+"Pilih uji untuk menukar ke terminal maya lain dan kemudian kembali ke X. "
+"Skrin anda akan berubah buat sementara ke konsol teks dan kemudiannya "
+"kembali semula ke sesi semasa anda."
 
 #. description
 #: ../jobs/miscellanea.txt.in:8
 msgid "Note that this test may require you to enter your password."
 msgstr ""
+"Sila ambil perhatian bahawa ujian ini mungkin akan memerlukan anda untuk "
+"memasukkan kata laluan anda."
 
 #. description
 #: ../jobs/miscellanea.txt.in:8
 msgid "Did the screen change temporarily to a text console?"
-msgstr ""
+msgstr "Adakah skrin bertukar sementara kepada konsol teks?"
 
 #. description
 #: ../jobs/miscellanea.txt.in:20
@@ -1429,7 +1364,7 @@ msgstr ""
 #. description
 #: ../jobs/monitor.txt.in:3
 msgid "If your system does not have a VGA port, please skip this test."
-msgstr ""
+msgstr "Jika sistem anda tidak mempunyai port VGA, sila langkau ujian ini."
 
 #. description
 #: ../jobs/monitor.txt.in:3
@@ -1437,11 +1372,13 @@ msgid ""
 "Connect a display (if not already connected) to the VGA port on your system. "
 "Is the image displayed correctly?"
 msgstr ""
+"Sambung ke paparan (jika belum disambungkan lagi) ke port VGA sistem anda. "
+"Adakah imej dipaparkan dengan sempurna?"
 
 #. description
 #: ../jobs/monitor.txt.in:10
 msgid "If your system does not have a DVI port, please skip this test."
-msgstr ""
+msgstr "Jika sistem anda tidak mempunyai port DVI, sila langkau ujian ini."
 
 #. description
 #: ../jobs/monitor.txt.in:10
@@ -1449,11 +1386,14 @@ msgid ""
 "Connect a display (if not already connected) to the DVI port on your system. "
 "Is the image displayed correctly?"
 msgstr ""
+"Sambung ke paparan (jika belum disambungkan lagi) ke port DVI sistem anda. "
+"Adakah imej dipaparkan dengan sempurna?"
 
 #. description
 #: ../jobs/monitor.txt.in:17
 msgid "If your system does not have DisplayPort, please skip this test."
 msgstr ""
+"Jika sistem anda tidak mempunyai port Display, sila langkau ujian ini."
 
 #. description
 #: ../jobs/monitor.txt.in:17
@@ -1461,11 +1401,13 @@ msgid ""
 "Connect a display (if not already connected) to the DisplayPort on your "
 "system. Is the image displayed correctly?"
 msgstr ""
+"Sambung ke paparan (jika belum disambungkan lagi) ke Displayport sistem "
+"anda. Adakah imej dipaparkan dengan sempurna?"
 
 #. description
 #: ../jobs/monitor.txt.in:24
 msgid "If your system does not have a HDMI port, please skip this test."
-msgstr ""
+msgstr "Jika sistem anda tidak mempunyai port HDMI, sila langkau ujian ini."
 
 #. description
 #: ../jobs/monitor.txt.in:24
@@ -1473,11 +1415,14 @@ msgid ""
 "Connect a display (if not already connected) to the HDMI port on your "
 "system. Is the image displayed correctly?"
 msgstr ""
+"Sambung ke paparan (jika belum disambungkan lagi) ke port HDMI sistem anda. "
+"Adakah imej dipaparkan dengan sempurna?"
 
 #. description
 #: ../jobs/monitor.txt.in:31
 msgid "If your system does not have a S-VIDEO port, please skip this test."
 msgstr ""
+"Jika sistem anda tidak mempunyai port S-VIDEO, sila langkau ujian ini."
 
 #. description
 #: ../jobs/monitor.txt.in:31
@@ -1485,11 +1430,13 @@ msgid ""
 "Connect a display (if not already connected) to the S-VIDEO port on your "
 "system. Is the image displayed correctly?"
 msgstr ""
+"Sambung ke paparan (jika belum disambungkan lagi) ke port S-VIDEO sistem "
+"anda. Adakah imej dipaparkan dengan sempurna?"
 
 #. description
 #: ../jobs/monitor.txt.in:38
 msgid "If your system does not have a RCA port, please skip this test."
-msgstr ""
+msgstr "Jika sistem anda tidak mempunyai port RCA, sila langkau ujian ini."
 
 #. description
 #: ../jobs/monitor.txt.in:38
@@ -1497,6 +1444,8 @@ msgid ""
 "Connect a display (if not already connected) to the RCA port on your system. "
 "Is the image displayed correctly?"
 msgstr ""
+"Sambung ke paparan (jika belum disambungkan lagi) ke port RCA sistem anda. "
+"Adakah imej dipaparkan dengan sempurna?"
 
 #. description
 #: ../jobs/monitor.txt.in:46
@@ -1506,21 +1455,35 @@ msgid ""
 " 2.- The monitor should go blank.\n"
 " 3.- Press any key or move the mouse to recover."
 msgstr ""
+"Prosedur pengesahan penjimatan kuasa monitor:\n"
+" 1.- Pilih Uji untuk cuba keupayaan penjimatan kuasa monitor anda.\n"
+" 2.- Monitor sepatutnya menjadi gelap.\n"
+" 3.- Tekan sebarang kekunci atau gerakkan tetikus untuk pulihkannya."
 
 #. description
 #: ../jobs/monitor.txt.in:46
 msgid "Did the monitor go blank?"
-msgstr ""
+msgstr "Adakah monitor menjadi gelap?"
+
+#. description
+#: ../jobs/networking.txt.in:5
+msgid "Detecting your network controller(s):"
+msgstr "Mengesan pengawal rangkaian anda:"
+
+#. description
+#: ../jobs/networking.txt.in:16
+msgid "Testing your connection to the Internet:"
+msgstr "Menguji sambungan anda ke Internet:"
 
 #. description
 #: ../jobs/networking.txt.in:26
 msgid "Network Information"
-msgstr ""
+msgstr "Maklumat Rangkaian"
 
 #. description
 #: ../jobs/networking.txt.in:46
 msgid "Wireless scanning test."
-msgstr ""
+msgstr "Ujian pengimbasan tanpa wayar"
 
 #. description
 #: ../jobs/networking.txt.in:52
@@ -1530,6 +1493,10 @@ msgid ""
 "OSD should confirm that the connection has been established 4.- Select Test "
 "to verify that it's possible to establish an HTTP connection"
 msgstr ""
+"Prosedur sambungan rangkaian tanpa wayar: 1.- Klik pada aplet Pengurus "
+"Rangkaian 2.- Pilih rangkaian dibawah bahagian 'Rangkaian Tanpa Wayar' 3.- "
+"Makluman Atas Skrin patut mengesahkan sambungan berjaya 4.- Pilih uji untuk "
+"sahkan sambungan HTTP telah berjaya"
 
 #. description
 #: ../jobs/networking.txt.in:64
@@ -1539,6 +1506,10 @@ msgid ""
 "confirm that the connection has been established 4.- Select Test to verify "
 "that it's possible to establish an HTTP connection"
 msgstr ""
+"Prosedur sambungan rangkaian berwayar: 1.- Klik pada aplet Pengurus "
+"Rangkaian 2.- Pilih rangkaian dibawah bahagian 'Rangkaian Berwayar' 3.- "
+"Makluman Atas Skrin patut mengesahkan sambungan berjaya 4.- Pilih uji untuk "
+"sahkan sambungan HTTP telah berjaya"
 
 #. description
 #: ../jobs/networking.txt.in:76
@@ -1550,11 +1521,16 @@ msgid ""
 "that the connection has been established 8.- Select Test to verify that it's "
 "possible to establish an HTTP connection"
 msgstr ""
+"Prosedur sambungan rangkaian terbina-dalam: 1.- Sambungkan talian telefon ke "
+"komputer 2.- Klik kanan pada aplet Pengurus Rangkaian 3.- Pilih  'Sunting "
+"Sambungan' 4.- Pilih tab 'DSL' 5.- Klik tambah pada butang 'Tambah' 6.- "
+"Konfigur parameter sambungan dengan betul 7.- Makluman Atas Skrin sahkan "
+"sambungan berjaya 8.- Pilih uji untuk sahkan sambungan HTTP berjaya"
 
 #. description
 #: ../jobs/networking.txt.in:76 ../jobs/peripheral.txt.in:15
 msgid "Was the connection correctly established?"
-msgstr ""
+msgstr "Adakah sambungan berjaya dihubungkan?"
 
 #. description
 #: ../jobs/networking.txt.in:92
@@ -1562,35 +1538,38 @@ msgid ""
 "Automated test case to verify availability of some system on the network "
 "using ICMP ECHO packets."
 msgstr ""
+"Kes ujian berautomatik untuk sahkan kebolehsediaan beberapa sistem pada "
+"rangkaian menggunakan paket ECHO ICMP."
 
 #. description
 #: ../jobs/networking.txt.in:99 ../jobs/peripheral.txt.in:32
 msgid ""
 "Automated test case to make sure that it's possible to download files "
 "through HTTP"
-msgstr ""
+msgstr "Kes ujian berautomatik untuk pastikan fail dimuat turun melalui HTTP"
 
 #. description
 #: ../jobs/networking.txt.in:107
 msgid "Test to see if we can sync local clock to an NTP server"
 msgstr ""
+"Uji untuk lihat jika kita boleh segerakkan jam setempat dengan pelayan NTP"
 
 #. description
 #: ../jobs/networking.txt.in:113
 msgid ""
 "Verify that an installation of checkbox-server on the network can be reached "
 "over SSH."
-msgstr ""
+msgstr "Sahkan pemasangan pelayan-checkbox pada rangkaian melalui SSH"
 
 #. description
 #: ../jobs/networking.txt.in:119
 msgid "Try to enable a remote printer on the network and print a test page."
-msgstr ""
+msgstr "Cuba benarkan pencetak jauh pada rangkaian dan cetak halaman uji."
 
 #. description
 #: ../jobs/networking.txt.in:124
 msgid "Multiple network cards"
-msgstr ""
+msgstr "Kad rangkaian berbilang"
 
 #. description
 #: ../jobs/networking.txt.in:144
@@ -1654,11 +1633,12 @@ msgstr ""
 #: ../jobs/optical.txt.in:90
 msgid "Insert a DVD.  Then select Test to play the DVD in Totem."
 msgstr ""
+"Masukkan DVD, kemudian pilih Uji untuk mainkan DVD menggunakan Totem."
 
 #. description
 #: ../jobs/optical.txt.in:90
 msgid "Did the file play?"
-msgstr ""
+msgstr "Adakah fail tersebut dimainkan?"
 
 #. description
 #: ../jobs/panel_clock_test.txt.in:4
@@ -1720,6 +1700,10 @@ msgid ""
 "detected and proper configuration values \\ should be displayed 5.- Print a "
 "test page"
 msgstr ""
+"Prosedur pengesahan konfigurasi pencetak: 1.- Pastikan pencetak ada didalam "
+"rangkaian anda 2.- Buka Sistem->Pentadbiran->Percetakan 3.- Jika pencetak "
+"tidak disenaraikan, klik Baru 4.- Pencetak patutnya dikesan dan nilai "
+"konfigurasi yang sepatutnya dipaparkan 5.- Cetak halaman uji"
 
 #. description
 #: ../jobs/peripheral.txt.in:15
@@ -1732,6 +1716,12 @@ msgid ""
 "connection has been established 8.- Select Test to verify that it's possible "
 "to establish an HTTP connection"
 msgstr ""
+"Prosedur sambungan rangkaian modem USB luaran: 1.- Sambungkan kabel USB ke "
+"komputer 2.- Klik kanan pada aplet Pengurus Rangkaian 3.- Pilih 'Sunting "
+"Sambungan' 4.- Pilih tab 'DSL' (untuk modem ADSL) atau tab 'Jalur Lebar "
+"Mudah Alih' (untuk modem 3G) 5.- Klik tambah pada butang 'Tambah' 6.- "
+"Konfigur parameter sambungan dengan betul 7.- Makluman Atas Skrin sahkan "
+"sambungan berjaya 8.- Pilih uji untuk sahkan sambungan HTTP berjaya"
 
 #. description
 #: ../jobs/phoronix.txt.in:3
@@ -1806,17 +1796,17 @@ msgstr ""
 #. description
 #: ../jobs/power-management.txt.in:65
 msgid "Test the network before suspending."
-msgstr ""
+msgstr "Uji rangkaian sebelum ditangguhkan."
 
 #. description
 #: ../jobs/power-management.txt.in:70
 msgid "Record the current resolution before suspending."
-msgstr ""
+msgstr "Rekod resolusi semasa sebelum ditangguhkan."
 
 #. description
 #: ../jobs/power-management.txt.in:78
 msgid "Test the audio before suspending."
-msgstr ""
+msgstr "Uji audio sebelum ditangguhkan."
 
 #. description
 #: ../jobs/power-management.txt.in:84
@@ -1829,16 +1819,23 @@ msgid ""
 " 5.- Select Test to verify connection and throughput.\n"
 "Output:"
 msgstr ""
+"Prosedur sambungan rangkaian tanpa wayar:\n"
+" 1- Klik pada aplet Pengurus Rangkaian.\n"
+" 2.- Klik Putuskan dibawah 'Rangkaian Berwayar'.\n"
+" 3.- Pilih rangkaian dibawah bahagian 'Rangkaian tanpa wayar'.\n"
+" 4.- Makluman Atas Skrin akan mengesahkan sambungan berjaya disambungkan.\n"
+" 5.- Pilij Uji untuk mengesahkan sambungan dan pemprosesannya.\n"
+"Output:"
 
 #. description
 #: ../jobs/power-management.txt.in:128 ../jobs/sru_suite.txt.in:135
 msgid "Make sure that the RTC (Real-Time Clock) device exists."
-msgstr ""
+msgstr "Pastikan peranti RTC (Jam Masa-Nyata) wujud."
 
 #. description
 #: ../jobs/power-management.txt.in:135
 msgid "Power management Suspend and Resume test"
-msgstr ""
+msgstr "Ujian Sambung Semula dan Tangguh pengurusan kuasa"
 
 #. description
 #: ../jobs/power-management.txt.in:135
@@ -1849,22 +1846,29 @@ msgid ""
 "at all and must be rebooted, restart System Testing after reboot and mark "
 "this test as Failed."
 msgstr ""
+"Pilih Uji dan sistem anda akan ditangguh kira-kira 30 - 60 saat. Jika sistem "
+"anda tidak bangun dengan sendiri selepas 60 saat, sila tekan butang kuasa "
+"buat seketika untuk bangunkan sistem secara manual. Jika sistem anda gagal "
+"dibangunkan dan perlu dibutkan semula, mula semula Pengujian Sistem selepas "
+"but semula dan tanda ujian ini sebagai gagal."
 
 #. description
 #: ../jobs/power-management.txt.in:145
 msgid "Test the network after resuming."
-msgstr ""
+msgstr "Uji rangkaian selepas disambung semula."
 
 #. description
 #: ../jobs/power-management.txt.in:151
 msgid ""
 "Test to see that we have the same resolution after resuming as before."
 msgstr ""
+"Ujian untuk melihat sama ada resolusi adalah sama selepas disambung semula "
+"seperti sebelum ini."
 
 #. description
 #: ../jobs/power-management.txt.in:160
 msgid "Test the audio after resuming."
-msgstr ""
+msgstr "Uji audio selepas disambung semula."
 
 #. description
 #: ../jobs/power-management.txt.in:167
@@ -1877,6 +1881,13 @@ msgid ""
 " 5.- Select Test to verify connection and throughput.\n"
 "Output:"
 msgstr ""
+"Prosedur sambungan rangkaian tanpa wayar:\n"
+" 1- Klik pada aplet Pengurus Rangkaian.\n"
+" 2- Jika sambungan berwayar terhubung, putuskannya.\n"
+" 3.- Pilih rangkaian dibawah bahagian 'Rangkaian tanpa wayar'.\n"
+" 4.- Makluman Atas Skrin akan mengesahkan sambungan berjaya disambungkan.\n"
+" 5.- Pilij Uji untuk mengesahkan sambungan dan pemprosesannya.\n"
+"Output:"
 
 #. description
 #: ../jobs/power-management.txt.in:194
@@ -1884,6 +1895,8 @@ msgid ""
 "Verify a bluetooth peripheral.  An example verification procedure for a "
 "bluetooth mouse is given."
 msgstr ""
+"Sahkan persisian bluetooth. Contoh prosedur pengesahan untuk tetikus "
+"bluetooth diberikan."
 
 #. description
 #: ../jobs/power-management.txt.in:194
@@ -1896,6 +1909,12 @@ msgid ""
 " 5.- Move the mouse around the screen.\n"
 " 6.- Perform some single/double/right click operations."
 msgstr ""
+"Prosedur tetikus bluetooth:\n"
+" 1.- Benarkan tetikus bluetooth.\n"
+" 2.- Klik pada ikon bluetooth pada palang menu.\n"
+" 3.- Pilih 'Pasang peranti baru'.\n"
+" 4.- Cari peranti didalam senarai dan pilihnya.\n"
+" 5.- Lakukan beberapa operasi klik kanan/dwiklik/tunggal."
 
 #. description
 #: ../jobs/power-management.txt.in:210
@@ -1903,6 +1922,8 @@ msgid ""
 "This test will check to make sure that supported video modes work after a "
 "suspend and resume.  Select Test to begin."
 msgstr ""
+"Ujian ini akan memeriksa untuk memastikan mod video tersokong berfungsi "
+"selepas ditangguh dan disambung semula. Klik Uji untuk Mula."
 
 #. description
 #: ../jobs/power-management.txt.in:221
@@ -1911,6 +1932,9 @@ msgid ""
 "suspend and resume.  You can use either internal or external microphone and "
 "speakers."
 msgstr ""
+"Tindakan ini akan memastikan peranti audio anda berfungsi dengan sempurna "
+"selepas ditangguh dan disambung semula. Anda boleh gunakan sama ada mikrofon "
+"dan pembesar suara dalaman atau luaran."
 
 #. description
 #: ../jobs/power-management.txt.in:221
@@ -1920,6 +1944,10 @@ msgid ""
 "Test and then speak into your microphone. After a few seconds, your speech "
 "will be played back to you."
 msgstr ""
+"Untuk jalankan ujian ini, pastikan pembesar suara dan mikrofon anda TIDAK "
+"dibisukan dan volum telah ditetapkan dengan sesuai tinggi untuk merakam dan "
+"memainkan audio. Klik butang Uji dan seterusnya cakap menggunakan mikrofon "
+"anda. Selepas beberapa saat, percakapan anda akan dimainkan balik."
 
 #. description
 #: ../jobs/power-management.txt.in:234
@@ -1928,11 +1956,16 @@ msgid ""
 "is a lengthy test. Select Test to begin. If your system fails to wake and "
 "must be rebooted, please restart System Testing and mark this test as Failed."
 msgstr ""
+"Masuk dan sambung semula dari keadaan tangguh selama 30 kali pengulangan. "
+"Sila ambil perhatian, ini adalah ujian yang mengambil masa. Klik Uji untuk "
+"mula."
 
 #. description
 #: ../jobs/power-management.txt.in:234
 msgid "Did the system successfully suspend and resume for 30 iterations?"
 msgstr ""
+"Adakah sistem berjaya ditangguh dan dimulakan semula selama 30 kali "
+"pengulangan?"
 
 #. description
 #: ../jobs/power-management.txt.in:245
@@ -1940,6 +1973,8 @@ msgid ""
 "This will check to make sure your system can successfully hibernate (if "
 "supported)."
 msgstr ""
+"Tindakan ini akan memeriksa untuk memastikan sistem anda berjaya "
+"dihibernasikan (jika disokong)."
 
 #. description
 #: ../jobs/power-management.txt.in:245
@@ -1950,6 +1985,11 @@ msgid ""
 "fails to resume from hibernate, please restart System Testing and mark this "
 "test as Failed."
 msgstr ""
+"Tekan butang Uji untuk dimulakan. Sistem akan dihibernasikan dan akan bangun "
+"sendiri dalam tempoh 5 minit. Jika sistem anda tidak bangun sendiri selepas "
+"5 minit, sila tekan butang kuasa(power) untuk bangunkan sistem secara "
+"manual. Jika sistem gagal dipulihkan dari hibernasi, sila mulakan semula "
+"Pengujian Sistem dan tanda ujian ini sebaga Gagal."
 
 #. description
 #: ../jobs/power-management.txt.in:245
@@ -1957,6 +1997,8 @@ msgid ""
 "Did the system successfully hibernate and did it work properly after waking "
 "up?"
 msgstr ""
+"Adakah sistem berjaya dihibernasikan dan boleh berfungsi dengan betul "
+"selepas dibangunkan?"
 
 #. description
 #: ../jobs/power-management.txt.in:258
@@ -1967,6 +2009,12 @@ msgid ""
 "the system fails to resume from hibernation and must be rebooted, please "
 "restart System Testing and mark this test as Failed."
 msgstr ""
+"Masuk dan sambung semula hibernasi selama 30 kali pengulangan. Sila ambil "
+"perhatian, ujian ini akan mengambil masa. Dan juga, jika sistem anda tidak "
+"bangun sendiri selepas 2 minit, anda perlu tekan butang kuasa untuk "
+"membangunkan sistem. Jika sistem gagal dipulihkan dari hibernasi dan mesti "
+"dibutkan semula, sila mulakan semula Pengujian sistem dan tandakan ujian ini "
+"sebagai Gagal."
 
 #. description
 #: ../jobs/power-management.txt.in:258
@@ -1975,11 +2023,15 @@ msgid ""
 "set, and that grub is set to boot Ubuntu by default if you have a multi-boot "
 "set-up."
 msgstr ""
+"Juga, anda perlu pastikan sistem anda tidak mempunyai set kata laluan power-"
+"on atau HDD, dan grub tidak ditetapkan supaya but ke Ubuntu secara lalai "
+"jika anda mempunyai penetapan berbilang-but."
 
 #. description
 #: ../jobs/power-management.txt.in:258
 msgid "Did the system successfully hibernate and wake 30 times?"
 msgstr ""
+"Adakah sistem berjaya dihibernasikan dan dibangunkan sebanyak 30 kali?"
 
 #. description
 #: ../jobs/power-management.txt.in:267
@@ -2005,11 +2057,16 @@ msgid ""
 "at all and must be rebooted, restart System Testing after reboot and mark "
 "this test as Failed."
 msgstr ""
+"Pilih uji dan sistem anda akan ditangguh kira-kira 30 - 60 saat. Jika sistem "
+"anda tidak bangun sendiri selepas 60 saat, sila tekan butang kuasa untuk "
+"membangunkan sistem secara manual. Jika sistem anda gagal dibangunkan dan "
+"mesti dibutkan semula, mulakan semula Pengujian Sistem dan tandakan ujian "
+"ini sebagai Gagal."
 
 #. description
 #: ../jobs/qa_regression.txt.in:3
 msgid "QA regression tests (destructive)"
-msgstr ""
+msgstr "Ujian kemunduran QA (destruktif)"
 
 #. description
 #: ../jobs/server-services.txt.in:5
@@ -2257,6 +2314,11 @@ msgid ""
 "are found, install them. When Update Manager has finished, please close the "
 "app by clicking the Close button in the lower right corner."
 msgstr ""
+"Ujian ini akan lakukan Pengurus Kemaskini dan periksa untuk melihat sama ada "
+"terdapat kemaskini untuk sistem. Sila ikuti promp dan jika kemaskini "
+"ditemui, pasangkannya. Apabila Pengurus Kemaskini selesai melakukan "
+"pengemaskinian, sila tutup aplikasi dengan mengklik butang Tutup pada bucu "
+"kanan bawah tetingkap."
 
 #. description
 #: ../jobs/user_apps.txt.in:14
@@ -2265,11 +2327,14 @@ msgid ""
 "Folder. In the name box for the new folder, enter the name Test Folder and "
 "hit Enter."
 msgstr ""
+"Klik butang Uji untuk membuka Pelayar Fail. Pada palang menu, klik Fail -> "
+"C‬ipta Folder. Didalam kekotak nama bagi folder baru, masukkan nama Folder "
+"Uji dan tekan Enter."
 
 #. description
 #: ../jobs/user_apps.txt.in:14
 msgid "Do you now have a new folder called Test Folder?"
-msgstr ""
+msgstr "Adakah anda mempunyai folder baru bernama Folder Uji?"
 
 #. description
 #: ../jobs/user_apps.txt.in:25
@@ -2278,6 +2343,9 @@ msgid ""
 "Folder and click on Copy.  Right Click on any white area in the window and "
 "click on Paste."
 msgstr ""
+"Pilih butang Uji untuk membuka Pelayar Fail. Klik kanan pada folder yang "
+"bernama Folder Uji dan klik Salin. Klik Kanan pada mana-mana kawasan putih "
+"didalam tetingkap dan klik Tampal."
 
 #. description
 #: ../jobs/user_apps.txt.in:25
@@ -2285,11 +2353,13 @@ msgid ""
 "Right click on the folder called Test Folder(copy) and click Rename. Enter "
 "the name Test Data in the name box and hit Enter."
 msgstr ""
+"Klik kanan pada folder bernama Folder uji(salin) dan klik Namakan Semula. "
+"Masukkan nama Uji Data didalam kekotak nama dan tekan Enter."
 
 #. description
 #: ../jobs/user_apps.txt.in:25
 msgid "Do you now have a folder called Test Data?"
-msgstr ""
+msgstr "Adakah anda sekarang mempunyai folder bernama Uji Data?"
 
 #. description
 #: ../jobs/user_apps.txt.in:38
@@ -2297,18 +2367,23 @@ msgid ""
 "Select Test to open the File Browser. Click and drag the folder called Test "
 "Data onto the icon called Test Folder. Release the button."
 msgstr ""
+"Pilih butang Uji untuk membuka Pelayar Fail. Klik dan seret folder bernama "
+"Uji Data kedalam ikon yang bernama Folder Uji. Kemudian, lepaskan butang "
+"tersebut."
 
 #. description
 #: ../jobs/user_apps.txt.in:38
 msgid "Double click the folder called Test Folder to open it up."
-msgstr ""
+msgstr "Dwi-klik folder bernama Folder Uji untuk membukanya."
 
 #. description
 #: ../jobs/user_apps.txt.in:38
 msgid ""
 "Was the folder called Test Data successfully moved into the folder called "
 "Test Folder?"
-msgstr "フォルダ「Test Data」はフォルダ「Test Data」の中へ移動できましたか？"
+msgstr ""
+"Adakah folder bernama Uji Data berjaya dialihkan kedalam folder bernama "
+"Folder Uji?"
 
 #. description
 #: ../jobs/user_apps.txt.in:51
@@ -2317,16 +2392,19 @@ msgid ""
 "click Create Document -> Empty File. Enter the name Test File 1 in the name "
 "box and hit Enter."
 msgstr ""
+"Pilih butang Uji untuk membuka pelayar Fail. Klik kanan pada ruang putih dan "
+"klik Cipta Dokumen -> Kosongkan Fail. Masukkan nama Fail Uji 1 didalan "
+"kekotak nama dan tekan Enter."
 
 #. description
 #: ../jobs/user_apps.txt.in:51
 msgid "Do you now have a file called Test File 1?"
-msgstr "「Test File 1」が作成できましたか?"
+msgstr "Adakah anda sekarang mempunyai fail bernama Fail Uji 1?"
 
 #. description
 #: ../jobs/user_apps.txt.in:51
 msgid "Close the File browser."
-msgstr ""
+msgstr "Tutup Pelayar Fail."
 
 #. description
 #: ../jobs/user_apps.txt.in:62
@@ -2334,6 +2412,8 @@ msgid ""
 "Select Test to open the File Browser. Right click on the file called Test "
 "File 1 and click Copy. Right click in the white space and click Paste."
 msgstr ""
+"Pilih butang Uji untuk membuka Pelayar Fail. klik kanan pada fail bernama "
+"Fail Uji 1 dan klik Salin. Klik kanan pada ruang putih dan klik Tampal."
 
 #. description
 #: ../jobs/user_apps.txt.in:62
@@ -2341,13 +2421,13 @@ msgid ""
 "Right click on the file called Test File 1(copy) and click Rename. Enter the "
 "name Test File 2 in the name box and hit Enter."
 msgstr ""
-"「Test File 1 」の上で右クリックをして「名前の変更」を選択してください。ネームボックスに「Test File "
-"2」と入力してエンターキーを押してください"
+"Klik kanan pada fail bernama Fail Uji 1(salin) dan klik Namakan Semula. "
+"Masukkan nama Fail Uji 2 didalam kekotak nama dan tekan Enter."
 
 #. description
 #: ../jobs/user_apps.txt.in:62
 msgid "Do you now have a file called Test File 2?"
-msgstr "「Test File 2」が作成できましたか?"
+msgstr "Adakah anda sekarang mempunyai fail bernama Fail Uji 2?"
 
 #. description
 #: ../jobs/user_apps.txt.in:75
@@ -2355,17 +2435,20 @@ msgid ""
 "Select Test to open the File Browser. Click and drag the file called Test "
 "File 2 onto the icon for the folder called Test Data. Release the button."
 msgstr ""
+"Pilih butang Uji untuk membuka Pelayar Fail. Klik dan seret fail bernama "
+"Fail Uji 2 kedalam ikon untuk folder bernama Uji Data. Kemudian lepaskan "
+"butang tersebut."
 
 #. description
 #: ../jobs/user_apps.txt.in:75
 msgid "Double click the icon for Test Data to open that folder up."
-msgstr "「Test Data」のアイコンをダブルクリックしてそのフォルダを開いてください"
+msgstr "Dwi-klik ikon Uji Data untuk membuka folder tersebut."
 
 #. description
 #: ../jobs/user_apps.txt.in:75
 msgid ""
 "Was the file Test File 2 successfully moved into the Test Data folder?"
-msgstr "ファイル「Test File 2」はフォルダ「Test Data」の中へ移動できましたか？"
+msgstr "Adakah Fail Uji 2 berjaya dialihkan kedalam folder Uji Data?"
 
 #. description
 #: ../jobs/user_apps.txt.in:88
@@ -2373,11 +2456,13 @@ msgid ""
 "Select Test to open the File Browser. Right click on the file called Test "
 "File 1 and click on Move To Trash."
 msgstr ""
+"Pilih butang Uji untuk membuka Pelayar Fail. Klik kanan pada fail bernama "
+"Fail Uji 1 dan klik serta Alih Ke Tong Sampah."
 
 #. description
 #: ../jobs/user_apps.txt.in:88
 msgid "Is Test File 1 now gone?"
-msgstr "「Test File 1」は消えてなくなりましたか？"
+msgstr "Adakah Fail Uji 1 sudah hilang?"
 
 #. description
 #: ../jobs/user_apps.txt.in:99
@@ -2385,31 +2470,35 @@ msgid ""
 "Select Test to open the File Browser. Right click on the folder called Test "
 "Folder and click on Move To Trash."
 msgstr ""
+"Pilih butang Uji untuk membuka Pelayar Fail. Klik kanan pada folder bernama "
+"Folder Uji dan klik serta Alih Ke Tong Sampah."
 
 #. description
 #: ../jobs/user_apps.txt.in:99
 msgid "Has Test Folder been successfully deleted?"
-msgstr "「Test Folder」は削除されましたか?"
+msgstr "Adakah Folder Uji berjaya dipadamkan?"
 
 #. description
 #: ../jobs/user_apps.txt.in:99
 msgid "Close the File Browser."
-msgstr ""
+msgstr "Tutup Pelayar Fail."
 
 #. description
 #: ../jobs/user_apps.txt.in:160
 msgid "Common Document Types Test"
-msgstr ""
+msgstr "Ujian Jenis Dokumen Umum"
 
 #. description
 #: ../jobs/user_apps.txt.in:178
 msgid "Select Test to launch Firefox and view the test web page."
 msgstr ""
+"Pilih butang \\\"Uji\\\" untuk melancarkan Firefox dan papar laman sesawang "
+"ujian."
 
 #. description
 #: ../jobs/user_apps.txt.in:178
 msgid "Did the Ubuntu Test page load correctly?"
-msgstr "「Ubuntu Test page」が正しく表示されましたか?"
+msgstr "Adakah laman Ujian Ubuntu dimuatkan dengan sempurna?"
 
 #. description
 #: ../jobs/user_apps.txt.in:188
@@ -2417,61 +2506,63 @@ msgid ""
 "Select Test to open Firefox with the Java test page, and follow the "
 "instructions there."
 msgstr ""
+"Pilih Uji untuk membuka Firefox dengan laman ujian Java, dan ikuti arahan "
+"yang dinyatakan."
 
 #. description
 #: ../jobs/user_apps.txt.in:188
 msgid "Did the applet display?"
-msgstr "アプレットが表示されましたか?"
+msgstr "Adakah aplet dipaparkan?"
 
 #. description
 #: ../jobs/user_apps.txt.in:198
 msgid "Select Test to launch Firefox and view a sample Flash test."
-msgstr ""
+msgstr "Pilih Uji untuk melancarkan Firefox dan papar ujian sampel Flash."
 
 #. description
 #: ../jobs/user_apps.txt.in:198
 msgid "Did you see the text?"
-msgstr "文字が表示されていますか?"
+msgstr "Adakah anda dapat melihat teks?"
 
 #. description
 #: ../jobs/user_apps.txt.in:208
 msgid "Select Test to launch Firefox and view a short flash video."
-msgstr ""
+msgstr "Pilih Uji untuk melancarkan Firefox dan papar video pendek flash."
 
 #. description
 #: ../jobs/user_apps.txt.in:208
 msgid "Did the video play correctly?"
-msgstr "ビデオは正しく再生されましたか?"
+msgstr "Adakah video dimainkan dengan sempurna?"
 
 #. description
 #: ../jobs/user_apps.txt.in:218
 msgid "Select Test to launch Firefox with a sample video."
-msgstr ""
+msgstr "Pilih \"Uji untuk melancarkan Firefox dengan video sampel."
 
 #. description
 #: ../jobs/user_apps.txt.in:218
 msgid "Did the video play using a plugin?"
-msgstr "プラグインを使ってビデオは正しく再生されましたか?"
+msgstr "Adakah video dimainkan menggunakan pemalam?"
 
 #. description
 #: ../jobs/user_apps.txt.in:227
 msgid "Facebook Chat"
-msgstr ""
+msgstr "Sembang Facebook."
 
 #. description
 #: ../jobs/user_apps.txt.in:238
 msgid "Google Talk"
-msgstr ""
+msgstr "Google Talk"
 
 #. description
 #: ../jobs/user_apps.txt.in:249
 msgid "Jabber"
-msgstr ""
+msgstr "Jabber"
 
 #. description
 #: ../jobs/user_apps.txt.in:260
 msgid "AIM"
-msgstr ""
+msgstr "AIM"
 
 #. description
 #: ../jobs/user_apps.txt.in:271
@@ -2480,206 +2571,283 @@ msgid ""
 "service. Once you have completed the test, please quit Empathy to continue "
 "here."
 msgstr ""
+"Pilih butang \\\"Uji\\\" untuk lancarkan Empathy, kemudian konfigurkannya "
+"untuk menyambung ke perkhidmatan berikut. Apabila anda selesaikan ujian, "
+"sila keluar dari Empathy untuk teruskan disini."
 
 #. description
 #: ../jobs/user_apps.txt.in:271
 msgid "MSN"
-msgstr ""
+msgstr "MSN"
 
 #. description
 #: ../jobs/user_apps.txt.in:271
 msgid "Were you able to connect correctly and send/receive messages?"
 msgstr ""
+"Adakah anda boleh menyambung dengan betul dan boleh hantar/terima mesej?"
+
+#: ../checkbox/application.py:66
+msgid "Usage: checkbox [OPTIONS]"
+msgstr "Penggunaan: checkbox [OPTIONS]"
+
+#: ../checkbox/application.py:70
+msgid "Print version information and exit."
+msgstr "Papar maklumat versi dan keluar."
+
+#: ../checkbox/application.py:74
+msgid "The file to write the log to."
+msgstr "Fail yang hendak dituliskan ke log."
+
+#: ../checkbox/application.py:77
+msgid "One of debug, info, warning, error or critical."
+msgstr "Satu nyahpepijat, maklumat, amaran, ralat atau kritikal."
+
+#: ../checkbox/application.py:82
+msgid "Configuration override parameters."
+msgstr "Konfigurasi membatalkan parameter."
 
 #: ../checkbox/application.py:84
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist."
-msgstr ""
+msgstr "Trengkas untuk --config=checkbox/plugins/jobs_info/blacklist."
 
 #: ../checkbox/application.py:86
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist_file."
-msgstr ""
+msgstr "Trengkas untuk --config=checkbox/plugins/jobs_info/blacklist_file."
 
 #: ../checkbox/application.py:88
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist."
-msgstr ""
+msgstr "Trengkas untuk --config=checkbox/plugins/jobs_info/whitelist."
 
 #: ../checkbox/application.py:90
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist_file."
-msgstr ""
+msgstr "Trengkas untuk --config=checkbox/plugins/jobs_info/whitelist_file."
+
+#: ../checkbox/application.py:115
+msgid "Missing configuration file as argument.\n"
+msgstr "Fail konfigurasi hilang sebagai argumen.\n"
 
 #: ../checkbox/lib/signal.py:23
 msgid ""
 "Hangup detected on controlling terminal or death of controlling process"
-msgstr "制御端末でハングアップを検知しました、または制御プロセスが死にました。"
+msgstr ""
+"Penggantungan dikesan pada terminal kawalan atau proses pengawalan terhenti"
 
 #: ../checkbox/lib/signal.py:24
 msgid "Interrupt from keyboard"
-msgstr "キーボードからの割り込み"
+msgstr "Sampukan dari papan kekunci"
 
 #: ../checkbox/lib/signal.py:25
 msgid "Quit from keyboard"
-msgstr "キーボードによって終了"
+msgstr "Tutup papan kekunci"
 
 #: ../checkbox/lib/signal.py:26
 msgid "Illegal Instruction"
-msgstr "不正な命令"
+msgstr "Arahan Tidak Sah"
 
 #: ../checkbox/lib/signal.py:27
 msgid "Abort signal from abort(3)"
-msgstr "abort(3) による中断シグナル"
+msgstr "Henti paksa isyarat dari abort(3)"
 
 #: ../checkbox/lib/signal.py:28
 msgid "Floating point exception"
-msgstr "浮動小数点例外"
+msgstr "Pengecualian titik apungan"
 
 #: ../checkbox/lib/signal.py:29
 msgid "Kill signal"
-msgstr "シグナルをkill"
+msgstr "Matikan isyarat"
 
 #: ../checkbox/lib/signal.py:30
 msgid "Invalid memory reference"
-msgstr "不正なメモリ参照"
+msgstr "Rujukan ingatan tidak sah"
 
 #: ../checkbox/lib/signal.py:31
 msgid "Broken pipe: write to pipe with no readers"
-msgstr ""
+msgstr "Paip rosak: tulis ke paip dengan tanpa pembaca"
 
 #: ../checkbox/lib/signal.py:32
 msgid "Timer signal from alarm(2)"
-msgstr "alarm(2) によるタイマシグナル"
+msgstr "Isyarat pemasa dari alarm(2)"
 
 #: ../checkbox/lib/signal.py:33
 msgid "Termination signal"
-msgstr "終了シグナル"
+msgstr "Isyarat penamatan"
 
 #: ../checkbox/lib/signal.py:34
 msgid "User-defined signal 1"
-msgstr "ユーザ定義シグナル 1"
+msgstr "Isyarat takrif-pengguna 1"
 
 #: ../checkbox/lib/signal.py:35
 msgid "User-defined signal 2"
-msgstr "ユーザ定義シグナル 2"
+msgstr "Isyarat takrif-pengguna 2"
 
 #: ../checkbox/lib/signal.py:36
 msgid "Child stopped or terminated"
-msgstr "子プロセスが停止または終了しました"
+msgstr "Anak dihentikan atau ditamatkan"
 
 #: ../checkbox/lib/signal.py:37
 msgid "Continue if stopped"
-msgstr "停止しても続ける"
+msgstr "Teruskan jika dihentikan"
 
 #: ../checkbox/lib/signal.py:38
 msgid "Stop process"
-msgstr "プロセスを停止"
+msgstr "Henti proses"
 
 #: ../checkbox/lib/signal.py:39
 msgid "Stop typed at tty"
-msgstr ""
+msgstr "Henti menaip pada tty"
 
 #: ../checkbox/lib/signal.py:40
 msgid "tty input for background process"
-msgstr "バックグラウンド・プロセスの tty 入力"
+msgstr "Input tty bagi proses latar belakang"
 
 #: ../checkbox/lib/signal.py:41
 msgid "tty output for background process"
-msgstr "バックグラウンド・プロセスの tty 出力"
+msgstr "Output tty bagi proses latar belakang"
 
 #: ../checkbox/lib/signal.py:77
 msgid "UNKNOWN"
-msgstr "不明"
+msgstr "TIDAK DIKETAHUI"
 
 #: ../checkbox/lib/signal.py:89
 msgid "Unknown signal"
-msgstr "不明なシグナル"
+msgstr "Isyarat tidak diketahui"
+
+#: ../checkbox_cli/cli_interface.py:31
+#: ../checkbox_urwid/urwid_interface.py:684
+msgid "yes"
+msgstr "ya"
+
+#: ../checkbox_cli/cli_interface.py:32
+#: ../checkbox_urwid/urwid_interface.py:685
+msgid "no"
+msgstr "tidak"
+
+#: ../checkbox_cli/cli_interface.py:33
+#: ../checkbox_urwid/urwid_interface.py:686
+msgid "skip"
+msgstr "langkau"
+
+#: ../checkbox_cli/cli_interface.py:126
+msgid "Press any key to continue..."
+msgstr "Tekan mana-mana kekunci untuk teruskan..."
+
+#: ../checkbox_cli/cli_interface.py:135
+#, python-format
+msgid "Please choose (%s): "
+msgstr "Sila pilih (%s): "
+
+#: ../checkbox_cli/cli_interface.py:315
+msgid "test"
+msgstr "uji"
+
+#: ../checkbox_cli/cli_interface.py:339
+msgid "test again"
+msgstr "uji lagi"
+
+#: ../checkbox_cli/cli_interface.py:345
+msgid "Please type here and press Ctrl-D when finished:\n"
+msgstr "Sila taip disini dan tekan Ctrl-D apabila selesai:\n"
 
 #: ../checkbox_urwid/urwid_interface.py:60
 msgid "Checkbox System Testing"
-msgstr "Checkbox システムテスト"
+msgstr "Pengujian Sistem Checkbox"
 
 #: ../checkbox_urwid/urwid_interface.py:99
 msgid "Continue"
-msgstr ""
+msgstr "Teruskan"
 
 #: ../checkbox_urwid/urwid_interface.py:192
 #: ../checkbox_urwid/urwid_interface.py:268
 #: ../checkbox_urwid/urwid_interface.py:416
 msgid "Previous"
-msgstr ""
+msgstr "Terdahulu"
 
 #: ../checkbox_urwid/urwid_interface.py:193
 #: ../checkbox_urwid/urwid_interface.py:269
 #: ../checkbox_urwid/urwid_interface.py:417
 msgid "Next"
-msgstr ""
+msgstr "Berikutnya"
 
 #. Show buttons
 #: ../checkbox_urwid/urwid_interface.py:414
 msgid "Select All"
-msgstr ""
+msgstr "Pilih Semua"
 
 #: ../checkbox_urwid/urwid_interface.py:415
 msgid "Deselect All"
-msgstr ""
+msgstr "Nyahpilih Semua"
 
 #: ../checkbox_urwid/urwid_interface.py:772
 msgid "Test"
-msgstr ""
+msgstr "Uji"
 
 #: ../checkbox_urwid/urwid_interface.py:787
 msgid "Test Again"
-msgstr ""
+msgstr "Uji Lagi"
 
 #: ../checkbox_gtk/gtk_interface.py:93
 msgid "hardware database"
-msgstr ""
+msgstr "pengkalan data perkakasan"
+
+#: ../checkbox_gtk/gtk_interface.py:487
+msgid "_Test Again"
+msgstr "_Uji Lagi"
 
 #: ../checkbox_gtk/gtk_interface.py:533
 msgid "Info"
-msgstr ""
+msgstr "Maklumat"
 
 #: ../checkbox_gtk/gtk_interface.py:552
 msgid "Error"
-msgstr ""
+msgstr "Ralat"
 
 #: ../checkbox/user_interface.py:136
 #, python-format
 msgid "Unable to start web browser to open %s."
-msgstr "%s を開くためのウェブブラウザを起動できません"
+msgstr "Tidak boleh memulakan pelayar sesawang untuk membuka %s."
 
 #: ../plugins/apport_prompt.py:81
 msgid ""
 "Collecting information about this test.\n"
 "This might take a few minutes."
 msgstr ""
-"このテストに関する情報を収集しています。\n"
-"これには数分かかる場合があります。"
+"Mengutip maklumat untuk ujian ini.\n"
+"Ia akan mengambil masa beberapa minit."
 
 #: ../plugins/apport_prompt.py:116
 msgid ""
 "Collected information is being sent for bug tracking.\n"
 "This might take a few minutes."
 msgstr ""
-"収集した情報をバグトラッキングに送信しています。\n"
-"これには数分かかる場合があります。"
+"Mengutip maklumat telah dihantar untuk penjejakan pepijat.\n"
+"Ia akan mengambil masa beberapa minit."
 
 #: ../plugins/apport_prompt.py:225
 #, python-format
 msgid "Test %s from suite %s failed."
-msgstr ""
+msgstr "Uji %s dari suit %s gagal"
 
 #: ../plugins/apport_prompt.py:228
 #, python-format
 msgid "Test %s failed."
-msgstr ""
+msgstr "Ujian %s gagal."
 
 #: ../plugins/apport_prompt.py:246
 #, python-format
 msgid "Is a package upgrade in process? Error: %s"
-msgstr ""
+msgstr "Adakah pakej sedang ditatarkan didalam proses? Ralat: %s"
 
 #: ../plugins/final_prompt.py:33
 msgid "Successfully finished testing!"
-msgstr ""
+msgstr "Berjaya menyelesaikan ujian!"
+
+#: ../plugins/final_prompt.py:34
+msgid "_Finish"
+msgstr "_Selesai"
+
+#: ../plugins/gather_prompt.py:35
+msgid "Gathering information from your system..."
+msgstr "Mengumpul maklumat dari sistem anda..."
 
 #: ../plugins/intro_prompt.py:43
 msgid ""
@@ -2689,11 +2857,45 @@ msgid ""
 "Once you are finished running the tests, you can view a summary report for "
 "your system."
 msgstr ""
+"Selamat datang ke Pengujian Sistem!\n"
+"\n"
+"Checkbox akan menyediakan ujian untuk mengesahkan sistem anda berfungsi "
+"dengan sempurna. Apabila anda selesai menjalankan ujian, anda boleh melihat "
+"ringkasan laporan sistem anda."
 
 #: ../plugins/launchpad_exchange.py:118
 #, python-format
 msgid "Failed to process form: %s"
+msgstr "Gagal memproses dari: %s"
+
+#: ../plugins/launchpad_exchange.py:141
+#, python-format
+msgid ""
+"Failed to contact server. Please try\n"
+"again or upload the following file name:\n"
+"%s\n"
+"\n"
+"directly to the system database:\n"
+"https://launchpad.net/+hwdb/+submit"
 msgstr ""
+"Gagal menghubungi pelayan. Sila cuba\n"
+"lagi atau muat naik nama fail berikut:\n"
+"%s\n"
+"\n"
+"secara terus ke pengkalan data sistem:\n"
+"https://launchpad.net/+hwdb/+submit"
+
+#: ../plugins/launchpad_exchange.py:150
+msgid ""
+"Failed to upload to server,\n"
+"please try again later."
+msgstr ""
+"Gagal memuat naik ke pelayan,\n"
+"sila cuba sekali lagi."
+
+#: ../plugins/launchpad_exchange.py:162
+msgid "Information not posted to Launchpad."
+msgstr "Maklumat tidak diposkan ke Launchpad."
 
 #: ../plugins/launchpad_prompt.py:71
 #, python-format
@@ -2709,50 +2911,193 @@ msgid ""
 "\n"
 "  https://launchpad.net/+login"
 msgstr ""
+"Laporan berikut telah dijanakan untuk diserahkan ke pengkalan data "
+"perkakasan Launchpad:\n"
+"\n"
+"[[%s|View Report]]\n"
+"\n"
+"Anda boleh serahkan maklumat mengenail sistem anda dengan menyediakan alamat "
+"emel yang anda gunakan untuk mendaftar masuk ke Launchpad. Jika anda belum "
+"mempunyai akaun Launchpad, sila daftar disini:\n"
+"\n"
+"  https://launchpad.net/+login"
 
 #: ../plugins/launchpad_prompt.py:88
 msgid "No e-mail address provided, not submitting to Launchpad."
-msgstr ""
+msgstr "Tiada alamat emel disediakan, tidak diserahkan ke Launchpad."
+
+#: ../plugins/launchpad_prompt.py:92
+msgid "Email address must be in a proper format."
+msgstr "Alamat emel mestilah didalam format yang betul."
+
+#: ../plugins/launchpad_prompt.py:98
+msgid "Exchanging information with the server..."
+msgstr "Menukar maklumat dengan pelayan..."
 
 #: ../plugins/lock_prompt.py:63
 msgid "There is another checkbox running. Please close it first."
-msgstr "他の checkbox が実行されています。まず、それを閉じてください。"
+msgstr "Terdapat Checkbox lain dijalankan. Sila tutupnya dahulu."
 
 #: ../plugins/recover_prompt.py:54
 msgid ""
 "Checkbox did not finish completely.\n"
 "Do you want to recover from the previous run?"
 msgstr ""
+"Checkbox tidak selesai dengan sempurna.\n"
+"Adakah anda ingin pulihkan daripada ujian yang dijalankan sebelum ini?"
+
+#: ../plugins/report_prompt.py:34
+msgid "Building report..."
+msgstr "Membina laporan..."
 
 #: ../plugins/shell_test.py:52
 #, python-format
 msgid "Running %s..."
-msgstr ""
+msgstr "Menjalankan %s..."
 
 #. Get results
 #: ../plugins/suites_prompt.py:105
 msgid "Select the suites to test"
-msgstr ""
+msgstr "Pilih suit untuk uji"
 
 #: ../scripts/keyboard_test:21
 msgid "Enter text:\n"
-msgstr ""
+msgstr "Masukkan teks:\n"
 
 #: ../scripts/keyboard_test:40
 msgid "Type Text"
-msgstr "文章を入力してください。"
+msgstr "Taip Teks"
 
 #: ../scripts/internet_test:139
 msgid "No Internet connection"
-msgstr ""
+msgstr "Tiada sambungan Internet"
 
 #: ../scripts/internet_test:142
 msgid "Connection established lost a packet"
-msgstr "接続先の応答がありません"
+msgstr "Sambungan kehilangan paket"
 
 #: ../scripts/internet_test:145
 msgid "Internet connection fully established"
-msgstr ""
+msgstr "Sambungan Internet telah mantap sepenuhnya"
+
+#~ msgid "Network tests"
+#~ msgstr "Ujian rangkaian"
+
+#~ msgid "Video tests"
+#~ msgstr "Ujian video"
+
+#~ msgid ""
+#~ "Click the Test button to play a sound on the automatically detected \\ "
+#~ "playback device."
+#~ msgstr ""
+#~ "Klik butang Test untuk memainkan bunyi pada peranti yang dikesan secara "
+#~ "automatik."
+
+#~ msgid ""
+#~ "Pair a Bluetooth headset with your system.  Then open the \\ volume control "
+#~ "application by right-clicking on the speaker \\ icon in the panel and "
+#~ "selecting \"Sound Preferences\".  Select \\ the \"Input\" tab and choose "
+#~ "your Bluetooth device.  Select the \\ \"Output\" tab and choose your "
+#~ "Bluetooth device.  When you are done, \\ click the Test button, then speak "
+#~ "into the microphone.  \\ After a few seconds, your speech will be played "
+#~ "back to you."
+#~ msgstr ""
+#~ "Pasangkan set kepala Bluetooth dengan sistem anda. Kemudian, buka \\ "
+#~ "aplikasi kawalan volum dengan mengklik-kanan pada ikon pembesar suara di "
+#~ "dalam panel lalu memilih \"Sound Preferences\". Pilih \\ tab \"Input\" dan "
+#~ "pilihlah peranti Bluetooth anda. Pilih juga \\ tab \"Output\" dan pilihlah "
+#~ "peranti Bluetooth anda. Setelah selesai, klik butang Test, kemudian "
+#~ "bercakaplah melalui mikrofon tersebut. \\ Selepas beberapa saat, ucapan anda "
+#~ "akan dimainkan kembali kepada anda."
+
+#~ msgid ""
+#~ "Connect a microphone to your microphone port.  \\ Click the Test button, "
+#~ "then speak into the microphone.  \\ After a few seconds, your speech will be "
+#~ "played back to you."
+#~ msgstr ""
+#~ "Sambungkan mikrofon anda pada port mikrofon. \\ Sila klik butang Test, "
+#~ "kemudian bercakaplah melalui mikrofon tersebut. \\ Selepas beberapa saat, "
+#~ "ucapan anda akan dimainkan kembali kepada anda."
+
+#~ msgid ""
+#~ "Disconnect any external microphones that you have plugged in.  \\ Click the "
+#~ "Test button, then speak into your internal microphone.  \\ After a few "
+#~ "seconds, your speech will be played back to you."
+#~ msgstr ""
+#~ "Putuskan sebarang sambungan mikrofon luaran yang telah anda palam masuk. \\ "
+#~ "Sila klik butang Test, kemudian bercakaplah melalui mikrofon dalaman anda. \\"
+#~ " Selepas beberapa saat, ucapan anda akan dimainkan kembali kepada anda."
+
+#~ msgid "Is this ok?"
+#~ msgstr "Adakah ini ok?"
+
+#~ msgid "Kernel modesetting tests"
+#~ msgstr "Ujian penetapan mod kernel"
+
+#~ msgid ""
+#~ "Firewire HDD verification procedure: 1.- Plug a Firewire HDD into the "
+#~ "computer 2.- A window should be opened asking which action should be "
+#~ "performed (open folder, photo manager, etc). 3.- Copy some files from the "
+#~ "internal/firewire HDD to the firewire/internal HDD"
+#~ msgstr ""
+#~ "Prosedur pengesahan HDD Firewire: 1.-Palamkan HDD Firewire kedalam komputer "
+#~ "2.- Tetingkap akan dibuka dan menanya apakah tindakan yang perlu dilakukan "
+#~ "(buka folder, pengurus foto, dll). 3.- Salin beberapa fail dari HDD "
+#~ "dalaman/firewire ke HDD firewire/dalaman"
+
+#~ msgid ""
+#~ "Click Test to switch to another virtual terminal and then back to X.  Your \\"
+#~ " screen will change temporarily to a text console and then switch back to "
+#~ "your \\ current session."
+#~ msgstr ""
+#~ "Klik uji untuk menukar ke terminal maya yang lain dan kemudian kembali ke X. "
+#~ "Skrin \\ anda akan berubah buat sementara ke konsol teks dan kemudiannya "
+#~ "kembali ke sesi \\ semasa anda."
 
 #~ msgid "Click the Test button to display a video test."
-#~ msgstr "テストボタンを押してビデオテストを表示してください。"
+#~ msgstr "Klik butang Uji untuk paparkan ujian video."
+
+#~ msgid "Click Test to cycle through the detected video modes for your system."
+#~ msgstr ""
+#~ "Klik Uji untuk kitarkan melalui mod video yang dikesan pada sistem anda."
+
+#~ msgid "Disk benchmark:"
+#~ msgstr "Tanda aras Cakera:"
+
+#~ msgid "Insert a DVD.  Then click Test to play the DVD in Totem."
+#~ msgstr "Masukkan DVD. Kemudian klik Uji untuk memainkan DVD didalam Totem."
+
+#~ msgid "Check that hardware is able to run compiz."
+#~ msgstr "Periksa sama ada perkakasan boleh jalankan compiz."
+
+#, python-format
+#~ msgid "Running test %s..."
+#~ msgstr "Menjalankan ujian %s..."
+
+#~ msgid "Running shell tests..."
+#~ msgstr "Menjalankan ujian shell..."
+
+#~ msgid ""
+#~ "Plug video output to an external monitor. Is the image displayed correctly?"
+#~ msgstr ""
+#~ "Palamkan output video ke monitor luaran. Adakah imej dipaparkan dengan betul?"
+
+#~ msgid ""
+#~ "For HDMI, please also check that sound is played in the monitor speakers."
+#~ msgstr ""
+#~ "Untuk HDMI, sila periksa bunyi yang dimainkan menggunakan pembesar suara "
+#~ "monitor."
+
+#~ msgid ""
+#~ "Click the Test button to open a text area where to type keys on your \\ "
+#~ "keyboard."
+#~ msgstr ""
+#~ "Klik butang Uji untuk membuka kawasan teks yang mana boleh menaip kekunci "
+#~ "pada papan kekunci \\ anda."
+
+#~ msgid ""
+#~ "Please repeat the test for each kind of video output supported (VGA, DVI, "
+#~ "DisplayPort and HDMI)."
+#~ msgstr ""
+#~ "Sila ulangi ujian untuk setiap output video yang disokong (VGA, DVI, Port "
+#~ "Paparan dan HDMI)."

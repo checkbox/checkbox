@@ -30,6 +30,9 @@ def main(args):
             message = reader.read_object()
             if message == "stop":
                 break
+            if message == "ping":
+                writer.write_object("pong")
+                continue
             if isinstance(message, dict) and "command" in message:
                 job = Job(message["command"], message.get("environ"),
                     message.get("timeout"))

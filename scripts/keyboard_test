@@ -31,16 +31,19 @@ def cli_prompt():
         termios.tcsetattr(fileno, termios.TCSANOW, saved_attributes)
 
 def gtk_prompt():
-    from gi.repository import Gtk
+    from gi.repository import Gtk,Gdk
 
     # create a new window
-    window = Gtk.Window(Gtk.WindowType.TOPLEVEL)
+    window = Gtk.Window()
+    window.set_type_hint(Gdk.WindowType.TOPLEVEL)
     window.set_size_request(200, 100)
     window.set_resizable(False)
     window.set_title(_("Type Text"))
     window.connect("delete_event", lambda w,e: Gtk.main_quit())
 
-    vbox = Gtk.VBox(False, 0)
+    vbox = Gtk.VBox()
+    vbox.set_homogeneous(False)
+    vbox.set_spacing(0)
     window.add(vbox)
     vbox.show()
 
@@ -49,7 +52,9 @@ def gtk_prompt():
     vbox.pack_start(entry, True, True, 0)
     entry.show()
 
-    hbox = Gtk.HBox(False, 0)
+    hbox = Gtk.HBox()
+    hbox.set_homogeneous(False)
+    hbox.set_spacing(0)
     vbox.add(hbox)
     hbox.show()
 

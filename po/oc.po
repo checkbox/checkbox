@@ -1,55 +1,78 @@
-# Japanese translation for checkbox
-# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# Occitan (post 1500) translation for checkbox
+# Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
 # This file is distributed under the same license as the checkbox package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: checkbox\n"
-"Report-Msgid-Bugs-To: \n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-07-07 12:32-0400\n"
-"PO-Revision-Date: 2009-04-02 11:23+0000\n"
-"Last-Translator: Fumihito YOSHIDA <hito@kugutsu.org>\n"
-"Language-Team: Japanese <ja@li.org>\n"
+"PO-Revision-Date: 2010-05-05 21:16+0000\n"
+"Last-Translator: Cédric VALMARY (Tot en òc) <cvalmary@yahoo.fr>\n"
+"Language-Team: Occitan (post 1500) <oc@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-07-16 04:31+0000\n"
+"X-Launchpad-Export-Date: 2011-07-16 04:32+0000\n"
 "X-Generator: Launchpad (build 13405)\n"
+
+#: ../gtk/checkbox-gtk.ui.h:1 ../checkbox_cli/cli_interface.py:343
+#: ../checkbox_urwid/urwid_interface.py:261
+msgid "Further information:"
+msgstr "Mai d'entresenhas :"
 
 #: ../gtk/checkbox-gtk.ui.h:2
 msgid "Ne_xt"
-msgstr "次ヘ（_X)"
+msgstr "Se_guent"
 
 #. Title of the user interface
 #: ../gtk/checkbox-gtk.ui.h:3 ../gtk/checkbox-gtk.desktop.in.h:1
 #: ../plugins/user_interface.py:40
 msgid "System Testing"
-msgstr "システムテストツール"
+msgstr "Tèst del sistèma"
+
+#: ../gtk/checkbox-gtk.ui.h:4
+msgid "_Deselect All"
+msgstr ""
 
 #: ../gtk/checkbox-gtk.ui.h:5
 msgid "_No"
-msgstr "いいえ(_N)"
+msgstr "_Non"
 
 #: ../gtk/checkbox-gtk.ui.h:6
 msgid "_Previous"
-msgstr "前へ(_P)"
+msgstr "_Precedent"
+
+#: ../gtk/checkbox-gtk.ui.h:7
+msgid "_Select All"
+msgstr ""
 
 #: ../gtk/checkbox-gtk.ui.h:8
 msgid "_Skip this test"
-msgstr "このテストをスキップします(_S)"
+msgstr "Pa_ssar aqueste tèst"
 
 #: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:522
 msgid "_Test"
-msgstr "テスト(_T)"
+msgstr "_Tèst"
 
 #: ../gtk/checkbox-gtk.ui.h:10
 msgid "_Yes"
-msgstr "はい(_Y)"
+msgstr "_Òc"
 
 #: ../gtk/checkbox-gtk.desktop.in.h:2
 msgid "Test and report system information"
-msgstr "システム情報をテストし、レポートを作成します"
+msgstr "Testar e mandar las informacions sul sistèma"
+
+#. description
+#: ../jobs/apport.txt.in:5
+msgid "Test that the /var/crash directory doesn't contain anything."
+msgstr ""
+
+#. description
+#: ../jobs/audio.txt.in:7
+msgid "Detecting your sound device(s):"
+msgstr "Deteccion de vòstres periferics àudio :"
 
 #. description
 #: ../jobs/audio.txt.in:7 ../jobs/disk.txt.in:4 ../jobs/graphics.txt.in:126
@@ -65,304 +88,7 @@ msgstr "$output"
 #: ../jobs/networking.txt.in:16 ../jobs/optical.txt.in:8
 #: ../jobs/power-management.txt.in:185 ../jobs/usb.txt.in:5
 msgid "Is this correct?"
-msgstr "正しく検知されていますか？"
-
-#. description
-#: ../jobs/graphics.txt.in:117
-msgid "Do you see color bars and static?"
-msgstr "カラーバーと砂嵐は確認できましたか？"
-
-#. description
-#: ../jobs/input.txt.in:4
-msgid "Moving the mouse should move the cursor on the screen."
-msgstr "マウスを動かして、カーソルが正しく動くか確認してください。"
-
-#. description
-#: ../jobs/input.txt.in:4
-msgid "Is your mouse working properly?"
-msgstr "マウスは正しく動作していますか？"
-
-#. description
-#: ../jobs/input.txt.in:13
-msgid "Is your keyboard working properly?"
-msgstr "キーボードは正しく動作していますか？"
-
-#. description
-#: ../jobs/networking.txt.in:5
-msgid "Detecting your network controller(s):"
-msgstr "ネットワークコントローラを検知しました："
-
-#. description
-#: ../jobs/networking.txt.in:16
-msgid "Testing your connection to the Internet:"
-msgstr "インターネットへの接続状況をテストしました："
-
-#: ../checkbox/application.py:66
-msgid "Usage: checkbox [OPTIONS]"
-msgstr "Usage: checkbox [OPTIONS]"
-
-#: ../checkbox/application.py:70
-msgid "Print version information and exit."
-msgstr "バージョンを表示して終了します。"
-
-#: ../checkbox/application.py:74
-msgid "The file to write the log to."
-msgstr "指定したファイルに保存します。"
-
-#: ../checkbox/application.py:77
-msgid "One of debug, info, warning, error or critical."
-msgstr "debug、info、warning、error、criticalのどれか一つを指定してください。"
-
-#: ../checkbox/application.py:82
-msgid "Configuration override parameters."
-msgstr "設定を上書きするパラメータ。"
-
-#: ../checkbox/application.py:115
-msgid "Missing configuration file as argument.\n"
-msgstr "指定された設定ファイルが見つかりません。\n"
-
-#: ../checkbox_cli/cli_interface.py:31
-#: ../checkbox_urwid/urwid_interface.py:684
-msgid "yes"
-msgstr "はい"
-
-#: ../checkbox_cli/cli_interface.py:32
-#: ../checkbox_urwid/urwid_interface.py:685
-msgid "no"
-msgstr "いいえ"
-
-#: ../checkbox_cli/cli_interface.py:33
-#: ../checkbox_urwid/urwid_interface.py:686
-msgid "skip"
-msgstr "飛ばす"
-
-#: ../checkbox_cli/cli_interface.py:126
-msgid "Press any key to continue..."
-msgstr "続けるには何かキーを押してください……"
-
-#: ../checkbox_cli/cli_interface.py:135
-#, python-format
-msgid "Please choose (%s): "
-msgstr "選択してください(%s)： "
-
-#: ../checkbox_cli/cli_interface.py:315
-msgid "test"
-msgstr "テスト"
-
-#: ../checkbox_cli/cli_interface.py:339
-msgid "test again"
-msgstr "もう一度テスト"
-
-#: ../checkbox_cli/cli_interface.py:345
-msgid "Please type here and press Ctrl-D when finished:\n"
-msgstr "ここで入力を行い、終わったらCtrl-Dを押してください:\n"
-
-#: ../checkbox_gtk/gtk_interface.py:487
-msgid "_Test Again"
-msgstr "再テスト(_T)"
-
-#: ../plugins/final_prompt.py:34
-msgid "_Finish"
-msgstr "終了(_F)"
-
-#: ../plugins/gather_prompt.py:35
-msgid "Gathering information from your system..."
-msgstr "現在のシステム情報を確認中です……"
-
-#: ../plugins/launchpad_exchange.py:141
-#, python-format
-msgid ""
-"Failed to contact server. Please try\n"
-"again or upload the following file name:\n"
-"%s\n"
-"\n"
-"directly to the system database:\n"
-"https://launchpad.net/+hwdb/+submit"
-msgstr ""
-"サーバーに接続できませんでした。ファイル:\n"
-"%s\n"
-"\n"
-"を、直接システムデータベースに登録することを\n"
-"試してみてください:\n"
-"https://launchpad.net/+hwdb/+submit"
-
-#: ../plugins/launchpad_exchange.py:150
-msgid ""
-"Failed to upload to server,\n"
-"please try again later."
-msgstr ""
-"サーバへのアップロードに失敗しました。\n"
-"あとでもう一度、やり直してください。"
-
-#: ../plugins/launchpad_exchange.py:162
-msgid "Information not posted to Launchpad."
-msgstr "情報はLaunchpadへ登録されませんでした。"
-
-#: ../plugins/launchpad_prompt.py:92
-msgid "Email address must be in a proper format."
-msgstr "正しい書式のメールアドレスが入力されていません。"
-
-#: ../plugins/launchpad_prompt.py:98
-msgid "Exchanging information with the server..."
-msgstr "データをサーバに送信中です……"
-
-#: ../plugins/report_prompt.py:34
-msgid "Building report..."
-msgstr "レポートを作成中です……"
-
-#~ msgid "<b>Comment:</b>"
-#~ msgstr "<b>コメント：</b>"
-
-#~ msgid "Device information"
-#~ msgstr "デバイス情報"
-
-#~ msgid "Distribution details"
-#~ msgstr "ディストリビューションの詳細"
-
-#~ msgid "Processor information"
-#~ msgstr "プロセッサの情報"
-
-#~ msgid "Successfully sent information!"
-#~ msgstr "情報の送信が完了しました。"
-
-#~ msgid "Test results"
-#~ msgstr "テスト結果"
-
-#~ msgid "_Desktop"
-#~ msgstr "デスクトップ(_D)"
-
-#~ msgid "_Laptop"
-#~ msgstr "ラップトップ、ノートパソコン(_L)"
-
-#~ msgid "_Server"
-#~ msgstr "サーバ(_S)"
-
-#~ msgid "The following resolution was detected for your display:"
-#~ msgstr "現在の画面解像度は次のように設定されています："
-
-#~ msgid "$(resolution_test)"
-#~ msgstr "$(resolution_test)"
-
-#~ msgid "Is this a good resolution for your display?"
-#~ msgstr "このディスプレイにとって、正しい設定になっていますか？"
-
-#~ msgid "$(network_test)"
-#~ msgstr "$(network_test)"
-
-#~ msgid "Are you connected to the Internet?"
-#~ msgstr "インターネットへ接続できますか？"
-
-#~ msgid ""
-#~ "Typing keys on your keyboard should display the corresponding characters in "
-#~ "a text area."
-#~ msgstr "テキストエリア上でキーを入力し、正しい文字が表示されるか確認してください。"
-
-#, python-format
-#~ msgid "Running test: %s"
-#~ msgstr "テスト中：%s"
-
-#~ msgid "Authentication"
-#~ msgstr "認証"
-
-#~ msgid "Please provide your Launchpad email address:"
-#~ msgstr "Launchpadで登録したメールアドレスを入力ください："
-
-#~ msgid "Done"
-#~ msgstr "完了"
-
-#~ msgid "Successfully sent information to server!"
-#~ msgstr "サーバへの情報の送信が完了しました。"
-
-#~ msgid "Exchange"
-#~ msgstr "交換"
-
-#~ msgid "Category"
-#~ msgstr "分類"
-
-#~ msgid "Packages installed"
-#~ msgstr "パッケージがインストールされました"
-
-#~ msgid "Run the test for the automatically detected playback device."
-#~ msgstr "自動認識された再生デバイスを用いてテストを実行します。"
-
-#~ msgid "Do you hear a sound?"
-#~ msgstr "サウンドは聞こえましたか？"
-
-#~ msgid "Run the video test."
-#~ msgstr "ビデオテストの実行。"
-
-#~ msgid "Please provide comments about the failure."
-#~ msgstr "失敗の内容についてコメントを入力してください。"
-
-#, python-format
-#~ msgid "Running test %s..."
-#~ msgstr "テスト %s を実行..."
-
-#~ msgid "Running shell tests..."
-#~ msgstr "シェルテストを実行..."
-
-#~ msgid "Please select the category of your system."
-#~ msgstr "お使いのシステムのカテゴリを選択してください。"
-
-#~ msgid ""
-#~ "The following information will be sent to the Launchpad\n"
-#~ "hardware database. Please provide the e-mail address you\n"
-#~ "use to sign in to Launchpad to submit this information."
-#~ msgstr ""
-#~ "以下の情報はLaunchpadのハードウェアデータベースに送られます。\n"
-#~ "Launchpadにログインするために利用しているアカウントのEメール\n"
-#~ "アドレスを入力して、情報を登録してください。"
-
-#~ msgid "Welcome to System Testing!"
-#~ msgstr "システムテストにようこそ！"
-
-#~ msgid ""
-#~ "This application will gather information from your system. Then,\n"
-#~ "you will be asked manual tests to confirm that the system is working\n"
-#~ "properly. Finally, you will be asked for the e-mail address you use\n"
-#~ "to sign in to Launchpad in order to submit the information and your\n"
-#~ "results.\n"
-#~ "\n"
-#~ "If you do not have a Launchpad account, please register here:\n"
-#~ "\n"
-#~ "  https://launchpad.net/+login\n"
-#~ "\n"
-#~ "Thank you for taking the time to test your system."
-#~ msgstr ""
-#~ "このアプリケーションはお使いのシステムの情報を収集します。\n"
-#~ "テストが行われた後、手動でいくつかの質問に答えて頂くことで、\n"
-#~ "システムが正しく動作していることを確認します。最後にLaunchpadに\n"
-#~ "登録しているEメールアドレスを尋ね、システムの動作情報をレポートとして\n"
-#~ "登録します。\n"
-#~ "\n"
-#~ "もしLaunchadのアカウントを持っていなければ、以下から登録できます:\n"
-#~ "\n"
-#~ "  https://launchpad.net/+login\n"
-#~ "\n"
-#~ "システムテストのために貴重な時間を提供して頂き、ありがとうございます。"
-
-#: ../gtk/checkbox-gtk.ui.h:1 ../checkbox_cli/cli_interface.py:343
-#: ../checkbox_urwid/urwid_interface.py:261
-msgid "Further information:"
-msgstr "詳細情報:"
-
-#: ../gtk/checkbox-gtk.ui.h:4
-msgid "_Deselect All"
-msgstr ""
-
-#: ../gtk/checkbox-gtk.ui.h:7
-msgid "_Select All"
-msgstr ""
-
-#. description
-#: ../jobs/apport.txt.in:5
-msgid "Test that the /var/crash directory doesn't contain anything."
-msgstr ""
-
-#. description
-#: ../jobs/audio.txt.in:7
-msgid "Detecting your sound device(s):"
-msgstr ""
+msgstr "Es corrècte ?"
 
 #. description
 #: ../jobs/audio.txt.in:21
@@ -370,6 +96,8 @@ msgid ""
 "Did you hear a sound and was that sound free of any distortion, clicks or "
 "other strange noises?"
 msgstr ""
+"Avètz ausit un son e èra exempt de distorsion, batedisses o autres bruches "
+"estranhs ?"
 
 #. description
 #: ../jobs/audio.txt.in:33
@@ -381,6 +109,8 @@ msgstr ""
 msgid ""
 "Select Test to play a sound on the automatically detected playback device."
 msgstr ""
+"Clicatz sus « testar » per tal de jogar un son sul periferic de lectura "
+"detectat automaticament."
 
 #. description
 #: ../jobs/audio.txt.in:33
@@ -418,7 +148,7 @@ msgstr ""
 #. description
 #: ../jobs/audio.txt.in:70 ../jobs/power-management.txt.in:221
 msgid "Did you hear your speech played back?"
-msgstr ""
+msgstr "L'enregistrament de vòstra votz es estat restituit coma caliá ?"
 
 #. description
 #: ../jobs/audio.txt.in:81
@@ -436,7 +166,7 @@ msgstr ""
 #. description
 #: ../jobs/bluetooth.txt.in:5 ../jobs/power-management.txt.in:185
 msgid "The address of your Bluetooth device is: $output"
-msgstr ""
+msgstr "L'adreça de vòstre periferic Bluetooth es : $output"
 
 #. description
 #: ../jobs/bluetooth.txt.in:15 ../jobs/graphics.txt.in:15
@@ -492,12 +222,17 @@ msgid ""
 "the device in the list and select it 5.- Move the mouse around the screen 6.-"
 " Perform some single/double/right click operations"
 msgstr ""
+"Procedura per una mirga bluetooth: 1.- Metètz jos tension la mirga bluetooth "
+"2.- Clicatz sus l'icòne bluetooth dins la barra de menut 3.- Seleccionar "
+"« Configurar un periferic novèl… » 4.- Cercatz l'aparelh dins la lista e "
+"seleccionatz-lo 5.- Desplaçatz la mirga a l'entorn de l'ecran 6.- Efectuatz "
+"qualques operacions de clic simple/multiple/drech"
 
 #. description
 #: ../jobs/bluetooth.txt.in:82 ../jobs/optical.txt.in:72
 #: ../jobs/power-management.txt.in:194 ../jobs/usb.txt.in:27
 msgid "Did all the steps work?"
-msgstr ""
+msgstr "Totas las etapas an foncionat ?"
 
 #. description
 #: ../jobs/camera.txt.in:7
@@ -762,7 +497,7 @@ msgstr ""
 #. description
 #: ../jobs/fingerprint.txt.in:18
 msgid "Did the authentication procedure work correctly?"
-msgstr ""
+msgstr "La procedura d'autentificacion a foncionat corrèctament ?"
 
 #. description
 #: ../jobs/firewire.txt.in:3
@@ -778,7 +513,7 @@ msgstr ""
 #. description
 #: ../jobs/firewire.txt.in:3 ../jobs/usb.txt.in:71
 msgid "Do the copy operations work as expected?"
-msgstr ""
+msgstr "Las còpias an foncionat corrèctament ?"
 
 #. description
 #: ../jobs/floppy.txt.in:4
@@ -934,12 +669,12 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:82
 msgid "This display is using the following resolution:"
-msgstr ""
+msgstr "L'afichatge utiliza la resolucion seguenta :"
 
 #. description
 #: ../jobs/graphics.txt.in:82
 msgid "Is this acceptable for your display?"
-msgstr "これはディスプレイと合っていますか?"
+msgstr "Aquò conven per vòstre ecran ?"
 
 #. description
 #: ../jobs/graphics.txt.in:95
@@ -966,10 +701,17 @@ msgid "Select Test to display a video test."
 msgstr ""
 
 #. description
+#: ../jobs/graphics.txt.in:117
+msgid "Do you see color bars and static?"
+msgstr "Vesètz de barras de colors e d'interferéncias ?"
+
+#. description
 #: ../jobs/graphics.txt.in:126
 msgid ""
 "The following screens and video modes have been detected on your system:"
 msgstr ""
+"Los ecrans e los mòdes vidèos seguents son estats detectats sus vòstre "
+"sistèma :"
 
 #. description
 #: ../jobs/graphics.txt.in:138
@@ -980,7 +722,7 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:138
 msgid "Did the screen appear to be working for each mode?"
-msgstr ""
+msgstr "L'ecran foncionava corrèctament per cadun dels mòdes ?"
 
 #. description
 #: ../jobs/graphics.txt.in:146
@@ -1015,9 +757,25 @@ msgid "Bootchart information."
 msgstr ""
 
 #. description
+#: ../jobs/input.txt.in:4
+msgid "Moving the mouse should move the cursor on the screen."
+msgstr ""
+"Lo desplaçament de la mirga deuriá far bolegar lo cursor sus l'ecran."
+
+#. description
+#: ../jobs/input.txt.in:4
+msgid "Is your mouse working properly?"
+msgstr "Vòstra mirga fonciona corrèctament ?"
+
+#. description
 #: ../jobs/input.txt.in:13
 msgid "Select Test to open a text area where to type keys on your keyboard."
 msgstr ""
+
+#. description
+#: ../jobs/input.txt.in:13
+msgid "Is your keyboard working properly?"
+msgstr "Vòstre clavièr fonciona corrèctament ?"
 
 #. description
 #: ../jobs/install.txt.in:6
@@ -1110,7 +868,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:3
 msgid "Audio tests"
-msgstr ""
+msgstr "Tèsts àudio"
 
 #. description
 #: ../jobs/local.txt.in:8
@@ -1140,17 +898,17 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:33
 msgid "Disk tests"
-msgstr ""
+msgstr "Tèsts dels disques"
 
 #. description
 #: ../jobs/local.txt.in:38
 msgid "Fingerprint reader tests"
-msgstr ""
+msgstr "Tèsts del lector d'emprenchas digitalas"
 
 #. description
 #: ../jobs/local.txt.in:43
 msgid "Firewire disk tests"
-msgstr ""
+msgstr "Tèsts dels disques Firewire"
 
 #. description
 #: ../jobs/local.txt.in:48
@@ -1210,7 +968,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:103
 msgid "Peripheral tests"
-msgstr ""
+msgstr "Tèsts dels periferics"
 
 #. description
 #: ../jobs/local.txt.in:108
@@ -1377,7 +1135,7 @@ msgstr ""
 #. description
 #: ../jobs/mediacard.txt.in:130
 msgid "Does the icon automatically appear/disappear?"
-msgstr ""
+msgstr "L'icòna apareis/desapareis automaticament ?"
 
 #. description
 #: ../jobs/memory.txt.in:4
@@ -1400,12 +1158,12 @@ msgstr ""
 #. description
 #: ../jobs/miscellanea.txt.in:8
 msgid "Note that this test may require you to enter your password."
-msgstr ""
+msgstr "Aqueste tèst vos pòt demandar de picar vòstre senhal."
 
 #. description
 #: ../jobs/miscellanea.txt.in:8
 msgid "Did the screen change temporarily to a text console?"
-msgstr ""
+msgstr "Avètz bascuolat temporàriament en mòde consòla ?"
 
 #. description
 #: ../jobs/miscellanea.txt.in:20
@@ -1513,6 +1271,16 @@ msgid "Did the monitor go blank?"
 msgstr ""
 
 #. description
+#: ../jobs/networking.txt.in:5
+msgid "Detecting your network controller(s):"
+msgstr "Deteccion de vòstra(s) carta(s) de ret :"
+
+#. description
+#: ../jobs/networking.txt.in:16
+msgid "Testing your connection to the Internet:"
+msgstr "Tèst de la connexion a Internet :"
+
+#. description
 #: ../jobs/networking.txt.in:26
 msgid "Network Information"
 msgstr ""
@@ -1554,7 +1322,7 @@ msgstr ""
 #. description
 #: ../jobs/networking.txt.in:76 ../jobs/peripheral.txt.in:15
 msgid "Was the connection correctly established?"
-msgstr ""
+msgstr "La connexion es estada establida corrèctament ?"
 
 #. description
 #: ../jobs/networking.txt.in:92
@@ -1654,11 +1422,12 @@ msgstr ""
 #: ../jobs/optical.txt.in:90
 msgid "Insert a DVD.  Then select Test to play the DVD in Totem."
 msgstr ""
+"Inserissètz un DVD, puèi clicatz sus « testar » per legir lo DVD dins Totem."
 
 #. description
 #: ../jobs/optical.txt.in:90
 msgid "Did the file play?"
-msgstr ""
+msgstr "Lo filme es estat legit ?"
 
 #. description
 #: ../jobs/panel_clock_test.txt.in:4
@@ -1838,7 +1607,7 @@ msgstr ""
 #. description
 #: ../jobs/power-management.txt.in:135
 msgid "Power management Suspend and Resume test"
-msgstr ""
+msgstr "Tèst de gestion de l'energia e de mesa en velha e reprisa"
 
 #. description
 #: ../jobs/power-management.txt.in:135
@@ -1860,6 +1629,7 @@ msgstr ""
 msgid ""
 "Test to see that we have the same resolution after resuming as before."
 msgstr ""
+"Testar la resolucion d'ecran e verificar qu'a pas cambiat aprèp la represa."
 
 #. description
 #: ../jobs/power-management.txt.in:160
@@ -1884,6 +1654,8 @@ msgid ""
 "Verify a bluetooth peripheral.  An example verification procedure for a "
 "bluetooth mouse is given."
 msgstr ""
+"Verificar un periferic bluetooth. Un exemple de procedura de verificacion "
+"per una mirga bluetooth es balhat."
 
 #. description
 #: ../jobs/power-management.txt.in:194
@@ -1911,6 +1683,9 @@ msgid ""
 "suspend and resume.  You can use either internal or external microphone and "
 "speakers."
 msgstr ""
+"Aquel tèst va verificar que vòstre periferic àudio foncionan corrèctament "
+"aprèp una mesa en velha e una represa. Podètz utilizar de nau-parlaires "
+"intèrnes o extèrnes."
 
 #. description
 #: ../jobs/power-management.txt.in:221
@@ -2308,7 +2083,7 @@ msgstr ""
 msgid ""
 "Was the folder called Test Data successfully moved into the folder called "
 "Test Folder?"
-msgstr "フォルダ「Test Data」はフォルダ「Test Data」の中へ移動できましたか？"
+msgstr ""
 
 #. description
 #: ../jobs/user_apps.txt.in:51
@@ -2321,7 +2096,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:51
 msgid "Do you now have a file called Test File 1?"
-msgstr "「Test File 1」が作成できましたか?"
+msgstr ""
 
 #. description
 #: ../jobs/user_apps.txt.in:51
@@ -2341,13 +2116,11 @@ msgid ""
 "Right click on the file called Test File 1(copy) and click Rename. Enter the "
 "name Test File 2 in the name box and hit Enter."
 msgstr ""
-"「Test File 1 」の上で右クリックをして「名前の変更」を選択してください。ネームボックスに「Test File "
-"2」と入力してエンターキーを押してください"
 
 #. description
 #: ../jobs/user_apps.txt.in:62
 msgid "Do you now have a file called Test File 2?"
-msgstr "「Test File 2」が作成できましたか?"
+msgstr ""
 
 #. description
 #: ../jobs/user_apps.txt.in:75
@@ -2359,13 +2132,13 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:75
 msgid "Double click the icon for Test Data to open that folder up."
-msgstr "「Test Data」のアイコンをダブルクリックしてそのフォルダを開いてください"
+msgstr ""
 
 #. description
 #: ../jobs/user_apps.txt.in:75
 msgid ""
 "Was the file Test File 2 successfully moved into the Test Data folder?"
-msgstr "ファイル「Test File 2」はフォルダ「Test Data」の中へ移動できましたか？"
+msgstr ""
 
 #. description
 #: ../jobs/user_apps.txt.in:88
@@ -2377,7 +2150,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:88
 msgid "Is Test File 1 now gone?"
-msgstr "「Test File 1」は消えてなくなりましたか？"
+msgstr ""
 
 #. description
 #: ../jobs/user_apps.txt.in:99
@@ -2389,7 +2162,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:99
 msgid "Has Test Folder been successfully deleted?"
-msgstr "「Test Folder」は削除されましたか?"
+msgstr ""
 
 #. description
 #: ../jobs/user_apps.txt.in:99
@@ -2409,7 +2182,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:178
 msgid "Did the Ubuntu Test page load correctly?"
-msgstr "「Ubuntu Test page」が正しく表示されましたか?"
+msgstr ""
 
 #. description
 #: ../jobs/user_apps.txt.in:188
@@ -2421,7 +2194,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:188
 msgid "Did the applet display?"
-msgstr "アプレットが表示されましたか?"
+msgstr ""
 
 #. description
 #: ../jobs/user_apps.txt.in:198
@@ -2431,7 +2204,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:198
 msgid "Did you see the text?"
-msgstr "文字が表示されていますか?"
+msgstr ""
 
 #. description
 #: ../jobs/user_apps.txt.in:208
@@ -2441,7 +2214,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:208
 msgid "Did the video play correctly?"
-msgstr "ビデオは正しく再生されましたか?"
+msgstr ""
 
 #. description
 #: ../jobs/user_apps.txt.in:218
@@ -2451,7 +2224,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:218
 msgid "Did the video play using a plugin?"
-msgstr "プラグインを使ってビデオは正しく再生されましたか?"
+msgstr ""
 
 #. description
 #: ../jobs/user_apps.txt.in:227
@@ -2491,6 +2264,26 @@ msgstr ""
 msgid "Were you able to connect correctly and send/receive messages?"
 msgstr ""
 
+#: ../checkbox/application.py:66
+msgid "Usage: checkbox [OPTIONS]"
+msgstr "Utilizacion : checkbox [OPCIONS]"
+
+#: ../checkbox/application.py:70
+msgid "Print version information and exit."
+msgstr "Aficha las informacions de version puèi quita."
+
+#: ../checkbox/application.py:74
+msgid "The file to write the log to."
+msgstr "Lo fichièr ont cal escriure lo jornal d'aqueste tèst."
+
+#: ../checkbox/application.py:77
+msgid "One of debug, info, warning, error or critical."
+msgstr "La valor pòt èsser : debug, info, warning, error o critical."
+
+#: ../checkbox/application.py:82
+msgid "Configuration override parameters."
+msgstr "Paramètres que prenon lo pas sus la configuracion."
+
 #: ../checkbox/application.py:84
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist."
 msgstr ""
@@ -2507,94 +2300,136 @@ msgstr ""
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist_file."
 msgstr ""
 
+#: ../checkbox/application.py:115
+msgid "Missing configuration file as argument.\n"
+msgstr "Fichièr de configuracion mancant en argument.\n"
+
 #: ../checkbox/lib/signal.py:23
 msgid ""
 "Hangup detected on controlling terminal or death of controlling process"
-msgstr "制御端末でハングアップを検知しました、または制御プロセスが死にました。"
+msgstr ""
+"Plantatge detectat del terminal de contraròtle o terminason del processus de "
+"contraròtle"
 
 #: ../checkbox/lib/signal.py:24
 msgid "Interrupt from keyboard"
-msgstr "キーボードからの割り込み"
+msgstr "Interrompre a partir del clavièr"
 
 #: ../checkbox/lib/signal.py:25
 msgid "Quit from keyboard"
-msgstr "キーボードによって終了"
+msgstr "Quitar a partir del clavièr"
 
 #: ../checkbox/lib/signal.py:26
 msgid "Illegal Instruction"
-msgstr "不正な命令"
+msgstr "Instruccion illegala"
 
 #: ../checkbox/lib/signal.py:27
 msgid "Abort signal from abort(3)"
-msgstr "abort(3) による中断シグナル"
+msgstr "Senhal d'abandon que proven de « abort(3) »"
 
 #: ../checkbox/lib/signal.py:28
 msgid "Floating point exception"
-msgstr "浮動小数点例外"
+msgstr "Error de virgula flotanta"
 
 #: ../checkbox/lib/signal.py:29
 msgid "Kill signal"
-msgstr "シグナルをkill"
+msgstr "Senhal de terminason"
 
 #: ../checkbox/lib/signal.py:30
 msgid "Invalid memory reference"
-msgstr "不正なメモリ参照"
+msgstr "Adreça memòria invalida"
 
 #: ../checkbox/lib/signal.py:31
 msgid "Broken pipe: write to pipe with no readers"
-msgstr ""
+msgstr "Tub destruch : escritura dins un tub sens lector"
 
 #: ../checkbox/lib/signal.py:32
 msgid "Timer signal from alarm(2)"
-msgstr "alarm(2) によるタイマシグナル"
+msgstr "Senhal de relòtge que proven de « alarm(2) »"
 
 #: ../checkbox/lib/signal.py:33
 msgid "Termination signal"
-msgstr "終了シグナル"
+msgstr "Senhal de terminason"
 
 #: ../checkbox/lib/signal.py:34
 msgid "User-defined signal 1"
-msgstr "ユーザ定義シグナル 1"
+msgstr "Senhal 1 definit per l'utilizaire"
 
 #: ../checkbox/lib/signal.py:35
 msgid "User-defined signal 2"
-msgstr "ユーザ定義シグナル 2"
+msgstr "Senhal 2 definit per l'utilizaire"
 
 #: ../checkbox/lib/signal.py:36
 msgid "Child stopped or terminated"
-msgstr "子プロセスが停止または終了しました"
+msgstr "Arrèst o terminason del processus filh"
 
 #: ../checkbox/lib/signal.py:37
 msgid "Continue if stopped"
-msgstr "停止しても続ける"
+msgstr "Contunhar en cas d'arrèst"
 
 #: ../checkbox/lib/signal.py:38
 msgid "Stop process"
-msgstr "プロセスを停止"
+msgstr "Arrèsta lo processus"
 
 #: ../checkbox/lib/signal.py:39
 msgid "Stop typed at tty"
-msgstr ""
+msgstr "Arrestar la sortida sus tty"
 
 #: ../checkbox/lib/signal.py:40
 msgid "tty input for background process"
-msgstr "バックグラウンド・プロセスの tty 入力"
+msgstr "Entradas sus tty pel processus en rèire plan"
 
 #: ../checkbox/lib/signal.py:41
 msgid "tty output for background process"
-msgstr "バックグラウンド・プロセスの tty 出力"
+msgstr "Sortidas sus tty pel processus en rèire plan"
 
 #: ../checkbox/lib/signal.py:77
 msgid "UNKNOWN"
-msgstr "不明"
+msgstr "DESCONEGUT"
 
 #: ../checkbox/lib/signal.py:89
 msgid "Unknown signal"
-msgstr "不明なシグナル"
+msgstr "Senhal desconegut"
+
+#: ../checkbox_cli/cli_interface.py:31
+#: ../checkbox_urwid/urwid_interface.py:684
+msgid "yes"
+msgstr "òc"
+
+#: ../checkbox_cli/cli_interface.py:32
+#: ../checkbox_urwid/urwid_interface.py:685
+msgid "no"
+msgstr "non"
+
+#: ../checkbox_cli/cli_interface.py:33
+#: ../checkbox_urwid/urwid_interface.py:686
+msgid "skip"
+msgstr "passar"
+
+#: ../checkbox_cli/cli_interface.py:126
+msgid "Press any key to continue..."
+msgstr "Quichatz sus una tòca quina que siá per contunhar..."
+
+#: ../checkbox_cli/cli_interface.py:135
+#, python-format
+msgid "Please choose (%s): "
+msgstr "Causissètz (%s) : "
+
+#: ../checkbox_cli/cli_interface.py:315
+msgid "test"
+msgstr "testar"
+
+#: ../checkbox_cli/cli_interface.py:339
+msgid "test again"
+msgstr "testar encara"
+
+#: ../checkbox_cli/cli_interface.py:345
+msgid "Please type here and press Ctrl-D when finished:\n"
+msgstr "Escrivètz aicí e quichatz sus Ctrl-D quand avètz acabat :\n"
 
 #: ../checkbox_urwid/urwid_interface.py:60
 msgid "Checkbox System Testing"
-msgstr "Checkbox システムテスト"
+msgstr ""
 
 #: ../checkbox_urwid/urwid_interface.py:99
 msgid "Continue"
@@ -2633,34 +2468,34 @@ msgstr ""
 msgid "hardware database"
 msgstr ""
 
+#: ../checkbox_gtk/gtk_interface.py:487
+msgid "_Test Again"
+msgstr "_Testar tornarmai"
+
 #: ../checkbox_gtk/gtk_interface.py:533
 msgid "Info"
-msgstr ""
+msgstr "Informacion"
 
 #: ../checkbox_gtk/gtk_interface.py:552
 msgid "Error"
-msgstr ""
+msgstr "Error"
 
 #: ../checkbox/user_interface.py:136
 #, python-format
 msgid "Unable to start web browser to open %s."
-msgstr "%s を開くためのウェブブラウザを起動できません"
+msgstr "Impossible d'aviar lo navigador web per dobrir %s."
 
 #: ../plugins/apport_prompt.py:81
 msgid ""
 "Collecting information about this test.\n"
 "This might take a few minutes."
 msgstr ""
-"このテストに関する情報を収集しています。\n"
-"これには数分かかる場合があります。"
 
 #: ../plugins/apport_prompt.py:116
 msgid ""
 "Collected information is being sent for bug tracking.\n"
 "This might take a few minutes."
 msgstr ""
-"収集した情報をバグトラッキングに送信しています。\n"
-"これには数分かかる場合があります。"
 
 #: ../plugins/apport_prompt.py:225
 #, python-format
@@ -2679,7 +2514,15 @@ msgstr ""
 
 #: ../plugins/final_prompt.py:33
 msgid "Successfully finished testing!"
-msgstr ""
+msgstr "Los tèsts se son acabats amb succès !"
+
+#: ../plugins/final_prompt.py:34
+msgid "_Finish"
+msgstr "Aca_bar"
+
+#: ../plugins/gather_prompt.py:35
+msgid "Gathering information from your system..."
+msgstr "Regropament d'informacions sus vòstre sistèma..."
 
 #: ../plugins/intro_prompt.py:43
 msgid ""
@@ -2689,11 +2532,45 @@ msgid ""
 "Once you are finished running the tests, you can view a summary report for "
 "your system."
 msgstr ""
+"Benvenguda dins los tèsts del sistèma !\n"
+"\n"
+"Checkbox prepausa una batariá de tèsts que permeton de confirmar lo bon "
+"foncionament de vòstre sistèma. Un còp aqueles tèsts efectuats, un "
+"recapitulatiu serà afichat per aqueste."
 
 #: ../plugins/launchpad_exchange.py:118
 #, python-format
 msgid "Failed to process form: %s"
 msgstr ""
+
+#: ../plugins/launchpad_exchange.py:141
+#, python-format
+msgid ""
+"Failed to contact server. Please try\n"
+"again or upload the following file name:\n"
+"%s\n"
+"\n"
+"directly to the system database:\n"
+"https://launchpad.net/+hwdb/+submit"
+msgstr ""
+"Lo servidor a pas pogut èsser contactat. Ensajatz\n"
+"tornarmai o cargatz lo fichièr seguent :\n"
+"%s\n"
+"\n"
+"dirèctament dins la banca de donadas dels sistèmas :\n"
+"https://launchpad.net/+hwdb/+submit"
+
+#: ../plugins/launchpad_exchange.py:150
+msgid ""
+"Failed to upload to server,\n"
+"please try again later."
+msgstr ""
+"Fracàs del cargament sul servidor,\n"
+"ensajatz tornarmai pus tard."
+
+#: ../plugins/launchpad_exchange.py:162
+msgid "Information not posted to Launchpad."
+msgstr "Las informacions son pas estadas mandadas a Launchpad."
 
 #: ../plugins/launchpad_prompt.py:71
 #, python-format
@@ -2709,20 +2586,47 @@ msgid ""
 "\n"
 "  https://launchpad.net/+login"
 msgstr ""
+"Lo rapòrt seguent es estat generat per èsser somés a la banca de donadas de "
+"material de Launchpad :\n"
+"\n"
+"  [[%s|View Report]]\n"
+"\n"
+"Podètz transmetre aquestas informacions a prepaus de vòstre sistèma en "
+"provesissent l'adreça de corrièl qu'utilizat per vòstre compte Launchpad. "
+"S'avètz pas de compte Launchpad, crear-ne un aicí :\n"
+"\n"
+"\n"
+"https://launchpad.net/+login"
 
 #: ../plugins/launchpad_prompt.py:88
 msgid "No e-mail address provided, not submitting to Launchpad."
 msgstr ""
+"Cap d'adreça de corrièl es pas estada provesida, los resultats seràn pas "
+"mandats sus Launchpad."
+
+#: ../plugins/launchpad_prompt.py:92
+msgid "Email address must be in a proper format."
+msgstr "L'adreça electronica deu èsser dins un format corrècte."
+
+#: ../plugins/launchpad_prompt.py:98
+msgid "Exchanging information with the server..."
+msgstr "Escambi d'informacions amb lo servidor..."
 
 #: ../plugins/lock_prompt.py:63
 msgid "There is another checkbox running. Please close it first."
-msgstr "他の checkbox が実行されています。まず、それを閉じてください。"
+msgstr ""
+"Una autra instància de checkbox es en cors d'execucion. D'en primièr, "
+"quitatz-la."
 
 #: ../plugins/recover_prompt.py:54
 msgid ""
 "Checkbox did not finish completely.\n"
 "Do you want to recover from the previous run?"
 msgstr ""
+
+#: ../plugins/report_prompt.py:34
+msgid "Building report..."
+msgstr "Construccion del rapòrt..."
 
 #: ../plugins/shell_test.py:52
 #, python-format
@@ -2732,27 +2636,250 @@ msgstr ""
 #. Get results
 #: ../plugins/suites_prompt.py:105
 msgid "Select the suites to test"
-msgstr ""
+msgstr "Seleccionatz los components de testar"
 
 #: ../scripts/keyboard_test:21
 msgid "Enter text:\n"
-msgstr ""
+msgstr "Picatz lo tèxte :\n"
 
 #: ../scripts/keyboard_test:40
 msgid "Type Text"
-msgstr "文章を入力してください。"
+msgstr "Picatz lo tèxte"
 
 #: ../scripts/internet_test:139
 msgid "No Internet connection"
-msgstr ""
+msgstr "Pas de connexion a Internet"
 
 #: ../scripts/internet_test:142
 msgid "Connection established lost a packet"
-msgstr "接続先の応答がありません"
+msgstr "Connexion establida amb pèrda d'un paquet"
 
 #: ../scripts/internet_test:145
 msgid "Internet connection fully established"
-msgstr ""
+msgstr "Connexion Internet establida completament"
+
+#~ msgid "Network tests"
+#~ msgstr "Tèsts de las rets"
+
+#~ msgid "Video tests"
+#~ msgstr "Tèsts vidèo"
+
+#~ msgid ""
+#~ "Click the Test button to play a sound on the automatically detected \\ "
+#~ "playback device."
+#~ msgstr ""
+#~ "Clicatz sul boton « Testar » per jogar un son sul \r\n"
+#~ "periferic àudio per defaut."
+
+#~ msgid "Kernel modesetting tests"
+#~ msgstr "Tèst de la configuracion pel nucli de la carta grafica"
+
+#~ msgid "Do you hear a sound?"
+#~ msgstr "Ausissètz un son ?"
+
+#~ msgid ""
+#~ "Connect a USB audio device to your system.  Then open the \\ volume control "
+#~ "application by right-clicking on the speaker \\ icon in the panel and "
+#~ "selecting \"Sound Preferences\".  Select \\ the \"Input\" tab and choose "
+#~ "your USB device.  Select the \\ \"Output\" tab and choose your USB device.  "
+#~ "When you are done, \\ click the Test button, then speak into the microphone. "
+#~ " \\ After a few seconds, your speech will be played back to you."
+#~ msgstr ""
+#~ "Connectatz un periferic àudio USB amb vòstre sistèma. Puèi, dobrissètz\r\n"
+#~ "lo contrarotlador de volum en clicant boton drech sus l'icòna \r\n"
+#~ "naut-parlaire del tablèu de bòrd puèi sus « Preferéncias ». \r\n"
+#~ "Seleccionatz vòstre aparelh USB dins l'onglet « Entrada ». \r\n"
+#~ "Seleccionatz vòstre aparelh USB dins l'onglet « Sortida ».\r\n"
+#~ "Clicatz sul boton « Testar » puèi parlatz dins lo micro.\r\n"
+#~ "L'enregistrament de vòstra votz serà restituit aprèp qualques segondas."
+
+#~ msgid ""
+#~ "Play back a sound on the default output and listen for it on the default \\ "
+#~ "input.  This makes the most sense when the output and input are directly \\ "
+#~ "connected, as with a patch cable."
+#~ msgstr ""
+#~ "Jòga un son sus la sortida estandarda e l'escota sus l'entrada "
+#~ "estandarda.\r\n"
+#~ "Es sustot util quand la sortida e l'entrada son dirèctament\r\n"
+#~ "connectadas, per exemple amb un cable de racòrd."
+
+#~ msgid ""
+#~ "Pair a Bluetooth headset with your system.  Then open the \\ volume control "
+#~ "application by right-clicking on the speaker \\ icon in the panel and "
+#~ "selecting \"Sound Preferences\".  Select \\ the \"Input\" tab and choose "
+#~ "your Bluetooth device.  Select the \\ \"Output\" tab and choose your "
+#~ "Bluetooth device.  When you are done, \\ click the Test button, then speak "
+#~ "into the microphone.  \\ After a few seconds, your speech will be played "
+#~ "back to you."
+#~ msgstr ""
+#~ "Apariatz un microcasc Bluetooth amb vòstre sistèma. Puèi, dobrissètz\r\n"
+#~ "lo contrarotlador de volum en clicant boton drech sus l'icòna \r\n"
+#~ "naut-parlaire del tablèu de bòrd puèi sus « Preferéncias ». \r\n"
+#~ "Seleccionatz vòstre aparelh Bluetooth dins l'onglet « Entrada ». \r\n"
+#~ "Seleccionatz vòstre aparelh Bluetooth dins l'onglet « Sortida ».\r\n"
+#~ "Clicatz sul boton « Testar » puèi parlatz dins lo micro.\r\n"
+#~ "L'enregistrament de vòstra votz serà restituit aprèp qualques segondas."
+
+#~ msgid ""
+#~ "Connect a microphone to your microphone port.  \\ Click the Test button, "
+#~ "then speak into the microphone.  \\ After a few seconds, your speech will be "
+#~ "played back to you."
+#~ msgstr ""
+#~ "Brancatz vòstre microfòn.\r\n"
+#~ "Clicatz sul boton « Testar » e parlatz dins vòstre micro.\r\n"
+#~ "L'enregistrament de vòstra votz serà restituit aprèp qualques segondas."
+
+#~ msgid "Disk benchmark:"
+#~ msgstr "Banc de tèst dels disques :"
+
+#~ msgid ""
+#~ "Open the volume control application by right-clicking on the speaker \\ icon "
+#~ "in the panel and selecting \"Sound Preferences\".  Select \\ the \"Input\" "
+#~ "tab and choose any alternate (non-default) device(s).  Select the \\ "
+#~ "\"Output\" tab and choose any alternate (non-default) device(s).  When you "
+#~ "are \\ done, click the Test button, then speak into the microphone.  \\ "
+#~ "After a few seconds, your speech will be played back to you."
+#~ msgstr ""
+#~ "Dobrissètz lo contrarotlador de volum en clicant boton drech sus l'icòna \r\n"
+#~ "naut-parlaire del tablèu de bòrd puèi sus « Preferéncias ». \r\n"
+#~ "Seleccionatz vòstre aparelh USB dins l'onglet « Entrada ». \r\n"
+#~ "Seleccionatz vòstre aparelh USB dins l'onglet « Sortida ».\r\n"
+#~ "Clicatz sul boton « Testar » puèi parlatz dins lo micro.\r\n"
+#~ "L'enregistrament de vòstra votz serà restituit aprèp qualques segondas."
+
+#~ msgid ""
+#~ "Disconnect any external microphones that you have plugged in.  \\ Click the "
+#~ "Test button, then speak into your internal microphone.  \\ After a few "
+#~ "seconds, your speech will be played back to you."
+#~ msgstr ""
+#~ "Desbrancatz tot microfòn extèrne.\r\n"
+#~ "Clicatz sul boton « Testar » e parlatz dins vòstre micro intèrne.\r\n"
+#~ "L'enregistrament de vòstra votz serà restituit aprèp qualques segondas."
+
+#~ msgid "Is this ok?"
+#~ msgstr "Es corrècte ?"
+
+#~ msgid ""
+#~ "Fingerprint unlock verification procedure: 1.- Click on the user switcher "
+#~ "applet 2.- Select your user name 3.- A window should appear that provides "
+#~ "the ability to login either \\ typing your password or using fingerprint "
+#~ "authentication 4.- Use the fingerprint reader to login 5.- Click on the user "
+#~ "switcher applet 6.- Select the testing account to continue running tests"
+#~ msgstr ""
+#~ "Procedura de desvarrolhatge per reconeissença d'emprencha digitala : 1- "
+#~ "Clicatz sus l'applet de cambiament d'utilizaire 2.- Seleccionatz vòstre nom "
+#~ "d'utilizaire 3.- Una fenèstra que vos permet de picar vòstre senhal o "
+#~ "d'utilizar la reconeissença d'emprencha digitala apareis 4.- Utilizatz "
+#~ "vòstra emprencha digitala per vos connectar 5.- Clicatz sus l'applet de "
+#~ "cambiament d'utilizaire 6.- Seleccionatz lo compte que vos servís a far los "
+#~ "tèsts per los poder contunhar."
+
+#~ msgid ""
+#~ "Prerequisites: This test case assumes that there's a testing account \\ from "
+#~ "which test cases are run and a personal account that the tester \\ uses to "
+#~ "verify the fingerprint reader"
+#~ msgstr ""
+#~ "Prerequesits : per poder efectuar aqueste tèst, es necessari\r\n"
+#~ "d'aver dos comptes d'utilizaires, lo primièr que servís a l'aviada del\r\n"
+#~ "tèst e lo segond a verificar la reconeissença d'emprencha digitala."
+
+#~ msgid ""
+#~ "Fingerprint unlock verification procedure: 1.- Click on the user switcher "
+#~ "applet 2.- Select 'Lock screen' 3.- Press any key or move the mouse 3.- A "
+#~ "window should appear that provides the ability to unlock either \\ typing "
+#~ "your password or using fingerprint authentication 4.- Use the fingerprint "
+#~ "reader to unlock 5.- Screen should be unlocked"
+#~ msgstr ""
+#~ "Procedura de desvarrolhatge per reconeissença d'emprencha digitala : 1- "
+#~ "Clicatz sus l'applet de cambiament d'utilizaire 2.- Seleccionatz « Varrolhar "
+#~ "l'ecran » 3.- Quichatz sus una tòca del clavièr quina que siá o desplaçatz "
+#~ "la mirga 3-. Una fenèstra que vos permet de picar vòstre senhal o d'utilizar "
+#~ "la reconeissença d'emprencha digitala apareis 4.- Utilizatz vòstra emprencha "
+#~ "digitala per desvarrolhar l'ecran 5.- L'ecran es normalament desvarrolhat."
+
+#~ msgid ""
+#~ "Firewire HDD verification procedure: 1.- Plug a Firewire HDD into the "
+#~ "computer 2.- A window should be opened asking which action should be "
+#~ "performed (open folder, photo manager, etc). 3.- Copy some files from the "
+#~ "internal/firewire HDD to the firewire/internal HDD"
+#~ msgstr ""
+#~ "Procedura de verificacion d'un disc dur Firewire : 1.- Brancatz un disc dur "
+#~ "Firewire a vòstre ordenador 2.- Una fenèstra apareis e vos demanda quina "
+#~ "accion volètz efectuar (dobrir lo dorsièr, aviar lo gestionari de fòtos, "
+#~ "etc) 3.- Copiatz qualques fichièrs dempuèi vòstre disc dur intèrne cap al "
+#~ "disc dur Firewire e vice versa."
+
+#~ msgid ""
+#~ "Click Test to switch to another virtual terminal and then back to X.  Your \\"
+#~ " screen will change temporarily to a text console and then switch back to "
+#~ "your \\ current session."
+#~ msgstr ""
+#~ "Clicatz sul boton « Testar » per bascuolar en mòde consòla puèi\r\n"
+#~ "tornar sus l'interfàcia grafica. Vos anatz retrobar \r\n"
+#~ "temporàriament dins una consòla en mòde tèxte puèi tornar a la\r\n"
+#~ "sesilha actuala."
+
+#~ msgid ""
+#~ "Click the Test button to open a text area where to type keys on your \\ "
+#~ "keyboard."
+#~ msgstr ""
+#~ "Clicatz sul boton « Testar » per dobrir una zòna de tèxte que \r\n"
+#~ "vos permetrà de testar las tòcas de vòstre clavièr."
+
+#~ msgid "Insert a DVD.  Then click Test to play the DVD in Totem."
+#~ msgstr ""
+#~ "Inserissètz un DVD vidèo. Clicatz sul boton « Testar » per aviar sa lectura "
+#~ "dins Totem."
+
+#~ msgid ""
+#~ "Built-in modem network connection procedure: 1.- Connect the telephone line "
+#~ "to the computer 2.- Right click on the Network Manager applet 3.- Select "
+#~ "'Edit Connections' 4.- Select the 'DSL' tab 5.- Click on add 'Add' button 6.-"
+#~ " Configure the connection parameters properly 7.- Notify OSD should confirm "
+#~ "that the connection has been established 8.- Select Test to verify that it's "
+#~ "possible to establish both http \\ and ftp connections"
+#~ msgstr ""
+#~ "Procedura de verificacion d'un modèm intèrne : 1.- Brancatz la linha "
+#~ "telefonica a vòstre ordenador 2.- Clicatz boton drech sus l'applet del "
+#~ "gestionari de ret 3.- Clicatz sus « Modificacion de las connexions » 4.-  "
+#~ "Seleccionatz l'onget « DSL » 5.- Clicatz sul boton « Apondre » 6.- "
+#~ "Entresenhatz los paramètres de connexion 7.- Una bulla de notificacion vos "
+#~ "deuriá indicar que la connexion es ara establida 8.- Clicatz sul boton "
+#~ "« Testar » per verificar que de connexions http e ftp son possibles."
+
+#~ msgid "Check that hardware is able to run compiz."
+#~ msgstr "Verifica que vòstre material es capable d'executar Compiz."
+
+#~ msgid "Click Test to cycle through the detected video modes for your system."
+#~ msgstr ""
+#~ "Clicatz sul boton « Testar » per ensajar los diferents mòdes \r\n"
+#~ "vidèos detectats per vòstre sistèma."
+
+#~ msgid ""
+#~ "Please repeat the test for each kind of video output supported (VGA, DVI, "
+#~ "DisplayPort and HDMI)."
+#~ msgstr ""
+#~ "Sens vos comandar, repetètz lo tèst amb los diferents tipes de sortida vidèo "
+#~ "(VGA, DVI, DisplayPort e HDMI)."
+
+#~ msgid ""
+#~ "Plug video output to an external monitor. Is the image displayed correctly?"
+#~ msgstr ""
+#~ "Brancatz la sortida vidèo sus un ecran extèrne. L'imatge s'aficha "
+#~ "corrèctament ?"
 
 #~ msgid "Click the Test button to display a video test."
-#~ msgstr "テストボタンを押してビデオテストを表示してください。"
+#~ msgstr "Clicatz sul boton « Testar » per afichar un tèst vidèo."
+
+#~ msgid ""
+#~ "For HDMI, please also check that sound is played in the monitor speakers."
+#~ msgstr ""
+#~ "Per l'HDMI, verificatz tanben que lo son sortís corrèctament\r\n"
+#~ "dels nauts-parlaires."
+
+#, python-format
+#~ msgid "Running test %s..."
+#~ msgstr "Execucion del tèst %s..."
+
+#~ msgid "Running shell tests..."
+#~ msgstr "Execucion dels tèsts shell..."

@@ -1,16 +1,16 @@
-# Japanese translation for checkbox
-# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# Esperanto translation for checkbox
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
 # This file is distributed under the same license as the checkbox package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: checkbox\n"
-"Report-Msgid-Bugs-To: \n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-07-07 12:32-0400\n"
-"PO-Revision-Date: 2009-04-02 11:23+0000\n"
-"Last-Translator: Fumihito YOSHIDA <hito@kugutsu.org>\n"
-"Language-Team: Japanese <ja@li.org>\n"
+"PO-Revision-Date: 2011-04-07 07:47+0000\n"
+"Last-Translator: Michael Moroni <michael.moroni@mailoo.org>\n"
+"Language-Team: Esperanto <eo@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,37 +19,37 @@ msgstr ""
 
 #: ../gtk/checkbox-gtk.ui.h:2
 msgid "Ne_xt"
-msgstr "次ヘ（_X)"
+msgstr "Sekva"
 
 #. Title of the user interface
 #: ../gtk/checkbox-gtk.ui.h:3 ../gtk/checkbox-gtk.desktop.in.h:1
 #: ../plugins/user_interface.py:40
 msgid "System Testing"
-msgstr "システムテストツール"
+msgstr "Sistema testo"
 
 #: ../gtk/checkbox-gtk.ui.h:5
 msgid "_No"
-msgstr "いいえ(_N)"
+msgstr "_Ne"
 
 #: ../gtk/checkbox-gtk.ui.h:6
 msgid "_Previous"
-msgstr "前へ(_P)"
+msgstr "Antaŭa"
 
 #: ../gtk/checkbox-gtk.ui.h:8
 msgid "_Skip this test"
-msgstr "このテストをスキップします(_S)"
+msgstr "Ignori ĉi tiun te_ston"
 
 #: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:522
 msgid "_Test"
-msgstr "テスト(_T)"
+msgstr "_Testo"
 
 #: ../gtk/checkbox-gtk.ui.h:10
 msgid "_Yes"
-msgstr "はい(_Y)"
+msgstr "Jes"
 
 #: ../gtk/checkbox-gtk.desktop.in.h:2
 msgid "Test and report system information"
-msgstr "システム情報をテストし、レポートを作成します"
+msgstr "Informoj de test- kaj raportsistemo"
 
 #. description
 #: ../jobs/audio.txt.in:7 ../jobs/disk.txt.in:4 ../jobs/graphics.txt.in:126
@@ -65,286 +65,221 @@ msgstr "$output"
 #: ../jobs/networking.txt.in:16 ../jobs/optical.txt.in:8
 #: ../jobs/power-management.txt.in:185 ../jobs/usb.txt.in:5
 msgid "Is this correct?"
-msgstr "正しく検知されていますか？"
+msgstr "Ĉu tio estas korekta?"
 
 #. description
 #: ../jobs/graphics.txt.in:117
 msgid "Do you see color bars and static?"
-msgstr "カラーバーと砂嵐は確認できましたか？"
+msgstr "Ĉu vi vidas kolorajn ortangulojn kaj neĝerojn?"
 
 #. description
 #: ../jobs/input.txt.in:4
 msgid "Moving the mouse should move the cursor on the screen."
-msgstr "マウスを動かして、カーソルが正しく動くか確認してください。"
+msgstr "Se vi movas la muson, la kursoro devus moviĝi sur la ekrano."
 
 #. description
 #: ../jobs/input.txt.in:4
 msgid "Is your mouse working properly?"
-msgstr "マウスは正しく動作していますか？"
+msgstr "Ĉu via muso korekte funkcias?"
 
 #. description
 #: ../jobs/input.txt.in:13
 msgid "Is your keyboard working properly?"
-msgstr "キーボードは正しく動作していますか？"
+msgstr "Ĉu via klavaro dece funkcias?"
 
 #. description
 #: ../jobs/networking.txt.in:5
 msgid "Detecting your network controller(s):"
-msgstr "ネットワークコントローラを検知しました："
+msgstr "Detektanta via(j)n retkontrolilo(j)n:"
 
 #. description
 #: ../jobs/networking.txt.in:16
 msgid "Testing your connection to the Internet:"
-msgstr "インターネットへの接続状況をテストしました："
+msgstr "Testanta vian konekton al la interreto:"
 
 #: ../checkbox/application.py:66
 msgid "Usage: checkbox [OPTIONS]"
-msgstr "Usage: checkbox [OPTIONS]"
+msgstr "Uzado: checkbox [OPCIOJ]"
 
 #: ../checkbox/application.py:70
 msgid "Print version information and exit."
-msgstr "バージョンを表示して終了します。"
+msgstr "Presu versiajn informojn kaj eliru."
 
 #: ../checkbox/application.py:74
 msgid "The file to write the log to."
-msgstr "指定したファイルに保存します。"
+msgstr "La dosiero por enskribi la ĵournalon."
 
 #: ../checkbox/application.py:77
 msgid "One of debug, info, warning, error or critical."
-msgstr "debug、info、warning、error、criticalのどれか一つを指定してください。"
+msgstr ""
+"Unu el \"debug\" (sencimigo), \"info\" (informoj), \"warning\" (averto), "
+"\"error\" (eraro) aŭ \"critical\" (kritika)."
 
 #: ../checkbox/application.py:82
 msgid "Configuration override parameters."
-msgstr "設定を上書きするパラメータ。"
-
-#: ../checkbox/application.py:115
-msgid "Missing configuration file as argument.\n"
-msgstr "指定された設定ファイルが見つかりません。\n"
+msgstr "Parametroj por transpasi agordojn."
 
 #: ../checkbox_cli/cli_interface.py:31
 #: ../checkbox_urwid/urwid_interface.py:684
 msgid "yes"
-msgstr "はい"
+msgstr "jes"
 
 #: ../checkbox_cli/cli_interface.py:32
 #: ../checkbox_urwid/urwid_interface.py:685
 msgid "no"
-msgstr "いいえ"
+msgstr "ne"
 
 #: ../checkbox_cli/cli_interface.py:33
 #: ../checkbox_urwid/urwid_interface.py:686
 msgid "skip"
-msgstr "飛ばす"
+msgstr "transpasi"
 
 #: ../checkbox_cli/cli_interface.py:126
 msgid "Press any key to continue..."
-msgstr "続けるには何かキーを押してください……"
+msgstr "Premu klavon por daŭrigi..."
 
 #: ../checkbox_cli/cli_interface.py:135
 #, python-format
 msgid "Please choose (%s): "
-msgstr "選択してください(%s)： "
+msgstr "Bonvolu elekti (%s): "
 
 #: ../checkbox_cli/cli_interface.py:315
 msgid "test"
-msgstr "テスト"
+msgstr "testi"
 
 #: ../checkbox_cli/cli_interface.py:339
 msgid "test again"
-msgstr "もう一度テスト"
+msgstr "retesti"
 
 #: ../checkbox_cli/cli_interface.py:345
 msgid "Please type here and press Ctrl-D when finished:\n"
-msgstr "ここで入力を行い、終わったらCtrl-Dを押してください:\n"
+msgstr "Bonvolu tajpi ĉi tie kaj premu Stirklavo-D kiam vi pretas.\n"
 
 #: ../checkbox_gtk/gtk_interface.py:487
 msgid "_Test Again"
-msgstr "再テスト(_T)"
+msgstr "Re_testi"
 
 #: ../plugins/final_prompt.py:34
 msgid "_Finish"
-msgstr "終了(_F)"
-
-#: ../plugins/gather_prompt.py:35
-msgid "Gathering information from your system..."
-msgstr "現在のシステム情報を確認中です……"
-
-#: ../plugins/launchpad_exchange.py:141
-#, python-format
-msgid ""
-"Failed to contact server. Please try\n"
-"again or upload the following file name:\n"
-"%s\n"
-"\n"
-"directly to the system database:\n"
-"https://launchpad.net/+hwdb/+submit"
-msgstr ""
-"サーバーに接続できませんでした。ファイル:\n"
-"%s\n"
-"\n"
-"を、直接システムデータベースに登録することを\n"
-"試してみてください:\n"
-"https://launchpad.net/+hwdb/+submit"
-
-#: ../plugins/launchpad_exchange.py:150
-msgid ""
-"Failed to upload to server,\n"
-"please try again later."
-msgstr ""
-"サーバへのアップロードに失敗しました。\n"
-"あとでもう一度、やり直してください。"
+msgstr "_Finu"
 
 #: ../plugins/launchpad_exchange.py:162
 msgid "Information not posted to Launchpad."
-msgstr "情報はLaunchpadへ登録されませんでした。"
+msgstr "Informoj ne senditaj al Laŭn ĉpado."
 
 #: ../plugins/launchpad_prompt.py:92
 msgid "Email address must be in a proper format."
-msgstr "正しい書式のメールアドレスが入力されていません。"
-
-#: ../plugins/launchpad_prompt.py:98
-msgid "Exchanging information with the server..."
-msgstr "データをサーバに送信中です……"
+msgstr "Retpoŝtadreso havu bonan formon."
 
 #: ../plugins/report_prompt.py:34
 msgid "Building report..."
-msgstr "レポートを作成中です……"
-
-#~ msgid "<b>Comment:</b>"
-#~ msgstr "<b>コメント：</b>"
-
-#~ msgid "Device information"
-#~ msgstr "デバイス情報"
-
-#~ msgid "Distribution details"
-#~ msgstr "ディストリビューションの詳細"
-
-#~ msgid "Processor information"
-#~ msgstr "プロセッサの情報"
+msgstr "Konstruanta raporton..."
 
 #~ msgid "Successfully sent information!"
-#~ msgstr "情報の送信が完了しました。"
+#~ msgstr "Informaĵo sendis sukcese!"
+
+#~ msgid "Processor information"
+#~ msgstr "Informaĵoj de ĉeforgano"
 
 #~ msgid "Test results"
-#~ msgstr "テスト結果"
+#~ msgstr "Rezultoj de provaĵoj"
 
 #~ msgid "_Desktop"
-#~ msgstr "デスクトップ(_D)"
+#~ msgstr "_Labortablo"
 
-#~ msgid "_Laptop"
-#~ msgstr "ラップトップ、ノートパソコン(_L)"
+#~ msgid "Packages installed"
+#~ msgstr "Pakoj instalitaj"
+
+#~ msgid "Device information"
+#~ msgstr "Informaĵo de aparatoj"
+
+#~ msgid "Distribution details"
+#~ msgstr "Detaloj de disdono"
+
+#~ msgid "<b>Comment:</b>"
+#~ msgstr "<b>Komento:</b>"
 
 #~ msgid "_Server"
-#~ msgstr "サーバ(_S)"
+#~ msgstr "_Servila komputoro"
 
-#~ msgid "The following resolution was detected for your display:"
-#~ msgstr "現在の画面解像度は次のように設定されています："
+#~ msgid "_Laptop"
+#~ msgstr "_Surgenua komputoro"
 
-#~ msgid "$(resolution_test)"
-#~ msgstr "$(resolution_test)"
+#~ msgid "Run the test for the automatically detected playback device."
+#~ msgstr "Ekzekutu la provaĵon pri la aŭtomate percetite aparato."
 
-#~ msgid "Is this a good resolution for your display?"
-#~ msgstr "このディスプレイにとって、正しい設定になっていますか？"
+#~ msgid "Do you hear a sound?"
+#~ msgstr "Ĉu vi aŭdas sonon?"
 
 #~ msgid "$(network_test)"
 #~ msgstr "$(network_test)"
 
-#~ msgid "Are you connected to the Internet?"
-#~ msgstr "インターネットへ接続できますか？"
+#~ msgid "Run the video test."
+#~ msgstr "Ekzekutu la bildekranan provaĵon."
+
+#~ msgid "Is this a good resolution for your display?"
+#~ msgstr "Ĉu ĉi tiu estas bona detalebleco pri via bildekrano?"
+
+#~ msgid "$(resolution_test)"
+#~ msgstr "$(resolution_test)"
+
+#~ msgid "The following resolution was detected for your display:"
+#~ msgstr "Ĉi tiu detalebleco perceptita pri via bildekrano:"
 
 #~ msgid ""
 #~ "Typing keys on your keyboard should display the corresponding characters in "
 #~ "a text area."
-#~ msgstr "テキストエリア上でキーを入力し、正しい文字が表示されるか確認してください。"
+#~ msgstr ""
+#~ "Tajpi klavoj sur via klavaro devas manifesti la korespondan signon en "
+#~ "tekstareo."
+
+#~ msgid "Are you connected to the Internet?"
+#~ msgstr "Ĉu vi estas konekta en la Interreto?"
 
 #, python-format
 #~ msgid "Running test: %s"
-#~ msgstr "テスト中：%s"
-
-#~ msgid "Authentication"
-#~ msgstr "認証"
-
-#~ msgid "Please provide your Launchpad email address:"
-#~ msgstr "Launchpadで登録したメールアドレスを入力ください："
+#~ msgstr "Ekzekutas provaĵo: %s"
 
 #~ msgid "Done"
-#~ msgstr "完了"
-
-#~ msgid "Successfully sent information to server!"
-#~ msgstr "サーバへの情報の送信が完了しました。"
-
-#~ msgid "Exchange"
-#~ msgstr "交換"
+#~ msgstr "Finita"
 
 #~ msgid "Category"
-#~ msgstr "分類"
-
-#~ msgid "Packages installed"
-#~ msgstr "パッケージがインストールされました"
-
-#~ msgid "Run the test for the automatically detected playback device."
-#~ msgstr "自動認識された再生デバイスを用いてテストを実行します。"
-
-#~ msgid "Do you hear a sound?"
-#~ msgstr "サウンドは聞こえましたか？"
-
-#~ msgid "Run the video test."
-#~ msgstr "ビデオテストの実行。"
-
-#~ msgid "Please provide comments about the failure."
-#~ msgstr "失敗の内容についてコメントを入力してください。"
-
-#, python-format
-#~ msgid "Running test %s..."
-#~ msgstr "テスト %s を実行..."
-
-#~ msgid "Running shell tests..."
-#~ msgstr "シェルテストを実行..."
+#~ msgstr "Kategorio"
 
 #~ msgid "Please select the category of your system."
-#~ msgstr "お使いのシステムのカテゴリを選択してください。"
+#~ msgstr "Bonvolu elektu la kategorio de via sistemo."
+
+#~ msgid "Authentication"
+#~ msgstr "Aŭtentaĵo"
+
+#~ msgid "Please provide your Launchpad email address:"
+#~ msgstr "Bonvolu provizu vian retpoŝtadreso de Launchpad:"
+
+#~ msgid "Please provide comments about the failure."
+#~ msgstr "Bonvolu provizu komentojn koncerne la malsukcesego."
+
+#~ msgid "Exchange"
+#~ msgstr "Interŝanĝo"
+
+#~ msgid "Welcome to System Testing!"
+#~ msgstr "Bonvenigi al Sistemprovaĵo!"
 
 #~ msgid ""
 #~ "The following information will be sent to the Launchpad\n"
 #~ "hardware database. Please provide the e-mail address you\n"
 #~ "use to sign in to Launchpad to submit this information."
 #~ msgstr ""
-#~ "以下の情報はLaunchpadのハードウェアデータベースに送られます。\n"
-#~ "Launchpadにログインするために利用しているアカウントのEメール\n"
-#~ "アドレスを入力して、情報を登録してください。"
+#~ "Tiu informaĵon sendit al la Launchpad informejo de maŝino.  Bonvolu provizi "
+#~ "la retpoŝton vi uzas eniri al Launchpad sendi ĉi tiu informaĵon."
 
-#~ msgid "Welcome to System Testing!"
-#~ msgstr "システムテストにようこそ！"
-
-#~ msgid ""
-#~ "This application will gather information from your system. Then,\n"
-#~ "you will be asked manual tests to confirm that the system is working\n"
-#~ "properly. Finally, you will be asked for the e-mail address you use\n"
-#~ "to sign in to Launchpad in order to submit the information and your\n"
-#~ "results.\n"
-#~ "\n"
-#~ "If you do not have a Launchpad account, please register here:\n"
-#~ "\n"
-#~ "  https://launchpad.net/+login\n"
-#~ "\n"
-#~ "Thank you for taking the time to test your system."
-#~ msgstr ""
-#~ "このアプリケーションはお使いのシステムの情報を収集します。\n"
-#~ "テストが行われた後、手動でいくつかの質問に答えて頂くことで、\n"
-#~ "システムが正しく動作していることを確認します。最後にLaunchpadに\n"
-#~ "登録しているEメールアドレスを尋ね、システムの動作情報をレポートとして\n"
-#~ "登録します。\n"
-#~ "\n"
-#~ "もしLaunchadのアカウントを持っていなければ、以下から登録できます:\n"
-#~ "\n"
-#~ "  https://launchpad.net/+login\n"
-#~ "\n"
-#~ "システムテストのために貴重な時間を提供して頂き、ありがとうございます。"
+#, python-format
+#~ msgid "Running test %s..."
+#~ msgstr "Rulanta teston %s..."
 
 #: ../gtk/checkbox-gtk.ui.h:1 ../checkbox_cli/cli_interface.py:343
 #: ../checkbox_urwid/urwid_interface.py:261
 msgid "Further information:"
-msgstr "詳細情報:"
+msgstr "Pliaj informoj:"
 
 #: ../gtk/checkbox-gtk.ui.h:4
 msgid "_Deselect All"
@@ -362,7 +297,7 @@ msgstr ""
 #. description
 #: ../jobs/audio.txt.in:7
 msgid "Detecting your sound device(s):"
-msgstr ""
+msgstr "Detektanta via(j)n sonaparato(j)n:"
 
 #. description
 #: ../jobs/audio.txt.in:21
@@ -370,6 +305,8 @@ msgid ""
 "Did you hear a sound and was that sound free of any distortion, clicks or "
 "other strange noises?"
 msgstr ""
+"Ĉu vi aŭdis sonon kaj ĉu la sono estis sen ajnaj distordo, klakoj aŭ aliaj "
+"strangaj bruoj?"
 
 #. description
 #: ../jobs/audio.txt.in:33
@@ -381,6 +318,7 @@ msgstr ""
 msgid ""
 "Select Test to play a sound on the automatically detected playback device."
 msgstr ""
+"Elektu ‘Testi’ por ludi sonon sur la aŭtomate detektita reproduktilo."
 
 #. description
 #: ../jobs/audio.txt.in:33
@@ -388,6 +326,8 @@ msgid ""
 "Did you hear a sound through the headphones and did the sound play without "
 "any distortion, clicks or other strange noises from your headphones?"
 msgstr ""
+"Ĉu vi aŭdis sonon tra la kapaŭskultiloj kaj ĉu la sono estis sen ajnaj "
+"distordo, klakoj aŭ aliaj strangaj bruoj en viaj kapaŭskultiloj?"
 
 #. description
 #: ../jobs/audio.txt.in:47
@@ -396,6 +336,9 @@ msgid ""
 "then speak into your internal microphone.  After a few seconds, your speech "
 "will be played back to you."
 msgstr ""
+"Malkonektu ajnan ekstere konektitan mikrofonon. Elektu ‘Testi’, sekve parolu "
+"en vian internan mikrofonon. Post kelkaj sekundoj, via parolo estos "
+"reproduktata al vi."
 
 #. description
 #: ../jobs/audio.txt.in:59
@@ -403,6 +346,8 @@ msgid ""
 "Connect a microphone to your microphone port.  Select Test, then speak into "
 "the microphone.  After a few seconds, your speech will be played back to you."
 msgstr ""
+"Konektu mikrofonon al via mikrofona pordo. Elektu ‘Testi’, sekve parolu en "
+"la mikrofonon. Post kelkaj sekundoj, via parolo estos reproduktata al vi."
 
 #. description
 #: ../jobs/audio.txt.in:70
@@ -414,11 +359,17 @@ msgid ""
 "select Test, then speak into the microphone.  After a few seconds, your "
 "speech will be played back to you."
 msgstr ""
+"Konektu USB-sonaparaton al via sistemo. Poste malfermu la aplikaĵon por "
+"sonlaŭteco per maldesktra klako al la laŭtparolila piktogramo en la panelo. "
+"Elektu poste “Sonagordoj...”. Elektu la folion “Enigo” kaj elektu vian USB-"
+"aparaton. Elektu la folion “Eligo” kaj elektu vian USB-aparaton. Se vi "
+"pretas, alklaku “Testi”. Poste parolu en la mikrofonon. Post kelkaj "
+"sekundoj, via parolado estos reproduktata al vi."
 
 #. description
 #: ../jobs/audio.txt.in:70 ../jobs/power-management.txt.in:221
 msgid "Did you hear your speech played back?"
-msgstr ""
+msgstr "Ĉu vi aŭdis la reludon de via parolado?"
 
 #. description
 #: ../jobs/audio.txt.in:81
@@ -762,7 +713,7 @@ msgstr ""
 #. description
 #: ../jobs/fingerprint.txt.in:18
 msgid "Did the authentication procedure work correctly?"
-msgstr ""
+msgstr "Ĉu la aŭtentokontrola proceduro korekte funkciis?"
 
 #. description
 #: ../jobs/firewire.txt.in:3
@@ -778,7 +729,7 @@ msgstr ""
 #. description
 #: ../jobs/firewire.txt.in:3 ../jobs/usb.txt.in:71
 msgid "Do the copy operations work as expected?"
-msgstr ""
+msgstr "Ĉu la kopiado funkciis kiel atendite?"
 
 #. description
 #: ../jobs/floppy.txt.in:4
@@ -934,12 +885,12 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:82
 msgid "This display is using the following resolution:"
-msgstr ""
+msgstr "Ĉi tiu ekrano uzas la sekvan distingivon:"
 
 #. description
 #: ../jobs/graphics.txt.in:82
 msgid "Is this acceptable for your display?"
-msgstr "これはディスプレイと合っていますか?"
+msgstr "Ĉu tio akcepteblas por via ekrano?"
 
 #. description
 #: ../jobs/graphics.txt.in:95
@@ -963,24 +914,25 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:117
 msgid "Select Test to display a video test."
-msgstr ""
+msgstr "Elektu “Testi” por montri filmetan teston."
 
 #. description
 #: ../jobs/graphics.txt.in:126
 msgid ""
 "The following screens and video modes have been detected on your system:"
-msgstr ""
+msgstr "La sekvaj ekranoj kaj videoreĝimoj estis detektitaj sur via sistemo:"
 
 #. description
 #: ../jobs/graphics.txt.in:138
 msgid ""
 "Select Test to cycle through the detected video modes for your system."
 msgstr ""
+"Elektu “Testi” por cikli tra la detektitaj ekranreĝimoj por via sistemo."
 
 #. description
 #: ../jobs/graphics.txt.in:138
 msgid "Did the screen appear to be working for each mode?"
-msgstr ""
+msgstr "Ĉu la ekrano bone funkciis por ĉiu reĝimo?"
 
 #. description
 #: ../jobs/graphics.txt.in:146
@@ -993,6 +945,8 @@ msgid ""
 "Select Test to execute glxgears to ensure that minimal 3d graphics support "
 "is in place."
 msgstr ""
+"Elektu “Testi” por lanĉi ‘glxgears’ por certiĝi ĉu minimuma subteno por 3D-"
+"grafikaĵoj enestas."
 
 #. description
 #: ../jobs/graphics.txt.in:153
@@ -1018,6 +972,7 @@ msgstr ""
 #: ../jobs/input.txt.in:13
 msgid "Select Test to open a text area where to type keys on your keyboard."
 msgstr ""
+"Elektu “Testi” por malfermi tekstkampon en kiun vi tajpu per via klavaro."
 
 #. description
 #: ../jobs/install.txt.in:6
@@ -1110,7 +1065,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:3
 msgid "Audio tests"
-msgstr ""
+msgstr "Sontestoj"
 
 #. description
 #: ../jobs/local.txt.in:8
@@ -1140,17 +1095,17 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:33
 msgid "Disk tests"
-msgstr ""
+msgstr "Disktestoj"
 
 #. description
 #: ../jobs/local.txt.in:38
 msgid "Fingerprint reader tests"
-msgstr ""
+msgstr "Fingropremlegiltestoj"
 
 #. description
 #: ../jobs/local.txt.in:43
 msgid "Firewire disk tests"
-msgstr ""
+msgstr "Disktestoj de firewire"
 
 #. description
 #: ../jobs/local.txt.in:48
@@ -1210,7 +1165,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:103
 msgid "Peripheral tests"
-msgstr ""
+msgstr "Flankaparatartestoj"
 
 #. description
 #: ../jobs/local.txt.in:108
@@ -1252,6 +1207,13 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"Kontrolo pri subteno de memorkartoj en formo de ‘Secure Digital’ (SD):\n"
+" 1.- Metu SD-memorkarton en vian komputilon.\n"
+" 2.- Piktogramo aperu sur la labortablo kaj en la menuo “Ejoj” supre en la "
+"ekrano.\n"
+" 3.- Dekstre alklaku la labortablan piktogramon kaj elektu “Sekure forigi "
+"datumportilon”\n"
+" 4.- La piktogramo malaperu de kaj la labortablo kaj la menuo “Ejoj”."
 
 #. description
 #: ../jobs/mediacard.txt.in:15
@@ -1263,6 +1225,13 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"Rekontrolo pri subteno de memorkartoj en formo de ‘Secure Digital’ (SD):\n"
+" 1.- Metu SD-memorkarton en vian komputilon.\n"
+" 2.- Piktogramo aperu sur la labortablo kaj en la menuo “Ejoj” supre en la "
+"ekrano.\n"
+" 3.- Dekstre alklaku la labortablan piktogramon kaj elektu “Sekure forigi "
+"datumportilon”\n"
+" 4.- La piktogramo malaperu de kaj la labortablo kaj la menuo “Ejoj”."
 
 #. description
 #: ../jobs/mediacard.txt.in:26
@@ -1274,6 +1243,14 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"Kontrolo pri subteno de memorkartoj en formo de ‘Secure Digital High "
+"Capacity’ (SDHC):\n"
+" 1.- Metu SDHC-memorkarton en vian komputilon.\n"
+" 2.- Piktogramo aperu sur la labortablo kaj en la menuo “Ejoj” supre en la "
+"ekrano.\n"
+" 3.- Dekstre alklaku la labortablan piktogramon kaj elektu “Sekure forigi "
+"datumportilon”\n"
+" 4.- La piktogramo malaperu de kaj la labortablo kaj la menuo “Ejoj”."
 
 #. description
 #: ../jobs/mediacard.txt.in:38
@@ -1285,6 +1262,14 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"Rekontrolo pri subteno de memorkartoj en formo de ‘Secure Digital High "
+"Capacity’ (SDHC):\n"
+" 1.- Metu SDHC-memorkarton en vian komputilon.\n"
+" 2.- Piktogramo aperu sur la labortablo kaj en la menuo “Ejoj” supre en la "
+"ekrano.\n"
+" 3.- Dekstre alklaku la labortablan piktogramon kaj elektu “Sekure forigi "
+"datumportilon”\n"
+" 4.- La piktogramo malaperu de kaj la labortablo kaj la menuo “Ejoj”."
 
 #. description
 #: ../jobs/mediacard.txt.in:49
@@ -1296,6 +1281,13 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"Kontrolo pri subteno de memorkartoj en formo de ‘Multi Media Card’ (MMC):\n"
+" 1.- Metu MMC-memorkarton en vian komputilon.\n"
+" 2.- Piktogramo aperu sur la labortablo kaj en la menuo “Ejoj” supre en la "
+"ekrano.\n"
+" 3.- Dekstre alklaku la labortablan piktogramon kaj elektu “Sekure forigi "
+"datumportilon”\n"
+" 4.- La piktogramo malaperu de kaj la labortablo kaj la menuo “Ejoj”."
 
 #. description
 #: ../jobs/mediacard.txt.in:61
@@ -1307,6 +1299,13 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"Rekontrolo pri subteno de memorkartoj en formo de ‘Multi Media Card’ (MMC):\n"
+" 1.- Metu MMC-memorkarton en vian komputilon.\n"
+" 2.- Piktogramo aperu sur la labortablo kaj en la menuo “Ejoj” supre en la "
+"ekrano.\n"
+" 3.- Dekstre alklaku la labortablan piktogramon kaj elektu “Sekure forigi "
+"datumportilon”\n"
+" 4.- La piktogramo malaperu de kaj la labortablo kaj la menuo “Ejoj”."
 
 #. description
 #: ../jobs/mediacard.txt.in:72
@@ -1318,6 +1317,13 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"Kontrolo pri subteno de memorkartoj en formo de ‘Memory Stick’ (MS):\n"
+" 1.- Metu MS-memorkarton en vian komputilon.\n"
+" 2.- Piktogramo aperu sur la labortablo kaj en la menuo “Ejoj” supre en la "
+"ekrano.\n"
+" 3.- Dekstre alklaku la labortablan piktogramon kaj elektu “Sekure forigi "
+"datumportilon”\n"
+" 4.- La piktogramo malaperu de kaj la labortablo kaj la menuo “Ejoj”."
 
 #. description
 #: ../jobs/mediacard.txt.in:84
@@ -1329,6 +1335,13 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"Rekontrolo pri subteno de memorkartoj en formo de ‘Memory Stick’ (MS):\n"
+" 1.- Metu MS-memorkarton en vian komputilon.\n"
+" 2.- Piktogramo aperu sur la labortablo kaj en la menuo “Ejoj” supre en la "
+"ekrano.\n"
+" 3.- Dekstre alklaku la labortablan piktogramon kaj elektu “Sekure forigi "
+"datumportilon”\n"
+" 4.- La piktogramo malaperu de kaj la labortablo kaj la menuo “Ejoj”."
 
 #. description
 #: ../jobs/mediacard.txt.in:95
@@ -1340,6 +1353,13 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"Kontrolo pri subteno de memorkartoj en formo de ‘Memory Stick Pro’ (MSP):\n"
+" 1.- Metu MSP-memorkarton en vian komputilon.\n"
+" 2.- Piktogramo aperu sur la labortablo kaj en la menuo “Ejoj” supre en la "
+"ekrano.\n"
+" 3.- Dekstre alklaku la labortablan piktogramon kaj elektu “Sekure forigi "
+"datumportilon”\n"
+" 4.- La piktogramo malaperu de kaj la labortablo kaj la menuo “Ejoj”."
 
 #. description
 #: ../jobs/mediacard.txt.in:107
@@ -1351,6 +1371,13 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"Rekontrolo pri subteno de memorkartoj en formo de ‘Memory Stick Pro’ (MSP):\n"
+" 1.- Metu MSP-memorkarton en vian komputilon.\n"
+" 2.- Piktogramo aperu sur la labortablo kaj en la menuo “Ejoj” supre en la "
+"ekrano.\n"
+" 3.- Dekstre alklaku la labortablan piktogramon kaj elektu “Sekure forigi "
+"datumportilon”\n"
+" 4.- La piktogramo malaperu de kaj la labortablo kaj la menuo “Ejoj”."
 
 #. description
 #: ../jobs/mediacard.txt.in:118
@@ -1362,6 +1389,13 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"Kontrolo pri subteno de memorkartoj en formo de ‘Compact Flash’ (CF):\n"
+" 1.- Metu CF-memorkarton en vian komputilon.\n"
+" 2.- Piktogramo aperu sur la labortablo kaj en la menuo “Ejoj” supre en la "
+"ekrano.\n"
+" 3.- Dekstre alklaku la labortablan piktogramon kaj elektu “Sekure forigi "
+"datumportilon”\n"
+" 4.- La piktogramo malaperu de kaj la labortablo kaj la menuo “Ejoj”."
 
 #. description
 #: ../jobs/mediacard.txt.in:130
@@ -1373,6 +1407,13 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"Rekontrolo pri subteno de memorkartoj en formo de ‘Compact Flash’ (CF):\n"
+" 1.- Metu CF-memorkarton en vian komputilon.\n"
+" 2.- Piktogramo aperu sur la labortablo kaj en la menuo “Ejoj” supre en la "
+"ekrano.\n"
+" 3.- Dekstre alklaku la labortablan piktogramon kaj elektu “Sekure forigi "
+"datumportilon”\n"
+" 4.- La piktogramo malaperu de kaj la labortablo kaj la menuo “Ejoj”."
 
 #. description
 #: ../jobs/mediacard.txt.in:130
@@ -1396,16 +1437,19 @@ msgid ""
 "screen will change temporarily to a text console and then switch back to "
 "your current session."
 msgstr ""
+"Elektu ‘Testi’ por ŝanĝi al alia virtuala terminalo kaj poste reen al ‘X’. "
+"Via ekrano provizore ŝanĝos al tekstkonzolo kaj tuj poste reŝaltos al la "
+"nuna seanco."
 
 #. description
 #: ../jobs/miscellanea.txt.in:8
 msgid "Note that this test may require you to enter your password."
-msgstr ""
+msgstr "Notu, ke ĉi tiu testo eble petos vian pasvorton."
 
 #. description
 #: ../jobs/miscellanea.txt.in:8
 msgid "Did the screen change temporarily to a text console?"
-msgstr ""
+msgstr "Ĉu la ekrano pornelonge ŝaltis al tekstkonzolo?"
 
 #. description
 #: ../jobs/miscellanea.txt.in:20
@@ -1554,7 +1598,7 @@ msgstr ""
 #. description
 #: ../jobs/networking.txt.in:76 ../jobs/peripheral.txt.in:15
 msgid "Was the connection correctly established?"
-msgstr ""
+msgstr "Ĉu la konekto estis sukcese farita?"
 
 #. description
 #: ../jobs/networking.txt.in:92
@@ -1653,12 +1697,12 @@ msgstr ""
 #. description
 #: ../jobs/optical.txt.in:90
 msgid "Insert a DVD.  Then select Test to play the DVD in Totem."
-msgstr ""
+msgstr "Enmetu DVD-n. Poste elektu ‘Testi’ por ludi la DVD-n per Totem."
 
 #. description
 #: ../jobs/optical.txt.in:90
 msgid "Did the file play?"
-msgstr ""
+msgstr "Ĉu la dosiero ludiĝis?"
 
 #. description
 #: ../jobs/panel_clock_test.txt.in:4
@@ -1833,7 +1877,7 @@ msgstr ""
 #. description
 #: ../jobs/power-management.txt.in:128 ../jobs/sru_suite.txt.in:135
 msgid "Make sure that the RTC (Real-Time Clock) device exists."
-msgstr ""
+msgstr "Certigu, ke la RTC- (Realtempa horloĝo) aparato ekzistas."
 
 #. description
 #: ../jobs/power-management.txt.in:135
@@ -1903,6 +1947,8 @@ msgid ""
 "This test will check to make sure that supported video modes work after a "
 "suspend and resume.  Select Test to begin."
 msgstr ""
+"Ĉi tiu testo kontrolos ĉu la subtenataj ekranreĝimoj funkcios post paŭza "
+"stato. Alklaku “Testi” por komenci."
 
 #. description
 #: ../jobs/power-management.txt.in:221
@@ -1920,6 +1966,10 @@ msgid ""
 "Test and then speak into your microphone. After a few seconds, your speech "
 "will be played back to you."
 msgstr ""
+"Antaŭ efektivigi ĉi tiun teston, estu certa ke viaj laŭtparolilo kaj "
+"mikrofono NE estas silentigitaj kaj ke la sono agordiĝis sufiĉe laŭta por "
+"registri kaj reprodukti sonon. Elektu “Testi” kaj parolu en vian mikrofonon. "
+"Post kelkaj sekundoj, via parolo estos reproduktata al vi."
 
 #. description
 #: ../jobs/power-management.txt.in:234
@@ -1928,6 +1978,10 @@ msgid ""
 "is a lengthy test. Select Test to begin. If your system fails to wake and "
 "must be rebooted, please restart System Testing and mark this test as Failed."
 msgstr ""
+"Eniri kaj reaktiviĝi el la paŭza stato 30 fojojn. Bonvolu noti ke ĉi tiu "
+"testo daŭros tre longe. Elektu “Testi” por komenci. Se via sistemo ne "
+"vekiĝas kaj se vi devas restartigi ĝin, bonvolu relanĉi Sisteman teston kaj "
+"marku ĉi tiun teston fiaskinta."
 
 #. description
 #: ../jobs/power-management.txt.in:234
@@ -1950,6 +2004,11 @@ msgid ""
 "fails to resume from hibernate, please restart System Testing and mark this "
 "test as Failed."
 msgstr ""
+"Elektu “Testi” por komenci. La sistemo pasivumos kaj devos veki sin ene de "
+"kvin minutoj. Se via sistemo ne vekos sin post kvin minutoj, bonvolu "
+"mallonge premi la ŝaltbutonon por veki la sistemon mane. Se via sistemo "
+"fiaskas reaktiviĝi post pasivumigo, bonvolu relanĉi Sisteman teston kaj "
+"marku ĉi tiun teston fiaskinta."
 
 #. description
 #: ../jobs/power-management.txt.in:245
@@ -1967,6 +2026,11 @@ msgid ""
 "the system fails to resume from hibernation and must be rebooted, please "
 "restart System Testing and mark this test as Failed."
 msgstr ""
+"Eniri kaj reaktiviĝi el la pasivuma stato 30 fojojn. Bonvolu noti ke ĉi tiu "
+"testo daŭros tre longe. Krome, se via sistemo ne vekos sin post 2 minutoj, "
+"vi mallonge premu la ŝaltbutonon por veki ls sistemon mane. Se la sistemo "
+"fiaskas reaktiviĝi post pasivumigo kaj se vi devas restartigi ĝin, bonvolu "
+"relanĉi Sisteman teston kaj marku ĉi tiun teston fiaskinta."
 
 #. description
 #: ../jobs/power-management.txt.in:258
@@ -2005,6 +2069,11 @@ msgid ""
 "at all and must be rebooted, restart System Testing after reboot and mark "
 "this test as Failed."
 msgstr ""
+"Elektu “Testi” kaj via sistemo ekpaŭzos pli-malpli 30 - 60 sekundojn. Se via "
+"sistemo ne vekos sin post 60 sekundoj, bonvolu mallonge premi la ŝaltbutonon "
+"por mane veki la sistemon. Se via sistemo tute ne vekiĝas kaj devas esti "
+"restartigita, relanĉu Sisteman teston post la restartigo kaj marku ĉi tiun "
+"teston fiaskinta."
 
 #. description
 #: ../jobs/qa_regression.txt.in:3
@@ -2265,6 +2334,9 @@ msgid ""
 "Folder. In the name box for the new folder, enter the name Test Folder and "
 "hit Enter."
 msgstr ""
+"Elektu “Testi” por malfermi la dosieresplorilon. En la menubreto, elektu "
+"“Dosiero” -> “Krei dosierujon”. En la nomkampo por la nova dosierujo, "
+"entajpu la nomon “Testdosierujo” kaj premu “Enigi”."
 
 #. description
 #: ../jobs/user_apps.txt.in:14
@@ -2278,6 +2350,9 @@ msgid ""
 "Folder and click on Copy.  Right Click on any white area in the window and "
 "click on Paste."
 msgstr ""
+"Elektu “Testi” por malfermi la dosieresplorilon. Dekstre alklaku la "
+"dosierujon nomatan “Testdosierujo” kaj alklaku “Kopii”. Dekstre alklaku "
+"ajnan blankan lokon en la fenestro kaj alklaku “Alglui”."
 
 #. description
 #: ../jobs/user_apps.txt.in:25
@@ -2297,6 +2372,8 @@ msgid ""
 "Select Test to open the File Browser. Click and drag the folder called Test "
 "Data onto the icon called Test Folder. Release the button."
 msgstr ""
+"Elektu “Testi” por malfermi la dosieresplorilon. Trenu la dosierujon nomatan "
+"“Testdatumoj” sur la piktogramon nomatan “Testdosierujo”."
 
 #. description
 #: ../jobs/user_apps.txt.in:38
@@ -2308,7 +2385,7 @@ msgstr ""
 msgid ""
 "Was the folder called Test Data successfully moved into the folder called "
 "Test Folder?"
-msgstr "フォルダ「Test Data」はフォルダ「Test Data」の中へ移動できましたか？"
+msgstr ""
 
 #. description
 #: ../jobs/user_apps.txt.in:51
@@ -2317,11 +2394,14 @@ msgid ""
 "click Create Document -> Empty File. Enter the name Test File 1 in the name "
 "box and hit Enter."
 msgstr ""
+"Elektu “Testi” por malfermi la dosieresplorilon. Dekstre alklaku la blankan "
+"lokon kaj klaku sur “Krei dokumenton” -> “Malplena dosiero”. Tajpu la nomon "
+"“Testdosiero 1” en la nomkampon kaj premu “Enigi”."
 
 #. description
 #: ../jobs/user_apps.txt.in:51
 msgid "Do you now have a file called Test File 1?"
-msgstr "「Test File 1」が作成できましたか?"
+msgstr ""
 
 #. description
 #: ../jobs/user_apps.txt.in:51
@@ -2334,6 +2414,9 @@ msgid ""
 "Select Test to open the File Browser. Right click on the file called Test "
 "File 1 and click Copy. Right click in the white space and click Paste."
 msgstr ""
+"Elektu “Testi” por malfermi la dosieresplorilon. Dekstre alklaku la dosieron "
+"nomatan “Testdosiero 1” kaj klaku sur “Kopii”. Dekstre alklaku la blankan "
+"lokon kaj klaku sur “Alglui”."
 
 #. description
 #: ../jobs/user_apps.txt.in:62
@@ -2341,13 +2424,11 @@ msgid ""
 "Right click on the file called Test File 1(copy) and click Rename. Enter the "
 "name Test File 2 in the name box and hit Enter."
 msgstr ""
-"「Test File 1 」の上で右クリックをして「名前の変更」を選択してください。ネームボックスに「Test File "
-"2」と入力してエンターキーを押してください"
 
 #. description
 #: ../jobs/user_apps.txt.in:62
 msgid "Do you now have a file called Test File 2?"
-msgstr "「Test File 2」が作成できましたか?"
+msgstr ""
 
 #. description
 #: ../jobs/user_apps.txt.in:75
@@ -2355,17 +2436,19 @@ msgid ""
 "Select Test to open the File Browser. Click and drag the file called Test "
 "File 2 onto the icon for the folder called Test Data. Release the button."
 msgstr ""
+"Elektu “Testi” por malfermi la dosieresplorilon. Trenu la dosieron nomatan "
+"“Testdosiero 2” sur la ikonon por la dosierujo nomata “Testdatumoj”."
 
 #. description
 #: ../jobs/user_apps.txt.in:75
 msgid "Double click the icon for Test Data to open that folder up."
-msgstr "「Test Data」のアイコンをダブルクリックしてそのフォルダを開いてください"
+msgstr ""
 
 #. description
 #: ../jobs/user_apps.txt.in:75
 msgid ""
 "Was the file Test File 2 successfully moved into the Test Data folder?"
-msgstr "ファイル「Test File 2」はフォルダ「Test Data」の中へ移動できましたか？"
+msgstr ""
 
 #. description
 #: ../jobs/user_apps.txt.in:88
@@ -2373,11 +2456,13 @@ msgid ""
 "Select Test to open the File Browser. Right click on the file called Test "
 "File 1 and click on Move To Trash."
 msgstr ""
+"Elektu “Testi” por malfermi la dosieresplorilon. Dekstre alklaku la dosieron "
+"nomatan “Testdosiero 1” kaj klaku sur “Movi rubujen”."
 
 #. description
 #: ../jobs/user_apps.txt.in:88
 msgid "Is Test File 1 now gone?"
-msgstr "「Test File 1」は消えてなくなりましたか？"
+msgstr ""
 
 #. description
 #: ../jobs/user_apps.txt.in:99
@@ -2385,11 +2470,13 @@ msgid ""
 "Select Test to open the File Browser. Right click on the folder called Test "
 "Folder and click on Move To Trash."
 msgstr ""
+"Elektu “Testi” por malfermi la dosieresplorilon. Dekstre alklaku la "
+"dosierujon nomatan “Testdosierujo” kaj klaku sur “Movi rubujen”."
 
 #. description
 #: ../jobs/user_apps.txt.in:99
 msgid "Has Test Folder been successfully deleted?"
-msgstr "「Test Folder」は削除されましたか?"
+msgstr ""
 
 #. description
 #: ../jobs/user_apps.txt.in:99
@@ -2404,12 +2491,12 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:178
 msgid "Select Test to launch Firefox and view the test web page."
-msgstr ""
+msgstr "Elektu “Testi” por malfermi Firefox kaj montri la testretpaĝon."
 
 #. description
 #: ../jobs/user_apps.txt.in:178
 msgid "Did the Ubuntu Test page load correctly?"
-msgstr "「Ubuntu Test page」が正しく表示されましたか?"
+msgstr ""
 
 #. description
 #: ../jobs/user_apps.txt.in:188
@@ -2417,41 +2504,45 @@ msgid ""
 "Select Test to open Firefox with the Java test page, and follow the "
 "instructions there."
 msgstr ""
+"Elektu “Testi” por malfermi Firefox kun la Ĝava-testpaĝo. Sekvu la "
+"instrukciojn tie."
 
 #. description
 #: ../jobs/user_apps.txt.in:188
 msgid "Did the applet display?"
-msgstr "アプレットが表示されましたか?"
+msgstr ""
 
 #. description
 #: ../jobs/user_apps.txt.in:198
 msgid "Select Test to launch Firefox and view a sample Flash test."
 msgstr ""
+"Elektu “Testi” por lanĉi Firefox kaj montri specimenan ‘Flash’-teston."
 
 #. description
 #: ../jobs/user_apps.txt.in:198
 msgid "Did you see the text?"
-msgstr "文字が表示されていますか?"
+msgstr ""
 
 #. description
 #: ../jobs/user_apps.txt.in:208
 msgid "Select Test to launch Firefox and view a short flash video."
 msgstr ""
+"Elektu “Testi” por malfermi Firefox kaj montri mallongan ‘Flash’-filmeton."
 
 #. description
 #: ../jobs/user_apps.txt.in:208
 msgid "Did the video play correctly?"
-msgstr "ビデオは正しく再生されましたか?"
-
-#. description
-#: ../jobs/user_apps.txt.in:218
-msgid "Select Test to launch Firefox with a sample video."
 msgstr ""
 
 #. description
 #: ../jobs/user_apps.txt.in:218
+msgid "Select Test to launch Firefox with a sample video."
+msgstr "Elektu “Testi” por malfermi Firefox kun specimena filmeto."
+
+#. description
+#: ../jobs/user_apps.txt.in:218
 msgid "Did the video play using a plugin?"
-msgstr "プラグインを使ってビデオは正しく再生されましたか?"
+msgstr ""
 
 #. description
 #: ../jobs/user_apps.txt.in:227
@@ -2480,6 +2571,8 @@ msgid ""
 "service. Once you have completed the test, please quit Empathy to continue "
 "here."
 msgstr ""
+"Elektu “Testi” por malfermi Empathy, poste agordu ĝin al la sekva servo. "
+"Fininte la teston, bonvolu eliri al Empathy por daŭrigi ĉi tie."
 
 #. description
 #: ../jobs/user_apps.txt.in:271
@@ -2507,94 +2600,100 @@ msgstr ""
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist_file."
 msgstr ""
 
+#: ../checkbox/application.py:115
+msgid "Missing configuration file as argument.\n"
+msgstr "Agorddosiero kiel argumento mankas.\n"
+
 #: ../checkbox/lib/signal.py:23
 msgid ""
 "Hangup detected on controlling terminal or death of controlling process"
-msgstr "制御端末でハングアップを検知しました、または制御プロセスが死にました。"
+msgstr ""
+"Nevola halto estas detektita dum kontrolado de terminalo aŭ morto de reganta "
+"procezo"
 
 #: ../checkbox/lib/signal.py:24
 msgid "Interrupt from keyboard"
-msgstr "キーボードからの割り込み"
+msgstr "Interrompo per klavaro"
 
 #: ../checkbox/lib/signal.py:25
 msgid "Quit from keyboard"
-msgstr "キーボードによって終了"
+msgstr "Halto per klavaro"
 
 #: ../checkbox/lib/signal.py:26
 msgid "Illegal Instruction"
-msgstr "不正な命令"
+msgstr "Malpermesita instrukcio"
 
 #: ../checkbox/lib/signal.py:27
 msgid "Abort signal from abort(3)"
-msgstr "abort(3) による中断シグナル"
+msgstr "Ĉesiga signalo de abort(3)"
 
 #: ../checkbox/lib/signal.py:28
 msgid "Floating point exception"
-msgstr "浮動小数点例外"
+msgstr "Glitkoma escepto"
 
 #: ../checkbox/lib/signal.py:29
 msgid "Kill signal"
-msgstr "シグナルをkill"
+msgstr "Haltsignalo"
 
 #: ../checkbox/lib/signal.py:30
 msgid "Invalid memory reference"
-msgstr "不正なメモリ参照"
+msgstr "Nevalida memorreferenco"
 
 #: ../checkbox/lib/signal.py:31
 msgid "Broken pipe: write to pipe with no readers"
-msgstr ""
+msgstr "Kaduka dukto: skribi al dukto sen legantoj"
 
 #: ../checkbox/lib/signal.py:32
 msgid "Timer signal from alarm(2)"
-msgstr "alarm(2) によるタイマシグナル"
+msgstr "Horloĝa signalo de alarm(2)"
 
 #: ../checkbox/lib/signal.py:33
 msgid "Termination signal"
-msgstr "終了シグナル"
+msgstr "Ĉesiga signalo"
 
 #: ../checkbox/lib/signal.py:34
 msgid "User-defined signal 1"
-msgstr "ユーザ定義シグナル 1"
+msgstr "Uzantdifinita signalo 1"
 
 #: ../checkbox/lib/signal.py:35
 msgid "User-defined signal 2"
-msgstr "ユーザ定義シグナル 2"
+msgstr "Uzantdifinita signalo 2"
 
 #: ../checkbox/lib/signal.py:36
 msgid "Child stopped or terminated"
-msgstr "子プロセスが停止または終了しました"
+msgstr "Ido haltis aŭ ĉesiĝis"
 
 #: ../checkbox/lib/signal.py:37
 msgid "Continue if stopped"
-msgstr "停止しても続ける"
+msgstr "Daŭrigi se haltita"
 
 #: ../checkbox/lib/signal.py:38
 msgid "Stop process"
-msgstr "プロセスを停止"
+msgstr "Haltigi procezon"
 
 #: ../checkbox/lib/signal.py:39
 msgid "Stop typed at tty"
-msgstr ""
+msgstr "Halto tajpita en tty"
 
 #: ../checkbox/lib/signal.py:40
 msgid "tty input for background process"
-msgstr "バックグラウンド・プロセスの tty 入力"
+msgstr "tty-enigo por fonprocezo"
 
 #: ../checkbox/lib/signal.py:41
 msgid "tty output for background process"
-msgstr "バックグラウンド・プロセスの tty 出力"
+msgstr "tty-eligo por fonprocezo"
 
 #: ../checkbox/lib/signal.py:77
 msgid "UNKNOWN"
-msgstr "不明"
+msgstr "NEKONATA"
 
 #: ../checkbox/lib/signal.py:89
 msgid "Unknown signal"
-msgstr "不明なシグナル"
+msgstr "Nekonata signalo"
 
 #: ../checkbox_urwid/urwid_interface.py:60
 msgid "Checkbox System Testing"
-msgstr "Checkbox システムテスト"
+msgstr ""
 
 #: ../checkbox_urwid/urwid_interface.py:99
 msgid "Continue"
@@ -2631,36 +2730,32 @@ msgstr ""
 
 #: ../checkbox_gtk/gtk_interface.py:93
 msgid "hardware database"
-msgstr ""
+msgstr "aparatara datumbazo"
 
 #: ../checkbox_gtk/gtk_interface.py:533
 msgid "Info"
-msgstr ""
+msgstr "Informoj"
 
 #: ../checkbox_gtk/gtk_interface.py:552
 msgid "Error"
-msgstr ""
+msgstr "Eraro"
 
 #: ../checkbox/user_interface.py:136
 #, python-format
 msgid "Unable to start web browser to open %s."
-msgstr "%s を開くためのウェブブラウザを起動できません"
+msgstr "Ne eblis starti retfoliumilo por malfermi %s."
 
 #: ../plugins/apport_prompt.py:81
 msgid ""
 "Collecting information about this test.\n"
 "This might take a few minutes."
 msgstr ""
-"このテストに関する情報を収集しています。\n"
-"これには数分かかる場合があります。"
 
 #: ../plugins/apport_prompt.py:116
 msgid ""
 "Collected information is being sent for bug tracking.\n"
 "This might take a few minutes."
 msgstr ""
-"収集した情報をバグトラッキングに送信しています。\n"
-"これには数分かかる場合があります。"
 
 #: ../plugins/apport_prompt.py:225
 #, python-format
@@ -2679,7 +2774,11 @@ msgstr ""
 
 #: ../plugins/final_prompt.py:33
 msgid "Successfully finished testing!"
-msgstr ""
+msgstr "Testo sukcese finiĝis!"
+
+#: ../plugins/gather_prompt.py:35
+msgid "Gathering information from your system..."
+msgstr "Kolektanta informojn pri via sistemo..."
 
 #: ../plugins/intro_prompt.py:43
 msgid ""
@@ -2689,11 +2788,40 @@ msgid ""
 "Once you are finished running the tests, you can view a summary report for "
 "your system."
 msgstr ""
+"Bonvenon al Sistemtestado!\n"
+"\n"
+"Checkbox provizas testojn por kontroli ĉu via sistomo bone funkcias. Fininte "
+"la testojn, vi povas legi koncizan raporton por via sistemo."
 
 #: ../plugins/launchpad_exchange.py:118
 #, python-format
 msgid "Failed to process form: %s"
 msgstr ""
+
+#: ../plugins/launchpad_exchange.py:141
+#, python-format
+msgid ""
+"Failed to contact server. Please try\n"
+"again or upload the following file name:\n"
+"%s\n"
+"\n"
+"directly to the system database:\n"
+"https://launchpad.net/+hwdb/+submit"
+msgstr ""
+"Fiaskis kontakti servilon. Bonvolu reprovi\n"
+"aŭ alŝuti la sekvan dosiernomon:\n"
+"%s\n"
+"\n"
+"direkte al la sistema datumbazo:\n"
+"https://launchpad.net/+hwdb/+submit"
+
+#: ../plugins/launchpad_exchange.py:150
+msgid ""
+"Failed to upload to server,\n"
+"please try again later."
+msgstr ""
+"Fiaskis alŝuti al la servilo.\n"
+"Bonvolu reprovi poste."
 
 #: ../plugins/launchpad_prompt.py:71
 #, python-format
@@ -2709,14 +2837,28 @@ msgid ""
 "\n"
 "  https://launchpad.net/+login"
 msgstr ""
+"La sekva raporto estas generita por transsendo al la aparatara datumbazo de "
+"Laŭnĉpado:\n"
+"\n"
+"  [[%s|Vidi raporton]]\n"
+"\n"
+"Vi povas sendi ĉi tiujn informojn pri via sistemo provizante la "
+"retpoŝtadreson kiun vi uzas por ensaluti al Laŭnĉpado. Se vi ne havas "
+"Laŭnĉpadan konton, bonvolu registriĝi tie ĉi:\n"
+"\n"
+"  https://launchpad.net/+login"
 
 #: ../plugins/launchpad_prompt.py:88
 msgid "No e-mail address provided, not submitting to Launchpad."
-msgstr ""
+msgstr "Neniu retpoŝtadreso provizita, do ne sendas al Laŭnĉpado."
+
+#: ../plugins/launchpad_prompt.py:98
+msgid "Exchanging information with the server..."
+msgstr "Interŝanĝanta informojn kun la servilo..."
 
 #: ../plugins/lock_prompt.py:63
 msgid "There is another checkbox running. Please close it first."
-msgstr "他の checkbox が実行されています。まず、それを閉じてください。"
+msgstr "Alia Checkbox-fenestro ruliĝas. Bonvolu unue fermi ĝin."
 
 #: ../plugins/recover_prompt.py:54
 msgid ""
@@ -2732,27 +2874,230 @@ msgstr ""
 #. Get results
 #: ../plugins/suites_prompt.py:105
 msgid "Select the suites to test"
-msgstr ""
+msgstr "Elektu testarojn"
 
 #: ../scripts/keyboard_test:21
 msgid "Enter text:\n"
-msgstr ""
+msgstr "Tajpu tekston:\n"
 
 #: ../scripts/keyboard_test:40
 msgid "Type Text"
-msgstr "文章を入力してください。"
+msgstr "Tajpu tekston"
 
 #: ../scripts/internet_test:139
 msgid "No Internet connection"
-msgstr ""
+msgstr "Neniu retkonekto"
 
 #: ../scripts/internet_test:142
 msgid "Connection established lost a packet"
-msgstr "接続先の応答がありません"
+msgstr "Farita konekto perdis pakaĵon"
 
 #: ../scripts/internet_test:145
 msgid "Internet connection fully established"
-msgstr ""
+msgstr "Retkonekto plene farita"
+
+#~ msgid ""
+#~ "Click the Test button to play a sound on the automatically detected \\ "
+#~ "playback device."
+#~ msgstr ""
+#~ "Alklaku la butonon \"Testi\" por ludi sonon per la aŭtomate "
+#~ "detektita/reprodukta aparato."
+
+#~ msgid "Network tests"
+#~ msgstr "Rettestoj"
+
+#~ msgid "Video tests"
+#~ msgstr "Videotestoj"
+
+#~ msgid "Kernel modesetting tests"
+#~ msgstr "Testoj de kerna reĝim-agordado"
+
+#~ msgid ""
+#~ "Connect a USB audio device to your system.  Then open the \\ volume control "
+#~ "application by right-clicking on the speaker \\ icon in the panel and "
+#~ "selecting \"Sound Preferences\".  Select \\ the \"Input\" tab and choose "
+#~ "your USB device.  Select the \\ \"Output\" tab and choose your USB device.  "
+#~ "When you are done, \\ click the Test button, then speak into the microphone. "
+#~ " \\ After a few seconds, your speech will be played back to you."
+#~ msgstr ""
+#~ "Konektu USB-sonaparaton al via sistemo. Poste malfermu la \\ sonagordojn per "
+#~ "dekstra klako al la laŭtparolil-piktogramo \\ en la panelo kaj elektante "
+#~ "\"Sonagordoj\". Alklaku \\ la \"Enigo\"-langeton kaj elektu vian USB-"
+#~ "aparaton. Alklaku la \\ \"Eligo\"-langeton kaj elektu vian USB-aparaton. "
+#~ "Kiam vi pretas, \\ alklaku la butonon \"Testi\", poste parolu en la "
+#~ "mikrofonon. \\ Post kelkaj sekundoj, via parolo estos reludata al vi."
+
+#~ msgid ""
+#~ "Play back a sound on the default output and listen for it on the default \\ "
+#~ "input.  This makes the most sense when the output and input are directly \\ "
+#~ "connected, as with a patch cable."
+#~ msgstr ""
+#~ "Ludigu sonon per la defaŭlta eligo kaj aŭskultu ĝin per la defaŭlta \\ "
+#~ "enigo. Tio havas plej sencon kiam la en- kaj eligoj estas senpere \\ "
+#~ "konektitaj, ekzemple per provizora kablo."
+
+#~ msgid ""
+#~ "Pair a Bluetooth headset with your system.  Then open the \\ volume control "
+#~ "application by right-clicking on the speaker \\ icon in the panel and "
+#~ "selecting \"Sound Preferences\".  Select \\ the \"Input\" tab and choose "
+#~ "your Bluetooth device.  Select the \\ \"Output\" tab and choose your "
+#~ "Bluetooth device.  When you are done, \\ click the Test button, then speak "
+#~ "into the microphone.  \\ After a few seconds, your speech will be played "
+#~ "back to you."
+#~ msgstr ""
+#~ "Kuplu Bluetooth-kapaŭskultilon al via komputilo. Poste malfermu la \\ "
+#~ "sonagordojn per dekstra klako al la laŭtparolil-piktogramo \\ en la panelo "
+#~ "kaj elektante \"Sonagordoj\". Elektu \\ la \"Enigo\"-langeton kaj elektu "
+#~ "vian Bluetooth-aparaton. Elektu la \\ \"Eligo\"-langeton kaj elektu vian "
+#~ "Bluetooth-aparaton. Kiam vi pretas, \\ alklaku la butonon \"Testi\", poste "
+#~ "parolu en vian mikrofonon. \\ Post kelkaj sekundoj, via parolo estos "
+#~ "reludata al vi."
+
+#~ msgid ""
+#~ "Connect a microphone to your microphone port.  \\ Click the Test button, "
+#~ "then speak into the microphone.  \\ After a few seconds, your speech will be "
+#~ "played back to you."
+#~ msgstr ""
+#~ "Konektu mikrofonon al via mikrofona konektingo. \\ Alklaku la butonon "
+#~ "\"Testi\", poste parolu en la mikrofonon. \\ Post kelkaj sekundoj, via "
+#~ "parolo estos reludata al vi."
+
+#~ msgid "Disk benchmark:"
+#~ msgstr "Taksotestilo por diskoj:"
+
+#~ msgid ""
+#~ "Open the volume control application by right-clicking on the speaker \\ icon "
+#~ "in the panel and selecting \"Sound Preferences\".  Select \\ the \"Input\" "
+#~ "tab and choose any alternate (non-default) device(s).  Select the \\ "
+#~ "\"Output\" tab and choose any alternate (non-default) device(s).  When you "
+#~ "are \\ done, click the Test button, then speak into the microphone.  \\ "
+#~ "After a few seconds, your speech will be played back to you."
+#~ msgstr ""
+#~ "Malfermu la sonagordojn per dekstra klako al la laŭtparolil- \\ piktogramo "
+#~ "en la panelo kaj elektante \"Sonagordoj\". Alklaku \\ la \"Enigo\"-langeton "
+#~ "kaj elektu alterna(j)n (ne-defaŭlta(j)n) aparato(j)n. Alklaku la \\ "
+#~ "\"Eligo\"-langeton kaj elektu alterna(j)n (ne-defaŭlta(j)n) aparato(j)n. \\ "
+#~ "Kiam vi pretas, alklaku la butonon \"Testi\", poste parolu en la mikrofonon. "
+#~ "\\ Post kelkaj sekundoj, via parolo estos reludata al vi."
+
+#~ msgid ""
+#~ "Disconnect any external microphones that you have plugged in.  \\ Click the "
+#~ "Test button, then speak into your internal microphone.  \\ After a few "
+#~ "seconds, your speech will be played back to you."
+#~ msgstr ""
+#~ "Malkonektu ĉiujn konektitajn mikrofonojn. \\ Alklaku la butonon \"Testi\", "
+#~ "poste parolu en vian internan mikrofonon. \\ Post kelkaj sekundoj, via "
+#~ "parolo estos reludata al vi."
+
+#~ msgid "Is this ok?"
+#~ msgstr "Ĉu tio ĝustas?"
+
+#~ msgid ""
+#~ "Fingerprint unlock verification procedure: 1.- Click on the user switcher "
+#~ "applet 2.- Select your user name 3.- A window should appear that provides "
+#~ "the ability to login either \\ typing your password or using fingerprint "
+#~ "authentication 4.- Use the fingerprint reader to login 5.- Click on the user "
+#~ "switcher applet 6.- Select the testing account to continue running tests"
+#~ msgstr ""
+#~ "Proceduro por malŝloso per fingroprema kontrolo: 1.- Alklaku la apleton "
+#~ "\"Ŝanĝilo de uzantoj\" 2.- Elektu vian uzantnomon 3.- Aperas fenestro kiu "
+#~ "provizas la eblecon ensaluti per \\ aŭ via pasporto aŭ uzante fingropreman "
+#~ "aŭtentokontrolon 4.- Uzu la fingropreman legilon por ensaluti 5.- Alklaku la "
+#~ "aplikaĵeton \"Ŝanĝilo de uzantoj 6.- Elektu la testokonton por daŭrigi rulon "
+#~ "de testoj"
+
+#~ msgid ""
+#~ "Prerequisites: This test case assumes that there's a testing account \\ from "
+#~ "which test cases are run and a personal account that the tester \\ uses to "
+#~ "verify the fingerprint reader"
+#~ msgstr ""
+#~ "Postuloj: ĉi tiu testo supozas ke ekzistas testokonto \\ per kiu la testoj "
+#~ "estas rulataj kaj persona konto kiun la testilo \\ uzas por kontroli la "
+#~ "fingropreman legilon"
+
+#~ msgid ""
+#~ "Click Test to switch to another virtual terminal and then back to X.  Your \\"
+#~ " screen will change temporarily to a text console and then switch back to "
+#~ "your \\ current session."
+#~ msgstr ""
+#~ "Alklaku \"Testi\" por ŝalti al alia virtuala terminalo kaj poste reen al X. "
+#~ "Via \\ ekrano pornelonge ŝaltas al tekstkonzolo kaj poste reen al via \\ "
+#~ "nuna sesio."
+
+#~ msgid ""
+#~ "Fingerprint unlock verification procedure: 1.- Click on the user switcher "
+#~ "applet 2.- Select 'Lock screen' 3.- Press any key or move the mouse 3.- A "
+#~ "window should appear that provides the ability to unlock either \\ typing "
+#~ "your password or using fingerprint authentication 4.- Use the fingerprint "
+#~ "reader to unlock 5.- Screen should be unlocked"
+#~ msgstr ""
+#~ "Proceduro por malŝloso per fingroprema kontrolo: 1.- Alklaku la aplikaĵeton "
+#~ "\"Ŝanĝilo de uzantoj\" 2.- Elektu 'Ŝlosi ekranon' 3.- Premu ajnan klavon aŭ "
+#~ "movu la muson 3.- Aperas fenestro kiu provizas la eblecon malŝlosi per \\ aŭ "
+#~ "via pasporto aŭ uzante fingropreman aŭtentokontrolon 4.- Uzu la fingropreman "
+#~ "legilon por malŝlosi 5.- La ekrano estu nun malŝlosita"
+
+#~ msgid ""
+#~ "Firewire HDD verification procedure: 1.- Plug a Firewire HDD into the "
+#~ "computer 2.- A window should be opened asking which action should be "
+#~ "performed (open folder, photo manager, etc). 3.- Copy some files from the "
+#~ "internal/firewire HDD to the firewire/internal HDD"
+#~ msgstr ""
+#~ "Proceduro por kontrolo de Firewire-disko: 1.- Konektu Firewire-diskon al la "
+#~ "komputilo 2.- Malfermiĝas fenestro kun demando pri kiu ago estu farata "
+#~ "(malfermi dosierujon, fotoadministrilo, ktp.). 3.- Kopiu kelkajn dosierojn "
+#~ "de aŭ al la firewire-disko"
+
+#~ msgid ""
+#~ "Click the Test button to open a text area where to type keys on your \\ "
+#~ "keyboard."
+#~ msgstr ""
+#~ "Alklaku la butonon \"Testi\" por malfermi tekstokampon por povi elprovi \\ "
+#~ "la klavojn de via klavaro."
+
+#~ msgid "Insert a DVD.  Then click Test to play the DVD in Totem."
+#~ msgstr "Enmetu DVD-n. Poste alklaku \"Testi\" por ludi la DVD-n en Totem."
+
+#~ msgid ""
+#~ "Built-in modem network connection procedure: 1.- Connect the telephone line "
+#~ "to the computer 2.- Right click on the Network Manager applet 3.- Select "
+#~ "'Edit Connections' 4.- Select the 'DSL' tab 5.- Click on add 'Add' button 6.-"
+#~ " Configure the connection parameters properly 7.- Notify OSD should confirm "
+#~ "that the connection has been established 8.- Select Test to verify that it's "
+#~ "possible to establish both http \\ and ftp connections"
+#~ msgstr ""
+#~ "Proceduro por konekto al ena modemo: 1.- Konektu la telefonlinion al la "
+#~ "komputilo 2.- Dekstre alklaku la apleton \"Retadministrilo\" 3.- Elektu "
+#~ "\"Modifi konektojn\" 4.- Elektu la \"DSL\"-langeton 5.- Alklaku la butonon "
+#~ "\"Aldoni\" 6.- Bone agordu la konektajn parametrojn 7.- La sistemo nun "
+#~ "montru ke la konekto sukcesis 8.- Elektu \"Testi\" por elprovi kaj http- \\ "
+#~ "kaj ftp-konektojn"
+
+#~ msgid "Check that hardware is able to run compiz."
+#~ msgstr "Kontrolu ĉu la aparataro povas ruli compiz."
+
+#~ msgid "Click Test to cycle through the detected video modes for your system."
+#~ msgstr ""
+#~ "Alklaku \"Testi\" por cikli tra la detektitaj videoreĝimoj por via sistemo."
+
+#~ msgid ""
+#~ "Please repeat the test for each kind of video output supported (VGA, DVI, "
+#~ "DisplayPort and HDMI)."
+#~ msgstr ""
+#~ "Bonvolu retesti por ĉia subtenata video-eligo (VGA, DVI, DisplayPort kaj "
+#~ "HDMI)."
 
 #~ msgid "Click the Test button to display a video test."
-#~ msgstr "テストボタンを押してビデオテストを表示してください。"
+#~ msgstr "Alklaku la butonon \"Testi\" por montri videoteston."
+
+#~ msgid ""
+#~ "Plug video output to an external monitor. Is the image displayed correctly?"
+#~ msgstr "Alligu eksteran ekranon. Ĉu la bildo estas ĝuste montrita?"
+
+#~ msgid ""
+#~ "For HDMI, please also check that sound is played in the monitor speakers."
+#~ msgstr ""
+#~ "Kontrolu por HDMI ĉu ankaŭ la sono estas ludata per la ekranaj laŭtparoliloj."
+
+#~ msgid "Running shell tests..."
+#~ msgstr "Rulanta ŝeltestojn..."

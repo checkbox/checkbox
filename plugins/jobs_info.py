@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-import re
+import os, sys, re
 import gettext
 import logging
 
@@ -78,8 +78,11 @@ class JobsInfo(Plugin):
             try:
                 file = open(filename)
             except IOError, e:
-                logging.info("Failed to open file '%s': %s",
-                    filename, e.strerror)
+                error_message=(gettext.gettext("Failed to open file '%s': %s") % 
+                        (filename,e.strerror))
+                logging.critical(error_message)
+                sys.stderr.write("%s\n" % error_message)
+                sys.exit(os.EX_NOINPUT)
             else:
                 strings.extend([l.strip() for l in file.readlines()])
 

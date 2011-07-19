@@ -85,6 +85,14 @@ requires:
 _description: Check all the CPUs are online before suspending
 command: cpuinfo_resource > $CHECKBOX_DATA/cpuinfo_before_suspend
 
+plugin: shell
+name: power-management/memory_before_suspend
+requires:
+ package.name == 'linux'
+_description:
+ Dumps memory info to a file for comparison after suspend test has been run
+command: meminfo_resource > $CHECKBOX_DATA/meminfo_before_suspend
+
 plugin: manual
 name: power-management/wireless_before_suspend
 command: internet_test
@@ -137,7 +145,7 @@ _description:
 
 plugin: manual
 name: power-management/suspend_advanced
-depends: power-management/rtc power-management/network_before_suspend power-management/resolution_before_suspend power-management/wireless_before_suspend power-management/bluetooth_detect_before_suspend power-management/bluetooth_mouse_before_suspend power-management/cpu_before_suspend
+depends: power-management/rtc power-management/network_before_suspend power-management/resolution_before_suspend power-management/wireless_before_suspend power-management/bluetooth_detect_before_suspend power-management/bluetooth_mouse_before_suspend power-management/cpu_before_suspend power-management/memory_before_suspend
 requires: package.name == 'pm-utils'
 _description:
  Power management Suspend and Resume test
@@ -174,6 +182,27 @@ requires:
 depends: power-management/suspend_advanced power-management/cpu_before_suspend
 _description: Check all CPUs are online after resuming.
 command: cpuinfo_resource | diff $CHECKBOX_DATA/cpuinfo_before_suspend -
+
+plugin: shell
+name: power-management/memory_after_suspend
+requires:
+ package.name == 'linux'
+depends: power-management/suspend_advanced power-management/memory_before_suspend
+_description:
+ Check that all memory is available after resuming from suspend.
+command: meminfo_resource | diff $CHECKBOX_DATA/meminfo_before_suspend -
+
+
+plugin: manual
+name: power-management/display_after_suspend
+requires:
+ package.name == 'linux'
+depends: power-management/suspend_advanced
+_description:
+ Does the display work normally after resuming from suspend?
+
+
+
 
 plugin: manual
 name: power-management/wireless_after_suspend
