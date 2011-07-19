@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-07-07 12:32-0400\n"
-"PO-Revision-Date: 2009-12-07 08:15+0000\n"
-"Last-Translator: Muszela Balázs <Unknown>\n"
+"PO-Revision-Date: 2011-07-18 13:51+0000\n"
+"Last-Translator: Richard Somlói <ricsipontaz@gmail.com>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-07-16 04:31+0000\n"
+"X-Launchpad-Export-Date: 2011-07-19 04:30+0000\n"
 "X-Generator: Launchpad (build 13405)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:2
@@ -33,54 +33,9 @@ msgstr "_Előző"
 msgid "_Skip this test"
 msgstr "Ezen te_szt kihagyása"
 
-#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:522
-msgid "_Test"
-msgstr "_Teszt"
-
 #: ../gtk/checkbox-gtk.ui.h:10
 msgid "_Yes"
 msgstr "_Igen"
-
-#. description
-#: ../jobs/audio.txt.in:7 ../jobs/disk.txt.in:4 ../jobs/graphics.txt.in:126
-#: ../jobs/memory.txt.in:4 ../jobs/networking.txt.in:16
-#: ../jobs/optical.txt.in:8 ../jobs/power-management.txt.in:167
-#: ../jobs/usb.txt.in:5
-msgid "$output"
-msgstr "$output"
-
-#. description
-#: ../jobs/audio.txt.in:7 ../jobs/bluetooth.txt.in:5 ../jobs/disk.txt.in:4
-#: ../jobs/graphics.txt.in:126 ../jobs/memory.txt.in:4
-#: ../jobs/networking.txt.in:16 ../jobs/optical.txt.in:8
-#: ../jobs/power-management.txt.in:185 ../jobs/usb.txt.in:5
-msgid "Is this correct?"
-msgstr "Helyes ez az információ?"
-
-#. description
-#: ../jobs/input.txt.in:4
-msgid "Moving the mouse should move the cursor on the screen."
-msgstr "Az egér mozgatásának mozgatnia kell az egérkurzort a képernyőn."
-
-#. description
-#: ../jobs/input.txt.in:4
-msgid "Is your mouse working properly?"
-msgstr "Megfelelően működik az egere?"
-
-#. description
-#: ../jobs/input.txt.in:13
-msgid "Is your keyboard working properly?"
-msgstr "Megfelelően működik a billentyűzete?"
-
-#. description
-#: ../jobs/networking.txt.in:5
-msgid "Detecting your network controller(s):"
-msgstr "Hálózati vezérlők felismerése:"
-
-#. description
-#: ../jobs/networking.txt.in:16
-msgid "Testing your connection to the Internet:"
-msgstr "Az internetkapcsolat tesztelése:"
 
 #: ../checkbox/application.py:70
 msgid "Print version information and exit."
@@ -113,10 +68,6 @@ msgstr "nem"
 msgid "skip"
 msgstr "kihagyás"
 
-#: ../checkbox_cli/cli_interface.py:126
-msgid "Press any key to continue..."
-msgstr "A folytatáshoz nyomjon le egy billentyűt..."
-
 #: ../checkbox_cli/cli_interface.py:135
 #, python-format
 msgid "Please choose (%s): "
@@ -134,10 +85,6 @@ msgstr "_Teszt megismétlése"
 msgid "_Finish"
 msgstr "Be_fejezés"
 
-#: ../plugins/gather_prompt.py:35
-msgid "Gathering information from your system..."
-msgstr "Információk összegyűjtése a rendszerről..."
-
 #: ../plugins/launchpad_exchange.py:150
 msgid ""
 "Failed to upload to server,\n"
@@ -153,14 +100,6 @@ msgstr "Az információk nem kerültek elküldésre a Launchpad oldalára."
 #: ../plugins/launchpad_prompt.py:92
 msgid "Email address must be in a proper format."
 msgstr "Az e-mail címet megfelelő formában kell megadni."
-
-#: ../plugins/launchpad_prompt.py:98
-msgid "Exchanging information with the server..."
-msgstr "Információcsere a kiszolgálóval..."
-
-#: ../plugins/report_prompt.py:34
-msgid "Building report..."
-msgstr "Jelentés készítése..."
 
 #~ msgid "<b>Comment:</b>"
 #~ msgstr "<b>Megjegyzés:</b>"
@@ -260,11 +199,15 @@ msgstr "Rendszerteszt"
 
 #: ../gtk/checkbox-gtk.ui.h:4
 msgid "_Deselect All"
-msgstr ""
+msgstr "Se_melyik"
 
 #: ../gtk/checkbox-gtk.ui.h:7
 msgid "_Select All"
-msgstr ""
+msgstr "Ö_sszes"
+
+#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:522
+msgid "_Test"
+msgstr "_Teszt"
 
 #: ../gtk/checkbox-gtk.desktop.in.h:2
 msgid "Test and report system information"
@@ -273,12 +216,28 @@ msgstr "Rendszerinformációk tesztelése és jelentése"
 #. description
 #: ../jobs/apport.txt.in:5
 msgid "Test that the /var/crash directory doesn't contain anything."
-msgstr ""
+msgstr "Teszt, hogy a  /var/crash mappa tartalmaz-e valamit."
 
 #. description
 #: ../jobs/audio.txt.in:7
 msgid "Detecting your sound device(s):"
-msgstr "Hangeszközök felismerése"
+msgstr "Hangeszközök felismerése:"
+
+#. description
+#: ../jobs/audio.txt.in:7 ../jobs/disk.txt.in:4 ../jobs/graphics.txt.in:126
+#: ../jobs/memory.txt.in:4 ../jobs/networking.txt.in:16
+#: ../jobs/optical.txt.in:8 ../jobs/power-management.txt.in:167
+#: ../jobs/usb.txt.in:5
+msgid "$output"
+msgstr "$output"
+
+#. description
+#: ../jobs/audio.txt.in:7 ../jobs/bluetooth.txt.in:5 ../jobs/disk.txt.in:4
+#: ../jobs/graphics.txt.in:126 ../jobs/memory.txt.in:4
+#: ../jobs/networking.txt.in:16 ../jobs/optical.txt.in:8
+#: ../jobs/power-management.txt.in:185 ../jobs/usb.txt.in:5
+msgid "Is this correct?"
+msgstr "Helyes ez az információ?"
 
 #. description
 #: ../jobs/audio.txt.in:21
@@ -292,7 +251,7 @@ msgstr ""
 #. description
 #: ../jobs/audio.txt.in:33
 msgid "Please connect a pair of headphones to your audio device."
-msgstr ""
+msgstr "Csatlakoztasson egy fejhallgatót a hangeszközhöz."
 
 #. description
 #: ../jobs/audio.txt.in:33
@@ -319,8 +278,8 @@ msgid ""
 "will be played back to you."
 msgstr ""
 "Húzzon ki minden csatlakoztatott mikrofont. Nyomja meg a Teszt gombot, majd "
-"beszéljen bele az integrált mikrofonba. Pár másodperc múlva visszajátsszuk "
-"Önnek a felvételt."
+"beszéljen bele az integrált mikrofonba. Pár másodperc múlva vissza lesz "
+"játszva a felvétel."
 
 #. description
 #: ../jobs/audio.txt.in:59
@@ -329,7 +288,7 @@ msgid ""
 "the microphone.  After a few seconds, your speech will be played back to you."
 msgstr ""
 "Csatlakoztassa a mikrofont a megfelelő helyre. Nyomja meg a Teszt gombot, "
-"majd beszéljen bele. Pár másodperc múlva visszajátsszuk Önnek a felvételt."
+"majd beszéljen bele. Pár másodperc múlva vissza lesz játszva a felvétel."
 
 #. description
 #: ../jobs/audio.txt.in:70
@@ -346,7 +305,7 @@ msgstr ""
 "majd válassza ki a „Hangbeállításokat”. A „Bemenet” fülön válassza ki az USB "
 "eszközt, majd ugyanezt tegye meg a „Kimenet” fülön is. Amikor ez kész, "
 "nyomja meg a Teszt gombot és beszéljen bele a mikrofonba. Pár másodperc után "
-"visszajátsszuk Önnek a felvételt."
+"vissza lesz játszva a felvétel."
 
 #. description
 #: ../jobs/audio.txt.in:70 ../jobs/power-management.txt.in:221
@@ -364,12 +323,12 @@ msgstr ""
 #. description
 #: ../jobs/autotest.txt.in:3
 msgid "Autotest suite (destructive)"
-msgstr ""
+msgstr "Automatikus tesztcsomag (destruktív)"
 
 #. description
 #: ../jobs/bluetooth.txt.in:5 ../jobs/power-management.txt.in:185
 msgid "The address of your Bluetooth device is: $output"
-msgstr ""
+msgstr "Az ön Bluetooth eszközének címe: $output"
 
 #. description
 #: ../jobs/bluetooth.txt.in:15 ../jobs/graphics.txt.in:15
@@ -425,12 +384,18 @@ msgid ""
 "the device in the list and select it 5.- Move the mouse around the screen 6.-"
 " Perform some single/double/right click operations"
 msgstr ""
+"Egy bluetoothot használó egér működésének ellenőrzési lépései: 1.– "
+"Engedélyezze a bluetoothot használó egeret 2.– A menüsoron kattintson a "
+"bluetooth ikonra 3.– Válassza az új eszköz beállítása lehetőséget 4.– "
+"Ellenőrizze, hogy az új eszköz megjelent-e a listában, majd válassza ki. 5.– "
+"Mozgassa az egérmutatót a képernyőn 6.– Hajtson végre néhány egy vagy dupla "
+"kattintást, valamint néhány jobb kattintást a jobb egérgombbal"
 
 #. description
 #: ../jobs/bluetooth.txt.in:82 ../jobs/optical.txt.in:72
 #: ../jobs/power-management.txt.in:194 ../jobs/usb.txt.in:27
 msgid "Did all the steps work?"
-msgstr ""
+msgstr "Minden lépést végre lehetett hajtani?"
 
 #. description
 #: ../jobs/camera.txt.in:7
@@ -472,12 +437,13 @@ msgstr ""
 #. description
 #: ../jobs/codecs.txt.in:7
 msgid "Select Test to play an Ogg Vorbis file (.ogg)"
-msgstr ""
+msgstr "Kattintson a Teszt gombra egy Ogg Vorbis fájl (.ogg) lejátszásához"
 
 #. description
 #: ../jobs/codecs.txt.in:20
 msgid "Select Test to play a Wave Audio format file (.wav)"
 msgstr ""
+"Kattintson a Teszt gombra egy Wave Audio formátumú fájl (.wav) lejátszásához"
 
 #. description
 #: ../jobs/codecs.txt.in:20
@@ -598,7 +564,7 @@ msgstr ""
 #. description
 #: ../jobs/disk.txt.in:4
 msgid "The following hard drives were detected:"
-msgstr ""
+msgstr "A következő merevlemezek találhatók:"
 
 #. description
 #: ../jobs/disk.txt.in:14
@@ -608,7 +574,7 @@ msgstr ""
 #. description
 #: ../jobs/disk.txt.in:36
 msgid "SMART test"
-msgstr ""
+msgstr "SMART tesztek"
 
 #. description
 #: ../jobs/disk.txt.in:51
@@ -665,6 +631,9 @@ msgid ""
 "which test cases are run and a personal account that the tester uses to "
 "verify the fingerprint reader"
 msgstr ""
+"Előfeltételek: A teszt feltételezi egy tesztelési fiók jelenlétét, amelyben "
+"a tesztesetek futnak, valamint egy személyes fiókra, amelyet a tesztelő az "
+"ujjlenyomat-olvasó működésének ellenőrzésére használ."
 
 #. description
 #: ../jobs/fingerprint.txt.in:3
@@ -716,17 +685,17 @@ msgstr "A másolási műveletek megfelelően működtek?"
 #. description
 #: ../jobs/floppy.txt.in:4
 msgid "Floppy test"
-msgstr ""
+msgstr "Floppy teszt"
 
 #. description
 #: ../jobs/gcalctool.txt.in:5
 msgid "Click the \"Test\" button to open the calculator."
-msgstr ""
+msgstr "Kattintson a „Teszt” gombra a számológép megnyitásához."
 
 #. description
 #: ../jobs/gcalctool.txt.in:5
 msgid "Did it launch correctly?"
-msgstr ""
+msgstr "Elindult megfelelően?"
 
 #. description
 #: ../jobs/gcalctool.txt.in:15
@@ -744,21 +713,22 @@ msgstr ""
 #: ../jobs/gcalctool.txt.in:45
 msgid "Click the \"Test\" button to open the calculator and perform:"
 msgstr ""
+"Kattintson a „Teszt” gombra a számológép megnyitásához és hajtsa végre:"
 
 #. description
 #: ../jobs/gcalctool.txt.in:45
 msgid "1. Cut 2. Copy 3. Paste"
-msgstr ""
+msgstr "1. Kivágás 2. Másolás 3. Beillesztés"
 
 #. description
 #: ../jobs/gcalctool.txt.in:45
 msgid "Did the functions perform as expected?"
-msgstr ""
+msgstr "A funkcióknak az elvárásnak megfelelően működtek?"
 
 #. description
 #: ../jobs/gedit.txt.in:5
 msgid "Click the \"Test\" button to open gedit."
-msgstr ""
+msgstr "Kattintson a „Teszt” gombra a gedit megnyitásához."
 
 #. description
 #: ../jobs/gedit.txt.in:5
@@ -766,6 +736,8 @@ msgid ""
 "Enter some text and save the file (make a note of the file name you use), "
 "then close gedit."
 msgstr ""
+"Írjon bele tetszőleges szöveget, majd mentse a fájlt (jegyezze meg a nevét) "
+"és zárja be a geditet."
 
 #. description
 #: ../jobs/gedit.txt.in:17
@@ -773,21 +745,23 @@ msgid ""
 "Click the \"Test\" button to open gedit, and re-open the file you created "
 "previously."
 msgstr ""
+"Kattintson a „Teszt” gombra a gedit megnyitásához, majd nyissa meg újra az "
+"előzőleg mentett fájlt."
 
 #. description
 #: ../jobs/gedit.txt.in:17
 msgid "Edit then save the file, then close gedit."
-msgstr ""
+msgstr "Szerkessze és mentse el a fájlt, majd zárja be a geditet."
 
 #. description
 #: ../jobs/gedit.txt.in:17 ../jobs/gnome-terminal.txt.in:5
 msgid "Did this perform as expected?"
-msgstr ""
+msgstr "Minden megfelelően működött?"
 
 #. description
 #: ../jobs/gnome-terminal.txt.in:5
 msgid "Click the \"Test\" button to open Terminal."
-msgstr ""
+msgstr "Kattintson a „Teszt” gombra a terminál megnyitásához."
 
 #. description
 #: ../jobs/gnome-terminal.txt.in:5
@@ -795,17 +769,20 @@ msgid ""
 "Type 'ls' and press enter. You should see a list of files and folder in your "
 "home directory."
 msgstr ""
+"Adja ki az „ls” parancsot. A saját mappájában elhelyezkedő fájlokról és "
+"mappákról kell egy listát látnia."
 
 #. description
 #: ../jobs/gnome-terminal.txt.in:5
 msgid "Close the terminal window."
-msgstr ""
+msgstr "Zárja be a terminált."
 
 #. description
 #: ../jobs/graphics.txt.in:5
 msgid ""
 "2d graphics appears to be working, your running X.Org version is: $output"
 msgstr ""
+"Úgy tűnik a 2D grafika megfelelően működik, a futtatott X.Org verzió: $output"
 
 #. description
 #: ../jobs/graphics.txt.in:23
@@ -831,7 +808,7 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:31
 msgid "Did the resolution change as expected?"
-msgstr ""
+msgstr "A felbontásváltás megfelelően működött?"
 
 #. description
 #: ../jobs/graphics.txt.in:46
@@ -847,12 +824,12 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:46
 msgid "Did the display rotation change as expected?"
-msgstr ""
+msgstr "A kijelző forgatása megfelelően működött?"
 
 #. description
 #: ../jobs/graphics.txt.in:62 ../jobs/sru_suite.txt.in:151
 msgid "Test that the X process is running."
-msgstr ""
+msgstr "Az X folyamat futásának tesztelése."
 
 #. description
 #: ../jobs/graphics.txt.in:68 ../jobs/sru_suite.txt.in:157
@@ -863,6 +840,7 @@ msgstr ""
 #: ../jobs/graphics.txt.in:75
 msgid "Test that X does not leak memory when running programs."
 msgstr ""
+"Teszt, hogy nincs-e memória szivárgás az X-ben futó programok esetén."
 
 #. description
 #: ../jobs/graphics.txt.in:82
@@ -880,6 +858,8 @@ msgid ""
 "Ensure the current resolution meets or exceeds the recommended minimum "
 "resolution (1024 x 768). See here for details:"
 msgstr ""
+"Bizonyosodjon meg róla, hogy a felbontása eléri vagy meghaladja az ajánlott "
+"minimumot (1024 x 768). További részletek:"
 
 #. description
 #: ../jobs/graphics.txt.in:107
@@ -887,11 +867,13 @@ msgid ""
 "Ensure the current resolution meets or exceeds the recommended minimum "
 "resolution (1024 x 600). See here for details:"
 msgstr ""
+"Bizonyosodjon meg róla, hogy a felbontása eléri vagy meghaladja az ajánlott "
+"minimumot (1024 x 768). További részletek:"
 
 #. description
 #: ../jobs/graphics.txt.in:107
 msgid "https://help.ubuntu.com/community/Installation/SystemRequirements"
-msgstr ""
+msgstr "https://help.ubuntu.com/community/Installation/SystemRequirements"
 
 #. description
 #: ../jobs/graphics.txt.in:117
@@ -913,8 +895,7 @@ msgstr "A következő képernyők és videomódok találhatók a rendszerén:"
 #: ../jobs/graphics.txt.in:138
 msgid ""
 "Select Test to cycle through the detected video modes for your system."
-msgstr ""
-"Kattintson a Tesztelés gombra az észlelt videomódok végigpróbálásához."
+msgstr "Kattintson a Teszt gombra az észlelt videomódok végigpróbálásához."
 
 #. description
 #: ../jobs/graphics.txt.in:138
@@ -924,7 +905,7 @@ msgstr "A képernyő látszólag jól működött minden módban?"
 #. description
 #: ../jobs/graphics.txt.in:146
 msgid "Check that the hardware is able to run compiz."
-msgstr ""
+msgstr "Annak ellenőrzése, hogy a hardveren használható-e a Compiz"
 
 #. description
 #: ../jobs/graphics.txt.in:153
@@ -932,18 +913,18 @@ msgid ""
 "Select Test to execute glxgears to ensure that minimal 3d graphics support "
 "is in place."
 msgstr ""
-"Kattintson a Tesztelés gombra, hogy a glxgears elindításával "
-"megbizonyosodhasson arról rendelkezik-e minimális 3d grafikai támogatással."
+"Kattintson a Teszt gombra, hogy a glxgears elindításával megbizonyosodhasson "
+"arról rendelkezik-e minimális 3d grafikai támogatással."
 
 #. description
 #: ../jobs/graphics.txt.in:153
 msgid "Did the 3d animation appear?"
-msgstr ""
+msgstr "Megjelent a 3D animáció?"
 
 #. description
 #: ../jobs/info.txt.in:60 ../jobs/screenshot.txt.in:7
 msgid "Captures a screenshot."
-msgstr ""
+msgstr "Képernyőkép készítése."
 
 #. description
 #: ../jobs/info.txt.in:71 ../jobs/sru_suite.txt.in:167
@@ -953,7 +934,17 @@ msgstr ""
 #. description
 #: ../jobs/info.txt.in:82
 msgid "Bootchart information."
-msgstr ""
+msgstr "Bootchart információk."
+
+#. description
+#: ../jobs/input.txt.in:4
+msgid "Moving the mouse should move the cursor on the screen."
+msgstr "Az egér mozgatásának mozgatnia kell az egérkurzort a képernyőn."
+
+#. description
+#: ../jobs/input.txt.in:4
+msgid "Is your mouse working properly?"
+msgstr "Megfelelően működik az egere?"
 
 #. description
 #: ../jobs/input.txt.in:13
@@ -961,11 +952,18 @@ msgid "Select Test to open a text area where to type keys on your keyboard."
 msgstr "Nyomja meg a Teszt gombot a szövegbeviteli mező megnyitásához."
 
 #. description
+#: ../jobs/input.txt.in:13
+msgid "Is your keyboard working properly?"
+msgstr "Megfelelően működik a billentyűzete?"
+
+#. description
 #: ../jobs/install.txt.in:6
 msgid ""
 "Tests to see that apt can access repositories and get updates (does not "
 "install updates)"
 msgstr ""
+"Teszt, hogy az apt hozzáfér-e a tárolókhoz és frissítésekhez (nem telepíti "
+"azokat)"
 
 #. description
 #: ../jobs/keys.txt.in:4
@@ -973,6 +971,8 @@ msgid ""
 "Press the brightness buttons on the keyboard. A status window should \\ "
 "appear and the brightness should change."
 msgstr ""
+"Nyomja meg a fényerő gombot a billentyűzeten. Egy státuszablak fog \\ "
+"megjelenni és a fényerőnek is változnia kell."
 
 #. description
 #: ../jobs/keys.txt.in:12
@@ -980,11 +980,13 @@ msgid ""
 "Press the volume buttons on the keyboard. A status window should \\ appear "
 "and the volume should change."
 msgstr ""
+"Nyomja meg a hangerő gombot a billentyűzeten. Egy státuszablak fog \\ "
+"megjelenni és a hangerőnek is változnia kell."
 
 #. description
 #: ../jobs/keys.txt.in:12
 msgid "Do the buttons work?"
-msgstr ""
+msgstr "Működtek a gombok?"
 
 #. description
 #: ../jobs/keys.txt.in:21
@@ -992,6 +994,9 @@ msgid ""
 "Press the mute key on the keyboard. A status window should appear \\ and the "
 "volume should mute/unmute when pressed multiple times."
 msgstr ""
+"Nyomja meg a némítás gombot a billentyűzeten. Egy státuszablak fog \\ "
+"megjelenni és a hangerőnek el kell némulnia, illetve visszahangosodnia több "
+"megnyomás esetén."
 
 #. description
 #: ../jobs/keys.txt.in:30
@@ -1025,7 +1030,7 @@ msgstr ""
 #. description
 #: ../jobs/keys.txt.in:48
 msgid "Does the key work?"
-msgstr ""
+msgstr "Működött a gomb?"
 
 #. description
 #: ../jobs/keys.txt.in:62
@@ -1046,7 +1051,7 @@ msgstr ""
 #. description
 #: ../jobs/keys.txt.in:62
 msgid "Do the keys work as expected?"
-msgstr ""
+msgstr "A gombok megfelelően működtek?"
 
 #. description
 #: ../jobs/local.txt.in:3
@@ -1056,7 +1061,7 @@ msgstr "Hangtesztek"
 #. description
 #: ../jobs/local.txt.in:8
 msgid "Bluetooth tests"
-msgstr ""
+msgstr "Bluetooth tesztek"
 
 #. description
 #: ../jobs/local.txt.in:13
@@ -1066,17 +1071,17 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:18
 msgid "Codec tests"
-msgstr ""
+msgstr "Kodek tesztek"
 
 #. description
 #: ../jobs/local.txt.in:23
 msgid "CPU tests"
-msgstr ""
+msgstr "Processzor tesztek"
 
 #. description
 #: ../jobs/local.txt.in:28
 msgid "System Daemon tests"
-msgstr ""
+msgstr "Rendszer daemon tesztek"
 
 #. description
 #: ../jobs/local.txt.in:33
@@ -1096,12 +1101,12 @@ msgstr "Firewire lemeztesztek"
 #. description
 #: ../jobs/local.txt.in:48
 msgid "Floppy disk tests"
-msgstr ""
+msgstr "Floppylemez tesztek"
 
 #. description
 #: ../jobs/local.txt.in:53
 msgid "Graphics tests"
-msgstr ""
+msgstr "Grafikus tesztek"
 
 #. description
 #: ../jobs/local.txt.in:58
@@ -1111,42 +1116,42 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:63
 msgid "Input Devices tests"
-msgstr ""
+msgstr "Bemeneti eszköz tesztek"
 
 #. description
 #: ../jobs/local.txt.in:68
 msgid "Software Installation tests"
-msgstr ""
+msgstr "Alkalmazás telepítés tesztek"
 
 #. description
 #: ../jobs/local.txt.in:73
 msgid "Hotkey tests"
-msgstr ""
+msgstr "Gyorsbillentyű tesztek"
 
 #. description
 #: ../jobs/local.txt.in:78
 msgid "Media Card tests"
-msgstr ""
+msgstr "Médiakártya tesztek"
 
 #. description
 #: ../jobs/local.txt.in:83
 msgid "Miscellaneous tests"
-msgstr ""
+msgstr "Egyéb tesztek"
 
 #. description
 #: ../jobs/local.txt.in:88
 msgid "Monitor tests"
-msgstr ""
+msgstr "Monitortesztek"
 
 #. description
 #: ../jobs/local.txt.in:93
 msgid "Networking tests"
-msgstr ""
+msgstr "Hálózati tesztek"
 
 #. description
 #: ../jobs/local.txt.in:98
 msgid "PCMCIA/PCIX Card tests"
-msgstr ""
+msgstr "PCMCIA/PCIX kártya tesztek"
 
 #. description
 #: ../jobs/local.txt.in:103
@@ -1156,32 +1161,32 @@ msgstr "Perifériatesztek"
 #. description
 #: ../jobs/local.txt.in:108
 msgid "Power Management tests"
-msgstr ""
+msgstr "Energiagazdálkodás tesztek"
 
 #. description
 #: ../jobs/local.txt.in:113
 msgid "Unity tests"
-msgstr ""
+msgstr "Unity tesztek"
 
 #. description
 #: ../jobs/local.txt.in:118
 msgid "User Applications"
-msgstr ""
+msgstr "Felhasználói alkalmazások"
 
 #. description
 #: ../jobs/local.txt.in:123
 msgid "Stress tests"
-msgstr ""
+msgstr "Terhelés tesztek"
 
 #. description
 #: ../jobs/ltp.txt.in:3
 msgid "Linux Test Project"
-msgstr ""
+msgstr "Linux tesztelési projekt"
 
 #. description
 #: ../jobs/mago.txt.in:3
 msgid "Automated desktop testing"
-msgstr ""
+msgstr "Automatikus asztali tesztelés"
 
 #. description
 #: ../jobs/mediacard.txt.in:3
@@ -1403,17 +1408,17 @@ msgstr ""
 #. description
 #: ../jobs/mediacard.txt.in:130
 msgid "Does the icon automatically appear/disappear?"
-msgstr ""
+msgstr "Az ikon automatikusan megjelent és eltűnt?"
 
 #. description
 #: ../jobs/memory.txt.in:4
 msgid "The following amount of memory was detected:"
-msgstr ""
+msgstr "A következő mennyiségű memória lett érzékelve:"
 
 #. description
 #: ../jobs/memory.txt.in:16
 msgid "Test and exercise memory."
-msgstr ""
+msgstr "Memória tesztelés"
 
 #. description
 #: ../jobs/miscellanea.txt.in:8
@@ -1458,7 +1463,7 @@ msgstr ""
 #. description
 #: ../jobs/monitor.txt.in:3
 msgid "If your system does not have a VGA port, please skip this test."
-msgstr ""
+msgstr "Ha számítógépének nincs VGA csatlakozója, hagyja ki ezt a tesztet."
 
 #. description
 #: ../jobs/monitor.txt.in:3
@@ -1466,11 +1471,13 @@ msgid ""
 "Connect a display (if not already connected) to the VGA port on your system. "
 "Is the image displayed correctly?"
 msgstr ""
+"Csatlakoztasson egy kijelzőt (ha még nincs csatlakoztatva) a számítógépe VGA "
+"csatlakozójához. A kép megfelelően jelenik meg?"
 
 #. description
 #: ../jobs/monitor.txt.in:10
 msgid "If your system does not have a DVI port, please skip this test."
-msgstr ""
+msgstr "Ha számítógépének nincs DVI csatlakozója, hagyja ki ezt a tesztet."
 
 #. description
 #: ../jobs/monitor.txt.in:10
@@ -1478,11 +1485,14 @@ msgid ""
 "Connect a display (if not already connected) to the DVI port on your system. "
 "Is the image displayed correctly?"
 msgstr ""
+"Csatlakoztasson egy kijelzőt (ha még nincs csatlakoztatva) a számítógépe DVI "
+"csatlakozójához. A kép megfelelően jelenik meg?"
 
 #. description
 #: ../jobs/monitor.txt.in:17
 msgid "If your system does not have DisplayPort, please skip this test."
 msgstr ""
+"Ha számítógépének nincs DisplayPort csatlakozója, hagyja ki ezt a tesztet."
 
 #. description
 #: ../jobs/monitor.txt.in:17
@@ -1490,11 +1500,13 @@ msgid ""
 "Connect a display (if not already connected) to the DisplayPort on your "
 "system. Is the image displayed correctly?"
 msgstr ""
+"Csatlakoztasson egy kijelzőt (ha még nincs csatlakoztatva) a számítógépe "
+"DisplayPort csatlakozójához. A kép megfelelően jelenik meg?"
 
 #. description
 #: ../jobs/monitor.txt.in:24
 msgid "If your system does not have a HDMI port, please skip this test."
-msgstr ""
+msgstr "Ha számítógépének nincs HDMI csatlakozója, hagyja ki ezt a tesztet."
 
 #. description
 #: ../jobs/monitor.txt.in:24
@@ -1502,11 +1514,14 @@ msgid ""
 "Connect a display (if not already connected) to the HDMI port on your "
 "system. Is the image displayed correctly?"
 msgstr ""
+"Csatlakoztasson egy kijelzőt (ha még nincs csatlakoztatva) a számítógépe "
+"HDMI csatlakozójához. A kép megfelelően jelenik meg?"
 
 #. description
 #: ../jobs/monitor.txt.in:31
 msgid "If your system does not have a S-VIDEO port, please skip this test."
 msgstr ""
+"Ha számítógépének nincs S-VIDEO csatlakozója, hagyja ki ezt a tesztet."
 
 #. description
 #: ../jobs/monitor.txt.in:31
@@ -1514,11 +1529,13 @@ msgid ""
 "Connect a display (if not already connected) to the S-VIDEO port on your "
 "system. Is the image displayed correctly?"
 msgstr ""
+"Csatlakoztasson egy kijelzőt (ha még nincs csatlakoztatva) a számítógépe S-"
+"VIDEO csatlakozójához. A kép megfelelően jelenik meg?"
 
 #. description
 #: ../jobs/monitor.txt.in:38
 msgid "If your system does not have a RCA port, please skip this test."
-msgstr ""
+msgstr "Ha számítógépének nincs RCA csatlakozója, hagyja ki ezt a tesztet."
 
 #. description
 #: ../jobs/monitor.txt.in:38
@@ -1526,6 +1543,8 @@ msgid ""
 "Connect a display (if not already connected) to the RCA port on your system. "
 "Is the image displayed correctly?"
 msgstr ""
+"Csatlakoztasson egy kijelzőt (ha még nincs csatlakoztatva) a számítógépe RCA "
+"csatlakozójához. A kép megfelelően jelenik meg?"
 
 #. description
 #: ../jobs/monitor.txt.in:46
@@ -1539,17 +1558,27 @@ msgstr ""
 #. description
 #: ../jobs/monitor.txt.in:46
 msgid "Did the monitor go blank?"
-msgstr ""
+msgstr "A monitor elsötétült?"
+
+#. description
+#: ../jobs/networking.txt.in:5
+msgid "Detecting your network controller(s):"
+msgstr "Hálózati vezérlők felismerése:"
+
+#. description
+#: ../jobs/networking.txt.in:16
+msgid "Testing your connection to the Internet:"
+msgstr "Az internetkapcsolat tesztelése:"
 
 #. description
 #: ../jobs/networking.txt.in:26
 msgid "Network Information"
-msgstr ""
+msgstr "Hálózati információk"
 
 #. description
 #: ../jobs/networking.txt.in:46
 msgid "Wireless scanning test."
-msgstr ""
+msgstr "Vezeték nélküli keresés teszt."
 
 #. description
 #: ../jobs/networking.txt.in:52
@@ -1619,22 +1648,22 @@ msgstr ""
 #. description
 #: ../jobs/networking.txt.in:124
 msgid "Multiple network cards"
-msgstr ""
+msgstr "Több hálózati kártya"
 
 #. description
 #: ../jobs/networking.txt.in:144
 msgid "Test to measure the network bandwidth"
-msgstr ""
+msgstr "Teszt a hálózat sávszélességének méréséhez"
 
 #. description
 #: ../jobs/optical.txt.in:8
 msgid "The following optical drives were detected:"
-msgstr ""
+msgstr "A következő optikai lemezek lettek észlelve:"
 
 #. description
 #: ../jobs/optical.txt.in:18
 msgid "Optical Storage device read tests"
-msgstr ""
+msgstr "Optikai tárolóeszközök olvasásának tesztelése"
 
 #. description
 #: ../jobs/optical.txt.in:37
@@ -1665,7 +1694,7 @@ msgstr ""
 #. description
 #: ../jobs/optical.txt.in:63
 msgid "Does writing work?"
-msgstr ""
+msgstr "Az írás működött?"
 
 #. description
 #: ../jobs/optical.txt.in:72
@@ -1718,7 +1747,7 @@ msgstr ""
 #. description
 #: ../jobs/panel_reboot.txt.in:4
 msgid "Please restart your machine from the Ubuntu Panel."
-msgstr ""
+msgstr "Indítsa újra a számítógépét az Ubuntu panel segítségével."
 
 #. description
 #: ../jobs/panel_reboot.txt.in:4
@@ -1730,17 +1759,17 @@ msgstr ""
 #. description
 #: ../jobs/panel_reboot.txt.in:4
 msgid "Did it restart and bring up the GUI login cleanly?"
-msgstr ""
+msgstr "Újraindult és megjelent a bejelentkezési felület megfelelően?"
 
 #. description
 #: ../jobs/pcmcia-pcix.txt.in:3
 msgid "Plug a PCMCIA device into the computer."
-msgstr ""
+msgstr "Csatlakoztasson egy PCMCIA eszközt a számítógépéhez."
 
 #. description
 #: ../jobs/pcmcia-pcix.txt.in:3
 msgid "Is it detected?"
-msgstr ""
+msgstr "Észlelte a rendszer?"
 
 #. description
 #: ../jobs/peripheral.txt.in:3
@@ -1767,7 +1796,7 @@ msgstr ""
 #. description
 #: ../jobs/phoronix.txt.in:3
 msgid "Automated benchmark testing"
-msgstr ""
+msgstr "Automatizált sebességteszt"
 
 #. description
 #: ../jobs/power-management.txt.in:3
@@ -1837,17 +1866,17 @@ msgstr ""
 #. description
 #: ../jobs/power-management.txt.in:65
 msgid "Test the network before suspending."
-msgstr ""
+msgstr "Hálózati kapcsolat tesztelése a felfüggesztés előtt."
 
 #. description
 #: ../jobs/power-management.txt.in:70
 msgid "Record the current resolution before suspending."
-msgstr ""
+msgstr "Az aktuális felbontás rögzítése a felfüggesztés előtt."
 
 #. description
 #: ../jobs/power-management.txt.in:78
 msgid "Test the audio before suspending."
-msgstr ""
+msgstr "A hangrendszer tesztelése a felfüggesztés előtt."
 
 #. description
 #: ../jobs/power-management.txt.in:84
@@ -1869,7 +1898,7 @@ msgstr "Győződjön meg róla, hogy az RTC (Real-Time Clock) eszköz létezik."
 #. description
 #: ../jobs/power-management.txt.in:135
 msgid "Power management Suspend and Resume test"
-msgstr ""
+msgstr "Energiagazdálkodás – felfüggesztés és visszatérés teszt"
 
 #. description
 #: ../jobs/power-management.txt.in:135
@@ -1884,18 +1913,20 @@ msgstr ""
 #. description
 #: ../jobs/power-management.txt.in:145
 msgid "Test the network after resuming."
-msgstr ""
+msgstr "Hálózati kapcsolat tesztelése a visszatérés után."
 
 #. description
 #: ../jobs/power-management.txt.in:151
 msgid ""
 "Test to see that we have the same resolution after resuming as before."
 msgstr ""
+"Annak tesztelése, hogy a felbontás megegyezik-e a felfüggesztési és "
+"visszatérési teszt előttivel."
 
 #. description
 #: ../jobs/power-management.txt.in:160
 msgid "Test the audio after resuming."
-msgstr ""
+msgstr "Hangrendszer tesztelése a visszatérés után."
 
 #. description
 #: ../jobs/power-management.txt.in:167
@@ -1915,6 +1946,8 @@ msgid ""
 "Verify a bluetooth peripheral.  An example verification procedure for a "
 "bluetooth mouse is given."
 msgstr ""
+"Egy bluetooth eszköz ellenőrzése. Egy példa ellenőrzés bemutatja egy "
+"bluetoothos egér működésének ellenőrzési lépéseit."
 
 #. description
 #: ../jobs/power-management.txt.in:194
@@ -1944,6 +1977,10 @@ msgid ""
 "suspend and resume.  You can use either internal or external microphone and "
 "speakers."
 msgstr ""
+"Ez a teszt ellenőrizni fogja, hogy az ön számítógépében levő hangrendszer "
+"megfelelően működik-e a felfüggesztési és visszatérési teszt végrehajtása "
+"után. Ön ugyanúgy használhatja a külső és beépített mikrofonokat, valamint a "
+"hangszórókat."
 
 #. description
 #: ../jobs/power-management.txt.in:221
@@ -1974,6 +2011,8 @@ msgstr ""
 #: ../jobs/power-management.txt.in:234
 msgid "Did the system successfully suspend and resume for 30 iterations?"
 msgstr ""
+"A számítógépe harmincszor sikeresen felfüggesztési állapotba került, majd "
+"onnan visszatért?"
 
 #. description
 #: ../jobs/power-management.txt.in:245
@@ -1981,6 +2020,8 @@ msgid ""
 "This will check to make sure your system can successfully hibernate (if "
 "supported)."
 msgstr ""
+"Ez a teszt segít meggyőződni arról, hogy az Ön számítógépe sikeresen képes "
+"hibernálási állapotba kerülni, ha támogatott ez a funkció."
 
 #. description
 #: ../jobs/power-management.txt.in:245
@@ -2003,6 +2044,8 @@ msgid ""
 "Did the system successfully hibernate and did it work properly after waking "
 "up?"
 msgstr ""
+"A számítógépe sikeresen hibernálva lett? Minden megfelelően működik a "
+"visszatérés után?"
 
 #. description
 #: ../jobs/power-management.txt.in:258
@@ -2026,11 +2069,17 @@ msgid ""
 "set, and that grub is set to boot Ubuntu by default if you have a multi-boot "
 "set-up."
 msgstr ""
+"Önnek kell meggyőződnie arról, hogy a számítógépe nincs-e bekapcsolási vagy "
+"merevlemez jelszóval védve, valamint hogy a grubban az Ubuntu az "
+"alapértelmezetten elinduló operációs rendszer, ha Ön több operációs "
+"rendszert is használ."
 
 #. description
 #: ../jobs/power-management.txt.in:258
 msgid "Did the system successfully hibernate and wake 30 times?"
 msgstr ""
+"A számítógépe harmincszor sikeresen hibernálva lett, majd onnan vissza is "
+"tért?"
 
 #. description
 #: ../jobs/power-management.txt.in:267
@@ -2065,7 +2114,7 @@ msgstr ""
 #. description
 #: ../jobs/qa_regression.txt.in:3
 msgid "QA regression tests (destructive)"
-msgstr ""
+msgstr "QA regressziós tesztek (destruktív)"
 
 #. description
 #: ../jobs/server-services.txt.in:5
@@ -2313,6 +2362,11 @@ msgid ""
 "are found, install them. When Update Manager has finished, please close the "
 "app by clicking the Close button in the lower right corner."
 msgstr ""
+"Ez a teszt elindítja a Frissítéskezelőt, és ellenőrzi, hogy rendelkezésre "
+"állnak-e frissítések az operációs rendszerhez. Kövesse az utasításokat, ha "
+"vannak elérhető frissítések, telepítse őket. Ha a Frissítéskezelő végzett, "
+"zárja be a Frissítéskezelő alkalmazást a jobb alsó részén található Bezárás "
+"gombbal."
 
 #. description
 #: ../jobs/user_apps.txt.in:14
@@ -2328,7 +2382,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:14
 msgid "Do you now have a new folder called Test Folder?"
-msgstr ""
+msgstr "Létre jött egy olyan mappa, aminek Tesztmappa a neve?"
 
 #. description
 #: ../jobs/user_apps.txt.in:25
@@ -2347,11 +2401,14 @@ msgid ""
 "Right click on the folder called Test Folder(copy) and click Rename. Enter "
 "the name Test Data in the name box and hit Enter."
 msgstr ""
+"A jobb egérgombbal kattintson arra a mappára, melynek Tesztmappa(másolat) a "
+"neve, majd válassza az átnevezés lehetőséget. A név mezőbe írja be a Teszt "
+"Adat nevet, majd nyomja le az Enter billentyűt."
 
 #. description
 #: ../jobs/user_apps.txt.in:25
 msgid "Do you now have a folder called Test Data?"
-msgstr ""
+msgstr "Létrejött egy olyan mappa, aminek Teszt Adat a neve?"
 
 #. description
 #: ../jobs/user_apps.txt.in:38
@@ -2365,7 +2422,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:38
 msgid "Double click the folder called Test Folder to open it up."
-msgstr ""
+msgstr "A megnyitáshoz kattintson kétszer a Tesztmappa mappára."
 
 #. description
 #: ../jobs/user_apps.txt.in:38
@@ -2373,6 +2430,8 @@ msgid ""
 "Was the folder called Test Data successfully moved into the folder called "
 "Test Folder?"
 msgstr ""
+"Az előzőleg sikeresen létrehozott Teszt adat mappa sikeresen át lett "
+"helyezve a Tesztmappa mappába?"
 
 #. description
 #: ../jobs/user_apps.txt.in:51
@@ -2388,12 +2447,12 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:51
 msgid "Do you now have a file called Test File 1?"
-msgstr ""
+msgstr "Létrejött egy olyan fájl, aminek Teszt fájl 1 a neve?"
 
 #. description
 #: ../jobs/user_apps.txt.in:51
 msgid "Close the File browser."
-msgstr ""
+msgstr "Zárja be a fájlböngészőt."
 
 #. description
 #: ../jobs/user_apps.txt.in:62
@@ -2411,11 +2470,13 @@ msgid ""
 "Right click on the file called Test File 1(copy) and click Rename. Enter the "
 "name Test File 2 in the name box and hit Enter."
 msgstr ""
+"A jobb egérgombbal kattintson a Teszt fájl 1(másolat) nevű fájlra és "
+"válassza az átnevez lehetőséget. Az új név Teszt fájl 2 legyen."
 
 #. description
 #: ../jobs/user_apps.txt.in:62
 msgid "Do you now have a file called Test File 2?"
-msgstr ""
+msgstr "Létrejött egy olyan fájl, aminek Teszt fájl 2 a neve?"
 
 #. description
 #: ../jobs/user_apps.txt.in:75
@@ -2429,13 +2490,15 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:75
 msgid "Double click the icon for Test Data to open that folder up."
-msgstr ""
+msgstr "A megnyitáshoz kattintson kétszer a Teszt Adat mappára."
 
 #. description
 #: ../jobs/user_apps.txt.in:75
 msgid ""
 "Was the file Test File 2 successfully moved into the Test Data folder?"
 msgstr ""
+"Az előzőleg sikeresen létrehozott Teszt fájl 2 fájl sikeresen át lett "
+"helyezve a Teszt Adat mappába?"
 
 #. description
 #: ../jobs/user_apps.txt.in:88
@@ -2449,7 +2512,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:88
 msgid "Is Test File 1 now gone?"
-msgstr ""
+msgstr "Eltűnt a Teszt fájl 1 fájl?"
 
 #. description
 #: ../jobs/user_apps.txt.in:99
@@ -2463,17 +2526,17 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:99
 msgid "Has Test Folder been successfully deleted?"
-msgstr ""
+msgstr "A Teszt mappa sikeresen törlődött?"
 
 #. description
 #: ../jobs/user_apps.txt.in:99
 msgid "Close the File Browser."
-msgstr ""
+msgstr "Zárja be a fájlböngészőt."
 
 #. description
 #: ../jobs/user_apps.txt.in:160
 msgid "Common Document Types Test"
-msgstr ""
+msgstr "Általános dokumentumtípus teszt"
 
 #. description
 #: ../jobs/user_apps.txt.in:178
@@ -2485,7 +2548,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:178
 msgid "Did the Ubuntu Test page load correctly?"
-msgstr ""
+msgstr "Az Ubuntu teszt honlap helyesen betöltődött?"
 
 #. description
 #: ../jobs/user_apps.txt.in:188
@@ -2499,7 +2562,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:188
 msgid "Did the applet display?"
-msgstr ""
+msgstr "Az alkalmazás helyesen jelent meg?"
 
 #. description
 #: ../jobs/user_apps.txt.in:198
@@ -2511,7 +2574,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:198
 msgid "Did you see the text?"
-msgstr ""
+msgstr "Látta a szöveget?"
 
 #. description
 #: ../jobs/user_apps.txt.in:208
@@ -2523,7 +2586,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:208
 msgid "Did the video play correctly?"
-msgstr ""
+msgstr "Megfelelően lejátszásra került a videó?"
 
 #. description
 #: ../jobs/user_apps.txt.in:218
@@ -2535,27 +2598,27 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:218
 msgid "Did the video play using a plugin?"
-msgstr ""
+msgstr "A videolejászához szüksége volt bővítményre?"
 
 #. description
 #: ../jobs/user_apps.txt.in:227
 msgid "Facebook Chat"
-msgstr ""
+msgstr "Facebook csevegés"
 
 #. description
 #: ../jobs/user_apps.txt.in:238
 msgid "Google Talk"
-msgstr ""
+msgstr "Google Talk"
 
 #. description
 #: ../jobs/user_apps.txt.in:249
 msgid "Jabber"
-msgstr ""
+msgstr "Jabber"
 
 #. description
 #: ../jobs/user_apps.txt.in:260
 msgid "AIM"
-msgstr ""
+msgstr "AIM"
 
 #. description
 #: ../jobs/user_apps.txt.in:271
@@ -2571,12 +2634,12 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:271
 msgid "MSN"
-msgstr ""
+msgstr "MSN"
 
 #. description
 #: ../jobs/user_apps.txt.in:271
 msgid "Were you able to connect correctly and send/receive messages?"
-msgstr ""
+msgstr "A csatlakozás sikeres volt és tudott üzeneteket küldeni/fogadni?"
 
 #: ../checkbox/application.py:66
 msgid "Usage: checkbox [OPTIONS]"
@@ -2588,19 +2651,21 @@ msgstr "Beállításokat felülbíráló paraméterek."
 
 #: ../checkbox/application.py:84
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist."
-msgstr ""
+msgstr "A --config=checkbox/plugins/jobs_info/blacklist rövid változata."
 
 #: ../checkbox/application.py:86
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist_file."
 msgstr ""
+"A --config=checkbox/plugins/jobs_info/blacklist_file rövid változata."
 
 #: ../checkbox/application.py:88
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist."
-msgstr ""
+msgstr "A --config=checkbox/plugins/jobs_info/whitelist rövid változata."
 
 #: ../checkbox/application.py:90
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist_file."
 msgstr ""
+"A --config=checkbox/plugins/jobs_info/whitelist_file rövid változata."
 
 #: ../checkbox/lib/signal.py:23
 msgid ""
@@ -2688,50 +2753,54 @@ msgstr "ISMERETLEN"
 msgid "Unknown signal"
 msgstr "Ismeretlen szignál"
 
+#: ../checkbox_cli/cli_interface.py:126
+msgid "Press any key to continue..."
+msgstr "A folytatáshoz nyomjon le egy billentyűt…"
+
 #: ../checkbox_cli/cli_interface.py:315
 msgid "test"
-msgstr "Teszt"
+msgstr "teszt"
 
 #: ../checkbox_cli/cli_interface.py:339
 msgid "test again"
-msgstr "Tesztelés újra"
+msgstr "Újratesztelés"
 
 #: ../checkbox_urwid/urwid_interface.py:60
 msgid "Checkbox System Testing"
-msgstr ""
+msgstr "Checkbox rendszerteszt"
 
 #: ../checkbox_urwid/urwid_interface.py:99
 msgid "Continue"
-msgstr ""
+msgstr "Folytatás"
 
 #: ../checkbox_urwid/urwid_interface.py:192
 #: ../checkbox_urwid/urwid_interface.py:268
 #: ../checkbox_urwid/urwid_interface.py:416
 msgid "Previous"
-msgstr ""
+msgstr "Előző"
 
 #: ../checkbox_urwid/urwid_interface.py:193
 #: ../checkbox_urwid/urwid_interface.py:269
 #: ../checkbox_urwid/urwid_interface.py:417
 msgid "Next"
-msgstr ""
+msgstr "Következő"
 
 #. Show buttons
 #: ../checkbox_urwid/urwid_interface.py:414
 msgid "Select All"
-msgstr ""
+msgstr "Összes"
 
 #: ../checkbox_urwid/urwid_interface.py:415
 msgid "Deselect All"
-msgstr ""
+msgstr "Semelyik"
 
 #: ../checkbox_urwid/urwid_interface.py:772
 msgid "Test"
-msgstr ""
+msgstr "Tesztelés"
 
 #: ../checkbox_urwid/urwid_interface.py:787
 msgid "Test Again"
-msgstr ""
+msgstr "Teszt megismétlése"
 
 #: ../checkbox_gtk/gtk_interface.py:93
 msgid "hardware database"
@@ -2748,19 +2817,23 @@ msgstr "Hiba"
 #: ../checkbox/user_interface.py:136
 #, python-format
 msgid "Unable to start web browser to open %s."
-msgstr "A(z) „%s” megnyitásához nem lehet elindítani a webböngészőt."
+msgstr "A webböngészővel nem nyitható meg a(z) %s weboldal."
 
 #: ../plugins/apport_prompt.py:81
 msgid ""
 "Collecting information about this test.\n"
 "This might take a few minutes."
 msgstr ""
+"Információk összegyűjtése a tesztről.\n"
+"Ez néhány percet is igénybe vehet."
 
 #: ../plugins/apport_prompt.py:116
 msgid ""
 "Collected information is being sent for bug tracking.\n"
 "This might take a few minutes."
 msgstr ""
+"Az összegyűjtött információk elküldése a hibakövető rendszernek.\n"
+"Ez néhány percet is igénybe vehet."
 
 #: ../plugins/apport_prompt.py:225
 #, python-format
@@ -2775,11 +2848,15 @@ msgstr ""
 #: ../plugins/apport_prompt.py:246
 #, python-format
 msgid "Is a package upgrade in process? Error: %s"
-msgstr ""
+msgstr "Folyamatban van egy csomag frissítése? Hiba: %s"
 
 #: ../plugins/final_prompt.py:33
 msgid "Successfully finished testing!"
 msgstr "A teszt sikeresen befejeződött."
+
+#: ../plugins/gather_prompt.py:35
+msgid "Gathering information from your system..."
+msgstr "Információk összegyűjtése a rendszerről…"
 
 #: ../plugins/intro_prompt.py:43
 msgid ""
@@ -2791,13 +2868,13 @@ msgid ""
 msgstr ""
 "Üdvözöli a Rendszerteszt!\n"
 "\n"
-"A Checkbox teszteket végez arról, hogy rendszere megfelelően működik-e. A "
-"végén megtekinthet egy összefoglalót a rendszerről."
+"A Checkbox teszteket végez a rendszer megfelelő működésének ellenőrzéséhez. "
+"A végén megtekinthet egy összefoglalót a rendszerről."
 
 #: ../plugins/launchpad_exchange.py:118
 #, python-format
 msgid "Failed to process form: %s"
-msgstr ""
+msgstr "Az űrlap feldolgozása a következő hibával meghiúsult: %s"
 
 #: ../plugins/launchpad_exchange.py:141
 #, python-format
@@ -2845,25 +2922,35 @@ msgid "No e-mail address provided, not submitting to Launchpad."
 msgstr ""
 "Nem adott meg e-mail címet, ezért a jelentés nem lett beküldve a Launchpadba."
 
+#: ../plugins/launchpad_prompt.py:98
+msgid "Exchanging information with the server..."
+msgstr "Információcsere a kiszolgálóval…"
+
 #: ../plugins/lock_prompt.py:63
 msgid "There is another checkbox running. Please close it first."
-msgstr "A checkbox egy másik példánya már fut. Előbb zárja be."
+msgstr "A checkbox egy másik példánya már fut. Előbb azt zárja be."
 
 #: ../plugins/recover_prompt.py:54
 msgid ""
 "Checkbox did not finish completely.\n"
 "Do you want to recover from the previous run?"
 msgstr ""
+"A Rendszerteszt futása nem fejeződött be teljesen.\n"
+"Szeretné visszaállítani az adatokat az előző futtatásból?"
+
+#: ../plugins/report_prompt.py:34
+msgid "Building report..."
+msgstr "Jelentés készítése…"
 
 #: ../plugins/shell_test.py:52
 #, python-format
 msgid "Running %s..."
-msgstr ""
+msgstr "%s futtatása…"
 
 #. Get results
 #: ../plugins/suites_prompt.py:105
 msgid "Select the suites to test"
-msgstr "Válassza ki a tesztelendőket"
+msgstr "Válassza ki a teszteket"
 
 #: ../scripts/keyboard_test:21
 msgid "Enter text:\n"
