@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import subprocess
+import argparse
 import tarfile
 import shutil
 import time
@@ -57,21 +58,31 @@ for line in output:
 # Now we have a list of the modes we need to test.  So let's do just that.
 import pdb; pdb.set_trace()
 
-profile_path = os.environ['HOME'] + '/.shutter/profiles/shutter.xml'
-regex = re.compile(r'filename=".*"')
+profile_path = os.environ['HOME'] + '/.shutter/profiles/'
+regex = re.compile(r'filename="[^"\r\n]*"')
 
 # Keep the shutter profile in place before starting
 try:
-    shutil.copy(os.environ['CHECKBOX_SHARE'] + '/data/settings/shutter.xml', os.environ['HOME'] + '/.shutter/profiles/')
-except:
+    os.makedirs(profile_path)
+except OSError:
+    pass
+
+try: 
+    os.makedirs(os.environ['CHECKBOX_DATA'] + '/xrandr')
+except OSError:
     pass
 
 try:
-    with open(profile_path, 'r') as old_profile:
+    shutil.copy(os.environ['CHECKBOX_SHARE'] + '/data/settings/shutter.xml', profile_path)
+except IOError:
+    pass
+
+try:
+    with open(profile_path + 'shutter.xml', 'r') as old_profile:
         content = old_profile.read()
-        with open(profile_path, 'w') as new_profile:
-            folder = 'folder="' + os.environ['CHECKBOX_DATA'] + '/xrandr'
-            content = re.sub(r'folder=".*"', folder, content)
+        with open(profile_path + 'shutter.xml', 'w') as new_profile:
+            folder = 'folder="' + os.environ['CHECKBOX_DATA'] + '/xrandr"'
+            content = re.sub(r'folder="[^"\r\n]*"', folder, content)
             new_profile.write(content)
 except:
     pass
@@ -88,14 +99,14 @@ for mode in modes:
         mode_string = mode[0] + '_' + mode[1]
 
         try:
-            with open(profile_path, 'r') as base_profile:
+            with open(profile_path + 'shutter.xml', 'r') as base_profile:
                 content = base_profile.read()
-                with open(profile_path, 'w') as screen_profile:
-                    filename='filename="xrandr_%s"' % mode_string 
+                with open(profile_path + 'shutter.xml', 'w') as screen_profile:
+                    filename='filename="%s"' % mode_string
                     content = regex.sub(filename, content)
                     screen_profile.write(content)
 
-            shuttercmd = ['shutter','--shutter=checkbox','--full','-e']
+            shuttercmd = ['shutter','--profile=shutter','--full','-e']
             retval = subprocess.call(shuttercmd, shell=False)
 
             if retval != 0:
@@ -117,7 +128,8 @@ for mode in current_modes:
 # Tar up the screenshots for uploading
 try:
     with tarfile.open(os.environ['CHECKBOX_DATA'] + '/xrandr_screens.tar.gz', 'w:gz') as screen_tar:
-        screen_tar.add(os.environ['CHECKBOX_DATA'] + '/xrandr')
+        for screen in os.listdir(os.environ['CHECKBOX_DATA'] + '/xrandr'):
+            screen_tar.add(os.environ['CHECKBOX_DATA'] + '/xrandr/' + screen, screen)
 except:
     pass
 
