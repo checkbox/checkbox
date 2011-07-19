@@ -131,7 +131,7 @@ _description:
  Is this correct?
 
 plugin: manual
-name: graphics/xrandr_cycle
+name: graphics/cycle_resolution
 requires: package.name == 'xorg'
 depends: xrandr_detect_modes
 command: xrandr_cycle

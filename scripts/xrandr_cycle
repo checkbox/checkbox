@@ -140,7 +140,7 @@ for mode in current_modes:
 
 # Tar up the screenshots for uploading
 try:
-    with tarfile.open(screenshot_path + '.tar.gz', 'w:gz') as screen_tar:
+    with tarfile.open(screenshot_path + '.tgz', 'w:gz') as screen_tar:
         for screen in os.listdir(screenshot_path):
             screen_tar.add(screenshot_path + '/' + screen, screen)
 except:
