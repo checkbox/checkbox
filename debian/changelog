@@ -12,13 +12,15 @@ checkbox (0.12.4) oneiric; urgency=low
   [Javier Collado]
   * Checkbox exits with EX_NOINPUT if a whitelist or blacklist file is
     specified and cannot be found.
+  * Deselect a test suite automatically when none of its children is selected,
+    in the GTK interface. (LP: #651878)
 
   [Brendan Donegan]
   * Refactored job definition files.
   * Fixed dependencies and test naming.
   * Added Online CPU before/after suspend test.
 
- -- Marc Tardif <marc@ubuntu.com>  Fri, 15 Jul 2011 10:47:57 -0400
+ -- Daniel Manrique <daniel.manrique@canonical.com>  Tue, 19 Jul 2011 12:22:26 -0400
 
 checkbox (0.12.3) oneiric; urgency=low
 
