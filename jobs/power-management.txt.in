@@ -192,7 +192,6 @@ _description:
  Check that all memory is available after resuming from suspend.
 command: meminfo_resource | diff $CHECKBOX_DATA/meminfo_before_suspend -
 
-
 plugin: manual
 name: power-management/display_after_suspend
 requires:
@@ -200,9 +199,6 @@ requires:
 depends: power-management/suspend_advanced
 _description:
  Does the display work normally after resuming from suspend?
-
-
-
 
 plugin: manual
 name: power-management/wireless_after_suspend
