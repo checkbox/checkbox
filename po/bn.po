@@ -1,0 +1,2822 @@
+# Bengali translation for checkbox
+# Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
+# This file is distributed under the same license as the checkbox package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: checkbox\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-07-07 12:32-0400\n"
+"PO-Revision-Date: 2011-07-19 17:48+0000\n"
+"Last-Translator: nasir khan saikat <nasir8891@gmail.com>\n"
+"Language-Team: Bengali <bn@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2011-07-20 04:31+0000\n"
+"X-Generator: Launchpad (build 13405)\n"
+
+#: ../gtk/checkbox-gtk.ui.h:1 ../checkbox_cli/cli_interface.py:343
+#: ../checkbox_urwid/urwid_interface.py:261
+msgid "Further information:"
+msgstr "অতিরিক্ত তথ্য:"
+
+#: ../gtk/checkbox-gtk.ui.h:2
+msgid "Ne_xt"
+msgstr "পরবর্তী(_x)"
+
+#. Title of the user interface
+#: ../gtk/checkbox-gtk.ui.h:3 ../gtk/checkbox-gtk.desktop.in.h:1
+#: ../plugins/user_interface.py:40
+msgid "System Testing"
+msgstr "সিস্টেম পরীক্ষা করা"
+
+#: ../gtk/checkbox-gtk.ui.h:4
+msgid "_Deselect All"
+msgstr "সব অনির্বাচন করো (_D)"
+
+#: ../gtk/checkbox-gtk.ui.h:5
+msgid "_No"
+msgstr "না (_N)"
+
+#: ../gtk/checkbox-gtk.ui.h:6
+msgid "_Previous"
+msgstr "পূর্ববর্তী (_P)"
+
+#: ../gtk/checkbox-gtk.ui.h:7
+msgid "_Select All"
+msgstr "সব নির্বাচন করুন (_S)"
+
+#: ../gtk/checkbox-gtk.ui.h:8
+msgid "_Skip this test"
+msgstr "পরীক্ষাটি এড়িয়ে যান (_S)"
+
+#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:522
+msgid "_Test"
+msgstr "পরীক্ষা (_T)"
+
+#: ../gtk/checkbox-gtk.ui.h:10
+msgid "_Yes"
+msgstr "হ্যাঁ (_Y)"
+
+#: ../gtk/checkbox-gtk.desktop.in.h:2
+msgid "Test and report system information"
+msgstr "সিস্টেমের তথ্যাবলী পরীক্ষা কর এবং রিপোর্ট কর"
+
+#. description
+#: ../jobs/apport.txt.in:5
+msgid "Test that the /var/crash directory doesn't contain anything."
+msgstr ""
+
+#. description
+#: ../jobs/audio.txt.in:7
+msgid "Detecting your sound device(s):"
+msgstr "সাউন্ড ডিভাইসসমূহ অপসারণ করা হচ্ছে:"
+
+#. description
+#: ../jobs/audio.txt.in:7 ../jobs/disk.txt.in:4 ../jobs/graphics.txt.in:126
+#: ../jobs/memory.txt.in:4 ../jobs/networking.txt.in:16
+#: ../jobs/optical.txt.in:8 ../jobs/power-management.txt.in:167
+#: ../jobs/usb.txt.in:5
+msgid "$output"
+msgstr "$output"
+
+#. description
+#: ../jobs/audio.txt.in:7 ../jobs/bluetooth.txt.in:5 ../jobs/disk.txt.in:4
+#: ../jobs/graphics.txt.in:126 ../jobs/memory.txt.in:4
+#: ../jobs/networking.txt.in:16 ../jobs/optical.txt.in:8
+#: ../jobs/power-management.txt.in:185 ../jobs/usb.txt.in:5
+msgid "Is this correct?"
+msgstr "এটি কি সঠিক?"
+
+#. description
+#: ../jobs/audio.txt.in:21
+msgid ""
+"Did you hear a sound and was that sound free of any distortion, clicks or "
+"other strange noises?"
+msgstr ""
+"আপনি কি একটি শব্দ শুনেছেন এবং সেই শব্দটি কি যেকোন বিকৃতি, ক্লিক অথবা "
+"অন্যান্য আজব কোলাহল  মুক্ত ছিলো ?"
+
+#. description
+#: ../jobs/audio.txt.in:33
+msgid "Please connect a pair of headphones to your audio device."
+msgstr "অনুগ্রহ করে অডিও ডিভাইসটির সাথে একটি হেডফোন সংযউক্ত করুন।"
+
+#. description
+#: ../jobs/audio.txt.in:33
+msgid ""
+"Select Test to play a sound on the automatically detected playback device."
+msgstr ""
+"সয়ংক্রিয়ভাবে সনাক্তকৃত শব্দ যন্ত্রে একটি শব্দ করতে পরীক্ষা নির্বাচন করুন।"
+
+#. description
+#: ../jobs/audio.txt.in:33
+msgid ""
+"Did you hear a sound through the headphones and did the sound play without "
+"any distortion, clicks or other strange noises from your headphones?"
+msgstr ""
+"আপনি কি  হেডফোন থেকে একটি শব্দ শুনেছেন  এবং সেই শব্দটি কি  আপনার হেডফোনে "
+"যেকোন বিকৃতি, ক্লিক অথবা অন্যান্য আজব কোলাহল  মুক্ত ?"
+
+#. description
+#: ../jobs/audio.txt.in:47
+msgid ""
+"Disconnect any external microphones that you have plugged in.  Select Test, "
+"then speak into your internal microphone.  After a few seconds, your speech "
+"will be played back to you."
+msgstr ""
+"আপনার প্লাগইন করা যেকোনো বাহ্যিক মাইক্রোফোন এর সংযোগ বিচ্ছিন্ন করুন। টেস্ট "
+"নির্বাচন করে, অভ্যন্তরীণ মাইক্রোফোনে কথা বলুন। কয়েক সেকেন্ড পর, আপনার বলা "
+"কথা আপনিই শুনতে পাবেন।"
+
+#. description
+#: ../jobs/audio.txt.in:59
+msgid ""
+"Connect a microphone to your microphone port.  Select Test, then speak into "
+"the microphone.  After a few seconds, your speech will be played back to you."
+msgstr ""
+"মাইক্রোফোন পোর্ট মাইক্রোফোন সংযোগ দিন। টেস্ট নির্বাচন করে, অভ্যন্তরীণ "
+"মাইক্রোফোনে কথা বলুন। কয়েক সেকেন্ড পর, আপনার বলা কথা আপনিই শুনতে পাবেন।"
+
+#. description
+#: ../jobs/audio.txt.in:70
+msgid ""
+"Connect a USB audio device to your system.  Then open the volume control "
+"application by left-clicking on the speaker icon in the panel and selecting "
+"\"Sound Preferences\".  Select the \"Input\" tab and choose your USB device. "
+" Select the \"Output\" tab and choose your USB device.  When you are done, "
+"select Test, then speak into the microphone.  After a few seconds, your "
+"speech will be played back to you."
+msgstr ""
+"সিস্টেমে একটি USB অডিও ডিভাইস সংযুক্ত। প্যানেলে স্পিকার আইকনে বাম-ক্লিক এবং "
+"\"সাউন্ড প্রেফারেন্স\" নির্বাচন করে ভলিউম কন্ট্রোল অ্যাপ্লিেকেশন খুলুন। "
+"\"ইনপুট\" ট্যাব নির্বাচন করে USB ডিভাইস বাছাই। \"আউটপুট\" ট্যাব নির্বাচন করে "
+"USB ডিভাইস বাছাই। যখন আপনি শেষ করবেন, টেস্ট নির্বাচন করে মাইক্রোপোনে কথা "
+"বলুন। কয়েক সেকেন্ড পর, আপনার কথা আপনি শুনতে পাবেন।"
+
+#. description
+#: ../jobs/audio.txt.in:70 ../jobs/power-management.txt.in:221
+msgid "Did you hear your speech played back?"
+msgstr "আপনি কি আপনার কথা শুনতে পেয়েছেন?"
+
+#. description
+#: ../jobs/audio.txt.in:81
+msgid ""
+"Play back a sound on the default output and listen for it on the \\ default "
+"input.  This makes the most sense when the output and input \\ are directly "
+"connected, as with a patch cable."
+msgstr ""
+
+#. description
+#: ../jobs/autotest.txt.in:3
+msgid "Autotest suite (destructive)"
+msgstr "অটোটেস্ট স্যুট (ধ্বংসাত্মক)"
+
+#. description
+#: ../jobs/bluetooth.txt.in:5 ../jobs/power-management.txt.in:185
+msgid "The address of your Bluetooth device is: $output"
+msgstr "ব্লুটুথ ডিবাইসের ঠিকানা: $output"
+
+#. description
+#: ../jobs/bluetooth.txt.in:15 ../jobs/graphics.txt.in:15
+msgid "Automated test to store output in checkbox report"
+msgstr ""
+
+#. description
+#: ../jobs/bluetooth.txt.in:21
+msgid ""
+"Bluetooth browse files procedure: 1.- Enable bluetooth on any mobile device "
+"(PDA, smartphone, etc.) 2.- Click on the bluetooth icon in the menu bar 3.- "
+"Select 'Setup new device' 3.- Look for the device in the list and select it "
+"4.- In the device write the PIN code automatically chosen by the wizard 5.- "
+"The device should pair with the computer 6.- Right-click on the bluetooth "
+"icon and select browse files 7.- Authorize the computer to browse the files "
+"in the device if needed 8.- You should be able to browse the files"
+msgstr ""
+
+#. description
+#: ../jobs/bluetooth.txt.in:38
+msgid ""
+"Bluetooth file transfer procedure: 1.- Make sure that you're able to browse "
+"the files in your mobile device 2.- Copy a file from the computer to the "
+"mobile device 3.- Verify that the file was correctly copied 4.- Copy a file "
+"from the mobile device to the computer 5.- Verify that the file was "
+"correctly copied"
+msgstr ""
+
+#. description
+#: ../jobs/bluetooth.txt.in:53
+msgid ""
+"Bluetooth audio procedure: 1.- Enable the bluetooth headset 2.- Click on the "
+"bluetooth icon in the menu bar 3.- Select 'Setup new device' 4.- Look for "
+"the device in the list and select it 5.- In the device write the PIN code "
+"automatically chosen by the wizard 6.- The device should pair with the "
+"computer 7.- Select Test to record for five seconds and reproduce in the "
+"bluetooth device"
+msgstr ""
+
+#. description
+#: ../jobs/bluetooth.txt.in:69
+msgid ""
+"Bluetooth keyboard procedure: 1.- Enable the bluetooth keyboard 2.- Click on "
+"the bluetooth icon in the menu bar 3.- Select 'Setup new device' 4.- Look "
+"for the device in the list and select it 5.- Select Test to enter text"
+msgstr ""
+
+#. description
+#: ../jobs/bluetooth.txt.in:82
+msgid ""
+"Bluetooth mouse procedure: 1.- Enable the bluetooth mouse 2.- Click on the "
+"bluetooth icon in the menu bar 3.- Select 'Setup new device' 4.- Look for "
+"the device in the list and select it 5.- Move the mouse around the screen 6.-"
+" Perform some single/double/right click operations"
+msgstr ""
+
+#. description
+#: ../jobs/bluetooth.txt.in:82 ../jobs/optical.txt.in:72
+#: ../jobs/power-management.txt.in:194 ../jobs/usb.txt.in:27
+msgid "Did all the steps work?"
+msgstr "সবগুলো ধাপ কি কাজ করে?"
+
+#. description
+#: ../jobs/camera.txt.in:7
+msgid "Automated test case that attempts to detect a camera"
+msgstr ""
+
+#. description
+#: ../jobs/camera.txt.in:16
+msgid "Select Test to display a video capture from the camera"
+msgstr ""
+
+#. description
+#: ../jobs/camera.txt.in:16
+msgid "Did you see the video capture?"
+msgstr ""
+
+#. description
+#: ../jobs/camera.txt.in:30
+msgid "Select Test to display a still image from the camera"
+msgstr ""
+
+#. description
+#: ../jobs/camera.txt.in:30
+msgid "Did you see the image?"
+msgstr ""
+
+#. description
+#: ../jobs/camera.txt.in:43
+msgid ""
+"Select Test to capture video to a file and open it in totem. Please make "
+"sure that both audio and video is captured."
+msgstr ""
+
+#. description
+#: ../jobs/camera.txt.in:43
+msgid "Did you see/hear the capture?"
+msgstr ""
+
+#. description
+#: ../jobs/codecs.txt.in:7
+msgid "Select Test to play an Ogg Vorbis file (.ogg)"
+msgstr ""
+
+#. description
+#: ../jobs/codecs.txt.in:20
+msgid "Select Test to play a Wave Audio format file (.wav)"
+msgstr ""
+
+#. description
+#: ../jobs/codecs.txt.in:20
+msgid "Did the sample play correctly?"
+msgstr ""
+
+#. description
+#: ../jobs/codecs.txt.in:33
+msgid ""
+"Select 'Test' to play some audio, and try pausing and resuming playback "
+"while the it is playing."
+msgstr ""
+
+#. description
+#: ../jobs/codecs.txt.in:33
+msgid "Did the audio play and pause as expected?"
+msgstr ""
+
+#. description
+#: ../jobs/codecs.txt.in:46
+msgid ""
+"Select 'Test' to play a video, and try pausing and resuming playback while "
+"the video is playing."
+msgstr ""
+
+#. description
+#: ../jobs/codecs.txt.in:46
+msgid "(Please close Movie Player to proceed.)"
+msgstr ""
+
+#. description
+#: ../jobs/codecs.txt.in:46
+msgid "Did the video play and pause as expected?"
+msgstr ""
+
+#. description
+#: ../jobs/cpu.txt.in:8
+msgid ""
+"Test the CPU scaling capabilities using Colin King's Firmware Test Suite "
+"tool."
+msgstr ""
+
+#. description
+#: ../jobs/cpu.txt.in:15
+msgid "Test for clock jitter."
+msgstr ""
+
+#. description
+#: ../jobs/cpu.txt.in:23
+msgid "Test offlining CPUs in a multicore system."
+msgstr ""
+
+#. description
+#: ../jobs/cpu.txt.in:30
+msgid "Checks cpu topology for accuracy"
+msgstr ""
+
+#. description
+#: ../jobs/cpu.txt.in:38
+msgid "Checks that CPU frequency governors are obeyed when set."
+msgstr ""
+
+#. description
+#: ../jobs/daemons.txt.in:5
+msgid "Test if the atd daemon is running when the package is installed."
+msgstr ""
+
+#. description
+#: ../jobs/daemons.txt.in:11
+msgid "Test if the cron daemon is running when the package is installed."
+msgstr ""
+
+#. description
+#: ../jobs/daemons.txt.in:17
+msgid "Test if the cupsd daemon is running when the package is installed."
+msgstr ""
+
+#. description
+#: ../jobs/daemons.txt.in:23
+msgid "Test if the getty daemon is running when the package is installed."
+msgstr ""
+
+#. description
+#: ../jobs/daemons.txt.in:29
+msgid "Test if the init daemon is running when the package is installed."
+msgstr ""
+
+#. description
+#: ../jobs/daemons.txt.in:35
+msgid "Test if the klogd daemon is running when the package is installed."
+msgstr ""
+
+#. description
+#: ../jobs/daemons.txt.in:41
+msgid "Test if the nmbd daemon is running when the package is installed."
+msgstr ""
+
+#. description
+#: ../jobs/daemons.txt.in:47
+msgid "Test if the smbd daemon is running when the package is installed."
+msgstr ""
+
+#. description
+#: ../jobs/daemons.txt.in:53
+msgid "Test if the syslogd daemon is running when the package is installed."
+msgstr ""
+
+#. description
+#: ../jobs/daemons.txt.in:61
+msgid "Test if the udevd daemon is running when the package is installed."
+msgstr ""
+
+#. description
+#: ../jobs/daemons.txt.in:67
+msgid "Test if the winbindd daemon is running when the package is installed."
+msgstr ""
+
+#. description
+#: ../jobs/disk.txt.in:4
+msgid "The following hard drives were detected:"
+msgstr "নিম্নলিখিত হার্ড-ড্রাইভগুলি চিহ্নিত হয়েছেঃ"
+
+#. description
+#: ../jobs/disk.txt.in:14
+msgid "Benchmark for each disk "
+msgstr ""
+
+#. description
+#: ../jobs/disk.txt.in:36
+msgid "SMART test"
+msgstr ""
+
+#. description
+#: ../jobs/disk.txt.in:51
+msgid "Maximum disk space used during a default installation test"
+msgstr ""
+
+#. description
+#: ../jobs/disk.txt.in:66
+msgid "Verify system storage performs at or above baseline performance"
+msgstr ""
+
+#. description
+#: ../jobs/disk.txt.in:83
+msgid ""
+"Verify that storage devices, such as Fibre Channel and RAID can be detected "
+"and perform under stress."
+msgstr ""
+
+#. description
+#: ../jobs/evolution.txt.in:5
+msgid ""
+"Click the \"Test\" button to launch Evolution, then configure it to connect "
+"to a POP3 account."
+msgstr ""
+
+#. description
+#: ../jobs/evolution.txt.in:14
+msgid ""
+"Click the \"Test\" button to launch Evolution, then configure it to connect "
+"to a IMAP account."
+msgstr ""
+
+#. description
+#: ../jobs/evolution.txt.in:14
+msgid "Were you able to receive and read e-mail correctly?"
+msgstr ""
+
+#. description
+#: ../jobs/evolution.txt.in:23
+msgid ""
+"Click the \"Test\" button to launch Evolution, then configure it to connect "
+"to a SMTP account."
+msgstr ""
+
+#. description
+#: ../jobs/evolution.txt.in:23
+msgid "Were you able to send e-mail without errors?"
+msgstr ""
+
+#. description
+#: ../jobs/fingerprint.txt.in:3
+msgid ""
+"Prerequisites: This test case assumes that there's a testing account from "
+"which test cases are run and a personal account that the tester uses to "
+"verify the fingerprint reader"
+msgstr ""
+"গুরুত্বপূর্ণ কাজ: এ টেস্ট কেসে মনে করা হয় একটি টেস্টিং অ্যাকাউন্ট আছে যেখান "
+"থেকে টেস্ট কেস চালানো হয় এবং একটি ব্যক্তিগত অ্যাকাউন্ট যা ফিঙ্গারপ্রিন্ট "
+"রিডার পরীক্ষা করার জন্য ব্যবহৃত হয়"
+
+#. description
+#: ../jobs/fingerprint.txt.in:3
+msgid ""
+"Fingerprint login verification procedure:\n"
+" 1.- Click on the user switcher applet.\n"
+" 2.- Select your user name.\n"
+" 3.- A window should appear that provides the ability to login either typing "
+"your password or using fingerprint authentication.\n"
+" 4.- Use the fingerprint reader to login.\n"
+" 5.- Click on the user switcher applet.\n"
+" 6.- Select the testing account to continue running tests."
+msgstr ""
+
+#. description
+#: ../jobs/fingerprint.txt.in:18
+msgid ""
+"Fingerprint unlock verification procedure:\n"
+" 1.- Click on the user switcher applet.\n"
+" 2.- Select 'Lock screen'.\n"
+" 3.- Press any key or move the mouse.\n"
+" 4.- A window should appear that provides the ability to unlock either "
+"typing your password or using fingerprint authentication.\n"
+" 5.- Use the fingerprint reader to unlock.\n"
+" 6.- Your screen should be unlocked."
+msgstr ""
+
+#. description
+#: ../jobs/fingerprint.txt.in:18
+msgid "Did the authentication procedure work correctly?"
+msgstr "প্রমাণীকরণ কার্যপ্রনালী কি ঠিক ভাবে কাজ করেছিল?"
+
+#. description
+#: ../jobs/firewire.txt.in:3
+msgid ""
+"Firewire HDD verification procedure:\n"
+" 1.- Plug a Firewire HDD into the computer.\n"
+" 2.- A window should be opened asking which action should be performed (open "
+"folder, photo manager, etc).\n"
+" 3.- Copy some files from your internal HDD to the firewire HDD.\n"
+" 4.- Copy some files from the firewire HDD to your internal HDD."
+msgstr ""
+
+#. description
+#: ../jobs/firewire.txt.in:3 ../jobs/usb.txt.in:71
+msgid "Do the copy operations work as expected?"
+msgstr "অনুলিপি করার অপারেশন কি প্রত্যাশিতভাবে কাজ করে?"
+
+#. description
+#: ../jobs/floppy.txt.in:4
+msgid "Floppy test"
+msgstr ""
+
+#. description
+#: ../jobs/gcalctool.txt.in:5
+msgid "Click the \"Test\" button to open the calculator."
+msgstr ""
+
+#. description
+#: ../jobs/gcalctool.txt.in:5
+msgid "Did it launch correctly?"
+msgstr ""
+
+#. description
+#: ../jobs/gcalctool.txt.in:15
+msgid ""
+"1. Simple math functions (+,-,/,*) 2. Nested math functions ((,)) 3. "
+"Fractional math 4. Decimal math"
+msgstr ""
+
+#. description
+#: ../jobs/gcalctool.txt.in:30
+msgid "1. Memory set 2. Memory reset 3. Memory last clear 4. Memory clear"
+msgstr ""
+
+#. description
+#: ../jobs/gcalctool.txt.in:45
+msgid "Click the \"Test\" button to open the calculator and perform:"
+msgstr ""
+
+#. description
+#: ../jobs/gcalctool.txt.in:45
+msgid "1. Cut 2. Copy 3. Paste"
+msgstr ""
+
+#. description
+#: ../jobs/gcalctool.txt.in:45
+msgid "Did the functions perform as expected?"
+msgstr ""
+
+#. description
+#: ../jobs/gedit.txt.in:5
+msgid "Click the \"Test\" button to open gedit."
+msgstr ""
+
+#. description
+#: ../jobs/gedit.txt.in:5
+msgid ""
+"Enter some text and save the file (make a note of the file name you use), "
+"then close gedit."
+msgstr ""
+
+#. description
+#: ../jobs/gedit.txt.in:17
+msgid ""
+"Click the \"Test\" button to open gedit, and re-open the file you created "
+"previously."
+msgstr ""
+
+#. description
+#: ../jobs/gedit.txt.in:17
+msgid "Edit then save the file, then close gedit."
+msgstr ""
+
+#. description
+#: ../jobs/gedit.txt.in:17 ../jobs/gnome-terminal.txt.in:5
+msgid "Did this perform as expected?"
+msgstr ""
+
+#. description
+#: ../jobs/gnome-terminal.txt.in:5
+msgid "Click the \"Test\" button to open Terminal."
+msgstr ""
+
+#. description
+#: ../jobs/gnome-terminal.txt.in:5
+msgid ""
+"Type 'ls' and press enter. You should see a list of files and folder in your "
+"home directory."
+msgstr ""
+
+#. description
+#: ../jobs/gnome-terminal.txt.in:5
+msgid "Close the terminal window."
+msgstr ""
+
+#. description
+#: ../jobs/graphics.txt.in:5
+msgid ""
+"2d graphics appears to be working, your running X.Org version is: $output"
+msgstr ""
+
+#. description
+#: ../jobs/graphics.txt.in:23
+msgid "Run gtkperf to make sure that GTK based test cases work"
+msgstr ""
+
+#. description
+#: ../jobs/graphics.txt.in:23
+msgid ""
+"In the future add the returned time as a benchmark result to the checkbox "
+"report"
+msgstr ""
+
+#. description
+#: ../jobs/graphics.txt.in:31
+msgid ""
+"Display resolution change procedure: 1.- Open System->Preferences->Monitors "
+"2.- Select a new resolution from the dropdown list 3.- Click on Apply 4.- "
+"The resolution should change 5.- Select the original resolution from the "
+"dropdown list 6.- Click on Apply 7.- The resolution should change again"
+msgstr ""
+
+#. description
+#: ../jobs/graphics.txt.in:31
+msgid "Did the resolution change as expected?"
+msgstr ""
+
+#. description
+#: ../jobs/graphics.txt.in:46
+msgid ""
+"Display rotation verification procedure: 1.- Open System->Preferences-"
+">Monitors 2.- Select a new rotation value from the dropdown list 3.- Click "
+"on Apply 4.- The display should be rotated according to the new "
+"configuration value 5.- Click on Restore Previous Configuration 6.- The "
+"display configuration change should be reverted 7.- Repeat 2-6 for different "
+"rotation values"
+msgstr ""
+
+#. description
+#: ../jobs/graphics.txt.in:46
+msgid "Did the display rotation change as expected?"
+msgstr ""
+
+#. description
+#: ../jobs/graphics.txt.in:62 ../jobs/sru_suite.txt.in:151
+msgid "Test that the X process is running."
+msgstr ""
+
+#. description
+#: ../jobs/graphics.txt.in:68 ../jobs/sru_suite.txt.in:157
+msgid "Test that the X is not running in failsafe mode."
+msgstr ""
+
+#. description
+#: ../jobs/graphics.txt.in:75
+msgid "Test that X does not leak memory when running programs."
+msgstr ""
+
+#. description
+#: ../jobs/graphics.txt.in:82
+msgid "This display is using the following resolution:"
+msgstr "নিম্নোক্ত রেজুলেশন ব্যবহার করে প্রদর্শন:"
+
+#. description
+#: ../jobs/graphics.txt.in:82
+msgid "Is this acceptable for your display?"
+msgstr "এটা কি আপনার প্রদর্শনের ক্ষেত্রে গ্রহনযোগ্য?"
+
+#. description
+#: ../jobs/graphics.txt.in:95
+msgid ""
+"Ensure the current resolution meets or exceeds the recommended minimum "
+"resolution (1024 x 768). See here for details:"
+msgstr ""
+"বর্তমান রেজুলেশন সর্বনিম্ন রেজুলেশন (1024 x 768) বা তার উপরে আছে কিনা তা "
+"নিশ্চিত হয়ে নিন। বিস্তারিত তথ্যের জন্য এখানে দেখুন:"
+
+#. description
+#: ../jobs/graphics.txt.in:107
+msgid ""
+"Ensure the current resolution meets or exceeds the recommended minimum "
+"resolution (1024 x 600). See here for details:"
+msgstr ""
+"বর্তমান রেজুলেশন সর্বনিম্ন রেজুলেশন (1024 x 600) বা তার উপরে আছে কিনা তা "
+"নিশ্চিত হয়ে নিন। বিস্তারিত তথ্যের জন্য এখানে দেখুন:"
+
+#. description
+#: ../jobs/graphics.txt.in:107
+msgid "https://help.ubuntu.com/community/Installation/SystemRequirements"
+msgstr "https://help.ubuntu.com/community/Installation/SystemRequirements"
+
+#. description
+#: ../jobs/graphics.txt.in:117
+msgid "Select Test to display a video test."
+msgstr "ভিডিও টেস্ট প্রদর্শনের জন্য টেস্ট নির্বাচন।"
+
+#. description
+#: ../jobs/graphics.txt.in:117
+msgid "Do you see color bars and static?"
+msgstr "আপনি কি কালার বার বা স্ট্যাটিক দেখতে পান?"
+
+#. description
+#: ../jobs/graphics.txt.in:126
+msgid ""
+"The following screens and video modes have been detected on your system:"
+msgstr "আপনার সিস্টেমে নিম্নোক্ত স্ক্রিন এবং ভিডিও মোড সনাক্ত করা হয়েছে:"
+
+#. description
+#: ../jobs/graphics.txt.in:138
+msgid ""
+"Select Test to cycle through the detected video modes for your system."
+msgstr "আপনার সিস্টেমে স্ক্রিন এবং ভিডিও মোড ঘুরে আসার জন্য টেস্ট নির্বাচন।"
+
+#. description
+#: ../jobs/graphics.txt.in:138
+msgid "Did the screen appear to be working for each mode?"
+msgstr "স্ক্রিন সব মোডের জন্য কাজ করছে বলে কি মনে হচ্ছিল?"
+
+#. description
+#: ../jobs/graphics.txt.in:146
+msgid "Check that the hardware is able to run compiz."
+msgstr "হার্ডওয়ার কপপিজ চালাতে পারবে কিনা গার জন্য পরীক্ষা।"
+
+#. description
+#: ../jobs/graphics.txt.in:153
+msgid ""
+"Select Test to execute glxgears to ensure that minimal 3d graphics support "
+"is in place."
+msgstr ""
+"glxgears কার্যকর করার জন্য টেস্ট নির্বাচন যাতে করে নিশ্চিত হওয়া যায় যে এখানে "
+"3d গ্রাফিক্স সমর্থন করে।"
+
+#. description
+#: ../jobs/graphics.txt.in:153
+msgid "Did the 3d animation appear?"
+msgstr "3d অ্যানিমেশন কি দেখা গিয়েছিল?"
+
+#. description
+#: ../jobs/info.txt.in:60 ../jobs/screenshot.txt.in:7
+msgid "Captures a screenshot."
+msgstr ""
+
+#. description
+#: ../jobs/info.txt.in:71 ../jobs/sru_suite.txt.in:167
+msgid "Gather log from the firmware test suite run"
+msgstr ""
+
+#. description
+#: ../jobs/info.txt.in:82
+msgid "Bootchart information."
+msgstr ""
+
+#. description
+#: ../jobs/input.txt.in:4
+msgid "Moving the mouse should move the cursor on the screen."
+msgstr "মাউসটি নাড়ানো হলে মনিটরের কার্সরটি স্থান পরিবর্তন করবে।"
+
+#. description
+#: ../jobs/input.txt.in:4
+msgid "Is your mouse working properly?"
+msgstr "আপনার মাউস সঠিকভাবে কাজ করছে?"
+
+#. description
+#: ../jobs/input.txt.in:13
+msgid "Select Test to open a text area where to type keys on your keyboard."
+msgstr ""
+"টেক্সট  নির্বাচন করে একটি টেক্সট এরিয়া খুলুন যেখানে আপনার কীবোর্ডে কী টাইপ।"
+
+#. description
+#: ../jobs/input.txt.in:13
+msgid "Is your keyboard working properly?"
+msgstr "আপনার কিবোর্ড সঠিকভাবে কাজ করছে?"
+
+#. description
+#: ../jobs/install.txt.in:6
+msgid ""
+"Tests to see that apt can access repositories and get updates (does not "
+"install updates)"
+msgstr ""
+
+#. description
+#: ../jobs/keys.txt.in:4
+msgid ""
+"Press the brightness buttons on the keyboard. A status window should \\ "
+"appear and the brightness should change."
+msgstr ""
+
+#. description
+#: ../jobs/keys.txt.in:12
+msgid ""
+"Press the volume buttons on the keyboard. A status window should \\ appear "
+"and the volume should change."
+msgstr ""
+
+#. description
+#: ../jobs/keys.txt.in:12
+msgid "Do the buttons work?"
+msgstr ""
+
+#. description
+#: ../jobs/keys.txt.in:21
+msgid ""
+"Press the mute key on the keyboard. A status window should appear \\ and the "
+"volume should mute/unmute when pressed multiple times."
+msgstr ""
+
+#. description
+#: ../jobs/keys.txt.in:30
+msgid ""
+"Press the sleep key on the keyboard. The computer should suspend and, \\ "
+"after pressing the power button, resume successfully."
+msgstr ""
+
+#. description
+#: ../jobs/keys.txt.in:39
+msgid ""
+"Press the battery information key on the keyboard. A status window \\ should "
+"appear and the amount of battery remaining should be displayed."
+msgstr ""
+
+#. description
+#: ../jobs/keys.txt.in:48
+msgid ""
+"Press the wireless networking key on the keyboard. The bluetooth icon \\ and "
+"the network connnection should go down if connected through the \\ wifi "
+"interface."
+msgstr ""
+
+#. description
+#: ../jobs/keys.txt.in:48
+msgid ""
+"Press the same key again and check that bluetooth icon is again \\ displayed "
+"and that the network connection is re-established \\ automatically."
+msgstr ""
+
+#. description
+#: ../jobs/keys.txt.in:48
+msgid "Does the key work?"
+msgstr ""
+
+#. description
+#: ../jobs/keys.txt.in:62
+msgid ""
+"The keyboard may have dedicated keys for controlling media as follows:"
+msgstr ""
+
+#. description
+#: ../jobs/keys.txt.in:62
+msgid "* Play/Pause * Stop * Forward * Backward (Rewind)"
+msgstr ""
+
+#. description
+#: ../jobs/keys.txt.in:62
+msgid "Play a media file and press each key in turn."
+msgstr ""
+
+#. description
+#: ../jobs/keys.txt.in:62
+msgid "Do the keys work as expected?"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:3
+msgid "Audio tests"
+msgstr "অডিও পরীক্ষা করা"
+
+#. description
+#: ../jobs/local.txt.in:8
+msgid "Bluetooth tests"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:13
+msgid "Camera tests"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:18
+msgid "Codec tests"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:23
+msgid "CPU tests"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:28
+msgid "System Daemon tests"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:33
+msgid "Disk tests"
+msgstr "ডিস্ক পরীক্ষা"
+
+#. description
+#: ../jobs/local.txt.in:38
+msgid "Fingerprint reader tests"
+msgstr "ফিঙ্গার প্রিন্ট রীডার পরীক্ষা"
+
+#. description
+#: ../jobs/local.txt.in:43
+msgid "Firewire disk tests"
+msgstr "ফায়রওয়্যার ডিস্ক পরীক্ষা"
+
+#. description
+#: ../jobs/local.txt.in:48
+msgid "Floppy disk tests"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:53
+msgid "Graphics tests"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:58
+msgid "Informational tests"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:63
+msgid "Input Devices tests"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:68
+msgid "Software Installation tests"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:73
+msgid "Hotkey tests"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:78
+msgid "Media Card tests"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:83
+msgid "Miscellaneous tests"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:88
+msgid "Monitor tests"
+msgstr "মনিটর পরীক্ষা"
+
+#. description
+#: ../jobs/local.txt.in:93
+msgid "Networking tests"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:98
+msgid "PCMCIA/PCIX Card tests"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:103
+msgid "Peripheral tests"
+msgstr "প্রান্তিক টেস্ট"
+
+#. description
+#: ../jobs/local.txt.in:108
+msgid "Power Management tests"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:113
+msgid "Unity tests"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:118
+msgid "User Applications"
+msgstr "ব্যবহারকারীর অ্যাপ্লিকেশন"
+
+#. description
+#: ../jobs/local.txt.in:123
+msgid "Stress tests"
+msgstr ""
+
+#. description
+#: ../jobs/ltp.txt.in:3
+msgid "Linux Test Project"
+msgstr "লিনাক্স পরীক্ষার প্রকল্প"
+
+#. description
+#: ../jobs/mago.txt.in:3
+msgid "Automated desktop testing"
+msgstr ""
+
+#. description
+#: ../jobs/mediacard.txt.in:3
+msgid ""
+"Secure Digital (SD) media card support verification:\n"
+" 1.- Plug a SD media card into the computer.\n"
+" 2.- An icon should appear on the desktop and in the \"Places\" menu at the "
+"top of the screen.\n"
+" 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
+" 4.- The icon should disappear of both the deskop and the \"Places\" menu."
+msgstr ""
+"নিরাপদ ডিজিটাল (SD) মিডিয়া কার্ড সাপোর্ট পরীক্ষা:\n"
+" 1.- কম্পিউটারে SD মিডিয়া কার্ড প্লাগ করুন।\n"
+" 2.- ডেক্সটপে একটি আইকন আসবে এবং স্ক্রিনের একদম উপরে \"প্লেস\" মেনুতে আসবে।\n"
+" 3.- ডেক্সটপ আইকনের উপরে ডান ক্লিক এবং \"ড্রাইভের নিরাপদ অপসারন\" নির্বাচন।\n"
+" 4.- ডেক্সটপ এবং \"প্লেস\" মেনু উভয় জায়গা থেকেই আইকনটি সরে যাওয়া উচিত।"
+
+#. description
+#: ../jobs/mediacard.txt.in:15
+msgid ""
+"Secure Digital (SD) media card support re-verification:\n"
+" 1.- Plug a SD media card into the computer.\n"
+" 2.- An icon should appear on the desktop and in the \"Places\" menu at the "
+"top of the screen.\n"
+" 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
+" 4.- The icon should disappear of both the deskop and the \"Places\" menu."
+msgstr ""
+"নিরাপদ ডিজিটাল (SD) মিডিয়া কার্ড পুনরয়ায় পরীক্ষা সাপোর্ট :\n"
+" 1.- কম্পিউটারে SD মিডিয়া কার্ড প্লাগ করুন।\n"
+" 2.- ডেক্সটপে একটি আইকন আসবে এবং স্ক্রিনের একদম উপরে \"প্লেস\" মেনুতে আসবে।\n"
+" 3.- ডেক্সটপ আইকনের উপরে ডান ক্লিক এবং \"ড্রাইভের নিরাপদ অপসারন\" নির্বাচন।\n"
+" 4.- ডেক্সটপ এবং \"প্লেস\" মেনু উভয় জায়গা থেকেই আইকনটি সরে যাওয়া উচিত।"
+
+#. description
+#: ../jobs/mediacard.txt.in:26
+msgid ""
+"Secure Digital High Capacity (SDHC) media card support verification:\n"
+" 1.- Plug a SDHC media card into the computer.\n"
+" 2.- An icon should appear on the desktop and in the \"Places\" menu at the "
+"top of the screen.\n"
+" 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
+" 4.- The icon should disappear of both the deskop and the \"Places\" menu."
+msgstr ""
+"নিরাপদ ডিজিটাল উচ্চ ক্ষমতা সম্পন্ন (SDHC) মিডিয়া কার্ড পরীক্ষা সাপোর্ট :\n"
+" 1.- কম্পিউটারে SDHC মিডিয়া কার্ড প্লাগ করুন।\n"
+" 2.- ডেক্সটপে একটি আইকন আসবে এবং স্ক্রিনের একদম উপরে \"প্লেস\" মেনুতে আসবে।\n"
+" 3.- ডেক্সটপ আইকনের উপরে ডান ক্লিক এবং \"ড্রাইভের নিরাপদ অপসারন\" নির্বাচন।\n"
+" 4.- ডেক্সটপ এবং \"প্লেস\" মেনু উভয় জায়গা থেকেই আইকনটি সরে যাওয়া উচিত।"
+
+#. description
+#: ../jobs/mediacard.txt.in:38
+msgid ""
+"Secure Digital High Capacity (SDHC) media card support re-verification:\n"
+" 1.- Plug a SDHC media card into the computer.\n"
+" 2.- An icon should appear on the desktop and in the \"Places\" menu at the "
+"top of the screen.\n"
+" 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
+" 4.- The icon should disappear of both the deskop and the \"Places\" menu."
+msgstr ""
+"নিরাপদ ডিজিটাল উচ্চ ক্ষমতা সম্পন্ন (SDHC) মিডিয়া কার্ড পুনরয়ায় পরীক্ষা "
+"সাপোর্ট :\n"
+" 1.- কম্পিউটারে SDHC মিডিয়া কার্ড প্লাগ করুন।\n"
+" 2.- ডেক্সটপে একটি আইকন আসবে এবং স্ক্রিনের একদম উপরে \"প্লেস\" মেনুতে আসবে।\n"
+" 3.- ডেক্সটপ আইকনের উপরে ডান ক্লিক এবং \"ড্রাইভের নিরাপদ অপসারন\" নির্বাচন।\n"
+" 4.- ডেক্সটপ এবং \"প্লেস\" মেনু উভয় জায়গা থেকেই আইকনটি সরে যাওয়া উচিত।"
+
+#. description
+#: ../jobs/mediacard.txt.in:49
+msgid ""
+"Multi Media Card (MMC) media card support verification:\n"
+" 1.- Plug a MMC media card into the computer.\n"
+" 2.- An icon should appear on the desktop and in the \"Places\" menu at the "
+"top of the screen.\n"
+" 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
+" 4.- The icon should disappear of both the deskop and the \"Places\" menu."
+msgstr ""
+"মাল্টি মিডিয়া কার্ড (MMC) মিডিয়া কার্ড পরীক্ষা সাপোর্ট :\n"
+" 1.- কম্পিউটারে MMC মিডিয়া কার্ড প্লাগ করুন।\n"
+" 2.- ডেক্সটপে একটি আইকন আসবে এবং স্ক্রিনের একদম উপরে \"প্লেস\" মেনুতে আসবে।\n"
+" 3.- ডেক্সটপ আইকনের উপরে ডান ক্লিক এবং \"ড্রাইভের নিরাপদ অপসারন\" নির্বাচন।\n"
+" 4.- ডেক্সটপ এবং \"প্লেস\" মেনু উভয় জায়গা থেকেই আইকনটি সরে যাওয়া উচিত।"
+
+#. description
+#: ../jobs/mediacard.txt.in:61
+msgid ""
+"Multi Media Card (MMC) media card support re-verification:\n"
+" 1.- Plug a MMC media card into the computer.\n"
+" 2.- An icon should appear on the desktop and in the \"Places\" menu at the "
+"top of the screen.\n"
+" 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
+" 4.- The icon should disappear of both the deskop and the \"Places\" menu."
+msgstr ""
+"মাল্টি মিডিয়া কার্ড (MMC) মিডিয়া কার্ড পুনরায় পরীক্ষা সাপোর্ট :\n"
+" 1.- কম্পিউটারে MMC মিডিয়া কার্ড প্লাগ করুন।\n"
+" 2.- ডেক্সটপে একটি আইকন আসবে এবং স্ক্রিনের একদম উপরে \"প্লেস\" মেনুতে আসবে।\n"
+" 3.- ডেক্সটপ আইকনের উপরে ডান ক্লিক এবং \"ড্রাইভের নিরাপদ অপসারন\" নির্বাচন।\n"
+" 4.- ডেক্সটপ এবং \"প্লেস\" মেনু উভয় জায়গা থেকেই আইকনটি সরে যাওয়া উচিত।"
+
+#. description
+#: ../jobs/mediacard.txt.in:72
+msgid ""
+"Memory Stick (MS) media card support verification:\n"
+" 1.- Plug a MS media card into the computer.\n"
+" 2.- An icon should appear on the desktop and in the \"Places\" menu at the "
+"top of the screen.\n"
+" 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
+" 4.- The icon should disappear of both the deskop and the \"Places\" menu."
+msgstr ""
+"মেমরি স্টিক (MS) মিডিয়া কার্ড পরীক্ষা সাপোর্ট :\n"
+" 1.- কম্পিউটারে MS মিডিয়া কার্ড প্লাগ করুন।\n"
+" 2.- ডেক্সটপে একটি আইকন আসবে এবং স্ক্রিনের একদম উপরে \"প্লেস\" মেনুতে আসবে।\n"
+" 3.- ডেক্সটপ আইকনের উপরে ডান ক্লিক এবং \"ড্রাইভের নিরাপদ অপসারন\" নির্বাচন।\n"
+" 4.- ডেক্সটপ এবং \"প্লেস\" মেনু উভয় জায়গা থেকেই আইকনটি সরে যাওয়া উচিত।"
+
+#. description
+#: ../jobs/mediacard.txt.in:84
+msgid ""
+"Memory Stick (MS) media card support re-verification:\n"
+" 1.- Plug a MS media card into the computer.\n"
+" 2.- An icon should appear on the desktop and in the \"Places\" menu at the "
+"top of the screen.\n"
+" 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
+" 4.- The icon should disappear of both the deskop and the \"Places\" menu."
+msgstr ""
+"মেমরি স্টিক (MS) মিডিয়া কার্ড পুনরায় পরীক্ষা সাপোর্ট :\n"
+" 1.- কম্পিউটারে MS মিডিয়া কার্ড প্লাগ করুন।\n"
+" 2.- ডেক্সটপে একটি আইকন আসবে এবং স্ক্রিনের একদম উপরে \"প্লেস\" মেনুতে আসবে।\n"
+" 3.- ডেক্সটপ আইকনের উপরে ডান ক্লিক এবং \"ড্রাইভের নিরাপদ অপসারন\" নির্বাচন।\n"
+" 4.- ডেক্সটপ এবং \"প্লেস\" মেনু উভয় জায়গা থেকেই আইকনটি সরে যাওয়া উচিত।"
+
+#. description
+#: ../jobs/mediacard.txt.in:95
+msgid ""
+"Memory Stick Pro (MSP) media card support verification:\n"
+" 1.- Plug a MSP media card into the computer.\n"
+" 2.- An icon should appear on the desktop and in the \"Places\" menu at the "
+"top of the screen.\n"
+" 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
+" 4.- The icon should disappear of both the deskop and the \"Places\" menu."
+msgstr ""
+"মেমরি স্টিক প্রো (MSP) মিডিয়া কার্ড পরীক্ষা সাপোর্ট :\n"
+" 1.- কম্পিউটারে MSP মিডিয়া কার্ড প্লাগ করুন।\n"
+" 2.- ডেক্সটপে একটি আইকন আসবে এবং স্ক্রিনের একদম উপরে \"প্লেস\" মেনুতে আসবে।\n"
+" 3.- ডেক্সটপ আইকনের উপরে ডান ক্লিক এবং \"ড্রাইভের নিরাপদ অপসারন\" নির্বাচন।\n"
+" 4.- ডেক্সটপ এবং \"প্লেস\" মেনু উভয় জায়গা থেকেই আইকনটি সরে যাওয়া উচিত।"
+
+#. description
+#: ../jobs/mediacard.txt.in:107
+msgid ""
+"Memory Stick Pro (MSP) media card support re-verification:\n"
+" 1.- Plug a MSP media card into the computer.\n"
+" 2.- An icon should appear on the desktop and in the \"Places\" menu at the "
+"top of the screen.\n"
+" 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
+" 4.- The icon should disappear of both the deskop and the \"Places\" menu."
+msgstr ""
+"মেমরি স্টিক প্রো (MSP) মিডিয়া কার্ড পুনরায় পরীক্ষা সাপোর্ট :\n"
+" 1.- কম্পিউটারে MSP মিডিয়া কার্ড প্লাগ করুন।\n"
+" 2.- ডেক্সটপে একটি আইকন আসবে এবং স্ক্রিনের একদম উপরে \"প্লেস\" মেনুতে আসবে।\n"
+" 3.- ডেক্সটপ আইকনের উপরে ডান ক্লিক এবং \"ড্রাইভের নিরাপদ অপসারন\" নির্বাচন।\n"
+" 4.- ডেক্সটপ এবং \"প্লেস\" মেনু উভয় জায়গা থেকেই আইকনটি সরে যাওয়া উচিত।"
+
+#. description
+#: ../jobs/mediacard.txt.in:118
+msgid ""
+"Compact Flash (CF) media card support verification:\n"
+" 1.- Plug a CF media card into the computer.\n"
+" 2.- An icon should appear on the desktop and in the \"Places\" menu at the "
+"top of the screen.\n"
+" 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
+" 4.- The icon should disappear of both the deskop and the \"Places\" menu."
+msgstr ""
+"কমপ্যাক্ট ফ্ল্যাশ (CF) মিডিয়া কার্ড পরীক্ষা সাপোর্ট :\n"
+" 1.- কম্পিউটারে CF মিডিয়া কার্ড প্লাগ করুন।\n"
+" 2.- ডেক্সটপে একটি আইকন আসবে এবং স্ক্রিনের একদম উপরে \"প্লেস\" মেনুতে আসবে।\n"
+" 3.- ডেক্সটপ আইকনের উপরে ডান ক্লিক এবং \"ড্রাইভের নিরাপদ অপসারন\" নির্বাচন।\n"
+" 4.- ডেক্সটপ এবং \"প্লেস\" মেনু উভয় জায়গা থেকেই আইকনটি সরে যাওয়া উচিত।"
+
+#. description
+#: ../jobs/mediacard.txt.in:130
+msgid ""
+"Compact Flash (CF) media card support re-verification:\n"
+" 1.- Plug a CF media card into the computer.\n"
+" 2.- An icon should appear on the desktop and in the \"Places\" menu at the "
+"top of the screen.\n"
+" 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
+" 4.- The icon should disappear of both the deskop and the \"Places\" menu."
+msgstr ""
+"কমপ্যাক্ট ফ্ল্যাশ (CF) মিডিয়া কার্ড পুনরায়পরীক্ষা সাপোর্ট :\n"
+" 1.- কম্পিউটারে CF মিডিয়া কার্ড প্লাগ করুন।\n"
+" 2.- ডেক্সটপে একটি আইকন আসবে এবং স্ক্রিনের একদম উপরে \"প্লেস\" মেনুতে আসবে।\n"
+" 3.- ডেক্সটপ আইকনের উপরে ডান ক্লিক এবং \"ড্রাইভের নিরাপদ অপসারন\" নির্বাচন।\n"
+" 4.- ডেক্সটপ এবং \"প্লেস\" মেনু উভয় জায়গা থেকেই আইকনটি সরে যাওয়া উচিত।"
+
+#. description
+#: ../jobs/mediacard.txt.in:130
+msgid "Does the icon automatically appear/disappear?"
+msgstr "আইকন কি স্বয়ংক্রিয়ভাবে দৃশ্যমান/ অদৃশ্য হয়?"
+
+#. description
+#: ../jobs/memory.txt.in:4
+msgid "The following amount of memory was detected:"
+msgstr ""
+
+#. description
+#: ../jobs/memory.txt.in:16
+msgid "Test and exercise memory."
+msgstr ""
+
+#. description
+#: ../jobs/miscellanea.txt.in:8
+msgid ""
+"Select Test to switch to another virtual terminal and then back to X.  Your "
+"screen will change temporarily to a text console and then switch back to "
+"your current session."
+msgstr ""
+"অন্য একটি ভার্চুয়াল টার্মিনালে সুইচ করার জন্য টেস্ট নির্বাচন এবং তারপর X এ "
+"ফিরে আসা। আপনার স্ক্রিন পরিবর্তিত হয়ে অস্থায়ীভাবে টেক্সট কনসোল হবে এবং তারপর "
+"আবার আপনার বর্তমান সেশনে ফিরে আসবে।"
+
+#. description
+#: ../jobs/miscellanea.txt.in:8
+msgid "Note that this test may require you to enter your password."
+msgstr "মনে রাখুন যে এর জন্য আপনার নতুন পাসওয়ার্ড দেয়া আবশ্যক হতে পারে।"
+
+#. description
+#: ../jobs/miscellanea.txt.in:8
+msgid "Did the screen change temporarily to a text console?"
+msgstr "স্ক্রীনটি স্থায়ীভাবে টেক্সট কনসোল মোডে পরিবর্তন করা হবে?"
+
+#. description
+#: ../jobs/miscellanea.txt.in:20
+msgid "Run Colin King's Firmware Test Suite automated tests."
+msgstr ""
+
+#. description
+#: ../jobs/miscellanea.txt.in:29
+msgid ""
+"ipmitool is required for ipmi testing. This checks for ipmitool and installs "
+"it if not available."
+msgstr ""
+
+#. description
+#: ../jobs/miscellanea.txt.in:36
+msgid ""
+"This will run some basic connectivity tests against a BMC, verifying that "
+"IPMI works."
+msgstr ""
+
+#. description
+#: ../jobs/monitor.txt.in:3
+msgid "If your system does not have a VGA port, please skip this test."
+msgstr "আপনার সিস্টেমে VGA পোর্ট না থাকলে, এ টেস্ট বাদ দিয়ে যান।"
+
+#. description
+#: ../jobs/monitor.txt.in:3
+msgid ""
+"Connect a display (if not already connected) to the VGA port on your system. "
+"Is the image displayed correctly?"
+msgstr ""
+"ডিসপ্লে VGA পোর্টে সংযুক্ত করুন (যদি এখনও সংযুক্ত করা না থাকে)। চিত্র কি "
+"ঠিকভাবে প্রদর্শিত হচ্ছে?"
+
+#. description
+#: ../jobs/monitor.txt.in:10
+msgid "If your system does not have a DVI port, please skip this test."
+msgstr "আপনার সিস্টেমে DVI পোর্ট না থাকলে, এ টেস্ট বাদ দিয়ে যান।"
+
+#. description
+#: ../jobs/monitor.txt.in:10
+msgid ""
+"Connect a display (if not already connected) to the DVI port on your system. "
+"Is the image displayed correctly?"
+msgstr ""
+"ডিসপ্লে DVI পোর্টে সংযুক্ত করুন (যদি এখনও সংযুক্ত করা না থাকে)। চিত্র কি "
+"ঠিকভাবে প্রদর্শিত হচ্ছে?"
+
+#. description
+#: ../jobs/monitor.txt.in:17
+msgid "If your system does not have DisplayPort, please skip this test."
+msgstr "আপনার সিস্টেমে ডিসপ্লে পোর্ট না থাকলে, এ টেস্ট বাদ দিয়ে যান।"
+
+#. description
+#: ../jobs/monitor.txt.in:17
+msgid ""
+"Connect a display (if not already connected) to the DisplayPort on your "
+"system. Is the image displayed correctly?"
+msgstr ""
+"ডিসপ্লে ডিসপ্লে পোর্টে সংযুক্ত করুন (যদি এখনও সংযুক্ত করা না থাকে)। চিত্র কি "
+"ঠিকভাবে প্রদর্শিত হচ্ছে?"
+
+#. description
+#: ../jobs/monitor.txt.in:24
+msgid "If your system does not have a HDMI port, please skip this test."
+msgstr "আপনার সিস্টেমে HDMI পোর্ট না থাকলে, এ টেস্ট বাদ দিয়ে যান।"
+
+#. description
+#: ../jobs/monitor.txt.in:24
+msgid ""
+"Connect a display (if not already connected) to the HDMI port on your "
+"system. Is the image displayed correctly?"
+msgstr ""
+"ডিসপ্লে HDMIপোর্টে সংযুক্ত করুন (যদি এখনও সংযুক্ত করা না থাকে)। চিত্র কি "
+"ঠিকভাবে প্রদর্শিত হচ্ছে?"
+
+#. description
+#: ../jobs/monitor.txt.in:31
+msgid "If your system does not have a S-VIDEO port, please skip this test."
+msgstr "আপনার সিস্টেমে S-VIDEO পোর্ট না থাকলে, এ টেস্ট বাদ দিয়ে যান।"
+
+#. description
+#: ../jobs/monitor.txt.in:31
+msgid ""
+"Connect a display (if not already connected) to the S-VIDEO port on your "
+"system. Is the image displayed correctly?"
+msgstr ""
+"ডিসপ্লে S-VIDEO পোর্টে সংযুক্ত করুন (যদি এখনও সংযুক্ত করা না থাকে)। চিত্র কি "
+"ঠিকভাবে প্রদর্শিত হচ্ছে?"
+
+#. description
+#: ../jobs/monitor.txt.in:38
+msgid "If your system does not have a RCA port, please skip this test."
+msgstr "আপনার সিস্টেমে RCA পোর্ট না থাকলে, এ টেস্ট বাদ দিয়ে যান।"
+
+#. description
+#: ../jobs/monitor.txt.in:38
+msgid ""
+"Connect a display (if not already connected) to the RCA port on your system. "
+"Is the image displayed correctly?"
+msgstr ""
+"ডিসপ্লে RCA পোর্টে সংযুক্ত করুন (যদি এখনও সংযুক্ত করা না থাকে)। চিত্র কি "
+"ঠিকভাবে প্রদর্শিত হচ্ছে?"
+
+#. description
+#: ../jobs/monitor.txt.in:46
+msgid ""
+"Monitor power saving verification procedure:\n"
+" 1.- Select Test to try the power saving capabilities of your monitor.\n"
+" 2.- The monitor should go blank.\n"
+" 3.- Press any key or move the mouse to recover."
+msgstr ""
+
+#. description
+#: ../jobs/monitor.txt.in:46
+msgid "Did the monitor go blank?"
+msgstr "মনিটরটি কি অন্ধকার হয়ে গিয়েছিল?"
+
+#. description
+#: ../jobs/networking.txt.in:5
+msgid "Detecting your network controller(s):"
+msgstr "নেটওয়ার্কের নিয়ন্ত্রণসমূহ চিহ্নিত করা হচ্ছে:"
+
+#. description
+#: ../jobs/networking.txt.in:16
+msgid "Testing your connection to the Internet:"
+msgstr "ইন্টারনেট সংযোগ পরীক্ষা করা হচ্ছে:"
+
+#. description
+#: ../jobs/networking.txt.in:26
+msgid "Network Information"
+msgstr ""
+
+#. description
+#: ../jobs/networking.txt.in:46
+msgid "Wireless scanning test."
+msgstr ""
+
+#. description
+#: ../jobs/networking.txt.in:52
+msgid ""
+"Wireless network connection procedure: 1.- Click on the Network Manager "
+"applet 2.- Select a network below the 'Wireless networks' section 3.- Notify "
+"OSD should confirm that the connection has been established 4.- Select Test "
+"to verify that it's possible to establish an HTTP connection"
+msgstr ""
+
+#. description
+#: ../jobs/networking.txt.in:64
+msgid ""
+"Wired network connection procedure: 1.- Click on the Network Manager applet "
+"2.- Select a network below the 'Wired network' section 3.- Notify OSD should "
+"confirm that the connection has been established 4.- Select Test to verify "
+"that it's possible to establish an HTTP connection"
+msgstr ""
+
+#. description
+#: ../jobs/networking.txt.in:76
+msgid ""
+"Built-in modem network connection procedure: 1.- Connect the telephone line "
+"to the computer 2.- Right click on the Network Manager applet 3.- Select "
+"'Edit Connections' 4.- Select the 'DSL' tab 5.- Click on add 'Add' button 6.-"
+" Configure the connection parameters properly 7.- Notify OSD should confirm "
+"that the connection has been established 8.- Select Test to verify that it's "
+"possible to establish an HTTP connection"
+msgstr ""
+
+#. description
+#: ../jobs/networking.txt.in:76 ../jobs/peripheral.txt.in:15
+msgid "Was the connection correctly established?"
+msgstr ""
+
+#. description
+#: ../jobs/networking.txt.in:92
+msgid ""
+"Automated test case to verify availability of some system on the network "
+"using ICMP ECHO packets."
+msgstr ""
+
+#. description
+#: ../jobs/networking.txt.in:99 ../jobs/peripheral.txt.in:32
+msgid ""
+"Automated test case to make sure that it's possible to download files "
+"through HTTP"
+msgstr ""
+
+#. description
+#: ../jobs/networking.txt.in:107
+msgid "Test to see if we can sync local clock to an NTP server"
+msgstr ""
+
+#. description
+#: ../jobs/networking.txt.in:113
+msgid ""
+"Verify that an installation of checkbox-server on the network can be reached "
+"over SSH."
+msgstr ""
+
+#. description
+#: ../jobs/networking.txt.in:119
+msgid "Try to enable a remote printer on the network and print a test page."
+msgstr ""
+
+#. description
+#: ../jobs/networking.txt.in:124
+msgid "Multiple network cards"
+msgstr ""
+
+#. description
+#: ../jobs/networking.txt.in:144
+msgid "Test to measure the network bandwidth"
+msgstr ""
+
+#. description
+#: ../jobs/optical.txt.in:8
+msgid "The following optical drives were detected:"
+msgstr ""
+
+#. description
+#: ../jobs/optical.txt.in:18
+msgid "Optical Storage device read tests"
+msgstr ""
+
+#. description
+#: ../jobs/optical.txt.in:37
+msgid ""
+"The detected optical drive seems to support writing. Enter a blank CDROM \\ "
+"into your drive and try writing to it."
+msgstr ""
+
+#. description
+#: ../jobs/optical.txt.in:46
+msgid ""
+"CD audio playback procedure: 1.- Insert an audio cd in your optical drive. "
+"2.- An icon should appear on the desktop. 3.- Right-click on the icon and "
+"select \"Open with Rhythmbox\". 4.- Select the CD as the playback source and "
+"press play button. 5.- The music should reproduce. 6.- Stop music "
+"reproduction after some time. 7.- Right click on the desktop icon and select "
+"\"Eject Volume\". 8.- The CD should be ejected and the icon removed from the "
+"desktop."
+msgstr ""
+
+#. description
+#: ../jobs/optical.txt.in:63
+msgid ""
+"The detected optical drive seems to support writing. Enter a blank DVD \\ "
+"into your drive and try writing to it."
+msgstr ""
+
+#. description
+#: ../jobs/optical.txt.in:63
+msgid "Does writing work?"
+msgstr ""
+
+#. description
+#: ../jobs/optical.txt.in:72
+msgid ""
+"DVD movie playback procedure: 1.- Insert a DVD that contains any movie in "
+"your optical drive. 2.- A window should appear with some actions that you "
+"may choose. Select 'Open Movie Player'. 3.- The player should be opened and "
+"the movie should reproduce. 4.- Stop movie reproduction after some time. 5.- "
+"An icon should appear in the desktop. 6.- Right click on the icon and select "
+"\"Eject Volume\". 7.- The DVD should be ejected and the icon removed from "
+"the desktop."
+msgstr ""
+
+#. description
+#: ../jobs/optical.txt.in:90
+msgid "Insert a DVD.  Then select Test to play the DVD in Totem."
+msgstr "একটি DVDপ্রবেশ করান। টটেমে DVD চালানোর জন্য টেস্ট নির্বাচন।"
+
+#. description
+#: ../jobs/optical.txt.in:90
+msgid "Did the file play?"
+msgstr "ফাইলটি কি চলেছিল?"
+
+#. description
+#: ../jobs/panel_clock_test.txt.in:4
+msgid ""
+"Is your gnome system clock displaying the correct date and time for \\ your "
+"timezone?"
+msgstr ""
+
+#. description
+#: ../jobs/panel_clock_test.txt.in:14
+msgid ""
+"Time verification procedure: 1.- Click the \"Test\" button and verify the "
+"clock moves ahead by 1 hour. \\ Note: It may take a minute or so for the "
+"gnome clock to refresh  2.- Now from the panel select System, Admistration, "
+"then Time and Date 3.- Ensure that your clock application is set to manual. "
+"4.- Change the time 1 hour back 5.- Close the window and reboot"
+msgstr ""
+
+#. description
+#: ../jobs/panel_clock_test.txt.in:14
+msgid ""
+"Is your system clock displaying the correct date and time for your \\ "
+"timezone?"
+msgstr ""
+
+#. description
+#: ../jobs/panel_reboot.txt.in:4
+msgid "Please restart your machine from the Ubuntu Panel."
+msgstr ""
+
+#. description
+#: ../jobs/panel_reboot.txt.in:4
+msgid ""
+"Afterwards be sure to recover the previous Checkbox instance and \\ answer "
+"the question below:"
+msgstr ""
+
+#. description
+#: ../jobs/panel_reboot.txt.in:4
+msgid "Did it restart and bring up the GUI login cleanly?"
+msgstr ""
+
+#. description
+#: ../jobs/pcmcia-pcix.txt.in:3
+msgid "Plug a PCMCIA device into the computer."
+msgstr ""
+
+#. description
+#: ../jobs/pcmcia-pcix.txt.in:3
+msgid "Is it detected?"
+msgstr ""
+
+#. description
+#: ../jobs/peripheral.txt.in:3
+msgid ""
+"Printer configuration verification procedure: 1.- Make sure that a printer "
+"is available in your network 2.- Open Systems->Administration->Printing 3.- "
+"If the printer isn't already listed, click on New 4.- The printer should be "
+"detected and proper configuration values \\ should be displayed 5.- Print a "
+"test page"
+msgstr ""
+
+#. description
+#: ../jobs/peripheral.txt.in:15
+msgid ""
+"External USB modem network connection procedure: 1.- Connect the USB cable "
+"to the computer 2.- Right click on the Network Manager applet 3.- Select "
+"'Edit Connections' 4.- Select the 'DSL' (for ADSL modem) or 'Mobile "
+"Broadband' (for 3G modem) tab 5.- Click on add 'Add' button 6.- Configure "
+"the connection parameters properly 7.- Notify OSD should confirm that the "
+"connection has been established 8.- Select Test to verify that it's possible "
+"to establish an HTTP connection"
+msgstr ""
+
+#. description
+#: ../jobs/phoronix.txt.in:3
+msgid "Automated benchmark testing"
+msgstr "অটোমেটেড বেঞ্চমার্ক পরীক্ষা"
+
+#. description
+#: ../jobs/power-management.txt.in:3
+msgid ""
+"Shutdown/boot cycle verification procedure: 1.- Shutdown your machine 2.- "
+"Boot your machine 3.- Repeat steps 1 and 2 at least 5 times"
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:3
+msgid ""
+"Note: This test case has to be executed manually before checkbox execution"
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:14
+msgid ""
+"Run the computer suspend test. Then, press the power button to resume it."
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:14
+msgid "Does your computer suspend and resume?"
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:22
+msgid ""
+"Run the computer hibernate test. Then, press the power button to restore it."
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:22
+msgid "Does your computer hibernate and restore?"
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:29
+msgid "Does closing your laptop lid cause your screen to blank?"
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:41
+msgid "Click the Test button, then close and open the lid."
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:41
+msgid "Did the screen turn off while the lid was closed?"
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:55
+msgid "Click the Test button, then close the lid and wait 5 seconds."
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:55
+msgid "Open the lid."
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:55
+msgid "Did the screen turn back on when the lid was opened?"
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:65
+msgid "Test the network before suspending."
+msgstr "বাতিল করার আগে নেটওয়ার্ক টেস্ট।"
+
+#. description
+#: ../jobs/power-management.txt.in:70
+msgid "Record the current resolution before suspending."
+msgstr "বাতিল করার আগে বর্তমান রেজল্যুশন রেকর্ড।"
+
+#. description
+#: ../jobs/power-management.txt.in:78
+msgid "Test the audio before suspending."
+msgstr "বাতিল করার আগে অডিও টেস্ট।"
+
+#. description
+#: ../jobs/power-management.txt.in:84
+msgid ""
+"Wireless network connection procedure:\n"
+" 1.- Click on the Network Manager applet.\n"
+" 2.- Click on Disconnect under 'Wired Networks'.\n"
+" 3.- Select a network below the 'Wireless networks' section.\n"
+" 4.- Notify OSD should confirm that the connection has been established.\n"
+" 5.- Select Test to verify connection and throughput.\n"
+"Output:"
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:128 ../jobs/sru_suite.txt.in:135
+msgid "Make sure that the RTC (Real-Time Clock) device exists."
+msgstr "RTC (Real-Time Clock) ডিভাইস আছে কিনা তা নিশ্চিত।"
+
+#. description
+#: ../jobs/power-management.txt.in:135
+msgid "Power management Suspend and Resume test"
+msgstr "পাওয়ার ব্যবস্থাপনা বাতিল এবং টেস্ট বিরত করা হয়েছে"
+
+#. description
+#: ../jobs/power-management.txt.in:135
+msgid ""
+"Select Test and your system will suspend for about 30 - 60 seconds. If your "
+"system does not wake itself up after 60 seconds, please press the power "
+"button momentarily to wake the system manually. If your system fails to wake "
+"at all and must be rebooted, restart System Testing after reboot and mark "
+"this test as Failed."
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:145
+msgid "Test the network after resuming."
+msgstr "বিরত করার পর নেটওয়ার্ক টেস্ট।"
+
+#. description
+#: ../jobs/power-management.txt.in:151
+msgid ""
+"Test to see that we have the same resolution after resuming as before."
+msgstr "বিরত করার পরও রেজল্যুশন একই আছে তা দেখার জন্য টেস্ট।"
+
+#. description
+#: ../jobs/power-management.txt.in:160
+msgid "Test the audio after resuming."
+msgstr "বিরত করার পর অডিও পরীক্ষা।"
+
+#. description
+#: ../jobs/power-management.txt.in:167
+msgid ""
+"Wireless network connection procedure:\n"
+" 1.- Click on the Network Manager applet.\n"
+" 2.- If a wired connection is established, click its Disconnect option.\n"
+" 3.- Select a network below the 'Wireless networks' section.\n"
+" 4.- Notify OSD should confirm that the connection has been established.\n"
+" 5.- Select Test to verify connection and throughput.\n"
+"Output:"
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:194
+msgid ""
+"Verify a bluetooth peripheral.  An example verification procedure for a "
+"bluetooth mouse is given."
+msgstr ""
+"ব্লুটুথ পরিফেরাল পরীক্ষা। ব্লুটুথ মাউসের বৈধতা যাচাই কার্যপ্রনালীর একটি "
+"পরীক্ষা।"
+
+#. description
+#: ../jobs/power-management.txt.in:194
+msgid ""
+"Bluetooth mouse procedure:\n"
+" 1.- Enable the bluetooth mouse.\n"
+" 2.- Click on the bluetooth icon in the menu bar.\n"
+" 3.- Select 'Setup new device'.\n"
+" 4.- Look for the device in the list and select it.\n"
+" 5.- Move the mouse around the screen.\n"
+" 6.- Perform some single/double/right click operations."
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:210
+msgid ""
+"This test will check to make sure that supported video modes work after a "
+"suspend and resume.  Select Test to begin."
+msgstr "এ টেস্ট"
+
+#. description
+#: ../jobs/power-management.txt.in:221
+msgid ""
+"This will check to make sure that your audio device works properly after a "
+"suspend and resume.  You can use either internal or external microphone and "
+"speakers."
+msgstr ""
+"বাতিল বা রিজিউম করার পর অডিও ডিভাইস ঠিকভাবে কাজ করছে কিনা এ পরীক্ষা করে "
+"নিশ্চিত হওয়া যায়। আপনি অভ্যন্তরীণ বা বাহ্যিক মাইক্রোফোন এবং স্পিকার ব্যবহার "
+"করতে পারেন।"
+
+#. description
+#: ../jobs/power-management.txt.in:221
+msgid ""
+"To execute this test, make sure your speaker and microphone are NOT muted "
+"and the volume is set sufficiently loud to record and play audio. Select "
+"Test and then speak into your microphone. After a few seconds, your speech "
+"will be played back to you."
+msgstr ""
+"এ টেস্ট বাস্তবায়ন করতে, নিশ্চিত হয়ে নিন যে আপনার স্পিকার এবং মাইক্রোফোন "
+"নিঃশব্দ করা নেই এবং"
+
+#. description
+#: ../jobs/power-management.txt.in:234
+msgid ""
+"Enter and resume from suspend state for 30 iterations. Please note that this "
+"is a lengthy test. Select Test to begin. If your system fails to wake and "
+"must be rebooted, please restart System Testing and mark this test as Failed."
+msgstr ""
+"30 ইটারেশন এর জন্যে সাসপেন্ড অবস্থানে এন্টার চেপে রিজিউম করে রাখা হয়। "
+"অনুগ্রহ করে মনে রাখুন যে একটি সময় সাপেক্ষ পরীক্ষা। টেস্ট শুরু করার জন্য "
+"নির্বাচন। আপনার সিস্টেম যদি সচল না হয় তখন অবশ্যই রিবুট করতে হবে, অনুগ্রহ করে "
+"সিস্টেম টেস্টিং পুনরায় শুরু করে টেস্টটি ব্যর্থ হিসাবে চিহ্নিত করুন।"
+
+#. description
+#: ../jobs/power-management.txt.in:234
+msgid "Did the system successfully suspend and resume for 30 iterations?"
+msgstr "সিস্টেম কি সফলভাবে বন্ধ হয়ে এবং 30 ইটারেশন পর্যন্ত রিজিউম ছিল?"
+
+#. description
+#: ../jobs/power-management.txt.in:245
+msgid ""
+"This will check to make sure your system can successfully hibernate (if "
+"supported)."
+msgstr ""
+"সিস্টেম সফলভাবে হাইবারনেট হয় কিনা (যদি সমর্থিত হয়) তা নিশ্চিত হওয়ার জন্য এ "
+"পরীক্ষা।"
+
+#. description
+#: ../jobs/power-management.txt.in:245
+msgid ""
+"Select Test to begin. The system will hibernate and should wake itself "
+"within 5 minutes.  If your system does not wake itself after 5 minutes, "
+"please press the power button to wake the system manually. If the system "
+"fails to resume from hibernate, please restart System Testing and mark this "
+"test as Failed."
+msgstr ""
+"শুরু করার জন্য টেস্ট নির্বাচন। সিস্টেম হাইবারনেট হয়ে আছে এবং নিজে থেকে ৫ "
+"মিনিটের মধ্যে সচল হয়ে যাবে। ৫ মিনিটের মধ্যে যদি সচল না হয় তবে, অনুগ্রহ করে "
+"নিজহাতে পাওয়ারের বোতামে চাপুন। যদি সিস্টেম হাইবারনেট থেকে রিজিউম করতে ব্যর্থ "
+"হয়, অনুগ্রহ করে সিস্টেম টেস্টিং পুনরায় শুরু করা হয় এবং টেস্টটি ব্যর্থ হিসাবে "
+"চিহ্নিত করা হয়।"
+
+#. description
+#: ../jobs/power-management.txt.in:245
+msgid ""
+"Did the system successfully hibernate and did it work properly after waking "
+"up?"
+msgstr ""
+"সিস্টেম কি সফলভাবে হাইবেরনেট করা হয়েছিল এবং এটা কি সচল হওয়ার পর ঠিকভাবে কাজ "
+"করেচিল?"
+
+#. description
+#: ../jobs/power-management.txt.in:258
+msgid ""
+"Enter and resume from hibernate for 30 iterations. Please note that this is "
+"a very lengthy test. Also, if your system does not wake itself after 2 "
+"minutes, you will need to press the power button to wake the system up. If "
+"the system fails to resume from hibernation and must be rebooted, please "
+"restart System Testing and mark this test as Failed."
+msgstr ""
+"30 ইটারেশন এর জন্যে সাসপেন্ড অবস্থানে এন্টার চেপে রিজিউম করে রাখা হয়। "
+"অনুগ্রহ করে মনে রাখুন যে একটি সময় সাপেক্ষ পরীক্ষা। টেস্ট শুরু করার জন্য "
+"নির্বাচন। আপনার সিস্টেম যদি 2 মিনিটের মধ্যে সচল না হয়, পাওয়ার বোতাম চেপে সচল "
+"করতে হবে। তারপরও যদি হাইবারনেশন থেকে রিজিউম করতে ব্যর্থ হয় তখন অবশ্যই রিবুট "
+"করতে হবে, অনুগ্রহ করে সিস্টেম টেস্টিং পুনরায় শুরু করে টেস্টটি ব্যর্থ হিসাবে "
+"চিহ্নিত করুন।"
+
+#. description
+#: ../jobs/power-management.txt.in:258
+msgid ""
+"Also, you will need to ensure your system has no power-on or HDD passwords "
+"set, and that grub is set to boot Ubuntu by default if you have a multi-boot "
+"set-up."
+msgstr ""
+"এছাড়াও আপনার নিশ্চিত হওয়া উচিত যে পাওয়ার অন বা HDD এর ক্ষেত্রে কোনো "
+"পাসওয়ার্ড নির্ধারণ করা আছে কিনা, যদি মাল্টি বুট সেটআপ করা থাকে তবে এ গ্রাব "
+"উবুন্টু রিবুট করার জন্য নির্ধারন করা হবে।"
+
+#. description
+#: ../jobs/power-management.txt.in:258
+msgid "Did the system successfully hibernate and wake 30 times?"
+msgstr "সিস্টেম কি ৩০ বার সফলভাবে হাইবারনেট হয়ে আবার সচল হয়েছিল?"
+
+#. description
+#: ../jobs/power-management.txt.in:267
+msgid "Run Colin Kings FWTS wakealarm test"
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:276
+msgid "Check to see if CONFIG_NO_HZ is set in the kernel"
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:284
+msgid "Automatic power management Suspend and Resume test"
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:284
+msgid ""
+"Select test and your system will suspend for about 30 - 60 seconds. If your "
+"system does not wake itself up after 60 seconds, please press the power "
+"button momentarily to wake the system manually. If your system fails to wake "
+"at all and must be rebooted, restart System Testing after reboot and mark "
+"this test as Failed."
+msgstr ""
+"টেস্ট নির্বাচন এবং আপনার সিস্টেম ৩০ -৬০ সেকেন্ড বন্ধ থাকবে। যদি সিস্টেম ৬০ "
+"সেকেন্ডের মধ্যে সচল না হয়, অনুগ্রহ করে নিজহাতে সিস্টেম চালু করার জন্য পাওয়ার "
+"বোতাম চাপুন। তাও যদি আপনার সিস্টেম একেবারেই চালু না হয় এবং রিবুট করা আবশ্যক, "
+"রিবুট করার পর সিস্টেম টেস্টিং পুনরায় চালু করা হয় এবং ব্যর্থ হিসাবে এ টেস্ট "
+"চিহ্নিত করা হয়।"
+
+#. description
+#: ../jobs/qa_regression.txt.in:3
+msgid "QA regression tests (destructive)"
+msgstr "QA রিগ্রেশন টেস্ট (ধ্বংসাত্মক)"
+
+#. description
+#: ../jobs/server-services.txt.in:5
+msgid "sshd test"
+msgstr ""
+
+#. description
+#: ../jobs/server-services.txt.in:11
+msgid "Print/CUPs server test"
+msgstr ""
+
+#. description
+#: ../jobs/server-services.txt.in:18
+msgid "DNS server test"
+msgstr ""
+
+#. description
+#: ../jobs/server-services.txt.in:25
+msgid "Samba server test"
+msgstr ""
+
+#. description
+#: ../jobs/server-services.txt.in:32
+msgid "LAMP server test"
+msgstr ""
+
+#. description
+#: ../jobs/server-services.txt.in:39
+msgid "Tomcat server test"
+msgstr ""
+
+#. description
+#: ../jobs/sru_suite.txt.in:4
+msgid "SRU Test Suite"
+msgstr ""
+
+#. description
+#: ../jobs/sru_suite.txt.in:9
+msgid "Tests that SRU is able to run compiz"
+msgstr ""
+
+#. description
+#: ../jobs/sru_suite.txt.in:15
+msgid ""
+"Tests that SRU does not degrade CPU offlining ability on multicore systems"
+msgstr ""
+
+#. description
+#: ../jobs/sru_suite.txt.in:22
+msgid "Tests that SRU can see network devices"
+msgstr ""
+
+#. description
+#: ../jobs/sru_suite.txt.in:29
+msgid "Tests that the SRU can do some network activity"
+msgstr ""
+
+#. description
+#: ../jobs/sru_suite.txt.in:37
+msgid "Tests that a system after SRU can suspend and resume"
+msgstr ""
+
+#. description
+#: ../jobs/sru_suite.txt.in:45
+msgid "Tests the SRU to make sure it sees BT if present"
+msgstr ""
+
+#. description
+#: ../jobs/sru_suite.txt.in:52
+msgid "Tests the SRU to ensure basic X availability"
+msgstr ""
+
+#. description
+#: ../jobs/sru_suite.txt.in:62
+msgid "Tests the SRU for basic network stack functionality"
+msgstr ""
+
+#. description
+#: ../jobs/sru_suite.txt.in:70
+msgid "Captures a screenshot showing X works"
+msgstr ""
+
+#. description
+#: ../jobs/sru_suite.txt.in:77
+msgid ""
+"Tests SRU to ensure apt-get works so we can back out if the SRU hoses the "
+"system. (does not install updates)"
+msgstr ""
+
+#. description
+#: ../jobs/sru_suite.txt.in:87
+msgid "Test the CPU scaling capabilities."
+msgstr ""
+
+#. description
+#: ../jobs/sru_suite.txt.in:95
+msgid "Run Colin King's FWTS wakealarm test"
+msgstr ""
+
+#. description
+#: ../jobs/sru_suite.txt.in:103
+msgid "Ensure SRU does not turn off tickless idle"
+msgstr ""
+
+#. description
+#: ../jobs/sru_suite.txt.in:111
+msgid "SRU disk read performance test."
+msgstr ""
+
+#. description
+#: ../jobs/sru_suite.txt.in:129
+msgid "Test the memory after applying an SRU"
+msgstr ""
+
+#. description
+#: ../jobs/sru_suite.txt.in:144
+msgid "Test that the SRU still accesses USB controllers and lists devices"
+msgstr ""
+
+#. description
+#: ../jobs/sru_suite.txt.in:176
+msgid "Checks cpu_topology for accuracy"
+msgstr ""
+
+#. description
+#: ../jobs/stress.txt.in:8
+msgid ""
+"Hammer the CPU as hard as possible for two hours. Intention is to knock it "
+"dead."
+msgstr ""
+
+#. description
+#: ../jobs/unity.txt.in:6
+msgid ""
+"Xlib is required for unity testing. This checks for Xlib and installs it if "
+"not available."
+msgstr ""
+
+#. description
+#: ../jobs/unity.txt.in:13
+msgid ""
+"This test will verify that Unity is running and then run the autopilot.py "
+"test against the Unity interface."
+msgstr ""
+
+#. description
+#: ../jobs/usb.txt.in:5
+msgid "The following USB controllers were detected:"
+msgstr ""
+
+#. description
+#: ../jobs/usb.txt.in:17
+msgid ""
+"Plug a USB keyboard into the computer. Then, click on the Test button \\ to "
+"enter text."
+msgstr ""
+
+#. description
+#: ../jobs/usb.txt.in:17
+msgid "Does the keyboard work?"
+msgstr ""
+
+#. description
+#: ../jobs/usb.txt.in:27
+msgid ""
+"USB mouse verification procedure: 1.- Plug a USB mouse into the computer 2.- "
+"Perform some single/double/right click operations"
+msgstr ""
+
+#. description
+#: ../jobs/usb.txt.in:39
+msgid ""
+"Click 'Test' and insert a USB device within 5 seconds. If the test is "
+"successful, you should notice that 'Yes' is selected below. Do not unplug "
+"the device if the test is successful."
+msgstr ""
+
+#. description
+#: ../jobs/usb.txt.in:39
+msgid ""
+"If no USB device is inserted or the device is not recognized, the test will "
+"fail and 'No' will be selected below."
+msgstr ""
+
+#. description
+#: ../jobs/usb.txt.in:51
+msgid ""
+"Click 'Test' and remove the USB device you inserted within 5 seconds. If the "
+"test is successful, you should notice that 'Yes' is selected below."
+msgstr ""
+
+#. description
+#: ../jobs/usb.txt.in:51
+msgid ""
+"If the USB device isn't removed or the removal is not registered, the test "
+"will fail and 'No' will be selected below."
+msgstr ""
+
+#. description
+#: ../jobs/usb.txt.in:61
+msgid ""
+"Plug a USB storage device into the computer. An icon should appear \\ on the "
+"desktop and in the \"Places\" menu at the top of the screen."
+msgstr ""
+
+#. description
+#: ../jobs/usb.txt.in:61
+msgid "Does the window automatically appear?"
+msgstr ""
+
+#. description
+#: ../jobs/usb.txt.in:71
+msgid ""
+"USB HDD verification procedure: 1.- Plug a USB HDD into the computer 2.- An "
+"icon should appear on the desktop and in the \"Places\" menu at the top of "
+"the screen. 3.- Copy some files from the internal/USB HDD to the "
+"USB/internal HDD"
+msgstr ""
+
+#. description
+#: ../jobs/usb.txt.in:83
+msgid ""
+"Connect a USB storage device to an external USB slot on this computer. \\ An "
+"icon should appear on the desktop and in the \"Places\" menu at the top of "
+"the screen."
+msgstr ""
+
+#. description
+#: ../jobs/usb.txt.in:83
+msgid ""
+"Confirm that the icon appears, then eject the device. Repeat with each "
+"external \\ USB slot."
+msgstr ""
+
+#. description
+#: ../jobs/usb.txt.in:83
+msgid "Do all USB slots work with the device?"
+msgstr ""
+
+#. description
+#: ../jobs/user_apps.txt.in:6
+msgid ""
+"This test will execute Update Manager and check to see if there are any "
+"available updates for the system. Please follow the prompts and if updates "
+"are found, install them. When Update Manager has finished, please close the "
+"app by clicking the Close button in the lower right corner."
+msgstr ""
+"এ টেস্ট আপডেট ম্যানেজারকে কার্যকরী করবে এবং সিস্টেমে কোনো আপডেট আছে কিনা তা "
+"দেখবে। অনুগ্রহ করে  তাৎক্ষনিক ব্যপারগুলো অনুসরণ এবং কোনো আপডেট থাকলে তা "
+"ইনস্টল করা হয়। আপডেট ম্যানেজার সম্পন্ন হওয়ার পর, অনুগ্রহ করে নিচের ডান দিকের "
+"কোণায় বন্ধ করার বোতামে ক্লিক করে বন্ধ করুন।"
+
+#. description
+#: ../jobs/user_apps.txt.in:14
+msgid ""
+"Select Test to open the File Browser. On the menu bar, click File -> Create "
+"Folder. In the name box for the new folder, enter the name Test Folder and "
+"hit Enter."
+msgstr ""
+"ফাইল ব্রাউজার খুলতে টেস্ট নির্বাচন। মেনুবারে, ফাইল -> ফোল্ডার তৈরিতে ক্লিক। "
+"নতুন ফোল্ডারের নামের বক্সে, টেস্ট ফোল্ডারের নাম দিয়ে Enter চাপুন।"
+
+#. description
+#: ../jobs/user_apps.txt.in:14
+msgid "Do you now have a new folder called Test Folder?"
+msgstr "আপনার কি টেস্ট ফোল্ডার নামে নতুন কোন ফোল্ডার এখন আছে?"
+
+#. description
+#: ../jobs/user_apps.txt.in:25
+msgid ""
+"Select Test to open the File Browser. Right click on the folder called Test "
+"Folder and click on Copy.  Right Click on any white area in the window and "
+"click on Paste."
+msgstr ""
+"ফাইল ব্রাউজার খুলতে টেস্ট নির্বাচন। টেস্ট ফোল্ডার নামক ফোল্ডারে ডান ক্লিক "
+"করে অনুপলিপিতে ক্লিক। উইন্ডোর যেকোনো ফাঁকা অংশে ডান ক্লিক করে প্রতিলেপন করুন "
+"এ ক্লিক।"
+
+#. description
+#: ../jobs/user_apps.txt.in:25
+msgid ""
+"Right click on the folder called Test Folder(copy) and click Rename. Enter "
+"the name Test Data in the name box and hit Enter."
+msgstr ""
+"টেস্ট ফোল্ডার (কপি) নামক ফোল্ডারে ডান ক্লিক এবং নাম পরিবর্তনে ক্লিক। নামের "
+"বক্সে টেস্ট ডাটা লিখে Enter চাপুন।"
+
+#. description
+#: ../jobs/user_apps.txt.in:25
+msgid "Do you now have a folder called Test Data?"
+msgstr "আপনার কি এখন টেস্ট ডাটা ফোল্ডার নামে কোনো ফোল্ডার আছে?"
+
+#. description
+#: ../jobs/user_apps.txt.in:38
+msgid ""
+"Select Test to open the File Browser. Click and drag the folder called Test "
+"Data onto the icon called Test Folder. Release the button."
+msgstr ""
+"ফাইল ব্রাউজার খুলতে টেস্ট নির্বাচন। টেস্ট ডাটা নামের ফোল্ডার টেস্ট ফোল্ডার "
+"নামের আইকনে ক্লিক করে টেনে আনুন। বোতামটা রিলিজ করুন।"
+
+#. description
+#: ../jobs/user_apps.txt.in:38
+msgid "Double click the folder called Test Folder to open it up."
+msgstr "টেস্ট ফোল্ডার খোলার জন্য এতে ডাবল ক্লিক করুন।"
+
+#. description
+#: ../jobs/user_apps.txt.in:38
+msgid ""
+"Was the folder called Test Data successfully moved into the folder called "
+"Test Folder?"
+msgstr ""
+"টেস্ট ডাটা ফোল্ডার কি সফলভাবে টেস্ট ফোল্ডার নামক ফোল্ডারে স্থানান্তরিত হয়েছে?"
+
+#. description
+#: ../jobs/user_apps.txt.in:51
+msgid ""
+"Select Test to open the File Browser. Right click in the white space and "
+"click Create Document -> Empty File. Enter the name Test File 1 in the name "
+"box and hit Enter."
+msgstr ""
+"ফাইল ব্রাউজার খুলতে টেস্ট নির্বাচন। ফাঁকা জায়গায় ডান ক্লিক করে ডকুনমেন্ট "
+"তৈরি -> ফাঁকা ফাইলে ক্লিক। নামের বক্সে নাম টেস্ট ফাইল 1 লিখে Enter চাপুন।"
+
+#. description
+#: ../jobs/user_apps.txt.in:51
+msgid "Do you now have a file called Test File 1?"
+msgstr "আপনার কি টেস্ট ফাইল 1 নামে কোনো ফাইল আছে?"
+
+#. description
+#: ../jobs/user_apps.txt.in:51
+msgid "Close the File browser."
+msgstr "ফাইল ব্রাউজার বন্ধ।"
+
+#. description
+#: ../jobs/user_apps.txt.in:62
+msgid ""
+"Select Test to open the File Browser. Right click on the file called Test "
+"File 1 and click Copy. Right click in the white space and click Paste."
+msgstr ""
+"ফাইল ব্রাউজার খুলতে টেস্ট নির্বাচন। টেস্ট ফাইল 1 এ ডান ক্লিক এবং অনুলিপি "
+"ক্লিক। ফাঁকা স্থানে ডান ক্লিক এবং প্রতিলেপনে ক্লিক।"
+
+#. description
+#: ../jobs/user_apps.txt.in:62
+msgid ""
+"Right click on the file called Test File 1(copy) and click Rename. Enter the "
+"name Test File 2 in the name box and hit Enter."
+msgstr ""
+"টেস্ট ফোল্ডার 1 (কপি) নামক ফোল্ডারে ডান ক্লিক এবং নাম পরিবর্তনে ক্লিক। নামের "
+"বক্সে টেস্ট ফাইল 2 লিখে Enter চাপুন।"
+
+#. description
+#: ../jobs/user_apps.txt.in:62
+msgid "Do you now have a file called Test File 2?"
+msgstr "আপনার কি টেস্ট ফাইল 2 নামে কোনো ফাইল আছে?"
+
+#. description
+#: ../jobs/user_apps.txt.in:75
+msgid ""
+"Select Test to open the File Browser. Click and drag the file called Test "
+"File 2 onto the icon for the folder called Test Data. Release the button."
+msgstr ""
+"ফাইল ব্রাউজার খুলতে টেস্ট নির্বাচন। টেস্ট ফাইল 2 নামের ফোল্ডার টেস্ট ডাটা "
+"নামের আইকনে ক্লিক করে টেনে আনুন। বোতাম রিলিজ করুন।"
+
+#. description
+#: ../jobs/user_apps.txt.in:75
+msgid "Double click the icon for Test Data to open that folder up."
+msgstr "টেস্ট ডাটা খোলার জন্য এতে ডাবল ক্লিক করুন।"
+
+#. description
+#: ../jobs/user_apps.txt.in:75
+msgid ""
+"Was the file Test File 2 successfully moved into the Test Data folder?"
+msgstr ""
+"টেস্ট ডাটা ফোল্ডার কি সফলভাবে টেস্ট ফাইল 2 নামক ফোল্ডারে স্থানান্তরিত হয়েছে?"
+
+#. description
+#: ../jobs/user_apps.txt.in:88
+msgid ""
+"Select Test to open the File Browser. Right click on the file called Test "
+"File 1 and click on Move To Trash."
+msgstr ""
+"ফাইল ব্রাউজার খুলতে টেস্ট নির্বাচন। টেস্ট ফাইল 1 এ ডান ক্লিক এবং ট্র্যাশে "
+"স্থানান্তর করার জন্য ক্লিক।"
+
+#. description
+#: ../jobs/user_apps.txt.in:88
+msgid "Is Test File 1 now gone?"
+msgstr "টেস্ট ফাইল 1 কি মুছে গেছে?"
+
+#. description
+#: ../jobs/user_apps.txt.in:99
+msgid ""
+"Select Test to open the File Browser. Right click on the folder called Test "
+"Folder and click on Move To Trash."
+msgstr ""
+"ফাইল ব্রাউজার খুলতে টেস্ট নির্বাচন। টেস্ট ফোল্ডার নামক ফোলঢারে এ ডান ক্লিক "
+"এবং ট্র্যাশে স্থানান্তর করার জন্য ক্লিক।"
+
+#. description
+#: ../jobs/user_apps.txt.in:99
+msgid "Has Test Folder been successfully deleted?"
+msgstr "টেস্ট ফোল্ডার সফলভাবে মুছে ফেলা হয়েছে?"
+
+#. description
+#: ../jobs/user_apps.txt.in:99
+msgid "Close the File Browser."
+msgstr "ফাইল ব্রাউজার বন্ধ।"
+
+#. description
+#: ../jobs/user_apps.txt.in:160
+msgid "Common Document Types Test"
+msgstr "সাধারণ ডকুমেন্ট টাইপ টেস্ট"
+
+#. description
+#: ../jobs/user_apps.txt.in:178
+msgid "Select Test to launch Firefox and view the test web page."
+msgstr ""
+"ফায়ারফক্স চালু করার জন্য টেস্ট নির্বাচন এবং টেস্ট ওয়েব পৃষ্ঠা প্রদর্শন।"
+
+#. description
+#: ../jobs/user_apps.txt.in:178
+msgid "Did the Ubuntu Test page load correctly?"
+msgstr "উবুন্টু টেস্ট পেজ কি ঠিকভাবে লোড হয়েছে?"
+
+#. description
+#: ../jobs/user_apps.txt.in:188
+msgid ""
+"Select Test to open Firefox with the Java test page, and follow the "
+"instructions there."
+msgstr ""
+"জাভা টেস্ট পৃষ্ঠাসহ ফায়ারফক্স খুলতে টেস্ট নির্বাচন এবং সেখান থেকে নির্দেশনা "
+"অনুসরন।"
+
+#. description
+#: ../jobs/user_apps.txt.in:188
+msgid "Did the applet display?"
+msgstr "অ্যাপ্লেট কি প্রদর্শন করেছিল?"
+
+#. description
+#: ../jobs/user_apps.txt.in:198
+msgid "Select Test to launch Firefox and view a sample Flash test."
+msgstr "ফায়ারফক্স চালু করতে টেস্ট নির্বাচন এবং নমুনা ফ্ল্যাশ টেস্ট প্রদর্শন।"
+
+#. description
+#: ../jobs/user_apps.txt.in:198
+msgid "Did you see the text?"
+msgstr "আপনি কি টেক্সট দেখেছেন?"
+
+#. description
+#: ../jobs/user_apps.txt.in:208
+msgid "Select Test to launch Firefox and view a short flash video."
+msgstr "ফায়ারফক্স খুলতে টেস্ট নির্বাচন এবং শর্ট ফ্ল্যাশ ভিডিও প্রদর্শন।"
+
+#. description
+#: ../jobs/user_apps.txt.in:208
+msgid "Did the video play correctly?"
+msgstr "ভিডিও কি সঠিকভাবে চলেছিল?"
+
+#. description
+#: ../jobs/user_apps.txt.in:218
+msgid "Select Test to launch Firefox with a sample video."
+msgstr "নমুনা ভিডিওসহ ফায়ারফক্স খুলতে টেস্ট নির্বাচন।"
+
+#. description
+#: ../jobs/user_apps.txt.in:218
+msgid "Did the video play using a plugin?"
+msgstr "প্লাগইন ব্যবহার করে ভিডিও চলেছিল?"
+
+#. description
+#: ../jobs/user_apps.txt.in:227
+msgid "Facebook Chat"
+msgstr "ফেসবুক কথোপকথন"
+
+#. description
+#: ../jobs/user_apps.txt.in:238
+msgid "Google Talk"
+msgstr "গুগল টক"
+
+#. description
+#: ../jobs/user_apps.txt.in:249
+msgid "Jabber"
+msgstr "জ্যাবের"
+
+#. description
+#: ../jobs/user_apps.txt.in:260
+msgid "AIM"
+msgstr "AIM"
+
+#. description
+#: ../jobs/user_apps.txt.in:271
+msgid ""
+"Select Test to launch Empathy, then configure it to connect to the following "
+"service. Once you have completed the test, please quit Empathy to continue "
+"here."
+msgstr ""
+"ইমপ্যাথি চালানের জন্য টেস্ট নির্বাচন, নিম্নেক্ত সার্ভিসের সাথে সংযুক্ত করার "
+"জন্য কনফিগার। একবার টেস্ট শেষ করার পর, এখানে চালিয়ে যেতে ইমপ্যাথি বন্ধ করতে "
+"হবে।"
+
+#. description
+#: ../jobs/user_apps.txt.in:271
+msgid "MSN"
+msgstr "MSN"
+
+#. description
+#: ../jobs/user_apps.txt.in:271
+msgid "Were you able to connect correctly and send/receive messages?"
+msgstr "আপনার সংযোগ এবং বার্তা প্রেরন/গ্রহন করা ঠিক আছে?"
+
+#: ../checkbox/application.py:66
+msgid "Usage: checkbox [OPTIONS]"
+msgstr "ব্যবহার: চেকবক্স [OPTIONS]"
+
+#: ../checkbox/application.py:70
+msgid "Print version information and exit."
+msgstr "সংস্করনের তথ্য মুদ্রন করে প্রস্থান।"
+
+#: ../checkbox/application.py:74
+msgid "The file to write the log to."
+msgstr "যে ফাইলে লগ লেখা হবে।"
+
+#: ../checkbox/application.py:77
+msgid "One of debug, info, warning, error or critical."
+msgstr "ডিবাগ, তথ্য, সতর্কবানী, ত্রুটি বা সমালোচনার একটি।"
+
+#: ../checkbox/application.py:82
+msgid "Configuration override parameters."
+msgstr "কনফিগারেশন ওভাররাইড প্যারামিটার।"
+
+#: ../checkbox/application.py:84
+msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist."
+msgstr "--config=checkbox/plugins/jobs_info/blacklist এর জন্য শর্টহ্যান্ড।"
+
+#: ../checkbox/application.py:86
+msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist_file."
+msgstr ""
+"--config=checkbox/plugins/jobs_info/blacklist_file এর জন্য শর্টহ্যান্ড।"
+
+#: ../checkbox/application.py:88
+msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist."
+msgstr "--config=checkbox/plugins/jobs_info/whitelist এর জন্য শর্টহ্যান্ড।"
+
+#: ../checkbox/application.py:90
+msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist_file."
+msgstr ""
+"--config=checkbox/plugins/jobs_info/whitelist_file এর জন্য শর্টহ্যান্ড।"
+
+#: ../checkbox/application.py:115
+msgid "Missing configuration file as argument.\n"
+msgstr "আর্গুমেন্ট হিসাবে কনফিগারেশন অনুপস্থিত।\n"
+
+#: ../checkbox/lib/signal.py:23
+msgid ""
+"Hangup detected on controlling terminal or death of controlling process"
+msgstr ""
+"টার্মিনাল কন্ট্রোলের সময় বা কন্ট্রোলিং প্রসেস শেষ হওয়ার সময় হ্যাঙআপ সনাক্ত"
+
+#: ../checkbox/lib/signal.py:24
+msgid "Interrupt from keyboard"
+msgstr "কীবোর্ডে সমস্যা"
+
+#: ../checkbox/lib/signal.py:25
+msgid "Quit from keyboard"
+msgstr "কীবোর্ড বন্ধ"
+
+#: ../checkbox/lib/signal.py:26
+msgid "Illegal Instruction"
+msgstr "অবৈধ নির্দেশনা"
+
+#: ../checkbox/lib/signal.py:27
+msgid "Abort signal from abort(3)"
+msgstr "প্রস্থান(3) থেকে সিগন্যাল বন্ধ"
+
+#: ../checkbox/lib/signal.py:28
+msgid "Floating point exception"
+msgstr "ফ্লোটিং পয়েন্ট এক্সেপশন"
+
+#: ../checkbox/lib/signal.py:29
+msgid "Kill signal"
+msgstr "সিগন্যাল বন্ধ"
+
+#: ../checkbox/lib/signal.py:30
+msgid "Invalid memory reference"
+msgstr "অকার্যকর মেমরি রেফারেন্স"
+
+#: ../checkbox/lib/signal.py:31
+msgid "Broken pipe: write to pipe with no readers"
+msgstr "ব্রোকেন পাইপ: কোনো রিডার ছাড়া পাইপে লেখা"
+
+#: ../checkbox/lib/signal.py:32
+msgid "Timer signal from alarm(2)"
+msgstr "অ্যালার্ম(2) থেকে সময়ের সিগন্যাল"
+
+#: ../checkbox/lib/signal.py:33
+msgid "Termination signal"
+msgstr "বন্ধ করার সিগন্যাল"
+
+#: ../checkbox/lib/signal.py:34
+msgid "User-defined signal 1"
+msgstr "ব্যবহারকারী নির্ধারিত সিগন্যাল 1"
+
+#: ../checkbox/lib/signal.py:35
+msgid "User-defined signal 2"
+msgstr "ব্যবহারকারী নির্ধারিত সিগন্যাল 2"
+
+#: ../checkbox/lib/signal.py:36
+msgid "Child stopped or terminated"
+msgstr "চাইল্ড বন্ধ বা বাতিল"
+
+#: ../checkbox/lib/signal.py:37
+msgid "Continue if stopped"
+msgstr "বন্ধ থাকলে চালাতে হবে"
+
+#: ../checkbox/lib/signal.py:38
+msgid "Stop process"
+msgstr "প্রসেস বন্ধ"
+
+#: ../checkbox/lib/signal.py:39
+msgid "Stop typed at tty"
+msgstr "tty এ টাইপ বন্ধ"
+
+#: ../checkbox/lib/signal.py:40
+msgid "tty input for background process"
+msgstr "পটভূমির প্রসেসের জন্য tty ইনপুট"
+
+#: ../checkbox/lib/signal.py:41
+msgid "tty output for background process"
+msgstr "পটভূমির প্রসেসের জন্য tty আউটপুট"
+
+#: ../checkbox/lib/signal.py:77
+msgid "UNKNOWN"
+msgstr "অজানা"
+
+#: ../checkbox/lib/signal.py:89
+msgid "Unknown signal"
+msgstr "অজানা সিগন্যাল"
+
+#: ../checkbox_cli/cli_interface.py:31
+#: ../checkbox_urwid/urwid_interface.py:684
+msgid "yes"
+msgstr "হ্যাঁ"
+
+#: ../checkbox_cli/cli_interface.py:32
+#: ../checkbox_urwid/urwid_interface.py:685
+msgid "no"
+msgstr "না"
+
+#: ../checkbox_cli/cli_interface.py:33
+#: ../checkbox_urwid/urwid_interface.py:686
+msgid "skip"
+msgstr "বাদ"
+
+#: ../checkbox_cli/cli_interface.py:126
+msgid "Press any key to continue..."
+msgstr "পরবর্তিতে যাওয়ার জন্য যেকোনো কী চাপুন..."
+
+#: ../checkbox_cli/cli_interface.py:135
+#, python-format
+msgid "Please choose (%s): "
+msgstr "অনুগ্রহ যা নির্বাচন করা হয় (%s): "
+
+#: ../checkbox_cli/cli_interface.py:315
+msgid "test"
+msgstr "পরীক্ষা"
+
+#: ../checkbox_cli/cli_interface.py:339
+msgid "test again"
+msgstr "পুনরায় পরীক্ষা"
+
+#: ../checkbox_cli/cli_interface.py:345
+msgid "Please type here and press Ctrl-D when finished:\n"
+msgstr "অনুগ্রহ করে এখানে টাইপ করুন এবং শেষ হলে Ctrl-D চাপুন:\n"
+
+#: ../checkbox_urwid/urwid_interface.py:60
+msgid "Checkbox System Testing"
+msgstr "চেকবক্স সিস্টেম টেস্টিং"
+
+#: ../checkbox_urwid/urwid_interface.py:99
+msgid "Continue"
+msgstr "চালিয়ে যান"
+
+#: ../checkbox_urwid/urwid_interface.py:192
+#: ../checkbox_urwid/urwid_interface.py:268
+#: ../checkbox_urwid/urwid_interface.py:416
+msgid "Previous"
+msgstr "পূর্ববর্তী"
+
+#: ../checkbox_urwid/urwid_interface.py:193
+#: ../checkbox_urwid/urwid_interface.py:269
+#: ../checkbox_urwid/urwid_interface.py:417
+msgid "Next"
+msgstr "পরবর্তী"
+
+#. Show buttons
+#: ../checkbox_urwid/urwid_interface.py:414
+msgid "Select All"
+msgstr "সব নির্বাচন"
+
+#: ../checkbox_urwid/urwid_interface.py:415
+msgid "Deselect All"
+msgstr "সব নির্বাচন নয়"
+
+#: ../checkbox_urwid/urwid_interface.py:772
+msgid "Test"
+msgstr "পরীক্ষা"
+
+#: ../checkbox_urwid/urwid_interface.py:787
+msgid "Test Again"
+msgstr "পুনরায় পরীক্ষা"
+
+#: ../checkbox_gtk/gtk_interface.py:93
+msgid "hardware database"
+msgstr ""
+
+#: ../checkbox_gtk/gtk_interface.py:487
+msgid "_Test Again"
+msgstr "পুনরায় পরীক্ষা (_T)"
+
+#: ../checkbox_gtk/gtk_interface.py:533
+msgid "Info"
+msgstr "তথ্য"
+
+#: ../checkbox_gtk/gtk_interface.py:552
+msgid "Error"
+msgstr "ত্রুটি"
+
+#: ../checkbox/user_interface.py:136
+#, python-format
+msgid "Unable to start web browser to open %s."
+msgstr "ওয়েব ব্রাউজার খুলতে ব্যর্থ %s।"
+
+#: ../plugins/apport_prompt.py:81
+msgid ""
+"Collecting information about this test.\n"
+"This might take a few minutes."
+msgstr ""
+"এ পরীক্ষা সম্পর্কে তথ্য সংগ্রহ করা হচ্ছে।\n"
+"এ কাজে কয়েক মিনিট সময় লাগবে।"
+
+#: ../plugins/apport_prompt.py:116
+msgid ""
+"Collected information is being sent for bug tracking.\n"
+"This might take a few minutes."
+msgstr ""
+"সংকলিত তথ্য বাগ ট্র্যাকিং এর জন্য পাঠানো হয়েছে।\n"
+"এ কাজে কয়েক মিনিট সময় লাগবে।"
+
+#: ../plugins/apport_prompt.py:225
+#, python-format
+msgid "Test %s from suite %s failed."
+msgstr ""
+
+#: ../plugins/apport_prompt.py:228
+#, python-format
+msgid "Test %s failed."
+msgstr ""
+
+#: ../plugins/apport_prompt.py:246
+#, python-format
+msgid "Is a package upgrade in process? Error: %s"
+msgstr "কোনো প্যাকোজ আপগ্রেড প্রসেস কি চলছে? ত্রুটি: %s"
+
+#: ../plugins/final_prompt.py:33
+msgid "Successfully finished testing!"
+msgstr "সফলভাবে পরীক্ষা করা সম্পন্ন!"
+
+#: ../plugins/final_prompt.py:34
+msgid "_Finish"
+msgstr "শেষ (_F)"
+
+#: ../plugins/gather_prompt.py:35
+msgid "Gathering information from your system..."
+msgstr "আপনার সিস্টেম থেকে তথ্য সংগ্রহ করা হচ্ছে..."
+
+#: ../plugins/intro_prompt.py:43
+msgid ""
+"Welcome to System Testing!\n"
+"\n"
+"Checkbox provides tests to confirm that your system is working properly. "
+"Once you are finished running the tests, you can view a summary report for "
+"your system."
+msgstr ""
+"সিস্টেম পরীক্ষায় আপনাকে স্বাগতম!\n"
+"\n"
+"সিস্টেম ঠিকভাবে কাজ করছে কিনা তা চেকবক্সের পরীক্ষঅ দিয়ে নিশ্চিত হওয়া যায়। "
+"একবার সব পরীক্ষা চালানো শেষ হলে, আপনি সিস্টমের জন্য একটি সংক্ষিপ্ত রিপোর্ট "
+"দেখতে পাবেন।"
+
+#: ../plugins/launchpad_exchange.py:118
+#, python-format
+msgid "Failed to process form: %s"
+msgstr "যেখান থেকে চালিয়ে যেতে ব্যর্থ: %s"
+
+#: ../plugins/launchpad_exchange.py:141
+#, python-format
+msgid ""
+"Failed to contact server. Please try\n"
+"again or upload the following file name:\n"
+"%s\n"
+"\n"
+"directly to the system database:\n"
+"https://launchpad.net/+hwdb/+submit"
+msgstr ""
+"সার্ভারে সংযুক্ত করতে ব্যর্থ। অনুগ্রহ করে পরবর্তিতে চেষ্টা করুন বা নিচের "
+"ফাইলটি  সিস্টেম ডাটাবেসে:\n"
+"%s\n"
+"\n"
+"সরাসরি আপলোড করুন:\n"
+"https://launchpad.net/+hwdb/+submit"
+
+#: ../plugins/launchpad_exchange.py:150
+msgid ""
+"Failed to upload to server,\n"
+"please try again later."
+msgstr ""
+"সার্ভারে আপলোড করতে ব্যর্থ,\n"
+"অনুগ্রহ করে পুনরায় চেষ্টা করুন।"
+
+#: ../plugins/launchpad_exchange.py:162
+msgid "Information not posted to Launchpad."
+msgstr "লঞ্চপ্যাডে তথ্য পোস্ট করতে ব্যর্থ।"
+
+#: ../plugins/launchpad_prompt.py:71
+#, python-format
+msgid ""
+"The following report has been generated for submission to the Launchpad "
+"hardware database:\n"
+"\n"
+"  [[%s|View Report]]\n"
+"\n"
+"You can submit this information about your system by providing the e-mail "
+"address you use to sign in to Launchpad. If you do not have a Launchpad "
+"account, please register here:\n"
+"\n"
+"  https://launchpad.net/+login"
+msgstr ""
+"লঞ্চপ্যাড হার্ডওয়্যার ডাটাবেসে জমা দেয়ার জন্য নিম্নোক্ত রিপোর্ট তৈরি হয়েছে:\n"
+"\n"
+"  [[%s|View Report]]আপনি আপনার সিস্টেম সম্পর্কে তথ্য দেয়ার জন্য লঞ্চপ্যাডে "
+"সাইন ইন করার ইমেইল ঠিকানা ব্যবহার করতে পারেন। আপনাীর যদি লঞ্চপ্যাডে কোনো "
+"অ্যাকাউন্ট না থাকে তবে, অনুগ্রহ করে এখানে রেজিস্টার করুন:\n"
+"\n"
+" https://launchpad.net/+login"
+
+#: ../plugins/launchpad_prompt.py:88
+msgid "No e-mail address provided, not submitting to Launchpad."
+msgstr "কোনো মেইল ঠিকানা দেয়া হয়নি, লঞ্চপ্যাডেঔ জমা দেয়া হচ্ছে না।"
+
+#: ../plugins/launchpad_prompt.py:92
+msgid "Email address must be in a proper format."
+msgstr "ইমেইল ঠিকানা সঠিক বিন্যাসে হতে হবে।"
+
+#: ../plugins/launchpad_prompt.py:98
+msgid "Exchanging information with the server..."
+msgstr "সার্ভারের সাথে তথ্য আদান-প্রদান করা হচ্ছে..."
+
+#: ../plugins/lock_prompt.py:63
+msgid "There is another checkbox running. Please close it first."
+msgstr "অন্য একটি চেকবক্সও চলছে। অনুগ্রহ করে এটি আগে বন্ধ করে নিন।"
+
+#: ../plugins/recover_prompt.py:54
+msgid ""
+"Checkbox did not finish completely.\n"
+"Do you want to recover from the previous run?"
+msgstr ""
+"চেকবক্স সম্পন্নভাবে বন্ধ হয়নি।\n"
+"আপনি পূর্ববর্তী চালনা থেকে এটা পুনরূদ্ধার করতে চান?"
+
+#: ../plugins/report_prompt.py:34
+msgid "Building report..."
+msgstr "রিপোর্ট তৈরি করা হচ্ছে..."
+
+#: ../plugins/shell_test.py:52
+#, python-format
+msgid "Running %s..."
+msgstr "চলছে %s..."
+
+#. Get results
+#: ../plugins/suites_prompt.py:105
+msgid "Select the suites to test"
+msgstr "পরীক্ষার জন্য স্যুট নির্বাচন"
+
+#: ../scripts/keyboard_test:21
+msgid "Enter text:\n"
+msgstr "টেক্সট দিন:\n"
+
+#: ../scripts/keyboard_test:40
+msgid "Type Text"
+msgstr "টেক্সট টাইপ"
+
+#: ../scripts/internet_test:139
+msgid "No Internet connection"
+msgstr "কোনো ইন্টারনেট সংযোগ নেই"
+
+#: ../scripts/internet_test:142
+msgid "Connection established lost a packet"
+msgstr "সংযোগ স্থাপনার সময় প্যাকেট হারানো গেছে"
+
+#: ../scripts/internet_test:145
+msgid "Internet connection fully established"
+msgstr "সম্পূর্ণভাবে ইন্টারনেট সংযোগ স্থাপন"
+
+#~ msgid "Disk benchmark:"
+#~ msgstr "ডিস্ক বেঞ্চমার্ক:"
+
+#~ msgid "Is this ok?"
+#~ msgstr "ঠিক আছে?"
+
+#~ msgid "Kernel modesetting tests"
+#~ msgstr "কার্নেন মডসেটিং পরীক্ষা"
+
+#~ msgid "Network tests"
+#~ msgstr "নেটওয়ার্ক পরীক্ষা"
+
+#~ msgid "Video tests"
+#~ msgstr "ভিডিও পরীক্ষা"

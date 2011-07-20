@@ -2,19 +2,19 @@
 # Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
 # This file is distributed under the same license as the checkbox package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
-#
+# Fotis Tsamis <ftsamis@gmail.com>, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-07-07 12:32-0400\n"
-"PO-Revision-Date: 2009-10-26 07:24+0000\n"
-"Last-Translator: ΑναστόπουλοςΧάρης <anasto.harris@gmail.com>\n"
-"Language-Team: Greek <el@li.org>\n"
+"PO-Revision-Date: 2011-07-19 16:18+0000\n"
+"Last-Translator: Fotis Tsamis <Unknown>\n"
+"Language-Team: Greek <team@gnome.gr>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-07-16 04:31+0000\n"
+"X-Launchpad-Export-Date: 2011-07-20 04:32+0000\n"
 "X-Generator: Launchpad (build 13405)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:2
@@ -31,11 +31,11 @@ msgstr "_Προηγούμενο"
 
 #: ../gtk/checkbox-gtk.ui.h:8
 msgid "_Skip this test"
-msgstr "_Παραλείψτε αυτόν τον έλεγχο"
+msgstr "_Παράλειψη ελέγχου"
 
 #: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:522
 msgid "_Test"
-msgstr "_Έλεγχος"
+msgstr "_Δοκιμή"
 
 #: ../gtk/checkbox-gtk.ui.h:10
 msgid "_Yes"
@@ -47,7 +47,7 @@ msgstr "_Ναι"
 #: ../jobs/optical.txt.in:8 ../jobs/power-management.txt.in:167
 #: ../jobs/usb.txt.in:5
 msgid "$output"
-msgstr "$output"
+msgstr "$έξοδος"
 
 #. description
 #: ../jobs/audio.txt.in:7 ../jobs/bluetooth.txt.in:5 ../jobs/disk.txt.in:4
@@ -61,8 +61,7 @@ msgstr "Είναι αυτό σωστό;"
 #: ../jobs/input.txt.in:4
 msgid "Moving the mouse should move the cursor on the screen."
 msgstr ""
-"Μετακινώντας το ποντίκι θα έπρεπε να μετακινείται και ο δείκτης του στην "
-"οθόνη."
+"Μετακινώντας το ποντίκι πρέπει να μετακινείται και ο δείκτης του στην οθόνη."
 
 #. description
 #: ../jobs/input.txt.in:4
@@ -72,7 +71,7 @@ msgstr "Λειτουργεί το ποντίκι σας σωστά;"
 #. description
 #: ../jobs/input.txt.in:13
 msgid "Is your keyboard working properly?"
-msgstr "Λειτουργεί το πληκτρολόγιο σωστά;"
+msgstr "Λειτουργεί το πληκτρολόγιό σας σωστά;"
 
 #. description
 #: ../jobs/networking.txt.in:5
@@ -82,7 +81,7 @@ msgstr "Εντοπίζοντας τους ελεγκτές του δικτύου
 #. description
 #: ../jobs/networking.txt.in:16
 msgid "Testing your connection to the Internet:"
-msgstr "Έλεγχος την σύνδεση σας στο διαδίκτυο:"
+msgstr "Έλεγχος σύνδεσης στο διαδίκτυο:"
 
 #: ../checkbox/application.py:70
 msgid "Print version information and exit."
@@ -138,7 +137,7 @@ msgstr "_Τέλος"
 
 #: ../plugins/gather_prompt.py:35
 msgid "Gathering information from your system..."
-msgstr "Συγκέντρωση πληροφοριών για το σύστημα σας..."
+msgstr "Συλλογή πληροφοριών από το σύστημά σας..."
 
 #: ../plugins/launchpad_exchange.py:150
 msgid ""
@@ -262,15 +261,15 @@ msgstr "Περαιτέρω πληροφορίες:"
 #: ../gtk/checkbox-gtk.ui.h:3 ../gtk/checkbox-gtk.desktop.in.h:1
 #: ../plugins/user_interface.py:40
 msgid "System Testing"
-msgstr "Έλεγχος συστήματος"
+msgstr "Δοκιμή συστήματος"
 
 #: ../gtk/checkbox-gtk.ui.h:4
 msgid "_Deselect All"
-msgstr ""
+msgstr "_Αποεπιλογή όλων"
 
 #: ../gtk/checkbox-gtk.ui.h:7
 msgid "_Select All"
-msgstr ""
+msgstr "_Επιλογή όλων"
 
 #: ../gtk/checkbox-gtk.desktop.in.h:2
 msgid "Test and report system information"
@@ -284,7 +283,7 @@ msgstr ""
 #. description
 #: ../jobs/audio.txt.in:7
 msgid "Detecting your sound device(s):"
-msgstr ""
+msgstr "Ανίχνευση των συσκευών ήχου σας:"
 
 #. description
 #: ../jobs/audio.txt.in:21
@@ -298,7 +297,7 @@ msgstr ""
 #. description
 #: ../jobs/audio.txt.in:33
 msgid "Please connect a pair of headphones to your audio device."
-msgstr ""
+msgstr "Παρακαλούμε συνδέστε ένα ζευγάρι ακουστικά στη συσκευή ήχου σας."
 
 #. description
 #: ../jobs/audio.txt.in:33
@@ -359,7 +358,7 @@ msgstr ""
 #. description
 #: ../jobs/audio.txt.in:70 ../jobs/power-management.txt.in:221
 msgid "Did you hear your speech played back?"
-msgstr ""
+msgstr "Ακούσατε την ομιλία σας να αναπαράγεται;"
 
 #. description
 #: ../jobs/audio.txt.in:81
@@ -372,12 +371,12 @@ msgstr ""
 #. description
 #: ../jobs/autotest.txt.in:3
 msgid "Autotest suite (destructive)"
-msgstr ""
+msgstr "Σουίτα αυτόματου ελέγχου (καταστρεπτική)"
 
 #. description
 #: ../jobs/bluetooth.txt.in:5 ../jobs/power-management.txt.in:185
 msgid "The address of your Bluetooth device is: $output"
-msgstr ""
+msgstr "Η διεύθυνση της συσκευής Bluetooth είναι: $output"
 
 #. description
 #: ../jobs/bluetooth.txt.in:15 ../jobs/graphics.txt.in:15
@@ -438,7 +437,7 @@ msgstr ""
 #: ../jobs/bluetooth.txt.in:82 ../jobs/optical.txt.in:72
 #: ../jobs/power-management.txt.in:194 ../jobs/usb.txt.in:27
 msgid "Did all the steps work?"
-msgstr ""
+msgstr "Λειτούργησαν όλα τα βήματα;"
 
 #. description
 #: ../jobs/camera.txt.in:7
@@ -606,7 +605,7 @@ msgstr ""
 #. description
 #: ../jobs/disk.txt.in:4
 msgid "The following hard drives were detected:"
-msgstr ""
+msgstr "Οι ακόλουθοι σκληροί δίσκοι ανιχνεύθηκαν:"
 
 #. description
 #: ../jobs/disk.txt.in:14
@@ -673,6 +672,10 @@ msgid ""
 "which test cases are run and a personal account that the tester uses to "
 "verify the fingerprint reader"
 msgstr ""
+"Προαπαιτούμενα: Αυτή η περίπτωση ελέγχου υποθέτει ότι υπάρχει ένας "
+"δοκιμαστικός λογαριασμός από τον οποίο εκτελούνται περιπτώσεις δοκιμών και "
+"ένας προσωπικός λογαριασμός τον οποίο ο ελεγκτής χρησιμοποιεί για να "
+"επαληθεύσει τον αναγνώστη δακτυλικών αποτυπωμάτων"
 
 #. description
 #: ../jobs/fingerprint.txt.in:3
@@ -703,7 +706,7 @@ msgstr ""
 #. description
 #: ../jobs/fingerprint.txt.in:18
 msgid "Did the authentication procedure work correctly?"
-msgstr ""
+msgstr "Λειτούργησε σωστά η διαδικασία πιστοποίησης;"
 
 #. description
 #: ../jobs/firewire.txt.in:3
@@ -719,7 +722,7 @@ msgstr ""
 #. description
 #: ../jobs/firewire.txt.in:3 ../jobs/usb.txt.in:71
 msgid "Do the copy operations work as expected?"
-msgstr ""
+msgstr "Λειτουργούν όπως πρέπει οι λειτουργίες αντιγραφής;"
 
 #. description
 #: ../jobs/floppy.txt.in:4
@@ -875,7 +878,7 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:82
 msgid "This display is using the following resolution:"
-msgstr ""
+msgstr "Αυτή η οθόνη χρησιμοποιεί την ακόλουθη ανάλυση:"
 
 #. description
 #: ../jobs/graphics.txt.in:82
@@ -888,6 +891,8 @@ msgid ""
 "Ensure the current resolution meets or exceeds the recommended minimum "
 "resolution (1024 x 768). See here for details:"
 msgstr ""
+"Βεβαιωθείτε ότι η τρέχουσα ανάλυση καλύπτει ή υπερβαίνει την ελάχιστη "
+"συνιστώμενη ανάλυση (1024 x 768). Δείτε εδώ για λεπτομέρειες:"
 
 #. description
 #: ../jobs/graphics.txt.in:107
@@ -895,11 +900,13 @@ msgid ""
 "Ensure the current resolution meets or exceeds the recommended minimum "
 "resolution (1024 x 600). See here for details:"
 msgstr ""
+"Βεβαιωθείτε ότι η τρέχουσα ανάλυση καλύπτει ή υπερβαίνει την ελάχιστη "
+"συνιστώμενη ανάλυση (1024 x 768). Δείτε εδώ για λεπτομέρειες:"
 
 #. description
 #: ../jobs/graphics.txt.in:107
 msgid "https://help.ubuntu.com/community/Installation/SystemRequirements"
-msgstr ""
+msgstr "https://help.ubuntu.com/community/Installation/SystemRequirements"
 
 #. description
 #: ../jobs/graphics.txt.in:117
@@ -909,13 +916,13 @@ msgstr "Επιλέξτε Δοκιμή για προβολή δοκιμαστικ
 #. description
 #: ../jobs/graphics.txt.in:117
 msgid "Do you see color bars and static?"
-msgstr "Είδατε μπάρες με χρώματα και στατικό θόρυβο;"
+msgstr "Είδατε γραμμές χρωμάτων και στατικό θόρυβο;"
 
 #. description
 #: ../jobs/graphics.txt.in:126
 msgid ""
 "The following screens and video modes have been detected on your system:"
-msgstr ""
+msgstr "Οι παρακάτω οθόνες και λειτουργίες εικόνας βρέθηκαν στο σύστημά σας:"
 
 #. description
 #: ../jobs/graphics.txt.in:138
@@ -928,12 +935,12 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:138
 msgid "Did the screen appear to be working for each mode?"
-msgstr ""
+msgstr "Φάνηκε να δουλεύει σωστά η οθόνη για κάθε λειτουργία;"
 
 #. description
 #: ../jobs/graphics.txt.in:146
 msgid "Check that the hardware is able to run compiz."
-msgstr ""
+msgstr "Έλεγχος αν το υλικό μπορεί να εκτελέσει το compiz."
 
 #. description
 #: ../jobs/graphics.txt.in:153
@@ -947,7 +954,7 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:153
 msgid "Did the 3d animation appear?"
-msgstr ""
+msgstr "Εμφανίστηκε η κινούμενη 3d εικόνα;"
 
 #. description
 #: ../jobs/info.txt.in:60 ../jobs/screenshot.txt.in:7
@@ -1062,7 +1069,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:3
 msgid "Audio tests"
-msgstr ""
+msgstr "Έλεγχοι ήχου"
 
 #. description
 #: ../jobs/local.txt.in:8
@@ -1092,17 +1099,17 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:33
 msgid "Disk tests"
-msgstr ""
+msgstr "Δοκιμές δίσκου"
 
 #. description
 #: ../jobs/local.txt.in:38
 msgid "Fingerprint reader tests"
-msgstr ""
+msgstr "Δοκιμές αναγνώστη δακτυλικών αποτυπωμάτων"
 
 #. description
 #: ../jobs/local.txt.in:43
 msgid "Firewire disk tests"
-msgstr ""
+msgstr "Δοκιμές δίσκου Firewire"
 
 #. description
 #: ../jobs/local.txt.in:48
@@ -1147,7 +1154,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:88
 msgid "Monitor tests"
-msgstr ""
+msgstr "Δοκιμές οθόνης"
 
 #. description
 #: ../jobs/local.txt.in:93
@@ -1162,7 +1169,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:103
 msgid "Peripheral tests"
-msgstr ""
+msgstr "Δοκιμές περιφερειακών"
 
 #. description
 #: ../jobs/local.txt.in:108
@@ -1177,7 +1184,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:118
 msgid "User Applications"
-msgstr ""
+msgstr "Εφαρμογές χρήστη"
 
 #. description
 #: ../jobs/local.txt.in:123
@@ -1187,7 +1194,7 @@ msgstr ""
 #. description
 #: ../jobs/ltp.txt.in:3
 msgid "Linux Test Project"
-msgstr ""
+msgstr "Σχέδιο Δοκιμών Linux"
 
 #. description
 #: ../jobs/mago.txt.in:3
@@ -1425,7 +1432,7 @@ msgstr ""
 #. description
 #: ../jobs/mediacard.txt.in:130
 msgid "Does the icon automatically appear/disappear?"
-msgstr ""
+msgstr "Εμφανίζεται/εξαφανίζεται αυτόματα το εικονίδιο;"
 
 #. description
 #: ../jobs/memory.txt.in:4
@@ -1452,11 +1459,13 @@ msgstr ""
 #: ../jobs/miscellanea.txt.in:8
 msgid "Note that this test may require you to enter your password."
 msgstr ""
+"Σημειώστε πως σε αυτόν τον έλεγχο μπορεί να σας ζητηθεί να εισάγετε τον "
+"κωδικό πρόσβασής σας."
 
 #. description
 #: ../jobs/miscellanea.txt.in:8
 msgid "Did the screen change temporarily to a text console?"
-msgstr ""
+msgstr "Εμφάνισε η οθόνη προσωρινά μια κονσόλα κειμένου;"
 
 #. description
 #: ../jobs/miscellanea.txt.in:20
@@ -1481,6 +1490,8 @@ msgstr ""
 #: ../jobs/monitor.txt.in:3
 msgid "If your system does not have a VGA port, please skip this test."
 msgstr ""
+"Αν το σύστημά σας δεν διαθέτει θύρα VGA, παρακαλούμε παραλείψτε αυτόν τον "
+"έλεγχο."
 
 #. description
 #: ../jobs/monitor.txt.in:3
@@ -1488,11 +1499,15 @@ msgid ""
 "Connect a display (if not already connected) to the VGA port on your system. "
 "Is the image displayed correctly?"
 msgstr ""
+"Συνδέστε μια οθόνη (αν δεν είναι ήδη συνδεδεμένη) στην θύρα VGA του "
+"συστήματός σας. Εμφανίζεται σωστά η εικόνα;"
 
 #. description
 #: ../jobs/monitor.txt.in:10
 msgid "If your system does not have a DVI port, please skip this test."
 msgstr ""
+"Αν το σύστημά σας δεν διαθέτει θύρα DVI, παρακαλούμε παραλείψτε αυτόν τον "
+"έλεγχο."
 
 #. description
 #: ../jobs/monitor.txt.in:10
@@ -1500,11 +1515,14 @@ msgid ""
 "Connect a display (if not already connected) to the DVI port on your system. "
 "Is the image displayed correctly?"
 msgstr ""
+"Συνδέστε μια οθόνη (αν δεν είναι ήδη συνδεδεμένη) στην θύρα DVI του "
+"συστήματός σας. Εμφανίζεται σωστά η εικόνα;"
 
 #. description
 #: ../jobs/monitor.txt.in:17
 msgid "If your system does not have DisplayPort, please skip this test."
 msgstr ""
+"Εάν το σύστημά σας δεν έχει θύρα οθόνης, παρακαλώ παραλείψτε αυτή τη δοκιμή."
 
 #. description
 #: ../jobs/monitor.txt.in:17
@@ -1512,11 +1530,15 @@ msgid ""
 "Connect a display (if not already connected) to the DisplayPort on your "
 "system. Is the image displayed correctly?"
 msgstr ""
+"Συνδέστε μια οθόνη (εάν δεν είναι ήδη συνδεδεμένη) στην θύρα οθόνης του "
+"συστήματός σας. Εμφανίζεται σωστά η εικόνα;"
 
 #. description
 #: ../jobs/monitor.txt.in:24
 msgid "If your system does not have a HDMI port, please skip this test."
 msgstr ""
+"Αν το σύστημά σας δεν διαθέτει θύρα HDMI, παρακαλούμε παραλείψτε αυτόν τον "
+"έλεγχο."
 
 #. description
 #: ../jobs/monitor.txt.in:24
@@ -1524,11 +1546,15 @@ msgid ""
 "Connect a display (if not already connected) to the HDMI port on your "
 "system. Is the image displayed correctly?"
 msgstr ""
+"Συνδέστε μια οθόνη (αν δεν είναι ήδη συνδεδεμένη) στην θύρα HDMI του "
+"συστήματός σας. Εμφανίζεται σωστά η εικόνα;"
 
 #. description
 #: ../jobs/monitor.txt.in:31
 msgid "If your system does not have a S-VIDEO port, please skip this test."
 msgstr ""
+"Αν το σύστημά σας δεν διαθέτει θύρα S-VIDEO, παρακαλούμε παραλείψτε αυτόν "
+"τον έλεγχο."
 
 #. description
 #: ../jobs/monitor.txt.in:31
@@ -1536,11 +1562,15 @@ msgid ""
 "Connect a display (if not already connected) to the S-VIDEO port on your "
 "system. Is the image displayed correctly?"
 msgstr ""
+"Συνδέστε μια οθόνη (αν δεν είναι ήδη συνδεδεμένη) στην θύρα S-VIDEO του "
+"συστήματός σας. Εμφανίζεται σωστά η εικόνα;"
 
 #. description
 #: ../jobs/monitor.txt.in:38
 msgid "If your system does not have a RCA port, please skip this test."
 msgstr ""
+"Αν το σύστημά σας δεν διαθέτει θύρα RCA, παρακαλούμε παραλείψτε αυτόν τον "
+"έλεγχο."
 
 #. description
 #: ../jobs/monitor.txt.in:38
@@ -1548,6 +1578,8 @@ msgid ""
 "Connect a display (if not already connected) to the RCA port on your system. "
 "Is the image displayed correctly?"
 msgstr ""
+"Συνδέστε μια οθόνη (αν δεν είναι ήδη συνδεδεμένη) στην θύρα RCA του "
+"συστήματός σας. Εμφανίζεται σωστά η εικόνα;"
 
 #. description
 #: ../jobs/monitor.txt.in:46
@@ -1561,7 +1593,7 @@ msgstr ""
 #. description
 #: ../jobs/monitor.txt.in:46
 msgid "Did the monitor go blank?"
-msgstr ""
+msgstr "Έγινε κενή η οθόνη;"
 
 #. description
 #: ../jobs/networking.txt.in:26
@@ -1710,7 +1742,7 @@ msgstr ""
 #. description
 #: ../jobs/optical.txt.in:90
 msgid "Did the file play?"
-msgstr ""
+msgstr "Αναπαράχθηκε το αρχείο;"
 
 #. description
 #: ../jobs/panel_clock_test.txt.in:4
@@ -1788,7 +1820,7 @@ msgstr ""
 #. description
 #: ../jobs/phoronix.txt.in:3
 msgid "Automated benchmark testing"
-msgstr ""
+msgstr "Αυτόματη δοκιμή μέτρησης των επιδόσεων"
 
 #. description
 #: ../jobs/power-management.txt.in:3
@@ -1858,17 +1890,17 @@ msgstr ""
 #. description
 #: ../jobs/power-management.txt.in:65
 msgid "Test the network before suspending."
-msgstr ""
+msgstr "Έλεγχος της σύνδεσης δικτύου πριν την αδρανοποίηση"
 
 #. description
 #: ../jobs/power-management.txt.in:70
 msgid "Record the current resolution before suspending."
-msgstr ""
+msgstr "Αποθήκευση της τρέχουσας ανάλυσης πριν την αδρανοποίηση"
 
 #. description
 #: ../jobs/power-management.txt.in:78
 msgid "Test the audio before suspending."
-msgstr ""
+msgstr "Δοκιμή ήχου πριν την αδρανοποίηση"
 
 #. description
 #: ../jobs/power-management.txt.in:84
@@ -1890,7 +1922,7 @@ msgstr "Βεβαιωθείτε ότι υπάρχει η συσκευή RTC (Real
 #. description
 #: ../jobs/power-management.txt.in:135
 msgid "Power management Suspend and Resume test"
-msgstr ""
+msgstr "Δοκιμή αναστολής και επαναφοράς της διαχείρισης ενέργειας"
 
 #. description
 #: ../jobs/power-management.txt.in:135
@@ -1905,18 +1937,18 @@ msgstr ""
 #. description
 #: ../jobs/power-management.txt.in:145
 msgid "Test the network after resuming."
-msgstr ""
+msgstr "Δοκιμή της σύνδεσης δικτύου μετά την επαναφορά."
 
 #. description
 #: ../jobs/power-management.txt.in:151
 msgid ""
 "Test to see that we have the same resolution after resuming as before."
-msgstr ""
+msgstr "Δοκιμή διατήρησης της ανάλυσης μετά την επαναφορά."
 
 #. description
 #: ../jobs/power-management.txt.in:160
 msgid "Test the audio after resuming."
-msgstr ""
+msgstr "Δοκιμή ήχου μετά την επαναφορά."
 
 #. description
 #: ../jobs/power-management.txt.in:167
@@ -1936,6 +1968,8 @@ msgid ""
 "Verify a bluetooth peripheral.  An example verification procedure for a "
 "bluetooth mouse is given."
 msgstr ""
+"Επαλήθευση περιφερειακής συσκευής bluetooth. Παρέχεται παράδειγμα "
+"διαδικασίας επαλήθευσης για ποντίκι bluetooth."
 
 #. description
 #: ../jobs/power-management.txt.in:194
@@ -1965,6 +1999,9 @@ msgid ""
 "suspend and resume.  You can use either internal or external microphone and "
 "speakers."
 msgstr ""
+"Αυτή η δοκιμή θα ελέγξει αν οι συσκευές ήχου λειτουργούν σωστά μετά από "
+"αναστολή και επαναφορά. Μπορείτε να χρησιμοποιήσετε είτε εσωτερικά είτε "
+"εξωτερικά μικρόφωνα και ηχεία."
 
 #. description
 #: ../jobs/power-management.txt.in:221
@@ -1995,7 +2032,7 @@ msgstr ""
 #. description
 #: ../jobs/power-management.txt.in:234
 msgid "Did the system successfully suspend and resume for 30 iterations?"
-msgstr ""
+msgstr "Το σύστημα ανεστάλη και επανήλθε επιτυχώς 30 φορές;"
 
 #. description
 #: ../jobs/power-management.txt.in:245
@@ -2003,6 +2040,8 @@ msgid ""
 "This will check to make sure your system can successfully hibernate (if "
 "supported)."
 msgstr ""
+"Ελέγχει αν το σύστημα σας μπορεί να αδρανοποιηθεί επιτυχώς (αν "
+"υποστηρίζεται)."
 
 #. description
 #: ../jobs/power-management.txt.in:245
@@ -2025,6 +2064,8 @@ msgid ""
 "Did the system successfully hibernate and did it work properly after waking "
 "up?"
 msgstr ""
+"Αδρανοποιήθηκε επιτυχώς το σύστημα και λειτουργεί σωστά μετά την επαναφορά "
+"του;"
 
 #. description
 #: ../jobs/power-management.txt.in:258
@@ -2048,11 +2089,14 @@ msgid ""
 "set, and that grub is set to boot Ubuntu by default if you have a multi-boot "
 "set-up."
 msgstr ""
+"Επίσης θα πρέπει να εξασφαλίσετε ότι το σύστημα σας δεν έχει ρυθμίσεις "
+"κωδικών για την ενεργοποίηση τροφοδοσίας ή σκληρού δίσκου και ότι ο grub "
+"είναι ρυθμισμένος να εκκινεί το Ubuntu αν έχετε διαμόρφωση multi-boot."
 
 #. description
 #: ../jobs/power-management.txt.in:258
 msgid "Did the system successfully hibernate and wake 30 times?"
-msgstr ""
+msgstr "Αδρανοποιήθηκε και επανήλθε επιτυχώς το σύστημα 30 φορές;"
 
 #. description
 #: ../jobs/power-management.txt.in:267
@@ -2088,7 +2132,7 @@ msgstr ""
 #. description
 #: ../jobs/qa_regression.txt.in:3
 msgid "QA regression tests (destructive)"
-msgstr ""
+msgstr "δοκιμές παλινδρόμησης QA (καταστροφική)"
 
 #. description
 #: ../jobs/server-services.txt.in:5
@@ -2336,6 +2380,11 @@ msgid ""
 "are found, install them. When Update Manager has finished, please close the "
 "app by clicking the Close button in the lower right corner."
 msgstr ""
+"Η δοκιμή θα εκτελέσει την Διαχείριση ενημερώσεων και θα ελέγξει για την "
+"ύπαρξη διαθέσιμων ενημερώσεων για το σύστημα. Παρακαλούμε ακολουθήστε τις "
+"προτροπές και αν βρεθούν ενημερώσεις, εγκαταστήστε τις. Αφού τελειώσει η "
+"διαχείριση ενημερώσεων, παρακαλούμε κλείστε την εφαρμογή πατώντας το πλήκτρο "
+"«Κλείσιμο» στην κάτω δεξιά γωνία."
 
 #. description
 #: ../jobs/user_apps.txt.in:14
@@ -2351,7 +2400,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:14
 msgid "Do you now have a new folder called Test Folder?"
-msgstr ""
+msgstr "Έχετε τώρα έναν καινούργιο φάκελο με όνομα Test Folder;"
 
 #. description
 #: ../jobs/user_apps.txt.in:25
@@ -2370,11 +2419,14 @@ msgid ""
 "Right click on the folder called Test Folder(copy) and click Rename. Enter "
 "the name Test Data in the name box and hit Enter."
 msgstr ""
+"Κάντε δεξί κλικ στον φάκελο Test Folder(αντίγραφο) και επιλέξτε "
+"«Μετονομασία». Εισάγετε το όνομα «Test Data» στο πεδίο εισαγωγής ονόματος "
+"και πατήστε Enter."
 
 #. description
 #: ../jobs/user_apps.txt.in:25
 msgid "Do you now have a folder called Test Data?"
-msgstr ""
+msgstr "Έχετε τώρα έναν φάκελο με όνομα Test Data;"
 
 #. description
 #: ../jobs/user_apps.txt.in:38
@@ -2388,7 +2440,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:38
 msgid "Double click the folder called Test Folder to open it up."
-msgstr ""
+msgstr "Με διπλό κλικ ανοίξτε τον φάκελο Test Folder."
 
 #. description
 #: ../jobs/user_apps.txt.in:38
@@ -2396,6 +2448,7 @@ msgid ""
 "Was the folder called Test Data successfully moved into the folder called "
 "Test Folder?"
 msgstr ""
+"Μετακινήθηκε επιτυχώς ο φάκελος Test Data μέσα στον φάκελο Test Folder;"
 
 #. description
 #: ../jobs/user_apps.txt.in:51
@@ -2412,12 +2465,12 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:51
 msgid "Do you now have a file called Test File 1?"
-msgstr ""
+msgstr "Έχετε τώρα ένα αρχείο με όνομα Test File 1;"
 
 #. description
 #: ../jobs/user_apps.txt.in:51
 msgid "Close the File browser."
-msgstr ""
+msgstr "Κλείστε τον περιηγητή αρχείων."
 
 #. description
 #: ../jobs/user_apps.txt.in:62
@@ -2435,11 +2488,14 @@ msgid ""
 "Right click on the file called Test File 1(copy) and click Rename. Enter the "
 "name Test File 2 in the name box and hit Enter."
 msgstr ""
+"Κάντε δεξί κλικ στο αρχείο Test File 1(Αντίγραφο) και επιλέξτε "
+"«Μετονομασία». Εισάγετε το όνομα «Test File 2» στο πεδίο εισαγωγής ονόματος "
+"και πατήστε Enter."
 
 #. description
 #: ../jobs/user_apps.txt.in:62
 msgid "Do you now have a file called Test File 2?"
-msgstr ""
+msgstr "Έχετε τώρα ένα αρχείο με όνομα Test File 2;"
 
 #. description
 #: ../jobs/user_apps.txt.in:75
@@ -2453,13 +2509,14 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:75
 msgid "Double click the icon for Test Data to open that folder up."
-msgstr ""
+msgstr "Ανοίξτε τον φάκελο Test Data με διπλό κλικ στο εικονίδιο του."
 
 #. description
 #: ../jobs/user_apps.txt.in:75
 msgid ""
 "Was the file Test File 2 successfully moved into the Test Data folder?"
 msgstr ""
+"Μεταφέρθηκε επιτυχώς το αρχείο «Test File 2» στον φάκελο «Test Data»;"
 
 #. description
 #: ../jobs/user_apps.txt.in:88
@@ -2473,7 +2530,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:88
 msgid "Is Test File 1 now gone?"
-msgstr ""
+msgstr "Εξαφανίστηκε τώρα το Test File 1;"
 
 #. description
 #: ../jobs/user_apps.txt.in:99
@@ -2487,17 +2544,17 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:99
 msgid "Has Test Folder been successfully deleted?"
-msgstr ""
+msgstr "Διαγράφηκε επιτυχώς ο Test Folder;"
 
 #. description
 #: ../jobs/user_apps.txt.in:99
 msgid "Close the File Browser."
-msgstr ""
+msgstr "Κλείστε τον περιηγητή αρχείων."
 
 #. description
 #: ../jobs/user_apps.txt.in:160
 msgid "Common Document Types Test"
-msgstr ""
+msgstr "Δοκιμή τύπων συνηθισμένων εγγράφων"
 
 #. description
 #: ../jobs/user_apps.txt.in:178
@@ -2509,7 +2566,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:178
 msgid "Did the Ubuntu Test page load correctly?"
-msgstr ""
+msgstr "Άνοιξε επιτυχώς η σελίδα ελέγχου του Ubuntu;"
 
 #. description
 #: ../jobs/user_apps.txt.in:188
@@ -2523,7 +2580,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:188
 msgid "Did the applet display?"
-msgstr ""
+msgstr "Προβλήθηκε η μικροεφαρμογή;"
 
 #. description
 #: ../jobs/user_apps.txt.in:198
@@ -2535,7 +2592,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:198
 msgid "Did you see the text?"
-msgstr ""
+msgstr "Είδατε το κείμενο;"
 
 #. description
 #: ../jobs/user_apps.txt.in:208
@@ -2547,7 +2604,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:208
 msgid "Did the video play correctly?"
-msgstr ""
+msgstr "Προβλήθηκε επιτυχώς το βίντεο;"
 
 #. description
 #: ../jobs/user_apps.txt.in:218
@@ -2559,27 +2616,27 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:218
 msgid "Did the video play using a plugin?"
-msgstr ""
+msgstr "Προβλήθηκε το βίντεο με την χρήση ενός προσθέτου;"
 
 #. description
 #: ../jobs/user_apps.txt.in:227
 msgid "Facebook Chat"
-msgstr ""
+msgstr "Facebook Chat"
 
 #. description
 #: ../jobs/user_apps.txt.in:238
 msgid "Google Talk"
-msgstr ""
+msgstr "Google Talk"
 
 #. description
 #: ../jobs/user_apps.txt.in:249
 msgid "Jabber"
-msgstr ""
+msgstr "Jabber"
 
 #. description
 #: ../jobs/user_apps.txt.in:260
 msgid "AIM"
-msgstr ""
+msgstr "AIM"
 
 #. description
 #: ../jobs/user_apps.txt.in:271
@@ -2595,12 +2652,12 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:271
 msgid "MSN"
-msgstr ""
+msgstr "MSN"
 
 #. description
 #: ../jobs/user_apps.txt.in:271
 msgid "Were you able to connect correctly and send/receive messages?"
-msgstr ""
+msgstr "Συνδεθήκατε επιτυχώς και μπορούσατε να στείλετε/λάβετε μηνύματα;"
 
 #: ../checkbox/application.py:66
 msgid "Usage: checkbox [OPTIONS]"
@@ -2612,19 +2669,19 @@ msgstr "Παράμετροι ακύρωσης ρυθμίσεων"
 
 #: ../checkbox/application.py:84
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist."
-msgstr ""
+msgstr "Στενογραφία για --config=checkbox/plugins/jobs_info/blacklist."
 
 #: ../checkbox/application.py:86
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist_file."
-msgstr ""
+msgstr "Στενογραφία για --config=checkbox/plugins/jobs_info/blacklist_file."
 
 #: ../checkbox/application.py:88
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist."
-msgstr ""
+msgstr "Στενογραφία για --config=checkbox/plugins/jobs_info/whitelist."
 
 #: ../checkbox/application.py:90
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist_file."
-msgstr ""
+msgstr "Στενογραφία για --config=checkbox/plugins/jobs_info/whitelist_file."
 
 #: ../checkbox/lib/signal.py:23
 msgid ""
@@ -2663,7 +2720,7 @@ msgstr "Μη έγκυρη αναφορά μνήμης"
 
 #: ../checkbox/lib/signal.py:31
 msgid "Broken pipe: write to pipe with no readers"
-msgstr ""
+msgstr "Σπασμένος αγωγός: εγγραφή στον αγωγό χωρίς αναγνώστες"
 
 #: ../checkbox/lib/signal.py:32
 msgid "Timer signal from alarm(2)"
@@ -2675,7 +2732,7 @@ msgstr "Σήμα τερματισμού"
 
 #: ../checkbox/lib/signal.py:34
 msgid "User-defined signal 1"
-msgstr "Σήμα χρήστη 1"
+msgstr "Σήμα 1 ορισμένο από χρήστη"
 
 #: ../checkbox/lib/signal.py:35
 msgid "User-defined signal 2"
@@ -2723,40 +2780,40 @@ msgstr "έλεγχος ξανά"
 
 #: ../checkbox_urwid/urwid_interface.py:60
 msgid "Checkbox System Testing"
-msgstr ""
+msgstr "Δοκιμή συστήματος Checkbox"
 
 #: ../checkbox_urwid/urwid_interface.py:99
 msgid "Continue"
-msgstr ""
+msgstr "Συνέχεια"
 
 #: ../checkbox_urwid/urwid_interface.py:192
 #: ../checkbox_urwid/urwid_interface.py:268
 #: ../checkbox_urwid/urwid_interface.py:416
 msgid "Previous"
-msgstr ""
+msgstr "Προηγούμενο"
 
 #: ../checkbox_urwid/urwid_interface.py:193
 #: ../checkbox_urwid/urwid_interface.py:269
 #: ../checkbox_urwid/urwid_interface.py:417
 msgid "Next"
-msgstr ""
+msgstr "Επόμενο"
 
 #. Show buttons
 #: ../checkbox_urwid/urwid_interface.py:414
 msgid "Select All"
-msgstr ""
+msgstr "Επιλογή όλων"
 
 #: ../checkbox_urwid/urwid_interface.py:415
 msgid "Deselect All"
-msgstr ""
+msgstr "Αποεπιλογή όλων"
 
 #: ../checkbox_urwid/urwid_interface.py:772
 msgid "Test"
-msgstr ""
+msgstr "Δοκιμή"
 
 #: ../checkbox_urwid/urwid_interface.py:787
 msgid "Test Again"
-msgstr ""
+msgstr "Επανάληψη δοκιμής"
 
 #: ../checkbox_gtk/gtk_interface.py:93
 msgid "hardware database"
@@ -2764,11 +2821,11 @@ msgstr ""
 
 #: ../checkbox_gtk/gtk_interface.py:533
 msgid "Info"
-msgstr ""
+msgstr "Πληροφορίες"
 
 #: ../checkbox_gtk/gtk_interface.py:552
 msgid "Error"
-msgstr ""
+msgstr "Σφάλμα"
 
 #: ../checkbox/user_interface.py:136
 #, python-format
@@ -2780,12 +2837,16 @@ msgid ""
 "Collecting information about this test.\n"
 "This might take a few minutes."
 msgstr ""
+"Γίνεται συλλογή πληροφοριών για αυτόν τον έλεγχο.\n"
+"Αυτό μπορεί να διαρκέσει λίγα λεπτά."
 
 #: ../plugins/apport_prompt.py:116
 msgid ""
 "Collected information is being sent for bug tracking.\n"
 "This might take a few minutes."
 msgstr ""
+"Οι συλλεγμένες πληροφορίες στέλνονται για έλεγχο σφαλμάτων.\n"
+"Αυτό μπορεί να διαρκέσει λίγα λεπτά."
 
 #: ../plugins/apport_prompt.py:225
 #, python-format
@@ -2800,11 +2861,11 @@ msgstr ""
 #: ../plugins/apport_prompt.py:246
 #, python-format
 msgid "Is a package upgrade in process? Error: %s"
-msgstr ""
+msgstr "Μήπως είναι σε λειτουργία κάποια αναβάθμιση πακέτου; Σφάλμα: %s"
 
 #: ../plugins/final_prompt.py:33
 msgid "Successfully finished testing!"
-msgstr ""
+msgstr "Οι δοκιμές ολοκληρώθηκαν επιτυχώς!"
 
 #: ../plugins/intro_prompt.py:43
 msgid ""
@@ -2814,11 +2875,16 @@ msgid ""
 "Once you are finished running the tests, you can view a summary report for "
 "your system."
 msgstr ""
+"Καλωσορίσατε στη Δοκιμή συστήματος!\n"
+"\n"
+"Το Checkbox παρέχει δοκιμές για να επιβεβαιωθεί πως το σύστημά σας "
+"λειτουργεί σωστά. Μόλις τελειώσετε τις δοκιμές, μπορείτε να δείτε μια "
+"συνοπτική αναφορά για το σύστημά σας."
 
 #: ../plugins/launchpad_exchange.py:118
 #, python-format
 msgid "Failed to process form: %s"
-msgstr ""
+msgstr "Αποτυχία κατεργασίας μορφής: %s"
 
 #: ../plugins/launchpad_exchange.py:141
 #, python-format
@@ -2851,51 +2917,64 @@ msgid ""
 "\n"
 "  https://launchpad.net/+login"
 msgstr ""
+"Η ακόλουθη αναφορά δημιουργήθηκε για υποβολή στη βάση δεδομένων υλικού του "
+"Launchpad:\n"
+"\n"
+"  [[%s|Προβολή αναφοράς]]\n"
+"\n"
+"Μπορείτε να υποβάλετε αυτές τις πληροφορίες για το σύστημά σας δίνοντας την "
+"διεύθυνση e-mail που χρησιμοποιείτε για να κάνετε είσοδο στο Launchpad. Αν "
+"δεν έχετε λογαριασμό στο Launchpad, παρακαλούμε εγγραφείτε εδώ:\n"
+"\n"
+"  https://launchpad.net/+login"
 
 #: ../plugins/launchpad_prompt.py:88
 msgid "No e-mail address provided, not submitting to Launchpad."
-msgstr ""
+msgstr "Δεν δόθηκε διεύθυνση e-mail, δεν θα γίνει αποστολή στο Launchpad."
 
 #: ../plugins/lock_prompt.py:63
 msgid "There is another checkbox running. Please close it first."
 msgstr ""
-"Εκτελείται ταυτόχρονα άλλη μια εφαρμογή ελέγχου. Παρακαλούμε να το κλείσετε."
+"Εκτελείται ταυτόχρονα άλλο ένα πλαίσιο ελέγχου. Παρακαλούμε να το κλείσετε "
+"πρώτα."
 
 #: ../plugins/recover_prompt.py:54
 msgid ""
 "Checkbox did not finish completely.\n"
 "Do you want to recover from the previous run?"
 msgstr ""
+"Το πλαίσιο ελέγχου δεν ολοκληρώθηκε πλήρως.\n"
+"Θέλετε να ανακτηθεί από προηγούμενη εκτέλεση;"
 
 #: ../plugins/shell_test.py:52
 #, python-format
 msgid "Running %s..."
-msgstr ""
+msgstr "Εκτέλεση %s..."
 
 #. Get results
 #: ../plugins/suites_prompt.py:105
 msgid "Select the suites to test"
-msgstr ""
+msgstr "Επιλέξτε τις σουίτες προς δοκιμή"
 
 #: ../scripts/keyboard_test:21
 msgid "Enter text:\n"
-msgstr ""
+msgstr "Εισάγετε κείμενο:\n"
 
 #: ../scripts/keyboard_test:40
 msgid "Type Text"
-msgstr ""
+msgstr "Πληκτρολογήστε κείμενο"
 
 #: ../scripts/internet_test:139
 msgid "No Internet connection"
-msgstr ""
+msgstr "Δεν υπάρχει σύνδεση με το Διαδίκτυο"
 
 #: ../scripts/internet_test:142
 msgid "Connection established lost a packet"
-msgstr ""
+msgstr "Η σύνδεση που πραγματοποιήθηκε έχασε ένα πακέτο"
 
 #: ../scripts/internet_test:145
 msgid "Internet connection fully established"
-msgstr ""
+msgstr "Η σύνδεση με το Διαδίκτυο πραγματοποιήθηκε πλήρως"
 
 #~ msgid "Running shell tests..."
 #~ msgstr "Γίνεται εκτέλεση ελέγχων κελύφους..."
@@ -2905,6 +2984,21 @@ msgstr ""
 
 #~ msgid "Run the test for the automatically detected playback device."
 #~ msgstr "Τρέξτε την δοκιμή για αυτόματη αναγνώριση συσκευής αναπαραγωγής."
+
+#~ msgid "Disk benchmark:"
+#~ msgstr "Αναφορά δίσκου:"
+
+#~ msgid "Is this ok?"
+#~ msgstr "Είναι εντάξει αυτό;"
+
+#~ msgid "Video tests"
+#~ msgstr "Δοκιμές βίντεο"
+
+#~ msgid "Kernel modesetting tests"
+#~ msgstr "Δοκιμές ρυθμίσεων οθόνης του πυρήνα"
+
+#~ msgid "Network tests"
+#~ msgstr "Δοκιμές δικτύου"
 
 #~ msgid "Click the Test button to display a video test."
 #~ msgstr "Πατήστε το κουμπί Έλεγχος για να εμφανιστεί ένα δοκιμαστικό βίντεο."

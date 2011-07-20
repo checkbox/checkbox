@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-07-07 12:32-0400\n"
-"PO-Revision-Date: 2010-08-07 17:47+0000\n"
-"Last-Translator: David Bengtsson <Unknown>\n"
+"PO-Revision-Date: 2011-07-19 19:53+0000\n"
+"Last-Translator: Daniel Nylander <yeager@ubuntu.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-07-16 04:32+0000\n"
+"X-Launchpad-Export-Date: 2011-07-20 04:33+0000\n"
 "X-Generator: Launchpad (build 13405)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:2
@@ -167,7 +167,7 @@ msgstr "_Färdigställ"
 
 #: ../plugins/gather_prompt.py:35
 msgid "Gathering information from your system..."
-msgstr "Samlar information ifrån ditt system..."
+msgstr "Samlar in information från ditt system..."
 
 #: ../plugins/launchpad_exchange.py:141
 #, python-format
@@ -349,11 +349,11 @@ msgstr "Ytterligare information:"
 
 #: ../gtk/checkbox-gtk.ui.h:4
 msgid "_Deselect All"
-msgstr ""
+msgstr "_Avmarkera allt"
 
 #: ../gtk/checkbox-gtk.ui.h:7
 msgid "_Select All"
-msgstr ""
+msgstr "_Markera allt"
 
 #. description
 #: ../jobs/apport.txt.in:5
@@ -377,7 +377,7 @@ msgstr ""
 #. description
 #: ../jobs/audio.txt.in:33
 msgid "Please connect a pair of headphones to your audio device."
-msgstr ""
+msgstr "Anslut ett par hörlurar till din ljudenhet."
 
 #. description
 #: ../jobs/audio.txt.in:33
@@ -449,12 +449,12 @@ msgstr ""
 #. description
 #: ../jobs/autotest.txt.in:3
 msgid "Autotest suite (destructive)"
-msgstr ""
+msgstr "Automatisk testsvit (destruktiv)"
 
 #. description
 #: ../jobs/bluetooth.txt.in:5 ../jobs/power-management.txt.in:185
 msgid "The address of your Bluetooth device is: $output"
-msgstr ""
+msgstr "Adressen för din blåtandsenhet är: $output"
 
 #. description
 #: ../jobs/bluetooth.txt.in:15 ../jobs/graphics.txt.in:15
@@ -515,7 +515,7 @@ msgstr ""
 #: ../jobs/bluetooth.txt.in:82 ../jobs/optical.txt.in:72
 #: ../jobs/power-management.txt.in:194 ../jobs/usb.txt.in:27
 msgid "Did all the steps work?"
-msgstr ""
+msgstr "Fungerade alla steg?"
 
 #. description
 #: ../jobs/camera.txt.in:7
@@ -683,7 +683,7 @@ msgstr ""
 #. description
 #: ../jobs/disk.txt.in:4
 msgid "The following hard drives were detected:"
-msgstr ""
+msgstr "Följande hårddiskar upptäcktes:"
 
 #. description
 #: ../jobs/disk.txt.in:14
@@ -750,6 +750,9 @@ msgid ""
 "which test cases are run and a personal account that the tester uses to "
 "verify the fingerprint reader"
 msgstr ""
+"Förutsättningar: Detta test förutsätter att det finns ett testkonto som "
+"används för testerna och ett personligt konto som användaren använder för "
+"att verifiera fingeravtrycksläsaren"
 
 #. description
 #: ../jobs/fingerprint.txt.in:3
@@ -965,6 +968,8 @@ msgid ""
 "Ensure the current resolution meets or exceeds the recommended minimum "
 "resolution (1024 x 768). See here for details:"
 msgstr ""
+"Försäkra dig om att aktuell upplösning uppfyller eller överstiger "
+"rekommenderad upplösning (1024 x 768). Se här för detaljer:"
 
 #. description
 #: ../jobs/graphics.txt.in:107
@@ -972,11 +977,13 @@ msgid ""
 "Ensure the current resolution meets or exceeds the recommended minimum "
 "resolution (1024 x 600). See here for details:"
 msgstr ""
+"Försäkra dig om att aktuell upplösning uppfyller eller överstiger "
+"rekommenderad upplösning (1024 x 600). Se här för detaljer:"
 
 #. description
 #: ../jobs/graphics.txt.in:107
 msgid "https://help.ubuntu.com/community/Installation/SystemRequirements"
-msgstr ""
+msgstr "https://help.ubuntu.com/community/Installation/SystemRequirements"
 
 #. description
 #: ../jobs/graphics.txt.in:117
@@ -1005,7 +1012,7 @@ msgstr "Fungerade skärmen för varje läge?"
 #. description
 #: ../jobs/graphics.txt.in:146
 msgid "Check that the hardware is able to run compiz."
-msgstr ""
+msgstr "Kontrollera att hårdvaran har möjlighet att köra Compiz."
 
 #. description
 #: ../jobs/graphics.txt.in:153
@@ -1019,7 +1026,7 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:153
 msgid "Did the 3d animation appear?"
-msgstr ""
+msgstr "Visades 3D-animationen?"
 
 #. description
 #: ../jobs/info.txt.in:60 ../jobs/screenshot.txt.in:7
@@ -1219,7 +1226,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:88
 msgid "Monitor tests"
-msgstr ""
+msgstr "Skärmtester"
 
 #. description
 #: ../jobs/local.txt.in:93
@@ -1249,7 +1256,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:118
 msgid "User Applications"
-msgstr ""
+msgstr "Användarprogram"
 
 #. description
 #: ../jobs/local.txt.in:123
@@ -1259,7 +1266,7 @@ msgstr "Stresstester"
 #. description
 #: ../jobs/ltp.txt.in:3
 msgid "Linux Test Project"
-msgstr ""
+msgstr "Linux testprojekt"
 
 #. description
 #: ../jobs/mago.txt.in:3
@@ -1485,7 +1492,7 @@ msgstr ""
 #. description
 #: ../jobs/mediacard.txt.in:130
 msgid "Does the icon automatically appear/disappear?"
-msgstr ""
+msgstr "Visas/försvinner ikonen automatiskt?"
 
 #. description
 #: ../jobs/memory.txt.in:4
@@ -1540,7 +1547,7 @@ msgstr ""
 #. description
 #: ../jobs/monitor.txt.in:3
 msgid "If your system does not have a VGA port, please skip this test."
-msgstr ""
+msgstr "Om ditt system inte har en VGA-port så kan du hoppa över detta test."
 
 #. description
 #: ../jobs/monitor.txt.in:3
@@ -1554,7 +1561,7 @@ msgstr ""
 #. description
 #: ../jobs/monitor.txt.in:10
 msgid "If your system does not have a DVI port, please skip this test."
-msgstr ""
+msgstr "Om ditt system inte har en DVI-port så kan du hoppa över detta test."
 
 #. description
 #: ../jobs/monitor.txt.in:10
@@ -1569,6 +1576,7 @@ msgstr ""
 #: ../jobs/monitor.txt.in:17
 msgid "If your system does not have DisplayPort, please skip this test."
 msgstr ""
+"Om ditt system inte har en DisplayPort så kan du hoppa över detta test."
 
 #. description
 #: ../jobs/monitor.txt.in:17
@@ -1583,6 +1591,7 @@ msgstr ""
 #: ../jobs/monitor.txt.in:24
 msgid "If your system does not have a HDMI port, please skip this test."
 msgstr ""
+"Om ditt system inte har en HDMI-port så kan du hoppa över detta test."
 
 #. description
 #: ../jobs/monitor.txt.in:24
@@ -1597,6 +1606,7 @@ msgstr ""
 #: ../jobs/monitor.txt.in:31
 msgid "If your system does not have a S-VIDEO port, please skip this test."
 msgstr ""
+"Om ditt system inte har en S-VIDEO-port så kan du hoppa över detta test."
 
 #. description
 #: ../jobs/monitor.txt.in:31
@@ -1610,7 +1620,7 @@ msgstr ""
 #. description
 #: ../jobs/monitor.txt.in:38
 msgid "If your system does not have a RCA port, please skip this test."
-msgstr ""
+msgstr "Om ditt system inte har en RCA-port så kan du hoppa över detta test."
 
 #. description
 #: ../jobs/monitor.txt.in:38
@@ -1633,7 +1643,7 @@ msgstr ""
 #. description
 #: ../jobs/monitor.txt.in:46
 msgid "Did the monitor go blank?"
-msgstr ""
+msgstr "Blev din skärm svart?"
 
 #. description
 #: ../jobs/networking.txt.in:26
@@ -1860,7 +1870,7 @@ msgstr ""
 #. description
 #: ../jobs/phoronix.txt.in:3
 msgid "Automated benchmark testing"
-msgstr ""
+msgstr "Automatisk prestandatestning"
 
 #. description
 #: ../jobs/power-management.txt.in:3
@@ -1930,17 +1940,17 @@ msgstr ""
 #. description
 #: ../jobs/power-management.txt.in:65
 msgid "Test the network before suspending."
-msgstr ""
+msgstr "Testa nätverket före vänteläge."
 
 #. description
 #: ../jobs/power-management.txt.in:70
 msgid "Record the current resolution before suspending."
-msgstr ""
+msgstr "Registrera aktuell upplösning före vänteläge."
 
 #. description
 #: ../jobs/power-management.txt.in:78
 msgid "Test the audio before suspending."
-msgstr ""
+msgstr "Testa ljudet före vänteläge."
 
 #. description
 #: ../jobs/power-management.txt.in:84
@@ -1977,18 +1987,20 @@ msgstr ""
 #. description
 #: ../jobs/power-management.txt.in:145
 msgid "Test the network after resuming."
-msgstr ""
+msgstr "Testa nätverket efter vänteläge."
 
 #. description
 #: ../jobs/power-management.txt.in:151
 msgid ""
 "Test to see that we have the same resolution after resuming as before."
 msgstr ""
+"Testa för att se att vi har samma upplösning efter vänteläget som vi hade "
+"tidigare."
 
 #. description
 #: ../jobs/power-management.txt.in:160
 msgid "Test the audio after resuming."
-msgstr ""
+msgstr "Testa ljuder efter vänteläge."
 
 #. description
 #: ../jobs/power-management.txt.in:167
@@ -2172,7 +2184,7 @@ msgstr ""
 #. description
 #: ../jobs/qa_regression.txt.in:3
 msgid "QA regression tests (destructive)"
-msgstr ""
+msgstr "QA regressionstester (destruktiv)"
 
 #. description
 #: ../jobs/server-services.txt.in:5
@@ -2584,12 +2596,12 @@ msgstr "Har mappen Test Folder tagits bort?"
 #. description
 #: ../jobs/user_apps.txt.in:99
 msgid "Close the File Browser."
-msgstr ""
+msgstr "Stäng filbläddraren."
 
 #. description
 #: ../jobs/user_apps.txt.in:160
 msgid "Common Document Types Test"
-msgstr ""
+msgstr "Test av vanliga dokumenttyper"
 
 #. description
 #: ../jobs/user_apps.txt.in:178
@@ -2599,7 +2611,7 @@ msgstr "Välj Testa för att starta Firefox och visa testwebbsidan."
 #. description
 #: ../jobs/user_apps.txt.in:178
 msgid "Did the Ubuntu Test page load correctly?"
-msgstr ""
+msgstr "Lästes Ubuntus testsida in korrekt?"
 
 #. description
 #: ../jobs/user_apps.txt.in:188
@@ -2613,7 +2625,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:188
 msgid "Did the applet display?"
-msgstr ""
+msgstr "Visades appletprogrammet?"
 
 #. description
 #: ../jobs/user_apps.txt.in:198
@@ -2623,7 +2635,7 @@ msgstr "Välj Testa för att starta Firefoxoch visa ett Flash-testexempel."
 #. description
 #: ../jobs/user_apps.txt.in:198
 msgid "Did you see the text?"
-msgstr ""
+msgstr "Såg du texten?"
 
 #. description
 #: ../jobs/user_apps.txt.in:208
@@ -2633,7 +2645,7 @@ msgstr "Välj Testa för att starta Firefox och visa en kort Flash-video."
 #. description
 #: ../jobs/user_apps.txt.in:208
 msgid "Did the video play correctly?"
-msgstr ""
+msgstr "Spelades videon upp korrekt?"
 
 #. description
 #: ../jobs/user_apps.txt.in:218
@@ -2643,27 +2655,27 @@ msgstr "Välj Testa för att starta Firefox med en exempelvideo."
 #. description
 #: ../jobs/user_apps.txt.in:218
 msgid "Did the video play using a plugin?"
-msgstr ""
+msgstr "Spelades videon upp med en insticksmodul?"
 
 #. description
 #: ../jobs/user_apps.txt.in:227
 msgid "Facebook Chat"
-msgstr ""
+msgstr "Facebook-chatt"
 
 #. description
 #: ../jobs/user_apps.txt.in:238
 msgid "Google Talk"
-msgstr ""
+msgstr "Google Talk"
 
 #. description
 #: ../jobs/user_apps.txt.in:249
 msgid "Jabber"
-msgstr ""
+msgstr "Jabber"
 
 #. description
 #: ../jobs/user_apps.txt.in:260
 msgid "AIM"
-msgstr ""
+msgstr "AIM"
 
 #. description
 #: ../jobs/user_apps.txt.in:271
@@ -2679,28 +2691,28 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:271
 msgid "MSN"
-msgstr ""
+msgstr "MSN"
 
 #. description
 #: ../jobs/user_apps.txt.in:271
 msgid "Were you able to connect correctly and send/receive messages?"
-msgstr ""
+msgstr "Kunde du ansluta korrekt och skicka/ta emot meddelanden?"
 
 #: ../checkbox/application.py:84
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist."
-msgstr ""
+msgstr "Förkortning av --config=checkbox/plugins/jobs_info/blacklist."
 
 #: ../checkbox/application.py:86
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist_file."
-msgstr ""
+msgstr "Förkortning av --config=checkbox/plugins/jobs_info/blacklist_file."
 
 #: ../checkbox/application.py:88
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist."
-msgstr ""
+msgstr "Förkortning av --config=checkbox/plugins/jobs_info/whitelist."
 
 #: ../checkbox/application.py:90
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist_file."
-msgstr ""
+msgstr "Förkortning av --config=checkbox/plugins/jobs_info/whitelist_file."
 
 #: ../checkbox/lib/signal.py:23
 msgid ""
@@ -2790,40 +2802,40 @@ msgstr "Okänd signal"
 
 #: ../checkbox_urwid/urwid_interface.py:60
 msgid "Checkbox System Testing"
-msgstr ""
+msgstr "Checkbox systemtestning"
 
 #: ../checkbox_urwid/urwid_interface.py:99
 msgid "Continue"
-msgstr ""
+msgstr "Fortsätt"
 
 #: ../checkbox_urwid/urwid_interface.py:192
 #: ../checkbox_urwid/urwid_interface.py:268
 #: ../checkbox_urwid/urwid_interface.py:416
 msgid "Previous"
-msgstr ""
+msgstr "Föregående"
 
 #: ../checkbox_urwid/urwid_interface.py:193
 #: ../checkbox_urwid/urwid_interface.py:269
 #: ../checkbox_urwid/urwid_interface.py:417
 msgid "Next"
-msgstr ""
+msgstr "Nästa"
 
 #. Show buttons
 #: ../checkbox_urwid/urwid_interface.py:414
 msgid "Select All"
-msgstr ""
+msgstr "Markera alla"
 
 #: ../checkbox_urwid/urwid_interface.py:415
 msgid "Deselect All"
-msgstr ""
+msgstr "Avmarkera alla"
 
 #: ../checkbox_urwid/urwid_interface.py:772
 msgid "Test"
-msgstr ""
+msgstr "Testa"
 
 #: ../checkbox_urwid/urwid_interface.py:787
 msgid "Test Again"
-msgstr ""
+msgstr "Testa igen"
 
 #: ../checkbox_gtk/gtk_interface.py:93
 msgid "hardware database"
@@ -2847,12 +2859,16 @@ msgid ""
 "Collecting information about this test.\n"
 "This might take a few minutes."
 msgstr ""
+"Samlar in information om detta test.\n"
+"Detta kan ta några minuter."
 
 #: ../plugins/apport_prompt.py:116
 msgid ""
 "Collected information is being sent for bug tracking.\n"
 "This might take a few minutes."
 msgstr ""
+"Insamlad information skickas nu till felhanteringssystemet.\n"
+"Detta kan ta några minuter."
 
 #: ../plugins/apport_prompt.py:225
 #, python-format
@@ -2867,7 +2883,7 @@ msgstr "Testet %s misslyckades."
 #: ../plugins/apport_prompt.py:246
 #, python-format
 msgid "Is a package upgrade in process? Error: %s"
-msgstr ""
+msgstr "Finns en pågående paketuppgradering? Fel: %s"
 
 #: ../plugins/final_prompt.py:33
 msgid "Successfully finished testing!"
@@ -2890,7 +2906,7 @@ msgstr ""
 #: ../plugins/launchpad_exchange.py:118
 #, python-format
 msgid "Failed to process form: %s"
-msgstr ""
+msgstr "Misslyckades med att behandla formulär: %s"
 
 #: ../plugins/launchpad_prompt.py:71
 #, python-format
@@ -2930,11 +2946,13 @@ msgid ""
 "Checkbox did not finish completely.\n"
 "Do you want to recover from the previous run?"
 msgstr ""
+"Checkbox färdigställdes inte helt.\n"
+"Vill du återställa från den tidigare körningen?"
 
 #: ../plugins/shell_test.py:52
 #, python-format
 msgid "Running %s..."
-msgstr ""
+msgstr "Kör %s..."
 
 #. Get results
 #: ../plugins/suites_prompt.py:105

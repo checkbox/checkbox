@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-07-07 12:32-0400\n"
-"PO-Revision-Date: 2010-05-05 21:16+0000\n"
+"PO-Revision-Date: 2011-07-19 19:47+0000\n"
 "Last-Translator: Cédric VALMARY (Tot en òc) <cvalmary@yahoo.fr>\n"
 "Language-Team: Occitan (post 1500) <oc@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-07-16 04:32+0000\n"
+"X-Launchpad-Export-Date: 2011-07-20 04:33+0000\n"
 "X-Generator: Launchpad (build 13405)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:1 ../checkbox_cli/cli_interface.py:343
@@ -34,7 +34,7 @@ msgstr "Tèst del sistèma"
 
 #: ../gtk/checkbox-gtk.ui.h:4
 msgid "_Deselect All"
-msgstr ""
+msgstr "_Deseleccionar tot"
 
 #: ../gtk/checkbox-gtk.ui.h:5
 msgid "_No"
@@ -46,7 +46,7 @@ msgstr "_Precedent"
 
 #: ../gtk/checkbox-gtk.ui.h:7
 msgid "_Select All"
-msgstr ""
+msgstr "_Seleccionar tot"
 
 #: ../gtk/checkbox-gtk.ui.h:8
 msgid "_Skip this test"
@@ -102,7 +102,7 @@ msgstr ""
 #. description
 #: ../jobs/audio.txt.in:33
 msgid "Please connect a pair of headphones to your audio device."
-msgstr ""
+msgstr "Connectatz d'escotadors a vòstre periferic àudio."
 
 #. description
 #: ../jobs/audio.txt.in:33
@@ -161,7 +161,7 @@ msgstr ""
 #. description
 #: ../jobs/autotest.txt.in:3
 msgid "Autotest suite (destructive)"
-msgstr ""
+msgstr "Seguida de tèsts automatics (destructiu)"
 
 #. description
 #: ../jobs/bluetooth.txt.in:5 ../jobs/power-management.txt.in:185
@@ -400,7 +400,7 @@ msgstr ""
 #. description
 #: ../jobs/disk.txt.in:4
 msgid "The following hard drives were detected:"
-msgstr ""
+msgstr "Los disques durs seguents son estats detectats :"
 
 #. description
 #: ../jobs/disk.txt.in:14
@@ -467,6 +467,9 @@ msgid ""
 "which test cases are run and a personal account that the tester uses to "
 "verify the fingerprint reader"
 msgstr ""
+"Prerequzsits : aquesta procedura de tèsts es supausada s'executar dempuèi un "
+"compte de tèst. Cal tanben qu'un compte personal siá utilizat per verificar "
+"lo lector d'emprenchas"
 
 #. description
 #: ../jobs/fingerprint.txt.in:3
@@ -727,7 +730,7 @@ msgstr "L'ecran foncionava corrèctament per cadun dels mòdes ?"
 #. description
 #: ../jobs/graphics.txt.in:146
 msgid "Check that the hardware is able to run compiz."
-msgstr ""
+msgstr "Verificar que lo material es capable d'utilizar Compiz."
 
 #. description
 #: ../jobs/graphics.txt.in:153
@@ -739,7 +742,7 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:153
 msgid "Did the 3d animation appear?"
-msgstr ""
+msgstr "L'animacion en 3D a aparegut ?"
 
 #. description
 #: ../jobs/info.txt.in:60 ../jobs/screenshot.txt.in:7
@@ -953,7 +956,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:88
 msgid "Monitor tests"
-msgstr ""
+msgstr "Tèsts de l'ecran"
 
 #. description
 #: ../jobs/local.txt.in:93
@@ -983,7 +986,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:118
 msgid "User Applications"
-msgstr ""
+msgstr "Aplicacions de l'utilizaire"
 
 #. description
 #: ../jobs/local.txt.in:123
@@ -993,7 +996,7 @@ msgstr ""
 #. description
 #: ../jobs/ltp.txt.in:3
 msgid "Linux Test Project"
-msgstr ""
+msgstr "Projècte de tèsts Linux"
 
 #. description
 #: ../jobs/mago.txt.in:3
@@ -1187,7 +1190,7 @@ msgstr ""
 #. description
 #: ../jobs/monitor.txt.in:3
 msgid "If your system does not have a VGA port, please skip this test."
-msgstr ""
+msgstr "Se vòstre sistèma dispausa pas d'un pòrt VGA, sautatz aqueste tèst."
 
 #. description
 #: ../jobs/monitor.txt.in:3
@@ -1195,11 +1198,13 @@ msgid ""
 "Connect a display (if not already connected) to the VGA port on your system. "
 "Is the image displayed correctly?"
 msgstr ""
+"Connectatz un ecran (s'es pas fach encara) al pòrt VGA de vòstre ordenador. "
+"L'imatge s'i aficha corrèctament ?"
 
 #. description
 #: ../jobs/monitor.txt.in:10
 msgid "If your system does not have a DVI port, please skip this test."
-msgstr ""
+msgstr "Se vòstre sistèma dispausa pas d'un pòrt DVI, sautatz aqueste tèst."
 
 #. description
 #: ../jobs/monitor.txt.in:10
@@ -1207,11 +1212,14 @@ msgid ""
 "Connect a display (if not already connected) to the DVI port on your system. "
 "Is the image displayed correctly?"
 msgstr ""
+"Connectatz un ecran (s'es pas fach encara) al pòrt DVI de vòstre ordenador. "
+"L'imatge s'i aficha corrèctament ?"
 
 #. description
 #: ../jobs/monitor.txt.in:17
 msgid "If your system does not have DisplayPort, please skip this test."
 msgstr ""
+"Se vòstre sistèma dispausa pas d'un Displayport, sautatz aqueste tèst."
 
 #. description
 #: ../jobs/monitor.txt.in:17
@@ -1219,11 +1227,13 @@ msgid ""
 "Connect a display (if not already connected) to the DisplayPort on your "
 "system. Is the image displayed correctly?"
 msgstr ""
+"Connectatz un ecran (s'es pas fach encara) al DisplayPort de vòstre "
+"ordenador. L'imatge s'i aficha corrèctament ?"
 
 #. description
 #: ../jobs/monitor.txt.in:24
 msgid "If your system does not have a HDMI port, please skip this test."
-msgstr ""
+msgstr "Se vòstre sistèma dispausa pas d'un pòrt HDMI, sautatz aqueste tèst."
 
 #. description
 #: ../jobs/monitor.txt.in:24
@@ -1231,11 +1241,14 @@ msgid ""
 "Connect a display (if not already connected) to the HDMI port on your "
 "system. Is the image displayed correctly?"
 msgstr ""
+"Connectatz un ecran (s'es pas fach encara) al pòrt HDMI de vòstre ordenador. "
+"L'imatge s'i aficha corrèctament ?"
 
 #. description
 #: ../jobs/monitor.txt.in:31
 msgid "If your system does not have a S-VIDEO port, please skip this test."
 msgstr ""
+"Se vòstre sistèma dispausa pas d'un pòrt S-VIDEO, sautatz aqueste tèst."
 
 #. description
 #: ../jobs/monitor.txt.in:31
@@ -1243,11 +1256,13 @@ msgid ""
 "Connect a display (if not already connected) to the S-VIDEO port on your "
 "system. Is the image displayed correctly?"
 msgstr ""
+"Connectatz un ecran (s'es pas fach encara) al pòrt S-VIDEO de vòstre "
+"ordenador. L'imatge s'i aficha corrèctament ?"
 
 #. description
 #: ../jobs/monitor.txt.in:38
 msgid "If your system does not have a RCA port, please skip this test."
-msgstr ""
+msgstr "Se vòstre sistèma dispausa pas d'un pòrt RCA, sautatz aqueste tèst."
 
 #. description
 #: ../jobs/monitor.txt.in:38
@@ -1255,6 +1270,8 @@ msgid ""
 "Connect a display (if not already connected) to the RCA port on your system. "
 "Is the image displayed correctly?"
 msgstr ""
+"Connectatz un ecran (s'es pas fach encara) al pòrt RCA de vòstre ordenador. "
+"L'imatge s'i aficha corrèctament ?"
 
 #. description
 #: ../jobs/monitor.txt.in:46
@@ -1268,7 +1285,7 @@ msgstr ""
 #. description
 #: ../jobs/monitor.txt.in:46
 msgid "Did the monitor go blank?"
-msgstr ""
+msgstr "L'ecran es vengut negre ?"
 
 #. description
 #: ../jobs/networking.txt.in:5
@@ -1505,7 +1522,7 @@ msgstr ""
 #. description
 #: ../jobs/phoronix.txt.in:3
 msgid "Automated benchmark testing"
-msgstr ""
+msgstr "Banc de tèsts automatizats"
 
 #. description
 #: ../jobs/power-management.txt.in:3
@@ -1575,17 +1592,17 @@ msgstr ""
 #. description
 #: ../jobs/power-management.txt.in:65
 msgid "Test the network before suspending."
-msgstr ""
+msgstr "Testar la ret abans la mesa en velha."
 
 #. description
 #: ../jobs/power-management.txt.in:70
 msgid "Record the current resolution before suspending."
-msgstr ""
+msgstr "Enregistrar la resolucion actuala abans la mesa en velha."
 
 #. description
 #: ../jobs/power-management.txt.in:78
 msgid "Test the audio before suspending."
-msgstr ""
+msgstr "Testar lo son abans la mesa en velha."
 
 #. description
 #: ../jobs/power-management.txt.in:84
@@ -1622,7 +1639,7 @@ msgstr ""
 #. description
 #: ../jobs/power-management.txt.in:145
 msgid "Test the network after resuming."
-msgstr ""
+msgstr "Testar la ret aprèp la represa."
 
 #. description
 #: ../jobs/power-management.txt.in:151
@@ -1634,7 +1651,7 @@ msgstr ""
 #. description
 #: ../jobs/power-management.txt.in:160
 msgid "Test the audio after resuming."
-msgstr ""
+msgstr "Testar lo son aprèp la represa."
 
 #. description
 #: ../jobs/power-management.txt.in:167
@@ -1784,7 +1801,7 @@ msgstr ""
 #. description
 #: ../jobs/qa_regression.txt.in:3
 msgid "QA regression tests (destructive)"
-msgstr ""
+msgstr "Tèsts de regression de qualitat (destructiu)"
 
 #. description
 #: ../jobs/server-services.txt.in:5
@@ -2286,19 +2303,21 @@ msgstr "Paramètres que prenon lo pas sus la configuracion."
 
 #: ../checkbox/application.py:84
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist."
-msgstr ""
+msgstr "Forma abreujada per --config=checkbox/plugins/jobs_info/blacklist."
 
 #: ../checkbox/application.py:86
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist_file."
 msgstr ""
+"Forma abreujada per --config=checkbox/plugins/jobs_info/blacklist_file."
 
 #: ../checkbox/application.py:88
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist."
-msgstr ""
+msgstr "Forma abreujada per --config=checkbox/plugins/jobs_info/whitelist."
 
 #: ../checkbox/application.py:90
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist_file."
 msgstr ""
+"Forma abreujada per --config=checkbox/plugins/jobs_info/whitelist_file."
 
 #: ../checkbox/application.py:115
 msgid "Missing configuration file as argument.\n"
@@ -2490,12 +2509,17 @@ msgid ""
 "Collecting information about this test.\n"
 "This might take a few minutes."
 msgstr ""
+"Collècta d'informacions sus aquel tèst.\n"
+"Aquò pòt prene qualques minutas."
 
 #: ../plugins/apport_prompt.py:116
 msgid ""
 "Collected information is being sent for bug tracking.\n"
 "This might take a few minutes."
 msgstr ""
+"Las informacions collectadas son en cors de mandadís pel sistèma de "
+"seguiment dels bugs.\n"
+"Aquò pòt prene qualques minutas."
 
 #: ../plugins/apport_prompt.py:225
 #, python-format
@@ -2510,7 +2534,7 @@ msgstr ""
 #: ../plugins/apport_prompt.py:246
 #, python-format
 msgid "Is a package upgrade in process? Error: %s"
-msgstr ""
+msgstr "Una mesa a jorn de paquet es en cors ? Error : %s"
 
 #: ../plugins/final_prompt.py:33
 msgid "Successfully finished testing!"
@@ -2541,7 +2565,7 @@ msgstr ""
 #: ../plugins/launchpad_exchange.py:118
 #, python-format
 msgid "Failed to process form: %s"
-msgstr ""
+msgstr "Fracàs del tractament del formulari : %s"
 
 #: ../plugins/launchpad_exchange.py:141
 #, python-format
@@ -2623,6 +2647,8 @@ msgid ""
 "Checkbox did not finish completely.\n"
 "Do you want to recover from the previous run?"
 msgstr ""
+"Checkbox es estat interromput abans la fin.\n"
+"Volètz reprene sa precedenta execucion ?"
 
 #: ../plugins/report_prompt.py:34
 msgid "Building report..."
@@ -2631,7 +2657,7 @@ msgstr "Construccion del rapòrt..."
 #: ../plugins/shell_test.py:52
 #, python-format
 msgid "Running %s..."
-msgstr ""
+msgstr "Execucion de %s…"
 
 #. Get results
 #: ../plugins/suites_prompt.py:105

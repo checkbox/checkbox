@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-07-07 12:32-0400\n"
-"PO-Revision-Date: 2011-07-15 18:51+0000\n"
+"PO-Revision-Date: 2011-07-19 17:31+0000\n"
 "Last-Translator: Saša Teković <Unknown>\n"
 "Language-Team: Croatian <hr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-07-16 04:32+0000\n"
+"X-Launchpad-Export-Date: 2011-07-20 04:33+0000\n"
 "X-Generator: Launchpad (build 13405)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:1 ../checkbox_cli/cli_interface.py:343
@@ -34,7 +34,7 @@ msgstr "Testiranje sustava"
 
 #: ../gtk/checkbox-gtk.ui.h:4
 msgid "_Deselect All"
-msgstr ""
+msgstr "Poništi _odabir"
 
 #: ../gtk/checkbox-gtk.ui.h:5
 msgid "_No"
@@ -46,7 +46,7 @@ msgstr "_Prethodno"
 
 #: ../gtk/checkbox-gtk.ui.h:7
 msgid "_Select All"
-msgstr ""
+msgstr "_Označi sve"
 
 #: ../gtk/checkbox-gtk.ui.h:8
 msgid "_Skip this test"
@@ -100,7 +100,7 @@ msgstr ""
 #. description
 #: ../jobs/audio.txt.in:33
 msgid "Please connect a pair of headphones to your audio device."
-msgstr ""
+msgstr "Molim vas, spojite slušalice na vaš zvučni uređaj."
 
 #. description
 #: ../jobs/audio.txt.in:33
@@ -157,7 +157,7 @@ msgstr ""
 #. description
 #: ../jobs/autotest.txt.in:3
 msgid "Autotest suite (destructive)"
-msgstr ""
+msgstr "Paket automatskih provjera (destruktivno)"
 
 #. description
 #: ../jobs/bluetooth.txt.in:5 ../jobs/power-management.txt.in:185
@@ -391,7 +391,7 @@ msgstr ""
 #. description
 #: ../jobs/disk.txt.in:4
 msgid "The following hard drives were detected:"
-msgstr ""
+msgstr "Otkriveni su sljedeći tvrdi diskovi:"
 
 #. description
 #: ../jobs/disk.txt.in:14
@@ -458,6 +458,9 @@ msgid ""
 "which test cases are run and a personal account that the tester uses to "
 "verify the fingerprint reader"
 msgstr ""
+"Preduvjeti: Ovaj test pretpostavlja da postoji testni račun, iz kojeg se "
+"test slučajevi pokreću, i osobni račun, kojeg ispitivač koristi kako bi "
+"provjerio rad čitača otisaka prstiju"
 
 #. description
 #: ../jobs/fingerprint.txt.in:3
@@ -488,7 +491,7 @@ msgstr ""
 #. description
 #: ../jobs/fingerprint.txt.in:18
 msgid "Did the authentication procedure work correctly?"
-msgstr ""
+msgstr "Je li procedura autentifikacije radila ispravno?"
 
 #. description
 #: ../jobs/firewire.txt.in:3
@@ -504,7 +507,7 @@ msgstr ""
 #. description
 #: ../jobs/firewire.txt.in:3 ../jobs/usb.txt.in:71
 msgid "Do the copy operations work as expected?"
-msgstr ""
+msgstr "Jesu li operacije kopiranja radile očekivano?"
 
 #. description
 #: ../jobs/floppy.txt.in:4
@@ -660,12 +663,12 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:82
 msgid "This display is using the following resolution:"
-msgstr ""
+msgstr "Ovaj zaslon koristi sljedeću rezoluciju:"
 
 #. description
 #: ../jobs/graphics.txt.in:82
 msgid "Is this acceptable for your display?"
-msgstr ""
+msgstr "Je li ovo prihvatljivo za vaš zaslon?"
 
 #. description
 #: ../jobs/graphics.txt.in:95
@@ -694,13 +697,13 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:117
 msgid "Do you see color bars and static?"
-msgstr ""
+msgstr "Jeste li vidjeli stupce u boji i statiku?"
 
 #. description
 #: ../jobs/graphics.txt.in:126
 msgid ""
 "The following screens and video modes have been detected on your system:"
-msgstr ""
+msgstr "Sljedeći ekranski i video načini rada su otkriveni na vašem sustavu:"
 
 #. description
 #: ../jobs/graphics.txt.in:138
@@ -711,12 +714,12 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:138
 msgid "Did the screen appear to be working for each mode?"
-msgstr ""
+msgstr "Je li zaslon funkcionirao u svakom načinu rada?"
 
 #. description
 #: ../jobs/graphics.txt.in:146
 msgid "Check that the hardware is able to run compiz."
-msgstr ""
+msgstr "Provjerite je li hardver sposoban pokrenuti compiz."
 
 #. description
 #: ../jobs/graphics.txt.in:153
@@ -728,7 +731,7 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:153
 msgid "Did the 3d animation appear?"
-msgstr ""
+msgstr "Je li se 3D animacija pojavila?"
 
 #. description
 #: ../jobs/info.txt.in:60 ../jobs/screenshot.txt.in:7
@@ -748,12 +751,12 @@ msgstr ""
 #. description
 #: ../jobs/input.txt.in:4
 msgid "Moving the mouse should move the cursor on the screen."
-msgstr ""
+msgstr "Pomicanjem miša bi se trebao pomicati pokazivač na ekranu."
 
 #. description
 #: ../jobs/input.txt.in:4
 msgid "Is your mouse working properly?"
-msgstr ""
+msgstr "Radi li vaš miš ispravno?"
 
 #. description
 #: ../jobs/input.txt.in:13
@@ -763,7 +766,7 @@ msgstr ""
 #. description
 #: ../jobs/input.txt.in:13
 msgid "Is your keyboard working properly?"
-msgstr ""
+msgstr "Radi li vaša tipkovnica ispravno?"
 
 #. description
 #: ../jobs/install.txt.in:6
@@ -941,7 +944,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:88
 msgid "Monitor tests"
-msgstr ""
+msgstr "Ekranski testovi"
 
 #. description
 #: ../jobs/local.txt.in:93
@@ -981,7 +984,7 @@ msgstr ""
 #. description
 #: ../jobs/ltp.txt.in:3
 msgid "Linux Test Project"
-msgstr ""
+msgstr "Linux testni projekt"
 
 #. description
 #: ../jobs/mago.txt.in:3
@@ -1146,12 +1149,12 @@ msgstr ""
 #. description
 #: ../jobs/miscellanea.txt.in:8
 msgid "Note that this test may require you to enter your password."
-msgstr ""
+msgstr "Imajte na umu da ovaj test može zahtijevati unos lozinke."
 
 #. description
 #: ../jobs/miscellanea.txt.in:8
 msgid "Did the screen change temporarily to a text console?"
-msgstr ""
+msgstr "Je li se ekran privremeno pretvorio u tekstualnu konzolu?"
 
 #. description
 #: ../jobs/miscellanea.txt.in:20
@@ -1175,7 +1178,7 @@ msgstr ""
 #. description
 #: ../jobs/monitor.txt.in:3
 msgid "If your system does not have a VGA port, please skip this test."
-msgstr ""
+msgstr "Ako vaš sustav nema VGA ulaz, molim preskočite ovaj test."
 
 #. description
 #: ../jobs/monitor.txt.in:3
@@ -1183,11 +1186,13 @@ msgid ""
 "Connect a display (if not already connected) to the VGA port on your system. "
 "Is the image displayed correctly?"
 msgstr ""
+"Spojite zaslon (ako nije već spojen) na VGA ulaz na vašem sustavu. Je li se "
+"slika ispravno prikazala?"
 
 #. description
 #: ../jobs/monitor.txt.in:10
 msgid "If your system does not have a DVI port, please skip this test."
-msgstr ""
+msgstr "Ako vaš sustav nema DVI ulaz, molim preskočite ovaj test."
 
 #. description
 #: ../jobs/monitor.txt.in:10
@@ -1195,11 +1200,13 @@ msgid ""
 "Connect a display (if not already connected) to the DVI port on your system. "
 "Is the image displayed correctly?"
 msgstr ""
+"Spojite zaslon (ako nije već spojen) s DVI ulazom na vašem sustavu. Je li se "
+"slika ispravno prikazala?"
 
 #. description
 #: ../jobs/monitor.txt.in:17
 msgid "If your system does not have DisplayPort, please skip this test."
-msgstr ""
+msgstr "Ako vaš sustav nema DISPLAY ulaz, molim preskočite ovaj test."
 
 #. description
 #: ../jobs/monitor.txt.in:17
@@ -1207,11 +1214,13 @@ msgid ""
 "Connect a display (if not already connected) to the DisplayPort on your "
 "system. Is the image displayed correctly?"
 msgstr ""
+"Spojite zaslon (ako nije već spojen) s DISPLAY ulazom na vašem sustavu. Je "
+"li se slika ispravno prikazala?"
 
 #. description
 #: ../jobs/monitor.txt.in:24
 msgid "If your system does not have a HDMI port, please skip this test."
-msgstr ""
+msgstr "Ako vaš sustav nema HDMI ulaz, molim preskočite ovaj test."
 
 #. description
 #: ../jobs/monitor.txt.in:24
@@ -1219,11 +1228,13 @@ msgid ""
 "Connect a display (if not already connected) to the HDMI port on your "
 "system. Is the image displayed correctly?"
 msgstr ""
+"Spojite zaslon (ako nije već spojen) s HDMI ulazom na vašem sustavu. Je li "
+"se slika ispravno prikazala?"
 
 #. description
 #: ../jobs/monitor.txt.in:31
 msgid "If your system does not have a S-VIDEO port, please skip this test."
-msgstr ""
+msgstr "Ako vaš sustav nema S-VIDEO ulaz, molim preskočite ovaj test."
 
 #. description
 #: ../jobs/monitor.txt.in:31
@@ -1231,11 +1242,13 @@ msgid ""
 "Connect a display (if not already connected) to the S-VIDEO port on your "
 "system. Is the image displayed correctly?"
 msgstr ""
+"Spojite zaslon (ako nije već spojen) s S-VIDEO ulazom na vašem sustavu. Je "
+"li se slika ispravno prikazala?"
 
 #. description
 #: ../jobs/monitor.txt.in:38
 msgid "If your system does not have a RCA port, please skip this test."
-msgstr ""
+msgstr "Ako vaš sustav nema RCA ulaz, molim vas preskočite ovaj test."
 
 #. description
 #: ../jobs/monitor.txt.in:38
@@ -1243,6 +1256,8 @@ msgid ""
 "Connect a display (if not already connected) to the RCA port on your system. "
 "Is the image displayed correctly?"
 msgstr ""
+"Spojite zaslon (ako nije već spojen) s RCA ulazom na vašem sustavu. Je li se "
+"slika ispravno prikazala?"
 
 #. description
 #: ../jobs/monitor.txt.in:46
@@ -1256,17 +1271,17 @@ msgstr ""
 #. description
 #: ../jobs/monitor.txt.in:46
 msgid "Did the monitor go blank?"
-msgstr ""
+msgstr "Je li se monitor isključio?"
 
 #. description
 #: ../jobs/networking.txt.in:5
 msgid "Detecting your network controller(s):"
-msgstr ""
+msgstr "Otkrivanje mrežnog/ih upravljača:"
 
 #. description
 #: ../jobs/networking.txt.in:16
 msgid "Testing your connection to the Internet:"
-msgstr ""
+msgstr "Testiranje Internet veze:"
 
 #. description
 #: ../jobs/networking.txt.in:26
@@ -1414,7 +1429,7 @@ msgstr ""
 #. description
 #: ../jobs/optical.txt.in:90
 msgid "Did the file play?"
-msgstr ""
+msgstr "Je li se datoteka pokrenula?"
 
 #. description
 #: ../jobs/panel_clock_test.txt.in:4
@@ -1492,7 +1507,7 @@ msgstr ""
 #. description
 #: ../jobs/phoronix.txt.in:3
 msgid "Automated benchmark testing"
-msgstr ""
+msgstr "Automatsko testiranje performansi"
 
 #. description
 #: ../jobs/power-management.txt.in:3
@@ -1765,7 +1780,7 @@ msgstr ""
 #. description
 #: ../jobs/qa_regression.txt.in:3
 msgid "QA regression tests (destructive)"
-msgstr ""
+msgstr "Regresijski testovi pitanja-odgovori (destruktivno)"
 
 #. description
 #: ../jobs/server-services.txt.in:5
@@ -2247,164 +2262,165 @@ msgstr ""
 
 #: ../checkbox/application.py:66
 msgid "Usage: checkbox [OPTIONS]"
-msgstr ""
+msgstr "Upotreba: checkbox [OPCIJE]"
 
 #: ../checkbox/application.py:70
 msgid "Print version information and exit."
-msgstr ""
+msgstr "Ispiši informacije o inačici i izađi."
 
 #: ../checkbox/application.py:74
 msgid "The file to write the log to."
-msgstr ""
+msgstr "Datoteka za spremanje zapisa."
 
 #: ../checkbox/application.py:77
 msgid "One of debug, info, warning, error or critical."
-msgstr ""
+msgstr "Jedan od greške, informacija, upozorenja, greške ili kritičnog."
 
 #: ../checkbox/application.py:82
 msgid "Configuration override parameters."
-msgstr ""
+msgstr "Parametri nadvladavanja konfiguracije."
 
 #: ../checkbox/application.py:84
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist."
-msgstr ""
+msgstr "Kratica za --config=checkbox/plugins/jobs_info/blacklist."
 
 #: ../checkbox/application.py:86
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist_file."
-msgstr ""
+msgstr "Kratica za --config=checkbox/plugins/jobs_info/blacklist_file."
 
 #: ../checkbox/application.py:88
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist."
-msgstr ""
+msgstr "Kratica za --config=checkbox/plugins/jobs_info/whitelist."
 
 #: ../checkbox/application.py:90
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist_file."
-msgstr ""
+msgstr "Kratica za --config=checkbox/plugins/jobs_info/whitelist_file."
 
 #: ../checkbox/application.py:115
 msgid "Missing configuration file as argument.\n"
-msgstr ""
+msgstr "Nedostaje konfiguracijska datoteka kao argument.\n"
 
 #: ../checkbox/lib/signal.py:23
 msgid ""
 "Hangup detected on controlling terminal or death of controlling process"
 msgstr ""
+"Prekid otkriven na upravljačkom terminalu ili prekidu upravljačkog procesa"
 
 #: ../checkbox/lib/signal.py:24
 msgid "Interrupt from keyboard"
-msgstr ""
+msgstr "Prekid iz tipkovnice"
 
 #: ../checkbox/lib/signal.py:25
 msgid "Quit from keyboard"
-msgstr ""
+msgstr "Izlaz iz tipkovnice"
 
 #: ../checkbox/lib/signal.py:26
 msgid "Illegal Instruction"
-msgstr ""
+msgstr "Nedopuštena instrukcija"
 
 #: ../checkbox/lib/signal.py:27
 msgid "Abort signal from abort(3)"
-msgstr ""
+msgstr "Signal prekida iz abort(3)"
 
 #: ../checkbox/lib/signal.py:28
 msgid "Floating point exception"
-msgstr ""
+msgstr "Iznimka pomičnog zareza"
 
 #: ../checkbox/lib/signal.py:29
 msgid "Kill signal"
-msgstr ""
+msgstr "Signal prekida"
 
 #: ../checkbox/lib/signal.py:30
 msgid "Invalid memory reference"
-msgstr ""
+msgstr "Neispravna memorijska veza"
 
 #: ../checkbox/lib/signal.py:31
 msgid "Broken pipe: write to pipe with no readers"
-msgstr ""
+msgstr "Prekinut pipe: zapisivanje na pipe bez čitača"
 
 #: ../checkbox/lib/signal.py:32
 msgid "Timer signal from alarm(2)"
-msgstr ""
+msgstr "Timer signal iz alarm(2)"
 
 #: ../checkbox/lib/signal.py:33
 msgid "Termination signal"
-msgstr ""
+msgstr "Signal terminiranja"
 
 #: ../checkbox/lib/signal.py:34
 msgid "User-defined signal 1"
-msgstr ""
+msgstr "Korisnički podešen signal 1"
 
 #: ../checkbox/lib/signal.py:35
 msgid "User-defined signal 2"
-msgstr ""
+msgstr "Korisnički podešen signal 2"
 
 #: ../checkbox/lib/signal.py:36
 msgid "Child stopped or terminated"
-msgstr ""
+msgstr "Podproces zaustavljen ili terminiran"
 
 #: ../checkbox/lib/signal.py:37
 msgid "Continue if stopped"
-msgstr ""
+msgstr "Nastavi ako je zaustavljen"
 
 #: ../checkbox/lib/signal.py:38
 msgid "Stop process"
-msgstr ""
+msgstr "Zaustavi proces"
 
 #: ../checkbox/lib/signal.py:39
 msgid "Stop typed at tty"
-msgstr ""
+msgstr "Zaustavi upisano u tty"
 
 #: ../checkbox/lib/signal.py:40
 msgid "tty input for background process"
-msgstr ""
+msgstr "tty unos za pozadinski proces"
 
 #: ../checkbox/lib/signal.py:41
 msgid "tty output for background process"
-msgstr ""
+msgstr "tty izlaz za pozadinski proces"
 
 #: ../checkbox/lib/signal.py:77
 msgid "UNKNOWN"
-msgstr ""
+msgstr "NEPOZNATO"
 
 #: ../checkbox/lib/signal.py:89
 msgid "Unknown signal"
-msgstr ""
+msgstr "Nepoznat signal"
 
 #: ../checkbox_cli/cli_interface.py:31
 #: ../checkbox_urwid/urwid_interface.py:684
 msgid "yes"
-msgstr ""
+msgstr "da"
 
 #: ../checkbox_cli/cli_interface.py:32
 #: ../checkbox_urwid/urwid_interface.py:685
 msgid "no"
-msgstr ""
+msgstr "ne"
 
 #: ../checkbox_cli/cli_interface.py:33
 #: ../checkbox_urwid/urwid_interface.py:686
 msgid "skip"
-msgstr ""
+msgstr "preskoči"
 
 #: ../checkbox_cli/cli_interface.py:126
 msgid "Press any key to continue..."
-msgstr ""
+msgstr "Pritisnite bilo koju tipku za nastavak..."
 
 #: ../checkbox_cli/cli_interface.py:135
 #, python-format
 msgid "Please choose (%s): "
-msgstr ""
+msgstr "Molim odaberite (%s): "
 
 #: ../checkbox_cli/cli_interface.py:315
 msgid "test"
-msgstr ""
+msgstr "testiraj"
 
 #: ../checkbox_cli/cli_interface.py:339
 msgid "test again"
-msgstr ""
+msgstr "testiraj ponovno"
 
 #: ../checkbox_cli/cli_interface.py:345
 msgid "Please type here and press Ctrl-D when finished:\n"
-msgstr ""
+msgstr "Molim upišite ovdje i pritisnite Ctrl-D kad završite:\n"
 
 #: ../checkbox_urwid/urwid_interface.py:60
 msgid "Checkbox System Testing"
@@ -2449,32 +2465,36 @@ msgstr ""
 
 #: ../checkbox_gtk/gtk_interface.py:487
 msgid "_Test Again"
-msgstr ""
+msgstr "_Testiraj ponovno"
 
 #: ../checkbox_gtk/gtk_interface.py:533
 msgid "Info"
-msgstr ""
+msgstr "Informacije"
 
 #: ../checkbox_gtk/gtk_interface.py:552
 msgid "Error"
-msgstr ""
+msgstr "Greška"
 
 #: ../checkbox/user_interface.py:136
 #, python-format
 msgid "Unable to start web browser to open %s."
-msgstr ""
+msgstr "Nije moguće pokrenuti web preglednik za otvaranje %s."
 
 #: ../plugins/apport_prompt.py:81
 msgid ""
 "Collecting information about this test.\n"
 "This might take a few minutes."
 msgstr ""
+"Prikupljanje informacija o ovom testu.\n"
+"Ovo može potrajati nekoliko minuta."
 
 #: ../plugins/apport_prompt.py:116
 msgid ""
 "Collected information is being sent for bug tracking.\n"
 "This might take a few minutes."
 msgstr ""
+"Prikupljene informacije se šalju za evidenciju grešaka.\n"
+"Ovo može potrajati nekoliko minuta."
 
 #: ../plugins/apport_prompt.py:225
 #, python-format
@@ -2489,19 +2509,19 @@ msgstr ""
 #: ../plugins/apport_prompt.py:246
 #, python-format
 msgid "Is a package upgrade in process? Error: %s"
-msgstr ""
+msgstr "Je li u tijeku nadogradnja paketa? Greška: %s"
 
 #: ../plugins/final_prompt.py:33
 msgid "Successfully finished testing!"
-msgstr ""
+msgstr "Testiranje uspješno završeno!"
 
 #: ../plugins/final_prompt.py:34
 msgid "_Finish"
-msgstr ""
+msgstr "_Završi"
 
 #: ../plugins/gather_prompt.py:35
 msgid "Gathering information from your system..."
-msgstr ""
+msgstr "Prikupljanje informacija iz sustava..."
 
 #: ../plugins/intro_prompt.py:43
 msgid ""
@@ -2511,11 +2531,16 @@ msgid ""
 "Once you are finished running the tests, you can view a summary report for "
 "your system."
 msgstr ""
+"Dobrodošli u testiranje sustava!\n"
+"\n"
+"Checkbox omogućava testove kojima možete utvrditi radi li vaš sustav "
+"ispravno. Nakon što završite testiranje, možete pogledati sažeti izvještaj "
+"vašeg sustava."
 
 #: ../plugins/launchpad_exchange.py:118
 #, python-format
 msgid "Failed to process form: %s"
-msgstr ""
+msgstr "Obrada obrasca nije uspjela: %s"
 
 #: ../plugins/launchpad_exchange.py:141
 #, python-format
@@ -2527,16 +2552,24 @@ msgid ""
 "directly to the system database:\n"
 "https://launchpad.net/+hwdb/+submit"
 msgstr ""
+"Kontaktiranje poslužitelja nije uspjelo. Molim\n"
+"pokušajte ponovno i pošaljite datoteku naziva:\n"
+"%s\n"
+"\n"
+"izravno u bazu podataka sustava:\n"
+"https://launchpad.net/+hwdb/+submit"
 
 #: ../plugins/launchpad_exchange.py:150
 msgid ""
 "Failed to upload to server,\n"
 "please try again later."
 msgstr ""
+"Slanje na poslužitelj nije uspjelo,\n"
+"molim pokušajte ponovno."
 
 #: ../plugins/launchpad_exchange.py:162
 msgid "Information not posted to Launchpad."
-msgstr ""
+msgstr "Informacije nisu poslane na Launchpad."
 
 #: ../plugins/launchpad_prompt.py:71
 #, python-format
@@ -2552,62 +2585,74 @@ msgid ""
 "\n"
 "  https://launchpad.net/+login"
 msgstr ""
+"Sljedeći je izvještaj generiran za slanje u Launchpad bazu podataka "
+"hardvera:\n"
+"\n"
+"  [[%s|Prikaži izvještaj]]\n"
+"\n"
+"Ove informacije možete možete poslati upisivanjem adrese e-pošte kojom se "
+"želite prijaviti u Launchpad. Ako nemate Launchpad korisnički račun, možete "
+"se registrirati ovdje:\n"
+"\n"
+"  https://launchpad.net/+login"
 
 #: ../plugins/launchpad_prompt.py:88
 msgid "No e-mail address provided, not submitting to Launchpad."
-msgstr ""
+msgstr "Adresa e-pošte nije upisana, slanje na Launchpad otkazano."
 
 #: ../plugins/launchpad_prompt.py:92
 msgid "Email address must be in a proper format."
-msgstr ""
+msgstr "Adresa e-pošte treba biti pravog oblika."
 
 #: ../plugins/launchpad_prompt.py:98
 msgid "Exchanging information with the server..."
-msgstr ""
+msgstr "Izmjena informacija s poslužiteljem..."
 
 #: ../plugins/lock_prompt.py:63
 msgid "There is another checkbox running. Please close it first."
-msgstr ""
+msgstr "Već je pokrenut jedan checkbox. Molim, najprije ga zatvorite."
 
 #: ../plugins/recover_prompt.py:54
 msgid ""
 "Checkbox did not finish completely.\n"
 "Do you want to recover from the previous run?"
 msgstr ""
+"Checkbox nije u potpunosti završio.\n"
+"Želite li oporaviti stanje posljednjeg pokretanja?"
 
 #: ../plugins/report_prompt.py:34
 msgid "Building report..."
-msgstr ""
+msgstr "Sastavljanje izvještaja..."
 
 #: ../plugins/shell_test.py:52
 #, python-format
 msgid "Running %s..."
-msgstr ""
+msgstr "Pokretanje %s..."
 
 #. Get results
 #: ../plugins/suites_prompt.py:105
 msgid "Select the suites to test"
-msgstr ""
+msgstr "Odaberite pakete za testiranje"
 
 #: ../scripts/keyboard_test:21
 msgid "Enter text:\n"
-msgstr ""
+msgstr "Upišite tekst:\n"
 
 #: ../scripts/keyboard_test:40
 msgid "Type Text"
-msgstr ""
+msgstr "Upišite tekst"
 
 #: ../scripts/internet_test:139
 msgid "No Internet connection"
-msgstr ""
+msgstr "Nema Internet veze"
 
 #: ../scripts/internet_test:142
 msgid "Connection established lost a packet"
-msgstr ""
+msgstr "Veza uspostavljena, izgubljen paket"
 
 #: ../scripts/internet_test:145
 msgid "Internet connection fully established"
-msgstr ""
+msgstr "Internet veza u potpunosti uspostavljena"
 
 #~ msgid "Kernel modesetting tests"
 #~ msgstr "Kernel modesetting testovi"
@@ -2620,6 +2665,9 @@ msgstr ""
 
 #~ msgid "Disk benchmark:"
 #~ msgstr "Diskovni test:"
+
+#~ msgid "Is this ok?"
+#~ msgstr "Je li ovo u redu?"
 
 #~ msgid ""
 #~ "Click the Test button to play a sound on the automatically detected \\ "

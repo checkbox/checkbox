@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-07-07 12:32-0400\n"
-"PO-Revision-Date: 2010-01-20 10:29+0000\n"
-"Last-Translator: Oier Mees <Unknown>\n"
+"PO-Revision-Date: 2011-07-19 17:40+0000\n"
+"Last-Translator: Ibai Oihanguren <Unknown>\n"
 "Language-Team: Basque <eu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-07-16 04:30+0000\n"
+"X-Launchpad-Export-Date: 2011-07-20 04:31+0000\n"
 "X-Generator: Launchpad (build 13405)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:1 ../checkbox_cli/cli_interface.py:343
@@ -34,7 +34,7 @@ msgstr "Sistemaren Proba"
 
 #: ../gtk/checkbox-gtk.ui.h:4
 msgid "_Deselect All"
-msgstr ""
+msgstr "_Desautatu dena"
 
 #: ../gtk/checkbox-gtk.ui.h:5
 msgid "_No"
@@ -46,7 +46,7 @@ msgstr "_Aurrekoa"
 
 #: ../gtk/checkbox-gtk.ui.h:7
 msgid "_Select All"
-msgstr ""
+msgstr "_Hautatu dena"
 
 #: ../gtk/checkbox-gtk.ui.h:8
 msgid "_Skip this test"
@@ -100,7 +100,7 @@ msgstr ""
 #. description
 #: ../jobs/audio.txt.in:33
 msgid "Please connect a pair of headphones to your audio device."
-msgstr ""
+msgstr "Konektatu aurikularrak zure audio-gailura."
 
 #. description
 #: ../jobs/audio.txt.in:33
@@ -144,7 +144,7 @@ msgstr ""
 #. description
 #: ../jobs/audio.txt.in:70 ../jobs/power-management.txt.in:221
 msgid "Did you hear your speech played back?"
-msgstr "Zuk esandako entzun al duzu?"
+msgstr "Entzun al duzu zuk esandakoaren erreprodukzioa?"
 
 #. description
 #: ../jobs/audio.txt.in:81
@@ -157,7 +157,7 @@ msgstr ""
 #. description
 #: ../jobs/autotest.txt.in:3
 msgid "Autotest suite (destructive)"
-msgstr ""
+msgstr "Autoproba suitea (suntsitzailea)"
 
 #. description
 #: ../jobs/bluetooth.txt.in:5 ../jobs/power-management.txt.in:185
@@ -391,7 +391,7 @@ msgstr ""
 #. description
 #: ../jobs/disk.txt.in:4
 msgid "The following hard drives were detected:"
-msgstr ""
+msgstr "Ondorengo disko gogorrak detektatu dira:"
 
 #. description
 #: ../jobs/disk.txt.in:14
@@ -458,6 +458,9 @@ msgid ""
 "which test cases are run and a personal account that the tester uses to "
 "verify the fingerprint reader"
 msgstr ""
+"Aurrebaldintzak: Kasu-proba honek bere gain hartzen du kasu-probak "
+"exekutatzeko proba kontu bat dagoela eta kontu pertsonal bat hatz-marka "
+"irakurlea egiaztatzeko."
 
 #. description
 #: ../jobs/fingerprint.txt.in:3
@@ -488,7 +491,7 @@ msgstr ""
 #. description
 #: ../jobs/fingerprint.txt.in:18
 msgid "Did the authentication procedure work correctly?"
-msgstr ""
+msgstr "Autentifikazio prozedura ondo ibili al da?"
 
 #. description
 #: ../jobs/firewire.txt.in:3
@@ -504,7 +507,7 @@ msgstr ""
 #. description
 #: ../jobs/firewire.txt.in:3 ../jobs/usb.txt.in:71
 msgid "Do the copy operations work as expected?"
-msgstr ""
+msgstr "Kopiatze eragiketek behar bezala funtzionatu al dute?"
 
 #. description
 #: ../jobs/floppy.txt.in:4
@@ -660,12 +663,12 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:82
 msgid "This display is using the following resolution:"
-msgstr ""
+msgstr "Pantaila honek ondorengo bereizmena darabil:"
 
 #. description
 #: ../jobs/graphics.txt.in:82
 msgid "Is this acceptable for your display?"
-msgstr ""
+msgstr "Onargarria al da hau zure pantailarentzat?"
 
 #. description
 #: ../jobs/graphics.txt.in:95
@@ -694,13 +697,13 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:117
 msgid "Do you see color bars and static?"
-msgstr ""
+msgstr "Kolore barrak eta estatikoa ikusten al dituzu?"
 
 #. description
 #: ../jobs/graphics.txt.in:126
 msgid ""
 "The following screens and video modes have been detected on your system:"
-msgstr ""
+msgstr "Ondorengo pantaila eta bideo-moduak detektatu dira zure sisteman:"
 
 #. description
 #: ../jobs/graphics.txt.in:138
@@ -711,12 +714,12 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:138
 msgid "Did the screen appear to be working for each mode?"
-msgstr ""
+msgstr "Pantailak behar bezala funtzionatu al du modu bakoitzarekin?"
 
 #. description
 #: ../jobs/graphics.txt.in:146
 msgid "Check that the hardware is able to run compiz."
-msgstr ""
+msgstr "Egiaztatu hardwarea compiz exekutatzeko gai dela."
 
 #. description
 #: ../jobs/graphics.txt.in:153
@@ -728,7 +731,7 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:153
 msgid "Did the 3d animation appear?"
-msgstr ""
+msgstr "Azaldu al da 3D animazioa?"
 
 #. description
 #: ../jobs/info.txt.in:60 ../jobs/screenshot.txt.in:7
@@ -748,12 +751,12 @@ msgstr ""
 #. description
 #: ../jobs/input.txt.in:4
 msgid "Moving the mouse should move the cursor on the screen."
-msgstr ""
+msgstr "Sagua mugitzean pantailako kurtsorea mugitu beharko litzake."
 
 #. description
 #: ../jobs/input.txt.in:4
 msgid "Is your mouse working properly?"
-msgstr ""
+msgstr "Zure sagua behar bezala funtzionatzen ari al da?"
 
 #. description
 #: ../jobs/input.txt.in:13
@@ -763,7 +766,7 @@ msgstr ""
 #. description
 #: ../jobs/input.txt.in:13
 msgid "Is your keyboard working properly?"
-msgstr ""
+msgstr "Zure teklatua behar bezala funtzionatzen ari al da?"
 
 #. description
 #: ../jobs/install.txt.in:6
@@ -941,7 +944,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:88
 msgid "Monitor tests"
-msgstr ""
+msgstr "Monitoreen probak"
 
 #. description
 #: ../jobs/local.txt.in:93
@@ -981,7 +984,7 @@ msgstr ""
 #. description
 #: ../jobs/ltp.txt.in:3
 msgid "Linux Test Project"
-msgstr ""
+msgstr "Linuxen Proben Proiektua"
 
 #. description
 #: ../jobs/mago.txt.in:3
@@ -1151,7 +1154,7 @@ msgstr ""
 #. description
 #: ../jobs/miscellanea.txt.in:8
 msgid "Did the screen change temporarily to a text console?"
-msgstr ""
+msgstr "Pantaila une batez testu-kontsola bihurtu al da?"
 
 #. description
 #: ../jobs/miscellanea.txt.in:20
@@ -1175,7 +1178,7 @@ msgstr ""
 #. description
 #: ../jobs/monitor.txt.in:3
 msgid "If your system does not have a VGA port, please skip this test."
-msgstr ""
+msgstr "Zure sistemak ez badauka VGA atakarik, saltatu proba hau."
 
 #. description
 #: ../jobs/monitor.txt.in:3
@@ -1183,11 +1186,13 @@ msgid ""
 "Connect a display (if not already connected) to the VGA port on your system. "
 "Is the image displayed correctly?"
 msgstr ""
+"Konektatu pantaila bat (dagoeneko ez badago konektatuta) zure sistemaren VGA "
+"atakara. Irudia behar bezala bistaratzen al da?"
 
 #. description
 #: ../jobs/monitor.txt.in:10
 msgid "If your system does not have a DVI port, please skip this test."
-msgstr ""
+msgstr "Zure sistemak ez badauka DVI atakarik, saltatu proba hau."
 
 #. description
 #: ../jobs/monitor.txt.in:10
@@ -1195,11 +1200,13 @@ msgid ""
 "Connect a display (if not already connected) to the DVI port on your system. "
 "Is the image displayed correctly?"
 msgstr ""
+"Konektatu pantaila bat (dagoeneko ez badago konektatuta) zure sistemaren DVI "
+"atakara. Irudia behar bezala bistaratzen al da?"
 
 #. description
 #: ../jobs/monitor.txt.in:17
 msgid "If your system does not have DisplayPort, please skip this test."
-msgstr ""
+msgstr "Zure sistemak ez badauka DisplayPort atakarik, saltatu proba hau."
 
 #. description
 #: ../jobs/monitor.txt.in:17
@@ -1207,11 +1214,13 @@ msgid ""
 "Connect a display (if not already connected) to the DisplayPort on your "
 "system. Is the image displayed correctly?"
 msgstr ""
+"Konektatu pantaila bat (dagoeneko ez badago konektatuta) zure sistemaren "
+"DisplayPort atakara. Irudia behar bezala bistaratzen al da?"
 
 #. description
 #: ../jobs/monitor.txt.in:24
 msgid "If your system does not have a HDMI port, please skip this test."
-msgstr ""
+msgstr "Zure sistemak ez badauka HDMI atakarik, saltatu proba hau."
 
 #. description
 #: ../jobs/monitor.txt.in:24
@@ -1219,11 +1228,13 @@ msgid ""
 "Connect a display (if not already connected) to the HDMI port on your "
 "system. Is the image displayed correctly?"
 msgstr ""
+"Konektatu pantaila bat (dagoeneko ez badago konektatuta) zure sistemaren "
+"HDMI atakara. Irudia behar bezala bistaratzen al da?"
 
 #. description
 #: ../jobs/monitor.txt.in:31
 msgid "If your system does not have a S-VIDEO port, please skip this test."
-msgstr ""
+msgstr "Zure sistemak ez badauka S-VIDEO atakarik, saltatu proba hau."
 
 #. description
 #: ../jobs/monitor.txt.in:31
@@ -1231,11 +1242,13 @@ msgid ""
 "Connect a display (if not already connected) to the S-VIDEO port on your "
 "system. Is the image displayed correctly?"
 msgstr ""
+"Konektatu pantaila bat (dagoeneko ez badago konektatuta) zure sistemaren S-"
+"VIDEO atakara. Irudia behar bezala bistaratzen al da?"
 
 #. description
 #: ../jobs/monitor.txt.in:38
 msgid "If your system does not have a RCA port, please skip this test."
-msgstr ""
+msgstr "Zure sistemak ez badauka RCA atakarik, saltatu proba hau."
 
 #. description
 #: ../jobs/monitor.txt.in:38
@@ -1243,6 +1256,8 @@ msgid ""
 "Connect a display (if not already connected) to the RCA port on your system. "
 "Is the image displayed correctly?"
 msgstr ""
+"Konektatu pantaila bat (dagoeneko ez badago konektatuta) zure sistemaren RCA "
+"atakara. Irudia behar bezala bistaratzen al da?"
 
 #. description
 #: ../jobs/monitor.txt.in:46
@@ -1256,17 +1271,17 @@ msgstr ""
 #. description
 #: ../jobs/monitor.txt.in:46
 msgid "Did the monitor go blank?"
-msgstr ""
+msgstr "Monitorea zuri jarri al da?"
 
 #. description
 #: ../jobs/networking.txt.in:5
 msgid "Detecting your network controller(s):"
-msgstr ""
+msgstr "Zure sare-kontrolatzailea(k) detektatzen:"
 
 #. description
 #: ../jobs/networking.txt.in:16
 msgid "Testing your connection to the Internet:"
-msgstr ""
+msgstr "Zure Interneterako konexioa probatzen:"
 
 #. description
 #: ../jobs/networking.txt.in:26
@@ -1414,7 +1429,7 @@ msgstr ""
 #. description
 #: ../jobs/optical.txt.in:90
 msgid "Did the file play?"
-msgstr ""
+msgstr "Erreproduzitu al da fitxategia?"
 
 #. description
 #: ../jobs/panel_clock_test.txt.in:4
@@ -1492,7 +1507,7 @@ msgstr ""
 #. description
 #: ../jobs/phoronix.txt.in:3
 msgid "Automated benchmark testing"
-msgstr ""
+msgstr "Proba-banku automatizatua"
 
 #. description
 #: ../jobs/power-management.txt.in:3
@@ -2247,43 +2262,47 @@ msgstr ""
 
 #: ../checkbox/application.py:66
 msgid "Usage: checkbox [OPTIONS]"
-msgstr ""
+msgstr "Erabilera: checkbox [AUKERAK]"
 
 #: ../checkbox/application.py:70
 msgid "Print version information and exit."
-msgstr ""
+msgstr "Inprimatu bertsio-informazioa eta irten."
 
 #: ../checkbox/application.py:74
 msgid "The file to write the log to."
-msgstr ""
+msgstr "Log-a idazteko fitxategia."
 
 #: ../checkbox/application.py:77
 msgid "One of debug, info, warning, error or critical."
-msgstr ""
+msgstr "Hauetariko bat: debug, info, warning, error edo critical."
 
 #: ../checkbox/application.py:82
 msgid "Configuration override parameters."
-msgstr ""
+msgstr "Konfigurazioa gainidazteko parametroak."
 
 #: ../checkbox/application.py:84
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist."
 msgstr ""
+"Lasterbidea honentzat: --config=checkbox/plugins/jobs_info/blacklist."
 
 #: ../checkbox/application.py:86
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist_file."
 msgstr ""
+"Lasterbidea honentzat: --config=checkbox/plugins/jobs_info/blacklist_file."
 
 #: ../checkbox/application.py:88
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist."
 msgstr ""
+"Lasterbidea honentzat: --config=checkbox/plugins/jobs_info/whitelist."
 
 #: ../checkbox/application.py:90
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist_file."
 msgstr ""
+"Lasterbidea honentzat: --config=checkbox/plugins/jobs_info/whitelist_file."
 
 #: ../checkbox/application.py:115
 msgid "Missing configuration file as argument.\n"
-msgstr ""
+msgstr "Konfigurazio-fitxategia falta da argumentu gisa.\n"
 
 #: ../checkbox/lib/signal.py:23
 msgid ""
@@ -2300,7 +2319,7 @@ msgstr ""
 
 #: ../checkbox/lib/signal.py:26
 msgid "Illegal Instruction"
-msgstr ""
+msgstr "Arauz kontrako agindua"
 
 #: ../checkbox/lib/signal.py:27
 msgid "Abort signal from abort(3)"
@@ -2312,11 +2331,11 @@ msgstr ""
 
 #: ../checkbox/lib/signal.py:29
 msgid "Kill signal"
-msgstr ""
+msgstr "Hil seinalea"
 
 #: ../checkbox/lib/signal.py:30
 msgid "Invalid memory reference"
-msgstr ""
+msgstr "Memoria-erreferentzia baliogabea"
 
 #: ../checkbox/lib/signal.py:31
 msgid "Broken pipe: write to pipe with no readers"
@@ -2332,23 +2351,23 @@ msgstr ""
 
 #: ../checkbox/lib/signal.py:34
 msgid "User-defined signal 1"
-msgstr ""
+msgstr "Erabiltzaileak definitutako seinalea 1"
 
 #: ../checkbox/lib/signal.py:35
 msgid "User-defined signal 2"
-msgstr ""
+msgstr "Erabiltzaileak definitutako seinalea 2"
 
 #: ../checkbox/lib/signal.py:36
 msgid "Child stopped or terminated"
-msgstr ""
+msgstr "Semea geldituta edo amaituta"
 
 #: ../checkbox/lib/signal.py:37
 msgid "Continue if stopped"
-msgstr ""
+msgstr "Jarraitu geldituz gero"
 
 #: ../checkbox/lib/signal.py:38
 msgid "Stop process"
-msgstr ""
+msgstr "Gelditu prozesua"
 
 #: ../checkbox/lib/signal.py:39
 msgid "Stop typed at tty"
@@ -2364,21 +2383,21 @@ msgstr ""
 
 #: ../checkbox/lib/signal.py:77
 msgid "UNKNOWN"
-msgstr ""
+msgstr "EZEZAGUNA"
 
 #: ../checkbox/lib/signal.py:89
 msgid "Unknown signal"
-msgstr ""
+msgstr "Seinale ezezaguna"
 
 #: ../checkbox_cli/cli_interface.py:31
 #: ../checkbox_urwid/urwid_interface.py:684
 msgid "yes"
-msgstr ""
+msgstr "bai"
 
 #: ../checkbox_cli/cli_interface.py:32
 #: ../checkbox_urwid/urwid_interface.py:685
 msgid "no"
-msgstr ""
+msgstr "ez"
 
 #: ../checkbox_cli/cli_interface.py:33
 #: ../checkbox_urwid/urwid_interface.py:686
@@ -2387,24 +2406,24 @@ msgstr ""
 
 #: ../checkbox_cli/cli_interface.py:126
 msgid "Press any key to continue..."
-msgstr ""
+msgstr "Sakatu edozein tekla jarraitzeko..."
 
 #: ../checkbox_cli/cli_interface.py:135
 #, python-format
 msgid "Please choose (%s): "
-msgstr ""
+msgstr "Hautatu (%s): "
 
 #: ../checkbox_cli/cli_interface.py:315
 msgid "test"
-msgstr ""
+msgstr "probatu"
 
 #: ../checkbox_cli/cli_interface.py:339
 msgid "test again"
-msgstr ""
+msgstr "probatu berriz"
 
 #: ../checkbox_cli/cli_interface.py:345
 msgid "Please type here and press Ctrl-D when finished:\n"
-msgstr ""
+msgstr "Idatzi hemen eta sakatu Ktrl+D amaitzean:\n"
 
 #: ../checkbox_urwid/urwid_interface.py:60
 msgid "Checkbox System Testing"
@@ -2449,32 +2468,36 @@ msgstr ""
 
 #: ../checkbox_gtk/gtk_interface.py:487
 msgid "_Test Again"
-msgstr ""
+msgstr "_Probatu berriz"
 
 #: ../checkbox_gtk/gtk_interface.py:533
 msgid "Info"
-msgstr ""
+msgstr "Informazioa"
 
 #: ../checkbox_gtk/gtk_interface.py:552
 msgid "Error"
-msgstr ""
+msgstr "Errorea"
 
 #: ../checkbox/user_interface.py:136
 #, python-format
 msgid "Unable to start web browser to open %s."
-msgstr ""
+msgstr "Ezin izan da nabigatzailea abiarazi %s irekitzeko."
 
 #: ../plugins/apport_prompt.py:81
 msgid ""
 "Collecting information about this test.\n"
 "This might take a few minutes."
 msgstr ""
+"Proba honi buruzko informazioa biltzen.\n"
+"Honek minutu batzuk iraungo ditu."
 
 #: ../plugins/apport_prompt.py:116
 msgid ""
 "Collected information is being sent for bug tracking.\n"
 "This might take a few minutes."
 msgstr ""
+"Bildutako informazioa arazoak detektatu ahal izateko bidaltzen ari da.\n"
+"Honek minutu batzuk iraungo ditu."
 
 #: ../plugins/apport_prompt.py:225
 #, python-format
@@ -2493,15 +2516,15 @@ msgstr ""
 
 #: ../plugins/final_prompt.py:33
 msgid "Successfully finished testing!"
-msgstr ""
+msgstr "Probak behar bezala burutu dira!"
 
 #: ../plugins/final_prompt.py:34
 msgid "_Finish"
-msgstr ""
+msgstr "_Amaitu"
 
 #: ../plugins/gather_prompt.py:35
 msgid "Gathering information from your system..."
-msgstr ""
+msgstr "Zure sistemaren informazioa biltzen..."
 
 #: ../plugins/intro_prompt.py:43
 msgid ""
@@ -2511,11 +2534,16 @@ msgid ""
 "Once you are finished running the tests, you can view a summary report for "
 "your system."
 msgstr ""
+"Ongi etorri sistemaren probetara!\n"
+"\n"
+"Checkbox-ek zure sistema behar bezala dabilela egiaztatzeko probak "
+"eskaintzen dizkizu. Probak exekutatu ondoren zure sistemaren laburpen-"
+"txosten bat ikusi ahalko duzu."
 
 #: ../plugins/launchpad_exchange.py:118
 #, python-format
 msgid "Failed to process form: %s"
-msgstr ""
+msgstr "Huts egin du inprimakia prozesatzeak: %s"
 
 #: ../plugins/launchpad_exchange.py:141
 #, python-format
@@ -2527,16 +2555,24 @@ msgid ""
 "directly to the system database:\n"
 "https://launchpad.net/+hwdb/+submit"
 msgstr ""
+"Huts egin du zerbitzaria kontaktatzeak. Saiatu\n"
+"berriz edo igo fitxategi hau:\n"
+"%s\n"
+"\n"
+"zuzenean sistemaren datu-basera:\n"
+"https://launchpad.net/+hwdb/+submit"
 
 #: ../plugins/launchpad_exchange.py:150
 msgid ""
 "Failed to upload to server,\n"
 "please try again later."
 msgstr ""
+"Huts egin du zebitzarira igotzeak,\n"
+"saiatu berriz geroago."
 
 #: ../plugins/launchpad_exchange.py:162
 msgid "Information not posted to Launchpad."
-msgstr ""
+msgstr "Informazioa ez da Launchpad-era bidali."
 
 #: ../plugins/launchpad_prompt.py:71
 #, python-format
@@ -2609,9 +2645,6 @@ msgstr ""
 msgid "Internet connection fully established"
 msgstr ""
 
-#~ msgid "Disk benchmark:"
-#~ msgstr "Disko froga:"
-
 #~ msgid "Network tests"
 #~ msgstr "Sarearen probak"
 
@@ -2667,3 +2700,6 @@ msgstr ""
 
 #~ msgid "Is this ok?"
 #~ msgstr "Ongi al dago hau?"
+
+#~ msgid "Disk benchmark:"
+#~ msgstr "Diskoen proba-bankua:"

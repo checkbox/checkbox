@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-07-07 12:32-0400\n"
-"PO-Revision-Date: 2009-04-02 07:01+0000\n"
-"Last-Translator: Krasimir Chonov <mk2616@abv.bg>\n"
+"PO-Revision-Date: 2011-07-19 18:24+0000\n"
+"Last-Translator: Boyan Sotirov <lz1dsb@abv.bg>\n"
 "Language-Team: Bulgarian <bg@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-07-16 04:30+0000\n"
+"X-Launchpad-Export-Date: 2011-07-20 04:31+0000\n"
 "X-Generator: Launchpad (build 13405)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:2
@@ -328,11 +328,11 @@ msgstr "Повече информация:"
 
 #: ../gtk/checkbox-gtk.ui.h:4
 msgid "_Deselect All"
-msgstr ""
+msgstr "Према_хване на избора на всички"
 
 #: ../gtk/checkbox-gtk.ui.h:7
 msgid "_Select All"
-msgstr ""
+msgstr "_Избор на всички"
 
 #. description
 #: ../jobs/apport.txt.in:5
@@ -342,7 +342,7 @@ msgstr ""
 #. description
 #: ../jobs/audio.txt.in:7
 msgid "Detecting your sound device(s):"
-msgstr ""
+msgstr "Засичане на вашето звуково устройство/устройства"
 
 #. description
 #: ../jobs/audio.txt.in:21
@@ -354,7 +354,7 @@ msgstr ""
 #. description
 #: ../jobs/audio.txt.in:33
 msgid "Please connect a pair of headphones to your audio device."
-msgstr ""
+msgstr "Моля свържете чифт слушалки към вашето аудио устройство."
 
 #. description
 #: ../jobs/audio.txt.in:33
@@ -398,7 +398,7 @@ msgstr ""
 #. description
 #: ../jobs/audio.txt.in:70 ../jobs/power-management.txt.in:221
 msgid "Did you hear your speech played back?"
-msgstr ""
+msgstr "Чухте ли възпроизведена вашата реч?"
 
 #. description
 #: ../jobs/audio.txt.in:81
@@ -411,7 +411,7 @@ msgstr ""
 #. description
 #: ../jobs/autotest.txt.in:3
 msgid "Autotest suite (destructive)"
-msgstr ""
+msgstr "Автотест набор (разрушителен)"
 
 #. description
 #: ../jobs/bluetooth.txt.in:5 ../jobs/power-management.txt.in:185
@@ -645,7 +645,7 @@ msgstr ""
 #. description
 #: ../jobs/disk.txt.in:4
 msgid "The following hard drives were detected:"
-msgstr ""
+msgstr "Следните дискове бяха засечени."
 
 #. description
 #: ../jobs/disk.txt.in:14
@@ -712,6 +712,9 @@ msgid ""
 "which test cases are run and a personal account that the tester uses to "
 "verify the fingerprint reader"
 msgstr ""
+"Предварителни изисквания: Този тест предполага, че има тестов акаунт, от "
+"който се пускат тестовете и личен акаунт, който тестера използва за "
+"изпробване на четеца на пръстови отпечатъци."
 
 #. description
 #: ../jobs/fingerprint.txt.in:3
@@ -742,7 +745,7 @@ msgstr ""
 #. description
 #: ../jobs/fingerprint.txt.in:18
 msgid "Did the authentication procedure work correctly?"
-msgstr ""
+msgstr "Работеше ли коректно процедурата по идентифициране?"
 
 #. description
 #: ../jobs/firewire.txt.in:3
@@ -758,7 +761,7 @@ msgstr ""
 #. description
 #: ../jobs/firewire.txt.in:3 ../jobs/usb.txt.in:71
 msgid "Do the copy operations work as expected?"
-msgstr ""
+msgstr "Операциите по копиране работят ли както очаквате?"
 
 #. description
 #: ../jobs/floppy.txt.in:4
@@ -914,7 +917,7 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:82
 msgid "This display is using the following resolution:"
-msgstr ""
+msgstr "Този дисплей използва следната разделителна способност:"
 
 #. description
 #: ../jobs/graphics.txt.in:82
@@ -949,7 +952,7 @@ msgstr ""
 #: ../jobs/graphics.txt.in:126
 msgid ""
 "The following screens and video modes have been detected on your system:"
-msgstr ""
+msgstr "Следните екрани и видео режими са засечени на на вашата система:"
 
 #. description
 #: ../jobs/graphics.txt.in:138
@@ -960,12 +963,12 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:138
 msgid "Did the screen appear to be working for each mode?"
-msgstr ""
+msgstr "Работеше ли екрана при всеки един режим?"
 
 #. description
 #: ../jobs/graphics.txt.in:146
 msgid "Check that the hardware is able to run compiz."
-msgstr ""
+msgstr "Проверете дали хардуера е в състояние да изпълнява compiz."
 
 #. description
 #: ../jobs/graphics.txt.in:153
@@ -977,7 +980,7 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:153
 msgid "Did the 3d animation appear?"
-msgstr ""
+msgstr "Появи ли се 3d анимацията?"
 
 #. description
 #: ../jobs/info.txt.in:60 ../jobs/screenshot.txt.in:7
@@ -1090,7 +1093,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:3
 msgid "Audio tests"
-msgstr ""
+msgstr "Аудио тестове"
 
 #. description
 #: ../jobs/local.txt.in:8
@@ -1120,17 +1123,17 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:33
 msgid "Disk tests"
-msgstr ""
+msgstr "Тестове на диск"
 
 #. description
 #: ../jobs/local.txt.in:38
 msgid "Fingerprint reader tests"
-msgstr ""
+msgstr "Тестове за четеца на пръстови отпецатъци"
 
 #. description
 #: ../jobs/local.txt.in:43
 msgid "Firewire disk tests"
-msgstr ""
+msgstr "Тестове на дискове с Firewire"
 
 #. description
 #: ../jobs/local.txt.in:48
@@ -1175,7 +1178,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:88
 msgid "Monitor tests"
-msgstr ""
+msgstr "Тестове за монитора"
 
 #. description
 #: ../jobs/local.txt.in:93
@@ -1190,7 +1193,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:103
 msgid "Peripheral tests"
-msgstr ""
+msgstr "Тестове за периферията"
 
 #. description
 #: ../jobs/local.txt.in:108
@@ -1205,7 +1208,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:118
 msgid "User Applications"
-msgstr ""
+msgstr "Потребителски приложения"
 
 #. description
 #: ../jobs/local.txt.in:123
@@ -1215,7 +1218,7 @@ msgstr ""
 #. description
 #: ../jobs/ltp.txt.in:3
 msgid "Linux Test Project"
-msgstr ""
+msgstr "Проект за тестване на хардуер"
 
 #. description
 #: ../jobs/mago.txt.in:3
@@ -1381,11 +1384,12 @@ msgstr ""
 #: ../jobs/miscellanea.txt.in:8
 msgid "Note that this test may require you to enter your password."
 msgstr ""
+"Имайте в предвид, че този тест може да изиска да въведете вашата парола."
 
 #. description
 #: ../jobs/miscellanea.txt.in:8
 msgid "Did the screen change temporarily to a text console?"
-msgstr ""
+msgstr "Смени ли се екрана за кратко в текстова конзола?"
 
 #. description
 #: ../jobs/miscellanea.txt.in:20
@@ -1409,7 +1413,7 @@ msgstr ""
 #. description
 #: ../jobs/monitor.txt.in:3
 msgid "If your system does not have a VGA port, please skip this test."
-msgstr ""
+msgstr "Ако вашата система няма VGA порт, моля пропуснете този тест."
 
 #. description
 #: ../jobs/monitor.txt.in:3
@@ -1417,11 +1421,13 @@ msgid ""
 "Connect a display (if not already connected) to the VGA port on your system. "
 "Is the image displayed correctly?"
 msgstr ""
+"Свръжете дисплей (ако вече няма свързан) към VGA порта на вашата система. "
+"Правилно ли се визуализира изображението?"
 
 #. description
 #: ../jobs/monitor.txt.in:10
 msgid "If your system does not have a DVI port, please skip this test."
-msgstr ""
+msgstr "Ако вашата система няма DVI порт, моля пропуснете този тест."
 
 #. description
 #: ../jobs/monitor.txt.in:10
@@ -1429,11 +1435,13 @@ msgid ""
 "Connect a display (if not already connected) to the DVI port on your system. "
 "Is the image displayed correctly?"
 msgstr ""
+"Свръжете дисплей (ако вече няма свързан) към DVI порта на вашата система. "
+"Правилно ли се визуализира изображението?"
 
 #. description
 #: ../jobs/monitor.txt.in:17
 msgid "If your system does not have DisplayPort, please skip this test."
-msgstr ""
+msgstr "Ако вашата система няма DisplayPort порт, моля пропуснете този тест."
 
 #. description
 #: ../jobs/monitor.txt.in:17
@@ -1441,11 +1449,13 @@ msgid ""
 "Connect a display (if not already connected) to the DisplayPort on your "
 "system. Is the image displayed correctly?"
 msgstr ""
+"Свръжете дисплей (ако вече няма свързан) към DisplayPort  порта на вашата "
+"система. Правилно ли се визуализира изображението?"
 
 #. description
 #: ../jobs/monitor.txt.in:24
 msgid "If your system does not have a HDMI port, please skip this test."
-msgstr ""
+msgstr "Ако вашата система няма HDMI порт, моля пропуснете този тест."
 
 #. description
 #: ../jobs/monitor.txt.in:24
@@ -1453,11 +1463,13 @@ msgid ""
 "Connect a display (if not already connected) to the HDMI port on your "
 "system. Is the image displayed correctly?"
 msgstr ""
+"Свръжете дисплей (ако вече няма свързан) към HDMI  порта на вашата система. "
+"Правилно ли се визуализира изображението?"
 
 #. description
 #: ../jobs/monitor.txt.in:31
 msgid "If your system does not have a S-VIDEO port, please skip this test."
-msgstr ""
+msgstr "Ако вашата система няма S-VIDEO порт, моля пропуснете този тест."
 
 #. description
 #: ../jobs/monitor.txt.in:31
@@ -1465,11 +1477,13 @@ msgid ""
 "Connect a display (if not already connected) to the S-VIDEO port on your "
 "system. Is the image displayed correctly?"
 msgstr ""
+"Свръжете дисплей (ако вече няма свързан) към S-VIDEO  порта на вашата "
+"система. Правилно ли се визуализира изображението?"
 
 #. description
 #: ../jobs/monitor.txt.in:38
 msgid "If your system does not have a RCA port, please skip this test."
-msgstr ""
+msgstr "Ако вашата система няма RCA порт, моля пропуснете този тест."
 
 #. description
 #: ../jobs/monitor.txt.in:38
@@ -1477,6 +1491,8 @@ msgid ""
 "Connect a display (if not already connected) to the RCA port on your system. "
 "Is the image displayed correctly?"
 msgstr ""
+"Свържете дисплей (ако вече няма свързан) към RCA порта на вашата система. "
+"Правилно ли се визуализира изображението?"
 
 #. description
 #: ../jobs/monitor.txt.in:46
@@ -1490,7 +1506,7 @@ msgstr ""
 #. description
 #: ../jobs/monitor.txt.in:46
 msgid "Did the monitor go blank?"
-msgstr ""
+msgstr "Мониторът показа ли празен екран?"
 
 #. description
 #: ../jobs/networking.txt.in:26
@@ -1638,7 +1654,7 @@ msgstr ""
 #. description
 #: ../jobs/optical.txt.in:90
 msgid "Did the file play?"
-msgstr ""
+msgstr "Файлът беше ли възпроизведен?"
 
 #. description
 #: ../jobs/panel_clock_test.txt.in:4
@@ -1716,7 +1732,7 @@ msgstr ""
 #. description
 #: ../jobs/phoronix.txt.in:3
 msgid "Automated benchmark testing"
-msgstr ""
+msgstr "Автоматизиран еталонен тест"
 
 #. description
 #: ../jobs/power-management.txt.in:3
@@ -1990,7 +2006,7 @@ msgstr ""
 #. description
 #: ../jobs/qa_regression.txt.in:3
 msgid "QA regression tests (destructive)"
-msgstr ""
+msgstr "Въпрос-отговор регресивни тестове (разрушителни)"
 
 #. description
 #: ../jobs/server-services.txt.in:5
@@ -2472,19 +2488,19 @@ msgstr ""
 
 #: ../checkbox/application.py:84
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist."
-msgstr ""
+msgstr "Съкратено за --config=checkbox/plugins/jobs_info/blacklist."
 
 #: ../checkbox/application.py:86
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist_file."
-msgstr ""
+msgstr "Съкратено за --config=checkbox/plugins/jobs_info/blacklist_file."
 
 #: ../checkbox/application.py:88
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist."
-msgstr ""
+msgstr "Съкратено за --config=checkbox/plugins/jobs_info/whitelist."
 
 #: ../checkbox/application.py:90
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist_file."
-msgstr ""
+msgstr "Съкратено за --config=checkbox/plugins/jobs_info/whitelist_file."
 
 #: ../checkbox/lib/signal.py:23
 msgid ""
@@ -2632,12 +2648,16 @@ msgid ""
 "Collecting information about this test.\n"
 "This might take a few minutes."
 msgstr ""
+"Събиране на информация за този тест.\n"
+"Това може да отнеме няколко минути."
 
 #: ../plugins/apport_prompt.py:116
 msgid ""
 "Collected information is being sent for bug tracking.\n"
 "This might take a few minutes."
 msgstr ""
+"Събраната информация се изпраща за проследяване на бъга.\n"
+"Това може да отнеме няколко минути."
 
 #: ../plugins/apport_prompt.py:225
 #, python-format
@@ -2652,7 +2672,7 @@ msgstr ""
 #: ../plugins/apport_prompt.py:246
 #, python-format
 msgid "Is a package upgrade in process? Error: %s"
-msgstr ""
+msgstr "Извършва ли се в момента обновяване на пакет? Грешка: %s"
 
 #: ../plugins/final_prompt.py:33
 msgid "Successfully finished testing!"
@@ -2675,7 +2695,7 @@ msgstr ""
 #: ../plugins/launchpad_exchange.py:118
 #, python-format
 msgid "Failed to process form: %s"
-msgstr ""
+msgstr "Неуспех с обработката на форма: %s"
 
 #: ../plugins/launchpad_prompt.py:71
 #, python-format
@@ -2716,11 +2736,13 @@ msgid ""
 "Checkbox did not finish completely.\n"
 "Do you want to recover from the previous run?"
 msgstr ""
+"Checkbox  не завърши напълно.\n"
+"Искате ли възстановяване от предишното изпълнение?"
 
 #: ../plugins/shell_test.py:52
 #, python-format
 msgid "Running %s..."
-msgstr ""
+msgstr "В ход %s..."
 
 #. Get results
 #: ../plugins/suites_prompt.py:105
@@ -2749,3 +2771,18 @@ msgstr "Интернет връзката е осъществена"
 
 #~ msgid "Click the Test button to display a video test."
 #~ msgstr "Натиснете бутона 'Проба' за видео тест."
+
+#~ msgid "Disk benchmark:"
+#~ msgstr "Оценка на диска:"
+
+#~ msgid "Is this ok?"
+#~ msgstr "Това ОК ли е?"
+
+#~ msgid "Kernel modesetting tests"
+#~ msgstr "Тестове за настройване режима на ядрото"
+
+#~ msgid "Network tests"
+#~ msgstr "Мрежови тестове"
+
+#~ msgid "Video tests"
+#~ msgstr "Видео тестове"

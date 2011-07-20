@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-07-07 12:32-0400\n"
-"PO-Revision-Date: 2011-06-07 20:48+0000\n"
-"Last-Translator: Victor Tuson Palau <Unknown>\n"
+"PO-Revision-Date: 2011-07-19 20:17+0000\n"
+"Last-Translator: Paco Molinero <paco@byasl.com>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-07-16 04:32+0000\n"
+"X-Launchpad-Export-Date: 2011-07-20 04:33+0000\n"
 "X-Generator: Launchpad (build 13405)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:2
@@ -93,7 +93,7 @@ msgstr "Uso: checkbox [OPCIONES]"
 
 #: ../checkbox/application.py:70
 msgid "Print version information and exit."
-msgstr "Muestra la información de la versión y finaliza."
+msgstr "Muestra la información de la versión y sale."
 
 #: ../checkbox/application.py:74
 msgid "The file to write the log to."
@@ -345,7 +345,7 @@ msgstr "Comprobación del sistema"
 
 #: ../gtk/checkbox-gtk.ui.h:4
 msgid "_Deselect All"
-msgstr ""
+msgstr "_Deseleccionar todo"
 
 #: ../gtk/checkbox-gtk.ui.h:5
 msgid "_No"
@@ -353,7 +353,7 @@ msgstr "_No"
 
 #: ../gtk/checkbox-gtk.ui.h:7
 msgid "_Select All"
-msgstr ""
+msgstr "_Seleccionar todo"
 
 #. description
 #: ../jobs/apport.txt.in:5
@@ -376,7 +376,7 @@ msgstr ""
 #. description
 #: ../jobs/audio.txt.in:33
 msgid "Please connect a pair of headphones to your audio device."
-msgstr ""
+msgstr "Conecte un par de auriculares en su dispositivo de audio."
 
 #. description
 #: ../jobs/audio.txt.in:33
@@ -448,12 +448,12 @@ msgstr ""
 #. description
 #: ../jobs/autotest.txt.in:3
 msgid "Autotest suite (destructive)"
-msgstr ""
+msgstr "Suite Autotest (destructivo)"
 
 #. description
 #: ../jobs/bluetooth.txt.in:5 ../jobs/power-management.txt.in:185
 msgid "The address of your Bluetooth device is: $output"
-msgstr ""
+msgstr "La dirección de su dispositivo Bluetooth es: $output"
 
 #. description
 #: ../jobs/bluetooth.txt.in:15 ../jobs/graphics.txt.in:15
@@ -514,7 +514,7 @@ msgstr ""
 #: ../jobs/bluetooth.txt.in:82 ../jobs/optical.txt.in:72
 #: ../jobs/power-management.txt.in:194 ../jobs/usb.txt.in:27
 msgid "Did all the steps work?"
-msgstr ""
+msgstr "¿Todos los pasos funcionaron?"
 
 #. description
 #: ../jobs/camera.txt.in:7
@@ -682,7 +682,7 @@ msgstr ""
 #. description
 #: ../jobs/disk.txt.in:4
 msgid "The following hard drives were detected:"
-msgstr ""
+msgstr "Se detectaron los siguientes discos duros:"
 
 #. description
 #: ../jobs/disk.txt.in:14
@@ -755,6 +755,9 @@ msgid ""
 "which test cases are run and a personal account that the tester uses to "
 "verify the fingerprint reader"
 msgstr ""
+"Requisitos previos: Esta prueba presupone que hay una cuenta de pruebas "
+"desde la que ejecutar los casos de prueba y una cuenta personal que el "
+"usuario va a utilizar para comprobar el lector de huella dactilar."
 
 #. description
 #: ../jobs/fingerprint.txt.in:3
@@ -995,6 +998,8 @@ msgid ""
 "Ensure the current resolution meets or exceeds the recommended minimum "
 "resolution (1024 x 768). See here for details:"
 msgstr ""
+"Asegúrese de que la resolución actual cumple o excede la resolución mínima "
+"recomendada (1024 x 768). Consulte aquí para más información:"
 
 #. description
 #: ../jobs/graphics.txt.in:107
@@ -1002,11 +1007,13 @@ msgid ""
 "Ensure the current resolution meets or exceeds the recommended minimum "
 "resolution (1024 x 600). See here for details:"
 msgstr ""
+"Asegúrese de que la resolución actual cumple o excede la resolución mínima "
+"recomendada (1024 x 600). Consulte aquí para más información:"
 
 #. description
 #: ../jobs/graphics.txt.in:107
 msgid "https://help.ubuntu.com/community/Installation/SystemRequirements"
-msgstr ""
+msgstr "https://help.ubuntu.com/community/Installation/SystemRequirements"
 
 #. description
 #: ../jobs/graphics.txt.in:117
@@ -1035,7 +1042,7 @@ msgstr "¿La pantalla parece funcionar en cada modo?"
 #. description
 #: ../jobs/graphics.txt.in:146
 msgid "Check that the hardware is able to run compiz."
-msgstr ""
+msgstr "Comprueba que hardware es capaz de ejecutar Compiz."
 
 #. description
 #: ../jobs/graphics.txt.in:153
@@ -1049,7 +1056,7 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:153
 msgid "Did the 3d animation appear?"
-msgstr ""
+msgstr "¿Apareció la animación 3D?"
 
 #. description
 #: ../jobs/info.txt.in:60 ../jobs/screenshot.txt.in:7
@@ -1248,7 +1255,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:88
 msgid "Monitor tests"
-msgstr ""
+msgstr "Pruebas de monitor"
 
 #. description
 #: ../jobs/local.txt.in:93
@@ -1278,7 +1285,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:118
 msgid "User Applications"
-msgstr ""
+msgstr "Aplicaciones de usuario"
 
 #. description
 #: ../jobs/local.txt.in:123
@@ -1288,7 +1295,7 @@ msgstr "Pruebas de estrés"
 #. description
 #: ../jobs/ltp.txt.in:3
 msgid "Linux Test Project"
-msgstr ""
+msgstr "Proyecto Linux Test"
 
 #. description
 #: ../jobs/mago.txt.in:3
@@ -1528,7 +1535,7 @@ msgstr ""
 #. description
 #: ../jobs/mediacard.txt.in:130
 msgid "Does the icon automatically appear/disappear?"
-msgstr ""
+msgstr "¿Aparece y desaparece el icono automáticamente?"
 
 #. description
 #: ../jobs/memory.txt.in:4
@@ -1585,7 +1592,7 @@ msgstr ""
 #. description
 #: ../jobs/monitor.txt.in:3
 msgid "If your system does not have a VGA port, please skip this test."
-msgstr ""
+msgstr "Si su sistema no tiene puerto VGA, omita esta prueba."
 
 #. description
 #: ../jobs/monitor.txt.in:3
@@ -1593,11 +1600,13 @@ msgid ""
 "Connect a display (if not already connected) to the VGA port on your system. "
 "Is the image displayed correctly?"
 msgstr ""
+"Conecte un monitor (si no está ya conectado) al puerto VGA en su sistema. "
+"¿Se muestra la imagen correctamente?"
 
 #. description
 #: ../jobs/monitor.txt.in:10
 msgid "If your system does not have a DVI port, please skip this test."
-msgstr ""
+msgstr "Si su sistema no tiene un puerto DVI, omita esta prueba."
 
 #. description
 #: ../jobs/monitor.txt.in:10
@@ -1605,11 +1614,13 @@ msgid ""
 "Connect a display (if not already connected) to the DVI port on your system. "
 "Is the image displayed correctly?"
 msgstr ""
+"Conecte un monitor (si no está ya conectado) al puerto DVI en su sistema. "
+"¿Se muestra la imagen correctamente?"
 
 #. description
 #: ../jobs/monitor.txt.in:17
 msgid "If your system does not have DisplayPort, please skip this test."
-msgstr ""
+msgstr "Si su sistema no dispone de DisplayPort, omita esta prueba."
 
 #. description
 #: ../jobs/monitor.txt.in:17
@@ -1617,11 +1628,13 @@ msgid ""
 "Connect a display (if not already connected) to the DisplayPort on your "
 "system. Is the image displayed correctly?"
 msgstr ""
+"Conecte un monitor (si no está ya conectado) al puerto DisplayPort en su "
+"sistema. ¿Se muestra la imagen correctamente?"
 
 #. description
 #: ../jobs/monitor.txt.in:24
 msgid "If your system does not have a HDMI port, please skip this test."
-msgstr ""
+msgstr "Si su sistema no tiene un puerto HDMI, omita esta prueba."
 
 #. description
 #: ../jobs/monitor.txt.in:24
@@ -1629,11 +1642,13 @@ msgid ""
 "Connect a display (if not already connected) to the HDMI port on your "
 "system. Is the image displayed correctly?"
 msgstr ""
+"Conecte un monitor (si no está ya conectado) al puerto HDMI en su sistema. "
+"¿Se muestra la imagen correctamente?"
 
 #. description
 #: ../jobs/monitor.txt.in:31
 msgid "If your system does not have a S-VIDEO port, please skip this test."
-msgstr ""
+msgstr "Si su sistema no tiene un puerto S-VIDEO, omita esta prueba."
 
 #. description
 #: ../jobs/monitor.txt.in:31
@@ -1641,11 +1656,13 @@ msgid ""
 "Connect a display (if not already connected) to the S-VIDEO port on your "
 "system. Is the image displayed correctly?"
 msgstr ""
+"Conecte un monitor (si no está ya conectado) al puerto S-VIDEO en su "
+"sistema. ¿Se muestra la imagen correctamente?"
 
 #. description
 #: ../jobs/monitor.txt.in:38
 msgid "If your system does not have a RCA port, please skip this test."
-msgstr ""
+msgstr "Si su sistema no tiene un puerto RCA, omita esta prueba."
 
 #. description
 #: ../jobs/monitor.txt.in:38
@@ -1653,6 +1670,8 @@ msgid ""
 "Connect a display (if not already connected) to the RCA port on your system. "
 "Is the image displayed correctly?"
 msgstr ""
+"Conecte un monitor (si no está ya conectado) al puerto RCA en su sistema. "
+"¿Se muestra la imagen correctamente?"
 
 #. description
 #: ../jobs/monitor.txt.in:46
@@ -1671,7 +1690,7 @@ msgstr ""
 #. description
 #: ../jobs/monitor.txt.in:46
 msgid "Did the monitor go blank?"
-msgstr ""
+msgstr "¿El monitor se puso negro?"
 
 #. description
 #: ../jobs/networking.txt.in:26
@@ -1936,7 +1955,7 @@ msgstr ""
 #. description
 #: ../jobs/phoronix.txt.in:3
 msgid "Automated benchmark testing"
-msgstr ""
+msgstr "Prueba de rendimiento automatizada"
 
 #. description
 #: ../jobs/power-management.txt.in:3
@@ -2006,17 +2025,17 @@ msgstr ""
 #. description
 #: ../jobs/power-management.txt.in:65
 msgid "Test the network before suspending."
-msgstr ""
+msgstr "Comprobar la red antes de suspender."
 
 #. description
 #: ../jobs/power-management.txt.in:70
 msgid "Record the current resolution before suspending."
-msgstr ""
+msgstr "Grabar la resolución actual antes de suspender."
 
 #. description
 #: ../jobs/power-management.txt.in:78
 msgid "Test the audio before suspending."
-msgstr ""
+msgstr "Comprobar el sonido antes de suspender."
 
 #. description
 #: ../jobs/power-management.txt.in:84
@@ -2046,7 +2065,7 @@ msgstr ""
 #. description
 #: ../jobs/power-management.txt.in:135
 msgid "Power management Suspend and Resume test"
-msgstr ""
+msgstr "Prueba de suspensión y reanudación de la gestión de energía"
 
 #. description
 #: ../jobs/power-management.txt.in:135
@@ -2066,18 +2085,18 @@ msgstr ""
 #. description
 #: ../jobs/power-management.txt.in:145
 msgid "Test the network after resuming."
-msgstr ""
+msgstr "Probar la red después de reanudar."
 
 #. description
 #: ../jobs/power-management.txt.in:151
 msgid ""
 "Test to see that we have the same resolution after resuming as before."
-msgstr ""
+msgstr "Prueba para ver si tiene la misma resolución después de reanudar."
 
 #. description
 #: ../jobs/power-management.txt.in:160
 msgid "Test the audio after resuming."
-msgstr ""
+msgstr "Probar el sonido después de reanudar."
 
 #. description
 #: ../jobs/power-management.txt.in:167
@@ -2103,6 +2122,8 @@ msgid ""
 "Verify a bluetooth peripheral.  An example verification procedure for a "
 "bluetooth mouse is given."
 msgstr ""
+"Verifica un periférico bluetooth.  A continuación se expone el procedimiento "
+"de verificación de un ratón bluetooth."
 
 #. description
 #: ../jobs/power-management.txt.in:194
@@ -2140,6 +2161,9 @@ msgid ""
 "suspend and resume.  You can use either internal or external microphone and "
 "speakers."
 msgstr ""
+"Esta prueba se asegurará que sus dispositivos de audio funcionan "
+"correctamente después de una suspensión y reanudación. Puede usar micrófonos "
+"y altavoces externos o internos."
 
 #. description
 #: ../jobs/power-management.txt.in:221
@@ -2169,7 +2193,7 @@ msgstr ""
 #. description
 #: ../jobs/power-management.txt.in:234
 msgid "Did the system successfully suspend and resume for 30 iterations?"
-msgstr ""
+msgstr "¿El sistema se suspendió y reanudó 30 veces?"
 
 #. description
 #: ../jobs/power-management.txt.in:245
@@ -2177,6 +2201,8 @@ msgid ""
 "This will check to make sure your system can successfully hibernate (if "
 "supported)."
 msgstr ""
+"Esto comprobará que su sistema puede hibernar correctamente (si está "
+"soportado)."
 
 #. description
 #: ../jobs/power-management.txt.in:245
@@ -2199,6 +2225,8 @@ msgid ""
 "Did the system successfully hibernate and did it work properly after waking "
 "up?"
 msgstr ""
+"¿El sistema hibernó adecuadamente y funciona correctamente después de "
+"levantarse?"
 
 #. description
 #: ../jobs/power-management.txt.in:258
@@ -2222,11 +2250,14 @@ msgid ""
 "set, and that grub is set to boot Ubuntu by default if you have a multi-boot "
 "set-up."
 msgstr ""
+"Además, necesitará asegurase que su sistema no está protegido por "
+"contraseñas en el encendido o el disco duro, y que Ubuntu se iniciará por "
+"defecto en grub en el caso que tenga arranque multisistema."
 
 #. description
 #: ../jobs/power-management.txt.in:258
 msgid "Did the system successfully hibernate and wake 30 times?"
-msgstr ""
+msgstr "¿Hibernó el sistema y se levantó correctamente 30 veces?"
 
 #. description
 #: ../jobs/power-management.txt.in:267
@@ -2261,7 +2292,7 @@ msgstr ""
 #. description
 #: ../jobs/qa_regression.txt.in:3
 msgid "QA regression tests (destructive)"
-msgstr ""
+msgstr "Pruebas de regresión QA (destructivo)"
 
 #. description
 #: ../jobs/server-services.txt.in:5
@@ -2509,6 +2540,11 @@ msgid ""
 "are found, install them. When Update Manager has finished, please close the "
 "app by clicking the Close button in the lower right corner."
 msgstr ""
+"Esta prueba ejecutará el Gestor de actualizaciones y comprueba si hay "
+"actualizaciones disponibles para su sistema. Siga las instrucciones y si se "
+"encuentran actualizaciones, instálelas. Cuando haya terminado el Gestor de "
+"actualizaciones, cierre la aplicación pulsando en el botón Cerrar en la "
+"esquina inferior derecha."
 
 #. description
 #: ../jobs/user_apps.txt.in:14
@@ -2524,7 +2560,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:14
 msgid "Do you now have a new folder called Test Folder?"
-msgstr ""
+msgstr "¿Ahora tiene una carpeta nueva llamada Carpeta de prueba?"
 
 #. description
 #: ../jobs/user_apps.txt.in:25
@@ -2543,11 +2579,14 @@ msgid ""
 "Right click on the folder called Test Folder(copy) and click Rename. Enter "
 "the name Test Data in the name box and hit Enter."
 msgstr ""
+"Pulse el botón derecho en la carpeta llamada Carpeta de prueba (copia) y "
+"pulse Renombrar. Introduzca el nombre Datos de prueba en la caja de diálogo "
+"y pulse Intro."
 
 #. description
 #: ../jobs/user_apps.txt.in:25
 msgid "Do you now have a folder called Test Data?"
-msgstr ""
+msgstr "¿Ahora tiene una carpeta nueva llamada Datos de prueba?"
 
 #. description
 #: ../jobs/user_apps.txt.in:38
@@ -2563,6 +2602,7 @@ msgstr ""
 #: ../jobs/user_apps.txt.in:38
 msgid "Double click the folder called Test Folder to open it up."
 msgstr ""
+"Pulse dos veces en la carpeta llamada Carpeta de prueba para abrirla."
 
 #. description
 #: ../jobs/user_apps.txt.in:38
@@ -2570,6 +2610,8 @@ msgid ""
 "Was the folder called Test Data successfully moved into the folder called "
 "Test Folder?"
 msgstr ""
+"¿Se movió correctamente la carpeta llamada Datos de prueba a la carpeta "
+"denominada Carpeta de prueba?"
 
 #. description
 #: ../jobs/user_apps.txt.in:51
@@ -2586,12 +2628,12 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:51
 msgid "Do you now have a file called Test File 1?"
-msgstr ""
+msgstr "¿Ahora tiene un archivo llamado Archivo de prueba 1?"
 
 #. description
 #: ../jobs/user_apps.txt.in:51
 msgid "Close the File browser."
-msgstr ""
+msgstr "Cierre el navegador de archivos."
 
 #. description
 #: ../jobs/user_apps.txt.in:62
@@ -2609,11 +2651,14 @@ msgid ""
 "Right click on the file called Test File 1(copy) and click Rename. Enter the "
 "name Test File 2 in the name box and hit Enter."
 msgstr ""
+"Pulse con el botón derecho en el archivo llamado Archivo de prueba 1 "
+"(copia). Introduzca el nombre Archivo de prueba 2 en la caja de diálogo y "
+"pulse Intro."
 
 #. description
 #: ../jobs/user_apps.txt.in:62
 msgid "Do you now have a file called Test File 2?"
-msgstr ""
+msgstr "¿Ahora tiene un archivo llamado Archivo de prueba 2?"
 
 #. description
 #: ../jobs/user_apps.txt.in:75
@@ -2628,13 +2673,13 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:75
 msgid "Double click the icon for Test Data to open that folder up."
-msgstr ""
+msgstr "Pulse dos veces en el icono Datos de prueba para abrir esta carpeta."
 
 #. description
 #: ../jobs/user_apps.txt.in:75
 msgid ""
 "Was the file Test File 2 successfully moved into the Test Data folder?"
-msgstr ""
+msgstr "¿Se movió el Archivo de prueba 2 a la carpeta Datos de prueba?"
 
 #. description
 #: ../jobs/user_apps.txt.in:88
@@ -2649,7 +2694,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:88
 msgid "Is Test File 1 now gone?"
-msgstr ""
+msgstr "¿Se ha ido el Archivo de prueba 1?"
 
 #. description
 #: ../jobs/user_apps.txt.in:99
@@ -2663,17 +2708,17 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:99
 msgid "Has Test Folder been successfully deleted?"
-msgstr ""
+msgstr "¿Se eliminó la Carpeta de prueba correctamente?"
 
 #. description
 #: ../jobs/user_apps.txt.in:99
 msgid "Close the File Browser."
-msgstr ""
+msgstr "Cierre el navegador de archivos."
 
 #. description
 #: ../jobs/user_apps.txt.in:160
 msgid "Common Document Types Test"
-msgstr ""
+msgstr "Prueba de tipos de documentos comunes"
 
 #. description
 #: ../jobs/user_apps.txt.in:178
@@ -2683,7 +2728,7 @@ msgstr "Seleccione Probar para lanzar Firefox y ver la prueba de página web."
 #. description
 #: ../jobs/user_apps.txt.in:178
 msgid "Did the Ubuntu Test page load correctly?"
-msgstr ""
+msgstr "¿La página de prueba de Ubuntu se cargó correctamente?"
 
 #. description
 #: ../jobs/user_apps.txt.in:188
@@ -2697,7 +2742,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:188
 msgid "Did the applet display?"
-msgstr ""
+msgstr "¿Se mostró la miniaplicación?"
 
 #. description
 #: ../jobs/user_apps.txt.in:198
@@ -2708,7 +2753,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:198
 msgid "Did you see the text?"
-msgstr ""
+msgstr "¿Vio el texto?"
 
 #. description
 #: ../jobs/user_apps.txt.in:208
@@ -2719,7 +2764,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:208
 msgid "Did the video play correctly?"
-msgstr ""
+msgstr "¿Se reprodujo el vídeo correctamente?"
 
 #. description
 #: ../jobs/user_apps.txt.in:218
@@ -2729,27 +2774,27 @@ msgstr "Seleccione Prueba para lanzar Firefox y ver una muestra de vídeo."
 #. description
 #: ../jobs/user_apps.txt.in:218
 msgid "Did the video play using a plugin?"
-msgstr ""
+msgstr "¿Se reprodujo el vídeo usando un complemento?"
 
 #. description
 #: ../jobs/user_apps.txt.in:227
 msgid "Facebook Chat"
-msgstr ""
+msgstr "Chat de Facebook"
 
 #. description
 #: ../jobs/user_apps.txt.in:238
 msgid "Google Talk"
-msgstr ""
+msgstr "Google Talk"
 
 #. description
 #: ../jobs/user_apps.txt.in:249
 msgid "Jabber"
-msgstr ""
+msgstr "Jabber"
 
 #. description
 #: ../jobs/user_apps.txt.in:260
 msgid "AIM"
-msgstr ""
+msgstr "AIM"
 
 #. description
 #: ../jobs/user_apps.txt.in:271
@@ -2765,28 +2810,28 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:271
 msgid "MSN"
-msgstr ""
+msgstr "MSN"
 
 #. description
 #: ../jobs/user_apps.txt.in:271
 msgid "Were you able to connect correctly and send/receive messages?"
-msgstr ""
+msgstr "¿Fue capaz de conectarse correctamente y de enviar/recibir mensajes?"
 
 #: ../checkbox/application.py:84
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist."
-msgstr ""
+msgstr "Atajo para -config=checkbox/plugins/jobs_info/blacklist."
 
 #: ../checkbox/application.py:86
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist_file."
-msgstr ""
+msgstr "Atajo para --config=checkbox/plugins/jobs_info/blacklist_file."
 
 #: ../checkbox/application.py:88
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist."
-msgstr ""
+msgstr "Atajo para --config=checkbox/plugins/jobs_info/whitelist."
 
 #: ../checkbox/application.py:90
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist_file."
-msgstr ""
+msgstr "Atajo para -config=checkbox/plugins/jobs_info/whitelist_file."
 
 #: ../checkbox/lib/signal.py:23
 msgid ""
@@ -2877,40 +2922,40 @@ msgstr "Señal desconocida"
 
 #: ../checkbox_urwid/urwid_interface.py:60
 msgid "Checkbox System Testing"
-msgstr ""
+msgstr "Prueba del sistema Checkbox"
 
 #: ../checkbox_urwid/urwid_interface.py:99
 msgid "Continue"
-msgstr ""
+msgstr "Continuar"
 
 #: ../checkbox_urwid/urwid_interface.py:192
 #: ../checkbox_urwid/urwid_interface.py:268
 #: ../checkbox_urwid/urwid_interface.py:416
 msgid "Previous"
-msgstr ""
+msgstr "Anterior"
 
 #: ../checkbox_urwid/urwid_interface.py:193
 #: ../checkbox_urwid/urwid_interface.py:269
 #: ../checkbox_urwid/urwid_interface.py:417
 msgid "Next"
-msgstr ""
+msgstr "Siguiente"
 
 #. Show buttons
 #: ../checkbox_urwid/urwid_interface.py:414
 msgid "Select All"
-msgstr ""
+msgstr "Seleccionar todo"
 
 #: ../checkbox_urwid/urwid_interface.py:415
 msgid "Deselect All"
-msgstr ""
+msgstr "Deseleccionar todos"
 
 #: ../checkbox_urwid/urwid_interface.py:772
 msgid "Test"
-msgstr ""
+msgstr "Probar"
 
 #: ../checkbox_urwid/urwid_interface.py:787
 msgid "Test Again"
-msgstr ""
+msgstr "Probar de nuevo"
 
 #: ../checkbox_gtk/gtk_interface.py:93
 msgid "hardware database"
@@ -2934,12 +2979,16 @@ msgid ""
 "Collecting information about this test.\n"
 "This might take a few minutes."
 msgstr ""
+"Recogiendo información sobre esta prueba.\n"
+"Esto puede llevar un rato."
 
 #: ../plugins/apport_prompt.py:116
 msgid ""
 "Collected information is being sent for bug tracking.\n"
 "This might take a few minutes."
 msgstr ""
+"La información recogida está siendo enviada para rastrear el error.\n"
+"Esto puede llevar un rato."
 
 #: ../plugins/apport_prompt.py:225
 #, python-format
@@ -2954,7 +3003,7 @@ msgstr "La prueba %s falló"
 #: ../plugins/apport_prompt.py:246
 #, python-format
 msgid "Is a package upgrade in process? Error: %s"
-msgstr ""
+msgstr "¿Está en proceso una actualización de paquete? Error: %s"
 
 #: ../plugins/final_prompt.py:33
 msgid "Successfully finished testing!"
@@ -2977,7 +3026,7 @@ msgstr ""
 #: ../plugins/launchpad_exchange.py:118
 #, python-format
 msgid "Failed to process form: %s"
-msgstr ""
+msgstr "Fallo al procesar el formulario: %s"
 
 #: ../plugins/launchpad_prompt.py:71
 #, python-format
@@ -3019,11 +3068,13 @@ msgid ""
 "Checkbox did not finish completely.\n"
 "Do you want to recover from the previous run?"
 msgstr ""
+"Checkbox no finalizó completamente.\n"
+"¿Desea recuperar la ejecución anterior?"
 
 #: ../plugins/shell_test.py:52
 #, python-format
 msgid "Running %s..."
-msgstr ""
+msgstr "Ejecutando %s..."
 
 #. Get results
 #: ../plugins/suites_prompt.py:105

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-07-07 12:32-0400\n"
-"PO-Revision-Date: 2011-07-15 19:46+0000\n"
+"PO-Revision-Date: 2011-07-19 18:52+0000\n"
 "Last-Translator: Yaron <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <he@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-07-16 04:31+0000\n"
+"X-Launchpad-Export-Date: 2011-07-20 04:32+0000\n"
 "X-Generator: Launchpad (build 13405)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:2
@@ -75,47 +75,47 @@ msgstr "האם המקלדת שלך מתפקדת כראוי?"
 #. description
 #: ../jobs/networking.txt.in:5
 msgid "Detecting your network controller(s):"
-msgstr "מאתר את בקר/י הרשת שלך"
+msgstr "בקר/י הרשת שלך בהליכי זיהוי"
 
 #. description
 #: ../jobs/networking.txt.in:16
 msgid "Testing your connection to the Internet:"
-msgstr "בודק את החיבור שלך לאינטרנט:"
+msgstr "חיבורך לאינטרנט נבדק:"
 
 #: ../checkbox/application.py:70
 msgid "Print version information and exit."
-msgstr "הדפס את נתוני הגירסה וצא."
+msgstr "Print version information and exit."
 
 #: ../checkbox/application.py:74
 msgid "The file to write the log to."
-msgstr "הקובץ שאליו ישמר הדיווח"
+msgstr "The file to write the log to."
 
 #: ../checkbox/application.py:77
 msgid "One of debug, info, warning, error or critical."
-msgstr "אחד מניפוי השגיאות, מידע, אזהרה, שגיאה או מכריע."
+msgstr "One of debug, info, warning, error or critical."
 
 #: ../checkbox/application.py:115
 msgid "Missing configuration file as argument.\n"
-msgstr "קובץ ההגדרות חסר כארגומנט.\n"
+msgstr "Missing configuration file as argument.\n"
 
 #: ../checkbox_cli/cli_interface.py:31
 #: ../checkbox_urwid/urwid_interface.py:684
 msgid "yes"
-msgstr "yes"
+msgstr "כן"
 
 #: ../checkbox_cli/cli_interface.py:32
 #: ../checkbox_urwid/urwid_interface.py:685
 msgid "no"
-msgstr "no"
+msgstr "לא"
 
 #: ../checkbox_cli/cli_interface.py:33
 #: ../checkbox_urwid/urwid_interface.py:686
 msgid "skip"
-msgstr "skip"
+msgstr "דילוג"
 
 #: ../checkbox_cli/cli_interface.py:126
 msgid "Press any key to continue..."
-msgstr "Press any key to continue..."
+msgstr "נא ללחוץ על מקש כלשהו כדי להמשיך..."
 
 #: ../checkbox_cli/cli_interface.py:135
 #, python-format
@@ -128,27 +128,27 @@ msgstr "Please type here and press Ctrl-D when finished:\n"
 
 #: ../checkbox_gtk/gtk_interface.py:487
 msgid "_Test Again"
-msgstr "_בדוק שוב"
+msgstr "_בדיקה חוזרת"
 
 #: ../plugins/final_prompt.py:34
 msgid "_Finish"
-msgstr "_סיים"
+msgstr "_סיום"
 
 #: ../plugins/gather_prompt.py:35
 msgid "Gathering information from your system..."
-msgstr "אוסף מידע מהמערכת שלך..."
+msgstr "נאסף מידע מהמערכת שלך..."
 
 #: ../plugins/launchpad_exchange.py:150
 msgid ""
 "Failed to upload to server,\n"
 "please try again later."
 msgstr ""
-"נכשל בהעלאה לשרת.\n"
+"אירע כשל בהעלאה לשרת.\n"
 "נא לנסות שוב מאוחר יותר."
 
 #: ../plugins/launchpad_exchange.py:162
 msgid "Information not posted to Launchpad."
-msgstr "הנתונים לא פורסמו אל Launchpad."
+msgstr "הנתונים לא נשלחו אל Launchpad."
 
 #: ../plugins/launchpad_prompt.py:92
 msgid "Email address must be in a proper format."
@@ -156,11 +156,11 @@ msgstr "כתובת הדואר האלקטרוני חייבת להיות במבנ�
 
 #: ../plugins/launchpad_prompt.py:98
 msgid "Exchanging information with the server..."
-msgstr "מחליף נתונים עם השרת..."
+msgstr "נתונים מוחלפים עם השרת..."
 
 #: ../plugins/report_prompt.py:34
 msgid "Building report..."
-msgstr "בונה דוח..."
+msgstr "הדוח בהליכי הכנה..."
 
 #~ msgid "<b>Comment:</b>"
 #~ msgstr "<b>הערות:</b>"
@@ -260,11 +260,11 @@ msgstr "בדיקת מערכת"
 
 #: ../gtk/checkbox-gtk.ui.h:4
 msgid "_Deselect All"
-msgstr ""
+msgstr "_ביטול כל הבחירות"
 
 #: ../gtk/checkbox-gtk.ui.h:7
 msgid "_Select All"
-msgstr ""
+msgstr "_בחירת הכול"
 
 #: ../gtk/checkbox-gtk.desktop.in.h:2
 msgid "Test and report system information"
@@ -290,7 +290,7 @@ msgstr "האם שמעת צליל ללא עיוותים, נקישות או רעש
 #. description
 #: ../jobs/audio.txt.in:33
 msgid "Please connect a pair of headphones to your audio device."
-msgstr ""
+msgstr "נא לחבר אוזניות להתקן השמע שלך."
 
 #. description
 #: ../jobs/audio.txt.in:33
@@ -339,7 +339,7 @@ msgstr ""
 #. description
 #: ../jobs/audio.txt.in:70 ../jobs/power-management.txt.in:221
 msgid "Did you hear your speech played back?"
-msgstr ""
+msgstr "האם הדיבור נשמע בחזרה?"
 
 #. description
 #: ../jobs/audio.txt.in:81
@@ -352,12 +352,12 @@ msgstr ""
 #. description
 #: ../jobs/autotest.txt.in:3
 msgid "Autotest suite (destructive)"
-msgstr ""
+msgstr "ערכת בדיקה אוטומטית (הרסני)"
 
 #. description
 #: ../jobs/bluetooth.txt.in:5 ../jobs/power-management.txt.in:185
 msgid "The address of your Bluetooth device is: $output"
-msgstr ""
+msgstr "כתובת התקן ה־Bluetooth שלך היא: $output"
 
 #. description
 #: ../jobs/bluetooth.txt.in:15 ../jobs/graphics.txt.in:15
@@ -418,7 +418,7 @@ msgstr ""
 #: ../jobs/bluetooth.txt.in:82 ../jobs/optical.txt.in:72
 #: ../jobs/power-management.txt.in:194 ../jobs/usb.txt.in:27
 msgid "Did all the steps work?"
-msgstr ""
+msgstr "האם כל השלבים פעלו?"
 
 #. description
 #: ../jobs/camera.txt.in:7
@@ -586,7 +586,7 @@ msgstr ""
 #. description
 #: ../jobs/disk.txt.in:4
 msgid "The following hard drives were detected:"
-msgstr ""
+msgstr "הכוננים הקשיחים הבאים זוהו:"
 
 #. description
 #: ../jobs/disk.txt.in:14
@@ -653,6 +653,8 @@ msgid ""
 "which test cases are run and a personal account that the tester uses to "
 "verify the fingerprint reader"
 msgstr ""
+"דרישות קדם: מצב בדיקה זה מניח שישנו חשבון בדיקה ממנו פועלים מצבי הבדיקה "
+"וחשבון פרטי בו הבודק משתמש כדי לאמת את קורא טביעות האצבע"
 
 #. description
 #: ../jobs/fingerprint.txt.in:3
@@ -683,7 +685,7 @@ msgstr ""
 #. description
 #: ../jobs/fingerprint.txt.in:18
 msgid "Did the authentication procedure work correctly?"
-msgstr ""
+msgstr "האם תהליך האימות עבד כראוי?"
 
 #. description
 #: ../jobs/firewire.txt.in:3
@@ -699,7 +701,7 @@ msgstr ""
 #. description
 #: ../jobs/firewire.txt.in:3 ../jobs/usb.txt.in:71
 msgid "Do the copy operations work as expected?"
-msgstr ""
+msgstr "האם פעולות ההעתקה עבדו כראוי?"
 
 #. description
 #: ../jobs/floppy.txt.in:4
@@ -855,12 +857,12 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:82
 msgid "This display is using the following resolution:"
-msgstr ""
+msgstr "תצוגה זו משתמשת ברזולוציה הבאה:"
 
 #. description
 #: ../jobs/graphics.txt.in:82
 msgid "Is this acceptable for your display?"
-msgstr ""
+msgstr "האם היא מתאימה לתצוגה שלך?"
 
 #. description
 #: ../jobs/graphics.txt.in:95
@@ -868,6 +870,8 @@ msgid ""
 "Ensure the current resolution meets or exceeds the recommended minimum "
 "resolution (1024 x 768). See here for details:"
 msgstr ""
+"נא לוודא שהרזולוציה הנוכחית תואמת או חורגת מרזולוציית המינימום המומלצת "
+"‎(1024 x 768)‎. ניתן לעיין כאן לפרטים נוספים:"
 
 #. description
 #: ../jobs/graphics.txt.in:107
@@ -875,11 +879,13 @@ msgid ""
 "Ensure the current resolution meets or exceeds the recommended minimum "
 "resolution (1024 x 600). See here for details:"
 msgstr ""
+"נא לוודא שהרזולוציה הנוכחית תואמת או חורגת מרזולוציית המינימום המומלצת "
+"‎(1024 x 600)‎. ניתן לעיין כאן לפרטים נוספים:"
 
 #. description
 #: ../jobs/graphics.txt.in:107
 msgid "https://help.ubuntu.com/community/Installation/SystemRequirements"
-msgstr ""
+msgstr "https://help.ubuntu.com/community/Installation/SystemRequirements"
 
 #. description
 #: ../jobs/graphics.txt.in:117
@@ -895,7 +901,7 @@ msgstr "האם אתה רואה פסים ציבעוניים ושלג?"
 #: ../jobs/graphics.txt.in:126
 msgid ""
 "The following screens and video modes have been detected on your system:"
-msgstr ""
+msgstr "הצגים ומצבי הווידאו הבאים זוהו במערכת שלך:"
 
 #. description
 #: ../jobs/graphics.txt.in:138
@@ -906,12 +912,12 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:138
 msgid "Did the screen appear to be working for each mode?"
-msgstr ""
+msgstr "האם המסך עבד בכל המצבים?"
 
 #. description
 #: ../jobs/graphics.txt.in:146
 msgid "Check that the hardware is able to run compiz."
-msgstr ""
+msgstr "בדיקה האם החומרה תוכל להריץ את compiz."
 
 #. description
 #: ../jobs/graphics.txt.in:153
@@ -923,7 +929,7 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:153
 msgid "Did the 3d animation appear?"
-msgstr ""
+msgstr "האם ההנפשה התלת־מדמית הופיעה?"
 
 #. description
 #: ../jobs/info.txt.in:60 ../jobs/screenshot.txt.in:7
@@ -1121,7 +1127,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:88
 msgid "Monitor tests"
-msgstr ""
+msgstr "בדיקות צג"
 
 #. description
 #: ../jobs/local.txt.in:93
@@ -1136,7 +1142,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:103
 msgid "Peripheral tests"
-msgstr ""
+msgstr "בדיקות התקנים הקפיים"
 
 #. description
 #: ../jobs/local.txt.in:108
@@ -1151,7 +1157,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:118
 msgid "User Applications"
-msgstr ""
+msgstr "יישומי משתמש"
 
 #. description
 #: ../jobs/local.txt.in:123
@@ -1161,7 +1167,7 @@ msgstr ""
 #. description
 #: ../jobs/ltp.txt.in:3
 msgid "Linux Test Project"
-msgstr ""
+msgstr "מיזם הבדיקה של לינוקס"
 
 #. description
 #: ../jobs/mago.txt.in:3
@@ -1388,7 +1394,7 @@ msgstr ""
 #. description
 #: ../jobs/mediacard.txt.in:130
 msgid "Does the icon automatically appear/disappear?"
-msgstr ""
+msgstr "האם הסמל מופיע/נעלם אוטומטית?"
 
 #. description
 #: ../jobs/memory.txt.in:4
@@ -1413,12 +1419,12 @@ msgstr ""
 #. description
 #: ../jobs/miscellanea.txt.in:8
 msgid "Note that this test may require you to enter your password."
-msgstr ""
+msgstr "נא לשים לב שבבדיקה זו יתכן שתיאלץ להזין את ססמתך."
 
 #. description
 #: ../jobs/miscellanea.txt.in:8
 msgid "Did the screen change temporarily to a text console?"
-msgstr ""
+msgstr "האם המסך עבר לפרק זמן קצר למסוף טקסט?"
 
 #. description
 #: ../jobs/miscellanea.txt.in:20
@@ -1442,7 +1448,7 @@ msgstr ""
 #. description
 #: ../jobs/monitor.txt.in:3
 msgid "If your system does not have a VGA port, please skip this test."
-msgstr ""
+msgstr "אם למערכת שלך אין שקע VGA, ניתן לדלג על בדיקה זו."
 
 #. description
 #: ../jobs/monitor.txt.in:3
@@ -1450,11 +1456,13 @@ msgid ""
 "Connect a display (if not already connected) to the VGA port on your system. "
 "Is the image displayed correctly?"
 msgstr ""
+"נא לחבר מסך (אם לא מחובר עדיין) אל שקע ה־VGA שבמערכת שלך. האם התמונה מוצגת "
+"כמו שצריך?"
 
 #. description
 #: ../jobs/monitor.txt.in:10
 msgid "If your system does not have a DVI port, please skip this test."
-msgstr ""
+msgstr "אם למערכת שלך אין שקע DVI, ניתן לדלג על בדיקה זו."
 
 #. description
 #: ../jobs/monitor.txt.in:10
@@ -1462,11 +1470,13 @@ msgid ""
 "Connect a display (if not already connected) to the DVI port on your system. "
 "Is the image displayed correctly?"
 msgstr ""
+"יש לחבר תצוגה (אם לא מחוברת עדיין) אל שקע ה־DVI של המערכת שלך. האם התמונה "
+"מוצגת כראוי?"
 
 #. description
 #: ../jobs/monitor.txt.in:17
 msgid "If your system does not have DisplayPort, please skip this test."
-msgstr ""
+msgstr "אם למערכת אין DisplayPort, נא לדלג על בדיקה זו."
 
 #. description
 #: ../jobs/monitor.txt.in:17
@@ -1474,11 +1484,13 @@ msgid ""
 "Connect a display (if not already connected) to the DisplayPort on your "
 "system. Is the image displayed correctly?"
 msgstr ""
+"יש לחבר צג (אם עדיין לא מחובר) ל־DIsplayPort של המערכת. האם התמונה מוצגת "
+"כראוי?"
 
 #. description
 #: ../jobs/monitor.txt.in:24
 msgid "If your system does not have a HDMI port, please skip this test."
-msgstr ""
+msgstr "אם למערכת שלך אין חיבור HDMI. ניתן לדלג על בדיקה זו."
 
 #. description
 #: ../jobs/monitor.txt.in:24
@@ -1486,11 +1498,13 @@ msgid ""
 "Connect a display (if not already connected) to the HDMI port on your "
 "system. Is the image displayed correctly?"
 msgstr ""
+"יש לחבר צג (אם עדיין לא מחובר) לחיבור ה־HDMI של המערכת. האם התמונה מוצגת "
+"כראוי?"
 
 #. description
 #: ../jobs/monitor.txt.in:31
 msgid "If your system does not have a S-VIDEO port, please skip this test."
-msgstr ""
+msgstr "אם למערכת שלך אין חיבור S-VIDEO, ניתן לדלג על בדיקה זו."
 
 #. description
 #: ../jobs/monitor.txt.in:31
@@ -1498,11 +1512,13 @@ msgid ""
 "Connect a display (if not already connected) to the S-VIDEO port on your "
 "system. Is the image displayed correctly?"
 msgstr ""
+"יש לנסות ולחבר צג (אם עדיין לא מחובר) אל חיבור ה־S-VIDEO של המערכת שלך. האם "
+"התמונה מופיעה כראוי?"
 
 #. description
 #: ../jobs/monitor.txt.in:38
 msgid "If your system does not have a RCA port, please skip this test."
-msgstr ""
+msgstr "אם למערכת שלך אין חיבורי RCA, ניתן לדלג על בדיקה זו."
 
 #. description
 #: ../jobs/monitor.txt.in:38
@@ -1510,6 +1526,8 @@ msgid ""
 "Connect a display (if not already connected) to the RCA port on your system. "
 "Is the image displayed correctly?"
 msgstr ""
+"יש לנסות ולחבר צג (אם עדיין לא מחובר) אל חיבור ה־RCA של המערכת שלך. האם "
+"התמונה מופיעה כראוי?"
 
 #. description
 #: ../jobs/monitor.txt.in:46
@@ -1523,7 +1541,7 @@ msgstr ""
 #. description
 #: ../jobs/monitor.txt.in:46
 msgid "Did the monitor go blank?"
-msgstr ""
+msgstr "האם הצג כבה?"
 
 #. description
 #: ../jobs/networking.txt.in:26
@@ -1567,7 +1585,7 @@ msgstr ""
 #. description
 #: ../jobs/networking.txt.in:76 ../jobs/peripheral.txt.in:15
 msgid "Was the connection correctly established?"
-msgstr ""
+msgstr "האם החיבור נוצר בהצלחה?"
 
 #. description
 #: ../jobs/networking.txt.in:92
@@ -1671,7 +1689,7 @@ msgstr "יש להכניס DVD. ואז לבחור בבדיקה כדי לנגן א
 #. description
 #: ../jobs/optical.txt.in:90
 msgid "Did the file play?"
-msgstr ""
+msgstr "האם הקובץ התנגן?"
 
 #. description
 #: ../jobs/panel_clock_test.txt.in:4
@@ -1749,7 +1767,7 @@ msgstr ""
 #. description
 #: ../jobs/phoronix.txt.in:3
 msgid "Automated benchmark testing"
-msgstr ""
+msgstr "בדיקת ביצועים אוטומטית"
 
 #. description
 #: ../jobs/power-management.txt.in:3
@@ -1819,17 +1837,17 @@ msgstr ""
 #. description
 #: ../jobs/power-management.txt.in:65
 msgid "Test the network before suspending."
-msgstr ""
+msgstr "בדיקת הרשת לפני ההשהיה."
 
 #. description
 #: ../jobs/power-management.txt.in:70
 msgid "Record the current resolution before suspending."
-msgstr ""
+msgstr "הקלטת הרזולוציה הנוכחית לפני ההשהיה."
 
 #. description
 #: ../jobs/power-management.txt.in:78
 msgid "Test the audio before suspending."
-msgstr ""
+msgstr "בדיקת השמע לפני ההשהיה."
 
 #. description
 #: ../jobs/power-management.txt.in:84
@@ -1851,7 +1869,7 @@ msgstr "יש לוודא שהתקן שעון זמן האמת (RTC) קיים."
 #. description
 #: ../jobs/power-management.txt.in:135
 msgid "Power management Suspend and Resume test"
-msgstr ""
+msgstr "בדיקת השהיה והמשך בניהול צריכת החשמל"
 
 #. description
 #: ../jobs/power-management.txt.in:135
@@ -1866,18 +1884,18 @@ msgstr ""
 #. description
 #: ../jobs/power-management.txt.in:145
 msgid "Test the network after resuming."
-msgstr ""
+msgstr "יש לבדוק את הרשת לאחר ההמשך."
 
 #. description
 #: ../jobs/power-management.txt.in:151
 msgid ""
 "Test to see that we have the same resolution after resuming as before."
-msgstr ""
+msgstr "יש לבדוק כדי לראות האם זוהי אותה הרזולוציה לאחר ההמשך כמו בעבר."
 
 #. description
 #: ../jobs/power-management.txt.in:160
 msgid "Test the audio after resuming."
-msgstr ""
+msgstr "בדיקת השמע לאחר ההמשך."
 
 #. description
 #: ../jobs/power-management.txt.in:167
@@ -1897,6 +1915,7 @@ msgid ""
 "Verify a bluetooth peripheral.  An example verification procedure for a "
 "bluetooth mouse is given."
 msgstr ""
+"אימות התקן bluetooth. תהליך אימות של עכבר bluetooth ניתן לצורך הדגמה."
 
 #. description
 #: ../jobs/power-management.txt.in:194
@@ -1926,6 +1945,8 @@ msgid ""
 "suspend and resume.  You can use either internal or external microphone and "
 "speakers."
 msgstr ""
+"פעולה זו תבדוק שהתקן השמע שלך פועל כראוי לאחר השהיה וחידוש פעולה לשם וידוא. "
+"ניתן להשתמש במיקרופון ורמקולים פנימיים או חיצוניים."
 
 #. description
 #: ../jobs/power-management.txt.in:221
@@ -1950,7 +1971,7 @@ msgstr ""
 #. description
 #: ../jobs/power-management.txt.in:234
 msgid "Did the system successfully suspend and resume for 30 iterations?"
-msgstr ""
+msgstr "האם המערכת הושהתה ויצאה מהשהיה בהצלחה 30 פעמים?"
 
 #. description
 #: ../jobs/power-management.txt.in:245
@@ -1958,6 +1979,7 @@ msgid ""
 "This will check to make sure your system can successfully hibernate (if "
 "supported)."
 msgstr ""
+"פעולה זו תבדוק כדי לוודא שהמערכת שלך יכולה להיכנס למצב שינה (במידה שנתמך)."
 
 #. description
 #: ../jobs/power-management.txt.in:245
@@ -1974,7 +1996,7 @@ msgstr ""
 msgid ""
 "Did the system successfully hibernate and did it work properly after waking "
 "up?"
-msgstr ""
+msgstr "האם המערכת נכנסה למצב שינה ועובדת באופן תקין כעת לאחר שהתעוררה?"
 
 #. description
 #: ../jobs/power-management.txt.in:258
@@ -1993,11 +2015,14 @@ msgid ""
 "set, and that grub is set to boot Ubuntu by default if you have a multi-boot "
 "set-up."
 msgstr ""
+"כמו כן, יהיה עליך לוודא שלמערכת שלך לא מוגדרות ססמאות לכוננים או בעת ההפעלה "
+"ושמערכת ה־grub מוגדרת להפעיל מופע זה של אובונטו כבררת מחדל אם יש לך אפשרות "
+"לברור בין מערכות הפעלה."
 
 #. description
 #: ../jobs/power-management.txt.in:258
 msgid "Did the system successfully hibernate and wake 30 times?"
-msgstr ""
+msgstr "האם המערכת נכנסה למצב שינה והתעוררה בהצלחה 30 פעמים?"
 
 #. description
 #: ../jobs/power-management.txt.in:267
@@ -2027,7 +2052,7 @@ msgstr ""
 #. description
 #: ../jobs/qa_regression.txt.in:3
 msgid "QA regression tests (destructive)"
-msgstr ""
+msgstr "בדיקת רגרסיה לאבטחת איכות (הרסני)"
 
 #. description
 #: ../jobs/server-services.txt.in:5
@@ -2275,6 +2300,9 @@ msgid ""
 "are found, install them. When Update Manager has finished, please close the "
 "app by clicking the Close button in the lower right corner."
 msgstr ""
+"בדיקה זו תפעיל את מנהל העדכונים ותבדוק אם יש עדכונים זמינים עבור המערכת. נא "
+"לעקוב אחר ההנחיות על המסך ואם יש עדכונים, להתקין אותם. כאשר מנהל העדכונים "
+"סיים, נא לסגור את היישום על ידי לחיצה על לחצן הסגירה בפינה הימנית התחתונה."
 
 #. description
 #: ../jobs/user_apps.txt.in:14
@@ -2287,7 +2315,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:14
 msgid "Do you now have a new folder called Test Folder?"
-msgstr ""
+msgstr "האם מופיעה אצלך תיקיה חדשה בשם תיקיית בדיקה?"
 
 #. description
 #: ../jobs/user_apps.txt.in:25
@@ -2303,11 +2331,13 @@ msgid ""
 "Right click on the folder called Test Folder(copy) and click Rename. Enter "
 "the name Test Data in the name box and hit Enter."
 msgstr ""
+"יש ללחוץ בלחצן ימני על התיקייה שנקראת תיקיית בדיקה(עותק) וללחוץ על שינוי שם. "
+"יש להזין את השם נתוני בדיקה בתיבה וללחוץ על Enter."
 
 #. description
 #: ../jobs/user_apps.txt.in:25
 msgid "Do you now have a folder called Test Data?"
-msgstr ""
+msgstr "האם כעת מופיעה בפניך תיקייה בשם נתוני בדיקה?"
 
 #. description
 #: ../jobs/user_apps.txt.in:38
@@ -2319,7 +2349,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:38
 msgid "Double click the folder called Test Folder to open it up."
-msgstr ""
+msgstr "יש ללחוץ לחיצה כפולה על התיקייה שנקראת נתוני בדיקה כדי לפתוח אותה."
 
 #. description
 #: ../jobs/user_apps.txt.in:38
@@ -2327,6 +2357,7 @@ msgid ""
 "Was the folder called Test Data successfully moved into the folder called "
 "Test Folder?"
 msgstr ""
+"האם התיקייה שנקראת נתוני בדיקה שונתה בהצלחה לתיקייה שנקראת תיקיית בדיקה?"
 
 #. description
 #: ../jobs/user_apps.txt.in:51
@@ -2339,12 +2370,12 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:51
 msgid "Do you now have a file called Test File 1?"
-msgstr ""
+msgstr "האם מופיע בפניך קובץ הנקרא קובץ בדיקה 1?"
 
 #. description
 #: ../jobs/user_apps.txt.in:51
 msgid "Close the File browser."
-msgstr ""
+msgstr "נא לסגור את דפדפן הקבצים."
 
 #. description
 #: ../jobs/user_apps.txt.in:62
@@ -2359,11 +2390,13 @@ msgid ""
 "Right click on the file called Test File 1(copy) and click Rename. Enter the "
 "name Test File 2 in the name box and hit Enter."
 msgstr ""
+"יש ללחוץ לחיצה ימנית על קובץ שנקרא קובץ בדיקה 1(עותק) וללחוץ על שינוי שם. יש "
+"לרשום את השם קובץ בדיקה 2 בתיבת השם וללחוץ על Enter."
 
 #. description
 #: ../jobs/user_apps.txt.in:62
 msgid "Do you now have a file called Test File 2?"
-msgstr ""
+msgstr "האם מופיע בפניך קובץ שנקרא קובץ בדיקה 2?"
 
 #. description
 #: ../jobs/user_apps.txt.in:75
@@ -2375,13 +2408,13 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:75
 msgid "Double click the icon for Test Data to open that folder up."
-msgstr ""
+msgstr "יש ללחוץ לחיצה כפולה על הסמל כדי שתיקיית נתוני הבדיקה תיפתח."
 
 #. description
 #: ../jobs/user_apps.txt.in:75
 msgid ""
 "Was the file Test File 2 successfully moved into the Test Data folder?"
-msgstr ""
+msgstr "האם הקובץ קובץ בדיקה 2 הועבר בהצלחה לתיקיית נתוני הבדיקה?"
 
 #. description
 #: ../jobs/user_apps.txt.in:88
@@ -2393,7 +2426,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:88
 msgid "Is Test File 1 now gone?"
-msgstr ""
+msgstr "האם קובץ בדיקה 1 נעלם כעת?"
 
 #. description
 #: ../jobs/user_apps.txt.in:99
@@ -2405,17 +2438,17 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:99
 msgid "Has Test Folder been successfully deleted?"
-msgstr ""
+msgstr "האם תיקיית הבדיקה נמחקה בהצלחה?"
 
 #. description
 #: ../jobs/user_apps.txt.in:99
 msgid "Close the File Browser."
-msgstr ""
+msgstr "נא לסגור את דפדפן הקבצים."
 
 #. description
 #: ../jobs/user_apps.txt.in:160
 msgid "Common Document Types Test"
-msgstr ""
+msgstr "בדיקת סוגי מסמכים נפוצים"
 
 #. description
 #: ../jobs/user_apps.txt.in:178
@@ -2425,7 +2458,7 @@ msgstr "יש ללחוץ על בדיקה כדי להפעיל את Firefox ולצ�
 #. description
 #: ../jobs/user_apps.txt.in:178
 msgid "Did the Ubuntu Test page load correctly?"
-msgstr ""
+msgstr "האם דף הבדיקה של אובונטו נטען כראוי?"
 
 #. description
 #: ../jobs/user_apps.txt.in:188
@@ -2437,7 +2470,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:188
 msgid "Did the applet display?"
-msgstr ""
+msgstr "האם היישומון הופיע?"
 
 #. description
 #: ../jobs/user_apps.txt.in:198
@@ -2447,7 +2480,7 @@ msgstr "יש ללחוץ על בדיקה כדי לטעון את Firefox ולצפ�
 #. description
 #: ../jobs/user_apps.txt.in:198
 msgid "Did you see the text?"
-msgstr ""
+msgstr "האם הטקסט הופיע?"
 
 #. description
 #: ../jobs/user_apps.txt.in:208
@@ -2457,7 +2490,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:208
 msgid "Did the video play correctly?"
-msgstr ""
+msgstr "האם הווידאו התנגן כראוי?"
 
 #. description
 #: ../jobs/user_apps.txt.in:218
@@ -2467,27 +2500,27 @@ msgstr "יש ללחוץ על בדיקה כדי להפעיל את Firefox עם ו
 #. description
 #: ../jobs/user_apps.txt.in:218
 msgid "Did the video play using a plugin?"
-msgstr ""
+msgstr "האם הווידאו התנגן באמצעות תוסף?"
 
 #. description
 #: ../jobs/user_apps.txt.in:227
 msgid "Facebook Chat"
-msgstr ""
+msgstr "הצ׳אט של Facebook"
 
 #. description
 #: ../jobs/user_apps.txt.in:238
 msgid "Google Talk"
-msgstr ""
+msgstr "Google Talk"
 
 #. description
 #: ../jobs/user_apps.txt.in:249
 msgid "Jabber"
-msgstr ""
+msgstr "Jabber"
 
 #. description
 #: ../jobs/user_apps.txt.in:260
 msgid "AIM"
-msgstr ""
+msgstr "AIM"
 
 #. description
 #: ../jobs/user_apps.txt.in:271
@@ -2502,12 +2535,12 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:271
 msgid "MSN"
-msgstr ""
+msgstr "MSN"
 
 #. description
 #: ../jobs/user_apps.txt.in:271
 msgid "Were you able to connect correctly and send/receive messages?"
-msgstr ""
+msgstr "האם הצלחת להתחבר בהצלחה ולקבל/לשלוח הודעות?"
 
 #: ../checkbox/application.py:66
 msgid "Usage: checkbox [OPTIONS]"
@@ -2519,19 +2552,19 @@ msgstr "התצורה מועדפת על פני הפרמטרים."
 
 #: ../checkbox/application.py:84
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist."
-msgstr ""
+msgstr "Shorthand for --config=checkbox/plugins/jobs_info/blacklist."
 
 #: ../checkbox/application.py:86
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist_file."
-msgstr ""
+msgstr "Shorthand for --config=checkbox/plugins/jobs_info/blacklist_file."
 
 #: ../checkbox/application.py:88
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist."
-msgstr ""
+msgstr "Shorthand for --config=checkbox/plugins/jobs_info/whitelist."
 
 #: ../checkbox/application.py:90
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist_file."
-msgstr ""
+msgstr "Shorthand for --config=checkbox/plugins/jobs_info/whitelist_file."
 
 #: ../checkbox/lib/signal.py:23
 msgid ""
@@ -2568,11 +2601,11 @@ msgstr "הפניה לא חוקית לזיכרון"
 
 #: ../checkbox/lib/signal.py:31
 msgid "Broken pipe: write to pipe with no readers"
-msgstr ""
+msgstr "pipe פגום: כתיבה ל־pipe ללא קוראים"
 
 #: ../checkbox/lib/signal.py:32
 msgid "Timer signal from alarm(2)"
-msgstr ""
+msgstr "אות תזמון מאזעקה(2)"
 
 #: ../checkbox/lib/signal.py:33
 msgid "Termination signal"
@@ -2600,11 +2633,11 @@ msgstr "עצירת התהליך"
 
 #: ../checkbox/lib/signal.py:39
 msgid "Stop typed at tty"
-msgstr ""
+msgstr "הופסק הקלט ב־tty"
 
 #: ../checkbox/lib/signal.py:40
 msgid "tty input for background process"
-msgstr ""
+msgstr "קלט tty לתהליך ברקע"
 
 #: ../checkbox/lib/signal.py:41
 msgid "tty output for background process"
@@ -2628,40 +2661,40 @@ msgstr "בדיקה חוזרת"
 
 #: ../checkbox_urwid/urwid_interface.py:60
 msgid "Checkbox System Testing"
-msgstr ""
+msgstr "בדיקת המערכת באמצעות Checkbox"
 
 #: ../checkbox_urwid/urwid_interface.py:99
 msgid "Continue"
-msgstr ""
+msgstr "המשך"
 
 #: ../checkbox_urwid/urwid_interface.py:192
 #: ../checkbox_urwid/urwid_interface.py:268
 #: ../checkbox_urwid/urwid_interface.py:416
 msgid "Previous"
-msgstr ""
+msgstr "הקודם"
 
 #: ../checkbox_urwid/urwid_interface.py:193
 #: ../checkbox_urwid/urwid_interface.py:269
 #: ../checkbox_urwid/urwid_interface.py:417
 msgid "Next"
-msgstr ""
+msgstr "הבא"
 
 #. Show buttons
 #: ../checkbox_urwid/urwid_interface.py:414
 msgid "Select All"
-msgstr ""
+msgstr "בחירת הכול"
 
 #: ../checkbox_urwid/urwid_interface.py:415
 msgid "Deselect All"
-msgstr ""
+msgstr "ביטול בחירת הכול"
 
 #: ../checkbox_urwid/urwid_interface.py:772
 msgid "Test"
-msgstr ""
+msgstr "בדיקה"
 
 #: ../checkbox_urwid/urwid_interface.py:787
 msgid "Test Again"
-msgstr ""
+msgstr "בדיקה חוזרת"
 
 #: ../checkbox_gtk/gtk_interface.py:93
 msgid "hardware database"
@@ -2685,12 +2718,16 @@ msgid ""
 "Collecting information about this test.\n"
 "This might take a few minutes."
 msgstr ""
+"נאסף מידע על בדיקה זו.\n"
+"פעולה זו עלולה לארוך מספר דקות."
 
 #: ../plugins/apport_prompt.py:116
 msgid ""
 "Collected information is being sent for bug tracking.\n"
 "This might take a few minutes."
 msgstr ""
+"המידע שנאסף יישלח למעקב אחר תקלות.\n"
+"פעולה זו עלולה לארוך מספר דקות."
 
 #: ../plugins/apport_prompt.py:225
 #, python-format
@@ -2705,7 +2742,7 @@ msgstr ""
 #: ../plugins/apport_prompt.py:246
 #, python-format
 msgid "Is a package upgrade in process? Error: %s"
-msgstr ""
+msgstr "האם יש תהליך שדרוג חבילה פעיל? שגיאה: %s"
 
 #: ../plugins/final_prompt.py:33
 msgid "Successfully finished testing!"
@@ -2727,7 +2764,7 @@ msgstr ""
 #: ../plugins/launchpad_exchange.py:118
 #, python-format
 msgid "Failed to process form: %s"
-msgstr ""
+msgstr "אירע כשל בעיבוד הטופס: %s"
 
 #: ../plugins/launchpad_exchange.py:141
 #, python-format
@@ -2760,19 +2797,19 @@ msgid ""
 "\n"
 "  https://launchpad.net/+login"
 msgstr ""
-"הדוח הבא יוצר לצוכרי שליחה למסד נתוני החומרה של Launchpad‏:\n"
+"הדוח הבא נוצר למטרות שליחה למסד נתוני החומרה של Launchpad‏:\n"
 "\n"
-"  [[%s|צפיה בדיווח]]\n"
+"  [[%s|צפייה בדיווח]]\n"
 "\n"
-"ניתן לשלוח נתונים אלה אודות המערכת שלך על ידי ציון כתובת הדוא\"ל בה נעשה על "
-"ידיך שימוש לצורך כניסה ל־Launchpad. אם אין לך חשבון ב־Launchpad ניתן להרשם "
+"ניתן לשלוח נתונים אלה אודות המערכת שלך על ידי ציון כתובת הדוא״ל בה נעשה על "
+"ידיך שימוש לצורך כניסה ל־Launchpad. אם אין לך חשבון ב־Launchpad ניתן להירשם "
 "כאן:\n"
 "\n"
 "  https://launchpad.net/+login"
 
 #: ../plugins/launchpad_prompt.py:88
 msgid "No e-mail address provided, not submitting to Launchpad."
-msgstr "לא צוינה כתובת דוא\"ל, לא שולח אל Launchpad"
+msgstr "לא צוינה כתובת דוא״ל, לא יישלח אל Launchpad"
 
 #: ../plugins/lock_prompt.py:63
 msgid "There is another checkbox running. Please close it first."
@@ -2783,11 +2820,13 @@ msgid ""
 "Checkbox did not finish completely.\n"
 "Do you want to recover from the previous run?"
 msgstr ""
+"Checkbox לא הסתיימה לחלוטין.\n"
+"האם ברצונך לשחזר מההפעלה הקודמת?"
 
 #: ../plugins/shell_test.py:52
 #, python-format
 msgid "Running %s..."
-msgstr ""
+msgstr "%s מופעלות..."
 
 #. Get results
 #: ../plugins/suites_prompt.py:105
@@ -2812,7 +2851,7 @@ msgstr "החיבור הושלם עם מנה שאבדה"
 
 #: ../scripts/internet_test:145
 msgid "Internet connection fully established"
-msgstr "החיבור לאינטרנט הוקם בהצלחה"
+msgstr "החיבור לאינטרנט נוצר בהצלחה"
 
 #~ msgid "Run the video test."
 #~ msgstr "הרץ את בדיקת הווידאו"
@@ -2878,3 +2917,12 @@ msgstr "החיבור לאינטרנט הוקם בהצלחה"
 #~ msgstr ""
 #~ "נתק את כל המיקרופונים החיצוניים שחיברת. / לחץ על כפתור הבחן, ואז דבר אל תוך "
 #~ "המיקרופון המובנה שלך. / לאחר מספר שניות דיבורך יושמע."
+
+#~ msgid "Disk benchmark:"
+#~ msgstr "בדיקת ביצועי התקליטור:"
+
+#~ msgid "Is this ok?"
+#~ msgstr "האם זה בסדר?"
+
+#~ msgid "Kernel modesetting tests"
+#~ msgstr "בדיקות הגדרות מצבי קרנל"

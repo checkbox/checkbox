@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-07-07 12:32-0400\n"
-"PO-Revision-Date: 2011-07-15 19:14+0000\n"
-"Last-Translator: Sergey \"Shnatsel\" Davidoff <Shnatsel@gmail.com>\n"
+"PO-Revision-Date: 2011-07-19 20:19+0000\n"
+"Last-Translator: Sergey Sedov <sedov@webmail.perm.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-07-16 04:32+0000\n"
+"X-Launchpad-Export-Date: 2011-07-20 04:33+0000\n"
 "X-Generator: Launchpad (build 13405)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:2
@@ -90,7 +90,7 @@ msgstr "Ваша клавиатура нормально работает?"
 #. description
 #: ../jobs/networking.txt.in:5
 msgid "Detecting your network controller(s):"
-msgstr "Обнаруженные сетевые устройства"
+msgstr "Обнаружение сетевых устройств:"
 
 #. description
 #: ../jobs/networking.txt.in:16
@@ -157,7 +157,7 @@ msgstr "повторить тест"
 
 #: ../checkbox_cli/cli_interface.py:345
 msgid "Please type here and press Ctrl-D when finished:\n"
-msgstr "Пожалуйста, введите текст и нажмите Ctrl-D, когда закончите:\n"
+msgstr "Пожалуйста, наберите текст здесь и нажмите Ctrl-D:\n"
 
 #: ../checkbox_gtk/gtk_interface.py:487
 msgid "_Test Again"
@@ -165,7 +165,7 @@ msgstr "Тестировать снова"
 
 #: ../plugins/final_prompt.py:34
 msgid "_Finish"
-msgstr "Закончить"
+msgstr "_Завершить"
 
 #: ../plugins/gather_prompt.py:35
 msgid "Gathering information from your system..."
@@ -354,11 +354,11 @@ msgstr "Дополнительная информация:"
 
 #: ../gtk/checkbox-gtk.ui.h:4
 msgid "_Deselect All"
-msgstr ""
+msgstr "_Снять выделение"
 
 #: ../gtk/checkbox-gtk.ui.h:7
 msgid "_Select All"
-msgstr ""
+msgstr "_Выделить всё"
 
 #. description
 #: ../jobs/apport.txt.in:5
@@ -382,7 +382,7 @@ msgstr ""
 #. description
 #: ../jobs/audio.txt.in:33
 msgid "Please connect a pair of headphones to your audio device."
-msgstr ""
+msgstr "Пожалуйста, подключите наушники к Вашему аудиоустройству"
 
 #. description
 #: ../jobs/audio.txt.in:33
@@ -456,12 +456,12 @@ msgstr ""
 #. description
 #: ../jobs/autotest.txt.in:3
 msgid "Autotest suite (destructive)"
-msgstr ""
+msgstr "Набор автоматических тестов (деструктивно)"
 
 #. description
 #: ../jobs/bluetooth.txt.in:5 ../jobs/power-management.txt.in:185
 msgid "The address of your Bluetooth device is: $output"
-msgstr ""
+msgstr "Адрес вашего Bluetooth-устройста: $output"
 
 #. description
 #: ../jobs/bluetooth.txt.in:15 ../jobs/graphics.txt.in:15
@@ -522,7 +522,7 @@ msgstr ""
 #: ../jobs/bluetooth.txt.in:82 ../jobs/optical.txt.in:72
 #: ../jobs/power-management.txt.in:194 ../jobs/usb.txt.in:27
 msgid "Did all the steps work?"
-msgstr ""
+msgstr "Все ли этапы были пройдены?"
 
 #. description
 #: ../jobs/camera.txt.in:7
@@ -690,7 +690,7 @@ msgstr ""
 #. description
 #: ../jobs/disk.txt.in:4
 msgid "The following hard drives were detected:"
-msgstr ""
+msgstr "Были обнаружены следующие жёсткие диски:"
 
 #. description
 #: ../jobs/disk.txt.in:14
@@ -757,6 +757,9 @@ msgid ""
 "which test cases are run and a personal account that the tester uses to "
 "verify the fingerprint reader"
 msgstr ""
+"Предпочтения: этот тест предполагает, что существует пробная учетная запись, "
+"из под которой запускается тест и личная учетная запись, которая "
+"используется для проверки сканера отпечатков пальцев"
 
 #. description
 #: ../jobs/fingerprint.txt.in:3
@@ -972,6 +975,8 @@ msgid ""
 "Ensure the current resolution meets or exceeds the recommended minimum "
 "resolution (1024 x 768). See here for details:"
 msgstr ""
+"Проверьте, соответствует ли рекоммендуемому (1024х768) текущее разрешение "
+"экрана или превосходит его. Смотрите подробнее:"
 
 #. description
 #: ../jobs/graphics.txt.in:107
@@ -979,11 +984,13 @@ msgid ""
 "Ensure the current resolution meets or exceeds the recommended minimum "
 "resolution (1024 x 600). See here for details:"
 msgstr ""
+"Проверьте, соответствует ли рекоммендуемому (1024х600) текущее разрешение "
+"экрана или превосходит его. Смотрите подробнее:"
 
 #. description
 #: ../jobs/graphics.txt.in:107
 msgid "https://help.ubuntu.com/community/Installation/SystemRequirements"
-msgstr ""
+msgstr "https://help.ubuntu.com/community/Installation/SystemRequirements"
 
 #. description
 #: ../jobs/graphics.txt.in:117
@@ -1012,7 +1019,7 @@ msgstr "Экран правильно работает во всех режим�
 #. description
 #: ../jobs/graphics.txt.in:146
 msgid "Check that the hardware is able to run compiz."
-msgstr ""
+msgstr "Проверьте оборудование на возможность запуска compiz."
 
 #. description
 #: ../jobs/graphics.txt.in:153
@@ -1026,7 +1033,7 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:153
 msgid "Did the 3d animation appear?"
-msgstr ""
+msgstr "Появилась ли 3D-анимация?"
 
 #. description
 #: ../jobs/info.txt.in:60 ../jobs/screenshot.txt.in:7
@@ -1226,7 +1233,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:88
 msgid "Monitor tests"
-msgstr ""
+msgstr "Проверка монитора"
 
 #. description
 #: ../jobs/local.txt.in:93
@@ -1256,7 +1263,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:118
 msgid "User Applications"
-msgstr ""
+msgstr "Пользовательские приложения"
 
 #. description
 #: ../jobs/local.txt.in:123
@@ -1266,7 +1273,7 @@ msgstr ""
 #. description
 #: ../jobs/ltp.txt.in:3
 msgid "Linux Test Project"
-msgstr ""
+msgstr "Проект тестирования Linux"
 
 #. description
 #: ../jobs/mago.txt.in:3
@@ -1511,7 +1518,7 @@ msgstr ""
 #. description
 #: ../jobs/mediacard.txt.in:130
 msgid "Does the icon automatically appear/disappear?"
-msgstr ""
+msgstr "Значок автоматически появляется/исчезает?"
 
 #. description
 #: ../jobs/memory.txt.in:4
@@ -1567,6 +1574,7 @@ msgstr ""
 #: ../jobs/monitor.txt.in:3
 msgid "If your system does not have a VGA port, please skip this test."
 msgstr ""
+"Если Ваша система не имеет порта VGA, пожалуйста, пропустите этот тест."
 
 #. description
 #: ../jobs/monitor.txt.in:3
@@ -1574,11 +1582,14 @@ msgid ""
 "Connect a display (if not already connected) to the VGA port on your system. "
 "Is the image displayed correctly?"
 msgstr ""
+"Подключите дисплей (если он еще не подключен) к порту VGA Вашей системы. "
+"Отображается ли изображение верно?"
 
 #. description
 #: ../jobs/monitor.txt.in:10
 msgid "If your system does not have a DVI port, please skip this test."
 msgstr ""
+"Если Ваша система не имеет порта DVI, пожалуйста, пропустите этот тест."
 
 #. description
 #: ../jobs/monitor.txt.in:10
@@ -1586,11 +1597,15 @@ msgid ""
 "Connect a display (if not already connected) to the DVI port on your system. "
 "Is the image displayed correctly?"
 msgstr ""
+"Подключите дисплей (если он еще не подключен) к порту DVI Вашей системы. "
+"Изображение отображается верно?"
 
 #. description
 #: ../jobs/monitor.txt.in:17
 msgid "If your system does not have DisplayPort, please skip this test."
 msgstr ""
+"Если Ваша система не имеет порта DisplayPort, пожалуйста, пропустите этот "
+"тест."
 
 #. description
 #: ../jobs/monitor.txt.in:17
@@ -1598,11 +1613,14 @@ msgid ""
 "Connect a display (if not already connected) to the DisplayPort on your "
 "system. Is the image displayed correctly?"
 msgstr ""
+"Подключите дисплей (если он еще не подключен) к порту DisplayPort Вашей "
+"системы. Изображение отображается верно?"
 
 #. description
 #: ../jobs/monitor.txt.in:24
 msgid "If your system does not have a HDMI port, please skip this test."
 msgstr ""
+"Если Ваша система не имеет порта HDMI, пожалуйста, пропустите этот тест."
 
 #. description
 #: ../jobs/monitor.txt.in:24
@@ -1610,11 +1628,14 @@ msgid ""
 "Connect a display (if not already connected) to the HDMI port on your "
 "system. Is the image displayed correctly?"
 msgstr ""
+"Подключите дисплей (если он еще не подключен) к порту HDMI Вашей системы. "
+"Изображение отображается верно?"
 
 #. description
 #: ../jobs/monitor.txt.in:31
 msgid "If your system does not have a S-VIDEO port, please skip this test."
 msgstr ""
+"Если Ваша система не имеет порта S-VIDEO, пожалуйста, пропустите этот тест."
 
 #. description
 #: ../jobs/monitor.txt.in:31
@@ -1622,11 +1643,14 @@ msgid ""
 "Connect a display (if not already connected) to the S-VIDEO port on your "
 "system. Is the image displayed correctly?"
 msgstr ""
+"Подключите дисплей (если он еще не подключен) к порту S-VIDEO Вашей системы. "
+"Изображение отображается верно?"
 
 #. description
 #: ../jobs/monitor.txt.in:38
 msgid "If your system does not have a RCA port, please skip this test."
 msgstr ""
+"Если Ваша система не имеет порта RCA, пожалуйста, пропустите этот тест."
 
 #. description
 #: ../jobs/monitor.txt.in:38
@@ -1634,6 +1658,8 @@ msgid ""
 "Connect a display (if not already connected) to the RCA port on your system. "
 "Is the image displayed correctly?"
 msgstr ""
+"Подключите дисплей (если он еще не подключен) к порту RCA Вашей системы. "
+"Изображение отображается верно?"
 
 #. description
 #: ../jobs/monitor.txt.in:46
@@ -1647,7 +1673,7 @@ msgstr ""
 #. description
 #: ../jobs/monitor.txt.in:46
 msgid "Did the monitor go blank?"
-msgstr ""
+msgstr "Монитор погас?"
 
 #. description
 #: ../jobs/networking.txt.in:26
@@ -1874,7 +1900,7 @@ msgstr ""
 #. description
 #: ../jobs/phoronix.txt.in:3
 msgid "Automated benchmark testing"
-msgstr ""
+msgstr "Автоматическое тестирование производительности"
 
 #. description
 #: ../jobs/power-management.txt.in:3
@@ -1944,17 +1970,20 @@ msgstr ""
 #. description
 #: ../jobs/power-management.txt.in:65
 msgid "Test the network before suspending."
-msgstr ""
+msgstr "Проверка сети перед переходом в режим пониженного энергопотребления."
 
 #. description
 #: ../jobs/power-management.txt.in:70
 msgid "Record the current resolution before suspending."
 msgstr ""
+"Запись текущего разрешения перед переходом в режим пониженного "
+"энергопотребления."
 
 #. description
 #: ../jobs/power-management.txt.in:78
 msgid "Test the audio before suspending."
 msgstr ""
+"Проверка звука перед переходом в режим пониженного энергопотребления."
 
 #. description
 #: ../jobs/power-management.txt.in:84
@@ -1977,6 +2006,7 @@ msgstr "Проверьте доступность RTC устройства."
 #: ../jobs/power-management.txt.in:135
 msgid "Power management Suspend and Resume test"
 msgstr ""
+"Проверка перехода в режим пониженного энергопотребления и выхода из него."
 
 #. description
 #: ../jobs/power-management.txt.in:135
@@ -1991,18 +2021,20 @@ msgstr ""
 #. description
 #: ../jobs/power-management.txt.in:145
 msgid "Test the network after resuming."
-msgstr ""
+msgstr "Проверка сети после выхода из режима пониженного энергопотребления."
 
 #. description
 #: ../jobs/power-management.txt.in:151
 msgid ""
 "Test to see that we have the same resolution after resuming as before."
 msgstr ""
+"Убедимся, что разрешение системы осталось тем же, что было до перехода в "
+"режим пониженного энергопотребления."
 
 #. description
 #: ../jobs/power-management.txt.in:160
 msgid "Test the audio after resuming."
-msgstr ""
+msgstr "Проверка звука после выхода из режима пониженного энергопотребления."
 
 #. description
 #: ../jobs/power-management.txt.in:167
@@ -2022,6 +2054,7 @@ msgid ""
 "Verify a bluetooth peripheral.  An example verification procedure for a "
 "bluetooth mouse is given."
 msgstr ""
+"Проверьте устройство bluetooth. Показан пример проверки bluetooth мыши."
 
 #. description
 #: ../jobs/power-management.txt.in:194
@@ -2051,6 +2084,8 @@ msgid ""
 "suspend and resume.  You can use either internal or external microphone and "
 "speakers."
 msgstr ""
+"Этот тест проверит работоспособность звукового устройства после выхода из "
+"ждущего режима. Нажмите Тест для начала проверки."
 
 #. description
 #: ../jobs/power-management.txt.in:221
@@ -2082,6 +2117,8 @@ msgstr ""
 #: ../jobs/power-management.txt.in:234
 msgid "Did the system successfully suspend and resume for 30 iterations?"
 msgstr ""
+"Успешно ли система выполнила 30 циклов приостановки и возобновления работы "
+"компьютера?"
 
 #. description
 #: ../jobs/power-management.txt.in:245
@@ -2089,6 +2126,8 @@ msgid ""
 "This will check to make sure your system can successfully hibernate (if "
 "supported)."
 msgstr ""
+"Эта проверка позволит убедиться может ли система войти в спящий режим (если "
+"поддерживается)."
 
 #. description
 #: ../jobs/power-management.txt.in:245
@@ -2111,6 +2150,8 @@ msgid ""
 "Did the system successfully hibernate and did it work properly after waking "
 "up?"
 msgstr ""
+"Удалось ли войти в спящий режим, и правильно ли функционирует система после "
+"пробуждения?"
 
 #. description
 #: ../jobs/power-management.txt.in:258
@@ -2135,11 +2176,14 @@ msgid ""
 "set, and that grub is set to boot Ubuntu by default if you have a multi-boot "
 "set-up."
 msgstr ""
+"Также вы должны убедиться, что в вашей системе не стоит пароль на включение "
+"или HDD, и что grub настроен на загрузку Ubuntu по умолчанию, если у "
+"установлено несколько операционных систем."
 
 #. description
 #: ../jobs/power-management.txt.in:258
 msgid "Did the system successfully hibernate and wake 30 times?"
-msgstr ""
+msgstr "Удалось ли успешно войти и выйти из спящего режима 30 раз?"
 
 #. description
 #: ../jobs/power-management.txt.in:267
@@ -2175,7 +2219,7 @@ msgstr ""
 #. description
 #: ../jobs/qa_regression.txt.in:3
 msgid "QA regression tests (destructive)"
-msgstr ""
+msgstr "Регрессионные тесты проверки качества(деструктивно)"
 
 #. description
 #: ../jobs/server-services.txt.in:5
@@ -2423,6 +2467,10 @@ msgid ""
 "are found, install them. When Update Manager has finished, please close the "
 "app by clicking the Close button in the lower right corner."
 msgstr ""
+"Этот тест запустит Менеджер обновлений и проверит, есть ли доступные "
+"обновления для системы. Пожалуйста, следуйте подсказкам и, если обновления "
+"найдены, установите их. Когда Менеджер обновлений закончит работу, закройте "
+"приложение нажатием кнопки Закрыть в правом нижнем углу."
 
 #. description
 #: ../jobs/user_apps.txt.in:14
@@ -2438,7 +2486,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:14
 msgid "Do you now have a new folder called Test Folder?"
-msgstr ""
+msgstr "Появилась ли новая папка с именем \"Test Folder\"?"
 
 #. description
 #: ../jobs/user_apps.txt.in:25
@@ -2457,11 +2505,14 @@ msgid ""
 "Right click on the folder called Test Folder(copy) and click Rename. Enter "
 "the name Test Data in the name box and hit Enter."
 msgstr ""
+"Щелкните правой кнопкой мыши на папке с именем \"Test Folder (копия)\" и "
+"нажмите Переименовать. Введите имя Test Data в поле для ввода и нажмите "
+"Enter."
 
 #. description
 #: ../jobs/user_apps.txt.in:25
 msgid "Do you now have a folder called Test Data?"
-msgstr ""
+msgstr "Появилась ли новая папка с именем Test Data?"
 
 #. description
 #: ../jobs/user_apps.txt.in:38
@@ -2477,6 +2528,7 @@ msgstr ""
 #: ../jobs/user_apps.txt.in:38
 msgid "Double click the folder called Test Folder to open it up."
 msgstr ""
+"Сделайте двойной щелчок по папке с именем Test Folder чтобы открыть её."
 
 #. description
 #: ../jobs/user_apps.txt.in:38
@@ -2484,6 +2536,8 @@ msgid ""
 "Was the folder called Test Data successfully moved into the folder called "
 "Test Folder?"
 msgstr ""
+"Была ли папка с именем \"Test Data\" успешно перенесена в папку с именем "
+"\"Test Folder\"?"
 
 #. description
 #: ../jobs/user_apps.txt.in:51
@@ -2499,12 +2553,12 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:51
 msgid "Do you now have a file called Test File 1?"
-msgstr ""
+msgstr "Есть ли новый файл с именем Test File 1?"
 
 #. description
 #: ../jobs/user_apps.txt.in:51
 msgid "Close the File browser."
-msgstr ""
+msgstr "Закройте менеджер файлов."
 
 #. description
 #: ../jobs/user_apps.txt.in:62
@@ -2522,11 +2576,13 @@ msgid ""
 "Right click on the file called Test File 1(copy) and click Rename. Enter the "
 "name Test File 2 in the name box and hit Enter."
 msgstr ""
+"Щелкните правой кнопкой мыши на файле с именем Test File 1(копия) и нажмите "
+"Переименовать... Введите имя Test File 2 в поле для ввода и нажмите Enter."
 
 #. description
 #: ../jobs/user_apps.txt.in:62
 msgid "Do you now have a file called Test File 2?"
-msgstr ""
+msgstr "Есть ли новый файл с именем Test File 2?"
 
 #. description
 #: ../jobs/user_apps.txt.in:75
@@ -2542,12 +2598,15 @@ msgstr ""
 #: ../jobs/user_apps.txt.in:75
 msgid "Double click the icon for Test Data to open that folder up."
 msgstr ""
+"Сделайте двойной щелчок по папке с именем Test Data чтобы открыть её."
 
 #. description
 #: ../jobs/user_apps.txt.in:75
 msgid ""
 "Was the file Test File 2 successfully moved into the Test Data folder?"
 msgstr ""
+"Был ли файл с именем Test File 2 успешно перенесён в папку с именем Test "
+"Data?"
 
 #. description
 #: ../jobs/user_apps.txt.in:88
@@ -2561,7 +2620,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:88
 msgid "Is Test File 1 now gone?"
-msgstr ""
+msgstr "Исчез ли файл Test File 1?"
 
 #. description
 #: ../jobs/user_apps.txt.in:99
@@ -2575,17 +2634,17 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:99
 msgid "Has Test Folder been successfully deleted?"
-msgstr ""
+msgstr "Была  ли папка Test Folder успешно удалена?"
 
 #. description
 #: ../jobs/user_apps.txt.in:99
 msgid "Close the File Browser."
-msgstr ""
+msgstr "Закройте файловый менеджер."
 
 #. description
 #: ../jobs/user_apps.txt.in:160
 msgid "Common Document Types Test"
-msgstr ""
+msgstr "Проверка стандартных типов документов"
 
 #. description
 #: ../jobs/user_apps.txt.in:178
@@ -2597,7 +2656,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:178
 msgid "Did the Ubuntu Test page load correctly?"
-msgstr ""
+msgstr "Тестовая страница Ubuntu загружена корректно?"
 
 #. description
 #: ../jobs/user_apps.txt.in:188
@@ -2611,7 +2670,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:188
 msgid "Did the applet display?"
-msgstr ""
+msgstr "Отобразился ли апплет?"
 
 #. description
 #: ../jobs/user_apps.txt.in:198
@@ -2623,7 +2682,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:198
 msgid "Did you see the text?"
-msgstr ""
+msgstr "Вы видели текст?"
 
 #. description
 #: ../jobs/user_apps.txt.in:208
@@ -2634,7 +2693,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:208
 msgid "Did the video play correctly?"
-msgstr ""
+msgstr "Видео проигралось нормально?"
 
 #. description
 #: ../jobs/user_apps.txt.in:218
@@ -2645,27 +2704,27 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:218
 msgid "Did the video play using a plugin?"
-msgstr ""
+msgstr "Плагин показал видео?"
 
 #. description
 #: ../jobs/user_apps.txt.in:227
 msgid "Facebook Chat"
-msgstr ""
+msgstr "Чат Facebook"
 
 #. description
 #: ../jobs/user_apps.txt.in:238
 msgid "Google Talk"
-msgstr ""
+msgstr "Google Talk"
 
 #. description
 #: ../jobs/user_apps.txt.in:249
 msgid "Jabber"
-msgstr ""
+msgstr "Jabber"
 
 #. description
 #: ../jobs/user_apps.txt.in:260
 msgid "AIM"
-msgstr ""
+msgstr "AIM"
 
 #. description
 #: ../jobs/user_apps.txt.in:271
@@ -2681,28 +2740,29 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:271
 msgid "MSN"
-msgstr ""
+msgstr "MSN"
 
 #. description
 #: ../jobs/user_apps.txt.in:271
 msgid "Were you able to connect correctly and send/receive messages?"
-msgstr ""
+msgstr "Смогли ли вы подключиться и отправить/получить сообщение?"
 
 #: ../checkbox/application.py:84
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist."
-msgstr ""
+msgstr "Краткая форма для --config=checkbox/plugins/jobs_info/blacklist."
 
 #: ../checkbox/application.py:86
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist_file."
 msgstr ""
+"Краткая форма для --config=checkbox/plugins/jobs_info/blacklist_file."
 
 #: ../checkbox/application.py:88
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist."
-msgstr ""
+msgstr "Краткая форма для --config=checkbox/plugins/jobs_info/whitelist"
 
 #: ../checkbox/application.py:90
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist_file."
-msgstr ""
+msgstr "Краткая форма для --config=checkbox/plugins/jobs_info/whitelist_file"
 
 #: ../checkbox/lib/signal.py:23
 msgid ""
@@ -2725,7 +2785,7 @@ msgstr "Недопустимая инструкция"
 
 #: ../checkbox/lib/signal.py:27
 msgid "Abort signal from abort(3)"
-msgstr ""
+msgstr "Получен сигнал отмены от функции abort(3)"
 
 #: ../checkbox/lib/signal.py:28
 msgid "Floating point exception"
@@ -2733,7 +2793,7 @@ msgstr "Ошибка операции с плавающей точкой"
 
 #: ../checkbox/lib/signal.py:29
 msgid "Kill signal"
-msgstr ""
+msgstr "Получен сигнал Kill"
 
 #: ../checkbox/lib/signal.py:30
 msgid "Invalid memory reference"
@@ -2745,7 +2805,7 @@ msgstr "Неверный канал: запись в канал без счит�
 
 #: ../checkbox/lib/signal.py:32
 msgid "Timer signal from alarm(2)"
-msgstr ""
+msgstr "Получен сигнал Timer от функции alarm(2)"
 
 #: ../checkbox/lib/signal.py:33
 msgid "Termination signal"
@@ -2765,7 +2825,7 @@ msgstr "Дочерний процесс был остановлен или за�
 
 #: ../checkbox/lib/signal.py:37
 msgid "Continue if stopped"
-msgstr ""
+msgstr "Продолжить после остановки"
 
 #: ../checkbox/lib/signal.py:38
 msgid "Stop process"
@@ -2773,19 +2833,19 @@ msgstr "Остановить процесс"
 
 #: ../checkbox/lib/signal.py:39
 msgid "Stop typed at tty"
-msgstr ""
+msgstr "С терминала поступила команда Stop"
 
 #: ../checkbox/lib/signal.py:40
 msgid "tty input for background process"
-msgstr ""
+msgstr "устройство ввода для фонового процесса"
 
 #: ../checkbox/lib/signal.py:41
 msgid "tty output for background process"
-msgstr ""
+msgstr "устройство вывода фонового процесса"
 
 #: ../checkbox/lib/signal.py:77
 msgid "UNKNOWN"
-msgstr ""
+msgstr "НЕИЗВЕСТНО"
 
 #: ../checkbox/lib/signal.py:89
 msgid "Unknown signal"
@@ -2793,40 +2853,40 @@ msgstr "Неизвестный сигнал"
 
 #: ../checkbox_urwid/urwid_interface.py:60
 msgid "Checkbox System Testing"
-msgstr ""
+msgstr "Тестирование системы Checkbox"
 
 #: ../checkbox_urwid/urwid_interface.py:99
 msgid "Continue"
-msgstr ""
+msgstr "Продолжить"
 
 #: ../checkbox_urwid/urwid_interface.py:192
 #: ../checkbox_urwid/urwid_interface.py:268
 #: ../checkbox_urwid/urwid_interface.py:416
 msgid "Previous"
-msgstr ""
+msgstr "Назад"
 
 #: ../checkbox_urwid/urwid_interface.py:193
 #: ../checkbox_urwid/urwid_interface.py:269
 #: ../checkbox_urwid/urwid_interface.py:417
 msgid "Next"
-msgstr ""
+msgstr "Далее"
 
 #. Show buttons
 #: ../checkbox_urwid/urwid_interface.py:414
 msgid "Select All"
-msgstr ""
+msgstr "Выделить всё"
 
 #: ../checkbox_urwid/urwid_interface.py:415
 msgid "Deselect All"
-msgstr ""
+msgstr "Отменить выбор"
 
 #: ../checkbox_urwid/urwid_interface.py:772
 msgid "Test"
-msgstr ""
+msgstr "Проверить"
 
 #: ../checkbox_urwid/urwid_interface.py:787
 msgid "Test Again"
-msgstr ""
+msgstr "Проверить снова"
 
 #: ../checkbox_gtk/gtk_interface.py:93
 msgid "hardware database"
@@ -2850,12 +2910,17 @@ msgid ""
 "Collecting information about this test.\n"
 "This might take a few minutes."
 msgstr ""
+"Идет сбор информации для этого теста.\n"
+"Это может занять несколько минут."
 
 #: ../plugins/apport_prompt.py:116
 msgid ""
 "Collected information is being sent for bug tracking.\n"
 "This might take a few minutes."
 msgstr ""
+"Собирается информация, которая будет отправлена в систему отслеживания "
+"ошибок.\n"
+"Это может занять несколько минут."
 
 #: ../plugins/apport_prompt.py:225
 #, python-format
@@ -2870,7 +2935,7 @@ msgstr ""
 #: ../plugins/apport_prompt.py:246
 #, python-format
 msgid "Is a package upgrade in process? Error: %s"
-msgstr ""
+msgstr "Запущено обновление пакетов? Ошибка: %s"
 
 #: ../plugins/final_prompt.py:33
 msgid "Successfully finished testing!"
@@ -2884,15 +2949,15 @@ msgid ""
 "Once you are finished running the tests, you can view a summary report for "
 "your system."
 msgstr ""
-"Добро пожаловать в Проверку системы!\n"
+"Добро пожаловать в программу проверки системы!\n"
 "\n"
 "Эта программа предназначена для тестирования работоспособности системы. "
-"После окончания тестов вы сможете увидеть сводный отчёт по системе."
+"После окончания тестирования вы сможете просмотреть сводный отчёт по системе."
 
 #: ../plugins/launchpad_exchange.py:118
 #, python-format
 msgid "Failed to process form: %s"
-msgstr ""
+msgstr "Не удалось обработать форму: %s"
 
 #: ../plugins/launchpad_prompt.py:71
 #, python-format
@@ -2932,11 +2997,13 @@ msgid ""
 "Checkbox did not finish completely.\n"
 "Do you want to recover from the previous run?"
 msgstr ""
+"Проверка завершена не полностью.\n"
+"Восстановить к предыдущему состоянию?"
 
 #: ../plugins/shell_test.py:52
 #, python-format
 msgid "Running %s..."
-msgstr ""
+msgstr "Запускается %s..."
 
 #. Get results
 #: ../plugins/suites_prompt.py:105
@@ -2957,7 +3024,7 @@ msgstr "Нет подключения к Интернет"
 
 #: ../scripts/internet_test:142
 msgid "Connection established lost a packet"
-msgstr "Произошла потеря пакетов на установленном соединении"
+msgstr "Потеря пакетов на установленном соединении"
 
 #: ../scripts/internet_test:145
 msgid "Internet connection fully established"

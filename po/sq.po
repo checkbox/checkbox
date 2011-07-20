@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-07-07 12:32-0400\n"
-"PO-Revision-Date: 2011-07-15 18:51+0000\n"
+"PO-Revision-Date: 2011-07-19 16:33+0000\n"
 "Last-Translator: Vilson Gjeci <vilsongjeci@gmail.com>\n"
 "Language-Team: Albanian <sq@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-07-16 04:30+0000\n"
+"X-Launchpad-Export-Date: 2011-07-20 04:30+0000\n"
 "X-Generator: Launchpad (build 13405)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:1 ../checkbox_cli/cli_interface.py:343
@@ -34,7 +34,7 @@ msgstr "Testim i Sistemit"
 
 #: ../gtk/checkbox-gtk.ui.h:4
 msgid "_Deselect All"
-msgstr ""
+msgstr "Mos _Zgjidh Asnjë"
 
 #: ../gtk/checkbox-gtk.ui.h:5
 msgid "_No"
@@ -42,15 +42,15 @@ msgstr "_Jo"
 
 #: ../gtk/checkbox-gtk.ui.h:6
 msgid "_Previous"
-msgstr ""
+msgstr "_Paraardhësi"
 
 #: ../gtk/checkbox-gtk.ui.h:7
 msgid "_Select All"
-msgstr ""
+msgstr "_Zgjidh Gjithçka"
 
 #: ../gtk/checkbox-gtk.ui.h:8
 msgid "_Skip this test"
-msgstr ""
+msgstr "_anashkaloje këtë test"
 
 #: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:522
 msgid "_Test"
@@ -62,7 +62,7 @@ msgstr "_Po"
 
 #: ../gtk/checkbox-gtk.desktop.in.h:2
 msgid "Test and report system information"
-msgstr ""
+msgstr "Testo dhe raporto informacionin e sistemit"
 
 #. description
 #: ../jobs/apport.txt.in:5
@@ -72,7 +72,7 @@ msgstr ""
 #. description
 #: ../jobs/audio.txt.in:7
 msgid "Detecting your sound device(s):"
-msgstr ""
+msgstr "Duke dalluar pajisjet tuaja të zërit:"
 
 #. description
 #: ../jobs/audio.txt.in:7 ../jobs/disk.txt.in:4 ../jobs/graphics.txt.in:126
@@ -80,7 +80,7 @@ msgstr ""
 #: ../jobs/optical.txt.in:8 ../jobs/power-management.txt.in:167
 #: ../jobs/usb.txt.in:5
 msgid "$output"
-msgstr ""
+msgstr "$dalja"
 
 #. description
 #: ../jobs/audio.txt.in:7 ../jobs/bluetooth.txt.in:5 ../jobs/disk.txt.in:4
@@ -88,7 +88,7 @@ msgstr ""
 #: ../jobs/networking.txt.in:16 ../jobs/optical.txt.in:8
 #: ../jobs/power-management.txt.in:185 ../jobs/usb.txt.in:5
 msgid "Is this correct?"
-msgstr ""
+msgstr "A është e saktë kjo?"
 
 #. description
 #: ../jobs/audio.txt.in:21
@@ -100,7 +100,7 @@ msgstr ""
 #. description
 #: ../jobs/audio.txt.in:33
 msgid "Please connect a pair of headphones to your audio device."
-msgstr ""
+msgstr "Ju lutemi të lidhni një palë kufje me pajisjen tuaj audio"
 
 #. description
 #: ../jobs/audio.txt.in:33
@@ -144,7 +144,7 @@ msgstr ""
 #. description
 #: ../jobs/audio.txt.in:70 ../jobs/power-management.txt.in:221
 msgid "Did you hear your speech played back?"
-msgstr ""
+msgstr "A e dëgjuat fjalimin tuaj të luajtur mbrapsht?"
 
 #. description
 #: ../jobs/audio.txt.in:81
@@ -157,7 +157,7 @@ msgstr ""
 #. description
 #: ../jobs/autotest.txt.in:3
 msgid "Autotest suite (destructive)"
-msgstr ""
+msgstr "Mjet vetë testimi (shkatërrimtar)"
 
 #. description
 #: ../jobs/bluetooth.txt.in:5 ../jobs/power-management.txt.in:185
@@ -391,7 +391,7 @@ msgstr ""
 #. description
 #: ../jobs/disk.txt.in:4
 msgid "The following hard drives were detected:"
-msgstr ""
+msgstr "U dalluan hard disqet që vijojnë"
 
 #. description
 #: ../jobs/disk.txt.in:14
@@ -458,6 +458,9 @@ msgid ""
 "which test cases are run and a personal account that the tester uses to "
 "verify the fingerprint reader"
 msgstr ""
+"Kërkesat paraprake: Ky test supozon që ka një llogari testi nga e cila nisen "
+"testet dhe një llogari personale që testuesi e përdor për të verifikuar "
+"lexuesin e gishtërinjve"
 
 #. description
 #: ../jobs/fingerprint.txt.in:3
@@ -488,7 +491,7 @@ msgstr ""
 #. description
 #: ../jobs/fingerprint.txt.in:18
 msgid "Did the authentication procedure work correctly?"
-msgstr ""
+msgstr "A punoi siç duhet mënyra e identifikimit?"
 
 #. description
 #: ../jobs/firewire.txt.in:3
@@ -504,7 +507,7 @@ msgstr ""
 #. description
 #: ../jobs/firewire.txt.in:3 ../jobs/usb.txt.in:71
 msgid "Do the copy operations work as expected?"
-msgstr ""
+msgstr "A punuan veprimet e kopjimit siç pritej?"
 
 #. description
 #: ../jobs/floppy.txt.in:4
@@ -660,12 +663,12 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:82
 msgid "This display is using the following resolution:"
-msgstr ""
+msgstr "Ekrani po përdor rezolucionin që vijon:"
 
 #. description
 #: ../jobs/graphics.txt.in:82
 msgid "Is this acceptable for your display?"
-msgstr ""
+msgstr "A është ky i pranueshëm për ekranin tuaj?"
 
 #. description
 #: ../jobs/graphics.txt.in:95
@@ -694,13 +697,14 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:117
 msgid "Do you see color bars and static?"
-msgstr ""
+msgstr "A i shikoni shiritat me ngjyra dhe statiken?"
 
 #. description
 #: ../jobs/graphics.txt.in:126
 msgid ""
 "The following screens and video modes have been detected on your system:"
 msgstr ""
+"Ekranet që vijojnë dhe mënyrat e videos janë dalluar në sistemin tuaj:"
 
 #. description
 #: ../jobs/graphics.txt.in:138
@@ -711,12 +715,12 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:138
 msgid "Did the screen appear to be working for each mode?"
-msgstr ""
+msgstr "A duket që ekrani punon për çdo mënyrë?"
 
 #. description
 #: ../jobs/graphics.txt.in:146
 msgid "Check that the hardware is able to run compiz."
-msgstr ""
+msgstr "Kontrollo nëse hardueri është në gjendje të nisë compiz."
 
 #. description
 #: ../jobs/graphics.txt.in:153
@@ -728,7 +732,7 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:153
 msgid "Did the 3d animation appear?"
-msgstr ""
+msgstr "A u shfaq animacioni 3D?"
 
 #. description
 #: ../jobs/info.txt.in:60 ../jobs/screenshot.txt.in:7
@@ -748,12 +752,12 @@ msgstr ""
 #. description
 #: ../jobs/input.txt.in:4
 msgid "Moving the mouse should move the cursor on the screen."
-msgstr ""
+msgstr "Lëvizja e miut duhet të lëvizë kursorin në ekran."
 
 #. description
 #: ../jobs/input.txt.in:4
 msgid "Is your mouse working properly?"
-msgstr ""
+msgstr "A po punon siç duhet miu juaj?"
 
 #. description
 #: ../jobs/input.txt.in:13
@@ -763,7 +767,7 @@ msgstr ""
 #. description
 #: ../jobs/input.txt.in:13
 msgid "Is your keyboard working properly?"
-msgstr ""
+msgstr "A po punon siç duhet tastiera juaj?"
 
 #. description
 #: ../jobs/install.txt.in:6
@@ -856,7 +860,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:3
 msgid "Audio tests"
-msgstr ""
+msgstr "Testimet e audios"
 
 #. description
 #: ../jobs/local.txt.in:8
@@ -886,17 +890,17 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:33
 msgid "Disk tests"
-msgstr ""
+msgstr "Testimet e diskut"
 
 #. description
 #: ../jobs/local.txt.in:38
 msgid "Fingerprint reader tests"
-msgstr ""
+msgstr "Testimet e lexuesit të gjurmëve të gishtërinjve"
 
 #. description
 #: ../jobs/local.txt.in:43
 msgid "Firewire disk tests"
-msgstr ""
+msgstr "Testimet e diskut firewire"
 
 #. description
 #: ../jobs/local.txt.in:48
@@ -941,7 +945,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:88
 msgid "Monitor tests"
-msgstr ""
+msgstr "Testime të monitorit"
 
 #. description
 #: ../jobs/local.txt.in:93
@@ -956,7 +960,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:103
 msgid "Peripheral tests"
-msgstr ""
+msgstr "Testimet e periferikeve"
 
 #. description
 #: ../jobs/local.txt.in:108
@@ -981,7 +985,7 @@ msgstr ""
 #. description
 #: ../jobs/ltp.txt.in:3
 msgid "Linux Test Project"
-msgstr ""
+msgstr "Testime të projektit Linux"
 
 #. description
 #: ../jobs/mago.txt.in:3
@@ -1147,11 +1151,12 @@ msgstr ""
 #: ../jobs/miscellanea.txt.in:8
 msgid "Note that this test may require you to enter your password."
 msgstr ""
+"Kini parasysh që ky test mund t'iu kërkojë të vendosni një fjalëkalim."
 
 #. description
 #: ../jobs/miscellanea.txt.in:8
 msgid "Did the screen change temporarily to a text console?"
-msgstr ""
+msgstr "A ndryshoi ekrani përkohësisht në një konsolë teksti?"
 
 #. description
 #: ../jobs/miscellanea.txt.in:20
@@ -1176,6 +1181,7 @@ msgstr ""
 #: ../jobs/monitor.txt.in:3
 msgid "If your system does not have a VGA port, please skip this test."
 msgstr ""
+"Nëse sistemi juaj nuk ka një port VGA, ju lutemi ta anashkaloni këtë test."
 
 #. description
 #: ../jobs/monitor.txt.in:3
@@ -1183,11 +1189,14 @@ msgid ""
 "Connect a display (if not already connected) to the VGA port on your system. "
 "Is the image displayed correctly?"
 msgstr ""
+"Lidhni një ekran (nëse nuk e keni bërë tashmë) me hyrjen VGA të kompjuterit "
+"tuaj. A shfaqet pamja siç duhet?"
 
 #. description
 #: ../jobs/monitor.txt.in:10
 msgid "If your system does not have a DVI port, please skip this test."
 msgstr ""
+"Nëse sistemi juaj nuk ka një port DVI, ju lutemi ta anashkaloni këtë test."
 
 #. description
 #: ../jobs/monitor.txt.in:10
@@ -1195,11 +1204,15 @@ msgid ""
 "Connect a display (if not already connected) to the DVI port on your system. "
 "Is the image displayed correctly?"
 msgstr ""
+"Lidhni një ekran (nëse nuk e keni bërë tashmë) me hyrjen DVI të kompjuterit "
+"tuaj. A shfaqet pamja siç duhet?"
 
 #. description
 #: ../jobs/monitor.txt.in:17
 msgid "If your system does not have DisplayPort, please skip this test."
 msgstr ""
+"Nëse sistemi juaj nuk ka një Port për Videon, ju lutemi ta anashkaloni këtë "
+"test."
 
 #. description
 #: ../jobs/monitor.txt.in:17
@@ -1207,11 +1220,14 @@ msgid ""
 "Connect a display (if not already connected) to the DisplayPort on your "
 "system. Is the image displayed correctly?"
 msgstr ""
+"Lidhni një ekran (nëse nuk e keni bërë tashmë) me hyrjen e ekranit të "
+"kompjuterit tuaj. A shfaqet pamja siç duhet?"
 
 #. description
 #: ../jobs/monitor.txt.in:24
 msgid "If your system does not have a HDMI port, please skip this test."
 msgstr ""
+"Nëse sistemi juaj nuk ka një port HDMI, ju lutemi ta anashkaloni këtë test."
 
 #. description
 #: ../jobs/monitor.txt.in:24
@@ -1219,11 +1235,15 @@ msgid ""
 "Connect a display (if not already connected) to the HDMI port on your "
 "system. Is the image displayed correctly?"
 msgstr ""
+"Lidhni një ekran (nëse nuk e keni bërë tashmë) me hyrjen HDMI të kompjuterit "
+"tuaj. A shfaqet pamja siç duhet?"
 
 #. description
 #: ../jobs/monitor.txt.in:31
 msgid "If your system does not have a S-VIDEO port, please skip this test."
 msgstr ""
+"Nëse sistemi juaj nuk ka një port S-VIDEO, ju lutemi ta anashkaloni këtë "
+"test."
 
 #. description
 #: ../jobs/monitor.txt.in:31
@@ -1231,11 +1251,14 @@ msgid ""
 "Connect a display (if not already connected) to the S-VIDEO port on your "
 "system. Is the image displayed correctly?"
 msgstr ""
+"Lidhni një ekran (nëse nuk e keni bërë tashmë) me hyrjen S-VIDEO të "
+"kompjuterit tuaj. A shfaqet pamja siç duhet?"
 
 #. description
 #: ../jobs/monitor.txt.in:38
 msgid "If your system does not have a RCA port, please skip this test."
 msgstr ""
+"Nëse sistemi juaj nuk ka një port RCA, ju lutemi ta anashkaloni këtë test."
 
 #. description
 #: ../jobs/monitor.txt.in:38
@@ -1243,6 +1266,8 @@ msgid ""
 "Connect a display (if not already connected) to the RCA port on your system. "
 "Is the image displayed correctly?"
 msgstr ""
+"Lidhni një ekran (nëse nuk e keni bërë tashmë) me hyrjen RCA të kompjuterit "
+"tuaj. A shfaqet pamja siç duhet?"
 
 #. description
 #: ../jobs/monitor.txt.in:46
@@ -1256,17 +1281,17 @@ msgstr ""
 #. description
 #: ../jobs/monitor.txt.in:46
 msgid "Did the monitor go blank?"
-msgstr ""
+msgstr "A u bllokua monitori?"
 
 #. description
 #: ../jobs/networking.txt.in:5
 msgid "Detecting your network controller(s):"
-msgstr ""
+msgstr "Duke dalluar kontrolluesit tuaj të rrjetit:"
 
 #. description
 #: ../jobs/networking.txt.in:16
 msgid "Testing your connection to the Internet:"
-msgstr ""
+msgstr "Duke testuar lidhjen tuaj me Internetin:"
 
 #. description
 #: ../jobs/networking.txt.in:26
@@ -1310,7 +1335,7 @@ msgstr ""
 #. description
 #: ../jobs/networking.txt.in:76 ../jobs/peripheral.txt.in:15
 msgid "Was the connection correctly established?"
-msgstr ""
+msgstr "A u sigurua siç duhet lidhja?"
 
 #. description
 #: ../jobs/networking.txt.in:92
@@ -1414,7 +1439,7 @@ msgstr ""
 #. description
 #: ../jobs/optical.txt.in:90
 msgid "Did the file play?"
-msgstr ""
+msgstr "A luajti skedari?"
 
 #. description
 #: ../jobs/panel_clock_test.txt.in:4
@@ -1492,7 +1517,7 @@ msgstr ""
 #. description
 #: ../jobs/phoronix.txt.in:3
 msgid "Automated benchmark testing"
-msgstr ""
+msgstr "Testim automatik i benchmark"
 
 #. description
 #: ../jobs/power-management.txt.in:3
@@ -1765,7 +1790,7 @@ msgstr ""
 #. description
 #: ../jobs/qa_regression.txt.in:3
 msgid "QA regression tests (destructive)"
-msgstr ""
+msgstr "Testime të regresionit QA (shkatërrimtare)"
 
 #. description
 #: ../jobs/server-services.txt.in:5
@@ -2247,164 +2272,166 @@ msgstr ""
 
 #: ../checkbox/application.py:66
 msgid "Usage: checkbox [OPTIONS]"
-msgstr ""
+msgstr "Përdorimi: kutia e përzgjedhjes [OPSIONET]"
 
 #: ../checkbox/application.py:70
 msgid "Print version information and exit."
-msgstr ""
+msgstr "Printon informacionin e versionit dhe del."
 
 #: ../checkbox/application.py:74
 msgid "The file to write the log to."
-msgstr ""
+msgstr "Skedari ku do të shkruet gjurma."
 
 #: ../checkbox/application.py:77
 msgid "One of debug, info, warning, error or critical."
-msgstr ""
+msgstr "Një nga dështimet, info, paralajmërim, gabim apo kritike."
 
 #: ../checkbox/application.py:82
 msgid "Configuration override parameters."
-msgstr ""
+msgstr "Parametrat e mbishkrimit të konfigurimit."
 
 #: ../checkbox/application.py:84
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist."
-msgstr ""
+msgstr "Shkurtore për --config=checkbox/plugins/jobs_info/blacklist."
 
 #: ../checkbox/application.py:86
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist_file."
-msgstr ""
+msgstr "Shkurtore për --config=checkbox/plugins/jobs_info/blacklist_file."
 
 #: ../checkbox/application.py:88
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist."
-msgstr ""
+msgstr "Shkurtore për --config=checkbox/plugins/jobs_info/whitelist."
 
 #: ../checkbox/application.py:90
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist_file."
-msgstr ""
+msgstr "Shkurtore për --config=checkbox/plugins/jobs_info/whitelist_file."
 
 #: ../checkbox/application.py:115
 msgid "Missing configuration file as argument.\n"
-msgstr ""
+msgstr "Skedari i konfigurimit mungon si argument.\n"
 
 #: ../checkbox/lib/signal.py:23
 msgid ""
 "Hangup detected on controlling terminal or death of controlling process"
 msgstr ""
+"U dallua bllokim në kontrollin e terminalit apo në vdekjen e proçesit "
+"kontrollues."
 
 #: ../checkbox/lib/signal.py:24
 msgid "Interrupt from keyboard"
-msgstr ""
+msgstr "Ndërprerje nga tastiera"
 
 #: ../checkbox/lib/signal.py:25
 msgid "Quit from keyboard"
-msgstr ""
+msgstr "Dil nga tastiera"
 
 #: ../checkbox/lib/signal.py:26
 msgid "Illegal Instruction"
-msgstr ""
+msgstr "Udhëzim i paligjshëm"
 
 #: ../checkbox/lib/signal.py:27
 msgid "Abort signal from abort(3)"
-msgstr ""
+msgstr "Aborto sinjalin nga abort(3)"
 
 #: ../checkbox/lib/signal.py:28
 msgid "Floating point exception"
-msgstr ""
+msgstr "përjashtim i pikës pluskuese"
 
 #: ../checkbox/lib/signal.py:29
 msgid "Kill signal"
-msgstr ""
+msgstr "Vrite sinjalin"
 
 #: ../checkbox/lib/signal.py:30
 msgid "Invalid memory reference"
-msgstr ""
+msgstr "Referencë e pavlefshme e kujtesës"
 
 #: ../checkbox/lib/signal.py:31
 msgid "Broken pipe: write to pipe with no readers"
-msgstr ""
+msgstr "Tub i dëmtuar: shkruaj në tub pa lexues"
 
 #: ../checkbox/lib/signal.py:32
 msgid "Timer signal from alarm(2)"
-msgstr ""
+msgstr "Sinjali i kohëmatësit për alarm(2)"
 
 #: ../checkbox/lib/signal.py:33
 msgid "Termination signal"
-msgstr ""
+msgstr "Sinjali i përfundimit"
 
 #: ../checkbox/lib/signal.py:34
 msgid "User-defined signal 1"
-msgstr ""
+msgstr "Sinjal i përkufizuar nga përdoruesi 1"
 
 #: ../checkbox/lib/signal.py:35
 msgid "User-defined signal 2"
-msgstr ""
+msgstr "Sinjal i përkufizuar nga përdoruesi 2"
 
 #: ../checkbox/lib/signal.py:36
 msgid "Child stopped or terminated"
-msgstr ""
+msgstr "Fëmija u ndal apo u përfundua"
 
 #: ../checkbox/lib/signal.py:37
 msgid "Continue if stopped"
-msgstr ""
+msgstr "Vazhdo nëse ka ndaluar"
 
 #: ../checkbox/lib/signal.py:38
 msgid "Stop process"
-msgstr ""
+msgstr "Ndalo proçesin"
 
 #: ../checkbox/lib/signal.py:39
 msgid "Stop typed at tty"
-msgstr ""
+msgstr "Stop i shtypur në tty"
 
 #: ../checkbox/lib/signal.py:40
 msgid "tty input for background process"
-msgstr ""
+msgstr "tty hyrje për proçesin në sfond"
 
 #: ../checkbox/lib/signal.py:41
 msgid "tty output for background process"
-msgstr ""
+msgstr "tty dalje për proçesin në sfond"
 
 #: ../checkbox/lib/signal.py:77
 msgid "UNKNOWN"
-msgstr ""
+msgstr "E PANJOHUR"
 
 #: ../checkbox/lib/signal.py:89
 msgid "Unknown signal"
-msgstr ""
+msgstr "Sinjal i panjohur"
 
 #: ../checkbox_cli/cli_interface.py:31
 #: ../checkbox_urwid/urwid_interface.py:684
 msgid "yes"
-msgstr ""
+msgstr "po"
 
 #: ../checkbox_cli/cli_interface.py:32
 #: ../checkbox_urwid/urwid_interface.py:685
 msgid "no"
-msgstr ""
+msgstr "jo"
 
 #: ../checkbox_cli/cli_interface.py:33
 #: ../checkbox_urwid/urwid_interface.py:686
 msgid "skip"
-msgstr ""
+msgstr "anashkalo"
 
 #: ../checkbox_cli/cli_interface.py:126
 msgid "Press any key to continue..."
-msgstr ""
+msgstr "Shtypni çdo buton për të vazhduar..."
 
 #: ../checkbox_cli/cli_interface.py:135
 #, python-format
 msgid "Please choose (%s): "
-msgstr ""
+msgstr "Ju lutemi të zgjidhni (%s): "
 
 #: ../checkbox_cli/cli_interface.py:315
 msgid "test"
-msgstr ""
+msgstr "testo"
 
 #: ../checkbox_cli/cli_interface.py:339
 msgid "test again"
-msgstr ""
+msgstr "testo përsëri"
 
 #: ../checkbox_cli/cli_interface.py:345
 msgid "Please type here and press Ctrl-D when finished:\n"
-msgstr ""
+msgstr "Ju lutemi të shtypni këtu dhe të klikoni Ctrl-D kur përfundoni:\n"
 
 #: ../checkbox_urwid/urwid_interface.py:60
 msgid "Checkbox System Testing"
@@ -2449,32 +2476,37 @@ msgstr ""
 
 #: ../checkbox_gtk/gtk_interface.py:487
 msgid "_Test Again"
-msgstr ""
+msgstr "_Testo Përsëri"
 
 #: ../checkbox_gtk/gtk_interface.py:533
 msgid "Info"
-msgstr ""
+msgstr "Info"
 
 #: ../checkbox_gtk/gtk_interface.py:552
 msgid "Error"
-msgstr ""
+msgstr "Gabim"
 
 #: ../checkbox/user_interface.py:136
 #, python-format
 msgid "Unable to start web browser to open %s."
 msgstr ""
+"Nuk jemi në gjendje të nisim shfletuesin e Internetit për të hapur %s."
 
 #: ../plugins/apport_prompt.py:81
 msgid ""
 "Collecting information about this test.\n"
 "This might take a few minutes."
 msgstr ""
+"Duke mbledhur informacion rreth këtij testi.\n"
+"Kjo mund të zgjasë disa minuta."
 
 #: ../plugins/apport_prompt.py:116
 msgid ""
 "Collected information is being sent for bug tracking.\n"
 "This might take a few minutes."
 msgstr ""
+"Të dhënat e mbledhura po dërgohen për ndjekjen e problemit.\n"
+"Kjo mund të zgjasë disa minuta."
 
 #: ../plugins/apport_prompt.py:225
 #, python-format
@@ -2489,19 +2521,19 @@ msgstr ""
 #: ../plugins/apport_prompt.py:246
 #, python-format
 msgid "Is a package upgrade in process? Error: %s"
-msgstr ""
+msgstr "Ka ndonjë përditësim pakete duke u kryer? Gabim: %s"
 
 #: ../plugins/final_prompt.py:33
 msgid "Successfully finished testing!"
-msgstr ""
+msgstr "E përfundova testimin me sukses!"
 
 #: ../plugins/final_prompt.py:34
 msgid "_Finish"
-msgstr ""
+msgstr "_Përfundo"
 
 #: ../plugins/gather_prompt.py:35
 msgid "Gathering information from your system..."
-msgstr ""
+msgstr "Duke mbledhur informacion nga sistemi juaj..."
 
 #: ../plugins/intro_prompt.py:43
 msgid ""
@@ -2511,11 +2543,16 @@ msgid ""
 "Once you are finished running the tests, you can view a summary report for "
 "your system."
 msgstr ""
+"Mirëseerdhët në Testimin e Sistemit!\n"
+"\n"
+"Kutia e kontrollit ju jep testime për të konfirmuar që sistemi juaj punon "
+"siç duhet. Pasi të keni përfunduar testet, ju mund të shfaqni një raport "
+"përmbledhjeje për sistemin tuaj."
 
 #: ../plugins/launchpad_exchange.py:118
 #, python-format
 msgid "Failed to process form: %s"
-msgstr ""
+msgstr "Dështuam në proçedimin e formës: %s"
 
 #: ../plugins/launchpad_exchange.py:141
 #, python-format
@@ -2527,16 +2564,24 @@ msgid ""
 "directly to the system database:\n"
 "https://launchpad.net/+hwdb/+submit"
 msgstr ""
+"Dështova në kontaktimin e serverit. Ju lutemi të provoni\n"
+"përsëri ose ngarkoni emrin e skedarit që vijon:\n"
+"%s\n"
+" \n"
+"drejtpërdrejt në bazën e të dhënave të sistemit:\n"
+"https://launchpad.net/+hwdb/+submit"
 
 #: ../plugins/launchpad_exchange.py:150
 msgid ""
 "Failed to upload to server,\n"
 "please try again later."
 msgstr ""
+"Dështuam në ngarkimin e serverit,\n"
+"ju lutemi provojeni përsëri më vonë."
 
 #: ../plugins/launchpad_exchange.py:162
 msgid "Information not posted to Launchpad."
-msgstr ""
+msgstr "Informacioni nuk është postuar në Launchpad."
 
 #: ../plugins/launchpad_prompt.py:71
 #, python-format
@@ -2552,59 +2597,88 @@ msgid ""
 "\n"
 "  https://launchpad.net/+login"
 msgstr ""
+"Njoftimi që pason është krijuar për t'iu dërguar bazës së të dhënave "
+"hardware të Launchpad\n"
+"\n"
+"  [[%s|View Report]]\n"
+"\n"
+"Mund ti nisni këto të dhëna rreth sistemit tuaj duke dhënë adresën e postës "
+"elktronike që përdorni për tu kyçur tek faqja e Launchpad. Nëse nuk keni një "
+"llogari pranë Launchpad, ju lutemi të rregjistroheni ketu:\n"
+"\n"
+"  https://launchpad.net/+login"
 
 #: ../plugins/launchpad_prompt.py:88
 msgid "No e-mail address provided, not submitting to Launchpad."
-msgstr ""
+msgstr "Nuk u gjet një adresë e-mail, nuk po e kalojmë në Launchpad."
 
 #: ../plugins/launchpad_prompt.py:92
 msgid "Email address must be in a proper format."
-msgstr ""
+msgstr "Adresa email duhet të jetë në formatin e duhur."
 
 #: ../plugins/launchpad_prompt.py:98
 msgid "Exchanging information with the server..."
-msgstr ""
+msgstr "Duke shkëmbyer informacion me serverin..."
 
 #: ../plugins/lock_prompt.py:63
 msgid "There is another checkbox running. Please close it first."
 msgstr ""
+"Ka një kuti tjetër përzgjedhjeje të nisur. Ju lutemi ta mbyllni atë "
+"paraprakisht."
 
 #: ../plugins/recover_prompt.py:54
 msgid ""
 "Checkbox did not finish completely.\n"
 "Do you want to recover from the previous run?"
 msgstr ""
+"Përzgjedhësi nuk mbaroi plotësisht.\n"
+"Dëshironi të rekuperoni nga nisja e fundit?"
 
 #: ../plugins/report_prompt.py:34
 msgid "Building report..."
-msgstr ""
+msgstr "Duke ndërtuar raportin..."
 
 #: ../plugins/shell_test.py:52
 #, python-format
 msgid "Running %s..."
-msgstr ""
+msgstr "Duke nisur %s..."
 
 #. Get results
 #: ../plugins/suites_prompt.py:105
 msgid "Select the suites to test"
-msgstr ""
+msgstr "Zgjidhni grupet që do të testohen"
 
 #: ../scripts/keyboard_test:21
 msgid "Enter text:\n"
-msgstr ""
+msgstr "Vendosni tekstin:\n"
 
 #: ../scripts/keyboard_test:40
 msgid "Type Text"
-msgstr ""
+msgstr "Shtypni Tekstin"
 
 #: ../scripts/internet_test:139
 msgid "No Internet connection"
-msgstr ""
+msgstr "Nuk ka lidhje Interneti"
 
 #: ../scripts/internet_test:142
 msgid "Connection established lost a packet"
-msgstr ""
+msgstr "Lidhja u krye dhe humbi një paketë"
 
 #: ../scripts/internet_test:145
 msgid "Internet connection fully established"
-msgstr ""
+msgstr "Lidhja me Internetin u stabilizua plotësisht"
+
+#~ msgid "Kernel modesetting tests"
+#~ msgstr "Testimet e mënyrës së vendosjes së kernelit"
+
+#~ msgid "Network tests"
+#~ msgstr "Testimet e rrjetit"
+
+#~ msgid "Video tests"
+#~ msgstr "Testimet e videos"
+
+#~ msgid "Disk benchmark:"
+#~ msgstr "Disk benchmark:"
+
+#~ msgid "Is this ok?"
+#~ msgstr "A është kjo OK?"

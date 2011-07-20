@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-07-07 12:32-0400\n"
-"PO-Revision-Date: 2009-02-09 16:27+0000\n"
-"Last-Translator: Henrik Width <henrik.width@gmail.com>\n"
+"PO-Revision-Date: 2011-07-19 16:31+0000\n"
+"Last-Translator: Kjetil Birkeland Moe <kjetil@skifremme.com>\n"
 "Language-Team: Norwegian Bokmal <nb@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-07-16 04:32+0000\n"
+"X-Launchpad-Export-Date: 2011-07-20 04:33+0000\n"
 "X-Generator: Launchpad (build 13405)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:2
@@ -257,15 +257,15 @@ msgstr "Mer informasjon:"
 #: ../gtk/checkbox-gtk.ui.h:3 ../gtk/checkbox-gtk.desktop.in.h:1
 #: ../plugins/user_interface.py:40
 msgid "System Testing"
-msgstr "Systemtesting"
+msgstr "Systemtest"
 
 #: ../gtk/checkbox-gtk.ui.h:4
 msgid "_Deselect All"
-msgstr ""
+msgstr "_Opphev markering"
 
 #: ../gtk/checkbox-gtk.ui.h:7
 msgid "_Select All"
-msgstr ""
+msgstr "_Merk alt"
 
 #: ../gtk/checkbox-gtk.desktop.in.h:2
 msgid "Test and report system information"
@@ -279,7 +279,7 @@ msgstr ""
 #. description
 #: ../jobs/audio.txt.in:7
 msgid "Detecting your sound device(s):"
-msgstr ""
+msgstr "Finner lydenheten(e) din(e)"
 
 #. description
 #: ../jobs/audio.txt.in:21
@@ -293,7 +293,7 @@ msgstr ""
 #. description
 #: ../jobs/audio.txt.in:33
 msgid "Please connect a pair of headphones to your audio device."
-msgstr ""
+msgstr "Vennligst koble hodetelefoner til lydenheten"
 
 #. description
 #: ../jobs/audio.txt.in:33
@@ -344,7 +344,7 @@ msgstr ""
 #. description
 #: ../jobs/audio.txt.in:70 ../jobs/power-management.txt.in:221
 msgid "Did you hear your speech played back?"
-msgstr ""
+msgstr "Kunne du høre stemmen din bli avspilt?"
 
 #. description
 #: ../jobs/audio.txt.in:81
@@ -357,12 +357,12 @@ msgstr ""
 #. description
 #: ../jobs/autotest.txt.in:3
 msgid "Autotest suite (destructive)"
-msgstr ""
+msgstr "Autotest suite (ødeleggende)"
 
 #. description
 #: ../jobs/bluetooth.txt.in:5 ../jobs/power-management.txt.in:185
 msgid "The address of your Bluetooth device is: $output"
-msgstr ""
+msgstr "Adressen til din Bluetooth-enhet er: $output"
 
 #. description
 #: ../jobs/bluetooth.txt.in:15 ../jobs/graphics.txt.in:15
@@ -591,7 +591,7 @@ msgstr ""
 #. description
 #: ../jobs/disk.txt.in:4
 msgid "The following hard drives were detected:"
-msgstr ""
+msgstr "Følgende harddisker ble funnet:"
 
 #. description
 #: ../jobs/disk.txt.in:14
@@ -658,6 +658,9 @@ msgid ""
 "which test cases are run and a personal account that the tester uses to "
 "verify the fingerprint reader"
 msgstr ""
+"Forutsetninger: Denne testen går ut ifra at det finnes en testkonto som "
+"testene kjøres fra, og en personlig konto som den som utfører testen bruker "
+"til å verifisere fingeravtrykk-leseren"
 
 #. description
 #: ../jobs/fingerprint.txt.in:3
@@ -688,7 +691,7 @@ msgstr ""
 #. description
 #: ../jobs/fingerprint.txt.in:18
 msgid "Did the authentication procedure work correctly?"
-msgstr ""
+msgstr "Virket autentiseringsprosedyren som den skulle?"
 
 #. description
 #: ../jobs/firewire.txt.in:3
@@ -704,7 +707,7 @@ msgstr ""
 #. description
 #: ../jobs/firewire.txt.in:3 ../jobs/usb.txt.in:71
 msgid "Do the copy operations work as expected?"
-msgstr ""
+msgstr "Virker kopieringen som forventet?"
 
 #. description
 #: ../jobs/floppy.txt.in:4
@@ -860,7 +863,7 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:82
 msgid "This display is using the following resolution:"
-msgstr ""
+msgstr "Denne skjermen bruker følgene oppløsning:"
 
 #. description
 #: ../jobs/graphics.txt.in:82
@@ -901,6 +904,7 @@ msgstr "Ser du fargelinjer og statisk støy?"
 msgid ""
 "The following screens and video modes have been detected on your system:"
 msgstr ""
+"Følgende skjermbilder og video-moduser har blitt oppdaget på systemet ditt:"
 
 #. description
 #: ../jobs/graphics.txt.in:138
@@ -911,12 +915,12 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:138
 msgid "Did the screen appear to be working for each mode?"
-msgstr ""
+msgstr "Så skjermen ut til å fungere for hver enkelt modus?"
 
 #. description
 #: ../jobs/graphics.txt.in:146
 msgid "Check that the hardware is able to run compiz."
-msgstr ""
+msgstr "Undersøk om maskinvaren er i stand til å kjøre compiz."
 
 #. description
 #: ../jobs/graphics.txt.in:153
@@ -928,7 +932,7 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:153
 msgid "Did the 3d animation appear?"
-msgstr ""
+msgstr "Så du 3D-animasjonen?"
 
 #. description
 #: ../jobs/info.txt.in:60 ../jobs/screenshot.txt.in:7
@@ -1041,7 +1045,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:3
 msgid "Audio tests"
-msgstr ""
+msgstr "Lydtester"
 
 #. description
 #: ../jobs/local.txt.in:8
@@ -1071,17 +1075,17 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:33
 msgid "Disk tests"
-msgstr ""
+msgstr "Disktester"
 
 #. description
 #: ../jobs/local.txt.in:38
 msgid "Fingerprint reader tests"
-msgstr ""
+msgstr "Kontroll av fingeravtrykkleser"
 
 #. description
 #: ../jobs/local.txt.in:43
 msgid "Firewire disk tests"
-msgstr ""
+msgstr "Firewire disktester"
 
 #. description
 #: ../jobs/local.txt.in:48
@@ -1126,7 +1130,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:88
 msgid "Monitor tests"
-msgstr ""
+msgstr "Skjermtester"
 
 #. description
 #: ../jobs/local.txt.in:93
@@ -1141,7 +1145,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:103
 msgid "Peripheral tests"
-msgstr ""
+msgstr "Test av ekstern maskinvare"
 
 #. description
 #: ../jobs/local.txt.in:108
@@ -1166,7 +1170,7 @@ msgstr ""
 #. description
 #: ../jobs/ltp.txt.in:3
 msgid "Linux Test Project"
-msgstr ""
+msgstr "Linux Testprosjekt."
 
 #. description
 #: ../jobs/mago.txt.in:3
@@ -1331,12 +1335,12 @@ msgstr ""
 #. description
 #: ../jobs/miscellanea.txt.in:8
 msgid "Note that this test may require you to enter your password."
-msgstr ""
+msgstr "Merk at denne testen kan kreve at du skriver inn ditt passord."
 
 #. description
 #: ../jobs/miscellanea.txt.in:8
 msgid "Did the screen change temporarily to a text console?"
-msgstr ""
+msgstr "Forandret skjermen seg midlertidig til en tekst-konsoll?"
 
 #. description
 #: ../jobs/miscellanea.txt.in:20
@@ -1361,6 +1365,7 @@ msgstr ""
 #: ../jobs/monitor.txt.in:3
 msgid "If your system does not have a VGA port, please skip this test."
 msgstr ""
+"Vennligst hopp over denne testen hvis systemet ditt ikke har en VGA-port."
 
 #. description
 #: ../jobs/monitor.txt.in:3
@@ -1368,11 +1373,14 @@ msgid ""
 "Connect a display (if not already connected) to the VGA port on your system. "
 "Is the image displayed correctly?"
 msgstr ""
+"Koble til en skjerm (om dette ikke allerede er gjort) til VGA-porten i "
+"systemet ditt. Vises bildet ordentlig?"
 
 #. description
 #: ../jobs/monitor.txt.in:10
 msgid "If your system does not have a DVI port, please skip this test."
 msgstr ""
+"Vennligst hopp over denne testen hvis systemet ditt ikke har en DVI-port."
 
 #. description
 #: ../jobs/monitor.txt.in:10
@@ -1380,11 +1388,14 @@ msgid ""
 "Connect a display (if not already connected) to the DVI port on your system. "
 "Is the image displayed correctly?"
 msgstr ""
+"Koble til en skjerm (om dette ikke allerede er gjort) til DVI-porten i "
+"systemet ditt. Vises bildet ordentlig?"
 
 #. description
 #: ../jobs/monitor.txt.in:17
 msgid "If your system does not have DisplayPort, please skip this test."
 msgstr ""
+"Vennligst hopp over denne testen hvis systemet ditt ikke har en DisplayPort."
 
 #. description
 #: ../jobs/monitor.txt.in:17
@@ -1392,11 +1403,14 @@ msgid ""
 "Connect a display (if not already connected) to the DisplayPort on your "
 "system. Is the image displayed correctly?"
 msgstr ""
+"Koble til en skjerm (om dette ikke allerede er gjort) til DisplayPort. Vises "
+"bildet ordentlig?"
 
 #. description
 #: ../jobs/monitor.txt.in:24
 msgid "If your system does not have a HDMI port, please skip this test."
 msgstr ""
+"Vennligst hopp over denne testen hvis systemet ditt ikke har en HDMI-port."
 
 #. description
 #: ../jobs/monitor.txt.in:24
@@ -1404,11 +1418,14 @@ msgid ""
 "Connect a display (if not already connected) to the HDMI port on your "
 "system. Is the image displayed correctly?"
 msgstr ""
+"Koble til en skjerm (om dette ikke allerede er gjort) til HDMI-porten i "
+"systemet ditt. Vises bildet ordentlig?"
 
 #. description
 #: ../jobs/monitor.txt.in:31
 msgid "If your system does not have a S-VIDEO port, please skip this test."
 msgstr ""
+"Vennligst hopp over denne testen hvis systemet ditt ikke har en S-VIDEO-port."
 
 #. description
 #: ../jobs/monitor.txt.in:31
@@ -1416,11 +1433,14 @@ msgid ""
 "Connect a display (if not already connected) to the S-VIDEO port on your "
 "system. Is the image displayed correctly?"
 msgstr ""
+"Koble til en skjerm (om dette ikke allerede er gjort) til S-VIDEO-porten i "
+"systemet ditt. Vises bildet ordentlig?"
 
 #. description
 #: ../jobs/monitor.txt.in:38
 msgid "If your system does not have a RCA port, please skip this test."
 msgstr ""
+"Vennligst hopp over denne testen hvis systemet ditt ikke har en RCA-port."
 
 #. description
 #: ../jobs/monitor.txt.in:38
@@ -1428,6 +1448,8 @@ msgid ""
 "Connect a display (if not already connected) to the RCA port on your system. "
 "Is the image displayed correctly?"
 msgstr ""
+"Koble til en skjerm (om dette ikke allerede er gjort) til RCA-porten i "
+"systemet ditt. Vises bildet ordentlig?"
 
 #. description
 #: ../jobs/monitor.txt.in:46
@@ -1441,7 +1463,7 @@ msgstr ""
 #. description
 #: ../jobs/monitor.txt.in:46
 msgid "Did the monitor go blank?"
-msgstr ""
+msgstr "Ble skjermen svart?"
 
 #. description
 #: ../jobs/networking.txt.in:26
@@ -1589,7 +1611,7 @@ msgstr "Sett inn en DVD. Velg så Test for å spille av DVD'en i Totem."
 #. description
 #: ../jobs/optical.txt.in:90
 msgid "Did the file play?"
-msgstr ""
+msgstr "Ble filen avspilt?"
 
 #. description
 #: ../jobs/panel_clock_test.txt.in:4
@@ -1667,7 +1689,7 @@ msgstr ""
 #. description
 #: ../jobs/phoronix.txt.in:3
 msgid "Automated benchmark testing"
-msgstr ""
+msgstr "Automatisk ytelsestesting"
 
 #. description
 #: ../jobs/power-management.txt.in:3
@@ -2390,17 +2412,17 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:238
 msgid "Google Talk"
-msgstr ""
+msgstr "Google Talk"
 
 #. description
 #: ../jobs/user_apps.txt.in:249
 msgid "Jabber"
-msgstr ""
+msgstr "Jabber"
 
 #. description
 #: ../jobs/user_apps.txt.in:260
 msgid "AIM"
-msgstr ""
+msgstr "AIM"
 
 #. description
 #: ../jobs/user_apps.txt.in:271
@@ -2413,7 +2435,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:271
 msgid "MSN"
-msgstr ""
+msgstr "MSN"
 
 #. description
 #: ../jobs/user_apps.txt.in:271
@@ -2430,19 +2452,19 @@ msgstr "Konfigurasjonoverstyringsparametre"
 
 #: ../checkbox/application.py:84
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist."
-msgstr ""
+msgstr "Kortform for --config=checkbox/plugins/jobs_info/blacklist."
 
 #: ../checkbox/application.py:86
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist_file."
-msgstr ""
+msgstr "Kortform for --config=checkbox/plugins/jobs_info/blacklist_file."
 
 #: ../checkbox/application.py:88
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist."
-msgstr ""
+msgstr "Kortform for --config=checkbox/plugins/jobs_info/whitelist."
 
 #: ../checkbox/application.py:90
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist_file."
-msgstr ""
+msgstr "Kortform for --config=checkbox/plugins/jobs_info/whitelist_file."
 
 #: ../checkbox/lib/signal.py:23
 msgid ""
@@ -2451,11 +2473,11 @@ msgstr ""
 
 #: ../checkbox/lib/signal.py:24
 msgid "Interrupt from keyboard"
-msgstr ""
+msgstr "Avbrutt fra tastatur"
 
 #: ../checkbox/lib/signal.py:25
 msgid "Quit from keyboard"
-msgstr ""
+msgstr "Avsluttet fra tastatur"
 
 #: ../checkbox/lib/signal.py:26
 msgid "Illegal Instruction"
@@ -2471,11 +2493,11 @@ msgstr ""
 
 #: ../checkbox/lib/signal.py:29
 msgid "Kill signal"
-msgstr ""
+msgstr "Drep signal"
 
 #: ../checkbox/lib/signal.py:30
 msgid "Invalid memory reference"
-msgstr ""
+msgstr "Ugyldig minnereferanse"
 
 #: ../checkbox/lib/signal.py:31
 msgid "Broken pipe: write to pipe with no readers"
@@ -2503,11 +2525,11 @@ msgstr ""
 
 #: ../checkbox/lib/signal.py:37
 msgid "Continue if stopped"
-msgstr ""
+msgstr "Fortsett hvis stoppet"
 
 #: ../checkbox/lib/signal.py:38
 msgid "Stop process"
-msgstr ""
+msgstr "Stopp prosess"
 
 #: ../checkbox/lib/signal.py:39
 msgid "Stop typed at tty"
@@ -2523,19 +2545,19 @@ msgstr ""
 
 #: ../checkbox/lib/signal.py:77
 msgid "UNKNOWN"
-msgstr ""
+msgstr "UKJENT"
 
 #: ../checkbox/lib/signal.py:89
 msgid "Unknown signal"
-msgstr ""
+msgstr "Ukjent signal"
 
 #: ../checkbox_cli/cli_interface.py:315
 msgid "test"
-msgstr ""
+msgstr "test"
 
 #: ../checkbox_cli/cli_interface.py:339
 msgid "test again"
-msgstr ""
+msgstr "test på nytt"
 
 #: ../checkbox_urwid/urwid_interface.py:60
 msgid "Checkbox System Testing"
@@ -2543,19 +2565,19 @@ msgstr ""
 
 #: ../checkbox_urwid/urwid_interface.py:99
 msgid "Continue"
-msgstr ""
+msgstr "Fortsett"
 
 #: ../checkbox_urwid/urwid_interface.py:192
 #: ../checkbox_urwid/urwid_interface.py:268
 #: ../checkbox_urwid/urwid_interface.py:416
 msgid "Previous"
-msgstr ""
+msgstr "Forrige"
 
 #: ../checkbox_urwid/urwid_interface.py:193
 #: ../checkbox_urwid/urwid_interface.py:269
 #: ../checkbox_urwid/urwid_interface.py:417
 msgid "Next"
-msgstr ""
+msgstr "Neste"
 
 #. Show buttons
 #: ../checkbox_urwid/urwid_interface.py:414
@@ -2568,7 +2590,7 @@ msgstr ""
 
 #: ../checkbox_urwid/urwid_interface.py:772
 msgid "Test"
-msgstr ""
+msgstr "Test"
 
 #: ../checkbox_urwid/urwid_interface.py:787
 msgid "Test Again"
@@ -2580,22 +2602,24 @@ msgstr ""
 
 #: ../checkbox_gtk/gtk_interface.py:533
 msgid "Info"
-msgstr ""
+msgstr "Info"
 
 #: ../checkbox_gtk/gtk_interface.py:552
 msgid "Error"
-msgstr ""
+msgstr "Feil"
 
 #: ../checkbox/user_interface.py:136
 #, python-format
 msgid "Unable to start web browser to open %s."
-msgstr ""
+msgstr "Kunne ikke starte nettleseren for å åpne %s."
 
 #: ../plugins/apport_prompt.py:81
 msgid ""
 "Collecting information about this test.\n"
 "This might take a few minutes."
 msgstr ""
+"Samler informasjon om testen.\n"
+"Dette kan ta et par minutter."
 
 #: ../plugins/apport_prompt.py:116
 msgid ""
@@ -2616,11 +2640,11 @@ msgstr ""
 #: ../plugins/apport_prompt.py:246
 #, python-format
 msgid "Is a package upgrade in process? Error: %s"
-msgstr ""
+msgstr "Kjører en pakkeoppdatering? Feil: %s"
 
 #: ../plugins/final_prompt.py:33
 msgid "Successfully finished testing!"
-msgstr ""
+msgstr "Testene ble utført uten feil!"
 
 #: ../plugins/intro_prompt.py:43
 msgid ""
@@ -2630,6 +2654,11 @@ msgid ""
 "Once you are finished running the tests, you can view a summary report for "
 "your system."
 msgstr ""
+"Velkommen til systemtesting!\n"
+"\n"
+"Checkbox tilfører tester for å bekrefte at ditt system fungerer skikkelig. "
+"Med en gang du er ferdig å kjøre testene, kan du se et sammendrag i "
+"rapporten for ditt system."
 
 #: ../plugins/launchpad_exchange.py:118
 #, python-format
@@ -2646,6 +2675,12 @@ msgid ""
 "directly to the system database:\n"
 "https://launchpad.net/+hwdb/+submit"
 msgstr ""
+"Oppnår ikke kontakt med serveren. Vennligst prøv\n"
+"igjen, eller last opp følgende fil:\n"
+"%s\n"
+"\n"
+"direkte til systemdatabasen:\n"
+"https://launchpad.net/+hwdb/+submit"
 
 #: ../plugins/launchpad_prompt.py:71
 #, python-format
@@ -2661,25 +2696,37 @@ msgid ""
 "\n"
 "  https://launchpad.net/+login"
 msgstr ""
+"Følgende rapport har blitt laget for innlevering til Launchpad sin "
+"maskinvaredatabase:\n"
+"\n"
+"  [[%s|Vis rapport]]\n"
+"\n"
+"Du kan sende denne informasjonen om ditt system forutsatt ved e-postkontoen "
+"du bruker for å logge inn på Launchpad. Hvis du ikke har en Launchpad konto, "
+"vennligst registrer en her:\n"
+"\n"
+"  https://launchpad.net/+login"
 
 #: ../plugins/launchpad_prompt.py:88
 msgid "No e-mail address provided, not submitting to Launchpad."
-msgstr ""
+msgstr "Ingen e-post er angitt, sender ikke info til Launchpad."
 
 #: ../plugins/lock_prompt.py:63
 msgid "There is another checkbox running. Please close it first."
-msgstr ""
+msgstr "En annen checkbox kjører. Vennligst lukk denne først."
 
 #: ../plugins/recover_prompt.py:54
 msgid ""
 "Checkbox did not finish completely.\n"
 "Do you want to recover from the previous run?"
 msgstr ""
+"Checkbox fullførte ikke.\n"
+"Vil du gjenopprette fra en tidligere kjøring?"
 
 #: ../plugins/shell_test.py:52
 #, python-format
 msgid "Running %s..."
-msgstr ""
+msgstr "Kjører %s..."
 
 #. Get results
 #: ../plugins/suites_prompt.py:105
@@ -2688,15 +2735,15 @@ msgstr ""
 
 #: ../scripts/keyboard_test:21
 msgid "Enter text:\n"
-msgstr ""
+msgstr "Skriv inn tekst:\n"
 
 #: ../scripts/keyboard_test:40
 msgid "Type Text"
-msgstr ""
+msgstr "Skriv inn tekst"
 
 #: ../scripts/internet_test:139
 msgid "No Internet connection"
-msgstr ""
+msgstr "Ingen internettforbindelse"
 
 #: ../scripts/internet_test:142
 msgid "Connection established lost a packet"
@@ -2704,10 +2751,25 @@ msgstr ""
 
 #: ../scripts/internet_test:145
 msgid "Internet connection fully established"
-msgstr ""
+msgstr "Internettilkobling ble opprettet"
 
 #~ msgid "Click the Test button to display a video test."
 #~ msgstr "Trykk på testknappen for å vise en videotest"
+
+#~ msgid "Network tests"
+#~ msgstr "Nettverkskontroll"
+
+#~ msgid "Video tests"
+#~ msgstr "Videokontroll"
+
+#~ msgid "Kernel modesetting tests"
+#~ msgstr "Tester for kernel modesetting"
+
+#~ msgid "Is this ok?"
+#~ msgstr "Er dette ok?"
+
+#~ msgid "Disk benchmark:"
+#~ msgstr "Måling av disker:"
 
 #~ msgid "Do you hear a sound?"
 #~ msgstr "Hører du en lyd?"

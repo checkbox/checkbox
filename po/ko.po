@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-07-07 12:32-0400\n"
-"PO-Revision-Date: 2011-07-15 18:51+0000\n"
-"Last-Translator: airplanez <airplanez@gmail.com>\n"
+"PO-Revision-Date: 2011-07-19 20:32+0000\n"
+"Last-Translator: Francis <Unknown>\n"
 "Language-Team: Korean <ko@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-07-16 04:31+0000\n"
+"X-Launchpad-Export-Date: 2011-07-20 04:32+0000\n"
 "X-Generator: Launchpad (build 13405)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:1 ../checkbox_cli/cli_interface.py:343
@@ -34,7 +34,7 @@ msgstr "시스템 테스트"
 
 #: ../gtk/checkbox-gtk.ui.h:4
 msgid "_Deselect All"
-msgstr ""
+msgstr "모두 선택하지 않기(_D)"
 
 #: ../gtk/checkbox-gtk.ui.h:5
 msgid "_No"
@@ -46,7 +46,7 @@ msgstr "이전(_P)"
 
 #: ../gtk/checkbox-gtk.ui.h:7
 msgid "_Select All"
-msgstr ""
+msgstr "모두 선택(_S)"
 
 #: ../gtk/checkbox-gtk.ui.h:8
 msgid "_Skip this test"
@@ -72,7 +72,7 @@ msgstr ""
 #. description
 #: ../jobs/audio.txt.in:7
 msgid "Detecting your sound device(s):"
-msgstr ""
+msgstr "사운드카드 검색:"
 
 #. description
 #: ../jobs/audio.txt.in:7 ../jobs/disk.txt.in:4 ../jobs/graphics.txt.in:126
@@ -100,7 +100,7 @@ msgstr "소리를 들었을 때 그 소리에 잡음이나 클릭음 또는 다�
 #. description
 #: ../jobs/audio.txt.in:33
 msgid "Please connect a pair of headphones to your audio device."
-msgstr ""
+msgstr "오디오 장치에 헤드폰을 연결하십시오."
 
 #. description
 #: ../jobs/audio.txt.in:33
@@ -144,7 +144,7 @@ msgstr ""
 #. description
 #: ../jobs/audio.txt.in:70 ../jobs/power-management.txt.in:221
 msgid "Did you hear your speech played back?"
-msgstr ""
+msgstr "녹음된 내용을 들으셨습니까?"
 
 #. description
 #: ../jobs/audio.txt.in:81
@@ -157,12 +157,12 @@ msgstr ""
 #. description
 #: ../jobs/autotest.txt.in:3
 msgid "Autotest suite (destructive)"
-msgstr ""
+msgstr "자동 점검 모음(위험)"
 
 #. description
 #: ../jobs/bluetooth.txt.in:5 ../jobs/power-management.txt.in:185
 msgid "The address of your Bluetooth device is: $output"
-msgstr ""
+msgstr "블루투스 장치의 주소: $output"
 
 #. description
 #: ../jobs/bluetooth.txt.in:15 ../jobs/graphics.txt.in:15
@@ -223,7 +223,7 @@ msgstr ""
 #: ../jobs/bluetooth.txt.in:82 ../jobs/optical.txt.in:72
 #: ../jobs/power-management.txt.in:194 ../jobs/usb.txt.in:27
 msgid "Did all the steps work?"
-msgstr ""
+msgstr "모든 단계가 잘 작동 하였습니까?"
 
 #. description
 #: ../jobs/camera.txt.in:7
@@ -391,7 +391,7 @@ msgstr ""
 #. description
 #: ../jobs/disk.txt.in:4
 msgid "The following hard drives were detected:"
-msgstr ""
+msgstr "아래의 하드드라이브가 감지 되었습니다."
 
 #. description
 #: ../jobs/disk.txt.in:14
@@ -458,6 +458,7 @@ msgid ""
 "which test cases are run and a personal account that the tester uses to "
 "verify the fingerprint reader"
 msgstr ""
+"초기조건:이 환경점검은 같은 조건에서 시행된 여러 경우들에 대하여 경우를 제시하며, 지문인식 리더를 인증하기 위해 개인 계정을 요구합니다."
 
 #. description
 #: ../jobs/fingerprint.txt.in:3
@@ -488,7 +489,7 @@ msgstr ""
 #. description
 #: ../jobs/fingerprint.txt.in:18
 msgid "Did the authentication procedure work correctly?"
-msgstr ""
+msgstr "인증 절차가 제대로 동작하였습니까?"
 
 #. description
 #: ../jobs/firewire.txt.in:3
@@ -504,7 +505,7 @@ msgstr ""
 #. description
 #: ../jobs/firewire.txt.in:3 ../jobs/usb.txt.in:71
 msgid "Do the copy operations work as expected?"
-msgstr ""
+msgstr "원하시는 대로 복사가 되었습니까?"
 
 #. description
 #: ../jobs/floppy.txt.in:4
@@ -660,7 +661,7 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:82
 msgid "This display is using the following resolution:"
-msgstr ""
+msgstr "다음과 같은 해상도를 사용하실 수 있습니다:"
 
 #. description
 #: ../jobs/graphics.txt.in:82
@@ -672,19 +673,19 @@ msgstr "현 상태로 이용해도 되겠습니까?"
 msgid ""
 "Ensure the current resolution meets or exceeds the recommended minimum "
 "resolution (1024 x 768). See here for details:"
-msgstr ""
+msgstr "현재 해상도가 최소 해상도 (1024 x 768)이거나 그 이상인지 확인하십시오. 자세한 것은 여기를 보십시오.:"
 
 #. description
 #: ../jobs/graphics.txt.in:107
 msgid ""
 "Ensure the current resolution meets or exceeds the recommended minimum "
 "resolution (1024 x 600). See here for details:"
-msgstr ""
+msgstr "현재 해상도가 최소 해상도 (1024 x 600)이거나 그 이상인지 확인하십시오. 자세한 것은 여기를 보십시오.:"
 
 #. description
 #: ../jobs/graphics.txt.in:107
 msgid "https://help.ubuntu.com/community/Installation/SystemRequirements"
-msgstr ""
+msgstr "https://help.ubuntu.com/community/Installation/SystemRequirements"
 
 #. description
 #: ../jobs/graphics.txt.in:117
@@ -700,7 +701,7 @@ msgstr "색상 및 글자가 보이십니까?"
 #: ../jobs/graphics.txt.in:126
 msgid ""
 "The following screens and video modes have been detected on your system:"
-msgstr ""
+msgstr "아래의 스크린,비디오 모드(들)이 감지되었습니다."
 
 #. description
 #: ../jobs/graphics.txt.in:138
@@ -711,12 +712,12 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:138
 msgid "Did the screen appear to be working for each mode?"
-msgstr ""
+msgstr "각 모드가 화면에 제대로 출력됩니까?"
 
 #. description
 #: ../jobs/graphics.txt.in:146
 msgid "Check that the hardware is able to run compiz."
-msgstr ""
+msgstr "컴피즈가 동작 가능한 하드웨어인지 확인하십시오."
 
 #. description
 #: ../jobs/graphics.txt.in:153
@@ -728,7 +729,7 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:153
 msgid "Did the 3d animation appear?"
-msgstr ""
+msgstr "3D애니메이션이 보이십니까?"
 
 #. description
 #: ../jobs/info.txt.in:60 ../jobs/screenshot.txt.in:7
@@ -856,7 +857,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:3
 msgid "Audio tests"
-msgstr ""
+msgstr "오디오 테스트"
 
 #. description
 #: ../jobs/local.txt.in:8
@@ -886,17 +887,17 @@ msgstr "시스템 데몬 시험"
 #. description
 #: ../jobs/local.txt.in:33
 msgid "Disk tests"
-msgstr ""
+msgstr "디스크 테스트"
 
 #. description
 #: ../jobs/local.txt.in:38
 msgid "Fingerprint reader tests"
-msgstr ""
+msgstr "지문 인식기 테스트"
 
 #. description
 #: ../jobs/local.txt.in:43
 msgid "Firewire disk tests"
-msgstr ""
+msgstr "Firewire 디스크 테스트"
 
 #. description
 #: ../jobs/local.txt.in:48
@@ -941,7 +942,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:88
 msgid "Monitor tests"
-msgstr ""
+msgstr "모니터 테스트"
 
 #. description
 #: ../jobs/local.txt.in:93
@@ -956,7 +957,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:103
 msgid "Peripheral tests"
-msgstr ""
+msgstr "주변 기기 테스트"
 
 #. description
 #: ../jobs/local.txt.in:108
@@ -971,7 +972,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:118
 msgid "User Applications"
-msgstr ""
+msgstr "사용자 응용프로그램"
 
 #. description
 #: ../jobs/local.txt.in:123
@@ -981,7 +982,7 @@ msgstr ""
 #. description
 #: ../jobs/ltp.txt.in:3
 msgid "Linux Test Project"
-msgstr ""
+msgstr "리눅스 테스트 프로젝트"
 
 #. description
 #: ../jobs/mago.txt.in:3
@@ -1183,7 +1184,7 @@ msgstr ""
 #. description
 #: ../jobs/mediacard.txt.in:130
 msgid "Does the icon automatically appear/disappear?"
-msgstr ""
+msgstr "아이콘이 자동으로 나타나거나 사라집니까?"
 
 #. description
 #: ../jobs/memory.txt.in:4
@@ -1208,12 +1209,12 @@ msgstr ""
 #. description
 #: ../jobs/miscellanea.txt.in:8
 msgid "Note that this test may require you to enter your password."
-msgstr ""
+msgstr "이 테스트는 비밀번호를 요구할 수 있습니다."
 
 #. description
 #: ../jobs/miscellanea.txt.in:8
 msgid "Did the screen change temporarily to a text console?"
-msgstr ""
+msgstr "화면이 콘솔창으로 변경되었습니까?"
 
 #. description
 #: ../jobs/miscellanea.txt.in:20
@@ -1237,74 +1238,74 @@ msgstr ""
 #. description
 #: ../jobs/monitor.txt.in:3
 msgid "If your system does not have a VGA port, please skip this test."
-msgstr ""
+msgstr "만일 시스템에 VGA 포트가 없다면 이 테스트를 건너 뛰십시오."
 
 #. description
 #: ../jobs/monitor.txt.in:3
 msgid ""
 "Connect a display (if not already connected) to the VGA port on your system. "
 "Is the image displayed correctly?"
-msgstr ""
+msgstr "아직 모니터를 연결하지 않으셨다면 모니터를 VGA 포트에 연결하십시오. 그림이 제대로 출력됩니까?"
 
 #. description
 #: ../jobs/monitor.txt.in:10
 msgid "If your system does not have a DVI port, please skip this test."
-msgstr ""
+msgstr "시스템에 DVI 단자가 없으시다면 이 테스트를 넘어가십시오."
 
 #. description
 #: ../jobs/monitor.txt.in:10
 msgid ""
 "Connect a display (if not already connected) to the DVI port on your system. "
 "Is the image displayed correctly?"
-msgstr ""
+msgstr "아직 모니터를 연결하지 않으셨다면 DVI 포트에 연결하십시오. 그림이 제대로 출력됩니까?"
 
 #. description
 #: ../jobs/monitor.txt.in:17
 msgid "If your system does not have DisplayPort, please skip this test."
-msgstr ""
+msgstr "시스템에 디스플레이 단자가 없으시다면, 이 테스트를 넘어가십시오."
 
 #. description
 #: ../jobs/monitor.txt.in:17
 msgid ""
 "Connect a display (if not already connected) to the DisplayPort on your "
 "system. Is the image displayed correctly?"
-msgstr ""
+msgstr "아직 모니터를 연결하지 않으셨다면 DisplayPort에 연결하십시오. 그림이 제대로 출력됩니까?"
 
 #. description
 #: ../jobs/monitor.txt.in:24
 msgid "If your system does not have a HDMI port, please skip this test."
-msgstr ""
+msgstr "시스템에 HDMI단자가 없으시다면, 이 테스트를 넘어가십시오."
 
 #. description
 #: ../jobs/monitor.txt.in:24
 msgid ""
 "Connect a display (if not already connected) to the HDMI port on your "
 "system. Is the image displayed correctly?"
-msgstr ""
+msgstr "아직 모니터를 연결하지 않으셨다면 HDMI 포트에 연결하십시오. 그림이 제대로 출력됩니까?"
 
 #. description
 #: ../jobs/monitor.txt.in:31
 msgid "If your system does not have a S-VIDEO port, please skip this test."
-msgstr ""
+msgstr "시스템에 S-VIDEO단자가 없으시다면, 이 테스트를 넘어가십시오."
 
 #. description
 #: ../jobs/monitor.txt.in:31
 msgid ""
 "Connect a display (if not already connected) to the S-VIDEO port on your "
 "system. Is the image displayed correctly?"
-msgstr ""
+msgstr "아직 모니터를 연결하지 않으셨다면 S-VIDEO 단자에 연결하십시오. 그림이 제대로 출력됩니까?"
 
 #. description
 #: ../jobs/monitor.txt.in:38
 msgid "If your system does not have a RCA port, please skip this test."
-msgstr ""
+msgstr "시스템에 RCA단자가 없다면, 이 테스트를 넘어가십시오."
 
 #. description
 #: ../jobs/monitor.txt.in:38
 msgid ""
 "Connect a display (if not already connected) to the RCA port on your system. "
 "Is the image displayed correctly?"
-msgstr ""
+msgstr "아직 모니터를 연결하지 않으셨다면 RCA 단자에 연결하십시오. 그림이 제대로 출력됩니까?"
 
 #. description
 #: ../jobs/monitor.txt.in:46
@@ -1318,7 +1319,7 @@ msgstr ""
 #. description
 #: ../jobs/monitor.txt.in:46
 msgid "Did the monitor go blank?"
-msgstr ""
+msgstr "모니터가 빈 검정화면이 되었습니까?"
 
 #. description
 #: ../jobs/networking.txt.in:5
@@ -1476,7 +1477,7 @@ msgstr "DVD를 삽입하고 토템에서 DVD를 재생하기 위해 테스트를
 #. description
 #: ../jobs/optical.txt.in:90
 msgid "Did the file play?"
-msgstr ""
+msgstr "파일 재생이 되었습니까?"
 
 #. description
 #: ../jobs/panel_clock_test.txt.in:4
@@ -1554,7 +1555,7 @@ msgstr ""
 #. description
 #: ../jobs/phoronix.txt.in:3
 msgid "Automated benchmark testing"
-msgstr ""
+msgstr "자동 벤치마크 테스트"
 
 #. description
 #: ../jobs/power-management.txt.in:3
@@ -1624,17 +1625,17 @@ msgstr ""
 #. description
 #: ../jobs/power-management.txt.in:65
 msgid "Test the network before suspending."
-msgstr ""
+msgstr "절전 전에 네트워크를 시험합니다."
 
 #. description
 #: ../jobs/power-management.txt.in:70
 msgid "Record the current resolution before suspending."
-msgstr ""
+msgstr "절전 전에 현재 해상도를 기록합니다."
 
 #. description
 #: ../jobs/power-management.txt.in:78
 msgid "Test the audio before suspending."
-msgstr ""
+msgstr "절전 전에 오디오를 시험합니다."
 
 #. description
 #: ../jobs/power-management.txt.in:84
@@ -1656,7 +1657,7 @@ msgstr "RTC(리얼 타임 클럭) 장치가 존재하는지 확인하시오."
 #. description
 #: ../jobs/power-management.txt.in:135
 msgid "Power management Suspend and Resume test"
-msgstr ""
+msgstr "절전 및 재실행 전원 관리 시험"
 
 #. description
 #: ../jobs/power-management.txt.in:135
@@ -1671,18 +1672,18 @@ msgstr ""
 #. description
 #: ../jobs/power-management.txt.in:145
 msgid "Test the network after resuming."
-msgstr ""
+msgstr "절전 후 네트워크 시험"
 
 #. description
 #: ../jobs/power-management.txt.in:151
 msgid ""
 "Test to see that we have the same resolution after resuming as before."
-msgstr ""
+msgstr "절전 후에도 이전과 같은 해상도로 되는지를 시험합니다."
 
 #. description
 #: ../jobs/power-management.txt.in:160
 msgid "Test the audio after resuming."
-msgstr ""
+msgstr "절전 후 오디오를 시험합니다."
 
 #. description
 #: ../jobs/power-management.txt.in:167
@@ -1701,7 +1702,7 @@ msgstr ""
 msgid ""
 "Verify a bluetooth peripheral.  An example verification procedure for a "
 "bluetooth mouse is given."
-msgstr ""
+msgstr "블루투스 주변장치 검증.  블루트스 마우스를 검증 절차의 예로 듭니다."
 
 #. description
 #: ../jobs/power-management.txt.in:194
@@ -1728,7 +1729,7 @@ msgid ""
 "This will check to make sure that your audio device works properly after a "
 "suspend and resume.  You can use either internal or external microphone and "
 "speakers."
-msgstr ""
+msgstr "이것은 오디오 장치가 올바르게 작동하는 지를 검사합니다.   내부 또는 외부 마이크와 스피커를 사용할 수 있습니다."
 
 #. description
 #: ../jobs/power-management.txt.in:221
@@ -1750,14 +1751,14 @@ msgstr ""
 #. description
 #: ../jobs/power-management.txt.in:234
 msgid "Did the system successfully suspend and resume for 30 iterations?"
-msgstr ""
+msgstr "이 시스템이 30번을 무사히 절전과 복귀하였습니까?"
 
 #. description
 #: ../jobs/power-management.txt.in:245
 msgid ""
 "This will check to make sure your system can successfully hibernate (if "
 "supported)."
-msgstr ""
+msgstr "무사히 최대 절전하는지를 확실히 점검할 것입니다 (이 시스템이 지원한다면)."
 
 #. description
 #: ../jobs/power-management.txt.in:245
@@ -1774,7 +1775,7 @@ msgstr ""
 msgid ""
 "Did the system successfully hibernate and did it work properly after waking "
 "up?"
-msgstr ""
+msgstr "이 시스템이 무사히 최대 절전되었다가 올바르게 복귀하였습니까?"
 
 #. description
 #: ../jobs/power-management.txt.in:258
@@ -1793,11 +1794,13 @@ msgid ""
 "set, and that grub is set to boot Ubuntu by default if you have a multi-boot "
 "set-up."
 msgstr ""
+"또한, 이 시스템에 전원을 인위적으로 투입하지 말고 하드 디스크 암호가 설정하지 말아야 하며, 멀티 부팅 설정을 하였다면 grub의 기본 "
+"설정이 우분투로 부팅되게 설정하여야 합니다."
 
 #. description
 #: ../jobs/power-management.txt.in:258
 msgid "Did the system successfully hibernate and wake 30 times?"
-msgstr ""
+msgstr "이 시스템이 무사히 30번을 최대 절전하고 복귀하였습니까?"
 
 #. description
 #: ../jobs/power-management.txt.in:267
@@ -1827,7 +1830,7 @@ msgstr ""
 #. description
 #: ../jobs/qa_regression.txt.in:3
 msgid "QA regression tests (destructive)"
-msgstr ""
+msgstr "QA 회귀 테스트 (파괴적)"
 
 #. description
 #: ../jobs/server-services.txt.in:5
@@ -2075,6 +2078,8 @@ msgid ""
 "are found, install them. When Update Manager has finished, please close the "
 "app by clicking the Close button in the lower right corner."
 msgstr ""
+"이 시험은 업데이트 관리자를 실행하고 현재 시스템에 설치할 수 있는 모든 업데이트가 있는지를 점검합니다. 다음 프롬프트를 따라 하시고 "
+"만일 업데이트가 있다면 설치하십시오. 업데이트 관리자가 종료되면 오른쪽 아래 구석의 닫기 버튼을 눌러 응용 프로그램을 종료하여 주십시오."
 
 #. description
 #: ../jobs/user_apps.txt.in:14
@@ -2087,7 +2092,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:14
 msgid "Do you now have a new folder called Test Folder?"
-msgstr ""
+msgstr "시험폴더라는 새 폴더가 있습니까?"
 
 #. description
 #: ../jobs/user_apps.txt.in:25
@@ -2103,11 +2108,13 @@ msgid ""
 "Right click on the folder called Test Folder(copy) and click Rename. Enter "
 "the name Test Data in the name box and hit Enter."
 msgstr ""
+"시험폴더 (사본)이라고 생긴 폴더를 마우스로 선택하여 오른쪽 버튼을 누르고 이름 바꾸기를 선택하십시오. 이름란에 시험데이타라고 입력하고 "
+"엔터키를 누르십시오."
 
 #. description
 #: ../jobs/user_apps.txt.in:25
 msgid "Do you now have a folder called Test Data?"
-msgstr ""
+msgstr "시험데이타라는 폴더가 있습니까?"
 
 #. description
 #: ../jobs/user_apps.txt.in:38
@@ -2119,14 +2126,14 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:38
 msgid "Double click the folder called Test Folder to open it up."
-msgstr ""
+msgstr "시험폴더라는 이름의 폴더를 더블 클릭하여 여십시오."
 
 #. description
 #: ../jobs/user_apps.txt.in:38
 msgid ""
 "Was the folder called Test Data successfully moved into the folder called "
 "Test Folder?"
-msgstr ""
+msgstr "시험데이터라는 폴더가 시험폴더라는 폴더 속에 무사히 이동되었습니까?"
 
 #. description
 #: ../jobs/user_apps.txt.in:51
@@ -2139,12 +2146,12 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:51
 msgid "Do you now have a file called Test File 1?"
-msgstr ""
+msgstr "시험파일1이라는 파일이 있습니까?"
 
 #. description
 #: ../jobs/user_apps.txt.in:51
 msgid "Close the File browser."
-msgstr ""
+msgstr "파일 관리자를 닫으십시오."
 
 #. description
 #: ../jobs/user_apps.txt.in:62
@@ -2159,11 +2166,12 @@ msgid ""
 "Right click on the file called Test File 1(copy) and click Rename. Enter the "
 "name Test File 2 in the name box and hit Enter."
 msgstr ""
+"시험파일1 (사본)이라는 파일에서 오른쪽 버튼을 누르고 이름 바꾸기를 선택하십시오. 시험파일2라고 이름란에 입력하고 엔터키를 누르십시오."
 
 #. description
 #: ../jobs/user_apps.txt.in:62
 msgid "Do you now have a file called Test File 2?"
-msgstr ""
+msgstr "시험파일2라는 파일이 있습니까?"
 
 #. description
 #: ../jobs/user_apps.txt.in:75
@@ -2175,13 +2183,13 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:75
 msgid "Double click the icon for Test Data to open that folder up."
-msgstr ""
+msgstr "시험데이터 폴더의 아이콘을 더블 클릭하여 여십시오."
 
 #. description
 #: ../jobs/user_apps.txt.in:75
 msgid ""
 "Was the file Test File 2 successfully moved into the Test Data folder?"
-msgstr ""
+msgstr "시험파일2가 무사히 시험데이터 폴더로 이동하였습니까?"
 
 #. description
 #: ../jobs/user_apps.txt.in:88
@@ -2193,7 +2201,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:88
 msgid "Is Test File 1 now gone?"
-msgstr ""
+msgstr "시험파일1이 없어졌습니까?"
 
 #. description
 #: ../jobs/user_apps.txt.in:99
@@ -2205,17 +2213,17 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:99
 msgid "Has Test Folder been successfully deleted?"
-msgstr ""
+msgstr "시험폴더가 무사히 지워졌습니까?"
 
 #. description
 #: ../jobs/user_apps.txt.in:99
 msgid "Close the File Browser."
-msgstr ""
+msgstr "파일 관리자를 닫으십시오."
 
 #. description
 #: ../jobs/user_apps.txt.in:160
 msgid "Common Document Types Test"
-msgstr ""
+msgstr "일반 문서 형식 시험"
 
 #. description
 #: ../jobs/user_apps.txt.in:178
@@ -2225,7 +2233,7 @@ msgstr "파이어폭스를 실행 및 테스트 웹 페이지를 보기 위해 �
 #. description
 #: ../jobs/user_apps.txt.in:178
 msgid "Did the Ubuntu Test page load correctly?"
-msgstr ""
+msgstr "우분투 시험 페이지를 정확하게 불러들였습니까?"
 
 #. description
 #: ../jobs/user_apps.txt.in:188
@@ -2237,7 +2245,7 @@ msgstr "자바 테스트 페이지와 함께 파이어폭스를 열기 위해 �
 #. description
 #: ../jobs/user_apps.txt.in:188
 msgid "Did the applet display?"
-msgstr ""
+msgstr "애플릿이 보입니까?"
 
 #. description
 #: ../jobs/user_apps.txt.in:198
@@ -2247,7 +2255,7 @@ msgstr "파이어폭스를 실행 및 샘플 플래쉬 테스트를 보기 위�
 #. description
 #: ../jobs/user_apps.txt.in:198
 msgid "Did you see the text?"
-msgstr ""
+msgstr "글월이 보입니까?"
 
 #. description
 #: ../jobs/user_apps.txt.in:208
@@ -2257,7 +2265,7 @@ msgstr "파이어폭스를 실행 및 짧은 플래쉬 비디오를 보기 위�
 #. description
 #: ../jobs/user_apps.txt.in:208
 msgid "Did the video play correctly?"
-msgstr ""
+msgstr "비디오가 제대로 재생되었습니까?"
 
 #. description
 #: ../jobs/user_apps.txt.in:218
@@ -2267,27 +2275,27 @@ msgstr "샘플 비디오와 함께 파이어폭스를 실행하기 위해 테스
 #. description
 #: ../jobs/user_apps.txt.in:218
 msgid "Did the video play using a plugin?"
-msgstr ""
+msgstr "플러그인을 사용하여 동영상이 제대로 재생되었습니까?"
 
 #. description
 #: ../jobs/user_apps.txt.in:227
 msgid "Facebook Chat"
-msgstr ""
+msgstr "페이스북 채팅"
 
 #. description
 #: ../jobs/user_apps.txt.in:238
 msgid "Google Talk"
-msgstr ""
+msgstr "구글 토크"
 
 #. description
 #: ../jobs/user_apps.txt.in:249
 msgid "Jabber"
-msgstr ""
+msgstr "재버(Jabber)"
 
 #. description
 #: ../jobs/user_apps.txt.in:260
 msgid "AIM"
-msgstr ""
+msgstr "AIM"
 
 #. description
 #: ../jobs/user_apps.txt.in:271
@@ -2300,12 +2308,12 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:271
 msgid "MSN"
-msgstr ""
+msgstr "MSN"
 
 #. description
 #: ../jobs/user_apps.txt.in:271
 msgid "Were you able to connect correctly and send/receive messages?"
-msgstr ""
+msgstr "정확히 연결되어 메시지를 보내고 받을 수가 있습니까?"
 
 #: ../checkbox/application.py:66
 msgid "Usage: checkbox [OPTIONS]"
@@ -2329,19 +2337,19 @@ msgstr "설정을 대체할 매개 변수들."
 
 #: ../checkbox/application.py:84
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist."
-msgstr ""
+msgstr "--config=checkbox/plugins/jobs_info/blacklist 의 약칭."
 
 #: ../checkbox/application.py:86
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist_file."
-msgstr ""
+msgstr "--config=checkbox/plugins/jobs_info/blacklist_file 의 약칭."
 
 #: ../checkbox/application.py:88
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist."
-msgstr ""
+msgstr "--config=checkbox/plugins/jobs_info/whitelist 의 약칭."
 
 #: ../checkbox/application.py:90
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist_file."
-msgstr ""
+msgstr "--config=checkbox/plugins/jobs_info/whitelist_file 의 약칭."
 
 #: ../checkbox/application.py:115
 msgid "Missing configuration file as argument.\n"
@@ -2470,40 +2478,40 @@ msgstr "여기에 입력하고, 입력이 끝나면 Ctrl-D를 눌러 주십시�
 
 #: ../checkbox_urwid/urwid_interface.py:60
 msgid "Checkbox System Testing"
-msgstr ""
+msgstr "체크박스 시스템 시험중"
 
 #: ../checkbox_urwid/urwid_interface.py:99
 msgid "Continue"
-msgstr ""
+msgstr "계속"
 
 #: ../checkbox_urwid/urwid_interface.py:192
 #: ../checkbox_urwid/urwid_interface.py:268
 #: ../checkbox_urwid/urwid_interface.py:416
 msgid "Previous"
-msgstr ""
+msgstr "이전"
 
 #: ../checkbox_urwid/urwid_interface.py:193
 #: ../checkbox_urwid/urwid_interface.py:269
 #: ../checkbox_urwid/urwid_interface.py:417
 msgid "Next"
-msgstr ""
+msgstr "다음"
 
 #. Show buttons
 #: ../checkbox_urwid/urwid_interface.py:414
 msgid "Select All"
-msgstr ""
+msgstr "모두 선택"
 
 #: ../checkbox_urwid/urwid_interface.py:415
 msgid "Deselect All"
-msgstr ""
+msgstr "모두 선택 취소"
 
 #: ../checkbox_urwid/urwid_interface.py:772
 msgid "Test"
-msgstr ""
+msgstr "시험"
 
 #: ../checkbox_urwid/urwid_interface.py:787
 msgid "Test Again"
-msgstr ""
+msgstr "재시험"
 
 #: ../checkbox_gtk/gtk_interface.py:93
 msgid "hardware database"
@@ -2515,11 +2523,11 @@ msgstr "다시 테스트(_T)"
 
 #: ../checkbox_gtk/gtk_interface.py:533
 msgid "Info"
-msgstr ""
+msgstr "정보"
 
 #: ../checkbox_gtk/gtk_interface.py:552
 msgid "Error"
-msgstr ""
+msgstr "오류"
 
 #: ../checkbox/user_interface.py:136
 #, python-format
@@ -2530,13 +2538,13 @@ msgstr "웹 브라우저를 이용하여 %s 페이지를 열 수 없습니다."
 msgid ""
 "Collecting information about this test.\n"
 "This might take a few minutes."
-msgstr ""
+msgstr "테스트에 대한 정보를 수집하고 있습니다."
 
 #: ../plugins/apport_prompt.py:116
 msgid ""
 "Collected information is being sent for bug tracking.\n"
 "This might take a few minutes."
-msgstr ""
+msgstr "수집된 정보들이 버그 트래킹으로 보내졌습니다."
 
 #: ../plugins/apport_prompt.py:225
 #, python-format
@@ -2551,11 +2559,11 @@ msgstr ""
 #: ../plugins/apport_prompt.py:246
 #, python-format
 msgid "Is a package upgrade in process? Error: %s"
-msgstr ""
+msgstr "패키지 업그레이드가 진행중입니까? 오류: %s"
 
 #: ../plugins/final_prompt.py:33
 msgid "Successfully finished testing!"
-msgstr ""
+msgstr "테스트가 성공적으로 완료되었습니다."
 
 #: ../plugins/final_prompt.py:34
 msgid "_Finish"
@@ -2573,11 +2581,15 @@ msgid ""
 "Once you are finished running the tests, you can view a summary report for "
 "your system."
 msgstr ""
+"System Testing에 오신 것을 환영합니다!\n"
+"\n"
+"Checkbox는 시스템이 제대로 동작하는지 확인하기 위한 테스트를 제공합니다. 테스트를 끝내면 시스템에 대한 요약 보고서를 보실 수 "
+"있습니다."
 
 #: ../plugins/launchpad_exchange.py:118
 #, python-format
 msgid "Failed to process form: %s"
-msgstr ""
+msgstr "프로세스에 실패한 곳: %s"
 
 #: ../plugins/launchpad_exchange.py:141
 #, python-format
@@ -2622,10 +2634,18 @@ msgid ""
 "\n"
 "  https://launchpad.net/+login"
 msgstr ""
+"다음 보고서가 Launchpad 하드웨어 데이터베이스에 제출하도록 생성되었습니다:\n"
+"\n"
+"  [[%s|보고서 보기]]\n"
+"\n"
+"이 보고서를 Launchpad에 로그인 할 수 있는 이메일 주소를 이용해서 제출할 수 있습니다. Launchpad에 등록하지 않았다면 "
+"이곳에서 등록해주십시오:\n"
+"\n"
+"  https://launchpad.net/+login"
 
 #: ../plugins/launchpad_prompt.py:88
 msgid "No e-mail address provided, not submitting to Launchpad."
-msgstr ""
+msgstr "이메일 주소를 제공하지 않으면, Launchpad에 제출하지 않습니다."
 
 #: ../plugins/launchpad_prompt.py:92
 msgid "Email address must be in a proper format."
@@ -2644,6 +2664,8 @@ msgid ""
 "Checkbox did not finish completely.\n"
 "Do you want to recover from the previous run?"
 msgstr ""
+"Checkbox가 완전히 종료되지 않았습니다.\n"
+"이전 실행을 복구하시겠습니까?"
 
 #: ../plugins/report_prompt.py:34
 msgid "Building report..."
@@ -2652,38 +2674,53 @@ msgstr "보고서를 생성하는 중..."
 #: ../plugins/shell_test.py:52
 #, python-format
 msgid "Running %s..."
-msgstr ""
+msgstr "%s 실행중..."
 
 #. Get results
 #: ../plugins/suites_prompt.py:105
 msgid "Select the suites to test"
-msgstr ""
+msgstr "테스트를 위한 프로그램 선택"
 
 #: ../scripts/keyboard_test:21
 msgid "Enter text:\n"
-msgstr ""
+msgstr "텍스트 입력:\n"
 
 #: ../scripts/keyboard_test:40
 msgid "Type Text"
-msgstr ""
+msgstr "텍스트 입력"
 
 #: ../scripts/internet_test:139
 msgid "No Internet connection"
-msgstr ""
+msgstr "인터넷 연결 없음"
 
 #: ../scripts/internet_test:142
 msgid "Connection established lost a packet"
-msgstr ""
+msgstr "설정된 연결이 패킷을 손실함"
 
 #: ../scripts/internet_test:145
 msgid "Internet connection fully established"
-msgstr ""
+msgstr "인터넷 연결이 완료됬습니다."
 
 #~ msgid "Click the Test button to display a video test."
 #~ msgstr "비디오 테스트를 수행하려면 테스트 버튼을 누르세요."
 
 #~ msgid "Running shell tests..."
 #~ msgstr "쉘 테스트를 수행하는 중..."
+
+#~ msgid "Kernel modesetting tests"
+#~ msgstr "커널 모드세팅 테스트"
+
+#~ msgid "Network tests"
+#~ msgstr "네트워크 테스트"
+
+#~ msgid "Video tests"
+#~ msgstr "그래픽 테스트"
+
+#~ msgid "Disk benchmark:"
+#~ msgstr "디스크 벤치마크:"
+
+#~ msgid "Is this ok?"
+#~ msgstr "그대로 진행 하시겠습니까?"
 
 #~ msgid "Do you hear a sound?"
 #~ msgstr "소리가 들리십니까?"
