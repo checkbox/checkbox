@@ -109,15 +109,12 @@ _description:
  .
  Is this correct?
 
-plugin: manual
+plugin: shell
 name: power-management/bluetooth_detect_before_suspend
 requires: package.name == 'bluez'
-command: hcitool dev | tail -n+2 | awk '{print $2}'
+command: hcitool dev | tail -n+2 | awk '{print $2}' > $CHECKBOX_DATA/bluetooth_address
 _description:
- The address of your Bluetooth device is:
- $output
- .
- Is this correct?
+ This test just grabs the hardware address of the bluetooth controller
 
 plugin: manual
 name: power-management/bluetooth_mouse_before_suspend
@@ -217,16 +214,13 @@ _description:
  .
  Is this correct?
 
-plugin: manual
+plugin: shell
 name: power-management/bluetooth_detect_after_suspend
 depends: power-management/suspend_advanced power-management/bluetooth_detect_before_suspend
 requires: package.name == 'bluez'
-command: hcitool dev | tail -n+2 | awk '{print $2}'
+command: grep -q `hcitool dev | tail -n+2 | awk '{print $2}'` $CHECKBOX_DATA/bluetooth_address 
 _description:
- The address of your Bluetooth device is:
- $output
- .
- Is this correct?
+ This test grabs the hardware address of the bluetooth adapter after suspend and compares it to the address grabbed before suspend.
 
 plugin: manual
 name: power-management/bluetooth_mouse_after_suspend
