@@ -14,13 +14,15 @@ checkbox (0.12.4) oneiric; urgency=low
     specified and cannot be found.
   * Deselect a test suite automatically when none of its children is selected,
     in the GTK interface. (LP: #651878)
+  * Make the "Next" button the default action when Enter is pressed, to 
+    streamline testing with the GTK interface.
 
   [Brendan Donegan]
   * Refactored job definition files.
   * Fixed dependencies and test naming.
   * Added Online CPU before/after suspend test.
 
- -- Daniel Manrique <daniel.manrique@canonical.com>  Tue, 19 Jul 2011 12:22:26 -0400
+ -- Daniel Manrique <daniel.manrique@canonical.com>  Wed, 20 Jul 2011 14:01:30 -0400
 
 checkbox (0.12.3) oneiric; urgency=low
 
