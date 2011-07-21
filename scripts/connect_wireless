@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Any active connections?
-AP=`nmcli -f SSID,ACTIVE dev wifi list | grep yes | awk -F\' '{print $2}'`
-echo $AP
+connected_ap=$(nmcli -f SSID,ACTIVE dev wifi list | grep yes | awk -F\' '{print $2}')
+echo "Currently connected to: $connected_ap"
 
 # Find out if wireless is enabled
 nmcli nm wifi | grep -q 'enabled'
@@ -12,13 +12,14 @@ then
     rfkill list wifi | grep 'Hard blocked' | grep -q yes
     if [ $? -ne 0 ]
     then
-        blkmessage='Your wireless is hardware blocked. You may need
-                    to use your wireless key/switch to re-enable it.'
+        blkmessage='Your wireless is hardware blocked. You may need to
+                    use your wireless key/switch to re-enable it.'
         echo $blkmessage
         notify-send -u normal $blkmessage
 fi
 
 # Regardless, still try and enable it - can't do any harm
+echo "Ensuring wireless is enabled."
 nmcli nm wifi on
 
 # Check if there's a connection already
@@ -27,5 +28,7 @@ nmcli dev status | grep wlan | grep -q '\<connected\>'
 if [ $? -eq 0 ]
 then
     # Disconnect the wireless
-    nmcli dev disconnect iface wlan0
+    nmcli dev disconnect iface wlan0  
+    # Now try and reconnect
+    nmcli con up iface $connected_ap
 fi
