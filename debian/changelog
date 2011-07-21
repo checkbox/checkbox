@@ -8,6 +8,8 @@ checkbox (0.12.4) oneiric; urgency=low
     changes. (LP: #804369)
   * scripts/sleep_test: improve handling of NetworkManager DBus API
     changes. (LP: #808423)
+  * scripts/cdimage_resource: properly handle releases with "LTS" in their
+    name (LP: #814085)
 
   [Javier Collado]
   * Checkbox exits with EX_NOINPUT if a whitelist or blacklist file is
@@ -22,7 +24,7 @@ checkbox (0.12.4) oneiric; urgency=low
   * Fixed dependencies and test naming.
   * Added Online CPU before/after suspend test.
 
- -- Daniel Manrique <daniel.manrique@canonical.com>  Wed, 20 Jul 2011 14:01:30 -0400
+ -- Daniel Manrique <daniel.manrique@canonical.com>  Thu, 21 Jul 2011 12:13:16 -0400
 
 checkbox (0.12.3) oneiric; urgency=low
 

@@ -30,8 +30,9 @@ MEDIA_FILENAME = "/var/log/installer/media-info"
 
 def get_disk_from_string(string):
     # Ubuntu 8.04.1 "Hardy Heron" - Release amd64 (20080702.1)
+    # Ubuntu 10.04.2 LTS "Lucid Lynx" - Release amd64 (20110227.2)
     distributor_regex = r"(?P<distributor>[\w\-]+)"
-    release_regex = r"(?P<release>[\d\.]+)"
+    release_regex = r"(?P<release>[\d\.]+( LTS)*)"
     codename_regex = r"(?P<codename>[^_\"]+)"
     official_regex = r"(?P<official>[\w ]+)"
     architecture_regex = r"(?P<architecture>[\w\+]+)"
