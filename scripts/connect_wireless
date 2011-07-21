@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# Any active connections?
+AP=`nmcli -f SSID,ACTIVE dev wifi list | grep yes | awk -F\' '{print $2}'`
+echo $AP
+
+# Find out if wireless is enabled
+nmcli nm wifi | grep -q 'enabled'
+if [ $? -ne 0 ]
+then
+    # Find out why
+    rfkill list wifi | grep 'Hard blocked' | grep -q yes
+    if [ $? -ne 0 ]
+    then
+        blkmessage='Your wireless is hardware blocked. You may need
+                    to use your wireless key/switch to re-enable it.'
+        echo $blkmessage
+        notify-send -u normal $blkmessage
+fi
+
+# Regardless, still try and enable it - can't do any harm
+nmcli nm wifi on
+
+# Check if there's a connection already
+nmcli dev status | grep wlan | grep -q '\<connected\>'
+
+if [ $? -eq 0 ]
+then
+    # Disconnect the wireless
+    nmcli dev disconnect iface wlan0
+fi

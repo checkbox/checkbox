@@ -95,7 +95,7 @@ command: meminfo_resource > $CHECKBOX_DATA/meminfo_before_suspend
 
 plugin: manual
 name: power-management/wireless_before_suspend
-command: internet_test
+command: connect_wireless && internet_test --interface=wlan0
 _description:
  Wireless network connection procedure:
   1.- Click on the Network Manager applet.
@@ -207,7 +207,7 @@ _description:
 plugin: manual
 name: power-management/wireless_after_suspend
 depends: power-management/suspend_advanced power-management/wireless_before_suspend
-command: internet_test
+command: connect_wireless && internet_test --interface=wlan0
 _description:
  Wireless network connection procedure:
   1.- Click on the Network Manager applet.
