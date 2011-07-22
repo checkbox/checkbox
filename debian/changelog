@@ -8,6 +8,8 @@ checkbox (0.12.4) oneiric; urgency=low
     changes. (LP: #804369)
   * scripts/sleep_test: improve handling of NetworkManager DBus API
     changes. (LP: #808423)
+  * Updated minimum_resolution test as per latest system requirements, leaving
+    just one unified test. (LP: #767166)
 
   [Javier Collado]
   * Checkbox exits with EX_NOINPUT if a whitelist or blacklist file is
@@ -26,7 +28,7 @@ checkbox (0.12.4) oneiric; urgency=low
   * Expose the message store to other plugins, via firing an expose-msgstore
     event.
 
- -- Daniel Manrique <daniel.manrique@canonical.com>  Fri, 22 Jul 2011 09:40:50 -0400
+ -- Daniel Manrique <daniel.manrique@canonical.com>  Fri, 22 Jul 2011 16:26:00 -0400
 
 checkbox (0.12.3) oneiric; urgency=low
 
