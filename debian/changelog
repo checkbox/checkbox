@@ -22,7 +22,11 @@ checkbox (0.12.4) oneiric; urgency=low
   * Fixed dependencies and test naming.
   * Added Online CPU before/after suspend test.
 
- -- Daniel Manrique <daniel.manrique@canonical.com>  Wed, 20 Jul 2011 14:01:30 -0400
+  [Sylvain Pineau]
+  * Expose the message store to other plugins, via firing an expose-msgstore
+    event.
+
+ -- Daniel Manrique <daniel.manrique@canonical.com>  Fri, 22 Jul 2011 09:40:50 -0400
 
 checkbox (0.12.3) oneiric; urgency=low
 
