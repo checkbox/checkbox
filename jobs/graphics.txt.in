@@ -87,26 +87,14 @@ _description:
  Is this acceptable for your display?
 
 plugin: shell
-name: graphics/minimum_resolution_desktop
-requires:
- device.category == 'VIDEO'
- package.name == 'ubuntu-desktop'
-command: resolution_test --horizontal 1024 --vertical 768
-_description:
- Ensure the current resolution meets or exceeds the recommended minimum
- resolution (1024 x 768). See here for details:
- .
- https://help.ubuntu.com/community/Installation/SystemRequirements
-
-plugin: shell
-name: graphics/minimum_resolution_netbook
+name: graphics/minimum_resolution
 requires:
  device.category == 'VIDEO'
  package.name == 'ubuntu-netbook'
-command: resolution_test --horizontal 1024 --vertical 600
+command: resolution_test --horizontal 800 --vertical 600
 _description:
  Ensure the current resolution meets or exceeds the recommended minimum
- resolution (1024 x 600). See here for details:
+ resolutioni (800x600). See here for details:
  .
  https://help.ubuntu.com/community/Installation/SystemRequirements
 
