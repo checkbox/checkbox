@@ -1,20 +1,20 @@
 # Esperanto translation for checkbox
-# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
 # This file is distributed under the same license as the checkbox package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-07-07 12:32-0400\n"
-"PO-Revision-Date: 2011-04-07 07:47+0000\n"
-"Last-Translator: Michael Moroni <michael.moroni@mailoo.org>\n"
+"PO-Revision-Date: 2011-07-20 03:02+0000\n"
+"Last-Translator: Patrick (Petriko) Oudejans <Unknown>\n"
 "Language-Team: Esperanto <eo@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-07-16 04:31+0000\n"
+"X-Launchpad-Export-Date: 2011-07-21 04:31+0000\n"
 "X-Generator: Launchpad (build 13405)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:2
@@ -31,10 +31,6 @@ msgstr "Sistema testo"
 msgid "_No"
 msgstr "_Ne"
 
-#: ../gtk/checkbox-gtk.ui.h:6
-msgid "_Previous"
-msgstr "Antaŭa"
-
 #: ../gtk/checkbox-gtk.ui.h:8
 msgid "_Skip this test"
 msgstr "Ignori ĉi tiun te_ston"
@@ -46,10 +42,6 @@ msgstr "_Testo"
 #: ../gtk/checkbox-gtk.ui.h:10
 msgid "_Yes"
 msgstr "Jes"
-
-#: ../gtk/checkbox-gtk.desktop.in.h:2
-msgid "Test and report system information"
-msgstr "Informoj de test- kaj raportsistemo"
 
 #. description
 #: ../jobs/audio.txt.in:7 ../jobs/disk.txt.in:4 ../jobs/graphics.txt.in:126
@@ -85,12 +77,12 @@ msgstr "Ĉu via muso korekte funkcias?"
 #. description
 #: ../jobs/input.txt.in:13
 msgid "Is your keyboard working properly?"
-msgstr "Ĉu via klavaro dece funkcias?"
+msgstr "Ĉu via klavaro korekte funkcias?"
 
 #. description
 #: ../jobs/networking.txt.in:5
 msgid "Detecting your network controller(s):"
-msgstr "Detektanta via(j)n retkontrolilo(j)n:"
+msgstr "Detektante via(j)n retkontrolilo(j)n:"
 
 #. description
 #: ../jobs/networking.txt.in:16
@@ -161,7 +153,7 @@ msgstr "Re_testi"
 
 #: ../plugins/final_prompt.py:34
 msgid "_Finish"
-msgstr "_Finu"
+msgstr "_Fini"
 
 #: ../plugins/launchpad_exchange.py:162
 msgid "Information not posted to Launchpad."
@@ -283,11 +275,19 @@ msgstr "Pliaj informoj:"
 
 #: ../gtk/checkbox-gtk.ui.h:4
 msgid "_Deselect All"
-msgstr ""
+msgstr "Ma_lelekti ĉiujn"
+
+#: ../gtk/checkbox-gtk.ui.h:6
+msgid "_Previous"
+msgstr "_Antaŭa"
 
 #: ../gtk/checkbox-gtk.ui.h:7
 msgid "_Select All"
-msgstr ""
+msgstr "_Elekti ĉiujn"
+
+#: ../gtk/checkbox-gtk.desktop.in.h:2
+msgid "Test and report system information"
+msgstr "Informoj de test- kaj raportsistemo"
 
 #. description
 #: ../jobs/apport.txt.in:5
@@ -311,7 +311,7 @@ msgstr ""
 #. description
 #: ../jobs/audio.txt.in:33
 msgid "Please connect a pair of headphones to your audio device."
-msgstr ""
+msgstr "Bonvolu konekti kap-aŭskutilon al via son-instalaĵo."
 
 #. description
 #: ../jobs/audio.txt.in:33
@@ -382,12 +382,12 @@ msgstr ""
 #. description
 #: ../jobs/autotest.txt.in:3
 msgid "Autotest suite (destructive)"
-msgstr ""
+msgstr "Memtestaro (detrua)"
 
 #. description
 #: ../jobs/bluetooth.txt.in:5 ../jobs/power-management.txt.in:185
 msgid "The address of your Bluetooth device is: $output"
-msgstr ""
+msgstr "La adreso de via Bluetooth-aparato estas: $output"
 
 #. description
 #: ../jobs/bluetooth.txt.in:15 ../jobs/graphics.txt.in:15
@@ -448,7 +448,7 @@ msgstr ""
 #: ../jobs/bluetooth.txt.in:82 ../jobs/optical.txt.in:72
 #: ../jobs/power-management.txt.in:194 ../jobs/usb.txt.in:27
 msgid "Did all the steps work?"
-msgstr ""
+msgstr "Ĉu ĉiuj paŝoj funkciis?"
 
 #. description
 #: ../jobs/camera.txt.in:7
@@ -616,7 +616,7 @@ msgstr ""
 #. description
 #: ../jobs/disk.txt.in:4
 msgid "The following hard drives were detected:"
-msgstr ""
+msgstr "Jenaj firmdiskiloj estis trovitaj:"
 
 #. description
 #: ../jobs/disk.txt.in:14
@@ -683,6 +683,9 @@ msgid ""
 "which test cases are run and a personal account that the tester uses to "
 "verify the fingerprint reader"
 msgstr ""
+"Antaŭkondiĉoj: Tiu ĉi testo supozas, ke ekzistas testkonto por ruli la "
+"testojn kaj persona konto uzata de la testanto por kontroli la legilon de "
+"fingropremaĵoj."
 
 #. description
 #: ../jobs/fingerprint.txt.in:3
@@ -898,6 +901,8 @@ msgid ""
 "Ensure the current resolution meets or exceeds the recommended minimum "
 "resolution (1024 x 768). See here for details:"
 msgstr ""
+"Certigu, ke la nuna distingivo estas ne malpli ol la minimuma distingivo "
+"(1024 × 768). Rigardu ĉi tie por detaloj:"
 
 #. description
 #: ../jobs/graphics.txt.in:107
@@ -905,11 +910,13 @@ msgid ""
 "Ensure the current resolution meets or exceeds the recommended minimum "
 "resolution (1024 x 600). See here for details:"
 msgstr ""
+"Certigu, ke la nuna distingivo estas ne malpli ol la minimuma distingivo "
+"(1024 × 600). Rigardu ĉi tie por detaloj:"
 
 #. description
 #: ../jobs/graphics.txt.in:107
 msgid "https://help.ubuntu.com/community/Installation/SystemRequirements"
-msgstr ""
+msgstr "https://help.ubuntu.com/community/Installation/SystemRequirements"
 
 #. description
 #: ../jobs/graphics.txt.in:117
@@ -937,7 +944,7 @@ msgstr "Ĉu la ekrano bone funkciis por ĉiu reĝimo?"
 #. description
 #: ../jobs/graphics.txt.in:146
 msgid "Check that the hardware is able to run compiz."
-msgstr ""
+msgstr "Kontrolu, ĉu la aparataro estas kapabla ruli \"compiz\"-on."
 
 #. description
 #: ../jobs/graphics.txt.in:153
@@ -951,7 +958,7 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:153
 msgid "Did the 3d animation appear?"
-msgstr ""
+msgstr "Ĉu montriĝis la tridimensia animacio?"
 
 #. description
 #: ../jobs/info.txt.in:60 ../jobs/screenshot.txt.in:7
@@ -1150,7 +1157,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:88
 msgid "Monitor tests"
-msgstr ""
+msgstr "Ekranaj testoj"
 
 #. description
 #: ../jobs/local.txt.in:93
@@ -1180,7 +1187,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:118
 msgid "User Applications"
-msgstr ""
+msgstr "Uzant-aplikaĵoj"
 
 #. description
 #: ../jobs/local.txt.in:123
@@ -1190,7 +1197,7 @@ msgstr ""
 #. description
 #: ../jobs/ltp.txt.in:3
 msgid "Linux Test Project"
-msgstr ""
+msgstr "Linuks-test-a projekto"
 
 #. description
 #: ../jobs/mago.txt.in:3
@@ -1418,7 +1425,7 @@ msgstr ""
 #. description
 #: ../jobs/mediacard.txt.in:130
 msgid "Does the icon automatically appear/disappear?"
-msgstr ""
+msgstr "Ĉu la ikono aŭtomate aperas kaj malaperas?"
 
 #. description
 #: ../jobs/memory.txt.in:4
@@ -1473,7 +1480,7 @@ msgstr ""
 #. description
 #: ../jobs/monitor.txt.in:3
 msgid "If your system does not have a VGA port, please skip this test."
-msgstr ""
+msgstr "Se via sistemo ne havas VGA-konektilon, transpaŝu tiun ĉi teston."
 
 #. description
 #: ../jobs/monitor.txt.in:3
@@ -1481,11 +1488,13 @@ msgid ""
 "Connect a display (if not already connected) to the VGA port on your system. "
 "Is the image displayed correctly?"
 msgstr ""
+"Konektu vidigilon al la VGA-konektilo (se ne ĝi jam estas konektita). Ĉu la "
+"bildo estas ĝuste vidigata?"
 
 #. description
 #: ../jobs/monitor.txt.in:10
 msgid "If your system does not have a DVI port, please skip this test."
-msgstr ""
+msgstr "Se via sistemo ne havas DVI-konektilon, transpaŝu tiun ĉi teston."
 
 #. description
 #: ../jobs/monitor.txt.in:10
@@ -1493,11 +1502,14 @@ msgid ""
 "Connect a display (if not already connected) to the DVI port on your system. "
 "Is the image displayed correctly?"
 msgstr ""
+"Konektu vidigilon al la DVI-konektilo (se ne ĝi jam estas konektita). Ĉu la "
+"bildo estas ĝuste vidigata?"
 
 #. description
 #: ../jobs/monitor.txt.in:17
 msgid "If your system does not have DisplayPort, please skip this test."
 msgstr ""
+"Se via sistemo ne havas DisplayPort-konektilon, transpaŝu tiun ĉi teston."
 
 #. description
 #: ../jobs/monitor.txt.in:17
@@ -1505,11 +1517,13 @@ msgid ""
 "Connect a display (if not already connected) to the DisplayPort on your "
 "system. Is the image displayed correctly?"
 msgstr ""
+"Konektu vidigilon al la DisplayPort-konektilo (se ne ĝi jam estas "
+"konektita). Ĉu la bildo estas ĝuste vidigata?"
 
 #. description
 #: ../jobs/monitor.txt.in:24
 msgid "If your system does not have a HDMI port, please skip this test."
-msgstr ""
+msgstr "Se via sistemo ne havas HDMI-konektilon, transpaŝu tiun ĉi teston."
 
 #. description
 #: ../jobs/monitor.txt.in:24
@@ -1517,11 +1531,14 @@ msgid ""
 "Connect a display (if not already connected) to the HDMI port on your "
 "system. Is the image displayed correctly?"
 msgstr ""
+"Konektu vidigilon al la HDMI-konektilo (se ne ĝi jam estas konektita). Ĉu la "
+"bildo estas ĝuste vidigata?"
 
 #. description
 #: ../jobs/monitor.txt.in:31
 msgid "If your system does not have a S-VIDEO port, please skip this test."
 msgstr ""
+"Se via sistemo ne havas S-VIDEO-konektilon, transpaŝu tiun ĉi teston."
 
 #. description
 #: ../jobs/monitor.txt.in:31
@@ -1529,11 +1546,13 @@ msgid ""
 "Connect a display (if not already connected) to the S-VIDEO port on your "
 "system. Is the image displayed correctly?"
 msgstr ""
+"Konektu vidigilon al la S-VIDEO-konektilo (se ne ĝi jam estas konektita). Ĉu "
+"la bildo estas ĝuste vidigata?"
 
 #. description
 #: ../jobs/monitor.txt.in:38
 msgid "If your system does not have a RCA port, please skip this test."
-msgstr ""
+msgstr "Se via sistemo ne havas RCA-konektilon, transpaŝu tiun ĉi teston."
 
 #. description
 #: ../jobs/monitor.txt.in:38
@@ -1541,6 +1560,8 @@ msgid ""
 "Connect a display (if not already connected) to the RCA port on your system. "
 "Is the image displayed correctly?"
 msgstr ""
+"Konektu vidigilon al la RCA-konektilo (se ne ĝi jam estas konektita). Ĉu la "
+"bildo estas ĝuste vidigata?"
 
 #. description
 #: ../jobs/monitor.txt.in:46
@@ -1554,7 +1575,7 @@ msgstr ""
 #. description
 #: ../jobs/monitor.txt.in:46
 msgid "Did the monitor go blank?"
-msgstr ""
+msgstr "Ĉu la ekrano malpleniĝis?"
 
 #. description
 #: ../jobs/networking.txt.in:26
@@ -1780,7 +1801,7 @@ msgstr ""
 #. description
 #: ../jobs/phoronix.txt.in:3
 msgid "Automated benchmark testing"
-msgstr ""
+msgstr "Aŭtomatigita taksotestado"
 
 #. description
 #: ../jobs/power-management.txt.in:3
@@ -1850,17 +1871,17 @@ msgstr ""
 #. description
 #: ../jobs/power-management.txt.in:65
 msgid "Test the network before suspending."
-msgstr ""
+msgstr "Testi la reton antaŭ la prokrasta reĝimo"
 
 #. description
 #: ../jobs/power-management.txt.in:70
 msgid "Record the current resolution before suspending."
-msgstr ""
+msgstr "Konservi la nunan distingivon antaŭ la prokrasta reĝimo"
 
 #. description
 #: ../jobs/power-management.txt.in:78
 msgid "Test the audio before suspending."
-msgstr ""
+msgstr "Testi la sonon antaŭ la prokrasta reĝimo"
 
 #. description
 #: ../jobs/power-management.txt.in:84
@@ -1882,7 +1903,7 @@ msgstr "Certigu, ke la RTC- (Realtempa horloĝo) aparato ekzistas."
 #. description
 #: ../jobs/power-management.txt.in:135
 msgid "Power management Suspend and Resume test"
-msgstr ""
+msgstr "Testo por prokrasto kaj daŭrigo de energimastrumado"
 
 #. description
 #: ../jobs/power-management.txt.in:135
@@ -1897,18 +1918,19 @@ msgstr ""
 #. description
 #: ../jobs/power-management.txt.in:145
 msgid "Test the network after resuming."
-msgstr ""
+msgstr "Testi la sistemon post revekiĝo."
 
 #. description
 #: ../jobs/power-management.txt.in:151
 msgid ""
 "Test to see that we have the same resolution after resuming as before."
 msgstr ""
+"Tesyo por kontroli ĉu ni havas la saman distingivon post vekiĝo ol antaŭe."
 
 #. description
 #: ../jobs/power-management.txt.in:160
 msgid "Test the audio after resuming."
-msgstr ""
+msgstr "Testi la sonon post revekiĝo."
 
 #. description
 #: ../jobs/power-management.txt.in:167
@@ -1928,6 +1950,8 @@ msgid ""
 "Verify a bluetooth peripheral.  An example verification procedure for a "
 "bluetooth mouse is given."
 msgstr ""
+"Kontroli 'bluetooth'-aparaton. Jen ekzempla kontrolproceduro por 'bluetooth'-"
+"muso."
 
 #. description
 #: ../jobs/power-management.txt.in:194
@@ -1957,6 +1981,8 @@ msgid ""
 "suspend and resume.  You can use either internal or external microphone and "
 "speakers."
 msgstr ""
+"Tiel ĉi kontroliĝas ĉu viaj sonaparatoj ankoraŭ funkcias post prokrasto kaj "
+"revekiĝo. Vi povos uzi aŭ internajn aŭ eksterajn mikrofonon aŭ laŭtparoliloĵ."
 
 #. description
 #: ../jobs/power-management.txt.in:221
@@ -1986,7 +2012,7 @@ msgstr ""
 #. description
 #: ../jobs/power-management.txt.in:234
 msgid "Did the system successfully suspend and resume for 30 iterations?"
-msgstr ""
+msgstr "Ĉu la sistemo sukcese prokrastis kaj revekiĝis 30 fojojn?"
 
 #. description
 #: ../jobs/power-management.txt.in:245
@@ -1994,6 +2020,7 @@ msgid ""
 "This will check to make sure your system can successfully hibernate (if "
 "supported)."
 msgstr ""
+"Tio ĉi kontroligos ĉu la sistemo povas sukcese pasivumigi sin (se subtenate)."
 
 #. description
 #: ../jobs/power-management.txt.in:245
@@ -2016,6 +2043,7 @@ msgid ""
 "Did the system successfully hibernate and did it work properly after waking "
 "up?"
 msgstr ""
+"Ĉu la sistemo sukcese pasivumigis sin kaj bone funkciis post revekiĝo?"
 
 #. description
 #: ../jobs/power-management.txt.in:258
@@ -2039,11 +2067,14 @@ msgid ""
 "set, and that grub is set to boot Ubuntu by default if you have a multi-boot "
 "set-up."
 msgstr ""
+"Krome, certiĝu ĉu via sistemo ne bezonas pasvorto(j)n por la starto kaj/aŭ "
+"la fiksita disko, kaj ĉu 'grub' estas agordita tiel ke ĝi ŝargas Ubuntun "
+"defaŭlte se vi havas plurŝargan sistemon."
 
 #. description
 #: ../jobs/power-management.txt.in:258
 msgid "Did the system successfully hibernate and wake 30 times?"
-msgstr ""
+msgstr "Ĉu la sistemo sukcese pasivumigis sin kaj vekiĝis 30 fojojn?"
 
 #. description
 #: ../jobs/power-management.txt.in:267
@@ -2078,7 +2109,7 @@ msgstr ""
 #. description
 #: ../jobs/qa_regression.txt.in:3
 msgid "QA regression tests (destructive)"
-msgstr ""
+msgstr "QA-regresiaj testoj (detruaj)"
 
 #. description
 #: ../jobs/server-services.txt.in:5
@@ -2326,6 +2357,10 @@ msgid ""
 "are found, install them. When Update Manager has finished, please close the "
 "app by clicking the Close button in the lower right corner."
 msgstr ""
+"Ĉu tiu testo funkciigos la Aktualigan Mastrumilon kaj kontrolos ĉu estas "
+"haveblaj ĝisdatigoj por la sistemo. Bonvolu sekvi la instrukciojn kaj "
+"instali ĝisdatigojn se ili troviĝis. Kiam la Aktualiga Mastrumilo finas, "
+"bonvolu fermi la aplikaĵon per la butono  \"Fermi\" en la sube-deksta angulo."
 
 #. description
 #: ../jobs/user_apps.txt.in:14
@@ -2341,7 +2376,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:14
 msgid "Do you now have a new folder called Test Folder?"
-msgstr ""
+msgstr "Ĉu vi nun havas novan dosierujon kun la nomo \"Testdosierujo\"?"
 
 #. description
 #: ../jobs/user_apps.txt.in:25
@@ -2360,11 +2395,14 @@ msgid ""
 "Right click on the folder called Test Folder(copy) and click Rename. Enter "
 "the name Test Data in the name box and hit Enter."
 msgstr ""
+"Dekstre alklaku la dosierujon \"Testdosierujo (kopio)\" kaj elektu "
+"\"Renomi...\". Enigu la nomon \"Testdatumoj\" en la nomkampon kaj premu "
+"\"Enigi\"."
 
 #. description
 #: ../jobs/user_apps.txt.in:25
 msgid "Do you now have a folder called Test Data?"
-msgstr ""
+msgstr "Ĉu vi nun havas dosierujon kun la nomo \"Testdatumoj\"?"
 
 #. description
 #: ../jobs/user_apps.txt.in:38
@@ -2378,7 +2416,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:38
 msgid "Double click the folder called Test Folder to open it up."
-msgstr ""
+msgstr "Duoble alklaku la dosierujon \"Testdosierujo\" por ĝin malfermi."
 
 #. description
 #: ../jobs/user_apps.txt.in:38
@@ -2386,6 +2424,8 @@ msgid ""
 "Was the folder called Test Data successfully moved into the folder called "
 "Test Folder?"
 msgstr ""
+"Ĉu la dosiero \"Testdatumoj\" sukcese moviĝis en la dosierujon "
+"\"Testdosierujo\"?"
 
 #. description
 #: ../jobs/user_apps.txt.in:51
@@ -2401,12 +2441,12 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:51
 msgid "Do you now have a file called Test File 1?"
-msgstr ""
+msgstr "Ĉu vi nun havas dosieron kun la nomo \"Testdosiero 1\"?"
 
 #. description
 #: ../jobs/user_apps.txt.in:51
 msgid "Close the File browser."
-msgstr ""
+msgstr "Fermu la Administrilon de dosieroj."
 
 #. description
 #: ../jobs/user_apps.txt.in:62
@@ -2424,11 +2464,14 @@ msgid ""
 "Right click on the file called Test File 1(copy) and click Rename. Enter the "
 "name Test File 2 in the name box and hit Enter."
 msgstr ""
+"Dekstre alklaku la dosieron \"Testdosiero 1 (kopio) kaj elektu "
+"\"Renomi...\". Entajpu la nomon \"Testdosiero 2\" en la nomkampon kaj premu "
+"\"Enigi\"."
 
 #. description
 #: ../jobs/user_apps.txt.in:62
 msgid "Do you now have a file called Test File 2?"
-msgstr ""
+msgstr "Ĉu vi nun havas dosieron nomatan \"Testdosiero 2\"?"
 
 #. description
 #: ../jobs/user_apps.txt.in:75
@@ -2443,12 +2486,16 @@ msgstr ""
 #: ../jobs/user_apps.txt.in:75
 msgid "Double click the icon for Test Data to open that folder up."
 msgstr ""
+"Duoble klaku sur la piktogramo de \"Testdatumoj\" por malfermi tiun "
+"dosierujon."
 
 #. description
 #: ../jobs/user_apps.txt.in:75
 msgid ""
 "Was the file Test File 2 successfully moved into the Test Data folder?"
 msgstr ""
+"Ĉu la dosiero \"Testdosiero 2\" estis sukcese movita en la dosierujon "
+"\"Testdatumoj\"?"
 
 #. description
 #: ../jobs/user_apps.txt.in:88
@@ -2462,7 +2509,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:88
 msgid "Is Test File 1 now gone?"
-msgstr ""
+msgstr "Ĉu \"Testdosiero 1\" nun estas for?"
 
 #. description
 #: ../jobs/user_apps.txt.in:99
@@ -2476,17 +2523,17 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:99
 msgid "Has Test Folder been successfully deleted?"
-msgstr ""
+msgstr "Ĉu vi sukcesis forigi la testdosierujon?"
 
 #. description
 #: ../jobs/user_apps.txt.in:99
 msgid "Close the File Browser."
-msgstr ""
+msgstr "Fermu la dosieresplorilo."
 
 #. description
 #: ../jobs/user_apps.txt.in:160
 msgid "Common Document Types Test"
-msgstr ""
+msgstr "Testo de oftaj dokumenttipoj."
 
 #. description
 #: ../jobs/user_apps.txt.in:178
@@ -2496,7 +2543,7 @@ msgstr "Elektu “Testi” por malfermi Firefox kaj montri la testretpaĝon."
 #. description
 #: ../jobs/user_apps.txt.in:178
 msgid "Did the Ubuntu Test page load correctly?"
-msgstr ""
+msgstr "Ĉu la testpaĝo de Ubuntu sukcese ŝargiĝis?"
 
 #. description
 #: ../jobs/user_apps.txt.in:188
@@ -2510,7 +2557,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:188
 msgid "Did the applet display?"
-msgstr ""
+msgstr "Ĉu la programeto sukcese aperis?"
 
 #. description
 #: ../jobs/user_apps.txt.in:198
@@ -2521,7 +2568,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:198
 msgid "Did you see the text?"
-msgstr ""
+msgstr "Ĉu vi vidis la tekston?"
 
 #. description
 #: ../jobs/user_apps.txt.in:208
@@ -2532,7 +2579,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:208
 msgid "Did the video play correctly?"
-msgstr ""
+msgstr "Ĉu la filmeto bone montriĝis?"
 
 #. description
 #: ../jobs/user_apps.txt.in:218
@@ -2542,27 +2589,27 @@ msgstr "Elektu “Testi” por malfermi Firefox kun specimena filmeto."
 #. description
 #: ../jobs/user_apps.txt.in:218
 msgid "Did the video play using a plugin?"
-msgstr ""
+msgstr "Ĉu la filmeto montriĝis per kromprogramo?"
 
 #. description
 #: ../jobs/user_apps.txt.in:227
 msgid "Facebook Chat"
-msgstr ""
+msgstr "Babililo de Facebook"
 
 #. description
 #: ../jobs/user_apps.txt.in:238
 msgid "Google Talk"
-msgstr ""
+msgstr "Gugla babilado"
 
 #. description
 #: ../jobs/user_apps.txt.in:249
 msgid "Jabber"
-msgstr ""
+msgstr "Jabber"
 
 #. description
 #: ../jobs/user_apps.txt.in:260
 msgid "AIM"
-msgstr ""
+msgstr "AIM"
 
 #. description
 #: ../jobs/user_apps.txt.in:271
@@ -2577,28 +2624,28 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:271
 msgid "MSN"
-msgstr ""
+msgstr "MSN"
 
 #. description
 #: ../jobs/user_apps.txt.in:271
 msgid "Were you able to connect correctly and send/receive messages?"
-msgstr ""
+msgstr "Ĉu vi sukcesis konektiĝi kaj sendi/ricevi mesaĝojn?"
 
 #: ../checkbox/application.py:84
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist."
-msgstr ""
+msgstr "Mallongigo por --config=checkbox/plugins/jobs_info/blacklist."
 
 #: ../checkbox/application.py:86
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist_file."
-msgstr ""
+msgstr "Mallongigo por --config=checkbox/plugins/jobs_info/blacklist_file."
 
 #: ../checkbox/application.py:88
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist."
-msgstr ""
+msgstr "Mallongigo por --config=checkbox/plugins/jobs_info/whitelist."
 
 #: ../checkbox/application.py:90
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist_file."
-msgstr ""
+msgstr "Mallongigo por --config=checkbox/plugins/jobs_info/whitelist_file."
 
 #: ../checkbox/application.py:115
 msgid "Missing configuration file as argument.\n"
@@ -2693,40 +2740,40 @@ msgstr "Nekonata signalo"
 
 #: ../checkbox_urwid/urwid_interface.py:60
 msgid "Checkbox System Testing"
-msgstr ""
+msgstr "Sistemtestado de Checkbox"
 
 #: ../checkbox_urwid/urwid_interface.py:99
 msgid "Continue"
-msgstr ""
+msgstr "Daŭrigi"
 
 #: ../checkbox_urwid/urwid_interface.py:192
 #: ../checkbox_urwid/urwid_interface.py:268
 #: ../checkbox_urwid/urwid_interface.py:416
 msgid "Previous"
-msgstr ""
+msgstr "Antaŭa"
 
 #: ../checkbox_urwid/urwid_interface.py:193
 #: ../checkbox_urwid/urwid_interface.py:269
 #: ../checkbox_urwid/urwid_interface.py:417
 msgid "Next"
-msgstr ""
+msgstr "Sekva"
 
 #. Show buttons
 #: ../checkbox_urwid/urwid_interface.py:414
 msgid "Select All"
-msgstr ""
+msgstr "Elekti ĉiujn"
 
 #: ../checkbox_urwid/urwid_interface.py:415
 msgid "Deselect All"
-msgstr ""
+msgstr "Malelekti ĉiujn"
 
 #: ../checkbox_urwid/urwid_interface.py:772
 msgid "Test"
-msgstr ""
+msgstr "Testi"
 
 #: ../checkbox_urwid/urwid_interface.py:787
 msgid "Test Again"
-msgstr ""
+msgstr "Retesti"
 
 #: ../checkbox_gtk/gtk_interface.py:93
 msgid "hardware database"
@@ -2750,12 +2797,16 @@ msgid ""
 "Collecting information about this test.\n"
 "This might take a few minutes."
 msgstr ""
+"Kolektado de informoj pri tiu ĉi testo.\n"
+"Tio eble daŭros kelke da minutoj."
 
 #: ../plugins/apport_prompt.py:116
 msgid ""
 "Collected information is being sent for bug tracking.\n"
 "This might take a few minutes."
 msgstr ""
+"Sendado de kolektitaj informoj por erar-spurado.\n"
+"Tio eble daŭros kelke da minutoj."
 
 #: ../plugins/apport_prompt.py:225
 #, python-format
@@ -2770,7 +2821,7 @@ msgstr ""
 #: ../plugins/apport_prompt.py:246
 #, python-format
 msgid "Is a package upgrade in process? Error: %s"
-msgstr ""
+msgstr "Ĉu eble ruliĝas plialtgradigo de iu pakaĵo? Eraro: %s"
 
 #: ../plugins/final_prompt.py:33
 msgid "Successfully finished testing!"
@@ -2796,7 +2847,7 @@ msgstr ""
 #: ../plugins/launchpad_exchange.py:118
 #, python-format
 msgid "Failed to process form: %s"
-msgstr ""
+msgstr "Eraro dum prilaborado de formularo: %s"
 
 #: ../plugins/launchpad_exchange.py:141
 #, python-format
@@ -2865,11 +2916,13 @@ msgid ""
 "Checkbox did not finish completely.\n"
 "Do you want to recover from the previous run?"
 msgstr ""
+"Checkbox ne komplete faris sian taskon.\n"
+"Ĉu vi volas daŭrigi la antaŭan rulon?"
 
 #: ../plugins/shell_test.py:52
 #, python-format
 msgid "Running %s..."
-msgstr ""
+msgstr "Rulado de %s…"
 
 #. Get results
 #: ../plugins/suites_prompt.py:105

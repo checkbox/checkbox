@@ -8,18 +8,18 @@ msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-07-07 12:32-0400\n"
-"PO-Revision-Date: 2010-01-10 17:00+0000\n"
+"PO-Revision-Date: 2011-07-19 19:14+0000\n"
 "Last-Translator: Marián Bača <majoobaca@gmail.com>\n"
 "Language-Team: Slovak <sk@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-07-16 04:32+0000\n"
+"X-Launchpad-Export-Date: 2011-07-20 04:33+0000\n"
 "X-Generator: Launchpad (build 13405)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:2
 msgid "Ne_xt"
-msgstr "Ďa_lej"
+msgstr "Ď_alej"
 
 #. Title of the user interface
 #: ../gtk/checkbox-gtk.ui.h:3 ../gtk/checkbox-gtk.desktop.in.h:1
@@ -179,8 +179,8 @@ msgid ""
 "directly to the system database:\n"
 "https://launchpad.net/+hwdb/+submit"
 msgstr ""
-"Zlyhanie kontaktovania so serverom. Skúste znovu\n"
-"prosím alebo nahrajte nasledujúci názov súboru:\n"
+"Zlyhalo kontaktovanie so serverom. Skúste znovu, \n"
+"alebo nahrajte nasledujúci názov súboru:\n"
 "%s\n"
 "\n"
 "priamo do systémovej databázy:\n"
@@ -349,11 +349,11 @@ msgstr "Ďalšie informácie:"
 
 #: ../gtk/checkbox-gtk.ui.h:4
 msgid "_Deselect All"
-msgstr ""
+msgstr "O_dznačiť všetko"
 
 #: ../gtk/checkbox-gtk.ui.h:7
 msgid "_Select All"
-msgstr ""
+msgstr "_Vybrať všetky"
 
 #. description
 #: ../jobs/apport.txt.in:5
@@ -375,7 +375,7 @@ msgstr ""
 #. description
 #: ../jobs/audio.txt.in:33
 msgid "Please connect a pair of headphones to your audio device."
-msgstr ""
+msgstr "Pripojte, prosím slúchadlá do vášho zvukového zariadenia."
 
 #. description
 #: ../jobs/audio.txt.in:33
@@ -432,12 +432,12 @@ msgstr ""
 #. description
 #: ../jobs/autotest.txt.in:3
 msgid "Autotest suite (destructive)"
-msgstr ""
+msgstr "Súprava automatických testov (deštruktívnych)"
 
 #. description
 #: ../jobs/bluetooth.txt.in:5 ../jobs/power-management.txt.in:185
 msgid "The address of your Bluetooth device is: $output"
-msgstr ""
+msgstr "Adresa vášho Bluetooth zariadenia je: $output"
 
 #. description
 #: ../jobs/bluetooth.txt.in:15 ../jobs/graphics.txt.in:15
@@ -498,7 +498,7 @@ msgstr ""
 #: ../jobs/bluetooth.txt.in:82 ../jobs/optical.txt.in:72
 #: ../jobs/power-management.txt.in:194 ../jobs/usb.txt.in:27
 msgid "Did all the steps work?"
-msgstr ""
+msgstr "Fungovali všetky fázy?"
 
 #. description
 #: ../jobs/camera.txt.in:7
@@ -666,7 +666,7 @@ msgstr ""
 #. description
 #: ../jobs/disk.txt.in:4
 msgid "The following hard drives were detected:"
-msgstr ""
+msgstr "Našli sa nasledujúce pevné disky:"
 
 #. description
 #: ../jobs/disk.txt.in:14
@@ -733,6 +733,9 @@ msgid ""
 "which test cases are run and a personal account that the tester uses to "
 "verify the fingerprint reader"
 msgstr ""
+"Predpoklady: Tento test predpokladá, že je prítomný testovací účet, z "
+"ktorého prebehnú nasledujúce testy a osobný účet, na ktorom si používateľ "
+"preverí funkčnosť čítačky odtlačkov prstov."
 
 #. description
 #: ../jobs/fingerprint.txt.in:3
@@ -948,6 +951,8 @@ msgid ""
 "Ensure the current resolution meets or exceeds the recommended minimum "
 "resolution (1024 x 768). See here for details:"
 msgstr ""
+"Uistite sa, že súčasné rozlíšenie je rovnaké alebo prekračuje najmenšie "
+"doporučované rozlíšenie (1024 x 768). Pozrite sa sem pre viac podrobností:"
 
 #. description
 #: ../jobs/graphics.txt.in:107
@@ -955,11 +960,13 @@ msgid ""
 "Ensure the current resolution meets or exceeds the recommended minimum "
 "resolution (1024 x 600). See here for details:"
 msgstr ""
+"Uistite sa, že súčasné rozlíšenie je rovnaké alebo prekračuje najmenšie "
+"doporučované rozlíšenie (1024 x 600). Pozrite sa sem pre viac podrobností:"
 
 #. description
 #: ../jobs/graphics.txt.in:107
 msgid "https://help.ubuntu.com/community/Installation/SystemRequirements"
-msgstr ""
+msgstr "https://help.ubuntu.com/community/Installation/SystemRequirements"
 
 #. description
 #: ../jobs/graphics.txt.in:117
@@ -987,6 +994,8 @@ msgstr "Pracoval monitor správne vo všetkých rozlíšeniach?"
 #: ../jobs/graphics.txt.in:146
 msgid "Check that the hardware is able to run compiz."
 msgstr ""
+"Kontroluje sa, či je hardvér schopný pracovať s akcelerovaným prostredím "
+"compiz."
 
 #. description
 #: ../jobs/graphics.txt.in:153
@@ -998,7 +1007,7 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:153
 msgid "Did the 3d animation appear?"
-msgstr ""
+msgstr "Objavila sa 3D animácia?"
 
 #. description
 #: ../jobs/info.txt.in:60 ../jobs/screenshot.txt.in:7
@@ -1196,7 +1205,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:88
 msgid "Monitor tests"
-msgstr ""
+msgstr "Testovanie monitora"
 
 #. description
 #: ../jobs/local.txt.in:93
@@ -1226,7 +1235,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:118
 msgid "User Applications"
-msgstr ""
+msgstr "Používateľské aplikácie"
 
 #. description
 #: ../jobs/local.txt.in:123
@@ -1236,7 +1245,7 @@ msgstr ""
 #. description
 #: ../jobs/ltp.txt.in:3
 msgid "Linux Test Project"
-msgstr ""
+msgstr "Linuxový testovací projekt"
 
 #. description
 #: ../jobs/mago.txt.in:3
@@ -1378,7 +1387,7 @@ msgstr ""
 #. description
 #: ../jobs/mediacard.txt.in:130
 msgid "Does the icon automatically appear/disappear?"
-msgstr ""
+msgstr "Zobrazila a zmizla ikona automaticky?"
 
 #. description
 #: ../jobs/memory.txt.in:4
@@ -1431,6 +1440,7 @@ msgstr ""
 #: ../jobs/monitor.txt.in:3
 msgid "If your system does not have a VGA port, please skip this test."
 msgstr ""
+"Ak váš počítač nemá VGA port, preskočte prosím, preskočte tento test."
 
 #. description
 #: ../jobs/monitor.txt.in:3
@@ -1438,11 +1448,14 @@ msgid ""
 "Connect a display (if not already connected) to the VGA port on your system. "
 "Is the image displayed correctly?"
 msgstr ""
+"Pripojte obrazovku (ak už nie je) k VGA portu na vašom počítači. Je obraz v "
+"poriadku?"
 
 #. description
 #: ../jobs/monitor.txt.in:10
 msgid "If your system does not have a DVI port, please skip this test."
 msgstr ""
+"Ak váš počítač nemá DVI port, preskočte prosím, preskočte tento test."
 
 #. description
 #: ../jobs/monitor.txt.in:10
@@ -1450,11 +1463,14 @@ msgid ""
 "Connect a display (if not already connected) to the DVI port on your system. "
 "Is the image displayed correctly?"
 msgstr ""
+"Pripojte obrazovku (ak už nie je) k DVI portu na vašom počítači. Je obraz v "
+"poriadku?"
 
 #. description
 #: ../jobs/monitor.txt.in:17
 msgid "If your system does not have DisplayPort, please skip this test."
 msgstr ""
+"Ak váš počítač nemá DisplayPort port, preskočte prosím, preskočte tento test."
 
 #. description
 #: ../jobs/monitor.txt.in:17
@@ -1462,11 +1478,14 @@ msgid ""
 "Connect a display (if not already connected) to the DisplayPort on your "
 "system. Is the image displayed correctly?"
 msgstr ""
+"Pripojte obrazovku (ak už nie je) k DisplayPort portu na vašom počítači. Je "
+"obraz v poriadku?"
 
 #. description
 #: ../jobs/monitor.txt.in:24
 msgid "If your system does not have a HDMI port, please skip this test."
 msgstr ""
+"Ak váš počítač nemá HDMI port, preskočte prosím, preskočte tento test."
 
 #. description
 #: ../jobs/monitor.txt.in:24
@@ -1474,11 +1493,14 @@ msgid ""
 "Connect a display (if not already connected) to the HDMI port on your "
 "system. Is the image displayed correctly?"
 msgstr ""
+"Pripojte obrazovku (ak už nie je) k HDMI portu na vašom počítači. Je obraz v "
+"poriadku?"
 
 #. description
 #: ../jobs/monitor.txt.in:31
 msgid "If your system does not have a S-VIDEO port, please skip this test."
 msgstr ""
+"Ak váš počítač nemá  S-VIDEO port, preskočte prosím, preskočte tento test."
 
 #. description
 #: ../jobs/monitor.txt.in:31
@@ -1486,11 +1508,13 @@ msgid ""
 "Connect a display (if not already connected) to the S-VIDEO port on your "
 "system. Is the image displayed correctly?"
 msgstr ""
+"Pripojte obrazovku (ak už nie je) k HDMI portu na vašom počítači. Je obraz v "
+"poriadku?"
 
 #. description
 #: ../jobs/monitor.txt.in:38
 msgid "If your system does not have a RCA port, please skip this test."
-msgstr ""
+msgstr "Ak váš počítač nemá RCA port, prosím preskočte tento test."
 
 #. description
 #: ../jobs/monitor.txt.in:38
@@ -1498,6 +1522,8 @@ msgid ""
 "Connect a display (if not already connected) to the RCA port on your system. "
 "Is the image displayed correctly?"
 msgstr ""
+"Pripojte obrazovku (ak už nie je) k RCA portu na vašom počítači. Je obraz v "
+"poriadku?"
 
 #. description
 #: ../jobs/monitor.txt.in:46
@@ -1511,7 +1537,7 @@ msgstr ""
 #. description
 #: ../jobs/monitor.txt.in:46
 msgid "Did the monitor go blank?"
-msgstr ""
+msgstr "Stmavol monitor?"
 
 #. description
 #: ../jobs/networking.txt.in:26
@@ -1737,7 +1763,7 @@ msgstr ""
 #. description
 #: ../jobs/phoronix.txt.in:3
 msgid "Automated benchmark testing"
-msgstr ""
+msgstr "Automatické testovanie výkonu"
 
 #. description
 #: ../jobs/power-management.txt.in:3
@@ -1807,17 +1833,17 @@ msgstr ""
 #. description
 #: ../jobs/power-management.txt.in:65
 msgid "Test the network before suspending."
-msgstr ""
+msgstr "Otestovať sieť pred prechodom do režimu spánku."
 
 #. description
 #: ../jobs/power-management.txt.in:70
 msgid "Record the current resolution before suspending."
-msgstr ""
+msgstr "Zaznamenať aktuálne rozlíšenie pred prechodom do režimu spánku."
 
 #. description
 #: ../jobs/power-management.txt.in:78
 msgid "Test the audio before suspending."
-msgstr ""
+msgstr "Otestovať zvuk pred prechodom do režimu spánku."
 
 #. description
 #: ../jobs/power-management.txt.in:84
@@ -1839,7 +1865,7 @@ msgstr ""
 #. description
 #: ../jobs/power-management.txt.in:135
 msgid "Power management Suspend and Resume test"
-msgstr ""
+msgstr "Testovanie správy napájania pre uspávanie a prebúdzanie:"
 
 #. description
 #: ../jobs/power-management.txt.in:135
@@ -1854,18 +1880,18 @@ msgstr ""
 #. description
 #: ../jobs/power-management.txt.in:145
 msgid "Test the network after resuming."
-msgstr ""
+msgstr "Otestovať sieť po prebudení."
 
 #. description
 #: ../jobs/power-management.txt.in:151
 msgid ""
 "Test to see that we have the same resolution after resuming as before."
-msgstr ""
+msgstr "Otestovať, že máte rovnaké rozlíšenie po prebudení ako pred tým."
 
 #. description
 #: ../jobs/power-management.txt.in:160
 msgid "Test the audio after resuming."
-msgstr ""
+msgstr "Otestovať zvuk po prebudení."
 
 #. description
 #: ../jobs/power-management.txt.in:167
@@ -1885,6 +1911,8 @@ msgid ""
 "Verify a bluetooth peripheral.  An example verification procedure for a "
 "bluetooth mouse is given."
 msgstr ""
+"Preveriť Bluetooth periférne zariadenie. Je daný príklad postupu overovania "
+"pre bluetooth myš."
 
 #. description
 #: ../jobs/power-management.txt.in:194
@@ -1912,6 +1940,9 @@ msgid ""
 "suspend and resume.  You can use either internal or external microphone and "
 "speakers."
 msgstr ""
+"Toto skontroluje, či vaše zvukové zariadenie pracuje správne po uspatí a po "
+"prebudení.  Môžete použiť buď vnútorný, alebo vonkajší mikrofón a "
+"reproduktory."
 
 #. description
 #: ../jobs/power-management.txt.in:221
@@ -1933,7 +1964,7 @@ msgstr ""
 #. description
 #: ../jobs/power-management.txt.in:234
 msgid "Did the system successfully suspend and resume for 30 iterations?"
-msgstr ""
+msgstr "Úspešne sa uspal a zobudil systém po 30 opakovaniach?"
 
 #. description
 #: ../jobs/power-management.txt.in:245
@@ -1941,6 +1972,7 @@ msgid ""
 "This will check to make sure your system can successfully hibernate (if "
 "supported)."
 msgstr ""
+"Toto skontroluje, či sa váš systém dokáže hibernovať (ak je podporované)."
 
 #. description
 #: ../jobs/power-management.txt.in:245
@@ -1957,7 +1989,7 @@ msgstr ""
 msgid ""
 "Did the system successfully hibernate and did it work properly after waking "
 "up?"
-msgstr ""
+msgstr "Hibernoval sa váš systém úspešne a po prebudení pracoval správne?"
 
 #. description
 #: ../jobs/power-management.txt.in:258
@@ -1976,11 +2008,14 @@ msgid ""
 "set, and that grub is set to boot Ubuntu by default if you have a multi-boot "
 "set-up."
 msgstr ""
+"Taktiež sa uistite. že váš systém nemá pri zapínaní alebo na pevnom disku "
+"nastavená heslá a ak máte nainštalovaných viacero systémov, uistite sa, že "
+"Ubuntu je predvolený systém v zavádzači grub."
 
 #. description
 #: ../jobs/power-management.txt.in:258
 msgid "Did the system successfully hibernate and wake 30 times?"
-msgstr ""
+msgstr "Úspešne sa hibernoval a zobudil systém po 30 opakovaniach?"
 
 #. description
 #: ../jobs/power-management.txt.in:267
@@ -2010,7 +2045,7 @@ msgstr ""
 #. description
 #: ../jobs/qa_regression.txt.in:3
 msgid "QA regression tests (destructive)"
-msgstr ""
+msgstr "Regresívne QA testy (deštruktívne)"
 
 #. description
 #: ../jobs/server-services.txt.in:5
@@ -2258,6 +2293,10 @@ msgid ""
 "are found, install them. When Update Manager has finished, please close the "
 "app by clicking the Close button in the lower right corner."
 msgstr ""
+"Tento test spustí Správcu aktualizácii a skontroluje, či sú dostupné "
+"aktualizácie pre tento systém. Nasledujte, prosím, výzvy, a ak boli nájdené "
+"nejaké aktualizácie, nainštalujte ich. Keď Správca aktualizácii dokončí, "
+"zatvorte ho, prosím, kliknutím na tlačidlo \"Zavrieť\" v ľavom dolnom rohu."
 
 #. description
 #: ../jobs/user_apps.txt.in:14
@@ -2270,7 +2309,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:14
 msgid "Do you now have a new folder called Test Folder?"
-msgstr ""
+msgstr "Máte teraz nový priečinok s názvom \"Testovací priečinok\"?"
 
 #. description
 #: ../jobs/user_apps.txt.in:25
@@ -2286,11 +2325,13 @@ msgid ""
 "Right click on the folder called Test Folder(copy) and click Rename. Enter "
 "the name Test Data in the name box and hit Enter."
 msgstr ""
+"Pravou myšou kliknite na priečinok \"Testovací priečinok(kópia)\" a kliknite "
+"na premenovať. Nazvite ho \"Údaje na testovanie\" a stlačte enter."
 
 #. description
 #: ../jobs/user_apps.txt.in:25
 msgid "Do you now have a folder called Test Data?"
-msgstr ""
+msgstr "Máte teraz priečinok s názvom \"Údaje na testovanie\"?"
 
 #. description
 #: ../jobs/user_apps.txt.in:38
@@ -2302,7 +2343,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:38
 msgid "Double click the folder called Test Folder to open it up."
-msgstr ""
+msgstr "Dvojitým klikom otvorte priečinok s názvom \"Testovací priečinok\"."
 
 #. description
 #: ../jobs/user_apps.txt.in:38
@@ -2310,6 +2351,8 @@ msgid ""
 "Was the folder called Test Data successfully moved into the folder called "
 "Test Folder?"
 msgstr ""
+"Presunul sa priečinok s názvom \"Údaje na testovanie\" do priečinka "
+"\"Testovací priečinok\"?"
 
 #. description
 #: ../jobs/user_apps.txt.in:51
@@ -2322,12 +2365,12 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:51
 msgid "Do you now have a file called Test File 1?"
-msgstr ""
+msgstr "Máte teraz súbor s názvom \"Testovací súbor 1\"?"
 
 #. description
 #: ../jobs/user_apps.txt.in:51
 msgid "Close the File browser."
-msgstr ""
+msgstr "Zatvorte prehliadač súborov."
 
 #. description
 #: ../jobs/user_apps.txt.in:62
@@ -2342,11 +2385,13 @@ msgid ""
 "Right click on the file called Test File 1(copy) and click Rename. Enter the "
 "name Test File 2 in the name box and hit Enter."
 msgstr ""
+"Pravou myšou kliknite na priečinok \"Testovací súbor 1(kópia)\" a kliknite "
+"na premenovať. Nazvite ho \"Testovací súbor 2\" a stlačte enter."
 
 #. description
 #: ../jobs/user_apps.txt.in:62
 msgid "Do you now have a file called Test File 2?"
-msgstr ""
+msgstr "Máte teraz súbor s názvom \"Testovací súbor 2\"?"
 
 #. description
 #: ../jobs/user_apps.txt.in:75
@@ -2358,13 +2403,15 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:75
 msgid "Double click the icon for Test Data to open that folder up."
-msgstr ""
+msgstr "Dvojitým klikom otvorte priečinok s názvom \"Testovací priečinok\"."
 
 #. description
 #: ../jobs/user_apps.txt.in:75
 msgid ""
 "Was the file Test File 2 successfully moved into the Test Data folder?"
 msgstr ""
+"Presunul sa úspešne súbor s názvom \"Test File 2\" do priečinka \"Testovací "
+"priečinok\"?"
 
 #. description
 #: ../jobs/user_apps.txt.in:88
@@ -2376,7 +2423,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:88
 msgid "Is Test File 1 now gone?"
-msgstr ""
+msgstr "Odstránil sa \"Testovací súbor 1\"?"
 
 #. description
 #: ../jobs/user_apps.txt.in:99
@@ -2388,17 +2435,17 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:99
 msgid "Has Test Folder been successfully deleted?"
-msgstr ""
+msgstr "Odstránil sa úspešne \"Testovací priečinok\"?"
 
 #. description
 #: ../jobs/user_apps.txt.in:99
 msgid "Close the File Browser."
-msgstr ""
+msgstr "Zatvorte správcu súborov."
 
 #. description
 #: ../jobs/user_apps.txt.in:160
 msgid "Common Document Types Test"
-msgstr ""
+msgstr "Testovanie bežných typov dokumentov"
 
 #. description
 #: ../jobs/user_apps.txt.in:178
@@ -2408,7 +2455,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:178
 msgid "Did the Ubuntu Test page load correctly?"
-msgstr ""
+msgstr "Načítala sa testovacia stránka Ubuntu správne?"
 
 #. description
 #: ../jobs/user_apps.txt.in:188
@@ -2420,7 +2467,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:188
 msgid "Did the applet display?"
-msgstr ""
+msgstr "Zobrazil sa applet?"
 
 #. description
 #: ../jobs/user_apps.txt.in:198
@@ -2430,7 +2477,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:198
 msgid "Did you see the text?"
-msgstr ""
+msgstr "Videli ste text?"
 
 #. description
 #: ../jobs/user_apps.txt.in:208
@@ -2440,7 +2487,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:208
 msgid "Did the video play correctly?"
-msgstr ""
+msgstr "Prehralo sa video správne?"
 
 #. description
 #: ../jobs/user_apps.txt.in:218
@@ -2450,27 +2497,27 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:218
 msgid "Did the video play using a plugin?"
-msgstr ""
+msgstr "Prehralo sa video za použitia doplnku?"
 
 #. description
 #: ../jobs/user_apps.txt.in:227
 msgid "Facebook Chat"
-msgstr ""
+msgstr "Facebook Chat"
 
 #. description
 #: ../jobs/user_apps.txt.in:238
 msgid "Google Talk"
-msgstr ""
+msgstr "Google Talk"
 
 #. description
 #: ../jobs/user_apps.txt.in:249
 msgid "Jabber"
-msgstr ""
+msgstr "Jabber"
 
 #. description
 #: ../jobs/user_apps.txt.in:260
 msgid "AIM"
-msgstr ""
+msgstr "AIM"
 
 #. description
 #: ../jobs/user_apps.txt.in:271
@@ -2483,28 +2530,28 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:271
 msgid "MSN"
-msgstr ""
+msgstr "MSN"
 
 #. description
 #: ../jobs/user_apps.txt.in:271
 msgid "Were you able to connect correctly and send/receive messages?"
-msgstr ""
+msgstr "Boli ste sa schopný pripojiť správne a posielať a prijímať správy?"
 
 #: ../checkbox/application.py:84
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist."
-msgstr ""
+msgstr "Skratka pre --config=checkbox/plugins/jobs_info/blacklist."
 
 #: ../checkbox/application.py:86
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist_file."
-msgstr ""
+msgstr "Skratka pre --config=checkbox/plugins/jobs_info/blacklist_file."
 
 #: ../checkbox/application.py:88
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist."
-msgstr ""
+msgstr "Skratka pre --config=checkbox/plugins/jobs_info/whitelist."
 
 #: ../checkbox/application.py:90
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist_file."
-msgstr ""
+msgstr "Skratka pre --config=checkbox/plugins/jobs_info/whitelist_file."
 
 #: ../checkbox/lib/signal.py:23
 msgid ""
@@ -2595,40 +2642,40 @@ msgstr "Neznámy signál"
 
 #: ../checkbox_urwid/urwid_interface.py:60
 msgid "Checkbox System Testing"
-msgstr ""
+msgstr "Checkbox - Testovanie systému"
 
 #: ../checkbox_urwid/urwid_interface.py:99
 msgid "Continue"
-msgstr ""
+msgstr "Pokračovať"
 
 #: ../checkbox_urwid/urwid_interface.py:192
 #: ../checkbox_urwid/urwid_interface.py:268
 #: ../checkbox_urwid/urwid_interface.py:416
 msgid "Previous"
-msgstr ""
+msgstr "Predchádzajúce"
 
 #: ../checkbox_urwid/urwid_interface.py:193
 #: ../checkbox_urwid/urwid_interface.py:269
 #: ../checkbox_urwid/urwid_interface.py:417
 msgid "Next"
-msgstr ""
+msgstr "Dalej"
 
 #. Show buttons
 #: ../checkbox_urwid/urwid_interface.py:414
 msgid "Select All"
-msgstr ""
+msgstr "Označiť všetko"
 
 #: ../checkbox_urwid/urwid_interface.py:415
 msgid "Deselect All"
-msgstr ""
+msgstr "Odznačiť všetko"
 
 #: ../checkbox_urwid/urwid_interface.py:772
 msgid "Test"
-msgstr ""
+msgstr "Otestovať"
 
 #: ../checkbox_urwid/urwid_interface.py:787
 msgid "Test Again"
-msgstr ""
+msgstr "Znovu otestovať"
 
 #: ../checkbox_gtk/gtk_interface.py:93
 msgid "hardware database"
@@ -2652,12 +2699,16 @@ msgid ""
 "Collecting information about this test.\n"
 "This might take a few minutes."
 msgstr ""
+"Zbierajú sa informácie o tomto teste.\n"
+"Môže to trvať pár minút."
 
 #: ../plugins/apport_prompt.py:116
 msgid ""
 "Collected information is being sent for bug tracking.\n"
 "This might take a few minutes."
 msgstr ""
+"Zbierajú sa informácie na nahlásenie chyby.\n"
+"Môže to trvať pár minút."
 
 #: ../plugins/apport_prompt.py:225
 #, python-format
@@ -2672,7 +2723,7 @@ msgstr ""
 #: ../plugins/apport_prompt.py:246
 #, python-format
 msgid "Is a package upgrade in process? Error: %s"
-msgstr ""
+msgstr "Prebieha aktualizácia balíčka? Chyba: %s"
 
 #: ../plugins/final_prompt.py:33
 msgid "Successfully finished testing!"
@@ -2694,7 +2745,7 @@ msgstr ""
 #: ../plugins/launchpad_exchange.py:118
 #, python-format
 msgid "Failed to process form: %s"
-msgstr ""
+msgstr "Nepodarilo sa spracovať formulár: %s"
 
 #: ../plugins/launchpad_prompt.py:71
 #, python-format
@@ -2734,11 +2785,13 @@ msgid ""
 "Checkbox did not finish completely.\n"
 "Do you want to recover from the previous run?"
 msgstr ""
+"Program checkbox nedokončil testy.\n"
+"Chcete ich obnoviť z minulého spustenia?"
 
 #: ../plugins/shell_test.py:52
 #, python-format
 msgid "Running %s..."
-msgstr ""
+msgstr "Beží %s..."
 
 #. Get results
 #: ../plugins/suites_prompt.py:105

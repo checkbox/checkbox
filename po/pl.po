@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-07-07 12:32-0400\n"
-"PO-Revision-Date: 2010-12-21 12:04+0000\n"
+"PO-Revision-Date: 2011-07-19 16:15+0000\n"
 "Last-Translator: GTriderXC <gtriderxc@yahoo.com>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-07-16 04:32+0000\n"
+"X-Launchpad-Export-Date: 2011-07-20 04:33+0000\n"
 "X-Generator: Launchpad (build 13405)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:2
@@ -70,7 +70,7 @@ msgstr "Czy to jest poprawne?"
 #. description
 #: ../jobs/graphics.txt.in:117
 msgid "Do you see color bars and static?"
-msgstr "Widzisz kolorowe paski i zakłócenia?"
+msgstr "Czy widzisz kolorowe paski i zakłócenia?"
 
 #. description
 #: ../jobs/input.txt.in:4
@@ -95,7 +95,7 @@ msgstr "Wykrywanie kontrolerów sieciowych:"
 #. description
 #: ../jobs/networking.txt.in:16
 msgid "Testing your connection to the Internet:"
-msgstr "Testowanie połączenia z internetem:"
+msgstr "Testowanie połączenia z Internetem:"
 
 #: ../checkbox/application.py:66
 msgid "Usage: checkbox [OPTIONS]"
@@ -172,7 +172,7 @@ msgstr ""
 "Spróbuj ponownie lub wyślij plik:\n"
 "%s\n"
 "\n"
-"bezpośrednio bazy danych systemu:\n"
+"bezpośrednio do bazy danych systemu:\n"
 "https://launchpad.net/+hwdb/+submit"
 
 #: ../plugins/launchpad_exchange.py:150
@@ -306,11 +306,11 @@ msgstr "Dalsze informacje:"
 
 #: ../gtk/checkbox-gtk.ui.h:4
 msgid "_Deselect All"
-msgstr ""
+msgstr "_Odznacz wszystko"
 
 #: ../gtk/checkbox-gtk.ui.h:7
 msgid "_Select All"
-msgstr ""
+msgstr "Zaznacz _wszystko"
 
 #. description
 #: ../jobs/apport.txt.in:5
@@ -332,7 +332,7 @@ msgstr "Czy słyszałeś dźwięk wolny od trzasków, szumów i innych zakłóce
 #. description
 #: ../jobs/audio.txt.in:33
 msgid "Please connect a pair of headphones to your audio device."
-msgstr ""
+msgstr "Proszę podłączyć słuchawki do urządzenia dźwiękowego."
 
 #. description
 #: ../jobs/audio.txt.in:33
@@ -404,12 +404,12 @@ msgstr ""
 #. description
 #: ../jobs/autotest.txt.in:3
 msgid "Autotest suite (destructive)"
-msgstr ""
+msgstr "Zestaw automatycznych testów (destruktywny)"
 
 #. description
 #: ../jobs/bluetooth.txt.in:5 ../jobs/power-management.txt.in:185
 msgid "The address of your Bluetooth device is: $output"
-msgstr ""
+msgstr "Adres urządzenia Bluetooth: $output"
 
 #. description
 #: ../jobs/bluetooth.txt.in:15 ../jobs/graphics.txt.in:15
@@ -474,7 +474,7 @@ msgstr ""
 #: ../jobs/bluetooth.txt.in:82 ../jobs/optical.txt.in:72
 #: ../jobs/power-management.txt.in:194 ../jobs/usb.txt.in:27
 msgid "Did all the steps work?"
-msgstr ""
+msgstr "Czy wszystkie kroki zostały wykonane poprawnie?"
 
 #. description
 #: ../jobs/camera.txt.in:7
@@ -642,7 +642,7 @@ msgstr ""
 #. description
 #: ../jobs/disk.txt.in:4
 msgid "The following hard drives were detected:"
-msgstr ""
+msgstr "Wykryto następujące dyski twarde:"
 
 #. description
 #: ../jobs/disk.txt.in:14
@@ -709,6 +709,9 @@ msgid ""
 "which test cases are run and a personal account that the tester uses to "
 "verify the fingerprint reader"
 msgstr ""
+"Warunki: w tym teście zakłada się istnienie konta testowego, z którego "
+"uruchamiane są testy, oraz konta osobistego, używanego przez testera do "
+"sprawdzenia czytnika odcisków palców."
 
 #. description
 #: ../jobs/fingerprint.txt.in:3
@@ -739,7 +742,7 @@ msgstr ""
 #. description
 #: ../jobs/fingerprint.txt.in:18
 msgid "Did the authentication procedure work correctly?"
-msgstr ""
+msgstr "Czy procedura uwierzytelniania działa poprawnie?"
 
 #. description
 #: ../jobs/firewire.txt.in:3
@@ -755,7 +758,7 @@ msgstr ""
 #. description
 #: ../jobs/firewire.txt.in:3 ../jobs/usb.txt.in:71
 msgid "Do the copy operations work as expected?"
-msgstr ""
+msgstr "Czy operacje kopiowania przebiegają w sposób oczekiwany?"
 
 #. description
 #: ../jobs/floppy.txt.in:4
@@ -911,7 +914,7 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:82
 msgid "This display is using the following resolution:"
-msgstr ""
+msgstr "Ten ekran używa następującej rozdzielczości:"
 
 #. description
 #: ../jobs/graphics.txt.in:82
@@ -950,7 +953,7 @@ msgstr "Kliknij przycisk Test aby wykonać test wideo."
 #: ../jobs/graphics.txt.in:126
 msgid ""
 "The following screens and video modes have been detected on your system:"
-msgstr ""
+msgstr "W Twoim systemie wykryto następujące ekrany i moduły wideo:"
 
 #. description
 #: ../jobs/graphics.txt.in:138
@@ -962,7 +965,7 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:138
 msgid "Did the screen appear to be working for each mode?"
-msgstr ""
+msgstr "Czy ekran pracował w każdym wariancie?"
 
 #. description
 #: ../jobs/graphics.txt.in:146
@@ -1181,7 +1184,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:88
 msgid "Monitor tests"
-msgstr ""
+msgstr "Testy monitora"
 
 #. description
 #: ../jobs/local.txt.in:93
@@ -1211,7 +1214,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:118
 msgid "User Applications"
-msgstr ""
+msgstr "Aplikacje użytkownika"
 
 #. description
 #: ../jobs/local.txt.in:123
@@ -1447,7 +1450,7 @@ msgstr ""
 #. description
 #: ../jobs/mediacard.txt.in:130
 msgid "Does the icon automatically appear/disappear?"
-msgstr ""
+msgstr "Czy ikona pojawia się i znika automatycznie"
 
 #. description
 #: ../jobs/memory.txt.in:4
@@ -1478,7 +1481,7 @@ msgstr "Ten test może wymagać podania hasła."
 #. description
 #: ../jobs/miscellanea.txt.in:8
 msgid "Did the screen change temporarily to a text console?"
-msgstr ""
+msgstr "Czy ekran chwilowo zmienił się w tryb konsoli tekstowej?"
 
 #. description
 #: ../jobs/miscellanea.txt.in:20
@@ -1597,7 +1600,7 @@ msgstr ""
 #. description
 #: ../jobs/monitor.txt.in:46
 msgid "Did the monitor go blank?"
-msgstr ""
+msgstr "Czy monitor stał się czysty?"
 
 #. description
 #: ../jobs/networking.txt.in:26
@@ -1641,7 +1644,7 @@ msgstr ""
 #. description
 #: ../jobs/networking.txt.in:76 ../jobs/peripheral.txt.in:15
 msgid "Was the connection correctly established?"
-msgstr ""
+msgstr "Czy połączenie zostało ustanowione w sposób poprawny?"
 
 #. description
 #: ../jobs/networking.txt.in:92
@@ -1747,7 +1750,7 @@ msgstr ""
 #. description
 #: ../jobs/optical.txt.in:90
 msgid "Did the file play?"
-msgstr ""
+msgstr "Czy plik został odtworzony?"
 
 #. description
 #: ../jobs/panel_clock_test.txt.in:4
@@ -1825,7 +1828,7 @@ msgstr ""
 #. description
 #: ../jobs/phoronix.txt.in:3
 msgid "Automated benchmark testing"
-msgstr ""
+msgstr "Zautomatyzowane testowanie wydajności"
 
 #. description
 #: ../jobs/power-management.txt.in:3
@@ -1895,17 +1898,17 @@ msgstr ""
 #. description
 #: ../jobs/power-management.txt.in:65
 msgid "Test the network before suspending."
-msgstr ""
+msgstr "Sprawdzenie sieci przed wstrzymaniem"
 
 #. description
 #: ../jobs/power-management.txt.in:70
 msgid "Record the current resolution before suspending."
-msgstr ""
+msgstr "Zapis bieżącej rozdzielczości przed wstrzymaniem."
 
 #. description
 #: ../jobs/power-management.txt.in:78
 msgid "Test the audio before suspending."
-msgstr ""
+msgstr "Test audio przed wstrzymaniem."
 
 #. description
 #: ../jobs/power-management.txt.in:84
@@ -2581,7 +2584,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:178
 msgid "Did the Ubuntu Test page load correctly?"
-msgstr ""
+msgstr "Czy strona testowa Ubuntu została otwarta poprawnie?"
 
 #. description
 #: ../jobs/user_apps.txt.in:188
@@ -2674,7 +2677,7 @@ msgstr "Czy połączyłeś się poprawnie, mogąc wysyłać i odbierać wiadomo�
 
 #: ../checkbox/application.py:82
 msgid "Configuration override parameters."
-msgstr ""
+msgstr "Konfiguracja przekracza parametry."
 
 #: ../checkbox/application.py:84
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist."
@@ -2703,31 +2706,31 @@ msgstr ""
 
 #: ../checkbox/lib/signal.py:24
 msgid "Interrupt from keyboard"
-msgstr ""
+msgstr "Przerwanie z klawiatury"
 
 #: ../checkbox/lib/signal.py:25
 msgid "Quit from keyboard"
-msgstr ""
+msgstr "Wyjście z klawiatury"
 
 #: ../checkbox/lib/signal.py:26
 msgid "Illegal Instruction"
-msgstr ""
+msgstr "Błędna instrukcja"
 
 #: ../checkbox/lib/signal.py:27
 msgid "Abort signal from abort(3)"
-msgstr ""
+msgstr "Porzucenie sygnału z abort(3)"
 
 #: ../checkbox/lib/signal.py:28
 msgid "Floating point exception"
-msgstr ""
+msgstr "Wyjątek zmiennoprzecinkowy"
 
 #: ../checkbox/lib/signal.py:29
 msgid "Kill signal"
-msgstr ""
+msgstr "Zakończ sygnał"
 
 #: ../checkbox/lib/signal.py:30
 msgid "Invalid memory reference"
-msgstr ""
+msgstr "Nieprawidłowe odniesienie do pamięci"
 
 #: ../checkbox/lib/signal.py:31
 msgid "Broken pipe: write to pipe with no readers"
@@ -2739,15 +2742,15 @@ msgstr "Otrzymano sygnał Timer ok funkcji alarm(2)"
 
 #: ../checkbox/lib/signal.py:33
 msgid "Termination signal"
-msgstr ""
+msgstr "Sygnał zakończenia"
 
 #: ../checkbox/lib/signal.py:34
 msgid "User-defined signal 1"
-msgstr ""
+msgstr "Zdefiniowany przez użytkownika sygnał 1"
 
 #: ../checkbox/lib/signal.py:35
 msgid "User-defined signal 2"
-msgstr ""
+msgstr "Zdefiniowany przez użytkownika sygnał 2"
 
 #: ../checkbox/lib/signal.py:36
 msgid "Child stopped or terminated"
@@ -2755,31 +2758,31 @@ msgstr "Proces potomny został zatrzymany lub przerwany"
 
 #: ../checkbox/lib/signal.py:37
 msgid "Continue if stopped"
-msgstr ""
+msgstr "Kontynuuj w razie zatrzymania"
 
 #: ../checkbox/lib/signal.py:38
 msgid "Stop process"
-msgstr ""
+msgstr "Zatrzymaj proces"
 
 #: ../checkbox/lib/signal.py:39
 msgid "Stop typed at tty"
-msgstr ""
+msgstr "Stop wpisane w tty"
 
 #: ../checkbox/lib/signal.py:40
 msgid "tty input for background process"
-msgstr ""
+msgstr "wejście tty dla procesu w tle"
 
 #: ../checkbox/lib/signal.py:41
 msgid "tty output for background process"
-msgstr ""
+msgstr "wyjście tty dla procesu w tle"
 
 #: ../checkbox/lib/signal.py:77
 msgid "UNKNOWN"
-msgstr ""
+msgstr "NIEZNANY"
 
 #: ../checkbox/lib/signal.py:89
 msgid "Unknown signal"
-msgstr ""
+msgstr "Nieznany sygnał"
 
 #: ../checkbox_cli/cli_interface.py:315
 msgid "test"
@@ -2816,7 +2819,7 @@ msgstr "Zaznacz wszystko"
 
 #: ../checkbox_urwid/urwid_interface.py:415
 msgid "Deselect All"
-msgstr ""
+msgstr "Odznacz wszystko"
 
 #: ../checkbox_urwid/urwid_interface.py:772
 msgid "Test"
@@ -2824,7 +2827,7 @@ msgstr "Test"
 
 #: ../checkbox_urwid/urwid_interface.py:787
 msgid "Test Again"
-msgstr ""
+msgstr "Ponowny test"
 
 #: ../checkbox_gtk/gtk_interface.py:93
 msgid "hardware database"
@@ -2832,28 +2835,32 @@ msgstr ""
 
 #: ../checkbox_gtk/gtk_interface.py:533
 msgid "Info"
-msgstr ""
+msgstr "Informacje"
 
 #: ../checkbox_gtk/gtk_interface.py:552
 msgid "Error"
-msgstr ""
+msgstr "Błąd"
 
 #: ../checkbox/user_interface.py:136
 #, python-format
 msgid "Unable to start web browser to open %s."
-msgstr ""
+msgstr "Uruchomienie przeglądarki WWW, aby otworzyć %s, jest niemożliwe."
 
 #: ../plugins/apport_prompt.py:81
 msgid ""
 "Collecting information about this test.\n"
 "This might take a few minutes."
 msgstr ""
+"Trwa zbieranie informacji o teście.\n"
+"Może to potrwać kilka minut."
 
 #: ../plugins/apport_prompt.py:116
 msgid ""
 "Collected information is being sent for bug tracking.\n"
 "This might take a few minutes."
 msgstr ""
+"Przesyłanie raportu o błędach.\n"
+"Może to potrwać kilka minut."
 
 #: ../plugins/apport_prompt.py:225
 #, python-format
@@ -2872,7 +2879,7 @@ msgstr "Czy pakiet jest w trakcie aktualizacji? Błąd: %s"
 
 #: ../plugins/final_prompt.py:33
 msgid "Successfully finished testing!"
-msgstr ""
+msgstr "Testowanie zakończone pomyślnie!"
 
 #: ../plugins/intro_prompt.py:43
 msgid ""
@@ -2882,6 +2889,11 @@ msgid ""
 "Once you are finished running the tests, you can view a summary report for "
 "your system."
 msgstr ""
+"Witaj w programie testującym system!\n"
+"\n"
+"Checkbox zawiera testy mające na celu sprawdzenie, czy Twój system działa "
+"poprawnie. Gdy wszystkie uruchomione przez Ciebie testy się zakończą, "
+"będziesz mógł zobaczyć raport podsumowujący dla Twojego systemu."
 
 #: ../plugins/launchpad_exchange.py:118
 #, python-format
@@ -2902,53 +2914,72 @@ msgid ""
 "\n"
 "  https://launchpad.net/+login"
 msgstr ""
+"Został wygenerowany następujący raport celem przesłania go do bazy danych "
+"sprzętu Launchpad:\n"
+"\n"
+"  [[%s|View Report]]\n"
+"\n"
+"Możesz przesłać te informacje dotyczące Twojego systemu poprzez podanie "
+"adresu e-mail, którego używasz do logowania się na witrynie Launchpad. Jeśli "
+"wciąż nie posiadasz konta Launchpad, zarejestruj się tutaj:\n"
+"\n"
+"  https://launchpad.net/+login"
 
 #: ../plugins/launchpad_prompt.py:88
 msgid "No e-mail address provided, not submitting to Launchpad."
-msgstr ""
+msgstr "Nie został podany adres e-mail; nie wysłano do Launchpada."
 
 #: ../plugins/lock_prompt.py:63
 msgid "There is another checkbox running. Please close it first."
 msgstr ""
+"Program checkbox jest już uruchomiony. Wpierw go zamknij, aby kontynuować."
 
 #: ../plugins/recover_prompt.py:54
 msgid ""
 "Checkbox did not finish completely.\n"
 "Do you want to recover from the previous run?"
 msgstr ""
+"Checkbox nie dokończył działania.\n"
+"Czy chcesz powrócić do stanu z poprzedniego uruchomienia?"
 
 #: ../plugins/shell_test.py:52
 #, python-format
 msgid "Running %s..."
-msgstr ""
+msgstr "Uruchamianie %s..."
 
 #. Get results
 #: ../plugins/suites_prompt.py:105
 msgid "Select the suites to test"
-msgstr ""
+msgstr "Wybierz zestawy do testowania"
 
 #: ../scripts/keyboard_test:21
 msgid "Enter text:\n"
-msgstr ""
+msgstr "Wprowadź tekst:\n"
 
 #: ../scripts/keyboard_test:40
 msgid "Type Text"
-msgstr ""
+msgstr "Wpisz tekst"
 
 #: ../scripts/internet_test:139
 msgid "No Internet connection"
-msgstr ""
+msgstr "Brak połączenia z Internetem"
 
 #: ../scripts/internet_test:142
 msgid "Connection established lost a packet"
-msgstr ""
+msgstr "Nawiązane połączenie utraciło pakiet"
 
 #: ../scripts/internet_test:145
 msgid "Internet connection fully established"
-msgstr ""
+msgstr "Połączenie internetowe zostało ustanowione pomyślnie"
 
 #~ msgid "Click the Test button to display a video test."
 #~ msgstr "Kliknij przycisk \"Testuj\", aby wyświetlić test wideo."
+
+#~ msgid "Is this ok?"
+#~ msgstr "Wszystko w porządku?"
+
+#~ msgid "Disk benchmark:"
+#~ msgstr "Test dysku twardego:"
 
 #~ msgid "Network tests"
 #~ msgstr "Testy sieci"

@@ -9,22 +9,6 @@ _description:
  Note: This test case has to be executed manually before checkbox execution
 
 plugin: manual
-name: power-management/suspend
-command: pm-suspend
-_description:
- Run the computer suspend test. Then, press the power button to resume it.
- .
- Does your computer suspend and resume?
-
-plugin: manual
-name: power-management/hibernate
-command: pm-hibernate
-_description:
- Run the computer hibernate test. Then, press the power button to restore it.
- .
- Does your computer hibernate and restore?
-
-plugin: manual
 name: power-management/lid
 _description:
  Does closing your laptop lid cause your screen to blank?
@@ -109,15 +93,12 @@ _description:
  .
  Is this correct?
 
-plugin: manual
+plugin: shell
 name: power-management/bluetooth_detect_before_suspend
 requires: package.name == 'bluez'
-command: hcitool dev | tail -n+2 | awk '{print $2}'
+command: hcitool dev | tail -n+2 | awk '{print $2}' > $CHECKBOX_DATA/bluetooth_address
 _description:
- The address of your Bluetooth device is:
- $output
- .
- Is this correct?
+ This test just grabs the hardware address of the bluetooth controller
 
 plugin: manual
 name: power-management/bluetooth_mouse_before_suspend
@@ -192,7 +173,6 @@ _description:
  Check that all memory is available after resuming from suspend.
 command: meminfo_resource | diff $CHECKBOX_DATA/meminfo_before_suspend -
 
-
 plugin: manual
 name: power-management/display_after_suspend
 requires:
@@ -200,9 +180,6 @@ requires:
 depends: power-management/suspend_advanced
 _description:
  Does the display work normally after resuming from suspend?
-
-
-
 
 plugin: manual
 name: power-management/wireless_after_suspend
@@ -221,16 +198,13 @@ _description:
  .
  Is this correct?
 
-plugin: manual
+plugin: shell
 name: power-management/bluetooth_detect_after_suspend
 depends: power-management/suspend_advanced power-management/bluetooth_detect_before_suspend
 requires: package.name == 'bluez'
-command: hcitool dev | tail -n+2 | awk '{print $2}'
+command: grep -q `hcitool dev | tail -n+2 | awk '{print $2}'` $CHECKBOX_DATA/bluetooth_address 
 _description:
- The address of your Bluetooth device is:
- $output
- .
- Is this correct?
+ This test grabs the hardware address of the bluetooth adapter after suspend and compares it to the address grabbed before suspend.
 
 plugin: manual
 name: power-management/bluetooth_mouse_after_suspend
@@ -250,10 +224,25 @@ _description:
 
 plugin: manual
 name: power-management/cycle_resolutions_after_suspend
+requires: package.name == 'xorg'
 depends: power-management/suspend_advanced graphics/xrandr_cycle
 _description:
  This test will check to make sure that supported video modes work after a suspend and resume.  Select Test to begin.
-command: xrandr_cycle
+command: xrandr_cycle --keyword=after_suspend
+
+plugin: shell
+name: power-management/cycle_resolutions_after_suspend_auto
+requires: package.name == 'xorg'
+depends: power-management/suspend_advanced graphics/xrandr_cycle
+_description:
+ This test will check to make sure supported video modes work after a suspend and resume.
+ This is done automatically by taking screenshots and uploading them as an attachment.
+command: xrandr_cycle --keyword=after_suspend
+
+plugin: attachment
+name: power-management/xrandr_screens_after_suspend.tar.gz
+depends: power-management/cycle_resolutions_after_suspend_auto
+command: [ -e $CHECKBOX_DATA/xrandr_screens_after_suspend.tgz ] && cat $CHECKBOX_DATA/xrandr_screens_after_suspend.tgz 
 
 plugin: manual
 name: power-management/record_playback_after_suspend

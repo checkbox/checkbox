@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-07-07 12:32-0400\n"
-"PO-Revision-Date: 2011-07-15 18:51+0000\n"
-"Last-Translator: Phan Trọng Khanh <phantrongkhanh87@gmail.com>\n"
+"PO-Revision-Date: 2011-07-19 18:22+0000\n"
+"Last-Translator: Ngô Huy Hoàng <hoang.ngo.h@gmail.com>\n"
 "Language-Team: Vietnamese <vi@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-07-16 04:32+0000\n"
+"X-Launchpad-Export-Date: 2011-07-20 04:33+0000\n"
 "X-Generator: Launchpad (build 13405)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:1 ../checkbox_cli/cli_interface.py:343
@@ -34,7 +34,7 @@ msgstr "Kiểm tra hệ thống"
 
 #: ../gtk/checkbox-gtk.ui.h:4
 msgid "_Deselect All"
-msgstr ""
+msgstr "_Bỏ chọn tất cả"
 
 #: ../gtk/checkbox-gtk.ui.h:5
 msgid "_No"
@@ -46,7 +46,7 @@ msgstr "_Trước"
 
 #: ../gtk/checkbox-gtk.ui.h:7
 msgid "_Select All"
-msgstr ""
+msgstr "_Chọn tất cả"
 
 #: ../gtk/checkbox-gtk.ui.h:8
 msgid "_Skip this test"
@@ -58,7 +58,7 @@ msgstr "_Kiểm tra"
 
 #: ../gtk/checkbox-gtk.ui.h:10
 msgid "_Yes"
-msgstr ""
+msgstr "_Có"
 
 #: ../gtk/checkbox-gtk.desktop.in.h:2
 msgid "Test and report system information"
@@ -102,7 +102,7 @@ msgstr ""
 #. description
 #: ../jobs/audio.txt.in:33
 msgid "Please connect a pair of headphones to your audio device."
-msgstr ""
+msgstr "Hãy gắn tai nghe của bạn vào thiết bị âm thanh"
 
 #. description
 #: ../jobs/audio.txt.in:33
@@ -156,7 +156,7 @@ msgstr ""
 #. description
 #: ../jobs/audio.txt.in:70 ../jobs/power-management.txt.in:221
 msgid "Did you hear your speech played back?"
-msgstr ""
+msgstr "Bạn có nghe thấy lời nói của bạn phát lại không?"
 
 #. description
 #: ../jobs/audio.txt.in:81
@@ -169,7 +169,7 @@ msgstr ""
 #. description
 #: ../jobs/autotest.txt.in:3
 msgid "Autotest suite (destructive)"
-msgstr ""
+msgstr "Bộ kiểm tra tự động (có thể làm hỏng hệ thống âm thanh)"
 
 #. description
 #: ../jobs/bluetooth.txt.in:5 ../jobs/power-management.txt.in:185
@@ -403,7 +403,7 @@ msgstr ""
 #. description
 #: ../jobs/disk.txt.in:4
 msgid "The following hard drives were detected:"
-msgstr ""
+msgstr "Những thiết bị phần cứng dưới đây đã được nhận dạng:"
 
 #. description
 #: ../jobs/disk.txt.in:14
@@ -470,6 +470,8 @@ msgid ""
 "which test cases are run and a personal account that the tester uses to "
 "verify the fingerprint reader"
 msgstr ""
+"Điều kiện: cần có một tài khoản để thực hiện kiểm tra và một tài khoản khác "
+"để người kiểm tra có thể kiểm tra lại đầu đọc vân tay"
 
 #. description
 #: ../jobs/fingerprint.txt.in:3
@@ -500,7 +502,7 @@ msgstr ""
 #. description
 #: ../jobs/fingerprint.txt.in:18
 msgid "Did the authentication procedure work correctly?"
-msgstr ""
+msgstr "Thủ tục xác thực có hoạt động chính xác không?"
 
 #. description
 #: ../jobs/firewire.txt.in:3
@@ -516,7 +518,7 @@ msgstr ""
 #. description
 #: ../jobs/firewire.txt.in:3 ../jobs/usb.txt.in:71
 msgid "Do the copy operations work as expected?"
-msgstr ""
+msgstr "Thao tác chép có được thực hiện chính xác không?"
 
 #. description
 #: ../jobs/floppy.txt.in:4
@@ -672,7 +674,7 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:82
 msgid "This display is using the following resolution:"
-msgstr ""
+msgstr "Màn hình đang sử dụng độ phân giải sau:"
 
 #. description
 #: ../jobs/graphics.txt.in:82
@@ -685,6 +687,8 @@ msgid ""
 "Ensure the current resolution meets or exceeds the recommended minimum "
 "resolution (1024 x 768). See here for details:"
 msgstr ""
+"Đảm bảo độ phân giải hiện tại đáp ứng hoặc vượt hơn độ phân giải tối thiểu "
+"được đề nghị (1024 x 768). Xem chi tiết tại đây:"
 
 #. description
 #: ../jobs/graphics.txt.in:107
@@ -692,11 +696,13 @@ msgid ""
 "Ensure the current resolution meets or exceeds the recommended minimum "
 "resolution (1024 x 600). See here for details:"
 msgstr ""
+"Đảm bảo độ phân giải hiện tại đáp ứng hoặc vượt hơn độ phân giải tối thiểu "
+"được đề nghị (1024 x 600). Xem chi tiết tại đây:"
 
 #. description
 #: ../jobs/graphics.txt.in:107
 msgid "https://help.ubuntu.com/community/Installation/SystemRequirements"
-msgstr ""
+msgstr "https://help.ubuntu.com/community/Installation/SystemRequirements"
 
 #. description
 #: ../jobs/graphics.txt.in:117
@@ -712,7 +718,7 @@ msgstr "Bạn có nhìn thấy thanh màu và tĩnh không?"
 #: ../jobs/graphics.txt.in:126
 msgid ""
 "The following screens and video modes have been detected on your system:"
-msgstr ""
+msgstr "Hệ thống có những màn hình và chế độ video sau:"
 
 #. description
 #: ../jobs/graphics.txt.in:138
@@ -723,12 +729,12 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:138
 msgid "Did the screen appear to be working for each mode?"
-msgstr ""
+msgstr "Màn hình có hoạt động tốt ở các chế độ khô"
 
 #. description
 #: ../jobs/graphics.txt.in:146
 msgid "Check that the hardware is able to run compiz."
-msgstr ""
+msgstr "Kiểm tra hệ thống có thể chạy compiz không"
 
 #. description
 #: ../jobs/graphics.txt.in:153
@@ -740,7 +746,7 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:153
 msgid "Did the 3d animation appear?"
-msgstr ""
+msgstr "Hoạt hình 3 chiều có xuất hiện không?"
 
 #. description
 #: ../jobs/info.txt.in:60 ../jobs/screenshot.txt.in:7
@@ -765,7 +771,7 @@ msgstr "Di chuột sẽ di chuyển con trỏ chuột trên màn hình."
 #. description
 #: ../jobs/input.txt.in:4
 msgid "Is your mouse working properly?"
-msgstr "Chuột của bạn làm việc tốt chứ?"
+msgstr "Chuột của bạn hoạt động tốt chứ?"
 
 #. description
 #: ../jobs/input.txt.in:13
@@ -775,7 +781,7 @@ msgstr ""
 #. description
 #: ../jobs/input.txt.in:13
 msgid "Is your keyboard working properly?"
-msgstr "Bàn phím của bạn làm việc tốt chứ?"
+msgstr "Bàn phím của bạn hoạt động tốt chứ?"
 
 #. description
 #: ../jobs/install.txt.in:6
@@ -868,7 +874,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:3
 msgid "Audio tests"
-msgstr ""
+msgstr "Kiểm tra âm thanh"
 
 #. description
 #: ../jobs/local.txt.in:8
@@ -898,7 +904,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:33
 msgid "Disk tests"
-msgstr ""
+msgstr "Kiểm tra ổ cứng"
 
 #. description
 #: ../jobs/local.txt.in:38
@@ -908,7 +914,7 @@ msgstr "Kiểm tra đầu đọc vân tay"
 #. description
 #: ../jobs/local.txt.in:43
 msgid "Firewire disk tests"
-msgstr ""
+msgstr "Kiểm tra ổ đĩa Firewire"
 
 #. description
 #: ../jobs/local.txt.in:48
@@ -953,7 +959,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:88
 msgid "Monitor tests"
-msgstr ""
+msgstr "Kiểm tra màn hình"
 
 #. description
 #: ../jobs/local.txt.in:93
@@ -968,7 +974,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:103
 msgid "Peripheral tests"
-msgstr ""
+msgstr "Kiểm tra thiết bị ngoại vi"
 
 #. description
 #: ../jobs/local.txt.in:108
@@ -983,7 +989,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:118
 msgid "User Applications"
-msgstr ""
+msgstr "Ứng dụng người dùng"
 
 #. description
 #: ../jobs/local.txt.in:123
@@ -993,7 +999,7 @@ msgstr ""
 #. description
 #: ../jobs/ltp.txt.in:3
 msgid "Linux Test Project"
-msgstr ""
+msgstr "Dự án Linux Test"
 
 #. description
 #: ../jobs/mago.txt.in:3
@@ -1143,7 +1149,7 @@ msgstr ""
 #. description
 #: ../jobs/mediacard.txt.in:130
 msgid "Does the icon automatically appear/disappear?"
-msgstr ""
+msgstr "Biểu tượng có tự động xuất hiện/biến mất không?"
 
 #. description
 #: ../jobs/memory.txt.in:4
@@ -1169,12 +1175,12 @@ msgstr ""
 #. description
 #: ../jobs/miscellanea.txt.in:8
 msgid "Note that this test may require you to enter your password."
-msgstr ""
+msgstr "Thao tác kiểm tra này có thể yêu cầu nhập vào mật khẩu"
 
 #. description
 #: ../jobs/miscellanea.txt.in:8
 msgid "Did the screen change temporarily to a text console?"
-msgstr ""
+msgstr "Màn hình có chuyển sang giao diện văn bản trong chốc lát không?"
 
 #. description
 #: ../jobs/miscellanea.txt.in:20
@@ -1198,7 +1204,7 @@ msgstr ""
 #. description
 #: ../jobs/monitor.txt.in:3
 msgid "If your system does not have a VGA port, please skip this test."
-msgstr ""
+msgstr "Nếu hệ thống không có cổng VGA, hãy bỏ qua bước kiểm tra này."
 
 #. description
 #: ../jobs/monitor.txt.in:3
@@ -1206,11 +1212,12 @@ msgid ""
 "Connect a display (if not already connected) to the VGA port on your system. "
 "Is the image displayed correctly?"
 msgstr ""
+"Hãy kết nối một màn hình qua cổng VGA. Hình ảnh có hiển thị chính xác không?"
 
 #. description
 #: ../jobs/monitor.txt.in:10
 msgid "If your system does not have a DVI port, please skip this test."
-msgstr ""
+msgstr "Nếu hệ thống không có cổng DVI, hãy bỏ qua bước kiểm tra này."
 
 #. description
 #: ../jobs/monitor.txt.in:10
@@ -1218,11 +1225,12 @@ msgid ""
 "Connect a display (if not already connected) to the DVI port on your system. "
 "Is the image displayed correctly?"
 msgstr ""
+"Hãy kết nối một màn hình qua cổng DVI. Hình ảnh có hiển thị chính xác không?"
 
 #. description
 #: ../jobs/monitor.txt.in:17
 msgid "If your system does not have DisplayPort, please skip this test."
-msgstr ""
+msgstr "Nếu hệ thống không có DisplayPort, hãy bỏ qua bước kiểm tra này."
 
 #. description
 #: ../jobs/monitor.txt.in:17
@@ -1230,11 +1238,13 @@ msgid ""
 "Connect a display (if not already connected) to the DisplayPort on your "
 "system. Is the image displayed correctly?"
 msgstr ""
+"Hãy kết nối một màn hình qua DisplayPort. Hình ảnh có hiển thị chính xác "
+"không?"
 
 #. description
 #: ../jobs/monitor.txt.in:24
 msgid "If your system does not have a HDMI port, please skip this test."
-msgstr ""
+msgstr "Nếu hệ thống không có cổng HDMI, hãy bỏ qua bước kiểm tra này."
 
 #. description
 #: ../jobs/monitor.txt.in:24
@@ -1242,11 +1252,12 @@ msgid ""
 "Connect a display (if not already connected) to the HDMI port on your "
 "system. Is the image displayed correctly?"
 msgstr ""
+"Hãy kết nối một màn hình qua cổng HDMI. Hình ảnh có hiển thị chính xác không?"
 
 #. description
 #: ../jobs/monitor.txt.in:31
 msgid "If your system does not have a S-VIDEO port, please skip this test."
-msgstr ""
+msgstr "Nếu hệ thống không có cổng S-VIDEO, hãy bỏ qua bước kiểm tra này."
 
 #. description
 #: ../jobs/monitor.txt.in:31
@@ -1254,11 +1265,13 @@ msgid ""
 "Connect a display (if not already connected) to the S-VIDEO port on your "
 "system. Is the image displayed correctly?"
 msgstr ""
+"Hãy kết nối một màn hình qua cổng S-VIDEO. Hình ảnh có hiển thị chính xác "
+"không?"
 
 #. description
 #: ../jobs/monitor.txt.in:38
 msgid "If your system does not have a RCA port, please skip this test."
-msgstr ""
+msgstr "Nếu hệ thống không có cổng RCA, hãy bỏ qua bước kiểm tra này."
 
 #. description
 #: ../jobs/monitor.txt.in:38
@@ -1266,6 +1279,7 @@ msgid ""
 "Connect a display (if not already connected) to the RCA port on your system. "
 "Is the image displayed correctly?"
 msgstr ""
+"Hãy kết nối một màn hình qua cổng RCA. Hình ảnh có hiển thị chính xác không?"
 
 #. description
 #: ../jobs/monitor.txt.in:46
@@ -1279,7 +1293,7 @@ msgstr ""
 #. description
 #: ../jobs/monitor.txt.in:46
 msgid "Did the monitor go blank?"
-msgstr ""
+msgstr "Màn hình có trống rỗng không?"
 
 #. description
 #: ../jobs/networking.txt.in:5
@@ -1438,7 +1452,7 @@ msgstr ""
 #. description
 #: ../jobs/optical.txt.in:90
 msgid "Did the file play?"
-msgstr ""
+msgstr "Bạn có xem được tệp tin không?"
 
 #. description
 #: ../jobs/panel_clock_test.txt.in:4
@@ -1516,7 +1530,7 @@ msgstr ""
 #. description
 #: ../jobs/phoronix.txt.in:3
 msgid "Automated benchmark testing"
-msgstr ""
+msgstr "Đánh giá hệ thống tự động"
 
 #. description
 #: ../jobs/power-management.txt.in:3
@@ -1821,7 +1835,7 @@ msgstr ""
 #. description
 #: ../jobs/qa_regression.txt.in:3
 msgid "QA regression tests (destructive)"
-msgstr ""
+msgstr "Kiểm tra hồi quy QA"
 
 #. description
 #: ../jobs/server-services.txt.in:5
@@ -2341,23 +2355,27 @@ msgstr "Một trong tìm lỗi, thông tin, cảnh báo, lỗi hoặc nguy cấp
 
 #: ../checkbox/application.py:82
 msgid "Configuration override parameters."
-msgstr "Cấu hình ghi đè lên tham số."
+msgstr "Cấu hình ghi đè tham số."
 
 #: ../checkbox/application.py:84
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist."
 msgstr ""
+"Cách viết ngắn hơn của --config=checkbox/plugins/jobs_info/blacklist."
 
 #: ../checkbox/application.py:86
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist_file."
 msgstr ""
+"Cách viết ngắn hơn của --config=checkbox/plugins/jobs_info/blacklist_file."
 
 #: ../checkbox/application.py:88
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist."
 msgstr ""
+"Cách viết ngắn hơn của --config=checkbox/plugins/jobs_info/whitelist."
 
 #: ../checkbox/application.py:90
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist_file."
 msgstr ""
+"Cách viết ngắn hơn của --config=checkbox/plugins/jobs_info/whitelist_file."
 
 #: ../checkbox/application.py:115
 msgid "Missing configuration file as argument.\n"
@@ -2366,9 +2384,7 @@ msgstr "Không thấy tệp cấu hình như là tham số.\n"
 #: ../checkbox/lib/signal.py:23
 msgid ""
 "Hangup detected on controlling terminal or death of controlling process"
-msgstr ""
-"Phát hiện treo khi điều khiển thiết bị cuối hoặc ngắt khi điều khiển tiến "
-"trình"
+msgstr "Thiết bị cuối điều khiển treo hoặc tiến trình điều khiểu đã kết thúc"
 
 #: ../checkbox/lib/signal.py:24
 msgid "Interrupt from keyboard"
@@ -2380,11 +2396,11 @@ msgstr "Thoát từ bàn phím"
 
 #: ../checkbox/lib/signal.py:26
 msgid "Illegal Instruction"
-msgstr "Chỉ dẫn không đúng"
+msgstr "Chỉ dẫn không hợp lệ"
 
 #: ../checkbox/lib/signal.py:27
 msgid "Abort signal from abort(3)"
-msgstr "Bỏ qua tín hiệu từ abort(3)"
+msgstr "Tín hiệu hủy bỏ từ abort(3)"
 
 #: ../checkbox/lib/signal.py:28
 msgid "Floating point exception"
@@ -2392,11 +2408,11 @@ msgstr "Ngoại lệ dấu phẩy động"
 
 #: ../checkbox/lib/signal.py:29
 msgid "Kill signal"
-msgstr "Kết thúc tín hiệu"
+msgstr "Tín hiệu kết thúc"
 
 #: ../checkbox/lib/signal.py:30
 msgid "Invalid memory reference"
-msgstr "Bộ nhớ tham chiếu không hợp lệ"
+msgstr "Tham chiếu bộ nhớ không hợp lệ"
 
 #: ../checkbox/lib/signal.py:31
 msgid "Broken pipe: write to pipe with no readers"
@@ -2420,7 +2436,7 @@ msgstr "Tín hiệu người dùng định nghĩa 2"
 
 #: ../checkbox/lib/signal.py:36
 msgid "Child stopped or terminated"
-msgstr "Con bị dừng hoặc bị ngắt"
+msgstr "Tiến trình con bị dừng hoặc bị ngắt"
 
 #: ../checkbox/lib/signal.py:37
 msgid "Continue if stopped"
@@ -2492,36 +2508,36 @@ msgstr ""
 
 #: ../checkbox_urwid/urwid_interface.py:99
 msgid "Continue"
-msgstr ""
+msgstr "Tiếp tục"
 
 #: ../checkbox_urwid/urwid_interface.py:192
 #: ../checkbox_urwid/urwid_interface.py:268
 #: ../checkbox_urwid/urwid_interface.py:416
 msgid "Previous"
-msgstr ""
+msgstr "Trước"
 
 #: ../checkbox_urwid/urwid_interface.py:193
 #: ../checkbox_urwid/urwid_interface.py:269
 #: ../checkbox_urwid/urwid_interface.py:417
 msgid "Next"
-msgstr ""
+msgstr "Tiếp"
 
 #. Show buttons
 #: ../checkbox_urwid/urwid_interface.py:414
 msgid "Select All"
-msgstr ""
+msgstr "Chọn Tất cả"
 
 #: ../checkbox_urwid/urwid_interface.py:415
 msgid "Deselect All"
-msgstr ""
+msgstr "Bỏ chọn tất cả"
 
 #: ../checkbox_urwid/urwid_interface.py:772
 msgid "Test"
-msgstr ""
+msgstr "Thử"
 
 #: ../checkbox_urwid/urwid_interface.py:787
 msgid "Test Again"
-msgstr ""
+msgstr "Thử lại"
 
 #: ../checkbox_gtk/gtk_interface.py:93
 msgid "hardware database"
@@ -2549,12 +2565,16 @@ msgid ""
 "Collecting information about this test.\n"
 "This might take a few minutes."
 msgstr ""
+"Đang thu thập thông tin về bước kiểm tra này.\n"
+"Quá trình này có thể mất vài phút."
 
 #: ../plugins/apport_prompt.py:116
 msgid ""
 "Collected information is being sent for bug tracking.\n"
 "This might take a few minutes."
 msgstr ""
+"Đang gửi thông tin thu thập được tới máy chủ quản lí lỗi.\n"
+"Quá trình này có thể mất vài phút"
 
 #: ../plugins/apport_prompt.py:225
 #, python-format
@@ -2569,7 +2589,7 @@ msgstr ""
 #: ../plugins/apport_prompt.py:246
 #, python-format
 msgid "Is a package upgrade in process? Error: %s"
-msgstr ""
+msgstr "Có gói nào đang được nâng cấp không? Lỗi: %s"
 
 #: ../plugins/final_prompt.py:33
 msgid "Successfully finished testing!"
@@ -2593,14 +2613,14 @@ msgid ""
 msgstr ""
 "Chào mứng tới Kiếm tra Hệ thống!\n"
 "\n"
-"Hộp kiểm tra cung cấp các bài kiểm tra để xác nhận hệ thống của bạn làm việc "
+"Checkbox cung cấp các bài kiểm tra để xác nhận hệ thống của bạn làm việc "
 "bình thường. Khi bạn kết thúc những bài kiểm tra, bạn có thể xem báo cáo "
 "tổng quát về hệ thống của bạn."
 
 #: ../plugins/launchpad_exchange.py:118
 #, python-format
 msgid "Failed to process form: %s"
-msgstr ""
+msgstr "Không thể xử lí biểu mẫu: %s"
 
 #: ../plugins/launchpad_exchange.py:141
 #, python-format
@@ -2629,7 +2649,7 @@ msgstr ""
 
 #: ../plugins/launchpad_exchange.py:162
 msgid "Information not posted to Launchpad."
-msgstr "Thông tin không được đưa tới Lanchpad."
+msgstr "Thông tin không được gửi tới Lanchpad."
 
 #: ../plugins/launchpad_prompt.py:71
 #, python-format
@@ -2659,11 +2679,12 @@ msgstr ""
 #: ../plugins/launchpad_prompt.py:88
 msgid "No e-mail address provided, not submitting to Launchpad."
 msgstr ""
-"Không có địa chỉ thư điện tử nào được cung cấp, không đưa tới Launchpad."
+"Bạn không cung cấp địa chỉ thư điện tử, thông tin sẽ không được gửi lên "
+"Launchpad."
 
 #: ../plugins/launchpad_prompt.py:92
 msgid "Email address must be in a proper format."
-msgstr "Địa chỉ thư điện tử phải ở dạng đúng."
+msgstr "Địa chỉ thư điện tử không hợp lệ."
 
 #: ../plugins/launchpad_prompt.py:98
 msgid "Exchanging information with the server..."
@@ -2671,7 +2692,7 @@ msgstr "Đang trao đổi thông tin với máy phục vụ..."
 
 #: ../plugins/lock_prompt.py:63
 msgid "There is another checkbox running. Please close it first."
-msgstr "Có một hộp kiểm tra khác đang chạy. Vui lòng đóng nó trước."
+msgstr "Có một Checkbox khác đang chạy. Vui lòng đóng nó trước."
 
 #: ../plugins/recover_prompt.py:54
 msgid ""
@@ -2686,12 +2707,12 @@ msgstr "Đang tạo báo cáo..."
 #: ../plugins/shell_test.py:52
 #, python-format
 msgid "Running %s..."
-msgstr ""
+msgstr "Đang thực hiện %s"
 
 #. Get results
 #: ../plugins/suites_prompt.py:105
 msgid "Select the suites to test"
-msgstr "Chọn cái thích hợp để kiểm tra"
+msgstr "Chọn các bài kiểm tra"
 
 #: ../scripts/keyboard_test:21
 msgid "Enter text:\n"
@@ -2718,6 +2739,21 @@ msgstr "Kết nối Internet đã được thiết lập đầy đủ"
 
 #~ msgid "Running shell tests..."
 #~ msgstr "Đang chạy kiểm tra dòng lệnh..."
+
+#~ msgid "Disk benchmark:"
+#~ msgstr "Đánh giá ổ cứng:"
+
+#~ msgid "Is this ok?"
+#~ msgstr "Nó có ổn không?"
+
+#~ msgid "Network tests"
+#~ msgstr "Kiểm tra mạng"
+
+#~ msgid "Video tests"
+#~ msgstr "Kiểm tra video"
+
+#~ msgid "Kernel modesetting tests"
+#~ msgstr "Kiểm tra modesetting trong không gian nhân"
 
 #~ msgid "Do you hear a sound?"
 #~ msgstr "Bạn có nghe thấy âm thanh không?"

@@ -222,6 +222,7 @@ class GTKInterface(UserInterface):
 
         dialog = dialog or self._dialog
         dialog.connect("response", on_dialog_response, self)
+        dialog.set_default_response(NEXT)
         dialog.show()
         Gtk.main()
         if self.direction == Gtk.ResponseType.DELETE_EVENT:
@@ -405,15 +406,22 @@ class GTKInterface(UserInterface):
                 active = not treestore.get_value(iter, COLUMN_ACTIVE)
             treestore.set_value(iter, COLUMN_ACTIVE, active)
 
-            # Set parents
-            def set_parents(iter):
-                parent = treestore.iter_parent(iter)
-                if parent:
-                    treestore.set_value(parent, COLUMN_ACTIVE, active)
-                    set_parents(parent)
+            # Set ancestors
+            def set_ancestors(iterator):
+                parent_row = treestore[iterator].parent
+                if active:
+                    while parent_row:
+                        parent_row[COLUMN_ACTIVE] = active
+                        parent_row = parent_row.parent
+                else:
+                    while parent_row:
+                        if any(child[COLUMN_ACTIVE]
+                               for child in parent_row.iterchildren()):
+                            break
+                        parent_row[COLUMN_ACTIVE] = active
+                        parent_row = parent_row.parent
 
-            if active:
-                set_parents(iter)
+            set_ancestors(iter)
 
             # Set children
             def set_children(iter):
@@ -551,7 +559,7 @@ class GTKInterface(UserInterface):
             message_format=text)
         message_dialog.set_modal(True)
         message_dialog.set_title(_("Error"))
-        message_dialog.set_default_response(1)
+        message_dialog.set_default_response(NEXT)
         message_dialog.add_buttons(Gtk.STOCK_CLOSE, NEXT)
         self._run_dialog(message_dialog)
         message_dialog.hide()

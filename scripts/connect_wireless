@@ -1,8 +1,20 @@
 #!/bin/bash
 
 # Any active connections?
-AP=`nmcli -f SSID,ACTIVE dev wifi list | grep yes | awk -F\' '{print $2}'`
-echo $AP
+conn=''
+
+active_connection=$(nmcli -f SSID,ACTIVE dev wifi list | grep yes)
+if [ $? -eq 0 ]
+then
+    ap=$(echo $active_connection | awk -F\' '{print $2}')
+    conn=$(nmcli -f NAME con list | grep $ap)
+else
+    conn=$(nmcli -f NAME,TYPE con list | grep wireless | head -n 1 | awk '{print $1}')
+fi
+
+echo $conn
+
+exit 0
 
 # Find out if wireless is enabled
 nmcli nm wifi | grep -q 'enabled'
@@ -15,6 +27,7 @@ then
         blkmessage='Your wireless may be hardware blocked. You may need
                     to use your wireless key/switch to re-enable it.'
         echo $blkmessage
+    fi
 fi
 
 # Regardless, still try and enable it - can't do any harm
@@ -25,7 +38,8 @@ nmcli dev status | grep wlan | grep -q '\<connected\>'
 
 if [ $? -eq 0 ]
 then
-    echo 'Disconnecting'
-    # Disconnect the wireless
-    nmcli dev disconnect iface `nmcli -f GENERAL dev list | grep -B 1 'wireless' | grep 'GENERAL.DEVICE' | awk '{print $2}'`
+    # Disconnect, pause then reconnect the wireless
+    nmcli dev disconnect iface $(nmcli -f GENERAL dev list | grep -B 1 'wireless' | grep 'GENERAL.DEVICE' | awk '{print $2}')
+    sleep 3
+    nmcli con up id $conn
 fi

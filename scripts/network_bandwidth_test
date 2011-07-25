@@ -493,18 +493,12 @@ class NetworkManager(object):
     HAL_INTERFACE = "org.freedesktop.Hal.Manager"
     HAL_INTERFACE_DEVICE = "org.freedesktop.Hal.Device"
 
-    STATE_UNKNOWN = "unknown"
-    STATE_ASLEEP = "asleep"
-    STATE_CONNECTING = "connecting"
-    STATE_CONNECTED = "connected"
-    STATE_DISCONNECTED = "disconnected"
-
-    _state_table = [
-        STATE_UNKNOWN,
-        STATE_ASLEEP,
-        STATE_CONNECTING,
-        STATE_CONNECTED,
-        STATE_DISCONNECTED]
+    #http://projects.gnome.org/NetworkManager/developers/
+    #NetworkManager D-Bus API Specifications, look for the
+    #NM_STATE enumeration to see which statuses indicate connection
+    #established and put them in this list. "3" works for NM 0.7 
+    #and 0.8, while "60" and "70" work for NM 0.9.
+    STATES_CONNECTED = [3, 60, 70]
 
     def __init__(self):
         try:
@@ -519,9 +513,9 @@ class NetworkManager(object):
         except dbus.exceptions.DBusException:
             raise NetworkManagerException, "Failed to connect to dbus service"
 
-    def get_state(self):
+    def is_connected(self):
         state = self.nm_service.state()
-        return self._state_table[state]
+        return state in self.STATES_CONNECTED 
 
 
 class Application(object):
@@ -632,7 +626,7 @@ class ApplicationManager(object):
 
         start = datetime.now()
         while True:
-            if nm.get_state() == nm.STATE_CONNECTED:
+            if nm.is_connected():
                 return True
             if datetime.now() - start > timedelta(seconds=timeout):
                 return False

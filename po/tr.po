@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-07-07 12:32-0400\n"
-"PO-Revision-Date: 2010-06-27 20:12+0000\n"
-"Last-Translator: Recep Hasanbaş <Unknown>\n"
+"PO-Revision-Date: 2011-07-19 20:28+0000\n"
+"Last-Translator: ubuntuki <Unknown>\n"
 "Language-Team: Turkish <tr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-07-16 04:32+0000\n"
+"X-Launchpad-Export-Date: 2011-07-20 04:33+0000\n"
 "X-Generator: Launchpad (build 13405)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:2
@@ -146,11 +146,11 @@ msgstr "Ek bilgi:"
 
 #: ../gtk/checkbox-gtk.ui.h:4
 msgid "_Deselect All"
-msgstr ""
+msgstr "Tüm Seçimleri _Kaldır"
 
 #: ../gtk/checkbox-gtk.ui.h:7
 msgid "_Select All"
-msgstr ""
+msgstr "Tümünü _Seç"
 
 #. description
 #: ../jobs/apport.txt.in:5
@@ -182,7 +182,7 @@ msgstr ""
 #. description
 #: ../jobs/audio.txt.in:33
 msgid "Please connect a pair of headphones to your audio device."
-msgstr ""
+msgstr "Lütfen ses aygıtınıza bir çift kulaklık bağlayın."
 
 #. description
 #: ../jobs/audio.txt.in:33
@@ -250,12 +250,12 @@ msgstr ""
 #. description
 #: ../jobs/autotest.txt.in:3
 msgid "Autotest suite (destructive)"
-msgstr ""
+msgstr "Otomatik sınama takımı (zararlı)"
 
 #. description
 #: ../jobs/bluetooth.txt.in:5 ../jobs/power-management.txt.in:185
 msgid "The address of your Bluetooth device is: $output"
-msgstr ""
+msgstr "Bluetooth aygıtınızın adresi: $output"
 
 #. description
 #: ../jobs/bluetooth.txt.in:15 ../jobs/graphics.txt.in:15
@@ -316,7 +316,7 @@ msgstr ""
 #: ../jobs/bluetooth.txt.in:82 ../jobs/optical.txt.in:72
 #: ../jobs/power-management.txt.in:194 ../jobs/usb.txt.in:27
 msgid "Did all the steps work?"
-msgstr ""
+msgstr "Tüm adımlar işe yaradı mı?"
 
 #. description
 #: ../jobs/camera.txt.in:7
@@ -484,7 +484,7 @@ msgstr ""
 #. description
 #: ../jobs/disk.txt.in:4
 msgid "The following hard drives were detected:"
-msgstr ""
+msgstr "İzleyen donanımlar algılandı:"
 
 #. description
 #: ../jobs/disk.txt.in:14
@@ -551,6 +551,9 @@ msgid ""
 "which test cases are run and a personal account that the tester uses to "
 "verify the fingerprint reader"
 msgstr ""
+"Önşartlar: Bu sınama durumu, çalışan sınama durumlarında bir sınama hesabı "
+"olduğunu ve kişisel hesabın parmak izi okuyucusu tarafından doğrulandığını "
+"varsayar."
 
 #. description
 #: ../jobs/fingerprint.txt.in:3
@@ -766,6 +769,8 @@ msgid ""
 "Ensure the current resolution meets or exceeds the recommended minimum "
 "resolution (1024 x 768). See here for details:"
 msgstr ""
+"Şu anki ekran çözünürlüğünün önerilen en düşük değeri (1024 x 768) "
+"karşıladığına veya aştığına emin olunuz. Ayrıntılar için buraya bakın:"
 
 #. description
 #: ../jobs/graphics.txt.in:107
@@ -773,11 +778,13 @@ msgid ""
 "Ensure the current resolution meets or exceeds the recommended minimum "
 "resolution (1024 x 600). See here for details:"
 msgstr ""
+"Şu anki ekran çözünürlüğünün önerilen en düşük değeri (1024 x 600) "
+"karşıladığına veya aştığına emin olunuz. Ayrıntılar için buraya bakın:"
 
 #. description
 #: ../jobs/graphics.txt.in:107
 msgid "https://help.ubuntu.com/community/Installation/SystemRequirements"
-msgstr ""
+msgstr "https://help.ubuntu.com/community/Installation/SystemRequirements"
 
 #. description
 #: ../jobs/graphics.txt.in:117
@@ -811,7 +818,7 @@ msgstr "Ekran her modda çalışıyor görünüyor muydu?"
 #. description
 #: ../jobs/graphics.txt.in:146
 msgid "Check that the hardware is able to run compiz."
-msgstr ""
+msgstr "Donanımın compiz'i çalıştırıp/çalıştıramayacağını kontrol edin."
 
 #. description
 #: ../jobs/graphics.txt.in:153
@@ -825,7 +832,7 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:153
 msgid "Did the 3d animation appear?"
-msgstr ""
+msgstr "3d animasyonu gözüktü mü?"
 
 #. description
 #: ../jobs/info.txt.in:60 ../jobs/screenshot.txt.in:7
@@ -950,7 +957,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:13
 msgid "Camera tests"
-msgstr ""
+msgstr "Kamera sınamaları"
 
 #. description
 #: ../jobs/local.txt.in:18
@@ -960,7 +967,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:23
 msgid "CPU tests"
-msgstr ""
+msgstr "CPU sınamaları"
 
 #. description
 #: ../jobs/local.txt.in:28
@@ -1025,7 +1032,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:88
 msgid "Monitor tests"
-msgstr ""
+msgstr "Monitör testleri"
 
 #. description
 #: ../jobs/local.txt.in:93
@@ -1055,7 +1062,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:118
 msgid "User Applications"
-msgstr ""
+msgstr "Kullanıcı Uygulamaları"
 
 #. description
 #: ../jobs/local.txt.in:123
@@ -1065,7 +1072,7 @@ msgstr ""
 #. description
 #: ../jobs/ltp.txt.in:3
 msgid "Linux Test Project"
-msgstr ""
+msgstr "Linux Test Projesi"
 
 #. description
 #: ../jobs/mago.txt.in:3
@@ -1279,7 +1286,7 @@ msgstr ""
 #. description
 #: ../jobs/mediacard.txt.in:130
 msgid "Does the icon automatically appear/disappear?"
-msgstr ""
+msgstr "Simge otomatik olarak görünüyor/kayboluyor mu?"
 
 #. description
 #: ../jobs/memory.txt.in:4
@@ -1335,7 +1342,7 @@ msgstr ""
 #. description
 #: ../jobs/monitor.txt.in:3
 msgid "If your system does not have a VGA port, please skip this test."
-msgstr ""
+msgstr "Eğer sisteminizin bir VGA yuvası yoksa, lütfen bu testi atlayın."
 
 #. description
 #: ../jobs/monitor.txt.in:3
@@ -1343,11 +1350,13 @@ msgid ""
 "Connect a display (if not already connected) to the VGA port on your system. "
 "Is the image displayed correctly?"
 msgstr ""
+"Sisteminizdeki VGA yuvasına bir ekran bağlayın (eğer zaten bağlı değilse). "
+"Resim doğru olarak görülüyor mu?"
 
 #. description
 #: ../jobs/monitor.txt.in:10
 msgid "If your system does not have a DVI port, please skip this test."
-msgstr ""
+msgstr "Eğer sisteminizin bir DVI yuvası yoksa, lütfen bu testi atlayın."
 
 #. description
 #: ../jobs/monitor.txt.in:10
@@ -1355,11 +1364,13 @@ msgid ""
 "Connect a display (if not already connected) to the DVI port on your system. "
 "Is the image displayed correctly?"
 msgstr ""
+"Sisteminizdeki DVI yuvasına bir ekran bağlayın (eğer zaten bağlı değilse). "
+"Resim doğru olarak görülüyor mu?"
 
 #. description
 #: ../jobs/monitor.txt.in:17
 msgid "If your system does not have DisplayPort, please skip this test."
-msgstr ""
+msgstr "Eğer sisteminizde Ekran Kart Yuvası yoksa, lütfen bu sınamayı geçin."
 
 #. description
 #: ../jobs/monitor.txt.in:17
@@ -1367,11 +1378,13 @@ msgid ""
 "Connect a display (if not already connected) to the DisplayPort on your "
 "system. Is the image displayed correctly?"
 msgstr ""
+"Sisteminizdeki Ekran kartu yuvasına bir ekran bağlayın (eğer zaten bağlı "
+"değilse). Resim doğru olarak görülüyor mu?"
 
 #. description
 #: ../jobs/monitor.txt.in:24
 msgid "If your system does not have a HDMI port, please skip this test."
-msgstr ""
+msgstr "Eğer sisteminizin bir HDMI yuvası yoksa, lütfen bu testi atlayın."
 
 #. description
 #: ../jobs/monitor.txt.in:24
@@ -1379,11 +1392,13 @@ msgid ""
 "Connect a display (if not already connected) to the HDMI port on your "
 "system. Is the image displayed correctly?"
 msgstr ""
+"Sisteminizdeki HDMI yuvasına bir ekran bağlayın (eğer zaten bağlı değilse). "
+"Resim doğru olarak görülüyor mu?"
 
 #. description
 #: ../jobs/monitor.txt.in:31
 msgid "If your system does not have a S-VIDEO port, please skip this test."
-msgstr ""
+msgstr "Eğer sisteminizin bir S-VIDEO yuvası yoksa, lütfen bu testi atlayın."
 
 #. description
 #: ../jobs/monitor.txt.in:31
@@ -1391,11 +1406,13 @@ msgid ""
 "Connect a display (if not already connected) to the S-VIDEO port on your "
 "system. Is the image displayed correctly?"
 msgstr ""
+"Sisteminizdeki S-VIDEO yuvasına bir ekran bağlayın (eğer zaten bağlı "
+"değilse). Resim doğru olarak görülüyor mu?"
 
 #. description
 #: ../jobs/monitor.txt.in:38
 msgid "If your system does not have a RCA port, please skip this test."
-msgstr ""
+msgstr "Eğer sisteminizin bir RCA yuvası yoksa, lütfen bu testi atlayın."
 
 #. description
 #: ../jobs/monitor.txt.in:38
@@ -1403,6 +1420,8 @@ msgid ""
 "Connect a display (if not already connected) to the RCA port on your system. "
 "Is the image displayed correctly?"
 msgstr ""
+"Sisteminizdeki RCA yuvasına bir ekran bağlayın (eğer zaten bağlı değilse). "
+"Resim doğru olarak görülüyor mu?"
 
 #. description
 #: ../jobs/monitor.txt.in:46
@@ -1421,7 +1440,7 @@ msgstr ""
 #. description
 #: ../jobs/monitor.txt.in:46
 msgid "Did the monitor go blank?"
-msgstr ""
+msgstr "Monitör karardı mı?"
 
 #. description
 #: ../jobs/networking.txt.in:5
@@ -1502,11 +1521,13 @@ msgstr ""
 #: ../jobs/networking.txt.in:119
 msgid "Try to enable a remote printer on the network and print a test page."
 msgstr ""
+"Ağ üzerindeki bir uzak yazıcı etkinleştirmeyi ve bir test sayfası yazdırmayı "
+"deneyin."
 
 #. description
 #: ../jobs/networking.txt.in:124
 msgid "Multiple network cards"
-msgstr ""
+msgstr "Çoklu ağ kartları"
 
 #. description
 #: ../jobs/networking.txt.in:144
@@ -1652,7 +1673,7 @@ msgstr ""
 #. description
 #: ../jobs/phoronix.txt.in:3
 msgid "Automated benchmark testing"
-msgstr ""
+msgstr "Otomatik karşılaştırma testi"
 
 #. description
 #: ../jobs/power-management.txt.in:3
@@ -1722,17 +1743,17 @@ msgstr ""
 #. description
 #: ../jobs/power-management.txt.in:65
 msgid "Test the network before suspending."
-msgstr ""
+msgstr "Askıya almadan önce ağı test et."
 
 #. description
 #: ../jobs/power-management.txt.in:70
 msgid "Record the current resolution before suspending."
-msgstr ""
+msgstr "Askıya almadan önce mevcut çözünürlüğü kaydet."
 
 #. description
 #: ../jobs/power-management.txt.in:78
 msgid "Test the audio before suspending."
-msgstr ""
+msgstr "Askıya almadan önce sesi test et."
 
 #. description
 #: ../jobs/power-management.txt.in:84
@@ -1754,7 +1775,7 @@ msgstr "GZS(Gerçek Zamanlı Saat) aygıtının bulunduğuna emin olun."
 #. description
 #: ../jobs/power-management.txt.in:135
 msgid "Power management Suspend and Resume test"
-msgstr ""
+msgstr "Güç yönetimi Askıya alma ve Bekleme testi"
 
 #. description
 #: ../jobs/power-management.txt.in:135
@@ -1769,18 +1790,18 @@ msgstr ""
 #. description
 #: ../jobs/power-management.txt.in:145
 msgid "Test the network after resuming."
-msgstr ""
+msgstr "Ağ çıktıktan sonra sınayın."
 
 #. description
 #: ../jobs/power-management.txt.in:151
 msgid ""
 "Test to see that we have the same resolution after resuming as before."
-msgstr ""
+msgstr "Devamdan sonra önceki gibi aynı çözüme sahip olduğumuzun testi."
 
 #. description
 #: ../jobs/power-management.txt.in:160
 msgid "Test the audio after resuming."
-msgstr ""
+msgstr "Ses çıkıldıktan sonra sınayın."
 
 #. description
 #: ../jobs/power-management.txt.in:167
@@ -1809,6 +1830,8 @@ msgid ""
 "Verify a bluetooth peripheral.  An example verification procedure for a "
 "bluetooth mouse is given."
 msgstr ""
+"Bir bluetooth çevresel aygıtı doğrulayın. Bluetooth fare için bir örnek "
+"doğrulama yordamı verilir."
 
 #. description
 #: ../jobs/power-management.txt.in:194
@@ -1845,6 +1868,9 @@ msgid ""
 "suspend and resume.  You can use either internal or external microphone and "
 "speakers."
 msgstr ""
+"Bu ses aletinizin askıya alınma ve sonrasında uygun bir şekilde çalıştığını "
+"kontrol edecek. Siz dahili veya harici mikrofon ve hoparlör "
+"kullanabilirsiniz."
 
 #. description
 #: ../jobs/power-management.txt.in:221
@@ -1875,6 +1901,7 @@ msgstr ""
 #: ../jobs/power-management.txt.in:234
 msgid "Did the system successfully suspend and resume for 30 iterations?"
 msgstr ""
+"Sistem 30 yineleme için başarılı bir şekilde askıya alınıp devam etti mi?"
 
 #. description
 #: ../jobs/power-management.txt.in:245
@@ -1882,6 +1909,7 @@ msgid ""
 "This will check to make sure your system can successfully hibernate (if "
 "supported)."
 msgstr ""
+"Bu seçenek hazırda bekletme özelliğini sınayacak (eğer destekleniyorsa)."
 
 #. description
 #: ../jobs/power-management.txt.in:245
@@ -1903,6 +1931,7 @@ msgid ""
 "Did the system successfully hibernate and did it work properly after waking "
 "up?"
 msgstr ""
+"Sistem başarıyla hazırda bekleyip sonra da düzgün bir biçimde uyandı mı?"
 
 #. description
 #: ../jobs/power-management.txt.in:258
@@ -1927,11 +1956,14 @@ msgid ""
 "set, and that grub is set to boot Ubuntu by default if you have a multi-boot "
 "set-up."
 msgstr ""
+"Ayrıca, sisteminiz de güç veya HDD şifre seti olmadığından emin olmanız "
+"gerekecek, eğr bir çoklu-önyükleme kurulumuna sahipseniz bu grub Ubuntu'yu "
+"önyüklemek için varsayılan olarak ayarlandı."
 
 #. description
 #: ../jobs/power-management.txt.in:258
 msgid "Did the system successfully hibernate and wake 30 times?"
-msgstr ""
+msgstr "Sisteminiz 30 defa hazırda bekletilip başarıyla uyandı mı?"
 
 #. description
 #: ../jobs/power-management.txt.in:267
@@ -1965,7 +1997,7 @@ msgstr ""
 #. description
 #: ../jobs/qa_regression.txt.in:3
 msgid "QA regression tests (destructive)"
-msgstr ""
+msgstr "QA geri dönüşüm testleri (Bozucu)"
 
 #. description
 #: ../jobs/server-services.txt.in:5
@@ -2213,6 +2245,11 @@ msgid ""
 "are found, install them. When Update Manager has finished, please close the "
 "app by clicking the Close button in the lower right corner."
 msgstr ""
+"Bu sınama, Güncelleştirme Yöneticisini çalıştıracak ve sistem için herhangi "
+"bir güncelleştirmenin olup olmadığını denetleyecek. Lütfen istemleri takip "
+"edin, güncelleştirme bulunursa onları yükleyin.\r\n"
+"Güncelleştirme Yöneticisi'nin işlemi tamamlanınca, sağ alt köşedeki düğmeye "
+"tıklayarak uygulamayı kapatın."
 
 #. description
 #: ../jobs/user_apps.txt.in:14
@@ -2227,7 +2264,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:14
 msgid "Do you now have a new folder called Test Folder?"
-msgstr ""
+msgstr "Sınama Dizini adında bir dizin oluştu mu?"
 
 #. description
 #: ../jobs/user_apps.txt.in:25
@@ -2246,11 +2283,13 @@ msgid ""
 "Right click on the folder called Test Folder(copy) and click Rename. Enter "
 "the name Test Data in the name box and hit Enter."
 msgstr ""
+"Test Dizini(kopya) isimli dizine sağ tıklayın ve Yeniden Adlandır'ı "
+"tıklayın. İsim kutusuna Sınama Verisi ismini girin ve Enter tuşuna basın."
 
 #. description
 #: ../jobs/user_apps.txt.in:25
 msgid "Do you now have a folder called Test Data?"
-msgstr ""
+msgstr "Sınama Verisi adında bir dizin oluştu mu?"
 
 #. description
 #: ../jobs/user_apps.txt.in:38
@@ -2264,14 +2303,14 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:38
 msgid "Double click the folder called Test Folder to open it up."
-msgstr ""
+msgstr "Açmak için Sınama Dizini'ne çift tıklayın."
 
 #. description
 #: ../jobs/user_apps.txt.in:38
 msgid ""
 "Was the folder called Test Data successfully moved into the folder called "
 "Test Folder?"
-msgstr ""
+msgstr "Sınama Verisi dizini, Sınama Dizini içerisine başarıyla taşındı mı?"
 
 #. description
 #: ../jobs/user_apps.txt.in:51
@@ -2287,12 +2326,12 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:51
 msgid "Do you now have a file called Test File 1?"
-msgstr ""
+msgstr "Sınama Dosyası 1 oluştu mu?"
 
 #. description
 #: ../jobs/user_apps.txt.in:51
 msgid "Close the File browser."
-msgstr ""
+msgstr "Dosya tarayıcısını kapat."
 
 #. description
 #: ../jobs/user_apps.txt.in:62
@@ -2310,11 +2349,13 @@ msgid ""
 "Right click on the file called Test File 1(copy) and click Rename. Enter the "
 "name Test File 2 in the name box and hit Enter."
 msgstr ""
+"Test Dizini 1(kopya) adlı dizine sağ tıklayıp Yeniden Adlandır deyin. İsim "
+"kutusu bölümüne Test Dizini 2'yi girin ve Enter'a tıklayın."
 
 #. description
 #: ../jobs/user_apps.txt.in:62
 msgid "Do you now have a file called Test File 2?"
-msgstr ""
+msgstr "Sınama Dosyası 2 oluştu mu?"
 
 #. description
 #: ../jobs/user_apps.txt.in:75
@@ -2328,13 +2369,14 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:75
 msgid "Double click the icon for Test Data to open that folder up."
-msgstr ""
+msgstr "Dizini açmak için Sınama Verisi simgesine çift tıklayın."
 
 #. description
 #: ../jobs/user_apps.txt.in:75
 msgid ""
 "Was the file Test File 2 successfully moved into the Test Data folder?"
 msgstr ""
+"Sınama Dosyası 2, Sınama Verisi dizini içerisine başarıyla taşındı mı?"
 
 #. description
 #: ../jobs/user_apps.txt.in:88
@@ -2348,7 +2390,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:88
 msgid "Is Test File 1 now gone?"
-msgstr ""
+msgstr "Sınama Dosyası 1 yok oldu mu?"
 
 #. description
 #: ../jobs/user_apps.txt.in:99
@@ -2362,17 +2404,17 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:99
 msgid "Has Test Folder been successfully deleted?"
-msgstr ""
+msgstr "Sınama Dizini başarıyla silindi mi?"
 
 #. description
 #: ../jobs/user_apps.txt.in:99
 msgid "Close the File Browser."
-msgstr ""
+msgstr "Dosya Tarayıcısı'nı kapat."
 
 #. description
 #: ../jobs/user_apps.txt.in:160
 msgid "Common Document Types Test"
-msgstr ""
+msgstr "Ortak Belge Türleri Sınaması"
 
 #. description
 #: ../jobs/user_apps.txt.in:178
@@ -2382,7 +2424,7 @@ msgstr "Firefox'u açıp test web sayfasını görüntülemek için Test'e bası
 #. description
 #: ../jobs/user_apps.txt.in:178
 msgid "Did the Ubuntu Test page load correctly?"
-msgstr ""
+msgstr "Ubuntu Test sayfası doğru bir şekilde yüklendi mi?"
 
 #. description
 #: ../jobs/user_apps.txt.in:188
@@ -2396,7 +2438,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:188
 msgid "Did the applet display?"
-msgstr ""
+msgstr "Uygulamacık görüntülendi mi?"
 
 #. description
 #: ../jobs/user_apps.txt.in:198
@@ -2406,7 +2448,7 @@ msgstr "Firefox'u açıp örnek Flash testini görüntülemek için Test'e bası
 #. description
 #: ../jobs/user_apps.txt.in:198
 msgid "Did you see the text?"
-msgstr ""
+msgstr "Metni gördünüz mü?"
 
 #. description
 #: ../jobs/user_apps.txt.in:208
@@ -2416,7 +2458,7 @@ msgstr "Firefox'u açıp kısa bir flash video görüntülemek için Test'e bas�
 #. description
 #: ../jobs/user_apps.txt.in:208
 msgid "Did the video play correctly?"
-msgstr ""
+msgstr "Video düzgün bir biçimde oynatıldı mı?"
 
 #. description
 #: ../jobs/user_apps.txt.in:218
@@ -2426,27 +2468,27 @@ msgstr "Firefox'u örnek bir video ile başlatmak Test'e basın."
 #. description
 #: ../jobs/user_apps.txt.in:218
 msgid "Did the video play using a plugin?"
-msgstr ""
+msgstr "Video bir eklenti kullanılarak oynatıldı mı?"
 
 #. description
 #: ../jobs/user_apps.txt.in:227
 msgid "Facebook Chat"
-msgstr ""
+msgstr "Facebook Sohbet"
 
 #. description
 #: ../jobs/user_apps.txt.in:238
 msgid "Google Talk"
-msgstr ""
+msgstr "Google Talk"
 
 #. description
 #: ../jobs/user_apps.txt.in:249
 msgid "Jabber"
-msgstr ""
+msgstr "Jabber"
 
 #. description
 #: ../jobs/user_apps.txt.in:260
 msgid "AIM"
-msgstr ""
+msgstr "AIM"
 
 #. description
 #: ../jobs/user_apps.txt.in:271
@@ -2462,12 +2504,13 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:271
 msgid "MSN"
-msgstr ""
+msgstr "MSN"
 
 #. description
 #: ../jobs/user_apps.txt.in:271
 msgid "Were you able to connect correctly and send/receive messages?"
 msgstr ""
+"Doğru bir şekilde bağlanabiliyor ve ileti gönderip alabiliyor muydunuz?"
 
 #: ../checkbox/application.py:66
 msgid "Usage: checkbox [OPTIONS]"
@@ -2487,19 +2530,21 @@ msgstr "Yapılandırılmada geçersiz kılınan değiştirgeler."
 
 #: ../checkbox/application.py:84
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist."
-msgstr ""
+msgstr "--config=checkbox/plugins/jobs_info/blacklist için kısaltma yapın."
 
 #: ../checkbox/application.py:86
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist_file."
 msgstr ""
+"--config=checkbox/plugins/jobs_info/blacklist_file için kısaltma yapın."
 
 #: ../checkbox/application.py:88
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist."
-msgstr ""
+msgstr "--config=checkbox/plugins/jobs_info/whitelist için kısaltma yapın."
 
 #: ../checkbox/application.py:90
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist_file."
 msgstr ""
+"--config=checkbox/plugins/jobs_info/whitelist_file için kısaltma yapın."
 
 #: ../checkbox/application.py:115
 msgid "Missing configuration file as argument.\n"
@@ -2629,40 +2674,40 @@ msgstr "Lütfen buraya yazın ve bittiğinde Ctrl-D tuşlarına basın:\n"
 
 #: ../checkbox_urwid/urwid_interface.py:60
 msgid "Checkbox System Testing"
-msgstr ""
+msgstr "Checkbox Sistem Sınama"
 
 #: ../checkbox_urwid/urwid_interface.py:99
 msgid "Continue"
-msgstr ""
+msgstr "Devam Et"
 
 #: ../checkbox_urwid/urwid_interface.py:192
 #: ../checkbox_urwid/urwid_interface.py:268
 #: ../checkbox_urwid/urwid_interface.py:416
 msgid "Previous"
-msgstr ""
+msgstr "Önceki"
 
 #: ../checkbox_urwid/urwid_interface.py:193
 #: ../checkbox_urwid/urwid_interface.py:269
 #: ../checkbox_urwid/urwid_interface.py:417
 msgid "Next"
-msgstr ""
+msgstr "Sonraki"
 
 #. Show buttons
 #: ../checkbox_urwid/urwid_interface.py:414
 msgid "Select All"
-msgstr ""
+msgstr "Tümünü Seç"
 
 #: ../checkbox_urwid/urwid_interface.py:415
 msgid "Deselect All"
-msgstr ""
+msgstr "Tüm Seçimleri Kaldır"
 
 #: ../checkbox_urwid/urwid_interface.py:772
 msgid "Test"
-msgstr ""
+msgstr "Sına"
 
 #: ../checkbox_urwid/urwid_interface.py:787
 msgid "Test Again"
-msgstr ""
+msgstr "Yeniden Sına"
 
 #: ../checkbox_gtk/gtk_interface.py:93
 msgid "hardware database"
@@ -2690,12 +2735,16 @@ msgid ""
 "Collecting information about this test.\n"
 "This might take a few minutes."
 msgstr ""
+"Bu test hakkında bilgi toplanıyor.\n"
+"Bu biraz zaman alabilir."
 
 #: ../plugins/apport_prompt.py:116
 msgid ""
 "Collected information is being sent for bug tracking.\n"
 "This might take a few minutes."
 msgstr ""
+"Toplanan bilgiler hata izleme için gönderildi.\n"
+"Bu birkaç dakika sürebilir."
 
 #: ../plugins/apport_prompt.py:225
 #, python-format
@@ -2710,7 +2759,7 @@ msgstr ""
 #: ../plugins/apport_prompt.py:246
 #, python-format
 msgid "Is a package upgrade in process? Error: %s"
-msgstr ""
+msgstr "Bir paket yükseltiliyor mu? Hata: %s"
 
 #: ../plugins/final_prompt.py:33
 msgid "Successfully finished testing!"
@@ -2732,11 +2781,17 @@ msgid ""
 "Once you are finished running the tests, you can view a summary report for "
 "your system."
 msgstr ""
+"Sistem Sınamaya Hoş geldiniz \n"
+"\n"
+"Checkbox uygulaması, sisteminizin düzgün biçimde çalışıp çalışmadığını "
+"saptamak için kullanabileceğiniz çeşitli sınama işlemleri sunar. Sınama "
+"işlemleri bittikten sonra sisteminizin durumu hakkında çıkarılacak olan "
+"raporun bir özetini görüntüleyebilir ve inceleyebilirsiniz."
 
 #: ../plugins/launchpad_exchange.py:118
 #, python-format
 msgid "Failed to process form: %s"
-msgstr ""
+msgstr "Hata işlem formu: %s"
 
 #: ../plugins/launchpad_exchange.py:141
 #, python-format
@@ -2781,10 +2836,23 @@ msgid ""
 "\n"
 "  https://launchpad.net/+login"
 msgstr ""
+"Aşağıdaki rapor, Launchpad donanım veritabanına (Launchpad Hardware "
+"Database) gönderilmek üzere oluşturulmuştur:\n"
+"\n"
+"  [[%s|View Report]]\n"
+"\n"
+"Sisteminiz hakkında toplanan bu bilgileri, Launchpad hesabınıza giriş yapmak "
+"için kullandığınız e-posta adresinizi kullanarak gönderebilirsiniz. Henüz "
+"bir Launchpad hesabınız yoksa, lütfen aşağıdaki adrese gidin ve yönergeleri "
+"takip ederek Launchpad'a kayıt olun:\n"
+"\n"
+"  https://launchpad.net/+login"
 
 #: ../plugins/launchpad_prompt.py:88
 msgid "No e-mail address provided, not submitting to Launchpad."
 msgstr ""
+"Herhangi bir e-posta adresi belirtilmedi. Bilgiler Launchpad'a "
+"gönderilmeyecek."
 
 #: ../plugins/launchpad_prompt.py:92
 msgid "Email address must be in a proper format."
@@ -2803,6 +2871,8 @@ msgid ""
 "Checkbox did not finish completely.\n"
 "Do you want to recover from the previous run?"
 msgstr ""
+"Kontrol kutusu tamamen bitmedi.\n"
+"Önceki çalışmadan kurtarmak istiyor musun?"
 
 #: ../plugins/report_prompt.py:34
 msgid "Building report..."
@@ -2811,12 +2881,12 @@ msgstr "Rapor oluşturuluyor..."
 #: ../plugins/shell_test.py:52
 #, python-format
 msgid "Running %s..."
-msgstr ""
+msgstr "%s çalışıyor..."
 
 #. Get results
 #: ../plugins/suites_prompt.py:105
 msgid "Select the suites to test"
-msgstr ""
+msgstr "Gerçekleştirmek istediğiniz sınamaları seçin"
 
 #: ../scripts/keyboard_test:21
 msgid "Enter text:\n"
@@ -2832,11 +2902,11 @@ msgstr "İnternet bağlantısı yok"
 
 #: ../scripts/internet_test:142
 msgid "Connection established lost a packet"
-msgstr ""
+msgstr "Bağlantı sağlandı ancak kayıp veri paketleri var"
 
 #: ../scripts/internet_test:145
 msgid "Internet connection fully established"
-msgstr ""
+msgstr "İnternet bağlantısı hatasız biçimde kuruldu"
 
 #~ msgid "Click the Test button to display a video test."
 #~ msgstr "Bir video sınaması görüntülemek için sına düğmesine tıklayın."

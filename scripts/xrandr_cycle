@@ -1,8 +1,19 @@
 #!/usr/bin/env python
 
 import subprocess
+import argparse
+import tarfile
+import shutil
 import time
 import sys
+import os
+import re
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--keyword', default='',
+                    help='A keyword to distinguish the screenshots taken in this run of the script')
+
+args = parser.parse_args()
 
 device_context = ''   # track what device's modes we are looking at
 modes = []            # keep track of all the devices and modes discovered
@@ -49,9 +60,43 @@ for line in output:
             if foo[1].find('*') != -1:
                 current_modes.append( (device_context, foo[0]) )
 
-
 # Now we have a list of the modes we need to test.  So let's do just that.
+profile_path = os.environ['HOME'] + '/.shutter/profiles/'
+screenshot_path = os.environ['CHECKBOX_DATA'] + 'xrandr_screens'
 
+if args.keyword: screenshot_path = screenshot_path + '_' + args.keyword
+
+regex = re.compile(r'filename="[^"\r\n]*"')
+
+# Keep the shutter profile in place before starting
+try:
+    os.makedirs(profile_path)
+except OSError:
+    pass
+
+try: 
+    os.makedirs(screenshot_path)
+except OSError:
+    pass
+
+try:
+    shutil.copy(os.environ['CHECKBOX_SHARE'] + '/data/settings/shutter.xml',
+                profile_path)
+except IOError:
+    pass
+
+try:
+    old_profile = open(profile_path + 'shutter.xml', 'r')
+    content = old_profile.read()
+    new_profile = open(profile_path + 'shutter.xml', 'w')
+    # Replace the folder name with the desired one
+    new_profile.write(re.sub(r'folder="[^"\r\n]*"',
+                             'folder="%s"' % screenshot_path, content))
+    new_profile.close()
+    old_profile.close()
+except:
+    pass
+        
 for mode in modes:
     cmd = 'xrandr --output ' + mode[0] + ' --mode ' + mode[1]
     retval = subprocess.call(cmd, shell=True)
@@ -60,10 +105,32 @@ for mode in modes:
 	message = 'Failed to set mode ' + mode[1] + ' for output ' + mode[0]
         failure_messages.append(message)
     else:
+        # Update shutter profile to save the image as the right name
+        mode_string = mode[0] + '_' + mode[1]
+
+        try:
+            old_profile = open(profile_path + 'shutter.xml', 'r')
+            content = old_profile.read()
+            new_profile = open(profile_path + 'shutter.xml', 'w')
+            new_profile.write(regex.sub('filename="%s"' % mode_string, content))
+            new_profile.close()
+            old_profile.close()                    
+
+            shuttercmd = ['shutter','--profile=shutter','--full','-e']
+            retval = subprocess.call(shuttercmd, shell=False)
+
+            if retval != 0:
+                print """Could not capture screenshot -
+                         you may need to install the package 'shutter'."""
+
+        except:
+            print """Could not configure screenshot tool -
+                     you may need to install the package 'shutter', 
+                     or check that %s exists.""" % profile_path
+
         message = 'Set mode ' + mode[1] + ' for output ' + mode[0]
         success_messages.append(message)
     time.sleep(3) # let the hardware recover a bit
-
 
 # Put things back the way we found them
 
@@ -71,6 +138,13 @@ for mode in current_modes:
     cmd = 'xrandr --output ' + mode[0] + ' --mode ' + mode[1]
     subprocess.call(cmd, shell=True)
 
+# Tar up the screenshots for uploading
+try:
+    with tarfile.open(screenshot_path + '.tgz', 'w:gz') as screen_tar:
+        for screen in os.listdir(screenshot_path):
+            screen_tar.add(screenshot_path + '/' + screen, screen)
+except:
+    pass
 
 # Output some fun facts and knock off for the day
 

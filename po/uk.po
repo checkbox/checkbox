@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-07-07 12:32-0400\n"
-"PO-Revision-Date: 2011-07-15 19:02+0000\n"
-"Last-Translator: atany <Unknown>\n"
+"PO-Revision-Date: 2011-07-19 18:14+0000\n"
+"Last-Translator: Akdmeh <Unknown>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-07-16 04:32+0000\n"
+"X-Launchpad-Export-Date: 2011-07-20 04:33+0000\n"
 "X-Generator: Launchpad (build 13405)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:2
@@ -46,7 +46,7 @@ msgstr "Ваша миша працює нормально?"
 #. description
 #: ../jobs/networking.txt.in:16
 msgid "Testing your connection to the Internet:"
-msgstr "Перевірка вашого підключення до інтернет:"
+msgstr "Перевірка підключення до інтернету:"
 
 #: ../plugins/launchpad_exchange.py:162
 msgid "Information not posted to Launchpad."
@@ -96,7 +96,7 @@ msgstr "Тестування Системи"
 
 #: ../gtk/checkbox-gtk.ui.h:4
 msgid "_Deselect All"
-msgstr ""
+msgstr "_Прибрати виділення"
 
 #: ../gtk/checkbox-gtk.ui.h:5
 msgid "_No"
@@ -108,7 +108,7 @@ msgstr "_Назад"
 
 #: ../gtk/checkbox-gtk.ui.h:7
 msgid "_Select All"
-msgstr ""
+msgstr "Виді_лити все"
 
 #: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:522
 msgid "_Test"
@@ -152,7 +152,7 @@ msgstr ""
 #. description
 #: ../jobs/audio.txt.in:33
 msgid "Please connect a pair of headphones to your audio device."
-msgstr ""
+msgstr "Будь ласка, під’єднайте навушники до аудіо пристрою."
 
 #. description
 #: ../jobs/audio.txt.in:33
@@ -217,12 +217,12 @@ msgstr ""
 #. description
 #: ../jobs/autotest.txt.in:3
 msgid "Autotest suite (destructive)"
-msgstr ""
+msgstr "Набір автоматичних тестів (деструктивно)"
 
 #. description
 #: ../jobs/bluetooth.txt.in:5 ../jobs/power-management.txt.in:185
 msgid "The address of your Bluetooth device is: $output"
-msgstr ""
+msgstr "Адреса пристрою Bluetooth: $output"
 
 #. description
 #: ../jobs/bluetooth.txt.in:15 ../jobs/graphics.txt.in:15
@@ -283,7 +283,7 @@ msgstr ""
 #: ../jobs/bluetooth.txt.in:82 ../jobs/optical.txt.in:72
 #: ../jobs/power-management.txt.in:194 ../jobs/usb.txt.in:27
 msgid "Did all the steps work?"
-msgstr ""
+msgstr "Чи все було гаразд?"
 
 #. description
 #: ../jobs/camera.txt.in:7
@@ -451,7 +451,7 @@ msgstr ""
 #. description
 #: ../jobs/disk.txt.in:4
 msgid "The following hard drives were detected:"
-msgstr ""
+msgstr "Було виявлено такі жорсткі диски:"
 
 #. description
 #: ../jobs/disk.txt.in:14
@@ -518,6 +518,9 @@ msgid ""
 "which test cases are run and a personal account that the tester uses to "
 "verify the fingerprint reader"
 msgstr ""
+"Передумови: Цей тест передбачає наявність тестового облікового запису, для "
+"якого виконують тест, і власного облікового запису, щоб перевірити сканер "
+"відбитків пальців"
 
 #. description
 #: ../jobs/fingerprint.txt.in:3
@@ -748,7 +751,7 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:107
 msgid "https://help.ubuntu.com/community/Installation/SystemRequirements"
-msgstr ""
+msgstr "https://help.ubuntu.com/community/Installation/SystemRequirements"
 
 #. description
 #: ../jobs/graphics.txt.in:117
@@ -780,7 +783,7 @@ msgstr "Екран працював у кожному з режимів?"
 #. description
 #: ../jobs/graphics.txt.in:146
 msgid "Check that the hardware is able to run compiz."
-msgstr ""
+msgstr "Перевірка відеокарти на можливість запуску compiz."
 
 #. description
 #: ../jobs/graphics.txt.in:153
@@ -792,7 +795,7 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:153
 msgid "Did the 3d animation appear?"
-msgstr ""
+msgstr "Чи появилась 3D-анімація?"
 
 #. description
 #: ../jobs/info.txt.in:60 ../jobs/screenshot.txt.in:7
@@ -995,7 +998,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:88
 msgid "Monitor tests"
-msgstr ""
+msgstr "Перевірка морітору"
 
 #. description
 #: ../jobs/local.txt.in:93
@@ -1025,7 +1028,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:118
 msgid "User Applications"
-msgstr ""
+msgstr "Програми користувача"
 
 #. description
 #: ../jobs/local.txt.in:123
@@ -1035,7 +1038,7 @@ msgstr ""
 #. description
 #: ../jobs/ltp.txt.in:3
 msgid "Linux Test Project"
-msgstr ""
+msgstr "Проект тестування Linux"
 
 #. description
 #: ../jobs/mago.txt.in:3
@@ -1177,7 +1180,7 @@ msgstr ""
 #. description
 #: ../jobs/mediacard.txt.in:130
 msgid "Does the icon automatically appear/disappear?"
-msgstr ""
+msgstr "Піктограма автоматично з’являється/зникає?"
 
 #. description
 #: ../jobs/memory.txt.in:4
@@ -1229,7 +1232,7 @@ msgstr ""
 #. description
 #: ../jobs/monitor.txt.in:3
 msgid "If your system does not have a VGA port, please skip this test."
-msgstr ""
+msgstr "Якщо ваша система не має порту VGA, будь ласка, пропустіть цей тест."
 
 #. description
 #: ../jobs/monitor.txt.in:3
@@ -1237,11 +1240,13 @@ msgid ""
 "Connect a display (if not already connected) to the VGA port on your system. "
 "Is the image displayed correctly?"
 msgstr ""
+"Підключіть дисплей (якщо ще не підключено) до VGA порту Вашої системи. "
+"Зображення правильне?"
 
 #. description
 #: ../jobs/monitor.txt.in:10
 msgid "If your system does not have a DVI port, please skip this test."
-msgstr ""
+msgstr "Якщо ваша система не має порту DVI, будь ласка, пропустіть цей тест."
 
 #. description
 #: ../jobs/monitor.txt.in:10
@@ -1249,11 +1254,14 @@ msgid ""
 "Connect a display (if not already connected) to the DVI port on your system. "
 "Is the image displayed correctly?"
 msgstr ""
+"Підключіть дисплей (якщо він ще не підключений) до порту DVI Вашої системи. "
+"Чи показано зображення вірно?"
 
 #. description
 #: ../jobs/monitor.txt.in:17
 msgid "If your system does not have DisplayPort, please skip this test."
 msgstr ""
+"Якщо ваша система не має порту DisplayPort, будь ласка, пропустіть цей тест."
 
 #. description
 #: ../jobs/monitor.txt.in:17
@@ -1261,11 +1269,14 @@ msgid ""
 "Connect a display (if not already connected) to the DisplayPort on your "
 "system. Is the image displayed correctly?"
 msgstr ""
+"Підключіть дисплей (якщо він ще не підключений) до порту DisplayPort Вашої "
+"системи. Чи показано зображення вірно?"
 
 #. description
 #: ../jobs/monitor.txt.in:24
 msgid "If your system does not have a HDMI port, please skip this test."
 msgstr ""
+"Якщо ваша система не має порту HDMI, будь ласка, пропустіть цей тест."
 
 #. description
 #: ../jobs/monitor.txt.in:24
@@ -1273,11 +1284,14 @@ msgid ""
 "Connect a display (if not already connected) to the HDMI port on your "
 "system. Is the image displayed correctly?"
 msgstr ""
+"Підключіть дисплей (якщо він ще не підключений) до порту HDMI Вашої системи. "
+"Чи показано зображення вірно?"
 
 #. description
 #: ../jobs/monitor.txt.in:31
 msgid "If your system does not have a S-VIDEO port, please skip this test."
 msgstr ""
+"Якщо ваша система не має порту S_VIDEO, будь ласка, пропустіть цей тест."
 
 #. description
 #: ../jobs/monitor.txt.in:31
@@ -1285,11 +1299,14 @@ msgid ""
 "Connect a display (if not already connected) to the S-VIDEO port on your "
 "system. Is the image displayed correctly?"
 msgstr ""
+"Підключіть дисплей (якщо він ще не підключений) до порту S_VIDEO Вашої "
+"системи. Чи показано зображення вірно?"
 
 #. description
 #: ../jobs/monitor.txt.in:38
 msgid "If your system does not have a RCA port, please skip this test."
 msgstr ""
+"Якщо ваша система не має порту RCA, будь ласка, пропустіть цей текст."
 
 #. description
 #: ../jobs/monitor.txt.in:38
@@ -1297,6 +1314,8 @@ msgid ""
 "Connect a display (if not already connected) to the RCA port on your system. "
 "Is the image displayed correctly?"
 msgstr ""
+"Підключіть дисплей (якщо він ще не підключений) до порту RCA Вашої системи. "
+"Чи показано зображення вірно?"
 
 #. description
 #: ../jobs/monitor.txt.in:46
@@ -1310,7 +1329,7 @@ msgstr ""
 #. description
 #: ../jobs/monitor.txt.in:46
 msgid "Did the monitor go blank?"
-msgstr ""
+msgstr "Монітор погас?"
 
 #. description
 #: ../jobs/networking.txt.in:5
@@ -1542,7 +1561,7 @@ msgstr ""
 #. description
 #: ../jobs/phoronix.txt.in:3
 msgid "Automated benchmark testing"
-msgstr ""
+msgstr "Автоматичне тестування продуктивності"
 
 #. description
 #: ../jobs/power-management.txt.in:3
@@ -1612,17 +1631,19 @@ msgstr ""
 #. description
 #: ../jobs/power-management.txt.in:65
 msgid "Test the network before suspending."
-msgstr ""
+msgstr "Перевірити мережу, перш ніж перейти у режим економії електроенергії."
 
 #. description
 #: ../jobs/power-management.txt.in:70
 msgid "Record the current resolution before suspending."
 msgstr ""
+"Записати поточну розільну здатність, перш ніж перейти у режим економії "
+"електроенергії."
 
 #. description
 #: ../jobs/power-management.txt.in:78
 msgid "Test the audio before suspending."
-msgstr ""
+msgstr "Перевірити звук, перш ніж перейти у режим економії електроенергії."
 
 #. description
 #: ../jobs/power-management.txt.in:84
@@ -1644,7 +1665,7 @@ msgstr ""
 #. description
 #: ../jobs/power-management.txt.in:135
 msgid "Power management Suspend and Resume test"
-msgstr ""
+msgstr "Перевірка входу у режим економії електроенергії і виходу з нього."
 
 #. description
 #: ../jobs/power-management.txt.in:135
@@ -1659,18 +1680,20 @@ msgstr ""
 #. description
 #: ../jobs/power-management.txt.in:145
 msgid "Test the network after resuming."
-msgstr ""
+msgstr "Перевірити мережу після виходу з режиму економії електроенергії"
 
 #. description
 #: ../jobs/power-management.txt.in:151
 msgid ""
 "Test to see that we have the same resolution after resuming as before."
 msgstr ""
+"Переконаємось, що роздільна здатність екрана не змінилась після виходу з "
+"режиму економії електроенергії"
 
 #. description
 #: ../jobs/power-management.txt.in:160
 msgid "Test the audio after resuming."
-msgstr ""
+msgstr "Перевірити звук, перш ніж вийти з режиму економії електроенергії."
 
 #. description
 #: ../jobs/power-management.txt.in:167
@@ -1689,7 +1712,7 @@ msgstr ""
 msgid ""
 "Verify a bluetooth peripheral.  An example verification procedure for a "
 "bluetooth mouse is given."
-msgstr ""
+msgstr "Перевірте bluetooth-пристрій. Наприклад, перевіримо bluetooth-мишу."
 
 #. description
 #: ../jobs/power-management.txt.in:194
@@ -1717,6 +1740,8 @@ msgid ""
 "suspend and resume.  You can use either internal or external microphone and "
 "speakers."
 msgstr ""
+"Цей тест перевірить прецездатніть звукового пристрою після виходу з режиму "
+"економії електроенергії. Натисніть Перевірка щоб почати"
 
 #. description
 #: ../jobs/power-management.txt.in:221
@@ -1739,6 +1764,8 @@ msgstr ""
 #: ../jobs/power-management.txt.in:234
 msgid "Did the system successfully suspend and resume for 30 iterations?"
 msgstr ""
+"Чи успішно система виконала 30 циклів призупинення/відновлення роботи "
+"комп’ютера?"
 
 #. description
 #: ../jobs/power-management.txt.in:245
@@ -1746,6 +1773,8 @@ msgid ""
 "This will check to make sure your system can successfully hibernate (if "
 "supported)."
 msgstr ""
+"Цей тест перевірить здатність комп’ютера переходити у режим сну (якщо "
+"підтримується)"
 
 #. description
 #: ../jobs/power-management.txt.in:245
@@ -1763,6 +1792,8 @@ msgid ""
 "Did the system successfully hibernate and did it work properly after waking "
 "up?"
 msgstr ""
+"Чи вдалося системі заснути і самотужки прокинутись? Чи все гаразд після "
+"цього?"
 
 #. description
 #: ../jobs/power-management.txt.in:258
@@ -1781,11 +1812,15 @@ msgid ""
 "set, and that grub is set to boot Ubuntu by default if you have a multi-boot "
 "set-up."
 msgstr ""
+"Крім того, переконайтесь, що в системі не встановлено пароль на увімкнення "
+"чи пароль на HDD, і що grub налаштовано завантажувати Ubuntu, якщо є ще й "
+"інші операційні системи."
 
 #. description
 #: ../jobs/power-management.txt.in:258
 msgid "Did the system successfully hibernate and wake 30 times?"
 msgstr ""
+"Ваш комп’ютер прокинувся самотужки після 30-ти циклів засинання/прокидання?"
 
 #. description
 #: ../jobs/power-management.txt.in:267
@@ -1815,7 +1850,7 @@ msgstr ""
 #. description
 #: ../jobs/qa_regression.txt.in:3
 msgid "QA regression tests (destructive)"
-msgstr ""
+msgstr "Регресійні тести перевірки якості (деструктивно)"
 
 #. description
 #: ../jobs/server-services.txt.in:5
@@ -2139,7 +2174,7 @@ msgstr "Зараз Ви маєте файл \"Test File 1\"?"
 #. description
 #: ../jobs/user_apps.txt.in:51
 msgid "Close the File browser."
-msgstr ""
+msgstr "Закрити переглядач файлів."
 
 #. description
 #: ../jobs/user_apps.txt.in:62
@@ -2212,7 +2247,7 @@ msgstr "Закрийте переглядач файлів."
 #. description
 #: ../jobs/user_apps.txt.in:160
 msgid "Common Document Types Test"
-msgstr ""
+msgstr "Перевірка стандартних типів документів"
 
 #. description
 #: ../jobs/user_apps.txt.in:178
@@ -2222,7 +2257,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:178
 msgid "Did the Ubuntu Test page load correctly?"
-msgstr ""
+msgstr "Тестову сторінку Ubuntu відображено нормально?"
 
 #. description
 #: ../jobs/user_apps.txt.in:188
@@ -2244,7 +2279,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:198
 msgid "Did you see the text?"
-msgstr ""
+msgstr "Ви бачили текст?"
 
 #. description
 #: ../jobs/user_apps.txt.in:208
@@ -2254,7 +2289,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:208
 msgid "Did the video play correctly?"
-msgstr ""
+msgstr "Відео відтворювалось нормально?"
 
 #. description
 #: ../jobs/user_apps.txt.in:218
@@ -2269,17 +2304,17 @@ msgstr "Відео програється використовуючи моду�
 #. description
 #: ../jobs/user_apps.txt.in:227
 msgid "Facebook Chat"
-msgstr ""
+msgstr "Facebook Чат"
 
 #. description
 #: ../jobs/user_apps.txt.in:238
 msgid "Google Talk"
-msgstr ""
+msgstr "Google Talk"
 
 #. description
 #: ../jobs/user_apps.txt.in:249
 msgid "Jabber"
-msgstr ""
+msgstr "Jabber"
 
 #. description
 #: ../jobs/user_apps.txt.in:260
@@ -2297,12 +2332,12 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:271
 msgid "MSN"
-msgstr ""
+msgstr "MSN"
 
 #. description
 #: ../jobs/user_apps.txt.in:271
 msgid "Were you able to connect correctly and send/receive messages?"
-msgstr ""
+msgstr "Чи вдалося вам з'єднатися і прийняти / відправити повідомлення?"
 
 #: ../checkbox/application.py:66
 msgid "Usage: checkbox [OPTIONS]"
@@ -2326,19 +2361,21 @@ msgstr "Параметри заміщення налаштувань."
 
 #: ../checkbox/application.py:84
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist."
-msgstr ""
+msgstr "Коротка форма для --config=checkbox/plugins/jobs_info/blacklist."
 
 #: ../checkbox/application.py:86
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist_file."
 msgstr ""
+"Коротка форма для --config=checkbox/plugins/jobs_info/blacklist_file."
 
 #: ../checkbox/application.py:88
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist."
-msgstr ""
+msgstr "Коротка форма для --config=checkbox/plugins/jobs_info/whitelist."
 
 #: ../checkbox/application.py:90
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist_file."
 msgstr ""
+"Которка форма для --config=checkbox/plugins/jobs_info/whitelist_file."
 
 #: ../checkbox/application.py:115
 msgid "Missing configuration file as argument.\n"
@@ -2473,19 +2510,19 @@ msgstr ""
 
 #: ../checkbox_urwid/urwid_interface.py:99
 msgid "Continue"
-msgstr ""
+msgstr "Продовжити"
 
 #: ../checkbox_urwid/urwid_interface.py:192
 #: ../checkbox_urwid/urwid_interface.py:268
 #: ../checkbox_urwid/urwid_interface.py:416
 msgid "Previous"
-msgstr ""
+msgstr "Попередній"
 
 #: ../checkbox_urwid/urwid_interface.py:193
 #: ../checkbox_urwid/urwid_interface.py:269
 #: ../checkbox_urwid/urwid_interface.py:417
 msgid "Next"
-msgstr ""
+msgstr "Наступний"
 
 #. Show buttons
 #: ../checkbox_urwid/urwid_interface.py:414
@@ -2502,7 +2539,7 @@ msgstr "Тест"
 
 #: ../checkbox_urwid/urwid_interface.py:787
 msgid "Test Again"
-msgstr ""
+msgstr "Повторити тест"
 
 #: ../checkbox_gtk/gtk_interface.py:93
 msgid "hardware database"
@@ -2530,12 +2567,16 @@ msgid ""
 "Collecting information about this test.\n"
 "This might take a few minutes."
 msgstr ""
+"Йде збір інформації для цього тесту.\n"
+"Це може зайняти декілька хвилин."
 
 #: ../plugins/apport_prompt.py:116
 msgid ""
 "Collected information is being sent for bug tracking.\n"
 "This might take a few minutes."
 msgstr ""
+"Збирається інформація, що буде відправлена в систему відстеження помилок.\n"
+"Це може зайняти декілька хвилин."
 
 #: ../plugins/apport_prompt.py:225
 #, python-format
@@ -2550,7 +2591,7 @@ msgstr ""
 #: ../plugins/apport_prompt.py:246
 #, python-format
 msgid "Is a package upgrade in process? Error: %s"
-msgstr ""
+msgstr "оновлення пакунку відбувається? Помилка: %s"
 
 #: ../plugins/final_prompt.py:33
 msgid "Successfully finished testing!"
@@ -2581,7 +2622,7 @@ msgstr ""
 #: ../plugins/launchpad_exchange.py:118
 #, python-format
 msgid "Failed to process form: %s"
-msgstr ""
+msgstr "Не вдалось обробити форму: %s"
 
 #: ../plugins/launchpad_exchange.py:141
 #, python-format
@@ -2656,11 +2697,13 @@ msgid ""
 "Checkbox did not finish completely.\n"
 "Do you want to recover from the previous run?"
 msgstr ""
+"Перевірка не закінчена повністю.\n"
+"Відновити до попереднього стану?"
 
 #: ../plugins/shell_test.py:52
 #, python-format
 msgid "Running %s..."
-msgstr ""
+msgstr "Виконується %s"
 
 #. Get results
 #: ../plugins/suites_prompt.py:105

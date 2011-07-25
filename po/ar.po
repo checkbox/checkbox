@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-07-07 12:32-0400\n"
-"PO-Revision-Date: 2010-09-29 07:36+0000\n"
+"PO-Revision-Date: 2011-07-19 18:33+0000\n"
 "Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
 "Language-Team: Arabic <ar@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-07-16 04:30+0000\n"
+"X-Launchpad-Export-Date: 2011-07-20 04:31+0000\n"
 "X-Generator: Launchpad (build 13405)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:2
@@ -331,11 +331,11 @@ msgstr "مزيد من المعلومات:"
 
 #: ../gtk/checkbox-gtk.ui.h:4
 msgid "_Deselect All"
-msgstr ""
+msgstr "_أزل تحديد الكل"
 
 #: ../gtk/checkbox-gtk.ui.h:7
 msgid "_Select All"
-msgstr ""
+msgstr "_حدّد الكل"
 
 #. description
 #: ../jobs/apport.txt.in:5
@@ -357,7 +357,7 @@ msgstr ""
 #. description
 #: ../jobs/audio.txt.in:33
 msgid "Please connect a pair of headphones to your audio device."
-msgstr ""
+msgstr "الرجاء توصيل زوج من السماعات بجهازك الصوتي."
 
 #. description
 #: ../jobs/audio.txt.in:33
@@ -648,7 +648,7 @@ msgstr ""
 #. description
 #: ../jobs/disk.txt.in:4
 msgid "The following hard drives were detected:"
-msgstr ""
+msgstr "كُشِف عن وجود الأقراص الصلبة التالية:"
 
 #. description
 #: ../jobs/disk.txt.in:14
@@ -715,6 +715,9 @@ msgid ""
 "which test cases are run and a personal account that the tester uses to "
 "verify the fingerprint reader"
 msgstr ""
+"المتطلبات المسبّقة: هذا الاختبار مبني على فرضية وجود حساب للاختبارات الذي من "
+"خلاله يمكن إجراء الاختبارات و حساب شخصي يستخدمه الشخص المَختبِر للتحقق من "
+"قارئ البصمات."
 
 #. description
 #: ../jobs/fingerprint.txt.in:3
@@ -968,7 +971,7 @@ msgstr "هل تبين لك أن الشاشة تعمل على كل الأنماط
 #. description
 #: ../jobs/graphics.txt.in:146
 msgid "Check that the hardware is able to run compiz."
-msgstr ""
+msgstr "تأكد من أن عتاد جهازك قادر على تشغيل كومبيز."
 
 #. description
 #: ../jobs/graphics.txt.in:153
@@ -980,7 +983,7 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:153
 msgid "Did the 3d animation appear?"
-msgstr ""
+msgstr "هل ظهر أمامك تحريكاً ثلاثي الأبعاد؟"
 
 #. description
 #: ../jobs/info.txt.in:60 ../jobs/screenshot.txt.in:7
@@ -1178,7 +1181,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:88
 msgid "Monitor tests"
-msgstr ""
+msgstr "اختبارات الشاشة"
 
 #. description
 #: ../jobs/local.txt.in:93
@@ -1218,7 +1221,7 @@ msgstr ""
 #. description
 #: ../jobs/ltp.txt.in:3
 msgid "Linux Test Project"
-msgstr ""
+msgstr "مشروع اختبار لينِكس"
 
 #. description
 #: ../jobs/mago.txt.in:3
@@ -1413,6 +1416,7 @@ msgstr ""
 #: ../jobs/monitor.txt.in:3
 msgid "If your system does not have a VGA port, please skip this test."
 msgstr ""
+"إذا لم يكن بجهازك منفذ لمنظومة عرض مرئي, إذاً رجاءاً تخطى هذا الإختبار."
 
 #. description
 #: ../jobs/monitor.txt.in:3
@@ -1420,11 +1424,14 @@ msgid ""
 "Connect a display (if not already connected) to the VGA port on your system. "
 "Is the image displayed correctly?"
 msgstr ""
+"وصّل جهاز عرض (إذ لم تكن قد فعلت) بمنفذ منظومة العرض المرئي في جهازك. هل تم "
+"عرض الصورة بشكل صحيح؟"
 
 #. description
 #: ../jobs/monitor.txt.in:10
 msgid "If your system does not have a DVI port, please skip this test."
 msgstr ""
+"إذا لم يكن بجهازك منفذ لواجهة رقمية مرئية, إذاً رجاءاً تخطى هذا الإختبار."
 
 #. description
 #: ../jobs/monitor.txt.in:10
@@ -1432,11 +1439,13 @@ msgid ""
 "Connect a display (if not already connected) to the DVI port on your system. "
 "Is the image displayed correctly?"
 msgstr ""
+"وصّل جهاز عرض (إذ لم تكن قد فعلت) بمنفذ الواجهة رقمية مرئيةفي جهازك. هل تم "
+"عرض الصورة بشكل صحيح؟"
 
 #. description
 #: ../jobs/monitor.txt.in:17
 msgid "If your system does not have DisplayPort, please skip this test."
-msgstr ""
+msgstr "إذا لم يكن بجهازك منفذ للعرض المرئي, إذاً رجاءاً تخطى هذا الإختبار."
 
 #. description
 #: ../jobs/monitor.txt.in:17
@@ -1444,11 +1453,15 @@ msgid ""
 "Connect a display (if not already connected) to the DisplayPort on your "
 "system. Is the image displayed correctly?"
 msgstr ""
+"وصّل جهاز عرض (إذ لم تكن قد فعلت) بمنفذ العرض المرئي في جهازك. هل تم عرض "
+"الصورة بشكل صحيح؟"
 
 #. description
 #: ../jobs/monitor.txt.in:24
 msgid "If your system does not have a HDMI port, please skip this test."
 msgstr ""
+"إذا لم يكن بجهازك منفذ للوسيط المتعدد عالي الوضوح, إذاً رجاءاً تخطى هذا "
+"الإختبار."
 
 #. description
 #: ../jobs/monitor.txt.in:24
@@ -1499,7 +1512,7 @@ msgstr ""
 #. description
 #: ../jobs/monitor.txt.in:46
 msgid "Did the monitor go blank?"
-msgstr ""
+msgstr "هل تحولت شاشتك إلى السواد؟"
 
 #. description
 #: ../jobs/networking.txt.in:26
@@ -1725,7 +1738,7 @@ msgstr ""
 #. description
 #: ../jobs/phoronix.txt.in:3
 msgid "Automated benchmark testing"
-msgstr ""
+msgstr "اختبارات الأداء الآلية"
 
 #. description
 #: ../jobs/power-management.txt.in:3

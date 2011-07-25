@@ -8,18 +8,18 @@ msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-07-07 12:32-0400\n"
-"PO-Revision-Date: 2009-02-09 16:27+0000\n"
-"Last-Translator: Bogdan BOTEZ <bmbogdan@gmail.com>\n"
+"PO-Revision-Date: 2011-07-19 20:19+0000\n"
+"Last-Translator: Claudia Cotună <special4ti@gmail.com>\n"
 "Language-Team: Romanian <ro@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-07-16 04:32+0000\n"
+"X-Launchpad-Export-Date: 2011-07-20 04:33+0000\n"
 "X-Generator: Launchpad (build 13405)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:2
 msgid "Ne_xt"
-msgstr "Continuă"
+msgstr "Î_nainte"
 
 #: ../gtk/checkbox-gtk.ui.h:5
 msgid "_No"
@@ -27,7 +27,7 @@ msgstr "_Nu"
 
 #: ../gtk/checkbox-gtk.ui.h:6
 msgid "_Previous"
-msgstr "_Precedentul"
+msgstr "Îna_poi"
 
 #: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:522
 msgid "_Test"
@@ -56,12 +56,12 @@ msgstr "Este corect?"
 #. description
 #: ../jobs/input.txt.in:13
 msgid "Is your keyboard working properly?"
-msgstr "Tastatura dumneavoastră funcţionează corect?"
+msgstr "Tastatura dumneavoastră funcționează corect?"
 
 #. description
 #: ../jobs/networking.txt.in:5
 msgid "Detecting your network controller(s):"
-msgstr "Detecţia plăcii(lor) de reţea:"
+msgstr "Detectarea plăcii(lor) de rețea:"
 
 #. description
 #: ../jobs/networking.txt.in:16
@@ -125,7 +125,7 @@ msgstr "Adresa de email trebuie să fie într-un format corect."
 
 #: ../plugins/report_prompt.py:34
 msgid "Building report..."
-msgstr "Raportul este generat..."
+msgstr "Se generează raportul..."
 
 #~ msgid "<b>Comment:</b>"
 #~ msgstr "<b>Comentariu:</b>"
@@ -184,11 +184,11 @@ msgstr "Testarea sistemului"
 
 #: ../gtk/checkbox-gtk.ui.h:4
 msgid "_Deselect All"
-msgstr ""
+msgstr "_Deselectează tot"
 
 #: ../gtk/checkbox-gtk.ui.h:7
 msgid "_Select All"
-msgstr ""
+msgstr "_Selectează tot"
 
 #: ../gtk/checkbox-gtk.ui.h:8
 msgid "_Skip this test"
@@ -220,7 +220,7 @@ msgstr ""
 #. description
 #: ../jobs/audio.txt.in:33
 msgid "Please connect a pair of headphones to your audio device."
-msgstr ""
+msgstr "Conectați o pereche de căști la dispozitivul audio."
 
 #. description
 #: ../jobs/audio.txt.in:33
@@ -273,7 +273,7 @@ msgstr ""
 #. description
 #: ../jobs/audio.txt.in:70 ../jobs/power-management.txt.in:221
 msgid "Did you hear your speech played back?"
-msgstr ""
+msgstr "Este redată înregistrarea efectuată?"
 
 #. description
 #: ../jobs/audio.txt.in:81
@@ -286,7 +286,7 @@ msgstr ""
 #. description
 #: ../jobs/autotest.txt.in:3
 msgid "Autotest suite (destructive)"
-msgstr ""
+msgstr "Set autotestare (distructiv)"
 
 #. description
 #: ../jobs/bluetooth.txt.in:5 ../jobs/power-management.txt.in:185
@@ -520,7 +520,7 @@ msgstr ""
 #. description
 #: ../jobs/disk.txt.in:4
 msgid "The following hard drives were detected:"
-msgstr ""
+msgstr "Au fost detectate următoarele hard discuri:"
 
 #. description
 #: ../jobs/disk.txt.in:14
@@ -587,6 +587,9 @@ msgid ""
 "which test cases are run and a personal account that the tester uses to "
 "verify the fingerprint reader"
 msgstr ""
+"Cerințe: Această procedură de test presupune existența unui cont de testare "
+"din care se execută cazuri de test și a unui cont personal utilizat pentru "
+"verificarea cititorului de amprente."
 
 #. description
 #: ../jobs/fingerprint.txt.in:3
@@ -802,6 +805,8 @@ msgid ""
 "Ensure the current resolution meets or exceeds the recommended minimum "
 "resolution (1024 x 768). See here for details:"
 msgstr ""
+"Asigurați-vă că rezoluția curentă atinge sau depășește rezoluția minimă "
+"recomandată (1024 x 768). Vedeți aici detalii:"
 
 #. description
 #: ../jobs/graphics.txt.in:107
@@ -809,11 +814,13 @@ msgid ""
 "Ensure the current resolution meets or exceeds the recommended minimum "
 "resolution (1024 x 600). See here for details:"
 msgstr ""
+"Asigurați-vă că rezoluția curentă atinge sau depășește rezoluția minimă "
+"recomandată (1024 x 600). Vedeți aici detalii:"
 
 #. description
 #: ../jobs/graphics.txt.in:107
 msgid "https://help.ubuntu.com/community/Installation/SystemRequirements"
-msgstr ""
+msgstr "https://help.ubuntu.com/community/Installation/SystemRequirements"
 
 #. description
 #: ../jobs/graphics.txt.in:117
@@ -845,7 +852,7 @@ msgstr "Ecranul a funcționat pentru fiecare mod în parte?"
 #. description
 #: ../jobs/graphics.txt.in:146
 msgid "Check that the hardware is able to run compiz."
-msgstr ""
+msgstr "Verificați dacă hardware-ul poate să utilizeze compiz."
 
 #. description
 #: ../jobs/graphics.txt.in:153
@@ -857,7 +864,7 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:153
 msgid "Did the 3d animation appear?"
-msgstr ""
+msgstr "A apărut animația 3d?"
 
 #. description
 #: ../jobs/info.txt.in:60 ../jobs/screenshot.txt.in:7
@@ -877,12 +884,13 @@ msgstr ""
 #. description
 #: ../jobs/input.txt.in:4
 msgid "Moving the mouse should move the cursor on the screen."
-msgstr "Mișcând mausul ar trebui să se miște și cursorul pe ecran."
+msgstr ""
+"Mișcarea mouse-ului ar trebui să determine mișcarea cursorului pe ecran."
 
 #. description
 #: ../jobs/input.txt.in:4
 msgid "Is your mouse working properly?"
-msgstr "Mausul dumneavoastră funcționeaza corect?"
+msgstr "Mouse-ul dumneavoastră funcționează corespunzător?"
 
 #. description
 #: ../jobs/input.txt.in:13
@@ -1065,7 +1073,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:88
 msgid "Monitor tests"
-msgstr ""
+msgstr "Teste de monitor"
 
 #. description
 #: ../jobs/local.txt.in:93
@@ -1080,7 +1088,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:103
 msgid "Peripheral tests"
-msgstr "Teste periferice"
+msgstr "Teste de periferice"
 
 #. description
 #: ../jobs/local.txt.in:108
@@ -1095,7 +1103,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:118
 msgid "User Applications"
-msgstr ""
+msgstr "Aplicații pentru utilizatori"
 
 #. description
 #: ../jobs/local.txt.in:123
@@ -1105,7 +1113,7 @@ msgstr ""
 #. description
 #: ../jobs/ltp.txt.in:3
 msgid "Linux Test Project"
-msgstr ""
+msgstr "Proiect de teste Linux"
 
 #. description
 #: ../jobs/mago.txt.in:3
@@ -1345,7 +1353,7 @@ msgstr ""
 #. description
 #: ../jobs/mediacard.txt.in:130
 msgid "Does the icon automatically appear/disappear?"
-msgstr ""
+msgstr "Apare și dispare pictograma în mod automat?"
 
 #. description
 #: ../jobs/memory.txt.in:4
@@ -1372,6 +1380,8 @@ msgstr ""
 #: ../jobs/miscellanea.txt.in:8
 msgid "Note that this test may require you to enter your password."
 msgstr ""
+"Rețineți că există posibilitatea ca acest test să solicite introducerea "
+"parolei."
 
 #. description
 #: ../jobs/miscellanea.txt.in:8
@@ -1400,7 +1410,7 @@ msgstr ""
 #. description
 #: ../jobs/monitor.txt.in:3
 msgid "If your system does not have a VGA port, please skip this test."
-msgstr ""
+msgstr "Dacă sistemul nu are un port VGA, omiteți acest test."
 
 #. description
 #: ../jobs/monitor.txt.in:3
@@ -1408,11 +1418,13 @@ msgid ""
 "Connect a display (if not already connected) to the VGA port on your system. "
 "Is the image displayed correctly?"
 msgstr ""
+"Conectați un ecran (dacă nu este deja conectat) la portul VGA al sistemului. "
+"Imaginea este afișată corect?"
 
 #. description
 #: ../jobs/monitor.txt.in:10
 msgid "If your system does not have a DVI port, please skip this test."
-msgstr ""
+msgstr "Dacă sistemul nu are un port DVI, omiteți acest test."
 
 #. description
 #: ../jobs/monitor.txt.in:10
@@ -1420,11 +1432,13 @@ msgid ""
 "Connect a display (if not already connected) to the DVI port on your system. "
 "Is the image displayed correctly?"
 msgstr ""
+"Conectați un ecran (dacă nu este deja conectat) la portul DVI al sistemului. "
+"Imaginea este afișată corect?"
 
 #. description
 #: ../jobs/monitor.txt.in:17
 msgid "If your system does not have DisplayPort, please skip this test."
-msgstr ""
+msgstr "Dacă sistemul nu are DisplayPort, omiteți acest test."
 
 #. description
 #: ../jobs/monitor.txt.in:17
@@ -1432,11 +1446,13 @@ msgid ""
 "Connect a display (if not already connected) to the DisplayPort on your "
 "system. Is the image displayed correctly?"
 msgstr ""
+"Conectați un ecran (dacă nu este deja conectat) la DisplayPort al "
+"sistemului. Imaginea este afișată corect?"
 
 #. description
 #: ../jobs/monitor.txt.in:24
 msgid "If your system does not have a HDMI port, please skip this test."
-msgstr ""
+msgstr "Dacă sistemul nu are un port HDMI, omiteți acest test."
 
 #. description
 #: ../jobs/monitor.txt.in:24
@@ -1444,11 +1460,13 @@ msgid ""
 "Connect a display (if not already connected) to the HDMI port on your "
 "system. Is the image displayed correctly?"
 msgstr ""
+"Conectați un ecran (dacă nu este deja conectat) la portul HDMI al "
+"sistemului. Imaginea este afișată corect?"
 
 #. description
 #: ../jobs/monitor.txt.in:31
 msgid "If your system does not have a S-VIDEO port, please skip this test."
-msgstr ""
+msgstr "Dacă sistemul nu are un port S-VIDEO, omiteți acest test."
 
 #. description
 #: ../jobs/monitor.txt.in:31
@@ -1456,11 +1474,13 @@ msgid ""
 "Connect a display (if not already connected) to the S-VIDEO port on your "
 "system. Is the image displayed correctly?"
 msgstr ""
+"Conectați un ecran (dacă nu este deja conectat) la portul S-VIDEO al "
+"sistemului. Imaginea este afișată corect?"
 
 #. description
 #: ../jobs/monitor.txt.in:38
 msgid "If your system does not have a RCA port, please skip this test."
-msgstr ""
+msgstr "Dacă sistemul nu are un port RCA, omiteți acest test."
 
 #. description
 #: ../jobs/monitor.txt.in:38
@@ -1468,6 +1488,8 @@ msgid ""
 "Connect a display (if not already connected) to the RCA port on your system. "
 "Is the image displayed correctly?"
 msgstr ""
+"Conectați un ecran (dacă nu este deja conectat) la portul RCA al sistemului. "
+"Imaginea este afișată corect?"
 
 #. description
 #: ../jobs/monitor.txt.in:46
@@ -1481,7 +1503,7 @@ msgstr ""
 #. description
 #: ../jobs/monitor.txt.in:46
 msgid "Did the monitor go blank?"
-msgstr ""
+msgstr "A devenit monitorul negru?"
 
 #. description
 #: ../jobs/networking.txt.in:26
@@ -1991,7 +2013,7 @@ msgstr ""
 #. description
 #: ../jobs/qa_regression.txt.in:3
 msgid "QA regression tests (destructive)"
-msgstr ""
+msgstr "Teste de regresie QA (distructive)"
 
 #. description
 #: ../jobs/server-services.txt.in:5
@@ -2492,18 +2514,22 @@ msgstr "Configurația suprascrie parametrii."
 #: ../checkbox/application.py:84
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist."
 msgstr ""
+"Forma abreviată pentru --config=checkbox/plugins/jobs_info/blacklist."
 
 #: ../checkbox/application.py:86
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist_file."
 msgstr ""
+"Forma abreviată pentru --config=checkbox/plugins/jobs_info/blacklist_file."
 
 #: ../checkbox/application.py:88
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist."
 msgstr ""
+"Forma abreviată pentru --config=checkbox/plugins/jobs_info/whitelist."
 
 #: ../checkbox/application.py:90
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist_file."
 msgstr ""
+"Forma abreviată pentru --config=checkbox/plugins/jobs_info/whitelist_file."
 
 #: ../checkbox/application.py:115
 msgid "Missing configuration file as argument.\n"
@@ -2522,7 +2548,7 @@ msgstr "Întrerupere de la tastatură"
 
 #: ../checkbox/lib/signal.py:25
 msgid "Quit from keyboard"
-msgstr ""
+msgstr "Ieșire de la tastatură"
 
 #: ../checkbox/lib/signal.py:26
 msgid "Illegal Instruction"
@@ -2611,7 +2637,7 @@ msgstr "testează din nou"
 
 #: ../checkbox_urwid/urwid_interface.py:60
 msgid "Checkbox System Testing"
-msgstr ""
+msgstr "Testarea sistemului Checkbox"
 
 #: ../checkbox_urwid/urwid_interface.py:99
 msgid "Continue"
@@ -2621,7 +2647,7 @@ msgstr ""
 #: ../checkbox_urwid/urwid_interface.py:268
 #: ../checkbox_urwid/urwid_interface.py:416
 msgid "Previous"
-msgstr ""
+msgstr "Precedente"
 
 #: ../checkbox_urwid/urwid_interface.py:193
 #: ../checkbox_urwid/urwid_interface.py:269
@@ -2644,7 +2670,7 @@ msgstr ""
 
 #: ../checkbox_urwid/urwid_interface.py:787
 msgid "Test Again"
-msgstr ""
+msgstr "Testează din nou"
 
 #: ../checkbox_gtk/gtk_interface.py:93
 msgid "hardware database"
@@ -2668,12 +2694,16 @@ msgid ""
 "Collecting information about this test.\n"
 "This might take a few minutes."
 msgstr ""
+"Se colectează informații despre acest test.\n"
+"Aceasta ar putea dura câteva minute."
 
 #: ../plugins/apport_prompt.py:116
 msgid ""
 "Collected information is being sent for bug tracking.\n"
 "This might take a few minutes."
 msgstr ""
+"Informațiile colectate sunt trimise sistemului de urmărire a defecțiunilor.\n"
+"Aceasta ar putea dura câteva minute."
 
 #: ../plugins/apport_prompt.py:225
 #, python-format
@@ -2688,7 +2718,7 @@ msgstr ""
 #: ../plugins/apport_prompt.py:246
 #, python-format
 msgid "Is a package upgrade in process? Error: %s"
-msgstr ""
+msgstr "Se procesează o actualizare de pachet? Eroare: %s"
 
 #: ../plugins/final_prompt.py:33
 msgid "Successfully finished testing!"
@@ -2711,7 +2741,7 @@ msgstr ""
 #: ../plugins/launchpad_exchange.py:118
 #, python-format
 msgid "Failed to process form: %s"
-msgstr ""
+msgstr "Procesarea formularului a eșuat: %s"
 
 #: ../plugins/launchpad_exchange.py:141
 #, python-format
@@ -2777,16 +2807,18 @@ msgid ""
 "Checkbox did not finish completely.\n"
 "Do you want to recover from the previous run?"
 msgstr ""
+"Checkbox s-a întrerupt înainte de finalizare.\n"
+"Doriți reluarea de la execuția anterioară?"
 
 #: ../plugins/shell_test.py:52
 #, python-format
 msgid "Running %s..."
-msgstr ""
+msgstr "Se execută %s..."
 
 #. Get results
 #: ../plugins/suites_prompt.py:105
 msgid "Select the suites to test"
-msgstr "Alegeți seriile de teste"
+msgstr "Selectați seriile pentru testare"
 
 #: ../scripts/keyboard_test:21
 msgid "Enter text:\n"
@@ -2798,7 +2830,7 @@ msgstr "Tastare text"
 
 #: ../scripts/internet_test:139
 msgid "No Internet connection"
-msgstr "Nici o conexiune Internet"
+msgstr "Nicio conexiune la Internet"
 
 #: ../scripts/internet_test:142
 msgid "Connection established lost a packet"
@@ -2817,9 +2849,6 @@ msgstr "Conexiune la Internet stabilită complet"
 #~ msgid "Kernel modesetting tests"
 #~ msgstr "Teste modesetting kernel"
 
-#~ msgid "Network tests"
-#~ msgstr "Teste rețea"
-
 #~ msgid "Video tests"
 #~ msgstr "Teste video"
 
@@ -2833,6 +2862,12 @@ msgstr "Conexiune la Internet stabilită complet"
 #~ msgstr ""
 #~ "Clic Test pentru a comuta între modurile video detectate pentru sistemul "
 #~ "dumneavoastră."
+
+#~ msgid "Disk benchmark:"
+#~ msgstr "Test de performanță pentru disc:"
+
+#~ msgid "Network tests"
+#~ msgstr "Teste de rețea"
 
 #~ msgid ""
 #~ "Click the Test button to play a sound on the automatically detected \\ "

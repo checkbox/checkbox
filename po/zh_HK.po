@@ -1,20 +1,20 @@
 # Chinese (Hong Kong) translation for checkbox
 # Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
 # This file is distributed under the same license as the checkbox package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+# Roy Chan <voidoo@gmail.com>, 2010.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: checkbox\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-07-07 12:32-0400\n"
-"PO-Revision-Date: 2009-04-07 08:36+0000\n"
-"Last-Translator: Roy Chan <roy.chan@linux.org.hk>\n"
+"PO-Revision-Date: 2011-07-19 19:17+0000\n"
+"Last-Translator: Roy Chan <Unknown>\n"
 "Language-Team: Chinese (Hong Kong) <zh_HK@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-07-16 04:32+0000\n"
+"X-Launchpad-Export-Date: 2011-07-20 04:34+0000\n"
 "X-Generator: Launchpad (build 13405)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:2
@@ -33,11 +33,11 @@ msgstr "否(_N)"
 
 #: ../gtk/checkbox-gtk.ui.h:6
 msgid "_Previous"
-msgstr "上一頁(_P)"
+msgstr "上一步(_P)"
 
 #: ../gtk/checkbox-gtk.ui.h:8
 msgid "_Skip this test"
-msgstr "略過這測試(_S)"
+msgstr "略過此測試(_S)"
 
 #: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:522
 msgid "_Test"
@@ -49,7 +49,7 @@ msgstr "是(_Y)"
 
 #: ../gtk/checkbox-gtk.desktop.in.h:2
 msgid "Test and report system information"
-msgstr "測試和報告系系資訊"
+msgstr "測試並報告系統資訊"
 
 #. description
 #: ../jobs/audio.txt.in:7 ../jobs/disk.txt.in:4 ../jobs/graphics.txt.in:126
@@ -65,17 +65,17 @@ msgstr "$output"
 #: ../jobs/networking.txt.in:16 ../jobs/optical.txt.in:8
 #: ../jobs/power-management.txt.in:185 ../jobs/usb.txt.in:5
 msgid "Is this correct?"
-msgstr "這正確嗎?"
+msgstr "對嗎？"
 
 #. description
 #: ../jobs/graphics.txt.in:117
 msgid "Do you see color bars and static?"
-msgstr "您看到顏色條和雪花嗎？"
+msgstr "您是否有看見彩色的長條與雜訊？"
 
 #. description
 #: ../jobs/input.txt.in:4
 msgid "Moving the mouse should move the cursor on the screen."
-msgstr "移動滑鼠應該會移動螢幕上的鼠標。"
+msgstr "移動滑鼠時應該會同時移動螢幕上的鼠標。"
 
 #. description
 #: ../jobs/input.txt.in:4
@@ -85,17 +85,17 @@ msgstr "您的滑鼠運作正常嗎？"
 #. description
 #: ../jobs/input.txt.in:13
 msgid "Is your keyboard working properly?"
-msgstr "您的鍵盤正常運作嗎?"
+msgstr "您的鍵盤是否運作正常？"
 
 #. description
 #: ../jobs/networking.txt.in:5
 msgid "Detecting your network controller(s):"
-msgstr "偵測您的網絡控制卡中:"
+msgstr "正在偵測您的網絡控制卡："
 
 #. description
 #: ../jobs/networking.txt.in:16
 msgid "Testing your connection to the Internet:"
-msgstr "測試您的互聯網絡連線中:"
+msgstr "正在測試您的互聯網連線："
 
 #: ../checkbox/application.py:66
 msgid "Usage: checkbox [OPTIONS]"
@@ -103,7 +103,7 @@ msgstr "用法： checkbox [選項]"
 
 #: ../checkbox/application.py:70
 msgid "Print version information and exit."
-msgstr "顯示版本資訊並離開。"
+msgstr "列印版本資訊並離開。"
 
 #: ../checkbox/application.py:74
 msgid "The file to write the log to."
@@ -111,15 +111,15 @@ msgstr "寫入日誌的檔案。"
 
 #: ../checkbox/application.py:77
 msgid "One of debug, info, warning, error or critical."
-msgstr "debug, info, warning, error 或 critical 其中一個"
+msgstr "debug、info、warning、error 或 critical 之一。"
 
 #: ../checkbox/application.py:82
 msgid "Configuration override parameters."
-msgstr "配置推翻參數。"
+msgstr "設定會無視參數。"
 
 #: ../checkbox/application.py:115
 msgid "Missing configuration file as argument.\n"
-msgstr "參數上沒有配置檔案。\n"
+msgstr "遺失作為引數的配置檔。\n"
 
 #: ../checkbox_cli/cli_interface.py:31
 #: ../checkbox_urwid/urwid_interface.py:684
@@ -138,12 +138,12 @@ msgstr "略過"
 
 #: ../checkbox_cli/cli_interface.py:126
 msgid "Press any key to continue..."
-msgstr "按下任何鍵繼續…"
+msgstr "按下任意鍵繼續…"
 
 #: ../checkbox_cli/cli_interface.py:135
 #, python-format
 msgid "Please choose (%s): "
-msgstr "請選擇 (%s): "
+msgstr "請選擇 (%s)： "
 
 #: ../checkbox_cli/cli_interface.py:315
 msgid "test"
@@ -151,15 +151,15 @@ msgstr "測試"
 
 #: ../checkbox_cli/cli_interface.py:339
 msgid "test again"
-msgstr "再測試"
+msgstr "再次測試"
 
 #: ../checkbox_cli/cli_interface.py:345
 msgid "Please type here and press Ctrl-D when finished:\n"
-msgstr "這在此輸入並在完成後按 Ctrl-D:\n"
+msgstr "請在這裏輸入，並在完成後按 Ctrl-D：\n"
 
 #: ../checkbox_gtk/gtk_interface.py:487
 msgid "_Test Again"
-msgstr "重新測試(_T)"
+msgstr "再次測試(_T)"
 
 #: ../plugins/final_prompt.py:34
 msgid "_Finish"
@@ -167,7 +167,7 @@ msgstr "完成(_F)"
 
 #: ../plugins/gather_prompt.py:35
 msgid "Gathering information from your system..."
-msgstr "收集您系統的資訊中..."
+msgstr "正在從您的系統蒐集資訊..."
 
 #: ../plugins/launchpad_exchange.py:141
 #, python-format
@@ -179,10 +179,11 @@ msgid ""
 "directly to the system database:\n"
 "https://launchpad.net/+hwdb/+submit"
 msgstr ""
-"聯絡伺服器失敗。請再試一次並直接上載以下的檔案：\n"
+"未能聯絡伺服器。請重試\n"
+"或是直接上傳下列檔名：\n"
 "%s\n"
 "\n"
-"至系統資料庫:\n"
+"到系統資料庫：\n"
 "https://launchpad.net/+hwdb/+submit"
 
 #: ../plugins/launchpad_exchange.py:150
@@ -190,20 +191,20 @@ msgid ""
 "Failed to upload to server,\n"
 "please try again later."
 msgstr ""
-"上載至伺服器失敗。\n"
-"請稍後再嘗試。"
+"上傳到伺服器失敗，\n"
+"請稍候重新嘗試。"
 
 #: ../plugins/launchpad_exchange.py:162
 msgid "Information not posted to Launchpad."
-msgstr "資訊不會被投寄至 Launchpad。"
+msgstr "不會發布到 Launchpad 的資訊。"
 
 #: ../plugins/launchpad_prompt.py:92
 msgid "Email address must be in a proper format."
-msgstr "電郵地址格式必須要正確。"
+msgstr "電子郵件位址必須是正確的格式。"
 
 #: ../plugins/launchpad_prompt.py:98
 msgid "Exchanging information with the server..."
-msgstr "和伺服器交換資訊中..."
+msgstr "正在與伺服器交換資訊..."
 
 #: ../plugins/report_prompt.py:34
 msgid "Building report..."
@@ -340,15 +341,15 @@ msgstr "建立報告中..."
 #: ../gtk/checkbox-gtk.ui.h:1 ../checkbox_cli/cli_interface.py:343
 #: ../checkbox_urwid/urwid_interface.py:261
 msgid "Further information:"
-msgstr ""
+msgstr "深入資訊："
 
 #: ../gtk/checkbox-gtk.ui.h:4
 msgid "_Deselect All"
-msgstr ""
+msgstr "全部不選(_D)"
 
 #: ../gtk/checkbox-gtk.ui.h:7
 msgid "_Select All"
-msgstr ""
+msgstr "全選(_S)"
 
 #. description
 #: ../jobs/apport.txt.in:5
@@ -358,7 +359,7 @@ msgstr ""
 #. description
 #: ../jobs/audio.txt.in:7
 msgid "Detecting your sound device(s):"
-msgstr ""
+msgstr "正在偵測您的音效裝置："
 
 #. description
 #: ../jobs/audio.txt.in:21
@@ -370,7 +371,7 @@ msgstr "您有聽到沒有任何扭曲、喀㗳或其他怪異噪音的聲音嗎
 #. description
 #: ../jobs/audio.txt.in:33
 msgid "Please connect a pair of headphones to your audio device."
-msgstr ""
+msgstr "請將一對頭戴式耳機連接到您的音訊裝置。"
 
 #. description
 #: ../jobs/audio.txt.in:33
@@ -414,7 +415,7 @@ msgstr ""
 #. description
 #: ../jobs/audio.txt.in:70 ../jobs/power-management.txt.in:221
 msgid "Did you hear your speech played back?"
-msgstr ""
+msgstr "有聽到重播的您的錄音嗎？"
 
 #. description
 #: ../jobs/audio.txt.in:81
@@ -427,12 +428,12 @@ msgstr ""
 #. description
 #: ../jobs/autotest.txt.in:3
 msgid "Autotest suite (destructive)"
-msgstr ""
+msgstr "自動測試套組 (破壞性的)"
 
 #. description
 #: ../jobs/bluetooth.txt.in:5 ../jobs/power-management.txt.in:185
 msgid "The address of your Bluetooth device is: $output"
-msgstr ""
+msgstr "您的藍牙裝置位址為：$output"
 
 #. description
 #: ../jobs/bluetooth.txt.in:15 ../jobs/graphics.txt.in:15
@@ -493,7 +494,7 @@ msgstr ""
 #: ../jobs/bluetooth.txt.in:82 ../jobs/optical.txt.in:72
 #: ../jobs/power-management.txt.in:194 ../jobs/usb.txt.in:27
 msgid "Did all the steps work?"
-msgstr ""
+msgstr "這些步驟有用嗎？"
 
 #. description
 #: ../jobs/camera.txt.in:7
@@ -661,7 +662,7 @@ msgstr ""
 #. description
 #: ../jobs/disk.txt.in:4
 msgid "The following hard drives were detected:"
-msgstr ""
+msgstr "偵測到下列硬碟："
 
 #. description
 #: ../jobs/disk.txt.in:14
@@ -727,7 +728,7 @@ msgid ""
 "Prerequisites: This test case assumes that there's a testing account from "
 "which test cases are run and a personal account that the tester uses to "
 "verify the fingerprint reader"
-msgstr ""
+msgstr "前提：本測試條件假設有個來自正在執行測試的測試帳號，以及另一個測試者用來驗證指紋讀取器的個人帳號"
 
 #. description
 #: ../jobs/fingerprint.txt.in:3
@@ -758,7 +759,7 @@ msgstr ""
 #. description
 #: ../jobs/fingerprint.txt.in:18
 msgid "Did the authentication procedure work correctly?"
-msgstr ""
+msgstr "認證程序運作正常嗎？"
 
 #. description
 #: ../jobs/firewire.txt.in:3
@@ -774,7 +775,7 @@ msgstr ""
 #. description
 #: ../jobs/firewire.txt.in:3 ../jobs/usb.txt.in:71
 msgid "Do the copy operations work as expected?"
-msgstr ""
+msgstr "複製的操作工作如預期嗎？"
 
 #. description
 #: ../jobs/floppy.txt.in:4
@@ -930,31 +931,31 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:82
 msgid "This display is using the following resolution:"
-msgstr ""
+msgstr "螢幕顯示目前正使用以下解析度："
 
 #. description
 #: ../jobs/graphics.txt.in:82
 msgid "Is this acceptable for your display?"
-msgstr ""
+msgstr "您的螢幕顯示可以接受嗎？"
 
 #. description
 #: ../jobs/graphics.txt.in:95
 msgid ""
 "Ensure the current resolution meets or exceeds the recommended minimum "
 "resolution (1024 x 768). See here for details:"
-msgstr ""
+msgstr "請確認目前的解析度是否達到或超過建議的最低解析度 (1024 x 768)。查看此處以取得詳細資訊："
 
 #. description
 #: ../jobs/graphics.txt.in:107
 msgid ""
 "Ensure the current resolution meets or exceeds the recommended minimum "
 "resolution (1024 x 600). See here for details:"
-msgstr ""
+msgstr "請確認目前的解析度是否達到或超過建議的最低解析度 (1024 x 600)。查看此處以取得詳細資訊："
 
 #. description
 #: ../jobs/graphics.txt.in:107
 msgid "https://help.ubuntu.com/community/Installation/SystemRequirements"
-msgstr ""
+msgstr "https://help.ubuntu.com/community/Installation/SystemRequirements"
 
 #. description
 #: ../jobs/graphics.txt.in:117
@@ -965,7 +966,7 @@ msgstr ""
 #: ../jobs/graphics.txt.in:126
 msgid ""
 "The following screens and video modes have been detected on your system:"
-msgstr ""
+msgstr "下列您系統上的螢幕與視訊模式已經被偵測到："
 
 #. description
 #: ../jobs/graphics.txt.in:138
@@ -976,12 +977,12 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:138
 msgid "Did the screen appear to be working for each mode?"
-msgstr ""
+msgstr "每個模式下螢幕看起來都能運作嗎？"
 
 #. description
 #: ../jobs/graphics.txt.in:146
 msgid "Check that the hardware is able to run compiz."
-msgstr ""
+msgstr "檢查硬件是否能執行 compiz。"
 
 #. description
 #: ../jobs/graphics.txt.in:153
@@ -993,7 +994,7 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:153
 msgid "Did the 3d animation appear?"
-msgstr ""
+msgstr "3D 動畫有顯現嗎？"
 
 #. description
 #: ../jobs/info.txt.in:60 ../jobs/screenshot.txt.in:7
@@ -1106,7 +1107,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:3
 msgid "Audio tests"
-msgstr ""
+msgstr "音效測試"
 
 #. description
 #: ../jobs/local.txt.in:8
@@ -1136,17 +1137,17 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:33
 msgid "Disk tests"
-msgstr ""
+msgstr "磁碟測試"
 
 #. description
 #: ../jobs/local.txt.in:38
 msgid "Fingerprint reader tests"
-msgstr ""
+msgstr "指紋讀取器測試"
 
 #. description
 #: ../jobs/local.txt.in:43
 msgid "Firewire disk tests"
-msgstr ""
+msgstr "Firewire 磁碟測試"
 
 #. description
 #: ../jobs/local.txt.in:48
@@ -1191,7 +1192,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:88
 msgid "Monitor tests"
-msgstr ""
+msgstr "螢幕測試"
 
 #. description
 #: ../jobs/local.txt.in:93
@@ -1206,7 +1207,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:103
 msgid "Peripheral tests"
-msgstr ""
+msgstr "周邊裝置測試"
 
 #. description
 #: ../jobs/local.txt.in:108
@@ -1221,7 +1222,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:118
 msgid "User Applications"
-msgstr ""
+msgstr "使用者應用程式"
 
 #. description
 #: ../jobs/local.txt.in:123
@@ -1231,7 +1232,7 @@ msgstr ""
 #. description
 #: ../jobs/ltp.txt.in:3
 msgid "Linux Test Project"
-msgstr ""
+msgstr "Linux 測試專案"
 
 #. description
 #: ../jobs/mago.txt.in:3
@@ -1373,7 +1374,7 @@ msgstr ""
 #. description
 #: ../jobs/mediacard.txt.in:130
 msgid "Does the icon automatically appear/disappear?"
-msgstr ""
+msgstr "圖示有自動顯現或消失嗎？"
 
 #. description
 #: ../jobs/memory.txt.in:4
@@ -1396,12 +1397,12 @@ msgstr ""
 #. description
 #: ../jobs/miscellanea.txt.in:8
 msgid "Note that this test may require you to enter your password."
-msgstr ""
+msgstr "注意此測試可能要求您輸入您的密碼。"
 
 #. description
 #: ../jobs/miscellanea.txt.in:8
 msgid "Did the screen change temporarily to a text console?"
-msgstr ""
+msgstr "畫面有暫時地變換到文字主控台嗎？"
 
 #. description
 #: ../jobs/miscellanea.txt.in:20
@@ -1425,74 +1426,74 @@ msgstr ""
 #. description
 #: ../jobs/monitor.txt.in:3
 msgid "If your system does not have a VGA port, please skip this test."
-msgstr ""
+msgstr "如果您的系統沒有 VGA 連接埠，請跳過此測試。"
 
 #. description
 #: ../jobs/monitor.txt.in:3
 msgid ""
 "Connect a display (if not already connected) to the VGA port on your system. "
 "Is the image displayed correctly?"
-msgstr ""
+msgstr "請將顯示螢幕（如果尚未連接）連接到您系統上的 VGA 連接埠。影像有正確顯示嗎？"
 
 #. description
 #: ../jobs/monitor.txt.in:10
 msgid "If your system does not have a DVI port, please skip this test."
-msgstr ""
+msgstr "如果您的系統沒有 DVI 連接埠，請跳過此測試。"
 
 #. description
 #: ../jobs/monitor.txt.in:10
 msgid ""
 "Connect a display (if not already connected) to the DVI port on your system. "
 "Is the image displayed correctly?"
-msgstr ""
+msgstr "請將顯示螢幕（如果尚未連接）連接到您系統上的 DVI 連接埠。影像有正確顯示嗎？"
 
 #. description
 #: ../jobs/monitor.txt.in:17
 msgid "If your system does not have DisplayPort, please skip this test."
-msgstr ""
+msgstr "如果您的系統沒有 DisplayPort，請跳過此測試。"
 
 #. description
 #: ../jobs/monitor.txt.in:17
 msgid ""
 "Connect a display (if not already connected) to the DisplayPort on your "
 "system. Is the image displayed correctly?"
-msgstr ""
+msgstr "請將顯示螢幕連接到您系統上的 DisplayPort。影像有正確顯示嗎？"
 
 #. description
 #: ../jobs/monitor.txt.in:24
 msgid "If your system does not have a HDMI port, please skip this test."
-msgstr ""
+msgstr "如果您的系統沒有 HDMI 連接埠，請跳過此測試。"
 
 #. description
 #: ../jobs/monitor.txt.in:24
 msgid ""
 "Connect a display (if not already connected) to the HDMI port on your "
 "system. Is the image displayed correctly?"
-msgstr ""
+msgstr "請將顯示螢幕（如果尚未連接）連接到您系統上的 HDMI 連接埠。影像有正確顯示嗎？"
 
 #. description
 #: ../jobs/monitor.txt.in:31
 msgid "If your system does not have a S-VIDEO port, please skip this test."
-msgstr ""
+msgstr "如果您的系統沒有 S-VIDEO 連接埠，請跳過此測試。"
 
 #. description
 #: ../jobs/monitor.txt.in:31
 msgid ""
 "Connect a display (if not already connected) to the S-VIDEO port on your "
 "system. Is the image displayed correctly?"
-msgstr ""
+msgstr "請將顯示螢幕（如果尚未連接）連接到您系統上的 S-VIDEO 連接埠。影像有正確顯示嗎？"
 
 #. description
 #: ../jobs/monitor.txt.in:38
 msgid "If your system does not have a RCA port, please skip this test."
-msgstr ""
+msgstr "如果您的系統沒有 RCA 連接埠，請跳過此測試。"
 
 #. description
 #: ../jobs/monitor.txt.in:38
 msgid ""
 "Connect a display (if not already connected) to the RCA port on your system. "
 "Is the image displayed correctly?"
-msgstr ""
+msgstr "請將顯示螢幕（如果尚未連接）連接到您系統上的 RCA 連接埠。影像有正確顯示嗎？"
 
 #. description
 #: ../jobs/monitor.txt.in:46
@@ -1506,7 +1507,7 @@ msgstr ""
 #. description
 #: ../jobs/monitor.txt.in:46
 msgid "Did the monitor go blank?"
-msgstr ""
+msgstr "螢幕有變黑嗎？"
 
 #. description
 #: ../jobs/networking.txt.in:26
@@ -1654,7 +1655,7 @@ msgstr ""
 #. description
 #: ../jobs/optical.txt.in:90
 msgid "Did the file play?"
-msgstr ""
+msgstr "檔案有播放嗎？"
 
 #. description
 #: ../jobs/panel_clock_test.txt.in:4
@@ -1732,7 +1733,7 @@ msgstr ""
 #. description
 #: ../jobs/phoronix.txt.in:3
 msgid "Automated benchmark testing"
-msgstr ""
+msgstr "自動評效測試"
 
 #. description
 #: ../jobs/power-management.txt.in:3
@@ -1802,17 +1803,17 @@ msgstr ""
 #. description
 #: ../jobs/power-management.txt.in:65
 msgid "Test the network before suspending."
-msgstr ""
+msgstr "在暫停之前先測試網絡。"
 
 #. description
 #: ../jobs/power-management.txt.in:70
 msgid "Record the current resolution before suspending."
-msgstr ""
+msgstr "在暫停之前紀錄目前的解析度。"
 
 #. description
 #: ../jobs/power-management.txt.in:78
 msgid "Test the audio before suspending."
-msgstr ""
+msgstr "在暫停之前測試音效。"
 
 #. description
 #: ../jobs/power-management.txt.in:84
@@ -1834,7 +1835,7 @@ msgstr ""
 #. description
 #: ../jobs/power-management.txt.in:135
 msgid "Power management Suspend and Resume test"
-msgstr ""
+msgstr "電源管理暫停與回復測試"
 
 #. description
 #: ../jobs/power-management.txt.in:135
@@ -1849,18 +1850,18 @@ msgstr ""
 #. description
 #: ../jobs/power-management.txt.in:145
 msgid "Test the network after resuming."
-msgstr ""
+msgstr "在回復之後測試網絡。"
 
 #. description
 #: ../jobs/power-management.txt.in:151
 msgid ""
 "Test to see that we have the same resolution after resuming as before."
-msgstr ""
+msgstr "測試看看在復原之後我們是否能擁有與之前相同的解析度。"
 
 #. description
 #: ../jobs/power-management.txt.in:160
 msgid "Test the audio after resuming."
-msgstr ""
+msgstr "在回復之後測試音效。"
 
 #. description
 #: ../jobs/power-management.txt.in:167
@@ -1879,7 +1880,7 @@ msgstr ""
 msgid ""
 "Verify a bluetooth peripheral.  An example verification procedure for a "
 "bluetooth mouse is given."
-msgstr ""
+msgstr "驗證藍牙週邊裝置。我們的驗證程序範例為藍牙滑鼠。"
 
 #. description
 #: ../jobs/power-management.txt.in:194
@@ -1906,7 +1907,7 @@ msgid ""
 "This will check to make sure that your audio device works properly after a "
 "suspend and resume.  You can use either internal or external microphone and "
 "speakers."
-msgstr ""
+msgstr "這將會測試您的音效裝置是否能在暫停與復原後正常運作。您可以使用內部與外部的麥克風或喇叭。"
 
 #. description
 #: ../jobs/power-management.txt.in:221
@@ -1928,14 +1929,14 @@ msgstr ""
 #. description
 #: ../jobs/power-management.txt.in:234
 msgid "Did the system successfully suspend and resume for 30 iterations?"
-msgstr ""
+msgstr "系統有成功暫停並且重複復原 30 次嗎？"
 
 #. description
 #: ../jobs/power-management.txt.in:245
 msgid ""
 "This will check to make sure your system can successfully hibernate (if "
 "supported)."
-msgstr ""
+msgstr "這將檢查以確認您的系統是否能正常休眠 (如果支援的話)。"
 
 #. description
 #: ../jobs/power-management.txt.in:245
@@ -1952,7 +1953,7 @@ msgstr ""
 msgid ""
 "Did the system successfully hibernate and did it work properly after waking "
 "up?"
-msgstr ""
+msgstr "系統有成功休眠並在醒來後正常運作嗎？"
 
 #. description
 #: ../jobs/power-management.txt.in:258
@@ -1971,11 +1972,12 @@ msgid ""
 "set, and that grub is set to boot Ubuntu by default if you have a multi-boot "
 "set-up."
 msgstr ""
+"除此之外，您需要確認您的系統沒有設定電源啟動密碼與硬碟密碼；並且如果您有多重開機設定的話， 請確認 grub 已將 Ubuntu 設為預設開機項目。"
 
 #. description
 #: ../jobs/power-management.txt.in:258
 msgid "Did the system successfully hibernate and wake 30 times?"
-msgstr ""
+msgstr "系統有成功休眠並醒來共 30 次嗎？"
 
 #. description
 #: ../jobs/power-management.txt.in:267
@@ -2005,7 +2007,7 @@ msgstr ""
 #. description
 #: ../jobs/qa_regression.txt.in:3
 msgid "QA regression tests (destructive)"
-msgstr ""
+msgstr "QA 回歸測試 (破壞性的)"
 
 #. description
 #: ../jobs/server-services.txt.in:5
@@ -2253,6 +2255,8 @@ msgid ""
 "are found, install them. When Update Manager has finished, please close the "
 "app by clicking the Close button in the lower right corner."
 msgstr ""
+"本測試將執行「更新管理員」並檢查系統是否有任何可用的更新。請遵循提示，並且有找到更新的話，請安裝。當更新管理員結束工作後，請點擊畫面右下角的「關閉」紐來關"
+"閉該程式。"
 
 #. description
 #: ../jobs/user_apps.txt.in:14
@@ -2265,7 +2269,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:14
 msgid "Do you now have a new folder called Test Folder?"
-msgstr ""
+msgstr "您現在有個稱作 Test Folder 的資料夾嗎？"
 
 #. description
 #: ../jobs/user_apps.txt.in:25
@@ -2281,11 +2285,12 @@ msgid ""
 "Right click on the folder called Test Folder(copy) and click Rename. Enter "
 "the name Test Data in the name box and hit Enter."
 msgstr ""
+"請對稱為 Test Folder (副本) 的資料夾點擊右鍵，接着點選「重新命名」。請在命名盒內輸入名稱「Test Data」，並按下 Enter 鍵。"
 
 #. description
 #: ../jobs/user_apps.txt.in:25
 msgid "Do you now have a folder called Test Data?"
-msgstr ""
+msgstr "您現在有個稱作 Test Data 的資料夾嗎？"
 
 #. description
 #: ../jobs/user_apps.txt.in:38
@@ -2297,14 +2302,14 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:38
 msgid "Double click the folder called Test Folder to open it up."
-msgstr ""
+msgstr "對稱作 Test Folder 的資料夾雙擊滑鼠以將它開啟。"
 
 #. description
 #: ../jobs/user_apps.txt.in:38
 msgid ""
 "Was the folder called Test Data successfully moved into the folder called "
 "Test Folder?"
-msgstr ""
+msgstr "稱作 Test Data 的資料夾有成功移動至稱為 Test Folder 的資料夾中嗎？"
 
 #. description
 #: ../jobs/user_apps.txt.in:51
@@ -2317,12 +2322,12 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:51
 msgid "Do you now have a file called Test File 1?"
-msgstr ""
+msgstr "您現在有個稱作 Test File 1 的檔案嗎？"
 
 #. description
 #: ../jobs/user_apps.txt.in:51
 msgid "Close the File browser."
-msgstr ""
+msgstr "關閉「檔案瀏覽器」。"
 
 #. description
 #: ../jobs/user_apps.txt.in:62
@@ -2337,11 +2342,12 @@ msgid ""
 "Right click on the file called Test File 1(copy) and click Rename. Enter the "
 "name Test File 2 in the name box and hit Enter."
 msgstr ""
+"請對稱為 Test File 1 (副本) 的資料夾點擊右鍵，接着點選「重新命名」。請在命名盒內輸入名稱「Test File2」，並按下 Enter 鍵。"
 
 #. description
 #: ../jobs/user_apps.txt.in:62
 msgid "Do you now have a file called Test File 2?"
-msgstr ""
+msgstr "您現在有個稱作 Test File 2 的檔案嗎？"
 
 #. description
 #: ../jobs/user_apps.txt.in:75
@@ -2353,13 +2359,13 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:75
 msgid "Double click the icon for Test Data to open that folder up."
-msgstr ""
+msgstr "對稱作 Test Data 的圖示雙擊滑鼠以將它開啟。"
 
 #. description
 #: ../jobs/user_apps.txt.in:75
 msgid ""
 "Was the file Test File 2 successfully moved into the Test Data folder?"
-msgstr ""
+msgstr "檔案 Test File 2 有成功移動至 Test Data 資料夾內嗎？"
 
 #. description
 #: ../jobs/user_apps.txt.in:88
@@ -2371,7 +2377,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:88
 msgid "Is Test File 1 now gone?"
-msgstr ""
+msgstr "Test File 1 消失了嗎？"
 
 #. description
 #: ../jobs/user_apps.txt.in:99
@@ -2383,17 +2389,17 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:99
 msgid "Has Test Folder been successfully deleted?"
-msgstr ""
+msgstr "Test Folder 有成功刪除嗎？"
 
 #. description
 #: ../jobs/user_apps.txt.in:99
 msgid "Close the File Browser."
-msgstr ""
+msgstr "關閉「檔案瀏覽器」。"
 
 #. description
 #: ../jobs/user_apps.txt.in:160
 msgid "Common Document Types Test"
-msgstr ""
+msgstr "常見文件類型測試"
 
 #. description
 #: ../jobs/user_apps.txt.in:178
@@ -2403,7 +2409,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:178
 msgid "Did the Ubuntu Test page load correctly?"
-msgstr ""
+msgstr "Ubuntu 測試頁面有正確載入嗎？"
 
 #. description
 #: ../jobs/user_apps.txt.in:188
@@ -2415,7 +2421,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:188
 msgid "Did the applet display?"
-msgstr ""
+msgstr "該應用小程式有顯示嗎？"
 
 #. description
 #: ../jobs/user_apps.txt.in:198
@@ -2425,7 +2431,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:198
 msgid "Did you see the text?"
-msgstr ""
+msgstr "有看見文字嗎？"
 
 #. description
 #: ../jobs/user_apps.txt.in:208
@@ -2435,7 +2441,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:208
 msgid "Did the video play correctly?"
-msgstr ""
+msgstr "影片有正確播放嗎？"
 
 #. description
 #: ../jobs/user_apps.txt.in:218
@@ -2445,27 +2451,27 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:218
 msgid "Did the video play using a plugin?"
-msgstr ""
+msgstr "影片播放有使用外掛程式嗎？"
 
 #. description
 #: ../jobs/user_apps.txt.in:227
 msgid "Facebook Chat"
-msgstr ""
+msgstr "Facebook 聊天"
 
 #. description
 #: ../jobs/user_apps.txt.in:238
 msgid "Google Talk"
-msgstr ""
+msgstr "Google Talk"
 
 #. description
 #: ../jobs/user_apps.txt.in:249
 msgid "Jabber"
-msgstr ""
+msgstr "Jabber"
 
 #. description
 #: ../jobs/user_apps.txt.in:260
 msgid "AIM"
-msgstr ""
+msgstr "AIM"
 
 #. description
 #: ../jobs/user_apps.txt.in:271
@@ -2478,150 +2484,150 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:271
 msgid "MSN"
-msgstr ""
+msgstr "MSN"
 
 #. description
 #: ../jobs/user_apps.txt.in:271
 msgid "Were you able to connect correctly and send/receive messages?"
-msgstr ""
+msgstr "您可以正確連線並且傳送或接收訊息嗎？"
 
 #: ../checkbox/application.py:84
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist."
-msgstr ""
+msgstr "--config=checkbox/plugins/jobs_info/blacklist 的簡寫。"
 
 #: ../checkbox/application.py:86
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist_file."
-msgstr ""
+msgstr "--config=checkbox/plugins/jobs_info/blacklist_file 的簡寫。"
 
 #: ../checkbox/application.py:88
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist."
-msgstr ""
+msgstr "--config=checkbox/plugins/jobs_info/whitelist 的簡寫。"
 
 #: ../checkbox/application.py:90
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist_file."
-msgstr ""
+msgstr "--config=checkbox/plugins/jobs_info/whitelist_file 的簡寫。"
 
 #: ../checkbox/lib/signal.py:23
 msgid ""
 "Hangup detected on controlling terminal or death of controlling process"
-msgstr ""
+msgstr "在控制終端機偵測到停滯或是控制程序的終止"
 
 #: ../checkbox/lib/signal.py:24
 msgid "Interrupt from keyboard"
-msgstr ""
+msgstr "從鍵盤中斷"
 
 #: ../checkbox/lib/signal.py:25
 msgid "Quit from keyboard"
-msgstr ""
+msgstr "從鍵盤退出"
 
 #: ../checkbox/lib/signal.py:26
 msgid "Illegal Instruction"
-msgstr ""
+msgstr "違反規則的指示"
 
 #: ../checkbox/lib/signal.py:27
 msgid "Abort signal from abort(3)"
-msgstr ""
+msgstr "來自 abort(3) 的放棄訊號"
 
 #: ../checkbox/lib/signal.py:28
 msgid "Floating point exception"
-msgstr ""
+msgstr "浮點例外"
 
 #: ../checkbox/lib/signal.py:29
 msgid "Kill signal"
-msgstr ""
+msgstr "終結訊號"
 
 #: ../checkbox/lib/signal.py:30
 msgid "Invalid memory reference"
-msgstr ""
+msgstr "無效的記憶體參照"
 
 #: ../checkbox/lib/signal.py:31
 msgid "Broken pipe: write to pipe with no readers"
-msgstr ""
+msgstr "損壞的 pipe：寫入 pipe 而沒有讀取來源"
 
 #: ../checkbox/lib/signal.py:32
 msgid "Timer signal from alarm(2)"
-msgstr ""
+msgstr "來自 alarm(2) 的計時器訊號"
 
 #: ../checkbox/lib/signal.py:33
 msgid "Termination signal"
-msgstr ""
+msgstr "終止訊號"
 
 #: ../checkbox/lib/signal.py:34
 msgid "User-defined signal 1"
-msgstr ""
+msgstr "使用者定義的訊號 1"
 
 #: ../checkbox/lib/signal.py:35
 msgid "User-defined signal 2"
-msgstr ""
+msgstr "使用者定義的訊號 2"
 
 #: ../checkbox/lib/signal.py:36
 msgid "Child stopped or terminated"
-msgstr ""
+msgstr "子程序已停止或是已終止"
 
 #: ../checkbox/lib/signal.py:37
 msgid "Continue if stopped"
-msgstr ""
+msgstr "如果停下來的話便繼續"
 
 #: ../checkbox/lib/signal.py:38
 msgid "Stop process"
-msgstr ""
+msgstr "停止程序"
 
 #: ../checkbox/lib/signal.py:39
 msgid "Stop typed at tty"
-msgstr ""
+msgstr "於 tty 停止 typed"
 
 #: ../checkbox/lib/signal.py:40
 msgid "tty input for background process"
-msgstr ""
+msgstr "給背景程序的 tty 輸入"
 
 #: ../checkbox/lib/signal.py:41
 msgid "tty output for background process"
-msgstr ""
+msgstr "給背景程序的 tty 輸出"
 
 #: ../checkbox/lib/signal.py:77
 msgid "UNKNOWN"
-msgstr ""
+msgstr "不明"
 
 #: ../checkbox/lib/signal.py:89
 msgid "Unknown signal"
-msgstr ""
+msgstr "未知訊號"
 
 #: ../checkbox_urwid/urwid_interface.py:60
 msgid "Checkbox System Testing"
-msgstr ""
+msgstr "Checkbox 系統測試"
 
 #: ../checkbox_urwid/urwid_interface.py:99
 msgid "Continue"
-msgstr ""
+msgstr "繼續"
 
 #: ../checkbox_urwid/urwid_interface.py:192
 #: ../checkbox_urwid/urwid_interface.py:268
 #: ../checkbox_urwid/urwid_interface.py:416
 msgid "Previous"
-msgstr ""
+msgstr "上一步"
 
 #: ../checkbox_urwid/urwid_interface.py:193
 #: ../checkbox_urwid/urwid_interface.py:269
 #: ../checkbox_urwid/urwid_interface.py:417
 msgid "Next"
-msgstr ""
+msgstr "下一步"
 
 #. Show buttons
 #: ../checkbox_urwid/urwid_interface.py:414
 msgid "Select All"
-msgstr ""
+msgstr "全部選取"
 
 #: ../checkbox_urwid/urwid_interface.py:415
 msgid "Deselect All"
-msgstr ""
+msgstr "取消全選"
 
 #: ../checkbox_urwid/urwid_interface.py:772
 msgid "Test"
-msgstr ""
+msgstr "測試"
 
 #: ../checkbox_urwid/urwid_interface.py:787
 msgid "Test Again"
-msgstr ""
+msgstr "再次測試"
 
 #: ../checkbox_gtk/gtk_interface.py:93
 msgid "hardware database"
@@ -2629,28 +2635,32 @@ msgstr ""
 
 #: ../checkbox_gtk/gtk_interface.py:533
 msgid "Info"
-msgstr ""
+msgstr "資訊"
 
 #: ../checkbox_gtk/gtk_interface.py:552
 msgid "Error"
-msgstr ""
+msgstr "錯誤"
 
 #: ../checkbox/user_interface.py:136
 #, python-format
 msgid "Unable to start web browser to open %s."
-msgstr ""
+msgstr "無法啟動網頁瀏覽器以開啟 %s。"
 
 #: ../plugins/apport_prompt.py:81
 msgid ""
 "Collecting information about this test.\n"
 "This might take a few minutes."
 msgstr ""
+"正在收集關於此測試的資訊。\n"
+"這可能會花上一些時間。"
 
 #: ../plugins/apport_prompt.py:116
 msgid ""
 "Collected information is being sent for bug tracking.\n"
 "This might take a few minutes."
 msgstr ""
+"已收集的資料為了錯誤追蹤之用而正在送出。\n"
+"這可能會花上一些時間。"
 
 #: ../plugins/apport_prompt.py:225
 #, python-format
@@ -2665,11 +2675,11 @@ msgstr ""
 #: ../plugins/apport_prompt.py:246
 #, python-format
 msgid "Is a package upgrade in process? Error: %s"
-msgstr ""
+msgstr "是否有套件處於升級程序？錯誤：%s"
 
 #: ../plugins/final_prompt.py:33
 msgid "Successfully finished testing!"
-msgstr ""
+msgstr "成功完成測試！"
 
 #: ../plugins/intro_prompt.py:43
 msgid ""
@@ -2679,11 +2689,14 @@ msgid ""
 "Once you are finished running the tests, you can view a summary report for "
 "your system."
 msgstr ""
+"歡迎來到「系統測試」！\n"
+"\n"
+"Checkbox 提供測試來確認您的系統是否正常運作。一旦您完成測試後，您可以檢視一份您系統的摘要報告。"
 
 #: ../plugins/launchpad_exchange.py:118
 #, python-format
 msgid "Failed to process form: %s"
-msgstr ""
+msgstr "處理表單失敗：%s"
 
 #: ../plugins/launchpad_prompt.py:71
 #, python-format
@@ -2699,47 +2712,71 @@ msgid ""
 "\n"
 "  https://launchpad.net/+login"
 msgstr ""
+"下列報告已經產生來提交到 Launchpad 硬件資料庫：\n"
+"\n"
+"  [[%s|檢視報告]]\n"
+"\n"
+"您可以藉由您用來登入到 Launchpad 的電子郵件位址來提交這個有關您系統的資訊。如果您尚未擁有 Lauchpad 帳號，請在這裏註冊：\n"
+"\n"
+"  https://launchpad.net/+login"
 
 #: ../plugins/launchpad_prompt.py:88
 msgid "No e-mail address provided, not submitting to Launchpad."
-msgstr ""
+msgstr "沒有提供電子郵件位址，因此不會提交到 Lauchpad。"
 
 #: ../plugins/lock_prompt.py:63
 msgid "There is another checkbox running. Please close it first."
-msgstr ""
+msgstr "有另一個 checkbox 正在執行。請先將它關閉。"
 
 #: ../plugins/recover_prompt.py:54
 msgid ""
 "Checkbox did not finish completely.\n"
 "Do you want to recover from the previous run?"
 msgstr ""
+"Checkbox 沒有完整結束。\n"
+"您想要還原到上次執行的部份嗎？"
 
 #: ../plugins/shell_test.py:52
 #, python-format
 msgid "Running %s..."
-msgstr ""
+msgstr "正在執行 %s..."
 
 #. Get results
 #: ../plugins/suites_prompt.py:105
 msgid "Select the suites to test"
-msgstr ""
+msgstr "選取想要的套裝測試"
 
 #: ../scripts/keyboard_test:21
 msgid "Enter text:\n"
-msgstr ""
+msgstr "輸入文字：\n"
 
 #: ../scripts/keyboard_test:40
 msgid "Type Text"
-msgstr ""
+msgstr "輸入文字"
 
 #: ../scripts/internet_test:139
 msgid "No Internet connection"
-msgstr ""
+msgstr "沒有互聯網連線"
 
 #: ../scripts/internet_test:142
 msgid "Connection established lost a packet"
-msgstr ""
+msgstr "已建立的連線丟失了一個資料包裹"
 
 #: ../scripts/internet_test:145
 msgid "Internet connection fully established"
-msgstr ""
+msgstr "互聯網連線已完全建立"
+
+#~ msgid "Disk benchmark:"
+#~ msgstr "磁碟評效："
+
+#~ msgid "Is this ok?"
+#~ msgstr "這樣可以嗎？"
+
+#~ msgid "Kernel modesetting tests"
+#~ msgstr "核心模組設定測試"
+
+#~ msgid "Network tests"
+#~ msgstr "網絡測試"
+
+#~ msgid "Video tests"
+#~ msgstr "視訊測試"

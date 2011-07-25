@@ -1,20 +1,21 @@
 # Latvian translation for checkbox
 # Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
 # This file is distributed under the same license as the checkbox package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
 #
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+# Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>, 2011.
 msgid ""
 msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-07-07 12:32-0400\n"
-"PO-Revision-Date: 2011-07-15 18:51+0000\n"
+"PO-Revision-Date: 2011-07-19 19:42+0000\n"
 "Last-Translator: Pēteris Krišjānis <pecisk@gmail.com>\n"
 "Language-Team: Latvian <lv@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-07-16 04:31+0000\n"
+"X-Launchpad-Export-Date: 2011-07-20 04:32+0000\n"
 "X-Generator: Launchpad (build 13405)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:1 ../checkbox_cli/cli_interface.py:343
@@ -34,7 +35,7 @@ msgstr "Sistēmas testēšana"
 
 #: ../gtk/checkbox-gtk.ui.h:4
 msgid "_Deselect All"
-msgstr ""
+msgstr "_Neizvēlēties nevienu"
 
 #: ../gtk/checkbox-gtk.ui.h:5
 msgid "_No"
@@ -46,7 +47,7 @@ msgstr "Ie_priekšējais"
 
 #: ../gtk/checkbox-gtk.ui.h:7
 msgid "_Select All"
-msgstr ""
+msgstr "_Izvēlēties visus"
 
 #: ../gtk/checkbox-gtk.ui.h:8
 msgid "_Skip this test"
@@ -100,7 +101,7 @@ msgstr ""
 #. description
 #: ../jobs/audio.txt.in:33
 msgid "Please connect a pair of headphones to your audio device."
-msgstr ""
+msgstr "Lūdzu, pieslēdziet austiņu pāri jūsu audio iekārtai."
 
 #. description
 #: ../jobs/audio.txt.in:33
@@ -144,7 +145,7 @@ msgstr ""
 #. description
 #: ../jobs/audio.txt.in:70 ../jobs/power-management.txt.in:221
 msgid "Did you hear your speech played back?"
-msgstr ""
+msgstr "Vai jūs dzirdējāt, kā jūsu runa tiek atskaņota?"
 
 #. description
 #: ../jobs/audio.txt.in:81
@@ -157,7 +158,7 @@ msgstr ""
 #. description
 #: ../jobs/autotest.txt.in:3
 msgid "Autotest suite (destructive)"
-msgstr ""
+msgstr "Automātisko testu komplekts (destruktīvs)"
 
 #. description
 #: ../jobs/bluetooth.txt.in:5 ../jobs/power-management.txt.in:185
@@ -396,7 +397,7 @@ msgstr ""
 #. description
 #: ../jobs/disk.txt.in:4
 msgid "The following hard drives were detected:"
-msgstr ""
+msgstr "Tika noteikti sekojoši cietie diski:"
 
 #. description
 #: ../jobs/disk.txt.in:14
@@ -463,6 +464,9 @@ msgid ""
 "which test cases are run and a personal account that the tester uses to "
 "verify the fingerprint reader"
 msgstr ""
+"Priekšprasības: Šis testa komplekts pieņem, ka jums ir testa konts, kurā "
+"tiek laisti testi un personiskais konts, ko testētājs izmanto, lai "
+"pārbaudītu pirkstu nospiedumu lasītāju"
 
 #. description
 #: ../jobs/fingerprint.txt.in:3
@@ -493,7 +497,7 @@ msgstr ""
 #. description
 #: ../jobs/fingerprint.txt.in:18
 msgid "Did the authentication procedure work correctly?"
-msgstr ""
+msgstr "Vai autentifikācijas procedūra strādāja korekti?"
 
 #. description
 #: ../jobs/firewire.txt.in:3
@@ -509,7 +513,7 @@ msgstr ""
 #. description
 #: ../jobs/firewire.txt.in:3 ../jobs/usb.txt.in:71
 msgid "Do the copy operations work as expected?"
-msgstr ""
+msgstr "Vai kopēšanas darbības tika veiktas kā gaidīts?"
 
 #. description
 #: ../jobs/floppy.txt.in:4
@@ -665,7 +669,7 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:82
 msgid "This display is using the following resolution:"
-msgstr ""
+msgstr "Šis displejs izmanto sekojošu izšķirtspēju:"
 
 #. description
 #: ../jobs/graphics.txt.in:82
@@ -709,7 +713,7 @@ msgstr "Vai redzat stabiņus un nirboņu (statisku signālu)?"
 #: ../jobs/graphics.txt.in:126
 msgid ""
 "The following screens and video modes have been detected on your system:"
-msgstr ""
+msgstr "Jūsu sistēmai tika noteikti sekojoši ekrāna un video režīmi:"
 
 #. description
 #: ../jobs/graphics.txt.in:138
@@ -720,12 +724,12 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:138
 msgid "Did the screen appear to be working for each mode?"
-msgstr ""
+msgstr "Vai ekrāns strādāja katrā režīmā?"
 
 #. description
 #: ../jobs/graphics.txt.in:146
 msgid "Check that the hardware is able to run compiz."
-msgstr ""
+msgstr "Pārbaudīt, vai aparatūra ir spējīga strādāt ar compiz."
 
 #. description
 #: ../jobs/graphics.txt.in:153
@@ -737,7 +741,7 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:153
 msgid "Did the 3d animation appear?"
-msgstr ""
+msgstr "Vai 3d animācija bija redzama?"
 
 #. description
 #: ../jobs/info.txt.in:60 ../jobs/screenshot.txt.in:7
@@ -865,7 +869,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:3
 msgid "Audio tests"
-msgstr "Audio tests"
+msgstr "Audio testi"
 
 #. description
 #: ../jobs/local.txt.in:8
@@ -950,7 +954,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:88
 msgid "Monitor tests"
-msgstr ""
+msgstr "Monitora testi"
 
 #. description
 #: ../jobs/local.txt.in:93
@@ -965,7 +969,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:103
 msgid "Peripheral tests"
-msgstr "Iekārtu testi"
+msgstr "Ierīču testi"
 
 #. description
 #: ../jobs/local.txt.in:108
@@ -990,7 +994,7 @@ msgstr ""
 #. description
 #: ../jobs/ltp.txt.in:3
 msgid "Linux Test Project"
-msgstr ""
+msgstr "Linux testēšanas projekts"
 
 #. description
 #: ../jobs/mago.txt.in:3
@@ -1155,12 +1159,12 @@ msgstr ""
 #. description
 #: ../jobs/miscellanea.txt.in:8
 msgid "Note that this test may require you to enter your password."
-msgstr ""
+msgstr "Ņemiet vērā, ka šis tests varētu jums pieprasīt ievadīt jūsu paroli."
 
 #. description
 #: ../jobs/miscellanea.txt.in:8
 msgid "Did the screen change temporarily to a text console?"
-msgstr ""
+msgstr "Vai jūs redzējāt, kā ekrāns uz brīdi pārslēdzās uz teksta konsoli?"
 
 #. description
 #: ../jobs/miscellanea.txt.in:20
@@ -1184,7 +1188,7 @@ msgstr ""
 #. description
 #: ../jobs/monitor.txt.in:3
 msgid "If your system does not have a VGA port, please skip this test."
-msgstr ""
+msgstr "Ja jūsu sistēmai nav VGA ports, lūdzu, izlaidiet šo testu."
 
 #. description
 #: ../jobs/monitor.txt.in:3
@@ -1192,11 +1196,13 @@ msgid ""
 "Connect a display (if not already connected) to the VGA port on your system. "
 "Is the image displayed correctly?"
 msgstr ""
+"Pieslēdziet displeju (ja tas nav jau pieslēgts) jūsu sistēmas VGA portam. "
+"Vai attēls ir redzams korekti?"
 
 #. description
 #: ../jobs/monitor.txt.in:10
 msgid "If your system does not have a DVI port, please skip this test."
-msgstr ""
+msgstr "Ja jūsu sistēmai nav DVI ports, lūdzu, izlaidiet šo testu."
 
 #. description
 #: ../jobs/monitor.txt.in:10
@@ -1204,11 +1210,13 @@ msgid ""
 "Connect a display (if not already connected) to the DVI port on your system. "
 "Is the image displayed correctly?"
 msgstr ""
+"Pieslēdziet displeju (ja tas nav jau pieslēgts) jūsu sistēmas DVI portam. "
+"Vai attēls ir redzams korekti?"
 
 #. description
 #: ../jobs/monitor.txt.in:17
 msgid "If your system does not have DisplayPort, please skip this test."
-msgstr ""
+msgstr "Ja jūsu sistēmai nav DisplayPort, lūdzu, izlaidiet šo testu."
 
 #. description
 #: ../jobs/monitor.txt.in:17
@@ -1216,11 +1224,13 @@ msgid ""
 "Connect a display (if not already connected) to the DisplayPort on your "
 "system. Is the image displayed correctly?"
 msgstr ""
+"Pieslēdziet displeju (ja tas nav jau pieslēgts) jūsu sistēmas DisplayPort. "
+"Vai attēls ir redzams korekti?"
 
 #. description
 #: ../jobs/monitor.txt.in:24
 msgid "If your system does not have a HDMI port, please skip this test."
-msgstr ""
+msgstr "Ja jūsu sistēmai nav HDMI ports, lūdzu, izlaidiet šo testu."
 
 #. description
 #: ../jobs/monitor.txt.in:24
@@ -1228,11 +1238,13 @@ msgid ""
 "Connect a display (if not already connected) to the HDMI port on your "
 "system. Is the image displayed correctly?"
 msgstr ""
+"Pieslēdziet displeju (ja tas nav jau pieslēgts) jūsu sistēmas HDMI portam. "
+"Vai attēls ir redzams korekti?"
 
 #. description
 #: ../jobs/monitor.txt.in:31
 msgid "If your system does not have a S-VIDEO port, please skip this test."
-msgstr ""
+msgstr "Ja jūsu sistēmai nav S-VIDEO ports, lūdzu, izlaidiet šo testu."
 
 #. description
 #: ../jobs/monitor.txt.in:31
@@ -1240,11 +1252,13 @@ msgid ""
 "Connect a display (if not already connected) to the S-VIDEO port on your "
 "system. Is the image displayed correctly?"
 msgstr ""
+"Pieslēdziet displeju (ja tas nav jau pieslēgts) jūsu sistēmas S-VIDEO "
+"portam. Vai attēls ir redzams korekti?"
 
 #. description
 #: ../jobs/monitor.txt.in:38
 msgid "If your system does not have a RCA port, please skip this test."
-msgstr ""
+msgstr "Ja jūsu sistēmai nav RCA ports, lūdzu, izlaidiet šo testu."
 
 #. description
 #: ../jobs/monitor.txt.in:38
@@ -1252,6 +1266,8 @@ msgid ""
 "Connect a display (if not already connected) to the RCA port on your system. "
 "Is the image displayed correctly?"
 msgstr ""
+"Pieslēdziet displeju (ja tas nav jau pieslēgts) jūsu sistēmas RCA portam. "
+"Vai attēls ir redzams korekti?"
 
 #. description
 #: ../jobs/monitor.txt.in:46
@@ -1265,7 +1281,7 @@ msgstr ""
 #. description
 #: ../jobs/monitor.txt.in:46
 msgid "Did the monitor go blank?"
-msgstr ""
+msgstr "Vai jūsu monitors nerādija attēlu?"
 
 #. description
 #: ../jobs/networking.txt.in:5
@@ -1319,7 +1335,7 @@ msgstr ""
 #. description
 #: ../jobs/networking.txt.in:76 ../jobs/peripheral.txt.in:15
 msgid "Was the connection correctly established?"
-msgstr ""
+msgstr "Vai savienojums tika izveidots korekti?"
 
 #. description
 #: ../jobs/networking.txt.in:92
@@ -1423,7 +1439,7 @@ msgstr ""
 #. description
 #: ../jobs/optical.txt.in:90
 msgid "Did the file play?"
-msgstr ""
+msgstr "Vai fails tika atskaņots?"
 
 #. description
 #: ../jobs/panel_clock_test.txt.in:4
@@ -1501,7 +1517,7 @@ msgstr ""
 #. description
 #: ../jobs/phoronix.txt.in:3
 msgid "Automated benchmark testing"
-msgstr ""
+msgstr "Automātiskā procesu mērijumu testēšana"
 
 #. description
 #: ../jobs/power-management.txt.in:3
@@ -1781,7 +1797,7 @@ msgstr ""
 #. description
 #: ../jobs/qa_regression.txt.in:3
 msgid "QA regression tests (destructive)"
-msgstr ""
+msgstr "QA regresiju testi (destruktīvi)"
 
 #. description
 #: ../jobs/server-services.txt.in:5
@@ -2276,128 +2292,130 @@ msgstr "Vai jums izdevās nosūtīt un saņemt ziņojumus?"
 
 #: ../checkbox/application.py:66
 msgid "Usage: checkbox [OPTIONS]"
-msgstr "Izmantošana checkbox [OPCIAJS]"
+msgstr "Izmantošana: checkbox [OPCIJAS]"
 
 #: ../checkbox/application.py:70
 msgid "Print version information and exit."
-msgstr "Nodrukā informāciju par programmas versiju un iziet."
+msgstr "Izdrukā informāciju par programmas versiju un iziet."
 
 #: ../checkbox/application.py:74
 msgid "The file to write the log to."
-msgstr ""
+msgstr "Fails, kurā rakstīt žurnalu."
 
 #: ../checkbox/application.py:77
 msgid "One of debug, info, warning, error or critical."
-msgstr ""
+msgstr "Viens no debug, info, warning, error vai critical."
 
 #: ../checkbox/application.py:82
 msgid "Configuration override parameters."
-msgstr ""
+msgstr "Konfigurācijas pārrakstīšanas parametri."
 
 #: ../checkbox/application.py:84
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist."
-msgstr ""
+msgstr "Saīsinājums --config=checkbox/plugins/jobs_info/blacklist."
 
 #: ../checkbox/application.py:86
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist_file."
-msgstr ""
+msgstr "Saīsinājums --config=checkbox/plugins/jobs_info/blacklist_file."
 
 #: ../checkbox/application.py:88
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist."
-msgstr ""
+msgstr "Saīsinājums --config=checkbox/plugins/jobs_info/whitelist."
 
 #: ../checkbox/application.py:90
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist_file."
-msgstr ""
+msgstr "Saīsinājums --config=checkbox/plugins/jobs_info/whitelist_file."
 
 #: ../checkbox/application.py:115
 msgid "Missing configuration file as argument.\n"
-msgstr ""
+msgstr "Trūkst konfigurācijas fails kā arguments.\n"
 
 #: ../checkbox/lib/signal.py:23
 msgid ""
 "Hangup detected on controlling terminal or death of controlling process"
 msgstr ""
+"Atslēgšanās noteikta uz kontrolējošā termināļa, vai arī kontrolējošā procesa "
+"nobeigšanās"
 
 #: ../checkbox/lib/signal.py:24
 msgid "Interrupt from keyboard"
-msgstr ""
+msgstr "Pārtraukums no tasttūras"
 
 #: ../checkbox/lib/signal.py:25
 msgid "Quit from keyboard"
-msgstr ""
+msgstr "Iziet no tastūras"
 
 #: ../checkbox/lib/signal.py:26
 msgid "Illegal Instruction"
-msgstr ""
+msgstr "Ilegāla instrukcija"
 
 #: ../checkbox/lib/signal.py:27
 msgid "Abort signal from abort(3)"
-msgstr ""
+msgstr "Pārtraukuma signāls no abort(3)"
 
 #: ../checkbox/lib/signal.py:28
 msgid "Floating point exception"
-msgstr ""
+msgstr "Peldošā punkta izņēmums"
 
 #: ../checkbox/lib/signal.py:29
 msgid "Kill signal"
-msgstr ""
+msgstr "Nokaušanas signāls"
 
 #: ../checkbox/lib/signal.py:30
 msgid "Invalid memory reference"
-msgstr ""
+msgstr "Nepareiza atmiņas norāde"
 
 #: ../checkbox/lib/signal.py:31
 msgid "Broken pipe: write to pipe with no readers"
-msgstr ""
+msgstr "Salauzts kanāls: rakstīšana kanālā bez lasītājiem"
 
 #: ../checkbox/lib/signal.py:32
 msgid "Timer signal from alarm(2)"
-msgstr ""
+msgstr "Skaitītāja signāls no alarm(2)"
 
 #: ../checkbox/lib/signal.py:33
 msgid "Termination signal"
-msgstr ""
+msgstr "Terminācijas signāls"
 
 #: ../checkbox/lib/signal.py:34
 msgid "User-defined signal 1"
-msgstr ""
+msgstr "Lietotāja definēts signāls 1"
 
 #: ../checkbox/lib/signal.py:35
 msgid "User-defined signal 2"
-msgstr ""
+msgstr "Lietotāja definēts signāls 2"
 
 #: ../checkbox/lib/signal.py:36
 msgid "Child stopped or terminated"
-msgstr ""
+msgstr "Bērna process apturēts vai terminēts"
 
 #: ../checkbox/lib/signal.py:37
 msgid "Continue if stopped"
-msgstr ""
+msgstr "Turpināt ja apturēts"
 
 #: ../checkbox/lib/signal.py:38
 msgid "Stop process"
-msgstr ""
+msgstr "Apturēt procesu"
 
 #: ../checkbox/lib/signal.py:39
 msgid "Stop typed at tty"
-msgstr ""
+msgstr "stop ierakstīts tty"
 
 #: ../checkbox/lib/signal.py:40
 msgid "tty input for background process"
-msgstr ""
+msgstr "tty ievads fona procesiem"
 
 #: ../checkbox/lib/signal.py:41
 msgid "tty output for background process"
-msgstr ""
+msgstr "tty izvads fona procesiem"
 
 #: ../checkbox/lib/signal.py:77
 msgid "UNKNOWN"
-msgstr ""
+msgstr "NEZINĀMS"
 
 #: ../checkbox/lib/signal.py:89
 msgid "Unknown signal"
-msgstr ""
+msgstr "Nezināms signāls"
 
 #: ../checkbox_cli/cli_interface.py:31
 #: ../checkbox_urwid/urwid_interface.py:684
@@ -2416,7 +2434,7 @@ msgstr "izlaist"
 
 #: ../checkbox_cli/cli_interface.py:126
 msgid "Press any key to continue..."
-msgstr "Lai turpinātu, nospiediet kādu taustiņu..."
+msgstr "Lai turpinātu, nospiediet jebkuru taustiņu..."
 
 #: ../checkbox_cli/cli_interface.py:135
 #, python-format
@@ -2433,7 +2451,7 @@ msgstr "pārbaudīt vēlreiz"
 
 #: ../checkbox_cli/cli_interface.py:345
 msgid "Please type here and press Ctrl-D when finished:\n"
-msgstr ""
+msgstr "Lūdzu ievadiet šeit un spiediet Ctrl-D, kad esat beiguši:\n"
 
 #: ../checkbox_urwid/urwid_interface.py:60
 msgid "Checkbox System Testing"
@@ -2482,28 +2500,32 @@ msgstr "_Testēt vēlreiz"
 
 #: ../checkbox_gtk/gtk_interface.py:533
 msgid "Info"
-msgstr ""
+msgstr "Informācija"
 
 #: ../checkbox_gtk/gtk_interface.py:552
 msgid "Error"
-msgstr ""
+msgstr "Kļūda"
 
 #: ../checkbox/user_interface.py:136
 #, python-format
 msgid "Unable to start web browser to open %s."
-msgstr "Nevar palaist tīmekļa pārlūku, lai atvērtu %s."
+msgstr "Neizdevās palaist tīmekļa pārlūku, lai atvērtu %s."
 
 #: ../plugins/apport_prompt.py:81
 msgid ""
 "Collecting information about this test.\n"
 "This might take a few minutes."
 msgstr ""
+"Savāc informāciju par šo testu.\n"
+"Tas varētu aizņemt pāris minūtes."
 
 #: ../plugins/apport_prompt.py:116
 msgid ""
 "Collected information is being sent for bug tracking.\n"
 "This might take a few minutes."
 msgstr ""
+"Savāktā informācija tiek nosūtīta kļūdu izsekošanai.\n"
+"Tas varētu aizņemt pāris minūtes."
 
 #: ../plugins/apport_prompt.py:225
 #, python-format
@@ -2518,11 +2540,11 @@ msgstr ""
 #: ../plugins/apport_prompt.py:246
 #, python-format
 msgid "Is a package upgrade in process? Error: %s"
-msgstr ""
+msgstr "Vai notiek pakotnes uzlabojums? Kļūda: %s"
 
 #: ../plugins/final_prompt.py:33
 msgid "Successfully finished testing!"
-msgstr ""
+msgstr "Veiksmīgi pabeigta testēšana!"
 
 #: ../plugins/final_prompt.py:34
 msgid "_Finish"
@@ -2540,11 +2562,16 @@ msgid ""
 "Once you are finished running the tests, you can view a summary report for "
 "your system."
 msgstr ""
+"Laipni lūgti sistēmas testēšanā!\n"
+"\n"
+"Checkbox nodrošina testus, kas var apstiprināt, ka jūsu sistēma strādā "
+"korekti. Kad jūs esat pabeiguši testēt savu sistēmu, jūs var aplūkot "
+"kopsavilkuma ziņojumu."
 
 #: ../plugins/launchpad_exchange.py:118
 #, python-format
 msgid "Failed to process form: %s"
-msgstr ""
+msgstr "Neizdevās apstrādāt formu: %s"
 
 #: ../plugins/launchpad_exchange.py:141
 #, python-format
@@ -2556,16 +2583,24 @@ msgid ""
 "directly to the system database:\n"
 "https://launchpad.net/+hwdb/+submit"
 msgstr ""
+"Neizdevās sazināties ar serveri. Lūdzu, mēģiniet\n"
+"vēlreiz vai augšupielādējat failu ar sekojošu nosaukumu:\n"
+"%s\n"
+"\n"
+"tieši uz sistēmas datubāzi:\n"
+"https://launchpad.net/+hwdb/+submit"
 
 #: ../plugins/launchpad_exchange.py:150
 msgid ""
 "Failed to upload to server,\n"
 "please try again later."
 msgstr ""
+"Neizdevās augšupielādēt uz serveri,\n"
+"lūdzu mēģiniet vēlāk vēlreiz."
 
 #: ../plugins/launchpad_exchange.py:162
 msgid "Information not posted to Launchpad."
-msgstr ""
+msgstr "Informācija netika nosūtīta uz Launchpad."
 
 #: ../plugins/launchpad_prompt.py:71
 #, python-format
@@ -2581,28 +2616,40 @@ msgid ""
 "\n"
 "  https://launchpad.net/+login"
 msgstr ""
+"Nosūtīšanai uz Launchpad aparatūras datubāzi tika uzģenerēts sekojošs "
+"ziņojums:\n"
+"\n"
+"  [[%s|Skatīt ziņojumu]]\n"
+"\n"
+"Jūs varat nosūtīt šo informāciju par jūsu sistēmu, norādot e-pasta adresi "
+"jūs izmantojat, lai pieteiktos Launchpad. Ja jums nav Launchpad konta, lūdzu "
+"reģistrējieties šeit:\n"
+"\n"
+"  https://launchpad.net/+login"
 
 #: ../plugins/launchpad_prompt.py:88
 msgid "No e-mail address provided, not submitting to Launchpad."
-msgstr ""
+msgstr "Nav norādīta e-pasta adrese, nenosūta uz Launchpad."
 
 #: ../plugins/launchpad_prompt.py:92
 msgid "Email address must be in a proper format."
-msgstr "Epasta adresei jābūt korektā formātā."
+msgstr "E-pasta adresei jābūt korektā formātā."
 
 #: ../plugins/launchpad_prompt.py:98
 msgid "Exchanging information with the server..."
-msgstr "Apmaina informāciju ar serveri..."
+msgstr "Apmainās ar informāciju ar serveri..."
 
 #: ../plugins/lock_prompt.py:63
 msgid "There is another checkbox running. Please close it first."
-msgstr ""
+msgstr "Viena checkbox instance jau ir palaista. Lūdzu, aizveriet to pirmo."
 
 #: ../plugins/recover_prompt.py:54
 msgid ""
 "Checkbox did not finish completely.\n"
 "Do you want to recover from the previous run?"
 msgstr ""
+"Checkbox nav iepriekš pabeidzis savu darbu pilnībā.\n"
+"Vai jūs vēlaties atkopties no iepriekšējās palaišanas?"
 
 #: ../plugins/report_prompt.py:34
 msgid "Building report..."
@@ -2611,32 +2658,32 @@ msgstr "Veido ziņojumu..."
 #: ../plugins/shell_test.py:52
 #, python-format
 msgid "Running %s..."
-msgstr ""
+msgstr "Palaiž %s..."
 
 #. Get results
 #: ../plugins/suites_prompt.py:105
 msgid "Select the suites to test"
-msgstr ""
+msgstr "Izvēlieties testa kopas"
 
 #: ../scripts/keyboard_test:21
 msgid "Enter text:\n"
-msgstr ""
+msgstr "Ievadiet tekstu:\n"
 
 #: ../scripts/keyboard_test:40
 msgid "Type Text"
-msgstr ""
+msgstr "Ierakstiet tekstu"
 
 #: ../scripts/internet_test:139
 msgid "No Internet connection"
-msgstr ""
+msgstr "Nav Internet savienojuma"
 
 #: ../scripts/internet_test:142
 msgid "Connection established lost a packet"
-msgstr ""
+msgstr "Izveidotais savienojums pazaudēja paketi"
 
 #: ../scripts/internet_test:145
 msgid "Internet connection fully established"
-msgstr ""
+msgstr "Internet savienojums pilnībā izveidots"
 
 #~ msgid "Running shell tests..."
 #~ msgstr "Palaiž čaulas testus..."
@@ -2649,6 +2696,12 @@ msgstr ""
 
 #~ msgid "Video tests"
 #~ msgstr "Video testi"
+
+#~ msgid "Disk benchmark:"
+#~ msgstr "Diska procesu mērijumi:"
+
+#~ msgid "Is this ok?"
+#~ msgstr "Vai tas ir labi?"
 
 #~ msgid "Do you hear a sound?"
 #~ msgstr "Vai jūs dzirdat skaņu?"
