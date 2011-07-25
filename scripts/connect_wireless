@@ -28,15 +28,15 @@ then
     fi
 fi
 
-# Regardless, still try and enable it - can't do any harm
-nmcli nm wifi on
-
-# Check if there's a connection already
-nmcli dev status | grep wlan | grep -q '\<connected\>'
+# Check if there's a connection already (wireless or otherwise)
+nmcli dev status | grep -q '\<connected\>'
 if [ $? -eq 0 ]
 then
     # Disconnect, pause for a short time
-    nmcli dev disconnect iface $(nmcli -f GENERAL dev list | grep -B 1 'wireless' | grep 'GENERAL.DEVICE' | awk '{print $2}')
+    for iface in `nmcli -f GENERAL dev list | grep 'GENERAL.DEVICE' | awk '{print $2}'`
+    do
+        nmcli dev disconnect iface $iface
+    done
     sleep 2
 fi
 
