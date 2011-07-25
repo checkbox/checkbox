@@ -12,10 +12,9 @@ then
     rfkill list wifi | grep 'Hard blocked' | grep -q yes
     if [ $? -ne 0 ]
     then
-        blkmessage='Your wireless is hardware blocked. You may need
+        blkmessage='Your wireless may be hardware blocked. You may need
                     to use your wireless key/switch to re-enable it.'
         echo $blkmessage
-        notify-send -u normal $blkmessage
 fi
 
 # Regardless, still try and enable it - can't do any harm
@@ -26,6 +25,7 @@ nmcli dev status | grep wlan | grep -q '\<connected\>'
 
 if [ $? -eq 0 ]
 then
+    echo 'Disconnecting'
     # Disconnect the wireless
-    nmcli dev disconnect iface wlan0
+    nmcli dev disconnect iface `nmcli -f GENERAL dev list | grep -B 1 'wireless' | grep 'GENERAL.DEVICE' | awk '{print $2}'`
 fi
