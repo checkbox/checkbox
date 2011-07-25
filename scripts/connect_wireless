@@ -14,15 +14,13 @@ fi
 
 echo $conn
 
-exit 0
-
 # Find out if wireless is enabled
 nmcli nm wifi | grep -q 'enabled'
 if [ $? -ne 0 ]
 then
     # Find out why
     rfkill list wifi | grep 'Hard blocked' | grep -q yes
-    if [ $? -ne 0 ]
+    if [ $? -eq 0 ]
     then
         blkmessage='Your wireless may be hardware blocked. You may need
                     to use your wireless key/switch to re-enable it.'
@@ -35,11 +33,11 @@ nmcli nm wifi on
 
 # Check if there's a connection already
 nmcli dev status | grep wlan | grep -q '\<connected\>'
-
 if [ $? -eq 0 ]
 then
-    # Disconnect, pause then reconnect the wireless
+    # Disconnect, pause for a short time
     nmcli dev disconnect iface $(nmcli -f GENERAL dev list | grep -B 1 'wireless' | grep 'GENERAL.DEVICE' | awk '{print $2}')
-    sleep 3
-    nmcli con up id $conn
+    sleep 2
 fi
+
+nmcli con up id $conn
