@@ -79,6 +79,7 @@ command: meminfo_resource > $CHECKBOX_DATA/meminfo_before_suspend
 
 plugin: manual
 name: power-management/wireless_before_suspend
+depends: networking/wireless_connection
 command: connect_wireless && internet_test --interface=wlan0
 _description:
  Wireless network connection procedure:
