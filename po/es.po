@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-07-07 12:32-0400\n"
-"PO-Revision-Date: 2011-07-26 10:47+0000\n"
-"Last-Translator: Daniel Manrique <daniel.manrique@canonical.com>\n"
+"PO-Revision-Date: 2011-07-27 13:18+0000\n"
+"Last-Translator: Fitoschido <fitoschido@gmail.com>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-07-27 04:30+0000\n"
+"X-Launchpad-Export-Date: 2011-07-28 04:31+0000\n"
 "X-Generator: Launchpad (build 13405)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:2
@@ -39,7 +39,7 @@ msgstr "_Sí"
 
 #: ../gtk/checkbox-gtk.desktop.in.h:2
 msgid "Test and report system information"
-msgstr "Probar y notificar información del sistema"
+msgstr "Pruebe el sistema y notifique información sobre el mismo"
 
 #. description
 #: ../jobs/audio.txt.in:7 ../jobs/disk.txt.in:4 ../jobs/graphics.txt.in:126
@@ -47,7 +47,7 @@ msgstr "Probar y notificar información del sistema"
 #: ../jobs/optical.txt.in:8 ../jobs/power-management.txt.in:167
 #: ../jobs/usb.txt.in:5
 msgid "$output"
-msgstr "$output"
+msgstr "$salida"
 
 #. description
 #: ../jobs/audio.txt.in:7 ../jobs/bluetooth.txt.in:5 ../jobs/disk.txt.in:4
@@ -80,7 +80,7 @@ msgstr "¿Está funcionando su teclado correctamente?"
 #. description
 #: ../jobs/networking.txt.in:5
 msgid "Detecting your network controller(s):"
-msgstr "Detectando sus controladores de red:"
+msgstr "Detectando controlador(es) de red:"
 
 #. description
 #: ../jobs/networking.txt.in:16
@@ -358,7 +358,7 @@ msgstr "_Seleccionar todo"
 #. description
 #: ../jobs/apport.txt.in:5
 msgid "Test that the /var/crash directory doesn't contain anything."
-msgstr ""
+msgstr "Comprueba que el directorio /var/crash no contiene nada."
 
 #. description
 #: ../jobs/audio.txt.in:7
@@ -444,6 +444,9 @@ msgid ""
 "input.  This makes the most sense when the output and input \\ are directly "
 "connected, as with a patch cable."
 msgstr ""
+"Reproduce un sonido por la salida predeterminada y escucha por la entrada "
+"predeterminada. Esto es más útil cuando la salida y la entrada están "
+"conectados directamente, por ejemplo con un cable de conexión."
 
 #. description
 #: ../jobs/autotest.txt.in:3
@@ -459,6 +462,7 @@ msgstr "La dirección de su dispositivo Bluetooth es: $output"
 #: ../jobs/bluetooth.txt.in:15 ../jobs/graphics.txt.in:15
 msgid "Automated test to store output in checkbox report"
 msgstr ""
+"Prueba automatizada, agrega su resultado en el reporte generado por checkbox"
 
 #. description
 #: ../jobs/bluetooth.txt.in:21
@@ -524,7 +528,7 @@ msgstr "¿Todos los pasos funcionaron?"
 #. description
 #: ../jobs/camera.txt.in:7
 msgid "Automated test case that attempts to detect a camera"
-msgstr ""
+msgstr "Prueba automatizada que intenta detectar una cámara"
 
 #. description
 #: ../jobs/camera.txt.in:16
@@ -3058,7 +3062,7 @@ msgstr ""
 "\n"
 "Puede enviar esta información sobre su sistema proporcionando la dirección "
 "de correo electrónico que usa para acceder a Launchpad. Si no tiene una "
-"cuenta de Launchpad, por favor, regístrese aquí:\n"
+"cuenta de Launchpad, regístrese aquí:\n"
 "\n"
 "  https://launchpad.net/+login"
 
