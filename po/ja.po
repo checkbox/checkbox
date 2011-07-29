@@ -8,64 +8,22 @@ msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-07-07 12:32-0400\n"
-"PO-Revision-Date: 2011-07-19 19:38+0000\n"
+"PO-Revision-Date: 2011-07-25 17:08+0000\n"
 "Last-Translator: Shushi Kurose <md81bird@hitaki.net>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-07-20 04:32+0000\n"
+"X-Launchpad-Export-Date: 2011-07-26 04:31+0000\n"
 "X-Generator: Launchpad (build 13405)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:2
 msgid "Ne_xt"
-msgstr "次ヘ（_X)"
-
-#. Title of the user interface
-#: ../gtk/checkbox-gtk.ui.h:3 ../gtk/checkbox-gtk.desktop.in.h:1
-#: ../plugins/user_interface.py:40
-msgid "System Testing"
-msgstr "システムテストツール"
-
-#: ../gtk/checkbox-gtk.ui.h:5
-msgid "_No"
-msgstr "いいえ(_N)"
-
-#: ../gtk/checkbox-gtk.ui.h:6
-msgid "_Previous"
-msgstr "前へ(_P)"
+msgstr "次ヘ(_X)"
 
 #: ../gtk/checkbox-gtk.ui.h:8
 msgid "_Skip this test"
 msgstr "このテストをスキップします(_S)"
-
-#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:522
-msgid "_Test"
-msgstr "テスト(_T)"
-
-#: ../gtk/checkbox-gtk.ui.h:10
-msgid "_Yes"
-msgstr "はい(_Y)"
-
-#: ../gtk/checkbox-gtk.desktop.in.h:2
-msgid "Test and report system information"
-msgstr "システム情報をテストし、レポートを作成します"
-
-#. description
-#: ../jobs/audio.txt.in:7 ../jobs/disk.txt.in:4 ../jobs/graphics.txt.in:126
-#: ../jobs/memory.txt.in:4 ../jobs/networking.txt.in:16
-#: ../jobs/optical.txt.in:8 ../jobs/power-management.txt.in:167
-#: ../jobs/usb.txt.in:5
-msgid "$output"
-msgstr "$output"
-
-#. description
-#: ../jobs/audio.txt.in:7 ../jobs/bluetooth.txt.in:5 ../jobs/disk.txt.in:4
-#: ../jobs/graphics.txt.in:126 ../jobs/memory.txt.in:4
-#: ../jobs/networking.txt.in:16 ../jobs/optical.txt.in:8
-#: ../jobs/power-management.txt.in:185 ../jobs/usb.txt.in:5
-msgid "Is this correct?"
-msgstr "正しく検知されていますか？"
 
 #. description
 #: ../jobs/graphics.txt.in:117
@@ -346,13 +304,39 @@ msgstr "レポートを作成中です……"
 msgid "Further information:"
 msgstr "詳細情報:"
 
+#. Title of the user interface
+#: ../gtk/checkbox-gtk.ui.h:3 ../gtk/checkbox-gtk.desktop.in.h:1
+#: ../plugins/user_interface.py:40
+msgid "System Testing"
+msgstr "システムテストツール"
+
 #: ../gtk/checkbox-gtk.ui.h:4
 msgid "_Deselect All"
 msgstr "すべての選択を外す(_D)"
 
+#: ../gtk/checkbox-gtk.ui.h:5
+msgid "_No"
+msgstr "いいえ(_N)"
+
+#: ../gtk/checkbox-gtk.ui.h:6
+msgid "_Previous"
+msgstr "前へ(_P)"
+
 #: ../gtk/checkbox-gtk.ui.h:7
 msgid "_Select All"
 msgstr "すべて選択(_S)"
+
+#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:522
+msgid "_Test"
+msgstr "テスト(_T)"
+
+#: ../gtk/checkbox-gtk.ui.h:10
+msgid "_Yes"
+msgstr "はい(_Y)"
+
+#: ../gtk/checkbox-gtk.desktop.in.h:2
+msgid "Test and report system information"
+msgstr "システム情報をテストし、レポートを作成します"
 
 #. description
 #: ../jobs/apport.txt.in:5
@@ -365,16 +349,32 @@ msgid "Detecting your sound device(s):"
 msgstr "サウンドデバイスを検出しています:"
 
 #. description
+#: ../jobs/audio.txt.in:7 ../jobs/disk.txt.in:4 ../jobs/graphics.txt.in:126
+#: ../jobs/memory.txt.in:4 ../jobs/networking.txt.in:16
+#: ../jobs/optical.txt.in:8 ../jobs/power-management.txt.in:167
+#: ../jobs/usb.txt.in:5
+msgid "$output"
+msgstr "$output"
+
+#. description
+#: ../jobs/audio.txt.in:7 ../jobs/bluetooth.txt.in:5 ../jobs/disk.txt.in:4
+#: ../jobs/graphics.txt.in:126 ../jobs/memory.txt.in:4
+#: ../jobs/networking.txt.in:16 ../jobs/optical.txt.in:8
+#: ../jobs/power-management.txt.in:185 ../jobs/usb.txt.in:5
+msgid "Is this correct?"
+msgstr "正しく検知されていますか？"
+
+#. description
 #: ../jobs/audio.txt.in:21
 msgid ""
 "Did you hear a sound and was that sound free of any distortion, clicks or "
 "other strange noises?"
-msgstr ""
+msgstr "音声が聞こえて、音にひずみやカチカチ音や変なノイズがまったくなかったですか？"
 
 #. description
 #: ../jobs/audio.txt.in:33
 msgid "Please connect a pair of headphones to your audio device."
-msgstr "ヘッドフォンをオーディオデバイスに接続して下さい。"
+msgstr "ヘッドフォンをオーディオデバイスに接続してください。"
 
 #. description
 #: ../jobs/audio.txt.in:33
