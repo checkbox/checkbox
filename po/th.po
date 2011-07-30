@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-07-20 04:33+0000\n"
+"X-Launchpad-Export-Date: 2011-07-30 04:34+0000\n"
 "X-Generator: Launchpad (build 13405)\n"
 
 #. description
@@ -254,6 +254,8 @@ msgid ""
 "Did you hear a sound and was that sound free of any distortion, clicks or "
 "other strange noises?"
 msgstr ""
+"คุณได้ยินเสียงหรือไม่  และเสียงดังกล่าวปราศจากเสียงแตก เสียงคลิก "
+"หรือเสียงผิดปกติอื่นๆ หรือไม่"
 
 #. description
 #: ../jobs/audio.txt.in:33
@@ -272,6 +274,8 @@ msgid ""
 "Did you hear a sound through the headphones and did the sound play without "
 "any distortion, clicks or other strange noises from your headphones?"
 msgstr ""
+"คุณได้ยินเสียงผ่านทางหูฟังหรือไม่ และเสียงที่เล่นปราศจากเสียงแตก เสียงคลิก "
+"หรือเสียงผิดปกติอื่นๆ หรือไม่"
 
 #. description
 #: ../jobs/audio.txt.in:47
@@ -280,6 +284,9 @@ msgid ""
 "then speak into your internal microphone.  After a few seconds, your speech "
 "will be played back to you."
 msgstr ""
+"ยกเลิกการเชื่อมต่อไมโครโฟนแบบภายนอกใดๆ ที่คุณเชื่อมต่ออยู่  เลือก ทดสอบ "
+"จากนั้นพูดไปยังไมโครโฟนแบบภายใน  หลังจากนั้นสักครู่ "
+"เสียงพูดของคุณจะถูกเล่นออกมา"
 
 #. description
 #: ../jobs/audio.txt.in:59
@@ -287,6 +294,8 @@ msgid ""
 "Connect a microphone to your microphone port.  Select Test, then speak into "
 "the microphone.  After a few seconds, your speech will be played back to you."
 msgstr ""
+"ต่อไมโครโฟนเข้าที่ช่องต่อแล้วเลือกการทดสอบและพูดที่ไมโครโฟน "
+"หลังจากนั้นสักครู่ เสียงพูดของคุณจะถูกเล่นออกมา"
 
 #. description
 #: ../jobs/audio.txt.in:70
@@ -315,12 +324,12 @@ msgstr ""
 #. description
 #: ../jobs/autotest.txt.in:3
 msgid "Autotest suite (destructive)"
-msgstr ""
+msgstr "ชุดทดสอบอัตโนมัติ (ทำลายล้าง)"
 
 #. description
 #: ../jobs/bluetooth.txt.in:5 ../jobs/power-management.txt.in:185
 msgid "The address of your Bluetooth device is: $output"
-msgstr ""
+msgstr "ที่อยู่ของอุปกรณ์บลูทูธของคุณคือ : $output"
 
 #. description
 #: ../jobs/bluetooth.txt.in:15 ../jobs/graphics.txt.in:15
@@ -549,12 +558,12 @@ msgstr ""
 #. description
 #: ../jobs/disk.txt.in:4
 msgid "The following hard drives were detected:"
-msgstr ""
+msgstr "ฮาร์ดไดรฟ์เหล่านี้ถูกตรวจพบ"
 
 #. description
 #: ../jobs/disk.txt.in:14
 msgid "Benchmark for each disk "
-msgstr ""
+msgstr "วัดสมรรถนะสำหรับดิสก์แต่ละอัน "
 
 #. description
 #: ../jobs/disk.txt.in:36
@@ -564,7 +573,7 @@ msgstr "ทดสอบแบบ SMART"
 #. description
 #: ../jobs/disk.txt.in:51
 msgid "Maximum disk space used during a default installation test"
-msgstr ""
+msgstr "เนื่อที่ว่างสูงสุดที่ถูกใช้ระหว่างการทดสอบการติดตั้งแบบปริยาย"
 
 #. description
 #: ../jobs/disk.txt.in:66
@@ -906,7 +915,7 @@ msgstr ""
 #. description
 #: ../jobs/input.txt.in:13
 msgid "Select Test to open a text area where to type keys on your keyboard."
-msgstr ""
+msgstr "เลือก ทดสอบ เพื่อเปิดพื้นทีข้อความสำหรับพิมพ์บนคีย์บอร์ดของคุณ"
 
 #. description
 #: ../jobs/install.txt.in:6
@@ -1463,6 +1472,7 @@ msgstr ""
 #: ../jobs/networking.txt.in:107
 msgid "Test to see if we can sync local clock to an NTP server"
 msgstr ""
+"ทดสอบว่า้เราสามารถปรับนาฬิกาท้องถิ่นให้ตรงกับเซิร์ฟเวอร์ NTP ได้หรือไม่"
 
 #. description
 #: ../jobs/networking.txt.in:113
@@ -1475,11 +1485,12 @@ msgstr ""
 #: ../jobs/networking.txt.in:119
 msgid "Try to enable a remote printer on the network and print a test page."
 msgstr ""
+"พยายามที่จะเปิดการใช้งานพรินเตอร์ระยะไกลบนเครือข่ายและพิมพ์หน้าทดสอบการพิมพ์"
 
 #. description
 #: ../jobs/networking.txt.in:124
 msgid "Multiple network cards"
-msgstr ""
+msgstr "การ์ดเครื่อข่ายหลายอัน"
 
 #. description
 #: ../jobs/networking.txt.in:144
@@ -1742,7 +1753,7 @@ msgstr ""
 #. description
 #: ../jobs/power-management.txt.in:145
 msgid "Test the network after resuming."
-msgstr ""
+msgstr "ทดสอบระบบเครือข่ายหลังจากกลับคืน"
 
 #. description
 #: ../jobs/power-management.txt.in:151
@@ -1753,7 +1764,7 @@ msgstr ""
 #. description
 #: ../jobs/power-management.txt.in:160
 msgid "Test the audio after resuming."
-msgstr ""
+msgstr "ทดสอบเสียงหลังจากกลับคืน"
 
 #. description
 #: ../jobs/power-management.txt.in:167
