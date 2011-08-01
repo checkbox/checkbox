@@ -297,14 +297,12 @@ _description:
 user: root
 command: sleep_test -d
 
-plugin: manual 
+plugin: shell 
 name: power-management/wake_on_lan
 depends: power-management/rtc power-management/suspend_advanced 
 requires: package.name == 'pm-utils' and package.name == 'util-linux'
 _description:
- Power management Wake-on-LAN test
- .
- Select Test and your system will try to automatically test Wake-on-LAN capability with the aid of a suitably configured server. During this process the system will suspend, then automatically wake up after no more than 5 minutes.  
+ This automatically tests Wake-on-LAN capability with the aid of a suitably configured server. During this process the system will suspend, then automatically wake up after no more than 5 minutes.
 user: root
 command: wake_on_lan_test ${WAKE_ON_LAN_URL} --debug
 
