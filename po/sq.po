@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-07-20 04:30+0000\n"
+"X-Launchpad-Export-Date: 2011-07-31 04:31+0000\n"
 "X-Generator: Launchpad (build 13405)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:1 ../checkbox_cli/cli_interface.py:343
@@ -96,6 +96,8 @@ msgid ""
 "Did you hear a sound and was that sound free of any distortion, clicks or "
 "other strange noises?"
 msgstr ""
+"A dëgjuat një zë dhe a ishte ai zë i pastër nga dridhjet, kërcitjet apo "
+"zhurma të tjera të çuditshme?"
 
 #. description
 #: ../jobs/audio.txt.in:33
@@ -107,6 +109,8 @@ msgstr "Ju lutemi të lidhni një palë kufje me pajisjen tuaj audio"
 msgid ""
 "Select Test to play a sound on the automatically detected playback device."
 msgstr ""
+"Përzgjidhni Testo për të luajtur një zë në pajisjen e zgjedhur automatikisht "
+"për luajtje."
 
 #. description
 #: ../jobs/audio.txt.in:33
@@ -114,6 +118,8 @@ msgid ""
 "Did you hear a sound through the headphones and did the sound play without "
 "any distortion, clicks or other strange noises from your headphones?"
 msgstr ""
+"A dëgjuat një zë me anë të kufjeve dhe a luajti zëri pa dridhje, kërcitje "
+"apo zhurma të tjera të çuditshme nga kufjet tuaja?"
 
 #. description
 #: ../jobs/audio.txt.in:47
@@ -223,7 +229,7 @@ msgstr ""
 #: ../jobs/bluetooth.txt.in:82 ../jobs/optical.txt.in:72
 #: ../jobs/power-management.txt.in:194 ../jobs/usb.txt.in:27
 msgid "Did all the steps work?"
-msgstr ""
+msgstr "A punuan të gjithë hapat?"
 
 #. description
 #: ../jobs/camera.txt.in:7
@@ -396,22 +402,25 @@ msgstr "U dalluan hard disqet që vijojnë"
 #. description
 #: ../jobs/disk.txt.in:14
 msgid "Benchmark for each disk "
-msgstr ""
+msgstr "Pikët për çdo disk "
 
 #. description
 #: ../jobs/disk.txt.in:36
 msgid "SMART test"
-msgstr ""
+msgstr "SMART test"
 
 #. description
 #: ../jobs/disk.txt.in:51
 msgid "Maximum disk space used during a default installation test"
 msgstr ""
+"Hapësira maksimale e diskut e përdorur gjatë testit standart të instalimit"
 
 #. description
 #: ../jobs/disk.txt.in:66
 msgid "Verify system storage performs at or above baseline performance"
 msgstr ""
+"Verifikoni që ruajtja e sistemit të performojë në bazë të parametrave apo "
+"mbi to"
 
 #. description
 #: ../jobs/disk.txt.in:83
@@ -687,12 +696,12 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:107
 msgid "https://help.ubuntu.com/community/Installation/SystemRequirements"
-msgstr ""
+msgstr "https://help.ubuntu.com/community/Installation/SystemRequirements"
 
 #. description
 #: ../jobs/graphics.txt.in:117
 msgid "Select Test to display a video test."
-msgstr ""
+msgstr "Zgjidh Test për të shfaqur një test video."
 
 #. description
 #: ../jobs/graphics.txt.in:117
@@ -870,7 +879,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:13
 msgid "Camera tests"
-msgstr ""
+msgstr "Testet e kamerës"
 
 #. description
 #: ../jobs/local.txt.in:18
@@ -880,12 +889,12 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:23
 msgid "CPU tests"
-msgstr ""
+msgstr "Testet e CPU"
 
 #. description
 #: ../jobs/local.txt.in:28
 msgid "System Daemon tests"
-msgstr ""
+msgstr "Tested e Daemon të Sistemit"
 
 #. description
 #: ../jobs/local.txt.in:33
@@ -975,12 +984,12 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:118
 msgid "User Applications"
-msgstr ""
+msgstr "Programet e Përdoruesve"
 
 #. description
 #: ../jobs/local.txt.in:123
 msgid "Stress tests"
-msgstr ""
+msgstr "Testet e stresit"
 
 #. description
 #: ../jobs/ltp.txt.in:3
@@ -1127,7 +1136,7 @@ msgstr ""
 #. description
 #: ../jobs/mediacard.txt.in:130
 msgid "Does the icon automatically appear/disappear?"
-msgstr ""
+msgstr "A fillon ikona të shfaqet/zhduket automatikisht?"
 
 #. description
 #: ../jobs/memory.txt.in:4
@@ -1296,12 +1305,12 @@ msgstr "Duke testuar lidhjen tuaj me Internetin:"
 #. description
 #: ../jobs/networking.txt.in:26
 msgid "Network Information"
-msgstr ""
+msgstr "Informacioni i Rrjetit"
 
 #. description
 #: ../jobs/networking.txt.in:46
 msgid "Wireless scanning test."
-msgstr ""
+msgstr "Testimi i skanerit të wireless."
 
 #. description
 #: ../jobs/networking.txt.in:52
@@ -1355,6 +1364,7 @@ msgstr ""
 #: ../jobs/networking.txt.in:107
 msgid "Test to see if we can sync local clock to an NTP server"
 msgstr ""
+"Testoni për të parë nëse mund ta sinkronizoni orën lokale me serverin NTP"
 
 #. description
 #: ../jobs/networking.txt.in:113
@@ -1371,7 +1381,7 @@ msgstr ""
 #. description
 #: ../jobs/networking.txt.in:124
 msgid "Multiple network cards"
-msgstr ""
+msgstr "Shumë karta rrjeti"
 
 #. description
 #: ../jobs/networking.txt.in:144
@@ -1434,7 +1444,7 @@ msgstr ""
 #. description
 #: ../jobs/optical.txt.in:90
 msgid "Insert a DVD.  Then select Test to play the DVD in Totem."
-msgstr ""
+msgstr "Vendosni një DVD. Pastaj ugjidhni Test për ta luajtur DVD në Totem."
 
 #. description
 #: ../jobs/optical.txt.in:90
@@ -1587,17 +1597,17 @@ msgstr ""
 #. description
 #: ../jobs/power-management.txt.in:65
 msgid "Test the network before suspending."
-msgstr ""
+msgstr "Testoni rrjetin para pezullimit."
 
 #. description
 #: ../jobs/power-management.txt.in:70
 msgid "Record the current resolution before suspending."
-msgstr ""
+msgstr "Regjistro rezolucionin e tanishëm para pezullimit."
 
 #. description
 #: ../jobs/power-management.txt.in:78
 msgid "Test the audio before suspending."
-msgstr ""
+msgstr "Testo audion para pezullimit."
 
 #. description
 #: ../jobs/power-management.txt.in:84
@@ -1619,7 +1629,7 @@ msgstr ""
 #. description
 #: ../jobs/power-management.txt.in:135
 msgid "Power management Suspend and Resume test"
-msgstr ""
+msgstr "Testi i pezullimit dhe i rinisjes së menaxhuesit të tensionit"
 
 #. description
 #: ../jobs/power-management.txt.in:135
@@ -1634,7 +1644,7 @@ msgstr ""
 #. description
 #: ../jobs/power-management.txt.in:145
 msgid "Test the network after resuming."
-msgstr ""
+msgstr "Testo rrjetin as rinisjes."
 
 #. description
 #: ../jobs/power-management.txt.in:151
@@ -1645,7 +1655,7 @@ msgstr ""
 #. description
 #: ../jobs/power-management.txt.in:160
 msgid "Test the audio after resuming."
-msgstr ""
+msgstr "Testo audion pas rinisjes."
 
 #. description
 #: ../jobs/power-management.txt.in:167
@@ -1713,7 +1723,7 @@ msgstr ""
 #. description
 #: ../jobs/power-management.txt.in:234
 msgid "Did the system successfully suspend and resume for 30 iterations?"
-msgstr ""
+msgstr "A u pezullua dhe rinisi sistemi me sukses pas 30 ndërveprimeve?"
 
 #. description
 #: ../jobs/power-management.txt.in:245
@@ -1760,7 +1770,7 @@ msgstr ""
 #. description
 #: ../jobs/power-management.txt.in:258
 msgid "Did the system successfully hibernate and wake 30 times?"
-msgstr ""
+msgstr "A u hibernua dhe u nis sistemi me sukses pas 30 herësh?"
 
 #. description
 #: ../jobs/power-management.txt.in:267
@@ -2050,7 +2060,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:14
 msgid "Do you now have a new folder called Test Folder?"
-msgstr ""
+msgstr "A keni një dosje të re të quajtur Dosja Test?"
 
 #. description
 #: ../jobs/user_apps.txt.in:25
@@ -2070,7 +2080,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:25
 msgid "Do you now have a folder called Test Data?"
-msgstr ""
+msgstr "A keni tani një dosje të re të quajtur Të Dhënat e Testimit?"
 
 #. description
 #: ../jobs/user_apps.txt.in:38
@@ -2083,6 +2093,7 @@ msgstr ""
 #: ../jobs/user_apps.txt.in:38
 msgid "Double click the folder called Test Folder to open it up."
 msgstr ""
+"Klikoni dy herë mbi dosjen e quajtur Dosja e Testimit për ta hapur atë."
 
 #. description
 #: ../jobs/user_apps.txt.in:38
@@ -2102,12 +2113,12 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:51
 msgid "Do you now have a file called Test File 1?"
-msgstr ""
+msgstr "A keni tani një skedar të quajtur Skedari Test 1?"
 
 #. description
 #: ../jobs/user_apps.txt.in:51
 msgid "Close the File browser."
-msgstr ""
+msgstr "Mbylleni shfletuesin e skedarëve."
 
 #. description
 #: ../jobs/user_apps.txt.in:62
@@ -2156,7 +2167,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:88
 msgid "Is Test File 1 now gone?"
-msgstr ""
+msgstr "A u zhduk tani Skedari i Testimit 1?"
 
 #. description
 #: ../jobs/user_apps.txt.in:99
@@ -2168,12 +2179,12 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:99
 msgid "Has Test Folder been successfully deleted?"
-msgstr ""
+msgstr "A u fshi me sukses Dosja e Testimit?"
 
 #. description
 #: ../jobs/user_apps.txt.in:99
 msgid "Close the File Browser."
-msgstr ""
+msgstr "Mbyllni Shfletuesin e Skedarëve."
 
 #. description
 #: ../jobs/user_apps.txt.in:160
@@ -2200,7 +2211,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:188
 msgid "Did the applet display?"
-msgstr ""
+msgstr "A u shfaq programthi?"
 
 #. description
 #: ../jobs/user_apps.txt.in:198
@@ -2210,7 +2221,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:198
 msgid "Did you see the text?"
-msgstr ""
+msgstr "A e patë tekstin?"
 
 #. description
 #: ../jobs/user_apps.txt.in:208
@@ -2220,7 +2231,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:208
 msgid "Did the video play correctly?"
-msgstr ""
+msgstr "A luajti videoja në mënyrë korrekte?"
 
 #. description
 #: ../jobs/user_apps.txt.in:218
@@ -2230,27 +2241,27 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:218
 msgid "Did the video play using a plugin?"
-msgstr ""
+msgstr "A luajti videoja duke përdorur një plugin?"
 
 #. description
 #: ../jobs/user_apps.txt.in:227
 msgid "Facebook Chat"
-msgstr ""
+msgstr "Bisedë në Facebook"
 
 #. description
 #: ../jobs/user_apps.txt.in:238
 msgid "Google Talk"
-msgstr ""
+msgstr "Google Talk"
 
 #. description
 #: ../jobs/user_apps.txt.in:249
 msgid "Jabber"
-msgstr ""
+msgstr "Jabber"
 
 #. description
 #: ../jobs/user_apps.txt.in:260
 msgid "AIM"
-msgstr ""
+msgstr "AIM"
 
 #. description
 #: ../jobs/user_apps.txt.in:271
@@ -2263,12 +2274,14 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:271
 msgid "MSN"
-msgstr ""
+msgstr "MSN"
 
 #. description
 #: ../jobs/user_apps.txt.in:271
 msgid "Were you able to connect correctly and send/receive messages?"
 msgstr ""
+"A ishit në gjendje që të lidheshit dhe të dërgonit/merrnit mesazhe në mënyrë "
+"korrekte?"
 
 #: ../checkbox/application.py:66
 msgid "Usage: checkbox [OPTIONS]"
@@ -2439,40 +2452,40 @@ msgstr ""
 
 #: ../checkbox_urwid/urwid_interface.py:99
 msgid "Continue"
-msgstr ""
+msgstr "Vazhdo"
 
 #: ../checkbox_urwid/urwid_interface.py:192
 #: ../checkbox_urwid/urwid_interface.py:268
 #: ../checkbox_urwid/urwid_interface.py:416
 msgid "Previous"
-msgstr ""
+msgstr "E mëparshmja"
 
 #: ../checkbox_urwid/urwid_interface.py:193
 #: ../checkbox_urwid/urwid_interface.py:269
 #: ../checkbox_urwid/urwid_interface.py:417
 msgid "Next"
-msgstr ""
+msgstr "Tjetra"
 
 #. Show buttons
 #: ../checkbox_urwid/urwid_interface.py:414
 msgid "Select All"
-msgstr ""
+msgstr "Zgjidhi të Gjitha"
 
 #: ../checkbox_urwid/urwid_interface.py:415
 msgid "Deselect All"
-msgstr ""
+msgstr "Lësho Gjithçka"
 
 #: ../checkbox_urwid/urwid_interface.py:772
 msgid "Test"
-msgstr ""
+msgstr "Testo"
 
 #: ../checkbox_urwid/urwid_interface.py:787
 msgid "Test Again"
-msgstr ""
+msgstr "Testo Përsëri"
 
 #: ../checkbox_gtk/gtk_interface.py:93
 msgid "hardware database"
-msgstr ""
+msgstr "Baza e të dhënave për hardware"
 
 #: ../checkbox_gtk/gtk_interface.py:487
 msgid "_Test Again"
@@ -2511,12 +2524,12 @@ msgstr ""
 #: ../plugins/apport_prompt.py:225
 #, python-format
 msgid "Test %s from suite %s failed."
-msgstr ""
+msgstr "Testi %s nga grupi %s dështoi."
 
 #: ../plugins/apport_prompt.py:228
 #, python-format
 msgid "Test %s failed."
-msgstr ""
+msgstr "Testi %s dështoi."
 
 #: ../plugins/apport_prompt.py:246
 #, python-format

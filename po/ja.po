@@ -8,64 +8,22 @@ msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-07-07 12:32-0400\n"
-"PO-Revision-Date: 2011-07-19 19:38+0000\n"
+"PO-Revision-Date: 2011-07-30 14:49+0000\n"
 "Last-Translator: Shushi Kurose <md81bird@hitaki.net>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-07-20 04:32+0000\n"
+"X-Launchpad-Export-Date: 2011-07-31 04:32+0000\n"
 "X-Generator: Launchpad (build 13405)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:2
 msgid "Ne_xt"
-msgstr "次ヘ（_X)"
-
-#. Title of the user interface
-#: ../gtk/checkbox-gtk.ui.h:3 ../gtk/checkbox-gtk.desktop.in.h:1
-#: ../plugins/user_interface.py:40
-msgid "System Testing"
-msgstr "システムテストツール"
-
-#: ../gtk/checkbox-gtk.ui.h:5
-msgid "_No"
-msgstr "いいえ(_N)"
-
-#: ../gtk/checkbox-gtk.ui.h:6
-msgid "_Previous"
-msgstr "前へ(_P)"
+msgstr "次ヘ(_X)"
 
 #: ../gtk/checkbox-gtk.ui.h:8
 msgid "_Skip this test"
 msgstr "このテストをスキップします(_S)"
-
-#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:522
-msgid "_Test"
-msgstr "テスト(_T)"
-
-#: ../gtk/checkbox-gtk.ui.h:10
-msgid "_Yes"
-msgstr "はい(_Y)"
-
-#: ../gtk/checkbox-gtk.desktop.in.h:2
-msgid "Test and report system information"
-msgstr "システム情報をテストし、レポートを作成します"
-
-#. description
-#: ../jobs/audio.txt.in:7 ../jobs/disk.txt.in:4 ../jobs/graphics.txt.in:126
-#: ../jobs/memory.txt.in:4 ../jobs/networking.txt.in:16
-#: ../jobs/optical.txt.in:8 ../jobs/power-management.txt.in:167
-#: ../jobs/usb.txt.in:5
-msgid "$output"
-msgstr "$output"
-
-#. description
-#: ../jobs/audio.txt.in:7 ../jobs/bluetooth.txt.in:5 ../jobs/disk.txt.in:4
-#: ../jobs/graphics.txt.in:126 ../jobs/memory.txt.in:4
-#: ../jobs/networking.txt.in:16 ../jobs/optical.txt.in:8
-#: ../jobs/power-management.txt.in:185 ../jobs/usb.txt.in:5
-msgid "Is this correct?"
-msgstr "正しく検知されていますか？"
 
 #. description
 #: ../jobs/graphics.txt.in:117
@@ -346,13 +304,39 @@ msgstr "レポートを作成中です……"
 msgid "Further information:"
 msgstr "詳細情報:"
 
+#. Title of the user interface
+#: ../gtk/checkbox-gtk.ui.h:3 ../gtk/checkbox-gtk.desktop.in.h:1
+#: ../plugins/user_interface.py:40
+msgid "System Testing"
+msgstr "システムテストツール"
+
 #: ../gtk/checkbox-gtk.ui.h:4
 msgid "_Deselect All"
 msgstr "すべての選択を外す(_D)"
 
+#: ../gtk/checkbox-gtk.ui.h:5
+msgid "_No"
+msgstr "いいえ(_N)"
+
+#: ../gtk/checkbox-gtk.ui.h:6
+msgid "_Previous"
+msgstr "前へ(_P)"
+
 #: ../gtk/checkbox-gtk.ui.h:7
 msgid "_Select All"
 msgstr "すべて選択(_S)"
+
+#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:522
+msgid "_Test"
+msgstr "テスト(_T)"
+
+#: ../gtk/checkbox-gtk.ui.h:10
+msgid "_Yes"
+msgstr "はい(_Y)"
+
+#: ../gtk/checkbox-gtk.desktop.in.h:2
+msgid "Test and report system information"
+msgstr "システム情報をテストし、レポートを作成します"
 
 #. description
 #: ../jobs/apport.txt.in:5
@@ -365,16 +349,32 @@ msgid "Detecting your sound device(s):"
 msgstr "サウンドデバイスを検出しています:"
 
 #. description
+#: ../jobs/audio.txt.in:7 ../jobs/disk.txt.in:4 ../jobs/graphics.txt.in:126
+#: ../jobs/memory.txt.in:4 ../jobs/networking.txt.in:16
+#: ../jobs/optical.txt.in:8 ../jobs/power-management.txt.in:167
+#: ../jobs/usb.txt.in:5
+msgid "$output"
+msgstr "$output"
+
+#. description
+#: ../jobs/audio.txt.in:7 ../jobs/bluetooth.txt.in:5 ../jobs/disk.txt.in:4
+#: ../jobs/graphics.txt.in:126 ../jobs/memory.txt.in:4
+#: ../jobs/networking.txt.in:16 ../jobs/optical.txt.in:8
+#: ../jobs/power-management.txt.in:185 ../jobs/usb.txt.in:5
+msgid "Is this correct?"
+msgstr "正しく検知されていますか？"
+
+#. description
 #: ../jobs/audio.txt.in:21
 msgid ""
 "Did you hear a sound and was that sound free of any distortion, clicks or "
 "other strange noises?"
-msgstr ""
+msgstr "音声が聞こえて、音にひずみやカチカチ音や変なノイズがまったくなかったですか？"
 
 #. description
 #: ../jobs/audio.txt.in:33
 msgid "Please connect a pair of headphones to your audio device."
-msgstr "ヘッドフォンをオーディオデバイスに接続して下さい。"
+msgstr "ヘッドフォンをオーディオデバイスに接続してください。"
 
 #. description
 #: ../jobs/audio.txt.in:33
@@ -402,7 +402,7 @@ msgstr ""
 msgid ""
 "Connect a microphone to your microphone port.  Select Test, then speak into "
 "the microphone.  After a few seconds, your speech will be played back to you."
-msgstr ""
+msgstr "マイクのポートにマイクを挿し込んでください。 テストを選択してマイクに話しかけてください。数秒後にあなたの声が再生されます。"
 
 #. description
 #: ../jobs/audio.txt.in:70
@@ -492,6 +492,9 @@ msgid ""
 "the device in the list and select it 5.- Move the mouse around the screen 6.-"
 " Perform some single/double/right click operations"
 msgstr ""
+"bluetoothマウスの手順：1.- bluetoothマウスを使用可能にします 2.- メニューバーの中のbluetoothアイコンをクリックします "
+"3.- \"新しいデバイスの設定\" を選択します 4.- リストの中からデバイスを探し、選択します 5.- マウスを画面の中で動かします 6.- "
+"シングル/ダブル/右 クリックの動作を確認します"
 
 #. description
 #: ../jobs/bluetooth.txt.in:82 ../jobs/optical.txt.in:72
@@ -699,31 +702,31 @@ msgstr ""
 msgid ""
 "Click the \"Test\" button to launch Evolution, then configure it to connect "
 "to a POP3 account."
-msgstr ""
+msgstr "”テスト”ボタンをクリックしてEvolutionを起動してください。POP3アカウントで接続するように設定されます。"
 
 #. description
 #: ../jobs/evolution.txt.in:14
 msgid ""
 "Click the \"Test\" button to launch Evolution, then configure it to connect "
 "to a IMAP account."
-msgstr ""
+msgstr "”テスト”ボタンをクリックしてEvolutionを起動してください。IMAPアカウントで接続するように設定されます。"
 
 #. description
 #: ../jobs/evolution.txt.in:14
 msgid "Were you able to receive and read e-mail correctly?"
-msgstr ""
+msgstr "メールを受信して、正常に読めましたか？"
 
 #. description
 #: ../jobs/evolution.txt.in:23
 msgid ""
 "Click the \"Test\" button to launch Evolution, then configure it to connect "
 "to a SMTP account."
-msgstr ""
+msgstr "”テスト”ボタンをクリックしてEvolutionを起動してください。SMTPアカウントで接続するように設定されます。"
 
 #. description
 #: ../jobs/evolution.txt.in:23
 msgid "Were you able to send e-mail without errors?"
-msgstr ""
+msgstr "メールをエラーなく送信できましたか？"
 
 #. description
 #: ../jobs/fingerprint.txt.in:3
@@ -791,12 +794,12 @@ msgstr ""
 #. description
 #: ../jobs/gcalctool.txt.in:5
 msgid "Click the \"Test\" button to open the calculator."
-msgstr ""
+msgstr "”テスト”ボタンをクリックして電卓を起動してください。"
 
 #. description
 #: ../jobs/gcalctool.txt.in:5
 msgid "Did it launch correctly?"
-msgstr ""
+msgstr "正常に起動できましたか？"
 
 #. description
 #: ../jobs/gcalctool.txt.in:15
@@ -818,7 +821,7 @@ msgstr ""
 #. description
 #: ../jobs/gcalctool.txt.in:45
 msgid "1. Cut 2. Copy 3. Paste"
-msgstr ""
+msgstr "1. 切り取り 2. コピー 3. 貼り付け"
 
 #. description
 #: ../jobs/gcalctool.txt.in:45
@@ -828,7 +831,7 @@ msgstr ""
 #. description
 #: ../jobs/gedit.txt.in:5
 msgid "Click the \"Test\" button to open gedit."
-msgstr ""
+msgstr "”テスト”ボタンをクリックしてgeditを起動してください。"
 
 #. description
 #: ../jobs/gedit.txt.in:5
@@ -857,19 +860,19 @@ msgstr ""
 #. description
 #: ../jobs/gnome-terminal.txt.in:5
 msgid "Click the \"Test\" button to open Terminal."
-msgstr ""
+msgstr "”テスト”ボタンをクリックして端末を起動してください。"
 
 #. description
 #: ../jobs/gnome-terminal.txt.in:5
 msgid ""
 "Type 'ls' and press enter. You should see a list of files and folder in your "
 "home directory."
-msgstr ""
+msgstr "’ls’と入力して、Enterキーを押してください。そうすると、ホームディレクトリのファイルとフォルダのリストが見えるはずです。"
 
 #. description
 #: ../jobs/gnome-terminal.txt.in:5
 msgid "Close the terminal window."
-msgstr ""
+msgstr "端末のウィンドウを閉じます。"
 
 #. description
 #: ../jobs/graphics.txt.in:5
@@ -901,7 +904,7 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:31
 msgid "Did the resolution change as expected?"
-msgstr ""
+msgstr "解像度は思ったとおりに変更できましたか?"
 
 #. description
 #: ../jobs/graphics.txt.in:46
@@ -917,7 +920,7 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:46
 msgid "Did the display rotation change as expected?"
-msgstr ""
+msgstr "ディスプレイの回転は思ったとおりに変更できましたか?"
 
 #. description
 #: ../jobs/graphics.txt.in:62 ../jobs/sru_suite.txt.in:151
@@ -1005,7 +1008,7 @@ msgstr "3Dアニメーションが表示されましたか？"
 #. description
 #: ../jobs/info.txt.in:60 ../jobs/screenshot.txt.in:7
 msgid "Captures a screenshot."
-msgstr ""
+msgstr "スクリーンショットを取得します。"
 
 #. description
 #: ../jobs/info.txt.in:71 ../jobs/sru_suite.txt.in:167
@@ -1886,7 +1889,7 @@ msgstr ""
 msgid ""
 "Verify a bluetooth peripheral.  An example verification procedure for a "
 "bluetooth mouse is given."
-msgstr ""
+msgstr "bluetooth周辺機器を確認します。bluetoothマウスに対する確認手順の例を示します。"
 
 #. description
 #: ../jobs/power-management.txt.in:194

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-07-20 04:31+0000\n"
+"X-Launchpad-Export-Date: 2011-07-31 04:32+0000\n"
 "X-Generator: Launchpad (build 13405)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:2
@@ -256,7 +256,7 @@ msgstr "Weitere Informationen:"
 #: ../gtk/checkbox-gtk.ui.h:3 ../gtk/checkbox-gtk.desktop.in.h:1
 #: ../plugins/user_interface.py:40
 msgid "System Testing"
-msgstr "Systemtest"
+msgstr "Systemüberprüfung"
 
 #: ../gtk/checkbox-gtk.ui.h:4
 msgid "_Deselect All"
@@ -610,22 +610,26 @@ msgstr "Folgende Festplatten wurden erkannt:"
 #. description
 #: ../jobs/disk.txt.in:14
 msgid "Benchmark for each disk "
-msgstr ""
+msgstr "Vergleichstest für jede Festplatte "
 
 #. description
 #: ../jobs/disk.txt.in:36
 msgid "SMART test"
-msgstr ""
+msgstr "SMART-Test"
 
 #. description
 #: ../jobs/disk.txt.in:51
 msgid "Maximum disk space used during a default installation test"
 msgstr ""
+"Test des maximalen Festplattenspeichers, der während einer "
+"Standardinstallation belegt wird"
 
 #. description
 #: ../jobs/disk.txt.in:66
 msgid "Verify system storage performs at or above baseline performance"
 msgstr ""
+"Stellen Sie sicher, dass der Systemspeicher mit oder über der "
+"Basisperformance arbeitet"
 
 #. description
 #: ../jobs/disk.txt.in:83
@@ -633,6 +637,8 @@ msgid ""
 "Verify that storage devices, such as Fibre Channel and RAID can be detected "
 "and perform under stress."
 msgstr ""
+"Stellen Sie sicher, dass Speichergeräte, wie Faserkanäle und RAID erkannt "
+"werden und unter Belastung arbeiten können."
 
 #. description
 #: ../jobs/evolution.txt.in:5
@@ -688,6 +694,16 @@ msgid ""
 " 5.- Click on the user switcher applet.\n"
 " 6.- Select the testing account to continue running tests."
 msgstr ""
+"Vorgang zum Testen des Anmeldens mit Fingerabdruck:\n"
+" 1.- Klicken Sie auf Ihren Namen in der oberen rechten Ecke des "
+"Bildschirms.\n"
+" 2.- Wählen Sie Ihren Benutzernamen.\n"
+" 3.- Es sollte ein Fenster erscheinen, das Ihnen die Möglichkeit zum "
+"Entsperren mittels Passwort oder Fingerabdruck gibt.\n"
+" 4.- Verwenden Sie den Fingerabdruckleser zum Anmelden.\n"
+" 5.- Klicken Sie auf Ihren Namen in der oberen rechten Ecke des "
+"Bildschirms.\n"
+" 6.- Wählen Sie das Testkonto, um weitere Test auszuführen."
 
 #. description
 #: ../jobs/fingerprint.txt.in:18
@@ -701,6 +717,15 @@ msgid ""
 " 5.- Use the fingerprint reader to unlock.\n"
 " 6.- Your screen should be unlocked."
 msgstr ""
+"Vorgang zum Testen des Ensperrens mit Fingerabdruck:\n"
+" 1.- Klicken Sie auf Ihren Namen in der oberen rechten Ecke des "
+"Bildschirms.\n"
+" 2.- Wählen Sie »Bildschirm sperren«.\n"
+" 3.- Drücken Sie eine beliebige Taste oder bewegen Sie die Maus.\n"
+" 4.- Es sollte ein Fenster erscheinen, das Ihnen die Möglichkeit zum "
+"Entsperren mittels Passwort oder Fingerabdruck gibt.\n"
+" 5.- Verwenden Sie den Fingerabdruckleser zum Entsperren.\n"
+" 6.- Ihr Bildschirm sollte entsperrt sein."
 
 #. description
 #: ../jobs/fingerprint.txt.in:18
@@ -717,6 +742,14 @@ msgid ""
 " 3.- Copy some files from your internal HDD to the firewire HDD.\n"
 " 4.- Copy some files from the firewire HDD to your internal HDD."
 msgstr ""
+"Vorgang zum Testen von Firewire-Festplatten:\n"
+" 1.- Schließen Sie eine Firewire-Festplatte an den Rechner an.\n"
+" 2.- Es sollte sich ein Fenster öffnen, dass nach der auszuführenden Aktion "
+"fragt (einen Ordner öffnen, Fotoverwaltung usw.).\n"
+" 3.- Kopieren Sie einige Dateien von Ihrer eingebauten Festplatte auf die "
+"Firewire-Festplatte.\n"
+" 4.- Kopieren Sie einige Dateien von der Firewire-Festplatte auf Ihre "
+"eingebaute Festplatte."
 
 #. description
 #: ../jobs/firewire.txt.in:3 ../jobs/usb.txt.in:71
@@ -1079,7 +1112,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:13
 msgid "Camera tests"
-msgstr ""
+msgstr "Kamera-Tests"
 
 #. description
 #: ../jobs/local.txt.in:18
@@ -1089,12 +1122,12 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:23
 msgid "CPU tests"
-msgstr ""
+msgstr "CPU-Tests"
 
 #. description
 #: ../jobs/local.txt.in:28
 msgid "System Daemon tests"
-msgstr ""
+msgstr "Systemhintergrunddienste-Test"
 
 #. description
 #: ../jobs/local.txt.in:33
@@ -1189,7 +1222,7 @@ msgstr "Benutzeranwendungen"
 #. description
 #: ../jobs/local.txt.in:123
 msgid "Stress tests"
-msgstr ""
+msgstr "Stress-Tests"
 
 #. description
 #: ../jobs/ltp.txt.in:3
@@ -1610,6 +1643,12 @@ msgid ""
 " 2.- The monitor should go blank.\n"
 " 3.- Press any key or move the mouse to recover."
 msgstr ""
+"Überprüfung der Energiesparfunktionen des Bildschirms:\n"
+" 1.- Wählen Sie »Test«, um die Energiesparfunktionen Ihres Bildschirms zu "
+"überprüfen.\n"
+" 2.- Der Bildschirm sollte schwarz werden.\n"
+" 3.- Drücken Sie eine beliebige Taste oder bewegen Sie die Maus, um den "
+"Bildschirm wieder zu aktivieren."
 
 #. description
 #: ../jobs/monitor.txt.in:46
@@ -1619,12 +1658,12 @@ msgstr "Wurde Ihr Bildschirm schwarz?"
 #. description
 #: ../jobs/networking.txt.in:26
 msgid "Network Information"
-msgstr ""
+msgstr "Netzwerk-Informationen"
 
 #. description
 #: ../jobs/networking.txt.in:46
 msgid "Wireless scanning test."
-msgstr ""
+msgstr "Funknetzwerksuche-Test."
 
 #. description
 #: ../jobs/networking.txt.in:52
@@ -1634,6 +1673,11 @@ msgid ""
 "OSD should confirm that the connection has been established 4.- Select Test "
 "to verify that it's possible to establish an HTTP connection"
 msgstr ""
+"Überprüfung von Funknetzwerkverbindungen: 1.- Klicken Sie auf das "
+"Netzwerksymbol oben rechts auf dem Bildschirm 2.- Wählen Sie ein Netzwerk im "
+"Abschnitt »Funknetzwerke« 3.- Eine Benachrichtigung sollte Ihnen mitteilen, "
+"dass eine Verbindung hergestellt wurde 4.- Wählen Sie »Test«, um "
+"sicherzustellen, dass eine HTTP-Verbindung möglich ist"
 
 #. description
 #: ../jobs/networking.txt.in:64
@@ -1643,6 +1687,11 @@ msgid ""
 "confirm that the connection has been established 4.- Select Test to verify "
 "that it's possible to establish an HTTP connection"
 msgstr ""
+"Überprüfung von Kabelnetzwerkverbindungen: 1.- Klicken Sie auf das "
+"Netzwerksymbol oben rechts auf dem Bildschirm 2.- Wählen Sie ein Netzwerk im "
+"Abschnitt »Kabeletzwerke« 3.- Eine Benachrichtigung sollte Ihnen mitteilen, "
+"dass eine Verbindung hergestellt wurde 4.- Wählen Sie »Test«, um "
+"sicherzustellen, dass eine HTTP-Verbindung möglich ist"
 
 #. description
 #: ../jobs/networking.txt.in:76
@@ -1654,6 +1703,15 @@ msgid ""
 "that the connection has been established 8.- Select Test to verify that it's "
 "possible to establish an HTTP connection"
 msgstr ""
+"Überprüfung von Verbindungen mit einem eingebauten Modem: 1.- Verbinden Sie "
+"das Telefonkabel mit dem Rechner 2.- Klicken Sie mit der rechten Maustaste "
+"auf das Netzwerksymbol oben rechts auf dem Bildschirm 3.- Wählen Sie "
+"»Verbindungen bearbeiten …« 4.- Wählen Sie den Reiter »DSL« 5.- Klicken Sie "
+"auf die Schaltfläche »Hinzufügen« 6.- Stellen Sie die "
+"Verbindungseigenschaften den Informationen Ihres Providers entsprechend ein "
+"7.- Eine Benachrichtigung sollte Ihnen mitteilen, dass eine Verbindung "
+"hergestellt wurde 4.- Wählen Sie »Test«, um sicherzustellen, dass eine HTTP-"
+"Verbindung möglich ist"
 
 #. description
 #: ../jobs/networking.txt.in:76 ../jobs/peripheral.txt.in:15
@@ -1666,18 +1724,20 @@ msgid ""
 "Automated test case to verify availability of some system on the network "
 "using ICMP ECHO packets."
 msgstr ""
+"Automatischer Test zur Überprüfung der Verfügbarkeit einiger Systeme im "
+"Netzwerk unter Verwendung von ICMP-ECHO-Paketen."
 
 #. description
 #: ../jobs/networking.txt.in:99 ../jobs/peripheral.txt.in:32
 msgid ""
 "Automated test case to make sure that it's possible to download files "
 "through HTTP"
-msgstr ""
+msgstr "Automatischer Test des Herunterladens von Dateien über HTTP"
 
 #. description
 #: ../jobs/networking.txt.in:107
 msgid "Test to see if we can sync local clock to an NTP server"
-msgstr ""
+msgstr "Test zur Überprüfung des Uhrzeitabgleichs mit einem NTP-Server"
 
 #. description
 #: ../jobs/networking.txt.in:113
@@ -1685,16 +1745,20 @@ msgid ""
 "Verify that an installation of checkbox-server on the network can be reached "
 "over SSH."
 msgstr ""
+"Überprüfung der Erreichbarkeit einer Installation von checkbox-server über "
+"das Netzwerk mittels SSH."
 
 #. description
 #: ../jobs/networking.txt.in:119
 msgid "Try to enable a remote printer on the network and print a test page."
 msgstr ""
+"Es wird versucht einen entfernt angeschlossenen Drucker im Netzwerk zu "
+"aktivieren und eine Testseite zu drucken."
 
 #. description
 #: ../jobs/networking.txt.in:124
 msgid "Multiple network cards"
-msgstr ""
+msgstr "Mehrere Netzwerkkarten"
 
 #. description
 #: ../jobs/networking.txt.in:144
@@ -1826,6 +1890,11 @@ msgid ""
 "detected and proper configuration values \\ should be displayed 5.- Print a "
 "test page"
 msgstr ""
+"Überprüfung der Druckerkonfiguration: 1.- Stellen Sie sicher, dass ein "
+"Drucker im Netzwerk verfügbar ist 2.- Öffnen Sie »System->Systemverwaltung-"
+">Drucken« 3.- Falls der Drucker noch nicht aufgeführt wird, wählen Sie »Neu« "
+"4.- Der Drucker sollte erkannt und korrekte Konfigurationswerte angezeigt "
+"werden 5.- Drucken Sie eine Testseite"
 
 #. description
 #: ../jobs/peripheral.txt.in:15
@@ -1838,6 +1907,15 @@ msgid ""
 "connection has been established 8.- Select Test to verify that it's possible "
 "to establish an HTTP connection"
 msgstr ""
+"Überprüfung einer Verbindung mit einem externen USB-Modem: 1.- Verbinden Sie "
+"das USB-Kabel mit dem Rechner 2.- Rechtsklicken Sie auf das Netzwerksymbol "
+"oben rechts auf dem Bildschirm 3.- Wählen Sie »Verbindungen bearbeiten …« 4.-"
+" Wählen Sie den Reiter »DSL« (für ADSL-Modems) oder »Mobiles Breitband« (für "
+"3G-Modems) 5.- Klicken Sie auf die Schaltfläche »Hinzufügen« 6.- Stellen Sie "
+"die Verbindungseigenschaften den Angaben Ihres Providers entsprechend ein 7.-"
+" Eine Benachrichtigung sollte Ihnen mitteilen, dass eine Verbindung "
+"hergestellt wurde 8.- Wählen Sie »Test«, um zu Überprüfen, ob eine HTTP-"
+"Verbindung hergestellt werden kann"
 
 #. description
 #: ../jobs/phoronix.txt.in:3
@@ -1936,6 +2014,14 @@ msgid ""
 " 5.- Select Test to verify connection and throughput.\n"
 "Output:"
 msgstr ""
+"Überprüfung von Funknetzwerkverbindungen: \n"
+" 1.- Klicken Sie auf das Netzwerksymbol oben rechts auf dem Bildschirm.\n"
+" 2.- Wählen Sie »Verbindung trennen« im Abschnitt »Kabelnetzwerke«.\n"
+" 3.- Wählen Sie ein Netzwerk im Abschnitt »Funknetzwerke«.\n"
+" 4.- Eine Benachrichtigung sollte Ihnen mitteilen, dass eine Verbindung "
+"hergestellt wurde.\n"
+" 5.- Wählen Sie »Test«, um die Verbindung und den Datendurchsatz zu testen.\n"
+"Ausgabe:"
 
 #. description
 #: ../jobs/power-management.txt.in:128 ../jobs/sru_suite.txt.in:135
@@ -1958,6 +2044,12 @@ msgid ""
 "at all and must be rebooted, restart System Testing after reboot and mark "
 "this test as Failed."
 msgstr ""
+"Wählen Sie »Test« und Ihr System wird für 30 – 60 Sekunden in Bereitschaft "
+"versetzt. Falls Ihr System nach 60 Sekunden nicht von selbst aufwacht, "
+"drücken Sie kurz den Einschalter, um es manuell aufzuwecken. Falls Ihr "
+"System auch dadurch nicht aufgeweckt werden kann und neu gestartet werden "
+"muss, starten Sie die Systemüberprüfung nach dem Neustart und markieren Sie "
+"diesen Test als »Fehlgeschlagen«."
 
 #. description
 #: ../jobs/power-management.txt.in:145
@@ -1988,6 +2080,15 @@ msgid ""
 " 5.- Select Test to verify connection and throughput.\n"
 "Output:"
 msgstr ""
+"Überprüfung von Funknetzwerkverbindungen: \n"
+" 1.- Klicken Sie auf das Netzwerksymbol oben rechts auf dem Bildschirm.\n"
+" 2.- Falls eine Kabelnetzwerkverbindung besteht, trennen Sie die "
+"Verbindung.\n"
+" 3.- Wählen Sie ein Netzwerk im Abschnitt »Funknetzwerke«.\n"
+" 4.- Eine Benachrichtigung sollte Ihnen mitteilen, dass eine Verbindung "
+"hergestellt wurde.\n"
+" 5.- Wählen Sie »Test«, um die Verbindung und den Datendurchsatz zu testen.\n"
+"Ausgabe:"
 
 #. description
 #: ../jobs/power-management.txt.in:194
@@ -2009,6 +2110,13 @@ msgid ""
 " 5.- Move the mouse around the screen.\n"
 " 6.- Perform some single/double/right click operations."
 msgstr ""
+"Überprüfung einer Bluetooth-Maus:\n"
+" 1.- Schalten Sie die Bluetooth-Maus ein.\n"
+" 2.- Klicken Sie auf das Bluetooth-Symbol in der Menüleiste.\n"
+" 3.- Wählen Sie »Neues Gerät einrichten«.\n"
+" 4.- Suchen Sie das Gerät in der Liste und wählen Sie es aus.\n"
+" 5.- Bewegen Sie die Maus über den Bildschirm.\n"
+" 6.- Führen Sie einige Einfach-/Doppel-/Rechtsklicks aus."
 
 #. description
 #: ../jobs/power-management.txt.in:210
@@ -2879,7 +2987,7 @@ msgstr "Hardwaredatenbank"
 
 #: ../checkbox_gtk/gtk_interface.py:533
 msgid "Info"
-msgstr "Information"
+msgstr "Info"
 
 #: ../checkbox_gtk/gtk_interface.py:552
 msgid "Error"
@@ -2909,12 +3017,12 @@ msgstr ""
 #: ../plugins/apport_prompt.py:225
 #, python-format
 msgid "Test %s from suite %s failed."
-msgstr ""
+msgstr "Test %s aus der Gruppe %s ist fehlgeschlagen."
 
 #: ../plugins/apport_prompt.py:228
 #, python-format
 msgid "Test %s failed."
-msgstr ""
+msgstr "Test %s ist fehlgeschlagen."
 
 #: ../plugins/apport_prompt.py:246
 #, python-format
@@ -2933,7 +3041,7 @@ msgid ""
 "Once you are finished running the tests, you can view a summary report for "
 "your system."
 msgstr ""
-"Willkommen beim Testen des Systems!\n"
+"Willkommen bei der Systemüberprüfung!\n"
 "\n"
 "Checkbox stellt Tests bereit, mit denen geprüft werden kann, ob Ihr System "
 "ordnungsgemäß funktioniert. Sind die laufenden Tests abgeschlossen, können "
