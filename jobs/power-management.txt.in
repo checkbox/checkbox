@@ -246,6 +246,7 @@ command: xrandr_cycle
 plugin: manual
 name: power-management/usb_storage_after_suspend
 depends: power-management/suspend_advanced
+command: usb_test -t
 _description:
  This will test that USB functionality is restored after a suspend and resume cycle.
  1. Plug in at least one USB storage device if one is not already connected.
