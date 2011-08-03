@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-from checkbox.lib.environ import prepend_path
+from checkbox.lib.environ import append_path, prepend_path
 
 from checkbox.plugin import Plugin
 from checkbox.properties import Path
@@ -34,6 +34,8 @@ class ScriptsInfo(Plugin):
 
     def gather(self):
         prepend_path(self.scripts_path)
+        append_path("/sbin")
+        append_path("/usr/sbin")
 
 
 factory = ScriptsInfo

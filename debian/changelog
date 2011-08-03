@@ -1,5 +1,10 @@
 checkbox (0.12.4) oneiric; urgency=low
 
+  [Brendan Donegan]
+  * Refactored job definition files.
+  * Fixed dependencies and test naming.
+  * Added Online CPU before/after suspend test.
+
   [Daniel Manrique]
   * Further improvements to make frontend/backend communication more reliable.
     Prevents stuck backends, failure to close the GUI due to lack of reply
@@ -19,10 +24,8 @@ checkbox (0.12.4) oneiric; urgency=low
   * Make the "Next" button the default action when Enter is pressed, to 
     streamline testing with the GTK interface.
 
-  [Brendan Donegan]
-  * Refactored job definition files.
-  * Fixed dependencies and test naming.
-  * Added Online CPU before/after suspend test.
+  [Marc Tardif]
+  * Fixed udevam not being found because /sbin not in PATH (LP: #597305)
 
   [Sylvain Pineau]
   * Expose the message store to other plugins, via firing an expose-msgstore
