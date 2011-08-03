@@ -73,11 +73,12 @@ _description:
  Did you hear your speech played back?
 
 plugin: shell
-name: audio/detect_silence
+name: audio/automated_audio_test
 requires:
  package.name == 'sox'
+ package.name == 'alsa-base'
  device.category == 'AUDIO'
-command: audio_detect_silence
+command: audio_test
 _description:
  Play back a sound on the default output and listen for it on the \
  default input.  This makes the most sense when the output and input \

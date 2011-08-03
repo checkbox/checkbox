@@ -244,19 +244,16 @@ name: power-management/xrandr_screens_after_suspend.tar.gz
 depends: power-management/cycle_resolutions_after_suspend_auto
 command: [ -e $CHECKBOX_DATA/xrandr_screens_after_suspend.tgz ] && cat $CHECKBOX_DATA/xrandr_screens_after_suspend.tgz 
 
-plugin: manual
-name: power-management/record_playback_after_suspend
+plugin: shell
+name: power-management/audio_test_after_suspend
 depends: power-management/suspend_advanced
 requires:
  device.category == 'AUDIO'
+ package.name == 'sox'
  package.name == 'alsa-base'
-command: alsa_record_playback
+command: audio_test
 _description:
- This will check to make sure that your audio device works properly after a suspend and resume.  You can use either internal or external microphone and speakers.
- .
- To execute this test, make sure your speaker and microphone are NOT muted and the volume is set sufficiently loud to record and play audio. Select Test and then speak into your microphone. After a few seconds, your speech will be played back to you.
- .
- Did you hear your speech played back?
+ This will check to make sure that your audio device works properly after a suspend and resume.  This may work fine with speakers and onboard microphone, however, it works best if used with a cable connecting the audio-out jack to the audio-in jack.
 
 plugin: manual
 name: power-management/hibernate_advanced
