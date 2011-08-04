@@ -77,21 +77,13 @@ _description:
  Dumps memory info to a file for comparison after suspend test has been run
 command: meminfo_resource > $CHECKBOX_DATA/meminfo_before_suspend
 
-plugin: manual
+plugin: shell
 name: power-management/wireless_before_suspend
-command: internet_test
+depends: networking/wireless_connection
+command: connect_wireless && internet_test --interface=`nmcli dev list | grep -B 1 wireless | grep GENERAL.DEVICE | awk '{print $2}'`
 _description:
- Wireless network connection procedure:
-  1.- Click on the Network Manager applet.
-  2.- Click on Disconnect under 'Wired Networks'.
-  3.- Select a network below the 'Wireless networks' section.
-  4.- Notify OSD should confirm that the connection has been established.
-  5.- Select Test to verify connection and throughput.
- Output:
- .
- $output
- .
- Is this correct?
+ This test disconnects all connections and then connects to the wireless
+ interface. It then checks the connection to confirm it's working as expected.
 
 plugin: shell
 name: power-management/bluetooth_detect_before_suspend
@@ -181,22 +173,14 @@ depends: power-management/suspend_advanced
 _description:
  Does the display work normally after resuming from suspend?
 
-plugin: manual
+plugin: shell
 name: power-management/wireless_after_suspend
 depends: power-management/suspend_advanced power-management/wireless_before_suspend
-command: internet_test
+command: connect_wireless && internet_test --interface=`nmcli dev list | grep -B 1 wireless | grep GENERAL.DEVICE | awk '{print $2}'`
 _description:
- Wireless network connection procedure:
-  1.- Click on the Network Manager applet.
-  2.- If a wired connection is established, click its Disconnect option.
-  3.- Select a network below the 'Wireless networks' section.
-  4.- Notify OSD should confirm that the connection has been established.
-  5.- Select Test to verify connection and throughput.
- Output:
- .
- $output
- .
- Is this correct?
+ This test checks that the wireless interface is working after suspending the system. It
+ disconnects all interfaces and then connects to the wireless interface and checks that the
+ connection is working as expected.
 
 plugin: shell
 name: power-management/bluetooth_detect_after_suspend
