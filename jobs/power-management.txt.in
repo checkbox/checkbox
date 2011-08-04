@@ -229,6 +229,17 @@ depends: power-management/cycle_resolutions_after_suspend_auto
 command: [ -e $CHECKBOX_DATA/xrandr_screens_after_suspend.tgz ] && cat $CHECKBOX_DATA/xrandr_screens_after_suspend.tgz 
 
 plugin: manual
+name: power-management/usb_storage_after_suspend
+depends: power-management/suspend_advanced
+command: usb_test -t
+_description:
+ This will test that USB functionality is restored after a suspend and resume cycle.
+ 1. Plug in at least one USB storage device if one is not already connected.
+ 2. Click Test to begin.
+ .
+ If the test is successful, you'll notice that Yes is now selected. Otherwise, No shoud be selected.
+
+plugin: manual
 name: power-management/record_playback_after_suspend
 depends: power-management/suspend_advanced
 requires:
@@ -280,3 +291,13 @@ _description:
  Select test and your system will suspend for about 30 - 60 seconds. If your system does not wake itself up after 60 seconds, please press the power button momentarily to wake the system manually. If your system fails to wake at all and must be rebooted, restart System Testing after reboot and mark this test as Failed.
 user: root
 command: sleep_test -d
+
+plugin: shell 
+name: power-management/wake_on_lan
+depends: power-management/rtc power-management/suspend_advanced 
+requires: package.name == 'pm-utils' and package.name == 'util-linux'
+_description:
+ This automatically tests Wake-on-LAN capability with the aid of a suitably configured server. During this process the system will suspend, then automatically wake up after no more than 5 minutes.
+user: root
+command: wake_on_lan_test ${WAKE_ON_LAN_URL} --debug
+
