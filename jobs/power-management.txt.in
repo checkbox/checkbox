@@ -100,21 +100,10 @@ command: hcitool dev | tail -n+2 | awk '{print $2}' > $CHECKBOX_DATA/bluetooth_a
 _description:
  This test just grabs the hardware address of the bluetooth controller
 
-plugin: manual
-name: power-management/bluetooth_mouse_before_suspend
-depends: power-management/bluetooth_detect_before_suspend
-_description:
- Verify a bluetooth peripheral.  An example verification procedure for a bluetooth mouse is given.
- .
- Bluetooth mouse procedure:
-  1.- Enable the bluetooth mouse.
-  2.- Click on the bluetooth icon in the menu bar.
-  3.- Select 'Setup new device'.
-  4.- Look for the device in the list and select it.
-  5.- Move the mouse around the screen.
-  6.- Perform some single/double/right click operations.
- .
- Did all the steps work?
+plugin: shell
+name: power-management/bluetooth_obex_before_suspend
+requires: package.name == 'bluez'
+command: bluetooth_obex_send $BTDEVADDR $CHECKBOX_SHARE/data/JPEG_Color_Image_Ubuntu.jpg
 
 plugin: shell
 name: power-management/rtc
