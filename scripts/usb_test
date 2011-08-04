@@ -1,0 +1,141 @@
+#!/usr/bin/python
+
+import dbus
+import sys
+import random
+import os
+import tempfile
+import hashlib
+from shutil import copy2
+from optparse import OptionParser
+
+class DiskTest():
+    ''' Class to contain various methods for testing USB disks '''   
+    def GenerateTestData(self,size):
+        '''Generate a random data file of a given size'''
+        r = random
+        min = 100
+        max = 1000000
+        self.tfile = tempfile.NamedTemporaryFile(delete=False)
+        print "Creating Temp Data file"        
+        while os.path.getsize(self.tfile.name) < size:
+            self.tfile.write(str(r.randint(min,max)))
+        
+        print "File name is :%s" % self.tfile.name
+        print "File size is %s bytes" % os.path.getsize(self.tfile.name)
+
+    def MD5HashFile(self,path):
+        fh = open(path,'r')
+        md5 = hashlib.md5()
+        try:
+            while True:
+                data = fh.read(8192)
+                if not data:
+                    break
+                md5.update(data)
+        finally:
+            fh.close()
+            return md5.hexdigest()
+
+    def CopyFile(self,source,dest):
+        try:
+            copy2(source,dest)
+        except:
+            print "Unable to copy the file to %s" % dest
+    
+    def CompareHash(self,parent,child):
+        if not parent == child:
+            return False
+        else:
+            return True
+
+    def CleanUp(self,target):
+        try:
+            os.unlink(target)
+        except:
+            print "Unable to remove tempfile %s" % target
+
+
+def GetDiskInfo():
+    ''' Probes dbus to find any attached/mounted USB drives '''
+    bus = dbus.SystemBus()
+    ud_manager_obj = bus.get_object("org.freedesktop.UDisks", "/org/freedesktop/UDisks")
+    ud_manager = dbus.Interface(ud_manager_obj, 'org.freedesktop.UDisks')
+    disks = {}
+    for dev in ud_manager.EnumerateDevices():
+        device_obj = bus.get_object("org.freedesktop.UDisks", dev)
+        device_props = dbus.Interface(device_obj, dbus.PROPERTIES_IFACE)
+        if not device_props.Get('org.freedesktop.UDisks.Device',"DeviceIsDrive"):
+            if device_props.Get('org.freedesktop.UDisks.Device', "DriveConnectionInterface") == 'usb':
+                devFile = str(device_props.Get('org.freedesktop.UDisks.Device',"DeviceFile"))
+                print str(device_props.Get('org.freedesktop.UDisks.Device',"DeviceMountPaths"))
+                devPath = str(device_props.Get('org.freedesktop.UDisks.Device',"DeviceMountPaths")[0])
+                disks[devFile] = devPath
+        
+    return disks
+
+def main():
+    usage = 'Usage: %prog [OPTIONS]'
+    parser = OptionParser(usage)
+    parser.add_option('-c','--count',
+                        action='store',
+                        default='1',
+                        type='int',
+                        help='The number of times to run the test')
+    parser.add_option('-l','--list',
+                        action='store_true',
+                        default=False,
+                        help="List the USB disks currently mounted")
+    parser.add_option('-t','--test',
+                        action='store_true',
+                        default=False,
+                        help="Perform read/write tests against any USB drive attached to the SUT")
+    parser.add_option('-s','--size',
+                        action='store',
+                        default=31457280,
+                        help="The size of the test data file to use in Bytes. Default is %default")
+    (options, args) = parser.parse_args()
+
+
+    if options.list and options.test:
+        parser.error("list and test options can not be used together")
+    
+    usb_disks = GetDiskInfo()
+    if len(usb_disks) > 0: #If we do have USB drives attached and mounted
+        if options.list:   #Simply output a list of drives detected
+            for k,v in usb_disks.iteritems():
+                print "%s : %s" % (k, v)
+            return 0
+        elif options.test: #Create a file, copy to USB and compare hashes
+            print "Running USB file transfer test for %s iterations" % options.count
+            test = DiskTest()
+            loop = 1
+            while loop <= options.count:
+                loop += 1
+                test.GenerateTestData(options.size)
+                parent_hash = test.MD5HashFile(test.tfile.name)
+                print "Parent hash is: %s" % parent_hash
+                for k,v in usb_disks.iteritems():
+                    print "Copying %s to %s" % (test.tfile.name, v)
+                    test.CopyFile(test.tfile.name, v)
+                    print "Hashing copy on %s" % v
+                    target = ''.join((v,'/',os.path.basename(test.tfile.name)))
+                    child_hash = test.MD5HashFile(target)
+                    print "Hash of %s on %s is %s" % (target, v, child_hash)
+                    if not test.CompareHash(parent_hash,child_hash):
+                        print "[Iteration %s] Failure on file copy to %s" % (options.count, k)
+                        test.CleanUp(target)
+                        test.CleanUp(test.tfile.name)
+                        return 1
+                    test.CleanUp(target)
+                test.CleanUp(test.tfile.name)
+            print "Successfully completed %s USB file transfer test iterations" % options.count
+            return 0
+        else: #catch-all in case something weird happened
+            parser.error("Something went wrong. Did you remember the correct options? try -h or --help for usage info")
+    else:  #If we don't have USB drives attached and mounted
+        print "No USB drives were detected, aborting"
+        return 1
+        
+if __name__ == '__main__':
+    sys.exit(main())
