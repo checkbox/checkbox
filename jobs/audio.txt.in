@@ -73,7 +73,7 @@ _description:
  Did you hear your speech played back?
 
 plugin: shell
-name: audio/automated_audio_test
+name: audio/alsa_record_playback_automated
 requires:
  package.name == 'sox'
  package.name == 'alsa-base'
