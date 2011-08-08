@@ -27,6 +27,7 @@ checkbox (0.12.4) oneiric; urgency=low
 
   [Marc Tardif]
   * Fixed udevam not being found because /sbin not in PATH (LP: #597305)
+  * Fixed hardware attachments for udev and dmi (LP: #822682)
 
   [Sylvain Pineau]
   * Expose the message store to other plugins, via firing an expose-msgstore
