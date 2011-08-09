@@ -67,10 +67,10 @@ class LaunchpadReport(Plugin):
     def report_attachments(self, attachments):
         for attachment in attachments:
             name = attachment["name"]
-            if name == "dmi":
+            if "dmi" in name:
                 self._report["hardware"]["dmi"] = attachment["data"]
 
-            elif name == "udev":
+            elif "udev" in name:
                 self._report["hardware"]["udev"] = attachment["data"]
 
             else:

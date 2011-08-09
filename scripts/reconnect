@@ -1,0 +1,5 @@
+#!/bin/bash
+
+iface=$1
+
+nmcli con up id "$(nmcli -t -f NAME,TYPE con list | grep -m 1 `nmcli dev list iface $iface | grep GENERAL.TYPE | awk '{print $2}'` | awk -F: '{print $1}')"

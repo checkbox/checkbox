@@ -77,21 +77,13 @@ _description:
  Dumps memory info to a file for comparison after suspend test has been run
 command: meminfo_resource > $CHECKBOX_DATA/meminfo_before_suspend
 
-plugin: manual
+plugin: shell
 name: power-management/wireless_before_suspend
-command: internet_test
+depends: networking/wireless_connection
+command: nmcli -t -f DEVICES con status >> $CHECKBOX_DATA/iface && connect_wireless && internet_test --interface=`nmcli dev list | grep -B 1 wireless | grep GENERAL.DEVICE | awk '{print $2}'` && reconnect `cat $CHECKBOX_DATA/iface`
 _description:
- Wireless network connection procedure:
-  1.- Click on the Network Manager applet.
-  2.- Click on Disconnect under 'Wired Networks'.
-  3.- Select a network below the 'Wireless networks' section.
-  4.- Notify OSD should confirm that the connection has been established.
-  5.- Select Test to verify connection and throughput.
- Output:
- .
- $output
- .
- Is this correct?
+ This test disconnects all connections and then connects to the wireless
+ interface. It then checks the connection to confirm it's working as expected.
 
 plugin: shell
 name: power-management/bluetooth_detect_before_suspend
@@ -103,7 +95,7 @@ _description:
 plugin: shell
 name: power-management/bluetooth_obex_before_suspend
 requires: package.name == 'bluez'
-command: bluetooth_obex_send $BTDEVADDR $CHECKBOX_SHARE/data/JPEG_Color_Image_Ubuntu.jpg
+command: obex_send $BTDEVADDR $CHECKBOX_SHARE/data/images/JPEG_Color_Image_Ubuntu.jpg
 
 plugin: shell
 name: power-management/rtc
@@ -170,22 +162,14 @@ depends: power-management/suspend_advanced
 _description:
  Does the display work normally after resuming from suspend?
 
-plugin: manual
+plugin: shell
 name: power-management/wireless_after_suspend
 depends: power-management/suspend_advanced power-management/wireless_before_suspend
-command: internet_test
+command: nmcli -t -f DEVICES con status >> $CHECKBOX_DATA/iface && connect_wireless && internet_test --interface=`nmcli dev list | grep -B 1 wireless | grep GENERAL.DEVICE | awk '{print $2}'` && reconnect `cat $CHECKBOX_DATA/iface`
 _description:
- Wireless network connection procedure:
-  1.- Click on the Network Manager applet.
-  2.- If a wired connection is established, click its Disconnect option.
-  3.- Select a network below the 'Wireless networks' section.
-  4.- Notify OSD should confirm that the connection has been established.
-  5.- Select Test to verify connection and throughput.
- Output:
- .
- $output
- .
- Is this correct?
+ This test checks that the wireless interface is working after suspending the system. It
+ disconnects all interfaces and then connects to the wireless interface and checks that the
+ connection is working as expected.
 
 plugin: shell
 name: power-management/bluetooth_detect_after_suspend
@@ -195,21 +179,11 @@ command: grep -q `hcitool dev | tail -n+2 | awk '{print $2}'` $CHECKBOX_DATA/blu
 _description:
  This test grabs the hardware address of the bluetooth adapter after suspend and compares it to the address grabbed before suspend.
 
-plugin: manual
-name: power-management/bluetooth_mouse_after_suspend
-depends: power-management/suspend_advanced power-management/bluetooth_detect_after_suspend
-_description:
- Verify a bluetooth peripheral.  An example verification procedure for a bluetooth mouse is given.
- .
- Bluetooth mouse procedure:
-  1.- Enable the bluetooth mouse.
-  2.- Click on the bluetooth icon in the menu bar.
-  3.- Select 'Setup new device'.
-  4.- Look for the device in the list and select it.
-  5.- Move the mouse around the screen.
-  6.- Perform some single/double/right click operations.
- .
- Did all the steps work?
+plugin: shell
+name: power-management/bluetooth_obex_after_suspend
+depends: power-management/suspend_advanced power-management/bluetooth_obex_before_suspend
+requires: package.name == 'bluez'
+command: obex_send $BTDEVADDR $CHECKBOX_SHARE/data/images/JPEG_Color_Image_Ubuntu.jpg
 
 plugin: manual
 name: power-management/cycle_resolutions_after_suspend
@@ -232,6 +206,17 @@ plugin: attachment
 name: power-management/xrandr_screens_after_suspend.tar.gz
 depends: power-management/cycle_resolutions_after_suspend_auto
 command: [ -e $CHECKBOX_DATA/xrandr_screens_after_suspend.tgz ] && cat $CHECKBOX_DATA/xrandr_screens_after_suspend.tgz 
+
+plugin: manual
+name: power-management/usb_storage_after_suspend
+depends: power-management/suspend_advanced
+command: usb_test -t
+_description:
+ This will test that USB functionality is restored after a suspend and resume cycle.
+ 1. Plug in at least one USB storage device if one is not already connected.
+ 2. Click Test to begin.
+ .
+ If the test is successful, you'll notice that Yes is now selected. Otherwise, No shoud be selected.
 
 plugin: manual
 name: power-management/record_playback_after_suspend
@@ -285,3 +270,13 @@ _description:
  Select test and your system will suspend for about 30 - 60 seconds. If your system does not wake itself up after 60 seconds, please press the power button momentarily to wake the system manually. If your system fails to wake at all and must be rebooted, restart System Testing after reboot and mark this test as Failed.
 user: root
 command: sleep_test -d
+
+plugin: shell 
+name: power-management/wake_on_lan
+depends: power-management/rtc power-management/suspend_advanced 
+requires: package.name == 'pm-utils' and package.name == 'util-linux'
+_description:
+ This automatically tests Wake-on-LAN capability with the aid of a suitably configured server. During this process the system will suspend, then automatically wake up after no more than 5 minutes.
+user: root
+command: wake_on_lan_test ${WAKE_ON_LAN_URL} --debug
+

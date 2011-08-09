@@ -1,5 +1,11 @@
 checkbox (0.12.4) oneiric; urgency=low
 
+  [Brendan Donegan]
+  * Refactored job definition files.
+  * Fixed dependencies and test naming.
+  * Added Online CPU before/after suspend test.
+  * Automated wireless tests.
+
   [Daniel Manrique]
   * Further improvements to make frontend/backend communication more reliable.
     Prevents stuck backends, failure to close the GUI due to lack of reply
@@ -19,16 +25,18 @@ checkbox (0.12.4) oneiric; urgency=low
   * Make the "Next" button the default action when Enter is pressed, to 
     streamline testing with the GTK interface.
 
-  [Brendan Donegan]
-  * Refactored job definition files.
-  * Fixed dependencies and test naming.
-  * Added Online CPU before/after suspend test.
+  [Marc Tardif]
+  * Fixed udevam not being found because /sbin not in PATH (LP: #597305)
+  * Fixed hardware attachments for udev and dmi (LP: #822682)
 
   [Sylvain Pineau]
   * Expose the message store to other plugins, via firing an expose-msgstore
     event.
 
- -- Daniel Manrique <daniel.manrique@canonical.com>  Fri, 22 Jul 2011 16:26:00 -0400
+  [Andrew Faulkner]
+  * Fix description for nautilus_file_create job (LP: #821141) 
+
+ -- Daniel Manrique <daniel.manrique@canonical.com>  Fri, 05 Aug 2011 11:35:26 -0400
 
 checkbox (0.12.3) oneiric; urgency=low
 
