@@ -17,7 +17,7 @@ _description:
 
 plugin: shell
 name: graphics/gtkperf
-depends: graphics/xorg-version
+depends: graphics/xorg-version-output
 requires: package.name == 'gtkperf'
 command: gtkperf -a
 _description:
@@ -27,7 +27,7 @@ _description:
 
 plugin: manual
 name: graphics/resolution-change
-depends: graphics/xorg-version
+depends: graphics/xorg-version-output
 _description:
  Display resolution change procedure:
  1.- Open System->Preferences->Monitors
@@ -42,7 +42,7 @@ _description:
 
 plugin: manual
 name: graphics/rotation
-depends: graphics/xorg-version
+depends: graphics/xorg-version-output
 _description:
  Display rotation verification procedure:
  1.- Open System->Preferences->Monitors
