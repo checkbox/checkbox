@@ -10,6 +10,18 @@ _description:
  Is this correct?
 
 plugin: manual
+name: usb/disk_detect
+depends: usb/detect
+requires package.name == 'linux'
+command: usb_test -l
+_description:
+ Plug in one or more USB keys or hard drives and click Test.
+ .
+ $output
+ .
+ Were the drives detected?
+
+plugin: manual
 name: usb/keyboard
 depends: usb/detect
 requires: package.name == 'linux'
@@ -55,31 +67,27 @@ _description:
  If the USB device isn't removed or the removal is not registered, the test will fail and 'No' will be selected below.
 
 plugin: manual
-name: usb/storage
-requires: package.name == 'linux'
-depends: usb/detect
-_description:
- Plug a USB storage device into the computer. An icon should appear \
- on the desktop and in the "Places" menu at the top of the screen.
- .
- Does the window automatically appear?
-
-plugin: manual
 name: usb/storage-transfer
 requires: package.name == 'linux'
-depends: usb/storage
+command: usb_test -t
 _description:
  USB HDD verification procedure:
- 1.- Plug a USB HDD into the computer
+ 1.- Plug a USB HDD or thumbdrive into the computer
  2.- An icon should appear on the desktop and in the "Places" menu at the top of the screen.
- 3.- Copy some files from the internal/USB HDD to the USB/internal HDD
+ 3.- Click Test to begin
  .
- Do the copy operations work as expected?
+ If the test is successful, you should see the Yes radio button marked.
+
+plugin: shell
+name: usb/storage-automated
+requires: package.name == 'linux'
+command: usb_test -t
+_description:
+ This test is automated and requires that you plug in at least one usb storage device before running checkbox.
 
 plugin: manual
 name: usb/panels
 requires: package.name == 'linux'
-depends: usb/storage
 _description:
  Connect a USB storage device to an external USB slot on this computer. \
  An icon should appear on the desktop and in the "Places" menu at the top of the screen.

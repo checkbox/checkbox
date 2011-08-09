@@ -157,7 +157,7 @@ command: ! test -e /var/log/Xorg.failsafe.log
 _description: Test that the X is not running in failsafe mode.
 
 plugin: attachment
-name: sru/graphics/screenshot.png
+name: sru/info/screenshot.png
 depends: sru/graphics/screenshot
 command: cat $CHECKBOX_DATA/screenshot.png
 
