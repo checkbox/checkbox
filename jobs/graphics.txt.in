@@ -90,11 +90,10 @@ plugin: shell
 name: graphics/minimum_resolution
 requires:
  device.category == 'VIDEO'
- package.name == 'ubuntu-netbook'
 command: resolution_test --horizontal 800 --vertical 600
 _description:
  Ensure the current resolution meets or exceeds the recommended minimum
- resolutioni (800x600). See here for details:
+ resolution (800x600). See here for details:
  .
  https://help.ubuntu.com/community/Installation/SystemRequirements
 
