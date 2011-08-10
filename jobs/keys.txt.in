@@ -1,6 +1,6 @@
 plugin: manual
 name: keys/brightness
-requires: device.product == 'Notebook' or device.product == 'Laptop'
+requires: device.product in ['Notebook','Laptop','Portable']
 _description:
  Press the brightness buttons on the keyboard. A status window should \
  appear and the brightness should change.
@@ -17,7 +17,7 @@ _description:
 
 plugin: manual
 name: keys/mute
-requires: device.product == 'Notebook' or device.product == 'Laptop'
+requires: device.product in ['Notebook','Laptop','Portable']
 _description:
  Press the mute key on the keyboard. A status window should appear \
  and the volume should mute/unmute when pressed multiple times.
@@ -26,7 +26,7 @@ _description:
 
 plugin: manual
 name: keys/sleep
-requires: device.product == 'Notebook' or device.product == 'Laptop'
+requires: device.product in ['Notebook','Laptop','Portable']
 _description:
  Press the sleep key on the keyboard. The computer should suspend and, \
  after pressing the power button, resume successfully.
@@ -35,7 +35,7 @@ _description:
 
 plugin: manual
 name: keys/battery-info
-requires: device.product == 'Notebook' or device.product == 'Laptop'
+requires: device.product in ['Notebook','Laptop','Portable']
 _description:
  Press the battery information key on the keyboard. A status window \
  should appear and the amount of battery remaining should be displayed.
@@ -44,7 +44,7 @@ _description:
 
 plugin: manual
 name: keys/wireless
-requires: device.product == 'Notebook' or device.product == 'Laptop'
+requires: device.product in ['Notebook','Laptop','Portable']
 _description:
  Press the wireless networking key on the keyboard. The bluetooth icon \
  and the network connnection should go down if connected through the \
