@@ -15,7 +15,7 @@ Replaces: hwtest (<< 0.1-0ubuntu12)
 Provides: hwtest
 Depends: ${misc:Depends}, ${python:Depends}, debconf, udev
 Recommends: dpkg (>= 1.13), lsb-release, pm-utils, python-apport, python-apt, python-dateutil, python-gst0.10
-Suggests: checkbox-cli | checkbox-gtk
+Suggests: checkbox-cli | checkbox-gtk, bonnie++, bootchart, bzr, cvs, ethtool, flex, fwts, git-core, hdparm, lshw, make, nmap, obexd-client, python-pexpect, smartmontools, sox, stress, wodim
 Conflicts: hwtest (<< 0.1-0ubuntu12)
 Description: System testing application 
  This project provides an extensible interface for system testing. The
