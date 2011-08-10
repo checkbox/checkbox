@@ -78,7 +78,7 @@ class GTKInterface(UserInterface):
 
         # Set background color for head
         eventbox_head = self._get_widget("eventbox_head")
-        color = Gdk.color_parse("white")[1]
+        color = Gdk.color_parse("#F0EBE2")[1]
         eventbox_head.modify_bg(Gtk.StateType.NORMAL, color)
 
         # Set and apply initial/default dialog title
@@ -90,7 +90,7 @@ class GTKInterface(UserInterface):
         self.IMAGE_HEAD_BACKGROUND = posixpath.join(data_path,
             "checkbox-gtk-head.png")
         self.FONT = "Ubuntu"
-        self.TEXT =_("hardware database")
+        self.TEXT =_("System Testing")
 
         image_head=self._get_widget("image_head")
         try:
@@ -586,5 +586,5 @@ class GTKInterface(UserInterface):
         #Color to render text
         cairo_drawing_context.set_source_rgb(0,0,0)
         #Position to render text
-        cairo_drawing_context.move_to(100,45)
+        cairo_drawing_context.move_to(75,45)
         PangoCairo.show_layout(cairo_drawing_context,pango_text_layout)
