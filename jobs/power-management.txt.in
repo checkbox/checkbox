@@ -92,21 +92,21 @@ command: hcitool dev | tail -n+2 | awk '{print $2}' > $CHECKBOX_DATA/bluetooth_a
 _description:
  This test just grabs the hardware address of the bluetooth controller
 
-plugin: manual
-name: power-management/bluetooth_mouse_before_suspend
-depends: power-management/bluetooth_detect_before_suspend
+plugin: shell
+name: power-management/bluetooth_obex_before_suspend
+requires: package.name == 'bluez' and package.name == 'obexd-client'
+command: obex_send $BTDEVADDR $CHECKBOX_SHARE/data/images/JPEG_Color_Image_Ubuntu.jpg
 _description:
- Verify a bluetooth peripheral.  An example verification procedure for a bluetooth mouse is given.
+ This test sends an image to the device specified by the BTDEVADDR environment variable.
+
+plugin: manual
+name: power-management/bluetooth_obex_before_suspend_manual
+requires: package.name == 'bluez' and package.name == 'obexd-client'
+command: obex_send `bluetooth_scan` $CHECKBOX_SHARE/data/images/JPEG_Color_Image_Ubuntu.jpg
+_description:
+ This test will send the image 'JPEG_Color_Image_Ubuntu.jpg' to a specified device.
  .
- Bluetooth mouse procedure:
-  1.- Enable the bluetooth mouse.
-  2.- Click on the bluetooth icon in the menu bar.
-  3.- Select 'Setup new device'.
-  4.- Look for the device in the list and select it.
-  5.- Move the mouse around the screen.
-  6.- Perform some single/double/right click operations.
- .
- Did all the steps work?
+ Select Test and you will be prompted to enter the Bluetooth device name of a device that can accept file transfers. It may take a few moments after entering the name for the file to begin sending. Accept any prompts that appear on both devices.
 
 plugin: shell
 name: power-management/rtc
@@ -190,21 +190,23 @@ command: grep -q `hcitool dev | tail -n+2 | awk '{print $2}'` $CHECKBOX_DATA/blu
 _description:
  This test grabs the hardware address of the bluetooth adapter after suspend and compares it to the address grabbed before suspend.
 
-plugin: manual
-name: power-management/bluetooth_mouse_after_suspend
-depends: power-management/suspend_advanced power-management/bluetooth_detect_after_suspend
+plugin: shell
+name: power-management/bluetooth_obex_after_suspend
+depends: power-management/suspend_advanced power-management/bluetooth_obex_before_suspend
+requires: package.name == 'bluez' and package.name == 'obexd-client'
+command: obex_send $BTDEVADDR $CHECKBOX_SHARE/data/images/JPEG_Color_Image_Ubuntu.jpg
 _description:
- Verify a bluetooth peripheral.  An example verification procedure for a bluetooth mouse is given.
- .
- Bluetooth mouse procedure:
-  1.- Enable the bluetooth mouse.
-  2.- Click on the bluetooth icon in the menu bar.
-  3.- Select 'Setup new device'.
-  4.- Look for the device in the list and select it.
-  5.- Move the mouse around the screen.
-  6.- Perform some single/double/right click operations.
- .
- Did all the steps work?
+ This test sends an image to the device specified by the BTDEVADDR environment variable.
+
+plugin: manual
+name: power-management/bluetooth_obex_after_suspend_manual
+depends: power-management/suspend_advanced power-management/bluetooth_obex_before_suspend_manual
+requires: package.name == 'bluez' and package.name == 'obexd-client'
+command: obex_send `bluetooth_scan` $CHECKBOX_SHARE/data/images/JPEG_Color_Image_Ubuntu.jpg
+_description:
+ This test will send the image 'JPEG_Color_Image_Ubuntu.jpg' to a specified device.
+  .
+  Select Test and you will be prompted to enter the Bluetooth device name of a device that can accept file transfers. It may take a few moments after entering the name for the file to begin sending. Accept any prompts that appear on both devices.
 
 plugin: manual
 name: power-management/cycle_resolutions_after_suspend
