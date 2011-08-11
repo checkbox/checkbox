@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-07-07 12:32-0400\n"
-"PO-Revision-Date: 2011-07-27 13:18+0000\n"
+"PO-Revision-Date: 2011-08-11 04:31+0000\n"
 "Last-Translator: Fitoschido <fitoschido@gmail.com>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-07-31 04:33+0000\n"
-"X-Generator: Launchpad (build 13405)\n"
+"X-Launchpad-Export-Date: 2011-08-11 04:31+0000\n"
+"X-Generator: Launchpad (build 13644)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:2
 msgid "Ne_xt"
@@ -105,7 +105,7 @@ msgstr "Uno entre depuración, información, aviso, error o crítico."
 
 #: ../checkbox/application.py:82
 msgid "Configuration override parameters."
-msgstr "La configuración sobrescribe los parámetros."
+msgstr "La configuración sobreescribe los parámetros."
 
 #: ../checkbox/application.py:115
 msgid "Missing configuration file as argument.\n"
@@ -200,15 +200,6 @@ msgstr "Intercambiando información con el servidor..."
 msgid "Building report..."
 msgstr "Creando informe..."
 
-#~ msgid "<b>Comment:</b>"
-#~ msgstr "<b>Comentario:</b>"
-
-#~ msgid "Packages installed"
-#~ msgstr "Paquetes instalados"
-
-#~ msgid "Processor information"
-#~ msgstr "Información del procesador"
-
 #~ msgid "_Desktop"
 #~ msgstr "_Escritorio"
 
@@ -217,16 +208,6 @@ msgstr "Creando informe..."
 
 #~ msgid "_Server"
 #~ msgstr "_Servidor"
-
-#~ msgid "Are you connected to the Internet?"
-#~ msgstr "¿Está conectado a Internet?"
-
-#, python-format
-#~ msgid "Running test: %s"
-#~ msgstr "Ejecutando prueba: %s"
-
-#~ msgid "Please provide your Launchpad email address:"
-#~ msgstr "Por favor, indique su dirección de correo de Launchpad:"
 
 #~ msgid "Done"
 #~ msgstr "Hecho"
@@ -250,87 +231,17 @@ msgstr "Creando informe..."
 #~ msgid "$(network_test)"
 #~ msgstr "$(network_test)"
 
-#~ msgid "$(resolution_test)"
-#~ msgstr "$(resolution_test)"
-
 #~ msgid "Successfully sent information!"
 #~ msgstr "La información se ha enviado con éxito."
 
-#~ msgid "Test results"
-#~ msgstr "Resultado de las pruebas"
-
-#~ msgid "Device information"
-#~ msgstr "Información del dispositivo"
-
-#~ msgid "Distribution details"
-#~ msgstr "Detalles de la distribución"
-
-#~ msgid "Run the test for the automatically detected playback device."
-#~ msgstr "Ejecutar la prueba para el dispositivo de reproducción detectado."
-
-#~ msgid "Run the video test."
-#~ msgstr "Ejecutar la prueba de vídeo."
-
-#~ msgid "Please provide comments about the failure."
-#~ msgstr "Por favor, haga comentarios sobre el fallo."
-
 #~ msgid "Authentication"
 #~ msgstr "Autenticación"
-
-#~ msgid "Successfully sent information to server!"
-#~ msgstr "¡Se ha enviado correctamente la información al servidor!"
-
-#~ msgid ""
-#~ "This application will gather information from your system. Then,\n"
-#~ "you will be asked manual tests to confirm that the system is working\n"
-#~ "properly. Finally, you will be asked for the e-mail address you use\n"
-#~ "to sign in to Launchpad in order to submit the information and your\n"
-#~ "results.\n"
-#~ "\n"
-#~ "If you do not have a Launchpad account, please register here:\n"
-#~ "\n"
-#~ "  https://launchpad.net/+login\n"
-#~ "\n"
-#~ "Thank you for taking the time to test your system."
-#~ msgstr ""
-#~ "Esta aplicación recogerá información sobre su sistema. Luego responderá "
-#~ "varias pruebas manuales para confirmar que el sistema está funcionando "
-#~ "correctamente. Finalmente, se le preguntaŕá la dirección de correo "
-#~ "electrónico que usa para acceder a Launchpad con el fin de enviar la "
-#~ "información y los resultados.\n"
-#~ "\n"
-#~ "Si no dispone de una cuenta en Launchpad, regístrese aquí:\n"
-#~ "\n"
-#~ "https://launchpad.net/+login\n"
-#~ "\n"
-#~ "Gracias por tomarse su tiempo probando su sistema."
-
-#~ msgid ""
-#~ "The following information will be sent to the Launchpad\n"
-#~ "hardware database. Please provide the e-mail address you\n"
-#~ "use to sign in to Launchpad to submit this information."
-#~ msgstr ""
-#~ "La siguiente información se enviará a la base de datos de hardware de "
-#~ "Launchpad. Por favor, introduzca la dirección de correo electrónico que usa "
-#~ "al entrar en Launchpad para enviar ésta información."
 
 #~ msgid "Exchange"
 #~ msgstr "Intercambio"
 
 #~ msgid "Do you hear a sound?"
 #~ msgstr "¿Oye un sonido?"
-
-#~ msgid "Is this a good resolution for your display?"
-#~ msgstr "¿Es una buena resolución para la pantalla?"
-
-#~ msgid "The following resolution was detected for your display:"
-#~ msgstr "Se detectó la siguiente resolución para su pantalla"
-
-#~ msgid ""
-#~ "Typing keys on your keyboard should display the corresponding characters in "
-#~ "a text area."
-#~ msgstr ""
-#~ "Al teclear debería ver los caracteres correspondientes en el área de texto."
 
 #: ../gtk/checkbox-gtk.ui.h:1 ../checkbox_cli/cli_interface.py:343
 #: ../checkbox_urwid/urwid_interface.py:261
@@ -603,12 +514,12 @@ msgstr ""
 #. description
 #: ../jobs/codecs.txt.in:46
 msgid "(Please close Movie Player to proceed.)"
-msgstr ""
+msgstr "(Cierre el Reproductor de películas para proseguir.)"
 
 #. description
 #: ../jobs/codecs.txt.in:46
 msgid "Did the video play and pause as expected?"
-msgstr ""
+msgstr "¿El vídeo se reprodujo y pausó correctamente?"
 
 #. description
 #: ../jobs/cpu.txt.in:8
