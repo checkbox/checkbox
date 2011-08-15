@@ -44,12 +44,6 @@ _description:
  Did the screen turn back on when the lid was opened?
 
 plugin: shell
-name: power-management/network_before_suspend
-depends: network_test
-_description: Test the network before suspending.
-command: network_check -a
-
-plugin: shell
 name: power-management/resolution_before_suspend
 _description: Record the current resolution before suspending.
 command: xrandr -q |grep '*'| awk '{print $1}' > $CHECKBOX_DATA/resolution_before_suspend.txt
@@ -118,7 +112,7 @@ _description:
 
 plugin: manual
 name: power-management/suspend_advanced
-depends: power-management/rtc power-management/network_before_suspend power-management/resolution_before_suspend power-management/wireless_before_suspend power-management/bluetooth_detect_before_suspend power-management/bluetooth_mouse_before_suspend power-management/cpu_before_suspend power-management/memory_before_suspend
+depends: power-management/rtc networking/detect power-management/resolution_before_suspend power-management/wireless_before_suspend power-management/bluetooth_detect_before_suspend power-management/bluetooth_mouse_before_suspend power-management/cpu_before_suspend power-management/memory_before_suspend
 requires: package.name == 'pm-utils'
 _description:
  Power management Suspend and Resume test
@@ -129,7 +123,7 @@ command: sleep_test -d
 
 plugin: shell
 name: power-management/network_after_suspend
-depends: power-management/suspend_advanced power-management/network_before_suspend
+depends: power-management/suspend_advanced networking/detect
 _description: Test the network after resuming.
 command: internet_test
 
@@ -294,7 +288,7 @@ _description:
 user: root
 command: sleep_test -d
 
-plugin: shell 
+plugin: shell
 name: power-management/wake_on_lan
 depends: power-management/rtc power-management/suspend_advanced 
 requires: package.name == 'pm-utils' and package.name == 'util-linux'
