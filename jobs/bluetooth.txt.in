@@ -11,7 +11,7 @@ _description:
 plugin: shell
 name: bluetooth/detect-output
 requires: package.name == 'bluez'
-command: hcitool dev | tail -n+2 | awk '{print $2}'
+command: hcitool dev | tail -n+2 | awk '{print $2}'; hcitool dev | tail -n+2 | awk '{print $2}' > $CHECKBOX_DATA/bluetooth_address
 _description:
  Automated test to store output in checkbox report
 
