@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-07-07 12:32-0400\n"
-"PO-Revision-Date: 2011-08-14 09:50+0000\n"
+"PO-Revision-Date: 2011-08-17 20:26+0000\n"
 "Last-Translator: Redmar <redmar@ubuntu-nl.org>\n"
 "Language-Team: Dutch <nl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-08-15 04:31+0000\n"
-"X-Generator: Launchpad (build 13674)\n"
+"X-Launchpad-Export-Date: 2011-08-18 04:31+0000\n"
+"X-Generator: Launchpad (build 13697)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:2
 msgid "Ne_xt"
@@ -111,7 +111,7 @@ msgstr "Parameters voor overschrijven van configuratie"
 
 #: ../checkbox/application.py:115
 msgid "Missing configuration file as argument.\n"
-msgstr "Ontbrekend configuratiebestand als argument.\n"
+msgstr "Configuratiebestand ontbreekt als argument.\n"
 
 #: ../checkbox_cli/cli_interface.py:31
 #: ../checkbox_urwid/urwid_interface.py:684
@@ -564,51 +564,61 @@ msgstr "Test of de ATD-daemon draait als het pakket is geïnstalleerd."
 #: ../jobs/daemons.txt.in:11
 msgid "Test if the cron daemon is running when the package is installed."
 msgstr ""
+"Test of de cron-daemon actief is wanneer het pakket is geïnstalleerd."
 
 #. description
 #: ../jobs/daemons.txt.in:17
 msgid "Test if the cupsd daemon is running when the package is installed."
 msgstr ""
+"Test of de cupsd-daemon actief is wanneer het pakket is geïnstalleerd."
 
 #. description
 #: ../jobs/daemons.txt.in:23
 msgid "Test if the getty daemon is running when the package is installed."
 msgstr ""
+"Test of de getty-daemon actief is wanneer het pakket is geïnstalleerd."
 
 #. description
 #: ../jobs/daemons.txt.in:29
 msgid "Test if the init daemon is running when the package is installed."
 msgstr ""
+"Test of de init-daemon actief is wanneer het pakket is geïnstalleerd."
 
 #. description
 #: ../jobs/daemons.txt.in:35
 msgid "Test if the klogd daemon is running when the package is installed."
 msgstr ""
+"Test of de klogd-daemon actief is wanneer het pakket is geïnstalleerd."
 
 #. description
 #: ../jobs/daemons.txt.in:41
 msgid "Test if the nmbd daemon is running when the package is installed."
 msgstr ""
+"Test of de nmbd-daemon actief is wanneer het pakket is geïnstalleerd."
 
 #. description
 #: ../jobs/daemons.txt.in:47
 msgid "Test if the smbd daemon is running when the package is installed."
 msgstr ""
+"Test of de smbd-daemon actief is wanneer het pakket is geïnstalleerd."
 
 #. description
 #: ../jobs/daemons.txt.in:53
 msgid "Test if the syslogd daemon is running when the package is installed."
 msgstr ""
+"Test of de syslogd-daemon actief is wanneer het pakket is geïnstalleerd."
 
 #. description
 #: ../jobs/daemons.txt.in:61
 msgid "Test if the udevd daemon is running when the package is installed."
 msgstr ""
+"Test of de udevd-daemon actief is wanneer het pakket is geïnstalleerd."
 
 #. description
 #: ../jobs/daemons.txt.in:67
 msgid "Test if the winbindd daemon is running when the package is installed."
 msgstr ""
+"Test of de winbindd-daemon actief is wanneer het pakket is geïnstalleerd."
 
 #. description
 #: ../jobs/disk.txt.in:4
@@ -618,7 +628,7 @@ msgstr "De volgende harde schijven werden gedetecteerd:"
 #. description
 #: ../jobs/disk.txt.in:14
 msgid "Benchmark for each disk "
-msgstr ""
+msgstr "Benchmark voor elke schrijf "
 
 #. description
 #: ../jobs/disk.txt.in:36
@@ -629,11 +639,13 @@ msgstr "SMART test"
 #: ../jobs/disk.txt.in:51
 msgid "Maximum disk space used during a default installation test"
 msgstr ""
+"Maximale schijfruimte gebruikt tijdens een standaard installatie test"
 
 #. description
 #: ../jobs/disk.txt.in:66
 msgid "Verify system storage performs at or above baseline performance"
 msgstr ""
+"Controleer prestaties van systeemopslag op of boven de standaardprestaties"
 
 #. description
 #: ../jobs/disk.txt.in:83
@@ -641,6 +653,8 @@ msgid ""
 "Verify that storage devices, such as Fibre Channel and RAID can be detected "
 "and perform under stress."
 msgstr ""
+"Controleer of opslagapparaten, zoals Fibre Chanel en RAID, gedetecteerd "
+"worden en ook onder druk blijven werken."
 
 #. description
 #: ../jobs/evolution.txt.in:5
@@ -648,6 +662,8 @@ msgid ""
 "Click the \"Test\" button to launch Evolution, then configure it to connect "
 "to a POP3 account."
 msgstr ""
+"Klik de ‘Test’-knop om Evolution te starten en stel het in om met een POP3-"
+"account te verbinden."
 
 #. description
 #: ../jobs/evolution.txt.in:14
@@ -655,11 +671,13 @@ msgid ""
 "Click the \"Test\" button to launch Evolution, then configure it to connect "
 "to a IMAP account."
 msgstr ""
+"Klik de ‘Test’-knop om Evolution te starten en stel het in om met een IMAP-"
+"account te verbinden."
 
 #. description
 #: ../jobs/evolution.txt.in:14
 msgid "Were you able to receive and read e-mail correctly?"
-msgstr ""
+msgstr "Lukte het u om een email goed te ontvangen?"
 
 #. description
 #: ../jobs/evolution.txt.in:23
@@ -667,11 +685,13 @@ msgid ""
 "Click the \"Test\" button to launch Evolution, then configure it to connect "
 "to a SMTP account."
 msgstr ""
+"Klik de ‘Test’-knop om Evolution te starten en stel het in om met een SMTP-"
+"account te verbinden."
 
 #. description
 #: ../jobs/evolution.txt.in:23
 msgid "Were you able to send e-mail without errors?"
-msgstr ""
+msgstr "Kunt u zonder fouten e-mail versturen?"
 
 #. description
 #: ../jobs/fingerprint.txt.in:3
@@ -758,17 +778,17 @@ msgstr "Verliep het kopiëren als verwacht?"
 #. description
 #: ../jobs/floppy.txt.in:4
 msgid "Floppy test"
-msgstr ""
+msgstr "Diskette test"
 
 #. description
 #: ../jobs/gcalctool.txt.in:5
 msgid "Click the \"Test\" button to open the calculator."
-msgstr ""
+msgstr "Klik de ‘Test’-knop om de rekenmachine te openen."
 
 #. description
 #: ../jobs/gcalctool.txt.in:5
 msgid "Did it launch correctly?"
-msgstr ""
+msgstr "Startte het correct?"
 
 #. description
 #: ../jobs/gcalctool.txt.in:15
@@ -776,31 +796,35 @@ msgid ""
 "1. Simple math functions (+,-,/,*) 2. Nested math functions ((,)) 3. "
 "Fractional math 4. Decimal math"
 msgstr ""
+"1. Eenvoudige wiskundige functies (+,-,/,*) 2. Geneste wiskunde functies "
+"((,)) 3. Breuken 4. Decimale berekeningen"
 
 #. description
 #: ../jobs/gcalctool.txt.in:30
 msgid "1. Memory set 2. Memory reset 3. Memory last clear 4. Memory clear"
 msgstr ""
+"1. Geheugen instellen 2. Geheugen verversen 3. Wis laatste geheugen 4. Wis "
+"geheugen"
 
 #. description
 #: ../jobs/gcalctool.txt.in:45
 msgid "Click the \"Test\" button to open the calculator and perform:"
-msgstr ""
+msgstr "Klik op de ‘Test’-knop om de rekenmachine te openen en doe:"
 
 #. description
 #: ../jobs/gcalctool.txt.in:45
 msgid "1. Cut 2. Copy 3. Paste"
-msgstr ""
+msgstr "1. Knippen 2. Kopiëren 3. Plakken"
 
 #. description
 #: ../jobs/gcalctool.txt.in:45
 msgid "Did the functions perform as expected?"
-msgstr ""
+msgstr "Presteerde deze functies zoals verwacht?"
 
 #. description
 #: ../jobs/gedit.txt.in:5
 msgid "Click the \"Test\" button to open gedit."
-msgstr ""
+msgstr "Klik de ‘Test’-knop om gedit te openen."
 
 #. description
 #: ../jobs/gedit.txt.in:5
@@ -808,6 +832,8 @@ msgid ""
 "Enter some text and save the file (make a note of the file name you use), "
 "then close gedit."
 msgstr ""
+"Voer wat tekst in en sla het bestand op (onthoud de bestandsnaam die u "
+"gebruikt), sluit gedit daarna af."
 
 #. description
 #: ../jobs/gedit.txt.in:17
@@ -815,21 +841,23 @@ msgid ""
 "Click the \"Test\" button to open gedit, and re-open the file you created "
 "previously."
 msgstr ""
+"Klik de ‘Test’-knop om gedit te openen, en heropen het bestand dat u eerder "
+"gemaakt heeft."
 
 #. description
 #: ../jobs/gedit.txt.in:17
 msgid "Edit then save the file, then close gedit."
-msgstr ""
+msgstr "Bewerk het bestand en sla het vervolgens op, sluit gedit daarna af."
 
 #. description
 #: ../jobs/gedit.txt.in:17 ../jobs/gnome-terminal.txt.in:5
 msgid "Did this perform as expected?"
-msgstr ""
+msgstr "Presteerde dit zoals verwacht?"
 
 #. description
 #: ../jobs/gnome-terminal.txt.in:5
 msgid "Click the \"Test\" button to open Terminal."
-msgstr ""
+msgstr "Klik de ‘Test’-knop om Terminal te openen."
 
 #. description
 #: ../jobs/gnome-terminal.txt.in:5
@@ -837,22 +865,25 @@ msgid ""
 "Type 'ls' and press enter. You should see a list of files and folder in your "
 "home directory."
 msgstr ""
+"Typ 'ls' en druk op enter. U moet nu een lijst van bestanden en mappen in uw "
+"persoonlijke map zien."
 
 #. description
 #: ../jobs/gnome-terminal.txt.in:5
 msgid "Close the terminal window."
-msgstr ""
+msgstr "Sluit het terminalvenster."
 
 #. description
 #: ../jobs/graphics.txt.in:5
 msgid ""
 "2d graphics appears to be working, your running X.Org version is: $output"
 msgstr ""
+"2D grafische elementen lijken te werken, uw huidige X.Org versie is: $output"
 
 #. description
 #: ../jobs/graphics.txt.in:23
 msgid "Run gtkperf to make sure that GTK based test cases work"
-msgstr ""
+msgstr "Start gtkperf om zeker te weten dat GTK gebaseerde testen werken"
 
 #. description
 #: ../jobs/graphics.txt.in:23
@@ -873,7 +904,7 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:31
 msgid "Did the resolution change as expected?"
-msgstr ""
+msgstr "Werd de resolutie naar verwachting gewijzigd?"
 
 #. description
 #: ../jobs/graphics.txt.in:46
@@ -889,7 +920,7 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:46
 msgid "Did the display rotation change as expected?"
-msgstr ""
+msgstr "Werd de schermrotatie naar verwachting gewijzigd?"
 
 #. description
 #: ../jobs/graphics.txt.in:62
@@ -1121,7 +1152,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:28
 msgid "System Daemon tests"
-msgstr ""
+msgstr "Daemons van het systeem  testen"
 
 #. description
 #: ../jobs/local.txt.in:33
@@ -2306,7 +2337,7 @@ msgstr ""
 #. description
 #: ../jobs/sru_suite.txt.in:129
 msgid "Test the memory after applying an SRU"
-msgstr ""
+msgstr "Test het geheugen na het uitvoeren van een SRU"
 
 #. description
 #: ../jobs/sru_suite.txt.in:144
@@ -2316,7 +2347,7 @@ msgstr ""
 #. description
 #: ../jobs/sru_suite.txt.in:176
 msgid "Checks cpu_topology for accuracy"
-msgstr ""
+msgstr "Controleert cpu_topology voor acculturatie"
 
 #. description
 #: ../jobs/stress.txt.in:8
@@ -2342,7 +2373,7 @@ msgstr ""
 #. description
 #: ../jobs/usb.txt.in:5
 msgid "The following USB controllers were detected:"
-msgstr ""
+msgstr "De volgende USB-controllers zijn gedetecteerd:"
 
 #. description
 #: ../jobs/usb.txt.in:29
@@ -2354,7 +2385,7 @@ msgstr ""
 #. description
 #: ../jobs/usb.txt.in:29
 msgid "Does the keyboard work?"
-msgstr ""
+msgstr "Functioneert het toetsenbord?"
 
 #. description
 #: ../jobs/usb.txt.in:39
@@ -2362,6 +2393,8 @@ msgid ""
 "USB mouse verification procedure: 1.- Plug a USB mouse into the computer 2.- "
 "Perform some single/double/right click operations"
 msgstr ""
+"USB-muis verificatieprocedure: 1.- Sluit een USB-muis op de computer aan 2.- "
+"Voer een paar enkel/dubbele/rechts klik operaties uit"
 
 #. description
 #: ../jobs/usb.txt.in:51
@@ -2431,7 +2464,7 @@ msgstr ""
 #. description
 #: ../jobs/usb.txt.in:91
 msgid "Do all USB slots work with the device?"
-msgstr ""
+msgstr "Werken alle USB-ingangen met het apparaat?"
 
 #. description
 #: ../jobs/user_apps.txt.in:6
