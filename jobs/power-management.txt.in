@@ -271,7 +271,7 @@ command:
 
 plugin: shell
 name: power-management/suspend_advanced_auto
-depends: power-management/rtc 
+depends: power-management/rtc networking/detect power-management/cpu_before_suspend power-management/memory_before_suspend
 requires: package.name == 'pm-utils'
 _description:
  Automatic power management Suspend and Resume test
