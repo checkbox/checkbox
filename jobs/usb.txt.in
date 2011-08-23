@@ -12,7 +12,7 @@ _description:
 plugin: manual
 name: usb/disk_detect
 depends: usb/detect
-requires package.name == 'linux'
+requires: package.name == 'linux'
 command: usb_test -l
 _description:
  Plug in one or more USB keys or hard drives and click Test.
