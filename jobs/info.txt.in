@@ -88,6 +88,7 @@ command:
 
 plugin: local
 name: info/hdparm
+_description: SATA/IDE device information.
 requires:
  package.name == 'hdparm'
  device.category == 'DISK'

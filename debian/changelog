@@ -1,8 +1,15 @@
 checkbox (0.12.5) oneiric; urgency=low
 
-  * Incremented version.
+  [Brendan Donegan]
+  * Removed redundant tests in power-management suite.
+  * Fixed dependencies in power-management suite.
 
- -- Daniel Manrique <daniel.manrique@canonical.com>  Fri, 12 Aug 2011 17:21:28 -0400
+  [Daniel Manrique]
+  * Changed name of apt-get test to reflect the suite it's in.
+  * Fixed typos in job definitions that caused them to not be run.
+  * Added missing description to info/hdparm test (LP: #832351)
+
+ -- Daniel Manrique <daniel.manrique@canonical.com>  Wed, 24 Aug 2011 12:12:24 -0400
 
 checkbox (0.12.4) oneiric; urgency=low
 
