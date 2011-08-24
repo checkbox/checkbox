@@ -47,6 +47,14 @@ class Job(object):
         self.command = command
         self.environ = environ
         self.timeout = timeout
+        if self.timeout is not None:
+            try:
+                self.timeout = float(self.timeout)
+            except:
+                self.timeout = 0
+            finally:
+                if self.timeout < 0:
+                    self.timeout = 0
 
     def execute(self):
         # Sanitize environment
