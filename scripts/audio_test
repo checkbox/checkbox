@@ -16,11 +16,11 @@ REC_PID=$!
 
 # Wait a bit, then stop playing
 sleep 2
+echo "Killing REC_COMMAND PID: $REC_PID and GST_COMMAND PID: $GST_PID"
 kill $REC_PID $GST_PID
 
 # Look for silence
 $SOX_COMMAND
-
 # See if the filesize > 80 bytes on the output file
 # (80 bytes is the largest wav file that will be generated for silence,
 # so if we have that size we detected nothing but silence)
