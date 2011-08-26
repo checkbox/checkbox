@@ -10,7 +10,7 @@ Vcs-Bzr: https://code.launchpad.net/~hardware-certification/checkbox/trunk
 
 Package: checkbox
 Section: python
-Architecture: all
+Architecture: any
 Replaces: hwtest (<< 0.1-0ubuntu12)
 Provides: hwtest
 Depends: ${misc:Depends}, ${python:Depends}, debconf, udev
