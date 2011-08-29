@@ -9,16 +9,11 @@ _description:
  .
  Is this correct?
 
-plugin: manual
+plugin: shell 
 name: networking/internet
 depends: networking/detect
 command: internet_test
-_description:
- Testing your connection to the Internet:
- .
- $output
- .
- Is this correct?
+_description: Tests whether the system has a working Internet connection.
 
 plugin: local
 name: networking/info
