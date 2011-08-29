@@ -1,12 +1,7 @@
-plugin: manual
+plugin: shell
 name: disk/detect
 command: udev_resource | filter_templates -w "category=DISK" | awk -F': ' '$1 == "product" { print $2 }'
-_description:
- The following hard drives were detected:
- .
- $output
- .
- Is this correct?
+_description: Detects and displays disks attached to the system.
 
 plugin: local 
 name: disk/benchmarks
