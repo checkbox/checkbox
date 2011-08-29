@@ -8,12 +8,14 @@ checkbox (0.12.5) oneiric; urgency=low
   * Changed name of apt-get test to reflect the suite it's in.
   * Fixed typos in job definitions that caused them to not be run.
   * Added missing description to info/hdparm test (LP: #832351)
+  * Quote command to obtain bluetooth address, to avoid hanging if 
+    a device is not present (LP: #836756).
   
   [Jeff Lane]
   * Added new USB storage transfer test
   * Re-worked and added automated audio test
 
- -- Jeff Lane <jeff@ubuntu.com>  Thu, 25 Aug 2011 11:03:29 -0400
+ -- Daniel Manrique <daniel.manrique@canonical.com>  Mon, 29 Aug 2011 11:00:40 -0400
 
 checkbox (0.12.4) oneiric; urgency=low
 
