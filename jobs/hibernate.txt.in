@@ -1,0 +1,14 @@
+plugin: manual
+name: power-management/hibernate_advanced
+depends: power-management/rtc
+requires: package.name == 'pm-utils'
+user: root
+command: sleep_test -s disk -w 120 --debug
+_description:
+ This will check to make sure your system can successfully hibernate (if supported).
+ .
+ Select Test to begin. The system will hibernate and should wake itself within 5 minutes.  If your system does not wake itself after 5 minutes, please press the power button to wake the system manually. If the system fails to resume from hibernate, please restart System Testing and mark this test as Failed.
+ .
+ Did the system successfully hibernate and did it work properly after waking up?
+
+
