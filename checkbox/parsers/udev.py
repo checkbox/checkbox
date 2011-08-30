@@ -62,7 +62,10 @@ class UdevDevice(object):
             class_id = (pci_class >> 8) & 0xFF
 
             if class_id == Pci.BASE_CLASS_NETWORK:
-                return "NETWORK"
+                if subclass_id == Pci.CLASS_NETWORK_WIRELESS:
+                    return "WIRELESS"
+                else:
+                    return "NETWORK"
 
             if class_id == Pci.BASE_CLASS_DISPLAY:
                 return "VIDEO"
@@ -132,7 +135,7 @@ class UdevDevice(object):
                 return "CAPTURE"
 
             if interface_class == Usb.BASE_CLASS_WIRELESS:
-                return "NETWORK"
+                return "WIRELESS"
 
         if "ID_TYPE" in self._environment:
             id_type = self._environment["ID_TYPE"]
