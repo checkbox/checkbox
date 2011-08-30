@@ -121,7 +121,7 @@ plugin: shell
 name: suspend/bluetooth_detect_after_suspend
 depends: suspend/suspend_advanced bluetooth/detect-output
 requires: package.name == 'bluez'
-command: grep -q `hcitool dev | tail -n+2 | awk '{print $2}'` $CHECKBOX_DATA/bluetooth_address 
+command: grep -q "`hcitool dev | tail -n+2 | awk '{print $2}'`" $CHECKBOX_DATA/bluetooth_address 
 _description:
  This test grabs the hardware address of the bluetooth adapter after suspend and compares it to the address grabbed before suspend.
 

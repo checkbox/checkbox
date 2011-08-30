@@ -62,7 +62,10 @@ class UdevDevice(object):
             class_id = (pci_class >> 8) & 0xFF
 
             if class_id == Pci.BASE_CLASS_NETWORK:
-                return "NETWORK"
+                if subclass_id == Pci.CLASS_NETWORK_WIRELESS:
+                    return "WIRELESS"
+                else:
+                    return "NETWORK"
 
             if class_id == Pci.BASE_CLASS_DISPLAY:
                 return "VIDEO"
@@ -114,6 +117,8 @@ class UdevDevice(object):
                 self._attributes["bInterfaceClass"], 16)
             interface_subclass = int(
                 self._attributes["bInterfaceSubClass"], 16)
+            interface_protocol = int(
+                self._attributes["bInterfaceProtocol"], 16)
 
             if interface_class == Usb.BASE_CLASS_AUDIO:
                 return "AUDIO"
@@ -132,7 +137,10 @@ class UdevDevice(object):
                 return "CAPTURE"
 
             if interface_class == Usb.BASE_CLASS_WIRELESS:
-                return "NETWORK"
+                if interface_protocol == Usb.PROTOCOL_BLUETOOTH:
+                    return "BLUETOOTH"
+                else:
+                    return "WIRELESS"
 
         if "ID_TYPE" in self._environment:
             id_type = self._environment["ID_TYPE"]
