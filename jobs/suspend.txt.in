@@ -1,0 +1,209 @@
+
+plugin: shell
+name: suspend/resolution_before_suspend
+_description: Record the current resolution before suspending.
+command: xrandr -q |grep '*'| awk '{print $1}' > $CHECKBOX_DATA/resolution_before_suspend.txt
+
+plugin: shell
+name: suspend/audio_before_suspend
+requires:
+ device.category == 'AUDIO'
+ package.name == 'alsa-base'
+_description: Test the audio before suspending.
+command: amixer > $CHECKBOX_DATA/audio_before_suspend.txt
+
+plugin: shell
+name: suspend/cpu_before_suspend
+requires:
+ package.name == 'linux'
+_description: Check all the CPUs are online before suspending
+command: cpuinfo_resource > $CHECKBOX_DATA/cpuinfo_before_suspend
+
+plugin: shell
+name: suspend/memory_before_suspend
+requires:
+ package.name == 'linux'
+_description:
+ Dumps memory info to a file for comparison after suspend test has been run
+command: meminfo_resource > $CHECKBOX_DATA/meminfo_before_suspend
+
+plugin: shell
+name: suspend/wireless_before_suspend
+depends: networking/wireless_connection
+command: nmcli -t -f DEVICES con status >> $CHECKBOX_DATA/iface && connect_wireless && internet_test --interface=`nmcli dev list | grep -B 1 wireless | grep GENERAL.DEVICE | awk '{print $2}'` && reconnect `cat $CHECKBOX_DATA/iface`
+_description:
+ This test disconnects all connections and then connects to the wireless
+ interface. It then checks the connection to confirm it's working as expected.
+
+plugin: shell
+name: suspend/bluetooth_obex_before_suspend
+requires: package.name == 'bluez' and package.name == 'obexd-client'
+command: obex_send $BTDEVADDR $CHECKBOX_SHARE/data/images/JPEG_Color_Image_Ubuntu.jpg
+_description:
+ This test sends an image to the device specified by the BTDEVADDR environment variable.
+
+plugin: manual
+name: suspend/bluetooth_obex_before_suspend_manual
+requires: package.name == 'bluez' and package.name == 'obexd-client'
+command: obex_send `bluetooth_scan` $CHECKBOX_SHARE/data/images/JPEG_Color_Image_Ubuntu.jpg
+_description:
+ This test will send the image 'JPEG_Color_Image_Ubuntu.jpg' to a specified device.
+ .
+ Select Test and you will be prompted to enter the Bluetooth device name of a device that can accept file transfers. It may take a few moments after entering the name for the file to begin sending. Accept any prompts that appear on both devices.
+
+plugin: manual
+name: suspend/suspend_advanced
+depends: power-management/rtc networking/detect suspend/resolution_before_suspend suspend/wireless_before_suspend bluetooth/detect-output suspend/bluetooth_mouse_before_suspend suspend/cpu_before_suspend suspend/memory_before_suspend
+requires: package.name == 'pm-utils'
+_description:
+ Power management Suspend and Resume test
+ .
+ Select Test and your system will suspend for about 30 - 60 seconds. If your system does not wake itself up after 60 seconds, please press the power button momentarily to wake the system manually. If your system fails to wake at all and must be rebooted, restart System Testing after reboot and mark this test as Failed.
+user: root
+command: sleep_test -d
+
+plugin: shell
+name: suspend/network_after_suspend
+depends: suspend/suspend_advanced networking/detect
+_description: Test the network after resuming.
+command: internet_test
+
+plugin: shell
+name: suspend/resolution_after_suspend
+depends: suspend/suspend_advanced suspend/resolution_before_suspend
+_description: Test to see that we have the same resolution after resuming as before.
+command: xrandr -q |grep '*'| awk '{print $1}' | diff $CHECKBOX_DATA/resolution_before_suspend.txt -
+
+plugin: shell
+name: suspend/audio_after_suspend
+requires:
+ device.category == 'AUDIO'
+ package.name == 'alsa-base'
+depends: suspend/suspend_advanced suspend/audio_before_suspend
+_description: Test the audio after resuming.
+command: amixer | diff $CHECKBOX_DATA/audio_before_suspend.txt -
+
+plugin: shell
+name: suspend/cpu_after_suspend
+requires:
+ package.name == 'linux'
+depends: suspend/suspend_advanced suspend/cpu_before_suspend
+_description: Check all CPUs are online after resuming.
+command: cpuinfo_resource | diff $CHECKBOX_DATA/cpuinfo_before_suspend -
+
+plugin: shell
+name: suspend/memory_after_suspend
+requires:
+ package.name == 'linux'
+depends: suspend/suspend_advanced suspend/memory_before_suspend
+_description:
+ Check that all memory is available after resuming from suspend.
+command: meminfo_resource | diff $CHECKBOX_DATA/meminfo_before_suspend -
+
+plugin: manual
+name: suspend/display_after_suspend
+requires:
+ package.name == 'linux'
+depends: suspend/suspend_advanced
+_description:
+ Does the display work normally after resuming from suspend?
+
+plugin: shell
+name: suspend/wireless_after_suspend
+depends: suspend/suspend_advanced suspend/wireless_before_suspend
+command: nmcli -t -f DEVICES con status >> $CHECKBOX_DATA/iface && connect_wireless && internet_test --interface=`nmcli dev list | grep -B 1 wireless | grep GENERAL.DEVICE | awk '{print $2}'` && reconnect `cat $CHECKBOX_DATA/iface`
+_description:
+ This test checks that the wireless interface is working after suspending the system. It
+ disconnects all interfaces and then connects to the wireless interface and checks that the
+ connection is working as expected.
+
+plugin: shell
+name: suspend/bluetooth_detect_after_suspend
+depends: suspend/suspend_advanced bluetooth/detect-output
+requires: package.name == 'bluez'
+command: grep -q `hcitool dev | tail -n+2 | awk '{print $2}'` $CHECKBOX_DATA/bluetooth_address 
+_description:
+ This test grabs the hardware address of the bluetooth adapter after suspend and compares it to the address grabbed before suspend.
+
+plugin: shell
+name: suspend/bluetooth_obex_after_suspend
+depends: suspend/suspend_advanced suspend/bluetooth_obex_before_suspend
+requires: package.name == 'bluez' and package.name == 'obexd-client'
+command: obex_send $BTDEVADDR $CHECKBOX_SHARE/data/images/JPEG_Color_Image_Ubuntu.jpg
+_description:
+ This test sends an image to the device specified by the BTDEVADDR environment variable.
+
+plugin: manual
+name: suspend/bluetooth_obex_after_suspend_manual
+depends: suspend/suspend_advanced suspend/bluetooth_obex_before_suspend_manual
+requires: package.name == 'bluez' and package.name == 'obexd-client'
+command: obex_send `bluetooth_scan` $CHECKBOX_SHARE/data/images/JPEG_Color_Image_Ubuntu.jpg
+_description:
+ This test will send the image 'JPEG_Color_Image_Ubuntu.jpg' to a specified device.
+  .
+  Select Test and you will be prompted to enter the Bluetooth device name of a device that can accept file transfers. It may take a few moments after entering the name for the file to begin sending. Accept any prompts that appear on both devices.
+
+plugin: manual
+name: suspend/cycle_resolutions_after_suspend
+requires: package.name == 'xorg'
+depends: suspend/suspend_advanced graphics/xrandr_cycle
+_description:
+ This test will check to make sure that supported video modes work after a suspend and resume.  Select Test to begin.
+command: xrandr_cycle --keyword=after_suspend
+
+plugin: shell
+name: suspend/cycle_resolutions_after_suspend_auto
+requires: package.name == 'xorg'
+depends: suspend/suspend_advanced graphics/xrandr_cycle
+_description:
+ This test will check to make sure supported video modes work after a suspend and resume.
+ This is done automatically by taking screenshots and uploading them as an attachment.
+command: xrandr_cycle --keyword=after_suspend
+
+plugin: attachment
+name: suspend/xrandr_screens_after_suspend.tar.gz
+depends: suspend/cycle_resolutions_after_suspend_auto
+command: [ -e $CHECKBOX_DATA/xrandr_screens_after_suspend.tgz ] && cat $CHECKBOX_DATA/xrandr_screens_after_suspend.tgz 
+
+plugin: manual
+name: suspend/usb_storage_after_suspend
+depends: suspend/suspend_advanced
+command: usb_test -t
+_description:
+ This will test that USB functionality is restored after a suspend and resume cycle.
+ 1. Plug in at least one USB storage device if one is not already connected.
+ 2. Click Test to begin.
+ .
+ If the test is successful, you'll notice that Yes is now selected. Otherwise, No shoud be selected.
+
+plugin: shell
+name: suspend/record_playback_after_suspend
+depends: suspend/suspend_advanced
+requires:
+ device.category == 'AUDIO'
+ package.name == 'sox'
+ package.name == 'alsa-base'
+command: audio_test
+_description:
+ This will check to make sure that your audio device works properly after a suspend and resume.  This may work fine with speakers and onboard microphone, however, it works best if used with a cable connecting the audio-out jack to the audio-in jack.
+
+plugin: shell
+name: suspend/suspend_advanced_auto
+depends: power-management/rtc networking/detect suspend/cpu_before_suspend suspend/memory_before_suspend
+requires: package.name == 'pm-utils'
+_description:
+ Automatic power management Suspend and Resume test
+ .
+ Select test and your system will suspend for about 30 - 60 seconds. If your system does not wake itself up after 60 seconds, please press the power button momentarily to wake the system manually. If your system fails to wake at all and must be rebooted, restart System Testing after reboot and mark this test as Failed.
+user: root
+command: sleep_test -d
+
+plugin: shell
+name: suspend/wake_on_lan
+depends: power-management/rtc suspend/suspend_advanced 
+requires: package.name == 'pm-utils' and package.name == 'util-linux'
+_description:
+ This automatically tests Wake-on-LAN capability with the aid of a suitably configured server. During this process the system will suspend, then automatically wake up after no more than 5 minutes.
+user: root
+command: wake_on_lan_test ${WAKE_ON_LAN_URL} --debug
+
