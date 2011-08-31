@@ -1,13 +1,8 @@
-plugin: manual
+plugin: shell 
 name: usb/detect
 requires: package.name == 'linux'
 command: lsusb | sed 's/.*\(ID .*\)/\1/' | head -n 4
-_description:
- The following USB controllers were detected:
- .
- $output
- .
- Is this correct?
+_description: Detects and shows USB devices attached to this system.
 
 plugin: manual
 name: usb/disk_detect

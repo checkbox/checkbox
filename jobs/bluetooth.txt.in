@@ -1,12 +1,9 @@
-plugin: manual
+plugin: shell 
 name: bluetooth/detect
 requires: package.name == 'bluez'
-command: hcitool dev | tail -n+2 | awk '{print $2}'
+command: hcitool dev | tail -n+2 | awk '{print $2}' |grep -E "^([0-9a-fA-F]{2}\:){5}[0-9a-fA-F]{2}$"
 _description:
- The address of your Bluetooth device is:
- $output
- .
- Is this correct?
+ Output address of detected Bluetooth device, if any, or exits with error if none is found.
 
 plugin: shell
 name: bluetooth/detect-output
@@ -34,7 +31,7 @@ _description:
 
 plugin: manual
 name: bluetooth/file-transfer
-depends: bluetooth/browse-files
+depends: bluetooth/browse-files bluetooth/detect
 _description:
  Bluetooth file transfer procedure:
  1.- Make sure that you're able to browse the files in your mobile device

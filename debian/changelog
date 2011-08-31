@@ -1,5 +1,8 @@
 checkbox (0.12.5) oneiric; urgency=low
 
+  [Ara Pulido]
+  * Created a "suspend" suite and renamed relevant tests.
+
   [Brendan Donegan]
   * Removed redundant tests in power-management suite.
   * Fixed dependencies in power-management suite.
@@ -15,7 +18,6 @@ checkbox (0.12.5) oneiric; urgency=low
   [Jeff Lane]
   * Added new USB storage transfer test
   * Re-worked and added automated audio test
-  * Use the renamed gst-launch-0.10 (LP: #837511)
 
   [Marc Tardif]
   * Added WIRELESS category to udev parser.

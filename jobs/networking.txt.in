@@ -1,6 +1,6 @@
 plugin: manual
 name: networking/detect
-requires: device.category == 'NETWORK'
+requires: device.category == 'NETWORK' or device.category == 'WIRELESS'
 command: network_test
 _description:
  Detecting your network controller(s):
@@ -9,16 +9,11 @@ _description:
  .
  Is this correct?
 
-plugin: manual
+plugin: shell 
 name: networking/internet
 depends: networking/detect
 command: internet_test
-_description:
- Testing your connection to the Internet:
- .
- $output
- .
- Is this correct?
+_description: Tests whether the system has a working Internet connection.
 
 plugin: local
 name: networking/info
@@ -37,26 +32,6 @@ command:
   .
   Is this correct?
  EOF
-
-plugin: shell
-name: networking/wireless_scanning
-user: root
-requires: package.name == 'wireless-tools'
-command: network_wireless_test
-_description: Wireless scanning test.
-
-plugin: manual
-name: networking/wireless_connection
-command: network_check
-requires: device.category == 'NETWORK'
-_description:
- Wireless network connection procedure:
- 1.- Click on the Network Manager applet
- 2.- Select a network below the 'Wireless networks' section
- 3.- Notify OSD should confirm that the connection has been established
- 4.- Select Test to verify that it's possible to establish an HTTP connection
- .
- Was the connection correctly established?
 
 plugin: manual
 name: networking/wired_connection
