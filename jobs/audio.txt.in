@@ -1,15 +1,10 @@
-plugin: manual
+plugin: shell 
 name: audio/list_devices
 requires:
  device.category == 'AUDIO'
  package.name == 'alsa-base'
 command: cat /proc/asound/cards
-_description:
- Detecting your sound device(s):
- .
- $output
- .
- Is this correct?
+_description: Test to detect audio devices
 
 plugin: manual
 name: audio/playback_auto
@@ -19,9 +14,13 @@ requires:
  package.name == 'alsa-base' and package.name == 'python-gst0.10'
 command: gst_pipeline_test -t 2 'audiotestsrc wave=sine freq=512 ! audioconvert ! audioresample ! gconfaudiosink'
 _description:
- Select Test to play a sound on the automatically detected playback device.
- .
- Did you hear a sound and was that sound free of any distortion, clicks or other strange noises?
+ PURPOSE:
+     This test will check that internal speakers work correctly
+ STEPS:
+     1. Make sure that no external headphone is connected
+     2. Click the Test button to play a sound to your audio device
+ VERIFICATION:
+     Did you hear a sound in the internal speakers?
 
 plugin: manual
 name: audio/playback_headphones
@@ -31,11 +30,13 @@ requires:
  package.name == 'alsa-base' and package.name == 'python-gst0.10'
 command: gst_pipeline_test -t 2 'audiotestsrc wave=sine freq=512 ! audioconvert ! audioresample ! gconfaudiosink'
 _description:
- Please connect a pair of headphones to your audio device.
- .
- Select Test to play a sound on the automatically detected playback device.
- .
- Did you hear a sound through the headphones and did the sound play without any distortion, clicks or other strange noises from your headphones?
+ PURPOSE:
+     This test will check that headphones connector works correctly
+ STEPS:
+     1. Connect a pair of headphones to your audio device
+     2. Click the Test button to play a sound to your audio device
+ VERIFICATION:
+     Did you hear a sound through the headphones and did the sound play without any distortion, clicks or other strange noises from your headphones?
 
 plugin: manual
 name: audio/alsa_record_playback_internal
@@ -45,9 +46,14 @@ requires:
  package.name == 'alsa-base'
 command: alsa_record_playback
 _description:
- Disconnect any external microphones that you have plugged in.  Select Test, then speak into your internal microphone.  After a few seconds, your speech will be played back to you.
- .
- Did you hear your speech played back?
+ PURPOSE:
+     This test will check that internal recording works correctly
+ STEPS:
+     1. Disconnect any external microphones that you have plugged in
+     2. Select Test, then speak into your internal microphone
+     3. After a few seconds, your speech will be played back to you.
+ VERIFICATION:
+     Did you hear your speech played back?
 
 plugin: manual
 name: audio/alsa_record_playback_external
@@ -57,9 +63,14 @@ requires:
  package.name == 'alsa-base'
 command: alsa_record_playback
 _description:
- Connect a microphone to your microphone port.  Select Test, then speak into the microphone.  After a few seconds, your speech will be played back to you.
- .
- Did you hear your speech played back?
+ PURPOSE:
+     This test will check that external recording works correctly
+ STEPS:
+     1. Connect a microphone to your microphone port
+     2. Select Test, then speak into the external microphone
+     3. After a few seconds, your speech will be played back to you
+ VERIFICATION:
+     Did you hear your speech played back?
 
 plugin: manual
 name: audio/alsa_record_playback_usb
@@ -68,9 +79,17 @@ requires:
  package.name == 'alsa-base'
 command: alsa_record_playback
 _description:
- Connect a USB audio device to your system.  Then open the volume control application by left-clicking on the speaker icon in the panel and selecting "Sound Preferences".  Select the "Input" tab and choose your USB device.  Select the "Output" tab and choose your USB device.  When you are done, select Test, then speak into the microphone.  After a few seconds, your speech will be played back to you.
- .
- Did you hear your speech played back?
+ PURPOSE:
+     This test will check that a USB audio device works correctly
+ STEPS:
+     1. Connect a USB audio device to your system
+     2. Open the volume control application by left-clicking on the speaker icon in the panel and selecting "Sound Preferences"
+     3. Select the "Input" tab and choose your USB device
+     4. Select the "Output" tab and choose your USB device
+     5. Select Test, then speak into the microphone
+     6. After a few seconds, your speech will be played back to you
+ VERIFICATION:
+     Did you hear your speech played back through the USB headphones?
 
 plugin: shell
 name: audio/alsa_record_playback_automated
