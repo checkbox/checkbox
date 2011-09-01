@@ -2,11 +2,14 @@ plugin: manual
 name: memory
 command: memory/info
 _description:
- The following amount of memory was detected:
- .
- $output
- .
- Is this correct?
+ PURPOSE:
+     This test checks the amount of memory that it is detected
+ STEPS:
+     1. Click Test to see the amount of detected memory
+ INFO:
+     $output
+ VERIFICATION:
+     Is the amount of detected memory correct?
 
 plugin: shell
 name: memory/check
