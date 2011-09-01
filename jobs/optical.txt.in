@@ -1,16 +1,11 @@
-plugin: manual
+plugin: shell
 name: optical/detect
 requires: device.category == 'CDROM' 
 command:
  cat <<'EOF' | run_templates -t -s 'udev_resource | filter_templates -w "category=CDROM"' | sed '/^$/d'
  $vendor $product
  EOF
-_description:
- The following optical drives were detected:
- .
- $output
- .
- Is this correct?
+_description: Test to detect the optical drives
 
 plugin: local
 name: optical/read
@@ -25,9 +20,13 @@ command:
  user: root
  command: optical_read_test /dev/`ls /sys$path/block`
  _description:
-  Please insert appropriate non-blank media into your optical drive(s) and click "Test" to automatically test reading.
-  .
-  The test result will be updated when the test is complete.
+  PURPOSE:
+      This test will check your optical devices
+  STEPS:
+      1. Insert appropriate non-blank media into your optical drive(s)
+      2. Click "Test" to automatically test reading
+  VERIFICATION:
+      Did it read correctly?
  EOF
 
 plugin: manual
@@ -35,51 +34,63 @@ name: optical/cdrom-write
 depends: optical/detect
 requires: device.category == 'CDROM'
 _description:
- The detected optical drive seems to support writing. Enter a blank CDROM \
- into your drive and try writing to it.
- .
- Does writing work?
+ PURPOSE:
+     This test will check your CDROM writing capabilities
+ STEPS:
+     1. Enter a blank CDROM into your drive
+     2. Write something in the CDROM
+     3. Read the newly written CDROM
+ VERIFICATION:
+     Was the data correctly written?
 
 plugin: manual
 name: optical/cdrom-audio-playback
 depends: optical/read
 _description:
- CD audio playback procedure:
- 1.- Insert an audio cd in your optical drive.
- 2.- An icon should appear on the desktop.
- 3.- Right-click on the icon and select "Open with Rhythmbox".
- 4.- Select the CD as the playback source and press play button.
- 5.- The music should reproduce.
- 6.- Stop music reproduction after some time.
- 7.- Right click on the desktop icon and select "Eject Volume".
- 8.- The CD should be ejected and the icon removed from the desktop.
- .
- Did all the steps work?
+ PURPOSE:
+     This test will check your CD audio playback capabilities
+ STEPS:
+     1. Insert an audio CD in your optical drive
+     2. An icon should appear on the desktop
+     3. Right-click on the icon and select "Open with Banshee"
+     4. Select the CD as the playback source and press play button
+     5. The music should reproduce
+     6. Stop music reproduction after some time
+     7. Right click on the desktop icon and select "Eject Volume"
+     8. The CD should be ejected and the icon removed from the desktop
+ VERIFICATION:
+     Did all the steps work?
 
 plugin: manual
 name: optical/dvd-write
 depends: optical/detect
 requires: device.category == 'CDROM'
 _description:
- The detected optical drive seems to support writing. Enter a blank DVD \
- into your drive and try writing to it.
- .
- Does writing work?
+ PURPOSE:
+     This test will check your DVD writing capabilities
+ STEPS:
+     1. Enter a blank DVD into your drive
+     2. Write something in the DVD
+     3. Read the newly written DVD
+ VERIFICATION:
+     Was the data correctly written?
 
 plugin: manual
 name: optical/dvd_movie_playback
 depends: optical/read
 _description:
- DVD movie playback procedure:
- 1.- Insert a DVD that contains any movie in your optical drive.
- 2.- A window should appear with some actions that you may choose. Select 'Open Movie Player'.
- 3.- The player should be opened and the movie should reproduce.
- 4.- Stop movie reproduction after some time.
- 5.- An icon should appear in the desktop.
- 6.- Right click on the icon and select "Eject Volume".
- 7.- The DVD should be ejected and the icon removed from the desktop.
- .
- Did all the steps work?
+ PURPOSE:
+     This test will check your DVD movie playback capabilities
+ STEPS:
+     1. Insert a DVD that contains any movie in your optical drive
+     2. A window should appear with some actions that you may choose. Select "Open Movie Player"
+     3. The player should be opened and the movie should reproduce
+     4. Stop movie reproduction after some time
+     5. An icon should appear in the desktop
+     6. Right click on the icon and select "Eject Volume"
+     7. The DVD should be ejected and the icon removed from the desktop
+ VERIFICATION:
+     Did all the steps work?
 
 plugin: manual
 name: optical/dvd_playback
@@ -88,6 +99,10 @@ requires:
  device.category == 'CDROM'
  package.name == 'totem'
 _description:
- Insert a DVD.  Then select Test to play the DVD in Totem.
- .
- Did the file play?
+ PURPOSE:
+     This test will check your DVD  playback capabilities
+ STEPS:
+     1. Insert a DVD that contains any movie in your optical drive
+     2. Click "Test" to play the DVD in Totem
+ VERIFICATION:
+     Did the file play?
