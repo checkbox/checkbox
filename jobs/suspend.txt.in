@@ -47,20 +47,29 @@ name: suspend/bluetooth_obex_before_suspend_manual
 requires: package.name == 'bluez' and package.name == 'obexd-client'
 command: obex_send `bluetooth_scan` $CHECKBOX_SHARE/data/images/JPEG_Color_Image_Ubuntu.jpg
 _description:
- This test will send the image 'JPEG_Color_Image_Ubuntu.jpg' to a specified device.
- .
- Select Test and you will be prompted to enter the Bluetooth device name of a device that can accept file transfers. It may take a few moments after entering the name for the file to begin sending. Accept any prompts that appear on both devices.
+ PURPOSE:
+     This test will send the image 'JPEG_Color_Image_Ubuntu.jpg' to a specified device
+ STEPS:
+     1. Click "Test" and you will be prompted to enter the Bluetooth device name of a device that can accept file transfers (It may take a few moments after entering the name for the file to begin sending)
+     2. Accept any prompts that appear on both devices
+ VERIFICATION:
+     Was the data correctly transferred?
 
 plugin: manual
 name: suspend/suspend_advanced
 depends: power-management/rtc networking/detect suspend/resolution_before_suspend suspend/wireless_before_suspend bluetooth/detect-output suspend/bluetooth_mouse_before_suspend suspend/cpu_before_suspend suspend/memory_before_suspend
 requires: package.name == 'pm-utils'
-_description:
- Power management Suspend and Resume test
- .
- Select Test and your system will suspend for about 30 - 60 seconds. If your system does not wake itself up after 60 seconds, please press the power button momentarily to wake the system manually. If your system fails to wake at all and must be rebooted, restart System Testing after reboot and mark this test as Failed.
 user: root
 command: sleep_test -d
+_description:
+ PURPOSE:
+     This test will check suspend and resume
+ STEPS:
+     1. Click "Test" and your system will suspend for about 30 - 60 seconds
+     2. If your system does not wake itself up after 60 seconds, please press the power button momentarily to wake the system manually
+     3. If your system fails to wake at all and must be rebooted, restart System Testing after reboot and mark this test as Failed
+ VERIFICATION:
+     Did your system suspend and resume correctly?
 
 plugin: shell
 name: suspend/network_after_suspend
@@ -106,7 +115,10 @@ requires:
  package.name == 'linux'
 depends: suspend/suspend_advanced
 _description:
- Does the display work normally after resuming from suspend?
+ PURPOSE:
+     This test will check that the display is correct after suspend and resume
+ VERIFICATION:
+     Does the display work normally after resuming from suspend?
 
 plugin: shell
 name: suspend/wireless_after_suspend
@@ -139,17 +151,26 @@ depends: suspend/suspend_advanced suspend/bluetooth_obex_before_suspend_manual
 requires: package.name == 'bluez' and package.name == 'obexd-client'
 command: obex_send `bluetooth_scan` $CHECKBOX_SHARE/data/images/JPEG_Color_Image_Ubuntu.jpg
 _description:
- This test will send the image 'JPEG_Color_Image_Ubuntu.jpg' to a specified device.
-  .
-  Select Test and you will be prompted to enter the Bluetooth device name of a device that can accept file transfers. It may take a few moments after entering the name for the file to begin sending. Accept any prompts that appear on both devices.
+ PURPOSE:
+     This test will send the image 'JPEG_Color_Image_Ubuntu.jpg' to a specified device
+ STEPS:
+     1. Click "Test" and you will be prompted to enter the Bluetooth device name of a device that can accept file transfers (It may take a few moments after entering the name for the file to begin sending)
+     2. Accept any prompts that appear on both devices
+ VERIFICATION:
+     Was the data correctly transferred?
 
 plugin: manual
 name: suspend/cycle_resolutions_after_suspend
 requires: package.name == 'xorg'
 depends: suspend/suspend_advanced graphics/xrandr_cycle
-_description:
- This test will check to make sure that supported video modes work after a suspend and resume.  Select Test to begin.
 command: xrandr_cycle --keyword=after_suspend
+_description:
+ PURPOSE:
+     This test will cycle through the detected display modes
+ STEPS:
+     1. Click "Test" and the display will cycle trough the display modes
+ VERIFICATION:
+     Did your display look fine in the detected mode?
 
 plugin: shell
 name: suspend/cycle_resolutions_after_suspend_auto
@@ -170,11 +191,13 @@ name: suspend/usb_storage_after_suspend
 depends: suspend/suspend_advanced
 command: usb_test -t
 _description:
- This will test that USB functionality is restored after a suspend and resume cycle.
- 1. Plug in at least one USB storage device if one is not already connected.
- 2. Click Test to begin.
- .
- If the test is successful, you'll notice that Yes is now selected. Otherwise, No shoud be selected.
+ PURPOSE:
+     This will test that USB functionality is restored after a suspend and resume cycle
+ STEPS:
+     1. Plug in at least one USB storage device if one is not already connected
+     2. Click "Test" to start
+ VERIFICATION:
+     Automatically verified
 
 plugin: shell
 name: suspend/record_playback_after_suspend
