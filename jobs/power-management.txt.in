@@ -1,17 +1,24 @@
 plugin: manual
 name: power-management/shutdown-boot
 _description:
- Shutdown/boot cycle verification procedure:
- 1.- Shutdown your machine
- 2.- Boot your machine
- 3.- Repeat steps 1 and 2 at least 5 times
- .
- Note: This test case has to be executed manually before checkbox execution
+ PURPOSE:
+     This test will check your system shutdown/booting cycle
+ STEPS:
+     1. Shutdown your machine
+     2. Boot your machine
+     3. Repeat steps 1 and 2 at least 5 times
+ VERIFICATION:
+     Did the system shutdown and rebooted correctly?
 
 plugin: manual
 name: power-management/lid
 _description:
- Does closing your laptop lid cause your screen to blank?
+ PURPOSE:
+     This test will check your lid sensors
+ STEPS:
+     1. Close your laptop lid
+ VERIFICATION:
+     Did the screen go blank?
 
 plugin: manual
 name: power-management/lid_close
@@ -23,9 +30,13 @@ command:
  done
  exit 1
 _description:
- Click the Test button, then close and open the lid.
- .
- Did the screen turn off while the lid was closed?
+ PURPOSE:
+     This test will check your lid sensors
+ STEPS:
+     1. Click "Test"
+     2. Close and open the lid
+ VERIFICATION:
+     Did the screen turn off while the lid was closed?
 
 plugin: manual
 name: power-management/lid_open
@@ -37,11 +48,15 @@ command:
  done
  exit 1
 _description:
- Click the Test button, then close the lid and wait 5 seconds.
- .
- Open the lid.
- .
- Did the screen turn back on when the lid was opened?
+ PURPOSE:
+     This test will check your lid sensors
+ STEPS:
+     1. Click "Test"
+     2. Close the lid
+     3. Wait 5 seconds with the lid closed
+     4. Open the lid
+ VERIFICATION:
+     Did the screen turn back on when the lid was opened?
 
 plugin: shell
 name: power-management/rtc
