@@ -14,6 +14,8 @@ checkbox (0.12.5) oneiric; urgency=low
   * Quote command to obtain bluetooth address, to avoid hanging if 
     a device is not present (LP: #836756).
   * Added BLUETOOTH category to udev parser.
+  * Removed some tests from default whitelist.
+  * Fixed dependencies for keys/sleep.
   
   [Jeff Lane]
   * Added new USB storage transfer test
@@ -22,7 +24,7 @@ checkbox (0.12.5) oneiric; urgency=low
   [Marc Tardif]
   * Added WIRELESS category to udev parser.
 
- -- Daniel Manrique <daniel.manrique@canonical.com>  Mon, 29 Aug 2011 11:00:40 -0400
+ -- Daniel Manrique <daniel.manrique@canonical.com>  Thu, 01 Sep 2011 06:55:01 -0400
 
 checkbox (0.12.4) oneiric; urgency=low
 

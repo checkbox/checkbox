@@ -13,7 +13,6 @@ audio/alsa_record_playback_external
 audio/alsa_record_playback_internal
 audio/alsa_record_playback_usb
 audio/playback_auto
-audio/playback_headphones
 __bluetooth__
 bluetooth/detect
 bluetooth/detect-output
@@ -25,7 +24,6 @@ camera/video
 __cpu__
 cpu/offlining
 cpu/topology
-cpu/frequency_governors
 cpu/clocktest
 __disk__
 disk/benchmarks
@@ -51,7 +49,6 @@ graphics/display
 graphics/glxgears
 graphics/resolution
 graphics/minimum_resolution
-graphics/xrandr_cycle
 graphics/xrandr_detect_modes
 __info__
 info/codecs_attachment
@@ -78,16 +75,8 @@ keys/sleep
 keys/volume
 keys/wireless
 __mediacard__
-mediacard/mmc
-mediacard/mmc_after_suspend
-mediacard/ms
-mediacard/ms_after_suspend
-mediacard/msp
-mediacard/msp_after_suspend
 mediacard/sd
 mediacard/sd_after_suspend
-mediacard/sdhc
-mediacard/sdhc_after_suspend
 __memory__
 memory/info
 memory/check
@@ -117,7 +106,6 @@ suspend/audio_after_suspend
 suspend/audio_before_suspend
 suspend/bluetooth_detect_after_suspend
 suspend/bluetooth_detect_before_suspend
-suspend/cycle_resolutions_after_suspend
 suspend/memory_before_suspend
 suspend/memory_after_suspend
 suspend/network_after_suspend
@@ -127,8 +115,6 @@ suspend/resolution_before_suspend
 suspend/suspend_advanced
 suspend/wireless_after_suspend
 suspend/wireless_before_suspend
-__hibernate__
-power-management/hibernate_advanced
 __usb__
 usb/detect
 usb/storage-transfer
