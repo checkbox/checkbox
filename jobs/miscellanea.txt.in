@@ -6,11 +6,12 @@ requires:
 user: root
 command: cycle_vts
 _description:
- Select Test to switch to another virtual terminal and then back to X.  Your screen will change temporarily to a text console and then switch back to your current session.
- .
- Note that this test may require you to enter your password.
- .
- Did the screen change temporarily to a text console?
+ PURPOSE:
+     This test will check in the system can switch to a virtual terminal and back to X
+ STEPS:
+     1. Click "Test" to switch to another virtual terminal and then back to X
+ VERIFICATION:
+     Did your screen change temporarily to a text console and then switch back to your current session?
 
 plugin: shell
 name: miscellanea/fwts_test
@@ -39,6 +40,7 @@ _description:
 plugin: manual
 name: miscellanea/is_laptop
 _description:
- Is your system a laptop (or netbook)?
-
-
+ PURPOSE:
+     This test is just to select the type of system
+ VERIFICATION:
+     Is your system a laptop (or netbook)?
