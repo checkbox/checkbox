@@ -1,52 +1,71 @@
 plugin: manual
 name: monitor/vga
 _description:
- If your system does not have a VGA port, please skip this test.
- .
- Connect a display (if not already connected) to the VGA port on your system. Is the image displayed correctly?
+ PURPOSE:
+     This test will check your VGA port. Skip if your system does not have a VGA port
+ STEPS:
+     1. Connect a display (if not already connected) to the VGA port on your system
+ VERIFICATION:
+     Did the image displayed correctly in both screens?
 
 plugin: manual
 name: monitor/dvi
 _description:
- If your system does not have a DVI port, please skip this test.
- .
- Connect a display (if not already connected) to the DVI port on your system. Is the image displayed correctly?
+ PURPOSE:
+     This test will check your DVI port. Skip if your system does not have a DVI port
+ STEPS:
+     1. Connect a display (if not already connected) to the DVI port on your system
+ VERIFICATION:
+     Did the image displayed correctly in both screens?
 
 plugin: manual
 name: monitor/displayport
 _description:
- If your system does not have DisplayPort, please skip this test.
- .
- Connect a display (if not already connected) to the DisplayPort on your system. Is the image displayed correctly?
+ PURPOSE:
+     This test will check your DisplayPort port. Skip if your system does not have a DisplayPort port
+ STEPS:
+     1. Connect a display (if not already connected) to the DisplayPort port on your system
+ VERIFICATION:
+     Did the image displayed correctly in both screens?
 
 plugin: manual
 name: monitor/hdmi
 _description:
- If your system does not have a HDMI port, please skip this test.
- .
- Connect a display (if not already connected) to the HDMI port on your system. Is the image displayed correctly?
+ PURPOSE:
+     This test will check your HDMI port. Skip if your system does not have a HDMI port
+ STEPS:
+     1. Connect a display (if not already connected) to the HDMI port on your system
+ VERIFICATION:
+     Did the image displayed correctly in both screens?
 
 plugin: manual
 name: monitor/svideo
 _description:
- If your system does not have a S-VIDEO port, please skip this test.
- .
- Connect a display (if not already connected) to the S-VIDEO port on your system. Is the image displayed correctly?
+ PURPOSE:
+     This test will check your S-VIDEO port. Skip if your system does not have a S-VIDEO port
+ STEPS:
+     1. Connect a display (if not already connected) to the S-VIDEO port on your system
+ VERIFICATION:
+     Did the image displayed correctly in both screens?
 
 plugin: manual
 name: video-rca
 _description:
- If your system does not have a RCA port, please skip this test.
- .
- Connect a display (if not already connected) to the RCA port on your system. Is the image displayed correctly?
+ PURPOSE:
+     This test will check your RCA port. Skip if your system does not have a RCA port
+ STEPS:
+     1. Connect a display (if not already connected) to the RCA port on your system
+ VERIFICATION:
+     Did the image displayed correctly in both screens?
 
 plugin: manual
 name: monitor/powersaving
 command: xset dpms force off
 _description:
- Monitor power saving verification procedure:
-  1.- Select Test to try the power saving capabilities of your monitor.
-  2.- The monitor should go blank.
-  3.- Press any key or move the mouse to recover.
- .
- Did the monitor go blank?
+ PURPOSE:
+     This test will check your monitor power saving capabilities
+ STEPS:
+     1. Click "Test" to try the power saving capabilities of your monitor
+     2. Press any key or move the mouse to recover
+ VERIFICATION:
+     Did the the monitor went blank and on again?
