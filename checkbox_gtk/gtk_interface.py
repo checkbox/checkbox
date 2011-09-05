@@ -78,7 +78,9 @@ class GTKInterface(UserInterface):
 
         # Set background color for head
         eventbox_head = self._get_widget("eventbox_head")
-        color = Gdk.color_parse("#F0EBE2")[1]
+        color = Gdk.color_parse("#F0EBE2")
+        #HACK: LP #839675
+        if isinstance(color, tuple): color = color[1]
         eventbox_head.modify_bg(Gtk.StateType.NORMAL, color)
 
         # Set and apply initial/default dialog title
