@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-07-07 12:32-0400\n"
-"PO-Revision-Date: 2011-08-15 19:52+0000\n"
+"PO-Revision-Date: 2011-09-04 18:15+0000\n"
 "Last-Translator: Pavel Borecki <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-08-16 04:32+0000\n"
-"X-Generator: Launchpad (build 13687)\n"
+"X-Launchpad-Export-Date: 2011-09-05 04:44+0000\n"
+"X-Generator: Launchpad (build 13830)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:2
 msgid "Ne_xt"
@@ -52,16 +52,14 @@ msgid "Test and report system information"
 msgstr "Otestovat a nahlásit informace o systému"
 
 #. description
-#: ../jobs/audio.txt.in:7 ../jobs/disk.txt.in:4 ../jobs/graphics.txt.in:113
-#: ../jobs/memory.txt.in:4 ../jobs/networking.txt.in:16
-#: ../jobs/optical.txt.in:8 ../jobs/usb.txt.in:17
+#: ../jobs/audio.txt.in:7 ../jobs/graphics.txt.in:113 ../jobs/memory.txt.in:4
+#: ../jobs/networking.txt.in:5 ../jobs/optical.txt.in:8 ../jobs/usb.txt.in:12
 msgid "$output"
 msgstr "$output"
 
 #. description
-#: ../jobs/audio.txt.in:7 ../jobs/bluetooth.txt.in:5 ../jobs/disk.txt.in:4
-#: ../jobs/graphics.txt.in:113 ../jobs/memory.txt.in:4
-#: ../jobs/networking.txt.in:16 ../jobs/optical.txt.in:8 ../jobs/usb.txt.in:5
+#: ../jobs/audio.txt.in:7 ../jobs/graphics.txt.in:113 ../jobs/memory.txt.in:4
+#: ../jobs/networking.txt.in:5 ../jobs/optical.txt.in:8
 msgid "Is this correct?"
 msgstr "Je to správně?"
 
@@ -167,7 +165,7 @@ msgstr "_Dokončit"
 msgid "Gathering information from your system..."
 msgstr "Shromažďování informací z vašeho systému..."
 
-#: ../plugins/launchpad_exchange.py:141
+#: ../plugins/launchpad_exchange.py:147
 #, python-format
 msgid ""
 "Failed to contact server. Please try\n"
@@ -184,7 +182,7 @@ msgstr ""
 "přímo do systémové databáze:\n"
 "https://launchpad.net/+hwdb/+submit"
 
-#: ../plugins/launchpad_exchange.py:150
+#: ../plugins/launchpad_exchange.py:156
 msgid ""
 "Failed to upload to server,\n"
 "please try again later."
@@ -192,7 +190,7 @@ msgstr ""
 "Nepodařilo se nahrát soubor na server,\n"
 "zkuste to prosím později."
 
-#: ../plugins/launchpad_exchange.py:162
+#: ../plugins/launchpad_exchange.py:168
 msgid "Information not posted to Launchpad."
 msgstr "Informace nebyly na Launchpad zaslány."
 
@@ -267,7 +265,7 @@ msgstr "_Vybrat vše"
 #. description
 #: ../jobs/apport.txt.in:5
 msgid "Test that the /var/crash directory doesn't contain anything."
-msgstr ""
+msgstr "Ověřte, zda je adresář /var/crash prázdný."
 
 #. description
 #: ../jobs/audio.txt.in:7
@@ -344,17 +342,21 @@ msgstr ""
 "Po několika sekundách vám bude vaše řeč přehrána."
 
 #. description
-#: ../jobs/audio.txt.in:70 ../jobs/power-management.txt.in:251
+#: ../jobs/audio.txt.in:70
 msgid "Did you hear your speech played back?"
-msgstr "Slyšeli jste svoji řeč?"
+msgstr "Slyšeli jste se?"
 
 #. description
-#: ../jobs/audio.txt.in:81
+#: ../jobs/audio.txt.in:82
 msgid ""
 "Play back a sound on the default output and listen for it on the \\ default "
 "input.  This makes the most sense when the output and input \\ are directly "
 "connected, as with a patch cable."
 msgstr ""
+"Přehrát zvuk přes výchozí výstup (konektor), přičemž se očekává, že bude "
+"zachycen na \\ výchozím vstupu. Tento test je nejlépe provádět při "
+"propojených konektorech výstupu a vstupu \\ zvukového signálu vhodným "
+"kabelem."
 
 #. description
 #: ../jobs/autotest.txt.in:3
@@ -367,12 +369,12 @@ msgid "The address of your Bluetooth device is: $output"
 msgstr "Adresa vašeho zařízení Bluetooth je: $output"
 
 #. description
-#: ../jobs/bluetooth.txt.in:15 ../jobs/graphics.txt.in:15
+#: ../jobs/bluetooth.txt.in:12 ../jobs/graphics.txt.in:15
 msgid "Automated test to store output in checkbox report"
-msgstr ""
+msgstr "Automatický test ukládající výstup do hlášení checkboxu."
 
 #. description
-#: ../jobs/bluetooth.txt.in:21
+#: ../jobs/bluetooth.txt.in:18
 msgid ""
 "Bluetooth browse files procedure: 1.- Enable bluetooth on any mobile device "
 "(PDA, smartphone, etc.) 2.- Click on the bluetooth icon in the menu bar 3.- "
@@ -382,9 +384,18 @@ msgid ""
 "icon and select browse files 7.- Authorize the computer to browse the files "
 "in the device if needed 8.- You should be able to browse the files"
 msgstr ""
+"Postup pro procházení souborů přes bluetooth: 1.- Povolte bluetooth na všech "
+"mobilních zařízeních (PDA, chytré telefony atp.) 2.- Klikněte na ikonu "
+"bluetoothu v liště nabídky 3.- Vyberte \"Nastavit nové zařízení\" 3.- "
+"Vyhledejte v seznamu své zařízení a vyberte jej 4.- Na zařízení napište kód "
+"PIN, který automaticky vybral průvodce 5.- Zařízení by se mělo připojit k "
+"počítači 6.- Klikněte pravým tlačítkem myši na ikonu bluetoothu a zvolte "
+"procházení souborů 7. Pokud je to třeba, povolte na zařízení, aby bylo možno "
+"procházet soubory  z počítače 8.- Nyní byste měli mít možnost procházet "
+"soubory"
 
 #. description
-#: ../jobs/bluetooth.txt.in:38
+#: ../jobs/bluetooth.txt.in:35
 msgid ""
 "Bluetooth file transfer procedure: 1.- Make sure that you're able to browse "
 "the files in your mobile device 2.- Copy a file from the computer to the "
@@ -399,7 +410,7 @@ msgstr ""
 " Ujistěte se, že soubor byl v pořádku zkopírován"
 
 #. description
-#: ../jobs/bluetooth.txt.in:53
+#: ../jobs/bluetooth.txt.in:50
 msgid ""
 "Bluetooth audio procedure: 1.- Enable the bluetooth headset 2.- Click on the "
 "bluetooth icon in the menu bar 3.- Select 'Setup new device' 4.- Look for "
@@ -408,9 +419,15 @@ msgid ""
 "computer 7.- Select Test to record for five seconds and reproduce in the "
 "bluetooth device"
 msgstr ""
+"Postup pro zprovoznění zvuku přes bluetooth: 1.- Zapněte sluchátka na "
+"bluetooth 2.- Klikněte na ikonu bluetoothu v liště nabídky 3.- Vyberte "
+"\"Nastavit nové zařízení\" 4.-Vyhledejte v seznamu své zařízení a vyberte "
+"jej 5.- Na zařízení napište kód PIN, který automaticky vybral průvodce 6.- "
+"Zařízení by se mělo připojit k počítači 7.- Zvolte Test, aby se zahájil "
+"pětisekundový záznam a přehrával se na zařízení připojeném přes bluetooth"
 
 #. description
-#: ../jobs/bluetooth.txt.in:69
+#: ../jobs/bluetooth.txt.in:66
 msgid ""
 "Bluetooth keyboard procedure: 1.- Enable the bluetooth keyboard 2.- Click on "
 "the bluetooth icon in the menu bar 3.- Select 'Setup new device' 4.- Look "
@@ -422,7 +439,7 @@ msgstr ""
 "vyberte jej 5.- Pro vložení textu zvolte Test"
 
 #. description
-#: ../jobs/bluetooth.txt.in:82
+#: ../jobs/bluetooth.txt.in:79
 msgid ""
 "Bluetooth mouse procedure: 1.- Enable the bluetooth mouse 2.- Click on the "
 "bluetooth icon in the menu bar 3.- Select 'Setup new device' 4.- Look for "
@@ -436,7 +453,7 @@ msgstr ""
 "tlačítkem nebo dvojité kliknutí"
 
 #. description
-#: ../jobs/bluetooth.txt.in:82 ../jobs/optical.txt.in:72 ../jobs/usb.txt.in:39
+#: ../jobs/bluetooth.txt.in:79 ../jobs/optical.txt.in:72 ../jobs/usb.txt.in:34
 msgid "Did all the steps work?"
 msgstr "Proběhly všechny kroky správně?"
 
@@ -514,6 +531,8 @@ msgid ""
 "Select 'Test' to play a video, and try pausing and resuming playback while "
 "the video is playing."
 msgstr ""
+"Zvolte 'Test' k přehrání videa a zkuste během něj přehrávání pozastavit a "
+"znovu spustit"
 
 #. description
 #: ../jobs/codecs.txt.in:46
@@ -537,77 +556,78 @@ msgstr ""
 #. description
 #: ../jobs/cpu.txt.in:15
 msgid "Test for clock jitter."
-msgstr ""
+msgstr "Zkouška časové odchylky hodin"
 
 #. description
 #: ../jobs/cpu.txt.in:23
 msgid "Test offlining CPUs in a multicore system."
-msgstr ""
+msgstr "Zkouška odpojování procesorů ve vícejádrovém systému"
 
 #. description
 #: ../jobs/cpu.txt.in:30
 msgid "Checks cpu topology for accuracy"
-msgstr ""
+msgstr "Zkontroluje se uspořádání procesorů"
 
 #. description
 #: ../jobs/cpu.txt.in:38
 msgid "Checks that CPU frequency governors are obeyed when set."
 msgstr ""
+"Pokud je zapnuto, kontroluje se, že se používá řízení frekvence procesorů"
 
 #. description
 #: ../jobs/daemons.txt.in:5
 msgid "Test if the atd daemon is running when the package is installed."
-msgstr ""
+msgstr "Zkontrolovat, zda běží démon apt, pokud je balíček nainstalován"
 
 #. description
 #: ../jobs/daemons.txt.in:11
 msgid "Test if the cron daemon is running when the package is installed."
-msgstr ""
+msgstr "Zkontrolovat, zda běží démon cron, pokud je balíček nainstalován"
 
 #. description
 #: ../jobs/daemons.txt.in:17
 msgid "Test if the cupsd daemon is running when the package is installed."
-msgstr ""
+msgstr "Zkontrolovat, zda běží démon cupsd, pokud je balíček nainstalován"
 
 #. description
 #: ../jobs/daemons.txt.in:23
 msgid "Test if the getty daemon is running when the package is installed."
-msgstr ""
+msgstr "Zkontrolovat, zda běží démon getty, pokud je balíček nainstalován"
 
 #. description
 #: ../jobs/daemons.txt.in:29
 msgid "Test if the init daemon is running when the package is installed."
-msgstr ""
+msgstr "Zkontrolovat, zda běží démon init, pokud je balíček nainstalován"
 
 #. description
 #: ../jobs/daemons.txt.in:35
 msgid "Test if the klogd daemon is running when the package is installed."
-msgstr ""
+msgstr "Zkontrolovat, zda běží démon klogd, pokud je balíček nainstalován"
 
 #. description
 #: ../jobs/daemons.txt.in:41
 msgid "Test if the nmbd daemon is running when the package is installed."
-msgstr ""
+msgstr "Zkontrolovat, zda běží démon nmbd, pokud je balíček nainstalován"
 
 #. description
 #: ../jobs/daemons.txt.in:47
 msgid "Test if the smbd daemon is running when the package is installed."
-msgstr ""
+msgstr "Zkontrolovat, zda běží démon smbd, pokud je balíček nainstalován"
 
 #. description
 #: ../jobs/daemons.txt.in:53
 msgid "Test if the syslogd daemon is running when the package is installed."
-msgstr ""
+msgstr "Zkontrolovat, zda běží démon syslogd, pokud je balíček nainstalován"
 
 #. description
 #: ../jobs/daemons.txt.in:61
 msgid "Test if the udevd daemon is running when the package is installed."
-msgstr ""
+msgstr "Zkontrolovat, zda běží démon udevd, pokud je balíček nainstalován"
 
 #. description
 #: ../jobs/daemons.txt.in:67
 msgid "Test if the winbindd daemon is running when the package is installed."
-msgstr ""
+msgstr "Zkontrolovat, zda běží démon winbindd, pokud je balíček nainstalován"
 
 #. description
 #: ../jobs/disk.txt.in:4
@@ -615,31 +635,33 @@ msgid "The following hard drives were detected:"
 msgstr "Byly nalezeny tyto pevné disky:"
 
 #. description
-#: ../jobs/disk.txt.in:14
+#: ../jobs/disk.txt.in:9
 msgid "Benchmark for each disk "
 msgstr "Test výkonu jednotlivých disků "
 
 #. description
-#: ../jobs/disk.txt.in:36
+#: ../jobs/disk.txt.in:26
 msgid "SMART test"
 msgstr "Test SMART"
 
 #. description
-#: ../jobs/disk.txt.in:51
+#: ../jobs/disk.txt.in:41
 msgid "Maximum disk space used during a default installation test"
 msgstr "Během výchozího testu instalací bude zabrán nejvýše tento objem dat"
 
 #. description
-#: ../jobs/disk.txt.in:66
+#: ../jobs/disk.txt.in:56
 msgid "Verify system storage performs at or above baseline performance"
-msgstr ""
+msgstr "Ověřit, zda systémová úložiště dosahují alespoň minimálního výkonu"
 
 #. description
-#: ../jobs/disk.txt.in:83
+#: ../jobs/disk.txt.in:73
 msgid ""
 "Verify that storage devices, such as Fibre Channel and RAID can be detected "
 "and perform under stress."
 msgstr ""
+"Ověřit, že úložná zařízení jako Fibre Channel nebo RAID můžou být nalezena a "
+"dosahují v zátěži dostatečného výkonu"
 
 #. description
 #: ../jobs/evolution.txt.in:5
@@ -647,6 +669,8 @@ msgid ""
 "Click the \"Test\" button to launch Evolution, then configure it to connect "
 "to a POP3 account."
 msgstr ""
+"Klikněte na tlačítko \"Test\", aby se spustil Evolution, pak jej nastavte "
+"tak, aby se připojoval k e-mailovému účtu přes POP3"
 
 #. description
 #: ../jobs/evolution.txt.in:14
@@ -654,11 +678,13 @@ msgid ""
 "Click the \"Test\" button to launch Evolution, then configure it to connect "
 "to a IMAP account."
 msgstr ""
+"Klikněte na tlačítko \"Test\", aby se spustil Evolution, pak jej nastavte "
+"tak, aby se připojoval k e-mailovému účtu přes IMAP"
 
 #. description
 #: ../jobs/evolution.txt.in:14
 msgid "Were you able to receive and read e-mail correctly?"
-msgstr ""
+msgstr "Podařilo se vám úspěšně přijmout a číst e-maily?"
 
 #. description
 #: ../jobs/evolution.txt.in:23
@@ -666,11 +692,13 @@ msgid ""
 "Click the \"Test\" button to launch Evolution, then configure it to connect "
 "to a SMTP account."
 msgstr ""
+"Klikněte na tlačítko \"Test\", aby se spustil Evolution, pak jej nastavte "
+"tak, aby se připojoval přes IMAP"
 
 #. description
 #: ../jobs/evolution.txt.in:23
 msgid "Were you able to send e-mail without errors?"
-msgstr ""
+msgstr "Podařilo se vám úspěšně odeslat e-maily?"
 
 #. description
 #: ../jobs/fingerprint.txt.in:3
@@ -679,6 +707,9 @@ msgid ""
 "which test cases are run and a personal account that the tester uses to "
 "verify the fingerprint reader"
 msgstr ""
+"Předpoklady: Tento test předpokládá, že existuje účet, z něhož se test "
+"provádí a dále, že existuje uživatelský účet, který používáte k ověření "
+"čtečky otisků prstů"
 
 #. description
 #: ../jobs/fingerprint.txt.in:3
@@ -692,6 +723,14 @@ msgid ""
 " 5.- Click on the user switcher applet.\n"
 " 6.- Select the testing account to continue running tests."
 msgstr ""
+"Postup pro ověření přihlášení pomocí čtečky otisků prstů:\n"
+" 1.- Klikněte na applet přepínání uživatelů.\n"
+" 2.- Zvolte své uživatelské jméno.\n"
+" 3.- Mělo by se zobrazit okno, které umožňuje přihlásit se buďto napsáním "
+"hesla nebo použitím čtečky otisků prstů.\n"
+" 4.- Použijte čtečku otisků prstů k přihlášení.\n"
+" 5.- Klikněte na applet přepínání uživatelů.\n"
+" 6.- Zvolte testovací účet, abyste pokračovali v dalších testech."
 
 #. description
 #: ../jobs/fingerprint.txt.in:18
@@ -705,6 +744,14 @@ msgid ""
 " 5.- Use the fingerprint reader to unlock.\n"
 " 6.- Your screen should be unlocked."
 msgstr ""
+"Postup pro ověření odemčení počítače pomocí čtečky otisků prstů:\n"
+" 1.- Klikněte na applet přepínání uživatelů.\n"
+" 2.- Zvolte 'Zamknout obrazovku'.\n"
+" 3.- Stiskněte libovolnou klávesu nebo pohněte myší.\n"
+" 4.- Mělo by se zobrazit okno, které umožňuje odemknout obrazovku buďto "
+"napsáním hesla nebo použitím čtečky otisků prstů. \n"
+" 5.- Použijte čtečku otisků prstů k odemknutí obrazovky.\n"
+" 6.- Obrazovka by se měla odemknout."
 
 #. description
 #: ../jobs/fingerprint.txt.in:18
@@ -721,26 +768,32 @@ msgid ""
 " 3.- Copy some files from your internal HDD to the firewire HDD.\n"
 " 4.- Copy some files from the firewire HDD to your internal HDD."
 msgstr ""
+"Postup ověření funkčnosti disku s rozhraním Firewire (IEEE 1394):\n"
+" 1.- Připojte k počítači pevný disk s tímto rozhraním\n"
+" 2.- Mělo by se zobrazit okno, dotazující se na další postup (otevření "
+"složky, spuštění správce fotografií, apod.).\n"
+" 3.- Zkopírujte několik souborů z disku počítače na externí.\n"
+" 4.- Zkopírujte několik souborů z externího disku na ten v počítači."
 
 #. description
 #: ../jobs/firewire.txt.in:3
 msgid "Do the copy operations work as expected?"
-msgstr "Pracují kopírovací úlohy jak se čeká?"
+msgstr "Probíhá kopírování dle očekávání?"
 
 #. description
 #: ../jobs/floppy.txt.in:4
 msgid "Floppy test"
-msgstr ""
+msgstr "Test disketové mechaniky"
 
 #. description
 #: ../jobs/gcalctool.txt.in:5
 msgid "Click the \"Test\" button to open the calculator."
-msgstr ""
+msgstr "Klikněte na tlačítko \"Test\" ke spuštění kalkulačky"
 
 #. description
 #: ../jobs/gcalctool.txt.in:5
 msgid "Did it launch correctly?"
-msgstr ""
+msgstr "Spustila se úspěšně?"
 
 #. description
 #: ../jobs/gcalctool.txt.in:15
@@ -748,31 +801,36 @@ msgid ""
 "1. Simple math functions (+,-,/,*) 2. Nested math functions ((,)) 3. "
 "Fractional math 4. Decimal math"
 msgstr ""
+"1. Jednoduché matematické funkce (+,-,/,*) 2. Vnořené matematické výrazy "
+"(\"(\", \")\") 3. Počítání se zlomky 4. Počítání s desetinnými čísly"
 
 #. description
 #: ../jobs/gcalctool.txt.in:30
 msgid "1. Memory set 2. Memory reset 3. Memory last clear 4. Memory clear"
 msgstr ""
+"1. Uložení do paměti 2. Vyvolání paměti 3. Vyčištění poslední paměti 4. "
+"Vyčištění paměti"
 
 #. description
 #: ../jobs/gcalctool.txt.in:45
 msgid "Click the \"Test\" button to open the calculator and perform:"
 msgstr ""
+"Klikněte na tlačítko \"Test\", abyste otevřeli kalkulačku, a proveďte operace"
 
 #. description
 #: ../jobs/gcalctool.txt.in:45
 msgid "1. Cut 2. Copy 3. Paste"
-msgstr ""
+msgstr "1. Vyjmutí 2. Kopírování 3. Vložení"
 
 #. description
 #: ../jobs/gcalctool.txt.in:45
 msgid "Did the functions perform as expected?"
-msgstr ""
+msgstr "Provedly se operace podle očekávání?"
 
 #. description
 #: ../jobs/gedit.txt.in:5
 msgid "Click the \"Test\" button to open gedit."
-msgstr ""
+msgstr "Klikněte na tlačítko \"Test\", abyste spustili gedit."
 
 #. description
 #: ../jobs/gedit.txt.in:5
@@ -780,6 +838,8 @@ msgid ""
 "Enter some text and save the file (make a note of the file name you use), "
 "then close gedit."
 msgstr ""
+"Napište nějaký text a uložte soubor (zapamatujte si, jaké soubor to byl), "
+"nakonec gedit zavřete."
 
 #. description
 #: ../jobs/gedit.txt.in:17
@@ -787,21 +847,23 @@ msgid ""
 "Click the \"Test\" button to open gedit, and re-open the file you created "
 "previously."
 msgstr ""
+"Klikněte na tlačítko \"Test\", abyste opět spustili gedit a otevřete soubor, "
+"který jste uložili předtím."
 
 #. description
 #: ../jobs/gedit.txt.in:17
 msgid "Edit then save the file, then close gedit."
-msgstr ""
+msgstr "Upravte soubor a uložte jej, nakonec gedit zavřete."
 
 #. description
 #: ../jobs/gedit.txt.in:17 ../jobs/gnome-terminal.txt.in:5
 msgid "Did this perform as expected?"
-msgstr ""
+msgstr "Fungovaly předchozí kroky dle očekávání?"
 
 #. description
 #: ../jobs/gnome-terminal.txt.in:5
 msgid "Click the \"Test\" button to open Terminal."
-msgstr ""
+msgstr "Klikněte na tlačítko \"Test\", abyste spustili terminál"
 
 #. description
 #: ../jobs/gnome-terminal.txt.in:5
@@ -809,22 +871,25 @@ msgid ""
 "Type 'ls' and press enter. You should see a list of files and folder in your "
 "home directory."
 msgstr ""
+"Napište 'ls' a stiskněte enter. Měl by se vypsat seznam souborů a složek ve "
+"vaší domovské složce."
 
 #. description
 #: ../jobs/gnome-terminal.txt.in:5
 msgid "Close the terminal window."
-msgstr ""
+msgstr "Zavřete okno terminálu."
 
 #. description
 #: ../jobs/graphics.txt.in:5
 msgid ""
 "2d graphics appears to be working, your running X.Org version is: $output"
-msgstr ""
+msgstr "2-D grafika vypadá funkční, verze běžícího X.Org je: $output"
 
 #. description
 #: ../jobs/graphics.txt.in:23
 msgid "Run gtkperf to make sure that GTK based test cases work"
 msgstr ""
+"Spustťte gtkperf, abyste ověřili, že testy týkající se GTK proběhnou úspěšně"
 
 #. description
 #: ../jobs/graphics.txt.in:23
@@ -832,6 +897,8 @@ msgid ""
 "In the future add the returned time as a benchmark result to the checkbox "
 "report"
 msgstr ""
+"V budoucnosti přidat změřený čas do hlášení checkboxu  jako výsledek měření "
+"výkonu"
 
 #. description
 #: ../jobs/graphics.txt.in:31
@@ -841,11 +908,16 @@ msgid ""
 "The resolution should change 5.- Select the original resolution from the "
 "dropdown list 6.- Click on Apply 7.- The resolution should change again"
 msgstr ""
+"Postup pro změnu rozlišení obrazovky: 1.- Otevřete Systém->Předvolby-"
+">Displeje 2.- Zvolte nové rozlišení z rozbalovacího seznamu 3.- Klikněte na "
+"Použít 4.- Rozlišení by se mělo změnit 5.- Zvolte původní rozlišení z "
+"rozbalovacího seznamu 6.- Klikněte na Použít 7.- Rozlišení by se mělo změnit "
+"zpět"
 
 #. description
 #: ../jobs/graphics.txt.in:31
 msgid "Did the resolution change as expected?"
-msgstr ""
+msgstr "Změnilo se rozlišení podle očekávání?"
 
 #. description
 #: ../jobs/graphics.txt.in:46
@@ -857,26 +929,31 @@ msgid ""
 "display configuration change should be reverted 7.- Repeat 2-6 for different "
 "rotation values"
 msgstr ""
+"Postup pro ověření otáčení obrazovky: 1.-  Otevřete Systém->Předvolby-"
+">Displeje 2.- Zvolte nové otočení obrazovky z rozbalovacího seznamu 3.- "
+"Klikněte na Použít 4.- Obrazovka by se měla otočit podle zvolené hodnoty 5. "
+"Klikněte na Obnovit předchozí nastavení 6.- Obrazovka by se měla otočit zpět "
+"7.- Zopakujte body 2-6 pro různá otočení"
 
 #. description
 #: ../jobs/graphics.txt.in:46
 msgid "Did the display rotation change as expected?"
-msgstr ""
+msgstr "Měnilo se otočení obrazovky podle očekávání?"
 
 #. description
 #: ../jobs/graphics.txt.in:62
 msgid "Test that the X process is running."
-msgstr ""
+msgstr "Ověřit, že běží proces X."
 
 #. description
 #: ../jobs/graphics.txt.in:68
 msgid "Test that the X is not running in failsafe mode."
-msgstr ""
+msgstr "Ověřit, že X neběží v záchranném režimu."
 
 #. description
 #: ../jobs/graphics.txt.in:75
 msgid "Test that X does not leak memory when running programs."
-msgstr ""
+msgstr "Ověřit, že X nezpůsobuje memory leaky při spouštění programů."
 
 #. description
 #: ../jobs/graphics.txt.in:82
@@ -961,24 +1038,23 @@ msgstr "Objevila se 3D animace?"
 #. description
 #: ../jobs/info.txt.in:60 ../jobs/screenshot.txt.in:7
 msgid "Captures a screenshot."
-msgstr ""
+msgstr "Pořídí snímek obrazovky."
 
 #. description
 #: ../jobs/info.txt.in:71
 msgid "Gather log from the firmware test suite run"
-msgstr ""
+msgstr "Protokolovat test firmware"
 
 #. description
 #: ../jobs/info.txt.in:82
 msgid "Bootchart information."
-msgstr ""
+msgstr "Informace z bootchartu"
 
 #. description
 #: ../jobs/input.txt.in:13
 msgid "Select Test to open a text area where to type keys on your keyboard."
 msgstr ""
-"Klikněte na tlačítko Otestovat a nechte si otevřít textové pole, kde můžete "
-"psát klávesnicí."
+"Klikněte na tlačítko „Test“ – objeví se textové pole, do kterého budete psát."
 
 #. description
 #: ../jobs/install.txt.in:6
@@ -986,6 +1062,8 @@ msgid ""
 "Tests to see that apt can access repositories and get updates (does not "
 "install updates)"
 msgstr ""
+"Testy k ověření, že apt má přistup k repozitářům a že může stahovat "
+"aktualizace (při testu se neinstalují)"
 
 #. description
 #: ../jobs/keys.txt.in:4
@@ -993,6 +1071,8 @@ msgid ""
 "Press the brightness buttons on the keyboard. A status window should \\ "
 "appear and the brightness should change."
 msgstr ""
+"Stiskněte klávesu pro nastavení světlosti na klávesnici. Mělo by se objevit "
+"stavové okno a světlost by se měla změnit."
 
 #. description
 #: ../jobs/keys.txt.in:12
@@ -1000,11 +1080,13 @@ msgid ""
 "Press the volume buttons on the keyboard. A status window should \\ appear "
 "and the volume should change."
 msgstr ""
+"Stiskněte tlačítka nastavení hlasitosti na klávesnici. Mělo by se objevit "
+"stavové okno a hlasitost by se měla změnit."
 
 #. description
 #: ../jobs/keys.txt.in:12
 msgid "Do the buttons work?"
-msgstr ""
+msgstr "Fungují tlačítka?"
 
 #. description
 #: ../jobs/keys.txt.in:21
@@ -1012,61 +1094,75 @@ msgid ""
 "Press the mute key on the keyboard. A status window should appear \\ and the "
 "volume should mute/unmute when pressed multiple times."
 msgstr ""
+"Stiskněte tlačítko ztlumení zvuku na klávesnici. Mělo by se objevit stavové "
+"okno a zvuk by se měl ztlumit a opět povolit  při opakovaném stisku."
 
 #. description
-#: ../jobs/keys.txt.in:30
+#: ../jobs/keys.txt.in:31
 msgid ""
 "Press the sleep key on the keyboard. The computer should suspend and, \\ "
 "after pressing the power button, resume successfully."
 msgstr ""
+"Stiskněte tlačítko uspání na klávesnici. Počítač by se měl uspat a znovu "
+"probudit při opětovném stisku tlačítka."
 
 #. description
-#: ../jobs/keys.txt.in:39
+#: ../jobs/keys.txt.in:40
 msgid ""
 "Press the battery information key on the keyboard. A status window \\ should "
 "appear and the amount of battery remaining should be displayed."
 msgstr ""
+"Stiskněte tlačítko  informací o nabití baterie  na klávesnici. Mělo by se "
+"objevit stavové okno zobrazující zbývající nabití baterie."
 
 #. description
-#: ../jobs/keys.txt.in:48
+#: ../jobs/keys.txt.in:49
 msgid ""
 "Press the wireless networking key on the keyboard. The bluetooth icon \\ and "
 "the network connnection should go down if connected through the \\ wifi "
 "interface."
 msgstr ""
+"Stiskněte tlačítko bezdrátové sítě na klávesnici. Ikona bluetoothu a "
+"bezdrátového připojení by měla zhasnout, je-li počítač připojen přes wifi."
 
 #. description
-#: ../jobs/keys.txt.in:48
+#: ../jobs/keys.txt.in:49
 msgid ""
 "Press the same key again and check that bluetooth icon is again \\ displayed "
 "and that the network connection is re-established \\ automatically."
 msgstr ""
+"Stiskněte totéž tlačítko znovu a ověřte, že se znovu zobrazí ikona "
+"bluetoothu a že se automaticky obnoví síťové připojení."
 
 #. description
-#: ../jobs/keys.txt.in:48
+#: ../jobs/keys.txt.in:49
 msgid "Does the key work?"
-msgstr ""
+msgstr "Funguje tlačítko?"
 
 #. description
-#: ../jobs/keys.txt.in:62
+#: ../jobs/keys.txt.in:63
 msgid ""
 "The keyboard may have dedicated keys for controlling media as follows:"
 msgstr ""
+"Klávesnice může mít následující tlačítka určená pro ovládání přehrávání "
+"multimédií:"
 
 #. description
-#: ../jobs/keys.txt.in:62
+#: ../jobs/keys.txt.in:63
 msgid "* Play/Pause * Stop * Forward * Backward (Rewind)"
-msgstr ""
+msgstr "* Spustit/Pozastavit * Zastavit * Rychle kupředu * Rychle zpět"
 
 #. description
-#: ../jobs/keys.txt.in:62
+#: ../jobs/keys.txt.in:63
 msgid "Play a media file and press each key in turn."
 msgstr ""
+"Přehrávejte multimediální soubor a pak postupně stiskněte každé z "
+"multimediálních tlačítek"
 
 #. description
-#: ../jobs/keys.txt.in:62
+#: ../jobs/keys.txt.in:63
 msgid "Do the keys work as expected?"
-msgstr ""
+msgstr "Fungovala tlačítka podle očekávání?"
 
 #. description
 #: ../jobs/local.txt.in:3
@@ -1076,27 +1172,27 @@ msgstr "Testy zvuku"
 #. description
 #: ../jobs/local.txt.in:8
 msgid "Bluetooth tests"
-msgstr ""
+msgstr "Testy bluetooth"
 
 #. description
 #: ../jobs/local.txt.in:13
 msgid "Camera tests"
-msgstr ""
+msgstr "Testy webkamery"
 
 #. description
 #: ../jobs/local.txt.in:18
 msgid "Codec tests"
-msgstr ""
+msgstr "Testy kodeků"
 
 #. description
 #: ../jobs/local.txt.in:23
 msgid "CPU tests"
-msgstr ""
+msgstr "Testy procesoru"
 
 #. description
 #: ../jobs/local.txt.in:28
 msgid "System Daemon tests"
-msgstr ""
+msgstr "Testy systémových služeb (démonů)"
 
 #. description
 #: ../jobs/local.txt.in:33
@@ -1116,82 +1212,82 @@ msgstr "Testy firewire disku"
 #. description
 #: ../jobs/local.txt.in:48
 msgid "Floppy disk tests"
-msgstr ""
+msgstr "Testy disketové mechaniky"
 
 #. description
 #: ../jobs/local.txt.in:53
 msgid "Graphics tests"
-msgstr ""
+msgstr "Testy grafiky"
 
 #. description
 #: ../jobs/local.txt.in:58
 msgid "Informational tests"
-msgstr ""
+msgstr "Informační testy"
 
 #. description
 #: ../jobs/local.txt.in:63
 msgid "Input Devices tests"
-msgstr ""
+msgstr "Testy vstupních zařízení"
 
 #. description
 #: ../jobs/local.txt.in:68
 msgid "Software Installation tests"
-msgstr ""
+msgstr "Testy instalace software"
 
 #. description
 #: ../jobs/local.txt.in:73
 msgid "Hotkey tests"
-msgstr ""
+msgstr "Testy funkčních kláves"
 
 #. description
-#: ../jobs/local.txt.in:78
+#: ../jobs/local.txt.in:83
 msgid "Media Card tests"
-msgstr ""
-
-#. description
-#: ../jobs/local.txt.in:88
-msgid "Miscellaneous tests"
-msgstr ""
+msgstr "Testy paměťových karet"
 
 #. description
 #: ../jobs/local.txt.in:93
+msgid "Miscellaneous tests"
+msgstr "Různé testy"
+
+#. description
+#: ../jobs/local.txt.in:98
 msgid "Monitor tests"
 msgstr "Testy monitoru"
 
 #. description
-#: ../jobs/local.txt.in:98
+#: ../jobs/local.txt.in:103
 msgid "Networking tests"
-msgstr ""
-
-#. description
-#: ../jobs/local.txt.in:108
-msgid "PCMCIA/PCIX Card tests"
-msgstr ""
+msgstr "Testy síťového připojení"
 
 #. description
 #: ../jobs/local.txt.in:113
+msgid "PCMCIA/PCIX Card tests"
+msgstr "Testy karet PCMCIA/PCIX"
+
+#. description
+#: ../jobs/local.txt.in:118
 msgid "Peripheral tests"
 msgstr "Testy periferií"
 
 #. description
-#: ../jobs/local.txt.in:118
-msgid "Power Management tests"
-msgstr ""
-
-#. description
 #: ../jobs/local.txt.in:123
-msgid "Unity tests"
-msgstr ""
+msgid "Power Management tests"
+msgstr "Testy správy napájení"
 
 #. description
 #: ../jobs/local.txt.in:133
+msgid "Unity tests"
+msgstr "Testy Unity"
+
+#. description
+#: ../jobs/local.txt.in:143
 msgid "User Applications"
 msgstr "Uživatelské aplikace"
 
 #. description
-#: ../jobs/local.txt.in:138
+#: ../jobs/local.txt.in:153
 msgid "Stress tests"
-msgstr ""
+msgstr "Zátěžové testy"
 
 #. description
 #: ../jobs/ltp.txt.in:3
@@ -1201,7 +1297,7 @@ msgstr "Projekt testování Linuxu"
 #. description
 #: ../jobs/mago.txt.in:3
 msgid "Automated desktop testing"
-msgstr ""
+msgstr "Automatizované testování pracovního prostředí"
 
 #. description
 #: ../jobs/mediacard.txt.in:3
@@ -1428,12 +1524,12 @@ msgstr "Objevila se/zmizela ikona automaticky?"
 #. description
 #: ../jobs/memory.txt.in:4
 msgid "The following amount of memory was detected:"
-msgstr ""
+msgstr "Bylo zjištěno následující množství operační paměti:"
 
 #. description
 #: ../jobs/memory.txt.in:16
 msgid "Test and exercise memory."
-msgstr ""
+msgstr "Zkontrolovat paměť"
 
 #. description
 #: ../jobs/miscellanea.txt.in:8
@@ -1449,17 +1545,17 @@ msgstr ""
 #. description
 #: ../jobs/miscellanea.txt.in:8
 msgid "Note that this test may require you to enter your password."
-msgstr "Vezměte na vědomí, že tento test může vyžadovat zadání vašeho hesla"
+msgstr "Počítejte s tím, že tento test může vyžadovat zadání vašeho hesla."
 
 #. description
 #: ../jobs/miscellanea.txt.in:8
 msgid "Did the screen change temporarily to a text console?"
-msgstr "Přepnula se dočasně obrazovka do konzole?"
+msgstr "Přepnula se obrazovka dočasně do textové konzole?"
 
 #. description
 #: ../jobs/miscellanea.txt.in:20
 msgid "Run Colin King's Firmware Test Suite automated tests."
-msgstr ""
+msgstr "Spustit automatické testy z Firmware Test Suite od Colina Kinga"
 
 #. description
 #: ../jobs/miscellanea.txt.in:29
@@ -1467,6 +1563,8 @@ msgid ""
 "ipmitool is required for ipmi testing. This checks for ipmitool and installs "
 "it if not available."
 msgstr ""
+"Pro testování ipmi je potřeba ipmitool. Toto zkontroluje přítopnost ipmitool "
+"a podle potřeby jej nainstaluje."
 
 #. description
 #: ../jobs/miscellanea.txt.in:36
@@ -1474,6 +1572,7 @@ msgid ""
 "This will run some basic connectivity tests against a BMC, verifying that "
 "IPMI works."
 msgstr ""
+"Toto spustí základní testy připojení oproti BMC a ověří, zda IPMI funguje."
 
 #. description
 #: ../jobs/monitor.txt.in:3
@@ -1569,6 +1668,11 @@ msgid ""
 " 2.- The monitor should go blank.\n"
 " 3.- Press any key or move the mouse to recover."
 msgstr ""
+"Postup ověření funkcí monitoru (displeje) týkajících se úspory elektrické "
+"energie:\n"
+" 1.- Zkuste aktivovat úsporné funkce monitoru kliknutím na tlačítko Test.\n"
+" 2.- Obrazovka by měla zhasnout.\n"
+" 3.- Probuďte monitor stiskem libovolné klávesy nebo pohnutím myší."
 
 #. description
 #: ../jobs/monitor.txt.in:46
@@ -1576,35 +1680,43 @@ msgid "Did the monitor go blank?"
 msgstr "Zhasl monitor?"
 
 #. description
-#: ../jobs/networking.txt.in:26
+#: ../jobs/networking.txt.in:21
 msgid "Network Information"
-msgstr ""
+msgstr "Informace o síti"
 
 #. description
-#: ../jobs/networking.txt.in:46
+#: ../jobs/wireless.txt.in:6
 msgid "Wireless scanning test."
-msgstr ""
+msgstr "Test vyhledávání bezdrátových sítí."
 
 #. description
-#: ../jobs/networking.txt.in:52
+#: ../jobs/wireless.txt.in:12
 msgid ""
 "Wireless network connection procedure: 1.- Click on the Network Manager "
 "applet 2.- Select a network below the 'Wireless networks' section 3.- Notify "
 "OSD should confirm that the connection has been established 4.- Select Test "
 "to verify that it's possible to establish an HTTP connection"
 msgstr ""
+"Postup pro připojení k bezdrátové síti: 1.- Klikněte na applet Network "
+"Manageru 2.- Zvolte síť v sekci 'Bezdrátové sítě' 3.- Bublina s upozorněním "
+"by měla potvrdit, že se počítač připojil. 4.- Zvolte Test, abyste ověřili, "
+"že se lze připojit přes HTTP"
 
 #. description
-#: ../jobs/networking.txt.in:64
+#: ../jobs/networking.txt.in:39
 msgid ""
 "Wired network connection procedure: 1.- Click on the Network Manager applet "
 "2.- Select a network below the 'Wired network' section 3.- Notify OSD should "
 "confirm that the connection has been established 4.- Select Test to verify "
 "that it's possible to establish an HTTP connection"
 msgstr ""
+"Postup pro připojení drátového síťového připojení: 1.- Klikněte na applet "
+"Network Manageru 2.- Zvolte síť v oddíle \"Drátové připojení\" 3.- Bublina "
+"upozornění by měla potvrdit, že se počítač připojil 4.- Klikněte na Test pro "
+"ověření, že se lze připojit přes HTTP"
 
 #. description
-#: ../jobs/networking.txt.in:76
+#: ../jobs/networking.txt.in:51
 msgid ""
 "Built-in modem network connection procedure: 1.- Connect the telephone line "
 "to the computer 2.- Right click on the Network Manager applet 3.- Select "
@@ -1613,62 +1725,72 @@ msgid ""
 "that the connection has been established 8.- Select Test to verify that it's "
 "possible to establish an HTTP connection"
 msgstr ""
+"Postup pro ověření síťového připojení přes modem: 1.- Připojte telefonní "
+"linku k počítači 2.- Klikněte pravým tlačítkem na applet Network Manageru 3.-"
+" Zvolte 'Upravit připojení' 4.- Zvolte kartu 'DSL' 5.- Klikněte na tlačítko "
+"'Přidat' 6.- Správně nastavte vlastnosti připojení 7.- Bublina upozornění by "
+"měla potvrdit, že se počítač připojil 8.- Klikněte na Test pro ověření, že "
+"se lze připojit přes HTTP"
 
 #. description
-#: ../jobs/networking.txt.in:76 ../jobs/peripheral.txt.in:15
+#: ../jobs/networking.txt.in:51 ../jobs/peripheral.txt.in:15
+#: ../jobs/wireless.txt.in:12
 msgid "Was the connection correctly established?"
 msgstr "Bylo spojení správně uskutečněno?"
 
 #. description
-#: ../jobs/networking.txt.in:92
+#: ../jobs/networking.txt.in:67
 msgid ""
 "Automated test case to verify availability of some system on the network "
 "using ICMP ECHO packets."
 msgstr ""
+"Automatické ověření dostupnosti síťového serveru s použitím paketů ICMP ECHO"
 
 #. description
-#: ../jobs/networking.txt.in:99 ../jobs/peripheral.txt.in:32
+#: ../jobs/networking.txt.in:74 ../jobs/peripheral.txt.in:32
 msgid ""
 "Automated test case to make sure that it's possible to download files "
 "through HTTP"
-msgstr ""
+msgstr "Automatický test možnosti stahování souborů přes HTTP"
 
 #. description
-#: ../jobs/networking.txt.in:107
+#: ../jobs/networking.txt.in:82
 msgid "Test to see if we can sync local clock to an NTP server"
-msgstr ""
+msgstr "Test k ověření synchronizace systémového času s NTP serverem"
 
 #. description
-#: ../jobs/networking.txt.in:113
+#: ../jobs/networking.txt.in:88
 msgid ""
 "Verify that an installation of checkbox-server on the network can be reached "
 "over SSH."
 msgstr ""
+"Ověřit, že se lze připojit k instalaci checkbox-serveru na síti pomocí SSH"
+
+#. description
+#: ../jobs/networking.txt.in:94
+msgid "Try to enable a remote printer on the network and print a test page."
+msgstr ""
+"Pokusit se povolit vzdálenou tiskárnu na síti a vytisknout zkušební stránku"
+
+#. description
+#: ../jobs/networking.txt.in:99
+msgid "Multiple network cards"
+msgstr "Vícenásobné síťové karty"
 
 #. description
 #: ../jobs/networking.txt.in:119
-msgid "Try to enable a remote printer on the network and print a test page."
-msgstr ""
-
-#. description
-#: ../jobs/networking.txt.in:124
-msgid "Multiple network cards"
-msgstr ""
-
-#. description
-#: ../jobs/networking.txt.in:144
 msgid "Test to measure the network bandwidth"
-msgstr ""
+msgstr "Měření rychlosti připojení"
 
 #. description
 #: ../jobs/optical.txt.in:8
 msgid "The following optical drives were detected:"
-msgstr ""
+msgstr "Byly nalezeny následující optické mechaniky"
 
 #. description
 #: ../jobs/optical.txt.in:18
 msgid "Optical Storage device read tests"
-msgstr ""
+msgstr "Testy čtení z optických médií"
 
 #. description
 #: ../jobs/optical.txt.in:37
@@ -1676,6 +1798,8 @@ msgid ""
 "The detected optical drive seems to support writing. Enter a blank CDROM \\ "
 "into your drive and try writing to it."
 msgstr ""
+"Nalezená optická mechanika se zdá podporovat zápis. Vložte prázdné CD do "
+"mechaniky a zkuste na něj zapsat data."
 
 #. description
 #: ../jobs/optical.txt.in:46
@@ -1688,6 +1812,13 @@ msgid ""
 "\"Eject Volume\". 8.- The CD should be ejected and the icon removed from the "
 "desktop."
 msgstr ""
+"Postup pro přehrávání hudby z CD: 1.- Vložte hudební CD do optické "
+"mechaniky. 2.- Měla by se objevit ikona na ploše. 3.- Klikněte na tuto ikonu "
+"pravým tlačítkem myši a zvolte \"Otevřít s Rhythmbox\". 4.- Zvolte CD jako "
+"zdroj pro a klikněte na tlačítko přehrávání. 5.- Měla by se přehrávat hudba. "
+"6.- Zastavte přehrávání. 7.- Klikněte na ikonu pravým tlačítkem myši a "
+"zvolte \"Vysunout médium\". 8.- CD by se mělo vysunout a ikona by měla "
+"zmizet z plochy."
 
 #. description
 #: ../jobs/optical.txt.in:63
@@ -1695,11 +1826,13 @@ msgid ""
 "The detected optical drive seems to support writing. Enter a blank DVD \\ "
 "into your drive and try writing to it."
 msgstr ""
+"Nalezená optická mechanika se zdá podporovat zápis. Vložte prázdné DVD do "
+"mechaniky a zkuste na něj zapsat data."
 
 #. description
 #: ../jobs/optical.txt.in:63
 msgid "Does writing work?"
-msgstr ""
+msgstr "Funguje zápis?"
 
 #. description
 #: ../jobs/optical.txt.in:72
@@ -1712,6 +1845,12 @@ msgid ""
 "\"Eject Volume\". 7.- The DVD should be ejected and the icon removed from "
 "the desktop."
 msgstr ""
+"Postup pro přehrávání filmu z DVD: 1.- Vložte filmové DVD do optické "
+"mechaniky. 2.- Mělo by se objevit okno s výběrem akcí. Zvolte 'Otevřít v "
+"přehrávači filmů'. 3.- Měl by se spustit přehrávač filmů a v něm by se měl "
+"přehrávat film. 4.- Zastavte přehrávání. 5.- Na ploše by měla být ikona. 6.- "
+"Klikněte na ikonu pravým tlačítkem myši a zvolte \"Vysunout médium\". 7.- "
+"DVD by se mělo vysunout a ikona by měla zmizet z plochy."
 
 #. description
 #: ../jobs/optical.txt.in:90
@@ -1729,7 +1868,7 @@ msgstr "Byl soubor přehrán?"
 msgid ""
 "Is your gnome system clock displaying the correct date and time for \\ your "
 "timezone?"
-msgstr ""
+msgstr "Ukazují systémové hodiny čas a datum odpovídající vaší časové zóně?"
 
 #. description
 #: ../jobs/panel_clock_test.txt.in:14
@@ -1740,6 +1879,11 @@ msgid ""
 "then Time and Date 3.- Ensure that your clock application is set to manual. "
 "4.- Change the time 1 hour back 5.- Close the window and reboot"
 msgstr ""
+"Postup pro ověření času: 1.- Klikněte na tlačítko \"Test\" a ověřte, že se "
+"hodiny posunou dopředu o 1 hodinu. (Pozn.: Může trvat zhruba minutu, než se "
+"na hodinách gnome projeví změna). 2.- Nyní na panelu zvolte Systém, Správa, "
+"Čas a datum. 3.- Ujistěte se, že aplikace hodin je přepnuta na manuální "
+"režim. 4.- Změňte čas o hodinu nazpět. 5.- Zavřete okno a restartujte"
 
 #. description
 #: ../jobs/panel_clock_test.txt.in:14
@@ -1747,11 +1891,12 @@ msgid ""
 "Is your system clock displaying the correct date and time for your \\ "
 "timezone?"
 msgstr ""
+"Ukazují vaše systémové hodiny správný čas a datum pro vaši časovou zónu?"
 
 #. description
 #: ../jobs/panel_reboot.txt.in:4
 msgid "Please restart your machine from the Ubuntu Panel."
-msgstr ""
+msgstr "Prosím restartujte svůj počítač pomocí panelu Ubuntu."
 
 #. description
 #: ../jobs/panel_reboot.txt.in:4
@@ -1759,21 +1904,23 @@ msgid ""
 "Afterwards be sure to recover the previous Checkbox instance and \\ answer "
 "the question below:"
 msgstr ""
+"Nakonec se ujistěte, že jste obnovili původní instanci Checkboxu a "
+"zodpovězte následující otázku:"
 
 #. description
 #: ../jobs/panel_reboot.txt.in:4
 msgid "Did it restart and bring up the GUI login cleanly?"
-msgstr ""
+msgstr "Restartoval se a zobrazil správně přihlášení do grafického rozhraní?"
 
 #. description
 #: ../jobs/pcmcia-pcix.txt.in:3
 msgid "Plug a PCMCIA device into the computer."
-msgstr ""
+msgstr "Připojte do počítače PCMCIA zařízení."
 
 #. description
 #: ../jobs/pcmcia-pcix.txt.in:3
 msgid "Is it detected?"
-msgstr ""
+msgstr "Bylo nalezeno?"
 
 #. description
 #: ../jobs/peripheral.txt.in:3
@@ -1784,6 +1931,10 @@ msgid ""
 "detected and proper configuration values \\ should be displayed 5.- Print a "
 "test page"
 msgstr ""
+"Postup pro testování nastavení tiskárny: 1.- Ujistěte se, že je tiskárna "
+"připojena k síti. 2.- Spustťte Systém->Správa->Tisk 3.- Pokud ještě tiskárna "
+"není v seznamu, klikněte na Nová 4.- Tiskárna by měla být nalezena a měly by "
+"se zobrazit správné hodnoty nastavení 5.- Vytiskněte zkušební stránku"
 
 #. description
 #: ../jobs/peripheral.txt.in:15
@@ -1796,6 +1947,12 @@ msgid ""
 "connection has been established 8.- Select Test to verify that it's possible "
 "to establish an HTTP connection"
 msgstr ""
+"Postup pro testování připojení přes USB modem: 1.- Připojte k počítači USB "
+"kabel 2.- Klikněte pravým tlačítkem na applet Network Manageru 3.- Zvolte "
+"'Upravit připojení' 4.- Zvolte buďto kartu 'DSL' (pro ADSL modem) nebo kartu "
+"'Mobilní širokopásmové' (pro 3G modem) 5.- Klikněte na tlačítko 'Přidat' 6. "
+"Nastavte správně připojení 7. Bublina s upozorněním by měla potvrdit, že je "
+"počítač připojen 8. Zvolte Test, abyste ověřili, že se jde připojit přes HTTP"
 
 #. description
 #: ../jobs/phoronix.txt.in:3
@@ -1808,64 +1965,71 @@ msgid ""
 "Shutdown/boot cycle verification procedure: 1.- Shutdown your machine 2.- "
 "Boot your machine 3.- Repeat steps 1 and 2 at least 5 times"
 msgstr ""
+"Postup pro ověření vypnutí a startu: 1. Vypněte počítač 2.- Zapněte jej 3.- "
+"Opakujte zapnutí a vypnutí alespoň pětkrát"
 
 #. description
 #: ../jobs/power-management.txt.in:3
 msgid ""
 "Note: This test case has to be executed manually before checkbox execution"
 msgstr ""
+"Pozn.: Tento postup testu se musí provést ručně před spuštěním programu "
+"checkbox"
 
 #. description
 #: ../jobs/power-management.txt.in:14
 msgid ""
 "Run the computer suspend test. Then, press the power button to resume it."
 msgstr ""
+"Spusťte test uspání do paměti. Pro probuzení poté stiskněte tlačítko "
+"napájení."
 
 #. description
 #: ../jobs/power-management.txt.in:14
 msgid "Does your computer suspend and resume?"
-msgstr ""
+msgstr "Uspal a probudil se počítač?"
 
 #. description
 #: ../jobs/power-management.txt.in:22
 msgid ""
 "Run the computer hibernate test. Then, press the power button to restore it."
 msgstr ""
+"Spusťte test uspání na disk. Pro probuzení poté stiskněte tlačítko napájení."
 
 #. description
 #: ../jobs/power-management.txt.in:22
 msgid "Does your computer hibernate and restore?"
-msgstr ""
+msgstr "Uspal a probudil se počítač?"
 
 #. description
 #: ../jobs/power-management.txt.in:13
 msgid "Does closing your laptop lid cause your screen to blank?"
-msgstr ""
+msgstr "Způsobí zavření víka vypnutí obrazovky u notebooku?"
 
 #. description
 #: ../jobs/power-management.txt.in:25
 msgid "Click the Test button, then close and open the lid."
-msgstr ""
+msgstr "Klikněte na tlačítko Test, pak zavřete a otevřete víko."
 
 #. description
 #: ../jobs/power-management.txt.in:25
 msgid "Did the screen turn off while the lid was closed?"
-msgstr ""
+msgstr "Vypnula se obrazovka, když bylo víko zavřené?"
 
 #. description
 #: ../jobs/power-management.txt.in:39
 msgid "Click the Test button, then close the lid and wait 5 seconds."
-msgstr ""
+msgstr "Klikněte na tlačítko Test, sklopte víko a počkejte 5 sekund."
 
 #. description
 #: ../jobs/power-management.txt.in:39
 msgid "Open the lid."
-msgstr ""
+msgstr "Otevřete víko."
 
 #. description
 #: ../jobs/power-management.txt.in:39
 msgid "Did the screen turn back on when the lid was opened?"
-msgstr ""
+msgstr "Zapnula se obrazovka, když bylo víko opět otevřené?"
 
 #. description
 #: ../jobs/power-management.txt.in:49
@@ -1873,12 +2037,12 @@ msgid "Test the network before suspending."
 msgstr "Otestovat síť před uspáním"
 
 #. description
-#: ../jobs/power-management.txt.in:54
+#: ../jobs/suspend.txt.in:4
 msgid "Record the current resolution before suspending."
 msgstr "Uložit aktuální rozlišení před uspáním."
 
 #. description
-#: ../jobs/power-management.txt.in:62
+#: ../jobs/suspend.txt.in:12
 msgid "Test the audio before suspending."
 msgstr "Otestovat zvuk před uspáním."
 
@@ -1893,19 +2057,25 @@ msgid ""
 " 5.- Select Test to verify connection and throughput.\n"
 "Output:"
 msgstr ""
+"Postup pro připojení k bezdrátové síti: \n"
+" 1.- Klikněte na applet Network Manageru.\n"
+" 2.- Zvolte síť v sekci 'Bezdrátové sítě'\n"
+" 3.- Klikněte na Opojit v sekci 'Drátové sítě'\n"
+" 4.- Bublina s upozorněním by měla potvrdit, že se počítač připojil.\n"
+" 5.- Zvolte Test, abyste ověřili, že se lze připojit přes HTTP."
 
 #. description
-#: ../jobs/power-management.txt.in:116
+#: ../jobs/power-management.txt.in:51
 msgid "Make sure that the RTC (Real-Time Clock) device exists."
 msgstr "Ujistěte se, že zařízení RTC (Real-Time Clock) existuje."
 
 #. description
-#: ../jobs/power-management.txt.in:123
+#: ../jobs/suspend.txt.in:58
 msgid "Power management Suspend and Resume test"
 msgstr "Test správy napájení - uspání do paměti a probuzení"
 
 #. description
-#: ../jobs/power-management.txt.in:123
+#: ../jobs/suspend.txt.in:58
 msgid ""
 "Select Test and your system will suspend for about 30 - 60 seconds. If your "
 "system does not wake itself up after 60 seconds, please press the power "
@@ -1913,21 +2083,25 @@ msgid ""
 "at all and must be rebooted, restart System Testing after reboot and mark "
 "this test as Failed."
 msgstr ""
+"Zvolte Test a váš systém se na 30-60 sekund uspí. Pokud se systém za 60 "
+"sekund neprobudí, stlačte prosím krátce spouštěcí tlačítko, aby se systém "
+"spustil. Pokud se systém vůbec neprobudí, spusťte testování systému po "
+"restartu znovu a označte tento test jako nesplněný."
 
 #. description
-#: ../jobs/power-management.txt.in:133
+#: ../jobs/suspend.txt.in:68
 msgid "Test the network after resuming."
 msgstr "Otestovat síť po probuzení."
 
 #. description
-#: ../jobs/power-management.txt.in:139
+#: ../jobs/suspend.txt.in:74
 msgid ""
 "Test to see that we have the same resolution after resuming as before."
 msgstr ""
 "Test pro ověření, že máme stejné rozlišení po probuzení z režimu spánku."
 
 #. description
-#: ../jobs/power-management.txt.in:148
+#: ../jobs/suspend.txt.in:83
 msgid "Test the audio after resuming."
 msgstr "Otestovat zvuk po probuzení."
 
@@ -1942,6 +2116,13 @@ msgid ""
 " 5.- Select Test to verify connection and throughput.\n"
 "Output:"
 msgstr ""
+"Postup pro připojení k bezdrátové síti: \n"
+" 1.- Klikněte na applet Network Manageru.\n"
+" 2.- Zvolte síť v sekci 'Bezdrátové sítě'\n"
+" 3.- Pokud je uskutečněno drátové připojení, klikněte na Opojit v sekci "
+"'Drátové sítě'\n"
+" 4.- Bublina s upozorněním by měla potvrdit, že se počítač připojil.\n"
+" 5.- Zvolte Test, abyste ověřili, že se lze připojit přes HTTP."
 
 #. description
 #: ../jobs/power-management.txt.in:194
@@ -1963,9 +2144,16 @@ msgid ""
 " 5.- Move the mouse around the screen.\n"
 " 6.- Perform some single/double/right click operations."
 msgstr ""
+"Postup ověření myši s technologií Bluetooth:\n"
+" 1.- Zapněte myš s technologií Bluetooth.\n"
+" 2.- Klikněte na ikonu Bluetooth v liště s nabídkami.\n"
+" 3.- Vyberte \"Nastavit nové zařízení\".\n"
+" 4.- Vyhledejte v seznamu své zařízení a vyberte jej.\n"
+" 5.- Pohybujte myší po obrazovce.\n"
+" 6.- Proveďte kliknutí levým/pravým tlačítkem nebo dvojité kliknutí."
 
 #. description
-#: ../jobs/power-management.txt.in:215
+#: ../jobs/suspend.txt.in:150
 msgid ""
 "This test will check to make sure that supported video modes work after a "
 "suspend and resume.  Select Test to begin."
@@ -2014,7 +2202,7 @@ msgid "Did the system successfully suspend and resume for 30 iterations?"
 msgstr "Byl systém 30× úspěšně uspán do paměti a probuzen?"
 
 #. description
-#: ../jobs/power-management.txt.in:264
+#: ../jobs/hibernate.txt.in:7
 msgid ""
 "This will check to make sure your system can successfully hibernate (if "
 "supported)."
@@ -2023,7 +2211,7 @@ msgstr ""
 "podporováno)."
 
 #. description
-#: ../jobs/power-management.txt.in:264
+#: ../jobs/hibernate.txt.in:7
 msgid ""
 "Select Test to begin. The system will hibernate and should wake itself "
 "within 5 minutes.  If your system does not wake itself after 5 minutes, "
@@ -2038,7 +2226,7 @@ msgstr ""
 "označte tento test jako Neúspěšný."
 
 #. description
-#: ../jobs/power-management.txt.in:264
+#: ../jobs/hibernate.txt.in:7
 msgid ""
 "Did the system successfully hibernate and did it work properly after waking "
 "up?"
@@ -2078,22 +2266,22 @@ msgid "Did the system successfully hibernate and wake 30 times?"
 msgstr "Byl systém 30× úspěšně uspán na disk a probuzen?"
 
 #. description
-#: ../jobs/power-management.txt.in:273
+#: ../jobs/power-management.txt.in:56
 msgid "Run Colin Kings FWTS wakealarm test"
-msgstr ""
+msgstr "Spustit test FWTS wakealarm od Colina Kinga"
 
 #. description
-#: ../jobs/power-management.txt.in:282
+#: ../jobs/power-management.txt.in:65
 msgid "Check to see if CONFIG_NO_HZ is set in the kernel"
-msgstr ""
+msgstr "Zkontrolovat, zda je v jádře zapnuta volba CONFIG_NO_HZ"
 
 #. description
-#: ../jobs/power-management.txt.in:290
+#: ../jobs/suspend.txt.in:194
 msgid "Automatic power management Suspend and Resume test"
-msgstr ""
+msgstr "Test uspání a probuzení automatické správy napájení"
 
 #. description
-#: ../jobs/power-management.txt.in:290
+#: ../jobs/suspend.txt.in:194
 msgid ""
 "Select test and your system will suspend for about 30 - 60 seconds. If your "
 "system does not wake itself up after 60 seconds, please press the power "
@@ -2110,37 +2298,37 @@ msgstr ""
 #. description
 #: ../jobs/qa_regression.txt.in:3
 msgid "QA regression tests (destructive)"
-msgstr ""
+msgstr "Destruktivní testy QA regrese"
 
 #. description
 #: ../jobs/server-services.txt.in:5
 msgid "sshd test"
-msgstr ""
+msgstr "Test sshd"
 
 #. description
 #: ../jobs/server-services.txt.in:11
 msgid "Print/CUPs server test"
-msgstr ""
+msgstr "Test tiskového serveru CUPS"
 
 #. description
 #: ../jobs/server-services.txt.in:18
 msgid "DNS server test"
-msgstr ""
+msgstr "Test DNS serveru"
 
 #. description
 #: ../jobs/server-services.txt.in:25
 msgid "Samba server test"
-msgstr ""
+msgstr "Test samba serveru"
 
 #. description
 #: ../jobs/server-services.txt.in:32
 msgid "LAMP server test"
-msgstr ""
+msgstr "Test LAMP serveru"
 
 #. description
 #: ../jobs/server-services.txt.in:39
 msgid "Tomcat server test"
-msgstr ""
+msgstr "Test Tomcat serveru"
 
 #. description
 #: ../jobs/sru_suite.txt.in:4
@@ -2191,7 +2379,7 @@ msgstr ""
 #. description
 #: ../jobs/sru_suite.txt.in:70
 msgid "Captures a screenshot showing X works"
-msgstr ""
+msgstr "Zachytí snímek obrazovky zobrazující funkční X"
 
 #. description
 #: ../jobs/sru_suite.txt.in:77
@@ -2208,7 +2396,7 @@ msgstr ""
 #. description
 #: ../jobs/sru_suite.txt.in:95
 msgid "Run Colin King's FWTS wakealarm test"
-msgstr ""
+msgstr "Spustí test FWTS Colina Kinga"
 
 #. description
 #: ../jobs/sru_suite.txt.in:103
@@ -2240,7 +2428,7 @@ msgstr ""
 msgid ""
 "Hammer the CPU as hard as possible for two hours. Intention is to knock it "
 "dead."
-msgstr ""
+msgstr "Tlučte do procesoru kladivem dvě hodiny. Cílem je ho zničit."
 
 #. description
 #: ../jobs/unity.txt.in:6
@@ -2248,6 +2436,8 @@ msgid ""
 "Xlib is required for unity testing. This checks for Xlib and installs it if "
 "not available."
 msgstr ""
+"Pro testování unity je potřeba Xlib. Toto zkontroluje, zda je Xlib dostupné "
+"a instaluje jej, pokud tomu tak není."
 
 #. description
 #: ../jobs/unity.txt.in:13
@@ -2255,59 +2445,72 @@ msgid ""
 "This test will verify that Unity is running and then run the autopilot.py "
 "test against the Unity interface."
 msgstr ""
+"Tento test ověří, že Unity běží a pak spustí test rozhraní Unity "
+"autopilot.py."
 
 #. description
 #: ../jobs/usb.txt.in:5
 msgid "The following USB controllers were detected:"
-msgstr ""
+msgstr "Byly nalezeny tyto USB řadiče:"
 
 #. description
-#: ../jobs/usb.txt.in:29
+#: ../jobs/usb.txt.in:24
 msgid ""
 "Plug a USB keyboard into the computer. Then, click on the Test button \\ to "
 "enter text."
 msgstr ""
+"Připojte USB klávesnici a pak klikněte na tlačítko Test k zadání textu."
 
 #. description
-#: ../jobs/usb.txt.in:29
+#: ../jobs/usb.txt.in:24
 msgid "Does the keyboard work?"
-msgstr ""
+msgstr "Funguje klávesnice?"
 
 #. description
-#: ../jobs/usb.txt.in:39
+#: ../jobs/usb.txt.in:34
 msgid ""
 "USB mouse verification procedure: 1.- Plug a USB mouse into the computer 2.- "
 "Perform some single/double/right click operations"
 msgstr ""
+"Postup pro ověření funkce USB myši: 1.- Připojte k počítači USB myš 2.- "
+"Vyzkoušejte kliknutí levým i pravým tlačítkem myši a dvojklik."
 
 #. description
-#: ../jobs/usb.txt.in:51
+#: ../jobs/usb.txt.in:46
 msgid ""
 "Click 'Test' and insert a USB device within 5 seconds. If the test is "
 "successful, you should notice that 'Yes' is selected below. Do not unplug "
 "the device if the test is successful."
 msgstr ""
+"Klikněte na 'Test' a vložte během 5 sekund USB zařízení. Pokud test proběhne "
+"úspěšně, označí níže se 'Ano'. Neodpojujte zařízení, pokud je test úspěšný."
 
 #. description
-#: ../jobs/usb.txt.in:51
+#: ../jobs/usb.txt.in:46
 msgid ""
 "If no USB device is inserted or the device is not recognized, the test will "
 "fail and 'No' will be selected below."
 msgstr ""
+"Pokud není připojeno žádné USB zařízení nebo toto zařízení není rozeznáno, "
+"test skončí chybou a níže bude označeno 'Ne'."
 
 #. description
-#: ../jobs/usb.txt.in:63
+#: ../jobs/usb.txt.in:58
 msgid ""
 "Click 'Test' and remove the USB device you inserted within 5 seconds. If the "
 "test is successful, you should notice that 'Yes' is selected below."
 msgstr ""
+"Klikněte na 'Test' a odstraňte USB zařízení během 5 sekund. Pokud test "
+"proběhne úspěšně, označí níže se 'Ano'."
 
 #. description
-#: ../jobs/usb.txt.in:63
+#: ../jobs/usb.txt.in:58
 msgid ""
 "If the USB device isn't removed or the removal is not registered, the test "
 "will fail and 'No' will be selected below."
 msgstr ""
+"Pokud nebude odpojeno nebo se jeho odpojení nerozená, test skončí chybou a "
+"níže bude označeno 'Ne'."
 
 #. description
 #: ../jobs/usb.txt.in:61
@@ -2315,11 +2518,13 @@ msgid ""
 "Plug a USB storage device into the computer. An icon should appear \\ on the "
 "desktop and in the \"Places\" menu at the top of the screen."
 msgstr ""
+"Připojte USB úložiště do počítače. Měla by se zobrazit\\ ikona na ploše a v "
+"nabídce \"Místa\" v horní části obrazovky."
 
 #. description
 #: ../jobs/usb.txt.in:61
 msgid "Does the window automatically appear?"
-msgstr ""
+msgstr "Zobrazilo se okno automaticky?"
 
 #. description
 #: ../jobs/usb.txt.in:71
@@ -2329,26 +2534,33 @@ msgid ""
 "the screen. 3.- Copy some files from the internal/USB HDD to the "
 "USB/internal HDD"
 msgstr ""
+"Postup pro ověření externího pevného disku na USB: 1.- Připojte disk k "
+"počítači 2.- Na ploše a v nabídce 'Místa' by se měla objevit ikona 3.- "
+"Zkopírujte několik souborů z interního/USB disku na USB/interní disk"
 
 #. description
-#: ../jobs/usb.txt.in:91
+#: ../jobs/usb.txt.in:86
 msgid ""
 "Connect a USB storage device to an external USB slot on this computer. \\ An "
 "icon should appear on the desktop and in the \"Places\" menu at the top of "
 "the screen."
 msgstr ""
+"Připojte  k USB portu zařízení pro ukládání dat. Na ploše a v nabídce "
+"'Místa' by se měla objevit ikona."
 
 #. description
-#: ../jobs/usb.txt.in:91
+#: ../jobs/usb.txt.in:86
 msgid ""
 "Confirm that the icon appears, then eject the device. Repeat with each "
 "external \\ USB slot."
 msgstr ""
+"Ujistěte se, že se ikona objevila a pak odpojte zařízení. Opakujte pro "
+"všechny USB porty počítače."
 
 #. description
-#: ../jobs/usb.txt.in:91
+#: ../jobs/usb.txt.in:86
 msgid "Do all USB slots work with the device?"
-msgstr ""
+msgstr "Fungují všechny USB porty se zařízením?"
 
 #. description
 #: ../jobs/user_apps.txt.in:6
@@ -2358,10 +2570,11 @@ msgid ""
 "are found, install them. When Update Manager has finished, please close the "
 "app by clicking the Close button in the lower right corner."
 msgstr ""
-"Tento test spustí Správce aktualizací a ověří, zda jsou dostupné nějaké "
-"aktualizace systému. Postupujte podle pokynů a pokud jsou aktualizace "
-"nalezeny, nainstalujte je. Po dokončení aktualizace zavřete Správce "
-"aktualizací kliknutím na tlačítko v pravém dolním rohu."
+"Tento test spustí Správce aktualizací – ten zjistí, zda jsou pro tento "
+"systém k dispozici nějaké nové, doposud nenainstalované, aktualizace. "
+"Postupujte dle pokynů a případné aktualizace nainstalujte. Po úspěšném "
+"dokončení vyhledání (a případně instalace) aktualizací zavřete Správce "
+"aktualizací kliknutím na tlačítko „Zavřít“ v pravém dolním rohu."
 
 #. description
 #: ../jobs/user_apps.txt.in:14
@@ -2781,7 +2994,7 @@ msgstr "Znovu otestovat"
 
 #: ../checkbox_gtk/gtk_interface.py:93
 msgid "hardware database"
-msgstr ""
+msgstr "hardwarová databáze"
 
 #: ../checkbox_gtk/gtk_interface.py:542
 msgid "Info"
@@ -2815,12 +3028,12 @@ msgstr ""
 #: ../plugins/apport_prompt.py:225
 #, python-format
 msgid "Test %s from suite %s failed."
-msgstr ""
+msgstr "Test %s ze sady %s selhal."
 
 #: ../plugins/apport_prompt.py:228
 #, python-format
 msgid "Test %s failed."
-msgstr ""
+msgstr "Test %s selhal."
 
 #: ../plugins/apport_prompt.py:246
 #, python-format
@@ -2845,7 +3058,7 @@ msgstr ""
 "správně. Po skončení všech testů si můžete prohlédnout zprávu s výsledky "
 "vašeho systému"
 
-#: ../plugins/launchpad_exchange.py:118
+#: ../plugins/launchpad_exchange.py:136
 #, python-format
 msgid "Failed to process form: %s"
 msgstr "Zpracování formuláře neúspěšné: %s"
