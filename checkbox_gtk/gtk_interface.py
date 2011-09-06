@@ -109,7 +109,7 @@ class GTKInterface(UserInterface):
 
         # Set shorthand for notebook
         self._notebook = self._get_widget("notebook_main")
-        self._handler_id = None
+        self._handlers = {}
 
     def _get_widget(self, name):
         return self.widgets.get_object(name)
@@ -153,7 +153,8 @@ class GTKInterface(UserInterface):
             self.show_url(anchor)
 
         widget = self._get_widget(name)
-        widget.connect("anchor-clicked", clicked)
+        if widget not in self._handlers:
+            self._handlers[widget] = widget.connect("anchor-clicked", clicked)
 
         buffer = Gtk.TextBuffer()
         widget.set_buffer(buffer)
@@ -518,9 +519,9 @@ class GTKInterface(UserInterface):
         if "command" in test:
             self._set_sensitive("button_test", True)
             button_test = self._get_widget("button_test")
-            if self._handler_id:
-                button_test.disconnect(self._handler_id)
-            self._handler_id = button_test.connect("clicked",
+            if button_test in self._handlers:
+                button_test.disconnect(self._handlers[button_test])
+            self._handlers[button_test] = button_test.connect("clicked",
                 lambda w, t=test, r=runner: self._run_test(t, r))
 
         self._set_text_view("text_view_comment", test.get("data", ""))
