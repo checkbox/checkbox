@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-07-07 12:32-0400\n"
-"PO-Revision-Date: 2011-09-05 08:36+0000\n"
+"PO-Revision-Date: 2011-09-06 12:11+0000\n"
 "Last-Translator: Richard Somlói <ricsipontaz@gmail.com>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-09-06 04:34+0000\n"
+"X-Launchpad-Export-Date: 2011-09-07 04:32+0000\n"
 "X-Generator: Launchpad (build 13861)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:2
@@ -294,6 +294,11 @@ msgid ""
 "from the mobile device to the computer 5.- Verify that the file was "
 "correctly copied"
 msgstr ""
+"Bluetooth fájlmásolás ellenőrzése: 1.- Győződjön meg róla, hogy tudja "
+"böngészni a mobil eszköz fájljait 2.- Másoljon át egy fájlt a számítógépéről "
+"a mobil eszközre 3.- Ellenőrizze, hogy a fájl megfelelően át lett-e másolva "
+"4.- Most másoljon a mobil eszközről a számítógépére egy fájlt 5.- "
+"Ellenőrizze, hogy ez is rendben megérkezett-e."
 
 #. description
 #: ../jobs/bluetooth.txt.in:50
@@ -517,7 +522,7 @@ msgstr "A következő merevlemezek találhatók:"
 #. description
 #: ../jobs/disk.txt.in:9
 msgid "Benchmark for each disk "
-msgstr ""
+msgstr "Minden lemez tesztelése "
 
 #. description
 #: ../jobs/disk.txt.in:26
@@ -527,7 +532,7 @@ msgstr "SMART tesztek"
 #. description
 #: ../jobs/disk.txt.in:41
 msgid "Maximum disk space used during a default installation test"
-msgstr ""
+msgstr "Az alapértelmezett telepítéskor használt legnagyobb lemezhely teszt"
 
 #. description
 #: ../jobs/disk.txt.in:56
@@ -1627,6 +1632,8 @@ msgid ""
 "Automated test case to make sure that it's possible to download files "
 "through HTTP"
 msgstr ""
+"Automatikus teszt, mely ellenőrzi, hogy lehetséges-e a fájlletöltés HTTP "
+"protokollon keresztül"
 
 #. description
 #: ../jobs/networking.txt.in:82
@@ -1640,6 +1647,8 @@ msgid ""
 "Verify that an installation of checkbox-server on the network can be reached "
 "over SSH."
 msgstr ""
+"Ellenőrzi, hogy a checkbox kiszolgáló elérhető-e a hálózatról SSH-n "
+"keresztül."
 
 #. description
 #: ../jobs/networking.txt.in:94
@@ -1813,64 +1822,74 @@ msgid ""
 "Shutdown/boot cycle verification procedure: 1.- Shutdown your machine 2.- "
 "Boot your machine 3.- Repeat steps 1 and 2 at least 5 times"
 msgstr ""
+"Helyes leállás/indulás ellenőrzése: 1.- Állítsa le a számítógépét 2.- Majd "
+"indítsa el 3.- Ismételje meg az 1. és 2. pontot legalább öt alkalommal"
 
 #. description
 #: ../jobs/power-management.txt.in:3
 msgid ""
 "Note: This test case has to be executed manually before checkbox execution"
 msgstr ""
+"Megjegyzés: A tesztet kézzel a checkbox indítása előtt végre kell hajtani"
 
 #. description
 #: ../jobs/power-management.txt.in:14
 msgid ""
 "Run the computer suspend test. Then, press the power button to resume it."
 msgstr ""
+"Futtassa a számítógép felfüggesztése tesztet. Majd, nyomja meg a "
+"bekapcsológombot a visszatéréshez."
 
 #. description
 #: ../jobs/power-management.txt.in:14
 msgid "Does your computer suspend and resume?"
-msgstr ""
+msgstr "A számítógépe sikeresen fel lett függesztve és vissza is tért?"
 
 #. description
 #: ../jobs/power-management.txt.in:22
 msgid ""
 "Run the computer hibernate test. Then, press the power button to restore it."
 msgstr ""
+"Futtassa a számítógép hibernálása tesztet. Majd, nyomja meg a "
+"bekapcsológombot a visszatéréshez."
 
 #. description
 #: ../jobs/power-management.txt.in:22
 msgid "Does your computer hibernate and restore?"
-msgstr ""
+msgstr "A számítógépe sikeresen hibernálva lett és vissza is tért?"
 
 #. description
 #: ../jobs/power-management.txt.in:13
 msgid "Does closing your laptop lid cause your screen to blank?"
-msgstr ""
+msgstr "A laptopfedél lecsukásának hatására elsötétült a kijelző?"
 
 #. description
 #: ../jobs/power-management.txt.in:25
 msgid "Click the Test button, then close and open the lid."
 msgstr ""
+"Kattintson a Teszt gombra, majd csukja le és nyissa fel a laptop fedelét."
 
 #. description
 #: ../jobs/power-management.txt.in:25
 msgid "Did the screen turn off while the lid was closed?"
-msgstr ""
+msgstr "Kikapcsolt a kijelző amíg a fedél le volt csukva?"
 
 #. description
 #: ../jobs/power-management.txt.in:39
 msgid "Click the Test button, then close the lid and wait 5 seconds."
 msgstr ""
+"Kattintson a Teszt gombra, majd csukja le a laptop fedelét és várjon 5 "
+"másodpercet."
 
 #. description
 #: ../jobs/power-management.txt.in:39
 msgid "Open the lid."
-msgstr ""
+msgstr "Nyissa fel a laptop fedelét."
 
 #. description
 #: ../jobs/power-management.txt.in:39
 msgid "Did the screen turn back on when the lid was opened?"
-msgstr ""
+msgstr "A kijelző visszakapcsolt a laptop fedelének kinyitására?"
 
 #. description
 #: ../jobs/power-management.txt.in:49
@@ -2103,7 +2122,7 @@ msgstr ""
 #. description
 #: ../jobs/suspend.txt.in:194
 msgid "Automatic power management Suspend and Resume test"
-msgstr ""
+msgstr "Automatikus energiagazdálkodási felfüggesztés és visszatérés teszt"
 
 #. description
 #: ../jobs/suspend.txt.in:194
@@ -2271,6 +2290,8 @@ msgid ""
 "This test will verify that Unity is running and then run the autopilot.py "
 "test against the Unity interface."
 msgstr ""
+"A teszt ellenőrzi, hogy a Unity elfut-e, majd az autopilot.py fájl "
+"futtatásával teszteli a felületet."
 
 #. description
 #: ../jobs/usb.txt.in:5
@@ -2307,6 +2328,9 @@ msgid ""
 "successful, you should notice that 'Yes' is selected below. Do not unplug "
 "the device if the test is successful."
 msgstr ""
+"Kattintson a „Teszt” gombra és csatlakoztasson egy USB eszközt 5 másodpercen "
+"belül. Ha sikerül, az „Igen” lehetőség automatikusan ki lesz választva. "
+"Sikeres teszt esetén ne távolítsa el az eszközt."
 
 #. description
 #: ../jobs/usb.txt.in:46
@@ -2314,6 +2338,8 @@ msgid ""
 "If no USB device is inserted or the device is not recognized, the test will "
 "fail and 'No' will be selected below."
 msgstr ""
+"Ha nem csatlakoztat USB eszközt vagy a rendszer nem ismeri fel, a „Nem” "
+"lehetőség lesz automatikusan kiválasztva lejjebb."
 
 #. description
 #: ../jobs/usb.txt.in:58
@@ -2321,6 +2347,8 @@ msgid ""
 "Click 'Test' and remove the USB device you inserted within 5 seconds. If the "
 "test is successful, you should notice that 'Yes' is selected below."
 msgstr ""
+"Kattintson a „Teszt” gombra és távolítsa el az USB eszközt 5 másodpercen "
+"belül. Ha sikerül, az „Igen” lehetőség automatikusan ki lesz választva."
 
 #. description
 #: ../jobs/usb.txt.in:58
@@ -2328,6 +2356,8 @@ msgid ""
 "If the USB device isn't removed or the removal is not registered, the test "
 "will fail and 'No' will be selected below."
 msgstr ""
+"Ha nem távolítja el vagy a rendszer nem tudja eltávolítani az USB eszközt, a "
+"„Nem” lehetőség lesz automatikusan kiválasztva lejjebb."
 
 #. description
 #: ../jobs/usb.txt.in:61
@@ -2335,11 +2365,13 @@ msgid ""
 "Plug a USB storage device into the computer. An icon should appear \\ on the "
 "desktop and in the \"Places\" menu at the top of the screen."
 msgstr ""
+"Csatlakoztasson egy USB tárolót a számítógépéhez. Egy ikonnak kellene \\ "
+"megjelennie az asztalon és a képernyő tetején lévő „Helyek” menü alatt."
 
 #. description
 #: ../jobs/usb.txt.in:61
 msgid "Does the window automatically appear?"
-msgstr ""
+msgstr "Az ablak automatikusan megjelent?"
 
 #. description
 #: ../jobs/usb.txt.in:71
@@ -2349,6 +2381,10 @@ msgid ""
 "the screen. 3.- Copy some files from the internal/USB HDD to the "
 "USB/internal HDD"
 msgstr ""
+"USB merevlemez ellenőrzése: 1.- Csatlakoztasson egy USB merevlemezt a "
+"számítógépéhez 2.- Egy ikonnak kellene megjelennie az asztalon és a képernyő "
+"tetején lévő „Helyek” menü alatt. 3.- Másoljon oda-vissza fájlokat a két "
+"eszközről."
 
 #. description
 #: ../jobs/usb.txt.in:86
@@ -2357,6 +2393,9 @@ msgid ""
 "icon should appear on the desktop and in the \"Places\" menu at the top of "
 "the screen."
 msgstr ""
+"Csatlakoztasson egy USB tárolót a számítógépe egy külső USB portjára. \\ Egy "
+"ikonnak kellene megjelennie az asztalon és a képernyő tetején lévő „Helyek” "
+"menü alatt."
 
 #. description
 #: ../jobs/usb.txt.in:86
@@ -2364,11 +2403,13 @@ msgid ""
 "Confirm that the icon appears, then eject the device. Repeat with each "
 "external \\ USB slot."
 msgstr ""
+"Ellenőrizze, hogy az ikon megjelenik-e, majd távolítsa el az eszközt. "
+"Ismételje meg \\ minden külső USB porttal."
 
 #. description
 #: ../jobs/usb.txt.in:86
 msgid "Do all USB slots work with the device?"
-msgstr ""
+msgstr "Minden USB porton működött az eszköz?"
 
 #. description
 #: ../jobs/user_apps.txt.in:6
@@ -2854,7 +2895,7 @@ msgstr ""
 #: ../plugins/apport_prompt.py:225
 #, python-format
 msgid "Test %s from suite %s failed."
-msgstr ""
+msgstr "%s tesztsorozat %s tesztje nem sikerült."
 
 #: ../plugins/apport_prompt.py:228
 #, python-format
