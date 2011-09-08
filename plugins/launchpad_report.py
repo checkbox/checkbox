@@ -17,7 +17,6 @@
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
 import os
-import shutil
 
 from gettext import gettext as _
 
@@ -144,14 +143,11 @@ The generated report seems to have validation errors,
 so it might not be processed by Launchpad."""))
 
         # Write the report
-        shutil.copyfile(self.stylesheet, stylesheet_path)
+        stylesheet_data = open(self.stylesheet).read() % os.environ
+        open(stylesheet_path, "w").write(stylesheet_data)
         directory = os.path.dirname(self.filename)
         safe_make_directory(directory)
-        file = open(self.filename, "w")
-        try:
-            file.write(payload)
-        finally:
-            file.close()
+        open(self.filename, "w").write(payload)
 
         self._manager.reactor.fire("launchpad-report", self.filename)
 
