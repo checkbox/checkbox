@@ -17,7 +17,9 @@
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
 import os
-import posixpath
+import shutil
+
+from gettext import gettext as _
 
 from checkbox.lib.safe import safe_make_directory
 
@@ -30,6 +32,9 @@ class LaunchpadReport(Plugin):
 
     # Filename where submission information is cached.
     filename = Path(default="%(checkbox_data)s/submission.xml")
+
+    # XML Schema
+    schema = Path(default="%(checkbox_share)s/report/hardware-1_0.rng")
 
     # XSL Stylesheet
     stylesheet = Path(default="%(checkbox_share)s/report/checkbox.xsl")
@@ -67,10 +72,13 @@ class LaunchpadReport(Plugin):
     def report_attachments(self, attachments):
         for attachment in attachments:
             name = attachment["name"]
-            if "dmi" in name:
+            if "sysfs_attachment" in name:
+                self._report["hardware"]["sysfs-attributes"] = attachment["data"]
+
+            elif "dmi_attachment" in name:
                 self._report["hardware"]["dmi"] = attachment["data"]
 
-            elif "udev" in name:
+            elif "udev_attachment" in name:
                 self._report["hardware"]["udev"] = attachment["data"]
 
             else:
@@ -123,24 +131,27 @@ class LaunchpadReport(Plugin):
             self._report["questions"].append(question)
 
     def report(self):
-        # Convert stylesheet to report directory
-        stylesheet_data = open(self.stylesheet).read() % os.environ
-        stylesheet_path = posixpath.join(
-            posixpath.dirname(self.filename),
-            posixpath.basename(self.stylesheet))
-        open(stylesheet_path, "w").write(stylesheet_data)
-
         # Prepare the payload and attach it to the form
-        stylesheet_path = posixpath.abspath(stylesheet_path)
-        report_manager = LaunchpadReportManager("system", "1.0", stylesheet_path)
+        stylesheet_path = os.path.join(
+            os.path.dirname(self.filename),
+            os.path.basename(self.stylesheet))
+        report_manager = LaunchpadReportManager(
+            "system", "1.0", stylesheet_path, self.schema)
         payload = report_manager.dumps(self._report).toprettyxml("")
+        if not report_manager.validate(payload):
+            self._manager.reactor.fire("report-error", _("""\
+The generated report seems to have validation errors,
+so it might not be processed by Launchpad."""))
 
-        directory = posixpath.dirname(self.filename)
+        # Write the report
+        shutil.copyfile(self.stylesheet, stylesheet_path)
+        directory = os.path.dirname(self.filename)
         safe_make_directory(directory)
-
         file = open(self.filename, "w")
-        file.write(payload)
-        file.close()
+        try:
+            file.write(payload)
+        finally:
+            file.close()
 
         self._manager.reactor.fire("launchpad-report", self.filename)
 

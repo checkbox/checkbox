@@ -37,6 +37,15 @@ name: info/sysctl_attachment
 plugin: attachment
 command: find /etc/sysctl.* -name \*.conf | xargs cat
 
+name: info/sysfs_attachment
+plugin: attachment
+command:
+ for i in `udevadm info --export-db | sed -n 's/^P: //p'`; do
+  echo "P: $i"
+  udevadm info --attribute-walk --path=/sys$i 2>/dev/null | sed -n 's/    ATTR{\(.*\)}=="\(.*\)"/A: \1=\2/p'
+  echo
+ done
+
 name: info/udev_attachment
 plugin: attachment
 command: udevadm info --export-db
