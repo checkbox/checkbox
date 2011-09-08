@@ -146,7 +146,7 @@ _description:
 plugin: manual
 name: suspend/cycle_resolutions_after_suspend
 requires: package.name == 'xorg'
-depends: suspend/suspend_advanced graphics/xrandr_cycle
+depends: suspend/suspend_advanced graphics/cycle_resolution
 _description:
  This test will check to make sure that supported video modes work after a suspend and resume.  Select Test to begin.
 command: xrandr_cycle --keyword=after_suspend
@@ -154,7 +154,7 @@ command: xrandr_cycle --keyword=after_suspend
 plugin: shell
 name: suspend/cycle_resolutions_after_suspend_auto
 requires: package.name == 'xorg'
-depends: suspend/suspend_advanced graphics/xrandr_cycle
+depends: suspend/suspend_advanced graphics/cycle_resolution
 _description:
  This test will check to make sure supported video modes work after a suspend and resume.
  This is done automatically by taking screenshots and uploading them as an attachment.

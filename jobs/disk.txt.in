@@ -42,7 +42,7 @@ _description: Maximum disk space used during a default installation test
 command:
  cat <<'EOF' | run_templates -t -s 'udev_resource | filter_templates -w "category=DISK"'
  plugin: shell
- name: max_diskspace_used_`ls /sys$path/block`
+ name: disk/max_diskspace_used_`ls /sys$path/block`
  requires: device.path == "$path"
  description: Max disk space test for $product
  user: root
