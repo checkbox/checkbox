@@ -4,7 +4,8 @@ checkbox (0.12.7) oneiric; urgency=low
   * Redirecting stderr to pipe to fix the gconf_resource script (LP: #832321)
 
   [Marc Tardif]
-  * Only connecting hyper text widgets once (LP: #827904)
+  * Connecting hyper text widgets only once (LP: #827904)
+  * Detecting MMC readers as OTHER instead of DISK (LP: #822948)
   * Validating the submission.xml (LP: #838123)
 
   [Jeff Lane]
