@@ -11,6 +11,9 @@ checkbox (0.12.7) oneiric; urgency=low
   * Several corrections necessary due to test name changes or typos found in
     job files
 
+  [Daniel Manrique]
+  * checkbox/job.py: Guard against bogus timeout values (LP: #827859)
+
  -- Daniel Manrique <daniel.manrique@canonical.com>  Thu, 08 Sep 2011 14:53:55 -0400
 
 checkbox (0.12.6) oneiric; urgency=low
