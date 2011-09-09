@@ -55,3 +55,5 @@ class Usb:
     BASE_CLASS_WIRELESS              = 224
     CLASS_WIRELESS_RADIO_FREQUENCY   = 1
     CLASS_WIRELESS_USB_ADAPTER       = 2
+    
+    PROTOCOL_BLUETOOTH               = 1

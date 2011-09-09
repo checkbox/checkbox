@@ -1,4 +1,34 @@
+checkbox (0.12.7) oneiric; urgency=low
+
+  [Brendan Donegan]
+  * Redirecting stderr to pipe to fix the gconf_resource script (LP: #832321)
+
+  [Marc Tardif]
+  * Only connecting hyper text widgets once (LP: #827904)
+  * Validating the submission.xml (LP: #838123)
+
+  [Jeff Lane]
+  * Several corrections necessary due to test name changes or typos found in
+    job files
+
+ -- Daniel Manrique <daniel.manrique@canonical.com>  Thu, 08 Sep 2011 14:53:55 -0400
+
+checkbox (0.12.6) oneiric; urgency=low
+
+  New upstream release (LP: #841983):
+
+  [ Daniel Manrique ]
+  * Work around PyGTK API changes that kept checkbox from starting up
+    (LP: #839675).
+
+ -- Daniel Manrique <daniel.manrique@canonical.com>  Mon, 05 Sep 2011 12:47:58 -0400
+
 checkbox (0.12.5) oneiric; urgency=low
+
+  New upstream release (LP: #838745):
+
+  [Ara Pulido]
+  * Created a "suspend" suite and renamed relevant tests.
 
   [Brendan Donegan]
   * Removed redundant tests in power-management suite.
@@ -8,9 +38,23 @@ checkbox (0.12.5) oneiric; urgency=low
   * Changed name of apt-get test to reflect the suite it's in.
   * Fixed typos in job definitions that caused them to not be run.
   * Added missing description to info/hdparm test (LP: #832351)
+  * Quote command to obtain bluetooth address, to avoid hanging if 
+    a device is not present (LP: #836756).
+  * Changed architecture from all to any for checkbox base, to build
+    architecture-specific binaries (LP: #833696)
+  * Added BLUETOOTH category to udev parser.
+  * Removed some tests from default whitelist.
+  * Fixed dependencies for keys/sleep.
   * checkbox/job.py: Guard against bogus timeout values (LP: #827859)
 
- -- Daniel Manrique <daniel.manrique@canonical.com>  Wed, 24 Aug 2011 16:21:03 -0400
+  [Jeff Lane]
+  * Added new USB storage transfer test
+  * Re-worked and added automated audio test
+
+  [Marc Tardif]
+  * Added WIRELESS category to udev parser.
+
+ -- Ara Pulido <ara@ubuntu.com>  Thu, 01 Sep 2011 12:23:07 +0100
 
 checkbox (0.12.4) oneiric; urgency=low
 

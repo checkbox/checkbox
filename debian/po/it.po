@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-03-29 15:19+0200\n"
-"PO-Revision-Date: 2011-07-20 14:04+0000\n"
+"PO-Revision-Date: 2011-09-07 09:11+0000\n"
 "Last-Translator: Sergio Zanchetta <primes2h@ubuntu.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-07-21 04:31+0000\n"
-"X-Generator: Launchpad (build 13405)\n"
+"X-Launchpad-Export-Date: 2011-09-08 04:32+0000\n"
+"X-Generator: Launchpad (build 13891)\n"
 
 #. Type: boolean
 #. Description
@@ -30,12 +30,14 @@ msgid ""
 "If this option is set to Yes, then checkbox will ask if the user wants to "
 "file a bug for failing tests, even if apport is not enabled."
 msgstr ""
+"Se questa opzione è impostata a Sì, checkbox chiederà all'utente se vuole "
+"segnalare un bug per i test falliti, anche se apport non è abilitato."
 
 #. Type: string
 #. Description
 #: ../checkbox.templates:2001
 msgid "Default package to report bugs against:"
-msgstr ""
+msgstr "Pacchetto predefinito rispetto al quale segnalare i bug:"
 
 #. Type: string
 #. Description
@@ -44,42 +46,46 @@ msgid ""
 "When filing a new bug through checkbox, if it does not guess the  package, "
 "the default package that the bug will be file against."
 msgstr ""
+"Pacchetto predefinito rispetto al quale segnalare i bug, se non ne viene "
+"ipotizzato alcuno, quando un nuovo bug viene segnalato attraverso checkbox."
 
 #. Type: string
 #. Description
 #: ../checkbox.templates:3001
 msgid "Test suite blacklist:"
-msgstr ""
+msgstr "Blacklist dei set di test:"
 
 #. Type: string
 #. Description
 #: ../checkbox.templates:3001
 msgid "List of job files to never run when testing with checkbox."
 msgstr ""
+"Elenco dei file di lavori che non devono essere mai eseguiti durante i test "
+"con checkbox."
 
 #. Type: string
 #. Description
 #: ../checkbox.templates:4001
 msgid "Test suite whitelist:"
-msgstr ""
+msgstr "Whitelist dei set di test:"
 
 #. Type: string
 #. Description
 #: ../checkbox.templates:4001
 msgid "List of jobs to run when testing with checkbox."
-msgstr ""
+msgstr "Elenco dei lavori da eseguire durante i test con checkbox."
 
 #. Type: string
 #. Description
 #: ../checkbox.templates:5001
 msgid "Transport URL:"
-msgstr ""
+msgstr "URL di trasporto:"
 
 #. Type: string
 #. Description
 #: ../checkbox.templates:5001
 msgid "URL where to send submissions."
-msgstr ""
+msgstr "URL al quale effettuare gli invii."
 
 #. Type: string
 #. Description
@@ -104,6 +110,7 @@ msgstr "Proxy HTTP:"
 #: ../checkbox.templates:7001
 msgid "HTTP proxy to use instead of the one specified in environment."
 msgstr ""
+"Proxy HTTP da usare al posto di quello specificato nella variabile ambiente."
 
 #. Type: string
 #. Description
@@ -116,3 +123,4 @@ msgstr "Proxy HTTPS:"
 #: ../checkbox.templates:8001
 msgid "HTTPS proxy to use instead of the one specified in environment."
 msgstr ""
+"Proxy HTTPS da usare al posto di quello specificato nella variabile ambiente."

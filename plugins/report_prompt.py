@@ -30,9 +30,16 @@ class ReportPrompt(Plugin):
         self._manager.reactor.call_on("prompt-report", self.prompt_report)
 
     def prompt_report(self, interface):
+        def report_error(e):
+            self._manager.reactor.fire("prompt-error", interface, e)
+
+        event_id = self._manager.reactor.call_on("report-error", report_error)
+
         if interface.direction != PREV:
             interface.show_progress(_("Building report..."),
                 self._manager.reactor.fire, "report")
+
+        self._manager.reactor.cancel_call(event_id)
 
 
 factory = ReportPrompt

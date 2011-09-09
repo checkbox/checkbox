@@ -27,6 +27,7 @@ _description:
 plugin: manual
 name: keys/sleep
 requires: device.product in ['Notebook','Laptop','Portable']
+depends: suspend/suspend_advanced
 _description:
  Press the sleep key on the keyboard. The computer should suspend and, \
  after pressing the power button, resume successfully.

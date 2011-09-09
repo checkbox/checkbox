@@ -217,6 +217,7 @@ This project provides an extensible interface for system testing.
         ("share/checkbox/data/documents/", ["data/documents/*"]), 
         ("share/checkbox/data/images/", ["data/images/*"]), 
         ("share/checkbox/data/video/", ["data/video/*"]), 
+        ("share/checkbox/data/settings/", ["data/settings/*"]), 
         ("share/checkbox/data/websites/", ["data/websites/*"]), 
         ("share/checkbox/data/whitelists/", ["data/whitelists/*"]), 
         ("share/checkbox/examples/", ["examples/*"]),

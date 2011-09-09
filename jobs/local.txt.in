@@ -73,6 +73,11 @@ plugin: local
 _description: Hotkey tests
 command: cat $CHECKBOX_SHARE/jobs/keys.txt*
 
+name: __hibernate__
+plugin: local
+_description: Hibernation tests
+command: cat $CHECKBOX_SHARE/jobs/hibernate.txt*
+
 name: __mediacard__
 plugin: local
 _description: Media Card tests
@@ -118,6 +123,11 @@ plugin: local
 _description: Power Management tests
 command: cat $CHECKBOX_SHARE/jobs/power-management.txt*
 
+name: __suspend__
+plugin: local
+_description: Suspend tests
+command: cat $CHECKBOX_SHARE/jobs/suspend.txt*
+
 name: __unity__
 plugin: local
 _description: Unity tests
@@ -132,6 +142,11 @@ name: __user_apps__
 plugin: local
 _description: User Applications
 command: cat $CHECKBOX_SHARE/jobs/user_apps.txt*
+
+name: __wireless__
+plugin: local
+_description: Wireless networking tests
+command: cat $CHECKBOX_SHARE/jobs/wireless.txt*
 
 name: __stress__
 plugin: local

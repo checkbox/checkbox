@@ -16,6 +16,9 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
+import libxml2
+import posixpath
+
 from xml.dom.minidom import Document, Element, parseString
 
 
@@ -27,13 +30,13 @@ class ReportManager(object):
     handlers to understand the formats for dumping and loading actions.
     """
 
-    def __init__(self, name, version=None, stylesheet=None):
+    def __init__(self, name, version=None, stylesheet=None, schema=None):
         self.name = name
         self.version = version
         self.stylesheet = stylesheet
+        self.schema = schema
         self.dumps_table = {}
         self.loads_table = {}
-        self.document = None
 
     def handle_dumps(self, type, handler):
         """
@@ -83,17 +86,17 @@ class ReportManager(object):
         Dump the given object which may be a container of any objects
         supported by the reports added to the manager.
         """
-        self.document = Document()
+        document = Document()
 
         if self.stylesheet:
             type = "text/xsl"
-            href = "file://%s" % self.stylesheet
-            style = self.document.createProcessingInstruction("xml-stylesheet",
+            href = "file://%s" % posixpath.abspath(self.stylesheet)
+            style = document.createProcessingInstruction("xml-stylesheet",
                 "type=\"%s\" href=\"%s\"" % (type, href))
-            self.document.appendChild(style)
+            document.appendChild(style)
 
-        node = self.document.createElement(self.name)
-        self.document.appendChild(node)
+        node = document.createElement(self.name)
+        document.appendChild(node)
 
         if self.version:
             node.setAttribute("version", self.version)
@@ -103,8 +106,6 @@ class ReportManager(object):
         except KeyError, e:
             raise ValueError, "Unsupported type: %s" % e
 
-        document = self.document
-        self.document = None
         return document
 
     def loads(self, str):
@@ -123,6 +124,32 @@ class ReportManager(object):
 
         return ret
 
+    def validate(self, str):
+        """
+        Validate the given string 
+        """
+        if not self.schema:
+            return False
+
+        file = open(self.schema)
+        try:
+            schema = file.read()
+        finally:
+            file.close()
+
+        rngParser = libxml2.relaxNGNewMemParserCtxt(schema, len(schema))
+        rngSchema = rngParser.relaxNGParse()
+        ctxt = rngSchema.relaxNGNewValidCtxt()
+        doc = libxml2.parseDoc(str)
+        is_valid = doc.relaxNGValidateDoc(ctxt)
+
+        # Clean up
+        doc.freeDoc()
+        del rngParser, rngSchema, ctxt
+        libxml2.relaxNGCleanupTypes()
+        libxml2.cleanupParser()
+        return is_valid == 0
+
 
 class Report(object):
     """A convenience for writing reports.
@@ -133,12 +160,12 @@ class Report(object):
     """
 
     def _create_element(self, name, parent):
-        element = self._manager.document.createElement(name)
+        element = parent.ownerDocument.createElement(name)
         parent.appendChild(element)
         return element
 
     def _create_text_node(self, text, parent):
-        text_node = self._manager.document.createTextNode(text)
+        text_node = parent.ownerDocument.createTextNode(text)
         parent.appendChild(text_node)
         return text_node
 

@@ -1,0 +1,20 @@
+plugin: shell
+name: wireless/wireless_scanning
+user: root
+requires: package.name == 'wireless-tools'
+command: network_wireless_test
+_description: Wireless scanning test.
+
+plugin: manual
+name: wireless/wireless_connection
+command: network_check
+requires: device.category == 'WIRELESS'
+_description:
+ Wireless network connection procedure:
+ 1.- Click on the Network Manager applet
+ 2.- Select a network below the 'Wireless networks' section
+ 3.- Notify OSD should confirm that the connection has been established
+ 4.- Select Test to verify that it's possible to establish an HTTP connection
+ .
+ Was the connection correctly established?
+

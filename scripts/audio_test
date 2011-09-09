@@ -1,13 +1,20 @@
 #!/bin/bash
 
 OUTPUT=`mktemp -u`.wav
-GST_COMMAND="gst-launch audiotestsrc wave=sine freq=512 ! audioconvert ! audioresample ! gconfaudiosink"
+GST_COMMAND_OLD="/usr/bin/gst-launch"
+GST_COMMAND_NEW="/usr/bin/gst-launch-0.10"
+GST_COMMAND_OPTS="audiotestsrc wave=sine freq=512 ! audioconvert !
+audioresample ! gconfaudiosink"
 #SOX_COMMAND="rec -q -r 44100 -p | sox -p $OUTPUT silence -l 1 00:00:00.5 -45d -1 00:00:00.5 -45d"
 REC_COMMAND="rec -q -r 44100 $OUTPUT"
 SOX_COMMAND="sox $OUTPUT $OUTPUT.1.wav silence -l 1 00:00:00.5 -45d -1 00:00:00.5 -45d"
 
 # Start playing a sine wave
-$GST_COMMAND &
+if [ -e $GST_COMMAND_OLD ]; then
+    $GST_COMMAND_OLD $GST_COMMAND_OPTS &
+else
+    $GST_COMMAND_NEW $GST_COMMAND_OPTS &
+fi
 GST_PID=$!
 
 # Listen for it on the audio input
@@ -16,11 +23,11 @@ REC_PID=$!
 
 # Wait a bit, then stop playing
 sleep 2
+echo "Killing REC_COMMAND PID: $REC_PID and GST_COMMAND PID: $GST_PID"
 kill $REC_PID $GST_PID
 
 # Look for silence
 $SOX_COMMAND
-
 # See if the filesize > 80 bytes on the output file
 # (80 bytes is the largest wav file that will be generated for silence,
 # so if we have that size we detected nothing but silence)
