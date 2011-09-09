@@ -143,7 +143,18 @@ class VerifiedHTTPSConnection(httplib.HTTPSConnection):
 
         # wrap the socket using verification with the root
         #    certs in trusted_root_certs
-        self.sock = _ssl_wrap_socket(sock, self.key_file, self.cert_file)
+        self.sock = _ssl_wrap_socket(sock,
+            self.key_file,
+            self.cert_file,
+            cert_reqs=ssl.CERT_REQUIRED,
+            ca_certs="/etc/ssl/certs/ca-certificates.crt")
+
+        # verify that the hostname exactly matches that of the certificate,
+        #    wildcards in the certificate hostname are not supported
+        hosts = [h[1] for h in self.sock.getpeercert()["subjectAltName"]]
+        if not any(host == self.host for host in hosts):
+            raise ValueError, "Hostname %s doesn't match any of %s" % (
+                self.host, ", ".join(hosts))
 
 
 class HTTPTransport(object):
