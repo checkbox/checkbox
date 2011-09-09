@@ -13,8 +13,10 @@ checkbox (0.12.7) oneiric; urgency=low
 
   [Daniel Manrique]
   * checkbox/job.py: Guard against bogus timeout values (LP: #827859)
+  * More explicit handling of string decoding/encoding, avoids problems with
+    non-ascii characters (LP: #833747)
 
- -- Daniel Manrique <daniel.manrique@canonical.com>  Thu, 08 Sep 2011 14:53:55 -0400
+ -- Daniel Manrique <daniel.manrique@canonical.com>  Fri, 09 Sep 2011 15:12:26 -0400
 
 checkbox (0.12.6) oneiric; urgency=low
 

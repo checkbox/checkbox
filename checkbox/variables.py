@@ -139,7 +139,7 @@ class UnicodeVariable(Variable):
 
     def coerce(self, value):
         if isinstance(value, str):
-            value = unicode(value)
+            value = unicode(value, encoding='utf_8')
         elif not isinstance(value, unicode):
             raise ValueError("%r is not a unicode" % (value,))
 
