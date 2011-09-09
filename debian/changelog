@@ -37,6 +37,8 @@ checkbox (0.12.5) oneiric; urgency=low
   * Added missing description to info/hdparm test (LP: #832351)
   * Quote command to obtain bluetooth address, to avoid hanging if 
     a device is not present (LP: #836756).
+  * Changed architecture from all to any for checkbox base, to build
+    architecture-specific binaries (LP: #833696)
   * Added BLUETOOTH category to udev parser.
   * Removed some tests from default whitelist.
   * Fixed dependencies for keys/sleep.
