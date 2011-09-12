@@ -27,15 +27,13 @@ class IntroPrompt(Plugin):
     def register(self, manager):
         super(IntroPrompt, self).register(manager)
 
-        self._recover = False
-
         self._manager.reactor.call_on("begin-recover", self.begin_recover)
 
         # Introduction should be prompted last
         self._manager.reactor.call_on("prompt-begin", self.prompt_begin, 100)
 
-    def begin_recover(self):
-        self._recover = True
+    def begin_recover(self, recover):
+        self._recover = recover
 
     def prompt_begin(self, interface):
         if interface.direction == PREV or not self._recover:

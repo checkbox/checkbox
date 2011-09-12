@@ -43,7 +43,6 @@ class SuitesPrompt(Plugin):
         self._depends = {}
         self._jobs = {}
         self._persist = None
-        self._recover = False
 
         for (rt, rh) in [
              ("begin-persist", self.begin_persist),
@@ -60,8 +59,8 @@ class SuitesPrompt(Plugin):
     def begin_persist(self, persist):
         self._persist = persist
 
-    def begin_recover(self):
-        self._recover = True
+    def begin_recover(self, recover):
+        self._recover = recover
 
     def report_suite(self, suite):
         suite.setdefault("type", "suite")
