@@ -48,6 +48,7 @@ class JobsPrompt(Plugin):
         return self._store
 
     def register(self, manager):
+        import pdb; pdb.set_trace()
         super(JobsPrompt, self).register(manager)
 
         self._ignore = []
@@ -62,7 +63,8 @@ class JobsPrompt(Plugin):
              ("prompt-jobs", self.prompt_jobs),
              ("prompt-finish", self.prompt_finish),
              ("report", self.report),
-             ("report-job", self.report_job)]:
+             ("report-job", self.report_job),
+             ("reset-jobs", self.reset_jobs)]:
             self._manager.reactor.call_on(rt, rh)
 
     def expose_msgstore(self):
@@ -108,6 +110,10 @@ class JobsPrompt(Plugin):
     def prompt_finish(self, interface):
         if interface.direction == NEXT:
             self.store.delete_all_messages()
+
+    def reset_jobs(self, interface):
+        import pdb; pdb.set_trace()
+        self.store.delete_all_messages()
 
     def report(self):
         self.store.set_pending_offset(0)
