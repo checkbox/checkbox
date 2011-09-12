@@ -111,7 +111,7 @@ class JobsPrompt(Plugin):
         if interface.direction == NEXT:
             self.store.delete_all_messages()
 
-    def reset_jobs(self, interface):
+    def reset_jobs(self):
         import pdb; pdb.set_trace()
         self.store.delete_all_messages()
 
