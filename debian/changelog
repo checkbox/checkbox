@@ -4,18 +4,19 @@ checkbox (0.12.7) oneiric; urgency=low
   * Redirecting stderr to pipe to fix the gconf_resource script (LP: #832321)
   * Clear jobs directory when user selects No to recover question (LP: #836623)
 
-  [Marc Tardif]
-  * Only connecting hyper text widgets once (LP: #827904)
-  * Validating the submission.xml (LP: #838123)
+  [Daniel Manrique]
+  * checkbox/job.py: Guard against bogus timeout values (LP: #827859)
+  * More explicit handling of string decoding/encoding, avoids problems with
+    non-ascii characters (LP: #833747)
 
   [Jeff Lane]
   * Several corrections necessary due to test name changes or typos found in
     job files
 
-  [Daniel Manrique]
-  * checkbox/job.py: Guard against bogus timeout values (LP: #827859)
-  * More explicit handling of string decoding/encoding, avoids problems with
-    non-ascii characters (LP: #833747)
+  [Marc Tardif]
+  * Connecting hyper text widgets only once (LP: #827904)
+  * Detecting MMC readers as OTHER instead of DISK (LP: #822948)
+  * Validating the submission.xml (LP: #838123)
 
  -- Daniel Manrique <daniel.manrique@canonical.com>  Fri, 09 Sep 2011 15:12:26 -0400
 
