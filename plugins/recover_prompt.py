@@ -28,7 +28,6 @@ class RecoverPrompt(Plugin):
 
     @property
     def persist(self):
-        import pdb; pdb.set_trace()
         if self._persist is None:
             self._persist = Persist(backend=MemoryBackend())
 
@@ -55,7 +54,6 @@ class RecoverPrompt(Plugin):
                 _("Checkbox did not finish completely.\n"
                   "Do you want to recover from the previous run?"),
                 ["yes", "no"], "yes")
-            import pdb; pdb.set_trace()
             if response == "yes":
                 self._manager.reactor.fire("begin-recover")
             elif response == "no":

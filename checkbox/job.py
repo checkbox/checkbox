@@ -37,6 +37,7 @@ UNTESTED = "untested"
 
 ALL_STATUS = [FAIL, PASS, UNINITIATED, UNRESOLVED, UNSUPPORTED, UNTESTED]
 
+DEFAULT_JOB_TIMEOUT = 30 # used in case a job specifies invalid timeout
 
 class Job(object):
 
@@ -47,6 +48,14 @@ class Job(object):
         self.command = command
         self.environ = environ
         self.timeout = timeout
+        if self.timeout is not None:
+            try:
+                self.timeout = float(self.timeout)
+            except:
+                self.timeout = DEFAULT_JOB_TIMEOUT
+            finally:
+                if self.timeout < 0:
+                    self.timeout = DEFAULT_JOB_TIMEOUT
 
     def execute(self):
         # Sanitize environment

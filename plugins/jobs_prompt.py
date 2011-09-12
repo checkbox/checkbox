@@ -48,7 +48,6 @@ class JobsPrompt(Plugin):
         return self._store
 
     def register(self, manager):
-        import pdb; pdb.set_trace()
         super(JobsPrompt, self).register(manager)
 
         self._ignore = []
@@ -112,7 +111,6 @@ class JobsPrompt(Plugin):
             self.store.delete_all_messages()
 
     def reset_jobs(self):
-        import pdb; pdb.set_trace()
         self.store.delete_all_messages()
 
     def report(self):
