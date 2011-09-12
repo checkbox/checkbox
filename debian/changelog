@@ -2,6 +2,7 @@ checkbox (0.12.7) oneiric; urgency=low
 
   [Brendan Donegan]
   * Redirecting stderr to pipe to fix the gconf_resource script (LP: #832321)
+  * Clear jobs directory when user selects No to recover question (LP: #836623)
 
   [Marc Tardif]
   * Only connecting hyper text widgets once (LP: #827904)
