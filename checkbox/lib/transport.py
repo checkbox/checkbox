@@ -133,6 +133,23 @@ class VerifiedHTTPSConnection(httplib.HTTPSConnection):
     timeout = None
     _tunnel_host = None
 
+    def verify_cert(self, cert):
+        # verify that the hostname exactly matches that of the certificate,
+        #    wildcards in the certificate hostname are not supported
+        if cert:
+            san = cert.get("subjectAltName", ())
+            for key, value in san:
+                if key == "DNS" and value == self.host:
+                    return True
+
+            if not san:
+                for subject in cert.get("subject", ()):
+                    for key, value in subject:
+                        if key == "commonName" and value == self.host:
+                            return True
+
+        return False
+
     def connect(self):
         # overrides the version in httplib so that we do
         #    certificate verification
@@ -143,7 +160,15 @@ class VerifiedHTTPSConnection(httplib.HTTPSConnection):
 
         # wrap the socket using verification with the root
         #    certs in trusted_root_certs
-        self.sock = _ssl_wrap_socket(sock, self.key_file, self.cert_file)
+        self.sock = _ssl_wrap_socket(sock,
+            self.key_file,
+            self.cert_file,
+            cert_reqs=ssl.CERT_REQUIRED,
+            ca_certs="/etc/ssl/certs/ca-certificates.crt")
+
+        if not self.verify_cert(self.sock.getpeercert()):
+            raise ValueError(
+                "Failed to verify cert for hostname: %s" % self.host)
 
 
 class HTTPTransport(object):
