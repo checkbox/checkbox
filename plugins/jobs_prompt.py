@@ -57,6 +57,7 @@ class JobsPrompt(Plugin):
         for (rt, rh) in [
              ("expose-msgstore", self.expose_msgstore),
              ("begin-persist", self.begin_persist),
+             ("begin-recover", self.begin_recover),
              ("ignore-jobs", self.ignore_jobs),
              ("prompt-job", self.prompt_job),
              ("prompt-jobs", self.prompt_jobs),
@@ -70,6 +71,10 @@ class JobsPrompt(Plugin):
 
     def begin_persist(self, persist):
         self._persist = persist
+
+    def begin_recover(self, recover):
+        if not recover:
+            self.store.delete_all_messages()
 
     def ignore_jobs(self, jobs):
         self._ignore = jobs

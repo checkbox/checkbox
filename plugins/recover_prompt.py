@@ -54,8 +54,7 @@ class RecoverPrompt(Plugin):
                 _("Checkbox did not finish completely.\n"
                   "Do you want to recover from the previous run?"),
                 ["yes", "no"], "yes")
-            if response == "yes":
-                self._manager.reactor.fire("begin-recover")
+            self._manager.reactor.fire("begin-recover", response == "yes")
 
         self.persist.set("recover", True)
 
