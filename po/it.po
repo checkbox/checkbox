@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-07-07 12:32-0400\n"
-"PO-Revision-Date: 2011-09-13 17:02+0000\n"
-"Last-Translator: Sergio Zanchetta <primes2h@ubuntu.com>\n"
+"PO-Revision-Date: 2011-09-14 07:35+0000\n"
+"Last-Translator: Milo Casagrande <milo@casagrande.name>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-09-14 04:34+0000\n"
+"X-Launchpad-Export-Date: 2011-09-15 04:44+0000\n"
 "X-Generator: Launchpad (build 13921)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:2
@@ -46,10 +46,6 @@ msgstr "P_rova"
 #: ../gtk/checkbox-gtk.ui.h:10
 msgid "_Yes"
 msgstr "_Sì"
-
-#: ../gtk/checkbox-gtk.desktop.in.h:2
-msgid "Test and report system information"
-msgstr "Esegue dei test riportando le informazioni sul sistema"
 
 #. description
 #: ../jobs/graphics.txt.in:104
@@ -191,10 +187,6 @@ msgstr "L'indirizzo email deve avere un formato corretto."
 msgid "Exchanging information with the server..."
 msgstr "Scambio delle informazioni con il server..."
 
-#: ../plugins/report_prompt.py:34
-msgid "Building report..."
-msgstr "Creazione del rapporto..."
-
 #~ msgid "Successfully sent information!"
 #~ msgstr "Informazioni inviate con successo."
 
@@ -250,6 +242,10 @@ msgstr "_Deseleziona tutti"
 #: ../gtk/checkbox-gtk.ui.h:7
 msgid "_Select All"
 msgstr "_Seleziona tutti"
+
+#: ../gtk/checkbox-gtk.desktop.in.h:2
+msgid "Test and report system information"
+msgstr "Esegue dei test riportando le informazioni sul sistema"
 
 #. description
 #: ../jobs/apport.txt.in:5
@@ -3166,10 +3162,10 @@ msgid ""
 "\n"
 "  https://launchpad.net/+login"
 msgstr ""
-"È stato generato il seguente rapporto da inviare al database dell'hardware "
-"di Launchpad:\n"
+"È stato generato il seguente report da inviare al database dell'hardware di "
+"Launchpad:\n"
 "\n"
-"  [[%s|Visualizza rapporto]]\n"
+"  [[%s|Visualizza report]]\n"
 "\n"
 "Queste informazioni sul sistema possono essere inviate fornendo l'indirizzo "
 "email utilizzato per accedere a Launchpad. Se non si possiede un account "
@@ -3192,6 +3188,10 @@ msgid ""
 msgstr ""
 "Il precedente test del sistema non è stato completato.\n"
 "Riprendere dall'ultima esecuzione?"
+
+#: ../plugins/report_prompt.py:34
+msgid "Building report..."
+msgstr "Generazione del report..."
 
 #: ../plugins/shell_test.py:52
 #, python-format
