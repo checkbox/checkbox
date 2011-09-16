@@ -71,9 +71,22 @@ class CPUScalingTest(object):
                 return line.strip().split()
         return None
 
-    def setParameter(self, setFile, readFile, value, skip=False):
+    def setParameter(self, setFile, readFile, value, skip=False, automatch=False):
+        def findParameter(targetFile):
+            for root, _, files in os.walk(self.sysCPUDirectory):
+                for f in files:
+                    rf = os.path.join(root,f)
+                    if targetFile in rf:
+                        return rf
+            return None
+
+        path = None
         if not skip:
-            path = os.path.join(self.cpufreqDirectory,  setFile)
+            if automatch:
+                path = findParameter(setFile)
+            else:
+                path = os.path.join(self.cpufreqDirectory,  setFile)
+
             try:
                 check_call("echo \"%s\" > %s" % (value, path), shell=True)
             except CalledProcessError, exception:
@@ -82,7 +95,11 @@ class CPUScalingTest(object):
                 return False
 
         # verify it has changed
-        path = os.path.join(self.cpufreqDirectory, readFile)
+        if automatch:
+            path = findParameter(readFile)
+        else:
+            path = os.path.join(self.cpufreqDirectory, readFile)
+
         parameterFile = open(path)
         line = parameterFile.readline()
         if not line or line.strip() != str(value):
@@ -450,7 +467,7 @@ class CPUScalingTest(object):
 
             # Set the frequency step to 20, so that it jumps to minimum frequency
             path = os.path.join("conservative", "freq_step")
-            if not self.setParameter(path, path, 20):
+            if not self.setParameter(path, path, 20, automatch=True):
                 success = False
 
             # Wait a fixed period of time, then verify current speed is the slowest in as before
@@ -459,7 +476,7 @@ class CPUScalingTest(object):
                 success = False
 
             # Set the frequency step to 0, so that it doesn't gradually increase
-            if not self.setParameter(path, path, 0):
+            if not self.setParameter(path, path, 0, automatch=True):
                 success = False
 
             # Repeat work load test
