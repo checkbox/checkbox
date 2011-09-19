@@ -27,6 +27,8 @@ class IntroPrompt(Plugin):
     def register(self, manager):
         super(IntroPrompt, self).register(manager)
 
+        self._recover = False
+
         self._manager.reactor.call_on("begin-recover", self.begin_recover)
 
         # Introduction should be prompted last
