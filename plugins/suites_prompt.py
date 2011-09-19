@@ -43,6 +43,7 @@ class SuitesPrompt(Plugin):
         self._depends = {}
         self._jobs = {}
         self._persist = None
+        self._recover = False 
 
         for (rt, rh) in [
              ("begin-persist", self.begin_persist),
