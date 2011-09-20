@@ -8,6 +8,7 @@ checkbox (0.12.8) oneiric; urgency=low
   * Restored _recover attribute, re-enabling welcome and test selection
     screens (LP: #852204)
   * Remove memory/test from the Ubuntu Friendly whitelist (LP: #853799)
+  * Use diff instead of grep, better comparing of empty files (LP: #852014)
 
   [ Evan Broder ]
   * Replace resolution_test with an implementation which uses GdkScreen to
