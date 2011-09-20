@@ -1,65 +1,24 @@
 #!/usr/bin/python
 
-import os
-import re
 import sys
 
 from optparse import OptionParser
 
-def error(message):
-    sys.stderr.write("ERROR: %s\n" % message)
-    sys.exit(1)
-
-def check_ati():
-    command = "lsmod | grep fglrx"
-    fglrx_lines = os.popen(command).readlines()
-    if len(fglrx_lines) != 0:
-        print "unknown (impossible to determine resolution with fglrx)"
-        return True
-
-    return False
-
-def get_resolution():
-    command = "xrandr -q"
-    xrandr_lines = os.popen(command).readlines()
-    star_lines = [l for l in xrandr_lines if "*" in l]
-    if len(star_lines) != 1:
-        error("%s should return a single line with '*'" % command)
-
-    star_line = star_lines[0]
-    match = re.search(r"(\d+)\s?x\s?(\d+)", star_line)
-    if not match:
-        error("%s should return pixels like '1024 x 768'" % command)
-
-    horizontal = int(match.group(1))
-    vertical = int(match.group(2))
-
-    fields = re.split(r"\s+", star_line)
-    star_fields = [f for f in fields if "*" in f]
-    if len(star_fields) < 1:
-        error("%s should return a refresh rate with '*'" % command)
-
-    return (horizontal, vertical)
+from gi.repository import Gdk
 
 def check_resolution():
-    if check_ati():
-        return True
-
-    (horizontal, vertical) = get_resolution()
-
-    print "%d x %d" % (horizontal, vertical)
-    return True
+    screen = Gdk.Screen.get_default()
+    n = screen.get_n_monitors()
+    for i in xrange(n):
+        geom = screen.get_monitor_geometry(i)
+        print 'Monitor %d:' % (i + 1)
+        print '  %d x %d' % (geom.width, geom.height)
 
 def compare_resolution(min_h, min_v):
-    if check_ati():
-        return True
-
-    (horizontal, vertical) = get_resolution()
-
-    if (horizontal >= min_h) and (vertical >= min_v):
-        return True
-    else:
-        return False
+    # Evaluate just the primary display
+    screen = Gdk.Screen.get_default()
+    geom = screen.get_monitor_geometry(screen.get_primary_monitor())
+    return geom.width >= min_h and geom.height >= min_h
 
 def main(args):
     usage = "Usage: %prog [OPTIONS]"
@@ -75,13 +34,12 @@ def main(args):
     (options, args) = parser.parse_args(args)
 
     if (options.horizontal > 0) and (options.vertical > 0):
-        if compare_resolution(options.horizontal, options.vertical):
-            return 0
+        if not compare_resolution(options.horizontal, options.vertical):
+            return 1
     else:
-        if check_resolution():
-            return 0
+        check_resolution()
 
-    return 1
+    return 0
 
 
 if __name__ == "__main__":
