@@ -13,7 +13,11 @@ checkbox (0.12.8) oneiric; urgency=low
   * Replace resolution_test with an implementation which uses GdkScreen to
     be multimonitor-aware (LP: #632987)
 
- -- Evan Broder <evan@ebroder.net>  Tue, 20 Sep 2011 08:30:18 -0700
+  [Jeff Lane]
+  * Fix names of optical drive tests and remove a non-existing test from the
+    whitelist (LP: #854808) 
+
+ -- Daniel Manrique <daniel.manrique@canonical.com>  Tue, 20 Sep 2011 15:59:48 -0400
 
 checkbox (0.12.7) oneiric; urgency=low
 
