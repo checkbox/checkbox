@@ -5,7 +5,11 @@ checkbox (0.12.8) oneiric; urgency=low
     screens (LP: #852204)
   * Remove memory/test from the Ubuntu Friendly whitelist (LP: #853799)
 
- -- Daniel Manrique <daniel.manrique@canonical.com>  Mon, 19 Sep 2011 15:31:24 -0400
+  [ Evan Broder ]
+  * Replace resolution_test with an implementation which uses GdkScreen to
+    be multimonitor-aware (LP: #632987)
+
+ -- Evan Broder <evan@ebroder.net>  Tue, 20 Sep 2011 08:30:18 -0700
 
 checkbox (0.12.7) oneiric; urgency=low
 
