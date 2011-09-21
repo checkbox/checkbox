@@ -34,7 +34,7 @@ def main(args):
     (options, args) = parser.parse_args(args)
 
     if (options.horizontal > 0) and (options.vertical > 0):
-        return compare_resolution(options.horizontal, options.vertical)
+        return not compare_resolution(options.horizontal, options.vertical)
     else:
         check_resolution()
 
