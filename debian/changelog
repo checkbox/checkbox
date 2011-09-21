@@ -4,6 +4,7 @@ checkbox (0.12.8) oneiric; urgency=low
   * Remove test for FTP connection from network_check script (LP: #854222)
   * Update a parameter in usb_test to have it run faster.
   * Remove record_playback_after_suspend from Ubuntu Friendly whitelist (LP: #855540)
+  * Fix minor typo in multi-monitor friendly resolution_test script which caused minimum_resolution test to fail (LP: #855599)
 
   [Daniel Manrique]
   * Restored _recover attribute, re-enabling welcome and test selection
