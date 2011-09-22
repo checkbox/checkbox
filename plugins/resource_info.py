@@ -36,6 +36,9 @@ class ResourceInfo(Plugin):
         values = []
         failed_requirements = []
 
+        if job["name"] == 'wireless/wireless_connection':
+            import pdb; pdb.set_trace()
+
         for require in job.get("requires", []):
             new_values = self.resources.eval(require)
             mask.append(bool(new_values))
@@ -52,7 +55,7 @@ class ResourceInfo(Plugin):
             job["status"] = UNSUPPORTED
 
             data = "Job requirement%s not met:\n" % (
-                's' if len(failed_requires) > 1 else '')
+                's' if len(failed_requirements) > 1 else '')
             for failed_require in failed_requirements:
                 data = data + "'" + failed_require + "'\n"
 
