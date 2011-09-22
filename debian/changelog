@@ -20,8 +20,10 @@ checkbox (0.12.8) oneiric; urgency=low
   [Jeff Lane]
   * Fix names of optical drive tests and remove a non-existing test from the
     whitelist (LP: #854808) 
+  * Fix wireless_*_suspend jobs so they recreate iface file instead of append
+    each time (LP: #855845)
 
- -- Daniel Manrique <daniel.manrique@canonical.com>  Tue, 20 Sep 2011 15:59:48 -0400
+ -- Daniel Manrique <daniel.manrique@canonical.com>  Thu, 22 Sep 2011 15:03:39 -0400
 
 checkbox (0.12.7) oneiric; urgency=low
 
