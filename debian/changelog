@@ -1,8 +1,29 @@
 checkbox (0.12.8) oneiric; urgency=low
 
-  * Incremented version 
+  [Brendan Donegan]
+  * Remove test for FTP connection from network_check script (LP: #854222)
+  * Update a parameter in usb_test to have it run faster.
+  * Remove record_playback_after_suspend from Ubuntu Friendly whitelist (LP: #855540)
+  * Fix minor typo in multi-monitor friendly resolution_test script which caused minimum_resolution test to fail (LP: #855599)
+  * Show details about unmet job requirements (LP: #855852)
 
- -- Daniel Manrique <daniel.manrique@canonical.com>  Thu, 15 Sep 2011 10:34:02 -0400
+  [Daniel Manrique]
+  * Restored _recover attribute, re-enabling welcome and test selection
+    screens (LP: #852204)
+  * Remove memory/test from the Ubuntu Friendly whitelist (LP: #853799)
+  * Use diff instead of grep, better comparing of empty files (LP: #852014)
+
+  [ Evan Broder ]
+  * Replace resolution_test with an implementation which uses GdkScreen to
+    be multimonitor-aware (LP: #632987)
+
+  [Jeff Lane]
+  * Fix names of optical drive tests and remove a non-existing test from the
+    whitelist (LP: #854808) 
+  * Fix wireless_*_suspend jobs so they recreate iface file instead of append
+    each time (LP: #855845)
+
+ -- Daniel Manrique <daniel.manrique@canonical.com>  Thu, 22 Sep 2011 15:03:39 -0400
 
 checkbox (0.12.7) oneiric; urgency=low
 

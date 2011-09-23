@@ -46,7 +46,6 @@ firewire/hdd
 __graphics__
 graphics/compiz_check
 graphics/display
-graphics/glxgears
 graphics/resolution
 graphics/minimum_resolution
 graphics/xrandr_detect_modes
@@ -80,7 +79,6 @@ mediacard/sd
 mediacard/sd_after_suspend
 __memory__
 memory/info
-memory/check
 __miscellanea__
 miscellanea/is_laptop
 __monitor__
@@ -94,9 +92,10 @@ __wireless__
 wireless/wireless_connection
 __optical__
 optical/detect
-optical/cdrom-read
+optical/read
+optical/read_sr0
+optical/read_sr1
 optical/cdrom-write
-optical/dvd-read
 optical/dvd-write
 __pcmcia-pcix__
 pcmcia-pcix/detect
@@ -106,11 +105,9 @@ __suspend__
 suspend/audio_after_suspend
 suspend/audio_before_suspend
 suspend/bluetooth_detect_after_suspend
-suspend/bluetooth_detect_before_suspend
 suspend/memory_before_suspend
 suspend/memory_after_suspend
 suspend/network_after_suspend
-suspend/record_playback_after_suspend
 suspend/resolution_after_suspend
 suspend/resolution_before_suspend
 suspend/suspend_advanced
