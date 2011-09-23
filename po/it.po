@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-07-07 12:32-0400\n"
-"PO-Revision-Date: 2011-09-14 07:35+0000\n"
-"Last-Translator: Milo Casagrande <milo@casagrande.name>\n"
+"PO-Revision-Date: 2011-09-22 14:06+0000\n"
+"Last-Translator: Sergio Zanchetta <primes2h@ubuntu.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-09-15 04:44+0000\n"
-"X-Generator: Launchpad (build 13921)\n"
+"X-Launchpad-Export-Date: 2011-09-23 04:34+0000\n"
+"X-Generator: Launchpad (build 14012)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:2
 msgid "Ne_xt"
@@ -39,7 +39,7 @@ msgstr "_Indietro"
 msgid "_Skip this test"
 msgstr "Sa_lta questo test"
 
-#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:533
+#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:534
 msgid "_Test"
 msgstr "P_rova"
 
@@ -138,7 +138,7 @@ msgstr "prova ancora"
 msgid "Please type here and press Ctrl-D when finished:\n"
 msgstr "Scrivere qui e premere Ctrl+D quando terminato:\n"
 
-#: ../checkbox_gtk/gtk_interface.py:498
+#: ../checkbox_gtk/gtk_interface.py:499
 msgid "_Test Again"
 msgstr "_Prova ancora"
 
@@ -571,8 +571,7 @@ msgstr "Controlla la topologia della CPU per la precisione"
 #: ../jobs/cpu.txt.in:38
 msgid "Checks that CPU frequency governors are obeyed when set."
 msgstr ""
-"Verifica che il controllori di frequenza della CPU rispettino le "
-"impostazioni."
+"Verifica che i controllori di frequenza della CPU rispettino le impostazioni."
 
 #. description
 #: ../jobs/daemons.txt.in:5
@@ -1065,18 +1064,18 @@ msgid "Did the 3d animation appear?"
 msgstr "L'animazione 3D è comparsa?"
 
 #. description
-#: ../jobs/info.txt.in:60 ../jobs/screenshot.txt.in:7
+#: ../jobs/info.txt.in:69 ../jobs/screenshot.txt.in:7
 msgid "Captures a screenshot."
 msgstr "Cattura una schermata."
 
 #. description
-#: ../jobs/info.txt.in:71
+#: ../jobs/info.txt.in:80
 msgid "Gather log from the firmware test suite run"
 msgstr ""
-"Raccoglie i registri dall'esecuzione della suite di test del firmware"
+"Raccoglie i registri dall'esecuzione della serie di test del firmware"
 
 #. description
-#: ../jobs/info.txt.in:82
+#: ../jobs/info.txt.in:91
 msgid "Bootchart information."
 msgstr "Informazioni di bootchart."
 
@@ -1558,7 +1557,7 @@ msgstr "L'icona è apparsa e scomparsa automaticamente?"
 #. description
 #: ../jobs/memory.txt.in:4
 msgid "The following amount of memory was detected:"
-msgstr "È stato rilevata la seguente quantità di memoria:"
+msgstr "È stata rilevata la seguente quantità di memoria:"
 
 #. description
 #: ../jobs/memory.txt.in:16
@@ -1589,7 +1588,7 @@ msgstr "La schermo è passato temporaneamente a una console di testo?"
 #. description
 #: ../jobs/miscellanea.txt.in:20
 msgid "Run Colin King's Firmware Test Suite automated tests."
-msgstr "Esegue i test automatici del firmware di Colin King."
+msgstr "Esegue la serie di test automatici del firmware di Colin King."
 
 #. description
 #: ../jobs/miscellanea.txt.in:29
@@ -1842,7 +1841,7 @@ msgid ""
 "into your drive and try writing to it."
 msgstr ""
 "L'unità ottica rilevata sembra supportare la scrittura. Inserire un CDROM "
-"vergine \\ nell'unità e provare ad effettuare una scrittura."
+"vergine \\ nell'unità e provare a effettuare una scrittura."
 
 #. description
 #: ../jobs/optical.txt.in:46
@@ -1871,7 +1870,7 @@ msgid ""
 "into your drive and try writing to it."
 msgstr ""
 "L'unità ottica rilevata sembra supportare la scrittura. Inserire un DVD "
-"vergine \\ nell'unità e provare ad effettuare una scrittura."
+"vergine \\ nell'unità e provare a effettuare una scrittura."
 
 #. description
 #: ../jobs/optical.txt.in:63
@@ -1945,7 +1944,7 @@ msgstr ""
 #. description
 #: ../jobs/panel_reboot.txt.in:4
 msgid "Please restart your machine from the Ubuntu Panel."
-msgstr "Riavviare la macchina dal pannello Ubuntu"
+msgstr "Riavviare la macchina dal pannello Ubuntu."
 
 #. description
 #: ../jobs/panel_reboot.txt.in:4
@@ -2028,7 +2027,7 @@ msgstr ""
 msgid ""
 "Note: This test case has to be executed manually before checkbox execution"
 msgstr ""
-"Nota: Questo caso di test deve essere eseguito manualmente prima "
+"Nota: questo caso di test deve essere eseguito manualmente prima "
 "dell'esecuzione di checkbox"
 
 #. description
@@ -2049,7 +2048,7 @@ msgstr "Il computer va in sospensione e viene poi ripristinato?"
 msgid ""
 "Run the computer hibernate test. Then, press the power button to restore it."
 msgstr ""
-"Eseguire il test di ibernazione del computer. Quindi premere il tasto di "
+"Eseguire il test di ibernazione del computer, quindi premere il tasto di "
 "accensione per ripristinarlo."
 
 #. description
@@ -3081,11 +3080,11 @@ msgstr "Prova ancora"
 msgid "hardware database"
 msgstr "database dell'hardware"
 
-#: ../checkbox_gtk/gtk_interface.py:544
+#: ../checkbox_gtk/gtk_interface.py:545
 msgid "Info"
 msgstr "Informazioni"
 
-#: ../checkbox_gtk/gtk_interface.py:563
+#: ../checkbox_gtk/gtk_interface.py:564
 msgid "Error"
 msgstr "Errore"
 
@@ -3113,7 +3112,7 @@ msgstr ""
 #: ../plugins/apport_prompt.py:225
 #, python-format
 msgid "Test %s from suite %s failed."
-msgstr "Test %s del set %s fallito."
+msgstr "Test %s della serie %s fallito."
 
 #: ../plugins/apport_prompt.py:228
 #, python-format
@@ -3129,7 +3128,7 @@ msgstr "È in corso l'aggiornamento di un pacchetto? Errore: %s"
 msgid "Successfully finished testing!"
 msgstr "Test terminati con successo."
 
-#: ../plugins/intro_prompt.py:43
+#: ../plugins/intro_prompt.py:41
 msgid ""
 "Welcome to System Testing!\n"
 "\n"
@@ -3189,7 +3188,7 @@ msgstr ""
 "Il precedente test del sistema non è stato completato.\n"
 "Riprendere dall'ultima esecuzione?"
 
-#: ../plugins/report_prompt.py:34
+#: ../plugins/report_prompt.py:39
 msgid "Building report..."
 msgstr "Generazione del report..."
 
@@ -3199,9 +3198,9 @@ msgid "Running %s..."
 msgstr "Esecuzione del %s..."
 
 #. Get results
-#: ../plugins/suites_prompt.py:105
+#: ../plugins/suites_prompt.py:104
 msgid "Select the suites to test"
-msgstr "Selezionare le tipologie di test"
+msgstr "Selezionare le serie di test"
 
 #: ../scripts/keyboard_test:21
 msgid "Enter text:\n"
