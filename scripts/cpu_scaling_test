@@ -20,6 +20,8 @@ class CPUScalingTest(object):
         self.cpufreqDirectory = os.path.join(self.sysCPUDirectory, "cpu0", "cpufreq")
         self.idaFlag = "ida"
         self.idaSpeedupFactor = 8.0 # percent
+        self.selectorExe = "cpufreq-selector"
+        self.ifSelectorExe = None
 
     def getCPUFreqDirectories(self):
         if not os.path.exists(self.sysCPUDirectory):
@@ -112,13 +114,35 @@ class CPUScalingTest(object):
 
         return True
 
+    def checkSelectorExecutable(self):
+        def is_exe(fpath):
+            return os.path.exists(fpath) and os.access(fpath, os.X_OK)
+
+        if self.ifSelectorExe is None:
+            # cpufreq-selector default path
+            exe = os.path.join("/usr/bin/",self.selectorExe)
+            if is_exe(exe):
+                self.ifSelectorExe = True
+                return True
+            for path in os.environ["PATH"].split(os.pathsep):
+                exe = os.path.join(path, self.selectorExe)
+                if is_exe(exe):
+                    self.ifSelectorExe = True
+                    return True
+
+            self.ifSelectorExe = False
+            return False
+
     def setParameterWithSelector(self, switch, setFile, readFile, value):
         # Try the command for all CPUs
         skip = True
-        try:
-            check_call("cpufreq-selector -%s %s" % (switch, value), shell=True)
-        except CalledProcessError, exception:
-            print "Note: command failed: %s" % exception.cmd
+        if self.checkSelectorExecutable(): 
+            try:
+                check_call("cpufreq-selector -%s %s" % (switch, value), shell=True)
+            except CalledProcessError, exception:
+                print "Note: command failed: %s" % exception.cmd
+                skip = False
+        else:
             skip = False
 
         return self.setParameter(setFile, readFile, value, skip)
