@@ -4,8 +4,12 @@ checkbox (0.12.8) oneiric; urgency=low
   * Remove test for FTP connection from network_check script (LP: #854222)
   * Update a parameter in usb_test to have it run faster.
   * Remove record_playback_after_suspend from Ubuntu Friendly whitelist (LP: #855540)
-  * Fix minor typo in multi-monitor friendly resolution_test script which caused minimum_resolution test to fail (LP: #855599)
-  * Remove storage_devices_test from Ubuntu Friendly whitelist since the bonnie++ (which it uses) is not installed by default (LP: #855841)
+  * Fix minor typo in multi-monitor friendly resolution_test script which caused 
+    minimum_resolution test to fail (LP: #855599)
+  * Remove storage_devices_test from Ubuntu Friendly whitelist since the bonnie++ 
+    (which it uses) is not installed by default (LP: #855841)
+  * Changed description and name to reflect Ubuntu Friendly branding. Now when a 
+    user searches for Ubuntu Friendly in the lens, Checkbox will appear (LP: #852036)
 
   [Daniel Manrique]
   * Restored _recover attribute, re-enabling welcome and test selection
@@ -23,7 +27,7 @@ checkbox (0.12.8) oneiric; urgency=low
   * Fix wireless_*_suspend jobs so they recreate iface file instead of append
     each time (LP: #855845)
 
- -- Daniel Manrique <daniel.manrique@canonical.com>  Thu, 22 Sep 2011 15:03:39 -0400
+ -- Jeff Lane <jeff@ubuntu.com>  Fri, 23 Sep 2011 12:24:48 -0400
 
 checkbox (0.12.7) oneiric; urgency=low
 
