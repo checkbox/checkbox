@@ -20,6 +20,8 @@ class CPUScalingTest(object):
         self.cpufreqDirectory = os.path.join(self.sysCPUDirectory, "cpu0", "cpufreq")
         self.idaFlag = "ida"
         self.idaSpeedupFactor = 8.0 # percent
+        self.selectorExe = "cpufreq-selector"
+        self.ifSelectorExe = None
 
     def getCPUFreqDirectories(self):
         if not os.path.exists(self.sysCPUDirectory):
@@ -71,9 +73,22 @@ class CPUScalingTest(object):
                 return line.strip().split()
         return None
 
-    def setParameter(self, setFile, readFile, value, skip=False):
+    def setParameter(self, setFile, readFile, value, skip=False, automatch=False):
+        def findParameter(targetFile):
+            for root, _, files in os.walk(self.sysCPUDirectory):
+                for f in files:
+                    rf = os.path.join(root,f)
+                    if targetFile in rf:
+                        return rf
+            return None
+
+        path = None
         if not skip:
-            path = os.path.join(self.cpufreqDirectory,  setFile)
+            if automatch:
+                path = findParameter(setFile)
+            else:
+                path = os.path.join(self.cpufreqDirectory,  setFile)
+
             try:
                 check_call("echo \"%s\" > %s" % (value, path), shell=True)
             except CalledProcessError, exception:
@@ -82,7 +97,11 @@ class CPUScalingTest(object):
                 return False
 
         # verify it has changed
-        path = os.path.join(self.cpufreqDirectory, readFile)
+        if automatch:
+            path = findParameter(readFile)
+        else:
+            path = os.path.join(self.cpufreqDirectory, readFile)
+
         parameterFile = open(path)
         line = parameterFile.readline()
         if not line or line.strip() != str(value):
@@ -95,13 +114,35 @@ class CPUScalingTest(object):
 
         return True
 
+    def checkSelectorExecutable(self):
+        def is_exe(fpath):
+            return os.path.exists(fpath) and os.access(fpath, os.X_OK)
+
+        if self.ifSelectorExe is None:
+            # cpufreq-selector default path
+            exe = os.path.join("/usr/bin/",self.selectorExe)
+            if is_exe(exe):
+                self.ifSelectorExe = True
+                return True
+            for path in os.environ["PATH"].split(os.pathsep):
+                exe = os.path.join(path, self.selectorExe)
+                if is_exe(exe):
+                    self.ifSelectorExe = True
+                    return True
+
+            self.ifSelectorExe = False
+            return False
+
     def setParameterWithSelector(self, switch, setFile, readFile, value):
         # Try the command for all CPUs
         skip = True
-        try:
-            check_call("cpufreq-selector -%s %s" % (switch, value), shell=True)
-        except CalledProcessError, exception:
-            print "Note: command failed: %s" % exception.cmd
+        if self.checkSelectorExecutable(): 
+            try:
+                check_call("cpufreq-selector -%s %s" % (switch, value), shell=True)
+            except CalledProcessError, exception:
+                print "Note: command failed: %s" % exception.cmd
+                skip = False
+        else:
             skip = False
 
         return self.setParameter(setFile, readFile, value, skip)
@@ -450,7 +491,7 @@ class CPUScalingTest(object):
 
             # Set the frequency step to 20, so that it jumps to minimum frequency
             path = os.path.join("conservative", "freq_step")
-            if not self.setParameter(path, path, 20):
+            if not self.setParameter(path, path, 20, automatch=True):
                 success = False
 
             # Wait a fixed period of time, then verify current speed is the slowest in as before
@@ -459,7 +500,7 @@ class CPUScalingTest(object):
                 success = False
 
             # Set the frequency step to 0, so that it doesn't gradually increase
-            if not self.setParameter(path, path, 0):
+            if not self.setParameter(path, path, 0, automatch=True):
                 success = False
 
             # Repeat work load test
