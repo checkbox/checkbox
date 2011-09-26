@@ -55,6 +55,8 @@ class ApportOptions(object):
         self.symptom = symptom
         self.pid = None
         self.save = False
+        self.tag = '' #Additional tags to add to reports filed
+                      #through this tool 
 
 
 class ApportUserInterface(UserInterface):

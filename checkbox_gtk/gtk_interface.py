@@ -302,7 +302,8 @@ class GTKInterface(UserInterface):
         vbox = self._get_widget("vbox_options_list")
         for option in options:
             label = "_%s%s" % (option[0].upper(), option[1:])
-            check_button = Gtk.CheckButton(label)
+            check_button = Gtk.CheckButton(label = label,
+                                           use_underline = True)
             check_button.get_child().set_line_wrap(True)
             check_button.show()
             option_table[option] = check_button
@@ -348,7 +349,9 @@ class GTKInterface(UserInterface):
         vbox = self._get_widget("vbox_options_list")
         for option in options:
             label = "_%s%s" % (option[0].upper(), option[1:])
-            radio_button = Gtk.RadioButton(option_group, label)
+            radio_button = Gtk.RadioButton(group = option_group,
+                                           label = label,
+                                           use_underline = True)
             radio_button.get_child().set_line_wrap(True)
             radio_button.show()
             option_table[option] = radio_button

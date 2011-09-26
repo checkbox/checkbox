@@ -16,6 +16,10 @@ checkbox (0.12.8) oneiric; urgency=low
     screens (LP: #852204)
   * Remove memory/test from the Ubuntu Friendly whitelist (LP: #853799)
   * Use diff instead of grep, better comparing of empty files (LP: #852014)
+  * Apport integration: new mandatory "tag" value in ApportOptions 
+    (LP: #852201)
+  * Apport integration: Fix instantiation of Gtk.RadioButton, needed due 
+    to PyGI related API changes (LP: #805679)
 
   [ Evan Broder ]
   * Replace resolution_test with an implementation which uses GdkScreen to
