@@ -6,18 +6,16 @@ checkbox (0.12.8) oneiric; urgency=low
   * Remove record_playback_after_suspend from Ubuntu Friendly whitelist (LP: #855540)
   * Fix minor typo in multi-monitor friendly resolution_test script which caused 
     minimum_resolution test to fail (LP: #855599)
-  * Remove storage_devices_test from Ubuntu Friendly whitelist since the bonnie++ 
-    (which it uses) is not installed by default (LP: #855841)
-  * Changed description and name to reflect Ubuntu Friendly branding. Now when a 
-    user searches for Ubuntu Friendly in the lens, Checkbox will appear (LP: #852036)
+  * Remove storage_devices_test from Ubuntu Friendly whitelist since bonnie++  (which it uses) is not installed by default (LP: #855841)
+  * Changed description and name to reflect Ubuntu Friendly branding. Now when a user searches for Ubuntu Friendly in the lens, Checkbox will appear (LP: #852036)
 
   [Daniel Manrique]
   * Restored _recover attribute, re-enabling welcome and test selection
     screens (LP: #852204)
   * Remove memory/test from the Ubuntu Friendly whitelist (LP: #853799)
   * Use diff instead of grep, better comparing of empty files (LP: #852014)
-  * Apport integration: new mandatory "tag" value in ApportOptions 
-    (LP: #852201)
+  * Apport integration: new mandatory "tag" value in ApportOptions (LP: #852201)
+  * Add warning prior to starting the tests (LP: #855328)
   * Apport integration: Fix instantiation of Gtk.RadioButton, needed due 
     to PyGI related API changes (LP: #805679)
 
@@ -30,6 +28,7 @@ checkbox (0.12.8) oneiric; urgency=low
     whitelist (LP: #854808) 
   * Fix wireless_*_suspend jobs so they recreate iface file instead of append
     each time (LP: #855845)
+    (LP: #852201)
 
   [Tim Chen]
   * Fix cpu_scaling_test (LP: #811177)
