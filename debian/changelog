@@ -8,6 +8,7 @@ checkbox (0.12.8) oneiric; urgency=low
     minimum_resolution test to fail (LP: #855599)
   * Remove storage_devices_test from Ubuntu Friendly whitelist since bonnie++  (which it uses) is not installed by default (LP: #855841)
   * Changed description and name to reflect Ubuntu Friendly branding. Now when a user searches for Ubuntu Friendly in the lens, Checkbox will appear (LP: #852036)
+  * Reset the selections at the test suite prompt if No is selected at the recover prompt (LP: #861208)
 
   [Daniel Manrique]
   * Restored _recover attribute, re-enabling welcome and test selection
