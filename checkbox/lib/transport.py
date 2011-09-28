@@ -19,6 +19,7 @@
 import logging
 
 import os
+import re
 import stat
 import sys
 import posixpath
@@ -133,19 +134,28 @@ class VerifiedHTTPSConnection(httplib.HTTPSConnection):
     timeout = None
     _tunnel_host = None
 
+    def match_name(self, name):
+        parts = []
+        for fragment in name.split(r"."):
+            if fragment == "*":
+                parts.append(".+")
+            else:
+                fragment = re.escape(fragment)
+                parts.append(fragment.replace(r"\*", ".*"))
+        return re.match(r"\A" + r"\.".join(parts) + r"\Z", self.host, re.IGNORECASE)
+
     def verify_cert(self, cert):
-        # verify that the hostname exactly matches that of the certificate,
-        #    wildcards in the certificate hostname are not supported
+        # verify that the hostname matches that of the certificate
         if cert:
             san = cert.get("subjectAltName", ())
             for key, value in san:
-                if key == "DNS" and value == self.host:
+                if key == "DNS" and self.match_name(value):
                     return True
 
             if not san:
                 for subject in cert.get("subject", ()):
                     for key, value in subject:
-                        if key == "commonName" and value == self.host:
+                        if key == "commonName" and self.match_name(value):
                             return True
 
         return False
