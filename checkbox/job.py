@@ -121,7 +121,7 @@ class JobStore(MessageStore):
         # TODO: Apply dependencies
         if "depends" in job:
             for depends in job["depends"]:
-                for filename in self._find_matching_messages(suite=job.get("suite")):
+                for filename in self._find_matching_messages():
                     message = self._read_message(filename)
                     if job["name"] in message.get("depends", []):
                         new_filename = self._get_next_message_filename()
