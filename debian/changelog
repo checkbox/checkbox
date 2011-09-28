@@ -19,6 +19,8 @@ checkbox (0.12.8) oneiric; urgency=low
   * Add warning prior to starting the tests (LP: #855328)
   * Apport integration: Fix instantiation of Gtk.RadioButton, needed due 
     to PyGI related API changes (LP: #805679)
+  * Remove ping -R parameter that apparently caused ICMP packets to be dropped
+    by some routers (LP: #861404)
 
   [ Evan Broder ]
   * Replace resolution_test with an implementation which uses GdkScreen to
@@ -40,7 +42,7 @@ checkbox (0.12.8) oneiric; urgency=low
   [Marc Tardif]
   * Added support for wildcards when verifying the transport certificate.
 
- -- Daniel Manrique <daniel.manrique@canonical.com>  Sun, 25 Sep 2011 20:02:12 -0400
+ -- Jeff Lane <jeff@ubuntu.com>  Wed, 28 Sep 2011 16:06:18 -0400
 
 checkbox (0.12.7) oneiric; urgency=low
 
