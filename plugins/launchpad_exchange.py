@@ -139,8 +139,12 @@ Failed to process form: %s""" % e))
 
         transport = HTTPTransport(self.transport_url)
         start_time = time.time()
-        response = transport.exchange(form, self._headers,
-            timeout=string_to_type(self.timeout))
+        try:
+            response = transport.exchange(form, self._headers,
+                timeout=string_to_type(self.timeout))
+        except Exception, error:
+            self._manager.reactor.fire("exchange-error", error)
+            return
         end_time = time.time()
 
         if not response:
