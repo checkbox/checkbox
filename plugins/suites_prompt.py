@@ -63,6 +63,9 @@ class SuitesPrompt(Plugin):
     def begin_recover(self, recover):
         self._recover = recover
 
+        if not self._recover:
+            self.persist.remove("default")
+
     def report_suite(self, suite):
         suite.setdefault("type", "suite")
 
