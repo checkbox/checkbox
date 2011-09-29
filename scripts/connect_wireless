@@ -10,7 +10,7 @@ then
     ap=$(echo $active_connection | awk -F\' '{print $2}')
     conn=$(nmcli -t -f UUID,NAME con list | grep -e "$ap$" | awk -F\: '{print $1}')
 else
-    conn=$(nmcli -t -f UUID,TYPE con list | grep wireless | head -n 1 | awk '{print $1}')
+    conn=$(nmcli -t -f UUID,TYPE con list | grep wireless | head -n 1 | awk -F\: '{print $1}')
 fi
 
 #Strip trailing/leading whitespace
