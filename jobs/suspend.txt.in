@@ -30,7 +30,7 @@ command: meminfo_resource > $CHECKBOX_DATA/meminfo_before_suspend
 plugin: shell
 name: suspend/wireless_before_suspend
 depends: networking/wireless_connection
-command: nmcli -t -f NAME con status > $CHECKBOX_DATA/connections && connect_wireless && internet_test --interface=`nmcli dev list | grep -B 1 wireless | grep GENERAL.DEVICE | awk '{print $2}'` && while read CON; do nmcli con up id "$CON"; done < $CHECKBOX_DATA/connections
+command: nmcli -t -f UUID con status > $CHECKBOX_DATA/connections && connect_wireless && internet_test --interface=`nmcli dev list | grep -B 1 wireless | grep GENERAL.DEVICE | awk '{print $2}'` && for con in `cat $CHECKBOX_DATA/connections`; do nmcli con up uuid "$con"; done
 _description:
  This test disconnects all connections and then connects to the wireless
  interface. It then checks the connection to confirm it's working as expected.
@@ -111,7 +111,7 @@ _description:
 plugin: shell
 name: suspend/wireless_after_suspend
 depends: suspend/suspend_advanced suspend/wireless_before_suspend
-icommand: connect_wireless && internet_test --interface=`nmcli dev list | grep -B 1 wireless | grep GENERAL.DEVICE | awk '{print $2}'` && while read CON; do nmcli con up id "$CON"; done < $CHECKBOX_DATA/connections
+icommand: connect_wireless && internet_test --interface=`nmcli dev list | grep -B 1 wireless | grep GENERAL.DEVICE | awk '{print $2}'` && for con in `cat $CHECKBOX_DATA/connections`; do nmcli con up uuid "$con"; done
 _description:
  This test checks that the wireless interface is working after suspending the system. It
  disconnects all interfaces and then connects to the wireless interface and checks that the
