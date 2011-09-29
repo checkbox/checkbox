@@ -10,6 +10,7 @@ checkbox (0.12.8) oneiric; urgency=low
   * Changed description and name to reflect Ubuntu Friendly branding. Now when a user searches for Ubuntu Friendly in the lens, Checkbox will appear (LP: #852036)
   * Reset the selections at the test suite prompt if No is selected at the recover prompt (LP: #861208)
   * Save the connection name(s) instead of the interface name so that they can be reconnected to properly after the wireless before/after suspend tests have completed (LP: #861502)
+  * Make connect_wireless use the UUID of the connection instead of the name for greater reliability (LP: #862190)
 
   [Daniel Manrique]
   * Restored _recover attribute, re-enabling welcome and test selection
