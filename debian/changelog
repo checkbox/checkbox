@@ -41,6 +41,8 @@ checkbox (0.12.8) oneiric; urgency=low
  
   [Ara Pulido]
   * Avoid connect_wireless messing with AP with similar names (LP: #861538)
+  * Remove bluetooth/file-transfer from the list of tests to run, since due to
+    bug 834348 it always fails.
 
   [Marc Tardif]
   * Added support for wildcards when verifying the transport certificate.
