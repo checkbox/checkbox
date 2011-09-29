@@ -4,7 +4,7 @@
 conn=''
 
 active_connection=$(nmcli -f SSID,ACTIVE dev wifi list | grep yes)
-#echo $active_connection
+
 if [ $? -eq 0 ]
 then
     ap=$(echo $active_connection | awk -F\' '{print $2}')
@@ -15,8 +15,6 @@ fi
 
 #Strip trailing/leading whitespace
 conn=$(echo $conn |sed 's/^[ \t]*//;s/[ \t]*$//')
-
-echo $conn
 
 # Find out if wireless is enabled
 nmcli nm wifi | grep -q 'enabled'
