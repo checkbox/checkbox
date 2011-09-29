@@ -11,7 +11,7 @@ _description:
 
 plugin: manual
 name: mediacard/sd_after_suspend
-depends: power-management/suspend_advanced mediacard/sd
+depends: suspend/suspend_advanced mediacard/sd
 _description:
  Secure Digital (SD) media card support re-verification:
   1.- Plug a SD media card into the computer.
@@ -34,7 +34,7 @@ _description:
 
 plugin: manual
 name: mediacard/sdhc_after_suspend
-depends: power-management/suspend_advanced mediacard/sdhc
+depends: suspend/suspend_advanced mediacard/sdhc
 _description:
  Secure Digital High Capacity (SDHC) media card support re-verification:
   1.- Plug a SDHC media card into the computer.
@@ -57,7 +57,7 @@ _description:
 
 plugin: manual
 name: mediacard/mmc_after_suspend
-depends: power-management/suspend_advanced mediacard/mmc
+depends: suspend/suspend_advanced mediacard/mmc
 _description:
  Multi Media Card (MMC) media card support re-verification:
   1.- Plug a MMC media card into the computer.
@@ -80,7 +80,7 @@ _description:
 
 plugin: manual
 name: mediacard/ms_after_suspend
-depends: power-management/suspend_advanced mediacard/ms
+depends: suspend/suspend_advanced mediacard/ms
 _description:
  Memory Stick (MS) media card support re-verification:
   1.- Plug a MS media card into the computer.
@@ -103,7 +103,7 @@ _description:
 
 plugin: manual
 name: mediacard/msp_after_suspend
-depends: power-management/suspend_advanced mediacard/msp
+depends: suspend/suspend_advanced mediacard/msp
 _description:
  Memory Stick Pro (MSP) media card support re-verification:
   1.- Plug a MSP media card into the computer.
@@ -126,7 +126,7 @@ _description:
 
 plugin: manual
 name: mediacard/cf_after_suspend
-depends: power-management/suspend_advanced mediacard/cf
+depends: suspend/suspend_advanced mediacard/cf
 _description:
  Compact Flash (CF) media card support re-verification:
   1.- Plug a CF media card into the computer.

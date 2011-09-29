@@ -35,6 +35,8 @@ checkbox (0.12.8) oneiric; urgency=low
     each time (LP: #855845)
     (LP: #852201)
   * Clarify better the intend of the is_laptop question (LP: #861844)
+  * Fixed dependencies for tests that depend on suspend/suspend_advanced 
+    (LP: #860651)
 
   [Tim Chen]
   * Fix cpu_scaling_test (LP: #811177)
