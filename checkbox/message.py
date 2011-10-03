@@ -253,6 +253,7 @@ class MessageStore(object):
 
         file = open(filename + ".tmp", "w")
         file.write(message_data)
+        file.flush()
         file.close()
         os.rename(filename + ".tmp", filename)
 
