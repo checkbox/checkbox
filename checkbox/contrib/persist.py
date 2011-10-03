@@ -524,6 +524,7 @@ class PickleBackend(Backend):
         try:
             self._pickle.dump(map, file, 2)
         finally:
+            file.flush()
             file.close()
 
 

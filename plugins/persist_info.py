@@ -35,7 +35,7 @@ class PersistInfo(Plugin):
         for (rt, rh) in [
              ("begin", self.begin),
              ("prompt-begin", self.begin),
-             ("prompt-job", self.save)],
+             ("prompt-job", self.save),
              ("report-job", self.save)]:
             self._manager.reactor.call_on(rt, rh, -100)
 
