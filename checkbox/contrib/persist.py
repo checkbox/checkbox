@@ -517,6 +517,9 @@ class PickleBackend(Backend):
         try:
             return self._pickle.load(file)
         finally:
+            file.flush()
+            os.fsync(file.fileno())
+
             file.close()
 
     def save(self, filepath, map):
@@ -525,6 +528,8 @@ class PickleBackend(Backend):
             self._pickle.dump(map, file, 2)
         finally:
             file.flush()
+            os.fsync(file.fileno())
+
             file.close()
 
 
@@ -539,6 +544,9 @@ class BPickleBackend(Backend):
         try:
             return self._bpickle.loads(file.read())
         finally:
+            file.flush()
+            os.fsync(file.fileno())
+
             file.close()
 
     def save(self, filepath, map):
@@ -546,4 +554,7 @@ class BPickleBackend(Backend):
         try:
             file.write(self._bpickle.dumps(map))
         finally:
+            file.flush()
+            os.fsync(file.fileno())
+
             file.close()

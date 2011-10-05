@@ -215,6 +215,9 @@ class MessageStore(object):
         try:
             return file.read()
         finally:
+            file.flush()
+            os.fsync(file.fileno())
+
             file.close()
 
     def _get_flags(self, path):
@@ -253,7 +256,10 @@ class MessageStore(object):
 
         file = open(filename + ".tmp", "w")
         file.write(message_data)
+        
         file.flush()
+        os.fsync(file.fileno())
+
         file.close()
         os.rename(filename + ".tmp", filename)
 
