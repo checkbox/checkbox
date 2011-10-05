@@ -1,4 +1,3 @@
-
 plugin: shell
 name: suspend/resolution_before_suspend
 _description: Record the current resolution before suspending.
@@ -9,14 +8,14 @@ name: suspend/audio_before_suspend
 requires:
  device.category == 'AUDIO'
  package.name == 'alsa-base'
-_description: Test the audio before suspending.
+_description: Record mixer settings before suspending.
 command: amixer > $CHECKBOX_DATA/audio_before_suspend.txt
 
 plugin: shell
 name: suspend/cpu_before_suspend
 requires:
  package.name == 'linux'
-_description: Check all the CPUs are online before suspending
+_description: Verify that all the CPUs are online before suspending
 command: cpuinfo_resource > $CHECKBOX_DATA/cpuinfo_before_suspend
 
 plugin: shell
@@ -40,14 +39,14 @@ name: suspend/bluetooth_obex_before_suspend
 requires: package.name == 'bluez' and package.name == 'obexd-client'
 command: obex_send $BTDEVADDR $CHECKBOX_SHARE/data/images/JPEG_Color_Image_Ubuntu.jpg
 _description:
- This test sends an image to the device specified by the BTDEVADDR environment variable.
+ This is an automated Bluetooth file transfer test. It sends an image to the device specified by the BTDEVADDR environment variable.
 
 plugin: manual
 name: suspend/bluetooth_obex_before_suspend_manual
 requires: package.name == 'bluez' and package.name == 'obexd-client'
 command: obex_send `bluetooth_scan` $CHECKBOX_SHARE/data/images/JPEG_Color_Image_Ubuntu.jpg
 _description:
- This test will send the image 'JPEG_Color_Image_Ubuntu.jpg' to a specified device.
+ This test will send the image 'JPEG_Color_Image_Ubuntu.jpg' to a specified Bluetooth  device.
  .
  Select Test and you will be prompted to enter the Bluetooth device name of a device that can accept file transfers. It may take a few moments after entering the name for the file to begin sending. Accept any prompts that appear on both devices.
 
@@ -80,7 +79,7 @@ requires:
  device.category == 'AUDIO'
  package.name == 'alsa-base'
 depends: suspend/suspend_advanced suspend/audio_before_suspend
-_description: Test the audio after resuming.
+_description: Verify that mixer settings after suspend are the same as before suspend.
 command: amixer | diff $CHECKBOX_DATA/audio_before_suspend.txt -
 
 plugin: shell
@@ -88,7 +87,7 @@ name: suspend/cpu_after_suspend
 requires:
  package.name == 'linux'
 depends: suspend/suspend_advanced suspend/cpu_before_suspend
-_description: Check all CPUs are online after resuming.
+_description: Verify that all CPUs are online after resuming.
 command: cpuinfo_resource | diff $CHECKBOX_DATA/cpuinfo_before_suspend -
 
 plugin: shell
@@ -97,7 +96,7 @@ requires:
  package.name == 'linux'
 depends: suspend/suspend_advanced suspend/memory_before_suspend
 _description:
- Check that all memory is available after resuming from suspend.
+ Verify that all memory is available after resuming from suspend.
 command: meminfo_resource | diff $CHECKBOX_DATA/meminfo_before_suspend -
 
 plugin: manual
@@ -131,7 +130,7 @@ depends: suspend/suspend_advanced suspend/bluetooth_obex_before_suspend
 requires: package.name == 'bluez' and package.name == 'obexd-client'
 command: obex_send $BTDEVADDR $CHECKBOX_SHARE/data/images/JPEG_Color_Image_Ubuntu.jpg
 _description:
- This test sends an image to the device specified by the BTDEVADDR environment variable.
+ This is an automated Bluetooth file transfer test. It sends an image to the device specified by the BTDEVADDR environment variable.
 
 plugin: manual
 name: suspend/bluetooth_obex_after_suspend_manual
@@ -164,6 +163,7 @@ plugin: attachment
 name: suspend/xrandr_screens_after_suspend.tar.gz
 depends: suspend/cycle_resolutions_after_suspend_auto
 command: [ -e $CHECKBOX_DATA/xrandr_screens_after_suspend.tgz ] && cat $CHECKBOX_DATA/xrandr_screens_after_suspend.tgz 
+_description: This attaches screenshots from the suspend/cycle_resolutions_after_suspend_auto test to the results submission.
 
 plugin: manual
 name: suspend/usb_storage_after_suspend
@@ -192,9 +192,7 @@ name: suspend/suspend_advanced_auto
 depends: power-management/rtc networking/detect suspend/cpu_before_suspend suspend/memory_before_suspend
 requires: package.name == 'pm-utils'
 _description:
- Automatic power management Suspend and Resume test
- .
- Select test and your system will suspend for about 30 - 60 seconds. If your system does not wake itself up after 60 seconds, please press the power button momentarily to wake the system manually. If your system fails to wake at all and must be rebooted, restart System Testing after reboot and mark this test as Failed.
+ This is the automated version of suspend/suspend_advanced. 
 user: root
 command: sleep_test -d
 

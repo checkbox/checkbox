@@ -1,8 +1,19 @@
 checkbox (0.13) oneiric; urgency=low
 
   * Incremented version 
+  
+  [Jeff Lane]
+  * Went through all the job files and:
+    * Updated descriptions to match Unity UI structure
+    * Added descriptions where necessary
+    * Added further details to some descriptions
+    * Moved some jobs to more appropriate files
+    * Fixed job names in older job files to match new naming scheme 
+      (suite/testname)
+    * Added jobs to local.txt to ensure all job files are now parsed
+      (this allows easier addition of existing tests to whitelists)
 
- -- Daniel Manrique <daniel.manrique@canonical.com>  Fri, 30 Sep 2011 16:12:08 -0400
+ -- Jeff Lane <jeff@ubuntu.com>  Wed, 05 Oct 2011 16:57:13 -0400
 
 checkbox (0.12.8) oneiric; urgency=low
 

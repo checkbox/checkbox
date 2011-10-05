@@ -1,5 +1,5 @@
 plugin: manual
-name: printer
+name: peripheral/printer
 _description:
  Printer configuration verification procedure:
  1.- Make sure that a printer is available in your network
@@ -10,7 +10,7 @@ _description:
  5.- Print a test page
 
 plugin: manual
-name: external-usb-modem
+name: peripheral/external-usb-modem
 command: network_check
 _description:
  External USB modem network connection procedure:
@@ -26,7 +26,7 @@ _description:
  Was the connection correctly established?
 
 plugin: shell
-name: external-usb-modem-http
+name: peripheral/external-usb-modem-http
 depends: external-usb-modem
 command: wget -SO /dev/null http://$TRANSFER_SERVER
 _description:

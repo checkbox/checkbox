@@ -11,7 +11,8 @@ _description:
 plugin: manual
 name: power-management/lid
 _description:
- Does closing your laptop lid cause your screen to blank?
+ This test verifies that the lid sensor triggers a power-save event.
+ Does closing your laptop lid cause your screen to suspend?
 
 plugin: manual
 name: power-management/lid_close
@@ -62,7 +63,7 @@ command: fwts_test -w -l $CHECKBOX_DATA/fwts-wakealarm.log
 plugin: shell
 name: power-management/tickless_idle
 requires: package.name == 'linux'
-_description: Check to see if CONFIG_NO_HZ is set in the kernel
+_description: Check to see if CONFIG_NO_HZ is set in the kernel (this is just a simple regression check)
 command:
  zgrep 'CONFIG_NO_HZ=y' /boot/config-`uname -r` >/dev/null 2>&1
 

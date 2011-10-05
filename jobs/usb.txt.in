@@ -66,7 +66,7 @@ name: usb/storage-transfer
 requires: package.name == 'linux'
 command: usb_test -t
 _description:
- USB HDD verification procedure:
+ USB storage verification procedure:
  1.- Plug a USB HDD or thumbdrive into the computer
  2.- An icon should appear on the desktop and in the "Places" menu at the top of the screen.
  3.- Click Test to begin
@@ -85,7 +85,7 @@ name: usb/panels
 requires: package.name == 'linux'
 _description:
  Connect a USB storage device to an external USB slot on this computer. \
- An icon should appear on the desktop and in the "Places" menu at the top of the screen.
+ An icon should appear on the Launcher.
  .
  Confirm that the icon appears, then eject the device. Repeat with each external \
  USB slot.

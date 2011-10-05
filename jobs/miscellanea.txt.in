@@ -6,7 +6,7 @@ requires:
 user: root
 command: cycle_vts
 _description:
- Select Test to switch to another virtual terminal and then back to X.  Your screen will change temporarily to a text console and then switch back to your current session.
+ This test will verify that your system can switch to another virtual terminal and then back to X. Select Test to begin. Your screen will change temporarily to a text console and then switch back to your current session.
  .
  Note that this test may require you to enter your password.
  .
@@ -42,3 +42,12 @@ _description:
  Is your system a laptop (or netbook)?
  .
  Selecting Yes here will allow us to run tests specific to portable computers that may not apply to desktops.
+plugin: shell
+
+name: miscellanea/apport-directory
+requires: package.name == 'apport'
+command: ! test -d /var/crash || test $(find /var/crash -type f | wc -l) -eq 0
+_description: 
+ This test checks /var/crash to see if there are any crash reports present.
+ .
+ If there are, this test will fail.

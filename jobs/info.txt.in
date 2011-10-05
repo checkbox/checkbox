@@ -1,44 +1,53 @@
-
 name: info/codecs_attachment
 plugin: attachment
 requires: device.driver == 'HDA Intel'
 command: cat /proc/asound/card*/codec#*
+_description: Attaches a report of installed codecs for Intel HDA
 
 name: info/cpuinfo_attachment
 plugin: attachment
 command: cat /proc/cpuinfo
+_description: Attaches a report of CPU information
 
 name: info/dmesg_attachment
 plugin: attachment
 command: cat /var/log/dmesg | ansi_parser
+_description: Attaches a copy of /var/log/dmesg to the test results
 
 name: info/dmi_attachment
 plugin: attachment
 command: grep -r . /sys/class/dmi/id/ 2>/dev/null
+_description: Attaches info on DMI
 
 name: info/dmidecode_attachment
 plugin: attachment
 user: root
 command: dmidecode
+_description: Attaches dmidecode output
 
 name: info/lspci_attachment
 plugin: attachment
 command: lspci -vvnn
+_description: Attaches very verbose lspci output.
 
 name: info/modprobe_attachment
 plugin: attachment
 command: find /etc/modprobe.* -name \*.conf | xargs cat
+_description: Attaches the contents of the various modprobe conf files.
 
 name: info/modules_attachment
 plugin: attachment
 command: cat /etc/modules
+_description: Attaches the contents of the /etc/modules file.
 
 name: info/sysctl_attachment
 plugin: attachment
 command: find /etc/sysctl.* -name \*.conf | xargs cat
+_description: attaches the contents of various sysctl config files.
 
 name: info/sysfs_attachment
 plugin: attachment
+_description: Attaches a report of sysfs attributes.
 command:
  for i in `udevadm info --export-db | sed -n 's/^P: //p'`; do
   echo "P: $i"
@@ -49,16 +58,19 @@ command:
 name: info/udev_attachment
 plugin: attachment
 command: udevadm info --export-db
+_description: Attaches a dump of the udev database showing system hardware information.
 
 name: info/gcov_attachment
 plugin: attachment
 requires: package.name == 'lcov'
 user: root
 command: gcov_tarball
+_description: Attaches a tarball of gcov data if present.
 
 name: info/lsmod_attachment
 plugin: attachment
 command: lsmod
+_description: Attaches a list of the currently running kernel modules.
 
 plugin: shell
 name: info/screenshot
@@ -66,25 +78,25 @@ requires:
  package.name == 'xorg'
  package.name == 'imagemagick'
 command: import -window root ${CHECKBOX_DATA}/screenshot.png
-_description:
- Captures a screenshot.
+_description: Captures a screenshot.
 
 plugin: attachment
 name: info/screenshot.png
 depends: screenshot
 command: cat ${CHECKBOX_DATA}/screenshot.png
+_description: Attaches the screenshot captured in info/screenshot.
 
 plugin: attachment
 name: info/fwts_log
 depends: fwts_test
-_description:
- Gather log from the firmware test suite run
+_description: Gather log from the Firmware Test Suite run.
 command:
  cat $CHECKBOX_DATA/fwts_results.log
 
 plugin: attachment
 name: info/acpi_sleep_attachment
-command: cat /proc/acpi/sleep
+command: [ -e /proc/acpi/sleep ] && cat /proc/acpi/sleep
+_description: Attaches the contents of /proc/acpi/sleep if it exists.
 
 plugin: local
 name: info/bootchart
@@ -114,6 +126,7 @@ plugin: attachment
 name: info/bootchart.png
 depends: info/bootchart
 requires: (package.name == 'bootchart' and float(lsb.release) < 9.04) or package.name == 'pybootchartgui'
+_description: Attaches the bootchart png file for bootchart runs
 command:
  file=`ls /var/log/bootchart/*.png 2>/dev/null | tail -1`; \
  [ -e "$file" ] && cat "$file"
@@ -122,6 +135,7 @@ plugin: attachment
 name: info/bootchart.tgz
 depends: info/bootchart
 requires: package.name == 'bootchart' and float(lsb.release) >= 9.04
+_description: Attaches the bootchart log for bootchart test runs.
 command:
  file=`ls /var/log/bootchart/*.tgz 2>/dev/null | tail -1`; \
  [ -e "$file" ] && cat "$file"
@@ -129,7 +143,9 @@ command:
 plugin: attachment
 name: info/installer_bootchart.tgz
 command: [ -e /var/log/installer/bootchart.tgz ] && cat /var/log/installer/bootchart.tgz
+_description: installs the installer bootchart tarball if it exists.
 
 plugin: attachment
 name: info/installer_debug.gz
 command: [ -e /var/log/installer/debug ] && gzip -9 -c /var/log/installer/debug
+_description: Attaches the installer debug log if it exists.

@@ -1,59 +1,59 @@
 plugin: shell
-name: atd
+name: daemons/atd
 requires: package.name == 'at'
 command: pgrep -f '/usr/sbin/atd' >/dev/null
 _description: Test if the atd daemon is running when the package is installed.
 
 plugin: shell
-name: cron
+name: daemons/cron
 requires: package.name == 'cron'
 command: pgrep -f '/usr/sbin/cron' >/dev/null
 _description: Test if the cron daemon is running when the package is installed.
 
 plugin: shell
-name: cupsd
+name: daemons/cupsd
 requires: package.name == 'cupsys'
 command: pgrep -f '/usr/sbin/cupsd' >/dev/null
 _description: Test if the cupsd daemon is running when the package is installed.
 
 plugin: shell
-name: getty
+name: daemons/getty
 requires: package.name == 'util-linux'
 command: pgrep -f '/sbin/getty' >/dev/null
 _description: Test if the getty daemon is running when the package is installed.
 
 plugin: shell
-name: init
+name: daemons/init
 requires: package.name == 'upstart'
 command: pgrep -f '/sbin/init' >/dev/null
 _description: Test if the init daemon is running when the package is installed.
 
 plugin: shell
-name: klogd
+name: daemons/klogd
 requires: package.name == 'klogd'
 command: pgrep -f '/sbin/klogd' >/dev/null
 _description: Test if the klogd daemon is running when the package is installed.
 
 plugin: shell
-name: nmbd
+name: daemons/nmbd
 requires: package.name == 'samba'
 command: pgrep -f '/usr/sbin/nmbd' >/dev/null
 _description: Test if the nmbd daemon is running when the package is installed.
 
 plugin: shell
-name: smbd
+name: daemons/smbd
 requires: package.name == 'samba'
 command: pgrep -f '/usr/sbin/smbd' >/dev/null
 _description: Test if the smbd daemon is running when the package is installed.
 
 plugin: shell
-name: syslogd
+name: daemons/syslogd
 requires: package.name == 'syslogd'
 command: pgrep -f '/sbin/syslogd' >/dev/null
 _description: Test if the syslogd daemon is running when the package is installed.
 
 plugin: shell
-name: udevd
+name: daemons/udevd
 requires:
  package.name == 'udevd'
  package.name == 'linux'
@@ -61,7 +61,7 @@ command: pgrep -f '/sbin/udevd' >/dev/null
 _description: Test if the udevd daemon is running when the package is installed.
 
 plugin: shell
-name: winbindd
+name: daemons/winbindd
 requires: package.name == 'winbind'
 command: pgrep -f '/usr/sbin/winbindd' >/dev/null
 _description: Test if the winbindd daemon is running when the package is installed.

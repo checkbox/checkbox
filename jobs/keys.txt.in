@@ -59,15 +59,19 @@ _description:
 
 plugin: manual
 name: keys/media-control
-requires: device.category == 'KEYBOARD'
+requires:
+ device.category == 'KEYBOARD'
+ package.name == 'totem'
+ package.name == 'gstreamer0.10-plugins-base'
+command: totem /usr/share/example-content/Ubuntu_Free_Culture_Showcase/*
 _description:
- The keyboard may have dedicated keys for controlling media as follows:
+ This test will verify that any media control keys work. This applies mainly to Laptop/Netbook systems but some Desktops may also have the following dedicated media control keys:
  .
  * Play/Pause
  * Stop
  * Forward
  * Backward (Rewind)
  .
- Play a media file and press each key in turn.
+ Select Test to launch the media player. While the media is playing, press the keys or buttons to verify that they do control media being played.
  .
  Do the keys work as expected?

@@ -28,7 +28,7 @@ name: cpu/topology
 requires: int(cpuinfo.count) > 1 and (cpuinfo.platform == 'i386' or cpuinfo.platform == 'x86_64')
 command: cpu_topology
 _description:
- Checks cpu topology for accuracy
+ This test checks cpu topology for accuracy
 
 plugin: shell
 name: cpu/frequency_governors
@@ -36,4 +36,4 @@ requires: package.name == 'linux'
 user: root
 command: nice -n -20 cpu_scaling_test 
 _description:
- Checks that CPU frequency governors are obeyed when set.
+ This test hecks that CPU frequency governors are obeyed when set.

@@ -3,7 +3,7 @@ name: graphics/xorg-version
 requires: package.name == "x11-utils"
 command: xdpyinfo | grep "^X.Org version" | cut -d ':' -f 2 | tr -d ' '
 _description:
- 2d graphics appears to be working, your running X.Org version is:
+ Basic graphics apper to be working.  You seem to be running X.Org version:
  $output
  .
  Is this correct?
@@ -19,16 +19,15 @@ plugin: shell
 name: graphics/gtkperf
 depends: graphics/xorg-version-output
 requires: package.name == 'gtkperf'
-command: gtkperf -a
+command: gtkperf -a | grep "Total time:"
 _description:
  Run gtkperf to make sure that GTK based test cases work
- .
- In the future add the returned time as a benchmark result to the checkbox report
 
 plugin: manual
 name: graphics/resolution-change
 depends: graphics/xorg-version-output
 _description:
+ This test will verify that the GUI is usable after manually changing resolutions.
  Display resolution change procedure:
  1.- Open System->Preferences->Monitors
  2.- Select a new resolution from the dropdown list
@@ -44,6 +43,7 @@ plugin: manual
 name: graphics/rotation
 depends: graphics/xorg-version-output
 _description:
+ This test will verify that graphics can be successfully rotated.
  Display rotation verification procedure:
  1.- Open System->Preferences->Monitors
  2.- Select a new rotation value from the dropdown list
@@ -72,7 +72,7 @@ name: graphics/xorg-memory
 requires: package.name == 'xorg' and device.driver == 'i915'
 user: root
 command: xorg_memory_test xeyes
-_description: Test that X does not leak memory when running programs.
+_description: Test that X does not leak memory when running programs on systems with intel based graphics.
 
 plugin: manual
 name: graphics/resolution

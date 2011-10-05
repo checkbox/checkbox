@@ -35,8 +35,7 @@ name: optical/cdrom-write
 depends: optical/detect
 requires: device.category == 'CDROM'
 _description:
- The detected optical drive seems to support writing. Enter a blank CDROM \
- into your drive and try writing to it.
+ This test will verify that the detected optical drive can successfully write to optical media. If this drive supports writing to CD, insert a blank CD into your drive and try writing to it.
  .
  Does writing work?
 
@@ -61,8 +60,7 @@ name: optical/dvd-write
 depends: optical/detect
 requires: device.category == 'CDROM'
 _description:
- The detected optical drive seems to support writing. Enter a blank DVD \
- into your drive and try writing to it.
+ This test will verify that the detected optical drive can successfully write to optical media. If this drive supports writing to DVD, insert a blank DVD into your drive and try writing to it.
  .
  Does writing work?
 
@@ -70,6 +68,7 @@ plugin: manual
 name: optical/dvd_movie_playback
 depends: optical/read
 _description:
+ This test will verify that your system can play a DVD movie. Note that this may require the installation of non-free software (codecs, player, etc) prior to attempting this test.
  DVD movie playback procedure:
  1.- Insert a DVD that contains any movie in your optical drive.
  2.- A window should appear with some actions that you may choose. Select 'Open Movie Player'.

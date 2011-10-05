@@ -3,19 +3,20 @@ name: bluetooth/detect
 requires: package.name == 'bluez'
 command: hcitool dev | tail -n+2 | awk '{print $2}' |grep -E "^([0-9a-fA-F]{2}\:){5}[0-9a-fA-F]{2}$"
 _description:
- Output address of detected Bluetooth device, if any, or exits with error if none is found.
+ This test will detect your Bluetooth device and output the device's hardware address.  If no device is found, the test will exit with an error.
 
 plugin: shell
 name: bluetooth/detect-output
 requires: package.name == 'bluez'
 command: hcitool dev | tail -n+2 | awk '{print $2}'; hcitool dev | tail -n+2 | awk '{print $2}' > $CHECKBOX_DATA/bluetooth_address
 _description:
- Automated test to store output in checkbox report
+ Automated test to store bluetooth device information in checkbox report
 
 plugin: manual
 name: bluetooth/browse-files
 depends: bluetooth/detect
 _description:
+ This test will verify you can pair a Bluetooth device with your system and browse files stored on that device.
  Bluetooth browse files procedure:
  1.- Enable bluetooth on any mobile device (PDA, smartphone, etc.)
  2.- Click on the bluetooth icon in the menu bar
@@ -33,6 +34,7 @@ plugin: manual
 name: bluetooth/file-transfer
 depends: bluetooth/browse-files bluetooth/detect
 _description:
+ This test will verify that you can safely transfer files to and from a Bluetooth device.
  Bluetooth file transfer procedure:
  1.- Make sure that you're able to browse the files in your mobile device
  2.- Copy a file from the computer to the mobile device
@@ -48,6 +50,7 @@ depends: bluetooth/detect
 requires: package.name == 'alsa-utils'
 command: arecord -d 5 -D bluetooth -f S16_LE | aplay -D bluetooth -f S16_LE
 _description:
+ This test will verify that you can both record and play back sounds via a Bluetooth audio device.
  Bluetooth audio procedure:
  1.- Enable the bluetooth headset
  2.- Click on the bluetooth icon in the menu bar
@@ -64,6 +67,7 @@ name: bluetooth/keyboard
 command: keyboard_test
 depends: bluetooth/detect
 _description:
+ This test will verify that your system will recognize and use a Bluetooth keyboard.
  Bluetooth keyboard procedure:
  1.- Enable the bluetooth keyboard
  2.- Click on the bluetooth icon in the menu bar
@@ -77,6 +81,7 @@ plugin: manual
 name: bluetooth/mouse
 depends: bluetooth/detect
 _description:
+ This test will verify that your system will recognize and use a Bluetooth mouse.
  Bluetooth mouse procedure:
  1.- Enable the bluetooth mouse
  2.- Click on the bluetooth icon in the menu bar

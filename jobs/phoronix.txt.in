@@ -1,6 +1,7 @@
-name: phoronix
+name: phoronix/pts-tests
 plugin: remote
-_description: Automated benchmark testing
+_description: 
+ This test will download and install the Phoronix Test Suite and run some selected benchmarking tests.
 requires:
  package.name == 'git-core'
  package.name == 'php5-cli'

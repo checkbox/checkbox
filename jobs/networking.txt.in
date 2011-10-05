@@ -37,6 +37,7 @@ plugin: manual
 name: networking/wired_connection
 command: network_check
 _description:
+ This test will verify that your system can connect to a wired network (ethernet).
  Wired network connection procedure:
  1.- Click on the Network Manager applet
  2.- Select a network below the 'Wired network' section
@@ -49,6 +50,7 @@ plugin: manual
 name: networking/modem_connection
 command: network_check
 _description:
+ This test will verify that a built-in DSL modem can be connected and configured.
  Built-in modem network connection procedure:
  1.- Connect the telephone line to the computer
  2.- Right click on the Network Manager applet
@@ -96,7 +98,7 @@ _description: Try to enable a remote printer on the network and print a test pag
 plugin: local
 name: networking/multi_nic
 requires: device.category == 'NETWORK'
-_description: Multiple network cards
+_description: Automated test to walk multiple network cards and test each one in sequence.
 command:
  cat <<'EOF' | run_templates -s 'udev_resource | filter_templates -w "category=NETWORK" | awk "/path: / { print \$2 }" | xargs -n 1 sh -c "for i in \`ls /sys\$0/net 2>/dev/null\`; do echo \$0 \$i; done"'
  plugin: shell

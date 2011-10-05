@@ -1,11 +1,16 @@
 plugin: manual
 name: firewire/hdd
 _description:
+ This test will verify that Firewire (IEEE1394) ports on your system function. the test assumes you are using a Firewire HDD as those are the most common Firewire devices. If you have a different type of device, see the Firewire - Other instructions below.
  Firewire HDD verification procedure:
   1.- Plug a Firewire HDD into the computer.
   2.- A window should be opened asking which action should be performed (open folder, photo manager, etc).
   3.- Copy some files from your internal HDD to the firewire HDD.
   4.- Copy some files from the firewire HDD to your internal HDD.
  .
- Do the copy operations work as expected?
-
+ Firewire Other device verification procedure:
+  1.- Plug the Firewire Device into the computer.
+  2.- Configure the device as necessary.
+  3.- Attempt to use the device.
+ .
+ Does the device work as expected?

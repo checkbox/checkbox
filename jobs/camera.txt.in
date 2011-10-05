@@ -4,7 +4,7 @@ requires:
  package.name == 'xawtv'
  device.category == 'CAPTURE'
 command: camera_test -t detect
-_description: Automated test case that attempts to detect a camera
+_description: This Automated test attempts to detect a camera.
 
 plugin: manual
 name: camera/display
@@ -14,6 +14,7 @@ requires:
  device.category == 'CAPTURE'
 command: camera_test -t display
 _description:
+ This test will verify your system's ability to display video captured by the on-board camera in real time.
  Select Test to display a video capture from the camera
  .
  Did you see the video capture?
@@ -28,6 +29,7 @@ requires:
  device.category == 'CAPTURE'
 command: camera_test -t still
 _description:
+ This test will verify your system's ability to capture a still image using the on-board camera.
  Select Test to display a still image from the camera
  .
  Did you see the image?
@@ -41,8 +43,8 @@ requires:
  device.category == 'CAPTURE'
 command: camera_test -t video
 _description:
+ This test will verify your system's ability to record video using the on-board camera.
  Select Test to capture video to a file and open it in totem.
  Please make sure that both audio and video is captured.
  .
  Did you see/hear the capture?
-

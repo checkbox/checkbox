@@ -1,6 +1,7 @@
-name: ltp
+name: ltp/syscalls
 plugin: remote
-_description: Linux Test Project
+_description: 
+ This test installs and runs Linux Test Project syscalls test. This can be destructive, thus this test is blacklisted by default.
 requires:
  package.alias == 'linux'
  package.name == 'cvs'
