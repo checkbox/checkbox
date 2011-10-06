@@ -36,4 +36,4 @@ requires: package.name == 'linux'
 user: root
 command: nice -n -20 cpu_scaling_test 
 _description:
- This test hecks that CPU frequency governors are obeyed when set.
+ This test checks that CPU frequency governors are obeyed when set.
