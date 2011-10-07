@@ -78,7 +78,9 @@ class GTKInterface(UserInterface):
 
         # Set background color for head
         eventbox_head = self._get_widget("eventbox_head")
-        color = Gdk.color_parse("#F0EBE2")[1]
+        color = Gdk.color_parse("#F0EBE2")
+        #HACK: LP #839675
+        if isinstance(color, tuple): color = color[1]
         eventbox_head.modify_bg(Gtk.StateType.NORMAL, color)
 
         # Set and apply initial/default dialog title
@@ -107,7 +109,7 @@ class GTKInterface(UserInterface):
 
         # Set shorthand for notebook
         self._notebook = self._get_widget("notebook_main")
-        self._handler_id = None
+        self._handlers = {}
 
     def _get_widget(self, name):
         return self.widgets.get_object(name)
@@ -151,7 +153,8 @@ class GTKInterface(UserInterface):
             self.show_url(anchor)
 
         widget = self._get_widget(name)
-        widget.connect("anchor-clicked", clicked)
+        if widget not in self._handlers:
+            self._handlers[widget] = widget.connect("anchor-clicked", clicked)
 
         buffer = Gtk.TextBuffer()
         widget.set_buffer(buffer)
@@ -299,7 +302,8 @@ class GTKInterface(UserInterface):
         vbox = self._get_widget("vbox_options_list")
         for option in options:
             label = "_%s%s" % (option[0].upper(), option[1:])
-            check_button = Gtk.CheckButton(label)
+            check_button = Gtk.CheckButton(label = label,
+                                           use_underline = True)
             check_button.get_child().set_line_wrap(True)
             check_button.show()
             option_table[option] = check_button
@@ -345,7 +349,9 @@ class GTKInterface(UserInterface):
         vbox = self._get_widget("vbox_options_list")
         for option in options:
             label = "_%s%s" % (option[0].upper(), option[1:])
-            radio_button = Gtk.RadioButton(option_group, label)
+            radio_button = Gtk.RadioButton(group = option_group,
+                                           label = label,
+                                           use_underline = True)
             radio_button.get_child().set_line_wrap(True)
             radio_button.show()
             option_table[option] = radio_button
@@ -516,9 +522,9 @@ class GTKInterface(UserInterface):
         if "command" in test:
             self._set_sensitive("button_test", True)
             button_test = self._get_widget("button_test")
-            if self._handler_id:
-                button_test.disconnect(self._handler_id)
-            self._handler_id = button_test.connect("clicked",
+            if button_test in self._handlers:
+                button_test.disconnect(self._handlers[button_test])
+            self._handlers[button_test] = button_test.connect("clicked",
                 lambda w, t=test, r=runner: self._run_test(t, r))
 
         self._set_text_view("text_view_comment", test.get("data", ""))

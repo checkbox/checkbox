@@ -33,7 +33,7 @@ class StubReport(Report):
         self._manager.handle_loads("default", self.loads_default)
 
     def dumps_test(self, obj, parent):
-        text_node = self._manager.document.createTextNode(obj)
+        text_node = parent.ownerDocument.createTextNode(obj)
         parent.appendChild(text_node)
 
     def loads_test(self, node):

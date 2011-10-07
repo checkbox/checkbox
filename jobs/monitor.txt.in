@@ -2,11 +2,11 @@ plugin: manual
 name: monitor/vga
 _description:
  PURPOSE:
-     This test will check your VGA port. Skip if your system does not have a VGA port
+     This test will check your VGA port. Skip if your system does not have a VGA port.
  STEPS:
      1. Connect a display (if not already connected) to the VGA port on your system
  VERIFICATION:
-     Did the image displayed correctly in both screens?
+     Was the desktop displayed correctly on both screens?
 
 plugin: manual
 name: monitor/dvi
@@ -16,7 +16,7 @@ _description:
  STEPS:
      1. Connect a display (if not already connected) to the DVI port on your system
  VERIFICATION:
-     Did the image displayed correctly in both screens?
+     Was the desktop displayed correctly on both screens?
 
 plugin: manual
 name: monitor/displayport
@@ -26,7 +26,7 @@ _description:
  STEPS:
      1. Connect a display (if not already connected) to the DisplayPort port on your system
  VERIFICATION:
-     Did the image displayed correctly in both screens?
+     Was the desktop displayed correctly on both screens?
 
 plugin: manual
 name: monitor/hdmi
@@ -36,7 +36,7 @@ _description:
  STEPS:
      1. Connect a display (if not already connected) to the HDMI port on your system
  VERIFICATION:
-     Did the image displayed correctly in both screens?
+     Was the desktop displayed correctly on both screens?
 
 plugin: manual
 name: monitor/svideo
@@ -46,17 +46,17 @@ _description:
  STEPS:
      1. Connect a display (if not already connected) to the S-VIDEO port on your system
  VERIFICATION:
-     Did the image displayed correctly in both screens?
+     Was the desktop displayed correctly on both screens?
 
 plugin: manual
-name: video-rca
+name: monitor/rca
 _description:
  PURPOSE:
      This test will check your RCA port. Skip if your system does not have a RCA port
  STEPS:
      1. Connect a display (if not already connected) to the RCA port on your system
  VERIFICATION:
-     Did the image displayed correctly in both screens?
+     Was the desktop displayed correctly on both screens?
 
 plugin: manual
 name: monitor/powersaving
@@ -68,4 +68,4 @@ _description:
      1. Click "Test" to try the power saving capabilities of your monitor
      2. Press any key or move the mouse to recover
  VERIFICATION:
-     Did the the monitor went blank and on again?
+     Did the the monitor go blank and turn on again?

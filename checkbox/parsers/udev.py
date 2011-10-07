@@ -31,12 +31,13 @@ from checkbox.lib.usb import Usb
 
 
 class UdevDevice(object):
-    __slots__ = ("_environment", "_attributes")
+    __slots__ = ("_environment", "_attributes", "_stack")
 
-    def __init__(self, environment, attributes):
+    def __init__(self, environment, attributes, stack=[]):
         super(UdevDevice, self).__init__()
         self._environment = environment
         self._attributes = attributes
+        self._stack = stack
 
     @property
     def bus(self):
@@ -181,7 +182,9 @@ class UdevDevice(object):
 
             if devtype == "scsi_device":
                 type = int(self._attributes.get("type", "-1"))
-                if type in (0, 7, 14):
+                # Check for FLASH drives, see /lib/udev/rules.d/80-udisks.rules
+                if type in (0, 7, 14) \
+                   and not any(d.driver == "rts_pstor" for d in self._stack):
                     return "DISK"
 
                 if type == 1:
@@ -478,6 +481,7 @@ class UdevParser(object):
 
     def __init__(self, stream):
         self.stream = stream
+        self.stack = []
 
     def _ignoreDevice(self, device):
         # Ignore devices without bus information
@@ -538,6 +542,12 @@ class UdevParser(object):
                             "Device property not supported: %s" % value)
                     environment[match.group("key")] = match.group("value")
 
+            # Update stack
+            while self.stack:
+                if self.stack[-1].path + "/" in path:
+                    break
+                self.stack.pop()
+
             # Set default DEVPATH
             environment.setdefault("DEVPATH", path)
 
@@ -554,9 +564,11 @@ class UdevParser(object):
                     if not self._ignoreDevice(device):
                         result.addDevice(device)
             else:
-                device = self.device_factory(environment, attributes)
+                device = self.device_factory(environment, attributes, self.stack)
                 if not self._ignoreDevice(device):
                     result.addDevice(device)
+
+            self.stack.append(device)
 
 
 class UdevLocalParser(UdevParser):

@@ -1,6 +1,8 @@
-name: autotest
+name: autotest/full_suite
 plugin: remote
-_description: Autotest suite (destructive)
 user: root
 timeout: 1200
 command: autotest_suite
+_description:
+ PURPOSE:
+    This test will attempt to install and run the Autotest Suite.  These tests can be destructive, so this test is blacklisted by default.

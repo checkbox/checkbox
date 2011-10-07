@@ -7,7 +7,7 @@ user: root
 command: cycle_vts
 _description:
  PURPOSE:
-     This test will check in the system can switch to a virtual terminal and back to X
+     This test will check that the system can switch to a virtual terminal and back to X
  STEPS:
      1. Click "Test" to switch to another virtual terminal and then back to X
  VERIFICATION:
@@ -41,6 +41,15 @@ plugin: manual
 name: miscellanea/is_laptop
 _description:
  PURPOSE:
-     This test is just to select the type of system
- VERIFICATION:
-     Is your system a laptop (or netbook)?
+    This is to determine if we need to run tests specific to portable computers that may not apply to desktops.
+ STEPS:
+    Select "Yes" if your system is a laptop or netbook. Otherwise, select "No"
+
+plugin: shell
+name: miscellanea/apport-directory
+requires: package.name == 'apport'
+command: ! test -d /var/crash || test $(find /var/crash -type f | wc -l) -eq 0
+_description: 
+ This test checks /var/crash to see if there are any crash reports present.
+ .
+ If there are, this test will fail.

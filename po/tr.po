@@ -8,22 +8,18 @@ msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-07-07 12:32-0400\n"
-"PO-Revision-Date: 2011-07-19 20:28+0000\n"
-"Last-Translator: ubuntuki <Unknown>\n"
+"PO-Revision-Date: 2011-10-03 22:13+0000\n"
+"Last-Translator: Şâkir Aşçı <sakirasci@gmail.com>\n"
 "Language-Team: Turkish <tr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-07-31 04:34+0000\n"
-"X-Generator: Launchpad (build 13405)\n"
-
-#: ../gtk/checkbox-gtk.ui.h:2
-msgid "Ne_xt"
-msgstr "Son_raki"
+"X-Launchpad-Export-Date: 2011-10-04 04:50+0000\n"
+"X-Generator: Launchpad (build 14071)\n"
 
 #. Title of the user interface
 #: ../gtk/checkbox-gtk.ui.h:3 ../gtk/checkbox-gtk.desktop.in.h:1
-#: ../plugins/user_interface.py:40
+#: ../checkbox_gtk/gtk_interface.py:95 ../plugins/user_interface.py:40
 msgid "System Testing"
 msgstr "Sistem Sınama"
 
@@ -39,7 +35,7 @@ msgstr "_Önceki"
 msgid "_Skip this test"
 msgstr "Bu sınamayı _geç"
 
-#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:522
+#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:537
 msgid "_Test"
 msgstr "_Sına"
 
@@ -52,10 +48,8 @@ msgid "Test and report system information"
 msgstr "Sistem bilgisini sına ve raporla"
 
 #. description
-#: ../jobs/audio.txt.in:7 ../jobs/bluetooth.txt.in:5 ../jobs/disk.txt.in:4
-#: ../jobs/graphics.txt.in:126 ../jobs/memory.txt.in:4
-#: ../jobs/networking.txt.in:16 ../jobs/optical.txt.in:8
-#: ../jobs/power-management.txt.in:185 ../jobs/usb.txt.in:5
+#: ../jobs/audio.txt.in:7 ../jobs/graphics.txt.in:113 ../jobs/memory.txt.in:4
+#: ../jobs/networking.txt.in:5 ../jobs/optical.txt.in:8
 msgid "Is this correct?"
 msgstr "Bu doğru mu?"
 
@@ -80,24 +74,8 @@ msgstr "Klavyeniz düzgün çalışıyor mu?"
 msgid "Testing your connection to the Internet:"
 msgstr "Internet bağlantınız kontrol ediliyor:"
 
-#: ../checkbox/application.py:70
-msgid "Print version information and exit."
-msgstr "Sürüm bilgisini yazdr ve çık."
-
-#~ msgid "Device information"
-#~ msgstr "Aygıt bilgisi"
-
-#~ msgid "Packages installed"
-#~ msgstr "Paketler yüklendi"
-
-#~ msgid "Processor information"
-#~ msgstr "İşlemci bilgisi"
-
 #~ msgid "Successfully sent information!"
 #~ msgstr "Bilgi başarıyla gönderildi!"
-
-#~ msgid "Test results"
-#~ msgstr "Test sonuçları"
 
 #~ msgid "_Desktop"
 #~ msgstr "_Masaüstü"
@@ -108,41 +86,17 @@ msgstr "Sürüm bilgisini yazdr ve çık."
 #~ msgid "_Server"
 #~ msgstr "_Sunucu"
 
-#~ msgid "The following resolution was detected for your display:"
-#~ msgstr "Monitörünüz için bulunan çözünürlük:"
-
-#~ msgid "Is this a good resolution for your display?"
-#~ msgstr "Bu çözünürlük monitörünüz için uygun mu?"
-
-#~ msgid "Are you connected to the Internet?"
-#~ msgstr "Internet'e bağlı mısınız?"
-
-#~ msgid ""
-#~ "Typing keys on your keyboard should display the corresponding characters in "
-#~ "a text area."
-#~ msgstr ""
-#~ "Klavyenizde tuşlara bastığızda karşılık gelen harflerin yazı boşluğunda "
-#~ "görünmesi gerekir."
-
-#~ msgid "$(resolution_test)"
-#~ msgstr "$(resolution_test)"
-
 #~ msgid "Do you hear a sound?"
 #~ msgstr "Bir ses duydunuz mu?"
-
-#~ msgid "Distribution details"
-#~ msgstr "Dağıtım ayrıntıları"
-
-#~ msgid "<b>Comment:</b>"
-#~ msgstr "<b>Açıklama:</b>"
-
-#~ msgid "Run the test for the automatically detected playback device."
-#~ msgstr "Kendiliğinden algılanan oynatma aygıtı için sınamayı çalıştır."
 
 #: ../gtk/checkbox-gtk.ui.h:1 ../checkbox_cli/cli_interface.py:343
 #: ../checkbox_urwid/urwid_interface.py:261
 msgid "Further information:"
 msgstr "Ek bilgi:"
+
+#: ../gtk/checkbox-gtk.ui.h:2
+msgid "Ne_xt"
+msgstr "_Sonraki"
 
 #: ../gtk/checkbox-gtk.ui.h:4
 msgid "_Deselect All"
@@ -155,7 +109,7 @@ msgstr "Tümünü _Seç"
 #. description
 #: ../jobs/apport.txt.in:5
 msgid "Test that the /var/crash directory doesn't contain anything."
-msgstr ""
+msgstr "/var/crash dizininin hiçbir şey içermediğini sına."
 
 #. description
 #: ../jobs/audio.txt.in:7
@@ -163,10 +117,8 @@ msgid "Detecting your sound device(s):"
 msgstr "Ses aygıt(lar)ınız algılanıyor:"
 
 #. description
-#: ../jobs/audio.txt.in:7 ../jobs/disk.txt.in:4 ../jobs/graphics.txt.in:126
-#: ../jobs/memory.txt.in:4 ../jobs/networking.txt.in:16
-#: ../jobs/optical.txt.in:8 ../jobs/power-management.txt.in:167
-#: ../jobs/usb.txt.in:5
+#: ../jobs/audio.txt.in:7 ../jobs/graphics.txt.in:113 ../jobs/memory.txt.in:4
+#: ../jobs/networking.txt.in:5 ../jobs/optical.txt.in:8 ../jobs/usb.txt.in:12
 msgid "$output"
 msgstr "$çıktı"
 
@@ -235,17 +187,20 @@ msgstr ""
 "mikrofona konuşun. Birkaç saniye sonra, konuşmanız size geri çalınacak."
 
 #. description
-#: ../jobs/audio.txt.in:70 ../jobs/power-management.txt.in:221
+#: ../jobs/audio.txt.in:70
 msgid "Did you hear your speech played back?"
 msgstr "Konuşmanızı duydunuz mu?"
 
 #. description
-#: ../jobs/audio.txt.in:81
+#: ../jobs/audio.txt.in:82
 msgid ""
 "Play back a sound on the default output and listen for it on the \\ default "
 "input.  This makes the most sense when the output and input \\ are directly "
 "connected, as with a patch cable."
 msgstr ""
+"Varsayılan ses çıkışından bir ses dosyası çalınız ve bunu varsayılan ses "
+"girişine dinletin. Bu işlem en iyi şekilde giriş ve çıkış arasına bir kablo "
+"bağlantısı yapılarak sağlanır."
 
 #. description
 #: ../jobs/autotest.txt.in:3
@@ -253,17 +208,17 @@ msgid "Autotest suite (destructive)"
 msgstr "Otomatik sınama takımı (zararlı)"
 
 #. description
-#: ../jobs/bluetooth.txt.in:5 ../jobs/power-management.txt.in:185
+#: ../jobs/bluetooth.txt.in:5
 msgid "The address of your Bluetooth device is: $output"
 msgstr "Bluetooth aygıtınızın adresi: $output"
 
 #. description
-#: ../jobs/bluetooth.txt.in:15 ../jobs/graphics.txt.in:15
+#: ../jobs/bluetooth.txt.in:12 ../jobs/graphics.txt.in:15
 msgid "Automated test to store output in checkbox report"
-msgstr ""
+msgstr "checkbox raporunda depo çıkışı için otomatikleştirilmiş test."
 
 #. description
-#: ../jobs/bluetooth.txt.in:21
+#: ../jobs/bluetooth.txt.in:18
 msgid ""
 "Bluetooth browse files procedure: 1.- Enable bluetooth on any mobile device "
 "(PDA, smartphone, etc.) 2.- Click on the bluetooth icon in the menu bar 3.- "
@@ -273,9 +228,17 @@ msgid ""
 "icon and select browse files 7.- Authorize the computer to browse the files "
 "in the device if needed 8.- You should be able to browse the files"
 msgstr ""
+"Bluetooth ile dosyalara göz atma yönergesi: 1.- herhangi bir taşınabilir "
+"aygıtta (PDA, akıllı telefon vb.) bluetooth'u etkinleştirin 2.- Menü "
+"çubuğundaki bluetooth simgesine tıklayın 3.- 'Yeni kurulum aygıtı' "
+"seçeneğini seçin 3.- Aygıtı listede arayın ve seçin 4.- Aygıtta, sihirbaz "
+"tarafından otomatik olarak seçilen PIN kodunu yazın 5.- Aygıt bilgisayarla "
+"eşlenmelidir 6.- Bluetooth simgesine tıklayın ve dosyalara göz at seçeneğini "
+"seçin 7. Gerekliyse aygıttaki dosyalara göz atmak için bilgisayarı "
+"yetkilendirin 8.- Dosyalara göz atabiliyor olmalısınız"
 
 #. description
-#: ../jobs/bluetooth.txt.in:38
+#: ../jobs/bluetooth.txt.in:35
 msgid ""
 "Bluetooth file transfer procedure: 1.- Make sure that you're able to browse "
 "the files in your mobile device 2.- Copy a file from the computer to the "
@@ -283,9 +246,14 @@ msgid ""
 "from the mobile device to the computer 5.- Verify that the file was "
 "correctly copied"
 msgstr ""
+"Bluetooth dosya aktarım yönergesi: 1.- Taşınabilir aygıtınızdan dosyalara "
+"göz atabildiğinizden emin olun 2.- Bilgisayardan taşınabilir aygıta bir "
+"dosya kopyalayın 3.- Dosyanın doğru olarak kopyalandığından emin olun 4.- "
+"Taşınabilir aygıttan bilgisayara bir dosya kopyalayın 5.- Dosyanın doğru "
+"olarak kopyalandığından emin olun"
 
 #. description
-#: ../jobs/bluetooth.txt.in:53
+#: ../jobs/bluetooth.txt.in:50
 msgid ""
 "Bluetooth audio procedure: 1.- Enable the bluetooth headset 2.- Click on the "
 "bluetooth icon in the menu bar 3.- Select 'Setup new device' 4.- Look for "
@@ -294,17 +262,28 @@ msgid ""
 "computer 7.- Select Test to record for five seconds and reproduce in the "
 "bluetooth device"
 msgstr ""
+"Bluetooth ses yönergesi: 1.- Bluetooth kulaklığı etkinleştirin 2.- Menü "
+"çubuğundaki bluetooth simgesine tıklayın 3.- 'Yeni aygıt kur' seçeneğini "
+"seçin 4.- Aygıtı listede arayın ve seçin 5.- Aygıtta, sihirbaz tarafından "
+"otomatik olarak seçilen PIN kodunu yazın 5.- Aygıtta, sihirbaz tarafından "
+"otomatik olarak seçilen PIN kodunu yazın 6.- Aygıt bilgisayarla eşlenmelidir "
+"7.- Beş saniyelik kayıt yapmak ve bunu bluetooth aygıtında tekrarlamak için "
+"Sına'yı seçin"
 
 #. description
-#: ../jobs/bluetooth.txt.in:69
+#: ../jobs/bluetooth.txt.in:66
 msgid ""
 "Bluetooth keyboard procedure: 1.- Enable the bluetooth keyboard 2.- Click on "
 "the bluetooth icon in the menu bar 3.- Select 'Setup new device' 4.- Look "
 "for the device in the list and select it 5.- Select Test to enter text"
 msgstr ""
+"Bluetooth klavye yönergesi: 1.-Bluetooth klavyeyi etkinleştirin 2.-Menü "
+"çubuğundaki bluetooth simgesine tıklayın 3.-'Yeni aygıt yükle' seçeneğini "
+"seçin 4.-Aygıt listesine göz atın ve seçiminizi yapın 5.- Metin girebilmek "
+"için test et seçeneğini seçin"
 
 #. description
-#: ../jobs/bluetooth.txt.in:82
+#: ../jobs/bluetooth.txt.in:79
 msgid ""
 "Bluetooth mouse procedure: 1.- Enable the bluetooth mouse 2.- Click on the "
 "bluetooth icon in the menu bar 3.- Select 'Setup new device' 4.- Look for "
@@ -313,35 +292,35 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/bluetooth.txt.in:82 ../jobs/optical.txt.in:72
-#: ../jobs/power-management.txt.in:194 ../jobs/usb.txt.in:27
+#: ../jobs/bluetooth.txt.in:79 ../jobs/optical.txt.in:72 ../jobs/usb.txt.in:34
 msgid "Did all the steps work?"
 msgstr "Tüm adımlar işe yaradı mı?"
 
 #. description
 #: ../jobs/camera.txt.in:7
 msgid "Automated test case that attempts to detect a camera"
-msgstr ""
+msgstr "Kamera tespit etmeye çalışacak otomatik test durumu"
 
 #. description
 #: ../jobs/camera.txt.in:16
 msgid "Select Test to display a video capture from the camera"
 msgstr ""
+"Kameradan yakalanan görüntüyü görüntülemek için Test et seçeneğini seçin"
 
 #. description
 #: ../jobs/camera.txt.in:16
 msgid "Did you see the video capture?"
-msgstr ""
+msgstr "Yakalanan görüntüyü görebildiniz mi?"
 
 #. description
 #: ../jobs/camera.txt.in:30
 msgid "Select Test to display a still image from the camera"
-msgstr ""
+msgstr "Kameradan çekilen resmi görüntülemek için Test et seçeneğini seçin"
 
 #. description
 #: ../jobs/camera.txt.in:30
 msgid "Did you see the image?"
-msgstr ""
+msgstr "Resmi gördünüz mü?"
 
 #. description
 #: ../jobs/camera.txt.in:43
@@ -349,26 +328,28 @@ msgid ""
 "Select Test to capture video to a file and open it in totem. Please make "
 "sure that both audio and video is captured."
 msgstr ""
+"Bir video dosyası oluşturmak ve onu totem'de çalmak için Test et seçeneğini "
+"seçin. Lütfen hem videonun hem de sesin alındığından emin olun."
 
 #. description
 #: ../jobs/camera.txt.in:43
 msgid "Did you see/hear the capture?"
-msgstr ""
+msgstr "Yakalananları gördünüz mü/duydunuz mu?"
 
 #. description
 #: ../jobs/codecs.txt.in:7
 msgid "Select Test to play an Ogg Vorbis file (.ogg)"
-msgstr ""
+msgstr "Bir Ogg Vorbis dosyası (.ogg) çalmak için Sına'yı seçin"
 
 #. description
 #: ../jobs/codecs.txt.in:20
 msgid "Select Test to play a Wave Audio format file (.wav)"
-msgstr ""
+msgstr "Wave Sesi biçiminde bir dosya (.wav) çalmak için Sına'yı seçin"
 
 #. description
 #: ../jobs/codecs.txt.in:20
 msgid "Did the sample play correctly?"
-msgstr ""
+msgstr "Örnek doğru olarak çalındı mı?"
 
 #. description
 #: ../jobs/codecs.txt.in:33
@@ -376,11 +357,13 @@ msgid ""
 "Select 'Test' to play some audio, and try pausing and resuming playback "
 "while the it is playing."
 msgstr ""
+"Biraz ses çalmak için 'Sına'yı seçin, ses çalarken oynatımı duraklatmayı ve "
+"ona devam etmeyi deneyin"
 
 #. description
 #: ../jobs/codecs.txt.in:33
 msgid "Did the audio play and pause as expected?"
-msgstr ""
+msgstr "Ses beklendiği gibi çaldı ve durakladı mı?"
 
 #. description
 #: ../jobs/codecs.txt.in:46
@@ -388,16 +371,18 @@ msgid ""
 "Select 'Test' to play a video, and try pausing and resuming playback while "
 "the video is playing."
 msgstr ""
+"Bir video oynatmak için 'Sına'yı seçin, video çalarken oynatımı duraklatmayı "
+"ve ona devam etmeyi deneyin."
 
 #. description
 #: ../jobs/codecs.txt.in:46
 msgid "(Please close Movie Player to proceed.)"
-msgstr ""
+msgstr "(Devam etmek için lütfen film oynatıcısınıı kapatın.)"
 
 #. description
 #: ../jobs/codecs.txt.in:46
 msgid "Did the video play and pause as expected?"
-msgstr ""
+msgstr "Video beklendiği gibi çaldı ve durakladı mı?"
 
 #. description
 #: ../jobs/cpu.txt.in:8
@@ -405,6 +390,7 @@ msgid ""
 "Test the CPU scaling capabilities using Colin King's Firmware Test Suite "
 "tool."
 msgstr ""
+"İşlemci kapasitesini Colin King's Yazılım Test Suit Aracı kullanarak sına."
 
 #. description
 #: ../jobs/cpu.txt.in:15
@@ -419,7 +405,7 @@ msgstr ""
 #. description
 #: ../jobs/cpu.txt.in:30
 msgid "Checks cpu topology for accuracy"
-msgstr ""
+msgstr "Doğruluğu için işlemci topolojisini kontrol et"
 
 #. description
 #: ../jobs/cpu.txt.in:38
@@ -429,57 +415,67 @@ msgstr ""
 #. description
 #: ../jobs/daemons.txt.in:5
 msgid "Test if the atd daemon is running when the package is installed."
-msgstr ""
+msgstr "Paket yüklendiğinde atd hizmetinin çalışıp çalışmadığını denetleyin."
 
 #. description
 #: ../jobs/daemons.txt.in:11
 msgid "Test if the cron daemon is running when the package is installed."
 msgstr ""
+"Paket yüklendiğinde cron hizmetinin çalışıp çalışmadığını denetleyin."
 
 #. description
 #: ../jobs/daemons.txt.in:17
 msgid "Test if the cupsd daemon is running when the package is installed."
 msgstr ""
+"Paket yüklendiğinde cupsd hizmetinin çalışıp çalışmadığını denetleyin."
 
 #. description
 #: ../jobs/daemons.txt.in:23
 msgid "Test if the getty daemon is running when the package is installed."
 msgstr ""
+"Paket yüklendiğinde getty hizmetinin çalışıp çalışmadığını denetleyin."
 
 #. description
 #: ../jobs/daemons.txt.in:29
 msgid "Test if the init daemon is running when the package is installed."
 msgstr ""
+"Paket yüklendiğinde init hizmetinin çalışıp çalışmadığını denetleyin."
 
 #. description
 #: ../jobs/daemons.txt.in:35
 msgid "Test if the klogd daemon is running when the package is installed."
 msgstr ""
+"Paket yüklendiğinde klogd hizmetinin çalışıp çalışmadığını denetleyin."
 
 #. description
 #: ../jobs/daemons.txt.in:41
 msgid "Test if the nmbd daemon is running when the package is installed."
 msgstr ""
+"Paket yüklendiğinde nmbd hizmetinin çalışıp çalışmadığını denetleyin."
 
 #. description
 #: ../jobs/daemons.txt.in:47
 msgid "Test if the smbd daemon is running when the package is installed."
 msgstr ""
+"Paket yüklendiğinde smbd hizmetinin çalışıp çalışmadığını denetleyin."
 
 #. description
 #: ../jobs/daemons.txt.in:53
 msgid "Test if the syslogd daemon is running when the package is installed."
 msgstr ""
+"Paket yüklendiğinde syslogd hizmetinin çalışıp çalışmadığını denetleyin."
 
 #. description
 #: ../jobs/daemons.txt.in:61
 msgid "Test if the udevd daemon is running when the package is installed."
 msgstr ""
+"Paket yüklendiğinde udevd hizmetinin çalışıp çalışmadığını denetleyin."
 
 #. description
 #: ../jobs/daemons.txt.in:67
 msgid "Test if the winbindd daemon is running when the package is installed."
 msgstr ""
+"Paket yüklendiğinde winbindd hizmetinin çalışıp çalışmadığını denetleyin."
 
 #. description
 #: ../jobs/disk.txt.in:4
@@ -487,27 +483,29 @@ msgid "The following hard drives were detected:"
 msgstr "İzleyen donanımlar algılandı:"
 
 #. description
-#: ../jobs/disk.txt.in:14
+#: ../jobs/disk.txt.in:9
 msgid "Benchmark for each disk "
-msgstr ""
+msgstr "Her bir disk için karşılaştırmalı değerlendirme "
 
 #. description
-#: ../jobs/disk.txt.in:36
+#: ../jobs/disk.txt.in:26
 msgid "SMART test"
-msgstr ""
+msgstr "SMART sınaması"
 
 #. description
-#: ../jobs/disk.txt.in:51
+#: ../jobs/disk.txt.in:41
 msgid "Maximum disk space used during a default installation test"
-msgstr ""
+msgstr "Öntanımlı kurulum sınaması sırasında kullanılan en fazla disk alanı"
 
 #. description
-#: ../jobs/disk.txt.in:66
+#: ../jobs/disk.txt.in:56
 msgid "Verify system storage performs at or above baseline performance"
 msgstr ""
+"Sistem deposunun taban çizgisi başarımını veya daha fazlasını verdiğini "
+"doğrulayın"
 
 #. description
-#: ../jobs/disk.txt.in:83
+#: ../jobs/disk.txt.in:73
 msgid ""
 "Verify that storage devices, such as Fibre Channel and RAID can be detected "
 "and perform under stress."
@@ -519,6 +517,8 @@ msgid ""
 "Click the \"Test\" button to launch Evolution, then configure it to connect "
 "to a POP3 account."
 msgstr ""
+"Evolution'ı çalıştırmak için \"Test\" butonuna tıklayın, sonra POP3 hesabına "
+"bağlanmak için ayarlayınız."
 
 #. description
 #: ../jobs/evolution.txt.in:14
@@ -526,11 +526,13 @@ msgid ""
 "Click the \"Test\" button to launch Evolution, then configure it to connect "
 "to a IMAP account."
 msgstr ""
+"Evolution'ı çalıştırmak için \"Test\" butonuna tıklayın, sonra IMAP hesabına "
+"bağlanmak için ayarlayınız."
 
 #. description
 #: ../jobs/evolution.txt.in:14
 msgid "Were you able to receive and read e-mail correctly?"
-msgstr ""
+msgstr "E-posta'yı doğru bir şekilde alıp okudunuz mu?"
 
 #. description
 #: ../jobs/evolution.txt.in:23
@@ -538,11 +540,13 @@ msgid ""
 "Click the \"Test\" button to launch Evolution, then configure it to connect "
 "to a SMTP account."
 msgstr ""
+"Evolution'ı çalıştırmak için \"Test\" butonuna tıklayın, sonra SMTP hesabına "
+"bağlanmak için ayarlayınız."
 
 #. description
 #: ../jobs/evolution.txt.in:23
 msgid "Were you able to send e-mail without errors?"
-msgstr ""
+msgstr "Hatasız bir şekilde e-posta gönderebildiniz mi?"
 
 #. description
 #: ../jobs/fingerprint.txt.in:3
@@ -567,6 +571,14 @@ msgid ""
 " 5.- Click on the user switcher applet.\n"
 " 6.- Select the testing account to continue running tests."
 msgstr ""
+"Parmakizi ile giriş yönergesi:\n"
+" 1.- Kullanıcı değiştirme uygulamacığına tıklayınız.\n"
+" 2.- Kullanıcı adınızı seçiniz.\n"
+" 3.- Parmak izi doğrulama yada şifrenizi girmenizi isteyen bir pencere "
+"görünür.\n"
+" 4.- Giriş yapmak için parmakizi okuyucuyu seçiniz.\n"
+" 5.- Kullanıcı değiştirme uygulamacığına tıklayınız.\n"
+" 6.- Test hesabını seçiniz ve testi çalıştırmaya devam ediniz."
 
 #. description
 #: ../jobs/fingerprint.txt.in:18
@@ -580,6 +592,14 @@ msgid ""
 " 5.- Use the fingerprint reader to unlock.\n"
 " 6.- Your screen should be unlocked."
 msgstr ""
+"Parmakizi ile kilit açma yönergesi:\n"
+" 1.- Kullanıcı değiştirme uygulamacığına tıklayınız.\n"
+" 2.- 'Ekranı Kilitle' seçeneğini seçiniz.\n"
+" 3.- Fareyi hareket ettiriniz yada klavyeden herhangi bir tuşa basınız.\n"
+" 4.- Parmak izi doğrulama yada şifrenizi girmenizi isteyen bir pencere "
+"görünür.\n"
+" 5.- Kilidi açmak için parmakizi okuyucuyu seçiniz.\n"
+" 6.- Ekranınızın kilidi açılmış olmalıdır."
 
 #. description
 #: ../jobs/fingerprint.txt.in:18
@@ -596,26 +616,34 @@ msgid ""
 " 3.- Copy some files from your internal HDD to the firewire HDD.\n"
 " 4.- Copy some files from the firewire HDD to your internal HDD."
 msgstr ""
+"Firewire HDD doğrulama yönergesi:\n"
+" 1.- Bilgisayarınıza bir firewire Harddisk bağlayınız.\n"
+" 2.- Hangi olayın çalıştırılacağını soran bir pencere açılır.(dizin "
+"aç,fotoğraf yönetici, vs).\n"
+" 3.- Kendi harddiskinizden birkaç dosyayı firewire harddiskinize "
+"kopyalayınız.\n"
+" 4.- Firewire harddiskinizden birkaç dosyayı kendi harddiskinize "
+"kopyalayınız."
 
 #. description
-#: ../jobs/firewire.txt.in:3 ../jobs/usb.txt.in:71
+#: ../jobs/firewire.txt.in:3
 msgid "Do the copy operations work as expected?"
 msgstr "Kopyalama işlemleri beklenildiği gibi gerçekleşti mi?"
 
 #. description
 #: ../jobs/floppy.txt.in:4
 msgid "Floppy test"
-msgstr ""
+msgstr "Disket Sınama"
 
 #. description
 #: ../jobs/gcalctool.txt.in:5
 msgid "Click the \"Test\" button to open the calculator."
-msgstr ""
+msgstr "Hesap makinesini açmak için \"Sına\" düğmesine tıklayın."
 
 #. description
 #: ../jobs/gcalctool.txt.in:5
 msgid "Did it launch correctly?"
-msgstr ""
+msgstr "Düzgün bir şekilde çalıştı mı?"
 
 #. description
 #: ../jobs/gcalctool.txt.in:15
@@ -623,31 +651,35 @@ msgid ""
 "1. Simple math functions (+,-,/,*) 2. Nested math functions ((,)) 3. "
 "Fractional math 4. Decimal math"
 msgstr ""
+"1. Basit matematiksel fonksiyonlar (+,-,/,*) 2. İç içe matematiksel "
+"fonksiyonlar ((,)) 3. Kesirli matematik 4. ondalık matematik"
 
 #. description
 #: ../jobs/gcalctool.txt.in:30
 msgid "1. Memory set 2. Memory reset 3. Memory last clear 4. Memory clear"
 msgstr ""
+"1. Hafıza ayarla 2. Hafıza resetle 3. Hafıza son temizleme 4. Hafıza temizle"
 
 #. description
 #: ../jobs/gcalctool.txt.in:45
 msgid "Click the \"Test\" button to open the calculator and perform:"
 msgstr ""
+"Hesap makinesini açmak için \"Sına\" düğmesine tıklayın ve şunu yapın:"
 
 #. description
 #: ../jobs/gcalctool.txt.in:45
 msgid "1. Cut 2. Copy 3. Paste"
-msgstr ""
+msgstr "1. Kes 2. Kopyala 3. Yapıştır"
 
 #. description
 #: ../jobs/gcalctool.txt.in:45
 msgid "Did the functions perform as expected?"
-msgstr ""
+msgstr "İşlevler beklendiği gibi yerine getirildi mi?"
 
 #. description
 #: ../jobs/gedit.txt.in:5
 msgid "Click the \"Test\" button to open gedit."
-msgstr ""
+msgstr "gedit'i açmak için \"Sına\" düğmesine tıklayın."
 
 #. description
 #: ../jobs/gedit.txt.in:5
@@ -655,6 +687,8 @@ msgid ""
 "Enter some text and save the file (make a note of the file name you use), "
 "then close gedit."
 msgstr ""
+"Biraz yazı girin ve dosyayı kaydedin(kullandığınız dosya adını not edin), "
+"sonra gedit'i kapatın."
 
 #. description
 #: ../jobs/gedit.txt.in:17
@@ -662,21 +696,23 @@ msgid ""
 "Click the \"Test\" button to open gedit, and re-open the file you created "
 "previously."
 msgstr ""
+"gedit'i açmak için \"Sına\" düğmesine tıklayın, daha önce oluşturduğunuz "
+"dosyayı yeniden açın."
 
 #. description
 #: ../jobs/gedit.txt.in:17
 msgid "Edit then save the file, then close gedit."
-msgstr ""
+msgstr "Düzenleyin ve dosyayı kaydedin, daha sonra gedit'i kapatın."
 
 #. description
 #: ../jobs/gedit.txt.in:17 ../jobs/gnome-terminal.txt.in:5
 msgid "Did this perform as expected?"
-msgstr ""
+msgstr "Beklendiği gibi oldu mu?"
 
 #. description
 #: ../jobs/gnome-terminal.txt.in:5
 msgid "Click the \"Test\" button to open Terminal."
-msgstr ""
+msgstr "Uçbirim'i açmak için \"Sına\" butonuna tıklayın."
 
 #. description
 #: ../jobs/gnome-terminal.txt.in:5
@@ -684,22 +720,25 @@ msgid ""
 "Type 'ls' and press enter. You should see a list of files and folder in your "
 "home directory."
 msgstr ""
+"'ls' yazın ve Enter'a basın. Ev dizininizdeki dosya ve klasörlerin bir "
+"listesini görmelisiniz."
 
 #. description
 #: ../jobs/gnome-terminal.txt.in:5
 msgid "Close the terminal window."
-msgstr ""
+msgstr "Uçbirim penceresini kapatın."
 
 #. description
 #: ../jobs/graphics.txt.in:5
 msgid ""
 "2d graphics appears to be working, your running X.Org version is: $output"
-msgstr ""
+msgstr "2b grafik çalışıyor gibi görünüyor, çalışan X.Org sürümünüz: $output"
 
 #. description
 #: ../jobs/graphics.txt.in:23
 msgid "Run gtkperf to make sure that GTK based test cases work"
 msgstr ""
+"GTK temelli dosyaların çalıştığından emin olmak için gtkperf 'i çalıştırın"
 
 #. description
 #: ../jobs/graphics.txt.in:23
@@ -716,11 +755,15 @@ msgid ""
 "The resolution should change 5.- Select the original resolution from the "
 "dropdown list 6.- Click on Apply 7.- The resolution should change again"
 msgstr ""
+"Ekran çözünürlüğünü değiştirme yönergesi: 1.- Şurayı açın: Sistem->Tercihler-"
+">Ekranlar. 2.- Açılır listeden yeni bir çözünürlük seçin. 3.- Uygula'ya "
+"tıklayın 4.- Çözünürlük değişmelidir 5.- Açılır listeden özgün çözünürlüğü "
+"seçin 6.- Uygula'ya tıklayın 7.- Çözünürlük yeniden değişmelidir"
 
 #. description
 #: ../jobs/graphics.txt.in:31
 msgid "Did the resolution change as expected?"
-msgstr ""
+msgstr "Çözünürlük beklendiği gibi değişti mi?"
 
 #. description
 #: ../jobs/graphics.txt.in:46
@@ -732,26 +775,31 @@ msgid ""
 "display configuration change should be reverted 7.- Repeat 2-6 for different "
 "rotation values"
 msgstr ""
+"Ekran döndürmesini doğrulama yönergesi: 1.- Şurayı açın: Sistem->Tercihler-"
+"Ekranlar 2.- Açılır listeden yeni bir döndürme değeri seçin 3.- Uygula'ya "
+"tıklayın 4.- Ekran, yeni yapılandırma değerine göre dönmüş olmalıdır 5.- "
+"Önceki Ayarlara Geri Dön'e tıklayın 6.- Ekran eski haline dönmüş olmalıdır "
+"7.- 2-6 arasındakileri farklı döndürme değerleri belirleyerek yineleyin"
 
 #. description
 #: ../jobs/graphics.txt.in:46
 msgid "Did the display rotation change as expected?"
-msgstr ""
+msgstr "Ekran yönü beklendiği gibi değişti mi?"
 
 #. description
-#: ../jobs/graphics.txt.in:62 ../jobs/sru_suite.txt.in:151
+#: ../jobs/graphics.txt.in:62
 msgid "Test that the X process is running."
-msgstr ""
+msgstr "X işleminin çalıştığını sınayın."
 
 #. description
-#: ../jobs/graphics.txt.in:68 ../jobs/sru_suite.txt.in:157
+#: ../jobs/graphics.txt.in:68
 msgid "Test that the X is not running in failsafe mode."
-msgstr ""
+msgstr "Hatasız kipte X'in çalışmadığını sınar."
 
 #. description
 #: ../jobs/graphics.txt.in:75
 msgid "Test that X does not leak memory when running programs."
-msgstr ""
+msgstr "X'in programları çalıştırırken bellek taşmasını sınayın."
 
 #. description
 #: ../jobs/graphics.txt.in:82
@@ -782,28 +830,28 @@ msgstr ""
 "karşıladığına veya aştığına emin olunuz. Ayrıntılar için buraya bakın:"
 
 #. description
-#: ../jobs/graphics.txt.in:107
+#: ../jobs/graphics.txt.in:94
 msgid "https://help.ubuntu.com/community/Installation/SystemRequirements"
 msgstr "https://help.ubuntu.com/community/Installation/SystemRequirements"
 
 #. description
-#: ../jobs/graphics.txt.in:117
+#: ../jobs/graphics.txt.in:104
 msgid "Select Test to display a video test."
 msgstr "Bir video testini görüntülemek için Test'i seçin."
 
 #. description
-#: ../jobs/graphics.txt.in:117
+#: ../jobs/graphics.txt.in:104
 msgid "Do you see color bars and static?"
 msgstr "Renkli ve durağan çubukları görüyor musunuz?"
 
 #. description
-#: ../jobs/graphics.txt.in:126
+#: ../jobs/graphics.txt.in:113
 msgid ""
 "The following screens and video modes have been detected on your system:"
 msgstr "Sisteminizde şu ekranlar ve video modları algılandı:"
 
 #. description
-#: ../jobs/graphics.txt.in:138
+#: ../jobs/graphics.txt.in:125
 msgid ""
 "Select Test to cycle through the detected video modes for your system."
 msgstr ""
@@ -811,17 +859,17 @@ msgstr ""
 "tıklayın."
 
 #. description
-#: ../jobs/graphics.txt.in:138
+#: ../jobs/graphics.txt.in:125
 msgid "Did the screen appear to be working for each mode?"
 msgstr "Ekran her modda çalışıyor görünüyor muydu?"
 
 #. description
-#: ../jobs/graphics.txt.in:146
+#: ../jobs/graphics.txt.in:133
 msgid "Check that the hardware is able to run compiz."
 msgstr "Donanımın compiz'i çalıştırıp/çalıştıramayacağını kontrol edin."
 
 #. description
-#: ../jobs/graphics.txt.in:153
+#: ../jobs/graphics.txt.in:140
 msgid ""
 "Select Test to execute glxgears to ensure that minimal 3d graphics support "
 "is in place."
@@ -830,22 +878,22 @@ msgstr ""
 "teste tıklayınız."
 
 #. description
-#: ../jobs/graphics.txt.in:153
+#: ../jobs/graphics.txt.in:140
 msgid "Did the 3d animation appear?"
 msgstr "3d animasyonu gözüktü mü?"
 
 #. description
-#: ../jobs/info.txt.in:60 ../jobs/screenshot.txt.in:7
+#: ../jobs/info.txt.in:69 ../jobs/screenshot.txt.in:7
 msgid "Captures a screenshot."
-msgstr ""
+msgstr "Bir ekran görüntüsü alır."
 
 #. description
-#: ../jobs/info.txt.in:71 ../jobs/sru_suite.txt.in:167
+#: ../jobs/info.txt.in:80
 msgid "Gather log from the firmware test suite run"
 msgstr ""
 
 #. description
-#: ../jobs/info.txt.in:82
+#: ../jobs/info.txt.in:91
 msgid "Bootchart information."
 msgstr ""
 
@@ -869,6 +917,8 @@ msgid ""
 "Press the brightness buttons on the keyboard. A status window should \\ "
 "appear and the brightness should change."
 msgstr ""
+"Klavyedeki parlaklık ayarı tuşlarına basın. Bir durum penceresi \\ görünmeli "
+"ve parlaklık değişmelidir."
 
 #. description
 #: ../jobs/keys.txt.in:12
@@ -876,11 +926,13 @@ msgid ""
 "Press the volume buttons on the keyboard. A status window should \\ appear "
 "and the volume should change."
 msgstr ""
+"Klavyedeki ses ayarı tuşlarına basın. Bir durum penceresi \\ görünmeli ve "
+"ses değişmelidir."
 
 #. description
 #: ../jobs/keys.txt.in:12
 msgid "Do the buttons work?"
-msgstr ""
+msgstr "Tuşlar çalıştı mı?"
 
 #. description
 #: ../jobs/keys.txt.in:21
@@ -888,61 +940,75 @@ msgid ""
 "Press the mute key on the keyboard. A status window should appear \\ and the "
 "volume should mute/unmute when pressed multiple times."
 msgstr ""
+"Klavyedeki ses kısma tuşuna basın. Bir durum penceresi \\ görünmeli ve her "
+"basıldığında ses kısılmalı/açılmalıdır."
 
 #. description
-#: ../jobs/keys.txt.in:30
+#: ../jobs/keys.txt.in:31
 msgid ""
 "Press the sleep key on the keyboard. The computer should suspend and, \\ "
 "after pressing the power button, resume successfully."
 msgstr ""
+"Klavyedeki askıya alma tuşuna basın. Bilgisayar askıya alınmalı ve \\ "
+"sonrasında güç düğmesine basıldığında başarılı bir şekilde çalışmaya devam "
+"etmelidir."
 
 #. description
-#: ../jobs/keys.txt.in:39
+#: ../jobs/keys.txt.in:40
 msgid ""
 "Press the battery information key on the keyboard. A status window \\ should "
 "appear and the amount of battery remaining should be displayed."
 msgstr ""
+"Klavyedeki pil bilgisi tuşuna basın. Bir durum penceresi \\ görünmeli ve "
+"kalan pilde kalan miktar görüntülenmelidir."
 
 #. description
-#: ../jobs/keys.txt.in:48
+#: ../jobs/keys.txt.in:49
 msgid ""
 "Press the wireless networking key on the keyboard. The bluetooth icon \\ and "
 "the network connnection should go down if connected through the \\ wifi "
 "interface."
 msgstr ""
+"Klavyedeki kablosuz bağlantı tuşuna basın. Kablosuz bağlantı arayüzüyle "
+"bağlanıldıysa \\ bluetooth simgesi \\ ve şebeke bağlantısı simgesi "
+"kaybolmalıdır."
 
 #. description
-#: ../jobs/keys.txt.in:48
+#: ../jobs/keys.txt.in:49
 msgid ""
 "Press the same key again and check that bluetooth icon is again \\ displayed "
 "and that the network connection is re-established \\ automatically."
 msgstr ""
+"Aynı tuşa yeniden basarak bluetooth simgesinin yeniden \\ görüntülendiğini "
+"ve şebeke bağlantısının özişler olarak \\ yeniden sağlandığını denetleyin."
 
 #. description
-#: ../jobs/keys.txt.in:48
+#: ../jobs/keys.txt.in:49
 msgid "Does the key work?"
-msgstr ""
+msgstr "Tuş çalıştı mı?"
 
 #. description
-#: ../jobs/keys.txt.in:62
+#: ../jobs/keys.txt.in:63
 msgid ""
 "The keyboard may have dedicated keys for controlling media as follows:"
 msgstr ""
+"Klavyede aşağıdaki çoklu ortam işlevleri için önceden ayarlanmış tuşlar "
+"olabilir:"
 
 #. description
-#: ../jobs/keys.txt.in:62
+#: ../jobs/keys.txt.in:63
 msgid "* Play/Pause * Stop * Forward * Backward (Rewind)"
-msgstr ""
+msgstr "* Oynat/Duraklat * Durdur * İleri Al * Geri Al"
 
 #. description
-#: ../jobs/keys.txt.in:62
+#: ../jobs/keys.txt.in:63
 msgid "Play a media file and press each key in turn."
 msgstr ""
 
 #. description
-#: ../jobs/keys.txt.in:62
+#: ../jobs/keys.txt.in:63
 msgid "Do the keys work as expected?"
-msgstr ""
+msgstr "Anahtarlar beklenildiği gibi çalışıyor mu?"
 
 #. description
 #: ../jobs/local.txt.in:3
@@ -952,7 +1018,7 @@ msgstr "Ses sınamaları"
 #. description
 #: ../jobs/local.txt.in:8
 msgid "Bluetooth tests"
-msgstr ""
+msgstr "Bluetooth sınamaları"
 
 #. description
 #: ../jobs/local.txt.in:13
@@ -962,7 +1028,7 @@ msgstr "Kamera sınamaları"
 #. description
 #: ../jobs/local.txt.in:18
 msgid "Codec tests"
-msgstr ""
+msgstr "Kodek sınamaları"
 
 #. description
 #: ../jobs/local.txt.in:23
@@ -997,75 +1063,75 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:53
 msgid "Graphics tests"
-msgstr ""
+msgstr "Grafik sınamaları"
 
 #. description
 #: ../jobs/local.txt.in:58
 msgid "Informational tests"
-msgstr ""
+msgstr "Bilgisel sınamalar"
 
 #. description
 #: ../jobs/local.txt.in:63
 msgid "Input Devices tests"
-msgstr ""
+msgstr "Girdi aygıtı sınamaları"
 
 #. description
 #: ../jobs/local.txt.in:68
 msgid "Software Installation tests"
-msgstr ""
+msgstr "Yazılım Yükleme sınamaları"
 
 #. description
 #: ../jobs/local.txt.in:73
 msgid "Hotkey tests"
-msgstr ""
+msgstr "Kısayol Tuşu sınamaları"
 
 #. description
-#: ../jobs/local.txt.in:78
+#: ../jobs/local.txt.in:83
 msgid "Media Card tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:83
+#: ../jobs/local.txt.in:93
 msgid "Miscellaneous tests"
-msgstr ""
+msgstr "Çeşitli sınamalar"
 
 #. description
-#: ../jobs/local.txt.in:88
+#: ../jobs/local.txt.in:98
 msgid "Monitor tests"
 msgstr "Monitör testleri"
 
 #. description
-#: ../jobs/local.txt.in:93
+#: ../jobs/local.txt.in:103
 msgid "Networking tests"
-msgstr ""
+msgstr "Şebeke sınamaları"
 
 #. description
-#: ../jobs/local.txt.in:98
+#: ../jobs/local.txt.in:113
 msgid "PCMCIA/PCIX Card tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:103
+#: ../jobs/local.txt.in:118
 msgid "Peripheral tests"
 msgstr "Çevresel birimler sınamaları"
 
 #. description
-#: ../jobs/local.txt.in:108
+#: ../jobs/local.txt.in:123
 msgid "Power Management tests"
-msgstr ""
+msgstr "Güç Yönetimi sınamaları"
 
 #. description
-#: ../jobs/local.txt.in:113
+#: ../jobs/local.txt.in:133
 msgid "Unity tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:118
+#: ../jobs/local.txt.in:143
 msgid "User Applications"
 msgstr "Kullanıcı Uygulamaları"
 
 #. description
-#: ../jobs/local.txt.in:123
+#: ../jobs/local.txt.in:153
 msgid "Stress tests"
 msgstr ""
 
@@ -1291,7 +1357,7 @@ msgstr "Simge otomatik olarak görünüyor/kayboluyor mu?"
 #. description
 #: ../jobs/memory.txt.in:4
 msgid "The following amount of memory was detected:"
-msgstr ""
+msgstr "Aşağıdaki bellek miktarı tespit edildi:"
 
 #. description
 #: ../jobs/memory.txt.in:16
@@ -1445,20 +1511,20 @@ msgstr "Monitör karardı mı?"
 #. description
 #: ../jobs/networking.txt.in:5
 msgid "Detecting your network controller(s):"
-msgstr "Ağ bağdaştırıcı(ları)nız bulunuyor:"
+msgstr "Ağ denetleyici(leri)niz algılanıyor:"
 
 #. description
-#: ../jobs/networking.txt.in:26
+#: ../jobs/networking.txt.in:21
 msgid "Network Information"
 msgstr "Ağ Bilgisi"
 
 #. description
-#: ../jobs/networking.txt.in:46
+#: ../jobs/wireless.txt.in:6
 msgid "Wireless scanning test."
-msgstr ""
+msgstr "Kablosuz bağlantı tarama sınamaları"
 
 #. description
-#: ../jobs/networking.txt.in:52
+#: ../jobs/wireless.txt.in:12
 msgid ""
 "Wireless network connection procedure: 1.- Click on the Network Manager "
 "applet 2.- Select a network below the 'Wireless networks' section 3.- Notify "
@@ -1467,7 +1533,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:64
+#: ../jobs/networking.txt.in:39
 msgid ""
 "Wired network connection procedure: 1.- Click on the Network Manager applet "
 "2.- Select a network below the 'Wired network' section 3.- Notify OSD should "
@@ -1476,7 +1542,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:76
+#: ../jobs/networking.txt.in:51
 msgid ""
 "Built-in modem network connection procedure: 1.- Connect the telephone line "
 "to the computer 2.- Right click on the Network Manager applet 3.- Select "
@@ -1487,57 +1553,58 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:76 ../jobs/peripheral.txt.in:15
+#: ../jobs/networking.txt.in:51 ../jobs/peripheral.txt.in:15
+#: ../jobs/wireless.txt.in:12
 msgid "Was the connection correctly established?"
 msgstr "Bağlantı doğru bir şekilde kuruldu mu?"
 
 #. description
-#: ../jobs/networking.txt.in:92
+#: ../jobs/networking.txt.in:67
 msgid ""
 "Automated test case to verify availability of some system on the network "
 "using ICMP ECHO packets."
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:99 ../jobs/peripheral.txt.in:32
+#: ../jobs/networking.txt.in:74 ../jobs/peripheral.txt.in:32
 msgid ""
 "Automated test case to make sure that it's possible to download files "
 "through HTTP"
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:107
+#: ../jobs/networking.txt.in:82
 msgid "Test to see if we can sync local clock to an NTP server"
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:113
+#: ../jobs/networking.txt.in:88
 msgid ""
 "Verify that an installation of checkbox-server on the network can be reached "
 "over SSH."
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:119
+#: ../jobs/networking.txt.in:94
 msgid "Try to enable a remote printer on the network and print a test page."
 msgstr ""
 "Ağ üzerindeki bir uzak yazıcı etkinleştirmeyi ve bir test sayfası yazdırmayı "
 "deneyin."
 
 #. description
-#: ../jobs/networking.txt.in:124
+#: ../jobs/networking.txt.in:99
 msgid "Multiple network cards"
 msgstr "Çoklu ağ kartları"
 
 #. description
-#: ../jobs/networking.txt.in:144
+#: ../jobs/networking.txt.in:119
 msgid "Test to measure the network bandwidth"
-msgstr ""
+msgstr "Şebeke bant genişliği ölçüm sınaması"
 
 #. description
 #: ../jobs/optical.txt.in:8
 msgid "The following optical drives were detected:"
-msgstr ""
+msgstr "Aşağıdaki optik sürücüler algılandı:"
 
 #. description
 #: ../jobs/optical.txt.in:18
@@ -1550,6 +1617,8 @@ msgid ""
 "The detected optical drive seems to support writing. Enter a blank CDROM \\ "
 "into your drive and try writing to it."
 msgstr ""
+"Algılanan optik sürücünün yazma desteğini destekiyor gibi gözüküyor. "
+"Sürücünüze boş bir CD koyarak veri yazmayı deneyin."
 
 #. description
 #: ../jobs/optical.txt.in:46
@@ -1569,11 +1638,13 @@ msgid ""
 "The detected optical drive seems to support writing. Enter a blank DVD \\ "
 "into your drive and try writing to it."
 msgstr ""
+"Algılanan optik sürücünün yazma desteğini destekiyor gibi gözüküyor. "
+"Sürücünüze boş bir DVD koyarak veri yazmayı deneyin."
 
 #. description
 #: ../jobs/optical.txt.in:63
 msgid "Does writing work?"
-msgstr ""
+msgstr "Yazma işlemi başarılı mıydı?"
 
 #. description
 #: ../jobs/optical.txt.in:72
@@ -1624,7 +1695,7 @@ msgstr ""
 #. description
 #: ../jobs/panel_reboot.txt.in:4
 msgid "Please restart your machine from the Ubuntu Panel."
-msgstr ""
+msgstr "Lütfen Ubuntu Panelinden bilgisayarınızı yeniden başlatın."
 
 #. description
 #: ../jobs/panel_reboot.txt.in:4
@@ -1711,47 +1782,47 @@ msgid "Does your computer hibernate and restore?"
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:29
+#: ../jobs/power-management.txt.in:13
 msgid "Does closing your laptop lid cause your screen to blank?"
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:41
+#: ../jobs/power-management.txt.in:25
 msgid "Click the Test button, then close and open the lid."
-msgstr ""
+msgstr "Sına butonuna tıklayınız ve daha sonra kapağı kapatıp açın."
 
 #. description
-#: ../jobs/power-management.txt.in:41
+#: ../jobs/power-management.txt.in:25
 msgid "Did the screen turn off while the lid was closed?"
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:55
+#: ../jobs/power-management.txt.in:39
 msgid "Click the Test button, then close the lid and wait 5 seconds."
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:55
+#: ../jobs/power-management.txt.in:39
 msgid "Open the lid."
-msgstr ""
+msgstr "Kapağı açın."
 
 #. description
-#: ../jobs/power-management.txt.in:55
+#: ../jobs/power-management.txt.in:39
 msgid "Did the screen turn back on when the lid was opened?"
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:65
+#: ../jobs/power-management.txt.in:49
 msgid "Test the network before suspending."
 msgstr "Askıya almadan önce ağı test et."
 
 #. description
-#: ../jobs/power-management.txt.in:70
+#: ../jobs/suspend.txt.in:4
 msgid "Record the current resolution before suspending."
 msgstr "Askıya almadan önce mevcut çözünürlüğü kaydet."
 
 #. description
-#: ../jobs/power-management.txt.in:78
+#: ../jobs/suspend.txt.in:12
 msgid "Test the audio before suspending."
 msgstr "Askıya almadan önce sesi test et."
 
@@ -1768,17 +1839,17 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:128 ../jobs/sru_suite.txt.in:135
+#: ../jobs/power-management.txt.in:51
 msgid "Make sure that the RTC (Real-Time Clock) device exists."
 msgstr "GZS(Gerçek Zamanlı Saat) aygıtının bulunduğuna emin olun."
 
 #. description
-#: ../jobs/power-management.txt.in:135
+#: ../jobs/suspend.txt.in:58
 msgid "Power management Suspend and Resume test"
 msgstr "Güç yönetimi Askıya alma ve Bekleme testi"
 
 #. description
-#: ../jobs/power-management.txt.in:135
+#: ../jobs/suspend.txt.in:58
 msgid ""
 "Select Test and your system will suspend for about 30 - 60 seconds. If your "
 "system does not wake itself up after 60 seconds, please press the power "
@@ -1788,18 +1859,18 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:145
+#: ../jobs/suspend.txt.in:68
 msgid "Test the network after resuming."
 msgstr "Ağ çıktıktan sonra sınayın."
 
 #. description
-#: ../jobs/power-management.txt.in:151
+#: ../jobs/suspend.txt.in:74
 msgid ""
 "Test to see that we have the same resolution after resuming as before."
 msgstr "Devamdan sonra önceki gibi aynı çözüme sahip olduğumuzun testi."
 
 #. description
-#: ../jobs/power-management.txt.in:160
+#: ../jobs/suspend.txt.in:83
 msgid "Test the audio after resuming."
 msgstr "Ses çıkıldıktan sonra sınayın."
 
@@ -1853,7 +1924,7 @@ msgstr ""
 " 6.- Bazı tek/çift/sağ tıklama denemeleri uygulayınız."
 
 #. description
-#: ../jobs/power-management.txt.in:210
+#: ../jobs/suspend.txt.in:150
 msgid ""
 "This test will check to make sure that supported video modes work after a "
 "suspend and resume.  Select Test to begin."
@@ -1862,7 +1933,7 @@ msgstr ""
 "çalışmasını kontrol edecek. Başlamak için Test'e basınız."
 
 #. description
-#: ../jobs/power-management.txt.in:221
+#: ../jobs/power-management.txt.in:251
 msgid ""
 "This will check to make sure that your audio device works properly after a "
 "suspend and resume.  You can use either internal or external microphone and "
@@ -1873,7 +1944,7 @@ msgstr ""
 "kullanabilirsiniz."
 
 #. description
-#: ../jobs/power-management.txt.in:221
+#: ../jobs/power-management.txt.in:251
 msgid ""
 "To execute this test, make sure your speaker and microphone are NOT muted "
 "and the volume is set sufficiently loud to record and play audio. Select "
@@ -1886,7 +1957,7 @@ msgstr ""
 "duyacaksınız."
 
 #. description
-#: ../jobs/power-management.txt.in:234
+#: ../jobs/stress.txt.in:30
 msgid ""
 "Enter and resume from suspend state for 30 iterations. Please note that this "
 "is a lengthy test. Select Test to begin. If your system fails to wake and "
@@ -1898,13 +1969,13 @@ msgstr ""
 "yeniden başlatın ve bu sınamayı Başarısız olarak işaretleyin."
 
 #. description
-#: ../jobs/power-management.txt.in:234
+#: ../jobs/stress.txt.in:30
 msgid "Did the system successfully suspend and resume for 30 iterations?"
 msgstr ""
 "Sistem 30 yineleme için başarılı bir şekilde askıya alınıp devam etti mi?"
 
 #. description
-#: ../jobs/power-management.txt.in:245
+#: ../jobs/hibernate.txt.in:7
 msgid ""
 "This will check to make sure your system can successfully hibernate (if "
 "supported)."
@@ -1912,7 +1983,7 @@ msgstr ""
 "Bu seçenek hazırda bekletme özelliğini sınayacak (eğer destekleniyorsa)."
 
 #. description
-#: ../jobs/power-management.txt.in:245
+#: ../jobs/hibernate.txt.in:7
 msgid ""
 "Select Test to begin. The system will hibernate and should wake itself "
 "within 5 minutes.  If your system does not wake itself after 5 minutes, "
@@ -1926,7 +1997,7 @@ msgstr ""
 "başlamazsa, bu testi Başarısız olarak işaretleyin."
 
 #. description
-#: ../jobs/power-management.txt.in:245
+#: ../jobs/hibernate.txt.in:7
 msgid ""
 "Did the system successfully hibernate and did it work properly after waking "
 "up?"
@@ -1934,7 +2005,7 @@ msgstr ""
 "Sistem başarıyla hazırda bekleyip sonra da düzgün bir biçimde uyandı mı?"
 
 #. description
-#: ../jobs/power-management.txt.in:258
+#: ../jobs/stress.txt.in:17
 msgid ""
 "Enter and resume from hibernate for 30 iterations. Please note that this is "
 "a very lengthy test. Also, if your system does not wake itself after 2 "
@@ -1950,7 +2021,7 @@ msgstr ""
 "sınamayı Başarısız olarak işaretleyin."
 
 #. description
-#: ../jobs/power-management.txt.in:258
+#: ../jobs/stress.txt.in:17
 msgid ""
 "Also, you will need to ensure your system has no power-on or HDD passwords "
 "set, and that grub is set to boot Ubuntu by default if you have a multi-boot "
@@ -1961,27 +2032,27 @@ msgstr ""
 "önyüklemek için varsayılan olarak ayarlandı."
 
 #. description
-#: ../jobs/power-management.txt.in:258
+#: ../jobs/stress.txt.in:17
 msgid "Did the system successfully hibernate and wake 30 times?"
 msgstr "Sisteminiz 30 defa hazırda bekletilip başarıyla uyandı mı?"
 
 #. description
-#: ../jobs/power-management.txt.in:267
+#: ../jobs/power-management.txt.in:56
 msgid "Run Colin Kings FWTS wakealarm test"
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:276
+#: ../jobs/power-management.txt.in:65
 msgid "Check to see if CONFIG_NO_HZ is set in the kernel"
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:284
+#: ../jobs/suspend.txt.in:194
 msgid "Automatic power management Suspend and Resume test"
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:284
+#: ../jobs/suspend.txt.in:194
 msgid ""
 "Select test and your system will suspend for about 30 - 60 seconds. If your "
 "system does not wake itself up after 60 seconds, please press the power "
@@ -2002,7 +2073,7 @@ msgstr "QA geri dönüşüm testleri (Bozucu)"
 #. description
 #: ../jobs/server-services.txt.in:5
 msgid "sshd test"
-msgstr ""
+msgstr "sshd testi"
 
 #. description
 #: ../jobs/server-services.txt.in:11
@@ -2012,22 +2083,22 @@ msgstr ""
 #. description
 #: ../jobs/server-services.txt.in:18
 msgid "DNS server test"
-msgstr ""
+msgstr "DNS sunucu sınaması"
 
 #. description
 #: ../jobs/server-services.txt.in:25
 msgid "Samba server test"
-msgstr ""
+msgstr "Samba sunucu sınaması"
 
 #. description
 #: ../jobs/server-services.txt.in:32
 msgid "LAMP server test"
-msgstr ""
+msgstr "LAMP sunucu sınaması"
 
 #. description
 #: ../jobs/server-services.txt.in:39
 msgid "Tomcat server test"
-msgstr ""
+msgstr "Tomcat sunucu sınaması"
 
 #. description
 #: ../jobs/sru_suite.txt.in:4
@@ -2149,26 +2220,26 @@ msgid "The following USB controllers were detected:"
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:17
+#: ../jobs/usb.txt.in:24
 msgid ""
 "Plug a USB keyboard into the computer. Then, click on the Test button \\ to "
 "enter text."
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:17
+#: ../jobs/usb.txt.in:24
 msgid "Does the keyboard work?"
-msgstr ""
+msgstr "Klavye çalışıyor mu?"
 
 #. description
-#: ../jobs/usb.txt.in:27
+#: ../jobs/usb.txt.in:34
 msgid ""
 "USB mouse verification procedure: 1.- Plug a USB mouse into the computer 2.- "
 "Perform some single/double/right click operations"
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:39
+#: ../jobs/usb.txt.in:46
 msgid ""
 "Click 'Test' and insert a USB device within 5 seconds. If the test is "
 "successful, you should notice that 'Yes' is selected below. Do not unplug "
@@ -2176,21 +2247,21 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:39
+#: ../jobs/usb.txt.in:46
 msgid ""
 "If no USB device is inserted or the device is not recognized, the test will "
 "fail and 'No' will be selected below."
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:51
+#: ../jobs/usb.txt.in:58
 msgid ""
 "Click 'Test' and remove the USB device you inserted within 5 seconds. If the "
 "test is successful, you should notice that 'Yes' is selected below."
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:51
+#: ../jobs/usb.txt.in:58
 msgid ""
 "If the USB device isn't removed or the removal is not registered, the test "
 "will fail and 'No' will be selected below."
@@ -2218,7 +2289,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:83
+#: ../jobs/usb.txt.in:86
 msgid ""
 "Connect a USB storage device to an external USB slot on this computer. \\ An "
 "icon should appear on the desktop and in the \"Places\" menu at the top of "
@@ -2226,14 +2297,14 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:83
+#: ../jobs/usb.txt.in:86
 msgid ""
 "Confirm that the icon appears, then eject the device. Repeat with each "
 "external \\ USB slot."
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:83
+#: ../jobs/usb.txt.in:86
 msgid "Do all USB slots work with the device?"
 msgstr ""
 
@@ -2516,6 +2587,10 @@ msgstr ""
 msgid "Usage: checkbox [OPTIONS]"
 msgstr "Kullanım: checkbox [SEÇENEKLER]"
 
+#: ../checkbox/application.py:70
+msgid "Print version information and exit."
+msgstr "Sürüm bilgisini yazdır ve çık."
+
 #: ../checkbox/application.py:74
 msgid "The file to write the log to."
 msgstr "Günlüğün yazılacağı dosya."
@@ -2570,7 +2645,7 @@ msgstr "Uygun Olmayan Yönerge"
 
 #: ../checkbox/lib/signal.py:27
 msgid "Abort signal from abort(3)"
-msgstr "abort(3) ten durdurma sinyali"
+msgstr "Durdurma sinyali: abort(3)"
 
 #: ../checkbox/lib/signal.py:28
 msgid "Floating point exception"
@@ -2590,7 +2665,7 @@ msgstr "Kırık boru: okuyucu olmadan boruya yazma"
 
 #: ../checkbox/lib/signal.py:32
 msgid "Timer signal from alarm(2)"
-msgstr "alarm(2)'den zamanlayıcı sinyali"
+msgstr "Zamanlayıcı sinyali: alarm(2)"
 
 #: ../checkbox/lib/signal.py:33
 msgid "Termination signal"
@@ -2713,15 +2788,15 @@ msgstr "Yeniden Sına"
 msgid "hardware database"
 msgstr "donanım veritabanı"
 
-#: ../checkbox_gtk/gtk_interface.py:487
+#: ../checkbox_gtk/gtk_interface.py:502
 msgid "_Test Again"
 msgstr "Yeniden _Sına"
 
-#: ../checkbox_gtk/gtk_interface.py:533
+#: ../checkbox_gtk/gtk_interface.py:548
 msgid "Info"
 msgstr "Bilgi"
 
-#: ../checkbox_gtk/gtk_interface.py:552
+#: ../checkbox_gtk/gtk_interface.py:567
 msgid "Error"
 msgstr "Hata"
 
@@ -2730,7 +2805,7 @@ msgstr "Hata"
 msgid "Unable to start web browser to open %s."
 msgstr "%s açmak için web tarayıcısı başlatılamıyor."
 
-#: ../plugins/apport_prompt.py:81
+#: ../plugins/apport_prompt.py:83
 msgid ""
 "Collecting information about this test.\n"
 "This might take a few minutes."
@@ -2738,7 +2813,7 @@ msgstr ""
 "Bu test hakkında bilgi toplanıyor.\n"
 "Bu biraz zaman alabilir."
 
-#: ../plugins/apport_prompt.py:116
+#: ../plugins/apport_prompt.py:118
 msgid ""
 "Collected information is being sent for bug tracking.\n"
 "This might take a few minutes."
@@ -2746,17 +2821,17 @@ msgstr ""
 "Toplanan bilgiler hata izleme için gönderildi.\n"
 "Bu birkaç dakika sürebilir."
 
-#: ../plugins/apport_prompt.py:225
+#: ../plugins/apport_prompt.py:227
 #, python-format
 msgid "Test %s from suite %s failed."
 msgstr ""
 
-#: ../plugins/apport_prompt.py:228
+#: ../plugins/apport_prompt.py:230
 #, python-format
 msgid "Test %s failed."
-msgstr ""
+msgstr "% sınaması başarısız."
 
-#: ../plugins/apport_prompt.py:246
+#: ../plugins/apport_prompt.py:248
 #, python-format
 msgid "Is a package upgrade in process? Error: %s"
 msgstr "Bir paket yükseltiliyor mu? Hata: %s"
@@ -2773,7 +2848,7 @@ msgstr "_Bitir"
 msgid "Gathering information from your system..."
 msgstr "Sisteminiz hakkında bilgi toplanıyor..."
 
-#: ../plugins/intro_prompt.py:43
+#: ../plugins/intro_prompt.py:29
 msgid ""
 "Welcome to System Testing!\n"
 "\n"
@@ -2788,12 +2863,12 @@ msgstr ""
 "işlemleri bittikten sonra sisteminizin durumu hakkında çıkarılacak olan "
 "raporun bir özetini görüntüleyebilir ve inceleyebilirsiniz."
 
-#: ../plugins/launchpad_exchange.py:118
+#: ../plugins/launchpad_exchange.py:136
 #, python-format
 msgid "Failed to process form: %s"
 msgstr "Hata işlem formu: %s"
 
-#: ../plugins/launchpad_exchange.py:141
+#: ../plugins/launchpad_exchange.py:151
 #, python-format
 msgid ""
 "Failed to contact server. Please try\n"
@@ -2810,7 +2885,7 @@ msgstr ""
 "doğrudan sistem veritabanına:\n"
 "https://launchpad.net/+hwdb/+submit"
 
-#: ../plugins/launchpad_exchange.py:150
+#: ../plugins/launchpad_exchange.py:160
 msgid ""
 "Failed to upload to server,\n"
 "please try again later."
@@ -2818,7 +2893,7 @@ msgstr ""
 "Sunucuya gönderim başarısız,\n"
 "lütfen sonra tekrar deneyin."
 
-#: ../plugins/launchpad_exchange.py:162
+#: ../plugins/launchpad_exchange.py:172
 msgid "Information not posted to Launchpad."
 msgstr "Bilgi Launchpad'e gönderilmedi."
 
@@ -2874,7 +2949,7 @@ msgstr ""
 "Kontrol kutusu tamamen bitmedi.\n"
 "Önceki çalışmadan kurtarmak istiyor musun?"
 
-#: ../plugins/report_prompt.py:34
+#: ../plugins/report_prompt.py:39
 msgid "Building report..."
 msgstr "Rapor oluşturuluyor..."
 
@@ -2884,15 +2959,15 @@ msgid "Running %s..."
 msgstr "%s çalışıyor..."
 
 #. Get results
-#: ../plugins/suites_prompt.py:105
+#: ../plugins/suites_prompt.py:108
 msgid "Select the suites to test"
 msgstr "Gerçekleştirmek istediğiniz sınamaları seçin"
 
 #: ../scripts/keyboard_test:21
 msgid "Enter text:\n"
-msgstr "Yazı girin:\n"
+msgstr "Metin girin:\n"
 
-#: ../scripts/keyboard_test:40
+#: ../scripts/keyboard_test:41
 msgid "Type Text"
 msgstr "Yazı Yazın"
 

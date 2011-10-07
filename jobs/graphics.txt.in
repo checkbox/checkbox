@@ -15,20 +15,18 @@ plugin: shell
 name: graphics/gtkperf
 depends: graphics/xorg-version-output
 requires: package.name == 'gtkperf'
-command: gtkperf -a
+command: gtkperf -a | grep "Total time:"
 _description:
  Run gtkperf to make sure that GTK based test cases work
- .
- In the future add the returned time as a benchmark result to the checkbox report
 
 plugin: manual
 name: graphics/resolution-change
 depends: graphics/xorg-version-output
 _description:
  PURPOSE:
-     This test will test the display resolution change
+     This test will verify that the GUI is usable after manually changing resolution
  STEPS:
-     1. Open the Monitors application
+     1. Open the Displays application
      2. Select a new resolution from the dropdown list
      3. Click on Apply
      4. Select the original resolution from the dropdown list
@@ -41,9 +39,9 @@ name: graphics/rotation
 depends: graphics/xorg-version-output
 _description:
  PURPOSE:
-     This test will test the display resolution change
+     This test will test display rotation
  STEPS:
-     1. Open the Monitors application
+     1. Open the Displays application
      2. Select a new rotation value from the dropdown list
      3. Click on Apply
      4. Click on Restore Previous Configuration
@@ -69,7 +67,7 @@ name: graphics/xorg-memory
 requires: package.name == 'xorg' and device.driver == 'i915'
 user: root
 command: xorg_memory_test xeyes
-_description: Test that X does not leak memory when running programs.
+_description: Test that X does not leak memory when running programs on systems with intel based graphics.
 
 plugin: manual
 name: graphics/resolution
@@ -78,7 +76,7 @@ requires:
 command: resolution_test
 _description:
  PURPOSE:
-     This test will test the default display resolution
+     This test will verify the default display resolution
  STEPS:
      1. This display is using the following resolution:
  INFO:
@@ -130,7 +128,7 @@ depends: xrandr_detect_modes
 command: xrandr_cycle
 _description:
  PURPOSE:
-     This test cycle through the detected video modes
+     This test cycles through the detected video modes
  STEPS:
      1. Click "Test" to start cycling through the video modes
  VERIFICATION:
@@ -148,7 +146,7 @@ requires: package.name == 'mesa-utils'
 command: glxgears
 _description:
  PURPOSE:
-     This test tests the 3D capabilities of your video card
+     This test tests the basic 3D capabilities of your video card
  STEPS:
      1. Click "Test" to execute glxgears
  VERIFICATION:

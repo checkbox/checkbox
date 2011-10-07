@@ -1,8 +1,10 @@
 plugin: remote
-name: mago
-_description: Automated desktop testing
+name: mago/suite
 requires:
  package.name == 'bzr'
  package.name == 'python-ldtp'
  desktop.gnome.interface.accessibility == True
 command: mago_suite
+_description: 
+ PURPOSE:
+    This test installs and runs the Mago Automated Desktop Testing suite.

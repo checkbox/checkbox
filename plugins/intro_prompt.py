@@ -26,6 +26,17 @@ class IntroPrompt(Plugin):
 
     def register(self, manager):
         super(IntroPrompt, self).register(manager)
+        self._welcome_text = _("""\
+Welcome to System Testing!
+
+Checkbox provides tests to confirm that your system is working \
+properly. Once you are finished running the tests, you can view \
+a summary report for your system.""") + _("""
+
+Warning: Some tests could cause your system to freeze \
+or become unresponsive. Please save all your work \
+and close all other running applications before \
+beginning the testing process.""")
 
         self._recover = False
 
@@ -34,19 +45,13 @@ class IntroPrompt(Plugin):
         # Introduction should be prompted last
         self._manager.reactor.call_on("prompt-begin", self.prompt_begin, 100)
 
-    def begin_recover(self):
-        self._recover = True
+    def begin_recover(self, recover):
+        self._recover = recover
 
     def prompt_begin(self, interface):
         if interface.direction == PREV or not self._recover:
             self._recover = False
-            interface.show_text(_("""\
-Welcome to System Testing!
-
-Checkbox provides tests to confirm that your system is working \
-properly. Once you are finished running the tests, you can view \
-a summary report for your system."""),
-                previous="")
+            interface.show_text(self._welcome_text, previous="")
 
 
 factory = IntroPrompt

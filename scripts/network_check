@@ -1,6 +1,6 @@
 #!/usr/bin/python
 """
-Check that it's possible to establish http and ftp connections against
+Check that it's possible to establish a http connection against
 ubuntu.com
 """
 from subprocess import call
@@ -22,7 +22,7 @@ def check_url(url):
 
 def main():
     """
-    Check HTTP and FTP connections
+    Check HTTP and connection
     """
     usage = 'Usage %prog [OPTIONS]'
     parser = OptionParser(usage)
@@ -33,8 +33,7 @@ def main():
     
     (options,args) = parser.parse_args()
 
-    url = {"http": "http://cdimage.ubuntu.com/daily/current/",
-           "ftp": "ftp://cdimage.ubuntu.com/cdimage/daily/current/",}
+    url = { "http": "http://cdimage.ubuntu.com/daily/current/" }
 
     results = {}
     for protocol, value in url.iteritems():
@@ -42,7 +41,6 @@ def main():
 
     bool2str = {True: 'Success', False: 'Failed'}
     message = ("HTTP connection: %(http)s\n"
-               "FTP connection: %(ftp)s\n"
                % dict([(protocol, bool2str[value])
                        for protocol, value in results.iteritems()]))
 

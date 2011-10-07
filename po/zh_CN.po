@@ -8,24 +8,18 @@ msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-07-07 12:32-0400\n"
-"PO-Revision-Date: 2011-07-19 20:24+0000\n"
+"PO-Revision-Date: 2011-09-13 05:37+0000\n"
 "Last-Translator: 英华 <wantinghard@gmail.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-07-31 04:34+0000\n"
-"X-Generator: Launchpad (build 13405)\n"
+"X-Launchpad-Export-Date: 2011-09-14 04:34+0000\n"
+"X-Generator: Launchpad (build 13921)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:2
 msgid "Ne_xt"
 msgstr "下一个(_X)"
-
-#. Title of the user interface
-#: ../gtk/checkbox-gtk.ui.h:3 ../gtk/checkbox-gtk.desktop.in.h:1
-#: ../plugins/user_interface.py:40
-msgid "System Testing"
-msgstr "系统测试"
 
 #: ../gtk/checkbox-gtk.ui.h:5
 msgid "_No"
@@ -39,7 +33,7 @@ msgstr "前一个(_P)"
 msgid "_Skip this test"
 msgstr "跳过这个测试(_S)"
 
-#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:522
+#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:533
 msgid "_Test"
 msgstr "测试(_T)"
 
@@ -52,23 +46,19 @@ msgid "Test and report system information"
 msgstr "测试和报告系统信息"
 
 #. description
-#: ../jobs/audio.txt.in:7 ../jobs/disk.txt.in:4 ../jobs/graphics.txt.in:126
-#: ../jobs/memory.txt.in:4 ../jobs/networking.txt.in:16
-#: ../jobs/optical.txt.in:8 ../jobs/power-management.txt.in:167
-#: ../jobs/usb.txt.in:5
+#: ../jobs/audio.txt.in:7 ../jobs/graphics.txt.in:113 ../jobs/memory.txt.in:4
+#: ../jobs/networking.txt.in:5 ../jobs/optical.txt.in:8 ../jobs/usb.txt.in:12
 msgid "$output"
 msgstr "$output"
 
 #. description
-#: ../jobs/audio.txt.in:7 ../jobs/bluetooth.txt.in:5 ../jobs/disk.txt.in:4
-#: ../jobs/graphics.txt.in:126 ../jobs/memory.txt.in:4
-#: ../jobs/networking.txt.in:16 ../jobs/optical.txt.in:8
-#: ../jobs/power-management.txt.in:185 ../jobs/usb.txt.in:5
+#: ../jobs/audio.txt.in:7 ../jobs/graphics.txt.in:113 ../jobs/memory.txt.in:4
+#: ../jobs/networking.txt.in:5 ../jobs/optical.txt.in:8
 msgid "Is this correct?"
 msgstr "这是正确的吗？"
 
 #. description
-#: ../jobs/graphics.txt.in:117
+#: ../jobs/graphics.txt.in:104
 msgid "Do you see color bars and static?"
 msgstr "看到彩色条纹和统计了么？"
 
@@ -97,10 +87,6 @@ msgstr "检测你的网络控制器："
 msgid "Testing your connection to the Internet:"
 msgstr "测试你的互联网链接："
 
-#: ../checkbox/application.py:66
-msgid "Usage: checkbox [OPTIONS]"
-msgstr "用法： checkbox [OPTIONS]"
-
 #: ../checkbox/application.py:70
 msgid "Print version information and exit."
 msgstr "显示版本信息并退出。"
@@ -108,10 +94,6 @@ msgstr "显示版本信息并退出。"
 #: ../checkbox/application.py:74
 msgid "The file to write the log to."
 msgstr "写入到日志的文件。"
-
-#: ../checkbox/application.py:77
-msgid "One of debug, info, warning, error or critical."
-msgstr "调试，信息，警告，错误或者批评之一。"
 
 #: ../checkbox/application.py:115
 msgid "Missing configuration file as argument.\n"
@@ -153,7 +135,7 @@ msgstr "再次测试"
 msgid "Please type here and press Ctrl-D when finished:\n"
 msgstr "请在这里输入并在结束时按下 Ctrl-D ：\n"
 
-#: ../checkbox_gtk/gtk_interface.py:487
+#: ../checkbox_gtk/gtk_interface.py:498
 msgid "_Test Again"
 msgstr "再次测试(_T)"
 
@@ -161,11 +143,7 @@ msgstr "再次测试(_T)"
 msgid "_Finish"
 msgstr "完成(_F)"
 
-#: ../plugins/gather_prompt.py:35
-msgid "Gathering information from your system..."
-msgstr "从你的系统上收集信息..."
-
-#: ../plugins/launchpad_exchange.py:150
+#: ../plugins/launchpad_exchange.py:156
 msgid ""
 "Failed to upload to server,\n"
 "please try again later."
@@ -173,7 +151,7 @@ msgstr ""
 "上载到服务器失败，\n"
 "请一会儿重新尝试。"
 
-#: ../plugins/launchpad_exchange.py:162
+#: ../plugins/launchpad_exchange.py:168
 msgid "Information not posted to Launchpad."
 msgstr "不会发布到 Launchpad 上的信息。"
 
@@ -189,26 +167,8 @@ msgstr "和服务器交换信息..."
 msgid "Building report..."
 msgstr "正在创建报告..."
 
-#~ msgid "<b>Comment:</b>"
-#~ msgstr "<b>注释：</b>"
-
-#~ msgid "Device information"
-#~ msgstr "设备信息"
-
-#~ msgid "Distribution details"
-#~ msgstr "发布详情"
-
-#~ msgid "Packages installed"
-#~ msgstr "软件包已安装"
-
-#~ msgid "Processor information"
-#~ msgstr "处理器信息"
-
 #~ msgid "Successfully sent information!"
 #~ msgstr "发送信息成功！"
-
-#~ msgid "Test results"
-#~ msgstr "测试结果"
 
 #~ msgid "_Desktop"
 #~ msgstr "桌面(_D)"
@@ -219,62 +179,20 @@ msgstr "正在创建报告..."
 #~ msgid "_Server"
 #~ msgstr "服务器(_S)"
 
-#~ msgid "The following resolution was detected for your display:"
-#~ msgstr "检测到了你所使用的下列分辨率："
-
-#~ msgid "$(resolution_test)"
-#~ msgstr "$(resolution_test)"
-
-#~ msgid "Is this a good resolution for your display?"
-#~ msgstr "这是一个对你的显示比较好的分辨率吗？"
-
 #~ msgid "$(network_test)"
 #~ msgstr "$(network_test)"
-
-#~ msgid "Are you connected to the Internet?"
-#~ msgstr "你连接到了互联网吗？"
-
-#~ msgid ""
-#~ "Typing keys on your keyboard should display the corresponding characters in "
-#~ "a text area."
-#~ msgstr "在您的键盘上打字，应该可以在某个文本区域显示出对应的字符。"
-
-#, python-format
-#~ msgid "Running test: %s"
-#~ msgstr "运行测试： %s"
-
-#~ msgid "Please provide comments about the failure."
-#~ msgstr "请提供有关这个错误的评论。"
 
 #~ msgid "Authentication"
 #~ msgstr "验证"
 
-#~ msgid "Please provide your Launchpad email address:"
-#~ msgstr "请提供你的 Launchpad 电子邮件地址："
-
 #~ msgid "Done"
 #~ msgstr "完成"
-
-#~ msgid "Successfully sent information to server!"
-#~ msgstr "成功地发送信息到服务器！"
 
 #~ msgid "Exchange"
 #~ msgstr "交换"
 
 #~ msgid "Category"
 #~ msgstr "分类"
-
-#~ msgid ""
-#~ "The following information will be sent to the Launchpad\n"
-#~ "hardware database. Please provide the e-mail address you\n"
-#~ "use to sign in to Launchpad to submit this information."
-#~ msgstr "下面的信息将被发送到Lauchpad硬件数据库，请输入用于登录Lauchpad的电子邮件地址以便发送这些信息。"
-
-#~ msgid "Run the video test."
-#~ msgstr "运行视频测试。"
-
-#~ msgid "Run the test for the automatically detected playback device."
-#~ msgstr "对自动检测的播放设备运行测试"
 
 #~ msgid "Do you hear a sound?"
 #~ msgstr "听到声音了么？"
@@ -297,6 +215,12 @@ msgstr "正在创建报告..."
 msgid "Further information:"
 msgstr "更多信息："
 
+#. Title of the user interface
+#: ../gtk/checkbox-gtk.ui.h:3 ../gtk/checkbox-gtk.desktop.in.h:1
+#: ../checkbox_gtk/gtk_interface.py:95 ../plugins/user_interface.py:40
+msgid "System Testing"
+msgstr "系统测试"
+
 #: ../gtk/checkbox-gtk.ui.h:4
 msgid "_Deselect All"
 msgstr "取消全部选中(_D)"
@@ -308,7 +232,7 @@ msgstr "全部选中(_S)"
 #. description
 #: ../jobs/apport.txt.in:5
 msgid "Test that the /var/crash directory doesn't contain anything."
-msgstr ""
+msgstr "检查 /var/crash 目录是否为空"
 
 #. description
 #: ../jobs/audio.txt.in:7
@@ -365,14 +289,16 @@ msgid ""
 "select Test, then speak into the microphone.  After a few seconds, your "
 "speech will be played back to you."
 msgstr ""
+"连接一个 USB 音频设备至您的系统。然后左键点击桌面顶部状态栏上的音量图标来打开音量控制程序，选择“声音选项”。点击“输入”标签栏，并选择您的 USB "
+"设备。然后点击“输出”标签，并选择您的 USB 设备。当您完成这些后，选择测试，并对着麦克风说话。几秒后，您刚才的语音会被播放。"
 
 #. description
-#: ../jobs/audio.txt.in:70 ../jobs/power-management.txt.in:221
+#: ../jobs/audio.txt.in:70
 msgid "Did you hear your speech played back?"
 msgstr "您听到回放的声音了吗？"
 
 #. description
-#: ../jobs/audio.txt.in:81
+#: ../jobs/audio.txt.in:82
 msgid ""
 "Play back a sound on the default output and listen for it on the \\ default "
 "input.  This makes the most sense when the output and input \\ are directly "
@@ -385,17 +311,17 @@ msgid "Autotest suite (destructive)"
 msgstr "自动测试套件(破坏性的)"
 
 #. description
-#: ../jobs/bluetooth.txt.in:5 ../jobs/power-management.txt.in:185
+#: ../jobs/bluetooth.txt.in:5
 msgid "The address of your Bluetooth device is: $output"
 msgstr "您的蓝牙设备地址是：$output"
 
 #. description
-#: ../jobs/bluetooth.txt.in:15 ../jobs/graphics.txt.in:15
+#: ../jobs/bluetooth.txt.in:12 ../jobs/graphics.txt.in:15
 msgid "Automated test to store output in checkbox report"
 msgstr ""
 
 #. description
-#: ../jobs/bluetooth.txt.in:21
+#: ../jobs/bluetooth.txt.in:18
 msgid ""
 "Bluetooth browse files procedure: 1.- Enable bluetooth on any mobile device "
 "(PDA, smartphone, etc.) 2.- Click on the bluetooth icon in the menu bar 3.- "
@@ -407,7 +333,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/bluetooth.txt.in:38
+#: ../jobs/bluetooth.txt.in:35
 msgid ""
 "Bluetooth file transfer procedure: 1.- Make sure that you're able to browse "
 "the files in your mobile device 2.- Copy a file from the computer to the "
@@ -417,7 +343,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/bluetooth.txt.in:53
+#: ../jobs/bluetooth.txt.in:50
 msgid ""
 "Bluetooth audio procedure: 1.- Enable the bluetooth headset 2.- Click on the "
 "bluetooth icon in the menu bar 3.- Select 'Setup new device' 4.- Look for "
@@ -428,7 +354,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/bluetooth.txt.in:69
+#: ../jobs/bluetooth.txt.in:66
 msgid ""
 "Bluetooth keyboard procedure: 1.- Enable the bluetooth keyboard 2.- Click on "
 "the bluetooth icon in the menu bar 3.- Select 'Setup new device' 4.- Look "
@@ -436,7 +362,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/bluetooth.txt.in:82
+#: ../jobs/bluetooth.txt.in:79
 msgid ""
 "Bluetooth mouse procedure: 1.- Enable the bluetooth mouse 2.- Click on the "
 "bluetooth icon in the menu bar 3.- Select 'Setup new device' 4.- Look for "
@@ -445,8 +371,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/bluetooth.txt.in:82 ../jobs/optical.txt.in:72
-#: ../jobs/power-management.txt.in:194 ../jobs/usb.txt.in:27
+#: ../jobs/bluetooth.txt.in:79 ../jobs/optical.txt.in:72 ../jobs/usb.txt.in:34
 msgid "Did all the steps work?"
 msgstr "上述步骤是否全部正常工作？"
 
@@ -463,7 +388,7 @@ msgstr ""
 #. description
 #: ../jobs/camera.txt.in:16
 msgid "Did you see the video capture?"
-msgstr ""
+msgstr "您看到捕捉的视频了么？"
 
 #. description
 #: ../jobs/camera.txt.in:30
@@ -473,7 +398,7 @@ msgstr ""
 #. description
 #: ../jobs/camera.txt.in:30
 msgid "Did you see the image?"
-msgstr ""
+msgstr "您看到图像了吗？"
 
 #. description
 #: ../jobs/camera.txt.in:43
@@ -619,27 +544,27 @@ msgid "The following hard drives were detected:"
 msgstr "已检测到下列硬盘驱动器："
 
 #. description
-#: ../jobs/disk.txt.in:14
+#: ../jobs/disk.txt.in:9
 msgid "Benchmark for each disk "
-msgstr ""
+msgstr "每个磁盘基准测试 "
 
 #. description
-#: ../jobs/disk.txt.in:36
+#: ../jobs/disk.txt.in:26
 msgid "SMART test"
-msgstr ""
+msgstr "SMART 测试"
 
 #. description
-#: ../jobs/disk.txt.in:51
+#: ../jobs/disk.txt.in:41
 msgid "Maximum disk space used during a default installation test"
-msgstr ""
+msgstr "默认安装测试过程中使用的最大磁盘空间"
 
 #. description
-#: ../jobs/disk.txt.in:66
+#: ../jobs/disk.txt.in:56
 msgid "Verify system storage performs at or above baseline performance"
 msgstr ""
 
 #. description
-#: ../jobs/disk.txt.in:83
+#: ../jobs/disk.txt.in:73
 msgid ""
 "Verify that storage devices, such as Fibre Channel and RAID can be detected "
 "and perform under stress."
@@ -696,6 +621,13 @@ msgid ""
 " 5.- Click on the user switcher applet.\n"
 " 6.- Select the testing account to continue running tests."
 msgstr ""
+"指纹登录验证程序：\n"
+" 1.- 点击用户切换小程序。\n"
+" 2.- 选择您的用户名。\n"
+" 3.- 将出现登录窗口，要么输入您的密码或使用指纹认证登录。\n"
+" 4.- 使用指纹识别器登录。\n"
+" 5.- 点击用户切换小程序。\n"
+" 6.- 选择测试帐户继续运行测试。"
 
 #. description
 #: ../jobs/fingerprint.txt.in:18
@@ -709,6 +641,13 @@ msgid ""
 " 5.- Use the fingerprint reader to unlock.\n"
 " 6.- Your screen should be unlocked."
 msgstr ""
+"指纹解锁核查程序：\n"
+" 1.- 点击用户切换小程序。\n"
+" 2.- 选择“锁定屏幕”。\n"
+" 3.- 按任意键或移动鼠标。\n"
+" 4.- 将出现一个窗口，提供解锁输入密码或使用指纹验证的功能。\n"
+" 5.- 使用指纹识别器进行解锁。\n"
+" 6.- 您的屏幕应该被解锁。"
 
 #. description
 #: ../jobs/fingerprint.txt.in:18
@@ -725,9 +664,14 @@ msgid ""
 " 3.- Copy some files from your internal HDD to the firewire HDD.\n"
 " 4.- Copy some files from the firewire HDD to your internal HDD."
 msgstr ""
+"火线硬盘检查程序：\n"
+" 1.- 请将火线硬盘插入计算机。\n"
+" 2.- 要求应该执行哪个动作（打开文件夹，照片管理等），应打开一个窗口。\n"
+" 3.- 从您的内部硬盘驱动器复制一些文件到火线硬盘驱动器。\n"
+" 4.- 从火线硬盘驱动器复制一些文件到您的内置硬盘驱动器。"
 
 #. description
-#: ../jobs/firewire.txt.in:3 ../jobs/usb.txt.in:71
+#: ../jobs/firewire.txt.in:3
 msgid "Do the copy operations work as expected?"
 msgstr "复制操作工作正常吗？"
 
@@ -868,12 +812,12 @@ msgid "Did the display rotation change as expected?"
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:62 ../jobs/sru_suite.txt.in:151
+#: ../jobs/graphics.txt.in:62
 msgid "Test that the X process is running."
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:68 ../jobs/sru_suite.txt.in:157
+#: ../jobs/graphics.txt.in:68
 msgid "Test that the X is not running in failsafe mode."
 msgstr ""
 
@@ -885,7 +829,7 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:82
 msgid "This display is using the following resolution:"
-msgstr "屏幕当前分辨率："
+msgstr "屏幕当前处于以下分辨率："
 
 #. description
 #: ../jobs/graphics.txt.in:82
@@ -907,46 +851,46 @@ msgid ""
 msgstr "确保当前分辨率符合或超过建议的最小分辨率(1024 x 600)。详情见此处："
 
 #. description
-#: ../jobs/graphics.txt.in:107
+#: ../jobs/graphics.txt.in:94
 msgid "https://help.ubuntu.com/community/Installation/SystemRequirements"
 msgstr "https://help.ubuntu.com/community/Installation/SystemRequirements"
 
 #. description
-#: ../jobs/graphics.txt.in:117
+#: ../jobs/graphics.txt.in:104
 msgid "Select Test to display a video test."
-msgstr ""
+msgstr "选择“测试”，播放一个测试视频。"
 
 #. description
-#: ../jobs/graphics.txt.in:126
+#: ../jobs/graphics.txt.in:113
 msgid ""
 "The following screens and video modes have been detected on your system:"
 msgstr "在您的系统上检测到以下屏幕/视频模式："
 
 #. description
-#: ../jobs/graphics.txt.in:138
+#: ../jobs/graphics.txt.in:125
 msgid ""
 "Select Test to cycle through the detected video modes for your system."
-msgstr ""
+msgstr "选择“测试循环模式”，检测视频系统。"
 
 #. description
-#: ../jobs/graphics.txt.in:138
+#: ../jobs/graphics.txt.in:125
 msgid "Did the screen appear to be working for each mode?"
 msgstr "在每种模式下显示都正常吗？"
 
 #. description
-#: ../jobs/graphics.txt.in:146
+#: ../jobs/graphics.txt.in:133
 msgid "Check that the hardware is able to run compiz."
 msgstr "检查硬件能否运行 compiz。"
 
 #. description
-#: ../jobs/graphics.txt.in:153
+#: ../jobs/graphics.txt.in:140
 msgid ""
 "Select Test to execute glxgears to ensure that minimal 3d graphics support "
 "is in place."
-msgstr ""
+msgstr "选择“测试”，执行 glxgears，确保支持最低的 3D 图形需求。"
 
 #. description
-#: ../jobs/graphics.txt.in:153
+#: ../jobs/graphics.txt.in:140
 msgid "Did the 3d animation appear?"
 msgstr "出现三维动画了吗？"
 
@@ -956,7 +900,7 @@ msgid "Captures a screenshot."
 msgstr ""
 
 #. description
-#: ../jobs/info.txt.in:71 ../jobs/sru_suite.txt.in:167
+#: ../jobs/info.txt.in:71
 msgid "Gather log from the firmware test suite run"
 msgstr ""
 
@@ -968,7 +912,7 @@ msgstr ""
 #. description
 #: ../jobs/input.txt.in:13
 msgid "Select Test to open a text area where to type keys on your keyboard."
-msgstr ""
+msgstr "选择“测试”来打开一个可以用键盘输入文本的文本区域"
 
 #. description
 #: ../jobs/install.txt.in:6
@@ -1004,21 +948,21 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/keys.txt.in:30
+#: ../jobs/keys.txt.in:31
 msgid ""
 "Press the sleep key on the keyboard. The computer should suspend and, \\ "
 "after pressing the power button, resume successfully."
 msgstr ""
 
 #. description
-#: ../jobs/keys.txt.in:39
+#: ../jobs/keys.txt.in:40
 msgid ""
 "Press the battery information key on the keyboard. A status window \\ should "
 "appear and the amount of battery remaining should be displayed."
 msgstr ""
 
 #. description
-#: ../jobs/keys.txt.in:48
+#: ../jobs/keys.txt.in:49
 msgid ""
 "Press the wireless networking key on the keyboard. The bluetooth icon \\ and "
 "the network connnection should go down if connected through the \\ wifi "
@@ -1026,35 +970,35 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/keys.txt.in:48
+#: ../jobs/keys.txt.in:49
 msgid ""
 "Press the same key again and check that bluetooth icon is again \\ displayed "
 "and that the network connection is re-established \\ automatically."
 msgstr ""
 
 #. description
-#: ../jobs/keys.txt.in:48
+#: ../jobs/keys.txt.in:49
 msgid "Does the key work?"
 msgstr ""
 
 #. description
-#: ../jobs/keys.txt.in:62
+#: ../jobs/keys.txt.in:63
 msgid ""
 "The keyboard may have dedicated keys for controlling media as follows:"
 msgstr ""
 
 #. description
-#: ../jobs/keys.txt.in:62
+#: ../jobs/keys.txt.in:63
 msgid "* Play/Pause * Stop * Forward * Backward (Rewind)"
 msgstr ""
 
 #. description
-#: ../jobs/keys.txt.in:62
+#: ../jobs/keys.txt.in:63
 msgid "Play a media file and press each key in turn."
 msgstr ""
 
 #. description
-#: ../jobs/keys.txt.in:62
+#: ../jobs/keys.txt.in:63
 msgid "Do the keys work as expected?"
 msgstr ""
 
@@ -1071,7 +1015,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:13
 msgid "Camera tests"
-msgstr ""
+msgstr "摄像头测试"
 
 #. description
 #: ../jobs/local.txt.in:18
@@ -1081,12 +1025,12 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:23
 msgid "CPU tests"
-msgstr ""
+msgstr "中央处理器测试"
 
 #. description
 #: ../jobs/local.txt.in:28
 msgid "System Daemon tests"
-msgstr ""
+msgstr "系统守护进程测试"
 
 #. description
 #: ../jobs/local.txt.in:33
@@ -1134,54 +1078,54 @@ msgid "Hotkey tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:78
+#: ../jobs/local.txt.in:83
 msgid "Media Card tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:83
+#: ../jobs/local.txt.in:93
 msgid "Miscellaneous tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:88
+#: ../jobs/local.txt.in:98
 msgid "Monitor tests"
 msgstr "显示器测试"
 
 #. description
-#: ../jobs/local.txt.in:93
+#: ../jobs/local.txt.in:103
 msgid "Networking tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:98
+#: ../jobs/local.txt.in:113
 msgid "PCMCIA/PCIX Card tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:103
+#: ../jobs/local.txt.in:118
 msgid "Peripheral tests"
 msgstr "外围设备测试"
 
 #. description
-#: ../jobs/local.txt.in:108
+#: ../jobs/local.txt.in:123
 msgid "Power Management tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:113
+#: ../jobs/local.txt.in:133
 msgid "Unity tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:118
+#: ../jobs/local.txt.in:143
 msgid "User Applications"
 msgstr "用户应用程序"
 
 #. description
-#: ../jobs/local.txt.in:123
+#: ../jobs/local.txt.in:153
 msgid "Stress tests"
-msgstr ""
+msgstr "压力测试"
 
 #. description
 #: ../jobs/ltp.txt.in:3
@@ -1203,6 +1147,11 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"安全数码（SD）媒体卡支持验证 :\n"
+" 1.- 插入一张SD媒体卡到您的电脑里。\n"
+" 2.- 应该会有一个图标出现在桌面上或在屏幕顶端的“位置”菜单里。\n"
+" 3.- 右键点击这个桌面图标，选择“安全删除驱动器”。\n"
+" 4.- 图标应该同时从桌面和屏幕顶端的“位置”菜单里消失。"
 
 #. description
 #: ../jobs/mediacard.txt.in:15
@@ -1247,6 +1196,11 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"多媒体记忆卡（MMC）支持验证：\n"
+"1.- 在电脑上插入多媒体记忆卡。\n"
+"2.- 在桌面上以及屏幕上方的“位置”菜单里会显示出一个图标，提示您的多媒体记忆卡已被识别。\n"
+"3.- 右键点击桌面上的这个多媒体记忆卡图标，然后选择“安全移除设备”。\n"
+"4.- 该图标应同时从桌面上与“位置”菜单中消失。"
 
 #. description
 #: ../jobs/mediacard.txt.in:61
@@ -1258,6 +1212,11 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"多媒体记忆卡(MMC)支持二次验证：\n"
+"1.- 在电脑上插入多媒体记忆卡。\n"
+"2.- 在桌面上以及屏幕上方的“位置”菜单里会显示出一个图标提示你的多媒体记忆卡已被识别。\n"
+"3.- 右键点击桌面上的这个多媒体记忆卡图标，然后选择“安全移除设备”。\n"
+"4.- 该图标应同时从桌面上与“位置”菜单中消失。"
 
 #. description
 #: ../jobs/mediacard.txt.in:72
@@ -1269,6 +1228,11 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"记忆棒(ms卡)支持验证：\n"
+" 1.- 将记忆棒插入电脑中。\n"
+" 2.- 这时桌面和屏幕上方面板中的“位置”菜单里将会出现一个图标。\n"
+" 3.- 右键点击桌面上出现的图标，然后选择“安全移除设备”。\n"
+" 4.- 该图标应该同时从桌面上与“位置”菜单中消失。"
 
 #. description
 #: ../jobs/mediacard.txt.in:84
@@ -1280,6 +1244,11 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"记忆棒(ms卡)支持二次验证：\n"
+" 1.- 将记忆棒插入电脑中。\n"
+" 2.- 这时桌面和屏幕上方面板中的“位置”菜单里将会出现一个图标。\n"
+" 3.- 右键点击桌面上出现的图标，然后选择“安全移除设备”。\n"
+" 4.- 该图标应该同时从桌面上与“位置”菜单中消失。"
 
 #. description
 #: ../jobs/mediacard.txt.in:95
@@ -1291,6 +1260,11 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"记忆棒(MSP 卡)支持验证：\n"
+" 1.- 将记忆棒插入电脑中。\n"
+" 2.- 这时桌面和屏幕上方面板中的“位置”菜单里将会出现一个图标。\n"
+" 3.- 右键点击桌面上出现的图标，然后选择“安全移除设备”。\n"
+" 4.- 该图标应该同时从桌面上与“位置”菜单中消失。"
 
 #. description
 #: ../jobs/mediacard.txt.in:107
@@ -1302,6 +1276,11 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"记忆棒(MSP 卡)支持二次验证：\n"
+" 1.- 将记忆棒插入电脑中。\n"
+" 2.- 这时桌面和屏幕上方面板中的“位置”菜单里将会出现一个图标。\n"
+" 3.- 右键点击桌面上出现的图标，然后选择“安全移除设备”。\n"
+" 4.- 该图标应该同时从桌面上与“位置”菜单中消失。"
 
 #. description
 #: ../jobs/mediacard.txt.in:118
@@ -1313,6 +1292,11 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"闪存记忆卡(CF)支持验证：\n"
+" 1.- 在电脑上插入闪存记忆卡。\n"
+" 2.- 在桌面上以及屏幕上方的“位置”菜单里会显示出一个图标提示您的闪存记忆卡已被识别。\n"
+" 3.- 右键点击桌面上的这个闪存记忆卡图标，然后选择“安全移除设备”。\n"
+" 4.- 该图标应同时从桌面上与“位置”菜单中消失。"
 
 #. description
 #: ../jobs/mediacard.txt.in:130
@@ -1324,6 +1308,11 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"闪存记忆卡(CF)支持二次验证：\n"
+" 1.- 在电脑上插入闪存记忆卡。\n"
+" 2.- 在桌面上以及屏幕上方的“位置”菜单里会显示出一个图标提示您的闪存记忆卡已被识别。\n"
+" 3.- 右键点击桌面上的这个闪存记忆卡图标，然后选择“安全移除设备”。\n"
+" 4.- 该图标应同时从桌面上与“位置”菜单中消失。"
 
 #. description
 #: ../jobs/mediacard.txt.in:130
@@ -1346,7 +1335,7 @@ msgid ""
 "Select Test to switch to another virtual terminal and then back to X.  Your "
 "screen will change temporarily to a text console and then switch back to "
 "your current session."
-msgstr ""
+msgstr "选择测试切换到其他虚拟终端接着返回 X。您的屏幕将临时更换为文本模式控制台接着返回您当前会话模式。"
 
 #. description
 #: ../jobs/miscellanea.txt.in:8
@@ -1464,17 +1453,17 @@ msgid "Did the monitor go blank?"
 msgstr "您的显示器黑屏了吗？"
 
 #. description
-#: ../jobs/networking.txt.in:26
+#: ../jobs/networking.txt.in:21
 msgid "Network Information"
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:46
+#: ../jobs/wireless.txt.in:6
 msgid "Wireless scanning test."
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:52
+#: ../jobs/wireless.txt.in:12
 msgid ""
 "Wireless network connection procedure: 1.- Click on the Network Manager "
 "applet 2.- Select a network below the 'Wireless networks' section 3.- Notify "
@@ -1483,7 +1472,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:64
+#: ../jobs/networking.txt.in:39
 msgid ""
 "Wired network connection procedure: 1.- Click on the Network Manager applet "
 "2.- Select a network below the 'Wired network' section 3.- Notify OSD should "
@@ -1492,7 +1481,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:76
+#: ../jobs/networking.txt.in:51
 msgid ""
 "Built-in modem network connection procedure: 1.- Connect the telephone line "
 "to the computer 2.- Right click on the Network Manager applet 3.- Select "
@@ -1503,48 +1492,49 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:76 ../jobs/peripheral.txt.in:15
+#: ../jobs/networking.txt.in:51 ../jobs/peripheral.txt.in:15
+#: ../jobs/wireless.txt.in:12
 msgid "Was the connection correctly established?"
 msgstr "连接正常建立了吗？"
 
 #. description
-#: ../jobs/networking.txt.in:92
+#: ../jobs/networking.txt.in:67
 msgid ""
 "Automated test case to verify availability of some system on the network "
 "using ICMP ECHO packets."
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:99 ../jobs/peripheral.txt.in:32
+#: ../jobs/networking.txt.in:74 ../jobs/peripheral.txt.in:32
 msgid ""
 "Automated test case to make sure that it's possible to download files "
 "through HTTP"
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:107
+#: ../jobs/networking.txt.in:82
 msgid "Test to see if we can sync local clock to an NTP server"
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:113
+#: ../jobs/networking.txt.in:88
 msgid ""
 "Verify that an installation of checkbox-server on the network can be reached "
 "over SSH."
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:119
+#: ../jobs/networking.txt.in:94
 msgid "Try to enable a remote printer on the network and print a test page."
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:124
+#: ../jobs/networking.txt.in:99
 msgid "Multiple network cards"
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:144
+#: ../jobs/networking.txt.in:119
 msgid "Test to measure the network bandwidth"
 msgstr ""
 
@@ -1604,7 +1594,7 @@ msgstr ""
 #. description
 #: ../jobs/optical.txt.in:90
 msgid "Insert a DVD.  Then select Test to play the DVD in Totem."
-msgstr ""
+msgstr "插入一张DVD光盘，然后选择测试，用 Totem 播放 DVD。"
 
 #. description
 #: ../jobs/optical.txt.in:90
@@ -1725,47 +1715,47 @@ msgid "Does your computer hibernate and restore?"
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:29
+#: ../jobs/power-management.txt.in:13
 msgid "Does closing your laptop lid cause your screen to blank?"
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:41
+#: ../jobs/power-management.txt.in:25
 msgid "Click the Test button, then close and open the lid."
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:41
+#: ../jobs/power-management.txt.in:25
 msgid "Did the screen turn off while the lid was closed?"
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:55
+#: ../jobs/power-management.txt.in:39
 msgid "Click the Test button, then close the lid and wait 5 seconds."
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:55
+#: ../jobs/power-management.txt.in:39
 msgid "Open the lid."
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:55
+#: ../jobs/power-management.txt.in:39
 msgid "Did the screen turn back on when the lid was opened?"
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:65
+#: ../jobs/power-management.txt.in:49
 msgid "Test the network before suspending."
 msgstr "挂起前测试网络。"
 
 #. description
-#: ../jobs/power-management.txt.in:70
+#: ../jobs/suspend.txt.in:4
 msgid "Record the current resolution before suspending."
 msgstr "挂起前记录当前分辨率。"
 
 #. description
-#: ../jobs/power-management.txt.in:78
+#: ../jobs/suspend.txt.in:12
 msgid "Test the audio before suspending."
 msgstr "挂起前测试音频。"
 
@@ -1782,17 +1772,17 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:128 ../jobs/sru_suite.txt.in:135
+#: ../jobs/power-management.txt.in:51
 msgid "Make sure that the RTC (Real-Time Clock) device exists."
-msgstr ""
+msgstr "确认实时时钟(RTC)设备存在"
 
 #. description
-#: ../jobs/power-management.txt.in:135
+#: ../jobs/suspend.txt.in:58
 msgid "Power management Suspend and Resume test"
 msgstr "电源管理挂起和恢复测试"
 
 #. description
-#: ../jobs/power-management.txt.in:135
+#: ../jobs/suspend.txt.in:58
 msgid ""
 "Select Test and your system will suspend for about 30 - 60 seconds. If your "
 "system does not wake itself up after 60 seconds, please press the power "
@@ -1802,18 +1792,18 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:145
+#: ../jobs/suspend.txt.in:68
 msgid "Test the network after resuming."
 msgstr "恢复后测试网络。"
 
 #. description
-#: ../jobs/power-management.txt.in:151
+#: ../jobs/suspend.txt.in:74
 msgid ""
 "Test to see that we have the same resolution after resuming as before."
 msgstr "测试恢复后分辨率是否与之前相同。"
 
 #. description
-#: ../jobs/power-management.txt.in:160
+#: ../jobs/suspend.txt.in:83
 msgid "Test the audio after resuming."
 msgstr "测试恢复后的音频。"
 
@@ -1849,14 +1839,14 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:210
+#: ../jobs/suspend.txt.in:150
 msgid ""
 "This test will check to make sure that supported video modes work after a "
 "suspend and resume.  Select Test to begin."
-msgstr ""
+msgstr "这个测试将检查以确保在系统挂起后支持图形模式。选择“测试”将开始测试。"
 
 #. description
-#: ../jobs/power-management.txt.in:221
+#: ../jobs/power-management.txt.in:251
 msgid ""
 "This will check to make sure that your audio device works properly after a "
 "suspend and resume.  You can use either internal or external microphone and "
@@ -1864,36 +1854,40 @@ msgid ""
 msgstr "这将检查您的音频设备在挂起并恢复后是否工作正常。您可以使用内置或外置的麦克风和音响。"
 
 #. description
-#: ../jobs/power-management.txt.in:221
+#: ../jobs/power-management.txt.in:251
 msgid ""
 "To execute this test, make sure your speaker and microphone are NOT muted "
 "and the volume is set sufficiently loud to record and play audio. Select "
 "Test and then speak into your microphone. After a few seconds, your speech "
 "will be played back to you."
 msgstr ""
+"执行这项测试，首先确保你的扬声器和麦克风没有静音并且声音设的足够大，能够记录和播放声音。选择“测试”，然后对着你的麦克风说话。几秒钟之后，你说的将被播放出"
+"来。"
 
 #. description
-#: ../jobs/power-management.txt.in:234
+#: ../jobs/stress.txt.in:30
 msgid ""
 "Enter and resume from suspend state for 30 iterations. Please note that this "
 "is a lengthy test. Select Test to begin. If your system fails to wake and "
 "must be rebooted, please restart System Testing and mark this test as Failed."
 msgstr ""
+"按“确定”，开始从挂起状态恢复系统，此过程将重复进行30次。请注意,这是一个漫长的测试。选择测试开始。如果你的系统不能唤醒，必须重新启动，请在重启系统测试"
+"后标记这个测试失败。"
 
 #. description
-#: ../jobs/power-management.txt.in:234
+#: ../jobs/stress.txt.in:30
 msgid "Did the system successfully suspend and resume for 30 iterations?"
 msgstr "您的系统是否成功的完成了 30 次挂起和恢复？"
 
 #. description
-#: ../jobs/power-management.txt.in:245
+#: ../jobs/hibernate.txt.in:7
 msgid ""
 "This will check to make sure your system can successfully hibernate (if "
 "supported)."
 msgstr "本测试将确认您的系统能否成功休眠 (如果支持休眠)。"
 
 #. description
-#: ../jobs/power-management.txt.in:245
+#: ../jobs/hibernate.txt.in:7
 msgid ""
 "Select Test to begin. The system will hibernate and should wake itself "
 "within 5 minutes.  If your system does not wake itself after 5 minutes, "
@@ -1901,16 +1895,18 @@ msgid ""
 "fails to resume from hibernate, please restart System Testing and mark this "
 "test as Failed."
 msgstr ""
+"选择“测试”，开始测试过程。该系统要会休眠,应并在5分钟内自动唤醒。如果你的系统在5分钟后没有自动唤醒，请按电源按钮手动唤醒电脑。如果系统未能从休眠状态恢"
+"复,请在重启系统测试后标记这个测试失败。"
 
 #. description
-#: ../jobs/power-management.txt.in:245
+#: ../jobs/hibernate.txt.in:7
 msgid ""
 "Did the system successfully hibernate and did it work properly after waking "
 "up?"
 msgstr "系统是否成功休眠并在被唤醒后正常工作？"
 
 #. description
-#: ../jobs/power-management.txt.in:258
+#: ../jobs/stress.txt.in:17
 msgid ""
 "Enter and resume from hibernate for 30 iterations. Please note that this is "
 "a very lengthy test. Also, if your system does not wake itself after 2 "
@@ -1918,9 +1914,11 @@ msgid ""
 "the system fails to resume from hibernation and must be rebooted, please "
 "restart System Testing and mark this test as Failed."
 msgstr ""
+"按“确定”，开始从休眠状态恢复系统，此过程将重复进行30次。请注意,这是一个漫长的测试。如果你的系统在2分钟后不能自动唤醒，你需要按电源开关启动系统，如果"
+"系统未能从休眠状态恢复并且必须重启，请在重启系统测试后标记这个测试失败。"
 
 #. description
-#: ../jobs/power-management.txt.in:258
+#: ../jobs/stress.txt.in:17
 msgid ""
 "Also, you will need to ensure your system has no power-on or HDD passwords "
 "set, and that grub is set to boot Ubuntu by default if you have a multi-boot "
@@ -1929,27 +1927,27 @@ msgstr ""
 "还有，您需要确认您的系统没有开机密码或硬盘密码。如果您的计算机设置了多重启动，您需要在 grub 中设置 Ubuntu 为缺省启动的操作系统。"
 
 #. description
-#: ../jobs/power-management.txt.in:258
+#: ../jobs/stress.txt.in:17
 msgid "Did the system successfully hibernate and wake 30 times?"
 msgstr "系统是否成功休眠并唤醒 30 次？"
 
 #. description
-#: ../jobs/power-management.txt.in:267
+#: ../jobs/power-management.txt.in:56
 msgid "Run Colin Kings FWTS wakealarm test"
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:276
+#: ../jobs/power-management.txt.in:65
 msgid "Check to see if CONFIG_NO_HZ is set in the kernel"
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:284
+#: ../jobs/suspend.txt.in:194
 msgid "Automatic power management Suspend and Resume test"
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:284
+#: ../jobs/suspend.txt.in:194
 msgid ""
 "Select test and your system will suspend for about 30 - 60 seconds. If your "
 "system does not wake itself up after 60 seconds, please press the power "
@@ -1957,6 +1955,8 @@ msgid ""
 "at all and must be rebooted, restart System Testing after reboot and mark "
 "this test as Failed."
 msgstr ""
+"选择测试，您的系统将会被中止约30至60秒。如果您的系统没有在60秒内自行恢复，请按下电源键来手动恢复系统。如果您的系统仍然不能恢复，那么系统需要重启，此"
+"次系统测试即为失败，请在重新启动系统后重新进行系统测试。"
 
 #. description
 #: ../jobs/qa_regression.txt.in:3
@@ -2113,26 +2113,26 @@ msgid "The following USB controllers were detected:"
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:17
+#: ../jobs/usb.txt.in:24
 msgid ""
 "Plug a USB keyboard into the computer. Then, click on the Test button \\ to "
 "enter text."
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:17
+#: ../jobs/usb.txt.in:24
 msgid "Does the keyboard work?"
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:27
+#: ../jobs/usb.txt.in:34
 msgid ""
 "USB mouse verification procedure: 1.- Plug a USB mouse into the computer 2.- "
 "Perform some single/double/right click operations"
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:39
+#: ../jobs/usb.txt.in:46
 msgid ""
 "Click 'Test' and insert a USB device within 5 seconds. If the test is "
 "successful, you should notice that 'Yes' is selected below. Do not unplug "
@@ -2140,21 +2140,21 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:39
+#: ../jobs/usb.txt.in:46
 msgid ""
 "If no USB device is inserted or the device is not recognized, the test will "
 "fail and 'No' will be selected below."
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:51
+#: ../jobs/usb.txt.in:58
 msgid ""
 "Click 'Test' and remove the USB device you inserted within 5 seconds. If the "
 "test is successful, you should notice that 'Yes' is selected below."
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:51
+#: ../jobs/usb.txt.in:58
 msgid ""
 "If the USB device isn't removed or the removal is not registered, the test "
 "will fail and 'No' will be selected below."
@@ -2182,7 +2182,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:83
+#: ../jobs/usb.txt.in:86
 msgid ""
 "Connect a USB storage device to an external USB slot on this computer. \\ An "
 "icon should appear on the desktop and in the \"Places\" menu at the top of "
@@ -2190,14 +2190,14 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:83
+#: ../jobs/usb.txt.in:86
 msgid ""
 "Confirm that the icon appears, then eject the device. Repeat with each "
 "external \\ USB slot."
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:83
+#: ../jobs/usb.txt.in:86
 msgid "Do all USB slots work with the device?"
 msgstr ""
 
@@ -2218,6 +2218,7 @@ msgid ""
 "Folder. In the name box for the new folder, enter the name Test Folder and "
 "hit Enter."
 msgstr ""
+"选择“测试”，打开该文件浏览器。在菜单栏,点击文件 -> 创建文件夹。在新文件夹的名称位置，输入名字“Test Folder”，并键入回车键。"
 
 #. description
 #: ../jobs/user_apps.txt.in:14
@@ -2231,6 +2232,7 @@ msgid ""
 "Folder and click on Copy.  Right Click on any white area in the window and "
 "click on Paste."
 msgstr ""
+"选择“测试”，打开该文件浏览器。鼠标右击名为“Test Folder(测试文件夹)”的文件夹，选择复制。右键点击窗口中任意白色区域，点击粘贴。"
 
 #. description
 #: ../jobs/user_apps.txt.in:25
@@ -2250,6 +2252,8 @@ msgid ""
 "Select Test to open the File Browser. Click and drag the folder called Test "
 "Data onto the icon called Test Folder. Release the button."
 msgstr ""
+"选择“测试”，打开该文件浏览器。单击并将名为“Test Data(测试数据)”的文件夹拖到名为“Test "
+"Folder(测试文件夹)”的文件夹图标上，释放按钮。"
 
 #. description
 #: ../jobs/user_apps.txt.in:38
@@ -2270,6 +2274,7 @@ msgid ""
 "click Create Document -> Empty File. Enter the name Test File 1 in the name "
 "box and hit Enter."
 msgstr ""
+"选择“测试”，打开该文件浏览器。用鼠标在白色区域右击并选择创建文档 -> 空文件。在文件名称框输入名字“Test File 1”并按回车。"
 
 #. description
 #: ../jobs/user_apps.txt.in:51
@@ -2286,7 +2291,7 @@ msgstr "关闭文件浏览器。"
 msgid ""
 "Select Test to open the File Browser. Right click on the file called Test "
 "File 1 and click Copy. Right click in the white space and click Paste."
-msgstr ""
+msgstr "选择“测试”，打开文件浏览器。右击名为“Test File 1”的文件，然后单击复制。右键单击空白区域，然后单击粘贴。"
 
 #. description
 #: ../jobs/user_apps.txt.in:62
@@ -2305,7 +2310,7 @@ msgstr "现在是否有了个名为 Test File  的文件？"
 msgid ""
 "Select Test to open the File Browser. Click and drag the file called Test "
 "File 2 onto the icon for the folder called Test Data. Release the button."
-msgstr ""
+msgstr "选择“测试”，打开文件浏览器。单击并拖动“Test File 2”到“Test Data”文件夹。松开按钮。"
 
 #. description
 #: ../jobs/user_apps.txt.in:75
@@ -2323,7 +2328,7 @@ msgstr "Test File 2 文件是否成功地移进了 Test Data 文件夹？"
 msgid ""
 "Select Test to open the File Browser. Right click on the file called Test "
 "File 1 and click on Move To Trash."
-msgstr ""
+msgstr "选择“测试”，打开文件浏览器。右击文件“Test File 1”，然后选择“移动到回收站”。"
 
 #. description
 #: ../jobs/user_apps.txt.in:88
@@ -2335,7 +2340,7 @@ msgstr "Test File 1 文件是否不见了？"
 msgid ""
 "Select Test to open the File Browser. Right click on the folder called Test "
 "Folder and click on Move To Trash."
-msgstr ""
+msgstr "选择“测试”，打开文件浏览器。右击文件夹”Test Folder“ ，选择“移动到回收站”。"
 
 #. description
 #: ../jobs/user_apps.txt.in:99
@@ -2355,7 +2360,7 @@ msgstr "常用文档类型测试"
 #. description
 #: ../jobs/user_apps.txt.in:178
 msgid "Select Test to launch Firefox and view the test web page."
-msgstr ""
+msgstr "选择“测试”，打开 Firefox 浏览器，浏览测试网页。"
 
 #. description
 #: ../jobs/user_apps.txt.in:178
@@ -2367,7 +2372,7 @@ msgstr "Ubuntu 测试页是否正确载入？"
 msgid ""
 "Select Test to open Firefox with the Java test page, and follow the "
 "instructions there."
-msgstr ""
+msgstr "选择“测试”，用 Firefox 打开含有 Java 测试脚本的网页，按照上面的说明操作。"
 
 #. description
 #: ../jobs/user_apps.txt.in:188
@@ -2377,7 +2382,7 @@ msgstr "显示小程序了吗？"
 #. description
 #: ../jobs/user_apps.txt.in:198
 msgid "Select Test to launch Firefox and view a sample Flash test."
-msgstr ""
+msgstr "选择“测试”，打开 Firefox 浏览 Flash 动画样本。"
 
 #. description
 #: ../jobs/user_apps.txt.in:198
@@ -2387,7 +2392,7 @@ msgstr "看到文本了吗？"
 #. description
 #: ../jobs/user_apps.txt.in:208
 msgid "Select Test to launch Firefox and view a short flash video."
-msgstr ""
+msgstr "选择“测试”，启动 Firefox，观看一段短 flash 视频。"
 
 #. description
 #: ../jobs/user_apps.txt.in:208
@@ -2397,7 +2402,7 @@ msgstr "视频是否正确播放？"
 #. description
 #: ../jobs/user_apps.txt.in:218
 msgid "Select Test to launch Firefox with a sample video."
-msgstr ""
+msgstr "选择“测试”，启动 Firefox，浏览视频样本。"
 
 #. description
 #: ../jobs/user_apps.txt.in:218
@@ -2430,7 +2435,7 @@ msgid ""
 "Select Test to launch Empathy, then configure it to connect to the following "
 "service. Once you have completed the test, please quit Empathy to continue "
 "here."
-msgstr ""
+msgstr "选择“测试”，打开 Empathy，然后配置，将其连接到服务器。当您完成测试后，请退出 Empathy，开始后面的测试。"
 
 #. description
 #: ../jobs/user_apps.txt.in:271
@@ -2441,6 +2446,14 @@ msgstr "MSN"
 #: ../jobs/user_apps.txt.in:271
 msgid "Were you able to connect correctly and send/receive messages?"
 msgstr "您是否能够正确地连接，并发送/接收消息？"
+
+#: ../checkbox/application.py:66
+msgid "Usage: checkbox [OPTIONS]"
+msgstr "用法： checkbox [选项]"
+
+#: ../checkbox/application.py:77
+msgid "One of debug, info, warning, error or critical."
+msgstr "调试，信息，警告，错误或者致命错误之一。"
 
 #: ../checkbox/application.py:82
 msgid "Configuration override parameters."
@@ -2489,19 +2502,19 @@ msgstr "浮点异常"
 
 #: ../checkbox/lib/signal.py:29
 msgid "Kill signal"
-msgstr "Kill 信号"
+msgstr "杀死信号"
 
 #: ../checkbox/lib/signal.py:30
 msgid "Invalid memory reference"
-msgstr "无效内存引用"
+msgstr "无效内存调用"
 
 #: ../checkbox/lib/signal.py:31
 msgid "Broken pipe: write to pipe with no readers"
-msgstr "管道中断：写向管道时没有读出者"
+msgstr "管道中断：写向管道时没有读入者"
 
 #: ../checkbox/lib/signal.py:32
 msgid "Timer signal from alarm(2)"
-msgstr "来自 alarm(2) 的定时器信号"
+msgstr "来自 alarm(2) 的时间信号"
 
 #: ../checkbox/lib/signal.py:33
 msgid "Termination signal"
@@ -2588,11 +2601,11 @@ msgstr "重新测试"
 msgid "hardware database"
 msgstr ""
 
-#: ../checkbox_gtk/gtk_interface.py:533
+#: ../checkbox_gtk/gtk_interface.py:544
 msgid "Info"
 msgstr "信息"
 
-#: ../checkbox_gtk/gtk_interface.py:552
+#: ../checkbox_gtk/gtk_interface.py:563
 msgid "Error"
 msgstr "错误"
 
@@ -2636,6 +2649,10 @@ msgstr "是不是正在进行软件升级？错误：%s"
 msgid "Successfully finished testing!"
 msgstr "成功完成测试！"
 
+#: ../plugins/gather_prompt.py:35
+msgid "Gathering information from your system..."
+msgstr "正在从您的系统上收集信息..."
+
 #: ../plugins/intro_prompt.py:43
 msgid ""
 "Welcome to System Testing!\n"
@@ -2648,12 +2665,12 @@ msgstr ""
 "\n"
 "Checkbox 提供一系列测试来验证您的系统工作正常。当您完成这些测试后，可以察看对系统的总结报告。"
 
-#: ../plugins/launchpad_exchange.py:118
+#: ../plugins/launchpad_exchange.py:136
 #, python-format
 msgid "Failed to process form: %s"
 msgstr "处理表单失败：%s"
 
-#: ../plugins/launchpad_exchange.py:141
+#: ../plugins/launchpad_exchange.py:147
 #, python-format
 msgid ""
 "Failed to contact server. Please try\n"
@@ -2716,13 +2733,13 @@ msgstr "正在运行 %s..."
 #. Get results
 #: ../plugins/suites_prompt.py:105
 msgid "Select the suites to test"
-msgstr "选择测试套件"
+msgstr "选择套件来测试"
 
 #: ../scripts/keyboard_test:21
 msgid "Enter text:\n"
 msgstr "输入文本：\n"
 
-#: ../scripts/keyboard_test:40
+#: ../scripts/keyboard_test:41
 msgid "Type Text"
 msgstr "键入文本"
 

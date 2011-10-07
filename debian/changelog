@@ -1,4 +1,118 @@
+checkbox (0.13) oneiric; urgency=low
+
+  * Incremented version 
+  
+  [Jeff Lane]
+  * Merged my changes with the checkbox_ui_rewrite changes
+  * Went through all the job files and:
+    * Updated descriptions to match Unity UI structure
+    * Added descriptions where necessary
+    * Added further details to some descriptions
+    * Moved some jobs to more appropriate files
+    * Fixed job names in older job files to match new naming scheme 
+      (suite/testname)
+    * Added jobs to local.txt to ensure all job files are now parsed
+      (this allows easier addition of existing tests to whitelists)
+    * Changed remaining manual job descriptions to match the new format
+
+ -- Jeff Lane <jeff@ubuntu.com>  Thu, 06 Oct 2011 17:01:29 -0400
+
+checkbox (0.12.8) oneiric; urgency=low
+
+  New upstream release (LP: #862579):
+
+  [Brendan Donegan]
+  * Remove test for FTP connection from network_check script (LP: #854222)
+  * Update a parameter in usb_test to have it run faster.
+  * Remove record_playback_after_suspend from Ubuntu Friendly whitelist (LP: #855540)
+  * Fix minor typo in multi-monitor friendly resolution_test script which caused 
+    minimum_resolution test to fail (LP: #855599)
+  * Remove storage_devices_test from Ubuntu Friendly whitelist since bonnie++  (which it uses) is not installed by default (LP: #855841)
+  * Changed description and name to reflect Ubuntu Friendly branding. Now when a user searches for Ubuntu Friendly in the lens, Checkbox will appear (LP: #852036)
+  * Reset the selections at the test suite prompt if No is selected at the recover prompt (LP: #861208)
+  * Save the connection name(s) instead of the interface name so that they can be reconnected to properly after the wireless before/after suspend tests have completed (LP: #861502)
+  * Make connect_wireless use the UUID of the connection instead of the name for greater reliability (LP: #862190)
+
+  [Daniel Manrique]
+  * Restored _recover attribute, re-enabling welcome and test selection
+    screens (LP: #852204)
+  * Remove memory/test from the Ubuntu Friendly whitelist (LP: #853799)
+  * Use diff instead of grep, better comparing of empty files (LP: #852014)
+  * Apport integration: new mandatory "tag" value in ApportOptions (LP: #852201)
+  * Add warning prior to starting the tests (LP: #855328)
+  * Apport integration: Fix instantiation of Gtk.RadioButton, needed due 
+    to PyGI related API changes (LP: #805679)
+  * Remove ping -R parameter that apparently caused ICMP packets to be dropped
+    by some routers (LP: #861404)
+
+  [ Evan Broder ]
+  * Replace resolution_test with an implementation which uses GdkScreen to
+    be multimonitor-aware (LP: #632987)
+
+  [Jeff Lane]
+  * Fix names of optical drive tests and remove a non-existing test from the
+    whitelist (LP: #854808) 
+  * Fix wireless_*_suspend jobs so they recreate iface file instead of append
+    each time (LP: #855845)
+    (LP: #852201)
+  * Clarify better the intend of the is_laptop question (LP: #861844)
+  * Fixed dependencies for tests that depend on suspend/suspend_advanced 
+    (LP: #860651)
+
+  [Tim Chen]
+  * Fix cpu_scaling_test (LP: #811177)
+ 
+  [Ara Pulido]
+  * Avoid connect_wireless messing with AP with similar names (LP: #861538)
+  * Remove bluetooth/file-transfer from the list of tests to run, since due to
+    bug 834348 it always fails.
+
+  [Marc Tardif]
+  * Added support for wildcards when verifying the transport certificate.
+  * Applying depends across suites (LP: #861218)
+
+ -- Daniel Manrique <daniel.manrique@canonical.com>  Thu, 29 Sep 2011 13:12:01 -0400
+
+checkbox (0.12.7) oneiric; urgency=low
+
+  New upstream release (LP: #850395):
+
+  [Brendan Donegan]
+  * Redirecting stderr to pipe to fix the gconf_resource script (LP: #832321)
+  * Clear jobs directory when user selects No to recover question (LP: #836623)
+
+  [Daniel Manrique]
+  * checkbox/job.py: Guard against bogus timeout values (LP: #827859)
+  * More explicit handling of string decoding/encoding, avoids problems with
+    non-ascii characters (LP: #833747)
+  * Changed architecture from all to any for checkbox base, to build
+    architecture-specific binaries (LP: #833696)
+
+  [Jeff Lane]
+  * Several corrections necessary due to test name changes or typos found in
+    job files
+
+  [Marc Tardif]
+  * Connecting hyper text widgets only once (LP: #827904)
+  * Detecting MMC readers as OTHER instead of DISK (LP: #822948)
+  * Validating the hostname in the SSL certificate (LP: #625076)
+  * Validating the submission.xml (LP: #838123)
+
+ -- Daniel Manrique <daniel.manrique@canonical.com>  Fri, 14 Sep 2011 17:15:26 -0400
+
+checkbox (0.12.6) oneiric; urgency=low
+
+  New upstream release (LP: #841983):
+
+  [ Daniel Manrique ]
+  * Work around PyGTK API changes that kept checkbox from starting up
+    (LP: #839675).
+
+ -- Daniel Manrique <daniel.manrique@canonical.com>  Mon, 05 Sep 2011 12:47:58 -0400
+
 checkbox (0.12.5) oneiric; urgency=low
+
+  New upstream release (LP: #838745):
 
   [Ara Pulido]
   * Created a "suspend" suite and renamed relevant tests.
@@ -14,6 +128,8 @@ checkbox (0.12.5) oneiric; urgency=low
   * Quote command to obtain bluetooth address, to avoid hanging if 
     a device is not present (LP: #836756).
   * Added BLUETOOTH category to udev parser.
+  * Removed some tests from default whitelist.
+  * Fixed dependencies for keys/sleep.
   
   [Jeff Lane]
   * Added new USB storage transfer test
@@ -22,7 +138,7 @@ checkbox (0.12.5) oneiric; urgency=low
   [Marc Tardif]
   * Added WIRELESS category to udev parser.
 
- -- Daniel Manrique <daniel.manrique@canonical.com>  Mon, 29 Aug 2011 11:00:40 -0400
+ -- Ara Pulido <ara@ubuntu.com>  Thu, 01 Sep 2011 12:23:07 +0100
 
 checkbox (0.12.4) oneiric; urgency=low
 

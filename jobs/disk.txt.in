@@ -14,7 +14,7 @@ command:
  requires: device.path == "$path" and package.name == 'linux'
  user: root
  command: hdparm -tT /dev/`ls /sys$path/block` | sed 's/:.*= */ = /' | grep -v "^$"
- description: Benchmark for $path 
+ description: This test runs hdparm timing tests as a benchmark for $path 
  EOF
 
 plugin: local
@@ -29,7 +29,8 @@ command:
  plugin: shell
  name: disk/smart_`ls /sys$path/block`
  requires: device.path == "$path"
- description: SMART test for $product
+ description: 
+  This tests the SMART capabilities for $product (Note that this test will not work against removable media (USB, Firewire) and hardware RAID)
  user: root
  command: disk_smart -b /dev/`ls /sys$path/block` -s 130
  EOF
@@ -42,9 +43,9 @@ _description: Maximum disk space used during a default installation test
 command:
  cat <<'EOF' | run_templates -t -s 'udev_resource | filter_templates -w "category=DISK"'
  plugin: shell
- name: max_diskspace_used_`ls /sys$path/block`
+ name: disk/max_diskspace_used_`ls /sys$path/block`
  requires: device.path == "$path"
- description: Max disk space test for $product
+ description: Maximum disk space test for $product
  user: root
  command: max_diskspace_used `ls /sys$path/block`
  EOF
@@ -61,7 +62,7 @@ command:
  requires:
   device.path == "$path"
   package.name == 'linux'
- description: Disk performance for $product
+ description: Disk performance test for $product
  user: root
  command: disk_read_performance_test `ls /sys$path/block`
  EOF
@@ -79,6 +80,6 @@ command:
  requires:
   device.path == "$path"
   package.name == 'linux'
- description: I/O stress test for $product
+ description: Disk I/O stress test for $product
  command: storage_test `ls /sys$path/block`
  EOF
