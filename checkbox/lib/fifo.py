@@ -35,7 +35,6 @@ class FifoBase(object):
         self.close()
 
     def close(self):
-        self.file.flush()
         self.file.close()
 
     def wait_for(self, operation):

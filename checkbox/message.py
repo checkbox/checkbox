@@ -22,7 +22,7 @@ import itertools
 import posixpath
 
 from checkbox.contrib import bpickle
-
+from checkbox.lib.safe import safe_close
 
 HELD = "h"
 BROKEN = "b"
@@ -215,10 +215,7 @@ class MessageStore(object):
         try:
             return file.read()
         finally:
-            file.flush()
-            os.fsync(file.fileno())
-
-            file.close()
+            safe_close(file)
 
     def _get_flags(self, path):
         basename = posixpath.basename(path)
@@ -257,10 +254,8 @@ class MessageStore(object):
         file = open(filename + ".tmp", "w")
         file.write(message_data)
         
-        file.flush()
-        os.fsync(file.fileno())
+        safe_close(file)
 
-        file.close()
         os.rename(filename + ".tmp", filename)
 
         # For now we use the inode as the message id, as it will work
