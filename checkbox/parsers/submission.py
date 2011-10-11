@@ -16,430 +16,521 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-import re
-
-import logging
-
-from datetime import (
-    datetime,
-    timedelta,
-    )
-from dateutil import tz
-
-from checkbox.parsers.device import DeviceResult
-from checkbox.parsers.udev import UdevParser
-from checkbox.parsers.utils import implement_from_dict
-
 try:
     import xml.etree.cElementTree as etree
 except ImportError:
     import cElementTree as etree
 
+from StringIO import StringIO
+from logging import getLogger
+from pkg_resources import resource_string
 
-_time_regex = re.compile(r"""
-    ^(?P<year>\d\d\d\d)-(?P<month>\d\d)-(?P<day>\d\d)
-    T(?P<hour>\d\d):(?P<minute>\d\d):(?P<second>\d\d)
-    (?:\.(?P<second_fraction>\d{0,6}))?
-    (?P<tz>
-        (?:(?P<tz_sign>[-+])(?P<tz_hour>\d\d):(?P<tz_minute>\d\d))
-        | Z)?$
-    """,
-    re.VERBOSE)
+from checkbox.lib.conversion import string_to_datetime
 
-_xml_illegal_regex = re.compile(
-    u"([\u0000-\u0008\u000b-\u000c\u000e-\u001f\ufffe-\uffff])"
-    + u"|([%s-%s][^%s-%s])|([^%s-%s][%s-%s])|([%s-%s]$)|(^[%s-%s])" % (
-    unichr(0xd800),unichr(0xdbff),unichr(0xdc00),unichr(0xdfff),
-    unichr(0xd800),unichr(0xdbff),unichr(0xdc00),unichr(0xdfff),
-    unichr(0xd800),unichr(0xdbff),unichr(0xdc00),unichr(0xdfff)))
-
-
-class HALDevice(object):
-
-    def __init__(self, id, udi, properties):
-        self.id = id
-        self.udi = udi
-        self.properties = properties
+from checkbox import parsers
+from checkbox.dispatcher import DispatcherQueue
+from checkbox.parsers.cpuinfo import CpuinfoParser
+from checkbox.parsers.cputable import CputableParser
+from checkbox.parsers.deferred import DeferredParser
+from checkbox.parsers.dmidecode import DmidecodeParser
+from checkbox.parsers.meminfo import MeminfoParser
+from checkbox.parsers.udevadm import UdevadmParser
+from checkbox.job import (FAIL, PASS, UNINITIATED, UNRESOLVED,
+    UNSUPPORTED, UNTESTED)
 
 
-class SubmissionStream(object):
+class SubmissionResult:
 
-    default_size = 4096
+    def __init__(self, test_run_factory, **kwargs):
+        self.test_run_factory = test_run_factory
+        self.test_run_kwargs = kwargs
+        self.dispatcher = DispatcherQueue()
 
-    def __init__(self, stream):
-        self.stream = stream
-        self._buffer = ""
-        self._buffers = []
+        # Register handlers to incrementally add information
+        register = self.dispatcher.registerHandler
+        register(("cpu", "architecture",), self.addCpuArchitecture)
+        register(("identifier",), self.addIdentifier)
+        register(("test_run", "attachment",), self.addAttachment)
+        register(("test_run", "device",), self.addDeviceState)
+        register(("test_run", "distribution",), self.setDistribution)
+        register(("test_run", "package_version",), self.addPackageVersion)
+        register(("test_run", "test_result",), self.addTestResult)
 
-    def read(self, size=None):
-        if size is None:
-            size = self.default_size
+        # Register handlers to set information once
+        register(("architecture",), self.setArchitecture, count=1)
+        register(
+            ("cpuinfo", "machine", "cpuinfo_result",),
+            self.setCpuinfo, count=1)
+        register(
+            ("meminfo", "meminfo_result",),
+            self.setMeminfo, count=1)
+        register(
+            ("project", "series",),
+            self.setTestRun, count=1)
+        register(
+            ("test_run", "architecture",),
+            self.setArchitectureState, count=1)
+        register(
+            ("test_run", "memory",),
+            self.setMemoryState, count=1)
+        register(
+            ("test_run", "processor",),
+            self.setProcessorState, count=1)
+        register(
+            ("udevadm", "bits", "udevadm_result",),
+            self.setUdevadm, count=1)
 
-        info_start_regex = re.compile("^<info .*>$")
-        info_end_regex = re.compile("^</info>$")
+        # Publish events passed as keyword arguments
+        if "project" in kwargs:
+            self.dispatcher.publishEvent("project", kwargs.pop("project"))
+            self.dispatcher.publishEvent("series", kwargs.pop("series", None))
 
-        in_info = False
-        length = sum(len(buffer) for buffer in self._buffers)
+    def addAttachment(self, test_run, attachment):
+        test_run.addAttachment(**attachment)
 
-        while length < size:
-            try:
-                buffer = self.stream.next()
-            except StopIteration:
-                break
+    def addContext(self, text, command=None):
+        if text.strip() == "Command not found.":
+            return
 
-            if not in_info:
-                if info_start_regex.match(buffer):
-                    in_info = True
-                    self._buffer += "".join(self._buffers)
-                    self._buffers = [buffer]
-                else:
-                    length += len(buffer)
-                    self._buffers.append(buffer)
-            else:
-                self._buffers.append(buffer)
-                if info_end_regex.match(buffer):
-                    in_info = False
+        self.dispatcher.publishEvent(
+            "attachment", {"name": command, "content": text })
 
-                    buffer = "".join(self._buffers)
-                    self._buffers = []
+        parsers = {
+            "cat /proc/cpuinfo": self.parseCpuinfo,
+            "cat /proc/meminfo": self.parseMeminfo,
+            "dmidecode": DmidecodeParser,
+            "udevadm info --export-db": self.parseUdevadm,
+            }
+        parser = parsers.get(command)
+        if parser:
+            if not isinstance(text, unicode):
+                text = text.decode("utf-8")
+            stream = StringIO(text)
+            p = parser(stream)
+            p.run(self)
 
-                    if not _xml_illegal_regex.search(buffer):
-                        length += len(buffer)
-                        self._buffer += buffer
+    def addCpu(self, cpu):
+        self.dispatcher.publishEvent("cpu", cpu)
 
-        if self._buffers:
-            self._buffer += "".join(self._buffers)
-            self._buffers = []
+    def addCpuArchitecture(self, cpu, architecture):
+        if cpu["debian_name"] == architecture:
+            self.dispatcher.publishEvent("machine", cpu["gnu_name"])
+            self.dispatcher.publishEvent("bits", cpu["bits"])
 
-        if not self._buffer:
-            return None
+    def addDevice(self, device):
+        self.dispatcher.publishEvent("device", device)
 
-        data = self._buffer[:size]
-        self._buffers = [self._buffer[size:]]
-        self._buffer = ""
+    def addDeviceState(self, test_run, device):
+        test_run.addDeviceState(
+            bus_name=device.bus, category_name=device.category,
+            product_name=device.product, vendor_name=device.vendor,
+            product_id=device.product_id, vendor_id=device.vendor_id,
+            subproduct_id=device.subproduct_id,
+            subvendor_id=device.subvendor_id,
+            driver_name=device.driver, path=device.path)
 
-        return data
+    def addDmiDevice(self, device):
+        if device.serial:
+            self.dispatcher.publishEvent("identifier", device.serial)
+
+        if device.category in ("BOARD", "SYSTEM") \
+           and device.vendor != device.product \
+           and device.product is not None:
+            self.dispatcher.publishEvent("model", device.product)
+            self.dispatcher.publishEvent("make", device.vendor)
+            self.dispatcher.publishEvent("version", device.version)
+
+    def addIdentifier(self, identifier):
+        try:
+            self.identifiers.append(identifier)
+        except AttributeError:
+            self.identifiers = [identifier]
+            self.dispatcher.publishEvent("identifiers", self.identifiers)
+
+    def addPackage(self, package):
+        package_version = {
+            "name": package["name"],
+            "version": package["properties"]["version"],
+            }
+        self.dispatcher.publishEvent("package_version", package_version)
+
+    def addPackageVersion(self, test_run, package_version):
+        test_run.addPackageVersion(**package_version)
+
+    def addQuestion(self, question):
+        answer_to_status = {
+            "fail": FAIL,
+            "no": FAIL,
+            "pass": PASS,
+            "skip": UNTESTED,
+            "uninitiated": UNINITIATED,
+            "unresolved": UNRESOLVED,
+            "unsupported": UNSUPPORTED,
+            "untested": UNTESTED,
+            "yes": PASS,
+            }
+
+        test_result = dict(
+            name=question["name"],
+            output=question["comment"],
+            status=answer_to_status[question["answer"]["value"]],
+            )
+        test_result.update(self.test_run_kwargs)
+        self.dispatcher.publishEvent("test_result", test_result)
+
+    def addTestResult(self, test_run, test_result):
+        test_run.addTestResult(**test_result)
+
+    def addSummary(self, name, value):
+        if name == "architecture":
+            self.dispatcher.publishEvent("architecture", value)
+        elif name == "distribution":
+            self.dispatcher.publishEvent("project", value)
+        elif name == "distroseries":
+            self.dispatcher.publishEvent("series", value)
+
+    def parseCpuinfo(self, cpuinfo):
+        self.dispatcher.publishEvent("cpuinfo", cpuinfo)
+        return DeferredParser(self.dispatcher, "cpuinfo_result")
+
+    def parseMeminfo(self, meminfo):
+        self.dispatcher.publishEvent("meminfo", meminfo)
+        return DeferredParser(self.dispatcher, "meminfo_result")
+
+    def parseUdevadm(self, udevadm):
+        self.dispatcher.publishEvent("udevadm", udevadm)
+        return DeferredParser(self.dispatcher, "udevadm_result")
+
+    def setArchitecture(self, architecture):
+        string = resource_string(parsers.__name__, "cputable")
+        stream = StringIO(string.decode("utf-8"))
+        parser = CputableParser(stream)
+        parser.run(self)
+
+    def setArchitectureState(self, test_run, architecture):
+        test_run.setArchitectureState(architecture)
+
+    def setCpuinfo(self, cpuinfo, machine, cpuinfo_result):
+        parser = CpuinfoParser(cpuinfo, machine)
+        parser.run(cpuinfo_result)
+
+    def setMeminfo(self, meminfo, meminfo_result):
+        parser = MeminfoParser(meminfo)
+        parser.run(meminfo_result)
+
+    def setDistribution(self, test_run, distribution):
+        test_run.setDistribution(**distribution)
+
+    def setLSBRelease(self, lsb_release):
+        self.dispatcher.publishEvent("distribution", lsb_release)
+
+    def setMemory(self, memory):
+        self.dispatcher.publishEvent("memory", memory)
+
+    def setMemoryState(self, test_run, memory):
+        test_run.setMemoryState(**memory)
+
+    def setProcessor(self, processor):
+        self.dispatcher.publishEvent("processor", processor)
+
+    def setProcessorState(self, test_run, processor):
+        test_run.setProcessorState(
+            platform_name=processor["platform"],
+            make=processor["type"], model=processor["model"],
+            model_number=processor["model_number"],
+            model_version=processor["model_version"],
+            model_revision=processor["model_revision"],
+            cache=processor["cache"], other=processor["other"],
+            bogomips=processor["bogomips"], speed=processor["speed"],
+            count=processor["count"])
+
+    def setTestRun(self, project, series):
+        test_run = self.test_run_factory(
+            **self.test_run_kwargs)
+        self.dispatcher.publishEvent("test_run", test_run)
+
+    def setUdevadm(self, udevadm, bits, udevadm_result):
+        parser = UdevadmParser(udevadm, bits)
+        parser.run(udevadm_result)
 
 
-class SubmissionParser(object):
+class SubmissionParser:
 
-    default_name = "unknown"
-
-    def __init__(self, stream, name=None):
-        self.stream = SubmissionStream(stream)
-        self.name = name or self.default_name
+    def __init__(self, file):
+        self.file = file
+        self.logger = getLogger()
 
     def _getClient(self, node):
-        return "_".join([node.get('name'), node.get('version')])
+        """Return a dictionary with the name and version of the client."""
+        return {
+            "name": node.get("name"),
+            "version": node.get("version"),
+            }
 
     def _getProperty(self, node):
-        """Parse a <property> node.
-
-        :return: (name, (value, type)) of a property.
-        """
-        return (node.get('name'), self._getValueAttribute(node))
+        """Return the (name, value) of a property."""
+        return (node.get("name"), self._getValueAsType(node))
 
     def _getProperties(self, node):
-        """Parse <property> sub-nodes of node.
-
-        :return: A dictionary, where each key is the name of a property;
-                 the values are the tuples (value, type) of a property.
-        """
+        """Return a dictionary of properties."""
         properties = {}
         for child in node.getchildren():
+            assert child.tag == "property", \
+                "Unexpected tag <%s>, expected <property>" % child.tag
             name, value = self._getProperty(child)
-            if name in properties:
-                raise ValueError(
-                    '<property name="%s"> found more than once in <%s>'
-                    % (name, node.tag))
             properties[name] = value
 
         return properties
 
-    def _getValueAttribute(self, node):
-        """Return (value, type) of a <property> or <value> node."""
-        type_ = node.get('type')
-        if type_ in ('dbus.Boolean', 'bool'):
-            value = node.text.strip() == 'True'
-
-        elif type_ in ('str', 'dbus.String', 'dbus.UTF8String'):
+    def _getValueAsType(self, node):
+        """Return value of a node as the type attribute."""
+        type_ = node.get("type")
+        if type_ in ("bool",):
             value = node.text.strip()
-
-        elif type_ in ('dbus.Byte', 'dbus.Int16', 'dbus.Int32', 'dbus.Int64',
-                       'dbus.UInt16', 'dbus.UInt32', 'dbus.UInt64', 'int',
-                       'long'):
-            value = int(node.text.strip())
-
-        elif type_ in ('dbus.Double', 'float'):
-            value = float(node.text.strip())
-
-        elif type_ in ('dbus.Array', 'list'):
-            value = [self._getValueAttribute(child)
-                for child in node.getchildren()]
-
-        elif type_ in ('dbus.Dictionary', 'dict'):
-            value = dict((child.get('name'), self._getValueAttribute(child))
+            assert value in ("True", "False",), \
+                "Unexpected boolean value '%s' in <%s>" % (value, node.tag)
+            return value == "True"
+        elif type_ in ("str",):
+            return unicode(node.text.strip())
+        elif type_ in ("int", "long",):
+            return int(node.text.strip())
+        elif type_ in ("float",):
+            return float(node.text.strip())
+        elif type_ in ("list",):
+            return list(self._getValueAsType(child)
                 for child in node.getchildren())
-
+        elif type_ in ("dict",):
+            return dict((child.get("name"), self._getValueAsType(child))
+                for child in node.getchildren())
         else:
-            # This should not happen.
             raise AssertionError(
-                'Unexpected <property> or <value> type: %s' % type_)
+                "Unexpected type '%s' in <%s>" % (type_, node.tag))
 
-        return value
-
-    def _getValueAttributeAsBoolean(self, node):
+    def _getValueAsBoolean(self, node):
         """Return the value of the attribute "value" as a boolean."""
-        return node.attrib['value'] == "True"
+        value = node.attrib["value"]
+        assert value in ("True", "False",), \
+            "Unexpected boolean value '%s' in tag <%s>" % (value, node.tag)
+        return value == "True"
 
-    def _getValueAttributeAsString(self, node):
+    def _getValueAsDatetime(self, node):
+        """Return the value of the attribute "value" as a datetime."""
+        string = node.attrib["value"]
+        return string_to_datetime(string)
+
+    def _getValueAsString(self, node):
         """Return the value of the attribute "value"."""
-        return node.attrib['value']
+        return unicode(node.attrib["value"])
 
-    def _getValueAttributeAsDateTime(self, node):
-        """Convert a "value" attribute into a datetime object."""
-        time_text = node.get('value')
-
-        # we cannot use time.strptime: this function accepts neither fractions
-        # of a second nor a time zone given e.g. as '+02:30'.
-        match = _time_regex.search(time_text)
-
-        if match is None:
-            raise ValueError(
-                'Timestamp with unreasonable value: %s' % time_text)
-
-        time_parts = match.groupdict()
-
-        year = int(time_parts['year'])
-        month = int(time_parts['month'])
-        day = int(time_parts['day'])
-        hour = int(time_parts['hour'])
-        minute = int(time_parts['minute'])
-        second = int(time_parts['second'])
-        second_fraction = time_parts['second_fraction']
-        if second_fraction is not None:
-            milliseconds = second_fraction + '0' * (6 - len(second_fraction))
-            milliseconds = int(milliseconds)
-        else:
-            milliseconds = 0
-
-        if second > 59:
-            second = 59
-            milliseconds = 999999
-
-        timestamp = datetime(year, month, day, hour, minute, second,
-                             milliseconds, tzinfo=tz.tzutc())
-
-        tz_sign = time_parts['tz_sign']
-        tz_hour = time_parts['tz_hour']
-        tz_minute = time_parts['tz_minute']
-        if tz_sign in ('-', '+'):
-            delta = timedelta(hours=int(tz_hour), minutes=int(tz_minute))
-            if tz_sign == '-':
-                timestamp = timestamp + delta
+    def parseContext(self, result, node):
+        """Parse the <context> part of a submission."""
+        duplicates = set()
+        for child in node.getchildren():
+            assert child.tag == "info", \
+                "Unexpected tag <%s>, expected <info>" % child.tag
+            command = child.get("command")
+            if command not in duplicates:
+                duplicates.add(command)
+                result.addContext(child.text, command)
             else:
-                timestamp = timestamp - delta
+                self.logger.debug(
+                    "Duplicate command found in tag <info>: %s" % command)
 
-        return timestamp
-
-    def _parseHAL(self, result, node):
-        result.startDevices()
-        for child in node.getchildren():
-            id = int(child.get('id'))
-            udi = child.get('udi')
-            properties = self._getProperties(child)
-            device = HALDevice(id, udi, properties)
-            result.addDevice(device)
-
-        result.endDevices()
-
-    def _parseInfo(self, result, node):
-        command = node.attrib['command']
-        if command == "udevadm info --export-db":
-            self._parseUdev(result, node)
-
-        result.addInfo(command, node.text)
-
-    def _parseUdev(self, result, node):
-        result.startDevices()
-
-        stream = StringIO(node.text)
-        udev = UdevParser(stream)
-        udev.run(result)
-
-        result.endDevices()
-
-    def _parseProcessors(self, result, node):
-        result.startProcessors()
-
-        for child in node.getchildren():
-            id = int(child.get('id'))
-            name = child.get('name')
-            properties = self._getProperties(child)
-            result.addProcessor(id, name, properties)
-
-        result.endProcessors()
-
-    def _parseRoot(self, result, node):
+    def parseHardware(self, result, node):
+        """Parse the <hardware> section of a submission."""
         parsers = {
-            "summary": self._parseSummary,
-            "hardware": self._parseHardware,
-            "software": self._parseSoftware,
-            "questions": self._parseQuestions,
-            "context": self._parseContext,
+            "dmi": DmidecodeParser,
+            "processors": self.parseProcessors,
+            "udev": result.parseUdevadm,
             }
 
         for child in node.getchildren():
-            parser = parsers.get(child.tag, self._parseNone)
-            parser(result, child)
+            parser = parsers.get(child.tag)
+            if parser:
+                if child.getchildren():
+                    parser(result, child)
+                else:
+                    text = child.text
+                    if not isinstance(text, unicode):
+                        text = text.decode("utf-8")
+                    stream = StringIO(text)
+                    p = parser(stream)
+                    p.run(result)
+            else:
+                self.logger.debug(
+                    "Unsupported tag <%s> in <hardware>" % child.tag)
 
-    def _parseSummary(self, result, node):
-        parsers = {
-            'live_cd': self._getValueAttributeAsBoolean,
-            'system_id': self._getValueAttributeAsString,
-            'distribution': self._getValueAttributeAsString,
-            'distroseries': self._getValueAttributeAsString,
-            'architecture': self._getValueAttributeAsString,
-            'private': self._getValueAttributeAsBoolean,
-            'contactable': self._getValueAttributeAsBoolean,
-            'date_created': self._getValueAttributeAsDateTime,
-            'client': self._getClient,
-            'kernel-release': self._getValueAttributeAsString,
-            }
-
-        for child in node.getchildren():
-            parser = parsers.get(child.tag, self._parseNone)
-            value = parser(child)
-            result.addSummary(child.tag, value)
-
-    def _parseHardware(self, result, node):
-        parsers = {
-            'hal': self._parseHAL,
-            'processors': self._parseProcessors,
-            'udev': self._parseUdev,
-            }
-
-        for child in node.getchildren():
-            parser = parsers.get(child.tag, self._parseNone)
-            parser(result, child)
-
-    def _parseLSBRelease(self, result, node):
+    def parseLSBRelease(self, result, node):
+        """Parse the <lsbrelease> part of a submission."""
         properties = self._getProperties(node)
-        result.setDistribution(**properties)
+        result.setLSBRelease(properties)
 
-    def _parsePackages(self, result, node):
-        result.startPackages()
-
+    def parsePackages(self, result, node):
+        """Parse the <packages> part of a submission."""
         for child in node.getchildren():
-            id = int(child.get('id'))
-            name = child.get('name')
+            assert child.tag == "package", \
+                "Unexpected tag <%s>, expected <package>" % child.tag
+
+            package = {
+                "name": child.get("name"),
+                "properties": self._getProperties(child),
+                }
+            result.addPackage(package)
+
+    def parseProcessors(self, result, node):
+        """Parse the <processors> part of a submission."""
+        processors = []
+        for child in node.getchildren():
+            assert child.tag == "processor", \
+                "Unexpected tag <%s>, expected <processor>" % child.tag
+
+            # Convert lists to space separated strings.
             properties = self._getProperties(child)
+            for key, value in properties.iteritems():
+                if key in ("bogomips", "cache", "count", "speed",):
+                    properties[key] = int(value)
+                elif isinstance(value, list):
+                    properties[key] = u" ".join(value)
+            processors.append(properties)
 
-            result.addPackage(id, name, properties)
+        # Check if /proc/cpuinfo was parsed already.
+        if any("platform" in processor for processor in processors):
+            result.setProcessor(processors[0])
+        else:
+            lines = []
+            for processor in processors:
+                # Convert some keys with underscores to spaces instead.
+                for key, value in processor.iteritems():
+                    if "_" in key and key != "vendor_id":
+                        key = key.replace("_", " ")
 
-        result.endPackages()
+                    lines.append(u"%s: %s" % (key, value))
 
-    def _parseXOrg(self, result, node):
-        drivers = {}
+                lines.append(u"")
+
+            stream = StringIO(u"\n".join(lines))
+            parser = result.parseCpuinfo(stream)
+            parser.run(result)
+
+    def parseQuestions(self, result, node):
+        """Parse the <questions> part of a submission."""
         for child in node.getchildren():
-            info = dict(child.attrib)
-            if 'device' in info:
-                info['device'] = int(info['device'])
-
-            name = info['name']
-            if name in drivers:
-                raise ValueError(
-                    '<driver name="%s"> appears more than once in <xorg>'
-                    % name)
-
-            drivers[name] = info
-
-        version = node.get('version')
-        result.addXorg(version, drivers)
-
-    def _parseSoftware(self, result, node):
-        parsers = {
-            'lsbrelease': self._parseLSBRelease,
-            'packages': self._parsePackages,
-            'xorg': self._parseXOrg,
-            }
-
-        for child in node.getchildren():
-            parser = parsers.get(child.tag, self._parseNone)
-            parser(result, child)
-
-    def _parseQuestions(self, result, node):
-        result.startQuestions()
-
-        for child in node.getchildren():
-            question = {'name': child.get('name')}
-            plugin = child.get('plugin', None)
+            assert child.tag == "question", \
+                "Unexpected tag <%s>, expected <question>" % child.tag
+            question = {
+                "name": child.get("name"),
+                "targets": [],
+                }
+            plugin = child.get("plugin", None)
             if plugin is not None:
-                question['plugin'] = plugin
-            question['targets'] = targets = []
-            answer_choices = []
+                question["plugin"] = plugin
 
+            answer_choices = []
             for sub_node in child.getchildren():
                 sub_tag = sub_node.tag
-                if sub_tag == 'answer':
-                    question['answer'] = answer = {}
-                    answer['type'] = sub_node.get('type')
-                    if answer['type'] == 'multiple_choice':
-                        question['answer_choices'] = answer_choices
-                    unit = sub_node.get('unit', None)
+                if sub_tag == "answer":
+                    question["answer"] = answer = {}
+                    answer["type"] = sub_node.get("type")
+                    if answer["type"] == "multiple_choice":
+                        question["answer_choices"] = answer_choices
+                    unit = sub_node.get("unit", None)
                     if unit is not None:
-                        answer['unit'] = unit
-                    answer['value'] = sub_node.text.strip()
-                elif sub_tag == 'answer_choices':
+                        answer["unit"] = unit
+                    answer["value"] = sub_node.text.strip()
+
+                elif sub_tag == "answer_choices":
                     for value_node in sub_node.getchildren():
                         answer_choices.append(
-                            self._getValueAttribute(value_node))
-                elif sub_tag == 'target':
-                    target = {'id': int(sub_node.get('id'))}
-                    target['drivers'] = drivers = []
+                            self._getValueAsType(value_node))
+
+                elif sub_tag == "target":
+                    # The Relax NG schema ensures that the attribute
+                    # id exists and that it is an integer
+                    target = {"id": int(sub_node.get("id"))}
+                    target["drivers"] = drivers = []
                     for driver_node in sub_node.getchildren():
                         drivers.append(driver_node.text.strip())
-                    targets.append(target)
-                elif sub_tag in('comment', 'command'):
+                    question["targets"].append(target)
+
+                elif sub_tag in ("comment", "command",):
                     data = sub_node.text
                     if data is not None:
                         question[sub_tag] = data.strip()
 
+                else:
+                    raise AssertionError(
+                        "Unexpected tag <%s> in <question>" % sub_tag)
+
             result.addQuestion(question)
 
-        result.endQuestions()
-
-    def _parseContext(self, result, node):
+    def parseSoftware(self, result, node):
+        """Parse the <software> section of a submission."""
         parsers = {
-            'info': self._parseInfo,
+            "lsbrelease": self.parseLSBRelease,
+            "packages": self.parsePackages,
             }
 
         for child in node.getchildren():
-            parser = parsers.get(child.tag, self._parseNone)
-            parser(result, child)
+            parser = parsers.get(child.tag)
+            if parser:
+                parser(result, child)
+            else:
+                self.logger.debug(
+                    "Unsupported tag <%s> in <software>" % child.tag)
 
-    def _parseNone(self, result, node):
-        pass
+    def parseSummary(self, result, node):
+        """Parse the <summary> section of a submission."""
+        parsers = {
+            "architecture": self._getValueAsString,
+            "client": self._getClient,
+            "contactable": self._getValueAsBoolean,
+            "date_created": self._getValueAsDatetime,
+            "distribution": self._getValueAsString,
+            "distroseries": self._getValueAsString,
+            "kernel-release": self._getValueAsString,
+            "live_cd": self._getValueAsBoolean,
+            "private": self._getValueAsBoolean,
+            "system_id": self._getValueAsString,
+            }
 
-    def run(self, result):
+        for child in node.getchildren():
+            parser = parsers.get(child.tag)
+            if parser:
+                value = parser(child)
+                result.addSummary(child.tag, value)
+            else:
+                self.logger.debug(
+                    "Unsupported tag <%s> in <summary>" % child.tag)
+
+    def parseRoot(self, result, node):
+        """Parse the <system> root of a submission."""
+        parsers = {
+            "context": self.parseContext,
+            "hardware": self.parseHardware,
+            "questions": self.parseQuestions,
+            "software": self.parseSoftware,
+            "summary": self.parseSummary,
+            }
+
+        # Iterate over the root children, "summary" first
+        for child in node.getchildren():
+            parser = parsers.get(child.tag)
+            if parser:
+                parser(result, child)
+            else:
+                self.logger.debug(
+                    "Unsupported tag <%s> in <system>" % child.tag)
+
+    def run(self, test_run_factory, **kwargs):
         parser = etree.XMLParser()
 
-        try:
-            tree = etree.parse(self.stream, parser=parser)
-        except SyntaxError, error:
-            logging.error(error)
-            return
-
+        tree = etree.parse(self.file, parser=parser)
         root = tree.getroot()
         if root.tag != "system":
-            logging.error("Root node is not '<system>'")
-            return
+            raise AssertionError(
+                "Unexpected tag <%s> at root, expected <system>" % root.tag)
 
-        self._parseRoot(result, root)
+        result = SubmissionResult(test_run_factory, **kwargs)
+        self.parseRoot(result, root)
 
-
-SubmissionResult = implement_from_dict("SubmissionResult", [
-    "startDevices", "endDevices", "addDevice", "startPackages",
-    "endPackages", "addPackage", "startProcessors", "endProcessors",
-    "addProcessor", "startQuestions", "endQuestions", "addQuestion",
-    "addInfo", "addSummary", "addXorg", "setDistribution"], DeviceResult)
+        return result

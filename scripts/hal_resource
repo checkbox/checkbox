@@ -23,7 +23,6 @@ import dbus
 import string
 import posixpath
 
-from checkbox.lib.dmi import DmiNotAvailable
 from checkbox.lib.pci import Pci
 from checkbox.lib.usb import Usb
 
@@ -332,10 +331,6 @@ class DmiDeviceResource(DeviceResource):
 
     @property
     def vendor(self):
-        return self._get_vendor()
-
-    @DmiNotAvailable
-    def _get_vendor(self):
         for subproperty in "vendor", "manufacturer":
             property = "%s.%s" % (self._property, subproperty)
             if property in self._properties:

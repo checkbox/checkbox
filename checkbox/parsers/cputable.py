@@ -1,8 +1,7 @@
-#!/usr/bin/python
 #
 # This file is part of Checkbox.
 #
-# Copyright 2009 Canonical Ltd.
+# Copyright 2011 Canonical Ltd.
 #
 # Checkbox is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,28 +16,27 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-import sys
-
-# Filename where meminfo is stored.
-MEMINFO_FILENAME = "/proc/meminfo"
+import re
 
 
-class MeminfoResult:
-
-    def setMemory(self, memory):
-        for key, value in memory.iteritems():
-            print "%s: %s" % (key, value)
-
-
-def main():
-    stream = open(MEMINFO_FILENAME)
-    parser = MeminfoParser(stream)
-
-    result = MeminfoResult()
-    parser.run(result)
-
-    return 0
+CPUTABLE_RE = re.compile(
+    r"^(?!\#)(?P<debian_name>\S+)"
+    r"\s+(?P<gnu_name>\S+)"
+    r"\s+(?P<regex>\S+)"
+    r"\s+(?P<bits>\d+)"
+    r"\s+(?P<endianness>big|little)")
 
 
-if __name__ == "__main__":
-    sys.exit(main())
+class CputableParser:
+    """Parser for the /usr/share/dpkg/cputable file."""
+
+    def __init__(self, stream):
+        self.stream = stream
+
+    def run(self, result):
+        for line in self.stream.readlines():
+            match = CPUTABLE_RE.match(line)
+            if match:
+                cpu = match.groupdict()
+                cpu["bits"] = int(cpu["bits"])
+                result.addCpu(cpu)
