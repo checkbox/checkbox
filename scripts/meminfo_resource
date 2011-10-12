@@ -19,6 +19,8 @@
 #
 import sys
 
+from checkbox.parsers.meminfo import MeminfoParser
+
 # Filename where meminfo is stored.
 MEMINFO_FILENAME = "/proc/meminfo"
 
