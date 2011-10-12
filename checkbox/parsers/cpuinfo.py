@@ -16,24 +16,26 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-import os
 import re
 
+from os import uname
+
 from checkbox.lib.conversion import string_to_type
-from checkbox.parsers.utils import implement_from_dict
 
 
-class CpuinfoParser(object):
+class CpuinfoParser:
+    """Parser for the /proc/cpuinfo file."""
 
-    def __init__(self, stream, uname=None):
+    def __init__(self, stream, machine=None):
         self.stream = stream
-        self.uname = uname or os.uname()[4].lower()
+        self.machine = machine or uname()[4].lower()
 
     def getAttributes(self):
         count = 0
         attributes = {}
         cpuinfo = self.stream.read()
-        for block in cpuinfo.split("\n\n"):
+        for block in re.split(r"\n{2,}", cpuinfo):
+            block = block.strip()
             if not block:
                 continue
 
@@ -54,19 +56,23 @@ class CpuinfoParser(object):
 
                 attributes[key.lower()] = value
 
-        attributes["count"] = count
+        if attributes:
+            attributes["count"] = count
+
         return attributes
 
     def run(self, result):
-        uname = self.uname
         attributes = self.getAttributes()
+        if not attributes:
+            return
 
         # Default values
+        machine = self.machine
         processor = {
-            "platform": uname,
+            "platform": machine,
             "count": 1,
-            "type": self.uname,
-            "model": self.uname,
+            "type": machine,
+            "model": machine,
             "model_number": "",
             "model_version": "",
             "model_revision": "",
@@ -113,7 +119,6 @@ class CpuinfoParser(object):
                 "type": "platform",
                 "model": "cpu",
                 "model_version": "revision",
-                "vendor": "machine",
                 "speed": "clock"},
             ("sparc64", "sparc",): {
                 "count": "ncpus probed",
@@ -126,7 +131,7 @@ class CpuinfoParser(object):
         bogompips_string = attributes.get("bogomips", "0.0")
         processor["bogomips"] = int(round(float(bogompips_string)))
         for platform, conversion in platform_to_conversion.iteritems():
-            if uname in platform:
+            if machine in platform:
                 for pkey, ckey in conversion.iteritems():
                     if isinstance(ckey, (list, tuple)):
                         processor[pkey] = "/".join([attributes[k]
@@ -134,13 +139,11 @@ class CpuinfoParser(object):
                     elif ckey in attributes:
                         processor[pkey] = attributes[ckey]
 
-        # Adjust platform and vendor
-        if uname[0] == "i" and uname[-2:] == "86":
-            processor["platform"] = "i386"
-        elif uname[:5] == "alpha":
-            processor["platform"] = "alpha"
-        elif uname[:5] == "sparc":
-            processor["vendor"] = "sun"
+        # Adjust platform
+        if machine[0] == "i" and machine[-2:] == "86":
+            processor["platform"] = u"i386"
+        elif machine[:5] == "alpha":
+            processor["platform"] = u"alpha"
 
         # Adjust cache
         if processor["cache"]:
@@ -148,14 +151,14 @@ class CpuinfoParser(object):
 
         # Adjust speed
         try:
-            if uname[:5] == "alpha":
+            if machine[:5] == "alpha":
                 speed = processor["speed"].split()[0]
                 processor["speed"] = int(round(float(speed))) / 1000000
-            elif uname[:5] == "sparc":
+            elif machine[:5] == "sparc":
                 speed = processor["speed"]
                 processor["speed"] = int(round(float(speed))) / 2
             else:
-                if uname[:3] == "ppc":
+                if machine[:3] == "ppc":
                     # String is appended with "mhz"
                     speed = processor["speed"][:-3]
                 else:
@@ -174,18 +177,4 @@ class CpuinfoParser(object):
             if processor["count"] == 0:
                 processor["count"] = 1
 
-        for key, value in processor.iteritems():
-            camel_case = key.replace("_", " ").title().replace(" ", "")
-            method_name = "set%s" % camel_case
-            method = getattr(result, method_name)
-            method(value)
-
-
-class CpuinfoResult(dict):
-
-    def __getattr__(self, name):
-        name = re.sub(r"([A-Z])", "_\\1", name)[4:].lower()
-        def setAll(value):
-            self[name] = value
-
-        return setAll
+        result.setProcessor(processor)

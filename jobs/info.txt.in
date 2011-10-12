@@ -25,6 +25,10 @@ name: info/lspci_attachment
 plugin: attachment
 command: lspci -vvnn
 
+name: info/meminfo_attachment
+plugin: attachment
+command: cat /proc/meminfo
+
 name: info/modprobe_attachment
 plugin: attachment
 command: find /etc/modprobe.* -name \*.conf | xargs cat

@@ -35,6 +35,11 @@ name: device
 plugin: resource
 command: udev_resource
 
+name: dmi
+plugin: resource
+user: root
+command: dmi_resource
+
 name: uname
 plugin: resource
 command: uname_resource
