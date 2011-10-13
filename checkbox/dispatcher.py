@@ -128,12 +128,18 @@ class Dispatcher:
             else:
                 del self._event_listeners[event_type]
 
-    def unregisterListener(self, listener):
+    def unregisterListener(self, listener, event_type=None):
         """Unregister a listener.
 
         :param listener: The listener of the handler to unregister.
+        :param event_type: Optionally, the event_type to unregister.
         """
-        self._event_listeners[listener.event_type].remove(listener)
+        if event_type is None:
+            event_type = listener.event_type
+
+        self._event_listeners[event_type].remove(listener)
+        if not self._event_listeners[event_type]:
+            del self._event_listeners[event_type]
 
     def publishEvent(self, event_type, *args, **kwargs):
         """Publish an event of a given type and notify all listeners.
@@ -142,14 +148,17 @@ class Dispatcher:
         :param args: Positional arguments to pass to the registered handlers.
         :param kwargs: Keyword arguments to pass to the registered handlers.
         """
-        event = Event(event_type, *args, **kwargs)
-        for listener in self._event_listeners.get(event_type, ()):
-            try:
-                listener.notify(event)
-            except:
-                logging.exception(
-                    "Error running event handler for %r with args %r %r",
-                    event_type, args, kwargs)
+        if event_type in self._event_listeners:
+            event = Event(event_type, *args, **kwargs)
+            for listener in list(self._event_listeners[event_type]):
+                try:
+                    listener.notify(event)
+                    if listener.count is not None and not listener.count:
+                        self.unregisterListener(listener)
+                except:
+                    logging.exception(
+                        "Error running event handler for %r with args %r %r",
+                        event_type, args, kwargs)
 
 
 class DispatcherList(Dispatcher):
@@ -175,7 +184,8 @@ class DispatcherList(Dispatcher):
     def unregisterListener(self, listener):
         """See Dispatcher."""
         for event_type in listener.event_types:
-            self._event_listeners[event_type].remove(listener)
+            super(DispatcherList, self).unregisterListener(
+                listener, event_type)
 
     def publishEvent(self, event_type, arg):
         """See Dispatcher."""
