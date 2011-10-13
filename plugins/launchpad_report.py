@@ -137,10 +137,6 @@ class LaunchpadReport(Plugin):
         report_manager = LaunchpadReportManager(
             "system", "1.0", stylesheet_path, self.schema)
         payload = report_manager.dumps(self._report).toprettyxml("")
-        if not report_manager.validate(payload):
-            self._manager.reactor.fire("report-error", _("""\
-The generated report seems to have validation errors,
-so it might not be processed by Launchpad."""))
 
         # Write the report
         stylesheet_data = open(self.stylesheet).read() % os.environ
@@ -148,6 +144,12 @@ so it might not be processed by Launchpad."""))
         directory = os.path.dirname(self.filename)
         safe_make_directory(directory)
         open(self.filename, "w").write(payload)
+
+        # Validate the report
+        if not report_manager.validate(payload):
+            self._manager.reactor.fire("report-error", _("""\
+The generated report seems to have validation errors,
+so it might not be processed by Launchpad."""))
 
         self._manager.reactor.fire("launchpad-report", self.filename)
 
