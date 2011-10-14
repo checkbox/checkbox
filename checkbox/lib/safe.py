@@ -94,3 +94,8 @@ def safe_md5sum_file(name):
         md5sum = digest.hexdigest()
 
     return md5sum
+
+def safe_close(file):
+    file.flush()
+    os.fsync(file.fileno())
+    file.close()

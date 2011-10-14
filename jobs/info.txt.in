@@ -30,6 +30,10 @@ plugin: attachment
 command: lspci -vvnn
 _description: Attaches very verbose lspci output.
 
+name: info/meminfo_attachment
+plugin: attachment
+command: cat /proc/meminfo
+
 name: info/modprobe_attachment
 plugin: attachment
 command: find /etc/modprobe.* -name \*.conf | xargs cat

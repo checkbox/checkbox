@@ -16,13 +16,15 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
+import os
+
 
 # See also 3.3.4.1 of the "System Management BIOS Reference Specification,
 # Version 2.6.1" (Preliminary Standard) document, available from
 # http://www.dmtf.org/standards/smbios.
 class Dmi:
     chassis = (
-        ("Undefined",             "unknown"), # 0x00
+        ("Undefined",             "unknown"),  # 0x00
         ("Other",                 "unknown"),
         ("Unknown",               "unknown"),
         ("Desktop",               "desktop"),
@@ -53,22 +55,171 @@ class Dmi:
         ("Blade",                 "server"),
         ("Blade Enclosure",       "unknown"))
 
-    chassis_names = [c[0] for c in chassis]
-    chassis_types = [c[1] for c in chassis]
+    chassis_names = tuple(c[0] for c in chassis)
+    chassis_types = tuple(c[1] for c in chassis)
     chassis_name_to_type = dict(chassis)
 
+    type_names = (
+        "BIOS",  # 0x00
+        "System",
+        "Base Board",
+        "Chassis",
+        "Processor",
+        "Memory Controller",
+        "Memory Module",
+        "Cache",
+        "Port Connector",
+        "System Slots",
+        "On Board Devices",
+        "OEM Strings",
+        "System Configuration Options",
+        "BIOS Language",
+        "Group Associations",
+        "System Event Log",
+        "Physical Memory Array",
+        "Memory Device",
+        "32-bit Memory Error",
+        "Memory Array Mapped Address",
+        "Memory Device Mapped Address",
+        "Built-in Pointing Device",
+        "Portable Battery",
+        "System Reset",
+        "Hardware Security",
+        "System Power Controls",
+        "Voltage Probe",
+        "Cooling Device",
+        "Temperature Probe",
+        "Electrical Current Probe",
+        "Out-of-band Remote Access",
+        "Boot Integrity Services",
+        "System Boot",
+        "64-bit Memory Error",
+        "Management Device",
+        "Management Device Component",
+        "Management Device Threshold Data",
+        "Memory Channel",
+        "IPMI Device",
+        "Power Supply",
+        )
 
-class DmiNotAvailable(object):
-    def __init__(self, function):
-        self._function = function
 
-    def __get__(self, instance, cls=None):
-        self._instance = instance
-        return self
+class DmiDevice:
 
-    def __call__(self, *args, **kwargs):
-        name = self._function(self._instance, *args, **kwargs)
-        if name == "Not Available":
-            name = None
+    bus = "dmi"
+    driver = None
+    product_id = None
+    vendor_id = None
 
-        return name
+    _product_blacklist = (
+        "<BAD INDEX>",
+        "N/A",
+        "Not Available",
+        "INVALID",
+        "OEM",
+        "Product Name",
+        "System Product Name",
+        "To be filled by O.E.M.",
+        "To Be Filled By O.E.M.",
+        "To Be Filled By O.E.M. by More String",
+        "Unknown",
+        "Uknown",
+        "Unknow",
+        "xxxxxxxxxxxxxx",
+        )
+    _vendor_blacklist = (
+        "<BAD INDEX>",
+        "Not Available",
+        "OEM",
+        "OEM Manufacturer",
+        "System manufacturer",
+        "System Manufacturer",
+        "System Name",
+        "To be filled by O.E.M.",
+        "To Be Filled By O.E.M.",
+        "To Be Filled By O.E.M. by More String",
+        "Unknow",  # XXX This is correct mispelling
+        "Unknown",
+        )
+    _serial_blacklist = (
+       "0",
+       "00000000",
+       "00 00 00 00 00 00 00 00",
+       "0123456789",
+       "Base Board Serial Number",
+       "Chassis Serial Number",
+       "N/A",
+       "None",
+       "Not Applicable",
+       "Not Available",
+       "Not Specified",
+       "OEM",
+       "System Serial Number",
+       )
+    _version_blacklist = (
+        "-1",
+        "<BAD INDEX>",
+        "N/A",
+        "None",
+        "Not Applicable",
+        "Not Available",
+        "Not Specified",
+        "OEM",
+        "System Version",
+        "Unknown",
+        "x.x",
+        )
+
+    def __init__(self, attributes, category):
+        self._attributes = attributes
+        self.category = category
+
+    @property
+    def path(self):
+        path = "/devices/virtual/dmi/id"
+        return os.path.join(path, self.category.lower())
+
+    @property
+    def product(self):
+        if self.category == "CHASSIS":
+            type_string = self._attributes.get("chassis_type", "0")
+            try:
+                type_index = int(type_string)
+                return Dmi.chassis_names[type_index]
+            except ValueError:
+                return type_string
+
+        for name in "name", "version":
+            attribute = "%s_%s" % (self.category.lower(), name)
+            product = self._attributes.get(attribute)
+            if product and product not in self._product_blacklist:
+                return product
+
+        return None
+
+    @property
+    def vendor(self):
+        for name in "manufacturer", "vendor":
+            attribute = "%s_%s" % (self.category.lower(), name)
+            vendor = self._attributes.get(attribute)
+            if vendor and vendor not in self._vendor_blacklist:
+                return vendor
+
+        return None
+
+    @property
+    def serial(self):
+        attribute = "%s_serial" % self.category.lower()
+        serial = self._attributes.get(attribute)
+        if serial and serial not in self._serial_blacklist:
+            return serial
+
+        return None
+
+    @property
+    def version(self):
+        attribute = "%s_version" % self.category.lower()
+        version = self._attributes.get(attribute)
+        if version and version not in self._version_blacklist:
+            return version
+
+        return None

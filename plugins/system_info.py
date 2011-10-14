@@ -38,7 +38,7 @@ class SystemInfo(Plugin):
 
         for (rt, rh) in [
              ("begin-persist", self.begin_persist),
-             ("report-device", self.report_device)]:
+             ("report-dmi", self.report_dmi)]:
             self._manager.reactor.call_on(rt, rh)
 
         # System report should be generated early.
@@ -47,7 +47,7 @@ class SystemInfo(Plugin):
     def begin_persist(self, persist):
         self.persist = persist.root_at("system_info")
 
-    def report_device(self, resources):
+    def report_dmi(self, resources):
         for resource in resources:
            if resource.get("category") == "CHASSIS":
                self.resource = resource

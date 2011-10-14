@@ -20,7 +20,7 @@
 import os
 import sys
 
-from checkbox.parsers.udev import UdevLocalParser
+from checkbox.parsers.udevadm import UdevadmParser
 
 
 # Command to retrieve udev information.
@@ -43,7 +43,7 @@ class UdevResult(object):
 
 def main():
     stream = os.popen(COMMAND)
-    udev = UdevLocalParser(stream)
+    udev = UdevadmParser(stream)
 
     result = UdevResult()
     udev.run(result)

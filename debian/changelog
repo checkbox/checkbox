@@ -1,9 +1,11 @@
-checkbox (0.13) oneiric; urgency=low
+checkbox (0.13) precise; urgency=low
 
-  * Incremented version 
-  
+  [Marc Tardif]
+  * Generate a submission.xml file that contains all device and attachment
+    information, suitable for offline processing and submission.
+  * Write the report before reporting the validation error.
+
   [Jeff Lane]
-  * Merged my changes with the checkbox_ui_rewrite changes
   * Went through all the job files and:
     * Updated descriptions to match Unity UI structure
     * Added descriptions where necessary
@@ -15,7 +17,7 @@ checkbox (0.13) oneiric; urgency=low
       (this allows easier addition of existing tests to whitelists)
     * Changed remaining manual job descriptions to match the new format
 
- -- Jeff Lane <jeff@ubuntu.com>  Thu, 06 Oct 2011 17:01:29 -0400
+ -- Daniel Manrique <daniel.manrique@canonical.com>  Wed, 12 Oct 2011 15:20:36 -0400
 
 checkbox (0.12.8) oneiric; urgency=low
 

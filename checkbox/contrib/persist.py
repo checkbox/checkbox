@@ -23,6 +23,7 @@ import copy
 import re
 import posixpath
 
+from checkbox.lib.safe import safe_close
 
 __all__ = ["Persist", "MemoryBackend", "PickleBackend", "BPickleBackend",
     "path_string_to_tuple", "path_tuple_to_string", "RootedPersist",
@@ -517,14 +518,14 @@ class PickleBackend(Backend):
         try:
             return self._pickle.load(file)
         finally:
-            file.close()
+            safe_close(file)
 
     def save(self, filepath, map):
         file = open(filepath, "w")
         try:
             self._pickle.dump(map, file, 2)
         finally:
-            file.close()
+            safe_close(file)
 
 
 class BPickleBackend(Backend):
@@ -538,11 +539,11 @@ class BPickleBackend(Backend):
         try:
             return self._bpickle.loads(file.read())
         finally:
-            file.close()
+            safe_close(file)
 
     def save(self, filepath, map):
         file = open(filepath, "w")
         try:
             file.write(self._bpickle.dumps(map))
         finally:
-            file.close()
+            safe_close(file)
