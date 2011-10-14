@@ -68,7 +68,7 @@ _description:
 
 plugin: shell
 name: power-management/fwts_wakealarm
-_description: Run Colin Kings FWTS wakealarm test
+_description: Test ACPI Wakealarm (fwts wakealarm) 
 requires:
  package.name == 'linux'
  package.name == 'fwts'

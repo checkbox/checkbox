@@ -19,7 +19,7 @@ requires:
   package.name == 'linux'
   package.name == 'fwts'
 _description:
- Run Colin King's Firmware Test Suite automated tests.
+ Run Firmware Test Suite (fwts) automated tests.
 command:
  fwts_test -l $CHECKBOX_DATA/fwts_results.log
 

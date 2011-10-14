@@ -6,7 +6,7 @@ requires:
 user: root
 command: fwts_test -c -l $CHECKBOX_DATA/cpu_scaling_test.log
 _description:
- Test the CPU scaling capabilities using Colin King's Firmware Test Suite tool.
+ Test the CPU scaling capabilities using Firmware Test Suite (fwts cpufreq).
 
 plugin: shell
 name: cpu/clocktest
