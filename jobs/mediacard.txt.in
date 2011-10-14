@@ -5,23 +5,23 @@ _description:
      This test will check your system Secure Digital (SD) media card support
  STEPS:
      1. Plug a SD media card into the computer
-     2. An icon should appear on the desktop and in the "Places" menu at the top of the screen
-     3. Right click on the deskop icon and select "Safely Remove Drive"
-     4. The icon should disappear of both the deskop and the "Places" menu
+     2. An icon should appear on the Launcher
+     3. Right click on the Launcher icon and select "Safely Remove Drive"
+     4. The icon should disappear from the Launcher
  VERIFICATION:
      Does the icon automatically appear/disappear?
 
 plugin: manual
 name: mediacard/sd_after_suspend
-depends: power-management/suspend_advanced mediacard/sd
+depends: suspend/suspend_advanced mediacard/sd
 _description:
  PURPOSE:
      This test will check your system Secure Digital (SD) media card support after suspend
  STEPS:
      1. Plug a SD media card into the computer
-     2. An icon should appear on the desktop and in the "Places" menu at the top of the screen
-     3. Right click on the deskop icon and select "Safely Remove Drive"
-     4. The icon should disappear of both the deskop and the "Places" menu
+     2. An icon should appear on the Launcher
+     3. Right click on the Launcher icon and select "Safely Remove Drive"
+     4. The icon should disappear from the Launcher
  VERIFICATION:
      Does the icon automatically appear/disappear?
 
@@ -29,25 +29,25 @@ plugin: manual
 name: mediacard/sdhc
 _description:
  PURPOSE:
-     This test will check your system High Capacity (SDHC) media card support
+     This test will check your system Secure Digital High Capacity (SDHC) media card support
  STEPS:
      1. Plug a SDHC media card into the computer
-     2. An icon should appear on the desktop and in the "Places" menu at the top of the screen
-     3. Right click on the deskop icon and select "Safely Remove Drive"
-     4. The icon should disappear of both the deskop and the "Places" menu
+     2. An icon should appear on the Launcher
+     3. Right click on the Launcher icon and select "Safely Remove Drive"
+     4. The icon should disappear from the Launcher
  VERIFICATION:
      Does the icon automatically appear/disappear?
 
 plugin: manual
 name: mediacard/sdhc_after_suspend
-depends: power-management/suspend_advanced mediacard/sdhc
+depends: suspend/suspend_advanced mediacard/sdhc
 _description:
-     This test will check your system High Capacity (SDHC) media card support after suspend
+     This test will check your system Secure Digital High Capacity (SDHC) media card support after suspend
  STEPS:
      1. Plug a SDHC media card into the computer
-     2. An icon should appear on the desktop and in the "Places" menu at the top of the screen
-     3. Right click on the deskop icon and select "Safely Remove Drive"
-     4. The icon should disappear of both the deskop and the "Places" menu
+     2. An icon should appear on the Launcher
+     3. Right click on the Launcher icon and select "Safely Remove Drive"
+     4. The icon should disappear from the Launcher
  VERIFICATION:
      Does the icon automatically appear/disappear?
 
@@ -58,23 +58,23 @@ _description:
      This test will check your system Multi Media Card (MMC) media card support
  STEPS:
      1. Plug a MMC media card into the computer
-     2. An icon should appear on the desktop and in the "Places" menu at the top of the screen
-     3. Right click on the deskop icon and select "Safely Remove Drive"
-     4. The icon should disappear of both the deskop and the "Places" menu
+     2. An icon should appear on the Launcher
+     3. Right click on the Launcher icon and select "Safely Remove Drive"
+     4. The icon should disappear from the Launcher
  VERIFICATION:
      Does the icon automatically appear/disappear?
 
 plugin: manual
 name: mediacard/mmc_after_suspend
-depends: power-management/suspend_advanced mediacard/mmc
+depends: suspend/suspend_advanced mediacard/mmc
 _description:
  PURPOSE:
      This test will check your system Multi Media Card (MMC) media card support after suspend
  STEPS:
      1. Plug a MMC media card into the computer
-     2. An icon should appear on the desktop and in the "Places" menu at the top of the screen
-     3. Right click on the deskop icon and select "Safely Remove Drive"
-     4. The icon should disappear of both the deskop and the "Places" menu
+     2. An icon should appear on the Launcher
+     3. Right click on the Launcher icon and select "Safely Remove Drive"
+     4. The icon should disappear from the Launcher
  VERIFICATION:
      Does the icon automatically appear/disappear?
 
@@ -85,23 +85,23 @@ _description:
      This test will check your system Memory Stick (MS) media card support
  STEPS:
      1. Plug a MS media card into the computer
-     2. An icon should appear on the desktop and in the "Places" menu at the top of the screen
-     3. Right click on the deskop icon and select "Safely Remove Drive"
-     4. The icon should disappear of both the deskop and the "Places" menu
+     2. An icon should appear on the Launcher
+     3. Right click on the Launcher icon and select "Safely Remove Drive"
+     4. The icon should disappear from the Launcher
  VERIFICATION:
      Does the icon automatically appear/disappear?
 
 plugin: manual
-name: mediacardms_after_suspend
-depends: power-management/suspend_advanced mediacard/ms
+name: mediacard/ms_after_suspend
+depends: suspend/suspend_advanced mediacard/ms
 _description:
  PURPOSE:
      This test will check your system Memory Stick (MS) media card support after suspend
  STEPS:
      1. Plug a MS media card into the computer
-     2. An icon should appear on the desktop and in the "Places" menu at the top of the screen
-     3. Right click on the deskop icon and select "Safely Remove Drive"
-     4. The icon should disappear of both the deskop and the "Places" menu
+     2. An icon should appear on the Launcher
+     3. Right click on the Launcher icon and select "Safely Remove Drive"
+     4. The icon should disappear from the Launcher
  VERIFICATION:
      Does the icon automatically appear/disappear?
 
@@ -112,23 +112,23 @@ _description:
      This test will check your system Memory Stick Pro (MSP) media card support
  STEPS:
      1. Plug a MSP media card into the computer
-     2. An icon should appear on the desktop and in the "Places" menu at the top of the screen
-     3. Right click on the deskop icon and select "Safely Remove Drive"
-     4. The icon should disappear of both the deskop and the "Places" menu
+     2. An icon should appear on the Launcher
+     3. Right click on the Launcher icon and select "Safely Remove Drive"
+     4. The icon should disappear from the Launcher
  VERIFICATION:
      Does the icon automatically appear/disappear?
 
 plugin: manual
 name: mediacard/msp_after_suspend
-depends: power-management/suspend_advanced mediacard/msp
+depends: suspend/suspend_advanced mediacard/msp
 _description:
  PURPOSE:
      This test will check your system Memory Stick Pro (MSP) media card support after suspend
  STEPS:
      1. Plug a MSP media card into the computer
-     2. An icon should appear on the desktop and in the "Places" menu at the top of the screen
-     3. Right click on the deskop icon and select "Safely Remove Drive"
-     4. The icon should disappear of both the deskop and the "Places" menu
+     2. An icon should appear on the Launcher
+     3. Right click on the Launcher icon and select "Safely Remove Drive"
+     4. The icon should disappear from the Launcher
  VERIFICATION:
      Does the icon automatically appear/disappear?
 
@@ -136,24 +136,24 @@ plugin: manual
 name: mediacard/cf
 _description:
  PURPOSE:
-     This test will check your system  Compact Flash (CF) media card support
+     This test will check your system Compact Flash (CF) media card support
  STEPS:
      1. Plug a CF media card into the computer
-     2. An icon should appear on the desktop and in the "Places" menu at the top of the screen
-     3. Right click on the deskop icon and select "Safely Remove Drive"
-     4. The icon should disappear of both the deskop and the "Places" menu
+     2. An icon should appear on the Launcher
+     3. Right click on the Launcher icon and select "Safely Remove Drive"
+     4. The icon should disappear from the Launcher
  VERIFICATION:
      Does the icon automatically appear/disappear?
 
 plugin: manual
 name: mediacard/cf_after_suspend
-depends: power-management/suspend_advanced mediacard/cf
+depends: suspend/suspend_advanced mediacard/cf
 _description:
-     This test will check your system  Compact Flash (CF) media card support after suspend
+     This test will check your system Compact Flash (CF) media card support after suspend
  STEPS:
      1. Plug a CF media card into the computer
-     2. An icon should appear on the desktop and in the "Places" menu at the top of the screen
-     3. Right click on the deskop icon and select "Safely Remove Drive"
-     4. The icon should disappear of both the deskop and the "Places" menu
+     2. An icon should appear on the Launcher
+     3. Right click on the Launcher icon and select "Safely Remove Drive"
+     4. The icon should disappear from the Launcher
  VERIFICATION:
      Does the icon automatically appear/disappear?

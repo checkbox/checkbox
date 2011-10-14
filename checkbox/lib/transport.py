@@ -19,6 +19,7 @@
 import logging
 
 import os
+import re
 import stat
 import sys
 import posixpath
@@ -133,6 +134,32 @@ class VerifiedHTTPSConnection(httplib.HTTPSConnection):
     timeout = None
     _tunnel_host = None
 
+    def match_name(self, name):
+        parts = []
+        for fragment in name.split(r"."):
+            if fragment == "*":
+                parts.append(".+")
+            else:
+                fragment = re.escape(fragment)
+                parts.append(fragment.replace(r"\*", ".*"))
+        return re.match(r"\A" + r"\.".join(parts) + r"\Z", self.host, re.IGNORECASE)
+
+    def verify_cert(self, cert):
+        # verify that the hostname matches that of the certificate
+        if cert:
+            san = cert.get("subjectAltName", ())
+            for key, value in san:
+                if key == "DNS" and self.match_name(value):
+                    return True
+
+            if not san:
+                for subject in cert.get("subject", ()):
+                    for key, value in subject:
+                        if key == "commonName" and self.match_name(value):
+                            return True
+
+        return False
+
     def connect(self):
         # overrides the version in httplib so that we do
         #    certificate verification
@@ -143,7 +170,15 @@ class VerifiedHTTPSConnection(httplib.HTTPSConnection):
 
         # wrap the socket using verification with the root
         #    certs in trusted_root_certs
-        self.sock = _ssl_wrap_socket(sock, self.key_file, self.cert_file)
+        self.sock = _ssl_wrap_socket(sock,
+            self.key_file,
+            self.cert_file,
+            cert_reqs=ssl.CERT_REQUIRED,
+            ca_certs="/etc/ssl/certs/ca-certificates.crt")
+
+        if not self.verify_cert(self.sock.getpeercert()):
+            raise ValueError(
+                "Failed to verify cert for hostname: %s" % self.host)
 
 
 class HTTPTransport(object):

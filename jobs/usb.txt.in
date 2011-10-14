@@ -11,10 +11,10 @@ requires: package.name == 'linux'
 command: usb_test -l
 _description:
  PURPOSE:
-     This test will check your USB connection
+     This test will check your USB connection.
  STEPS:
-     1. Plug in one or more USB keys or hard drives
-     2. Click on "Test"
+     1. Plug in one or more USB keys or hard drives.
+     2. Click on "Test".
  INFO:
      $output
  VERIFICATION:
@@ -27,10 +27,10 @@ requires: package.name == 'linux'
 command: keyboard_test
 _description:
  PURPOSE:
-     This test will check your USB connection
+     This test will check your USB connection.
  STEPS:
-     1. Plug a USB keyboard into the computer
-     2. Click on "Test" and enter some text
+     1. Plug a USB keyboard into the computer.
+     2. Click on "Test" and enter some text.
  VERIFICATION:
      Does the keyboard work?
 
@@ -40,10 +40,10 @@ depends: usb/detect
 requires: package.name == 'linux'
 _description:
  PURPOSE:
-     This test will check your USB connection
+     This test will check your USB connection.
  STEPS:
-     1. Plug a USB mouse into the computer
-     2. Perform some single/double/right click operations
+     1. Plug a USB mouse into the computer.
+     2. Perform some single/double/right click operations.
  VERIFICATION:
      Does the mouse work correctly?
 
@@ -54,12 +54,12 @@ requires: package.name == 'linux'
 command: watch_command -q -r 5 lsusb
 _description:
  PURPOSE:
-     This test will check your USB connection
+     This test will check your USB connection.
  STEPS:
-     1. Click "Test" and insert a USB device within 5 seconds
-     2. Do not unplug the device after the test
+     1. Click "Test" and insert a USB device within 5 seconds.
+     2. Do not unplug the device after the test.
  VERIFICATION:
-     The verification of this test is automated
+     The verification of this test is automated.
 
 plugin: manual
 name: usb/remove
@@ -68,12 +68,12 @@ requires: package.name == 'linux'
 command: watch_command -q -r 5 lsusb
 _description:
  PURPOSE:
-     This test will check your USB connection
+     This test will check your USB connection.
  STEPS:
-     1. Click "Test" and remove the USB device within 5 seconds
-     2. Do not unplug the device after the test
+     1. Click "Test" and remove the USB device within 5 seconds.
+     2. Do not unplug the device after the test.
  VERIFICATION:
-     The verification of this test is automated
+     The verification of this test is automated.
 
 plugin: manual
 name: usb/storage-transfer
@@ -81,13 +81,13 @@ requires: package.name == 'linux'
 command: usb_test -t
 _description:
  PURPOSE:
-     This test will check your USB connection
+     This test will check your USB connection.
  STEPS:
-     1. Plug a USB HDD or thumbdrive into the computer
-     2. An icon should appear on the desktop and in the "Places" menu at the top of the screen
-     3. Click "Test" to begin the test
+     1. Plug a USB HDD or thumbdrive into the computer.
+     2. An icon should appear on the Launcher.
+     3. Click "Test" to begin the test.
  VERIFICATION:
-     The verification of this test is automated
+     The verification of this test is automated.
 
 plugin: shell
 name: usb/storage-automated
@@ -101,12 +101,12 @@ name: usb/panels
 requires: package.name == 'linux'
 _description:
  PURPOSE:
-     This test will check your USB connection
+     This test will check your USB connection.
  STEPS:
-     1. Connect a USB storage device to an external USB slot on this computer
-     2. An icon should appear on the desktop and in the "Places" menu at the top of the screen
-     3. Confirm that the icon appears
-     4. Eject the device
-     5. Repeat with each external USB slot
+     1. Connect a USB storage device to an external USB slot on this computer.
+     2. An icon should appear on the Launcher.
+     3. Confirm that the icon appears.
+     4. Eject the device.
+     5. Repeat with each external USB slot.
  VERIFICATION:
      Do all USB slots work with the device?

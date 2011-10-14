@@ -3,20 +3,19 @@ name: bluetooth/detect
 requires: package.name == 'bluez'
 command: hcitool dev | tail -n+2 | awk '{print $2}' |grep -E "^([0-9a-fA-F]{2}\:){5}[0-9a-fA-F]{2}$"
 _description:
- Output address of detected Bluetooth device, if any, or exits with error if none is found.
+ This test will detect your Bluetooth device and output the device's hardware address.  If no device is found, the test will exit with an error.
 
 plugin: shell
 name: bluetooth/detect-output
 requires: package.name == 'bluez'
 command: hcitool dev | tail -n+2 | awk '{print $2}'; hcitool dev | tail -n+2 | awk '{print $2}' > $CHECKBOX_DATA/bluetooth_address
 _description:
- Automated test to store output in checkbox report
+ Automated test to store bluetooth device information in checkbox report
 
 plugin: manual
 name: bluetooth/browse-files
 depends: bluetooth/detect
 _description:
- Bluetooth browse files procedure:
  PURPOSE:
      This test will check that bluetooth connection works correctly
  STEPS:
@@ -52,7 +51,7 @@ requires: package.name == 'alsa-utils'
 command: arecord -d 5 -D bluetooth -f S16_LE | aplay -D bluetooth -f S16_LE
 _description:
  PURPOSE:
-     This test will check that you can connect hear audio through a bluetooth audio device
+     This test will check that you can record and hear audio using a bluetooth audio device
  STEPS:
      1. Enable the bluetooth headset
      2. Click on the bluetooth icon in the menu bar
@@ -95,4 +94,4 @@ _description:
      5. Move the mouse around the screen
      6. Perform some single/double/right click operations
  VERIFICATION:
-     Did the mouse worked as expected?
+     Did the mouse work as expected?

@@ -92,7 +92,7 @@ def main():
                         help="Perform read/write tests against any USB drive attached to the SUT")
     parser.add_option('-s','--size',
                         action='store',
-                        default=31457280,
+                        default=1048576,
                         help="The size of the test data file to use in Bytes. Default is %default")
     (options, args) = parser.parse_args()
 

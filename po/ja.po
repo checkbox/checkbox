@@ -8,25 +8,17 @@ msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-07-07 12:32-0400\n"
-"PO-Revision-Date: 2011-07-30 14:49+0000\n"
+"PO-Revision-Date: 2011-10-03 15:41+0000\n"
 "Last-Translator: Shushi Kurose <md81bird@hitaki.net>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-07-31 04:32+0000\n"
-"X-Generator: Launchpad (build 13405)\n"
-
-#: ../gtk/checkbox-gtk.ui.h:2
-msgid "Ne_xt"
-msgstr "次ヘ(_X)"
-
-#: ../gtk/checkbox-gtk.ui.h:8
-msgid "_Skip this test"
-msgstr "このテストをスキップします(_S)"
+"X-Launchpad-Export-Date: 2011-10-04 04:50+0000\n"
+"X-Generator: Launchpad (build 14071)\n"
 
 #. description
-#: ../jobs/graphics.txt.in:117
+#: ../jobs/graphics.txt.in:104
 msgid "Do you see color bars and static?"
 msgstr "カラーバーと砂嵐は確認できましたか？"
 
@@ -115,7 +107,7 @@ msgstr "もう一度テスト"
 msgid "Please type here and press Ctrl-D when finished:\n"
 msgstr "ここで入力を行い、終わったらCtrl-Dを押してください:\n"
 
-#: ../checkbox_gtk/gtk_interface.py:487
+#: ../checkbox_gtk/gtk_interface.py:502
 msgid "_Test Again"
 msgstr "再テスト(_T)"
 
@@ -127,7 +119,7 @@ msgstr "終了(_F)"
 msgid "Gathering information from your system..."
 msgstr "現在のシステム情報を確認中です……"
 
-#: ../plugins/launchpad_exchange.py:141
+#: ../plugins/launchpad_exchange.py:151
 #, python-format
 msgid ""
 "Failed to contact server. Please try\n"
@@ -144,7 +136,7 @@ msgstr ""
 "試してみてください:\n"
 "https://launchpad.net/+hwdb/+submit"
 
-#: ../plugins/launchpad_exchange.py:150
+#: ../plugins/launchpad_exchange.py:160
 msgid ""
 "Failed to upload to server,\n"
 "please try again later."
@@ -152,7 +144,7 @@ msgstr ""
 "サーバへのアップロードに失敗しました。\n"
 "あとでもう一度、やり直してください。"
 
-#: ../plugins/launchpad_exchange.py:162
+#: ../plugins/launchpad_exchange.py:172
 msgid "Information not posted to Launchpad."
 msgstr "情報はLaunchpadへ登録されませんでした。"
 
@@ -164,27 +156,12 @@ msgstr "正しい書式のメールアドレスが入力されていません。
 msgid "Exchanging information with the server..."
 msgstr "データをサーバに送信中です……"
 
-#: ../plugins/report_prompt.py:34
+#: ../plugins/report_prompt.py:39
 msgid "Building report..."
 msgstr "レポートを作成中です……"
 
-#~ msgid "<b>Comment:</b>"
-#~ msgstr "<b>コメント：</b>"
-
-#~ msgid "Device information"
-#~ msgstr "デバイス情報"
-
-#~ msgid "Distribution details"
-#~ msgstr "ディストリビューションの詳細"
-
-#~ msgid "Processor information"
-#~ msgstr "プロセッサの情報"
-
 #~ msgid "Successfully sent information!"
 #~ msgstr "情報の送信が完了しました。"
-
-#~ msgid "Test results"
-#~ msgstr "テスト結果"
 
 #~ msgid "_Desktop"
 #~ msgstr "デスクトップ(_D)"
@@ -195,41 +172,14 @@ msgstr "レポートを作成中です……"
 #~ msgid "_Server"
 #~ msgstr "サーバ(_S)"
 
-#~ msgid "The following resolution was detected for your display:"
-#~ msgstr "現在の画面解像度は次のように設定されています："
-
-#~ msgid "$(resolution_test)"
-#~ msgstr "$(resolution_test)"
-
-#~ msgid "Is this a good resolution for your display?"
-#~ msgstr "このディスプレイにとって、正しい設定になっていますか？"
-
 #~ msgid "$(network_test)"
 #~ msgstr "$(network_test)"
-
-#~ msgid "Are you connected to the Internet?"
-#~ msgstr "インターネットへ接続できますか？"
-
-#~ msgid ""
-#~ "Typing keys on your keyboard should display the corresponding characters in "
-#~ "a text area."
-#~ msgstr "テキストエリア上でキーを入力し、正しい文字が表示されるか確認してください。"
-
-#, python-format
-#~ msgid "Running test: %s"
-#~ msgstr "テスト中：%s"
 
 #~ msgid "Authentication"
 #~ msgstr "認証"
 
-#~ msgid "Please provide your Launchpad email address:"
-#~ msgstr "Launchpadで登録したメールアドレスを入力ください："
-
 #~ msgid "Done"
 #~ msgstr "完了"
-
-#~ msgid "Successfully sent information to server!"
-#~ msgstr "サーバへの情報の送信が完了しました。"
 
 #~ msgid "Exchange"
 #~ msgstr "交換"
@@ -237,20 +187,8 @@ msgstr "レポートを作成中です……"
 #~ msgid "Category"
 #~ msgstr "分類"
 
-#~ msgid "Packages installed"
-#~ msgstr "パッケージがインストールされました"
-
-#~ msgid "Run the test for the automatically detected playback device."
-#~ msgstr "自動認識された再生デバイスを用いてテストを実行します。"
-
 #~ msgid "Do you hear a sound?"
 #~ msgstr "サウンドは聞こえましたか？"
-
-#~ msgid "Run the video test."
-#~ msgstr "ビデオテストの実行。"
-
-#~ msgid "Please provide comments about the failure."
-#~ msgstr "失敗の内容についてコメントを入力してください。"
 
 #, python-format
 #~ msgid "Running test %s..."
@@ -262,57 +200,27 @@ msgstr "レポートを作成中です……"
 #~ msgid "Please select the category of your system."
 #~ msgstr "お使いのシステムのカテゴリを選択してください。"
 
-#~ msgid ""
-#~ "The following information will be sent to the Launchpad\n"
-#~ "hardware database. Please provide the e-mail address you\n"
-#~ "use to sign in to Launchpad to submit this information."
-#~ msgstr ""
-#~ "以下の情報はLaunchpadのハードウェアデータベースに送られます。\n"
-#~ "Launchpadにログインするために利用しているアカウントのEメール\n"
-#~ "アドレスを入力して、情報を登録してください。"
-
 #~ msgid "Welcome to System Testing!"
 #~ msgstr "システムテストにようこそ！"
-
-#~ msgid ""
-#~ "This application will gather information from your system. Then,\n"
-#~ "you will be asked manual tests to confirm that the system is working\n"
-#~ "properly. Finally, you will be asked for the e-mail address you use\n"
-#~ "to sign in to Launchpad in order to submit the information and your\n"
-#~ "results.\n"
-#~ "\n"
-#~ "If you do not have a Launchpad account, please register here:\n"
-#~ "\n"
-#~ "  https://launchpad.net/+login\n"
-#~ "\n"
-#~ "Thank you for taking the time to test your system."
-#~ msgstr ""
-#~ "このアプリケーションはお使いのシステムの情報を収集します。\n"
-#~ "テストが行われた後、手動でいくつかの質問に答えて頂くことで、\n"
-#~ "システムが正しく動作していることを確認します。最後にLaunchpadに\n"
-#~ "登録しているEメールアドレスを尋ね、システムの動作情報をレポートとして\n"
-#~ "登録します。\n"
-#~ "\n"
-#~ "もしLaunchadのアカウントを持っていなければ、以下から登録できます:\n"
-#~ "\n"
-#~ "  https://launchpad.net/+login\n"
-#~ "\n"
-#~ "システムテストのために貴重な時間を提供して頂き、ありがとうございます。"
 
 #: ../gtk/checkbox-gtk.ui.h:1 ../checkbox_cli/cli_interface.py:343
 #: ../checkbox_urwid/urwid_interface.py:261
 msgid "Further information:"
 msgstr "詳細情報:"
 
+#: ../gtk/checkbox-gtk.ui.h:2
+msgid "Ne_xt"
+msgstr "次ヘ(_X)"
+
 #. Title of the user interface
 #: ../gtk/checkbox-gtk.ui.h:3 ../gtk/checkbox-gtk.desktop.in.h:1
-#: ../plugins/user_interface.py:40
+#: ../checkbox_gtk/gtk_interface.py:95 ../plugins/user_interface.py:40
 msgid "System Testing"
 msgstr "システムテストツール"
 
 #: ../gtk/checkbox-gtk.ui.h:4
 msgid "_Deselect All"
-msgstr "すべての選択を外す(_D)"
+msgstr "すべて選択解除(_D)"
 
 #: ../gtk/checkbox-gtk.ui.h:5
 msgid "_No"
@@ -326,7 +234,11 @@ msgstr "前へ(_P)"
 msgid "_Select All"
 msgstr "すべて選択(_S)"
 
-#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:522
+#: ../gtk/checkbox-gtk.ui.h:8
+msgid "_Skip this test"
+msgstr "このテストをスキップする(_S)"
+
+#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:537
 msgid "_Test"
 msgstr "テスト(_T)"
 
@@ -341,7 +253,7 @@ msgstr "システム情報をテストし、レポートを作成します"
 #. description
 #: ../jobs/apport.txt.in:5
 msgid "Test that the /var/crash directory doesn't contain anything."
-msgstr ""
+msgstr "/var/crash ディレクトリに何も含まれてないかテストします。"
 
 #. description
 #: ../jobs/audio.txt.in:7
@@ -349,18 +261,14 @@ msgid "Detecting your sound device(s):"
 msgstr "サウンドデバイスを検出しています:"
 
 #. description
-#: ../jobs/audio.txt.in:7 ../jobs/disk.txt.in:4 ../jobs/graphics.txt.in:126
-#: ../jobs/memory.txt.in:4 ../jobs/networking.txt.in:16
-#: ../jobs/optical.txt.in:8 ../jobs/power-management.txt.in:167
-#: ../jobs/usb.txt.in:5
+#: ../jobs/audio.txt.in:7 ../jobs/graphics.txt.in:113 ../jobs/memory.txt.in:4
+#: ../jobs/networking.txt.in:5 ../jobs/optical.txt.in:8 ../jobs/usb.txt.in:12
 msgid "$output"
 msgstr "$output"
 
 #. description
-#: ../jobs/audio.txt.in:7 ../jobs/bluetooth.txt.in:5 ../jobs/disk.txt.in:4
-#: ../jobs/graphics.txt.in:126 ../jobs/memory.txt.in:4
-#: ../jobs/networking.txt.in:16 ../jobs/optical.txt.in:8
-#: ../jobs/power-management.txt.in:185 ../jobs/usb.txt.in:5
+#: ../jobs/audio.txt.in:7 ../jobs/graphics.txt.in:113 ../jobs/memory.txt.in:4
+#: ../jobs/networking.txt.in:5 ../jobs/optical.txt.in:8
 msgid "Is this correct?"
 msgstr "正しく検知されていますか？"
 
@@ -380,14 +288,14 @@ msgstr "ヘッドフォンをオーディオデバイスに接続してくださ
 #: ../jobs/audio.txt.in:33
 msgid ""
 "Select Test to play a sound on the automatically detected playback device."
-msgstr ""
+msgstr "テストを選択すると、自動的に検知された再生デバイスから音楽が再生されます。"
 
 #. description
 #: ../jobs/audio.txt.in:33
 msgid ""
 "Did you hear a sound through the headphones and did the sound play without "
 "any distortion, clicks or other strange noises from your headphones?"
-msgstr ""
+msgstr "音声がヘッドフォンから聞こえて、音にひずみやカチカチ音や変なノイズがまったくなかったですか？"
 
 #. description
 #: ../jobs/audio.txt.in:47
@@ -395,7 +303,7 @@ msgid ""
 "Disconnect any external microphones that you have plugged in.  Select Test, "
 "then speak into your internal microphone.  After a few seconds, your speech "
 "will be played back to you."
-msgstr ""
+msgstr "挿し込まれている外部マイクをすべて外してください。テストを選択して内部マイクに話しかけてください。数秒後にあなたの声が再生されます。"
 
 #. description
 #: ../jobs/audio.txt.in:59
@@ -414,19 +322,23 @@ msgid ""
 "select Test, then speak into the microphone.  After a few seconds, your "
 "speech will be played back to you."
 msgstr ""
+"USBオーディオデバイスをパソコンに接続してください。その後、パネルにあるスピーカー型のアイコンを左クリックしてボリュームコントロールアプリケーションを開"
+"き、\"サウンド設定\"を選択してください。\"入力\"タブを選んでからUSBデバイスを選択してください。\"出力\"タブを選んでからUSBデバイスを選択"
+"してください。以上の設定が完了したら、テストを選択し、マイクに向かって話しかけてください。数秒後にあなたの声が再生されます。"
 
 #. description
-#: ../jobs/audio.txt.in:70 ../jobs/power-management.txt.in:221
+#: ../jobs/audio.txt.in:70
 msgid "Did you hear your speech played back?"
 msgstr "あなたの声が再生されましたか?"
 
 #. description
-#: ../jobs/audio.txt.in:81
+#: ../jobs/audio.txt.in:82
 msgid ""
 "Play back a sound on the default output and listen for it on the \\ default "
 "input.  This makes the most sense when the output and input \\ are directly "
 "connected, as with a patch cable."
 msgstr ""
+"デフォルトの出力で音楽を再生し、デフォルトの入力で音を聞きます。これは、パッチケーブルのように入力と出力が直接接続されている時に最も意味があります。"
 
 #. description
 #: ../jobs/autotest.txt.in:3
@@ -434,17 +346,17 @@ msgid "Autotest suite (destructive)"
 msgstr "自動テストスイート (破壊的)"
 
 #. description
-#: ../jobs/bluetooth.txt.in:5 ../jobs/power-management.txt.in:185
+#: ../jobs/bluetooth.txt.in:5
 msgid "The address of your Bluetooth device is: $output"
 msgstr "Bluetooth デバイスのアドレス: $output"
 
 #. description
-#: ../jobs/bluetooth.txt.in:15 ../jobs/graphics.txt.in:15
+#: ../jobs/bluetooth.txt.in:12 ../jobs/graphics.txt.in:15
 msgid "Automated test to store output in checkbox report"
-msgstr ""
+msgstr "自動テストを行い checkbox のレポートに出力を追加します"
 
 #. description
-#: ../jobs/bluetooth.txt.in:21
+#: ../jobs/bluetooth.txt.in:18
 msgid ""
 "Bluetooth browse files procedure: 1.- Enable bluetooth on any mobile device "
 "(PDA, smartphone, etc.) 2.- Click on the bluetooth icon in the menu bar 3.- "
@@ -456,7 +368,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/bluetooth.txt.in:38
+#: ../jobs/bluetooth.txt.in:35
 msgid ""
 "Bluetooth file transfer procedure: 1.- Make sure that you're able to browse "
 "the files in your mobile device 2.- Copy a file from the computer to the "
@@ -464,9 +376,12 @@ msgid ""
 "from the mobile device to the computer 5.- Verify that the file was "
 "correctly copied"
 msgstr ""
+"Bluetoothファイル転送手順： 1.-モバイルデバイスにあるファイルが閲覧できることを確認してください "
+"2.ｰファイルをコンピューターからモバイルデバイスにコピーしてください 3.ｰファイルが正しくコピーできたか確認してください "
+"4.ｰファイルをモバイルデバイスからコンピューターにコピーしてください ５.ｰファイルが正しくコピーできたか確認してください"
 
 #. description
-#: ../jobs/bluetooth.txt.in:53
+#: ../jobs/bluetooth.txt.in:50
 msgid ""
 "Bluetooth audio procedure: 1.- Enable the bluetooth headset 2.- Click on the "
 "bluetooth icon in the menu bar 3.- Select 'Setup new device' 4.- Look for "
@@ -475,17 +390,24 @@ msgid ""
 "computer 7.- Select Test to record for five seconds and reproduce in the "
 "bluetooth device"
 msgstr ""
+"Bluetooth オーディオ機器のテスト手順: 1.Bluetoothヘッドセットの電源を入れます。 "
+"2.メニューバーのBluetoothアイコンをクリックします。 3.「新しいデバイスを設定」を選択します。 "
+"4.対象となるデバイスをリストから探して選択します。 5.ウィザードで自動的に選ばれたPINコードをデバイスに設定します。 "
+"6.デバイスはコンピュータとペアになっているはずです。 7.テストを選択して、Bluetoothデバイスで5秒間録音し、再生してください。"
 
 #. description
-#: ../jobs/bluetooth.txt.in:69
+#: ../jobs/bluetooth.txt.in:66
 msgid ""
 "Bluetooth keyboard procedure: 1.- Enable the bluetooth keyboard 2.- Click on "
 "the bluetooth icon in the menu bar 3.- Select 'Setup new device' 4.- Look "
 "for the device in the list and select it 5.- Select Test to enter text"
 msgstr ""
+"Bluetoothキーボードのテスト手順: 1.Bluetoothキーボードの電源を入れます。 "
+"2.メニューバーのBluetoothアイコンをクリックします。 3.「新しいデバイスを設定」を選びます。 "
+"4.対象となるデバイスをリストから探して選択します。 5.テストを選択して、テキストを入力します。"
 
 #. description
-#: ../jobs/bluetooth.txt.in:82
+#: ../jobs/bluetooth.txt.in:79
 msgid ""
 "Bluetooth mouse procedure: 1.- Enable the bluetooth mouse 2.- Click on the "
 "bluetooth icon in the menu bar 3.- Select 'Setup new device' 4.- Look for "
@@ -497,91 +419,90 @@ msgstr ""
 "シングル/ダブル/右 クリックの動作を確認します"
 
 #. description
-#: ../jobs/bluetooth.txt.in:82 ../jobs/optical.txt.in:72
-#: ../jobs/power-management.txt.in:194 ../jobs/usb.txt.in:27
+#: ../jobs/bluetooth.txt.in:79 ../jobs/optical.txt.in:72 ../jobs/usb.txt.in:34
 msgid "Did all the steps work?"
 msgstr "すべてのステップは動作しましたか？"
 
 #. description
 #: ../jobs/camera.txt.in:7
 msgid "Automated test case that attempts to detect a camera"
-msgstr ""
+msgstr "カメラ検出のための自動テストケース"
 
 #. description
 #: ../jobs/camera.txt.in:16
 msgid "Select Test to display a video capture from the camera"
-msgstr ""
+msgstr "テストを選択するとカメラにあるキャプチャ動画を表示します"
 
 #. description
 #: ../jobs/camera.txt.in:16
 msgid "Did you see the video capture?"
-msgstr ""
+msgstr "キャプチャ動画が見えましたか?"
 
 #. description
 #: ../jobs/camera.txt.in:30
 msgid "Select Test to display a still image from the camera"
-msgstr ""
+msgstr "テストを選択するとカメラにある画像を表示します"
 
 #. description
 #: ../jobs/camera.txt.in:30
 msgid "Did you see the image?"
-msgstr ""
+msgstr "画像が見えましたか?"
 
 #. description
 #: ../jobs/camera.txt.in:43
 msgid ""
 "Select Test to capture video to a file and open it in totem. Please make "
 "sure that both audio and video is captured."
-msgstr ""
+msgstr "テストを選択するとキャプチャ動画をファイルにしてtotemで開きます。音声と動画の両方が撮れていることを確認してください。"
 
 #. description
 #: ../jobs/camera.txt.in:43
 msgid "Did you see/hear the capture?"
-msgstr ""
+msgstr "キャプチャを見る/聞くことができましたか?"
 
 #. description
 #: ../jobs/codecs.txt.in:7
 msgid "Select Test to play an Ogg Vorbis file (.ogg)"
-msgstr ""
+msgstr "テストを選択するとOgg Vorbisファイル(.ogg)を再生します"
 
 #. description
 #: ../jobs/codecs.txt.in:20
 msgid "Select Test to play a Wave Audio format file (.wav)"
-msgstr ""
+msgstr "テストを選択するとWaveオーディオフォーマットファイル(.wav)を再生します"
 
 #. description
 #: ../jobs/codecs.txt.in:20
 msgid "Did the sample play correctly?"
-msgstr ""
+msgstr "サンプルは正常に再生されましたか?"
 
 #. description
 #: ../jobs/codecs.txt.in:33
 msgid ""
 "Select 'Test' to play some audio, and try pausing and resuming playback "
 "while the it is playing."
-msgstr ""
+msgstr "'テスト'を選択して音楽を再生してください。また、再生中に一時停止と再開を試してください。"
 
 #. description
 #: ../jobs/codecs.txt.in:33
 msgid "Did the audio play and pause as expected?"
-msgstr ""
+msgstr "音楽の再生と一時停止は期待した通り動きましたか?"
 
 #. description
 #: ../jobs/codecs.txt.in:46
 msgid ""
 "Select 'Test' to play a video, and try pausing and resuming playback while "
 "the video is playing."
-msgstr ""
+msgstr "'テスト'を選択して動画を再生してください。また、動画の再生中に一時停止と再開を試してください。"
 
 #. description
 #: ../jobs/codecs.txt.in:46
 msgid "(Please close Movie Player to proceed.)"
-msgstr ""
+msgstr "(進むには動画プレイヤーを閉じてください。)"
 
 #. description
 #: ../jobs/codecs.txt.in:46
 msgid "Did the video play and pause as expected?"
-msgstr ""
+msgstr "動画の再生と一時停止は期待した通り動きましたか?"
 
 #. description
 #: ../jobs/cpu.txt.in:8
@@ -593,7 +514,7 @@ msgstr ""
 #. description
 #: ../jobs/cpu.txt.in:15
 msgid "Test for clock jitter."
-msgstr ""
+msgstr "時計のズレのテスト"
 
 #. description
 #: ../jobs/cpu.txt.in:23
@@ -618,84 +539,84 @@ msgstr ""
 #. description
 #: ../jobs/daemons.txt.in:11
 msgid "Test if the cron daemon is running when the package is installed."
-msgstr ""
+msgstr "パッケージがインストール済みの場合にcronデーモンが実行されているかテストします。"
 
 #. description
 #: ../jobs/daemons.txt.in:17
 msgid "Test if the cupsd daemon is running when the package is installed."
-msgstr ""
+msgstr "パッケージがインストール済みの場合、cupsdデーモンが動作しているかテストします。"
 
 #. description
 #: ../jobs/daemons.txt.in:23
 msgid "Test if the getty daemon is running when the package is installed."
-msgstr ""
+msgstr "パッケージがインストール済みの場合、gettyデーモンが動作しているかテストします。"
 
 #. description
 #: ../jobs/daemons.txt.in:29
 msgid "Test if the init daemon is running when the package is installed."
-msgstr ""
+msgstr "パッケージがインストール済みの場合、initデーモンが動作しているかテストします。"
 
 #. description
 #: ../jobs/daemons.txt.in:35
 msgid "Test if the klogd daemon is running when the package is installed."
-msgstr ""
+msgstr "パッケージがインストール済みの場合、klogdデーモンが動作しているかテストします。"
 
 #. description
 #: ../jobs/daemons.txt.in:41
 msgid "Test if the nmbd daemon is running when the package is installed."
-msgstr ""
+msgstr "パッケージがインストール済みの場合、nmbdデーモンが動作しているかテストします。"
 
 #. description
 #: ../jobs/daemons.txt.in:47
 msgid "Test if the smbd daemon is running when the package is installed."
-msgstr ""
+msgstr "パッケージがインストール済みの場合、smbdデーモンが動作しているかテストします。"
 
 #. description
 #: ../jobs/daemons.txt.in:53
 msgid "Test if the syslogd daemon is running when the package is installed."
-msgstr ""
+msgstr "パッケージがインストール済みの場合、syslogdデーモンが動作しているかテストします。"
 
 #. description
 #: ../jobs/daemons.txt.in:61
 msgid "Test if the udevd daemon is running when the package is installed."
-msgstr ""
+msgstr "パッケージがインストール済みの場合、udevdデーモンが動作しているかテストします。"
 
 #. description
 #: ../jobs/daemons.txt.in:67
 msgid "Test if the winbindd daemon is running when the package is installed."
-msgstr ""
+msgstr "パッケージがインストール済みの場合、winbinddデーモンが動作しているかテストします。"
 
 #. description
 #: ../jobs/disk.txt.in:4
 msgid "The following hard drives were detected:"
-msgstr "以下のハードドライブが検出されました:"
+msgstr "以下のハードディスクが検出されました:"
 
 #. description
-#: ../jobs/disk.txt.in:14
+#: ../jobs/disk.txt.in:9
 msgid "Benchmark for each disk "
-msgstr ""
+msgstr "各ディスクのベンチマークを実行 "
 
 #. description
-#: ../jobs/disk.txt.in:36
+#: ../jobs/disk.txt.in:26
 msgid "SMART test"
-msgstr ""
+msgstr "SMARTテスト"
 
 #. description
-#: ../jobs/disk.txt.in:51
+#: ../jobs/disk.txt.in:41
 msgid "Maximum disk space used during a default installation test"
-msgstr ""
+msgstr "デフォルトのインストールテストを行う際に、ディスクの使用量が最大になります。"
 
 #. description
-#: ../jobs/disk.txt.in:66
+#: ../jobs/disk.txt.in:56
 msgid "Verify system storage performs at or above baseline performance"
-msgstr ""
+msgstr "システムストレージが性能の基準値かそれ以上で動作しているか検査します"
 
 #. description
-#: ../jobs/disk.txt.in:83
+#: ../jobs/disk.txt.in:73
 msgid ""
 "Verify that storage devices, such as Fibre Channel and RAID can be detected "
 "and perform under stress."
-msgstr ""
+msgstr "ファイバーチャネルやRAIDといったストレージデバイスが検出されているかと、ストレス環境下でのパフォーマンスを確認します。"
 
 #. description
 #: ../jobs/evolution.txt.in:5
@@ -751,6 +672,13 @@ msgid ""
 " 5.- Click on the user switcher applet.\n"
 " 6.- Select the testing account to continue running tests."
 msgstr ""
+"指紋によるログインの確認手順：\n"
+"1.- ユーザー切り替えアプレットをクリックしてください。\n"
+"２.- ユーザー名を選択してください\n"
+"３.- パスワードの入力か、指紋認証を用いてログインが行えるウィンドウが現れます。\n"
+"４.- 指紋リーダーに指紋を読み取らせてログインします。\n"
+"５.- ユーザー切り替えアプレットをクリックしてください。\n"
+"６.- テストを継続するためにテストアカウントを選択してください。"
 
 #. description
 #: ../jobs/fingerprint.txt.in:18
@@ -764,6 +692,13 @@ msgid ""
 " 5.- Use the fingerprint reader to unlock.\n"
 " 6.- Your screen should be unlocked."
 msgstr ""
+"指紋によるロック解除の確認手順：\n"
+"1.- ユーザー切り替えアプレットをクリックしてください。\n"
+"２.- '画面のロック'を選択してください\n"
+"３.- 何かキーを押すか、マウスを動かしてください。\n"
+"４.- パスワードの入力か、指紋認証を用いてロックの解除が行えるウィンドウが現れます。\n"
+"５.- 指紋リーダーに指紋を読み取らせてロックを解除します。\n"
+"６.- 画面のロックが解除されます。"
 
 #. description
 #: ../jobs/fingerprint.txt.in:18
@@ -780,16 +715,21 @@ msgid ""
 " 3.- Copy some files from your internal HDD to the firewire HDD.\n"
 " 4.- Copy some files from the firewire HDD to your internal HDD."
 msgstr ""
+"FIrewire接続のHDDの確認手順：\n"
+"1.- FIrewire接続のHDDをコンピューターに接続してください。\n"
+"２.- 動作を選択するウィンドウが現れます（フォルダのオープン、 フォトマネージャーなど）。\n"
+"３.- 内蔵HDDにあるファイルをFirewire接続のHDDにコピーしてください。\n"
+"４.- Firewire接続のHDDにあるファイルを内蔵HDDにコピーしてください。"
 
 #. description
-#: ../jobs/firewire.txt.in:3 ../jobs/usb.txt.in:71
+#: ../jobs/firewire.txt.in:3
 msgid "Do the copy operations work as expected?"
 msgstr "思い通りにコピー操作ができましたか?"
 
 #. description
 #: ../jobs/floppy.txt.in:4
 msgid "Floppy test"
-msgstr ""
+msgstr "フロッピーのテスト"
 
 #. description
 #: ../jobs/gcalctool.txt.in:5
@@ -806,7 +746,7 @@ msgstr "正常に起動できましたか？"
 msgid ""
 "1. Simple math functions (+,-,/,*) 2. Nested math functions ((,)) 3. "
 "Fractional math 4. Decimal math"
-msgstr ""
+msgstr "1.単純な計算機能（+,-,/,*） 2.入れ子の計算機能((,)) 3. 分数の計算 4. 分数の計算"
 
 #. description
 #: ../jobs/gcalctool.txt.in:30
@@ -826,7 +766,7 @@ msgstr "1. 切り取り 2. コピー 3. 貼り付け"
 #. description
 #: ../jobs/gcalctool.txt.in:45
 msgid "Did the functions perform as expected?"
-msgstr ""
+msgstr "思った通りに動作しましたか?"
 
 #. description
 #: ../jobs/gedit.txt.in:5
@@ -838,24 +778,24 @@ msgstr "”テスト”ボタンをクリックしてgeditを起動してくだ�
 msgid ""
 "Enter some text and save the file (make a note of the file name you use), "
 "then close gedit."
-msgstr ""
+msgstr "何か文字を入力してファイルを保存し（ファイル名をメモしておいてください）、その後geditを終了してください。"
 
 #. description
 #: ../jobs/gedit.txt.in:17
 msgid ""
 "Click the \"Test\" button to open gedit, and re-open the file you created "
 "previously."
-msgstr ""
+msgstr "”テスト”ボタンをクリックしてgeditを起動してください。 そして、先ほど作成したファイルを開いてください。"
 
 #. description
 #: ../jobs/gedit.txt.in:17
 msgid "Edit then save the file, then close gedit."
-msgstr ""
+msgstr "ファイルを編集して保存し、geditを閉じてください。"
 
 #. description
 #: ../jobs/gedit.txt.in:17 ../jobs/gnome-terminal.txt.in:5
 msgid "Did this perform as expected?"
-msgstr ""
+msgstr "思った通りに動作しましたか?"
 
 #. description
 #: ../jobs/gnome-terminal.txt.in:5
@@ -900,6 +840,9 @@ msgid ""
 "The resolution should change 5.- Select the original resolution from the "
 "dropdown list 6.- Click on Apply 7.- The resolution should change again"
 msgstr ""
+"ディスプレイの解像度の変更手順： 1.- システム->設定->モニタ を開いてください 2.ｰ ドロップダウンリストから新しい解像度を選択してください "
+"3.ｰ 適用をクリックしてください 4.ｰ 解像度が変更されます 5.ｰ ドロップダウンリストから元々の解像度を選択してください 6.ｰ "
+"適用をクリックしてください 7.ｰ 再び解像度が変更されます"
 
 #. description
 #: ../jobs/graphics.txt.in:31
@@ -916,6 +859,9 @@ msgid ""
 "display configuration change should be reverted 7.- Repeat 2-6 for different "
 "rotation values"
 msgstr ""
+"ディスプレイの回転検証手順： 1.ｰ システム->設定->モニタ を開いてください 2.ｰ ドロップダウンリストから新しい回転角度を選択してください "
+"3.ｰ 適用をクリックしてください 4.ｰ ディスプレイが設定した値で回転します 5.ｰ 元に戻すために以前の値をクリックしてください 6.ｰ "
+"ディスプレイの設定が元に戻ります 7-. ２から６を別な回転角度で繰り返してください"
 
 #. description
 #: ../jobs/graphics.txt.in:46
@@ -923,19 +869,19 @@ msgid "Did the display rotation change as expected?"
 msgstr "ディスプレイの回転は思ったとおりに変更できましたか?"
 
 #. description
-#: ../jobs/graphics.txt.in:62 ../jobs/sru_suite.txt.in:151
+#: ../jobs/graphics.txt.in:62
 msgid "Test that the X process is running."
-msgstr ""
+msgstr "Xが動作しているかテストします。"
 
 #. description
-#: ../jobs/graphics.txt.in:68 ../jobs/sru_suite.txt.in:157
+#: ../jobs/graphics.txt.in:68
 msgid "Test that the X is not running in failsafe mode."
-msgstr ""
+msgstr "Xがフェイルセーフモードで動作していないかテストします。"
 
 #. description
 #: ../jobs/graphics.txt.in:75
 msgid "Test that X does not leak memory when running programs."
-msgstr ""
+msgstr "プログラムが動作しているときにXがメモリーリークを起こしていないかテストします。"
 
 #. description
 #: ../jobs/graphics.txt.in:82
@@ -962,156 +908,158 @@ msgid ""
 msgstr "現在の解像度が推奨する最小解像度 (1024 x 600) 以上であることを確認してください。詳細はこちらをご覧ください:"
 
 #. description
-#: ../jobs/graphics.txt.in:107
+#: ../jobs/graphics.txt.in:94
 msgid "https://help.ubuntu.com/community/Installation/SystemRequirements"
-msgstr ""
+msgstr "https://help.ubuntu.com/community/Installation/SystemRequirements"
 
 #. description
-#: ../jobs/graphics.txt.in:117
+#: ../jobs/graphics.txt.in:104
 msgid "Select Test to display a video test."
-msgstr ""
+msgstr "ビデオテストを表示するにはテストを選択してください"
 
 #. description
-#: ../jobs/graphics.txt.in:126
+#: ../jobs/graphics.txt.in:113
 msgid ""
 "The following screens and video modes have been detected on your system:"
 msgstr "このコンピュータで以下の画面とビデオモードを検出しました:"
 
 #. description
-#: ../jobs/graphics.txt.in:138
+#: ../jobs/graphics.txt.in:125
 msgid ""
 "Select Test to cycle through the detected video modes for your system."
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:138
+#: ../jobs/graphics.txt.in:125
 msgid "Did the screen appear to be working for each mode?"
 msgstr "それぞれのモードで画面が表示されましたか?"
 
 #. description
-#: ../jobs/graphics.txt.in:146
+#: ../jobs/graphics.txt.in:133
 msgid "Check that the hardware is able to run compiz."
 msgstr "ハードウェアで compiz が実行可能かどうか確認してください。"
 
 #. description
-#: ../jobs/graphics.txt.in:153
+#: ../jobs/graphics.txt.in:140
 msgid ""
 "Select Test to execute glxgears to ensure that minimal 3d graphics support "
 "is in place."
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:153
+#: ../jobs/graphics.txt.in:140
 msgid "Did the 3d animation appear?"
 msgstr "3Dアニメーションが表示されましたか？"
 
 #. description
-#: ../jobs/info.txt.in:60 ../jobs/screenshot.txt.in:7
+#: ../jobs/info.txt.in:69 ../jobs/screenshot.txt.in:7
 msgid "Captures a screenshot."
 msgstr "スクリーンショットを取得します。"
 
 #. description
-#: ../jobs/info.txt.in:71 ../jobs/sru_suite.txt.in:167
+#: ../jobs/info.txt.in:80
 msgid "Gather log from the firmware test suite run"
 msgstr ""
 
 #. description
-#: ../jobs/info.txt.in:82
+#: ../jobs/info.txt.in:91
 msgid "Bootchart information."
 msgstr ""
 
 #. description
 #: ../jobs/input.txt.in:13
 msgid "Select Test to open a text area where to type keys on your keyboard."
-msgstr ""
+msgstr "テストを選択すると、キーボードからキーを入力するためのテキストエリアが開きます。"
 
 #. description
 #: ../jobs/install.txt.in:6
 msgid ""
 "Tests to see that apt can access repositories and get updates (does not "
 "install updates)"
-msgstr ""
+msgstr "aptがレポジトリにアクセスできて、アップデートを取得できるかテストします。(アップデートはインストールしません)"
 
 #. description
 #: ../jobs/keys.txt.in:4
 msgid ""
 "Press the brightness buttons on the keyboard. A status window should \\ "
 "appear and the brightness should change."
-msgstr ""
+msgstr "キーボードの輝度ボタンを押してください。 状態ウインドウが現れ、ディスプレイの輝度が変更されるはずです。"
 
 #. description
 #: ../jobs/keys.txt.in:12
 msgid ""
 "Press the volume buttons on the keyboard. A status window should \\ appear "
 "and the volume should change."
-msgstr ""
+msgstr "キーボードの音量ボタンを押してください。 状態ウインドウが現れ、音量が変更されるはずです。"
 
 #. description
 #: ../jobs/keys.txt.in:12
 msgid "Do the buttons work?"
-msgstr ""
+msgstr "ボタンは動作しましたか？"
 
 #. description
 #: ../jobs/keys.txt.in:21
 msgid ""
 "Press the mute key on the keyboard. A status window should appear \\ and the "
 "volume should mute/unmute when pressed multiple times."
-msgstr ""
+msgstr "キーボードのミュートキーを押してください。 状態ウインドウが現れ、キーを押すたびに音量がミュート/ミュート解除されるはずです。"
 
 #. description
-#: ../jobs/keys.txt.in:30
+#: ../jobs/keys.txt.in:31
 msgid ""
 "Press the sleep key on the keyboard. The computer should suspend and, \\ "
 "after pressing the power button, resume successfully."
-msgstr ""
+msgstr "キーボードのスリープキーを押してください。 コンピューターはサスペンドします。 その後電源ボタンを押せば、レジュームされるはずです。"
 
 #. description
-#: ../jobs/keys.txt.in:39
+#: ../jobs/keys.txt.in:40
 msgid ""
 "Press the battery information key on the keyboard. A status window \\ should "
 "appear and the amount of battery remaining should be displayed."
-msgstr ""
+msgstr "キーボードのバッテリー情報キーを押してください。 状態ウインドウが現れ、バッテリー残量が表示されるはずです。"
 
 #. description
-#: ../jobs/keys.txt.in:48
+#: ../jobs/keys.txt.in:49
 msgid ""
 "Press the wireless networking key on the keyboard. The bluetooth icon \\ and "
 "the network connnection should go down if connected through the \\ wifi "
 "interface."
 msgstr ""
+"キーボードの無線ネットワークキーを押してください。  "
+"wifiインターフェースに接続していれば、bluetoothアイコンが消え、ネットワーク接続が停止します。"
 
 #. description
-#: ../jobs/keys.txt.in:48
+#: ../jobs/keys.txt.in:49
 msgid ""
 "Press the same key again and check that bluetooth icon is again \\ displayed "
 "and that the network connection is re-established \\ automatically."
-msgstr ""
+msgstr "もう一度同じキーを押して、bluetoothアイコンが表示され、ネットワークが自動的に再接続されるか確認してください。"
 
 #. description
-#: ../jobs/keys.txt.in:48
+#: ../jobs/keys.txt.in:49
 msgid "Does the key work?"
 msgstr ""
 
 #. description
-#: ../jobs/keys.txt.in:62
+#: ../jobs/keys.txt.in:63
 msgid ""
 "The keyboard may have dedicated keys for controlling media as follows:"
-msgstr ""
+msgstr "キーボードにはメディアコントロールのために次のような専用キーが用意されていることがあります:"
 
 #. description
-#: ../jobs/keys.txt.in:62
+#: ../jobs/keys.txt.in:63
 msgid "* Play/Pause * Stop * Forward * Backward (Rewind)"
-msgstr ""
+msgstr "* 再生/一時停止 * 停止 * 次へ * 前へ（巻き戻し）"
 
 #. description
-#: ../jobs/keys.txt.in:62
+#: ../jobs/keys.txt.in:63
 msgid "Play a media file and press each key in turn."
-msgstr ""
+msgstr "メディアファイルを再生し、専用キーをそれぞれ順番に押してください。"
 
 #. description
-#: ../jobs/keys.txt.in:62
+#: ../jobs/keys.txt.in:63
 msgid "Do the keys work as expected?"
-msgstr ""
+msgstr "キーを押したときに思った通りに動作しましたか？"
 
 #. description
 #: ../jobs/local.txt.in:3
@@ -1121,27 +1069,27 @@ msgstr "オーディオテスト"
 #. description
 #: ../jobs/local.txt.in:8
 msgid "Bluetooth tests"
-msgstr ""
+msgstr "Bluetoothテスト"
 
 #. description
 #: ../jobs/local.txt.in:13
 msgid "Camera tests"
-msgstr ""
+msgstr "カメラテスト"
 
 #. description
 #: ../jobs/local.txt.in:18
 msgid "Codec tests"
-msgstr ""
+msgstr "コーデックテスト"
 
 #. description
 #: ../jobs/local.txt.in:23
 msgid "CPU tests"
-msgstr ""
+msgstr "CPUテスト"
 
 #. description
 #: ../jobs/local.txt.in:28
 msgid "System Daemon tests"
-msgstr ""
+msgstr "システムデーモンテスト"
 
 #. description
 #: ../jobs/local.txt.in:33
@@ -1161,12 +1109,12 @@ msgstr "Firewireディスクテスト"
 #. description
 #: ../jobs/local.txt.in:48
 msgid "Floppy disk tests"
-msgstr ""
+msgstr "フロッピーディスクテスト"
 
 #. description
 #: ../jobs/local.txt.in:53
 msgid "Graphics tests"
-msgstr ""
+msgstr "グラフィックテスト"
 
 #. description
 #: ../jobs/local.txt.in:58
@@ -1176,7 +1124,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:63
 msgid "Input Devices tests"
-msgstr ""
+msgstr "入力デバイステスト"
 
 #. description
 #: ../jobs/local.txt.in:68
@@ -1186,55 +1134,55 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:73
 msgid "Hotkey tests"
-msgstr ""
-
-#. description
-#: ../jobs/local.txt.in:78
-msgid "Media Card tests"
-msgstr ""
+msgstr "ホットキーテスト"
 
 #. description
 #: ../jobs/local.txt.in:83
+msgid "Media Card tests"
+msgstr "メディアカードテスト"
+
+#. description
+#: ../jobs/local.txt.in:93
 msgid "Miscellaneous tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:88
+#: ../jobs/local.txt.in:98
 msgid "Monitor tests"
 msgstr "モニターテスト"
 
 #. description
-#: ../jobs/local.txt.in:93
+#: ../jobs/local.txt.in:103
 msgid "Networking tests"
-msgstr ""
+msgstr "ネットワークテスト"
 
 #. description
-#: ../jobs/local.txt.in:98
+#: ../jobs/local.txt.in:113
 msgid "PCMCIA/PCIX Card tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:103
+#: ../jobs/local.txt.in:118
 msgid "Peripheral tests"
 msgstr "周辺機器テスト"
 
 #. description
-#: ../jobs/local.txt.in:108
+#: ../jobs/local.txt.in:123
 msgid "Power Management tests"
-msgstr ""
+msgstr "パワーマネジメントテスト"
 
 #. description
-#: ../jobs/local.txt.in:113
+#: ../jobs/local.txt.in:133
 msgid "Unity tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:118
+#: ../jobs/local.txt.in:143
 msgid "User Applications"
 msgstr "ユーザアプリケーション"
 
 #. description
-#: ../jobs/local.txt.in:123
+#: ../jobs/local.txt.in:153
 msgid "Stress tests"
 msgstr ""
 
@@ -1246,7 +1194,7 @@ msgstr "Linux テストプロジェクト"
 #. description
 #: ../jobs/mago.txt.in:3
 msgid "Automated desktop testing"
-msgstr ""
+msgstr "自動デスクトップテスト"
 
 #. description
 #: ../jobs/mediacard.txt.in:3
@@ -1388,7 +1336,7 @@ msgstr "アイコンは自動的に表示され、自動的に消えましたか
 #. description
 #: ../jobs/memory.txt.in:4
 msgid "The following amount of memory was detected:"
-msgstr ""
+msgstr "以下の容量のメモリーが検出されました:"
 
 #. description
 #: ../jobs/memory.txt.in:16
@@ -1401,7 +1349,7 @@ msgid ""
 "Select Test to switch to another virtual terminal and then back to X.  Your "
 "screen will change temporarily to a text console and then switch back to "
 "your current session."
-msgstr ""
+msgstr "テストを選択すると、他の仮想端末へ切り替えてXに戻ります。画面が一時的にテキストコンソールになり、その後現在のセッションに戻ります。"
 
 #. description
 #: ../jobs/miscellanea.txt.in:8
@@ -1512,6 +1460,10 @@ msgid ""
 " 2.- The monitor should go blank.\n"
 " 3.- Press any key or move the mouse to recover."
 msgstr ""
+"モニター省電化の検証手順:\n"
+" 1.- モニターの省電力が可能かどうか試すためテストを選択してください。\n"
+" 2.- モニターに何も表示されなくなります。\n"
+" 3.- 何かキーを押すか、マウスを動かして復帰してください。"
 
 #. description
 #: ../jobs/monitor.txt.in:46
@@ -1519,35 +1471,41 @@ msgid "Did the monitor go blank?"
 msgstr "モニターは暗転しましたか？"
 
 #. description
-#: ../jobs/networking.txt.in:26
+#: ../jobs/networking.txt.in:21
 msgid "Network Information"
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:46
+#: ../jobs/wireless.txt.in:6
 msgid "Wireless scanning test."
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:52
+#: ../jobs/wireless.txt.in:12
 msgid ""
 "Wireless network connection procedure: 1.- Click on the Network Manager "
 "applet 2.- Select a network below the 'Wireless networks' section 3.- Notify "
 "OSD should confirm that the connection has been established 4.- Select Test "
 "to verify that it's possible to establish an HTTP connection"
 msgstr ""
+"無線ネットワーク接続手順： 1.ｰ ネットワークマネージャーアプレットをクリックしてください 2.-  "
+"’無線ネットワーク’セクションの下にあるネットワークを選択してください 3.ｰ Notify OSDが接続を確立したか確認します 4.ｰ "
+"HTTP接続が確立できるか検証するためのテストを選択してください"
 
 #. description
-#: ../jobs/networking.txt.in:64
+#: ../jobs/networking.txt.in:39
 msgid ""
 "Wired network connection procedure: 1.- Click on the Network Manager applet "
 "2.- Select a network below the 'Wired network' section 3.- Notify OSD should "
 "confirm that the connection has been established 4.- Select Test to verify "
 "that it's possible to establish an HTTP connection"
 msgstr ""
+"有線ネットワーク接続手順： 1.ｰ ネットワークマネージャーアプレットをクリックしてください  2.-  "
+"’有線ネットワーク’セクションの下にあるネットワークを選択してください 3.ｰ Notify OSDが接続を確立したか確認します 4.ｰ "
+"HTTP接続が確立できるか検証するためのテストを選択してください"
 
 #. description
-#: ../jobs/networking.txt.in:76
+#: ../jobs/networking.txt.in:51
 msgid ""
 "Built-in modem network connection procedure: 1.- Connect the telephone line "
 "to the computer 2.- Right click on the Network Manager applet 3.- Select "
@@ -1556,69 +1514,74 @@ msgid ""
 "that the connection has been established 8.- Select Test to verify that it's "
 "possible to establish an HTTP connection"
 msgstr ""
+"内蔵モデムネットワーク接続手順： 1.ｰ 電話線をコンピューターに接続してください 2.ｰ ネットワークマネージャーアプレットを右クリックしてください "
+"3.ｰ ’接続を編集する…’を選択してください 4.ｰ ’DSL’タブを選択してください 5.ｰ ’追加’ボタンをクリックしてください 6.ｰ "
+"接続のパラメーターを正しく設定してください 7.ｰ Notify OSDが接続を確立したか確認します 8.ｰ "
+"HTTP接続が確立できるか検証するためのテストを選択してください"
 
 #. description
-#: ../jobs/networking.txt.in:76 ../jobs/peripheral.txt.in:15
+#: ../jobs/networking.txt.in:51 ../jobs/peripheral.txt.in:15
+#: ../jobs/wireless.txt.in:12
 msgid "Was the connection correctly established?"
-msgstr ""
+msgstr "接続は正しく確立されましたか？"
 
 #. description
-#: ../jobs/networking.txt.in:92
+#: ../jobs/networking.txt.in:67
 msgid ""
 "Automated test case to verify availability of some system on the network "
 "using ICMP ECHO packets."
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:99 ../jobs/peripheral.txt.in:32
+#: ../jobs/networking.txt.in:74 ../jobs/peripheral.txt.in:32
 msgid ""
 "Automated test case to make sure that it's possible to download files "
 "through HTTP"
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:107
+#: ../jobs/networking.txt.in:82
 msgid "Test to see if we can sync local clock to an NTP server"
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:113
+#: ../jobs/networking.txt.in:88
 msgid ""
 "Verify that an installation of checkbox-server on the network can be reached "
 "over SSH."
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:119
+#: ../jobs/networking.txt.in:94
 msgid "Try to enable a remote printer on the network and print a test page."
-msgstr ""
+msgstr "ネットワーク上にあるリモートプリンターを利用可能にして、テストページの印刷を試みます。"
 
 #. description
-#: ../jobs/networking.txt.in:124
+#: ../jobs/networking.txt.in:99
 msgid "Multiple network cards"
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:144
+#: ../jobs/networking.txt.in:119
 msgid "Test to measure the network bandwidth"
-msgstr ""
+msgstr "ネットワークの帯域幅を計測するテスト"
 
 #. description
 #: ../jobs/optical.txt.in:8
 msgid "The following optical drives were detected:"
-msgstr ""
+msgstr "以下の光学ドライブが検出されました："
 
 #. description
 #: ../jobs/optical.txt.in:18
 msgid "Optical Storage device read tests"
-msgstr ""
+msgstr "光学ストレージデバイスの読み込みテスト"
 
 #. description
 #: ../jobs/optical.txt.in:37
 msgid ""
 "The detected optical drive seems to support writing. Enter a blank CDROM \\ "
 "into your drive and try writing to it."
-msgstr ""
+msgstr "検出された光学ドライブは書き込みをサポートしているようです。 空のCDROMをドライブに挿入して書き込みができるか試してください。"
 
 #. description
 #: ../jobs/optical.txt.in:46
@@ -1637,12 +1600,12 @@ msgstr ""
 msgid ""
 "The detected optical drive seems to support writing. Enter a blank DVD \\ "
 "into your drive and try writing to it."
-msgstr ""
+msgstr "検出された光学ドライブは書き込みをサポートしているようです。 空のDVDをドライブに挿入して書き込みができるか試してください。"
 
 #. description
 #: ../jobs/optical.txt.in:63
 msgid "Does writing work?"
-msgstr ""
+msgstr "書き込みはできましたか？"
 
 #. description
 #: ../jobs/optical.txt.in:72
@@ -1659,7 +1622,7 @@ msgstr ""
 #. description
 #: ../jobs/optical.txt.in:90
 msgid "Insert a DVD.  Then select Test to play the DVD in Totem."
-msgstr ""
+msgstr "DVDを挿入して、TotemでのDVDの再生テストを選択してください。"
 
 #. description
 #: ../jobs/optical.txt.in:90
@@ -1710,12 +1673,12 @@ msgstr ""
 #. description
 #: ../jobs/pcmcia-pcix.txt.in:3
 msgid "Plug a PCMCIA device into the computer."
-msgstr ""
+msgstr "PCMCIAデバイスをコンピュータに挿入してください。"
 
 #. description
 #: ../jobs/pcmcia-pcix.txt.in:3
 msgid "Is it detected?"
-msgstr ""
+msgstr "検出されましたか？"
 
 #. description
 #: ../jobs/peripheral.txt.in:3
@@ -1780,47 +1743,47 @@ msgid "Does your computer hibernate and restore?"
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:29
+#: ../jobs/power-management.txt.in:13
 msgid "Does closing your laptop lid cause your screen to blank?"
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:41
+#: ../jobs/power-management.txt.in:25
 msgid "Click the Test button, then close and open the lid."
-msgstr ""
+msgstr "テストボタンをクリックして、パソコンのふたを閉じて開け直してください。"
 
 #. description
-#: ../jobs/power-management.txt.in:41
+#: ../jobs/power-management.txt.in:25
 msgid "Did the screen turn off while the lid was closed?"
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:55
+#: ../jobs/power-management.txt.in:39
 msgid "Click the Test button, then close the lid and wait 5 seconds."
-msgstr ""
+msgstr "テストボタンをクリックし、ノートパソコンのふたを閉じて5秒待ってください"
 
 #. description
-#: ../jobs/power-management.txt.in:55
+#: ../jobs/power-management.txt.in:39
 msgid "Open the lid."
-msgstr ""
+msgstr "ノートパソコンのふたを開けてください"
 
 #. description
-#: ../jobs/power-management.txt.in:55
+#: ../jobs/power-management.txt.in:39
 msgid "Did the screen turn back on when the lid was opened?"
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:65
+#: ../jobs/power-management.txt.in:49
 msgid "Test the network before suspending."
 msgstr "サスペンドの前にネットワークをテストする。"
 
 #. description
-#: ../jobs/power-management.txt.in:70
+#: ../jobs/suspend.txt.in:4
 msgid "Record the current resolution before suspending."
 msgstr "サスペンドの前に現在の解像度を記録する。"
 
 #. description
-#: ../jobs/power-management.txt.in:78
+#: ../jobs/suspend.txt.in:12
 msgid "Test the audio before suspending."
 msgstr "サスペンドの前に音声をテストする。"
 
@@ -1837,17 +1800,17 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:128 ../jobs/sru_suite.txt.in:135
+#: ../jobs/power-management.txt.in:51
 msgid "Make sure that the RTC (Real-Time Clock) device exists."
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:135
+#: ../jobs/suspend.txt.in:58
 msgid "Power management Suspend and Resume test"
 msgstr "電源管理、サスペンドとレジュームのテスト"
 
 #. description
-#: ../jobs/power-management.txt.in:135
+#: ../jobs/suspend.txt.in:58
 msgid ""
 "Select Test and your system will suspend for about 30 - 60 seconds. If your "
 "system does not wake itself up after 60 seconds, please press the power "
@@ -1857,18 +1820,18 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:145
+#: ../jobs/suspend.txt.in:68
 msgid "Test the network after resuming."
 msgstr "レジューム後のネットワークをテストする。"
 
 #. description
-#: ../jobs/power-management.txt.in:151
+#: ../jobs/suspend.txt.in:74
 msgid ""
 "Test to see that we have the same resolution after resuming as before."
 msgstr "レジューム後の解像度が変わっていないかテストする。"
 
 #. description
-#: ../jobs/power-management.txt.in:160
+#: ../jobs/suspend.txt.in:83
 msgid "Test the audio after resuming."
 msgstr "レジューム後の音声をテストする。"
 
@@ -1904,14 +1867,14 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:210
+#: ../jobs/suspend.txt.in:150
 msgid ""
 "This test will check to make sure that supported video modes work after a "
 "suspend and resume.  Select Test to begin."
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:221
+#: ../jobs/power-management.txt.in:251
 msgid ""
 "This will check to make sure that your audio device works properly after a "
 "suspend and resume.  You can use either internal or external microphone and "
@@ -1920,7 +1883,7 @@ msgstr ""
 "このテストはオーディオデバイスがサスペンドとレジュームの後で正常に動作するかを確認します。マイクとスピーカーは内蔵またを外付けのどちらでも使用できます。"
 
 #. description
-#: ../jobs/power-management.txt.in:221
+#: ../jobs/power-management.txt.in:251
 msgid ""
 "To execute this test, make sure your speaker and microphone are NOT muted "
 "and the volume is set sufficiently loud to record and play audio. Select "
@@ -1929,7 +1892,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:234
+#: ../jobs/stress.txt.in:30
 msgid ""
 "Enter and resume from suspend state for 30 iterations. Please note that this "
 "is a lengthy test. Select Test to begin. If your system fails to wake and "
@@ -1937,19 +1900,19 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:234
+#: ../jobs/stress.txt.in:30
 msgid "Did the system successfully suspend and resume for 30 iterations?"
 msgstr "コンピュータはサスペンドとレジュームを30回繰り返すことができましたか?"
 
 #. description
-#: ../jobs/power-management.txt.in:245
+#: ../jobs/hibernate.txt.in:7
 msgid ""
 "This will check to make sure your system can successfully hibernate (if "
 "supported)."
 msgstr "このテストは（もしサポートしているなら）コンピュータがハイバネートできるかを確認します。"
 
 #. description
-#: ../jobs/power-management.txt.in:245
+#: ../jobs/hibernate.txt.in:7
 msgid ""
 "Select Test to begin. The system will hibernate and should wake itself "
 "within 5 minutes.  If your system does not wake itself after 5 minutes, "
@@ -1959,14 +1922,14 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:245
+#: ../jobs/hibernate.txt.in:7
 msgid ""
 "Did the system successfully hibernate and did it work properly after waking "
 "up?"
 msgstr "コンピュータはハイバネートに成功し、復帰した後も正常に動作していますか?"
 
 #. description
-#: ../jobs/power-management.txt.in:258
+#: ../jobs/stress.txt.in:17
 msgid ""
 "Enter and resume from hibernate for 30 iterations. Please note that this is "
 "a very lengthy test. Also, if your system does not wake itself after 2 "
@@ -1976,7 +1939,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:258
+#: ../jobs/stress.txt.in:17
 msgid ""
 "Also, you will need to ensure your system has no power-on or HDD passwords "
 "set, and that grub is set to boot Ubuntu by default if you have a multi-boot "
@@ -1986,27 +1949,27 @@ msgstr ""
 "ntuに設定してください。"
 
 #. description
-#: ../jobs/power-management.txt.in:258
+#: ../jobs/stress.txt.in:17
 msgid "Did the system successfully hibernate and wake 30 times?"
 msgstr "コンピュータはハイバネートと起動を30回繰り返すことができましたか?"
 
 #. description
-#: ../jobs/power-management.txt.in:267
+#: ../jobs/power-management.txt.in:56
 msgid "Run Colin Kings FWTS wakealarm test"
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:276
+#: ../jobs/power-management.txt.in:65
 msgid "Check to see if CONFIG_NO_HZ is set in the kernel"
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:284
+#: ../jobs/suspend.txt.in:194
 msgid "Automatic power management Suspend and Resume test"
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:284
+#: ../jobs/suspend.txt.in:194
 msgid ""
 "Select test and your system will suspend for about 30 - 60 seconds. If your "
 "system does not wake itself up after 60 seconds, please press the power "
@@ -2170,26 +2133,26 @@ msgid "The following USB controllers were detected:"
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:17
+#: ../jobs/usb.txt.in:24
 msgid ""
 "Plug a USB keyboard into the computer. Then, click on the Test button \\ to "
 "enter text."
-msgstr ""
+msgstr "USBキーボードをこのコンピューターに挿入してください。そして、テキストボックスに'\\'を入力してテストボタンをクリックしてください"
 
 #. description
-#: ../jobs/usb.txt.in:17
+#: ../jobs/usb.txt.in:24
 msgid "Does the keyboard work?"
-msgstr ""
+msgstr "キーボードは正常に動作しましたか？"
 
 #. description
-#: ../jobs/usb.txt.in:27
+#: ../jobs/usb.txt.in:34
 msgid ""
 "USB mouse verification procedure: 1.- Plug a USB mouse into the computer 2.- "
 "Perform some single/double/right click operations"
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:39
+#: ../jobs/usb.txt.in:46
 msgid ""
 "Click 'Test' and insert a USB device within 5 seconds. If the test is "
 "successful, you should notice that 'Yes' is selected below. Do not unplug "
@@ -2197,21 +2160,21 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:39
+#: ../jobs/usb.txt.in:46
 msgid ""
 "If no USB device is inserted or the device is not recognized, the test will "
 "fail and 'No' will be selected below."
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:51
+#: ../jobs/usb.txt.in:58
 msgid ""
 "Click 'Test' and remove the USB device you inserted within 5 seconds. If the "
 "test is successful, you should notice that 'Yes' is selected below."
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:51
+#: ../jobs/usb.txt.in:58
 msgid ""
 "If the USB device isn't removed or the removal is not registered, the test "
 "will fail and 'No' will be selected below."
@@ -2239,7 +2202,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:83
+#: ../jobs/usb.txt.in:86
 msgid ""
 "Connect a USB storage device to an external USB slot on this computer. \\ An "
 "icon should appear on the desktop and in the \"Places\" menu at the top of "
@@ -2247,14 +2210,14 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:83
+#: ../jobs/usb.txt.in:86
 msgid ""
 "Confirm that the icon appears, then eject the device. Repeat with each "
 "external \\ USB slot."
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:83
+#: ../jobs/usb.txt.in:86
 msgid "Do all USB slots work with the device?"
 msgstr ""
 
@@ -2506,19 +2469,19 @@ msgstr "正しく接続できて、メッセージの送受信ができました
 
 #: ../checkbox/application.py:84
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist."
-msgstr ""
+msgstr "省略表現　--config=checkbox/plugins/jobs_info/blacklist"
 
 #: ../checkbox/application.py:86
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist_file."
-msgstr ""
+msgstr "省略表現　--config=checkbox/plugins/jobs_info/blacklist_file"
 
 #: ../checkbox/application.py:88
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist."
-msgstr ""
+msgstr "省略表現　--config=checkbox/plugins/jobs_info/whitelist"
 
 #: ../checkbox/application.py:90
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist_file."
-msgstr ""
+msgstr "省略表現　--config=checkbox/plugins/jobs_info/whitelist_file"
 
 #: ../checkbox/lib/signal.py:23
 msgid ""
@@ -2632,7 +2595,7 @@ msgstr "すべて選択"
 
 #: ../checkbox_urwid/urwid_interface.py:415
 msgid "Deselect All"
-msgstr "すべての選択を外す"
+msgstr "すべて選択解除"
 
 #: ../checkbox_urwid/urwid_interface.py:772
 msgid "Test"
@@ -2646,11 +2609,11 @@ msgstr "再テスト"
 msgid "hardware database"
 msgstr ""
 
-#: ../checkbox_gtk/gtk_interface.py:533
+#: ../checkbox_gtk/gtk_interface.py:548
 msgid "Info"
 msgstr "情報"
 
-#: ../checkbox_gtk/gtk_interface.py:552
+#: ../checkbox_gtk/gtk_interface.py:567
 msgid "Error"
 msgstr "エラー"
 
@@ -2659,7 +2622,7 @@ msgstr "エラー"
 msgid "Unable to start web browser to open %s."
 msgstr "%s を開くためのウェブブラウザを起動できません"
 
-#: ../plugins/apport_prompt.py:81
+#: ../plugins/apport_prompt.py:83
 msgid ""
 "Collecting information about this test.\n"
 "This might take a few minutes."
@@ -2667,7 +2630,7 @@ msgstr ""
 "このテストに関する情報を収集しています。\n"
 "これには数分かかる場合があります。"
 
-#: ../plugins/apport_prompt.py:116
+#: ../plugins/apport_prompt.py:118
 msgid ""
 "Collected information is being sent for bug tracking.\n"
 "This might take a few minutes."
@@ -2675,17 +2638,17 @@ msgstr ""
 "収集した情報をバグトラッキングに送信しています。\n"
 "これには数分かかる場合があります。"
 
-#: ../plugins/apport_prompt.py:225
+#: ../plugins/apport_prompt.py:227
 #, python-format
 msgid "Test %s from suite %s failed."
 msgstr ""
 
-#: ../plugins/apport_prompt.py:228
+#: ../plugins/apport_prompt.py:230
 #, python-format
 msgid "Test %s failed."
 msgstr ""
 
-#: ../plugins/apport_prompt.py:246
+#: ../plugins/apport_prompt.py:248
 #, python-format
 msgid "Is a package upgrade in process? Error: %s"
 msgstr "パッケージのアップグレードを実行中ですか? エラー: %s"
@@ -2694,7 +2657,7 @@ msgstr "パッケージのアップグレードを実行中ですか? エラー:
 msgid "Successfully finished testing!"
 msgstr "テストは成功しました!"
 
-#: ../plugins/intro_prompt.py:43
+#: ../plugins/intro_prompt.py:29
 msgid ""
 "Welcome to System Testing!\n"
 "\n"
@@ -2704,10 +2667,9 @@ msgid ""
 msgstr ""
 "システムテストにようこそ！\n"
 "\n"
-"Checkboxは、システムが正しく動作するかどうかを確認するためのテストをします。テストが終了すると、システムに関するサマリーレポートを見ることができま"
-"す。"
+"Checkboxは、システムが正しく動作するかどうかの確認テストを行います。テストが終了すると、システムに関するサマリーレポートを見ることができます。"
 
-#: ../plugins/launchpad_exchange.py:118
+#: ../plugins/launchpad_exchange.py:136
 #, python-format
 msgid "Failed to process form: %s"
 msgstr ""
@@ -2726,12 +2688,12 @@ msgid ""
 "\n"
 "  https://launchpad.net/+login"
 msgstr ""
-"Launchpadのハードウェアデータベースに提供するため、以下のレポートが作成されました。\n"
+"Launchpadのハードウェアデータベースに提供するため、以下のレポートを作成しました。\n"
 "\n"
-"  [[%s|レポートを見る]]\n"
+"  [[%s|レポートを表示]]\n"
 "\n"
-"Launchpadアカウントのメールアドレスを入力すると、このレポートをLaunchpadに送信できます。もしもLaunchpadのアカウントを持っていな"
-"いなら、ここから登録してください:\n"
+"Launchpadアカウントのメールアドレスを入力すると、このレポートをLaunchpadに送信できます。Launchpadのアカウントを持っていない場合"
+"は、ここから登録してください:\n"
 "\n"
 "  https://launchpad.net/+login"
 
@@ -2757,7 +2719,7 @@ msgid "Running %s..."
 msgstr "%s 実行中..."
 
 #. Get results
-#: ../plugins/suites_prompt.py:105
+#: ../plugins/suites_prompt.py:108
 msgid "Select the suites to test"
 msgstr "テストするスイートを選択してください"
 
@@ -2765,7 +2727,7 @@ msgstr "テストするスイートを選択してください"
 msgid "Enter text:\n"
 msgstr "テキストを入力してください:\n"
 
-#: ../scripts/keyboard_test:40
+#: ../scripts/keyboard_test:41
 msgid "Type Text"
 msgstr "文章を入力してください。"
 

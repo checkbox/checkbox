@@ -37,7 +37,7 @@ _description:
  PURPOSE:
      This test will check your wired connection
  STEPS:
-     1. Click on the Network Manager applet
+     1. Click on the Network icon in the top panel
      2. Select a network below the "Wired network" section
      3. Click "Test" to verify that it's possible to establish a HTTP connection
  VERIFICATION:
@@ -48,10 +48,10 @@ name: networking/modem_connection
 command: network_check
 _description:
  PURPOSE:
-     This test will check your modem
+     This test will check that a DSL modem can be configured and connected.
  STEPS:
      1. Connect the telephone line to the computer
-     2. Click on the Network Manager applet
+     2. Click on the Network icon on the top panel.
      3. Select "Edit Connections"
      4. Select the "DSL" tab
      5. Click on "Add" button
@@ -95,7 +95,7 @@ _description: Try to enable a remote printer on the network and print a test pag
 plugin: local
 name: networking/multi_nic
 requires: device.category == 'NETWORK'
-_description: Multiple network cards
+_description: Automated test to walk multiple network cards and test each one in sequence.
 command:
  cat <<'EOF' | run_templates -s 'udev_resource | filter_templates -w "category=NETWORK" | awk "/path: / { print \$2 }" | xargs -n 1 sh -c "for i in \`ls /sys\$0/net 2>/dev/null\`; do echo \$0 \$i; done"'
  plugin: shell

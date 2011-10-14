@@ -13,7 +13,7 @@ plugin: manual
 name: keys/volume
 _description:
  PURPOSE:
-     This test will test the volume key
+     This test will test the volume keys
  STEPS:
      1. Press the volume buttons on the keyboard
  VERIFICATION:
@@ -33,6 +33,7 @@ _description:
 plugin: manual
 name: keys/sleep
 requires: device.product in ['Notebook','Laptop','Portable']
+depends: suspend/suspend_advanced
 _description:
  PURPOSE:
      This test will test the sleep key
@@ -67,12 +68,16 @@ _description:
 
 plugin: manual
 name: keys/media-control
-requires: device.category == 'KEYBOARD'
+requires:
+ device.category == 'KEYBOARD'
+ package.name == 'totem'
+ package.name == 'gstreamer0.10-plugins-base'
+command: totem /usr/share/example-content/Ubuntu_Free_Culture_Showcase/*
 _description:
  PURPOSE:
      This test will test the media keys of your keyboard
  STEPS:
-     1. Play a media file
+     1. Click test to launch the media player
      2. Press the play/pause key on the keyboard
      3. Press the forward key on the keyboard
      4. Press the backward key on the keyboard

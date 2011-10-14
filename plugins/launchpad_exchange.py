@@ -47,7 +47,7 @@ FORM = Map({
     "field.system": String(),
     "field.emailaddress": String(),
     "field.live_cd": String(),
-    "field.submission_data": File(required=False)})
+    "field.submission_data": File()})
 
 
 class LaunchpadExchange(Plugin):
@@ -68,7 +68,9 @@ class LaunchpadExchange(Plugin):
             "field.contactable": "False",
             "field.live_cd": "False",
             "field.format": "VERSION_1",
-            "field.actions.upload": "Upload"}
+            "field.actions.upload": "Upload",
+            "field.submission_data": None,
+            "field.system": None}
 
         for (rt, rh) in [
              ("report-client", self.report_client),
@@ -111,12 +113,9 @@ class LaunchpadExchange(Plugin):
         self._launchpad_report = report
 
     def launchpad_exchange(self):
-        # Encode form data
-        try:
-            form = FORM.coerce(self._form)
-        except ValueError, e:
-            self._manager.reactor.fire("exchange-error", _("""\
-Failed to process form: %s""" % e))
+        # Maybe on the next exchange...
+        if not self._form["field.system"] \
+           or self._form["field.submission_data"]:
             return
 
         # Compress and add payload to form
@@ -125,16 +124,27 @@ Failed to process form: %s""" % e))
         file = StringIO(compressed_payload)
         file.name = "%s.xml.bz2" % str(gethostname())
         file.size = len(compressed_payload)
-        form["field.submission_data"] = file
+        self._form["field.submission_data"] = file
 
         if logging.getLogger().getEffectiveLevel() <= logging.DEBUG:
             logging.debug("Uncompressed payload length: %d", len(payload))
 
-        transport = HTTPTransport(self.transport_url)
+        # Encode form data
+        try:
+            form = FORM.coerce(self._form)
+        except ValueError, e:
+            self._manager.reactor.fire("exchange-error", _("""\
+Failed to process form: %s""" % e))
+            return
 
+        transport = HTTPTransport(self.transport_url)
         start_time = time.time()
-        response = transport.exchange(form, self._headers,
-            timeout=string_to_type(self.timeout))
+        try:
+            response = transport.exchange(form, self._headers,
+                timeout=string_to_type(self.timeout))
+        except Exception, error:
+            self._manager.reactor.fire("exchange-error", error)
+            return
         end_time = time.time()
 
         if not response:

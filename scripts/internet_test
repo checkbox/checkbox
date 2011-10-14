@@ -81,9 +81,9 @@ class Route(object):
         return t1
 
 def ping(host, interface, count, deadline, verbose=False):
-    command = "ping -R -c %s -w %s %s" % (count, deadline, host)
+    command = "ping -c %s -w %s %s" % (count, deadline, host)
     if interface:
-        command = "ping -I%s -R -c %s -w %s %s" % (interface, count, deadline, host)
+        command = "ping -I%s -c %s -w %s %s" % (interface, count, deadline, host)
 
     reg = re.compile(r"(\d) received")
     packets_received = 0

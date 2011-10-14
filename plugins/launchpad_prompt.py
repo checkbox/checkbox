@@ -46,7 +46,7 @@ class LaunchpadPrompt(Plugin):
         self.persist = persist.root_at("launchpad_prompt")
 
     def launchpad_report(self, report):
-        self._launchpad_report = report
+        self.report = report
 
     def prompt_exchange(self, interface):
         if self.persist and self.persist.has("email"):
@@ -66,7 +66,7 @@ class LaunchpadPrompt(Plugin):
                 for error in errors:
                     self._manager.reactor.fire("prompt-error", interface, error)
 
-                url = "file://%s" % posixpath.abspath(self._launchpad_report)
+                url = "file://%s" % posixpath.abspath(self.report)
 
                 email = interface.show_entry(_("""\
 The following report has been generated for submission to the Launchpad \

@@ -17,10 +17,11 @@ _description:
  PURPOSE:
      This test will check that internal speakers work correctly
  STEPS:
-     1. Make sure that no external headphone is connected
-     2. Click the Test button to play a sound to your audio device
+     1. Make sure that no external speakers or headphones are connected
+        If testing a desktop, external speakers are allowed
+     2. Click the Test button to play a brief tone on your audio device
  VERIFICATION:
-     Did you hear a sound in the internal speakers?
+     Did you hear a tone?
 
 plugin: manual
 name: audio/playback_headphones
@@ -47,7 +48,7 @@ requires:
 command: alsa_record_playback
 _description:
  PURPOSE:
-     This test will check that internal recording works correctly
+     This test will check that recording sound using the onboard microphone works correctly
  STEPS:
      1. Disconnect any external microphones that you have plugged in
      2. Click "Test", then speak into your internal microphone
@@ -64,7 +65,7 @@ requires:
 command: alsa_record_playback
 _description:
  PURPOSE:
-     This test will check that external recording works correctly
+     This test will check that recording sound using an external microphone works correctly
  STEPS:
      1. Connect a microphone to your microphone port
      2. Click "Test", then speak into the external microphone
@@ -83,7 +84,7 @@ _description:
      This test will check that a USB audio device works correctly
  STEPS:
      1. Connect a USB audio device to your system
-     2. Open the volume control application by left-clicking on the speaker icon in the panel and selecting "Sound Preferences"
+     2. Open the volume control application by left-clicking on the speaker icon in the panel and selecting "Sound Settings"
      3. Select the "Input" tab and choose your USB device
      4. Select the "Output" tab and choose your USB device
      5. Click "Test", then speak into the microphone

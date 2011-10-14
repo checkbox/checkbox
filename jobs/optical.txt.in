@@ -51,13 +51,14 @@ _description:
      This test will check your CD audio playback capabilities
  STEPS:
      1. Insert an audio CD in your optical drive
-     2. An icon should appear on the desktop
-     3. Right-click on the icon and select "Open with Banshee"
-     4. Select the CD as the playback source and press play button
-     5. The music should reproduce
-     6. Stop music reproduction after some time
-     7. Right click on the desktop icon and select "Eject Volume"
-     8. The CD should be ejected and the icon removed from the desktop
+     2. Open the Dash (click on the Ubuntu Circle of Friends button on the Launcher)
+     3. Click "Listen to Music" to open Banshee
+     4. Select the CD under "Libraries" in the left panel of Banshee
+     5. Click the Play button to listen to music
+     6. Stop playing after some time
+     7. Right click on the CD icon under "Libraries" and select "Eject Disc"
+     8. The CD should be ejected
+     9. Close Banshee
  VERIFICATION:
      Did all the steps work?
 
@@ -80,15 +81,13 @@ name: optical/dvd_movie_playback
 depends: optical/read
 _description:
  PURPOSE:
-     This test will check your DVD movie playback capabilities
+     This test will check your DVD movie playback capabilities. Note that installation of non-free software (codecs, player, etc) may be required prior to performing this test.
  STEPS:
      1. Insert a DVD that contains any movie in your optical drive
-     2. A window should appear with some actions that you may choose. Select "Open Movie Player"
-     3. The player should be opened and the movie should reproduce
-     4. Stop movie reproduction after some time
-     5. An icon should appear in the desktop
-     6. Right click on the icon and select "Eject Volume"
-     7. The DVD should be ejected and the icon removed from the desktop
+     2. Open the Dash (click on the Ubuntu Circle of Friends button on the Launcher)
+     3. Click "Media Apps" and then click on "Movie Player"
+     4. Play the movie using Movie Player, stop the movie after verifying that it plays
+     6. Eject the DVD
  VERIFICATION:
      Did all the steps work?
 
