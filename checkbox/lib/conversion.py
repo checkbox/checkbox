@@ -141,7 +141,7 @@ def sizeof_hertz(hertz):
 
     return string
 
-def string_to_type(string, string_type=None):
+def string_to_type(string):
     """Return a typed representation for the given string.
 
     The result might be a bool, int or float. The string might also be
@@ -149,30 +149,21 @@ def string_to_type(string, string_type=None):
     float multiplied by 1024 for example.
 
     :param string: The string representation.
-    :param string_type: Optional type to cast the result.
     """
-    if not isinstance(string, basestring):
-        raise TypeError(
-            "string_to_type() argument 1 must be string, not %s"
-            % type(string))
-
-    for regex, formatter in TYPE_FORMATS:
-        match = regex.match(string)
-        if match:
-            string = formatter(match)
-            if len(match.groups()) > 1:
-                unit = match.group(2)
-                for regex, multiplier in TYPE_MULTIPLIERS:
-                    match = regex.match(unit)
-                    if match:
-                        string *= multiplier
-                        break
-                else:
-                    raise ValueError("Unknown multiplier: %s" % unit)
-
-            break
-
-    if string_type is not None:
-        string = string_type(string)
+    if isinstance(string, basestring):
+        for regex, formatter in TYPE_FORMATS:
+            match = regex.match(string)
+            if match:
+                string = formatter(match)
+                if len(match.groups()) > 1:
+                    unit = match.group(2)
+                    for regex, multiplier in TYPE_MULTIPLIERS:
+                        match = regex.match(unit)
+                        if match:
+                            string *= multiplier
+                            break
+                    else:
+                        raise ValueError("Unknown multiplier: %s" % unit)
+                break
 
     return string
