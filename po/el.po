@@ -8,65 +8,32 @@ msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-07-07 12:32-0400\n"
-"PO-Revision-Date: 2011-07-19 16:18+0000\n"
-"Last-Translator: Fotis Tsamis <Unknown>\n"
+"PO-Revision-Date: 2011-10-14 18:25+0000\n"
+"Last-Translator: Michael Kotsarinis <mk73628@gmail.com>\n"
 "Language-Team: Greek <team@gnome.gr>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-07-31 04:32+0000\n"
-"X-Generator: Launchpad (build 13405)\n"
-
-#: ../gtk/checkbox-gtk.ui.h:2
-msgid "Ne_xt"
-msgstr "Επό_μενο"
+"X-Launchpad-Export-Date: 2011-10-15 04:33+0000\n"
+"X-Generator: Launchpad (build 14124)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:5
 msgid "_No"
 msgstr "_Όχι"
 
-#: ../gtk/checkbox-gtk.ui.h:6
-msgid "_Previous"
-msgstr "_Προηγούμενο"
-
 #: ../gtk/checkbox-gtk.ui.h:8
 msgid "_Skip this test"
 msgstr "_Παράλειψη ελέγχου"
 
-#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:522
+#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:537
 msgid "_Test"
 msgstr "_Δοκιμή"
-
-#: ../gtk/checkbox-gtk.ui.h:10
-msgid "_Yes"
-msgstr "_Ναι"
-
-#. description
-#: ../jobs/audio.txt.in:7 ../jobs/disk.txt.in:4 ../jobs/graphics.txt.in:126
-#: ../jobs/memory.txt.in:4 ../jobs/networking.txt.in:16
-#: ../jobs/optical.txt.in:8 ../jobs/power-management.txt.in:167
-#: ../jobs/usb.txt.in:5
-msgid "$output"
-msgstr "$έξοδος"
-
-#. description
-#: ../jobs/audio.txt.in:7 ../jobs/bluetooth.txt.in:5 ../jobs/disk.txt.in:4
-#: ../jobs/graphics.txt.in:126 ../jobs/memory.txt.in:4
-#: ../jobs/networking.txt.in:16 ../jobs/optical.txt.in:8
-#: ../jobs/power-management.txt.in:185 ../jobs/usb.txt.in:5
-msgid "Is this correct?"
-msgstr "Είναι αυτό σωστό;"
 
 #. description
 #: ../jobs/input.txt.in:4
 msgid "Moving the mouse should move the cursor on the screen."
 msgstr ""
 "Μετακινώντας το ποντίκι πρέπει να μετακινείται και ο δείκτης του στην οθόνη."
-
-#. description
-#: ../jobs/input.txt.in:4
-msgid "Is your mouse working properly?"
-msgstr "Λειτουργεί το ποντίκι σας σωστά;"
 
 #. description
 #: ../jobs/input.txt.in:13
@@ -83,10 +50,6 @@ msgstr "Εντοπίζοντας τους ελεγκτές του δικτύου
 msgid "Testing your connection to the Internet:"
 msgstr "Έλεγχος σύνδεσης στο διαδίκτυο:"
 
-#: ../checkbox/application.py:70
-msgid "Print version information and exit."
-msgstr "Εκτύπωση πληροφοριών έκδοσης και έξοδος."
-
 #: ../checkbox/application.py:74
 msgid "The file to write the log to."
 msgstr "Το αρχείο που θέλετε να γράψετε τις πληροφορίες."
@@ -95,61 +58,25 @@ msgstr "Το αρχείο που θέλετε να γράψετε τις πλη�
 msgid "One of debug, info, warning, error or critical."
 msgstr "Μια εκ των debug, info, warning, error ή critical."
 
-#: ../checkbox/application.py:115
-msgid "Missing configuration file as argument.\n"
-msgstr "Δεν υπάρχει αρχείο ρυθμίσεων ως όρισμα.\n"
-
-#: ../checkbox_cli/cli_interface.py:31
-#: ../checkbox_urwid/urwid_interface.py:684
-msgid "yes"
-msgstr "ναι"
-
-#: ../checkbox_cli/cli_interface.py:32
-#: ../checkbox_urwid/urwid_interface.py:685
-msgid "no"
-msgstr "όχι"
-
-#: ../checkbox_cli/cli_interface.py:33
-#: ../checkbox_urwid/urwid_interface.py:686
-msgid "skip"
-msgstr "παράλειψη"
-
-#: ../checkbox_cli/cli_interface.py:126
-msgid "Press any key to continue..."
-msgstr "Πατήστε ένα πλήκτρο για να συνεχίσετε..."
-
-#: ../checkbox_cli/cli_interface.py:135
-#, python-format
-msgid "Please choose (%s): "
-msgstr "Παρακαλούμε επιλέξτε (%s): "
-
 #: ../checkbox_cli/cli_interface.py:345
 msgid "Please type here and press Ctrl-D when finished:\n"
 msgstr "Παρακαλούμε γράψτε εδώ και πατήστε Ctrl-D όταν τελειώσετε:\n"
 
-#: ../checkbox_gtk/gtk_interface.py:487
+#: ../checkbox_gtk/gtk_interface.py:502
 msgid "_Test Again"
 msgstr "_Έλεγχος ξανά"
-
-#: ../plugins/final_prompt.py:34
-msgid "_Finish"
-msgstr "_Τέλος"
 
 #: ../plugins/gather_prompt.py:35
 msgid "Gathering information from your system..."
 msgstr "Συλλογή πληροφοριών από το σύστημά σας..."
 
-#: ../plugins/launchpad_exchange.py:150
+#: ../plugins/launchpad_exchange.py:160
 msgid ""
 "Failed to upload to server,\n"
 "please try again later."
 msgstr ""
 "Δεν απεστάλησαν οι πληροφορίες στον εξυπηρετητή,\n"
 "παρακαλούμε δοκιμάστε ξανά αργότερα."
-
-#: ../plugins/launchpad_exchange.py:162
-msgid "Information not posted to Launchpad."
-msgstr "Οι πληροφορίες δεν καταχωρήθηκαν στο Launchpad."
 
 #: ../plugins/launchpad_prompt.py:92
 msgid "Email address must be in a proper format."
@@ -159,107 +86,25 @@ msgstr "Η ηλεκτρονική σας διεύθυνση πρέπει να ε
 msgid "Exchanging information with the server..."
 msgstr "Αποστέλλονται οι πληροφορίες στον εξυπηρετητή..."
 
-#: ../plugins/report_prompt.py:34
+#: ../plugins/report_prompt.py:39
 msgid "Building report..."
 msgstr "Δημιουργία αναφοράς"
 
-#~ msgid "<b>Comment:</b>"
-#~ msgstr "<b>Σχόλιο:</b>"
-
-#~ msgid "Device information"
-#~ msgstr "Πληροφορίες συσκευής"
-
-#~ msgid "Distribution details"
-#~ msgstr "Λεπτομέρειες διανομής"
-
-#~ msgid "Packages installed"
-#~ msgstr "Εγκατεστημένα πακέτα"
-
-#~ msgid "Processor information"
-#~ msgstr "Πληροφορίες επεξεργαστή"
-
 #~ msgid "Successfully sent information!"
 #~ msgstr "Οι πληροφορίες στάλθηκαν επιτυχώς"
-
-#~ msgid "Test results"
-#~ msgstr "Αποτελέσματα του ελέγχου"
-
-#~ msgid "_Desktop"
-#~ msgstr "_Σταθερός"
-
-#~ msgid "_Laptop"
-#~ msgstr "_Φορητός"
-
-#~ msgid "_Server"
-#~ msgstr "_Εξυπηρετητής"
-
-#~ msgid "The following resolution was detected for your display:"
-#~ msgstr "Η παρακάτω ανάλυση εντοπίστηκε για την οθόνη σας:"
-
-#~ msgid "$(resolution_test)"
-#~ msgstr "$(resolution_test)"
-
-#~ msgid "Is this a good resolution for your display?"
-#~ msgstr "Είναι καλή αυτή η ανάλυση για την οθόνη σας;"
-
-#~ msgid "$(network_test)"
-#~ msgstr "$(network_test)"
-
-#~ msgid "Are you connected to the Internet?"
-#~ msgstr "Είστε συνδεδεμένοι στο διαδίκτυο;"
-
-#~ msgid ""
-#~ "Typing keys on your keyboard should display the corresponding characters in "
-#~ "a text area."
-#~ msgstr ""
-#~ "Πατώντας πλήκτρα στο πληκτρολόγιο θα έπρεπε να εμφανίζονται οι αντίστοιχοι "
-#~ "χαρακτήρες στην περιοχή του κειμένου."
-
-#, python-format
-#~ msgid "Running test: %s"
-#~ msgstr "Εκτέλεση ελέγχου: %s"
-
-#~ msgid "Please provide comments about the failure."
-#~ msgstr "Παρακαλούμε να κάνετε σχόλια για αυτήν την δυσλειτουργία"
-
-#~ msgid "Authentication"
-#~ msgstr "Πιστοποίηση"
-
-#~ msgid "Please provide your Launchpad email address:"
-#~ msgstr ""
-#~ "Παρακαλούμε εισάγετε την ηλεκτρονική διεύθυνση που χρησιμοποιείτε στο "
-#~ "Launchpad"
-
-#~ msgid "Done"
-#~ msgstr "Ολοκληρώθηκε"
-
-#~ msgid "Successfully sent information to server!"
-#~ msgstr "Οι πληροφορίες στάλθηκαν επιτυχώς!"
-
-#~ msgid "Exchange"
-#~ msgstr "Ανταλλαγή"
-
-#~ msgid "Category"
-#~ msgstr "Κατηγορία"
-
-#~ msgid ""
-#~ "The following information will be sent to the Launchpad\n"
-#~ "hardware database. Please provide the e-mail address you\n"
-#~ "use to sign in to Launchpad to submit this information."
-#~ msgstr ""
-#~ "Οι παρακάτω πληροφορίες θα σταλούν στη βάση δεδομένων\n"
-#~ "του Launchpad. Παρακαλούμε εισάγετε την διεύθυνση ηλεκ-\n"
-#~ "τρονικού ταχυδρομείου που χρησιμοποιείτε στο Launchpad \n"
-#~ "για να υποβάλετε αυτές τις πληροφορίες."
 
 #: ../gtk/checkbox-gtk.ui.h:1 ../checkbox_cli/cli_interface.py:343
 #: ../checkbox_urwid/urwid_interface.py:261
 msgid "Further information:"
 msgstr "Περαιτέρω πληροφορίες:"
 
+#: ../gtk/checkbox-gtk.ui.h:2
+msgid "Ne_xt"
+msgstr "Επό_μενο"
+
 #. Title of the user interface
 #: ../gtk/checkbox-gtk.ui.h:3 ../gtk/checkbox-gtk.desktop.in.h:1
-#: ../plugins/user_interface.py:40
+#: ../checkbox_gtk/gtk_interface.py:95 ../plugins/user_interface.py:40
 msgid "System Testing"
 msgstr "Δοκιμή συστήματος"
 
@@ -267,9 +112,17 @@ msgstr "Δοκιμή συστήματος"
 msgid "_Deselect All"
 msgstr "_Αποεπιλογή όλων"
 
+#: ../gtk/checkbox-gtk.ui.h:6
+msgid "_Previous"
+msgstr "_Προηγούμενο"
+
 #: ../gtk/checkbox-gtk.ui.h:7
 msgid "_Select All"
 msgstr "_Επιλογή όλων"
+
+#: ../gtk/checkbox-gtk.ui.h:10
+msgid "_Yes"
+msgstr "_Ναι"
 
 #: ../gtk/checkbox-gtk.desktop.in.h:2
 msgid "Test and report system information"
@@ -284,6 +137,18 @@ msgstr ""
 #: ../jobs/audio.txt.in:7
 msgid "Detecting your sound device(s):"
 msgstr "Ανίχνευση των συσκευών ήχου σας:"
+
+#. description
+#: ../jobs/audio.txt.in:7 ../jobs/graphics.txt.in:113 ../jobs/memory.txt.in:4
+#: ../jobs/networking.txt.in:5 ../jobs/optical.txt.in:8 ../jobs/usb.txt.in:12
+msgid "$output"
+msgstr "$output"
+
+#. description
+#: ../jobs/audio.txt.in:7 ../jobs/graphics.txt.in:113 ../jobs/memory.txt.in:4
+#: ../jobs/networking.txt.in:5 ../jobs/optical.txt.in:8
+msgid "Is this correct?"
+msgstr "Είναι αυτό σωστό;"
 
 #. description
 #: ../jobs/audio.txt.in:21
@@ -356,12 +221,12 @@ msgstr ""
 "μικρόφωνο. Μετά από λίγα δευτερόλεπτα θα αναπαραχθεί η ομιλία σας."
 
 #. description
-#: ../jobs/audio.txt.in:70 ../jobs/power-management.txt.in:221
+#: ../jobs/audio.txt.in:70
 msgid "Did you hear your speech played back?"
 msgstr "Ακούσατε την ομιλία σας να αναπαράγεται;"
 
 #. description
-#: ../jobs/audio.txt.in:81
+#: ../jobs/audio.txt.in:82
 msgid ""
 "Play back a sound on the default output and listen for it on the \\ default "
 "input.  This makes the most sense when the output and input \\ are directly "
@@ -374,17 +239,17 @@ msgid "Autotest suite (destructive)"
 msgstr "Σουίτα αυτόματου ελέγχου (καταστρεπτική)"
 
 #. description
-#: ../jobs/bluetooth.txt.in:5 ../jobs/power-management.txt.in:185
+#: ../jobs/bluetooth.txt.in:5
 msgid "The address of your Bluetooth device is: $output"
 msgstr "Η διεύθυνση της συσκευής Bluetooth είναι: $output"
 
 #. description
-#: ../jobs/bluetooth.txt.in:15 ../jobs/graphics.txt.in:15
+#: ../jobs/bluetooth.txt.in:12 ../jobs/graphics.txt.in:15
 msgid "Automated test to store output in checkbox report"
 msgstr ""
 
 #. description
-#: ../jobs/bluetooth.txt.in:21
+#: ../jobs/bluetooth.txt.in:18
 msgid ""
 "Bluetooth browse files procedure: 1.- Enable bluetooth on any mobile device "
 "(PDA, smartphone, etc.) 2.- Click on the bluetooth icon in the menu bar 3.- "
@@ -396,7 +261,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/bluetooth.txt.in:38
+#: ../jobs/bluetooth.txt.in:35
 msgid ""
 "Bluetooth file transfer procedure: 1.- Make sure that you're able to browse "
 "the files in your mobile device 2.- Copy a file from the computer to the "
@@ -406,7 +271,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/bluetooth.txt.in:53
+#: ../jobs/bluetooth.txt.in:50
 msgid ""
 "Bluetooth audio procedure: 1.- Enable the bluetooth headset 2.- Click on the "
 "bluetooth icon in the menu bar 3.- Select 'Setup new device' 4.- Look for "
@@ -417,7 +282,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/bluetooth.txt.in:69
+#: ../jobs/bluetooth.txt.in:66
 msgid ""
 "Bluetooth keyboard procedure: 1.- Enable the bluetooth keyboard 2.- Click on "
 "the bluetooth icon in the menu bar 3.- Select 'Setup new device' 4.- Look "
@@ -425,7 +290,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/bluetooth.txt.in:82
+#: ../jobs/bluetooth.txt.in:79
 msgid ""
 "Bluetooth mouse procedure: 1.- Enable the bluetooth mouse 2.- Click on the "
 "bluetooth icon in the menu bar 3.- Select 'Setup new device' 4.- Look for "
@@ -434,8 +299,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/bluetooth.txt.in:82 ../jobs/optical.txt.in:72
-#: ../jobs/power-management.txt.in:194 ../jobs/usb.txt.in:27
+#: ../jobs/bluetooth.txt.in:79 ../jobs/optical.txt.in:72 ../jobs/usb.txt.in:34
 msgid "Did all the steps work?"
 msgstr "Λειτούργησαν όλα τα βήματα;"
 
@@ -608,27 +472,27 @@ msgid "The following hard drives were detected:"
 msgstr "Οι ακόλουθοι σκληροί δίσκοι ανιχνεύθηκαν:"
 
 #. description
-#: ../jobs/disk.txt.in:14
+#: ../jobs/disk.txt.in:9
 msgid "Benchmark for each disk "
 msgstr ""
 
 #. description
-#: ../jobs/disk.txt.in:36
+#: ../jobs/disk.txt.in:26
 msgid "SMART test"
 msgstr ""
 
 #. description
-#: ../jobs/disk.txt.in:51
+#: ../jobs/disk.txt.in:41
 msgid "Maximum disk space used during a default installation test"
 msgstr ""
 
 #. description
-#: ../jobs/disk.txt.in:66
+#: ../jobs/disk.txt.in:56
 msgid "Verify system storage performs at or above baseline performance"
 msgstr ""
 
 #. description
-#: ../jobs/disk.txt.in:83
+#: ../jobs/disk.txt.in:73
 msgid ""
 "Verify that storage devices, such as Fibre Channel and RAID can be detected "
 "and perform under stress."
@@ -720,7 +584,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/firewire.txt.in:3 ../jobs/usb.txt.in:71
+#: ../jobs/firewire.txt.in:3
 msgid "Do the copy operations work as expected?"
 msgstr "Λειτουργούν όπως πρέπει οι λειτουργίες αντιγραφής;"
 
@@ -817,6 +681,8 @@ msgstr ""
 msgid ""
 "2d graphics appears to be working, your running X.Org version is: $output"
 msgstr ""
+"Τα δισδιάστατα (2D) γραφικά φαίνεται ότι λειτουργούν, η τρέχουσα έκδοση του "
+"X.Org είναι: $output"
 
 #. description
 #: ../jobs/graphics.txt.in:23
@@ -861,12 +727,12 @@ msgid "Did the display rotation change as expected?"
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:62 ../jobs/sru_suite.txt.in:151
+#: ../jobs/graphics.txt.in:62
 msgid "Test that the X process is running."
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:68 ../jobs/sru_suite.txt.in:157
+#: ../jobs/graphics.txt.in:68
 msgid "Test that the X is not running in failsafe mode."
 msgstr ""
 
@@ -904,28 +770,28 @@ msgstr ""
 "συνιστώμενη ανάλυση (1024 x 768). Δείτε εδώ για λεπτομέρειες:"
 
 #. description
-#: ../jobs/graphics.txt.in:107
+#: ../jobs/graphics.txt.in:94
 msgid "https://help.ubuntu.com/community/Installation/SystemRequirements"
 msgstr "https://help.ubuntu.com/community/Installation/SystemRequirements"
 
 #. description
-#: ../jobs/graphics.txt.in:117
+#: ../jobs/graphics.txt.in:104
 msgid "Select Test to display a video test."
 msgstr "Επιλέξτε Δοκιμή για προβολή δοκιμαστικού βίντεο."
 
 #. description
-#: ../jobs/graphics.txt.in:117
+#: ../jobs/graphics.txt.in:104
 msgid "Do you see color bars and static?"
 msgstr "Είδατε γραμμές χρωμάτων και στατικό θόρυβο;"
 
 #. description
-#: ../jobs/graphics.txt.in:126
+#: ../jobs/graphics.txt.in:113
 msgid ""
 "The following screens and video modes have been detected on your system:"
 msgstr "Οι παρακάτω οθόνες και λειτουργίες εικόνας βρέθηκαν στο σύστημά σας:"
 
 #. description
-#: ../jobs/graphics.txt.in:138
+#: ../jobs/graphics.txt.in:125
 msgid ""
 "Select Test to cycle through the detected video modes for your system."
 msgstr ""
@@ -933,17 +799,17 @@ msgstr ""
 "σύστημά σας."
 
 #. description
-#: ../jobs/graphics.txt.in:138
+#: ../jobs/graphics.txt.in:125
 msgid "Did the screen appear to be working for each mode?"
 msgstr "Φάνηκε να δουλεύει σωστά η οθόνη για κάθε λειτουργία;"
 
 #. description
-#: ../jobs/graphics.txt.in:146
+#: ../jobs/graphics.txt.in:133
 msgid "Check that the hardware is able to run compiz."
 msgstr "Έλεγχος αν το υλικό μπορεί να εκτελέσει το compiz."
 
 #. description
-#: ../jobs/graphics.txt.in:153
+#: ../jobs/graphics.txt.in:140
 msgid ""
 "Select Test to execute glxgears to ensure that minimal 3d graphics support "
 "is in place."
@@ -952,24 +818,29 @@ msgstr ""
 "σωστά η ελάχιστη υποστήριξη για τρισδιάστατα γραφικά."
 
 #. description
-#: ../jobs/graphics.txt.in:153
+#: ../jobs/graphics.txt.in:140
 msgid "Did the 3d animation appear?"
 msgstr "Εμφανίστηκε η κινούμενη 3d εικόνα;"
 
 #. description
-#: ../jobs/info.txt.in:60 ../jobs/screenshot.txt.in:7
+#: ../jobs/info.txt.in:69 ../jobs/screenshot.txt.in:7
 msgid "Captures a screenshot."
 msgstr ""
 
 #. description
-#: ../jobs/info.txt.in:71 ../jobs/sru_suite.txt.in:167
+#: ../jobs/info.txt.in:80
 msgid "Gather log from the firmware test suite run"
 msgstr ""
 
 #. description
-#: ../jobs/info.txt.in:82
+#: ../jobs/info.txt.in:91
 msgid "Bootchart information."
 msgstr ""
+
+#. description
+#: ../jobs/input.txt.in:4
+msgid "Is your mouse working properly?"
+msgstr "Λειτουργεί το ποντίκι σας σωστά;"
 
 #. description
 #: ../jobs/input.txt.in:13
@@ -1012,21 +883,21 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/keys.txt.in:30
+#: ../jobs/keys.txt.in:31
 msgid ""
 "Press the sleep key on the keyboard. The computer should suspend and, \\ "
 "after pressing the power button, resume successfully."
 msgstr ""
 
 #. description
-#: ../jobs/keys.txt.in:39
+#: ../jobs/keys.txt.in:40
 msgid ""
 "Press the battery information key on the keyboard. A status window \\ should "
 "appear and the amount of battery remaining should be displayed."
 msgstr ""
 
 #. description
-#: ../jobs/keys.txt.in:48
+#: ../jobs/keys.txt.in:49
 msgid ""
 "Press the wireless networking key on the keyboard. The bluetooth icon \\ and "
 "the network connnection should go down if connected through the \\ wifi "
@@ -1034,35 +905,35 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/keys.txt.in:48
+#: ../jobs/keys.txt.in:49
 msgid ""
 "Press the same key again and check that bluetooth icon is again \\ displayed "
 "and that the network connection is re-established \\ automatically."
 msgstr ""
 
 #. description
-#: ../jobs/keys.txt.in:48
+#: ../jobs/keys.txt.in:49
 msgid "Does the key work?"
 msgstr ""
 
 #. description
-#: ../jobs/keys.txt.in:62
+#: ../jobs/keys.txt.in:63
 msgid ""
 "The keyboard may have dedicated keys for controlling media as follows:"
 msgstr ""
 
 #. description
-#: ../jobs/keys.txt.in:62
+#: ../jobs/keys.txt.in:63
 msgid "* Play/Pause * Stop * Forward * Backward (Rewind)"
 msgstr ""
 
 #. description
-#: ../jobs/keys.txt.in:62
+#: ../jobs/keys.txt.in:63
 msgid "Play a media file and press each key in turn."
 msgstr ""
 
 #. description
-#: ../jobs/keys.txt.in:62
+#: ../jobs/keys.txt.in:63
 msgid "Do the keys work as expected?"
 msgstr ""
 
@@ -1142,52 +1013,52 @@ msgid "Hotkey tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:78
+#: ../jobs/local.txt.in:83
 msgid "Media Card tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:83
+#: ../jobs/local.txt.in:93
 msgid "Miscellaneous tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:88
+#: ../jobs/local.txt.in:98
 msgid "Monitor tests"
 msgstr "Δοκιμές οθόνης"
 
 #. description
-#: ../jobs/local.txt.in:93
+#: ../jobs/local.txt.in:103
 msgid "Networking tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:98
+#: ../jobs/local.txt.in:113
 msgid "PCMCIA/PCIX Card tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:103
+#: ../jobs/local.txt.in:118
 msgid "Peripheral tests"
 msgstr "Δοκιμές περιφερειακών"
 
 #. description
-#: ../jobs/local.txt.in:108
+#: ../jobs/local.txt.in:123
 msgid "Power Management tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:113
+#: ../jobs/local.txt.in:133
 msgid "Unity tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:118
+#: ../jobs/local.txt.in:143
 msgid "User Applications"
 msgstr "Εφαρμογές χρήστη"
 
 #. description
-#: ../jobs/local.txt.in:123
+#: ../jobs/local.txt.in:153
 msgid "Stress tests"
 msgstr ""
 
@@ -1596,17 +1467,17 @@ msgid "Did the monitor go blank?"
 msgstr "Έγινε κενή η οθόνη;"
 
 #. description
-#: ../jobs/networking.txt.in:26
+#: ../jobs/networking.txt.in:21
 msgid "Network Information"
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:46
+#: ../jobs/wireless.txt.in:6
 msgid "Wireless scanning test."
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:52
+#: ../jobs/wireless.txt.in:12
 msgid ""
 "Wireless network connection procedure: 1.- Click on the Network Manager "
 "applet 2.- Select a network below the 'Wireless networks' section 3.- Notify "
@@ -1615,7 +1486,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:64
+#: ../jobs/networking.txt.in:39
 msgid ""
 "Wired network connection procedure: 1.- Click on the Network Manager applet "
 "2.- Select a network below the 'Wired network' section 3.- Notify OSD should "
@@ -1624,7 +1495,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:76
+#: ../jobs/networking.txt.in:51
 msgid ""
 "Built-in modem network connection procedure: 1.- Connect the telephone line "
 "to the computer 2.- Right click on the Network Manager applet 3.- Select "
@@ -1635,48 +1506,49 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:76 ../jobs/peripheral.txt.in:15
+#: ../jobs/networking.txt.in:51 ../jobs/peripheral.txt.in:15
+#: ../jobs/wireless.txt.in:12
 msgid "Was the connection correctly established?"
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:92
+#: ../jobs/networking.txt.in:67
 msgid ""
 "Automated test case to verify availability of some system on the network "
 "using ICMP ECHO packets."
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:99 ../jobs/peripheral.txt.in:32
+#: ../jobs/networking.txt.in:74 ../jobs/peripheral.txt.in:32
 msgid ""
 "Automated test case to make sure that it's possible to download files "
 "through HTTP"
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:107
+#: ../jobs/networking.txt.in:82
 msgid "Test to see if we can sync local clock to an NTP server"
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:113
+#: ../jobs/networking.txt.in:88
 msgid ""
 "Verify that an installation of checkbox-server on the network can be reached "
 "over SSH."
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:119
+#: ../jobs/networking.txt.in:94
 msgid "Try to enable a remote printer on the network and print a test page."
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:124
+#: ../jobs/networking.txt.in:99
 msgid "Multiple network cards"
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:144
+#: ../jobs/networking.txt.in:119
 msgid "Test to measure the network bandwidth"
 msgstr ""
 
@@ -1858,47 +1730,47 @@ msgid "Does your computer hibernate and restore?"
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:29
+#: ../jobs/power-management.txt.in:13
 msgid "Does closing your laptop lid cause your screen to blank?"
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:41
+#: ../jobs/power-management.txt.in:25
 msgid "Click the Test button, then close and open the lid."
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:41
+#: ../jobs/power-management.txt.in:25
 msgid "Did the screen turn off while the lid was closed?"
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:55
+#: ../jobs/power-management.txt.in:39
 msgid "Click the Test button, then close the lid and wait 5 seconds."
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:55
+#: ../jobs/power-management.txt.in:39
 msgid "Open the lid."
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:55
+#: ../jobs/power-management.txt.in:39
 msgid "Did the screen turn back on when the lid was opened?"
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:65
+#: ../jobs/power-management.txt.in:49
 msgid "Test the network before suspending."
 msgstr "Έλεγχος της σύνδεσης δικτύου πριν την αδρανοποίηση"
 
 #. description
-#: ../jobs/power-management.txt.in:70
+#: ../jobs/suspend.txt.in:4
 msgid "Record the current resolution before suspending."
 msgstr "Αποθήκευση της τρέχουσας ανάλυσης πριν την αδρανοποίηση"
 
 #. description
-#: ../jobs/power-management.txt.in:78
+#: ../jobs/suspend.txt.in:12
 msgid "Test the audio before suspending."
 msgstr "Δοκιμή ήχου πριν την αδρανοποίηση"
 
@@ -1915,17 +1787,17 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:128 ../jobs/sru_suite.txt.in:135
+#: ../jobs/power-management.txt.in:51
 msgid "Make sure that the RTC (Real-Time Clock) device exists."
 msgstr "Βεβαιωθείτε ότι υπάρχει η συσκευή RTC (Real-Time Clock)."
 
 #. description
-#: ../jobs/power-management.txt.in:135
+#: ../jobs/suspend.txt.in:58
 msgid "Power management Suspend and Resume test"
 msgstr "Δοκιμή αναστολής και επαναφοράς της διαχείρισης ενέργειας"
 
 #. description
-#: ../jobs/power-management.txt.in:135
+#: ../jobs/suspend.txt.in:58
 msgid ""
 "Select Test and your system will suspend for about 30 - 60 seconds. If your "
 "system does not wake itself up after 60 seconds, please press the power "
@@ -1935,18 +1807,18 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:145
+#: ../jobs/suspend.txt.in:68
 msgid "Test the network after resuming."
 msgstr "Δοκιμή της σύνδεσης δικτύου μετά την επαναφορά."
 
 #. description
-#: ../jobs/power-management.txt.in:151
+#: ../jobs/suspend.txt.in:74
 msgid ""
 "Test to see that we have the same resolution after resuming as before."
 msgstr "Δοκιμή διατήρησης της ανάλυσης μετά την επαναφορά."
 
 #. description
-#: ../jobs/power-management.txt.in:160
+#: ../jobs/suspend.txt.in:83
 msgid "Test the audio after resuming."
 msgstr "Δοκιμή ήχου μετά την επαναφορά."
 
@@ -1984,7 +1856,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:210
+#: ../jobs/suspend.txt.in:150
 msgid ""
 "This test will check to make sure that supported video modes work after a "
 "suspend and resume.  Select Test to begin."
@@ -1993,7 +1865,7 @@ msgstr ""
 "μετά από αδράνεια και επαναφορά. Επιλέξτε Δοκιμή για να ξεκινήσετε."
 
 #. description
-#: ../jobs/power-management.txt.in:221
+#: ../jobs/power-management.txt.in:251
 msgid ""
 "This will check to make sure that your audio device works properly after a "
 "suspend and resume.  You can use either internal or external microphone and "
@@ -2004,7 +1876,7 @@ msgstr ""
 "εξωτερικά μικρόφωνα και ηχεία."
 
 #. description
-#: ../jobs/power-management.txt.in:221
+#: ../jobs/power-management.txt.in:251
 msgid ""
 "To execute this test, make sure your speaker and microphone are NOT muted "
 "and the volume is set sufficiently loud to record and play audio. Select "
@@ -2017,7 +1889,7 @@ msgstr ""
 "η ομιλία σας."
 
 #. description
-#: ../jobs/power-management.txt.in:234
+#: ../jobs/stress.txt.in:30
 msgid ""
 "Enter and resume from suspend state for 30 iterations. Please note that this "
 "is a lengthy test. Select Test to begin. If your system fails to wake and "
@@ -2030,12 +1902,12 @@ msgstr ""
 "τη δοκιμή ως αποτυχημένη."
 
 #. description
-#: ../jobs/power-management.txt.in:234
+#: ../jobs/stress.txt.in:30
 msgid "Did the system successfully suspend and resume for 30 iterations?"
 msgstr "Το σύστημα ανεστάλη και επανήλθε επιτυχώς 30 φορές;"
 
 #. description
-#: ../jobs/power-management.txt.in:245
+#: ../jobs/hibernate.txt.in:7
 msgid ""
 "This will check to make sure your system can successfully hibernate (if "
 "supported)."
@@ -2044,7 +1916,7 @@ msgstr ""
 "υποστηρίζεται)."
 
 #. description
-#: ../jobs/power-management.txt.in:245
+#: ../jobs/hibernate.txt.in:7
 msgid ""
 "Select Test to begin. The system will hibernate and should wake itself "
 "within 5 minutes.  If your system does not wake itself after 5 minutes, "
@@ -2059,7 +1931,7 @@ msgstr ""
 "και σημειώστε τη δοκιμή ως αποτυχημένη."
 
 #. description
-#: ../jobs/power-management.txt.in:245
+#: ../jobs/hibernate.txt.in:7
 msgid ""
 "Did the system successfully hibernate and did it work properly after waking "
 "up?"
@@ -2068,7 +1940,7 @@ msgstr ""
 "του;"
 
 #. description
-#: ../jobs/power-management.txt.in:258
+#: ../jobs/stress.txt.in:17
 msgid ""
 "Enter and resume from hibernate for 30 iterations. Please note that this is "
 "a very lengthy test. Also, if your system does not wake itself after 2 "
@@ -2083,7 +1955,7 @@ msgstr ""
 "τη δοκιμή ως αποτυχημένη."
 
 #. description
-#: ../jobs/power-management.txt.in:258
+#: ../jobs/stress.txt.in:17
 msgid ""
 "Also, you will need to ensure your system has no power-on or HDD passwords "
 "set, and that grub is set to boot Ubuntu by default if you have a multi-boot "
@@ -2094,27 +1966,27 @@ msgstr ""
 "είναι ρυθμισμένος να εκκινεί το Ubuntu αν έχετε διαμόρφωση multi-boot."
 
 #. description
-#: ../jobs/power-management.txt.in:258
+#: ../jobs/stress.txt.in:17
 msgid "Did the system successfully hibernate and wake 30 times?"
 msgstr "Αδρανοποιήθηκε και επανήλθε επιτυχώς το σύστημα 30 φορές;"
 
 #. description
-#: ../jobs/power-management.txt.in:267
+#: ../jobs/power-management.txt.in:56
 msgid "Run Colin Kings FWTS wakealarm test"
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:276
+#: ../jobs/power-management.txt.in:65
 msgid "Check to see if CONFIG_NO_HZ is set in the kernel"
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:284
+#: ../jobs/suspend.txt.in:194
 msgid "Automatic power management Suspend and Resume test"
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:284
+#: ../jobs/suspend.txt.in:194
 msgid ""
 "Select test and your system will suspend for about 30 - 60 seconds. If your "
 "system does not wake itself up after 60 seconds, please press the power "
@@ -2284,26 +2156,26 @@ msgid "The following USB controllers were detected:"
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:17
+#: ../jobs/usb.txt.in:24
 msgid ""
 "Plug a USB keyboard into the computer. Then, click on the Test button \\ to "
 "enter text."
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:17
+#: ../jobs/usb.txt.in:24
 msgid "Does the keyboard work?"
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:27
+#: ../jobs/usb.txt.in:34
 msgid ""
 "USB mouse verification procedure: 1.- Plug a USB mouse into the computer 2.- "
 "Perform some single/double/right click operations"
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:39
+#: ../jobs/usb.txt.in:46
 msgid ""
 "Click 'Test' and insert a USB device within 5 seconds. If the test is "
 "successful, you should notice that 'Yes' is selected below. Do not unplug "
@@ -2311,21 +2183,21 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:39
+#: ../jobs/usb.txt.in:46
 msgid ""
 "If no USB device is inserted or the device is not recognized, the test will "
 "fail and 'No' will be selected below."
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:51
+#: ../jobs/usb.txt.in:58
 msgid ""
 "Click 'Test' and remove the USB device you inserted within 5 seconds. If the "
 "test is successful, you should notice that 'Yes' is selected below."
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:51
+#: ../jobs/usb.txt.in:58
 msgid ""
 "If the USB device isn't removed or the removal is not registered, the test "
 "will fail and 'No' will be selected below."
@@ -2353,7 +2225,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:83
+#: ../jobs/usb.txt.in:86
 msgid ""
 "Connect a USB storage device to an external USB slot on this computer. \\ An "
 "icon should appear on the desktop and in the \"Places\" menu at the top of "
@@ -2361,14 +2233,14 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:83
+#: ../jobs/usb.txt.in:86
 msgid ""
 "Confirm that the icon appears, then eject the device. Repeat with each "
 "external \\ USB slot."
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:83
+#: ../jobs/usb.txt.in:86
 msgid "Do all USB slots work with the device?"
 msgstr ""
 
@@ -2663,6 +2535,10 @@ msgstr "Συνδεθήκατε επιτυχώς και μπορούσατε να
 msgid "Usage: checkbox [OPTIONS]"
 msgstr "Χρήση: checkbox [Επιλογές]"
 
+#: ../checkbox/application.py:70
+msgid "Print version information and exit."
+msgstr "Εκτύπωση πληροφοριών έκδοσης και έξοδος."
+
 #: ../checkbox/application.py:82
 msgid "Configuration override parameters."
 msgstr "Παράμετροι ακύρωσης ρυθμίσεων"
@@ -2682,6 +2558,10 @@ msgstr "Στενογραφία για --config=checkbox/plugins/jobs_info/whitel
 #: ../checkbox/application.py:90
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist_file."
 msgstr "Στενογραφία για --config=checkbox/plugins/jobs_info/whitelist_file."
+
+#: ../checkbox/application.py:115
+msgid "Missing configuration file as argument.\n"
+msgstr "Δεν υπάρχει αρχείο ρυθμίσεων ως όρισμα.\n"
 
 #: ../checkbox/lib/signal.py:23
 msgid ""
@@ -2770,6 +2650,30 @@ msgstr "ΑΓΝΩΣΤΟ"
 msgid "Unknown signal"
 msgstr "Άγνωστο σήμα"
 
+#: ../checkbox_cli/cli_interface.py:31
+#: ../checkbox_urwid/urwid_interface.py:684
+msgid "yes"
+msgstr "ναι"
+
+#: ../checkbox_cli/cli_interface.py:32
+#: ../checkbox_urwid/urwid_interface.py:685
+msgid "no"
+msgstr "όχι"
+
+#: ../checkbox_cli/cli_interface.py:33
+#: ../checkbox_urwid/urwid_interface.py:686
+msgid "skip"
+msgstr "παράλειψη"
+
+#: ../checkbox_cli/cli_interface.py:126
+msgid "Press any key to continue..."
+msgstr "Πατήστε ένα πλήκτρο για να συνεχίσετε..."
+
+#: ../checkbox_cli/cli_interface.py:135
+#, python-format
+msgid "Please choose (%s): "
+msgstr "Παρακαλούμε επιλέξτε (%s): "
+
 #: ../checkbox_cli/cli_interface.py:315
 msgid "test"
 msgstr "έλεγχος"
@@ -2819,11 +2723,11 @@ msgstr "Επανάληψη δοκιμής"
 msgid "hardware database"
 msgstr ""
 
-#: ../checkbox_gtk/gtk_interface.py:533
+#: ../checkbox_gtk/gtk_interface.py:548
 msgid "Info"
 msgstr "Πληροφορίες"
 
-#: ../checkbox_gtk/gtk_interface.py:552
+#: ../checkbox_gtk/gtk_interface.py:567
 msgid "Error"
 msgstr "Σφάλμα"
 
@@ -2832,7 +2736,7 @@ msgstr "Σφάλμα"
 msgid "Unable to start web browser to open %s."
 msgstr "Αδυναμία εκκίνησης του περιηγητή για το άνοιγμα του %s."
 
-#: ../plugins/apport_prompt.py:81
+#: ../plugins/apport_prompt.py:83
 msgid ""
 "Collecting information about this test.\n"
 "This might take a few minutes."
@@ -2840,7 +2744,7 @@ msgstr ""
 "Γίνεται συλλογή πληροφοριών για αυτόν τον έλεγχο.\n"
 "Αυτό μπορεί να διαρκέσει λίγα λεπτά."
 
-#: ../plugins/apport_prompt.py:116
+#: ../plugins/apport_prompt.py:118
 msgid ""
 "Collected information is being sent for bug tracking.\n"
 "This might take a few minutes."
@@ -2848,17 +2752,17 @@ msgstr ""
 "Οι συλλεγμένες πληροφορίες στέλνονται για έλεγχο σφαλμάτων.\n"
 "Αυτό μπορεί να διαρκέσει λίγα λεπτά."
 
-#: ../plugins/apport_prompt.py:225
+#: ../plugins/apport_prompt.py:227
 #, python-format
 msgid "Test %s from suite %s failed."
 msgstr ""
 
-#: ../plugins/apport_prompt.py:228
+#: ../plugins/apport_prompt.py:230
 #, python-format
 msgid "Test %s failed."
 msgstr ""
 
-#: ../plugins/apport_prompt.py:246
+#: ../plugins/apport_prompt.py:248
 #, python-format
 msgid "Is a package upgrade in process? Error: %s"
 msgstr "Μήπως είναι σε λειτουργία κάποια αναβάθμιση πακέτου; Σφάλμα: %s"
@@ -2867,7 +2771,11 @@ msgstr "Μήπως είναι σε λειτουργία κάποια αναβά�
 msgid "Successfully finished testing!"
 msgstr "Οι δοκιμές ολοκληρώθηκαν επιτυχώς!"
 
-#: ../plugins/intro_prompt.py:43
+#: ../plugins/final_prompt.py:34
+msgid "_Finish"
+msgstr "_Τέλος"
+
+#: ../plugins/intro_prompt.py:29
 msgid ""
 "Welcome to System Testing!\n"
 "\n"
@@ -2881,12 +2789,12 @@ msgstr ""
 "λειτουργεί σωστά. Μόλις τελειώσετε τις δοκιμές, μπορείτε να δείτε μια "
 "συνοπτική αναφορά για το σύστημά σας."
 
-#: ../plugins/launchpad_exchange.py:118
+#: ../plugins/launchpad_exchange.py:136
 #, python-format
 msgid "Failed to process form: %s"
 msgstr "Αποτυχία κατεργασίας μορφής: %s"
 
-#: ../plugins/launchpad_exchange.py:141
+#: ../plugins/launchpad_exchange.py:151
 #, python-format
 msgid ""
 "Failed to contact server. Please try\n"
@@ -2902,6 +2810,10 @@ msgstr ""
 "%s\n"
 "απευθείας στη βάση συστήματος:\n"
 "https://launchpad.net/+hwdb/+submit"
+
+#: ../plugins/launchpad_exchange.py:172
+msgid "Information not posted to Launchpad."
+msgstr "Οι πληροφορίες δεν καταχωρήθηκαν στο Launchpad."
 
 #: ../plugins/launchpad_prompt.py:71
 #, python-format
@@ -2952,7 +2864,7 @@ msgid "Running %s..."
 msgstr "Εκτέλεση %s..."
 
 #. Get results
-#: ../plugins/suites_prompt.py:105
+#: ../plugins/suites_prompt.py:108
 msgid "Select the suites to test"
 msgstr "Επιλέξτε τις σουίτες προς δοκιμή"
 
@@ -2960,7 +2872,7 @@ msgstr "Επιλέξτε τις σουίτες προς δοκιμή"
 msgid "Enter text:\n"
 msgstr "Εισάγετε κείμενο:\n"
 
-#: ../scripts/keyboard_test:40
+#: ../scripts/keyboard_test:41
 msgid "Type Text"
 msgstr "Πληκτρολογήστε κείμενο"
 
@@ -2976,14 +2888,32 @@ msgstr "Η σύνδεση που πραγματοποιήθηκε έχασε έ�
 msgid "Internet connection fully established"
 msgstr "Η σύνδεση με το Διαδίκτυο πραγματοποιήθηκε πλήρως"
 
+#~ msgid "_Desktop"
+#~ msgstr "_Σταθερός"
+
+#~ msgid "_Laptop"
+#~ msgstr "_Φορητός"
+
+#~ msgid "_Server"
+#~ msgstr "_Εξυπηρετητής"
+
+#~ msgid "$(network_test)"
+#~ msgstr "$(network_test)"
+
+#~ msgid "Exchange"
+#~ msgstr "Ανταλλαγή"
+
+#~ msgid "Category"
+#~ msgstr "Κατηγορία"
+
+#~ msgid "Please select the category of your system."
+#~ msgstr "Επιλέξτε την κατηγορία του συστήματός σας."
+
 #~ msgid "Running shell tests..."
 #~ msgstr "Γίνεται εκτέλεση ελέγχων κελύφους..."
 
-#~ msgid "Run the video test."
-#~ msgstr "Τρέξτε την δοκιμή βίντεο"
-
-#~ msgid "Run the test for the automatically detected playback device."
-#~ msgstr "Τρέξτε την δοκιμή για αυτόματη αναγνώριση συσκευής αναπαραγωγής."
+#~ msgid "Welcome to System Testing!"
+#~ msgstr "Καλώς ήλθατε στον Έλεγχο συστήματος!"
 
 #~ msgid "Disk benchmark:"
 #~ msgstr "Αναφορά δίσκου:"
@@ -3009,3 +2939,9 @@ msgstr "Η σύνδεση με το Διαδίκτυο πραγματοποιή�
 #, python-format
 #~ msgid "Running test %s..."
 #~ msgstr "Εκτέλεση ελέγχου %s..."
+
+#~ msgid "Authentication"
+#~ msgstr "Πιστοποίηση"
+
+#~ msgid "Done"
+#~ msgstr "Ολοκληρώθηκε"
