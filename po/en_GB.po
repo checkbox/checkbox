@@ -8,14 +8,24 @@ msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-07-07 12:32-0400\n"
-"PO-Revision-Date: 2011-09-03 14:58+0000\n"
+"PO-Revision-Date: 2011-10-16 22:51+0000\n"
 "Last-Translator: Robert Readman <Unknown>\n"
 "Language-Team: English (United Kingdom) <en_GB@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-09-04 04:35+0000\n"
-"X-Generator: Launchpad (build 13830)\n"
+"X-Launchpad-Export-Date: 2011-10-17 04:39+0000\n"
+"X-Generator: Launchpad (build 14155)\n"
+
+#. description
+#: ../jobs/graphics.txt.in:104
+msgid "Do you see color bars and static?"
+msgstr "Do you see colour bars and static?"
+
+#: ../gtk/checkbox-gtk.ui.h:1 ../checkbox_cli/cli_interface.py:343
+#: ../checkbox_urwid/urwid_interface.py:261
+msgid "Further information:"
+msgstr "Further information:"
 
 #: ../gtk/checkbox-gtk.ui.h:2
 msgid "Ne_xt"
@@ -23,9 +33,13 @@ msgstr "Ne_xt"
 
 #. Title of the user interface
 #: ../gtk/checkbox-gtk.ui.h:3 ../gtk/checkbox-gtk.desktop.in.h:1
-#: ../checkbox_gtk/gtk_interface.py:93 ../plugins/user_interface.py:40
+#: ../checkbox_gtk/gtk_interface.py:95 ../plugins/user_interface.py:40
 msgid "System Testing"
 msgstr "System Testing"
+
+#: ../gtk/checkbox-gtk.ui.h:4
+msgid "_Deselect All"
+msgstr "_Deselect All"
 
 #: ../gtk/checkbox-gtk.ui.h:5
 msgid "_No"
@@ -35,11 +49,15 @@ msgstr "_No"
 msgid "_Previous"
 msgstr "_Previous"
 
+#: ../gtk/checkbox-gtk.ui.h:7
+msgid "_Select All"
+msgstr "_Select All"
+
 #: ../gtk/checkbox-gtk.ui.h:8
 msgid "_Skip this test"
 msgstr "_Skip this test"
 
-#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:531
+#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:537
 msgid "_Test"
 msgstr "_Test"
 
@@ -52,6 +70,16 @@ msgid "Test and report system information"
 msgstr "Test and report system information"
 
 #. description
+#: ../jobs/apport.txt.in:5
+msgid "Test that the /var/crash directory doesn't contain anything."
+msgstr "Test that the /var/crash directory doesn't contain anything."
+
+#. description
+#: ../jobs/audio.txt.in:7
+msgid "Detecting your sound device(s):"
+msgstr "Detecting your sound device(s):"
+
+#. description
 #: ../jobs/audio.txt.in:7 ../jobs/graphics.txt.in:113 ../jobs/memory.txt.in:4
 #: ../jobs/networking.txt.in:5 ../jobs/optical.txt.in:8 ../jobs/usb.txt.in:12
 msgid "$output"
@@ -62,215 +90,6 @@ msgstr "$output"
 #: ../jobs/networking.txt.in:5 ../jobs/optical.txt.in:8
 msgid "Is this correct?"
 msgstr "Is this correct?"
-
-#. description
-#: ../jobs/graphics.txt.in:104
-msgid "Do you see color bars and static?"
-msgstr "Do you see colour bars and static?"
-
-#. description
-#: ../jobs/input.txt.in:4
-msgid "Moving the mouse should move the cursor on the screen."
-msgstr "Moving the mouse should move the cursor on the screen."
-
-#. description
-#: ../jobs/input.txt.in:4
-msgid "Is your mouse working properly?"
-msgstr "Is your mouse working properly?"
-
-#. description
-#: ../jobs/input.txt.in:13
-msgid "Is your keyboard working properly?"
-msgstr "Is your keyboard working properly?"
-
-#. description
-#: ../jobs/networking.txt.in:5
-msgid "Detecting your network controller(s):"
-msgstr "Detecting your network controller(s):"
-
-#. description
-#: ../jobs/networking.txt.in:16
-msgid "Testing your connection to the Internet:"
-msgstr "Testing your connection to the Internet:"
-
-#: ../checkbox/application.py:66
-msgid "Usage: checkbox [OPTIONS]"
-msgstr "Usage: checkbox [OPTIONS]"
-
-#: ../checkbox/application.py:70
-msgid "Print version information and exit."
-msgstr "Print version information and exit."
-
-#: ../checkbox/application.py:74
-msgid "The file to write the log to."
-msgstr "The file to write the log to."
-
-#: ../checkbox/application.py:77
-msgid "One of debug, info, warning, error or critical."
-msgstr "One of debug, info, warning, error or critical."
-
-#: ../checkbox/application.py:82
-msgid "Configuration override parameters."
-msgstr "Configuration override parameters."
-
-#: ../checkbox/application.py:115
-msgid "Missing configuration file as argument.\n"
-msgstr "Missing configuration file as argument.\n"
-
-#: ../checkbox_cli/cli_interface.py:31
-#: ../checkbox_urwid/urwid_interface.py:684
-msgid "yes"
-msgstr "yes"
-
-#: ../checkbox_cli/cli_interface.py:32
-#: ../checkbox_urwid/urwid_interface.py:685
-msgid "no"
-msgstr "no"
-
-#: ../checkbox_cli/cli_interface.py:33
-#: ../checkbox_urwid/urwid_interface.py:686
-msgid "skip"
-msgstr "skip"
-
-#: ../checkbox_cli/cli_interface.py:126
-msgid "Press any key to continue..."
-msgstr "Press any key to continue..."
-
-#: ../checkbox_cli/cli_interface.py:135
-#, python-format
-msgid "Please choose (%s): "
-msgstr "Please choose (%s): "
-
-#: ../checkbox_cli/cli_interface.py:315
-msgid "test"
-msgstr "test"
-
-#: ../checkbox_cli/cli_interface.py:339
-msgid "test again"
-msgstr "test again"
-
-#: ../checkbox_cli/cli_interface.py:345
-msgid "Please type here and press Ctrl-D when finished:\n"
-msgstr "Please type here and press Ctrl-D when finished:\n"
-
-#: ../checkbox_gtk/gtk_interface.py:496
-msgid "_Test Again"
-msgstr "_Test Again"
-
-#: ../plugins/final_prompt.py:34
-msgid "_Finish"
-msgstr "_Finish"
-
-#: ../plugins/gather_prompt.py:35
-msgid "Gathering information from your system..."
-msgstr "Gathering information from your system..."
-
-#: ../plugins/launchpad_exchange.py:147
-#, python-format
-msgid ""
-"Failed to contact server. Please try\n"
-"again or upload the following file name:\n"
-"%s\n"
-"\n"
-"directly to the system database:\n"
-"https://launchpad.net/+hwdb/+submit"
-msgstr ""
-"Failed to contact server. Please try\n"
-"again or upload the following file name:\n"
-"%s\n"
-"\n"
-"directly to the system database:\n"
-"https://launchpad.net/+hwdb/+submit"
-
-#: ../plugins/launchpad_exchange.py:156
-msgid ""
-"Failed to upload to server,\n"
-"please try again later."
-msgstr ""
-"Failed to upload to server,\n"
-"please try again later."
-
-#: ../plugins/launchpad_exchange.py:168
-msgid "Information not posted to Launchpad."
-msgstr "Information not posted to Launchpad."
-
-#: ../plugins/launchpad_prompt.py:92
-msgid "Email address must be in a proper format."
-msgstr "Email address must be formatted properly."
-
-#: ../plugins/launchpad_prompt.py:98
-msgid "Exchanging information with the server..."
-msgstr "Exchanging information with the server..."
-
-#: ../plugins/report_prompt.py:34
-msgid "Building report..."
-msgstr "Building report..."
-
-#~ msgid "Successfully sent information!"
-#~ msgstr "Information sent successfully!"
-
-#~ msgid "_Desktop"
-#~ msgstr "_Desktop"
-
-#~ msgid "_Laptop"
-#~ msgstr "_Laptop"
-
-#~ msgid "_Server"
-#~ msgstr "_Server"
-
-#~ msgid "$(network_test)"
-#~ msgstr "$(network_test)"
-
-#~ msgid "Authentication"
-#~ msgstr "Authentication"
-
-#~ msgid "Done"
-#~ msgstr "Done"
-
-#~ msgid "Exchange"
-#~ msgstr "Exchange"
-
-#~ msgid "Category"
-#~ msgstr "Category"
-
-#~ msgid "Do you hear a sound?"
-#~ msgstr "Do you hear a sound?"
-
-#~ msgid "Welcome to System Testing!"
-#~ msgstr "Welcome to System Testing!"
-
-#~ msgid "Please select the category of your system."
-#~ msgstr "Please select the category of your system."
-
-#~ msgid "Running shell tests..."
-#~ msgstr "Running shell tests..."
-
-#, python-format
-#~ msgid "Running test %s..."
-#~ msgstr "Running test %s..."
-
-#: ../gtk/checkbox-gtk.ui.h:1 ../checkbox_cli/cli_interface.py:343
-#: ../checkbox_urwid/urwid_interface.py:261
-msgid "Further information:"
-msgstr "Further information:"
-
-#: ../gtk/checkbox-gtk.ui.h:4
-msgid "_Deselect All"
-msgstr "_Deselect All"
-
-#: ../gtk/checkbox-gtk.ui.h:7
-msgid "_Select All"
-msgstr "_Select All"
-
-#. description
-#: ../jobs/apport.txt.in:5
-msgid "Test that the /var/crash directory doesn't contain anything."
-msgstr "Test that the /var/crash directory doesn't contain anything."
-
-#. description
-#: ../jobs/audio.txt.in:7
-msgid "Detecting your sound device(s):"
-msgstr "Detecting your sound device(s):"
 
 #. description
 #: ../jobs/audio.txt.in:21
@@ -1022,25 +841,40 @@ msgid "Did the 3d animation appear?"
 msgstr "Did the 3D animation appear?"
 
 #. description
-#: ../jobs/info.txt.in:60 ../jobs/screenshot.txt.in:7
+#: ../jobs/info.txt.in:69 ../jobs/screenshot.txt.in:7
 msgid "Captures a screenshot."
 msgstr "Captures a screenshot."
 
 #. description
-#: ../jobs/info.txt.in:71
+#: ../jobs/info.txt.in:80
 msgid "Gather log from the firmware test suite run"
 msgstr "Gather log from the firmware test suite run"
 
 #. description
-#: ../jobs/info.txt.in:82
+#: ../jobs/info.txt.in:91
 msgid "Bootchart information."
 msgstr "Bootchart information."
+
+#. description
+#: ../jobs/input.txt.in:4
+msgid "Moving the mouse should move the cursor on the screen."
+msgstr "Moving the mouse should move the cursor on the screen."
+
+#. description
+#: ../jobs/input.txt.in:4
+msgid "Is your mouse working properly?"
+msgstr "Is your mouse working properly?"
 
 #. description
 #: ../jobs/input.txt.in:13
 msgid "Select Test to open a text area where to type keys on your keyboard."
 msgstr ""
 "Select Test to open a text area where you can type keys on your keyboard."
+
+#. description
+#: ../jobs/input.txt.in:13
+msgid "Is your keyboard working properly?"
+msgstr "Is your keyboard working properly?"
 
 #. description
 #: ../jobs/install.txt.in:6
@@ -1647,6 +1481,16 @@ msgstr ""
 #: ../jobs/monitor.txt.in:46
 msgid "Did the monitor go blank?"
 msgstr "Did the monitor go blank?"
+
+#. description
+#: ../jobs/networking.txt.in:5
+msgid "Detecting your network controller(s):"
+msgstr "Detecting your network controller(s):"
+
+#. description
+#: ../jobs/networking.txt.in:16
+msgid "Testing your connection to the Internet:"
+msgstr "Testing your connection to the Internet:"
 
 #. description
 #: ../jobs/networking.txt.in:21
@@ -2837,6 +2681,26 @@ msgstr "MSN"
 msgid "Were you able to connect correctly and send/receive messages?"
 msgstr "Were you able to connect correctly and send/receive messages?"
 
+#: ../checkbox/application.py:66
+msgid "Usage: checkbox [OPTIONS]"
+msgstr "Usage: checkbox [OPTIONS]"
+
+#: ../checkbox/application.py:70
+msgid "Print version information and exit."
+msgstr "Print version information and exit."
+
+#: ../checkbox/application.py:74
+msgid "The file to write the log to."
+msgstr "The file to write the log to."
+
+#: ../checkbox/application.py:77
+msgid "One of debug, info, warning, error or critical."
+msgstr "One of debug, info, warning, error or critical."
+
+#: ../checkbox/application.py:82
+msgid "Configuration override parameters."
+msgstr "Configuration override parameters."
+
 #: ../checkbox/application.py:84
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist."
 msgstr "Shorthand for --config=checkbox/plugins/jobs_info/blacklist."
@@ -2852,6 +2716,10 @@ msgstr "Shorthand for --config=checkbox/plugins/jobs_info/whitelist."
 #: ../checkbox/application.py:90
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist_file."
 msgstr "Shorthand for --config=checkbox/plugins/jobs_info/whitelist_file."
+
+#: ../checkbox/application.py:115
+msgid "Missing configuration file as argument.\n"
+msgstr "Missing configuration file as argument.\n"
 
 #: ../checkbox/lib/signal.py:23
 msgid ""
@@ -2939,6 +2807,42 @@ msgstr "UNKNOWN"
 msgid "Unknown signal"
 msgstr "Unknown signal"
 
+#: ../checkbox_cli/cli_interface.py:31
+#: ../checkbox_urwid/urwid_interface.py:684
+msgid "yes"
+msgstr "yes"
+
+#: ../checkbox_cli/cli_interface.py:32
+#: ../checkbox_urwid/urwid_interface.py:685
+msgid "no"
+msgstr "no"
+
+#: ../checkbox_cli/cli_interface.py:33
+#: ../checkbox_urwid/urwid_interface.py:686
+msgid "skip"
+msgstr "skip"
+
+#: ../checkbox_cli/cli_interface.py:126
+msgid "Press any key to continue..."
+msgstr "Press any key to continue..."
+
+#: ../checkbox_cli/cli_interface.py:135
+#, python-format
+msgid "Please choose (%s): "
+msgstr "Please choose (%s): "
+
+#: ../checkbox_cli/cli_interface.py:315
+msgid "test"
+msgstr "test"
+
+#: ../checkbox_cli/cli_interface.py:339
+msgid "test again"
+msgstr "test again"
+
+#: ../checkbox_cli/cli_interface.py:345
+msgid "Please type here and press Ctrl-D when finished:\n"
+msgstr "Please type here and press Ctrl-D when finished:\n"
+
 #: ../checkbox_urwid/urwid_interface.py:60
 msgid "Checkbox System Testing"
 msgstr "Checkbox System Testing"
@@ -2980,11 +2884,15 @@ msgstr "Test Again"
 msgid "hardware database"
 msgstr "hardware database"
 
-#: ../checkbox_gtk/gtk_interface.py:542
+#: ../checkbox_gtk/gtk_interface.py:502
+msgid "_Test Again"
+msgstr "_Test Again"
+
+#: ../checkbox_gtk/gtk_interface.py:548
 msgid "Info"
 msgstr "Info"
 
-#: ../checkbox_gtk/gtk_interface.py:561
+#: ../checkbox_gtk/gtk_interface.py:567
 msgid "Error"
 msgstr "Error"
 
@@ -2993,7 +2901,7 @@ msgstr "Error"
 msgid "Unable to start web browser to open %s."
 msgstr "Unable to start web browser to open %s."
 
-#: ../plugins/apport_prompt.py:81
+#: ../plugins/apport_prompt.py:83
 msgid ""
 "Collecting information about this test.\n"
 "This might take a few minutes."
@@ -3001,7 +2909,7 @@ msgstr ""
 "Collecting information about this test.\n"
 "This might take a few minutes."
 
-#: ../plugins/apport_prompt.py:116
+#: ../plugins/apport_prompt.py:118
 msgid ""
 "Collected information is being sent for bug tracking.\n"
 "This might take a few minutes."
@@ -3009,17 +2917,17 @@ msgstr ""
 "Collected information is being sent for bug tracking.\n"
 "This might take a few minutes."
 
-#: ../plugins/apport_prompt.py:225
+#: ../plugins/apport_prompt.py:227
 #, python-format
 msgid "Test %s from suite %s failed."
 msgstr "Test %s from suite %s failed."
 
-#: ../plugins/apport_prompt.py:228
+#: ../plugins/apport_prompt.py:230
 #, python-format
 msgid "Test %s failed."
 msgstr "Test %s failed."
 
-#: ../plugins/apport_prompt.py:246
+#: ../plugins/apport_prompt.py:248
 #, python-format
 msgid "Is a package upgrade in process? Error: %s"
 msgstr "Is a package upgrade in process? Error: %s"
@@ -3028,7 +2936,15 @@ msgstr "Is a package upgrade in process? Error: %s"
 msgid "Successfully finished testing!"
 msgstr "Successfully finished testing!"
 
-#: ../plugins/intro_prompt.py:43
+#: ../plugins/final_prompt.py:34
+msgid "_Finish"
+msgstr "_Finish"
+
+#: ../plugins/gather_prompt.py:35
+msgid "Gathering information from your system..."
+msgstr "Gathering information from your system..."
+
+#: ../plugins/intro_prompt.py:29
 msgid ""
 "Welcome to System Testing!\n"
 "\n"
@@ -3046,6 +2962,35 @@ msgstr ""
 #, python-format
 msgid "Failed to process form: %s"
 msgstr "Failed to process form: %s"
+
+#: ../plugins/launchpad_exchange.py:151
+#, python-format
+msgid ""
+"Failed to contact server. Please try\n"
+"again or upload the following file name:\n"
+"%s\n"
+"\n"
+"directly to the system database:\n"
+"https://launchpad.net/+hwdb/+submit"
+msgstr ""
+"Failed to contact server. Please try\n"
+"again or upload the following file name:\n"
+"%s\n"
+"\n"
+"directly to the system database:\n"
+"https://launchpad.net/+hwdb/+submit"
+
+#: ../plugins/launchpad_exchange.py:160
+msgid ""
+"Failed to upload to server,\n"
+"please try again later."
+msgstr ""
+"Failed to upload to server,\n"
+"please try again later."
+
+#: ../plugins/launchpad_exchange.py:172
+msgid "Information not posted to Launchpad."
+msgstr "Information not posted to Launchpad."
 
 #: ../plugins/launchpad_prompt.py:71
 #, python-format
@@ -3076,6 +3021,14 @@ msgstr ""
 msgid "No e-mail address provided, not submitting to Launchpad."
 msgstr "No e-mail address provided, not submitting to Launchpad."
 
+#: ../plugins/launchpad_prompt.py:92
+msgid "Email address must be in a proper format."
+msgstr "Email address must be formatted properly."
+
+#: ../plugins/launchpad_prompt.py:98
+msgid "Exchanging information with the server..."
+msgstr "Exchanging information with the server..."
+
 #: ../plugins/lock_prompt.py:63
 msgid "There is another checkbox running. Please close it first."
 msgstr "There is another checkbox running. Please close it first."
@@ -3088,13 +3041,17 @@ msgstr ""
 "Checkbox did not finish completely.\n"
 "Do you want to recover from the previous run?"
 
+#: ../plugins/report_prompt.py:39
+msgid "Building report..."
+msgstr "Building report..."
+
 #: ../plugins/shell_test.py:52
 #, python-format
 msgid "Running %s..."
 msgstr "Running %s..."
 
 #. Get results
-#: ../plugins/suites_prompt.py:105
+#: ../plugins/suites_prompt.py:108
 msgid "Select the suites to test"
 msgstr "Select the suites to test"
 
@@ -3117,6 +3074,36 @@ msgstr "Connection established, lost a packet"
 #: ../scripts/internet_test:145
 msgid "Internet connection fully established"
 msgstr "Internet connection fully established"
+
+#~ msgid "Successfully sent information!"
+#~ msgstr "Information sent successfully!"
+
+#~ msgid "_Desktop"
+#~ msgstr "_Desktop"
+
+#~ msgid "_Laptop"
+#~ msgstr "_Laptop"
+
+#~ msgid "_Server"
+#~ msgstr "_Server"
+
+#~ msgid "$(network_test)"
+#~ msgstr "$(network_test)"
+
+#~ msgid "Exchange"
+#~ msgstr "Exchange"
+
+#~ msgid "Category"
+#~ msgstr "Category"
+
+#~ msgid "Welcome to System Testing!"
+#~ msgstr "Welcome to System Testing!"
+
+#~ msgid "Please select the category of your system."
+#~ msgstr "Please select the category of your system."
+
+#~ msgid "Running shell tests..."
+#~ msgstr "Running shell tests..."
 
 #~ msgid "Click the Test button to display a video test."
 #~ msgstr "Click the Test button to display a video test."
@@ -3320,3 +3307,16 @@ msgstr "Internet connection fully established"
 #~ " Configure the connection parameters properly 7.- Notify OSD should confirm "
 #~ "that the connection has been established 8.- Select Test to verify that it's "
 #~ "possible to establish both http \\ and ftp connections."
+
+#~ msgid "Do you hear a sound?"
+#~ msgstr "Do you hear a sound?"
+
+#, python-format
+#~ msgid "Running test %s..."
+#~ msgstr "Running test %s..."
+
+#~ msgid "Authentication"
+#~ msgstr "Authentication"
+
+#~ msgid "Done"
+#~ msgstr "Done"
