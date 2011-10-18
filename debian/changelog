@@ -1,5 +1,8 @@
 checkbox (0.13) precise; urgency=low
 
+  [Brendan Donegan]
+  * Have the bluetooth/detect tests require a device with the category BLUETOOTH to run, thus preventing the test from failing on systems with no Bluetooth device (LP: #862322)
+
   [Marc Tardif]
   * Generate a submission.xml file that contains all device and attachment
     information, suitable for offline processing and submission.
