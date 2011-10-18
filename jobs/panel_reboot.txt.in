@@ -2,9 +2,11 @@ plugin: manual
 name: panel_reboot_test
 requires: package.name == 'linux'
 _description:
- Please restart your machine from the Ubuntu Panel.
- .
- Afterwards be sure to recover the previous Checkbox instance and \
- answer the question below:
- .
- Did it restart and bring up the GUI login cleanly?
+ PURPOSE:
+    This test will verify that you can reboot your system from the desktop menu
+ STEPS:
+    1. Click the Gear icon in the upper right corner of the desktop and click on "Shut Down"
+    2. Click the "Restart" button on the left side of the Shut Down dialog
+    3. After logging back in, restart System Testing and it should resume here
+ VERIFICATION:
+    Did your system restart and bring up the GUI login cleanly?

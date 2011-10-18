@@ -36,10 +36,11 @@ def get_bitcount(bitmask):
 
     return bitcount
 
-def test_bit(bit, bitmask):
-    bits_per_long = calcsize("l") * 8
-    offset = bit % bits_per_long
-    long = int(bit / bits_per_long)
+def test_bit(bit, bitmask, bits=None):
+    if bits is None:
+        bits = calcsize("l") * 8
+    offset = bit % bits
+    long = int(bit / bits)
     if long >= len(bitmask):
         return 0
     return (bitmask[long] >> offset) & 1

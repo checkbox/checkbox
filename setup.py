@@ -233,6 +233,8 @@ This project provides an extensible interface for system testing.
     scripts = ["bin/checkbox-cli", "bin/checkbox-gtk", "bin/checkbox-urwid"],
     packages = ["checkbox", "checkbox.contrib", "checkbox.lib", "checkbox.parsers",
         "checkbox.reports", "checkbox_cli", "checkbox_gtk", "checkbox_urwid"],
+    package_data = {
+        "": ["cputable"]},
     cmdclass = {
         "build": checkbox_build,
         "build_i18n": build_i18n,

@@ -1,17 +1,24 @@
 plugin: manual
 name: power-management/shutdown-boot
 _description:
- Shutdown/boot cycle verification procedure:
- 1.- Shutdown your machine
- 2.- Boot your machine
- 3.- Repeat steps 1 and 2 at least 5 times
- .
- Note: This test case has to be executed manually before checkbox execution
+ PURPOSE:
+     This test will check your system shutdown/booting cycle
+ STEPS:
+     1. Shutdown your machine
+     2. Boot your machine
+     3. Repeat steps 1 and 2 at least 5 times
+ VERIFICATION:
+     Did the system shutdown and rebooted correctly?
 
 plugin: manual
 name: power-management/lid
 _description:
- Does closing your laptop lid cause your screen to blank?
+ PURPOSE:
+     This test will check your lid sensors
+ STEPS:
+     1. Close your laptop lid
+ VERIFICATION:
+    Does closing your laptop lid cause your system to suspend?
 
 plugin: manual
 name: power-management/lid_close
@@ -23,9 +30,13 @@ command:
  done
  exit 1
 _description:
- Click the Test button, then close and open the lid.
- .
- Did the screen turn off while the lid was closed?
+ PURPOSE:
+     This test will check your lid sensors
+ STEPS:
+     1. Click "Test"
+     2. Close and open the lid
+ VERIFICATION:
+     Did the screen turn off while the lid was closed?
 
 plugin: manual
 name: power-management/lid_open
@@ -37,11 +48,15 @@ command:
  done
  exit 1
 _description:
- Click the Test button, then close the lid and wait 5 seconds.
- .
- Open the lid.
- .
- Did the screen turn back on when the lid was opened?
+ PURPOSE:
+     This test will check your lid sensors
+ STEPS:
+     1. Click "Test"
+     2. Close the lid
+     3. Wait 5 seconds with the lid closed
+     4. Open the lid
+ VERIFICATION:
+     Did the system resume when the lid was opened?
 
 plugin: shell
 name: power-management/rtc
@@ -53,7 +68,7 @@ _description:
 
 plugin: shell
 name: power-management/fwts_wakealarm
-_description: Run Colin Kings FWTS wakealarm test
+_description: Test ACPI Wakealarm (fwts wakealarm) 
 requires:
  package.name == 'linux'
  package.name == 'fwts'
@@ -62,7 +77,6 @@ command: fwts_test -w -l $CHECKBOX_DATA/fwts-wakealarm.log
 plugin: shell
 name: power-management/tickless_idle
 requires: package.name == 'linux'
-_description: Check to see if CONFIG_NO_HZ is set in the kernel
+_description: Check to see if CONFIG_NO_HZ is set in the kernel (this is just a simple regression check)
 command:
  zgrep 'CONFIG_NO_HZ=y' /boot/config-`uname -r` >/dev/null 2>&1
-

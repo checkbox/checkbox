@@ -17,37 +17,36 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
+import os
 import sys
-import posixpath
 
-from checkbox.parsers.cpuinfo import CpuinfoParser
-
-# Filename where cpuinfo is stored.
-CPUINFO_FILENAME = "/proc/cpuinfo"
-
-# Filename where maximum frequency is stored.
-FREQUENCY_FILENAME = "/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq"
+from checkbox.parsers.dmidecode import DmidecodeParser
 
 
-class CpuinfoResult:
+# Command to retrieve dmi information.
+COMMAND = "dmidecode"
 
-    def setProcessor(self, processor):
-        for key, value in processor.iteritems():
-            if key == "speed":
-                # Check for frequency scaling
-                if posixpath.exists(FREQUENCY_FILENAME):
-                    value = open(FREQUENCY_FILENAME).read().strip()
-                    value = int(value) / 1000
 
-            print "%s: %s" % (key, value)
+class DmiResult(object):
+
+    attributes = ("path", "category", "product", "vendor", "serial",
+        "version",)
+
+    def addDmiDevice(self, device):
+        for attribute in self.attributes:
+            value = getattr(device, attribute)
+            if value is not None:
+                print "%s: %s" % (attribute, value)
+
+        print
 
 
 def main():
-    stream = open(CPUINFO_FILENAME)
-    parser = CpuinfoParser(stream)
+    stream = os.popen(COMMAND)
+    udev = DmidecodeParser(stream)
 
-    result = CpuinfoResult()
-    parser.run(result)
+    result = DmiResult()
+    udev.run(result)
 
     return 0
 

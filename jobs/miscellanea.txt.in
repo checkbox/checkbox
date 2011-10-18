@@ -6,11 +6,12 @@ requires:
 user: root
 command: cycle_vts
 _description:
- Select Test to switch to another virtual terminal and then back to X.  Your screen will change temporarily to a text console and then switch back to your current session.
- .
- Note that this test may require you to enter your password.
- .
- Did the screen change temporarily to a text console?
+ PURPOSE:
+     This test will check that the system can switch to a virtual terminal and back to X
+ STEPS:
+     1. Click "Test" to switch to another virtual terminal and then back to X
+ VERIFICATION:
+     Did your screen change temporarily to a text console and then switch back to your current session?
 
 plugin: shell
 name: miscellanea/fwts_test
@@ -18,7 +19,7 @@ requires:
   package.name == 'linux'
   package.name == 'fwts'
 _description:
- Run Colin King's Firmware Test Suite automated tests.
+ Run Firmware Test Suite (fwts) automated tests.
 command:
  fwts_test -l $CHECKBOX_DATA/fwts_results.log
 
@@ -39,6 +40,16 @@ _description:
 plugin: manual
 name: miscellanea/is_laptop
 _description:
- Is your system a laptop (or netbook)?
+ PURPOSE:
+    This is to determine if we need to run tests specific to portable computers that may not apply to desktops.
+ STEPS:
+    Select "Yes" if your system is a laptop or netbook. Otherwise, select "No"
+
+plugin: shell
+name: miscellanea/apport-directory
+requires: package.name == 'apport'
+command: ! test -d /var/crash || test $(find /var/crash -type f | wc -l) -eq 0
+_description: 
+ This test checks /var/crash to see if there are any crash reports present.
  .
- Selecting Yes here will allow us to run tests specific to portable computers that may not apply to desktops.
+ If there are, this test will fail.

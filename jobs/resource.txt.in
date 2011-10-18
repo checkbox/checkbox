@@ -1,40 +1,55 @@
 name: cpuinfo
 plugin: resource
 command: cpuinfo_resource
+description: Gets CPU resource info from /proc/cpuinfo
 
 name: cdimage
 plugin: resource
 user: root
 command: cdimage_resource
+description: Gets installation info from casper.log and media-info
 
 name: dpkg
 plugin: resource
 command: dpkg_resource
+description:Gets info on the version of dpkg installed
 
 name: gconf
 plugin: resource
 command: gconf_resource | filter_templates -w 'name=.*proxy.*'
+description: Generates resource info from gconf settings
 
 name: lsb
 plugin: resource
 command: lsb_resource
+description: Generates release info based on /etc/lsb-release
 
 name: meminfo
 plugin: resource
 command: meminfo_resource
+description: Generates resource info based on /proc/meminfo
 
 name: module
 plugin: resource
 command: module_resource
+description: Generates resources info on running kernel modules
 
 name: package
 plugin: resource
 command: package_resource | filter_templates -w 'desired=Install' -w 'status=Installed'
+description: Generates a list of installed packages
 
 name: device
 plugin: resource
 command: udev_resource
+description: Creates resource info from udev 
+
+name: dmi
+plugin: resource
+user: root
+command: dmi_resource
 
 name: uname
 plugin: resource
 command: uname_resource
+description: Creates resource info from uname output

@@ -1,9 +1,30 @@
-checkbox (0.13) oneiric; urgency=low
+checkbox (0.13) precise; urgency=low
 
   [Brendan Donegan]
   * Show details of unmet job requirements (LP: #855852)
 
- -- Daniel Manrique <daniel.manrique@canonical.com>  Fri, 30 Sep 2011 16:12:08 -0400
+  [Marc Tardif]
+  * Generate a submission.xml file that contains all device and attachment
+    information, suitable for offline processing and submission.
+  * Write the report before reporting the validation error.
+  * Changed device.product to dmi.product for the formfactor (LP: #875312)
+
+  [Jeff Lane]
+  * Went through all the job files and:
+    * Updated descriptions to match Unity UI structure
+    * Added descriptions where necessary
+    * Added further details to some descriptions
+    * Moved some jobs to more appropriate files
+    * Fixed job names in older job files to match new naming scheme 
+      (suite/testname)
+    * Added jobs to local.txt to ensure all job files are now parsed
+      (this allows easier addition of existing tests to whitelists)
+    * Changed remaining manual job descriptions to match the new format
+
+   [Ara Pulido]
+   * Rewrote all job descriptions to match OEM QA syntax
+
+ -- Daniel Manrique <daniel.manrique@canonical.com>  Wed, 12 Oct 2011 15:20:36 -0400
 
 checkbox (0.12.8) oneiric; urgency=low
 

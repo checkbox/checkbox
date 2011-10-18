@@ -1,73 +1,86 @@
 plugin: manual
 name: keys/brightness
-requires: device.product in ['Notebook','Laptop','Portable']
+requires: dmi.product in ['Notebook','Laptop','Portable']
 _description:
- Press the brightness buttons on the keyboard. A status window should \
- appear and the brightness should change.
- .
- Do the buttons work?
+ PURPOSE:
+     This test will test the brightness key
+ STEPS:
+     1. Press the brightness buttons on the keyboard
+ VERIFICATION:
+     Did the brightness change following to your key presses?
 
 plugin: manual
 name: keys/volume
 _description:
- Press the volume buttons on the keyboard. A status window should \
- appear and the volume should change.
- .
- Do the buttons work?
+ PURPOSE:
+     This test will test the volume keys
+ STEPS:
+     1. Press the volume buttons on the keyboard
+ VERIFICATION:
+     Did the volume change following to your key presses?
 
 plugin: manual
 name: keys/mute
-requires: device.product in ['Notebook','Laptop','Portable']
+requires: dmi.product in ['Notebook','Laptop','Portable']
 _description:
- Press the mute key on the keyboard. A status window should appear \
- and the volume should mute/unmute when pressed multiple times.
- .
- Does the key work?
+ PURPOSE:
+     This test will test the mute key
+ STEPS:
+     1. Press the mute button on the keyboard
+ VERIFICATION:
+     Did the volume mute following your key presses?
 
 plugin: manual
 name: keys/sleep
-requires: device.product in ['Notebook','Laptop','Portable']
+requires: dmi.product in ['Notebook','Laptop','Portable']
 depends: suspend/suspend_advanced
 _description:
- Press the sleep key on the keyboard. The computer should suspend and, \
- after pressing the power button, resume successfully.
- .
- Does the key work?
+ PURPOSE:
+     This test will test the sleep key
+ STEPS:
+     1. Press the sleep key on the keyboard
+     2. Wake your system up by pressing the power button
+ VERIFICATION:
+     Did the system go to sleep after pressing the sleep key?
 
 plugin: manual
 name: keys/battery-info
-requires: device.product in ['Notebook','Laptop','Portable']
+requires: dmi.product in ['Notebook','Laptop','Portable']
 _description:
- Press the battery information key on the keyboard. A status window \
- should appear and the amount of battery remaining should be displayed.
- .
- Does the key work?
+ PURPOSE:
+     This test will test the battery information key
+ STEPS:
+     1. Press the battery information key on the keyboard
+ VERIFICATION:
+     Did a notification appear showing the battery status?
 
 plugin: manual
 name: keys/wireless
-requires: device.product in ['Notebook','Laptop','Portable']
+requires: dmi.product in ['Notebook','Laptop','Portable']
 _description:
- Press the wireless networking key on the keyboard. The bluetooth icon \
- and the network connnection should go down if connected through the \
- wifi interface.
- .
- Press the same key again and check that bluetooth icon is again \
- displayed and that the network connection is re-established \
- automatically.
- .
- Does the key work?
+ PURPOSE:
+     This test will test the wireless key
+ STEPS:
+     1. Press the wireless key on the keyboard
+     2. Press the same key again
+ VERIFICATION:
+     Did the wireless go off on the first press and on again on the second?
 
 plugin: manual
 name: keys/media-control
-requires: device.category == 'KEYBOARD'
+requires:
+ device.category == 'KEYBOARD'
+ package.name == 'totem'
+ package.name == 'gstreamer0.10-plugins-base'
+command: totem /usr/share/example-content/Ubuntu_Free_Culture_Showcase/*
 _description:
- The keyboard may have dedicated keys for controlling media as follows:
- .
- * Play/Pause
- * Stop
- * Forward
- * Backward (Rewind)
- .
- Play a media file and press each key in turn.
- .
- Do the keys work as expected?
+ PURPOSE:
+     This test will test the media keys of your keyboard
+ STEPS:
+     1. Click test to launch the media player
+     2. Press the play/pause key on the keyboard
+     3. Press the forward key on the keyboard
+     4. Press the backward key on the keyboard
+     5. Press stop key on the keyboard
+ VERIFICATION:
+     Do the keys work as expected?
