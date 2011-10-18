@@ -3,6 +3,11 @@ plugin: local
 _description: Audio tests
 command: cat $CHECKBOX_SHARE/jobs/audio.txt*
 
+name: __autotest__
+plugin: local
+_description: Autotest Suite tests
+command: cat $CHECKBOX_SHARE/jobs/autotest.txt*
+
 name: __bluetooth__
 plugin: local
 _description: Bluetooth tests
@@ -13,7 +18,7 @@ plugin: local
 _description: Camera tests
 command: cat $CHECKBOX_SHARE/jobs/camera.txt*
 
-name: codecs
+name: __codecs__
 plugin: local
 _description: Codec tests
 command: cat $CHECKBOX_SHARE/jobs/codecs.txt*
@@ -23,7 +28,7 @@ plugin: local
 _description: CPU tests
 command: cat $CHECKBOX_SHARE/jobs/cpu.txt*
 
-name: daemon
+name: __daemons__
 plugin: local
 _description: System Daemon tests
 command: cat $CHECKBOX_SHARE/jobs/daemons.txt*
@@ -53,6 +58,11 @@ plugin: local
 _description: Graphics tests
 command: cat $CHECKBOX_SHARE/jobs/graphics.txt*
 
+name: __hibernate__
+plugin: local
+_description: Hibernation tests
+command: cat $CHECKBOX_SHARE/jobs/hibernate.txt*
+
 name: __info__
 plugin: local
 _description: Informational tests
@@ -73,10 +83,15 @@ plugin: local
 _description: Hotkey tests
 command: cat $CHECKBOX_SHARE/jobs/keys.txt*
 
-name: __hibernate__
+name: __ltp__
 plugin: local
-_description: Hibernation tests
-command: cat $CHECKBOX_SHARE/jobs/hibernate.txt*
+_description: Linux Test Project tests
+command: cat $CHECKBOX_SHARE/jobs/ltp.txt*
+
+name: __mago__
+plugin: local
+_description: Mago Automated Desktop Testing
+command: cat $CHECKBOX_SHARE/jobs/mago.txt*
 
 name: __mediacard__
 plugin: local
@@ -108,6 +123,11 @@ plugin: local
 _description: Optical Drive tests
 command: cat $CHECKBOX_SHARE/jobs/optical.txt*
 
+name: __panel_clock__
+plugin: local
+_description: Panel Clock Verification tests
+command: cat $CHECKBOX_SHARE/jobs/panel_clock_test.txt*
+
 name: __pcmcia-pcix__
 plugin: local
 _description: PCMCIA/PCIX Card tests
@@ -118,10 +138,25 @@ plugin: local
 _description: Peripheral tests
 command: cat $CHECKBOX_SHARE/jobs/peripheral.txt*
 
+name: __phoronix__
+plugin: local
+_description: Phoronix Test Suite tests
+command: cat $CHECKBOX_SHARE/jobs/peripheral.txt*
+
 name: __power-management__
 plugin: local
 _description: Power Management tests
 command: cat $CHECKBOX_SHARE/jobs/power-management.txt*
+
+name: __qa__
+plugin: local
+_description: QA Regression tests
+command: cat $CHECKBOX_SHARE/jobs/qa_regression.txt*
+
+name: __server-services__
+plugin: local
+_description: Server Services checks
+command: cat $CHECKBOX_SHARE/jobs/server-services.txt*
 
 name: __suspend__
 plugin: local

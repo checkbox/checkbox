@@ -1,12 +1,8 @@
-plugin: manual
+plugin: shell
 name: graphics/xorg-version
 requires: package.name == "x11-utils"
 command: xdpyinfo | grep "^X.Org version" | cut -d ':' -f 2 | tr -d ' '
-_description:
- 2d graphics appears to be working, your running X.Org version is:
- $output
- .
- Is this correct?
+_description: Test to output the Xorg version
 
 plugin: shell
 name: graphics/xorg-version-output
@@ -19,41 +15,40 @@ plugin: shell
 name: graphics/gtkperf
 depends: graphics/xorg-version-output
 requires: package.name == 'gtkperf'
-command: gtkperf -a
+command: gtkperf -a | grep "Total time:"
 _description:
  Run gtkperf to make sure that GTK based test cases work
- .
- In the future add the returned time as a benchmark result to the checkbox report
 
 plugin: manual
 name: graphics/resolution-change
 depends: graphics/xorg-version-output
 _description:
- Display resolution change procedure:
- 1.- Open System->Preferences->Monitors
- 2.- Select a new resolution from the dropdown list
- 3.- Click on Apply
- 4.- The resolution should change
- 5.- Select the original resolution from the dropdown list
- 6.- Click on Apply
- 7.- The resolution should change again
- .
- Did the resolution change as expected?
+ PURPOSE:
+     This test will verify that the GUI is usable after manually changing resolution
+ STEPS:
+     1. Open the Displays application
+     2. Select a new resolution from the dropdown list
+     3. Click on Apply
+     4. Select the original resolution from the dropdown list
+     5. Click on Apply
+ VERIFICATION:
+     Did the resolution change as expected?
 
 plugin: manual
 name: graphics/rotation
 depends: graphics/xorg-version-output
 _description:
- Display rotation verification procedure:
- 1.- Open System->Preferences->Monitors
- 2.- Select a new rotation value from the dropdown list
- 3.- Click on Apply
- 4.- The display should be rotated according to the new configuration value
- 5.- Click on Restore Previous Configuration
- 6.- The display configuration change should be reverted
- 7.- Repeat 2-6 for different rotation values
- .
- Did the display rotation change as expected?
+ PURPOSE:
+     This test will test display rotation
+ STEPS:
+     1. Open the Displays application
+     2. Select a new rotation value from the dropdown list
+     3. Click on Apply
+     4. Click on Restore Previous Configuration
+     5. Click on Apply
+     6. Repeat 2-5 for different rotation values
+ VERIFICATION:
+     Did the display rotation change as expected?
 
 plugin: shell
 name: graphics/xorg-process
@@ -72,7 +67,7 @@ name: graphics/xorg-memory
 requires: package.name == 'xorg' and device.driver == 'i915'
 user: root
 command: xorg_memory_test xeyes
-_description: Test that X does not leak memory when running programs.
+_description: Test that X does not leak memory when running programs on systems with intel based graphics.
 
 plugin: manual
 name: graphics/resolution
@@ -80,11 +75,14 @@ requires:
  device.category == 'VIDEO'
 command: resolution_test
 _description:
- This display is using the following resolution:
- .
- $output
- .
- Is this acceptable for your display?
+ PURPOSE:
+     This test will verify the default display resolution
+ STEPS:
+     1. This display is using the following resolution:
+ INFO:
+     $output
+ VERIFICATION:
+     Is this acceptable for your display?
 
 plugin: shell
 name: graphics/minimum_resolution
@@ -102,20 +100,26 @@ name: graphics/display
 requires: package.name == 'xorg' and package.name == 'python-gst0.10'
 command: gst_pipeline_test -t 2 'videotestsrc ! ffmpegcolorspace ! gconfvideosink'
 _description:
- Select Test to display a video test.
- .
- Do you see color bars and static?
+ PURPOSE:
+     This test will test the default display
+ STEPS:
+     1. Click "Test" to display a video test.
+ VERIFICATION:
+     Do you see color bars and static?
 
 plugin: manual
 name: graphics/xrandr_detect_modes
 requires: package.name == 'xorg'
 command: xrandr
 _description:
- The following screens and video modes have been detected on your system:
- .
- $output
- .
- Is this correct?
+ PURPOSE:
+     This test checks the detected video modes
+ STEPS:
+     1. The following screens and video modes have been detected on your system
+ INFO:
+     $output
+ VERIFICATION:
+     Are those correct?
 
 plugin: manual
 name: graphics/cycle_resolution
@@ -123,9 +127,12 @@ requires: package.name == 'xorg'
 depends: xrandr_detect_modes
 command: xrandr_cycle
 _description:
- Select Test to cycle through the detected video modes for your system.
- .
- Did the screen appear to be working for each mode?
+ PURPOSE:
+     This test cycles through the detected video modes
+ STEPS:
+     1. Click "Test" to start cycling through the video modes
+ VERIFICATION:
+     Did the screen appear to be working for each mode?
 
 plugin: shell
 name: graphics/compiz_check
@@ -138,6 +145,9 @@ name: graphics/glxgears
 requires: package.name == 'mesa-utils'
 command: glxgears
 _description:
- Select Test to execute glxgears to ensure that minimal 3d graphics support is in place.
- .
- Did the 3d animation appear?
+ PURPOSE:
+     This test tests the basic 3D capabilities of your video card
+ STEPS:
+     1. Click "Test" to execute glxgears
+ VERIFICATION:
+     Did the 3d animation appear?

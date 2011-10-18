@@ -1,13 +1,8 @@
-plugin: manual
+plugin: shell
 name: networking/detect
 requires: device.category == 'NETWORK' or device.category == 'WIRELESS'
 command: network_test
-_description:
- Detecting your network controller(s):
- .
- $output
- .
- Is this correct?
+_description: Test to detect the available network controllers
 
 plugin: shell 
 name: networking/internet
@@ -26,40 +21,44 @@ command:
  requires: device.path == "$1" and package.name == 'linux'
  command: network_info $2
  _description:
-  Please verify the following information for NIC $2?
-  .
-  \$output
-  .
-  Is this correct?
- EOF
+  PURPOSE:
+      This test will check the different NIC
+  STEPS:
+      1. Please verify the following information for NIC $2
+  INFO:
+      $output
+  VERIFICATION:
+      Is this correct?
 
 plugin: manual
 name: networking/wired_connection
 command: network_check
 _description:
- Wired network connection procedure:
- 1.- Click on the Network Manager applet
- 2.- Select a network below the 'Wired network' section
- 3.- Notify OSD should confirm that the connection has been established
- 4.- Select Test to verify that it's possible to establish an HTTP connection
- .
- Was the connection correctly established?
+ PURPOSE:
+     This test will check your wired connection
+ STEPS:
+     1. Click on the Network icon in the top panel
+     2. Select a network below the "Wired network" section
+     3. Click "Test" to verify that it's possible to establish a HTTP connection
+ VERIFICATION:
+     Did a notification show and was the connection correctly established?
 
 plugin: manual
 name: networking/modem_connection
 command: network_check
 _description:
- Built-in modem network connection procedure:
- 1.- Connect the telephone line to the computer
- 2.- Right click on the Network Manager applet
- 3.- Select 'Edit Connections'
- 4.- Select the 'DSL' tab
- 5.- Click on add 'Add' button
- 6.- Configure the connection parameters properly
- 7.- Notify OSD should confirm that the connection has been established
- 8.- Select Test to verify that it's possible to establish an HTTP connection
- .
- Was the connection correctly established?
+ PURPOSE:
+     This test will check that a DSL modem can be configured and connected.
+ STEPS:
+     1. Connect the telephone line to the computer
+     2. Click on the Network icon on the top panel.
+     3. Select "Edit Connections"
+     4. Select the "DSL" tab
+     5. Click on "Add" button
+     6. Configure the connection parameters properly
+     7. Click "Test" to verify that it's possible to establish an HTTP connection
+ VERIFICATION:
+     Did a notification show and was the connection correctly established?
 
 plugin: shell
 name: networking/ping
@@ -96,7 +95,7 @@ _description: Try to enable a remote printer on the network and print a test pag
 plugin: local
 name: networking/multi_nic
 requires: device.category == 'NETWORK'
-_description: Multiple network cards
+_description: Automated test to walk multiple network cards and test each one in sequence.
 command:
  cat <<'EOF' | run_templates -s 'udev_resource | filter_templates -w "category=NETWORK" | awk "/path: / { print \$2 }" | xargs -n 1 sh -c "for i in \`ls /sys\$0/net 2>/dev/null\`; do echo \$0 \$i; done"'
  plugin: shell
