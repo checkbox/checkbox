@@ -6,6 +6,9 @@ checkbox (0.13) precise; urgency=low
   * Write the report before reporting the validation error.
   * Changed device.product to dmi.product for the formfactor (LP: #875312)
 
+  [Daniel Manrique]
+  * Use gettext for string (LP: #869267)
+
   [Jeff Lane]
   * Went through all the job files and:
     * Updated descriptions to match Unity UI structure
