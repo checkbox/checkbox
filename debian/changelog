@@ -8,6 +8,8 @@ checkbox (0.13) precise; urgency=low
 
   [Daniel Manrique]
   * Use gettext for string (LP: #869267)
+  * Move progress indicator to main checkbox dialog instead of a 
+    transient window (LP: #868995)
 
   [Jeff Lane]
   * Went through all the job files and:
@@ -24,7 +26,7 @@ checkbox (0.13) precise; urgency=low
    [Ara Pulido]
    * Rewrote all job descriptions to match OEM QA syntax
 
- -- Daniel Manrique <daniel.manrique@canonical.com>  Wed, 12 Oct 2011 15:20:36 -0400
+ -- Daniel Manrique <daniel.manrique@canonical.com>  Fri, 04 Nov 2011 16:32:08 -0400
 
 checkbox (0.12.8) oneiric; urgency=low
 
