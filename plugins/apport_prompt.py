@@ -228,7 +228,7 @@ class ApportPrompt(Plugin):
                 (test["name"], test["suite"]))
         else:
             failed_test_message = _("Test %s failed." % test["name"])
-        failed_test_message += ("\n Do you want to report a bug?")
+        failed_test_message += "\n" + _("Do you want to report a bug?")
 
         response = interface.show_info(failed_test_message,
             ["yes", "no"], "no")
