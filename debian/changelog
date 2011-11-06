@@ -1,5 +1,9 @@
 checkbox (0.13) precise; urgency=low
 
+  [Brendan Donegan]
+  * Automated the is_laptop test by checking for the presence of a battery in
+    the system (LP: #886668)
+
   [Marc Tardif]
   * Generate a submission.xml file that contains all device and attachment
     information, suitable for offline processing and submission.

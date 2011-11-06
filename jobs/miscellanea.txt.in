@@ -40,10 +40,8 @@ _description:
 plugin: manual
 name: miscellanea/is_laptop
 _description:
- PURPOSE:
-    This is to determine if we need to run tests specific to portable computers that may not apply to desktops.
- STEPS:
-    Select "Yes" if your system is a laptop or netbook. Otherwise, select "No"
+    Determine if we need to run tests specific to portable computers that may not apply to desktops.
+command: test -d /proc/acpi/battery
 
 plugin: shell
 name: miscellanea/apport-directory
