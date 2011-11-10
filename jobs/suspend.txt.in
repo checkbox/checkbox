@@ -28,7 +28,7 @@ command: meminfo_resource > $CHECKBOX_DATA/meminfo_before_suspend
 
 plugin: shell
 name: suspend/wireless_before_suspend
-depends: networking/wireless_connection
+depends: wireless/wireless_connection
 command: nmcli -t -f UUID con status > $CHECKBOX_DATA/connections && connect_wireless && internet_test --interface=`nmcli dev list | grep -B 1 wireless | grep GENERAL.DEVICE | awk '{print $2}'` && for con in `cat $CHECKBOX_DATA/connections`; do nmcli con up uuid "$con"; done
 _description:
  This test disconnects all connections and then connects to the wireless
@@ -56,7 +56,7 @@ _description:
 
 plugin: manual
 name: suspend/suspend_advanced
-depends: power-management/rtc networking/detect suspend/resolution_before_suspend suspend/wireless_before_suspend bluetooth/detect-output suspend/bluetooth_mouse_before_suspend suspend/cpu_before_suspend suspend/memory_before_suspend
+depends: power-management/rtc networking/detect suspend/resolution_before_suspend suspend/wireless_before_suspend bluetooth/detect-output suspend/cpu_before_suspend suspend/memory_before_suspend
 requires: package.name == 'pm-utils'
 user: root
 command: sleep_test -d
