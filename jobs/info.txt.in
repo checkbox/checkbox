@@ -86,13 +86,13 @@ _description: Captures a screenshot.
 
 plugin: attachment
 name: info/screenshot.png
-depends: screenshot
+depends: info/screenshot
 command: cat ${CHECKBOX_DATA}/screenshot.png
 _description: Attaches the screenshot captured in info/screenshot.
 
 plugin: attachment
 name: info/fwts_log
-depends: fwts_test
+depends: miscellanea/fwts_test
 _description: Gather log from the Firmware Test Suite run.
 command:
  cat $CHECKBOX_DATA/fwts_results.log

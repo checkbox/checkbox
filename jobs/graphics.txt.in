@@ -124,7 +124,7 @@ _description:
 plugin: manual
 name: graphics/cycle_resolution
 requires: package.name == 'xorg'
-depends: xrandr_detect_modes
+depends: graphics/xrandr_detect_modes
 command: xrandr_cycle
 _description:
  PURPOSE:

@@ -1,5 +1,6 @@
 checkbox (0.13) precise; urgency=low
 
+  [ Daniel Manrique ]
   [Marc Tardif]
   * Generate a submission.xml file that contains all device and attachment
     information, suitable for offline processing and submission.
@@ -36,7 +37,10 @@ checkbox (0.13) precise; urgency=low
      BLUETOOTH to run, thus preventing the test from failing on systems with
      no Bluetooth device (LP: #862322)
 
- -- Daniel Manrique <daniel.manrique@canonical.com>  Fri, 04 Nov 2011 16:32:08 -0400
+  [ Javier Collado ]
+  * Broken job dependencies fixed (LP: #888447)
+
+ -- Javier Collado <javier.collado@canonical.com>  Thu, 10 Nov 2011 10:05:04 +0100
 
 checkbox (0.12.8) oneiric; urgency=low
 

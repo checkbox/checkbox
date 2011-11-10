@@ -1,6 +1,6 @@
 plugin: manual
 name: software/update_manager_finds_updates
-depends: internet_test
+depends: networking/detect
 user: root
 requires: package.name == 'update-manager'
 _description:
