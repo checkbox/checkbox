@@ -26,6 +26,18 @@ checkbox (0.13) precise; urgency=low
    [Ara Pulido]
    * Rewrote all job descriptions to match OEM QA syntax
 
+   [Brendan Donegan]  
+   * Fix the code that assigns keys in checkbox-cli so that it never assigns
+     keys which have other uses. (LP: #877467)
+   * Show details of unmet job requirements (LP: #855852)
+   * Ensure that connect_wireless chooses a wireless connection from the list
+     of available connections (LP: #877752)
+   * Have the bluetooth/detect tests require a device with the category
+     BLUETOOTH to run, thus preventing the test from failing on systems with
+     no Bluetooth device (LP: #862322)
+   * Rename attachment jobs to not have a forward slash in their name
+     (LP: #887964)
+
  -- Daniel Manrique <daniel.manrique@canonical.com>  Fri, 04 Nov 2011 16:32:08 -0400
 
 checkbox (0.12.8) oneiric; urgency=low
