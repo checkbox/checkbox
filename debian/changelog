@@ -35,6 +35,8 @@ checkbox (0.13) precise; urgency=low
    * Have the bluetooth/detect tests require a device with the category
      BLUETOOTH to run, thus preventing the test from failing on systems with
      no Bluetooth device (LP: #862322)
+   * Guard against trying to write files to logical partitions on USB sticks
+     (which will obviously fail) in usb_test (LP: #887049)
 
   [ Javier Collado ]
   * Broken job dependencies fixed (LP: #888447)
