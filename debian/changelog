@@ -35,11 +35,13 @@ checkbox (0.13) precise; urgency=low
    * Have the bluetooth/detect tests require a device with the category
      BLUETOOTH to run, thus preventing the test from failing on systems with
      no Bluetooth device (LP: #862322)
+   * Rename attachment jobs to not have a forward slash in their name
+     (LP: #887964)
 
-  [ Javier Collado ]
-  * Broken job dependencies fixed (LP: #888447)
+   [ Javier Collado ]
+   * Broken job dependencies fixed (LP: #888447)
 
- -- Javier Collado <javier.collado@canonical.com>  Thu, 10 Nov 2011 10:05:04 +0100
+ -- Daniel Manrique <daniel.manrique@canonical.com>  Fri, 04 Nov 2011 16:32:08 -0400
 
 checkbox (0.12.8) oneiric; urgency=low
 
