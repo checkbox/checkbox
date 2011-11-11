@@ -68,9 +68,11 @@ def GetDiskInfo():
         if not device_props.Get('org.freedesktop.UDisks.Device',"DeviceIsDrive"):
             if device_props.Get('org.freedesktop.UDisks.Device', "DriveConnectionInterface") == 'usb':
                 devFile = str(device_props.Get('org.freedesktop.UDisks.Device',"DeviceFile"))
-                print str(device_props.Get('org.freedesktop.UDisks.Device',"DeviceMountPaths"))
-                devPath = str(device_props.Get('org.freedesktop.UDisks.Device',"DeviceMountPaths")[0])
-                disks[devFile] = devPath
+
+                if len(device_props.Get('org.freedesktop.UDisks.Device',"DeviceMountPaths")) > 0:
+                    print str(device_props.Get('org.freedesktop.UDisks.Device',"DeviceMountPaths"))
+                    devPath = str(device_props.Get('org.freedesktop.UDisks.Device',"DeviceMountPaths")[0])
+                    disks[devFile] = devPath
         
     return disks
 

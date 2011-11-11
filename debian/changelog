@@ -38,6 +38,8 @@ checkbox (0.13) precise; urgency=low
      no Bluetooth device (LP: #862322)
    * Rename attachment jobs to not have a forward slash in their name
      (LP: #887964)
+   * Guard against trying to write files to logical partitions on USB sticks
+     (which will obviously fail) in usb_test (LP: #887049)
 
    [ Javier Collado ]
    * Broken job dependencies fixed (LP: #888447)
