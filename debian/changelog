@@ -10,6 +10,7 @@ checkbox (0.13) precise; urgency=low
   * Move progress indicator to main checkbox dialog instead of a 
     transient window (LP: #868995)
   * Ignore malformed dpkg entries in package_resource (LP: #794747)
+  * Reset window title after finishing a manual test (LP: #874690)
 
   [Jeff Lane]
   * Went through all the job files and:
@@ -41,7 +42,7 @@ checkbox (0.13) precise; urgency=low
    [ Javier Collado ]
    * Broken job dependencies fixed (LP: #888447)
 
- -- Daniel Manrique <daniel.manrique@canonical.com>  Fri, 04 Nov 2011 16:32:08 -0400
+ -- Daniel Manrique <daniel.manrique@canonical.com>  Mon, 07 Nov 2011 17:15:02 -0500
 
 checkbox (0.12.8) oneiric; urgency=low
 
