@@ -122,10 +122,23 @@ class Config(object):
                 raise Exception, "Invalid config string: %s" % config
 
             (name, option, value) = match.groups()
-            if not self._parser.has_section(name):
-                self._parser.add_section(name)
 
-            self._parser.set(name, option, value)
+            # Match section names
+            name_regex = re.compile(name)
+            sections = [section for section in self._parser.sections()
+                        if name_regex.match(section)]
+
+            if not sections:
+                self._parser.add_section(name)
+                sections.append(name)
+
+            for section in sections:
+                logging.debug('Setting configuration parameter: '
+                              '%(section)s/%(option)s = %(value)s'
+                              % {'section': section,
+                                 'option': option,
+                                 'value': value})
+                self._parser.set(section, option, value)
 
     def read_file(self, file, filename="<stream>"):
         logging.info("Reading configurations from: %s", filename)
