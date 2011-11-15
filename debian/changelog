@@ -42,6 +42,8 @@ checkbox (0.13) precise; urgency=low
      (which will obviously fail) in usb_test (LP: #887049)
    * Make the OpenGL test ignore the return value of glxgears and improve
      the test description (LP: #890725)
+   * Allow input/mouse test to run if a TOUCH device is present
+     (LP: #886129)
 
    [ Javier Collado ]
    * Broken job dependencies fixed (LP: #888447)
