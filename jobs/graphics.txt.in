@@ -141,7 +141,7 @@ _description:
  Check that the hardware is able to run compiz.
 
 plugin: manual
-name: graphics/opengl
+name: graphics/glxgears
 requires: package.name == 'mesa-utils'
 command: glxgears; true
 _description:
