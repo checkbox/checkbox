@@ -40,6 +40,8 @@ checkbox (0.13) precise; urgency=low
      (LP: #887964)
    * Guard against trying to write files to logical partitions on USB sticks
      (which will obviously fail) in usb_test (LP: #887049)
+   * Allow input/mouse test to run if a TOUCH device is present
+     (LP: #886129)
 
    [ Javier Collado ]
    * Broken job dependencies fixed (LP: #888447)
