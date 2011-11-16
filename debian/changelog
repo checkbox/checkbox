@@ -23,32 +23,34 @@ checkbox (0.13) precise; urgency=low
     * Added jobs to local.txt to ensure all job files are now parsed
       (this allows easier addition of existing tests to whitelists)
     * Changed remaining manual job descriptions to match the new format
+  * Updated CD and DVD write tests to be more clear about when to skip
+    them (LP: #772794)
 
-   [Ara Pulido]
-   * Rewrote all job descriptions to match OEM QA syntax
+  [Ara Pulido]
+  * Rewrote all job descriptions to match OEM QA syntax
 
-   [Brendan Donegan]  
-   * Fix the code that assigns keys in checkbox-cli so that it never assigns
-     keys which have other uses. (LP: #877467)
-   * Show details of unmet job requirements (LP: #855852)
-   * Ensure that connect_wireless chooses a wireless connection from the list
-     of available connections (LP: #877752)
-   * Have the bluetooth/detect tests require a device with the category
-     BLUETOOTH to run, thus preventing the test from failing on systems with
-     no Bluetooth device (LP: #862322)
-   * Rename attachment jobs to not have a forward slash in their name
-     (LP: #887964)
-   * Guard against trying to write files to logical partitions on USB sticks
-     (which will obviously fail) in usb_test (LP: #887049)
-   * Make the OpenGL test ignore the return value of glxgears and improve
-     the test description (LP: #890725)
-   * Allow input/mouse test to run if a TOUCH device is present
-     (LP: #886129)
+  [Brendan Donegan]  
+  * Fix the code that assigns keys in checkbox-cli so that it never assigns
+    keys which have other uses. (LP: #877467)
+  * Show details of unmet job requirements (LP: #855852)
+  * Ensure that connect_wireless chooses a wireless connection from the list
+    of available connections (LP: #877752)
+  * Have the bluetooth/detect tests require a device with the category
+    BLUETOOTH to run, thus preventing the test from failing on systems with
+    no Bluetooth device (LP: #862322)
+  * Rename attachment jobs to not have a forward slash in their name
+    (LP: #887964)
+  * Guard against trying to write files to logical partitions on USB sticks
+    (which will obviously fail) in usb_test (LP: #887049)
+  * Make the OpenGL test ignore the return value of glxgears and improve
+    the test description (LP: #890725)
+  * Allow input/mouse test to run if a TOUCH device is present
+    (LP: #886129)
 
-   [ Javier Collado ]
-   * Broken job dependencies fixed (LP: #888447)
-   * Regex support when specifying blacklists and whitelists on the
-     commandline (LP: #588647)
+  [ Javier Collado ]
+  * Broken job dependencies fixed (LP: #888447)
+  * Regex support when specifying blacklists and whitelists on the
+    commandline (LP: #588647)
 
  -- Daniel Manrique <daniel.manrique@canonical.com>  Mon, 14 Nov 2011 15:50:37 -0500
 
