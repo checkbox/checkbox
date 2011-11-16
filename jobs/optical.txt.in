@@ -35,7 +35,7 @@ depends: optical/detect
 requires: device.category == 'CDROM'
 _description:
  PURPOSE:
-     This test will check your system's CDROM writing capabilities. If your drive does not support writing to CD media, please skip this test.
+     This test will check your system's CDROM writing capabilities. If your drive does not support writing CDs or you do not have any blank CD media, please skip this test.
  STEPS:
      1. Enter a blank CDROM into your drive
      2. Write something in the CDROM
@@ -68,7 +68,7 @@ depends: optical/detect
 requires: device.category == 'CDROM'
 _description:
  PURPOSE:
-     This test will check your system's DVD writing capabilities. If your drive does not support writing to DVD media, please skip this test.
+     This test will check your system's DVD writing capabilities. If your drive does not support writing DVDs or you do not have any blank DVD media, please skip this test.
  STEPS:
      1. Enter a blank DVD into your drive
      2. Write something in the DVD
