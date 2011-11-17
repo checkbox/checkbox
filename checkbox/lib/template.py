@@ -95,7 +95,7 @@ class Template(object):
                 if line.startswith("#"):
                     continue
 
-                match = re.search(r"^([-_.A-Za-z0-9]*):\s?(.*)", line)
+                match = re.search(r"^([-_.A-Za-z0-9@]*):\s?(.*)", line)
                 if match:
                     _save(field, value, extended)
                     field = match.groups()[0].lower()

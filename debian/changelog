@@ -11,6 +11,7 @@ checkbox (0.13) precise; urgency=low
     transient window (LP: #868995)
   * Ignore malformed dpkg entries in package_resource (LP: #794747)
   * Reset window title after finishing a manual test (LP: #874690)
+  * Handle "@" in locale names (as in ca@valencia).
 
   [Jeff Lane]
   * Went through all the job files and:
@@ -52,7 +53,7 @@ checkbox (0.13) precise; urgency=low
   * Regex support when specifying blacklists and whitelists on the
     commandline (LP: #588647)
 
- -- Daniel Manrique <daniel.manrique@canonical.com>  Mon, 14 Nov 2011 15:50:37 -0500
+ -- Daniel Manrique <daniel.manrique@canonical.com>  Thu, 17 Nov 2011 16:20:21 -0500
 
 checkbox (0.12.8) oneiric; urgency=low
 
