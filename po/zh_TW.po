@@ -14,22 +14,14 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-09-08 04:32+0000\n"
-"X-Generator: Launchpad (build 13891)\n"
-
-#: ../gtk/checkbox-gtk.ui.h:2
-msgid "Ne_xt"
-msgstr "下一步(_X)"
+"X-Launchpad-Export-Date: 2011-11-22 04:41+0000\n"
+"X-Generator: Launchpad (build 14299)\n"
 
 #. Title of the user interface
 #: ../gtk/checkbox-gtk.ui.h:3 ../gtk/checkbox-gtk.desktop.in.h:1
 #: ../checkbox_gtk/gtk_interface.py:95 ../plugins/user_interface.py:40
 msgid "System Testing"
 msgstr "系統測試"
-
-#: ../gtk/checkbox-gtk.ui.h:5
-msgid "_No"
-msgstr "否(_N)"
 
 #: ../gtk/checkbox-gtk.ui.h:6
 msgid "_Previous"
@@ -39,23 +31,9 @@ msgstr "上一步(_P)"
 msgid "_Skip this test"
 msgstr "略過此測試(_S)"
 
-#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:533
-msgid "_Test"
-msgstr "測試(_T)"
-
-#: ../gtk/checkbox-gtk.ui.h:10
-msgid "_Yes"
-msgstr "是(_Y)"
-
 #: ../gtk/checkbox-gtk.desktop.in.h:2
 msgid "Test and report system information"
 msgstr "測試和報告系系資訊"
-
-#. description
-#: ../jobs/audio.txt.in:7 ../jobs/graphics.txt.in:113 ../jobs/memory.txt.in:4
-#: ../jobs/networking.txt.in:5 ../jobs/optical.txt.in:8 ../jobs/usb.txt.in:12
-msgid "$output"
-msgstr "$output"
 
 #. description
 #: ../jobs/audio.txt.in:7 ../jobs/graphics.txt.in:113 ../jobs/memory.txt.in:4
@@ -69,21 +47,6 @@ msgid "Do you see color bars and static?"
 msgstr "您是否有看見彩色的長條與雜訊？"
 
 #. description
-#: ../jobs/input.txt.in:4
-msgid "Moving the mouse should move the cursor on the screen."
-msgstr "移動滑鼠應該會移動螢幕上的鼠標。"
-
-#. description
-#: ../jobs/input.txt.in:4
-msgid "Is your mouse working properly?"
-msgstr "您的滑鼠運作正常嗎？"
-
-#. description
-#: ../jobs/input.txt.in:13
-msgid "Is your keyboard working properly?"
-msgstr "您的鍵盤正常運作嗎?"
-
-#. description
 #: ../jobs/networking.txt.in:5
 msgid "Detecting your network controller(s):"
 msgstr "偵測您的網路控制卡中:"
@@ -92,10 +55,6 @@ msgstr "偵測您的網路控制卡中:"
 #: ../jobs/networking.txt.in:16
 msgid "Testing your connection to the Internet:"
 msgstr "測試您的網際網路連線中:"
-
-#: ../checkbox/application.py:66
-msgid "Usage: checkbox [OPTIONS]"
-msgstr "用法： checkbox [選項]"
 
 #: ../checkbox/application.py:70
 msgid "Print version information and exit."
@@ -113,21 +72,6 @@ msgstr "設定會無視參數。"
 msgid "Missing configuration file as argument.\n"
 msgstr "參數上沒有配置檔案。\n"
 
-#: ../checkbox_cli/cli_interface.py:31
-#: ../checkbox_urwid/urwid_interface.py:684
-msgid "yes"
-msgstr "是"
-
-#: ../checkbox_cli/cli_interface.py:32
-#: ../checkbox_urwid/urwid_interface.py:685
-msgid "no"
-msgstr "否"
-
-#: ../checkbox_cli/cli_interface.py:33
-#: ../checkbox_urwid/urwid_interface.py:686
-msgid "skip"
-msgstr "略過"
-
 #: ../checkbox_cli/cli_interface.py:126
 msgid "Press any key to continue..."
 msgstr "按任意鍵繼續…"
@@ -137,31 +81,19 @@ msgstr "按任意鍵繼續…"
 msgid "Please choose (%s): "
 msgstr "請選擇 (%s)： "
 
-#: ../checkbox_cli/cli_interface.py:315
-msgid "test"
-msgstr "測試"
-
-#: ../checkbox_cli/cli_interface.py:339
-msgid "test again"
-msgstr "再次測試"
-
 #: ../checkbox_cli/cli_interface.py:345
 msgid "Please type here and press Ctrl-D when finished:\n"
 msgstr "請在此輸入，並在完成後按 Ctrl-D：\n"
 
-#: ../checkbox_gtk/gtk_interface.py:498
+#: ../checkbox_gtk/gtk_interface.py:502
 msgid "_Test Again"
 msgstr "再測試(_T)"
-
-#: ../plugins/final_prompt.py:34
-msgid "_Finish"
-msgstr "完成(_F)"
 
 #: ../plugins/gather_prompt.py:35
 msgid "Gathering information from your system..."
 msgstr "收集您系統的資訊中..."
 
-#: ../plugins/launchpad_exchange.py:147
+#: ../plugins/launchpad_exchange.py:151
 #, python-format
 msgid ""
 "Failed to contact server. Please try\n"
@@ -177,18 +109,6 @@ msgstr ""
 "至系統資料庫:\n"
 "https://launchpad.net/+hwdb/+submit"
 
-#: ../plugins/launchpad_exchange.py:156
-msgid ""
-"Failed to upload to server,\n"
-"please try again later."
-msgstr ""
-"上傳到伺服器失敗，\n"
-"請稍候重新嘗試。"
-
-#: ../plugins/launchpad_exchange.py:168
-msgid "Information not posted to Launchpad."
-msgstr "資訊不會被投寄至 Launchpad。"
-
 #: ../plugins/launchpad_prompt.py:92
 msgid "Email address must be in a proper format."
 msgstr "電郵地址格式必須要正確。"
@@ -197,45 +117,9 @@ msgstr "電郵地址格式必須要正確。"
 msgid "Exchanging information with the server..."
 msgstr "正與伺服器交換資訊..."
 
-#: ../plugins/report_prompt.py:34
+#: ../plugins/report_prompt.py:39
 msgid "Building report..."
 msgstr "正建立報告..."
-
-#~ msgid "Successfully sent information!"
-#~ msgstr "成功寄出資訊"
-
-#~ msgid "_Desktop"
-#~ msgstr "桌面(_D)"
-
-#~ msgid "_Laptop"
-#~ msgstr "筆記本電腦(_L)"
-
-#~ msgid "_Server"
-#~ msgstr "伺服器(_S)"
-
-#~ msgid "$(network_test)"
-#~ msgstr "$(network_test)"
-
-#~ msgid "Authentication"
-#~ msgstr "認證"
-
-#~ msgid "Done"
-#~ msgstr "完成"
-
-#~ msgid "Exchange"
-#~ msgstr "交換"
-
-#~ msgid "Category"
-#~ msgstr "類別"
-
-#~ msgid "Welcome to System Testing!"
-#~ msgstr "歡迎來到系統測試！"
-
-#~ msgid "Please select the category of your system."
-#~ msgstr "請選擇您的系統類型"
-
-#~ msgid "Do you hear a sound?"
-#~ msgstr "有聽到聲音嗎？"
 
 #, python-format
 #~ msgid "Running test %s..."
@@ -249,23 +133,45 @@ msgstr "正建立報告..."
 msgid "Further information:"
 msgstr "深入資訊："
 
+#: ../gtk/checkbox-gtk.ui.h:2
+msgid "Ne_xt"
+msgstr "下一步(_X)"
+
 #: ../gtk/checkbox-gtk.ui.h:4
 msgid "_Deselect All"
 msgstr "全部不選(_D)"
+
+#: ../gtk/checkbox-gtk.ui.h:5
+msgid "_No"
+msgstr "否(_N)"
 
 #: ../gtk/checkbox-gtk.ui.h:7
 msgid "_Select All"
 msgstr "全選(_S)"
 
+#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:537
+msgid "_Test"
+msgstr "測試(_T)"
+
+#: ../gtk/checkbox-gtk.ui.h:10
+msgid "_Yes"
+msgstr "是(_Y)"
+
 #. description
 #: ../jobs/apport.txt.in:5
 msgid "Test that the /var/crash directory doesn't contain anything."
-msgstr ""
+msgstr "測試 /var/crash 目錄是否不含有任何內容。"
 
 #. description
 #: ../jobs/audio.txt.in:7
 msgid "Detecting your sound device(s):"
 msgstr "正在偵測您的音效裝置："
+
+#. description
+#: ../jobs/audio.txt.in:7 ../jobs/graphics.txt.in:113 ../jobs/memory.txt.in:4
+#: ../jobs/networking.txt.in:5 ../jobs/optical.txt.in:8 ../jobs/usb.txt.in:12
+msgid "$output"
+msgstr "$output"
 
 #. description
 #: ../jobs/audio.txt.in:21
@@ -818,7 +724,7 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:46
 msgid "Did the display rotation change as expected?"
-msgstr ""
+msgstr "螢幕一如預期般旋轉嗎 ?"
 
 #. description
 #: ../jobs/graphics.txt.in:62
@@ -904,24 +810,39 @@ msgid "Did the 3d animation appear?"
 msgstr "3D 動畫有顯現嗎？"
 
 #. description
-#: ../jobs/info.txt.in:60 ../jobs/screenshot.txt.in:7
+#: ../jobs/info.txt.in:69 ../jobs/screenshot.txt.in:7
 msgid "Captures a screenshot."
 msgstr ""
 
 #. description
-#: ../jobs/info.txt.in:71
+#: ../jobs/info.txt.in:80
 msgid "Gather log from the firmware test suite run"
 msgstr ""
 
 #. description
-#: ../jobs/info.txt.in:82
+#: ../jobs/info.txt.in:91
 msgid "Bootchart information."
 msgstr ""
+
+#. description
+#: ../jobs/input.txt.in:4
+msgid "Moving the mouse should move the cursor on the screen."
+msgstr "移動滑鼠應該會移動螢幕上的鼠標。"
+
+#. description
+#: ../jobs/input.txt.in:4
+msgid "Is your mouse working properly?"
+msgstr "您的滑鼠運作正常嗎？"
 
 #. description
 #: ../jobs/input.txt.in:13
 msgid "Select Test to open a text area where to type keys on your keyboard."
 msgstr "選擇「測試」已開啟文字區塊並使用您的鍵盤來輸入文字。"
+
+#. description
+#: ../jobs/input.txt.in:13
+msgid "Is your keyboard working properly?"
+msgstr "您的鍵盤正常運作嗎?"
 
 #. description
 #: ../jobs/install.txt.in:6
@@ -2422,6 +2343,10 @@ msgstr "MSN"
 msgid "Were you able to connect correctly and send/receive messages?"
 msgstr "您可以正確連線並且傳送或接收訊息嗎？"
 
+#: ../checkbox/application.py:66
+msgid "Usage: checkbox [OPTIONS]"
+msgstr "用法： checkbox [選項]"
+
 #: ../checkbox/application.py:74
 msgid "The file to write the log to."
 msgstr "寫入日誌的檔案。"
@@ -2527,6 +2452,29 @@ msgstr "不明"
 msgid "Unknown signal"
 msgstr "不明訊號"
 
+#: ../checkbox_cli/cli_interface.py:31
+#: ../checkbox_urwid/urwid_interface.py:684
+msgid "yes"
+msgstr "是"
+
+#: ../checkbox_cli/cli_interface.py:32
+#: ../checkbox_urwid/urwid_interface.py:685
+msgid "no"
+msgstr "否"
+
+#: ../checkbox_cli/cli_interface.py:33
+#: ../checkbox_urwid/urwid_interface.py:686
+msgid "skip"
+msgstr "略過"
+
+#: ../checkbox_cli/cli_interface.py:315
+msgid "test"
+msgstr "測試"
+
+#: ../checkbox_cli/cli_interface.py:339
+msgid "test again"
+msgstr "再次測試"
+
 #: ../checkbox_urwid/urwid_interface.py:60
 msgid "Checkbox System Testing"
 msgstr "Checkbox 系統測試"
@@ -2568,11 +2516,11 @@ msgstr "再次測試"
 msgid "hardware database"
 msgstr ""
 
-#: ../checkbox_gtk/gtk_interface.py:544
+#: ../checkbox_gtk/gtk_interface.py:548
 msgid "Info"
 msgstr "資訊"
 
-#: ../checkbox_gtk/gtk_interface.py:563
+#: ../checkbox_gtk/gtk_interface.py:567
 msgid "Error"
 msgstr "錯誤"
 
@@ -2581,7 +2529,7 @@ msgstr "錯誤"
 msgid "Unable to start web browser to open %s."
 msgstr "無法啟動網頁瀏覽器以開啟 %s。"
 
-#: ../plugins/apport_prompt.py:81
+#: ../plugins/apport_prompt.py:83
 msgid ""
 "Collecting information about this test.\n"
 "This might take a few minutes."
@@ -2589,7 +2537,7 @@ msgstr ""
 "正在收集關於此測試的資訊。\n"
 "這可能會花上一些時間。"
 
-#: ../plugins/apport_prompt.py:116
+#: ../plugins/apport_prompt.py:118
 msgid ""
 "Collected information is being sent for bug tracking.\n"
 "This might take a few minutes."
@@ -2597,17 +2545,17 @@ msgstr ""
 "已收集的資料為了錯誤追蹤之用而正在送出。\n"
 "這可能會花上一些時間。"
 
-#: ../plugins/apport_prompt.py:225
+#: ../plugins/apport_prompt.py:227
 #, python-format
 msgid "Test %s from suite %s failed."
 msgstr ""
 
-#: ../plugins/apport_prompt.py:228
+#: ../plugins/apport_prompt.py:230
 #, python-format
 msgid "Test %s failed."
 msgstr ""
 
-#: ../plugins/apport_prompt.py:246
+#: ../plugins/apport_prompt.py:248
 #, python-format
 msgid "Is a package upgrade in process? Error: %s"
 msgstr "是否有套件處於升級程序？錯誤：%s"
@@ -2616,7 +2564,11 @@ msgstr "是否有套件處於升級程序？錯誤：%s"
 msgid "Successfully finished testing!"
 msgstr "成功完成測試！"
 
-#: ../plugins/intro_prompt.py:43
+#: ../plugins/final_prompt.py:34
+msgid "_Finish"
+msgstr "完成(_F)"
+
+#: ../plugins/intro_prompt.py:29
 msgid ""
 "Welcome to System Testing!\n"
 "\n"
@@ -2632,6 +2584,18 @@ msgstr ""
 #, python-format
 msgid "Failed to process form: %s"
 msgstr "處理表單失敗：%s"
+
+#: ../plugins/launchpad_exchange.py:160
+msgid ""
+"Failed to upload to server,\n"
+"please try again later."
+msgstr ""
+"上傳到伺服器失敗，\n"
+"請稍候重新嘗試。"
+
+#: ../plugins/launchpad_exchange.py:172
+msgid "Information not posted to Launchpad."
+msgstr "資訊不會被投寄至 Launchpad。"
 
 #: ../plugins/launchpad_prompt.py:71
 #, python-format
@@ -2677,7 +2641,7 @@ msgid "Running %s..."
 msgstr "正在執行 %s..."
 
 #. Get results
-#: ../plugins/suites_prompt.py:105
+#: ../plugins/suites_prompt.py:108
 msgid "Select the suites to test"
 msgstr "選取要進行之系列測試"
 
@@ -2700,6 +2664,42 @@ msgstr "已建立的連線丟失了一個資料包裹"
 #: ../scripts/internet_test:145
 msgid "Internet connection fully established"
 msgstr "網際網路連線已完全建立"
+
+#~ msgid "Successfully sent information!"
+#~ msgstr "成功寄出資訊"
+
+#~ msgid "_Desktop"
+#~ msgstr "桌面(_D)"
+
+#~ msgid "_Laptop"
+#~ msgstr "筆記本電腦(_L)"
+
+#~ msgid "_Server"
+#~ msgstr "伺服器(_S)"
+
+#~ msgid "$(network_test)"
+#~ msgstr "$(network_test)"
+
+#~ msgid "Exchange"
+#~ msgstr "交換"
+
+#~ msgid "Category"
+#~ msgstr "類別"
+
+#~ msgid "Welcome to System Testing!"
+#~ msgstr "歡迎來到系統測試！"
+
+#~ msgid "Please select the category of your system."
+#~ msgstr "請選擇您的系統類型"
+
+#~ msgid "Authentication"
+#~ msgstr "認證"
+
+#~ msgid "Done"
+#~ msgstr "完成"
+
+#~ msgid "Do you hear a sound?"
+#~ msgstr "有聽到聲音嗎？"
 
 #~ msgid "Network tests"
 #~ msgstr "網路測試"

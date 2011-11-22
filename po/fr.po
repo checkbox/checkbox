@@ -13,56 +13,22 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-08-30 04:36+0000\n"
-"X-Generator: Launchpad (build 13794)\n"
-
-#: ../gtk/checkbox-gtk.ui.h:2
-msgid "Ne_xt"
-msgstr "Sui_vant"
+"X-Launchpad-Export-Date: 2011-11-22 04:39+0000\n"
+"X-Generator: Launchpad (build 14299)\n"
 
 #. Title of the user interface
 #: ../gtk/checkbox-gtk.ui.h:3 ../gtk/checkbox-gtk.desktop.in.h:1
-#: ../checkbox_gtk/gtk_interface.py:93 ../plugins/user_interface.py:40
+#: ../checkbox_gtk/gtk_interface.py:95 ../plugins/user_interface.py:40
 msgid "System Testing"
 msgstr "Test du Système"
-
-#: ../gtk/checkbox-gtk.ui.h:5
-msgid "_No"
-msgstr "_Non"
-
-#: ../gtk/checkbox-gtk.ui.h:6
-msgid "_Previous"
-msgstr "_Précédent"
 
 #: ../gtk/checkbox-gtk.ui.h:8
 msgid "_Skip this test"
 msgstr "_Passer ce test"
 
-#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:531
-msgid "_Test"
-msgstr "_Tester"
-
-#: ../gtk/checkbox-gtk.ui.h:10
-msgid "_Yes"
-msgstr "_Oui"
-
 #: ../gtk/checkbox-gtk.desktop.in.h:2
 msgid "Test and report system information"
 msgstr "Tester et rapporter les informations système"
-
-#. description
-#: ../jobs/audio.txt.in:7 ../jobs/disk.txt.in:4 ../jobs/graphics.txt.in:113
-#: ../jobs/memory.txt.in:4 ../jobs/networking.txt.in:16
-#: ../jobs/optical.txt.in:8 ../jobs/usb.txt.in:17
-msgid "$output"
-msgstr "$output"
-
-#. description
-#: ../jobs/audio.txt.in:7 ../jobs/bluetooth.txt.in:5 ../jobs/disk.txt.in:4
-#: ../jobs/graphics.txt.in:113 ../jobs/memory.txt.in:4
-#: ../jobs/networking.txt.in:16 ../jobs/optical.txt.in:8 ../jobs/usb.txt.in:5
-msgid "Is this correct?"
-msgstr "Est-ce correct ?"
 
 #. description
 #: ../jobs/graphics.txt.in:104
@@ -75,98 +41,19 @@ msgid "Moving the mouse should move the cursor on the screen."
 msgstr "Déplacer la souris devrait bouger le curseur sur l'écran."
 
 #. description
-#: ../jobs/input.txt.in:4
-msgid "Is your mouse working properly?"
-msgstr "Votre souris fonctionne-t-elle correctement ?"
-
-#. description
-#: ../jobs/input.txt.in:13
-msgid "Is your keyboard working properly?"
-msgstr "Votre clavier fonctionne-t-il correctement ?"
-
-#. description
-#: ../jobs/networking.txt.in:5
-msgid "Detecting your network controller(s):"
-msgstr "Détection de votre/vos carte(s) réseau :"
-
-#. description
 #: ../jobs/networking.txt.in:16
 msgid "Testing your connection to the Internet:"
 msgstr "Test de la connexion à l'Internet :"
-
-#: ../checkbox/application.py:66
-msgid "Usage: checkbox [OPTIONS]"
-msgstr "Utilisation : checkbox [OPTIONS]"
 
 #: ../checkbox/application.py:70
 msgid "Print version information and exit."
 msgstr "Affiche les informations de version et quitte."
 
-#: ../checkbox/application.py:74
-msgid "The file to write the log to."
-msgstr "Le fichier où écrire le journal de ce test."
-
-#: ../checkbox/application.py:77
-msgid "One of debug, info, warning, error or critical."
-msgstr "La valeur peut être : debug, info, warning, error ou critical."
-
-#: ../checkbox/application.py:82
-msgid "Configuration override parameters."
-msgstr "Paramètres prenant le pas sur la configuration."
-
-#: ../checkbox/application.py:115
-msgid "Missing configuration file as argument.\n"
-msgstr "Fichier de configuration manquant en argument.\n"
-
-#: ../checkbox_cli/cli_interface.py:31
-#: ../checkbox_urwid/urwid_interface.py:684
-msgid "yes"
-msgstr "oui"
-
-#: ../checkbox_cli/cli_interface.py:32
-#: ../checkbox_urwid/urwid_interface.py:685
-msgid "no"
-msgstr "non"
-
-#: ../checkbox_cli/cli_interface.py:33
-#: ../checkbox_urwid/urwid_interface.py:686
-msgid "skip"
-msgstr "passer"
-
-#: ../checkbox_cli/cli_interface.py:126
-msgid "Press any key to continue..."
-msgstr "Appuyez sur une touche pour continuer..."
-
-#: ../checkbox_cli/cli_interface.py:135
-#, python-format
-msgid "Please choose (%s): "
-msgstr "Veuillez choisir (%s) : "
-
-#: ../checkbox_cli/cli_interface.py:315
-msgid "test"
-msgstr "test"
-
 #: ../checkbox_cli/cli_interface.py:339
 msgid "test again"
 msgstr "tester à nouveau"
 
-#: ../checkbox_cli/cli_interface.py:345
-msgid "Please type here and press Ctrl-D when finished:\n"
-msgstr "Veuillez écrire ici et appuyer sur Ctrl-D lorsque vous avez fini :\n"
-
-#: ../checkbox_gtk/gtk_interface.py:496
-msgid "_Test Again"
-msgstr "_Tester à nouveau"
-
-#: ../plugins/final_prompt.py:34
-msgid "_Finish"
-msgstr "_Terminer"
-
-#: ../plugins/gather_prompt.py:35
-msgid "Gathering information from your system..."
-msgstr "Rassemblement d'informations sur votre système..."
-
-#: ../plugins/launchpad_exchange.py:141
+#: ../plugins/launchpad_exchange.py:151
 #, python-format
 msgid ""
 "Failed to contact server. Please try\n"
@@ -183,7 +70,7 @@ msgstr ""
 "directement à la base de données du système :\n"
 "https://launchpad.net/+hwdb/+submit"
 
-#: ../plugins/launchpad_exchange.py:150
+#: ../plugins/launchpad_exchange.py:160
 msgid ""
 "Failed to upload to server,\n"
 "please try again later."
@@ -191,7 +78,7 @@ msgstr ""
 "Échec de l'envoi sur le serveur,\n"
 "veuillez essayer à nouveau plus tard."
 
-#: ../plugins/launchpad_exchange.py:162
+#: ../plugins/launchpad_exchange.py:172
 msgid "Information not posted to Launchpad."
 msgstr "Les informations n'ont pas été envoyées sur Launchpad."
 
@@ -199,53 +86,8 @@ msgstr "Les informations n'ont pas été envoyées sur Launchpad."
 msgid "Email address must be in a proper format."
 msgstr "La forme de l'adresse de courriel doit être correcte."
 
-#: ../plugins/launchpad_prompt.py:98
-msgid "Exchanging information with the server..."
-msgstr "Échange d'informations avec le serveur..."
-
-#: ../plugins/report_prompt.py:34
-msgid "Building report..."
-msgstr "Construction du rapport..."
-
-#~ msgid "Successfully sent information!"
-#~ msgstr "Informations envoyées avec succès !"
-
-#~ msgid "_Desktop"
-#~ msgstr "_Bureau"
-
-#~ msgid "_Laptop"
-#~ msgstr "_Portable"
-
-#~ msgid "_Server"
-#~ msgstr "_Serveur"
-
-#~ msgid "$(network_test)"
-#~ msgstr "$(network_test)"
-
-#~ msgid "Authentication"
-#~ msgstr "Authentification"
-
-#~ msgid "Done"
-#~ msgstr "Terminé"
-
-#~ msgid "Exchange"
-#~ msgstr "Intervertir"
-
-#~ msgid "Category"
-#~ msgstr "Catégorie"
-
 #~ msgid "Welcome to System Testing!"
 #~ msgstr "Bienvenue dans le Test du Système !"
-
-#~ msgid "Please select the category of your system."
-#~ msgstr "Veuillez sélectionner la catégorie de votre système."
-
-#~ msgid "Running shell tests..."
-#~ msgstr "Exécution des tests shell..."
-
-#, python-format
-#~ msgid "Running test %s..."
-#~ msgstr "Exécution du test %s..."
 
 #~ msgid "Do you hear a sound?"
 #~ msgstr "Avez-vous entendu un son?"
@@ -255,23 +97,55 @@ msgstr "Construction du rapport..."
 msgid "Further information:"
 msgstr "Pour plus d'informations :"
 
+#: ../gtk/checkbox-gtk.ui.h:2
+msgid "Ne_xt"
+msgstr "Sui_vant"
+
 #: ../gtk/checkbox-gtk.ui.h:4
 msgid "_Deselect All"
 msgstr "Tout _désélectionner"
+
+#: ../gtk/checkbox-gtk.ui.h:5
+msgid "_No"
+msgstr "_Non"
+
+#: ../gtk/checkbox-gtk.ui.h:6
+msgid "_Previous"
+msgstr "_Précédent"
 
 #: ../gtk/checkbox-gtk.ui.h:7
 msgid "_Select All"
 msgstr "Tout _sélectionner"
 
+#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:537
+msgid "_Test"
+msgstr "_Tester"
+
+#: ../gtk/checkbox-gtk.ui.h:10
+msgid "_Yes"
+msgstr "_Oui"
+
 #. description
 #: ../jobs/apport.txt.in:5
 msgid "Test that the /var/crash directory doesn't contain anything."
-msgstr "Teste que le dossier /var/crash est vide."
+msgstr "Contrôlez que le dossier /var/crash est bien vide."
 
 #. description
 #: ../jobs/audio.txt.in:7
 msgid "Detecting your sound device(s):"
-msgstr "Détection de vos périphériques audio:"
+msgstr "Détection de vos périphériques audio :"
+
+#. description
+#: ../jobs/audio.txt.in:7 ../jobs/graphics.txt.in:113 ../jobs/memory.txt.in:4
+#: ../jobs/networking.txt.in:5 ../jobs/optical.txt.in:8 ../jobs/usb.txt.in:12
+msgid "$output"
+msgstr "$output"
+
+#. description
+#: ../jobs/audio.txt.in:7 ../jobs/graphics.txt.in:113 ../jobs/memory.txt.in:4
+#: ../jobs/networking.txt.in:5 ../jobs/optical.txt.in:8
+msgid "Is this correct?"
+msgstr "Est-ce correct ?"
 
 #. description
 #: ../jobs/audio.txt.in:21
@@ -292,7 +166,7 @@ msgstr "Veuillez connecter des écouteurs à votre périphérique audio."
 msgid ""
 "Select Test to play a sound on the automatically detected playback device."
 msgstr ""
-"Cliquez sur « tester » afin de jouer un son sur le périphérique de lecture "
+"Cliquez sur « Tester » afin de jouer un son sur le périphérique de lecture "
 "détecté automatiquement."
 
 #. description
@@ -301,7 +175,7 @@ msgid ""
 "Did you hear a sound through the headphones and did the sound play without "
 "any distortion, clicks or other strange noises from your headphones?"
 msgstr ""
-"Avez vous entendu un son dans vos écouteurs et est-ce que ce son a été lu "
+"Avez-vous entendu un son dans vos écouteurs et est-ce que ce son a été lu "
 "sans distorsion, cliquetis ou autres bruits étranges ?"
 
 #. description
@@ -312,7 +186,7 @@ msgid ""
 "will be played back to you."
 msgstr ""
 "Déconnectez tout microphone externe que vous auriez pu brancher. Cliquez sur "
-"« tester », puis parlez dans le microphone intégré. Après quelques secondes, "
+"« Tester », puis parlez dans le microphone intégré. Après quelques secondes, "
 "vous devriez vous entendre."
 
 #. description
@@ -322,7 +196,7 @@ msgid ""
 "the microphone.  After a few seconds, your speech will be played back to you."
 msgstr ""
 "Connectez un microphone dans la prise prévue à cet effet. Cliquez sur "
-"« tester », puis parlez dans le microphone intégré. Après quelques secondes, "
+"« Tester », puis parlez dans le microphone intégré. Après quelques secondes, "
 "vous devriez vous entendre."
 
 #. description
@@ -337,23 +211,27 @@ msgid ""
 msgstr ""
 "Connectez un périphérique audio USB, puis ouvrez l'application permettant de "
 "contrôler le volume sonore en faisant un clic gauche sur l’icône "
-"représentant un haut-parleur et sélectionnez « Préférences du son… ». "
-"Sélectionnez l'onglet « Entrée » puis votre périphérique USB. Enfin, cliquez "
-"sur « tester » et parlez dans le microphone. Après quelques secondes, vous "
-"devriez vous entendre."
+"représentant un haut-parleur et sélectionnez « Réglages du son… ». "
+"Sélectionnez l'onglet « Entrée » et choisissez votre périphérique USB. "
+"Sélectionnez l'onglet « Sortie » et choisissez votre périphérique USB. "
+"Enfin, cliquez sur « Tester » et parlez dans le microphone. Après quelques "
+"secondes, vous devriez vous entendre."
 
 #. description
-#: ../jobs/audio.txt.in:70 ../jobs/power-management.txt.in:251
+#: ../jobs/audio.txt.in:70
 msgid "Did you hear your speech played back?"
 msgstr "L'enregistrement de votre voix a-t-il bien été restitué ?"
 
 #. description
-#: ../jobs/audio.txt.in:81
+#: ../jobs/audio.txt.in:82
 msgid ""
 "Play back a sound on the default output and listen for it on the \\ default "
 "input.  This makes the most sense when the output and input \\ are directly "
 "connected, as with a patch cable."
 msgstr ""
+"Jouez un son sur la sortie par défaut et écouter sur \\ l'entrée par défaut. "
+"Ceci est particulièrement pertinent lorsque la sortie et l'entrée \\ sont "
+"directement connectés, comme avec un câble de raccord."
 
 #. description
 #: ../jobs/autotest.txt.in:3
@@ -366,12 +244,12 @@ msgid "The address of your Bluetooth device is: $output"
 msgstr "L'adresse de votre périphérique Bluetooth est : $output"
 
 #. description
-#: ../jobs/bluetooth.txt.in:15 ../jobs/graphics.txt.in:15
+#: ../jobs/bluetooth.txt.in:12 ../jobs/graphics.txt.in:15
 msgid "Automated test to store output in checkbox report"
-msgstr ""
+msgstr "Test automatisé pour stocker la sortie dans le rapport de Checkbox"
 
 #. description
-#: ../jobs/bluetooth.txt.in:21
+#: ../jobs/bluetooth.txt.in:18
 msgid ""
 "Bluetooth browse files procedure: 1.- Enable bluetooth on any mobile device "
 "(PDA, smartphone, etc.) 2.- Click on the bluetooth icon in the menu bar 3.- "
@@ -381,9 +259,23 @@ msgid ""
 "icon and select browse files 7.- Authorize the computer to browse the files "
 "in the device if needed 8.- You should be able to browse the files"
 msgstr ""
+"Procédure d'exploration de fichiers via Bluetooth :\r\n"
+"1. - Activez le Bluetooth sur tous les appareils mobiles (PDA, téléphone, "
+"etc.)\r\n"
+"2. - Cliquez sur l'icône Bluetooth dans le bandeau\r\n"
+"3. - Sélectionnez « Configurez un nouveau périphérique... »\r\n"
+"4. - Cherchez l'appareil dans la liste et sélectionnez-le\r\n"
+"5. - Sur l'appareil, saisissez le code PIN automatiquement choisi par "
+"l'assistant\r\n"
+"6. - L'appareil devrait s'associer avec l'ordinateur\r\n"
+"7. -Faîtes un clic droit sur l'icône Bluetooth et sélectionnez « Parcourir "
+"les fichiers » \r\n"
+"8. -Autorisez l'ordinateur à parcourir les fichiers de l'appareil mobile si "
+"nécessaire \r\n"
+"9. -Vous pouvez parcourir les fichiers"
 
 #. description
-#: ../jobs/bluetooth.txt.in:38
+#: ../jobs/bluetooth.txt.in:35
 msgid ""
 "Bluetooth file transfer procedure: 1.- Make sure that you're able to browse "
 "the files in your mobile device 2.- Copy a file from the computer to the "
@@ -391,9 +283,16 @@ msgid ""
 "from the mobile device to the computer 5.- Verify that the file was "
 "correctly copied"
 msgstr ""
+"Procédure de transfert de fichier via Bluetooth :\r\n"
+" 1.- Assurez-vous de pouvoir parcourir les fichiers de votre appareil "
+"mobile\r\n"
+" 2.- Copiez un fichier depuis votre ordinateur vers votre appareil mobile\r\n"
+" 3.- Vérifiez que le fichier a été correctement copié\r\n"
+" 4.- Copiez un fichier depuis votre appareil mobile vers votre ordinateur\r\n"
+" 5.- Vérifiez que le fichier a été correctement copié"
 
 #. description
-#: ../jobs/bluetooth.txt.in:53
+#: ../jobs/bluetooth.txt.in:50
 msgid ""
 "Bluetooth audio procedure: 1.- Enable the bluetooth headset 2.- Click on the "
 "bluetooth icon in the menu bar 3.- Select 'Setup new device' 4.- Look for "
@@ -402,53 +301,80 @@ msgid ""
 "computer 7.- Select Test to record for five seconds and reproduce in the "
 "bluetooth device"
 msgstr ""
+"Procédure pour périphérique audio Bluetooth : \r\n"
+"1.- Activez l'oreillette Bluetooth\r\n"
+"2.- Cliquez sur l'icône Bluetooth dans le bandeau\r\n"
+"3.- Sélectionnez « Configurer un nouveau périphérique... »\r\n"
+"4.- Cherchez l'appareil dans la liste et sélectionnez-le\r\n"
+"5.- Sur l'appareil, saisissez le code PIN choisi automatiquement par "
+"l'assistant\r\n"
+"6.- L'appareil devrait s'associer avec l'ordinateur\r\n"
+"7.- Cliquez sur « Tester » pour un enregistrer pendant cinq secondes et "
+"jouer l'enregistrement sur l'appareil Bluetooth"
 
 #. description
-#: ../jobs/bluetooth.txt.in:69
+#: ../jobs/bluetooth.txt.in:66
 msgid ""
 "Bluetooth keyboard procedure: 1.- Enable the bluetooth keyboard 2.- Click on "
 "the bluetooth icon in the menu bar 3.- Select 'Setup new device' 4.- Look "
 "for the device in the list and select it 5.- Select Test to enter text"
 msgstr ""
+"Procédure pour clavier Bluetooth :\r\n"
+"1.- Activez le clavier Bluetooth\r\n"
+"2.- Cliquez sur l'icône Bluetooth dans le bandeau\r\n"
+"3.- Sélectionnez « Configurer un nouveau périphérique... »\r\n"
+"4.- Recherchez le périphérique dans la liste et sélectionnez-le\r\n"
+"5.- Cliquez sur « Tester » pour saisir du texte"
 
 #. description
-#: ../jobs/bluetooth.txt.in:82
+#: ../jobs/bluetooth.txt.in:79
 msgid ""
 "Bluetooth mouse procedure: 1.- Enable the bluetooth mouse 2.- Click on the "
 "bluetooth icon in the menu bar 3.- Select 'Setup new device' 4.- Look for "
 "the device in the list and select it 5.- Move the mouse around the screen 6.-"
 " Perform some single/double/right click operations"
 msgstr ""
+"Procédure pour souris Bluetooth :\r\n"
+"1.- Mettez sous tension la souris Bluetooth\r\n"
+"2.- Cliquez sur l'icône Bluetooth dans le bandeau\r\n"
+"3.- Sélectionnez « Configurer un nouveau périphérique… »\r\n"
+"4.- Cherchez l'appareil dans la liste et sélectionnez-le\r\n"
+"5.- Déplacez la souris autour de l'écran\r\n"
+"6.- Effectuez quelques opérations de clic simple/multiple/droit"
 
 #. description
-#: ../jobs/bluetooth.txt.in:82 ../jobs/optical.txt.in:72 ../jobs/usb.txt.in:39
+#: ../jobs/bluetooth.txt.in:79 ../jobs/optical.txt.in:72 ../jobs/usb.txt.in:34
 msgid "Did all the steps work?"
 msgstr "Toutes les étapes ont-elles fonctionné ?"
 
 #. description
 #: ../jobs/camera.txt.in:7
 msgid "Automated test case that attempts to detect a camera"
-msgstr ""
+msgstr "Test automatique qui essaie de détecter un appareil photo"
 
 #. description
 #: ../jobs/camera.txt.in:16
 msgid "Select Test to display a video capture from the camera"
 msgstr ""
+"Cliquez sur « Tester » pour afficher une capture vidéo venant de l'appareil "
+"photo"
 
 #. description
 #: ../jobs/camera.txt.in:16
 msgid "Did you see the video capture?"
-msgstr "Avez-vous vu la capture vidéo ?"
+msgstr "Avez-vous vu la capture vidéo ?"
 
 #. description
 #: ../jobs/camera.txt.in:30
 msgid "Select Test to display a still image from the camera"
 msgstr ""
+"Cliquer sur « Tester » pour afficher une image fixe provenant de l'appareil "
+"photo"
 
 #. description
 #: ../jobs/camera.txt.in:30
 msgid "Did you see the image?"
-msgstr "Avez-vous vu l'image ?"
+msgstr "Avez-vous vu l'image ?"
 
 #. description
 #: ../jobs/camera.txt.in:43
@@ -456,26 +382,30 @@ msgid ""
 "Select Test to capture video to a file and open it in totem. Please make "
 "sure that both audio and video is captured."
 msgstr ""
+"Cliquez sur « Tester » pour enregistrer une vidéo dans un fichier et "
+"l'ouvrir avec Totem. Assurez-vous que l'audio et la vidéo sont enregistrés."
 
 #. description
 #: ../jobs/camera.txt.in:43
 msgid "Did you see/hear the capture?"
-msgstr "Avez-vous vu/entendu la capture ?"
+msgstr "Avez-vous vu/entendu la capture ?"
 
 #. description
 #: ../jobs/codecs.txt.in:7
 msgid "Select Test to play an Ogg Vorbis file (.ogg)"
-msgstr "Sélectionnez Test pour jouer un fichier Ogg Vorbis (.ogg)"
+msgstr ""
+"Cliquez sur « Tester » pour jouer un fichier au format Ogg Vorbis (.ogg)"
 
 #. description
 #: ../jobs/codecs.txt.in:20
 msgid "Select Test to play a Wave Audio format file (.wav)"
-msgstr "Sélectionnez Test pour jouer un fichier au format Wave Audio (.wav)"
+msgstr ""
+"Cliquez sur « Tester » pour jouer un fichier au format Wave Audio (.wav)"
 
 #. description
 #: ../jobs/codecs.txt.in:20
 msgid "Did the sample play correctly?"
-msgstr "L'échantillon a-t'il été joué correctement ?"
+msgstr "L'échantillon a-t-il été joué correctement ?"
 
 #. description
 #: ../jobs/codecs.txt.in:33
@@ -483,11 +413,13 @@ msgid ""
 "Select 'Test' to play some audio, and try pausing and resuming playback "
 "while the it is playing."
 msgstr ""
+"Cliquez sur « Tester » pour jouer un son et essayez de mettre la lecture en "
+"pause puis de la reprendre."
 
 #. description
 #: ../jobs/codecs.txt.in:33
 msgid "Did the audio play and pause as expected?"
-msgstr "Est-ce que le son a été lu et mis en pause comme prévu ?"
+msgstr "Le son a-t-il été lu et mis en pause comme prévu ?"
 
 #. description
 #: ../jobs/codecs.txt.in:46
@@ -495,18 +427,18 @@ msgid ""
 "Select 'Test' to play a video, and try pausing and resuming playback while "
 "the video is playing."
 msgstr ""
-"Sélectionnez «Test» pour lire une vidéo, et essayez de mettre en pause et "
-"reprendre lorsque la vidéo est en lecture."
+"Cliquez sur « Tester » pour lire une vidéo et essayez de mettre la lecture "
+"en pause puis de la reprendre."
 
 #. description
 #: ../jobs/codecs.txt.in:46
 msgid "(Please close Movie Player to proceed.)"
-msgstr "(Veuillez fermer le lecteur vidéo pour continuer)"
+msgstr "(Veuillez fermer le lecteur vidéo pour continuer.)"
 
 #. description
 #: ../jobs/codecs.txt.in:46
 msgid "Did the video play and pause as expected?"
-msgstr ""
+msgstr "La vidéo a-t-elle été lue et mise en pause comme prévu ?"
 
 #. description
 #: ../jobs/cpu.txt.in:8
@@ -514,81 +446,85 @@ msgid ""
 "Test the CPU scaling capabilities using Colin King's Firmware Test Suite "
 "tool."
 msgstr ""
+"Testez les capacités d'échelonnage de la fréquence du processeur en "
+"utilisant la batterie de tests du micrologiciel de Colin King."
 
 #. description
 #: ../jobs/cpu.txt.in:15
 msgid "Test for clock jitter."
-msgstr ""
+msgstr "Test du jitter de l'horloge."
 
 #. description
 #: ../jobs/cpu.txt.in:23
 msgid "Test offlining CPUs in a multicore system."
-msgstr ""
+msgstr "Test de mise hors-ligne de processeurs dans un système multicœurs."
 
 #. description
 #: ../jobs/cpu.txt.in:30
 msgid "Checks cpu topology for accuracy"
-msgstr "Vérifie la topologie cpu pour la précision"
+msgstr "Vérifie la topologie du processeur pour la précision"
 
 #. description
 #: ../jobs/cpu.txt.in:38
 msgid "Checks that CPU frequency governors are obeyed when set."
 msgstr ""
+"Vérifie que les commandes de fréquence du processeur sont respectées "
+"lorsqu'elles ont été réglées."
 
 #. description
 #: ../jobs/daemons.txt.in:5
 msgid "Test if the atd daemon is running when the package is installed."
-msgstr ""
+msgstr "Testez si le démon atd fonctionne quand le paquet est installé."
 
 #. description
 #: ../jobs/daemons.txt.in:11
 msgid "Test if the cron daemon is running when the package is installed."
-msgstr ""
+msgstr "Testez si le démon cron fonctionne quand le paquet est installé."
 
 #. description
 #: ../jobs/daemons.txt.in:17
 msgid "Test if the cupsd daemon is running when the package is installed."
-msgstr ""
+msgstr "Testez si le démon cupsd fonctionne quand le paquet est installé."
 
 #. description
 #: ../jobs/daemons.txt.in:23
 msgid "Test if the getty daemon is running when the package is installed."
-msgstr ""
+msgstr "Testez si le démon getty fonctionne quand le paquet est installé."
 
 #. description
 #: ../jobs/daemons.txt.in:29
 msgid "Test if the init daemon is running when the package is installed."
-msgstr ""
+msgstr "Testez si le démon init fonctionne quand le paquet est installé."
 
 #. description
 #: ../jobs/daemons.txt.in:35
 msgid "Test if the klogd daemon is running when the package is installed."
-msgstr ""
+msgstr "Testez si le démon klogd fonctionne quand le paquet est installé."
 
 #. description
 #: ../jobs/daemons.txt.in:41
 msgid "Test if the nmbd daemon is running when the package is installed."
-msgstr ""
+msgstr "Testez si le démon mnbd fonctionne quand le paquet est installé."
 
 #. description
 #: ../jobs/daemons.txt.in:47
 msgid "Test if the smbd daemon is running when the package is installed."
-msgstr ""
+msgstr "Testez si le démon smbd fonctionne quand le paquet est installé."
 
 #. description
 #: ../jobs/daemons.txt.in:53
 msgid "Test if the syslogd daemon is running when the package is installed."
-msgstr ""
+msgstr "Testez si le démon syslogd fonctionne quand le paquet est installé."
 
 #. description
 #: ../jobs/daemons.txt.in:61
 msgid "Test if the udevd daemon is running when the package is installed."
-msgstr ""
+msgstr "Testez si le démon udevd fonctionne quand le paquet est installé."
 
 #. description
 #: ../jobs/daemons.txt.in:67
 msgid "Test if the winbindd daemon is running when the package is installed."
-msgstr ""
+msgstr "Testez si le démon winbindd fonctionne quand le paquet est installé."
 
 #. description
 #: ../jobs/disk.txt.in:4
@@ -596,32 +532,36 @@ msgid "The following hard drives were detected:"
 msgstr "Les disques durs suivants ont été détectés :"
 
 #. description
-#: ../jobs/disk.txt.in:14
+#: ../jobs/disk.txt.in:9
 msgid "Benchmark for each disk "
-msgstr ""
+msgstr "Mesure de performance pour chaque disque "
 
 #. description
-#: ../jobs/disk.txt.in:36
+#: ../jobs/disk.txt.in:26
 msgid "SMART test"
 msgstr "Test SMART"
 
 #. description
-#: ../jobs/disk.txt.in:51
+#: ../jobs/disk.txt.in:41
 msgid "Maximum disk space used during a default installation test"
 msgstr ""
 "Espace disque maximal utilisé lors d'un test d'installation par défaut"
 
 #. description
-#: ../jobs/disk.txt.in:66
+#: ../jobs/disk.txt.in:56
 msgid "Verify system storage performs at or above baseline performance"
 msgstr ""
+"Vérifiez si les performances du système de stockage sont supérieures ou "
+"égales au niveau de performance de base"
 
 #. description
-#: ../jobs/disk.txt.in:83
+#: ../jobs/disk.txt.in:73
 msgid ""
 "Verify that storage devices, such as Fibre Channel and RAID can be detected "
 "and perform under stress."
 msgstr ""
+"Vérifiez que les appareils de stockage, tels que la « Fibre Channel » et le "
+"« RAID », peuvent être détectés et qu'ils fonctionnent en charge."
 
 #. description
 #: ../jobs/evolution.txt.in:5
@@ -629,6 +569,8 @@ msgid ""
 "Click the \"Test\" button to launch Evolution, then configure it to connect "
 "to a POP3 account."
 msgstr ""
+"Cliquez sur « Tester » pour lancer le logiciel Evolution, puis configurez-le "
+"pour se connecter à un compte de type POP3."
 
 #. description
 #: ../jobs/evolution.txt.in:14
@@ -636,11 +578,13 @@ msgid ""
 "Click the \"Test\" button to launch Evolution, then configure it to connect "
 "to a IMAP account."
 msgstr ""
+"Cliquez sur « Tester » pour lancer le logiciel Evolution, puis configurez-le "
+"pour se connecter à un compte de type IMAP."
 
 #. description
 #: ../jobs/evolution.txt.in:14
 msgid "Were you able to receive and read e-mail correctly?"
-msgstr ""
+msgstr "Avez-vous pu recevoir et lire du courriel correctement ?"
 
 #. description
 #: ../jobs/evolution.txt.in:23
@@ -648,11 +592,13 @@ msgid ""
 "Click the \"Test\" button to launch Evolution, then configure it to connect "
 "to a SMTP account."
 msgstr ""
+"Cliquez sur « Tester » pour lancer le logiciel Evolution, puis configurez-le "
+"pour se connecter à un compte de type SMTP."
 
 #. description
 #: ../jobs/evolution.txt.in:23
 msgid "Were you able to send e-mail without errors?"
-msgstr ""
+msgstr "Avez-vous pu envoyer un couriel sans erreur ?"
 
 #. description
 #: ../jobs/fingerprint.txt.in:3
@@ -661,7 +607,7 @@ msgid ""
 "which test cases are run and a personal account that the tester uses to "
 "verify the fingerprint reader"
 msgstr ""
-"Prérequis : cette procédure de tests est prévue pour s'exécuter depuis un "
+"Prérequis : cette procédure de test est prévue pour s'exécuter depuis un "
 "compte de test. Il faut également qu'un compte personnel soit utilisé pour "
 "vérifier le lecteur d'empreintes"
 
@@ -677,6 +623,15 @@ msgid ""
 " 5.- Click on the user switcher applet.\n"
 " 6.- Select the testing account to continue running tests."
 msgstr ""
+"Procédure de vérification de l'identification par empreinte digitale :\n"
+" 1.- Cliquez sur l'applet de changement d'utilisateur\n"
+" 2.- Sélectionnez votre nom d'utilisateur\n"
+" 3.- Une fenêtre vous permettant de vous authentifier soit en tapant votre "
+"mot de passe soit en utilisant la reconnaissance d'empreinte digitale "
+"devrait apparaître\n"
+" 4.- Utilisez le lecteur d'empreinte digitale pour vous authentifier\n"
+" 5.- Cliquez sur l'applet de changement d'utilisateur\n"
+" 6.- Sélectionnez le compte de test pour continuer à effectuer des tests"
 
 #. description
 #: ../jobs/fingerprint.txt.in:18
@@ -690,11 +645,20 @@ msgid ""
 " 5.- Use the fingerprint reader to unlock.\n"
 " 6.- Your screen should be unlocked."
 msgstr ""
+"Procédure de vérification du dévérouillage par empreinte digitale :\n"
+" 1.- Cliquez sur l'applet de changement d'utilisateur\n"
+" 2.- Sélectionnez « Verrouiller l'écran »\n"
+" 3.- Appuyer sur n'importe quelle touche ou bougez la souris\n"
+" 4.- Une fenêtre vous permettant de déverrouiller soit en tapant votre mot "
+"de passe, soit en utilisant la reconnaissance d'empreinte digitale devrait "
+"apparaître\n"
+" 5.- Utilisez le lecteur d'empreinte digitale pour déverrouiller\n"
+" 6.- Votre écran devrait être déverrouillé"
 
 #. description
 #: ../jobs/fingerprint.txt.in:18
 msgid "Did the authentication procedure work correctly?"
-msgstr "La procédure d'authentification a-t-elle fonctionné correctement?"
+msgstr "La procédure d'authentification a-t-elle fonctionné correctement ?"
 
 #. description
 #: ../jobs/firewire.txt.in:3
@@ -706,26 +670,34 @@ msgid ""
 " 3.- Copy some files from your internal HDD to the firewire HDD.\n"
 " 4.- Copy some files from the firewire HDD to your internal HDD."
 msgstr ""
+"Procédure de vérification d'un disque dur externe Firewire :\n"
+" 1.- Branchez un disque dur Firewire à votre ordinateur\n"
+" 2.- Une fenêtre vous demandant quelle action doit être effectuée (ouvrir le "
+"dossier, lecteur média, etc) devrait s'ouvrir\n"
+" 3.- Copiez quelques fichiers de votre disque dur interne vers votre disque "
+"dur externe Firewire\n"
+" 4.- Copiez quelques fichiers de votre disque dur externe Firewire vers "
+"votre disque dur interne"
 
 #. description
 #: ../jobs/firewire.txt.in:3
 msgid "Do the copy operations work as expected?"
-msgstr "Les opérations de copies se sont-elles déroulées correctement?"
+msgstr "Les opérations de copie se sont-elles déroulées comme attendu ?"
 
 #. description
 #: ../jobs/floppy.txt.in:4
 msgid "Floppy test"
-msgstr ""
+msgstr "Test du lecteur de disquette"
 
 #. description
 #: ../jobs/gcalctool.txt.in:5
 msgid "Click the \"Test\" button to open the calculator."
-msgstr ""
+msgstr "Cliquez sur « Tester » pour lancer la calculatrice."
 
 #. description
 #: ../jobs/gcalctool.txt.in:5
 msgid "Did it launch correctly?"
-msgstr ""
+msgstr "La calculatrice s'est-elle lancée correctement ?"
 
 #. description
 #: ../jobs/gcalctool.txt.in:15
@@ -733,31 +705,39 @@ msgid ""
 "1. Simple math functions (+,-,/,*) 2. Nested math functions ((,)) 3. "
 "Fractional math 4. Decimal math"
 msgstr ""
+"1. Fonctions mathématiques simples (+,-,/,*)\r\n"
+"2. Fonctions mathématiques imbriquées ((,))\r\n"
+"3. Fractions\r\n"
+"4. Calcul décimal"
 
 #. description
 #: ../jobs/gcalctool.txt.in:30
 msgid "1. Memory set 2. Memory reset 3. Memory last clear 4. Memory clear"
 msgstr ""
+"1. Mettre en mémoire\r\n"
+"2. Réinitialiser la mémoire\r\n"
+"3. Effacer la dernière mémoire\r\n"
+"4. Effacer la mémoire"
 
 #. description
 #: ../jobs/gcalctool.txt.in:45
 msgid "Click the \"Test\" button to open the calculator and perform:"
-msgstr ""
+msgstr "Cliquez sur « Tester » pour lancer la calculatrice et calculer :"
 
 #. description
 #: ../jobs/gcalctool.txt.in:45
 msgid "1. Cut 2. Copy 3. Paste"
-msgstr ""
+msgstr "1. Couper 2. Copier 3. Coller"
 
 #. description
 #: ../jobs/gcalctool.txt.in:45
 msgid "Did the functions perform as expected?"
-msgstr ""
+msgstr "Les fonctions ont-elles fonctionné comme prévu ?"
 
 #. description
 #: ../jobs/gedit.txt.in:5
 msgid "Click the \"Test\" button to open gedit."
-msgstr ""
+msgstr "Cliquez sur « Tester » pour lancer gedit."
 
 #. description
 #: ../jobs/gedit.txt.in:5
@@ -765,6 +745,8 @@ msgid ""
 "Enter some text and save the file (make a note of the file name you use), "
 "then close gedit."
 msgstr ""
+"Saisissez un peu de texte et sauvegardez le fichier (notez le nom de fichier "
+"que vous avez utilisé), puis fermez gedit."
 
 #. description
 #: ../jobs/gedit.txt.in:17
@@ -772,21 +754,23 @@ msgid ""
 "Click the \"Test\" button to open gedit, and re-open the file you created "
 "previously."
 msgstr ""
+"Cliquez sur « Tester » pour lancer gedit, et rouvrez le fichier que vous "
+"avez créé précédemment."
 
 #. description
 #: ../jobs/gedit.txt.in:17
 msgid "Edit then save the file, then close gedit."
-msgstr ""
+msgstr "Modifiez et sauvegardez le fichier, puis fermez gedit."
 
 #. description
 #: ../jobs/gedit.txt.in:17 ../jobs/gnome-terminal.txt.in:5
 msgid "Did this perform as expected?"
-msgstr "Cela a-t-il fonctionné comme prévu?"
+msgstr "Cela a-t-il fonctionné comme prévu ?"
 
 #. description
 #: ../jobs/gnome-terminal.txt.in:5
 msgid "Click the \"Test\" button to open Terminal."
-msgstr "Cliquer sur le bouton \"Test\" pour ouvrir le Terminal."
+msgstr "Cliquez sur « Tester » pour lancer le Terminal."
 
 #. description
 #: ../jobs/gnome-terminal.txt.in:5
@@ -794,24 +778,27 @@ msgid ""
 "Type 'ls' and press enter. You should see a list of files and folder in your "
 "home directory."
 msgstr ""
-"Saisissez \"ls\" et appuyez sur entrée. Vous devriez voir une liste des "
-"fichiers et des répertoires de votre dossier personnel."
+"Saisissez « ls » et appuyez sur « Entrée ». Vous devriez voir la liste des "
+"fichiers et répertoires de votre dossier personnel."
 
 #. description
 #: ../jobs/gnome-terminal.txt.in:5
 msgid "Close the terminal window."
-msgstr "Fermez la fenêtre du terminal."
+msgstr "Fermez la fenêtre du Terminal."
 
 #. description
 #: ../jobs/graphics.txt.in:5
 msgid ""
 "2d graphics appears to be working, your running X.Org version is: $output"
 msgstr ""
+"Les graphismes 2D semblent fonctionner, la version de X.org que vous "
+"utilisez actuellement est : $output"
 
 #. description
 #: ../jobs/graphics.txt.in:23
 msgid "Run gtkperf to make sure that GTK based test cases work"
 msgstr ""
+"Exécutez « gtkperf « pour être sûr que les tests basés sur GTK fonctionnent"
 
 #. description
 #: ../jobs/graphics.txt.in:23
@@ -819,6 +806,8 @@ msgid ""
 "In the future add the returned time as a benchmark result to the checkbox "
 "report"
 msgstr ""
+"Ajoutera à l'avenir au rapport de Checkbox le temps d'exécution comme mesure "
+"de la performance"
 
 #. description
 #: ../jobs/graphics.txt.in:31
@@ -828,11 +817,19 @@ msgid ""
 "The resolution should change 5.- Select the original resolution from the "
 "dropdown list 6.- Click on Apply 7.- The resolution should change again"
 msgstr ""
+"Procédure de changement de la résolution de l'affichage :\r\n"
+"1.- Allez dans « Paramètres systèmes » puis « Affichage »\r\n"
+"2.- Sélectionnez une nouvelle résolution depuis la liste\r\n"
+"3.- Cliquez sur « Appliquer »\r\n"
+"4.- La résolution devrait changer\r\n"
+"5.- Sélectionnez la résolution d'origine dans la liste déroulante\r\n"
+"6.- Cliquez sur « Appliquer »\r\n"
+"7.- La résolution devrait à nouveau changer"
 
 #. description
 #: ../jobs/graphics.txt.in:31
 msgid "Did the resolution change as expected?"
-msgstr ""
+msgstr "La résolution a-t-elle changé comme prévu ?"
 
 #. description
 #: ../jobs/graphics.txt.in:46
@@ -844,36 +841,47 @@ msgid ""
 "display configuration change should be reverted 7.- Repeat 2-6 for different "
 "rotation values"
 msgstr ""
+"Procédure de vérification de la rotation de l'affichage :\r\n"
+"1.- Allez dans « Paramètres systèmes » puis « Affichage »\r\n"
+"2.- Sélectionnez une nouvelle valeur de rotation dans la liste déroulante\r\n"
+"3.- Cliquez sur « Appliquer »\r\n"
+"4.- L'affichage devrait avoir tourné selon la valeur nouvellement "
+"configurée\r\n"
+"5.- Cliquez sur « Restaurer la précédente configuration »\r\n"
+"6.- La configuration de l'affichage devrait être revenue à la normale\r\n"
+"7.- Répétez les étapes 2 à 6 pour différentes valeurs de rotation."
 
 #. description
 #: ../jobs/graphics.txt.in:46
 msgid "Did the display rotation change as expected?"
-msgstr ""
+msgstr "La rotation de l'affichage a-t-elle changé comme prévu ?"
 
 #. description
 #: ../jobs/graphics.txt.in:62
 msgid "Test that the X process is running."
-msgstr ""
+msgstr "Testez que le processus de X est en cours d'exécution."
 
 #. description
 #: ../jobs/graphics.txt.in:68
 msgid "Test that the X is not running in failsafe mode."
-msgstr ""
+msgstr "Testez que X ne fonctionne pas en mode sans échec."
 
 #. description
 #: ../jobs/graphics.txt.in:75
 msgid "Test that X does not leak memory when running programs."
 msgstr ""
+"Testez que X n'a ​​pas de fuite de mémoire lors de l'exécution des "
+"programmes."
 
 #. description
 #: ../jobs/graphics.txt.in:82
 msgid "This display is using the following resolution:"
-msgstr "Cet affichage utilise la résolution suivante:"
+msgstr "L'affichage utilise la résolution suivante :"
 
 #. description
 #: ../jobs/graphics.txt.in:82
 msgid "Is this acceptable for your display?"
-msgstr "Cela convient-il pour votre écran ?"
+msgstr "Cela convient-il pour votre appareil ?"
 
 #. description
 #: ../jobs/graphics.txt.in:95
@@ -903,32 +911,32 @@ msgstr "https://help.ubuntu.com/community/Installation/SystemRequirements"
 #. description
 #: ../jobs/graphics.txt.in:104
 msgid "Select Test to display a video test."
-msgstr "Cliquez sur « tester » pour afficher une vidéo de test."
+msgstr "Cliquez sur « Tester » pour afficher une vidéo de test."
 
 #. description
 #: ../jobs/graphics.txt.in:113
 msgid ""
 "The following screens and video modes have been detected on your system:"
 msgstr ""
-"Les écrans et les modes vidéo suivants ont été détectés sur votre système:"
+"Les écrans et les modes vidéos suivants ont été détectés sur votre système :"
 
 #. description
 #: ../jobs/graphics.txt.in:125
 msgid ""
 "Select Test to cycle through the detected video modes for your system."
 msgstr ""
-"Cliquez sur « tester » pour essayer successivement les différents modes "
-"vidéos détectés par votre système."
+"Cliquez sur « Tester » pour essayer successivement les différents modes "
+"vidéos détectés pour votre système."
 
 #. description
 #: ../jobs/graphics.txt.in:125
 msgid "Did the screen appear to be working for each mode?"
-msgstr "L'écran semble t'il fonctionner correctement pour chacun des modes?"
+msgstr "L'écran semble-t-il fonctionner correctement pour chacun des modes ?"
 
 #. description
 #: ../jobs/graphics.txt.in:133
 msgid "Check that the hardware is able to run compiz."
-msgstr "Vérifier que le matériel est capable d'utiliser Compiz."
+msgstr "Vérifiez que le matériel est capable d'utiliser Compiz."
 
 #. description
 #: ../jobs/graphics.txt.in:140
@@ -936,8 +944,8 @@ msgid ""
 "Select Test to execute glxgears to ensure that minimal 3d graphics support "
 "is in place."
 msgstr ""
-"Cliquez sur « tester » pour exécuter glxgears. Ceci permettra de vérifier  "
-"que votre système dispose d'une gestion minimale des graphismes 3D."
+"Cliquez sur « Tester » pour exécuter glxgears afin de vérifier que votre "
+"système dispose d'une gestion minimale des graphismes 3D."
 
 #. description
 #: ../jobs/graphics.txt.in:140
@@ -945,24 +953,36 @@ msgid "Did the 3d animation appear?"
 msgstr "L'animation en 3D est-elle apparue ?"
 
 #. description
-#: ../jobs/info.txt.in:60 ../jobs/screenshot.txt.in:7
+#: ../jobs/info.txt.in:69 ../jobs/screenshot.txt.in:7
 msgid "Captures a screenshot."
-msgstr ""
+msgstr "Effectue une capture d'écran."
 
 #. description
-#: ../jobs/info.txt.in:71
+#: ../jobs/info.txt.in:80
 msgid "Gather log from the firmware test suite run"
 msgstr ""
+"Collectez le fichier journal de l'éxecution de l'outil de test du "
+"micrologiciel"
 
 #. description
-#: ../jobs/info.txt.in:82
+#: ../jobs/info.txt.in:91
 msgid "Bootchart information."
-msgstr ""
+msgstr "Informations Bootchart."
+
+#. description
+#: ../jobs/input.txt.in:4
+msgid "Is your mouse working properly?"
+msgstr "Votre souris fonctionne-t-elle correctement ?"
 
 #. description
 #: ../jobs/input.txt.in:13
 msgid "Select Test to open a text area where to type keys on your keyboard."
-msgstr "Cliquez sur « tester » pour afficher une zone de saisie de texte."
+msgstr "Cliquez sur « Tester » pour afficher une zone de saisie de texte."
+
+#. description
+#: ../jobs/input.txt.in:13
+msgid "Is your keyboard working properly?"
+msgstr "Votre clavier fonctionne-t-il correctement ?"
 
 #. description
 #: ../jobs/install.txt.in:6
@@ -970,6 +990,8 @@ msgid ""
 "Tests to see that apt can access repositories and get updates (does not "
 "install updates)"
 msgstr ""
+"Tests pour voir si apt peut accéder à des dépôts et obtenir des mises à jour "
+"(n'installe pas les mises à jour)"
 
 #. description
 #: ../jobs/keys.txt.in:4
@@ -977,6 +999,8 @@ msgid ""
 "Press the brightness buttons on the keyboard. A status window should \\ "
 "appear and the brightness should change."
 msgstr ""
+"Appuyez sur les boutons de luminosité de votre clavier. Une fenêtre de "
+"statut devrait \\ apparaître et la luminosité devrait changer."
 
 #. description
 #: ../jobs/keys.txt.in:12
@@ -984,11 +1008,13 @@ msgid ""
 "Press the volume buttons on the keyboard. A status window should \\ appear "
 "and the volume should change."
 msgstr ""
+"Appuyez sur les boutons de volume de votre clavier. Une fenêtre de statut "
+"devrait \\ apparaître et le volume devrait changer."
 
 #. description
 #: ../jobs/keys.txt.in:12
 msgid "Do the buttons work?"
-msgstr ""
+msgstr "Les boutons fonctionnent-ils ?"
 
 #. description
 #: ../jobs/keys.txt.in:21
@@ -996,61 +1022,77 @@ msgid ""
 "Press the mute key on the keyboard. A status window should appear \\ and the "
 "volume should mute/unmute when pressed multiple times."
 msgstr ""
+"Appuyez sur la touche muet de votre clavier. Une fenêtre de statut devrait "
+"apparaître \\ et le volume devrait passer de muet à non muet quand vous "
+"appuyez plusieurs fois."
 
 #. description
-#: ../jobs/keys.txt.in:30
+#: ../jobs/keys.txt.in:31
 msgid ""
 "Press the sleep key on the keyboard. The computer should suspend and, \\ "
 "after pressing the power button, resume successfully."
 msgstr ""
+"Appuyez sur la touche veille de votre clavier. L'ordinateur devrait se "
+"mettre en veille et, \\ après avoir appuyé sur le bouton de mise en marche, "
+"se réveiller avec succès."
 
 #. description
-#: ../jobs/keys.txt.in:39
+#: ../jobs/keys.txt.in:40
 msgid ""
 "Press the battery information key on the keyboard. A status window \\ should "
 "appear and the amount of battery remaining should be displayed."
 msgstr ""
+"Appuyez sur la touche d'information sur la batterie de votre clavier. Une "
+"fenêtre \\ devrait apparaître et la quantité de batterie restante devrait "
+"s'afficher."
 
 #. description
-#: ../jobs/keys.txt.in:48
+#: ../jobs/keys.txt.in:49
 msgid ""
 "Press the wireless networking key on the keyboard. The bluetooth icon \\ and "
 "the network connnection should go down if connected through the \\ wifi "
 "interface."
 msgstr ""
+"Appuyez sur la touche réseau sans fil de votre clavier. L'icône Bluetooth \\ "
+"et la connexion au réseau devraient s'arrêter si vous êtes connecté \\ par "
+"l'interface Wifi."
 
 #. description
-#: ../jobs/keys.txt.in:48
+#: ../jobs/keys.txt.in:49
 msgid ""
 "Press the same key again and check that bluetooth icon is again \\ displayed "
 "and that the network connection is re-established \\ automatically."
 msgstr ""
+"Appuyez sur la même touche et vérifiez que l'icône Bluetooth est de nouveau "
+"\\ affichée et que la connexion réseau est rétablie \\ automatiquement."
 
 #. description
-#: ../jobs/keys.txt.in:48
+#: ../jobs/keys.txt.in:49
 msgid "Does the key work?"
-msgstr ""
+msgstr "La touche fonctionne-t-elle ?"
 
 #. description
-#: ../jobs/keys.txt.in:62
+#: ../jobs/keys.txt.in:63
 msgid ""
 "The keyboard may have dedicated keys for controlling media as follows:"
 msgstr ""
+"Le clavier peut avoir des touches dédiées pour le contrôle des média telles "
+"que :"
 
 #. description
-#: ../jobs/keys.txt.in:62
+#: ../jobs/keys.txt.in:63
 msgid "* Play/Pause * Stop * Forward * Backward (Rewind)"
-msgstr ""
+msgstr "*Lecture/Pause *Stop *Suivant *Précédent (Rembobiner)"
 
 #. description
-#: ../jobs/keys.txt.in:62
+#: ../jobs/keys.txt.in:63
 msgid "Play a media file and press each key in turn."
-msgstr ""
+msgstr "Jouez un fichier multimédia et appuyez sur chaque touche"
 
 #. description
-#: ../jobs/keys.txt.in:62
+#: ../jobs/keys.txt.in:63
 msgid "Do the keys work as expected?"
-msgstr ""
+msgstr "Les touches fonctionnent-elles comme prévu ?"
 
 #. description
 #: ../jobs/local.txt.in:3
@@ -1060,7 +1102,7 @@ msgstr "Tests audio"
 #. description
 #: ../jobs/local.txt.in:8
 msgid "Bluetooth tests"
-msgstr ""
+msgstr "Tests Bluetooth"
 
 #. description
 #: ../jobs/local.txt.in:13
@@ -1070,7 +1112,7 @@ msgstr "Tests de la caméra"
 #. description
 #: ../jobs/local.txt.in:18
 msgid "Codec tests"
-msgstr ""
+msgstr "Tests de codecs"
 
 #. description
 #: ../jobs/local.txt.in:23
@@ -1080,7 +1122,7 @@ msgstr "Tests du processeur"
 #. description
 #: ../jobs/local.txt.in:28
 msgid "System Daemon tests"
-msgstr ""
+msgstr "Tests des services système"
 
 #. description
 #: ../jobs/local.txt.in:33
@@ -1090,7 +1132,7 @@ msgstr "Tests des disques"
 #. description
 #: ../jobs/local.txt.in:38
 msgid "Fingerprint reader tests"
-msgstr "Tests du lecteur d'empreintes digitales"
+msgstr "Tests du lecteur d'empreinte digitale"
 
 #. description
 #: ../jobs/local.txt.in:43
@@ -1100,80 +1142,80 @@ msgstr "Tests des disques Firewire"
 #. description
 #: ../jobs/local.txt.in:48
 msgid "Floppy disk tests"
-msgstr ""
+msgstr "Tests du lecteur de disquette"
 
 #. description
 #: ../jobs/local.txt.in:53
 msgid "Graphics tests"
-msgstr ""
+msgstr "Tests graphiques"
 
 #. description
 #: ../jobs/local.txt.in:58
 msgid "Informational tests"
-msgstr ""
+msgstr "Tests informatifs"
 
 #. description
 #: ../jobs/local.txt.in:63
 msgid "Input Devices tests"
-msgstr ""
+msgstr "Tests des périphériques d'entrée"
 
 #. description
 #: ../jobs/local.txt.in:68
 msgid "Software Installation tests"
-msgstr ""
+msgstr "Tests d'installation de logiciels"
 
 #. description
 #: ../jobs/local.txt.in:73
 msgid "Hotkey tests"
-msgstr ""
+msgstr "Tests des touches de raccourci"
 
 #. description
-#: ../jobs/local.txt.in:78
+#: ../jobs/local.txt.in:83
 msgid "Media Card tests"
-msgstr ""
-
-#. description
-#: ../jobs/local.txt.in:88
-msgid "Miscellaneous tests"
-msgstr ""
+msgstr "Tests des cartes mémoire"
 
 #. description
 #: ../jobs/local.txt.in:93
+msgid "Miscellaneous tests"
+msgstr "Tests divers"
+
+#. description
+#: ../jobs/local.txt.in:98
 msgid "Monitor tests"
 msgstr "Tests de l'écran"
 
 #. description
-#: ../jobs/local.txt.in:98
+#: ../jobs/local.txt.in:103
 msgid "Networking tests"
-msgstr ""
-
-#. description
-#: ../jobs/local.txt.in:108
-msgid "PCMCIA/PCIX Card tests"
-msgstr ""
+msgstr "Tests du réseau"
 
 #. description
 #: ../jobs/local.txt.in:113
+msgid "PCMCIA/PCIX Card tests"
+msgstr "Tests des cartes PCMCIA/PCIX"
+
+#. description
+#: ../jobs/local.txt.in:118
 msgid "Peripheral tests"
 msgstr "Tests des périphériques"
 
 #. description
-#: ../jobs/local.txt.in:118
-msgid "Power Management tests"
-msgstr ""
-
-#. description
 #: ../jobs/local.txt.in:123
-msgid "Unity tests"
-msgstr ""
+msgid "Power Management tests"
+msgstr "Tests de la gestion de l'alimentation"
 
 #. description
 #: ../jobs/local.txt.in:133
+msgid "Unity tests"
+msgstr "Tests de Unity"
+
+#. description
+#: ../jobs/local.txt.in:143
 msgid "User Applications"
 msgstr "Applications de l'utilisateur"
 
 #. description
-#: ../jobs/local.txt.in:138
+#: ../jobs/local.txt.in:153
 msgid "Stress tests"
 msgstr "Stress tests"
 
@@ -1185,7 +1227,7 @@ msgstr "Projet de tests Linux"
 #. description
 #: ../jobs/mago.txt.in:3
 msgid "Automated desktop testing"
-msgstr ""
+msgstr "Tests automatisés du bureau"
 
 #. description
 #: ../jobs/mediacard.txt.in:3
@@ -1198,12 +1240,11 @@ msgid ""
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
 "Vérification de la prise en charge des cartes SD :\n"
-" 1.- Insérez une carte SD dans l'ordinateur.\n"
-" 2.- Un icône devrait apparaître sur le bureau et au niveau de votre menu "
-"« Raccourcis » tout en haut de l'écran.\n"
-" 3.- Faites un clic droit sur l’icône du bureau puis choisissez « Retirer le "
-"périphérique en toute sécurité ».\n"
-" 4.- L'icône devrait disparaître du bureau et du menu « Raccourcis »."
+" 1.- Insérez une carte SD dans l'ordinateur\n"
+" 2.- Un icône devrait dans le lanceur\n"
+" 3.- Faites un clic droit sur l’icône du lanceur puis choisissez « Retirer "
+"en toute sécurité »\n"
+" 4.- L'icône devrait disparaître du lanceur"
 
 #. description
 #: ../jobs/mediacard.txt.in:15
@@ -1216,12 +1257,11 @@ msgid ""
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
 "Revérification de la prise en charge des cartes SD :\n"
-" 1.- Insérez une carte SD dans l'ordinateur.\n"
-" 2.- Un icône devrait apparaître sur le bureau et au niveau de votre menu "
-"« Raccourcis » tout en haut de l'écran.\n"
-" 3.- Faites un clique droit sur l’icône du bureau puis choisissez « Retirer "
-"le périphérique en toute sécurité ».\n"
-" 4.- L'icône devrait disparaître du bureau et du menu « Raccourcis »."
+" 1.- Insérez une carte SD dans l'ordinateur\n"
+" 2.- Un icône devrait dans le lanceur\n"
+" 3.- Faites un clic droit sur l’icône du lanceur puis choisissez « Retirer "
+"en toute sécurité »\n"
+" 4.- L'icône devrait disparaître du lanceur"
 
 #. description
 #: ../jobs/mediacard.txt.in:26
@@ -1233,13 +1273,12 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
-"Vérification de la prise en charge des cartes SDHC :\n"
-" 1.- Insérez une carte SDHC dans l'ordinateur.\n"
-" 2.- Un icône devrait apparaître sur le bureau et au niveau de votre menu « "
-"Raccourcis » tout en haut de l'écran.\n"
-" 3.- Faites un clic droit sur l’icône du bureau puis choisissez « Retirer le "
-"périphérique en toute sécurité ».\n"
-" 4.- L'icône devrait disparaître du bureau et du menu « Raccourcis »."
+"Vérification de la prise en charge des cartes SDHC :\n"
+"1.- Insérez une carte SDHC dans l'ordinateur\n"
+"2.- Un icône devrait dans le lanceur\n"
+"3.- Faites un clic droit sur l’icône du lanceur puis choisissez « Retirer en "
+"toute sécurité »\n"
+"4.- L'icône devrait disparaître du lanceur"
 
 #. description
 #: ../jobs/mediacard.txt.in:38
@@ -1251,13 +1290,12 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
-"Revérification de la prise en charge des cartes SDHC :\n"
-" 1.- Insérez une carte SDHC dans l'ordinateur.\n"
-" 2.- Un icône devrait apparaître sur le bureau et au niveau de votre menu « "
-"Raccourcis » tout en haut de l'écran.\n"
-" 3.- Faites un clique droit sur l’icône du bureau puis choisissez « Retirer "
-"le périphérique en toute sécurité ».\n"
-" 4.- L'icône devrait disparaître du bureau et du menu « Raccourcis »."
+"Revérification de la prise en charge des cartes SDHC :\n"
+"1.- Insérez une carte SDHC dans l'ordinateur\n"
+"2.- Un icône devrait dans le lanceur\n"
+"3.- Faites un clic droit sur l’icône du lanceur puis choisissez « Retirer en "
+"toute sécurité »\n"
+"4.- L'icône devrait disparaître du lanceur"
 
 #. description
 #: ../jobs/mediacard.txt.in:49
@@ -1269,13 +1307,12 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
-"Vérification de la prise en charge des cartes MMC :\n"
-" 1.- Insérez une carte MMC dans l'ordinateur.\n"
-" 2.- Un icône devrait apparaître sur le bureau et au niveau de votre menu « "
-"Raccourcis » tout en haut de l'écran.\n"
-" 3.- Faites un clic droit sur l’icône du bureau puis choisissez « Retirer le "
-"périphérique en toute sécurité ».\n"
-" 4.- L'icône devrait disparaître du bureau et du menu « Raccourcis »."
+"Vérification de la prise en charge des cartes MMC :\n"
+"1.- Insérez une carte MMC dans l'ordinateur\n"
+"2.- Un icône devrait dans le lanceur\n"
+"3.- Faites un clic droit sur l’icône du lanceur puis choisissez « Retirer en "
+"toute sécurité »\n"
+"4.- L'icône devrait disparaître du lanceur"
 
 #. description
 #: ../jobs/mediacard.txt.in:61
@@ -1287,13 +1324,12 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
-"Revérification de la prise en charge des cartes MMC :\n"
-" 1.- Insérez une carte MMC dans l'ordinateur.\n"
-" 2.- Un icône devrait apparaître sur le bureau et au niveau de votre menu « "
-"Raccourcis » tout en haut de l'écran.\n"
-" 3.- Faites un clic droit sur l’icône du bureau puis choisissez « Retirer le "
-"périphérique en toute sécurité ».\n"
-" 4.- L'icône devrait disparaître du bureau et du menu « Raccourcis »."
+"Revérification de la prise en charge des cartes MMC :\n"
+"1.- Insérez une carte MMC dans l'ordinateur\n"
+"2.- Un icône devrait dans le lanceur\n"
+"3.- Faites un clic droit sur l’icône du lanceur puis choisissez « Retirer en "
+"toute sécurité »\n"
+"4.- L'icône devrait disparaître du lanceur"
 
 #. description
 #: ../jobs/mediacard.txt.in:72
@@ -1305,13 +1341,12 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
-"Vérification de la prise en charge des cartes Memory Stick (MS) :\n"
-" 1.- Insérez une carte MS dans l'ordinateur.\n"
-" 2.- Un icône devrait apparaître sur le bureau et au niveau de votre menu « "
-"Raccourcis » tout en haut de l'écran.\n"
-" 3.- Faites un clic droit sur l’icône du bureau puis choisissez « Retirer le "
-"périphérique en toute sécurité ».\n"
-" 4.- L'icône devrait disparaître du bureau et du menu « Raccourcis »."
+"Vérification de la prise en charge des cartes Memory Stick (MS) :\n"
+"1.- Insérez une carte MS dans l'ordinateur\n"
+"2.- Un icône devrait dans le lanceur\n"
+"3.- Faites un clic droit sur l’icône du lanceur puis choisissez « Retirer en "
+"toute sécurité »\n"
+"4.- L'icône devrait disparaître du lanceur"
 
 #. description
 #: ../jobs/mediacard.txt.in:84
@@ -1323,13 +1358,12 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
-"Revérification de la prise en charge des cartes Memory Stick (MS) :\n"
-" 1.- Insérez une carte MS dans l'ordinateur.\n"
-" 2.- Un icône devrait apparaître sur le bureau et au niveau de votre menu « "
-"Raccourcis » tout en haut de l'écran.\n"
-" 3.- Faites un clic droit sur l’icône du bureau puis choisissez « Retirer le "
-"périphérique en toute sécurité ».\n"
-" 4.- L'icône devrait disparaître du bureau et du menu « Raccourcis »."
+"Revérification de la prise en charge des cartes Memory Stick (MS) :\n"
+"1.- Insérez une carte MS dans l'ordinateur\n"
+"2.- Un icône devrait dans le lanceur\n"
+"3.- Faites un clic droit sur l’icône du lanceur puis choisissez « Retirer en "
+"toute sécurité »\n"
+"4.- L'icône devrait disparaître du lanceur"
 
 #. description
 #: ../jobs/mediacard.txt.in:95
@@ -1341,13 +1375,12 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
-"Vérification de la prise en charge des cartes Memory Stick Pro (MSP) :\n"
-" 1.- Insérez une carte MSP dans l'ordinateur.\n"
-" 2.- Un icône devrait apparaître sur le bureau et au niveau de votre menu « "
-"Raccourcis » tout en haut de l'écran.\n"
-" 3.- Faites un clic droit sur l’icône du bureau puis choisissez « Retirer le "
-"périphérique en toute sécurité ».\n"
-" 4.- L'icône devrait disparaître du bureau et du menu « Raccourcis »."
+"Vérification de la prise en charge des cartes Memory Stick Pro (MSP) :\n"
+"1.- Insérez une carte MSP dans l'ordinateur\n"
+"2.- Un icône devrait dans le lanceur\n"
+"3.- Faites un clic droit sur l’icône du lanceur puis choisissez « Retirer en "
+"toute sécurité »\n"
+"4.- L'icône devrait disparaître du lanceur"
 
 #. description
 #: ../jobs/mediacard.txt.in:107
@@ -1359,13 +1392,12 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
-"Revérification de la prise en charge des cartes Memory Stick Pro (MSP) :\n"
-" 1.- Insérez une carte MSP dans l'ordinateur.\n"
-" 2.- Un icône devrait apparaître sur le bureau et au niveau de votre menu « "
-"Raccourcis » tout en haut de l'écran.\n"
-" 3.- Faites un clic droit sur l’icône du bureau puis choisissez « Retirer le "
-"périphérique en toute sécurité ».\n"
-" 4.- L'icône devrait disparaître du bureau et du menu « Raccourcis »."
+"Revérification de la prise en charge des cartes Memory Stick Pro :\n"
+"1.- Insérez une carte MSP dans l'ordinateur\n"
+"2.- Un icône devrait dans le lanceur\n"
+"3.- Faites un clic droit sur l’icône du lanceur puis choisissez « Retirer en "
+"toute sécurité »\n"
+"4.- L'icône devrait disparaître du lanceur"
 
 #. description
 #: ../jobs/mediacard.txt.in:118
@@ -1377,13 +1409,12 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
-"Vérification de la prise en charge des cartes Compact Flash (CF) :\n"
-" 1.- Insérez une carte CF dans l'ordinateur.\n"
-" 2.- Un icône devrait apparaître sur le bureau et au niveau de votre menu « "
-"Raccourcis » tout en haut de l'écran.\n"
-" 3.- Faites un clic droit sur l’icône du bureau puis choisissez « Retirer le "
-"périphérique en toute sécurité ».\n"
-" 4.- L'icône devrait disparaître du bureau et du menu « Raccourcis »."
+"Vérification de la prise en charge des cartes Compact Flash (CF) :\n"
+"1.- Insérez une carte CF dans l'ordinateur\n"
+"2.- Un icône devrait dans le lanceur\n"
+"3.- Faites un clic droit sur l’icône du lanceur puis choisissez « Retirer en "
+"toute sécurité »\n"
+"4.- L'icône devrait disparaître du lanceur"
 
 #. description
 #: ../jobs/mediacard.txt.in:130
@@ -1395,13 +1426,12 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
-"Revérification de la prise en charge des cartes Compact Flash (CF) :\n"
-" 1.- Insérez une carte CF dans l'ordinateur.\n"
-" 2.- Un icône devrait apparaître sur le bureau et au niveau de votre menu « "
-"Raccourcis » tout en haut de l'écran.\n"
-" 3.- Faites un clic droit sur l’icône du bureau puis choisissez « Retirer le "
-"périphérique en toute sécurité ».\n"
-" 4.- L'icône devrait disparaître du bureau et du menu « Raccourcis »."
+"Revérification de la prise en charge des cartes Compact Flash (CF) :\n"
+"1.- Insérez une carte CF dans l'ordinateur\n"
+"2.- Un icône devrait dans le lanceur\n"
+"3.- Faites un clic droit sur l’icône du lanceur puis choisissez « Retirer en "
+"toute sécurité »\n"
+"4.- L'icône devrait disparaître du lanceur"
 
 #. description
 #: ../jobs/mediacard.txt.in:130
@@ -1411,12 +1441,12 @@ msgstr "L'icône apparaît/disparaît-elle automatiquement ?"
 #. description
 #: ../jobs/memory.txt.in:4
 msgid "The following amount of memory was detected:"
-msgstr ""
+msgstr "La quantité de mémoire suivante a été détéctée :"
 
 #. description
 #: ../jobs/memory.txt.in:16
 msgid "Test and exercise memory."
-msgstr ""
+msgstr "Testez et sollicitez la mémoire."
 
 #. description
 #: ../jobs/miscellanea.txt.in:8
@@ -1425,24 +1455,26 @@ msgid ""
 "screen will change temporarily to a text console and then switch back to "
 "your current session."
 msgstr ""
-"Cliquez sur « tester » pour basculer vers un autre terminal virtuel puis "
+"Cliquez sur « Tester » pour basculer vers un autre terminal virtuel puis "
 "ensuite retournez sous X. Votre écran devrait temporairement afficher une "
-"console texte puis basculer en revenant vers votre session en cours."
+"console texte puis rebasculer vers votre session en cours."
 
 #. description
 #: ../jobs/miscellanea.txt.in:8
 msgid "Note that this test may require you to enter your password."
-msgstr "Ce test peut vous demander de saisir votre mot de passe."
+msgstr "Notez que ce test peut vous demander de saisir votre mot de passe."
 
 #. description
 #: ../jobs/miscellanea.txt.in:8
 msgid "Did the screen change temporarily to a text console?"
-msgstr "L'écran a-t-il basculé temporairement en mode console ?"
+msgstr "L'écran a-t-il basculé temporairement en mode console ?"
 
 #. description
 #: ../jobs/miscellanea.txt.in:20
 msgid "Run Colin King's Firmware Test Suite automated tests."
 msgstr ""
+"Lancez les tests automatisés de la batterie de tests du micrologiciel de "
+"Colin King."
 
 #. description
 #: ../jobs/miscellanea.txt.in:29
@@ -1450,6 +1482,8 @@ msgid ""
 "ipmitool is required for ipmi testing. This checks for ipmitool and installs "
 "it if not available."
 msgstr ""
+"ipmitool est nécessaire pour pouvoir tester IPMI. Ceci vérifie si ipmitool "
+"est installé et l'installe sinon."
 
 #. description
 #: ../jobs/miscellanea.txt.in:36
@@ -1457,6 +1491,8 @@ msgid ""
 "This will run some basic connectivity tests against a BMC, verifying that "
 "IPMI works."
 msgstr ""
+"Ceci exécute quelques tests basiques de connectivité à un BMC afin de "
+"vérifier que IPMI fonctionne."
 
 #. description
 #: ../jobs/monitor.txt.in:3
@@ -1486,7 +1522,7 @@ msgid ""
 "Is the image displayed correctly?"
 msgstr ""
 "Connectez un écran (si ce n'est déjà fait) au port DVI de votre ordinateur. "
-"L'image s'y affiche-t-elle correctement ?"
+"L'image s'y affiche-t-elle correctement ?"
 
 #. description
 #: ../jobs/monitor.txt.in:17
@@ -1501,7 +1537,7 @@ msgid ""
 "system. Is the image displayed correctly?"
 msgstr ""
 "Connectez un écran (si ce n'est déjà fait) au DisplayPort de votre "
-"ordinateur. L'image s'y affiche-t-elle correctement ?"
+"ordinateur. L'image s'y affiche-t-elle correctement ?"
 
 #. description
 #: ../jobs/monitor.txt.in:24
@@ -1516,7 +1552,7 @@ msgid ""
 "system. Is the image displayed correctly?"
 msgstr ""
 "Connectez un écran (si ce n'est déjà fait) au port HDMI de votre ordinateur. "
-"L'image s'y affiche-t-elle correctement ?"
+"L'image s'y affiche-t-elle correctement ?"
 
 #. description
 #: ../jobs/monitor.txt.in:31
@@ -1531,7 +1567,7 @@ msgid ""
 "system. Is the image displayed correctly?"
 msgstr ""
 "Connectez un écran (si ce n'est déjà fait) au port S-VIDEO de votre "
-"ordinateur. L'image s'y affiche-t-elle correctement ?"
+"ordinateur. L'image s'y affiche-t-elle correctement ?"
 
 #. description
 #: ../jobs/monitor.txt.in:38
@@ -1546,7 +1582,7 @@ msgid ""
 "Is the image displayed correctly?"
 msgstr ""
 "Connectez un écran (si ce n'est déjà fait) au port RCA de votre ordinateur. "
-"L'image s'y affiche-t-elle correctement ?"
+"L'image s'y affiche-t-elle correctement ?"
 
 #. description
 #: ../jobs/monitor.txt.in:46
@@ -1556,6 +1592,12 @@ msgid ""
 " 2.- The monitor should go blank.\n"
 " 3.- Press any key or move the mouse to recover."
 msgstr ""
+"Procédure de test de la mise en veille du moniteur :\n"
+" 1.- Cliquez sur « Tester » pour vérifier la capacité de mise en veille de "
+"votre moniteur\n"
+" 2.- Le moniteur ne devrait plus rien afficher\n"
+" 3.- Appuyez sur n'importe quelle touche ou bougez la souris pour sortir de "
+"veille"
 
 #. description
 #: ../jobs/monitor.txt.in:46
@@ -1563,35 +1605,52 @@ msgid "Did the monitor go blank?"
 msgstr "L'écran est-il devenu noir ?"
 
 #. description
-#: ../jobs/networking.txt.in:26
+#: ../jobs/networking.txt.in:5
+msgid "Detecting your network controller(s):"
+msgstr "Détection de votre/vos carte(s) réseau :"
+
+#. description
+#: ../jobs/networking.txt.in:21
 msgid "Network Information"
 msgstr "Informations sur le réseau"
 
 #. description
-#: ../jobs/networking.txt.in:46
+#: ../jobs/wireless.txt.in:6
 msgid "Wireless scanning test."
-msgstr ""
+msgstr "Test de recherche de réseaux sans fil."
 
 #. description
-#: ../jobs/networking.txt.in:52
+#: ../jobs/wireless.txt.in:12
 msgid ""
 "Wireless network connection procedure: 1.- Click on the Network Manager "
 "applet 2.- Select a network below the 'Wireless networks' section 3.- Notify "
 "OSD should confirm that the connection has been established 4.- Select Test "
 "to verify that it's possible to establish an HTTP connection"
 msgstr ""
+"Procédure de connexion à un réseau sans fil :\r\n"
+"1.- Cliquez sur l'applet du gestionnaire de connexion réseau\r\n"
+"2.- Sélectionnez un réseau parmi les réseaux disponibles\r\n"
+"3.- Une notification devrait confirmer que la connexion a été établie\r\n"
+"4.- Cliquez sur « Tester » pour vérifier qu'il est possible d'établir une "
+"connexion HTTP"
 
 #. description
-#: ../jobs/networking.txt.in:64
+#: ../jobs/networking.txt.in:39
 msgid ""
 "Wired network connection procedure: 1.- Click on the Network Manager applet "
 "2.- Select a network below the 'Wired network' section 3.- Notify OSD should "
 "confirm that the connection has been established 4.- Select Test to verify "
 "that it's possible to establish an HTTP connection"
 msgstr ""
+"Procédure de connexion au réseau filaire :\r\n"
+"1 .- Cliquez sur l'applet du gestionnaire de connexion réseau\r\n"
+"2 .- Sélectionnez un réseau sous la section « Réseau filaire »\r\n"
+"3 .- Une notification devrait confirmer que la connexion a été établie\r\n"
+"4 .- Cliquez sur « Tester » pour vérifier qu'il est possible d'établir une "
+"connexion HTTP"
 
 #. description
-#: ../jobs/networking.txt.in:76
+#: ../jobs/networking.txt.in:51
 msgid ""
 "Built-in modem network connection procedure: 1.- Connect the telephone line "
 "to the computer 2.- Right click on the Network Manager applet 3.- Select "
@@ -1600,21 +1659,35 @@ msgid ""
 "that the connection has been established 8.- Select Test to verify that it's "
 "possible to establish an HTTP connection"
 msgstr ""
+"Procédure de connexion au réseau par modem intégré :\r\n"
+"1.- Branchez l'ordinateur sur la ligne téléphonique\r\n"
+"2.- Cliquez avec le bouton droit sur l'applet du gestionnaire de connexion "
+"réseau\r\n"
+"3.- Sélectionnez « Modification des connexions »\r\n"
+"4.- Sélectionnez l'onglet « DSL »\r\n"
+"5.- Cliquez sur le bouton « Ajouter »\r\n"
+"6.- Saisissez les paramètres de connexion appropriés\r\n"
+"7.- Une notification devrait confirmer que la connexion a été établie\r\n"
+"8.- Cliquez sur « Tester » pour vérifier qu'il est possible d'établir une "
+"connexion HTTP"
 
 #. description
-#: ../jobs/networking.txt.in:76 ../jobs/peripheral.txt.in:15
+#: ../jobs/networking.txt.in:51 ../jobs/peripheral.txt.in:15
+#: ../jobs/wireless.txt.in:12
 msgid "Was the connection correctly established?"
-msgstr "La connexion a-t-elle été correctement été établie?"
+msgstr "La connexion a-t-elle correctement été établie ?"
 
 #. description
-#: ../jobs/networking.txt.in:92
+#: ../jobs/networking.txt.in:67
 msgid ""
 "Automated test case to verify availability of some system on the network "
 "using ICMP ECHO packets."
 msgstr ""
+"Test automatisé pour vérifier la disponibilité d'un système sur le réseau en "
+"utilisant des paquets ICMP ECHO."
 
 #. description
-#: ../jobs/networking.txt.in:99 ../jobs/peripheral.txt.in:32
+#: ../jobs/networking.txt.in:74 ../jobs/peripheral.txt.in:32
 msgid ""
 "Automated test case to make sure that it's possible to download files "
 "through HTTP"
@@ -1623,46 +1696,46 @@ msgstr ""
 "fichiers via HTTP"
 
 #. description
-#: ../jobs/networking.txt.in:107
+#: ../jobs/networking.txt.in:82
 msgid "Test to see if we can sync local clock to an NTP server"
 msgstr ""
 "Test pour voir si nous pouvons synchroniser l'horloge locale à un serveur NTP"
 
 #. description
-#: ../jobs/networking.txt.in:113
+#: ../jobs/networking.txt.in:88
 msgid ""
 "Verify that an installation of checkbox-server on the network can be reached "
 "over SSH."
 msgstr ""
-"Vérifier que l'installation de checkbox-server sur le réseau peut être "
+"Vérifiez que l'installation de checkbox-server sur le réseau peut être "
 "atteinte via SSH."
 
 #. description
-#: ../jobs/networking.txt.in:119
+#: ../jobs/networking.txt.in:94
 msgid "Try to enable a remote printer on the network and print a test page."
 msgstr ""
-"Essayer d'activer une imprimante à distance sur le réseau et d'imprimer une "
+"Essayez d'activer une imprimante distante sur le réseau et d'imprimer une "
 "page de test."
 
 #. description
-#: ../jobs/networking.txt.in:124
+#: ../jobs/networking.txt.in:99
 msgid "Multiple network cards"
 msgstr "Cartes réseau multiples"
 
 #. description
-#: ../jobs/networking.txt.in:144
+#: ../jobs/networking.txt.in:119
 msgid "Test to measure the network bandwidth"
-msgstr ""
+msgstr "Test pour mesurer la bande passante du réseau"
 
 #. description
 #: ../jobs/optical.txt.in:8
 msgid "The following optical drives were detected:"
-msgstr ""
+msgstr "Les lecteurs optiques suivants ont été détectés :"
 
 #. description
 #: ../jobs/optical.txt.in:18
 msgid "Optical Storage device read tests"
-msgstr ""
+msgstr "Tests de lecture sur les périphériques de stockage optique"
 
 #. description
 #: ../jobs/optical.txt.in:37
@@ -1670,6 +1743,8 @@ msgid ""
 "The detected optical drive seems to support writing. Enter a blank CDROM \\ "
 "into your drive and try writing to it."
 msgstr ""
+"Le lecteur optique détecté semble être compatible avec la gravure. Entrez un "
+" CD-ROM vierge \\ dans votre lecteur pour essayer de graver dessus."
 
 #. description
 #: ../jobs/optical.txt.in:46
@@ -1682,6 +1757,18 @@ msgid ""
 "\"Eject Volume\". 8.- The CD should be ejected and the icon removed from the "
 "desktop."
 msgstr ""
+"Procédure de lecture de pistes audio sur CD :\r\n"
+"1 .- Insérez un CD audio dans votre lecteur optique\r\n"
+"2 .- Une icône doit apparaître dans le lanceur\r\n"
+"3 .- Faites un clic droit sur ​​l'icône et sélectionnez « Ouvrir avec "
+"Banshee »\r\n"
+"4 .- Sélectionnez le CD comme source de lecture et appuyez sur le bouton "
+"lecture\r\n"
+"5 .- La lecture de la musique devrait commencer\r\n"
+"6 .- Arrêter la lecture de la musique après un moment\r\n"
+"7 .- Faites un clic droit sur l'icône dans le lancer et sélectionnez « "
+"Éjecter »\r\n"
+"8 .- Le CD devrait être éjecté et l'icône devrait disparaître du lanceur"
 
 #. description
 #: ../jobs/optical.txt.in:63
@@ -1689,11 +1776,13 @@ msgid ""
 "The detected optical drive seems to support writing. Enter a blank DVD \\ "
 "into your drive and try writing to it."
 msgstr ""
+"Le lecteur optique détecté semble supporter le gravage. Insérez un DVD "
+"vierge \\ dans votre lecteur et essayez de graver dessus."
 
 #. description
 #: ../jobs/optical.txt.in:63
 msgid "Does writing work?"
-msgstr ""
+msgstr "L'écriture a-t-elle fonctionné ?"
 
 #. description
 #: ../jobs/optical.txt.in:72
@@ -1706,12 +1795,21 @@ msgid ""
 "\"Eject Volume\". 7.- The DVD should be ejected and the icon removed from "
 "the desktop."
 msgstr ""
+"Procédure de lecture d'un film sur DVD :\r\n"
+"1 .- Insérez un DVD contenant un film dans votre lecteur optique\r\n"
+"2 .- Une fenêtre devrait apparaître avec différentes actions pouvant être "
+"choisies. Sélectionnez « Ouvrir avec Lecteur vidéo »\r\n"
+"3 .- Le lecteur vidéo devrait s'ouvrir et le film commencer\r\n"
+"4 .- Arrêtez la lecture du film après un moment\r\n"
+"5 .- Une icône a du apparaître dans le lanceur\r\n"
+"6 .- Faites un clic droit sur ​​l'icône et sélectionnez « Éjecter »\r\n"
+"8 .- Le DVD devrait être éjecté et l'icône devrait disparaître du lanceur"
 
 #. description
 #: ../jobs/optical.txt.in:90
 msgid "Insert a DVD.  Then select Test to play the DVD in Totem."
 msgstr ""
-"Insérez un DVD, puis cliquez sur « tester » pour lire le DVD dans Totem."
+"Insérez un DVD, puis cliquez sur « Tester » pour lire le DVD avec Totem."
 
 #. description
 #: ../jobs/optical.txt.in:90
@@ -1724,6 +1822,8 @@ msgid ""
 "Is your gnome system clock displaying the correct date and time for \\ your "
 "timezone?"
 msgstr ""
+"Votre horloge système affiche-elle l'heure et la date correspondant à votre "
+"fuseau horaire ?"
 
 #. description
 #: ../jobs/panel_clock_test.txt.in:14
@@ -1734,6 +1834,15 @@ msgid ""
 "then Time and Date 3.- Ensure that your clock application is set to manual. "
 "4.- Change the time 1 hour back 5.- Close the window and reboot"
 msgstr ""
+"Procédure de vérification de l'heure :\r\n"
+"1.- Cliquez sur « Tester » et vérifiez que l'horloge avance maintenant d'une "
+"heure. \\ Remarque : une à deux minutes peuvent être nécessaires à l'horloge "
+"Gnome pour qu'elle se mette à jour\r\n"
+"2.- Allez dans « Paramètres système » puis « Date et heure »\r\n"
+"3.- Le cas échéant, modifiez la configuration pour que le réglage de l'heure "
+"se fasse manuellement\r\n"
+"4.- Reculez l'horloge d'une heure\r\n"
+"5.- Fermez la fenêtre et redémarrez"
 
 #. description
 #: ../jobs/panel_clock_test.txt.in:14
@@ -1741,11 +1850,13 @@ msgid ""
 "Is your system clock displaying the correct date and time for your \\ "
 "timezone?"
 msgstr ""
+"Votre horloge système affiche-elle l'heure et la date correspondant à votre "
+"fuseau horaire ?"
 
 #. description
 #: ../jobs/panel_reboot.txt.in:4
 msgid "Please restart your machine from the Ubuntu Panel."
-msgstr ""
+msgstr "Veuillez redémarrer votre ordinateur depuis le bandeau Ubuntu."
 
 #. description
 #: ../jobs/panel_reboot.txt.in:4
@@ -1753,21 +1864,25 @@ msgid ""
 "Afterwards be sure to recover the previous Checkbox instance and \\ answer "
 "the question below:"
 msgstr ""
+"Veillez ensuite à reprendre la précédente session de Checkbox et \\ répondez "
+"à la question ci-dessous :"
 
 #. description
 #: ../jobs/panel_reboot.txt.in:4
 msgid "Did it restart and bring up the GUI login cleanly?"
 msgstr ""
+"Cela a-t-il entraîné un redémarrage et un ré-affichage propre de l'interface "
+"de connexion ?"
 
 #. description
 #: ../jobs/pcmcia-pcix.txt.in:3
 msgid "Plug a PCMCIA device into the computer."
-msgstr ""
+msgstr "Branchez un périphérique PCMCIA sur l'ordinateur."
 
 #. description
 #: ../jobs/pcmcia-pcix.txt.in:3
 msgid "Is it detected?"
-msgstr ""
+msgstr "Est-il détecté ?"
 
 #. description
 #: ../jobs/peripheral.txt.in:3
@@ -1778,6 +1893,13 @@ msgid ""
 "detected and proper configuration values \\ should be displayed 5.- Print a "
 "test page"
 msgstr ""
+"Procédure de vérification de la configuration d'une imprimante :\r\n"
+"1 .- Assurez-vous que l'imprimante est disponible sur votre réseau\r\n"
+"2 .- Allez dans « Paramètres système » puis « Impression »\r\n"
+"3 .- Cliquez sur « Ajouter » si l'imprimante n'est pas déjà répertoriée\r\n"
+"4 .- L'imprimante devrait être détectée et les valeurs de configuration "
+"appropriées \\ devraient s'afficher\r\n"
+"5 .- Imprimez une page de test"
 
 #. description
 #: ../jobs/peripheral.txt.in:15
@@ -1790,6 +1912,18 @@ msgid ""
 "connection has been established 8.- Select Test to verify that it's possible "
 "to establish an HTTP connection"
 msgstr ""
+"Procédure de connexion réseau avec Modem USB externe :\r\n"
+"1 .- Branchez le câble USB à l'ordinateur\r\n"
+"2 .- Faites un clic droit sur ​​l'applet du gestionnaire de connexion "
+"réseau\r\n"
+"3 .- Sélectionnez « Modification des connexions »\r\n"
+"4 .- Sélectionnez l'onglet  « DSL » (pour un modem ADSL) ou « Mobile "
+"Broadband » (pour un modem 3G)\r\n"
+"5 .- Cliquez sur le bouton « Ajouter »\r\n"
+"6 .- Saisissez les paramètres de connexion appropriés\r\n"
+"7 .- Une notification devrait confirmer que la connexion a été établie\r\n"
+"8 .- Cliquez sur « Tester » pour vérifier qu'il est possible d'établir une "
+"connexion HTTP"
 
 #. description
 #: ../jobs/phoronix.txt.in:3
@@ -1802,12 +1936,18 @@ msgid ""
 "Shutdown/boot cycle verification procedure: 1.- Shutdown your machine 2.- "
 "Boot your machine 3.- Repeat steps 1 and 2 at least 5 times"
 msgstr ""
+"Procédure de vérification du cycle arrêt/démarrage :\r\n"
+"1 .- Arrêtez votre machine\r\n"
+"2 .- Démarrez votre machine\r\n"
+"3 .- Répétez au moins 5 fois les étapes 1 et 2"
 
 #. description
 #: ../jobs/power-management.txt.in:3
 msgid ""
 "Note: This test case has to be executed manually before checkbox execution"
 msgstr ""
+"Remarque : ce test doit être exécuté manuellement avant l'exécution de "
+"Checkbox"
 
 #. description
 #: ../jobs/power-management.txt.in:14
@@ -1835,31 +1975,33 @@ msgstr ""
 #: ../jobs/power-management.txt.in:13
 msgid "Does closing your laptop lid cause your screen to blank?"
 msgstr ""
+"Le fait de rabattre l'écran de votre ordinateur portable éteint-il votre "
+"écran ?"
 
 #. description
 #: ../jobs/power-management.txt.in:25
 msgid "Click the Test button, then close and open the lid."
-msgstr ""
+msgstr "Cliquez sur « Tester » puis rabattez et rouvrez l'écran."
 
 #. description
 #: ../jobs/power-management.txt.in:25
 msgid "Did the screen turn off while the lid was closed?"
-msgstr ""
+msgstr "L'écran s'est-il éteint lorsque vous l'avez rabattu ?"
 
 #. description
 #: ../jobs/power-management.txt.in:39
 msgid "Click the Test button, then close the lid and wait 5 seconds."
-msgstr ""
+msgstr "Cliquez sur « Tester » puis rabattez l'écran et attendez 5 secondes."
 
 #. description
 #: ../jobs/power-management.txt.in:39
 msgid "Open the lid."
-msgstr ""
+msgstr "Rouvrez l'écran."
 
 #. description
 #: ../jobs/power-management.txt.in:39
 msgid "Did the screen turn back on when the lid was opened?"
-msgstr ""
+msgstr "L'écran s'est-il rallumé lorsque vous l'avez rouvert ?"
 
 #. description
 #: ../jobs/power-management.txt.in:49
@@ -1867,14 +2009,14 @@ msgid "Test the network before suspending."
 msgstr "Tester le réseau avant la mise en veille."
 
 #. description
-#: ../jobs/power-management.txt.in:54
+#: ../jobs/suspend.txt.in:4
 msgid "Record the current resolution before suspending."
-msgstr "Enregistrer la résolution actuelle avant la mise en veille."
+msgstr "Enregistrez la résolution actuelle avant la mise en veille."
 
 #. description
-#: ../jobs/power-management.txt.in:62
+#: ../jobs/suspend.txt.in:12
 msgid "Test the audio before suspending."
-msgstr "Tester le son avant la mise en veille."
+msgstr "Testez le son avant la mise en veille."
 
 #. description
 #: ../jobs/power-management.txt.in:84
@@ -1889,17 +2031,17 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:116
+#: ../jobs/power-management.txt.in:51
 msgid "Make sure that the RTC (Real-Time Clock) device exists."
-msgstr "S'assurer de la présence de l'horloge matérielle (RTC)"
+msgstr "Assurez-vous de la présence de l'horloge temps réel (RTC)"
 
 #. description
-#: ../jobs/power-management.txt.in:123
+#: ../jobs/suspend.txt.in:58
 msgid "Power management Suspend and Resume test"
-msgstr "Test de gestion de l'énergie et de mise en veille et reprise"
+msgstr "Test de mise en veille et de sortie de veille"
 
 #. description
-#: ../jobs/power-management.txt.in:123
+#: ../jobs/suspend.txt.in:58
 msgid ""
 "Select Test and your system will suspend for about 30 - 60 seconds. If your "
 "system does not wake itself up after 60 seconds, please press the power "
@@ -1907,24 +2049,30 @@ msgid ""
 "at all and must be rebooted, restart System Testing after reboot and mark "
 "this test as Failed."
 msgstr ""
+"Cliquez sur « Tester » pour mettre votre système en veille pendant 30 à 60 "
+"secondes environ. Si votre système ne se réveille après 60 secondes, appuyez "
+"brièvement sur le bouton de mise en marche afin de le réveiller "
+"manuellement. Si votre système ne parvient pas à se réveiller et doit être "
+"redémarré, veuillez exécuter à nouveau les tests système après le "
+"redémarrage et indiquer l'échec de ce test en cochant « Non »."
 
 #. description
-#: ../jobs/power-management.txt.in:133
+#: ../jobs/suspend.txt.in:68
 msgid "Test the network after resuming."
-msgstr "Tester le réseau après la reprise."
+msgstr "Testez le réseau après la sortie de veille."
 
 #. description
-#: ../jobs/power-management.txt.in:139
+#: ../jobs/suspend.txt.in:74
 msgid ""
 "Test to see that we have the same resolution after resuming as before."
 msgstr ""
-"Tester la résolution d'écran et vérifier qu'elle n'a pas changé après la "
-"reprise."
+"Testez la résolution d'écran et vérifiez qu'elle n'a pas changé après la "
+"sortie de veille."
 
 #. description
-#: ../jobs/power-management.txt.in:148
+#: ../jobs/suspend.txt.in:83
 msgid "Test the audio after resuming."
-msgstr "Tester le son après la reprise."
+msgstr "Testez le son après la sortie de veille."
 
 #. description
 #: ../jobs/power-management.txt.in:167
@@ -1960,14 +2108,14 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:215
+#: ../jobs/suspend.txt.in:150
 msgid ""
 "This test will check to make sure that supported video modes work after a "
 "suspend and resume.  Select Test to begin."
 msgstr ""
-"Ce test va s'assurer que les différents modes vidéo pris en charge "
-"fonctionnent après la sortie de mise en veille. Cliquez sur « tester » pour "
-"commencer."
+"Ce test va s'assurer du bon fonctionnement des différents modes vidéo pris "
+"en charge après une mise en veille suivie d'une sortie de veille. Cliquez "
+"sur « Tester » pour commencer."
 
 #. description
 #: ../jobs/power-management.txt.in:251
@@ -2000,18 +2148,21 @@ msgid ""
 "is a lengthy test. Select Test to begin. If your system fails to wake and "
 "must be rebooted, please restart System Testing and mark this test as Failed."
 msgstr ""
-"Mise en veille et reprise 30 fois de suite. Notez bien que ceci est un test "
-"très long. Cliquez sur « tester » pour commencer. Si votre système rate un "
-"retour de mise en veille et doit être redémarré, veuillez exécuter a nouveau "
-"les tests système après le redémarrage et cocher « non » pour ce test."
+"Mettez en veille puis sortez de veille 30 fois de suite. Notez que ce test "
+"est long. Cliquez sur « Tester » pour commencer. Si votre système ne "
+"parvient pas à sortir de veille et doit être redémarré, veuillez exécuter à "
+"nouveau les tests système après le redémarrage et indiquer l'échec de ce "
+"test en cochant « Non »."
 
 #. description
 #: ../jobs/stress.txt.in:30
 msgid "Did the system successfully suspend and resume for 30 iterations?"
-msgstr "Le système est-il entré et sorti de sa mise en veille 30 fois ?"
+msgstr ""
+"Le système s'est-il mis en veille puis est-il sorti de veille 30 fois de "
+"suite ?"
 
 #. description
-#: ../jobs/power-management.txt.in:264
+#: ../jobs/hibernate.txt.in:7
 msgid ""
 "This will check to make sure your system can successfully hibernate (if "
 "supported)."
@@ -2020,7 +2171,7 @@ msgstr ""
 "charge)."
 
 #. description
-#: ../jobs/power-management.txt.in:264
+#: ../jobs/hibernate.txt.in:7
 msgid ""
 "Select Test to begin. The system will hibernate and should wake itself "
 "within 5 minutes.  If your system does not wake itself after 5 minutes, "
@@ -2028,15 +2179,15 @@ msgid ""
 "fails to resume from hibernate, please restart System Testing and mark this "
 "test as Failed."
 msgstr ""
-"Cliquez sur « tester » pour commencer. Le système passera en mode "
+"Cliquez sur « Tester » pour commencer. Le système passera en mode "
 "hibernation et devrait se rallumer tout seul au bout de 5 minutes. S'il ne "
 "se réveille pas après 5 minutes, veuillez appuyer brièvement sur le bouton "
-"de mise en marche afin de le réveiller manuellement. S'il ne sort pas du "
-"mode hibernation, veuillez exécuter a nouveau les tests système après le "
-"redémarrage et cocher « non » pour ce test."
+"de mise en marche afin de le réveiller manuellement. S'il ne sort pas de son "
+"hibernation, veuillez exécuter à nouveau les tests système après le "
+"redémarrage et indiquer que le test a échoué en cochant « Non »."
 
 #. description
-#: ../jobs/power-management.txt.in:264
+#: ../jobs/hibernate.txt.in:7
 msgid ""
 "Did the system successfully hibernate and did it work properly after waking "
 "up?"
@@ -2053,12 +2204,13 @@ msgid ""
 "the system fails to resume from hibernation and must be rebooted, please "
 "restart System Testing and mark this test as Failed."
 msgstr ""
-"Mise en veille et reprise 30 fois de suite. Notez bien que ceci est un test "
-"très long. Cliquez sur « tester » pour commencer. S'il ne se réveille pas "
-"après 5 minutes, veuillez appuyer brièvement sur le bouton de mise en marche "
-"afin de le réveiller manuellement. S'il ne sort pas du mode hibernation, "
-"veuillez exécuter a nouveau les tests système après le redémarrage et cocher "
-"« non » pour ce test."
+"Mettez en hibernation puis réveillez 30 fois de suite. Notez que ce test "
+"très long. Cliquez sur « Tester » pour commencer. Si votre système ne se "
+"réveille pas après 5 minutes, veuillez appuyer brièvement sur le bouton de "
+"mise en marche afin de le réveiller manuellement. S'il ne sort pas de son "
+"hibernation et doit être redémarré, veuillez exécuter à nouveau les tests "
+"système après le redémarrage et indiquer l'échec de ce test en cochant "
+"« Non »."
 
 #. description
 #: ../jobs/stress.txt.in:17
@@ -2067,32 +2219,32 @@ msgid ""
 "set, and that grub is set to boot Ubuntu by default if you have a multi-boot "
 "set-up."
 msgstr ""
-"Vous devrez aussi vous assurer que votre système ne demande pas de mot de "
-"passe démarrage ou de disque dur, et que GRUB est paramétré pour démarrer "
-"Ubuntu par défaut dans le cas d'un multi-amorçage"
+"Assurez-vous également que votre système ne demande pas de mot de passe de "
+"démarrage ou de disque dur et que GRUB est paramétré pour démarrer Ubuntu "
+"par défaut dans le cas d'un multi-amorçage."
 
 #. description
 #: ../jobs/stress.txt.in:17
 msgid "Did the system successfully hibernate and wake 30 times?"
-msgstr "Le système a-t-il hiberné et est-il sorti d'hibernation 30 fois ?"
+msgstr "Le système a-t-il hiberné et s'est-il réveillé 30 fois de suite ?"
 
 #. description
-#: ../jobs/power-management.txt.in:273
+#: ../jobs/power-management.txt.in:56
 msgid "Run Colin Kings FWTS wakealarm test"
-msgstr ""
+msgstr "Lancez le test de réveil « Colin Kings FWTS »"
 
 #. description
-#: ../jobs/power-management.txt.in:282
+#: ../jobs/power-management.txt.in:65
 msgid "Check to see if CONFIG_NO_HZ is set in the kernel"
-msgstr ""
+msgstr "Test pour voir si CONFIG_NO_HZ est réglé au niveau du noyau"
 
 #. description
-#: ../jobs/power-management.txt.in:290
+#: ../jobs/suspend.txt.in:194
 msgid "Automatic power management Suspend and Resume test"
-msgstr ""
+msgstr "Test automatique de la mise en veille et de la sortie de veille"
 
 #. description
-#: ../jobs/power-management.txt.in:290
+#: ../jobs/suspend.txt.in:194
 msgid ""
 "Select test and your system will suspend for about 30 - 60 seconds. If your "
 "system does not wake itself up after 60 seconds, please press the power "
@@ -2100,47 +2252,47 @@ msgid ""
 "at all and must be rebooted, restart System Testing after reboot and mark "
 "this test as Failed."
 msgstr ""
-"Si vous cliquez sur « tester », votre système se mettra en veille pendant 30 "
-"à 60 secondes. Si il ne se réveille pas de lui même après 60 secondes, "
-"veuillez appuyer brièvement sur le bouton de mise en marche afin de le "
-"réveiller manuellement. Si il ne se réveille toujours pas et doit être "
-"redémarré, relancez les tests système après le redémarrage et cochez « non » "
-"pour ce test (échec du test)."
+"Cliquez sur « Tester » et votre système se mettra en veille pendant 30 à 60 "
+"secondes environ. S'il ne se réveille après 60 secondes, appuyez brièvement "
+"sur le bouton de mise en marche afin de le réveiller manuellement. Si votre "
+"système ne parvient pas à se réveiller et doit être redémarré, veuillez "
+"exécuter à nouveau les tests système après le redémarrage et indiquer "
+"l'échec de ce test en cochant « Non »."
 
 #. description
 #: ../jobs/qa_regression.txt.in:3
 msgid "QA regression tests (destructive)"
-msgstr "Tests de régression de qualité (destructif)"
+msgstr "Tests de régression de la qualité (destructif)"
 
 #. description
 #: ../jobs/server-services.txt.in:5
 msgid "sshd test"
-msgstr ""
+msgstr "Test de sshd"
 
 #. description
 #: ../jobs/server-services.txt.in:11
 msgid "Print/CUPs server test"
-msgstr ""
+msgstr "Test d'impression/du serveur CUPS"
 
 #. description
 #: ../jobs/server-services.txt.in:18
 msgid "DNS server test"
-msgstr ""
+msgstr "Test du serveur DNS"
 
 #. description
 #: ../jobs/server-services.txt.in:25
 msgid "Samba server test"
-msgstr ""
+msgstr "Test du serveur Samba"
 
 #. description
 #: ../jobs/server-services.txt.in:32
 msgid "LAMP server test"
-msgstr ""
+msgstr "Test du serveur LAMP"
 
 #. description
 #: ../jobs/server-services.txt.in:39
 msgid "Tomcat server test"
-msgstr ""
+msgstr "Test du serveur Tomcat"
 
 #. description
 #: ../jobs/sru_suite.txt.in:4
@@ -2241,6 +2393,8 @@ msgid ""
 "Hammer the CPU as hard as possible for two hours. Intention is to knock it "
 "dead."
 msgstr ""
+"Sollicitez le CPU le plus possible pendant deux heures. Le but est de le "
+"charger à mort."
 
 #. description
 #: ../jobs/unity.txt.in:6
@@ -2248,6 +2402,8 @@ msgid ""
 "Xlib is required for unity testing. This checks for Xlib and installs it if "
 "not available."
 msgstr ""
+"Xlib est nécessaire pour les tests de Unity. Ceci vérifie que Xlib est "
+"présent et l'installe s'il n'est pas disponible."
 
 #. description
 #: ../jobs/unity.txt.in:13
@@ -2255,6 +2411,8 @@ msgid ""
 "This test will verify that Unity is running and then run the autopilot.py "
 "test against the Unity interface."
 msgstr ""
+"Ce test permettra de vérifier que Unity s’exécute et puis exécute le test "
+"autopilot.py pour l'interface Unity."
 
 #. description
 #: ../jobs/usb.txt.in:5
@@ -2262,52 +2420,67 @@ msgid "The following USB controllers were detected:"
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:29
+#: ../jobs/usb.txt.in:24
 msgid ""
 "Plug a USB keyboard into the computer. Then, click on the Test button \\ to "
 "enter text."
 msgstr ""
+"Connectez un clavier USB à l'ordinateur puis cliquez sur « Tester » \\ pour "
+"saisir du texte."
 
 #. description
-#: ../jobs/usb.txt.in:29
+#: ../jobs/usb.txt.in:24
 msgid "Does the keyboard work?"
-msgstr ""
+msgstr "Le clavier fonctionne-t-il ?"
 
 #. description
-#: ../jobs/usb.txt.in:39
+#: ../jobs/usb.txt.in:34
 msgid ""
 "USB mouse verification procedure: 1.- Plug a USB mouse into the computer 2.- "
 "Perform some single/double/right click operations"
 msgstr ""
+"Procédure de vérification pour souris USB :\r\n"
+"1.- Connectez une souris USB à l'ordinateur\r\n"
+"2.- Effectuez des simples et doubles clics ainsi que des clics droits"
 
 #. description
-#: ../jobs/usb.txt.in:51
+#: ../jobs/usb.txt.in:46
 msgid ""
 "Click 'Test' and insert a USB device within 5 seconds. If the test is "
 "successful, you should notice that 'Yes' is selected below. Do not unplug "
 "the device if the test is successful."
 msgstr ""
+"Cliquez sur « Tester » et insérez un périphérique USB dans les 5 secondes. "
+"Si le test est réussi, vous devriez voir que « Oui » est sélectionné ci-"
+"dessous. Ne retirez pas le périphérique si le test est réussi."
 
 #. description
-#: ../jobs/usb.txt.in:51
+#: ../jobs/usb.txt.in:46
 msgid ""
 "If no USB device is inserted or the device is not recognized, the test will "
 "fail and 'No' will be selected below."
 msgstr ""
+"Si aucun périphérique USB n'est inséré ou si le périphérique n'est pas "
+"reconnu, le test va échouer et « Non » sera sélectionné ci-dessous."
 
 #. description
-#: ../jobs/usb.txt.in:63
+#: ../jobs/usb.txt.in:58
 msgid ""
 "Click 'Test' and remove the USB device you inserted within 5 seconds. If the "
 "test is successful, you should notice that 'Yes' is selected below."
 msgstr ""
+"Cliquez sur « Tester » et retirez dans les 5 secondes le périphérique USB "
+"que vous avez inséré. Si le test est réussi, vous devriez voir que « Oui » "
+"est sélectionné ci-dessous."
 
 #. description
-#: ../jobs/usb.txt.in:63
+#: ../jobs/usb.txt.in:58
 msgid ""
 "If the USB device isn't removed or the removal is not registered, the test "
 "will fail and 'No' will be selected below."
 msgstr ""
+"Si le périphérique USB n'est pas retiré ou si son retrait n'a pas été "
+"enregistré, le test va échouer et « Non » sera sélectionné ci-dessous."
 
 #. description
 #: ../jobs/usb.txt.in:61
@@ -2331,24 +2504,28 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:91
+#: ../jobs/usb.txt.in:86
 msgid ""
 "Connect a USB storage device to an external USB slot on this computer. \\ An "
 "icon should appear on the desktop and in the \"Places\" menu at the top of "
 "the screen."
 msgstr ""
+"Connectez un périphérique de stockage USB sur un port USB de cet ordinateur. "
+"\\ Une icône devrait apparaître dans le lanceur."
 
 #. description
-#: ../jobs/usb.txt.in:91
+#: ../jobs/usb.txt.in:86
 msgid ""
 "Confirm that the icon appears, then eject the device. Repeat with each "
 "external \\ USB slot."
 msgstr ""
+"Confirmez que l’icône apparaît, puis éjectez le périphérique. Renouvelez "
+"l'opération pour chaque \\ port USB externe."
 
 #. description
-#: ../jobs/usb.txt.in:91
+#: ../jobs/usb.txt.in:86
 msgid "Do all USB slots work with the device?"
-msgstr ""
+msgstr "Tous les ports USB fonctionnent-ils avec ce périphérique ?"
 
 #. description
 #: ../jobs/user_apps.txt.in:6
@@ -2358,11 +2535,11 @@ msgid ""
 "are found, install them. When Update Manager has finished, please close the "
 "app by clicking the Close button in the lower right corner."
 msgstr ""
-"Ce test exécutera le Gestionnaire de mises à jour et vérifiera s'il y a des "
-"mises à jour disponibles pour le système. Veuillez suivre les instructions "
-"et si des mises à jour sont trouvées, installez-les. Lorsque le gestionnaire "
-"de mises à jour est terminé, veuillez fermer l'application en cliquant sur "
-"le bouton Fermer dans le coin inférieur droit."
+"Ce test exécutera le Gestionnaire de mises à jour et vérifiera si des mises "
+"à jour sont disponibles pour le système. Veuillez suivre les instructions et "
+"si des mises à jour sont trouvées, installez-les. Lorsque le Gestionnaire de "
+"mises à jour aura terminé, veuillez fermer l'application en cliquant sur le "
+"bouton « Fermer » dans le coin inférieur droit."
 
 #. description
 #: ../jobs/user_apps.txt.in:14
@@ -2371,9 +2548,10 @@ msgid ""
 "Folder. In the name box for the new folder, enter the name Test Folder and "
 "hit Enter."
 msgstr ""
-"Cliquez sur « tester » pour ouvrir l'explorateur de fichiers. Dans la barre "
-"de menu, cliquez sur « Fichier -> Créer un dossier ». Dans la boîte de "
-"dialogue, saisissez « Dossier de test » puis pressez la touche Entrée."
+"Cliquez sur « Tester » pour ouvrir l'explorateur de fichiers. Dans la barre "
+"de menu, cliquez sur « Fichier » puis « Créer un nouveau dossier ». Dans la "
+"boîte de dialogue, saisissez « Dossier de test » puis appuyez sur la touche "
+"« Entrée »."
 
 #. description
 #: ../jobs/user_apps.txt.in:14
@@ -2387,10 +2565,10 @@ msgid ""
 "Folder and click on Copy.  Right Click on any white area in the window and "
 "click on Paste."
 msgstr ""
-"Cliquez sur « tester » pour ouvrir l'explorateur de fichiers. Faites un clic "
-"droit sur le dossier nommé « Dossier de test » puis cliquez sur « Copier ». "
-"Faites ensuite un clic droit sur n'importe quelle zone vide du même volet "
-"puis cliquez sur « Coller »."
+"Cliquez sur « Tester » pour ouvrir l'explorateur de fichiers. Faites un clic "
+"droit sur le dossier « Dossier de test » puis cliquez sur « Copier ». Faites "
+"ensuite un clic droit sur n'importe quelle zone vide du même panneau puis "
+"cliquez sur « Coller »."
 
 #. description
 #: ../jobs/user_apps.txt.in:25
@@ -2398,14 +2576,14 @@ msgid ""
 "Right click on the folder called Test Folder(copy) and click Rename. Enter "
 "the name Test Data in the name box and hit Enter."
 msgstr ""
-"Faites un clic droit sur le dossier appelé « Dossier de test(copie) » et "
-"cliquez sur « Renommer ». Saisissez le nom « Données de test » dans la zone "
-"de nom et appuyez sur « Entrée »."
+"Faites un clic droit sur le dossier « Dossier de test (copie) » et cliquez "
+"sur « Renommer ». Saisissez le nom « Données de test » dans la zone de nom "
+"et appuyez sur « Entrée »."
 
 #. description
 #: ../jobs/user_apps.txt.in:25
 msgid "Do you now have a folder called Test Data?"
-msgstr "Avez-vous à présent un dossier appelé « Données de test » ?"
+msgstr "Avez-vous à présent un dossier nommé « Données de test » ?"
 
 #. description
 #: ../jobs/user_apps.txt.in:38
@@ -2413,16 +2591,15 @@ msgid ""
 "Select Test to open the File Browser. Click and drag the folder called Test "
 "Data onto the icon called Test Folder. Release the button."
 msgstr ""
-"Cliquez sur « tester » pour ouvrir l'explorateur de fichiers. Cliquez sur le "
-"dossier nommé « Données de test » et, en maintenant le bouton de souris "
-"enfoncé, faîtes-le glisser sur l'icône du dossier « Dossier de test ». "
-"Relâchez le bouton de souris."
+"Cliquez sur « Tester » pour ouvrir l'explorateur de fichiers. Cliquez sur le "
+"dossier « Données de test » et, en maintenant le bouton de la souris "
+"enfoncé, faites-le glisser sur l'icône du dossier « Dossier de test ». "
+"Relâchez le bouton de la souris."
 
 #. description
 #: ../jobs/user_apps.txt.in:38
 msgid "Double click the folder called Test Folder to open it up."
-msgstr ""
-"Double-cliquez sur le dossier nommé « Dossier de Test » pour l'ouvrir."
+msgstr "Double-cliquez sur le dossier « Dossier de test » pour l'ouvrir."
 
 #. description
 #: ../jobs/user_apps.txt.in:38
@@ -2430,8 +2607,8 @@ msgid ""
 "Was the folder called Test Data successfully moved into the folder called "
 "Test Folder?"
 msgstr ""
-"Le dossier nommé « Données de Test » a-t-il été déplacé avec succès dans le "
-"dossier nommé « Dossier de Test » ?"
+"Le dossier « Données de test » a-t-il été déplacé avec succès dans le "
+"dossier « Dossier de test » ?"
 
 #. description
 #: ../jobs/user_apps.txt.in:51
@@ -2448,7 +2625,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:51
 msgid "Do you now have a file called Test File 1?"
-msgstr "Avez-vous maintenant un fichier nommé « Fichier Test 1 » ?"
+msgstr "Avez-vous maintenant un fichier nommé « fichier de test 1 » ?"
 
 #. description
 #: ../jobs/user_apps.txt.in:51
@@ -2461,9 +2638,9 @@ msgid ""
 "Select Test to open the File Browser. Right click on the file called Test "
 "File 1 and click Copy. Right click in the white space and click Paste."
 msgstr ""
-"Cliquez sur « tester » pour ouvrir l'explorateur de fichiers. Faites un clic "
-"droit sur « Fichier de test 1 » et choisissez « Copier ». Faites un clic "
-"droit dans une zone vide et cliquez sur « Coller »."
+"Cliquez sur « Tester » pour ouvrir l'explorateur de fichiers. Faites un clic "
+"droit sur le fichier « fichier de test 1 » et choisissez « Copier ». Faites "
+"un clic droit dans une zone vide et cliquez sur « Coller »."
 
 #. description
 #: ../jobs/user_apps.txt.in:62
@@ -2471,14 +2648,14 @@ msgid ""
 "Right click on the file called Test File 1(copy) and click Rename. Enter the "
 "name Test File 2 in the name box and hit Enter."
 msgstr ""
-"Faites un clic droit sur le fichier nommé « Fichier Test 1(copie) » et "
-"cliquez sur « Renommer ». Saisissez le nom « Fichier Test 2 » dans la zone "
-"de nom et pressez Entrée."
+"Faites un clic droit sur le fichier « fichier de test 1 (copie) » et cliquez "
+"sur « Renommer ». Saisissez le nom « fichier de test 2 » dans la zone de nom "
+"et appuyez sur « Entrée »."
 
 #. description
 #: ../jobs/user_apps.txt.in:62
 msgid "Do you now have a file called Test File 2?"
-msgstr "Avez-vous maintenant un fichier nommé « Fichier Test 2 » ?"
+msgstr "Avez-vous maintenant un fichier nommé « fichier de test 2 » ?"
 
 #. description
 #: ../jobs/user_apps.txt.in:75
@@ -2486,24 +2663,23 @@ msgid ""
 "Select Test to open the File Browser. Click and drag the file called Test "
 "File 2 onto the icon for the folder called Test Data. Release the button."
 msgstr ""
-"Cliquez sur « tester » pour ouvrir l'explorateur de fichiers. Faites glisser "
-"« Fichier test 2 » sur l'icône du dossier « Données de test ». Relâchez le "
-"bouton de souris."
+"Cliquez sur « Tester » pour ouvrir l'explorateur de fichiers. Faites glisser "
+"le fichier « fichier de test 2 » sur l'icône du dossier « Données de test ». "
+"Relâchez le bouton de la souris."
 
 #. description
 #: ../jobs/user_apps.txt.in:75
 msgid "Double click the icon for Test Data to open that folder up."
 msgstr ""
-"Double-cliquez sur l'icône du répertoire « Données de Test » afin de "
-"l'ouvrir."
+"Double-cliquez sur l'icône du dossier « Données de test » afin de l'ouvrir."
 
 #. description
 #: ../jobs/user_apps.txt.in:75
 msgid ""
 "Was the file Test File 2 successfully moved into the Test Data folder?"
 msgstr ""
-"Le fichier « Fichier Test 2 » a-t-il été déplacé dans le répertoire "
-"« Données de Test » ?"
+"Le fichier « fichier de test 2 » a-t-il été déplacé dans le dossier "
+"« Données de test » ?"
 
 #. description
 #: ../jobs/user_apps.txt.in:88
@@ -2511,13 +2687,14 @@ msgid ""
 "Select Test to open the File Browser. Right click on the file called Test "
 "File 1 and click on Move To Trash."
 msgstr ""
-"Cliquez sur « tester » pour ouvrir l'explorateur de fichiers. Faites un clic "
-"droit sur « Fichier de test 1 » et sélectionnez « Mettre à la corbeille »."
+"Cliquez sur « Tester » pour ouvrir l'explorateur de fichiers. Faites un clic "
+"droit sur le fichier « fichier de test 1 » et sélectionnez « Mettre à la "
+"corbeille »."
 
 #. description
 #: ../jobs/user_apps.txt.in:88
 msgid "Is Test File 1 now gone?"
-msgstr "Le fichier « Fichier Test 1 » a-t-il disparu ?"
+msgstr "Le fichier « fichier de test 1 » a-t-il disparu ?"
 
 #. description
 #: ../jobs/user_apps.txt.in:99
@@ -2525,18 +2702,19 @@ msgid ""
 "Select Test to open the File Browser. Right click on the folder called Test "
 "Folder and click on Move To Trash."
 msgstr ""
-"Cliquez sur « tester » pour ouvrir l'explorateur de fichiers. Faites un clic "
-"droit sur « Dossier de test  » et sélectionnez « Mettre à la corbeille »."
+"Cliquez sur « Tester » pour ouvrir l'explorateur de fichiers. Faites un clic "
+"droit sur le dossier « Dossier de test  » et sélectionnez « Mettre à la "
+"corbeille »."
 
 #. description
 #: ../jobs/user_apps.txt.in:99
 msgid "Has Test Folder been successfully deleted?"
-msgstr "« Dossier de Test » a-t-il supprimé correctement ?"
+msgstr "Le dossier « Dossier de test » a-t-il correctement été supprimé ?"
 
 #. description
 #: ../jobs/user_apps.txt.in:99
 msgid "Close the File Browser."
-msgstr "Fermez le navigateur de fichiers."
+msgstr "Fermez l'explorateur de fichiers."
 
 #. description
 #: ../jobs/user_apps.txt.in:160
@@ -2547,7 +2725,7 @@ msgstr "Test des types de document communs"
 #: ../jobs/user_apps.txt.in:178
 msgid "Select Test to launch Firefox and view the test web page."
 msgstr ""
-"Cliquez sur « tester » pour lancer Firefox et afficher la page Web de test."
+"Cliquez sur « Tester » pour lancer Firefox et afficher la page Web de test."
 
 #. description
 #: ../jobs/user_apps.txt.in:178
@@ -2560,7 +2738,7 @@ msgid ""
 "Select Test to open Firefox with the Java test page, and follow the "
 "instructions there."
 msgstr ""
-"Cliquez sur « tester » pour lancer Firefox et afficher la page de test Java. "
+"Cliquez sur « Tester » pour lancer Firefox et afficher la page de test Java. "
 "Suivez ensuite les instructions."
 
 #. description
@@ -2572,7 +2750,7 @@ msgstr "L'applet s'est-elle affichée ?"
 #: ../jobs/user_apps.txt.in:198
 msgid "Select Test to launch Firefox and view a sample Flash test."
 msgstr ""
-"Cliquez sur « tester » pour lancer Firefox et afficher la page de test Flash."
+"Cliquez sur « Tester » pour lancer Firefox et afficher la page de test Flash."
 
 #. description
 #: ../jobs/user_apps.txt.in:198
@@ -2583,24 +2761,24 @@ msgstr "Avez-vous vu le texte ?"
 #: ../jobs/user_apps.txt.in:208
 msgid "Select Test to launch Firefox and view a short flash video."
 msgstr ""
-"Cliquez sur « tester » pour lancer Firefox et afficher une courte vidéo au "
+"Cliquez sur « Tester » pour lancer Firefox et jouer une courte vidéo au "
 "format Flash."
 
 #. description
 #: ../jobs/user_apps.txt.in:208
 msgid "Did the video play correctly?"
-msgstr "La vidéo s'est-elle affichée correctement ?"
+msgstr "La vidéo a-t-elle été jouée correctement ?"
 
 #. description
 #: ../jobs/user_apps.txt.in:218
 msgid "Select Test to launch Firefox with a sample video."
 msgstr ""
-"Cliquez sur « tester » pour lancer Firefox et afficher une vidéo d'exemple."
+"Cliquez sur « Tester » pour lancer Firefox et jouer une vidéo d'exemple."
 
 #. description
 #: ../jobs/user_apps.txt.in:218
 msgid "Did the video play using a plugin?"
-msgstr "La vidéo s'est-elle affichée en utilisant le greffon ?"
+msgstr "La vidéo a-t-elle été jouée en utilisant le greffon ?"
 
 #. description
 #: ../jobs/user_apps.txt.in:227
@@ -2629,8 +2807,9 @@ msgid ""
 "service. Once you have completed the test, please quit Empathy to continue "
 "here."
 msgstr ""
-"Cliquez sur « tester » pour lancer Empathy, puis configurez-le pour vous "
-"connecter. Une fois le test terminé, veuillez quitter Empathy et revenir ici."
+"Cliquez sur « Tester » pour lancer Empathy, puis configurez-le pour vous "
+"connecter. Une fois le test terminé, veuillez quitter Empathy et poursuivre "
+"ici."
 
 #. description
 #: ../jobs/user_apps.txt.in:271
@@ -2642,6 +2821,22 @@ msgstr "MSN"
 msgid "Were you able to connect correctly and send/receive messages?"
 msgstr ""
 "Avez-vous pu vous connecter correctement et envoyer/recevoir des messages ?"
+
+#: ../checkbox/application.py:66
+msgid "Usage: checkbox [OPTIONS]"
+msgstr "Utilisation : checkbox [OPTIONS]"
+
+#: ../checkbox/application.py:74
+msgid "The file to write the log to."
+msgstr "Le fichier où écrire le journal de ce test."
+
+#: ../checkbox/application.py:77
+msgid "One of debug, info, warning, error or critical."
+msgstr "La valeur peut être : debug, info, warning, error ou critical."
+
+#: ../checkbox/application.py:82
+msgid "Configuration override parameters."
+msgstr "Paramètres prenant le pas sur la configuration."
 
 #: ../checkbox/application.py:84
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist."
@@ -2661,6 +2856,10 @@ msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist_file."
 msgstr ""
 "Forme abrégée pour --config=checkbox/plugins/jobs_info/whitelist_file."
 
+#: ../checkbox/application.py:115
+msgid "Missing configuration file as argument.\n"
+msgstr "Fichier de configuration manquant en argument.\n"
+
 #: ../checkbox/lib/signal.py:23
 msgid ""
 "Hangup detected on controlling terminal or death of controlling process"
@@ -2670,7 +2869,7 @@ msgstr ""
 
 #: ../checkbox/lib/signal.py:24
 msgid "Interrupt from keyboard"
-msgstr "Interruption clavier"
+msgstr "Interrompre à partir du clavier"
 
 #: ../checkbox/lib/signal.py:25
 msgid "Quit from keyboard"
@@ -2682,7 +2881,7 @@ msgstr "Instruction illégale"
 
 #: ../checkbox/lib/signal.py:27
 msgid "Abort signal from abort(3)"
-msgstr "Signal d'abandon depuis abort(3)"
+msgstr "Signal d'abandon provenant de « abort(3) »"
 
 #: ../checkbox/lib/signal.py:28
 msgid "Floating point exception"
@@ -2698,15 +2897,15 @@ msgstr "Référence mémoire invalide"
 
 #: ../checkbox/lib/signal.py:31
 msgid "Broken pipe: write to pipe with no readers"
-msgstr "Tube cassé: écriture dans le tube sans lecteurs"
+msgstr "Tube cassé : écriture dans le tube sans lecteur"
 
 #: ../checkbox/lib/signal.py:32
 msgid "Timer signal from alarm(2)"
-msgstr "Signal d'alarme depuis alarm(2)"
+msgstr "Signal d'horloge provenant de « alarm(2) »"
 
 #: ../checkbox/lib/signal.py:33
 msgid "Termination signal"
-msgstr "Signal d'extinction"
+msgstr "Signal de terminaison"
 
 #: ../checkbox/lib/signal.py:34
 msgid "User-defined signal 1"
@@ -2718,11 +2917,11 @@ msgstr "Signal 2 défini par l'utilisateur"
 
 #: ../checkbox/lib/signal.py:36
 msgid "Child stopped or terminated"
-msgstr "Processus fils arrêté ou terminé"
+msgstr "Arrêt ou terminaison du processus fils"
 
 #: ../checkbox/lib/signal.py:37
 msgid "Continue if stopped"
-msgstr "Continuer si arrêté"
+msgstr "Continuer en cas d'arrêt"
 
 #: ../checkbox/lib/signal.py:38
 msgid "Stop process"
@@ -2730,15 +2929,15 @@ msgstr "Arrêt du processus"
 
 #: ../checkbox/lib/signal.py:39
 msgid "Stop typed at tty"
-msgstr "Arrêt entré dans tty"
+msgstr "Arrêter la sortie sur tty"
 
 #: ../checkbox/lib/signal.py:40
 msgid "tty input for background process"
-msgstr "Entrées dans tty pour le processus en arrière-plan"
+msgstr "Entrées sur tty pour le processus en arrière-plan"
 
 #: ../checkbox/lib/signal.py:41
 msgid "tty output for background process"
-msgstr "Sorties dans tty pour le processus en arrière-plan"
+msgstr "Sorties sur tty pour le processus en arrière-plan"
 
 #: ../checkbox/lib/signal.py:77
 msgid "UNKNOWN"
@@ -2748,9 +2947,41 @@ msgstr "INCONNU"
 msgid "Unknown signal"
 msgstr "Signal inconnu"
 
+#: ../checkbox_cli/cli_interface.py:31
+#: ../checkbox_urwid/urwid_interface.py:684
+msgid "yes"
+msgstr "oui"
+
+#: ../checkbox_cli/cli_interface.py:32
+#: ../checkbox_urwid/urwid_interface.py:685
+msgid "no"
+msgstr "non"
+
+#: ../checkbox_cli/cli_interface.py:33
+#: ../checkbox_urwid/urwid_interface.py:686
+msgid "skip"
+msgstr "passer"
+
+#: ../checkbox_cli/cli_interface.py:126
+msgid "Press any key to continue..."
+msgstr "Appuyez sur une touche pour continuer..."
+
+#: ../checkbox_cli/cli_interface.py:135
+#, python-format
+msgid "Please choose (%s): "
+msgstr "Veuillez choisir (%s) : "
+
+#: ../checkbox_cli/cli_interface.py:315
+msgid "test"
+msgstr "tester"
+
+#: ../checkbox_cli/cli_interface.py:345
+msgid "Please type here and press Ctrl-D when finished:\n"
+msgstr "Veuillez saisir ici et appuyer sur Ctrl-D lorsque vous avez fini :\n"
+
 #: ../checkbox_urwid/urwid_interface.py:60
 msgid "Checkbox System Testing"
-msgstr "Test du système Checkbox."
+msgstr "Test du système Checkbox"
 
 #: ../checkbox_urwid/urwid_interface.py:99
 msgid "Continue"
@@ -2783,17 +3014,21 @@ msgstr "Tester"
 
 #: ../checkbox_urwid/urwid_interface.py:787
 msgid "Test Again"
-msgstr "Tester de nouveau"
+msgstr "Tester à nouveau"
 
 #: ../checkbox_gtk/gtk_interface.py:93
 msgid "hardware database"
 msgstr "base de données matérielles"
 
-#: ../checkbox_gtk/gtk_interface.py:542
+#: ../checkbox_gtk/gtk_interface.py:502
+msgid "_Test Again"
+msgstr "_Tester à nouveau"
+
+#: ../checkbox_gtk/gtk_interface.py:548
 msgid "Info"
 msgstr "Info"
 
-#: ../checkbox_gtk/gtk_interface.py:561
+#: ../checkbox_gtk/gtk_interface.py:567
 msgid "Error"
 msgstr "Erreur"
 
@@ -2802,34 +3037,34 @@ msgstr "Erreur"
 msgid "Unable to start web browser to open %s."
 msgstr "Impossible de lancer le navigateur Web pour ouvrir %s."
 
-#: ../plugins/apport_prompt.py:81
+#: ../plugins/apport_prompt.py:83
 msgid ""
 "Collecting information about this test.\n"
 "This might take a few minutes."
 msgstr ""
-"Collecte d'informations sur ce test.\n"
+"Collecte d'informations concernant le test.\n"
 "Ceci peut prendre quelques minutes."
 
-#: ../plugins/apport_prompt.py:116
+#: ../plugins/apport_prompt.py:118
 msgid ""
 "Collected information is being sent for bug tracking.\n"
 "This might take a few minutes."
 msgstr ""
-"Les informations collectes sont en cours d'envoi pour le système de suivi "
+"Les informations collectées sont en cours d'envoi pour le système de suivi "
 "des bogues.\n"
 "Ceci peut prendre quelques minutes."
 
-#: ../plugins/apport_prompt.py:225
+#: ../plugins/apport_prompt.py:227
 #, python-format
 msgid "Test %s from suite %s failed."
 msgstr "Le test %s de la suite %s a échoué."
 
-#: ../plugins/apport_prompt.py:228
+#: ../plugins/apport_prompt.py:230
 #, python-format
 msgid "Test %s failed."
 msgstr "Le test %s a échoué."
 
-#: ../plugins/apport_prompt.py:246
+#: ../plugins/apport_prompt.py:248
 #, python-format
 msgid "Is a package upgrade in process? Error: %s"
 msgstr "Une mise à jour de paquet est-elle en cours ? Erreur : %s"
@@ -2838,7 +3073,15 @@ msgstr "Une mise à jour de paquet est-elle en cours ? Erreur : %s"
 msgid "Successfully finished testing!"
 msgstr "Les tests se sont terminés avec succès !"
 
-#: ../plugins/intro_prompt.py:43
+#: ../plugins/final_prompt.py:34
+msgid "_Finish"
+msgstr "_Terminer"
+
+#: ../plugins/gather_prompt.py:35
+msgid "Gathering information from your system..."
+msgstr "Collecte d'informations sur votre système..."
+
+#: ../plugins/intro_prompt.py:29
 msgid ""
 "Welcome to System Testing!\n"
 "\n"
@@ -2852,7 +3095,7 @@ msgstr ""
 "fonctionnement de votre système. Une fois ces tests effectués, un "
 "récapitulatif sera affiché pour celui-ci."
 
-#: ../plugins/launchpad_exchange.py:118
+#: ../plugins/launchpad_exchange.py:136
 #, python-format
 msgid "Failed to process form: %s"
 msgstr "Échec du traitement du formulaire : %s"
@@ -2872,14 +3115,14 @@ msgid ""
 "  https://launchpad.net/+login"
 msgstr ""
 "Le rapport suivant a été généré pour être soumis à la base de données de "
-"matériel de Launchpad:\n"
+"matériel de Launchpad :\n"
 "\n"
 "  [[%s|View Report]]\n"
 "\n"
 "Vous pouvez transmettre ces informations concernant votre système en "
 "fournissant l'adresse de courriel que vous utilisez pour votre compte "
-"Launchpad. Si vous n'avez pas de compte Launchpad, veuillez en créer un ici "
-"s'il vous plait:\n"
+"Launchpad. Si vous n'avez pas de compte Launchpad, veuillez en créer un "
+"ici :\n"
 "\n"
 "\n"
 "https://launchpad.net/+login"
@@ -2888,12 +3131,16 @@ msgstr ""
 msgid "No e-mail address provided, not submitting to Launchpad."
 msgstr ""
 "Aucune adresse de courriel n'a été fournie, les résultats ne seront pas "
-"envoyés sur Launchpad."
+"transmis à Launchpad."
+
+#: ../plugins/launchpad_prompt.py:98
+msgid "Exchanging information with the server..."
+msgstr "Échange d'informations avec le serveur..."
 
 #: ../plugins/lock_prompt.py:63
 msgid "There is another checkbox running. Please close it first."
 msgstr ""
-"Une autre instance de checkbox est en cours d'exécution. Veuillez d'abord la "
+"Une autre instance de Checkbox est en cours d'exécution. Veuillez d'abord la "
 "quitter."
 
 #: ../plugins/recover_prompt.py:54
@@ -2904,19 +3151,23 @@ msgstr ""
 "Checkbox a été interrompu avant la fin.\n"
 "Voulez-vous reprendre sa précédente exécution ?"
 
+#: ../plugins/report_prompt.py:39
+msgid "Building report..."
+msgstr "Construction du rapport..."
+
 #: ../plugins/shell_test.py:52
 #, python-format
 msgid "Running %s..."
 msgstr "Exécution de %s…"
 
 #. Get results
-#: ../plugins/suites_prompt.py:105
+#: ../plugins/suites_prompt.py:108
 msgid "Select the suites to test"
 msgstr "Sélectionnez les composants à tester"
 
 #: ../scripts/keyboard_test:21
 msgid "Enter text:\n"
-msgstr "Saisissez le texte:\n"
+msgstr "Saisissez le texte :\n"
 
 #: ../scripts/keyboard_test:41
 msgid "Type Text"
@@ -2933,6 +3184,33 @@ msgstr "Connexion établie avec perte d'un paquet"
 #: ../scripts/internet_test:145
 msgid "Internet connection fully established"
 msgstr "Connexion Internet complètement établie"
+
+#~ msgid "Successfully sent information!"
+#~ msgstr "Informations envoyées avec succès !"
+
+#~ msgid "_Desktop"
+#~ msgstr "_Bureau"
+
+#~ msgid "_Laptop"
+#~ msgstr "_Portable"
+
+#~ msgid "_Server"
+#~ msgstr "_Serveur"
+
+#~ msgid "$(network_test)"
+#~ msgstr "$(network_test)"
+
+#~ msgid "Exchange"
+#~ msgstr "Intervertir"
+
+#~ msgid "Category"
+#~ msgstr "Catégorie"
+
+#~ msgid "Please select the category of your system."
+#~ msgstr "Veuillez sélectionner la catégorie de votre système."
+
+#~ msgid "Running shell tests..."
+#~ msgstr "Exécution des tests shell..."
 
 #~ msgid "Network tests"
 #~ msgstr "Tests des réseaux"
@@ -3149,3 +3427,13 @@ msgstr "Connexion Internet complètement établie"
 #~ msgstr ""
 #~ "Cliquez sur le bouton «Tester» pour jouer un son sur le périphérique audio "
 #~ "détecté automatiquement."
+
+#, python-format
+#~ msgid "Running test %s..."
+#~ msgstr "Exécution du test %s..."
+
+#~ msgid "Authentication"
+#~ msgstr "Authentification"
+
+#~ msgid "Done"
+#~ msgstr "Terminé"

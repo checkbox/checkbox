@@ -14,100 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-09-22 04:42+0000\n"
-"X-Generator: Launchpad (build 13996)\n"
-
-#. description
-#: ../jobs/input.txt.in:4
-msgid "Moving the mouse should move the cursor on the screen."
-msgstr "Mover o mouse deve movimentar o cursor na tela."
-
-#. description
-#: ../jobs/input.txt.in:4
-msgid "Is your mouse working properly?"
-msgstr "Seu mouse está funcionando corretamente?"
-
-#. description
-#: ../jobs/input.txt.in:13
-msgid "Is your keyboard working properly?"
-msgstr "Seu teclado está funcionando corretamente?"
-
-#. description
-#: ../jobs/networking.txt.in:5
-msgid "Detecting your network controller(s):"
-msgstr "Detectando sua(s) placa(s) de rede:"
-
-#. description
-#: ../jobs/networking.txt.in:16
-msgid "Testing your connection to the Internet:"
-msgstr "Testando sua conexão com a Internet:"
-
-#: ../checkbox/application.py:70
-msgid "Print version information and exit."
-msgstr "Imprimir informações sobre versão e sair."
-
-#: ../checkbox_cli/cli_interface.py:31
-#: ../checkbox_urwid/urwid_interface.py:684
-msgid "yes"
-msgstr "sim"
-
-#: ../checkbox_cli/cli_interface.py:32
-#: ../checkbox_urwid/urwid_interface.py:685
-msgid "no"
-msgstr "não"
-
-#: ../checkbox_cli/cli_interface.py:33
-#: ../checkbox_urwid/urwid_interface.py:686
-msgid "skip"
-msgstr "pular"
-
-#: ../checkbox_cli/cli_interface.py:126
-msgid "Press any key to continue..."
-msgstr "Pressione qualquer tecla para continuar..."
-
-#: ../checkbox_cli/cli_interface.py:135
-#, python-format
-msgid "Please choose (%s): "
-msgstr "Por favor escolha (%s): "
-
-#: ../checkbox_cli/cli_interface.py:345
-msgid "Please type here and press Ctrl-D when finished:\n"
-msgstr "Por favor digite aqui e pressione Ctrl-D quando terminar:\n"
-
-#: ../plugins/final_prompt.py:34
-msgid "_Finish"
-msgstr "_Finalizar"
-
-#: ../plugins/launchpad_prompt.py:98
-msgid "Exchanging information with the server..."
-msgstr "Trocando informações com o servidor..."
-
-#~ msgid "Successfully sent information!"
-#~ msgstr "Informação enviada com sucesso!"
-
-#~ msgid "_Desktop"
-#~ msgstr "Área de _Trabalho"
-
-#~ msgid "_Laptop"
-#~ msgstr "_Laptop"
-
-#~ msgid "_Server"
-#~ msgstr "_Servidor"
-
-#~ msgid "$(network_test)"
-#~ msgstr "$(network_test)"
-
-#~ msgid "Authentication"
-#~ msgstr "Autenticação"
-
-#~ msgid "Done"
-#~ msgstr "Concluído"
-
-#~ msgid "Exchange"
-#~ msgstr "Troca"
-
-#~ msgid "Category"
-#~ msgstr "Categoria"
+"X-Launchpad-Export-Date: 2011-11-22 04:41+0000\n"
+"X-Generator: Launchpad (build 14299)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:1 ../checkbox_cli/cli_interface.py:343
 #: ../checkbox_urwid/urwid_interface.py:261
@@ -144,7 +52,7 @@ msgstr "_Selecionar todos"
 msgid "_Skip this test"
 msgstr "_Pular este teste"
 
-#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:534
+#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:537
 msgid "_Test"
 msgstr "_Teste"
 
@@ -989,11 +897,26 @@ msgid "Bootchart information."
 msgstr "Informação do Bootchart."
 
 #. description
+#: ../jobs/input.txt.in:4
+msgid "Moving the mouse should move the cursor on the screen."
+msgstr "Mover o mouse deve movimentar o cursor na tela."
+
+#. description
+#: ../jobs/input.txt.in:4
+msgid "Is your mouse working properly?"
+msgstr "Seu mouse está funcionando corretamente?"
+
+#. description
 #: ../jobs/input.txt.in:13
 msgid "Select Test to open a text area where to type keys on your keyboard."
 msgstr ""
 "Clique em Testar para abrir uma área de texto onde poderá digitar do seu "
 "teclado."
+
+#. description
+#: ../jobs/input.txt.in:13
+msgid "Is your keyboard working properly?"
+msgstr "Seu teclado está funcionando corretamente?"
 
 #. description
 #: ../jobs/install.txt.in:6
@@ -1617,6 +1540,16 @@ msgstr ""
 #: ../jobs/monitor.txt.in:46
 msgid "Did the monitor go blank?"
 msgstr "O monitor ficou em branco?"
+
+#. description
+#: ../jobs/networking.txt.in:5
+msgid "Detecting your network controller(s):"
+msgstr "Detectando sua(s) placa(s) de rede:"
+
+#. description
+#: ../jobs/networking.txt.in:16
+msgid "Testing your connection to the Internet:"
+msgstr "Testando sua conexão com a Internet:"
 
 #. description
 #: ../jobs/networking.txt.in:21
@@ -2803,6 +2736,10 @@ msgstr "Conseguiu se conectar e enviar e receber mensagens?"
 msgid "Usage: checkbox [OPTIONS]"
 msgstr "Uso: checkbox [OPÇÕES]"
 
+#: ../checkbox/application.py:70
+msgid "Print version information and exit."
+msgstr "Imprimir informações sobre versão e sair."
+
 #: ../checkbox/application.py:74
 msgid "The file to write the log to."
 msgstr "O arquivo em que será gravado o registro."
@@ -2921,6 +2858,30 @@ msgstr "DESCONHECIDO"
 msgid "Unknown signal"
 msgstr "Sinal desconhecido"
 
+#: ../checkbox_cli/cli_interface.py:31
+#: ../checkbox_urwid/urwid_interface.py:684
+msgid "yes"
+msgstr "sim"
+
+#: ../checkbox_cli/cli_interface.py:32
+#: ../checkbox_urwid/urwid_interface.py:685
+msgid "no"
+msgstr "não"
+
+#: ../checkbox_cli/cli_interface.py:33
+#: ../checkbox_urwid/urwid_interface.py:686
+msgid "skip"
+msgstr "pular"
+
+#: ../checkbox_cli/cli_interface.py:126
+msgid "Press any key to continue..."
+msgstr "Pressione qualquer tecla para continuar..."
+
+#: ../checkbox_cli/cli_interface.py:135
+#, python-format
+msgid "Please choose (%s): "
+msgstr "Por favor escolha (%s): "
+
 #: ../checkbox_cli/cli_interface.py:315
 msgid "test"
 msgstr "teste"
@@ -2928,6 +2889,10 @@ msgstr "teste"
 #: ../checkbox_cli/cli_interface.py:339
 msgid "test again"
 msgstr "testar novamente"
+
+#: ../checkbox_cli/cli_interface.py:345
+msgid "Please type here and press Ctrl-D when finished:\n"
+msgstr "Por favor digite aqui e pressione Ctrl-D quando terminar:\n"
 
 #: ../checkbox_urwid/urwid_interface.py:60
 msgid "Checkbox System Testing"
@@ -2970,15 +2935,15 @@ msgstr "Testar novamente"
 msgid "hardware database"
 msgstr "Banco de dados de hardware"
 
-#: ../checkbox_gtk/gtk_interface.py:499
+#: ../checkbox_gtk/gtk_interface.py:502
 msgid "_Test Again"
 msgstr "_Testar novamente"
 
-#: ../checkbox_gtk/gtk_interface.py:545
+#: ../checkbox_gtk/gtk_interface.py:548
 msgid "Info"
 msgstr "Informação"
 
-#: ../checkbox_gtk/gtk_interface.py:564
+#: ../checkbox_gtk/gtk_interface.py:567
 msgid "Error"
 msgstr "Erro"
 
@@ -2987,7 +2952,7 @@ msgstr "Erro"
 msgid "Unable to start web browser to open %s."
 msgstr "Não é possível iniciar o navegador para abrir %s."
 
-#: ../plugins/apport_prompt.py:81
+#: ../plugins/apport_prompt.py:83
 msgid ""
 "Collecting information about this test.\n"
 "This might take a few minutes."
@@ -2995,7 +2960,7 @@ msgstr ""
 "Coletando informações sobre este teste.\n"
 "Isto pode demorar alguns minutos."
 
-#: ../plugins/apport_prompt.py:116
+#: ../plugins/apport_prompt.py:118
 msgid ""
 "Collected information is being sent for bug tracking.\n"
 "This might take a few minutes."
@@ -3003,17 +2968,17 @@ msgstr ""
 "Informações coletadas estão sendo enviadas para rastreamento de erro\n"
 "Isto pode levar alguns minutos"
 
-#: ../plugins/apport_prompt.py:225
+#: ../plugins/apport_prompt.py:227
 #, python-format
 msgid "Test %s from suite %s failed."
 msgstr "Teste %s do conjunto %s falhou."
 
-#: ../plugins/apport_prompt.py:228
+#: ../plugins/apport_prompt.py:230
 #, python-format
 msgid "Test %s failed."
 msgstr "O teste %s falhou."
 
-#: ../plugins/apport_prompt.py:246
+#: ../plugins/apport_prompt.py:248
 #, python-format
 msgid "Is a package upgrade in process? Error: %s"
 msgstr "É um pacote de atualização em processo? Erro: %s"
@@ -3022,11 +2987,15 @@ msgstr "É um pacote de atualização em processo? Erro: %s"
 msgid "Successfully finished testing!"
 msgstr "Teste concluído com sucesso!"
 
+#: ../plugins/final_prompt.py:34
+msgid "_Finish"
+msgstr "_Finalizar"
+
 #: ../plugins/gather_prompt.py:35
 msgid "Gathering information from your system..."
 msgstr "Recolhendo informações de seu sistema..."
 
-#: ../plugins/intro_prompt.py:41
+#: ../plugins/intro_prompt.py:29
 msgid ""
 "Welcome to System Testing!\n"
 "\n"
@@ -3045,7 +3014,7 @@ msgstr ""
 msgid "Failed to process form: %s"
 msgstr "Falhou para processar formulário: %s"
 
-#: ../plugins/launchpad_exchange.py:147
+#: ../plugins/launchpad_exchange.py:151
 #, python-format
 msgid ""
 "Failed to contact server. Please try\n"
@@ -3062,7 +3031,7 @@ msgstr ""
 "diretamente para o banco de dados do sistema:\n"
 "https://launchpad.net/+hwdb/+submit"
 
-#: ../plugins/launchpad_exchange.py:156
+#: ../plugins/launchpad_exchange.py:160
 msgid ""
 "Failed to upload to server,\n"
 "please try again later."
@@ -3070,7 +3039,7 @@ msgstr ""
 "Falha ao enviar para o servidor,\n"
 "tente novamente mais tarde."
 
-#: ../plugins/launchpad_exchange.py:168
+#: ../plugins/launchpad_exchange.py:172
 msgid "Information not posted to Launchpad."
 msgstr "A informação não foi gravada no Launchpad."
 
@@ -3107,6 +3076,10 @@ msgstr "Nenhum endereço de e-mail fornecido, não enviando para o Launchpad."
 msgid "Email address must be in a proper format."
 msgstr "Endereço de e-mail precisa estar em formato apropriado."
 
+#: ../plugins/launchpad_prompt.py:98
+msgid "Exchanging information with the server..."
+msgstr "Trocando informações com o servidor..."
+
 #: ../plugins/lock_prompt.py:63
 msgid "There is another checkbox running. Please close it first."
 msgstr "Há outro Checkbox em execução. Por favor finalize-o primeiro."
@@ -3129,7 +3102,7 @@ msgid "Running %s..."
 msgstr "Executando %s..."
 
 #. Get results
-#: ../plugins/suites_prompt.py:104
+#: ../plugins/suites_prompt.py:108
 msgid "Select the suites to test"
 msgstr "Selecione as suítes para teste"
 
@@ -3152,6 +3125,30 @@ msgstr "Conexão estabelecida perdeu um pacote"
 #: ../scripts/internet_test:145
 msgid "Internet connection fully established"
 msgstr "Conexão de Internet totalmente estabelecida"
+
+#~ msgid "Successfully sent information!"
+#~ msgstr "Informação enviada com sucesso!"
+
+#~ msgid "_Desktop"
+#~ msgstr "Área de _Trabalho"
+
+#~ msgid "_Laptop"
+#~ msgstr "_Laptop"
+
+#~ msgid "_Server"
+#~ msgstr "_Servidor"
+
+#~ msgid "$(network_test)"
+#~ msgstr "$(network_test)"
+
+#~ msgid "Exchange"
+#~ msgstr "Troca"
+
+#~ msgid "Category"
+#~ msgstr "Categoria"
+
+#~ msgid "Please select the category of your system."
+#~ msgstr "Por favor selecione a categoria do seu sistema."
 
 #~ msgid "Network tests"
 #~ msgstr "Testes de rede"
@@ -3372,3 +3369,9 @@ msgstr "Conexão de Internet totalmente estabelecida"
 #~ "adequadamente 7.- Uma notificação deverá confirmar que a conexão foi "
 #~ "estabelecida 8.- Selecione Testar para verificar que é possível estabelecer "
 #~ "\\ conexões http e ftp."
+
+#~ msgid "Authentication"
+#~ msgstr "Autenticação"
+
+#~ msgid "Done"
+#~ msgstr "Concluído"
