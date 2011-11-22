@@ -41,7 +41,7 @@ plugin: shell
 name: miscellanea/is_laptop
 _description:
     Determine if we need to run tests specific to portable computers that may not apply to desktops.
-command: test -d /proc/acpi/battery
+command: check_is_portable `dmidecode -t 3 | grep "Type:" | awk '{print $2}'`
 
 plugin: shell
 name: miscellanea/apport-directory
