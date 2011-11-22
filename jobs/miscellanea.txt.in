@@ -39,9 +39,10 @@ _description:
 
 plugin: shell
 name: miscellanea/is_laptop
+user: root
 _description:
     Determine if we need to run tests specific to portable computers that may not apply to desktops.
-command: check_is_portable `dmidecode -t 3 | grep "Type:" | awk '{print $2}'`
+command: dmidecode -t 3 | awk '/Type:/ { type=$2 }; END { switch (type) { case /Laptop|Notebook|Portable/: exit 0; default: exit 1 }}'
 
 plugin: shell
 name: miscellanea/apport-directory
