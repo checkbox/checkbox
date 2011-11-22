@@ -1,13 +1,17 @@
 plugin: shell 
 name: bluetooth/detect
-requires: package.name == 'bluez'
+requires: 
+ package.name == 'bluez'
+ device.category == 'BLUETOOTH'
 command: hcitool dev | tail -n+2 | awk '{print $2}' |grep -E "^([0-9a-fA-F]{2}\:){5}[0-9a-fA-F]{2}$"
 _description:
  This test will detect your Bluetooth device and output the device's hardware address.  If no device is found, the test will exit with an error.
 
 plugin: shell
 name: bluetooth/detect-output
-requires: package.name == 'bluez'
+requires:
+ package.name == 'bluez'
+ device.category == 'BLUETOOTH'
 command: hcitool dev | tail -n+2 | awk '{print $2}'; hcitool dev | tail -n+2 | awk '{print $2}' > $CHECKBOX_DATA/bluetooth_address
 _description:
  Automated test to store bluetooth device information in checkbox report
@@ -47,7 +51,6 @@ _description:
 plugin: manual
 name: bluetooth/audio
 depends: bluetooth/detect
-requires: package.name == 'alsa-utils'
 command: arecord -d 5 -D bluetooth -f S16_LE | aplay -D bluetooth -f S16_LE
 _description:
  PURPOSE:

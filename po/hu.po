@@ -14,124 +14,17 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-09-22 04:42+0000\n"
-"X-Generator: Launchpad (build 13996)\n"
-
-#: ../gtk/checkbox-gtk.ui.h:2
-msgid "Ne_xt"
-msgstr "Kö_vetkező"
-
-#: ../gtk/checkbox-gtk.ui.h:5
-msgid "_No"
-msgstr "_Nem"
-
-#: ../gtk/checkbox-gtk.ui.h:6
-msgid "_Previous"
-msgstr "_Előző"
-
-#: ../gtk/checkbox-gtk.ui.h:8
-msgid "_Skip this test"
-msgstr "Ezen te_szt kihagyása"
-
-#: ../gtk/checkbox-gtk.ui.h:10
-msgid "_Yes"
-msgstr "_Igen"
-
-#: ../checkbox/application.py:70
-msgid "Print version information and exit."
-msgstr "Verziószám kiírása és kilépés."
-
-#: ../checkbox/application.py:74
-msgid "The file to write the log to."
-msgstr "A napló írása ebbe a fájlba."
-
-#: ../checkbox/application.py:77
-msgid "One of debug, info, warning, error or critical."
-msgstr "A debug, info, warning, error vagy critical egyike."
-
-#: ../checkbox/application.py:115
-msgid "Missing configuration file as argument.\n"
-msgstr "Hiányzik a konfigurációs fájl neve az argumentumból.\n"
-
-#: ../checkbox_cli/cli_interface.py:31
-#: ../checkbox_urwid/urwid_interface.py:684
-msgid "yes"
-msgstr "igen"
-
-#: ../checkbox_cli/cli_interface.py:32
-#: ../checkbox_urwid/urwid_interface.py:685
-msgid "no"
-msgstr "nem"
-
-#: ../checkbox_cli/cli_interface.py:33
-#: ../checkbox_urwid/urwid_interface.py:686
-msgid "skip"
-msgstr "kihagyás"
-
-#: ../checkbox_cli/cli_interface.py:135
-#, python-format
-msgid "Please choose (%s): "
-msgstr "Válasszon (%s): "
-
-#: ../checkbox_cli/cli_interface.py:345
-msgid "Please type here and press Ctrl-D when finished:\n"
-msgstr "Írja be ide, majd nyomja meg a Ctrl-D kombinációt, ha elkészült.\n"
-
-#: ../checkbox_gtk/gtk_interface.py:499
-msgid "_Test Again"
-msgstr "_Teszt megismétlése"
-
-#: ../plugins/final_prompt.py:34
-msgid "_Finish"
-msgstr "Be_fejezés"
-
-#: ../plugins/launchpad_exchange.py:156
-msgid ""
-"Failed to upload to server,\n"
-"please try again later."
-msgstr ""
-"A feltöltés a kiszolgálóra meghiúsult,\n"
-"később próbálja meg újra."
-
-#: ../plugins/launchpad_exchange.py:168
-msgid "Information not posted to Launchpad."
-msgstr "Az információk nem kerültek elküldésre a Launchpad oldalára."
-
-#: ../plugins/launchpad_prompt.py:92
-msgid "Email address must be in a proper format."
-msgstr "Az e-mail címet megfelelő formában kell megadni."
-
-#~ msgid "Successfully sent information!"
-#~ msgstr "Az információk sikeresen elküldve."
-
-#~ msgid "_Desktop"
-#~ msgstr "As_ztali"
-
-#~ msgid "_Laptop"
-#~ msgstr "N_oteszgép"
-
-#~ msgid "_Server"
-#~ msgstr "_Kiszolgáló"
-
-#~ msgid "$(network_test)"
-#~ msgstr "$(network_test)"
-
-#~ msgid "Authentication"
-#~ msgstr "Hitelesítés"
-
-#~ msgid "Done"
-#~ msgstr "Kész"
-
-#~ msgid "Exchange"
-#~ msgstr "Adatcsere"
-
-#~ msgid "Category"
-#~ msgstr "Kategória"
+"X-Launchpad-Export-Date: 2011-11-22 04:39+0000\n"
+"X-Generator: Launchpad (build 14299)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:1 ../checkbox_cli/cli_interface.py:343
 #: ../checkbox_urwid/urwid_interface.py:261
 msgid "Further information:"
 msgstr "Bővebb információ:"
+
+#: ../gtk/checkbox-gtk.ui.h:2
+msgid "Ne_xt"
+msgstr "Kö_vetkező"
 
 #. Title of the user interface
 #: ../gtk/checkbox-gtk.ui.h:3 ../gtk/checkbox-gtk.desktop.in.h:1
@@ -143,13 +36,29 @@ msgstr "Rendszerteszt"
 msgid "_Deselect All"
 msgstr "Se_melyik"
 
+#: ../gtk/checkbox-gtk.ui.h:5
+msgid "_No"
+msgstr "_Nem"
+
+#: ../gtk/checkbox-gtk.ui.h:6
+msgid "_Previous"
+msgstr "_Előző"
+
 #: ../gtk/checkbox-gtk.ui.h:7
 msgid "_Select All"
 msgstr "Ö_sszes"
 
-#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:534
+#: ../gtk/checkbox-gtk.ui.h:8
+msgid "_Skip this test"
+msgstr "Ezen te_szt kihagyása"
+
+#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:537
 msgid "_Test"
 msgstr "_Teszt"
+
+#: ../gtk/checkbox-gtk.ui.h:10
+msgid "_Yes"
+msgstr "_Igen"
 
 #: ../gtk/checkbox-gtk.desktop.in.h:2
 msgid "Test and report system information"
@@ -257,6 +166,9 @@ msgid ""
 "input.  This makes the most sense when the output and input \\ are directly "
 "connected, as with a patch cable."
 msgstr ""
+"Egy hang kerül visszajátszásra az alap kimeneten, melyet az \\ alap "
+"bemeneten próbál a rendszer érzékelni. A legjobb eredményt úgy érheti el, ha "
+"ez a kettő össze van kötve egy patch kábellel."
 
 #. description
 #: ../jobs/autotest.txt.in:3
@@ -271,7 +183,7 @@ msgstr "Az ön Bluetooth eszközének címe: $output"
 #. description
 #: ../jobs/bluetooth.txt.in:12 ../jobs/graphics.txt.in:15
 msgid "Automated test to store output in checkbox report"
-msgstr ""
+msgstr "Automatikus teszt a checkbox jelentések kimeneteinek tárolására"
 
 #. description
 #: ../jobs/bluetooth.txt.in:18
@@ -284,6 +196,14 @@ msgid ""
 "icon and select browse files 7.- Authorize the computer to browse the files "
 "in the device if needed 8.- You should be able to browse the files"
 msgstr ""
+"Bluetoothos fájltallózás ellenőrzése: 1.- Engedélyezze a bluetoothot "
+"valamilyen mobil eszközön (PDA, okostelefon, stb) 2.- Kattintson a bluetooth "
+"ikonra a panelen. 3.- Válassza az „Új eszköz beállítása…” lehetőséget. 4.- "
+"Majd válassza ki a listából az eszközt. 5.- A varázslóban megadott pin kódot "
+"írja be az eszközön is. 6.- Párosítsa az eszközt a számítógéppel. 7.- A "
+"bluetooth ikonra kattintva válassza a „Fájlok tallózás az eszközön…” "
+"lehetőséget. 8.- Hitelesítse az eszközt, ha szükséges. 9.- Most már képesnek "
+"kell lennie a fájlok tallózására."
 
 #. description
 #: ../jobs/bluetooth.txt.in:35
@@ -294,7 +214,7 @@ msgid ""
 "from the mobile device to the computer 5.- Verify that the file was "
 "correctly copied"
 msgstr ""
-"Bluetooth fájlmásolás ellenőrzése: 1.- Győződjön meg róla, hogy tudja "
+"Bluetoothos fájlmásolás ellenőrzése: 1.- Győződjön meg róla, hogy tudja "
 "böngészni a mobil eszköz fájljait 2.- Másoljon át egy fájlt a számítógépéről "
 "a mobil eszközre 3.- Ellenőrizze, hogy a fájl megfelelően át lett-e másolva "
 "4.- Most másoljon a mobil eszközről a számítógépére egy fájlt 5.- "
@@ -310,6 +230,12 @@ msgid ""
 "computer 7.- Select Test to record for five seconds and reproduce in the "
 "bluetooth device"
 msgstr ""
+"Bluetoothos zenehallgatás ellenőrzése: 1.- Aktiválja a bluetoothos "
+"fejhallgatót. 2.- Kattintson a bluetooth ikonra a panelen. 3.- Válassza az "
+"„Új eszköz beállítása…” lehetőséget. 4.- Majd válassza ki a listából az "
+"eszközt. 5.- A varázslóban megadott pin kódot írja be az eszközön is. 6.- "
+"Párosítsa az eszközt a számítógéppel. 7.- A Teszt gombra kattintáskor 5 "
+"másodperces felvétel készül, amit azután lejátszásra kerül."
 
 #. description
 #: ../jobs/bluetooth.txt.in:66
@@ -318,6 +244,10 @@ msgid ""
 "the bluetooth icon in the menu bar 3.- Select 'Setup new device' 4.- Look "
 "for the device in the list and select it 5.- Select Test to enter text"
 msgstr ""
+"Bluetoothos billentyűzet ellenőrzése: 1.-Aktiválja a billentyűzetet. 2.-"
+"Kattintson a bluetooth ikonra a panelen. 3.- Válassza az „Új eszköz "
+"beállítása…” lehetőséget. 4.- Majd válassza ki a listából az eszközt. 5.- "
+"Kattintson a Teszt gombra, majd próbáljon szöveget beírni."
 
 #. description
 #: ../jobs/bluetooth.txt.in:79
@@ -442,12 +372,12 @@ msgstr ""
 #. description
 #: ../jobs/cpu.txt.in:15
 msgid "Test for clock jitter."
-msgstr ""
+msgstr "Óracsúszás tesztelése"
 
 #. description
 #: ../jobs/cpu.txt.in:23
 msgid "Test offlining CPUs in a multicore system."
-msgstr ""
+msgstr "CPU-k kikapcsolásának tesztelése többmagos rendszereken."
 
 #. description
 #: ../jobs/cpu.txt.in:30
@@ -538,6 +468,8 @@ msgstr "Az alapértelmezett telepítéskor használt legnagyobb lemezhely teszt"
 #: ../jobs/disk.txt.in:56
 msgid "Verify system storage performs at or above baseline performance"
 msgstr ""
+"Ellenőrzi, hogy a rendszer háttértára az átlagos teljesítményen vagy afölött "
+"teljesít-e"
 
 #. description
 #: ../jobs/disk.txt.in:73
@@ -655,11 +587,11 @@ msgid ""
 " 4.- Copy some files from the firewire HDD to your internal HDD."
 msgstr ""
 "Firewire merevlemez ellenőrzése:\n"
-"1.- Csatlakoztasson egy Firewire merevlemezt a számítógépéhez.\n"
-"2.- A felugró ablakban válassza ki, hogy végrehajtani kívánt műveletet "
-"(mappa megnyitása, fényképkezelő, stb).\n"
-"3.- Másoljon néhány fájlt a belső merevlemezéről a firewire merevlemezre.\n"
-"4.- Másoljon néhány fájlt a firewire merevlemezről a belső merevlemezre."
+" 1.- Csatlakoztasson egy Firewire merevlemezt a számítógépéhez.\n"
+" 2.- A felugró ablakban válassza ki a végrehajtani kívánt műveletet (mappa "
+"megnyitása, fényképkezelő stb).\n"
+" 3.- Másoljon néhány fájlt a belső merevlemezéről a Firewire merevlemezre.\n"
+" 4.- Másoljon néhány fájlt a Firewire merevlemezről a belső merevlemezre."
 
 #. description
 #: ../jobs/firewire.txt.in:3
@@ -784,6 +716,8 @@ msgid ""
 "In the future add the returned time as a benchmark result to the checkbox "
 "report"
 msgstr ""
+"A jövőben a visszaadott időt hozzáadja a Rendszerteszt jelentéshez "
+"teljesítményteszt-eredményként"
 
 #. description
 #: ../jobs/graphics.txt.in:31
@@ -793,6 +727,11 @@ msgid ""
 "The resolution should change 5.- Select the original resolution from the "
 "dropdown list 6.- Click on Apply 7.- The resolution should change again"
 msgstr ""
+"Képernyőfelbontás megváltoztatásának folyamata: 1.- Nyissa meg a Rendszer-"
+">Beállítások->Monitorokat 2.- Válasszon ki egy új felbontást a legördülő "
+"menüből 3.- Kattintson az Alkalmaz gombra 4.- A felbontásnak meg kell "
+"változnia 5.- Válassza ki az eredeti felbontást a legördülő menüből 6.- "
+"Kattintson az Alkalmaz gombra 7. A felbontásnak ismét meg kell változnia"
 
 #. description
 #: ../jobs/graphics.txt.in:31
@@ -809,6 +748,12 @@ msgid ""
 "display configuration change should be reverted 7.- Repeat 2-6 for different "
 "rotation values"
 msgstr ""
+"Képernyő elforgatásának folyamata: 1.- Nyissa meg a Rendszer->Beállítások-"
+">Monitorokat 2.- Válassza ki a forgatás mértékét a legördülő menüből 3.- "
+"Kattintson az Alkalmaz gombra 4.- A képernyőnek el kell fordulnia a "
+"beállított mértékben 5.- Kattintson a Korábbi beállítások visszaállítása "
+"gombra 6.- A képernyőnek vissza kell fordulnia 7.- Ismételje meg a lépéssort "
+"2-6-ig a különböző beállításokért"
 
 #. description
 #: ../jobs/graphics.txt.in:46
@@ -823,7 +768,7 @@ msgstr "Az X folyamat futásának tesztelése."
 #. description
 #: ../jobs/graphics.txt.in:68
 msgid "Test that the X is not running in failsafe mode."
-msgstr ""
+msgstr "Annak ellenőrzése, hogy az X nem csökkentett módban fut-e."
 
 #. description
 #: ../jobs/graphics.txt.in:75
@@ -878,7 +823,7 @@ msgstr "Látta a színes sávokat és a statikus zajt?"
 #: ../jobs/graphics.txt.in:113
 msgid ""
 "The following screens and video modes have been detected on your system:"
-msgstr "A következő képernyők és videomódok találhatók a rendszerén:"
+msgstr "A következő kijelzők és videomódok találhatók a rendszerén:"
 
 #. description
 #: ../jobs/graphics.txt.in:125
@@ -918,7 +863,7 @@ msgstr "Képernyőkép készítése."
 #. description
 #: ../jobs/info.txt.in:80
 msgid "Gather log from the firmware test suite run"
-msgstr ""
+msgstr "Napló készítése a firmware tesztcsomag futtatásából"
 
 #. description
 #: ../jobs/info.txt.in:91
@@ -1463,6 +1408,8 @@ msgid ""
 "This will run some basic connectivity tests against a BMC, verifying that "
 "IPMI works."
 msgstr ""
+"Alapvető kapcsolódási tesztek futtatása egy BMC-hez, az IPMI működésének "
+"ellenőrzéséhez."
 
 #. description
 #: ../jobs/monitor.txt.in:3
@@ -1558,6 +1505,12 @@ msgid ""
 " 2.- The monitor should go blank.\n"
 " 3.- Press any key or move the mouse to recover."
 msgstr ""
+"A monitor energiagazdálkodásának ellenőrzése:\n"
+" 1. - Kattintson a Teszt gombra a képernyő energiagazdálkodási "
+"tulajdonságainak kipróbálásához.\n"
+" 2. - A képernyőnek el kell sötétülnie.\n"
+" 3. - Nyomjon le egy billentyűt, vagy mozdítsa meg az egeret a "
+"visszatéréshez."
 
 #. description
 #: ../jobs/monitor.txt.in:46
@@ -1601,6 +1554,11 @@ msgid ""
 "confirm that the connection has been established 4.- Select Test to verify "
 "that it's possible to establish an HTTP connection"
 msgstr ""
+"Vezetékes hálózathoz kapcsolódás eljárása: 1.- Kattintson a Hálózati "
+"Beállítások kisalkalmazásra 2.- Válasszon ki egy hálózatot a „Vezetékes "
+"hálózat” részen 3.- OSD-n értesítést kell kapnia, hogy a kapcsolat létrejött "
+"4.- Válassza a Tesztet annak ellenőrzéséhez, hogy lehetséges-e HTTP "
+"kapcsolatot létrehozni"
 
 #. description
 #: ../jobs/networking.txt.in:51
@@ -1625,6 +1583,8 @@ msgid ""
 "Automated test case to verify availability of some system on the network "
 "using ICMP ECHO packets."
 msgstr ""
+"Automatikus teszteset egy rendszer elérhetőségének ellenőrzéséhez ICMP ECHO "
+"csomagok küldésével a hálózaton."
 
 #. description
 #: ../jobs/networking.txt.in:74 ../jobs/peripheral.txt.in:32
@@ -1695,6 +1655,14 @@ msgid ""
 "\"Eject Volume\". 8.- The CD should be ejected and the icon removed from the "
 "desktop."
 msgstr ""
+"Zenei CD lejátszásának folyamata: 1.- Helyezzen be egy zenei CD-t az optikai "
+"meghajtóba. 2.- Egy ikonnak meg kell jelennie az asztalon. 3.- Kattintson "
+"jobb gombbal az ikonra és válassza a „Megnyitás Rhythmbox zenelejátszóval” "
+"menüpontot. 4.- Válassza ki a CD-t, mint lejátszási forrást és kattintson az "
+"indításra. 5.- A zenének el kell indulnia. 6.- Állítsa meg a zenét egy idő "
+"után. 7.- Kattintson jobb gombbal az asztali ikonra és válassza a „Kiadás” "
+"menüpontot. 8.- A CD-meghajtónak ki kell adnia a lemezt és az asztali "
+"ikonnak el kell tűnnie."
 
 #. description
 #: ../jobs/optical.txt.in:63
@@ -1773,6 +1741,8 @@ msgid ""
 "Afterwards be sure to recover the previous Checkbox instance and \\ answer "
 "the question below:"
 msgstr ""
+"Ezután állítsa helyre a korábbi Rendszerteszt adatait, és válaszoljon a "
+"következő kérdésre:"
 
 #. description
 #: ../jobs/panel_reboot.txt.in:4
@@ -1937,6 +1907,11 @@ msgid ""
 "at all and must be rebooted, restart System Testing after reboot and mark "
 "this test as Failed."
 msgstr ""
+"Nyomja meg a Teszt gombot, és a rendszere 30-60 másodpercre felfüggeszti "
+"magát. Ha a rendszer nem ébred fel 60 másodperc után, akkor nyomja meg "
+"röviden a bekapcsológombot a rendszer saját kezű felébresztéséhez. Ha a "
+"rendszer nem ébred fel, és újra kell indítani, akkor indítsa újra a "
+"Rendszerteszt programot, és jelölje meg ezt a tesztet Nem sikerültként."
 
 #. description
 #: ../jobs/suspend.txt.in:68
@@ -2112,12 +2087,12 @@ msgstr ""
 #. description
 #: ../jobs/power-management.txt.in:56
 msgid "Run Colin Kings FWTS wakealarm test"
-msgstr ""
+msgstr "Colin King FWTS wakealarm tesztjének futtatása"
 
 #. description
 #: ../jobs/power-management.txt.in:65
 msgid "Check to see if CONFIG_NO_HZ is set in the kernel"
-msgstr ""
+msgstr "Ellenőrzi, hogy a CONFIG_NO_HZ be van-e állítva a kernelben"
 
 #. description
 #: ../jobs/suspend.txt.in:194
@@ -2274,6 +2249,7 @@ msgid ""
 "Hammer the CPU as hard as possible for two hours. Intention is to knock it "
 "dead."
 msgstr ""
+"A CPU lehető legteljesebb terhelése két órán át. A cél annak kiütése."
 
 #. description
 #: ../jobs/unity.txt.in:6
@@ -2433,8 +2409,8 @@ msgid ""
 "hit Enter."
 msgstr ""
 "Nyomja meg a Teszt gombot a Fájlböngésző megnyitásához. A menüsorban "
-"válassza ki a Fájl -> Mappa létrehozását. Írja be névnek, hogy \"Teszt "
-"mappa\" és nyomjon Entert."
+"válassza ki a Fájl -> Mappa létrehozását. Írja be névnek, hogy „Tesztmappa”, "
+"és nyomja meg az Entert."
 
 #. description
 #: ../jobs/user_apps.txt.in:14
@@ -2449,7 +2425,7 @@ msgid ""
 "click on Paste."
 msgstr ""
 "Nyomja meg a Teszt gombot a Fájlböngésző megnyitásához. Kattintson jobb "
-"egérgombbal a „Teszt mappa”-ra majd válassza ki a Másolást. Ezután jobb "
+"egérgombbal a „Tesztmappa” mappára, majd válassza ki a Másolást. Ezután jobb "
 "egérgombbal egy üres területre kattintva, válassza a Beillesztést."
 
 #. description
@@ -2458,14 +2434,14 @@ msgid ""
 "Right click on the folder called Test Folder(copy) and click Rename. Enter "
 "the name Test Data in the name box and hit Enter."
 msgstr ""
-"A jobb egérgombbal kattintson arra a mappára, melynek Tesztmappa(másolat) a "
-"neve, majd válassza az átnevezés lehetőséget. A név mezőbe írja be a Teszt "
-"Adat nevet, majd nyomja le az Enter billentyűt."
+"A jobb egérgombbal kattintson a Tesztmappa(másolat) nevű mappára, majd "
+"válassza az Átnevezés lehetőséget. A név mezőbe írja be a Tesztadatok nevet, "
+"majd nyomja le az Enter billentyűt."
 
 #. description
 #: ../jobs/user_apps.txt.in:25
 msgid "Do you now have a folder called Test Data?"
-msgstr "Létrejött egy olyan mappa, aminek Teszt Adat a neve?"
+msgstr "Létrejött egy Tesztadatok nevű mappa?"
 
 #. description
 #: ../jobs/user_apps.txt.in:38
@@ -2473,8 +2449,8 @@ msgid ""
 "Select Test to open the File Browser. Click and drag the folder called Test "
 "Data onto the icon called Test Folder. Release the button."
 msgstr ""
-"Nyomja meg a Teszt gombot a Fájlböngésző megnyitásához. Húzza rá a „Teszt "
-"adat” mappát a „Teszt mappa”-ra és engedje el a gombot."
+"Nyomja meg a Teszt gombot a Fájlböngésző megnyitásához. Húzza rá a "
+"„Tesztadatok” mappát a „Tesztmappa” ikonra, és engedje el a gombot."
 
 #. description
 #: ../jobs/user_apps.txt.in:38
@@ -2487,7 +2463,7 @@ msgid ""
 "Was the folder called Test Data successfully moved into the folder called "
 "Test Folder?"
 msgstr ""
-"Az előzőleg sikeresen létrehozott Teszt adat mappa sikeresen át lett "
+"Az előzőleg sikeresen létrehozott Tesztadatok mappa sikeresen át lett "
 "helyezve a Tesztmappa mappába?"
 
 #. description
@@ -2504,7 +2480,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:51
 msgid "Do you now have a file called Test File 1?"
-msgstr "Létrejött egy olyan fájl, aminek Teszt fájl 1 a neve?"
+msgstr "Létrejött egy „Tesztfájl 1” nevű fájl?"
 
 #. description
 #: ../jobs/user_apps.txt.in:51
@@ -2518,8 +2494,8 @@ msgid ""
 "File 1 and click Copy. Right click in the white space and click Paste."
 msgstr ""
 "Nyomja meg a Teszt gombot a Fájlböngésző megnyitásához. Kattintson jobb "
-"egérgombbal a „Teszt fájl 1”-re, majd válassza a Másolást. Ezután jobb "
-"egérgombbal egy üres területre kattintva, válassza a Beillesztést."
+"egérgombbal a „Tesztfájl 1”-re, majd válassza a Másolást. Ezután jobb "
+"egérgombbal egy üres területre kattintva válassza a Beillesztést."
 
 #. description
 #: ../jobs/user_apps.txt.in:62
@@ -2527,13 +2503,13 @@ msgid ""
 "Right click on the file called Test File 1(copy) and click Rename. Enter the "
 "name Test File 2 in the name box and hit Enter."
 msgstr ""
-"A jobb egérgombbal kattintson a Teszt fájl 1(másolat) nevű fájlra és "
-"válassza az átnevez lehetőséget. Az új név Teszt fájl 2 legyen."
+"A jobb egérgombbal kattintson a „Tesztfájl 1(másolat)” nevű fájlra, és "
+"válassza az Átnevezés menüpontot. Az új név „Tesztfájl 2” legyen."
 
 #. description
 #: ../jobs/user_apps.txt.in:62
 msgid "Do you now have a file called Test File 2?"
-msgstr "Létrejött egy olyan fájl, aminek Teszt fájl 2 a neve?"
+msgstr "Létrejött egy „Tesztfájl 2” nevű fájl?"
 
 #. description
 #: ../jobs/user_apps.txt.in:75
@@ -2541,21 +2517,21 @@ msgid ""
 "Select Test to open the File Browser. Click and drag the file called Test "
 "File 2 onto the icon for the folder called Test Data. Release the button."
 msgstr ""
-"Nyomja meg a Teszt gombot a Fájlböngésző megnyitásához. Húzza rá a „Teszt "
-"fájl 2”-t a „Teszt adat” mappára és engedje el a gombot."
+"Nyomja meg a Teszt gombot a Fájlböngésző megnyitásához. Húzza rá a "
+"„Tesztfájl 2”-t a „Tesztadatok” mappára, és engedje el a gombot."
 
 #. description
 #: ../jobs/user_apps.txt.in:75
 msgid "Double click the icon for Test Data to open that folder up."
-msgstr "A megnyitáshoz kattintson kétszer a Teszt Adat mappára."
+msgstr "A megnyitáshoz kattintson kétszer a Tesztadatok mappára."
 
 #. description
 #: ../jobs/user_apps.txt.in:75
 msgid ""
 "Was the file Test File 2 successfully moved into the Test Data folder?"
 msgstr ""
-"Az előzőleg sikeresen létrehozott Teszt fájl 2 fájl sikeresen át lett "
-"helyezve a Teszt Adat mappába?"
+"Az előzőleg sikeresen létrehozott Tesztfájl 2 fájl sikeresen át lett "
+"helyezve a Tesztadatok mappába?"
 
 #. description
 #: ../jobs/user_apps.txt.in:88
@@ -2563,13 +2539,13 @@ msgid ""
 "Select Test to open the File Browser. Right click on the file called Test "
 "File 1 and click on Move To Trash."
 msgstr ""
-"Nyomja meg a Teszt gombot a Fájlböngésző megnyitásához. A „Teszt Fájl 1”-re "
-"jobb egérgombbal kattintva válassza az „Áthelyezés a Kukába” gombot."
+"Nyomja meg a Teszt gombot a Fájlböngésző megnyitásához. A „Tesztfájl 1”-re "
+"jobb egérgombbal kattintva válassza az „Áthelyezés a Kukába” menüpontot."
 
 #. description
 #: ../jobs/user_apps.txt.in:88
 msgid "Is Test File 1 now gone?"
-msgstr "Eltűnt a Teszt fájl 1 fájl?"
+msgstr "Eltűnt a „Tesztfájl 1” fájl?"
 
 #. description
 #: ../jobs/user_apps.txt.in:99
@@ -2577,13 +2553,14 @@ msgid ""
 "Select Test to open the File Browser. Right click on the folder called Test "
 "Folder and click on Move To Trash."
 msgstr ""
-"Nyomja meg a Teszt gombot a Fájlböngésző megnyitásához. A „Teszt mappa”-ra "
-"jobb egérgombbal kattintva válassza az „Áthelyezés a Kukába” gombot."
+"Nyomja meg a Teszt gombot a Fájlböngésző megnyitásához. Kattintson a "
+"„Tesztmappa” mappára a jobb egérgombbal, és válassza az „Áthelyezés a "
+"Kukába” menüpontot."
 
 #. description
 #: ../jobs/user_apps.txt.in:99
 msgid "Has Test Folder been successfully deleted?"
-msgstr "A Teszt mappa sikeresen törlődött?"
+msgstr "A Tesztmappa sikeresen törlődött?"
 
 #. description
 #: ../jobs/user_apps.txt.in:99
@@ -2702,6 +2679,18 @@ msgstr "A csatlakozás sikeres volt és tudott üzeneteket küldeni/fogadni?"
 msgid "Usage: checkbox [OPTIONS]"
 msgstr "Használat: checkbox [KAPCSOLÓK]"
 
+#: ../checkbox/application.py:70
+msgid "Print version information and exit."
+msgstr "Verziószám kiírása és kilépés."
+
+#: ../checkbox/application.py:74
+msgid "The file to write the log to."
+msgstr "A napló írása ebbe a fájlba."
+
+#: ../checkbox/application.py:77
+msgid "One of debug, info, warning, error or critical."
+msgstr "A debug, info, warning, error vagy critical egyike."
+
 #: ../checkbox/application.py:82
 msgid "Configuration override parameters."
 msgstr "Beállításokat felülbíráló paraméterek."
@@ -2723,6 +2712,10 @@ msgstr "A --config=checkbox/plugins/jobs_info/whitelist rövid változata."
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist_file."
 msgstr ""
 "A --config=checkbox/plugins/jobs_info/whitelist_file rövid változata."
+
+#: ../checkbox/application.py:115
+msgid "Missing configuration file as argument.\n"
+msgstr "Hiányzik a konfigurációs fájl neve az argumentumból.\n"
 
 #: ../checkbox/lib/signal.py:23
 msgid ""
@@ -2810,9 +2803,29 @@ msgstr "ISMERETLEN"
 msgid "Unknown signal"
 msgstr "Ismeretlen szignál"
 
+#: ../checkbox_cli/cli_interface.py:31
+#: ../checkbox_urwid/urwid_interface.py:684
+msgid "yes"
+msgstr "igen"
+
+#: ../checkbox_cli/cli_interface.py:32
+#: ../checkbox_urwid/urwid_interface.py:685
+msgid "no"
+msgstr "nem"
+
+#: ../checkbox_cli/cli_interface.py:33
+#: ../checkbox_urwid/urwid_interface.py:686
+msgid "skip"
+msgstr "kihagyás"
+
 #: ../checkbox_cli/cli_interface.py:126
 msgid "Press any key to continue..."
 msgstr "A folytatáshoz nyomjon le egy billentyűt…"
+
+#: ../checkbox_cli/cli_interface.py:135
+#, python-format
+msgid "Please choose (%s): "
+msgstr "Válasszon (%s): "
 
 #: ../checkbox_cli/cli_interface.py:315
 msgid "test"
@@ -2821,6 +2834,10 @@ msgstr "teszt"
 #: ../checkbox_cli/cli_interface.py:339
 msgid "test again"
 msgstr "Újratesztelés"
+
+#: ../checkbox_cli/cli_interface.py:345
+msgid "Please type here and press Ctrl-D when finished:\n"
+msgstr "Írja be ide, majd nyomja meg a Ctrl-D kombinációt, ha elkészült.\n"
 
 #: ../checkbox_urwid/urwid_interface.py:60
 msgid "Checkbox System Testing"
@@ -2863,11 +2880,15 @@ msgstr "Teszt megismétlése"
 msgid "hardware database"
 msgstr "hardveradatbázis"
 
-#: ../checkbox_gtk/gtk_interface.py:545
+#: ../checkbox_gtk/gtk_interface.py:502
+msgid "_Test Again"
+msgstr "_Teszt megismétlése"
+
+#: ../checkbox_gtk/gtk_interface.py:548
 msgid "Info"
 msgstr "Információk"
 
-#: ../checkbox_gtk/gtk_interface.py:564
+#: ../checkbox_gtk/gtk_interface.py:567
 msgid "Error"
 msgstr "Hiba"
 
@@ -2876,7 +2897,7 @@ msgstr "Hiba"
 msgid "Unable to start web browser to open %s."
 msgstr "A webböngészővel nem nyitható meg a(z) %s weboldal."
 
-#: ../plugins/apport_prompt.py:81
+#: ../plugins/apport_prompt.py:83
 msgid ""
 "Collecting information about this test.\n"
 "This might take a few minutes."
@@ -2884,7 +2905,7 @@ msgstr ""
 "Információk összegyűjtése a tesztről.\n"
 "Ez néhány percet is igénybe vehet."
 
-#: ../plugins/apport_prompt.py:116
+#: ../plugins/apport_prompt.py:118
 msgid ""
 "Collected information is being sent for bug tracking.\n"
 "This might take a few minutes."
@@ -2892,17 +2913,17 @@ msgstr ""
 "Az összegyűjtött információk elküldése a hibakövető rendszernek.\n"
 "Ez néhány percet is igénybe vehet."
 
-#: ../plugins/apport_prompt.py:225
+#: ../plugins/apport_prompt.py:227
 #, python-format
 msgid "Test %s from suite %s failed."
 msgstr "%s tesztsorozat %s tesztje nem sikerült."
 
-#: ../plugins/apport_prompt.py:228
+#: ../plugins/apport_prompt.py:230
 #, python-format
 msgid "Test %s failed."
 msgstr "%s teszt sikertelen."
 
-#: ../plugins/apport_prompt.py:246
+#: ../plugins/apport_prompt.py:248
 #, python-format
 msgid "Is a package upgrade in process? Error: %s"
 msgstr "Folyamatban van egy csomag frissítése? Hiba: %s"
@@ -2911,11 +2932,15 @@ msgstr "Folyamatban van egy csomag frissítése? Hiba: %s"
 msgid "Successfully finished testing!"
 msgstr "A teszt sikeresen befejeződött."
 
+#: ../plugins/final_prompt.py:34
+msgid "_Finish"
+msgstr "Be_fejezés"
+
 #: ../plugins/gather_prompt.py:35
 msgid "Gathering information from your system..."
 msgstr "Információk összegyűjtése a rendszerről…"
 
-#: ../plugins/intro_prompt.py:41
+#: ../plugins/intro_prompt.py:29
 msgid ""
 "Welcome to System Testing!\n"
 "\n"
@@ -2933,7 +2958,7 @@ msgstr ""
 msgid "Failed to process form: %s"
 msgstr "Az űrlap feldolgozása a következő hibával meghiúsult: %s"
 
-#: ../plugins/launchpad_exchange.py:147
+#: ../plugins/launchpad_exchange.py:151
 #, python-format
 msgid ""
 "Failed to contact server. Please try\n"
@@ -2949,6 +2974,18 @@ msgstr ""
 "\n"
 "a hardveradatbázisba a következő weboldalon:\n"
 "https://launchpad.net/+hwdb/+submit"
+
+#: ../plugins/launchpad_exchange.py:160
+msgid ""
+"Failed to upload to server,\n"
+"please try again later."
+msgstr ""
+"A feltöltés a kiszolgálóra meghiúsult,\n"
+"később próbálja meg újra."
+
+#: ../plugins/launchpad_exchange.py:172
+msgid "Information not posted to Launchpad."
+msgstr "Az információk nem kerültek elküldésre a Launchpad oldalára."
 
 #: ../plugins/launchpad_prompt.py:71
 #, python-format
@@ -2979,6 +3016,10 @@ msgid "No e-mail address provided, not submitting to Launchpad."
 msgstr ""
 "Nem adott meg e-mail címet, ezért a jelentés nem lett beküldve a Launchpadba."
 
+#: ../plugins/launchpad_prompt.py:92
+msgid "Email address must be in a proper format."
+msgstr "Az e-mail címet megfelelő formában kell megadni."
+
 #: ../plugins/launchpad_prompt.py:98
 msgid "Exchanging information with the server..."
 msgstr "Információcsere a kiszolgálóval…"
@@ -3005,7 +3046,7 @@ msgid "Running %s..."
 msgstr "%s futtatása…"
 
 #. Get results
-#: ../plugins/suites_prompt.py:104
+#: ../plugins/suites_prompt.py:108
 msgid "Select the suites to test"
 msgstr "Válassza ki a teszteket"
 
@@ -3028,6 +3069,27 @@ msgstr "A kapcsolat során csomagvesztés történt"
 #: ../scripts/internet_test:145
 msgid "Internet connection fully established"
 msgstr "Az internetkapcsolat működik"
+
+#~ msgid "Successfully sent information!"
+#~ msgstr "Az információk sikeresen elküldve."
+
+#~ msgid "_Desktop"
+#~ msgstr "As_ztali"
+
+#~ msgid "_Laptop"
+#~ msgstr "N_oteszgép"
+
+#~ msgid "_Server"
+#~ msgstr "_Kiszolgáló"
+
+#~ msgid "$(network_test)"
+#~ msgstr "$(network_test)"
+
+#~ msgid "Exchange"
+#~ msgstr "Adatcsere"
+
+#~ msgid "Category"
+#~ msgstr "Kategória"
 
 #~ msgid "Do you hear a sound?"
 #~ msgstr "Hallotta a hangot?"
@@ -3252,3 +3314,9 @@ msgstr "Az internetkapcsolat működik"
 #~ "6. - Állítsa be helyesen a kapcsolat paramétereit 7. - A felbukkanó buborék "
 #~ "értesíti a kapcsolat létrejöttéről 8. - Válassza az „Ellenőrzés” lehetőséget "
 #~ "hogy ellenőrizhesse, lehetséges-e a kapcsolódás http és ftp protokollokon."
+
+#~ msgid "Authentication"
+#~ msgstr "Hitelesítés"
+
+#~ msgid "Done"
+#~ msgstr "Kész"

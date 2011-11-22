@@ -145,7 +145,15 @@ class CLIChoiceDialog(CLIDialog):
 
     def add_option(self, option, key=None):
         if key is None:
-            for key in option.lower()+string.lowercase:
+            keys = option.lower() + \
+                   string.ascii_letters + \
+                   string.digits + \
+                   string.punctuation
+
+            keys = keys.replace(' ','')
+            keys = keys.replace('+', '')
+
+            for key in keys:
                 if key not in self.keys:
                     break
         self.keys.append(key)

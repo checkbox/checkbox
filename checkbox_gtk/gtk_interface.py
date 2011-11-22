@@ -102,10 +102,8 @@ class GTKInterface(UserInterface):
             image_head.connect("expose-event",self.draw_image_head)
 
         # Set wait transient for dialog
-        self._wait = self._get_widget("window_wait")
-        self._wait.set_transient_for(self._dialog)
-        self._wait.realize()
-        self._wait.get_window().set_functions(Gdk.WMFunction.MOVE)
+        self._wait = self._get_widget("box_wait")
+        self._wait.hide()
 
         # Set shorthand for notebook
         self._notebook = self._get_widget("notebook_main")
@@ -538,6 +536,8 @@ class GTKInterface(UserInterface):
 
         test["data"] = self._get_text_view("text_view_comment")
         test["status"] = self._get_radio_button(BUTTON_TO_STATUS)
+
+        self._set_main_title()
 
     def show_info(self, text, options=[], default=None):
         message_dialog = Gtk.MessageDialog(parent=self._dialog,

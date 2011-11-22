@@ -51,6 +51,8 @@ def get_packages(file):
         "x": "both-problems"}
 
     columns = ["desired", "status", "error", "name", "version", "description"]
+    mandatory_columns = columns[:]
+    mandatory_columns.remove("error") #this is optional
     aliases = {
         "linux-image-" + os.uname()[2]: "linux"}
 
@@ -83,6 +85,10 @@ def get_packages(file):
             # Set value
             if value:
                 package[column] = value
+
+        #Skip records not containing all mandatory columns
+        if not set(mandatory_columns).issubset(package.keys()):
+            continue
 
         name = package["name"]
         if name in aliases:

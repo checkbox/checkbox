@@ -9,32 +9,32 @@ msgstr ""
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-07-07 12:32-0400\n"
 "PO-Revision-Date: 2011-07-19 16:21+0000\n"
-"Last-Translator: Iryna Nikanchuk <defragbrain@gmail.com>\n"
+"Last-Translator: Iryna Nikanchuk <Unknown>\n"
 "Language-Team: Belarusian <be@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-07-31 04:31+0000\n"
-"X-Generator: Launchpad (build 13405)\n"
+"X-Launchpad-Export-Date: 2011-11-22 04:38+0000\n"
+"X-Generator: Launchpad (build 14299)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:1 ../checkbox_cli/cli_interface.py:343
 #: ../checkbox_urwid/urwid_interface.py:261
 msgid "Further information:"
-msgstr "Дадатковыя зьвесткі:"
+msgstr "Дадатковая інфармацыя:"
 
 #: ../gtk/checkbox-gtk.ui.h:2
 msgid "Ne_xt"
-msgstr "На_ступны"
+msgstr "_Далей"
 
 #. Title of the user interface
 #: ../gtk/checkbox-gtk.ui.h:3 ../gtk/checkbox-gtk.desktop.in.h:1
-#: ../plugins/user_interface.py:40
+#: ../checkbox_gtk/gtk_interface.py:95 ../plugins/user_interface.py:40
 msgid "System Testing"
-msgstr "Праверка сыстэмы"
+msgstr "Праверка сістэмы"
 
 #: ../gtk/checkbox-gtk.ui.h:4
 msgid "_Deselect All"
-msgstr ""
+msgstr "С_кінуць усё"
 
 #: ../gtk/checkbox-gtk.ui.h:5
 msgid "_No"
@@ -46,13 +46,13 @@ msgstr "_Назад"
 
 #: ../gtk/checkbox-gtk.ui.h:7
 msgid "_Select All"
-msgstr "В_ылучыць усё"
+msgstr "_Абраць усё"
 
 #: ../gtk/checkbox-gtk.ui.h:8
 msgid "_Skip this test"
 msgstr "_Спыніць праверку"
 
-#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:522
+#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:537
 msgid "_Test"
 msgstr "_Праверка"
 
@@ -62,31 +62,27 @@ msgstr "_Так"
 
 #: ../gtk/checkbox-gtk.desktop.in.h:2
 msgid "Test and report system information"
-msgstr "Тэставаньне й вывад інфармацыі пра сыстэму"
+msgstr "Тэставанне і вывад інфармацыі аб сістэме"
 
 #. description
 #: ../jobs/apport.txt.in:5
 msgid "Test that the /var/crash directory doesn't contain anything."
-msgstr ""
+msgstr "Упэўніцеся, што каталог /var/crash пусты."
 
 #. description
 #: ../jobs/audio.txt.in:7
 msgid "Detecting your sound device(s):"
-msgstr "Вызначэньне вашых гукавых прыладаў:"
+msgstr "Вызначэнне вашых гукавых прылад:"
 
 #. description
-#: ../jobs/audio.txt.in:7 ../jobs/disk.txt.in:4 ../jobs/graphics.txt.in:126
-#: ../jobs/memory.txt.in:4 ../jobs/networking.txt.in:16
-#: ../jobs/optical.txt.in:8 ../jobs/power-management.txt.in:167
-#: ../jobs/usb.txt.in:5
+#: ../jobs/audio.txt.in:7 ../jobs/graphics.txt.in:113 ../jobs/memory.txt.in:4
+#: ../jobs/networking.txt.in:5 ../jobs/optical.txt.in:8 ../jobs/usb.txt.in:12
 msgid "$output"
 msgstr "$output"
 
 #. description
-#: ../jobs/audio.txt.in:7 ../jobs/bluetooth.txt.in:5 ../jobs/disk.txt.in:4
-#: ../jobs/graphics.txt.in:126 ../jobs/memory.txt.in:4
-#: ../jobs/networking.txt.in:16 ../jobs/optical.txt.in:8
-#: ../jobs/power-management.txt.in:185 ../jobs/usb.txt.in:5
+#: ../jobs/audio.txt.in:7 ../jobs/graphics.txt.in:113 ../jobs/memory.txt.in:4
+#: ../jobs/networking.txt.in:5 ../jobs/optical.txt.in:8
 msgid "Is this correct?"
 msgstr "Гэта правільна?"
 
@@ -96,17 +92,19 @@ msgid ""
 "Did you hear a sound and was that sound free of any distortion, clicks or "
 "other strange noises?"
 msgstr ""
+"Ці чуваць вам гук, і ці адсутнічаюць у ім якія-небудзь скажэнні, цоканні "
+"альбо іншыя пабочныя шумы?"
 
 #. description
 #: ../jobs/audio.txt.in:33
 msgid "Please connect a pair of headphones to your audio device."
-msgstr ""
+msgstr "Калі ласка, падключыце навушнікі да Вашай аўдыёпрылады"
 
 #. description
 #: ../jobs/audio.txt.in:33
 msgid ""
 "Select Test to play a sound on the automatically detected playback device."
-msgstr ""
+msgstr "Выберыце Тэст, каб прайграць гук на аўтаматычна вызначанай прыладзе."
 
 #. description
 #: ../jobs/audio.txt.in:33
@@ -114,6 +112,8 @@ msgid ""
 "Did you hear a sound through the headphones and did the sound play without "
 "any distortion, clicks or other strange noises from your headphones?"
 msgstr ""
+"Ці чуваць Вам гук у навушніках, і ці адсутнічаюць у ім якія-небудзь "
+"скажэнні, цоканні альбо іншы пабочны шум?"
 
 #. description
 #: ../jobs/audio.txt.in:47
@@ -122,6 +122,9 @@ msgid ""
 "then speak into your internal microphone.  After a few seconds, your speech "
 "will be played back to you."
 msgstr ""
+"Адключыце ўсе падключаныя знешнія мікрафоны. Націсніце Тэст і пачніце казаць "
+"ва ўнутраны мікрафон. Праз некалькі секунд запісаны вамі голас будзе "
+"прайграны."
 
 #. description
 #: ../jobs/audio.txt.in:59
@@ -129,6 +132,9 @@ msgid ""
 "Connect a microphone to your microphone port.  Select Test, then speak into "
 "the microphone.  After a few seconds, your speech will be played back to you."
 msgstr ""
+"Падключыце мікрафон да адпаведнага раз'ёму. Націсніце Тэст і пачніце казаць "
+"ва ўнутраны мікрафон. Праз некалькі секунд запісаны вамі голас будзе "
+"прайграны."
 
 #. description
 #: ../jobs/audio.txt.in:70
@@ -140,37 +146,47 @@ msgid ""
 "select Test, then speak into the microphone.  After a few seconds, your "
 "speech will be played back to you."
 msgstr ""
+"Падлучыце гукавую прыладу з інтэрфейсам USB да вашай сістэмы. Затым адчыніце "
+"аплет кіравання гукам, цокнуўшы левай кнопкай мышы па значку дынаміка і "
+"выберыце «Параметры гуку». Перайдзіце да закладкі \"Уваход\" і абярыце вашу "
+"прыладу з інтэрфейсам USB. Перайдзіце да закладкі «Выхад» і абярыце вашу "
+"прыладу з інтэрфейсам USB. Пасля заканчэння зменаў, націсніце кнопку «Тэст» "
+"і вымавіце што-небудзь у мікрафон. Праз некалькі секунд, ваша гаворка будзе "
+"прайграная."
 
 #. description
-#: ../jobs/audio.txt.in:70 ../jobs/power-management.txt.in:221
+#: ../jobs/audio.txt.in:70
 msgid "Did you hear your speech played back?"
-msgstr "Вы чуеце прайгаваньне запісу вашага голасу?"
+msgstr "Вы чуеце прайгаванне запісу вашага голасу?"
 
 #. description
-#: ../jobs/audio.txt.in:81
+#: ../jobs/audio.txt.in:82
 msgid ""
 "Play back a sound on the default output and listen for it on the \\ default "
 "input.  This makes the most sense when the output and input \\ are directly "
 "connected, as with a patch cable."
 msgstr ""
+"Прайграйце гукавы фрагмент на выхадзе прызначаным па змаўчанні і праслухайце "
+"яго \\ на ўваходзе, прызначаным па змаўчанні. Гэта мае значэнне, калі ўваход "
+"і выхад \\ наўпрост падлучаныя злучальным кабелем."
 
 #. description
 #: ../jobs/autotest.txt.in:3
 msgid "Autotest suite (destructive)"
-msgstr ""
+msgstr "Набор аўтаматычных тэстаў (дэструктыўна)"
 
 #. description
-#: ../jobs/bluetooth.txt.in:5 ../jobs/power-management.txt.in:185
+#: ../jobs/bluetooth.txt.in:5
 msgid "The address of your Bluetooth device is: $output"
 msgstr ""
 
 #. description
-#: ../jobs/bluetooth.txt.in:15 ../jobs/graphics.txt.in:15
+#: ../jobs/bluetooth.txt.in:12 ../jobs/graphics.txt.in:15
 msgid "Automated test to store output in checkbox report"
-msgstr ""
+msgstr "Аўтаматызаваны тэст захавання вываду ў справаздачы праверкі сістэмы"
 
 #. description
-#: ../jobs/bluetooth.txt.in:21
+#: ../jobs/bluetooth.txt.in:18
 msgid ""
 "Bluetooth browse files procedure: 1.- Enable bluetooth on any mobile device "
 "(PDA, smartphone, etc.) 2.- Click on the bluetooth icon in the menu bar 3.- "
@@ -180,9 +196,17 @@ msgid ""
 "icon and select browse files 7.- Authorize the computer to browse the files "
 "in the device if needed 8.- You should be able to browse the files"
 msgstr ""
+"Працэдура агляду файлаў з выкарыстаннем Bluetooth: 1 .- Уключыце bluetooth "
+"прыладу або любую партатыўную прыладу (КПК, смартфон і.г.д.) 2 .- Цокніце па "
+"значку bluetooth на панэлі меню 3 .- Выберыце 'Усталяваць новую прыладу' 3 .-"
+" Знайдзіце прыладу ў спісе і абярыце яе 4 .- На самой прыладзе ўвядзіце PIN-"
+"код, аўтаматычна выбіраемы майстрам 5 .- Прылада павінна быць злучана з "
+"кампутарам 6 .- Цокніце правай кнопкай мышы па значку bluetooth і абярыце "
+"агляд файлаў 7 .- Пры неабходнасці, выканайце аўтарызацыю кампутара для "
+"агляду файлаў прылады 8 .- У вас павінна з'явіцца магчымасць агляду файлаў"
 
 #. description
-#: ../jobs/bluetooth.txt.in:38
+#: ../jobs/bluetooth.txt.in:35
 msgid ""
 "Bluetooth file transfer procedure: 1.- Make sure that you're able to browse "
 "the files in your mobile device 2.- Copy a file from the computer to the "
@@ -190,9 +214,14 @@ msgid ""
 "from the mobile device to the computer 5.- Verify that the file was "
 "correctly copied"
 msgstr ""
+"Працэдура перадачы файлаў з выкарыстаннем Bluetooth: 1 .- Упэўніцеся, што ў "
+"вас ёсць магчымасць агляду файлаў вашай партатыўнай прылады 2 .- Выканайце "
+"капіраванне файла з кампутара на партатыўную прыладу 3 .- Упэўніцеся, што "
+"файл скапіраваны без пашкоджанняў 4 .- Выканайце капіраванне з партатыўнай "
+"прылады на кампутар 5 .- Упэўніцеся, што файл скапіраваны без пашкоджанняў"
 
 #. description
-#: ../jobs/bluetooth.txt.in:53
+#: ../jobs/bluetooth.txt.in:50
 msgid ""
 "Bluetooth audio procedure: 1.- Enable the bluetooth headset 2.- Click on the "
 "bluetooth icon in the menu bar 3.- Select 'Setup new device' 4.- Look for "
@@ -201,54 +230,68 @@ msgid ""
 "computer 7.- Select Test to record for five seconds and reproduce in the "
 "bluetooth device"
 msgstr ""
+"Працэдура перадачы гуку з выкарыстаннем Bluetooth: 1 .- Уключыце bluetooth "
+"гарнітуру 2 .- Цокніце па значку bluetooth на панэлі меню 3 .- Выберыце "
+"'Усталяваць новую прыладу' 4 .- Знайдзіце прыладу ў спісе і абярыце яе 5 .- "
+"На самой прыладзе ўвядзіце PIN-код, аўтаматычна выбіраемы майстрам 6 .- "
+"Прылада павінна быць звязана з кампутарам 7 .- Выберыце Праверыць для "
+"выканання 5-ці секунднага запісу і яго прайгравання на bluetooth прыладзе"
 
 #. description
-#: ../jobs/bluetooth.txt.in:69
+#: ../jobs/bluetooth.txt.in:66
 msgid ""
 "Bluetooth keyboard procedure: 1.- Enable the bluetooth keyboard 2.- Click on "
 "the bluetooth icon in the menu bar 3.- Select 'Setup new device' 4.- Look "
 "for the device in the list and select it 5.- Select Test to enter text"
 msgstr ""
+"Працэдура падлучэння Bluetooth клавіятуры: 1 .- Уключыце bluetooth "
+"клавіятуру 2 .- Цокніце па значку bluetooth на панэлі меню 3 .- Выберыце "
+"'Усталяваць новую прыладу' 4 .- Знайдзіце прыладу ў спісе і выберыце яе 5 .- "
+"Выберыце Праверыць для выканання праверкі"
 
 #. description
-#: ../jobs/bluetooth.txt.in:82
+#: ../jobs/bluetooth.txt.in:79
 msgid ""
 "Bluetooth mouse procedure: 1.- Enable the bluetooth mouse 2.- Click on the "
 "bluetooth icon in the menu bar 3.- Select 'Setup new device' 4.- Look for "
 "the device in the list and select it 5.- Move the mouse around the screen 6.-"
 " Perform some single/double/right click operations"
 msgstr ""
+"Працэдура праверкі бесправадной мышы: 1 .- Уключыце бесправадную мыш 2 .- "
+"Націсніце на значок Bluetooth у радку меню 3 .- Выберыце 'Наладзіць новую "
+"прыладу' 4 .- Знайдзіце прыладу ў спісе і выберыце яе 5 .- Паварушыць мыш 6 "
+".- Зрабіце некалькі націсканняў левай, правай кнопкай мышы і двайное цоканне."
 
 #. description
-#: ../jobs/bluetooth.txt.in:82 ../jobs/optical.txt.in:72
-#: ../jobs/power-management.txt.in:194 ../jobs/usb.txt.in:27
+#: ../jobs/bluetooth.txt.in:79 ../jobs/optical.txt.in:72 ../jobs/usb.txt.in:34
 msgid "Did all the steps work?"
-msgstr ""
+msgstr "Ці ўсе этапы былі пройдзеныя?"
 
 #. description
 #: ../jobs/camera.txt.in:7
 msgid "Automated test case that attempts to detect a camera"
-msgstr ""
+msgstr "Аўтаматызаваны тэст выяўлення камеры"
 
 #. description
 #: ../jobs/camera.txt.in:16
 msgid "Select Test to display a video capture from the camera"
 msgstr ""
+"Выберыце Праверыць для адлюстравання відэафрагмента запісанага з камеры"
 
 #. description
 #: ../jobs/camera.txt.in:16
 msgid "Did you see the video capture?"
-msgstr ""
+msgstr "Вы бачыце захопленае відэа?"
 
 #. description
 #: ../jobs/camera.txt.in:30
 msgid "Select Test to display a still image from the camera"
-msgstr ""
+msgstr "Націсніце Test, каб паказаць статычную выяву з камеры"
 
 #. description
 #: ../jobs/camera.txt.in:30
 msgid "Did you see the image?"
-msgstr ""
+msgstr "Вы бачыце выяву?"
 
 #. description
 #: ../jobs/camera.txt.in:43
@@ -256,26 +299,29 @@ msgid ""
 "Select Test to capture video to a file and open it in totem. Please make "
 "sure that both audio and video is captured."
 msgstr ""
+"Выберыце Праверыць для захавання відэафрагмента ў файл і наступнага адкрыцця "
+"ў прайгравальніку totem. Калі ласка, пераканайцеся ў тым, што запісаныя гук "
+"і відэа."
 
 #. description
 #: ../jobs/camera.txt.in:43
 msgid "Did you see/hear the capture?"
-msgstr ""
+msgstr "Вы чулі/бачылі запісанае?"
 
 #. description
 #: ../jobs/codecs.txt.in:7
 msgid "Select Test to play an Ogg Vorbis file (.ogg)"
-msgstr ""
+msgstr "Выберыце Праверыць для прайгравання файла фармату Ogg Vorbis (.ogg)"
 
 #. description
 #: ../jobs/codecs.txt.in:20
 msgid "Select Test to play a Wave Audio format file (.wav)"
-msgstr ""
+msgstr "Выберыце Праверыць для прайгравання файла фармату Wave (.wav)"
 
 #. description
 #: ../jobs/codecs.txt.in:20
 msgid "Did the sample play correctly?"
-msgstr ""
+msgstr "Ці задавальняе вас прайгранае?"
 
 #. description
 #: ../jobs/codecs.txt.in:33
@@ -283,11 +329,13 @@ msgid ""
 "Select 'Test' to play some audio, and try pausing and resuming playback "
 "while the it is playing."
 msgstr ""
+"Выберыце 'Праверыць' для прайгравання гукавога фрагмента, паспрабуйце "
+"прыпыніць і працягнуць яго прайграванне."
 
 #. description
 #: ../jobs/codecs.txt.in:33
 msgid "Did the audio play and pause as expected?"
-msgstr ""
+msgstr "Ці правільна функцыянавала прайграванне гуку і яго прыпыненне?"
 
 #. description
 #: ../jobs/codecs.txt.in:46
@@ -295,16 +343,20 @@ msgid ""
 "Select 'Test' to play a video, and try pausing and resuming playback while "
 "the video is playing."
 msgstr ""
+"Выберыце 'Праверыць' для прайгравання фрагмента відэа, паспрабуйце прыпыніць "
+"і працягнуць яго прайграванне."
 
 #. description
 #: ../jobs/codecs.txt.in:46
 msgid "(Please close Movie Player to proceed.)"
 msgstr ""
+"(Калі ласка, каб працягнуць завяршыце працу прайгравальніка Movie Player.)"
 
 #. description
 #: ../jobs/codecs.txt.in:46
 msgid "Did the video play and pause as expected?"
 msgstr ""
+"Ці правільна функцыянавала прайграванне відэазапісу і яго прыпыненне?"
 
 #. description
 #: ../jobs/cpu.txt.in:8
@@ -312,6 +364,8 @@ msgid ""
 "Test the CPU scaling capabilities using Colin King's Firmware Test Suite "
 "tool."
 msgstr ""
+"Праверыць магчымасці маштабіравання параметраў ЦПУ выкарыстоўваючы сродак "
+"праверкі Colin King's Firmware Test Suite."
 
 #. description
 #: ../jobs/cpu.txt.in:15
@@ -321,72 +375,72 @@ msgstr ""
 #. description
 #: ../jobs/cpu.txt.in:23
 msgid "Test offlining CPUs in a multicore system."
-msgstr ""
+msgstr "Праверка незадзейнічаных ЦПУ на шмат'ядравай сістэме."
 
 #. description
 #: ../jobs/cpu.txt.in:30
 msgid "Checks cpu topology for accuracy"
-msgstr ""
+msgstr "Правярае дакладнасць тапалогіі ЦПУ"
 
 #. description
 #: ../jobs/cpu.txt.in:38
 msgid "Checks that CPU frequency governors are obeyed when set."
-msgstr ""
+msgstr "Правярае, што рэгуліроўкі частаты ЦП выконваюцца, калi ўсталяваныя."
 
 #. description
 #: ../jobs/daemons.txt.in:5
 msgid "Test if the atd daemon is running when the package is installed."
-msgstr ""
+msgstr "Праверыць, калі служба atd выконваецца, пры ўсталяваным пакеце."
 
 #. description
 #: ../jobs/daemons.txt.in:11
 msgid "Test if the cron daemon is running when the package is installed."
-msgstr ""
+msgstr "Праверыць, калі служба cron выконваецца, пры ўсталяваным пакеце."
 
 #. description
 #: ../jobs/daemons.txt.in:17
 msgid "Test if the cupsd daemon is running when the package is installed."
-msgstr ""
+msgstr "Праверыць, калі служба cupsd выконваецца, пры ўсталяваным пакеце."
 
 #. description
 #: ../jobs/daemons.txt.in:23
 msgid "Test if the getty daemon is running when the package is installed."
-msgstr ""
+msgstr "Праверыць, калі служба getty выконваецца, пры ўсталяваным пакеце."
 
 #. description
 #: ../jobs/daemons.txt.in:29
 msgid "Test if the init daemon is running when the package is installed."
-msgstr ""
+msgstr "Праверыць, калі служба init выконваецца, пры ўсталяваным пакеце."
 
 #. description
 #: ../jobs/daemons.txt.in:35
 msgid "Test if the klogd daemon is running when the package is installed."
-msgstr ""
+msgstr "Праверыць, калі служба klogd выконваецца, пры ўсталяваным пакеце."
 
 #. description
 #: ../jobs/daemons.txt.in:41
 msgid "Test if the nmbd daemon is running when the package is installed."
-msgstr ""
+msgstr "Праверыць, калі служба nmbd выконваецца, пры ўсталяваным пакеце."
 
 #. description
 #: ../jobs/daemons.txt.in:47
 msgid "Test if the smbd daemon is running when the package is installed."
-msgstr ""
+msgstr "Праверыць, калі служба smbd выконваецца, пры ўсталяваным пакеце."
 
 #. description
 #: ../jobs/daemons.txt.in:53
 msgid "Test if the syslogd daemon is running when the package is installed."
-msgstr ""
+msgstr "Праверыць, калі служба syslogd выконваецца, пры ўсталяваным пакеце."
 
 #. description
 #: ../jobs/daemons.txt.in:61
 msgid "Test if the udevd daemon is running when the package is installed."
-msgstr ""
+msgstr "Праверыць, калі служба udevd выконваецца, пры ўсталяваным пакеце."
 
 #. description
 #: ../jobs/daemons.txt.in:67
 msgid "Test if the winbindd daemon is running when the package is installed."
-msgstr ""
+msgstr "Праверыць, калі служба winbindd выконваецца, пры ўсталяваным пакеце."
 
 #. description
 #: ../jobs/disk.txt.in:4
@@ -394,31 +448,36 @@ msgid "The following hard drives were detected:"
 msgstr "Былі знойдзеныя наступныя жорсткія дыскі:"
 
 #. description
-#: ../jobs/disk.txt.in:14
+#: ../jobs/disk.txt.in:9
 msgid "Benchmark for each disk "
-msgstr ""
+msgstr "Тэст прадукцыйнасці кожнага дыска "
 
 #. description
-#: ../jobs/disk.txt.in:36
+#: ../jobs/disk.txt.in:26
 msgid "SMART test"
-msgstr ""
+msgstr "SMART тэст"
 
 #. description
-#: ../jobs/disk.txt.in:51
+#: ../jobs/disk.txt.in:41
 msgid "Maximum disk space used during a default installation test"
 msgstr ""
+"Максімальнае выкарыстанне месца на дыску падчас тэста з наладкамі па "
+"змоўчванні"
 
 #. description
-#: ../jobs/disk.txt.in:66
+#: ../jobs/disk.txt.in:56
 msgid "Verify system storage performs at or above baseline performance"
 msgstr ""
+"Праверка сістэмных сховішчаў выконваецца па стандартных і павышаных умовах"
 
 #. description
-#: ../jobs/disk.txt.in:83
+#: ../jobs/disk.txt.in:73
 msgid ""
 "Verify that storage devices, such as Fibre Channel and RAID can be detected "
 "and perform under stress."
 msgstr ""
+"Праверыць магчымасць выяўлення прылад захоўвання, такіх як валаконна-аптычны "
+"канал і RAID, затым выканаць стрэс-тэст."
 
 #. description
 #: ../jobs/evolution.txt.in:5
@@ -426,6 +485,8 @@ msgid ""
 "Click the \"Test\" button to launch Evolution, then configure it to connect "
 "to a POP3 account."
 msgstr ""
+"Націсніце кнопку \"Праверыць\" для запуску праграмы Evolution, затым "
+"наладзьце яе каб падлучыцца да ўліковага запісу POP3."
 
 #. description
 #: ../jobs/evolution.txt.in:14
@@ -433,11 +494,13 @@ msgid ""
 "Click the \"Test\" button to launch Evolution, then configure it to connect "
 "to a IMAP account."
 msgstr ""
+"Націсніце кнопку \"Праверыць\" для запуску праграмы Evolution, затым "
+"наладзьце яе каб падлучыцца да ўліковага запісу IMAP."
 
 #. description
 #: ../jobs/evolution.txt.in:14
 msgid "Were you able to receive and read e-mail correctly?"
-msgstr ""
+msgstr "Атрыманне і чытанне электронных паведамленняў праведзена паспяхова?"
 
 #. description
 #: ../jobs/evolution.txt.in:23
@@ -445,11 +508,13 @@ msgid ""
 "Click the \"Test\" button to launch Evolution, then configure it to connect "
 "to a SMTP account."
 msgstr ""
+"Націсніце кнопку \"Праверыць\" для запуску праграмы Evolution, затым "
+"наладзьце яе каб падлучыцца да ўліковага запісу SMTP."
 
 #. description
 #: ../jobs/evolution.txt.in:23
 msgid "Were you able to send e-mail without errors?"
-msgstr ""
+msgstr "Адпраўка электроннага паведамлення праведзена без памылак?"
 
 #. description
 #: ../jobs/fingerprint.txt.in:3
@@ -458,6 +523,9 @@ msgid ""
 "which test cases are run and a personal account that the tester uses to "
 "verify the fingerprint reader"
 msgstr ""
+"Перавагі: гэты тэст прадугледжвае, што існуе пробны ўліковы запіс, з-пад "
+"якога запускаецца тэст і асабісты ўліковы запіс, што выкарыстоўваецца для "
+"праверкі сканэра адбіткаў пальцаў"
 
 #. description
 #: ../jobs/fingerprint.txt.in:3
@@ -471,6 +539,14 @@ msgid ""
 " 5.- Click on the user switcher applet.\n"
 " 6.- Select the testing account to continue running tests."
 msgstr ""
+"Працэдура праверкі ўваходу ў сістэму па адбітку пальца:\n"
+" 1 .- Націсніце на аплет пераключэння карыстальнікаў.\n"
+" 2 .- Выберыце імя карыстальніка.\n"
+" 3 .- Павінна з'явіцца вакно, якое дае магчымасць увесці пароль ці праверыць "
+"адбітак пальца.\n"
+" 4 .- Скарыстайцеся сканарам адбіткаў пальцаў для ўваходу.\n"
+" 5 .- Націсніце па аплеце пераключэння карыстальнікаў.\n"
+" 6 .- Каб працягнуць праверку, абярыце тэставаны ўліковы запіс."
 
 #. description
 #: ../jobs/fingerprint.txt.in:18
@@ -484,11 +560,19 @@ msgid ""
 " 5.- Use the fingerprint reader to unlock.\n"
 " 6.- Your screen should be unlocked."
 msgstr ""
+"Працэдура праверкі разблакавання з выкарыстаннем адбітка пальца:\n"
+" 1 .- Націсніце на аплет пераключэння карыстальнікаў.\n"
+" 2 .- Выберыце пункт 'Заблакаваць экран'.\n"
+" 3 .- Націсніце любую клавішу або выканайце рух мышшу.\n"
+" 4 .- Павінна з'явіцца вакно, якое дае магчымасць увесці пароль ці праверыць "
+"адбітак пальца.\n"
+" 5 .- Скарыстайцеся сканарам адбіткаў пальцаў для выканання разблакавання.\n"
+" 6 .- Экран павінен разблакавацца."
 
 #. description
 #: ../jobs/fingerprint.txt.in:18
 msgid "Did the authentication procedure work correctly?"
-msgstr "Працэдура аўтэнтыфікацыі працуе слушна?"
+msgstr "Працэдура ідэнтыфікацыі прайшла паспяхова?"
 
 #. description
 #: ../jobs/firewire.txt.in:3
@@ -500,26 +584,34 @@ msgid ""
 " 3.- Copy some files from your internal HDD to the firewire HDD.\n"
 " 4.- Copy some files from the firewire HDD to your internal HDD."
 msgstr ""
+"Працэдура праверкі HDD , які падключаецца праз інтэрфейс FireWire:\n"
+" 1 .- Падлучыце HDD з інтэрфейсам FireWire да кампутара.\n"
+" 2 .- Павінна з'явіцца вакно, якое прапануе дзеянні на выбар (адкрыць "
+"файлавы мэнэджар, прагляднік фатаграфій і г.д.).\n"
+" 3 .- Скапіруйце некалькі файлаў з унутранага HDD, на HDD з інтэрфейсам "
+"FireWire.\n"
+" 4 .- Скапіруйце некалькі файлаў з HDD з інтэрфейсам FireWire, на ўнутраны "
+"HDD."
 
 #. description
-#: ../jobs/firewire.txt.in:3 ../jobs/usb.txt.in:71
+#: ../jobs/firewire.txt.in:3
 msgid "Do the copy operations work as expected?"
-msgstr "Ці працуюць апэрацыі капіяваньня так як запланавана?"
+msgstr "Капіраванне файлаў працуе як і чакалася?"
 
 #. description
 #: ../jobs/floppy.txt.in:4
 msgid "Floppy test"
-msgstr ""
+msgstr "Тэст дыскеты"
 
 #. description
 #: ../jobs/gcalctool.txt.in:5
 msgid "Click the \"Test\" button to open the calculator."
-msgstr ""
+msgstr "Націсніце кнопку \"Праверыць\" каб запусціць калькулятар."
 
 #. description
 #: ../jobs/gcalctool.txt.in:5
 msgid "Did it launch correctly?"
-msgstr ""
+msgstr "Запуск праведзены паспяхова?"
 
 #. description
 #: ../jobs/gcalctool.txt.in:15
@@ -527,31 +619,36 @@ msgid ""
 "1. Simple math functions (+,-,/,*) 2. Nested math functions ((,)) 3. "
 "Fractional math 4. Decimal math"
 msgstr ""
+"1. Простыя арыфметычныя дзеянні (+,-,/,*) 2. Выражэнні з укладзенымі дужкамі "
+"((,)) 3. Выражэнні з дробамі 4. Выражэнні з дзесятковымі дробамі"
 
 #. description
 #: ../jobs/gcalctool.txt.in:30
 msgid "1. Memory set 2. Memory reset 3. Memory last clear 4. Memory clear"
 msgstr ""
+"1. Усталёўка памяці 2. Скідванне памяці 3. Апошняя ачыстка памяці 4. Ачыстка "
+"памяці"
 
 #. description
 #: ../jobs/gcalctool.txt.in:45
 msgid "Click the \"Test\" button to open the calculator and perform:"
 msgstr ""
+"Націсніце кнопку \"Праверыць\" каб запусціць калькулятар і выканайце:"
 
 #. description
 #: ../jobs/gcalctool.txt.in:45
 msgid "1. Cut 2. Copy 3. Paste"
-msgstr ""
+msgstr "1. Выразаць 2. Капіраваць 3. Уставіць"
 
 #. description
 #: ../jobs/gcalctool.txt.in:45
 msgid "Did the functions perform as expected?"
-msgstr ""
+msgstr "Ці выконваліся функцыі, як і чакалася?"
 
 #. description
 #: ../jobs/gedit.txt.in:5
 msgid "Click the \"Test\" button to open gedit."
-msgstr ""
+msgstr "Націсніце кнопку \"Праверыць\" каб запусціць gedit."
 
 #. description
 #: ../jobs/gedit.txt.in:5
@@ -559,6 +656,8 @@ msgid ""
 "Enter some text and save the file (make a note of the file name you use), "
 "then close gedit."
 msgstr ""
+"Калі ласка, увядзіце фрагмент тэксту і захавайце яго ў файл (запішыце "
+"прызначанае вамі імя файла), затым завяршыце працу gedit."
 
 #. description
 #: ../jobs/gedit.txt.in:17
@@ -566,21 +665,23 @@ msgid ""
 "Click the \"Test\" button to open gedit, and re-open the file you created "
 "previously."
 msgstr ""
+"Націсніце кнопку \"Праверыць\" каб запусціць gedit і паўторна адчынеце раней "
+"створаны файл."
 
 #. description
 #: ../jobs/gedit.txt.in:17
 msgid "Edit then save the file, then close gedit."
-msgstr ""
+msgstr "Змяніце, а затым захавайце файл і завяршыце працу gedit."
 
 #. description
 #: ../jobs/gedit.txt.in:17 ../jobs/gnome-terminal.txt.in:5
 msgid "Did this perform as expected?"
-msgstr ""
+msgstr "Выканана правільна?"
 
 #. description
 #: ../jobs/gnome-terminal.txt.in:5
 msgid "Click the \"Test\" button to open Terminal."
-msgstr ""
+msgstr "Націсніце кнопку \"Праверыць\" каб запусціць тэрмінал."
 
 #. description
 #: ../jobs/gnome-terminal.txt.in:5
@@ -588,22 +689,24 @@ msgid ""
 "Type 'ls' and press enter. You should see a list of files and folder in your "
 "home directory."
 msgstr ""
+"Калі ласка, увядзіце 'ls' . Націсніце клавішу Enter. Вы павінны ўбачыць "
+"пералік файлаў і тэчак, якія знаходзяцца ў вашай хатняй тэчцы."
 
 #. description
 #: ../jobs/gnome-terminal.txt.in:5
 msgid "Close the terminal window."
-msgstr ""
+msgstr "Зачыніце вакно тэрмінала."
 
 #. description
 #: ../jobs/graphics.txt.in:5
 msgid ""
 "2d graphics appears to be working, your running X.Org version is: $output"
-msgstr ""
+msgstr "2D графіка працуе, вы карыстаецеся з X.Org версіі: $output"
 
 #. description
 #: ../jobs/graphics.txt.in:23
 msgid "Run gtkperf to make sure that GTK based test cases work"
-msgstr ""
+msgstr "Выканаць gtkperf каб вызначыць працаздольнасць тэстаў на базе GTK"
 
 #. description
 #: ../jobs/graphics.txt.in:23
@@ -611,6 +714,8 @@ msgid ""
 "In the future add the returned time as a benchmark result to the checkbox "
 "report"
 msgstr ""
+"У далейшым дадаваць у справаздачу праверкі сістэмы звесткі пра час водгуку ў "
+"якасці выніку"
 
 #. description
 #: ../jobs/graphics.txt.in:31
@@ -620,11 +725,16 @@ msgid ""
 "The resolution should change 5.- Select the original resolution from the "
 "dropdown list 6.- Click on Apply 7.- The resolution should change again"
 msgstr ""
+"Працэдура змены вырашальнай здольнасці экрана: 1 .- Адчыніце меню Сістэма-> "
+"Параметры-> Маніторы 2 .- Выберыце неабходнае вырашэнне з выпадаючага спісу "
+"3 .- Націсніце Ужыць 4 .- Павінна адбыцца змена вырашэння 5 .- Выберыце "
+"зыходнае вырашэнне з выпадаючага спісу 6 .- Націсніце Ужыць 7 .- Вырашэнне "
+"павінна ізноў змяніцца."
 
 #. description
 #: ../jobs/graphics.txt.in:31
 msgid "Did the resolution change as expected?"
-msgstr ""
+msgstr "Змяненне вырашэння выканана правільна?"
 
 #. description
 #: ../jobs/graphics.txt.in:46
@@ -636,36 +746,43 @@ msgid ""
 "display configuration change should be reverted 7.- Repeat 2-6 for different "
 "rotation values"
 msgstr ""
+"Працэдура праверкі арыентацыі экрана: 1 .- Адчыніце меню Сістэма-> Параметры-"
+"> Маніторы 2 .- Выберыце неабходнае значэнне арыентацыі з выпадаючага спісу "
+"3 .- Націсніце Ужыць 4 .- Павінен адбыцца паварот экрана ў адпаведнасці з "
+"зададзенымі значэннямі 5 .- Націсніце Аднавіць для вяртання да папярэдняга "
+"значэння 6 .- Наладкі экрана павінны быць адноўленыя 7 .- Паўтарыце этапы з "
+"2-6, каб задзейнічаць розныя значэнні арыентацыі."
 
 #. description
 #: ../jobs/graphics.txt.in:46
 msgid "Did the display rotation change as expected?"
-msgstr ""
+msgstr "Паварот экрана выкананы правільна?"
 
 #. description
-#: ../jobs/graphics.txt.in:62 ../jobs/sru_suite.txt.in:151
+#: ../jobs/graphics.txt.in:62
 msgid "Test that the X process is running."
-msgstr ""
+msgstr "Праверка выканання працэсу X."
 
 #. description
-#: ../jobs/graphics.txt.in:68 ../jobs/sru_suite.txt.in:157
+#: ../jobs/graphics.txt.in:68
 msgid "Test that the X is not running in failsafe mode."
-msgstr ""
+msgstr "Праверка незадзейнічання працэсу X у бяспечным рэжыме."
 
 #. description
 #: ../jobs/graphics.txt.in:75
 msgid "Test that X does not leak memory when running programs."
 msgstr ""
+"Праверка працэсу Х на адсутнасць уцечак памяці пры выкананні праграм."
 
 #. description
 #: ../jobs/graphics.txt.in:82
 msgid "This display is using the following resolution:"
-msgstr ""
+msgstr "Гэты манітор выкарыстоўвае наступнае вырашэнне:"
 
 #. description
 #: ../jobs/graphics.txt.in:82
 msgid "Is this acceptable for your display?"
-msgstr "Ці дапушчальна гэта для вашага манітора?"
+msgstr "Ці адпавядае яно вашаму манітору?"
 
 #. description
 #: ../jobs/graphics.txt.in:95
@@ -682,68 +799,72 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:107
+#: ../jobs/graphics.txt.in:94
 msgid "https://help.ubuntu.com/community/Installation/SystemRequirements"
-msgstr ""
+msgstr "https://help.ubuntu.com/community/Installation/SystemRequirements"
 
 #. description
-#: ../jobs/graphics.txt.in:117
+#: ../jobs/graphics.txt.in:104
 msgid "Select Test to display a video test."
-msgstr ""
+msgstr "Націсніце кнопку «Тэст» для выканання відэа тэсту."
 
 #. description
-#: ../jobs/graphics.txt.in:117
+#: ../jobs/graphics.txt.in:104
 msgid "Do you see color bars and static?"
-msgstr ""
+msgstr "Ці бачыце вы каляровыя статычныя палосы?"
 
 #. description
-#: ../jobs/graphics.txt.in:126
+#: ../jobs/graphics.txt.in:113
 msgid ""
 "The following screens and video modes have been detected on your system:"
 msgstr ""
+"Для вашай сістэмы былі вызначаны наступныя рэжымы відэакарты і манітора:"
 
 #. description
-#: ../jobs/graphics.txt.in:138
+#: ../jobs/graphics.txt.in:125
 msgid ""
 "Select Test to cycle through the detected video modes for your system."
 msgstr ""
+"Націсніце кнопку «Тэст» для агляду відэа рэжымаў, вызначаных у вашай сістэме."
 
 #. description
-#: ../jobs/graphics.txt.in:138
+#: ../jobs/graphics.txt.in:125
 msgid "Did the screen appear to be working for each mode?"
-msgstr ""
+msgstr "Экран правільна працуе ва ўсіх рэжымах?"
 
 #. description
-#: ../jobs/graphics.txt.in:146
+#: ../jobs/graphics.txt.in:133
 msgid "Check that the hardware is able to run compiz."
-msgstr ""
+msgstr "Праверце абсталяванне на магчымасць запуску compiz."
 
 #. description
-#: ../jobs/graphics.txt.in:153
+#: ../jobs/graphics.txt.in:140
 msgid ""
 "Select Test to execute glxgears to ensure that minimal 3d graphics support "
 "is in place."
 msgstr ""
+"Націсніце кнопку «Тэст» для выканання тэсту glxgears на мінімальную "
+"падтрымку 3-ох мернай графікі."
 
 #. description
-#: ../jobs/graphics.txt.in:153
+#: ../jobs/graphics.txt.in:140
 msgid "Did the 3d animation appear?"
-msgstr "Ці зьявілася 3d анімацыя?"
+msgstr "Ці з'явілася 3D-анімацыя?"
 
 #. description
-#: ../jobs/info.txt.in:60 ../jobs/screenshot.txt.in:7
+#: ../jobs/info.txt.in:69 ../jobs/screenshot.txt.in:7
 msgid "Captures a screenshot."
-msgstr ""
+msgstr "Стварае здымак экрана."
 
 #. description
-#: ../jobs/info.txt.in:71 ../jobs/sru_suite.txt.in:167
+#: ../jobs/info.txt.in:80
 msgid "Gather log from the firmware test suite run"
 msgstr ""
 
 #. description
-#: ../jobs/info.txt.in:82
+#: ../jobs/info.txt.in:91
 msgid "Bootchart information."
-msgstr ""
+msgstr "Інфармацыя Bootchart."
 
 #. description
 #: ../jobs/input.txt.in:4
@@ -759,11 +880,13 @@ msgstr "Ваша мыш працуе карэктна?"
 #: ../jobs/input.txt.in:13
 msgid "Select Test to open a text area where to type keys on your keyboard."
 msgstr ""
+"Націсніце «Тэст» для адлюстравання тэкставай вобласці, дзе вы зможаце "
+"праверыць метад ўводу пры дапамозе клавіятуры."
 
 #. description
 #: ../jobs/input.txt.in:13
 msgid "Is your keyboard working properly?"
-msgstr "Ваша клявіятура працуе карэктна?"
+msgstr "Ваша клавіятура працуе карэктна?"
 
 #. description
 #: ../jobs/install.txt.in:6
@@ -771,6 +894,8 @@ msgid ""
 "Tests to see that apt can access repositories and get updates (does not "
 "install updates)"
 msgstr ""
+"Правярае магчымасць доступу apt да рэпазітароў і выканання абнаўленняў (не "
+"выконвае ўсталёўку абнаўленняў)"
 
 #. description
 #: ../jobs/keys.txt.in:4
@@ -778,6 +903,8 @@ msgid ""
 "Press the brightness buttons on the keyboard. A status window should \\ "
 "appear and the brightness should change."
 msgstr ""
+"Націсніце клавішы наладкі яркасці на клавіятуры. Павінна з'явіцца вакно\\ "
+"стану і праведзена змяненне яркасці."
 
 #. description
 #: ../jobs/keys.txt.in:12
@@ -785,11 +912,13 @@ msgid ""
 "Press the volume buttons on the keyboard. A status window should \\ appear "
 "and the volume should change."
 msgstr ""
+"Націсніце клавішы наладкі гучнасці на клавіятуры. Павінна з'явіцца вакно\\ "
+"стану і праведзена змяненне гучнасці."
 
 #. description
 #: ../jobs/keys.txt.in:12
 msgid "Do the buttons work?"
-msgstr ""
+msgstr "Ці функцыянуюць клавішы?"
 
 #. description
 #: ../jobs/keys.txt.in:21
@@ -797,61 +926,74 @@ msgid ""
 "Press the mute key on the keyboard. A status window should appear \\ and the "
 "volume should mute/unmute when pressed multiple times."
 msgstr ""
+"Націсніце клавішу выключэння гуку на клавіятуры. Мусіць з'явіцца вакно\\ "
+"стану і пры некалькіх націсках клавішы, адбудзеца ўключэнне / выключэнне "
+"гучнасці."
 
 #. description
-#: ../jobs/keys.txt.in:30
+#: ../jobs/keys.txt.in:31
 msgid ""
 "Press the sleep key on the keyboard. The computer should suspend and, \\ "
 "after pressing the power button, resume successfully."
 msgstr ""
+"Націсніце клавішу пераходу ў спячы рэжым (Sleep) на клавіятуры. Кампутар "
+"павінен перайсці ў рэжым / сну, а пасля націскання кнопкі ўключэння "
+"сілкавання, вярнуцца ў рабочы рэжым."
 
 #. description
-#: ../jobs/keys.txt.in:39
+#: ../jobs/keys.txt.in:40
 msgid ""
 "Press the battery information key on the keyboard. A status window \\ should "
 "appear and the amount of battery remaining should be displayed."
 msgstr ""
+"Націсніце клавішу адлюстравання звестак аб акумулятары на клавіятуры. Мусіць "
+"з'явіцца вакно стану \\ і адлюстраваная рэшта зарада акумулятара."
 
 #. description
-#: ../jobs/keys.txt.in:48
+#: ../jobs/keys.txt.in:49
 msgid ""
 "Press the wireless networking key on the keyboard. The bluetooth icon \\ and "
 "the network connnection should go down if connected through the \\ wifi "
 "interface."
 msgstr ""
+"Націсніце клавішу запуску бесправадной сеткі на клавіятуры. Значок bluetooth "
+"\\ і сеткавых падлучэнняў павінен схавацца, калі падлучэнне выканана праз \\ "
+"wifi інтэрфейс."
 
 #. description
-#: ../jobs/keys.txt.in:48
+#: ../jobs/keys.txt.in:49
 msgid ""
 "Press the same key again and check that bluetooth icon is again \\ displayed "
 "and that the network connection is re-established \\ automatically."
 msgstr ""
+"Націсніце тую ж клавішу зноў і пераканайцеся, што значок bluetooth "
+"адлюстроўваецца \\ і сеткавыя падлучэнні зноў усталяваныя \\ аўтаматычна."
 
 #. description
-#: ../jobs/keys.txt.in:48
+#: ../jobs/keys.txt.in:49
 msgid "Does the key work?"
-msgstr ""
+msgstr "Ці функцыянуе гэтая клавіша?"
 
 #. description
-#: ../jobs/keys.txt.in:62
+#: ../jobs/keys.txt.in:63
 msgid ""
 "The keyboard may have dedicated keys for controlling media as follows:"
-msgstr ""
+msgstr "Клавіятура можа мець прызначаныя для кіравання мультымедыя клавішы:"
 
 #. description
-#: ../jobs/keys.txt.in:62
+#: ../jobs/keys.txt.in:63
 msgid "* Play/Pause * Stop * Forward * Backward (Rewind)"
-msgstr ""
+msgstr "* Прайграванне / Паўза * Стоп * Наперад * Назад (Перамотка)"
 
 #. description
-#: ../jobs/keys.txt.in:62
+#: ../jobs/keys.txt.in:63
 msgid "Play a media file and press each key in turn."
-msgstr ""
+msgstr "Прайграйце мультымедыйны файл і націскайце па чарзе кожную клавішу."
 
 #. description
-#: ../jobs/keys.txt.in:62
+#: ../jobs/keys.txt.in:63
 msgid "Do the keys work as expected?"
-msgstr ""
+msgstr "Ці правільна функцыянуюць гэтыя клавішы?"
 
 #. description
 #: ../jobs/local.txt.in:3
@@ -861,27 +1003,27 @@ msgstr "Праверка аўдыё"
 #. description
 #: ../jobs/local.txt.in:8
 msgid "Bluetooth tests"
-msgstr ""
+msgstr "Праверка Bluetooth"
 
 #. description
 #: ../jobs/local.txt.in:13
 msgid "Camera tests"
-msgstr ""
+msgstr "Праверка камеры"
 
 #. description
 #: ../jobs/local.txt.in:18
 msgid "Codec tests"
-msgstr ""
+msgstr "Праверка кодэкаў"
 
 #. description
 #: ../jobs/local.txt.in:23
 msgid "CPU tests"
-msgstr ""
+msgstr "Праверка ЦПУ"
 
 #. description
 #: ../jobs/local.txt.in:28
 msgid "System Daemon tests"
-msgstr ""
+msgstr "Праверка сістэмных службаў"
 
 #. description
 #: ../jobs/local.txt.in:33
@@ -901,92 +1043,92 @@ msgstr "Праверка дыскаў Firewire"
 #. description
 #: ../jobs/local.txt.in:48
 msgid "Floppy disk tests"
-msgstr ""
+msgstr "Праверка дыскет"
 
 #. description
 #: ../jobs/local.txt.in:53
 msgid "Graphics tests"
-msgstr ""
+msgstr "Праверка графічнай сістэмы"
 
 #. description
 #: ../jobs/local.txt.in:58
 msgid "Informational tests"
-msgstr ""
+msgstr "Інфармацыйныя тэсты"
 
 #. description
 #: ../jobs/local.txt.in:63
 msgid "Input Devices tests"
-msgstr ""
+msgstr "Праверка прыладаў ўводу"
 
 #. description
 #: ../jobs/local.txt.in:68
 msgid "Software Installation tests"
-msgstr ""
+msgstr "Праверка ўсталёўкі праграмнага забеспячэння"
 
 #. description
 #: ../jobs/local.txt.in:73
 msgid "Hotkey tests"
-msgstr ""
-
-#. description
-#: ../jobs/local.txt.in:78
-msgid "Media Card tests"
-msgstr ""
+msgstr "Праверка клавіш хуткага доступу"
 
 #. description
 #: ../jobs/local.txt.in:83
-msgid "Miscellaneous tests"
-msgstr ""
-
-#. description
-#: ../jobs/local.txt.in:88
-msgid "Monitor tests"
-msgstr ""
+msgid "Media Card tests"
+msgstr "Праверка карт памяці"
 
 #. description
 #: ../jobs/local.txt.in:93
-msgid "Networking tests"
-msgstr ""
+msgid "Miscellaneous tests"
+msgstr "Разнастайныя тэсты"
 
 #. description
 #: ../jobs/local.txt.in:98
-msgid "PCMCIA/PCIX Card tests"
-msgstr ""
+msgid "Monitor tests"
+msgstr "Праверка манітора"
 
 #. description
 #: ../jobs/local.txt.in:103
-msgid "Peripheral tests"
-msgstr "Праверка пэрыфэрыйнага абсталяваньня"
-
-#. description
-#: ../jobs/local.txt.in:108
-msgid "Power Management tests"
-msgstr ""
+msgid "Networking tests"
+msgstr "Праверка сеткі"
 
 #. description
 #: ../jobs/local.txt.in:113
-msgid "Unity tests"
-msgstr ""
+msgid "PCMCIA/PCIX Card tests"
+msgstr "Праверка PCMCIA/PCIX карт"
 
 #. description
 #: ../jobs/local.txt.in:118
-msgid "User Applications"
-msgstr ""
+msgid "Peripheral tests"
+msgstr "Праверка перыферыйнага абсталявання"
 
 #. description
 #: ../jobs/local.txt.in:123
+msgid "Power Management tests"
+msgstr "Праверка кіравання электрасілкаваннем"
+
+#. description
+#: ../jobs/local.txt.in:133
+msgid "Unity tests"
+msgstr "Тэсты Unity"
+
+#. description
+#: ../jobs/local.txt.in:143
+msgid "User Applications"
+msgstr "Дадаткі Карыстальніка"
+
+#. description
+#: ../jobs/local.txt.in:153
 msgid "Stress tests"
-msgstr ""
+msgstr "Стрэсс-тэсты"
 
 #. description
 #: ../jobs/ltp.txt.in:3
 msgid "Linux Test Project"
-msgstr ""
+msgstr "Праект тэставання Linux"
 
 #. description
 #: ../jobs/mago.txt.in:3
 msgid "Automated desktop testing"
-msgstr ""
+msgstr "Аўтаматызаваная праверка рабочага стала"
 
 #. description
 #: ../jobs/mediacard.txt.in:3
@@ -998,6 +1140,14 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"Працэдура праверкі з дапамогай зменных карт памяці Secure Digital (SD):\n"
+" 1 .- Устаўце карту памяці SD, выкарыстоўваючы адпаведную прыладу счытвання "
+"кампутара.\n"
+" 2 .- На рабочым стале павінен з'явіцца значок, а таксама ў верхняй частцы "
+"экрана ў меню «Пераход».\n"
+" 3 .- Цокніце правай кнопкай мышы па значку і абярыце «Бяспечнае адключэнне "
+"прылады».\n"
+" 4 .- Значок павінен будзе знікнуць з рабочага стала і ў меню «Пераход»."
 
 #. description
 #: ../jobs/mediacard.txt.in:15
@@ -1009,6 +1159,15 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"Працэдура паўторнай верыфікацыі з дапамогай зменных карт памяці Secure "
+"Digital (SD):\n"
+" 1 .- Устаўце карту памяці SD, выкарыстоўваючы адпаведную прыладу счытвання "
+"кампутара.\n"
+" 2 .- На рабочым стале павінен з'явіцца значок, а таксама ў верхняй частцы "
+"экрана ў меню «Пераход».\n"
+" 3 .- Цокніце правай кнопкай мышы па значку і абярыце «Бяспечнае адключэнне "
+"прылады».\n"
+" 4 .- Значок павінен будзе знікнуць з рабочага стала і ў меню «Пераход»."
 
 #. description
 #: ../jobs/mediacard.txt.in:26
@@ -1020,6 +1179,15 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"Працэдура праверкі, з дапамогай зменных карт памяці Secure Digital High "
+"Capacity (SDHC):\n"
+" 1 .- Устаўце карту памяці SDHC, выкарыстоўваючы адпаведную прыладу "
+"счытвання кампутара.\n"
+" 2 .- На рабочым стале павінен з'явіцца значок, а таксама ў верхняй частцы "
+"экрана ў меню «Пераход».\n"
+" 3 .- Цокніце правай кнопкай мышы па значку і абярыце «Бяспечнае адключэнне "
+"прылады».\n"
+" 4 .- Значок павінен будзе знікнуць з рабочага стала і ў меню «Пераход»."
 
 #. description
 #: ../jobs/mediacard.txt.in:38
@@ -1031,6 +1199,15 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"Працэдура паўторнай праверкі, з дапамогай зменных карт памяці Secure Digital "
+"High Capacity (SDHC):\n"
+" 1 .- Устаўце карту памяці SDHC, выкарыстоўваючы адпаведную прыладу "
+"счытвання кампутара.\n"
+" 2 .- На рабочым стале мусіць з'явіцца значок, а таксама ў верхняй частцы "
+"экрана ў меню «Пераход».\n"
+" 3 .- Цокніце правай кнопкай мышы па значку і абярыце «Бяспечнае адключэнне "
+"прылады».\n"
+" 4 .- Значок мусіць знікнуць з рабочага стала і ў меню «Пераход»."
 
 #. description
 #: ../jobs/mediacard.txt.in:49
@@ -1042,6 +1219,14 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"Працэдура праверкі, з дапамогай зменных карт памяці Multi Media Card (MMC):\n"
+" 1 .- Устаўце карту памяці MMC, выкарыстоўваючы адпаведную прыладу счытвання "
+"кампутара.\n"
+" 2 .- На рабочым стале мусіць з'явіцца значок, а таксама ў верхняй частцы "
+"экрана ў меню «Пераход».\n"
+" 3 .- Цокніце правай кнопкай мышы па значку і абярыце «Бяспечнае адключэнне "
+"прылады».\n"
+" 4 .- Значок мусіць знікнуць з рабочага стала і ў меню «Пераход»."
 
 #. description
 #: ../jobs/mediacard.txt.in:61
@@ -1053,6 +1238,15 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"Працэдура паўторнай праверкі, з дапамогай зменных карт памяці Multi Media "
+"Card (MMC):\n"
+" 1 .- Устаўце карту памяці MMC, выкарыстоўваючы адпаведную прыладу счытвання "
+"кампутара.\n"
+" 2 .- На рабочым стале мусіць з'явіцца значок, а таксама ў верхняй частцы "
+"экрана ў меню «Пераход».\n"
+" 3 .- Цокніце правай кнопкай мышы па значку і абярыце «Бяспечнае адключэнне "
+"прылады».\n"
+" 4 .- Значок мусіць знікнуць з рабочага стала і ў меню «Пераход»."
 
 #. description
 #: ../jobs/mediacard.txt.in:72
@@ -1064,6 +1258,14 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"Працэдура праверкі, з дапамогай зменных карт памяці Memory Stick (MS):\n"
+" 1 .- Устаўце карту памяці MS , выкарыстоўваючы адпаведную прыладу счытвання "
+"кампутара.\n"
+" 2 .- На рабочым стале мусіць з'явіцца значок, а таксама ў верхняй частцы "
+"экрана ў меню «Пераход».\n"
+" 3 .- Цокніце правай кнопкай мышы па значку і абярыце «Бяспечнае адключэнне "
+"прылады».\n"
+" 4 .- Значок мусіць знікнуць з рабочага стала і ў меню «Пераход»."
 
 #. description
 #: ../jobs/mediacard.txt.in:84
@@ -1075,6 +1277,15 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"Працэдура паўторнай праверкі, з дапамогай зменных карт памяці Memory Stick "
+"(MS):\n"
+" 1 .- Устаўце карту памяці MS , выкарыстоўваючы адпаведную прыладу счытвання "
+"кампутара.\n"
+" 2 .- На рабочым стале мусіць з'явіцца значок, а таксама ў верхняй частцы "
+"экрана ў меню «Пераход».\n"
+" 3 .- Цокніце правай кнопкай мышы па значку і абярыце «Бяспечнае адключэнне "
+"прылады».\n"
+" 4 .- Значок мусіць знікнуць з рабочага стала і ў меню «Пераход»."
 
 #. description
 #: ../jobs/mediacard.txt.in:95
@@ -1086,6 +1297,14 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"Працэдура праверкі, з дапамогай зменных карт памяці Memory Stick Pro (MSP):\n"
+" 1 .- Устаўце карту памяці MSP , выкарыстоўваючы адпаведную прыладу "
+"счытвання кампутара.\n"
+" 2 .- На рабочым стале мусіць з'явіцца значок, а таксама ў верхняй частцы "
+"экрана ў меню «Пераход».\n"
+" 3 .- Цокніце правай кнопкай мышы па значку і абярыце «Бяспечнае адключэнне "
+"прылады».\n"
+" 4 .- Значок мусіць знікнуць з рабочага стала і ў меню «Пераход»."
 
 #. description
 #: ../jobs/mediacard.txt.in:107
@@ -1097,6 +1316,15 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"Працэдура паўторнай праверкі, з дапамогай зменных карт памяці Memory Stick "
+"Pro (MSP):\n"
+" 1 .- Устаўце карту памяці MSP , выкарыстоўваючы адпаведную прыладу "
+"счытвання кампутара.\n"
+" 2 .- На рабочым стале мусіць з'явіцца значок, а таксама ў верхняй частцы "
+"экрана ў меню «Пераход».\n"
+" 3 .- Цокніце правай кнопкай мышы па значку і абярыце «Бяспечнае адключэнне "
+"прылады».\n"
+" 4 .- Значок мусіць знікнуць з рабочага стала і ў меню «Пераход»."
 
 #. description
 #: ../jobs/mediacard.txt.in:118
@@ -1108,6 +1336,14 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"Працэдура праверкі, з дапамогай зменных карт памяці Compact Flash (CF):\n"
+" 1 .- Устаўце карту памяці CF , выкарыстоўваючы адпаведную прыладу счытвання "
+"кампутара.\n"
+" 2 .- На рабочым стале мусіць з'явіцца значок, а таксама ў верхняй частцы "
+"экрана ў меню «Пераход».\n"
+" 3 .- Цокніце правай кнопкай мышы па значку і абярыце «Бяспечнае адключэнне "
+"прылады».\n"
+" 4 .- Значок мусіць знікнуць з рабочага стала і ў меню «Пераход»."
 
 #. description
 #: ../jobs/mediacard.txt.in:130
@@ -1119,21 +1355,30 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"Працэдура паўторнай праверкі, з дапамогай зменных карт памяці Compact Flash "
+"(CF):\n"
+" 1 .- Устаўце карту памяці CF , выкарыстоўваючы адпаведную прыладу счытвання "
+"кампутара.\n"
+" 2 .- На рабочым стале мусіць з'явіцца значок, а таксама ў верхняй частцы "
+"экрана ў меню «Пераход».\n"
+" 3 .- Цокніце правай кнопкай мышы па значку і абярыце «Бяспечнае адключэнне "
+"прылады».\n"
+" 4 .- Значок мусіць знікнуць з рабочага стала і ў меню «Пераход»."
 
 #. description
 #: ../jobs/mediacard.txt.in:130
 msgid "Does the icon automatically appear/disappear?"
-msgstr ""
+msgstr "Значок аўтаматычна з'яўляецца / знікае?"
 
 #. description
 #: ../jobs/memory.txt.in:4
 msgid "The following amount of memory was detected:"
-msgstr ""
+msgstr "Выяўлены аб'ём памяці:"
 
 #. description
 #: ../jobs/memory.txt.in:16
 msgid "Test and exercise memory."
-msgstr ""
+msgstr "Праверыць і выканаць задачу пры дапамозе памяці."
 
 #. description
 #: ../jobs/miscellanea.txt.in:8
@@ -1142,21 +1387,24 @@ msgid ""
 "screen will change temporarily to a text console and then switch back to "
 "your current session."
 msgstr ""
+"Выберыце Тэст, каб пераключыцца ў іншы віртуальны тэрмінал і затым назад у "
+"графічную абалонку. На экране будзе часова адлюстраваная тэкставая кансоль, "
+"а потым ізноў бягучая сэсія."
 
 #. description
 #: ../jobs/miscellanea.txt.in:8
 msgid "Note that this test may require you to enter your password."
-msgstr "Заўважце, што гэты тэст можа патрабаваць увесьці пароль."
+msgstr "Заўважце, што гэты тэст можа патрабаваць увесці пароль."
 
 #. description
 #: ../jobs/miscellanea.txt.in:8
 msgid "Did the screen change temporarily to a text console?"
-msgstr "Ці зьмяніўся экран часова на тэкставую кансоль?"
+msgstr "Ці змяніўся экран на тэкставую кансоль?"
 
 #. description
 #: ../jobs/miscellanea.txt.in:20
 msgid "Run Colin King's Firmware Test Suite automated tests."
-msgstr ""
+msgstr "Запусціць аўтаматызаваныя тэсты Colin King's Firmware Test Suite."
 
 #. description
 #: ../jobs/miscellanea.txt.in:29
@@ -1164,6 +1412,8 @@ msgid ""
 "ipmitool is required for ipmi testing. This checks for ipmitool and installs "
 "it if not available."
 msgstr ""
+"Неабходны ipmitool для выканання праверкі ipmi. Выконвае праверку ipmitool і "
+"ўсталёўвае яго, калі той не даступны."
 
 #. description
 #: ../jobs/miscellanea.txt.in:36
@@ -1171,12 +1421,14 @@ msgid ""
 "This will run some basic connectivity tests against a BMC, verifying that "
 "IPMI works."
 msgstr ""
+"Будуць выкананыя некаторыя базавыя тэсты падлучэння да BMC, для праверкі "
+"працаздольнасці IPMI."
 
 #. description
 #: ../jobs/monitor.txt.in:3
 msgid "If your system does not have a VGA port, please skip this test."
 msgstr ""
-"Калі ў вашай сыстэме адсутнічае порт VGA, калі ласка прапусьціце гэты тэст."
+"Калі ў вашай сістэме адсутнічае порт VGA, калі ласка прапусціце гэты тэст."
 
 #. description
 #: ../jobs/monitor.txt.in:3
@@ -1184,12 +1436,14 @@ msgid ""
 "Connect a display (if not already connected) to the VGA port on your system. "
 "Is the image displayed correctly?"
 msgstr ""
+"Падлучыце дысплей (калі ён яшчэ не падлучаны) да порта VGA Вашай сістэмы. Ці "
+" адлюстроўваецца відарыс дакладна?"
 
 #. description
 #: ../jobs/monitor.txt.in:10
 msgid "If your system does not have a DVI port, please skip this test."
 msgstr ""
-"Калі ў вашай сыстэме адсутнічае порт DVI, калі ласка прапусьціце гэты тэст."
+"Калі ў вашай сістэме адсутнічае порт DVI, калі ласка прапусціце гэты тэст."
 
 #. description
 #: ../jobs/monitor.txt.in:10
@@ -1197,13 +1451,14 @@ msgid ""
 "Connect a display (if not already connected) to the DVI port on your system. "
 "Is the image displayed correctly?"
 msgstr ""
+"Падлучыце дысплей (калі ён яшчэ не падлучаны) да порта DVI Вашай сістэмы. "
+"Відарыс адлюстроўваецца дакладна?"
 
 #. description
 #: ../jobs/monitor.txt.in:17
 msgid "If your system does not have DisplayPort, please skip this test."
 msgstr ""
-"Калі ў вашай сыстэме адсутнічае DisplayPort, калі ласка прапусьціце гэты "
-"тэст."
+"Калі ў вашай сістэме адсутнічае DisplayPort, калі ласка прапусціце гэты тэст."
 
 #. description
 #: ../jobs/monitor.txt.in:17
@@ -1211,12 +1466,14 @@ msgid ""
 "Connect a display (if not already connected) to the DisplayPort on your "
 "system. Is the image displayed correctly?"
 msgstr ""
+"Падлучыце дысплей (калі ён яшчэ не падлучаны) да порта DisplayPort Вашай "
+"сістэмы. Відарыс адлюстроўваецца дакладна?"
 
 #. description
 #: ../jobs/monitor.txt.in:24
 msgid "If your system does not have a HDMI port, please skip this test."
 msgstr ""
-"Калі ў вашай сыстэме адсутнічае порт HDMI, калі ласка прапусьціце гэты тэст."
+"Калі ў вашай сістэме адсутнічае порт HDMI, калі ласка прапусціце гэты тэст."
 
 #. description
 #: ../jobs/monitor.txt.in:24
@@ -1224,12 +1481,14 @@ msgid ""
 "Connect a display (if not already connected) to the HDMI port on your "
 "system. Is the image displayed correctly?"
 msgstr ""
+"Падлучыце дысплей (калі ён яшчэ не падлучаны) да порта HDMI Вашай сістэмы. "
+"Відарыс адлюстроўваецца дакладна?"
 
 #. description
 #: ../jobs/monitor.txt.in:31
 msgid "If your system does not have a S-VIDEO port, please skip this test."
 msgstr ""
-"Калі ў вашай сыстэме адсутнічае порт S-VIDEO, калі ласка прапусьціце гэты "
+"Калі ў вашай сістэме адсутнічае порт S-VIDEO, калі ласка прапусціце гэты "
 "тэст."
 
 #. description
@@ -1238,12 +1497,14 @@ msgid ""
 "Connect a display (if not already connected) to the S-VIDEO port on your "
 "system. Is the image displayed correctly?"
 msgstr ""
+"Падлучыце дысплей (калі ён яшчэ не падлучаны) да порта S-VIDEO Вашай "
+"сістэмы. Відарыс адлюстроўваецца дакладна?"
 
 #. description
 #: ../jobs/monitor.txt.in:38
 msgid "If your system does not have a RCA port, please skip this test."
 msgstr ""
-"Калі ў вашай сыстэме адсутнічае порт RCA, калі ласка прапусьціце гэты тэст."
+"Калі ў вашай сістэме адсутнічае порт RCA, калі ласка прапусціце гэты тэст."
 
 #. description
 #: ../jobs/monitor.txt.in:38
@@ -1251,6 +1512,8 @@ msgid ""
 "Connect a display (if not already connected) to the RCA port on your system. "
 "Is the image displayed correctly?"
 msgstr ""
+"Падлучыце дысплей (калі ён яшчэ не падлучаны) да порта RCA Вашай сістэмы. "
+"Відарыс адлюстроўваецца дакладна?"
 
 #. description
 #: ../jobs/monitor.txt.in:46
@@ -1260,16 +1523,20 @@ msgid ""
 " 2.- The monitor should go blank.\n"
 " 3.- Press any key or move the mouse to recover."
 msgstr ""
+"Працэдура праверкі энергазберагаючага рэжыму манітора:\n"
+" 1 .- Абярыце \"Праверыць\" для праверкі сумяшчальнасці вашага манітора.\n"
+" 2 .- Экран манітора мусіць згаснуць.\n"
+" 3 .- Націсніце любую клавішу альбо выканайце рух мышшу для вяртання."
 
 #. description
 #: ../jobs/monitor.txt.in:46
 msgid "Did the monitor go blank?"
-msgstr "Ці робіцца экран пустым?"
+msgstr "Манітор патух?"
 
 #. description
 #: ../jobs/networking.txt.in:5
 msgid "Detecting your network controller(s):"
-msgstr "Вызначэньне вашых сеціўных кантролераў:"
+msgstr "Знаходжанне сеткавых прылад:"
 
 #. description
 #: ../jobs/networking.txt.in:16
@@ -1277,35 +1544,43 @@ msgid "Testing your connection to the Internet:"
 msgstr "Праверка спалучэньня з інтэрнет:"
 
 #. description
-#: ../jobs/networking.txt.in:26
+#: ../jobs/networking.txt.in:21
 msgid "Network Information"
-msgstr ""
+msgstr "Інфармацыя аб сетцы"
 
 #. description
-#: ../jobs/networking.txt.in:46
+#: ../jobs/wireless.txt.in:6
 msgid "Wireless scanning test."
-msgstr ""
+msgstr "Праверка сканавання бесправадных сетак."
 
 #. description
-#: ../jobs/networking.txt.in:52
+#: ../jobs/wireless.txt.in:12
 msgid ""
 "Wireless network connection procedure: 1.- Click on the Network Manager "
 "applet 2.- Select a network below the 'Wireless networks' section 3.- Notify "
 "OSD should confirm that the connection has been established 4.- Select Test "
 "to verify that it's possible to establish an HTTP connection"
 msgstr ""
+"Працэдура падлучэння, выкарыстоўваючы бесправоднае злучэнне: 1 .- Цокніце на "
+"аплет Дыспетчар сеткі 2 .- Выберыце сетку ў раздзеле 'Бесправадныя сеткі' 3 "
+".- Усплываючыя звесткі павінны апавясціць вас пра ўсталёўку злучэння 4 .- "
+"Цокніце кнопку Праверыць для праверкі магчымасці ўсталёўкі HTTP -злучэння"
 
 #. description
-#: ../jobs/networking.txt.in:64
+#: ../jobs/networking.txt.in:39
 msgid ""
 "Wired network connection procedure: 1.- Click on the Network Manager applet "
 "2.- Select a network below the 'Wired network' section 3.- Notify OSD should "
 "confirm that the connection has been established 4.- Select Test to verify "
 "that it's possible to establish an HTTP connection"
 msgstr ""
+"Працэдура падлучэння, выкарыстоўваючы правадное злучэнне: 1 .- Цокніце па "
+"аплету Дыспетчар сеткі 2 .- Выберыце сетку ў раздзеле 'Правадныя сеткі' 3 .- "
+"Усплываючыя звесткі павінны апавясціць вас пра ўсталяванне злучэння 4 .- "
+"Націсніце кнопку Праверыць для праверкі магчымасці ўсталёўкі HTTP-злучэння"
 
 #. description
-#: ../jobs/networking.txt.in:76
+#: ../jobs/networking.txt.in:51
 msgid ""
 "Built-in modem network connection procedure: 1.- Connect the telephone line "
 "to the computer 2.- Right click on the Network Manager applet 3.- Select "
@@ -1314,62 +1589,76 @@ msgid ""
 "that the connection has been established 8.- Select Test to verify that it's "
 "possible to establish an HTTP connection"
 msgstr ""
+"Працэдура падлучэння з выкарыстаннем мадэма: 1 .- Падлучыце тэлефонную лінію "
+"да кампутара 2 .- Цокніце правай кнопкай мышы па аплету Дыспетчар сеткі 3 .- "
+"Націсніце 'Змяніць злучэнні' 4 .- Абярыце ўкладку 'DSL' 5 .- Націсніце "
+"кнопку 'Дадаць' 6 .- Наладзьце правільна параметры злучэння. 7 .- "
+"Усплываючыя звесткі павінны апавясціць вас пра ўсталяванне злучэння 8 .- "
+"Націсніце кнопку Праверыць для праверкі магчымасці ўсталёўкі HTTP-злучэння"
 
 #. description
-#: ../jobs/networking.txt.in:76 ../jobs/peripheral.txt.in:15
+#: ../jobs/networking.txt.in:51 ../jobs/peripheral.txt.in:15
+#: ../jobs/wireless.txt.in:12
 msgid "Was the connection correctly established?"
-msgstr "Спалучэньне было правільна ўсталяванае?"
+msgstr "Ці было злучэнне ўсталявана правільна?"
 
 #. description
-#: ../jobs/networking.txt.in:92
+#: ../jobs/networking.txt.in:67
 msgid ""
 "Automated test case to verify availability of some system on the network "
 "using ICMP ECHO packets."
 msgstr ""
+"Аўтаматызаваная праверка магчымасці выкарыстання ICMP ECHO пакетаў "
+"некаторымі сістэмамі ў сетцы."
 
 #. description
-#: ../jobs/networking.txt.in:99 ../jobs/peripheral.txt.in:32
+#: ../jobs/networking.txt.in:74 ../jobs/peripheral.txt.in:32
 msgid ""
 "Automated test case to make sure that it's possible to download files "
 "through HTTP"
 msgstr ""
+"Аўтаматызаваная праверка магчымасці загрузкі файлаў з выкарыстаннем HTTP"
 
 #. description
-#: ../jobs/networking.txt.in:107
+#: ../jobs/networking.txt.in:82
 msgid "Test to see if we can sync local clock to an NTP server"
 msgstr ""
+"Праверка магчымасці сінхранізацыі лакальнага гадзінніка з NTP серверам"
 
 #. description
-#: ../jobs/networking.txt.in:113
+#: ../jobs/networking.txt.in:88
 msgid ""
 "Verify that an installation of checkbox-server on the network can be reached "
 "over SSH."
 msgstr ""
+"Праверка магчымасці ўсталёўкі checkbox-сервера ў сетцы з выкарыстаннем SSH."
+
+#. description
+#: ../jobs/networking.txt.in:94
+msgid "Try to enable a remote printer on the network and print a test page."
+msgstr ""
+"Паспрабаваць ўключыць аддалены прынтар у сетку і надрукаваць пробную "
+"старонку."
+
+#. description
+#: ../jobs/networking.txt.in:99
+msgid "Multiple network cards"
+msgstr "Некалькі сеткавых картак"
 
 #. description
 #: ../jobs/networking.txt.in:119
-msgid "Try to enable a remote printer on the network and print a test page."
-msgstr ""
-
-#. description
-#: ../jobs/networking.txt.in:124
-msgid "Multiple network cards"
-msgstr ""
-
-#. description
-#: ../jobs/networking.txt.in:144
 msgid "Test to measure the network bandwidth"
-msgstr ""
+msgstr "Праверка прапускной здольнасці сеткі"
 
 #. description
 #: ../jobs/optical.txt.in:8
 msgid "The following optical drives were detected:"
-msgstr ""
+msgstr "Знойдзены наступныя аптычныя дыскаводы:"
 
 #. description
 #: ../jobs/optical.txt.in:18
 msgid "Optical Storage device read tests"
-msgstr ""
+msgstr "Праверка чытання на аптычным дыскаводзе"
 
 #. description
 #: ../jobs/optical.txt.in:37
@@ -1377,6 +1666,8 @@ msgid ""
 "The detected optical drive seems to support writing. Enter a blank CDROM \\ "
 "into your drive and try writing to it."
 msgstr ""
+"Знойдзены аптычны дыскавод падтрымлівае магчымасць запісу. Устаўце пусты "
+"CDROM \\ у дыскавод і паспрабуйце выканаць на яго запіс."
 
 #. description
 #: ../jobs/optical.txt.in:46
@@ -1389,6 +1680,15 @@ msgid ""
 "\"Eject Volume\". 8.- The CD should be ejected and the icon removed from the "
 "desktop."
 msgstr ""
+"Працэдура прайгравання гукавога кампакт-дыска: 1 .- Устаўце гукавы кампакт-"
+"дыск у дыскавод аптычных дыскаў. 2 .- На рабочым стале павінен з'явіцца "
+"значок. 3 .- Націсніце правай кнопкай мышы па значку і абярыце \"Адчыніць з "
+"дапамогай Rhythmbox\" 4 .- Абярыце кампакт-дыск у якасці крыніцы "
+"прайгравання і націсніце кнопку прайгравання. 5 .- Вы павінны пачуць "
+"прайграваны гукавы фрагмент. 6 .- Праз некаторы час, спыніце прайграванне "
+"гукавога фрагмента. 7 .- Націсніце правай кнопкай мышы па значку рабочага "
+"стала і абярыце \"Выняць\". 8 .- Кампакт-дыск мусіць быць выняты, а яго "
+"значок знікнуць з рабочага стала."
 
 #. description
 #: ../jobs/optical.txt.in:63
@@ -1396,11 +1696,13 @@ msgid ""
 "The detected optical drive seems to support writing. Enter a blank DVD \\ "
 "into your drive and try writing to it."
 msgstr ""
+"Знойдзены аптычны дыскавод падтрымлівае магчымасць запісу. Устаўце пусты DVD "
+"\\ у дыскавод і паспрабуйце выканаць на яго запіс."
 
 #. description
 #: ../jobs/optical.txt.in:63
 msgid "Does writing work?"
-msgstr ""
+msgstr "Ці ўводзіца тэкст?"
 
 #. description
 #: ../jobs/optical.txt.in:72
@@ -1413,11 +1715,20 @@ msgid ""
 "\"Eject Volume\". 7.- The DVD should be ejected and the icon removed from "
 "the desktop."
 msgstr ""
+"Працэдура прайгравання кінафільма DVD: 1 .- Устаўце DVD, які змяшчае любы "
+"кінафільм у дыскавод аптычных дыскаў. 2 .- Павінна з'явіцца вакно з "
+"некаторымі даступнымі для вас дзеяннямі. Выберыце 'Адчыніць мультымедыйны "
+"прайгравальнік'. 3 .- Павінен быць адчынены прайгравальнік і распачацца "
+"прайграванне кінафільма. 4 .- Праз некаторы час, спыніце прайграванне "
+"кінафільма. 5 .- Павінен з'явіцца значок на рабочым стале. 6 .- Націсніце "
+"правай кнопкай мышы па значку рабочага стала і абярыце \"Выняць\". 7 .- DVD "
+"мусіць быць выняты, а яго значок знікнуць з рабочага стала."
 
 #. description
 #: ../jobs/optical.txt.in:90
 msgid "Insert a DVD.  Then select Test to play the DVD in Totem."
 msgstr ""
+"Устаўце DVD. Затым абярыце Тэст, каб прайграць DVD у Відэапрайгравальніку"
 
 #. description
 #: ../jobs/optical.txt.in:90
@@ -1430,6 +1741,8 @@ msgid ""
 "Is your gnome system clock displaying the correct date and time for \\ your "
 "timezone?"
 msgstr ""
+"Ці правільна адлюстроўваюць дату і час гадзіннік у gnome \\ для вашага "
+"гадзіннага поясу?"
 
 #. description
 #: ../jobs/panel_clock_test.txt.in:14
@@ -1440,6 +1753,12 @@ msgid ""
 "then Time and Date 3.- Ensure that your clock application is set to manual. "
 "4.- Change the time 1 hour back 5.- Close the window and reboot"
 msgstr ""
+"Працэдура праверкі часу: 1 .- Націсніце кнопку \"Праверыць\" і "
+"пераканайцеся, што гадзіннік можна перавесці на 1 гадзіну наперад. \\ "
+"Заўвага: Абнаўленне гадзінніка Gnome, можа заняць хвілінку або крыху болей "
+"часу 2 .- Затым выберыце на панэлі Сістэма, Адміністраванне, Час і дата 3 .- "
+"Пераканайцеся, што значэнні часу задаюцца ўручную. 4 .- Перавядзіце час на 1 "
+"гадзіну назад 5 .- Зачыніце вакно і запусціце перазагрузку"
 
 #. description
 #: ../jobs/panel_clock_test.txt.in:14
@@ -1447,11 +1766,14 @@ msgid ""
 "Is your system clock displaying the correct date and time for your \\ "
 "timezone?"
 msgstr ""
+"Ці паказвае сістэмны гадзіннік правільную дату і час, \\ улічваючы ваш "
+"гадзінны пояс?"
 
 #. description
 #: ../jobs/panel_reboot.txt.in:4
 msgid "Please restart your machine from the Ubuntu Panel."
 msgstr ""
+"Калі ласка, перазапусціце ваш кампутар выкарыстоўваючы панэль Ubuntu."
 
 #. description
 #: ../jobs/panel_reboot.txt.in:4
@@ -1459,21 +1781,24 @@ msgid ""
 "Afterwards be sure to recover the previous Checkbox instance and \\ answer "
 "the question below:"
 msgstr ""
+"Затым пераканайцеся, што вы аднавілі папярэдняе значэнне Птушкі і адкажыце "
+"на наступнае пытанне:"
 
 #. description
 #: ../jobs/panel_reboot.txt.in:4
 msgid "Did it restart and bring up the GUI login cleanly?"
 msgstr ""
+"Ці выкананы перазапуск і ці карэктна з'явіўся графічны экран уваходу?"
 
 #. description
 #: ../jobs/pcmcia-pcix.txt.in:3
 msgid "Plug a PCMCIA device into the computer."
-msgstr ""
+msgstr "Падлучыце PCMCIA прыладу да кампутара."
 
 #. description
 #: ../jobs/pcmcia-pcix.txt.in:3
 msgid "Is it detected?"
-msgstr ""
+msgstr "Знойдзены?"
 
 #. description
 #: ../jobs/peripheral.txt.in:3
@@ -1484,6 +1809,11 @@ msgid ""
 "detected and proper configuration values \\ should be displayed 5.- Print a "
 "test page"
 msgstr ""
+"Працэдура праверкі наладак друкаркі: 1 .- Пераканайцеся, што прынтар "
+"даступны ў сетцы 2 .- Адчыніце Сістэма -> Адміністраванне-> Друк 3 .- Калі "
+"прынтар не паказаны ў спісе, націсніце кнопку Стварыць 4 .- Друкарка мусіць "
+"быць знойдзена і адлюстраваныя правільныя \\ значэнні канфігурацыі 5 .- "
+"Надрукуйце пробную старонку"
 
 #. description
 #: ../jobs/peripheral.txt.in:15
@@ -1496,11 +1826,19 @@ msgid ""
 "connection has been established 8.- Select Test to verify that it's possible "
 "to establish an HTTP connection"
 msgstr ""
+"Працэдура сеткавага падлучэння USB-мадэма: 1 .- Падлучыце кабель з "
+"інтэрфейсам USB да кампутара 2 .- Націсніце правай кнопкай мышы па-"
+"прыкладанні Дыспетчара сеткі 3 .- Выберыце 'Змяніць злучэнні' 4 .- Абярыце "
+"ўкладку 'DSL' (для мадэмаў тыпу ADSL) або 'Мабільныя' (для мадэмаў з "
+"магчымасцямі 3G) 5 .- Націсніце на кнопку 'Дадаць' 6 .- Правільна наладзьце "
+"параметры злучэння 7 .- Усплываючае апавяшчэнне, мусіць пацвердзіць "
+"усталёўку злучэння 8 .- Абярыце Праверыць для праверкі магчымасці ўсталёўкі "
+"HTTP злучэння"
 
 #. description
 #: ../jobs/phoronix.txt.in:3
 msgid "Automated benchmark testing"
-msgstr ""
+msgstr "Аўтаматычнае тэставанне прадукцыйнасці"
 
 #. description
 #: ../jobs/power-management.txt.in:3
@@ -1508,12 +1846,16 @@ msgid ""
 "Shutdown/boot cycle verification procedure: 1.- Shutdown your machine 2.- "
 "Boot your machine 3.- Repeat steps 1 and 2 at least 5 times"
 msgstr ""
+"Працэдура праверкі цыклу завяршэння працы / уключэння кампутара: 1 .- "
+"Скончыце працу вашага кампутара 2 .- Выканайце запуск кампутара 3 .- "
+"Паўтарыце этапы 1 і 2 як мінімум 5 разоў"
 
 #. description
 #: ../jobs/power-management.txt.in:3
 msgid ""
 "Note: This test case has to be executed manually before checkbox execution"
 msgstr ""
+"Заўвага: Гэтая праверка выконваецца вамі самастойна, да запуску checkbox"
 
 #. description
 #: ../jobs/power-management.txt.in:14
@@ -1538,49 +1880,51 @@ msgid "Does your computer hibernate and restore?"
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:29
+#: ../jobs/power-management.txt.in:13
 msgid "Does closing your laptop lid cause your screen to blank?"
-msgstr ""
+msgstr "Ці прыводзіць закрыццё крышкі ноўтбука да зацямнення экрана?"
 
 #. description
-#: ../jobs/power-management.txt.in:41
+#: ../jobs/power-management.txt.in:25
 msgid "Click the Test button, then close and open the lid."
-msgstr ""
+msgstr "Націсніце кнопку Праверыць, а затым зачыніце і адчыніце крышку."
 
 #. description
-#: ../jobs/power-management.txt.in:41
+#: ../jobs/power-management.txt.in:25
 msgid "Did the screen turn off while the lid was closed?"
-msgstr ""
+msgstr "Ці адключыўся экран пасля закрыцця крышкі?"
 
 #. description
-#: ../jobs/power-management.txt.in:55
+#: ../jobs/power-management.txt.in:39
 msgid "Click the Test button, then close the lid and wait 5 seconds."
 msgstr ""
+"Націсніце кнопку Праверыць, а пасля зачыніце крышку і пачакайце 5 секунд."
 
 #. description
-#: ../jobs/power-management.txt.in:55
+#: ../jobs/power-management.txt.in:39
 msgid "Open the lid."
-msgstr ""
+msgstr "Адчыніце крышку."
 
 #. description
-#: ../jobs/power-management.txt.in:55
+#: ../jobs/power-management.txt.in:39
 msgid "Did the screen turn back on when the lid was opened?"
-msgstr ""
+msgstr "Ці ўключыўся экран пасля адкрыцця крышкі?"
 
 #. description
-#: ../jobs/power-management.txt.in:65
+#: ../jobs/power-management.txt.in:49
 msgid "Test the network before suspending."
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:70
+#: ../jobs/suspend.txt.in:4
 msgid "Record the current resolution before suspending."
 msgstr ""
+"Запіс гэтага вырашэння перад пераходам да рэжыма паніжанага энергаспажывання."
 
 #. description
-#: ../jobs/power-management.txt.in:78
+#: ../jobs/suspend.txt.in:12
 msgid "Test the audio before suspending."
-msgstr ""
+msgstr "Праверка гука перад пераходам да рэжыма паніжанага энергаспажывання."
 
 #. description
 #: ../jobs/power-management.txt.in:84
@@ -1595,17 +1939,18 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:128 ../jobs/sru_suite.txt.in:135
+#: ../jobs/power-management.txt.in:51
 msgid "Make sure that the RTC (Real-Time Clock) device exists."
-msgstr ""
+msgstr "Праверце даступнасць RTC прылады."
 
 #. description
-#: ../jobs/power-management.txt.in:135
+#: ../jobs/suspend.txt.in:58
 msgid "Power management Suspend and Resume test"
 msgstr ""
+"Праверка пераходу ў рэжым паніжанага энергаспажывання і выхаду з яго."
 
 #. description
-#: ../jobs/power-management.txt.in:135
+#: ../jobs/suspend.txt.in:58
 msgid ""
 "Select Test and your system will suspend for about 30 - 60 seconds. If your "
 "system does not wake itself up after 60 seconds, please press the power "
@@ -1613,22 +1958,29 @@ msgid ""
 "at all and must be rebooted, restart System Testing after reboot and mark "
 "this test as Failed."
 msgstr ""
+"Выберыце 'Праверыць' і ваша сістэма пяройдзе ў спячы рэжым на 30 - 60 "
+"секунд. Калі сістэма не ўключаецца па сканчэнні 60 секунд, націсніце кнопку "
+"сілкавання для запуску кампутара. Калі сістэма не запускаецца і патрабуе "
+"перазагрузкі - перазагрузіце, запусціце праверку сістэмы і адзначце гэты "
+"тэст як не пройдзены."
 
 #. description
-#: ../jobs/power-management.txt.in:145
+#: ../jobs/suspend.txt.in:68
 msgid "Test the network after resuming."
-msgstr ""
+msgstr "Праверка сеткі пасля выхаду з рэжыму паніжанага энергаспажывання."
 
 #. description
-#: ../jobs/power-management.txt.in:151
+#: ../jobs/suspend.txt.in:74
 msgid ""
 "Test to see that we have the same resolution after resuming as before."
 msgstr ""
+"Упэўнімся, што дазвол сістэмы засталося тым жа, што было да пераходу ў рэжым "
+"паніжанага энергаспажывання."
 
 #. description
-#: ../jobs/power-management.txt.in:160
+#: ../jobs/suspend.txt.in:83
 msgid "Test the audio after resuming."
-msgstr ""
+msgstr "Праверка гука пасля перахода да рэжыму паніжанага энергаспажывання."
 
 #. description
 #: ../jobs/power-management.txt.in:167
@@ -1662,14 +2014,16 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:210
+#: ../jobs/suspend.txt.in:150
 msgid ""
 "This test will check to make sure that supported video modes work after a "
 "suspend and resume.  Select Test to begin."
 msgstr ""
+"Гэты тэст дазволіць пераканацца ў працаздольнасці відэа рэжымаў пасля рэжыму "
+"чакання і сну. Націсніце кнопку «Тэст» для выканання."
 
 #. description
-#: ../jobs/power-management.txt.in:221
+#: ../jobs/power-management.txt.in:251
 msgid ""
 "This will check to make sure that your audio device works properly after a "
 "suspend and resume.  You can use either internal or external microphone and "
@@ -1677,7 +2031,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:221
+#: ../jobs/power-management.txt.in:251
 msgid ""
 "To execute this test, make sure your speaker and microphone are NOT muted "
 "and the volume is set sufficiently loud to record and play audio. Select "
@@ -1686,27 +2040,36 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:234
+#: ../jobs/stress.txt.in:30
 msgid ""
 "Enter and resume from suspend state for 30 iterations. Please note that this "
 "is a lengthy test. Select Test to begin. If your system fails to wake and "
 "must be rebooted, please restart System Testing and mark this test as Failed."
 msgstr ""
+"Уваход і выхад з рэжыму чакання з 30-кратнай праверкай. Звярніце ўвагу, гэта "
+"даволі доўгі тэст.  Націсніце кнопку «Тэст» для выканання. Калі ваша сістэма "
+"не выйшла з чакаючага рэжыму і спатрэбілася перазагрузка сістэмы, "
+"перазапусціце праграму Праверкі сістэмы і адзначце праходжанне гэтага тэсту "
+"як няўдалага."
 
 #. description
-#: ../jobs/power-management.txt.in:234
+#: ../jobs/stress.txt.in:30
 msgid "Did the system successfully suspend and resume for 30 iterations?"
 msgstr ""
+"Ці паспяхова сістэма выканала 30 цыклаў прыпынення і аднаўлення працы "
+"кампутара?"
 
 #. description
-#: ../jobs/power-management.txt.in:245
+#: ../jobs/hibernate.txt.in:7
 msgid ""
 "This will check to make sure your system can successfully hibernate (if "
 "supported)."
 msgstr ""
+"Дадзеная праверка дасць магчымасць пераканацца ці можа сістэма ўвайсці ў "
+"спячы рэжым (калі падтрымліваецца)."
 
 #. description
-#: ../jobs/power-management.txt.in:245
+#: ../jobs/hibernate.txt.in:7
 msgid ""
 "Select Test to begin. The system will hibernate and should wake itself "
 "within 5 minutes.  If your system does not wake itself after 5 minutes, "
@@ -1714,16 +2077,23 @@ msgid ""
 "fails to resume from hibernate, please restart System Testing and mark this "
 "test as Failed."
 msgstr ""
+"Націсніце кнопку «Тэст» для выканання. Сістэма пяройдзе ў спячы рэжым і "
+"выйдзе з яго праз 5 хвілін. Калі ваша сістэма не выйшла аўтаматычна са "
+"спячага рэжыму пасля 5 хвілін, калі ласка, націсніце кнопку сілкавання для "
+"вываду сістэмы са спячага рэжыму, затым перазапусціце праграму Праверкі "
+"сістэмы і пазначце праходжанне гэтага тэсту як няўдалага."
 
 #. description
-#: ../jobs/power-management.txt.in:245
+#: ../jobs/hibernate.txt.in:7
 msgid ""
 "Did the system successfully hibernate and did it work properly after waking "
 "up?"
 msgstr ""
+"Ці атрымалася ўвайсці ў спячы рэжым, і ці правільна функцыянуе сістэма пасля "
+"абуджэння?"
 
 #. description
-#: ../jobs/power-management.txt.in:258
+#: ../jobs/stress.txt.in:17
 msgid ""
 "Enter and resume from hibernate for 30 iterations. Please note that this is "
 "a very lengthy test. Also, if your system does not wake itself after 2 "
@@ -1731,37 +2101,48 @@ msgid ""
 "the system fails to resume from hibernation and must be rebooted, please "
 "restart System Testing and mark this test as Failed."
 msgstr ""
+"Уваход і выхад з рэжыму чакання з 30-кратнай праверкай. Звярніце ўвагу, гэта "
+"даволі доўгі тэст. Калі ваша сістэма не выйшла аўтаматычна са спячага рэжыму "
+"пасля 2 хвілін, калі ласка, націсніце кнопку сілкавання для вываду сістэмы "
+"са спячага рэжыму. Калі і ў гэтым выпадку выхад са спячага рэжыму немагчымы "
+"і патрабуецца перазагрузка, запусціце праграму Праверкі сістэмы і адзначце "
+"праходжанне гэтага тэсту як няўдалага."
 
 #. description
-#: ../jobs/power-management.txt.in:258
+#: ../jobs/stress.txt.in:17
 msgid ""
 "Also, you will need to ensure your system has no power-on or HDD passwords "
 "set, and that grub is set to boot Ubuntu by default if you have a multi-boot "
 "set-up."
 msgstr ""
+"Таксама вы павінны пераканацца, што ў вашай сістэме не стаіць пароль на "
+"ўключэнне ці HDD, і што grub наладжаны на загрузку Ubuntu па змаўчанні, калі "
+"ўсталявана некалькі аперацыйных сістэм."
 
 #. description
-#: ../jobs/power-management.txt.in:258
+#: ../jobs/stress.txt.in:17
 msgid "Did the system successfully hibernate and wake 30 times?"
-msgstr ""
+msgstr "Ці атрымалася паспяхова ўвайсці і выйсці са спячага рэжыму 30 разоў?"
 
 #. description
-#: ../jobs/power-management.txt.in:267
+#: ../jobs/power-management.txt.in:56
 msgid "Run Colin Kings FWTS wakealarm test"
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:276
+#: ../jobs/power-management.txt.in:65
 msgid "Check to see if CONFIG_NO_HZ is set in the kernel"
-msgstr ""
+msgstr "Пазначце, каб убачыць, ці ўсталяваны ў ядры CONFIG_NO_HZ"
 
 #. description
-#: ../jobs/power-management.txt.in:284
+#: ../jobs/suspend.txt.in:194
 msgid "Automatic power management Suspend and Resume test"
 msgstr ""
+"Праверка аўтаматычнага кіравання электрасілкаваннем пры пераходзе ў рэжым "
+"чакання і аднаўлення"
 
 #. description
-#: ../jobs/power-management.txt.in:284
+#: ../jobs/suspend.txt.in:194
 msgid ""
 "Select test and your system will suspend for about 30 - 60 seconds. If your "
 "system does not wake itself up after 60 seconds, please press the power "
@@ -1769,41 +2150,47 @@ msgid ""
 "at all and must be rebooted, restart System Testing after reboot and mark "
 "this test as Failed."
 msgstr ""
+"Націсніце кнопку «Тэст» і ваша сістэма будзе пераведзена ў рэжым чакання на "
+"30-60 секунд. Калі ваша сістэма, пасля 60 секундаў, не выйдзе з гэтага "
+"рэжыму аўтаматычна, калі ласка, націсніце кнопку сілкавання для выхаду з "
+"гэтага рэжыму. Калі ваша сістэма не выходзіць з гэтага рэжыму ў абаіх "
+"выпадках, вам неабходна перазагрузіць сістэму, перазапусціць праверку "
+"сістэмы і адзначыць праходжанне гэтага тэсту як няўдалага."
 
 #. description
 #: ../jobs/qa_regression.txt.in:3
 msgid "QA regression tests (destructive)"
-msgstr ""
+msgstr "Рэгрэсійная тэсты праверкі якасці (дэструктыўна)"
 
 #. description
 #: ../jobs/server-services.txt.in:5
 msgid "sshd test"
-msgstr ""
+msgstr "Праверка sshd"
 
 #. description
 #: ../jobs/server-services.txt.in:11
 msgid "Print/CUPs server test"
-msgstr ""
+msgstr "Праверка сервера Друку / CUP"
 
 #. description
 #: ../jobs/server-services.txt.in:18
 msgid "DNS server test"
-msgstr ""
+msgstr "Праверка DNS сервера"
 
 #. description
 #: ../jobs/server-services.txt.in:25
 msgid "Samba server test"
-msgstr ""
+msgstr "Праверка Samba-сервера"
 
 #. description
 #: ../jobs/server-services.txt.in:32
 msgid "LAMP server test"
-msgstr ""
+msgstr "Праверка LAMP-сервера"
 
 #. description
 #: ../jobs/server-services.txt.in:39
 msgid "Tomcat server test"
-msgstr ""
+msgstr "Праверка Tomcat-сервера"
 
 #. description
 #: ../jobs/sru_suite.txt.in:4
@@ -1911,6 +2298,8 @@ msgid ""
 "Xlib is required for unity testing. This checks for Xlib and installs it if "
 "not available."
 msgstr ""
+"Xlib неабходны для праверкі unity. Выконвае праверку наяўнасці Xlib і "
+"ўсталёўку, калі ён недаступны."
 
 #. description
 #: ../jobs/unity.txt.in:13
@@ -1918,6 +2307,8 @@ msgid ""
 "This test will verify that Unity is running and then run the autopilot.py "
 "test against the Unity interface."
 msgstr ""
+"Запускае праверку выканання Unity, а затым выконвае тэст autopilot.py "
+"інтэрфейсу Unity."
 
 #. description
 #: ../jobs/usb.txt.in:5
@@ -1925,52 +2316,66 @@ msgid "The following USB controllers were detected:"
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:17
+#: ../jobs/usb.txt.in:24
 msgid ""
 "Plug a USB keyboard into the computer. Then, click on the Test button \\ to "
 "enter text."
 msgstr ""
+"Падлучыце USB-клавіятуру да кампутара. Затым, націсніце кнопку Праверыць \\ "
+"каб увесці тэкст."
 
 #. description
-#: ../jobs/usb.txt.in:17
+#: ../jobs/usb.txt.in:24
 msgid "Does the keyboard work?"
-msgstr ""
+msgstr "Ці функцыянуе клавіятура?"
 
 #. description
-#: ../jobs/usb.txt.in:27
+#: ../jobs/usb.txt.in:34
 msgid ""
 "USB mouse verification procedure: 1.- Plug a USB mouse into the computer 2.- "
 "Perform some single/double/right click operations"
 msgstr ""
+"Працэдура праверкі USB мышы: 1 .- Падлучыце USB мыш да кампутара 2 .- "
+"Выканайце некалькі разоў аперацыі адзіночнага / двайнога цокання і цокання "
+"правай кнопкай мышы."
 
 #. description
-#: ../jobs/usb.txt.in:39
+#: ../jobs/usb.txt.in:46
 msgid ""
 "Click 'Test' and insert a USB device within 5 seconds. If the test is "
 "successful, you should notice that 'Yes' is selected below. Do not unplug "
 "the device if the test is successful."
 msgstr ""
+"Націсніце 'Праверыць' і ўстаўце USB-прыладу на 5 секунд. Калі праверка "
+"выканана паспяхова, ва зможаце націснуць кнопку 'Так'. Не адлучайце прыладу "
+"пры паспяховым выкананні праверкі."
 
 #. description
-#: ../jobs/usb.txt.in:39
+#: ../jobs/usb.txt.in:46
 msgid ""
 "If no USB device is inserted or the device is not recognized, the test will "
 "fail and 'No' will be selected below."
 msgstr ""
+"Калі USB-прылады не падлучаныя ці прылада не апазнаная, праверка не будзе "
+"выканана і вы зможаце націснуць кнопку 'Не'."
 
 #. description
-#: ../jobs/usb.txt.in:51
+#: ../jobs/usb.txt.in:58
 msgid ""
 "Click 'Test' and remove the USB device you inserted within 5 seconds. If the "
 "test is successful, you should notice that 'Yes' is selected below."
 msgstr ""
+"Націсніце 'Праверыць' і адлучыце USB-прыладу, якую вы падлучылі на 5 секунд. "
+"Калі праверка выканана паспяхова, вы зможаце націснуць кнопку 'Так'."
 
 #. description
-#: ../jobs/usb.txt.in:51
+#: ../jobs/usb.txt.in:58
 msgid ""
 "If the USB device isn't removed or the removal is not registered, the test "
 "will fail and 'No' will be selected below."
 msgstr ""
+"Калі USB-прылада не была адлучана ці адлучэнне не было зарэгістравана, "
+"праверка не будзе выканана і вы зможаце націснуць кнопку 'Не'."
 
 #. description
 #: ../jobs/usb.txt.in:61
@@ -1994,24 +2399,29 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:83
+#: ../jobs/usb.txt.in:86
 msgid ""
 "Connect a USB storage device to an external USB slot on this computer. \\ An "
 "icon should appear on the desktop and in the \"Places\" menu at the top of "
 "the screen."
 msgstr ""
+"Падлучыце прыладу захоўвання з інтэрфейсам USB да знешняга раздыма USB на "
+"гэтым кампутары. \\ Павінен з'явіцца значок на рабочым стале і ў меню "
+"\"Пераход\" ў верхняй частцы экрана."
 
 #. description
-#: ../jobs/usb.txt.in:83
+#: ../jobs/usb.txt.in:86
 msgid ""
 "Confirm that the icon appears, then eject the device. Repeat with each "
 "external \\ USB slot."
 msgstr ""
+"Пацвердзіце, што значок з'явіўся, потым выканаеце выманне прылады. \\ "
+"Паўтарыце з кожным знешнім раздымам USB."
 
 #. description
-#: ../jobs/usb.txt.in:83
+#: ../jobs/usb.txt.in:86
 msgid "Do all USB slots work with the device?"
-msgstr ""
+msgstr "Ці функцыянуюць усе USB раздымы?"
 
 #. description
 #: ../jobs/user_apps.txt.in:6
@@ -2021,6 +2431,10 @@ msgid ""
 "are found, install them. When Update Manager has finished, please close the "
 "app by clicking the Close button in the lower right corner."
 msgstr ""
+"Гэты тэст запусціць Мэнэджар абнаўленняў і праверыць, ці ёсць даступныя "
+"абнаўленні для сістэмы. Калі ласка, трымайцеся падказак і, калі абнаўленні "
+"знойдзеныя, ўсталюйце іх. Калі Мэнэджар абнаўленняў завершыць працу, "
+"зачыніце прыкладанне націскам кнопкі Зачыніць у правым ніжнім куце."
 
 #. description
 #: ../jobs/user_apps.txt.in:14
@@ -2029,11 +2443,14 @@ msgid ""
 "Folder. In the name box for the new folder, enter the name Test Folder and "
 "hit Enter."
 msgstr ""
+"Націсніце кнопку «Тэст» каб адчыніць аглядальнік файлаў. Ці абярыце з "
+"дапамогай меню Файл -> Стварыць тэчку. У полі ўводу назвы тэчкі ўвядзіце імя "
+"Test Folder і націсніце клавішу ўводу [Enter]."
 
 #. description
 #: ../jobs/user_apps.txt.in:14
 msgid "Do you now have a new folder called Test Folder?"
-msgstr ""
+msgstr "Ці з'явілася новая тэчка з імем \"Test Folder\"?"
 
 #. description
 #: ../jobs/user_apps.txt.in:25
@@ -2042,6 +2459,9 @@ msgid ""
 "Folder and click on Copy.  Right Click on any white area in the window and "
 "click on Paste."
 msgstr ""
+"Націсніце кнопку «Тэст» каб адчыніць аглядальнік файлаў. Цокніце правай "
+"кнопкай мышы на тэчцы з назвай Test Folder і націсніце Капіяваць. Цокніце "
+"правай кнопкай мышы на любой свабоднай прасторы ў акне і націсніце Уставіць."
 
 #. description
 #: ../jobs/user_apps.txt.in:25
@@ -2049,11 +2469,14 @@ msgid ""
 "Right click on the folder called Test Folder(copy) and click Rename. Enter "
 "the name Test Data in the name box and hit Enter."
 msgstr ""
+"Цокніце правай кнопкай мышы па тэчцы з імем \"Test Folder (копія)\" і "
+"націсніце Пераназваць. Калі ласка, увядзіце імя тэставых дадзеных у поле для "
+"ўводу і націсніце Enter."
 
 #. description
 #: ../jobs/user_apps.txt.in:25
 msgid "Do you now have a folder called Test Data?"
-msgstr ""
+msgstr "З'явілася новая тэчка з імем Test Data?"
 
 #. description
 #: ../jobs/user_apps.txt.in:38
@@ -2061,11 +2484,14 @@ msgid ""
 "Select Test to open the File Browser. Click and drag the folder called Test "
 "Data onto the icon called Test Folder. Release the button."
 msgstr ""
+"Націсніце кнопку «Тэст» каб адчыніць аглядальнік файлаў. Націсніце і "
+"перанясіце тэчку з імем Test Data на значок з назвай Test Folder. Адпусціце "
+"клавішу."
 
 #. description
 #: ../jobs/user_apps.txt.in:38
 msgid "Double click the folder called Test Folder to open it up."
-msgstr ""
+msgstr "Зрабіце двайное цоканне па тэчцы з імем Test Folder каб адчыніць яе."
 
 #. description
 #: ../jobs/user_apps.txt.in:38
@@ -2073,6 +2499,8 @@ msgid ""
 "Was the folder called Test Data successfully moved into the folder called "
 "Test Folder?"
 msgstr ""
+"Ці была тэчка з імем \"Test Data\" паспяхова перанесена ў тэчку з імем "
+"\"Test Folder\"?"
 
 #. description
 #: ../jobs/user_apps.txt.in:51
@@ -2085,12 +2513,12 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:51
 msgid "Do you now have a file called Test File 1?"
-msgstr ""
+msgstr "Ці ёсць новы файл з імем Test File 1?"
 
 #. description
 #: ../jobs/user_apps.txt.in:51
 msgid "Close the File browser."
-msgstr ""
+msgstr "Зачыніце мэнэджар файлаў."
 
 #. description
 #: ../jobs/user_apps.txt.in:62
@@ -2098,6 +2526,9 @@ msgid ""
 "Select Test to open the File Browser. Right click on the file called Test "
 "File 1 and click Copy. Right click in the white space and click Paste."
 msgstr ""
+"Націсніце кнопку «Тэст» каб адчыніць аглядальнік файлаў. Цокніце правай "
+"кнопкай мышы па файле Test File 1 і націсніце Капіраваць. Цокніце правай "
+"кнопкай мышы па любым свабодным месцы ў акне і націсніце Уставіць."
 
 #. description
 #: ../jobs/user_apps.txt.in:62
@@ -2105,11 +2536,14 @@ msgid ""
 "Right click on the file called Test File 1(copy) and click Rename. Enter the "
 "name Test File 2 in the name box and hit Enter."
 msgstr ""
+"Цокніце правай кнопкай мышы па файле з імем Test File 1 (копія) і націсніце "
+"Пераназваць ... Калі ласка, увядзіце імя Test File 2 у поле для ўводу і "
+"націсніце Enter."
 
 #. description
 #: ../jobs/user_apps.txt.in:62
 msgid "Do you now have a file called Test File 2?"
-msgstr ""
+msgstr "Ці ёсць новы файл з імем Test File 2?"
 
 #. description
 #: ../jobs/user_apps.txt.in:75
@@ -2117,17 +2551,21 @@ msgid ""
 "Select Test to open the File Browser. Click and drag the file called Test "
 "File 2 onto the icon for the folder called Test Data. Release the button."
 msgstr ""
+"Націсніце кнопку «Тэст» каб адчыніць аглядальнік файлаў. Націсніце і "
+"перанясіце тэчку з імем Test File 2 на значок з назвай Test Data. Адпусціце "
+"клавішу."
 
 #. description
 #: ../jobs/user_apps.txt.in:75
 msgid "Double click the icon for Test Data to open that folder up."
-msgstr ""
+msgstr "Зрабіце двайное цоканне па тэчцы з імем Test Data каб адчыніць яе."
 
 #. description
 #: ../jobs/user_apps.txt.in:75
 msgid ""
 "Was the file Test File 2 successfully moved into the Test Data folder?"
 msgstr ""
+"Ці быў файл з імем Test File 2 паспяхова перанесены ў тэчку з імем Test Data?"
 
 #. description
 #: ../jobs/user_apps.txt.in:88
@@ -2135,11 +2573,13 @@ msgid ""
 "Select Test to open the File Browser. Right click on the file called Test "
 "File 1 and click on Move To Trash."
 msgstr ""
+"Націсніце кнопку «Тэст» каб адчыніць аглядальнік файлаў. Цокніце правай "
+"кнопкай мышы па файле Test File 1 і націсніце Выдаліць."
 
 #. description
 #: ../jobs/user_apps.txt.in:88
 msgid "Is Test File 1 now gone?"
-msgstr ""
+msgstr "Ці знік файл Test File 1?"
 
 #. description
 #: ../jobs/user_apps.txt.in:99
@@ -2147,31 +2587,35 @@ msgid ""
 "Select Test to open the File Browser. Right click on the folder called Test "
 "Folder and click on Move To Trash."
 msgstr ""
+"Націсніце кнопку «Тэст» каб адчыніць аглядальнік файлаў. Цокніце правай "
+"кнопкай мышы па тэчцы Test Folder і націсніце Выдаліць."
 
 #. description
 #: ../jobs/user_apps.txt.in:99
 msgid "Has Test Folder been successfully deleted?"
-msgstr ""
+msgstr "Ці была тэчка Test Folder паспяхова выдалена?"
 
 #. description
 #: ../jobs/user_apps.txt.in:99
 msgid "Close the File Browser."
-msgstr ""
+msgstr "Зачыніце файлавы мэнэджар."
 
 #. description
 #: ../jobs/user_apps.txt.in:160
 msgid "Common Document Types Test"
-msgstr ""
+msgstr "Праверка стандартных тыпаў дакументаў"
 
 #. description
 #: ../jobs/user_apps.txt.in:178
 msgid "Select Test to launch Firefox and view the test web page."
 msgstr ""
+"Націсніце кнопку «Тэст» каб запуску Firefox і прагледзьце тэставую вэб-"
+"старонку."
 
 #. description
 #: ../jobs/user_apps.txt.in:178
 msgid "Did the Ubuntu Test page load correctly?"
-msgstr ""
+msgstr "Тэставая старонка Ubuntu загружана карэктна?"
 
 #. description
 #: ../jobs/user_apps.txt.in:188
@@ -2179,61 +2623,68 @@ msgid ""
 "Select Test to open Firefox with the Java test page, and follow the "
 "instructions there."
 msgstr ""
+"Націсніце кнопку «Тэст» для запуску Firefox і агляду тэставай вэб-старонкі з "
+"Java. Выконвайце змешчаныя там інструкцыі."
 
 #. description
 #: ../jobs/user_apps.txt.in:188
 msgid "Did the applet display?"
-msgstr ""
+msgstr "Ці адлюстраваўся аплет?"
 
 #. description
 #: ../jobs/user_apps.txt.in:198
 msgid "Select Test to launch Firefox and view a sample Flash test."
 msgstr ""
+"Націсніце кнопку «Тэст» для запуску Firefox і агляду. Тэст простага змесціва "
+"Flash ."
 
 #. description
 #: ../jobs/user_apps.txt.in:198
 msgid "Did you see the text?"
-msgstr ""
+msgstr "Вы бачылі тэкст?"
 
 #. description
 #: ../jobs/user_apps.txt.in:208
 msgid "Select Test to launch Firefox and view a short flash video."
 msgstr ""
+"Націсніце кнопку «Тэст» для запуску Firefox і агляду кароткага flash відэа."
 
 #. description
 #: ../jobs/user_apps.txt.in:208
 msgid "Did the video play correctly?"
-msgstr ""
+msgstr "Відэа прайгралася нармальна?"
 
 #. description
 #: ../jobs/user_apps.txt.in:218
 msgid "Select Test to launch Firefox with a sample video."
 msgstr ""
+"Націсніце кнопку «Тэст» для запуску Firefox і агляду тэставага "
+"відэафрагмента."
 
 #. description
 #: ../jobs/user_apps.txt.in:218
 msgid "Did the video play using a plugin?"
-msgstr ""
+msgstr "Плагін паказаў відэа?"
 
 #. description
 #: ../jobs/user_apps.txt.in:227
 msgid "Facebook Chat"
-msgstr ""
+msgstr "Чат Facebook"
 
 #. description
 #: ../jobs/user_apps.txt.in:238
 msgid "Google Talk"
-msgstr ""
+msgstr "Google Talk"
 
 #. description
 #: ../jobs/user_apps.txt.in:249
 msgid "Jabber"
-msgstr ""
+msgstr "Jabber"
 
 #. description
 #: ../jobs/user_apps.txt.in:260
 msgid "AIM"
-msgstr ""
+msgstr "AIM"
 
 #. description
 #: ../jobs/user_apps.txt.in:271
@@ -2242,69 +2693,77 @@ msgid ""
 "service. Once you have completed the test, please quit Empathy to continue "
 "here."
 msgstr ""
+"Націсніце кнопку «Тэст» для запуску Empathy, затым наладзьце яго для "
+"падлучэння да наступнай службы. Пасля завяршэння тэсту выйдзіце з праграмы "
+"Empathy і працягнеце выкананне тут."
 
 #. description
 #: ../jobs/user_apps.txt.in:271
 msgid "MSN"
-msgstr ""
+msgstr "MSN"
 
 #. description
 #: ../jobs/user_apps.txt.in:271
 msgid "Were you able to connect correctly and send/receive messages?"
-msgstr ""
+msgstr "Ці змаглі вы падлучыцца і адправіць / атрымаць паведамленне?"
 
 #: ../checkbox/application.py:66
 msgid "Usage: checkbox [OPTIONS]"
-msgstr ""
+msgstr "Выкарыстанне: checkbox [OPTIONS]"
 
 #: ../checkbox/application.py:70
 msgid "Print version information and exit."
-msgstr "Паказаць інфармацыю пра вэрсію й выйсьці."
+msgstr "Паказаць інфармацыю пра вэрсію й выйсці."
 
 #: ../checkbox/application.py:74
 msgid "The file to write the log to."
-msgstr ""
+msgstr "Файл журнала."
 
 #: ../checkbox/application.py:77
 msgid "One of debug, info, warning, error or critical."
 msgstr ""
+"Адно з наступнага: адладка, інфармацыя, папярэджанне, памылка, небяспека."
 
 #: ../checkbox/application.py:82
 msgid "Configuration override parameters."
-msgstr ""
+msgstr "Параметры не прынятыя канфігурацыяй."
 
 #: ../checkbox/application.py:84
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist."
-msgstr ""
+msgstr "Кароткая форма для --config=checkbox/plugins/jobs_info/blacklist."
 
 #: ../checkbox/application.py:86
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist_file."
 msgstr ""
+"Кароткая форма для --config=checkbox/plugins/jobs_info/blacklist_file."
 
 #: ../checkbox/application.py:88
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist."
-msgstr ""
+msgstr "Кароткая форма для --config=checkbox/plugins/jobs_info/whitelist."
 
 #: ../checkbox/application.py:90
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist_file."
 msgstr ""
+"Кароткая форма для --config=checkbox/plugins/jobs_info/whitelist_file."
 
 #: ../checkbox/application.py:115
 msgid "Missing configuration file as argument.\n"
-msgstr ""
+msgstr "Адсутнічае параметр файла канфігурацыі.\n"
 
 #: ../checkbox/lib/signal.py:23
 msgid ""
 "Hangup detected on controlling terminal or death of controlling process"
 msgstr ""
+"Выяўлена завісанне кантралюючага тэрмінала альбо нечаканае завяршэнне "
+"кантралюючага працэсу"
 
 #: ../checkbox/lib/signal.py:24
 msgid "Interrupt from keyboard"
-msgstr ""
+msgstr "Перарыванне ад клавіятуры"
 
 #: ../checkbox/lib/signal.py:25
 msgid "Quit from keyboard"
-msgstr ""
+msgstr "Сігнал выхаду ад клавіятуры"
 
 #: ../checkbox/lib/signal.py:26
 msgid "Illegal Instruction"
@@ -2312,47 +2771,47 @@ msgstr "Недапушчальная інструкцыя"
 
 #: ../checkbox/lib/signal.py:27
 msgid "Abort signal from abort(3)"
-msgstr ""
+msgstr "Атрыманы сігнал скасавання ад функцыі abort(3)"
 
 #: ../checkbox/lib/signal.py:28
 msgid "Floating point exception"
-msgstr ""
+msgstr "Памылка аперацыі з плаваючым пунктам"
 
 #: ../checkbox/lib/signal.py:29
 msgid "Kill signal"
-msgstr "Забіць сыгнал"
+msgstr "Атрыманы сігнал Kill"
 
 #: ../checkbox/lib/signal.py:30
 msgid "Invalid memory reference"
-msgstr ""
+msgstr "Няправільны паказчык памяці"
 
 #: ../checkbox/lib/signal.py:31
 msgid "Broken pipe: write to pipe with no readers"
-msgstr ""
+msgstr "Няправільны канал: запіс ў канал без счытваючай праграмы"
 
 #: ../checkbox/lib/signal.py:32
 msgid "Timer signal from alarm(2)"
-msgstr ""
+msgstr "Атрыманы сігнал Timer ад функцыі alarm(2)"
 
 #: ../checkbox/lib/signal.py:33
 msgid "Termination signal"
-msgstr ""
+msgstr "Сігнал выйсця"
 
 #: ../checkbox/lib/signal.py:34
 msgid "User-defined signal 1"
-msgstr ""
+msgstr "Карыстальніцкі сігнал 1"
 
 #: ../checkbox/lib/signal.py:35
 msgid "User-defined signal 2"
-msgstr ""
+msgstr "Карыстальніцкі сігнал 2"
 
 #: ../checkbox/lib/signal.py:36
 msgid "Child stopped or terminated"
-msgstr ""
+msgstr "Даччыны працэс быў спынены альбо завершаны"
 
 #: ../checkbox/lib/signal.py:37
 msgid "Continue if stopped"
-msgstr ""
+msgstr "Працягнуць пасля прыпынку"
 
 #: ../checkbox/lib/signal.py:38
 msgid "Stop process"
@@ -2360,28 +2819,28 @@ msgstr "Спыніць працэс"
 
 #: ../checkbox/lib/signal.py:39
 msgid "Stop typed at tty"
-msgstr ""
+msgstr "З тэрмінала паступіла каманда Stop"
 
 #: ../checkbox/lib/signal.py:40
 msgid "tty input for background process"
-msgstr ""
+msgstr "прылада ўводу для фонавага працэсу"
 
 #: ../checkbox/lib/signal.py:41
 msgid "tty output for background process"
-msgstr ""
+msgstr "прылада вываду фонавага працэсу"
 
 #: ../checkbox/lib/signal.py:77
 msgid "UNKNOWN"
-msgstr ""
+msgstr "Невядома (UNKNOWN)"
 
 #: ../checkbox/lib/signal.py:89
 msgid "Unknown signal"
-msgstr "Невядомы сыгнал"
+msgstr "Невядомы сігнал"
 
 #: ../checkbox_cli/cli_interface.py:31
 #: ../checkbox_urwid/urwid_interface.py:684
 msgid "yes"
-msgstr "так"
+msgstr "Так"
 
 #: ../checkbox_cli/cli_interface.py:32
 #: ../checkbox_urwid/urwid_interface.py:685
@@ -2395,7 +2854,7 @@ msgstr ""
 
 #: ../checkbox_cli/cli_interface.py:126
 msgid "Press any key to continue..."
-msgstr "Націсьніце любую клявішу каб працягваць..."
+msgstr "Каб працягнуць, націсніце любую клавішу ..."
 
 #: ../checkbox_cli/cli_interface.py:135
 #, python-format
@@ -2404,104 +2863,109 @@ msgstr "Калі ласка выберыце (%s): "
 
 #: ../checkbox_cli/cli_interface.py:315
 msgid "test"
-msgstr "праверка"
+msgstr "тэст"
 
 #: ../checkbox_cli/cli_interface.py:339
 msgid "test again"
-msgstr "праверыць зноў"
+msgstr "паўтарыць Тэст"
 
 #: ../checkbox_cli/cli_interface.py:345
 msgid "Please type here and press Ctrl-D when finished:\n"
-msgstr ""
+msgstr "Калі ласка, набярыце тэкст тут і націсніце Ctrl-D:\n"
 
 #: ../checkbox_urwid/urwid_interface.py:60
 msgid "Checkbox System Testing"
-msgstr ""
+msgstr "Тэставанне сістэмы Checkbox"
 
 #: ../checkbox_urwid/urwid_interface.py:99
 msgid "Continue"
-msgstr ""
+msgstr "Працягнуць"
 
 #: ../checkbox_urwid/urwid_interface.py:192
 #: ../checkbox_urwid/urwid_interface.py:268
 #: ../checkbox_urwid/urwid_interface.py:416
 msgid "Previous"
-msgstr ""
+msgstr "Назад"
 
 #: ../checkbox_urwid/urwid_interface.py:193
 #: ../checkbox_urwid/urwid_interface.py:269
 #: ../checkbox_urwid/urwid_interface.py:417
 msgid "Next"
-msgstr ""
+msgstr "Далей"
 
 #. Show buttons
 #: ../checkbox_urwid/urwid_interface.py:414
 msgid "Select All"
-msgstr ""
+msgstr "Адзначыць усё"
 
 #: ../checkbox_urwid/urwid_interface.py:415
 msgid "Deselect All"
-msgstr ""
+msgstr "Адмяніць выбар"
 
 #: ../checkbox_urwid/urwid_interface.py:772
 msgid "Test"
-msgstr ""
+msgstr "Праверыць"
 
 #: ../checkbox_urwid/urwid_interface.py:787
 msgid "Test Again"
-msgstr ""
+msgstr "Праверыць зноў"
 
 #: ../checkbox_gtk/gtk_interface.py:93
 msgid "hardware database"
 msgstr ""
 
-#: ../checkbox_gtk/gtk_interface.py:487
+#: ../checkbox_gtk/gtk_interface.py:502
 msgid "_Test Again"
 msgstr "_Праверыць зноў"
 
-#: ../checkbox_gtk/gtk_interface.py:533
+#: ../checkbox_gtk/gtk_interface.py:548
 msgid "Info"
-msgstr "Зьвесткі"
+msgstr "Інфармацыя"
 
-#: ../checkbox_gtk/gtk_interface.py:552
+#: ../checkbox_gtk/gtk_interface.py:567
 msgid "Error"
 msgstr "Памылка"
 
 #: ../checkbox/user_interface.py:136
 #, python-format
 msgid "Unable to start web browser to open %s."
-msgstr "Немагчыма ўрухоміць аглядальнік сеціва, каб адкрыць %s."
+msgstr "Немагчыма запусціць вэб-браўзэр, каб адчыніць %s."
 
-#: ../plugins/apport_prompt.py:81
+#: ../plugins/apport_prompt.py:83
 msgid ""
 "Collecting information about this test.\n"
 "This might take a few minutes."
 msgstr ""
+"Ідзе збор інфармацыі для гэтага тэсту.\n"
+"Гэта можа заняць некалькі хвілін."
 
-#: ../plugins/apport_prompt.py:116
+#: ../plugins/apport_prompt.py:118
 msgid ""
 "Collected information is being sent for bug tracking.\n"
 "This might take a few minutes."
 msgstr ""
+"Збіраецца інфармацыя, каторая будзе адпраўлена ў сістэму адсочвання "
+"памылак.\n"
+"Гэта можа заняць некалькі хвілін."
 
-#: ../plugins/apport_prompt.py:225
+#: ../plugins/apport_prompt.py:227
 #, python-format
 msgid "Test %s from suite %s failed."
-msgstr ""
+msgstr "Тэст %s з набору %s ня пройдзены."
 
-#: ../plugins/apport_prompt.py:228
+#: ../plugins/apport_prompt.py:230
 #, python-format
 msgid "Test %s failed."
-msgstr ""
+msgstr "Тэст %s ня пройдзены."
 
-#: ../plugins/apport_prompt.py:246
+#: ../plugins/apport_prompt.py:248
 #, python-format
 msgid "Is a package upgrade in process? Error: %s"
-msgstr ""
+msgstr "Запушчана абнаўленне пакетаў? Памылка: %s"
 
 #: ../plugins/final_prompt.py:33
 msgid "Successfully finished testing!"
-msgstr "Праверка пасьпяхова скончаная!"
+msgstr "Праверка паспяхова скончана !"
 
 #: ../plugins/final_prompt.py:34
 msgid "_Finish"
@@ -2509,9 +2973,9 @@ msgstr "_Скончыць"
 
 #: ../plugins/gather_prompt.py:35
 msgid "Gathering information from your system..."
-msgstr ""
+msgstr "Збор інфармацыі аб вашай сістэме ..."
 
-#: ../plugins/intro_prompt.py:43
+#: ../plugins/intro_prompt.py:29
 msgid ""
 "Welcome to System Testing!\n"
 "\n"
@@ -2519,13 +2983,17 @@ msgid ""
 "Once you are finished running the tests, you can view a summary report for "
 "your system."
 msgstr ""
+"Сардэчна запрашаем у праграму праверкі сістэмы!\n"
+"\n"
+"Дадзеная праграма прызначана для тэставання працаздольнасці сістэмы. Па "
+"сканчэнні тэставання вы зможаце праглядзець зборны рапарт аб сістэме."
 
-#: ../plugins/launchpad_exchange.py:118
+#: ../plugins/launchpad_exchange.py:136
 #, python-format
 msgid "Failed to process form: %s"
-msgstr ""
+msgstr "Не атрымалася апрацаваць форму: %s"
 
-#: ../plugins/launchpad_exchange.py:141
+#: ../plugins/launchpad_exchange.py:151
 #, python-format
 msgid ""
 "Failed to contact server. Please try\n"
@@ -2535,16 +3003,23 @@ msgid ""
 "directly to the system database:\n"
 "https://launchpad.net/+hwdb/+submit"
 msgstr ""
+"Памылка пры злучэнні з серверам.\n"
+"Паспрабуйце, калі ласка, яшчэ раз\n"
+"%s\n"
+"уручную, з дапамогай старонкі:\n"
+"https://launchpad.net/+hwdb/+submit"
 
-#: ../plugins/launchpad_exchange.py:150
+#: ../plugins/launchpad_exchange.py:160
 msgid ""
 "Failed to upload to server,\n"
 "please try again later."
 msgstr ""
+"Не атрымалася загрузіць дадзеныя на сервер\n"
+"Калі ласка, паспрабуйце пазней."
 
-#: ../plugins/launchpad_exchange.py:162
+#: ../plugins/launchpad_exchange.py:172
 msgid "Information not posted to Launchpad."
-msgstr ""
+msgstr "Інфармацыя не апублікаваная на Launchpad."
 
 #: ../plugins/launchpad_prompt.py:71
 #, python-format
@@ -2560,62 +3035,74 @@ msgid ""
 "\n"
 "  https://launchpad.net/+login"
 msgstr ""
+"Гэта справаздача была згенераваная для адпраўкі ў базу звестак пра "
+"абсталяванне Launchpad:\n"
+"\n"
+"  [[%s|Паглядзець справаздачу]]\n"
+"\n"
+"Вы можаце адправіць гэтую інфармацыю, паказаўшы электронны адрас вашага "
+"ўліковага запісу на Launchpad. Калі ў вас няма ўліковага запісу, калі ласка, "
+"зарэгіструйцеся тут:\n"
+"\n"
+"  https://launchpad.net/+login"
 
 #: ../plugins/launchpad_prompt.py:88
 msgid "No e-mail address provided, not submitting to Launchpad."
-msgstr ""
+msgstr "Не паказаны электронны адрас, справаздача не накіравана ў Launchpad."
 
 #: ../plugins/launchpad_prompt.py:92
 msgid "Email address must be in a proper format."
-msgstr ""
+msgstr "Адрас электроннай пошты павінен быць правільна напісаны."
 
 #: ../plugins/launchpad_prompt.py:98
 msgid "Exchanging information with the server..."
-msgstr ""
+msgstr "Абмен дадзенымі з серверам ..."
 
 #: ../plugins/lock_prompt.py:63
 msgid "There is another checkbox running. Please close it first."
-msgstr ""
+msgstr "Checkbox ужо запушчаны. Спачатку трэба скончыць яго."
 
 #: ../plugins/recover_prompt.py:54
 msgid ""
 "Checkbox did not finish completely.\n"
 "Do you want to recover from the previous run?"
 msgstr ""
+"Праверка завершана не цалкам.\n"
+"Аднавіць да мінулага стану?"
 
-#: ../plugins/report_prompt.py:34
+#: ../plugins/report_prompt.py:39
 msgid "Building report..."
-msgstr "Стварэньне справаздачы..."
+msgstr "Стварэнне справаздачы..."
 
 #: ../plugins/shell_test.py:52
 #, python-format
 msgid "Running %s..."
-msgstr ""
+msgstr "Запускаецца %s..."
 
 #. Get results
-#: ../plugins/suites_prompt.py:105
+#: ../plugins/suites_prompt.py:108
 msgid "Select the suites to test"
-msgstr ""
+msgstr "Абярыце кампаненты для тэстаў"
 
 #: ../scripts/keyboard_test:21
 msgid "Enter text:\n"
-msgstr "Увядзіце тэкстt:\n"
+msgstr "Увядзіце тэкст:\n"
 
-#: ../scripts/keyboard_test:40
+#: ../scripts/keyboard_test:41
 msgid "Type Text"
-msgstr ""
+msgstr "Надрукаваць тэкст"
 
 #: ../scripts/internet_test:139
 msgid "No Internet connection"
-msgstr "Няма спалучэньня з інтэрнетам"
+msgstr "Няма падлучэння да Інтэрнэт"
 
 #: ../scripts/internet_test:142
 msgid "Connection established lost a packet"
-msgstr ""
+msgstr "Страта пакетаў на ўсталяваным злучэнні"
 
 #: ../scripts/internet_test:145
 msgid "Internet connection fully established"
-msgstr "Спалучэньне з Інтэрнэтам пасьпяхова ўсталяванае"
+msgstr "Інтэрнэт-падлучэнне працуе цалкам"
 
 #~ msgid "Network tests"
 #~ msgstr "Праверка сеткі"

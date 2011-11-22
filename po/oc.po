@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-07-31 04:33+0000\n"
-"X-Generator: Launchpad (build 13405)\n"
+"X-Launchpad-Export-Date: 2011-11-22 04:40+0000\n"
+"X-Generator: Launchpad (build 14299)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:1 ../checkbox_cli/cli_interface.py:343
 #: ../checkbox_urwid/urwid_interface.py:261
@@ -28,7 +28,7 @@ msgstr "Se_guent"
 
 #. Title of the user interface
 #: ../gtk/checkbox-gtk.ui.h:3 ../gtk/checkbox-gtk.desktop.in.h:1
-#: ../plugins/user_interface.py:40
+#: ../checkbox_gtk/gtk_interface.py:95 ../plugins/user_interface.py:40
 msgid "System Testing"
 msgstr "Tèst del sistèma"
 
@@ -52,7 +52,7 @@ msgstr "_Seleccionar tot"
 msgid "_Skip this test"
 msgstr "Pa_ssar aqueste tèst"
 
-#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:522
+#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:537
 msgid "_Test"
 msgstr "_Tèst"
 
@@ -67,7 +67,7 @@ msgstr "Testar e mandar las informacions sul sistèma"
 #. description
 #: ../jobs/apport.txt.in:5
 msgid "Test that the /var/crash directory doesn't contain anything."
-msgstr ""
+msgstr "Tèsta que lo dorsièr /var/crash es void."
 
 #. description
 #: ../jobs/audio.txt.in:7
@@ -75,18 +75,14 @@ msgid "Detecting your sound device(s):"
 msgstr "Deteccion de vòstres periferics àudio :"
 
 #. description
-#: ../jobs/audio.txt.in:7 ../jobs/disk.txt.in:4 ../jobs/graphics.txt.in:126
-#: ../jobs/memory.txt.in:4 ../jobs/networking.txt.in:16
-#: ../jobs/optical.txt.in:8 ../jobs/power-management.txt.in:167
-#: ../jobs/usb.txt.in:5
+#: ../jobs/audio.txt.in:7 ../jobs/graphics.txt.in:113 ../jobs/memory.txt.in:4
+#: ../jobs/networking.txt.in:5 ../jobs/optical.txt.in:8 ../jobs/usb.txt.in:12
 msgid "$output"
 msgstr "$output"
 
 #. description
-#: ../jobs/audio.txt.in:7 ../jobs/bluetooth.txt.in:5 ../jobs/disk.txt.in:4
-#: ../jobs/graphics.txt.in:126 ../jobs/memory.txt.in:4
-#: ../jobs/networking.txt.in:16 ../jobs/optical.txt.in:8
-#: ../jobs/power-management.txt.in:185 ../jobs/usb.txt.in:5
+#: ../jobs/audio.txt.in:7 ../jobs/graphics.txt.in:113 ../jobs/memory.txt.in:4
+#: ../jobs/networking.txt.in:5 ../jobs/optical.txt.in:8
 msgid "Is this correct?"
 msgstr "Es corrècte ?"
 
@@ -118,6 +114,8 @@ msgid ""
 "Did you hear a sound through the headphones and did the sound play without "
 "any distortion, clicks or other strange noises from your headphones?"
 msgstr ""
+"Avètz ausit un son dins vòstres escotadors e aqueste son es estat legit sens "
+"distorsion, picadisses o autres bruches estranhs ?"
 
 #. description
 #: ../jobs/audio.txt.in:47
@@ -146,12 +144,12 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/audio.txt.in:70 ../jobs/power-management.txt.in:221
+#: ../jobs/audio.txt.in:70
 msgid "Did you hear your speech played back?"
 msgstr "L'enregistrament de vòstra votz es estat restituit coma caliá ?"
 
 #. description
-#: ../jobs/audio.txt.in:81
+#: ../jobs/audio.txt.in:82
 msgid ""
 "Play back a sound on the default output and listen for it on the \\ default "
 "input.  This makes the most sense when the output and input \\ are directly "
@@ -164,17 +162,17 @@ msgid "Autotest suite (destructive)"
 msgstr "Seguida de tèsts automatics (destructiu)"
 
 #. description
-#: ../jobs/bluetooth.txt.in:5 ../jobs/power-management.txt.in:185
+#: ../jobs/bluetooth.txt.in:5
 msgid "The address of your Bluetooth device is: $output"
 msgstr "L'adreça de vòstre periferic Bluetooth es : $output"
 
 #. description
-#: ../jobs/bluetooth.txt.in:15 ../jobs/graphics.txt.in:15
+#: ../jobs/bluetooth.txt.in:12 ../jobs/graphics.txt.in:15
 msgid "Automated test to store output in checkbox report"
 msgstr ""
 
 #. description
-#: ../jobs/bluetooth.txt.in:21
+#: ../jobs/bluetooth.txt.in:18
 msgid ""
 "Bluetooth browse files procedure: 1.- Enable bluetooth on any mobile device "
 "(PDA, smartphone, etc.) 2.- Click on the bluetooth icon in the menu bar 3.- "
@@ -186,7 +184,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/bluetooth.txt.in:38
+#: ../jobs/bluetooth.txt.in:35
 msgid ""
 "Bluetooth file transfer procedure: 1.- Make sure that you're able to browse "
 "the files in your mobile device 2.- Copy a file from the computer to the "
@@ -196,7 +194,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/bluetooth.txt.in:53
+#: ../jobs/bluetooth.txt.in:50
 msgid ""
 "Bluetooth audio procedure: 1.- Enable the bluetooth headset 2.- Click on the "
 "bluetooth icon in the menu bar 3.- Select 'Setup new device' 4.- Look for "
@@ -207,7 +205,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/bluetooth.txt.in:69
+#: ../jobs/bluetooth.txt.in:66
 msgid ""
 "Bluetooth keyboard procedure: 1.- Enable the bluetooth keyboard 2.- Click on "
 "the bluetooth icon in the menu bar 3.- Select 'Setup new device' 4.- Look "
@@ -215,7 +213,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/bluetooth.txt.in:82
+#: ../jobs/bluetooth.txt.in:79
 msgid ""
 "Bluetooth mouse procedure: 1.- Enable the bluetooth mouse 2.- Click on the "
 "bluetooth icon in the menu bar 3.- Select 'Setup new device' 4.- Look for "
@@ -229,35 +227,36 @@ msgstr ""
 "qualques operacions de clic simple/multiple/drech"
 
 #. description
-#: ../jobs/bluetooth.txt.in:82 ../jobs/optical.txt.in:72
-#: ../jobs/power-management.txt.in:194 ../jobs/usb.txt.in:27
+#: ../jobs/bluetooth.txt.in:79 ../jobs/optical.txt.in:72 ../jobs/usb.txt.in:34
 msgid "Did all the steps work?"
 msgstr "Totas las etapas an foncionat ?"
 
 #. description
 #: ../jobs/camera.txt.in:7
 msgid "Automated test case that attempts to detect a camera"
-msgstr ""
+msgstr "Tèst automatic qu'ensaja de detectar un aparelh de fòto"
 
 #. description
 #: ../jobs/camera.txt.in:16
 msgid "Select Test to display a video capture from the camera"
 msgstr ""
+"Seleccionatz Tèst per afichar una captura vidèo que ven de l'aparelh de fòto"
 
 #. description
 #: ../jobs/camera.txt.in:16
 msgid "Did you see the video capture?"
-msgstr ""
+msgstr "Avètz vista la captura vidèo ?"
 
 #. description
 #: ../jobs/camera.txt.in:30
 msgid "Select Test to display a still image from the camera"
 msgstr ""
+"Seleccionatz Tèst per afichar un imatge fixe que proven de l'aparelh de fòto"
 
 #. description
 #: ../jobs/camera.txt.in:30
 msgid "Did you see the image?"
-msgstr ""
+msgstr "Avètz vist l'imatge ?"
 
 #. description
 #: ../jobs/camera.txt.in:43
@@ -269,17 +268,17 @@ msgstr ""
 #. description
 #: ../jobs/camera.txt.in:43
 msgid "Did you see/hear the capture?"
-msgstr ""
+msgstr "Avètz vista/ausida la captura ?"
 
 #. description
 #: ../jobs/codecs.txt.in:7
 msgid "Select Test to play an Ogg Vorbis file (.ogg)"
-msgstr ""
+msgstr "Seleccionatz Test per jogar un fichièr Ogg Vorbis (.ogg)"
 
 #. description
 #: ../jobs/codecs.txt.in:20
 msgid "Select Test to play a Wave Audio format file (.wav)"
-msgstr ""
+msgstr "Seleccionatz Tèst per jogar un fichièr al format Wave Audio (.wav)"
 
 #. description
 #: ../jobs/codecs.txt.in:20
@@ -308,7 +307,7 @@ msgstr ""
 #. description
 #: ../jobs/codecs.txt.in:46
 msgid "(Please close Movie Player to proceed.)"
-msgstr ""
+msgstr "(Tampatz lo lector vidèo per contunhar)"
 
 #. description
 #: ../jobs/codecs.txt.in:46
@@ -335,7 +334,7 @@ msgstr ""
 #. description
 #: ../jobs/cpu.txt.in:30
 msgid "Checks cpu topology for accuracy"
-msgstr ""
+msgstr "Verifica la topologia cpu per la precision"
 
 #. description
 #: ../jobs/cpu.txt.in:38
@@ -345,57 +344,57 @@ msgstr ""
 #. description
 #: ../jobs/daemons.txt.in:5
 msgid "Test if the atd daemon is running when the package is installed."
-msgstr ""
+msgstr "Tèsta se lo demòni atd fonciona quand lo paquet es installat."
 
 #. description
 #: ../jobs/daemons.txt.in:11
 msgid "Test if the cron daemon is running when the package is installed."
-msgstr ""
+msgstr "Tèsta se lo demòni cron fonciona quand lo paquet es installat."
 
 #. description
 #: ../jobs/daemons.txt.in:17
 msgid "Test if the cupsd daemon is running when the package is installed."
-msgstr ""
+msgstr "Tèsta se lo demòni cupsd fonciona quand lo paquet es installat."
 
 #. description
 #: ../jobs/daemons.txt.in:23
 msgid "Test if the getty daemon is running when the package is installed."
-msgstr ""
+msgstr "Tèsta se lo demòni getty fonciona quand lo paquet es installat."
 
 #. description
 #: ../jobs/daemons.txt.in:29
 msgid "Test if the init daemon is running when the package is installed."
-msgstr ""
+msgstr "Tèsta se lo demòni init fonciona quand lo paquet es installat."
 
 #. description
 #: ../jobs/daemons.txt.in:35
 msgid "Test if the klogd daemon is running when the package is installed."
-msgstr ""
+msgstr "Tèsta se lo demòni klogd fonciona quand lo paquet es installat."
 
 #. description
 #: ../jobs/daemons.txt.in:41
 msgid "Test if the nmbd daemon is running when the package is installed."
-msgstr ""
+msgstr "Tèsta se lo demòni mnbd fonciona quand lo paquet es installat."
 
 #. description
 #: ../jobs/daemons.txt.in:47
 msgid "Test if the smbd daemon is running when the package is installed."
-msgstr ""
+msgstr "Tèsta se lo demòni smbd fonciona quand lo paquet es installat."
 
 #. description
 #: ../jobs/daemons.txt.in:53
 msgid "Test if the syslogd daemon is running when the package is installed."
-msgstr ""
+msgstr "Tèsta se lo demòni syslogd fonciona quand lo paquet es installat."
 
 #. description
 #: ../jobs/daemons.txt.in:61
 msgid "Test if the udevd daemon is running when the package is installed."
-msgstr ""
+msgstr "Tèsta se lo demòni udevd fonciona quand lo paquet es installat."
 
 #. description
 #: ../jobs/daemons.txt.in:67
 msgid "Test if the winbindd daemon is running when the package is installed."
-msgstr ""
+msgstr "Tèsta se lo demòni winbindd fonciona quand lo paquet es installat."
 
 #. description
 #: ../jobs/disk.txt.in:4
@@ -403,27 +402,28 @@ msgid "The following hard drives were detected:"
 msgstr "Los disques durs seguents son estats detectats :"
 
 #. description
-#: ../jobs/disk.txt.in:14
+#: ../jobs/disk.txt.in:9
 msgid "Benchmark for each disk "
 msgstr ""
 
 #. description
-#: ../jobs/disk.txt.in:36
+#: ../jobs/disk.txt.in:26
 msgid "SMART test"
-msgstr ""
+msgstr "Tèst SMART"
 
 #. description
-#: ../jobs/disk.txt.in:51
+#: ../jobs/disk.txt.in:41
 msgid "Maximum disk space used during a default installation test"
 msgstr ""
+"Espaci de disc maximal utilizat al moment d'un tèst d'installacion per defaut"
 
 #. description
-#: ../jobs/disk.txt.in:66
+#: ../jobs/disk.txt.in:56
 msgid "Verify system storage performs at or above baseline performance"
 msgstr ""
 
 #. description
-#: ../jobs/disk.txt.in:83
+#: ../jobs/disk.txt.in:73
 msgid ""
 "Verify that storage devices, such as Fibre Channel and RAID can be detected "
 "and perform under stress."
@@ -446,7 +446,7 @@ msgstr ""
 #. description
 #: ../jobs/evolution.txt.in:14
 msgid "Were you able to receive and read e-mail correctly?"
-msgstr ""
+msgstr "Avètz pogut recebre e legir aqueste corrièl corrèctament ?"
 
 #. description
 #: ../jobs/evolution.txt.in:23
@@ -458,7 +458,7 @@ msgstr ""
 #. description
 #: ../jobs/evolution.txt.in:23
 msgid "Were you able to send e-mail without errors?"
-msgstr ""
+msgstr "Avètz pogut mandar un corrièl sens errors ?"
 
 #. description
 #: ../jobs/fingerprint.txt.in:3
@@ -514,19 +514,19 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/firewire.txt.in:3 ../jobs/usb.txt.in:71
+#: ../jobs/firewire.txt.in:3
 msgid "Do the copy operations work as expected?"
 msgstr "Las còpias an foncionat corrèctament ?"
 
 #. description
 #: ../jobs/floppy.txt.in:4
 msgid "Floppy test"
-msgstr ""
+msgstr "Tèst del lector de disquetas"
 
 #. description
 #: ../jobs/gcalctool.txt.in:5
 msgid "Click the \"Test\" button to open the calculator."
-msgstr ""
+msgstr "Clicatz sul boton \"Tèst\" per dobrir la calculadoira."
 
 #. description
 #: ../jobs/gcalctool.txt.in:5
@@ -553,7 +553,7 @@ msgstr ""
 #. description
 #: ../jobs/gcalctool.txt.in:45
 msgid "1. Cut 2. Copy 3. Paste"
-msgstr ""
+msgstr "1. Copar 2. Copiar 3. Empegar"
 
 #. description
 #: ../jobs/gcalctool.txt.in:45
@@ -563,7 +563,7 @@ msgstr ""
 #. description
 #: ../jobs/gedit.txt.in:5
 msgid "Click the \"Test\" button to open gedit."
-msgstr ""
+msgstr "Clicatz sul boton \"Tèst\" per dobrir gedit."
 
 #. description
 #: ../jobs/gedit.txt.in:5
@@ -587,12 +587,12 @@ msgstr ""
 #. description
 #: ../jobs/gedit.txt.in:17 ../jobs/gnome-terminal.txt.in:5
 msgid "Did this perform as expected?"
-msgstr ""
+msgstr "Aquò a foncionat coma previst ?"
 
 #. description
 #: ../jobs/gnome-terminal.txt.in:5
 msgid "Click the \"Test\" button to open Terminal."
-msgstr ""
+msgstr "Clicar sul boton \"Tèst\" per dobrir lo Terminal."
 
 #. description
 #: ../jobs/gnome-terminal.txt.in:5
@@ -604,7 +604,7 @@ msgstr ""
 #. description
 #: ../jobs/gnome-terminal.txt.in:5
 msgid "Close the terminal window."
-msgstr ""
+msgstr "Tampatz la fenèstra del terminal."
 
 #. description
 #: ../jobs/graphics.txt.in:5
@@ -655,12 +655,12 @@ msgid "Did the display rotation change as expected?"
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:62 ../jobs/sru_suite.txt.in:151
+#: ../jobs/graphics.txt.in:62
 msgid "Test that the X process is running."
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:68 ../jobs/sru_suite.txt.in:157
+#: ../jobs/graphics.txt.in:68
 msgid "Test that the X is not running in failsafe mode."
 msgstr ""
 
@@ -694,22 +694,22 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:107
+#: ../jobs/graphics.txt.in:94
 msgid "https://help.ubuntu.com/community/Installation/SystemRequirements"
-msgstr ""
+msgstr "https://help.ubuntu.com/community/Installation/SystemRequirements"
 
 #. description
-#: ../jobs/graphics.txt.in:117
+#: ../jobs/graphics.txt.in:104
 msgid "Select Test to display a video test."
-msgstr ""
+msgstr "Clicatz sus « testar » per afichar una vidèo de tèst."
 
 #. description
-#: ../jobs/graphics.txt.in:117
+#: ../jobs/graphics.txt.in:104
 msgid "Do you see color bars and static?"
 msgstr "Vesètz de barras de colors e d'interferéncias ?"
 
 #. description
-#: ../jobs/graphics.txt.in:126
+#: ../jobs/graphics.txt.in:113
 msgid ""
 "The following screens and video modes have been detected on your system:"
 msgstr ""
@@ -717,45 +717,45 @@ msgstr ""
 "sistèma :"
 
 #. description
-#: ../jobs/graphics.txt.in:138
+#: ../jobs/graphics.txt.in:125
 msgid ""
 "Select Test to cycle through the detected video modes for your system."
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:138
+#: ../jobs/graphics.txt.in:125
 msgid "Did the screen appear to be working for each mode?"
 msgstr "L'ecran foncionava corrèctament per cadun dels mòdes ?"
 
 #. description
-#: ../jobs/graphics.txt.in:146
+#: ../jobs/graphics.txt.in:133
 msgid "Check that the hardware is able to run compiz."
 msgstr "Verificar que lo material es capable d'utilizar Compiz."
 
 #. description
-#: ../jobs/graphics.txt.in:153
+#: ../jobs/graphics.txt.in:140
 msgid ""
 "Select Test to execute glxgears to ensure that minimal 3d graphics support "
 "is in place."
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:153
+#: ../jobs/graphics.txt.in:140
 msgid "Did the 3d animation appear?"
 msgstr "L'animacion en 3D a aparegut ?"
 
 #. description
-#: ../jobs/info.txt.in:60 ../jobs/screenshot.txt.in:7
+#: ../jobs/info.txt.in:69 ../jobs/screenshot.txt.in:7
 msgid "Captures a screenshot."
 msgstr ""
 
 #. description
-#: ../jobs/info.txt.in:71 ../jobs/sru_suite.txt.in:167
+#: ../jobs/info.txt.in:80
 msgid "Gather log from the firmware test suite run"
 msgstr ""
 
 #. description
-#: ../jobs/info.txt.in:82
+#: ../jobs/info.txt.in:91
 msgid "Bootchart information."
 msgstr ""
 
@@ -814,21 +814,21 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/keys.txt.in:30
+#: ../jobs/keys.txt.in:31
 msgid ""
 "Press the sleep key on the keyboard. The computer should suspend and, \\ "
 "after pressing the power button, resume successfully."
 msgstr ""
 
 #. description
-#: ../jobs/keys.txt.in:39
+#: ../jobs/keys.txt.in:40
 msgid ""
 "Press the battery information key on the keyboard. A status window \\ should "
 "appear and the amount of battery remaining should be displayed."
 msgstr ""
 
 #. description
-#: ../jobs/keys.txt.in:48
+#: ../jobs/keys.txt.in:49
 msgid ""
 "Press the wireless networking key on the keyboard. The bluetooth icon \\ and "
 "the network connnection should go down if connected through the \\ wifi "
@@ -836,35 +836,35 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/keys.txt.in:48
+#: ../jobs/keys.txt.in:49
 msgid ""
 "Press the same key again and check that bluetooth icon is again \\ displayed "
 "and that the network connection is re-established \\ automatically."
 msgstr ""
 
 #. description
-#: ../jobs/keys.txt.in:48
+#: ../jobs/keys.txt.in:49
 msgid "Does the key work?"
 msgstr ""
 
 #. description
-#: ../jobs/keys.txt.in:62
+#: ../jobs/keys.txt.in:63
 msgid ""
 "The keyboard may have dedicated keys for controlling media as follows:"
 msgstr ""
 
 #. description
-#: ../jobs/keys.txt.in:62
+#: ../jobs/keys.txt.in:63
 msgid "* Play/Pause * Stop * Forward * Backward (Rewind)"
 msgstr ""
 
 #. description
-#: ../jobs/keys.txt.in:62
+#: ../jobs/keys.txt.in:63
 msgid "Play a media file and press each key in turn."
 msgstr ""
 
 #. description
-#: ../jobs/keys.txt.in:62
+#: ../jobs/keys.txt.in:63
 msgid "Do the keys work as expected?"
 msgstr ""
 
@@ -881,7 +881,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:13
 msgid "Camera tests"
-msgstr ""
+msgstr "Tèsts de la camèra"
 
 #. description
 #: ../jobs/local.txt.in:18
@@ -891,7 +891,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:23
 msgid "CPU tests"
-msgstr ""
+msgstr "Tèsts del processor"
 
 #. description
 #: ../jobs/local.txt.in:28
@@ -944,52 +944,52 @@ msgid "Hotkey tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:78
+#: ../jobs/local.txt.in:83
 msgid "Media Card tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:83
+#: ../jobs/local.txt.in:93
 msgid "Miscellaneous tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:88
+#: ../jobs/local.txt.in:98
 msgid "Monitor tests"
 msgstr "Tèsts de l'ecran"
 
 #. description
-#: ../jobs/local.txt.in:93
+#: ../jobs/local.txt.in:103
 msgid "Networking tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:98
+#: ../jobs/local.txt.in:113
 msgid "PCMCIA/PCIX Card tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:103
+#: ../jobs/local.txt.in:118
 msgid "Peripheral tests"
 msgstr "Tèsts dels periferics"
 
 #. description
-#: ../jobs/local.txt.in:108
+#: ../jobs/local.txt.in:123
 msgid "Power Management tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:113
+#: ../jobs/local.txt.in:133
 msgid "Unity tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:118
+#: ../jobs/local.txt.in:143
 msgid "User Applications"
 msgstr "Aplicacions de l'utilizaire"
 
 #. description
-#: ../jobs/local.txt.in:123
+#: ../jobs/local.txt.in:153
 msgid "Stress tests"
 msgstr ""
 
@@ -1013,6 +1013,13 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"Verificacion de la presa en carga de las cartas SD :\n"
+" 1.- Inserissètz una carta SD dins l'ordenador.\n"
+" 2.- Una icòna deuriá aparéisser sul burèu e al nivèl de vòstre menut "
+"« Acorchis » tot en naut de l'ecran.\n"
+" 3.- Fasètz un clic drech sus l’icòna del burèu puèi causissètz « Levar lo "
+"periferic en tota seguretat ».\n"
+" 4.- L'icòna deuriá desaparéisser del burèu e del menut « Acorchis »."
 
 #. description
 #: ../jobs/mediacard.txt.in:15
@@ -1024,6 +1031,13 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"Reverificacion de la presa en carga de las cartas SD :\n"
+" 1.- Inserissètz una carta SD dins l'ordenador.\n"
+" 2.- Una icòna deuriá aparéisser sul burèu e al nivèl de vòstre menut "
+"« Acorchis » tot en naut de l'ecran.\n"
+" 3.- Fasètz un clic drech sus l’icòna del burèu puèi causissètz « Levar lo "
+"periferic en tota seguretat ».\n"
+" 4.- L'icòna deuriá desaparéisser del burèu e del menut « Acorchis »."
 
 #. description
 #: ../jobs/mediacard.txt.in:26
@@ -1035,6 +1049,13 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"Verificacion de la presa en carga de las cartas SDHC :\n"
+" 1.- Inserissètz una carta SDHC dins l'ordenador.\n"
+" 2.- Una icòna deuriá aparéisser sul burèu e al nivèl de vòstre menut "
+"« Acorchis » tot en naut de l'ecran.\n"
+" 3.- Fasètz un clic drech sus l’icòna del burèu puèi causissètz « Levar lo "
+"periferic en tota seguretat ».\n"
+" 4.- L'icòna deuriá desaparéisser del burèu e del menut « Acorchis »."
 
 #. description
 #: ../jobs/mediacard.txt.in:38
@@ -1046,6 +1067,13 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"Reverificacion de la presa en carga de las cartas SDHC :\n"
+" 1.- Inserissètz una carta SDHC dins l'ordenador.\n"
+" 2.- Una icòna deuriá aparéisser sul burèu e al nivèl de vòstre menut "
+"« Acorchis » tot en naut de l'ecran.\n"
+" 3.- Fasètz un clic drech sus l’icòna del burèu puèi causissètz « Levar lo "
+"periferic en tota seguretat ».\n"
+" 4.- L'icòna deuriá desaparéisser del burèu e del menut « Acorchis »."
 
 #. description
 #: ../jobs/mediacard.txt.in:49
@@ -1057,6 +1085,13 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"Verificacion de la presa en carga de las cartas MMC :\n"
+" 1.- Inserissètz una carta MMC dins l'ordenador.\n"
+" 2.- Una icòna deuriá aparéisser sul burèu e al nivèl de vòstre menut "
+"« Acorchis » tot en naut de l'ecran.\n"
+" 3.- Fasètz un clic drech sus l’icòna del burèu puèi causissètz « Levar lo "
+"periferic en tota seguretat ».\n"
+" 4.- L'icòna deuriá desaparéisser del burèu e del menut « Acorchis »."
 
 #. description
 #: ../jobs/mediacard.txt.in:61
@@ -1068,6 +1103,13 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"Reverificacion de la presa en carga de las cartas MMC :\n"
+" 1.- Inserissètz una carta MMC dins l'ordenador.\n"
+" 2.- Una icòna deuriá aparéisser sul burèu e al nivèl de vòstre menut "
+"« Acorchis » tot en naut de l'ecran.\n"
+" 3.- Fasètz un clic drech sus l’icòna del burèu puèi causissètz « Levar lo "
+"periferic en tota seguretat ».\n"
+" 4.- L'icòna deuriá desaparéisser del burèu e del menut « Acorchis »."
 
 #. description
 #: ../jobs/mediacard.txt.in:72
@@ -1079,6 +1121,13 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"Verificacion de la presa en carga de las cartas Memory Stick (MS) :\n"
+" 1.- Inserissètz una carta MS dins l'ordenador.\n"
+" 2.- Una icòna deuriá aparéisser sul burèu e al nivèl de vòstre menut "
+"« Acorchis » tot en naut de l'ecran.\n"
+" 3.- Fasètz un clic drech sus l’icòna del burèu puèi causissètz « Levar lo "
+"periferic en tota seguretat ».\n"
+" 4.- L'icòna deuriá desaparéisser del burèu e del menut « Acorchis »."
 
 #. description
 #: ../jobs/mediacard.txt.in:84
@@ -1090,6 +1139,13 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"Reverificacion de la presa en carga de las cartas Memory Stick (MS) :\n"
+" 1.- Inserissètz una carta MS dins l'ordenador.\n"
+" 2.- Una icòna deuriá aparéisser sul burèu e al nivèl de vòstre menut "
+"« Acorchis » tot en naut de l'ecran.\n"
+" 3.- Fasètz un clic drech sus l’icòna del burèu puèi causissètz « Levar lo "
+"periferic en tota seguretat ».\n"
+" 4.- L'icòna deuriá desaparéisser del burèu e del menut « Acorchis »."
 
 #. description
 #: ../jobs/mediacard.txt.in:95
@@ -1101,6 +1157,13 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"Verificacion de la presa en carga de las cartas Memory Stick Pro (MSP) :\n"
+" 1.- Inserissètz una carta MSP dins l'ordenador.\n"
+" 2.- Una icòna deuriá aparéisser sul burèu e al nivèl de vòstre menut "
+"« Acorchis » tot en naut de l'ecran.\n"
+" 3.- Fasètz un clic drech sus l’icòna del burèu puèi causissètz « Levar lo "
+"periferic en tota seguretat ».\n"
+" 4.- L'icòna deuriá desaparéisser del burèu e del menut « Acorchis »."
 
 #. description
 #: ../jobs/mediacard.txt.in:107
@@ -1112,6 +1175,13 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"Reverificacion de la presa en carga de las cartas Memory Stick Pro (MSP) :\n"
+" 1.- Inserissètz una carta MSP dins l'ordenador.\n"
+" 2.- Una icòna deuriá aparéisser sul burèu e al nivèl de vòstre menut "
+"« Acorchis » tot en naut de l'ecran.\n"
+" 3.- Fasètz un clic drech sus l’icòna del burèu puèi causissètz « Levar lo "
+"periferic en tota seguretat ».\n"
+" 4.- L'icòna deuriá desaparéisser del burèu e del menut « Acorchis »."
 
 #. description
 #: ../jobs/mediacard.txt.in:118
@@ -1123,6 +1193,13 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"Verificacion de la presa en carga de las cartas Compact Flash (CF) :\n"
+" 1.- Inserissètz una carta CF dins l'ordenador.\n"
+" 2.- Una icòna deuriá aparéisser sul burèu e al nivèl de vòstre menut "
+"« Acorchis » tot en naut de l'ecran.\n"
+" 3.- Fasètz un clic drech sus l’icòna del burèu puèi causissètz « Levar lo "
+"periferic en tota seguretat ».\n"
+" 4.- L'icòna deuriá desaparéisser del burèu e del menut « Acorchis »."
 
 #. description
 #: ../jobs/mediacard.txt.in:130
@@ -1134,6 +1211,13 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"Reverificacion de la presa en carga de las cartas Compact Flash (CF) :\n"
+" 1.- Inserissètz una carta CF dins l'ordenador.\n"
+" 2.- Una icòna deuriá aparéisser sul burèu e al nivèl de vòstre menut "
+"« Acorchis » tot en naut de l'ecran.\n"
+" 3.- Fasètz un clic drech sus l’icòna del burèu puèi causissètz « Levar lo "
+"periferic en tota seguretat ».\n"
+" 4.- L'icòna deuriá desaparéisser del burèu e del menut « Acorchis »."
 
 #. description
 #: ../jobs/mediacard.txt.in:130
@@ -1298,17 +1382,17 @@ msgid "Testing your connection to the Internet:"
 msgstr "Tèst de la connexion a Internet :"
 
 #. description
-#: ../jobs/networking.txt.in:26
+#: ../jobs/networking.txt.in:21
 msgid "Network Information"
-msgstr ""
+msgstr "Informacions sus la ret"
 
 #. description
-#: ../jobs/networking.txt.in:46
+#: ../jobs/wireless.txt.in:6
 msgid "Wireless scanning test."
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:52
+#: ../jobs/wireless.txt.in:12
 msgid ""
 "Wireless network connection procedure: 1.- Click on the Network Manager "
 "applet 2.- Select a network below the 'Wireless networks' section 3.- Notify "
@@ -1317,7 +1401,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:64
+#: ../jobs/networking.txt.in:39
 msgid ""
 "Wired network connection procedure: 1.- Click on the Network Manager applet "
 "2.- Select a network below the 'Wired network' section 3.- Notify OSD should "
@@ -1326,7 +1410,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:76
+#: ../jobs/networking.txt.in:51
 msgid ""
 "Built-in modem network connection procedure: 1.- Connect the telephone line "
 "to the computer 2.- Right click on the Network Manager applet 3.- Select "
@@ -1337,48 +1421,49 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:76 ../jobs/peripheral.txt.in:15
+#: ../jobs/networking.txt.in:51 ../jobs/peripheral.txt.in:15
+#: ../jobs/wireless.txt.in:12
 msgid "Was the connection correctly established?"
 msgstr "La connexion es estada establida corrèctament ?"
 
 #. description
-#: ../jobs/networking.txt.in:92
+#: ../jobs/networking.txt.in:67
 msgid ""
 "Automated test case to verify availability of some system on the network "
 "using ICMP ECHO packets."
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:99 ../jobs/peripheral.txt.in:32
+#: ../jobs/networking.txt.in:74 ../jobs/peripheral.txt.in:32
 msgid ""
 "Automated test case to make sure that it's possible to download files "
 "through HTTP"
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:107
+#: ../jobs/networking.txt.in:82
 msgid "Test to see if we can sync local clock to an NTP server"
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:113
+#: ../jobs/networking.txt.in:88
 msgid ""
 "Verify that an installation of checkbox-server on the network can be reached "
 "over SSH."
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:119
+#: ../jobs/networking.txt.in:94
 msgid "Try to enable a remote printer on the network and print a test page."
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:124
+#: ../jobs/networking.txt.in:99
 msgid "Multiple network cards"
-msgstr ""
+msgstr "Cartas de ret multiplas"
 
 #. description
-#: ../jobs/networking.txt.in:144
+#: ../jobs/networking.txt.in:119
 msgid "Test to measure the network bandwidth"
 msgstr ""
 
@@ -1560,47 +1645,47 @@ msgid "Does your computer hibernate and restore?"
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:29
+#: ../jobs/power-management.txt.in:13
 msgid "Does closing your laptop lid cause your screen to blank?"
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:41
+#: ../jobs/power-management.txt.in:25
 msgid "Click the Test button, then close and open the lid."
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:41
+#: ../jobs/power-management.txt.in:25
 msgid "Did the screen turn off while the lid was closed?"
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:55
+#: ../jobs/power-management.txt.in:39
 msgid "Click the Test button, then close the lid and wait 5 seconds."
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:55
+#: ../jobs/power-management.txt.in:39
 msgid "Open the lid."
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:55
+#: ../jobs/power-management.txt.in:39
 msgid "Did the screen turn back on when the lid was opened?"
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:65
+#: ../jobs/power-management.txt.in:49
 msgid "Test the network before suspending."
 msgstr "Testar la ret abans la mesa en velha."
 
 #. description
-#: ../jobs/power-management.txt.in:70
+#: ../jobs/suspend.txt.in:4
 msgid "Record the current resolution before suspending."
 msgstr "Enregistrar la resolucion actuala abans la mesa en velha."
 
 #. description
-#: ../jobs/power-management.txt.in:78
+#: ../jobs/suspend.txt.in:12
 msgid "Test the audio before suspending."
 msgstr "Testar lo son abans la mesa en velha."
 
@@ -1617,17 +1702,17 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:128 ../jobs/sru_suite.txt.in:135
+#: ../jobs/power-management.txt.in:51
 msgid "Make sure that the RTC (Real-Time Clock) device exists."
-msgstr ""
+msgstr "S'assegurar de la preséncia del relòtge material (RTC)"
 
 #. description
-#: ../jobs/power-management.txt.in:135
+#: ../jobs/suspend.txt.in:58
 msgid "Power management Suspend and Resume test"
 msgstr "Tèst de gestion de l'energia e de mesa en velha e reprisa"
 
 #. description
-#: ../jobs/power-management.txt.in:135
+#: ../jobs/suspend.txt.in:58
 msgid ""
 "Select Test and your system will suspend for about 30 - 60 seconds. If your "
 "system does not wake itself up after 60 seconds, please press the power "
@@ -1637,19 +1722,19 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:145
+#: ../jobs/suspend.txt.in:68
 msgid "Test the network after resuming."
 msgstr "Testar la ret aprèp la represa."
 
 #. description
-#: ../jobs/power-management.txt.in:151
+#: ../jobs/suspend.txt.in:74
 msgid ""
 "Test to see that we have the same resolution after resuming as before."
 msgstr ""
 "Testar la resolucion d'ecran e verificar qu'a pas cambiat aprèp la represa."
 
 #. description
-#: ../jobs/power-management.txt.in:160
+#: ../jobs/suspend.txt.in:83
 msgid "Test the audio after resuming."
 msgstr "Testar lo son aprèp la represa."
 
@@ -1687,14 +1772,14 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:210
+#: ../jobs/suspend.txt.in:150
 msgid ""
 "This test will check to make sure that supported video modes work after a "
 "suspend and resume.  Select Test to begin."
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:221
+#: ../jobs/power-management.txt.in:251
 msgid ""
 "This will check to make sure that your audio device works properly after a "
 "suspend and resume.  You can use either internal or external microphone and "
@@ -1705,7 +1790,7 @@ msgstr ""
 "intèrnes o extèrnes."
 
 #. description
-#: ../jobs/power-management.txt.in:221
+#: ../jobs/power-management.txt.in:251
 msgid ""
 "To execute this test, make sure your speaker and microphone are NOT muted "
 "and the volume is set sufficiently loud to record and play audio. Select "
@@ -1714,7 +1799,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:234
+#: ../jobs/stress.txt.in:30
 msgid ""
 "Enter and resume from suspend state for 30 iterations. Please note that this "
 "is a lengthy test. Select Test to begin. If your system fails to wake and "
@@ -1722,19 +1807,19 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:234
+#: ../jobs/stress.txt.in:30
 msgid "Did the system successfully suspend and resume for 30 iterations?"
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:245
+#: ../jobs/hibernate.txt.in:7
 msgid ""
 "This will check to make sure your system can successfully hibernate (if "
 "supported)."
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:245
+#: ../jobs/hibernate.txt.in:7
 msgid ""
 "Select Test to begin. The system will hibernate and should wake itself "
 "within 5 minutes.  If your system does not wake itself after 5 minutes, "
@@ -1744,14 +1829,14 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:245
+#: ../jobs/hibernate.txt.in:7
 msgid ""
 "Did the system successfully hibernate and did it work properly after waking "
 "up?"
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:258
+#: ../jobs/stress.txt.in:17
 msgid ""
 "Enter and resume from hibernate for 30 iterations. Please note that this is "
 "a very lengthy test. Also, if your system does not wake itself after 2 "
@@ -1761,7 +1846,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:258
+#: ../jobs/stress.txt.in:17
 msgid ""
 "Also, you will need to ensure your system has no power-on or HDD passwords "
 "set, and that grub is set to boot Ubuntu by default if you have a multi-boot "
@@ -1769,27 +1854,27 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:258
+#: ../jobs/stress.txt.in:17
 msgid "Did the system successfully hibernate and wake 30 times?"
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:267
+#: ../jobs/power-management.txt.in:56
 msgid "Run Colin Kings FWTS wakealarm test"
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:276
+#: ../jobs/power-management.txt.in:65
 msgid "Check to see if CONFIG_NO_HZ is set in the kernel"
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:284
+#: ../jobs/suspend.txt.in:194
 msgid "Automatic power management Suspend and Resume test"
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:284
+#: ../jobs/suspend.txt.in:194
 msgid ""
 "Select test and your system will suspend for about 30 - 60 seconds. If your "
 "system does not wake itself up after 60 seconds, please press the power "
@@ -1953,26 +2038,26 @@ msgid "The following USB controllers were detected:"
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:17
+#: ../jobs/usb.txt.in:24
 msgid ""
 "Plug a USB keyboard into the computer. Then, click on the Test button \\ to "
 "enter text."
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:17
+#: ../jobs/usb.txt.in:24
 msgid "Does the keyboard work?"
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:27
+#: ../jobs/usb.txt.in:34
 msgid ""
 "USB mouse verification procedure: 1.- Plug a USB mouse into the computer 2.- "
 "Perform some single/double/right click operations"
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:39
+#: ../jobs/usb.txt.in:46
 msgid ""
 "Click 'Test' and insert a USB device within 5 seconds. If the test is "
 "successful, you should notice that 'Yes' is selected below. Do not unplug "
@@ -1980,21 +2065,21 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:39
+#: ../jobs/usb.txt.in:46
 msgid ""
 "If no USB device is inserted or the device is not recognized, the test will "
 "fail and 'No' will be selected below."
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:51
+#: ../jobs/usb.txt.in:58
 msgid ""
 "Click 'Test' and remove the USB device you inserted within 5 seconds. If the "
 "test is successful, you should notice that 'Yes' is selected below."
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:51
+#: ../jobs/usb.txt.in:58
 msgid ""
 "If the USB device isn't removed or the removal is not registered, the test "
 "will fail and 'No' will be selected below."
@@ -2022,7 +2107,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:83
+#: ../jobs/usb.txt.in:86
 msgid ""
 "Connect a USB storage device to an external USB slot on this computer. \\ An "
 "icon should appear on the desktop and in the \"Places\" menu at the top of "
@@ -2030,14 +2115,14 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:83
+#: ../jobs/usb.txt.in:86
 msgid ""
 "Confirm that the icon appears, then eject the device. Repeat with each "
 "external \\ USB slot."
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:83
+#: ../jobs/usb.txt.in:86
 msgid "Do all USB slots work with the device?"
 msgstr ""
 
@@ -2118,7 +2203,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:51
 msgid "Close the File browser."
-msgstr ""
+msgstr "Tampatz lo navigador de fichièrs."
 
 #. description
 #: ../jobs/user_apps.txt.in:62
@@ -2137,7 +2222,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:62
 msgid "Do you now have a file called Test File 2?"
-msgstr ""
+msgstr "Ara, avètz un fichièr nomenat « Fichièr Tèst 2 » ?"
 
 #. description
 #: ../jobs/user_apps.txt.in:75
@@ -2167,7 +2252,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:88
 msgid "Is Test File 1 now gone?"
-msgstr ""
+msgstr "Lo fichièr « Fichièr Tèst 1 » a desparegut ?"
 
 #. description
 #: ../jobs/user_apps.txt.in:99
@@ -2179,27 +2264,28 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:99
 msgid "Has Test Folder been successfully deleted?"
-msgstr ""
+msgstr "« Dorsièr de Tèst » es estat suprimit corrèctament ?"
 
 #. description
 #: ../jobs/user_apps.txt.in:99
 msgid "Close the File Browser."
-msgstr ""
+msgstr "Tampatz lo navigador de fichièrs."
 
 #. description
 #: ../jobs/user_apps.txt.in:160
 msgid "Common Document Types Test"
-msgstr ""
+msgstr "Tèst dels tipes de document comuns"
 
 #. description
 #: ../jobs/user_apps.txt.in:178
 msgid "Select Test to launch Firefox and view the test web page."
 msgstr ""
+"Clicatz sus « testar » per aviar Firefox e afichar la pagina Web de tèst."
 
 #. description
 #: ../jobs/user_apps.txt.in:178
 msgid "Did the Ubuntu Test page load correctly?"
-msgstr ""
+msgstr "La pagina de tèst Ubuntu s'es cargada corrèctament ?"
 
 #. description
 #: ../jobs/user_apps.txt.in:188
@@ -2211,7 +2297,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:188
 msgid "Did the applet display?"
-msgstr ""
+msgstr "L'applet s'es afichada ?"
 
 #. description
 #: ../jobs/user_apps.txt.in:198
@@ -2221,7 +2307,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:198
 msgid "Did you see the text?"
-msgstr ""
+msgstr "Avètz vist lo tèxte ?"
 
 #. description
 #: ../jobs/user_apps.txt.in:208
@@ -2231,37 +2317,38 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:208
 msgid "Did the video play correctly?"
-msgstr ""
+msgstr "La vidèo s'es afichada corrèctament ?"
 
 #. description
 #: ../jobs/user_apps.txt.in:218
 msgid "Select Test to launch Firefox with a sample video."
 msgstr ""
+"Clicatz sus « testar » per aviar Firefox e afichar una vidèo d'exemple."
 
 #. description
 #: ../jobs/user_apps.txt.in:218
 msgid "Did the video play using a plugin?"
-msgstr ""
+msgstr "La vidèo s'es afichada en utilizant l'empeuton ?"
 
 #. description
 #: ../jobs/user_apps.txt.in:227
 msgid "Facebook Chat"
-msgstr ""
+msgstr "Discussion Facebook"
 
 #. description
 #: ../jobs/user_apps.txt.in:238
 msgid "Google Talk"
-msgstr ""
+msgstr "Google Talk"
 
 #. description
 #: ../jobs/user_apps.txt.in:249
 msgid "Jabber"
-msgstr ""
+msgstr "Jabber"
 
 #. description
 #: ../jobs/user_apps.txt.in:260
 msgid "AIM"
-msgstr ""
+msgstr "AIM"
 
 #. description
 #: ../jobs/user_apps.txt.in:271
@@ -2274,7 +2361,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:271
 msgid "MSN"
-msgstr ""
+msgstr "MSN"
 
 #. description
 #: ../jobs/user_apps.txt.in:271
@@ -2448,54 +2535,54 @@ msgstr "Escrivètz aicí e quichatz sus Ctrl-D quand avètz acabat :\n"
 
 #: ../checkbox_urwid/urwid_interface.py:60
 msgid "Checkbox System Testing"
-msgstr ""
+msgstr "Tèst del sistèma Checkbox."
 
 #: ../checkbox_urwid/urwid_interface.py:99
 msgid "Continue"
-msgstr ""
+msgstr "Contunhar"
 
 #: ../checkbox_urwid/urwid_interface.py:192
 #: ../checkbox_urwid/urwid_interface.py:268
 #: ../checkbox_urwid/urwid_interface.py:416
 msgid "Previous"
-msgstr ""
+msgstr "Precedent"
 
 #: ../checkbox_urwid/urwid_interface.py:193
 #: ../checkbox_urwid/urwid_interface.py:269
 #: ../checkbox_urwid/urwid_interface.py:417
 msgid "Next"
-msgstr ""
+msgstr "Seguent"
 
 #. Show buttons
 #: ../checkbox_urwid/urwid_interface.py:414
 msgid "Select All"
-msgstr ""
+msgstr "Seleccionar tot"
 
 #: ../checkbox_urwid/urwid_interface.py:415
 msgid "Deselect All"
-msgstr ""
+msgstr "Deseleccionar tot"
 
 #: ../checkbox_urwid/urwid_interface.py:772
 msgid "Test"
-msgstr ""
+msgstr "Testar"
 
 #: ../checkbox_urwid/urwid_interface.py:787
 msgid "Test Again"
-msgstr ""
+msgstr "Testar tornarmai"
 
 #: ../checkbox_gtk/gtk_interface.py:93
 msgid "hardware database"
 msgstr ""
 
-#: ../checkbox_gtk/gtk_interface.py:487
+#: ../checkbox_gtk/gtk_interface.py:502
 msgid "_Test Again"
 msgstr "_Testar tornarmai"
 
-#: ../checkbox_gtk/gtk_interface.py:533
+#: ../checkbox_gtk/gtk_interface.py:548
 msgid "Info"
 msgstr "Informacion"
 
-#: ../checkbox_gtk/gtk_interface.py:552
+#: ../checkbox_gtk/gtk_interface.py:567
 msgid "Error"
 msgstr "Error"
 
@@ -2504,7 +2591,7 @@ msgstr "Error"
 msgid "Unable to start web browser to open %s."
 msgstr "Impossible d'aviar lo navigador web per dobrir %s."
 
-#: ../plugins/apport_prompt.py:81
+#: ../plugins/apport_prompt.py:83
 msgid ""
 "Collecting information about this test.\n"
 "This might take a few minutes."
@@ -2512,7 +2599,7 @@ msgstr ""
 "Collècta d'informacions sus aquel tèst.\n"
 "Aquò pòt prene qualques minutas."
 
-#: ../plugins/apport_prompt.py:116
+#: ../plugins/apport_prompt.py:118
 msgid ""
 "Collected information is being sent for bug tracking.\n"
 "This might take a few minutes."
@@ -2521,17 +2608,17 @@ msgstr ""
 "seguiment dels bugs.\n"
 "Aquò pòt prene qualques minutas."
 
-#: ../plugins/apport_prompt.py:225
+#: ../plugins/apport_prompt.py:227
 #, python-format
 msgid "Test %s from suite %s failed."
-msgstr ""
+msgstr "Lo tèst %s de la seguida %s a fracassat."
 
-#: ../plugins/apport_prompt.py:228
+#: ../plugins/apport_prompt.py:230
 #, python-format
 msgid "Test %s failed."
-msgstr ""
+msgstr "Lo tèst %s a fracassat."
 
-#: ../plugins/apport_prompt.py:246
+#: ../plugins/apport_prompt.py:248
 #, python-format
 msgid "Is a package upgrade in process? Error: %s"
 msgstr "Una mesa a jorn de paquet es en cors ? Error : %s"
@@ -2548,7 +2635,7 @@ msgstr "Aca_bar"
 msgid "Gathering information from your system..."
 msgstr "Regropament d'informacions sus vòstre sistèma..."
 
-#: ../plugins/intro_prompt.py:43
+#: ../plugins/intro_prompt.py:29
 msgid ""
 "Welcome to System Testing!\n"
 "\n"
@@ -2562,12 +2649,12 @@ msgstr ""
 "foncionament de vòstre sistèma. Un còp aqueles tèsts efectuats, un "
 "recapitulatiu serà afichat per aqueste."
 
-#: ../plugins/launchpad_exchange.py:118
+#: ../plugins/launchpad_exchange.py:136
 #, python-format
 msgid "Failed to process form: %s"
 msgstr "Fracàs del tractament del formulari : %s"
 
-#: ../plugins/launchpad_exchange.py:141
+#: ../plugins/launchpad_exchange.py:151
 #, python-format
 msgid ""
 "Failed to contact server. Please try\n"
@@ -2584,7 +2671,7 @@ msgstr ""
 "dirèctament dins la banca de donadas dels sistèmas :\n"
 "https://launchpad.net/+hwdb/+submit"
 
-#: ../plugins/launchpad_exchange.py:150
+#: ../plugins/launchpad_exchange.py:160
 msgid ""
 "Failed to upload to server,\n"
 "please try again later."
@@ -2592,7 +2679,7 @@ msgstr ""
 "Fracàs del cargament sul servidor,\n"
 "ensajatz tornarmai pus tard."
 
-#: ../plugins/launchpad_exchange.py:162
+#: ../plugins/launchpad_exchange.py:172
 msgid "Information not posted to Launchpad."
 msgstr "Las informacions son pas estadas mandadas a Launchpad."
 
@@ -2650,7 +2737,7 @@ msgstr ""
 "Checkbox es estat interromput abans la fin.\n"
 "Volètz reprene sa precedenta execucion ?"
 
-#: ../plugins/report_prompt.py:34
+#: ../plugins/report_prompt.py:39
 msgid "Building report..."
 msgstr "Construccion del rapòrt..."
 
@@ -2660,7 +2747,7 @@ msgid "Running %s..."
 msgstr "Execucion de %s…"
 
 #. Get results
-#: ../plugins/suites_prompt.py:105
+#: ../plugins/suites_prompt.py:108
 msgid "Select the suites to test"
 msgstr "Seleccionatz los components de testar"
 
@@ -2668,7 +2755,7 @@ msgstr "Seleccionatz los components de testar"
 msgid "Enter text:\n"
 msgstr "Picatz lo tèxte :\n"
 
-#: ../scripts/keyboard_test:40
+#: ../scripts/keyboard_test:41
 msgid "Type Text"
 msgstr "Picatz lo tèxte"
 

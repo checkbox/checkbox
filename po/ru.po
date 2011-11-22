@@ -14,34 +14,12 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-09-29 04:31+0000\n"
-"X-Generator: Launchpad (build 14049)\n"
-
-#: ../gtk/checkbox-gtk.ui.h:2
-msgid "Ne_xt"
-msgstr "_Далее"
-
-#. Title of the user interface
-#: ../gtk/checkbox-gtk.ui.h:3 ../gtk/checkbox-gtk.desktop.in.h:1
-#: ../checkbox_gtk/gtk_interface.py:95 ../plugins/user_interface.py:40
-msgid "System Testing"
-msgstr "Проверка системы"
-
-#: ../gtk/checkbox-gtk.ui.h:5
-msgid "_No"
-msgstr "_Нет"
-
-#: ../gtk/checkbox-gtk.ui.h:6
-msgid "_Previous"
-msgstr "Н_азад"
+"X-Launchpad-Export-Date: 2011-11-22 04:40+0000\n"
+"X-Generator: Launchpad (build 14299)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:8
 msgid "_Skip this test"
 msgstr "Пропустить этот тест"
-
-#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:534
-msgid "_Test"
-msgstr "_Проверить"
 
 #: ../gtk/checkbox-gtk.ui.h:10
 msgid "_Yes"
@@ -50,18 +28,6 @@ msgstr "_Да"
 #: ../gtk/checkbox-gtk.desktop.in.h:2
 msgid "Test and report system information"
 msgstr "Проверка и отправка сведений о системе"
-
-#. description
-#: ../jobs/audio.txt.in:7 ../jobs/graphics.txt.in:113 ../jobs/memory.txt.in:4
-#: ../jobs/networking.txt.in:5 ../jobs/optical.txt.in:8 ../jobs/usb.txt.in:12
-msgid "$output"
-msgstr "$output"
-
-#. description
-#: ../jobs/audio.txt.in:7 ../jobs/graphics.txt.in:113 ../jobs/memory.txt.in:4
-#: ../jobs/networking.txt.in:5 ../jobs/optical.txt.in:8
-msgid "Is this correct?"
-msgstr "Всё правильно?"
 
 #. description
 #: ../jobs/graphics.txt.in:104
@@ -74,16 +40,6 @@ msgid "Moving the mouse should move the cursor on the screen."
 msgstr "Движение мыши должно перемещать указатель на экране."
 
 #. description
-#: ../jobs/input.txt.in:4
-msgid "Is your mouse working properly?"
-msgstr "Ваша мышь работает нормально?"
-
-#. description
-#: ../jobs/input.txt.in:13
-msgid "Is your keyboard working properly?"
-msgstr "Ваша клавиатура нормально работает?"
-
-#. description
 #: ../jobs/networking.txt.in:5
 msgid "Detecting your network controller(s):"
 msgstr "Обнаружение сетевых устройств:"
@@ -92,14 +48,6 @@ msgstr "Обнаружение сетевых устройств:"
 #: ../jobs/networking.txt.in:16
 msgid "Testing your connection to the Internet:"
 msgstr "Проверка подключения к интернету:"
-
-#: ../checkbox/application.py:66
-msgid "Usage: checkbox [OPTIONS]"
-msgstr "Использование: checkbox [OPTIONS]"
-
-#: ../checkbox/application.py:70
-msgid "Print version information and exit."
-msgstr "Вывести информацию о версии и выйти."
 
 #: ../checkbox/application.py:74
 msgid "The file to write the log to."
@@ -115,37 +63,10 @@ msgstr ""
 msgid "Configuration override parameters."
 msgstr "Конфигурирование перезаписало параметры."
 
-#: ../checkbox/application.py:115
-msgid "Missing configuration file as argument.\n"
-msgstr "Отсутствует параметр файла конфигурации.\n"
-
-#: ../checkbox_cli/cli_interface.py:31
-#: ../checkbox_urwid/urwid_interface.py:684
-msgid "yes"
-msgstr "да"
-
-#: ../checkbox_cli/cli_interface.py:32
-#: ../checkbox_urwid/urwid_interface.py:685
-msgid "no"
-msgstr "нет"
-
-#: ../checkbox_cli/cli_interface.py:33
-#: ../checkbox_urwid/urwid_interface.py:686
-msgid "skip"
-msgstr "пропустить"
-
-#: ../checkbox_cli/cli_interface.py:126
-msgid "Press any key to continue..."
-msgstr "Чтобы продолжить, нажмите любую клавишу..."
-
 #: ../checkbox_cli/cli_interface.py:135
 #, python-format
 msgid "Please choose (%s): "
 msgstr "Выберите (%s): "
-
-#: ../checkbox_cli/cli_interface.py:315
-msgid "test"
-msgstr "тест"
 
 #: ../checkbox_cli/cli_interface.py:339
 msgid "test again"
@@ -155,19 +76,11 @@ msgstr "повторить тест"
 msgid "Please type here and press Ctrl-D when finished:\n"
 msgstr "Пожалуйста, наберите текст здесь и нажмите Ctrl-D:\n"
 
-#: ../checkbox_gtk/gtk_interface.py:499
-msgid "_Test Again"
-msgstr "Тестировать снова"
-
 #: ../plugins/final_prompt.py:34
 msgid "_Finish"
 msgstr "_Завершить"
 
-#: ../plugins/gather_prompt.py:35
-msgid "Gathering information from your system..."
-msgstr "Сбор информации о вашей системе..."
-
-#: ../plugins/launchpad_exchange.py:147
+#: ../plugins/launchpad_exchange.py:151
 #, python-format
 msgid ""
 "Failed to contact server. Please try\n"
@@ -183,7 +96,7 @@ msgstr ""
 "вручную, с помощью страницы:\n"
 "https://launchpad.net/+hwdb/+submit"
 
-#: ../plugins/launchpad_exchange.py:156
+#: ../plugins/launchpad_exchange.py:160
 msgid ""
 "Failed to upload to server,\n"
 "please try again later."
@@ -191,21 +104,9 @@ msgstr ""
 "Не удалось загрузить данные на сервер,\n"
 "пожалуйста попробуйте ещё раз."
 
-#: ../plugins/launchpad_exchange.py:168
+#: ../plugins/launchpad_exchange.py:172
 msgid "Information not posted to Launchpad."
 msgstr "Информация не была отправлена на Launchpad."
-
-#: ../plugins/launchpad_prompt.py:92
-msgid "Email address must be in a proper format."
-msgstr "Адрес электронной почты должен быть правильно написан."
-
-#: ../plugins/launchpad_prompt.py:98
-msgid "Exchanging information with the server..."
-msgstr "Обмен данными с сервером..."
-
-#: ../plugins/report_prompt.py:39
-msgid "Building report..."
-msgstr "Формирование отчета..."
 
 #~ msgid "Welcome to System Testing!"
 #~ msgstr "Добро пожаловать в программу проверки системы!"
@@ -213,26 +114,8 @@ msgstr "Формирование отчета..."
 #~ msgid "_Server"
 #~ msgstr "_Сервер"
 
-#~ msgid "_Laptop"
-#~ msgstr "_Ноутбук"
-
-#~ msgid "Exchange"
-#~ msgstr "Обмен"
-
 #~ msgid "Please select the category of your system."
 #~ msgstr "Выберите тип вашего компьютера."
-
-#~ msgid "Successfully sent information!"
-#~ msgstr "Информация успешно отправлена!"
-
-#~ msgid "_Desktop"
-#~ msgstr "_Рабочая станция"
-
-#~ msgid "$(network_test)"
-#~ msgstr "$(network_test)"
-
-#~ msgid "Running shell tests..."
-#~ msgstr "Запуск тестов оболочки..."
 
 #, python-format
 #~ msgid "Running test %s..."
@@ -244,9 +127,6 @@ msgstr "Формирование отчета..."
 #~ msgid "Done"
 #~ msgstr "Выполнено"
 
-#~ msgid "Category"
-#~ msgstr "Категория"
-
 #~ msgid "Do you hear a sound?"
 #~ msgstr "Слышите ли вы звук?"
 
@@ -255,13 +135,35 @@ msgstr "Формирование отчета..."
 msgid "Further information:"
 msgstr "Дополнительная информация:"
 
+#: ../gtk/checkbox-gtk.ui.h:2
+msgid "Ne_xt"
+msgstr "_Далее"
+
+#. Title of the user interface
+#: ../gtk/checkbox-gtk.ui.h:3 ../gtk/checkbox-gtk.desktop.in.h:1
+#: ../checkbox_gtk/gtk_interface.py:95 ../plugins/user_interface.py:40
+msgid "System Testing"
+msgstr "Проверка системы"
+
 #: ../gtk/checkbox-gtk.ui.h:4
 msgid "_Deselect All"
 msgstr "_Снять выделение"
 
+#: ../gtk/checkbox-gtk.ui.h:5
+msgid "_No"
+msgstr "_Нет"
+
+#: ../gtk/checkbox-gtk.ui.h:6
+msgid "_Previous"
+msgstr "Н_азад"
+
 #: ../gtk/checkbox-gtk.ui.h:7
 msgid "_Select All"
 msgstr "_Выделить всё"
+
+#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:537
+msgid "_Test"
+msgstr "_Проверить"
 
 #. description
 #: ../jobs/apport.txt.in:5
@@ -272,6 +174,18 @@ msgstr "Убедитесь, что каталог /var/crash пуст."
 #: ../jobs/audio.txt.in:7
 msgid "Detecting your sound device(s):"
 msgstr "Обнаружение ваших звуковых устройств:"
+
+#. description
+#: ../jobs/audio.txt.in:7 ../jobs/graphics.txt.in:113 ../jobs/memory.txt.in:4
+#: ../jobs/networking.txt.in:5 ../jobs/optical.txt.in:8 ../jobs/usb.txt.in:12
+msgid "$output"
+msgstr "$output"
+
+#. description
+#: ../jobs/audio.txt.in:7 ../jobs/graphics.txt.in:113 ../jobs/memory.txt.in:4
+#: ../jobs/networking.txt.in:5 ../jobs/optical.txt.in:8
+msgid "Is this correct?"
+msgstr "Всё правильно?"
 
 #. description
 #: ../jobs/audio.txt.in:21
@@ -1055,7 +969,7 @@ msgstr "Создаёт снимок экрана."
 #. description
 #: ../jobs/info.txt.in:80
 msgid "Gather log from the firmware test suite run"
-msgstr ""
+msgstr "Записывать процесс тестирования прошивки"
 
 #. description
 #: ../jobs/info.txt.in:91
@@ -1063,11 +977,21 @@ msgid "Bootchart information."
 msgstr "Сведения Bootchart."
 
 #. description
+#: ../jobs/input.txt.in:4
+msgid "Is your mouse working properly?"
+msgstr "Ваша мышь работает нормально?"
+
+#. description
 #: ../jobs/input.txt.in:13
 msgid "Select Test to open a text area where to type keys on your keyboard."
 msgstr ""
 "Нажмите «Тест» для отображения текстовой области, где вы сможете проверить "
 "метод ввода при помощи клавиатуры."
+
+#. description
+#: ../jobs/input.txt.in:13
+msgid "Is your keyboard working properly?"
+msgstr "Ваша клавиатура нормально работает?"
 
 #. description
 #: ../jobs/install.txt.in:6
@@ -1583,7 +1507,7 @@ msgstr "Учтите, что для этого теста может потре�
 #. description
 #: ../jobs/miscellanea.txt.in:8
 msgid "Did the screen change temporarily to a text console?"
-msgstr "Переключался ли экран на текстовую консоль?"
+msgstr "Переключился ли экран временно на текстовую консоль?"
 
 #. description
 #: ../jobs/miscellanea.txt.in:20
@@ -1775,7 +1699,7 @@ msgstr ""
 #: ../jobs/networking.txt.in:51 ../jobs/peripheral.txt.in:15
 #: ../jobs/wireless.txt.in:12
 msgid "Was the connection correctly established?"
-msgstr "Было ли соединение установлено правильно?"
+msgstr "Было ли установлено соединение?"
 
 #. description
 #: ../jobs/networking.txt.in:67
@@ -1907,7 +1831,7 @@ msgstr ""
 #. description
 #: ../jobs/optical.txt.in:90
 msgid "Did the file play?"
-msgstr "Файл проигрывался?"
+msgstr "Был ли файл воспроизведён?"
 
 #. description
 #: ../jobs/panel_clock_test.txt.in:4
@@ -1954,6 +1878,8 @@ msgid ""
 "Afterwards be sure to recover the previous Checkbox instance and \\ answer "
 "the question below:"
 msgstr ""
+"Затем убедитесь, что вы восстановили предыдущую копию\\ Checkbox и ответьте "
+"на следующий вопрос:"
 
 #. description
 #: ../jobs/panel_reboot.txt.in:4
@@ -2328,12 +2254,12 @@ msgstr "Удалось ли успешно войти и выйти из спя�
 #. description
 #: ../jobs/power-management.txt.in:56
 msgid "Run Colin Kings FWTS wakealarm test"
-msgstr ""
+msgstr "Запустите тест тревоги FWTS"
 
 #. description
 #: ../jobs/power-management.txt.in:65
 msgid "Check to see if CONFIG_NO_HZ is set in the kernel"
-msgstr ""
+msgstr "Отметьте, чтобы увидеть, установлен ли в ядре параметр CONFIG_NO_HZ"
 
 #. description
 #: ../jobs/suspend.txt.in:194
@@ -2917,6 +2843,14 @@ msgstr "MSN"
 msgid "Were you able to connect correctly and send/receive messages?"
 msgstr "Смогли ли вы подключиться и отправить/получить сообщение?"
 
+#: ../checkbox/application.py:66
+msgid "Usage: checkbox [OPTIONS]"
+msgstr "Использование: checkbox [OPTIONS]"
+
+#: ../checkbox/application.py:70
+msgid "Print version information and exit."
+msgstr "Вывести информацию о версии и выйти."
+
 #: ../checkbox/application.py:84
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist."
 msgstr "Краткая форма для --config=checkbox/plugins/jobs_info/blacklist."
@@ -2933,6 +2867,10 @@ msgstr "Краткая форма для --config=checkbox/plugins/jobs_info/whi
 #: ../checkbox/application.py:90
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist_file."
 msgstr "Краткая форма для --config=checkbox/plugins/jobs_info/whitelist_file"
+
+#: ../checkbox/application.py:115
+msgid "Missing configuration file as argument.\n"
+msgstr "Отсутствует параметр файла конфигурации.\n"
 
 #: ../checkbox/lib/signal.py:23
 msgid ""
@@ -3021,6 +2959,29 @@ msgstr "НЕИЗВЕСТНО"
 msgid "Unknown signal"
 msgstr "Неизвестный сигнал"
 
+#: ../checkbox_cli/cli_interface.py:31
+#: ../checkbox_urwid/urwid_interface.py:684
+msgid "yes"
+msgstr "да"
+
+#: ../checkbox_cli/cli_interface.py:32
+#: ../checkbox_urwid/urwid_interface.py:685
+msgid "no"
+msgstr "нет"
+
+#: ../checkbox_cli/cli_interface.py:33
+#: ../checkbox_urwid/urwid_interface.py:686
+msgid "skip"
+msgstr "пропустить"
+
+#: ../checkbox_cli/cli_interface.py:126
+msgid "Press any key to continue..."
+msgstr "Чтобы продолжить, нажмите любую клавишу..."
+
+#: ../checkbox_cli/cli_interface.py:315
+msgid "test"
+msgstr "тест"
+
 #: ../checkbox_urwid/urwid_interface.py:60
 msgid "Checkbox System Testing"
 msgstr "Тестирование системы Checkbox"
@@ -3062,11 +3023,15 @@ msgstr "Проверить снова"
 msgid "hardware database"
 msgstr "база данных оборудования"
 
-#: ../checkbox_gtk/gtk_interface.py:545
+#: ../checkbox_gtk/gtk_interface.py:502
+msgid "_Test Again"
+msgstr "Тестировать снова"
+
+#: ../checkbox_gtk/gtk_interface.py:548
 msgid "Info"
 msgstr "Информация"
 
-#: ../checkbox_gtk/gtk_interface.py:564
+#: ../checkbox_gtk/gtk_interface.py:567
 msgid "Error"
 msgstr "Ошибка"
 
@@ -3075,7 +3040,7 @@ msgstr "Ошибка"
 msgid "Unable to start web browser to open %s."
 msgstr "Невозможно запустить веб-браузер, чтобы открыть %s."
 
-#: ../plugins/apport_prompt.py:81
+#: ../plugins/apport_prompt.py:83
 msgid ""
 "Collecting information about this test.\n"
 "This might take a few minutes."
@@ -3083,7 +3048,7 @@ msgstr ""
 "Идет сбор информации для этого теста.\n"
 "Это может занять несколько минут."
 
-#: ../plugins/apport_prompt.py:116
+#: ../plugins/apport_prompt.py:118
 msgid ""
 "Collected information is being sent for bug tracking.\n"
 "This might take a few minutes."
@@ -3092,17 +3057,17 @@ msgstr ""
 "ошибок.\n"
 "Это может занять несколько минут."
 
-#: ../plugins/apport_prompt.py:225
+#: ../plugins/apport_prompt.py:227
 #, python-format
 msgid "Test %s from suite %s failed."
 msgstr "Тест %s из набора %s не пройден."
 
-#: ../plugins/apport_prompt.py:228
+#: ../plugins/apport_prompt.py:230
 #, python-format
 msgid "Test %s failed."
 msgstr "Тест %s не пройден."
 
-#: ../plugins/apport_prompt.py:246
+#: ../plugins/apport_prompt.py:248
 #, python-format
 msgid "Is a package upgrade in process? Error: %s"
 msgstr "Запущено обновление пакетов? Ошибка: %s"
@@ -3111,7 +3076,11 @@ msgstr "Запущено обновление пакетов? Ошибка: %s"
 msgid "Successfully finished testing!"
 msgstr "Проверка успешно завершена!"
 
-#: ../plugins/intro_prompt.py:41
+#: ../plugins/gather_prompt.py:35
+msgid "Gathering information from your system..."
+msgstr "Сбор информации о вашей системе..."
+
+#: ../plugins/intro_prompt.py:29
 msgid ""
 "Welcome to System Testing!\n"
 "\n"
@@ -3158,6 +3127,14 @@ msgstr ""
 msgid "No e-mail address provided, not submitting to Launchpad."
 msgstr "Не указан электронный адрес, отчёт не отправлен на Launchpad."
 
+#: ../plugins/launchpad_prompt.py:92
+msgid "Email address must be in a proper format."
+msgstr "Адрес электронной почты должен быть правильно написан."
+
+#: ../plugins/launchpad_prompt.py:98
+msgid "Exchanging information with the server..."
+msgstr "Обмен данными с сервером..."
+
 #: ../plugins/lock_prompt.py:63
 msgid "There is another checkbox running. Please close it first."
 msgstr "Checkbox уже запущен. Сначала завершите его."
@@ -3170,13 +3147,17 @@ msgstr ""
 "Проверка завершена не полностью.\n"
 "Восстановить к предыдущему состоянию?"
 
+#: ../plugins/report_prompt.py:39
+msgid "Building report..."
+msgstr "Формирование отчета..."
+
 #: ../plugins/shell_test.py:52
 #, python-format
 msgid "Running %s..."
 msgstr "Запускается %s..."
 
 #. Get results
-#: ../plugins/suites_prompt.py:104
+#: ../plugins/suites_prompt.py:108
 msgid "Select the suites to test"
 msgstr "Выберите компоненты для тестирования"
 
@@ -3199,6 +3180,27 @@ msgstr "Потеря пакетов на установленном соедин
 #: ../scripts/internet_test:145
 msgid "Internet connection fully established"
 msgstr "Интернет-подключение полностью работоспособно"
+
+#~ msgid "_Desktop"
+#~ msgstr "_Рабочая станция"
+
+#~ msgid "Successfully sent information!"
+#~ msgstr "Информация успешно отправлена!"
+
+#~ msgid "_Laptop"
+#~ msgstr "_Ноутбук"
+
+#~ msgid "$(network_test)"
+#~ msgstr "$(network_test)"
+
+#~ msgid "Exchange"
+#~ msgstr "Обмен"
+
+#~ msgid "Category"
+#~ msgstr "Категория"
+
+#~ msgid "Running shell tests..."
+#~ msgstr "Запуск тестов оболочки..."
 
 #~ msgid "Click the Test button to display a video test."
 #~ msgstr "Для проверки видео нажмите Тест."

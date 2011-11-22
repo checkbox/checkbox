@@ -14,9 +14,14 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-09-30 04:31+0000\n"
-"X-Generator: Launchpad (build 14071)\n"
+"X-Launchpad-Export-Date: 2011-11-22 04:38+0000\n"
+"X-Generator: Launchpad (build 14299)\n"
 "X-Poedit-Language: Danish\n"
+
+#: ../gtk/checkbox-gtk.ui.h:1 ../checkbox_cli/cli_interface.py:343
+#: ../checkbox_urwid/urwid_interface.py:261
+msgid "Further information:"
+msgstr "Yderligere information:"
 
 #: ../gtk/checkbox-gtk.ui.h:2
 msgid "Ne_xt"
@@ -28,6 +33,10 @@ msgstr "N_æste"
 msgid "System Testing"
 msgstr "Systemtest"
 
+#: ../gtk/checkbox-gtk.ui.h:4
+msgid "_Deselect All"
+msgstr "_Afmarkér alle"
+
 #: ../gtk/checkbox-gtk.ui.h:5
 msgid "_No"
 msgstr "_Nej"
@@ -35,6 +44,10 @@ msgstr "_Nej"
 #: ../gtk/checkbox-gtk.ui.h:6
 msgid "_Previous"
 msgstr "_Forrige"
+
+#: ../gtk/checkbox-gtk.ui.h:7
+msgid "_Select All"
+msgstr "_Markér alle"
 
 #: ../gtk/checkbox-gtk.ui.h:8
 msgid "_Skip this test"
@@ -53,6 +66,16 @@ msgid "Test and report system information"
 msgstr "Test og rapportér systeminformation"
 
 #. description
+#: ../jobs/apport.txt.in:5
+msgid "Test that the /var/crash directory doesn't contain anything."
+msgstr "Test at mappen /var/crash er tom."
+
+#. description
+#: ../jobs/audio.txt.in:7
+msgid "Detecting your sound device(s):"
+msgstr "Finder din lydenhed(er):"
+
+#. description
 #: ../jobs/audio.txt.in:7 ../jobs/graphics.txt.in:113 ../jobs/memory.txt.in:4
 #: ../jobs/networking.txt.in:5 ../jobs/optical.txt.in:8 ../jobs/usb.txt.in:12
 msgid "$output"
@@ -63,215 +86,6 @@ msgstr "$output"
 #: ../jobs/networking.txt.in:5 ../jobs/optical.txt.in:8
 msgid "Is this correct?"
 msgstr "Er dette korrekt?"
-
-#. description
-#: ../jobs/graphics.txt.in:104
-msgid "Do you see color bars and static?"
-msgstr "Kan du se farvesøjler og støj?"
-
-#. description
-#: ../jobs/input.txt.in:4
-msgid "Moving the mouse should move the cursor on the screen."
-msgstr "Bevægelse med musen bør flytte pilen på skærmen."
-
-#. description
-#: ../jobs/input.txt.in:4
-msgid "Is your mouse working properly?"
-msgstr "Virker din mus ordentligt?"
-
-#. description
-#: ../jobs/input.txt.in:13
-msgid "Is your keyboard working properly?"
-msgstr "Virker dit tastatur ordentligt?"
-
-#. description
-#: ../jobs/networking.txt.in:5
-msgid "Detecting your network controller(s):"
-msgstr "Genkender din(e) styreenhed(er) til netværk:"
-
-#. description
-#: ../jobs/networking.txt.in:16
-msgid "Testing your connection to the Internet:"
-msgstr "Tester din forbindelse til internettet:"
-
-#: ../checkbox/application.py:66
-msgid "Usage: checkbox [OPTIONS]"
-msgstr "Brug: checkbox [TILVALG]"
-
-#: ../checkbox/application.py:70
-msgid "Print version information and exit."
-msgstr "Udskriv versionsinformation og afslut."
-
-#: ../checkbox/application.py:74
-msgid "The file to write the log to."
-msgstr "Filen som loggen skal skrives til."
-
-#: ../checkbox/application.py:77
-msgid "One of debug, info, warning, error or critical."
-msgstr "Enten fejlsøgning, information, advarsel, fejl eller kritisk."
-
-#: ../checkbox/application.py:82
-msgid "Configuration override parameters."
-msgstr "Konfiguration tilsidesætter parametre."
-
-#: ../checkbox/application.py:115
-msgid "Missing configuration file as argument.\n"
-msgstr "Manglende konfigurationsfil som argument.\n"
-
-#: ../checkbox_cli/cli_interface.py:31
-#: ../checkbox_urwid/urwid_interface.py:684
-msgid "yes"
-msgstr "ja"
-
-#: ../checkbox_cli/cli_interface.py:32
-#: ../checkbox_urwid/urwid_interface.py:685
-msgid "no"
-msgstr "nej"
-
-#: ../checkbox_cli/cli_interface.py:33
-#: ../checkbox_urwid/urwid_interface.py:686
-msgid "skip"
-msgstr "spring over"
-
-#: ../checkbox_cli/cli_interface.py:126
-msgid "Press any key to continue..."
-msgstr "Tast en vilkårlig tast for at fortsætte..."
-
-#: ../checkbox_cli/cli_interface.py:135
-#, python-format
-msgid "Please choose (%s): "
-msgstr "Vælg venligst (%s): "
-
-#: ../checkbox_cli/cli_interface.py:315
-msgid "test"
-msgstr "test"
-
-#: ../checkbox_cli/cli_interface.py:339
-msgid "test again"
-msgstr "test igen"
-
-#: ../checkbox_cli/cli_interface.py:345
-msgid "Please type here and press Ctrl-D when finished:\n"
-msgstr "Indtast her og tast Ctrl-D, når du er færdig:\n"
-
-#: ../checkbox_gtk/gtk_interface.py:502
-msgid "_Test Again"
-msgstr "_Test igen"
-
-#: ../plugins/final_prompt.py:34
-msgid "_Finish"
-msgstr "_Afslut"
-
-#: ../plugins/gather_prompt.py:35
-msgid "Gathering information from your system..."
-msgstr "Indsamler information fra dit system..."
-
-#: ../plugins/launchpad_exchange.py:151
-#, python-format
-msgid ""
-"Failed to contact server. Please try\n"
-"again or upload the following file name:\n"
-"%s\n"
-"\n"
-"directly to the system database:\n"
-"https://launchpad.net/+hwdb/+submit"
-msgstr ""
-"Kontakt til server fejlede. Prøv igen\n"
-"eller overfør følgende filnavn:\n"
-"%s\n"
-"\n"
-"direkte til systemdatabasen:\n"
-"https://launchpad.net/+hwdb/+submit"
-
-#: ../plugins/launchpad_exchange.py:160
-msgid ""
-"Failed to upload to server,\n"
-"please try again later."
-msgstr ""
-"Overførsel til server fejlede.\n"
-"Prøv igen senere."
-
-#: ../plugins/launchpad_exchange.py:172
-msgid "Information not posted to Launchpad."
-msgstr "Information ikke sendt til Launhpad."
-
-#: ../plugins/launchpad_prompt.py:92
-msgid "Email address must be in a proper format."
-msgstr "E-postadresse skal være i et korrekt format."
-
-#: ../plugins/launchpad_prompt.py:98
-msgid "Exchanging information with the server..."
-msgstr "Udveksler information med serveren..."
-
-#: ../plugins/report_prompt.py:39
-msgid "Building report..."
-msgstr "Danner rapport..."
-
-#~ msgid "Successfully sent information!"
-#~ msgstr "Information sendt succesfuldt!"
-
-#~ msgid "_Desktop"
-#~ msgstr "_Stationær"
-
-#~ msgid "_Laptop"
-#~ msgstr "_Bærbar"
-
-#~ msgid "_Server"
-#~ msgstr "_Server"
-
-#~ msgid "$(network_test)"
-#~ msgstr "$(network_test)"
-
-#~ msgid "Authentication"
-#~ msgstr "Godkendelse"
-
-#~ msgid "Done"
-#~ msgstr "Færdig"
-
-#~ msgid "Exchange"
-#~ msgstr "Udveksl"
-
-#~ msgid "Category"
-#~ msgstr "Kategori"
-
-#~ msgid "Do you hear a sound?"
-#~ msgstr "Kan du høre en lyd?"
-
-#, python-format
-#~ msgid "Running test %s..."
-#~ msgstr "Kører test %s..."
-
-#~ msgid "Running shell tests..."
-#~ msgstr "Kører skaltest..."
-
-#~ msgid "Please select the category of your system."
-#~ msgstr "Vælg dit systems kategori."
-
-#~ msgid "Welcome to System Testing!"
-#~ msgstr "Velkommen til systemtest!"
-
-#: ../gtk/checkbox-gtk.ui.h:1 ../checkbox_cli/cli_interface.py:343
-#: ../checkbox_urwid/urwid_interface.py:261
-msgid "Further information:"
-msgstr "Yderligere information:"
-
-#: ../gtk/checkbox-gtk.ui.h:4
-msgid "_Deselect All"
-msgstr "_Afmarkér alle"
-
-#: ../gtk/checkbox-gtk.ui.h:7
-msgid "_Select All"
-msgstr "_Markér alle"
-
-#. description
-#: ../jobs/apport.txt.in:5
-msgid "Test that the /var/crash directory doesn't contain anything."
-msgstr "Test at mappen /var/crash er tom."
-
-#. description
-#: ../jobs/audio.txt.in:7
-msgid "Detecting your sound device(s):"
-msgstr "Finder din lydenhed(er):"
 
 #. description
 #: ../jobs/audio.txt.in:21
@@ -351,6 +165,9 @@ msgid ""
 "input.  This makes the most sense when the output and input \\ are directly "
 "connected, as with a patch cable."
 msgstr ""
+"Afspil en lyd ved hjælp af standard output og lyt efter den på \\ standard "
+"input. Dette giver mest mening hvis output input \\ er direkte forbundet med "
+"et patchkabel."
 
 #. description
 #: ../jobs/autotest.txt.in:3
@@ -365,7 +182,7 @@ msgstr "Adressen for Bluetooth-enheden er: $output"
 #. description
 #: ../jobs/bluetooth.txt.in:12 ../jobs/graphics.txt.in:15
 msgid "Automated test to store output in checkbox report"
-msgstr ""
+msgstr "Automatiseret test som gemmer output i checkbox-rapport"
 
 #. description
 #: ../jobs/bluetooth.txt.in:18
@@ -407,6 +224,9 @@ msgid ""
 "the bluetooth icon in the menu bar 3.- Select 'Setup new device' 4.- Look "
 "for the device in the list and select it 5.- Select Test to enter text"
 msgstr ""
+"Procedure for bluetooth-tastaturer: 1.- Aktiver bluetooth-tastaturet 2.- "
+"Klik på bluetooth-ikonet i menulinjen 3.- Vælg \"Vælg ny enhed\" 4.- Se "
+"efter enheden i listen og vælg den 5.- Vælg \"Test\" for at indtaste tekst"
 
 #. description
 #: ../jobs/bluetooth.txt.in:79
@@ -429,12 +249,12 @@ msgstr "Fungerede alle trinnene?"
 #. description
 #: ../jobs/camera.txt.in:7
 msgid "Automated test case that attempts to detect a camera"
-msgstr ""
+msgstr "Automatiseret test som forsøger at detektere et kamera"
 
 #. description
 #: ../jobs/camera.txt.in:16
 msgid "Select Test to display a video capture from the camera"
-msgstr ""
+msgstr "Vælg \"Test\" for at vise noget som er optaget med kameraet"
 
 #. description
 #: ../jobs/camera.txt.in:16
@@ -444,12 +264,12 @@ msgstr ""
 #. description
 #: ../jobs/camera.txt.in:30
 msgid "Select Test to display a still image from the camera"
-msgstr ""
+msgstr "Vælg \"Test\" for at vise et øjebliksbillede fra kameraet"
 
 #. description
 #: ../jobs/camera.txt.in:30
 msgid "Did you see the image?"
-msgstr ""
+msgstr "Så du billedet?"
 
 #. description
 #: ../jobs/camera.txt.in:43
@@ -466,12 +286,12 @@ msgstr ""
 #. description
 #: ../jobs/codecs.txt.in:7
 msgid "Select Test to play an Ogg Vorbis file (.ogg)"
-msgstr ""
+msgstr "Vælg \"Test\" for at afspille en Ogg Vorbis-fil (.ogg)"
 
 #. description
 #: ../jobs/codecs.txt.in:20
 msgid "Select Test to play a Wave Audio format file (.wav)"
-msgstr ""
+msgstr "Vælg \"Test\" for at afspille en Wave Audio-fil (.wav)"
 
 #. description
 #: ../jobs/codecs.txt.in:20
@@ -488,7 +308,7 @@ msgstr ""
 #. description
 #: ../jobs/codecs.txt.in:33
 msgid "Did the audio play and pause as expected?"
-msgstr ""
+msgstr "Blev lyden afspillet og pauset som forventet?"
 
 #. description
 #: ../jobs/codecs.txt.in:46
@@ -496,11 +316,13 @@ msgid ""
 "Select 'Test' to play a video, and try pausing and resuming playback while "
 "the video is playing."
 msgstr ""
+"Vælg \"Test\" for at afspille video og prøv at pause og genoptage "
+"afspilningen mens den foregår."
 
 #. description
 #: ../jobs/codecs.txt.in:46
 msgid "(Please close Movie Player to proceed.)"
-msgstr ""
+msgstr "(Vælg venligst videoafspiller for at fortsætte.)"
 
 #. description
 #: ../jobs/codecs.txt.in:46
@@ -513,11 +335,13 @@ msgid ""
 "Test the CPU scaling capabilities using Colin King's Firmware Test Suite "
 "tool."
 msgstr ""
+"Test CPU'ens skaleringsevne ved hjælpe af Colin Kings Firmware-"
+"testsuiteværktøj."
 
 #. description
 #: ../jobs/cpu.txt.in:15
 msgid "Test for clock jitter."
-msgstr ""
+msgstr "Test for klokflimmer."
 
 #. description
 #: ../jobs/cpu.txt.in:23
@@ -527,67 +351,68 @@ msgstr ""
 #. description
 #: ../jobs/cpu.txt.in:30
 msgid "Checks cpu topology for accuracy"
-msgstr ""
+msgstr "Tjek cpu-topologiens nøjagtighed"
 
 #. description
 #: ../jobs/cpu.txt.in:38
 msgid "Checks that CPU frequency governors are obeyed when set."
 msgstr ""
+"Kontroller at CPU-frekvensregulatorer bliver adlydt når de er indstillet."
 
 #. description
 #: ../jobs/daemons.txt.in:5
 msgid "Test if the atd daemon is running when the package is installed."
-msgstr ""
+msgstr "Test om atd-dæmonen kører når pakken er installeret."
 
 #. description
 #: ../jobs/daemons.txt.in:11
 msgid "Test if the cron daemon is running when the package is installed."
-msgstr ""
+msgstr "Test om cron-dæmonen kører når pakken er installeret."
 
 #. description
 #: ../jobs/daemons.txt.in:17
 msgid "Test if the cupsd daemon is running when the package is installed."
-msgstr ""
+msgstr "Test om cupsd-dæmonen kører når pakken er installeret."
 
 #. description
 #: ../jobs/daemons.txt.in:23
 msgid "Test if the getty daemon is running when the package is installed."
-msgstr ""
+msgstr "Test om getty-dæmonen kører når pakken er installeret."
 
 #. description
 #: ../jobs/daemons.txt.in:29
 msgid "Test if the init daemon is running when the package is installed."
-msgstr ""
+msgstr "Test om init-dæmonen kører når pakken er installeret."
 
 #. description
 #: ../jobs/daemons.txt.in:35
 msgid "Test if the klogd daemon is running when the package is installed."
-msgstr ""
+msgstr "Test om klogd-dæmonen kører når pakken er installeret."
 
 #. description
 #: ../jobs/daemons.txt.in:41
 msgid "Test if the nmbd daemon is running when the package is installed."
-msgstr ""
+msgstr "Test om nmbd-dæmonen kører når pakken er installeret."
 
 #. description
 #: ../jobs/daemons.txt.in:47
 msgid "Test if the smbd daemon is running when the package is installed."
-msgstr ""
+msgstr "Test om smbd-dæmonen kører når pakken er installeret."
 
 #. description
 #: ../jobs/daemons.txt.in:53
 msgid "Test if the syslogd daemon is running when the package is installed."
-msgstr ""
+msgstr "Test om syslogd-dæmonen kører når pakken er installeret."
 
 #. description
 #: ../jobs/daemons.txt.in:61
 msgid "Test if the udevd daemon is running when the package is installed."
-msgstr ""
+msgstr "Test om udevd-dæmonen kører når pakken er installeret."
 
 #. description
 #: ../jobs/daemons.txt.in:67
 msgid "Test if the winbindd daemon is running when the package is installed."
-msgstr ""
+msgstr "Test om winbindd-dæmonen kører når pakken er installeret."
 
 #. description
 #: ../jobs/disk.txt.in:4
@@ -607,12 +432,12 @@ msgstr "SMART-test"
 #. description
 #: ../jobs/disk.txt.in:41
 msgid "Maximum disk space used during a default installation test"
-msgstr ""
+msgstr "Maksimal diskplads der bruges under en standardinstallationstest"
 
 #. description
 #: ../jobs/disk.txt.in:56
 msgid "Verify system storage performs at or above baseline performance"
-msgstr ""
+msgstr "Verificering af at systemlager yder på eller over basislinjeydelse"
 
 #. description
 #: ../jobs/disk.txt.in:73
@@ -620,6 +445,8 @@ msgid ""
 "Verify that storage devices, such as Fibre Channel and RAID can be detected "
 "and perform under stress."
 msgstr ""
+"Verificering at lagringsenheder som f.eks. Fibre Channel eller RAID kan "
+"blive detekteret og yde under stress."
 
 #. description
 #: ../jobs/evolution.txt.in:5
@@ -627,6 +454,8 @@ msgid ""
 "Click the \"Test\" button to launch Evolution, then configure it to connect "
 "to a POP3 account."
 msgstr ""
+"Tryk på \"Test\"-knappen for at starte Evolution og konfigurer programmet "
+"til at forbinde til en POP3-konto."
 
 #. description
 #: ../jobs/evolution.txt.in:14
@@ -634,11 +463,13 @@ msgid ""
 "Click the \"Test\" button to launch Evolution, then configure it to connect "
 "to a IMAP account."
 msgstr ""
+"Tryk på \"Test\"-knappen for at starte Evolution og konfigurer programmet "
+"til at forbinde til en IMAP-konto."
 
 #. description
 #: ../jobs/evolution.txt.in:14
 msgid "Were you able to receive and read e-mail correctly?"
-msgstr ""
+msgstr "Var du i stand til at modtage og læse e-post korrekt?"
 
 #. description
 #: ../jobs/evolution.txt.in:23
@@ -646,11 +477,13 @@ msgid ""
 "Click the \"Test\" button to launch Evolution, then configure it to connect "
 "to a SMTP account."
 msgstr ""
+"Tryk på \"Test\"-knappen for at starte Evolution og konfigurer programmet "
+"til at forbinde til en SMTP-konto."
 
 #. description
 #: ../jobs/evolution.txt.in:23
 msgid "Were you able to send e-mail without errors?"
-msgstr ""
+msgstr "Var du i stand til at sende e-post uden fejl?"
 
 #. description
 #: ../jobs/fingerprint.txt.in:3
@@ -704,6 +537,12 @@ msgid ""
 " 3.- Copy some files from your internal HDD to the firewire HDD.\n"
 " 4.- Copy some files from the firewire HDD to your internal HDD."
 msgstr ""
+"Verificeringsprocedure for Firewire-HDD:\n"
+" 1.- Slut en Firewire-HDD til computeren.\n"
+" 2.- At vindue burde dukke op som spørger om hvilken handling der skal "
+"udføres (åben mappe, fotohåndtering osv.)\n"
+" 3.- Kopier nogle filer fra din interne HDD til Firewire-HDD'en.\n"
+" 4. -Kopier nogle filer fra Firewire-HDD'en til din interne HDD."
 
 #. description
 #: ../jobs/firewire.txt.in:3
@@ -713,17 +552,17 @@ msgstr "Virker kopier funktionen som forventet?"
 #. description
 #: ../jobs/floppy.txt.in:4
 msgid "Floppy test"
-msgstr ""
+msgstr "Floppy-test"
 
 #. description
 #: ../jobs/gcalctool.txt.in:5
 msgid "Click the \"Test\" button to open the calculator."
-msgstr ""
+msgstr "Tryk på \"Test\"-knappen for at åbne lommeregneren."
 
 #. description
 #: ../jobs/gcalctool.txt.in:5
 msgid "Did it launch correctly?"
-msgstr ""
+msgstr "Startede den korrekt?"
 
 #. description
 #: ../jobs/gcalctool.txt.in:15
@@ -731,31 +570,35 @@ msgid ""
 "1. Simple math functions (+,-,/,*) 2. Nested math functions ((,)) 3. "
 "Fractional math 4. Decimal math"
 msgstr ""
+"1. Simple matematikfunktioner (+,-,/,*). 2. Indlejrede matematikfunktioner "
+"((,)). 3. Brøkregning. 4. Decimalmatematik"
 
 #. description
 #: ../jobs/gcalctool.txt.in:30
 msgid "1. Memory set 2. Memory reset 3. Memory last clear 4. Memory clear"
 msgstr ""
+"1. Hukommelse indstil 2. Hukommelse nulstil 3. Hukommelse ryd sidste 4. "
+"Hukommelse ryd"
 
 #. description
 #: ../jobs/gcalctool.txt.in:45
 msgid "Click the \"Test\" button to open the calculator and perform:"
-msgstr ""
+msgstr "Tryk på \"Test\"-knappen for at åbne lommeregneren og udfør:"
 
 #. description
 #: ../jobs/gcalctool.txt.in:45
 msgid "1. Cut 2. Copy 3. Paste"
-msgstr ""
+msgstr "1. Klip 2. Kopier 3. Indsæt"
 
 #. description
 #: ../jobs/gcalctool.txt.in:45
 msgid "Did the functions perform as expected?"
-msgstr ""
+msgstr "Virkede funktionerne som forventet?"
 
 #. description
 #: ../jobs/gedit.txt.in:5
 msgid "Click the \"Test\" button to open gedit."
-msgstr ""
+msgstr "Tryk på \"Test\"-knappen for at åbne gedit."
 
 #. description
 #: ../jobs/gedit.txt.in:5
@@ -763,6 +606,8 @@ msgid ""
 "Enter some text and save the file (make a note of the file name you use), "
 "then close gedit."
 msgstr ""
+"Skriv noget tekst og gem filen (og skriv det filnavn du brugte ned) og luk "
+"så gedit."
 
 #. description
 #: ../jobs/gedit.txt.in:17
@@ -774,17 +619,17 @@ msgstr ""
 #. description
 #: ../jobs/gedit.txt.in:17
 msgid "Edit then save the file, then close gedit."
-msgstr ""
+msgstr "Redigér og gem filen og luk så gedit."
 
 #. description
 #: ../jobs/gedit.txt.in:17 ../jobs/gnome-terminal.txt.in:5
 msgid "Did this perform as expected?"
-msgstr ""
+msgstr "Gik dette som forventet?"
 
 #. description
 #: ../jobs/gnome-terminal.txt.in:5
 msgid "Click the \"Test\" button to open Terminal."
-msgstr ""
+msgstr "Tryk på \"Test\"-knappen for at åbne terminalen."
 
 #. description
 #: ../jobs/gnome-terminal.txt.in:5
@@ -792,17 +637,19 @@ msgid ""
 "Type 'ls' and press enter. You should see a list of files and folder in your "
 "home directory."
 msgstr ""
+"Skriv \"ls\" og tryk enter. Du bør se en liste af filer og mapper i den "
+"hjemmemappe."
 
 #. description
 #: ../jobs/gnome-terminal.txt.in:5
 msgid "Close the terminal window."
-msgstr ""
+msgstr "Luk terminalvinduet."
 
 #. description
 #: ../jobs/graphics.txt.in:5
 msgid ""
 "2d graphics appears to be working, your running X.Org version is: $output"
-msgstr ""
+msgstr "2d-grafik ser ud til at virke. Din kørende X.Org-version er: $output"
 
 #. description
 #: ../jobs/graphics.txt.in:23
@@ -815,6 +662,8 @@ msgid ""
 "In the future add the returned time as a benchmark result to the checkbox "
 "report"
 msgstr ""
+"Tilføj den returnerede tid som benchmarkresultat til checkbox-rapporten i "
+"fremtiden"
 
 #. description
 #: ../jobs/graphics.txt.in:31
@@ -828,7 +677,7 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:31
 msgid "Did the resolution change as expected?"
-msgstr ""
+msgstr "Skiftede opløsningen som forventet?"
 
 #. description
 #: ../jobs/graphics.txt.in:46
@@ -849,17 +698,17 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:62
 msgid "Test that the X process is running."
-msgstr ""
+msgstr "Test om X-processen kører."
 
 #. description
 #: ../jobs/graphics.txt.in:68
 msgid "Test that the X is not running in failsafe mode."
-msgstr ""
+msgstr "Test at X ikke kører i fejlsikret tilstand."
 
 #. description
 #: ../jobs/graphics.txt.in:75
 msgid "Test that X does not leak memory when running programs."
-msgstr ""
+msgstr "Test at X ikke lækker hukommelse når der køres programmer."
 
 #. description
 #: ../jobs/graphics.txt.in:82
@@ -898,6 +747,11 @@ msgstr "https://help.ubuntu.com/community/Installation/SystemRequirements"
 #: ../jobs/graphics.txt.in:104
 msgid "Select Test to display a video test."
 msgstr "Vælg Test for at vise en videotest."
+
+#. description
+#: ../jobs/graphics.txt.in:104
+msgid "Do you see color bars and static?"
+msgstr "Kan du se farvesøjler og støj?"
 
 #. description
 #: ../jobs/graphics.txt.in:113
@@ -939,7 +793,7 @@ msgstr "Blev 3d-animationen vist?"
 #. description
 #: ../jobs/info.txt.in:69 ../jobs/screenshot.txt.in:7
 msgid "Captures a screenshot."
-msgstr ""
+msgstr "Tag et skærmbillede."
 
 #. description
 #: ../jobs/info.txt.in:80
@@ -949,7 +803,17 @@ msgstr ""
 #. description
 #: ../jobs/info.txt.in:91
 msgid "Bootchart information."
-msgstr ""
+msgstr "Bootchart-information."
+
+#. description
+#: ../jobs/input.txt.in:4
+msgid "Moving the mouse should move the cursor on the screen."
+msgstr "Bevægelse med musen bør flytte pilen på skærmen."
+
+#. description
+#: ../jobs/input.txt.in:4
+msgid "Is your mouse working properly?"
+msgstr "Virker din mus ordentligt?"
 
 #. description
 #: ../jobs/input.txt.in:13
@@ -957,6 +821,11 @@ msgid "Select Test to open a text area where to type keys on your keyboard."
 msgstr ""
 "Vælg Test for at åbne et tekstfelt, hvor du kan skrive med tasterne på dit "
 "tastatur."
+
+#. description
+#: ../jobs/input.txt.in:13
+msgid "Is your keyboard working properly?"
+msgstr "Virker dit tastatur ordentligt?"
 
 #. description
 #: ../jobs/install.txt.in:6
@@ -982,7 +851,7 @@ msgstr ""
 #. description
 #: ../jobs/keys.txt.in:12
 msgid "Do the buttons work?"
-msgstr ""
+msgstr "Virker knapperne?"
 
 #. description
 #: ../jobs/keys.txt.in:21
@@ -997,6 +866,8 @@ msgid ""
 "Press the sleep key on the keyboard. The computer should suspend and, \\ "
 "after pressing the power button, resume successfully."
 msgstr ""
+"Tryk på soveknappen på tastaturet. Computeren bør nu gå i hvile og \\ efter "
+"et tryk på tænd-knappen vågne op igen uden problemer."
 
 #. description
 #: ../jobs/keys.txt.in:40
@@ -1023,7 +894,7 @@ msgstr ""
 #. description
 #: ../jobs/keys.txt.in:49
 msgid "Does the key work?"
-msgstr ""
+msgstr "Virker knappen?"
 
 #. description
 #: ../jobs/keys.txt.in:63
@@ -1099,7 +970,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:53
 msgid "Graphics tests"
-msgstr ""
+msgstr "Grafiktester"
 
 #. description
 #: ../jobs/local.txt.in:58
@@ -1394,12 +1265,12 @@ msgstr "Vises/skjules ikonet automatisk?"
 #. description
 #: ../jobs/memory.txt.in:4
 msgid "The following amount of memory was detected:"
-msgstr ""
+msgstr "Følgende mængde af hukommelse blev detekteret:"
 
 #. description
 #: ../jobs/memory.txt.in:16
 msgid "Test and exercise memory."
-msgstr ""
+msgstr "Test og anvend hukommelse."
 
 #. description
 #: ../jobs/miscellanea.txt.in:8
@@ -1433,6 +1304,8 @@ msgid ""
 "ipmitool is required for ipmi testing. This checks for ipmitool and installs "
 "it if not available."
 msgstr ""
+"ipmitool er påkrævet til ipmi-testning. Vil tjekke om ipmitool er "
+"tilgængelig og installere programmet om nødvendigt."
 
 #. description
 #: ../jobs/miscellanea.txt.in:36
@@ -1540,6 +1413,16 @@ msgid "Did the monitor go blank?"
 msgstr "Blev skærmen sort?"
 
 #. description
+#: ../jobs/networking.txt.in:5
+msgid "Detecting your network controller(s):"
+msgstr "Genkender din(e) styreenhed(er) til netværk:"
+
+#. description
+#: ../jobs/networking.txt.in:16
+msgid "Testing your connection to the Internet:"
+msgstr "Tester din forbindelse til internettet:"
+
+#. description
 #: ../jobs/networking.txt.in:21
 msgid "Network Information"
 msgstr "Netværksinformation"
@@ -1557,6 +1440,10 @@ msgid ""
 "OSD should confirm that the connection has been established 4.- Select Test "
 "to verify that it's possible to establish an HTTP connection"
 msgstr ""
+"Procedure for trådløse netværk: 1.- Tryk på panelprogrammet for "
+"netværkshåndtering 2.- Vælg et netværk i sektionen \"Trådløse netværk\" 3.- "
+"Du bør blive underrette om at forbindelsen er blevet oprettet 4.- Vælg "
+"\"Test\" for at verificere at det er muligt at etablere en HTTP-forbindelse."
 
 #. description
 #: ../jobs/networking.txt.in:39
@@ -1590,6 +1477,8 @@ msgid ""
 "Automated test case to verify availability of some system on the network "
 "using ICMP ECHO packets."
 msgstr ""
+"Automatiserede tester til verificering af tilgængeligheden af visse systemer "
+"på netværket ved brug af ICMP ECHO-pakker."
 
 #. description
 #: ../jobs/networking.txt.in:74 ../jobs/peripheral.txt.in:32
@@ -1597,11 +1486,13 @@ msgid ""
 "Automated test case to make sure that it's possible to download files "
 "through HTTP"
 msgstr ""
+"Automatiseret test som sikrer at det er muligt at downloade filer gennem HTTP"
 
 #. description
 #: ../jobs/networking.txt.in:82
 msgid "Test to see if we can sync local clock to an NTP server"
 msgstr ""
+"Test der afgør om vi kan synkronisere det lokale ur til en NTP-server"
 
 #. description
 #: ../jobs/networking.txt.in:88
@@ -1609,31 +1500,33 @@ msgid ""
 "Verify that an installation of checkbox-server on the network can be reached "
 "over SSH."
 msgstr ""
+"Verificer at en installation af checkbox-server på netværket kan nås over "
+"SSH-"
 
 #. description
 #: ../jobs/networking.txt.in:94
 msgid "Try to enable a remote printer on the network and print a test page."
-msgstr ""
+msgstr "Prøv at aktivere en fjernprinter på netværket og udskrive en side."
 
 #. description
 #: ../jobs/networking.txt.in:99
 msgid "Multiple network cards"
-msgstr ""
+msgstr "Flere netværkskort"
 
 #. description
 #: ../jobs/networking.txt.in:119
 msgid "Test to measure the network bandwidth"
-msgstr ""
+msgstr "Test som måler netværksbåndbredden"
 
 #. description
 #: ../jobs/optical.txt.in:8
 msgid "The following optical drives were detected:"
-msgstr ""
+msgstr "Følgende optiske drev blev detekteret:"
 
 #. description
 #: ../jobs/optical.txt.in:18
 msgid "Optical Storage device read tests"
-msgstr ""
+msgstr "Læsetester af optisk lagerenhed"
 
 #. description
 #: ../jobs/optical.txt.in:37
@@ -1641,6 +1534,8 @@ msgid ""
 "The detected optical drive seems to support writing. Enter a blank CDROM \\ "
 "into your drive and try writing to it."
 msgstr ""
+"Det detekterede optiske drev synes at understøtte skrivning. Indsæt en blank "
+"cd-rom \\ i dit drev og prøv at skrive til det."
 
 #. description
 #: ../jobs/optical.txt.in:46
@@ -1653,6 +1548,13 @@ msgid ""
 "\"Eject Volume\". 8.- The CD should be ejected and the icon removed from the "
 "desktop."
 msgstr ""
+"Procedure for afspilning af cd: 1.- Indsæt en lydcd i dit opriske drev. 2.- "
+"Et ikon bør dukke frem på dit skrivebord. 3.- Højreklik på ikonet og vælg "
+"\"Åbn med Rhythmbox\". 4.- Vælg cden som afspilningskilden og tryk på "
+"afspilknappen. 5.- Musikken skulle gerne reproduceres. 6.- Stop reproduktion "
+"af musikken efter nogen tid. 7.- Højreklik på skrivebordsikonet og vælg "
+"\"Skub ud\". 8.- Cden skulle blive skubbet ud og ikonet forsvinde fra "
+"skrivebordet."
 
 #. description
 #: ../jobs/optical.txt.in:63
@@ -1660,11 +1562,13 @@ msgid ""
 "The detected optical drive seems to support writing. Enter a blank DVD \\ "
 "into your drive and try writing to it."
 msgstr ""
+"Det detekterede optiske synes at understøtte skrivning. Indsæt en blank dvd "
+"\\ i dit drev og prøv at skrive til den."
 
 #. description
 #: ../jobs/optical.txt.in:63
 msgid "Does writing work?"
-msgstr ""
+msgstr "Fungerer skrivningen?"
 
 #. description
 #: ../jobs/optical.txt.in:72
@@ -1677,6 +1581,13 @@ msgid ""
 "\"Eject Volume\". 7.- The DVD should be ejected and the icon removed from "
 "the desktop."
 msgstr ""
+"Procedure for afspilning af dvdfilm: 1.- Indsæt en dvd som indeholder en "
+"vilkårlig film i dit optiske drev. 2.- Et vindue bør dukke frem med nogle "
+"handlinger som du kan vælge imellem. Vælg \"Åbn filmafspiller\". 3.- "
+"Afpilleren bør blive åbnet  og filmen blive reproduceret. 4.- Stop "
+"reproduktionen af filmen efter nogen tid. 5.- Et ikon bør dukke frem på "
+"skrivebordet. 6.- Højreklik på ikonet og vælg \"Skub ud\". 7.- Dvden bør "
+"blive skubbet ud og ikonet forsvinde fra skrivebordet."
 
 #. description
 #: ../jobs/optical.txt.in:90
@@ -1694,6 +1605,7 @@ msgid ""
 "Is your gnome system clock displaying the correct date and time for \\ your "
 "timezone?"
 msgstr ""
+"Viser dit gnome-systemur den korrekte dato og tid for \\ din tidszone?"
 
 #. description
 #: ../jobs/panel_clock_test.txt.in:14
@@ -1704,18 +1616,23 @@ msgid ""
 "then Time and Date 3.- Ensure that your clock application is set to manual. "
 "4.- Change the time 1 hour back 5.- Close the window and reboot"
 msgstr ""
+"Procedure for verificering af tiden: 1.- Tryk på \"Test\"-knappen og "
+"verificer at tiden rykkes en time frem. \\ Bemærk: Det kan tage et minut "
+"eller to før systemuret genopfriskes 2.- Vælg nu fra panelet System, "
+"Administration og så Tid og dato 3.- Sikre dig at dit urprogram står til "
+"manuelt. 4.- Sæt uret en time tilbage 5.- Luk vinduet og genstart"
 
 #. description
 #: ../jobs/panel_clock_test.txt.in:14
 msgid ""
 "Is your system clock displaying the correct date and time for your \\ "
 "timezone?"
-msgstr ""
+msgstr "Viser dit systemur den korrekte dato og tid for din \\ tidszone?"
 
 #. description
 #: ../jobs/panel_reboot.txt.in:4
 msgid "Please restart your machine from the Ubuntu Panel."
-msgstr ""
+msgstr "Genstart venligst din maskine fra Ubuntu-panelet."
 
 #. description
 #: ../jobs/panel_reboot.txt.in:4
@@ -1723,21 +1640,23 @@ msgid ""
 "Afterwards be sure to recover the previous Checkbox instance and \\ answer "
 "the question below:"
 msgstr ""
+"Bagefter skal du sikre dig at genskabe den forrige Checkbox-instans og \\ "
+"besvare spørgsmålet nedenfor:"
 
 #. description
 #: ../jobs/panel_reboot.txt.in:4
 msgid "Did it restart and bring up the GUI login cleanly?"
-msgstr ""
+msgstr "Genstartede den og bragte den grafiske grænseflade frem uden fejl?"
 
 #. description
 #: ../jobs/pcmcia-pcix.txt.in:3
 msgid "Plug a PCMCIA device into the computer."
-msgstr ""
+msgstr "Slut en PCMCIA-enhed til computeren."
 
 #. description
 #: ../jobs/pcmcia-pcix.txt.in:3
 msgid "Is it detected?"
-msgstr ""
+msgstr "Blev den detekteret?"
 
 #. description
 #: ../jobs/peripheral.txt.in:3
@@ -1777,7 +1696,7 @@ msgstr ""
 #: ../jobs/power-management.txt.in:3
 msgid ""
 "Note: This test case has to be executed manually before checkbox execution"
-msgstr ""
+msgstr "Bemærk: Denne test skal udføres manuelt før checkbox køres"
 
 #. description
 #: ../jobs/power-management.txt.in:14
@@ -1814,22 +1733,22 @@ msgstr ""
 #. description
 #: ../jobs/power-management.txt.in:25
 msgid "Did the screen turn off while the lid was closed?"
-msgstr ""
+msgstr "Slukkedes skærmen mens låget var lukket?"
 
 #. description
 #: ../jobs/power-management.txt.in:39
 msgid "Click the Test button, then close the lid and wait 5 seconds."
-msgstr ""
+msgstr "Tryk på \"Test\"-knappen, luk låget og vent 5 sekunder."
 
 #. description
 #: ../jobs/power-management.txt.in:39
 msgid "Open the lid."
-msgstr ""
+msgstr "Åbn låget."
 
 #. description
 #: ../jobs/power-management.txt.in:39
 msgid "Did the screen turn back on when the lid was opened?"
-msgstr ""
+msgstr "Blev skærmen tændt igen da låget blev åbnet?"
 
 #. description
 #: ../jobs/power-management.txt.in:49
@@ -2048,7 +1967,7 @@ msgstr ""
 #. description
 #: ../jobs/power-management.txt.in:65
 msgid "Check to see if CONFIG_NO_HZ is set in the kernel"
-msgstr ""
+msgstr "Tjek om CONFIG_NO_HZ er indstillet i kernen"
 
 #. description
 #: ../jobs/suspend.txt.in:194
@@ -2076,7 +1995,7 @@ msgstr "QA-regressionstest (destruktiv)"
 #. description
 #: ../jobs/server-services.txt.in:5
 msgid "sshd test"
-msgstr ""
+msgstr "sshd-test"
 
 #. description
 #: ../jobs/server-services.txt.in:11
@@ -2086,17 +2005,17 @@ msgstr ""
 #. description
 #: ../jobs/server-services.txt.in:18
 msgid "DNS server test"
-msgstr ""
+msgstr "Test af DNS-server"
 
 #. description
 #: ../jobs/server-services.txt.in:25
 msgid "Samba server test"
-msgstr ""
+msgstr "Test af Sambaserver"
 
 #. description
 #: ../jobs/server-services.txt.in:32
 msgid "LAMP server test"
-msgstr ""
+msgstr "Test af LAMP-server"
 
 #. description
 #: ../jobs/server-services.txt.in:39
@@ -2216,6 +2135,8 @@ msgid ""
 "This test will verify that Unity is running and then run the autopilot.py "
 "test against the Unity interface."
 msgstr ""
+"Denne test vil verificere at Unity kører og derefter køre autopilot.py-"
+"testen mod Unity-grænsefladen."
 
 #. description
 #: ../jobs/usb.txt.in:5
@@ -2228,11 +2149,13 @@ msgid ""
 "Plug a USB keyboard into the computer. Then, click on the Test button \\ to "
 "enter text."
 msgstr ""
+"Slut et USB-tastatur til computeren. Tryk herefter på \"Test\".knappen \\ "
+"for at indtaste tekst."
 
 #. description
 #: ../jobs/usb.txt.in:24
 msgid "Does the keyboard work?"
-msgstr ""
+msgstr "Virker tastaturet?"
 
 #. description
 #: ../jobs/usb.txt.in:34
@@ -2240,6 +2163,8 @@ msgid ""
 "USB mouse verification procedure: 1.- Plug a USB mouse into the computer 2.- "
 "Perform some single/double/right click operations"
 msgstr ""
+"Procedure for verificering af USB-mus: 1.- Slut en USB-mus til computeren 2.-"
+" Udfør nogle enkelt/dobbelt/højreklik operationer"
 
 #. description
 #: ../jobs/usb.txt.in:46
@@ -2248,6 +2173,9 @@ msgid ""
 "successful, you should notice that 'Yes' is selected below. Do not unplug "
 "the device if the test is successful."
 msgstr ""
+"Tryk \"Test\" og indsæt en USB-enhed indenfor 5 sekunder. Hvis testen "
+"lykkedes kan du se at \"Ja\" er blevet valgt nedenunder. Afbryd ikke "
+"forbindelsen til enheden hvis testen ikke lykkedes."
 
 #. description
 #: ../jobs/usb.txt.in:46
@@ -2255,6 +2183,8 @@ msgid ""
 "If no USB device is inserted or the device is not recognized, the test will "
 "fail and 'No' will be selected below."
 msgstr ""
+"Hvis ingen USB-enhed er blevet sluttet til, eller hvis enheden ikke blev "
+"genkendt, vil testen fejle og \"Nej\" vil blive valgt nedenunder."
 
 #. description
 #: ../jobs/usb.txt.in:58
@@ -2262,6 +2192,8 @@ msgid ""
 "Click 'Test' and remove the USB device you inserted within 5 seconds. If the "
 "test is successful, you should notice that 'Yes' is selected below."
 msgstr ""
+"Tryk \"Test\" og fjern USB-enheden du indsatte indenfor 5 sekunder. Hvis "
+"testen lykkedes, kan du se at \"Ja\" er blevet valgt nedenunder."
 
 #. description
 #: ../jobs/usb.txt.in:58
@@ -2269,6 +2201,8 @@ msgid ""
 "If the USB device isn't removed or the removal is not registered, the test "
 "will fail and 'No' will be selected below."
 msgstr ""
+"Hvis USB-enheden ikke blev fjernet, eller hvis fjernelsen ikke blev "
+"registreret, vil testen fejle og \"Nej\" vil blive valgt nedenfor."
 
 #. description
 #: ../jobs/usb.txt.in:61
@@ -2298,6 +2232,8 @@ msgid ""
 "icon should appear on the desktop and in the \"Places\" menu at the top of "
 "the screen."
 msgstr ""
+"Forbind en USB-lagerenhed til en ekstern USB-port på computeren. \\ Et ikon "
+"bør dukke frem på skrivebordet og i menuen \"Steder\" i toppen af skærmen."
 
 #. description
 #: ../jobs/usb.txt.in:86
@@ -2584,6 +2520,26 @@ msgstr "MSN"
 msgid "Were you able to connect correctly and send/receive messages?"
 msgstr "Kunne du forbinde som du skulle og sende/modtage beskeder?"
 
+#: ../checkbox/application.py:66
+msgid "Usage: checkbox [OPTIONS]"
+msgstr "Brug: checkbox [TILVALG]"
+
+#: ../checkbox/application.py:70
+msgid "Print version information and exit."
+msgstr "Udskriv versionsinformation og afslut."
+
+#: ../checkbox/application.py:74
+msgid "The file to write the log to."
+msgstr "Filen som loggen skal skrives til."
+
+#: ../checkbox/application.py:77
+msgid "One of debug, info, warning, error or critical."
+msgstr "Enten fejlsøgning, information, advarsel, fejl eller kritisk."
+
+#: ../checkbox/application.py:82
+msgid "Configuration override parameters."
+msgstr "Konfiguration tilsidesætter parametre."
+
 #: ../checkbox/application.py:84
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist."
 msgstr "Forkortelse for --config=checkbox/plugins/jobs_info/blacklist."
@@ -2599,6 +2555,10 @@ msgstr "Forkortelse for --config=checkbox/plugins/jobs_info/whitelist."
 #: ../checkbox/application.py:90
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist_file."
 msgstr "Forkortelse for --config=checkbox/plugins/jobs_info/whitelist_file."
+
+#: ../checkbox/application.py:115
+msgid "Missing configuration file as argument.\n"
+msgstr "Manglende konfigurationsfil som argument.\n"
 
 #: ../checkbox/lib/signal.py:23
 msgid ""
@@ -2685,6 +2645,42 @@ msgstr "UKENDT"
 msgid "Unknown signal"
 msgstr "Ukendt signal"
 
+#: ../checkbox_cli/cli_interface.py:31
+#: ../checkbox_urwid/urwid_interface.py:684
+msgid "yes"
+msgstr "ja"
+
+#: ../checkbox_cli/cli_interface.py:32
+#: ../checkbox_urwid/urwid_interface.py:685
+msgid "no"
+msgstr "nej"
+
+#: ../checkbox_cli/cli_interface.py:33
+#: ../checkbox_urwid/urwid_interface.py:686
+msgid "skip"
+msgstr "spring over"
+
+#: ../checkbox_cli/cli_interface.py:126
+msgid "Press any key to continue..."
+msgstr "Tast en vilkårlig tast for at fortsætte..."
+
+#: ../checkbox_cli/cli_interface.py:135
+#, python-format
+msgid "Please choose (%s): "
+msgstr "Vælg venligst (%s): "
+
+#: ../checkbox_cli/cli_interface.py:315
+msgid "test"
+msgstr "test"
+
+#: ../checkbox_cli/cli_interface.py:339
+msgid "test again"
+msgstr "test igen"
+
+#: ../checkbox_cli/cli_interface.py:345
+msgid "Please type here and press Ctrl-D when finished:\n"
+msgstr "Indtast her og tast Ctrl-D, når du er færdig:\n"
+
 #: ../checkbox_urwid/urwid_interface.py:60
 msgid "Checkbox System Testing"
 msgstr "Checkbox - Systemtest"
@@ -2725,6 +2721,10 @@ msgstr "Test igen"
 #: ../checkbox_gtk/gtk_interface.py:93
 msgid "hardware database"
 msgstr "hardwaredatabase"
+
+#: ../checkbox_gtk/gtk_interface.py:502
+msgid "_Test Again"
+msgstr "_Test igen"
 
 #: ../checkbox_gtk/gtk_interface.py:548
 msgid "Info"
@@ -2774,6 +2774,14 @@ msgstr "Er der en pakkeopgradering i gang? Fejl: %s"
 msgid "Successfully finished testing!"
 msgstr "Test gennemført med succes!"
 
+#: ../plugins/final_prompt.py:34
+msgid "_Finish"
+msgstr "_Afslut"
+
+#: ../plugins/gather_prompt.py:35
+msgid "Gathering information from your system..."
+msgstr "Indsamler information fra dit system..."
+
 #: ../plugins/intro_prompt.py:29
 msgid ""
 "Welcome to System Testing!\n"
@@ -2792,6 +2800,35 @@ msgstr ""
 #, python-format
 msgid "Failed to process form: %s"
 msgstr "Kunne ikke behandle form: %s"
+
+#: ../plugins/launchpad_exchange.py:151
+#, python-format
+msgid ""
+"Failed to contact server. Please try\n"
+"again or upload the following file name:\n"
+"%s\n"
+"\n"
+"directly to the system database:\n"
+"https://launchpad.net/+hwdb/+submit"
+msgstr ""
+"Kontakt til server fejlede. Prøv igen\n"
+"eller overfør følgende filnavn:\n"
+"%s\n"
+"\n"
+"direkte til systemdatabasen:\n"
+"https://launchpad.net/+hwdb/+submit"
+
+#: ../plugins/launchpad_exchange.py:160
+msgid ""
+"Failed to upload to server,\n"
+"please try again later."
+msgstr ""
+"Overførsel til server fejlede.\n"
+"Prøv igen senere."
+
+#: ../plugins/launchpad_exchange.py:172
+msgid "Information not posted to Launchpad."
+msgstr "Information ikke sendt til Launhpad."
 
 #: ../plugins/launchpad_prompt.py:71
 #, python-format
@@ -2822,6 +2859,14 @@ msgstr ""
 msgid "No e-mail address provided, not submitting to Launchpad."
 msgstr "Ingen e-post-adresse, indsender ikke til Launchpad."
 
+#: ../plugins/launchpad_prompt.py:92
+msgid "Email address must be in a proper format."
+msgstr "E-postadresse skal være i et korrekt format."
+
+#: ../plugins/launchpad_prompt.py:98
+msgid "Exchanging information with the server..."
+msgstr "Udveksler information med serveren..."
+
 #: ../plugins/lock_prompt.py:63
 msgid "There is another checkbox running. Please close it first."
 msgstr "En anden checkbox kører. Luk denne først."
@@ -2833,6 +2878,10 @@ msgid ""
 msgstr ""
 "Checkbox blev ikke helt færdig.\n"
 "Ønsker du at genskabe fra den tidligere kørsel?"
+
+#: ../plugins/report_prompt.py:39
+msgid "Building report..."
+msgstr "Danner rapport..."
 
 #: ../plugins/shell_test.py:52
 #, python-format
@@ -2863,6 +2912,36 @@ msgstr "Den etablerede forbindelse mistede en pakke"
 #: ../scripts/internet_test:145
 msgid "Internet connection fully established"
 msgstr "Internetforbindelse er fuldt etableret"
+
+#~ msgid "Successfully sent information!"
+#~ msgstr "Information sendt succesfuldt!"
+
+#~ msgid "_Desktop"
+#~ msgstr "_Stationær"
+
+#~ msgid "_Laptop"
+#~ msgstr "_Bærbar"
+
+#~ msgid "_Server"
+#~ msgstr "_Server"
+
+#~ msgid "$(network_test)"
+#~ msgstr "$(network_test)"
+
+#~ msgid "Exchange"
+#~ msgstr "Udveksl"
+
+#~ msgid "Running shell tests..."
+#~ msgstr "Kører skaltest..."
+
+#~ msgid "Category"
+#~ msgstr "Kategori"
+
+#~ msgid "Please select the category of your system."
+#~ msgstr "Vælg dit systems kategori."
+
+#~ msgid "Welcome to System Testing!"
+#~ msgstr "Velkommen til systemtest!"
 
 #~ msgid "Click the Test button to display a video test."
 #~ msgstr "Klik på Test-knappen for at vise en videotest."
@@ -3064,3 +3143,16 @@ msgstr "Internetforbindelse er fuldt etableret"
 #~ "bevæg musen 3 .- Et vindue, som giver mulighed for at låse op ved enten at "
 #~ "indtaste din adgangskode eller ved hjælp af fingeraftryk, vil åbne 4 .- Lås "
 #~ "op med fingeraftrykslæseren 5 .- Skærmen bør være låst op"
+
+#~ msgid "Do you hear a sound?"
+#~ msgstr "Kan du høre en lyd?"
+
+#, python-format
+#~ msgid "Running test %s..."
+#~ msgstr "Kører test %s..."
+
+#~ msgid "Authentication"
+#~ msgstr "Godkendelse"
+
+#~ msgid "Done"
+#~ msgstr "Færdig"

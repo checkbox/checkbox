@@ -14,22 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-07-31 04:33+0000\n"
-"X-Generator: Launchpad (build 13405)\n"
-
-#: ../gtk/checkbox-gtk.ui.h:2
-msgid "Ne_xt"
-msgstr "Näs_ta"
-
-#. Title of the user interface
-#: ../gtk/checkbox-gtk.ui.h:3 ../gtk/checkbox-gtk.desktop.in.h:1
-#: ../plugins/user_interface.py:40
-msgid "System Testing"
-msgstr "Systemtest"
-
-#: ../gtk/checkbox-gtk.ui.h:5
-msgid "_No"
-msgstr "_Nej"
+"X-Launchpad-Export-Date: 2011-11-22 04:40+0000\n"
+"X-Generator: Launchpad (build 14299)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:6
 msgid "_Previous"
@@ -39,7 +25,63 @@ msgstr "_Föregående"
 msgid "_Skip this test"
 msgstr "_Hoppa över det här testet"
 
-#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:522
+#. description
+#: ../jobs/audio.txt.in:7 ../jobs/graphics.txt.in:113 ../jobs/memory.txt.in:4
+#: ../jobs/networking.txt.in:5 ../jobs/optical.txt.in:8
+msgid "Is this correct?"
+msgstr "Är det här korrekt?"
+
+#. description
+#: ../jobs/graphics.txt.in:104
+msgid "Do you see color bars and static?"
+msgstr "Ser du färgade streck och brus"
+
+#: ../checkbox/application.py:66
+msgid "Usage: checkbox [OPTIONS]"
+msgstr "Användning: checkbox [VALMÖJLIGHETER]"
+
+#: ../plugins/gather_prompt.py:35
+msgid "Gathering information from your system..."
+msgstr "Samlar in information från ditt system..."
+
+#~ msgid "Please select the category of your system."
+#~ msgstr "Välj kategorin för ditt system."
+
+#, python-format
+#~ msgid "Running test %s..."
+#~ msgstr "Kör test %s..."
+
+#~ msgid "Do you hear a sound?"
+#~ msgstr "Hör du ett ljud?"
+
+#: ../gtk/checkbox-gtk.ui.h:1 ../checkbox_cli/cli_interface.py:343
+#: ../checkbox_urwid/urwid_interface.py:261
+msgid "Further information:"
+msgstr "Ytterligare information:"
+
+#: ../gtk/checkbox-gtk.ui.h:2
+msgid "Ne_xt"
+msgstr "Näs_ta"
+
+#. Title of the user interface
+#: ../gtk/checkbox-gtk.ui.h:3 ../gtk/checkbox-gtk.desktop.in.h:1
+#: ../checkbox_gtk/gtk_interface.py:95 ../plugins/user_interface.py:40
+msgid "System Testing"
+msgstr "Systemtest"
+
+#: ../gtk/checkbox-gtk.ui.h:4
+msgid "_Deselect All"
+msgstr "_Avmarkera allt"
+
+#: ../gtk/checkbox-gtk.ui.h:5
+msgid "_No"
+msgstr "_Nej"
+
+#: ../gtk/checkbox-gtk.ui.h:7
+msgid "_Select All"
+msgstr "_Markera allt"
+
+#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:537
 msgid "_Test"
 msgstr "_Testa"
 
@@ -52,318 +94,20 @@ msgid "Test and report system information"
 msgstr "Testa och rapportera systeminformation"
 
 #. description
-#: ../jobs/audio.txt.in:7 ../jobs/disk.txt.in:4 ../jobs/graphics.txt.in:126
-#: ../jobs/memory.txt.in:4 ../jobs/networking.txt.in:16
-#: ../jobs/optical.txt.in:8 ../jobs/power-management.txt.in:167
-#: ../jobs/usb.txt.in:5
-msgid "$output"
-msgstr "$output"
-
-#. description
-#: ../jobs/audio.txt.in:7 ../jobs/bluetooth.txt.in:5 ../jobs/disk.txt.in:4
-#: ../jobs/graphics.txt.in:126 ../jobs/memory.txt.in:4
-#: ../jobs/networking.txt.in:16 ../jobs/optical.txt.in:8
-#: ../jobs/power-management.txt.in:185 ../jobs/usb.txt.in:5
-msgid "Is this correct?"
-msgstr "Är det här korrekt?"
-
-#. description
-#: ../jobs/graphics.txt.in:117
-msgid "Do you see color bars and static?"
-msgstr "Ser du färgade streck och brus"
-
-#. description
-#: ../jobs/input.txt.in:4
-msgid "Moving the mouse should move the cursor on the screen."
-msgstr "Förflyttning av musen ska flytta pekaren på skärmen."
-
-#. description
-#: ../jobs/input.txt.in:4
-msgid "Is your mouse working properly?"
-msgstr "Fungerar din mus korrekt?"
-
-#. description
-#: ../jobs/input.txt.in:13
-msgid "Is your keyboard working properly?"
-msgstr "Fungerar ditt tangentbord korrekt?"
-
-#. description
-#: ../jobs/networking.txt.in:5
-msgid "Detecting your network controller(s):"
-msgstr "Detekterar ditt (dina) nätverkskort:"
-
-#. description
-#: ../jobs/networking.txt.in:16
-msgid "Testing your connection to the Internet:"
-msgstr "Testar din uppkoppling till Internet:"
-
-#: ../checkbox/application.py:66
-msgid "Usage: checkbox [OPTIONS]"
-msgstr "Användning: checkbox [VALMÖJLIGHETER]"
-
-#: ../checkbox/application.py:70
-msgid "Print version information and exit."
-msgstr "Skriv ut versionsinformation och avsluta."
-
-#: ../checkbox/application.py:74
-msgid "The file to write the log to."
-msgstr "Filen att skriva loggen till."
-
-#: ../checkbox/application.py:77
-msgid "One of debug, info, warning, error or critical."
-msgstr "En av debug, info, warning, error eller critical."
-
-#: ../checkbox/application.py:82
-msgid "Configuration override parameters."
-msgstr "Parametrar för att åsidosätta konfigurationen."
-
-#: ../checkbox/application.py:115
-msgid "Missing configuration file as argument.\n"
-msgstr "Saknar konfigurationsfil som argument.\n"
-
-#: ../checkbox_cli/cli_interface.py:31
-#: ../checkbox_urwid/urwid_interface.py:684
-msgid "yes"
-msgstr "ja"
-
-#: ../checkbox_cli/cli_interface.py:32
-#: ../checkbox_urwid/urwid_interface.py:685
-msgid "no"
-msgstr "nej"
-
-#: ../checkbox_cli/cli_interface.py:33
-#: ../checkbox_urwid/urwid_interface.py:686
-msgid "skip"
-msgstr "hoppa över"
-
-#: ../checkbox_cli/cli_interface.py:126
-msgid "Press any key to continue..."
-msgstr "Tryck på valfri tangent för att fortsätta..."
-
-#: ../checkbox_cli/cli_interface.py:135
-#, python-format
-msgid "Please choose (%s): "
-msgstr "Välj (%s): "
-
-#: ../checkbox_cli/cli_interface.py:315
-msgid "test"
-msgstr "testa"
-
-#: ../checkbox_cli/cli_interface.py:339
-msgid "test again"
-msgstr "testa igen"
-
-#: ../checkbox_cli/cli_interface.py:345
-msgid "Please type here and press Ctrl-D when finished:\n"
-msgstr "Var snäll och skriv här och tryck Ctrl-D när du är klar:\n"
-
-#: ../checkbox_gtk/gtk_interface.py:487
-msgid "_Test Again"
-msgstr "_Testa igen"
-
-#: ../plugins/final_prompt.py:34
-msgid "_Finish"
-msgstr "_Färdigställ"
-
-#: ../plugins/gather_prompt.py:35
-msgid "Gathering information from your system..."
-msgstr "Samlar in information från ditt system..."
-
-#: ../plugins/launchpad_exchange.py:141
-#, python-format
-msgid ""
-"Failed to contact server. Please try\n"
-"again or upload the following file name:\n"
-"%s\n"
-"\n"
-"directly to the system database:\n"
-"https://launchpad.net/+hwdb/+submit"
-msgstr ""
-"Misslyckades med att kontakta servern. Prova\n"
-"igen eller skicka upp följande filnamn:\n"
-"%s\n"
-"\n"
-"direkt till systemdatabasen:\n"
-"https://launchpad.net/+hwdb/+submit"
-
-#: ../plugins/launchpad_exchange.py:150
-msgid ""
-"Failed to upload to server,\n"
-"please try again later."
-msgstr ""
-"Misslyckades med att ladda upp till server.\n"
-"Testa igen senare."
-
-#: ../plugins/launchpad_exchange.py:162
-msgid "Information not posted to Launchpad."
-msgstr "Informationen postades inte på Launchpad."
-
-#: ../plugins/launchpad_prompt.py:92
-msgid "Email address must be in a proper format."
-msgstr "E-postadressen måste anges i ett korrekt format."
-
-#: ../plugins/launchpad_prompt.py:98
-msgid "Exchanging information with the server..."
-msgstr "Utbyter information med server..."
-
-#: ../plugins/report_prompt.py:34
-msgid "Building report..."
-msgstr "Bygger upp rapport."
-
-#~ msgid "<b>Comment:</b>"
-#~ msgstr "<b>Kommentar:</b>"
-
-#~ msgid "Device information"
-#~ msgstr "Enhetsinformation"
-
-#~ msgid "Distribution details"
-#~ msgstr "Distributionsinsdetaljer"
-
-#~ msgid "Packages installed"
-#~ msgstr "Installerade paket"
-
-#~ msgid "Processor information"
-#~ msgstr "Processorinformation"
-
-#~ msgid "Successfully sent information!"
-#~ msgstr "Lyckades med att skicka information!"
-
-#~ msgid "Test results"
-#~ msgstr "Testresultat"
-
-#~ msgid "_Desktop"
-#~ msgstr "_Stationär"
-
-#~ msgid "_Laptop"
-#~ msgstr "_Bärbar"
-
-#~ msgid "_Server"
-#~ msgstr "_Server"
-
-#~ msgid "The following resolution was detected for your display:"
-#~ msgstr "Följande upplösning detekterades för din skärm:"
-
-#~ msgid "$(resolution_test)"
-#~ msgstr "$(resolution_test)"
-
-#~ msgid "Is this a good resolution for your display?"
-#~ msgstr "Är detta en lämplig upplösning för din skärm?"
-
-#~ msgid "$(network_test)"
-#~ msgstr "$(network_test)"
-
-#~ msgid "Are you connected to the Internet?"
-#~ msgstr "Är du uppkopplad till Internet?"
-
-#~ msgid ""
-#~ "Typing keys on your keyboard should display the corresponding characters in "
-#~ "a text area."
-#~ msgstr "Tangenttryckningar ska ge samma tecken i ett textfönster."
-
-#, python-format
-#~ msgid "Running test: %s"
-#~ msgstr "Kör test: %s"
-
-#~ msgid "Please provide comments about the failure."
-#~ msgstr "Var vänlig och ange vad som gick fel."
-
-#~ msgid "Authentication"
-#~ msgstr "Autentisering"
-
-#~ msgid "Please provide your Launchpad email address:"
-#~ msgstr "Ange din Launchpad e-post:"
-
-#~ msgid "Done"
-#~ msgstr "Klart"
-
-#~ msgid "Successfully sent information to server!"
-#~ msgstr "Lyckades med att skicka information till server!"
-
-#~ msgid "Exchange"
-#~ msgstr "Utbyt"
-
-#~ msgid "Category"
-#~ msgstr "Kategori"
-
-#~ msgid ""
-#~ "The following information will be sent to the Launchpad\n"
-#~ "hardware database. Please provide the e-mail address you\n"
-#~ "use to sign in to Launchpad to submit this information."
-#~ msgstr ""
-#~ "Följande information kommer att skickas till Launchpad:s hårdvarudatabas. "
-#~ "Var vänlig ange den e-postadress du använder vid inloggning till Launchpad "
-#~ "för att starta överförningen."
-
-#~ msgid "Run the video test."
-#~ msgstr "Kör video testet."
-
-#~ msgid "Run the test for the automatically detected playback device."
-#~ msgstr "Kör testet för att automatiskt detektera uppspelningsenheten."
-
-#~ msgid "Welcome to System Testing!"
-#~ msgstr "Välkommen till Systemtest!"
-
-#~ msgid "Please select the category of your system."
-#~ msgstr "Välj kategorin för ditt system."
-
-#, python-format
-#~ msgid "Running test %s..."
-#~ msgstr "Kör test %s..."
-
-#~ msgid ""
-#~ "This application will gather information from your system. Then,\n"
-#~ "you will be asked manual tests to confirm that the system is working\n"
-#~ "properly. Finally, you will be asked for the e-mail address you use\n"
-#~ "to sign in to Launchpad in order to submit the information and your\n"
-#~ "results.\n"
-#~ "\n"
-#~ "If you do not have a Launchpad account, please register here:\n"
-#~ "\n"
-#~ "  https://launchpad.net/+login\n"
-#~ "\n"
-#~ "Thank you for taking the time to test your system."
-#~ msgstr ""
-#~ "Denna applikation kommer att samla information om ditt system.\n"
-#~ "Sen kommer du ombedd att köra manuella test för att bekräfta\n"
-#~ "att systemet fungerar ordentligt. Till sist kommer du att bli ombedd\n"
-#~ "att fylla i din e-postadress som du använder för att logga in på\n"
-#~ "Launchpad för att fullfölja rapporten innehållande informationen\n"
-#~ "och testresultat.\n"
-#~ "\n"
-#~ "Om du inte har ett Launchpad konto, vänligen registrera dig här:\n"
-#~ "\n"
-#~ "  https://launchpad.net/+login\n"
-#~ "\n"
-#~ "Tack för att du har tagit dig tiden att testa ditt system."
-
-#~ msgid "Running shell tests..."
-#~ msgstr "Kör skaltester..."
-
-#~ msgid "Do you hear a sound?"
-#~ msgstr "Hör du ett ljud?"
-
-#: ../gtk/checkbox-gtk.ui.h:1 ../checkbox_cli/cli_interface.py:343
-#: ../checkbox_urwid/urwid_interface.py:261
-msgid "Further information:"
-msgstr "Ytterligare information:"
-
-#: ../gtk/checkbox-gtk.ui.h:4
-msgid "_Deselect All"
-msgstr "_Avmarkera allt"
-
-#: ../gtk/checkbox-gtk.ui.h:7
-msgid "_Select All"
-msgstr "_Markera allt"
-
-#. description
 #: ../jobs/apport.txt.in:5
 msgid "Test that the /var/crash directory doesn't contain anything."
-msgstr ""
+msgstr "Kontrollera att katalogen /var/crash är tom."
 
 #. description
 #: ../jobs/audio.txt.in:7
 msgid "Detecting your sound device(s):"
 msgstr "Identifierar din(a) ljudenhet(er):"
+
+#. description
+#: ../jobs/audio.txt.in:7 ../jobs/graphics.txt.in:113 ../jobs/memory.txt.in:4
+#: ../jobs/networking.txt.in:5 ../jobs/optical.txt.in:8 ../jobs/usb.txt.in:12
+msgid "$output"
+msgstr "$output"
 
 #. description
 #: ../jobs/audio.txt.in:21
@@ -434,17 +178,20 @@ msgstr ""
 "dig efter ett par sekunder."
 
 #. description
-#: ../jobs/audio.txt.in:70 ../jobs/power-management.txt.in:221
+#: ../jobs/audio.txt.in:70
 msgid "Did you hear your speech played back?"
 msgstr "Hörde du att ditt tal spelades upp?"
 
 #. description
-#: ../jobs/audio.txt.in:81
+#: ../jobs/audio.txt.in:82
 msgid ""
 "Play back a sound on the default output and listen for it on the \\ default "
 "input.  This makes the most sense when the output and input \\ are directly "
 "connected, as with a patch cable."
 msgstr ""
+"Spela upp ett ljud på standardutmatningen och lyssna på \\ "
+"standardinmatningen. Det är klokast när utmatning och inmatning \\\r\n"
+"är direkt anslutna till varandra, som med en patch-kabel."
 
 #. description
 #: ../jobs/autotest.txt.in:3
@@ -452,17 +199,17 @@ msgid "Autotest suite (destructive)"
 msgstr "Automatisk testsvit (destruktiv)"
 
 #. description
-#: ../jobs/bluetooth.txt.in:5 ../jobs/power-management.txt.in:185
+#: ../jobs/bluetooth.txt.in:5
 msgid "The address of your Bluetooth device is: $output"
 msgstr "Adressen för din blåtandsenhet är: $output"
 
 #. description
-#: ../jobs/bluetooth.txt.in:15 ../jobs/graphics.txt.in:15
+#: ../jobs/bluetooth.txt.in:12 ../jobs/graphics.txt.in:15
 msgid "Automated test to store output in checkbox report"
-msgstr ""
+msgstr "Automatiskt test för att lagra utmatning i checkbox-rapport"
 
 #. description
-#: ../jobs/bluetooth.txt.in:21
+#: ../jobs/bluetooth.txt.in:18
 msgid ""
 "Bluetooth browse files procedure: 1.- Enable bluetooth on any mobile device "
 "(PDA, smartphone, etc.) 2.- Click on the bluetooth icon in the menu bar 3.- "
@@ -472,9 +219,16 @@ msgid ""
 "icon and select browse files 7.- Authorize the computer to browse the files "
 "in the device if needed 8.- You should be able to browse the files"
 msgstr ""
+"Procedur för att bläddra bland filer via Bluetooth: 1.- Aktivera Bluetooth "
+"på en mobil enhet (PDA, smarttelefon, osv.) 2.- Klicka på bluetooth-ikonen i "
+"menyraden 3.- Välj 'Ställ in ny enhet' 3.- Leta efter enheten i listan och "
+"välj den 4.- Skriv på enheten in PIN-koden som väljs automatiskt av guiden "
+"5.- Enheten ska ansluta till datorn 6.- Högerklicka på bluetooth-ikonen och "
+"välj bläddra bland filer 7.- Ge datorn tillstånd att bläddra bland filerna "
+"på enheten om det behövs 8.- Du bör nu kunna bläddra bland filerna"
 
 #. description
-#: ../jobs/bluetooth.txt.in:38
+#: ../jobs/bluetooth.txt.in:35
 msgid ""
 "Bluetooth file transfer procedure: 1.- Make sure that you're able to browse "
 "the files in your mobile device 2.- Copy a file from the computer to the "
@@ -482,9 +236,14 @@ msgid ""
 "from the mobile device to the computer 5.- Verify that the file was "
 "correctly copied"
 msgstr ""
+"Procedur för filöverföring med Bluetooth: 1.- Se till att du kan bläddra "
+"bland filerna på din mobila enhet 2.- Kopiera en fil från datorn till den "
+"mobila enheten 3.- Kontrollera att filen kopierades ordentligt 4.- Kopiera "
+"en fil från den mobila enheten till datorn 5.- Kontrollera att filen "
+"kopierades ordentligt"
 
 #. description
-#: ../jobs/bluetooth.txt.in:53
+#: ../jobs/bluetooth.txt.in:50
 msgid ""
 "Bluetooth audio procedure: 1.- Enable the bluetooth headset 2.- Click on the "
 "bluetooth icon in the menu bar 3.- Select 'Setup new device' 4.- Look for "
@@ -493,54 +252,65 @@ msgid ""
 "computer 7.- Select Test to record for five seconds and reproduce in the "
 "bluetooth device"
 msgstr ""
+"Procedur för ljud via Bluetooth: 1.- Aktivera ditt bluetooth-headset 2.- "
+"Klicka på bluetooth-ikonen i menyraden 3.- Välj 'Ställ in ny enhet' 4.- Leta "
+"efter enheten i listan och välj den 5.- Skriv på enheten in PIN-koden som "
+"väljs automatiskt av guiden 6.- Enheten borde ansluta till datorn 7.- Välj "
+"Testa för att spela in i fem sekunder och reproducera i Bluetooth-enheten"
 
 #. description
-#: ../jobs/bluetooth.txt.in:69
+#: ../jobs/bluetooth.txt.in:66
 msgid ""
 "Bluetooth keyboard procedure: 1.- Enable the bluetooth keyboard 2.- Click on "
 "the bluetooth icon in the menu bar 3.- Select 'Setup new device' 4.- Look "
 "for the device in the list and select it 5.- Select Test to enter text"
 msgstr ""
+"Procedur för Bluetooth-tangentbord: 1.- Aktivera Bluetooth-tangentbordet 2.- "
+"Klicka på bluetooth-ikonen i menyraden 3.- Välj 'Ställ in ny enhet' 4.- Leta "
+"efter enheten i listan och välj den 5.- Välj Testa för att skriva in text"
 
 #. description
-#: ../jobs/bluetooth.txt.in:82
+#: ../jobs/bluetooth.txt.in:79
 msgid ""
 "Bluetooth mouse procedure: 1.- Enable the bluetooth mouse 2.- Click on the "
 "bluetooth icon in the menu bar 3.- Select 'Setup new device' 4.- Look for "
 "the device in the list and select it 5.- Move the mouse around the screen 6.-"
 " Perform some single/double/right click operations"
 msgstr ""
+"Procedur för Bluetooth-mus: 1 .- Aktivera blåtandsmusen 2 .- Klicka på "
+"blåtandsikonen i menyn 3 .- Välj \"Installera ny enhet\" 4 .- Leta efter "
+"enheten i listan och välj den 5 .- Flytta musen runt på skärmen 6 .- Gör "
+"singel-, dubbel- och högerklick för att testa."
 
 #. description
-#: ../jobs/bluetooth.txt.in:82 ../jobs/optical.txt.in:72
-#: ../jobs/power-management.txt.in:194 ../jobs/usb.txt.in:27
+#: ../jobs/bluetooth.txt.in:79 ../jobs/optical.txt.in:72 ../jobs/usb.txt.in:34
 msgid "Did all the steps work?"
 msgstr "Fungerade alla steg?"
 
 #. description
 #: ../jobs/camera.txt.in:7
 msgid "Automated test case that attempts to detect a camera"
-msgstr ""
+msgstr "Automatiserat test som försöker hitta en ansluten kamera"
 
 #. description
 #: ../jobs/camera.txt.in:16
 msgid "Select Test to display a video capture from the camera"
-msgstr ""
+msgstr "Välj Testa för att visa en videofångst från kameran"
 
 #. description
 #: ../jobs/camera.txt.in:16
 msgid "Did you see the video capture?"
-msgstr ""
+msgstr "Såg du videofångsten?"
 
 #. description
 #: ../jobs/camera.txt.in:30
 msgid "Select Test to display a still image from the camera"
-msgstr ""
+msgstr "Välj Testa för att visa en stillbild från kameran"
 
 #. description
 #: ../jobs/camera.txt.in:30
 msgid "Did you see the image?"
-msgstr ""
+msgstr "Såg du bilden?"
 
 #. description
 #: ../jobs/camera.txt.in:43
@@ -548,26 +318,28 @@ msgid ""
 "Select Test to capture video to a file and open it in totem. Please make "
 "sure that both audio and video is captured."
 msgstr ""
+"Välj Testa för att lagra video till en fil och öppna den i totem. "
+"Kontrollera att både ljud och bild fångas."
 
 #. description
 #: ../jobs/camera.txt.in:43
 msgid "Did you see/hear the capture?"
-msgstr ""
+msgstr "Såg/hörde du fångsten?"
 
 #. description
 #: ../jobs/codecs.txt.in:7
 msgid "Select Test to play an Ogg Vorbis file (.ogg)"
-msgstr ""
+msgstr "Välj Testa för att spela upp en Ogg Vorbis-fil (.ogg)"
 
 #. description
 #: ../jobs/codecs.txt.in:20
 msgid "Select Test to play a Wave Audio format file (.wav)"
-msgstr ""
+msgstr "Välj Testa för att spela upp en Wave-fil (.wav)"
 
 #. description
 #: ../jobs/codecs.txt.in:20
 msgid "Did the sample play correctly?"
-msgstr ""
+msgstr "Spelades exemplet upp korrekt?"
 
 #. description
 #: ../jobs/codecs.txt.in:33
@@ -575,11 +347,13 @@ msgid ""
 "Select 'Test' to play some audio, and try pausing and resuming playback "
 "while the it is playing."
 msgstr ""
+"Välj Testa för att spela upp olika ljud, och prova att pausa och fortsätta "
+"uppspelningen medan det håller på."
 
 #. description
 #: ../jobs/codecs.txt.in:33
 msgid "Did the audio play and pause as expected?"
-msgstr ""
+msgstr "Fungerade ljuduppspelning och paus som förväntat?"
 
 #. description
 #: ../jobs/codecs.txt.in:46
@@ -587,16 +361,18 @@ msgid ""
 "Select 'Test' to play a video, and try pausing and resuming playback while "
 "the video is playing."
 msgstr ""
+"Välj Testa för att spela upp en video, och prova att pausa och fortsätta "
+"uppspelningen medan den håller på."
 
 #. description
 #: ../jobs/codecs.txt.in:46
 msgid "(Please close Movie Player to proceed.)"
-msgstr ""
+msgstr "(Stäng Filmuppspelare för att fortsätta.)"
 
 #. description
 #: ../jobs/codecs.txt.in:46
 msgid "Did the video play and pause as expected?"
-msgstr ""
+msgstr "Gick videon att spela upp och pausa som förväntat?"
 
 #. description
 #: ../jobs/cpu.txt.in:8
@@ -604,81 +380,83 @@ msgid ""
 "Test the CPU scaling capabilities using Colin King's Firmware Test Suite "
 "tool."
 msgstr ""
+"Testa processorns skalningsmöjligheter med Colin Kings Firmware-testsvit."
 
 #. description
 #: ../jobs/cpu.txt.in:15
 msgid "Test for clock jitter."
-msgstr ""
+msgstr "Testa för klockjitter."
 
 #. description
 #: ../jobs/cpu.txt.in:23
 msgid "Test offlining CPUs in a multicore system."
-msgstr ""
+msgstr "Testa att stänga av processorer i ett flerkärnigt system."
 
 #. description
 #: ../jobs/cpu.txt.in:30
 msgid "Checks cpu topology for accuracy"
-msgstr ""
+msgstr "Kontrollerar processortopologin för exakthet"
 
 #. description
 #: ../jobs/cpu.txt.in:38
 msgid "Checks that CPU frequency governors are obeyed when set."
 msgstr ""
+"Kontrollerar att processorfrekvensregleringen efterföljs när den används."
 
 #. description
 #: ../jobs/daemons.txt.in:5
 msgid "Test if the atd daemon is running when the package is installed."
-msgstr ""
+msgstr "Testa om atd-demonen körs när paketet installeras."
 
 #. description
 #: ../jobs/daemons.txt.in:11
 msgid "Test if the cron daemon is running when the package is installed."
-msgstr ""
+msgstr "Testa om cron-demonen körs när paketet installeras."
 
 #. description
 #: ../jobs/daemons.txt.in:17
 msgid "Test if the cupsd daemon is running when the package is installed."
-msgstr ""
+msgstr "Testa om cupsd-demonen körs när paketet installeras."
 
 #. description
 #: ../jobs/daemons.txt.in:23
 msgid "Test if the getty daemon is running when the package is installed."
-msgstr ""
+msgstr "Testa om getty-demonen körs när paketet installeras."
 
 #. description
 #: ../jobs/daemons.txt.in:29
 msgid "Test if the init daemon is running when the package is installed."
-msgstr ""
+msgstr "Testa om init-demonen körs när paketet installeras."
 
 #. description
 #: ../jobs/daemons.txt.in:35
 msgid "Test if the klogd daemon is running when the package is installed."
-msgstr ""
+msgstr "Testa om klogd-demonen körs när paketet installeras."
 
 #. description
 #: ../jobs/daemons.txt.in:41
 msgid "Test if the nmbd daemon is running when the package is installed."
-msgstr ""
+msgstr "Testa om nmbd-demonen körs när paketet installeras."
 
 #. description
 #: ../jobs/daemons.txt.in:47
 msgid "Test if the smbd daemon is running when the package is installed."
-msgstr ""
+msgstr "Testa om smbd-demonen körs när paketet installeras."
 
 #. description
 #: ../jobs/daemons.txt.in:53
 msgid "Test if the syslogd daemon is running when the package is installed."
-msgstr ""
+msgstr "Testa om syslogd-demonen körs när paketet installeras."
 
 #. description
 #: ../jobs/daemons.txt.in:61
 msgid "Test if the udevd daemon is running when the package is installed."
-msgstr ""
+msgstr "Testa om udevd-demonen körs när paketet installeras."
 
 #. description
 #: ../jobs/daemons.txt.in:67
 msgid "Test if the winbindd daemon is running when the package is installed."
-msgstr ""
+msgstr "Testa om winbindd-demonen körs när paketet installeras."
 
 #. description
 #: ../jobs/disk.txt.in:4
@@ -686,31 +464,35 @@ msgid "The following hard drives were detected:"
 msgstr "Följande hårddiskar upptäcktes:"
 
 #. description
-#: ../jobs/disk.txt.in:14
+#: ../jobs/disk.txt.in:9
 msgid "Benchmark for each disk "
-msgstr ""
+msgstr "Prestandatest för varje disk "
 
 #. description
-#: ../jobs/disk.txt.in:36
+#: ../jobs/disk.txt.in:26
 msgid "SMART test"
-msgstr ""
+msgstr "SMART-test"
 
 #. description
-#: ../jobs/disk.txt.in:51
+#: ../jobs/disk.txt.in:41
 msgid "Maximum disk space used during a default installation test"
-msgstr ""
+msgstr "Maximalt diskutrymme som används vid ett standardinstallationstest"
 
 #. description
-#: ../jobs/disk.txt.in:66
+#: ../jobs/disk.txt.in:56
 msgid "Verify system storage performs at or above baseline performance"
 msgstr ""
+"Verifiera att systemets lagring presterar enligt eller över lägsta "
+"godtagbara prestanda"
 
 #. description
-#: ../jobs/disk.txt.in:83
+#: ../jobs/disk.txt.in:73
 msgid ""
 "Verify that storage devices, such as Fibre Channel and RAID can be detected "
 "and perform under stress."
 msgstr ""
+"Verifiera att lagringsenheter, som Fiber Channel och RAID, kan identifieras "
+"och prestera under hög belastning."
 
 #. description
 #: ../jobs/evolution.txt.in:5
@@ -718,6 +500,8 @@ msgid ""
 "Click the \"Test\" button to launch Evolution, then configure it to connect "
 "to a POP3 account."
 msgstr ""
+"Klicka på knappen Testa för att starta Evolution, konfigurera det sedan för "
+"att ansluta till ett POP3-konto."
 
 #. description
 #: ../jobs/evolution.txt.in:14
@@ -725,11 +509,13 @@ msgid ""
 "Click the \"Test\" button to launch Evolution, then configure it to connect "
 "to a IMAP account."
 msgstr ""
+"Klicka på knappen Testa för att starta Evolution, konfigurera det sedan för "
+"att ansluta till ett IMAP-konto."
 
 #. description
 #: ../jobs/evolution.txt.in:14
 msgid "Were you able to receive and read e-mail correctly?"
-msgstr ""
+msgstr "Kunde du ta emot och läsa e-post korrekt?"
 
 #. description
 #: ../jobs/evolution.txt.in:23
@@ -737,11 +523,13 @@ msgid ""
 "Click the \"Test\" button to launch Evolution, then configure it to connect "
 "to a SMTP account."
 msgstr ""
+"Klicka på knappen Testa för att starta Evolution, konfigurera det sedan för "
+"att ansluta till ett SMTP-konto."
 
 #. description
 #: ../jobs/evolution.txt.in:23
 msgid "Were you able to send e-mail without errors?"
-msgstr ""
+msgstr "Kunde du skicka e-post utan problem?"
 
 #. description
 #: ../jobs/fingerprint.txt.in:3
@@ -766,6 +554,14 @@ msgid ""
 " 5.- Click on the user switcher applet.\n"
 " 6.- Select the testing account to continue running tests."
 msgstr ""
+"Verifieringsprocedur vid fingeravtrycksinloggning:\n"
+" 1.- Klicka på panelprogrammet för användarbyte.\n"
+" 2.- Välj ditt användarnamn:\n"
+" 3.- Ett fönster bör visas som gör det möjligt att logga in antingen med "
+"ditt lösenord eller genom att använda fingeravtryck.\n"
+" 4.- Använd fingeravtrycksläsaren för att logga in.\n"
+" 5.- Klicka på panelprogrammet för användarbyte.\n"
+" 6.- Välj testkontot för att fortsätta köra tester."
 
 #. description
 #: ../jobs/fingerprint.txt.in:18
@@ -779,6 +575,14 @@ msgid ""
 " 5.- Use the fingerprint reader to unlock.\n"
 " 6.- Your screen should be unlocked."
 msgstr ""
+"Verifieringsprocedur vid upplåsning med fingeravtryck:\n"
+" 1.- Klicka på panelprogrammet för användarbyte.\n"
+" 2.- Välj \"Lås skärmen\".\n"
+" 3.- Tryck en tangent eller rör på musen.\n"
+" 4.- Ett fönster bör visas som låter dig låsa upp antingen med lösenord "
+"eller fingeravtryck.\n"
+" 5.- Använd fingeravtrycksläsaren för att låsa upp.\n"
+" 6.- Din skärm bör vara upplåst."
 
 #. description
 #: ../jobs/fingerprint.txt.in:18
@@ -795,26 +599,33 @@ msgid ""
 " 3.- Copy some files from your internal HDD to the firewire HDD.\n"
 " 4.- Copy some files from the firewire HDD to your internal HDD."
 msgstr ""
+"Verifieringsprocedur för Firewire-hårddisk:\n"
+" 1.- Anslut en Firewire-hårddisk till datorn.\n"
+" 2.- Ett fönster bör visas som frågar vilken åtgärd du vill utföra (öppna "
+"mapp, bildhantering, etc).\n"
+" 3.- Kopiera några filer från din interna hårddisk till Firewire-"
+"hårddisken.\n"
+" 4.- Kopiera några filer från firewire-hårddisken till din interna hårddisk."
 
 #. description
-#: ../jobs/firewire.txt.in:3 ../jobs/usb.txt.in:71
+#: ../jobs/firewire.txt.in:3
 msgid "Do the copy operations work as expected?"
 msgstr "Fungerade kopieringsåtgärderna som förväntat?"
 
 #. description
 #: ../jobs/floppy.txt.in:4
 msgid "Floppy test"
-msgstr ""
+msgstr "Diskettest"
 
 #. description
 #: ../jobs/gcalctool.txt.in:5
 msgid "Click the \"Test\" button to open the calculator."
-msgstr ""
+msgstr "Klicka på knappen Testa för att öppna kalkylatorn."
 
 #. description
 #: ../jobs/gcalctool.txt.in:5
 msgid "Did it launch correctly?"
-msgstr ""
+msgstr "Startade den korrekt?"
 
 #. description
 #: ../jobs/gcalctool.txt.in:15
@@ -822,31 +633,34 @@ msgid ""
 "1. Simple math functions (+,-,/,*) 2. Nested math functions ((,)) 3. "
 "Fractional math 4. Decimal math"
 msgstr ""
+"1. Enkla matematiska funktioner (+,-,/,*) 2. Nästlade matematiska funktioner "
+"((,)) 3. Bråkdelar 4. Decimal matematik"
 
 #. description
 #: ../jobs/gcalctool.txt.in:30
 msgid "1. Memory set 2. Memory reset 3. Memory last clear 4. Memory clear"
 msgstr ""
+"1. Ange minne 2. Återställ minne 3. Rensa senaste minne 4. Rensa minne"
 
 #. description
 #: ../jobs/gcalctool.txt.in:45
 msgid "Click the \"Test\" button to open the calculator and perform:"
-msgstr ""
+msgstr "Klicka på knappen Testa för att öppna kalkylatorn och utför:"
 
 #. description
 #: ../jobs/gcalctool.txt.in:45
 msgid "1. Cut 2. Copy 3. Paste"
-msgstr ""
+msgstr "1. Klipp 2. Kopiera 3. Klistra in"
 
 #. description
 #: ../jobs/gcalctool.txt.in:45
 msgid "Did the functions perform as expected?"
-msgstr ""
+msgstr "Utfördes funktionerna som förväntat?"
 
 #. description
 #: ../jobs/gedit.txt.in:5
 msgid "Click the \"Test\" button to open gedit."
-msgstr ""
+msgstr "Klicka på knappen Testa för att öppna gedit."
 
 #. description
 #: ../jobs/gedit.txt.in:5
@@ -854,6 +668,8 @@ msgid ""
 "Enter some text and save the file (make a note of the file name you use), "
 "then close gedit."
 msgstr ""
+"Skriv in lite text och spara filen (kom ihåg vilket filnamn du använder). "
+"Stäng sedan gedit."
 
 #. description
 #: ../jobs/gedit.txt.in:17
@@ -861,21 +677,23 @@ msgid ""
 "Click the \"Test\" button to open gedit, and re-open the file you created "
 "previously."
 msgstr ""
+"Klicka på knappen Testa för att öppna gedit, öppna på nytt filen du skapade "
+"tidigare."
 
 #. description
 #: ../jobs/gedit.txt.in:17
 msgid "Edit then save the file, then close gedit."
-msgstr ""
+msgstr "Redigera och spara sedan filen, stäng sedan gedit."
 
 #. description
 #: ../jobs/gedit.txt.in:17 ../jobs/gnome-terminal.txt.in:5
 msgid "Did this perform as expected?"
-msgstr ""
+msgstr "Gick det som förväntat?"
 
 #. description
 #: ../jobs/gnome-terminal.txt.in:5
 msgid "Click the \"Test\" button to open Terminal."
-msgstr ""
+msgstr "Klicka på knappen Testa för att öppna terminalen."
 
 #. description
 #: ../jobs/gnome-terminal.txt.in:5
@@ -883,22 +701,24 @@ msgid ""
 "Type 'ls' and press enter. You should see a list of files and folder in your "
 "home directory."
 msgstr ""
+"Skriv \"ls\" och tryck på enter. Du bör se en lista över filer och kataloger "
+"i din hemkatalog."
 
 #. description
 #: ../jobs/gnome-terminal.txt.in:5
 msgid "Close the terminal window."
-msgstr ""
+msgstr "Stäng terminalfönstret."
 
 #. description
 #: ../jobs/graphics.txt.in:5
 msgid ""
 "2d graphics appears to be working, your running X.Org version is: $output"
-msgstr ""
+msgstr "2D-grafik verkar fungera. Du kör X.Org version: $output"
 
 #. description
 #: ../jobs/graphics.txt.in:23
 msgid "Run gtkperf to make sure that GTK based test cases work"
-msgstr ""
+msgstr "Kör gtkperf för att försäkra dig om att GTK-baserade tester fungerar"
 
 #. description
 #: ../jobs/graphics.txt.in:23
@@ -906,6 +726,7 @@ msgid ""
 "In the future add the returned time as a benchmark result to the checkbox "
 "report"
 msgstr ""
+"Framöver, bifoga den visade tiden som ett testresultat i checkbox-rapporten"
 
 #. description
 #: ../jobs/graphics.txt.in:31
@@ -915,11 +736,16 @@ msgid ""
 "The resolution should change 5.- Select the original resolution from the "
 "dropdown list 6.- Click on Apply 7.- The resolution should change again"
 msgstr ""
+"Procedur för att ändra skärmupplösning: 1.- Öppna System->Inställningar-"
+">Skärmar 2.- Välj en ny upplösning från den utfällbara listan 3.- Klicka på "
+"Tillämpa 4.- Upplösningen borde ändras 5.- Välj den ursprungliga uppösningen "
+"från den utfällbara listan 6.- Klicka på Tillämpa 7.- Upplösningen borde "
+"ändras igen"
 
 #. description
 #: ../jobs/graphics.txt.in:31
 msgid "Did the resolution change as expected?"
-msgstr ""
+msgstr "Ändrades upplösningen som den skulle?"
 
 #. description
 #: ../jobs/graphics.txt.in:46
@@ -931,26 +757,32 @@ msgid ""
 "display configuration change should be reverted 7.- Repeat 2-6 for different "
 "rotation values"
 msgstr ""
+"Procedur för att verifiera skärmrotation: 1.- Öppna System->Inställningar-"
+">Skärmar 2.- Välj ett nytt rotationsvärde från den utfällbara listan 3.- "
+"Klicka på Tillämpa 4.- Skärmen borde roteras enligt det nya "
+"konfigurationsvärdet 5.- Klicka på Återställ tidigare inställning 6.- "
+"Inställningarna borde återgå till det normala 7.- Upprepa 2-6 för olika "
+"rotationsvärden"
 
 #. description
 #: ../jobs/graphics.txt.in:46
 msgid "Did the display rotation change as expected?"
-msgstr ""
+msgstr "Ändrades skärmrotationen som förväntat?"
 
 #. description
-#: ../jobs/graphics.txt.in:62 ../jobs/sru_suite.txt.in:151
+#: ../jobs/graphics.txt.in:62
 msgid "Test that the X process is running."
-msgstr ""
+msgstr "Testa att X-processen körs."
 
 #. description
-#: ../jobs/graphics.txt.in:68 ../jobs/sru_suite.txt.in:157
+#: ../jobs/graphics.txt.in:68
 msgid "Test that the X is not running in failsafe mode."
-msgstr ""
+msgstr "Testa att X inte körs i felsäkert läge."
 
 #. description
 #: ../jobs/graphics.txt.in:75
 msgid "Test that X does not leak memory when running programs."
-msgstr ""
+msgstr "Testa att X inte läcker minne när program körs."
 
 #. description
 #: ../jobs/graphics.txt.in:82
@@ -981,23 +813,23 @@ msgstr ""
 "rekommenderad upplösning (1024 x 600). Se här för detaljer:"
 
 #. description
-#: ../jobs/graphics.txt.in:107
+#: ../jobs/graphics.txt.in:94
 msgid "https://help.ubuntu.com/community/Installation/SystemRequirements"
 msgstr "https://help.ubuntu.com/community/Installation/SystemRequirements"
 
 #. description
-#: ../jobs/graphics.txt.in:117
+#: ../jobs/graphics.txt.in:104
 msgid "Select Test to display a video test."
 msgstr "Välj Testa för att visa ett grafiktest."
 
 #. description
-#: ../jobs/graphics.txt.in:126
+#: ../jobs/graphics.txt.in:113
 msgid ""
 "The following screens and video modes have been detected on your system:"
 msgstr "Följande skärmar och grafiklägen har identifierats på ditt system:"
 
 #. description
-#: ../jobs/graphics.txt.in:138
+#: ../jobs/graphics.txt.in:125
 msgid ""
 "Select Test to cycle through the detected video modes for your system."
 msgstr ""
@@ -1005,17 +837,17 @@ msgstr ""
 "system."
 
 #. description
-#: ../jobs/graphics.txt.in:138
+#: ../jobs/graphics.txt.in:125
 msgid "Did the screen appear to be working for each mode?"
 msgstr "Fungerade skärmen för varje läge?"
 
 #. description
-#: ../jobs/graphics.txt.in:146
+#: ../jobs/graphics.txt.in:133
 msgid "Check that the hardware is able to run compiz."
 msgstr "Kontrollera att hårdvaran har möjlighet att köra Compiz."
 
 #. description
-#: ../jobs/graphics.txt.in:153
+#: ../jobs/graphics.txt.in:140
 msgid ""
 "Select Test to execute glxgears to ensure that minimal 3d graphics support "
 "is in place."
@@ -1024,24 +856,34 @@ msgstr ""
 "för 3D-grafik uppnås av din maskinvara."
 
 #. description
-#: ../jobs/graphics.txt.in:153
+#: ../jobs/graphics.txt.in:140
 msgid "Did the 3d animation appear?"
 msgstr "Visades 3D-animationen?"
 
 #. description
-#: ../jobs/info.txt.in:60 ../jobs/screenshot.txt.in:7
+#: ../jobs/info.txt.in:69 ../jobs/screenshot.txt.in:7
 msgid "Captures a screenshot."
-msgstr ""
+msgstr "Fångar en skärmbild."
 
 #. description
-#: ../jobs/info.txt.in:71 ../jobs/sru_suite.txt.in:167
+#: ../jobs/info.txt.in:80
 msgid "Gather log from the firmware test suite run"
-msgstr ""
+msgstr "Sammanställ logg från Firmware-testsviten"
 
 #. description
-#: ../jobs/info.txt.in:82
+#: ../jobs/info.txt.in:91
 msgid "Bootchart information."
-msgstr ""
+msgstr "Bootchart-information."
+
+#. description
+#: ../jobs/input.txt.in:4
+msgid "Moving the mouse should move the cursor on the screen."
+msgstr "Förflyttning av musen ska flytta pekaren på skärmen."
+
+#. description
+#: ../jobs/input.txt.in:4
+msgid "Is your mouse working properly?"
+msgstr "Fungerar din mus korrekt?"
 
 #. description
 #: ../jobs/input.txt.in:13
@@ -1051,11 +893,18 @@ msgstr ""
 "tangentbord."
 
 #. description
+#: ../jobs/input.txt.in:13
+msgid "Is your keyboard working properly?"
+msgstr "Fungerar ditt tangentbord korrekt?"
+
+#. description
 #: ../jobs/install.txt.in:6
 msgid ""
 "Tests to see that apt can access repositories and get updates (does not "
 "install updates)"
 msgstr ""
+"Testar för att se till att apt kan komma åt programförråd och hämta "
+"uppdateringar (inga uppdateringar installeras)"
 
 #. description
 #: ../jobs/keys.txt.in:4
@@ -1063,6 +912,8 @@ msgid ""
 "Press the brightness buttons on the keyboard. A status window should \\ "
 "appear and the brightness should change."
 msgstr ""
+"Tryck på knapparna för ljusstyrka på tangentbordet. Ett statusfönster bör \\ "
+"visas, och ljusstyrkan ändras."
 
 #. description
 #: ../jobs/keys.txt.in:12
@@ -1070,11 +921,13 @@ msgid ""
 "Press the volume buttons on the keyboard. A status window should \\ appear "
 "and the volume should change."
 msgstr ""
+"Tryck på volymknapparna på tangentbordet. Ett statusfönster bör \\ visas och "
+"volymen ändras."
 
 #. description
 #: ../jobs/keys.txt.in:12
 msgid "Do the buttons work?"
-msgstr ""
+msgstr "Fungerar knapparna?"
 
 #. description
 #: ../jobs/keys.txt.in:21
@@ -1082,23 +935,27 @@ msgid ""
 "Press the mute key on the keyboard. A status window should appear \\ and the "
 "volume should mute/unmute when pressed multiple times."
 msgstr ""
+"Tryck på tystknappen på tangentbordet. Ett statusfönster bör visas \\ och "
+"volymen ska tystna/återställas med upprepade tryckningar."
 
 #. description
-#: ../jobs/keys.txt.in:30
+#: ../jobs/keys.txt.in:31
 msgid ""
 "Press the sleep key on the keyboard. The computer should suspend and, \\ "
 "after pressing the power button, resume successfully."
 msgstr ""
+"Tryck på vilolägesknappen på tangentbordet. Datorn borde gå ner i vänteläge, "
+"\\ och, efter att du trycker på strömknappen, fortsätta utan problem."
 
 #. description
-#: ../jobs/keys.txt.in:39
+#: ../jobs/keys.txt.in:40
 msgid ""
 "Press the battery information key on the keyboard. A status window \\ should "
 "appear and the amount of battery remaining should be displayed."
 msgstr ""
 
 #. description
-#: ../jobs/keys.txt.in:48
+#: ../jobs/keys.txt.in:49
 msgid ""
 "Press the wireless networking key on the keyboard. The bluetooth icon \\ and "
 "the network connnection should go down if connected through the \\ wifi "
@@ -1106,37 +963,37 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/keys.txt.in:48
+#: ../jobs/keys.txt.in:49
 msgid ""
 "Press the same key again and check that bluetooth icon is again \\ displayed "
 "and that the network connection is re-established \\ automatically."
 msgstr ""
 
 #. description
-#: ../jobs/keys.txt.in:48
+#: ../jobs/keys.txt.in:49
 msgid "Does the key work?"
-msgstr ""
+msgstr "Fungerar tangenten?"
 
 #. description
-#: ../jobs/keys.txt.in:62
+#: ../jobs/keys.txt.in:63
 msgid ""
 "The keyboard may have dedicated keys for controlling media as follows:"
 msgstr ""
 
 #. description
-#: ../jobs/keys.txt.in:62
+#: ../jobs/keys.txt.in:63
 msgid "* Play/Pause * Stop * Forward * Backward (Rewind)"
 msgstr ""
 
 #. description
-#: ../jobs/keys.txt.in:62
+#: ../jobs/keys.txt.in:63
 msgid "Play a media file and press each key in turn."
-msgstr ""
+msgstr "Spela upp en mediafil och tryck på varje tangent i ordning."
 
 #. description
-#: ../jobs/keys.txt.in:62
+#: ../jobs/keys.txt.in:63
 msgid "Do the keys work as expected?"
-msgstr ""
+msgstr "Fungerade tangenterna som förväntat?"
 
 #. description
 #: ../jobs/local.txt.in:3
@@ -1146,7 +1003,7 @@ msgstr "Ljudtester"
 #. description
 #: ../jobs/local.txt.in:8
 msgid "Bluetooth tests"
-msgstr ""
+msgstr "Bluetooth-tester"
 
 #. description
 #: ../jobs/local.txt.in:13
@@ -1156,7 +1013,7 @@ msgstr "Kameratester"
 #. description
 #: ../jobs/local.txt.in:18
 msgid "Codec tests"
-msgstr ""
+msgstr "Kodektester"
 
 #. description
 #: ../jobs/local.txt.in:23
@@ -1186,80 +1043,80 @@ msgstr "Tester för Firewire-disk"
 #. description
 #: ../jobs/local.txt.in:48
 msgid "Floppy disk tests"
-msgstr ""
+msgstr "Tester för disketter"
 
 #. description
 #: ../jobs/local.txt.in:53
 msgid "Graphics tests"
-msgstr ""
+msgstr "Grafiktester"
 
 #. description
 #: ../jobs/local.txt.in:58
 msgid "Informational tests"
-msgstr ""
+msgstr "Informationstester"
 
 #. description
 #: ../jobs/local.txt.in:63
 msgid "Input Devices tests"
-msgstr ""
+msgstr "Tester för inmatningsenheter"
 
 #. description
 #: ../jobs/local.txt.in:68
 msgid "Software Installation tests"
-msgstr ""
+msgstr "Tester för programinstallationer"
 
 #. description
 #: ../jobs/local.txt.in:73
 msgid "Hotkey tests"
-msgstr ""
-
-#. description
-#: ../jobs/local.txt.in:78
-msgid "Media Card tests"
-msgstr ""
+msgstr "Tester för snabbtangenter"
 
 #. description
 #: ../jobs/local.txt.in:83
-msgid "Miscellaneous tests"
-msgstr ""
+msgid "Media Card tests"
+msgstr "Tester för mediakort"
 
 #. description
-#: ../jobs/local.txt.in:88
+#: ../jobs/local.txt.in:93
+msgid "Miscellaneous tests"
+msgstr "Diverse tester"
+
+#. description
+#: ../jobs/local.txt.in:98
 msgid "Monitor tests"
 msgstr "Skärmtester"
 
 #. description
-#: ../jobs/local.txt.in:93
-msgid "Networking tests"
-msgstr ""
-
-#. description
-#: ../jobs/local.txt.in:98
-msgid "PCMCIA/PCIX Card tests"
-msgstr ""
-
-#. description
 #: ../jobs/local.txt.in:103
+msgid "Networking tests"
+msgstr "Nätverkstester"
+
+#. description
+#: ../jobs/local.txt.in:113
+msgid "PCMCIA/PCIX Card tests"
+msgstr "Tester för PCMCIA/PCIX Card"
+
+#. description
+#: ../jobs/local.txt.in:118
 msgid "Peripheral tests"
 msgstr "Tester för kringutrustning"
 
 #. description
-#: ../jobs/local.txt.in:108
+#: ../jobs/local.txt.in:123
 msgid "Power Management tests"
-msgstr ""
+msgstr "Tester för strömhantering"
 
 #. description
-#: ../jobs/local.txt.in:113
+#: ../jobs/local.txt.in:133
 msgid "Unity tests"
-msgstr ""
+msgstr "Tester för Unity"
 
 #. description
-#: ../jobs/local.txt.in:118
+#: ../jobs/local.txt.in:143
 msgid "User Applications"
 msgstr "Användarprogram"
 
 #. description
-#: ../jobs/local.txt.in:123
+#: ../jobs/local.txt.in:153
 msgid "Stress tests"
 msgstr "Stresstester"
 
@@ -1497,12 +1354,12 @@ msgstr "Visas/försvinner ikonen automatiskt?"
 #. description
 #: ../jobs/memory.txt.in:4
 msgid "The following amount of memory was detected:"
-msgstr ""
+msgstr "Följande mängd minne identifierades:"
 
 #. description
 #: ../jobs/memory.txt.in:16
 msgid "Test and exercise memory."
-msgstr ""
+msgstr "Testa och undersök minnet."
 
 #. description
 #: ../jobs/miscellanea.txt.in:8
@@ -1536,6 +1393,8 @@ msgid ""
 "ipmitool is required for ipmi testing. This checks for ipmitool and installs "
 "it if not available."
 msgstr ""
+"ipmitool krävs för att testa ipmi. Detta letar efter ipmitool och "
+"installerar det om det inte finns."
 
 #. description
 #: ../jobs/miscellanea.txt.in:36
@@ -1639,6 +1498,10 @@ msgid ""
 " 2.- The monitor should go blank.\n"
 " 3.- Press any key or move the mouse to recover."
 msgstr ""
+"Verifieringsprocedur för skärmens strömsparande:\n"
+" 1.- Välj Testa för att prova strömsparningsförmågorna för din skärm.\n"
+" 2.- Skärmen bör släckas (bli svart).\n"
+" 3.- Tryck på valfri tangent eller rör på musen för att komma tillbaka."
 
 #. description
 #: ../jobs/monitor.txt.in:46
@@ -1646,35 +1509,53 @@ msgid "Did the monitor go blank?"
 msgstr "Blev din skärm svart?"
 
 #. description
-#: ../jobs/networking.txt.in:26
+#: ../jobs/networking.txt.in:5
+msgid "Detecting your network controller(s):"
+msgstr "Detekterar ditt (dina) nätverkskort:"
+
+#. description
+#: ../jobs/networking.txt.in:16
+msgid "Testing your connection to the Internet:"
+msgstr "Testar din uppkoppling till Internet:"
+
+#. description
+#: ../jobs/networking.txt.in:21
 msgid "Network Information"
 msgstr "Nätverksinformation"
 
 #. description
-#: ../jobs/networking.txt.in:46
+#: ../jobs/wireless.txt.in:6
 msgid "Wireless scanning test."
-msgstr ""
+msgstr "Trådlöst avsökningstest"
 
 #. description
-#: ../jobs/networking.txt.in:52
+#: ../jobs/wireless.txt.in:12
 msgid ""
 "Wireless network connection procedure: 1.- Click on the Network Manager "
 "applet 2.- Select a network below the 'Wireless networks' section 3.- Notify "
 "OSD should confirm that the connection has been established 4.- Select Test "
 "to verify that it's possible to establish an HTTP connection"
 msgstr ""
+"Anslutningsprocedur för trådlös anslutning: 1.- Klicka på panelprogrammet "
+"Nätverkshanterare 2.- Välj ett nätverk i sektionen \"Trådlösa nätverk\" 3.- "
+"En notifiering ska bekräfta att anslutningen etablerades 4.- Välj Testa för "
+"att bekräfta att det går att etablera en HTTP-anslutning"
 
 #. description
-#: ../jobs/networking.txt.in:64
+#: ../jobs/networking.txt.in:39
 msgid ""
 "Wired network connection procedure: 1.- Click on the Network Manager applet "
 "2.- Select a network below the 'Wired network' section 3.- Notify OSD should "
 "confirm that the connection has been established 4.- Select Test to verify "
 "that it's possible to establish an HTTP connection"
 msgstr ""
+"Anslutningsprocedur för trådbundet nätverk: 1.- Klicka på panelprogrammet "
+"Nätverkshanterare 2.- Välj ett nätverk i sektionen \"Trådbundet nätverk\" 3.-"
+" En notifiering ska bekräfta att anslutningen har etablerats 4.- Välj Testa "
+"för att bekräfta att det går att etablera en HTTP-anslutning"
 
 #. description
-#: ../jobs/networking.txt.in:76
+#: ../jobs/networking.txt.in:51
 msgid ""
 "Built-in modem network connection procedure: 1.- Connect the telephone line "
 "to the computer 2.- Right click on the Network Manager applet 3.- Select "
@@ -1683,62 +1564,77 @@ msgid ""
 "that the connection has been established 8.- Select Test to verify that it's "
 "possible to establish an HTTP connection"
 msgstr ""
+"Anslutningsprocedur för inbyggda modem: 1.- Anslut telefonlinjen till datorn "
+"2.- Högerklicka på panelprogrammet Nätverkshanterare 3.- Välj \"Redigera "
+"anslutningar\" 4.- Välj fliken \"DSL\" 5.- Klicka på knappen \"Lägg till\" "
+"6.- Anpassa anslutningsparametrarna 7.- En notifiering ska bekräfta att "
+"anslutningen har etablerats 8.- Välj Testa för att bekräfta att det är "
+"möjligt att etablera en HTTP-anslutning"
 
 #. description
-#: ../jobs/networking.txt.in:76 ../jobs/peripheral.txt.in:15
+#: ../jobs/networking.txt.in:51 ../jobs/peripheral.txt.in:15
+#: ../jobs/wireless.txt.in:12
 msgid "Was the connection correctly established?"
 msgstr "Blev anslutningen korrekt etablerad?"
 
 #. description
-#: ../jobs/networking.txt.in:92
+#: ../jobs/networking.txt.in:67
 msgid ""
 "Automated test case to verify availability of some system on the network "
 "using ICMP ECHO packets."
 msgstr ""
+"Automatiserat testfall för att verifiera tillgängligheten för något system "
+"på nätverket med ICMP ECHO-paket."
 
 #. description
-#: ../jobs/networking.txt.in:99 ../jobs/peripheral.txt.in:32
+#: ../jobs/networking.txt.in:74 ../jobs/peripheral.txt.in:32
 msgid ""
 "Automated test case to make sure that it's possible to download files "
 "through HTTP"
 msgstr ""
+"Automatiserat testfall för att säkerställa att det går att hämta ner filer "
+"via HTTP."
 
 #. description
-#: ../jobs/networking.txt.in:107
+#: ../jobs/networking.txt.in:82
 msgid "Test to see if we can sync local clock to an NTP server"
 msgstr ""
+"Test för att se om vi kan synkronisera den lokala klockan mot en NTP-server"
 
 #. description
-#: ../jobs/networking.txt.in:113
+#: ../jobs/networking.txt.in:88
 msgid ""
 "Verify that an installation of checkbox-server on the network can be reached "
 "over SSH."
 msgstr ""
+"Verifiera att installationen av en checkbox-server på nätverket kan nås via "
+"SSH."
+
+#. description
+#: ../jobs/networking.txt.in:94
+msgid "Try to enable a remote printer on the network and print a test page."
+msgstr ""
+"Prova att aktivera en skrivare på nätverket och skriv ut en testsida."
+
+#. description
+#: ../jobs/networking.txt.in:99
+msgid "Multiple network cards"
+msgstr "Flera nätverkskort"
 
 #. description
 #: ../jobs/networking.txt.in:119
-msgid "Try to enable a remote printer on the network and print a test page."
-msgstr ""
-
-#. description
-#: ../jobs/networking.txt.in:124
-msgid "Multiple network cards"
-msgstr ""
-
-#. description
-#: ../jobs/networking.txt.in:144
 msgid "Test to measure the network bandwidth"
-msgstr ""
+msgstr "Testa för att mäta nätverkets bandbredd"
 
 #. description
 #: ../jobs/optical.txt.in:8
 msgid "The following optical drives were detected:"
-msgstr ""
+msgstr "Följande optiska enheter identifierades:"
 
 #. description
 #: ../jobs/optical.txt.in:18
 msgid "Optical Storage device read tests"
-msgstr ""
+msgstr "Lästester för optiska lagringsenheter"
 
 #. description
 #: ../jobs/optical.txt.in:37
@@ -1769,7 +1665,7 @@ msgstr ""
 #. description
 #: ../jobs/optical.txt.in:63
 msgid "Does writing work?"
-msgstr ""
+msgstr "Fungerar skrivning?"
 
 #. description
 #: ../jobs/optical.txt.in:72
@@ -1821,7 +1717,7 @@ msgstr ""
 #. description
 #: ../jobs/panel_reboot.txt.in:4
 msgid "Please restart your machine from the Ubuntu Panel."
-msgstr ""
+msgstr "Starta om din dator från Ubuntu-panelen."
 
 #. description
 #: ../jobs/panel_reboot.txt.in:4
@@ -1843,7 +1739,7 @@ msgstr ""
 #. description
 #: ../jobs/pcmcia-pcix.txt.in:3
 msgid "Is it detected?"
-msgstr ""
+msgstr "Identifierades det?"
 
 #. description
 #: ../jobs/peripheral.txt.in:3
@@ -1854,6 +1750,11 @@ msgid ""
 "detected and proper configuration values \\ should be displayed 5.- Print a "
 "test page"
 msgstr ""
+"Verifieringsprocedur för skrivarinställning: 1.- Se till att en skrivare är "
+"tillgänglig på nätverket 2.- Öppna System->Administration->Utskrifter 3.- Om "
+"skrivaren inte redan visas i listan, klicka på \"Ny\" 4.- Skrivaren bör "
+"identifieras och lämpliga konfigurationsvärden \\ bör visas 5.- Skriv ut en "
+"testsida"
 
 #. description
 #: ../jobs/peripheral.txt.in:15
@@ -1866,6 +1767,13 @@ msgid ""
 "connection has been established 8.- Select Test to verify that it's possible "
 "to establish an HTTP connection"
 msgstr ""
+"Anslutningsprocedur för externa USB-modem: 1.- Anslut USB-kabeln till datorn "
+"2.- Högerklicka på panelprogrammet Nätverkshanterare 3.- Välj \"Redigera "
+"anslutningar\" 4.- Välj fliken \"DSL\" (för ADSL-modem) eller \"Mobilt "
+"bredband\" (för 3G-modem) 5.- Klicka på knappen \"Lägg till\" 6.- Anpassa "
+"anslutningsparametrarna 7.- En notifiering ska bekräfta att anslutningen har "
+"etablerats 8.- Välj Testa för att bekräfta att det är möjligt att etablera "
+"en HTTP-anslutning"
 
 #. description
 #: ../jobs/phoronix.txt.in:3
@@ -1908,47 +1816,47 @@ msgid "Does your computer hibernate and restore?"
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:29
+#: ../jobs/power-management.txt.in:13
 msgid "Does closing your laptop lid cause your screen to blank?"
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:41
+#: ../jobs/power-management.txt.in:25
 msgid "Click the Test button, then close and open the lid."
-msgstr ""
+msgstr "Klicka på Testa-knappen, stäng sedan och öppna locket."
 
 #. description
-#: ../jobs/power-management.txt.in:41
+#: ../jobs/power-management.txt.in:25
 msgid "Did the screen turn off while the lid was closed?"
-msgstr ""
+msgstr "Stängdes skärmen av under tiden locket var stängt?"
 
 #. description
-#: ../jobs/power-management.txt.in:55
+#: ../jobs/power-management.txt.in:39
 msgid "Click the Test button, then close the lid and wait 5 seconds."
-msgstr ""
+msgstr "Klicka på Testa-knappen, stäng sedan locket och vänta 5 sekunder."
 
 #. description
-#: ../jobs/power-management.txt.in:55
+#: ../jobs/power-management.txt.in:39
 msgid "Open the lid."
-msgstr ""
+msgstr "Öppna locket."
 
 #. description
-#: ../jobs/power-management.txt.in:55
+#: ../jobs/power-management.txt.in:39
 msgid "Did the screen turn back on when the lid was opened?"
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:65
+#: ../jobs/power-management.txt.in:49
 msgid "Test the network before suspending."
 msgstr "Testa nätverket före vänteläge."
 
 #. description
-#: ../jobs/power-management.txt.in:70
+#: ../jobs/suspend.txt.in:4
 msgid "Record the current resolution before suspending."
 msgstr "Registrera aktuell upplösning före vänteläge."
 
 #. description
-#: ../jobs/power-management.txt.in:78
+#: ../jobs/suspend.txt.in:12
 msgid "Test the audio before suspending."
 msgstr "Testa ljudet före vänteläge."
 
@@ -1963,19 +1871,26 @@ msgid ""
 " 5.- Select Test to verify connection and throughput.\n"
 "Output:"
 msgstr ""
+"Anslutningsprocedur för trådlöst nätverk:\n"
+" 1.- Klicka på panelprogrammet Nätverkshanterare.\n"
+" 2.- Klicka på \"Koppla från\" under 'Trådbundna nätverk'.\n"
+" 3.- Välj ett nätverk i sektionen \"Trådlösa nätverk\".\n"
+" 4.- En notifiering ska bekräfta att anslutningen har etablerats.\n"
+" 5.- Välj Testa för att verifiera anslutningen och hastigheten.\n"
+"Utmatning:"
 
 #. description
-#: ../jobs/power-management.txt.in:128 ../jobs/sru_suite.txt.in:135
+#: ../jobs/power-management.txt.in:51
 msgid "Make sure that the RTC (Real-Time Clock) device exists."
 msgstr "Försäkra dig om att RTC-enheten (Real-Time Clock) finns."
 
 #. description
-#: ../jobs/power-management.txt.in:135
+#: ../jobs/suspend.txt.in:58
 msgid "Power management Suspend and Resume test"
 msgstr "Test av strömsparläge vid vänteläge"
 
 #. description
-#: ../jobs/power-management.txt.in:135
+#: ../jobs/suspend.txt.in:58
 msgid ""
 "Select Test and your system will suspend for about 30 - 60 seconds. If your "
 "system does not wake itself up after 60 seconds, please press the power "
@@ -1983,14 +1898,19 @@ msgid ""
 "at all and must be rebooted, restart System Testing after reboot and mark "
 "this test as Failed."
 msgstr ""
+"Välj \"Testa\" så kommer ditt system gå i vänteläge i 30-60 sekunder. Om "
+"ditt system inte vaknar upp efter 60 sekunder, tryck på strömknappen för att "
+"manuellt väcka datorn. Om systemet inte startar alls och därför måste "
+"startas om, starta Systemtest igen efter omstarten och markera testet som "
+"misslyckat."
 
 #. description
-#: ../jobs/power-management.txt.in:145
+#: ../jobs/suspend.txt.in:68
 msgid "Test the network after resuming."
 msgstr "Testa nätverket efter vänteläge."
 
 #. description
-#: ../jobs/power-management.txt.in:151
+#: ../jobs/suspend.txt.in:74
 msgid ""
 "Test to see that we have the same resolution after resuming as before."
 msgstr ""
@@ -1998,7 +1918,7 @@ msgstr ""
 "tidigare."
 
 #. description
-#: ../jobs/power-management.txt.in:160
+#: ../jobs/suspend.txt.in:83
 msgid "Test the audio after resuming."
 msgstr "Testa ljuder efter vänteläge."
 
@@ -2013,6 +1933,14 @@ msgid ""
 " 5.- Select Test to verify connection and throughput.\n"
 "Output:"
 msgstr ""
+"Anslutningsprocedur för trådlöst nätverk:\n"
+" 1.- Klicka på panelprogrammet Nätverkshanterare.\n"
+" 2.- Om en trådbunden anslutning är etablerad, klicka på dess "
+"frånkopplingsalternativ.\n"
+" 3.- Välj ett nätverk i sektionen \"Trådlösa nätverk\".\n"
+" 4.- En notifiering ska bekräfta att anslutningen har etablerats.\n"
+" 5.- Välj Testa för att verifiera anslutningen och hastigheten.\n"
+"Utdata:"
 
 #. description
 #: ../jobs/power-management.txt.in:194
@@ -2034,9 +1962,16 @@ msgid ""
 " 5.- Move the mouse around the screen.\n"
 " 6.- Perform some single/double/right click operations."
 msgstr ""
+"Procedur för Bluetooth-mus:\n"
+" 1.- Aktivera blåtandsmusen.\n"
+" 2.- Klicka på Bluetooth-ikonen i menyraden.\n"
+" 3.- Välj \"Ställ in ny enhet\".\n"
+" 4.- Sök efter enheten i listan och välj den.\n"
+" 5.- Rör muspekaren omkring på skärmen.\n"
+" 6.- Utför ett par enkel-/dubbel-/högerklick."
 
 #. description
-#: ../jobs/power-management.txt.in:210
+#: ../jobs/suspend.txt.in:150
 msgid ""
 "This test will check to make sure that supported video modes work after a "
 "suspend and resume.  Select Test to begin."
@@ -2045,7 +1980,7 @@ msgstr ""
 "efter vänteläge och återställning. Välj Testa för att börja."
 
 #. description
-#: ../jobs/power-management.txt.in:221
+#: ../jobs/power-management.txt.in:251
 msgid ""
 "This will check to make sure that your audio device works properly after a "
 "suspend and resume.  You can use either internal or external microphone and "
@@ -2056,7 +1991,7 @@ msgstr ""
 "samt högtalare."
 
 #. description
-#: ../jobs/power-management.txt.in:221
+#: ../jobs/power-management.txt.in:251
 msgid ""
 "To execute this test, make sure your speaker and microphone are NOT muted "
 "and the volume is set sufficiently loud to record and play audio. Select "
@@ -2069,7 +2004,7 @@ msgstr ""
 "sekunder kommer din inspelning att spelas upp för dig."
 
 #. description
-#: ../jobs/power-management.txt.in:234
+#: ../jobs/stress.txt.in:30
 msgid ""
 "Enter and resume from suspend state for 30 iterations. Please note that this "
 "is a lengthy test. Select Test to begin. If your system fails to wake and "
@@ -2081,13 +2016,13 @@ msgstr ""
 "markera detta test som \"misslyckat\"."
 
 #. description
-#: ../jobs/power-management.txt.in:234
+#: ../jobs/stress.txt.in:30
 msgid "Did the system successfully suspend and resume for 30 iterations?"
 msgstr ""
 "Försattes systemet i vänteläge 30 gånger och återställdes utan problem?"
 
 #. description
-#: ../jobs/power-management.txt.in:245
+#: ../jobs/hibernate.txt.in:7
 msgid ""
 "This will check to make sure your system can successfully hibernate (if "
 "supported)."
@@ -2096,7 +2031,7 @@ msgstr ""
 "viloläge (om det stöds)."
 
 #. description
-#: ../jobs/power-management.txt.in:245
+#: ../jobs/hibernate.txt.in:7
 msgid ""
 "Select Test to begin. The system will hibernate and should wake itself "
 "within 5 minutes.  If your system does not wake itself after 5 minutes, "
@@ -2111,7 +2046,7 @@ msgstr ""
 "och markera detta test som \"misslyckat\"."
 
 #. description
-#: ../jobs/power-management.txt.in:245
+#: ../jobs/hibernate.txt.in:7
 msgid ""
 "Did the system successfully hibernate and did it work properly after waking "
 "up?"
@@ -2120,7 +2055,7 @@ msgstr ""
 "vaknat?"
 
 #. description
-#: ../jobs/power-management.txt.in:258
+#: ../jobs/stress.txt.in:17
 msgid ""
 "Enter and resume from hibernate for 30 iterations. Please note that this is "
 "a very lengthy test. Also, if your system does not wake itself after 2 "
@@ -2135,7 +2070,7 @@ msgstr ""
 "starta då sedan Systemtestning och markera detta test som \"misslyckat\"."
 
 #. description
-#: ../jobs/power-management.txt.in:258
+#: ../jobs/stress.txt.in:17
 msgid ""
 "Also, you will need to ensure your system has no power-on or HDD passwords "
 "set, and that grub is set to boot Ubuntu by default if you have a multi-boot "
@@ -2146,28 +2081,28 @@ msgstr ""
 "starta upp Ubuntu som standard om du har flera operativsystem installerade."
 
 #. description
-#: ../jobs/power-management.txt.in:258
+#: ../jobs/stress.txt.in:17
 msgid "Did the system successfully hibernate and wake 30 times?"
 msgstr ""
 "Försattes systemet i viloläge 30 gånger och vaknade upp utan problem?"
 
 #. description
-#: ../jobs/power-management.txt.in:267
+#: ../jobs/power-management.txt.in:56
 msgid "Run Colin Kings FWTS wakealarm test"
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:276
+#: ../jobs/power-management.txt.in:65
 msgid "Check to see if CONFIG_NO_HZ is set in the kernel"
-msgstr ""
+msgstr "Kontrollera om CONFIG_NO_HZ är inställd i kärnan"
 
 #. description
-#: ../jobs/power-management.txt.in:284
+#: ../jobs/suspend.txt.in:194
 msgid "Automatic power management Suspend and Resume test"
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:284
+#: ../jobs/suspend.txt.in:194
 msgid ""
 "Select test and your system will suspend for about 30 - 60 seconds. If your "
 "system does not wake itself up after 60 seconds, please press the power "
@@ -2322,6 +2257,8 @@ msgid ""
 "Xlib is required for unity testing. This checks for Xlib and installs it if "
 "not available."
 msgstr ""
+"Xlib krävs för unity-testning. Detta test letar efter Xlib och installerar "
+"det om det inte finns."
 
 #. description
 #: ../jobs/unity.txt.in:13
@@ -2329,6 +2266,8 @@ msgid ""
 "This test will verify that Unity is running and then run the autopilot.py "
 "test against the Unity interface."
 msgstr ""
+"Detta test kommer at verifiera att Unity är igång och startar sedan testet "
+"autopilot.py mot Unity-gränssnittet."
 
 #. description
 #: ../jobs/usb.txt.in:5
@@ -2336,26 +2275,30 @@ msgid "The following USB controllers were detected:"
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:17
+#: ../jobs/usb.txt.in:24
 msgid ""
 "Plug a USB keyboard into the computer. Then, click on the Test button \\ to "
 "enter text."
 msgstr ""
+"Anslut ett USB-tangentbord till datorn. Klicka sedan på Testa-knappen \\ för "
+"att skriva text."
 
 #. description
-#: ../jobs/usb.txt.in:17
+#: ../jobs/usb.txt.in:24
 msgid "Does the keyboard work?"
-msgstr ""
+msgstr "Fungerar tangentbordet?"
 
 #. description
-#: ../jobs/usb.txt.in:27
+#: ../jobs/usb.txt.in:34
 msgid ""
 "USB mouse verification procedure: 1.- Plug a USB mouse into the computer 2.- "
 "Perform some single/double/right click operations"
 msgstr ""
+"Verifieringsprocedur för USB-mus: 1.- Anslut en USB-mus till datorn 2.- "
+"Utför några singel/dubbel/högerklicksåtgärder"
 
 #. description
-#: ../jobs/usb.txt.in:39
+#: ../jobs/usb.txt.in:46
 msgid ""
 "Click 'Test' and insert a USB device within 5 seconds. If the test is "
 "successful, you should notice that 'Yes' is selected below. Do not unplug "
@@ -2363,21 +2306,21 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:39
+#: ../jobs/usb.txt.in:46
 msgid ""
 "If no USB device is inserted or the device is not recognized, the test will "
 "fail and 'No' will be selected below."
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:51
+#: ../jobs/usb.txt.in:58
 msgid ""
 "Click 'Test' and remove the USB device you inserted within 5 seconds. If the "
 "test is successful, you should notice that 'Yes' is selected below."
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:51
+#: ../jobs/usb.txt.in:58
 msgid ""
 "If the USB device isn't removed or the removal is not registered, the test "
 "will fail and 'No' will be selected below."
@@ -2405,24 +2348,29 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:83
+#: ../jobs/usb.txt.in:86
 msgid ""
 "Connect a USB storage device to an external USB slot on this computer. \\ An "
 "icon should appear on the desktop and in the \"Places\" menu at the top of "
 "the screen."
 msgstr ""
+"Anslut en USB-lagringsenhet till en extern USB-kontakt på denna dator. \\ En "
+"ikon bör dyka upp på skrivbordet och i \"Platser\"-menyn på toppen av "
+"skärmen."
 
 #. description
-#: ../jobs/usb.txt.in:83
+#: ../jobs/usb.txt.in:86
 msgid ""
 "Confirm that the icon appears, then eject the device. Repeat with each "
 "external \\ USB slot."
 msgstr ""
+"Bekräfta att ikonen dyker upp, mata sedan ut enheten. Upprepa för varje "
+"extern \\ USB-kontakt."
 
 #. description
-#: ../jobs/usb.txt.in:83
+#: ../jobs/usb.txt.in:86
 msgid "Do all USB slots work with the device?"
-msgstr ""
+msgstr "Fungerar alla USB-kontakter med enheten?"
 
 #. description
 #: ../jobs/user_apps.txt.in:6
@@ -2698,6 +2646,22 @@ msgstr "MSN"
 msgid "Were you able to connect correctly and send/receive messages?"
 msgstr "Kunde du ansluta korrekt och skicka/ta emot meddelanden?"
 
+#: ../checkbox/application.py:70
+msgid "Print version information and exit."
+msgstr "Skriv ut versionsinformation och avsluta."
+
+#: ../checkbox/application.py:74
+msgid "The file to write the log to."
+msgstr "Filen att skriva loggen till."
+
+#: ../checkbox/application.py:77
+msgid "One of debug, info, warning, error or critical."
+msgstr "En av debug, info, warning, error eller critical."
+
+#: ../checkbox/application.py:82
+msgid "Configuration override parameters."
+msgstr "Parametrar för att åsidosätta konfigurationen."
+
 #: ../checkbox/application.py:84
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist."
 msgstr "Förkortning av --config=checkbox/plugins/jobs_info/blacklist."
@@ -2713,6 +2677,10 @@ msgstr "Förkortning av --config=checkbox/plugins/jobs_info/whitelist."
 #: ../checkbox/application.py:90
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist_file."
 msgstr "Förkortning av --config=checkbox/plugins/jobs_info/whitelist_file."
+
+#: ../checkbox/application.py:115
+msgid "Missing configuration file as argument.\n"
+msgstr "Saknar konfigurationsfil som argument.\n"
 
 #: ../checkbox/lib/signal.py:23
 msgid ""
@@ -2738,7 +2706,7 @@ msgstr "Avbrytssignal från abort(3)"
 
 #: ../checkbox/lib/signal.py:28
 msgid "Floating point exception"
-msgstr "Undantag för flytande punkt"
+msgstr "Flyttalsundantag"
 
 #: ../checkbox/lib/signal.py:29
 msgid "Kill signal"
@@ -2778,7 +2746,7 @@ msgstr "Fortsätt om stoppad"
 
 #: ../checkbox/lib/signal.py:38
 msgid "Stop process"
-msgstr "Stoppa processen"
+msgstr "Stoppa process"
 
 #: ../checkbox/lib/signal.py:39
 msgid "Stop typed at tty"
@@ -2790,7 +2758,7 @@ msgstr "tty-inmatning för bakgrundsprocess"
 
 #: ../checkbox/lib/signal.py:41
 msgid "tty output for background process"
-msgstr "tty-utgång för bakgrundsprocess"
+msgstr "tty-utmatning för bakgrundsprocess"
 
 #: ../checkbox/lib/signal.py:77
 msgid "UNKNOWN"
@@ -2799,6 +2767,42 @@ msgstr "OKÄND"
 #: ../checkbox/lib/signal.py:89
 msgid "Unknown signal"
 msgstr "Okänd signal"
+
+#: ../checkbox_cli/cli_interface.py:31
+#: ../checkbox_urwid/urwid_interface.py:684
+msgid "yes"
+msgstr "ja"
+
+#: ../checkbox_cli/cli_interface.py:32
+#: ../checkbox_urwid/urwid_interface.py:685
+msgid "no"
+msgstr "nej"
+
+#: ../checkbox_cli/cli_interface.py:33
+#: ../checkbox_urwid/urwid_interface.py:686
+msgid "skip"
+msgstr "hoppa över"
+
+#: ../checkbox_cli/cli_interface.py:126
+msgid "Press any key to continue..."
+msgstr "Tryck på valfri tangent för att fortsätta..."
+
+#: ../checkbox_cli/cli_interface.py:135
+#, python-format
+msgid "Please choose (%s): "
+msgstr "Välj (%s): "
+
+#: ../checkbox_cli/cli_interface.py:315
+msgid "test"
+msgstr "testa"
+
+#: ../checkbox_cli/cli_interface.py:339
+msgid "test again"
+msgstr "testa igen"
+
+#: ../checkbox_cli/cli_interface.py:345
+msgid "Please type here and press Ctrl-D when finished:\n"
+msgstr "Var snäll och skriv här och tryck Ctrl-D när du är klar:\n"
 
 #: ../checkbox_urwid/urwid_interface.py:60
 msgid "Checkbox System Testing"
@@ -2841,11 +2845,15 @@ msgstr "Testa igen"
 msgid "hardware database"
 msgstr "maskinvarudatabas"
 
-#: ../checkbox_gtk/gtk_interface.py:533
+#: ../checkbox_gtk/gtk_interface.py:502
+msgid "_Test Again"
+msgstr "_Testa igen"
+
+#: ../checkbox_gtk/gtk_interface.py:548
 msgid "Info"
 msgstr "Information"
 
-#: ../checkbox_gtk/gtk_interface.py:552
+#: ../checkbox_gtk/gtk_interface.py:567
 msgid "Error"
 msgstr "Fel"
 
@@ -2854,7 +2862,7 @@ msgstr "Fel"
 msgid "Unable to start web browser to open %s."
 msgstr "Kunde inte starta webbläsaren för att öppna %s."
 
-#: ../plugins/apport_prompt.py:81
+#: ../plugins/apport_prompt.py:83
 msgid ""
 "Collecting information about this test.\n"
 "This might take a few minutes."
@@ -2862,7 +2870,7 @@ msgstr ""
 "Samlar in information om detta test.\n"
 "Detta kan ta några minuter."
 
-#: ../plugins/apport_prompt.py:116
+#: ../plugins/apport_prompt.py:118
 msgid ""
 "Collected information is being sent for bug tracking.\n"
 "This might take a few minutes."
@@ -2870,17 +2878,17 @@ msgstr ""
 "Insamlad information skickas nu till felhanteringssystemet.\n"
 "Detta kan ta några minuter."
 
-#: ../plugins/apport_prompt.py:225
+#: ../plugins/apport_prompt.py:227
 #, python-format
 msgid "Test %s from suite %s failed."
 msgstr "Testet %s från sviten %s misslyckades."
 
-#: ../plugins/apport_prompt.py:228
+#: ../plugins/apport_prompt.py:230
 #, python-format
 msgid "Test %s failed."
 msgstr "Testet %s misslyckades."
 
-#: ../plugins/apport_prompt.py:246
+#: ../plugins/apport_prompt.py:248
 #, python-format
 msgid "Is a package upgrade in process? Error: %s"
 msgstr "Finns en pågående paketuppgradering? Fel: %s"
@@ -2889,7 +2897,11 @@ msgstr "Finns en pågående paketuppgradering? Fel: %s"
 msgid "Successfully finished testing!"
 msgstr "Testerna färdigställdes utan problem!"
 
-#: ../plugins/intro_prompt.py:43
+#: ../plugins/final_prompt.py:34
+msgid "_Finish"
+msgstr "_Färdigställ"
+
+#: ../plugins/intro_prompt.py:29
 msgid ""
 "Welcome to System Testing!\n"
 "\n"
@@ -2903,10 +2915,39 @@ msgstr ""
 "korrekt. När du är färdig med testerna så kan du se på en sammandragsrapport "
 "för ditt system."
 
-#: ../plugins/launchpad_exchange.py:118
+#: ../plugins/launchpad_exchange.py:136
 #, python-format
 msgid "Failed to process form: %s"
 msgstr "Misslyckades med att behandla formulär: %s"
+
+#: ../plugins/launchpad_exchange.py:151
+#, python-format
+msgid ""
+"Failed to contact server. Please try\n"
+"again or upload the following file name:\n"
+"%s\n"
+"\n"
+"directly to the system database:\n"
+"https://launchpad.net/+hwdb/+submit"
+msgstr ""
+"Misslyckades med att kontakta servern. Prova\n"
+"igen eller skicka upp följande filnamn:\n"
+"%s\n"
+"\n"
+"direkt till systemdatabasen:\n"
+"https://launchpad.net/+hwdb/+submit"
+
+#: ../plugins/launchpad_exchange.py:160
+msgid ""
+"Failed to upload to server,\n"
+"please try again later."
+msgstr ""
+"Misslyckades med att ladda upp till server.\n"
+"Testa igen senare."
+
+#: ../plugins/launchpad_exchange.py:172
+msgid "Information not posted to Launchpad."
+msgstr "Informationen postades inte på Launchpad."
 
 #: ../plugins/launchpad_prompt.py:71
 #, python-format
@@ -2937,6 +2978,14 @@ msgstr ""
 msgid "No e-mail address provided, not submitting to Launchpad."
 msgstr "Ingen e-postadress angiven, skickar därför inte in till Launchpad."
 
+#: ../plugins/launchpad_prompt.py:92
+msgid "Email address must be in a proper format."
+msgstr "E-postadressen måste anges i ett korrekt format."
+
+#: ../plugins/launchpad_prompt.py:98
+msgid "Exchanging information with the server..."
+msgstr "Utbyter information med server..."
+
 #: ../plugins/lock_prompt.py:63
 msgid "There is another checkbox running. Please close it first."
 msgstr "Det finns en annan checkbox igång. Stäng den först."
@@ -2949,13 +2998,17 @@ msgstr ""
 "Checkbox färdigställdes inte helt.\n"
 "Vill du återställa från den tidigare körningen?"
 
+#: ../plugins/report_prompt.py:39
+msgid "Building report..."
+msgstr "Bygger upp rapport."
+
 #: ../plugins/shell_test.py:52
 #, python-format
 msgid "Running %s..."
 msgstr "Kör %s..."
 
 #. Get results
-#: ../plugins/suites_prompt.py:105
+#: ../plugins/suites_prompt.py:108
 msgid "Select the suites to test"
 msgstr "Välj vilka sviter som ska testas"
 
@@ -2963,7 +3016,7 @@ msgstr "Välj vilka sviter som ska testas"
 msgid "Enter text:\n"
 msgstr "Ange text:\n"
 
-#: ../scripts/keyboard_test:40
+#: ../scripts/keyboard_test:41
 msgid "Type Text"
 msgstr "Skriv in text"
 
@@ -2978,6 +3031,33 @@ msgstr "Etablerad anslutning tappade ett paket"
 #: ../scripts/internet_test:145
 msgid "Internet connection fully established"
 msgstr "Internetanslutning etablerad"
+
+#~ msgid "Successfully sent information!"
+#~ msgstr "Lyckades med att skicka information!"
+
+#~ msgid "_Desktop"
+#~ msgstr "_Stationär"
+
+#~ msgid "_Laptop"
+#~ msgstr "_Bärbar"
+
+#~ msgid "_Server"
+#~ msgstr "_Server"
+
+#~ msgid "$(network_test)"
+#~ msgstr "$(network_test)"
+
+#~ msgid "Exchange"
+#~ msgstr "Utbyt"
+
+#~ msgid "Category"
+#~ msgstr "Kategori"
+
+#~ msgid "Welcome to System Testing!"
+#~ msgstr "Välkommen till Systemtest!"
+
+#~ msgid "Running shell tests..."
+#~ msgstr "Kör skaltester..."
 
 #~ msgid "Click the Test button to display a video test."
 #~ msgstr "Klicka på knappen Testa för att visa ett videotest."
@@ -3186,3 +3266,9 @@ msgstr "Internetanslutning etablerad"
 
 #~ msgid "Is this ok?"
 #~ msgstr "Är det här OK?"
+
+#~ msgid "Authentication"
+#~ msgstr "Autentisering"
+
+#~ msgid "Done"
+#~ msgstr "Klart"

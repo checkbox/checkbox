@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-07-31 04:34+0000\n"
-"X-Generator: Launchpad (build 13405)\n"
+"X-Launchpad-Export-Date: 2011-11-22 04:41+0000\n"
+"X-Generator: Launchpad (build 14299)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:1 ../checkbox_cli/cli_interface.py:343
 #: ../checkbox_urwid/urwid_interface.py:261
@@ -28,7 +28,7 @@ msgstr "كېيىنكىسى(_X)"
 
 #. Title of the user interface
 #: ../gtk/checkbox-gtk.ui.h:3 ../gtk/checkbox-gtk.desktop.in.h:1
-#: ../plugins/user_interface.py:40
+#: ../checkbox_gtk/gtk_interface.py:95 ../plugins/user_interface.py:40
 msgid "System Testing"
 msgstr "سىستېمىنى سىناۋاتىدۇ"
 
@@ -42,7 +42,7 @@ msgstr "ياق(_N)"
 
 #: ../gtk/checkbox-gtk.ui.h:6
 msgid "_Previous"
-msgstr "ئالدىنقىسى(_P)"
+msgstr "ئالدىنقى(_P)"
 
 #: ../gtk/checkbox-gtk.ui.h:7
 msgid "_Select All"
@@ -52,7 +52,7 @@ msgstr "ھەممىنى تاللا(_S)"
 msgid "_Skip this test"
 msgstr "بۇ سىناقنى ئۆتكۈزۈۋەت(_S)"
 
-#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:522
+#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:537
 msgid "_Test"
 msgstr "سىنا(_T)"
 
@@ -67,7 +67,7 @@ msgstr "سىناش ۋە سىستېما ئۇچۇرلىرىنى مەلۇم قىل�
 #. description
 #: ../jobs/apport.txt.in:5
 msgid "Test that the /var/crash directory doesn't contain anything."
-msgstr ""
+msgstr "مۇندەرىجە  /var/crash نىڭ ئىچىدە ھېچ نەرسە يوقلۇقىنى سىنايدۇ."
 
 #. description
 #: ../jobs/audio.txt.in:7
@@ -75,18 +75,14 @@ msgid "Detecting your sound device(s):"
 msgstr "ئاۋاز ئۈسكۈنىسىنى ئىزدەۋاتىدۇ:"
 
 #. description
-#: ../jobs/audio.txt.in:7 ../jobs/disk.txt.in:4 ../jobs/graphics.txt.in:126
-#: ../jobs/memory.txt.in:4 ../jobs/networking.txt.in:16
-#: ../jobs/optical.txt.in:8 ../jobs/power-management.txt.in:167
-#: ../jobs/usb.txt.in:5
+#: ../jobs/audio.txt.in:7 ../jobs/graphics.txt.in:113 ../jobs/memory.txt.in:4
+#: ../jobs/networking.txt.in:5 ../jobs/optical.txt.in:8 ../jobs/usb.txt.in:12
 msgid "$output"
 msgstr "$output"
 
 #. description
-#: ../jobs/audio.txt.in:7 ../jobs/bluetooth.txt.in:5 ../jobs/disk.txt.in:4
-#: ../jobs/graphics.txt.in:126 ../jobs/memory.txt.in:4
-#: ../jobs/networking.txt.in:16 ../jobs/optical.txt.in:8
-#: ../jobs/power-management.txt.in:185 ../jobs/usb.txt.in:5
+#: ../jobs/audio.txt.in:7 ../jobs/graphics.txt.in:113 ../jobs/memory.txt.in:4
+#: ../jobs/networking.txt.in:5 ../jobs/optical.txt.in:8
 msgid "Is this correct?"
 msgstr "بۇ توغرىمۇ؟"
 
@@ -149,7 +145,7 @@ msgid ""
 "select Test, then speak into the microphone.  After a few seconds, your "
 "speech will be played back to you."
 msgstr ""
-"USB لىق ئۈن ئۈسكۈنىسىنى كومپيۇتېرغا چاتىسىز. ياڭراتقۇنىڭ سىن بەلگىسى ئۈستىدە "
+"USB لىق ئۈن ئۈسكۈنىسىنى كومپيۇتېرغا چاتىسىز. ياڭراتقۇنىڭ سىنبەلگىسى ئۈستىدە "
 "چاشقىنەكنىڭ سول توپچىسىنى چەكسىڭىز، ئاۋاز چوڭلۇقىنى كونترول قىلىش "
 "پروگراممىسى ئېچىلىدۇ. ئۇنىڭدىن «ئۈن مايىللىقى» نى چېكىپ، ئۇنىڭ ئىچىدىن "
 "«كىرگۈزۈش» بەتكۈچىنى تاللاپ، USB لىق ئۈن ئۈسكۈنىسىنى تاللاپ قويىسىز. ئاندىن "
@@ -158,12 +154,12 @@ msgstr ""
 "ياڭراتقۇدا ئوز گېپىڭىزنى ئاڭلايسىز."
 
 #. description
-#: ../jobs/audio.txt.in:70 ../jobs/power-management.txt.in:221
+#: ../jobs/audio.txt.in:70
 msgid "Did you hear your speech played back?"
 msgstr "سۆزلىگەن ئاۋازىڭىز ئاڭلاندىمۇ؟"
 
 #. description
-#: ../jobs/audio.txt.in:81
+#: ../jobs/audio.txt.in:82
 msgid ""
 "Play back a sound on the default output and listen for it on the \\ default "
 "input.  This makes the most sense when the output and input \\ are directly "
@@ -176,17 +172,17 @@ msgid "Autotest suite (destructive)"
 msgstr "ئاپتوماتىك سىناش باسقۇچلىرى(ۋەيران قىلىدىغان)"
 
 #. description
-#: ../jobs/bluetooth.txt.in:5 ../jobs/power-management.txt.in:185
+#: ../jobs/bluetooth.txt.in:5
 msgid "The address of your Bluetooth device is: $output"
 msgstr "Bluetooth ئۈسكىنىنىڭ ئادرېسى: $output"
 
 #. description
-#: ../jobs/bluetooth.txt.in:15 ../jobs/graphics.txt.in:15
+#: ../jobs/bluetooth.txt.in:12 ../jobs/graphics.txt.in:15
 msgid "Automated test to store output in checkbox report"
-msgstr ""
+msgstr "ئاپتوماتىك سىناش ئېلىپ بېرىپ نەتىجىنى checkbox مەلۇماتىغا قوشىدۇ."
 
 #. description
-#: ../jobs/bluetooth.txt.in:21
+#: ../jobs/bluetooth.txt.in:18
 msgid ""
 "Bluetooth browse files procedure: 1.- Enable bluetooth on any mobile device "
 "(PDA, smartphone, etc.) 2.- Click on the bluetooth icon in the menu bar 3.- "
@@ -196,9 +192,16 @@ msgid ""
 "icon and select browse files 7.- Authorize the computer to browse the files "
 "in the device if needed 8.- You should be able to browse the files"
 msgstr ""
+"كۆكچىشتىكى ھۆججەت كۆرۈش مەشغۇلاتى: 1-خالىغان بىر يۆتكەلمە ئۈسكۈنە(PDA، "
+"ئەقلىيفون قاتارلىقلار)دىكى كۆكچىش ئىناۋەتلىك قىلىڭ. 2-تىزىملىك بالدىقىدىكى "
+"كۆكچىش سىنبەلگىسىنى چېكىڭ. 3-«يېڭى ئۈسكۈنە ئورنىتىش» نى تاللاپ، تىزىمدىكى "
+"ئۈسكۈنىلەر ئىچىدىن تاللاڭ. 4-يېتەكچى تەرىپىدىن ئاپتوماتىك تاللانغان PIN "
+"كودىنى ئۈسكۈنىگە كىرگۈزۈڭ. 5-ئۈسكۈنە كومپيۇتېر بىلەن جۈپلىشىدۇ. 6-كۆكچىش "
+"سىنبەلگىسى ئۈستىدە چاشقىنەك ئوڭ توپچىسىنى بېسىپ، ‹ھۆججەت كۆرۈش› نى تاللاڭ. "
+"7.زۆرۈر تېپىلغاندا سالاھىيەت دەلىللەڭ. 8-شۇنىڭ بىلەن ھۆججەتلەرنى كۆرەلەيسىز"
 
 #. description
-#: ../jobs/bluetooth.txt.in:38
+#: ../jobs/bluetooth.txt.in:35
 msgid ""
 "Bluetooth file transfer procedure: 1.- Make sure that you're able to browse "
 "the files in your mobile device 2.- Copy a file from the computer to the "
@@ -206,9 +209,14 @@ msgid ""
 "from the mobile device to the computer 5.- Verify that the file was "
 "correctly copied"
 msgstr ""
+"كۆكچىشتىكى ھۆججەت ئەۋەتىش مەشغۇلاتى: 1-ئالدى بىلەن سىز يۆتكىلىشچان "
+"ئۈسكۈنىلەردىكى ھۆججەتلەرنى كۆرەلىشىڭىز كېرەك. 2- كومپيۇتېردىن بىر ھۆججەتنى "
+"يۆتكەلمە ئۈسكۈنىگە كۆچۈرۈڭ. 3- ھۆججەتنىڭ توغرا كۆچۈرۈلگەنلىكىنى تەكشۈرۈڭ. 4-"
+"يۆتكەلمە ئۈسكۈنىدىن بىر ھۆججەتنى كومپيۇتېرغا كۆچۈرۈڭ. 5- ھۆججەتنىڭ توغرا "
+"كۆچۈرۈلگەنلىكىنى تەكشۈرۈڭ."
 
 #. description
-#: ../jobs/bluetooth.txt.in:53
+#: ../jobs/bluetooth.txt.in:50
 msgid ""
 "Bluetooth audio procedure: 1.- Enable the bluetooth headset 2.- Click on the "
 "bluetooth icon in the menu bar 3.- Select 'Setup new device' 4.- Look for "
@@ -217,54 +225,68 @@ msgid ""
 "computer 7.- Select Test to record for five seconds and reproduce in the "
 "bluetooth device"
 msgstr ""
+"كۆكچىشتىكى ئۈن مەشغۇلاتى: 1-كۆكچىش تىڭشىغۇچىنى ئىناۋەتلىك قىلىڭ. 2-تىزىملىك "
+"بالدىقىدىكى كۆكچىش سىنبەلگىسىنى چېكىڭ. 3-«يېڭى ئۈسكۈنە ئورنىتىش» نى تاللاڭ. "
+"4-تىزىمدىكى ئۈسكۈنىلەر ئىچىدىن ئۇنى تاللاڭ. 5-يېتەكچى تەرىپىدىن ئاپتوماتىك "
+"تاللانغان PIN كودىنى ئۈسكۈنىگە كىرگۈزۈڭ. 6-ئۈسكۈنە كومپيۇتېر بىلەن "
+"جۈپلىشىدۇ. «سىنا» نى تاللاپ 5 سېكۇنتلۇق ئۈن ئېلىڭ ۋە ئۇنى كۆكچىش ئۈسكۈنىسىدە "
+"قويۇڭ."
 
 #. description
-#: ../jobs/bluetooth.txt.in:69
+#: ../jobs/bluetooth.txt.in:66
 msgid ""
 "Bluetooth keyboard procedure: 1.- Enable the bluetooth keyboard 2.- Click on "
 "the bluetooth icon in the menu bar 3.- Select 'Setup new device' 4.- Look "
 "for the device in the list and select it 5.- Select Test to enter text"
 msgstr ""
+"كۆكچىشتىكى ھەرپتاختا مەشغۇلاتى: 1-كۆكچىش ھەرپتاختىسىنى ئىناۋەتلىك قىلىڭ. 2-"
+"تىزىملىك بالدىقىدىكى كۆكچىش سىنبەلگىسىنى چېكىڭ. 3-«يېڭى ئۈسكۈنە ئورنىتىش» نى "
+"تاللاڭ. 4-تىزىمدىكى ئۈسكۈنىلەر ئىچىدىن ئۇنى تاللاڭ. 5. «سىنا» نى تاللاپ "
+"تېكىست كىرگۈزۈڭ."
 
 #. description
-#: ../jobs/bluetooth.txt.in:82
+#: ../jobs/bluetooth.txt.in:79
 msgid ""
 "Bluetooth mouse procedure: 1.- Enable the bluetooth mouse 2.- Click on the "
 "bluetooth icon in the menu bar 3.- Select 'Setup new device' 4.- Look for "
 "the device in the list and select it 5.- Move the mouse around the screen 6.-"
 " Perform some single/double/right click operations"
 msgstr ""
+"كۆكچىشتىكى چاشقىنەك مەشغۇلاتى: 1.- كۆكچىش چاشقىنەكى ئىناۋەتلىك قىلىڭ. 2. "
+"تىزىملىك بالدىقىدىكى كۆكچىش سىنبەلگىسىنى چېكىڭ. 3.- «يېڭى ئۈسكۈنە ئورنىتىش» "
+"نى تاللاڭ. 4.- تىزىمدىكى ئۈسكۈنىلەردىن ئۇنى تاللاڭ. 5.- چاشقىنەكنى ئېكراندا "
+"ھەرىكەتلەندۈرۈڭ. 6.- تاق چېكىش، قوش چېكىش، ئوڭ چېكىش مەشغۇلاتلىرىنى سىناپ "
+"كۆرۈڭ."
 
 #. description
-#: ../jobs/bluetooth.txt.in:82 ../jobs/optical.txt.in:72
-#: ../jobs/power-management.txt.in:194 ../jobs/usb.txt.in:27
+#: ../jobs/bluetooth.txt.in:79 ../jobs/optical.txt.in:72 ../jobs/usb.txt.in:34
 msgid "Did all the steps work?"
-msgstr "ھەممە باسقۇچلار ئىشلىدىمۇ؟"
+msgstr "ھەممە باسقۇچلار نورمالمۇ؟"
 
 #. description
 #: ../jobs/camera.txt.in:7
 msgid "Automated test case that attempts to detect a camera"
-msgstr ""
+msgstr "كامېرا بايقاشنىڭ ئاپتوماتلاشقان سىناق باسقۇچلىرى"
 
 #. description
 #: ../jobs/camera.txt.in:16
 msgid "Select Test to display a video capture from the camera"
-msgstr ""
+msgstr "«سىنا» تاللانسا،  كامېرادا تارتقان سىننى كۆرگىلى بولىدۇ"
 
 #. description
 #: ../jobs/camera.txt.in:16
 msgid "Did you see the video capture?"
-msgstr ""
+msgstr "تارتقان سىننى كۆردىڭىزمۇ؟"
 
 #. description
 #: ../jobs/camera.txt.in:30
 msgid "Select Test to display a still image from the camera"
-msgstr ""
+msgstr "«سىنا» تاللانسا،  كامېرادا تارتقان سۈرەتنى كۆرگىلى بولىدۇ"
 
 #. description
 #: ../jobs/camera.txt.in:30
 msgid "Did you see the image?"
-msgstr ""
+msgstr "سۈرەتنى كۆردىڭىزمۇ؟"
 
 #. description
 #: ../jobs/camera.txt.in:43
@@ -272,26 +294,28 @@ msgid ""
 "Select Test to capture video to a file and open it in totem. Please make "
 "sure that both audio and video is captured."
 msgstr ""
+"«سىنا» تاللانسا،  كامېرادا تارتقان سىننى ھۆججەتكە ساقلاپ، ئۇنى totem كۆرگىلى "
+"بولىدۇ. سىن بىلەن بىرگە ئۈنمۇ خاتىرلەندىمۇ كۆرۈپ بېقىڭ."
 
 #. description
 #: ../jobs/camera.txt.in:43
 msgid "Did you see/hear the capture?"
-msgstr ""
+msgstr "تۇتۇلغاننى كۆردىڭىزمۇ/ئاڭلىدىڭىزمۇ؟"
 
 #. description
 #: ../jobs/codecs.txt.in:7
 msgid "Select Test to play an Ogg Vorbis file (.ogg)"
-msgstr ""
+msgstr "«سىنا» تاللانسا،  Ogg Vorbis (.ogg) ھۆججەتلىرى قويۇلىدۇ"
 
 #. description
 #: ../jobs/codecs.txt.in:20
 msgid "Select Test to play a Wave Audio format file (.wav)"
-msgstr ""
+msgstr "«سىنا» تاللانسا،  Wave Audio format (.wav) ھۆججەتلىرى قويۇلىدۇ"
 
 #. description
 #: ../jobs/codecs.txt.in:20
 msgid "Did the sample play correctly?"
-msgstr ""
+msgstr "توغرا قويۇلدىمۇ؟"
 
 #. description
 #: ../jobs/codecs.txt.in:33
@@ -299,11 +323,13 @@ msgid ""
 "Select 'Test' to play some audio, and try pausing and resuming playback "
 "while the it is playing."
 msgstr ""
+"«سىنا» تاللاپ ئۈن ھۆججەتلىرىنى قويۇڭ، ئۈن قويۇلۇۋاتقاندا ۋاقىتلىق توختىتىش، "
+"قايتا قويۇش قاتارلىقلارنى سىناپ كۆرۈڭ."
 
 #. description
 #: ../jobs/codecs.txt.in:33
 msgid "Did the audio play and pause as expected?"
-msgstr ""
+msgstr "ئۈن قويۇلدىمۇ؟ ۋاقىتلىق توختاتقىلى بولدىمۇ؟"
 
 #. description
 #: ../jobs/codecs.txt.in:46
@@ -311,16 +337,18 @@ msgid ""
 "Select 'Test' to play a video, and try pausing and resuming playback while "
 "the video is playing."
 msgstr ""
+"«سىنا» تاللاپ سىن ھۆججەتلىرىنى قويۇڭ، سىن قويۇلۇۋاتقاندا ۋاقىتلىق توختىتىش، "
+"قايتا قويۇش قاتارلىقلارنى سىناپ كۆرۈڭ."
 
 #. description
 #: ../jobs/codecs.txt.in:46
 msgid "(Please close Movie Player to proceed.)"
-msgstr ""
+msgstr "(داۋاملاشتۇرۇش ئۈچۈن كىنو قويغۇنى يېپىڭ.)"
 
 #. description
 #: ../jobs/codecs.txt.in:46
 msgid "Did the video play and pause as expected?"
-msgstr ""
+msgstr "سىن قويۇلدىمۇ؟ ۋاقىتلىق توختاتقىلى بولدىمۇ؟"
 
 #. description
 #: ../jobs/cpu.txt.in:8
@@ -353,56 +381,67 @@ msgstr ""
 #: ../jobs/daemons.txt.in:5
 msgid "Test if the atd daemon is running when the package is installed."
 msgstr ""
+"بوغچا ئورنىتىلىپ بولغاندىن كېيىن atd دېگەن daemon ئىجرا بولدىمۇ سىنايدۇ."
 
 #. description
 #: ../jobs/daemons.txt.in:11
 msgid "Test if the cron daemon is running when the package is installed."
 msgstr ""
+"بوغچا ئورنىتىلىپ بولغاندىن كېيىن cron دېگەن daemon ئىجرا بولدىمۇ سىنايدۇ."
 
 #. description
 #: ../jobs/daemons.txt.in:17
 msgid "Test if the cupsd daemon is running when the package is installed."
 msgstr ""
+"بوغچا ئورنىتىلىپ بولغاندىن كېيىن cupsd دېگەن daemon ئىجرا بولدىمۇ سىنايدۇ."
 
 #. description
 #: ../jobs/daemons.txt.in:23
 msgid "Test if the getty daemon is running when the package is installed."
 msgstr ""
+"بوغچا ئورنىتىلىپ بولغاندىن كېيىن getty دېگەن daemon ئىجرا بولدىمۇ سىنايدۇ."
 
 #. description
 #: ../jobs/daemons.txt.in:29
 msgid "Test if the init daemon is running when the package is installed."
 msgstr ""
+"بوغچا ئورنىتىلىپ بولغاندىن كېيىن init دېگەن daemon ئىجرا بولدىمۇ سىنايدۇ."
 
 #. description
 #: ../jobs/daemons.txt.in:35
 msgid "Test if the klogd daemon is running when the package is installed."
 msgstr ""
+"بوغچا ئورنىتىلىپ بولغاندىن كېيىن klogd دېگەن daemon ئىجرا بولدىمۇ سىنايدۇ."
 
 #. description
 #: ../jobs/daemons.txt.in:41
 msgid "Test if the nmbd daemon is running when the package is installed."
 msgstr ""
+"بوغچا ئورنىتىلىپ بولغاندىن كېيىن nmbd دېگەن daemon ئىجرا بولدىمۇ سىنايدۇ."
 
 #. description
 #: ../jobs/daemons.txt.in:47
 msgid "Test if the smbd daemon is running when the package is installed."
 msgstr ""
+"بوغچا ئورنىتىلىپ بولغاندىن كېيىن smbd دېگەن daemon ئىجرا بولدىمۇ سىنايدۇ."
 
 #. description
 #: ../jobs/daemons.txt.in:53
 msgid "Test if the syslogd daemon is running when the package is installed."
 msgstr ""
+"بوغچا ئورنىتىلىپ بولغاندىن كېيىن syslogd دېگەن daemon ئىجرا بولدىمۇ سىنايدۇ."
 
 #. description
 #: ../jobs/daemons.txt.in:61
 msgid "Test if the udevd daemon is running when the package is installed."
 msgstr ""
+"بوغچا ئورنىتىلىپ بولغاندىن كېيىن udevd دېگەن daemon ئىجرا بولدىمۇ سىنايدۇ."
 
 #. description
 #: ../jobs/daemons.txt.in:67
 msgid "Test if the winbindd daemon is running when the package is installed."
 msgstr ""
+"بوغچا ئورنىتىلىپ بولغاندىن كېيىن winbindd دېگەن daemon ئىجرا بولدىمۇ سىنايدۇ."
 
 #. description
 #: ../jobs/disk.txt.in:4
@@ -410,27 +449,28 @@ msgid "The following hard drives were detected:"
 msgstr "تۆۋەندىكىدەك قاتتىق ئۈسكۈنىلەر بايقالدى:"
 
 #. description
-#: ../jobs/disk.txt.in:14
+#: ../jobs/disk.txt.in:9
 msgid "Benchmark for each disk "
 msgstr ""
 
 #. description
-#: ../jobs/disk.txt.in:36
+#: ../jobs/disk.txt.in:26
 msgid "SMART test"
-msgstr ""
+msgstr "SMART سىنىقى"
 
 #. description
-#: ../jobs/disk.txt.in:51
+#: ../jobs/disk.txt.in:41
 msgid "Maximum disk space used during a default installation test"
 msgstr ""
+"كۆڭۈلدىكى ئورنىتىش سىنىقى جەريانىدا دىسكىنىڭ ئەڭ چوڭ بوشلۇقىنى ئىشلىتىدۇ"
 
 #. description
-#: ../jobs/disk.txt.in:66
+#: ../jobs/disk.txt.in:56
 msgid "Verify system storage performs at or above baseline performance"
-msgstr ""
+msgstr "سىستېمىنىڭ ئىقتىدارى ئاساسىي ئۆلچەمدىن يۇقىرىمۇ ئەمەسمۇ تەكشۈرىدۇ"
 
 #. description
-#: ../jobs/disk.txt.in:83
+#: ../jobs/disk.txt.in:73
 msgid ""
 "Verify that storage devices, such as Fibre Channel and RAID can be detected "
 "and perform under stress."
@@ -442,6 +482,8 @@ msgid ""
 "Click the \"Test\" button to launch Evolution, then configure it to connect "
 "to a POP3 account."
 msgstr ""
+"«سىنا» نى چېكىپ Evolution نى ئىجرا قىلىڭ، ئاندىن ئۇنى POP3 ھېساباتىغا "
+"باغلىنىدىغان قىلىپ تەڭشەڭ."
 
 #. description
 #: ../jobs/evolution.txt.in:14
@@ -449,11 +491,13 @@ msgid ""
 "Click the \"Test\" button to launch Evolution, then configure it to connect "
 "to a IMAP account."
 msgstr ""
+"«سىنا» نى چېكىپ Evolution نى ئىجرا قىلىڭ، ئاندىن ئۇنى IMAP ھېساباتىغا "
+"باغلىنىدىغان قىلىپ تەڭشەڭ."
 
 #. description
 #: ../jobs/evolution.txt.in:14
 msgid "Were you able to receive and read e-mail correctly?"
-msgstr ""
+msgstr "ئېلخەتنى نورمال تاپشۇرۇپ ئېلىپ ئوقۇيالىدىڭىزمۇ؟"
 
 #. description
 #: ../jobs/evolution.txt.in:23
@@ -461,11 +505,13 @@ msgid ""
 "Click the \"Test\" button to launch Evolution, then configure it to connect "
 "to a SMTP account."
 msgstr ""
+"«سىنا» نى چېكىپ Evolution نى ئىجرا قىلىڭ، ئاندىن ئۇنى SMTP ھېساباتىغا "
+"باغلىنىدىغان قىلىپ تەڭشەڭ."
 
 #. description
 #: ../jobs/evolution.txt.in:23
 msgid "Were you able to send e-mail without errors?"
-msgstr ""
+msgstr "ئېلخەتنى خاتالىقسىز ئەۋەتەلىدىڭىزمۇ؟"
 
 #. description
 #: ../jobs/fingerprint.txt.in:3
@@ -490,6 +536,13 @@ msgid ""
 " 5.- Click on the user switcher applet.\n"
 " 6.- Select the testing account to continue running tests."
 msgstr ""
+"بارماق ئىزى ئارقىلىق كىرىش مەشغۇلاتى: \n"
+" 1- ئىشلەتكۈچى ئالماشتۇرۇش قوللانچىقىنى چېكىڭ.\n"
+" 2-ئوز ئاتىڭىزنى تاللاڭ.\n"
+" 3-ئىم ياكى بارماق ئىزى ئارقىلىق كىرىشنى تاللاش كۆزنىكى كۆرۈنىدۇ.\n"
+" 4-بارماق ئىچى ئوقۇغۇچ ئارقىلىق كىرىشنى تاللاڭ\n"
+" 5-ئىشلەتكۈچى ئالماشتۇرۇش قوللانچىقىنى چېكىڭ.\n"
+" 6-سىنىغۇچى ھېساباتىنى تاللاپ، سىناقنى داۋاملاشتۇرۇڭ."
 
 #. description
 #: ../jobs/fingerprint.txt.in:18
@@ -503,6 +556,13 @@ msgid ""
 " 5.- Use the fingerprint reader to unlock.\n"
 " 6.- Your screen should be unlocked."
 msgstr ""
+"بارماق ئىزى ئارقىلىق قۇلۇپسىزلاش مەشغۇلاتى: \n"
+" 1-ئىشلەتكۈچى ئالماشتۇرۇش قوللانچىقىنى چېكىڭ.\n"
+" 2-‹ئېكراننى قۇلۇپلاش›نى تاللاڭ.\n"
+" 3-خالىغان كۇنۇپكىنى بېسىڭ ياكى چاشقىنەكنى ھەرىكەتلەندۈرۈڭ.\n"
+" 4-ئىم ياكى بارماق ئىزى ئارقىلىق قۇلۇپسىزلاشنى تاللاش كۆزنىكى كۆرۈنىدۇ.\n"
+" 5-بارماق ئىچى ئوقۇغۇچ ئارقىلىق قۇلۇپسىزلاشنى تاللاڭ\n"
+" 6-ئېكرانىڭىز چوقۇم قۇلۇپسىزلىنىدۇ."
 
 #. description
 #: ../jobs/fingerprint.txt.in:18
@@ -519,26 +579,34 @@ msgid ""
 " 3.- Copy some files from your internal HDD to the firewire HDD.\n"
 " 4.- Copy some files from the firewire HDD to your internal HDD."
 msgstr ""
+"ئوتسىم(Firewire) HDD تەكشۈرۈش مەشغۇلاتى:\n"
+" 1-ئوتسىم(Firewire) HDD نى كومپيۇتېرغا چېتىڭ.\n"
+" 2-قايسى مەشغۇلات(ئېچىش، سۈرەت باشقۇرۇش ۋە باشقا)نى قىلىشنى سوراپ بىر كۆزنەك "
+"كۆرۈنىدۇ.\n"
+" 3-ئىچكى قاتتىق دىسكىدىكى بىر قىسىم ھۆججەتلەرنى ئوتسىم(Firewire) HDD غا "
+"كۆچۈرۈڭ.\n"
+" 4-ئوتسىم(Firewire) HDD دىكى بىر قىسىم ھۆججەتلەرنى ئىچكى قاتتىق دىسكىغا "
+"كۆچۈرۈڭ."
 
 #. description
-#: ../jobs/firewire.txt.in:3 ../jobs/usb.txt.in:71
+#: ../jobs/firewire.txt.in:3
 msgid "Do the copy operations work as expected?"
 msgstr "كۆچۈرۈش مەشغۇلاتى ئويلىغىنىڭىزدەك بولدىمۇ؟"
 
 #. description
 #: ../jobs/floppy.txt.in:4
 msgid "Floppy test"
-msgstr ""
+msgstr "يۇمشاق دىسكا سىنىقى"
 
 #. description
 #: ../jobs/gcalctool.txt.in:5
 msgid "Click the \"Test\" button to open the calculator."
-msgstr ""
+msgstr "«سىنا» توپچىسىنى چېكىپ ھېسابلىغۇچنى ئېچىڭ."
 
 #. description
 #: ../jobs/gcalctool.txt.in:5
 msgid "Did it launch correctly?"
-msgstr ""
+msgstr "ئۇ نورمال ئىجرا بولدىمۇ؟"
 
 #. description
 #: ../jobs/gcalctool.txt.in:15
@@ -551,26 +619,30 @@ msgstr ""
 #: ../jobs/gcalctool.txt.in:30
 msgid "1. Memory set 2. Memory reset 3. Memory last clear 4. Memory clear"
 msgstr ""
+"1-ئەسلەككە يېزىش 2-ئەسلەكنى ئەسلىگە قايتۇرۇش 3-ئەڭ ئاخىرقى ئەسلەكنى تازىلاش "
+"4-ئەسلەكنى تازىلاش"
 
 #. description
 #: ../jobs/gcalctool.txt.in:45
 msgid "Click the \"Test\" button to open the calculator and perform:"
 msgstr ""
+"«سىنا» توپچىسىنى چېكىپ ھېسابلىغۇچنى ئېچىڭ ۋە تۆۋەندىكى مەشغۇلاتلارنى ئېلىپ "
+"بېرىڭ:"
 
 #. description
 #: ../jobs/gcalctool.txt.in:45
 msgid "1. Cut 2. Copy 3. Paste"
-msgstr ""
+msgstr "1-كېسىش 2-كۆچۈرۈش 3-چاپلاش"
 
 #. description
 #: ../jobs/gcalctool.txt.in:45
 msgid "Did the functions perform as expected?"
-msgstr ""
+msgstr "مەشغۇلاتلار ئويلىغىنىڭىزدەك بولدىمۇ؟"
 
 #. description
 #: ../jobs/gedit.txt.in:5
 msgid "Click the \"Test\" button to open gedit."
-msgstr ""
+msgstr "«سىنا» توپچىسىنى چېكىپ gedit نى ئېچىڭ."
 
 #. description
 #: ../jobs/gedit.txt.in:5
@@ -578,6 +650,8 @@ msgid ""
 "Enter some text and save the file (make a note of the file name you use), "
 "then close gedit."
 msgstr ""
+"ئازراق تېكىست كىرگۈزۈپ ئۇنى ھۆججەتكە ساقلاڭ(ھۆججەت ئاتىنى ئەستە تۇتۇۋېلىڭ)، "
+"gedit نى يېپىڭ."
 
 #. description
 #: ../jobs/gedit.txt.in:17
@@ -585,21 +659,22 @@ msgid ""
 "Click the \"Test\" button to open gedit, and re-open the file you created "
 "previously."
 msgstr ""
+"«سىنا» توپچىسىنى چېكىپ gedit نى ئېچىڭ ۋە ساقلىغان ھۆججەتنى قايتا ئېچىڭ."
 
 #. description
 #: ../jobs/gedit.txt.in:17
 msgid "Edit then save the file, then close gedit."
-msgstr ""
+msgstr "ھۆججەتنى تەھرىرلەڭ ۋە gedit نى يېپىڭ."
 
 #. description
 #: ../jobs/gedit.txt.in:17 ../jobs/gnome-terminal.txt.in:5
 msgid "Did this perform as expected?"
-msgstr ""
+msgstr "مەشغۇلاتلار ئويلىغىنىڭىزدەك بولدىمۇ؟"
 
 #. description
 #: ../jobs/gnome-terminal.txt.in:5
 msgid "Click the \"Test\" button to open Terminal."
-msgstr ""
+msgstr "«سىنا» توپچىسىنى چېكىپ تېرمىنالنى ئېچىڭ."
 
 #. description
 #: ../jobs/gnome-terminal.txt.in:5
@@ -607,22 +682,27 @@ msgid ""
 "Type 'ls' and press enter. You should see a list of files and folder in your "
 "home directory."
 msgstr ""
+"‹ls› نى كىرگۈزۈپ قايتۇرۇش كۇنۇپكىسىنى بېسىڭ. ماكان مۇندەرىجىڭىزدىكى "
+"ھۆججەتلەرنىڭ تىزىمى كۆرۈنىدۇ."
 
 #. description
 #: ../jobs/gnome-terminal.txt.in:5
 msgid "Close the terminal window."
-msgstr ""
+msgstr "تېرمىنال كۆزنىكىنى يېپىڭ."
 
 #. description
 #: ../jobs/graphics.txt.in:5
 msgid ""
 "2d graphics appears to be working, your running X.Org version is: $output"
 msgstr ""
+"ئىككى ئۆلچەملىك گرافىك(2D) ئىشلىگەندەك قىلىدۇ، ئىجرا بولۇۋاتقان X.Org نىڭ "
+"نەشرى : $output"
 
 #. description
 #: ../jobs/graphics.txt.in:23
 msgid "Run gtkperf to make sure that GTK based test cases work"
 msgstr ""
+"GTK ئاساسىدىكى سىناقلارنىڭ ئېلىپ بېرىلىشى ئۈچۈن gtkperf نى ئىجرا قىلىش"
 
 #. description
 #: ../jobs/graphics.txt.in:23
@@ -639,11 +719,16 @@ msgid ""
 "The resolution should change 5.- Select the original resolution from the "
 "dropdown list 6.- Click on Apply 7.- The resolution should change again"
 msgstr ""
+"ئېكران ئېنىقلىقىنى ئۆزگەرتىش مەشغۇلاتى: 1-«سىستېما-›مايىللىق-"
+"›كۆرسەتكۈچلەر»نى ئېچىڭ 2-تاللاش تىزىمى(dropdown list)دىن يېڭى ئېنىقلىقنى "
+"تاللاڭ. 3-«قوللان» نى چېكىڭ 4-ئېنىقلىقى ئۆزگىرىدۇ. 5-تاللاش تىزىمى(dropdown "
+"list)دىن بۇرۇنقى ئېنىقلىقنى تاللاڭ 6-«قوللان» نى چېكىڭ 7-ئېنىقلىقى ئۆزگىرىپ "
+"ئەسلىگە كېلىدۇ"
 
 #. description
 #: ../jobs/graphics.txt.in:31
 msgid "Did the resolution change as expected?"
-msgstr ""
+msgstr "ئېنىقلىقى ئويلىغىنىڭىزدەك ئۆزگەردىمۇ؟"
 
 #. description
 #: ../jobs/graphics.txt.in:46
@@ -655,21 +740,26 @@ msgid ""
 "display configuration change should be reverted 7.- Repeat 2-6 for different "
 "rotation values"
 msgstr ""
+"كۆرسىتىشنى چۆرگىلىتىشنى تەكشۈرۈش مەشغۇلاتى: 1-«سىستېما-›مايىللىق-"
+"›كۆرسەتكۈچلەر» 2-تاللاش تىزىمى(dropdown list)دىن يېڭى چۆرگىلىتىشنى تاللاڭ 3-"
+"«قوللان» نى چېكىڭ 4-كۆرسىتىش تاللانغان قىممەت بويىچە چۆرگىلەيدۇ 5. «ئالدىنقى "
+"سەپلىمىنى ئەسلىگە كەلتۈرۈش» نى چېكىڭ 6-كۆرسىتىش سەپلىمىسى ئەسلىگە كېلىدۇ 7- "
+"‹2~6› جەرياننى تاللاڭ(ئوخشىمىغان چۆرگىلىتىش قىممىتىنى ئىشلىتىپ)"
 
 #. description
 #: ../jobs/graphics.txt.in:46
 msgid "Did the display rotation change as expected?"
-msgstr ""
+msgstr "كۆرسىتىشنى چۆرگىلىتىش ئويلىغىنىڭىزدەك ئۆزگەردىمۇ؟"
 
 #. description
-#: ../jobs/graphics.txt.in:62 ../jobs/sru_suite.txt.in:151
+#: ../jobs/graphics.txt.in:62
 msgid "Test that the X process is running."
-msgstr ""
+msgstr "X ئىجراسى ئىجرا بولۇۋاتامدۇ سىنايدۇ."
 
 #. description
-#: ../jobs/graphics.txt.in:68 ../jobs/sru_suite.txt.in:157
+#: ../jobs/graphics.txt.in:68
 msgid "Test that the X is not running in failsafe mode."
-msgstr ""
+msgstr "X ئىجراسىنىڭ بىخەتەر ھالەتتە ئىجرا بولمىغانلىقىنى سىنايدۇ."
 
 #. description
 #: ../jobs/graphics.txt.in:75
@@ -705,44 +795,44 @@ msgstr ""
 "600) غا تەڭ ياكى ئۇنىڭدىن چوڭلۇقىنى تەكشۈرۈڭ. تەپسىلاتى ئۈچۈن بۇ يەرگە قاراڭ."
 
 #. description
-#: ../jobs/graphics.txt.in:107
+#: ../jobs/graphics.txt.in:94
 msgid "https://help.ubuntu.com/community/Installation/SystemRequirements"
 msgstr "https://help.ubuntu.com/community/Installation/SystemRequirements"
 
 #. description
-#: ../jobs/graphics.txt.in:117
+#: ../jobs/graphics.txt.in:104
 msgid "Select Test to display a video test."
 msgstr "«سىنا» نى چېكىپ سىن سىنىقىنى كۆرۈڭ."
 
 #. description
-#: ../jobs/graphics.txt.in:117
+#: ../jobs/graphics.txt.in:104
 msgid "Do you see color bars and static?"
 msgstr "رەڭ تاياقچىلىرى ۋە static نى كۆردىڭىزمۇ؟"
 
 #. description
-#: ../jobs/graphics.txt.in:126
+#: ../jobs/graphics.txt.in:113
 msgid ""
 "The following screens and video modes have been detected on your system:"
 msgstr "سىستېمىڭىزدا تۆۋەندىكىدەك ئېكران ۋە سىن ھالەتلىرى بار ئىكەن:"
 
 #. description
-#: ../jobs/graphics.txt.in:138
+#: ../jobs/graphics.txt.in:125
 msgid ""
 "Select Test to cycle through the detected video modes for your system."
 msgstr "«سىنا» نى چېكىپ، سىستېمىڭىزنىڭ سىن ھالىتىنى تولۇق تېپىپ چىقىڭ."
 
 #. description
-#: ../jobs/graphics.txt.in:138
+#: ../jobs/graphics.txt.in:125
 msgid "Did the screen appear to be working for each mode?"
 msgstr "ئېكران ھەممىسىدە نورمال ئىشلىدىمۇ؟"
 
 #. description
-#: ../jobs/graphics.txt.in:146
+#: ../jobs/graphics.txt.in:133
 msgid "Check that the hardware is able to run compiz."
 msgstr "قاتتىق دېتالدا compiz نى ئىجرا قىلغىلى بولىدىغانلىقىنى تەكشۈرۈڭ."
 
 #. description
-#: ../jobs/graphics.txt.in:153
+#: ../jobs/graphics.txt.in:140
 msgid ""
 "Select Test to execute glxgears to ensure that minimal 3d graphics support "
 "is in place."
@@ -751,24 +841,24 @@ msgstr ""
 "گرافىكنى قوللايدىغانلىقىنى تەكشۈرۈڭ."
 
 #. description
-#: ../jobs/graphics.txt.in:153
+#: ../jobs/graphics.txt.in:140
 msgid "Did the 3d animation appear?"
-msgstr "3D جانسىنى كۆرۈندىمۇ؟"
+msgstr "3D جانلاندۇرۇم كۆرۈندىمۇ؟"
 
 #. description
-#: ../jobs/info.txt.in:60 ../jobs/screenshot.txt.in:7
+#: ../jobs/info.txt.in:69 ../jobs/screenshot.txt.in:7
 msgid "Captures a screenshot."
-msgstr ""
+msgstr "ئېكران كۆرۈنۈشىنى تۇتىدۇ."
 
 #. description
-#: ../jobs/info.txt.in:71 ../jobs/sru_suite.txt.in:167
+#: ../jobs/info.txt.in:80
 msgid "Gather log from the firmware test suite run"
 msgstr ""
 
 #. description
-#: ../jobs/info.txt.in:82
+#: ../jobs/info.txt.in:91
 msgid "Bootchart information."
-msgstr ""
+msgstr "Bootchart ئۇچۇرى."
 
 #. description
 #: ../jobs/input.txt.in:4
@@ -798,6 +888,8 @@ msgid ""
 "Tests to see that apt can access repositories and get updates (does not "
 "install updates)"
 msgstr ""
+"پروگرامما apt نىڭ خەزىنىنى زىيارەت قىلالايدىغانلىقىنى ۋە يېڭىلانمىلارنى "
+"ئالالايدىغانلىقىنى سىنايدۇ(يېڭىلانمىلارنى ئورناتمايدۇ)"
 
 #. description
 #: ../jobs/keys.txt.in:4
@@ -805,6 +897,8 @@ msgid ""
 "Press the brightness buttons on the keyboard. A status window should \\ "
 "appear and the brightness should change."
 msgstr ""
+"ھەرپتاختا ئۇستىدىكى ‹يورۇقلۇق› توپچىسىنى چېكىڭ. ھالەت كۆزنىكى كۆرۈنۈپ "
+"يورۇقلۇقى ئۆزگىرىدۇ."
 
 #. description
 #: ../jobs/keys.txt.in:12
@@ -812,11 +906,13 @@ msgid ""
 "Press the volume buttons on the keyboard. A status window should \\ appear "
 "and the volume should change."
 msgstr ""
+"ھەرپتاختا ئۇستىدىكى ‹ئاۋاز مىقدارى› توپچىسىنى چېكىڭ. ھالەت كۆزنىكى كۆرۈنۈپ "
+"ئاۋاز مىقدارى ئۆزگىرىدۇ."
 
 #. description
 #: ../jobs/keys.txt.in:12
 msgid "Do the buttons work?"
-msgstr ""
+msgstr "بۇ توپچىلار نورمال ئىشلىدىمۇ؟"
 
 #. description
 #: ../jobs/keys.txt.in:21
@@ -824,61 +920,75 @@ msgid ""
 "Press the mute key on the keyboard. A status window should appear \\ and the "
 "volume should mute/unmute when pressed multiple times."
 msgstr ""
+"ھەرپتاختا ئۇستىدىكى ‹ئۇنسىزلەش› كۇنۇپكىسىنى بېسىڭ. بۇ توپچىنى بېسىۋەرسە \\\\ "
+"ھالەت كۆزنىكى كۆرۈنۈپ ئۈن/ئۈنسىز ھالىتى ئالمىشىدۇ."
 
 #. description
-#: ../jobs/keys.txt.in:30
+#: ../jobs/keys.txt.in:31
 msgid ""
 "Press the sleep key on the keyboard. The computer should suspend and, \\ "
 "after pressing the power button, resume successfully."
 msgstr ""
+"ھەرپتاختا ئۇستىدىكى ‹ئۇخلاش› كۇنۇپكىسىنى بېسىڭ. كومپيۇتېر چوقۇم  توڭلاپ "
+"قالىدۇ(suspend)، ئاندىن مەنبە توپچىسى بېسىلسا نورمال ئەسلىگە كېلىدۇ."
 
 #. description
-#: ../jobs/keys.txt.in:39
+#: ../jobs/keys.txt.in:40
 msgid ""
 "Press the battery information key on the keyboard. A status window \\ should "
 "appear and the amount of battery remaining should be displayed."
 msgstr ""
+"ھەرپتاختا ئۇستىدىكى ‹توكدان ئۇچۇرى› كۇنۇپكىسىنى بېسىڭ. بىر ھالەت كۆزنىكى \\ "
+"چوقۇم كۆرۈنىدۇ ۋە ئۇنىڭدا توكداننىڭ ھالىتى كۆرسىتىلىدۇ."
 
 #. description
-#: ../jobs/keys.txt.in:48
+#: ../jobs/keys.txt.in:49
 msgid ""
 "Press the wireless networking key on the keyboard. The bluetooth icon \\ and "
 "the network connnection should go down if connected through the \\ wifi "
 "interface."
 msgstr ""
+"ھەرپتاختا ئۇستىدىكى ‹سىمسىز تور› كۇنۇپكىسىنى بېسىڭ. ئەگەر باغلىنىش سىمسىز "
+"ئارايۈز \\ ئارقىلىق باغلانغان بولسا كۆكچىش سىنبەلگىسى ۋە باغلىنىش ئۈزۈلىدۇ."
 
 #. description
-#: ../jobs/keys.txt.in:48
+#: ../jobs/keys.txt.in:49
 msgid ""
 "Press the same key again and check that bluetooth icon is again \\ displayed "
 "and that the network connection is re-established \\ automatically."
 msgstr ""
+"ئوخشاش كۇنۇپكىنى يەنە بىر باسسىڭىز، كۆكچىش سىنبەلگىسى كۆرۈنىدۇ ۋە سىمسىز تور "
+"\\ باغلىنىشى قايتا باغلىنىدۇ."
 
 #. description
-#: ../jobs/keys.txt.in:48
+#: ../jobs/keys.txt.in:49
 msgid "Does the key work?"
-msgstr ""
+msgstr "كۇنۇپكا ئىشلىدىمۇ؟"
 
 #. description
-#: ../jobs/keys.txt.in:62
+#: ../jobs/keys.txt.in:63
 msgid ""
 "The keyboard may have dedicated keys for controlling media as follows:"
 msgstr ""
+"ھەرپتاختىدا ۋاسىتىلەرنى تىزگىنلەيدىغان تۆۋەندىكىدەك مەخسۇس كۇنۇپكىلار بولۇشى "
+"مۇمكىن:"
 
 #. description
-#: ../jobs/keys.txt.in:62
+#: ../jobs/keys.txt.in:63
 msgid "* Play/Pause * Stop * Forward * Backward (Rewind)"
 msgstr ""
+"* Play/Pause(قويۇش/ۋاقىتلىق توختاش) * Stop(توختاش) * Forward(ئالدىغا) * "
+"Backward (Rewind)(كەينىگە)"
 
 #. description
-#: ../jobs/keys.txt.in:62
+#: ../jobs/keys.txt.in:63
 msgid "Play a media file and press each key in turn."
-msgstr ""
+msgstr "ۋاسىتە ھۆججىتىنى قويۇپ ھەر بىر كۇنۇپكىنى نۆۋەت بىلەن بېسىڭ."
 
 #. description
-#: ../jobs/keys.txt.in:62
+#: ../jobs/keys.txt.in:63
 msgid "Do the keys work as expected?"
-msgstr ""
+msgstr "ھەممىسى نورمال ئىشلىدىمۇ؟"
 
 #. description
 #: ../jobs/local.txt.in:3
@@ -888,27 +998,27 @@ msgstr "ئۈن سىناقلىرى"
 #. description
 #: ../jobs/local.txt.in:8
 msgid "Bluetooth tests"
-msgstr ""
+msgstr "كۆكچىش سىناقلىرى"
 
 #. description
 #: ../jobs/local.txt.in:13
 msgid "Camera tests"
-msgstr ""
+msgstr "كامېرا سىناقلىرى"
 
 #. description
 #: ../jobs/local.txt.in:18
 msgid "Codec tests"
-msgstr ""
+msgstr "كودلىغۇچ-كودسىزلىغۇچ سىناقلىرى"
 
 #. description
 #: ../jobs/local.txt.in:23
 msgid "CPU tests"
-msgstr ""
+msgstr "CPU سىناقلىرى"
 
 #. description
 #: ../jobs/local.txt.in:28
 msgid "System Daemon tests"
-msgstr ""
+msgstr "سىستېما Daemon سىناقلىرى"
 
 #. description
 #: ../jobs/local.txt.in:33
@@ -923,17 +1033,17 @@ msgstr "بارماق ئىزى ئوقۇغۇچ سىناقلىرى"
 #. description
 #: ../jobs/local.txt.in:43
 msgid "Firewire disk tests"
-msgstr "Firewire دىسكا سىناقلىرى"
+msgstr "ئوتسىم(Firewire) دىسكا سىناقلىرى"
 
 #. description
 #: ../jobs/local.txt.in:48
 msgid "Floppy disk tests"
-msgstr ""
+msgstr "يۇمشاق دىسكا سىناقلىرى"
 
 #. description
 #: ../jobs/local.txt.in:53
 msgid "Graphics tests"
-msgstr ""
+msgstr "گرافىك سىناقلىرى"
 
 #. description
 #: ../jobs/local.txt.in:58
@@ -943,77 +1053,77 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:63
 msgid "Input Devices tests"
-msgstr ""
+msgstr "كىرگۈزۈش ئۈسكۈنىلىرى سىناقلىرى"
 
 #. description
 #: ../jobs/local.txt.in:68
 msgid "Software Installation tests"
-msgstr ""
+msgstr "يۇمشاق دېتال ئورنىتىش سىناقلىرى"
 
 #. description
 #: ../jobs/local.txt.in:73
 msgid "Hotkey tests"
-msgstr ""
-
-#. description
-#: ../jobs/local.txt.in:78
-msgid "Media Card tests"
-msgstr ""
+msgstr "قىزىق كۇنۇپكىلار سىناقلىرى"
 
 #. description
 #: ../jobs/local.txt.in:83
-msgid "Miscellaneous tests"
-msgstr ""
+msgid "Media Card tests"
+msgstr "ۋاسىتە كارتىلىرى سىناقلىرى"
 
 #. description
-#: ../jobs/local.txt.in:88
+#: ../jobs/local.txt.in:93
+msgid "Miscellaneous tests"
+msgstr "باشقا سىناقلار"
+
+#. description
+#: ../jobs/local.txt.in:98
 msgid "Monitor tests"
 msgstr "ئېكران سىناقلىرى"
 
 #. description
-#: ../jobs/local.txt.in:93
-msgid "Networking tests"
-msgstr ""
-
-#. description
-#: ../jobs/local.txt.in:98
-msgid "PCMCIA/PCIX Card tests"
-msgstr ""
-
-#. description
 #: ../jobs/local.txt.in:103
-msgid "Peripheral tests"
-msgstr "يانداش ئۈسكىنە سىناقلىرى"
-
-#. description
-#: ../jobs/local.txt.in:108
-msgid "Power Management tests"
-msgstr ""
+msgid "Networking tests"
+msgstr "تور سىناقلىرى"
 
 #. description
 #: ../jobs/local.txt.in:113
-msgid "Unity tests"
-msgstr ""
+msgid "PCMCIA/PCIX Card tests"
+msgstr "PCMCIA/PCIX كارتىلىرى سىناقلىرى"
 
 #. description
 #: ../jobs/local.txt.in:118
+msgid "Peripheral tests"
+msgstr "يانداش ئۈسكۈنە سىناقلىرى"
+
+#. description
+#: ../jobs/local.txt.in:123
+msgid "Power Management tests"
+msgstr "مەنبە باشقۇرۇش سىناقلىرى"
+
+#. description
+#: ../jobs/local.txt.in:133
+msgid "Unity tests"
+msgstr "Unity سىناقلىرى"
+
+#. description
+#: ../jobs/local.txt.in:143
 msgid "User Applications"
 msgstr "ئىشلەتكۈچى پروگراممىلىرى"
 
 #. description
-#: ../jobs/local.txt.in:123
+#: ../jobs/local.txt.in:153
 msgid "Stress tests"
 msgstr ""
 
 #. description
 #: ../jobs/ltp.txt.in:3
 msgid "Linux Test Project"
-msgstr "Linux سىناق قۇرۇلۇشى"
+msgstr "لىنۇكىس(Linux) سىناق قۇرۇلۇشى"
 
 #. description
 #: ../jobs/mago.txt.in:3
 msgid "Automated desktop testing"
-msgstr ""
+msgstr "ئاپتوماتلاشقان ئۈستەلئۈستى سىنىقى"
 
 #. description
 #: ../jobs/mediacard.txt.in:3
@@ -1026,11 +1136,11 @@ msgid ""
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
 "بىخەتەر رەقەم كارتىسىنى(Secure Digital (SD)، SD كارتىسى) قوللاشنى تەكشۈرۈش:\n"
-" 1.- SD كارتىسىنى كومپيۇتېرغا سالىسىز.\n"
-" 2.- ئۈستەلئۈستىدە ۋە «ئورۇنلار» دېگەن تىزىملىكتە بىر سىنبەلگىسى كۆرۈنىدۇ.\n"
-" 3.- ئۈستەلئۈستىدىكى سىنبەلگىنىڭ ئۈستىدە چاشقىنەكنىڭ ئوڭ توپچىسىنى چېكىپ "
+" 1- SD كارتىسىنى كومپيۇتېرغا سالىسىز.\n"
+" 2- ئۈستەلئۈستىدە ۋە «ئورۇنلار» دېگەن تىزىملىكتە بىر سىنبەلگىسى كۆرۈنىدۇ.\n"
+" 3- ئۈستەلئۈستىدىكى سىنبەلگىنىڭ ئۈستىدە چاشقىنەكنىڭ ئوڭ توپچىسىنى چېكىپ "
 "ئۇنىڭدىن «قوزغاتقۇچنى بىخەتەر چىقىرىش» نى چېكىسىز.\n"
-" 4.- سىنبەلگە ئۈستەلئۈستىدىن ۋە «ئورۇنلار» تىزىملىكىدىن يوقىلىدۇ."
+" 4- سىنبەلگە ئۈستەلئۈستىدىن ۋە «ئورۇنلار» تىزىملىكىدىن يوقىلىدۇ."
 
 #. description
 #: ../jobs/mediacard.txt.in:15
@@ -1044,11 +1154,11 @@ msgid ""
 msgstr ""
 "بىخەتەر رەقەم كارتىسىنى(Secure Digital (SD)، SD كارتىسى) قوللاشنى قايتا "
 "تەكشۈرۈش:\n"
-" 1.- SD كارتىسىنى كومپيۇتېرغا سالىسىز.\n"
-" 2.- ئۈستەلئۈستىدە ۋە «ئورۇنلار» دېگەن تىزىملىكتە بىر سىنبەلگىسى كۆرۈنىدۇ.\n"
-" 3.- ئۈستەلئۈستىدىكى سىنبەلگىنىڭ ئۈستىدە چاشقىنەكنىڭ ئوڭ توپچىسىنى چېكىپ "
+" 1- SD كارتىسىنى كومپيۇتېرغا سالىسىز.\n"
+" 2- ئۈستەلئۈستىدە ۋە «ئورۇنلار» دېگەن تىزىملىكتە بىر سىنبەلگىسى كۆرۈنىدۇ.\n"
+" 3- ئۈستەلئۈستىدىكى سىنبەلگىنىڭ ئۈستىدە چاشقىنەكنىڭ ئوڭ توپچىسىنى چېكىپ "
 "ئۇنىڭدىن «قوزغاتقۇچنى بىخەتەر چىقىرىش» نى چېكىسىز.\n"
-" 4.- سىنبەلگە ئۈستەلئۈستىدىن ۋە «ئورۇنلار» تىزىملىكىدىن يوقىلىدۇ."
+" 4- سىنبەلگە ئۈستەلئۈستىدىن ۋە «ئورۇنلار» تىزىملىكىدىن يوقىلىدۇ."
 
 #. description
 #: ../jobs/mediacard.txt.in:26
@@ -1062,11 +1172,11 @@ msgid ""
 msgstr ""
 "بىخەتەر رەقەم يۇقىرى سىغىم كارتىسىنى(Secure Digital High Capacity(SDHC)، "
 "SDHC كارتىسى) قوللاشنى تەكشۈرۈش:\n"
-" 1.- SDHC كارتىسىنى كومپيۇتېرغا سالىسىز.\n"
-" 2.- ئۈستەلئۈستىدە ۋە «ئورۇنلار» دېگەن تىزىملىكتە بىر سىنبەلگىسى كۆرۈنىدۇ.\n"
-" 3.- ئۈستەلئۈستىدىكى سىنبەلگىنىڭ ئۈستىدە چاشقىنەكنىڭ ئوڭ توپچىسىنى چېكىپ "
+" 1- SDHC كارتىسىنى كومپيۇتېرغا سالىسىز.\n"
+" 2- ئۈستەلئۈستىدە ۋە «ئورۇنلار» دېگەن تىزىملىكتە بىر سىنبەلگىسى كۆرۈنىدۇ.\n"
+" 3- ئۈستەلئۈستىدىكى سىنبەلگىنىڭ ئۈستىدە چاشقىنەكنىڭ ئوڭ توپچىسىنى چېكىپ "
 "ئۇنىڭدىن «قوزغاتقۇچنى بىخەتەر چىقىرىش» نى چېكىسىز.\n"
-" 4.- سىنبەلگە ئۈستەلئۈستىدىن ۋە «ئورۇنلار» تىزىملىكىدىن يوقىلىدۇ."
+" 4- سىنبەلگە ئۈستەلئۈستىدىن ۋە «ئورۇنلار» تىزىملىكىدىن يوقىلىدۇ."
 
 #. description
 #: ../jobs/mediacard.txt.in:38
@@ -1080,11 +1190,11 @@ msgid ""
 msgstr ""
 "بىخەتەر رەقەم يۇقىرى سىغىم كارتىسىنى(Secure Digital High Capacity(SDHC)، "
 "SDHC كارتىسى) قوللاشنى تەكشۈرۈش:\n"
-" 1.- SDHC كارتىسىنى كومپيۇتېرغا سالىسىز.\n"
-" 2.- ئۈستەلئۈستىدە ۋە «ئورۇنلار» دېگەن تىزىملىكتە بىر سىنبەلگىسى كۆرۈنىدۇ.\n"
-" 3.- ئۈستەلئۈستىدىكى سىنبەلگىنىڭ ئۈستىدە چاشقىنەكنىڭ ئوڭ توپچىسىنى چېكىپ "
+" 1- SDHC كارتىسىنى كومپيۇتېرغا سالىسىز.\n"
+" 2- ئۈستەلئۈستىدە ۋە «ئورۇنلار» دېگەن تىزىملىكتە بىر سىنبەلگىسى كۆرۈنىدۇ.\n"
+" 3- ئۈستەلئۈستىدىكى سىنبەلگىنىڭ ئۈستىدە چاشقىنەكنىڭ ئوڭ توپچىسىنى چېكىپ "
 "ئۇنىڭدىن «قوزغاتقۇچنى بىخەتەر چىقىرىش» نى چېكىسىز.\n"
-" 4.- سىنبەلگە ئۈستەلئۈستىدىن ۋە «ئورۇنلار» تىزىملىكىدىن يوقىلىدۇ."
+" 4- سىنبەلگە ئۈستەلئۈستىدىن ۋە «ئورۇنلار» تىزىملىكىدىن يوقىلىدۇ."
 
 #. description
 #: ../jobs/mediacard.txt.in:49
@@ -1098,11 +1208,11 @@ msgid ""
 msgstr ""
 "كوپ ۋاسىتە كارتىسىنى(Multi Media Card (MMC)، MMC كارتىسى) قوللاشنى "
 "تەكشۈرۈش:\n"
-" 1.- MMC كارتىسىنى كومپيۇتېرغا سالىسىز.\n"
-" 2.- ئۈستەلئۈستىدە ۋە «ئورۇنلار» دېگەن تىزىملىكتە بىر سىنبەلگىسى كۆرۈنىدۇ.\n"
-" 3.- ئۈستەلئۈستىدىكى سىنبەلگىنىڭ ئۈستىدە چاشقىنەكنىڭ ئوڭ توپچىسىنى چېكىپ "
+" 1- MMC كارتىسىنى كومپيۇتېرغا سالىسىز.\n"
+" 2- ئۈستەلئۈستىدە ۋە «ئورۇنلار» دېگەن تىزىملىكتە بىر سىنبەلگىسى كۆرۈنىدۇ.\n"
+" 3- ئۈستەلئۈستىدىكى سىنبەلگىنىڭ ئۈستىدە چاشقىنەكنىڭ ئوڭ توپچىسىنى چېكىپ "
 "ئۇنىڭدىن «قوزغاتقۇچنى بىخەتەر چىقىرىش» نى چېكىسىز.\n"
-" 4.- سىنبەلگە ئۈستەلئۈستىدىن ۋە «ئورۇنلار» تىزىملىكىدىن يوقىلىدۇ."
+" 4- سىنبەلگە ئۈستەلئۈستىدىن ۋە «ئورۇنلار» تىزىملىكىدىن يوقىلىدۇ."
 
 #. description
 #: ../jobs/mediacard.txt.in:61
@@ -1116,11 +1226,11 @@ msgid ""
 msgstr ""
 "كوپ ۋاسىتە كارتىسىنى(Multi Media Card (MMC)، MMC كارتىسى) قوللاشنى قايتا "
 "تەكشۈرۈش:\n"
-" 1.- MMC كارتىسىنى كومپيۇتېرغا سالىسىز.\n"
-" 2.- ئۈستەلئۈستىدە ۋە «ئورۇنلار» دېگەن تىزىملىكتە بىر سىنبەلگىسى كۆرۈنىدۇ.\n"
-" 3.- ئۈستەلئۈستىدىكى سىنبەلگىنىڭ ئۈستىدە چاشقىنەكنىڭ ئوڭ توپچىسىنى چېكىپ "
+" 1- MMC كارتىسىنى كومپيۇتېرغا سالىسىز.\n"
+" 2- ئۈستەلئۈستىدە ۋە «ئورۇنلار» دېگەن تىزىملىكتە بىر سىنبەلگىسى كۆرۈنىدۇ.\n"
+" 3- ئۈستەلئۈستىدىكى سىنبەلگىنىڭ ئۈستىدە چاشقىنەكنىڭ ئوڭ توپچىسىنى چېكىپ "
 "ئۇنىڭدىن «قوزغاتقۇچنى بىخەتەر چىقىرىش» نى چېكىسىز.\n"
-" 4.- سىنبەلگە ئۈستەلئۈستىدىن ۋە «ئورۇنلار» تىزىملىكىدىن يوقىلىدۇ."
+" 4- سىنبەلگە ئۈستەلئۈستىدىن ۋە «ئورۇنلار» تىزىملىكىدىن يوقىلىدۇ."
 
 #. description
 #: ../jobs/mediacard.txt.in:72
@@ -1133,11 +1243,11 @@ msgid ""
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
 "ئەسلەك تايىقى(Memory Stick (MS)، MS كارتىسى) قوللاشنى تەكشۈرۈش:\n"
-" 1.- MS كارتىسىنى كومپيۇتېرغا سالىسىز.\n"
-" 2.- ئۈستەلئۈستىدە ۋە «ئورۇنلار» دېگەن تىزىملىكتە بىر سىنبەلگىسى كۆرۈنىدۇ.\n"
-" 3.- ئۈستەلئۈستىدىكى سىنبەلگىنىڭ ئۈستىدە چاشقىنەكنىڭ ئوڭ توپچىسىنى چېكىپ "
+" 1- MS كارتىسىنى كومپيۇتېرغا سالىسىز.\n"
+" 2- ئۈستەلئۈستىدە ۋە «ئورۇنلار» دېگەن تىزىملىكتە بىر سىنبەلگىسى كۆرۈنىدۇ.\n"
+" 3- ئۈستەلئۈستىدىكى سىنبەلگىنىڭ ئۈستىدە چاشقىنەكنىڭ ئوڭ توپچىسىنى چېكىپ "
 "ئۇنىڭدىن «قوزغاتقۇچنى بىخەتەر چىقىرىش» نى چېكىسىز.\n"
-" 4.- سىنبەلگە ئۈستەلئۈستىدىن ۋە «ئورۇنلار» تىزىملىكىدىن يوقىلىدۇ."
+" 4- سىنبەلگە ئۈستەلئۈستىدىن ۋە «ئورۇنلار» تىزىملىكىدىن يوقىلىدۇ."
 
 #. description
 #: ../jobs/mediacard.txt.in:84
@@ -1150,11 +1260,11 @@ msgid ""
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
 "ئەسلەك تايىقى(Memory Stick (MS)، MS كارتىسى) قوللاشنى قايتا تەكشۈرۈش:\n"
-" 1.- MS كارتىسىنى كومپيۇتېرغا سالىسىز.\n"
-" 2.- ئۈستەلئۈستىدە ۋە «ئورۇنلار» دېگەن تىزىملىكتە بىر سىنبەلگىسى كۆرۈنىدۇ.\n"
-" 3.- ئۈستەلئۈستىدىكى سىنبەلگىنىڭ ئۈستىدە چاشقىنەكنىڭ ئوڭ توپچىسىنى چېكىپ "
+" 1- MS كارتىسىنى كومپيۇتېرغا سالىسىز.\n"
+" 2- ئۈستەلئۈستىدە ۋە «ئورۇنلار» دېگەن تىزىملىكتە بىر سىنبەلگىسى كۆرۈنىدۇ.\n"
+" 3- ئۈستەلئۈستىدىكى سىنبەلگىنىڭ ئۈستىدە چاشقىنەكنىڭ ئوڭ توپچىسىنى چېكىپ "
 "ئۇنىڭدىن «قوزغاتقۇچنى بىخەتەر چىقىرىش» نى چېكىسىز.\n"
-" 4.- سىنبەلگە ئۈستەلئۈستىدىن ۋە «ئورۇنلار» تىزىملىكىدىن يوقىلىدۇ."
+" 4- سىنبەلگە ئۈستەلئۈستىدىن ۋە «ئورۇنلار» تىزىملىكىدىن يوقىلىدۇ."
 
 #. description
 #: ../jobs/mediacard.txt.in:95
@@ -1167,11 +1277,11 @@ msgid ""
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
 "ئەسلەك تايىقى Pro (Memory Stick Pro(MS)، MSP كارتىسى) قوللاشنى تەكشۈرۈش:\n"
-" 1.- MSP كارتىسىنى كومپيۇتېرغا سالىسىز.\n"
-" 2.- ئۈستەلئۈستىدە ۋە «ئورۇنلار» دېگەن تىزىملىكتە بىر سىنبەلگىسى كۆرۈنىدۇ.\n"
-" 3.- ئۈستەلئۈستىدىكى سىنبەلگىنىڭ ئۈستىدە چاشقىنەكنىڭ ئوڭ توپچىسىنى چېكىپ "
+" 1- MSP كارتىسىنى كومپيۇتېرغا سالىسىز.\n"
+" 2- ئۈستەلئۈستىدە ۋە «ئورۇنلار» دېگەن تىزىملىكتە بىر سىنبەلگىسى كۆرۈنىدۇ.\n"
+" 3- ئۈستەلئۈستىدىكى سىنبەلگىنىڭ ئۈستىدە چاشقىنەكنىڭ ئوڭ توپچىسىنى چېكىپ "
 "ئۇنىڭدىن «قوزغاتقۇچنى بىخەتەر چىقىرىش» نى چېكىسىز.\n"
-" 4.- سىنبەلگە ئۈستەلئۈستىدىن ۋە «ئورۇنلار» تىزىملىكىدىن يوقىلىدۇ."
+" 4- سىنبەلگە ئۈستەلئۈستىدىن ۋە «ئورۇنلار» تىزىملىكىدىن يوقىلىدۇ."
 
 #. description
 #: ../jobs/mediacard.txt.in:107
@@ -1185,11 +1295,11 @@ msgid ""
 msgstr ""
 "ئەسلەك تايىقى Pro (Memory Stick Pro(MS)، MSP كارتىسى) قوللاشنى قايتا "
 "تەكشۈرۈش:\n"
-" 1.- MSP كارتىسىنى كومپيۇتېرغا سالىسىز.\n"
-" 2.- ئۈستەلئۈستىدە ۋە «ئورۇنلار» دېگەن تىزىملىكتە بىر سىنبەلگىسى كۆرۈنىدۇ.\n"
-" 3.- ئۈستەلئۈستىدىكى سىنبەلگىنىڭ ئۈستىدە چاشقىنەكنىڭ ئوڭ توپچىسىنى چېكىپ "
+" 1- MSP كارتىسىنى كومپيۇتېرغا سالىسىز.\n"
+" 2- ئۈستەلئۈستىدە ۋە «ئورۇنلار» دېگەن تىزىملىكتە بىر سىنبەلگىسى كۆرۈنىدۇ.\n"
+" 3- ئۈستەلئۈستىدىكى سىنبەلگىنىڭ ئۈستىدە چاشقىنەكنىڭ ئوڭ توپچىسىنى چېكىپ "
 "ئۇنىڭدىن «قوزغاتقۇچنى بىخەتەر چىقىرىش» نى چېكىسىز.\n"
-" 4.- سىنبەلگە ئۈستەلئۈستىدىن ۋە «ئورۇنلار» تىزىملىكىدىن يوقىلىدۇ."
+" 4- سىنبەلگە ئۈستەلئۈستىدىن ۋە «ئورۇنلار» تىزىملىكىدىن يوقىلىدۇ."
 
 #. description
 #: ../jobs/mediacard.txt.in:118
@@ -1202,11 +1312,11 @@ msgid ""
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
 "Compact Flash (CF) كارتىسى قوللاشنى قايتا تەكشۈرۈش:\n"
-" 1.- CF كارتىسىنى كومپيۇتېرغا سالىسىز.\n"
-" 2.- ئۈستەلئۈستىدە ۋە «ئورۇنلار» دېگەن تىزىملىكتە بىر سىنبەلگىسى كۆرۈنىدۇ.\n"
-" 3.- ئۈستەلئۈستىدىكى سىنبەلگىنىڭ ئۈستىدە چاشقىنەكنىڭ ئوڭ توپچىسىنى چېكىپ "
+" 1- CF كارتىسىنى كومپيۇتېرغا سالىسىز.\n"
+" 2- ئۈستەلئۈستىدە ۋە «ئورۇنلار» دېگەن تىزىملىكتە بىر سىنبەلگىسى كۆرۈنىدۇ.\n"
+" 3- ئۈستەلئۈستىدىكى سىنبەلگىنىڭ ئۈستىدە چاشقىنەكنىڭ ئوڭ توپچىسىنى چېكىپ "
 "ئۇنىڭدىن «قوزغاتقۇچنى بىخەتەر چىقىرىش» نى چېكىسىز.\n"
-" 4.- سىنبەلگە ئۈستەلئۈستىدىن ۋە «ئورۇنلار» تىزىملىكىدىن يوقىلىدۇ."
+" 4- سىنبەلگە ئۈستەلئۈستىدىن ۋە «ئورۇنلار» تىزىملىكىدىن يوقىلىدۇ."
 
 #. description
 #: ../jobs/mediacard.txt.in:130
@@ -1219,11 +1329,11 @@ msgid ""
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
 "Compact Flash (CF) كارتىسى قوللاشنى قايتا تەكشۈرۈش:\n"
-" 1.- CF كارتىسىنى كومپيۇتېرغا سالىسىز.\n"
-" 2.- ئۈستەلئۈستىدە ۋە «ئورۇنلار» دېگەن تىزىملىكتە بىر سىنبەلگىسى كۆرۈنىدۇ.\n"
-" 3.- ئۈستەلئۈستىدىكى سىنبەلگىنىڭ ئۈستىدە چاشقىنەكنىڭ ئوڭ توپچىسىنى چېكىپ "
+" 1- CF كارتىسىنى كومپيۇتېرغا سالىسىز.\n"
+" 2- ئۈستەلئۈستىدە ۋە «ئورۇنلار» دېگەن تىزىملىكتە بىر سىنبەلگىسى كۆرۈنىدۇ.\n"
+" 3- ئۈستەلئۈستىدىكى سىنبەلگىنىڭ ئۈستىدە چاشقىنەكنىڭ ئوڭ توپچىسىنى چېكىپ "
 "ئۇنىڭدىن «قوزغاتقۇچنى بىخەتەر چىقىرىش» نى چېكىسىز.\n"
-" 4.- سىنبەلگە ئۈستەلئۈستىدىن ۋە «ئورۇنلار» تىزىملىكىدىن يوقىلىدۇ."
+" 4- سىنبەلگە ئۈستەلئۈستىدىن ۋە «ئورۇنلار» تىزىملىكىدىن يوقىلىدۇ."
 
 #. description
 #: ../jobs/mediacard.txt.in:130
@@ -1233,7 +1343,7 @@ msgstr "سىنبەلگە ئاپتوماتىك پەيدا بولۇپ يوقالد
 #. description
 #: ../jobs/memory.txt.in:4
 msgid "The following amount of memory was detected:"
-msgstr ""
+msgstr "ئەسلەك سىغىمى تۆۋەندىكىدەك ئىكەن:"
 
 #. description
 #: ../jobs/memory.txt.in:16
@@ -1272,6 +1382,8 @@ msgid ""
 "ipmitool is required for ipmi testing. This checks for ipmitool and installs "
 "it if not available."
 msgstr ""
+"ipmi سىنىقى ئۈچۈن ipmitool زۆرۈر بولىدۇ. بۇنىڭدا ipmitool تەكشۈرۈلىدۇ، "
+"ئورنىتىلمىغان بولسا ئورنىتىدۇ."
 
 #. description
 #: ../jobs/miscellanea.txt.in:36
@@ -1368,6 +1480,10 @@ msgid ""
 " 2.- The monitor should go blank.\n"
 " 3.- Press any key or move the mouse to recover."
 msgstr ""
+"كۆرسەتكۈچنىڭ توك تېجەش ئىقتىدارىنى سىناش مەشغۇلاتى:\n"
+" 1-كۆزەتكۈچنىڭ توك تېجەش ئىقتىدارىنى سىناش ئۈچۈن ‹سىنا› نى تاللاڭ.\n"
+" 2-كۆرسەتكۈچ ئېكرانى قاپقارا بولىدۇ.\n"
+" 3- بىرەر كۇنۇپكا بېسىلسا ياكى چاشقىنەك ھەرىكەتلەندۈرۈلسە ئەسلىگە كېلىدۇ."
 
 #. description
 #: ../jobs/monitor.txt.in:46
@@ -1385,35 +1501,43 @@ msgid "Testing your connection to the Internet:"
 msgstr "ئىنتېرنېت باغلىنىشىنى سىناۋاتىدۇ."
 
 #. description
-#: ../jobs/networking.txt.in:26
+#: ../jobs/networking.txt.in:21
 msgid "Network Information"
-msgstr ""
+msgstr "تور ئۇچۇرى"
 
 #. description
-#: ../jobs/networking.txt.in:46
+#: ../jobs/wireless.txt.in:6
 msgid "Wireless scanning test."
-msgstr ""
+msgstr "سىمسىز تور تەكشۈرۈش سىنىقى."
 
 #. description
-#: ../jobs/networking.txt.in:52
+#: ../jobs/wireless.txt.in:12
 msgid ""
 "Wireless network connection procedure: 1.- Click on the Network Manager "
 "applet 2.- Select a network below the 'Wireless networks' section 3.- Notify "
 "OSD should confirm that the connection has been established 4.- Select Test "
 "to verify that it's possible to establish an HTTP connection"
 msgstr ""
+"سىمسىز تور باغلىنىشى مەشغۇلاتى: 1- «تور باشقۇرۇش» قوللانچىقىنى چېكىسىز 2- "
+"‹سىمسىز تور› دىن بىر تورنى تاللايسىز 3-Notify OSD should confirm that the "
+"connection has been established 4- «سىنا» بېسىلسا HTTP باغلىنىشىنى "
+"تەكشۈرگىلى بولىدۇ"
 
 #. description
-#: ../jobs/networking.txt.in:64
+#: ../jobs/networking.txt.in:39
 msgid ""
 "Wired network connection procedure: 1.- Click on the Network Manager applet "
 "2.- Select a network below the 'Wired network' section 3.- Notify OSD should "
 "confirm that the connection has been established 4.- Select Test to verify "
 "that it's possible to establish an HTTP connection"
 msgstr ""
+"سىملىق تور باغلىنىشى مەشغۇلاتى: 1- «تور باشقۇرۇش» قوللانچىقىنى چېكىسىز 2- "
+"‹سىملىق تور› دىن بىر تورنى تاللايسىز 3-Notify OSD should confirm that the "
+"connection has been established 4- «سىنا» بېسىلسا HTTP باغلىنىشىنى "
+"تەكشۈرگىلى بولىدۇ"
 
 #. description
-#: ../jobs/networking.txt.in:76
+#: ../jobs/networking.txt.in:51
 msgid ""
 "Built-in modem network connection procedure: 1.- Connect the telephone line "
 "to the computer 2.- Right click on the Network Manager applet 3.- Select "
@@ -1422,62 +1546,73 @@ msgid ""
 "that the connection has been established 8.- Select Test to verify that it's "
 "possible to establish an HTTP connection"
 msgstr ""
+"كومپيۇتېردىكى مودېم ئارقىلىق تورغا باغلىنىش جەريانى: 1-تېلېفون سىمىنى "
+"كومپيۇتېرغا ئۇلايسىز. 2-«تور باشقۇرۇش» قوللانچىقىنى ئوڭ چېكىسىز 3-"
+"‹باغلىنىشنى تەھرىرلەش› نى تاللايسىز 4-‹DSL› بەتكۈچىنى تاللايسىز 5- ‹قوشۇش› "
+"توپچىسىنى چېكىسىز 6-باغلىنىش پارامېتىرلىرىنى مۇۋاپىق تەڭشەيسىز 7- Notify OSD "
+"should confirm that the connection has been established 8- ‹سىنا› تاللانسا "
+"HTTP باغلىنىشىنى تەكشۈرگىلى بولىدۇ"
 
 #. description
-#: ../jobs/networking.txt.in:76 ../jobs/peripheral.txt.in:15
+#: ../jobs/networking.txt.in:51 ../jobs/peripheral.txt.in:15
+#: ../jobs/wireless.txt.in:12
 msgid "Was the connection correctly established?"
-msgstr ""
+msgstr "باغلىنىش نورمال بولدىمۇ؟"
 
 #. description
-#: ../jobs/networking.txt.in:92
+#: ../jobs/networking.txt.in:67
 msgid ""
 "Automated test case to verify availability of some system on the network "
 "using ICMP ECHO packets."
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:99 ../jobs/peripheral.txt.in:32
+#: ../jobs/networking.txt.in:74 ../jobs/peripheral.txt.in:32
 msgid ""
 "Automated test case to make sure that it's possible to download files "
 "through HTTP"
 msgstr ""
+"ھۆججەتلەرنى HTTP ئارقىلىق چۈشۈرۈشكە بولىدىغانلىقىنى ئاپتوماتىك سىناش ئۇسۇلى"
 
 #. description
-#: ../jobs/networking.txt.in:107
+#: ../jobs/networking.txt.in:82
 msgid "Test to see if we can sync local clock to an NTP server"
-msgstr ""
+msgstr "يەرلىك سائەتنى NTP مۇلازىمېتىرى بىلەن قەدەمداشلاشقا بولامدۇ سىنايدۇ"
 
 #. description
-#: ../jobs/networking.txt.in:113
+#: ../jobs/networking.txt.in:88
 msgid ""
 "Verify that an installation of checkbox-server on the network can be reached "
 "over SSH."
 msgstr ""
+"ئورنىتىلغان checkbox-server قا توردا SSH ئارقىلىق باغلانغىلى بولامدۇ "
+"تەكشۈرىدۇ"
+
+#. description
+#: ../jobs/networking.txt.in:94
+msgid "Try to enable a remote printer on the network and print a test page."
+msgstr ""
+"توردىكى يىراقتىكى پرىنتېرنى ئىناۋەتلىك قىلىپ، سىناق بېتىنى سىناپ كۆرۈڭ."
+
+#. description
+#: ../jobs/networking.txt.in:99
+msgid "Multiple network cards"
+msgstr "بىر قانچە تور كارتىسى"
 
 #. description
 #: ../jobs/networking.txt.in:119
-msgid "Try to enable a remote printer on the network and print a test page."
-msgstr ""
-
-#. description
-#: ../jobs/networking.txt.in:124
-msgid "Multiple network cards"
-msgstr ""
-
-#. description
-#: ../jobs/networking.txt.in:144
 msgid "Test to measure the network bandwidth"
-msgstr ""
+msgstr "تور بەلۋېغىنى سىناش"
 
 #. description
 #: ../jobs/optical.txt.in:8
 msgid "The following optical drives were detected:"
-msgstr ""
+msgstr "تۆۋەندىكىدەك نۇر قوزغاتقۇچلىرى تېپىلدى:"
 
 #. description
 #: ../jobs/optical.txt.in:18
 msgid "Optical Storage device read tests"
-msgstr ""
+msgstr "ئوپتىكىلىق ساقلىغۇچ ئۈسكۈنىسىنىڭ ئوقۇش سىناقلىرى"
 
 #. description
 #: ../jobs/optical.txt.in:37
@@ -1485,6 +1620,8 @@ msgid ""
 "The detected optical drive seems to support writing. Enter a blank CDROM \\ "
 "into your drive and try writing to it."
 msgstr ""
+"ئوپتىكىلىق ئۈسكۈنىدە يازغىلى بولىدىغاندەك قىلىدۇ. قۇرۇق CDROM نى سېلىپ "
+"يېزىشنى سىناپ كۆرۈڭ."
 
 #. description
 #: ../jobs/optical.txt.in:46
@@ -1497,6 +1634,13 @@ msgid ""
 "\"Eject Volume\". 8.- The CD should be ejected and the icon removed from the "
 "desktop."
 msgstr ""
+"ئۈن CD نى قويۇش مەشغۇلاتى: 1-ئۈن CD نى ئوپتىكىلىق ئۈسكۈنىگە سالىسىز. 2- "
+"ئۈستەلئۈستىدە بىر سىنبەلگە پەيدا بولىدۇ. 3-سىنبەلگىنى ئوڭ چېكىسىز ۋە "
+"«Rhythmbox» دا ئاچ نى تاللايسىز. 4- CD نى قويىدىغان دىسكا قىلىپ تاللايسىز ۋە "
+"«قويۇش» توپچىسىنى چېكىسىز. 5-چوقۇم مۇزىكا ئاڭلىنىدۇ. 6- ئازراقتىن كېيىن "
+"«توختاش» نى چېكىسىز. 7- ئۈستەلئۈستىدىكى سىنبەلگىنى ئوڭ چېكىپ «دىسكىنى "
+"چىقىرىش» نى تاللايسىز. 8-دىسكا چىقىدۇ ۋە سىنبەلگە ئۈستەلئۈستىدىن غايىب "
+"بولىدۇ."
 
 #. description
 #: ../jobs/optical.txt.in:63
@@ -1504,11 +1648,13 @@ msgid ""
 "The detected optical drive seems to support writing. Enter a blank DVD \\ "
 "into your drive and try writing to it."
 msgstr ""
+"ئوپتىكىلىق ئۈسكۈنىدە يازغىلى بولىدىغاندەك قىلىدۇ. قۇرۇق DVD نى سېلىپ يېزىشنى "
+"سىناپ كۆرۈڭ."
 
 #. description
 #: ../jobs/optical.txt.in:63
 msgid "Does writing work?"
-msgstr ""
+msgstr "يېزىشقا بولدىمۇ؟"
 
 #. description
 #: ../jobs/optical.txt.in:72
@@ -1521,6 +1667,13 @@ msgid ""
 "\"Eject Volume\". 7.- The DVD should be ejected and the icon removed from "
 "the desktop."
 msgstr ""
+"كىنو قويۇش ئۇسۇلى(DVD دىكى): 1-كىنو بار DVD دىسكىسىنى ئوپتىكىلىق قوزغاتقۇچقا "
+"سالىسىز. 2-بىر كۆزنەك پەيدا بولىدۇ، ئۇنىڭ ئىچىدىن سىز بىر قىسىم "
+"مەشغۇلاتلارنى تاللىيالايسىز. بۇ يەردە ‹كىنو قويغۇنى ئېچىش› نى تاللاڭ. 3-"
+"قويغۇ قوزغىلىپ، كىنو قويۇلىدۇ. 4-ئازراق كۆرگەندىن كېيىن توختىتىسىز. 5-"
+"ئۈستەلئۈستىدە بىر سىنبەلگە پەيدا بولىدۇ. 6-ئۈستەلئۈستىدىكى سىنبەلگىنى ئوڭ "
+"چېكىپ «دىسكىنى چىقىرىش» نى تاللايسىز. 7-دىسكا چىقىدۇ ۋە سىنبەلگە "
+"ئۈستەلئۈستىدىن غايىب بولىدۇ."
 
 #. description
 #: ../jobs/optical.txt.in:90
@@ -1538,6 +1691,8 @@ msgid ""
 "Is your gnome system clock displaying the correct date and time for \\ your "
 "timezone?"
 msgstr ""
+"گىنوم(gnome) سىستېما سائىتى ۋاقىت رايونىغا ماس كەلگەن چېسلا ۋە ۋاقىتنى توغرا "
+"كۆرسەتتىمۇ؟"
 
 #. description
 #: ../jobs/panel_clock_test.txt.in:14
@@ -1548,6 +1703,11 @@ msgid ""
 "then Time and Date 3.- Ensure that your clock application is set to manual. "
 "4.- Change the time 1 hour back 5.- Close the window and reboot"
 msgstr ""
+"ۋاقىتنى تەكشۈرۈش ئۇسۇلى: 1-‹سىنا› نى چەكسىڭىز ۋاقىت ئالدىغا بىر سائەت "
+"سۈرۈلىدۇ. \\دىققەت: بۇنىڭ ئۈچۈن بىر مىنۇتتەك ۋاقىت كېتىدۇ 2-كۆزنەكچىدىن "
+"‹سىستېما›،‹باشقۇرۇش› نى ئاندىن كېيىن ‹ۋاقىت ۋە چېسلا› تاللايسىز. 3-سائەتنى "
+"قولدا تەڭشىگىلى بولىدىغانلىقىنى جەزملەڭ. 4-ۋاقىتنى كەينىگە بىر سائەت سۇرۇپ "
+"تەڭشەڭ. 5-كۆزنەكنى يېپىپ، سىستېمىنى قايتا قوزغىتىڭ."
 
 #. description
 #: ../jobs/panel_clock_test.txt.in:14
@@ -1555,11 +1715,12 @@ msgid ""
 "Is your system clock displaying the correct date and time for your \\ "
 "timezone?"
 msgstr ""
+"سىستېما سائىتى ۋاقىت رايونىغا ماس كەلگەن چېسلا ۋە ۋاقىتنى توغرا كۆرسەتتىمۇ؟"
 
 #. description
 #: ../jobs/panel_reboot.txt.in:4
 msgid "Please restart your machine from the Ubuntu Panel."
-msgstr ""
+msgstr "ئۇبۇنتۇ كۆزنەكچىدىن كومپيۇتېرنى قايتا قوزغىتىڭ."
 
 #. description
 #: ../jobs/panel_reboot.txt.in:4
@@ -1567,21 +1728,23 @@ msgid ""
 "Afterwards be sure to recover the previous Checkbox instance and \\ answer "
 "the question below:"
 msgstr ""
+"ئارقىدىن ئالدىنقى Checkbox ئۈلگىسىنى ئەسلىگە كەلتۈرۈڭ ۋە \\ تۆۋەندىكى "
+"سوئاللارغا جاۋاب بېرىڭ:"
 
 #. description
 #: ../jobs/panel_reboot.txt.in:4
 msgid "Did it restart and bring up the GUI login cleanly?"
-msgstr ""
+msgstr "قايتا قوزغىلىپ GUI كىرىش كۆزنىكى ئېنىق كۆرۈندىمۇ؟"
 
 #. description
 #: ../jobs/pcmcia-pcix.txt.in:3
 msgid "Plug a PCMCIA device into the computer."
-msgstr ""
+msgstr "كومپيۇتېرىڭىزغا PCMCIA ئۈسكۈنىسىنى قىستۇرۇڭ."
 
 #. description
 #: ../jobs/pcmcia-pcix.txt.in:3
 msgid "Is it detected?"
-msgstr ""
+msgstr "ئۇنى بايقىيالىدىمۇ؟"
 
 #. description
 #: ../jobs/peripheral.txt.in:3
@@ -1592,6 +1755,10 @@ msgid ""
 "detected and proper configuration values \\ should be displayed 5.- Print a "
 "test page"
 msgstr ""
+"پرىنتېر سەپلىمىسىنى تەكشۈرۈش ئۇسۇلى: 1-تورىڭىزدا پرىنتېر بارلىقىنى جەزملەڭ. "
+"2- ‹سىستېما->باشقۇرۇش->بېسىش› نى ئېچىڭ. 3-ئەگەر تىزىمدا پرىنتېر بولمىسا، "
+"‹يېڭى› نى چېكىڭ. 4-پرىنتېر چوقۇم تېپىلىدۇ ۋە مۇۋاپىق تەڭشەكلىرى كۆرۈنىدۇ. 5- "
+"سىناق بېتىنى بېسىڭ."
 
 #. description
 #: ../jobs/peripheral.txt.in:15
@@ -1604,6 +1771,13 @@ msgid ""
 "connection has been established 8.- Select Test to verify that it's possible "
 "to establish an HTTP connection"
 msgstr ""
+"سىرتقى USB مودېم ئارقىلىق تورغا باغلىنىش جەريانى: 1-USB سىمىنى كومپيۇتېرغا "
+"ئۇلايسىز. 2-«تور باشقۇرۇش» قوللانچىقىنى ئوڭ چېكىسىز 3-‹باغلىنىشنى تەھرىرلەش› "
+"نى تاللايسىز 4-‹DSL›(ADSL مودېمى ئۈچۈن) ياكى ‹MobileBroadband›(3G مودېمى "
+"ئۈچۈن) بەتكۈچىنى تاللايسىز. 5- ‹قوشۇش› توپچىسىنى چېكىسىز. 6-باغلىنىش "
+"پارامېتىرلىرىنى مۇۋاپىق تەڭشەيسىز 7- Notify OSD should confirm that the "
+"connection has been established 8- ‹سىنا› تاللانسا HTTP باغلىنىشىنى "
+"تەكشۈرگىلى بولىدۇ."
 
 #. description
 #: ../jobs/phoronix.txt.in:3
@@ -1616,12 +1790,14 @@ msgid ""
 "Shutdown/boot cycle verification procedure: 1.- Shutdown your machine 2.- "
 "Boot your machine 3.- Repeat steps 1 and 2 at least 5 times"
 msgstr ""
+"تاقاش/قوزغىتىش نى قايتا-قايتا سىناش جەريانى: 1-ماشىنىڭىزنى تاقايسىز 2-"
+"ماشىنىڭىزنى قوزغىتىسىز 3- ‹1› ۋە ‹2› باسقۇچلارنى 5 قېتىم تەكرارلايسىز"
 
 #. description
 #: ../jobs/power-management.txt.in:3
 msgid ""
 "Note: This test case has to be executed manually before checkbox execution"
-msgstr ""
+msgstr "دىققەت: بۇ سىناقلار checkbox نى ئىجرا قىلماي قولدا ئېلىپ بېرىلىدۇ"
 
 #. description
 #: ../jobs/power-management.txt.in:14
@@ -1646,47 +1822,47 @@ msgid "Does your computer hibernate and restore?"
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:29
+#: ../jobs/power-management.txt.in:13
 msgid "Does closing your laptop lid cause your screen to blank?"
-msgstr ""
+msgstr "يان كومپيۇتېرنىڭ lid نى ياپسىڭىز ئېكران قاپقارا بولدىمۇ؟"
 
 #. description
-#: ../jobs/power-management.txt.in:41
+#: ../jobs/power-management.txt.in:25
 msgid "Click the Test button, then close and open the lid."
-msgstr ""
+msgstr "‹سىنا› توپچىسىنى چېكىڭ، ئاندىن lid نى يېپىڭ ۋە ئېچىڭ."
 
 #. description
-#: ../jobs/power-management.txt.in:41
+#: ../jobs/power-management.txt.in:25
 msgid "Did the screen turn off while the lid was closed?"
-msgstr ""
+msgstr "ئېكران تاقالدىمۇ(lid يېپىلغاندا)؟"
 
 #. description
-#: ../jobs/power-management.txt.in:55
+#: ../jobs/power-management.txt.in:39
 msgid "Click the Test button, then close the lid and wait 5 seconds."
-msgstr ""
+msgstr "‹سىنا› توپچىسىنى چېكىڭ، ئاندىن lid نى يېپىڭ ۋە 5 سېكۇنت كۈتۈڭ."
 
 #. description
-#: ../jobs/power-management.txt.in:55
+#: ../jobs/power-management.txt.in:39
 msgid "Open the lid."
-msgstr ""
+msgstr "lid نى ئاچىدۇ."
 
 #. description
-#: ../jobs/power-management.txt.in:55
+#: ../jobs/power-management.txt.in:39
 msgid "Did the screen turn back on when the lid was opened?"
-msgstr ""
+msgstr "ئېكران ئېچىلدىمۇ(lid ئېچىلغاندا)؟"
 
 #. description
-#: ../jobs/power-management.txt.in:65
+#: ../jobs/power-management.txt.in:49
 msgid "Test the network before suspending."
 msgstr "توڭلىتىشتىن بۇرۇن تورنى سىنايدۇ."
 
 #. description
-#: ../jobs/power-management.txt.in:70
+#: ../jobs/suspend.txt.in:4
 msgid "Record the current resolution before suspending."
 msgstr "توڭلىتىشتىن بۇرۇن ھازىرقى ئېنىقلىقنى خاتىرىلەيدۇ."
 
 #. description
-#: ../jobs/power-management.txt.in:78
+#: ../jobs/suspend.txt.in:12
 msgid "Test the audio before suspending."
 msgstr "توڭلىتىشتىن بۇرۇن ئۈن سىنايدۇ."
 
@@ -1703,17 +1879,17 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:128 ../jobs/sru_suite.txt.in:135
+#: ../jobs/power-management.txt.in:51
 msgid "Make sure that the RTC (Real-Time Clock) device exists."
 msgstr "RTC (Real-Time Clock) ئۈسكۈنىسى مەۋجۇتمۇ جەزملەڭ."
 
 #. description
-#: ../jobs/power-management.txt.in:135
+#: ../jobs/suspend.txt.in:58
 msgid "Power management Suspend and Resume test"
 msgstr "مەنبە باشقۇرۇشنىڭ توڭلىتىش ۋە قايتىلاش سىنىقى"
 
 #. description
-#: ../jobs/power-management.txt.in:135
+#: ../jobs/suspend.txt.in:58
 msgid ""
 "Select Test and your system will suspend for about 30 - 60 seconds. If your "
 "system does not wake itself up after 60 seconds, please press the power "
@@ -1721,22 +1897,27 @@ msgid ""
 "at all and must be rebooted, restart System Testing after reboot and mark "
 "this test as Failed."
 msgstr ""
+"‹سىنا› تاللانسا سىستېمىڭىز 30-60 سېكۇنت توڭلاپ قالىدۇ. ئەگەر سىستېمىڭىز 60 "
+"سېكۇنتتىن كېيىنمۇ ئويغانمىسا، مەنبە توپچىسىنى ئۇزۇنراق بېسىپ سىستېمىنى قولدا "
+"ئويغىتىڭ. بۇنىڭدىمۇ ئويغانمىسا سىستېمىڭىز قايتا قوزغىلىدۇ. قايتا "
+"قوزغالغاندىن كېيىن ‹سىستېما سىنىقى› نى قايتا باشلاڭ ۋە بۇ سىناققا ‹مەغلۇپ "
+"بولدى› بەلگىسىنى قويۇڭ."
 
 #. description
-#: ../jobs/power-management.txt.in:145
+#: ../jobs/suspend.txt.in:68
 msgid "Test the network after resuming."
-msgstr "قايتىلاشتىن ئاۋۋال تورنى سىنايدۇ."
+msgstr "قايتا باشلىغاندىن كېيىن تورنى سىنايدۇ."
 
 #. description
-#: ../jobs/power-management.txt.in:151
+#: ../jobs/suspend.txt.in:74
 msgid ""
 "Test to see that we have the same resolution after resuming as before."
 msgstr "قايتا باشلىغاندا ئېنىقلىق دەرىجىسى ئەسلىدىكىگە ئوخشاشمۇ سىنايدۇ."
 
 #. description
-#: ../jobs/power-management.txt.in:160
+#: ../jobs/suspend.txt.in:83
 msgid "Test the audio after resuming."
-msgstr "قايتىلاشتىن ئاۋۋال ئۈننى سىنايدۇ."
+msgstr "قايتا باشلىغاندىن كېيىن ئاۋۋال ئۈننى سىنايدۇ."
 
 #. description
 #: ../jobs/power-management.txt.in:167
@@ -1771,7 +1952,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:210
+#: ../jobs/suspend.txt.in:150
 msgid ""
 "This test will check to make sure that supported video modes work after a "
 "suspend and resume.  Select Test to begin."
@@ -1780,7 +1961,7 @@ msgstr ""
 "تەكشۈرىدۇ.«سىنا» نى تاللاپ باشلاڭ."
 
 #. description
-#: ../jobs/power-management.txt.in:221
+#: ../jobs/power-management.txt.in:251
 msgid ""
 "This will check to make sure that your audio device works properly after a "
 "suspend and resume.  You can use either internal or external microphone and "
@@ -1791,7 +1972,7 @@ msgstr ""
 "ياڭراتقۇنى ئىشلەتسىڭىز بولىدۇ."
 
 #. description
-#: ../jobs/power-management.txt.in:221
+#: ../jobs/power-management.txt.in:251
 msgid ""
 "To execute this test, make sure your speaker and microphone are NOT muted "
 "and the volume is set sufficiently loud to record and play audio. Select "
@@ -1803,7 +1984,7 @@ msgstr ""
 "بىردەمدىن كېيىن ئاۋازىڭىزنى ياڭراتقۇدىن ئاڭلايسىز."
 
 #. description
-#: ../jobs/power-management.txt.in:234
+#: ../jobs/stress.txt.in:30
 msgid ""
 "Enter and resume from suspend state for 30 iterations. Please note that this "
 "is a lengthy test. Select Test to begin. If your system fails to wake and "
@@ -1815,13 +1996,13 @@ msgstr ""
 "مەغلۇپ بولدى دېگەن بەلگىنى قويۇڭ."
 
 #. description
-#: ../jobs/power-management.txt.in:234
+#: ../jobs/stress.txt.in:30
 msgid "Did the system successfully suspend and resume for 30 iterations?"
 msgstr ""
 "سىستېمىنىڭ 30 قېتىم توڭلىتىش ۋە ئەسلىگە كەلتۈرۈش مۇۋەپپەقىيەتلىك بولدىمۇ؟"
 
 #. description
-#: ../jobs/power-management.txt.in:245
+#: ../jobs/hibernate.txt.in:7
 msgid ""
 "This will check to make sure your system can successfully hibernate (if "
 "supported)."
@@ -1830,7 +2011,7 @@ msgstr ""
 "كىرىشنى ئىشلەتكىلى بولسا)"
 
 #. description
-#: ../jobs/power-management.txt.in:245
+#: ../jobs/hibernate.txt.in:7
 msgid ""
 "Select Test to begin. The system will hibernate and should wake itself "
 "within 5 minutes.  If your system does not wake itself after 5 minutes, "
@@ -1844,7 +2025,7 @@ msgstr ""
 "بەلگىسى قويۇڭ."
 
 #. description
-#: ../jobs/power-management.txt.in:245
+#: ../jobs/hibernate.txt.in:7
 msgid ""
 "Did the system successfully hibernate and did it work properly after waking "
 "up?"
@@ -1853,7 +2034,7 @@ msgstr ""
 "بولدىمۇ؟"
 
 #. description
-#: ../jobs/power-management.txt.in:258
+#: ../jobs/stress.txt.in:17
 msgid ""
 "Enter and resume from hibernate for 30 iterations. Please note that this is "
 "a very lengthy test. Also, if your system does not wake itself after 2 "
@@ -1868,7 +2049,7 @@ msgstr ""
 "دېگەن بەلگىنى قويۇڭ."
 
 #. description
-#: ../jobs/power-management.txt.in:258
+#: ../jobs/stress.txt.in:17
 msgid ""
 "Also, you will need to ensure your system has no power-on or HDD passwords "
 "set, and that grub is set to boot Ubuntu by default if you have a multi-boot "
@@ -1879,29 +2060,29 @@ msgstr ""
 "قوزغىتىدىغان قىلىپ تەڭشىگەن بولسىڭىز كۆڭۈلدىكى سىستېما چوقۇم Ubuntu بولسۇن."
 
 #. description
-#: ../jobs/power-management.txt.in:258
+#: ../jobs/stress.txt.in:17
 msgid "Did the system successfully hibernate and wake 30 times?"
 msgstr ""
 "سىستېمىنىڭ 30 قېتىم ئۈچەككە كىرىش ۋە ئويغىنىش مەشغۇلاتى مۇۋەپپەقىيەتلىك "
 "بولدىمۇ؟"
 
 #. description
-#: ../jobs/power-management.txt.in:267
+#: ../jobs/power-management.txt.in:56
 msgid "Run Colin Kings FWTS wakealarm test"
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:276
+#: ../jobs/power-management.txt.in:65
 msgid "Check to see if CONFIG_NO_HZ is set in the kernel"
-msgstr ""
+msgstr "يادرودا CONFIG_NO_HZ بەلگىلەنگەن تەكشۈرۈڭ"
 
 #. description
-#: ../jobs/power-management.txt.in:284
+#: ../jobs/suspend.txt.in:194
 msgid "Automatic power management Suspend and Resume test"
-msgstr ""
+msgstr "ئاپتوماتىك توك مەنبە باشقۇرۇشنى توڭلىتىلىش ۋە ئەسلى كەلتۈرۈش سىنىقى"
 
 #. description
-#: ../jobs/power-management.txt.in:284
+#: ../jobs/suspend.txt.in:194
 msgid ""
 "Select test and your system will suspend for about 30 - 60 seconds. If your "
 "system does not wake itself up after 60 seconds, please press the power "
@@ -1923,32 +2104,32 @@ msgstr "QA regression سىنىقى(بۇزغۇنچىلىق)"
 #. description
 #: ../jobs/server-services.txt.in:5
 msgid "sshd test"
-msgstr ""
+msgstr "sshd سىنىقى"
 
 #. description
 #: ../jobs/server-services.txt.in:11
 msgid "Print/CUPs server test"
-msgstr ""
+msgstr "بېسىش/CUPs مۇلازىمېتىر سىنىقى"
 
 #. description
 #: ../jobs/server-services.txt.in:18
 msgid "DNS server test"
-msgstr ""
+msgstr "DNS مۇلازىمېتىر سىنىقى"
 
 #. description
 #: ../jobs/server-services.txt.in:25
 msgid "Samba server test"
-msgstr ""
+msgstr "Samba مۇلازىمېتىر سىنىقى"
 
 #. description
 #: ../jobs/server-services.txt.in:32
 msgid "LAMP server test"
-msgstr ""
+msgstr "LAMP مۇلازىمېتىر سىنىقى"
 
 #. description
 #: ../jobs/server-services.txt.in:39
 msgid "Tomcat server test"
-msgstr ""
+msgstr "تومكەت(Tomcat)مۇلازىمېتىر سىنىقى"
 
 #. description
 #: ../jobs/sru_suite.txt.in:4
@@ -2056,6 +2237,8 @@ msgid ""
 "Xlib is required for unity testing. This checks for Xlib and installs it if "
 "not available."
 msgstr ""
+"unity سىنىقى ئۈچۈن Xlib زۆرۈر بولىدۇ. بۇ Xlib نى تەكشۈرىدۇ ۋە ئورنىتىلمىغان "
+"بولسا ئۇنى ئورنىتىدۇ."
 
 #. description
 #: ../jobs/unity.txt.in:13
@@ -2063,6 +2246,8 @@ msgid ""
 "This test will verify that Unity is running and then run the autopilot.py "
 "test against the Unity interface."
 msgstr ""
+"بۇ سىناقتا Unity ئىجرا بولۇۋاتامدۇ تەكشۈرۈلىدۇ ۋە شۇنداقلا autopilot.py نى "
+"ئىجرا قىلىپ Unity ئارايۈزىنى سىنايدۇ."
 
 #. description
 #: ../jobs/usb.txt.in:5
@@ -2070,52 +2255,66 @@ msgid "The following USB controllers were detected:"
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:17
+#: ../jobs/usb.txt.in:24
 msgid ""
 "Plug a USB keyboard into the computer. Then, click on the Test button \\ to "
 "enter text."
 msgstr ""
+"كومپيۇتېرغا USB ھەرپتاختىسىنى چېتىڭ. ئاندىن كېيىن ‹سىنا› توپچىسىنى بېسىپ "
+"تېكىست كىرگۈزۈڭ."
 
 #. description
-#: ../jobs/usb.txt.in:17
+#: ../jobs/usb.txt.in:24
 msgid "Does the keyboard work?"
-msgstr ""
+msgstr "ھەرپتاختا ئىشلىدىمۇ؟"
 
 #. description
-#: ../jobs/usb.txt.in:27
+#: ../jobs/usb.txt.in:34
 msgid ""
 "USB mouse verification procedure: 1.- Plug a USB mouse into the computer 2.- "
 "Perform some single/double/right click operations"
 msgstr ""
+"چاشقىنەك (USB چاشقىنەك) تەكشۈرۈش ئۇسۇلى: 1. USB چاشقىنەكنى كومپيۇتېرغا "
+"چاتىسىز. 2-تاق/قوش/ئوڭ چېكىش مەشغۇلاتلىرىنى ئېلىپ بارىسىز"
 
 #. description
-#: ../jobs/usb.txt.in:39
+#: ../jobs/usb.txt.in:46
 msgid ""
 "Click 'Test' and insert a USB device within 5 seconds. If the test is "
 "successful, you should notice that 'Yes' is selected below. Do not unplug "
 "the device if the test is successful."
 msgstr ""
+"‹سىنا› نى بېسىپ 5 سېكۇنت ئىچىدە USB ئۈسكۈنىسىنى قىستۇرۇڭ. ئەگەر سىناق "
+"مۇۋەپپەقىيەتلىك بولسا  تۆۋەندىكى ‹ھەئە› تاللىنىدۇ. سىناق مۇۋەپپەقىيەتلىك "
+"بولسا ئۈسكۈنىنى ھەرگىز تارتىپ چىقارماڭ."
 
 #. description
-#: ../jobs/usb.txt.in:39
+#: ../jobs/usb.txt.in:46
 msgid ""
 "If no USB device is inserted or the device is not recognized, the test will "
 "fail and 'No' will be selected below."
 msgstr ""
+"ئەگەر USB ئۈسكۈنىسى قىستۇرۇلمىغان ياكى ئۈسكۈنىنى تونۇمىغان بولسا، سىناق "
+"مەغلۇپ بولغان ھېسابلىنىدۇ ۋە تۆۋەندىكى ‹ياق› نى تاللىنىدۇ."
 
 #. description
-#: ../jobs/usb.txt.in:51
+#: ../jobs/usb.txt.in:58
 msgid ""
 "Click 'Test' and remove the USB device you inserted within 5 seconds. If the "
 "test is successful, you should notice that 'Yes' is selected below."
 msgstr ""
+"‹سىنا› نى بېسىپ 5 سېكۇنت ئىچىدە USB ئۈسكۈنىسىنى چىقىرىۋېتىڭ. ئەگەر سىناق "
+"مۇۋەپپەقىيەتلىك بولسا  تۆۋەندىكى ‹ھەئە› تاللىنىدۇ."
 
 #. description
-#: ../jobs/usb.txt.in:51
+#: ../jobs/usb.txt.in:58
 msgid ""
 "If the USB device isn't removed or the removal is not registered, the test "
 "will fail and 'No' will be selected below."
 msgstr ""
+"ئەگەر USB ئۈسكۈنىسى چىقىرىۋېتىلمىسە ياكى چىقىرىۋېتىلگەنلىكىنى سىستېما "
+"بىلمىگەن بولسا،  سىناق مەغلۇپ بولغان ھېسابلىنىدۇ ۋە تۆۋەندىكى ‹ياق› نى "
+"تاللىنىدۇ."
 
 #. description
 #: ../jobs/usb.txt.in:61
@@ -2139,24 +2338,28 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:83
+#: ../jobs/usb.txt.in:86
 msgid ""
 "Connect a USB storage device to an external USB slot on this computer. \\ An "
 "icon should appear on the desktop and in the \"Places\" menu at the top of "
 "the screen."
 msgstr ""
+"بىر دانە USB لىق ساقلاش ئۈسكۈنىسىنى كومپيۇتېرنىڭ سىرتقى USB ئېغىزىغا ئۇلاڭ.  "
+"ئۈستەلئۈستىدە ۋە ‹ئورۇنلار› تىزىملىكىدە بىر سىنبەلگە كۆرۈنىدۇ."
 
 #. description
-#: ../jobs/usb.txt.in:83
+#: ../jobs/usb.txt.in:86
 msgid ""
 "Confirm that the icon appears, then eject the device. Repeat with each "
 "external \\ USB slot."
 msgstr ""
+"سىنبەلگە كۆرۈنگەندىن كېيىن ئۈسكۈنىنى چىقىرىڭ. بۇ سىناقنى ھەر بىر سىرتقى USB "
+"ئېغىزىدا ئېلىپ بېرىڭ."
 
 #. description
-#: ../jobs/usb.txt.in:83
+#: ../jobs/usb.txt.in:86
 msgid "Do all USB slots work with the device?"
-msgstr ""
+msgstr "بارلىق USB ئېغىزىغا بۇ ئۈسكىنىنى ئۇلىسىڭىز نورمال ئىشلىدىمۇ؟"
 
 #. description
 #: ../jobs/user_apps.txt.in:6
@@ -2166,10 +2369,10 @@ msgid ""
 "are found, install them. When Update Manager has finished, please close the "
 "app by clicking the Close button in the lower right corner."
 msgstr ""
-"بۇ سىناقتا Update Manager قوزغىتىلىپ يېڭىلانمىلار بارمۇ تەكشۈرۈلىدۇ. "
-"كۆرسەتمىلەرگە ئاساسەن مەشغۇلات قىلىڭ، يېڭىلانمىلار بولسا، ئۇلارنى ئورنىتىڭ. "
-"Update Manager تاماملانغاندا، ئوڭ تۆۋەن بۇرجەكتىكى «تاقا» دېگەن توپچىنى "
-"چېكىپ پروگراممىنى ئاخىرلاشتۇرۇڭ."
+"بۇ سىناقتا يېڭىلانما باشقۇرغۇ(Update Manager) قوزغىتىلىپ يېڭىلانمىلار بارمۇ "
+"تەكشۈرۈلىدۇ. كۆرسەتمىلەرگە ئاساسەن مەشغۇلات قىلىڭ، يېڭىلانمىلار بولسا، "
+"ئۇلارنى ئورنىتىڭ. يېڭىلانما باشقۇرغۇ(Update Manager) تاماملانغاندا، ئوڭ "
+"تۆۋەن بۇرجەكتىكى «تاقا» دېگەن توپچىنى چېكىپ پروگراممىنى ئاخىرلاشتۇرۇڭ."
 
 #. description
 #: ../jobs/user_apps.txt.in:14
@@ -2345,7 +2548,7 @@ msgstr "ئاممىۋى پۈتۈك تىپى سىنىقى"
 #. description
 #: ../jobs/user_apps.txt.in:178
 msgid "Select Test to launch Firefox and view the test web page."
-msgstr "«سىنا» نى چېكىپ Firefox نى قوزغىتىسىز ۋە سىناق توربېتىنى كۆرىسىز."
+msgstr "«سىنا» نى چېكىپ ئوتتۈلكىنى قوزغىتىسىز ۋە سىناق توربېتىنى كۆرىسىز."
 
 #. description
 #: ../jobs/user_apps.txt.in:178
@@ -2358,7 +2561,7 @@ msgid ""
 "Select Test to open Firefox with the Java test page, and follow the "
 "instructions there."
 msgstr ""
-"«سىنا» نى چېكىپ Firefox نى ئاچسىڭىز، Java سىناق بېتى كۆرۈنىدۇ. ئاندىن كېيىن "
+"«سىنا» نى چېكىپ ئوتتۈلكىنى ئاچسىڭىز، Java سىناق بېتى كۆرۈنىدۇ. ئاندىن كېيىن "
 "بۇ يەردىكى كۆرسەتمىلەر بويىچە مەشغۇلات قىلىڭ."
 
 #. description
@@ -2369,7 +2572,7 @@ msgstr "applet كۆرۈندىمۇ؟"
 #. description
 #: ../jobs/user_apps.txt.in:198
 msgid "Select Test to launch Firefox and view a sample Flash test."
-msgstr "«سىنا» نى چېكىپ Firefox نى ئاچسىڭىز، Flash سىناق بېتى كۆرۈنىدۇ."
+msgstr "«سىنا» نى چېكىپ ئوتتۈلكىنى ئاچسىڭىز، Flash سىناق بېتى كۆرۈنىدۇ."
 
 #. description
 #: ../jobs/user_apps.txt.in:198
@@ -2379,7 +2582,7 @@ msgstr "تېكىست كۆرۈندىمۇ؟"
 #. description
 #: ../jobs/user_apps.txt.in:208
 msgid "Select Test to launch Firefox and view a short flash video."
-msgstr "«سىنا» نى چېكىپ Firefox نى ئاچسىڭىز، قىسقا Flash سىنى كۆرۈنىدۇ."
+msgstr "«سىنا» نى چېكىپ ئوتتۈلكىنى ئاچسىڭىز، قىسقا Flash سىنى كۆرۈنىدۇ."
 
 #. description
 #: ../jobs/user_apps.txt.in:208
@@ -2389,7 +2592,7 @@ msgstr "سىن توغرا قويۇلدىمۇ؟"
 #. description
 #: ../jobs/user_apps.txt.in:218
 msgid "Select Test to launch Firefox with a sample video."
-msgstr "«سىنا» نى چېكىپ Firefox نى ئاچسىڭىز، سىناق سىن كۆرۈنىدۇ."
+msgstr "«سىنا» نى چېكىپ ئوتتۈلكىنى ئاچسىڭىز، سىناق سىن كۆرۈنىدۇ."
 
 #. description
 #: ../jobs/user_apps.txt.in:218
@@ -2399,12 +2602,12 @@ msgstr "سىن قىستۇرمىنى ئىشلىتىپ قويۇلدىمۇ؟"
 #. description
 #: ../jobs/user_apps.txt.in:227
 msgid "Facebook Chat"
-msgstr "Facebook پاراڭ"
+msgstr "Facebook سۆھبەت"
 
 #. description
 #: ../jobs/user_apps.txt.in:238
 msgid "Google Talk"
-msgstr "Google Talk"
+msgstr "Google سۆھبەت"
 
 #. description
 #: ../jobs/user_apps.txt.in:249
@@ -2451,7 +2654,7 @@ msgstr "بەلگىلەنگەن ھۆججەتكە يازىدۇ."
 
 #: ../checkbox/application.py:77
 msgid "One of debug, info, warning, error or critical."
-msgstr "debug, info, warning, error, critical بىرىنى كۆرسىتىڭ."
+msgstr "debug، info، warning، error، critical بىرىنى كۆرسىتىڭ."
 
 #: ../checkbox/application.py:82
 msgid "Configuration override parameters."
@@ -2514,7 +2717,7 @@ msgstr "ئەسلەك زىيارىتى خاتا"
 
 #: ../checkbox/lib/signal.py:31
 msgid "Broken pipe: write to pipe with no readers"
-msgstr "بۇزۇلغان pipe: write to pipe with no readers"
+msgstr "بۇزۇلغان نەيچە: write to pipe with no readers"
 
 #: ../checkbox/lib/signal.py:32
 msgid "Timer signal from alarm(2)"
@@ -2550,11 +2753,11 @@ msgstr "tty كىرگۈزۈشنى توختات"
 
 #: ../checkbox/lib/signal.py:40
 msgid "tty input for background process"
-msgstr "background ئىجرادىكى tty كىرگۈزۈش"
+msgstr "تەگلىك ئىجرادىكى tty كىرگۈزۈش"
 
 #: ../checkbox/lib/signal.py:41
 msgid "tty output for background process"
-msgstr "background ئىجرادىكى tty چىقىرىش"
+msgstr "تەگلىك ئىجرادىكى tty چىقىرىش"
 
 #: ../checkbox/lib/signal.py:77
 msgid "UNKNOWN"
@@ -2631,7 +2834,7 @@ msgstr "تاللاشنىڭ ھەممىسىنى بىكار قىل"
 
 #: ../checkbox_urwid/urwid_interface.py:772
 msgid "Test"
-msgstr "سىنا"
+msgstr "سىناق"
 
 #: ../checkbox_urwid/urwid_interface.py:787
 msgid "Test Again"
@@ -2641,15 +2844,15 @@ msgstr "قايتا سىنا"
 msgid "hardware database"
 msgstr ""
 
-#: ../checkbox_gtk/gtk_interface.py:487
+#: ../checkbox_gtk/gtk_interface.py:502
 msgid "_Test Again"
 msgstr "قايتا سىنا(_T)"
 
-#: ../checkbox_gtk/gtk_interface.py:533
+#: ../checkbox_gtk/gtk_interface.py:548
 msgid "Info"
 msgstr "ئۇچۇرى"
 
-#: ../checkbox_gtk/gtk_interface.py:552
+#: ../checkbox_gtk/gtk_interface.py:567
 msgid "Error"
 msgstr "خاتالىق"
 
@@ -2658,7 +2861,7 @@ msgstr "خاتالىق"
 msgid "Unable to start web browser to open %s."
 msgstr "توركۆرگۈنى قوزغاتقىلى بولمىدى( %s كۆرۈش ئۈچۈن)."
 
-#: ../plugins/apport_prompt.py:81
+#: ../plugins/apport_prompt.py:83
 msgid ""
 "Collecting information about this test.\n"
 "This might take a few minutes."
@@ -2666,7 +2869,7 @@ msgstr ""
 "سىناققا ئائىت ئۇچۇرلارنى توپلاۋاتىدۇ.\n"
 "بۇنىڭغا بىر نەچچە مىنۇت ۋاقىت كېتىدۇ."
 
-#: ../plugins/apport_prompt.py:116
+#: ../plugins/apport_prompt.py:118
 msgid ""
 "Collected information is being sent for bug tracking.\n"
 "This might take a few minutes."
@@ -2674,20 +2877,20 @@ msgstr ""
 "توپلانغان ئۇچۇرلار bug tracking غا يوللىنىۋاتىدۇ.\n"
 "بۇنىڭغا بىر نەچچە مىنۇت ۋاقىت كېتىدۇ."
 
-#: ../plugins/apport_prompt.py:225
+#: ../plugins/apport_prompt.py:227
 #, python-format
 msgid "Test %s from suite %s failed."
-msgstr ""
+msgstr "سىناق %s مەغلۇپ بولدى(%s باسقۇچتىكى)."
 
-#: ../plugins/apport_prompt.py:228
+#: ../plugins/apport_prompt.py:230
 #, python-format
 msgid "Test %s failed."
-msgstr ""
+msgstr "سىناق %s مەغلۇپ بولدى."
 
-#: ../plugins/apport_prompt.py:246
+#: ../plugins/apport_prompt.py:248
 #, python-format
 msgid "Is a package upgrade in process? Error: %s"
-msgstr "بىر دانە بولاق يۈكسەلدۈرۈش مەشغۇلاتى قىلىنىۋاتامدۇ؟ خاتالىق: %s"
+msgstr "بىر دانە بوغچا يۈكسەلدۈرۈش مەشغۇلاتى قىلىنىۋاتامدۇ؟ خاتالىق: %s"
 
 #: ../plugins/final_prompt.py:33
 msgid "Successfully finished testing!"
@@ -2701,7 +2904,7 @@ msgstr "تاماملا(_F)"
 msgid "Gathering information from your system..."
 msgstr "سىستېمىڭىزدىن ئۇچۇر توپلاۋاتىدۇ...."
 
-#: ../plugins/intro_prompt.py:43
+#: ../plugins/intro_prompt.py:29
 msgid ""
 "Welcome to System Testing!\n"
 "\n"
@@ -2714,12 +2917,12 @@ msgstr ""
 "Checkbox سىستېمىڭىز نورمال ئىشلىگەن ئىشلىمىگەنلىكىنى سىنايدۇ.سىناق تۈگىگەندە "
 "سىز سىستېمىڭىز ھەققىدىكى قىسقىچە مەلۇماتنى كۆرەلەيسىز."
 
-#: ../plugins/launchpad_exchange.py:118
+#: ../plugins/launchpad_exchange.py:136
 #, python-format
 msgid "Failed to process form: %s"
-msgstr "form نى بىر تەرەپ قىلىش مەغلۇپ بولدى: %s"
+msgstr "جەدۋەلنى بىر تەرەپ قىلىش مەغلۇپ بولدى: %s"
 
-#: ../plugins/launchpad_exchange.py:141
+#: ../plugins/launchpad_exchange.py:151
 #, python-format
 msgid ""
 "Failed to contact server. Please try\n"
@@ -2736,7 +2939,7 @@ msgstr ""
 "بىۋاسىتە سىستېما ساندىنىغا:\n"
 "https://launchpad.net/+hwdb/+submit"
 
-#: ../plugins/launchpad_exchange.py:150
+#: ../plugins/launchpad_exchange.py:160
 msgid ""
 "Failed to upload to server,\n"
 "please try again later."
@@ -2744,7 +2947,7 @@ msgstr ""
 "مۇلازىمېتىرغا يۈكلەش مەغلۇپ بولدى،\n"
 "كېيىن يەنە سىناپ كۆرۈڭ."
 
-#: ../plugins/launchpad_exchange.py:162
+#: ../plugins/launchpad_exchange.py:172
 msgid "Information not posted to Launchpad."
 msgstr "ئۇچۇر Launchpad قا تىزىملىتىلمىدى."
 
@@ -2797,7 +3000,7 @@ msgstr ""
 "Checkbox ۋەزىپىنى تولۇق تاماملىيالمىدى.\n"
 "ئالدىنقى قېتىملىقنى ئەسلىگە كەلتۈرسۇنمۇ؟"
 
-#: ../plugins/report_prompt.py:34
+#: ../plugins/report_prompt.py:39
 msgid "Building report..."
 msgstr "مەلۇمات قۇرۇۋاتىدۇ...."
 
@@ -2807,7 +3010,7 @@ msgid "Running %s..."
 msgstr "%s ئىجرا بولۇۋاتىدۇ..."
 
 #. Get results
-#: ../plugins/suites_prompt.py:105
+#: ../plugins/suites_prompt.py:108
 msgid "Select the suites to test"
 msgstr "سىناق تۈرىنى تاللاڭ"
 
@@ -2815,9 +3018,9 @@ msgstr "سىناق تۈرىنى تاللاڭ"
 msgid "Enter text:\n"
 msgstr "تېكىست كىرگۈزۈڭ:\n"
 
-#: ../scripts/keyboard_test:40
+#: ../scripts/keyboard_test:41
 msgid "Type Text"
-msgstr "تېكىست كىرگۈز"
+msgstr "تېكىست كىرگۈزۈش"
 
 #: ../scripts/internet_test:139
 msgid "No Internet connection"

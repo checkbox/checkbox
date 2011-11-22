@@ -14,110 +14,12 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-10-04 04:50+0000\n"
-"X-Generator: Launchpad (build 14071)\n"
-
-#. description
-#: ../jobs/graphics.txt.in:104
-msgid "Do you see color bars and static?"
-msgstr "カラーバーと砂嵐は確認できましたか？"
-
-#. description
-#: ../jobs/input.txt.in:4
-msgid "Moving the mouse should move the cursor on the screen."
-msgstr "マウスを動かして、カーソルが正しく動くか確認してください。"
-
-#. description
-#: ../jobs/input.txt.in:4
-msgid "Is your mouse working properly?"
-msgstr "マウスは正しく動作していますか？"
-
-#. description
-#: ../jobs/input.txt.in:13
-msgid "Is your keyboard working properly?"
-msgstr "キーボードは正しく動作していますか？"
-
-#. description
-#: ../jobs/networking.txt.in:5
-msgid "Detecting your network controller(s):"
-msgstr "ネットワークコントローラを検知しました："
-
-#. description
-#: ../jobs/networking.txt.in:16
-msgid "Testing your connection to the Internet:"
-msgstr "インターネットへの接続状況をテストしました："
+"X-Launchpad-Export-Date: 2011-11-22 04:39+0000\n"
+"X-Generator: Launchpad (build 14299)\n"
 
 #: ../checkbox/application.py:66
 msgid "Usage: checkbox [OPTIONS]"
 msgstr "Usage: checkbox [OPTIONS]"
-
-#: ../checkbox/application.py:70
-msgid "Print version information and exit."
-msgstr "バージョンを表示して終了します。"
-
-#: ../checkbox/application.py:74
-msgid "The file to write the log to."
-msgstr "指定したファイルに保存します。"
-
-#: ../checkbox/application.py:77
-msgid "One of debug, info, warning, error or critical."
-msgstr "debug、info、warning、error、criticalのどれか一つを指定してください。"
-
-#: ../checkbox/application.py:82
-msgid "Configuration override parameters."
-msgstr "設定を上書きするパラメータ。"
-
-#: ../checkbox/application.py:115
-msgid "Missing configuration file as argument.\n"
-msgstr "指定された設定ファイルが見つかりません。\n"
-
-#: ../checkbox_cli/cli_interface.py:31
-#: ../checkbox_urwid/urwid_interface.py:684
-msgid "yes"
-msgstr "はい"
-
-#: ../checkbox_cli/cli_interface.py:32
-#: ../checkbox_urwid/urwid_interface.py:685
-msgid "no"
-msgstr "いいえ"
-
-#: ../checkbox_cli/cli_interface.py:33
-#: ../checkbox_urwid/urwid_interface.py:686
-msgid "skip"
-msgstr "飛ばす"
-
-#: ../checkbox_cli/cli_interface.py:126
-msgid "Press any key to continue..."
-msgstr "続けるには何かキーを押してください……"
-
-#: ../checkbox_cli/cli_interface.py:135
-#, python-format
-msgid "Please choose (%s): "
-msgstr "選択してください(%s)： "
-
-#: ../checkbox_cli/cli_interface.py:315
-msgid "test"
-msgstr "テスト"
-
-#: ../checkbox_cli/cli_interface.py:339
-msgid "test again"
-msgstr "もう一度テスト"
-
-#: ../checkbox_cli/cli_interface.py:345
-msgid "Please type here and press Ctrl-D when finished:\n"
-msgstr "ここで入力を行い、終わったらCtrl-Dを押してください:\n"
-
-#: ../checkbox_gtk/gtk_interface.py:502
-msgid "_Test Again"
-msgstr "再テスト(_T)"
-
-#: ../plugins/final_prompt.py:34
-msgid "_Finish"
-msgstr "終了(_F)"
-
-#: ../plugins/gather_prompt.py:35
-msgid "Gathering information from your system..."
-msgstr "現在のシステム情報を確認中です……"
 
 #: ../plugins/launchpad_exchange.py:151
 #, python-format
@@ -136,72 +38,12 @@ msgstr ""
 "試してみてください:\n"
 "https://launchpad.net/+hwdb/+submit"
 
-#: ../plugins/launchpad_exchange.py:160
-msgid ""
-"Failed to upload to server,\n"
-"please try again later."
-msgstr ""
-"サーバへのアップロードに失敗しました。\n"
-"あとでもう一度、やり直してください。"
-
 #: ../plugins/launchpad_exchange.py:172
 msgid "Information not posted to Launchpad."
 msgstr "情報はLaunchpadへ登録されませんでした。"
 
-#: ../plugins/launchpad_prompt.py:92
-msgid "Email address must be in a proper format."
-msgstr "正しい書式のメールアドレスが入力されていません。"
-
-#: ../plugins/launchpad_prompt.py:98
-msgid "Exchanging information with the server..."
-msgstr "データをサーバに送信中です……"
-
-#: ../plugins/report_prompt.py:39
-msgid "Building report..."
-msgstr "レポートを作成中です……"
-
-#~ msgid "Successfully sent information!"
-#~ msgstr "情報の送信が完了しました。"
-
-#~ msgid "_Desktop"
-#~ msgstr "デスクトップ(_D)"
-
 #~ msgid "_Laptop"
 #~ msgstr "ラップトップ、ノートパソコン(_L)"
-
-#~ msgid "_Server"
-#~ msgstr "サーバ(_S)"
-
-#~ msgid "$(network_test)"
-#~ msgstr "$(network_test)"
-
-#~ msgid "Authentication"
-#~ msgstr "認証"
-
-#~ msgid "Done"
-#~ msgstr "完了"
-
-#~ msgid "Exchange"
-#~ msgstr "交換"
-
-#~ msgid "Category"
-#~ msgstr "分類"
-
-#~ msgid "Do you hear a sound?"
-#~ msgstr "サウンドは聞こえましたか？"
-
-#, python-format
-#~ msgid "Running test %s..."
-#~ msgstr "テスト %s を実行..."
-
-#~ msgid "Running shell tests..."
-#~ msgstr "シェルテストを実行..."
-
-#~ msgid "Please select the category of your system."
-#~ msgstr "お使いのシステムのカテゴリを選択してください。"
-
-#~ msgid "Welcome to System Testing!"
-#~ msgstr "システムテストにようこそ！"
 
 #: ../gtk/checkbox-gtk.ui.h:1 ../checkbox_cli/cli_interface.py:343
 #: ../checkbox_urwid/urwid_interface.py:261
@@ -366,6 +208,11 @@ msgid ""
 "icon and select browse files 7.- Authorize the computer to browse the files "
 "in the device if needed 8.- You should be able to browse the files"
 msgstr ""
+"Bluetoothによるファイル閲覧のテスト手順: 1.携帯デバイス(PDAやスマートフォンなど)のBluetoothを有効にしてください。 "
+"2.メニューバーのBluetoothアイコンをクリックしてください 3.「新しいデバイスを設定...」を選択してください。 "
+"4.リストから当該のデバイスを探して、選択してください。 5.ウィザードにより自動的に選択されたPINコードがデバイスに書きこまれます。 "
+"6.デバイスはコンピュータとペアになります。 7.Bluetoothアイコンを右クリックして、「デバイスのファイルを閲覧」を選択してください。 "
+"8.必要に応じて、コンピューターがデバイスにあるファイルを閲覧できるよう認証してください。 9.ファイルが見えるようになっているはずです。"
 
 #. description
 #: ../jobs/bluetooth.txt.in:35
@@ -918,6 +765,11 @@ msgid "Select Test to display a video test."
 msgstr "ビデオテストを表示するにはテストを選択してください"
 
 #. description
+#: ../jobs/graphics.txt.in:104
+msgid "Do you see color bars and static?"
+msgstr "カラーバーと砂嵐は確認できましたか？"
+
+#. description
 #: ../jobs/graphics.txt.in:113
 msgid ""
 "The following screens and video modes have been detected on your system:"
@@ -967,9 +819,24 @@ msgid "Bootchart information."
 msgstr ""
 
 #. description
+#: ../jobs/input.txt.in:4
+msgid "Moving the mouse should move the cursor on the screen."
+msgstr "マウスを動かして、カーソルが正しく動くか確認してください。"
+
+#. description
+#: ../jobs/input.txt.in:4
+msgid "Is your mouse working properly?"
+msgstr "マウスは正しく動作していますか？"
+
+#. description
 #: ../jobs/input.txt.in:13
 msgid "Select Test to open a text area where to type keys on your keyboard."
 msgstr "テストを選択すると、キーボードからキーを入力するためのテキストエリアが開きます。"
+
+#. description
+#: ../jobs/input.txt.in:13
+msgid "Is your keyboard working properly?"
+msgstr "キーボードは正しく動作していますか？"
 
 #. description
 #: ../jobs/install.txt.in:6
@@ -1038,7 +905,7 @@ msgstr "もう一度同じキーを押して、bluetoothアイコンが表示さ
 #. description
 #: ../jobs/keys.txt.in:49
 msgid "Does the key work?"
-msgstr ""
+msgstr "キーは動作しましたか?"
 
 #. description
 #: ../jobs/keys.txt.in:63
@@ -1119,7 +986,7 @@ msgstr "グラフィックテスト"
 #. description
 #: ../jobs/local.txt.in:58
 msgid "Informational tests"
-msgstr ""
+msgstr "情報テスト"
 
 #. description
 #: ../jobs/local.txt.in:63
@@ -1159,7 +1026,7 @@ msgstr "ネットワークテスト"
 #. description
 #: ../jobs/local.txt.in:113
 msgid "PCMCIA/PCIX Card tests"
-msgstr ""
+msgstr "PCMCIA/PCIXカードテスト"
 
 #. description
 #: ../jobs/local.txt.in:118
@@ -1174,7 +1041,7 @@ msgstr "パワーマネジメントテスト"
 #. description
 #: ../jobs/local.txt.in:133
 msgid "Unity tests"
-msgstr ""
+msgstr "Unityテスト"
 
 #. description
 #: ../jobs/local.txt.in:143
@@ -1206,6 +1073,11 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"セキュアデジタル(SD)メディアカードサポートの確認:\n"
+" 1. コンピューターにSDメディアカードを挿入してください。\n"
+" 2. デスクトップ及びスクリーン上部のメニュー内の「場所」にアイコンが現れます。\n"
+" 3. デスクトップのアイコンを右クリックして「ドライブの安全な取り出し」を選択してください。\n"
+" 4. アイコンがデスクトップと「場所」メニューの両方から消えます。"
 
 #. description
 #: ../jobs/mediacard.txt.in:15
@@ -1217,6 +1089,11 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"セキュアデジタル(SD)メディアカードサポートの再確認:\n"
+" 1. コンピューターにSDメディアカードを挿入してください。\n"
+" 2. デスクトップ及びスクリーン上部のメニュー内の「場所」にアイコンが現れます。\n"
+" 3. デスクトップのアイコンを右クリックして「ドライブの安全な取り出し」を選択してください。\n"
+" 4. アイコンがデスクトップと「場所」メニューの両方から消えます。"
 
 #. description
 #: ../jobs/mediacard.txt.in:26
@@ -1228,6 +1105,11 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"セキュアデジタルハイキャパシティ(SDHC)メディアカードサポートの確認:\n"
+" 1. コンピューターにSDHCメディアカードを挿入してください。\n"
+" 2. デスクトップ及びスクリーン上部のメニュー内の「場所」にアイコンが現れます。\n"
+" 3. デスクトップのアイコンを右クリックして「ドライブの安全な取り出し」を選択してください。\n"
+" 4. アイコンがデスクトップと「場所」メニューの両方から消えます。"
 
 #. description
 #: ../jobs/mediacard.txt.in:38
@@ -1239,6 +1121,11 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"セキュアデジタルハイキャパシティ(SDHC)メディアカードサポートの再確認:\n"
+" 1. コンピューターにSDHCメディアカードを挿入してください。\n"
+" 2. デスクトップ及びスクリーン上部のメニュー内の「場所」にアイコンが現れます。\n"
+" 3. デスクトップのアイコンを右クリックして「ドライブの安全な取り出し」を選択してください。\n"
+" 4. アイコンがデスクトップと「場所」メニューの両方から消えます。"
 
 #. description
 #: ../jobs/mediacard.txt.in:49
@@ -1250,6 +1137,11 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"マルチメディアカード(MMC)サポートの確認:\n"
+" 1. コンピューターにMMCメディアカードを挿入してください。\n"
+" 2. デスクトップ及びスクリーン上部のメニュー内の「場所」にアイコンが現れます。\n"
+" 3. デスクトップのアイコンを右クリックして「ドライブの安全な取り出し」を選択してください。\n"
+" 4. アイコンがデスクトップと「場所」メニューの両方から消えます。"
 
 #. description
 #: ../jobs/mediacard.txt.in:61
@@ -1261,6 +1153,11 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"マルチメディアカード(MMC)サポートの再確認:\n"
+" 1. コンピューターにMMCメディアカードを挿入してください。\n"
+" 2. デスクトップ及びスクリーン上部のメニュー内の「場所」にアイコンが現れます。\n"
+" 3. デスクトップのアイコンを右クリックして「ドライブの安全な取り出し」を選択してください。\n"
+" 4. アイコンがデスクトップと「場所」メニューの両方から消えます。"
 
 #. description
 #: ../jobs/mediacard.txt.in:72
@@ -1272,6 +1169,11 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"メモリースティック(MS)メディアカードサポートの確認:\n"
+" 1. コンピューターにMSメディアカードを挿入してください。\n"
+" 2. デスクトップ及びスクリーン上部のメニュー内の「場所」にアイコンが現れます。\n"
+" 3. デスクトップのアイコンを右クリックして「ドライブの安全な取り出し」を選択してください。\n"
+" 4. アイコンがデスクトップと「場所」メニューの両方から消えます。"
 
 #. description
 #: ../jobs/mediacard.txt.in:84
@@ -1283,6 +1185,11 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"メモリースティック(MS)メディアカードサポートの再確認:\n"
+" 1. コンピューターにMSメディアカードを挿入してください。\n"
+" 2. デスクトップ及びスクリーン上部のメニュー内の「場所」にアイコンが現れます。\n"
+" 3. デスクトップのアイコンを右クリックして「ドライブの安全な取り出し」を選択してください。\n"
+" 4. アイコンがデスクトップと「場所」メニューの両方から消えます。"
 
 #. description
 #: ../jobs/mediacard.txt.in:95
@@ -1294,6 +1201,11 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"メモリースティックPro(MSP)メディアカードサポートの確認:\n"
+" 1. コンピューターにMSPメディアカードを挿入してください。\n"
+" 2. デスクトップ及びスクリーン上部のメニュー内の「場所」にアイコンが現れます。\n"
+" 3. デスクトップのアイコンを右クリックして「ドライブの安全な取り出し」を選択してください。\n"
+" 4. アイコンがデスクトップと「場所」メニューの両方から消えます。"
 
 #. description
 #: ../jobs/mediacard.txt.in:107
@@ -1305,6 +1217,11 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"メモリースティックPro(MSP)メディアカードサポートの再確認:\n"
+" 1. コンピューターにMSPメディアカードを挿入してください。\n"
+" 2. デスクトップ及びスクリーン上部のメニュー内の「場所」にアイコンが現れます。\n"
+" 3. デスクトップのアイコンを右クリックして「ドライブの安全な取り出し」を選択してください。\n"
+" 4. アイコンがデスクトップと「場所」メニューの両方から消えます。"
 
 #. description
 #: ../jobs/mediacard.txt.in:118
@@ -1316,6 +1233,11 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"コンパクトフラッシュ(CF)メディアカードサポートの確認:\n"
+" 1. コンピューターにCFメディアカードを挿入してください。\n"
+" 2. デスクトップ及びスクリーン上部のメニュー内の「場所」にアイコンが現れます。\n"
+" 3. デスクトップのアイコンを右クリックして「ドライブの安全な取り出し」を選択してください。\n"
+" 4. アイコンがデスクトップと「場所」メニューの両方から消えます。"
 
 #. description
 #: ../jobs/mediacard.txt.in:130
@@ -1327,6 +1249,11 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"コンパクトフラッシュ(CF)メディアカードサポートの再確認:\n"
+" 1. コンピューターにCFメディアカードを挿入してください。\n"
+" 2. デスクトップ及びスクリーン上部のメニュー内の「場所」にアイコンが現れます。\n"
+" 3. デスクトップのアイコンを右クリックして「ドライブの安全な取り出し」を選択してください。\n"
+" 4. アイコンがデスクトップと「場所」メニューの両方から消えます。"
 
 #. description
 #: ../jobs/mediacard.txt.in:130
@@ -1471,6 +1398,16 @@ msgid "Did the monitor go blank?"
 msgstr "モニターは暗転しましたか？"
 
 #. description
+#: ../jobs/networking.txt.in:5
+msgid "Detecting your network controller(s):"
+msgstr "ネットワークコントローラーを検知しました:"
+
+#. description
+#: ../jobs/networking.txt.in:16
+msgid "Testing your connection to the Internet:"
+msgstr "インターネットへの接続状況をテストしました:"
+
+#. description
 #: ../jobs/networking.txt.in:21
 msgid "Network Information"
 msgstr ""
@@ -1478,7 +1415,7 @@ msgstr ""
 #. description
 #: ../jobs/wireless.txt.in:6
 msgid "Wireless scanning test."
-msgstr ""
+msgstr "無線スキャンテスト"
 
 #. description
 #: ../jobs/wireless.txt.in:12
@@ -1537,12 +1474,12 @@ msgstr ""
 msgid ""
 "Automated test case to make sure that it's possible to download files "
 "through HTTP"
-msgstr ""
+msgstr "HTTPでファイルをダウンロードできるか確認する自動化されたテストケース"
 
 #. description
 #: ../jobs/networking.txt.in:82
 msgid "Test to see if we can sync local clock to an NTP server"
-msgstr ""
+msgstr "NTPサーバーとローカルの時計が同期できるか確認するテスト"
 
 #. description
 #: ../jobs/networking.txt.in:88
@@ -1559,7 +1496,7 @@ msgstr "ネットワーク上にあるリモートプリンターを利用可能
 #. description
 #: ../jobs/networking.txt.in:99
 msgid "Multiple network cards"
-msgstr ""
+msgstr "複数のネットワークカード"
 
 #. description
 #: ../jobs/networking.txt.in:119
@@ -1594,6 +1531,10 @@ msgid ""
 "\"Eject Volume\". 8.- The CD should be ejected and the icon removed from the "
 "desktop."
 msgstr ""
+"CDオーディオ再生手順： 1.ｰ 光学ドライブにオーディオCDを挿入してください 2.- デスクトップにアイコンが現れます 3.- "
+"アイコンを右クリックして、”Rhythmboxで開く”を選択してください 4.- 再生のソースからCDを選択し、再生ボタンを押してください 5.- "
+"音楽が再生されます 6.- しばらく再生させてから、音楽を停止してください 7.- デスクトップのアイコンを右クリックし、”取り出す”を選択してください "
+"8.- CDがイジェクトされ、デスクトップからアイコンが消えます"
 
 #. description
 #: ../jobs/optical.txt.in:63
@@ -1618,6 +1559,9 @@ msgid ""
 "\"Eject Volume\". 7.- The DVD should be ejected and the icon removed from "
 "the desktop."
 msgstr ""
+"DVDビデオ再生手順： 1.- 光学ドライブに動画の入ったDVDを挿入してください 2.- ウインドウが表示され、動作を選択できます。 "
+"’ムービープレイヤーを開く’を選択してください 3.- プレイヤーが開き、映像が再生されます 4.- デスクトップにアイコンが現れます 6.- "
+"アイコンを右クリックし、”取り出す”を選択してください 7.- DVDがイジェクトされ、デスクトップからアイコンが消えます"
 
 #. description
 #: ../jobs/optical.txt.in:90
@@ -1634,7 +1578,7 @@ msgstr "正常に再生されましたか？"
 msgid ""
 "Is your gnome system clock displaying the correct date and time for \\ your "
 "timezone?"
-msgstr ""
+msgstr "gnomeのシステム時計が、タイムゾーンと合った正しい日付と時刻を表示していますか?"
 
 #. description
 #: ../jobs/panel_clock_test.txt.in:14
@@ -1651,24 +1595,24 @@ msgstr ""
 msgid ""
 "Is your system clock displaying the correct date and time for your \\ "
 "timezone?"
-msgstr ""
+msgstr "システム時計が、タイムゾーンと合った正しい日付と時刻を表示していますか?"
 
 #. description
 #: ../jobs/panel_reboot.txt.in:4
 msgid "Please restart your machine from the Ubuntu Panel."
-msgstr ""
+msgstr "Ubuntuパネルからコンピューターを再起動してください。"
 
 #. description
 #: ../jobs/panel_reboot.txt.in:4
 msgid ""
 "Afterwards be sure to recover the previous Checkbox instance and \\ answer "
 "the question below:"
-msgstr ""
+msgstr "後で、先ほどのcheckboxのプログラムを回復し、以下の質問に答えてください:"
 
 #. description
 #: ../jobs/panel_reboot.txt.in:4
 msgid "Did it restart and bring up the GUI login cleanly?"
-msgstr ""
+msgstr "再起動とGUIログインがきちんとできましたか？"
 
 #. description
 #: ../jobs/pcmcia-pcix.txt.in:3
@@ -1689,6 +1633,9 @@ msgid ""
 "detected and proper configuration values \\ should be displayed 5.- Print a "
 "test page"
 msgstr ""
+"プリンター設定の検証手順： 1.- ネットワークからプリンターが使用できるか確認してください 2.- システム->システム設定->印刷 を開いてください "
+"3.- プリンターがまだリストに加えられていなければ、新規をクリックしてください 4.- プリンターが検出され、適した設定値が表示されます 5.- "
+"テストページを印刷してください"
 
 #. description
 #: ../jobs/peripheral.txt.in:15
@@ -1701,6 +1648,11 @@ msgid ""
 "connection has been established 8.- Select Test to verify that it's possible "
 "to establish an HTTP connection"
 msgstr ""
+"外付けUSBモデムからのネットワーク接続手順： 1.- コンピューターにUSBケーブルを接続してください 2.- "
+"ネットワークマネージャーアプレットを右クリックしてください 3.- ’接続の設定’を選択してください 4.- "
+"’DSL’タブ（ADSLモデムの場合）か’モバイルブロードバンド’タブ（３Gモデムの場合）を選択してください 5.- "
+"’追加’ボタンをクリックしてください 6.- 接続パラメーターを適切に設定してください 7.-  Notify OSDが接続が確立されたか確認します "
+"8.- HTTP接続が確立できるか検証するためにテストを選択してください"
 
 #. description
 #: ../jobs/phoronix.txt.in:3
@@ -1713,12 +1665,14 @@ msgid ""
 "Shutdown/boot cycle verification procedure: 1.- Shutdown your machine 2.- "
 "Boot your machine 3.- Repeat steps 1 and 2 at least 5 times"
 msgstr ""
+"シャットダウン/起動 サイクル検証手順： 1.- マシンをシャットダウンしてください 2.- マシンを起動してください 3.- "
+"1から2を最低でも５回繰り返してください"
 
 #. description
 #: ../jobs/power-management.txt.in:3
 msgid ""
 "Note: This test case has to be executed manually before checkbox execution"
-msgstr ""
+msgstr "ノート： このテストケースはcheckboxの実行前に手動で行なう必要があります"
 
 #. description
 #: ../jobs/power-management.txt.in:14
@@ -1745,7 +1699,7 @@ msgstr ""
 #. description
 #: ../jobs/power-management.txt.in:13
 msgid "Does closing your laptop lid cause your screen to blank?"
-msgstr ""
+msgstr "ノートパソコンのふたを閉じたら、画面が暗転しましたか？"
 
 #. description
 #: ../jobs/power-management.txt.in:25
@@ -1755,7 +1709,7 @@ msgstr "テストボタンをクリックして、パソコンのふたを閉じ
 #. description
 #: ../jobs/power-management.txt.in:25
 msgid "Did the screen turn off while the lid was closed?"
-msgstr ""
+msgstr "ふたを閉じたら、画面の電源が切れましたか？"
 
 #. description
 #: ../jobs/power-management.txt.in:39
@@ -1770,7 +1724,7 @@ msgstr "ノートパソコンのふたを開けてください"
 #. description
 #: ../jobs/power-management.txt.in:39
 msgid "Did the screen turn back on when the lid was opened?"
-msgstr ""
+msgstr "ふたを開けたら、画面の電源が入りましたか？"
 
 #. description
 #: ../jobs/power-management.txt.in:49
@@ -1802,7 +1756,7 @@ msgstr ""
 #. description
 #: ../jobs/power-management.txt.in:51
 msgid "Make sure that the RTC (Real-Time Clock) device exists."
-msgstr ""
+msgstr "RTC（リアルタイムクロック）デバイスが存在するか確認してください"
 
 #. description
 #: ../jobs/suspend.txt.in:58
@@ -1818,6 +1772,9 @@ msgid ""
 "at all and must be rebooted, restart System Testing after reboot and mark "
 "this test as Failed."
 msgstr ""
+"「テスト」を選択すると、コンピューターは30-"
+"60秒ほどサスペンドします。コンピューターが60秒たっても起動しない場合は、電源ボタンを一度だけ押してコンピューターを手動で起動させてください。コンピュー"
+"ターがまったく復帰せず、再起動が必要になった場合は、再起動した後でシステムテストを再開させ、このテストを失敗としてマークしてください。"
 
 #. description
 #: ../jobs/suspend.txt.in:68
@@ -1920,6 +1877,8 @@ msgid ""
 "fails to resume from hibernate, please restart System Testing and mark this "
 "test as Failed."
 msgstr ""
+"テストを選択して開始してください。システムがハイバネートし、5分以内に自動的に復帰します。5分経ってもシステムが復帰しない場合は、電源ボタンを押してシステ"
+"ムを手動で復帰させてください。システムがハイバネートからの復帰に失敗した場合は、システムテストツールを再起動し、このテストを失敗としてマークしてください。"
 
 #. description
 #: ../jobs/hibernate.txt.in:7
@@ -2467,6 +2426,22 @@ msgstr "MSN"
 msgid "Were you able to connect correctly and send/receive messages?"
 msgstr "正しく接続できて、メッセージの送受信ができましたか?"
 
+#: ../checkbox/application.py:70
+msgid "Print version information and exit."
+msgstr "バージョンを表示して終了します。"
+
+#: ../checkbox/application.py:74
+msgid "The file to write the log to."
+msgstr "指定したファイルに保存します。"
+
+#: ../checkbox/application.py:77
+msgid "One of debug, info, warning, error or critical."
+msgstr "debug、info、warning、error、criticalのどれか一つを指定してください。"
+
+#: ../checkbox/application.py:82
+msgid "Configuration override parameters."
+msgstr "パラメータを上書きする設定"
+
 #: ../checkbox/application.py:84
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist."
 msgstr "省略表現　--config=checkbox/plugins/jobs_info/blacklist"
@@ -2482,6 +2457,10 @@ msgstr "省略表現　--config=checkbox/plugins/jobs_info/whitelist"
 #: ../checkbox/application.py:90
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist_file."
 msgstr "省略表現　--config=checkbox/plugins/jobs_info/whitelist_file"
+
+#: ../checkbox/application.py:115
+msgid "Missing configuration file as argument.\n"
+msgstr "指定された設定ファイルが見つかりません。\n"
 
 #: ../checkbox/lib/signal.py:23
 msgid ""
@@ -2568,6 +2547,42 @@ msgstr "不明"
 msgid "Unknown signal"
 msgstr "不明なシグナル"
 
+#: ../checkbox_cli/cli_interface.py:31
+#: ../checkbox_urwid/urwid_interface.py:684
+msgid "yes"
+msgstr "はい"
+
+#: ../checkbox_cli/cli_interface.py:32
+#: ../checkbox_urwid/urwid_interface.py:685
+msgid "no"
+msgstr "いいえ"
+
+#: ../checkbox_cli/cli_interface.py:33
+#: ../checkbox_urwid/urwid_interface.py:686
+msgid "skip"
+msgstr "スキップ"
+
+#: ../checkbox_cli/cli_interface.py:126
+msgid "Press any key to continue..."
+msgstr "続けるには何かキーを押してください……"
+
+#: ../checkbox_cli/cli_interface.py:135
+#, python-format
+msgid "Please choose (%s): "
+msgstr "選択してください(%s): "
+
+#: ../checkbox_cli/cli_interface.py:315
+msgid "test"
+msgstr "テスト"
+
+#: ../checkbox_cli/cli_interface.py:339
+msgid "test again"
+msgstr "もう一度テスト"
+
+#: ../checkbox_cli/cli_interface.py:345
+msgid "Please type here and press Ctrl-D when finished:\n"
+msgstr "ここで入力を行い、終わったらCtrl-Dを押してください:\n"
+
 #: ../checkbox_urwid/urwid_interface.py:60
 msgid "Checkbox System Testing"
 msgstr "Checkbox システムテスト"
@@ -2609,6 +2624,10 @@ msgstr "再テスト"
 msgid "hardware database"
 msgstr ""
 
+#: ../checkbox_gtk/gtk_interface.py:502
+msgid "_Test Again"
+msgstr "再テスト(_T)"
+
 #: ../checkbox_gtk/gtk_interface.py:548
 msgid "Info"
 msgstr "情報"
@@ -2620,7 +2639,7 @@ msgstr "エラー"
 #: ../checkbox/user_interface.py:136
 #, python-format
 msgid "Unable to start web browser to open %s."
-msgstr "%s を開くためのウェブブラウザを起動できません"
+msgstr "%s を開くためのウェブブラウザーを起動できません"
 
 #: ../plugins/apport_prompt.py:83
 msgid ""
@@ -2646,7 +2665,7 @@ msgstr ""
 #: ../plugins/apport_prompt.py:230
 #, python-format
 msgid "Test %s failed."
-msgstr ""
+msgstr "テスト %s が失敗しました。"
 
 #: ../plugins/apport_prompt.py:248
 #, python-format
@@ -2656,6 +2675,14 @@ msgstr "パッケージのアップグレードを実行中ですか? エラー:
 #: ../plugins/final_prompt.py:33
 msgid "Successfully finished testing!"
 msgstr "テストは成功しました!"
+
+#: ../plugins/final_prompt.py:34
+msgid "_Finish"
+msgstr "終了(_F)"
+
+#: ../plugins/gather_prompt.py:35
+msgid "Gathering information from your system..."
+msgstr "現在のシステム情報を確認中です..."
 
 #: ../plugins/intro_prompt.py:29
 msgid ""
@@ -2673,6 +2700,14 @@ msgstr ""
 #, python-format
 msgid "Failed to process form: %s"
 msgstr ""
+
+#: ../plugins/launchpad_exchange.py:160
+msgid ""
+"Failed to upload to server,\n"
+"please try again later."
+msgstr ""
+"サーバーへのアップロードに失敗しました。\n"
+"後でもう一度やり直してください。"
 
 #: ../plugins/launchpad_prompt.py:71
 #, python-format
@@ -2701,6 +2736,14 @@ msgstr ""
 msgid "No e-mail address provided, not submitting to Launchpad."
 msgstr "メールアドレスが入力されていないため、Launchpadにレポートを送信しません。"
 
+#: ../plugins/launchpad_prompt.py:92
+msgid "Email address must be in a proper format."
+msgstr "正しい書式のメールアドレスが入力されていません。"
+
+#: ../plugins/launchpad_prompt.py:98
+msgid "Exchanging information with the server..."
+msgstr "データをサーバーに送信中です..."
+
 #: ../plugins/lock_prompt.py:63
 msgid "There is another checkbox running. Please close it first."
 msgstr "他の checkbox が実行されています。まず、それを閉じてください。"
@@ -2712,6 +2755,10 @@ msgid ""
 msgstr ""
 "Checkboxのテストは完了しませんでした。\n"
 "前回実行時の状態を復元して続行しますか？"
+
+#: ../plugins/report_prompt.py:39
+msgid "Building report..."
+msgstr "レポートを作成中です..."
 
 #: ../plugins/shell_test.py:52
 #, python-format
@@ -2743,6 +2790,30 @@ msgstr "接続先の応答がありません"
 msgid "Internet connection fully established"
 msgstr "インターネット接続が完全に確立されました"
 
+#~ msgid "Successfully sent information!"
+#~ msgstr "情報の送信が完了しました。"
+
+#~ msgid "_Desktop"
+#~ msgstr "デスクトップ(_D)"
+
+#~ msgid "$(network_test)"
+#~ msgstr "$(network_test)"
+
+#~ msgid "Exchange"
+#~ msgstr "交換"
+
+#~ msgid "Category"
+#~ msgstr "分類"
+
+#~ msgid "Welcome to System Testing!"
+#~ msgstr "システムテストにようこそ！"
+
+#~ msgid "Please select the category of your system."
+#~ msgstr "お使いのシステムのカテゴリを選択してください。"
+
+#~ msgid "Running shell tests..."
+#~ msgstr "シェルテストを実行..."
+
 #~ msgid "Network tests"
 #~ msgstr "ネットワークテスト"
 
@@ -2760,3 +2831,19 @@ msgstr "インターネット接続が完全に確立されました"
 
 #~ msgid "Click the Test button to display a video test."
 #~ msgstr "テストボタンを押してビデオテストを表示してください。"
+
+#~ msgid "Do you hear a sound?"
+#~ msgstr "サウンドは聞こえましたか？"
+
+#, python-format
+#~ msgid "Running test %s..."
+#~ msgstr "テスト %s を実行..."
+
+#~ msgid "Authentication"
+#~ msgstr "認証"
+
+#~ msgid "Done"
+#~ msgstr "完了"
+
+#~ msgid "_Server"
+#~ msgstr "サーバー(_S)"

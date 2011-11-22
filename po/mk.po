@@ -14,12 +14,27 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-07-31 04:33+0000\n"
-"X-Generator: Launchpad (build 13405)\n"
+"X-Launchpad-Export-Date: 2011-11-22 04:39+0000\n"
+"X-Generator: Launchpad (build 14299)\n"
+
+#: ../gtk/checkbox-gtk.ui.h:1 ../checkbox_cli/cli_interface.py:343
+#: ../checkbox_urwid/urwid_interface.py:261
+msgid "Further information:"
+msgstr ""
 
 #: ../gtk/checkbox-gtk.ui.h:2
 msgid "Ne_xt"
 msgstr "Сл_едно"
+
+#. Title of the user interface
+#: ../gtk/checkbox-gtk.ui.h:3 ../gtk/checkbox-gtk.desktop.in.h:1
+#: ../checkbox_gtk/gtk_interface.py:95 ../plugins/user_interface.py:40
+msgid "System Testing"
+msgstr ""
+
+#: ../gtk/checkbox-gtk.ui.h:4
+msgid "_Deselect All"
+msgstr ""
 
 #: ../gtk/checkbox-gtk.ui.h:5
 msgid "_No"
@@ -29,166 +44,21 @@ msgstr "_Не"
 msgid "_Previous"
 msgstr "_Претходно"
 
+#: ../gtk/checkbox-gtk.ui.h:7
+msgid "_Select All"
+msgstr ""
+
 #: ../gtk/checkbox-gtk.ui.h:8
 msgid "_Skip this test"
 msgstr "_Прескокни го овој тест"
 
-#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:522
+#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:537
 msgid "_Test"
 msgstr "_Тест"
 
 #: ../gtk/checkbox-gtk.ui.h:10
 msgid "_Yes"
 msgstr "_Да"
-
-#. description
-#: ../jobs/audio.txt.in:7 ../jobs/bluetooth.txt.in:5 ../jobs/disk.txt.in:4
-#: ../jobs/graphics.txt.in:126 ../jobs/memory.txt.in:4
-#: ../jobs/networking.txt.in:16 ../jobs/optical.txt.in:8
-#: ../jobs/power-management.txt.in:185 ../jobs/usb.txt.in:5
-msgid "Is this correct?"
-msgstr "Дали ова е точно?"
-
-#. description
-#: ../jobs/input.txt.in:4
-msgid "Moving the mouse should move the cursor on the screen."
-msgstr ""
-"Поместувањето на глувчето би требало да ја помести стрелката на екранот."
-
-#. description
-#: ../jobs/input.txt.in:13
-msgid "Is your keyboard working properly?"
-msgstr "Дали Вашата тастатура работи правилно?"
-
-#. description
-#: ../jobs/networking.txt.in:5
-msgid "Detecting your network controller(s):"
-msgstr "Ги откривам Вашите мрежни контролери:"
-
-#: ../checkbox_cli/cli_interface.py:31
-#: ../checkbox_urwid/urwid_interface.py:684
-msgid "yes"
-msgstr "да"
-
-#: ../checkbox_cli/cli_interface.py:32
-#: ../checkbox_urwid/urwid_interface.py:685
-msgid "no"
-msgstr "не"
-
-#: ../checkbox_cli/cli_interface.py:33
-#: ../checkbox_urwid/urwid_interface.py:686
-msgid "skip"
-msgstr "прескокни"
-
-#: ../checkbox_cli/cli_interface.py:135
-#, python-format
-msgid "Please choose (%s): "
-msgstr "Ве молам изберете (%s): "
-
-#: ../checkbox_gtk/gtk_interface.py:487
-msgid "_Test Again"
-msgstr "_Тестирај пак"
-
-#: ../plugins/final_prompt.py:34
-msgid "_Finish"
-msgstr "_Заврши"
-
-#: ../plugins/gather_prompt.py:35
-msgid "Gathering information from your system..."
-msgstr "Собирам информации од Вашиот систем..."
-
-#: ../plugins/launchpad_prompt.py:92
-msgid "Email address must be in a proper format."
-msgstr "Адресата за е-пошта треба да биде во правилен формат."
-
-#: ../plugins/launchpad_prompt.py:98
-msgid "Exchanging information with the server..."
-msgstr "Разменувам информација со серверот..."
-
-#: ../plugins/report_prompt.py:34
-msgid "Building report..."
-msgstr "Градам извештај..."
-
-#~ msgid "<b>Comment:</b>"
-#~ msgstr "<b>Коментар:</b>"
-
-#~ msgid "Device information"
-#~ msgstr "Информација за уредот"
-
-#~ msgid "Processor information"
-#~ msgstr "Информација за процесорот"
-
-#~ msgid "Successfully sent information!"
-#~ msgstr "Информацијата е успешно пратена!"
-
-#~ msgid "Test results"
-#~ msgstr "Резултати од тестот"
-
-#~ msgid "_Desktop"
-#~ msgstr "_Работна површина"
-
-#~ msgid "_Laptop"
-#~ msgstr "_Лаптоп"
-
-#~ msgid "_Server"
-#~ msgstr "_Сервер"
-
-#~ msgid "The following resolution was detected for your display:"
-#~ msgstr "Следнава резолуција беше откриена за Вашиот приказ:"
-
-#~ msgid "$(resolution_test)"
-#~ msgstr "$(тест_на_резолуција)"
-
-#~ msgid "$(network_test)"
-#~ msgstr "$(network_test)"
-
-#~ msgid "Are you connected to the Internet?"
-#~ msgstr "Дали сте поврзани на интернет?"
-
-#~ msgid ""
-#~ "Typing keys on your keyboard should display the corresponding characters in "
-#~ "a text area."
-#~ msgstr ""
-#~ "Преку стискање на копчињата на тастатурата треба да ги добивате соодветните "
-#~ "знаци во областа за текст."
-
-#, python-format
-#~ msgid "Running test: %s"
-#~ msgstr "Извршувам тест: %s"
-
-#~ msgid "Authentication"
-#~ msgstr "Проверка"
-
-#~ msgid "Please provide your Launchpad email address:"
-#~ msgstr "Внесете ја адресата што ја користите на Launchpad:"
-
-#~ msgid "Done"
-#~ msgstr "Завршено"
-
-#~ msgid "Exchange"
-#~ msgstr "Размени"
-
-#~ msgid "Category"
-#~ msgstr "Категорија"
-
-#: ../gtk/checkbox-gtk.ui.h:1 ../checkbox_cli/cli_interface.py:343
-#: ../checkbox_urwid/urwid_interface.py:261
-msgid "Further information:"
-msgstr ""
-
-#. Title of the user interface
-#: ../gtk/checkbox-gtk.ui.h:3 ../gtk/checkbox-gtk.desktop.in.h:1
-#: ../plugins/user_interface.py:40
-msgid "System Testing"
-msgstr ""
-
-#: ../gtk/checkbox-gtk.ui.h:4
-msgid "_Deselect All"
-msgstr ""
-
-#: ../gtk/checkbox-gtk.ui.h:7
-msgid "_Select All"
-msgstr ""
 
 #: ../gtk/checkbox-gtk.desktop.in.h:2
 msgid "Test and report system information"
@@ -205,12 +75,16 @@ msgid "Detecting your sound device(s):"
 msgstr ""
 
 #. description
-#: ../jobs/audio.txt.in:7 ../jobs/disk.txt.in:4 ../jobs/graphics.txt.in:126
-#: ../jobs/memory.txt.in:4 ../jobs/networking.txt.in:16
-#: ../jobs/optical.txt.in:8 ../jobs/power-management.txt.in:167
-#: ../jobs/usb.txt.in:5
+#: ../jobs/audio.txt.in:7 ../jobs/graphics.txt.in:113 ../jobs/memory.txt.in:4
+#: ../jobs/networking.txt.in:5 ../jobs/optical.txt.in:8 ../jobs/usb.txt.in:12
 msgid "$output"
 msgstr ""
+
+#. description
+#: ../jobs/audio.txt.in:7 ../jobs/graphics.txt.in:113 ../jobs/memory.txt.in:4
+#: ../jobs/networking.txt.in:5 ../jobs/optical.txt.in:8
+msgid "Is this correct?"
+msgstr "Дали ова е точно?"
 
 #. description
 #: ../jobs/audio.txt.in:21
@@ -264,12 +138,12 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/audio.txt.in:70 ../jobs/power-management.txt.in:221
+#: ../jobs/audio.txt.in:70
 msgid "Did you hear your speech played back?"
 msgstr ""
 
 #. description
-#: ../jobs/audio.txt.in:81
+#: ../jobs/audio.txt.in:82
 msgid ""
 "Play back a sound on the default output and listen for it on the \\ default "
 "input.  This makes the most sense when the output and input \\ are directly "
@@ -282,17 +156,17 @@ msgid "Autotest suite (destructive)"
 msgstr ""
 
 #. description
-#: ../jobs/bluetooth.txt.in:5 ../jobs/power-management.txt.in:185
+#: ../jobs/bluetooth.txt.in:5
 msgid "The address of your Bluetooth device is: $output"
 msgstr ""
 
 #. description
-#: ../jobs/bluetooth.txt.in:15 ../jobs/graphics.txt.in:15
+#: ../jobs/bluetooth.txt.in:12 ../jobs/graphics.txt.in:15
 msgid "Automated test to store output in checkbox report"
 msgstr ""
 
 #. description
-#: ../jobs/bluetooth.txt.in:21
+#: ../jobs/bluetooth.txt.in:18
 msgid ""
 "Bluetooth browse files procedure: 1.- Enable bluetooth on any mobile device "
 "(PDA, smartphone, etc.) 2.- Click on the bluetooth icon in the menu bar 3.- "
@@ -304,7 +178,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/bluetooth.txt.in:38
+#: ../jobs/bluetooth.txt.in:35
 msgid ""
 "Bluetooth file transfer procedure: 1.- Make sure that you're able to browse "
 "the files in your mobile device 2.- Copy a file from the computer to the "
@@ -314,7 +188,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/bluetooth.txt.in:53
+#: ../jobs/bluetooth.txt.in:50
 msgid ""
 "Bluetooth audio procedure: 1.- Enable the bluetooth headset 2.- Click on the "
 "bluetooth icon in the menu bar 3.- Select 'Setup new device' 4.- Look for "
@@ -325,7 +199,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/bluetooth.txt.in:69
+#: ../jobs/bluetooth.txt.in:66
 msgid ""
 "Bluetooth keyboard procedure: 1.- Enable the bluetooth keyboard 2.- Click on "
 "the bluetooth icon in the menu bar 3.- Select 'Setup new device' 4.- Look "
@@ -333,7 +207,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/bluetooth.txt.in:82
+#: ../jobs/bluetooth.txt.in:79
 msgid ""
 "Bluetooth mouse procedure: 1.- Enable the bluetooth mouse 2.- Click on the "
 "bluetooth icon in the menu bar 3.- Select 'Setup new device' 4.- Look for "
@@ -342,8 +216,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/bluetooth.txt.in:82 ../jobs/optical.txt.in:72
-#: ../jobs/power-management.txt.in:194 ../jobs/usb.txt.in:27
+#: ../jobs/bluetooth.txt.in:79 ../jobs/optical.txt.in:72 ../jobs/usb.txt.in:34
 msgid "Did all the steps work?"
 msgstr ""
 
@@ -516,27 +389,27 @@ msgid "The following hard drives were detected:"
 msgstr ""
 
 #. description
-#: ../jobs/disk.txt.in:14
+#: ../jobs/disk.txt.in:9
 msgid "Benchmark for each disk "
 msgstr ""
 
 #. description
-#: ../jobs/disk.txt.in:36
+#: ../jobs/disk.txt.in:26
 msgid "SMART test"
 msgstr ""
 
 #. description
-#: ../jobs/disk.txt.in:51
+#: ../jobs/disk.txt.in:41
 msgid "Maximum disk space used during a default installation test"
 msgstr ""
 
 #. description
-#: ../jobs/disk.txt.in:66
+#: ../jobs/disk.txt.in:56
 msgid "Verify system storage performs at or above baseline performance"
 msgstr ""
 
 #. description
-#: ../jobs/disk.txt.in:83
+#: ../jobs/disk.txt.in:73
 msgid ""
 "Verify that storage devices, such as Fibre Channel and RAID can be detected "
 "and perform under stress."
@@ -624,7 +497,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/firewire.txt.in:3 ../jobs/usb.txt.in:71
+#: ../jobs/firewire.txt.in:3
 msgid "Do the copy operations work as expected?"
 msgstr ""
 
@@ -765,12 +638,12 @@ msgid "Did the display rotation change as expected?"
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:62 ../jobs/sru_suite.txt.in:151
+#: ../jobs/graphics.txt.in:62
 msgid "Test that the X process is running."
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:68 ../jobs/sru_suite.txt.in:157
+#: ../jobs/graphics.txt.in:68
 msgid "Test that the X is not running in failsafe mode."
 msgstr ""
 
@@ -804,68 +677,74 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:107
+#: ../jobs/graphics.txt.in:94
 msgid "https://help.ubuntu.com/community/Installation/SystemRequirements"
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:117
+#: ../jobs/graphics.txt.in:104
 msgid "Select Test to display a video test."
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:117
+#: ../jobs/graphics.txt.in:104
 msgid "Do you see color bars and static?"
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:126
+#: ../jobs/graphics.txt.in:113
 msgid ""
 "The following screens and video modes have been detected on your system:"
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:138
+#: ../jobs/graphics.txt.in:125
 msgid ""
 "Select Test to cycle through the detected video modes for your system."
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:138
+#: ../jobs/graphics.txt.in:125
 msgid "Did the screen appear to be working for each mode?"
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:146
+#: ../jobs/graphics.txt.in:133
 msgid "Check that the hardware is able to run compiz."
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:153
+#: ../jobs/graphics.txt.in:140
 msgid ""
 "Select Test to execute glxgears to ensure that minimal 3d graphics support "
 "is in place."
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:153
+#: ../jobs/graphics.txt.in:140
 msgid "Did the 3d animation appear?"
 msgstr ""
 
 #. description
-#: ../jobs/info.txt.in:60 ../jobs/screenshot.txt.in:7
+#: ../jobs/info.txt.in:69 ../jobs/screenshot.txt.in:7
 msgid "Captures a screenshot."
 msgstr ""
 
 #. description
-#: ../jobs/info.txt.in:71 ../jobs/sru_suite.txt.in:167
+#: ../jobs/info.txt.in:80
 msgid "Gather log from the firmware test suite run"
 msgstr ""
 
 #. description
-#: ../jobs/info.txt.in:82
+#: ../jobs/info.txt.in:91
 msgid "Bootchart information."
 msgstr ""
+
+#. description
+#: ../jobs/input.txt.in:4
+msgid "Moving the mouse should move the cursor on the screen."
+msgstr ""
+"Поместувањето на глувчето би требало да ја помести стрелката на екранот."
 
 #. description
 #: ../jobs/input.txt.in:4
@@ -876,6 +755,11 @@ msgstr ""
 #: ../jobs/input.txt.in:13
 msgid "Select Test to open a text area where to type keys on your keyboard."
 msgstr ""
+
+#. description
+#: ../jobs/input.txt.in:13
+msgid "Is your keyboard working properly?"
+msgstr "Дали Вашата тастатура работи правилно?"
 
 #. description
 #: ../jobs/install.txt.in:6
@@ -911,21 +795,21 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/keys.txt.in:30
+#: ../jobs/keys.txt.in:31
 msgid ""
 "Press the sleep key on the keyboard. The computer should suspend and, \\ "
 "after pressing the power button, resume successfully."
 msgstr ""
 
 #. description
-#: ../jobs/keys.txt.in:39
+#: ../jobs/keys.txt.in:40
 msgid ""
 "Press the battery information key on the keyboard. A status window \\ should "
 "appear and the amount of battery remaining should be displayed."
 msgstr ""
 
 #. description
-#: ../jobs/keys.txt.in:48
+#: ../jobs/keys.txt.in:49
 msgid ""
 "Press the wireless networking key on the keyboard. The bluetooth icon \\ and "
 "the network connnection should go down if connected through the \\ wifi "
@@ -933,35 +817,35 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/keys.txt.in:48
+#: ../jobs/keys.txt.in:49
 msgid ""
 "Press the same key again and check that bluetooth icon is again \\ displayed "
 "and that the network connection is re-established \\ automatically."
 msgstr ""
 
 #. description
-#: ../jobs/keys.txt.in:48
+#: ../jobs/keys.txt.in:49
 msgid "Does the key work?"
 msgstr ""
 
 #. description
-#: ../jobs/keys.txt.in:62
+#: ../jobs/keys.txt.in:63
 msgid ""
 "The keyboard may have dedicated keys for controlling media as follows:"
 msgstr ""
 
 #. description
-#: ../jobs/keys.txt.in:62
+#: ../jobs/keys.txt.in:63
 msgid "* Play/Pause * Stop * Forward * Backward (Rewind)"
 msgstr ""
 
 #. description
-#: ../jobs/keys.txt.in:62
+#: ../jobs/keys.txt.in:63
 msgid "Play a media file and press each key in turn."
 msgstr ""
 
 #. description
-#: ../jobs/keys.txt.in:62
+#: ../jobs/keys.txt.in:63
 msgid "Do the keys work as expected?"
 msgstr ""
 
@@ -1041,52 +925,52 @@ msgid "Hotkey tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:78
+#: ../jobs/local.txt.in:83
 msgid "Media Card tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:83
+#: ../jobs/local.txt.in:93
 msgid "Miscellaneous tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:88
+#: ../jobs/local.txt.in:98
 msgid "Monitor tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:93
+#: ../jobs/local.txt.in:103
 msgid "Networking tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:98
+#: ../jobs/local.txt.in:113
 msgid "PCMCIA/PCIX Card tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:103
+#: ../jobs/local.txt.in:118
 msgid "Peripheral tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:108
+#: ../jobs/local.txt.in:123
 msgid "Power Management tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:113
+#: ../jobs/local.txt.in:133
 msgid "Unity tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:118
+#: ../jobs/local.txt.in:143
 msgid "User Applications"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:123
+#: ../jobs/local.txt.in:153
 msgid "Stress tests"
 msgstr ""
 
@@ -1371,22 +1255,27 @@ msgid "Did the monitor go blank?"
 msgstr ""
 
 #. description
+#: ../jobs/networking.txt.in:5
+msgid "Detecting your network controller(s):"
+msgstr "Ги откривам Вашите мрежни контролери:"
+
+#. description
 #: ../jobs/networking.txt.in:16
 msgid "Testing your connection to the Internet:"
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:26
+#: ../jobs/networking.txt.in:21
 msgid "Network Information"
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:46
+#: ../jobs/wireless.txt.in:6
 msgid "Wireless scanning test."
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:52
+#: ../jobs/wireless.txt.in:12
 msgid ""
 "Wireless network connection procedure: 1.- Click on the Network Manager "
 "applet 2.- Select a network below the 'Wireless networks' section 3.- Notify "
@@ -1395,7 +1284,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:64
+#: ../jobs/networking.txt.in:39
 msgid ""
 "Wired network connection procedure: 1.- Click on the Network Manager applet "
 "2.- Select a network below the 'Wired network' section 3.- Notify OSD should "
@@ -1404,7 +1293,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:76
+#: ../jobs/networking.txt.in:51
 msgid ""
 "Built-in modem network connection procedure: 1.- Connect the telephone line "
 "to the computer 2.- Right click on the Network Manager applet 3.- Select "
@@ -1415,48 +1304,49 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:76 ../jobs/peripheral.txt.in:15
+#: ../jobs/networking.txt.in:51 ../jobs/peripheral.txt.in:15
+#: ../jobs/wireless.txt.in:12
 msgid "Was the connection correctly established?"
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:92
+#: ../jobs/networking.txt.in:67
 msgid ""
 "Automated test case to verify availability of some system on the network "
 "using ICMP ECHO packets."
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:99 ../jobs/peripheral.txt.in:32
+#: ../jobs/networking.txt.in:74 ../jobs/peripheral.txt.in:32
 msgid ""
 "Automated test case to make sure that it's possible to download files "
 "through HTTP"
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:107
+#: ../jobs/networking.txt.in:82
 msgid "Test to see if we can sync local clock to an NTP server"
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:113
+#: ../jobs/networking.txt.in:88
 msgid ""
 "Verify that an installation of checkbox-server on the network can be reached "
 "over SSH."
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:119
+#: ../jobs/networking.txt.in:94
 msgid "Try to enable a remote printer on the network and print a test page."
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:124
+#: ../jobs/networking.txt.in:99
 msgid "Multiple network cards"
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:144
+#: ../jobs/networking.txt.in:119
 msgid "Test to measure the network bandwidth"
 msgstr ""
 
@@ -1637,47 +1527,47 @@ msgid "Does your computer hibernate and restore?"
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:29
+#: ../jobs/power-management.txt.in:13
 msgid "Does closing your laptop lid cause your screen to blank?"
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:41
+#: ../jobs/power-management.txt.in:25
 msgid "Click the Test button, then close and open the lid."
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:41
+#: ../jobs/power-management.txt.in:25
 msgid "Did the screen turn off while the lid was closed?"
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:55
+#: ../jobs/power-management.txt.in:39
 msgid "Click the Test button, then close the lid and wait 5 seconds."
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:55
+#: ../jobs/power-management.txt.in:39
 msgid "Open the lid."
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:55
+#: ../jobs/power-management.txt.in:39
 msgid "Did the screen turn back on when the lid was opened?"
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:65
+#: ../jobs/power-management.txt.in:49
 msgid "Test the network before suspending."
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:70
+#: ../jobs/suspend.txt.in:4
 msgid "Record the current resolution before suspending."
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:78
+#: ../jobs/suspend.txt.in:12
 msgid "Test the audio before suspending."
 msgstr ""
 
@@ -1694,17 +1584,17 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:128 ../jobs/sru_suite.txt.in:135
+#: ../jobs/power-management.txt.in:51
 msgid "Make sure that the RTC (Real-Time Clock) device exists."
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:135
+#: ../jobs/suspend.txt.in:58
 msgid "Power management Suspend and Resume test"
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:135
+#: ../jobs/suspend.txt.in:58
 msgid ""
 "Select Test and your system will suspend for about 30 - 60 seconds. If your "
 "system does not wake itself up after 60 seconds, please press the power "
@@ -1714,18 +1604,18 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:145
+#: ../jobs/suspend.txt.in:68
 msgid "Test the network after resuming."
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:151
+#: ../jobs/suspend.txt.in:74
 msgid ""
 "Test to see that we have the same resolution after resuming as before."
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:160
+#: ../jobs/suspend.txt.in:83
 msgid "Test the audio after resuming."
 msgstr ""
 
@@ -1761,14 +1651,14 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:210
+#: ../jobs/suspend.txt.in:150
 msgid ""
 "This test will check to make sure that supported video modes work after a "
 "suspend and resume.  Select Test to begin."
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:221
+#: ../jobs/power-management.txt.in:251
 msgid ""
 "This will check to make sure that your audio device works properly after a "
 "suspend and resume.  You can use either internal or external microphone and "
@@ -1776,7 +1666,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:221
+#: ../jobs/power-management.txt.in:251
 msgid ""
 "To execute this test, make sure your speaker and microphone are NOT muted "
 "and the volume is set sufficiently loud to record and play audio. Select "
@@ -1785,7 +1675,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:234
+#: ../jobs/stress.txt.in:30
 msgid ""
 "Enter and resume from suspend state for 30 iterations. Please note that this "
 "is a lengthy test. Select Test to begin. If your system fails to wake and "
@@ -1793,19 +1683,19 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:234
+#: ../jobs/stress.txt.in:30
 msgid "Did the system successfully suspend and resume for 30 iterations?"
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:245
+#: ../jobs/hibernate.txt.in:7
 msgid ""
 "This will check to make sure your system can successfully hibernate (if "
 "supported)."
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:245
+#: ../jobs/hibernate.txt.in:7
 msgid ""
 "Select Test to begin. The system will hibernate and should wake itself "
 "within 5 minutes.  If your system does not wake itself after 5 minutes, "
@@ -1815,14 +1705,14 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:245
+#: ../jobs/hibernate.txt.in:7
 msgid ""
 "Did the system successfully hibernate and did it work properly after waking "
 "up?"
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:258
+#: ../jobs/stress.txt.in:17
 msgid ""
 "Enter and resume from hibernate for 30 iterations. Please note that this is "
 "a very lengthy test. Also, if your system does not wake itself after 2 "
@@ -1832,7 +1722,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:258
+#: ../jobs/stress.txt.in:17
 msgid ""
 "Also, you will need to ensure your system has no power-on or HDD passwords "
 "set, and that grub is set to boot Ubuntu by default if you have a multi-boot "
@@ -1840,27 +1730,27 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:258
+#: ../jobs/stress.txt.in:17
 msgid "Did the system successfully hibernate and wake 30 times?"
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:267
+#: ../jobs/power-management.txt.in:56
 msgid "Run Colin Kings FWTS wakealarm test"
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:276
+#: ../jobs/power-management.txt.in:65
 msgid "Check to see if CONFIG_NO_HZ is set in the kernel"
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:284
+#: ../jobs/suspend.txt.in:194
 msgid "Automatic power management Suspend and Resume test"
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:284
+#: ../jobs/suspend.txt.in:194
 msgid ""
 "Select test and your system will suspend for about 30 - 60 seconds. If your "
 "system does not wake itself up after 60 seconds, please press the power "
@@ -2024,26 +1914,26 @@ msgid "The following USB controllers were detected:"
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:17
+#: ../jobs/usb.txt.in:24
 msgid ""
 "Plug a USB keyboard into the computer. Then, click on the Test button \\ to "
 "enter text."
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:17
+#: ../jobs/usb.txt.in:24
 msgid "Does the keyboard work?"
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:27
+#: ../jobs/usb.txt.in:34
 msgid ""
 "USB mouse verification procedure: 1.- Plug a USB mouse into the computer 2.- "
 "Perform some single/double/right click operations"
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:39
+#: ../jobs/usb.txt.in:46
 msgid ""
 "Click 'Test' and insert a USB device within 5 seconds. If the test is "
 "successful, you should notice that 'Yes' is selected below. Do not unplug "
@@ -2051,21 +1941,21 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:39
+#: ../jobs/usb.txt.in:46
 msgid ""
 "If no USB device is inserted or the device is not recognized, the test will "
 "fail and 'No' will be selected below."
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:51
+#: ../jobs/usb.txt.in:58
 msgid ""
 "Click 'Test' and remove the USB device you inserted within 5 seconds. If the "
 "test is successful, you should notice that 'Yes' is selected below."
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:51
+#: ../jobs/usb.txt.in:58
 msgid ""
 "If the USB device isn't removed or the removal is not registered, the test "
 "will fail and 'No' will be selected below."
@@ -2093,7 +1983,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:83
+#: ../jobs/usb.txt.in:86
 msgid ""
 "Connect a USB storage device to an external USB slot on this computer. \\ An "
 "icon should appear on the desktop and in the \"Places\" menu at the top of "
@@ -2101,14 +1991,14 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:83
+#: ../jobs/usb.txt.in:86
 msgid ""
 "Confirm that the icon appears, then eject the device. Repeat with each "
 "external \\ USB slot."
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:83
+#: ../jobs/usb.txt.in:86
 msgid "Do all USB slots work with the device?"
 msgstr ""
 
@@ -2477,9 +2367,29 @@ msgstr ""
 msgid "Unknown signal"
 msgstr ""
 
+#: ../checkbox_cli/cli_interface.py:31
+#: ../checkbox_urwid/urwid_interface.py:684
+msgid "yes"
+msgstr "да"
+
+#: ../checkbox_cli/cli_interface.py:32
+#: ../checkbox_urwid/urwid_interface.py:685
+msgid "no"
+msgstr "не"
+
+#: ../checkbox_cli/cli_interface.py:33
+#: ../checkbox_urwid/urwid_interface.py:686
+msgid "skip"
+msgstr "прескокни"
+
 #: ../checkbox_cli/cli_interface.py:126
 msgid "Press any key to continue..."
 msgstr ""
+
+#: ../checkbox_cli/cli_interface.py:135
+#, python-format
+msgid "Please choose (%s): "
+msgstr "Ве молам изберете (%s): "
 
 #: ../checkbox_cli/cli_interface.py:315
 msgid "test"
@@ -2534,11 +2444,15 @@ msgstr ""
 msgid "hardware database"
 msgstr ""
 
-#: ../checkbox_gtk/gtk_interface.py:533
+#: ../checkbox_gtk/gtk_interface.py:502
+msgid "_Test Again"
+msgstr "_Тестирај пак"
+
+#: ../checkbox_gtk/gtk_interface.py:548
 msgid "Info"
 msgstr ""
 
-#: ../checkbox_gtk/gtk_interface.py:552
+#: ../checkbox_gtk/gtk_interface.py:567
 msgid "Error"
 msgstr ""
 
@@ -2547,29 +2461,29 @@ msgstr ""
 msgid "Unable to start web browser to open %s."
 msgstr ""
 
-#: ../plugins/apport_prompt.py:81
+#: ../plugins/apport_prompt.py:83
 msgid ""
 "Collecting information about this test.\n"
 "This might take a few minutes."
 msgstr ""
 
-#: ../plugins/apport_prompt.py:116
+#: ../plugins/apport_prompt.py:118
 msgid ""
 "Collected information is being sent for bug tracking.\n"
 "This might take a few minutes."
 msgstr ""
 
-#: ../plugins/apport_prompt.py:225
+#: ../plugins/apport_prompt.py:227
 #, python-format
 msgid "Test %s from suite %s failed."
 msgstr ""
 
-#: ../plugins/apport_prompt.py:228
+#: ../plugins/apport_prompt.py:230
 #, python-format
 msgid "Test %s failed."
 msgstr ""
 
-#: ../plugins/apport_prompt.py:246
+#: ../plugins/apport_prompt.py:248
 #, python-format
 msgid "Is a package upgrade in process? Error: %s"
 msgstr ""
@@ -2578,7 +2492,15 @@ msgstr ""
 msgid "Successfully finished testing!"
 msgstr ""
 
-#: ../plugins/intro_prompt.py:43
+#: ../plugins/final_prompt.py:34
+msgid "_Finish"
+msgstr "_Заврши"
+
+#: ../plugins/gather_prompt.py:35
+msgid "Gathering information from your system..."
+msgstr "Собирам информации од Вашиот систем..."
+
+#: ../plugins/intro_prompt.py:29
 msgid ""
 "Welcome to System Testing!\n"
 "\n"
@@ -2587,12 +2509,12 @@ msgid ""
 "your system."
 msgstr ""
 
-#: ../plugins/launchpad_exchange.py:118
+#: ../plugins/launchpad_exchange.py:136
 #, python-format
 msgid "Failed to process form: %s"
 msgstr ""
 
-#: ../plugins/launchpad_exchange.py:141
+#: ../plugins/launchpad_exchange.py:151
 #, python-format
 msgid ""
 "Failed to contact server. Please try\n"
@@ -2603,13 +2525,13 @@ msgid ""
 "https://launchpad.net/+hwdb/+submit"
 msgstr ""
 
-#: ../plugins/launchpad_exchange.py:150
+#: ../plugins/launchpad_exchange.py:160
 msgid ""
 "Failed to upload to server,\n"
 "please try again later."
 msgstr ""
 
-#: ../plugins/launchpad_exchange.py:162
+#: ../plugins/launchpad_exchange.py:172
 msgid "Information not posted to Launchpad."
 msgstr ""
 
@@ -2632,6 +2554,14 @@ msgstr ""
 msgid "No e-mail address provided, not submitting to Launchpad."
 msgstr ""
 
+#: ../plugins/launchpad_prompt.py:92
+msgid "Email address must be in a proper format."
+msgstr "Адресата за е-пошта треба да биде во правилен формат."
+
+#: ../plugins/launchpad_prompt.py:98
+msgid "Exchanging information with the server..."
+msgstr "Разменувам информација со серверот..."
+
 #: ../plugins/lock_prompt.py:63
 msgid "There is another checkbox running. Please close it first."
 msgstr ""
@@ -2642,13 +2572,17 @@ msgid ""
 "Do you want to recover from the previous run?"
 msgstr ""
 
+#: ../plugins/report_prompt.py:39
+msgid "Building report..."
+msgstr "Градам извештај..."
+
 #: ../plugins/shell_test.py:52
 #, python-format
 msgid "Running %s..."
 msgstr ""
 
 #. Get results
-#: ../plugins/suites_prompt.py:105
+#: ../plugins/suites_prompt.py:108
 msgid "Select the suites to test"
 msgstr ""
 
@@ -2656,7 +2590,7 @@ msgstr ""
 msgid "Enter text:\n"
 msgstr ""
 
-#: ../scripts/keyboard_test:40
+#: ../scripts/keyboard_test:41
 msgid "Type Text"
 msgstr ""
 
@@ -2671,3 +2605,30 @@ msgstr ""
 #: ../scripts/internet_test:145
 msgid "Internet connection fully established"
 msgstr ""
+
+#~ msgid "Successfully sent information!"
+#~ msgstr "Информацијата е успешно пратена!"
+
+#~ msgid "_Desktop"
+#~ msgstr "_Работна површина"
+
+#~ msgid "_Laptop"
+#~ msgstr "_Лаптоп"
+
+#~ msgid "_Server"
+#~ msgstr "_Сервер"
+
+#~ msgid "$(network_test)"
+#~ msgstr "$(network_test)"
+
+#~ msgid "Exchange"
+#~ msgstr "Размени"
+
+#~ msgid "Category"
+#~ msgstr "Категорија"
+
+#~ msgid "Authentication"
+#~ msgstr "Проверка"
+
+#~ msgid "Done"
+#~ msgstr "Завршено"

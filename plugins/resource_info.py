@@ -34,9 +34,15 @@ class ResourceInfo(Plugin):
     def prompt_job(self, interface, job):
         mask = []
         values = []
+        failed_requirements = []
+
         for require in job.get("requires", []):
             new_values = self.resources.eval(require)
             mask.append(bool(new_values))
+
+            if not bool(new_values):
+                failed_requirements.append(require)
+
             if new_values is not None:
                 values.extend(new_values)
 
@@ -45,7 +51,14 @@ class ResourceInfo(Plugin):
 
         else:
             job["status"] = UNSUPPORTED
-            job["data"] = "Job requirements not met."
+
+            data = "Job requirement%s not met:" % (
+                's' if len(failed_requirements) > 1 else '')
+            
+            for failed_require in failed_requirements:
+                data = data + " '" + failed_require + "'"
+                
+            job["data"] = data
             self._manager.reactor.stop()
 
     def report_resource(self, resource):
