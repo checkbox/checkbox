@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-09-26 04:33+0000\n"
-"X-Generator: Launchpad (build 14012)\n"
+"X-Launchpad-Export-Date: 2011-11-22 04:40+0000\n"
+"X-Generator: Launchpad (build 14299)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:1 ../checkbox_cli/cli_interface.py:343
 #: ../checkbox_urwid/urwid_interface.py:261
@@ -52,7 +52,7 @@ msgstr "_Izberi vse"
 msgid "_Skip this test"
 msgstr "_Preskoči ta preizkus"
 
-#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:534
+#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:537
 msgid "_Test"
 msgstr "_Preizkus"
 
@@ -2880,15 +2880,15 @@ msgstr "Ponoven preikzs"
 msgid "hardware database"
 msgstr "podatkovna zbirka strojne opreme"
 
-#: ../checkbox_gtk/gtk_interface.py:499
+#: ../checkbox_gtk/gtk_interface.py:502
 msgid "_Test Again"
 msgstr "_Preizkusi znova"
 
-#: ../checkbox_gtk/gtk_interface.py:545
+#: ../checkbox_gtk/gtk_interface.py:548
 msgid "Info"
 msgstr "Podatki"
 
-#: ../checkbox_gtk/gtk_interface.py:564
+#: ../checkbox_gtk/gtk_interface.py:567
 msgid "Error"
 msgstr "Napaka"
 
@@ -2897,7 +2897,7 @@ msgstr "Napaka"
 msgid "Unable to start web browser to open %s."
 msgstr "Spletni brskalnik ne more odpreti %s."
 
-#: ../plugins/apport_prompt.py:81
+#: ../plugins/apport_prompt.py:83
 msgid ""
 "Collecting information about this test.\n"
 "This might take a few minutes."
@@ -2905,7 +2905,7 @@ msgstr ""
 "Poteka zbiranje podatkov o tem preizkusu.\n"
 "To bo morda trajalo nekaj minut."
 
-#: ../plugins/apport_prompt.py:116
+#: ../plugins/apport_prompt.py:118
 msgid ""
 "Collected information is being sent for bug tracking.\n"
 "This might take a few minutes."
@@ -2913,17 +2913,17 @@ msgstr ""
 "Zbrani podatki se pošiljajo za sledenje hrošča.\n"
 "To bo morda trajalo nekaj minut."
 
-#: ../plugins/apport_prompt.py:225
+#: ../plugins/apport_prompt.py:227
 #, python-format
 msgid "Test %s from suite %s failed."
 msgstr "Preizkus %s iz zbirke %s je spodletel."
 
-#: ../plugins/apport_prompt.py:228
+#: ../plugins/apport_prompt.py:230
 #, python-format
 msgid "Test %s failed."
 msgstr "Preizkus %s je spodletel."
 
-#: ../plugins/apport_prompt.py:246
+#: ../plugins/apport_prompt.py:248
 #, python-format
 msgid "Is a package upgrade in process? Error: %s"
 msgstr "Ali nadgradnja paketa poteka? Napaka:%s"
@@ -2940,7 +2940,7 @@ msgstr "_Končaj"
 msgid "Gathering information from your system..."
 msgstr "Pridobivanje podatkov iz vašega sistema ..."
 
-#: ../plugins/intro_prompt.py:41
+#: ../plugins/intro_prompt.py:29
 msgid ""
 "Welcome to System Testing!\n"
 "\n"
@@ -2958,7 +2958,7 @@ msgstr ""
 msgid "Failed to process form: %s"
 msgstr "Napaka med obdelovanjem obrazca: %s"
 
-#: ../plugins/launchpad_exchange.py:147
+#: ../plugins/launchpad_exchange.py:151
 #, python-format
 msgid ""
 "Failed to contact server. Please try\n"
@@ -2974,7 +2974,7 @@ msgstr ""
 "neposredno v sistemsko zbirko podatkov:\n"
 "https://launchpad.net/+hwdb/+submit"
 
-#: ../plugins/launchpad_exchange.py:156
+#: ../plugins/launchpad_exchange.py:160
 msgid ""
 "Failed to upload to server,\n"
 "please try again later."
@@ -2982,7 +2982,7 @@ msgstr ""
 "Napaka med pošiljanjem na strežnik,\n"
 "poskusite kasneje."
 
-#: ../plugins/launchpad_exchange.py:168
+#: ../plugins/launchpad_exchange.py:172
 msgid "Information not posted to Launchpad."
 msgstr "Podatki niso bili objavljeni na Launchpadu."
 
@@ -3002,7 +3002,7 @@ msgid ""
 msgstr ""
 "Naslednje poročilo je bilo ustvarjeno za objavo v zbirki podatkov strojne "
 "opreme Lauchpad:\n"
-"  [[%s|]Ogled poročila]]\n"
+"  [[%s|Ogled poročila]]\n"
 "\n"
 "Podatke o svojemu sistemu lahko pošljete s podajanjem naslova e-pošte, ki ga "
 "uporabljate za prijavo v Launchpad. Če nimate računa Launchpad, ga ustvarite "
@@ -3044,7 +3044,7 @@ msgid "Running %s..."
 msgstr "Poganjanje %s ..."
 
 #. Get results
-#: ../plugins/suites_prompt.py:104
+#: ../plugins/suites_prompt.py:108
 msgid "Select the suites to test"
 msgstr "Izberite zbirke za preizkus"
 

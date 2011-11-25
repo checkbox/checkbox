@@ -15,13 +15,13 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-07-31 04:33+0000\n"
-"X-Generator: Launchpad (build 13405)\n"
+"X-Launchpad-Export-Date: 2011-11-22 04:39+0000\n"
+"X-Generator: Launchpad (build 14299)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:1 ../checkbox_cli/cli_interface.py:343
 #: ../checkbox_urwid/urwid_interface.py:261
 msgid "Further information:"
-msgstr "Papildus informācija:"
+msgstr "Papildu informācija:"
 
 #: ../gtk/checkbox-gtk.ui.h:2
 msgid "Ne_xt"
@@ -29,7 +29,7 @@ msgstr "Uz _priekšu"
 
 #. Title of the user interface
 #: ../gtk/checkbox-gtk.ui.h:3 ../gtk/checkbox-gtk.desktop.in.h:1
-#: ../plugins/user_interface.py:40
+#: ../checkbox_gtk/gtk_interface.py:95 ../plugins/user_interface.py:40
 msgid "System Testing"
 msgstr "Sistēmas testēšana"
 
@@ -53,7 +53,7 @@ msgstr "_Izvēlēties visus"
 msgid "_Skip this test"
 msgstr "Izlai_st šo testu"
 
-#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:522
+#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:537
 msgid "_Test"
 msgstr "_Testēt"
 
@@ -68,7 +68,7 @@ msgstr "Pārbaudīt un ziņot informāciju par sistēmu"
 #. description
 #: ../jobs/apport.txt.in:5
 msgid "Test that the /var/crash directory doesn't contain anything."
-msgstr ""
+msgstr "Pārbaudīt, vai /var/crash direktorijā nekas neatrodas."
 
 #. description
 #: ../jobs/audio.txt.in:7
@@ -76,18 +76,14 @@ msgid "Detecting your sound device(s):"
 msgstr "Nosaka jūsu skaņas iekārtu(-tas):"
 
 #. description
-#: ../jobs/audio.txt.in:7 ../jobs/disk.txt.in:4 ../jobs/graphics.txt.in:126
-#: ../jobs/memory.txt.in:4 ../jobs/networking.txt.in:16
-#: ../jobs/optical.txt.in:8 ../jobs/power-management.txt.in:167
-#: ../jobs/usb.txt.in:5
+#: ../jobs/audio.txt.in:7 ../jobs/graphics.txt.in:113 ../jobs/memory.txt.in:4
+#: ../jobs/networking.txt.in:5 ../jobs/optical.txt.in:8 ../jobs/usb.txt.in:12
 msgid "$output"
 msgstr "$output"
 
 #. description
-#: ../jobs/audio.txt.in:7 ../jobs/bluetooth.txt.in:5 ../jobs/disk.txt.in:4
-#: ../jobs/graphics.txt.in:126 ../jobs/memory.txt.in:4
-#: ../jobs/networking.txt.in:16 ../jobs/optical.txt.in:8
-#: ../jobs/power-management.txt.in:185 ../jobs/usb.txt.in:5
+#: ../jobs/audio.txt.in:7 ../jobs/graphics.txt.in:113 ../jobs/memory.txt.in:4
+#: ../jobs/networking.txt.in:5 ../jobs/optical.txt.in:8
 msgid "Is this correct?"
 msgstr "Vai tas ir pareizi?"
 
@@ -97,6 +93,8 @@ msgid ""
 "Did you hear a sound and was that sound free of any distortion, clicks or "
 "other strange noises?"
 msgstr ""
+"Vai dzirdat skaņu un vai tajā nav kropļojumu, klikšķu vai citu dīvainu "
+"trokšņu?"
 
 #. description
 #: ../jobs/audio.txt.in:33
@@ -108,6 +106,8 @@ msgstr "Lūdzu, pieslēdziet austiņu pāri jūsu audio iekārtai."
 msgid ""
 "Select Test to play a sound on the automatically detected playback device."
 msgstr ""
+"Izvēlieties 'Testēt', lai atskaņotu skaņu uz automātiski noteiktās "
+"atskaņošanas ierīces."
 
 #. description
 #: ../jobs/audio.txt.in:33
@@ -115,6 +115,8 @@ msgid ""
 "Did you hear a sound through the headphones and did the sound play without "
 "any distortion, clicks or other strange noises from your headphones?"
 msgstr ""
+"Vai dzirdat skaņu caur austiņām un vai tajā nav kropļojumu, klikšķu vai citu "
+"dīvainu trokšņu?"
 
 #. description
 #: ../jobs/audio.txt.in:47
@@ -123,6 +125,9 @@ msgid ""
 "then speak into your internal microphone.  After a few seconds, your speech "
 "will be played back to you."
 msgstr ""
+"Atvienojiet jebkuru ārējo mikrofonu, kuru esat iesprauduši. Izvēlieties "
+"\"Testēt\",  tad runājiet iekšējā mikrofonā. Pēc pāris sekundēm jums tiks "
+"atskaņots jūsu ierunātais teksts."
 
 #. description
 #: ../jobs/audio.txt.in:59
@@ -130,6 +135,9 @@ msgid ""
 "Connect a microphone to your microphone port.  Select Test, then speak into "
 "the microphone.  After a few seconds, your speech will be played back to you."
 msgstr ""
+"Pievienojiet mikrofonu jūsu mikrofona portam. Izvēlieties \"Testēt\",  tad "
+"runājiet mikrofonā. Pēc pāris sekundēm jums tiks atskaņots jūsu ierunātais "
+"teksts."
 
 #. description
 #: ../jobs/audio.txt.in:70
@@ -141,19 +149,27 @@ msgid ""
 "select Test, then speak into the microphone.  After a few seconds, your "
 "speech will be played back to you."
 msgstr ""
+"Pieslēdz USB audio ierīci savam datoram. Tad atver skaļuma maiņas lietotni, "
+"noklikšķinot uz skaļruņa ikonas panelī un izvēloties \"Skaņas iestatījumi\". "
+"Tad cilnē \"Ievade\" iezīmē savu USB ierīci. Dodies uz cilni \"Izvade\" un "
+"iezīmē savu USB ierīci. Kad tas izdarīts, izvēlieties \"Testēt\" un runā "
+"mikrofonā. Pēc dažām sekundēm dzirdēsi savas runas ierakstu."
 
 #. description
-#: ../jobs/audio.txt.in:70 ../jobs/power-management.txt.in:221
+#: ../jobs/audio.txt.in:70
 msgid "Did you hear your speech played back?"
 msgstr "Vai jūs dzirdējāt, kā jūsu runa tiek atskaņota?"
 
 #. description
-#: ../jobs/audio.txt.in:81
+#: ../jobs/audio.txt.in:82
 msgid ""
 "Play back a sound on the default output and listen for it on the \\ default "
 "input.  This makes the most sense when the output and input \\ are directly "
 "connected, as with a patch cable."
 msgstr ""
+"Atskaņot skaņu uz noklusētas izvades un klausīties to uz \\ noklusētās "
+"izvades. No tā ir lielākā jēga, ja izvade un ievade ir \\ tieši savienota, "
+"piemēram, ar vadu."
 
 #. description
 #: ../jobs/autotest.txt.in:3
@@ -161,17 +177,17 @@ msgid "Autotest suite (destructive)"
 msgstr "Automātisko testu komplekts (destruktīvs)"
 
 #. description
-#: ../jobs/bluetooth.txt.in:5 ../jobs/power-management.txt.in:185
+#: ../jobs/bluetooth.txt.in:5
 msgid "The address of your Bluetooth device is: $output"
 msgstr "Bluetooth ierīces adrese ir: $output"
 
 #. description
-#: ../jobs/bluetooth.txt.in:15 ../jobs/graphics.txt.in:15
+#: ../jobs/bluetooth.txt.in:12 ../jobs/graphics.txt.in:15
 msgid "Automated test to store output in checkbox report"
-msgstr ""
+msgstr "Automatizēts tests, lai izvadu saglabātu checkbox atskaitē"
 
 #. description
-#: ../jobs/bluetooth.txt.in:21
+#: ../jobs/bluetooth.txt.in:18
 msgid ""
 "Bluetooth browse files procedure: 1.- Enable bluetooth on any mobile device "
 "(PDA, smartphone, etc.) 2.- Click on the bluetooth icon in the menu bar 3.- "
@@ -181,9 +197,17 @@ msgid ""
 "icon and select browse files 7.- Authorize the computer to browse the files "
 "in the device if needed 8.- You should be able to browse the files"
 msgstr ""
+"Bluetooth failu pārlūkošanas procedūra: 1.- Aktivējiet bluetooth uz jebkuras "
+"mobilās ierīces (PDA, viedtālruņi, utt.) 2.- Klikšķiniet uz bluetooth ikonas "
+"izvēlnes joslā 3.- Izvēlieties 'Iestatīt jaunu ierīci' 3.- Uzmeklējiet "
+"ierīci sarakstā un izvēlieties to 4.- Ierīcē ievadiet PIN kodu, ko ir "
+"automātiski izvēlējies vednis 5.- Ierīcei vajadzētu savienoties ar datoru 6.-"
+" Veiciet labo klikšķi uz ikonas un izvēlieties failu pārlūkošanu 7.- Ja "
+"nepieciešams, autorizējiet datoru pārlūkot failus 8.- Jums vajadzētu varēt "
+"pārlūkot failus"
 
 #. description
-#: ../jobs/bluetooth.txt.in:38
+#: ../jobs/bluetooth.txt.in:35
 msgid ""
 "Bluetooth file transfer procedure: 1.- Make sure that you're able to browse "
 "the files in your mobile device 2.- Copy a file from the computer to the "
@@ -191,9 +215,14 @@ msgid ""
 "from the mobile device to the computer 5.- Verify that the file was "
 "correctly copied"
 msgstr ""
+"Bluetooth failu pārsūtīšanas procedūra: 1.- Pārliecinieties, ka varat "
+"pārlūkot failus savā mobilajā ierīcē 2.- Kopējiet failus no datora uz mobilo "
+"ierīci 3.- Pārliecinieties, ka fails ir korekti pārkopēts 4.- Kopējiet failu "
+"no mobilās ierīces uz datoru 5.- Pārliecinieties, ka fails tika korekti "
+"nokopēts"
 
 #. description
-#: ../jobs/bluetooth.txt.in:53
+#: ../jobs/bluetooth.txt.in:50
 msgid ""
 "Bluetooth audio procedure: 1.- Enable the bluetooth headset 2.- Click on the "
 "bluetooth icon in the menu bar 3.- Select 'Setup new device' 4.- Look for "
@@ -202,17 +231,27 @@ msgid ""
 "computer 7.- Select Test to record for five seconds and reproduce in the "
 "bluetooth device"
 msgstr ""
+"Bluetooth audio procedūra: 1.- Aktivējiet bluetooth austiņas 2.- Klikšķiniet "
+"uz bluetooth ikonas izvēlnes joslā 3.- Izvēlieties 'Iestatīt jaunu ierīci' "
+"4.- Sarakstā uzmeklējiet ierīci un izvēlieties to 5.- Ierīcē ievadiet PIN "
+"kodu, ko automātiski izvēlējās vednis 6.- Ierīcei vajadzētu savienoties ar "
+"datoru 7.- Izvēlieties 'Testēt', lai ierakstītu piecas sekundes un to "
+"reproducētu uz bluetooth ierīces"
 
 #. description
-#: ../jobs/bluetooth.txt.in:69
+#: ../jobs/bluetooth.txt.in:66
 msgid ""
 "Bluetooth keyboard procedure: 1.- Enable the bluetooth keyboard 2.- Click on "
 "the bluetooth icon in the menu bar 3.- Select 'Setup new device' 4.- Look "
 "for the device in the list and select it 5.- Select Test to enter text"
 msgstr ""
+"Bluetooth tastatūras procedūra: 1.- Aktivējiet bluetooth tastatūru - "
+"Klikšķiniet uz bluetooth ikonas izvēlnes joslā 3.- Izvēlieties 'Iestatīt "
+"jaunu ierīci' 4.- Sarakstā atrodiet ierīci un izvelieties to 5.- Izvēlieties "
+"'Testēt', lai ievadītu tekstu"
 
 #. description
-#: ../jobs/bluetooth.txt.in:82
+#: ../jobs/bluetooth.txt.in:79
 msgid ""
 "Bluetooth mouse procedure: 1.- Enable the bluetooth mouse 2.- Click on the "
 "bluetooth icon in the menu bar 3.- Select 'Setup new device' 4.- Look for "
@@ -226,35 +265,34 @@ msgstr ""
 "parasts klikšķis)"
 
 #. description
-#: ../jobs/bluetooth.txt.in:82 ../jobs/optical.txt.in:72
-#: ../jobs/power-management.txt.in:194 ../jobs/usb.txt.in:27
+#: ../jobs/bluetooth.txt.in:79 ../jobs/optical.txt.in:72 ../jobs/usb.txt.in:34
 msgid "Did all the steps work?"
 msgstr "Vai visi soļi darbojās?"
 
 #. description
 #: ../jobs/camera.txt.in:7
 msgid "Automated test case that attempts to detect a camera"
-msgstr ""
+msgstr "Automātisko testu kopa, kas mēģina noteikt kameru"
 
 #. description
 #: ../jobs/camera.txt.in:16
 msgid "Select Test to display a video capture from the camera"
-msgstr ""
+msgstr "Izvēlieties 'Testēt', lai parādītu video, kas tverts no kameras"
 
 #. description
 #: ../jobs/camera.txt.in:16
 msgid "Did you see the video capture?"
-msgstr ""
+msgstr "Vai redzējāt notverto video?"
 
 #. description
 #: ../jobs/camera.txt.in:30
 msgid "Select Test to display a still image from the camera"
-msgstr ""
+msgstr "Izvēlieties 'Testēt', lai parādītu bildi no kameras"
 
 #. description
 #: ../jobs/camera.txt.in:30
 msgid "Did you see the image?"
-msgstr ""
+msgstr "Vai redzējāt attēlu?"
 
 #. description
 #: ../jobs/camera.txt.in:43
@@ -262,26 +300,28 @@ msgid ""
 "Select Test to capture video to a file and open it in totem. Please make "
 "sure that both audio and video is captured."
 msgstr ""
+"Izvēlieties 'Testēt', lai tvertu video failā un atvērt to ar totem. "
+"Pārliecinieties, ka gan audio gan video ir tverti."
 
 #. description
 #: ../jobs/camera.txt.in:43
 msgid "Did you see/hear the capture?"
-msgstr ""
+msgstr "Vai redzējāt/dzirdējāt tvērumu?"
 
 #. description
 #: ../jobs/codecs.txt.in:7
 msgid "Select Test to play an Ogg Vorbis file (.ogg)"
-msgstr ""
+msgstr "Izvēlieties 'Testēt', lai atskaņotu Ogg Vorbis failu (.ogg)"
 
 #. description
 #: ../jobs/codecs.txt.in:20
 msgid "Select Test to play a Wave Audio format file (.wav)"
-msgstr ""
+msgstr "Izvēlieties 'Testēt', lai atskaņotu Wave Audio formāta failu (.wav)"
 
 #. description
 #: ../jobs/codecs.txt.in:20
 msgid "Did the sample play correctly?"
-msgstr ""
+msgstr "Vai paraugs tika atskaņots korekti?"
 
 #. description
 #: ../jobs/codecs.txt.in:33
@@ -289,11 +329,13 @@ msgid ""
 "Select 'Test' to play some audio, and try pausing and resuming playback "
 "while the it is playing."
 msgstr ""
+"Izvēlieties 'Testēt', lai atskaņotu audio, tad mēģiniet pauzēt un turpināt "
+"atskaņošanu, kamēr tas turpina atskaņot."
 
 #. description
 #: ../jobs/codecs.txt.in:33
 msgid "Did the audio play and pause as expected?"
-msgstr ""
+msgstr "Vai audio tika atskaņots un pauzēts pareizi?"
 
 #. description
 #: ../jobs/codecs.txt.in:46
@@ -301,16 +343,18 @@ msgid ""
 "Select 'Test' to play a video, and try pausing and resuming playback while "
 "the video is playing."
 msgstr ""
+"Izvēlieties 'Testēt', lai atskaņotu video, tad mēģiniet pauzēt un turpināt "
+"atskaņošanu, kamēr tas turpina atskaņot."
 
 #. description
 #: ../jobs/codecs.txt.in:46
 msgid "(Please close Movie Player to proceed.)"
-msgstr ""
+msgstr "(Lai turpinātu, aizveriet filmu atskaņotāju.)"
 
 #. description
 #: ../jobs/codecs.txt.in:46
 msgid "Did the video play and pause as expected?"
-msgstr ""
+msgstr "Vai video tika atskaņots un pauzēts pareizi?"
 
 #. description
 #: ../jobs/cpu.txt.in:8
@@ -318,81 +362,83 @@ msgid ""
 "Test the CPU scaling capabilities using Colin King's Firmware Test Suite "
 "tool."
 msgstr ""
+"Testēt CPU mērogošanas iespējas, lietojot Colin King's Firmware Test Suite "
+"rīku."
 
 #. description
 #: ../jobs/cpu.txt.in:15
 msgid "Test for clock jitter."
-msgstr ""
+msgstr "Testēt uz pulksteņa trīcēšanu."
 
 #. description
 #: ../jobs/cpu.txt.in:23
 msgid "Test offlining CPUs in a multicore system."
-msgstr ""
+msgstr "Testē procesora sūtīšanu nesaistē vairāku kodolu sistēmās."
 
 #. description
 #: ../jobs/cpu.txt.in:30
 msgid "Checks cpu topology for accuracy"
-msgstr ""
+msgstr "Pārbauda procesora topoloģiju uz precizitāti"
 
 #. description
 #: ../jobs/cpu.txt.in:38
 msgid "Checks that CPU frequency governors are obeyed when set."
-msgstr ""
+msgstr "Pārbauda, vai procesora frekvences norādes tiek ņemtas vērā."
 
 #. description
 #: ../jobs/daemons.txt.in:5
 msgid "Test if the atd daemon is running when the package is installed."
-msgstr ""
+msgstr "Testē, vai atd dēmons darbojas, kad tiek instalēta pakotne."
 
 #. description
 #: ../jobs/daemons.txt.in:11
 msgid "Test if the cron daemon is running when the package is installed."
-msgstr ""
+msgstr "Testē, vai cron dēmons darbojas, kad tiek instalēta pakotne."
 
 #. description
 #: ../jobs/daemons.txt.in:17
 msgid "Test if the cupsd daemon is running when the package is installed."
-msgstr ""
+msgstr "Testē, vai cupsd dēmons darbojas, kad tiek instalēta pakotne."
 
 #. description
 #: ../jobs/daemons.txt.in:23
 msgid "Test if the getty daemon is running when the package is installed."
-msgstr ""
+msgstr "Testē, vai getty dēmons darbojas, kad tiek instalēta pakotne."
 
 #. description
 #: ../jobs/daemons.txt.in:29
 msgid "Test if the init daemon is running when the package is installed."
-msgstr ""
+msgstr "Testē, vai init dēmons darbojas, kad tiek instalēta pakotne."
 
 #. description
 #: ../jobs/daemons.txt.in:35
 msgid "Test if the klogd daemon is running when the package is installed."
-msgstr ""
+msgstr "Testē, vai klogd dēmons darbojas, kad tiek instalēta pakotne."
 
 #. description
 #: ../jobs/daemons.txt.in:41
 msgid "Test if the nmbd daemon is running when the package is installed."
-msgstr ""
+msgstr "Testē, vai nmbd dēmons darbojas, kad tiek instalēta pakotne."
 
 #. description
 #: ../jobs/daemons.txt.in:47
 msgid "Test if the smbd daemon is running when the package is installed."
-msgstr ""
+msgstr "Testē, vai smbd dēmons darbojas, kad tiek instalēta pakotne."
 
 #. description
 #: ../jobs/daemons.txt.in:53
 msgid "Test if the syslogd daemon is running when the package is installed."
-msgstr ""
+msgstr "Testē, vai syslogd dēmons darbojas, kad tiek instalēta pakotne."
 
 #. description
 #: ../jobs/daemons.txt.in:61
 msgid "Test if the udevd daemon is running when the package is installed."
-msgstr ""
+msgstr "Testē, vai udevd dēmons darbojas, kad tiek instalēta pakotne."
 
 #. description
 #: ../jobs/daemons.txt.in:67
 msgid "Test if the winbindd daemon is running when the package is installed."
-msgstr ""
+msgstr "Testē, vai winbindd dēmons darbojas, kad tiek instalēta pakotne."
 
 #. description
 #: ../jobs/disk.txt.in:4
@@ -400,31 +446,36 @@ msgid "The following hard drives were detected:"
 msgstr "Tika noteikti sekojoši cietie diski:"
 
 #. description
-#: ../jobs/disk.txt.in:14
+#: ../jobs/disk.txt.in:9
 msgid "Benchmark for each disk "
-msgstr ""
+msgstr "Etalonuzdevums katram diskam "
 
 #. description
-#: ../jobs/disk.txt.in:36
+#: ../jobs/disk.txt.in:26
 msgid "SMART test"
-msgstr ""
+msgstr "SMART tests"
 
 #. description
-#: ../jobs/disk.txt.in:51
+#: ../jobs/disk.txt.in:41
 msgid "Maximum disk space used during a default installation test"
 msgstr ""
+"Maksimālā diska vieta, ko izmanto noklusētās instalācijas testa laikā"
 
 #. description
-#: ../jobs/disk.txt.in:66
+#: ../jobs/disk.txt.in:56
 msgid "Verify system storage performs at or above baseline performance"
 msgstr ""
+"Pārliecināties, ka sistēmas krātuves veiktspēja ir tāda pati vai labāka kā "
+"bāzes veiktspēja"
 
 #. description
-#: ../jobs/disk.txt.in:83
+#: ../jobs/disk.txt.in:73
 msgid ""
 "Verify that storage devices, such as Fibre Channel and RAID can be detected "
 "and perform under stress."
 msgstr ""
+"Pārliecināties, ka krātuves ierīces, piemēram Fibre Channel un RAID var tikt "
+"atrastas un darboties stresa apstākļos."
 
 #. description
 #: ../jobs/evolution.txt.in:5
@@ -432,6 +483,8 @@ msgid ""
 "Click the \"Test\" button to launch Evolution, then configure it to connect "
 "to a POP3 account."
 msgstr ""
+"Klikšķiniet uz pogas 'Testēt', lai atvērtu Evolution, tad konfigurēt to, lai "
+"savienojas ar POP3 kontu."
 
 #. description
 #: ../jobs/evolution.txt.in:14
@@ -439,11 +492,13 @@ msgid ""
 "Click the \"Test\" button to launch Evolution, then configure it to connect "
 "to a IMAP account."
 msgstr ""
+"Klikšķiniet uz pogas 'Testēt', lai atvērtu Evolution, tad konfigurēt to, lai "
+"savienojas ar IMAP kontu."
 
 #. description
 #: ../jobs/evolution.txt.in:14
 msgid "Were you able to receive and read e-mail correctly?"
-msgstr ""
+msgstr "Vai varējāt saņemt un lasīt vēstules korekti?"
 
 #. description
 #: ../jobs/evolution.txt.in:23
@@ -451,11 +506,13 @@ msgid ""
 "Click the \"Test\" button to launch Evolution, then configure it to connect "
 "to a SMTP account."
 msgstr ""
+"Klikšķiniet uz pogas 'Testēt', lai atvērtu Evolution, tad konfigurēt to, lai "
+"savienojas ar SMTP kontu."
 
 #. description
 #: ../jobs/evolution.txt.in:23
 msgid "Were you able to send e-mail without errors?"
-msgstr ""
+msgstr "Vai varējāt nosūtīt vēstules bez kļūdām?"
 
 #. description
 #: ../jobs/fingerprint.txt.in:3
@@ -464,7 +521,7 @@ msgid ""
 "which test cases are run and a personal account that the tester uses to "
 "verify the fingerprint reader"
 msgstr ""
-"Priekšprasības: Šis testa komplekts pieņem, ka jums ir testa konts, kurā "
+"Priekšnosacījumi: šis testa komplekts pieņem, ka jums ir testa konts, kurā "
 "tiek laisti testi un personiskais konts, ko testētājs izmanto, lai "
 "pārbaudītu pirkstu nospiedumu lasītāju"
 
@@ -480,6 +537,14 @@ msgid ""
 " 5.- Click on the user switcher applet.\n"
 " 6.- Select the testing account to continue running tests."
 msgstr ""
+"Pirkstu nospiedumu pieteikšanās pārbaudes procedūra:\n"
+" 1. - Klikšķiniet uz lietotāju pārslēgšanas sīklietotnes.\n"
+" 2. - Izvēlieties jūsu lietotāja vārdu.\n"
+" 3. - Vajadzētu parādīties logam, kas dod iespēju pieteikties vai nu ievadot "
+"jūsu paroli, vai izmantojot pirkstu nospiedumu atpazīšanu.\n"
+" 4. - Izmantojiet pirkstu nospiedumu lasītāju, lai pieteiktos.\n"
+" 5. - Klikšķiniet uz lietotāja pārslēgšanās sīklietotnes.\n"
+" 6. - Izvēlieties testēšanas kontu, lai turpinātu testu izpildi."
 
 #. description
 #: ../jobs/fingerprint.txt.in:18
@@ -493,6 +558,14 @@ msgid ""
 " 5.- Use the fingerprint reader to unlock.\n"
 " 6.- Your screen should be unlocked."
 msgstr ""
+"Pirkstu nospiedumu ekrāna atslēgšanas pārbaudes procedūra:\n"
+" 1.- Klikšķiniet uz lietotāju pārslēgšanas sīklietotnes.\n"
+" 2.- Izvēlieties 'Slēgt ekrānu'.\n"
+" 3.- Spiediet jebkuru taustiņu vai arī pakustiniet peli.\n"
+" 4.- Jāparādās logam, kas nodrošina iespēju atslēgt ekrānu izmantojot vai nu "
+"paroli, vai arī pirkstu nospiedumu autentifikāciju.\n"
+" 5.- Izmantojiet pirkstu nospiedumu lasītāju, lai atslēgtu ekrānu.\n"
+" 6.- Ekrānam vajadzētu tikt atslēgtam."
 
 #. description
 #: ../jobs/fingerprint.txt.in:18
@@ -509,26 +582,32 @@ msgid ""
 " 3.- Copy some files from your internal HDD to the firewire HDD.\n"
 " 4.- Copy some files from the firewire HDD to your internal HDD."
 msgstr ""
+"Firewire HDD pārbaudes procedūra:\n"
+" 1.- pievienojiet Firewire HDD jūsu datoram.\n"
+" 2.- Vajadzētu parādīties logam ar vaicājumu, kuru darbību veikt (atvērt "
+"mapi, fotogrāfiju pārvaldnieku, u.t.t.).  3.- Pārkopējiet dažus failus no "
+"iekšējā diska uz firewire disku.\n"
+" 4.- Pārkopējiet dažus failus no firewire diska uz iekšējo disku."
 
 #. description
-#: ../jobs/firewire.txt.in:3 ../jobs/usb.txt.in:71
+#: ../jobs/firewire.txt.in:3
 msgid "Do the copy operations work as expected?"
 msgstr "Vai kopēšanas darbības tika veiktas kā gaidīts?"
 
 #. description
 #: ../jobs/floppy.txt.in:4
 msgid "Floppy test"
-msgstr ""
+msgstr "Disketes tests"
 
 #. description
 #: ../jobs/gcalctool.txt.in:5
 msgid "Click the \"Test\" button to open the calculator."
-msgstr ""
+msgstr "Spiediet 'Testēt' pogu, lai atvērtu kalkulatoru."
 
 #. description
 #: ../jobs/gcalctool.txt.in:5
 msgid "Did it launch correctly?"
-msgstr ""
+msgstr "Vai tas palaidās korekti?"
 
 #. description
 #: ../jobs/gcalctool.txt.in:15
@@ -536,31 +615,35 @@ msgid ""
 "1. Simple math functions (+,-,/,*) 2. Nested math functions ((,)) 3. "
 "Fractional math 4. Decimal math"
 msgstr ""
+"1. Vienkāršas matemātikas funkcijas (+,-,/,*) 2. Iekļautās matemātikas "
+"funkcijas ((,)) 3. Daļskaitļu matemātika 4. Decimālā matemātika"
 
 #. description
 #: ../jobs/gcalctool.txt.in:30
 msgid "1. Memory set 2. Memory reset 3. Memory last clear 4. Memory clear"
 msgstr ""
+"1. Atmiņas iestatīšana 2. Atmiņas atstatīšana 3. Atmiņas pēdējā ieraksta "
+"attīrīšana 4. Atmiņas attīrīšana"
 
 #. description
 #: ../jobs/gcalctool.txt.in:45
 msgid "Click the \"Test\" button to open the calculator and perform:"
-msgstr ""
+msgstr "Spiediet 'Testēt' pogu, lai atvērtu kalkulatoru un veiktu:"
 
 #. description
 #: ../jobs/gcalctool.txt.in:45
 msgid "1. Cut 2. Copy 3. Paste"
-msgstr ""
+msgstr "1. Izgriezt 2. Kopēt 3. Ielīmēt"
 
 #. description
 #: ../jobs/gcalctool.txt.in:45
 msgid "Did the functions perform as expected?"
-msgstr ""
+msgstr "Vai šīs funkcijas darbojās kā paredzēts?"
 
 #. description
 #: ../jobs/gedit.txt.in:5
 msgid "Click the \"Test\" button to open gedit."
-msgstr ""
+msgstr "Spiediet 'Testēt' pogu, lai atvērtu gedit."
 
 #. description
 #: ../jobs/gedit.txt.in:5
@@ -568,6 +651,8 @@ msgid ""
 "Enter some text and save the file (make a note of the file name you use), "
 "then close gedit."
 msgstr ""
+"Ievadiet kaut kādu tekstu un saglabājiet failu (piezīmējiet izmantoto faila "
+"nosaukumu), tad aizveriet gedit."
 
 #. description
 #: ../jobs/gedit.txt.in:17
@@ -575,21 +660,23 @@ msgid ""
 "Click the \"Test\" button to open gedit, and re-open the file you created "
 "previously."
 msgstr ""
+"Spiediet 'Testēt' pogu, lai atvērtu gedit un atkārtoti atveriet failu, ko "
+"pirmīt izveidojāt."
 
 #. description
 #: ../jobs/gedit.txt.in:17
 msgid "Edit then save the file, then close gedit."
-msgstr ""
+msgstr "Rediģējiet un saglabājiet šo failu, tad aizveriet gedit."
 
 #. description
 #: ../jobs/gedit.txt.in:17 ../jobs/gnome-terminal.txt.in:5
 msgid "Did this perform as expected?"
-msgstr ""
+msgstr "Vai viss notika kā paredzēts?"
 
 #. description
 #: ../jobs/gnome-terminal.txt.in:5
 msgid "Click the \"Test\" button to open Terminal."
-msgstr ""
+msgstr "Spiediet 'Testēt' pogu, lai atvērtu termināli."
 
 #. description
 #: ../jobs/gnome-terminal.txt.in:5
@@ -597,22 +684,27 @@ msgid ""
 "Type 'ls' and press enter. You should see a list of files and folder in your "
 "home directory."
 msgstr ""
+"Ierakstiet 'ls' un spiediet enter. Jums vajadzētu redzēt sarakstu ar failiem "
+"un mapēm jūsu mājas mapē."
 
 #. description
 #: ../jobs/gnome-terminal.txt.in:5
 msgid "Close the terminal window."
-msgstr ""
+msgstr "Aizveriet termināļa logu."
 
 #. description
 #: ../jobs/graphics.txt.in:5
 msgid ""
 "2d graphics appears to be working, your running X.Org version is: $output"
 msgstr ""
+"Izskatās, ka 2d grafika darbojas, pašreizējā X.Org versija ir: $output"
 
 #. description
 #: ../jobs/graphics.txt.in:23
 msgid "Run gtkperf to make sure that GTK based test cases work"
 msgstr ""
+"Izpildiet gtkperf, lai pārliecinātos, ka uz GTK balstītie testa gadījumi "
+"strādā"
 
 #. description
 #: ../jobs/graphics.txt.in:23
@@ -620,6 +712,8 @@ msgid ""
 "In the future add the returned time as a benchmark result to the checkbox "
 "report"
 msgstr ""
+"Turpmāk pievienojiet atgriezto laiku kā etalonuzdevuma rezultātu pie "
+"checkbox atskaites"
 
 #. description
 #: ../jobs/graphics.txt.in:31
@@ -629,11 +723,16 @@ msgid ""
 "The resolution should change 5.- Select the original resolution from the "
 "dropdown list 6.- Click on Apply 7.- The resolution should change again"
 msgstr ""
+"Ekrāna izšķirtspējas maiņas procedūra: 1.- Atveriet Sistēma->Iestatījumi-"
+">Monitori 2.- No saraksta izvēlieties jaunu izšķirtspēju 3.- Spiediet "
+"'Pielietot' 4.- Izšķirtspējai vajadzētu mainīties 5.- No saraksta "
+"izvēlieties sākotnējo izšķirtspēju 6.- Spiediet 'Pielietot' 7.- "
+"Izšķirtspējai atkal vajadzētu mainīties"
 
 #. description
 #: ../jobs/graphics.txt.in:31
 msgid "Did the resolution change as expected?"
-msgstr ""
+msgstr "Vai izšķirtspēja mainījās kā bija paredzēts?"
 
 #. description
 #: ../jobs/graphics.txt.in:46
@@ -645,26 +744,32 @@ msgid ""
 "display configuration change should be reverted 7.- Repeat 2-6 for different "
 "rotation values"
 msgstr ""
+"Ekrāna pagriešanas pārbaudes procedūra: 1.- Atveriet Sistēma->Iestatījumi-"
+">Monitori 2.- No saraksta izvēlieties jaunu rotācijas vērtību 3.- Spiediet "
+"'Pielietot' 4.- Displejam vajadzētu pagriezties atbilstoši jaunajai vērtībai "
+"5.- Spiediet 'Atjaunot iepriekšējo konfigurāciju' 6.- Displeja "
+"konfigurācijai vajadzētu atgriezties uz iepriekšējo 7.- Atkārtojiet 2-6 "
+"citām rotācijas vērtībām"
 
 #. description
 #: ../jobs/graphics.txt.in:46
 msgid "Did the display rotation change as expected?"
-msgstr ""
+msgstr "Vai ekrāna rotācija mainījās kā bija paredzēts?"
 
 #. description
-#: ../jobs/graphics.txt.in:62 ../jobs/sru_suite.txt.in:151
+#: ../jobs/graphics.txt.in:62
 msgid "Test that the X process is running."
-msgstr ""
+msgstr "Pārbaudīt, vai X process darbojas."
 
 #. description
-#: ../jobs/graphics.txt.in:68 ../jobs/sru_suite.txt.in:157
+#: ../jobs/graphics.txt.in:68
 msgid "Test that the X is not running in failsafe mode."
-msgstr ""
+msgstr "Pārbaudīt, vai X process nedarbojas drošajā režīmā."
 
 #. description
 #: ../jobs/graphics.txt.in:75
 msgid "Test that X does not leak memory when running programs."
-msgstr ""
+msgstr "Pārbaudīt, vai X process nopludina atmiņu, kad darbina programmas."
 
 #. description
 #: ../jobs/graphics.txt.in:82
@@ -695,68 +800,72 @@ msgstr ""
 "(1024 x 600). Sīkāka informācija:"
 
 #. description
-#: ../jobs/graphics.txt.in:107
+#: ../jobs/graphics.txt.in:94
 msgid "https://help.ubuntu.com/community/Installation/SystemRequirements"
 msgstr "https://help.ubuntu.com/community/Installation/SystemRequirements"
 
 #. description
-#: ../jobs/graphics.txt.in:117
+#: ../jobs/graphics.txt.in:104
 msgid "Select Test to display a video test."
-msgstr ""
+msgstr "Izvēlieties 'Testēt', lai parādītu video."
 
 #. description
-#: ../jobs/graphics.txt.in:117
+#: ../jobs/graphics.txt.in:104
 msgid "Do you see color bars and static?"
 msgstr "Vai redzat stabiņus un nirboņu (statisku signālu)?"
 
 #. description
-#: ../jobs/graphics.txt.in:126
+#: ../jobs/graphics.txt.in:113
 msgid ""
 "The following screens and video modes have been detected on your system:"
 msgstr "Jūsu sistēmai tika noteikti sekojoši ekrāna un video režīmi:"
 
 #. description
-#: ../jobs/graphics.txt.in:138
+#: ../jobs/graphics.txt.in:125
 msgid ""
 "Select Test to cycle through the detected video modes for your system."
 msgstr ""
+"Izvēlieties 'Testēt', lai izriņķotu cauri jūsu sistēmai noteiktajiem video "
+"režīmiem."
 
 #. description
-#: ../jobs/graphics.txt.in:138
+#: ../jobs/graphics.txt.in:125
 msgid "Did the screen appear to be working for each mode?"
 msgstr "Vai ekrāns strādāja katrā režīmā?"
 
 #. description
-#: ../jobs/graphics.txt.in:146
+#: ../jobs/graphics.txt.in:133
 msgid "Check that the hardware is able to run compiz."
 msgstr "Pārbaudīt, vai aparatūra ir spējīga strādāt ar compiz."
 
 #. description
-#: ../jobs/graphics.txt.in:153
+#: ../jobs/graphics.txt.in:140
 msgid ""
 "Select Test to execute glxgears to ensure that minimal 3d graphics support "
 "is in place."
 msgstr ""
+"Izvēlieties \"Testēt\", lai palaistu glxgears, lai pārliecinātos, ka ir "
+"pieejams minimāls 3d grafikas atbalsts."
 
 #. description
-#: ../jobs/graphics.txt.in:153
+#: ../jobs/graphics.txt.in:140
 msgid "Did the 3d animation appear?"
 msgstr "Vai 3d animācija bija redzama?"
 
 #. description
-#: ../jobs/info.txt.in:60 ../jobs/screenshot.txt.in:7
+#: ../jobs/info.txt.in:69 ../jobs/screenshot.txt.in:7
 msgid "Captures a screenshot."
-msgstr ""
+msgstr "Uzņem ekrānuzņēmumu."
 
 #. description
-#: ../jobs/info.txt.in:71 ../jobs/sru_suite.txt.in:167
+#: ../jobs/info.txt.in:80
 msgid "Gather log from the firmware test suite run"
-msgstr ""
+msgstr "Savākt žurnālu no palaistā aparātprogrammatūras testa svītas"
 
 #. description
-#: ../jobs/info.txt.in:82
+#: ../jobs/info.txt.in:91
 msgid "Bootchart information."
-msgstr ""
+msgstr "Informācija par Bootchart."
 
 #. description
 #: ../jobs/input.txt.in:4
@@ -772,6 +881,7 @@ msgstr "Vai jūsu pele strādā korekti?"
 #: ../jobs/input.txt.in:13
 msgid "Select Test to open a text area where to type keys on your keyboard."
 msgstr ""
+"Izvēlieties Testēt, lai atvērtu teksta laukumu, kur pārbaudīt jūsu tastatūru."
 
 #. description
 #: ../jobs/input.txt.in:13
@@ -802,7 +912,7 @@ msgstr ""
 #. description
 #: ../jobs/keys.txt.in:12
 msgid "Do the buttons work?"
-msgstr ""
+msgstr "Vai pogas darbojas?"
 
 #. description
 #: ../jobs/keys.txt.in:21
@@ -812,21 +922,21 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/keys.txt.in:30
+#: ../jobs/keys.txt.in:31
 msgid ""
 "Press the sleep key on the keyboard. The computer should suspend and, \\ "
 "after pressing the power button, resume successfully."
 msgstr ""
 
 #. description
-#: ../jobs/keys.txt.in:39
+#: ../jobs/keys.txt.in:40
 msgid ""
 "Press the battery information key on the keyboard. A status window \\ should "
 "appear and the amount of battery remaining should be displayed."
 msgstr ""
 
 #. description
-#: ../jobs/keys.txt.in:48
+#: ../jobs/keys.txt.in:49
 msgid ""
 "Press the wireless networking key on the keyboard. The bluetooth icon \\ and "
 "the network connnection should go down if connected through the \\ wifi "
@@ -834,35 +944,35 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/keys.txt.in:48
+#: ../jobs/keys.txt.in:49
 msgid ""
 "Press the same key again and check that bluetooth icon is again \\ displayed "
 "and that the network connection is re-established \\ automatically."
 msgstr ""
 
 #. description
-#: ../jobs/keys.txt.in:48
+#: ../jobs/keys.txt.in:49
 msgid "Does the key work?"
 msgstr ""
 
 #. description
-#: ../jobs/keys.txt.in:62
+#: ../jobs/keys.txt.in:63
 msgid ""
 "The keyboard may have dedicated keys for controlling media as follows:"
 msgstr ""
 
 #. description
-#: ../jobs/keys.txt.in:62
+#: ../jobs/keys.txt.in:63
 msgid "* Play/Pause * Stop * Forward * Backward (Rewind)"
 msgstr ""
 
 #. description
-#: ../jobs/keys.txt.in:62
+#: ../jobs/keys.txt.in:63
 msgid "Play a media file and press each key in turn."
 msgstr ""
 
 #. description
-#: ../jobs/keys.txt.in:62
+#: ../jobs/keys.txt.in:63
 msgid "Do the keys work as expected?"
 msgstr ""
 
@@ -874,27 +984,27 @@ msgstr "Audio testi"
 #. description
 #: ../jobs/local.txt.in:8
 msgid "Bluetooth tests"
-msgstr ""
+msgstr "Bluetooth testi"
 
 #. description
 #: ../jobs/local.txt.in:13
 msgid "Camera tests"
-msgstr ""
+msgstr "Kameras testi"
 
 #. description
 #: ../jobs/local.txt.in:18
 msgid "Codec tests"
-msgstr ""
+msgstr "Kodeku testi"
 
 #. description
 #: ../jobs/local.txt.in:23
 msgid "CPU tests"
-msgstr ""
+msgstr "Procesora testi"
 
 #. description
 #: ../jobs/local.txt.in:28
 msgid "System Daemon tests"
-msgstr ""
+msgstr "Sistēmas dēmonu testi"
 
 #. description
 #: ../jobs/local.txt.in:33
@@ -914,82 +1024,82 @@ msgstr "Firewire disku testi"
 #. description
 #: ../jobs/local.txt.in:48
 msgid "Floppy disk tests"
-msgstr ""
+msgstr "Disketes testi"
 
 #. description
 #: ../jobs/local.txt.in:53
 msgid "Graphics tests"
-msgstr ""
+msgstr "Grafikas testi"
 
 #. description
 #: ../jobs/local.txt.in:58
 msgid "Informational tests"
-msgstr ""
+msgstr "Informatīvie testi"
 
 #. description
 #: ../jobs/local.txt.in:63
 msgid "Input Devices tests"
-msgstr ""
+msgstr "Ievadierīču testi"
 
 #. description
 #: ../jobs/local.txt.in:68
 msgid "Software Installation tests"
-msgstr ""
+msgstr "Programmatūras instalēšanas testi"
 
 #. description
 #: ../jobs/local.txt.in:73
 msgid "Hotkey tests"
-msgstr ""
-
-#. description
-#: ../jobs/local.txt.in:78
-msgid "Media Card tests"
-msgstr ""
+msgstr "Karsto taustiņu testi"
 
 #. description
 #: ../jobs/local.txt.in:83
-msgid "Miscellaneous tests"
-msgstr ""
+msgid "Media Card tests"
+msgstr "Mediju karšu testi"
 
 #. description
-#: ../jobs/local.txt.in:88
+#: ../jobs/local.txt.in:93
+msgid "Miscellaneous tests"
+msgstr "Dažādi testi"
+
+#. description
+#: ../jobs/local.txt.in:98
 msgid "Monitor tests"
 msgstr "Monitora testi"
 
 #. description
-#: ../jobs/local.txt.in:93
-msgid "Networking tests"
-msgstr ""
-
-#. description
-#: ../jobs/local.txt.in:98
-msgid "PCMCIA/PCIX Card tests"
-msgstr ""
-
-#. description
 #: ../jobs/local.txt.in:103
-msgid "Peripheral tests"
-msgstr "Ierīču testi"
-
-#. description
-#: ../jobs/local.txt.in:108
-msgid "Power Management tests"
-msgstr ""
+msgid "Networking tests"
+msgstr "Tīklošanas testi"
 
 #. description
 #: ../jobs/local.txt.in:113
-msgid "Unity tests"
-msgstr ""
+msgid "PCMCIA/PCIX Card tests"
+msgstr "PCMCIA/PCIX karšu testi"
 
 #. description
 #: ../jobs/local.txt.in:118
+msgid "Peripheral tests"
+msgstr "Perifērijas ierīču testi"
+
+#. description
+#: ../jobs/local.txt.in:123
+msgid "Power Management tests"
+msgstr "Barošanas pārvaldības testi"
+
+#. description
+#: ../jobs/local.txt.in:133
+msgid "Unity tests"
+msgstr "Unity testi"
+
+#. description
+#: ../jobs/local.txt.in:143
 msgid "User Applications"
 msgstr "Lietotāja lietotnes"
 
 #. description
-#: ../jobs/local.txt.in:123
+#: ../jobs/local.txt.in:153
 msgid "Stress tests"
-msgstr ""
+msgstr "Stresa testi"
 
 #. description
 #: ../jobs/ltp.txt.in:3
@@ -999,7 +1109,7 @@ msgstr "Linux testēšanas projekts"
 #. description
 #: ../jobs/mago.txt.in:3
 msgid "Automated desktop testing"
-msgstr ""
+msgstr "Automātiskā darbvirsmas testēšana"
 
 #. description
 #: ../jobs/mediacard.txt.in:3
@@ -1044,6 +1154,12 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"Secure Digital High Capacity (SDHC) atmiņas kartes atkārtota pārbaude: \n"
+" 1.- Ievietojiet SDHC atmiņas karti datorā.\n"
+" 2.- Parādīsies ikona uz darbvirsmas un \"Vietas\" izvēlne ekrāna augšpusē.\n"
+" 3.- Veiciet labais klikšķis uz darbvirsmas ikonas un izvēlieties \"Droši "
+"izņemt dzini\".\n"
+" 4.- Ikonai vajadzētu pazust no darbvirsmas un \"Vietas\" izvēlnes."
 
 #. description
 #: ../jobs/mediacard.txt.in:49
@@ -1055,6 +1171,12 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"Multi Media Card (MMC) atmiņas kartes pārbaude:\n"
+" 1.- Ievietojiet MMC atmiņas karti datorā.\n"
+" 2.- Parādīsies ikona uz darbvirsmas un \"Vietas\" izvēlne ekrāna augšpusē.\n"
+" 3.- Veiciet labais klikšķis uz darbvirsmas ikonas un izvēlieties \"Droši "
+"izņemt dzini\".\n"
+" 4.- Ikonai vajadzētu pazust no darbvirsmas un \"Vietas\" izvēlnes."
 
 #. description
 #: ../jobs/mediacard.txt.in:61
@@ -1066,6 +1188,12 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"Multi Media Card (MMC) atmiņas kartes atkārtota pārbaude:\n"
+" 1.- Ievietojiet MMC atmiņas karti datorā.\n"
+" 2.- Parādīsies ikona uz darbvirsmas un \"Vietas\" izvēlne ekrāna augšpusē.\n"
+" 3.- Veiciet labais klikšķis uz darbvirsmas ikonas un izvēlieties \"Droši "
+"izņemt dzini\".\n"
+" 4.- Ikonai vajadzētu pazust no darbvirsmas un \"Vietas\" izvēlnes."
 
 #. description
 #: ../jobs/mediacard.txt.in:72
@@ -1077,6 +1205,12 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"Memory Stick (MS) atmiņas kartes pārbaude:\n"
+" 1.- Ievietojiet MS atmiņas karti datorā.\n"
+" 2.- Parādīsies ikona uz darbvirsmas un \"Vietas\" izvēlne ekrāna augšpusē.\n"
+" 3.- Veiciet labais klikšķis uz darbvirsmas ikonas un izvēlieties \"Droši "
+"izņemt dzini\".\n"
+" 4.- Ikonai vajadzētu pazust no darbvirsmas un \"Vietas\" izvēlnes."
 
 #. description
 #: ../jobs/mediacard.txt.in:84
@@ -1088,6 +1222,12 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"Memory Stick (MS) atmiņas kartes atkārtota pārbaude:\n"
+" 1.- Ievietojiet MS atmiņas karti datorā.\n"
+" 2.- Parādīsies ikona uz darbvirsmas un \"Vietas\" izvēlne ekrāna augšpusē.\n"
+" 3.- Veiciet labais klikšķis uz darbvirsmas ikonas un izvēlieties \"Droši "
+"izņemt dzini\".\n"
+" 4.- Ikonai vajadzētu pazust no darbvirsmas un \"Vietas\" izvēlnes."
 
 #. description
 #: ../jobs/mediacard.txt.in:95
@@ -1099,6 +1239,12 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"Memory Stick Pro (MSP) atmiņas kartes pārbaude:\n"
+" 1.- Ievietojiet MSP atmiņas karti datorā.\n"
+" 2.- Parādīsies ikona uz darbvirsmas un \"Vietas\" izvēlne ekrāna augšpusē.\n"
+" 3.- Veiciet labais klikšķis uz darbvirsmas ikonas un izvēlieties \"Droši "
+"izņemt dzini\".\n"
+" 4.- Ikonai vajadzētu pazust no darbvirsmas un \"Vietas\" izvēlnes."
 
 #. description
 #: ../jobs/mediacard.txt.in:107
@@ -1110,6 +1256,12 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"Memory Stick Pro (MSP) atmiņas kartes atkārtota pārbaude:\n"
+" 1.- Ievietojiet MSP atmiņas karti datorā.\n"
+" 2.- Parādīsies ikona uz darbvirsmas un \"Vietas\" izvēlne ekrāna augšpusē.\n"
+" 3.- Veiciet labais klikšķis uz darbvirsmas ikonas un izvēlieties \"Droši "
+"izņemt dzini\".\n"
+" 4.- Ikonai vajadzētu pazust no darbvirsmas un \"Vietas\" izvēlnes."
 
 #. description
 #: ../jobs/mediacard.txt.in:118
@@ -1121,6 +1273,12 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"Compact Flash (CF) atmiņas kartes pārbaude:\n"
+" 1.- Ievietojiet CF atmiņas karti datorā.\n"
+" 2.- Parādīsies ikona uz darbvirsmas un \"Vietas\" izvēlne ekrāna augšpusē.\n"
+" 3.- Veiciet labais klikšķis uz darbvirsmas ikonas un izvēlieties \"Droši "
+"izņemt dzini\".\n"
+" 4.- Ikonai vajadzētu pazust no darbvirsmas un \"Vietas\" izvēlnes."
 
 #. description
 #: ../jobs/mediacard.txt.in:130
@@ -1132,6 +1290,12 @@ msgid ""
 " 3.- Right click on the deskop icon and select \"Safely Remove Drive\".\n"
 " 4.- The icon should disappear of both the deskop and the \"Places\" menu."
 msgstr ""
+"Compact Flash (CF) atmiņas kartes atkārtota pārbaude:\n"
+" 1.- Ievietojiet CF atmiņas karti datorā.\n"
+" 2.- Parādīsies ikona uz darbvirsmas un \"Vietas\" izvēlne ekrāna augšpusē.\n"
+" 3.- Veiciet labais klikšķis uz darbvirsmas ikonas un izvēlieties \"Droši "
+"izņemt dzini\".\n"
+" 4.- Ikonai vajadzētu pazust no darbvirsmas un \"Vietas\" izvēlnes."
 
 #. description
 #: ../jobs/mediacard.txt.in:130
@@ -1146,7 +1310,7 @@ msgstr ""
 #. description
 #: ../jobs/memory.txt.in:16
 msgid "Test and exercise memory."
-msgstr ""
+msgstr "Testēt un nodarbināt atmiņu."
 
 #. description
 #: ../jobs/miscellanea.txt.in:8
@@ -1155,6 +1319,9 @@ msgid ""
 "screen will change temporarily to a text console and then switch back to "
 "your current session."
 msgstr ""
+"Izvēlieties 'Testēt', lai pārslēgtos uz citu virtuālo termināli un tad "
+"atpakaļ uz X. Jūsu ekrānā uz brīdi jābūt redzamai teksta konsolei un pēc tam "
+"atkal jūsu pašreizējai sesijai."
 
 #. description
 #: ../jobs/miscellanea.txt.in:8
@@ -1170,6 +1337,7 @@ msgstr "Vai jūs redzējāt, kā ekrāns uz brīdi pārslēdzās uz teksta konso
 #: ../jobs/miscellanea.txt.in:20
 msgid "Run Colin King's Firmware Test Suite automated tests."
 msgstr ""
+"Izpildīt Colin King's aparātprogrammatūras testa svītas automātiskos testus."
 
 #. description
 #: ../jobs/miscellanea.txt.in:29
@@ -1177,6 +1345,8 @@ msgid ""
 "ipmitool is required for ipmi testing. This checks for ipmitool and installs "
 "it if not available."
 msgstr ""
+"ipmi testēšanai nepieciešams ipmitool. Tas pārbauda, vai ir ipmitool, un to "
+"uzinstalē, ja tas nav pieejams."
 
 #. description
 #: ../jobs/miscellanea.txt.in:36
@@ -1277,11 +1447,17 @@ msgid ""
 " 2.- The monitor should go blank.\n"
 " 3.- Press any key or move the mouse to recover."
 msgstr ""
+"Monitora enerģijas taupīšanas režīma pārbaudes procedūra:\n"
+" 1.- Klikšķiniet pogu \"Testēt\", lai izmēģinātu jūsu monitora enerģijas "
+"taupīšanas iespējas.\n"
+" 2.- ekrānam vajadzētu kļūt tukšam.\n"
+" 3.- Spiediet jebkuru taustiņu vai pakustiniet peli, lai tas atkal rādītu šo "
+"sesiju."
 
 #. description
 #: ../jobs/monitor.txt.in:46
 msgid "Did the monitor go blank?"
-msgstr "Vai jūsu monitors nerādija attēlu?"
+msgstr "Vai jūsu monitors nerādīja attēlu?"
 
 #. description
 #: ../jobs/networking.txt.in:5
@@ -1294,26 +1470,30 @@ msgid "Testing your connection to the Internet:"
 msgstr "Pārbauda jūsu savienojumu ar Internetu:"
 
 #. description
-#: ../jobs/networking.txt.in:26
+#: ../jobs/networking.txt.in:21
 msgid "Network Information"
-msgstr ""
+msgstr "Tīkla informācija"
 
 #. description
-#: ../jobs/networking.txt.in:46
+#: ../jobs/wireless.txt.in:6
 msgid "Wireless scanning test."
-msgstr ""
+msgstr "Bezvadu skenēšanas tests."
 
 #. description
-#: ../jobs/networking.txt.in:52
+#: ../jobs/wireless.txt.in:12
 msgid ""
 "Wireless network connection procedure: 1.- Click on the Network Manager "
 "applet 2.- Select a network below the 'Wireless networks' section 3.- Notify "
 "OSD should confirm that the connection has been established 4.- Select Test "
 "to verify that it's possible to establish an HTTP connection"
 msgstr ""
+"Bezvadu tīkla savienojuma procedūra: 1.- Uzklikšķiniet uz Network Manager "
+"sīklietotnes 2.- Izvēlieties tīklu zem 'Bezvadu tīkli' sadaļas 3.- Vajadzētu "
+"parādīties paziņojumam, ka ir izveidots savienojums 4.- Piespiediet pogu "
+"'Testēt', lai pārbaudītu vai var izveidot HTTP savienojumu"
 
 #. description
-#: ../jobs/networking.txt.in:64
+#: ../jobs/networking.txt.in:39
 msgid ""
 "Wired network connection procedure: 1.- Click on the Network Manager applet "
 "2.- Select a network below the 'Wired network' section 3.- Notify OSD should "
@@ -1322,7 +1502,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:76
+#: ../jobs/networking.txt.in:51
 msgid ""
 "Built-in modem network connection procedure: 1.- Connect the telephone line "
 "to the computer 2.- Right click on the Network Manager applet 3.- Select "
@@ -1333,55 +1513,56 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:76 ../jobs/peripheral.txt.in:15
+#: ../jobs/networking.txt.in:51 ../jobs/peripheral.txt.in:15
+#: ../jobs/wireless.txt.in:12
 msgid "Was the connection correctly established?"
 msgstr "Vai savienojums tika izveidots korekti?"
 
 #. description
-#: ../jobs/networking.txt.in:92
+#: ../jobs/networking.txt.in:67
 msgid ""
 "Automated test case to verify availability of some system on the network "
 "using ICMP ECHO packets."
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:99 ../jobs/peripheral.txt.in:32
+#: ../jobs/networking.txt.in:74 ../jobs/peripheral.txt.in:32
 msgid ""
 "Automated test case to make sure that it's possible to download files "
 "through HTTP"
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:107
+#: ../jobs/networking.txt.in:82
 msgid "Test to see if we can sync local clock to an NTP server"
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:113
+#: ../jobs/networking.txt.in:88
 msgid ""
 "Verify that an installation of checkbox-server on the network can be reached "
 "over SSH."
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:119
+#: ../jobs/networking.txt.in:94
 msgid "Try to enable a remote printer on the network and print a test page."
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:124
+#: ../jobs/networking.txt.in:99
 msgid "Multiple network cards"
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:144
+#: ../jobs/networking.txt.in:119
 msgid "Test to measure the network bandwidth"
 msgstr ""
 
 #. description
 #: ../jobs/optical.txt.in:8
 msgid "The following optical drives were detected:"
-msgstr ""
+msgstr "Tika noteikti sekojoši optiskie diski:"
 
 #. description
 #: ../jobs/optical.txt.in:18
@@ -1435,6 +1616,7 @@ msgstr ""
 #: ../jobs/optical.txt.in:90
 msgid "Insert a DVD.  Then select Test to play the DVD in Totem."
 msgstr ""
+"Ievietojiet DVD. Tad izvelieties 'Testēt', lai atskaņotu DVD Totem lietotnē."
 
 #. description
 #: ../jobs/optical.txt.in:90
@@ -1555,47 +1737,47 @@ msgid "Does your computer hibernate and restore?"
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:29
+#: ../jobs/power-management.txt.in:13
 msgid "Does closing your laptop lid cause your screen to blank?"
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:41
+#: ../jobs/power-management.txt.in:25
 msgid "Click the Test button, then close and open the lid."
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:41
+#: ../jobs/power-management.txt.in:25
 msgid "Did the screen turn off while the lid was closed?"
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:55
+#: ../jobs/power-management.txt.in:39
 msgid "Click the Test button, then close the lid and wait 5 seconds."
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:55
+#: ../jobs/power-management.txt.in:39
 msgid "Open the lid."
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:55
+#: ../jobs/power-management.txt.in:39
 msgid "Did the screen turn back on when the lid was opened?"
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:65
+#: ../jobs/power-management.txt.in:49
 msgid "Test the network before suspending."
 msgstr "Pārbaudīt tīklu pirms iesnaudināšanas."
 
 #. description
-#: ../jobs/power-management.txt.in:70
+#: ../jobs/suspend.txt.in:4
 msgid "Record the current resolution before suspending."
 msgstr "Ierakstīt pašreizējo izšķirtspēju pirms iesnaudināšanas."
 
 #. description
-#: ../jobs/power-management.txt.in:78
+#: ../jobs/suspend.txt.in:12
 msgid "Test the audio before suspending."
 msgstr "Pārbaudīt skaņu pirms iesnaudināšanas."
 
@@ -1612,17 +1794,17 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:128 ../jobs/sru_suite.txt.in:135
+#: ../jobs/power-management.txt.in:51
 msgid "Make sure that the RTC (Real-Time Clock) device exists."
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:135
+#: ../jobs/suspend.txt.in:58
 msgid "Power management Suspend and Resume test"
 msgstr "Barošanas pārvaldības iesnaušanās un pamošanās tests"
 
 #. description
-#: ../jobs/power-management.txt.in:135
+#: ../jobs/suspend.txt.in:58
 msgid ""
 "Select Test and your system will suspend for about 30 - 60 seconds. If your "
 "system does not wake itself up after 60 seconds, please press the power "
@@ -1632,18 +1814,18 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:145
+#: ../jobs/suspend.txt.in:68
 msgid "Test the network after resuming."
 msgstr "Pārbaudīt tīklu pirms pamošanās."
 
 #. description
-#: ../jobs/power-management.txt.in:151
+#: ../jobs/suspend.txt.in:74
 msgid ""
 "Test to see that we have the same resolution after resuming as before."
 msgstr "Pārbaudīt, vai pēc pamošanās izšķirtspēja nemainīsies."
 
 #. description
-#: ../jobs/power-management.txt.in:160
+#: ../jobs/suspend.txt.in:83
 msgid "Test the audio after resuming."
 msgstr "Pārbaudīt skaņu pirms pamošanās."
 
@@ -1681,14 +1863,16 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:210
+#: ../jobs/suspend.txt.in:150
 msgid ""
 "This test will check to make sure that supported video modes work after a "
 "suspend and resume.  Select Test to begin."
 msgstr ""
+"Šis test pārbaudīts, vai atbalstītie video režīmi darbosies pēc iesnaušanās "
+"un pamošanās. Izvēlieties 'Testēt', lai sāktu."
 
 #. description
-#: ../jobs/power-management.txt.in:221
+#: ../jobs/power-management.txt.in:251
 msgid ""
 "This will check to make sure that your audio device works properly after a "
 "suspend and resume.  You can use either internal or external microphone and "
@@ -1698,7 +1882,7 @@ msgstr ""
 "pamošanās. Jūs varat izmantot iekšējo vai ārējo mikrofonu un skaļruņus."
 
 #. description
-#: ../jobs/power-management.txt.in:221
+#: ../jobs/power-management.txt.in:251
 msgid ""
 "To execute this test, make sure your speaker and microphone are NOT muted "
 "and the volume is set sufficiently loud to record and play audio. Select "
@@ -1707,7 +1891,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:234
+#: ../jobs/stress.txt.in:30
 msgid ""
 "Enter and resume from suspend state for 30 iterations. Please note that this "
 "is a lengthy test. Select Test to begin. If your system fails to wake and "
@@ -1715,19 +1899,19 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:234
+#: ../jobs/stress.txt.in:30
 msgid "Did the system successfully suspend and resume for 30 iterations?"
 msgstr "Vai sistēma veiksmīgi iesnaudās un pamodās pēc 30 iterācijām?"
 
 #. description
-#: ../jobs/power-management.txt.in:245
+#: ../jobs/hibernate.txt.in:7
 msgid ""
 "This will check to make sure your system can successfully hibernate (if "
 "supported)."
 msgstr "Tas pārbaudīs, vai sistēma var iemigt (ja ir atbalstīts)."
 
 #. description
-#: ../jobs/power-management.txt.in:245
+#: ../jobs/hibernate.txt.in:7
 msgid ""
 "Select Test to begin. The system will hibernate and should wake itself "
 "within 5 minutes.  If your system does not wake itself after 5 minutes, "
@@ -1737,14 +1921,14 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:245
+#: ../jobs/hibernate.txt.in:7
 msgid ""
 "Did the system successfully hibernate and did it work properly after waking "
 "up?"
 msgstr "Vai sistēma veiksmīgi iemiga un vai tā strādā normāli pēc pamošanās?"
 
 #. description
-#: ../jobs/power-management.txt.in:258
+#: ../jobs/stress.txt.in:17
 msgid ""
 "Enter and resume from hibernate for 30 iterations. Please note that this is "
 "a very lengthy test. Also, if your system does not wake itself after 2 "
@@ -1752,9 +1936,14 @@ msgid ""
 "the system fails to resume from hibernation and must be rebooted, please "
 "restart System Testing and mark this test as Failed."
 msgstr ""
+"Ievadiet un pamodiniet no iemigšanas pēc 30 iterācijām. Ņemiet vērā, ka tas "
+"ir ļoti garš tests. Kā arī, ja sistēma nepamostas pēc 2 minūtēm, piespiediet "
+"ieslēgšanas pogu un pamodiniet sistēmu. Ja sistēmai neizdotas atmosties no "
+"iemigšanas un tā jāpārstartē, pārstartējiet Sistēmas testēšanas lietotni un "
+"atzīmējiet šo testu kā neizdevušos."
 
 #. description
-#: ../jobs/power-management.txt.in:258
+#: ../jobs/stress.txt.in:17
 msgid ""
 "Also, you will need to ensure your system has no power-on or HDD passwords "
 "set, and that grub is set to boot Ubuntu by default if you have a multi-boot "
@@ -1765,27 +1954,27 @@ msgstr ""
 "jāielādē pēc noklusējuma (ja ir vairākas operētājsistēmas)."
 
 #. description
-#: ../jobs/power-management.txt.in:258
+#: ../jobs/stress.txt.in:17
 msgid "Did the system successfully hibernate and wake 30 times?"
 msgstr "Vai sistēma sekmīgi iemiga un pamodās 30 reizes?"
 
 #. description
-#: ../jobs/power-management.txt.in:267
+#: ../jobs/power-management.txt.in:56
 msgid "Run Colin Kings FWTS wakealarm test"
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:276
+#: ../jobs/power-management.txt.in:65
 msgid "Check to see if CONFIG_NO_HZ is set in the kernel"
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:284
+#: ../jobs/suspend.txt.in:194
 msgid "Automatic power management Suspend and Resume test"
-msgstr ""
+msgstr "Automātiskais barošanas pārvaldības iesnaušanās un pamošanās tests"
 
 #. description
-#: ../jobs/power-management.txt.in:284
+#: ../jobs/suspend.txt.in:194
 msgid ""
 "Select test and your system will suspend for about 30 - 60 seconds. If your "
 "system does not wake itself up after 60 seconds, please press the power "
@@ -1935,6 +2124,8 @@ msgid ""
 "Xlib is required for unity testing. This checks for Xlib and installs it if "
 "not available."
 msgstr ""
+"Unity testēšanai nepieciešams xlib. Tas pārbauda, vai ir xlib, un to "
+"uzinstalē, ja tas nav pieejams."
 
 #. description
 #: ../jobs/unity.txt.in:13
@@ -1949,26 +2140,26 @@ msgid "The following USB controllers were detected:"
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:17
+#: ../jobs/usb.txt.in:24
 msgid ""
 "Plug a USB keyboard into the computer. Then, click on the Test button \\ to "
 "enter text."
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:17
+#: ../jobs/usb.txt.in:24
 msgid "Does the keyboard work?"
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:27
+#: ../jobs/usb.txt.in:34
 msgid ""
 "USB mouse verification procedure: 1.- Plug a USB mouse into the computer 2.- "
 "Perform some single/double/right click operations"
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:39
+#: ../jobs/usb.txt.in:46
 msgid ""
 "Click 'Test' and insert a USB device within 5 seconds. If the test is "
 "successful, you should notice that 'Yes' is selected below. Do not unplug "
@@ -1976,21 +2167,21 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:39
+#: ../jobs/usb.txt.in:46
 msgid ""
 "If no USB device is inserted or the device is not recognized, the test will "
 "fail and 'No' will be selected below."
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:51
+#: ../jobs/usb.txt.in:58
 msgid ""
 "Click 'Test' and remove the USB device you inserted within 5 seconds. If the "
 "test is successful, you should notice that 'Yes' is selected below."
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:51
+#: ../jobs/usb.txt.in:58
 msgid ""
 "If the USB device isn't removed or the removal is not registered, the test "
 "will fail and 'No' will be selected below."
@@ -2018,7 +2209,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:83
+#: ../jobs/usb.txt.in:86
 msgid ""
 "Connect a USB storage device to an external USB slot on this computer. \\ An "
 "icon should appear on the desktop and in the \"Places\" menu at the top of "
@@ -2026,16 +2217,16 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:83
+#: ../jobs/usb.txt.in:86
 msgid ""
 "Confirm that the icon appears, then eject the device. Repeat with each "
 "external \\ USB slot."
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:83
+#: ../jobs/usb.txt.in:86
 msgid "Do all USB slots work with the device?"
-msgstr ""
+msgstr "Vai visas USB ligzdas strādā ar šo ierīci?"
 
 #. description
 #: ../jobs/user_apps.txt.in:6
@@ -2057,6 +2248,9 @@ msgid ""
 "Folder. In the name box for the new folder, enter the name Test Folder and "
 "hit Enter."
 msgstr ""
+"Izvēlieties 'Testēt', lai atvērtu failu pārlūku. Izvēlnes joslā, klikšķiniet "
+"Fails -> Izveidot mapi. Mapes nosaukuma rūtī ievadiet 'Testa mape' un "
+"piespiediet taustiņu 'Enter'."
 
 #. description
 #: ../jobs/user_apps.txt.in:14
@@ -2070,6 +2264,9 @@ msgid ""
 "Folder and click on Copy.  Right Click on any white area in the window and "
 "click on Paste."
 msgstr ""
+"Izvēlieties 'Testēt', lai atvērtu failu pārlūku. Veiciet labo klikšķi uz "
+"mapi 'Testa mape' un izvēlieties 'Kopēt'. Veiciet labo klikšķi uz jebkuras "
+"balts vietas logā un izvēlieties 'Ievietot'."
 
 #. description
 #: ../jobs/user_apps.txt.in:25
@@ -2092,6 +2289,8 @@ msgid ""
 "Select Test to open the File Browser. Click and drag the folder called Test "
 "Data onto the icon called Test Folder. Release the button."
 msgstr ""
+"Izvēlieties 'Testēt', lai atvērtu failu pārlūku. Klikšķiniet un velciet mapi "
+"'Testa dati' uz ikonu ar nosaukumu 'Testa mape'. Atlaidiet pogu."
 
 #. description
 #: ../jobs/user_apps.txt.in:38
@@ -2131,6 +2330,9 @@ msgid ""
 "Select Test to open the File Browser. Right click on the file called Test "
 "File 1 and click Copy. Right click in the white space and click Paste."
 msgstr ""
+"Izvēlieties 'Testēt', lai atvērtu failu pārlūku. Veiciet labo klikšķi uz "
+"faila 'Fails 1' un izvēlieties 'Kopēt'. Veiciet labo klikšķi uz jebkuras "
+"balts vietas logā un izvēlieties 'Ievietot'."
 
 #. description
 #: ../jobs/user_apps.txt.in:62
@@ -2153,6 +2355,9 @@ msgid ""
 "Select Test to open the File Browser. Click and drag the file called Test "
 "File 2 onto the icon for the folder called Test Data. Release the button."
 msgstr ""
+"Izvēlieties 'Testēt', lai atvērtu failu pārlūku. Klikšķiniet un velciet "
+"failu ar nosaukumu 'Testa fails 2' uz mapes 'Testa dati' ikonu. Atlaidiet "
+"pogu."
 
 #. description
 #: ../jobs/user_apps.txt.in:75
@@ -2172,6 +2377,8 @@ msgid ""
 "Select Test to open the File Browser. Right click on the file called Test "
 "File 1 and click on Move To Trash."
 msgstr ""
+"Izvēlieties 'Testēt', lai atvērtu failu pārlūku. Veiciet labo klikšķi uz "
+"faila 'Testa fails 1' un izvēlieties 'Izmest miskastē'."
 
 #. description
 #: ../jobs/user_apps.txt.in:88
@@ -2184,6 +2391,8 @@ msgid ""
 "Select Test to open the File Browser. Right click on the folder called Test "
 "Folder and click on Move To Trash."
 msgstr ""
+"Izvēlieties 'Testēt', lai atvērtu failu pārlūku. Veiciet labo klikšķi uz "
+"mapes 'Testa mape' un izvēlieties 'Izmest miskastē'."
 
 #. description
 #: ../jobs/user_apps.txt.in:99
@@ -2204,6 +2413,7 @@ msgstr "Parasto dokumentu tipu tests"
 #: ../jobs/user_apps.txt.in:178
 msgid "Select Test to launch Firefox and view the test web page."
 msgstr ""
+"Izvēlieties 'Testēt', lai atvērtu Firefox un atvērtu testa tīmekļa lapu."
 
 #. description
 #: ../jobs/user_apps.txt.in:178
@@ -2216,6 +2426,8 @@ msgid ""
 "Select Test to open Firefox with the Java test page, and follow the "
 "instructions there."
 msgstr ""
+"Izvēlieties 'Testēt', lai atvērtu Firefox ar Java test lapu un sekojiet "
+"instrukcijām tur."
 
 #. description
 #: ../jobs/user_apps.txt.in:188
@@ -2226,6 +2438,7 @@ msgstr "Vai sīklietotne parādījās?"
 #: ../jobs/user_apps.txt.in:198
 msgid "Select Test to launch Firefox and view a sample Flash test."
 msgstr ""
+"Izvēlieties 'Testēt', lai atvērtu Firefox un apskatiet vienkāršu Flash testu."
 
 #. description
 #: ../jobs/user_apps.txt.in:198
@@ -2236,16 +2449,17 @@ msgstr "Vai redzējāt tekstu?"
 #: ../jobs/user_apps.txt.in:208
 msgid "Select Test to launch Firefox and view a short flash video."
 msgstr ""
+"Izvēlieties 'Testēt', lai atvērtu Firefox un apskatiet īsu Flash video."
 
 #. description
 #: ../jobs/user_apps.txt.in:208
 msgid "Did the video play correctly?"
-msgstr "Vai video tika atskaņot korekti?"
+msgstr "Vai video tika atskaņots korekti?"
 
 #. description
 #: ../jobs/user_apps.txt.in:218
 msgid "Select Test to launch Firefox with a sample video."
-msgstr ""
+msgstr "Izvēlieties 'Testēt', lai atvērtu Firefox ar parauga video."
 
 #. description
 #: ../jobs/user_apps.txt.in:218
@@ -2279,6 +2493,9 @@ msgid ""
 "service. Once you have completed the test, please quit Empathy to continue "
 "here."
 msgstr ""
+"Izvēlieties 'Testēt', lai palaistu Empath, tad nokonfigurējiet to, lai tā "
+"izmantotu sekojošo servisu. Kad pabeigsiet testu, izejiet no Empathy un "
+"turpiniet šeit."
 
 #. description
 #: ../jobs/user_apps.txt.in:271
@@ -2447,7 +2664,7 @@ msgstr "test"
 
 #: ../checkbox_cli/cli_interface.py:339
 msgid "test again"
-msgstr "pārbaudīt vēlreiz"
+msgstr "testēt vēlreiz"
 
 #: ../checkbox_cli/cli_interface.py:345
 msgid "Please type here and press Ctrl-D when finished:\n"
@@ -2494,15 +2711,15 @@ msgstr "Testēt vēlreiz"
 msgid "hardware database"
 msgstr ""
 
-#: ../checkbox_gtk/gtk_interface.py:487
+#: ../checkbox_gtk/gtk_interface.py:502
 msgid "_Test Again"
 msgstr "_Testēt vēlreiz"
 
-#: ../checkbox_gtk/gtk_interface.py:533
+#: ../checkbox_gtk/gtk_interface.py:548
 msgid "Info"
 msgstr "Informācija"
 
-#: ../checkbox_gtk/gtk_interface.py:552
+#: ../checkbox_gtk/gtk_interface.py:567
 msgid "Error"
 msgstr "Kļūda"
 
@@ -2511,7 +2728,7 @@ msgstr "Kļūda"
 msgid "Unable to start web browser to open %s."
 msgstr "Neizdevās palaist tīmekļa pārlūku, lai atvērtu %s."
 
-#: ../plugins/apport_prompt.py:81
+#: ../plugins/apport_prompt.py:83
 msgid ""
 "Collecting information about this test.\n"
 "This might take a few minutes."
@@ -2519,7 +2736,7 @@ msgstr ""
 "Savāc informāciju par šo testu.\n"
 "Tas varētu aizņemt pāris minūtes."
 
-#: ../plugins/apport_prompt.py:116
+#: ../plugins/apport_prompt.py:118
 msgid ""
 "Collected information is being sent for bug tracking.\n"
 "This might take a few minutes."
@@ -2527,17 +2744,17 @@ msgstr ""
 "Savāktā informācija tiek nosūtīta kļūdu izsekošanai.\n"
 "Tas varētu aizņemt pāris minūtes."
 
-#: ../plugins/apport_prompt.py:225
+#: ../plugins/apport_prompt.py:227
 #, python-format
 msgid "Test %s from suite %s failed."
-msgstr ""
+msgstr "Tests %s no svītas %s izgāzās."
 
-#: ../plugins/apport_prompt.py:228
+#: ../plugins/apport_prompt.py:230
 #, python-format
 msgid "Test %s failed."
-msgstr ""
+msgstr "Tests %s izgāzās."
 
-#: ../plugins/apport_prompt.py:246
+#: ../plugins/apport_prompt.py:248
 #, python-format
 msgid "Is a package upgrade in process? Error: %s"
 msgstr "Vai notiek pakotnes uzlabojums? Kļūda: %s"
@@ -2554,7 +2771,7 @@ msgstr "_Pabeigt"
 msgid "Gathering information from your system..."
 msgstr "Apkopo informāciju par jūsu sistēmu..."
 
-#: ../plugins/intro_prompt.py:43
+#: ../plugins/intro_prompt.py:29
 msgid ""
 "Welcome to System Testing!\n"
 "\n"
@@ -2568,12 +2785,12 @@ msgstr ""
 "korekti. Kad jūs esat pabeiguši testēt savu sistēmu, jūs var aplūkot "
 "kopsavilkuma ziņojumu."
 
-#: ../plugins/launchpad_exchange.py:118
+#: ../plugins/launchpad_exchange.py:136
 #, python-format
 msgid "Failed to process form: %s"
 msgstr "Neizdevās apstrādāt formu: %s"
 
-#: ../plugins/launchpad_exchange.py:141
+#: ../plugins/launchpad_exchange.py:151
 #, python-format
 msgid ""
 "Failed to contact server. Please try\n"
@@ -2590,7 +2807,7 @@ msgstr ""
 "tieši uz sistēmas datubāzi:\n"
 "https://launchpad.net/+hwdb/+submit"
 
-#: ../plugins/launchpad_exchange.py:150
+#: ../plugins/launchpad_exchange.py:160
 msgid ""
 "Failed to upload to server,\n"
 "please try again later."
@@ -2598,7 +2815,7 @@ msgstr ""
 "Neizdevās augšupielādēt uz serveri,\n"
 "lūdzu mēģiniet vēlāk vēlreiz."
 
-#: ../plugins/launchpad_exchange.py:162
+#: ../plugins/launchpad_exchange.py:172
 msgid "Information not posted to Launchpad."
 msgstr "Informācija netika nosūtīta uz Launchpad."
 
@@ -2651,7 +2868,7 @@ msgstr ""
 "Checkbox nav iepriekš pabeidzis savu darbu pilnībā.\n"
 "Vai jūs vēlaties atkopties no iepriekšējās palaišanas?"
 
-#: ../plugins/report_prompt.py:34
+#: ../plugins/report_prompt.py:39
 msgid "Building report..."
 msgstr "Veido ziņojumu..."
 
@@ -2661,7 +2878,7 @@ msgid "Running %s..."
 msgstr "Palaiž %s..."
 
 #. Get results
-#: ../plugins/suites_prompt.py:105
+#: ../plugins/suites_prompt.py:108
 msgid "Select the suites to test"
 msgstr "Izvēlieties testa kopas"
 
@@ -2669,7 +2886,7 @@ msgstr "Izvēlieties testa kopas"
 msgid "Enter text:\n"
 msgstr "Ievadiet tekstu:\n"
 
-#: ../scripts/keyboard_test:40
+#: ../scripts/keyboard_test:41
 msgid "Type Text"
 msgstr "Ierakstiet tekstu"
 

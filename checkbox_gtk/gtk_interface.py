@@ -537,6 +537,8 @@ class GTKInterface(UserInterface):
         test["data"] = self._get_text_view("text_view_comment")
         test["status"] = self._get_radio_button(BUTTON_TO_STATUS)
 
+        self._set_main_title()
+
     def show_info(self, text, options=[], default=None):
         message_dialog = Gtk.MessageDialog(parent=self._dialog,
             type=Gtk.MessageType.INFO,

@@ -124,7 +124,7 @@ _description:
 plugin: manual
 name: graphics/cycle_resolution
 requires: package.name == 'xorg'
-depends: xrandr_detect_modes
+depends: graphics/xrandr_detect_modes
 command: xrandr_cycle
 _description:
  PURPOSE:
@@ -143,11 +143,13 @@ _description:
 plugin: manual
 name: graphics/glxgears
 requires: package.name == 'mesa-utils'
-command: glxgears
+command: glxgears; true
 _description:
  PURPOSE:
      This test tests the basic 3D capabilities of your video card
  STEPS:
-     1. Click "Test" to execute glxgears
+     1. Click "Test" to execute an OpenGL demo. Press ESC at any time to close.
+     2. Verify that the animation is not jerky or slow.
  VERIFICATION:
-     Did the 3d animation appear?
+     1. Did the 3d animation appear?
+     2. Was the animation free from slowness/jerkiness?

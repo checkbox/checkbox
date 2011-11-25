@@ -14,16 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-09-11 04:35+0000\n"
-"X-Generator: Launchpad (build 13900)\n"
-
-#: ../gtk/checkbox-gtk.ui.h:8
-msgid "_Skip this test"
-msgstr "_Omitir esta prueba"
-
-#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:533
-msgid "_Test"
-msgstr "_Probar"
+"X-Launchpad-Export-Date: 2011-11-22 04:40+0000\n"
+"X-Generator: Launchpad (build 14299)\n"
 
 #: ../gtk/checkbox-gtk.desktop.in.h:2
 msgid "Test and report system information"
@@ -52,11 +44,6 @@ msgid "Moving the mouse should move the cursor on the screen."
 msgstr "Al mover el ratón se debería mover el cursor por la pantalla."
 
 #. description
-#: ../jobs/input.txt.in:4
-msgid "Is your mouse working properly?"
-msgstr "¿Está funcionando correctamente su ratón?"
-
-#. description
 #: ../jobs/input.txt.in:13
 msgid "Is your keyboard working properly?"
 msgstr "¿Está funcionando su teclado correctamente?"
@@ -66,48 +53,13 @@ msgstr "¿Está funcionando su teclado correctamente?"
 msgid "Detecting your network controller(s):"
 msgstr "Detectando controlador(es) de red:"
 
-#: ../checkbox/application.py:66
-msgid "Usage: checkbox [OPTIONS]"
-msgstr "Uso: checkbox [OPCIONES]"
-
 #: ../checkbox/application.py:70
 msgid "Print version information and exit."
 msgstr "Muestra la información de la versión y finaliza."
 
-#: ../checkbox/application.py:74
-msgid "The file to write the log to."
-msgstr "El archivo donde se escribirá el registro."
-
 #: ../checkbox/application.py:77
 msgid "One of debug, info, warning, error or critical."
 msgstr "Uno entre depuración, información, aviso, error o crítico."
-
-#: ../checkbox/application.py:82
-msgid "Configuration override parameters."
-msgstr "La configuración sobreescribe los parámetros."
-
-#: ../checkbox/application.py:115
-msgid "Missing configuration file as argument.\n"
-msgstr "Falta como argumento el archivo de configuración.\n"
-
-#: ../checkbox_cli/cli_interface.py:31
-#: ../checkbox_urwid/urwid_interface.py:684
-msgid "yes"
-msgstr "sí"
-
-#: ../checkbox_cli/cli_interface.py:32
-#: ../checkbox_urwid/urwid_interface.py:685
-msgid "no"
-msgstr "no"
-
-#: ../checkbox_cli/cli_interface.py:33
-#: ../checkbox_urwid/urwid_interface.py:686
-msgid "skip"
-msgstr "omitir"
-
-#: ../checkbox_cli/cli_interface.py:126
-msgid "Press any key to continue..."
-msgstr "Pulse una tecla para continuar..."
 
 #: ../checkbox_cli/cli_interface.py:135
 #, python-format
@@ -126,7 +78,7 @@ msgstr "Por favor, escriba aquí y pulse Ctrl-D cuando termine:\n"
 msgid "Gathering information from your system..."
 msgstr "Recopilando información sobre su sistema..."
 
-#: ../plugins/launchpad_exchange.py:147
+#: ../plugins/launchpad_exchange.py:151
 #, python-format
 msgid ""
 "Failed to contact server. Please try\n"
@@ -143,7 +95,7 @@ msgstr ""
 "directamente a la base de datos de sistemas:\n"
 "https://launchpad.net/+hwdb/+submit"
 
-#: ../plugins/launchpad_exchange.py:156
+#: ../plugins/launchpad_exchange.py:160
 msgid ""
 "Failed to upload to server,\n"
 "please try again later."
@@ -151,42 +103,19 @@ msgstr ""
 "Fallo al subir archivos al servidor.\n"
 "Por favor, inténtelo de nuevo más tarde."
 
-#: ../plugins/launchpad_exchange.py:168
-msgid "Information not posted to Launchpad."
-msgstr "Información no publicada en Launchpad."
-
 #: ../plugins/launchpad_prompt.py:92
 msgid "Email address must be in a proper format."
 msgstr "La dirección de correo debe tener un formato adecuado."
 
-#: ../plugins/launchpad_prompt.py:98
-msgid "Exchanging information with the server..."
-msgstr "Intercambiando información con el servidor..."
-
-#: ../plugins/report_prompt.py:34
+#: ../plugins/report_prompt.py:39
 msgid "Building report..."
 msgstr "Creando informe..."
 
 #~ msgid "_Desktop"
 #~ msgstr "_Escritorio"
 
-#~ msgid "_Laptop"
-#~ msgstr "_Portátil"
-
-#~ msgid "_Server"
-#~ msgstr "_Servidor"
-
-#~ msgid "Done"
-#~ msgstr "Hecho"
-
-#~ msgid "Category"
-#~ msgstr "Categoría"
-
 #~ msgid "Please select the category of your system."
 #~ msgstr "Seleccione la categoría de su sistema"
-
-#~ msgid "Running shell tests..."
-#~ msgstr "Ejecutando pruebas de consola..."
 
 #, python-format
 #~ msgid "Running test %s..."
@@ -194,9 +123,6 @@ msgstr "Creando informe..."
 
 #~ msgid "Welcome to System Testing!"
 #~ msgstr "¡Bienvenido a las pruebas del sistema!"
-
-#~ msgid "$(network_test)"
-#~ msgstr "$(network_test)"
 
 #~ msgid "Successfully sent information!"
 #~ msgstr "La información se ha enviado con éxito."
@@ -206,9 +132,6 @@ msgstr "Creando informe..."
 
 #~ msgid "Exchange"
 #~ msgstr "Intercambio"
-
-#~ msgid "Do you hear a sound?"
-#~ msgstr "¿Oye un sonido?"
 
 #: ../gtk/checkbox-gtk.ui.h:1 ../checkbox_cli/cli_interface.py:343
 #: ../checkbox_urwid/urwid_interface.py:261
@@ -240,6 +163,14 @@ msgstr "_Anterior"
 #: ../gtk/checkbox-gtk.ui.h:7
 msgid "_Select All"
 msgstr "_Seleccionar todo"
+
+#: ../gtk/checkbox-gtk.ui.h:8
+msgid "_Skip this test"
+msgstr "_Omitir esta prueba"
+
+#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:537
+msgid "_Test"
+msgstr "_Probar"
 
 #: ../gtk/checkbox-gtk.ui.h:10
 msgid "_Yes"
@@ -1041,20 +972,25 @@ msgid "Did the 3d animation appear?"
 msgstr "¿Apareció la animación 3D?"
 
 #. description
-#: ../jobs/info.txt.in:60 ../jobs/screenshot.txt.in:7
+#: ../jobs/info.txt.in:69 ../jobs/screenshot.txt.in:7
 msgid "Captures a screenshot."
 msgstr "Capture la pantalla."
 
 #. description
-#: ../jobs/info.txt.in:71
+#: ../jobs/info.txt.in:80
 msgid "Gather log from the firmware test suite run"
 msgstr ""
 "Recopilar registro de la ejecución del paquete de pruebas de firmware"
 
 #. description
-#: ../jobs/info.txt.in:82
+#: ../jobs/info.txt.in:91
 msgid "Bootchart information."
 msgstr "Información de la tabla de arranque."
+
+#. description
+#: ../jobs/input.txt.in:4
+msgid "Is your mouse working properly?"
+msgstr "¿Está funcionando correctamente su ratón?"
 
 #. description
 #: ../jobs/input.txt.in:13
@@ -2475,6 +2411,8 @@ msgid ""
 "Hammer the CPU as hard as possible for two hours. Intention is to knock it "
 "dead."
 msgstr ""
+"Martillea la CPU lo más fuerte posible durante dos horas. La intención es "
+"matar a golpes."
 
 #. description
 #: ../jobs/unity.txt.in:6
@@ -2891,6 +2829,18 @@ msgstr "MSN"
 msgid "Were you able to connect correctly and send/receive messages?"
 msgstr "¿Fue capaz de conectarse correctamente y de enviar/recibir mensajes?"
 
+#: ../checkbox/application.py:66
+msgid "Usage: checkbox [OPTIONS]"
+msgstr "Uso: checkbox [OPCIONES]"
+
+#: ../checkbox/application.py:74
+msgid "The file to write the log to."
+msgstr "El archivo donde se escribirá el registro."
+
+#: ../checkbox/application.py:82
+msgid "Configuration override parameters."
+msgstr "La configuración sobreescribe los parámetros."
+
 #: ../checkbox/application.py:84
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist."
 msgstr "Atajo para -config=checkbox/plugins/jobs_info/blacklist."
@@ -2906,6 +2856,10 @@ msgstr "Atajo para --config=checkbox/plugins/jobs_info/whitelist."
 #: ../checkbox/application.py:90
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist_file."
 msgstr "Atajo para -config=checkbox/plugins/jobs_info/whitelist_file."
+
+#: ../checkbox/application.py:115
+msgid "Missing configuration file as argument.\n"
+msgstr "Falta como argumento el archivo de configuración.\n"
 
 #: ../checkbox/lib/signal.py:23
 msgid ""
@@ -2994,6 +2948,25 @@ msgstr "DESCONOCIDO"
 msgid "Unknown signal"
 msgstr "Señal desconocida"
 
+#: ../checkbox_cli/cli_interface.py:31
+#: ../checkbox_urwid/urwid_interface.py:684
+msgid "yes"
+msgstr "sí"
+
+#: ../checkbox_cli/cli_interface.py:32
+#: ../checkbox_urwid/urwid_interface.py:685
+msgid "no"
+msgstr "no"
+
+#: ../checkbox_cli/cli_interface.py:33
+#: ../checkbox_urwid/urwid_interface.py:686
+msgid "skip"
+msgstr "omitir"
+
+#: ../checkbox_cli/cli_interface.py:126
+msgid "Press any key to continue..."
+msgstr "Pulse una tecla para continuar..."
+
 #: ../checkbox_cli/cli_interface.py:339
 msgid "test again"
 msgstr "probar de nuevo"
@@ -3039,15 +3012,15 @@ msgstr "Probar de nuevo"
 msgid "hardware database"
 msgstr "base de datos de hardware"
 
-#: ../checkbox_gtk/gtk_interface.py:498
+#: ../checkbox_gtk/gtk_interface.py:502
 msgid "_Test Again"
 msgstr "_Probar de nuevo"
 
-#: ../checkbox_gtk/gtk_interface.py:544
+#: ../checkbox_gtk/gtk_interface.py:548
 msgid "Info"
 msgstr "Info."
 
-#: ../checkbox_gtk/gtk_interface.py:563
+#: ../checkbox_gtk/gtk_interface.py:567
 msgid "Error"
 msgstr "Error"
 
@@ -3056,7 +3029,7 @@ msgstr "Error"
 msgid "Unable to start web browser to open %s."
 msgstr "Imposible iniciar el navegador web para abrir %s."
 
-#: ../plugins/apport_prompt.py:81
+#: ../plugins/apport_prompt.py:83
 msgid ""
 "Collecting information about this test.\n"
 "This might take a few minutes."
@@ -3064,7 +3037,7 @@ msgstr ""
 "Recopilando información sobre esta prueba.\n"
 "Esto puede tardar unos momentos."
 
-#: ../plugins/apport_prompt.py:116
+#: ../plugins/apport_prompt.py:118
 msgid ""
 "Collected information is being sent for bug tracking.\n"
 "This might take a few minutes."
@@ -3072,17 +3045,17 @@ msgstr ""
 "La información recopilada está siendo enviada para rastrear el error.\n"
 "Esto puede tardar unos momentos."
 
-#: ../plugins/apport_prompt.py:225
+#: ../plugins/apport_prompt.py:227
 #, python-format
 msgid "Test %s from suite %s failed."
 msgstr "La prueba %s de la suite %s falló."
 
-#: ../plugins/apport_prompt.py:228
+#: ../plugins/apport_prompt.py:230
 #, python-format
 msgid "Test %s failed."
 msgstr "La prueba %s falló."
 
-#: ../plugins/apport_prompt.py:246
+#: ../plugins/apport_prompt.py:248
 #, python-format
 msgid "Is a package upgrade in process? Error: %s"
 msgstr "¿Está en proceso una actualización de paquete? Error: %s"
@@ -3095,7 +3068,7 @@ msgstr "Comprobación finalizada correctamente."
 msgid "_Finish"
 msgstr "_Finalizar"
 
-#: ../plugins/intro_prompt.py:43
+#: ../plugins/intro_prompt.py:29
 msgid ""
 "Welcome to System Testing!\n"
 "\n"
@@ -3113,6 +3086,10 @@ msgstr ""
 #, python-format
 msgid "Failed to process form: %s"
 msgstr "Fallo al procesar el formulario: %s"
+
+#: ../plugins/launchpad_exchange.py:172
+msgid "Information not posted to Launchpad."
+msgstr "Información no publicada en Launchpad."
 
 #: ../plugins/launchpad_prompt.py:71
 #, python-format
@@ -3145,6 +3122,10 @@ msgstr ""
 "No se ha proporcionado una dirección de correo electrónico, no se enviará "
 "nada a Launchpad."
 
+#: ../plugins/launchpad_prompt.py:98
+msgid "Exchanging information with the server..."
+msgstr "Intercambiando información con el servidor..."
+
 #: ../plugins/lock_prompt.py:63
 msgid "There is another checkbox running. Please close it first."
 msgstr "Hay otra instancia de Checkbox ejecutándose. Ciérrela primero."
@@ -3163,7 +3144,7 @@ msgid "Running %s..."
 msgstr "Ejecutando %s..."
 
 #. Get results
-#: ../plugins/suites_prompt.py:105
+#: ../plugins/suites_prompt.py:108
 msgid "Select the suites to test"
 msgstr "Seleccione los conjuntos a probar"
 
@@ -3186,6 +3167,21 @@ msgstr "La conexión establecida perdió un paquete"
 #: ../scripts/internet_test:145
 msgid "Internet connection fully established"
 msgstr "Conexión a Internet totalmente establecida"
+
+#~ msgid "_Laptop"
+#~ msgstr "_Portátil"
+
+#~ msgid "_Server"
+#~ msgstr "_Servidor"
+
+#~ msgid "Category"
+#~ msgstr "Categoría"
+
+#~ msgid "$(network_test)"
+#~ msgstr "$(network_test)"
+
+#~ msgid "Running shell tests..."
+#~ msgstr "Ejecutando pruebas de consola..."
 
 #~ msgid "Network tests"
 #~ msgstr "Pruebas de red"
@@ -3397,3 +3393,9 @@ msgstr "Conexión a Internet totalmente establecida"
 
 #~ msgid "Click the Test button to display a video test."
 #~ msgstr "Pulsar el botón Prueba para ver una prueba de vídeo."
+
+#~ msgid "Do you hear a sound?"
+#~ msgstr "¿Oye un sonido?"
+
+#~ msgid "Done"
+#~ msgstr "Hecho"

@@ -14,40 +14,12 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-09-28 04:31+0000\n"
-"X-Generator: Launchpad (build 14049)\n"
+"X-Launchpad-Export-Date: 2011-11-22 04:39+0000\n"
+"X-Generator: Launchpad (build 14299)\n"
 
-#: ../gtk/checkbox-gtk.ui.h:2
-msgid "Ne_xt"
-msgstr "_Weiter"
-
-#: ../gtk/checkbox-gtk.ui.h:6
-msgid "_Previous"
-msgstr "_Zurück"
-
-#: ../gtk/checkbox-gtk.ui.h:8
-msgid "_Skip this test"
-msgstr "Diesen Test _überspringen"
-
-#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:534
+#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:537
 msgid "_Test"
 msgstr "_Testen"
-
-#: ../gtk/checkbox-gtk.ui.h:10
-msgid "_Yes"
-msgstr "_Ja"
-
-#. description
-#: ../jobs/audio.txt.in:7 ../jobs/graphics.txt.in:113 ../jobs/memory.txt.in:4
-#: ../jobs/networking.txt.in:5 ../jobs/optical.txt.in:8 ../jobs/usb.txt.in:12
-msgid "$output"
-msgstr "$output"
-
-#. description
-#: ../jobs/audio.txt.in:7 ../jobs/graphics.txt.in:113 ../jobs/memory.txt.in:4
-#: ../jobs/networking.txt.in:5 ../jobs/optical.txt.in:8
-msgid "Is this correct?"
-msgstr "Ist dies korrekt?"
 
 #. description
 #: ../jobs/input.txt.in:4
@@ -70,49 +42,9 @@ msgstr "Funktioniert Ihre Tastatur fehlerfrei?"
 msgid "Testing your connection to the Internet:"
 msgstr "Ihre Internetverbindung wird getestet:"
 
-#: ../checkbox/application.py:70
-msgid "Print version information and exit."
-msgstr "Versionsinformationen ausgeben und beenden."
-
-#: ../checkbox/application.py:74
-msgid "The file to write the log to."
-msgstr "Die Datei, in welche das Protokoll gespeichert wird."
-
-#: ../checkbox/application.py:77
-msgid "One of debug, info, warning, error or critical."
-msgstr "Einen von debug, info, warning, error oder critical."
-
-#: ../checkbox/application.py:115
-msgid "Missing configuration file as argument.\n"
-msgstr "Konfigurationsdatei fehlt als Argument.\n"
-
-#: ../checkbox_cli/cli_interface.py:31
-#: ../checkbox_urwid/urwid_interface.py:684
-msgid "yes"
-msgstr "Ja"
-
-#: ../checkbox_cli/cli_interface.py:32
-#: ../checkbox_urwid/urwid_interface.py:685
-msgid "no"
-msgstr "Nein"
-
-#: ../checkbox_cli/cli_interface.py:33
-#: ../checkbox_urwid/urwid_interface.py:686
-msgid "skip"
-msgstr "Überspringen"
-
 #: ../checkbox_cli/cli_interface.py:126
 msgid "Press any key to continue..."
 msgstr "Beliebige Taste drücken, um fortzusetzen …"
-
-#: ../checkbox_cli/cli_interface.py:345
-msgid "Please type here and press Ctrl-D when finished:\n"
-msgstr ""
-"Bitte schreiben Sie hier und drücken Sie Strg+D, wenn Sie fertig sind:\n"
-
-#: ../checkbox_gtk/gtk_interface.py:499
-msgid "_Test Again"
-msgstr "Erneut _testen"
 
 #: ../plugins/final_prompt.py:34
 msgid "_Finish"
@@ -122,7 +54,7 @@ msgstr "_Fertig"
 msgid "Gathering information from your system..."
 msgstr "Informationen zu Ihrem System werden gesammelt …"
 
-#: ../plugins/launchpad_exchange.py:156
+#: ../plugins/launchpad_exchange.py:160
 msgid ""
 "Failed to upload to server,\n"
 "please try again later."
@@ -130,7 +62,7 @@ msgstr ""
 "Hochladen auf den Server gescheitert,\n"
 "bitte versuchen Sie es später noch einmal."
 
-#: ../plugins/launchpad_exchange.py:168
+#: ../plugins/launchpad_exchange.py:172
 msgid "Information not posted to Launchpad."
 msgstr "Die Informationen wurden nicht auf Launchpad eingetragen."
 
@@ -142,37 +74,14 @@ msgstr "Informationen werden mit dem Server ausgetauscht …"
 msgid "Building report..."
 msgstr "Bericht wird erstellt …"
 
-#~ msgid "Successfully sent information!"
-#~ msgstr "Informationen erfolgreich versandt!"
-
-#~ msgid "_Desktop"
-#~ msgstr "_Desktop"
-
-#~ msgid "_Laptop"
-#~ msgstr "_Laptop"
-
-#~ msgid "_Server"
-#~ msgstr "_Server"
-
-#~ msgid "$(network_test)"
-#~ msgstr "$(network_test)"
-
-#~ msgid "Authentication"
-#~ msgstr "Authentifizierung"
-
-#~ msgid "Done"
-#~ msgstr "Fertig"
-
-#~ msgid "Exchange"
-#~ msgstr "Austauschen"
-
-#~ msgid "Category"
-#~ msgstr "Kategorie"
-
 #: ../gtk/checkbox-gtk.ui.h:1 ../checkbox_cli/cli_interface.py:343
 #: ../checkbox_urwid/urwid_interface.py:261
 msgid "Further information:"
 msgstr "Weitere Informationen:"
+
+#: ../gtk/checkbox-gtk.ui.h:2
+msgid "Ne_xt"
+msgstr "_Weiter"
 
 #. Title of the user interface
 #: ../gtk/checkbox-gtk.ui.h:3 ../gtk/checkbox-gtk.desktop.in.h:1
@@ -188,9 +97,21 @@ msgstr "Auswahl au_fheben"
 msgid "_No"
 msgstr "_Nein"
 
+#: ../gtk/checkbox-gtk.ui.h:6
+msgid "_Previous"
+msgstr "_Zurück"
+
 #: ../gtk/checkbox-gtk.ui.h:7
 msgid "_Select All"
 msgstr "Alle au_swählen"
+
+#: ../gtk/checkbox-gtk.ui.h:8
+msgid "_Skip this test"
+msgstr "Diesen Test _überspringen"
+
+#: ../gtk/checkbox-gtk.ui.h:10
+msgid "_Yes"
+msgstr "_Ja"
 
 #: ../gtk/checkbox-gtk.desktop.in.h:2
 msgid "Test and report system information"
@@ -205,6 +126,18 @@ msgstr "Stellen Sie sicher, dass das Verzeichnis /var/crash leer ist."
 #: ../jobs/audio.txt.in:7
 msgid "Detecting your sound device(s):"
 msgstr "Ihr(e) Soundgerät(e) werden erkannt:"
+
+#. description
+#: ../jobs/audio.txt.in:7 ../jobs/graphics.txt.in:113 ../jobs/memory.txt.in:4
+#: ../jobs/networking.txt.in:5 ../jobs/optical.txt.in:8 ../jobs/usb.txt.in:12
+msgid "$output"
+msgstr "$output"
+
+#. description
+#: ../jobs/audio.txt.in:7 ../jobs/graphics.txt.in:113 ../jobs/memory.txt.in:4
+#: ../jobs/networking.txt.in:5 ../jobs/optical.txt.in:8
+msgid "Is this correct?"
+msgstr "Ist dies korrekt?"
 
 #. description
 #: ../jobs/audio.txt.in:21
@@ -2981,6 +2914,18 @@ msgstr ""
 msgid "Usage: checkbox [OPTIONS]"
 msgstr "Aufruf: checkbox [OPTIONEN]"
 
+#: ../checkbox/application.py:70
+msgid "Print version information and exit."
+msgstr "Versionsinformationen ausgeben und beenden."
+
+#: ../checkbox/application.py:74
+msgid "The file to write the log to."
+msgstr "Die Datei, in welche das Protokoll gespeichert wird."
+
+#: ../checkbox/application.py:77
+msgid "One of debug, info, warning, error or critical."
+msgstr "Einen von debug, info, warning, error oder critical."
+
 #: ../checkbox/application.py:82
 msgid "Configuration override parameters."
 msgstr "Konfiguration überschreibt Parameter."
@@ -3000,6 +2945,10 @@ msgstr "Kürzel für --config=checkbox/plugins/jobs_info/whitelist."
 #: ../checkbox/application.py:90
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist_file."
 msgstr "Kürzel für --config=checkbox/plugins/jobs_info/whitelist_file."
+
+#: ../checkbox/application.py:115
+msgid "Missing configuration file as argument.\n"
+msgstr "Konfigurationsdatei fehlt als Argument.\n"
 
 #: ../checkbox/lib/signal.py:23
 msgid ""
@@ -3089,6 +3038,21 @@ msgstr "UNBEKANNT"
 msgid "Unknown signal"
 msgstr "Unbekanntes Signal"
 
+#: ../checkbox_cli/cli_interface.py:31
+#: ../checkbox_urwid/urwid_interface.py:684
+msgid "yes"
+msgstr "Ja"
+
+#: ../checkbox_cli/cli_interface.py:32
+#: ../checkbox_urwid/urwid_interface.py:685
+msgid "no"
+msgstr "Nein"
+
+#: ../checkbox_cli/cli_interface.py:33
+#: ../checkbox_urwid/urwid_interface.py:686
+msgid "skip"
+msgstr "Überspringen"
+
 #: ../checkbox_cli/cli_interface.py:135
 #, python-format
 msgid "Please choose (%s): "
@@ -3101,6 +3065,11 @@ msgstr "Testen"
 #: ../checkbox_cli/cli_interface.py:339
 msgid "test again"
 msgstr "Erneut testen"
+
+#: ../checkbox_cli/cli_interface.py:345
+msgid "Please type here and press Ctrl-D when finished:\n"
+msgstr ""
+"Bitte schreiben Sie hier und drücken Sie Strg+D, wenn Sie fertig sind:\n"
 
 #: ../checkbox_urwid/urwid_interface.py:60
 msgid "Checkbox System Testing"
@@ -3143,11 +3112,15 @@ msgstr "Erneut Testen"
 msgid "hardware database"
 msgstr "Hardwaredatenbank"
 
-#: ../checkbox_gtk/gtk_interface.py:545
+#: ../checkbox_gtk/gtk_interface.py:502
+msgid "_Test Again"
+msgstr "Erneut _testen"
+
+#: ../checkbox_gtk/gtk_interface.py:548
 msgid "Info"
 msgstr "Info"
 
-#: ../checkbox_gtk/gtk_interface.py:564
+#: ../checkbox_gtk/gtk_interface.py:567
 msgid "Error"
 msgstr "Fehler"
 
@@ -3156,7 +3129,7 @@ msgstr "Fehler"
 msgid "Unable to start web browser to open %s."
 msgstr "Webbrowser kann %s nicht öffnen."
 
-#: ../plugins/apport_prompt.py:81
+#: ../plugins/apport_prompt.py:83
 msgid ""
 "Collecting information about this test.\n"
 "This might take a few minutes."
@@ -3164,7 +3137,7 @@ msgstr ""
 "Informationen über diesen Test werden gesammelt.\n"
 "Dies kann einige Minuten dauern."
 
-#: ../plugins/apport_prompt.py:116
+#: ../plugins/apport_prompt.py:118
 msgid ""
 "Collected information is being sent for bug tracking.\n"
 "This might take a few minutes."
@@ -3172,17 +3145,17 @@ msgstr ""
 "Gesammelte Informationen werden für die Fehlererfassung übermittelt.\n"
 "Dies kann einige Minuten dauern."
 
-#: ../plugins/apport_prompt.py:225
+#: ../plugins/apport_prompt.py:227
 #, python-format
 msgid "Test %s from suite %s failed."
 msgstr "Test %s aus der Gruppe %s ist fehlgeschlagen."
 
-#: ../plugins/apport_prompt.py:228
+#: ../plugins/apport_prompt.py:230
 #, python-format
 msgid "Test %s failed."
 msgstr "Test %s ist fehlgeschlagen."
 
-#: ../plugins/apport_prompt.py:246
+#: ../plugins/apport_prompt.py:248
 #, python-format
 msgid "Is a package upgrade in process? Error: %s"
 msgstr "Werden zur Zeit Pakete aktualisiert? Fehlermeldung: %s"
@@ -3191,7 +3164,7 @@ msgstr "Werden zur Zeit Pakete aktualisiert? Fehlermeldung: %s"
 msgid "Successfully finished testing!"
 msgstr "Test erfolgreich abgeschlossen"
 
-#: ../plugins/intro_prompt.py:41
+#: ../plugins/intro_prompt.py:29
 msgid ""
 "Welcome to System Testing!\n"
 "\n"
@@ -3210,7 +3183,7 @@ msgstr ""
 msgid "Failed to process form: %s"
 msgstr "Auswertung des Formulars gescheitert: %s"
 
-#: ../plugins/launchpad_exchange.py:147
+#: ../plugins/launchpad_exchange.py:151
 #, python-format
 msgid ""
 "Failed to contact server. Please try\n"
@@ -3280,7 +3253,7 @@ msgid "Running %s..."
 msgstr "%s wird ausgeführt …"
 
 #. Get results
-#: ../plugins/suites_prompt.py:104
+#: ../plugins/suites_prompt.py:108
 msgid "Select the suites to test"
 msgstr "Wählen Sie die zu testenden Bereiche aus"
 
@@ -3303,6 +3276,27 @@ msgstr "Verlust eines Paketes bei der aufgebauten Verbindung"
 #: ../scripts/internet_test:145
 msgid "Internet connection fully established"
 msgstr "Internetverbinndung erfolgreich hergestellt"
+
+#~ msgid "Successfully sent information!"
+#~ msgstr "Informationen erfolgreich versandt!"
+
+#~ msgid "_Desktop"
+#~ msgstr "_Desktop"
+
+#~ msgid "_Laptop"
+#~ msgstr "_Laptop"
+
+#~ msgid "_Server"
+#~ msgstr "_Server"
+
+#~ msgid "$(network_test)"
+#~ msgstr "$(network_test)"
+
+#~ msgid "Exchange"
+#~ msgstr "Austauschen"
+
+#~ msgid "Category"
+#~ msgstr "Kategorie"
 
 #~ msgid "Running shell tests..."
 #~ msgstr "Shell-Tests werden durchgeführt..."
@@ -3534,3 +3528,9 @@ msgstr "Internetverbinndung erfolgreich hergestellt"
 #~ "6.- Konfigurieren Sie die Verbindungsparameter 7.- Notify-OSD sollte nun "
 #~ "melden, dass die Verbindung hergestellt wurde 8.- Wählen Sie »Test« um "
 #~ "sicherzustellen, dass http- und ftp-Verbindungen hergestellt werden können."
+
+#~ msgid "Authentication"
+#~ msgstr "Authentifizierung"
+
+#~ msgid "Done"
+#~ msgstr "Fertig"

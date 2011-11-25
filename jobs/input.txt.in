@@ -1,14 +1,14 @@
 plugin: manual
 name: input/mouse
-requires: device.category == 'MOUSE'
+requires: device.category == 'MOUSE' or device.category == 'TOUCH'
 _description:
  PURPOSE:
-     This test will test your mouse device
+     This test will test your pointing device
  STEPS:
-     1. Move the mouse
-     2. Perform some single/double/right click operations
+     1. Move the cursor using the pointing device or touch the screen.
+     2. Perform some single/double/right click operations.
  VERIFICATION:
-     Did the mouse work as expected??
+     Did the pointing device work as expected?
 
 plugin: manual
 name: input/keyboard
