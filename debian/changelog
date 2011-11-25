@@ -1,9 +1,5 @@
 checkbox (0.13) precise; urgency=low
 
-  [Brendan Donegan]
-  * Fix cpu_topology so it looks only at the start of the line in cpuinfo for
-    the field name (LP: #882161)
-
   [Marc Tardif]
   * Generate a submission.xml file that contains all device and attachment
     information, suitable for offline processing and submission.
