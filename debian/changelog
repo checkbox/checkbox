@@ -4,8 +4,11 @@ checkbox (0.13.1) precise; urgency=low
   * Fixed the cpu_topology script so that it doesn't mistake the word
     'processor' in the value of another field for the field 'processor'
     (LP: #882161)
+    
+  [Gabor Kelemen]
+  * Fixed last two remaining strings with backslashes (LP: #868571)
 
- -- Daniel Manrique <daniel.manrique@canonical.com>  Thu, 24 Nov 2011 12:16:36 -0500
+ -- Daniel Manrique <daniel.manrique@canonical.com>  Fri, 25 Nov 2011 13:04:55 -0500
 
 checkbox (0.13) precise; urgency=low
 
