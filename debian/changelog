@@ -1,13 +1,24 @@
-checkbox (0.13) precise; urgency=low
+checkbox (0.13.1) precise; urgency=low
 
   [Brendan Donegan]
-  * Automated the is_laptop test by checking for the presence of a battery in
-    the system (LP: #886668)
+  * Fixed the cpu_topology script so that it doesn't mistake the word
+    'processor' in the value of another field for the field 'processor'
+    (LP: #882161)
+    
+  [Gabor Kelemen]
+  * Fixed last two remaining strings with backslashes (LP: #868571)
 
+ -- Daniel Manrique <daniel.manrique@canonical.com>  Fri, 25 Nov 2011 13:04:55 -0500
+
+checkbox (0.13) precise; urgency=low
+
+  New upstream release (LP: #892268):
+  
   [Marc Tardif]
   * Generate a submission.xml file that contains all device and attachment
   * Write the report before reporting the validation error.
   * Changed device.product to dmi.product for the formfactor (LP: #875312)
+  * Use gettext for string (LP: #869267)
 
   [Daniel Manrique]
   * Use gettext for string (LP: #869267)
@@ -16,7 +27,7 @@ checkbox (0.13) precise; urgency=low
   * Ignore malformed dpkg entries in package_resource (LP: #794747)
   * Reset window title after finishing a manual test (LP: #874690)
   * Handle "@" in locale names (as in ca@valencia).
-
+  * Went through all the job files and:
   [Jeff Lane]
   * Went through all the job files and:
     * Updated descriptions to match Unity UI structure
@@ -30,10 +41,10 @@ checkbox (0.13) precise; urgency=low
     * Changed remaining manual job descriptions to match the new format
   * Updated CD and DVD write tests to be more clear about when to skip
     them (LP: #772794)
-
+  * Rewrote all job descriptions to match OEM QA syntax
   [Ara Pulido]
   * Rewrote all job descriptions to match OEM QA syntax
-
+  * Fix the code that assigns keys in checkbox-cli so that it never assigns
   [Brendan Donegan]  
   * Fix the code that assigns keys in checkbox-cli so that it never assigns
     keys which have other uses. (LP: #877467)
@@ -51,13 +62,13 @@ checkbox (0.13) precise; urgency=low
     the test description (LP: #890725)
   * Allow input/mouse test to run if a TOUCH device is present
     (LP: #886129)
-
+  * Broken job dependencies fixed (LP: #888447)
   [ Javier Collado ]
   * Broken job dependencies fixed (LP: #888447)
   * Regex support when specifying blacklists and whitelists on the
     commandline (LP: #588647)
 
- -- Daniel Manrique <daniel.manrique@canonical.com>  Thu, 17 Nov 2011 16:20:21 -0500
+ -- Daniel Manrique <daniel.manrique@canonical.com>  Thu, 18 Nov 2011 12:46:21 -0500
 
 checkbox (0.12.8) oneiric; urgency=low
 
