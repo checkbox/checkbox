@@ -42,7 +42,7 @@ name: miscellanea/is_laptop
 user: root
 _description:
     Determine if we need to run tests specific to portable computers that may not apply to desktops.
-command: dmidecode -t 3 | awk '/Type:/ { type=$2 }; END { switch (type) { case /Laptop|Notebook|Portable/: exit 0; default: exit 1 }}'
+command: dmidecode -t 3 | awk '/Type:/ { type=$2 }; END { switch (type) { case /Laptop|Notebook|Portable/: exit 0; default: exit 1 }}'; if !$?; then for device in `find /sys -name "type"`; echo $device; done
 
 plugin: shell
 name: miscellanea/apport-directory

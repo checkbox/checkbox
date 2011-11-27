@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Establish the system type based on DMI info
+TYPE=$(dmidecode -t 3 | awk '/Type:/ { print $2 }')
+echo "Type: " $TYPE
+
+for device in `find /sys -name "type"`
+do
+    if [ "$(cat $device)" == "Battery" ]; then
+        echo "Battery: YES"
+        exit 0
+    fi
+done
+
+case $TYPE in
+Notebook|Laptop|Portable)
+    exit 0
+    ;;
+*) 
+    exit 1
+    ;;
+esac
