@@ -12,6 +12,8 @@ do
     fi
 done
 
+echo "Battery: NO"
+
 case $TYPE in
 Notebook|Laptop|Portable)
     exit 0
