@@ -18,3 +18,12 @@ _description:
      3. Click "Test" to verify that it's possible to establish an HTTP connection.
  VERIFICATION:
      Did a notification show and was the connection correctly established?
+
+plugin: shell
+name: wireless/wireless_connection_wpa_abg
+requires: device.category == 'WIRELESS'
+user: root
+command: create_connection $WPA_BG_SSID --security=wpa --key=$WPA_BG_PSK && network_check
+_description:
+ Tests that the systems wireless hardware can connect to a router using WPA
+ security and the 802.11b/g protocols.

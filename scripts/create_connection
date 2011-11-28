@@ -1,0 +1,98 @@
+#!/usr/bin/env python
+
+import sys
+import os
+from subprocess import Popen, PIPE
+from uuid import uuid4
+from optparse import OptionParser
+
+CONNECTIONS_PATH='/etc/NetworkManager/system-connections/'
+
+def connection_section(ssid):
+    connection = """
+[connection]
+id=%s
+uuid=%s
+type=802-11-wireless
+    """ % (ssid, uuid4())
+
+    # Get MAC address
+    nmcli_proc = Popen("nmcli -f GENERAL dev list | grep 802-11-wireless -A 2 | awk '/HWADDR/ {print $2}'",
+                       shell=True, stdout=PIPE, stderr=PIPE)
+    (stdout, stderr) = nmcli_proc.communicate()
+
+    wireless = """
+[802-11-wireless]
+ssid=%s
+mode=infrastructure
+mac-address=%s
+    """ % (ssid, stdout.strip())
+
+    return connection + wireless
+
+def security_section(security, key):
+    # Need to add security field to 802-11-wireless section
+    wireless_security = """
+security=802-11-wireless-security
+
+[802-11-wireless-security]
+    """
+
+    if security.lower() == 'wpa':
+        wireless_security += """
+key-mgmt=wpa-psk
+auth-alg=open
+psk=%s
+        """ % key
+
+    elif security.lower() == 'wep':
+        wireless_security += """
+key-mgmt=none
+wep-key=%s
+        """ % key
+
+    return wireless_security
+
+def ip_sections():
+    ip = """
+[ipv4]
+method=auto
+
+[ipv6]
+method=auto
+    """
+
+    return ip
+
+def main():
+    parser = OptionParser()
+    
+    parser.add_option('-s', '--security',
+                      help="""The type of security to be used by the connection.
+                              One of wpa and wep. No security will be used if
+                              nothing is specified.""")
+    parser.add_option('-k', '--key',
+                      help="The encryption key required by the router.")
+
+    (options, args) = parser.parse_args()
+
+    if len(args) < 1:
+        print("Must specify an SSID to connect to.")
+
+    connection_info = connection_section(args[0])
+    
+    if options.security:
+        # Set security options
+        connection_info += security_section(options.security, options.key)
+    
+    connection_info += ip_sections()
+
+    connection_file = open(CONNECTIONS_PATH + args[0], 'w')
+    connection_file.write(connection_info)
+
+    os.fchmod(connection_file.fileno(), 0600)
+    connection_file.close()
+
+
+if __name__ == "__main__":
+    main()
