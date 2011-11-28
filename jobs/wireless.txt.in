@@ -20,10 +20,37 @@ _description:
      Did a notification show and was the connection correctly established?
 
 plugin: shell
-name: wireless/wireless_connection_wpa_abg
+name: wireless/wireless_connection_wpa_bg
 requires: device.category == 'WIRELESS'
 user: root
-command: create_connection $WPA_BG_SSID --security=wpa --key=$WPA_BG_PSK && network_check
+command: create_connection $WPA_BG_SSID --security=wpa --key=$WPA_BG_PSK && internet_test
 _description:
  Tests that the systems wireless hardware can connect to a router using WPA
  security and the 802.11b/g protocols.
+
+plugin: shell
+name: wireless/wireless_connection_open_bg
+requires: device.category == 'WIRELESS'
+user: root
+command: create_connection $OPEN_BG_SSID && internet_test
+_description:
+ Tests that the systems wireless hardware can connect to a router using no
+ no security and the 802.11b/g protocols.
+
+plugin: shell
+name: wireless/wireless_connection_wpa_n
+requires: device.category == 'WIRELESS'
+user: root
+command: create_connection $WPA_N_SSID --security=wpa --key=$WPA_N_PSK && internet_test
+_description:
+ Tests that the systems wireless hardware can connect to a router using WPA
+ security and the 802.11n protocol.
+
+plugin: shell
+name: wireless/wireless_connection_open_n
+requires: device.category == 'WIRELESS'
+user: root
+command: create_connection $OPEN_N_SSID && internet_test
+_description:
+ Tests that the systems wireless hardware can connect to a router using no
+ no security and the 802.11n protocol.
