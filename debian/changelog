@@ -62,6 +62,8 @@ checkbox (0.13) precise; urgency=low
     the test description (LP: #890725)
   * Allow input/mouse test to run if a TOUCH device is present
     (LP: #886129)
+  * Nixed graphics/xorg-version-output job and updated other job dependencies,
+    since it is redundant with graphics/xorg-version. (LP: #671144)
   * Broken job dependencies fixed (LP: #888447)
   [ Javier Collado ]
   * Broken job dependencies fixed (LP: #888447)
