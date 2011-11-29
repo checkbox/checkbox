@@ -1,11 +1,13 @@
 package=`basename $0 .postinst`
+if [ -z "$base_package" ]; then
+    base_package="$package"
+fi
 config="/etc/checkbox.d/$package.ini"
 
 patch_configuration()
 {
     version="$1"
     previous_version=""
-    base_package=`echo $package | sed -e 's/hwtest/checkbox/' -e 's/\(-cli\|-urwid\|-gtk\)//'`
 
     while [ -n "$version" ]; do
         patch_file=""
@@ -43,15 +45,15 @@ patch_configuration()
 
 update_configuration()
 {
-    base_package=`echo $package | cut -d '-' -f '1'`
+    root_package=`echo $package | cut -d '-' -f '1'`
 
-    if [ "$base_package" != "hwtest" ]; then
+    if [ "$root_package" != "hwtest" ]; then
         # Create a temporary file to generate the suggested
         # configuration file.
         tempfile=`tempfile -m 0644 -p checkbox`
 
         # Update the temporary file with preseeded values.
-        /usr/share/checkbox/install/config --output=$tempfile $package
+        /usr/share/checkbox/install/config --output=$tempfile $package $base_package
 
         # Clobber the old config file.
         cp $tempfile $config
