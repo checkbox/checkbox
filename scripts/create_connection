@@ -8,13 +8,16 @@ from optparse import OptionParser
 
 CONNECTIONS_PATH='/etc/NetworkManager/system-connections/'
 
-def connection_section(ssid):
+def connection_section(ssid, uuid):
+    
+    if not uuid: uuid = uuid4()
+
     connection = """
 [connection]
 id=%s
 uuid=%s
 type=802-11-wireless
-    """ % (ssid, uuid4())
+    """ % (ssid, uuid)
 
     # Get MAC address
     nmcli_proc = Popen("nmcli -f GENERAL dev list | grep 802-11-wireless -A 2 | awk '/HWADDR/ {print $2}'",
@@ -67,32 +70,38 @@ method=auto
 def main():
     parser = OptionParser()
     
-    parser.add_option('-s', '--security',
+    parser.add_option('-S', '--security',
                       help="""The type of security to be used by the connection.
                               One of wpa and wep. No security will be used if
                               nothing is specified.""")
-    parser.add_option('-k', '--key',
+    parser.add_option('-K', '--key',
                       help="The encryption key required by the router.")
+    parser.add_option('-U', '--uuid',
+                      help="""The uuid to assign to the connection for use by
+                            NetworkManager. One will be generated if not
+                            specified here.""")
 
     (options, args) = parser.parse_args()
 
     if len(args) < 1:
         print("Must specify an SSID to connect to.")
-
-    connection_info = connection_section(args[0])
+    else:
+        connection_info = connection_section(args[0], options.uuid)
     
-    if options.security:
-        # Set security options
-        connection_info += security_section(options.security, options.key)
+        if options.security:
+            # Set security options
+            connection_info += security_section(options.security, options.key)
     
-    connection_info += ip_sections()
+        connection_info += ip_sections()
+        
+        try:
+            connection_file = open(CONNECTIONS_PATH + args[0], 'w')
+            connection_file.write(connection_info)
 
-    connection_file = open(CONNECTIONS_PATH + args[0], 'w')
-    connection_file.write(connection_info)
-
-    os.fchmod(connection_file.fileno(), 0600)
-    connection_file.close()
-
+            os.fchmod(connection_file.fileno(), 0600)
+            connection_file.close()
+        except IOError:
+            print "Can't write to " + CONNECTIONS_PATH + args[0] + ". Is this command being run as root?"
 
 if __name__ == "__main__":
     main()
