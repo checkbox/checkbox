@@ -87,10 +87,15 @@ def main():
         print("Must specify an SSID to connect to.")
     else:
         connection_info = connection_section(args[0], options.uuid)
-    
+
         if options.security:
             # Set security options
+            if not options.key:
+                print "You need to specify a key using --key if using wireless security."
+
             connection_info += security_section(options.security, options.key)
+        elif options.key:
+            print "You specified an encryption key but did not give a security type using --security."
     
         connection_info += ip_sections()
         
