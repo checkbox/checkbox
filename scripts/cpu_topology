@@ -21,12 +21,12 @@ class proc_cpuinfo():
             cpu_fh.close()
 
         for i in temp:
-            if 'processor' in i:
+            if i.startswith('processor'):
                 key = 'cpu'+(i.split(':')[1].strip())
                 self.cpuinfo[key] = {}
-            elif 'core id' in i:
+            elif i.startswith('core id'):
                 self.cpuinfo[key].update({'core_id':i.split(':')[1].strip()})
-            elif 'physical id' in i:
+            elif i.startswith('physical id'):
                 self.cpuinfo[key].update({'physical_package_id':i.split(':')[1].strip()})
             else:
                 continue
