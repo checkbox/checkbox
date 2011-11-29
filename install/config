@@ -69,10 +69,10 @@ class Install(object):
     configs_base = "/usr/share/%(base_name)s/configs/%(name)s.ini"
     examples_base = "/usr/share/%(base_name)s/examples/%(name)s.ini"
 
-    def __init__(self, name, configs_path=None, examples_path=None,
-                 templates_path=None):
+    def __init__(self, name, base_name=None, configs_path=None,
+                 examples_path=None, templates_path=None):
         self.name = name
-        self.base_name = re.sub(r"(-cli|-urwid|-gtk)$", "", name)
+        self.base_name = name if base_name is None else base_name
         self._configs_path = configs_path or self.configs_base \
             % {"name": name, "base_name": self.base_name}
         self._examples_path = examples_path or self.examples_base \
@@ -147,8 +147,7 @@ def main(args):
     if len(args) < 1:
         return 1
 
-    package = args.pop(0)
-    install = Install(package)
+    install = Install(*args)
 
     if options.output == "-":
          file = sys.stdout
