@@ -32,7 +32,7 @@ plugin: shell
 name: wireless/wireless_connection_open_bg
 requires: device.category == 'WIRELESS'
 user: root
-command: create_connection $OPEN_BG_SSID && && nmcli con up id $OPEN_BG_SSID && internet_test
+command: create_connection $OPEN_BG_SSID && nmcli con up id $OPEN_BG_SSID && internet_test
 _description:
  Tests that the systems wireless hardware can connect to a router using no
  no security and the 802.11b/g protocols.
@@ -50,7 +50,7 @@ plugin: shell
 name: wireless/wireless_connection_open_n
 requires: device.category == 'WIRELESS'
 user: root
-command: create_connection $OPEN_N_SSID && && nmcli con up id $OPEN_N_SSID && internet_test
+command: create_connection $OPEN_N_SSID && nmcli con up id $OPEN_N_SSID && internet_test
 _description:
  Tests that the systems wireless hardware can connect to a router using no
  no security and the 802.11n protocol.

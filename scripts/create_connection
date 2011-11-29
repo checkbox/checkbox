@@ -85,28 +85,31 @@ def main():
 
     if len(args) < 1:
         print("Must specify an SSID to connect to.")
-    else:
-        connection_info = connection_section(args[0], options.uuid)
-
-        if options.security:
-            # Set security options
-            if not options.key:
-                print "You need to specify a key using --key if using wireless security."
-
-            connection_info += security_section(options.security, options.key)
-        elif options.key:
-            print "You specified an encryption key but did not give a security type using --security."
+        sys.exit(1)
     
-        connection_info += ip_sections()
-        
-        try:
-            connection_file = open(CONNECTIONS_PATH + args[0], 'w')
-            connection_file.write(connection_info)
+    connection_info = connection_section(args[0], options.uuid)
 
-            os.fchmod(connection_file.fileno(), 0600)
-            connection_file.close()
-        except IOError:
-            print "Can't write to " + CONNECTIONS_PATH + args[0] + ". Is this command being run as root?"
+    if options.security:
+        # Set security options
+        if not options.key:
+            print "You need to specify a key using --key if using wireless security."
+            sys.exit(1)
+
+        connection_info += security_section(options.security, options.key)
+    elif options.key:
+        print "You specified an encryption key but did not give a security type using --security."
+        sys.exit(1)
+    
+    connection_info += ip_sections()
+        
+    try:
+        connection_file = open(CONNECTIONS_PATH + args[0], 'w')
+        connection_file.write(connection_info)
+        os.fchmod(connection_file.fileno(), 0600)
+        connection_file.close()
+    except IOError:
+        print "Can't write to " + CONNECTIONS_PATH + args[0] + ". Is this command being run as root?"
+        sys.exit(1)
 
 if __name__ == "__main__":
     main()
