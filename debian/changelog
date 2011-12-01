@@ -4,6 +4,8 @@ checkbox (0.13.1) precise; urgency=low
   * Fixed the cpu_topology script so that it doesn't mistake the word
     'processor' in the value of another field for the field 'processor'
     (LP: #882161)
+  * Added create_connection script and jobs to automatically create/test a
+    wireless network connection.
     
   [Gabor Kelemen]
   * Fixed last two remaining strings with backslashes (LP: #868571)
@@ -11,7 +13,7 @@ checkbox (0.13.1) precise; urgency=low
   [Marc Tardif]
   * Refactored install script to be agnostic of variant name.
 
- -- Marc Tardif <marc@ubuntu.com>  Tue, 29 Nov 2011 12:39:07 -0500
+ -- Daniel Manrique <daniel.manrique@canonical.com>  Thu, 01 Dec 2011 09:48:58 -0500
 
 checkbox (0.13) precise; urgency=low
 
