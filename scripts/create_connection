@@ -2,6 +2,8 @@
 
 import sys
 import os
+import time
+
 from subprocess import Popen, PIPE
 from uuid import uuid4
 from optparse import OptionParser
@@ -67,6 +69,18 @@ method=auto
 
     return ip
 
+def block_until_created(connection, block_for):
+    
+    while block_for > 0:
+        nmcli_process = Popen(['nmcli','con','list'], stdout=PIPE)
+        (stdout, stderr) = nmcli_process.communicate()
+
+        if connection in stdout:
+            break
+
+        time.sleep(2)
+        block_for = block_for - 2
+
 def main():
     parser = OptionParser()
     
@@ -80,6 +94,10 @@ def main():
                       help="""The uuid to assign to the connection for use by
                             NetworkManager. One will be generated if not
                             specified here.""")
+    parser.add_option('-B', '--block-for',
+                      help="""The length of time to block the scripts exit
+                              for until the connection is created.""",
+                      default=10)
 
     (options, args) = parser.parse_args()
 
@@ -110,6 +128,8 @@ def main():
     except IOError:
         print "Can't write to " + CONNECTIONS_PATH + args[0] + ". Is this command being run as root?"
         sys.exit(1)
+
+    block_until_created(args[0], options.block_for)
 
 if __name__ == "__main__":
     main()
