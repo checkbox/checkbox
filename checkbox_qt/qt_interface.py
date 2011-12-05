@@ -1,0 +1,250 @@
+#
+# This file is part of Checkbox.
+#
+# Copyright 2008 Canonical Ltd.
+#
+# Checkbox is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# Checkbox is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
+#
+import re, sys, time
+import posixpath
+import inspect
+
+from gettext import gettext as _
+
+from checkbox.job import UNINITIATED
+from checkbox.user_interface import (UserInterface,
+    NEXT, YES_ANSWER, NO_ANSWER, SKIP_ANSWER,
+    ANSWER_TO_STATUS, STATUS_TO_ANSWER)
+from PyQt4 import QtGui, QtCore
+from PyQt4.QtCore import QObject
+from PyQt4.QtGui import QApplication, QPixmap, QProgressDialog, QLabel
+from PyQt4.QtGui import QMessageBox
+from gui import Ui_Form
+
+# Import to register HyperTextView type with gtk
+#from checkbox_gtk.hyper_text_view import HyperTextView
+
+ANSWER_TO_BUTTON = {
+    YES_ANSWER: "radio_button_yes",
+    NO_ANSWER: "radio_button_no",
+    SKIP_ANSWER: "radio_button_skip"}
+
+BUTTON_TO_STATUS = dict((b, ANSWER_TO_STATUS[a])
+    for a, b in ANSWER_TO_BUTTON.items())
+
+STATUS_TO_BUTTON = dict((s, ANSWER_TO_BUTTON[a])
+    for s, a in STATUS_TO_ANSWER.items())
+
+buttonMap = {QMessageBox.Yes: "yes", QMessageBox.No: "no"}
+
+def funcname():
+    return inspect.stack()[1][3]
+
+class MyForm(QtGui.QWidget):
+    def __init__(self, parent=None):
+        QtGui.QWidget.__init__(self, parent)
+        self.ui = Ui_Form()
+        self.ui.setupUi(self)
+        self.ui.top.setStyleSheet("background-image: url(qt/checkbox-qt-head.png)");
+
+class QTInterface(UserInterface):
+    app = None
+    formWindow = None
+    progressDialog = None
+    def __init__(self, title, data_path):
+        super(QTInterface, self).__init__(title, data_path)
+        print "My name is: %s" % funcname()
+        self.app = QApplication(sys.argv)
+        self.progressDialog = QProgressDialog()
+        self.formWindow = MyForm()
+        self.formWindow.show()
+        self.app.processEvents()
+        self._app_title = title
+        self.formWindow.ui.progressWidget.setVisible(False)
+
+    def _get_widget(self, name):
+        print "My name is: %s" % funcname()
+        return self.formWindow.findChild(QObject, name)
+
+    def _get_radio_button(self, map):
+        print "My name is: %s" % funcname()
+        return False
+
+    def _get_label(self, name):
+        print "My name is: %s" % funcname()
+        widget = self._get_widget(name)
+        return widget.text()
+
+    def _get_text(self, name):
+        print "My name is: %s" % funcname()
+        return False
+
+    def _get_text_view(self, name):
+        print "My name is: %s" % funcname()
+        return False
+
+    def _set_label(self, name, label=""):
+        print "My name is: %s" % funcname()
+        widget = self._get_widget(name)
+        print label
+        widget.setText(label)
+        return False
+
+    def _set_text(self, name, text=""):
+        print "My name is: %s" % funcname()
+        return False
+
+    def _set_text_view(self, name, text=""):
+        print "My name is: %s" % funcname()
+        return False
+
+    def _set_hyper_text_view(self, name, text=""):
+        print "My name is: %s" % funcname()
+        return False
+
+    def _set_active(self, name, value=True):
+        print "My name is: %s" % funcname()
+        return False
+
+    def _set_show(self, name, value=True):
+        print "My name is: %s" % funcname()
+        return False
+
+    def _set_sensitive(self, name, value=True):
+        print "My name is: %s" % funcname()
+        widget = self._get_widget(name)
+        widget.setEnabled(bool(value))
+
+    def _set_button(self, name, value=None):
+        print "My name is: %s" % funcname()
+        if value is None:
+            state = value
+        else:
+            state = self._get_label(name)
+            if value == "":
+                self._set_sensitive(name, False)
+            else:
+                self._set_sensitive(name, True)
+                self._set_label(name, value)
+
+        return state
+
+    def _set_main_title(self, test_name=None):
+        print "My name is: %s" % funcname()
+        title = self._app_title
+        if test_name:
+            title += " - %s" % test_name
+        self.formWindow.setWindowTitle(title)
+
+        return False
+
+    def _run_dialog(self, dialog=None):
+        print "My name is: %s" % funcname()
+        def on_dialog_response_next():
+            self.direction = 1
+            self.app.quit()
+
+        def on_dialog_response_previous():
+            self.direction = -1
+            self.app.quit()
+
+        self.formWindow.ui.button_next.clicked.connect(on_dialog_response_next)
+        self.formWindow.ui.button_previous.clicked.connect(on_dialog_response_previous)
+        self.app.exec_()
+
+    def show_progress_start(self, message):
+        print "My name is: %s" % funcname()
+        self.formWindow.ui.progressWidget.setVisible(True)
+        self.formWindow.ui.progressLabel.setText(message)
+        self.formWindow.ui.progressBar.setRange (0, 0); 
+        self.app.processEvents()
+
+    def show_progress_stop(self):
+        print "My name is: %s" % funcname()
+        self.formWindow.ui.progressWidget.setVisible(False)
+        self.app.processEvents()
+
+    def show_progress_pulse(self):
+        print "My name is: %s" % funcname()
+        self.app.processEvents()
+
+    def show_text(self, text, previous=None, next=None):
+        print "My name is: %s" % funcname() + text
+
+        #Reset window title
+        self._set_main_title()
+        # Set buttons
+        previous_state = self._set_button("button_previous", previous)
+        next_state = self._set_button("button_next", next)
+
+        self.formWindow.ui.infoWindow.setHtml(text)
+
+        self._run_dialog()
+
+        # Unset buttons
+        self._set_button("button_previous", previous_state)
+        self._set_button("button_next", next_state)
+
+    def show_entry(self, text, value, previous=None, next=None):
+        print "My name is: %s" % funcname()
+        return False
+
+    def show_check(self, text, options=[], default=[]):
+        print "My name is: %s" % funcname()
+        return False
+
+    def show_radio(self, text, options=[], default=None):
+        print "My name is: %s" % funcname()
+        return False
+
+    def show_tree(self, text, options={}, default={}):
+        print "My name is: %s" % funcname()
+        return options
+
+    def _run_test(self, test, runner):
+        print "My name is: %s" % funcname()
+        return False
+
+    def show_test(self, test, runner):
+        print "My name is: %s" % funcname()
+        return False
+
+    def show_info(self, text, options=[], default=None):
+        print "My name is: %s" % funcname()
+        buttons = QMessageBox.NoButton
+        defaultButton = QMessageBox.NoButton
+        for option in options:
+            if option == "yes":
+                if default == option:
+                    defaultButton = QMessageBox.Yes
+                buttons |= QMessageBox.Yes
+            elif option == "no":
+                if default == option:
+                    defaultButton = QMessageBox.No
+                buttons |= QMessageBox.No
+                
+        dialog = QMessageBox()
+        dialog.setText(text)
+        dialog.setDefaultButton(defaultButton)
+        dialog.setStandardButtons(buttons)
+        status = dialog.exec_()
+        return buttonMap[status]
+
+    def show_error(self, text):
+        print "My name is: %s" % funcname()
+        return False
+
+    def draw_image_head(self, widget, data):
+        print "My name is: %s" % funcname()
+        return False

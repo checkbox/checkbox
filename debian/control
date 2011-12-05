@@ -77,3 +77,14 @@ Depends: checkbox-gtk
 Description: Transitional package to checkbox-gtk
  This package is a transitional package for renaming hwtest-gtk to
  checkbox-gtk.
+
+Package: checkbox-qt
+Architecture: all
+Depends: checkbox (= ${source:Version}), python-qt4
+Description: QT4 interface for checkbox
+ This project provides an extensible interface for system testing. The
+ results can then be sent to Launchpad.
+ .
+ This package provides a QT4 interface for answering tests.
+
+

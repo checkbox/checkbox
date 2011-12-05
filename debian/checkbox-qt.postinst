@@ -1,0 +1,7 @@
+#! /bin/sh -e
+
+base_package="checkbox"
+. /usr/share/debconf/confmodule
+. /usr/share/checkbox/install/postinst
+
+#DEBHELPER#
