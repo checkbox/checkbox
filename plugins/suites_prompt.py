@@ -107,7 +107,7 @@ class SuitesPrompt(Plugin):
                 visible_name = job_visible_names[dependency]
                 dependency_job = self._jobs[dependency]
                 option = OptionString(visible_name)
-                option.sortkey = dependency_job.get("sortkey", visible_name)
+                option.sortkey = dependency_job["sortkey"]
                 suboptions = suboptions.setdefault(option, {})
 
         # Build defaults
