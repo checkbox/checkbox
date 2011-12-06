@@ -36,10 +36,17 @@ class LocalSuite(Plugin):
         self._manager.reactor.fire("report-suite", suite)
 
         # Register temporary handler for report-message events
-        def report_message(message):
-            message["suite"] = suite["name"]
+        class Indexer(object):
+            def __init__(self):
+                self.index = 1
 
-        event_id = self._manager.reactor.call_on("report-message", report_message)
+            def __call__(self, message):
+                message["suite"] = suite["name"]
+                message["sortkey"] = "%03d/%s" % (self.index, message["name"])
+                self.index += 1
+
+        indexer = Indexer()
+        event_id = self._manager.reactor.call_on("report-message", indexer)
         self._manager.reactor.fire("message-exec", suite)
         self._manager.reactor.cancel_call(event_id)
 
