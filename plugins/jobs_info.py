@@ -100,7 +100,22 @@ class JobsInfo(Plugin):
         event_id = self._manager.reactor.call_on("report-message", report_message, 100)
 
         for directory in self.directories:
-            self._manager.reactor.fire("message-directory", directory)
+            # If there is a local.txt or local.txt.in file, load all jobs from
+            # it. Otherwise load all jobs in the jobs dir. Doing it like this is:
+            # - Faster: jobs are not parsed twice if loaded from local.txt and from
+            #   jobs/
+            # - More reliable: depending on how the job is loaded (from
+            #   local.txt or from jobs), it may end up not being made a
+            #   member of the suite
+            done = False
+            for name in "local.txt", "local.txt.in":
+                local = os.path.join(directory, name)
+                if os.path.exists(local):
+                    self._manager.reactor.fire("message-filename", local)
+                    done = True
+                    break
+            if not done:
+                self._manager.reactor.fire("message-directory", directory)
 
         # Unset domain and event handler
         self._manager.reactor.cancel_call(event_id)
