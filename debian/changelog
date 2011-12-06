@@ -13,8 +13,12 @@ checkbox (0.13.1) precise; urgency=low
   [Marc Tardif]
   * Refactored install script to be agnostic of variant name.
   * Using title defined in user_interface plugin in GTK interface.
+  
+  [Daniel Manrique]
+  * Update control files under debian/ to eliminate (most) lintian warnings
+    (LP: #352986)
 
- -- Daniel Manrique <daniel.manrique@canonical.com>  Thu, 01 Dec 2011 09:48:58 -0500
+ -- Daniel Manrique <daniel.manrique@canonical.com>  Tue, 06 Dec 2011 16:31:47 -0500
 
 checkbox (0.13) precise; urgency=low
 
