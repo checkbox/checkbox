@@ -30,10 +30,10 @@ from gettext import gettext as _
 class OptionString(str):
     def __init__(self, *args, **kwargs):
         super(OptionString, self).__init__(*args, **kwargs)
-        self.sortkey = ""
+        self.sortkey = 0
 
     def __repr__(self):
-        return "<text: %s, sortkey: %s>" % (self, self.sortkey)
+        return "<text: %s, sortkey: %d>" % (self, self.sortkey)
 
 class SuitesPrompt(Plugin):
 

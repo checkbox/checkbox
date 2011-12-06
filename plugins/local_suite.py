@@ -42,7 +42,7 @@ class LocalSuite(Plugin):
 
             def __call__(self, message):
                 message["suite"] = suite["name"]
-                message["sortkey"] = "%03d/%s" % (self.index, message["name"])
+                message["sortkey"] = self.index
                 self.index += 1
 
         indexer = Indexer()
