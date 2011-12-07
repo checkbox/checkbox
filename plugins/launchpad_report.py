@@ -19,6 +19,7 @@
 import os
 
 from gettext import gettext as _
+from string import printable
 
 from checkbox.lib.safe import safe_make_directory
 
@@ -80,7 +81,7 @@ class LaunchpadReport(Plugin):
             elif "udev_attachment" in name:
                 self._report["hardware"]["udev"] = attachment["data"]
 
-            else:
+            elif all(c in printable for c in attachment["data"]):
                 self._report["context"].append({
                     "command": attachment["command"],
                     "data": attachment["data"]})
