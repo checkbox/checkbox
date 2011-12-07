@@ -17,13 +17,17 @@ fi
 
 cat <<EOF
 plugin: shell
-name: sru/suspend
+name: sru/suspend_success
 status: $suspend_status
-description: SRU suspend test.
+description:
+ Check that /var/log/pm-suspend.log contains the string:
+ resume suspend: success.
 
 plugin: shell
-name: sru/hibernate
+name: sru/hibernate_success
 status: $hibernate_status
-description: SRU hibernate test.
+description:
+ Check that /var/log/pm-suspend.log contains the string:
+ thaw hibernate: success.
 
 EOF
