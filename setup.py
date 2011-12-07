@@ -230,7 +230,8 @@ This project provides an extensible interface for system testing.
         ("share/checkbox/gtk/", ["gtk/checkbox-gtk.ui", "gtk/*.png"]),
         ("share/apport/package-hooks/", ["apport/source_checkbox.py"]),
         ("share/apport/general-hooks/", ["apport/checkbox.py"])],
-    scripts = ["bin/checkbox-cli", "bin/checkbox-gtk", "bin/checkbox-urwid"],
+    scripts = ["bin/checkbox-cli", "bin/checkbox-gtk", "bin/checkbox-sru",
+        "bin/checkbox-urwid"],
     packages = ["checkbox", "checkbox.contrib", "checkbox.lib", "checkbox.parsers",
         "checkbox.reports", "checkbox_cli", "checkbox_gtk", "checkbox_urwid"],
     package_data = {
