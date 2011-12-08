@@ -8,18 +8,14 @@ msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-07-07 12:32-0400\n"
-"PO-Revision-Date: 2011-09-10 09:10+0000\n"
-"Last-Translator: Paco Molinero <paco@byasl.com>\n"
+"PO-Revision-Date: 2011-12-07 21:25+0000\n"
+"Last-Translator: Fitoschido <fitoschido@gmail.com>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-12-02 04:40+0000\n"
-"X-Generator: Launchpad (build 14414)\n"
-
-#: ../gtk/checkbox-gtk.desktop.in.h:2
-msgid "Test and report system information"
-msgstr "Pruebe el sistema e informe sobre el mismo"
+"X-Launchpad-Export-Date: 2011-12-08 05:17+0000\n"
+"X-Generator: Launchpad (build 14443)\n"
 
 #. description
 #: ../jobs/audio.txt.in:7 ../jobs/graphics.txt.in:113 ../jobs/memory.txt.in:4
@@ -66,11 +62,11 @@ msgstr "Uno entre depuración, información, aviso, error o crítico."
 msgid "Please choose (%s): "
 msgstr "Por favor, seleccione (%s): "
 
-#: ../checkbox_cli/cli_interface.py:315
+#: ../checkbox_cli/cli_interface.py:323
 msgid "test"
 msgstr "prueba"
 
-#: ../checkbox_cli/cli_interface.py:345
+#: ../checkbox_cli/cli_interface.py:353
 msgid "Please type here and press Ctrl-D when finished:\n"
 msgstr "Por favor, escriba aquí y pulse Ctrl-D cuando termine:\n"
 
@@ -133,7 +129,7 @@ msgstr "Creando informe..."
 #~ msgid "Exchange"
 #~ msgstr "Intercambio"
 
-#: ../gtk/checkbox-gtk.ui.h:1 ../checkbox_cli/cli_interface.py:343
+#: ../gtk/checkbox-gtk.ui.h:1 ../checkbox_cli/cli_interface.py:351
 #: ../checkbox_urwid/urwid_interface.py:261
 msgid "Further information:"
 msgstr "Más información:"
@@ -168,13 +164,17 @@ msgstr "_Seleccionar todo"
 msgid "_Skip this test"
 msgstr "_Omitir esta prueba"
 
-#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:537
+#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:535
 msgid "_Test"
 msgstr "_Probar"
 
 #: ../gtk/checkbox-gtk.ui.h:10
 msgid "_Yes"
 msgstr "_Sí"
+
+#: ../gtk/checkbox-gtk.desktop.in.h:2
+msgid "Test and report system information"
+msgstr "Probar y notificar información del sistema"
 
 #. description
 #: ../jobs/apport.txt.in:5
@@ -258,7 +258,7 @@ msgid "Did you hear your speech played back?"
 msgstr "¿Ha oído su voz reproducida?"
 
 #. description
-#: ../jobs/audio.txt.in:82
+#: ../jobs/audio.txt.in:102
 msgid ""
 "Play back a sound on the default output and listen for it on the \\ default "
 "input.  This makes the most sense when the output and input \\ are directly "
@@ -279,7 +279,7 @@ msgid "The address of your Bluetooth device is: $output"
 msgstr "La dirección de su dispositivo Bluetooth es: $output"
 
 #. description
-#: ../jobs/bluetooth.txt.in:12 ../jobs/graphics.txt.in:15
+#: ../jobs/graphics.txt.in:11
 msgid "Automated test to store output in checkbox report"
 msgstr ""
 "Prueba automatizada, añade su resultado en el informe generado por checkbox"
@@ -335,8 +335,8 @@ msgstr ""
 "«Configurar nuevo dispositivo». 4.- Busque el dispositivo en la lista y "
 "selecciónelo. 5.- Escriba en el dispositivo el código PIN generado "
 "automáticamente por el programa. 6.- El dispositivo debería sincronizarse "
-"con el equipo. 7.- Seleccione Prueba para grabar durante 5 segundos y "
-"reproducir en el dispositivo Bluetooth."
+"con el equipo. 7.- Pulse Probar para grabar durante 5 segundos y reproducir "
+"en el dispositivo Bluetooth."
 
 #. description
 #: ../jobs/bluetooth.txt.in:66
@@ -348,7 +348,7 @@ msgstr ""
 "Procedimiento de teclado de Bluetooth: 1.- Active el teclado Bluetooth. 2.- "
 "Haga clic en el icono de Bluetooth de la barra de menús. 3.- Seleccione "
 "«Configurar nuevo dispositivo». 4.- Busque el dispositivo en la lista y "
-"selecciónelo. 5.- Seleccione Prueba para escribir texto."
+"selecciónelo. 5.- Pulse Probar para escribir texto."
 
 #. description
 #: ../jobs/bluetooth.txt.in:79
@@ -575,21 +575,21 @@ msgid "SMART test"
 msgstr "Prueba SMART"
 
 #. description
-#: ../jobs/disk.txt.in:41
+#: ../jobs/disk.txt.in:42
 msgid "Maximum disk space used during a default installation test"
 msgstr ""
 "Máximo espacio de disco usado durante una prueba de instalación "
 "predeterminada"
 
 #. description
-#: ../jobs/disk.txt.in:56
+#: ../jobs/disk.txt.in:57
 msgid "Verify system storage performs at or above baseline performance"
 msgstr ""
 "Verifica que el rendimiento del almacenamiento del sistema, esté por sobre "
 "el rendimiento de referencia"
 
 #. description
-#: ../jobs/disk.txt.in:73
+#: ../jobs/disk.txt.in:74
 msgid ""
 "Verify that storage devices, such as Fibre Channel and RAID can be detected "
 "and perform under stress."
@@ -824,7 +824,7 @@ msgstr ""
 "es: $output"
 
 #. description
-#: ../jobs/graphics.txt.in:23
+#: ../jobs/graphics.txt.in:19
 msgid "Run gtkperf to make sure that GTK based test cases work"
 msgstr ""
 "Arranque gtkperf para asegurarse de que los casos de pruebas basados en GTK "
@@ -881,12 +881,12 @@ msgid "Did the display rotation change as expected?"
 msgstr "¿Cambió la rotación de la pantalla como se esperaba?"
 
 #. description
-#: ../jobs/graphics.txt.in:62
+#: ../jobs/graphics.txt.in:57
 msgid "Test that the X process is running."
 msgstr "Prueba que el proceso de X está en ejecución."
 
 #. description
-#: ../jobs/graphics.txt.in:68
+#: ../jobs/graphics.txt.in:63
 msgid "Test that the X is not running in failsafe mode."
 msgstr "Pruebe que X no está funcionando en modo a prueba de errores."
 
@@ -924,7 +924,7 @@ msgstr ""
 "recomendada (1024 x 600). Consulte aquí para más información:"
 
 #. description
-#: ../jobs/graphics.txt.in:94
+#: ../jobs/graphics.txt.in:92
 msgid "https://help.ubuntu.com/community/Installation/SystemRequirements"
 msgstr "https://help.ubuntu.com/community/Installation/SystemRequirements"
 
@@ -953,7 +953,7 @@ msgid "Did the screen appear to be working for each mode?"
 msgstr "¿La pantalla parece funcionar en cada modo?"
 
 #. description
-#: ../jobs/graphics.txt.in:133
+#: ../jobs/graphics.txt.in:140
 msgid "Check that the hardware is able to run compiz."
 msgstr "Comprueba que hardware es capaz de ejecutar Compiz."
 
@@ -972,7 +972,7 @@ msgid "Did the 3d animation appear?"
 msgstr "¿Apareció la animación 3D?"
 
 #. description
-#: ../jobs/info.txt.in:69 ../jobs/screenshot.txt.in:7
+#: ../jobs/info.txt.in:85
 msgid "Captures a screenshot."
 msgstr "Capture la pantalla."
 
@@ -983,7 +983,7 @@ msgstr ""
 "Recopilar registro de la ejecución del paquete de pruebas de firmware"
 
 #. description
-#: ../jobs/info.txt.in:91
+#: ../jobs/info.txt.in:107
 msgid "Bootchart information."
 msgstr "Información de la tabla de arranque."
 
@@ -1113,122 +1113,122 @@ msgid "Audio tests"
 msgstr "Pruebas de sonido"
 
 #. description
-#: ../jobs/local.txt.in:8
+#: ../jobs/local.txt.in:13
 msgid "Bluetooth tests"
 msgstr "Pruebas de Bluetooth"
 
 #. description
-#: ../jobs/local.txt.in:13
+#: ../jobs/local.txt.in:18
 msgid "Camera tests"
 msgstr "Pruebas de cámara"
 
 #. description
-#: ../jobs/local.txt.in:18
+#: ../jobs/local.txt.in:23
 msgid "Codec tests"
 msgstr "Pruebas de códecs"
 
 #. description
-#: ../jobs/local.txt.in:23
+#: ../jobs/local.txt.in:28
 msgid "CPU tests"
 msgstr "Pruebas de CPU"
 
 #. description
-#: ../jobs/local.txt.in:28
+#: ../jobs/local.txt.in:33
 msgid "System Daemon tests"
 msgstr "Pruebas de demonio de sistema"
 
 #. description
-#: ../jobs/local.txt.in:33
+#: ../jobs/local.txt.in:38
 msgid "Disk tests"
 msgstr "Pruebas de disco"
 
 #. description
-#: ../jobs/local.txt.in:38
+#: ../jobs/local.txt.in:43
 msgid "Fingerprint reader tests"
 msgstr "Pruebas de lector de huella dactilar"
 
 #. description
-#: ../jobs/local.txt.in:43
+#: ../jobs/local.txt.in:48
 msgid "Firewire disk tests"
 msgstr "Pruebas de discos Firewire"
 
 #. description
-#: ../jobs/local.txt.in:48
+#: ../jobs/local.txt.in:53
 msgid "Floppy disk tests"
 msgstr "Pruebas de disquete"
 
 #. description
-#: ../jobs/local.txt.in:53
+#: ../jobs/local.txt.in:58
 msgid "Graphics tests"
 msgstr "Pruebas de gráficos"
 
 #. description
-#: ../jobs/local.txt.in:58
+#: ../jobs/local.txt.in:68
 msgid "Informational tests"
 msgstr "Pruebas informativas"
 
 #. description
-#: ../jobs/local.txt.in:63
+#: ../jobs/local.txt.in:73
 msgid "Input Devices tests"
 msgstr "Pruebas de dispositivos de entrada"
 
 #. description
-#: ../jobs/local.txt.in:68
+#: ../jobs/local.txt.in:78
 msgid "Software Installation tests"
 msgstr "Pruebas de instalación de software"
 
 #. description
-#: ../jobs/local.txt.in:73
+#: ../jobs/local.txt.in:83
 msgid "Hotkey tests"
 msgstr "Pruebas de atajos de teclado"
 
 #. description
-#: ../jobs/local.txt.in:83
+#: ../jobs/local.txt.in:98
 msgid "Media Card tests"
 msgstr "Pruebas de tarjetas multimedia"
 
 #. description
-#: ../jobs/local.txt.in:93
+#: ../jobs/local.txt.in:108
 msgid "Miscellaneous tests"
 msgstr "Pruebas misceláneas"
 
 #. description
-#: ../jobs/local.txt.in:98
+#: ../jobs/local.txt.in:113
 msgid "Monitor tests"
 msgstr "Pruebas de monitor"
 
 #. description
-#: ../jobs/local.txt.in:103
+#: ../jobs/local.txt.in:118
 msgid "Networking tests"
 msgstr "Pruebas de red"
 
 #. description
-#: ../jobs/local.txt.in:113
+#: ../jobs/local.txt.in:133
 msgid "PCMCIA/PCIX Card tests"
 msgstr "Pruebas de tarjetas PCMCIA/PCIX"
 
 #. description
-#: ../jobs/local.txt.in:118
+#: ../jobs/local.txt.in:138
 msgid "Peripheral tests"
 msgstr "Pruebas de periféricos"
 
 #. description
-#: ../jobs/local.txt.in:123
+#: ../jobs/local.txt.in:148
 msgid "Power Management tests"
 msgstr "Pruebas de gestión de energía"
 
 #. description
-#: ../jobs/local.txt.in:133
+#: ../jobs/local.txt.in:168
 msgid "Unity tests"
 msgstr "Pruebas de Unity"
 
 #. description
-#: ../jobs/local.txt.in:143
+#: ../jobs/local.txt.in:178
 msgid "User Applications"
 msgstr "Aplicaciones de usuario"
 
 #. description
-#: ../jobs/local.txt.in:153
+#: ../jobs/local.txt.in:188
 msgid "Stress tests"
 msgstr "Pruebas de estrés"
 
@@ -1483,7 +1483,7 @@ msgid "The following amount of memory was detected:"
 msgstr "Se ha detectado la siguiente cantidad de memoria:"
 
 #. description
-#: ../jobs/memory.txt.in:16
+#: ../jobs/memory.txt.in:19
 msgid "Test and exercise memory."
 msgstr "Probar y ejercitar la memoria."
 
@@ -1518,7 +1518,7 @@ msgstr ""
 "King."
 
 #. description
-#: ../jobs/miscellanea.txt.in:29
+#: ../jobs/miscellanea.txt.in:30
 msgid ""
 "ipmitool is required for ipmi testing. This checks for ipmitool and installs "
 "it if not available."
@@ -1527,7 +1527,7 @@ msgstr ""
 "instala si no está disponible."
 
 #. description
-#: ../jobs/miscellanea.txt.in:36
+#: ../jobs/miscellanea.txt.in:37
 msgid ""
 "This will run some basic connectivity tests against a BMC, verifying that "
 "IPMI works."
@@ -1643,7 +1643,7 @@ msgid "Testing your connection to the Internet:"
 msgstr "Probando su conexión a Internet:"
 
 #. description
-#: ../jobs/networking.txt.in:21
+#: ../jobs/networking.txt.in:16
 msgid "Network Information"
 msgstr "Información de la red"
 
@@ -1704,7 +1704,7 @@ msgid "Was the connection correctly established?"
 msgstr "¿Se estableció correctamente la conexión?"
 
 #. description
-#: ../jobs/networking.txt.in:67
+#: ../jobs/networking.txt.in:66
 msgid ""
 "Automated test case to verify availability of some system on the network "
 "using ICMP ECHO packets."
@@ -1713,7 +1713,7 @@ msgstr ""
 "sistema en la red usando paquetes ICMP ECHO."
 
 #. description
-#: ../jobs/networking.txt.in:74 ../jobs/peripheral.txt.in:32
+#: ../jobs/networking.txt.in:73 ../jobs/peripheral.txt.in:37
 msgid ""
 "Automated test case to make sure that it's possible to download files "
 "through HTTP"
@@ -1722,13 +1722,13 @@ msgstr ""
 "archivos mediante HTTP"
 
 #. description
-#: ../jobs/networking.txt.in:82
+#: ../jobs/networking.txt.in:81
 msgid "Test to see if we can sync local clock to an NTP server"
 msgstr ""
 "Pruebe para ver si se puede sincronizar el reloj local con un servidor NTP"
 
 #. description
-#: ../jobs/networking.txt.in:88
+#: ../jobs/networking.txt.in:87
 msgid ""
 "Verify that an installation of checkbox-server on the network can be reached "
 "over SSH."
@@ -1737,7 +1737,7 @@ msgstr ""
 "mediante SSH"
 
 #. description
-#: ../jobs/networking.txt.in:94
+#: ../jobs/networking.txt.in:93
 msgid "Try to enable a remote printer on the network and print a test page."
 msgstr ""
 "Intentar activar una impresora remota en la red e imprimir una página de "
@@ -1749,7 +1749,7 @@ msgid "Multiple network cards"
 msgstr "Varias tarjetas de red"
 
 #. description
-#: ../jobs/networking.txt.in:119
+#: ../jobs/networking.txt.in:118
 msgid "Test to measure the network bandwidth"
 msgstr "Prueba para medir el ancho de banda de red"
 
@@ -1759,7 +1759,7 @@ msgid "The following optical drives were detected:"
 msgstr "Se han detectado los siguientes controladores ópticos:"
 
 #. description
-#: ../jobs/optical.txt.in:18
+#: ../jobs/optical.txt.in:13
 msgid "Optical Storage device read tests"
 msgstr "Pruebas de lectura de dispositivo de almacenamiento óptico"
 
@@ -1962,22 +1962,26 @@ msgstr ""
 msgid ""
 "Run the computer suspend test. Then, press the power button to resume it."
 msgstr ""
+"Ejecutar la prueba de suspender el equipo. A continuación, presione el botón "
+"de encendido para reanudar."
 
 #. description
 #: ../jobs/power-management.txt.in:14
 msgid "Does your computer suspend and resume?"
-msgstr ""
+msgstr "¿Su equipo se ha suspendido y reanudado?"
 
 #. description
 #: ../jobs/power-management.txt.in:22
 msgid ""
 "Run the computer hibernate test. Then, press the power button to restore it."
 msgstr ""
+"Ejecute la prueba de hibernar el equipo. A continuación, pulse el botón de "
+"encendido para restaurarlo."
 
 #. description
 #: ../jobs/power-management.txt.in:22
 msgid "Does your computer hibernate and restore?"
-msgstr ""
+msgstr "¿Su equipo se ha hibernado y restablecido?"
 
 #. description
 #: ../jobs/power-management.txt.in:13
@@ -2015,7 +2019,7 @@ msgid "Test the network before suspending."
 msgstr "Comprobar la red antes de suspender."
 
 #. description
-#: ../jobs/suspend.txt.in:4
+#: ../jobs/suspend.txt.in:3
 msgid "Record the current resolution before suspending."
 msgstr "Grabar la resolución actual antes de suspender."
 
@@ -2043,7 +2047,7 @@ msgstr ""
 " 5.- Seleccione Probar para verificar la conexión y la tasa de transferencia."
 
 #. description
-#: ../jobs/power-management.txt.in:51
+#: ../jobs/power-management.txt.in:66
 msgid "Make sure that the RTC (Real-Time Clock) device exists."
 msgstr ""
 "Asegúrese que el dispositivo RTC (Reloj de tiempo real en inglés Real-Time "
@@ -2070,12 +2074,12 @@ msgstr ""
 "después de reiniciar y marque esta prueba como fallida."
 
 #. description
-#: ../jobs/suspend.txt.in:68
+#: ../jobs/suspend.txt.in:76
 msgid "Test the network after resuming."
 msgstr "Probar la red después de reanudar."
 
 #. description
-#: ../jobs/suspend.txt.in:74
+#: ../jobs/suspend.txt.in:82
 msgid ""
 "Test to see that we have the same resolution after resuming as before."
 msgstr "Prueba para ver si tiene la misma resolución después de reanudar."
@@ -2315,12 +2319,12 @@ msgstr "Prueba de servidor Tomcat"
 #. description
 #: ../jobs/sru_suite.txt.in:4
 msgid "SRU Test Suite"
-msgstr ""
+msgstr "Conjunto de pruebas SRU"
 
 #. description
 #: ../jobs/sru_suite.txt.in:9
 msgid "Tests that SRU is able to run compiz"
-msgstr ""
+msgstr "Probar el SRU si es capaz de ejecutar compiz"
 
 #. description
 #: ../jobs/sru_suite.txt.in:15
@@ -2729,7 +2733,7 @@ msgid "Close the File Browser."
 msgstr "Cierre el navegador de archivos."
 
 #. description
-#: ../jobs/user_apps.txt.in:160
+#: ../jobs/user_apps.txt.in:207
 msgid "Common Document Types Test"
 msgstr "Prueba de tipos de documentos comunes"
 
@@ -2967,7 +2971,7 @@ msgstr "omitir"
 msgid "Press any key to continue..."
 msgstr "Pulse una tecla para continuar..."
 
-#: ../checkbox_cli/cli_interface.py:339
+#: ../checkbox_cli/cli_interface.py:347
 msgid "test again"
 msgstr "probar de nuevo"
 
@@ -3012,7 +3016,7 @@ msgstr "Probar de nuevo"
 msgid "hardware database"
 msgstr "base de datos de hardware"
 
-#: ../checkbox_gtk/gtk_interface.py:502
+#: ../checkbox_gtk/gtk_interface.py:500
 msgid "_Test Again"
 msgstr "_Probar de nuevo"
 
