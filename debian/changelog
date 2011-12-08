@@ -19,8 +19,10 @@ checkbox (0.13.1) precise; urgency=low
   [Daniel Manrique]
   * Update control files under debian/ to eliminate (most) lintian warnings
     (LP: #352986)
+  * Environment variables specified with environ: in a job description will be
+    passed to the backend for it to add to its environment. (LP: #897889)
 
- -- Daniel Manrique <daniel.manrique@canonical.com>  Tue, 06 Dec 2011 16:31:47 -0500
+ -- Daniel Manrique <daniel.manrique@canonical.com>  Thu, 08 Dec 2011 16:43:28 -0500
 
 checkbox (0.13) precise; urgency=low
 
