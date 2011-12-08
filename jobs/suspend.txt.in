@@ -28,7 +28,15 @@ command: meminfo_resource > $CHECKBOX_DATA/meminfo_before_suspend
 
 plugin: shell
 name: suspend/wireless_before_suspend
-depends: wireless/wireless_connection
+depends: wireless/wireless_connectio
+command: nmcli -t -f UUID con status > $CHECKBOX_DATA/connections && connect_wireless && internet_test --interface=`nmcli dev list | grep -B 1 wireless | grep GENERAL.DEVICE | awk '{print $2}'` && for con in `cat $CHECKBOX_DATA/connections`; do nmcli con up uuid "$con"; done
+_description:
+ This test disconnects all connections and then connects to the wireless
+ interface. It then checks the connection to confirm it's working as expected.
+
+plugin: shell
+name: suspend/wireless_before_suspend_auto
+depends: wireless/wireless_connection_wpa_bg
 command: nmcli -t -f UUID con status > $CHECKBOX_DATA/connections && connect_wireless && internet_test --interface=`nmcli dev list | grep -B 1 wireless | grep GENERAL.DEVICE | awk '{print $2}'` && for con in `cat $CHECKBOX_DATA/connections`; do nmcli con up uuid "$con"; done
 _description:
  This test disconnects all connections and then connects to the wireless
@@ -100,10 +108,27 @@ _description: Verify that all CPUs are online after resuming.
 command: cpuinfo_resource | diff $CHECKBOX_DATA/cpuinfo_before_suspend -
 
 plugin: shell
+name: suspend/cpu_after_suspend_auto
+requires:
+ package.name == 'linux'
+depends: suspend/suspend_advanced_auto suspend/cpu_before_suspend
+_description: Verify that all CPUs are online after resuming.
+command: cpuinfo_resource | diff $CHECKBOX_DATA/cpuinfo_before_suspend -
+
+plugin: shell
 name: suspend/memory_after_suspend
 requires:
  package.name == 'linux'
 depends: suspend/suspend_advanced suspend/memory_before_suspend
+_description:
+ Verify that all memory is available after resuming from suspend.
+command: meminfo_resource | diff $CHECKBOX_DATA/meminfo_before_suspend -
+
+plugin: shell
+name: suspend/memory_after_suspend
+requires:
+ package.name == 'linux'
+depends: suspend/suspend_advanced_auto suspend/memory_before_suspend
 _description:
  Verify that all memory is available after resuming from suspend.
 command: meminfo_resource | diff $CHECKBOX_DATA/meminfo_before_suspend -
@@ -122,6 +147,15 @@ _description:
 plugin: shell
 name: suspend/wireless_after_suspend
 depends: suspend/suspend_advanced suspend/wireless_before_suspend
+command: connect_wireless && internet_test --interface=`nmcli dev list | grep -B 1 wireless | grep GENERAL.DEVICE | awk '{print $2}'` && for con in `cat $CHECKBOX_DATA/connections`; do nmcli con up uuid "$con"; done
+_description:
+ This test checks that the wireless interface is working after suspending the system. It
+ disconnects all interfaces and then connects to the wireless interface and checks that the
+ connection is working as expected.
+
+plugin: shell
+name: suspend/wireless_after_suspend_auto
+depends: suspend/suspend_advanced_auto suspend/wireless_before_suspend_auto
 command: connect_wireless && internet_test --interface=`nmcli dev list | grep -B 1 wireless | grep GENERAL.DEVICE | awk '{print $2}'` && for con in `cat $CHECKBOX_DATA/connections`; do nmcli con up uuid "$con"; done
 _description:
  This test checks that the wireless interface is working after suspending the system. It
@@ -212,7 +246,7 @@ _description:
 
 plugin: shell
 name: suspend/suspend_advanced_auto
-depends: power-management/rtc networking/detect suspend/cpu_before_suspend suspend/memory_before_suspend
+depends: power-management/rtc networking/detect suspend/cpu_before_suspend suspend/memory_before_suspend suspend/wireless_before_suspend_auto
 requires: package.name == 'pm-utils'
 _description:
  This is the automated version of suspend/suspend_advanced. 
