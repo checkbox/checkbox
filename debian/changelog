@@ -7,6 +7,7 @@ checkbox (0.13.1) precise; urgency=low
   * Added create_connection script and jobs to automatically create/test a
     wireless network connection.
   * Updated wireless job dependencies.
+  * Add wireless performance data collecting tests.
     
   [Gabor Kelemen]
   * Fixed last two remaining strings with backslashes (LP: #868571)
@@ -23,8 +24,7 @@ checkbox (0.13.1) precise; urgency=low
   * Environment variables specified with environ: in a job description will be
     passed to the backend for it to add to its environment. (LP: #897889)
 
- -- Daniel Manrique <daniel.manrique@canonical.com>  Fri, 09 Dec 2011 14:04:59 -0500
-
+ -- Daniel Manrique <daniel.manrique@canonical.com>  Fri, 09 Dec 2011 16:13:12 -0500
 
 checkbox (0.13) precise; urgency=low
 
