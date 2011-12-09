@@ -58,6 +58,15 @@ _description:
 plugin: shell
 name: wireless/monitor_wireless_connection
 requires: device.category == 'WIRELESS'
-command: iperf -c $IPERF_SERVER_IP -t 30
+user: root
+command: ifconfig eth0 down; iperf -c 10.153.104.227 -t 30; ifconfig eth0 up
 _description:
  Tests the performance of a systems wireless connection through the iperf tool.
+
+plugin: shell
+name: wireless/monitor_wireless_connection_udp
+requires: device.category == 'WIRELESS'
+user: root
+command: ifconfig eth0 down; iperf -c 10.153.104.227 -t 30 -u -b 100m -p 5050; ifconfig eth0 up
+_description:
+ Tests the performance of a systems wireless connection through the iperf tool, using UDP packets.
