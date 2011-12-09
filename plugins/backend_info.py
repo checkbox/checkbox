@@ -113,6 +113,16 @@ class BackendInfo(Plugin):
 
     def message_exec(self, message):
         if "user" in message:
+            if "environ" in message:
+                #Prepare variables to be "exported" from my environment
+                #to the backend's.
+                backend_environ=["%s=%s" % (key, os.environ[key])
+                             for key in message["environ"] 
+                             if key in os.environ]
+                message=dict(message) #so as to not wreck the
+                                      #original message
+                message["environ"]=backend_environ
+
             if (self.backend_is_alive and not self.ping_backend()):
                 self.backend_is_alive = False
 
