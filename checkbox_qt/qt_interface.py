@@ -69,9 +69,13 @@ class QTInterface(UserInterface):
         self.progressDialog = QProgressDialog()
         self.formWindow = MyForm()
         self.formWindow.show()
-        self.app.processEvents()
         self._app_title = title
         self.formWindow.ui.progressWidget.setVisible(False)
+        self.formWindow.ui._notebook.tabBar().setVisible(False)
+        self._set_show("button_select_all", False)
+        self._set_show("button_deselect_all", False)
+
+        self.app.processEvents()
 
     def _get_widget(self, name):
         print "My name is: %s" % funcname()
@@ -97,7 +101,6 @@ class QTInterface(UserInterface):
     def _set_label(self, name, label=""):
         print "My name is: %s" % funcname()
         widget = self._get_widget(name)
-        print label
         widget.setText(label)
         return False
 
@@ -119,7 +122,8 @@ class QTInterface(UserInterface):
 
     def _set_show(self, name, value=True):
         print "My name is: %s" % funcname()
-        return False
+        widget = self._get_widget(name)
+        widget.setVisible(bool(value))
 
     def _set_sensitive(self, name, value=True):
         print "My name is: %s" % funcname()
@@ -147,8 +151,6 @@ class QTInterface(UserInterface):
             title += " - %s" % test_name
         self.formWindow.setWindowTitle(title)
 
-        return False
-
     def _run_dialog(self, dialog=None):
         print "My name is: %s" % funcname()
         def on_dialog_response_next():
@@ -165,6 +167,8 @@ class QTInterface(UserInterface):
 
     def show_progress_start(self, message):
         print "My name is: %s" % funcname()
+        self._set_sensitive("button_previous", False)
+        self._set_sensitive("button_next", False)
         self.formWindow.ui.progressWidget.setVisible(True)
         self.formWindow.ui.progressLabel.setText(message)
         self.formWindow.ui.progressBar.setRange (0, 0); 
@@ -173,6 +177,10 @@ class QTInterface(UserInterface):
     def show_progress_stop(self):
         print "My name is: %s" % funcname()
         self.formWindow.ui.progressWidget.setVisible(False)
+
+        self._set_sensitive("button_previous", True)
+        self._set_sensitive("button_next", True)
+
         self.app.processEvents()
 
     def show_progress_pulse(self):
@@ -188,7 +196,8 @@ class QTInterface(UserInterface):
         previous_state = self._set_button("button_previous", previous)
         next_state = self._set_button("button_next", next)
 
-        self.formWindow.ui.infoWindow.setHtml(text)
+        self.formWindow.ui._notebook.setCurrentIndex(0)
+        self.formWindow.ui.infoWindow.setPlainText(text)
 
         self._run_dialog()
 
@@ -210,6 +219,20 @@ class QTInterface(UserInterface):
 
     def show_tree(self, text, options={}, default={}):
         print "My name is: %s" % funcname()
+        self._set_main_title()
+
+        # Set buttons
+        self.formWindow.ui._notebook.setCurrentIndex(1)
+
+        self.formWindow.ui.treeInfo.setPlainText(text)
+
+        self._set_show("button_select_all", True)
+        self._set_show("button_deselect_all", True)
+
+        print options
+        self.app.processEvents()
+        self._run_dialog()
+
         return options
 
     def _run_test(self, test, runner):
@@ -236,6 +259,7 @@ class QTInterface(UserInterface):
                 
         dialog = QMessageBox()
         dialog.setText(text)
+        dialog.setWindowTitle(_("Info"))
         dialog.setDefaultButton(defaultButton)
         dialog.setStandardButtons(buttons)
         status = dialog.exec_()
@@ -243,7 +267,7 @@ class QTInterface(UserInterface):
 
     def show_error(self, text):
         print "My name is: %s" % funcname()
-        return False
+        QMessageBox.critical(self.formWindow, _("Error"), text)
 
     def draw_image_head(self, widget, data):
         print "My name is: %s" % funcname()
