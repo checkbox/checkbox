@@ -54,3 +54,10 @@ command: create_connection $OPEN_N_SSID && nmcli con up id $OPEN_N_SSID && inter
 _description:
  Tests that the systems wireless hardware can connect to a router using no
  no security and the 802.11n protocol.
+
+plugin: shell
+name: wireless/monitor_wireless_connection
+requires: device.category == 'WIRELESS'
+command: iperf -c $IPERF_SERVER_IP -t 30
+_description:
+ Tests the performance of a systems wireless connection through the iperf tool.
