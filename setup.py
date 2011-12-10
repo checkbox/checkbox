@@ -188,7 +188,6 @@ class checkbox_install_scripts(install_scripts, object):
         for outfile in self.outfiles:
             infile = posixpath.join("bin", posixpath.basename(outfile))
             substitute_variables(infile, outfile, {
-                "CHECKBOX_OPTIONS:-": "CHECKBOX_OPTIONS:---whitelist-file=$CHECKBOX_SHARE/data/whitelists/default.whitelist",
                 "CHECKBOX_SHARE:-.": "CHECKBOX_SHARE:-/usr/share/checkbox",
                 "CHECKBOX_DATA:-.": "CHECKBOX_DATA:-$XDG_CACHE_HOME/checkbox"})
 
