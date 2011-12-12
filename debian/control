@@ -56,6 +56,15 @@ Description: GTK interface for checkbox
  .
  This package provides a GTK interface for answering tests.
 
+Package: checkbox-sru
+Architecture: all
+Depends: checkbox (>= ${source:Version}), ${misc:Depends}
+Description: SRU interface for checkbox 
+ This project provides an extensible interface for system testing. The
+ results can then be sent to Launchpad.
+ .
+ This package provides a non-interactive interface for SRU testing.
+
 Package: hwtest
 Section: python
 Architecture: all

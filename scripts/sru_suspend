@@ -1,0 +1,33 @@
+#!/bin/bash
+#
+# Simplistic test to determine whether the system successfully resumed
+# from suspend and thawed from hibernate.
+
+if zgrep -q '/usr/lib/pm-utils/sleep.d/000kernel-change resume suspend: success.' /var/log/pm-suspend.log*; then
+    suspend_status="pass"
+else
+    suspend_status="untested"
+fi
+
+if zgrep -q '/usr/lib/pm-utils/sleep.d/000kernel-change thaw hibernate: success.' /var/log/pm-suspend.log*; then
+    hibernate_status="pass"
+else
+    hibernate_status="untested"
+fi
+
+cat <<EOF
+plugin: shell
+name: sru/suspend_success
+status: $suspend_status
+description:
+ Check that /var/log/pm-suspend.log contains the string:
+ resume suspend: success.
+
+plugin: shell
+name: sru/hibernate_success
+status: $hibernate_status
+description:
+ Check that /var/log/pm-suspend.log contains the string:
+ thaw hibernate: success.
+
+EOF
