@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-07-07 12:32-0400\n"
-"PO-Revision-Date: 2011-07-19 18:14+0000\n"
-"Last-Translator: Akdmeh <Unknown>\n"
+"PO-Revision-Date: 2011-12-13 20:04+0000\n"
+"Last-Translator: Vlad Golubev <Unknown>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-12-02 04:41+0000\n"
-"X-Generator: Launchpad (build 14414)\n"
+"X-Launchpad-Export-Date: 2011-12-14 04:41+0000\n"
+"X-Generator: Launchpad (build 14487)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:2
 msgid "Ne_xt"
@@ -29,7 +29,7 @@ msgstr "Перевірка підключення до інтернету:"
 #~ msgid "Exchange"
 #~ msgstr "Обмін"
 
-#: ../gtk/checkbox-gtk.ui.h:1 ../checkbox_cli/cli_interface.py:343
+#: ../gtk/checkbox-gtk.ui.h:1 ../checkbox_cli/cli_interface.py:351
 #: ../checkbox_urwid/urwid_interface.py:261
 msgid "Further information:"
 msgstr "Додаткова інформація:"
@@ -58,9 +58,9 @@ msgstr "Виді_лити все"
 
 #: ../gtk/checkbox-gtk.ui.h:8
 msgid "_Skip this test"
-msgstr "Пропустити тест"
+msgstr "Пропустити цей тест"
 
-#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:537
+#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:535
 msgid "_Test"
 msgstr "_Тест"
 
@@ -75,7 +75,7 @@ msgstr "Тестувати та доповісти системну інформ
 #. description
 #: ../jobs/apport.txt.in:5
 msgid "Test that the /var/crash directory doesn't contain anything."
-msgstr ""
+msgstr "Перевірте чи пуста тека /var/crash"
 
 #. description
 #: ../jobs/audio.txt.in:7
@@ -167,7 +167,7 @@ msgid "Did you hear your speech played back?"
 msgstr "Ви чули відтворення вашого запису?"
 
 #. description
-#: ../jobs/audio.txt.in:82
+#: ../jobs/audio.txt.in:102
 msgid ""
 "Play back a sound on the default output and listen for it on the \\ default "
 "input.  This makes the most sense when the output and input \\ are directly "
@@ -185,7 +185,7 @@ msgid "The address of your Bluetooth device is: $output"
 msgstr "Адреса пристрою Bluetooth: $output"
 
 #. description
-#: ../jobs/bluetooth.txt.in:12 ../jobs/graphics.txt.in:15
+#: ../jobs/graphics.txt.in:11
 msgid "Automated test to store output in checkbox report"
 msgstr ""
 
@@ -257,7 +257,7 @@ msgstr ""
 #. description
 #: ../jobs/camera.txt.in:16
 msgid "Did you see the video capture?"
-msgstr ""
+msgstr "Ви бачите захоплене відео?"
 
 #. description
 #: ../jobs/camera.txt.in:30
@@ -425,17 +425,17 @@ msgid "SMART test"
 msgstr ""
 
 #. description
-#: ../jobs/disk.txt.in:41
+#: ../jobs/disk.txt.in:42
 msgid "Maximum disk space used during a default installation test"
 msgstr ""
 
 #. description
-#: ../jobs/disk.txt.in:56
+#: ../jobs/disk.txt.in:57
 msgid "Verify system storage performs at or above baseline performance"
 msgstr ""
 
 #. description
-#: ../jobs/disk.txt.in:73
+#: ../jobs/disk.txt.in:74
 msgid ""
 "Verify that storage devices, such as Fibre Channel and RAID can be detected "
 "and perform under stress."
@@ -625,7 +625,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:23
+#: ../jobs/graphics.txt.in:19
 msgid "Run gtkperf to make sure that GTK based test cases work"
 msgstr ""
 
@@ -667,12 +667,12 @@ msgid "Did the display rotation change as expected?"
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:62
+#: ../jobs/graphics.txt.in:57
 msgid "Test that the X process is running."
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:68
+#: ../jobs/graphics.txt.in:63
 msgid "Test that the X is not running in failsafe mode."
 msgstr ""
 
@@ -710,7 +710,7 @@ msgstr ""
 "рекомендований мінімум (1024 x 600). Дивись подробиці тут:"
 
 #. description
-#: ../jobs/graphics.txt.in:94
+#: ../jobs/graphics.txt.in:92
 msgid "https://help.ubuntu.com/community/Installation/SystemRequirements"
 msgstr "https://help.ubuntu.com/community/Installation/SystemRequirements"
 
@@ -742,7 +742,7 @@ msgid "Did the screen appear to be working for each mode?"
 msgstr "Екран працював у кожному з режимів?"
 
 #. description
-#: ../jobs/graphics.txt.in:133
+#: ../jobs/graphics.txt.in:140
 msgid "Check that the hardware is able to run compiz."
 msgstr "Перевірка відеокарти на можливість запуску compiz."
 
@@ -759,7 +759,7 @@ msgid "Did the 3d animation appear?"
 msgstr "Чи появилась 3D-анімація?"
 
 #. description
-#: ../jobs/info.txt.in:69 ../jobs/screenshot.txt.in:7
+#: ../jobs/info.txt.in:85
 msgid "Captures a screenshot."
 msgstr ""
 
@@ -769,7 +769,7 @@ msgid "Gather log from the firmware test suite run"
 msgstr ""
 
 #. description
-#: ../jobs/info.txt.in:91
+#: ../jobs/info.txt.in:107
 msgid "Bootchart information."
 msgstr ""
 
@@ -887,122 +887,122 @@ msgid "Audio tests"
 msgstr "Перевірка звуку"
 
 #. description
-#: ../jobs/local.txt.in:8
+#: ../jobs/local.txt.in:13
 msgid "Bluetooth tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:13
+#: ../jobs/local.txt.in:18
 msgid "Camera tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:18
+#: ../jobs/local.txt.in:23
 msgid "Codec tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:23
+#: ../jobs/local.txt.in:28
 msgid "CPU tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:28
+#: ../jobs/local.txt.in:33
 msgid "System Daemon tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:33
+#: ../jobs/local.txt.in:38
 msgid "Disk tests"
 msgstr "Перевірка дисків"
 
 #. description
-#: ../jobs/local.txt.in:38
+#: ../jobs/local.txt.in:43
 msgid "Fingerprint reader tests"
 msgstr "Перевірка пристрою зчитування відбитків пальців"
 
 #. description
-#: ../jobs/local.txt.in:43
+#: ../jobs/local.txt.in:48
 msgid "Firewire disk tests"
 msgstr "Перевірка дисків Firewire"
 
 #. description
-#: ../jobs/local.txt.in:48
+#: ../jobs/local.txt.in:53
 msgid "Floppy disk tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:53
+#: ../jobs/local.txt.in:58
 msgid "Graphics tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:58
+#: ../jobs/local.txt.in:68
 msgid "Informational tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:63
+#: ../jobs/local.txt.in:73
 msgid "Input Devices tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:68
+#: ../jobs/local.txt.in:78
 msgid "Software Installation tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:73
+#: ../jobs/local.txt.in:83
 msgid "Hotkey tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:83
+#: ../jobs/local.txt.in:98
 msgid "Media Card tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:93
+#: ../jobs/local.txt.in:108
 msgid "Miscellaneous tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:98
+#: ../jobs/local.txt.in:113
 msgid "Monitor tests"
 msgstr "Перевірка морітору"
 
 #. description
-#: ../jobs/local.txt.in:103
+#: ../jobs/local.txt.in:118
 msgid "Networking tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:113
+#: ../jobs/local.txt.in:133
 msgid "PCMCIA/PCIX Card tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:118
+#: ../jobs/local.txt.in:138
 msgid "Peripheral tests"
 msgstr "Перевірка периферії"
 
 #. description
-#: ../jobs/local.txt.in:123
+#: ../jobs/local.txt.in:148
 msgid "Power Management tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:133
+#: ../jobs/local.txt.in:168
 msgid "Unity tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:143
+#: ../jobs/local.txt.in:178
 msgid "User Applications"
 msgstr "Програми користувача"
 
 #. description
-#: ../jobs/local.txt.in:153
+#: ../jobs/local.txt.in:188
 msgid "Stress tests"
 msgstr ""
 
@@ -1159,7 +1159,7 @@ msgid "The following amount of memory was detected:"
 msgstr ""
 
 #. description
-#: ../jobs/memory.txt.in:16
+#: ../jobs/memory.txt.in:19
 msgid "Test and exercise memory."
 msgstr ""
 
@@ -1187,14 +1187,14 @@ msgid "Run Colin King's Firmware Test Suite automated tests."
 msgstr ""
 
 #. description
-#: ../jobs/miscellanea.txt.in:29
+#: ../jobs/miscellanea.txt.in:30
 msgid ""
 "ipmitool is required for ipmi testing. This checks for ipmitool and installs "
 "it if not available."
 msgstr ""
 
 #. description
-#: ../jobs/miscellanea.txt.in:36
+#: ../jobs/miscellanea.txt.in:37
 msgid ""
 "This will run some basic connectivity tests against a BMC, verifying that "
 "IPMI works."
@@ -1308,7 +1308,7 @@ msgid "Detecting your network controller(s):"
 msgstr "Визначення Ваших мережевих контролерів:"
 
 #. description
-#: ../jobs/networking.txt.in:21
+#: ../jobs/networking.txt.in:16
 msgid "Network Information"
 msgstr ""
 
@@ -1353,33 +1353,33 @@ msgid "Was the connection correctly established?"
 msgstr "Чи з’єднання було встановлено правильно?"
 
 #. description
-#: ../jobs/networking.txt.in:67
+#: ../jobs/networking.txt.in:66
 msgid ""
 "Automated test case to verify availability of some system on the network "
 "using ICMP ECHO packets."
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:74 ../jobs/peripheral.txt.in:32
+#: ../jobs/networking.txt.in:73 ../jobs/peripheral.txt.in:37
 msgid ""
 "Automated test case to make sure that it's possible to download files "
 "through HTTP"
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:82
+#: ../jobs/networking.txt.in:81
 msgid "Test to see if we can sync local clock to an NTP server"
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:88
+#: ../jobs/networking.txt.in:87
 msgid ""
 "Verify that an installation of checkbox-server on the network can be reached "
 "over SSH."
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:94
+#: ../jobs/networking.txt.in:93
 msgid "Try to enable a remote printer on the network and print a test page."
 msgstr ""
 
@@ -1389,7 +1389,7 @@ msgid "Multiple network cards"
 msgstr ""
 
 #. description
-#: ../jobs/networking.txt.in:119
+#: ../jobs/networking.txt.in:118
 msgid "Test to measure the network bandwidth"
 msgstr ""
 
@@ -1399,7 +1399,7 @@ msgid "The following optical drives were detected:"
 msgstr ""
 
 #. description
-#: ../jobs/optical.txt.in:18
+#: ../jobs/optical.txt.in:13
 msgid "Optical Storage device read tests"
 msgstr ""
 
@@ -1606,7 +1606,7 @@ msgid "Test the network before suspending."
 msgstr "Перевірити мережу, перш ніж перейти у режим економії електроенергії."
 
 #. description
-#: ../jobs/suspend.txt.in:4
+#: ../jobs/suspend.txt.in:3
 msgid "Record the current resolution before suspending."
 msgstr ""
 "Записати поточну розільну здатність, перш ніж перейти у режим економії "
@@ -1630,7 +1630,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:51
+#: ../jobs/power-management.txt.in:66
 msgid "Make sure that the RTC (Real-Time Clock) device exists."
 msgstr ""
 
@@ -1650,12 +1650,12 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:68
+#: ../jobs/suspend.txt.in:76
 msgid "Test the network after resuming."
 msgstr "Перевірити мережу після виходу з режиму економії електроенергії"
 
 #. description
-#: ../jobs/suspend.txt.in:74
+#: ../jobs/suspend.txt.in:82
 msgid ""
 "Test to see that we have the same resolution after resuming as before."
 msgstr ""
@@ -2217,7 +2217,7 @@ msgid "Close the File Browser."
 msgstr "Закрийте переглядач файлів."
 
 #. description
-#: ../jobs/user_apps.txt.in:160
+#: ../jobs/user_apps.txt.in:207
 msgid "Common Document Types Test"
 msgstr "Перевірка стандартних типів документів"
 
@@ -2317,19 +2317,19 @@ msgstr "Використання: checkbox [ПАРАМЕТРИ]"
 
 #: ../checkbox/application.py:70
 msgid "Print version information and exit."
-msgstr "Роздрукувати інформацію про версію та вийти."
+msgstr "Вивести інформацію про версію та вийти"
 
 #: ../checkbox/application.py:74
 msgid "The file to write the log to."
-msgstr "Файл, куди писати журнал роботи."
+msgstr "Файл для ведення логу"
 
 #: ../checkbox/application.py:77
 msgid "One of debug, info, warning, error or critical."
-msgstr "debug, info, warning, error або critical"
+msgstr "Одне із повідомлень, інформація, небезпека, помилка або критично."
 
 #: ../checkbox/application.py:82
 msgid "Configuration override parameters."
-msgstr "Параметри заміщення налаштувань."
+msgstr "Налаштування параметрів заміщення."
 
 #: ../checkbox/application.py:84
 msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist."
@@ -2457,22 +2457,22 @@ msgstr "пропустити"
 
 #: ../checkbox_cli/cli_interface.py:126
 msgid "Press any key to continue..."
-msgstr "Натисніть будь-яку клавішу для продовження..."
+msgstr "Натисніть будь-яку клавішу для продовження…"
 
 #: ../checkbox_cli/cli_interface.py:135
 #, python-format
 msgid "Please choose (%s): "
 msgstr "Будь ласка, оберіть (%s): "
 
-#: ../checkbox_cli/cli_interface.py:315
+#: ../checkbox_cli/cli_interface.py:323
 msgid "test"
 msgstr "перевірка"
 
-#: ../checkbox_cli/cli_interface.py:339
+#: ../checkbox_cli/cli_interface.py:347
 msgid "test again"
-msgstr "перевірити ще"
+msgstr "перевірити знову"
 
-#: ../checkbox_cli/cli_interface.py:345
+#: ../checkbox_cli/cli_interface.py:353
 msgid "Please type here and press Ctrl-D when finished:\n"
 msgstr "Будь ласка напишіть сюди та натисніть Ctrl-D для закінчення:\n"
 
@@ -2517,7 +2517,7 @@ msgstr "Повторити тест"
 msgid "hardware database"
 msgstr ""
 
-#: ../checkbox_gtk/gtk_interface.py:502
+#: ../checkbox_gtk/gtk_interface.py:500
 msgid "_Test Again"
 msgstr "_Перевірити знову"
 
@@ -2532,7 +2532,7 @@ msgstr "Помилка"
 #: ../checkbox/user_interface.py:136
 #, python-format
 msgid "Unable to start web browser to open %s."
-msgstr "Не вдається запустити веб-переглядач, щоб відкрити %s."
+msgstr "Неможливо запустити переглядач тенет, щоб відкрити %s."
 
 #: ../plugins/apport_prompt.py:83
 msgid ""
@@ -2575,7 +2575,7 @@ msgstr "_Завершити"
 
 #: ../plugins/gather_prompt.py:35
 msgid "Gathering information from your system..."
-msgstr "Збирається інформація про ваш комп'ютер..."
+msgstr "Збирається інформація про Ваш комп'ютер..."
 
 #: ../plugins/intro_prompt.py:29
 msgid ""
@@ -2618,12 +2618,12 @@ msgid ""
 "Failed to upload to server,\n"
 "please try again later."
 msgstr ""
-"Не вдалося завантажити інформацію на сервер.\n"
-"Будь ласка, спробуйте ще раз."
+"Помилка вивантаження на сервер.\n"
+"Будь ласка, спробуйте ще раз пізніше."
 
 #: ../plugins/launchpad_exchange.py:172
 msgid "Information not posted to Launchpad."
-msgstr "Інформація не поміщена у Launchpad."
+msgstr "Інформація не поміщена на Launchpad."
 
 #: ../plugins/launchpad_prompt.py:71
 #, python-format
@@ -2657,7 +2657,7 @@ msgstr "Адресу електронної пошти не вказано, не
 #: ../plugins/launchpad_prompt.py:92
 msgid "Email address must be in a proper format."
 msgstr ""
-"Адрес електронної пошти повинен бути записаний у правильному форматі."
+"Адреса електронної пошти повинна бути записана у правильному форматі."
 
 #: ../plugins/launchpad_prompt.py:98
 msgid "Exchanging information with the server..."
@@ -2678,7 +2678,7 @@ msgstr ""
 
 #: ../plugins/report_prompt.py:39
 msgid "Building report..."
-msgstr "Складається звіт..."
+msgstr "Формування звіту..."
 
 #: ../plugins/shell_test.py:52
 #, python-format
@@ -2713,29 +2713,11 @@ msgstr "З’єднання з інтернет повністю встанов�
 #~ msgid "_Server"
 #~ msgstr "_Сервер"
 
-#~ msgid "Successfully sent information!"
-#~ msgstr "Інформацію надіслано успішно!"
-
-#~ msgid "_Laptop"
-#~ msgstr "_Портативний"
-
-#~ msgid "_Desktop"
-#~ msgstr "_Робочий стіл"
-
 #~ msgid "$(network_test)"
 #~ msgstr "$(network_test)"
 
 #~ msgid "Do you hear a sound?"
 #~ msgstr "Ви чуєте звук?"
-
-#~ msgid "Authentication"
-#~ msgstr "Автентифікація"
-
-#~ msgid "Done"
-#~ msgstr "Виконано"
-
-#~ msgid "Please select the category of your system."
-#~ msgstr "Будь ласка вкажіть категорію вашої системи."
 
 #~ msgid "Category"
 #~ msgstr "Категорія"
@@ -2746,9 +2728,6 @@ msgstr "З’єднання з інтернет повністю встанов�
 #, python-format
 #~ msgid "Running test %s..."
 #~ msgstr "Виконується перевірка %s..."
-
-#~ msgid "Welcome to System Testing!"
-#~ msgstr "Вітаємо в Тестуванні системи!"
 
 #~ msgid "Network tests"
 #~ msgstr "Перевірка мережі"
@@ -2915,5 +2894,26 @@ msgstr "З’єднання з інтернет повністю встанов�
 #~ "мікрофон кілька секунд. Через \\ деякий час сказане Вами відтвориться для "
 #~ "перевірки налаштувань."
 
+#~ msgid "_Laptop"
+#~ msgstr "_Ноутбук"
+
+#~ msgid "_Desktop"
+#~ msgstr "_Стільниця"
+
 #~ msgid "Click the Test button to display a video test."
-#~ msgstr "Натисніть на кнопку Тест, щоб запустити тест відео."
+#~ msgstr "Натисніть на кнопку Перевірити, щоб запустити перевірку відео."
+
+#~ msgid "Authentication"
+#~ msgstr "Аутентифікація"
+
+#~ msgid "Done"
+#~ msgstr "Завершено"
+
+#~ msgid "Please select the category of your system."
+#~ msgstr "Будь ласка виберіть категорію вашої системи."
+
+#~ msgid "Welcome to System Testing!"
+#~ msgstr "Ласкаво просимо до перевірки системи!"
+
+#~ msgid "Successfully sent information!"
+#~ msgstr "Інформацію успішно надіслано!"
