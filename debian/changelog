@@ -8,6 +8,8 @@ checkbox (0.13.1) precise; urgency=low
     wireless network connection.
   * Updated wireless job dependencies.
   * Add wireless performance data collecting tests.
+  * Changed is_laptop test to a shell test and implemented a check_is_laptop
+    script to check automatically for a systems 'laptopness' (LP: #886668)
     
   [Gabor Kelemen]
   * Fixed last two remaining strings with backslashes (LP: #868571)
@@ -23,6 +25,9 @@ checkbox (0.13.1) precise; urgency=low
     (LP: #352986)
   * Environment variables specified with environ: in a job description will be
     passed to the backend for it to add to its environment. (LP: #897889)
+
+  [Robert Roth]
+  * Fixed spelling mistakes in user_apps job file. (LP: #904209)
 
  -- Daniel Manrique <daniel.manrique@canonical.com>  Fri, 09 Dec 2011 16:13:12 -0500
 
