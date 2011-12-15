@@ -1,9 +1,9 @@
 Source: checkbox
 Section: utils
 Priority: optional
-XSBC-Original-Maintainer: Marc Tardif <marc@ubuntu.com>
+Uploaders: Marc Tardif <marc@ubuntu.com>
 Maintainer: Ubuntu Core Developers <ubuntu-devel-discuss@lists.ubuntu.com>
-Standards-Version: 3.7.3
+Standards-Version: 3.9.2
 X-Python-Version: >= 2.6
 Build-Depends: debhelper (>= 7.0.50~), dh-translations, python (>= 2.6.6-3~), po-debconf, python-distutils-extra
 Vcs-Bzr: https://code.launchpad.net/~hardware-certification/checkbox/trunk
@@ -25,7 +25,7 @@ Package: checkbox-cli
 Architecture: all
 Replaces: hwtest-cli (<< 0.1-0ubuntu12)
 Provides: hwtest-cli
-Depends: checkbox (= ${source:Version})
+Depends: checkbox (>= ${source:Version}), ${misc:Depends}
 Conflicts: hwtest-cli (<< 0.1-0ubuntu12)
 Description: Command line interface for checkbox 
  This project provides an extensible interface for system testing. The
@@ -35,7 +35,7 @@ Description: Command line interface for checkbox
 
 Package: checkbox-urwid
 Architecture: all
-Depends: checkbox (= ${source:Version}), python-urwid
+Depends: checkbox (>= ${source:Version}), python-urwid, ${misc:Depends}
 Description: Urwid interface for checkbox 
  This project provides an extensible interface for system testing. The
  results can then be sent to Launchpad.
@@ -48,7 +48,7 @@ Section: gnome
 Architecture: all
 Replaces: hwtest-gtk (<< 0.1-0ubuntu12)
 Provides: hwtest-gtk
-Depends: checkbox (= ${source:Version}), gksu, python-gobject (>= 2.28), gir1.2-gtk-3.0
+Depends: checkbox (>= ${source:Version}), gksu, python-gobject (>= 2.28), gir1.2-gtk-3.0, ${misc:Depends}
 Conflicts: hwtest-gtk (<< 0.1-0ubuntu12)
 Description: GTK interface for checkbox
  This project provides an extensible interface for system testing. The
@@ -56,16 +56,25 @@ Description: GTK interface for checkbox
  .
  This package provides a GTK interface for answering tests.
 
+Package: checkbox-sru
+Architecture: all
+Depends: checkbox (>= ${source:Version}), ${misc:Depends}
+Description: SRU interface for checkbox 
+ This project provides an extensible interface for system testing. The
+ results can then be sent to Launchpad.
+ .
+ This package provides a non-interactive interface for SRU testing.
+
 Package: hwtest
 Section: python
 Architecture: all
-Depends: checkbox
+Depends: checkbox, ${misc:Depends}
 Description: Transitional package to checkbox
  This package is a transitional package for renaming hwtest to checkbox.
 
 Package: hwtest-cli
 Architecture: all
-Depends: checkbox-cli
+Depends: checkbox-cli, ${misc:Depends}
 Description: Transitional package to checkbox-cli
  This package is a transitional package for renaming hwtest-cli to
  checkbox-cli.
@@ -73,7 +82,7 @@ Description: Transitional package to checkbox-cli
 Package: hwtest-gtk
 Section: gnome
 Architecture: all
-Depends: checkbox-gtk
+Depends: checkbox-gtk, ${misc:Depends}
 Description: Transitional package to checkbox-gtk
  This package is a transitional package for renaming hwtest-gtk to
  checkbox-gtk.

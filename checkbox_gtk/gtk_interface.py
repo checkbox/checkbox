@@ -92,7 +92,7 @@ class GTKInterface(UserInterface):
         self.IMAGE_HEAD_BACKGROUND = posixpath.join(data_path,
             "checkbox-gtk-head.png")
         self.FONT = "Ubuntu"
-        self.TEXT =_("System Testing")
+        self.TEXT = title
 
         image_head=self._get_widget("image_head")
         try:
