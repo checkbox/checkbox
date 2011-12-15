@@ -224,10 +224,11 @@ class ApportPrompt(Plugin):
             return
 
         if test.get("suite"):
-            failed_test_message = _("Test %s from suite %s failed." %
-                (test["name"], test["suite"]))
+            failed_test_message = _("Test %(name)s from suite %(suite)s failed.") % {
+                                   'name' : test["name"], 
+                                   'suite:' : test["suite"]}
         else:
-            failed_test_message = _("Test %s failed." % test["name"])
+            failed_test_message = _("Test %s failed.") % test["name"]
         failed_test_message += "\n" + _("Do you want to report a bug?")
 
         response = interface.show_info(failed_test_message,
