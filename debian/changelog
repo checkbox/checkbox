@@ -8,6 +8,8 @@ checkbox (0.13.1) precise; urgency=low
     wireless network connection.
   * Updated wireless job dependencies.
   * Add wireless performance data collecting tests.
+  * Changed is_laptop test to a shell test and implemented a check_is_laptop
+    script to check automatically for a systems 'laptopness' (LP: #886668)
     
   [Gabor Kelemen]
   * Fixed last two remaining strings with backslashes (LP: #868571)
@@ -33,11 +35,12 @@ checkbox (0.13.1) precise; urgency=low
 checkbox (0.13) precise; urgency=low
 
   New upstream release (LP: #892268):
-
+  
   [Marc Tardif]
   * Generate a submission.xml file that contains all device and attachment
   * Write the report before reporting the validation error.
   * Changed device.product to dmi.product for the formfactor (LP: #875312)
+  * Use gettext for string (LP: #869267)
 
   [Daniel Manrique]
   * Use gettext for string (LP: #869267)
@@ -46,7 +49,7 @@ checkbox (0.13) precise; urgency=low
   * Ignore malformed dpkg entries in package_resource (LP: #794747)
   * Reset window title after finishing a manual test (LP: #874690)
   * Handle "@" in locale names (as in ca@valencia).
-
+  * Went through all the job files and:
   [Jeff Lane]
   * Went through all the job files and:
     * Updated descriptions to match Unity UI structure
@@ -60,10 +63,10 @@ checkbox (0.13) precise; urgency=low
     * Changed remaining manual job descriptions to match the new format
   * Updated CD and DVD write tests to be more clear about when to skip
     them (LP: #772794)
-
+  * Rewrote all job descriptions to match OEM QA syntax
   [Ara Pulido]
   * Rewrote all job descriptions to match OEM QA syntax
-
+  * Fix the code that assigns keys in checkbox-cli so that it never assigns
   [Brendan Donegan]  
   * Fix the code that assigns keys in checkbox-cli so that it never assigns
     keys which have other uses. (LP: #877467)
@@ -83,7 +86,7 @@ checkbox (0.13) precise; urgency=low
     (LP: #886129)
   * Nixed graphics/xorg-version-output job and updated other job dependencies,
     since it is redundant with graphics/xorg-version. (LP: #671144)
-
+  * Broken job dependencies fixed (LP: #888447)
   [ Javier Collado ]
   * Broken job dependencies fixed (LP: #888447)
   * Regex support when specifying blacklists and whitelists on the
