@@ -49,7 +49,7 @@ class ShellTest(Plugin):
             event_id = self._manager.reactor.call_on("message-result", message_result, -100)
 
             interface.show_progress(
-                _("Running %s..." % test["name"]), self._manager.reactor.fire,
+                _("Running %s...") % test["name"], self._manager.reactor.fire,
                 "message-exec", test)
 
             self._manager.reactor.cancel_call(event_id)
