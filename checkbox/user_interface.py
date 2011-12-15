@@ -133,7 +133,7 @@ class UserInterface(object):
             os.close(w)
             (pid, status) = os.wait()
             if status:
-                text = _("Unable to start web browser to open %s." % url)
+                text = _("Unable to start web browser to open %s.") % url
                 message = os.fdopen(r).readline()
                 if message:
                     text += "\n" + message
