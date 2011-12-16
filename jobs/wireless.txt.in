@@ -65,8 +65,8 @@ requires:
  package.name == 'iperf'
  device.category == 'WIRELESS'
 user: root
-environ: IPERF_TARGET
-command: ifconfig eth0 down; iperf -c $IPERF_TARGET -t 30; ifconfig eth0 up
+environ: SERVER_IPERF
+command: ifconfig eth0 down; iperf -c $SERVER_IPERF -t 30; ifconfig eth0 up
 _description:
  Tests the performance of a systems wireless connection through the iperf tool.
 
@@ -76,7 +76,7 @@ requires:
  package.name == 'iperf'
  device.category == 'WIRELESS'
 user: root
-environ: IPERF_TARGET
-command: ifconfig eth0 down; iperf -c $IPERF_TARGET -t 30 -u -b 100m -p 5050; ifconfig eth0 up
+environ: SERVER_IPERF
+command: ifconfig eth0 down; iperf -c $SERVER_IPERF -t 30 -u -b 100m -p 5050; ifconfig eth0 up
 _description:
  Tests the performance of a systems wireless connection through the iperf tool, using UDP packets.
