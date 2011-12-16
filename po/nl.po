@@ -15,14 +15,14 @@ msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-07-07 12:32-0400\n"
-"PO-Revision-Date: 2011-08-17 20:26+0000\n"
+"PO-Revision-Date: 2011-12-15 13:45+0000\n"
 "Last-Translator: Redmar <redmar@ubuntu-nl.org>\n"
 "Language-Team: Dutch <ubuntu-l10n-nl@lists.ubuntu.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-12-02 04:38+0000\n"
-"X-Generator: Launchpad (build 14414)\n"
+"X-Launchpad-Export-Date: 2011-12-16 05:13+0000\n"
+"X-Generator: Launchpad (build 14523)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:6
 msgid "_Previous"
@@ -40,21 +40,13 @@ msgstr "Één van: debug, info, warning, error of critical"
 msgid "Press any key to continue..."
 msgstr "Druk op een toets om verder te gaan…"
 
-#: ../checkbox_gtk/gtk_interface.py:502
+#: ../checkbox_gtk/gtk_interface.py:500
 msgid "_Test Again"
-msgstr "_Opnieuw testen"
+msgstr "Opnieuw _testen"
 
 #: ../plugins/gather_prompt.py:35
 msgid "Gathering information from your system..."
 msgstr "Informatie over uw systeem verzamelen…"
-
-#: ../plugins/launchpad_exchange.py:160
-msgid ""
-"Failed to upload to server,\n"
-"please try again later."
-msgstr ""
-"Uploaden naar de server mislukt,\n"
-"probeer het later nog eens."
 
 #: ../plugins/launchpad_exchange.py:172
 msgid "Information not posted to Launchpad."
@@ -95,7 +87,7 @@ msgstr "_Nee"
 msgid "_Select All"
 msgstr "Alles _selecteren"
 
-#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:537
+#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:535
 msgid "_Test"
 msgstr "_Testen"
 
@@ -1902,22 +1894,26 @@ msgstr ""
 msgid ""
 "Run the computer suspend test. Then, press the power button to resume it."
 msgstr ""
+"Test de slaapstand van de computer. Druk vervolgens op de aan/uit knop om de "
+"computer te ontwaken."
 
 #. description
 #: ../jobs/power-management.txt.in:14
 msgid "Does your computer suspend and resume?"
-msgstr ""
+msgstr "Ging uw computer in slaapstand en werd deze weer wakker?"
 
 #. description
 #: ../jobs/power-management.txt.in:22
 msgid ""
 "Run the computer hibernate test. Then, press the power button to restore it."
 msgstr ""
+"Test de pauzestand van de computer. Druk daarna op de aan/uit knop om weer "
+"te starten."
 
 #. description
 #: ../jobs/power-management.txt.in:22
 msgid "Does your computer hibernate and restore?"
-msgstr ""
+msgstr "Ging uw computer in pauzestand en startte deze daarna weer?"
 
 #. description
 #: ../jobs/power-management.txt.in:13
@@ -2260,53 +2256,56 @@ msgstr "Tomcat-server testen"
 #. description
 #: ../jobs/sru_suite.txt.in:4
 msgid "SRU Test Suite"
-msgstr ""
+msgstr "SRU testpakket"
 
 #. description
 #: ../jobs/sru_suite.txt.in:9
 msgid "Tests that SRU is able to run compiz"
-msgstr ""
+msgstr "Test of SRU compiz kan uitvoeren"
 
 #. description
 #: ../jobs/sru_suite.txt.in:15
 msgid ""
 "Tests that SRU does not degrade CPU offlining ability on multicore systems"
 msgstr ""
+"Controleer of SRU de CPU-offlining van multicore-systemen niet negatief "
+"beïnvloedt."
 
 #. description
 #: ../jobs/sru_suite.txt.in:22
 msgid "Tests that SRU can see network devices"
-msgstr ""
+msgstr "Test of SRU netwerkapparaten kan zien"
 
 #. description
 #: ../jobs/sru_suite.txt.in:29
 msgid "Tests that the SRU can do some network activity"
-msgstr ""
+msgstr "Test of SRU het netwerk kan gebruiken"
 
 #. description
 #: ../jobs/sru_suite.txt.in:37
 msgid "Tests that a system after SRU can suspend and resume"
 msgstr ""
+"Test of een systeem na SRU nog in pauzestand kan komen en kan ontwaken"
 
 #. description
 #: ../jobs/sru_suite.txt.in:45
 msgid "Tests the SRU to make sure it sees BT if present"
-msgstr ""
+msgstr "Test of SRU BT kan zien indien aanwezig"
 
 #. description
 #: ../jobs/sru_suite.txt.in:52
 msgid "Tests the SRU to ensure basic X availability"
-msgstr ""
+msgstr "Test de SRU om te zien of X aanwezig is"
 
 #. description
 #: ../jobs/sru_suite.txt.in:62
 msgid "Tests the SRU for basic network stack functionality"
-msgstr ""
+msgstr "Controleer of SRU de basic netwerkstack kan gebruiken"
 
 #. description
 #: ../jobs/sru_suite.txt.in:70
 msgid "Captures a screenshot showing X works"
-msgstr ""
+msgstr "Maakt een schermafdruk om te zien of X werkt"
 
 #. description
 #: ../jobs/sru_suite.txt.in:77
@@ -2314,26 +2313,28 @@ msgid ""
 "Tests SRU to ensure apt-get works so we can back out if the SRU hoses the "
 "system. (does not install updates)"
 msgstr ""
+"Test SRU om te controleren dat apt-get werkt zodat we terug kunnen als SRU "
+"het systeem verknoeid. (installeert geen updates)"
 
 #. description
 #: ../jobs/sru_suite.txt.in:87
 msgid "Test the CPU scaling capabilities."
-msgstr ""
+msgstr "Test de CPU-scaling mogelijkheden."
 
 #. description
 #: ../jobs/sru_suite.txt.in:95
 msgid "Run Colin King's FWTS wakealarm test"
-msgstr ""
+msgstr "Colin King's FWTS ontwaak alarm test uitvoeren"
 
 #. description
 #: ../jobs/sru_suite.txt.in:103
 msgid "Ensure SRU does not turn off tickless idle"
-msgstr ""
+msgstr "Controleer of SRU tickless-idle niet uitschakelt"
 
 #. description
 #: ../jobs/sru_suite.txt.in:111
 msgid "SRU disk read performance test."
-msgstr ""
+msgstr "SRU prestatietest bij lezen schijf."
 
 #. description
 #: ../jobs/sru_suite.txt.in:129
@@ -2344,6 +2345,8 @@ msgstr "Test het geheugen na het uitvoeren van een SRU"
 #: ../jobs/sru_suite.txt.in:144
 msgid "Test that the SRU still accesses USB controllers and lists devices"
 msgstr ""
+"Test of de SRU nog steeds toegang tot de USB-controllers heeft en apparaten "
+"weergeeft"
 
 #. description
 #: ../jobs/sru_suite.txt.in:176
@@ -2449,11 +2452,14 @@ msgid ""
 "Plug a USB storage device into the computer. An icon should appear \\ on the "
 "desktop and in the \"Places\" menu at the top of the screen."
 msgstr ""
+"Sluit een USB-opslagapparaat op de computer aan. Er hoort een pictogram  \\ "
+"op de desktop en in het ‘Locaties’-menu aan de bovenzijde van het scherm te "
+"verschijnen."
 
 #. description
 #: ../jobs/usb.txt.in:61
 msgid "Does the window automatically appear?"
-msgstr ""
+msgstr "Verschijnt het venster automatisch?"
 
 #. description
 #: ../jobs/usb.txt.in:71
@@ -2463,6 +2469,10 @@ msgid ""
 "the screen. 3.- Copy some files from the internal/USB HDD to the "
 "USB/internal HDD"
 msgstr ""
+"Usb-hdd verificatieprocedure: 1.- Sluit een usb-hdd op de computer aan 2.- "
+"Er hoort een pictogram  op de desktop en in het ‘Locaties’-menu aan de "
+"bovenzijde van het scherm te verschijnen. 3.- Kopieer een aantal bestanden "
+"van de interne harddisk naar de usb-hdd, en andersom"
 
 #. description
 #: ../jobs/usb.txt.in:86
@@ -2958,11 +2968,11 @@ msgstr "Test opnieuw"
 msgid "hardware database"
 msgstr "hardwaredatabase"
 
-#: ../checkbox_gtk/gtk_interface.py:548
+#: ../checkbox_gtk/gtk_interface.py:546
 msgid "Info"
 msgstr "Info"
 
-#: ../checkbox_gtk/gtk_interface.py:567
+#: ../checkbox_gtk/gtk_interface.py:565
 msgid "Error"
 msgstr "Fout"
 
@@ -3044,6 +3054,14 @@ msgstr ""
 "\n"
 "direct naar de systeemdatabase:\n"
 "https://launchpad.net/+hwdb/+submit"
+
+#: ../plugins/launchpad_exchange.py:160
+msgid ""
+"Failed to upload to server,\n"
+"please try again later."
+msgstr ""
+"Uploaden naar de server mislukt,\n"
+"probeer het later opnieuw."
 
 #: ../plugins/launchpad_prompt.py:71
 #, python-format
