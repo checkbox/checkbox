@@ -65,8 +65,8 @@ requires:
  package.name == 'iperf'
  device.category == 'WIRELESS'
 user: root
-environ: SERVER_IPERF
-command: ifconfig eth0 down; iperf -c $SERVER_IPERF -t 30; ifconfig eth0 up
+environ: WPA_BG_SSID WPA_BG_PSK SERVER_IPERF
+command: create_connection $WPA_BG_SSID --security=wpa --key=$WPA_BG_PSK && nmcli con up id $WPA_BG_SSID && ifconfig eth0 down; iperf -c $SERVER_IPERF -t 30; ifconfig eth0 up
 _description:
  Tests the performance of a systems wireless connection through the iperf tool.
 
@@ -76,7 +76,7 @@ requires:
  package.name == 'iperf'
  device.category == 'WIRELESS'
 user: root
-environ: SERVER_IPERF
-command: ifconfig eth0 down; iperf -c $SERVER_IPERF -t 30 -u -b 100m -p 5050; ifconfig eth0 up
+environ: WPA_BG_SSID WPA_BG_PSK SERVER_IPERF
+command: create_connection $WPA_BG_SSID --security=wpa --key=$WPA_BG_PSK && nmcli con up id $WPA_BG_SSID && ifconfig eth0 down; iperf -c $SERVER_IPERF -t 30 -u -b 100m -p 5050; ifconfig eth0 up
 _description:
  Tests the performance of a systems wireless connection through the iperf tool, using UDP packets.
