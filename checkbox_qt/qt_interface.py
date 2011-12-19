@@ -27,8 +27,8 @@ from checkbox.user_interface import (UserInterface,
     NEXT, YES_ANSWER, NO_ANSWER, SKIP_ANSWER,
     ANSWER_TO_STATUS, STATUS_TO_ANSWER)
 from PyQt4 import QtGui, QtCore
-from PyQt4.QtCore import QObject
-from PyQt4.QtGui import QApplication, QPixmap, QProgressDialog, QLabel
+from PyQt4.QtCore import QObject, QVariant
+from PyQt4.QtGui import QApplication, QProgressDialog, QLabel, QStandardItemModel, QStandardItem
 from PyQt4.QtGui import QMessageBox
 from gui import Ui_Form
 
@@ -57,6 +57,31 @@ class MyForm(QtGui.QWidget):
         self.ui = Ui_Form()
         self.ui.setupUi(self)
         self.ui.top.setStyleSheet("background-image: url(qt/checkbox-qt-head.png)");
+
+class TreeModel(QStandardItemModel):
+    def setData(self, index, value, role = QtCore.Qt.EditRole):
+        item = QStandardItemModel.itemFromIndex(self, index)
+        if item.parent() != None:
+            QStandardItemModel.setData(self, item.index(), value, role)
+            # we are a child, and we have to update parent's status
+            selected = 0
+            for i in range(item.parent().rowCount()):
+                childItem = item.parent().child(i)
+                if childItem.checkState() == QtCore.Qt.Checked:
+                    selected += 1
+            if selected == item.parent().rowCount():
+                item.parent().setCheckState(QtCore.Qt.Checked)
+            elif selected == 0:
+                item.parent().setCheckState(QtCore.Qt.Unchecked)
+            else:
+                item.parent().setCheckState(QtCore.Qt.PartiallyChecked)
+        else:
+            # if we dont have a parent, then we are root. Deselect/select children
+            for i in range(item.rowCount()):
+                childItem = item.child(i)
+                QStandardItemModel.setData(self, childItem.index(), value, role)
+
+        return QStandardItemModel.setData(self, index, value, role)
 
 class QTInterface(UserInterface):
     app = None
@@ -219,6 +244,28 @@ class QTInterface(UserInterface):
 
     def show_tree(self, text, options={}, default={}):
         print "My name is: %s" % funcname()
+        def set_all_buttons_checked(check=True):
+            model = self.formWindow.ui.treeView.model()
+            numRows = model.rowCount()
+            for i in range(numRows):
+                item = model.item(i, 0)
+                if check:
+                    item.setCheckState(QtCore.Qt.Checked)
+                else:
+                    item.setCheckState(QtCore.Qt.Unchecked)
+                for j in range(item.rowCount()):
+                    childItem = item.child(j)
+                    if check:
+                        childItem.setCheckState(QtCore.Qt.Checked)
+                    else:
+                        childItem.setCheckState(QtCore.Qt.Unchecked)
+
+        def on_deselect_all():
+            set_all_buttons_checked(False)
+
+        def on_select_all():
+            set_all_buttons_checked(True)
+
         self._set_main_title()
 
         # Set buttons
@@ -226,14 +273,49 @@ class QTInterface(UserInterface):
 
         self.formWindow.ui.treeInfo.setPlainText(text)
 
+        model = TreeModel() 
+        for section in options:
+            sectionItem = QStandardItem(section) 
+            sectionItem.setFlags(QtCore.Qt.ItemIsUserCheckable | QtCore.Qt.ItemIsEnabled| QtCore.Qt.ItemIsTristate) 
+            sectionItem.setData(QVariant(QtCore.Qt.Checked), QtCore.Qt.CheckStateRole) 
+
+            for test in options[section]:
+                testItem = QStandardItem(test)
+                testItem.setFlags(QtCore.Qt.ItemIsUserCheckable | QtCore.Qt.ItemIsEnabled)
+                testItem.setData(QVariant(QtCore.Qt.Checked), QtCore.Qt.CheckStateRole)
+                sectionItem.appendRow(testItem)
+
+            model.appendRow(sectionItem) 
+
+        self.formWindow.ui.treeView.setModel(model)
+        self.formWindow.ui.treeView.show()
+
         self._set_show("button_select_all", True)
         self._set_show("button_deselect_all", True)
+        self.formWindow.ui.button_select_all.clicked.connect(on_select_all)
+        self.formWindow.ui.button_deselect_all.clicked.connect(on_deselect_all)
 
-        print options
         self.app.processEvents()
         self._run_dialog()
 
-        return options
+        self.formWindow.ui.button_select_all.clicked.disconnect(on_select_all)
+        self.formWindow.ui.button_deselect_all.clicked.disconnect(on_deselect_all)
+
+        selectedOptions = {}
+
+        model = self.formWindow.ui.treeView.model()
+        numRows = model.rowCount()
+        for i in range(numRows):
+            item = model.item(i, 0)
+            itemDict = {}
+            for j in range(item.rowCount()):
+                if item.child(j).checkState() == QtCore.Qt.Checked or item.child(j).checkState() == QtCore.Qt.PartiallyChecked:
+                    itemDict[str(item.child(j).text())] = {}
+
+            if item.checkState() == QtCore.Qt.Checked or item.checkState() == QtCore.Qt.PartiallyChecked:
+                selectedOptions[str(item.text())] = itemDict
+
+        return selectedOptions
 
     def _run_test(self, test, runner):
         print "My name is: %s" % funcname()
