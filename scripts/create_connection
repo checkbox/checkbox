@@ -72,11 +72,15 @@ method=auto
 def block_until_created(connection, block_for):
     
     while block_for > 0:
-        nmcli_process = Popen(['nmcli','con','list'], stdout=PIPE)
+        nmcli_con = Popen(['nmcli','con','list'], stdout=PIPE)
         (stdout, stderr) = nmcli_process.communicate()
 
         if connection in stdout:
-            break
+            nmcli_status = Popen['nmcli','nm','-t','-f','STATE,WIFI','status'], stdout=PIPE)
+            (stdout, stderr) = nmcli_status.communicate()
+
+            if 'unknown' not in stdout and 'enabled' in stdout:
+                break
 
         time.sleep(2)
         block_for = block_for - 2
