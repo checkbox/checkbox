@@ -73,15 +73,17 @@ def block_until_created(connection, block_for):
     
     while block_for > 0:
         nmcli_con = Popen(['nmcli','con','list'], stdout=PIPE)
-        (stdout, stderr) = nmcli_process.communicate()
+        (stdout, stderr) = nmcli_con.communicate()
 
         if connection in stdout:
-            nmcli_status = Popen['nmcli','nm','-t','-f','STATE,WIFI','status'], stdout=PIPE)
+            print "%s was created succesfully by NetworkManager." % connection
+            nmcli_status = Popen(['nmcli','-t','-f','STATE,WIFI','nm','status'], stdout=PIPE)
             (stdout, stderr) = nmcli_status.communicate()
 
             if 'unknown' not in stdout and 'enabled' in stdout:
                 break
 
+        print 'waiting...'
         time.sleep(2)
         block_for = block_for - 2
 
