@@ -8,7 +8,7 @@ active_connection=$(nmcli -f SSID,ACTIVE dev wifi list | grep yes)
 if [ $? -eq 0 ]
 then
     ap=$(echo $active_connection | awk -F\' '{print $2}')
-    conn=$(nmcli -t -f UUID,NAME,TYPE con list | grep wireless | grep -e "$ap$" | awk -F\: '{print $1}')
+    conn=$(nmcli -t -f UUID,TYPE,NAME con list | grep wireless | grep -e "$ap$" | awk -F\: '{print $1}')
 else
     conn=$(nmcli -t -f UUID,TYPE con list | grep wireless | head -n 1 | awk -F\: '{print $1}')
 fi
