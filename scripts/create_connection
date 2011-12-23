@@ -131,6 +131,10 @@ def main():
         os.fchmod(connection_file.fileno(), 0600)
         connection_file.close()
     except IOError:
+        print "Can't write to " + CONNECTIONS_PATH + args[0] + ". Is this command being run as root?"
+        sys.exit(1)
+
+    block_until_created(args[0], options.retries)
 
 if __name__ == "__main__":
     main()
