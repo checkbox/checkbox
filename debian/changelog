@@ -12,6 +12,7 @@ checkbox (0.13.1) precise; urgency=low
     script to check automatically for a systems 'laptopness' (LP: #886668)
   * Fixed connect_wireless script which continued failing to correctly
     identify wireless connections.
+  * Don't fail the sleep_test if the wake alarm is still set (LP: #911161)
 
   [Gabor Kelemen]
   * Fixed last two remaining strings with backslashes (LP: #868571)

@@ -369,9 +369,8 @@ def main():
         run_count += 1
         if suspender.CheckAlarm(options.mode):
             logging.debug('The alarm is still set')
-            run_result[run_count] = 'Fail'
-        else:
-            run_result[run_count] = 'Pass'
+        
+        run_result[run_count] = 'Pass'
 
     # Be reasonably sure the network is up before returning, we want
     # the network to be up for possible following tests.
