@@ -33,7 +33,11 @@ checkbox (0.13.1) precise; urgency=low
   [Robert Roth]
   * Fixed spelling mistakes in user_apps job file. (LP: #904209)
 
- -- Daniel Manrique <daniel.manrique@canonical.com>  Wed, 21 Dec 2011 12:23:53 -0500
+  [Jeff Lane]
+  * Added requires to suspend wireless jobs so they won't run if wireless isn't
+    present (LP: #907150)
+
+ -- Jeff Lane <jeff@ubuntu.com>  Thu, 05 Jan 2012 11:18:39 -0500
 
 checkbox (0.13) precise; urgency=low
 
