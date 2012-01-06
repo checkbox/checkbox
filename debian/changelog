@@ -23,7 +23,9 @@ checkbox (0.13.1) precise; urgency=low
   * Using title defined in user_interface plugin in GTK interface.
   * Updated default.whitelist to reflect renamed jobs.
   * Removed files with non-printable characters from submission.xml.
-  
+  * Fixed parser for submission files with empty question comments
+    and context info (LP: #912546)
+
   [Daniel Manrique]
   * Update control files under debian/ to eliminate (most) lintian warnings
     (LP: #352986)
