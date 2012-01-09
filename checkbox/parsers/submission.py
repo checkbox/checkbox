@@ -331,7 +331,10 @@ class SubmissionParser:
             command = child.get("command")
             if command not in duplicates:
                 duplicates.add(command)
-                result.addContext(child.text, command)
+                text = child.text
+                if text is None:
+                    text = ""
+                result.addContext(text, command)
             else:
                 self.logger.debug(
                     "Duplicate command found in tag <info>: %s" % command)
@@ -453,9 +456,10 @@ class SubmissionParser:
                     question["targets"].append(target)
 
                 elif sub_tag in ("comment", "command",):
-                    data = sub_node.text
-                    if data is not None:
-                        question[sub_tag] = data.strip()
+                    text = sub_node.text
+                    if text is None:
+                        text = ""
+                    question[sub_tag] = text.strip()
 
                 else:
                     raise AssertionError(

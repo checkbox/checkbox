@@ -23,12 +23,15 @@ checkbox (0.13.1) precise; urgency=low
   * Using title defined in user_interface plugin in GTK interface.
   * Updated default.whitelist to reflect renamed jobs.
   * Removed files with non-printable characters from submission.xml.
-  
+  * Fixed parser for submission files with empty question comments
+    and context info (LP: #912546)
+
   [Daniel Manrique]
   * Update control files under debian/ to eliminate (most) lintian warnings
     (LP: #352986)
   * Environment variables specified with environ: in a job description will be
     passed to the backend for it to add to its environment. (LP: #897889)
+  * Handle malformed LANGUAGE environment variable values (LP: #912946)
 
   [Robert Roth]
   * Fixed spelling mistakes in user_apps job file. (LP: #904209)
@@ -37,7 +40,7 @@ checkbox (0.13.1) precise; urgency=low
   * Added requires to suspend wireless jobs so they won't run if wireless isn't
     present (LP: #907150)
 
- -- Jeff Lane <jeff@ubuntu.com>  Thu, 05 Jan 2012 11:18:39 -0500
+ -- Daniel Manrique <daniel.manrique@canonical.com>  Fri, 06 Jan 2012 17:14:39 -0500
 
 checkbox (0.13) precise; urgency=low
 
