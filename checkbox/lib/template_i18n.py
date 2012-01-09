@@ -77,7 +77,8 @@ class TemplateI18n(Template):
         languages = []
         if environ.has_key("LANGUAGE") and environ["LANGUAGE"]:
             for language in environ["LANGUAGE"].split(":"):
-                languages.extend(self._get_language_list(language))
+                if language:
+                    languages.extend(self._get_language_list(language))
 
         language = locale.setlocale(locale.LC_MESSAGES)
         languages.extend(self._get_language_list(language))
