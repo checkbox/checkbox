@@ -13,6 +13,8 @@ checkbox (0.13.1) precise; urgency=low
   * Fixed connect_wireless script which continued failing to correctly
     identify wireless connections.
   * Don't fail the sleep_test if the wake alarm is still set (LP: #911161)
+  * Add requirement for mem sleep state to be supported to the
+    suspend_advanced_auto job (LP: #804190)
 
   [Gabor Kelemen]
   * Fixed last two remaining strings with backslashes (LP: #868571)
