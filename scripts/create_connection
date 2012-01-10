@@ -36,7 +36,7 @@ mac-address=%s
     return connection + wireless
 
 def security_section(security, key):
-    # Need to add security field to 802-11-wireless section
+    # Add security field to 802-11-wireless section
     wireless_security = """
 security=802-11-wireless-security
 
@@ -69,17 +69,22 @@ method=auto
 
     return ip
 
-def block_until_created(connection, block_for):
+def block_until_created(connection, retries):
     
-    while block_for > 0:
-        nmcli_process = Popen(['nmcli','con','list'], stdout=PIPE)
-        (stdout, stderr) = nmcli_process.communicate()
+    while retries > 0:
+        nmcli_con = Popen(['nmcli','con','up','id', connection], stdout=PIPE)
+        (stdout, stderr) = nmcli_con.communicate()
 
-        if connection in stdout:
+        if 'state: activated' in stdout:
+            print("Connection %s activated." % connection)
             break
 
-        time.sleep(2)
-        block_for = block_for - 2
+        retries = retries - 1
+
+    if retries <= 0:
+        print("Failed to activate %s." % connection)
+        sys.exit(1)
+
 
 def main():
     parser = OptionParser()
@@ -94,10 +99,10 @@ def main():
                       help="""The uuid to assign to the connection for use by
                             NetworkManager. One will be generated if not
                             specified here.""")
-    parser.add_option('-B', '--block-for',
-                      help="""The length of time to block the scripts exit
-                              for until the connection is created.""",
-                      default=10)
+    parser.add_option('-R', '--retries',
+                      help="""The number of times to attempt bringing up the
+                              connection until it is confirmed as active.""",
+                      default=3)
 
     (options, args) = parser.parse_args()
 
@@ -129,7 +134,7 @@ def main():
         print "Can't write to " + CONNECTIONS_PATH + args[0] + ". Is this command being run as root?"
         sys.exit(1)
 
-    block_until_created(args[0], options.block_for)
+    block_until_created(args[0], options.retries)
 
 if __name__ == "__main__":
     main()
