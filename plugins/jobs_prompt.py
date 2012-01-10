@@ -18,7 +18,7 @@
 #
 from checkbox.contrib.persist import Persist, MemoryBackend
 
-from checkbox.job import JobStore, UNINITIATED, UNTESTED
+from checkbox.job import JobStore, PASS, UNINITIATED, UNTESTED
 from checkbox.properties import Int, Path
 from checkbox.plugin import Plugin
 from checkbox.user_interface import NEXT, PREV
@@ -55,7 +55,6 @@ class JobsPrompt(Plugin):
         self._store = None
 
         for (rt, rh) in [
-             ("expose-msgstore", self.expose_msgstore),
              ("begin-persist", self.begin_persist),
              ("begin-recover", self.begin_recover),
              ("ignore-jobs", self.ignore_jobs),
@@ -65,9 +64,6 @@ class JobsPrompt(Plugin):
              ("report", self.report),
              ("report-job", self.report_job)]:
             self._manager.reactor.call_on(rt, rh)
-
-    def expose_msgstore(self):
-        self._manager.reactor.fire("store-access", self.store)
 
     def begin_persist(self, persist):
         self._persist = persist
@@ -91,6 +87,19 @@ class JobsPrompt(Plugin):
         if job[attribute] in self._ignore:
             job["status"] = UNTESTED
         else:
+            if "depends" in job:
+                offset = self.store.get_pending_offset()
+                self.store.set_pending_offset(0)
+                messages = self.store.get_pending_messages()
+                self.store.set_pending_offset(offset)
+
+                # Skip if any message in the depends doesn't pass
+                depends = job["depends"]
+                for message in messages:
+                    if message["name"] in depends \
+                       and message["status"] != PASS:
+                        return
+
             self._manager.reactor.fire("prompt-%s" % job["plugin"], interface, job)
 
     def prompt_jobs(self, interface):
