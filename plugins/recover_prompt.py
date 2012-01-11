@@ -50,11 +50,13 @@ class RecoverPrompt(Plugin):
     def prompt_begin(self, interface):
         if interface.direction == NEXT \
            and self.persist.get("recover", False):
+            recover = _("Recover")
+            restart = _("Restart")
             response = interface.show_info(
                 _("Checkbox did not finish completely.\n"
                   "Do you want to recover from the previous run?"),
-                ["yes", "no"], "yes")
-            self._manager.reactor.fire("begin-recover", response == "yes")
+                [recover, restart], recover)
+            self._manager.reactor.fire("begin-recover", response == recover)
 
         self.persist.set("recover", True)
 
