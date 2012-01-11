@@ -56,5 +56,5 @@ description: Creates resource info from uname output
 
 name: sleep
 plugin: resource
-command: for state in `cat /sys/power/state`; do echo $state": supported"; done
+command: for state in `cat /sys/power/state`; do echo "$state: supported"; done
 description: Create resource info for supported sleep states
