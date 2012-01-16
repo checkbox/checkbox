@@ -58,3 +58,7 @@ name: sleep
 plugin: resource
 command: for state in `cat /sys/power/state`; do echo "$state: supported"; done
 description: Create resource info for supported sleep states
+
+name: display
+plugin: resource
+command: for display in `xrandr | grep connected | awk '{print $1}' | grep -o ^[A-Z]*`; do echo "$display: supported"; done

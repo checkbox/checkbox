@@ -1,5 +1,6 @@
 plugin: manual
 name: monitor/vga
+requires: display.VGA == 'supported'
 _description:
  PURPOSE:
      This test will check your VGA port. Skip if your system does not have a VGA port.
@@ -10,6 +11,7 @@ _description:
 
 plugin: manual
 name: monitor/dvi
+requires: display.DVI == 'supported'
 _description:
  PURPOSE:
      This test will check your DVI port. Skip if your system does not have a DVI port
@@ -20,6 +22,7 @@ _description:
 
 plugin: manual
 name: monitor/displayport
+requires: display.DP == 'supported'
 _description:
  PURPOSE:
      This test will check your DisplayPort port. Skip if your system does not have a DisplayPort port
@@ -30,6 +33,7 @@ _description:
 
 plugin: manual
 name: monitor/hdmi
+requires: display.HDMI == 'supported'
 _description:
  PURPOSE:
      This test will check your HDMI port. Skip if your system does not have a HDMI port
@@ -40,6 +44,7 @@ _description:
 
 plugin: manual
 name: monitor/svideo
+requires: display.SVIDEO == 'supported'
 _description:
  PURPOSE:
      This test will check your S-VIDEO port. Skip if your system does not have a S-VIDEO port
@@ -50,6 +55,7 @@ _description:
 
 plugin: manual
 name: monitor/rca
+requires: display.RCA == 'supported'
 _description:
  PURPOSE:
      This test will check your RCA port. Skip if your system does not have a RCA port
