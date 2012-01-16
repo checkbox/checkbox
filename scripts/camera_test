@@ -45,7 +45,7 @@ class CameraTest:
                   "! testsink")
 	self._pipeline = gst.parse_launch(pipespec)
         self._pipeline.set_state(gst.STATE_PLAYING)
-        time.sleep(3)
+        time.sleep(10)
         self._pipeline.set_state(gst.STATE_READY)
 
 
@@ -61,7 +61,7 @@ class CameraTest:
                      'height': self._height})
 	self._pipeline = gst.parse_launch(pipespec)
         self._pipeline.set_state(gst.STATE_PLAYING)
-        time.sleep(3)
+        time.sleep(10)
         self._pipeline.set_state(gst.STATE_READY)
 
 
