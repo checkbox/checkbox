@@ -91,37 +91,11 @@ class CameraTest:
                 self._pipeline.set_state(gst.STATE_READY)
                 call(["eog", file.name])
 
-
-    def video(self, duration=5):
-        """
-        Captures a short movie to a file
-        """
-        with tempfile.NamedTemporaryFile(prefix='camera_test_',
-                                         suffix='.avi',
-                                         delete=True) as file:
-            pipespec=("autoaudiosrc "
-                      "! audio/x-raw-int,rate=44100,channels=2 "
-                      "! multiqueue ! mux. "
-                      "autovideosrc "
-                      "! video/x-raw-yuv,width=%(width)d,height=%(height)d "
-                      "! multiqueue ! mux. "
-                      "avimux name=mux "
-                      "! filesink location=%(filename)s"
-                      % {'width': self._width,
-                         'height': self._height,
-                         'filename': file.name})
-            self._pipeline = gst.parse_launch(pipespec)
-            self._pipeline.set_state(gst.STATE_PLAYING)
-            time.sleep(duration)
-            self._pipeline.set_state(gst.STATE_READY)
-            call(["totem", file.name])
-
-
 def parse_arguments(argv):
     """
     Parse command line arguments
     """
-    tests = ['detect', 'display', 'still', 'video', 'led']
+    tests = ['detect', 'display', 'still', 'led']
     parser = OptionParser(description = "Run a camera-related test")
     parser.add_option("-t", "--test", choices=tests,
                       default=tests[0],
@@ -134,7 +108,7 @@ if __name__ == "__main__":
     options = parse_arguments(sys.argv[1:])
 
     # Import gst only for the test cases that will need it
-    if options.test in ['display', 'still', 'video', 'led']:
+    if options.test in ['display', 'still', 'led']:
         import pygst
         pygst.require("0.10")
         import gst
