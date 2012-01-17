@@ -1,0 +1,52 @@
+#!/bin/bash
+
+action=$1
+shift
+
+case $action in
+set)
+    echo "Setting audio device settings"
+    device=None
+    mute=0
+    volume=100
+
+    while [ $# -gt 0 ]
+    do
+        case "$1" in
+            -d) device=$2; echo "Device type: $device"; shift;;
+            -m) mute=1; echo "Device muted";;
+            -*) echo >&2 \
+                "usage: $0 [-d device] [-m]"
+                exit 1;;
+            *) break;;
+        esac
+        shift
+    done
+
+    # Switch the default sink/source to the desired one
+    sink=`pacmd list-sinks | grep -B4 $device | grep index | awk -F': ' '{print $2}'`
+    source=`pacmd list-sources | grep -B4 $device | grep -B 4 alsa_input | grep index | awk -F': ' '{print $2}'`
+
+    pacmd set-default-sink $sink
+    pacmd set-default-source $source
+
+    # Unmute/mute the sink and source as requested
+    pacmd set-sink-mute $sink $mute
+    pacmd set-source-mute $source $mute
+
+    # Set the volume of the sink and source as requested
+    volume_steps_sink=`pacmd list-sinks | grep -A15 $device | grep 'volume steps:' | awk -F': ' '{print $2}'`
+    volume_final=`echo "scale=2; $volume_steps_sink / 100 * $volume" | bc`
+
+    pacmd set-sink-volume $sink $volume_final
+    pacmd set-source-volume $source $volume_final
+    ;;
+restore)
+    echo "Restoring previously saved audio settings"
+    file=$1
+    ;;
+*)
+    echo "Please specify the action to perform"
+    exit 1
+    ;;
+esac
