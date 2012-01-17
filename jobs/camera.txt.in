@@ -17,7 +17,7 @@ _description:
  PURPOSE:
      This test will check that the built-in camera works
  STEPS:
-     1. Click on Test to display a video capture from the camera
+     1. Click on Test to display a video capture from the camera for ten seconds.
  VERIFICATION:
      Did you see the video capture?
 
@@ -37,19 +37,3 @@ _description:
      1. Click on Test to display a still image from the camera
  VERIFICATION:
      Did you see the image?
-
-plugin: manual
-name: camera/video
-depends: camera/detect
-requires:
- package.name == 'python-gst0.10'
- package.name == 'totem'
- device.category == 'CAPTURE'
-command: camera_test -t video
-_description:
- PURPOSE:
-     This test will check that you can capture video with the built-in camera
- STEPS:
-     1. Click on Test to capture video to a file (it will automatically open in Totem)
- VERIFICATION:
-     Did you see and hear the capture?
