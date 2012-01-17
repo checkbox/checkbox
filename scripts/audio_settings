@@ -15,6 +15,7 @@ set)
         case "$1" in
             -d) device=$2; echo "Device type: $device"; shift;;
             -m) mute=1; echo "Device muted";;
+            -v) volume=$2; echo "Setting volume to $volume%";;
             -*) echo >&2 \
                 "usage: $0 [-d device] [-m]"
                 exit 1;;
@@ -24,10 +25,16 @@ set)
     done
 
     # Switch the default sink/source to the desired one
-    sink=`pacmd list-sinks | grep -B4 $device | grep index | awk -F': ' '{print $2}'`
-    source=`pacmd list-sources | grep -B4 $device | grep -B 4 alsa_input | grep index | awk -F': ' '{print $2}'`
-
+    sink=`pacmd list-sinks | grep -B4 alsa_output[.]$device | grep index | awk -F': ' '{print $2}'`
     pacmd set-default-sink $sink
+
+    for input in `pacmd list-sink-inputs | grep index | awk -F': ' '{print $2}'`
+    do
+        echo "Input: $input"
+        pacmd move-sink-input $input $sink
+    done
+
+    source=`pacmd list-sources | grep -B4 alsa_input[.]$device | grep index | awk -F': ' '{print $2}'`
     pacmd set-default-source $source
 
     # Unmute/mute the sink and source as requested
@@ -35,11 +42,10 @@ set)
     pacmd set-source-mute $source $mute
 
     # Set the volume of the sink and source as requested
-    volume_steps_sink=`pacmd list-sinks | grep -A15 $device | grep 'volume steps:' | awk -F': ' '{print $2}'`
-    volume_final=`echo "scale=2; $volume_steps_sink / 100 * $volume" | bc`
-
-    pacmd set-sink-volume $sink $volume_final
-    pacmd set-source-volume $source $volume_final
+    volume_steps_sink=`pacmd list-sinks | grep -A15 alsa_output[.]$device | grep 'volume steps:' | awk -F': ' '{print $2}'`
+    volume_final_sink=`echo "scale=2; $volume_steps_sink / 100 * $volume" | bc`
+    # Just round the volume down, it won't make much difference
+    pacmd set-sink-volume $sink ${volume_final_sink::-3}
     ;;
 restore)
     echo "Restoring previously saved audio settings"
