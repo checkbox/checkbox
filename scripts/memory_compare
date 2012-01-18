@@ -1,0 +1,25 @@
+#!/bin/bash
+
+meminfo_total=`grep 'MemTotal' /proc/meminfo | awk '{print $2}'`
+meminfo_units=`grep 'MemTotal' /proc/meminfo | awk '{print $3}'`
+
+echo "Meminfo total: $meminfo_total $meminfo_units"
+
+dmi_total=0
+
+for size in `dmidecode | grep -A10 'DMI type 17' | grep Size | grep -o [0-9]*`
+do
+    dmi_total=`echo $dmi_total + $size | bc`
+done
+
+dmi_total=`echo "$dmi_total * 1000" | bc`
+
+echo "DMI total: $dmi_total $meminfo_units"
+accuracy=`echo "scale=2; $meminfo_total / $dmi_total * 100" | bc`
+echo "Accuracy: $accuracy"
+
+if [ ${accuracy::-3} -lt 95 ]
+then
+    echo "Memory totals not close enough"
+    exit 1
+fi

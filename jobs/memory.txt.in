@@ -1,15 +1,9 @@
-plugin: manual
-name: memory/info
-command: memory_info
+plugin: shell
+name: memory/compare
+command: memory_compare
 _description:
- PURPOSE:
-     This test checks the amount of memory that is detected
- STEPS:
-     1. Click Test to see the amount of detected memory
- INFO:
-     $output
- VERIFICATION:
-     Is the amount of detected memory correct?
+ This test checks the amount of memory which is reporting in meminfo against
+ the size of the memory modules detected by DMI.
 
 plugin: shell
 name: memory/check
