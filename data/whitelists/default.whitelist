@@ -10,6 +10,7 @@ module
 package
 uname
 sleep
+display
 __audio__
 audio/alsa_record_playback_external
 audio/alsa_record_playback_internal
@@ -21,7 +22,7 @@ bluetooth/detect-output
 __camera__
 camera/detect
 camera/still
-camera/video
+camera/display
 __cpu__
 cpu/offlining_test
 cpu/topology

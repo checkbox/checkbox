@@ -15,6 +15,9 @@ checkbox (0.13.1) precise; urgency=low
   * Don't fail the sleep_test if the wake alarm is still set (LP: #911161)
   * Add requirement for mem sleep state to be supported to the
     suspend_advanced_auto job (LP: #804190)
+  * Fixed the camera/display test and removed the camera/video one.
+  * Added display resource and matching requirements to external video 
+    output tests.
 
   [Gabor Kelemen]
   * Fixed last two remaining strings with backslashes (LP: #868571)
@@ -47,7 +50,7 @@ checkbox (0.13.1) precise; urgency=low
   [Aurélien Gâteau]
   * Improvements to Recover dialog and show_info method.
 
- -- Daniel Manrique <daniel.manrique@canonical.com>  Wed, 11 Jan 2012 14:08:02 -0500
+ -- Daniel Manrique <daniel.manrique@canonical.com>  Tue, 17 Jan 2012 13:00:03 -0500
 
 checkbox (0.13) precise; urgency=low
 

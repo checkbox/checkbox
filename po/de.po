@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-01-06 12:39-0500\n"
-"PO-Revision-Date: 2011-09-27 07:49+0000\n"
-"Last-Translator: Hendrik Knackstedt <Unknown>\n"
+"PO-Revision-Date: 2012-01-15 13:29+0000\n"
+"Last-Translator: Dennis Baudys <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-01-07 04:43+0000\n"
-"X-Generator: Launchpad (build 14640)\n"
+"X-Launchpad-Export-Date: 2012-01-16 05:14+0000\n"
+"X-Generator: Launchpad (build 14664)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:535
 msgid "_Test"
@@ -247,6 +247,9 @@ msgid ""
 "input.  This makes the most sense when the output and input  are directly "
 "connected, as with a patch cable."
 msgstr ""
+"Einen Ton über den vorgegebenen Ausgang wiedergeben und über den "
+"vorgegebenen Eingang aufnehmen. Dies ist am sinnvollsten, wenn Ausgang und "
+"Eingang direkt mit einem Patch-Kabel verbunden sind (Schleife)."
 
 #. description
 #: ../jobs/autotest.txt.in:6
@@ -1915,6 +1918,8 @@ msgid ""
 "   Determine if we need to run tests specific to portable computers that may "
 "not apply to desktops."
 msgstr ""
+"   Ermitteln, ob Tests speziell für tragbare Rechner ausgeführt werden "
+"müssen, welche nicht für Arbeitsplatzrechner gedacht sind."
 
 #. description
 #: ../jobs/miscellanea.txt.in:51
@@ -3751,12 +3756,12 @@ msgstr "Konfigurationsdatei fehlt als Argument.\n"
 
 #: ../checkbox/job.py:84
 msgid "Command not found."
-msgstr ""
+msgstr "Der Befehl wurde nicht gefunden."
 
 #: ../checkbox/job.py:92
 #, python-format
 msgid "Command received signal %s: %s"
-msgstr ""
+msgstr "Der Befehl empfing das Signal %s: %s"
 
 #: ../checkbox/lib/signal.py:23
 msgid ""
@@ -3952,7 +3957,7 @@ msgstr ""
 #: ../plugins/apport_prompt.py:227
 #, python-format
 msgid "Test %(name)s from suite %(suite)s failed."
-msgstr ""
+msgstr "Test %(name)s aus dem Bereich %(suite)s gescheitert."
 
 #: ../plugins/apport_prompt.py:231
 #, python-format
@@ -4060,6 +4065,8 @@ msgid ""
 "The generated report seems to have validation errors,\n"
 "so it might not be processed by Launchpad."
 msgstr ""
+"Der erstellte Bericht scheint Fehler zu enthalten. Deshalb\n"
+"könnte es sein, dass er nicht von Launchpad verarbeitet wird."
 
 #: ../plugins/lock_prompt.py:63
 msgid "There is another checkbox running. Please close it first."
