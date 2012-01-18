@@ -51,12 +51,12 @@ plugin: manual
 name: usb/insert
 depends: usb/detect
 requires: package.name == 'linux'
-command: watch_command -q -r 5 lsusb
+command: watch_command -q -r 15 lsusb
 _description:
  PURPOSE:
      This test will check your USB connection.
  STEPS:
-     1. Click "Test" and insert a USB device within 5 seconds.
+     1. Click "Test" and insert a USB device within 15 seconds.
      2. Do not unplug the device after the test.
  VERIFICATION:
      The verification of this test is automated.
@@ -65,12 +65,12 @@ plugin: manual
 name: usb/remove
 depends: usb/storage-transfer
 requires: package.name == 'linux'
-command: watch_command -q -r 5 lsusb
+command: watch_command -q -r 15 lsusb
 _description:
  PURPOSE:
      This test will check your USB connection.
  STEPS:
-     1. Click "Test" and remove the USB device within 5 seconds.
+     1. Click "Test" and remove the USB device within 15 seconds.
      2. Do not unplug the device after the test.
  VERIFICATION:
      The verification of this test is automated.
