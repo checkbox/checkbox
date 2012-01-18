@@ -63,7 +63,7 @@ _description:
 
 plugin: manual
 name: usb/remove
-depends: usb/insert
+depends: usb/storage-transfer
 requires: package.name == 'linux'
 command: watch_command -q -r 5 lsusb
 _description:
@@ -77,6 +77,7 @@ _description:
 
 plugin: manual
 name: usb/storage-transfer
+depends: usb/insert
 requires: package.name == 'linux'
 command: usb_test -t
 _description:
