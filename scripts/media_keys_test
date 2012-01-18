@@ -1,33 +1,71 @@
 #!/usr/bin/env python
-# Interactive media key test
-# Problems:
-# 1- Depends on gnome, as that's what handles the 
-# media keys.
-# 2- A somewhat different implementation may be needed
-# for a GUI, where the main loop is potentially handled
-# by gtk rather than by dbus.
 
+import gettext
+from gettext import gettext as _
 import dbus
 import dbus.mainloop.glib
 import dbus.service
 import gobject
 import os
 import sys 
- 
-def on_media_key(sender, key):
-    if key in ['Play','Next','Previous','Stop','Pause']:
-        print(key)
-    else:
-        print('Unknown media key')
- 
-dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
 
-bus = dbus.Bus(dbus.Bus.TYPE_SESSION)
-dbus_object = bus.get_object('org.gnome.SettingsDaemon', '/org/gnome/SettingsDaemon/MediaKeys')
- 
-dbus_interface='org.gnome.SettingsDaemon.MediaKeys'
-dbus_object.GrabMediaPlayerKeys("media_keys_test", 0, dbus_interface=dbus_interface)
- 
-dbus_object.connect_to_signal('MediaPlayerKeyPressed', on_media_key)
- 
-gobject.MainLoop().run()
+
+class CLIReporter():
+    keys = ['Play','Next','Previous','Stop']
+    tested_keys = dict( zip( keys, [False] * len(keys)))
+    main_loop = None
+    exit_code = 1
+
+    def on_media_key(self,sender,key):
+        if key in self.keys:
+            print (_("Key %(key_name)s has been pressed"% {'key_name': key}))
+            self.tested_keys[key] = True
+        else:
+            print (_("Unknown media key pressed"))
+        
+        if all(self.tested_keys.values()):
+            print (_("All required media keys have been tested!"))
+            self.exit_code = 0
+            self.main_loop.quit() #FIXME: this is a horrendous hack.
+
+    def show_text(self,string):
+        print(string)
+
+
+def main(args):
+    gettext.textdomain("checkbox")
+
+    if "DISPLAY" in os.environ:
+        reporter = CLIReporter()
+    else:
+        reporter = CLIReporter()
+
+    # Get the mainloop going
+    dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
+    
+    bus = dbus.Bus(dbus.Bus.TYPE_SESSION)
+    try:
+        dbus_object = bus.get_object('org.gnome.SettingsDaemon', '/org/gnome/SettingsDaemon/MediaKeys')
+    except dbus.exceptions.DBusException:
+        reporter.show_text(_("Unable to connect to GnomeSettingsDaemon to get media key events"))
+        sys.exit(1)
+    
+    dbus_interface='org.gnome.SettingsDaemon.MediaKeys'
+    dbus_object.GrabMediaPlayerKeys("media_keys_test", 0, dbus_interface=dbus_interface)
+     
+    dbus_object.connect_to_signal('MediaPlayerKeyPressed', reporter.on_media_key)
+     
+    main_loop = gobject.MainLoop()
+
+    reporter.main_loop = main_loop
+
+    reporter.show_text(_("Please press each media control key on your keyboard."))
+    reporter.show_text(_("I will exit automatically once all keys have been pressed."))
+    reporter.show_text(_("You can also close me by pressing ESC."))
+
+    main_loop.run()
+
+    return reporter.exit_code 
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv[1:]))
