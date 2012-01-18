@@ -1,0 +1,33 @@
+#!/usr/bin/env python
+# Interactive media key test
+# Problems:
+# 1- Depends on gnome, as that's what handles the 
+# media keys.
+# 2- A somewhat different implementation may be needed
+# for a GUI, where the main loop is potentially handled
+# by gtk rather than by dbus.
+
+import dbus
+import dbus.mainloop.glib
+import dbus.service
+import gobject
+import os
+import sys 
+ 
+def on_media_key(sender, key):
+    if key in ['Play','Next','Previous','Stop','Pause']:
+        print(key)
+    else:
+        print('Unknown media key')
+ 
+dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
+
+bus = dbus.Bus(dbus.Bus.TYPE_SESSION)
+dbus_object = bus.get_object('org.gnome.SettingsDaemon', '/org/gnome/SettingsDaemon/MediaKeys')
+ 
+dbus_interface='org.gnome.SettingsDaemon.MediaKeys'
+dbus_object.GrabMediaPlayerKeys("media_keys_test", 0, dbus_interface=dbus_interface)
+ 
+dbus_object.connect_to_signal('MediaPlayerKeyPressed', on_media_key)
+ 
+gobject.MainLoop().run()
