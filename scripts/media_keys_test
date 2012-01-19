@@ -10,27 +10,39 @@ import os
 import sys 
 
 
-class CLIReporter():
+class CLIReporter:
     keys = ['Play','Next','Previous','Stop']
     tested_keys = dict( zip( keys, [False] * len(keys)))
     main_loop = None
     exit_code = 1
 
-    def on_media_key(self,sender,key):
-        if key in self.keys:
-            print (_("Key %(key_name)s has been pressed"% {'key_name': key}))
-            self.tested_keys[key] = True
-        else:
-            print (_("Unknown media key pressed"))
-        
-        if all(self.tested_keys.values()):
-            print (_("All required media keys have been tested!"))
-            self.exit_code = 0
-            self.main_loop.quit() #FIXME: this is a horrendous hack.
+    def __init__(self):
+        gobject.io_add_watch(sys.stdin.fileno(),gobject.IO_IN, self.on_console_io)
 
     def show_text(self,string):
         print(string)
 
+    def quit(self):
+        self.main_loop.quit()
+
+    def on_console_io(self, source, cb_condition):
+        read_char = os.read(source,1)
+        if (ord(read_char) == 27): #ESC key pressed
+            self.show_text(_("Test cancelled"))
+            self.quit()
+        return True
+
+    def on_media_key(self,sender,key):
+        if key in self.keys:
+            self.show_text(_("%(key_name)s key has been pressed"% {'key_name': key}))
+            self.tested_keys[key] = True
+        else:
+            print(_("Unknown media key pressed"))
+        
+        if all(self.tested_keys.values()):
+            self.show_text(_("All required media keys have been tested!"))
+            self.exit_code = 0
+            self.quit() #FIXME: this is a horrendous hack.
 
 def main(args):
     gettext.textdomain("checkbox")
@@ -63,7 +75,12 @@ def main(args):
     reporter.show_text(_("I will exit automatically once all keys have been pressed."))
     reporter.show_text(_("You can also close me by pressing ESC."))
 
-    main_loop.run()
+    try:
+        main_loop.run()
+    except KeyboardInterrupt:
+        reporter.show_text(_("Exiting"))
+        return 1
+
 
     return reporter.exit_code 
 
