@@ -1,12 +1,11 @@
 plugin: manual
 name: firewire/hdd
+command: removable_storage_test -d firewire -t
 _description:
  PURPOSE:
      This test will check that the firewire port works
  STEPS:
      1. Plug a Firewire HDD into the computer
-     2. Either a window asking which action should be performed (open folder, photo manager, etc) or a file browser will open.
-     3. Copy some files from your internal HDD to the firewire HDD
-     4. Copy some files from the firewire HDD to your internal HDD
+     2. Once the drive is mounted, click Test
  VERIFICATION:
-     Do the copy operations work as expected?
+     If the test passes, the Yes button should be automatically selected.

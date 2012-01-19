@@ -227,7 +227,7 @@ _description: This attaches screenshots from the suspend/cycle_resolutions_after
 plugin: manual
 name: suspend/usb_storage_after_suspend
 depends: suspend/suspend_advanced
-command: usb_test -t
+command: removable_storage_test -d usb -t
 _description:
  PURPOSE:
      This will test that USB functionality is restored after a suspend and resume cycle
