@@ -44,6 +44,8 @@ checkbox (0.13.1) precise; urgency=low
   * Fixed spelling mistakes in user_apps job file. (LP: #904209)
 
   [Jeff Lane]
+  * Created automated network info test to get some config info during automated 
+    runs. (LP: #912038)
   * Added requires to suspend wireless jobs so they won't run if wireless isn't
     present (LP: #907150)
   * Fixed issue in usb_test with unwritable filesystems (LP: #912522)
