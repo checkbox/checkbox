@@ -46,11 +46,17 @@ checkbox (0.13.1) precise; urgency=low
   [Jeff Lane]
   * Added requires to suspend wireless jobs so they won't run if wireless isn't
     present (LP: #907150)
+  * Fixed issue in usb_test with unwritable filesystems (LP: #912522)
+  * Fixed USB tests so that insert, storage, remove run in proper order
+  * Removed usb_storage_after_suspend since it's superfluous, all other USB
+    tests already run after suspend.
+  * Modifed usb_test to handle firewire drives as well, renamed script to
+    removable_storage_test
 
   [Aurélien Gâteau]
   * Improvements to Recover dialog and show_info method.
 
- -- Daniel Manrique <daniel.manrique@canonical.com>  Tue, 17 Jan 2012 13:00:03 -0500
+ -- Jeff Lane <jeff@ubuntu.com>  Wed, 18 Jan 2012 23:13:48 -0500
 
 checkbox (0.13) precise; urgency=low
 
