@@ -23,6 +23,7 @@ import gobject
 import os
 
 from gettext import gettext as _
+from string import Template
 
 from checkbox.job import UNINITIATED
 from checkbox.user_interface import (UserInterface,
@@ -95,10 +96,9 @@ class QTInterface(UserInterface):
         self._set_main_title()
 
         self.qtiface.showText(text)
-        self.qtiface.connect_to_signal("onFullTestsClicked", onFullTestsClicked)
-        self.qtiface.connect_to_signal("onCustomTestsClicked", onCustomTestsClicked)
+        self.bus.add_signal_receiver(onFullTestsClicked, "onFullTestsClicked")
         self.loop.run()
-        #self.bus.remove_signal_receiver(onFullTestsClicked, "onFullTestsClicked")
+        self.bus.remove_signal_receiver(onFullTestsClicked, "onFullTestsClicked")
 
     def show_entry(self, text, value, previous=None, next=None):
         print "My name is: %s" % funcname()
@@ -127,9 +127,10 @@ class QTInterface(UserInterface):
             newOptions[section] = newTests
 
         self.qtiface.showTree(text, newOptions)
-        self.qtiface.connect_to_signal("onStartTestsClicked", onStartTestsClicked)
+        self.bus.add_signal_receiver(onStartTestsClicked, "onStartTestsClicked")
 
         self.loop.run()
+        self.bus.remove_signal_receiver(onStartTestsClicked, "onStartTestsClicked")
         newOptions = {}
         for section in self.qtiface.getTestsToRun():
             newTests = {}
@@ -141,10 +142,50 @@ class QTInterface(UserInterface):
 
     def _run_test(self, test, runner):
         print "My name is: %s" % funcname()
+        (status, data, duration) = runner(test)
+
+        description = Template(test["description"]).substitute({
+            "output": data.strip()})
+
         return False
 
     def show_test(self, test, runner):
         print "My name is: %s" % funcname()
+        def onStartTestClicked():
+            self._run_test(test, runner)
+
+        def onNextTestClicked():
+            self.loop.quit()
+
+        def onPreviousTestClicked():
+            self.loop.quit()
+
+        def onYesTestClicked():
+            test["status"] = YES_ANSWER
+            self.loop.quit()
+
+        def onNoTestClicked():
+            test["status"] = NO_ANSWER
+            self.loop.quit()
+
+        if re.search(r"\$output", test["description"]):
+            self._run_test(test, runner)
+
+        self.qtiface.showTest(test["description"], test["suite"])
+        self.bus.add_signal_receiver(onStartTestClicked, "onStartTestClicked")
+        self.bus.add_signal_receiver(onNextTestClicked, "onNextTestClicked")
+        self.bus.add_signal_receiver(onPreviousTestClicked, "onPreviousTestClicked")
+        self.bus.add_signal_receiver(onNoTestClicked, "onYesTestClicked")
+        self.bus.add_signal_receiver(onYesTestClicked, "onNoTestClicked")
+
+        self.loop.run()
+
+        self.bus.remove_signal_receiver(onStartTestClicked, "onStartTestClicked")
+        self.bus.remove_signal_receiver(onNextTestClicked, "onNextTestClicked")
+        self.bus.remove_signal_receiver(onPreviousTestClicked, "onPreviousTestClicked")
+        self.bus.remove_signal_receiver(onNoTestClicked, "onYesTestClicked")
+        self.bus.remove_signal_receiver(onYesTestClicked, "onNoTestClicked")
+
         return False
 
     def show_info(self, text, options=[], default=None):
