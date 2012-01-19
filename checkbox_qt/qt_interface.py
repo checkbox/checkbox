@@ -27,7 +27,7 @@ from string import Template
 
 from checkbox.job import UNINITIATED
 from checkbox.user_interface import (UserInterface,
-    NEXT, YES_ANSWER, NO_ANSWER, SKIP_ANSWER,
+    NEXT, PREV, YES_ANSWER, NO_ANSWER, SKIP_ANSWER,
     ANSWER_TO_STATUS, STATUS_TO_ANSWER)
 from PyQt4 import QtGui, QtCore
 from PyQt4.QtCore import QObject, QVariant
@@ -115,6 +115,7 @@ class QTInterface(UserInterface):
     def show_tree(self, text, options={}, default={}):
         print "My name is: %s" % funcname()
         def onStartTestsClicked():
+            self.direction = NEXT
             self.loop.quit()
 
         self._set_main_title()
@@ -155,9 +156,11 @@ class QTInterface(UserInterface):
             self._run_test(test, runner)
 
         def onNextTestClicked():
+            self.direction = NEXT
             self.loop.quit()
 
         def onPreviousTestClicked():
+            self.direction = PREV
             self.loop.quit()
 
         def onYesTestClicked():

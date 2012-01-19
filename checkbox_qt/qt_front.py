@@ -111,6 +111,7 @@ class QtFront(dbus.service.Object):
         self.ui.nextTestButton.clicked.connect(self.onNextTestClicked)
         self.ui.previousTestButton.clicked.connect(self.onPreviousTestClicked)
         self.ui.stepsFrame.setFixedHeight(0)
+        self.skipTestMessage = QErrorMessage()
        
 
     @dbus.service.method("com.canonical.QtCheckbox", in_signature='', out_signature='')
@@ -251,6 +252,7 @@ class QtFront(dbus.service.Object):
 
     @dbus.service.signal("com.canonical.QtCheckbox", signature='')
     def onNextTestClicked(self, a):
+        self.skipTestMessage.showMessage("Skip this test?")
         pass
 
     @dbus.service.signal("com.canonical.QtCheckbox", signature='')
