@@ -64,7 +64,7 @@ _description:
 
 plugin: manual
 name: usb/remove
-depends: usb/storage-transfer
+depends: usb/storage-automated
 requires: package.name == 'linux'
 command: watch_command -q -r 10 lsusb
 _description:
@@ -95,9 +95,10 @@ _description:
 plugin: shell
 name: usb/storage-automated
 requires: package.name == 'linux'
+depends: usb/insert
 command: removable_storage_test -d usb -t
 _description:
- This test is automated and requires that you plug in at least one usb storage device before running checkbox.
+ This test is automated and executes after the usb/insert test is run.
 
 plugin: manual
 name: usb/panels
