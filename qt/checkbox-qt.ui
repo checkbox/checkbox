@@ -102,6 +102,7 @@
                  </property>
                  <property name="font">
                   <font>
+                   <family>Ubuntu</family>
                    <pointsize>21</pointsize>
                   </font>
                  </property>
@@ -139,6 +140,15 @@
               <height>181</height>
              </rect>
             </property>
+            <property name="frameShape">
+             <enum>QFrame::NoFrame</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Plain</enum>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
            </widget>
            <widget class="QPushButton" name="friendlyTestsButton">
             <property name="geometry">
@@ -166,6 +176,11 @@
               <width>281</width>
               <height>20</height>
              </rect>
+            </property>
+            <property name="font">
+             <font>
+              <family>Ubuntu</family>
+             </font>
             </property>
             <property name="text">
              <string>Don't show me this message in the future</string>
@@ -261,6 +276,7 @@
             </property>
             <property name="font">
              <font>
+              <family>Ubuntu</family>
               <pointsize>9</pointsize>
              </font>
             </property>
@@ -407,6 +423,9 @@ QTabWidget::tab-bar#testsTab {
                <height>171</height>
               </rect>
              </property>
+             <property name="frameShape">
+              <enum>QFrame::NoFrame</enum>
+             </property>
             </widget>
             <widget class="QTreeView" name="treeView">
              <property name="geometry">
@@ -416,6 +435,9 @@ QTabWidget::tab-bar#testsTab {
                <width>351</width>
                <height>171</height>
               </rect>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::NoFrame</enum>
              </property>
              <property name="showDropIndicator" stdset="0">
               <bool>false</bool>
@@ -500,15 +522,38 @@ QTabWidget::tab-bar#testsTab {
                        <widget class="QLabel" name="testTypeLabel">
                         <property name="geometry">
                          <rect>
-                          <x>31</x>
-                          <y>14</y>
+                          <x>20</x>
+                          <y>10</y>
                           <width>291</width>
                           <height>31</height>
                          </rect>
                         </property>
                         <property name="font">
                          <font>
+                          <family>Ubuntu</family>
                           <pointsize>17</pointsize>
+                         </font>
+                        </property>
+                        <property name="text">
+                         <string>TextLabel</string>
+                        </property>
+                       </widget>
+                       <widget class="QLabel" name="purposeLabel">
+                        <property name="geometry">
+                         <rect>
+                          <x>30</x>
+                          <y>40</y>
+                          <width>571</width>
+                          <height>16</height>
+                         </rect>
+                        </property>
+                        <property name="font">
+                         <font>
+                          <family>Ubuntu</family>
+                          <pointsize>8</pointsize>
+                          <weight>50</weight>
+                          <bold>false</bold>
+                          <kerning>false</kerning>
                          </font>
                         </property>
                         <property name="text">
@@ -577,8 +622,8 @@ QTabWidget::tab-bar#testsTab {
                                  <rect>
                                   <x>0</x>
                                   <y>0</y>
-                                  <width>474</width>
-                                  <height>193</height>
+                                  <width>85</width>
+                                  <height>178</height>
                                  </rect>
                                 </property>
                                 <layout class="QVBoxLayout" name="verticalLayout_9">

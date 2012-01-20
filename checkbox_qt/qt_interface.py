@@ -133,12 +133,14 @@ class QTInterface(UserInterface):
         self.loop.run()
         self.bus.remove_signal_receiver(onStartTestsClicked, "onStartTestsClicked")
         newOptions = {}
-        for section in self.qtiface.getTestsToRun():
+        testsFromInterface = self.qtiface.getTestsToRun()
+        for section in testsFromInterface:
             newTests = {}
-            for test in options[section]:
+            for test in testsFromInterface[section]:
                 newTests[str(test)] = {}
             newOptions[section] = newTests
 
+        print newOptions
         return newOptions
 
     def _run_test(self, test, runner):
@@ -148,7 +150,7 @@ class QTInterface(UserInterface):
         description = Template(test["description"]).substitute({
             "output": data.strip()})
 
-        return False
+        return description
 
     def show_test(self, test, runner):
         print "My name is: %s" % funcname()
@@ -171,10 +173,11 @@ class QTInterface(UserInterface):
             test["status"] = NO_ANSWER
             self.loop.quit()
 
-        if re.search(r"\$output", test["description"]):
-            self._run_test(test, runner)
+        description = test["description"]
+        if re.search(r"\$output", description):
+            description = self._run_test(test, runner)
 
-        self.qtiface.showTest(test["description"], test["suite"])
+        self.qtiface.showTest(description, test["suite"])
         self.bus.add_signal_receiver(onStartTestClicked, "onStartTestClicked")
         self.bus.add_signal_receiver(onNextTestClicked, "onNextTestClicked")
         self.bus.add_signal_receiver(onPreviousTestClicked, "onPreviousTestClicked")

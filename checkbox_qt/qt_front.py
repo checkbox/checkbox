@@ -28,32 +28,58 @@ from gui import Ui_main
 from gettext import gettext as _
 
 buttonMap = {QMessageBox.Yes: "yes", QMessageBox.No: "no"}
-titleTestTypes = { "__audio__": "Audio Test" }
+titleTestTypes = { 
+    "__audio__": "Audio Test",
+    "__bluetooth__": "Bluetooth Test",
+    "__camera__": "Camera Test",
+    "__cpu__": "CPU Test",
+    "__disk__": "Disk Test",
+    "__firewire__": "Firewire Test",
+    "__graphics__": "Graphics Test",
+    "__info__": "Info Test",
+    "__input__": "Input Test",
+    "__keys__": "Keys Test",
+    "__mediacard__": "Mediacard Test",
+    "__memory__": "Memory Test",
+    "__miscellanea__": "Miscellanea Test",
+    "__monitor__": "Monitor Test",
+    "__networking__": "Networking Test",
+    "__wireless__": "Wireless Test",
+    "__optical__": "Optical Test",
+    "__pcmcia-pcix__": "PCMCIA/PCIX Test",
+    "__power-management__": "Power Management Test",
+    "__suspend__": "Suspend Test",
+    "__usb__": "USB Test"
+}
 
 class Step(QWidget):
-    def __init__(self, parent, tip, text):
+    def __init__(self, parent, index, text=""):
         QWidget.__init__(self, parent)
-        self.setFixedHeight(40)
         self.setFixedWidth(470)
         self.layout = QHBoxLayout(self)
 
-        self.scene = QGraphicsScene(0, 0, 20, 20);
-        self.item = QGraphicsEllipseItem(0, 0, 20, 20);
-        self.item.setBrush( QtCore.Qt.yellow )
-        self.item.setPos(0,0)
-        self.scene.addItem(self.item);
-        self.item.setPos(0,0)
-        self.view = QGraphicsView(self.scene)
-        self.view.setFrameShape(0)
-        self.view.setBackgroundRole(17)
-        self.view.setFixedSize(20, 20)
-        self.text = QGraphicsTextItem(" "+ tip, self.item)
-        self.text.setTextWidth(20)
-        self.layout.addWidget(self.view)
+        if index:
+            self.scene = QGraphicsScene(0, 0, 20, 20);
+            self.item = QGraphicsEllipseItem(0, 0, 20, 20);
+            self.item.setBrush( QtCore.Qt.yellow )
+            self.item.setPos(0,0)
+            self.scene.addItem(self.item);
+            self.item.setPos(0,0)
+            self.view = QGraphicsView(self.scene)
+            self.view.setFrameShape(0)
+            self.view.setBackgroundRole(17)
+            self.view.setFixedSize(20, 20)
+            self.text = QGraphicsTextItem(" "+ index, self.item)
+            self.text.setTextWidth(20)
+            self.layout.addWidget(self.view)
+        else:
+            widget = QWidget(self)
+            widget.setFixedWidth(50)
+            self.layout.addWidget(widget)
 
         self.label = QLabel(text)
-        self.label.setFixedHeight(20)
-        self.label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
+        self.label.setWordWrap(True)
+        self.label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Maximum)
         self.layout.addWidget(self.label)
         self.show()
 
@@ -177,12 +203,20 @@ class QtFront(dbus.service.Object):
         r = re.compile(r"[0-9]+\. (.*)")
         index = 1
         self.ui.testTypeLabel.setText(titleTestTypes[testType])
+        self.ui.purposeLabel.setText(purpose)
         for i in steps:
+            isInfo = False
+            if not r.match(i.strip()):
+                isInfo = True
             step = r.sub(r"\1", i.strip())
-            a = Step(self.ui.stepsFrame, str(index), step)
+            if isInfo:
+                a = Step(self.ui.stepsFrame, None, step)
+            else:
+                a = Step(self.ui.stepsFrame, str(index), step)
+
+            index+=1
             a.move(0, self.ui.stepsFrame.height())
             self.ui.stepsFrame.setFixedHeight(self.ui.stepsFrame.height() + a.height())
-            index+=1
         question = Step(self.ui.stepsFrame, str("?"), verification)
         question.move(0, self.ui.stepsFrame.height())
         self.ui.stepsFrame.setFixedHeight(self.ui.stepsFrame.height() + question.height())
@@ -203,6 +237,7 @@ class QtFront(dbus.service.Object):
             if item.checkState() == QtCore.Qt.Checked or item.checkState() == QtCore.Qt.PartiallyChecked:
                 selectedOptions[str(item.text())] = itemDict
 
+        print selectedOptions
         return selectedOptions
 
     @dbus.service.method("com.canonical.QtCheckbox", in_signature='', out_signature='')
