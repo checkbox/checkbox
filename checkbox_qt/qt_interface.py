@@ -68,6 +68,7 @@ class QTInterface(UserInterface):
                 notReady = False
             except:
                 time.sleep(0.5)
+        self._set_main_title()
 
     def _set_main_title(self, test_name=None):
         print "My name is: %s" % funcname()
@@ -140,7 +141,6 @@ class QTInterface(UserInterface):
                 newTests[str(test)] = {}
             newOptions[section] = newTests
 
-        print newOptions
         return newOptions
 
     def _run_test(self, test, runner):
@@ -173,11 +173,13 @@ class QTInterface(UserInterface):
             test["status"] = NO_ANSWER
             self.loop.quit()
 
+        enableTestButton = True
         description = test["description"]
         if re.search(r"\$output", description):
             description = self._run_test(test, runner)
+            enableTestButton = False
 
-        self.qtiface.showTest(description, test["suite"])
+        self.qtiface.showTest(description, test["suite"], enableTestButton)
         self.bus.add_signal_receiver(onStartTestClicked, "onStartTestClicked")
         self.bus.add_signal_receiver(onNextTestClicked, "onNextTestClicked")
         self.bus.add_signal_receiver(onPreviousTestClicked, "onPreviousTestClicked")

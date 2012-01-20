@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'qt/checkbox-qt.ui'
 #
-# Created: Fri Jan 20 15:40:37 2012
+# Created: Fri Jan 20 18:11:35 2012
 #      by: PyQt4 UI code generator 4.9
 #
 # WARNING! All changes made in this file will be lost!
@@ -227,6 +227,7 @@ class Ui_main(object):
         self.treeView.setObjectName(_fromUtf8("treeView"))
         self.treeView.header().setVisible(False)
         self.buttonStartTesting = QtGui.QPushButton(self.testSelection)
+        self.buttonStartTesting.setEnabled(False)
         self.buttonStartTesting.setGeometry(QtCore.QRect(430, 260, 181, 27))
         self.buttonStartTesting.setObjectName(_fromUtf8("buttonStartTesting"))
         self.testsTab.addTab(self.testSelection, _fromUtf8(""))
@@ -315,7 +316,7 @@ class Ui_main(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setObjectName(_fromUtf8("scrollArea"))
         self.scrollAreaWidgetContents = QtGui.QWidget()
-        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 85, 178))
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 474, 193))
         self.scrollAreaWidgetContents.setObjectName(_fromUtf8("scrollAreaWidgetContents"))
         self.verticalLayout_9 = QtGui.QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_9.setSpacing(0)
@@ -364,21 +365,21 @@ class Ui_main(object):
         self.tab_2.setObjectName(_fromUtf8("tab_2"))
         self.radioTestTab.addTab(self.tab_2, _fromUtf8(""))
         self.verticalLayout.addWidget(self.radioTestTab)
-        self.widget = QtGui.QWidget(self.testing)
+        self.nextPrevButtons = QtGui.QWidget(self.testing)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Preferred, QtGui.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.widget.sizePolicy().hasHeightForWidth())
-        self.widget.setSizePolicy(sizePolicy)
-        self.widget.setMinimumSize(QtCore.QSize(0, 46))
-        self.widget.setObjectName(_fromUtf8("widget"))
-        self.nextTestButton = QtGui.QPushButton(self.widget)
+        sizePolicy.setHeightForWidth(self.nextPrevButtons.sizePolicy().hasHeightForWidth())
+        self.nextPrevButtons.setSizePolicy(sizePolicy)
+        self.nextPrevButtons.setMinimumSize(QtCore.QSize(0, 46))
+        self.nextPrevButtons.setObjectName(_fromUtf8("nextPrevButtons"))
+        self.nextTestButton = QtGui.QPushButton(self.nextPrevButtons)
         self.nextTestButton.setGeometry(QtCore.QRect(520, 10, 80, 25))
         self.nextTestButton.setObjectName(_fromUtf8("nextTestButton"))
-        self.previousTestButton = QtGui.QPushButton(self.widget)
+        self.previousTestButton = QtGui.QPushButton(self.nextPrevButtons)
         self.previousTestButton.setGeometry(QtCore.QRect(420, 10, 80, 25))
         self.previousTestButton.setObjectName(_fromUtf8("previousTestButton"))
-        self.verticalLayout.addWidget(self.widget)
+        self.verticalLayout.addWidget(self.nextPrevButtons)
         self.horizontalLayout_2.addLayout(self.verticalLayout)
         self.testsTab.addTab(self.testing, _fromUtf8(""))
         self.submitResults = QtGui.QWidget()

@@ -450,6 +450,9 @@ QTabWidget::tab-bar#testsTab {
              </attribute>
             </widget>
             <widget class="QPushButton" name="buttonStartTesting">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
              <property name="geometry">
               <rect>
                <x>430</x>
@@ -622,8 +625,8 @@ QTabWidget::tab-bar#testsTab {
                                  <rect>
                                   <x>0</x>
                                   <y>0</y>
-                                  <width>85</width>
-                                  <height>178</height>
+                                  <width>474</width>
+                                  <height>193</height>
                                  </rect>
                                 </property>
                                 <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -746,7 +749,7 @@ QTabWidget::tab-bar#testsTab {
                 </widget>
                </item>
                <item>
-                <widget class="QWidget" name="widget" native="true">
+                <widget class="QWidget" name="nextPrevButtons" native="true">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                    <horstretch>0</horstretch>

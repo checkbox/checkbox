@@ -118,8 +118,17 @@ class TreeModel(QStandardItemModel):
 
         return QStandardItemModel.setData(self, index, value, role)
 
+    def setInteraction(self, value=False):
+        for i in range(self.rowCount()):
+            item = QStandardItemModel.item(self, i, 0)
+            item.setEnabled(value)
+            for j in range(item.rowCount()):
+                childItem = item.child(j)
+                childItem.setEnabled(value)
+
 class QtFront(dbus.service.Object):
     widgetList = None
+    model = None
     def __init__(self, name, session):
         dbus.service.Object.__init__(self, dbus.SessionBus(), "/com/canonical/qt_checkbox")
         self.ui = Ui_main()
@@ -128,6 +137,8 @@ class QtFront(dbus.service.Object):
         self.widget.show()
         self.ui.tabWidget.tabBar().setVisible(False)
         self.ui.radioTestTab.tabBar().setVisible(False)
+        self.ui.radioTestTab.setVisible(False)
+        self.ui.nextPrevButtons.setVisible(False)
         self.ui.friendlyTestsButton.clicked.connect(self.onFullTestsClicked)
         #self.ui.chooseTestsButton.clicked.connect(self.onCustomTestsClicked)
         self.ui.buttonStartTesting.clicked.connect(self.onStartTestsClicked)
@@ -157,7 +168,7 @@ class QtFront(dbus.service.Object):
                 if default == option:
                     defaultButton = QMessageBox.No
                 buttons |= QMessageBox.No
-                
+
         dialog = QMessageBox(self.ui.tabWidget)
         dialog.setText(text)
         dialog.setWindowTitle(_("Info"))
@@ -172,26 +183,38 @@ class QtFront(dbus.service.Object):
 
     @dbus.service.method("com.canonical.QtCheckbox", in_signature='sa{sa{ss}}', out_signature='')
     def showTree(self, text, options={}):#, default={}):
-        model = TreeModel() 
         self.ui.testsTab.setCurrentIndex(1)
-        for section in options:
-            sectionItem = QStandardItem(section) 
-            sectionItem.setFlags(QtCore.Qt.ItemIsUserCheckable | QtCore.Qt.ItemIsEnabled| QtCore.Qt.ItemIsTristate) 
-            sectionItem.setData(QVariant(QtCore.Qt.Checked), QtCore.Qt.CheckStateRole) 
+        self.ui.radioTestTab.setVisible(False)
+        self.ui.nextPrevButtons.setVisible(False)
+        # build the model only once
+        if not self.model:
+            self.model = TreeModel()
 
-            for test in options[section]:
-                testItem = QStandardItem(test)
-                testItem.setFlags(QtCore.Qt.ItemIsUserCheckable | QtCore.Qt.ItemIsEnabled)
-                testItem.setData(QVariant(QtCore.Qt.Checked), QtCore.Qt.CheckStateRole)
-                sectionItem.appendRow(testItem)
+            for section in options:
+                sectionItem = QStandardItem(section) 
+                sectionItem.setFlags(QtCore.Qt.ItemIsUserCheckable | QtCore.Qt.ItemIsEnabled| QtCore.Qt.ItemIsTristate) 
+                sectionItem.setData(QVariant(QtCore.Qt.Checked), QtCore.Qt.CheckStateRole) 
 
-            model.appendRow(sectionItem) 
+                for test in options[section]:
+                    testItem = QStandardItem(test)
+                    testItem.setFlags(QtCore.Qt.ItemIsUserCheckable | QtCore.Qt.ItemIsEnabled)
+                    testItem.setData(QVariant(QtCore.Qt.Checked), QtCore.Qt.CheckStateRole)
+                    sectionItem.appendRow(testItem)
 
-        self.ui.treeView.setModel(model)
-        self.ui.treeView.show()
+                self.model.appendRow(sectionItem) 
 
-    @dbus.service.method("com.canonical.QtCheckbox", in_signature='ss', out_signature='')
-    def showTest(self, text, testType):
+            self.ui.treeView.setModel(self.model)
+            self.ui.treeView.show()
+
+        self.ui.buttonStartTesting.setEnabled(True)
+        self.ui.treeView.model().setInteraction(True)
+
+    @dbus.service.method("com.canonical.QtCheckbox", in_signature='ssb', out_signature='')
+    def showTest(self, text, testType, enableTestButton):
+        self.ui.radioTestTab.setVisible(True)
+        self.ui.nextPrevButtons.setVisible(True)
+        self.ui.testTestButton.setEnabled(enableTestButton)
+
         for i in self.ui.stepsFrame.children():
             i.deleteLater()
         self.ui.stepsFrame.setFixedHeight(0)
@@ -282,6 +305,8 @@ class QtFront(dbus.service.Object):
 
     @dbus.service.signal("com.canonical.QtCheckbox", signature='')
     def onStartTestsClicked(self, a):
+        self.ui.buttonStartTesting.setEnabled(False)
+        self.ui.treeView.model().setInteraction(False)
         #self.ui.tabWidget.setCurrentIndex(1)
         pass
 
