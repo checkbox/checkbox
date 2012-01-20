@@ -106,11 +106,13 @@ _description:
  This test is automated and executes after the usb/insert test is run.
 
 plugin: shell
-name: usb/storage-server
+name: usb/storage-preinserted
 requires: package.name == 'linux'
 command: removable_storage_test -d usb -l && removable_storage_test -d usb -t
 _description:
- This is an automated server version of usb/storage-automated and assumes that the server has usb storage devices plugged in prior to checkbox execution.
+ This is an automated version of usb/storage-automated and assumes that the 
+ server has usb storage devices plugged in prior to checkbox execution. It 
+ is intended for servers and SRU automated testing.
 
 plugin: manual
 name: usb/panels
