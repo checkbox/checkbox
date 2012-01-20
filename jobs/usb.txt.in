@@ -11,7 +11,7 @@ requires: package.name == 'linux'
 command: removable_storage_test -d usb -l
 _description:
  PURPOSE:
-     This test will check your USB connection.
+     This test will check that your system detects USB storage devices.
  STEPS:
      1. Plug in one or more USB keys or hard drives.
      2. Click on "Test".
@@ -51,31 +51,35 @@ plugin: manual
 name: usb/insert
 depends: usb/detect
 requires: package.name == 'linux'
-command: watch_command -q -r 10 lsusb
+command: removable_storage_watcher --device=usb --action=insert
 _description:
  PURPOSE:
-     This test will check your USB connection.
+     This test will check that the system correctly detects the insertion of
+     a USB storage device
  STEPS:
-     1. Click "Test" and insert a USB device.
+     1. Click "Test" and insert a USB storage device (pen-drive/HDD).
         (Note: this test will time-out after 10 seconds.)
      2. Do not unplug the device after the test.
  VERIFICATION:
-     The verification of this test is automated.
+     The verification of this test is automated. Do not change the
+     automatically selected result.
 
 plugin: manual
 name: usb/remove
 depends: usb/storage-automated
 requires: package.name == 'linux'
-command: watch_command -q -r 10 lsusb
+command: removable_storage_watcher --device=usb --action=remove
 _description:
  PURPOSE:
-     This test will check your USB connection.
+     This test will check that the system correctly detects the removal of
+     a USB storage device
  STEPS:
      1. Click "Test" and remove the USB device.
         (Note: this test will time-out after 10 seconds.)
      2. Do not unplug the device after the test.
  VERIFICATION:
-     The verification of this test is automated.
+     The verification of this test is automated. Do not change the
+     automatically selected result.
 
 plugin: manual
 name: usb/storage-transfer
@@ -90,7 +94,8 @@ _description:
      2. An icon should appear on the Launcher.
      3. Click "Test" to begin the test.
  VERIFICATION:
-     The verification of this test is automated.
+     The verification of this test is automated. Do not change the
+     automatically selected result.
 
 plugin: shell
 name: usb/storage-automated
