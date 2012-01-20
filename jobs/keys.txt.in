@@ -70,17 +70,13 @@ plugin: manual
 name: keys/media-control
 requires:
  device.category == 'KEYBOARD'
- package.name == 'totem'
- package.name == 'gstreamer0.10-plugins-base'
-command: totem /usr/share/example-content/Ubuntu_Free_Culture_Showcase/*
+command: media_keys_test
 _description:
  PURPOSE:
      This test will test the media keys of your keyboard
  STEPS:
-     1. Click test to launch the media player
-     2. Press the play/pause key on the keyboard
-     3. Press the forward key on the keyboard
-     4. Press the backward key on the keyboard
-     5. Press stop key on the keyboard
- VERIFICATION:
+     1. Click test to launch the test .
+     2. If all the keys work, the test will be marked as passed.
+     3. If your computer has no media control keys, Skip this test.
+     VERIFICATION:
      Do the keys work as expected?
