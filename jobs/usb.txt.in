@@ -56,21 +56,23 @@ _description:
  PURPOSE:
      This test will check your USB connection.
  STEPS:
-     1. Click "Test" and insert a USB device within 10 seconds.
+     1. Click "Test" and insert a USB device.
+        (Note: this test will time-out after 10 seconds.)
      2. Do not unplug the device after the test.
  VERIFICATION:
      The verification of this test is automated.
 
 plugin: manual
 name: usb/remove
-depends: usb/storage-transfer
+depends: usb/storage-automated
 requires: package.name == 'linux'
 command: watch_command -q -r 10 lsusb
 _description:
  PURPOSE:
      This test will check your USB connection.
  STEPS:
-     1. Click "Test" and remove the USB device within 10 seconds.
+     1. Click "Test" and remove the USB device.
+        (Note: this test will time-out after 10 seconds.)
      2. Do not unplug the device after the test.
  VERIFICATION:
      The verification of this test is automated.
@@ -93,9 +95,10 @@ _description:
 plugin: shell
 name: usb/storage-automated
 requires: package.name == 'linux'
+depends: usb/insert
 command: removable_storage_test -d usb -t
 _description:
- This test is automated and requires that you plug in at least one usb storage device before running checkbox.
+ This test is automated and executes after the usb/insert test is run.
 
 plugin: manual
 name: usb/panels
