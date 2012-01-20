@@ -51,7 +51,7 @@ plugin: manual
 name: usb/insert
 depends: usb/detect
 requires: package.name == 'linux'
-command: watch_command -q -r 10 lsusb
+command: removable_storage_watcher --device=usb --action=insert
 _description:
  PURPOSE:
      This test will check your USB connection.
@@ -65,7 +65,7 @@ plugin: manual
 name: usb/remove
 depends: usb/storage-transfer
 requires: package.name == 'linux'
-command: watch_command -q -r 10 lsusb
+command: removable_storage_watcher --device=usb --action=remove
 _description:
  PURPOSE:
      This test will check your USB connection.
