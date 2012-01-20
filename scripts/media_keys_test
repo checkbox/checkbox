@@ -5,33 +5,37 @@ from gettext import gettext as _
 import dbus
 import dbus.mainloop.glib
 import dbus.service
-import gobject
+from gi.repository import GObject
 import os
 import sys 
 
-
-class CLIReporter:
-    keys = ['Play','Next','Previous','Stop']
+class Reporter(object):
+    keys = ['Previous','Play','Next','Stop']
     tested_keys = dict( zip( keys, [False] * len(keys)))
     main_loop = None
     exit_code = 1
 
     def __init__(self):
-        gobject.io_add_watch(sys.stdin.fileno(),gobject.IO_IN, self.on_console_io)
+        super(Reporter,self).__init__()
+
+    def show_text(self,string):
+        pass
+
+    def quit(self):
+        self.main_loop.quit() #FIXME: Having a reference to the mainloop is suboptimal.
+
+class CLIReporter(Reporter):
+
+    def __init__(self):
+        super(CLIReporter,self).__init__()
+        GObject.io_add_watch(sys.stdin.fileno(),GObject.IO_IN, self.on_console_io)
+        self.show_text(_("Please press each media control key on your keyboard."))
+        self.show_text(_("I will exit automatically once all keys have been pressed."))
+        self.show_text(_("You can also close me by pressing ESC or Ctrl+C."))
 
     def show_text(self,string):
         print(string)
-
-    def quit(self):
-        self.main_loop.quit()
-
-    def on_console_io(self, source, cb_condition):
-        read_char = os.read(source,1)
-        if (ord(read_char) == 27): #ESC key pressed
-            self.show_text(_("Test cancelled"))
-            self.quit()
-        return True
-
+ 
     def on_media_key(self,sender,key):
         if key in self.keys:
             self.show_text(_("%(key_name)s key has been pressed"% {'key_name': key}))
@@ -42,13 +46,98 @@ class CLIReporter:
         if all(self.tested_keys.values()):
             self.show_text(_("All required media keys have been tested!"))
             self.exit_code = 0
-            self.quit() #FIXME: this is a horrendous hack.
+            self.quit() 
+   
+    def on_console_io(self, source, cb_condition):
+        read_char = os.read(source,1)
+        if (ord(read_char) == 27): #ESC key pressed
+            self.show_text(_("Test cancelled"))
+            self.quit()
+        return True
+
+
+class GtkReporter(Reporter):
+    label = None
+    stock_map = None
+
+    def __init__(self):
+        from gi.repository import Gtk, Gdk
+        super(GtkReporter,self).__init__()
+
+        stock_buttons={"Play":Gtk.STOCK_MEDIA_PLAY,
+                      "Stop":Gtk.STOCK_MEDIA_STOP,
+                      "Next":Gtk.STOCK_MEDIA_NEXT,
+                      "Previous":Gtk.STOCK_MEDIA_PREVIOUS}
+
+        window = Gtk.Window()
+        window.set_type_hint(Gdk.WindowType.TOPLEVEL)
+        window.set_size_request(200,100)
+        window.set_resizable(False)
+        window.set_title(_("Media Keys test"))
+        window.connect("delete_event", lambda w,e: self.quit())
+
+        vbox = Gtk.VBox()
+        vbox.set_homogeneous(False)
+        vbox.set_spacing(8)
+        window.add(vbox)
+        vbox.show()
+
+        self.label = Gtk.Label()
+        vbox.add(self.label)
+        self.label.show()
+
+        button_hbox = Gtk.HBox()
+        vbox.add(button_hbox)
+        button_hbox.set_spacing(8)
+        button_hbox.show()
+
+        validation_hbox=Gtk.HBox()
+        vbox.add(validation_hbox)
+        validation_hbox.set_spacing(8)
+        validation_hbox.show()
+
+        self.buttons=dict(zip(self.keys, [Gtk.Image(stock=stock_buttons[name],icon_size=Gtk.IconSize.BUTTON) for name in self.keys]))
+        self.validation_icons = dict(zip(self.keys, [Gtk.Image(stock=Gtk.STOCK_INDEX,icon_size=Gtk.IconSize.BUTTON) for name in self.keys]))
+        
+        for key_name in self.keys:
+            button_hbox.add(self.buttons[key_name])
+            self.buttons[key_name].show()
+            validation_hbox.add(self.validation_icons[key_name])
+            self.validation_icons[key_name].show()
+
+        exit_button = Gtk.Button(label=_("_Exit"), use_underline=True)
+        exit_button.show()
+        exit_button.connect("clicked", lambda w: self.quit())
+        vbox.add(exit_button)
+
+        window.connect("key-release-event", lambda w,k: k.keyval == Gdk.KEY_Escape and self.quit())
+
+        window.show()
+
+        self.show_text(_("Please press each media control key on your keyboard."))
+
+    def on_media_key(self,sender,key):
+        from gi.repository import Gtk #TODO: Find a better way to do this
+        if key in self.keys:
+            self.tested_keys[key] = True
+            self.validation_icons[key].set_from_stock(Gtk.STOCK_YES,size=Gtk.IconSize.BUTTON)
+        else:
+            print(_("Unknown media key pressed"))
+        
+        if all(self.tested_keys.values()):
+            self.show_text(_("All required media keys have been tested!"))
+            self.exit_code = 0
+            self.quit() 
+
+
+    def show_text(self,string):
+        self.label.set_text(self.label.get_text()+"\n"+string)
 
 def main(args):
     gettext.textdomain("checkbox")
 
     if "DISPLAY" in os.environ:
-        reporter = CLIReporter()
+        reporter = GtkReporter()
     else:
         reporter = CLIReporter()
 
@@ -67,20 +156,16 @@ def main(args):
      
     dbus_object.connect_to_signal('MediaPlayerKeyPressed', reporter.on_media_key)
      
-    main_loop = gobject.MainLoop()
+    main_loop = GObject.MainLoop()
 
     reporter.main_loop = main_loop
 
-    reporter.show_text(_("Please press each media control key on your keyboard."))
-    reporter.show_text(_("I will exit automatically once all keys have been pressed."))
-    reporter.show_text(_("You can also close me by pressing ESC."))
 
     try:
         main_loop.run()
     except KeyboardInterrupt:
-        reporter.show_text(_("Exiting"))
+        reporter.show_text(_("Test cancelled"))
         return 1
-
 
     return reporter.exit_code 
 
