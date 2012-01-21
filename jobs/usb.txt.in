@@ -51,7 +51,7 @@ plugin: manual
 name: usb/insert
 depends: usb/detect
 requires: package.name == 'linux'
-command: removable_storage_watcher --device=usb --action=insert
+command: removable_storage_watcher insert usb
 _description:
  PURPOSE:
      This test will check that the system correctly detects the insertion of
@@ -68,7 +68,7 @@ plugin: manual
 name: usb/remove
 depends: usb/storage-automated
 requires: package.name == 'linux'
-command: removable_storage_watcher --device=usb --action=remove
+command: removable_storage_watcher remove usb
 _description:
  PURPOSE:
      This test will check that the system correctly detects the removal of
