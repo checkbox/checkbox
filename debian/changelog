@@ -18,6 +18,8 @@ checkbox (0.13.1) precise; urgency=low
   * Fixed the camera/display test and removed the camera/video one.
   * Added display resource and matching requirements to external video 
     output tests.
+  * Added removable_storage_watcher script to replace watch_command to make
+    testing USB, FireWire and MMC devices easier and more cohesive.
 
   [Gabor Kelemen]
   * Fixed last two remaining strings with backslashes (LP: #868571)
@@ -45,8 +47,16 @@ checkbox (0.13.1) precise; urgency=low
   * Fixed spelling mistakes in user_apps job file. (LP: #904209)
 
   [Jeff Lane]
+  * Created automated network info test to get some config info during automated 
+    runs. (LP: #912038)
   * Added requires to suspend wireless jobs so they won't run if wireless isn't
     present (LP: #907150)
+  * Fixed issue in usb_test with unwritable filesystems (LP: #912522)
+  * Fixed USB tests so that insert, storage, remove run in proper order
+  * Removed usb_storage_after_suspend since it's superfluous, all other USB
+    tests already run after suspend.
+  * Modifed usb_test to handle firewire drives as well, renamed script to
+    removable_storage_test
 
   [Aurélien Gâteau]
   * Improvements to Recover dialog and show_info method.

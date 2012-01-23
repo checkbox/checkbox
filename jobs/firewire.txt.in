@@ -1,12 +1,37 @@
 plugin: manual
-name: firewire/hdd
+name: firewire/insert
+command: removable_storage_watcher insert firewire
 _description:
  PURPOSE:
-     This test will check that the firewire port works
+     This test will check the system can detect the insertion of a FireWire HDD
  STEPS:
-     1. Plug a Firewire HDD into the computer
-     2. Either a window asking which action should be performed (open folder, photo manager, etc) or a file browser will open.
-     3. Copy some files from your internal HDD to the firewire HDD
-     4. Copy some files from the firewire HDD to your internal HDD
+     1. Click 'Test' to begin the test. This test will 
+        timeout and fail if the insertion has not been detected within 10 seconds.
+     2. Plug a FireWire HDD into an available FireWire port.
  VERIFICATION:
-     Do the copy operations work as expected?
+     The verification of this test is automated. Do not change the automatically
+     selected result
+
+plugin: shell
+name: firewire/storage-test
+depends: firewire/insert
+command: removable_storage_test -d firewire -t
+_description:
+ This is an automated test which performs read/write operations on an attached
+ FireWire HDD
+
+plugin: manual
+name: firewire/remove
+depends: firewire/storage-test
+command: removable_storage_watcher remove firewire
+_description:
+  PURPOSE:
+    This test will check the system can detect the removal of a FireWire HDD
+  STEPS:
+    1. Click 'Test' to begin the test. This test will timeout and fail if
+       the removal has not been detected within 10 seconds.
+    2. Remove the previously attached FireWire HDD from the FireWire port.
+  VERIFICATION:
+    The verification of this test is automated. Do not change the automatically
+    selected result
+

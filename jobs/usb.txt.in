@@ -8,10 +8,10 @@ plugin: manual
 name: usb/disk_detect
 depends: usb/detect
 requires: package.name == 'linux'
-command: usb_test -l
+command: removable_storage_test -d usb -l
 _description:
  PURPOSE:
-     This test will check your USB connection.
+     This test will check that your system detects USB storage devices.
  STEPS:
      1. Plug in one or more USB keys or hard drives.
      2. Click on "Test".
@@ -51,34 +51,41 @@ plugin: manual
 name: usb/insert
 depends: usb/detect
 requires: package.name == 'linux'
-command: watch_command -q -r 5 lsusb
+command: removable_storage_watcher insert usb
 _description:
  PURPOSE:
-     This test will check your USB connection.
+     This test will check that the system correctly detects the insertion of
+     a USB storage device
  STEPS:
-     1. Click "Test" and insert a USB device within 5 seconds.
+     1. Click "Test" and insert a USB storage device (pen-drive/HDD).
+        (Note: this test will time-out after 10 seconds.)
      2. Do not unplug the device after the test.
  VERIFICATION:
-     The verification of this test is automated.
+     The verification of this test is automated. Do not change the
+     automatically selected result.
 
 plugin: manual
 name: usb/remove
-depends: usb/insert
+depends: usb/storage-automated
 requires: package.name == 'linux'
-command: watch_command -q -r 5 lsusb
+command: removable_storage_watcher remove usb
 _description:
  PURPOSE:
-     This test will check your USB connection.
+     This test will check that the system correctly detects the removal of
+     a USB storage device
  STEPS:
-     1. Click "Test" and remove the USB device within 5 seconds.
+     1. Click "Test" and remove the USB device.
+        (Note: this test will time-out after 10 seconds.)
      2. Do not unplug the device after the test.
  VERIFICATION:
-     The verification of this test is automated.
+     The verification of this test is automated. Do not change the
+     automatically selected result.
 
 plugin: manual
 name: usb/storage-transfer
 requires: package.name == 'linux'
-command: usb_test -t
+depends: usb/insert
+command: removable_storage_test -d usb -t
 _description:
  PURPOSE:
      This test will check your USB connection.
@@ -87,14 +94,16 @@ _description:
      2. An icon should appear on the Launcher.
      3. Click "Test" to begin the test.
  VERIFICATION:
-     The verification of this test is automated.
+     The verification of this test is automated. Do not change the
+     automatically selected result.
 
 plugin: shell
 name: usb/storage-automated
 requires: package.name == 'linux'
-command: usb_test -t
+depends: usb/insert
+command: removable_storage_test -d usb -t
 _description:
- This test is automated and requires that you plug in at least one usb storage device before running checkbox.
+ This test is automated and executes after the usb/insert test is run.
 
 plugin: manual
 name: usb/panels
