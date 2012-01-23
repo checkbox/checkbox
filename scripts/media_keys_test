@@ -1,19 +1,41 @@
 #!/usr/bin/env python
+#
+# This file is part of Checkbox.
+#
+# Copyright 2012 Canonical Ltd.
+#
+# Checkbox is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# Checkbox is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
+#
 
-import gettext
-from gettext import gettext as _
 import dbus
 import dbus.mainloop.glib
 import dbus.service
-from gi.repository import GObject
+import gettext
 import os
 import sys 
+from gettext import gettext as _
+from gi.repository import GObject
+
+EXIT_WITH_FAILURE = 1
+EXIT_WITH_SUCCESS = 0
+EXIT_TIMEOUT = 30
 
 class Reporter(object):
     keys = ['Previous','Play','Next','Stop']
     tested_keys = dict( zip( keys, [False] * len(keys)))
     main_loop = None
-    exit_code = 1
+    exit_code = EXIT_WITH_FAILURE 
 
     def __init__(self):
         super(Reporter,self).__init__()
@@ -27,15 +49,29 @@ class Reporter(object):
 class CLIReporter(Reporter):
 
     def __init__(self):
+        import termios
         super(CLIReporter,self).__init__()
         GObject.io_add_watch(sys.stdin.fileno(),GObject.IO_IN, self.on_console_io)
         self.show_text(_("Please press each media control key on your keyboard."))
         self.show_text(_("I will exit automatically once all keys have been pressed."))
         self.show_text(_("You can also close me by pressing ESC or Ctrl+C."))
+        self.fileno = sys.stdin.fileno()
+        self.saved_attributes = termios.tcgetattr(self.fileno)
+        attributes = termios.tcgetattr(self.fileno)
+        attributes[3] = attributes[3] & ~(termios.ICANON)
+        attributes[6][termios.VMIN] = 1
+        attributes[6][termios.VTIME] = 0
+        termios.tcsetattr(self.fileno, termios.TCSANOW, attributes)
 
     def show_text(self,string):
-        print(string)
- 
+        sys.stdout.write(string+"\n")
+        sys.stdout.flush()
+
+    def quit(self):
+        import termios
+        termios.tcsetattr(self.fileno, termios.TCSANOW, self.saved_attributes)
+        self.main_loop.quit()
+
     def on_media_key(self,sender,key):
         if key in self.keys:
             self.show_text(_("%(key_name)s key has been pressed"% {'key_name': key}))
@@ -45,7 +81,7 @@ class CLIReporter(Reporter):
         
         if all(self.tested_keys.values()):
             self.show_text(_("All required media keys have been tested!"))
-            self.exit_code = 0
+            self.exit_code = EXIT_WITH_SUCCESS 
             self.quit() 
    
     def on_console_io(self, source, cb_condition):
@@ -126,9 +162,8 @@ class GtkReporter(Reporter):
         
         if all(self.tested_keys.values()):
             self.show_text(_("All required media keys have been tested!"))
-            self.exit_code = 0
+            self.exit_code = EXIT_WITH_SUCCESS
             self.quit() 
-
 
     def show_text(self,string):
         self.label.set_text(self.label.get_text()+"\n"+string)
@@ -141,7 +176,7 @@ def main(args):
     else:
         reporter = CLIReporter()
 
-    # Get the mainloop going
+    # Get the main_loop going
     dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
     
     bus = dbus.Bus(dbus.Bus.TYPE_SESSION)
@@ -149,7 +184,7 @@ def main(args):
         dbus_object = bus.get_object('org.gnome.SettingsDaemon', '/org/gnome/SettingsDaemon/MediaKeys')
     except dbus.exceptions.DBusException:
         reporter.show_text(_("Unable to connect to GnomeSettingsDaemon to get media key events"))
-        sys.exit(1)
+        sys.exit(EXIT_WITH_FAILURE)
     
     dbus_interface='org.gnome.SettingsDaemon.MediaKeys'
     dbus_object.GrabMediaPlayerKeys("media_keys_test", 0, dbus_interface=dbus_interface)
@@ -160,12 +195,14 @@ def main(args):
 
     reporter.main_loop = main_loop
 
+    GObject.timeout_add_seconds(EXIT_TIMEOUT,reporter.quit)
 
     try:
         main_loop.run()
     except KeyboardInterrupt:
-        reporter.show_text(_("Test cancelled"))
-        return 1
+        reporter.show_text(_("Test interrupted"))
+        reporter.quit()
+        return EXIT_WITH_FAILURE
 
     return reporter.exit_code 
 
