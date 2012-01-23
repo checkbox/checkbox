@@ -1,159 +1,239 @@
 plugin: manual
-name: mediacard/sd
+name: mediacard/mmc-insert
+command: removable_storage_watcher insert sdio
 _description:
  PURPOSE:
-     This test will check your system Secure Digital (SD) media card support
+     This test will check that the systems media card reader can
+     detect the insertion of a Secure Digital High-Capacity (SDHC) media card
  STEPS:
-     1. Plug a SD media card into the computer
-     2. An icon should appear on the Launcher
-     3. Right click on the Launcher icon and select "Safely Remove Drive"
-     4. The icon should disappear from the Launcher
+     1. Click "Test" and insert an SDHC card into the reader.
+        (Note: this test will time-out after 10 seconds.)
+     2. Do not unplug the device after the test.
  VERIFICATION:
-     Does the icon automatically appear/disappear?
+     The verification of this test is automated. Do not change the
+     automatically selected result.
+
+plugin: shell
+name: mediacard/mmc-storage
+depends: mediacard/mmc-insert
+command: removable_storage_test -d sdio -t
+_description:
+ This test is automated and executes after the mediacard/sd-insert
+ test is run. It tests reading and writing to the SDHC card.
 
 plugin: manual
-name: mediacard/sd_after_suspend
-depends: suspend/suspend_advanced mediacard/sd
+name: mediacard/mmc-remove
+depends: mediacard/mmc-storage
+command: removable_storage_watcher remove sdio
 _description:
  PURPOSE:
-     This test will check your system Secure Digital (SD) media card support after suspend
+     This test will check that the system correctly detects 
+     the removal of a Secure Digital High-Capacity (SDHC) card from the systems
+     card reader.
  STEPS:
-     1. Plug a SD media card into the computer
-     2. An icon should appear on the Launcher
-     3. Right click on the Launcher icon and select "Safely Remove Drive"
-     4. The icon should disappear from the Launcher
+     1. Click "Test" and remove the SDHC card from the reader.
+        (Note: this test will time-out after 10 seconds.)
  VERIFICATION:
-     Does the icon automatically appear/disappear?
+     The verification of this test is automated. Do not change the
+     automatically selected result.
 
 plugin: manual
-name: mediacard/sdhc
+name: mediacard/mmc-insert-after-suspend
+depends: suspend/suspend_advanced
+command: removable_storage_watcher insert sdio
 _description:
  PURPOSE:
-     This test will check your system Secure Digital High Capacity (SDHC) media card support
+     This test will check that the systems media card reader can
+     detect the insertion of a Secure Digital High-Capacity (SDHC)
+     media card after the system has been suspended
  STEPS:
-     1. Plug a SDHC media card into the computer
-     2. An icon should appear on the Launcher
-     3. Right click on the Launcher icon and select "Safely Remove Drive"
-     4. The icon should disappear from the Launcher
+     1. Click "Test" and insert an SDHC card into the reader.
+        (Note: this test will time-out after 10 seconds.)
+     2. Do not unplug the device after the test.
  VERIFICATION:
-     Does the icon automatically appear/disappear?
+     The verification of this test is automated. Do not change the
+     automatically selected result.
 
-plugin: manual
-name: mediacard/sdhc_after_suspend
-depends: suspend/suspend_advanced mediacard/sdhc
+plugin: shell
+name: mediacard/mmc-storage-after-suspend
+depends: mediacard/mmc-insert-after-suspend
+command: removable_storage_test -d sdio -t
 _description:
-     This test will check your system Secure Digital High Capacity (SDHC) media card support after suspend
- STEPS:
-     1. Plug a SDHC media card into the computer
-     2. An icon should appear on the Launcher
-     3. Right click on the Launcher icon and select "Safely Remove Drive"
-     4. The icon should disappear from the Launcher
- VERIFICATION:
-     Does the icon automatically appear/disappear?
+ This test is automated and executes after the mediacard/sd-insert-after-suspend test
+ is run. It tests reading and writing to the SDHC card after the system has been suspended.
 
 plugin: manual
-name: mediacard/mmc
-_description:
- PURPOSE:
-     This test will check your system Multi Media Card (MMC) media card support
- STEPS:
-     1. Plug a MMC media card into the computer
-     2. An icon should appear on the Launcher
-     3. Right click on the Launcher icon and select "Safely Remove Drive"
-     4. The icon should disappear from the Launcher
- VERIFICATION:
-     Does the icon automatically appear/disappear?
-
-plugin: manual
-name: mediacard/mmc_after_suspend
-depends: suspend/suspend_advanced mediacard/mmc
+name: mediacard/mmc-remove-after-suspend
+depends: mediacard/mmc-storage-after-suspend
+command: removable_storage_watcher remove sdio
 _description:
  PURPOSE:
-     This test will check your system Multi Media Card (MMC) media card support after suspend
+     This test will check that the system correctly detects the removal
+     of a Secure Digital High-Capacity (SDHC) card from the systems
+     card reader after the system has been suspended.
  STEPS:
-     1. Plug a MMC media card into the computer
-     2. An icon should appear on the Launcher
-     3. Right click on the Launcher icon and select "Safely Remove Drive"
-     4. The icon should disappear from the Launcher
+     1. Click "Test" and remove the SDHC card from the reader.
+        (Note: this test will time-out after 10 seconds.)
  VERIFICATION:
-     Does the icon automatically appear/disappear?
+     The verification of this test is automated. Do not change the
+     automatically selected result.
 
 plugin: manual
-name: mediacard/ms
+name: mediacard/sd-insert
+command: removable_storage_watcher insert sdio
 _description:
  PURPOSE:
-     This test will check your system Memory Stick (MS) media card support
+     This test will check that the systems media card reader can
+     detect the insertion of a Secure Digital (SD) media card
  STEPS:
-     1. Plug a MS media card into the computer
-     2. An icon should appear on the Launcher
-     3. Right click on the Launcher icon and select "Safely Remove Drive"
-     4. The icon should disappear from the Launcher
+     1. Click "Test" and insert an SD card into the reader.
+        (Note: this test will time-out after 10 seconds.)
+     2. Do not unplug the device after the test.
  VERIFICATION:
-     Does the icon automatically appear/disappear?
+     The verification of this test is automated. Do not change the
+     automatically selected result.
+
+plugin: shell
+name: mediacard/sd-storage
+depends: mediacard/sd-insert
+command: removable_storage_test -d sdio -t
+_description:
+ This test is automated and executes after the mediacard/sd-insert
+ test is run. It tests reading and writing to the SD card.
 
 plugin: manual
-name: mediacard/ms_after_suspend
-depends: suspend/suspend_advanced mediacard/ms
+name: mediacard/sd-remove
+depends: mediacard/sd-storage
+command: removable_storage_watcher remove sdio
 _description:
  PURPOSE:
-     This test will check your system Memory Stick (MS) media card support after suspend
+     This test will check that the system correctly detects 
+     the removal of a Secure Digital (SD) card from the systems
+     card reader.
  STEPS:
-     1. Plug a MS media card into the computer
-     2. An icon should appear on the Launcher
-     3. Right click on the Launcher icon and select "Safely Remove Drive"
-     4. The icon should disappear from the Launcher
+     1. Click "Test" and remove the SD card from the reader.
+        (Note: this test will time-out after 10 seconds.)
  VERIFICATION:
-     Does the icon automatically appear/disappear?
+     The verification of this test is automated. Do not change the
+     automatically selected result.
 
 plugin: manual
-name: mediacard/msp
+name: mediacard/sd-insert-after-suspend
+depends: suspend/suspend_advanced
+command: removable_storage_watcher insert sdio
 _description:
  PURPOSE:
-     This test will check your system Memory Stick Pro (MSP) media card support
+     This test will check that the systems media card reader can
+     detect the insertion of a Secure Digital (SD) media card after
+     the system has been suspended
  STEPS:
-     1. Plug a MSP media card into the computer
-     2. An icon should appear on the Launcher
-     3. Right click on the Launcher icon and select "Safely Remove Drive"
-     4. The icon should disappear from the Launcher
+     1. Click "Test" and insert an SD card into the reader.
+        (Note: this test will time-out after 10 seconds.)
+     2. Do not unplug the device after the test.
  VERIFICATION:
-     Does the icon automatically appear/disappear?
+     The verification of this test is automated. Do not change the
+     automatically selected result.
+
+plugin: shell
+name: mediacard/sd-storage-after-suspend
+depends: mediacard/sd-insert-after-suspend
+command: removable_storage_test -d sdio -t
+_description:
+ This test is automated and executes after the mediacard/sd-insert-after-suspend test
+ is run. It tests reading and writing to the SD card after the system has been suspended.
 
 plugin: manual
-name: mediacard/msp_after_suspend
-depends: suspend/suspend_advanced mediacard/msp
+name: mediacard/sd-remove-after-suspend
+depends: mediacard/sd-storage-after-suspend
+command: removable_storage_watcher remove sdio
 _description:
  PURPOSE:
-     This test will check your system Memory Stick Pro (MSP) media card support after suspend
+     This test will check that the system correctly detects 
+     the removal of a Secure Digital (SD) card from the systems
+     card reader after the system has been suspended.
  STEPS:
-     1. Plug a MSP media card into the computer
-     2. An icon should appear on the Launcher
-     3. Right click on the Launcher icon and select "Safely Remove Drive"
-     4. The icon should disappear from the Launcher
+     1. Click "Test" and remove the SD card from the reader.
+        (Note: this test will time-out after 10 seconds.)
  VERIFICATION:
-     Does the icon automatically appear/disappear?
+     The verification of this test is automated. Do not change the
+     automatically selected result.
 
 plugin: manual
-name: mediacard/cf
+name: mediacard/sdhc-insert
+command: removable_storage_watcher insert sdio
 _description:
  PURPOSE:
-     This test will check your system Compact Flash (CF) media card support
+     This test will check that the systems media card reader can
+     detect the insertion of a Secure Digital High-Capacity (SDHC) media card
  STEPS:
-     1. Plug a CF media card into the computer
-     2. An icon should appear on the Launcher
-     3. Right click on the Launcher icon and select "Safely Remove Drive"
-     4. The icon should disappear from the Launcher
+     1. Click "Test" and insert an SDHC card into the reader.
+        (Note: this test will time-out after 10 seconds.)
+     2. Do not unplug the device after the test.
  VERIFICATION:
-     Does the icon automatically appear/disappear?
+     The verification of this test is automated. Do not change the
+     automatically selected result.
+
+plugin: shell
+name: mediacard/sdhc-storage
+depends: mediacard/sdhc-insert
+command: removable_storage_test -d sdio -t
+_description:
+ This test is automated and executes after the mediacard/sd-insert
+ test is run. It tests reading and writing to the SDHC card.
 
 plugin: manual
-name: mediacard/cf_after_suspend
-depends: suspend/suspend_advanced mediacard/cf
+name: mediacard/sdhc-remove
+depends: mediacard/sdhc-storage
+command: removable_storage_watcher remove sdio
 _description:
-     This test will check your system Compact Flash (CF) media card support after suspend
+ PURPOSE:
+     This test will check that the system correctly detects 
+     the removal of a Secure Digital High-Capacity (SDHC) card from the systems
+     card reader.
  STEPS:
-     1. Plug a CF media card into the computer
-     2. An icon should appear on the Launcher
-     3. Right click on the Launcher icon and select "Safely Remove Drive"
-     4. The icon should disappear from the Launcher
+     1. Click "Test" and remove the SDHC card from the reader.
+        (Note: this test will time-out after 10 seconds.)
  VERIFICATION:
-     Does the icon automatically appear/disappear?
+     The verification of this test is automated. Do not change the
+     automatically selected result.
+
+plugin: manual
+name: mediacard/sdhc-insert-after-suspend
+depends: suspend/suspend_advanced
+command: removable_storage_watcher insert sdio
+_description:
+ PURPOSE:
+     This test will check that the systems media card reader can
+     detect the insertion of a Secure Digital High-Capacity (SDHC)
+     media card after the system has been suspended
+ STEPS:
+     1. Click "Test" and insert an SDHC card into the reader.
+        (Note: this test will time-out after 10 seconds.)
+     2. Do not unplug the device after the test.
+ VERIFICATION:
+     The verification of this test is automated. Do not change the
+     automatically selected result.
+
+plugin: shell
+name: mediacard/sdhc-storage-after-suspend
+depends: mediacard/sdhc-insert-after-suspend
+command: removable_storage_test -d sdio -t
+_description:
+ This test is automated and executes after the mediacard/sd-insert-after-suspend test
+ is run. It tests reading and writing to the SDHC card after the system has been suspended.
+
+plugin: manual
+name: mediacard/sdhc-remove-after-suspend
+depends: mediacard/sdhc-storage-after-suspend
+command: removable_storage_watcher remove sdio
+_description:
+ PURPOSE:
+     This test will check that the system correctly detects the removal
+     of a Secure Digital High-Capacity (SDHC) card from the systems
+     card reader after the system has been suspended.
+ STEPS:
+     1. Click "Test" and remove the SDHC card from the reader.
+        (Note: this test will time-out after 10 seconds.)
+ VERIFICATION:
+     The verification of this test is automated. Do not change the
+     automatically selected result.

@@ -83,8 +83,8 @@ def main():
     parser.add_argument('-d', '--disk_type',
                         action='store',
                         required=True,
-                        choices=['usb','firewire'],
-                        help="The type of removable media (usb or firewire) to test.")
+                        choices=['usb','firewire','sdio'],
+                        help="The type of removable media (usb, firewire, sdio) to test.")
     action_group = parser.add_mutually_exclusive_group(required=True)
     action_group.add_argument('-l','--list',
                         action='store_true',
