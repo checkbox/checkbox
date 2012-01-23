@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-01-06 12:39-0500\n"
-"PO-Revision-Date: 2011-10-23 17:15+0000\n"
-"Last-Translator: Simos Xenitellis <Unknown>\n"
+"PO-Revision-Date: 2012-01-22 14:01+0000\n"
+"Last-Translator: Filippos Kolyvas <fkolyvas@gmail.com>\n"
 "Language-Team: Greek <team@gnome.gr>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-01-07 04:43+0000\n"
-"X-Generator: Launchpad (build 14640)\n"
+"X-Launchpad-Export-Date: 2012-01-23 05:15+0000\n"
+"X-Generator: Launchpad (build 14700)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:8
 msgid "_Skip this test"
@@ -25,21 +25,9 @@ msgstr "_Παράλειψη ελέγχου"
 msgid "_Test"
 msgstr "_Δοκιμή"
 
-#: ../checkbox/application.py:74
-msgid "The file to write the log to."
-msgstr "Το αρχείο που θέλετε να γράψετε τις πληροφορίες."
-
 #: ../checkbox/application.py:77
 msgid "One of debug, info, warning, error or critical."
 msgstr "Μια εκ των debug, info, warning, error ή critical."
-
-#: ../checkbox_cli/cli_interface.py:353
-msgid "Please type here and press Ctrl-D when finished:\n"
-msgstr "Παρακαλούμε γράψτε εδώ και πατήστε Ctrl-D όταν τελειώσετε:\n"
-
-#: ../checkbox_gtk/gtk_interface.py:500
-msgid "_Test Again"
-msgstr "_Έλεγχος ξανά"
 
 #: ../plugins/gather_prompt.py:35
 msgid "Gathering information from your system..."
@@ -50,20 +38,12 @@ msgid ""
 "Failed to upload to server,\n"
 "please try again later."
 msgstr ""
-"Δεν απεστάλησαν οι πληροφορίες στον εξυπηρετητή,\n"
-"παρακαλούμε δοκιμάστε ξανά αργότερα."
-
-#: ../plugins/launchpad_prompt.py:92
-msgid "Email address must be in a proper format."
-msgstr "Η ηλεκτρονική σας διεύθυνση πρέπει να είναι κατάλληλη."
+"Αποτυχία αποστολής πληροφοριών στον εξυπηρετητή,\n"
+"Παρακαλώ δοκιμάστε ξανά αργότερα."
 
 #: ../plugins/launchpad_prompt.py:98
 msgid "Exchanging information with the server..."
-msgstr "Αποστέλλονται οι πληροφορίες στον εξυπηρετητή..."
-
-#: ../plugins/report_prompt.py:39
-msgid "Building report..."
-msgstr "Δημιουργία αναφοράς"
+msgstr "Ανταλλαγή πληροφοριών με τον εξυπηρετητή..."
 
 #~ msgid "Successfully sent information!"
 #~ msgstr "Οι πληροφορίες στάλθηκαν επιτυχώς"
@@ -119,11 +99,13 @@ msgstr "_Ναι"
 #: ../gtk/checkbox-gtk.desktop.in.h:2
 msgid "Test your system and submit results to the Ubuntu Friendly project"
 msgstr ""
+"Δοκιμάστε το σύστημα σας και στείλτε τα αποτελέσματα στο πρόγραμμα Ubuntu "
+"Friendly"
 
 #. description
 #: ../jobs/audio.txt.in:7
 msgid "Test to detect audio devices"
-msgstr ""
+msgstr "Έλεγχος για ανίχνευση συσκευών ήχου"
 
 #. description
 #: ../jobs/audio.txt.in:16
@@ -137,6 +119,16 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear a tone?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ  θα ελέγξει ότι τα εσωτερικά ηχεία λειτουργούν σωστά\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Επιβεβαιώστε ότι δεν είναι συνδεδεμένα εξωτερικά ηχεία ή ακουστικά\n"
+"       Εάν ελέγχετε έναν επιτραπέζιο υπολογιστή, τα εξωτερικά ηχεία "
+"επιτρέπονται\n"
+"    2. Κάντε κλικ στο κουμπί Έλεγχος για να παιχτεί ένας σύντομος τόνος στην "
+"συσκευή ήχου σας\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Ακούσατε τόνο;"
 
 #. description
 #: ../jobs/audio.txt.in:33
@@ -150,6 +142,15 @@ msgid ""
 "    Did you hear a sound through the headphones and did the sound play "
 "without any distortion, clicks or other strange noises from your headphones?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα ελέγξει ότι η σύνδεση ακουστικών λειτουργεί σωστά\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Συνδέστε ένα ζευγάρι ακουστικά στη συσκευή ήχου σας\n"
+"    2. Κάντε κλικ στο κουμπί Έλεγχος για να παιχτεί ένας ήχος στην συσκευή "
+"ήχου σας\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Ακούσατε ήχο μέσω των ακουστικών και ο ήχος παίχτηκε χωρίς παραμόρφωση, "
+"κλικ ή άλλους περίεργους ήχους από τα ακουστικά σας;"
 
 #. description
 #: ../jobs/audio.txt.in:49
@@ -164,6 +165,17 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear your speech played back?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα ελέγξει ότι η ηχογράφηση μέσω του ενσωματωμένου "
+"μικροφώνου λειτουργεί σωστά\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Αποσυνδέστε οποιοδήποτε εξωτερικό μικρόφωνο έχετε τυχόν συνδέσει\n"
+"    2. Κάντε κλικ στην επιλογή «Δοκιμή» και έπειτα μιλήστε στο εσωτερικό "
+"μικρόφωνο\n"
+"    3. Κάποια δευτερόλεπτα αργότερα, θα πρέπει να γίνει η αναπαραγωγή της "
+"ομιλίας σας.\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Ακούσατε την αναπαραγωγή της ομιλίας σας;"
 
 #. description
 #: ../jobs/audio.txt.in:66
@@ -178,6 +190,17 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear your speech played back?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα ελέγξει ότι η ηχογράφηση μέσω ενός εξωτερικού μικροφώνου "
+"λειτουργεί σωστά\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Συνδέστε ένα μικρόφωνο στην υποδοχή μικροφώνου του υπολογιστή\n"
+"    2. Κάντε κλικ στην επιλογή «Δοκιμή» και έπειτα μιλήστε στο εξωτερικό "
+"μικρόφωνο\n"
+"    3. Κάποια δευτερόλεπτα αργότερα, θα πρέπει να γίνει η αναπαραγωγή της "
+"ομιλίας σας.\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Ακούσατε την αναπαραγωγή της ομιλίας σας;"
 
 #. description
 #: ../jobs/audio.txt.in:82
@@ -195,6 +218,19 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear your speech played back through the USB headphones?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα ελέγξει ότι μία συσκευή ήχου τύπου USB λειτουργεί σωστά\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Συνδέστε μία συσκευή ήχου τύπου USB στον υπολογιστή σας\n"
+"    2. Ανοίξτε την εφαρμογή ελέγχου έντασης κάνοντας αριστερό κλικ πάνω στο "
+"εικονίδιο των ηχείων στον πίνακα εφαρμογών και επιλέγοντας «Ρυθμίσεις ήχου»\n"
+"    3. Επιλέξτε την καρτέλα «Είσοδος» και μετά επιλέξτε την συσκευή USB σας\n"
+"    4. Επιλέξτε την καρτέλα «Έξοδος» και μετά επιλέξτε την συσκευή USB σας\n"
+"    5. Κάντε κλικ στην επιλογή «Δοκιμή» και έπειτα μιλήστε στο μικρόφωνο\n"
+"    6. Κάποια δευτερόλεπτα αργότερα, θα πρέπει να γίνει η αναπαραγωγή της "
+"ομιλίας σας.\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Ακούσατε την αναπαραγωγή της ομιλίας σας μέσα από τα ακουστικά USB;"
 
 #. description
 #: ../jobs/audio.txt.in:102
@@ -211,6 +247,10 @@ msgid ""
 "   This test will attempt to install and run the Autotest Suite.  These "
 "tests can be destructive, so this test is blacklisted by default."
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"   Αυτό το τεστ θα επιχειρήσει να εγκαταστήσει και να εκτελέσει τη σουίτα "
+"δοκιμών Autotest Suite. Οι δοκιμές αυτές ενδέχεται να είναι καταστρεπτικές, "
+"έτσι αυτό το τεστ αποφεύγεται από προεπιλογή."
 
 #. description
 #: ../jobs/bluetooth.txt.in:7
@@ -218,12 +258,17 @@ msgid ""
 "This test will detect your Bluetooth device and output the device's hardware "
 "address.  If no device is found, the test will exit with an error."
 msgstr ""
+"Αυτός ο έλεγχος θα ανιχνεύσει τη συσκευή bluetooth σας και θα σας επιστρέψει "
+"τη διεύθυνση υλικού της συσκευής σας. Αν δε βρεθεί κάποια συσκευή, ο έλεγχος "
+"θα τερματιστεί επιστρέφοντας ένα σφάλμα."
 
 #. description
 #: ../jobs/bluetooth.txt.in:16
 msgid ""
 "Automated test to store bluetooth device information in checkbox report"
 msgstr ""
+"Αυτοματοποιημένος έλεγχος για την αποθήκευση πληροφοριών της συσκευής "
+"bluetooth στην αναφορά του checkbox"
 
 #. description
 #: ../jobs/bluetooth.txt.in:22
@@ -243,6 +288,24 @@ msgid ""
 "VERIFICATION:\n"
 "    Did all the steps work?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα ελέγξει ότι η bluetooth σύνδεση λειτουργεί σωστά\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Ενεργοποιήστε το  bluetooth σε οποιαδήποτε φορητή συσκευή (ταμπλέτα, "
+"κινητό τηλέφωνο, κτλ.)\n"
+"    2. Κάντε κλικ στο εικονίδιο του bluetooth στην μπάρα μενού\n"
+"    3. Επιλέξτε «Ρύθμιση νέας συσκευής»\n"
+"    4. Ψάξτε για τη συσκευή στη λίστα και επιλέξτε την\n"
+"    5. Εισάγετε στη συσκευή τον αριθμό PIN που επιλέχθηκε αυτόματα από τον "
+"οδηγό σύνδεσης\n"
+"    6. Η συσκευή θα πρέπει να συζευχθεί με τον υπολογιστή\n"
+"    7. Κάντε δεξί κλικ στο εικονίδιο του bluetooth και επιλέξτε να "
+"περιηγηθείτε στα αρχεία\n"
+"    8. Εξουσιοδοτήστε αν είναι απαραίτητο τον υπολογιστή ώστε να έχει "
+"δυνατότητα περιήγησης στα αρχεία της συσκευής\n"
+"    9. Θα πρέπει να μπορείτε να περιηγηθείτε σε όλα τα αρχεία\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Λειτούργησαν όλα τα βήματα;"
 
 #. description
 #: ../jobs/bluetooth.txt.in:41
@@ -257,6 +320,16 @@ msgid ""
 "VERIFICATION:\n"
 "    Were all files copied correctly?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα ελέγξει ότι μπορείτε να μεταφέρετε πληροφορίες μέσω μίας "
+"σύνδεσης bluetooth\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Βεβαιωθείτε ότι μπορείτε να περιηγηθείτε στα αρχεία της φορητής "
+"συσκευής σας\n"
+"    2. Αντιγράψτε ένα αρχείο από τον υπολογιστή στη φορητή συσκευή\n"
+"    3. Αντιγράψτε ένα αρχείο από τη φορητή συσκευή στον υπολογιστή\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Αντιγράφηκαν σωστά όλα τα αρχεία;"
 
 #. description
 #: ../jobs/bluetooth.txt.in:55
@@ -276,6 +349,21 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear the sound you recorded in the bluetooth"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα ελέγξει ότι μπορείτε καταγράψετε και να ακούσετε ήχο "
+"χρησιμοποιώντας μίας συσκευή ήχου bluetooth\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Ενεργοποιήστε το σετ bluetooth\n"
+"    2. Κάντε κλικ στο εικονίδιο του bluetooth στην μπάρα μενού\n"
+"    3. Επιλέξτε «Ρύθμιση νέας συσκευής»\n"
+"    4. Ψάξτε για τη συσκευή στη λίστα και επιλέξτε την\n"
+"    5. Εισάγετε στη συσκευή τον αριθμό PIN που επιλέχθηκε αυτόματα από τον "
+"οδηγό σύνδεσης\n"
+"    6. Η συσκευή θα πρέπει να συζευχθεί με τον υπολογιστή\n"
+"    7. Κάντε κλικ στην επιλογή «Δοκιμή» για να ηχογραφήσετε για πέντε "
+"δευτερόλεπτα και αναπαράξτε την ηχογράφηση στην συσκευή bluetooth\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Ακούσατε τον ήχο που καταγράψατε στη συσκευή bluetooth;"
 
 #. description
 #: ../jobs/bluetooth.txt.in:73
@@ -292,6 +380,18 @@ msgid ""
 "VERIFICATION:\n"
 "    Were you able to enter some text with the bluetooth keyboard?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα ελέγξει ότι μπορείτε να χρησιμοποιήσετε ένα bluetooth "
+"πληκτρολόγιο\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Ενεργοποιήστε το bluetooth πληκτρολόγιο\n"
+"    2. Κάντε κλικ στο εικονίδιο του bluetooth στην μπάρα μενού\n"
+"    3. Επιλέξτε «Ρύθμιση νέας συσκευής»\n"
+"    4. Ψάξτε για τη συσκευή στη λίστα και επιλέξτε την\n"
+"    5. Κάντε κλικ στην επιλογή «Δοκιμή»\n"
+"    6. Εισάγετε ένα κομμάτι κειμένου\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Μπορέσατε να εισάγετε κείμενο με το bluetooth πληκτρολόγιο;"
 
 #. description
 #: ../jobs/bluetooth.txt.in:89
@@ -308,11 +408,25 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the mouse work as expected?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα ελέγξει ότι μπορείτε να χρησιμοποιήσετε ένα bluetooth "
+"ποντίκι\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Ενεργοποιήστε το bluetooth ποντίκι\n"
+"    2. Κάντε κλικ στο εικονίδιο του bluetooth στην μπάρα μενού\n"
+"    3. Επιλέξτε «Ρύθμιση νέας συσκευής»\n"
+"    4. Ψάξτε για τη συσκευή στη λίστα και επιλέξτε την\n"
+"    5. Μετακινήστε το δείκτη του ποντικιού στην οθόνη\n"
+"    6. Εκτελέστε μερικές λειτουργίες χρησιμοποιώντας μονό, διπλό και δεξί "
+"κλικ\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Λειτούργησε το ποντίκι όπως θα περιμένατε;"
 
 #. description
 #: ../jobs/camera.txt.in:7
 msgid "This Automated test attempts to detect a camera."
 msgstr ""
+"Αυτός ο αυτοματοποιημένος έλεγχος έχει σαν σκοπό την ανίχνευσης κάμερας."
 
 #. description
 #: ../jobs/camera.txt.in:16
@@ -324,6 +438,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you see the video capture?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα ελέγξει ότι η ενσωματωμένη κάμερα λειτουργεί\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Κάντε κλικ στη Δοκιμή για να προβάλετε μία λήψη βίντεο από την "
+"κάμερα\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Είδατε τη λήψη βίντεο;"
 
 #. description
 #: ../jobs/camera.txt.in:33
@@ -335,6 +456,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you see the image?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα ελέγξει αν η ενσωματωμένη κάμερα λειτουργεί\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Κάντε κλικ στη Δοκιμή για την προβολή μία ακίνητης εικόνας που "
+"λήφθηκε από την κάμερα\n"
+"ΕΠΙΒΕΒΑΙΩΣΗ:\n"
+"    Βλέπετε την εικόνα;"
 
 #. description
 #: ../jobs/camera.txt.in:49
@@ -348,6 +476,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you see and hear the capture?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα ελέγξει ότι μπορείτε να συλλάβετε βίντεο με την "
+"ενσωματωμένη κάμερα\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Κάντε κλικ στην Δοκιμή ώστε να καταγράψετε βίντεο σε ένα αρχείο (θα "
+"ανοίξει αυτόματα στην εφαρμογή Αναπαραγωγή πολυμέσων ή Totem)\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Είδατε και ακούσατε την καταγραφή;"
 
 #. description
 #: ../jobs/codecs.txt.in:7
@@ -361,6 +497,15 @@ msgid ""
 "VERIFICATION:\n"
 "   Did the sample play correctly?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"   Αυτό το τεστ θα ελέγξει τη δυνατότητα του συστήματός σας για την "
+"αναπαραγωγή αρχείων ήχου Ogg Vorbis\n"
+"ΒΗΜΑΤΑ:\n"
+"   1. Κάντε κλικ στη Δοκιμή για την αναπαραγωγή ενός αρχείου Ogg Vorbis "
+"(.ogg)\n"
+"   2. Παρακαλώ κλείστε την εφαρμογή αναπαραγωγής για να συνεχίσετε.\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"   Αναπαράχθηκε σωστά το δείγμα;"
 
 #. description
 #: ../jobs/codecs.txt.in:22
@@ -373,112 +518,151 @@ msgid ""
 "VERIFICATION:\n"
 "   Did the sample play correctly?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"   Αυτό το τεστ θα ελέγξει τη δυνατότητα του συστήματός σας για την "
+"αναπαραγωγή αρχείων ήχου Wave Audio\n"
+"ΒΗΜΑΤΑ:\n"
+"   1. Κάντε κλικ στη Δοκιμή για την αναπαραγωγή ενός αρχείου Wave Audio "
+"(.wav)\n"
+"   2. Παρακαλώ κλείστε την εφαρμογή αναπαραγωγής για να συνεχίσετε.\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"   Αναπαράχθηκε σωστά το δείγμα;"
 
 #. description
 #: ../jobs/cpu.txt.in:8
 msgid ""
 "Test the CPU scaling capabilities using Firmware Test Suite (fwts cpufreq)."
 msgstr ""
+"Δοκιμή της δυνατότητας κλιμάκωσης της συχνότητας του επεξεργαστή (CPU "
+"scaling) χρησιμοποιώντας τη σουίτα δοκιμών firmware (fwts cpufreq)."
 
 #. description
 #: ../jobs/cpu.txt.in:15
 msgid "Test for clock jitter."
-msgstr ""
+msgstr "Δοκιμή τρέμουλου ρολογιού (clock jitter)."
 
 #. description
 #: ../jobs/cpu.txt.in:23
 msgid "Test offlining CPUs in a multicore system."
-msgstr ""
+msgstr "Δοκιμή απενεργοποίησης επεξεργαστών σε ένα πολυπήρυνο σύστημα."
 
 #. description
 #: ../jobs/cpu.txt.in:30
 msgid "This test checks cpu topology for accuracy"
-msgstr ""
+msgstr "Αυτός ο έλεγχος ελέγχει την ακρίβεια της τοπολογίας του επεξεργαστή"
 
 #. description
 #: ../jobs/cpu.txt.in:38
 msgid "This test checks that CPU frequency governors are obeyed when set."
 msgstr ""
+"Αυτή η δοκιμή ελέγχει ότι ακολουθούνται οι ρυθμίσεις των ελεγκτών συχνότητας "
+"του επεξεργαστή όταν αυτές ρυθμιστούν."
 
 #. description
 #: ../jobs/daemons.txt.in:5
 msgid "Test if the atd daemon is running when the package is installed."
 msgstr ""
+"Δοκιμή εάν ο δαίμονας atd εκτελείται στο παρασκήνιο όταν το πακέτο είναι "
+"εγκατεστημένο."
 
 #. description
 #: ../jobs/daemons.txt.in:11
 msgid "Test if the cron daemon is running when the package is installed."
 msgstr ""
+"Δοκιμή εάν ο δαίμονας cron εκτελείται στο παρασκήνιο όταν το πακέτο είναι "
+"εγκατεστημένο."
 
 #. description
 #: ../jobs/daemons.txt.in:17
 msgid "Test if the cupsd daemon is running when the package is installed."
 msgstr ""
+"Δοκιμή εάν ο δαίμονας cupsd εκτελείται στο παρασκήνιο όταν το πακέτο είναι "
+"εγκατεστημένο."
 
 #. description
 #: ../jobs/daemons.txt.in:23
 msgid "Test if the getty daemon is running when the package is installed."
 msgstr ""
+"Δοκιμή εάν ο δαίμονας getty εκτελείται στο παρασκήνιο όταν το πακέτο είναι "
+"εγκατεστημένο."
 
 #. description
 #: ../jobs/daemons.txt.in:29
 msgid "Test if the init daemon is running when the package is installed."
 msgstr ""
+"Δοκιμή εάν ο δαίμονας init εκτελείται στο παρασκήνιο όταν το πακέτο είναι "
+"εγκατεστημένο."
 
 #. description
 #: ../jobs/daemons.txt.in:35
 msgid "Test if the klogd daemon is running when the package is installed."
 msgstr ""
+"Δοκιμή εάν ο δαίμονας klogd εκτελείται στο παρασκήνιο όταν το πακέτο είναι "
+"εγκατεστημένο."
 
 #. description
 #: ../jobs/daemons.txt.in:41
 msgid "Test if the nmbd daemon is running when the package is installed."
 msgstr ""
+"Δοκιμή εάν ο δαίμονας nmbd εκτελείται στο παρασκήνιο όταν το πακέτο είναι "
+"εγκατεστημένο."
 
 #. description
 #: ../jobs/daemons.txt.in:47
 msgid "Test if the smbd daemon is running when the package is installed."
 msgstr ""
+"Δοκιμή εάν ο δαίμονας smbd εκτελείται στο παρασκήνιο όταν το πακέτο είναι "
+"εγκατεστημένο."
 
 #. description
 #: ../jobs/daemons.txt.in:53
 msgid "Test if the syslogd daemon is running when the package is installed."
 msgstr ""
+"Δοκιμή εάν ο δαίμονας syslogd εκτελείται στο παρασκήνιο όταν το πακέτο είναι "
+"εγκατεστημένο."
 
 #. description
 #: ../jobs/daemons.txt.in:61
 msgid "Test if the udevd daemon is running when the package is installed."
 msgstr ""
+"Δοκιμή εάν ο δαίμονας udevd εκτελείται στο παρασκήνιο όταν το πακέτο είναι "
+"εγκατεστημένο."
 
 #. description
 #: ../jobs/daemons.txt.in:67
 msgid "Test if the winbindd daemon is running when the package is installed."
 msgstr ""
+"Δοκιμή εάν ο δαίμονας winbindd εκτελείται στο παρασκήνιο όταν το πακέτο "
+"είναι εγκατεστημένο."
 
 #. description
 #: ../jobs/disk.txt.in:4
 msgid "Detects and displays disks attached to the system."
-msgstr ""
+msgstr "Εντοπίζει και απεικονίζει τους συνημμένους δίσκους στο σύστημα."
 
 #. description
 #: ../jobs/disk.txt.in:9
 msgid "Benchmark for each disk "
-msgstr ""
+msgstr "Συγκριτική αξιολόγηση για κάθε δίσκο "
 
 #. description
 #: ../jobs/disk.txt.in:26
 msgid "SMART test"
-msgstr ""
+msgstr "Δοκιμή SMART"
 
 #. description
 #: ../jobs/disk.txt.in:42
 msgid "Maximum disk space used during a default installation test"
 msgstr ""
+"Ο μέγιστος χώρος δίσκου που χρησιμοποιήθηκε κατά τη δοκιμή μιας "
+"προεπιλεγμένης εγκατάστασης"
 
 #. description
 #: ../jobs/disk.txt.in:57
 msgid "Verify system storage performs at or above baseline performance"
 msgstr ""
+"Επαληθεύει ότι το σύστημα αποθήκευσης αποδίδει τουλάχιστον ή περισσότερο από "
+"τη μέση απόδοση"
 
 #. description
 #: ../jobs/disk.txt.in:74
@@ -486,6 +670,8 @@ msgid ""
 "Verify that storage devices, such as Fibre Channel and RAID can be detected "
 "and perform under stress."
 msgstr ""
+"Επαλήθευση ότι οι συσκευές αποθήκευσης, όπως το Fibre Channel και το RAID "
+"μπορούν να ανιχνεύονται και να αποδίδουν υπό πίεση."
 
 #. description
 #: ../jobs/fingerprint.txt.in:3
@@ -508,6 +694,27 @@ msgid ""
 "VERIFICATION:\n"
 "   Did the authentication procedure work correctly?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"   Αυτό το τεστ θα επαληθεύσει ότι ένας αναγνώστης δακτυλικών αποτυπωμάτων "
+"θα λειτουργεί σωστά για τη σύνδεση στο σύστημά σας.\n"
+"ΠΡΟΑΠΑΙΤΟΥΜΕΝΑ:\n"
+"   Αυτό το τεστ υποθέτει πως υπάρχει ένας λογαριασμός δοκιμής από τον οποίο "
+"εκτελούνται περιπτώσεις δοκιμών και ένας προσωπικός λογαριασμός τον οποίο ο "
+"χρήστης θα χρησιμοποιήσει για την επαλήθευση του αναγνώστη δακτυλικών "
+"αποτυπωμάτων\n"
+"ΒΗΜΑΤΑ:\n"
+"   1. Κάντε κλικ στη μικροεφαρμογή εναλλαγής χρηστών.\n"
+"   2. Επιλέξτε το όνομα χρήστη σας.\n"
+"   3. Θα πρέπει να εμφανιστεί ένα παράθυρο το οποίο να παρέχει τη δυνατότητα "
+"να συνδεθείτε είτε πληκτρολογώντας τον κωδικό σας είτε χρησιμοποιώντας το "
+"δακτυλικό σας αποτύπωμα.\n"
+"   4. Χρησιμοποιήστε τον αναγνώστη δακτυλικών αποτυπωμάτων για να "
+"συνδεθείτε.\n"
+"   5. Κάντε κλικ στη μικροεφαρμογή εναλλαγής χρηστών.\n"
+"   6. Επιλέξτε τον λογαριασμό δοκιμών για να συνεχίσετε να εκτελείτε "
+"δοκιμές.\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"   Λειτούργησε σωστά η διαδικασία πιστοποίησης;"
 
 #. description
 #: ../jobs/fingerprint.txt.in:20
@@ -526,6 +733,21 @@ msgid ""
 "VERIFICATION:\n"
 "   Did the authentication procedure work correctly?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"   Αυτό το τεστ θα επαληθεύσει ότι ένας αναγνώστης δακτυλικών αποτυπωμάτων "
+"μπορεί να χρησιμοποιηθεί για το ξεκλείδωμα ενός κλειδωμένου συστήματος.\n"
+"ΒΗΜΑΤΑ:\n"
+"   1. Κάντε κλικ στη μικροεφαρμογή εναλλαγής χρηστών.\n"
+"   2. Επιλέξτε «Κλείδωμα οθόνης».\n"
+"   3. Πατήστε οποιοδήποτε πλήκτρο ή μετακινήστε το ποντίκι.\n"
+"   4. Θα πρέπει να εμφανιστεί ένα παράθυρο το οποίο να παρέχει τη δυνατότητα "
+"να ξεκλιδώσετε την οθόνη είτε πληκτρολογώντας τον κωδικό σας είτε "
+"χρησιμοποιώντας την πιστοποίηση του δακτυλικού αποτυπώματος.\n"
+"   5. Χρησιμοποιήστε τον αναγνώστη δακτυλικών αποτυπωμάτων για να "
+"ξεκλειδώσετε.\n"
+"   6. Η οθόνη σας θα πρέπει να ξεκλειδώσει.\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"   Λειτούργησε σωστά η διαδικασία πιστοποίησης;"
 
 #. description
 #: ../jobs/firewire.txt.in:3
@@ -541,21 +763,36 @@ msgid ""
 "VERIFICATION:\n"
 "    Do the copy operations work as expected?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα ελέγξει αν λειτουργεί η θύρα firewire\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Συνδέστε έναν δίσκο firewire στον υπολογιστή\n"
+"    2. Θα ανοίξει είτε ένα παράθυρο το οποίο θα ρωτά για την ενέργεια που θα "
+"εκτελεστεί (άνοιγμα φακέλου, διαχειριστής φωτογραφιών κτλ), είτε ένας "
+"περιηγητής αρχείων.\n"
+"    3. Αντιγράψτε μερικά αρχεία από τον εσωτερικό σας δίσκο στο δίσκο "
+"firewire\n"
+"    4. Αντιγράψτε μερικά αρχεία από το δίσκο firewire στον εσωτερικό σας "
+"δίσκο\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Λειτούργησαν όπως θα περιμένατε οι ενέργειες αντιγραφής;"
 
 #. description
 #: ../jobs/floppy.txt.in:4
 msgid "Floppy test"
-msgstr ""
+msgstr "Δοκιμή Floppy"
 
 #. description
 #: ../jobs/graphics.txt.in:5
 msgid "Test to output the Xorg version"
-msgstr ""
+msgstr "Δοκιμή για την έξοδο της έκδοσης Xorg"
 
 #. description
 #: ../jobs/graphics.txt.in:12
 msgid "Run gtkperf to make sure that GTK based test cases work"
 msgstr ""
+"Εκτελέστε το gtkperf για να είστε σίγουροι πως λειτουργούν οι δοκιμές που "
+"βασίζονται στο GTK"
 
 #. description
 #: ../jobs/graphics.txt.in:18
@@ -572,6 +809,17 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the resolution change as expected?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα επιβεβαιώσει πως το γραφικό περιβάλλον (GUI) είναι "
+"χρησιμοποιήσιμο μετά την χειροκίνητη αλλαγή της ανάλυσης\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Ανοίξτε την εφαρμογή «Οθόνες»\n"
+"    2. Επιλέξτε μία νέα ανάλυση από την αναδυόμενη λίστα\n"
+"    3. Κάντε κλικ στην επιλογή «Εφαρμογή»\n"
+"    4. Επιλέξτε την αυθεντική ανάλυση από την αναδυόμενη λίστα\n"
+"    5. Κάντε κλικ στην επιλογή «Εφαρμογή»\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Άλλαξε η ανάλυση όπως θα περιμένατε;"
 
 #. description
 #: ../jobs/graphics.txt.in:33
@@ -588,16 +836,27 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the display rotation change as expected?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα ελέγξει την περιστροφή της οθόνης\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Ανοίξτε την εφαρμογή «Οθόνες»\n"
+"    2. Επιλέξτε μία νέα περιστροφή οθόνης από την αναδυόμενη λίστα\n"
+"    3. Κάντε κλικ στην επιλογή «Εφαρμογή»\n"
+"    4. Κάντε κλικ στην επιλογή «Επαναφορά προηγούμενης ρύθμισης»\n"
+"    5. Κάντε κλικ στην επιλογή «Εφαρμογή»\n"
+"    6. Επαναλάβετε τα βήματα 2-5 για διαφορετικές ρυθμίσεις περιστροφής\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Άλλαξε η περιστροφή της οθόνης όπως θα περιμένατε;"
 
 #. description
 #: ../jobs/graphics.txt.in:50
 msgid "Test that the X process is running."
-msgstr ""
+msgstr "Δοκιμή ότι η διεργασία X εκτελείται."
 
 #. description
 #: ../jobs/graphics.txt.in:56
 msgid "Test that the X is not running in failsafe mode."
-msgstr ""
+msgstr "Δοκιμή ότι η διεργασία X εκτελείται σε ασφαλή λειτουργία."
 
 #. description
 #: ../jobs/graphics.txt.in:63
@@ -605,6 +864,8 @@ msgid ""
 "Test that X does not leak memory when running programs on systems with intel "
 "based graphics."
 msgstr ""
+"Δοκιμή για το ότι η διεργασία X δεν παρουσιάζει διαρροή μνήμης κατά την "
+"εκτέλεση προγραμμάτων σε συστήματα με γραφικά Intel."
 
 #. description
 #: ../jobs/graphics.txt.in:70
@@ -618,6 +879,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Is this acceptable for your display?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα επαληθεύσει την προεπιλεγμένη ανάλυση οθόνης\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Αυτή η οθόνη χρησιμοποιεί την ακόλουθη ανάλυση:\n"
+"ΠΛΗΡΟΦΟΡΙΑ:\n"
+"    $έξοδος\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Είναι αυτή η ανάλυση αποδεκτή για την οθόνη σας;"
 
 #. description
 #: ../jobs/graphics.txt.in:85
@@ -625,6 +894,8 @@ msgid ""
 "Ensure the current resolution meets or exceeds the recommended minimum "
 "resolution (800x600). See here for details:"
 msgstr ""
+"Βεβαιωθείτε ότι η τρέχουσα ανάλυση είναι ίση τουλάχιστον με την προτεινόμενη "
+"ελάχιστη ανάλυση (800x600) ή την υπερβαίνει. Δείτε εδώ για λεπτομέρειες:"
 
 #. description
 #: ../jobs/graphics.txt.in:85
@@ -641,6 +912,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Do you see color bars and static?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα ελέγξει την προεπιλεγμένη οθόνη\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Κάντε κλικ στην επιλογή «Δοκιμή» ώστε να εμφανιστεί μία δοκιμή "
+"βίντεο.\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Βλέπετε τις γραμμές χρωμάτων και τις στατικές απεικονίσεις;"
 
 #. description
 #: ../jobs/graphics.txt.in:107
@@ -655,6 +933,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Are those correct?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ ελέγχει τις ανιχνεύσιμες λειτουργίες βίντεο\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Στο σύστημά σας ανιχνεύθηκαν οι ακόλουθες λειτουργίες οθόνης\n"
+"ΠΛΗΡΟΦΟΡΙΕΣ:\n"
+"    $έξοδος\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Είναι σωστό αυτό το αποτέλεσμα;"
 
 #. description
 #: ../jobs/graphics.txt.in:122
@@ -666,6 +952,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the screen appear to be working for each mode?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ εναλλάσσεται κυκλικά μεταξύ των ανιχνευθέντων λειτουργιών "
+"βίντεο\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Κάντε κλικ στην επιλογή «Δοκιμή» για να αρχίσει η εναλλαγή μεταξύ των "
+"λειτουργιών\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Φάνηκε η οθόνη να λειτουργεί για κάθε τρόπο λειτουργίας;"
 
 #. description
 #: ../jobs/graphics.txt.in:133
@@ -685,6 +979,18 @@ msgid ""
 "    1. Did the 3d animation appear?\n"
 "    2. Was the animation free from slowness/jerkiness?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ δοκιμάζει τις βασικές δυνατότητες τρισδιάστατης επιτάχυνσης "
+"της κάρτας γραφικών\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Κάντε κλικ στην επιλογή «Δοκιμή» για να εκτελέσετε ένα δοκιμαστικό "
+"του OpenGL. Πατήστε το πλήκτρο ESC οποιαδήποτε στιγμή για να το "
+"σταματήσετε.\n"
+"    2. Επαληθεύστε πως η κίνηση δεν γίνεται σπασμωδικά ή πολύ αργά.\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    1. Εμφανίστηκε η τρισδιάστατη κινούμενη απεικόνιση;\n"
+"    2. Ήταν η τρισδιάστατη κινούμενη απεικόνιση αρκετά γρήγορη και χωρίς "
+"σπασμωδικότητα;"
 
 #. description
 #: ../jobs/hibernate.txt.in:7
@@ -703,122 +1009,152 @@ msgid ""
 "    Did the system successfully hibernate and did it work properly after "
 "waking up?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα κάνει έναν έλεγχο ώστε να επιβεβαιώσει ότι το σύστημά "
+"σας μπορεί επιτυχημένα να αδρανοποιηθεί (εφόσον αυτό υποστηρίζεται)\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Κάντε κλικ στην επιλογή «Δοκιμή»\n"
+"    2. Το σύστημα θα αδρανοποιηθεί και θα πρέπει να επανέλθει μέσα σε 5 "
+"λεπτά\n"
+"    3. Αν το σύστημά σας δεν επανέλθει αυτόματα μετά από 5 λεπτά, παρακαλώ "
+"πατήστε το πλήκτρο ενέργειας (On/Off) για να επαναφέρετε το σύστημα "
+"χειροκίνητα\n"
+"    4. Αν το σύστημα αποτύχει να επανέλθει από την αδρανοποίηση, παρακαλώ "
+"επανεκκινήστε τον «Έλεγχο συστήματος» και σημειώστε αυτό το τεστ ως "
+"αποτυχημένο\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Αδρανοποιήθηκε επιτυχώς το σύστημα και λειτούργησε σωστά μετά την "
+"επαναφορά του;"
 
 #. description
 #: ../jobs/info.txt.in:5
 msgid "Attaches a report of installed codecs for Intel HDA"
 msgstr ""
+"Επισύναψη μίας αναφοράς εγκαταστημένων κωδικοποιητών για ήχο υψηλής "
+"πιστότητας Intel HDA"
 
 #. description
 #: ../jobs/info.txt.in:10
 msgid "Attaches a report of CPU information"
-msgstr ""
+msgstr "Επισύναψη μίας αναφοράς πληροφοριών για τον επεξεργαστή (CPU)"
 
 #. description
 #: ../jobs/info.txt.in:15
 msgid "Attaches a copy of /var/log/dmesg to the test results"
 msgstr ""
+"Επισύναψη ενός αντιγράφου του αρχείου /var/log/dmesg στα αποτελέσματα της "
+"δοκιμής"
 
 #. description
 #: ../jobs/info.txt.in:20
 msgid "Attaches info on DMI"
-msgstr ""
+msgstr "Επισύναψη πληροφοριών για το DMI (Direct Media Interface)"
 
 #. description
 #: ../jobs/info.txt.in:26
 msgid "Attaches dmidecode output"
-msgstr ""
+msgstr "Επισύναψη του αποτελέσματος της εντολής  dmidecode"
 
 #. description
 #: ../jobs/info.txt.in:31
 msgid "Attaches very verbose lspci output."
-msgstr ""
+msgstr "Επισύναψη πολύ αναλυτικού αποτελέσματος της εντολής lspci"
 
 #. description
 #: ../jobs/info.txt.in:40
 msgid "Attaches the contents of the various modprobe conf files."
-msgstr ""
+msgstr "Επισύναψη του περιεχομένου των διαφόρων modprobe conf αρχείων"
 
 #. description
 #: ../jobs/info.txt.in:45
 msgid "Attaches the contents of the /etc/modules file."
-msgstr ""
+msgstr "Επισύναψη του περιεχομένου του αρχείου /etc/modules."
 
 #. description
 #: ../jobs/info.txt.in:50
 msgid "attaches the contents of various sysctl config files."
-msgstr ""
+msgstr "Επισύναψη των περιεχομένων διαφόρων αρχείων ρυθμίσεων sysctl"
 
 #. description
 #: ../jobs/info.txt.in:54
 msgid "Attaches a report of sysfs attributes."
-msgstr ""
+msgstr "Επισύναψη μίας αναφοράς των χαρακτηριστικών sysfs"
 
 #. description
 #: ../jobs/info.txt.in:65
 msgid ""
 "Attaches a dump of the udev database showing system hardware information."
 msgstr ""
+"Επισύναψη μίας αποτύπωσης της βάσης δεδομένων udev η οποία δείχνει "
+"πληροφορίες για το υλικό του συστήματος."
 
 #. description
 #: ../jobs/info.txt.in:72
 msgid "Attaches a tarball of gcov data if present."
-msgstr ""
+msgstr "Επισύναψη ενός συμπιεσμένου αρχείου με δεδομένα gconv αν υπάρχουν."
 
 #. description
 #: ../jobs/info.txt.in:77
 msgid "Attaches a list of the currently running kernel modules."
 msgstr ""
+"Επισύναψη μίας λίστας των εκτελούμενων τη δεδομένη στιγμή αρθρωμάτων του "
+"πυρήνα."
 
 #. description
 #: ../jobs/info.txt.in:85
 msgid "Captures a screenshot."
-msgstr ""
+msgstr "Καταγράφει ένα στιγμιότυπο οθόνης."
 
 #. description
 #: ../jobs/info.txt.in:91
 msgid "Attaches the screenshot captured in info/screenshot."
-msgstr ""
+msgstr "Επισύναψη του στιγμιότυπου που καταγράφηκε στο  info/screenshot."
 
 #. description
 #: ../jobs/info.txt.in:96
 msgid "Gather log from the Firmware Test Suite run."
 msgstr ""
+"Συγκέντρωση των καταγραφών από την εκτέλεση της σουίτας δοκιμών firmware."
 
 #. description
 #: ../jobs/info.txt.in:103
 msgid "Attaches the contents of /proc/acpi/sleep if it exists."
-msgstr ""
+msgstr "Επισύναψη του περιεχόμενου του αρχείου /proc/acpi/sleep αν υπάρχει."
 
 #. description
 #: ../jobs/info.txt.in:107
 msgid "Bootchart information."
-msgstr ""
+msgstr "Πληροφορίες Bootchart."
 
 #. description
 #: ../jobs/info.txt.in:116
 msgid "SATA/IDE device information."
-msgstr ""
+msgstr "Πληροφορίες συσκευών SATA/IDE"
 
 #. description
 #: ../jobs/info.txt.in:133
 msgid "Attaches the bootchart png file for bootchart runs"
 msgstr ""
+"Επισύναψη του αρχείου bootchart png για εκτελέσεις του προγράμματος bootchart"
 
 #. description
 #: ../jobs/info.txt.in:142
 msgid "Attaches the bootchart log for bootchart test runs."
 msgstr ""
+"Επισύναψη των καταγραφών bootchart για δοκιμαστικές εκτελέσεις του "
+"προγράμματος bootchart"
 
 #. description
 #: ../jobs/info.txt.in:150
 msgid "installs the installer bootchart tarball if it exists."
 msgstr ""
+"εγκαθιστά τον οδηγό εγκατάστασης του συμπιεσμένου αρχείου bootchart αν "
+"υπάρχει."
 
 #. description
 #: ../jobs/info.txt.in:155
 msgid "Attaches the installer debug log if it exists."
-msgstr ""
+msgstr "Επισύναψη της καταγραφής αποσφαλμάτωσης του εγκαταστάτη αν υπάρχει."
 
 #. description
 #: ../jobs/input.txt.in:4
@@ -831,6 +1167,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the pointing device work as expected?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα ελέγξει την συσκευή κατάδειξής σας\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Μετακινήστε τον δείκτη χρησιμοποιώντας τη συσκευή κατάδειξης ή "
+"αγγίξτε την οθόνη.\n"
+"    2. Πραγματοποιήστε κάποιες λειτουργίες μονού/διπλού/δεξιού κλικ.\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Λειτούργησε η συσκευή κατάδειξης όπως θα περιμένατε;"
 
 #. description
 #: ../jobs/input.txt.in:17
@@ -843,6 +1187,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Is your keyboard working properly?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα ελέγξει το πληκτρολόγιό σας\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Κάντε κλικ στην επιλογή «Δοκιμή»\n"
+"    2. Στην ανοιχτή περιοχή κειμένου, χρησιμοποιήστε το πληκτρολόγιο για να "
+"πληκτρολογήσετε κάτι\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Λειτουργεί σωστά το πληκτρολόγιό σας;"
 
 #. description
 #: ../jobs/install.txt.in:6
@@ -851,6 +1203,10 @@ msgid ""
 "install updates). This is done to confirm that you could recover from an "
 "incomplete or broken update."
 msgstr ""
+"Έλεγχος για το αν η εφαρμογή apt έχει πρόσβαση στα αποθετήρια και μπορεί να "
+"εγκαταστήσει ενημερώσεις (δεν εγκαθιστά τις ενημερώσεις). Αυτό γίνεται για "
+"να επιβεβαιωθεί το ότι θα μπορούσατε να επαναφέρετε το σύστημα από μία "
+"ανολοκλήρωτη ή σπασμένη ενημέρωση."
 
 #. description
 #: ../jobs/keys.txt.in:4
@@ -862,6 +1218,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the brightness change following to your key presses?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα ελέγξει τη λειτουργία του πλήκτρου φωτεινότητας\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Πατήστε τα πλήκτρα φωτεινότητας στο πληκτρολόγιο\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Άλλαξε η φωτεινότητα όπως θα έπρεπε ακολουθώντας τα πατήματα των "
+"πλήκτρων;"
 
 #. description
 #: ../jobs/keys.txt.in:14
@@ -873,6 +1236,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the volume change following to your key presses?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα ελέγξει τη λειτουργία των πλήκτρων έντασης του ήχου\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Πατήστε τα πλήκτρα ελέγχου της έντασης στο πληκτρολόγιο\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Άλλαξε η ένταση του ήχου όπως θα έπρεπε σύμφωνα με τα πατήματα των "
+"πλήκτρων;"
 
 #. description
 #: ../jobs/keys.txt.in:25
@@ -884,6 +1254,12 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the volume mute following your key presses?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα ελέγξει τη λειτουργία του πλήκτρου σίγασης\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Πατήστε το πλήκτρο σίγασης του πληκτρολογίου\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Έκλεισε η ένταση του ήχου σύμφωνα με το πάτημα του πλήκτρου;"
 
 #. description
 #: ../jobs/keys.txt.in:37
@@ -896,6 +1272,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the system go to sleep after pressing the sleep key?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα ελέγξει το πλήκτρο αναστολής λειτουργίας\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Πατήστε το πλήκτρο αναστολής λειτουργίας του πληκτρολογίου\n"
+"    2. Επαναφέρετε το σύστημά σας πιέζοντας το πλήκτρο ενέργειας (On/Off)\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Ανεστάλη η λειτουργία του συστήματος με το πάτημα του πλήκτρου αναστολής "
+"λειτουργίας;"
 
 #. description
 #: ../jobs/keys.txt.in:49
@@ -907,6 +1291,12 @@ msgid ""
 "VERIFICATION:\n"
 "    Did a notification appear showing the battery status?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα ελέγξει το πλήκτρο πληροφοριών μπαταρίας\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Πατήστε το πλήκτρο πληροφοριών μπαταρίας του πληκτρολογίου\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Εμφανίστηκε μία ειδοποίηση δείχνοντας την κατάσταση της μπαταρίας;"
 
 #. description
 #: ../jobs/keys.txt.in:60
@@ -919,6 +1309,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the wireless go off on the first press and on again on the second?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα ελέγξει το πλήκτρο ασύρματης δικτύωσης\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Πατήστε το πλήκτρο ασύρματης δικτύωσης του πληκτρολογίου\n"
+"    2. Πατήστε το ίδιο πλήκτρο ξανά\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Απενεργοποιήθηκε το ασύρματο δίκτυο στο πρώτο πάτημα και ενεργοποιήθηκε "
+"ξανά στο δεύτερο;"
 
 #. description
 #: ../jobs/keys.txt.in:76
@@ -934,6 +1332,17 @@ msgid ""
 "VERIFICATION:\n"
 "    Do the keys work as expected?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα ελέγξει τα πλήκτρα πολυμέσων του πληκτρολογίου σας\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Πατήστε στην επιλογή «Δοκιμή» για να εκκινήσετε την αναπαραγωγή "
+"πολυμέσων\n"
+"    2. Πατήστε τα πλήκτρα αναπαραγωγής/παύσης του πληκτρολογίου\n"
+"    3. Πατήστε το πλήκτρο προώθησης (forward) του πληκτρολογίου\n"
+"    4. Πατήστε το πλήκτρο οπισθοδρόμησης (backward) του πληκτρολογίου\n"
+"    5. Πατήστε το πλήκτρο στοπ του πληκτρολογίου\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Λειτουργούν τα πλήκτρα όπως θα περιμένατε;"
 
 #. description
 #: ../jobs/local.txt.in:3
@@ -943,32 +1352,32 @@ msgstr "Έλεγχοι ήχου"
 #. description
 #: ../jobs/local.txt.in:8
 msgid "Autotest Suite tests"
-msgstr ""
+msgstr "Δοκιμές της σουίτας Autotest"
 
 #. description
 #: ../jobs/local.txt.in:13
 msgid "Bluetooth tests"
-msgstr ""
+msgstr "Έλεγχοι bluetooth"
 
 #. description
 #: ../jobs/local.txt.in:18
 msgid "Camera tests"
-msgstr ""
+msgstr "Έλεγχοι κάμερας"
 
 #. description
 #: ../jobs/local.txt.in:23
 msgid "Codec tests"
-msgstr ""
+msgstr "Έλεγχοι κωδικοποιήσεων"
 
 #. description
 #: ../jobs/local.txt.in:28
 msgid "CPU tests"
-msgstr ""
+msgstr "Έλεγχοι επεξεργαστών"
 
 #. description
 #: ../jobs/local.txt.in:33
 msgid "System Daemon tests"
-msgstr ""
+msgstr "Έλεγχοι «δαιμόνων» του συστήματος"
 
 #. description
 #: ../jobs/local.txt.in:38
@@ -988,62 +1397,62 @@ msgstr "Δοκιμές δίσκου Firewire"
 #. description
 #: ../jobs/local.txt.in:53
 msgid "Floppy disk tests"
-msgstr ""
+msgstr "Έλεγχοι δισκετών Floppy"
 
 #. description
 #: ../jobs/local.txt.in:58
 msgid "Graphics tests"
-msgstr ""
+msgstr "Έλεγχοι γραφικών"
 
 #. description
 #: ../jobs/local.txt.in:63
 msgid "Hibernation tests"
-msgstr ""
+msgstr "Έλεγχοι αδρανοποίησης"
 
 #. description
 #: ../jobs/local.txt.in:68
 msgid "Informational tests"
-msgstr ""
+msgstr "Πληροφοριακοί έλεγχοι"
 
 #. description
 #: ../jobs/local.txt.in:73
 msgid "Input Devices tests"
-msgstr ""
+msgstr "Έλεγχοι συσκευών εισόδου"
 
 #. description
 #: ../jobs/local.txt.in:78
 msgid "Software Installation tests"
-msgstr ""
+msgstr "Έλεγχοι εγκατάστασης λογισμικού"
 
 #. description
 #: ../jobs/local.txt.in:83
 msgid "Hotkey tests"
-msgstr ""
+msgstr "Έλεγχοι συντομεύσεων πλήκτρων"
 
 #. description
 #: ../jobs/local.txt.in:88
 msgid "Linux Test Project tests"
-msgstr ""
+msgstr "Έλεγχοι του Linux Test Project"
 
 #. description
 #: ../jobs/local.txt.in:93
 msgid "Mago Automated Desktop Testing"
-msgstr ""
+msgstr "Αυτοματοποιημένοι έλεγχοι περιβάλλοντος εργασίας Mago"
 
 #. description
 #: ../jobs/local.txt.in:98
 msgid "Media Card tests"
-msgstr ""
+msgstr "Έλεγχοι καρτών μέσων"
 
 #. description
 #: ../jobs/local.txt.in:103
 msgid "Memory tests"
-msgstr ""
+msgstr "Έλεγχοι μνήμης"
 
 #. description
 #: ../jobs/local.txt.in:108
 msgid "Miscellaneous tests"
-msgstr ""
+msgstr "Διάφοροι έλεγχοι"
 
 #. description
 #: ../jobs/local.txt.in:113
@@ -1053,62 +1462,62 @@ msgstr "Δοκιμές οθόνης"
 #. description
 #: ../jobs/local.txt.in:118
 msgid "Networking tests"
-msgstr ""
+msgstr "Έλεγχοι δικτύων"
 
 #. description
 #: ../jobs/local.txt.in:123
 msgid "Optical Drive tests"
-msgstr ""
+msgstr "Έλεγχοι οδηγών οπτικών συσκευών"
 
 #. description
 #: ../jobs/local.txt.in:128
 msgid "Panel Clock Verification tests"
-msgstr ""
+msgstr "Έλεγχοι επαλήθευσης ρολογιού πίνακα εφαρμογών"
 
 #. description
 #: ../jobs/local.txt.in:133
 msgid "PCMCIA/PCIX Card tests"
-msgstr ""
+msgstr "Έλεγχοι καρτών PCMCIA/PCIX"
 
 #. description
 #: ../jobs/local.txt.in:138
 msgid "Peripheral tests"
-msgstr "Δοκιμές περιφερειακών"
+msgstr "Έλεγχοι περιφερειακών"
 
 #. description
 #: ../jobs/local.txt.in:143
 msgid "Phoronix Test Suite tests"
-msgstr ""
+msgstr "Έλεγχοι σουίτας δοκιμών του Phoronix"
 
 #. description
 #: ../jobs/local.txt.in:148
 msgid "Power Management tests"
-msgstr ""
+msgstr "Έλεγχοι διαχείρισης ενέργειας"
 
 #. description
 #: ../jobs/local.txt.in:153
 msgid "QA Regression tests"
-msgstr ""
+msgstr "Έλεγχοι παλινδρομήσεων QA"
 
 #. description
 #: ../jobs/local.txt.in:158
 msgid "Server Services checks"
-msgstr ""
+msgstr "Έλεγχοι υπηρεσιών εξυπηρετητή"
 
 #. description
 #: ../jobs/local.txt.in:163
 msgid "Suspend tests"
-msgstr ""
+msgstr "Έλεγχοι αναστολής λειτουργίας"
 
 #. description
 #: ../jobs/local.txt.in:168
 msgid "Unity tests"
-msgstr ""
+msgstr "Έλεγχοι του Unity"
 
 #. description
 #: ../jobs/local.txt.in:173
 msgid "USB tests"
-msgstr ""
+msgstr "Έλεγχοι USB"
 
 #. description
 #: ../jobs/local.txt.in:178
@@ -1118,12 +1527,12 @@ msgstr "Εφαρμογές χρήστη"
 #. description
 #: ../jobs/local.txt.in:183
 msgid "Wireless networking tests"
-msgstr ""
+msgstr "Έλεγχοι ασύρματης δικτύωσης"
 
 #. description
 #: ../jobs/local.txt.in:188
 msgid "Stress tests"
-msgstr ""
+msgstr "Έλεγχοι υπερβολικού φόρτου"
 
 #. description
 #: ../jobs/ltp.txt.in:3
@@ -1131,6 +1540,9 @@ msgid ""
 "This test installs and runs Linux Test Project syscalls test. This can be "
 "destructive, thus this test is blacklisted by default."
 msgstr ""
+"Αυτός ο έλεγχος εγκαθιστά και εκτελεί το σύστημα δοκιμών συστήματος Linux "
+"Test Project. Αυτός ο έλεγχος ενδέχεται να είναι καταστρεπτικός, οπότε από "
+"προεπιλογή είναι μη προτεινόμενος."
 
 #. description
 #: ../jobs/mago.txt.in:8
@@ -1138,6 +1550,9 @@ msgid ""
 "PURPOSE:\n"
 "   This test installs and runs the Mago Automated Desktop Testing suite."
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"   Αυτός ο έλεγχος εγκαθιστά και εκτελεί τη σουίτα δοκιμών αυτοματισμών "
+"περιβάλλοντος εργασίας Mago."
 
 #. description
 #: ../jobs/mediacard.txt.in:3
@@ -1152,6 +1567,17 @@ msgid ""
 "VERIFICATION:\n"
 "    Does the icon automatically appear/disappear?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα ελέγξει την υποστήριξη του συστήματός σας για κάρτες "
+"μέσων τύπου Secure Digital (SD)\n"
+"ΒΗΜΑΤΑ\n"
+"    1. Τοποθετήστε μία κάρτα τύπου SD στον υπολογιστή\n"
+"    2. Θα πρέπει να εμφανιστεί ένα εικονίδιο στον εκκινητή\n"
+"    3. Κάντε δεξί κλικ στον εκκινητή και επιλέξτε «ασφαλή απομάκρυνση "
+"οδηγού»\n"
+"    4. Το εικονίδιο θα πρέπει να εξαφανιστεί από τον εκκινητή\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Το εικονίδιο εμφανίζεται /εξαφανίζεται αυτόματα;"
 
 #. description
 #: ../jobs/mediacard.txt.in:17
@@ -1167,6 +1593,17 @@ msgid ""
 "VERIFICATION:\n"
 "    Does the icon automatically appear/disappear?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα ελέγξει την υποστήριξη του συστήματός σας για κάρτες "
+"μέσων τύπου Secure Digital (SD) μετά την αναστολή λειτουργίας\n"
+"ΒΗΜΑΤΑ\n"
+"    1. Τοποθετήστε μία κάρτα τύπου SD στον υπολογιστή\n"
+"    2. Θα πρέπει να εμφανιστεί ένα εικονίδιο στον εκκινητή\n"
+"    3. Κάντε δεξί κλικ στον εκκινητή και επιλέξτε «ασφαλή απομάκρυνση "
+"οδηγού»\n"
+"    4. Το εικονίδιο θα πρέπει να εξαφανιστεί από τον εκκινητή\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Το εικονίδιο εμφανίζεται /εξαφανίζεται αυτόματα;"
 
 #. description
 #: ../jobs/mediacard.txt.in:30
@@ -1182,6 +1619,17 @@ msgid ""
 "VERIFICATION:\n"
 "    Does the icon automatically appear/disappear?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα ελέγξει την υποστήριξη του συστήματός σας για κάρτες "
+"μέσων τύπου Secure Digital High Capacity (SDHC)\n"
+"ΒΗΜΑΤΑ\n"
+"    1. Τοποθετήστε μία κάρτα τύπου SDHC στον υπολογιστή\n"
+"    2. Θα πρέπει να εμφανιστεί ένα εικονίδιο στον εκκινητή\n"
+"    3. Κάντε δεξί κλικ στον εκκινητή και επιλέξτε «ασφαλή απομάκρυνση "
+"οδηγού»\n"
+"    4. Το εικονίδιο θα πρέπει να εξαφανιστεί από τον εκκινητή\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Το εικονίδιο εμφανίζεται /εξαφανίζεται αυτόματα;"
 
 #. description
 #: ../jobs/mediacard.txt.in:44
@@ -1196,6 +1644,18 @@ msgid ""
 "VERIFICATION:\n"
 "    Does the icon automatically appear/disappear?"
 msgstr ""
+"    ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα ελέγξει την υποστήριξη του συστήματός σας για κάρτες "
+"μέσων τύπου Secure Digital High Capacity (SDHC) μετά την αναστολή "
+"λειτουργίας\n"
+"ΒΗΜΑΤΑ\n"
+"    1. Τοποθετήστε μία κάρτα τύπου SDHC στον υπολογιστή\n"
+"    2. Θα πρέπει να εμφανιστεί ένα εικονίδιο στον εκκινητή\n"
+"    3. Κάντε δεξί κλικ στον εκκινητή και επιλέξτε «ασφαλή απομάκρυνση "
+"οδηγού»\n"
+"    4. Το εικονίδιο θα πρέπει να εξαφανιστεί από τον εκκινητή\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Το εικονίδιο εμφανίζεται /εξαφανίζεται αυτόματα;"
 
 #. description
 #: ../jobs/mediacard.txt.in:56
@@ -1211,6 +1671,17 @@ msgid ""
 "VERIFICATION:\n"
 "    Does the icon automatically appear/disappear?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα ελέγξει την υποστήριξη του συστήματός σας για κάρτες "
+"μέσων τύπου Multi Media Card (MMC)\n"
+"ΒΗΜΑΤΑ\n"
+"    1. Τοποθετήστε μία κάρτα τύπου MMC στον υπολογιστή\n"
+"    2. Θα πρέπει να εμφανιστεί ένα εικονίδιο στον εκκινητή\n"
+"    3. Κάντε δεξί κλικ στον εκκινητή και επιλέξτε «ασφαλή απομάκρυνση "
+"οδηγού»\n"
+"    4. Το εικονίδιο θα πρέπει να εξαφανιστεί από τον εκκινητή\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Το εικονίδιο εμφανίζεται /εξαφανίζεται αυτόματα;"
 
 #. description
 #: ../jobs/mediacard.txt.in:70
@@ -1226,6 +1697,17 @@ msgid ""
 "VERIFICATION:\n"
 "    Does the icon automatically appear/disappear?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα ελέγξει την υποστήριξη του συστήματός σας για κάρτες "
+"μέσων τύπου Multi Media Card (MMC) μετά την αναστολή λειτουργίας\n"
+"ΒΗΜΑΤΑ\n"
+"    1. Τοποθετήστε μία κάρτα τύπου MMC στον υπολογιστή\n"
+"    2. Θα πρέπει να εμφανιστεί ένα εικονίδιο στον εκκινητή\n"
+"    3. Κάντε δεξί κλικ στον εκκινητή και επιλέξτε «ασφαλή απομάκρυνση "
+"οδηγού»\n"
+"    4. Το εικονίδιο θα πρέπει να εξαφανιστεί από τον εκκινητή\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Το εικονίδιο εμφανίζεται /εξαφανίζεται αυτόματα;"
 
 #. description
 #: ../jobs/mediacard.txt.in:83
@@ -1240,6 +1722,17 @@ msgid ""
 "VERIFICATION:\n"
 "    Does the icon automatically appear/disappear?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα ελέγξει την υποστήριξη του συστήματός σας για κάρτες "
+"μέσων τύπου Memory Stick (MS)\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Τοποθετήστε μία κάρτα τύπου MS στον υπολογιστή\n"
+"    2. Θα πρέπει να εμφανιστεί ένα εικονίδιο στον εκκινητή\n"
+"    3. Κάντε δεξί κλικ στο εικονίδιο στον εκκινητή και επιλέξτε «ασφαλή "
+"απομάκρυνση οδηγού»\n"
+"    4. Το εικονίδιο θα πρέπει να εξαφανιστεί από τον εκκινητή\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Το εικονίδιο εμφανίζεται /εξαφανίζεται αυτόματα;"
 
 #. description
 #: ../jobs/mediacard.txt.in:97
@@ -1255,6 +1748,17 @@ msgid ""
 "VERIFICATION:\n"
 "    Does the icon automatically appear/disappear?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα ελέγξει την υποστήριξη του συστήματός σας για κάρτες "
+"μέσων τύπου Memory Stick (MS) μετά την αναστολή λειτουργίας\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Τοποθετήστε μία κάρτα τύπου MS στον υπολογιστή\n"
+"    2. Θα πρέπει να εμφανιστεί ένα εικονίδιο στον εκκινητή\n"
+"    3. Κάντε δεξί κλικ στο εικονίδιο στον εκκινητή και επιλέξτε «ασφαλή "
+"απομάκρυνση οδηγού»\n"
+"    4. Το εικονίδιο θα πρέπει να εξαφανιστεί από τον εκκινητή\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Το εικονίδιο εμφανίζεται /εξαφανίζεται αυτόματα;"
 
 #. description
 #: ../jobs/mediacard.txt.in:110
@@ -1270,6 +1774,17 @@ msgid ""
 "VERIFICATION:\n"
 "    Does the icon automatically appear/disappear?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα ελέγξει την υποστήριξη του συστήματός σας για κάρτες "
+"μέσων τύπου Memory Stick Pro (MSP)\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Τοποθετήστε μία κάρτα τύπου MSP στον υπολογιστή\n"
+"    2. Θα πρέπει να εμφανιστεί ένα εικονίδιο στον εκκινητή\n"
+"    3. Κάντε δεξί κλικ στο εικονίδιο στον εκκινητή και επιλέξτε «ασφαλή "
+"απομάκρυνση οδηγού»\n"
+"    4. Το εικονίδιο θα πρέπει να εξαφανιστεί από τον εκκινητή\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Το εικονίδιο εμφανίζεται /εξαφανίζεται αυτόματα;"
 
 #. description
 #: ../jobs/mediacard.txt.in:124
@@ -1285,6 +1800,17 @@ msgid ""
 "VERIFICATION:\n"
 "    Does the icon automatically appear/disappear?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα ελέγξει την υποστήριξη του συστήματός σας για κάρτες "
+"μέσων τύπου Memory Stick Pro (MSP) μετά την αναστολή λειτουργίας\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Τοποθετήστε μία κάρτα τύπου MSP στον υπολογιστή\n"
+"    2. Θα πρέπει να εμφανιστεί ένα εικονίδιο στον εκκινητή\n"
+"    3. Κάντε δεξί κλικ στο εικονίδιο στον εκκινητή και επιλέξτε «ασφαλή "
+"απομάκρυνση οδηγού»\n"
+"    4. Το εικονίδιο θα πρέπει να εξαφανιστεί από τον εκκινητή\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Το εικονίδιο εμφανίζεται /εξαφανίζεται αυτόματα;"
 
 #. description
 #: ../jobs/mediacard.txt.in:137
@@ -1299,6 +1825,17 @@ msgid ""
 "VERIFICATION:\n"
 "    Does the icon automatically appear/disappear?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα ελέγξει την υποστήριξη του συστήματός σας για κάρτες "
+"μέσων τύπου Compact Flash (CF)\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Τοποθετήστε μία κάρτα τύπου CF στον υπολογιστή\n"
+"    2. Θα πρέπει να εμφανιστεί ένα εικονίδιο στον εκκινητή\n"
+"    3. Κάντε δεξί κλικ στο εικονίδιο στον εκκινητή και επιλέξτε «ασφαλή "
+"απομάκρυνση οδηγού»\n"
+"    4. Το εικονίδιο θα πρέπει να εξαφανιστεί από τον εκκινητή\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Το εικονίδιο εμφανίζεται /εξαφανίζεται αυτόματα;"
 
 #. description
 #: ../jobs/mediacard.txt.in:151
@@ -1313,6 +1850,17 @@ msgid ""
 "VERIFICATION:\n"
 "    Does the icon automatically appear/disappear?"
 msgstr ""
+"    ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα ελέγξει την υποστήριξη του συστήματός σας για κάρτες "
+"μέσων τύπου Compact Flash (CF) μετά την αναστολή λειτουργίας\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Τοποθετήστε μία κάρτα τύπου CF στον υπολογιστή\n"
+"    2. Θα πρέπει να εμφανιστεί ένα εικονίδιο στον εκκινητή\n"
+"    3. Κάντε δεξί κλικ στο εικονίδιο στον εκκινητή και επιλέξτε «ασφαλή "
+"απομάκρυνση οδηγού»\n"
+"    4. Το εικονίδιο θα πρέπει να εξαφανιστεί από τον εκκινητή\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Το εικονίδιο εμφανίζεται /εξαφανίζεται αυτόματα;"
 
 #. description
 #: ../jobs/memory.txt.in:4
@@ -1326,11 +1874,20 @@ msgid ""
 "VERIFICATION:\n"
 "    Is the amount of detected memory correct?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ ελέγχει το μέγεθος της μνήμης που έχει ανιχνευθεί\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Πατήστε στην επιλογή «Δοκιμή» για να δείτε το μέγεθος της μνήμης που "
+"έχει ανιχνευθεί\n"
+"ΠΛΗΡΟΦΟΡΙΕΣ:\n"
+"    $έξοδος\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Είναι σωστό το μέγεθος της μνήμης που  έχει ανιχνευθεί;"
 
 #. description
 #: ../jobs/memory.txt.in:19
 msgid "Test and exercise memory."
-msgstr ""
+msgstr "Έλεγχος και άσκηση μνήμης."
 
 #. description
 #: ../jobs/miscellanea.txt.in:8
@@ -1345,11 +1902,20 @@ msgid ""
 "    Did your screen change temporarily to a text console and then switch "
 "back to your current session?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα ελέγξει ότι το σύστημα μπορεί να εναλλάσσεται μεταξύ "
+"ενός εικονικού τερματικού και του εξυπηρετητή X\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Πατήστε στην επιλογή «Δοκιμή» για να εναλλαχτείτε σε ένα άλλο "
+"εικονικό τερματικό και μετά πίσω στον εξυπηρετητή X\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Άλλαξε η οθόνη σας προσωρινά σε μία κονσόλα κειμένου και μετά επανήλθε "
+"πίσω στην τρέχουσα συνεδρία σας;"
 
 #. description
 #: ../jobs/miscellanea.txt.in:21
 msgid "Run Firmware Test Suite (fwts) automated tests."
-msgstr ""
+msgstr "Εκτέλεση των αυτοματοποιημένων ελέγχων της σουίτας firmware (fwts)"
 
 #. description
 #: ../jobs/miscellanea.txt.in:30
@@ -1357,6 +1923,8 @@ msgid ""
 "ipmitool is required for ipmi testing. This checks for ipmitool and installs "
 "it if not available."
 msgstr ""
+"Το ipmitool είναι απαραίτητο για δοκιμές ipmi. Αυτό ελέγχει για το ipmitool "
+"και το εγκαθιστά αν δεν είναι διαθέσιμο."
 
 #. description
 #: ../jobs/miscellanea.txt.in:37
@@ -1364,6 +1932,9 @@ msgid ""
 "This will run some basic connectivity tests against a BMC, verifying that "
 "IPMI works."
 msgstr ""
+"Αυτό θα εκτελέσει μερικές βασικές δοκιμές διασυνδεσιμότητας ως προς ένα "
+"Baseboard Management Controller (BMC), επιβεβαιώνοντας πως το Intelligent "
+"Platform Management Interface (IPMI) λειτουργεί."
 
 #. description
 #: ../jobs/miscellanea.txt.in:43
@@ -1377,11 +1948,13 @@ msgstr ""
 msgid ""
 "This test checks /var/crash to see if there are any crash reports present."
 msgstr ""
+"Αυτό το τεστ ελέγχει τον κατάλογο /var/crash ώστε να δει αν υπάρχουν "
+"αναφορές κατάρρευσης."
 
 #. description
 #: ../jobs/miscellanea.txt.in:51
 msgid "If there are, this test will fail."
-msgstr ""
+msgstr "Αν υπάρχουν, αυτό το τεστ θα αποτύχει."
 
 #. description
 #: ../jobs/monitor.txt.in:3
@@ -1395,6 +1968,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the desktop displayed correctly on both screens?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα ελέγξει τη θύρα VGA. Παραλείψτε το αν το σύστημά σας δεν "
+"διαθέτει θύρα VGA.\n"
+"ΒΗΜΑΤΑ:\n"
+"    1.Συνδέστε μία οθόνη (αν δεν έχει ήδη συνδεθεί κάποια) στην θύρα VGA του "
+"συστήματός σας\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Εμφανίζεται σωστά το περιβάλλον εργασίας και στις δύο οθόνες;"
 
 #. description
 #: ../jobs/monitor.txt.in:13
@@ -1408,6 +1989,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the desktop displayed correctly on both screens?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα ελέγξει τη θύρα DVI. Παραλείψτε το αν το σύστημά σας δεν "
+"διαθέτει θύρα DVI.\n"
+"ΒΗΜΑΤΑ:\n"
+"    1.Συνδέστε μία οθόνη (αν δεν έχει ήδη συνδεθεί κάποια) στην θύρα DVI του "
+"συστήματός σας\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Εμφανίζεται σωστά το περιβάλλον εργασίας και στις δύο οθόνες;"
 
 #. description
 #: ../jobs/monitor.txt.in:23
@@ -1421,6 +2010,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the desktop displayed correctly on both screens?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα ελέγξει τη θύρα DisplayPort. Παραλείψτε το αν το σύστημά "
+"σας δεν διαθέτει θύρα DisplayPort.\n"
+"ΒΗΜΑΤΑ:\n"
+"    1.Συνδέστε μία οθόνη (αν δεν έχει ήδη συνδεθεί κάποια) στην θύρα "
+"DisplayPort του συστήματός σας\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Εμφανίζεται σωστά το περιβάλλον εργασίας και στις δύο οθόνες;"
 
 #. description
 #: ../jobs/monitor.txt.in:33
@@ -1434,6 +2031,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the desktop displayed correctly on both screens?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα ελέγξει τη θύρα HDMI. Παραλείψτε το αν το σύστημά σας "
+"δεν διαθέτει θύρα HDMI.\n"
+"ΒΗΜΑΤΑ:\n"
+"    1.Συνδέστε μία οθόνη (αν δεν έχει ήδη συνδεθεί κάποια) στην θύρα HDMI "
+"του συστήματός σας\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Εμφανίζεται σωστά το περιβάλλον εργασίας και στις δύο οθόνες;"
 
 #. description
 #: ../jobs/monitor.txt.in:43
@@ -1447,6 +2052,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the desktop displayed correctly on both screens?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα ελέγξει τη θύρα S-VIDEO. Παραλείψτε το αν το σύστημά σας "
+"δεν διαθέτει θύρα S-VIDEO.\n"
+"ΒΗΜΑΤΑ:\n"
+"    1.Συνδέστε μία οθόνη (αν δεν έχει ήδη συνδεθεί κάποια) στην θύρα S-VIDEO "
+"του συστήματός σας\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Εμφανίζεται σωστά το περιβάλλον εργασίας και στις δύο οθόνες;"
 
 #. description
 #: ../jobs/monitor.txt.in:53
@@ -1460,6 +2073,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the desktop displayed correctly on both screens?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα ελέγξει τη θύρα RCA. Παραλείψτε το αν το σύστημά σας δεν "
+"διαθέτει θύρα RCA.\n"
+"ΒΗΜΑΤΑ:\n"
+"    1.Συνδέστε μία οθόνη (αν δεν έχει ήδη συνδεθεί κάποια) στην θύρα RCA του "
+"συστήματός σας\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Εμφανίζεται σωστά το περιβάλλον εργασίας και στις δύο οθόνες;"
 
 #. description
 #: ../jobs/monitor.txt.in:64
@@ -1472,21 +2093,31 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the the monitor go blank and turn on again?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα ελέγξει τις δυνατότητες εξοικονόμησης ενέργειας της "
+"οθόνης σας\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Πατήστε στην επιλογή «Δοκιμή» για να δοκιμάσετε τις δυνατότητες "
+"εξοικονόμησης ενέργειας της οθόνης σας\n"
+"    2. Πατήστε οποιοδήποτε πλήκτρο ή μετακινήστε το ποντίκι  για επαναφορά\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Έσβησε η οθόνη και μετά άναψε ξανά;"
 
 #. description
 #: ../jobs/networking.txt.in:5
 msgid "Test to detect the available network controllers"
-msgstr ""
+msgstr "Δοκιμή για την ανίχνευση των διαθέσιμων ελεγκτών δικτύου"
 
 #. description
 #: ../jobs/networking.txt.in:11
 msgid "Tests whether the system has a working Internet connection."
 msgstr ""
+"Δοκιμή για το αν στο σύστημα υπάρχει λειτουργική σύνδεση με το διαδίκτυο."
 
 #. description
 #: ../jobs/networking.txt.in:16
 msgid "Network Information"
-msgstr ""
+msgstr "Πληροφορίες δικτύου"
 
 #. description
 #: ../jobs/networking.txt.in:36
@@ -1501,6 +2132,15 @@ msgid ""
 "VERIFICATION:\n"
 "    Did a notification show and was the connection correctly established?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα ελέγξει την ενσύρματη σύνδεσή σας\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Κάντε κλικ στο εικονίδιο του δικτύου στον επάνω πίνακα εφαρμογών\n"
+"    2. Επιλέξτε ένα δίκτυο κάτω από το τμήμα «Ενσύρματο δίκτυο»\n"
+"    3. Πατήστε στην επιλογή «Δοκιμή» ώστε να επιβεβαιωθεί η δυνατότητα "
+"επίτευξης μίας σύνδεσης με το πρωτόκολλο HTTP\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Εμφανίστηκε μία ειδοποίηση και επιτεύχθηκε σωστά η σύνδεση;"
 
 #. description
 #: ../jobs/networking.txt.in:49
@@ -1519,6 +2159,20 @@ msgid ""
 "VERIFICATION:\n"
 "    Did a notification show and was the connection correctly established?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα ελέγξει ότι γίνεται να συνδεθεί και να διαμορφωθεί ένα "
+"DSL modem.\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Συνδέστε την τηλεφωνική γραμμή στον υπολογιστή\n"
+"    2. Κάντε κλικ στο εικονίδιο του δικτύου στον επάνω πίνακα εφαρμογών\n"
+"    3. Επιλέξτε «Επεξεργασία συνδέσεων»\n"
+"    4. Επιλέξτε την καρτέλα «DSL»\n"
+"    5. Πατήστε στο κουμπί «Πρόσθεση»\n"
+"    6. Διαμορφώστε σωστά τις παραμέτρους της σύνδεσης\n"
+"    7. Πατήστε στην επιλογή «Δοκιμή» ώστε να επιβεβαιωθεί η δυνατότητα "
+"επίτευξης μίας σύνδεσης με το πρωτόκολλο HTTP\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Εμφανίστηκε μία ειδοποίηση και επιτεύχθηκε σωστά η σύνδεση;"
 
 #. description
 #: ../jobs/networking.txt.in:66
@@ -1526,6 +2180,8 @@ msgid ""
 "Automated test case to verify availability of some system on the network "
 "using ICMP ECHO packets."
 msgstr ""
+"Αυτοματοποιημένο σενάριο ελέγχων για την επαλήθευση της διαθεσιμότητας "
+"κάποιου συστήματος στο δίκτυο χρησιμοποιώντας πακέτα ICMP ECHO."
 
 #. description
 #: ../jobs/networking.txt.in:73 ../jobs/peripheral.txt.in:37
@@ -1533,11 +2189,15 @@ msgid ""
 "Automated test case to make sure that it's possible to download files "
 "through HTTP"
 msgstr ""
+"Αυτοματοποιημένο σενάριο ελέγχων για την επιβεβαίωση της δυνατότητας λήψης "
+"αρχείων μέσω HTTP"
 
 #. description
 #: ../jobs/networking.txt.in:81
 msgid "Test to see if we can sync local clock to an NTP server"
 msgstr ""
+"Έλεγχος για τη διαπίστωση της δυνατότητας συγχρονισμού του τοπικού ρολογιού "
+"με έναν εξυπηρετητή NTP"
 
 #. description
 #: ../jobs/networking.txt.in:87
@@ -1545,32 +2205,38 @@ msgid ""
 "Verify that an installation of checkbox-server on the network can be reached "
 "over SSH."
 msgstr ""
+"Επιβεβαίωση για το ότι μια εγκατάσταση του checkbox-server στο δίκτυο μπορεί "
+"να είναι προσβάσιμη μέσω SSH."
 
 #. description
 #: ../jobs/networking.txt.in:93
 msgid "Try to enable a remote printer on the network and print a test page."
 msgstr ""
+"Δοκιμή για την ενεργοποίηση ενός απομακρυσμένου εκτυπωτή στο δίκτυο και την "
+"εκτύπωση δοκιμαστικής σελίδας."
 
 #. description
 #: ../jobs/networking.txt.in:98
 msgid ""
 "Automated test to walk multiple network cards and test each one in sequence."
 msgstr ""
+"Αυτοματοποιημένος έλεγχος για τη χρήση πολλαπλών καρτών δικτύου και τη "
+"διαδοχική δοκιμή κάθε μιας από αυτές."
 
 #. description
 #: ../jobs/networking.txt.in:118
 msgid "Test to measure the network bandwidth"
-msgstr ""
+msgstr "Δοκιμή για τη μέτρηση του εύρους ζώνης δικτύου (bandwidth)"
 
 #. description
 #: ../jobs/optical.txt.in:8
 msgid "Test to detect the optical drives"
-msgstr ""
+msgstr "Δοκιμή για την ανίχνευση οδηγών οπτικών συσκευών"
 
 #. description
 #: ../jobs/optical.txt.in:13
 msgid "Optical Storage device read tests"
-msgstr ""
+msgstr "Έλεγχοι ανάγνωσης οπτικών συσκευών αποθήκευσης"
 
 #. description
 #: ../jobs/optical.txt.in:36
@@ -1586,6 +2252,16 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the data correctly written?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα ελέγξει τις δυνατότητες εγγραφής της συσκευής CDROM του "
+"συστήματός σας. Αν η συσκευή σας δεν υποστηρίζει την εγγραφή CD ή δεν έχετε "
+"κάποιο κενό δίσκο CD, παρακαλώ παραλείψτε αυτό το τεστ.\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Εισάγετε έναν κενό δίσκο CD στον οδηγό της συσκευής\n"
+"    2. Γράψτε κάτι στο CD\n"
+"    3. Διαβάστε το περιεχόμενο που μόλις γράψατε στο CD\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Εγγράφηκαν σωστά τα δεδομένα;"
 
 #. description
 #: ../jobs/optical.txt.in:49
@@ -1607,6 +2283,25 @@ msgid ""
 "VERIFICATION:\n"
 "    Did all the steps work?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα ελέγξει τη δυνατότητα αναπαραγωγής CD ήχου του "
+"συστήματός σας\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Εισάγετε ένα CD ήχου στον οδηγό οπτικών συσκευών\n"
+"    2. Ανοίξτε το Dash (κάντε κλικ στο κουμπάκι με τον κύκλο φιλίας του "
+"Ubuntu στον εκκινητή)\n"
+"    3. Πατήστε στην επιλογή «Ακρόαση μουσικής» ώστε να ανοίξει η εφαρμογή "
+"αναπαραγωγής μουσικής Banshee\n"
+"    4. Επιλέξτε το CD στο μενού «Βιβλιοθήκες»  στον αριστερό πίνακα του "
+"Banshee\n"
+"    5. Πατήστε στο κουμπί αναπαραγωγής για να ακούσετε μουσική\n"
+"    6. Διακόψτε την αναπαραγωγή μετά από κάποιο διάστημα\n"
+"    7. Κάντε δεξί κλικ στο εικονίδιο του CD icon στο μενού «Βιβλιοθήκες» και "
+"επιλέξτε «Εξαγωγή δίσκου»\n"
+"    8. Θα πρέπει να γίνει εξαγωγή του CD\n"
+"    9. Κλείστε το  Banshee\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Λειτούργησαν όλα τα βήματα;"
 
 #. description
 #: ../jobs/optical.txt.in:69
@@ -1622,6 +2317,16 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the data correctly written?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα ελέγξει τις δυνατότητες εγγραφής DVD του συστήματός σας. "
+"Αν η συσκευή σας δεν υποστηρίζει την εγγραφή DVD ή δεν έχετε κάποιο κενό "
+"δίσκο DVD, παρακαλώ παραλείψτε αυτό το τεστ.\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Εισάγετε έναν κενό δίσκο DVD στον οδηγό της συσκευής\n"
+"    2. Γράψτε κάτι στο DVD\n"
+"    3. Διαβάστε το περιεχόμενο που μόλις γράψατε στο DVD\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Εγγράφηκαν σωστά τα δεδομένα;"
 
 #. description
 #: ../jobs/optical.txt.in:82
@@ -1641,6 +2346,22 @@ msgid ""
 "VERIFICATION:\n"
 "    Did all the steps work?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα ελέγξει τη δυνατότητα αναπαραγωγής ταινιών DVD του "
+"συστήματός σας. Σημειώστε πως ενδέχεται να χρειαστεί εγκατάσταση μη "
+"ελεύθερου λογισμικού (κωδικοποιητές, εφαρμογές αναπαραγωγής κτλ) για τη "
+"διεξαγωγή αυτού του τεστ.\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Εισάγετε ένα DVD με οποιαδήποτε ταινία στον οδηγό οπτικών συσκευών\n"
+"    2. Ανοίξτε το Dash (κάντε κλικ στο κουμπάκι με τον κύκλο φιλίας του "
+"Ubuntu στον εκκινητή)\n"
+"    3. Πατήστε στην επιλογή «Εφαρμογές πολυμέσων» και μετά κάντε κλικ στην "
+"εφαρμογή «Αναπαραγωγή πολυμέσων»\n"
+"    4. Παίξτε την ταινία χρησιμοποιώντας την «Αναπαραγωγή πολυμέσων» και "
+"διακόψτε την αφού βεβαιωθείτε πως η αναπαραγωγή της γίνεται κανονικά\n"
+"    5. Εξάγετε το DVD\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Λειτούργησαν όλα τα βήματα;"
 
 #. description
 #: ../jobs/optical.txt.in:100
@@ -1653,6 +2374,15 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the file play?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα ελέγξει τις δυνατότητες αναπαραγωγής DVD του συστήματός "
+"σας\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Εισάγετε ένα DVD με οποιαδήποτε ταινία στον οδηγό οπτικών συσκευών\n"
+"    2. Πατήστε στην επιλογή «Δοκιμή» για να γίνει η αναπαραγωγή του DVD με "
+"την εφαρμογή Totem\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Έγινε η αναπαραγωγή του αρχείου;"
 
 #. description
 #: ../jobs/panel_clock_test.txt.in:4
@@ -1664,6 +2394,12 @@ msgid ""
 "   Is the clock in the upper right corner of your desktop displaying the "
 "correct date and time for your timezone?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"   Αυτό το τεστ θα επιβεβαιώσει πως το ρολόι του περιβάλλοντος εργασίας "
+"εμφανίζει τη σωστή ημερομηνία και ώρα\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"   Εμφανίζει τη σωστή ημερομηνία και ώρα για τη χρονική σας ζώνη το ρολόι "
+"που βρίσκεται στην επάνω δεξιά γωνία της επιφάνειας εργασίας σας;"
 
 #. description
 #: ../jobs/panel_clock_test.txt.in:16
@@ -1710,6 +2446,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the device correctly detected?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα επαληθεύσει ότι μία θύρα τύπου PCMCIA ή ExpressCard "
+"μπορεί να ανιχνεύσει τις συσκευές που εισάγονται\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Συνδέστε μία συσκευή τύπου PCMCIA ή ExpressCard στον υπολογιστή\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Ανιχνεύθηκε σωστά η συσκευή;"
 
 #. description
 #: ../jobs/peripheral.txt.in:3
@@ -1727,6 +2470,20 @@ msgid ""
 "VERIFICATION:\n"
 "   Were you able to print a test page to the network printer?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"   Αυτό το τεστ θα επαληθεύσει πως ένας δικτυακός εκτυπωτής είναι "
+"χρησιμοποιήσιμος\n"
+"ΒΗΜΑΤΑ:\n"
+"   1. Βεβαιωθείτε πως υπάρχει διαθέσιμος εκτυπωτής στο δίκτυό σας\n"
+"   2. Κάντε κλικ στο εικονίδιο με το σχήμα του γραναζιού στην επάνω δεξιά "
+"γωνία και έπειτα κάντε κλικ στην επιλογή «Εκτυπωτές»\n"
+"   3. Αν ο εκτυπωτής δεν υπάρχει ήδη στη λίστα, κάντε κλικ στην επιλογή "
+"«Πρόσθεση»\n"
+"   4. Θα πρέπει να ανιχνευθεί ο εκτυπωτής και να εμφανιστούν οι κατάλληλες "
+"τιμές διαμόρφωσης\n"
+"   5. Εκτυπώστε μία δοκιμαστική σελίδα\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"   Μπορέσατε να εκτυπώσετε μία δοκιμαστική σελίδα στον δικτυακό εκτυπωτή;"
 
 #. description
 #: ../jobs/peripheral.txt.in:18
@@ -1747,6 +2504,23 @@ msgid ""
 "VERIFICATION:\n"
 "   Was the connection correctly established?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"   Αυτό το τεστ θα επαληθεύσει τη λειτουργία ενός USB DSL ή Mobile Broadband "
+"μόντεμ\n"
+"ΒΗΜΑΤΑ:\n"
+"   1. Συνδέστε το καλώδιο USB στον υπολογιστή\n"
+"   2. Κάντε δεξί κλικ στο εικονίδιο του δικτύου στον πίνακα εφαρμογών\n"
+"   3. Επιλέξτε «Επεξεργασία συνδέσεων»\n"
+"   4. Επιλέξτε την καρτέλα «DSL» (για ένα ADSL μόντεμ) ή «Mobile Broadband» "
+"(για ένα μόντεμ τύπου 3G)\n"
+"   5. Πατήστε στο κουμπί «Προσθήκη»\n"
+"   6. Ρυθμίστε κατάλληλα τις παραμέτρους της νέας σύνδεσης\n"
+"   7. Η ειδοποίηση οθόνης (OSD) θα πρέπει να επιβεβαιώσει πως επιτεύχθηκε η "
+"σύνδεση\n"
+"   8. Επιλέξτε τη δοκιμή που θα επαληθεύσει τη δυνατότητα να επιτευχθεί μία "
+"σύνδεση με το πρωτόκολλο HTTP\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"   Επιτεύχθηκε σωστά η σύνδεση;"
 
 #. description
 #: ../jobs/phoronix.txt.in:9
@@ -1755,6 +2529,9 @@ msgid ""
 "   This test will download and install the Phoronix Test Suite and run some "
 "selected benchmarking tests."
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"   Αυτό το τεστ θα κατεβάσει και θα εγκαταστήσει τη σουίτα δοκιμών του "
+"Phoronix και θα εκκινήσει κάποιες επιλεγμένες δοκιμές ελέγχου απόδοσης."
 
 #. description
 #: ../jobs/power-management.txt.in:3
@@ -1768,6 +2545,15 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the system shutdown and rebooted correctly?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα ελέγξει τον κύκλο τερματισμού/εκκίνησης του συστήματός "
+"σας\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Τερματίστε τη λειτουργία του υπολογιστή σας\n"
+"    2. Εκκινήστε τον υπολογιστή\n"
+"    3. Επαναλάβετε τα βήματα 1 και 2 τουλάχιστον 5 φορές \n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Έγινε σωστά ο τερματισμός και η εκκίνηση του συστήματος;"
 
 #. description
 #: ../jobs/power-management.txt.in:15
@@ -1779,6 +2565,12 @@ msgid ""
 "VERIFICATION:\n"
 "   Does closing your laptop lid cause your system to suspend?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα ελέγξει τους αισθητήρες του καπακιού του υπολογιστή\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Κλείστε το καπάκι του φορητού σας υπολογιστή\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"   Προκαλεί το κλείσιμο του καπακιού την αναστολή λειτουργίας του συστήματος;"
 
 #. description
 #: ../jobs/power-management.txt.in:32
@@ -1791,6 +2583,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the screen turn off while the lid was closed?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα ελέγξει τους αισθητήρες του καπακιού του υπολογιστή\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Πατήστε στην επιλογή «Δοκιμή»\n"
+"    2. Κλείστε το καπάκι και έπειτα ανοίξτε το ξανά\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Έσβησε η οθόνη όσο το καπάκι ήταν κλειστό;"
 
 #. description
 #: ../jobs/power-management.txt.in:50
@@ -1805,6 +2604,15 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the system resume when the lid was opened?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα ελέγξει τους αισθητήρες του καπακιού του υπολογιστή\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Πατήστε στην επιλογή «Δοκιμή»\n"
+"    2. Κλείστε το καπάκι\n"
+"    3. Περιμένετε 5 δευτερόλεπτα με το καπάκι κλειστό\n"
+"    4. Ανοίξτε το καπάκι\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Συνέχισε το σύστημα τη λειτουργία του όταν άνοιξε το καπάκι;"
 
 #. description
 #: ../jobs/power-management.txt.in:66
@@ -1814,7 +2622,7 @@ msgstr "Βεβαιωθείτε ότι υπάρχει η συσκευή RTC (Real
 #. description
 #: ../jobs/power-management.txt.in:71
 msgid "Test ACPI Wakealarm (fwts wakealarm) "
-msgstr ""
+msgstr "Δοκιμή του ACPI Wakealarm (fwts wakealarm) "
 
 #. description
 #: ../jobs/power-management.txt.in:80
@@ -1822,6 +2630,8 @@ msgid ""
 "Check to see if CONFIG_NO_HZ is set in the kernel (this is just a simple "
 "regression check)"
 msgstr ""
+"Έλεγχος για το αν το CONFIG_NO_HZ έχει ρυθμιστεί στον πυρήνα (Αυτός είναι "
+"ένας απλός έλεγχος παλινδρόμησης)"
 
 #. description
 #: ../jobs/qa_regression.txt.in:7
@@ -1829,36 +2639,41 @@ msgid ""
 "PURPOSE:\n"
 "   This is to install and run the Ubuntu QA regression tests (destructive)"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"   Αυτό είναι για την εγκατάσταση και την εκτέλεση των ελέγχων παλινδρόμησης "
+"Ubuntu QA (καταστρεπτικό)"
 
 #. description
 #: ../jobs/server-services.txt.in:5
 msgid "Verifies that sshd is running."
-msgstr ""
+msgstr "Επαληθεύει τη λειτουργία του sshd."
 
 #. description
 #: ../jobs/server-services.txt.in:11
 msgid "Verifies that Print/CUPs server is running."
-msgstr ""
+msgstr "Επαληθεύει τη λειτουργία του εξυπηρετητή Print/CUPs."
 
 #. description
 #: ../jobs/server-services.txt.in:18
 msgid "Verifies that DNS server is running and working."
-msgstr ""
+msgstr "Επαλήθευση της εκτέλεσης και της λειτουργίας του εξυπηρετητή DNS."
 
 #. description
 #: ../jobs/server-services.txt.in:25
 msgid "Verifies that Samba server is running."
-msgstr ""
+msgstr "Επαλήθευση της λειτουργίας του εξυπηρετητή Samba."
 
 #. description
 #: ../jobs/server-services.txt.in:32
 msgid "Verifies that the LAMP stack is running (Apache, MySQL and PHP)."
 msgstr ""
+"Επαλήθευση της λειτουργίας της «στοίβας» LAMP (Apache, MySQL και PHP)."
 
 #. description
 #: ../jobs/server-services.txt.in:39
 msgid "Verifies that Tomcat server is running and working."
 msgstr ""
+"Επαλήθευση για το ότι ο εξυπηρετητής Tomcat εκτελείται και λειτουργεί."
 
 #. description
 #: ../jobs/stress.txt.in:8
@@ -1867,6 +2682,10 @@ msgid ""
 "    Create jobs that use the CPU as much as possible for two hours. The test "
 "is considered passed if the system does not freeze."
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Η δημιουργία διεργασιών που θα χρησιμοποιούν τον επεξεργαστή (CPU) όσο "
+"το δυνατόν περισσότερο για δύο ώρες. Το τεστ θεωρείται επιτυχές αν δεν "
+"υπάρξει πάγωμα του συστήματος."
 
 #. description
 #: ../jobs/stress.txt.in:18
@@ -1884,6 +2703,24 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the system successfully hibernate and wake 30 times?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα προκαλέσει την αδρανοποίηση του συστήματος και την "
+"επαναφορά του για 30 επαναλήψεις\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Βεβαιωθείτε πως στο σύστημά σας δεν έχει τεθεί κάποιος κωδικός για "
+"την ενεργοποίηση ή τη χρήση του σκληρού δίσκου και πως ο φορτωτής εκκίνησης "
+"(grub) είναι ρυθμισμένος ώστε από προεπιλογή να εκκινεί το Ubuntu αν στον "
+"υπολογιστή σας έχετε διάταξη multi-boot (περισσότερα από ένα λειτουργικά "
+"συστήματα)\n"
+"    2. Πατήστε στην επιλογή «Δοκιμή» ώστε να εκκινήσει το τεστ (θα διαρκέσει "
+"πολλή ώρα)\n"
+"    3. Αν το σύστημά σας δεν ξυπνήσει αυτόματα μετά από 2 λεπτά, θα "
+"χρειαστεί να πατήσετε το κουμπί παροχής ενέργειας (On/Off)\n"
+"    4. Αν δεν γίνει επαναφορά του συστήματος από την αδρανοποίηση "
+"λειτουργίας και χρειαστεί να γίνει επανεκκίνηση, παρακαλώ αρχίστε ξανά αυτό "
+"το τεστ και σημειώστε το ως αποτυχημένο.\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Αδρανοποιήθηκε το σύστημα και επανήλθε επιτυχημένα και τις 30 φορές;"
 
 #. description
 #: ../jobs/stress.txt.in:35
@@ -1897,6 +2734,18 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the system successfully suspend and resume 30 times?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα προκαλέσει την αναστολή του συστήματος και την επαναφορά "
+"του για 30 επαναλήψεις\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Πατήστε στην επιλογή «Δοκιμή» ώστε να εκκινήσει το τεστ (θα διαρκέσει "
+"πολλή ώρα)\n"
+"    2. Αν δεν γίνει επαναφορά του συστήματος από την αναστολή λειτουργίας "
+"και χρειαστεί να γίνει επανεκκίνηση, παρακαλώ αρχίστε ξανά αυτό το τεστ και "
+"σημειώστε το ως αποτυχημένο.\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Ανεστάλη η λειτουργία του συστήματος και επανήλθε επιτυχημένα και τις 30 "
+"φορές;"
 
 #. description
 #: ../jobs/suspend.txt.in:3
@@ -1906,18 +2755,22 @@ msgstr "Αποθήκευση της τρέχουσας ανάλυσης πριν
 #. description
 #: ../jobs/suspend.txt.in:11
 msgid "Record mixer settings before suspending."
-msgstr ""
+msgstr "Καταγραφή των ρυθμίσεων του μίκτη πριν από την αδρανοποίηση."
 
 #. description
 #: ../jobs/suspend.txt.in:18
 msgid "Verify that all the CPUs are online before suspending"
 msgstr ""
+"Επαλήθευση για το ότι όλες οι μονάδες επεξεργασίας (CPU) βρίσκονται σε "
+"σύνδεση πριν από την αναστολή λειτουργίας"
 
 #. description
 #: ../jobs/suspend.txt.in:25
 msgid ""
 "Dumps memory info to a file for comparison after suspend test has been run"
 msgstr ""
+"Αποτύπωση των της πληροφοριών μνήμης σε ένα αρχείο ώστε να γίνει σύγκριση "
+"μετά από την εκτέλεση της δοκιμής αναστολής λειτουργίας"
 
 #. description
 #: ../jobs/suspend.txt.in:43
@@ -1925,6 +2778,9 @@ msgid ""
 "This test disconnects all connections and then connects to the wireless "
 "interface. It then checks the connection to confirm it's working as expected."
 msgstr ""
+"Αυτό το τεστ αποσυνδέει όλες τις συνδέσεις και έπειτα συνδέεται στην "
+"ασύρματη διεπαφή δικτύου. Έπειτα ελέγχει τη σύνδεση ώστε να επιβεβαιώσει πως "
+"αυτή λειτουργεί κατά το προσδοκώμενο."
 
 #. description
 #: ../jobs/suspend.txt.in:73
@@ -1941,6 +2797,19 @@ msgid ""
 "VERIFICATION:\n"
 "    Did your system suspend and resume correctly?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα ελέγξει την αναστολή λειτουργίας και την επαναφορά\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Πατήστε στην επιλογή «Δοκιμή» και η λειτουργία του συστήματός σας θα "
+"ανασταλεί για περίπου 30 - 60 δευτερόλεπτα\n"
+"    2. Αν το σύστημά σας δεν ξυπνήσει αυτόματα μετά από 60 δευτερόλεπτα, θα "
+"χρειαστεί να πατήσετε στιγμιαία το κουμπί παροχής ενέργειας (On/Off) ώστε να "
+"ξυπνήσετε το σύστημα χειροκίνητα\n"
+"    3. Αν το σύστημά σας δεν ξυπνήσει καθόλου και χρειαστεί επανεκκίνηση, "
+"παρακαλώ επανεκκινήστε τους ελέγχους συστήματος και σημειώστε αυτό το τεστ "
+"ως αποτυχημένο\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Έγινε σωστά η αναστολή λειτουργίας του συστήματος και η επαναφορά του;"
 
 #. description
 #: ../jobs/suspend.txt.in:86
@@ -1958,16 +2827,22 @@ msgstr "Δοκιμή διατήρησης της ανάλυσης μετά τη�
 msgid ""
 "Verify that mixer settings after suspend are the same as before suspend."
 msgstr ""
+"Επαλήθευση της διατήρησης των ρυθμίσεων του μίκτη μετά την αναστολή "
+"λειτουργίας."
 
 #. description
 #: ../jobs/suspend.txt.in:117
 msgid "Verify that all CPUs are online after resuming."
 msgstr ""
+"Επαλήθευση για το ότι όλες οι μονάδες επεξεργασίας (CPU) βρίσκονται σε "
+"σύνδεση μετά την επαναφορά από την αναστολή λειτουργίας."
 
 #. description
 #: ../jobs/suspend.txt.in:134
 msgid "Verify that all memory is available after resuming from suspend."
 msgstr ""
+"Επαλήθευση της διαθεσιμότητας ολόκληρης της μνήμης μετά την επαναφορά από "
+"την αναστολή λειτουργίας."
 
 #. description
 #: ../jobs/suspend.txt.in:143
@@ -1978,6 +2853,12 @@ msgid ""
 "VERIFICATION:\n"
 "    Does the display work normally after resuming from suspend?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα ελέγξει ότι η απεικόνιση είναι σωστή μετά από την "
+"αναστολή λειτουργίας και την επαναφορά του συστήματος\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Λειτουργεί κανονικά η οθόνη μετά την επαναφορά του συστήματος από τη "
+"αναστολή λειτουργίας;"
 
 #. description
 #: ../jobs/suspend.txt.in:164
@@ -1986,6 +2867,10 @@ msgid ""
 "system. It disconnects all interfaces and then connects to the wireless "
 "interface and checks that the connection is working as expected."
 msgstr ""
+"Αυτό το τεστ ελέγχει τη λειτουργία της ασύρματης διεπαφής δικτύου μετά την "
+"αναστολή λειτουργίας του συστήματος. Αποσυνδέει όλες τις διεπαφές, έπειτα "
+"συνδέεται στην ασύρματη διεπαφή δικτύου και ελέγχει τη σύνδεση ώστε να "
+"επιβεβαιώσει πως αυτή λειτουργεί κατά το προσδοκώμενο."
 
 #. description
 #: ../jobs/suspend.txt.in:174
@@ -1993,6 +2878,9 @@ msgid ""
 "This test grabs the hardware address of the bluetooth adapter after suspend "
 "and compares it to the address grabbed before suspend."
 msgstr ""
+"Αυτό το τεστ συλλαμβάνει τη διεύθυνση υλικού του προσαρμογέα bluetooth μετά "
+"την αναστολή λειτουργίας και τη συγκρίνει με την πριν την αναστολή "
+"συλληφθείσα διεύθυνση."
 
 #. description
 #: ../jobs/suspend.txt.in:182
@@ -2000,6 +2888,9 @@ msgid ""
 "This is an automated Bluetooth file transfer test. It sends an image to the "
 "device specified by the BTDEVADDR environment variable."
 msgstr ""
+"Αυτό είναι ένα αυτοματοποιημένο τεστ μεταφοράς αρχείων μέσω bluetooth. "
+"Αποστέλλει μία εικόνα στην καθορισμένη από τη μεταβλητή περιβάλλοντος "
+"BTDEVADDR συσκευή."
 
 #. description
 #: ../jobs/suspend.txt.in:190
@@ -2015,6 +2906,17 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the data correctly transferred?"
 msgstr ""
+"ΣΚΟΠΟΣ\n"
+"    Αυτό το τεστ θα αποστείλει την εικόνα «JPEG_Color_Image_Ubuntu.jpg» σε "
+"μία καθορισμένη συσκευή\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Πατήστε στην επιλογή «Δοκιμή» και θα σας ζητηθεί να εισάγετε το όνομα "
+"μίας συσκευής Bluetooth η οποία να δέχεται τη μεταφορά αρχείων (ενδέχεται να "
+"χρειαστεί να περάσουν κάποιες στιγμές μετά την εισαγωγή του ονόματος ώστε να "
+"αρχίσει η αποστολή του αρχείου)\n"
+"    2. Αποδεχθείτε τις όποιες προτροπές παρουσιαστούν και στις δύο συσκευές\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Μεταφέρθηκαν σωστά τα δεδομένα;"
 
 #. description
 #: ../jobs/suspend.txt.in:204
@@ -2026,6 +2928,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Did your display look fine in the detected mode?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα προκαλέσει την κυκλική εναλλαγή μεταξύ των τρόπων "
+"λειτουργίας της οθόνης που έχουν ανιχνευθεί\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Πατήστε στην επιλογή «Δοκιμή» ώστε η οθόνη να εναλλαγεί κυκλικά "
+"μεταξύ των τρόπων λειτουργίας της\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Φαινόταν σωστά η οθόνη σας σε όλους τους τρόπος λειτουργίας;"
 
 #. description
 #: ../jobs/suspend.txt.in:216
@@ -2034,6 +2944,10 @@ msgid ""
 "and resume. This is done automatically by taking screenshots and uploading "
 "them as an attachment."
 msgstr ""
+"Αυτό το τεστ θα ελέγξει ώστε να επιβεβαιώσει πως οι υποστηριζόμενοι τρόποι "
+"λειτουργίας της οθόνης λειτουργούν μετά από την αναστολή λειτουργίας του "
+"συστήματος και την επαναφορά του. Αυτό γίνεται αυτόματα λαμβάνοντας "
+"στιγμιότυπα της οθόνης και μεταφορτώνοντάς τα ως επισυνάψεις."
 
 #. description
 #: ../jobs/suspend.txt.in:225
@@ -2055,6 +2969,15 @@ msgid ""
 "VERIFICATION:\n"
 "    Automatically verified"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό θα ελέγξει ότι η λειτουργικότητα του USB επανέρχεται πλήρως μετά "
+"από έναν κύκλο αναστολής λειτουργίας και επαναφοράς\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Συνδέστε μία τουλάχιστο συσκευή αποθήκευσης USB αν δεν έχει ήδη "
+"συνδεθεί κάποια\n"
+"    2. Πατήστε στην επιλογή «Δοκιμή» ώστε να ξεκινήσετε\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Επαληθεύεται αυτόματα"
 
 #. description
 #: ../jobs/suspend.txt.in:248
@@ -2064,6 +2987,11 @@ msgid ""
 "microphone, however, it works best if used with a cable connecting the audio-"
 "out jack to the audio-in jack."
 msgstr ""
+"Αυτό το τεστ θα ελέγξει ώστε να επιβεβαιώσει πως η συσκευή ήχου σας "
+"λειτουργεί σωστά μετά από την αναστολή λειτουργίας του συστήματος και την "
+"επαναφορά του. Αυτό το τεστ ενδέχεται να λειτουργήσει σωστά με τα ηχεία και "
+"το ενσωματωμένο μικρόφωνο, λειτουργεί καλύτερα όμως αν χρησιμοποιηθεί με ένα "
+"καλώδιο το οποίο θα συνδέει το βύσμα εξόδου του ήχου με το βύσμα εισόδου του."
 
 #. description
 #: ../jobs/suspend.txt.in:255
@@ -2077,6 +3005,10 @@ msgid ""
 "configured server. During this process the system will suspend, then "
 "automatically wake up after no more than 5 minutes."
 msgstr ""
+"Αυτό το τεστ ελέγχει αυτόματα τη δυνατότητα Wake-on-LAN με τη βοήθεια ενός "
+"κατάλληλα ρυθμισμένου εξυπηρετητή. Κατά τη διάρκεια της διεργασίας αυτής, το "
+"σύστημα θα αναστείλει τη λειτουργία του και θα επανέλθει αυτόματα με το "
+"μέγιστο επιτρεπτό χρονικό όριο να μην υπερβαίνει τα 5 λεπτά."
 
 #. description
 #: ../jobs/unity.txt.in:6
@@ -2084,6 +3016,8 @@ msgid ""
 "Xlib is required for unity testing. This checks for Xlib and installs it if "
 "not available."
 msgstr ""
+"Για τις δοκιμές του Uniity απαιτείται το πακέτο Xlib. Αυτό ελέγχει για το "
+"πακέτο Xlib και αν δεν είναι διαθέσιμο το εγκαθιστά."
 
 #. description
 #: ../jobs/unity.txt.in:13
@@ -2091,11 +3025,14 @@ msgid ""
 "This test will verify that Unity is running and then run the autopilot.py "
 "test against the Unity interface."
 msgstr ""
+"Αυτός ο έλεγχος θα επαληθεύσει πως το Unity εκτελείται και έπειτα θα "
+"εκτελέσει το τεστ autopilot.py για το περιβάλλον εργασίας Unity."
 
 #. description
 #: ../jobs/usb.txt.in:5
 msgid "Detects and shows USB devices attached to this system."
 msgstr ""
+"Ανίχνευση και εμφάνιση των συνδεδεμένων συσκευών USB σε αυτό το σύστημα."
 
 #. description
 #: ../jobs/usb.txt.in:12
@@ -2110,6 +3047,16 @@ msgid ""
 "VERIFICATION:\n"
 "    Were the drives detected?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα ελέγξει τη σύνδεση USB σας.\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Συνδέστε ένα ή περισσότερα φορητά μέσα αποθήκευσης ή σκληρούς δίσκους "
+"USB.\n"
+"    2. Πατήστε στην επιλογή «Δοκιμή».\n"
+"ΠΛΗΡΟΦΟΡΙΕΣ:\n"
+"    $έξοδος\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Ανιχνεύθηκαν όλες οι συσκευές;"
 
 #. description
 #: ../jobs/usb.txt.in:28
@@ -2122,6 +3069,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Does the keyboard work?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα ελέγξει τη σύνδεση USB σας.\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Συνδέστε ένα πληκτρολόγιο USB στον υπολογιστή.\n"
+"    2. Πατήστε στην επιλογή «Δοκιμή» και εισάγετε κάποιο κείμενο.\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Λειτουργεί το πληκτρολόγιο;"
 
 #. description
 #: ../jobs/usb.txt.in:41
@@ -2134,6 +3088,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Does the mouse work correctly?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα ελέγξει τη σύνδεση USB σας.\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Συνδέστε ένα ποντίκι USB στον υπολογιστή.\n"
+"    2. Κάνετε μερικές λειτουργίες μονού/διπλού/δεξιού κλικ.\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Λειτουργεί το ποντίκι;"
 
 #. description
 #: ../jobs/usb.txt.in:55
@@ -2146,6 +3107,14 @@ msgid ""
 "VERIFICATION:\n"
 "    The verification of this test is automated."
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα ελέγξει τη σύνδεση USB σας.\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Πατήστε στην επιλογή «Δοκιμή» και εισάγετε μία συσκευή USB μέσα σε 5 "
+"δευτερόλεπτα.\n"
+"    2. Μην αποσυνδέσετε τη συσκευή μετά από το τεστ.\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Η επαλήθευση αυτού του τεστ είναι αυτοματοποιημένη."
 
 #. description
 #: ../jobs/usb.txt.in:69
@@ -2158,6 +3127,14 @@ msgid ""
 "VERIFICATION:\n"
 "    The verification of this test is automated."
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα ελέγξει τη σύνδεση USB σας.\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Πατήστε στην επιλογή «Δοκιμή» και αφαιρέστε τη συσκευή USB μέσα σε 5 "
+"δευτερόλεπτα.\n"
+"    2. Μη συνδέσετε ξανά τη συσκευή μετά από το τεστ.\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Η επαλήθευση αυτού του τεστ είναι αυτοματοποιημένη."
 
 #. description
 #: ../jobs/usb.txt.in:82
@@ -2171,6 +3148,15 @@ msgid ""
 "VERIFICATION:\n"
 "    The verification of this test is automated."
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα ελέγξει τη σύνδεση USB σας.\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Συνδέστε έναν USB σκληρό δίσκο ή φορητό μέσο αποθήκευσης στον "
+"υπολογιστή\n"
+"    2. Θα πρέπει να εμφανιστεί ένα εικονίδιο στον εκκινητή.\n"
+"    3. Πατήστε στην επιλογή «Δοκιμή» ώστε να ξεκινήσει το τεστ.\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Η επαλήθευση αυτού του τεστ είναι αυτοματοποιημένη."
 
 #. description
 #: ../jobs/usb.txt.in:96
@@ -2178,6 +3164,8 @@ msgid ""
 "This test is automated and requires that you plug in at least one usb "
 "storage device before running checkbox."
 msgstr ""
+"Αυτό το τεστ είναι αυτοματοποιημένο και απαιτεί την εισαγωγή μίας "
+"τουλάχιστον συσκευής αποθήκευσης USB πριν την έναρξη του checkbox."
 
 #. description
 #: ../jobs/usb.txt.in:102
@@ -2194,6 +3182,17 @@ msgid ""
 "VERIFICATION:\n"
 "    Do all USB slots work with the device?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+"    Αυτό το τεστ θα ελέγξει τη σύνδεση USB σας.\n"
+"ΒΗΜΑΤΑ:\n"
+"    1. Συνδέστε μία  συσκευή αποθήκευσης USB σε μία εξωτερική θύρα USB σε "
+"αυτόν τον υπολογιστή.\n"
+"    2. α πρέπει να εμφανιστεί ένα εικονίδιο στον εκκινητή.\n"
+"    3. Επιβεβαιώστε ότι το εικονίδιο εμφανίζεται.\n"
+"    4. Αποσυνδέστε τη συσκευή.\n"
+"    5. Επαναλάβετε με κάθε εξωτερική θύρα USB.\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+"    Λειτουργούν όλες οι εξωτερικές θύρες USB με τη συσκευή;"
 
 #. description
 #: ../jobs/user_apps.txt.in:6
@@ -2209,6 +3208,21 @@ msgid ""
 " Did Update manager find and install updates (Pass if no updates are found,\n"
 " but Fail if updates are found but not installed)"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+" Αυτό το τεστ θα ελέγξει ότι ο διαχειριστής ενημερώσεων μπορεί να εντοπίσει "
+"ενημερώσεις.\n"
+"ΒΗΜΑΤΑ:\n"
+" 1. Πατήστε στην επιλογή «Δοκιμή» για να εκκινήσετε το διαχειριστή "
+"ενημερώσεων.\n"
+" 2. Ακολουθήστε τα μηνύματα προτροπής και αν βρεθούν ενημερώσεις, "
+"εγκαταστήστε τις.\n"
+" 3. Όταν ολοκληρωθεί η εργασία του διαχειριστή ενημερώσεων, παρακαλώ κλείστε "
+"την εφαρμογή κάνοντας κλικ στο κουμπί «Κλείσιμο» στην κάτω δεξιά γωνία του "
+"παραθύρου.\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+" Βρήκε και εγκατέστησε ο διαχειριστής ενημερώσεων ενημερώσεις (σημειώστε ως "
+"επιτυχές αν δεν βρέθηκαν ενημερώσεις,\n"
+" αλλά ως αποτυχημένο αν βρέθηκαν και δεν εγκαταστάθηκαν);"
 
 #. description
 #: ../jobs/user_apps.txt.in:22
@@ -2224,6 +3238,17 @@ msgid ""
 "VERIFICATION:\n"
 " Do you now have a new folder called Test Folder?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+" Αυτό το τεστ θα ελέγξει ότι ο διαχειριστής αρχείων έχει τη δυνατότητα να "
+"δημιουργήσει έναν νέο φάκελο.\n"
+"ΒΗΜΑΤΑ:\n"
+" 1. Πατήστε στην επιλογή «Δοκιμή» ώστε να  ανοίξει ο διαχειριστής αρχείων.\n"
+" 2. Στην μπάρα μενού, κάντε κλικ στο Αρχείο -> Δημιουργία φακέλου.\n"
+" 3. Στο πλαίσιο του ονόματος του νέου φακέλου, εισάγετε το όνομα «Φάκελος "
+"δοκιμής» και πατήστε το πλήκτρο Enter.\n"
+" 4. Κλείστε το διαχειριστή αρχείων.\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+" Υπάρχει ο νέος φάκελος με το όνομα «Φάκελος δοκιμής»;"
 
 #. description
 #: ../jobs/user_apps.txt.in:37
@@ -2240,6 +3265,22 @@ msgid ""
 "VERIFICATION:\n"
 " Do you now have a folder called Test Data?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+" Αυτό το τεστ θα ελέγξει ότι ο διαχειριστής αρχείων έχει τη δυνατότητα να "
+"εκτελέσει αντιγραφή ενός φακέλου\n"
+"ΒΗΜΑΤΑ:\n"
+" 1. Πατήστε στην επιλογή «Δοκιμή» ώστε να ανοίξει ο διαχειριστής αρχείων.\n"
+" 2. Κάντε δεξί κλικ στο φάκελο με το όνομα «Φάκελος δοκιμής» και πατήστε "
+"στην επιλογή «Αντιγραφή».\n"
+" 3. Κάντε δεξί κλικ σε οποιαδήποτε κενή επιφάνεια του παραθύρου και πατήστε "
+"στην επιλογή «Επικόλληση».\n"
+" 4. Κάντε δεξί κλικ στο φάκελο με το όνομα «Φάκελος δοκιμής(αντίγραφο)» και "
+"πατήστε στην επιλογή «Μετονομασία».\n"
+" 5. Εισάγετε το όνομα «Δοκιμαστικά δεδομένα» στο πεδίο και πατήστε το "
+"πλήκτρο Enter.\n"
+" 6. Κλείστε το διαχειριστή αρχείων.\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+" Υπάρχει ο νέος φάκελος με το όνομα «Δοκιμαστικά δεδομένα»;"
 
 #. description
 #: ../jobs/user_apps.txt.in:54
@@ -2257,6 +3298,20 @@ msgid ""
 " Was the folder called Test Data successfully moved into the folder called "
 "Test Folder?"
 msgstr ""
+"ΣΚΟΠΟΣ:\n"
+" Αυτό το τεστ θα ελέγξει ότι ο διαχειριστής αρχείων έχει τη δυνατότητα να "
+"εκτελέσει μετακίνηση ενός φακέλου.\n"
+"ΒΗΜΑΤΑ:\n"
+" 1. Πατήστε στην επιλογή «Δοκιμή» ώστε να ανοίξει ο διαχειριστής αρχείων.\n"
+" 2. Κάντε κλικ και σύρετε το φάκελο «Δοκιμαστικά δεδομένα» επάνω στο "
+"εικονίδιο με το όνομα «Φάκελος δοκιμής».\n"
+" 3. Απελευθερώστε το πλήκτρο του ποντικιού.\n"
+" 4. Κάντε διπλό κλικ στο φάκελο με το όνομα «Φάκελος δοκιμής» ώστε να τον "
+"ανοίξετε.\n"
+" 5. Κλείστε το διαχειριστή αρχείων.\n"
+"ΕΠΑΛΗΘΕΥΣΗ:\n"
+" Μετακινήθηκε επιτυχώς ο φάκελος με το όνομα «Δοκιμαστικά δεδομένα» μέσα στο "
+"φάκελο με το όνομα «Φάκελος δοκιμής»;"
 
 #. description
 #: ../jobs/user_apps.txt.in:70
@@ -2667,6 +3722,10 @@ msgstr "Χρήση: checkbox [Επιλογές]"
 msgid "Print version information and exit."
 msgstr "Εκτύπωση πληροφοριών έκδοσης και έξοδος."
 
+#: ../checkbox/application.py:74
+msgid "The file to write the log to."
+msgstr "Το αρχείο που θέλετε να καταγραφούν οι πληροφορίες."
+
 #: ../checkbox/application.py:82
 msgid "Configuration override parameters."
 msgstr "Παράμετροι ακύρωσης ρυθμίσεων"
@@ -2819,6 +3878,10 @@ msgstr "έλεγχος"
 msgid "test again"
 msgstr "έλεγχος ξανά"
 
+#: ../checkbox_cli/cli_interface.py:353
+msgid "Please type here and press Ctrl-D when finished:\n"
+msgstr "Παρακαλώ πληκτρολογήστε εδώ και όταν τελειώσετε πατήστε Ctrl-D:\n"
+
 #: ../checkbox_urwid/urwid_interface.py:60
 msgid "Checkbox System Testing"
 msgstr "Δοκιμή συστήματος Checkbox"
@@ -2855,6 +3918,10 @@ msgstr "Δοκιμή"
 #: ../checkbox_urwid/urwid_interface.py:787
 msgid "Test Again"
 msgstr "Επανάληψη δοκιμής"
+
+#: ../checkbox_gtk/gtk_interface.py:500
+msgid "_Test Again"
+msgstr "Έλεγχ_ος ξανά"
 
 #: ../checkbox_gtk/gtk_interface.py:548
 msgid "Info"
@@ -2893,7 +3960,7 @@ msgstr ""
 #: ../plugins/apport_prompt.py:231
 #, python-format
 msgid "Test %s failed."
-msgstr ""
+msgstr "Απέτυχε ο έλεγχος %s."
 
 #: ../plugins/apport_prompt.py:232
 msgid "Do you want to report a bug?"
@@ -2934,6 +4001,11 @@ msgid ""
 "unresponsive. Please save all your work and close all other running "
 "applications before beginning the testing process."
 msgstr ""
+"\n"
+"\n"
+"Προειδοποίηση: Μερικοί έλεγχοι ενδεχομένως προκαλέσουν πάγωμα ή μη απόκριση "
+"του συστήματός σας. Παρακαλώ αποθηκεύστε όλες τις εργασίες σας και κλείστε "
+"όλες τις τρέχουσες εφαρμογές πριν την έναρξη της διαδικασίας ελέγχου."
 
 #: ../plugins/launchpad_exchange.py:136
 #, python-format
@@ -2990,6 +4062,10 @@ msgstr ""
 msgid "No e-mail address provided, not submitting to Launchpad."
 msgstr "Δεν δόθηκε διεύθυνση e-mail, δεν θα γίνει αποστολή στο Launchpad."
 
+#: ../plugins/launchpad_prompt.py:92
+msgid "Email address must be in a proper format."
+msgstr "Η ηλεκτρονική σας διεύθυνση πρέπει να έχει κατάλληλη μορφή."
+
 #: ../plugins/launchpad_report.py:151
 msgid ""
 "The generated report seems to have validation errors,\n"
@@ -3009,6 +4085,10 @@ msgid ""
 msgstr ""
 "Το πλαίσιο ελέγχου δεν ολοκληρώθηκε πλήρως.\n"
 "Θέλετε να ανακτηθεί από προηγούμενη εκτέλεση;"
+
+#: ../plugins/report_prompt.py:39
+msgid "Building report..."
+msgstr "Δημιουργία αναφοράς..."
 
 #: ../plugins/shell_test.py:52
 #, python-format
@@ -3914,5 +4994,23 @@ msgstr "Η σύνδεση με το Διαδίκτυο πραγματοποιή�
 #~ "Τα δισδιάστατα (2D) γραφικά φαίνεται ότι λειτουργούν, η τρέχουσα έκδοση του "
 #~ "X.Org είναι: $output"
 
+#~ msgid ""
+#~ "Play back a sound on the default output and listen for it on the \\ default "
+#~ "input.  This makes the most sense when the output and input \\ are directly "
+#~ "connected, as with a patch cable."
+#~ msgstr ""
+#~ "Κάντε αναπαραγωγή ενός ήχου στην προεπιλεγμένη έξοδο και ακούστε γι αυτόν "
+#~ "στην \\ προεπιλεγμένη είσοδο. Αυτό έχει περισσότερο νόημα όταν η έξοδος και "
+#~ "η είσοδος \\ είναι άμεσα συνδεδεμένες, όπως με ένα καλώδιο patch."
+
 #~ msgid "Test that the /var/crash directory doesn't contain anything."
 #~ msgstr "Βεβαιωθείτε ότι ο κατάλογος /var/crash δεν περιέχει κάτι."
+
+#~ msgid "Automated test to store output in checkbox report"
+#~ msgstr ""
+#~ "Αυτοματοποιημένη δοκιμή για αποθήκευση εξόδου στην αναφορά του πλαισίου "
+#~ "ελέγχου"
+
+#, python-format
+#~ msgid "Test %s from suite %s failed."
+#~ msgstr "Ο έλεγχος %s από την σουίτα %s απέτυχε."
