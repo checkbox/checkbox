@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-01-06 12:39-0500\n"
-"PO-Revision-Date: 2011-12-17 16:52+0000\n"
-"Last-Translator: Robert Readman <Unknown>\n"
+"PO-Revision-Date: 2012-01-23 15:04+0000\n"
+"Last-Translator: Anthony Harrington <untaintableangel@hotmail.co.uk>\n"
 "Language-Team: English (United Kingdom) <en_GB@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-01-07 04:45+0000\n"
-"X-Generator: Launchpad (build 14640)\n"
+"X-Launchpad-Export-Date: 2012-01-24 05:16+0000\n"
+"X-Generator: Launchpad (build 14713)\n"
 
 #~ msgid "Do you see color bars and static?"
 #~ msgstr "Do you see colour bars and static?"
@@ -196,6 +196,9 @@ msgid ""
 "input.  This makes the most sense when the output and input  are directly "
 "connected, as with a patch cable."
 msgstr ""
+"Play back a sound on the default output and listen for it on the  default "
+"input.  This makes the most sense when the output and input  are directly "
+"connected, as with a patch cable."
 
 #. description
 #: ../jobs/autotest.txt.in:6
@@ -1791,6 +1794,8 @@ msgid ""
 "   Determine if we need to run tests specific to portable computers that may "
 "not apply to desktops."
 msgstr ""
+"   Determine if we need to run tests specific to portable computers that may "
+"not apply to desktops."
 
 #. description
 #: ../jobs/miscellanea.txt.in:51
@@ -2250,6 +2255,19 @@ msgid ""
 "   Is your system clock displaying the correct date and time for your "
 "timezone?"
 msgstr ""
+"PURPOSE:\n"
+"   This test will verify that the desktop clock synchronises with the system "
+"clock.\n"
+"STEPS:\n"
+"   1. Click the \"Test\" button and verify the clock moves ahead by 1 hour.\n"
+"   Note: It may take a minute or so for the clock to refresh\n"
+"   2. Right click on the clock, then click on \"Time & Date Settings...\"\n"
+"   3. Ensure that your clock application is set to manual.\n"
+"   4. Change the time 1 hour back\n"
+"   5. Close the window and reboot\n"
+"VERIFICATION:\n"
+"   Is your system clock displaying the correct date and time for your "
+"timezone?"
 
 #. description
 #: ../jobs/panel_reboot.txt.in:4
@@ -3034,6 +3052,16 @@ msgid ""
 "VERIFICATION:\n"
 " Do you now have a new folder called Test Folder?"
 msgstr ""
+"PURPOSE:\n"
+" This test will check that the file browser can create a new folder.\n"
+"STEPS:\n"
+" 1. Click Test to open the File Browser.\n"
+" 2. On the menu bar, click File -> Create Folder.\n"
+" 3. In the name box for the new folder, enter the name Test Folder and hit "
+"Enter.\n"
+" 4. Close the File browser.\n"
+"VERIFICATION:\n"
+" Do you now have a new folder called Test Folder?"
 
 #. description
 #: ../jobs/user_apps.txt.in:37
@@ -3315,6 +3343,14 @@ msgid ""
 "VERIFICATION:\n"
 " Did the video play using a plugin?"
 msgstr ""
+"PURPOSE:\n"
+" This test will check that Firefox can play a Quicktime (.mov) video file.\n"
+" Note: This may require installing additional software, in order to\n"
+" complete successfully.\n"
+"STEPS:\n"
+" 1. Select Test to launch Firefox with a sample video.\n"
+"VERIFICATION:\n"
+" Did the video play using a plugin?"
 
 #. description
 #: ../jobs/user_apps.txt.in:297
@@ -3667,6 +3703,8 @@ msgid ""
 "Tests that the systems wireless hardware can connect to a router using WPA "
 "security and the 802.11b/g protocols."
 msgstr ""
+"Tests that the system's wireless hardware can connect to a router using WPA "
+"security and the 802.11b/g protocols."
 
 #. description
 #: ../jobs/wireless.txt.in:38
@@ -3674,6 +3712,8 @@ msgid ""
 "Tests that the systems wireless hardware can connect to a router using no no "
 "security and the 802.11b/g protocols."
 msgstr ""
+"Tests that the system's wireless hardware can connect to a router using no "
+"security and the 802.11b/g protocols."
 
 #. description
 #: ../jobs/wireless.txt.in:48
@@ -3681,6 +3721,8 @@ msgid ""
 "Tests that the systems wireless hardware can connect to a router using WPA "
 "security and the 802.11n protocol."
 msgstr ""
+"Tests that the system's wireless hardware can connect to a router using WPA "
+"security and the 802.11n protocol."
 
 #. description
 #: ../jobs/wireless.txt.in:58
@@ -3688,6 +3730,8 @@ msgid ""
 "Tests that the systems wireless hardware can connect to a router using no no "
 "security and the 802.11n protocol."
 msgstr ""
+"Tests that the system's wireless hardware can connect to a router using no "
+"security and the 802.11n protocol."
 
 #. description
 #: ../jobs/wireless.txt.in:70
@@ -3695,6 +3739,8 @@ msgid ""
 "Tests the performance of a systems wireless connection through the iperf "
 "tool."
 msgstr ""
+"Tests the performance of a system's wireless connection through the iperf "
+"tool."
 
 #. description
 #: ../jobs/wireless.txt.in:81
@@ -3702,6 +3748,8 @@ msgid ""
 "Tests the performance of a systems wireless connection through the iperf "
 "tool, using UDP packets."
 msgstr ""
+"Tests the performance of a system's wireless connection through the iperf "
+"tool, using UDP packets."
 
 #: ../checkbox/application.py:66
 msgid "Usage: checkbox [OPTIONS]"
@@ -3745,12 +3793,12 @@ msgstr "Missing configuration file as argument.\n"
 
 #: ../checkbox/job.py:84
 msgid "Command not found."
-msgstr ""
+msgstr "Command not found."
 
 #: ../checkbox/job.py:92
 #, python-format
 msgid "Command received signal %s: %s"
-msgstr ""
+msgstr "Command received signal %s: %s"
 
 #: ../checkbox/lib/signal.py:23
 msgid ""
@@ -3947,7 +3995,7 @@ msgstr ""
 #: ../plugins/apport_prompt.py:227
 #, python-format
 msgid "Test %(name)s from suite %(suite)s failed."
-msgstr ""
+msgstr "Test %(name)s from suite %(suite)s failed."
 
 #: ../plugins/apport_prompt.py:231
 #, python-format
@@ -4079,6 +4127,8 @@ msgid ""
 "The generated report seems to have validation errors,\n"
 "so it might not be processed by Launchpad."
 msgstr ""
+"The generated report seems to have validation errors,\n"
+"so it might not be processed by Launchpad."
 
 #: ../plugins/lock_prompt.py:63
 msgid "There is another checkbox running. Please close it first."
