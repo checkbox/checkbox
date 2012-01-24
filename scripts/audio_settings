@@ -19,7 +19,7 @@ if ($action eq "store") {
          print "${type}_muted: ${muted}\n";
 
          my $volume = `pacmd list-${type}s | grep -A10 '* index' | grep 'volume: 0:' | awk '{print \$3}'`;
-         chomp $volume;
+         chomp $volume; chop $volume;
          print "${type}_volume: ${volume}\n";
     }
 }
@@ -34,19 +34,15 @@ elsif ($action eq "set") {
                 'volume=s' => \$volume);
 
     if ($device) {
-        print "Setting " . $device . " with volume " . $volume . " and mute " . $mute . "\n";
-
         foreach my $type (qw/sink source/) {
             my $direction = ($type eq 'sink') ? 'out' : 'in';
             my $index = `pacmd list-${type}s | grep -B4 alsa_${direction}put[.]$device | grep index | awk -F': ' '{print \$2}'`;
             chomp $index;
-            print "${type}: $index\n";
             system("pacmd set-default-$type $index");
 
             if ($type eq 'sink') {
                 foreach my $input (`pacmd list-sink-inputs | grep index | awk -F': ' '{print \$2}'`) {
                     chomp($input);
-                    print "Moving input " . $input . " to sink " . $index . "\n";
                     system("pacmd move-sink-input $input $index");
                 }
             }
@@ -55,40 +51,10 @@ elsif ($action eq "set") {
 
             # Set the volume as requested
             my $base_volume = `pacmd list-${type}s | grep -A15 alsa_${direction}put[.]$device | grep 'volume steps:' | awk -F': ' '{print \$2}'`;
-            print "Base volume: $base_volume\n";
             chomp $base_volume;
             my $new_volume = int($base_volume / 100 * $volume);
-            print "Setting $type volume to: $new_volume\n";
             system("pacmd set-${type}-volume $index $new_volume");
         }
-
-        #my $sink = `pacmd list-sinks | grep -B4 alsa_output[.]$device | grep index | awk -F': ' '{print \$2}'`;
-        #chomp($sink);
-        #print "Sink: " . $sink . "@\n";
-        #system("pacmd set-default-sink $sink");
-
-        #foreach my $input (`pacmd list-sink-inputs | grep index | awk -F': ' '{print \$2}'`) {
-        #    chomp($input);
-        #    print "Moving input " . $input . " to sink " . $sink . "\n";
-        #    system("pacmd move-sink-input $input $sink");
-        #}
-
-        #my $source = `pacmd list-sources | grep -B4 alsa_input[.]$device | grep index | awk -F': ' '{print \$2}'`;
-        #chomp($source);
-        #print "Source: " . $source . "@\n";
-        #system("pacmd set-default-source $source");
-
-        # Unmute/mute the sink and source as requested
-        #print "Setting mute: " . $mute . "\n";
-        #system("pacmd set-sink-mute $sink $mute");
-
-        # Set the volume of the source as requested
-        #my $base_volume = `pacmd list-sinks | grep -A15 alsa_output[.]$device | grep 'volume steps:' | awk -F': ' '{print \$2}'`;
-        #my $new_volume = int($base_volume / 100 * $volume);
-        #print "Setting volume to: " . $new_volume . "\n";
-        #system("pacmd set-sink-volume $sink $new_volume");
-        #system("pacmd set-source-volume $source $new_volume");
-
     }
     else {
         print "No device specified\n";
@@ -108,24 +74,29 @@ elsif ($action eq "restore") {
         foreach my $type (qw/sink source/) {
             if (/($type)_index/) {
                 $index = (split(/: /, $_))[-1];
-                print "Index: $index\n";
 
                 system("pacmd set-default-$type $index");
+
+                if ($type eq 'sink') {
+                    foreach my $input (`pacmd list-sink-inputs | grep index | awk -F': ' '{print \$2}'`) {
+                        chomp($input);
+                        system("pacmd move-sink-input $input $index");
+                    }
+                }
             }
             elsif (/($type)_muted/) {
                 my $muted = (split(/: /, $_))[-1];
-                print "Muted: $muted\n";
 
                 system("pacmd set-${type}-mute $index $muted");
             }
             elsif(/($type)_volume/) {
                 my $volume = (split(/: /, $_))[-1];
-                print "Volume: $volume\n";
 
                 # Calculate volume from base volume
-                #my $base_volume = `pacmd list-${type}s | grep -A15 alsa_${direction}put[.]$device | grep 'volume steps:' | awk -F': ' '{print \$2}'`;
-                
+                my $base_volume = `pacmd list-${type}s | grep -A15 'index: ${index}' | grep 'volume steps:' | awk -F': ' '{print \$2}'`;
+                chop $base_volume;
 
+                my $new_volume = int($base_volume / 100 * $volume);
                 system("pacmd set-${type}-volume $index $new_volume");
             }
         }
