@@ -1,0 +1,275 @@
+#!/usr/bin/env python
+#
+# This file is part of Checkbox.
+#
+# Copyright 2012 Canonical Ltd.
+#
+# Checkbox is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# Checkbox is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
+
+
+import dbus
+import dbus.mainloop.glib
+import dbus.service
+import gettext
+import os
+import sys 
+from gettext import gettext as _
+from gi.repository import GObject
+
+EXIT_WITH_FAILURE = 1
+EXIT_WITH_SUCCESS = 0
+EXIT_TIMEOUT = 30
+
+class Reporter(object):
+    keys = ['Previous','Play','Next','Stop']
+    tested_keys = {} 
+    main_loop = None
+    exit_code = EXIT_WITH_FAILURE 
+
+    def __init__(self):
+        super(Reporter,self).__init__()
+        for key in self.keys:
+            self.tested_keys[key] = {"tested":False, "required":True}
+
+    def show_text(self,string):
+        pass
+
+    def quit(self):
+        self.main_loop.quit() #FIXME: Having a reference to the mainloop is suboptimal.
+
+    '''Returns True if all keys marked as required have been tested'''
+    def required_keys_tested(self):
+        required_keys_status = [ key["tested"] for key in self.tested_keys.values() if key["required"] ]
+        return all(required_keys_status)
+
+    def toggle_key_required(self,key_name):
+        if key_name in self.keys:
+            self.tested_keys[key_name]["required"] = not self.tested_keys[key_name]["required"] 
+            self.tested_keys[key_name]["tested"] = False
+    
+    #Subclasses should define a method to act on the on_media_key event.
+    def on_media_key(self,sender,key):
+        pass
+
+class CLIReporter(Reporter):
+
+    def __init__(self):
+        import termios
+        super(CLIReporter,self).__init__()
+        GObject.io_add_watch(sys.stdin.fileno(),GObject.IO_IN, self.on_console_io)
+        self.show_text(_("Please press each media control key on your keyboard."))
+        self.show_text(_("I will exit automatically once all keys have been pressed."))
+        self.show_text(_("If your keyboard lacks one or more media keys, press its number to skip testing that key."))
+        self.show_text(_("You can also close me by pressing ESC or Ctrl+C."))
+        self.fileno = sys.stdin.fileno()
+        self.saved_attributes = termios.tcgetattr(self.fileno)
+        attributes = termios.tcgetattr(self.fileno)
+        attributes[3] = attributes[3] & ~(termios.ICANON)
+        attributes[6][termios.VMIN] = 1
+        attributes[6][termios.VTIME] = 0
+        termios.tcsetattr(self.fileno, termios.TCSANOW, attributes)
+        self.show_keys_status()
+
+    def show_text(self,string):
+        sys.stdout.write(string+"\n")
+        sys.stdout.flush()
+
+    def key_status(self,key):
+        if not self.tested_keys[key]["required"]:
+            return _("Not required")
+        if not self.tested_keys[key]["tested"]:
+            return _("Untested")
+        return _("Tested")
+
+    def show_keys_status(self):
+        self.show_text("---")
+        for index,key_name in enumerate(self.keys):
+            self.show_text( "%(number)d - %(key)s - %(status)s" %  \
+                    {"number": index + 1, 
+                    "key": key_name, 
+                    "status" : self.key_status(key_name)})
+
+    def quit(self):
+        import termios
+        termios.tcsetattr(self.fileno, termios.TCSANOW, self.saved_attributes)
+        self.main_loop.quit()
+
+    def on_media_key(self,sender,key_name):
+        if key_name in self.keys:
+            self.show_text(_("%(key_name)s key has been pressed"% {'key_name': key_name}))
+            self.tested_keys[key_name]["tested"] = True
+        else:
+            print(_("Unknown media key pressed"))
+        self.show_keys_status()
+        
+        if self.required_keys_tested():
+            self.show_text(_("All required media keys have been tested!"))
+            self.exit_code = EXIT_WITH_SUCCESS 
+            self.quit() 
+   
+    def on_console_io(self, source, cb_condition):
+        read_char = os.read(source,1)
+        if (ord(read_char) == 27): #ESC key pressed
+            self.show_text(_("Test cancelled"))
+            self.quit()
+        if read_char in [str(index+1) for index in range(len(self.keys))] :
+            self.toggle_key_required(self.keys[int(read_char)-1])
+            self.show_keys_status()
+        return True
+
+
+class GtkReporter(Reporter):
+    label = None
+    stock_map = None
+
+    def __init__(self):
+        from gi.repository import Gtk, Gdk
+        super(GtkReporter,self).__init__()
+
+        stock_buttons={"Play":Gtk.STOCK_MEDIA_PLAY,
+                      "Stop":Gtk.STOCK_MEDIA_STOP,
+                      "Next":Gtk.STOCK_MEDIA_NEXT,
+                      "Previous":Gtk.STOCK_MEDIA_PREVIOUS}
+        self.ICON_SIZE = Gtk.IconSize.BUTTON
+        self.ICON_TESTED = Gtk.STOCK_YES
+        self.ICON_UNTESTED = Gtk.STOCK_INDEX
+        self.ICON_NOT_REQUIRED = Gtk.STOCK_REMOVE
+
+        window = Gtk.Window()
+        window.set_type_hint(Gdk.WindowType.TOPLEVEL)
+        window.set_size_request(100,100)
+        window.set_resizable(False)
+        window.set_title(_("Media Keys test"))
+        window.connect("delete_event", lambda w,e: self.quit())
+
+        vbox = Gtk.VBox()
+        vbox.set_homogeneous(False)
+        vbox.set_spacing(8)
+        window.add(vbox)
+        vbox.show()
+
+        self.label = Gtk.Label()
+        vbox.add(self.label)
+        self.label.set_size_request(0,0)
+        self.label.set_line_wrap(True)
+        self.label.show()
+
+        button_hbox = Gtk.HBox()
+        vbox.add(button_hbox)
+        button_hbox.set_spacing(4)
+        button_hbox.show()
+
+        validation_hbox=Gtk.HBox()
+        vbox.add(validation_hbox)
+        validation_hbox.set_spacing(4)
+        validation_hbox.show()
+
+        skip_hbox=Gtk.HBox()
+        vbox.add(skip_hbox)
+        skip_hbox.set_spacing(4)
+        skip_hbox.show()
+
+
+        self.buttons=dict(zip(self.keys, [Gtk.Image(stock=stock_buttons[name],icon_size=self.ICON_SIZE) for name in self.keys]))
+        self.validation_icons = dict(zip(self.keys, [Gtk.Image(stock=Gtk.STOCK_INDEX,icon_size=self.ICON_SIZE) for name in self.keys]))
+        self.skip_buttons=dict(zip(self.keys, [Gtk.Button(_("Skip")) for name in self.keys]))
+
+        for key_name in self.keys:
+            button_hbox.add(self.buttons[key_name])
+            self.buttons[key_name].show()
+
+            validation_hbox.add(self.validation_icons[key_name])
+            self.validation_icons[key_name].show()
+
+            skip_hbox.add(self.skip_buttons[key_name])
+            self.skip_buttons[key_name].show()
+            self.skip_buttons[key_name].connect("clicked", self.on_skip_button, key_name)
+
+        exit_button = Gtk.Button(label=_("_Exit"), use_underline=True)
+        exit_button.show()
+        exit_button.connect("clicked", lambda w: self.quit())
+        vbox.add(exit_button)
+
+        window.connect("key-release-event", lambda w,k: k.keyval == Gdk.KEY_Escape and self.quit())
+
+        window.show()
+
+        self.show_text(_("Please press each media control key on your keyboard."))
+        self.show_text(_("If a media key is not present in your keyboard, press the 'Skip' button below it to remove it from the test."))
+
+    def on_skip_button(self, sender, key_name):
+        self.toggle_key_required(key_name)
+        self.validation_icons[key_name].set_from_stock(self.ICON_UNTESTED if self.tested_keys[key_name]["required"] else self.ICON_NOT_REQUIRED,
+                self.ICON_SIZE)
+
+        self.check_required_keys_tested()
+
+    def on_media_key(self, sender, key_name):
+        if key_name in self.keys:
+            self.tested_keys[key_name]["tested"] = True
+            self.validation_icons[key_name].set_from_stock(self.ICON_TESTED,size=self.ICON_SIZE)
+        else:
+            print(_("Unknown media key pressed"))
+
+        self.check_required_keys_tested()
+
+    def check_required_keys_tested(self):
+        if self.required_keys_tested():
+            self.show_text(_("All required media keys have been tested!"))
+            self.exit_code = EXIT_WITH_SUCCESS
+            self.quit() 
+
+    def show_text(self,string):
+        self.label.set_text(self.label.get_text()+"\n"+string)
+
+def main(args):
+    gettext.textdomain("checkbox")
+
+    if "DISPLAY" in os.environ:
+        reporter = GtkReporter()
+    else:
+        reporter = CLIReporter()
+
+    # Get the main_loop going
+    dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
+    
+    bus = dbus.Bus(dbus.Bus.TYPE_SESSION)
+    try:
+        dbus_object = bus.get_object('org.gnome.SettingsDaemon', '/org/gnome/SettingsDaemon/MediaKeys')
+    except dbus.exceptions.DBusException:
+        reporter.show_text(_("Unable to connect to GnomeSettingsDaemon to get media key events"))
+        sys.exit(EXIT_WITH_FAILURE)
+    
+    dbus_interface='org.gnome.SettingsDaemon.MediaKeys'
+    dbus_object.GrabMediaPlayerKeys("media_keys_test", 0, dbus_interface=dbus_interface)
+     
+    dbus_object.connect_to_signal('MediaPlayerKeyPressed', reporter.on_media_key)
+     
+    main_loop = GObject.MainLoop()
+
+    reporter.main_loop = main_loop
+
+    GObject.timeout_add_seconds(EXIT_TIMEOUT,reporter.quit)
+
+    try:
+        main_loop.run()
+    except KeyboardInterrupt:
+        reporter.show_text(_("Test interrupted"))
+        reporter.quit()
+        return EXIT_WITH_FAILURE
+
+    return reporter.exit_code 
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv[1:]))
