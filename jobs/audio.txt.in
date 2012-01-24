@@ -12,7 +12,7 @@ depends: audio/list_devices
 requires:
  device.category == 'AUDIO'
  package.name == 'alsa-base' and package.name == 'python-gst0.10'
-command: gst_pipeline_test -t 2 'audiotestsrc wave=sine freq=512 ! audioconvert ! audioresample ! gconfaudiosink'
+command: audio_settings store $CHECKBOX_SHARE/pulseaudio_settings; audio_settings set --device=pci --volume=50; gst_pipeline_test -t 2 'audiotestsrc wave=sine freq=512 ! audioconvert ! audioresample ! gconfaudiosink'; audio_settings restore --file=$CHECKBOX_SHARE/pulseaudio_settings
 _description:
  PURPOSE:
      This test will check that internal speakers work correctly
@@ -29,7 +29,7 @@ depends: audio/list_devices
 requires:
  device.category == 'AUDIO'
  package.name == 'alsa-base' and package.name == 'python-gst0.10'
-command: gst_pipeline_test -t 2 'audiotestsrc wave=sine freq=512 ! audioconvert ! audioresample ! gconfaudiosink'
+command: audio_settings store $CHECKBOX_SHARE/pulseaudio_settings; audio_settings set --device=pci --volume=50; gst_pipeline_test -t 2 'audiotestsrc wave=sine freq=512 ! audioconvert ! audioresample ! gconfaudiosink'; audio_settings restore --file=$CHECKBOX_SHARE/pulseaudio_settings
 _description:
  PURPOSE:
      This test will check that headphones connector works correctly
@@ -45,7 +45,7 @@ depends: audio/playback_auto
 requires:
  device.category == 'AUDIO'
  package.name == 'alsa-base'
-command: alsa_record_playback
+command: audio_settings store $CHECKBOX_SHARE/pulseaudio_settings; audio_settings set --device=pci --volume=50; alsa_record_playback; audio_settings restore --file=$CHECKBOX_SHARE/pulseaudio_settings
 _description:
  PURPOSE:
      This test will check that recording sound using the onboard microphone works correctly
@@ -62,7 +62,7 @@ depends: audio/playback_headphones
 requires:
  device.category == 'AUDIO'
  package.name == 'alsa-base'
-command: alsa_record_playback
+command: audio_settings store $CHECKBOX_SHARE/pulseaudio_settings; audio_settings set --device=pci --volume=50; alsa_record_playback; audio_settings restore --file=$CHECKBOX_SHARE/pulseaudio_settings
 _description:
  PURPOSE:
      This test will check that recording sound using an external microphone works correctly
@@ -78,7 +78,7 @@ name: audio/alsa_record_playback_usb
 requires:
  device.category == 'AUDIO'
  package.name == 'alsa-base'
-command: alsa_record_playback
+command: audio_settings store > $CHECKBOX_SHARE/pulseaudio_settings; audio_settings set --device=usb --volume=50; alsa_record_playback; audio_settings restore --file=$CHECKBOX_SHARE/pulseaudio_settings
 _description:
  PURPOSE:
      This test will check that a USB audio device works correctly
