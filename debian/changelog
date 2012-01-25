@@ -21,6 +21,8 @@ checkbox (0.13.1) precise; urgency=low
   * Added removable_storage_watcher script to replace watch_command to make
     testing USB, FireWire and MMC devices easier and more cohesive.
   * Added memory_compare script to automate the memory/info job
+  * Switch audio settings to correct device before running audio tests
+    (LP: #916859)
 
   [Gabor Kelemen]
   * Fixed last two remaining strings with backslashes (LP: #868571)

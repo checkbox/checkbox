@@ -1,0 +1,108 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+
+use Getopt::Long;
+
+my $action = shift @ARGV;
+my @types = ('sink','source');
+
+if ($action eq "store") {
+    # Find the current sink and and its mute/volume settings
+    foreach my $type (@types) {
+         my $index = `pacmd list-${type}s | grep '* index' | awk -F': ' '{print \$2}'`;
+         chomp $index;
+         print "${type}_index: ${index}\n";
+
+         my $muted = `pacmd list-${type}s | grep -A15 '* index' | grep 'muted:' | awk -F': ' '{print \$2}'`;
+         chomp $muted;
+         print "${type}_muted: ${muted}\n";
+
+         my $volume = `pacmd list-${type}s | grep -A10 '* index' | grep 'volume: 0:' | awk '{print \$3}'`;
+         chomp $volume; chop $volume; # Strip off the trailing %
+         print "${type}_volume: ${volume}\n";
+    }
+}
+elsif ($action eq "set") {
+    print "Updating audio settings\n";
+    
+    my ($device, $mute, $volume);
+    $mute = 0;
+    $volume = 100;
+    GetOptions( 'device=s' => \$device,
+                'mute' => \$mute,
+                'volume=s' => \$volume);
+
+    if ($device) {
+        foreach my $type (@types) {
+            my $direction = ($type eq 'sink') ? 'out' : 'in';
+            my $index = `pacmd list-${type}s | grep -B4 alsa_${direction}put[.]$device | grep index | awk -F': ' '{print \$2}'`;
+            chomp $index;
+            system("pacmd set-default-$type $index");
+
+            if ($type eq 'sink') {
+                foreach my $input (`pacmd list-sink-inputs | grep index | awk -F': ' '{print \$2}'`) {
+                    chomp($input);
+                    system("pacmd move-sink-input $input $index");
+                }
+            }
+
+            system("pacmd set-${type}-mute $index $mute");
+
+            # Set the volume as requested
+            my $base_volume = `pacmd list-${type}s | grep -A15 alsa_${direction}put[.]$device | grep 'volume steps:' | awk -F': ' '{print \$2}'`;
+            chomp $base_volume;
+            my $new_volume = int($base_volume / 100 * $volume);
+            system("pacmd set-${type}-volume $index $new_volume");
+        }
+    }
+    else {
+        print "No device specified\n";
+    }
+}
+elsif ($action eq "restore") {
+    
+    my $file;
+    GetOptions( 'file=s' => \$file);
+
+    open PACMD_FILE, $file;
+
+    my $index;
+    foreach (<PACMD_FILE>) {
+        chomp;
+
+        foreach my $type (@types) {
+            if (/($type)_index/) {
+                $index = (split(/: /, $_))[-1];
+
+                system("pacmd set-default-$type $index");
+
+                if ($type eq 'sink') {
+                    foreach my $input (`pacmd list-sink-inputs | grep index | awk -F': ' '{print \$2}'`) {
+                        chomp($input);
+                        system("pacmd move-sink-input $input $index");
+                    }
+                }
+            }
+            elsif (/($type)_muted/) {
+                my $muted = (split(/: /, $_))[-1];
+
+                system("pacmd set-${type}-mute $index $muted");
+            }
+            elsif(/($type)_volume/) {
+                my $volume = (split(/: /, $_))[-1];
+
+                # Calculate volume from base volume
+                my $base_volume = `pacmd list-${type}s | grep -A15 'index: ${index}' | grep 'volume steps:' | awk -F': ' '{print \$2}'`;
+                chomp $base_volume;
+
+                my $new_volume = int($base_volume / 100 * $volume);
+                system("pacmd set-${type}-volume $index $new_volume");
+            }
+        }
+    }
+}
+else {
+    print "Invalid action!\n";
+}
