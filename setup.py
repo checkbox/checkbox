@@ -164,7 +164,8 @@ class checkbox_install_data(install_data, object):
         # Create configs symbolic link
         dstdir = posixpath.dirname(examplesfiles[0]).replace("examples",
             "configs")
-        os.symlink(etcdir, dstdir)
+        if not os.path.exists(dstdir):
+            os.symlink(etcdir, dstdir)
 
         # Substitute version in examplesfiles and etcfiles
         version = changelog_version()

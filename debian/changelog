@@ -1,5 +1,6 @@
 checkbox (0.13.1) precise; urgency=low
 
+  [ Jeff Lane ]
   [Brendan Donegan]
   * Fixed the cpu_topology script so that it doesn't mistake the word
     'processor' in the value of another field for the field 'processor'
@@ -62,7 +63,10 @@ checkbox (0.13.1) precise; urgency=low
   [Aurélien Gâteau]
   * Improvements to Recover dialog and show_info method.
 
- -- Jeff Lane <jeff@ubuntu.com>  Mon, 23 Jan 2012 12:24:08 -0500
+  [ Javier Collado ]
+  * Error while creating binary package fixed (LP: #921576)
+
+ -- Javier Collado <javier.collado@canonical.com>  Wed, 25 Jan 2012 14:54:40 +0100
 
 checkbox (0.13) precise; urgency=low
 
