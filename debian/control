@@ -13,8 +13,8 @@ Section: python
 Architecture: any
 Replaces: hwtest (<< 0.1-0ubuntu12)
 Provides: hwtest
-Depends: ${misc:Depends}, ${python:Depends}, perl, debconf, python-libxml2, udev
-Recommends: dpkg (>= 1.13), lsb-release, pm-utils, python-apport, python-apt, python-dateutil, python-gst0.10
+Depends: ${misc:Depends}, ${python:Depends}, debconf, python-libxml2, udev
+Recommends: dpkg (>= 1.13), lsb-release, perl, pm-utils, python-apport, python-apt, python-dateutil, python-gst0.10
 Suggests: checkbox-cli | checkbox-gtk, bonnie++, bootchart, bzr, cvs, ethtool, flex, fwts, git-core, hdparm, lshw, make, nmap, obexd-client, python-pexpect, smartmontools, sox, stress, wodim
 Conflicts: hwtest (<< 0.1-0ubuntu12)
 Description: System testing application 
