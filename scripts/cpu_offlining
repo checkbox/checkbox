@@ -10,7 +10,7 @@ do
 		grep -i -q $cpu_num /proc/interrupts
 
 		if [ $? == 0 ]; then
-			return 1
+			exit 1
 		fi
 	fi
 done
@@ -24,7 +24,7 @@ do
         grep -i -q $cpu_num /proc/interrupts
 
         if [ $? == 1 ]; then
-            return 1
+            exit 1
         fi
     fi
 done
