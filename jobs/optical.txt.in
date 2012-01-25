@@ -41,6 +41,7 @@ command:
  name: optical/cdrom-write_`ls /sys$path/block`
  depends: optical/detect
  requires: device.path == "$path" and package.name == 'linux'
+ user: root
  _description:
   PURPOSE:
     This test will check your system's CD writing capabilities. This test requires a blank CD-R. If you do not have a blank CD-R, skip this test.
@@ -84,6 +85,7 @@ command:
  name: optical/dvd-write_`ls /sys$path/block`
  requires: device.path == "$path" and package.name == 'linux'
  depends: optical/detect
+ user: root
  command: optical_write_test `ls /sys$path/block`
  _description:
   PURPOSE:
