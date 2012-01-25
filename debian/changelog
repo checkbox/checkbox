@@ -60,6 +60,10 @@ checkbox (0.13.1) precise; urgency=low
     tests already run after suspend.
   * Modifed usb_test to handle firewire drives as well, renamed script to
     removable_storage_test
+  * Added new optical_write_test script and created appropriate jobs to refine
+    optical drive testing
+  * Created new resource job that creates an optical.{CD-R,DVD-R} resource to
+    determine if a machine's optical drive supports writing or is read-only.
 
   [Aurélien Gâteau]
   * Improvements to Recover dialog and show_info method.
@@ -67,7 +71,7 @@ checkbox (0.13.1) precise; urgency=low
   [ Javier Collado ]
   * Error while creating binary package fixed (LP: #921576)
 
- -- Javier Collado <javier.collado@canonical.com>  Wed, 25 Jan 2012 14:54:40 +0100
+ -- Jeff Lane <jeff@ubuntu.com>  Wed, 25 Jan 2012 15:52:17 -0500
 
 checkbox (0.13) precise; urgency=low
 
