@@ -13,7 +13,7 @@ requires:
  device.category == 'CDROM'
  optical_drive.cd == 'readonly'
 user: root
-command: optical_read_test /dev/sr1
+command: optical_read_test /dev/cdrom
 _description:
  PURPOSE:
      This test will check your optical devices ability to read CD media
@@ -30,7 +30,7 @@ requires:
  device.category == 'CDROM'
  optical_drive.cd == 'writable'
 user: root
-command: optical_write_test /dev/sr1
+command: optical_write_test /dev/cdrom
 _description:
  PURPOSE:
      This test will check your system's CD writing capabilities. This test requires a blank CD-R. If you do not have a blank CD-R, skip this test.
@@ -67,7 +67,7 @@ user: root
 requires:
  device.category == 'CDROM'
  optical_drive.dvd == 'writable'
-command: optical_write_test /dev/sr1
+command: optical_write_test /dev/cdrom
 _description:
  PURPOSE:
      This test will check your system's DVD writing capabilities. This test requires a blank DVD-R. If you do not have a blank DVD-R, skip this test.
