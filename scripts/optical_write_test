@@ -88,6 +88,8 @@ cleanup(){
 
 failed(){
     echo $1
+    echo "Attempting to clean up ..."
+    cleanup
     exit 1
 }
 
