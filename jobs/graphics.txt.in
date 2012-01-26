@@ -114,24 +114,24 @@ _description:
  VERIFICATION:
      Are those correct?
 
-plugin: manual
-name: graphics/cycle_resolution
-requires: package.name == 'xorg'
-depends: graphics/xrandr_detect_modes
-command: xrandr_cycle
-_description:
- PURPOSE:
-     This test cycles through the detected video modes
- STEPS:
-     1. Click "Test" to start cycling through the video modes
- VERIFICATION:
-     Did the screen appear to be working for each mode?
+plugin: shell
+name: graphics/VESA_drivers_not_in_use
+command: ! (grep Loading /var/log/Xorg.0.log | grep -q vesa_drv.so)
+_description: Check that VESA drivers are not in use
 
 plugin: shell
 name: graphics/compiz_check
-command: run_compiz_check | ansi_parser
-_description:
- Check that the hardware is able to run compiz.
+requires: package.name == 'nux-tools'
+command:
+ perl -e '$a=`/usr/lib/nux/unity_support_test -c -p`;$a=~s/\e\[[\d;]*m//g;print $a;exit($? ? 1:0)'
+_description: Check that hardware is able to run compiz
+
+plugin: shell
+name: graphics/unity-support
+requires: package.name == 'nux-tools'
+command:
+ perl -e '$a=`/usr/lib/nux/unity_support_test -p`;$a=~s/\e\[[\d;]*m//g;print $a;exit($? ? 1:0)'
+_description: Check that hardware is able to run Unity 3D
 
 plugin: manual
 name: graphics/glxgears
