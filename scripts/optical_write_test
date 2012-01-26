@@ -62,15 +62,20 @@ burn_iso(){
 check_disk(){
     echo "Sleeping 15 seconds to allow drive to settle"
     sleep 15
-    echo "Creating temp mount point"
-    mkdir $TEMP_DIR/mnt
-    echo "Mounting the disk for verification ..."
-    mount $OPTICAL_DRIVE $TEMP_DIR/mnt
     echo "Deleting original data files ..."
     rm -rf $SAMPLE_FILE
+    if `mount | grep $OPTICAL_DRIVE`; then
+        MOUNT_PT=`mount | grep $OPTICAL_DRIVE | awk '{print $3}'`
+        echo "Disk is already mounted to $MOUNT_PT"
+    else
+        MOUNT_PT=$TEMP_DIR/mnt
+        echo "Creating temp mount point: $MOUNT_PT ..."
+        mkdir $MOUNT_PT
+        echo "Mounting disk to mount point ..."
+        mount $OPTICAL_DRIVE $MOUNT_PT
+    fi
     echo "Copying files from ISO ..."
-    cp $TEMP_DIR/mnt/* $TEMP_DIR
-    ls $TEMP_DIR
+    cp $MOUNT_PT/* $TEMP_DIR
     check_md5 $MD5SUM_FILE
     return $?
 }
@@ -80,7 +85,7 @@ cleanup(){
     cd $START_DIR
     echo "Now residing in $PWD"
     echo "Cleaning up ..."
-    umount $TEMP_DIR/mnt
+    umount $MOUNT_PT
     rm -fr $TEMP_DIR
     echo "Ejecting spent media ..."
     eject $OPTICAL_DRIVE
