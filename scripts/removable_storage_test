@@ -10,17 +10,17 @@ import argparse
 from shutil import copy2
 
 class DiskTest():
-    ''' Class to contain various methods for testing USB disks '''   
+    ''' Class to contain various methods for testing USB disks '''
     def GenerateTestData(self,size):
         '''Generate a random data file of a given size'''
         r = random
         min = 100
         max = 1000000
         self.tfile = tempfile.NamedTemporaryFile(delete=False)
-        print "Creating Temp Data file"        
+        print "Creating Temp Data file"
         while os.path.getsize(self.tfile.name) < size:
             self.tfile.write(str(r.randint(min,max)))
-        
+
         print "File name is :%s" % self.tfile.name
         print "File size is %s bytes" % os.path.getsize(self.tfile.name)
 
@@ -35,7 +35,7 @@ class DiskTest():
                 md5.update(data)
         finally:
             fh.close()
-            return md5.hexdigest()
+        return md5.hexdigest()
 
     def CopyFile(self,source,dest):
         try:
@@ -59,8 +59,8 @@ class DiskTest():
             print "ERROR: Unable to remove tempfile %s" % target
 
 
-def GetDiskInfo(disk_type):
-    ''' Probes dbus to find any attached/mounted disk_type drives '''
+def get_disk_info(device):
+    ''' Probes dbus to find any attached/mounted devices'''
     bus = dbus.SystemBus()
     ud_manager_obj = bus.get_object("org.freedesktop.UDisks", "/org/freedesktop/UDisks")
     ud_manager = dbus.Interface(ud_manager_obj, 'org.freedesktop.UDisks')
@@ -69,60 +69,50 @@ def GetDiskInfo(disk_type):
         device_obj = bus.get_object("org.freedesktop.UDisks", dev)
         device_props = dbus.Interface(device_obj, dbus.PROPERTIES_IFACE)
         if not device_props.Get('org.freedesktop.UDisks.Device',"DeviceIsDrive"):
-            if device_props.Get('org.freedesktop.UDisks.Device', "DriveConnectionInterface") == disk_type:
+            if device_props.Get('org.freedesktop.UDisks.Device', "DriveConnectionInterface") == device:
                 devFile = str(device_props.Get('org.freedesktop.UDisks.Device',"DeviceFile"))
 
                 if len(device_props.Get('org.freedesktop.UDisks.Device',"DeviceMountPaths")) > 0:
                     devPath = str(device_props.Get('org.freedesktop.UDisks.Device',"DeviceMountPaths")[0])
                     disks[devFile] = devPath
-        
+
     return disks
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('-d', '--disk_type',
-                        action='store',
-                        required=True,
+    parser.add_argument('device',
                         choices=['usb','firewire','sdio'],
                         help="The type of removable media (usb, firewire, sdio) to test.")
-    action_group = parser.add_mutually_exclusive_group(required=True)
-    action_group.add_argument('-l','--list',
+    parser.add_argument('-l','--list',
                         action='store_true',
                         default=False,
-                        help="List the disk_type disks currently mounted")
-    action_group.add_argument('-t','--test',
-                        action='store_true',
-                        default=False,
-                        help="Perform tests against the disk_type disks attached to the SUT")
-    optional_group = parser.add_argument_group('Options', 
-                        'You can change the default behaviour of the test using these optional arguments.')
-    optional_group.add_argument('-c','--count',
+                        help="List the devices currently mounted")
+    parser.add_argument('-c','--count',
                         action='store',
                         default='1',
                         type=int,
                         help='The number of times to run the test')
-    optional_group.add_argument('-s','--size',
+    parser.add_argument('-s','--size',
                         action='store',
                         type=int,
                         default=1048576,
                         help="The size of the test data file to use in Bytes. Default is %(default)s")
     args = parser.parse_args()
-    
-    rem_disks = GetDiskInfo(args.disk_type)
+
+    rem_disks = get_disk_info(args.device)
     errors = 0
     if len(rem_disks) > 0: #If we do have removable drives attached and mounted
         if args.list:   #Simply output a list of drives detected
             for k,v in rem_disks.iteritems():
                 print "%s : %s" % (k, v)
             return 0
-        elif args.test: #Create a file, copy to USB and compare hashes
-            print "Found the following mounted %s partitions:" % args.disk_type
+        else: #Create a file, copy to USB and compare hashes
+            print "Found the following mounted %s partitions:" % args.device
             for k,v in rem_disks.iteritems():
                 print "%s : %s" % (k, v)
-            print "Running %s file transfer test for %s iterations" % (args.disk_type, args.count)
+            print "Running %s file transfer test for %s iterations" % (args.device, args.count)
             test = DiskTest()
-            loop = 1
-            while loop <= args.count:
+            for i in range(args.count):
                 test.GenerateTestData(args.size)
                 parent_hash = test.MD5HashFile(test.tfile.name)
                 print "Parent hash is: %s" % parent_hash
@@ -136,22 +126,19 @@ def main():
                     child_hash = test.MD5HashFile(target)
                     print "Hash of %s on %s is %s" % (target, v, child_hash)
                     if not test.CompareHash(parent_hash,child_hash):
-                        print "[Iteration %s] Failure on file copy to %s" % (loop, k)
+                        print "[Iteration %s] Failure on file copy to %s" % (i, k)
                         errors += 1
                     test.CleanUp(target)
                 test.CleanUp(test.tfile.name)
-                loop += 1
             if errors > 0:
                 print "Completed %s test iterations, but there were errors" % args.count
                 return 1
             else:
-                print "Successfully completed %s %s file transfer test iterations" % (args.count, args.disk_type)
+                print "Successfully completed %s %s file transfer test iterations" % (args.count, args.device)
                 return 0
-        else: #catch-all in case something weird happened
-            parser.error("Something went wrong. Did you remember the correct args? try -h or --help for usage info")
     else:  #If we don't have removable drives attached and mounted
         print "No removable drives were detected, aborting"
         return 1
-        
+
 if __name__ == '__main__':
     sys.exit(main())

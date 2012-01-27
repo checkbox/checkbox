@@ -8,7 +8,7 @@ plugin: manual
 name: usb/disk_detect
 depends: usb/detect
 requires: package.name == 'linux'
-command: removable_storage_test -d usb -l
+command: removable_storage_test -l usb
 _description:
  PURPOSE:
      This test will check that your system detects USB storage devices.
@@ -84,7 +84,7 @@ plugin: manual
 name: usb/storage-transfer
 requires: package.name == 'linux'
 depends: usb/insert
-command: removable_storage_test -d usb -t
+command: removable_storage_test usb
 _description:
  PURPOSE:
      This test will check your USB connection.
@@ -100,14 +100,14 @@ plugin: shell
 name: usb/storage-automated
 requires: package.name == 'linux'
 depends: usb/insert
-command: removable_storage_test -d usb -t
+command: removable_storage_test usb
 _description:
  This test is automated and executes after the usb/insert test is run.
 
 plugin: shell
 name: usb/storage-preinserted
 requires: package.name == 'linux'
-command: removable_storage_test -d usb -l && removable_storage_test -d usb -t
+command: removable_storage_test -l usb && removable_storage_test usb
 _description:
  This is an automated version of usb/storage-automated and assumes that the 
  server has usb storage devices plugged in prior to checkbox execution. It 
