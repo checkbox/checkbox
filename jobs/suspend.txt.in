@@ -127,7 +127,7 @@ _description:
 command: meminfo_resource | diff $CHECKBOX_DATA/meminfo_before_suspend -
 
 plugin: shell
-name: suspend/memory_after_suspend
+name: suspend/memory_after_suspend_auto
 requires:
  package.name == 'linux'
 depends: suspend/suspend_advanced_auto suspend/memory_before_suspend
