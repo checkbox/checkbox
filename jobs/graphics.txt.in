@@ -100,24 +100,23 @@ _description:
  VERIFICATION:
      Do you see color bars and static?
 
-plugin: manual
-name: graphics/xrandr_detect_modes
-requires: package.name == 'xorg'
-command: xrandr
-_description:
- PURPOSE:
-     This test checks the detected video modes
- STEPS:
-     1. The following screens and video modes have been detected on your system
- INFO:
-     $output
- VERIFICATION:
-     Are those correct?
-
 plugin: shell
 name: graphics/VESA_drivers_not_in_use
 command: ! (grep Loading /var/log/Xorg.0.log | grep -q vesa_drv.so)
 _description: Check that VESA drivers are not in use
+
+plugin: manual
+name: graphics/cycle_resolution
+requires: package.name == 'xorg'
+depends: graphics/xrandr_detect_modes
+command: xrandr_cycle
+_description:
+ PURPOSE:
+     This test cycles through the detected video modes
+ STEPS:
+     1. Click "Test" to start cycling through the video modes
+ VERIFICATION:
+     Did the screen appear to be working for each mode?
 
 plugin: shell
 name: graphics/compiz_check
