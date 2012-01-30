@@ -45,6 +45,7 @@ checkbox (0.13.1) precise; urgency=low
     passed to the backend for it to add to its environment. (LP: #897889)
   * Handle malformed LANGUAGE environment variable values (LP: #912946)
   * Added interactive media_keys_test script.
+  * Make creation of wireless connection files more robust (LP: #923836)
 
   [Robert Roth]
   * Fixed spelling mistakes in user_apps job file. (LP: #904209)
@@ -67,7 +68,8 @@ checkbox (0.13.1) precise; urgency=low
   [ Javier Collado ]
   * Error while creating binary package fixed (LP: #921576)
 
- -- Javier Collado <javier.collado@canonical.com>  Wed, 25 Jan 2012 14:54:40 +0100
+
+ -- Daniel Manrique <daniel.manrique@canonical.com>  Mon, 30 Jan 2012 15:09:06 -0500
 
 checkbox (0.13) precise; urgency=low
 
