@@ -102,7 +102,7 @@ _description:
 
 plugin: shell
 name: graphics/VESA_drivers_not_in_use
-command: ! (grep Loading /var/log/Xorg.0.log | grep -q vesa_drv.so)
+command: cat /var/log/Xorg.0.log | perl -e '$a=0;while(<>){$a++ if /Loading.*vesa_drv\.so/;$a-- if /Unloading.*vesa/&&$a}exit 1 if $a'
 _description: Check that VESA drivers are not in use
 
 plugin: manual
