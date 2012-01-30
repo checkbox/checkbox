@@ -1,6 +1,6 @@
 #!/bin/bash
 
-OPTICAL_DRIVE=$1
+OPTICAL_DRIVE=$(readlink -f $1)
 TEMP_DIR='/tmp/optical-test'
 ISO_NAME='optical-test.iso'
 SAMPLE_FILE_PATH='/usr/share/example-content/'
@@ -64,8 +64,8 @@ check_disk(){
     sleep 15
     echo "Deleting original data files ..."
     rm -rf $SAMPLE_FILE
-    if `mount | grep $OPTICAL_DRIVE`; then
-        MOUNT_PT=`mount | grep $OPTICAL_DRIVE | awk '{print $3}'`
+    if [ ! -z "$(mount | grep $OPTICAL_DRIVE)" ]; then
+        MOUNT_PT=$(mount | grep $OPTICAL_DRIVE | awk '{print $3}')
         echo "Disk is already mounted to $MOUNT_PT"
     else
         MOUNT_PT=$TEMP_DIR/mnt
