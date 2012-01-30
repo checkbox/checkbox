@@ -15,7 +15,7 @@ _description:
 plugin: shell
 name: firewire/storage-test
 depends: firewire/insert
-command: removable_storage_test -d firewire -t
+command: removable_storage_test firewire
 _description:
  This is an automated test which performs read/write operations on an attached
  FireWire HDD
