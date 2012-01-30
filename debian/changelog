@@ -46,6 +46,8 @@ checkbox (0.13.1) precise; urgency=low
   * Handle malformed LANGUAGE environment variable values (LP: #912946)
   * Added interactive media_keys_test script.
   * Make creation of wireless connection files more robust (LP: #923836)
+  * Add a plugin conf variable for the welcome string (shown on the first
+    screen when checkbox runs), so it can be changed without much effort.
 
   [Robert Roth]
   * Fixed spelling mistakes in user_apps job file. (LP: #904209)
@@ -72,7 +74,7 @@ checkbox (0.13.1) precise; urgency=low
   * Replaced xrandr_display_modes with automated check for VESA driver
   * Refactored Unity compatibility tests
 
- -- Daniel Manrique <daniel.manrique@canonical.com>  Mon, 30 Jan 2012 16:00:16 -0500
+ -- Daniel Manrique <daniel.manrique@canonical.com>  Mon, 30 Jan 2012 17:33:07 -0500
 
 checkbox (0.13) precise; urgency=low
 
