@@ -1,4 +1,10 @@
 plugin: shell
+name: suspend/network_before_suspend
+depends: networking/detect
+_description: Record the current network before suspending.
+command: internet_test > $CHECKBOX_DATA/network_before_suspend.txt
+
+plugin: shell
 name: suspend/resolution_before_suspend
 _description: Record the current resolution before suspending.
 command: xrandr -q |grep '*'| awk '{print $1}' > $CHECKBOX_DATA/resolution_before_suspend.txt
@@ -70,7 +76,7 @@ _description:
 
 plugin: manual
 name: suspend/suspend_advanced
-depends: power-management/rtc networking/detect suspend/resolution_before_suspend suspend/wireless_before_suspend bluetooth/detect-output suspend/cpu_before_suspend suspend/memory_before_suspend
+depends: power-management/rtc suspend/network_before_suspend suspend/resolution_before_suspend suspend/wireless_before_suspend bluetooth/detect-output suspend/cpu_before_suspend suspend/memory_before_suspend
 requires: package.name == 'pm-utils'
 user: root
 command: sleep_test -d
@@ -86,9 +92,9 @@ _description:
 
 plugin: shell
 name: suspend/network_after_suspend
-depends: suspend/suspend_advanced networking/detect
+depends: suspend/suspend_advanced networking/network_before_suspend
 _description: Test the network after resuming.
-command: internet_test
+command: network_wait; internet_test | diff $CHECKBOX_DATA/network_before_suspend.txt -
 
 plugin: shell
 name: suspend/resolution_after_suspend
@@ -247,7 +253,7 @@ _description:
 
 plugin: shell
 name: suspend/suspend_advanced_auto
-depends: power-management/rtc networking/detect suspend/cpu_before_suspend suspend/memory_before_suspend suspend/wireless_before_suspend_auto
+depends: power-management/rtc suspend/network_before_suspend suspend/cpu_before_suspend suspend/memory_before_suspend suspend/wireless_before_suspend_auto
 requires:
     package.name == 'pm-utils'
     sleep.mem == 'supported'
