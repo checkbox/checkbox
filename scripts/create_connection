@@ -2,7 +2,6 @@
 
 import sys
 import os
-import time
 
 from subprocess import Popen, PIPE
 from uuid import uuid4
@@ -11,7 +10,7 @@ from optparse import OptionParser
 CONNECTIONS_PATH='/etc/NetworkManager/system-connections/'
 
 def connection_section(ssid, uuid):
-    
+
     if not uuid: uuid = uuid4()
 
     connection = """
@@ -21,17 +20,10 @@ uuid=%s
 type=802-11-wireless
     """ % (ssid, uuid)
 
-    # Get MAC address
-    nmcli_proc = Popen("nmcli -f GENERAL dev list iface `nmcli dev status | awk '/802-11-wireless/ {print $1}'` | awk '/HWADDR/ {print $2}'",
-                       shell=True, stdout=PIPE, stderr=PIPE)
-    (stdout, stderr) = nmcli_proc.communicate()
-    mac_address_field = "mac-address=%s" % (stdout.strip()) if stdout.strip() != "" else ""
-
     wireless = """
 [802-11-wireless]
 ssid=%s
-mode=infrastructure
-%s    """ % (ssid, mac_address_field)
+mode=infrastructure """ % (ssid)
 
     return connection + wireless
 
@@ -70,7 +62,7 @@ method=auto
     return ip
 
 def block_until_created(connection, retries):
-    
+
     while retries > 0:
         nmcli_con = Popen(['nmcli','con','up','id', connection], stdout=PIPE)
         (stdout, stderr) = nmcli_con.communicate()
@@ -88,7 +80,7 @@ def block_until_created(connection, retries):
 
 def main():
     parser = OptionParser()
-    
+
     parser.add_option('-S', '--security',
                       help="""The type of security to be used by the connection.
                               One of wpa and wep. No security will be used if
@@ -109,7 +101,7 @@ def main():
     if len(args) < 1:
         print("Must specify an SSID to connect to.")
         sys.exit(1)
-    
+
     connection_info = connection_section(args[0], options.uuid)
 
     if options.security:
@@ -122,9 +114,9 @@ def main():
     elif options.key:
         print "You specified an encryption key but did not give a security type using --security."
         sys.exit(1)
-    
+
     connection_info += ip_sections()
-        
+
     try:
         connection_file = open(CONNECTIONS_PATH + args[0], 'w')
         connection_file.write(connection_info)
