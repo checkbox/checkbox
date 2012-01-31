@@ -19,14 +19,13 @@
 from gettext import gettext as _
 
 from checkbox.plugin import Plugin
+from checkbox.properties import String
 from checkbox.user_interface import PREV
 
 
 class IntroPrompt(Plugin):
 
-    def register(self, manager):
-        super(IntroPrompt, self).register(manager)
-        self._welcome_text = _("""\
+    welcome_text = String(default=_("""\
 Welcome to System Testing!
 
 Checkbox provides tests to confirm that your system is working \
@@ -36,7 +35,10 @@ a summary report for your system.""") + _("""
 Warning: Some tests could cause your system to freeze \
 or become unresponsive. Please save all your work \
 and close all other running applications before \
-beginning the testing process.""")
+beginning the testing process."""))
+
+    def register(self, manager):
+        super(IntroPrompt, self).register(manager)
 
         self._recover = False
 
@@ -51,7 +53,7 @@ beginning the testing process.""")
     def prompt_begin(self, interface):
         if interface.direction == PREV or not self._recover:
             self._recover = False
-            interface.show_text(self._welcome_text, previous="")
+            interface.show_text(self.welcome_text, previous="")
 
 
 factory = IntroPrompt
