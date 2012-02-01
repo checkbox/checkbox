@@ -32,10 +32,6 @@ patch_configuration()
         # Apply the patch file if it is less than the given version
         patch_version=`basename $patch_file`
         if dpkg --compare-versions $version lt $patch_version; then
-            # Package was renamed from hwtest to checkbox
-            dpkg --compare-versions $patch_version lt "0.1-ubuntu13" \
-                && patch_package=`echo $package | sed 's/checkbox/hwtest/'` \
-                || patch_package=`echo $package | sed 's/hwtest/checkbox/'`
             $patch_file $patch_package
         fi
 
@@ -47,20 +43,18 @@ update_configuration()
 {
     root_package=`echo $package | cut -d '-' -f '1'`
 
-    if [ "$root_package" != "hwtest" ]; then
-        # Create a temporary file to generate the suggested
-        # configuration file.
-        tempfile=`tempfile -m 0644 -p checkbox`
+    # Create a temporary file to generate the suggested
+    # configuration file.
+    tempfile=`tempfile -m 0644 -p checkbox`
 
-        # Update the temporary file with preseeded values.
-        /usr/share/checkbox/install/config --output=$tempfile $package $base_package
+    # Update the temporary file with preseeded values.
+    /usr/share/checkbox/install/config --output=$tempfile $package $base_package
 
-        # Clobber the old config file.
-        cp $tempfile $config
+    # Clobber the old config file.
+    cp $tempfile $config
 
-        # Now clear up the cruft.
-        rm -f $tempfile
-    fi
+    # Now clear up the cruft.
+    rm -f $tempfile
 }
 
 case "$1" in
