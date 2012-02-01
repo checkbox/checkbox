@@ -1,7 +1,7 @@
 plugin: shell
 name: networking/detect
 requires: device.category == 'NETWORK' or device.category == 'WIRELESS'
-command: network_test
+command: network_device_info
 _description: Test to detect the available network controllers
 
 plugin: shell 
@@ -111,7 +111,7 @@ command:
  name: networking/multi_nic_$2
  requires: device.path == "$1" and package.name == 'linux'
  user: root
- command: dhclient $2; internet_test --interface=$2 --deadline=15
+ command: dhclient $2; network_bandwidth_test --interface=$2 --scan=3 --log-level=debug
  description:
   Testing for NIC $2
  EOF
