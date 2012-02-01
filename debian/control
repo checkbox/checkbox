@@ -11,22 +11,16 @@ Vcs-Bzr: https://code.launchpad.net/~hardware-certification/checkbox/trunk
 Package: checkbox
 Section: python
 Architecture: any
-Replaces: hwtest (<< 0.1-0ubuntu12)
-Provides: hwtest
 Depends: ${misc:Depends}, ${python:Depends}, debconf, python-libxml2, udev
 Recommends: dpkg (>= 1.13), gstreamer0.10-gconf, lsb-release, perl, pm-utils, python-apport, python-apt, python-dateutil, python-gst0.10
 Suggests: checkbox-cli | checkbox-gtk, bonnie++, bootchart, bzr, cvs, ethtool, flex, fwts, git-core, hdparm, lshw, make, nmap, obexd-client, python-pexpect, smartmontools, sox, stress, wodim
-Conflicts: hwtest (<< 0.1-0ubuntu12)
 Description: System testing application 
  This project provides an extensible interface for system testing. The
  results can then be sent to Launchpad.
 
 Package: checkbox-cli
 Architecture: all
-Replaces: hwtest-cli (<< 0.1-0ubuntu12)
-Provides: hwtest-cli
 Depends: checkbox (>= ${source:Version}), ${misc:Depends}
-Conflicts: hwtest-cli (<< 0.1-0ubuntu12)
 Description: Command line interface for checkbox 
  This project provides an extensible interface for system testing. The
  results can then be sent to Launchpad.
@@ -46,10 +40,7 @@ Description: Urwid interface for checkbox
 Package: checkbox-gtk
 Section: gnome
 Architecture: all
-Replaces: hwtest-gtk (<< 0.1-0ubuntu12)
-Provides: hwtest-gtk
 Depends: checkbox (>= ${source:Version}), gksu, python-gobject (>= 2.28), gir1.2-gtk-3.0, ${misc:Depends}
-Conflicts: hwtest-gtk (<< 0.1-0ubuntu12)
 Description: GTK interface for checkbox
  This project provides an extensible interface for system testing. The
  results can then be sent to Launchpad.
@@ -64,25 +55,3 @@ Description: SRU interface for checkbox
  results can then be sent to Launchpad.
  .
  This package provides a non-interactive interface for SRU testing.
-
-Package: hwtest
-Section: python
-Architecture: all
-Depends: checkbox, ${misc:Depends}
-Description: Transitional package to checkbox
- This package is a transitional package for renaming hwtest to checkbox.
-
-Package: hwtest-cli
-Architecture: all
-Depends: checkbox-cli, ${misc:Depends}
-Description: Transitional package to checkbox-cli
- This package is a transitional package for renaming hwtest-cli to
- checkbox-cli.
-
-Package: hwtest-gtk
-Section: gnome
-Architecture: all
-Depends: checkbox-gtk, ${misc:Depends}
-Description: Transitional package to checkbox-gtk
- This package is a transitional package for renaming hwtest-gtk to
- checkbox-gtk.
