@@ -228,6 +228,7 @@ This project provides an extensible interface for system testing.
         ("share/checkbox/report/images/", ["report/images/*"]),
         ("share/checkbox/scripts/", ["scripts/*"]),
         ("share/checkbox/gtk/", ["gtk/checkbox-gtk.ui", "gtk/*.png"]),
+        ("share/dbus-1/services/", ["qt/com.canonical.QtCheckbox.service"]),
         ("share/checkbox/qt/", ["qt/checkbox-qt.ui", "qt/*.png"]),
         ("share/apport/package-hooks/", ["apport/source_checkbox.py"]),
         ("share/apport/general-hooks/", ["apport/checkbox.py"])],

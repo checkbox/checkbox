@@ -29,10 +29,6 @@ from checkbox.job import UNINITIATED
 from checkbox.user_interface import (UserInterface,
     NEXT, PREV, YES_ANSWER, NO_ANSWER, SKIP_ANSWER,
     ANSWER_TO_STATUS, STATUS_TO_ANSWER)
-from PyQt4 import QtGui, QtCore
-from PyQt4.QtCore import QObject, QVariant
-from PyQt4.QtGui import QApplication, QProgressDialog, QLabel, QStandardItemModel, QStandardItem
-from PyQt4.QtGui import QMessageBox
 import dbus
 from dbus.mainloop.glib import DBusGMainLoop
 from threading import Thread
@@ -55,14 +51,14 @@ class QTInterface(UserInterface):
     def __init__(self, title, data_path):
         super(QTInterface, self).__init__(title, data_path)
         print "My name is: %s" % funcname()
-        self.frontThread = FrontEndThread()
-        self.frontThread.start()
+#        self.frontThread = FrontEndThread()
+#        self.frontThread.start()
         self._app_title = title
         notReady = True
         while notReady:
             try:
                 self.bus = dbus.SessionBus(mainloop=DBusGMainLoop())
-                self.qtfront = self.bus.get_object('com.canonical.QtCheckbox', '/com/canonical/qt_checkbox')
+                self.qtfront = self.bus.get_object('com.canonical.QtCheckbox', '/QtCheckbox')
                 self.qtiface = dbus.Interface(self.qtfront, dbus_interface='com.canonical.QtCheckbox')
                 self.loop = gobject.MainLoop()
                 notReady = False
@@ -97,9 +93,9 @@ class QTInterface(UserInterface):
         self._set_main_title()
 
         self.qtiface.showText(text)
-        self.bus.add_signal_receiver(onFullTestsClicked, "onFullTestsClicked")
+        self.bus.add_signal_receiver(onFullTestsClicked, "fullTestsClicked")
         self.loop.run()
-        self.bus.remove_signal_receiver(onFullTestsClicked, "onFullTestsClicked")
+        self.bus.remove_signal_receiver(onFullTestsClicked, "fullTestsClicked")
 
     def show_entry(self, text, value, previous=None, next=None):
         print "My name is: %s" % funcname()
@@ -125,21 +121,25 @@ class QTInterface(UserInterface):
             newTests = {}
             for test in options[section]:
                 newTests[str(test)] = str("")
+            
+            if newTests == {}:
+                newTests = {'': ''}
 
             newOptions[section] = newTests
 
         self.qtiface.showTree(text, newOptions)
-        self.bus.add_signal_receiver(onStartTestsClicked, "onStartTestsClicked")
+        self.bus.add_signal_receiver(onStartTestsClicked, "startTestsClicked")
 
         self.loop.run()
-        self.bus.remove_signal_receiver(onStartTestsClicked, "onStartTestsClicked")
+        self.bus.remove_signal_receiver(onStartTestsClicked, "startTestsClicked")
         newOptions = {}
         testsFromInterface = self.qtiface.getTestsToRun()
         for section in testsFromInterface:
             newTests = {}
             for test in testsFromInterface[section]:
-                newTests[str(test)] = {}
-            newOptions[section] = newTests
+                if test != '':
+                    newTests[str(test)] = {}
+            newOptions[str(section)] = newTests
 
         return newOptions
 
@@ -167,10 +167,12 @@ class QTInterface(UserInterface):
 
         def onYesTestClicked():
             test["status"] = YES_ANSWER
+            self.direction = NEXT
             self.loop.quit()
 
         def onNoTestClicked():
             test["status"] = NO_ANSWER
+            self.direction = NEXT
             self.loop.quit()
 
         enableTestButton = True
@@ -179,20 +181,21 @@ class QTInterface(UserInterface):
             description = self._run_test(test, runner)
             enableTestButton = False
 
+        print test
         self.qtiface.showTest(description, test["suite"], enableTestButton)
-        self.bus.add_signal_receiver(onStartTestClicked, "onStartTestClicked")
-        self.bus.add_signal_receiver(onNextTestClicked, "onNextTestClicked")
-        self.bus.add_signal_receiver(onPreviousTestClicked, "onPreviousTestClicked")
-        self.bus.add_signal_receiver(onNoTestClicked, "onYesTestClicked")
-        self.bus.add_signal_receiver(onYesTestClicked, "onNoTestClicked")
+        self.bus.add_signal_receiver(onStartTestClicked, "startTestClicked")
+        self.bus.add_signal_receiver(onNextTestClicked, "nextTestClicked")
+        self.bus.add_signal_receiver(onPreviousTestClicked, "previousTestClicked")
+        self.bus.add_signal_receiver(onNoTestClicked, "yesTestClicked")
+        self.bus.add_signal_receiver(onYesTestClicked, "noTestClicked")
 
         self.loop.run()
 
-        self.bus.remove_signal_receiver(onStartTestClicked, "onStartTestClicked")
-        self.bus.remove_signal_receiver(onNextTestClicked, "onNextTestClicked")
-        self.bus.remove_signal_receiver(onPreviousTestClicked, "onPreviousTestClicked")
-        self.bus.remove_signal_receiver(onNoTestClicked, "onYesTestClicked")
-        self.bus.remove_signal_receiver(onYesTestClicked, "onNoTestClicked")
+        self.bus.remove_signal_receiver(onStartTestClicked, "startTestClicked")
+        self.bus.remove_signal_receiver(onNextTestClicked, "nextTestClicked")
+        self.bus.remove_signal_receiver(onPreviousTestClicked, "previousTestClicked")
+        self.bus.remove_signal_receiver(onNoTestClicked, "yesTestClicked")
+        self.bus.remove_signal_receiver(onYesTestClicked, "noTestClicked")
 
         return False
 
