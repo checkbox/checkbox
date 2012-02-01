@@ -2,7 +2,7 @@ plugin: shell
 name: suspend/network_before_suspend
 depends: networking/detect
 _description: Record the current network before suspending.
-command: internet_test > $CHECKBOX_DATA/network_before_suspend.txt
+command: internet_test | tee $CHECKBOX_DATA/network_before_suspend.txt
 
 plugin: shell
 name: suspend/resolution_before_suspend
