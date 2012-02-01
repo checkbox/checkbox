@@ -24,7 +24,7 @@ name: wireless/wireless_connection_wpa_bg
 requires: device.category == 'WIRELESS'
 user: root
 environ: WPA_BG_SSID WPA_BG_PSK
-command: create_connection $WPA_BG_SSID --security=wpa --key=$WPA_BG_PSK && ifconfig eth0 down; internet_test; ifconfig eth0 up; rm -f /etc/NetworkManager/system-connections/$WPA_BG_SSID
+command: create_connection $WPA_BG_SSID --security=wpa --key=$WPA_BG_PSK; internet_test --interface=`nmcli dev list | grep -B1 -A9 802-11-wireless | grep DEVICE | awk '{print $2}'`; rm -f /etc/NetworkManager/system-connections/$WPA_BG_SSID
 _description:
  Tests that the systems wireless hardware can connect to a router using WPA
  security and the 802.11b/g protocols.
@@ -34,7 +34,7 @@ name: wireless/wireless_connection_open_bg
 requires: device.category == 'WIRELESS'
 user: root
 environ: OPEN_BG_SSID
-command: create_connection $OPEN_BG_SSID && ifconfig eth0 down; internet_test; ifconfig eth0 up; rm -f /etc/NetworkManager/system-connections/$OPEN_BG_SSID
+command: create_connection $OPEN_BG_SSID; internet_test --interface=`nmcli dev list | grep -B1 -A9 802-11-wireless | grep DEVICE | awk '{print $2}'`; rm -f /etc/NetworkManager/system-connections/$OPEN_BG_SSID
 _description:
  Tests that the systems wireless hardware can connect to a router using no
  no security and the 802.11b/g protocols.
@@ -44,7 +44,7 @@ name: wireless/wireless_connection_wpa_n
 requires: device.category == 'WIRELESS'
 user: root
 environ: WPA_N_SSID WPA_N_PSK
-command: create_connection $WPA_N_SSID --security=wpa --key=$WPA_N_PSK && ifconfig eth0 down; internet_test; ifconfig eth0 up; rm -f /etc/NetworkManager/system-connections/$WPA_N_SSID
+command: create_connection $WPA_N_SSID --security=wpa --key=$WPA_N_PSK; internet_test --interface=`nmcli dev list | grep -B1 -A9 802-11-wireless | grep DEVICE | awk '{print $2}'`; rm -f /etc/NetworkManager/system-connections/$WPA_N_SSID
 _description:
  Tests that the systems wireless hardware can connect to a router using WPA
  security and the 802.11n protocol.
@@ -54,7 +54,7 @@ name: wireless/wireless_connection_open_n
 requires: device.category == 'WIRELESS'
 user: root
 environ: OPEN_N_SSID
-command: create_connection $OPEN_N_SSID && ifconfig eth0 down; internet_test; ifconfig eth0 up; rm -f /etc/NetworkManager/system-connections/$OPEN_N_SSID
+command: create_connection $OPEN_N_SSID; internet_test --interface=`nmcli dev list | grep -B1 -A9 802-11-wireless | grep DEVICE | awk '{print $2}'`; rm -f /etc/NetworkManager/system-connections/$OPEN_N_SSID
 _description:
  Tests that the systems wireless hardware can connect to a router using no
  no security and the 802.11n protocol.
