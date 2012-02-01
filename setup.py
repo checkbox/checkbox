@@ -164,7 +164,8 @@ class checkbox_install_data(install_data, object):
         # Create configs symbolic link
         dstdir = posixpath.dirname(examplesfiles[0]).replace("examples",
             "configs")
-        os.symlink(etcdir, dstdir)
+        if not os.path.exists(dstdir):
+            os.symlink(etcdir, dstdir)
 
         # Substitute version in examplesfiles and etcfiles
         version = changelog_version()
@@ -188,7 +189,6 @@ class checkbox_install_scripts(install_scripts, object):
         for outfile in self.outfiles:
             infile = posixpath.join("bin", posixpath.basename(outfile))
             substitute_variables(infile, outfile, {
-                "CHECKBOX_OPTIONS:-": "CHECKBOX_OPTIONS:---whitelist-file=$CHECKBOX_SHARE/data/whitelists/default.whitelist",
                 "CHECKBOX_SHARE:-.": "CHECKBOX_SHARE:-/usr/share/checkbox",
                 "CHECKBOX_DATA:-.": "CHECKBOX_DATA:-$XDG_CACHE_HOME/checkbox"})
 
@@ -231,7 +231,8 @@ This project provides an extensible interface for system testing.
         ("share/checkbox/qt/", ["qt/checkbox-qt.ui", "qt/*.png"]),
         ("share/apport/package-hooks/", ["apport/source_checkbox.py"]),
         ("share/apport/general-hooks/", ["apport/checkbox.py"])],
-    scripts = ["bin/checkbox-cli", "bin/checkbox-gtk", "bin/checkbox-urwid", "bin/checkbox-qt"],
+    scripts = ["bin/checkbox-cli", "bin/checkbox-gtk", "bin/checkbox-sru",
+        "bin/checkbox-urwid", "bin/checkbox-qt"],
     packages = ["checkbox", "checkbox.contrib", "checkbox.lib", "checkbox.parsers",
         "checkbox.reports", "checkbox_cli", "checkbox_gtk", "checkbox_urwid", "checkbox_qt"],
     package_data = {

@@ -2,7 +2,6 @@
 
 import sys
 import os
-import time
 
 from subprocess import Popen, PIPE
 from uuid import uuid4
@@ -11,7 +10,7 @@ from optparse import OptionParser
 CONNECTIONS_PATH='/etc/NetworkManager/system-connections/'
 
 def connection_section(ssid, uuid):
-    
+
     if not uuid: uuid = uuid4()
 
     connection = """
@@ -21,22 +20,15 @@ uuid=%s
 type=802-11-wireless
     """ % (ssid, uuid)
 
-    # Get MAC address
-    nmcli_proc = Popen("nmcli -f GENERAL dev list | grep 802-11-wireless -A 2 | awk '/HWADDR/ {print $2}'",
-                       shell=True, stdout=PIPE, stderr=PIPE)
-    (stdout, stderr) = nmcli_proc.communicate()
-
     wireless = """
 [802-11-wireless]
 ssid=%s
-mode=infrastructure
-mac-address=%s
-    """ % (ssid, stdout.strip())
+mode=infrastructure """ % (ssid)
 
     return connection + wireless
 
 def security_section(security, key):
-    # Need to add security field to 802-11-wireless section
+    # Add security field to 802-11-wireless section
     wireless_security = """
 security=802-11-wireless-security
 
@@ -69,21 +61,26 @@ method=auto
 
     return ip
 
-def block_until_created(connection, block_for):
-    
-    while block_for > 0:
-        nmcli_process = Popen(['nmcli','con','list'], stdout=PIPE)
-        (stdout, stderr) = nmcli_process.communicate()
+def block_until_created(connection, retries):
 
-        if connection in stdout:
+    while retries > 0:
+        nmcli_con = Popen(['nmcli','con','up','id', connection], stdout=PIPE)
+        (stdout, stderr) = nmcli_con.communicate()
+
+        if 'state: activated' in stdout:
+            print("Connection %s activated." % connection)
             break
 
-        time.sleep(2)
-        block_for = block_for - 2
+        retries = retries - 1
+
+    if retries <= 0:
+        print("Failed to activate %s." % connection)
+        sys.exit(1)
+
 
 def main():
     parser = OptionParser()
-    
+
     parser.add_option('-S', '--security',
                       help="""The type of security to be used by the connection.
                               One of wpa and wep. No security will be used if
@@ -94,17 +91,17 @@ def main():
                       help="""The uuid to assign to the connection for use by
                             NetworkManager. One will be generated if not
                             specified here.""")
-    parser.add_option('-B', '--block-for',
-                      help="""The length of time to block the scripts exit
-                              for until the connection is created.""",
-                      default=10)
+    parser.add_option('-R', '--retries',
+                      help="""The number of times to attempt bringing up the
+                              connection until it is confirmed as active.""",
+                      default=3)
 
     (options, args) = parser.parse_args()
 
     if len(args) < 1:
         print("Must specify an SSID to connect to.")
         sys.exit(1)
-    
+
     connection_info = connection_section(args[0], options.uuid)
 
     if options.security:
@@ -117,9 +114,9 @@ def main():
     elif options.key:
         print "You specified an encryption key but did not give a security type using --security."
         sys.exit(1)
-    
+
     connection_info += ip_sections()
-        
+
     try:
         connection_file = open(CONNECTIONS_PATH + args[0], 'w')
         connection_file.write(connection_info)
@@ -129,7 +126,7 @@ def main():
         print "Can't write to " + CONNECTIONS_PATH + args[0] + ". Is this command being run as root?"
         sys.exit(1)
 
-    block_until_created(args[0], options.block_for)
+    block_until_created(args[0], options.retries)
 
 if __name__ == "__main__":
     main()

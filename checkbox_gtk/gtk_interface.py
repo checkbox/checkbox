@@ -92,7 +92,7 @@ class GTKInterface(UserInterface):
         self.IMAGE_HEAD_BACKGROUND = posixpath.join(data_path,
             "checkbox-gtk-head.png")
         self.FONT = "Ubuntu"
-        self.TEXT =_("System Testing")
+        self.TEXT = title
 
         image_head=self._get_widget("image_head")
         try:
@@ -546,10 +546,15 @@ class GTKInterface(UserInterface):
             message_format=text)
         message_dialog.set_modal(True)
         message_dialog.set_title(_("Info"))
+        message_dialog.connect("realize", lambda x: \
+            x.get_window().set_functions(Gdk.WMFunction.MOVE))
 
+        if default:
+            # We have a default, move it to the end of the button list
+            options.remove(default)
+            options.append(default)
         for index, option in enumerate(options):
-            button = getattr(Gtk, "STOCK_%s" % option.upper())
-            message_dialog.add_buttons(button, index)
+            message_dialog.add_button(option, index)
 
         self._run_dialog(message_dialog)
         message_dialog.hide()

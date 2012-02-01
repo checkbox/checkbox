@@ -6,21 +6,21 @@ import random
 import os
 import tempfile
 import hashlib
+import argparse
 from shutil import copy2
-from optparse import OptionParser
 
 class DiskTest():
-    ''' Class to contain various methods for testing USB disks '''   
+    ''' Class to contain various methods for testing USB disks '''
     def GenerateTestData(self,size):
         '''Generate a random data file of a given size'''
         r = random
         min = 100
         max = 1000000
         self.tfile = tempfile.NamedTemporaryFile(delete=False)
-        print "Creating Temp Data file"        
+        print "Creating Temp Data file"
         while os.path.getsize(self.tfile.name) < size:
             self.tfile.write(str(r.randint(min,max)))
-        
+
         print "File name is :%s" % self.tfile.name
         print "File size is %s bytes" % os.path.getsize(self.tfile.name)
 
@@ -35,14 +35,17 @@ class DiskTest():
                 md5.update(data)
         finally:
             fh.close()
-            return md5.hexdigest()
+        return md5.hexdigest()
 
     def CopyFile(self,source,dest):
         try:
             copy2(source,dest)
-        except:
-            print "Unable to copy the file to %s" % dest
-    
+        except IOError:
+            print "ERROR: Unable to copy the file to %s" % dest
+            return False
+        else:
+            return True
+
     def CompareHash(self,parent,child):
         if not parent == child:
             return False
@@ -53,11 +56,11 @@ class DiskTest():
         try:
             os.unlink(target)
         except:
-            print "Unable to remove tempfile %s" % target
+            print "ERROR: Unable to remove tempfile %s" % target
 
 
-def GetDiskInfo():
-    ''' Probes dbus to find any attached/mounted USB drives '''
+def get_disk_info(device):
+    ''' Probes dbus to find any attached/mounted devices'''
     bus = dbus.SystemBus()
     ud_manager_obj = bus.get_object("org.freedesktop.UDisks", "/org/freedesktop/UDisks")
     ud_manager = dbus.Interface(ud_manager_obj, 'org.freedesktop.UDisks')
@@ -66,78 +69,76 @@ def GetDiskInfo():
         device_obj = bus.get_object("org.freedesktop.UDisks", dev)
         device_props = dbus.Interface(device_obj, dbus.PROPERTIES_IFACE)
         if not device_props.Get('org.freedesktop.UDisks.Device',"DeviceIsDrive"):
-            if device_props.Get('org.freedesktop.UDisks.Device', "DriveConnectionInterface") == 'usb':
+            if device_props.Get('org.freedesktop.UDisks.Device', "DriveConnectionInterface") == device:
                 devFile = str(device_props.Get('org.freedesktop.UDisks.Device',"DeviceFile"))
 
                 if len(device_props.Get('org.freedesktop.UDisks.Device',"DeviceMountPaths")) > 0:
-                    print str(device_props.Get('org.freedesktop.UDisks.Device',"DeviceMountPaths"))
                     devPath = str(device_props.Get('org.freedesktop.UDisks.Device',"DeviceMountPaths")[0])
                     disks[devFile] = devPath
-        
+
     return disks
 
 def main():
-    usage = 'Usage: %prog [OPTIONS]'
-    parser = OptionParser(usage)
-    parser.add_option('-c','--count',
+    parser = argparse.ArgumentParser()
+    parser.add_argument('device',
+                        choices=['usb','firewire','sdio'],
+                        help="The type of removable media (usb, firewire, sdio) to test.")
+    parser.add_argument('-l','--list',
+                        action='store_true',
+                        default=False,
+                        help="List the devices currently mounted")
+    parser.add_argument('-c','--count',
                         action='store',
                         default='1',
-                        type='int',
+                        type=int,
                         help='The number of times to run the test')
-    parser.add_option('-l','--list',
-                        action='store_true',
-                        default=False,
-                        help="List the USB disks currently mounted")
-    parser.add_option('-t','--test',
-                        action='store_true',
-                        default=False,
-                        help="Perform read/write tests against any USB drive attached to the SUT")
-    parser.add_option('-s','--size',
+    parser.add_argument('-s','--size',
                         action='store',
+                        type=int,
                         default=1048576,
-                        help="The size of the test data file to use in Bytes. Default is %default")
-    (options, args) = parser.parse_args()
+                        help="The size of the test data file to use in Bytes. Default is %(default)s")
+    args = parser.parse_args()
 
-
-    if options.list and options.test:
-        parser.error("list and test options can not be used together")
-    
-    usb_disks = GetDiskInfo()
-    if len(usb_disks) > 0: #If we do have USB drives attached and mounted
-        if options.list:   #Simply output a list of drives detected
-            for k,v in usb_disks.iteritems():
+    rem_disks = get_disk_info(args.device)
+    errors = 0
+    if len(rem_disks) > 0: #If we do have removable drives attached and mounted
+        if args.list:   #Simply output a list of drives detected
+            for k,v in rem_disks.iteritems():
                 print "%s : %s" % (k, v)
             return 0
-        elif options.test: #Create a file, copy to USB and compare hashes
-            print "Running USB file transfer test for %s iterations" % options.count
+        else: #Create a file, copy to USB and compare hashes
+            print "Found the following mounted %s partitions:" % args.device
+            for k,v in rem_disks.iteritems():
+                print "%s : %s" % (k, v)
+            print "Running %s file transfer test for %s iterations" % (args.device, args.count)
             test = DiskTest()
-            loop = 1
-            while loop <= options.count:
-                loop += 1
-                test.GenerateTestData(options.size)
+            for i in range(args.count):
+                test.GenerateTestData(args.size)
                 parent_hash = test.MD5HashFile(test.tfile.name)
                 print "Parent hash is: %s" % parent_hash
-                for k,v in usb_disks.iteritems():
+                for k,v in rem_disks.iteritems():
                     print "Copying %s to %s" % (test.tfile.name, v)
-                    test.CopyFile(test.tfile.name, v)
+                    if not test.CopyFile(test.tfile.name, v):
+                        errors += 1
+                        continue
                     print "Hashing copy on %s" % v
                     target = ''.join((v,'/',os.path.basename(test.tfile.name)))
                     child_hash = test.MD5HashFile(target)
                     print "Hash of %s on %s is %s" % (target, v, child_hash)
                     if not test.CompareHash(parent_hash,child_hash):
-                        print "[Iteration %s] Failure on file copy to %s" % (options.count, k)
-                        test.CleanUp(target)
-                        test.CleanUp(test.tfile.name)
-                        return 1
+                        print "[Iteration %s] Failure on file copy to %s" % (i, k)
+                        errors += 1
                     test.CleanUp(target)
                 test.CleanUp(test.tfile.name)
-            print "Successfully completed %s USB file transfer test iterations" % options.count
-            return 0
-        else: #catch-all in case something weird happened
-            parser.error("Something went wrong. Did you remember the correct options? try -h or --help for usage info")
-    else:  #If we don't have USB drives attached and mounted
-        print "No USB drives were detected, aborting"
+            if errors > 0:
+                print "Completed %s test iterations, but there were errors" % args.count
+                return 1
+            else:
+                print "Successfully completed %s %s file transfer test iterations" % (args.count, args.device)
+                return 0
+    else:  #If we don't have removable drives attached and mounted
+        print "No removable drives were detected, aborting"
         return 1
-        
+
 if __name__ == '__main__':
     sys.exit(main())

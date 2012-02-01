@@ -100,19 +100,10 @@ _description:
  VERIFICATION:
      Do you see color bars and static?
 
-plugin: manual
-name: graphics/xrandr_detect_modes
-requires: package.name == 'xorg'
-command: xrandr
-_description:
- PURPOSE:
-     This test checks the detected video modes
- STEPS:
-     1. The following screens and video modes have been detected on your system
- INFO:
-     $output
- VERIFICATION:
-     Are those correct?
+plugin: shell
+name: graphics/VESA_drivers_not_in_use
+command: cat /var/log/Xorg.0.log | perl -e '$a=0;while(<>){$a++ if /Loading.*vesa_drv\.so/;$a-- if /Unloading.*vesa/&&$a}exit 1 if $a'
+_description: Check that VESA drivers are not in use
 
 plugin: manual
 name: graphics/cycle_resolution
@@ -129,9 +120,17 @@ _description:
 
 plugin: shell
 name: graphics/compiz_check
-command: run_compiz_check | ansi_parser
-_description:
- Check that the hardware is able to run compiz.
+requires: package.name == 'nux-tools'
+command:
+ perl -e '$a=`/usr/lib/nux/unity_support_test -c -p`;$a=~s/\e\[[\d;]*m//g;print $a;exit($? ? 1:0)'
+_description: Check that hardware is able to run compiz
+
+plugin: shell
+name: graphics/unity-support
+requires: package.name == 'nux-tools'
+command:
+ perl -e '$a=`/usr/lib/nux/unity_support_test -p`;$a=~s/\e\[[\d;]*m//g;print $a;exit($? ? 1:0)'
+_description: Check that hardware is able to run Unity 3D
 
 plugin: manual
 name: graphics/glxgears

@@ -23,7 +23,8 @@ plugin: shell
 name: wireless/wireless_connection_wpa_bg
 requires: device.category == 'WIRELESS'
 user: root
-command: create_connection $WPA_BG_SSID --security=wpa --key=$WPA_BG_PSK && nmcli con up id $WPA_BG_SSID && internet_test
+environ: WPA_BG_SSID WPA_BG_PSK
+command: create_connection $WPA_BG_SSID --security=wpa --key=$WPA_BG_PSK; internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`; rm -f /etc/NetworkManager/system-connections/$WPA_BG_SSID
 _description:
  Tests that the systems wireless hardware can connect to a router using WPA
  security and the 802.11b/g protocols.
@@ -32,16 +33,18 @@ plugin: shell
 name: wireless/wireless_connection_open_bg
 requires: device.category == 'WIRELESS'
 user: root
-command: create_connection $OPEN_BG_SSID && nmcli con up id $OPEN_BG_SSID && internet_test
+environ: OPEN_BG_SSID
+command: create_connection $OPEN_BG_SSID; internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`; rm -f /etc/NetworkManager/system-connections/$OPEN_BG_SSID
 _description:
  Tests that the systems wireless hardware can connect to a router using no
- no security and the 802.11b/g protocols.
+ security and the 802.11b/g protocols.
 
 plugin: shell
 name: wireless/wireless_connection_wpa_n
 requires: device.category == 'WIRELESS'
 user: root
-command: create_connection $WPA_N_SSID --security=wpa --key=$WPA_N_PSK && nmcli con up id $WPA_N_SSID && internet_test
+environ: WPA_N_SSID WPA_N_PSK
+command: create_connection $WPA_N_SSID --security=wpa --key=$WPA_N_PSK; internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`; rm -f /etc/NetworkManager/system-connections/$WPA_N_SSID
 _description:
  Tests that the systems wireless hardware can connect to a router using WPA
  security and the 802.11n protocol.
@@ -50,7 +53,30 @@ plugin: shell
 name: wireless/wireless_connection_open_n
 requires: device.category == 'WIRELESS'
 user: root
-command: create_connection $OPEN_N_SSID && nmcli con up id $OPEN_N_SSID && internet_test
+environ: OPEN_N_SSID
+command: create_connection $OPEN_N_SSID; internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`; rm -f /etc/NetworkManager/system-connections/$OPEN_N_SSID
 _description:
  Tests that the systems wireless hardware can connect to a router using no
- no security and the 802.11n protocol.
+ security and the 802.11n protocol.
+
+plugin: shell
+name: wireless/monitor_wireless_connection
+requires:
+ package.name == 'iperf'
+ device.category == 'WIRELESS'
+user: root
+environ: WPA_BG_SSID WPA_BG_PSK SERVER_IPERF
+command: create_connection $WPA_BG_SSID --security=wpa --key=$WPA_BG_PSK && ifconfig eth0 down; iperf -c $SERVER_IPERF -t 300 -i 30; ifconfig eth0 up; rm -f /etc/NetworkManager/system-connections/$WPA_BG_SSID
+_description:
+ Tests the performance of a systems wireless connection through the iperf tool.
+
+plugin: shell
+name: wireless/monitor_wireless_connection_udp
+requires:
+ package.name == 'iperf'
+ device.category == 'WIRELESS'
+user: root
+environ: WPA_BG_SSID WPA_BG_PSK SERVER_IPERF
+command: create_connection $WPA_BG_SSID --security=wpa --key=$WPA_BG_PSK && ifconfig eth0 down; iperf -c $SERVER_IPERF -t 300 -i 30 -u -b 100m -p 5050; ifconfig eth0 up; rm -f /etc/NetworkManager/system-connections/$WPA_BG_SSID
+_description:
+ Tests the performance of a systems wireless connection through the iperf tool, using UDP packets.

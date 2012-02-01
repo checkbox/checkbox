@@ -1,4 +1,10 @@
 plugin: shell
+name: suspend/network_before_suspend
+depends: networking/detect
+_description: Record the current network before suspending.
+command: internet_test | tee $CHECKBOX_DATA/network_before_suspend.txt
+
+plugin: shell
 name: suspend/resolution_before_suspend
 _description: Record the current resolution before suspending.
 command: xrandr -q |grep '*'| awk '{print $1}' > $CHECKBOX_DATA/resolution_before_suspend.txt
@@ -29,6 +35,16 @@ command: meminfo_resource > $CHECKBOX_DATA/meminfo_before_suspend
 plugin: shell
 name: suspend/wireless_before_suspend
 depends: wireless/wireless_connection
+requires: device.category == 'WIRELESS'
+command: nmcli -t -f UUID con status > $CHECKBOX_DATA/connections && connect_wireless && internet_test --interface=`nmcli dev list | grep -B 1 wireless | grep GENERAL.DEVICE | awk '{print $2}'` && for con in `cat $CHECKBOX_DATA/connections`; do nmcli con up uuid "$con"; done
+_description:
+ This test disconnects all connections and then connects to the wireless
+ interface. It then checks the connection to confirm it's working as expected.
+
+plugin: shell
+name: suspend/wireless_before_suspend_auto
+depends: wireless/wireless_connection_wpa_bg
+requires: device.category == 'WIRELESS'
 command: nmcli -t -f UUID con status > $CHECKBOX_DATA/connections && connect_wireless && internet_test --interface=`nmcli dev list | grep -B 1 wireless | grep GENERAL.DEVICE | awk '{print $2}'` && for con in `cat $CHECKBOX_DATA/connections`; do nmcli con up uuid "$con"; done
 _description:
  This test disconnects all connections and then connects to the wireless
@@ -36,14 +52,18 @@ _description:
 
 plugin: shell
 name: suspend/bluetooth_obex_before_suspend
-requires: package.name == 'bluez' and package.name == 'obexd-client'
+requires:
+ package.name == 'bluez' and package.name == 'obexd-client'
+ device.category == 'BLUETOOTH'
 command: obex_send $BTDEVADDR $CHECKBOX_SHARE/data/images/JPEG_Color_Image_Ubuntu.jpg
 _description:
  This is an automated Bluetooth file transfer test. It sends an image to the device specified by the BTDEVADDR environment variable.
 
 plugin: manual
 name: suspend/bluetooth_obex_before_suspend_manual
-requires: package.name == 'bluez' and package.name == 'obexd-client'
+requires:
+ package.name == 'bluez' and package.name == 'obexd-client'
+ device.category == 'BLUETOOTH'
 command: obex_send `bluetooth_scan` $CHECKBOX_SHARE/data/images/JPEG_Color_Image_Ubuntu.jpg
 _description:
  PURPOSE:
@@ -56,7 +76,7 @@ _description:
 
 plugin: manual
 name: suspend/suspend_advanced
-depends: power-management/rtc networking/detect suspend/resolution_before_suspend suspend/wireless_before_suspend bluetooth/detect-output suspend/cpu_before_suspend suspend/memory_before_suspend
+depends: power-management/rtc suspend/network_before_suspend suspend/resolution_before_suspend suspend/wireless_before_suspend bluetooth/detect-output suspend/cpu_before_suspend suspend/memory_before_suspend
 requires: package.name == 'pm-utils'
 user: root
 command: sleep_test -d
@@ -72,9 +92,9 @@ _description:
 
 plugin: shell
 name: suspend/network_after_suspend
-depends: suspend/suspend_advanced networking/detect
+depends: suspend/suspend_advanced networking/network_before_suspend
 _description: Test the network after resuming.
-command: internet_test
+command: network_wait; internet_test | diff $CHECKBOX_DATA/network_before_suspend.txt -
 
 plugin: shell
 name: suspend/resolution_after_suspend
@@ -100,10 +120,27 @@ _description: Verify that all CPUs are online after resuming.
 command: cpuinfo_resource | diff $CHECKBOX_DATA/cpuinfo_before_suspend -
 
 plugin: shell
+name: suspend/cpu_after_suspend_auto
+requires:
+ package.name == 'linux'
+depends: suspend/suspend_advanced_auto suspend/cpu_before_suspend
+_description: Verify that all CPUs are online after resuming.
+command: cpuinfo_resource | diff $CHECKBOX_DATA/cpuinfo_before_suspend -
+
+plugin: shell
 name: suspend/memory_after_suspend
 requires:
  package.name == 'linux'
 depends: suspend/suspend_advanced suspend/memory_before_suspend
+_description:
+ Verify that all memory is available after resuming from suspend.
+command: meminfo_resource | diff $CHECKBOX_DATA/meminfo_before_suspend -
+
+plugin: shell
+name: suspend/memory_after_suspend_auto
+requires:
+ package.name == 'linux'
+depends: suspend/suspend_advanced_auto suspend/memory_before_suspend
 _description:
  Verify that all memory is available after resuming from suspend.
 command: meminfo_resource | diff $CHECKBOX_DATA/meminfo_before_suspend -
@@ -122,6 +159,17 @@ _description:
 plugin: shell
 name: suspend/wireless_after_suspend
 depends: suspend/suspend_advanced suspend/wireless_before_suspend
+requires: device.category == 'WIRELESS'
+command: connect_wireless && internet_test --interface=`nmcli dev list | grep -B 1 wireless | grep GENERAL.DEVICE | awk '{print $2}'` && for con in `cat $CHECKBOX_DATA/connections`; do nmcli con up uuid "$con"; done
+_description:
+ This test checks that the wireless interface is working after suspending the system. It
+ disconnects all interfaces and then connects to the wireless interface and checks that the
+ connection is working as expected.
+
+plugin: shell
+name: suspend/wireless_after_suspend_auto
+depends: suspend/suspend_advanced_auto suspend/wireless_before_suspend_auto
+requires: device.category == 'WIRELESS'
 command: connect_wireless && internet_test --interface=`nmcli dev list | grep -B 1 wireless | grep GENERAL.DEVICE | awk '{print $2}'` && for con in `cat $CHECKBOX_DATA/connections`; do nmcli con up uuid "$con"; done
 _description:
  This test checks that the wireless interface is working after suspending the system. It
@@ -131,7 +179,9 @@ _description:
 plugin: shell
 name: suspend/bluetooth_detect_after_suspend
 depends: suspend/suspend_advanced bluetooth/detect-output
-requires: package.name == 'bluez'
+requires:
+ package.name == 'bluez'
+ device.category == 'BLUETOOTH'
 command: hcitool dev | tail -n+2 | awk '{print $2}' |diff $CHECKBOX_DATA/bluetooth_address -
 _description:
  This test grabs the hardware address of the bluetooth adapter after suspend and compares it to the address grabbed before suspend.
@@ -139,7 +189,9 @@ _description:
 plugin: shell
 name: suspend/bluetooth_obex_after_suspend
 depends: suspend/suspend_advanced suspend/bluetooth_obex_before_suspend
-requires: package.name == 'bluez' and package.name == 'obexd-client'
+requires:
+ package.name == 'bluez' and package.name == 'obexd-client'
+ device.category == 'BLUETOOTH'
 command: obex_send $BTDEVADDR $CHECKBOX_SHARE/data/images/JPEG_Color_Image_Ubuntu.jpg
 _description:
  This is an automated Bluetooth file transfer test. It sends an image to the device specified by the BTDEVADDR environment variable.
@@ -147,7 +199,9 @@ _description:
 plugin: manual
 name: suspend/bluetooth_obex_after_suspend_manual
 depends: suspend/suspend_advanced suspend/bluetooth_obex_before_suspend_manual
-requires: package.name == 'bluez' and package.name == 'obexd-client'
+requires:
+ package.name == 'bluez' and package.name == 'obexd-client'
+ device.category == 'BLUETOOTH'
 command: obex_send `bluetooth_scan` $CHECKBOX_SHARE/data/images/JPEG_Color_Image_Ubuntu.jpg
 _description:
  PURPOSE:
@@ -183,21 +237,8 @@ command: xrandr_cycle --keyword=after_suspend
 plugin: attachment
 name: suspend/xrandr_screens_after_suspend.tar.gz
 depends: suspend/cycle_resolutions_after_suspend_auto
-command: [ -e $CHECKBOX_DATA/xrandr_screens_after_suspend.tgz ] && cat $CHECKBOX_DATA/xrandr_screens_after_suspend.tgz 
+command: [ -e $CHECKBOX_DATA/xrandr_screens_after_suspend.tgz ] && cat $CHECKBOX_DATA/xrandr_screens_after_suspend.tgz
 _description: This attaches screenshots from the suspend/cycle_resolutions_after_suspend_auto test to the results submission.
-
-plugin: manual
-name: suspend/usb_storage_after_suspend
-depends: suspend/suspend_advanced
-command: usb_test -t
-_description:
- PURPOSE:
-     This will test that USB functionality is restored after a suspend and resume cycle
- STEPS:
-     1. Plug in at least one USB storage device if one is not already connected
-     2. Click "Test" to start
- VERIFICATION:
-     Automatically verified
 
 plugin: shell
 name: suspend/record_playback_after_suspend
@@ -212,16 +253,18 @@ _description:
 
 plugin: shell
 name: suspend/suspend_advanced_auto
-depends: power-management/rtc networking/detect suspend/cpu_before_suspend suspend/memory_before_suspend
-requires: package.name == 'pm-utils'
+depends: power-management/rtc suspend/network_before_suspend suspend/cpu_before_suspend suspend/memory_before_suspend suspend/wireless_before_suspend_auto
+requires:
+    package.name == 'pm-utils'
+    sleep.mem == 'supported'
 _description:
- This is the automated version of suspend/suspend_advanced. 
+ This is the automated version of suspend/suspend_advanced.
 user: root
 command: sleep_test -d
 
 plugin: shell
 name: suspend/wake_on_lan
-depends: power-management/rtc suspend/suspend_advanced 
+depends: power-management/rtc suspend/suspend_advanced
 requires: package.name == 'pm-utils' and package.name == 'util-linux'
 _description:
  This automatically tests Wake-on-LAN capability with the aid of a suitably configured server. During this process the system will suspend, then automatically wake up after no more than 5 minutes.

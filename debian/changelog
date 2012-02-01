@@ -6,23 +6,91 @@ checkbox (0.13.1) precise; urgency=low
     (LP: #882161)
   * Added create_connection script and jobs to automatically create/test a
     wireless network connection.
-    
+  * Updated wireless job dependencies.
+  * Add wireless performance data collecting tests.
+  * Changed is_laptop test to a shell test and implemented a check_is_laptop
+    script to check automatically for a systems 'laptopness' (LP: #886668)
+  * Fixed connect_wireless script which continued failing to correctly
+    identify wireless connections.
+  * Don't fail the sleep_test if the wake alarm is still set (LP: #911161)
+  * Add requirement for mem sleep state to be supported to the
+    suspend_advanced_auto job (LP: #804190)
+  * Fixed the camera/display test and removed the camera/video one.
+  * Added display resource and matching requirements to external video 
+    output tests.
+  * Added removable_storage_watcher script to replace watch_command to make
+    testing USB, FireWire and MMC devices easier and more cohesive.
+  * Added memory_compare script to automate the memory/info job
+  * Switch audio settings to correct device before running audio tests
+    (LP: #916859)
+
   [Gabor Kelemen]
   * Fixed last two remaining strings with backslashes (LP: #868571)
+  * Fix misplaced parentheses, so translation can work (LP: #904876)
 
   [Marc Tardif]
   * Refactored install script to be agnostic of variant name.
+  * Using title defined in user_interface plugin in GTK interface.
+  * Updated default.whitelist to reflect renamed jobs.
+  * Removed files with non-printable characters from submission.xml.
+  * Fixed parser for submission files with empty question comments
+    and context info (LP: #912546)
+  * Added support for skipping tests when the depends don't pass
+    (LP: #509598)
+  * Removed extraneous code from the sleep_test.
+  * Refactored logic to check for network after suspend.
+  * Removed deprecated hwtest package.
 
- -- Daniel Manrique <daniel.manrique@canonical.com>  Thu, 01 Dec 2011 09:48:58 -0500
+  [Daniel Manrique]
+  * Update control files under debian/ to eliminate (most) lintian warnings
+    (LP: #352986)
+  * Environment variables specified with environ: in a job description will be
+    passed to the backend for it to add to its environment. (LP: #897889)
+  * Handle malformed LANGUAGE environment variable values (LP: #912946)
+  * Added interactive media_keys_test script.
+  * Make creation of wireless connection files more robust (LP: #923836)
+  * Recommend gstreamer-gconf to enable media tests on kubuntu (LP: #898641)
+  * Add bluetooth device requirement to obex jobs (LP: #921128)
+  * Add a plugin conf variable for the welcome string (shown on the first
+    screen when checkbox runs), so it can be changed without much effort.
+  * Remove superflous bluetooth/detect job
+
+  [Robert Roth]
+  * Fixed spelling mistakes in user_apps job file. (LP: #904209)
+
+  [Jeff Lane]
+  * Created automated network info test to get some config info during automated 
+    runs. (LP: #912038)
+  * Added requires to suspend wireless jobs so they won't run if wireless isn't
+    present (LP: #907150)
+  * Fixed issue in usb_test with unwritable filesystems (LP: #912522)
+  * Fixed USB tests so that insert, storage, remove run in proper order
+  * Removed usb_storage_after_suspend since it's superfluous, all other USB
+    tests already run after suspend.
+  * Modifed usb_test to handle firewire drives as well, renamed script to
+    removable_storage_test
+
+  [Aurélien Gâteau]
+  * Improvements to Recover dialog and show_info method.
+
+  [ Javier Collado ]
+  * Error while creating binary package fixed (LP: #921576)
+
+  [ Sylvain Pineau ]
+  * Replaced xrandr_display_modes with automated check for VESA driver
+  * Refactored Unity compatibility tests
+
+ -- Daniel Manrique <daniel.manrique@canonical.com>  Tue, 31 Jan 2012 14:34:52 -0500
 
 checkbox (0.13) precise; urgency=low
 
   New upstream release (LP: #892268):
-
+  
   [Marc Tardif]
   * Generate a submission.xml file that contains all device and attachment
   * Write the report before reporting the validation error.
   * Changed device.product to dmi.product for the formfactor (LP: #875312)
+  * Use gettext for string (LP: #869267)
 
   [Daniel Manrique]
   * Use gettext for string (LP: #869267)
@@ -31,7 +99,7 @@ checkbox (0.13) precise; urgency=low
   * Ignore malformed dpkg entries in package_resource (LP: #794747)
   * Reset window title after finishing a manual test (LP: #874690)
   * Handle "@" in locale names (as in ca@valencia).
-
+  * Went through all the job files and:
   [Jeff Lane]
   * Went through all the job files and:
     * Updated descriptions to match Unity UI structure
@@ -45,10 +113,10 @@ checkbox (0.13) precise; urgency=low
     * Changed remaining manual job descriptions to match the new format
   * Updated CD and DVD write tests to be more clear about when to skip
     them (LP: #772794)
-
+  * Rewrote all job descriptions to match OEM QA syntax
   [Ara Pulido]
   * Rewrote all job descriptions to match OEM QA syntax
-
+  * Fix the code that assigns keys in checkbox-cli so that it never assigns
   [Brendan Donegan]  
   * Fix the code that assigns keys in checkbox-cli so that it never assigns
     keys which have other uses. (LP: #877467)
@@ -68,7 +136,7 @@ checkbox (0.13) precise; urgency=low
     (LP: #886129)
   * Nixed graphics/xorg-version-output job and updated other job dependencies,
     since it is redundant with graphics/xorg-version. (LP: #671144)
-
+  * Broken job dependencies fixed (LP: #888447)
   [ Javier Collado ]
   * Broken job dependencies fixed (LP: #888447)
   * Regex support when specifying blacklists and whitelists on the

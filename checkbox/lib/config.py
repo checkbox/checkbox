@@ -69,7 +69,9 @@ class ConfigSection(object):
     def __init__(self, parent, name, attributes={}):
         self.parent = parent
         self.name = name
-        self.attributes = attributes
+        self.attributes = {}
+        for key, value in attributes.iteritems():
+            self.attributes[key] = re.sub("\n\.\n", "\n\n", value)
 
     def __getattr__(self, name):
         if name in self.attributes:

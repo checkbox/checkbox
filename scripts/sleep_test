@@ -75,11 +75,9 @@ V0:     First draft
 
 import sys
 import logging
-from subprocess import call,check_output
+from subprocess import call
 from optparse import OptionParser
 
-from datetime import datetime, timedelta
-from time import sleep
 
 class ListDictHandler(logging.StreamHandler):
     '''
@@ -277,22 +275,6 @@ class SuspendTest():
             return False
 
 
-def check_network():
-    start = datetime.now()
-    logging.debug("Waiting 60 seconds for NetworkManager to reconnect.")
-    while True:
-        try:
-            if check_output(["/usr/bin/nmcli", "-t", "-f", 
-                "STATE", "nm"]).strip() == "connected":
-                return True
-            # give 60 seconds to NetworkManager to get to a CONNECTED state, then give up
-            if datetime.now() - start > timedelta(seconds=60):
-                return False
-            sleep(5)
-        except OSError as err:
-            logging.error("Unable to verify network status: %s" % err)
-            return False
-            
 def main():
     usage = 'Usage: %prog [OPTIONS]'
     parser = OptionParser(usage)
@@ -351,9 +333,7 @@ def main():
         logging.debug(options_dict)
     
     suspender = SuspendTest(options.max_sleep)
-    run_result = {}
-    run_count = 0
-    
+
     # Chcek fo the S3 state availability
     if not suspender.CanWeSleep(options.mode):
         logging.error('%s sleep state not supported' % options.mode)
@@ -366,23 +346,10 @@ def main():
         # Set new alarm time and suspend.
         suspender.SetWakeTime(options.wake_time)
         suspender.DoSuspend(options.mode)
-        run_count += 1
         if suspender.CheckAlarm(options.mode):
             logging.debug('The alarm is still set')
-            run_result[run_count] = 'Fail'
-        else:
-            run_result[run_count] = 'Pass'
 
-    # Be reasonably sure the network is up before returning, we want
-    # the network to be up for possible following tests.
-    network_is_live = check_network()
-
-    if 'Fail' in run_result.values():
-        logging.error('One or more suspend tests failed')
-        logging.error(run_result)
-        return 1
-    else:
-        return 0
+    return 0
     
 if __name__ == '__main__':
     sys.exit(main())

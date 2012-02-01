@@ -37,13 +37,12 @@ command: ipmi_test
 _description:
  This will run some basic connectivity tests against a BMC, verifying that IPMI works.
 
-plugin: manual
+plugin: shell
 name: miscellanea/is_laptop
+user: root
 _description:
- PURPOSE:
-    This is to determine if we need to run tests specific to portable computers that may not apply to desktops.
- STEPS:
-    Select "Yes" if your system is a laptop or netbook. Otherwise, select "No"
+    Determine if we need to run tests specific to portable computers that may not apply to desktops.
+command: check_is_laptop
 
 plugin: shell
 name: miscellanea/apport-directory
