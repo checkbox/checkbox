@@ -28,12 +28,7 @@ cpu/topology
 cpu/clocktest
 __disk__
 disk/benchmarks
-disk/benchmark_sda
-disk/benchmark_sdb
-disk/benchmark_sdc
-disk/benchmark_sdd
-disk/benchmark_sde
-disk/benchmark_sdf
+disk/benchmark_sd\w
 disk/detect
 __firewire__
 firewire/insert
@@ -111,8 +106,7 @@ wireless/wireless_connection
 __optical__
 optical/detect
 optical/read
-optical/read_sr0
-optical/read_sr1
+optical/read_sr\d
 optical/cdrom-write
 optical/dvd-write
 __pcmcia-pcix__
