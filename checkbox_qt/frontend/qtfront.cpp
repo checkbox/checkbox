@@ -25,6 +25,7 @@ public:
 
 QtFront::QtFront(QApplication *parent) :
     QDBusAbstractAdaptor(parent),
+    currentState(WELCOME),
     ui(new Ui_main),
     m_model(0)
 {
@@ -46,6 +47,7 @@ QtFront::QtFront(QApplication *parent) :
     connect(ui->noTestButton, SIGNAL(clicked()), this, SIGNAL(noTestClicked()));
     connect(ui->nextTestButton, SIGNAL(clicked()), this, SIGNAL(nextTestClicked()));
     connect(ui->previousTestButton, SIGNAL(clicked()), this, SIGNAL(previousTestClicked()));
+    connect(ui->buttonSubmit, SIGNAL(clicked()), this, SLOT(onSubmitTestsClicked()));
     ui->stepsFrame->setFixedHeight(0);
     //skipTestMessage = QErrorMessage()
 
@@ -88,6 +90,12 @@ void QtFront::onStartTestsClicked()
     emit startTestsClicked();
 }
 
+void QtFront::onSubmitTestsClicked()
+{
+    ui->buttonSubmit->setEnabled(false);
+    emit submitTestsClicked();
+}
+
 void QtFront::showText(QString text)
 {
     ui->tabWidget->setCurrentIndex(0);
@@ -106,6 +114,9 @@ void QtFront::setWindowTitle(QString title)
 
 void QtFront::startProgressBar(QString text)
 {
+    // if we are asked to display the progress, then 
+    // go to the screen where the progress widget is shown
+    ui->tabWidget->setCurrentIndex(1);
     ui->progressBar->setRange(0, 0);
     ui->progressBar->setVisible(true);
     ui->progressLabel->setVisible(true);
@@ -122,8 +133,15 @@ void QtFront::stopProgressBar()
 
 }
 
+void QtFront::showEntry(QString text) 
+{
+    currentState = SUBMISSION;
+    ui->testsTab->setCurrentIndex(3);
+}
+
 void QtFront::showTest(QString text, QString testType, bool enableTestButton)
 {
+    currentState = TESTING;
     ui->radioTestTab->setVisible(true);
     ui->nextPrevButtons->setVisible(true);
     ui->testTestButton->setEnabled(enableTestButton);
@@ -175,6 +193,7 @@ void QtFront::showTest(QString text, QString testType, bool enableTestButton)
 void QtFront::showTree(QString text, QMap<QString, QVariant > options)
 {
     Q_UNUSED(text);
+    currentState = TREE;
     ui->testsTab->setCurrentIndex(1);
     ui->radioTestTab->setVisible(false);
     ui->nextPrevButtons->setVisible(false);
@@ -232,6 +251,10 @@ QString QtFront::showInfo(QString text, QStringList options, QString defaultopti
     return result;
 }
 
+QString QtFront::getLaunchpadId()
+{
+    return ui->lineEditLaunchpad->text();
+}
 
 QVariantMap QtFront::getTestsToRun()
 {

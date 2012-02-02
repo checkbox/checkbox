@@ -12,6 +12,13 @@ class QtFront : public QDBusAbstractAdaptor
 {
     Q_OBJECT
     Q_CLASSINFO("D-Bus Interface", "com.canonical.QtCheckbox")
+
+    enum state {
+       WELCOME = 0,
+       TREE,
+       TESTING,
+       SUBMISSION
+    } currentState;
     
 public:
     explicit QtFront(QApplication *application);
@@ -20,6 +27,7 @@ public:
 public slots:
     void onFullTestsClicked();
     void onStartTestsClicked();
+    void onSubmitTestsClicked();
 
     void showText(QString text);
     void setWindowTitle(QString title);
@@ -27,7 +35,9 @@ public slots:
     void showError(QString text);
     void stopProgressBar();
     void showTree(QString text, QMap<QString, QVariant> options);
+    void showEntry(QString text);
     QVariantMap getTestsToRun();
+    QString getLaunchpadId();
     void showTest(QString text, QString testType, bool enableTestButton);
     QString showInfo(QString text, QStringList options, QString defaultoption);
 
@@ -39,6 +49,7 @@ signals:
     void noTestClicked();
     void nextTestClicked();
     void previousTestClicked();
+    void submitTestsClicked();
 
 private:
     bool registerService();

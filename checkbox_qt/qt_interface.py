@@ -99,7 +99,16 @@ class QTInterface(UserInterface):
 
     def show_entry(self, text, value, previous=None, next=None):
         print "My name is: %s" % funcname()
-        return False
+        launchpadId = None
+        def onSubmitTestsClicked():
+            launchpadId = self.qtiface.getLaunchpadId()
+            self.loop.quit()
+
+        self.qtiface.showEntry(text)
+        self.bus.add_signal_receiver(onSubmitTestsClicked, "submitTestsClicked")
+        self.loop.run()
+        self.bus.remove_signal_receiver(onSubmitTestsClicked, "submitTestsClicked")
+        return launchpadId
 
     def show_check(self, text, options=[], default=[]):
         print "My name is: %s" % funcname()

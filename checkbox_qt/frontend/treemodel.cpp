@@ -1,8 +1,16 @@
 #include "treemodel.h"
 #include <QDebug>
-TreeModel::TreeModel()
+#include <QErrorMessage>
+TreeModel::TreeModel() : m_messageBox(0) 
 {
 
+}
+
+void TreeModel::warn()
+{
+    if (!this->m_messageBox)
+        this->m_messageBox = new QErrorMessage();
+    this->m_messageBox->showMessage("Changeme: If you deselect this, the result wont be submitted to Ubuntu Friendly!");
 }
 
 bool TreeModel::setData(const QModelIndex &index, const QVariant &value, int role)
@@ -12,7 +20,7 @@ bool TreeModel::setData(const QModelIndex &index, const QVariant &value, int rol
         if(!item)
             return false;
 
- //       self.warn()
+        warn();
         if (item->parent()) {
             qDebug() << "has parent";
             QStandardItemModel::setData(item->index(), value, role);
