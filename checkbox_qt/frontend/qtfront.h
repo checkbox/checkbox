@@ -41,6 +41,9 @@ public slots:
     void showTest(QString text, QString testType, bool enableTestButton);
     QString showInfo(QString text, QStringList options, QString defaultoption);
 
+private slots:
+    void onTabChanged(int index);
+
 signals:
     void fullTestsClicked();
     void startTestsClicked();
@@ -50,6 +53,10 @@ signals:
     void nextTestClicked();
     void previousTestClicked();
     void submitTestsClicked();
+    // when the user clicks welcome during the tests
+    void welcomeScreenRequested();
+    // when the user clicks welcome from the tests selection tree
+    void welcomeClicked();
 
 private:
     bool registerService();
@@ -58,6 +65,7 @@ private:
     TreeModel * m_model;
     QMap <QString, QString> titleTestTypes;
     QMap <int, QString> buttonMap;
+    int m_currentTab;
 };
 
 #endif // QTFRONT_H

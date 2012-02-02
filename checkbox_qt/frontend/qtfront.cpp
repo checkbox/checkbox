@@ -27,16 +27,17 @@ QtFront::QtFront(QApplication *parent) :
     QDBusAbstractAdaptor(parent),
     currentState(WELCOME),
     ui(new Ui_main),
-    m_model(0)
+    m_model(0),
+    m_currentTab(1)
 {
     m_mainWindow = new QWidget();
     ui->setupUi(m_mainWindow);
-    m_mainWindow->show();
 
     CustomQTabWidget *tmpQTW = (CustomQTabWidget*)ui->tabWidget;
     tmpQTW->tabBar()->setVisible(false);
     tmpQTW = (CustomQTabWidget*) ui->radioTestTab;
     tmpQTW->tabBar()->setVisible(false);
+    connect(ui->testsTab, SIGNAL(currentChanged(int)), this, SLOT(onTabChanged(int)));
     ui->radioTestTab->setVisible(false);
     ui->nextPrevButtons->setVisible(false);
     connect(ui->friendlyTestsButton, SIGNAL(clicked()), this, SLOT(onFullTestsClicked()));
@@ -77,6 +78,30 @@ QtFront::QtFront(QApplication *parent) :
 
 }
 
+void QtFront::onTabChanged(int index)
+{
+    // check if the user asked to go back to the welcome screen
+    if (index == 0) {
+        if (currentState != TREE) {
+            QMessageBox::StandardButton button = QMessageBox::question(ui->tabWidget, "Are you sure?", 
+                    "This action will invalidate your tests, do you want to proceed?", 
+                    QMessageBox::Yes|QMessageBox::No, QMessageBox::No);
+            if(button == QMessageBox::Yes) {
+                emit welcomeScreenRequested();
+            } else {
+                // user aborted, go back to the previous tab
+                ui->testsTab->setCurrentIndex(m_currentTab);
+            }
+            return;
+        } else {
+            currentState = WELCOME;
+            emit welcomeClicked();
+        }
+        return;
+    }
+    m_currentTab = index;
+}
+
 void QtFront::onFullTestsClicked()
 {
     ui->tabWidget->setCurrentIndex(1);
@@ -93,13 +118,20 @@ void QtFront::onStartTestsClicked()
 void QtFront::onSubmitTestsClicked()
 {
     ui->buttonSubmit->setEnabled(false);
+    ui->buttonSubmitAnounymously->setEnabled(false);
+    ui->lineEditLaunchpad->setEnabled(false);
     emit submitTestsClicked();
 }
 
 void QtFront::showText(QString text)
 {
-    ui->tabWidget->setCurrentIndex(0);
-    ui->welcomeTextBox->setPlainText(text);
+    if (currentState == WELCOME) {
+        m_mainWindow->show();
+        ui->tabWidget->setCurrentIndex(0);
+        ui->welcomeTextBox->setPlainText(text);
+    } else if (currentState == SUBMISSION) {
+        ui->submissionWarningLabel->setText(text);
+    }
 }
 
 void QtFront::showError(QString text)
@@ -135,8 +167,12 @@ void QtFront::stopProgressBar()
 
 void QtFront::showEntry(QString text) 
 {
+    Q_UNUSED(text)
     currentState = SUBMISSION;
+    // launchpad id requested, so move to the results screen and hide the "run" screen contents
     ui->testsTab->setCurrentIndex(3);
+    ui->radioTestTab->setVisible(false);
+    ui->nextPrevButtons->setVisible(false);
 }
 
 void QtFront::showTest(QString text, QString testType, bool enableTestButton)
@@ -233,8 +269,8 @@ void QtFront::showTree(QString text, QMap<QString, QVariant > options)
 
 QString QtFront::showInfo(QString text, QStringList options, QString defaultoption)
 {
-    int buttons = QMessageBox::NoButton;
-    int defaultButton = QMessageBox::NoButton;
+    // workaround, show the main window if the welcome screen wasn't shown yet
+    m_mainWindow->show();
     QMessageBox *dialog = new QMessageBox(ui->tabWidget);
     QMap<QAbstractButton*, QString> buttonMap;
     foreach(QString option, options) {
@@ -245,7 +281,7 @@ QString QtFront::showInfo(QString text, QStringList options, QString defaultopti
     }
     dialog->setText(text);
     dialog->setWindowTitle("Info");
-    int status = dialog->exec();
+    dialog->exec();
     QString result = buttonMap[dialog->clickedButton()];
     delete dialog;
     return result;
