@@ -270,7 +270,11 @@ class UdevadmDevice:
 
     @property
     def path(self):
-        return self._environment.get("DEVPATH")
+        devpath = self._environment.get("DEVPATH")
+        if self._environment.get("DEVTYPE") == "disk" and self._stack:
+            devpath = re.sub(r"/[^/]+/[^/]+$", "", devpath)
+
+        return devpath
 
     @property
     def product_id(self):
