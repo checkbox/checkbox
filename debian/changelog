@@ -69,6 +69,8 @@ checkbox (0.13.1) precise; urgency=low
     tests already run after suspend.
   * Modifed usb_test to handle firewire drives as well, renamed script to
     removable_storage_test
+  * Added a Hard Disk Stats Test that was part of a much older merge request
+    for server test suite.
 
   [Aurélien Gâteau]
   * Improvements to Recover dialog and show_info method.
@@ -80,7 +82,7 @@ checkbox (0.13.1) precise; urgency=low
   * Replaced xrandr_display_modes with automated check for VESA driver
   * Refactored Unity compatibility tests
 
- -- Daniel Manrique <daniel.manrique@canonical.com>  Tue, 31 Jan 2012 14:34:52 -0500
+ -- Jeff Lane <jeff@ubuntu.com>  Thu, 02 Feb 2012 10:16:09 -0500
 
 checkbox (0.13) precise; urgency=low
 
