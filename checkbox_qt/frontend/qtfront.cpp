@@ -140,7 +140,7 @@ void QtFront::showTest(QString text, QString testType, bool enableTestButton)
     QString verification = text.split("VERIFICATION:")[1].trimmed();
 
     qDebug() << "purpose" << purpose << "steps"<< steps  <<"verification" << verification;
-    QRegExp r("[0-9]+. (.*)");
+    QRegExp r("[0-9]+\\. (.*)");
     //r = re.compile(r"[0-9]+\. (.*)")
     int index = 1;
     ui->testTypeLabel->setText(titleTestTypes[testType]);
