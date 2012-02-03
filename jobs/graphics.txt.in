@@ -108,7 +108,7 @@ _description: Check that VESA drivers are not in use
 plugin: manual
 name: graphics/cycle_resolution
 requires: package.name == 'xorg'
-depends: graphics/xrandr_detect_modes
+depends: graphics/VESA_drivers_not_in_use
 command: xrandr_cycle
 _description:
  PURPOSE:
