@@ -176,20 +176,21 @@ class QTInterface(UserInterface):
             description = self._run_test(test, runner)
             enableTestButton = False
 
+        print test
         self.qtiface.showTest(description, test["suite"], enableTestButton)
         self.bus.add_signal_receiver(onStartTestClicked, "startTestClicked")
         self.bus.add_signal_receiver(onNextTestClicked, "nextTestClicked")
         self.bus.add_signal_receiver(onPreviousTestClicked, "previousTestClicked")
-        self.bus.add_signal_receiver(onNoTestClicked, "yesTestClicked")
-        self.bus.add_signal_receiver(onYesTestClicked, "noTestClicked")
+        self.bus.add_signal_receiver(onNoTestClicked, "noTestClicked")
+        self.bus.add_signal_receiver(onYesTestClicked, "yesTestClicked")
 
         self.loop.run()
 
         self.bus.remove_signal_receiver(onStartTestClicked, "startTestClicked")
         self.bus.remove_signal_receiver(onNextTestClicked, "nextTestClicked")
         self.bus.remove_signal_receiver(onPreviousTestClicked, "previousTestClicked")
-        self.bus.remove_signal_receiver(onNoTestClicked, "yesTestClicked")
-        self.bus.remove_signal_receiver(onYesTestClicked, "noTestClicked")
+        self.bus.remove_signal_receiver(onNoTestClicked, "noTestClicked")
+        self.bus.remove_signal_receiver(onYesTestClicked, "yesTestClicked")
 
         return False
 
