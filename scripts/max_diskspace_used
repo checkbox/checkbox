@@ -18,8 +18,8 @@ for disk in $@; do
     
     if [ -n "$fsize" ]
     then
-      psize=`echo $psize | grep -oe '[0-9]*'`
-      fsize=`echo $fsize | grep -oe '[0-9]*'`
+      psize=`echo $psize | grep -oe '[0-9\.]*'`
+      fsize=`echo $fsize | grep -oe '[0-9\.]*'`
 
       pct_difference=`awk "BEGIN{print(($psize - $fsize) / $fsize)}"`
       echo "Difference ( > 0.15 fails ) : $pct_difference"
