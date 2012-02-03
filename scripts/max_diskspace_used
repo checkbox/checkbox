@@ -7,13 +7,13 @@
 for disk in $@; do
   echo "Checking maximum disk space available on : $disk"
 
-  psize=`parted -l | awk "/$disk/ {print \\$3}"`
+  psize=`parted -l | grep $disk | awk '{print $3}'`
 
   if [ -n "$psize" ]
   then
     echo "Disk space available : $psize"
 
-    fsize=`df -B ${psize:(-2)} | awk "/$disk/ {print \\$2}"`
+    fsize=`df -B ${psize:(-2)} | grep $disk | awk '{print $2}'`
     echo "Disk space used : $fsize"
     
     if [ -n "$fsize" ]
