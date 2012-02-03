@@ -7,7 +7,7 @@ checkbox (0.13.2) precise; urgency=low
   [Marc Tardif]
   * Removed trailing directories from the devpath of disk devices (LP: #925582)
 
- -- Marc Tardif <marc@ubuntu.com>  Fri, 03 Feb 2012 15:07:10 -0500
+ -- Jeff Lane <jeff@ubuntu.com>  Fri, 03 Feb 2012 16:28:13 -0500
 
 checkbox (0.13.1) precise; urgency=low
 
@@ -36,6 +36,7 @@ checkbox (0.13.1) precise; urgency=low
   * Added memory_compare script to automate the memory/info job
   * Switch audio settings to correct device before running audio tests
     (LP: #916859)
+  * Modified apport-directory to provide feedback
 
   [Gabor Kelemen]
   * Fixed last two remaining strings with backslashes (LP: #868571)
