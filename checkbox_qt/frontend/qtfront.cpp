@@ -8,12 +8,6 @@
 #include "ui_qtfront.h"
 
 Q_DECLARE_METATYPE(QVariantMap)
-//qDBusRegisterMetaType<QVariantMap>();
-
-
-//qRegisterMetaType<MyType>("MyType");
-
-
 
 class CustomQTabWidget : QTabWidget
 {
@@ -41,7 +35,6 @@ QtFront::QtFront(QApplication *parent) :
     ui->radioTestTab->setVisible(false);
     ui->nextPrevButtons->setVisible(false);
     connect(ui->friendlyTestsButton, SIGNAL(clicked()), this, SLOT(onFullTestsClicked()));
-//    ui->friendlyTestsButton.clicked.connect(self.onFullTestsClicked)
     connect(ui->buttonStartTesting, SIGNAL(clicked()), this, SLOT(onStartTestsClicked()));
     connect(ui->testTestButton, SIGNAL(clicked()), this, SIGNAL(startTestClicked()));
     connect(ui->yesTestButton, SIGNAL(clicked()), this, SIGNAL(yesTestClicked()));
@@ -195,7 +188,6 @@ void QtFront::showTest(QString text, QString testType, bool enableTestButton)
 
     qDebug() << "purpose" << purpose << "steps"<< steps  <<"verification" << verification;
     QRegExp r("[0-9]+\\. (.*)");
-    //r = re.compile(r"[0-9]+\. (.*)")
     int index = 1;
     ui->testTypeLabel->setText(titleTestTypes[testType]);
     ui->purposeLabel->setText(purpose);
