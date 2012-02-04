@@ -9,7 +9,12 @@ checkbox (0.13.2) precise; urgency=low
   * Removed trailing directories from the devpath of disk devices (LP: #925582)
   * Fixed awk regular expression in max_diskspace_used script (LP: #926312)
 
- -- Marc Tardif <marc@ubuntu.com>  Fri, 03 Feb 2012 15:23:06 -0500
+  [Daniel Manrique]
+  * Added submission_path_prompt config variable; if set, it will be shown to
+    the user before the test selection screen, and the value entered will
+    override the default filename for the xml report.
+
+ -- Daniel Manrique <daniel.manrique@canonical.com>  Fri, 03 Feb 2012 19:12:47 -0500
 
 checkbox (0.13.1) precise; urgency=low
 
