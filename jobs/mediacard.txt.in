@@ -4,9 +4,9 @@ command: removable_storage_watcher insert sdio
 _description:
  PURPOSE:
      This test will check that the systems media card reader can
-     detect the insertion of a Secure Digital High-Capacity (SDHC) media card
+     detect the insertion of a Multimedia Card (MMC) media
  STEPS:
-     1. Click "Test" and insert an SDHC card into the reader.
+     1. Click "Test" and insert an MMC card into the reader.
         (Note: this test will time-out after 10 seconds.)
      2. Do not unplug the device after the test.
  VERIFICATION:
@@ -18,8 +18,8 @@ name: mediacard/mmc-storage
 depends: mediacard/mmc-insert
 command: removable_storage_test sdio
 _description:
- This test is automated and executes after the mediacard/sd-insert
- test is run. It tests reading and writing to the SDHC card.
+ This test is automated and executes after the mediacard/mmc-insert
+ test is run. It tests reading and writing to the MMC card.
 
 plugin: manual
 name: mediacard/mmc-remove
@@ -28,10 +28,9 @@ command: removable_storage_watcher remove sdio
 _description:
  PURPOSE:
      This test will check that the system correctly detects 
-     the removal of a Secure Digital High-Capacity (SDHC) card from the systems
-     card reader.
+     the removal of the MMC card from the systems card reader.
  STEPS:
-     1. Click "Test" and remove the SDHC card from the reader.
+     1. Click "Test" and remove the MMC card from the reader.
         (Note: this test will time-out after 10 seconds.)
  VERIFICATION:
      The verification of this test is automated. Do not change the
@@ -44,10 +43,9 @@ command: removable_storage_watcher insert sdio
 _description:
  PURPOSE:
      This test will check that the systems media card reader can
-     detect the insertion of a Secure Digital High-Capacity (SDHC)
-     media card after the system has been suspended
+     detect the insertion of an MMC card after the system has been suspended
  STEPS:
-     1. Click "Test" and insert an SDHC card into the reader.
+     1. Click "Test" and insert an MMC card into the reader.
         (Note: this test will time-out after 10 seconds.)
      2. Do not unplug the device after the test.
  VERIFICATION:
@@ -59,8 +57,8 @@ name: mediacard/mmc-storage-after-suspend
 depends: mediacard/mmc-insert-after-suspend
 command: removable_storage_test sdio
 _description:
- This test is automated and executes after the mediacard/sd-insert-after-suspend test
- is run. It tests reading and writing to the SDHC card after the system has been suspended.
+ This test is automated and executes after the mediacard/mmc-insert-after-suspend test
+ is run. It tests reading and writing to the MMC card after the system has been suspended.
 
 plugin: manual
 name: mediacard/mmc-remove-after-suspend
@@ -69,10 +67,9 @@ command: removable_storage_watcher remove sdio
 _description:
  PURPOSE:
      This test will check that the system correctly detects the removal
-     of a Secure Digital High-Capacity (SDHC) card from the systems
-     card reader after the system has been suspended.
+     of an MMC card from the systems card reader after the system has been suspended.
  STEPS:
-     1. Click "Test" and remove the SDHC card from the reader.
+     1. Click "Test" and remove the MMC card from the reader.
         (Note: this test will time-out after 10 seconds.)
  VERIFICATION:
      The verification of this test is automated. Do not change the
@@ -108,8 +105,7 @@ command: removable_storage_watcher remove sdio
 _description:
  PURPOSE:
      This test will check that the system correctly detects 
-     the removal of a Secure Digital (SD) card from the systems
-     card reader.
+     the removal of an SD card from the systems card reader.
  STEPS:
      1. Click "Test" and remove the SD card from the reader.
         (Note: this test will time-out after 10 seconds.)
@@ -124,8 +120,7 @@ command: removable_storage_watcher insert sdio
 _description:
  PURPOSE:
      This test will check that the systems media card reader can
-     detect the insertion of a Secure Digital (SD) media card after
-     the system has been suspended
+     detect the insertion of an SD card after the system has been suspended
  STEPS:
      1. Click "Test" and insert an SD card into the reader.
         (Note: this test will time-out after 10 seconds.)
@@ -149,8 +144,7 @@ command: removable_storage_watcher remove sdio
 _description:
  PURPOSE:
      This test will check that the system correctly detects 
-     the removal of a Secure Digital (SD) card from the systems
-     card reader after the system has been suspended.
+     the removal of an SD card from the systems card reader after the system has been suspended.
  STEPS:
      1. Click "Test" and remove the SD card from the reader.
         (Note: this test will time-out after 10 seconds.)
@@ -178,7 +172,7 @@ name: mediacard/sdhc-storage
 depends: mediacard/sdhc-insert
 command: removable_storage_test sdio
 _description:
- This test is automated and executes after the mediacard/sd-insert
+ This test is automated and executes after the mediacard/sdhc-insert
  test is run. It tests reading and writing to the SDHC card.
 
 plugin: manual
@@ -188,8 +182,7 @@ command: removable_storage_watcher remove sdio
 _description:
  PURPOSE:
      This test will check that the system correctly detects 
-     the removal of a Secure Digital High-Capacity (SDHC) card from the systems
-     card reader.
+     the removal of an SDHC card from the systems card reader.
  STEPS:
      1. Click "Test" and remove the SDHC card from the reader.
         (Note: this test will time-out after 10 seconds.)
@@ -204,8 +197,7 @@ command: removable_storage_watcher insert sdio
 _description:
  PURPOSE:
      This test will check that the systems media card reader can
-     detect the insertion of a Secure Digital High-Capacity (SDHC)
-     media card after the system has been suspended
+     detect the insertion of an SDHC media card after the system has been suspended
  STEPS:
      1. Click "Test" and insert an SDHC card into the reader.
         (Note: this test will time-out after 10 seconds.)
@@ -219,7 +211,7 @@ name: mediacard/sdhc-storage-after-suspend
 depends: mediacard/sdhc-insert-after-suspend
 command: removable_storage_test sdio
 _description:
- This test is automated and executes after the mediacard/sd-insert-after-suspend test
+ This test is automated and executes after the mediacard/sdhc-insert-after-suspend test
  is run. It tests reading and writing to the SDHC card after the system has been suspended.
 
 plugin: manual
@@ -229,8 +221,7 @@ command: removable_storage_watcher remove sdio
 _description:
  PURPOSE:
      This test will check that the system correctly detects the removal
-     of a Secure Digital High-Capacity (SDHC) card from the systems
-     card reader after the system has been suspended.
+     of an SDHC card from the systems card reader after the system has been suspended.
  STEPS:
      1. Click "Test" and remove the SDHC card from the reader.
         (Note: this test will time-out after 10 seconds.)
@@ -244,9 +235,9 @@ command: removable_storage_watcher insert sdio
 _description:
  PURPOSE:
      This test will check that the systems media card reader can
-     detect the insertion of a Secure Digital High-Capacity (SDHC) media card
+     detect the insertion of a Compact Flash (CF) media card
  STEPS:
-     1. Click "Test" and insert an SDHC card into the reader.
+     1. Click "Test" and insert a CF card into the reader.
         (Note: this test will time-out after 10 seconds.)
      2. Do not unplug the device after the test.
  VERIFICATION:
@@ -258,8 +249,8 @@ name: mediacard/cf-storage
 depends: mediacard/cf-insert
 command: removable_storage_test sdio
 _description:
- This test is automated and executes after the mediacard/sd-insert
- test is run. It tests reading and writing to the SDHC card.
+ This test is automated and executes after the mediacard/cf-insert
+ test is run. It tests reading and writing to the CF card.
 
 plugin: manual
 name: mediacard/cf-remove
@@ -268,10 +259,9 @@ command: removable_storage_watcher remove sdio
 _description:
  PURPOSE:
      This test will check that the system correctly detects 
-     the removal of a Secure Digital High-Capacity (SDHC) card from the systems
-     card reader.
+     the removal of a CF card from the systems card reader.
  STEPS:
-     1. Click "Test" and remove the SDHC card from the reader.
+     1. Click "Test" and remove the CF card from the reader.
         (Note: this test will time-out after 10 seconds.)
  VERIFICATION:
      The verification of this test is automated. Do not change the
@@ -284,10 +274,9 @@ command: removable_storage_watcher insert sdio
 _description:
  PURPOSE:
      This test will check that the systems media card reader can
-     detect the insertion of a Secure Digital High-Capacity (SDHC)
-     media card after the system has been suspended
+     detect the insertion of a CF card after the system has been suspended
  STEPS:
-     1. Click "Test" and insert an SDHC card into the reader.
+     1. Click "Test" and insert a CF card into the reader.
         (Note: this test will time-out after 10 seconds.)
      2. Do not unplug the device after the test.
  VERIFICATION:
@@ -299,8 +288,8 @@ name: mediacard/cf-storage-after-suspend
 depends: mediacard/cf-insert-after-suspend
 command: removable_storage_test sdio
 _description:
- This test is automated and executes after the mediacard/sd-insert-after-suspend test
- is run. It tests reading and writing to the SDHC card after the system has been suspended.
+ This test is automated and executes after the mediacard/cf-insert-after-suspend test
+ is run. It tests reading and writing to the CF card after the system has been suspended.
 
 plugin: manual
 name: mediacard/cf-remove-after-suspend
@@ -309,10 +298,9 @@ command: removable_storage_watcher remove sdio
 _description:
  PURPOSE:
      This test will check that the system correctly detects the removal
-     of a Secure Digital High-Capacity (SDHC) card from the systems
-     card reader after the system has been suspended.
+     of a CF card from the systems card reader after the system has been suspended.
  STEPS:
-     1. Click "Test" and remove the SDHC card from the reader.
+     1. Click "Test" and remove the CF card from the reader.
         (Note: this test will time-out after 10 seconds.)
  VERIFICATION:
      The verification of this test is automated. Do not change the
