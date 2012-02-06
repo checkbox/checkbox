@@ -1,7 +1,7 @@
 #
 # This file is part of Checkbox.
 #
-# Copyright 2008 Canonical Ltd.
+# Copyright 2012 Canonical Ltd.
 #
 # Checkbox is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -31,6 +31,7 @@ from checkbox.user_interface import (UserInterface,
     ANSWER_TO_STATUS, STATUS_TO_ANSWER)
 import dbus
 from dbus.mainloop.glib import DBusGMainLoop
+
 
 class QTInterface(UserInterface):
     def __init__(self, title, data_path):
@@ -83,26 +84,18 @@ class QTInterface(UserInterface):
         self._set_main_title()
 
         self.qtiface.showText(text)
-        self.bus.add_signal_receiver(onFullTestsClicked, "fullTestsClicked")
-        self.loop.run()
-        if self.direction == KeyboardInterrupt:
-            raise KeyboardInterrupt
-
-        self.bus.remove_signal_receiver(onFullTestsClicked, "fullTestsClicked")
+        self.wait_on_signals(fullTestsClicked=onFullTestsClicked)
 
     def show_entry(self, text, value, previous=None, next=None):
         launchpadId = None
         def onSubmitTestsClicked():
+            global launchpadId
             launchpadId = self.qtiface.getLaunchpadId()
             self.loop.quit()
 
         self.qtiface.showEntry(text)
-        self.bus.add_signal_receiver(onSubmitTestsClicked, "submitTestsClicked")
-        self.loop.run()
-        if self.direction == KeyboardInterrupt:
-            raise KeyboardInterrupt
+        self.wait_on_signals(submitTestsClicked=onSubmitTestsClicked)
 
-        self.bus.remove_signal_receiver(onSubmitTestsClicked, "submitTestsClicked")
         return launchpadId
 
     def show_check(self, text, options=[], default=[]):
@@ -126,22 +119,17 @@ class QTInterface(UserInterface):
             newTests = {}
             for test in options[section]:
                 newTests[str(test)] = str("")
-            
+
             if newTests == {}:
                 newTests = {'': ''}
 
             newOptions[section] = newTests
 
         self.qtiface.showTree(text, newOptions)
-        self.bus.add_signal_receiver(onStartTestsClicked, "startTestsClicked")
-        self.bus.add_signal_receiver(onWelcomeClicked, "welcomeClicked")
+        self.wait_on_signals(
+            startTestsClicked=onStartTestsClicked,
+            welcomeClicked=onWelcomeClicked)
 
-        self.loop.run()
-        if self.direction == KeyboardInterrupt:
-            raise KeyboardInterrupt
-
-        self.bus.remove_signal_receiver(onStartTestsClicked, "startTestsClicked")
-        self.bus.remove_signal_receiver(onWelcomeClicked, "welcomeClicked")
         newOptions = {}
         testsFromInterface = self.qtiface.getTestsToRun()
         for section in testsFromInterface:
@@ -192,21 +180,12 @@ class QTInterface(UserInterface):
 
         print test
         self.qtiface.showTest(description, test["suite"], enableTestButton)
-        self.bus.add_signal_receiver(onStartTestClicked, "startTestClicked")
-        self.bus.add_signal_receiver(onNextTestClicked, "nextTestClicked")
-        self.bus.add_signal_receiver(onPreviousTestClicked, "previousTestClicked")
-        self.bus.add_signal_receiver(onNoTestClicked, "noTestClicked")
-        self.bus.add_signal_receiver(onYesTestClicked, "yesTestClicked")
-
-        self.loop.run()
-        if self.direction == KeyboardInterrupt:
-            raise KeyboardInterrupt
-
-        self.bus.remove_signal_receiver(onStartTestClicked, "startTestClicked")
-        self.bus.remove_signal_receiver(onNextTestClicked, "nextTestClicked")
-        self.bus.remove_signal_receiver(onPreviousTestClicked, "previousTestClicked")
-        self.bus.remove_signal_receiver(onNoTestClicked, "noTestClicked")
-        self.bus.remove_signal_receiver(onYesTestClicked, "yesTestClicked")
+        self.wait_on_signals(
+            startTestClicked=onStartTestClicked,
+            nextTestClicked=onNextTestClicked,
+            previousTestClicked=onPreviousTestClicked,
+            noTestClicked=onNoTestClicked,
+            yesTestClicked=onYesTestClicked)
 
         return False
 
@@ -216,3 +195,13 @@ class QTInterface(UserInterface):
     def show_error(self, text):
         self.qtiface.showError(text)
 
+    def wait_on_signals(self, **signals):
+        for name, function in signals.iteritems():
+            self.bus.add_signal_receiver(function, name)
+
+        self.loop.run()
+        if self.direction == KeyboardInterrupt:
+            raise KeyboardInterrupt
+
+        for name, function in signals.iteritems():
+            self.bus.remove_signal_receiver(function, name)
