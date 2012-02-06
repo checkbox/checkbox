@@ -131,6 +131,9 @@ class JobsPrompt(Plugin):
         tests = [m for m in messages if m.get("type") in ("test", "metric")]
         self._manager.reactor.fire("report-tests", tests)
 
+        suites = [m for m in messages if m.get("type") == "suite"]
+        self._manager.reactor.fire("report-suites", suites)
+
         attachments = [m for m in messages if m.get("type") == "attachment" and "data" in m]
         self._manager.reactor.fire("report-attachments", attachments)
 

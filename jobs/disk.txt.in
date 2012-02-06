@@ -3,18 +3,32 @@ name: disk/detect
 command: udev_resource | filter_templates -w "category=DISK" | awk -F': ' '$1 == "product" { print $2 }'
 _description: Detects and displays disks attached to the system.
 
-plugin: local 
+plugin: local
 name: disk/benchmarks
 requires: device.category == 'DISK'
-_description: Benchmark for each disk 
-command: 
+_description: Benchmark for each disk
+command:
  cat <<'EOF' | run_templates -t -s 'udev_resource | filter_templates -w "category=DISK"'
  plugin: shell
  name: disk/benchmark_`ls /sys$path/block`
  requires: device.path == "$path" and package.name == 'linux'
  user: root
  command: hdparm -tT /dev/`ls /sys$path/block` | sed 's/:.*= */ = /' | grep -v "^$"
- description: This test runs hdparm timing tests as a benchmark for $path 
+ description: This test runs hdparm timing tests as a benchmark for $path
+ EOF
+
+plugin: local
+name: disk/stats
+requires: device.category == 'DISK'
+_description: Check stats changes for each disk
+command:
+ cat <<'EOF' | run_templates -t -s 'udev_resource | filter_templates -w "category=DISK"'
+ plugin: shell
+ name: disk/stats_`ls /sys$path/block`
+ requires: device.path == "$path" and package.name == 'linux'
+ user: root
+ command: disk_stats_test `ls /sys$path/block`
+ description: This test checks disk stats, generates some activity and rechecks stats to verify they've changed. It also verifies that disks appear in the various files they're supposed to.
  EOF
 
 plugin: local
@@ -29,7 +43,7 @@ command:
  plugin: shell
  name: disk/smart_`ls /sys$path/block`
  requires: device.path == "$path"
- description: 
+ description:
   This tests the SMART capabilities for $product (Note that this test will not work against removable media (USB, Firewire) and hardware RAID)
  user: root
  command: disk_smart -b /dev/`ls /sys$path/block` -s 130

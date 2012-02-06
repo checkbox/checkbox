@@ -23,7 +23,7 @@ type=802-11-wireless
     wireless = """
 [802-11-wireless]
 ssid=%s
-mode=infrastructure """ % (ssid)
+mode=infrastructure""" % (ssid)
 
     return connection + wireless
 
