@@ -87,16 +87,12 @@ class QTInterface(UserInterface):
         self.wait_on_signals(fullTestsClicked=onFullTestsClicked)
 
     def show_entry(self, text, value, previous=None, next=None):
-        launchpadId = None
         def onSubmitTestsClicked():
-            global launchpadId
-            launchpadId = self.qtiface.getLaunchpadId()
             self.loop.quit()
 
         self.qtiface.showEntry(text)
         self.wait_on_signals(submitTestsClicked=onSubmitTestsClicked)
-
-        return launchpadId
+        return self.qtiface.getLaunchpadId()
 
     def show_check(self, text, options=[], default=[]):
         return False
@@ -178,7 +174,6 @@ class QTInterface(UserInterface):
             description = self._run_test(test, runner)
             enableTestButton = False
 
-        print test
         self.qtiface.showTest(description, test["suite"], enableTestButton)
         self.wait_on_signals(
             startTestClicked=onStartTestClicked,

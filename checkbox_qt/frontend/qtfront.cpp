@@ -167,6 +167,11 @@ void QtFront::showEntry(QString text)
     ui->testsTab->setCurrentIndex(3);
     ui->radioTestTab->setVisible(false);
     ui->nextPrevButtons->setVisible(false);
+
+    ui->buttonSubmit->setEnabled(true);
+    ui->buttonSubmitAnounymously->setEnabled(true);
+    ui->lineEditLaunchpad->setEnabled(true);
+
 }
 
 void QtFront::showTest(QString text, QString testType, bool enableTestButton)
