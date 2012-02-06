@@ -1,7 +1,7 @@
 #
 # This file is part of Checkbox.
 #
-# Copyright 2008 Canonical Ltd.
+# Copyright 2008-2012 Canonical Ltd.
 #
 # Checkbox is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -26,6 +26,8 @@ import webbrowser
 
 import gettext
 from gettext import gettext as _
+
+from gi.repository import Gio
 
 from checkbox.contrib.REThread import REThread
 
@@ -177,11 +179,9 @@ class UserInterface(object):
                 if os.getenv("DISPLAY") and \
                         subprocess.call(["pgrep", "-x", "-u", str(uid), "gnome-panel|gconfd-2"],
                                 stdout=subprocess.PIPE, stderr=subprocess.PIPE) == 0:
-                    gct = subprocess.Popen(sudo_prefix + ["gconftool", "--get",
-                        "/desktop/gnome/url-handlers/http/command"],
-                        stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-                    if gct.wait() == 0:
-                        preferred_browser = gct.communicate()[0]
+                    preferred_xml_app = Gio.app_info_get_default_for_type("application/xml",False)
+                    if preferred_xml_app:
+                        preferred_browser = preferred_xml_app.get_executable()
                         browser = re.match("((firefox|seamonkey|flock)[^\s]*)", preferred_browser)
                         if browser:
                             subprocess.call(sudo_prefix + [browser.group(0), "-new-window", url])
