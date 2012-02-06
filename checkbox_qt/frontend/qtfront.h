@@ -52,7 +52,7 @@ public slots:
     void showEntry(QString text);
     QVariantMap getTestsToRun();
     QString getLaunchpadId();
-    void showTest(QString text, QString testType, bool enableTestButton);
+    void showTest(QString purpose, QString steps, QString verification, QString info, QString testType, bool enableTestButton);
     QString showInfo(QString text, QStringList options, QString defaultoption);
 
 private slots:

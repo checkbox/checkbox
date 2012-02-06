@@ -16,7 +16,8 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-import re, sys, time
+import sys
+import time
 import posixpath
 import inspect
 import gobject
@@ -140,10 +141,8 @@ class QTInterface(UserInterface):
     def _run_test(self, test, runner):
         (status, data, duration) = runner(test)
 
-        description = Template(test["description"]).substitute({
+        return Template(test["info"]).substitute({
             "output": data.strip()})
-
-        return description
 
     def show_test(self, test, runner):
         def onStartTestClicked():
@@ -169,12 +168,15 @@ class QTInterface(UserInterface):
 
         enableTestButton = True
         self._set_main_title(test["name"])
-        description = test["description"]
-        if re.search(r"\$output", description):
-            description = self._run_test(test, runner)
+        if "$output" in test["info"]:
+            info = self._run_test(test, runner)
             enableTestButton = False
+        else:
+            info = None
 
-        self.qtiface.showTest(description, test["suite"], enableTestButton)
+        self.qtiface.showTest(
+            test["purpose"], test["steps"], test["verification"], info,
+            test["suite"], enableTestButton)
         self.wait_on_signals(
             startTestClicked=onStartTestClicked,
             nextTestClicked=onNextTestClicked,
