@@ -3,10 +3,24 @@
 
 #include <QWidget>
 #include <QtDBus>
+#include <QCloseEvent>
 
 #include "treemodel.h"
 
 class Ui_main;
+
+class CustomQWidget : QWidget
+{
+    Q_OBJECT
+    void closeEvent(QCloseEvent *event) {
+        emit closed();
+        event->accept();
+
+    }
+signals:
+    void closed();
+};
+
 
 class QtFront : public QDBusAbstractAdaptor
 {
@@ -57,6 +71,7 @@ signals:
     void welcomeScreenRequested();
     // when the user clicks welcome from the tests selection tree
     void welcomeClicked();
+    void closedFrontend();
 
 private:
     bool registerService();

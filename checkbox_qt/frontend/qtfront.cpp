@@ -24,7 +24,7 @@ QtFront::QtFront(QApplication *parent) :
     m_model(0),
     m_currentTab(1)
 {
-    m_mainWindow = new QWidget();
+    m_mainWindow = (QWidget*)new CustomQWidget();
     ui->setupUi(m_mainWindow);
 
     CustomQTabWidget *tmpQTW = (CustomQTabWidget*)ui->tabWidget;
@@ -42,6 +42,7 @@ QtFront::QtFront(QApplication *parent) :
     connect(ui->nextTestButton, SIGNAL(clicked()), this, SIGNAL(nextTestClicked()));
     connect(ui->previousTestButton, SIGNAL(clicked()), this, SIGNAL(previousTestClicked()));
     connect(ui->buttonSubmit, SIGNAL(clicked()), this, SLOT(onSubmitTestsClicked()));
+    connect(m_mainWindow, SIGNAL(closed()), this, SIGNAL(closedFrontend()));
     ui->stepsFrame->setFixedHeight(0);
     //skipTestMessage = QErrorMessage()
 

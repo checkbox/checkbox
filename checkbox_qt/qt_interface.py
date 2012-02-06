@@ -47,10 +47,15 @@ class QTInterface(UserInterface):
             except:
                 time.sleep(0.5)
         self.bus.add_signal_receiver(self.onWelcomeScreenRequested, "welcomeScreenRequested")
+        self.bus.add_signal_receiver(self.onClosedFrontend, "closedFrontend")
         self._set_main_title()
 
     def onWelcomeScreenRequested(self):
         pass
+
+    def onClosedFrontend(self):
+        self.direction = KeyboardInterrupt
+        self.loop.quit()
 
     def _set_main_title(self, test_name=None):
         title = self._app_title
@@ -80,6 +85,9 @@ class QTInterface(UserInterface):
         self.qtiface.showText(text)
         self.bus.add_signal_receiver(onFullTestsClicked, "fullTestsClicked")
         self.loop.run()
+        if self.direction == KeyboardInterrupt:
+            raise KeyboardInterrupt
+
         self.bus.remove_signal_receiver(onFullTestsClicked, "fullTestsClicked")
 
     def show_entry(self, text, value, previous=None, next=None):
@@ -91,6 +99,9 @@ class QTInterface(UserInterface):
         self.qtiface.showEntry(text)
         self.bus.add_signal_receiver(onSubmitTestsClicked, "submitTestsClicked")
         self.loop.run()
+        if self.direction == KeyboardInterrupt:
+            raise KeyboardInterrupt
+
         self.bus.remove_signal_receiver(onSubmitTestsClicked, "submitTestsClicked")
         return launchpadId
 
@@ -126,6 +137,9 @@ class QTInterface(UserInterface):
         self.bus.add_signal_receiver(onWelcomeClicked, "welcomeClicked")
 
         self.loop.run()
+        if self.direction == KeyboardInterrupt:
+            raise KeyboardInterrupt
+
         self.bus.remove_signal_receiver(onStartTestsClicked, "startTestsClicked")
         self.bus.remove_signal_receiver(onWelcomeClicked, "welcomeClicked")
         newOptions = {}
@@ -185,6 +199,8 @@ class QTInterface(UserInterface):
         self.bus.add_signal_receiver(onYesTestClicked, "yesTestClicked")
 
         self.loop.run()
+        if self.direction == KeyboardInterrupt:
+            raise KeyboardInterrupt
 
         self.bus.remove_signal_receiver(onStartTestClicked, "startTestClicked")
         self.bus.remove_signal_receiver(onNextTestClicked, "nextTestClicked")
