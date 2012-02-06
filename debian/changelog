@@ -7,6 +7,7 @@ checkbox (0.13.2) precise; urgency=low
 
   [Marc Tardif]
   * Removed trailing directories from the devpath of disk devices (LP: #925582)
+  * Fixed awk regular expression in max_diskspace_used script (LP: #926312)
 
   [Daniel Manrique]
   * Tweaks to internet_test: don't try to ping an IP that's unreachable from 
