@@ -9,7 +9,12 @@ checkbox (0.13.2) precise; urgency=low
   * Removed trailing directories from the devpath of disk devices (LP: #925582)
   * Fixed awk regular expression in max_diskspace_used script (LP: #926312)
 
- -- Marc Tardif <marc@ubuntu.com>  Fri, 03 Feb 2012 15:23:06 -0500
+  [Daniel Manrique]
+  * Changed way of obtaining preferred browser to ensure we honor the user's
+    preference rather than Chromium's clobbering of
+    /etc/alternatives/gnome-www-browser (LP: #925603) 
+
+ -- Daniel Manrique <daniel.manrique@canonical.com>  Mon, 06 Feb 2012 14:55:58 -0500
 
 checkbox (0.13.1) precise; urgency=low
 
