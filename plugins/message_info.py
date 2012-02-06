@@ -37,10 +37,11 @@ class DescriptionResult:
     def __init__(self, message):
         self.message = message
 
-    def setDescription(self, purpose, steps, verification):
+    def setDescription(self, purpose, steps, verification, info):
         self.message["purpose"] = purpose
         self.message["steps"] = steps
         self.message["verification"] = verification
+        self.message["info"] = info
 
 
 class MessageInfo(Plugin):

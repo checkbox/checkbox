@@ -23,6 +23,7 @@ DescriptionState = Enum(
     "INIT",
     "PURPOSE",
     "STEPS",
+    "INFO",
     "VERIFICATION",
     "OTHER")
 
@@ -30,6 +31,7 @@ TransitionStates = {
     DescriptionState.INIT: DescriptionState.PURPOSE,
     DescriptionState.PURPOSE: DescriptionState.STEPS,
     DescriptionState.STEPS: DescriptionState.VERIFICATION,
+    DescriptionState.INFO: DescriptionState.VERIFICATION,
     DescriptionState.VERIFICATION: DescriptionState.OTHER,
     DescriptionState.OTHER: DescriptionState.OTHER,
     }
@@ -54,6 +56,12 @@ class DescriptionParser:
             # Append to description parts between INIT and OTHER states.
             elif state > DescriptionState.INIT \
                  and state < DescriptionState.OTHER:
+                # Handle optional INFO state and translations of $output.
+                if state == DescriptionState.VERIFICATION \
+                   and "$" in line:
+                    state = DescriptionState.INFO
+                    line = "$output\n"
+
                 parts.setdefault(state, "")
                 parts[state] += line.lstrip()
 
@@ -62,4 +70,5 @@ class DescriptionParser:
             result.setDescription(
                 parts[DescriptionState.PURPOSE],
                 parts[DescriptionState.STEPS],
-                parts[DescriptionState.VERIFICATION])
+                parts[DescriptionState.VERIFICATION],
+                parts.get(DescriptionState.INFO))

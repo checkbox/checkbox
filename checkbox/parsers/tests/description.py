@@ -29,11 +29,13 @@ class DescriptionResult:
     purpose = None
     steps = None
     verification = None
+    info = None
 
-    def setDescription(self, purpose, steps, verification):
+    def setDescription(self, purpose, steps, verification, info):
         self.purpose = purpose
         self.steps = steps
         self.verification = verification
+        self.info = info
 
 
 class TestDescriptionParser(TestCase):
@@ -48,6 +50,13 @@ class TestDescriptionParser(TestCase):
         parser.run(result)
         return result
 
+    def assertResult(
+        self, result, purpose=None, steps=None, verification=None, info=None):
+        self.assertEquals(result.purpose, purpose)
+        self.assertEquals(result.steps, steps)
+        self.assertEquals(result.verification, verification)
+        self.assertEquals(result.info, info)
+
     def test_empty(self):
         result = self.getResult("")
         self.assertEquals(result.purpose, None)
@@ -57,7 +66,7 @@ class TestDescriptionParser(TestCase):
 PURPOSE:
     foo
 """)
-        self.assertEquals(result.purpose, None)
+        self.assertResult(result)
 
     def test_purpose_steps(self):
         result = self.getResult("""
@@ -66,7 +75,7 @@ PURPOSE:
 STEPS:
     bar
 """)
-        self.assertEquals(result.purpose, None)
+        self.assertResult(result)
 
     def test_purpose_steps_verification(self):
         result = self.getResult("""
@@ -77,9 +86,20 @@ STEPS:
 VERIFICATION:
     baz
 """)
-        self.assertEquals(result.purpose, "foo\n")
-        self.assertEquals(result.steps, "bar\n")
-        self.assertEquals(result.verification, "baz\n")
+        self.assertResult(result, "foo\n", "bar\n", "baz\n")
+
+    def test_purpose_steps_info_verification(self):
+        result = self.getResult("""
+PURPOSE:
+    foo
+STEPS:
+    bar
+INFO:
+    $output
+VERIFICATION:
+    baz
+""")
+        self.assertResult(result, "foo\n", "bar\n", "baz\n", "$output\n")
 
     def test_purpose_steps_verification_other(self):
         result = self.getResult("""
@@ -92,9 +112,23 @@ VERIFICATION:
 OTHER:
     blah
 """)
-        self.assertEquals(result.purpose, None)
-        self.assertEquals(result.steps, None)
-        self.assertEquals(result.verification, None)
+        self.assertResult(result)
+
+    def test_es(self):
+        result = self.getResult(u"""
+PROPÓSITO:
+     Esta prueba verifica los diferentes modos de vídeo detectados
+PASOS:
+     1. Se han detectado las siguientes pantallas y modos de vídeo
+INFORMACIÓN:
+     $ salida
+VERIFICACIÓN:
+     ¿Son las pantallas y los modos de vídeo correctos?
+""")
+        self.assertNotEquals(result.purpose, None)
+        self.assertNotEquals(result.steps, None)
+        self.assertNotEquals(result.verification, None)
+        self.assertEquals(result.info, "$output\n")
 
     def test_ru(self):
         result = self.getResult(u"""
@@ -109,3 +143,4 @@ OTHER:
         self.assertNotEquals(result.purpose, None)
         self.assertNotEquals(result.steps, None)
         self.assertNotEquals(result.verification, None)
+        self.assertEquals(result.info, None)
