@@ -174,7 +174,7 @@ void QtFront::showEntry(QString text)
 
 }
 
-void QtFront::showTest(QString text, QString testType, bool enableTestButton)
+void QtFront::showTest(QString purpose, QString steps, QString verification, QString info, QString testType, bool enableTestButton)
 {
     currentState = TESTING;
     ui->radioTestTab->setVisible(true);
@@ -188,16 +188,14 @@ void QtFront::showTest(QString text, QString testType, bool enableTestButton)
     ui->stepsFrame->setFixedHeight(0);
     ui->stepsFrame->update();
     ui->testsTab->setCurrentIndex(2);
-    QString purpose = text.split("PURPOSE:\n")[1].split("STEPS:")[0].trimmed();
-    QStringList steps = text.split("STEPS:")[1].split("VERIFICATION:")[0].trimmed().split("\n");
-    QString verification = text.split("VERIFICATION:")[1].trimmed();
+    QStringList stepsList = steps.trimmed().split("\n");
 
-    qDebug() << "purpose" << purpose << "steps"<< steps  <<"verification" << verification;
+    qDebug() << "purpose" << purpose << "steps"<< stepsList  <<"verification" << verification;
     QRegExp r("[0-9]+\\. (.*)");
     int index = 1;
     ui->testTypeLabel->setText(titleTestTypes[testType]);
     ui->purposeLabel->setText(purpose);
-    foreach(QString line, steps) {
+    foreach(QString line, stepsList) {
         bool isInfo = true;
         QString step;
         if (r.indexIn(line.trimmed()) == 0) {

@@ -26,8 +26,22 @@ from StringIO import StringIO
 from checkbox.lib.path import path_expand_recursive
 from checkbox.lib.template_i18n import TemplateI18n
 
+from checkbox.parsers.description import DescriptionParser
+
 from checkbox.job import Job, PASS
 from checkbox.plugin import Plugin
+
+
+class DescriptionResult:
+
+    def __init__(self, message):
+        self.message = message
+
+    def setDescription(self, purpose, steps, verification, info):
+        self.message["purpose"] = purpose
+        self.message["steps"] = steps
+        self.message["verification"] = verification
+        self.message["info"] = info
 
 
 class MessageInfo(Plugin):
@@ -68,6 +82,7 @@ class MessageInfo(Plugin):
 
     def message_exec(self, message):
         if "user" not in message:
+
             def stop():
                 os.kill(0, signal.SIGTERM)
 
@@ -90,6 +105,10 @@ class MessageInfo(Plugin):
                 if long_key.endswith(long_ext):
                     short_key = long_key.replace(long_ext, "")
                     message[short_key] = message.pop(long_key)
+            if "description" in message:
+                parser = DescriptionParser(StringIO(message["description"]))
+                result = DescriptionResult(message)
+                parser.run(result)
 
         if messages:
             self._manager.reactor.fire("report-messages", messages)
