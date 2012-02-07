@@ -13,6 +13,9 @@ checkbox (0.13.2) precise; urgency=low
   * Changed way of obtaining preferred browser to ensure we honor the user's
     preference rather than Chromium's clobbering of
     /etc/alternatives/gnome-www-browser (LP: #925603) 
+  * Added submission_path_prompt config variable; if set, it will be shown to
+    the user before the test selection screen, and the value entered will
+    override the default filename for the xml report.
 
  -- Daniel Manrique <daniel.manrique@canonical.com>  Mon, 06 Feb 2012 14:55:58 -0500
 

@@ -286,7 +286,9 @@ class GTKInterface(UserInterface):
         self._set_button("button_previous", previous_state)
         self._set_button("button_next", next_state)
 
-        return self._get_text("entry")
+        entered_value = self._get_text("entry")
+        self._set_text("entry","")
+        return entered_value
 
     @GTKHack
     def show_check(self, text, options=[], default=[]):

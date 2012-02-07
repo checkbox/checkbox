@@ -23,7 +23,7 @@ from string import printable
 
 from checkbox.lib.safe import safe_make_directory
 
-from checkbox.properties import Path
+from checkbox.properties import Path, String
 from checkbox.plugin import Plugin
 from checkbox.reports.launchpad_report import LaunchpadReportManager
 
@@ -32,6 +32,9 @@ class LaunchpadReport(Plugin):
 
     # Filename where submission information is cached.
     filename = Path(default="%(checkbox_data)s/submission.xml")
+
+    # Prompt for place to save the submission file
+    submission_path_prompt = String(default="")
 
     # XML Schema
     schema = Path(default="%(checkbox_share)s/report/hardware-1_0.rng")
@@ -68,6 +71,16 @@ class LaunchpadReport(Plugin):
 
         # Launchpad report should be generated last.
         self._manager.reactor.call_on("report", self.report, 100)
+
+        #Ask where to put submission file
+        self._manager.reactor.call_on("prompt-begin", self.prompt_begin, 110)
+
+    def prompt_begin(self, interface):
+        if self.submission_path_prompt:
+            new_filename = interface.show_entry(
+                self.submission_path_prompt, self.filename)
+            if new_filename != "":
+                self.filename = new_filename
 
     def report_attachments(self, attachments):
         for attachment in attachments:
