@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-01-07 04:44+0000\n"
-"X-Generator: Launchpad (build 14640)\n"
+"X-Launchpad-Export-Date: 2012-02-07 04:36+0000\n"
+"X-Generator: Launchpad (build 14747)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:1 ../checkbox_cli/cli_interface.py:351
 #: ../checkbox_urwid/urwid_interface.py:261
@@ -103,6 +103,14 @@ msgid ""
 "    Did you hear a sound through the headphones and did the sound play "
 "without any distortion, clicks or other strange noises from your headphones?"
 msgstr ""
+"NAMEN:\n"
+"    Ta preizkus bo preveril, da konektor naglavnih slušalk deluje pravilno.\n"
+"KORAKI:\n"
+"    1. Povežite naglavne slušalke s svojo zvočno napravo\n"
+"    2. Kliknite na gumb Preizkus za predvajanje zvoka na zvočni napravi\n"
+"POTRDITEV:\n"
+"    Ali ste skozi naglavne slušalke slišali zvok in ali se je predvajal brez "
+"motenj, klikov ali drugih čudnih zvokov iz slušalk?"
 
 #. description
 #: ../jobs/audio.txt.in:49
@@ -117,6 +125,15 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear your speech played back?"
 msgstr ""
+"NAMEN:\n"
+"    Ta preizkus bo preveril, da snemanje zvoka z vgrajenim mikrofonom deluje "
+"pravilno. \n"
+"KORAKI:\n"
+"    1. Odklopite morebitne priklopljene zunanje mikrofone\n"
+"    2. Kliknite \"Preizkus\" in nato govorite v mikrofon\n"
+"    3. Čez nekaj sekund bo vaš zvok predvajan nazaj.\n"
+"POTRDITEV:\n"
+"    Ali ste slišali govor predvajan nazaj?"
 
 #. description
 #: ../jobs/audio.txt.in:66
@@ -131,6 +148,15 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear your speech played back?"
 msgstr ""
+"NAMEN:\n"
+"    Ta preizkus bo preveril, da snemanje zvoka z zunanjim mikrofonom deluje "
+"pravilno\n"
+"KORAKI:\n"
+"    1. Povežite mikrofon z vrati mikrofona\n"
+"    2. Kliknite \"Preizkus\" in nato izgovorite v zunanji mikrofon\n"
+"    3. Po nekaj sekundah bo vaš govor predvajan vam nazaj\n"
+"POTRDITEV:\n"
+"    Ali ste slišali predvajan zvok?"
 
 #. description
 #: ../jobs/audio.txt.in:82
@@ -148,6 +174,18 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear your speech played back through the USB headphones?"
 msgstr ""
+"NAMEN:\n"
+"    Ta preizkus preveri, da zvočne naprave USB pravilno delujejo\n"
+"KORAKI:\n"
+"    1. Povežite zvočno napravo USB s svojim sistemom\n"
+"    2. Odprite program za nadzor glasnosti z levim klikom na ikono zvočnih "
+"na pultu in izbiro \"Nastavitve zvoka\"\n"
+"    3. Izberite zavihek \"Dohod\" in izberite svojo napravo USB\n"
+"    4. Izberite zavihek \"Odvod\" in izberite napravo USB\n"
+"    5. Kliknite \"Preizkus\" in nato govorite v mikrofon\n"
+"    6. Po nekaj sekundah vam bo vaš zvok predvajan nazaj\n"
+"POTRDITEV:\n"
+"    Ali ste skozi slušalke USB slišali predvajan zvok?"
 
 #. description
 #: ../jobs/audio.txt.in:102
@@ -164,6 +202,9 @@ msgid ""
 "   This test will attempt to install and run the Autotest Suite.  These "
 "tests can be destructive, so this test is blacklisted by default."
 msgstr ""
+"NAMEN:\n"
+"   Ta preizkus bo poskusil namestiti in pognati zbirko Autotest. Ti "
+"preizkusi lahko povzročijo škodo, zato se privzeto ne izvedejo."
 
 #. description
 #: ../jobs/bluetooth.txt.in:7
@@ -179,6 +220,8 @@ msgstr ""
 msgid ""
 "Automated test to store bluetooth device information in checkbox report"
 msgstr ""
+"Samodejen preizkus za shraniti podatke o napravi bluetooth v poročilo "
+"checkbox"
 
 #. description
 #: ../jobs/bluetooth.txt.in:22
@@ -198,6 +241,21 @@ msgid ""
 "VERIFICATION:\n"
 "    Did all the steps work?"
 msgstr ""
+"NAMEN:\n"
+"    Ta preizkus bo preveril, da povezava bluetooth deluje pravilno\n"
+"KORAKI:\n"
+"    1. Omogočite bluetooth na katerikoli mobilni napravi (dlančnik, pametni "
+"telefon, itd.)\n"
+"    2. Kliknite na ikono bluetooth v menijski vrstici\n"
+"    3. Izberite 'Nastavi novo napravo'\n"
+"    4. Najdite napravo na seznamu in jo izberite\n"
+"    5. V napravo vpišite kodo PIN, ki jo samodejno izbere čarovnik\n"
+"    6. Naprava bi se morala spoznati z računalnikom\n"
+"    7. Desno kliknite na ikono bluetooth in izberite brskaj datoteke\n"
+"    8. Overite računalnik za brskanje datotek na napravi, če je to potrebno\n"
+"    9. Morali bi biti zmožni brskati med datotekami\n"
+"POTRDITEV:\n"
+"    Ali so vsi koraki delovali?"
 
 #. description
 #: ../jobs/bluetooth.txt.in:41
@@ -212,6 +270,15 @@ msgid ""
 "VERIFICATION:\n"
 "    Were all files copied correctly?"
 msgstr ""
+"NAMEN:\n"
+"    Ta preizkus bo preveril, da lahko prenesete podatke s povezavo "
+"bluetooth\n"
+"KORAKI:\n"
+"    1. Prepričajte se, da lahko brskate po datotekah na mobilni napravi\n"
+"    2. Kopirajte datoteko z računalnika na mobilno napravo\n"
+"    3. Kopirajte datoteko z mobilne naprave na računalnik\n"
+"POTRDITEV:\n"
+"    Ali so bile vse datoteke pravilno kopirane?"
 
 #. description
 #: ../jobs/bluetooth.txt.in:55
@@ -231,6 +298,19 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear the sound you recorded in the bluetooth"
 msgstr ""
+"NAMEN:\n"
+"    Ta preizkus bo preveril, da lahko snemate in slišite zvok z zvočno "
+"napravo bluetooth\n"
+"KORAKI:\n"
+"    1. Omogočite naglavne slušalke bluetooth\n"
+"    2. Kliknite na ikono bluetooth v menijski vrstici\n"
+"    3. Izberite 'Nastavi novo napravo'\n"
+"    4. Najdite napravo na seznamu in jo izberite\n"
+"    5. V napravo napišite kodo PIN, ki jo je čarovnik samodejno izbral.\n"
+"    6. Naprava bi se morala spoznati z računalnikom\n"
+"    7. Kliknite \"Preizkus\" za snemanje\n"
+"POTRDITEV:\n"
+"    Ali ste slišali zvok, ki ste ga posneli z napravo bluetooth"
 
 #. description
 #: ../jobs/bluetooth.txt.in:73
@@ -247,6 +327,17 @@ msgid ""
 "VERIFICATION:\n"
 "    Were you able to enter some text with the bluetooth keyboard?"
 msgstr ""
+"NAMEN:\n"
+"    Ta preizkus bo preveril ali lahko uporabite tipkovnico bluetooth\n"
+"KORAKI:\n"
+"    1. Omogočite tipkovnice bluetooth\n"
+"    2. Kliknite na ikono bluetooth v menijski vrstici\n"
+"    3. Kliknite 'Nastavi novo napravo'\n"
+"    4. Poiščite napravo na seznamu in jo izberite\n"
+"    5. Kliknite na \"Preizkus\"\n"
+"    6. Vnesite besedilo\n"
+"POTRDITEV:\n"
+"    Ali ste lahko s tipkovnico bluetooth vnesli besedilo?"
 
 #. description
 #: ../jobs/bluetooth.txt.in:89
@@ -263,11 +354,22 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the mouse work as expected?"
 msgstr ""
+"NAMEN:\n"
+"    Ta preizkus bo preveril, da lahko uporabite miško bluetooth\n"
+"KORAKI:\n"
+"    1. Omogočite miško bluetooth\n"
+"    2. Kliknite na ikono bluetooth v menijski vrstici\n"
+"    3. Kliknite 'Nastavi novo napravo'\n"
+"    4. Poiščite napravo na seznamu in jo izberite\n"
+"    5. Premaknite miško po zaslonu\n"
+"    6. Izvedite levi/dvojni/desni klik\n"
+"POTRDITEV:\n"
+"    Ali je miška delala kot je bilo pričakovano?"
 
 #. description
 #: ../jobs/camera.txt.in:7
 msgid "This Automated test attempts to detect a camera."
-msgstr ""
+msgstr "Ta samodejni preizkus poskuša zaznati fotoaparat."
 
 #. description
 #: ../jobs/camera.txt.in:16
@@ -279,6 +381,12 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you see the video capture?"
 msgstr ""
+"NAMEN:\n"
+"    Ta preizkus bo preveril, da vgrajena kamera deluje\n"
+"KORAKI:\n"
+"    1. Kliknite na Preizkus, da prikažete video zajem iz kamere\n"
+"PREVERJANJE:\n"
+"    Ali ste videli video zajem?"
 
 #. description
 #: ../jobs/camera.txt.in:33
@@ -290,6 +398,12 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you see the image?"
 msgstr ""
+"NAMEN:\n"
+"    Ta preizkus bo preveril, da vgrajena kamera deluje\n"
+"KORAKI:\n"
+"    1. Kliknite na Preizkus za prikaz slike iz kamere\n"
+"PREVERJANJE:\n"
+"    Ali ste videli sliko?"
 
 #. description
 #: ../jobs/camera.txt.in:49
@@ -303,6 +417,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you see and hear the capture?"
 msgstr ""
+"NAMEN:\n"
+"    Ta preizkus bo preveril, če lahko zajamete video z vgrajeno kamero\n"
+"KORAKI:\n"
+"    1. Kliknite na preizkus za zajem videa v datoteko (ta se bo samodejno "
+"odprl v Totem)\n"
+"PREVERJANJE:\n"
+"    Ali ste videli in slišali zajetji video?"
 
 #. description
 #: ../jobs/codecs.txt.in:7
@@ -316,6 +437,14 @@ msgid ""
 "VERIFICATION:\n"
 "   Did the sample play correctly?"
 msgstr ""
+"NAMEN:\n"
+"   Ta preizkus bo preveril sposobnosti vašega sistema za predvajanje zvočnih "
+"datotek Ogg Vorbis.\n"
+"KORAKI:\n"
+"   1. Kliknite na Preizkus za predvajanje datoteke Ogg Vorbis (.ogg)\n"
+"   2. Zaprite predvajalnik za nadaljevanje.\n"
+"POTRDITEV:\n"
+"   Ali je bil vzorec predvajan pravilno?"
 
 #. description
 #: ../jobs/codecs.txt.in:22
@@ -328,12 +457,22 @@ msgid ""
 "VERIFICATION:\n"
 "   Did the sample play correctly?"
 msgstr ""
+"NAMEN:\n"
+"   Ta preizkus bo preveril sposobnosti vašega sistema za predvajanje zvočnih "
+"datotek Wave Audio.\n"
+"KORAKI:\n"
+"   1. Kliknite na Preizkus za predvajanje datoteke Wave Audio (.wav)\n"
+"   2. Zaprite predvajalnik za nadaljevanje.\n"
+"POTRDITEV:\n"
+"   Ali je bil vzorec predvajan pravilno?"
 
 #. description
 #: ../jobs/cpu.txt.in:8
 msgid ""
 "Test the CPU scaling capabilities using Firmware Test Suite (fwts cpufreq)."
 msgstr ""
+"Preizkusite sposobnosti umeritve CPE z uporabo Firmware test Suite (fwts "
+"cpufreq)."
 
 #. description
 #: ../jobs/cpu.txt.in:15
@@ -348,12 +487,14 @@ msgstr "Preskus izklapljanja procesorjev v večjedernem sistemu."
 #. description
 #: ../jobs/cpu.txt.in:30
 msgid "This test checks cpu topology for accuracy"
-msgstr ""
+msgstr "Ta preizkus preveri topologijo cpu za natančnost"
 
 #. description
 #: ../jobs/cpu.txt.in:38
 msgid "This test checks that CPU frequency governors are obeyed when set."
 msgstr ""
+"Ta preizkus preveri, ali se prednastavljene frekvence CPE pokoravajo, ko so "
+"nastavljene."
 
 #. description
 #: ../jobs/daemons.txt.in:5
@@ -477,6 +618,23 @@ msgid ""
 "VERIFICATION:\n"
 "   Did the authentication procedure work correctly?"
 msgstr ""
+"NAMEN:\n"
+"   Ta preizkus bo preveril, če bo bralnik prstnih odtisov deloval pravilno "
+"za prijavo v vaš sistem.\n"
+"POGOJI:\n"
+"   Ta preizkusni primer predpostavlja, da obstaja preizkusni račun, s "
+"katerega se izvajajo preizkusni primeri in osebni račun, ki ga "
+"preizkuševalec uporabi za preverjanje bralnika prstnih odtisov\n"
+"KORAKI:\n"
+"   1. Kliknite na applet za preklop med uporabniki.\n"
+"   2. Izberite svoje uporabniško ime.\n"
+"   3. Prikazati bi se moralo okno, ki ponuja možnost za prijavo bodisi z "
+"vtipkanjem gesla bodisi z overitvijo z bralnikom prstnih odtisov.\n"
+"   4. Uporabite bralnik prstnih odtisov za prijavo.\n"
+"   5. Kliknite na applet za preklop med uporabniki.\n"
+"   6. Izberite preizkusni račun za nadaljevanje z izvajanjem preizkusov.\n"
+"POTRDITEV:\n"
+"   Ali je postopek overitve deloval pravilno?"
 
 #. description
 #: ../jobs/fingerprint.txt.in:20
@@ -495,6 +653,19 @@ msgid ""
 "VERIFICATION:\n"
 "   Did the authentication procedure work correctly?"
 msgstr ""
+"NAMEN:\n"
+"   Ta preizkus bo preveril, če se bralnik prstnih odtisov lahko uporabi za "
+"odklenitev zaklenjenega sistema.\n"
+"KORAKI:\n"
+"   1. Kliknite na applet za preklop med uporabniki.\n"
+"   2. Izberite 'Zakleni zaslon'.\n"
+"   3. Pritisnite katerokoli tipko ali premaknite miško.\n"
+"   4. Prikazati bi se moralo okno, ki ponuja možnost odklenitve bodisi z "
+"vtipkanjem vašega gesla bodisi z overitvijo z bralnikom prstnih odtisov.\n"
+"   5. Uporabite bralnik prstnih odtisov za odklenitev.\n"
+"   6. Vaš zaslon bi moral biti odklenjen.\n"
+"POTRDITEV:\n"
+"   Ali je postopek overitve deloval pravilno?"
 
 #. description
 #: ../jobs/firewire.txt.in:3
@@ -510,6 +681,18 @@ msgid ""
 "VERIFICATION:\n"
 "    Do the copy operations work as expected?"
 msgstr ""
+"NAMEN:\n"
+"    Ta preizkus bo preveril, če delujejo vrata firewire\n"
+"KORAKI:\n"
+"    1. Vstavite trdi disk Firewire v svoj računalnik\n"
+"    2. Bodisi okno sprašuje, kaj želite storiti (odpiranje mape, "
+"upravljalnika slik, itd.), bodisi se bo odprl brskalnik datotek.\n"
+"    3. Kopirajte nekaj datotek s svojega notranjega trdega diska na trdi "
+"disk firewire\n"
+"    4. Kopirajte nekaj datotek s trdega diska firewire na svoj notranji trdi "
+"disk\n"
+"POTRDITEV:\n"
+"    Ali kopiranje deluje v skladu s pričakovanji?"
 
 #. description
 #: ../jobs/floppy.txt.in:4
@@ -519,7 +702,7 @@ msgstr "Preizkus disketnega pogona"
 #. description
 #: ../jobs/graphics.txt.in:5
 msgid "Test to output the Xorg version"
-msgstr ""
+msgstr "Preizkus za izpis različice Xorg"
 
 #. description
 #: ../jobs/graphics.txt.in:12
@@ -543,6 +726,17 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the resolution change as expected?"
 msgstr ""
+"NAMEN:\n"
+"    Ta preizkus bo preveril, če je grafični uporabniški vmesnik uporaben po "
+"ročni menjavi ločljivosti\n"
+"KORAKI:\n"
+"    1. Odprite program Zasloni\n"
+"    2. Izberite novo ločljivost s spustnega seznama\n"
+"    3. Kliknite na Uveljavi\n"
+"    4. Izberite izvirno ločljivost s spustnega seznama\n"
+"    5. Kliknite na Uveljavi\n"
+"POTRDITEV:\n"
+"    Ali se je ločljivost spremenila v skladu s pričakovanji?"
 
 #. description
 #: ../jobs/graphics.txt.in:33
@@ -559,6 +753,17 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the display rotation change as expected?"
 msgstr ""
+"NAMEN:\n"
+"    Ta preizkus bo preveril vrtenje zaslona\n"
+"KORAKI:\n"
+"    1. Odprite program Zasloni\n"
+"    2. Izberite novo vrednost vrtenja s spustnega seznama\n"
+"    3. Kliknite na Uveljavi\n"
+"    4. Kliknite na Obnovi Predhodno nastavitev\n"
+"    5. Kliknite na Uveljavi\n"
+"    6. Ponovite 2-5 za različne vrednosti vrtenja\n"
+"POTRDITEV:\n"
+"    Ali se je vrtenje zaslona spremenilo v skladu s pričakovanji?"
 
 #. description
 #: ../jobs/graphics.txt.in:50
@@ -576,6 +781,8 @@ msgid ""
 "Test that X does not leak memory when running programs on systems with intel "
 "based graphics."
 msgstr ""
+"Preizkus, da X-u ne uhaja pomnilnik, ko se izvajajo programi na sistemu z "
+"Intelovo grafiko."
 
 #. description
 #: ../jobs/graphics.txt.in:70
@@ -589,6 +796,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Is this acceptable for your display?"
 msgstr ""
+"NAMEN:\n"
+"    Ta preizkus bo preveril privzeto ločljivost zaslona\n"
+"KORAKI:\n"
+"    1. Ta zaslon uporablja naslednjo ločljivost:\n"
+"PODROBNOSTI:\n"
+"    $izpis\n"
+"POTRDITEV:\n"
+"    Ali je to sprejemljivo za vaš zaslon?"
 
 #. description
 #: ../jobs/graphics.txt.in:85
@@ -614,6 +829,12 @@ msgid ""
 "VERIFICATION:\n"
 "    Do you see color bars and static?"
 msgstr ""
+"NAMEN:\n"
+"    Ta preizkus bo preveril privzet zaslon\n"
+"KORAKI:\n"
+"    1. Kliknite \"Preizkus\" za prikaz preizkusa videa\n"
+"POTRDITEV:\n"
+"    Ali vidite barvne stolpce in statiko?"
 
 #. description
 #: ../jobs/graphics.txt.in:107
@@ -628,6 +849,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Are those correct?"
 msgstr ""
+"NAMEN:\n"
+"    Ta preizkus bo preveril odkrite video načine\n"
+"KORAKI:\n"
+"    1. Naslednji zasloni in video načini so bili zaznani na vašem sistemu\n"
+"PODROBNOSTI:\n"
+"    $output\n"
+"POTRDITEV:\n"
+"    Ali so pravilni?"
 
 #. description
 #: ../jobs/graphics.txt.in:122
@@ -639,6 +868,12 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the screen appear to be working for each mode?"
 msgstr ""
+"NAMEN:\n"
+"    Ta preizkus kroži skozi zaznane video načine\n"
+"KORAKI:\n"
+"    1. Kliknite \"Preizkus\" za začetek kroženja skozi video načine\n"
+"POTRDITEV:\n"
+"    Ali zaslon deluje v vseh načinih?"
 
 #. description
 #: ../jobs/graphics.txt.in:133
@@ -658,6 +893,15 @@ msgid ""
 "    1. Did the 3d animation appear?\n"
 "    2. Was the animation free from slowness/jerkiness?"
 msgstr ""
+"NAMEN:\n"
+"    Ta preizkus preveri osnovne 3D sposobnosti vaše video kartice\n"
+"KORAKI:\n"
+"    1. Kliknite \"Preizkus\" za izvedbo predstavitve OpenGL. Kadar koli "
+"lahko pritisnete ESC za končanje.\n"
+"    2. Preverite, ali animacija ni zatikajoča ali počasna.\n"
+"POTRDITEV:\n"
+"    1. Ali se je 3D animacija pojavila?\n"
+"    2. Ali se je animacija predvajali brez počasnosti/zatikanja?"
 
 #. description
 #: ../jobs/hibernate.txt.in:7
@@ -676,72 +920,88 @@ msgid ""
 "    Did the system successfully hibernate and did it work properly after "
 "waking up?"
 msgstr ""
+"NAMEN:\n"
+"    Ta preizkus bo preveril, ali se vaš sistem lahko uspešno postavi v "
+"stanje mirovanja (če je podprto)\n"
+"KORAKI:\n"
+"    1. Kliknite na Preizkus\n"
+"    2. Ta sistem bo prešel v stanje mirovanja in bi se moral vrniti iz tega "
+"stanja v roku 5 minut\n"
+"    3. Če se vaš sistem ne prebudi v roku 5 minut, pritisnite tipko za "
+"vklop/izklop za ročno prebuditev sistema\n"
+"    4. Če se sistemu ne uspe vrniti iz stanja mirovanja, ponovno zaženite "
+"Preizkus sistema in označite ta preizkus kot neuspešen\n"
+"POTRDITEV:\n"
+"    Ali je sistem uspešno prešel v stanje mirovanja in ali je deloval "
+"pravilno po vrnitvi iz tega stanja?"
 
 #. description
 #: ../jobs/info.txt.in:5
 msgid "Attaches a report of installed codecs for Intel HDA"
-msgstr ""
+msgstr "Priloži poročilo nameščenih kodekov za Intel HDA"
 
 #. description
 #: ../jobs/info.txt.in:10
 msgid "Attaches a report of CPU information"
-msgstr ""
+msgstr "Priloži poročilo podrobnosti CPE"
 
 #. description
 #: ../jobs/info.txt.in:15
 msgid "Attaches a copy of /var/log/dmesg to the test results"
-msgstr ""
+msgstr "Priloži kopijo /var/log/dmesg rezultatom preizkusa"
 
 #. description
 #: ../jobs/info.txt.in:20
 msgid "Attaches info on DMI"
-msgstr ""
+msgstr "Priloži podrobnosti o DMI"
 
 #. description
 #: ../jobs/info.txt.in:26
 msgid "Attaches dmidecode output"
-msgstr ""
+msgstr "Priloži izpis dmidecode"
 
 #. description
 #: ../jobs/info.txt.in:31
 msgid "Attaches very verbose lspci output."
-msgstr ""
+msgstr "Priloži zelo podroben izpis lspci."
 
 #. description
 #: ../jobs/info.txt.in:40
 msgid "Attaches the contents of the various modprobe conf files."
-msgstr ""
+msgstr "Priloži vsebino različnih nastavitvenih datotek modprobe."
 
 #. description
 #: ../jobs/info.txt.in:45
 msgid "Attaches the contents of the /etc/modules file."
-msgstr ""
+msgstr "Priloži vsebino datoteke /etc/modules."
 
 #. description
 #: ../jobs/info.txt.in:50
 msgid "attaches the contents of various sysctl config files."
-msgstr ""
+msgstr "Priloži vsebino različnih nastavitvenih datotek sysctl."
 
 #. description
 #: ../jobs/info.txt.in:54
 msgid "Attaches a report of sysfs attributes."
-msgstr ""
+msgstr "Priloži poročila atributov sysfs."
 
 #. description
 #: ../jobs/info.txt.in:65
 msgid ""
 "Attaches a dump of the udev database showing system hardware information."
 msgstr ""
+"Priloži odlagališča podatkovne zbirke udev, ki prikazuje podatke sistemske "
+"strojne opreme."
 
 #. description
 #: ../jobs/info.txt.in:72
 msgid "Attaches a tarball of gcov data if present."
-msgstr ""
+msgstr "Priloži paket tar podatkov gcov, če so prisotni."
 
 #. description
 #: ../jobs/info.txt.in:77
 msgid "Attaches a list of the currently running kernel modules."
-msgstr ""
+msgstr "Priloži seznam trenutno zagnanih jedrnih modulov."
 
 #. description
 #: ../jobs/info.txt.in:85
@@ -751,7 +1011,7 @@ msgstr "Zajame zaslonsko sliko."
 #. description
 #: ../jobs/info.txt.in:91
 msgid "Attaches the screenshot captured in info/screenshot."
-msgstr ""
+msgstr "Priloži zajeto zaslonsko sliko v info/screenshot."
 
 #. description
 #: ../jobs/info.txt.in:96
@@ -804,6 +1064,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the pointing device work as expected?"
 msgstr ""
+"NAMEN:\n"
+"    Ta preizkus bo preveril vašo kazalno napravo\n"
+"KORAKI:\n"
+"    1. Premaknite kazalko s pomočjo kazalne naprave ali pa se dotaknite "
+"zaslona.\n"
+"    2. Izvedite nekaj opravil enojnih/dvojnih/desnih klikov.\n"
+"POTRDITEV:\n"
+"    Ali je kazalna naprava delovala v skladu s pričakovanji?"
 
 #. description
 #: ../jobs/input.txt.in:17
@@ -816,6 +1084,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Is your keyboard working properly?"
 msgstr ""
+"NAMEN:\n"
+"    Ta preizkus bo preveril vašo tipkovnico\n"
+"KORAKI:\n"
+"    1. Kliknite na Preizkus\n"
+"    2. Na odprtem besedilnem področju uporabite tipkovnico in nekaj "
+"napišite\n"
+"POTRDITEV:\n"
+"    Ali tipkovnica deluje v skladu s pričakovanji?"
 
 #. description
 #: ../jobs/install.txt.in:6
@@ -1354,11 +1630,12 @@ msgstr ""
 msgid ""
 "This test checks /var/crash to see if there are any crash reports present."
 msgstr ""
+"Ta preizkus preveri /var/crash in preveri, če obstajajo poročila o sesutjih."
 
 #. description
 #: ../jobs/miscellanea.txt.in:51
 msgid "If there are, this test will fail."
-msgstr ""
+msgstr "Če ta sporočila obstajajo, bo preizkus spodletel."
 
 #. description
 #: ../jobs/monitor.txt.in:3
@@ -1372,6 +1649,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the desktop displayed correctly on both screens?"
 msgstr ""
+"NAMEN:\n"
+"    Ta preizkus bo preveril vaša vrata VGA. Če vrat VGA nimate, preskočite "
+"preizkus.\n"
+"KORAKI:\n"
+"    1. Povežite zaslon (če ni že povezan) z vrati VGA na svojem sistemu\n"
+"POTRDITEV:\n"
+"    Ali je bilo namizje pravilno prikazano na obeh zaslonih?"
 
 #. description
 #: ../jobs/monitor.txt.in:13
@@ -1385,6 +1669,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the desktop displayed correctly on both screens?"
 msgstr ""
+"NAMEN:\n"
+"    Ta preizkus bo preveril vaša vrata DVI. Če vrat DVI nimate, preskočite "
+"preizkus.\n"
+"KORAKI:\n"
+"    1. Povežite zaslon (če ni že povezan) z vrati DVI na svojem sistemu\n"
+"POTRDITEV:\n"
+"    Ali je bilo namizje pravilno prikazano na obeh zaslonih?"
 
 #. description
 #: ../jobs/monitor.txt.in:23
@@ -1398,6 +1689,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the desktop displayed correctly on both screens?"
 msgstr ""
+"NAMEN:\n"
+"    Ta preizkus bo preveril vaša vrata DisplayPort. Če vrat DisplayPort "
+"nimate, preskočite preizkus.\n"
+"KORAKI:\n"
+"    1. Povežite zaslon (če ni že povezan) z vrati DisplayPort na svojem "
+"sistemu\n"
+"POTRDITEV:\n"
+"    Ali je bilo namizje pravilno prikazano na obeh zaslonih?"
 
 #. description
 #: ../jobs/monitor.txt.in:33
@@ -1411,6 +1710,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the desktop displayed correctly on both screens?"
 msgstr ""
+"NAMEN:\n"
+"    Ta preizkus bo preveril vaša vrata HDMI. Če vrat HDMI nimate, preskočite "
+"preizkus.\n"
+"KORAKI:\n"
+"    1. Povežite zaslon (če ni že povezan) z vrati HDMI na svojem sistemu\n"
+"POTRDITEV:\n"
+"    Ali je bilo namizje pravilno prikazano na obeh zaslonih?"
 
 #. description
 #: ../jobs/monitor.txt.in:43
@@ -1424,6 +1730,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the desktop displayed correctly on both screens?"
 msgstr ""
+"NAMEN:\n"
+"    Ta preizkus bo preveril vaša vrata S-VIDEO. Če vrat S-VIDEO nimate, "
+"preskočite preizkus.\n"
+"KORAKI:\n"
+"    1. Povežite zaslon (če ni že povezan) z vrati S-VIDEO na svojem sistemu\n"
+"POTRDITEV:\n"
+"    Ali je bilo namizje pravilno prikazano na obeh zaslonih?"
 
 #. description
 #: ../jobs/monitor.txt.in:53
@@ -1437,6 +1750,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the desktop displayed correctly on both screens?"
 msgstr ""
+"NAMEN:\n"
+"    Ta preizkus bo preveril vaša vrata RCA. Če vrat RCA nimate, preskočite "
+"preizkus.\n"
+"KORAKI:\n"
+"    1. Povežite zaslon (če ni že povezan) z vrati RCA na svojem sistemu\n"
+"POTRDITEV:\n"
+"    Ali je bilo namizje pravilno prikazano na obeh zaslonih?"
 
 #. description
 #: ../jobs/monitor.txt.in:64
@@ -1449,11 +1769,19 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the the monitor go blank and turn on again?"
 msgstr ""
+"NAMEN:\n"
+"    Ta preizkus bo preveril zmožnosti zaslona za varčevanje z energijo\n"
+"KORAKI:\n"
+"    1. Kliknite \"Preizkus\" za preizkus zmožnosti zaslona varčevanja z "
+"energijo \n"
+"    2. Pritisnite katerokoli tipko ali premaknite miško za vklop.\n"
+"POTRDITEV:\n"
+"    Ali se je zaslon izklopil in ponovno vklopil?"
 
 #. description
 #: ../jobs/networking.txt.in:5
 msgid "Test to detect the available network controllers"
-msgstr ""
+msgstr "Preizkus za zaznavanje razpoložljivih omrežnih kartic"
 
 #. description
 #: ../jobs/networking.txt.in:11
@@ -2609,11 +2937,22 @@ msgid ""
 "VERIFICATION:\n"
 " Did this perform as expected?"
 msgstr ""
+"NAMEN:\n"
+" Ta preizkus bo preveril, da Gnome Terminal deluje.\n"
+"KORAKI:\n"
+" 1. Kliknite na gumb \"Preizkus\" za odprtje Terminala.\n"
+" 2. Vnesite 'ls' in pritisnite enter. Videti bi morali seznam datotek in map "
+"v domači mapi.\n"
+" 3. Zaprite okno terminala.\n"
+"POTRDITEV:\n"
+" Je bil rezultat kot ste pričakovali?"
 
 #. description
 #: ../jobs/wireless.txt.in:6
 msgid "Wireless scanning test. It scans and reports on discovered APs."
 msgstr ""
+"Preizkus iskanja brezžičnih povezav. Išče in poroča o odkritih dostopnih "
+"točkah."
 
 #. description
 #: ../jobs/wireless.txt.in:12
@@ -2628,6 +2967,15 @@ msgid ""
 "VERIFICATION:\n"
 "    Did a notification show and was the connection correctly established?"
 msgstr ""
+"NAMEN:\n"
+"    Ta preizkus bo preveril vašo brezžično povezavo.\n"
+"KORAKI:\n"
+"    1. Kliknite na ikono omrežja v pultu.\n"
+"    2. Izberite omrežje iz odseka 'Brezžična omrežja'.\n"
+"    3. Kliknite \"Preizkus\" za preverjanje, da je mogoče vzpostaviti "
+"povezavo HTTP.\n"
+"POTRDITEV:\n"
+"    Ali se je pokazalo obvestilo, da je bila povezava uspešno vzpostavljena?"
 
 #. description
 #: ../jobs/wireless.txt.in:28
@@ -2694,19 +3042,19 @@ msgstr "Parametri prepisa nastavitev."
 
 #: ../checkbox/application.py:84
 msgid "Shorthand for --config=.*/jobs_info/blacklist."
-msgstr ""
+msgstr "Krajše za --config=.*/jobs_info/blacklist."
 
 #: ../checkbox/application.py:86
 msgid "Shorthand for --config=.*/jobs_info/blacklist_file."
-msgstr ""
+msgstr "Krajše za --config=.*/jobs_info/blacklist_file."
 
 #: ../checkbox/application.py:88
 msgid "Shorthand for --config=.*/jobs_info/whitelist."
-msgstr ""
+msgstr "Krajše za --config=.*/jobs_info/whitelist."
 
 #: ../checkbox/application.py:90
 msgid "Shorthand for --config=.*/jobs_info/whitelist_file."
-msgstr ""
+msgstr "Krajše za --config=.*/jobs_info/whitelist_file."
 
 #: ../checkbox/application.py:115
 msgid "Missing configuration file as argument.\n"

@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-01-16 05:14+0000\n"
-"X-Generator: Launchpad (build 14664)\n"
+"X-Launchpad-Export-Date: 2012-02-07 04:34+0000\n"
+"X-Generator: Launchpad (build 14747)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:535
 msgid "_Test"
@@ -108,8 +108,8 @@ msgstr "_Ja"
 #: ../gtk/checkbox-gtk.desktop.in.h:2
 msgid "Test your system and submit results to the Ubuntu Friendly project"
 msgstr ""
-"Testen Sie Ihr System und senden Sie das Ergebnis an das Ubuntu Friendly-"
-"Projekt"
+"Überprüfen Sie Ihr Sytem und übermitteln Sie das Ergebnis an das Ubuntu "
+"Friendly-Projekt"
 
 #. description
 #: ../jobs/audio.txt.in:7
@@ -545,7 +545,7 @@ msgstr ""
 #. description
 #: ../jobs/cpu.txt.in:15
 msgid "Test for clock jitter."
-msgstr "Test des Takt-Jitters."
+msgstr "Überprüfung des Takt-Jitters."
 
 #. description
 #: ../jobs/cpu.txt.in:23
@@ -561,74 +561,85 @@ msgstr "Dieser Test prüft die CPU-Topologie auf Genauigkeit"
 #: ../jobs/cpu.txt.in:38
 msgid "This test checks that CPU frequency governors are obeyed when set."
 msgstr ""
-"Dieser Test prüft, ob die CPU-Frequenzregeln, beachtet werden, wenn sie "
-"festgelegt sind."
+"Dieser Test überprüft, ob die eingestellten CPU-Leistungsprofile "
+"ordnungsgemäß angewandt werden."
 
 #. description
 #: ../jobs/daemons.txt.in:5
 msgid "Test if the atd daemon is running when the package is installed."
 msgstr ""
-"Test, ob der atd-Dienst ausgeführt wird, wenn das Paket installiert ist."
+"Überprüfen, ob der at-Dienst ausgeführt wird, sofern das Paket installiert "
+"ist."
 
 #. description
 #: ../jobs/daemons.txt.in:11
 msgid "Test if the cron daemon is running when the package is installed."
 msgstr ""
-"Test, ob der cron-Dienst ausgeführt wird, wenn das Paket installiert ist."
+"Überprüfen, ob der cron-Dienst ausgeführt wird, sofern das Paket installiert "
+"ist."
 
 #. description
 #: ../jobs/daemons.txt.in:17
 msgid "Test if the cupsd daemon is running when the package is installed."
 msgstr ""
-"Test, ob der cupsd-Dienst ausgeführt wird, wenn das Paket installiert ist."
+"Überprüfen, ob der cups-Dienst ausgeführt wird, sofern das Paket installiert "
+"ist."
 
 #. description
 #: ../jobs/daemons.txt.in:23
 msgid "Test if the getty daemon is running when the package is installed."
 msgstr ""
-"Test, ob der getty-Dienst ausgeführt wird, wenn das Paket installiert ist."
+"Überprüfen, ob der getty-Dienst ausgeführt wird, sofern das Paket "
+"installiert ist."
 
 #. description
 #: ../jobs/daemons.txt.in:29
 msgid "Test if the init daemon is running when the package is installed."
 msgstr ""
-"Test, ob der init-Dienst ausgeführt wird, wenn das Paket installiert ist."
+"Überprüfen, ob der init-Dienst ausgeführt wird, sofern das Paket installiert "
+"ist."
 
 #. description
 #: ../jobs/daemons.txt.in:35
 msgid "Test if the klogd daemon is running when the package is installed."
 msgstr ""
-"Test, ob der klogd-Dienst ausgeführt wird, wenn das Paket installiert ist."
+"Überprüfen, ob der klog-Dienst ausgeführt wird, sofern das Paket installiert "
+"ist."
 
 #. description
 #: ../jobs/daemons.txt.in:41
 msgid "Test if the nmbd daemon is running when the package is installed."
 msgstr ""
-"Test, ob der nmbd-Dienst ausgeführt wird, wenn das Paket installiert ist."
+"Überprüfen, ob der nmb-Dienst ausgeführt wird, sofern das Paket installiert "
+"ist."
 
 #. description
 #: ../jobs/daemons.txt.in:47
 msgid "Test if the smbd daemon is running when the package is installed."
 msgstr ""
-"Test, ob der smdb-Dienst ausgeführt wird, wenn das Paket installiert ist."
+"Überprüfen, ob der smb-Dienst ausgeführt wird, sofern das Paket installiert "
+"ist."
 
 #. description
 #: ../jobs/daemons.txt.in:53
 msgid "Test if the syslogd daemon is running when the package is installed."
 msgstr ""
-"Test, ob der syslogd-Dienst ausgeführt wird, wenn das Paket installiert ist."
+"Überprüfen, ob der syslog-Dienst ausgeführt wird, sofern das Paket "
+"installiert ist."
 
 #. description
 #: ../jobs/daemons.txt.in:61
 msgid "Test if the udevd daemon is running when the package is installed."
 msgstr ""
-"Test, ob der udevd-Dienst ausgeführt wird, wenn das Paket installiert ist."
+"Überprüfen, ob der udev-Dienst ausgeführt wird, sofern das Paket installiert "
+"ist."
 
 #. description
 #: ../jobs/daemons.txt.in:67
 msgid "Test if the winbindd daemon is running when the package is installed."
 msgstr ""
-"Test, ob der winbindd-Dienst ausgeführt wird, wenn das Paket installiert ist."
+"Überprüfen, ob der winbind-Dienst ausgeführt wird, sofern das Paket "
+"installiert ist."
 
 #. description
 #: ../jobs/disk.txt.in:4
@@ -656,8 +667,8 @@ msgstr ""
 #: ../jobs/disk.txt.in:57
 msgid "Verify system storage performs at or above baseline performance"
 msgstr ""
-"Stellen Sie sicher, dass der Systemspeicher mit oder über der "
-"Basisperformance arbeitet"
+"Sicherstellen, dass der Systemspeicher mit oder über der Basisperformance "
+"arbeitet."
 
 #. description
 #: ../jobs/disk.txt.in:74
@@ -665,8 +676,8 @@ msgid ""
 "Verify that storage devices, such as Fibre Channel and RAID can be detected "
 "and perform under stress."
 msgstr ""
-"Stellen Sie sicher, dass Speichergeräte, wie Faserkanäle und RAID erkannt "
-"werden und unter Belastung arbeiten können."
+"Sicherstellen, dass Speichergeräte, wie Faserkanäle und RAID erkannt werden "
+"und unter Belastung arbeiten können."
 
 #. description
 #: ../jobs/fingerprint.txt.in:3
@@ -690,7 +701,7 @@ msgid ""
 "   Did the authentication procedure work correctly?"
 msgstr ""
 "ZIEL:\n"
-"   Dieser Test überprüft, dass ein Fingerabdruck-Leser zum Einloggen in Ihr "
+"   Dieser Test überprüft, ob der Fingerabdruck-Leser zum Anmelden an Ihrem "
 "System einwandfrei arbeitet.\n"
 "VORAUSSETZUNGEN:\n"
 "   Dieser Testfall setzt voraus, dass ein Testkonto, von welchem die "
@@ -698,16 +709,16 @@ msgstr ""
 "   Konto, dass der Tester zum Verifizieren des Fingerabdruck-Lesers nutzt, "
 "existieren.\n"
 "SCHRITTE:\n"
-"    1. Klicken Sie auf das Applet zum Benutzerwechsel\n"
-"    2. Wählen Sie ihren Benutzernamen aus.\n"
+"    1. Klicken Sie auf das Menü zum Benutzerwechsel\n"
+"    2. Wählen Sie Ihren Benutzernamen aus.\n"
 "    3. Ein Fenster sollte erscheinen, welches Ihnen ermöglicht, die "
-"Anmeldung entweder über Ihr Kennwort oder der Nutzung  \n"
-"   der Fingerabdruck-Authentifizierung durchzuführen.\n"
-"   4.Nutzen sie den Fingerabdruck-Leser, um sich anzumelden.\n"
-"   5.Klicken sie auf das Applet zum Benutzerwechsel\n"
-"   6.Wählen sie das Testkonto, um die laufenden Tests fortzusetzen.\n"
+"Anmeldung entweder über Ihr Kennwort oder unter der   \n"
+"         Nutzung der Fingerabdruck-Legitimierung durchzuführen.\n"
+"    4. Nutzen Sie den Fingerabdruck-Leser, um sich anzumelden.\n"
+"    5. Klicken Sie auf das Menü zum Benutzerwechsel\n"
+"    6. Wählen Sie das Testkonto, um die laufenden Tests fortzusetzen.\n"
 "ÜBERPRÜFUNG:\n"
-"   Verlief die Authentifizierung erfolgreich?"
+"   War die Legitimierung erfolgreich?"
 
 #. description
 #: ../jobs/fingerprint.txt.in:20
@@ -727,20 +738,20 @@ msgid ""
 "   Did the authentication procedure work correctly?"
 msgstr ""
 "ZIEL:\n"
-"   Dieser Test wird sicherstellen, dass ein Fingerabdruck-Leser zur "
+"   Dieser Test wird sicherstellen, dass der Fingerabdruck-Leser zur "
 "Entsperrung eines gesperrten Systems verwendet werden \n"
 "   kann.\n"
 "SCHRITTE:\n"
-"   1.Klicken Sie auf das Applet zum Benutzerwechsel\n"
-"   2.Wählen Sie »Bildschirm sperren«.\n"
-"   3.Drücken Sie eine Taste oder bewegen Sie die Maus.\n"
-"   4.Ein Fenster sollte erscheinen, dass Ihnen die Möglichkeit der "
+"   1. Klicken Sie auf das Menü zum Benutzerwechsel\n"
+"   2. Wählen Sie »Bildschirm sperren«.\n"
+"   3. Drücken Sie eine Taste oder bewegen Sie die Maus.\n"
+"   4. Ein Fenster sollte erscheinen, dass Ihnen die Möglichkeit der "
 "Entsperrung entweder über die Eingabe Ihres Kennworts oder \n"
-"   durch die Benutzung der Fingerabdruck-Authentifizierung bietet.\n"
-"   5. Nutzen sie den Fingerabdruck-Leser, um sich anzumelden.\n"
+"        durch die Benutzung der Fingerabdruck-Legitimierung anbietet.\n"
+"   5. Nutzen Sie den Fingerabdruck-Leser, um sich anzumelden.\n"
 "   6. Ihr Bildschirm sollte jetzt wieder freigegeben sein.\n"
 "ÜBERPRÜFUNG:\n"
-"   Verlief die Authentifizierung erfolgreich?"
+"   War die Legitimierung erfolgreich?"
 
 #. description
 #: ../jobs/firewire.txt.in:3
@@ -756,17 +767,17 @@ msgid ""
 "VERIFICATION:\n"
 "    Do the copy operations work as expected?"
 msgstr ""
-"ZWECK:\n"
-"    Dieser Test überprüft, ob der Firewire-Port funktioniert.\n"
+"ZIEL:\n"
+"    Dieser Test überprüft, ob der Firewire-Anschluss funktioniert.\n"
 "ABLAUF:\n"
-"    1. Schließen Sie eine Firewire-Festplatte an den Rechner an\n"
+"    1. Schließen Sie eine Firewire-Festplatte an den Rechner an.\n"
 "    2. Es öffnet sich entweder ein Fenster mit der Frage, welche Aktion "
 "ausgeführt werden soll (Ordner öffnen, Fotoverwaltung\n"
 "    usw.) oder die Dateiverwaltung.\n"
-"   3. Kopieren Sie einige Dateien Ihrer internen Festplatte auf ihre "
-"Firewire-Festplatte\n"
+"   3. Kopieren Sie einige Dateien Ihrer internen Festplatte auf Ihre "
+"Firewire-Festplatte.\n"
 "   4. Kopieren Sie einige Dateien von der Firewire-Festplatte auf Ihre "
-"interne Festplatte\n"
+"interne Festplatte.\n"
 "ÜBERPRÜFUNG:\n"
 "    Haben die Kopieraufträge wie erwartet funktioniert?"
 
@@ -2487,6 +2498,23 @@ msgid ""
 "VERIFICATION:\n"
 "   Was the connection correctly established?"
 msgstr ""
+"ZWECK:\n"
+"   Dieser Test stellt sicher, dass ein USB-DSL-Modem oder ein Modem für "
+"mobile Breitbandverbindungen funktioniert\n"
+"SCHRITTE:\n"
+"   1. Verbinden Sie das USB-Kabel mit dem Rechner\n"
+"   2. Rechtsklicken Sie auf das Netzwerk-Symbol in der oberen Menüleiste\n"
+"   3. Wählen Sie »Verbindungen bearbeiten«\n"
+"   4. Öffnen Sie den Reiter »DSL« (für ein ADSL-Modem) oder »Mobiles "
+"Breitband« (für ein 3G-Modem).\n"
+"   5. Klicken Sie auf die Schaltfläche »Hinzufügen«\n"
+"   6. Konfigurieren Sie die Verbindungsparameter ordnungsgemäß\n"
+"   7. Eine Benachrichtigung sollte bestätigen, dass die Verbindung "
+"hergestellt wurde\n"
+"   8. Wählen Sie »Testen«, um sicherzustellen, dass eine HTTP-Verbindung  "
+"aufgebaut werden kann\n"
+"ÜBERPRÜFUNG:\n"
+"   Wurde die Verbindung fehlerfrei hergestellt?"
 
 #. description
 #: ../jobs/phoronix.txt.in:9
@@ -2669,6 +2697,22 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the system successfully hibernate and wake 30 times?"
 msgstr ""
+"ZWECK:\n"
+"    Dieser Test versetzt den Rechner 30 mal in den Ruhezustand und weckt ihn "
+"wieder auf\n"
+"SCHRITTE:\n"
+"    1. Stellen Sie sicher, dass für das System kein Start- oder "
+"Festplattenkennwort festgelegt ist und Ubuntu im Falle eines Multi-Boot-"
+"Systems als Standard gesetzt ist\n"
+"    2. Klicken Sie auf »Test«, um den Test zu starten (dauert lange)\n"
+"    3. Falls ihr System nach zwei Minuten nicht startet, müssen Sie den Ein-"
+"/Ausschalter drücken\n"
+"    4. Falls das System nicht aus dem Ruhezustand aufwacht und neugestartet "
+"werden muss, starten Sie bitte die Systemüberprüfung erneut und markieren "
+"diesen Test als fehlgeschlagen\n"
+"ÜBERPRÜFUNG:\n"
+"    Wurde das Systen erfolgreich 30 mal in den Ruhezustand versetzt und "
+"wieder aufgeweckt?"
 
 #. description
 #: ../jobs/stress.txt.in:35
@@ -2748,6 +2792,20 @@ msgid ""
 "VERIFICATION:\n"
 "    Did your system suspend and resume correctly?"
 msgstr ""
+"ZWECK:\n"
+"    Dieser Test versetzt den Rechner in Bereitschaft und weckt ihn wieder "
+"auf\n"
+"SCHRITTE:\n"
+"    1. Klicken Sie auf »Test«, um den Rechner für etwa 30-60 Sekunden in "
+"Bereitschaft zu versetzen\n"
+"    2. Falls ihr System nach 60 Sekunden nicht startet, müssen Sie den Ein-"
+"/Ausschalter drücken\n"
+"    3. Falls das System nicht aus dem Ruhezustand aufwacht und neugestartet "
+"werden muss, starten Sie bitte die Systemüberprüfung erneut und markieren "
+"diesen Test als fehlgeschlagen\n"
+"ÜBERPRÜFUNG:\n"
+"    Wurde das Systen erfolgreich in Bereitschaft versetzt und wieder "
+"aufgeweckt?"
 
 #. description
 #: ../jobs/suspend.txt.in:86
@@ -2911,6 +2969,15 @@ msgid ""
 "VERIFICATION:\n"
 "    Automatically verified"
 msgstr ""
+"ZWECK:\n"
+"    Dieser Test überprüft die USB-Funktionalität, nachdem der Rechner in "
+"Bereitschaft versetzt und wieder aufgeweckt wurde\n"
+"SCHRITTE:\n"
+"    1. Schließen Sie mindestens ein USB-Speichergerät an, falls noch keines "
+"angeschlossen ist\n"
+"    2. Klicken Sie auf »Test«, um zu beginnen\n"
+"ÜBERPRÜFUNG:\n"
+"    Automatische Überprüfung"
 
 #. description
 #: ../jobs/suspend.txt.in:248
@@ -3183,6 +3250,21 @@ msgid ""
 "VERIFICATION:\n"
 " Do you now have a folder called Test Data?"
 msgstr ""
+"ZWECK:\n"
+" Dieser Test überprüft, ob die Dateiverwaltung einen Ordner kopieren kann.\n"
+"SCHRITTE:\n"
+" 1. Klicken Sie auf »Test«, um die Dateiverwaltung zu öffnen.\n"
+" 2. Rechtsklicken Sie auf den Ordner namens »Testordner« und wählen Sie "
+"Kopieren.\n"
+" 3. Rechtsklicken Sie auf eine beliebige Stelle der weißen Fläche im Fenster "
+"und wählen Sie Einfügen.\n"
+" 4. Rechtsklicken Sie auf den Order mit dem Namen »Testordner (Kopie)« und "
+"wählen Sie Umbenennen.\n"
+" 5. Geben Sie den Namen »Testdaten« im Namensfeld für den neuen Ordner ein "
+"und drücken Sie die Eingabetaste.\n"
+" 6. Schließen Sie die Dateiverwaltung.\n"
+"ÜBERPRÜFUNG:\n"
+" Wurde ein neuer Ordner mit dem Namen »Testdaten« angelegt?"
 
 #. description
 #: ../jobs/user_apps.txt.in:54
@@ -3200,6 +3282,17 @@ msgid ""
 " Was the folder called Test Data successfully moved into the folder called "
 "Test Folder?"
 msgstr ""
+"ZWECK:\n"
+" Dieser Test überprüft, ob die Dateiverwaltung einen Ordner verschieben "
+"kann\n"
+"SCHRITTE:\n"
+" 1. Klicken Sie auf »Test«, um die Dateiverwaltung zu öffnen\n"
+" 2. Klicken und ziehen Sie den Ordner namens »Testdaten« auf das Symbol "
+"»Testordner«\n"
+" 3. Doppelklicken Sie auf den »Testordner«, um ihn zu öffnen\n"
+" 4. Schließen Sie die Dateiverwaltung\n"
+"ÜBERPRÜFUNG:\n"
+" Wurde der Ordner »Testdaten« erfolgreich in »Testordner« verschoben?"
 
 #. description
 #: ../jobs/user_apps.txt.in:70
@@ -3215,6 +3308,18 @@ msgid ""
 "VERIFICATION:\n"
 " Do you now have a file called Test File 1?"
 msgstr ""
+"ZWECK:\n"
+" Dieser Test überprüft, ob die Dateiverwaltung eine neue Datei erstellen "
+"kann\n"
+"SCHRITTE:\n"
+" 1. Klicken Sie auf »Test«, um die Dateiverwaltung zu öffnen\n"
+" 2. Rechtsklicken Sie auf den freien, weißen Raum und wählen Sie Neues "
+"Dokument anlegen -> Leeres Dokument\n"
+" 3. Geben Sie »Testdatei 1« als Dateinamen ein und drücken Sie die "
+"Eingabetaste\n"
+" 4. Schließen Sie die Dateiverwaltung\n"
+"ÜBERPRÜFUNG:\n"
+" Wurde eine Datei namens »Testdatei 1« erstellt?"
 
 #. description
 #: ../jobs/user_apps.txt.in:85
@@ -3231,6 +3336,18 @@ msgid ""
 "VERIFICATION:\n"
 " Do you now have a file called Test File 2?"
 msgstr ""
+"ZWECK:\n"
+" Dieser Test überprüft, ob die Dateiverwaltung eine Datei kopieren kann\n"
+"SCHRITTE:\n"
+" 1. Klicken Sie auf »Test«, um die Dateiverwaltung zu öffnen\n"
+" 2. Rechtsklicken Sie auf die Datei »Testdatei 1« und wählen Sie Kopieren\n"
+" 3. Rechtsklicken Sie in den freien, weißen Raum und wählen Sie Einfügen\n"
+" 4. Rechtsklicken Sie auf die Datei namens »Testdatei 1 (Kopie)« und wählen "
+"Sie Umbenennen\n"
+" 5. Geben Sie »Testdatei 2« als Dateinamen ein\n"
+" 6. Schließen Sie die Dateiverwaltung\n"
+"ÜBERPRÜFUNG:\n"
+" Wurde eine Datei namens »Testdatei 2« erstellt?"
 
 #. description
 #: ../jobs/user_apps.txt.in:102
@@ -3247,6 +3364,16 @@ msgid ""
 "VERIFICATION:\n"
 " Was the file Test File 2 successfully moved into the Test Data folder?"
 msgstr ""
+"ZWECK:\n"
+" Dieser Test überprüft, ob die Dateiverwaltung eine Datei verschieben kann\n"
+"SCHRITTE:\n"
+" 1. Klicken Sie auf »Test«, um die Dateiverwaltung zu öffnen\n"
+" 2. Klicken und ziehen Sie die Datei namens »Testdatei 2« auf das Symbol für "
+"den Ordner »Testdaten«\n"
+" 3. Doppelklicken Sie auf das Symbol, um den Ordner zu öffnen\n"
+" 4. Schließen Sie die Dateiverwaltung\n"
+"ÜBERPRÜFUNG:\n"
+" Wurde die Datei namens »Testdatei 2« in den Ordner »Testdaten« verschoben?"
 
 #. description
 #: ../jobs/user_apps.txt.in:118
@@ -3261,6 +3388,16 @@ msgid ""
 "VERIFICATION:\n"
 "  Is Test File 1 now gone?"
 msgstr ""
+"ZWECK:\n"
+" Dieser Test überprüft, ob die Dateiverwaltung eine Datei löschen kann\n"
+"SCHRITTE:\n"
+" 1. Klicken Sie auf »Test«, um die Dateiverwaltung zu öffnen\n"
+" 2. Rechtsklicken Sie auf die Datei namens »Testdatei 1« und wählen Sie »In "
+"den Müll verschieben«\n"
+" 3. Überprüfen Sie, dass »Testdatei 1« gelöscht wurde\n"
+" 4. Schließen Sie die Dateiverwaltung\n"
+"ÜBERPRÜFUNG:\n"
+"  Wurde »Testdatei 1« erfolgreich gelöscht?"
 
 #. description
 #: ../jobs/user_apps.txt.in:133
@@ -3276,6 +3413,16 @@ msgid ""
 "VERIFICATION:\n"
 " Has Test Folder been successfully deleted?"
 msgstr ""
+"ZWECK:\n"
+" Dieser Test überprüft, ob die Dateiverwaltung einen Ordner löschen kann\n"
+"SCHRITTE:\n"
+" 1. Klicken Sie auf »Test«, um die Dateiverwaltung zu öffnen\n"
+" 2. Rechtsklicken Sie auf den Ordner namens »Testordner« und wählen Sie »In "
+"den Müll verschieben«\n"
+" 3. Überprüfen Sie, dass der »Testordner« gelöscht wurde\n"
+" 4. Schließen Sie die Dateiverwaltung\n"
+"ÜBERPRÜFUNG:\n"
+"  Wurde der »Testordner« erfolgreich gelöscht?"
 
 #. description
 #: ../jobs/user_apps.txt.in:207
@@ -3394,6 +3541,17 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to connect correctly and send/receive messages?"
 msgstr ""
+"ZWECK:\n"
+" Dieser Test überprüft, ob das Sofortnachrichtenprogramm Empathy "
+"funktioniert.\n"
+"SCHRITTE:\n"
+" 1. Klicken Sie auf »Test«, um Empathy zu öffnen.\n"
+" 2. Konfigurieren Sie Empathy, sodass es sich mit dem Facebook-Chat "
+"verbindet.\n"
+" 3. Schließen Sie Empathy, wenn Sie den Test abgeschlossen haben.\n"
+"ÜBERPRÜFUNG:\n"
+"  Wurde die Verbindung erfolgreich hergestellt und konnten Sie Nachrichten "
+"senden und empfangen?"
 
 #. description
 #: ../jobs/user_apps.txt.in:311
@@ -3407,6 +3565,17 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to connect correctly and send/receive messages?"
 msgstr ""
+"ZWECK:\n"
+" Dieser Test überprüft, ob das Sofortnachrichtenprogramm Empathy "
+"funktioniert.\n"
+"SCHRITTE:\n"
+" 1. Klicken Sie auf »Test«, um Empathy zu öffnen.\n"
+" 2. Konfigurieren Sie Empathy, sodass es eine Verbindung zu Google Talk "
+"(gtalk) herstellt.\n"
+" 3. Schließen Sie Empathy, wenn Sie den Test abgeschlossen haben.\n"
+"ÜBERPRÜFUNG:\n"
+"  Wurde die Verbindung erfolgreich hergestellt und konnten Sie Nachrichten "
+"senden und empfangen?"
 
 #. description
 #: ../jobs/user_apps.txt.in:325
@@ -3420,6 +3589,17 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to connect correctly and send/receive messages?"
 msgstr ""
+"ZWECK:\n"
+" Dieser Test überprüft, ob das Sofortnachrichtenprogramm Empathy "
+"funktioniert.\n"
+"SCHRITTE:\n"
+" 1. Klicken Sie auf »Test«, um Empathy zu öffnen.\n"
+" 2. Konfigurieren Sie Empathy, sodass es eine Verbindung zu einem Jabber-"
+"Server herstellt.\n"
+" 3. Schließen Sie Empathy, wenn Sie den Test abgeschlossen haben.\n"
+"ÜBERPRÜFUNG:\n"
+"  Wurde die Verbindung erfolgreich hergestellt und konnten Sie Nachrichten "
+"senden und empfangen?"
 
 #. description
 #: ../jobs/user_apps.txt.in:339
@@ -3433,6 +3613,17 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to connect correctly and send/receive messages?"
 msgstr ""
+"ZWECK:\n"
+" Dieser Test überprüft, ob das Sofortnachrichtenprogramm Empathy "
+"funktioniert.\n"
+"SCHRITTE:\n"
+" 1. Klicken Sie auf »Test«, um Empathy zu öffnen.\n"
+" 2. Konfigurieren Sie Empathy, sodass es eine Verbindung zu AOL Instant "
+"Messaging (AIM) herstellt.\n"
+" 3. Schließen Sie Empathy, wenn Sie den Test abgeschlossen haben.\n"
+"ÜBERPRÜFUNG:\n"
+"  Wurde die Verbindung erfolgreich hergestellt und konnten Sie Nachrichten "
+"senden und empfangen?"
 
 #. description
 #: ../jobs/user_apps.txt.in:353
@@ -3446,6 +3637,17 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to connect correctly and send/receive messages?"
 msgstr ""
+"ZWECK:\n"
+" Dieser Test überprüft, ob das Sofortnachrichtenprogramm Empathy "
+"funktioniert.\n"
+"SCHRITTE:\n"
+" 1. Klicken Sie auf »Test«, um Empathy zu öffnen.\n"
+" 2. Konfigurieren Sie Empathy, sodass es eine Verbindung zum Microsoft-"
+"Netzwerk (MSN) herstellt.\n"
+" 3. Schließen Sie Empathy, wenn Sie den Test abgeschlossen haben.\n"
+"ÜBERPRÜFUNG:\n"
+"  Wurde die Verbindung erfolgreich hergestellt und konnten Sie Nachrichten "
+"senden und empfangen?"
 
 #. description
 #: ../jobs/user_apps.txt.in:367
@@ -3535,6 +3737,17 @@ msgid ""
 "VERIFICATION:\n"
 " Did the functions perform as expected?"
 msgstr ""
+"ZWECK:\n"
+" Dieser Test überprüft, ob der Taschenrechner (gcalctool) funktioniert.\n"
+"SCHRITTE:\n"
+" Klicken Sie auf »Test« um den Taschenrechner zu öffnen und führen Sie "
+"folgende Operationen aus:\n"
+" 1. Einfache Arithmetik (+,-,/,*)\n"
+" 2. Berechnungen mit Klammern\n"
+" 3. Berechnungen mit Brüchen\n"
+" 4. Berechnungen mit Dezimalzahlen\n"
+"ÜBERPRÜFUNG:\n"
+"  Wurden die Operationen richtig ausgeführt?"
 
 #. description
 #: ../jobs/user_apps.txt.in:436
@@ -3550,6 +3763,17 @@ msgid ""
 "VERIFICATION:\n"
 " Did the functions perform as expected?"
 msgstr ""
+"ZWECK:\n"
+" Dieser Test überprüft, ob der Taschenrechner (gcalctool) funktioniert.\n"
+"SCHRITTE:\n"
+" Klicken Sie auf »Test«, um den Taschenrechner zu öffnen und führen Sie "
+"folgende Operationen aus:\n"
+" 1. Etwas im Speicher ablegen\n"
+" 2. Speicher zurücksetzen\n"
+" 3. Letzten Speichereintrag löschen\n"
+" 4. Gesamten Speicher löschen\n"
+"ÜBERPRÜFUNG:\n"
+"  Wurden die Operationen richtig ausgeführt?"
 
 #. description
 #: ../jobs/user_apps.txt.in:453

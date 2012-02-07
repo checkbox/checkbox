@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-01-07 04:43+0000\n"
-"X-Generator: Launchpad (build 14640)\n"
+"X-Launchpad-Export-Date: 2012-02-07 04:35+0000\n"
+"X-Generator: Launchpad (build 14747)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:1 ../checkbox_cli/cli_interface.py:351
 #: ../checkbox_urwid/urwid_interface.py:261
@@ -62,12 +62,12 @@ msgstr "예(_Y)"
 
 #: ../gtk/checkbox-gtk.desktop.in.h:2
 msgid "Test your system and submit results to the Ubuntu Friendly project"
-msgstr ""
+msgstr "시스템을 테스트한 뒤 결과를 Ubuntu Friendly 프로젝트에 보냅니다"
 
 #. description
 #: ../jobs/audio.txt.in:7
 msgid "Test to detect audio devices"
-msgstr ""
+msgstr "검색되는 오디오 장치를 테스트합니다"
 
 #. description
 #: ../jobs/audio.txt.in:16
@@ -81,6 +81,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear a tone?"
 msgstr ""
+"목적:\n"
+"    이 테스트는 내부 스피커가 제대로 작동되고 있는지 확인할 것입니다\n"
+"단계:\n"
+"    1. 외부 스피커나 헤드폰이 연결되어 있지 않은지 확인하십시오\n"
+"       데스크톱을 테스트할 경우에는 외부 스피커도 가능합니다\n"
+"    2. 당신의 오디오 장치에 짧은 소리가 나도록 '테스트' 버튼을 클릭하십시오\n"
+"확인:\n"
+"    소리를 들으셨습니까?"
 
 #. description
 #: ../jobs/audio.txt.in:33
@@ -94,6 +102,13 @@ msgid ""
 "    Did you hear a sound through the headphones and did the sound play "
 "without any distortion, clicks or other strange noises from your headphones?"
 msgstr ""
+"목적:\n"
+"    이 테스트는 헤드폰 연결자가 제대로 작동되고 있는지 확인할 것입니다\n"
+"단계:\n"
+"    1. 오디오 장치에 헤드폰을 연결하십시오\n"
+"    2. 오디오 장치에서 소리가 나도록 '테스트' 버튼을 클릭하십시오\n"
+"확인:\n"
+"    헤드폰을 통해 소리를 들으셨으며, 들리는 소리가 왜곡되거나 틱틱 소리가 나거나 다른 이상한 소음이 나지는 않았습니까?"
 
 #. description
 #: ../jobs/audio.txt.in:49
@@ -108,6 +123,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear your speech played back?"
 msgstr ""
+"목적 :\n"
+"    이 테스트는 내장 마이크가 제대로 작동되고 있는지 확인할 것입니다\n"
+"단계:\n"
+"    1. 컴퓨터에 연결된 모든 외부 마이크를 분리하십시오\n"
+"    2. \"테스트\" 버튼을 누른 뒤 내장 마이크에 대고 이야기하십시오\n"
+"    3. 몇 초 뒤, 마이크로 녹음하신 내용이 재생될 것입니다\n"
+"확인 :\n"
+"    내장 마이크로 녹음하신 이야기가 제대로 들렸습니까?"
 
 #. description
 #: ../jobs/audio.txt.in:66
@@ -122,6 +145,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear your speech played back?"
 msgstr ""
+"목적 :\n"
+"    이 테스트는 외부 마이크 녹음이 제대로 작동되는지 확인할 것입니다\n"
+"단계:\n"
+"    1. 마이크 연결 부분에 마이크를 연결하십시오\n"
+"    2. \"테스트\" 버튼을 누른 뒤 외부 마이크에 대고 이야기하십시오\n"
+"    3. 몇 초 뒤, 마이크로 녹음하신 내용이 재생될 것입니다\n"
+"확인 :\n"
+"    외부 마이크로 녹음하신 이야기가 제대로 들렸습니까?"
 
 #. description
 #: ../jobs/audio.txt.in:82
@@ -139,6 +170,18 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear your speech played back through the USB headphones?"
 msgstr ""
+"목적:\n"
+"    이 테스트는 USB 오디오 장치가 제대로 작동되고 있는지를 확인할 것입니다\n"
+"단계:\n"
+"    1. USB 오디오 장치를 시스템에 연결하십시오\n"
+"    2. 패널의 스피커 모양 아이콘을 왼쪽 마우스 버튼으로 클릭한 뒤 \"소리 설정\"을 선택하여 볼륨 조절 장치 프로그램을 "
+"실행하십시오\n"
+"    3. \"입력\" 탭을 선택한 뒤 연결하신 USB 오디오 장치를 선택하십시오\n"
+"    4. \"출력\" 탭을 선택한 뒤 연결하신 USB 오디오 장치를 선택하십시오\n"
+"    5. \"테스트\" 버튼을 누른 뒤 마이크에 대고 이야기하십시오\n"
+"    6. 몇 초 뒤 마이크로 녹음하신 내용이 재생될 것입니다\n"
+"확인 :\n"
+"    녹음하신 내용을 USB 헤드폰을 통해 들으셨습니까?"
 
 #. description
 #: ../jobs/audio.txt.in:102
@@ -155,6 +198,9 @@ msgid ""
 "   This test will attempt to install and run the Autotest Suite.  These "
 "tests can be destructive, so this test is blacklisted by default."
 msgstr ""
+"목적:\n"
+"   이 테스트는 Autotest Suite의 설치와 실행을 시도할 것입니다. 이 테스트는 시스템에 부정적인 영향을 미칠 수 있으므로, "
+"기본적으로 차단되어 있습니다"
 
 #. description
 #: ../jobs/bluetooth.txt.in:7
@@ -162,12 +208,14 @@ msgid ""
 "This test will detect your Bluetooth device and output the device's hardware "
 "address.  If no device is found, the test will exit with an error."
 msgstr ""
+"이 테스트는 블루투스 장치를 검색해서 장치의 하드웨어 주소를 출력합니다. 만약 장치를 찾지 못하면, 이 테스트는 에러와 함께 종료될 "
+"것입니다"
 
 #. description
 #: ../jobs/bluetooth.txt.in:16
 msgid ""
 "Automated test to store bluetooth device information in checkbox report"
-msgstr ""
+msgstr "점검사항 보고서에 블루투스 장치 정보를 저장하기 위한 자동 테스트"
 
 #. description
 #: ../jobs/bluetooth.txt.in:22
@@ -187,6 +235,20 @@ msgid ""
 "VERIFICATION:\n"
 "    Did all the steps work?"
 msgstr ""
+"목적:\n"
+"    이 테스트는 블루투스 연결이 제대로 작동되는지를 확인할 것입니다\n"
+"단계:\n"
+"    1. 모바일 장치(PDA, 스마트폰, 기타)의 블루투스 설정을 켜십시오\n"
+"    2. 메뉴 막대의 블루투스 아이콘을 클릭하십시오\n"
+"    3. \"새 장치 설정\"을 선택하십시오\n"
+"    4. 목록에서 장치를 찾은 뒤 해당 장치를 선택하십시오\n"
+"    5. 장치에 마법사에서 자동적으로 고른 PIN 코드를 입력하십시오\n"
+"    6. 장치가 컴퓨터와 동기화되어야 합니다\n"
+"    7. 블루투스 아이콘을 마우스 오른쪽 버튼으로 클릭한 뒤 파일 찾기를 선택하십시오\n"
+"    8. 필요하다면, 장치에 있는 파일을 컴퓨터가 검색하도록 인증하십시오\n"
+"    9. 파일을 검색할 수 있어야 합니다\n"
+"확인 :\n"
+"    해당 단계를 모두 실행할 수 있었습니까?"
 
 #. description
 #: ../jobs/bluetooth.txt.in:41
@@ -201,6 +263,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Were all files copied correctly?"
 msgstr ""
+"목적 :\n"
+"    이 테스트는 블루투스 연결을 통해 정보를 전송할 수 있는지를 확인할 것입니다\n"
+"단계:\n"
+"    1. 모바일 장치에 저장된 파일을 검색할 수 있는지 확인하십시오\n"
+"    2. 컴퓨터에서 모바일 장치로 파일을 복사하십시오\n"
+"    3. 모바일 장치에서 컴퓨터로 파일을 복사하십시오\n"
+"확인 :\n"
+"    모든 파일이 제대로 복사되었습니까?"
 
 #. description
 #: ../jobs/bluetooth.txt.in:55
@@ -220,6 +290,18 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear the sound you recorded in the bluetooth"
 msgstr ""
+"목적:\n"
+"    이 테스트는 블루투스 오디오 장치를 사용하여 소리를 녹음하고 들을 수 있는지 확인할 것입니다\n"
+"단계:\n"
+"    1. 블루투스 헤드셋을 켜십시오\n"
+"    2. 메뉴 막대에 있는 블루투스 아이콘을 클릭하십시오\n"
+"    3. '새 장치 설정'을 선택하십시오\n"
+"    4. 목록에 있는 장치를 살펴본 뒤 해당 장치를 선택하십시오\n"
+"    5. 장치에 마법사가 자동으로 고른 PIN 번호를 입력하십시오\n"
+"    6. 장치가 컴퓨터와 동기화되어야 합니다\n"
+"    7. 5초 동안 녹음 후 블루투스 장치를 통해 들을 수 있도록 \"테스트\" 버튼을 클릭하십시오\n"
+"확인:\n"
+"    녹음한 소리를 블루투스를 통해 들으셨습니까?"
 
 #. description
 #: ../jobs/bluetooth.txt.in:73
@@ -236,6 +318,17 @@ msgid ""
 "VERIFICATION:\n"
 "    Were you able to enter some text with the bluetooth keyboard?"
 msgstr ""
+"목적:\n"
+"    이 테스트는 블루투스 키보드를 사용할 수 있는지 확인할 것입니다\n"
+"단계:\n"
+"    1. 블루투스 키보드를 켜십시오\n"
+"    2. 메뉴 막대에 있는 블루투스 아이콘을 클릭하십시오\n"
+"    3. '새 장치 설정'을 선택하십시오\n"
+"    4. 목록에서 장치를 찾아 해당 장치를 선택하십시오\n"
+"    5. \"테스트\"를 클릭하십시오\n"
+"    6. 단어를 입력하십시오\n"
+"확인:\n"
+"    블루투스 키보드를 통해 단어를 입력할 수 있었습니까?"
 
 #. description
 #: ../jobs/bluetooth.txt.in:89
@@ -252,11 +345,22 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the mouse work as expected?"
 msgstr ""
+"목적:\n"
+"    이 테스트는 블루투스 마우스를 사용할 수 있는지 확인할 것입니다\n"
+"단계:\n"
+"    1. 블루투스 마우스를 켜십시오\n"
+"    2. 메뉴 막대에 있는 블루투스 아이콘을 클릭하십시오\n"
+"    3. '새 장치 설정'을 선택하십시오\n"
+"    4. 목록에 있는 장치를 살펴본 뒤 해당 장치를 선택하십시오\n"
+"    5. 화면 주위로 마우스를 움직이십시오\n"
+"    6. 한번 클릭 / 두번 클릭 / 오른쪽 클릭을 해보십시오\n"
+"확인 :\n"
+"    마우스가 제대로 작동합니까?"
 
 #. description
 #: ../jobs/camera.txt.in:7
 msgid "This Automated test attempts to detect a camera."
-msgstr ""
+msgstr "자동 테스트로 카메라 인식을 시도합니다"
 
 #. description
 #: ../jobs/camera.txt.in:16
@@ -268,6 +372,12 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you see the video capture?"
 msgstr ""
+"목적:\n"
+"    이 테스트는 내장 카메라가 제대로 작동되는지 확인할 것입니다\n"
+"단계:\n"
+"    1. 카메라에서 영상을 캡처할 수 있도록 테스트 버튼을 누르십시오\n"
+"확인:\n"
+"    영상 캡처를 보셨습니까?"
 
 #. description
 #: ../jobs/camera.txt.in:33
@@ -279,6 +389,12 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you see the image?"
 msgstr ""
+"목적:\n"
+"    이 테스트는 내장 카메라가 제대로 작동되는지를 확인할 것입니다\n"
+"단계:\n"
+"    1. 카메라에서 정지 이미지를 찍을 수 있도록 테스트 버튼을 클릭하십시오\n"
+"확인:\n"
+"    이미지를 보셨습니까?"
 
 #. description
 #: ../jobs/camera.txt.in:49
@@ -292,6 +408,12 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you see and hear the capture?"
 msgstr ""
+"목적:\n"
+"    이 테스트는 내장 카메라로 영상을 녹화할 수 있는지 확인할 것입니다\n"
+"단계:\n"
+"    1. 영상을 파일로 저장할 수 있도록 테스트 버튼을 클릭하십시오(기본 동영상 플레이어로 자동 재생됩니다)\n"
+"확인:\n"
+"    영상을 보고 영상의 소리를 들으셨습니까?"
 
 #. description
 #: ../jobs/codecs.txt.in:7

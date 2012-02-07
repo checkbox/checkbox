@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-01-07 04:42+0000\n"
-"X-Generator: Launchpad (build 14640)\n"
+"X-Launchpad-Export-Date: 2012-02-07 04:33+0000\n"
+"X-Generator: Launchpad (build 14747)\n"
 
 #. Title of the user interface
 #: ../gtk/checkbox-gtk.ui.h:3 ../gtk/checkbox-gtk.desktop.in.h:1
@@ -154,7 +154,7 @@ msgstr ""
 #. description
 #: ../jobs/audio.txt.in:7
 msgid "Test to detect audio devices"
-msgstr ""
+msgstr "Prueba pa deteutar preseos d'audio"
 
 #. description
 #: ../jobs/audio.txt.in:16
@@ -168,6 +168,18 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear a tone?"
 msgstr ""
+"PROPÓSITU:\n"
+"    Esta prueba va verificar que los altavoces internos funcionen "
+"correchamente\n"
+"PASOS:\n"
+"    1. Asegúrate de que nun esistan altavoces o audífonos esternos "
+"coneutaos\n"
+"       Si tas probando un equipu d'escritoriu, los altavoces esternos "
+"permítense\n"
+"    2. Primi nel botón Probar pa reproducir un tonu curtiu nel to preséu "
+"d'audio\n"
+"VERIFICACIÓN:\n"
+"    ¿Escuchóse un tonu?"
 
 #. description
 #: ../jobs/audio.txt.in:33
@@ -181,6 +193,14 @@ msgid ""
 "    Did you hear a sound through the headphones and did the sound play "
 "without any distortion, clicks or other strange noises from your headphones?"
 msgstr ""
+"PROPÓSITU:\n"
+"    Esta prueba verificará que los auriculares coneutaos funcionen correcho\n"
+"PASOS:\n"
+"    1. Coneuta un par d'auriculares al preséu d'audio.\n"
+"    2. Primi nel botón Probar pa reproducir un tonu nel to preséu d'audio\n"
+"VERIFICACIÓN:\n"
+"    ¿Escuchóse dalgún soníu nos auriculares y ensin distorsión dalguna, "
+"clics u otros ruíos estraños?"
 
 #. description
 #: ../jobs/audio.txt.in:49
@@ -195,6 +215,18 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear your speech played back?"
 msgstr ""
+"PROPÓSITU:\n"
+"\n"
+"Esta prueba comprueba que la grabación de soníu mediante'l micrófonu "
+"funciona correcho.\n"
+"\n"
+"PASOS:\n"
+"1. Desconeutar cualquier micrófonu esterno que tengas coneutáu.\n"
+"2. Primi «Probar», llueu fala al micrófonu internu.\n"
+"3. Dempués d'unos segundos, la grabación va reproducise.\n"
+"\n"
+"VERIFICACIÓN:\n"
+"¿Escuchóse la grabación?"
 
 #. description
 #: ../jobs/audio.txt.in:66
@@ -209,6 +241,18 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear your speech played back?"
 msgstr ""
+"PROPÓSITU:\n"
+"\n"
+"Esta prueba comprueba que'l grabador de soníu, usando un micrófonu esternu, "
+"funciona correcho.\n"
+"\n"
+"PASOS:\n"
+"1. Coneuta un micrófonu nel puertu de micrófonu.\n"
+"2. Primi «Probar», llueu fala al micrófonu esternu.\n"
+"3. Dempués d'unos segundos, la grabación va reproducise.\n"
+"\n"
+"VERIFICACIÓN:\n"
+"¿Escuchóse la grabación?"
 
 #. description
 #: ../jobs/audio.txt.in:82
@@ -226,6 +270,20 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear your speech played back through the USB headphones?"
 msgstr ""
+"PROPÓSITU:\n"
+"Esta prueba comprobará que'l preséu d'audio USB funciona correcho.\n"
+"\n"
+"PASOS: \n"
+"1. Coneutar un preséu d'audio USB.\n"
+"2. Abri l'aplicación de control de volume col botón izquierdu nel íconu nel "
+"panel y seleicionando «Configuración de soníu»\n"
+"3. Seleicionar «Entrada» y esbillar el to preséu USB\n"
+"4. Seleccionar «Salida» y elegir su dispositivo USB\n"
+"5. Primi en «Probar», llueu fala nel micrófonu.\n"
+"6. Dempués d'unos segundos escucharás la grabación\n"
+"\n"
+"VERIFICACIÓN\n"
+"¿Escuchóse la grabación nos auriculares USB?"
 
 #. description
 #: ../jobs/audio.txt.in:102
@@ -242,6 +300,9 @@ msgid ""
 "   This test will attempt to install and run the Autotest Suite.  These "
 "tests can be destructive, so this test is blacklisted by default."
 msgstr ""
+"PROPÓSITU:\n"
+"   Esta prueba intentará instalar y executar el Autotest Suit. Estes pruebes "
+"puen ser destructives, polo que tán na llista prieta de forma predefinida."
 
 #. description
 #: ../jobs/bluetooth.txt.in:7
@@ -249,12 +310,17 @@ msgid ""
 "This test will detect your Bluetooth device and output the device's hardware "
 "address.  If no device is found, the test will exit with an error."
 msgstr ""
+"Esta prueba deteutará los tos preseos Bluetooth y va amosar les direiciones "
+"de hardware de los preseos. Si nun s'alcuentra dengún preséu, la prueba "
+"finará con un fallu."
 
 #. description
 #: ../jobs/bluetooth.txt.in:16
 msgid ""
 "Automated test to store bluetooth device information in checkbox report"
 msgstr ""
+"Prueba automatizada p'almacenar información d'un preséu Bluetooth nun "
+"informe de Checkbox"
 
 #. description
 #: ../jobs/bluetooth.txt.in:22
@@ -274,6 +340,21 @@ msgid ""
 "VERIFICATION:\n"
 "    Did all the steps work?"
 msgstr ""
+"PROPÓSITU:\n"
+"    Esta prueba verifica que la conexón bluetooth funciona correchamente\n"
+"PASOS:\n"
+"    1. Activar bluetooth en cualquier preséu móvil (PDA, smartphone, etc.).\n"
+"    2. Primi nel iconu de bluetooth na barra de menús\n"
+"    3. Escueyi «Configurar preséu nuevu»\n"
+"    4. Busca'l preséu na llista y escueyi\n"
+"    5. Nel preséu d'escribe'l códigu PIN escoyíu automáticamente pol "
+"asistente\n"
+"    6. El preséu tien d'empareyase col equipu\n"
+"    7. Primi nel iconu de bluetooth y escueyi desaminar ficheros\n"
+"    8. Autorizar l'equipu pa guetar los ficheros nel preséu si ye necesario\n"
+"    9. Tienes de ser quien a desaminar los ficheros\n"
+"     VERIFICACIÓN:\n"
+"    ¿Funcionen tolos pasos?"
 
 #. description
 #: ../jobs/bluetooth.txt.in:41
@@ -288,6 +369,16 @@ msgid ""
 "VERIFICATION:\n"
 "    Were all files copied correctly?"
 msgstr ""
+"PROPÓSITU:\n"
+"Esta prueba comprueba que pues tresferir información a traviés de una "
+"conexón Bluetooth\n"
+"PASOS:\n"
+"1. Asegúrate de que yes quien al restolar pente los ficheros del to preséu "
+"móvil\n"
+"2. Copiar un ficheru dende'l equipu al preséu móvil\n"
+"3. Copiar un ficheru dende'l preséu móvil al equipu\n"
+"VERIFICACIÓN:\n"
+"¿Tolos ficheros copiáronse correutamente?"
 
 #. description
 #: ../jobs/bluetooth.txt.in:55
@@ -307,6 +398,20 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear the sound you recorded in the bluetooth"
 msgstr ""
+"PROPÓSITU:\n"
+"Esta prueba comprobará que pues grabar y escuchar audio con un preséu "
+"d'audio Bluetooth\n"
+"PASOS:\n"
+"1. Activar l'auricular bluetooth\n"
+"2. Primi nel iconu de Bluetooth na barra de menú\n"
+"3. Seleiciona «Configurar un nuevu preséu»\n"
+"4. Busca'l preséu na llista y seleiciónalu\n"
+"5. Nel preséu escribi'l códigu PIN elexíu automáticamente pol asistente\n"
+"6. El preséu tien d'empareyase col equipu\n"
+"7. Primi en «Probar» pa grabar durante cinco segundos y reproducir nel "
+"preséu bluetooth\n"
+"VERIFICACIÓN:\n"
+"¿Oyóse'l soníu que se grabó nel bluetooth?"
 
 #. description
 #: ../jobs/bluetooth.txt.in:73
@@ -323,6 +428,17 @@ msgid ""
 "VERIFICATION:\n"
 "    Were you able to enter some text with the bluetooth keyboard?"
 msgstr ""
+"PROPÓSITU:\n"
+"    Esta prueba verifica que se pue usar un tecláu bluetooth\n"
+"PASOS:\n"
+"    1. Activar el tecláu bluetooth\n"
+"    2. Primir nel iconu de bluetooth na barra de menús\n"
+"    3. Seleiciona «Configurar preséu nuevu»\n"
+"    4. Guetar el preséu na llista y seleicionalu\n"
+"    5. Primi «Prueba»\n"
+"    6. Escribi dalgún testu\n"
+"    VERIFICACIÓN:\n"
+"    ¿Fuisti quien a introducir dalgún testu col tecláu bluetooth?"
 
 #. description
 #: ../jobs/bluetooth.txt.in:89
@@ -339,11 +455,23 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the mouse work as expected?"
 msgstr ""
+"PROPÓSITU:\n"
+"    Esta prueba verifica que se pue usar un mur bluetooth\n"
+"   PASOS:\n"
+"    1. Activar el mur bluetooth\n"
+"    2. Primir nel iconu de bluetooth na barra de menús\n"
+"    3. Seleiciona «Configurar preséu nuevu»\n"
+"    4. Guetar el preséu na llista y seleicionalu\n"
+"    5. Muevi'l mur pela pantalla\n"
+"    6. Fai dalgunes operaciones de pulsación simple y duble col botón "
+"derechu\n"
+"VERIFICACIÓN:\n"
+"    ¿El mur funciona como s'esperaba?"
 
 #. description
 #: ../jobs/camera.txt.in:7
 msgid "This Automated test attempts to detect a camera."
-msgstr ""
+msgstr "Esta prueba automática intenta deteutar una cámara."
 
 #. description
 #: ../jobs/camera.txt.in:16
@@ -355,6 +483,12 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you see the video capture?"
 msgstr ""
+"PROPÓSITU:\n"
+"    Esta prueba verifica que funciona la cámara incorporada\n"
+"PASOS:\n"
+"    1. Primi en prueba p'amosar una captura de videu dende la cámara\n"
+"VERIFICACIÓN:\n"
+"    ¿Viose la captura de videu?"
 
 #. description
 #: ../jobs/camera.txt.in:33
@@ -366,6 +500,12 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you see the image?"
 msgstr ""
+"PROPÓSITU:\n"
+"    Esta prueba verifica que funciona la cámara incorporada\n"
+"PASOS:\n"
+"    1. Primi en prueba p'amosar una imaxe fixa de la cámara\n"
+"VERIFICACIÓN:\n"
+"    ¿Viose la imaxe?"
 
 #. description
 #: ../jobs/camera.txt.in:49
@@ -379,6 +519,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you see and hear the capture?"
 msgstr ""
+"PROPÓSITU:\n"
+"    Esta prueba verifica que pues capturar videu cola cámara incorporada\n"
+"PASOS:\n"
+"    1. Primi en prueba pa capturar videu nun ficheru (va abrise "
+"automáticamente en Totem)\n"
+"VERIFICACIÓN:\n"
+"    ¿Ves y oyes la captura?"
 
 #. description
 #: ../jobs/codecs.txt.in:7
@@ -392,6 +539,14 @@ msgid ""
 "VERIFICATION:\n"
 "   Did the sample play correctly?"
 msgstr ""
+"PROPÓSITU:\n"
+"   Esta prueba verifica la capacidá del sistema pa reproducir ficheros "
+"d'audio Ogg Vorbis.\n"
+"PASOS:\n"
+"   1. Primi en Prueba pa reproducir un ficheru Ogg Vorbis (.ogg)\n"
+"   2. Zarra'l reproductor pa continuar.\n"
+"VERIFICACIÓN:\n"
+"   ¿Reprodúxose correchamente l'amuesa?"
 
 #. description
 #: ../jobs/codecs.txt.in:22
@@ -404,12 +559,22 @@ msgid ""
 "VERIFICATION:\n"
 "   Did the sample play correctly?"
 msgstr ""
+"PROPÓSITU:\n"
+"   Esta prueba verifica la capacidá del sistema pa reproducir ficheros "
+"d'audio Wave.\n"
+"PASOS:\n"
+"   1. Primi en Prueba pa reproducir un ficheru d'audio Wave (.wav)\n"
+"   2. Zarra'l reproductor pa continuar.\n"
+"VERIFICACIÓN:\n"
+"   ¿Reprodúxose correchamente l'amuesa?"
 
 #. description
 #: ../jobs/cpu.txt.in:8
 msgid ""
 "Test the CPU scaling capabilities using Firmware Test Suite (fwts cpufreq)."
 msgstr ""
+"Probar les capacidaes d'ampliación del to CPU usando Firmware Test Suite "
+"(fwts cpufreq)."
 
 #. description
 #: ../jobs/cpu.txt.in:15
@@ -424,12 +589,14 @@ msgstr "Probar la desconexón de CPUs nún sistema multinúcleu."
 #. description
 #: ../jobs/cpu.txt.in:30
 msgid "This test checks cpu topology for accuracy"
-msgstr ""
+msgstr "Esta prueba verifica la precisión de la topoloxía de cpu"
 
 #. description
 #: ../jobs/cpu.txt.in:38
 msgid "This test checks that CPU frequency governors are obeyed when set."
 msgstr ""
+"Este prueba verifica que la frecuencia de CPU axudicada aplícase cuando ye "
+"debío."
 
 #. description
 #: ../jobs/daemons.txt.in:5
@@ -546,6 +713,23 @@ msgid ""
 "VERIFICATION:\n"
 "   Did the authentication procedure work correctly?"
 msgstr ""
+"PROPÓSITU:\n"
+"   Esta prueba verifica qu'un llector de buelgues dactilares funcionará "
+"correutamente p'aniciar sesión nel sistema.\n"
+"REQUISITOS PREVIOS:\n"
+"   Esta prueba supón que s'executa dende una cuenta d'usuariu de prueba que "
+"l'usuariu usa pa facer tala prueba.\n"
+"PASOS:\n"
+"   1. Primi na miniaplicación del cambiador d'usuariu.\n"
+"   2. Seleiciona'l to nome d'usuariu.\n"
+"   3. Debería apaecer una ventana que te permita entrar, bien per duana de "
+"les buelgues dactilares o bien per duana de la introducción de la "
+"contraseña.\n"
+"   4. Utiliza'l llector de buelgues dactilares pa ingresar.\n"
+"   5. Primi na miniaplicación del cambiador d'usuariu.\n"
+"   6. Seleiciona la cuenta de prueba pa continuar executando pruebes.\n"
+"VERIFICACIÓN:\n"
+"   ¿Funcionó correutamente'l procedimientu d'autenticación?"
 
 #. description
 #: ../jobs/fingerprint.txt.in:20
@@ -564,6 +748,20 @@ msgid ""
 "VERIFICATION:\n"
 "   Did the authentication procedure work correctly?"
 msgstr ""
+"PROPÓSITU:\n"
+"    Esta prueba verificará que se pue usar un llector de buelgues dixitales "
+"pa desbloquiar la pantalla.\n"
+"PASOS:\n"
+"    1. Primi na miniaplicación pa cambiar d'usuariu.\n"
+"    2. Seleiciona «Bloquiar pantalla».\n"
+"    3. Primi cualesquier tecla o muevi'l mur.\n"
+"    4. Debería apaecer una ventana que te permita entrar, bien per duana de "
+"les buelgues dactilares o bien per duana de la introducción de la "
+"contraseña.\n"
+"    5. Utiliza'l llector de buelgues dactilares pa desbloquiar la pantalla.\n"
+"    6. La pantalla tendría de tar agora desbloquiada.\n"
+"VERIFICACIÓN:\n"
+"    ¿Funcionó correutamente'l procesu d'autenticación?"
 
 #. description
 #: ../jobs/firewire.txt.in:3
@@ -579,6 +777,18 @@ msgid ""
 "VERIFICATION:\n"
 "    Do the copy operations work as expected?"
 msgstr ""
+"PROPÓSITU:\n"
+"     Esta prueba va comprobar el funcionamientu del puertu FireWire\n"
+"PASOS:\n"
+"     1. Coneuta un discu duru FireWire nel equipu\n"
+"     2. Va abrise una ventana entrugando qué aición tien de llevase a cabu "
+"(abrir carpeta, xestor de semeyes, etc) o un esplorador de ficheros.\n"
+"     3. Copia dellos ficheros del to discu duru internu al discu duru "
+"FireWire\n"
+"     4. Copia dellos ficheros del discu duru FireWire al to discu duru "
+"internu\n"
+"VERIFICACIÓN:\n"
+"     ¿Funcionaron les operaciones de copia de ficheros como s'esperaba?"
 
 #. description
 #: ../jobs/floppy.txt.in:4
@@ -588,7 +798,7 @@ msgstr "Prueba de disquete"
 #. description
 #: ../jobs/graphics.txt.in:5
 msgid "Test to output the Xorg version"
-msgstr ""
+msgstr "Prueba p'amosar la versión de Xorg"
 
 #. description
 #: ../jobs/graphics.txt.in:12
@@ -612,6 +822,17 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the resolution change as expected?"
 msgstr ""
+"PROPÓSITU:\n"
+"     Esta prueba va comprobar que la interfaz gráfica d'usuariu pue "
+"utilizase dempués de camudar manualmente la resolución de la pantalla\n"
+"PASOS:\n"
+"     1. Abri l'aplicación de Pantalles\n"
+"     2. Escueyi una nueva resolución de la llista desplegable\n"
+"     3. Primi n'Aplicar\n"
+"     4. Escueyi la resolución orixinal de la llista desplegable\n"
+"     5. Primi n'Aplicar\n"
+"VERIFICACIÓN:\n"
+"    ¿Funcionó'l cambéu de resolución como s'esperaba?"
 
 #. description
 #: ../jobs/graphics.txt.in:33
@@ -628,6 +849,17 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the display rotation change as expected?"
 msgstr ""
+"PROPÓSITU:\n"
+"     Esta prueba va comprobar la rotación de la pantalla\n"
+"PASOS:\n"
+"     1. Abri l'aplicación de Pantalles\n"
+"     2. Escueyi un nuevu valor de rotación de la llista desplegable\n"
+"     3. Primi n'Aplicar\n"
+"     4. Primi en Restaurar la configuración anterior\n"
+"     5. Primi n'Aplicar\n"
+"     6. Repite los pasos 2 a 5 con distintos valores de rotación\n"
+"VERIFICACIÓN:\n"
+"     ¿Camudó la rotación de la pantalla como s'esperaba?"
 
 #. description
 #: ../jobs/graphics.txt.in:50
@@ -645,6 +877,8 @@ msgid ""
 "Test that X does not leak memory when running programs on systems with intel "
 "based graphics."
 msgstr ""
+"Prueba que X nun pierde memoria al executar programes en sistemes con "
+"gráficos basaos ​​en Intel."
 
 #. description
 #: ../jobs/graphics.txt.in:70
@@ -658,6 +892,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Is this acceptable for your display?"
 msgstr ""
+"PROPÓSITU:\n"
+"     Esta prueba verifica la resolución predeterminada de la pantalla\n"
+"PASOS:\n"
+"     1. Esta pantalla usa la siguiente resolución:\n"
+"INFORMACIÓN:\n"
+"     $output\n"
+"VERIFICACIÓN:\n"
+"     ¿Ye esto aceutable pa la to pantalla?"
 
 #. description
 #: ../jobs/graphics.txt.in:85
@@ -683,6 +925,12 @@ msgid ""
 "VERIFICATION:\n"
 "    Do you see color bars and static?"
 msgstr ""
+"PROPÓSITU:\n"
+"     Esta prueba verificará  la pantalla predeterminada\n"
+"PASOS:\n"
+"     1. Primi en Prueba p'amosar una prueba de videu.\n"
+"VERIFICACIÓN:\n"
+"     ¿Vense les barres de color y la estática?"
 
 #. description
 #: ../jobs/graphics.txt.in:107
@@ -697,6 +945,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Are those correct?"
 msgstr ""
+"PROPÓSITU:\n"
+"     Esta prueba verifica los diferentes moos de videu deteutaos\n"
+"PASOS:\n"
+"     1. Deteutáronse les siguientes pantalles y moos de videu\n"
+"INFORMACIÓN:\n"
+"     $ salida\n"
+"VERIFICACIÓN:\n"
+"     ¿Son les pantalles y los moos de videu correutos?"
 
 #. description
 #: ../jobs/graphics.txt.in:122
@@ -708,6 +964,12 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the screen appear to be working for each mode?"
 msgstr ""
+"PROPÓSITU:\n"
+"     Esta prueba pasa polos diferentes moos de videu deteutaos\n"
+"PASOS:\n"
+"     1. Primi «Prueba» pa entamar a comprobar los diferentes moos de videu\n"
+"VERIFICACIÓN:\n"
+"     ¿Paecióte ver que la pantalla trabayaba en cada ún de los moos de videu?"
 
 #. description
 #: ../jobs/graphics.txt.in:133
@@ -727,6 +989,15 @@ msgid ""
 "    1. Did the 3d animation appear?\n"
 "    2. Was the animation free from slowness/jerkiness?"
 msgstr ""
+"PURPOSE:\n"
+"    This test tests the basic 3D capabilities of your video card\n"
+"STEPS:\n"
+"    1. Click \"Test\" to execute an OpenGL demo. Press ESC at any time to "
+"close.\n"
+"    2. Verify that the animation is not jerky or slow.\n"
+"VERIFICATION:\n"
+"    1. Did the 3d animation appear?\n"
+"    2. Was the animation free from slowness/jerkiness?"
 
 #. description
 #: ../jobs/hibernate.txt.in:7
@@ -745,72 +1016,90 @@ msgid ""
 "    Did the system successfully hibernate and did it work properly after "
 "waking up?"
 msgstr ""
+"PROPÓSITU:\n"
+"     Esta prueba va comprobar que'l to sistema pue ivernar con ésitu (si "
+"ésti ye compatible)\n"
+"PASOS:\n"
+"     1. Fai clic Probar\n"
+"     2. El sistema tendría d'entrar n'estáu d'ivernación y salir d'él "
+"dempués de 5 minutos.\n"
+"     3. Si'l to sistema nun sale del estáu d'ivernación dempués de 5 "
+"minutos, por favor primi'l botón d'encendíu p'activar el sistema "
+"manualmente\n"
+"     4. Si'l sistema nun pue volver a entamar tres la ivernación, por favor "
+"reanicie les Pruebes del Sistema y conseña esta prueba como fallida\n"
+"VERIFICACIÓN:\n"
+"     ¿Ivernó'l sistema satisfactoriamente, y funcionó correchamente dempués "
+"de salir de talu estáu?"
 
 #. description
 #: ../jobs/info.txt.in:5
 msgid "Attaches a report of installed codecs for Intel HDA"
-msgstr ""
+msgstr "Axunta un informe de los códecs instalaos pa Intel HDA"
 
 #. description
 #: ../jobs/info.txt.in:10
 msgid "Attaches a report of CPU information"
-msgstr ""
+msgstr "Axunta un informe de la CPU"
 
 #. description
 #: ../jobs/info.txt.in:15
 msgid "Attaches a copy of /var/log/dmesg to the test results"
-msgstr ""
+msgstr "Axunta una copia de /var/log/dmesg a los resultaos de la prueba"
 
 #. description
 #: ../jobs/info.txt.in:20
 msgid "Attaches info on DMI"
-msgstr ""
+msgstr "Información axunta en DMI"
 
 #. description
 #: ../jobs/info.txt.in:26
 msgid "Attaches dmidecode output"
-msgstr ""
+msgstr "Axunta salida dmidecode"
 
 #. description
 #: ../jobs/info.txt.in:31
 msgid "Attaches very verbose lspci output."
-msgstr ""
+msgstr "Axunta salida prolija de lspci"
 
 #. description
 #: ../jobs/info.txt.in:40
 msgid "Attaches the contents of the various modprobe conf files."
-msgstr ""
+msgstr "Axunta los conteníos de dellos ficheros de configuración modprobe."
 
 #. description
 #: ../jobs/info.txt.in:45
 msgid "Attaches the contents of the /etc/modules file."
-msgstr ""
+msgstr "Axunta'l conteníu del ficheru /etc/modules."
 
 #. description
 #: ../jobs/info.txt.in:50
 msgid "attaches the contents of various sysctl config files."
-msgstr ""
+msgstr "axunta los conteníos de dellos ficheros de configuración sysctl."
 
 #. description
 #: ../jobs/info.txt.in:54
 msgid "Attaches a report of sysfs attributes."
-msgstr ""
+msgstr "Axunta un informe de los atributos de sysfs."
 
 #. description
 #: ../jobs/info.txt.in:65
 msgid ""
 "Attaches a dump of the udev database showing system hardware information."
 msgstr ""
+"Axunta un volcáu de la base de datos udev amosando información de hardware "
+"del sistema."
 
 #. description
 #: ../jobs/info.txt.in:72
 msgid "Attaches a tarball of gcov data if present."
-msgstr ""
+msgstr "Axunta un ficheru comprimíu de los datos gcov si ta presente."
 
 #. description
 #: ../jobs/info.txt.in:77
 msgid "Attaches a list of the currently running kernel modules."
 msgstr ""
+"Axunta una llista de los módulos del nucleu que ta anguaño n'execución."
 
 #. description
 #: ../jobs/info.txt.in:85
@@ -820,17 +1109,18 @@ msgstr "Captura la pantalla."
 #. description
 #: ../jobs/info.txt.in:91
 msgid "Attaches the screenshot captured in info/screenshot."
-msgstr ""
+msgstr "Axunta la captura de pantalla capturada en info/screenshot"
 
 #. description
 #: ../jobs/info.txt.in:96
 msgid "Gather log from the Firmware Test Suite run."
 msgstr ""
+"Reunir un rexistru de la execución de la suite pa la prueba de Firmware"
 
 #. description
 #: ../jobs/info.txt.in:103
 msgid "Attaches the contents of /proc/acpi/sleep if it exists."
-msgstr ""
+msgstr "Axunta'l conteníu de /proc/acpi/sleep si existe."
 
 #. description
 #: ../jobs/info.txt.in:107
@@ -845,22 +1135,23 @@ msgstr "Información de preseos SATA/IDE."
 #. description
 #: ../jobs/info.txt.in:133
 msgid "Attaches the bootchart png file for bootchart runs"
-msgstr ""
+msgstr "Axunta'l ficheru bootchart.png a les execuciones de bootchart"
 
 #. description
 #: ../jobs/info.txt.in:142
 msgid "Attaches the bootchart log for bootchart test runs."
 msgstr ""
+"Axunta'l rexistru de bootchart a les execuciones de prueba de bootchart."
 
 #. description
 #: ../jobs/info.txt.in:150
 msgid "installs the installer bootchart tarball if it exists."
-msgstr ""
+msgstr "instala l'instalador tarball bootchart si ye qu'esiste"
 
 #. description
 #: ../jobs/info.txt.in:155
 msgid "Attaches the installer debug log if it exists."
-msgstr ""
+msgstr "Axunta'l rexistru de depuración del instalador si existe."
 
 #. description
 #: ../jobs/input.txt.in:4
@@ -873,6 +1164,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the pointing device work as expected?"
 msgstr ""
+"PROPÓSITU:\n"
+"    Esta prueba va verificar el preséu de punteru\n"
+"PASOS:\n"
+"    1. Muevi'l cursor usando'l preséu de punteru o toca la pantalla.\n"
+"    2. Fai dalgunes operaciones de clic cenciellu/duble/derechu.\n"
+"VERIFICACIÓN:\n"
+"    ¿Comportóse'l preséu de punteru s'esperaba?"
 
 #. description
 #: ../jobs/input.txt.in:17
@@ -885,6 +1183,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Is your keyboard working properly?"
 msgstr ""
+"PROPÓSITU:\n"
+"     Esta prueba verificará'l to tecláu\n"
+"PASOS:\n"
+"     1. Primi en prueba\n"
+"     2. Nel área de testu abiertu, usa'l tecláu pa escribir daqué\n"
+"VERIFICACIÓN:\n"
+"     ¿El tecláu funciona correutamente?"
 
 #. description
 #: ../jobs/install.txt.in:6
@@ -893,6 +1198,9 @@ msgid ""
 "install updates). This is done to confirm that you could recover from an "
 "incomplete or broken update."
 msgstr ""
+"Comprueba que apt pue acceder a repositorios y obtener anovamientos (magar "
+"que nun los instala). Esto faise pa confirmar que pues recuperar cualesquier "
+"anovamientu incompletu o encaboxáu."
 
 #. description
 #: ../jobs/keys.txt.in:4
@@ -904,6 +1212,12 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the brightness change following to your key presses?"
 msgstr ""
+"PROPÓSITU:\n"
+"     Esti esame va poner a prueba la tecla de brillu\n"
+"PASOS:\n"
+"     1. Primi los botones de brillu de tecláu\n"
+"VERIFICACIÓN:\n"
+"     ¿Cambia'l brillu siguiendo les pulsaciones de la tecla?"
 
 #. description
 #: ../jobs/keys.txt.in:14
@@ -915,6 +1229,12 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the volume change following to your key presses?"
 msgstr ""
+"PROPÓSITU:\n"
+"    Esti esame va poner a prueba les tecles de volume\n"
+"PASOS:\n"
+"    1. Primi los botones de volume del tecláu\n"
+"VERIFICACIÓN:\n"
+"    ¿El cambéu de volume coincide coles pulsaciones?"
 
 #. description
 #: ../jobs/keys.txt.in:25
@@ -926,6 +1246,12 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the volume mute following your key presses?"
 msgstr ""
+"PROPÓSITU:\n"
+"    Esta prueba va verificar la tecla de silenciu\n"
+"PASOS:\n"
+"    1. Primi la tecla de silenciu nel tecláu\n"
+"VERIFICACIÓN:\n"
+"    ¿Callóse'l volume al primir la tecla?"
 
 #. description
 #: ../jobs/keys.txt.in:37
@@ -938,6 +1264,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the system go to sleep after pressing the sleep key?"
 msgstr ""
+"PROPÓSITU:\n"
+"    Esto va probar la tecla d'ivernar\n"
+"PASOS:\n"
+"    1. Primi la tecla d'ivernar del tecláu\n"
+"    2. Activa'l to sistema primiendo'l botón d'encendíu\n"
+"COMPROBACIÓN:\n"
+"    ¿El sistema ivernó dempués de primir la tecla?"
 
 #. description
 #: ../jobs/keys.txt.in:49
@@ -949,6 +1282,12 @@ msgid ""
 "VERIFICATION:\n"
 "    Did a notification appear showing the battery status?"
 msgstr ""
+"PROPÓSITU:\n"
+"     Esta prueba va verificar la tecla d'información de la batería\n"
+"PASOS:\n"
+"     1. Primi la tecla d'información de la batería nel tecláu\n"
+"VERIFICACIÓN:\n"
+"     ¿Apaeció una notificación amosando l'estáu de la batería?"
 
 #. description
 #: ../jobs/keys.txt.in:60
@@ -961,6 +1300,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the wireless go off on the first press and on again on the second?"
 msgstr ""
+"PROPÓSITU:\n"
+"    Esto va probar la tecla de la señal inalámbrica\n"
+"PASOS:\n"
+"    1. Primi la tecla de señal inalámbrica del tecláu\n"
+"    2. Prima la mesma tecla de nuevu\n"
+"COMPROBACIÓN:\n"
+"    ¿La señal inalámbrica desactivóse nel primer pasu, y activóse nel "
+"segundu?"
 
 #. description
 #: ../jobs/keys.txt.in:76
@@ -976,6 +1323,16 @@ msgid ""
 "VERIFICATION:\n"
 "    Do the keys work as expected?"
 msgstr ""
+"PROPÓSITU:\n"
+"    Esto va probar les tecles multimedia del tecláu\n"
+"PASOS:\n"
+"    1. Primi Probar p'abrir el reproductor de medios\n"
+"    2. Primi la tecla de reproducir/posar\n"
+"    3. Primi la tecla d'avanzar\n"
+"    4. Primi la tecla de rebobinar\n"
+"    5. Primi la tecla de detener\n"
+"COMPROBACIÓN:\n"
+"    ¿Les tecles funcionaron debidamente?"
 
 #. description
 #: ../jobs/local.txt.in:3
@@ -985,7 +1342,7 @@ msgstr "Prebes de soníu"
 #. description
 #: ../jobs/local.txt.in:8
 msgid "Autotest Suite tests"
-msgstr ""
+msgstr "Pruebes de la suite Autotest"
 
 #. description
 #: ../jobs/local.txt.in:13
@@ -1065,12 +1422,12 @@ msgstr "Pruebes d'atayos de tecláu"
 #. description
 #: ../jobs/local.txt.in:88
 msgid "Linux Test Project tests"
-msgstr ""
+msgstr "Pruebes del proyeutu Linux Test"
 
 #. description
 #: ../jobs/local.txt.in:93
 msgid "Mago Automated Desktop Testing"
-msgstr ""
+msgstr "Prueba del escritoriu automatizáu Mago"
 
 #. description
 #: ../jobs/local.txt.in:98
@@ -1105,7 +1462,7 @@ msgstr "Pruebes de discos ópticos"
 #. description
 #: ../jobs/local.txt.in:128
 msgid "Panel Clock Verification tests"
-msgstr ""
+msgstr "Pruebes de verificación del reló del panel"
 
 #. description
 #: ../jobs/local.txt.in:133
@@ -1120,7 +1477,7 @@ msgstr "Prebes de periféricos"
 #. description
 #: ../jobs/local.txt.in:143
 msgid "Phoronix Test Suite tests"
-msgstr ""
+msgstr "Pruebes de Phoronix Test Suite"
 
 #. description
 #: ../jobs/local.txt.in:148
@@ -1130,12 +1487,12 @@ msgstr "Pruebes de xestión d'enerxía"
 #. description
 #: ../jobs/local.txt.in:153
 msgid "QA Regression tests"
-msgstr ""
+msgstr "Pruebes de regresión QA"
 
 #. description
 #: ../jobs/local.txt.in:158
 msgid "Server Services checks"
-msgstr ""
+msgstr "Comprueba los servicios del sirvidor"
 
 #. description
 #: ../jobs/local.txt.in:163
@@ -1173,6 +1530,8 @@ msgid ""
 "This test installs and runs Linux Test Project syscalls test. This can be "
 "destructive, thus this test is blacklisted by default."
 msgstr ""
+"Esta prueba instala y executa la prueba syscalls del proyeutu Linux Test. "
+"Pue ser destructiva, polo que ta na llista prieta de mou predetermináu."
 
 #. description
 #: ../jobs/mago.txt.in:8
@@ -1180,6 +1539,9 @@ msgid ""
 "PURPOSE:\n"
 "   This test installs and runs the Mago Automated Desktop Testing suite."
 msgstr ""
+"PROPÓSITU:\n"
+"   Esta prueba instala y executa la suite de pruebes de automatizaes "
+"d'escritoriu Mago"
 
 #. description
 #: ../jobs/mediacard.txt.in:3
@@ -1194,6 +1556,17 @@ msgid ""
 "VERIFICATION:\n"
 "    Does the icon automatically appear/disappear?"
 msgstr ""
+"PROPÓSITU:\n"
+"    Esta prueba va comprobar si'l to sistema ye compatible con tarxetes "
+"Secure Dixital (SD)\n"
+"PASOS:\n"
+"    1. Inxerta una tarxeta SD nel equipu\n"
+"    2. Tendría d'apaecer un iconu nel llanzador\n"
+"    3. Primi col botón derechu del mur nel iconu y escueyi «Espulsar de mou "
+"seguru»\n"
+"    4. L'iconu tendría de sumise del llanzador\n"
+"COMPROBACIÓN:\n"
+"    ¿L'iconu apaez y desapaez automáticamente?"
 
 #. description
 #: ../jobs/mediacard.txt.in:17
@@ -1209,6 +1582,17 @@ msgid ""
 "VERIFICATION:\n"
 "    Does the icon automatically appear/disappear?"
 msgstr ""
+"PROPÓSITU:\n"
+"    Esta prueba va comprobar el sofitu de la tarxeta Secure Dixital (SD) del "
+"sistema dempués de la suspensión.\n"
+"PASOS:\n"
+"    1. Inxerta una tarxeta SD nel equipu\n"
+"    2. Tendría d'apaecer un iconu nel llanzador\n"
+"    3. Primi col botón derechu del sobre l'iconu nel llanzador y seleiciona "
+"«Espulsar de mou seguru»\n"
+"    4. L'iconu tendría de sumise del llanzador\n"
+"COMPROBACIÓN:\n"
+"    ¿L'iconu apaez y desapaez automáticamente?"
 
 #. description
 #: ../jobs/mediacard.txt.in:30
@@ -1224,6 +1608,17 @@ msgid ""
 "VERIFICATION:\n"
 "    Does the icon automatically appear/disappear?"
 msgstr ""
+"PROPÓSITU:\n"
+"    Esta prueba va comprobar el sofitu de la tarxeta Secure Dixital High "
+"Capacity (SDHC).\n"
+"PASOS:\n"
+"    1. Inxerta una tarxeta SDHC nel equipu\n"
+"    2. Tendría d'apaecer un iconu nel llanzador\n"
+"    3. Primi col botón derechu del sobre l'iconu nel llanzador y seleiciona "
+"«Espulsar de mou seguru»\n"
+"    4. L'iconu tendría de sumise del llanzador\n"
+"COMPROBACIÓN:\n"
+"    ¿L'iconu apaez y desapaez automáticamente?"
 
 #. description
 #: ../jobs/mediacard.txt.in:44
@@ -1238,6 +1633,17 @@ msgid ""
 "VERIFICATION:\n"
 "    Does the icon automatically appear/disappear?"
 msgstr ""
+"    PROPÓSITU:\n"
+"    Esta prueba va comprobar el sofitu de la tarxeta Secure Dixital High "
+"Capacity (SDHC) dempués de la suspensión.\n"
+"PASOS:\n"
+"    1. Inxerta una tarxeta SDHC nel equipu\n"
+"    2. Tendría d'apaecer un iconu nel llanzador\n"
+"    3. Primi col botón derechu del sobre l'iconu nel llanzador y seleiciona "
+"«Espulsar de mou seguru»\n"
+"    4. L'iconu tendría de sumise del llanzador\n"
+"COMPROBACIÓN:\n"
+"    ¿L'iconu apaez y desapaez automáticamente?"
 
 #. description
 #: ../jobs/mediacard.txt.in:56
@@ -1253,6 +1659,17 @@ msgid ""
 "VERIFICATION:\n"
 "    Does the icon automatically appear/disappear?"
 msgstr ""
+"PROPÓSITU:\n"
+"    Esta prueba va comprobar el sofitu de la tarxeta Multi Media Card "
+"(MMC).\n"
+"PASOS:\n"
+"    1. Inxerta una tarxeta MMC nel equipu\n"
+"    2. Tendría d'apaecer un iconu nel llanzador\n"
+"    3. Primi col botón derechu del sobre l'iconu nel llanzador y seleiciona "
+"«Espulsar de mou seguru»\n"
+"    4. L'iconu tendría de sumise del llanzador\n"
+"COMPROBACIÓN:\n"
+"    ¿L'iconu apaez y desapaez automáticamente?"
 
 #. description
 #: ../jobs/mediacard.txt.in:70
@@ -1268,6 +1685,17 @@ msgid ""
 "VERIFICATION:\n"
 "    Does the icon automatically appear/disappear?"
 msgstr ""
+"PROPÓSITU:\n"
+"    Esta prueba va comprobar el sofitu de la tarxeta Multi Media Card (MMC) "
+"dempués de la suspensión\n"
+"PASOS:\n"
+"    1. Inxerta una tarxeta MMC nel equipu\n"
+"    2. Debería apaecer un iconu nel Llanzador\n"
+"    3. Primi col botón derechu sobre l'iconu del Llanzador y seleiciona "
+"«Espulsar de mou seguru»\n"
+"    4. L'iconu debería desapaecer del Llanzador.\n"
+"VERIFICACIÓN:\n"
+"    ¿L'iconu apaez y desapaez automáticamente?"
 
 #. description
 #: ../jobs/mediacard.txt.in:83
@@ -1282,6 +1710,16 @@ msgid ""
 "VERIFICATION:\n"
 "    Does the icon automatically appear/disappear?"
 msgstr ""
+"PROPÓSITU:\n"
+"    Esta prueba va comprobar el sofitu de la tarxeta Memory Stick (MS)\n"
+"PASOS:\n"
+"    1. Inxerta una tarxeta MS nel equipu\n"
+"    2. Debería apaecer un iconu nel Llanzador\n"
+"    3. Primi col botón derechu sobre l'iconu del Llanzador y seleiciona "
+"«Espulsar de mou seguru»\n"
+"    4. L'iconu debería desapaecer del Llanzador.\n"
+"VERIFICACIÓN:\n"
+"    ¿L'iconu apaez y desapaez automáticamente?"
 
 #. description
 #: ../jobs/mediacard.txt.in:97
@@ -1297,6 +1735,17 @@ msgid ""
 "VERIFICATION:\n"
 "    Does the icon automatically appear/disappear?"
 msgstr ""
+"PROPÓSITU:\n"
+"    Esta prueba va comprobar el sofitu de la tarxeta de medios del sistema "
+"Memory Stick (MS) dempués de la suspensión\n"
+"PASOS:\n"
+"    1. Inxerta una tarxeta MS nel equipu\n"
+"    2. Debería apaecer un iconu nel Llanzador\n"
+"    3. Primi col botón derechu sobre l'iconu del Llanzador y seleiciona "
+"«Espulsar de mou seguru»\n"
+"    4. L'iconu debería desapaecer del Llanzador.\n"
+"VERIFICACIÓN:\n"
+"    ¿L'iconu apaez y desapaez automáticamente?"
 
 #. description
 #: ../jobs/mediacard.txt.in:110
@@ -1312,6 +1761,16 @@ msgid ""
 "VERIFICATION:\n"
 "    Does the icon automatically appear/disappear?"
 msgstr ""
+"PROPÓSITU:\n"
+"    Esta prueba va comprobar el sofitu de la tarxeta Memory Stick Pro (MSP)\n"
+"PASOS:\n"
+"    1. Inxerta una tarxeta MSP nel equipu\n"
+"    2. Debería apaecer un iconu nel Llanzador\n"
+"    3. Primi col botón derechu sobre l'iconu del Llanzador y seleiciona "
+"«Espulsar de mou seguru»\n"
+"    4. L'iconu debería desapaecer del Llanzador.\n"
+"VERIFICACIÓN:\n"
+"    ¿L'iconu apaez y desapaez automáticamente?"
 
 #. description
 #: ../jobs/mediacard.txt.in:124
@@ -1327,6 +1786,17 @@ msgid ""
 "VERIFICATION:\n"
 "    Does the icon automatically appear/disappear?"
 msgstr ""
+"PROPÓSITU:\n"
+"    Esta prueba va comprobar el sofitu de la tarxeta Memory Stick Pro (MSP) "
+"dempués de la suspensión\n"
+"PASOS:\n"
+"    1. Inxerta una tarxeta MSP nel equipu\n"
+"    2. Debería apaecer un iconu nel Llanzador\n"
+"    3. Primi col botón derechu sobre l'iconu del Llanzador y seleiciona "
+"«Espulsar de mou seguru»\n"
+"    4. L'iconu debería desapaecer del Llanzador.\n"
+"VERIFICACIÓN:\n"
+"    ¿L'iconu apaez y desapaez automáticamente?"
 
 #. description
 #: ../jobs/mediacard.txt.in:137
@@ -1341,6 +1811,16 @@ msgid ""
 "VERIFICATION:\n"
 "    Does the icon automatically appear/disappear?"
 msgstr ""
+"PROPÓSITU:\n"
+"    Esta prueba va comprobar el sofitu de la tarxeta Compact Flash (CF)\n"
+"PASOS:\n"
+"    1. Inxerta una tarxeta CF nel equipu\n"
+"    2. Debería apaecer un iconu nel Llanzador\n"
+"    3. Primi col botón derechu sobre l'iconu del Llanzador y seleiciona "
+"«Espulsar de mou seguru»\n"
+"    4. L'iconu debería desapaecer del Llanzador.\n"
+"VERIFICACIÓN:\n"
+"    ¿L'iconu apaez y desapaez automáticamente?"
 
 #. description
 #: ../jobs/mediacard.txt.in:151
@@ -1355,6 +1835,17 @@ msgid ""
 "VERIFICATION:\n"
 "    Does the icon automatically appear/disappear?"
 msgstr ""
+"    PROPÓSITU:\n"
+"    Esta prueba va comprobar el sofitu de la tarxeta Compact Flash (CF) "
+"dempués de la suspensión\n"
+"PASOS:\n"
+"    1. Inxerta una tarxeta CF nel equipu\n"
+"    2. Debería apaecer un iconu nel Llanzador\n"
+"    3. Primi col botón derechu sobre l'iconu del Llanzador y seleiciona "
+"«Espulsar de mou seguru»\n"
+"    4. L'iconu debería desapaecer del Llanzador.\n"
+"VERIFICACIÓN:\n"
+"    ¿L'iconu apaez y desapaez automáticamente?"
 
 #. description
 #: ../jobs/memory.txt.in:4
@@ -1368,6 +1859,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Is the amount of detected memory correct?"
 msgstr ""
+"PROPÓSITU:\n"
+"      Esta prueba mide la cantidá de memoria que se deteuta\n"
+"PASOS:\n"
+"      1. Primi en Prueba pa ver la cantidá de memoria deteutada\n"
+"INFORMACIÓN:\n"
+"      $output\n"
+"VERIFICACIÓN:\n"
+"      ¿Ye correuta la cantidá de memoria deteutada?"
 
 #. description
 #: ../jobs/memory.txt.in:19
@@ -1387,11 +1886,19 @@ msgid ""
 "    Did your screen change temporarily to a text console and then switch "
 "back to your current session?"
 msgstr ""
+"PROPÓSITU:\n"
+"    Esta prueba comprobará que'l sistema pue camudar a un terminal virtual y "
+"volver a X\n"
+"PASOS:\n"
+"    1. Primi «Prueba» pa cambiar a otru terminal virtual y llueu volver a X\n"
+"VERIFICACIÓN:\n"
+"    ¿Cambió temporalmente la pantalla a una consola de testu y llueu volvió "
+"a la sesión actual?"
 
 #. description
 #: ../jobs/miscellanea.txt.in:21
 msgid "Run Firmware Test Suite (fwts) automated tests."
-msgstr ""
+msgstr "Executa les pruebes automátiques del  Firmware Test Suite(fwts)."
 
 #. description
 #: ../jobs/miscellanea.txt.in:30
@@ -1423,11 +1930,13 @@ msgstr ""
 msgid ""
 "This test checks /var/crash to see if there are any crash reports present."
 msgstr ""
+"Esta prueba ye pa revisar si hai dalgún informe de fallu presente en "
+"/var/crash"
 
 #. description
 #: ../jobs/miscellanea.txt.in:51
 msgid "If there are, this test will fail."
-msgstr ""
+msgstr "Si los hai, esta prueba fallará."
 
 #. description
 #: ../jobs/monitor.txt.in:3
@@ -1441,6 +1950,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the desktop displayed correctly on both screens?"
 msgstr ""
+"PROPÓSITU:\n"
+"    Esta prueba comprobará'l puertu VGA. Omítela si'l to equipu nun tien un "
+"puertu VGA.\n"
+"PASOS:\n"
+"    1. Coneuta una pantalla (si nun ta yá coneutada) al puertu VGA del "
+"equipu.\n"
+"VERIFICACIÓN:\n"
+"    ¿Amosóse l'escritoriu correutamente en dambes pantalles?"
 
 #. description
 #: ../jobs/monitor.txt.in:13
@@ -1454,6 +1971,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the desktop displayed correctly on both screens?"
 msgstr ""
+"PROPÓSITU:\n"
+"    Esta prueba revisará'l puertu DVI. Omite esti pasu si'l to sistema nun "
+"tien un puertu DVI.\n"
+"PASOS:\n"
+"    1. Coneuta una pantalla (si nun ta yá coneutada) al puertu DVI del "
+"sistema\n"
+"VERIFICACIÓN:\n"
+"    ¿L'escritoriu amosóse correutamente en dambes pantalles?"
 
 #. description
 #: ../jobs/monitor.txt.in:23
@@ -1467,6 +1992,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the desktop displayed correctly on both screens?"
 msgstr ""
+"PROPÓSITU:\n"
+"    Esta prueba revisará'l puertu DisplayPort. Omite esti pasu si'l to "
+"sistema nun tien un puertu DisplayPort.\n"
+"PASOS:\n"
+"    1. Coneuta una pantalla (si nun ta yá coneutada) al puertu DisplayPort "
+"del sistema\n"
+"VERIFICACIÓN:\n"
+"    ¿L'escritoriu amosóse correutamente en dambes pantalles?"
 
 #. description
 #: ../jobs/monitor.txt.in:33
@@ -1480,6 +2013,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the desktop displayed correctly on both screens?"
 msgstr ""
+"PROPÓSITU:\n"
+"    Esta prueba revisará'l puertu HDMI. Omite esti pasu si'l to sistema nun "
+"tien un puertu HDMI.\n"
+"PASOS:\n"
+"    1. Coneuta una pantalla (si nun ta yá coneutada) al puertu HDMI del "
+"sistema\n"
+"VERIFICACIÓN:\n"
+"    ¿L'escritoriu amosóse correutamente en dambes pantalles?"
 
 #. description
 #: ../jobs/monitor.txt.in:43
@@ -1493,6 +2034,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the desktop displayed correctly on both screens?"
 msgstr ""
+"PROPÓSITU:\n"
+"    Esta prueba revisará'l puertu S_VIDEO. Omite esti pasu si'l to sistema "
+"nun tien un puertu S_VIDEO.\n"
+"PASOS:\n"
+"    1. Coneuta una pantalla (si nun ta yá coneutada) al puertu S_VIDEO del "
+"sistema\n"
+"VERIFICACIÓN:\n"
+"    ¿L'escritoriu amosóse correutamente en dambes pantalles?"
 
 #. description
 #: ../jobs/monitor.txt.in:53
@@ -1506,6 +2055,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the desktop displayed correctly on both screens?"
 msgstr ""
+"PROPÓSITU:\n"
+"    Esta prueba revisará'l puertu RCA. Omite esti pasu si'l sistema nun tien "
+"un puertu RCA.\n"
+"PASOS:\n"
+"    1. Coneuta una pantalla (si nun ta yá coneutada) al puertu RCA del "
+"sistema\n"
+"VERIFICACIÓN:\n"
+"    ¿L'escritoriu amosóse correutamente en dambes pantalles?"
 
 #. description
 #: ../jobs/monitor.txt.in:64
@@ -1518,11 +2075,19 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the the monitor go blank and turn on again?"
 msgstr ""
+"PROPÓSITU:\n"
+"    Esta prueba va revisar la capacidá d'aforru d'enerxía del monitor.\n"
+"PASOS:\n"
+"    1. Primi «Prueba» pa probar les capacidaes d'aforru d'enerxía del "
+"monitor\n"
+"    2. Primi cualesquir tecla o muevi'l mur pa reactivar la pantalla\n"
+"VERIFICACIÓN:\n"
+"    ¿El monitor quedó en blanco y prendióse otra vegada?"
 
 #. description
 #: ../jobs/networking.txt.in:5
 msgid "Test to detect the available network controllers"
-msgstr ""
+msgstr "Prueba pa deteutar controladores de rede disponibles"
 
 #. description
 #: ../jobs/networking.txt.in:11
@@ -1547,6 +2112,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Did a notification show and was the connection correctly established?"
 msgstr ""
+"PROPÓSITU:\n"
+"    Esta prueba va revisar la to conexón cableada.\n"
+"PASOS:\n"
+"    1. Primi nel iconu de rede que s'alcuentra nel panel superior\n"
+"    2. Seleiciona un rede baxo la seición Rede cableada\n"
+"    3. Primi «Probar» pa verificar que ye posible afitar una conexón HTTP\n"
+"VERIFICACIÓN:\n"
+"    ¿ Apaeció una notificación y la conexón afitóse correutamente?"
 
 #. description
 #: ../jobs/networking.txt.in:49
@@ -1565,6 +2138,18 @@ msgid ""
 "VERIFICATION:\n"
 "    Did a notification show and was the connection correctly established?"
 msgstr ""
+"PROPÓSITU:\n"
+"    Esta prueba revisará que se pue configurar y coneutar un módem DSL.\n"
+"PASOS:\n"
+"    1. Coneuta la llinia de teléfonu al equipu\n"
+"    2. Primi nel iconu de Rede que s'alcuentra nel panel superior.\n"
+"    3. Seleiciona «Editar conexones»\n"
+"    4. Seleiciona la llingüeta «DSL»\n"
+"    5. Primi «Amestar»\n"
+"    6. Configura los parámetros de conexón afayadizamente\n"
+"    7. Primi «Prueba» pa verificar que ye posible afitar una conexón HTTP\n"
+"VERIFICACIÓN:\n"
+"    ¿ Apaeció una notificación y la conexón afitóse correutamente?"
 
 #. description
 #: ../jobs/networking.txt.in:66
@@ -1610,6 +2195,8 @@ msgstr ""
 msgid ""
 "Automated test to walk multiple network cards and test each one in sequence."
 msgstr ""
+"Prueba automatizada pa pasar sobre múltiples tarxetes de rede y probar cada "
+"una secuencialmente."
 
 #. description
 #: ../jobs/networking.txt.in:118
@@ -1619,7 +2206,7 @@ msgstr "Prueba pa midir l'anchor de banda de rede"
 #. description
 #: ../jobs/optical.txt.in:8
 msgid "Test to detect the optical drives"
-msgstr ""
+msgstr "Prueba pa deteutar les unidaes óptiques"
 
 #. description
 #: ../jobs/optical.txt.in:13
@@ -1640,6 +2227,17 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the data correctly written?"
 msgstr ""
+"PROPÓSITU:\n"
+"    Esta prueba va comprobar les capacidaes d'escritura de CDROM del so "
+"equipu. Si la so unidá nun soporta la escritura de CD o nun tien nengún CD "
+"en blancu, omita esta prueba.\n"
+"PASOS:\n"
+"    1. Introduz un discu en blancu na unidá 2.\n"
+"    Escribi daqué nel CDROM\n"
+"    3. Llei'l CDROM acabante escribir\n"
+"    4. L'iconu tendría de sumise del Llanzador.\n"
+"VERIFICACIÓN:\n"
+"    ¿Los datos escribiéronse correchamente?"
 
 #. description
 #: ../jobs/optical.txt.in:49
@@ -1661,6 +2259,22 @@ msgid ""
 "VERIFICATION:\n"
 "    Did all the steps work?"
 msgstr ""
+"PROPÓSITU:\n"
+"    Esta prueba va comprobar les capacidaes de reproducción de CD d'audiu.\n"
+"PASOS:\n"
+"    1. Introduz un CD d'audiu na unidá óptica\n"
+"    2. Abri'l Tableru (primi nel botón del Círculu d'Amigos d'Ubuntu nel "
+"Llanzador)\n"
+"    3. Primi «Escuchar música» p'abrir Banshee\n"
+"    4. Escueyi'l CD baxo «Coleiciones» nel panel esquierdu de Banshee\n"
+"    5. Primi'l botón Reproducir pa escuchar la música\n"
+"    6. Para la reproducción dempués d'un tiempu\n"
+"    7. Primi col botón derechu sobre l'iconu del CD baxo «Coleiciones» y "
+"escueyi «Espulsar discu»\n"
+"    8. El CD tendría d'espulsase\n"
+"    9. Zarra Banshee\n"
+"VERIFICACIÓN:\n"
+"    ¿Funcionaron tolos pasos?"
 
 #. description
 #: ../jobs/optical.txt.in:69
@@ -1676,6 +2290,17 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the data correctly written?"
 msgstr ""
+"PROPÓSITU:\n"
+"    Esta prueba va comprobar les capacidaes d'escritura de DVD del so "
+"equipu. Si la so unidá nun soporta la escritura de DVD o nun tien nengún DVD "
+"en blancu, omita esta prueba.\n"
+"PASOS:\n"
+"    1. Introduz un discu en blancu na unidá\n"
+"    2. Escribi daqué nel DVD\n"
+"    3. Llei'l DVD recién escritu\n"
+"    4. L'iconu tendría de sumise del Llanzador.\n"
+"VERIFICACIÓN:\n"
+"    ¿Los datos escribiéronse correchamente?"
 
 #. description
 #: ../jobs/optical.txt.in:82
@@ -1695,6 +2320,21 @@ msgid ""
 "VERIFICATION:\n"
 "    Did all the steps work?"
 msgstr ""
+"PROPÓSITU:\n"
+"    Esta prueba va revisar les capacidaes de reproducción de películes en "
+"DVD. Decátate que pue precisar la instalación de software non-llibre "
+"(códecs, reproductor, etc).\n"
+"PASOS:\n"
+"    1. Inxerta un DVD que contenga cualquier película na to unidá óptica\n"
+"    2. Abri'l tableru (primi nel botón de Círculu d'amigos d'Ubuntu nel "
+"llanzador)\n"
+"    3. Primi en «Aplicaciones Multimedia» y dempués en «Reproductor de "
+"películes»\n"
+"    4. Reproduz la película usando'l Reproductor, posa la película una "
+"vegada verificao que se reproduz \n"
+"    5. Espulsa'l DVD\n"
+"VERIFICACIÓN:\n"
+"    ¿Tolos pasos funcionaron?"
 
 #. description
 #: ../jobs/optical.txt.in:100
@@ -1707,6 +2347,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the file play?"
 msgstr ""
+"PROPÓSITU:\n"
+"    Esta prueba revisará les capacidaes de reproducción de DVD.\n"
+"PASOS:\n"
+"    1. Inxerta un DVD que contenga cualesquier película na unidá óptica\n"
+"    2. Primi  «Probar» pa reproducir el DVD en Totem\n"
+"VERIFICACIÓN:\n"
+"    ¿Reprodúxose'l ficheru?"
 
 #. description
 #: ../jobs/panel_clock_test.txt.in:4
@@ -1718,6 +2365,12 @@ msgid ""
 "   Is the clock in the upper right corner of your desktop displaying the "
 "correct date and time for your timezone?"
 msgstr ""
+"PROPÓSITU:\n"
+"    Esta prueba verifica que'l reló d'escritoriu amuesa la data y hora "
+"correutes\n"
+"VERIFICACIÓN:\n"
+"    ¿Ta el reló na esquina superior derecha del to escritoriu amosando la "
+"data y hora correutes pal to fusu horariu?"
 
 #. description
 #: ../jobs/panel_clock_test.txt.in:16
@@ -1752,6 +2405,19 @@ msgid ""
 "VERIFICATION:\n"
 "   Did your system restart and bring up the GUI login cleanly?"
 msgstr ""
+"PROPÓSITU:\n"
+"   Esta prueba comprobará que pues reaniciar el sistema dende'l menú del "
+"escritoriu\n"
+"PASOS:\n"
+"   1. Primi sobre l'iconu d'Engranaxe na esquina superior derecha del "
+"escritoriu y llueu sobre «Apagar»\n"
+"   2. Primi sobre'l botón «Reaniciar» na parte izquierda del diálogu "
+"Apagar.\n"
+"   3. Dempués d'autenticate de nueves, reanicia l'aplicación Comprobación "
+"del sistema, que debería reanudase equí\n"
+"VERIFICACIÓN:\n"
+"   ¿Reanicióse'l sistema y amosó la interfaz gráfica d'usuariu de mou "
+"llimpiu?"
 
 #. description
 #: ../jobs/pcmcia-pcix.txt.in:3
@@ -1764,6 +2430,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the device correctly detected?"
 msgstr ""
+"PROPÓSITU:\n"
+"    Va comprobase qu'una ranura PCMCIA o ExpressCard pue deteutar los "
+"preseos inxertaos\n"
+"PASOS:\n"
+"    1. Coneutar un preséu PCMCIA o ExpressCard al equipu\n"
+"VERIFICACIÓN:\n"
+"    ¿Deteutóse'l preséu correutamente?"
 
 #. description
 #: ../jobs/peripheral.txt.in:3
@@ -1781,6 +2454,19 @@ msgid ""
 "VERIFICATION:\n"
 "   Were you able to print a test page to the network printer?"
 msgstr ""
+"PROPÓSITU:\n"
+"   Va comprobase que pue usase una imprentadora de rede.\n"
+"PASOS:\n"
+"   1. Asegúrate de qu'hai una imprentadora disponible na to rede\n"
+"   2. Primi nel iconu con forma d'engranaxe allugáu na esquina superior "
+"derecha y dempués calca en Imprentadores\n"
+"   3. Si la imprentadora nun apaez nel llistáu, primi en Amestar\n"
+"   4. La imprentadora tendría de deteutase y tendríen d'amosase los valores "
+"afayadizos de configuración\n"
+"   5. Imprima una página de prueba\n"
+"VERIFICACIÓN:\n"
+"   ¿Pudisti imprentar una páxina de prueba a traviés de la imprentadora de "
+"rede?"
 
 #. description
 #: ../jobs/peripheral.txt.in:18
@@ -1801,6 +2487,21 @@ msgid ""
 "VERIFICATION:\n"
 "   Was the connection correctly established?"
 msgstr ""
+"PROPÓSITU:\n"
+"   Esta prueba comprobará que'l módem USB DSL o de banda ancha móvil "
+"funciona.\n"
+"PASOS:\n"
+"   1. Coneuta'l cable USB al equipu.\n"
+"   2. Primi col botón derechu sobre l'iconu de Rede nel panel\n"
+"   3. Seleiciona «Editar les conexones»\n"
+"   4. Seleiciona la llingüeta DSL (pa un módem ADSL) o «Banda ancha móvil» "
+"(pa un módem 3G)\n"
+"   5. Primi sobre'l botón «Amestar»\n"
+"   6. Configura los parámetros de la conexón como correspuenda\n"
+"   7. Una notificación OSD tendría de confirmar que la conexón ta afitada\n"
+"   8. Seleiciona Probar pa verificar que ye posible afitar una conexón HTTP\n"
+"VERIFICACIÓN:\n"
+"   ¿Afitóse correutamente la conexón?"
 
 #. description
 #: ../jobs/phoronix.txt.in:9
@@ -1809,6 +2510,9 @@ msgid ""
 "   This test will download and install the Phoronix Test Suite and run some "
 "selected benchmarking tests."
 msgstr ""
+"PROPÓSITU:\n"
+"   Esta prueba descargará ya instalará Phoronix Test Suite y executará "
+"dalgunes pruebes de rendimientu."
 
 #. description
 #: ../jobs/power-management.txt.in:3
@@ -1822,6 +2526,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the system shutdown and rebooted correctly?"
 msgstr ""
+"PROPÓSITU:\n"
+"    Esta prueba revisará'l ciclu d'apagáu/arranque del sistema\n"
+"PASOS:\n"
+"    1. Apaga l'equipu equipu\n"
+"    2. Arranca l'equipu\n"
+"    3. Repite los pasos 1 y 2, a lo menos 5 vegaes\n"
+"VERIFICACIÓN:\n"
+"    ¿El sistema apagóse y reaniciose correutamente?"
 
 #. description
 #: ../jobs/power-management.txt.in:15
@@ -1833,6 +2545,12 @@ msgid ""
 "VERIFICATION:\n"
 "   Does closing your laptop lid cause your system to suspend?"
 msgstr ""
+"PROPÓSITU:\n"
+"    Esta prueba revisará los sensores de la tapa\n"
+"PASOS:\n"
+"    1. Zarra la tapa del to portátil\n"
+"VERIFICACIÓN:\n"
+"    ¿Zarrar la tapa del portátil fizo que se suspendiera'l sistema?"
 
 #. description
 #: ../jobs/power-management.txt.in:32
@@ -1845,6 +2563,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the screen turn off while the lid was closed?"
 msgstr ""
+"PROPÓSITU:\n"
+"    Esta prueba comprobará los sensores de la tapa\n"
+"PASOS:\n"
+"    1. Primi en «Prueba»\n"
+"    2. Zarra y abri la tapa\n"
+"VERIFICACIÓN:\n"
+"    ¿Apagóse la pantalla mentanto taba zarrada la tapa?"
 
 #. description
 #: ../jobs/power-management.txt.in:50
@@ -1859,6 +2584,15 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the system resume when the lid was opened?"
 msgstr ""
+"PROPÓSITU:\n"
+"    Esta prueba revisará los sensores de la tapa\n"
+"PASOS:\n"
+"    1. Primi en «Prueba»\n"
+"    2. Zarra la tapa\n"
+"    3. Espera 5 segundos cola tapa zarrada\n"
+"    4. Abri la tapa\n"
+"VERIFICACIÓN:\n"
+"    ¿El sistema reanudóse cuando s'abrió la tapa?"
 
 #. description
 #: ../jobs/power-management.txt.in:66
@@ -1870,7 +2604,7 @@ msgstr ""
 #. description
 #: ../jobs/power-management.txt.in:71
 msgid "Test ACPI Wakealarm (fwts wakealarm) "
-msgstr ""
+msgstr "Test ACPI Wakealarm (fwts wakealarm) "
 
 #. description
 #: ../jobs/power-management.txt.in:80
@@ -1878,6 +2612,8 @@ msgid ""
 "Check to see if CONFIG_NO_HZ is set in the kernel (this is just a simple "
 "regression check)"
 msgstr ""
+"Conseñar pa ver si CONFIG_NO_HZ afitóse nel nucleu (esto ye sólo una simple "
+"comprobación de regresión)"
 
 #. description
 #: ../jobs/qa_regression.txt.in:7
@@ -1885,36 +2621,39 @@ msgid ""
 "PURPOSE:\n"
 "   This is to install and run the Ubuntu QA regression tests (destructive)"
 msgstr ""
+"OBJETIVO:\n"
+"   Esto ye para instalar y executar les pruebes de regresión d'Ubuntu QA "
+"(destructivu)"
 
 #. description
 #: ../jobs/server-services.txt.in:5
 msgid "Verifies that sshd is running."
-msgstr ""
+msgstr "Verifica que sshd ta executándose"
 
 #. description
 #: ../jobs/server-services.txt.in:11
 msgid "Verifies that Print/CUPs server is running."
-msgstr ""
+msgstr "Verifica que'l sirvidor Print/CUPs ta executándose"
 
 #. description
 #: ../jobs/server-services.txt.in:18
 msgid "Verifies that DNS server is running and working."
-msgstr ""
+msgstr "Verifica que'l sirvidor DNS ta executándose y trabayando."
 
 #. description
 #: ../jobs/server-services.txt.in:25
 msgid "Verifies that Samba server is running."
-msgstr ""
+msgstr "Verifica que'l sirvidor Samba ta executándose"
 
 #. description
 #: ../jobs/server-services.txt.in:32
 msgid "Verifies that the LAMP stack is running (Apache, MySQL and PHP)."
-msgstr ""
+msgstr "Verifica que la pila LAMP ta executándose (Apache, MySQL y PHP)."
 
 #. description
 #: ../jobs/server-services.txt.in:39
 msgid "Verifies that Tomcat server is running and working."
-msgstr ""
+msgstr "Verifica que'l sirvidor Tomcat ta executándose y trabayando."
 
 #. description
 #: ../jobs/stress.txt.in:8
@@ -1923,6 +2662,9 @@ msgid ""
 "    Create jobs that use the CPU as much as possible for two hours. The test "
 "is considered passed if the system does not freeze."
 msgstr ""
+"PROPÓSITU:\n"
+"    Crea xeres qu'usen la CPU tanto como ye posible durante dos hores. La "
+"prueba considérase superada si'l sistema nun se conxela."
 
 #. description
 #: ../jobs/stress.txt.in:18
@@ -1940,6 +2682,20 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the system successfully hibernate and wake 30 times?"
 msgstr ""
+"PROPÓSITU:\n"
+"    Esta prueba entra y vuelve a entamar dende la ivernación 30 vegaes\n"
+"PASOS:\n"
+"    1. Asegúrate que'l to sistema nun tien contraseña de prendíu o de discu "
+"duru configurada, y que'l grub ta configuráu p'aniciar con Ubuntu por "
+"defeutu si se tien opción de múltiple arranque\n"
+"    2. Primi en «Probar» p'aniciar la prueba (mui lenta)\n"
+"    3. Si'l to sistema nun s'esconsoña pola so cuenta dempués de 2 minutos, "
+"vas tener que primir el botón d'apagáu\n"
+"    4. Si'l sistema falla al volver a entamar dende l'estáu d'ivernación y "
+"tien de reaniciase, reanicia les Pruebes del sistema y conseña esta prueba "
+"como fallida\n"
+"VERIFICACIÓN:\n"
+"    ¿El sistema ivernó y esconsoñó les 30 vegaes?"
 
 #. description
 #: ../jobs/stress.txt.in:35
@@ -1953,6 +2709,15 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the system successfully suspend and resume 30 times?"
 msgstr ""
+"PROPÓSITU:\n"
+"    Esti test entrará y saldrá de suspensión por 30 vegaes\n"
+"PASOS:\n"
+"    1. Primi en \"Probar\" p'aniciar el test (mui llargu)\n"
+"    2. Si'l sistema falla al retornar de la suspensión y necesita ser "
+"reaniciáu, por favor reanicia'l Test de sistema y conseña esti test como "
+"fallíu\n"
+"VERIFICACIÓN:\n"
+"    ¿Suspendióse y reanicióse correutamente'l sistema les 30 vegaes?"
 
 #. description
 #: ../jobs/suspend.txt.in:3
@@ -1962,12 +2727,12 @@ msgstr "Grabar la resolución actual enantes de suspender."
 #. description
 #: ../jobs/suspend.txt.in:11
 msgid "Record mixer settings before suspending."
-msgstr ""
+msgstr "Grabar la configuración del entemecedor enantes de suspender."
 
 #. description
 #: ../jobs/suspend.txt.in:18
 msgid "Verify that all the CPUs are online before suspending"
-msgstr ""
+msgstr "Verifica que toles CPU tán en llinia enantes de suspender"
 
 #. description
 #: ../jobs/suspend.txt.in:25
@@ -2002,6 +2767,17 @@ msgid ""
 "VERIFICATION:\n"
 "    Did your system suspend and resume correctly?"
 msgstr ""
+"PROPÓSITU:\n"
+"    Esti test verificará les funciones de suspender y reaniciar\n"
+"PASOS:\n"
+"    1. Primi en \"Probar\" y el sistema suspenderáse por cerca de 30-60 "
+"segundos\n"
+"    2. Si'l sistema nun esconsoña dempués de 60 segundos, por favor primi el "
+"botón d'encendíu per un momentu pa retornar el sistema manualmente.\n"
+"    3. Si'l sistema fallo al esconsoñar y necesita reaniciase, recomienza'l "
+"Test de Sistema dempués del reaniciu y conseña esta prueba como un fallu\n"
+"VERIFICACIÓN:\n"
+"    ¿Suspendióse y reanicióse'l sistema correutamente?"
 
 #. description
 #: ../jobs/suspend.txt.in:86
@@ -2019,16 +2795,20 @@ msgstr "Prueba pa ver si tienes la mesma resolución dempués de reanudar."
 msgid ""
 "Verify that mixer settings after suspend are the same as before suspend."
 msgstr ""
+"Verificar que les configuraciones del entemecedor dempués de la suspensión "
+"son les mesmes qu'enantes de suspender."
 
 #. description
 #: ../jobs/suspend.txt.in:117
 msgid "Verify that all CPUs are online after resuming."
-msgstr ""
+msgstr "Verificar que toles CPUs tán en llinia dempués de reaniciar."
 
 #. description
 #: ../jobs/suspend.txt.in:134
 msgid "Verify that all memory is available after resuming from suspend."
 msgstr ""
+"Verifica que tola memoria ta disponible dempués de la reanudación de la "
+"suspensión."
 
 #. description
 #: ../jobs/suspend.txt.in:143
@@ -2039,6 +2819,11 @@ msgid ""
 "VERIFICATION:\n"
 "    Does the display work normally after resuming from suspend?"
 msgstr ""
+"PROPÓSITU:\n"
+"    Esti test verificará si la pantalla ta correuta dempués de suspender y "
+"reaniciar\n"
+"VERIFICACIÓN:\n"
+"    ¿La pantalla funciona normalmente dempués de retornar de la suspensión?"
 
 #. description
 #: ../jobs/suspend.txt.in:164
@@ -2067,6 +2852,8 @@ msgid ""
 "This is an automated Bluetooth file transfer test. It sends an image to the "
 "device specified by the BTDEVADDR environment variable."
 msgstr ""
+"Esta ye una prueba automática de tresferencia de ficheros por Bluetooth. "
+"Unvia una imaxe al preséu especificáu pola variable d'entornu BTDEVADDR."
 
 #. description
 #: ../jobs/suspend.txt.in:190
@@ -2082,6 +2869,16 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the data correctly transferred?"
 msgstr ""
+"PROPÓSITU:\n"
+"    Esti test unviará la imaxe 'JPEG_Color_Image_Ubuntu.jpg' a un preséu "
+"especificáu\n"
+"PASOS:\n"
+"1. Primi en \"Probar\" y seleiciona'l nome del preséu Bluetooth aparexáu que "
+"va recibir la tresferencia del ficheru (pue llevar daqué de tiempu dempués "
+"d'inxertar el nome hasta que'l ficheru entame a unviase)\n"
+"    2. Aceuta cualesquier confirmación qu'apaeza en dambos preseos\n"
+"VERIFICACIÓN:\n"
+"    ¿Tresfiriéronse los datos correutamente?"
 
 #. description
 #: ../jobs/suspend.txt.in:204
@@ -2093,6 +2890,12 @@ msgid ""
 "VERIFICATION:\n"
 "    Did your display look fine in the detected mode?"
 msgstr ""
+"PROPÓSITU:\n"
+"    Esti test alternará ente los moos de pantalla deteutaos\n"
+"PASOS:\n"
+"    1. Primi en \"Probar\" y la pantalla alternará ente los moos deteutaos\n"
+"VERIFICACIÓN:\n"
+"    ¿La pantalla amuésase correutamente nel mou deteutáu?"
 
 #. description
 #: ../jobs/suspend.txt.in:216
@@ -2111,6 +2914,8 @@ msgid ""
 "This attaches screenshots from the "
 "suspend/cycle_resolutions_after_suspend_auto test to the results submission."
 msgstr ""
+"Esto axunta captures de pantalla de la "
+"suspensión/ciclu_resoluciones_dempués_suspensión a los resultaos del test ."
 
 #. description
 #: ../jobs/suspend.txt.in:231
@@ -2125,6 +2930,15 @@ msgid ""
 "VERIFICATION:\n"
 "    Automatically verified"
 msgstr ""
+"PROPÓSITU:\n"
+"    Esti test verificará si la función USB se restaura dempués d'un ciclu de "
+"suspensión y reaniciu\n"
+"PASOS:\n"
+"    1. Coneuta polo menos ún preséu d'almacenamientu USB si entá nun hai "
+"dengún coneutáu\n"
+"    2. Primi en \"Probar\" pa comenzar\n"
+"VERIFICACIÓN:\n"
+"    Verificáu automáticamente"
 
 #. description
 #: ../jobs/suspend.txt.in:248
@@ -2142,7 +2956,7 @@ msgstr ""
 #. description
 #: ../jobs/suspend.txt.in:255
 msgid "This is the automated version of suspend/suspend_advanced."
-msgstr ""
+msgstr "Esta ye la versión automatizada de suspensión/suspensión_avanzao."
 
 #. description
 #: ../jobs/suspend.txt.in:264
@@ -2192,6 +3006,15 @@ msgid ""
 "VERIFICATION:\n"
 "    Were the drives detected?"
 msgstr ""
+"PROPÓSITU:\n"
+"    Esti test verificará la conexón USB.\n"
+"PASOS:\n"
+"    1. Coneuta ún o más pendrives o discos USB.\n"
+"    2. Primi en \"Probar\".\n"
+"INFORMACIÓN:\n"
+"    $output\n"
+"VERIFICACIÓN\n"
+"¿Deteutáronse les unidaes?"
 
 #. description
 #: ../jobs/usb.txt.in:28
@@ -2204,6 +3027,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Does the keyboard work?"
 msgstr ""
+"PROPÓSITU:\n"
+"    Esti test verificará la conexón USB.\n"
+"PASOS:\n"
+"    1. Coneuta un tecláu USB al equipu.\n"
+"    2. Primi en \"Probar\" y escribi dalgún testu.\n"
+"VERIFICACIÓN:\n"
+"    ¿Funcionó'l tecláu?"
 
 #. description
 #: ../jobs/usb.txt.in:41
@@ -2216,6 +3046,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Does the mouse work correctly?"
 msgstr ""
+"PROPÓSITU:\n"
+"    Esta prueba comprobará la conexón USB.\n"
+"PASOS:\n"
+"    1. Coneuta un mur USB nel equipu.\n"
+"    2. Fai dalgunes operaciones, fai clic cenciellu/duble/derechu.\n"
+"VERIFICACIÓN:\n"
+"    ¿El mur funcionó correutamente?"
 
 #. description
 #: ../jobs/usb.txt.in:55
@@ -2228,6 +3065,13 @@ msgid ""
 "VERIFICATION:\n"
 "    The verification of this test is automated."
 msgstr ""
+"PROPÓSITU:\n"
+"    Esti test verificará la conexón USB.\n"
+"PASOS:\n"
+"    1. Primi en \"Probar\" ya inxerta un USB en 5 segs.\n"
+"    2. Nun desconeutes el preséu dempués del test.\n"
+"VERIFICACIÓN:\n"
+"    La verificación d'esti test ye automática."
 
 #. description
 #: ../jobs/usb.txt.in:69
@@ -2240,6 +3084,13 @@ msgid ""
 "VERIFICATION:\n"
 "    The verification of this test is automated."
 msgstr ""
+"PROPÓSITU:\n"
+"    Esti test verificará la conexón USB.\n"
+"PASOS:\n"
+"    1. Primi en \"Probar\" y espulsa'l preséu USB en 5 segundos.\n"
+"    2. Nun desconeutes el preséu dempués del test.\n"
+"VERIFICACIÓN:\n"
+"    La verificación d'esti test ye automática."
 
 #. description
 #: ../jobs/usb.txt.in:82
@@ -2253,6 +3104,14 @@ msgid ""
 "VERIFICATION:\n"
 "    The verification of this test is automated."
 msgstr ""
+"PROPÓSITU:\n"
+"    Esti test verificará la conexón USB.\n"
+"PASOS:\n"
+"    1. Coneuta un HD USB o unidá thumb nel equipu.\n"
+"    2. Tendría d'apaecer un iconu nel Llanzador.\n"
+"    3. Primi en \"Probar\" p'aniciar el test.\n"
+"VERIFICACIÓN:\n"
+"    La verificación d'esti test ye automática."
 
 #. description
 #: ../jobs/usb.txt.in:96
@@ -2278,6 +3137,17 @@ msgid ""
 "VERIFICATION:\n"
 "    Do all USB slots work with the device?"
 msgstr ""
+"PROPÓSITU:\n"
+"    Esti test verificará la conexón USB.\n"
+"PASOS:\n"
+"    1. Coneuta un preséu d'almacenamientu USB nun slot USB esternu del "
+"equipu.\n"
+"    2. Tendría d'apaecer un iconu nel Llanzador.\n"
+"    3. Confirma si apaez l'iconu.\n"
+"    4. Espulsa'l preséu.\n"
+"    5. Repite con cada slot USB esternu.\n"
+"VERIFICACIÓN:\n"
+"    ¿Funcionaron tolos slots USB col preséu?"
 
 #. description
 #: ../jobs/user_apps.txt.in:6
@@ -2293,6 +3163,18 @@ msgid ""
 " Did Update manager find and install updates (Pass if no updates are found,\n"
 " but Fail if updates are found but not installed)"
 msgstr ""
+"PROPÓSITU:\n"
+" Esti test verificará si'l Xestor d'anovamientos pue alcontrar "
+"anovamientos.\n"
+"PASOS:\n"
+" 1. Primi en \"Probar\" pa llanzar el Xestor d'anovamientos.\n"
+" 2. Sigui les instrucciones qu'apaecen y si s'atopen anovamientos, "
+"instálalos.\n"
+" 3. Cuando fine'l Xestor d'anovamientos, por favor, zarra l'aplicación "
+"calcando nel botón zarrar na esquina inferior derecha.\n"
+"VERIFICACIÓN:\n"
+" ¿El Xestor d'anovamientos alcontró ya instaló los anovamientos? (Pasa si "
+"nun s'atoparon anovamientos y Fallu si nun s'instalaron)"
 
 #. description
 #: ../jobs/user_apps.txt.in:22
@@ -2324,6 +3206,20 @@ msgid ""
 "VERIFICATION:\n"
 " Do you now have a folder called Test Data?"
 msgstr ""
+"PROPÓSITU:\n"
+" Esti test verificará si'l to navegador de ficheros pue copiar una carpeta.\n"
+"PASOS:\n"
+" 1. Primi en \"Probar\" p'abrir el Navegador de ficheros.\n"
+" 2. Primi col botón derechu na carpeta denomada Carpeta de Test y seleiciona "
+"Copiar.\n"
+" 3. Primi col botón derechu en cualesquier área blanca de la ventana y "
+"seleiciona Apegar.\n"
+" 4. Primi col botón derechu na carpeta denomada Carpeta de Test(copia) y "
+"seleiciona Renomar.\n"
+" 5. Escribi'l nome Datos de Test na caxa del nome y primi Enter\n"
+" 6. Zarra'l navegador de ficheros\n"
+"VERIFICACIÓN:\n"
+" ¿Tienes agora una carpeta denomada Datos de Test?"
 
 #. description
 #: ../jobs/user_apps.txt.in:54
@@ -2341,6 +3237,18 @@ msgid ""
 " Was the folder called Test Data successfully moved into the folder called "
 "Test Folder?"
 msgstr ""
+"PROPÓSITU:\n"
+" Esti test va verificar si'l navegador de ficheros pue mover una carpeta.\n"
+"PASOS:\n"
+" 1. Primi en \"Probar\" p'abrir el navegador de ficheros.\n"
+" 2. Primi y arrastra la carpeta denomada Datos de Test al iconu denomáu "
+"Carpeta de Test.\n"
+" 3. Suelta'l botón.\n"
+" 4. Fai clic dos vegaes na carpeta denomada Carpeta de Test p'abrila.\n"
+" 5. Zarra'l navegador de ficheros.\n"
+"VERIFICACIÓN:\n"
+" ¿Movióse la carpeta denomada Datos de Test dientro de la carpeta denomada "
+"Carpeta de Test?"
 
 #. description
 #: ../jobs/user_apps.txt.in:70
@@ -2356,6 +3264,17 @@ msgid ""
 "VERIFICATION:\n"
 " Do you now have a file called Test File 1?"
 msgstr ""
+"PROPÓSITU:\n"
+" Esti test va verificar si'l navegador de ficheros pue crear un ficheru "
+"nuevu.\n"
+"PASOS:\n"
+" 1. Primi en Seleicionar test p'abrir el navegador de ficheros.\n"
+" 2. Primi col botón derechu nun espaciu en blanco y seleiciona Crear "
+"documentu -> Ficheru ermu.\n"
+" 3. Escribi'l nome Ficheru de testu 1 na caxa del nome y primi Enter.\n"
+" 4. Zarra'l navegador de ficheros.\n"
+"VERIFICACIÓN:\n"
+" ¿Tienes agora un ficheru denomáu Ficheru de testu 1?"
 
 #. description
 #: ../jobs/user_apps.txt.in:85
@@ -2372,6 +3291,19 @@ msgid ""
 "VERIFICATION:\n"
 " Do you now have a file called Test File 2?"
 msgstr ""
+"PROPÓSITU:\n"
+" Esti test va verificar si'l navegador de ficheros pue copiar un ficheru.\n"
+"PASOS:\n"
+" 1. Primi en \"Probar\" p'abrir el navegador de ficheros.\n"
+" 2. Primi col botón derechu sobre'l ficheru denomáu Ficheru de testu 1 y "
+"seleiciona Copiar.\n"
+" 3. Primi col botón derechu nun espaciu en blanco y seleiciona Apegar.\n"
+" 4. Primi col botón derechu sobre'l ficheru denomáu Fiecheru de testu "
+"1(copia) y seleiciona Renomar.\n"
+" 5. Introduz el nome de Ficheru de testu 2 na caxa del nome y primi Enter.\n"
+" 6. Zarra'l navegador de ficheros.\n"
+"VERIFICACIÓN:\n"
+" ¿Agora tienes un ficheru denomáu Ficheru de testu 2?"
 
 #. description
 #: ../jobs/user_apps.txt.in:102
@@ -2388,6 +3320,18 @@ msgid ""
 "VERIFICATION:\n"
 " Was the file Test File 2 successfully moved into the Test Data folder?"
 msgstr ""
+"PROPÓSITU:\n"
+" Esti test va verificar si'l navegador de ficheros pue mover un ficheru.\n"
+"PASOS:\n"
+" 1. Primi en \"Probar\" p'abrir el navegador de ficheros.\n"
+" 2. Primi y arrastra'l ficheru denomáu Ficheru de testu 2 sobre la carpeta "
+"denomada Datos de Test.\n"
+" 3. Suelta'l botón.\n"
+" 4. Primi dos vegaes sobre l'iconu de la carpeta Datos de Test p'abrila.\n"
+" 5. Zarra'l navegador de ficheros.\n"
+"VERIFICACIÓN:\n"
+" ¿Movióse correutamente'l ficheru denomáu Ficheru de testu 2 a la carpeta "
+"Datos de Test?"
 
 #. description
 #: ../jobs/user_apps.txt.in:118
@@ -2402,6 +3346,16 @@ msgid ""
 "VERIFICATION:\n"
 "  Is Test File 1 now gone?"
 msgstr ""
+"PROPÓSITU:\n"
+" Esti test verificará si'l navegador de ficheros pue desaniciar un ficheru.\n"
+"PASOS:\n"
+" 1. Primi en \"Probar\" p'abrir el navegador de ficheros.\n"
+" 2. Primi col botón derechu nel ficheru denomáu Ficheru de testu 1 y "
+"seleiciona Mover a la Papelera.\n"
+" 3. Verifica que'l ficheru desanicióse.\n"
+" 4. Zarra'l navegador de ficheros.\n"
+"VERIFICACIÓN:\n"
+" ¿El ficheru seleicionáu desanicióse correutamente?"
 
 #. description
 #: ../jobs/user_apps.txt.in:133
@@ -2417,6 +3371,17 @@ msgid ""
 "VERIFICATION:\n"
 " Has Test Folder been successfully deleted?"
 msgstr ""
+"PROPÓSITU:\n"
+" Esti test verificará si'l navegador de ficheros pue desaniciar una "
+"carpeta.\n"
+"PASOS:\n"
+" 1. Primi en \"Probar\" p'abrir el navegador de ficheros.\n"
+" 2. Primi col botón derechu na carpeta denomada Carpeta de Test y seleiciona "
+"Mover a la Papelera.\n"
+" 3. Verifica que la carpeta desanicióse.\n"
+" 4. Zarra'l navegador de ficheros.\n"
+"VERIFICACIÓN:\n"
+" ¿La carpeta seleicionada desanicióse correutamente?"
 
 #. description
 #: ../jobs/user_apps.txt.in:207
@@ -2433,6 +3398,12 @@ msgid ""
 "VERIFICATION:\n"
 " Did the Ubuntu Test page load correctly?"
 msgstr ""
+"PROPÓSITU:\n"
+" Esti test verificará si Firefox pue renderizar una páxina web básica.\n"
+"PASOS:\n"
+" 1. Seleiciona \"Probar\" p'aniciar Firefox y ver la páxina web de test.\n"
+"VERIFICACIÓN:\n"
+" ¿Cargó correutamente la páxina de test d'Ubuntu?"
 
 #. description
 #: ../jobs/user_apps.txt.in:241
@@ -2447,6 +3418,16 @@ msgid ""
 "VERIFICATION:\n"
 " Did the applet display?"
 msgstr ""
+"PROPÓSITU:\n"
+" Esti test va verificar si Firefox pue executar una miniaplicación Java nuna "
+"páxina web. Nota:\n"
+" esto pue desixir la instalación de software adicional pa concluyir "
+"correutamente.\n"
+"PASOS:\n"
+" 1. Seleiciona \"Probar\"p'abrir Firefox na páxina de test Java, y sigui les "
+"instrucciones.\n"
+"VERIFICACIÓN:\n"
+" ¿Amuésase la miniaplicación?"
 
 #. description
 #: ../jobs/user_apps.txt.in:255
@@ -2460,6 +3441,14 @@ msgid ""
 "VERIFICATION:\n"
 " Did you see the text?"
 msgstr ""
+"PROPÓSITU:\n"
+" Esti test va verificar si Firefox pue executar complementos flash. Nota: "
+"esto pue\n"
+" desixir la instalación de software adicional pa completar la prueba.\n"
+"PASOS:\n"
+" 1. Seleiciona \"Probar\" p'aniciar Firefox y ver un exemplu de Test Flash.\n"
+"VERIFICACIÓN:\n"
+" ¿Visti correutamente'l testu?"
 
 #. description
 #: ../jobs/user_apps.txt.in:269
@@ -2472,6 +3461,14 @@ msgid ""
 "VERIFICATION:\n"
 " Did the video play correctly?"
 msgstr ""
+"PROPÓSITU:\n"
+" Esti test va verificar si Firefox pue executar un videu flash. Nota: esto "
+"pue\n"
+" desixir la instalación de software adicional pa completar la prueba.\n"
+"PASOS:\n"
+" 1. Seleiciona \"Probar\" p'aniciar Firefox y ver un videu curtiu de Flash.\n"
+"VERIFICACIÓN:\n"
+" ¿Reprodúxose correutamente'l videu?"
 
 #. description
 #: ../jobs/user_apps.txt.in:283
@@ -2498,6 +3495,15 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to connect correctly and send/receive messages?"
 msgstr ""
+"PROPÓSITU:\n"
+" Esti test verificará si'l veceru de mensaxería Empathy funciona.\n"
+"PASOS:\n"
+" 1. Seleiciona \"Probar\" p'aniciar Empathy.\n"
+" 2. Configúralu pa coneutar col serviciu de chat de Facebook.\n"
+" 3. Una vegada completada la prueba, por favor, sal d'Empathy pa continuar "
+"equí.\n"
+"VERIFICACIÓN:\n"
+" ¿Fuisti quien a coneutar correutamente ya unviar/recibir mensaxes?"
 
 #. description
 #: ../jobs/user_apps.txt.in:311
@@ -2511,6 +3517,15 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to connect correctly and send/receive messages?"
 msgstr ""
+"PROPÓSITU:\n"
+" Esti test verificará si'l veceru de mensaxería Empathy funciona.\n"
+"PASOS:\n"
+" 1. Seleiciona \"Probar\" p'aniciar Empathy.\n"
+" 2. Configúralu pa coneutar col serviciu de chat de Google Talk (gtalk).\n"
+" 3. Una vegada completada la prueba, por favor, sal d'Empathy pa continuar "
+"equí.\n"
+"VERIFICACIÓN:\n"
+" ¿Fuisti quien a coneutar correutamente ya unviar/recibir mensaxes?"
 
 #. description
 #: ../jobs/user_apps.txt.in:325
@@ -2524,6 +3539,15 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to connect correctly and send/receive messages?"
 msgstr ""
+"PROPÓSITU:\n"
+" Esti test verificará si'l veceru de mensaxería Empathy funciona.\n"
+"PASOS:\n"
+" 1. Seleiciona \"Probar\" p'aniciar Empathy.\n"
+" 2. Configúralu pa coneutar col serviciu de chat de Jabber.\n"
+" 3. Una vegada completada la prueba, por favor, sal d'Empathy pa continuar "
+"equí.\n"
+"VERIFICACIÓN:\n"
+" ¿Fuisti quien a coneutar correutamente ya unviar/recibir mensaxes?"
 
 #. description
 #: ../jobs/user_apps.txt.in:339
@@ -2537,6 +3561,16 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to connect correctly and send/receive messages?"
 msgstr ""
+"PROPÓSITU:\n"
+" Esti test verificará si'l veceru de mensaxería Empathy funciona.\n"
+"PASOS:\n"
+" 1. Seleiciona \"Probar\" p'aniciar Empathy.\n"
+" 2. Configúralu pa coneutar col serviciu de chat de AOL Instant Messaging "
+"(AIM).\n"
+" 3. Una vegada completada la prueba, por favor, sal d'Empathy pa continuar "
+"equí.\n"
+"VERIFICACIÓN:\n"
+" ¿Fuisti quien a coneutar correutamente ya unviar/recibir mensaxes?"
 
 #. description
 #: ../jobs/user_apps.txt.in:353
@@ -2550,6 +3584,15 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to connect correctly and send/receive messages?"
 msgstr ""
+"PROPÓSITU:\n"
+" Esti test verificará si'l veceru de mensaxería Empathy funciona.\n"
+"PASOS:\n"
+" 1. Seleiciona \"Probar\" p'aniciar Empathy.\n"
+" 2. Configúralu pa coneutar al serviçiu Microsoft Network (MSN).\n"
+" 3. Una vegada completáu el test, por favor, sal d'Empathy pa continuar "
+"equí.\n"
+"VERIFICACIÓN:\n"
+" ¿Fuisti quien a coneutar correutamente y unviar/recibir mensaxes?"
 
 #. description
 #: ../jobs/user_apps.txt.in:367
@@ -2562,6 +3605,13 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to receive and read e-mail correctly?"
 msgstr ""
+"PROPÓSITU:\n"
+" Esti test va verificar si Evolution funciona.\n"
+"PASOS:\n"
+" 1. Primi nel botón \"Probar\" p'abrir Evolution.\n"
+" 2. Configúralu pa coneutar a una cuenta POP3.\n"
+"VERIFICACIÓN: \n"
+" ¿Fuisti quien a recibir y lleer correutamente un corréu-e?"
 
 #. description
 #: ../jobs/user_apps.txt.in:380
@@ -2574,6 +3624,13 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to receive and read e-mail correctly?"
 msgstr ""
+"PROPÓSITU:\n"
+" Esti test va verificar si Evolution funciona.\n"
+"PASOS:\n"
+" 1. Primi nel botón \"Probar\" p'abrir Evolution.\n"
+" 2. Configúralu pa coneutar a una cuenta IMAP.\n"
+"VERIFICACIÓN: \n"
+" ¿Fuisti quien a recibir y lleer correutamente un corréu-e?"
 
 #. description
 #: ../jobs/user_apps.txt.in:393
@@ -2586,6 +3643,13 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to send e-mail without errors?"
 msgstr ""
+"PROPÓSITU:\n"
+" Esta prueba verifica qu'Evolution funciona.\n"
+"PASOS:\n"
+" 1. Primi'l botón «Prueba» pa llanzar Evolution.\n"
+" 2. Configura pa coneutar a una cuenta SMTP.\n"
+"VERIFICACIÓN:\n"
+" ¿Yes quien a unviar correos ensin fallos?"
 
 #. description
 #: ../jobs/user_apps.txt.in:406
@@ -2597,6 +3661,12 @@ msgid ""
 "VERIFICATION:\n"
 " Did it launch correctly?"
 msgstr ""
+"PROPÓSITU:\n"
+" Esti test va verificar si gcalctool (Calculadora) funciona.\n"
+"PASOS:\n"
+" Primi nel botón \"Probar\" p'abrir a calculadora.\n"
+"VERIFICACIÓN:\n"
+" ¿Abrióse la calculadora correutamente?"
 
 #. description
 #: ../jobs/user_apps.txt.in:419
@@ -2612,6 +3682,16 @@ msgid ""
 "VERIFICATION:\n"
 " Did the functions perform as expected?"
 msgstr ""
+"PROPÓSITU:\n"
+" Esti test verificará si gcalctool (Calculadora) funciona).\n"
+"PASOS:\n"
+" Primi nel botón \"Probar\" p'abrir a calculadora y fai:\n"
+" 1. Funciones matemátiques simples (+,-,/,*)\n"
+" 2. Funciones matemátiques añeraes ((,))\n"
+" 3. Matemática fraicionaria\n"
+" 4. Matemática decimal\n"
+"VERIFICACIÓN:\n"
+" ¿Resultaron les operaciones feches como s'esperaba?"
 
 #. description
 #: ../jobs/user_apps.txt.in:436
@@ -2627,6 +3707,16 @@ msgid ""
 "VERIFICATION:\n"
 " Did the functions perform as expected?"
 msgstr ""
+"PROPÓSITU:\n"
+" Esti test verificará si gcalctool (Calculadora) funciona).\n"
+"PASOS:\n"
+" Primi nel botón \"Probar\" p'abrir a calculadora y fai:\n"
+"  1. Axuste de la memoria\n"
+"  2. Llimpiar la memoria\n"
+"  3. Cabera llimpieza de memoria\n"
+"  4. Llimpieza de la memoria\n"
+"VERIFICACIÓN:\n"
+" ¿Resultaron les operaciones feches como s'esperaba?"
 
 #. description
 #: ../jobs/user_apps.txt.in:453
@@ -2641,6 +3731,15 @@ msgid ""
 "VERIFICATION:\n"
 " Did the functions perform as expected?"
 msgstr ""
+"PROPÓSITU:\n"
+" Esta prueba comprueba que gcalctool (Calculadora) funciona.\n"
+"PASOS:\n"
+" Primi'l botón «Prueba» p'abrir la calculadora y facer:\n"
+"  1. Cortar\n"
+"  2. Copiar\n"
+"  3. Apegar\n"
+"VERIFICACIÓN:\n"
+" ¿Comportáronse les funciones como s'esperaba?"
 
 #. description
 #: ../jobs/user_apps.txt.in:468
@@ -2654,6 +3753,14 @@ msgid ""
 "VERIFICATION:\n"
 " Did this perform as expected?"
 msgstr ""
+"PROPÓSITU:\n"
+" Esta prueba comprueba que gedit funciona.\n"
+"PASOS:\n"
+" 1. Primi'l botón «Prueba» p'abrir gedit.\n"
+" 2. Introduz dalgún testu y guarda'l ficheru (toma nota del nome de ficheru "
+"qu'usasti), y llueu zarra gedit.\n"
+"VERIFICACIÓN:\n"
+" ¿Comportóse como s'esperaba?"
 
 #. description
 #: ../jobs/user_apps.txt.in:482
@@ -2667,6 +3774,14 @@ msgid ""
 "VERIFICATION:\n"
 " Did this perform as expected?"
 msgstr ""
+"PROPÓSITU:\n"
+" Esta prueba comprueba que gedit funciona.\n"
+"PASOS:\n"
+" 1. Primi'l botón «Prueba» p'abrir gedit y reabrir el ficheru que creasti "
+"enantes.\n"
+" 2. Edita'l ficheru, guárdalu y llueu zarra gedit.\n"
+"VERIFICACIÓN:\n"
+" ¿Comportóse como s'esperaba?"
 
 #. description
 #: ../jobs/user_apps.txt.in:495
@@ -2681,11 +3796,21 @@ msgid ""
 "VERIFICATION:\n"
 " Did this perform as expected?"
 msgstr ""
+"PROPÓSITU:\n"
+" Esti test verificará si'l terminal de Gnome funciona.\n"
+"PASOS:\n"
+" 1. Primi nel botón \"Prueba\" p'abrir el Terminal.\n"
+" 2. Escribi 'ls' y primi Enter. Tendríes de ver un llistáu colos ficheros y "
+"carpetes de la to carpeta personal.\n"
+" 3. Zarra la ventana del terminal.\n"
+"VERIFICACIÓN:\n"
+" ¿Funcionó too como s'esperaba?"
 
 #. description
 #: ../jobs/wireless.txt.in:6
 msgid "Wireless scanning test. It scans and reports on discovered APs."
 msgstr ""
+"Prueba d'esploración inalámbrica. Esplora ya informa de les AP descubiertes."
 
 #. description
 #: ../jobs/wireless.txt.in:12
@@ -2700,6 +3825,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Did a notification show and was the connection correctly established?"
 msgstr ""
+"PROPÓSITU:\n"
+"    Esta prueba comprobará la conexón inalámbrica.\n"
+"PASOS:\n"
+"    1. Primi sobre l'iconu de Rede nel panel.\n"
+"    2. Seleiciona una rede debaxo de la seición «Redes inalámbriques».\n"
+"    3. Primi «Prueba» pa verificar que ye posible afitar una conexón HTTP.\n"
+"VERIFICACIÓN:\n"
+"    ¿Amosóse una notificación y pudo afitase la conexón correutamente?"
 
 #. description
 #: ../jobs/wireless.txt.in:28
@@ -2753,19 +3886,19 @@ msgstr "L'archivu au s'escribirá'l rexistru."
 
 #: ../checkbox/application.py:84
 msgid "Shorthand for --config=.*/jobs_info/blacklist."
-msgstr ""
+msgstr "Shorthand pa --config=.*/jobs_info/blacklist."
 
 #: ../checkbox/application.py:86
 msgid "Shorthand for --config=.*/jobs_info/blacklist_file."
-msgstr ""
+msgstr "Shorthand pa --config=.*/jobs_info/blacklist_file."
 
 #: ../checkbox/application.py:88
 msgid "Shorthand for --config=.*/jobs_info/whitelist."
-msgstr ""
+msgstr "Shorthand pa --config=.*/jobs_info/whitelist."
 
 #: ../checkbox/application.py:90
 msgid "Shorthand for --config=.*/jobs_info/whitelist_file."
-msgstr ""
+msgstr "Shorthand pa --config=.*/jobs_info/whitelist_file."
 
 #: ../checkbox/application.py:115
 msgid "Missing configuration file as argument.\n"

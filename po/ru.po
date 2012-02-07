@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-01-07 04:44+0000\n"
-"X-Generator: Launchpad (build 14640)\n"
+"X-Launchpad-Export-Date: 2012-02-07 04:36+0000\n"
+"X-Generator: Launchpad (build 14747)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:8
 msgid "_Skip this test"
@@ -1109,7 +1109,7 @@ msgstr ""
 #. description
 #: ../jobs/info.txt.in:72
 msgid "Attaches a tarball of gcov data if present."
-msgstr ""
+msgstr "Добавляет архив tarball данных gcov, если они существуют."
 
 #. description
 #: ../jobs/info.txt.in:77
@@ -1149,22 +1149,23 @@ msgstr "Сведения о устройствах SATA/IDE."
 #. description
 #: ../jobs/info.txt.in:133
 msgid "Attaches the bootchart png file for bootchart runs"
-msgstr ""
+msgstr "Добавляет файл bootchart png для запуска bootchart"
 
 #. description
 #: ../jobs/info.txt.in:142
 msgid "Attaches the bootchart log for bootchart test runs."
-msgstr ""
+msgstr "Добавление журнала bootchart при запуске теста bootchart."
 
 #. description
 #: ../jobs/info.txt.in:150
 msgid "installs the installer bootchart tarball if it exists."
-msgstr ""
+msgstr "устанавливает инсталлятор bootchart tarball если он существует."
 
 #. description
 #: ../jobs/info.txt.in:155
 msgid "Attaches the installer debug log if it exists."
 msgstr ""
+"Прикрепляет отладочную информацию программы установки, если такая существует."
 
 #. description
 #: ../jobs/input.txt.in:4
@@ -1507,7 +1508,7 @@ msgstr "Проверка управления электропитанием"
 #. description
 #: ../jobs/local.txt.in:153
 msgid "QA Regression tests"
-msgstr ""
+msgstr "Регрессионные тесты качества"
 
 #. description
 #: ../jobs/local.txt.in:158
@@ -1550,6 +1551,9 @@ msgid ""
 "This test installs and runs Linux Test Project syscalls test. This can be "
 "destructive, thus this test is blacklisted by default."
 msgstr ""
+"Этот тест установит и запустит Project Linux syscalls test. Это может "
+"привести к нарушениям работоспособности, поэтому этот тест помещен в черный "
+"список (по умолчанию)."
 
 #. description
 #: ../jobs/mago.txt.in:8
@@ -2669,7 +2673,7 @@ msgstr "Проверяет, запущен ли сервер Samba."
 #. description
 #: ../jobs/server-services.txt.in:32
 msgid "Verifies that the LAMP stack is running (Apache, MySQL and PHP)."
-msgstr ""
+msgstr "Проверка работоспособности стека LAMP (Apache, MySQL, и PHP)."
 
 #. description
 #: ../jobs/server-services.txt.in:39
@@ -3730,6 +3734,24 @@ msgid ""
 "VERIFICATION:\n"
 " Did the functions perform as expected?"
 msgstr ""
+"ЦЕЛЬ:\n"
+" \n"
+" Эта проверка позволит убедиться в работоспособности gcalctool "
+"(Калькулятор).\n"
+"ШАГИ:\n"
+"Щёлкните на кнопке \"Проверить\" для открытия калькулятора и выполните "
+"следующие действия: \n"
+" \n"
+" 1. Простые математические функции (+,-/, *)\n"
+" \n"
+" 2. Вложенные математические функции ((,))\n"
+" \n"
+" 3. Действия с дробными числами\n"
+" \n"
+" 4. Действия с десятичными числами\n"
+"ПРОВЕРКА:\n"
+" \n"
+" Функции были выполнены надлежащим образом?"
 
 #. description
 #: ../jobs/user_apps.txt.in:436
@@ -3745,6 +3767,18 @@ msgid ""
 "VERIFICATION:\n"
 " Did the functions perform as expected?"
 msgstr ""
+"ЦЕЛЬ:\n"
+" Эта проверка позволит убедиться в работоспособности gcalctool "
+"(Калькулятор).\n"
+"ДЕЙСТВИЯ:\n"
+" Щёлкните на кнопке \"Проверить\" для открытия калькулятора и выполните "
+"следующие действия:\n"
+"  1. Занесите число в память (MS)\n"
+"  2. Вызовите число из памяти (MR)\n"
+"  3. Очистка последнего добавленного в память числа (MLC)\n"
+"  4. Очистите память (MС)\n"
+"ПРОВЕРКА:\n"
+" Функции были выполнены надлежащим образом?"
 
 #. description
 #: ../jobs/user_apps.txt.in:453

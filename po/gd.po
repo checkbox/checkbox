@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-01-07 04:43+0000\n"
-"X-Generator: Launchpad (build 14640)\n"
+"X-Launchpad-Export-Date: 2012-02-07 04:34+0000\n"
+"X-Generator: Launchpad (build 14747)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:1 ../checkbox_cli/cli_interface.py:351
 #: ../checkbox_urwid/urwid_interface.py:261
@@ -63,11 +63,13 @@ msgstr "_Seadh"
 #: ../gtk/checkbox-gtk.desktop.in.h:2
 msgid "Test your system and submit results to the Ubuntu Friendly project"
 msgstr ""
+"Dearbh do shiostam agus cuir an toraidhean a-steach dhan phròiseict Ubuntu "
+"Friendly"
 
 #. description
 #: ../jobs/audio.txt.in:7
 msgid "Test to detect audio devices"
-msgstr ""
+msgstr "Deuchainn lorg innleachdan claisneach"
 
 #. description
 #: ../jobs/audio.txt.in:16
@@ -162,6 +164,9 @@ msgid ""
 "This test will detect your Bluetooth device and output the device's hardware "
 "address.  If no device is found, the test will exit with an error."
 msgstr ""
+"Lorgadh an deuchainn seo do dh' innleachd Bluetooth agus às-chur seòladh "
+"bathar-cruaidh an innleachd. Ach mur nach lorg innleachd sam bith fàgaidh e "
+"le mearachd."
 
 #. description
 #: ../jobs/bluetooth.txt.in:16
@@ -256,7 +261,7 @@ msgstr ""
 #. description
 #: ../jobs/camera.txt.in:7
 msgid "This Automated test attempts to detect a camera."
-msgstr ""
+msgstr "Feuchaidh an deuchainn fèin-obrachail seo a lorg camara."
 
 #. description
 #: ../jobs/camera.txt.in:16
@@ -323,106 +328,120 @@ msgstr ""
 msgid ""
 "Test the CPU scaling capabilities using Firmware Test Suite (fwts cpufreq)."
 msgstr ""
+"A' deuchainn comasan sgèileadh cleachdadh Suite Bathar-an-sàs Deuchainn "
+"(fwts cpufreq)."
 
 #. description
 #: ../jobs/cpu.txt.in:15
 msgid "Test for clock jitter."
-msgstr ""
+msgstr "Deuchainn son gitter gleòc."
 
 #. description
 #: ../jobs/cpu.txt.in:23
 msgid "Test offlining CPUs in a multicore system."
-msgstr ""
+msgstr "Deuchainn IPMn (CPUs) far-loidhne ann an t-siostam ioma-eitean."
 
 #. description
 #: ../jobs/cpu.txt.in:30
 msgid "This test checks cpu topology for accuracy"
-msgstr ""
+msgstr "Tha seo sgrùdadh topo-eòlas ipm son pongalachd"
 
 #. description
 #: ../jobs/cpu.txt.in:38
 msgid "This test checks that CPU frequency governors are obeyed when set."
 msgstr ""
+"Tha seo a sgrùdadh gum bi na riaghladairean tricead IPM (CPU) umhail nuair "
+"stèidhichte."
 
 #. description
 #: ../jobs/daemons.txt.in:5
 msgid "Test if the atd daemon is running when the package is installed."
 msgstr ""
+"Deuchainn ma tha an daemon atd a ruith nuair tha am pacaid stàlaichte."
 
 #. description
 #: ../jobs/daemons.txt.in:11
 msgid "Test if the cron daemon is running when the package is installed."
-msgstr ""
+msgstr "Deuchainn ma tha daemon cron a ruith nuair tha am pacaid stàlaichte."
 
 #. description
 #: ../jobs/daemons.txt.in:17
 msgid "Test if the cupsd daemon is running when the package is installed."
 msgstr ""
+"Deuchainn ma tha daemon cupsd a ruith nuair tha am pacaid stàlaichte."
 
 #. description
 #: ../jobs/daemons.txt.in:23
 msgid "Test if the getty daemon is running when the package is installed."
 msgstr ""
+"Deuchainn ma tha daemon getty a ruith nuair tha am pacaid stàlaichte."
 
 #. description
 #: ../jobs/daemons.txt.in:29
 msgid "Test if the init daemon is running when the package is installed."
-msgstr ""
+msgstr "Deuchainn ma tha daemon init a ruith nuair tha am pacaid stàlaichte."
 
 #. description
 #: ../jobs/daemons.txt.in:35
 msgid "Test if the klogd daemon is running when the package is installed."
 msgstr ""
+"Deuchainn ma tha daemon klogd a ruith nuair tha am pacaid stàlaichte."
 
 #. description
 #: ../jobs/daemons.txt.in:41
 msgid "Test if the nmbd daemon is running when the package is installed."
-msgstr ""
+msgstr "Deuchainn ma tha daemon nmbd a ruith nuair tha am pacaid stàlaichte."
 
 #. description
 #: ../jobs/daemons.txt.in:47
 msgid "Test if the smbd daemon is running when the package is installed."
-msgstr ""
+msgstr "Deuchainn ma tha daemon smbd a ruith nuair tha am pacaid stàlaichte."
 
 #. description
 #: ../jobs/daemons.txt.in:53
 msgid "Test if the syslogd daemon is running when the package is installed."
 msgstr ""
+"Deuchainn ma tha daemon syslogd a ruith nuair tha am pacaid stàlaichte."
 
 #. description
 #: ../jobs/daemons.txt.in:61
 msgid "Test if the udevd daemon is running when the package is installed."
 msgstr ""
+"Deuchainn ma tha daemon udevd a ruith nuair tha am pacaid stàlaichte."
 
 #. description
 #: ../jobs/daemons.txt.in:67
 msgid "Test if the winbindd daemon is running when the package is installed."
 msgstr ""
+"Deuchainn ma tha daemon winbinnd a ruith nuair tha am pacaid stàlaichte."
 
 #. description
 #: ../jobs/disk.txt.in:4
 msgid "Detects and displays disks attached to the system."
-msgstr ""
+msgstr "A lorg agus a taisbean dìosgan ceangailte dhan siostam."
 
 #. description
 #: ../jobs/disk.txt.in:9
 msgid "Benchmark for each disk "
-msgstr ""
+msgstr "Deuchainnean-luathais son gach dìosg "
 
 #. description
 #: ../jobs/disk.txt.in:26
 msgid "SMART test"
-msgstr ""
+msgstr "Deuchainn SMART"
 
 #. description
 #: ../jobs/disk.txt.in:42
 msgid "Maximum disk space used during a default installation test"
 msgstr ""
+"Rùm dìosg barr-suime chleachdadh fad deuchainn a stàlachadh bunaiteach"
 
 #. description
 #: ../jobs/disk.txt.in:57
 msgid "Verify system storage performs at or above baseline performance"
 msgstr ""
+"A dearbhadh gnìomhaich stòr an t-siostam aig no os cionn gnìomhaich bun-"
+"loidhne"
 
 #. description
 #: ../jobs/disk.txt.in:74
@@ -430,6 +449,8 @@ msgid ""
 "Verify that storage devices, such as Fibre Channel and RAID can be detected "
 "and perform under stress."
 msgstr ""
+"Dearbh gu gabh innleachdan stòr, mar Fibre Channel agus RAID a lorgadh 's "
+"gnìomhaich fo chuideam."
 
 #. description
 #: ../jobs/fingerprint.txt.in:3
@@ -489,12 +510,12 @@ msgstr ""
 #. description
 #: ../jobs/floppy.txt.in:4
 msgid "Floppy test"
-msgstr ""
+msgstr "Deuchainn clàr sùbailte"
 
 #. description
 #: ../jobs/graphics.txt.in:5
 msgid "Test to output the Xorg version"
-msgstr ""
+msgstr "Deuchainn ri às-chur an tionndaidh Xorg."
 
 #. description
 #: ../jobs/graphics.txt.in:12
@@ -2990,3 +3011,12 @@ msgstr ""
 #: ../scripts/internet_test:145
 msgid "Internet connection fully established"
 msgstr ""
+
+#~ msgid ""
+#~ "Play back a sound on the default output and listen for it on the \\ default "
+#~ "input.  This makes the most sense when the output and input \\ are directly "
+#~ "connected, as with a patch cable."
+#~ msgstr ""
+#~ "Cluich air ais fuaim air an às-chur bunaiteach agus èisd air a shon air ion-"
+#~ "chur bunaiteach. Tha seo a dèanamh a bharrachd ciall nuair tha an às-chur 's "
+#~ "ion-chur gan cheangal gu dìreach, mar le càball brèid."
