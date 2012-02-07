@@ -12,7 +12,10 @@ checkbox (0.13.2) precise; urgency=low
   [Daniel Manrique]
   * Changed way of obtaining preferred browser to ensure we honor the user's
     preference rather than Chromium's clobbering of
-    /etc/alternatives/gnome-www-browser (LP: #925603) 
+    /etc/alternatives/gnome-www-browser (LP: #925603)
+
+  [Brendan Donegan]
+  * Changed checkbox-cli text to clearly explain what + does (LP: #926417)
 
  -- Daniel Manrique <daniel.manrique@canonical.com>  Mon, 06 Feb 2012 14:55:58 -0500
 
