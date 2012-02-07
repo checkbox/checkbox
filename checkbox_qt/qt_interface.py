@@ -164,24 +164,22 @@ class QTInterface(UserInterface):
             self.loop.quit()
 
         def onYesTestClicked():
-            answer = OPTION_TO_ANSWER[YES_ANSWER]
-            test["status"] = ANSWER_TO_STATUS[answer]
+            test["status"] = ANSWER_TO_STATUS[YES_ANSWER]
             self.direction = NEXT
             self.loop.quit()
 
         def onNoTestClicked():
-            answer = OPTION_TO_ANSWER[NO_ANSWER]
-            test["status"] = ANSWER_TO_STATUS[answer]
+            test["status"] = ANSWER_TO_STATUS[NO_ANSWER]
             self.direction = NEXT
             self.loop.quit()
 
         enableTestButton = True
         self._set_main_title(test["name"])
-        if "$output" in test["info"]:
+        if test["info"] and "$output" in test["info"]:
             info = self._run_test(test, runner)
             enableTestButton = False
         else:
-            info = None
+            info = ""
 
         self.qtiface.showTest(
             test["purpose"], test["steps"], test["verification"], info,
