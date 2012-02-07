@@ -280,7 +280,7 @@ class CLIInterface(UserInterface):
         for option in keys:
             dialog.add_option(option)
 
-        dialog.add_option("Plus to expand options", "+")
+        dialog.add_option("Combine with character above to expand node", "+")
         dialog.add_option("Space when finished", " ")
 
         do_expand = False
