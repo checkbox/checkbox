@@ -52,7 +52,8 @@ checkbox (0.13.1) precise; urgency=low
   * Fix misplaced parentheses, so translation can work (LP: #904876)
 
   [Marc Tardif]
-  * Refactored install script to be agnostic of variant name.
+  * Refactored install scripts to be agnostic of variant name: 
+    install/postinst, install/config and debian/*.postinst.
   * Using title defined in user_interface plugin in GTK interface.
   * Updated default.whitelist to reflect renamed jobs.
   * Removed files with non-printable characters from submission.xml.
@@ -63,6 +64,7 @@ checkbox (0.13.1) precise; urgency=low
   * Removed extraneous code from the sleep_test.
   * Refactored logic to check for network after suspend.
   * Removed deprecated hwtest package.
+  * cpu_offlining was incorrectly using return instead of exit.
 
   [Daniel Manrique]
   * Update control files under debian/ to eliminate (most) lintian warnings
@@ -77,6 +79,7 @@ checkbox (0.13.1) precise; urgency=low
   * Add a plugin conf variable for the welcome string (shown on the first
     screen when checkbox runs), so it can be changed without much effort.
   * Remove superflous bluetooth/detect job
+  * Fixed typo in jobs/local.txt.in (phoronix misspelled as peripherals).
 
   [Robert Roth]
   * Fixed spelling mistakes in user_apps job file. (LP: #904209)
