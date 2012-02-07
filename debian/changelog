@@ -64,6 +64,7 @@ checkbox (0.13.1) precise; urgency=low
   * Removed extraneous code from the sleep_test.
   * Refactored logic to check for network after suspend.
   * Removed deprecated hwtest package.
+  * cpu_offlining was incorrectly using return instead of exit.
 
   [Daniel Manrique]
   * Update control files under debian/ to eliminate (most) lintian warnings
