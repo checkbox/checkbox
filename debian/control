@@ -57,7 +57,7 @@ Description: SRU interface for checkbox
  This package provides a non-interactive interface for SRU testing.
 
 Package: checkbox-qt
-Architecture: all
+Architecture: any
 Depends: checkbox (= ${source:Version}), libqtgui4, libqt4-dbus
 Description: QT4 interface for checkbox
  This project provides an extensible interface for system testing. The
