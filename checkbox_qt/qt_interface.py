@@ -33,6 +33,13 @@ from checkbox.user_interface import (UserInterface,
 import dbus
 from dbus.mainloop.glib import DBusGMainLoop
 
+ANSWER_TO_OPTION = {
+    YES_ANSWER: _('yes'),
+    NO_ANSWER: _('no'),
+    SKIP_ANSWER: _('skip')}
+
+OPTION_TO_ANSWER = dict((o, a)
+                        for a, o in ANSWER_TO_OPTION.items())
 
 class QTInterface(UserInterface):
     def __init__(self, title, data_path):
@@ -157,12 +164,14 @@ class QTInterface(UserInterface):
             self.loop.quit()
 
         def onYesTestClicked():
-            test["status"] = YES_ANSWER
+            answer = OPTION_TO_ANSWER[YES_ANSWER]
+            test["status"] = ANSWER_TO_STATUS[answer]
             self.direction = NEXT
             self.loop.quit()
 
         def onNoTestClicked():
-            test["status"] = NO_ANSWER
+            answer = OPTION_TO_ANSWER[NO_ANSWER]
+            test["status"] = ANSWER_TO_STATUS[answer]
             self.direction = NEXT
             self.loop.quit()
 
@@ -184,6 +193,7 @@ class QTInterface(UserInterface):
             noTestClicked=onNoTestClicked,
             yesTestClicked=onYesTestClicked)
 
+        test["data"] = ""
         return False
 
     def show_info(self, text, options=[], default=None):
