@@ -52,7 +52,8 @@ checkbox (0.13.1) precise; urgency=low
   * Fix misplaced parentheses, so translation can work (LP: #904876)
 
   [Marc Tardif]
-  * Refactored install script to be agnostic of variant name.
+  * Refactored install scripts to be agnostic of variant name: 
+    install/postinst, install/config and debian/*.postinst.
   * Using title defined in user_interface plugin in GTK interface.
   * Updated default.whitelist to reflect renamed jobs.
   * Removed files with non-printable characters from submission.xml.
