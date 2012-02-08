@@ -4,13 +4,14 @@
 	dh "$@" --with translations,python2
 
 override_dh_auto_build:
-	cd checkbox_qt/frontend; qmake-qt4; make; cd ../..; cp checkbox_qt/frontend/checkbox-qt-gui bin/checkbox-qt-gui
+	(cd qt/frontend; qmake-qt4; make)
 	dh_auto_build
 
 override_dh_installdeb:
 	cp debian/checkbox.postrm debian/checkbox-cli.postrm
 	cp debian/checkbox.postrm debian/checkbox-urwid.postrm
 	cp debian/checkbox.postrm debian/checkbox-gtk.postrm
+	cp debian/checkbox.postrm debian/checkbox-qt.postrm
 	cp debian/checkbox.postrm debian/checkbox-sru.postrm
 	dh_installdeb
 
@@ -19,11 +20,12 @@ override_dh_installdocs:
 	dh_installdocs -pcheckbox-cli ./README 
 	dh_installdocs -pcheckbox-urwid ./README 
 	dh_installdocs -pcheckbox-gtk ./README 
+	dh_installdocs -pcheckbox-qt ./README 
 	dh_installdocs -pcheckbox-sru ./README 
 	dh_installdocs
 
 override_dh_clean:
 	-find . -name \*.mo -exec rm {} \;
-	-rm -f debian/checkbox-cli.postrm debian/checkbox-urwid.postrm debian/checkbox-gtk.postrm debian/checkbox-sru.postrm
+	-rm -f debian/checkbox-cli.postrm debian/checkbox-urwid.postrm debian/checkbox-gtk.postrm debian/checkbox-qt.postrm debian/checkbox-sru.postrm
 	debconf-updatepo
 	dh_clean

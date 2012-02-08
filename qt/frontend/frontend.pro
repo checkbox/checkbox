@@ -4,9 +4,9 @@
 #
 #-------------------------------------------------
 
-QT       += core gui dbus
+QT       += core dbus service
 
-TARGET = checkbox-qt-gui
+TARGET = checkbox-qt-service
 TEMPLATE = app
 
 
