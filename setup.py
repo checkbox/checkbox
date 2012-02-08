@@ -228,11 +228,13 @@ This project provides an extensible interface for system testing.
         ("share/checkbox/report/images/", ["report/images/*"]),
         ("share/checkbox/scripts/", ["scripts/*"]),
         ("share/checkbox/gtk/", ["gtk/checkbox-gtk.ui", "gtk/*.png"]),
+        ("share/checkbox/qt/", ["qt/checkbox-qt.ui", "qt/*.png", "qt/frontend/checkbox-qt-service"]),
+        ("share/dbus-1/services/", ["qt/com.canonical.QtCheckbox.service"]),
         ("share/apport/package-hooks/", ["apport/source_checkbox.py"]),
         ("share/apport/general-hooks/", ["apport/checkbox.py"])],
-    scripts = ["bin/checkbox-cli", "bin/checkbox-gtk", "bin/checkbox-urwid"],
+    scripts = ["bin/checkbox-cli", "bin/checkbox-gtk", "bin/checkbox-urwid", "bin/checkbox-qt"],
     packages = ["checkbox", "checkbox.contrib", "checkbox.lib", "checkbox.parsers",
-        "checkbox.reports", "checkbox_cli", "checkbox_gtk", "checkbox_urwid"],
+        "checkbox.reports", "checkbox_cli", "checkbox_gtk", "checkbox_urwid", "checkbox_qt"],
     package_data = {
         "": ["cputable"]},
     cmdclass = {

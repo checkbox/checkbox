@@ -5,7 +5,7 @@ Uploaders: Marc Tardif <marc@ubuntu.com>
 Maintainer: Ubuntu Core Developers <ubuntu-devel-discuss@lists.ubuntu.com>
 Standards-Version: 3.9.2
 X-Python-Version: >= 2.6
-Build-Depends: debhelper (>= 7.0.50~), dh-translations, python (>= 2.6.6-3~), po-debconf, python-distutils-extra
+Build-Depends: debhelper (>= 7.0.50~), dh-translations, libqt4-dev, python (>= 2.6.6-3~), po-debconf, python-distutils-extra, qt4-qmake
 Vcs-Bzr: https://code.launchpad.net/~hardware-certification/checkbox/trunk
 
 Package: checkbox
@@ -46,3 +46,12 @@ Description: GTK interface for checkbox
  results can then be sent to Launchpad.
  .
  This package provides a GTK interface for answering tests.
+
+Package: checkbox-qt
+Architecture: any
+Depends: checkbox (= ${source:Version}), libqtgui4, libqt4-dbus
+Description: QT4 interface for checkbox
+ This project provides an extensible interface for system testing. The
+ results can then be sent to Launchpad.
+ .
+ This package provides a QT4 interface for answering tests.
