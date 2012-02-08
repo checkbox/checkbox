@@ -22,7 +22,8 @@ QtFront::QtFront(QApplication *parent) :
     currentState(WELCOME),
     ui(new Ui_main),
     m_model(0),
-    m_currentTab(1)
+    m_currentTab(1),
+    m_skipTestMessage(false)
 {
     m_mainWindow = (QWidget*)new CustomQWidget();
     ui->setupUi(m_mainWindow);
@@ -39,12 +40,11 @@ QtFront::QtFront(QApplication *parent) :
     connect(ui->testTestButton, SIGNAL(clicked()), this, SIGNAL(startTestClicked()));
     connect(ui->yesTestButton, SIGNAL(clicked()), this, SIGNAL(yesTestClicked()));
     connect(ui->noTestButton, SIGNAL(clicked()), this, SIGNAL(noTestClicked()));
-    connect(ui->nextTestButton, SIGNAL(clicked()), this, SIGNAL(nextTestClicked()));
+    connect(ui->nextTestButton, SIGNAL(clicked()), this, SLOT(onNextTestClicked()));
     connect(ui->previousTestButton, SIGNAL(clicked()), this, SIGNAL(previousTestClicked()));
     connect(ui->buttonSubmit, SIGNAL(clicked()), this, SLOT(onSubmitTestsClicked()));
     connect(m_mainWindow, SIGNAL(closed()), this, SIGNAL(closedFrontend()));
     ui->stepsFrame->setFixedHeight(0);
-    //skipTestMessage = QErrorMessage()
 
     titleTestTypes["__audio__"] = "Audio Test";
     titleTestTypes["__bluetooth__"] = "Bluetooth Test";
@@ -70,6 +70,39 @@ QtFront::QtFront(QApplication *parent) :
     buttonMap[QMessageBox::Yes] = "yes";
     buttonMap[QMessageBox::No] = "no";
 
+}
+
+void QtFront::setInitialState()
+{
+    currentState = WELCOME;
+    m_skipTestMessage = false; 
+    ui->radioTestTab->setVisible(false);
+    ui->nextPrevButtons->setVisible(false);
+    ui->testsTab->setCurrentIndex(1);
+    ui->tabWidget->setCurrentIndex(0);
+    this->m_model->deleteLater();
+    ui->treeView->setModel(0);
+    this->m_model = 0;
+}
+
+void QtFront::onNextTestClicked()
+{
+    if (!m_skipTestMessage) {
+        QMessageBox msgBox(QMessageBox::Question, tr("Are you sure?"), tr("Do you really want to skip this test?"), 0, ui->tabWidget);
+        QCheckBox dontPrompt(tr("Don't ask me again"), &msgBox);
+        dontPrompt.blockSignals(true);
+        msgBox.addButton(&dontPrompt, QMessageBox::ActionRole);
+        QAbstractButton *yesButton = (QAbstractButton*)msgBox.addButton(QMessageBox::Yes);
+        msgBox.addButton(QMessageBox::No);
+        msgBox.exec();
+        QAbstractButton *answerButton = msgBox.clickedButton(); 
+        if ( dontPrompt.checkState() == Qt::Checked )
+            m_skipTestMessage = true;
+        if (yesButton == answerButton)
+            emit nextTestClicked();
+    } else {
+        emit nextTestClicked();
+    }
 }
 
 void QtFront::onTabChanged(int index)

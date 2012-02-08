@@ -39,9 +39,11 @@ public:
     ~QtFront();
 
 public slots:
+    void setInitialState();
     void onFullTestsClicked();
     void onStartTestsClicked();
     void onSubmitTestsClicked();
+    void onNextTestClicked();
 
     void showText(QString text);
     void setWindowTitle(QString title);
@@ -81,6 +83,7 @@ private:
     QMap <QString, QString> titleTestTypes;
     QMap <int, QString> buttonMap;
     int m_currentTab;
+    bool m_skipTestMessage;
 };
 
 #endif // QTFRONT_H

@@ -57,6 +57,7 @@ class QTInterface(UserInterface):
                 time.sleep(0.5)
         self.bus.add_signal_receiver(self.onWelcomeScreenRequested, "welcomeScreenRequested")
         self.bus.add_signal_receiver(self.onClosedFrontend, "closedFrontend")
+        self.qtiface.setInitialState();
         self._set_main_title()
 
     def onWelcomeScreenRequested(self):
@@ -156,6 +157,7 @@ class QTInterface(UserInterface):
             self._run_test(test, runner)
 
         def onNextTestClicked():
+            test["status"] = ANSWER_TO_STATUS[SKIP_ANSWER]
             self.direction = NEXT
             self.loop.quit()
 
