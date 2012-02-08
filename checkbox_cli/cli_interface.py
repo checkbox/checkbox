@@ -250,7 +250,7 @@ class CLIInterface(UserInterface):
         for option in options:
             dialog.add_option(option)
 
-        dialog.add_option("Space when finished", " ")
+        dialog.add_option(_("Space when finished"), " ")
 
         results = default
         while True:
@@ -280,8 +280,8 @@ class CLIInterface(UserInterface):
         for option in keys:
             dialog.add_option(option)
 
-        dialog.add_option("Plus to expand options", "+")
-        dialog.add_option("Space when finished", " ")
+        dialog.add_option(_("Combine with character above to expand node"), "+")
+        dialog.add_option(_("Space when finished"), " ")
 
         do_expand = False
         results = default
