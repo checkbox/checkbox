@@ -516,6 +516,12 @@ class GTKInterface(UserInterface):
             self._set_hyper_text_view("hyper_text_view_test",
                 test["description"])
 
+        # Update progress bar
+        bar = self._get_widget("progressbar_test")
+        done, total = test["progress"]
+        bar.set_text("%d/%d" % (done, total))
+        bar.set_fraction(float(done) / total)
+
         # Set buttons
         if "command" in test:
             self._set_sensitive("button_test", True)
