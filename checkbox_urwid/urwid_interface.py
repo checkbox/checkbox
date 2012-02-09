@@ -372,10 +372,11 @@ class TreeChoiceDialog(ChoiceDialog):
         urwid.signals.connect_signal(widget, 'change',
                                      widget.changed_cb, self.walker)
 
-        items = sorted(data.iteritems(), key=lambda item: item[0])
-        for children_name, children_data in items:
-            child_widget = self.create_tree(children_name, children_data, widget)
-            widget.append(child_widget)
+        if isinstance(data, dict):
+            items = sorted(data.iteritems(), key=lambda item: item[0])
+            for children_name, children_data in items:
+                child_widget = self.create_tree(children_name, children_data, widget)
+                widget.append(child_widget)
 
         return widget
 
@@ -384,12 +385,13 @@ class TreeChoiceDialog(ChoiceDialog):
         """
         Set selected nodes by default recursively
         """
-        for name, default_children in default.iteritems():
-            for widget in widgets:
-                if widget.name == name:
-                    widget.state = True
-                    self._set_default(widget.children,
-                                      default_children)
+        if isinstance(default, dict):
+            for name, default_children in default.iteritems():
+                for widget in widgets:
+                    if widget.name == name:
+                        widget.state = True
+                        self._set_default(widget.children,
+                                          default_children)
 
     def show(self):
         """

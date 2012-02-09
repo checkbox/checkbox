@@ -215,7 +215,7 @@ class CLIInterface(UserInterface):
                 elif isinstance(options[key], (list, tuple,)):
                     results[key] = []
                 else:
-                    raise Exception, "Unknown result type: %s" % type(results)
+                    results[key] = None
 
                 for k in options[key]:
                     self._toggle_results(k, options[key], results[key])
@@ -225,9 +225,6 @@ class CLIInterface(UserInterface):
                 results.remove(key)
             elif key in options:
                 results.append(key)
-
-        else:
-            raise Exception, "Unknown result type: %s" % type(results)
 
     def show_progress_start(self, text):
         self.progress = CLIProgressDialog(text)
