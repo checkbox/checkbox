@@ -47,11 +47,17 @@ class UserInterface(Plugin):
 
         self._manager.reactor.call_on("run", self.run)
 
+        self._manager.reactor.call_on("set-progress",self.set_progress)
+
+    def set_progress(self, progress):
+        self._interface.progress = progress
+        
     def run(self):
         interface_module = __import__(self.interface_module,
             None, None, [''])
         interface_class = getattr(interface_module, self.interface_class)
         interface = interface_class(self.title, self.data_path)
+        self._interface = interface
 
         event_types = [
              "prompt-begin",
