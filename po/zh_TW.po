@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-01-06 12:39-0500\n"
-"PO-Revision-Date: 2011-09-07 21:02+0000\n"
-"Last-Translator: Samantha Jian-Pielak <Unknown>\n"
+"PO-Revision-Date: 2012-02-09 18:18+0000\n"
+"Last-Translator: poloshiao <poloshiao@hotmail.com>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-02-07 04:37+0000\n"
-"X-Generator: Launchpad (build 14747)\n"
+"X-Launchpad-Export-Date: 2012-02-10 04:41+0000\n"
+"X-Generator: Launchpad (build 14771)\n"
 
 #. Title of the user interface
 #: ../gtk/checkbox-gtk.ui.h:3 ../gtk/checkbox-gtk.desktop.in.h:1
@@ -154,7 +154,7 @@ msgstr "測試您的系統，並提交結果到 Ubuntu Friendly 專案"
 #. description
 #: ../jobs/audio.txt.in:7
 msgid "Test to detect audio devices"
-msgstr ""
+msgstr "偵測音效裝置的測試"
 
 #. description
 #: ../jobs/audio.txt.in:16
@@ -168,6 +168,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear a tone?"
 msgstr ""
+"目的：\n"
+"　　這個測試會檢查內建擴音器是否正常運作\n"
+"步驟：\n"
+"　　1.請確定沒有連接任何外接擴音器或耳機\n"
+"　　　　如果測試的是一台桌上型電腦，外接擴音器是允許連接的。\n"
+"　　2.點擊Test按鈕以在您的音效裝置上播放一個簡短的曲子\n"
+"檢查：\n"
+"　　您聽見一個曲子了嗎？"
 
 #. description
 #: ../jobs/audio.txt.in:33
@@ -181,6 +189,13 @@ msgid ""
 "    Did you hear a sound through the headphones and did the sound play "
 "without any distortion, clicks or other strange noises from your headphones?"
 msgstr ""
+"目的：\n"
+"　　這個測試會檢查耳機連接端子是否正常運作\n"
+"步驟：\n"
+"　　1.連接一步耳機至您的音效裝置\n"
+"　　2.點擊Test按鈕以在您的音效裝置上播放一個聲音\n"
+"檢查：\n"
+"　　您有自耳機聽見一個聲音且聲音播放沒有任何中斷、播出喀嗒聲或是其他奇怪的聲音嗎？"
 
 #. description
 #: ../jobs/audio.txt.in:49
@@ -226,6 +241,19 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear your speech played back through the USB headphones?"
 msgstr ""
+"目的：\n"
+"    本測試將會檢查USB音訊裝置是否運作正確\n"
+"\n"
+"步驟：\n"
+"    1.連接一個USB音訊裝置到你的系統\n"
+"    2.用滑鼠左鍵按下工作面板上擴音器的圖示並且選擇「音效設定」，以此來打開音量控制程式。\n"
+"    3.選擇「輸入」頁面，並且選擇你的USB裝置\n"
+"    4.選擇「輸出」頁面，並且選擇你的USB裝置\n"
+"    5.按下「測試」按鈕，並且對著麥克風說話\n"
+"    6.經過幾秒後，你說的話將會播放出來\n"
+"\n"
+"檢查：\n"
+"    你有透過USB耳機聽到你說的話嗎？"
 
 #. description
 #: ../jobs/audio.txt.in:102
@@ -242,19 +270,21 @@ msgid ""
 "   This test will attempt to install and run the Autotest Suite.  These "
 "tests can be destructive, so this test is blacklisted by default."
 msgstr ""
+"目的：\n"
+"   這項測試將會安裝並且執行自動測試套件。本項測試具有傷害性，所以本測試預設為黑名單項目。"
 
 #. description
 #: ../jobs/bluetooth.txt.in:7
 msgid ""
 "This test will detect your Bluetooth device and output the device's hardware "
 "address.  If no device is found, the test will exit with an error."
-msgstr ""
+msgstr "這項測試將會偵測你的藍芽裝置並且將裝置硬體的位置輸出。如果沒有找到裝置，測試將會結束並且呈現錯誤訊息。"
 
 #. description
 #: ../jobs/bluetooth.txt.in:16
 msgid ""
 "Automated test to store bluetooth device information in checkbox report"
-msgstr ""
+msgstr "自動執行測試將藍芽裝置資訊儲存到Checkbox報告裡"
 
 #. description
 #: ../jobs/bluetooth.txt.in:22
@@ -414,12 +444,12 @@ msgstr ""
 #. description
 #: ../jobs/cpu.txt.in:15
 msgid "Test for clock jitter."
-msgstr ""
+msgstr "測試計時器跳動."
 
 #. description
 #: ../jobs/cpu.txt.in:23
 msgid "Test offlining CPUs in a multicore system."
-msgstr ""
+msgstr "測試多核心系統的脫機 CPU."
 
 #. description
 #: ../jobs/cpu.txt.in:30
@@ -434,62 +464,62 @@ msgstr ""
 #. description
 #: ../jobs/daemons.txt.in:5
 msgid "Test if the atd daemon is running when the package is installed."
-msgstr ""
+msgstr "測試套裝程式安裝後, 測試 atd 後臺程序是否已經啓動."
 
 #. description
 #: ../jobs/daemons.txt.in:11
 msgid "Test if the cron daemon is running when the package is installed."
-msgstr ""
+msgstr "當套裝程式安裝後, 測試 cron 後臺程序是否已經啓動."
 
 #. description
 #: ../jobs/daemons.txt.in:17
 msgid "Test if the cupsd daemon is running when the package is installed."
-msgstr ""
+msgstr "當套裝程式安裝後, 測試 cupsd 後臺程序是否已經啓動."
 
 #. description
 #: ../jobs/daemons.txt.in:23
 msgid "Test if the getty daemon is running when the package is installed."
-msgstr ""
+msgstr "當套裝程式安裝後, 測試 getty 後臺程序是否已經啓動."
 
 #. description
 #: ../jobs/daemons.txt.in:29
 msgid "Test if the init daemon is running when the package is installed."
-msgstr ""
+msgstr "當套裝程式安裝後, 測試 init 後臺程序是否已經啓動."
 
 #. description
 #: ../jobs/daemons.txt.in:35
 msgid "Test if the klogd daemon is running when the package is installed."
-msgstr ""
+msgstr "當套裝程式安裝後, 測試 klogd 後臺程序是否已經啓動."
 
 #. description
 #: ../jobs/daemons.txt.in:41
 msgid "Test if the nmbd daemon is running when the package is installed."
-msgstr ""
+msgstr "當套裝程式安裝後, 測試 daemon 後臺程序是否已經啓動."
 
 #. description
 #: ../jobs/daemons.txt.in:47
 msgid "Test if the smbd daemon is running when the package is installed."
-msgstr ""
+msgstr "當套裝程式安裝後, 測試 smbd 後臺程序是否已經啓動."
 
 #. description
 #: ../jobs/daemons.txt.in:53
 msgid "Test if the syslogd daemon is running when the package is installed."
-msgstr ""
+msgstr "當套裝程式安裝後, 測試 syslogd 後臺程序是否已經啓動."
 
 #. description
 #: ../jobs/daemons.txt.in:61
 msgid "Test if the udevd daemon is running when the package is installed."
-msgstr ""
+msgstr "當套裝程式安裝後, 測試 udevd 後臺程序是否已經啓動."
 
 #. description
 #: ../jobs/daemons.txt.in:67
 msgid "Test if the winbindd daemon is running when the package is installed."
-msgstr ""
+msgstr "當套裝程式安裝後, 測試 winbindd 後臺程序是否已經啓動."
 
 #. description
 #: ../jobs/disk.txt.in:4
 msgid "Detects and displays disks attached to the system."
-msgstr ""
+msgstr "偵測並顯示系統中已掛線的磁碟"
 
 #. description
 #: ../jobs/disk.txt.in:9
@@ -504,7 +534,7 @@ msgstr "SMART 測試"
 #. description
 #: ../jobs/disk.txt.in:42
 msgid "Maximum disk space used during a default installation test"
-msgstr ""
+msgstr "在預裝測試中最大硬碟空間使用量"
 
 #. description
 #: ../jobs/disk.txt.in:57
@@ -576,7 +606,7 @@ msgstr ""
 #. description
 #: ../jobs/floppy.txt.in:4
 msgid "Floppy test"
-msgstr ""
+msgstr "軟碟測試"
 
 #. description
 #: ../jobs/graphics.txt.in:5
@@ -586,7 +616,7 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:12
 msgid "Run gtkperf to make sure that GTK based test cases work"
-msgstr ""
+msgstr "執行 gtkperf 以確認基於 GTK 的測試案例成功."
 
 #. description
 #: ../jobs/graphics.txt.in:18
@@ -623,12 +653,12 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:50
 msgid "Test that the X process is running."
-msgstr ""
+msgstr "測試 X 進程正在執行."
 
 #. description
 #: ../jobs/graphics.txt.in:56
 msgid "Test that the X is not running in failsafe mode."
-msgstr ""
+msgstr "測試在失敗安全模式下 X 進程停止執行."
 
 #. description
 #: ../jobs/graphics.txt.in:63
@@ -656,6 +686,8 @@ msgid ""
 "Ensure the current resolution meets or exceeds the recommended minimum "
 "resolution (800x600). See here for details:"
 msgstr ""
+"確保現行的解析度合於或超過推薦最低的解析度(800x600). \r\n"
+"看下面的詳細資料:"
 
 #. description
 #: ../jobs/graphics.txt.in:85
@@ -804,7 +836,7 @@ msgstr ""
 #. description
 #: ../jobs/info.txt.in:85
 msgid "Captures a screenshot."
-msgstr ""
+msgstr "捕捉螢幕截圖."
 
 #. description
 #: ../jobs/info.txt.in:91
@@ -824,12 +856,12 @@ msgstr ""
 #. description
 #: ../jobs/info.txt.in:107
 msgid "Bootchart information."
-msgstr ""
+msgstr "Bootchart 資訊"
 
 #. description
 #: ../jobs/info.txt.in:116
 msgid "SATA/IDE device information."
-msgstr ""
+msgstr "SATA/IDE 裝置資訊"
 
 #. description
 #: ../jobs/info.txt.in:133
@@ -979,7 +1011,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:13
 msgid "Bluetooth tests"
-msgstr ""
+msgstr "藍牙測試"
 
 #. description
 #: ../jobs/local.txt.in:18
@@ -989,17 +1021,17 @@ msgstr "網路攝影機測試"
 #. description
 #: ../jobs/local.txt.in:23
 msgid "Codec tests"
-msgstr ""
+msgstr "編碼測試"
 
 #. description
 #: ../jobs/local.txt.in:28
 msgid "CPU tests"
-msgstr ""
+msgstr "CPU 測試"
 
 #. description
 #: ../jobs/local.txt.in:33
 msgid "System Daemon tests"
-msgstr ""
+msgstr "系統後臺服務程序測試"
 
 #. description
 #: ../jobs/local.txt.in:38
@@ -1019,37 +1051,37 @@ msgstr "Firewire 磁碟測試"
 #. description
 #: ../jobs/local.txt.in:53
 msgid "Floppy disk tests"
-msgstr ""
+msgstr "軟碟測試"
 
 #. description
 #: ../jobs/local.txt.in:58
 msgid "Graphics tests"
-msgstr ""
+msgstr "圖形測試"
 
 #. description
 #: ../jobs/local.txt.in:63
 msgid "Hibernation tests"
-msgstr ""
+msgstr "休眠測試"
 
 #. description
 #: ../jobs/local.txt.in:68
 msgid "Informational tests"
-msgstr ""
+msgstr "信息測試"
 
 #. description
 #: ../jobs/local.txt.in:73
 msgid "Input Devices tests"
-msgstr ""
+msgstr "輸入裝置測試"
 
 #. description
 #: ../jobs/local.txt.in:78
 msgid "Software Installation tests"
-msgstr ""
+msgstr "軟體安裝測試"
 
 #. description
 #: ../jobs/local.txt.in:83
 msgid "Hotkey tests"
-msgstr ""
+msgstr "熱鍵測試"
 
 #. description
 #: ../jobs/local.txt.in:88
@@ -1064,17 +1096,17 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:98
 msgid "Media Card tests"
-msgstr ""
+msgstr "媒體卡測試"
 
 #. description
 #: ../jobs/local.txt.in:103
 msgid "Memory tests"
-msgstr ""
+msgstr "記憶體測試"
 
 #. description
 #: ../jobs/local.txt.in:108
 msgid "Miscellaneous tests"
-msgstr ""
+msgstr "雜項測試"
 
 #. description
 #: ../jobs/local.txt.in:113
@@ -1084,12 +1116,12 @@ msgstr "螢幕測試"
 #. description
 #: ../jobs/local.txt.in:118
 msgid "Networking tests"
-msgstr ""
+msgstr "網路測試"
 
 #. description
 #: ../jobs/local.txt.in:123
 msgid "Optical Drive tests"
-msgstr ""
+msgstr "光碟機測試"
 
 #. description
 #: ../jobs/local.txt.in:128
@@ -1099,7 +1131,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:133
 msgid "PCMCIA/PCIX Card tests"
-msgstr ""
+msgstr "PCMCIA/PCIX 卡測試"
 
 #. description
 #: ../jobs/local.txt.in:138
@@ -1114,7 +1146,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:148
 msgid "Power Management tests"
-msgstr ""
+msgstr "電源管理測試"
 
 #. description
 #: ../jobs/local.txt.in:153
@@ -1129,17 +1161,17 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:163
 msgid "Suspend tests"
-msgstr ""
+msgstr "休眠測試"
 
 #. description
 #: ../jobs/local.txt.in:168
 msgid "Unity tests"
-msgstr ""
+msgstr "Unity 測試"
 
 #. description
 #: ../jobs/local.txt.in:173
 msgid "USB tests"
-msgstr ""
+msgstr "USB 測試"
 
 #. description
 #: ../jobs/local.txt.in:178
@@ -1149,7 +1181,7 @@ msgstr "使用者應用程式"
 #. description
 #: ../jobs/local.txt.in:183
 msgid "Wireless networking tests"
-msgstr ""
+msgstr "無線網路測試"
 
 #. description
 #: ../jobs/local.txt.in:188
@@ -1361,7 +1393,7 @@ msgstr ""
 #. description
 #: ../jobs/memory.txt.in:19
 msgid "Test and exercise memory."
-msgstr ""
+msgstr "測試並操作記憶體."
 
 #. description
 #: ../jobs/miscellanea.txt.in:8
@@ -1387,14 +1419,14 @@ msgstr ""
 msgid ""
 "ipmitool is required for ipmi testing. This checks for ipmitool and installs "
 "it if not available."
-msgstr ""
+msgstr "ipmi 測試需要 ipmitool. 現在檢查 ipmitool; 如果沒有, 要安裝它."
 
 #. description
 #: ../jobs/miscellanea.txt.in:37
 msgid ""
 "This will run some basic connectivity tests against a BMC, verifying that "
 "IPMI works."
-msgstr ""
+msgstr "這將針對 BMC 執行一些基本連通性測試, 驗證 IPMI 是否有效."
 
 #. description
 #: ../jobs/miscellanea.txt.in:43
@@ -1512,7 +1544,7 @@ msgstr ""
 #. description
 #: ../jobs/networking.txt.in:11
 msgid "Tests whether the system has a working Internet connection."
-msgstr ""
+msgstr "測試系統是否有個有效的網路連通."
 
 #. description
 #: ../jobs/networking.txt.in:16
@@ -1556,31 +1588,31 @@ msgstr ""
 msgid ""
 "Automated test case to verify availability of some system on the network "
 "using ICMP ECHO packets."
-msgstr ""
+msgstr "驗證某些系統在網路上能否有效使用 ICMP 回應包的自動化測試案例."
 
 #. description
 #: ../jobs/networking.txt.in:73 ../jobs/peripheral.txt.in:37
 msgid ""
 "Automated test case to make sure that it's possible to download files "
 "through HTTP"
-msgstr ""
+msgstr "確信能用 HTTP 下載檔案的自動化測試案例."
 
 #. description
 #: ../jobs/networking.txt.in:81
 msgid "Test to see if we can sync local clock to an NTP server"
-msgstr ""
+msgstr "測試看看我們能否讓本機的時間與 NTP 伺服器同步."
 
 #. description
 #: ../jobs/networking.txt.in:87
 msgid ""
 "Verify that an installation of checkbox-server on the network can be reached "
 "over SSH."
-msgstr ""
+msgstr "驗證可以從網路上透過 SSH 安裝 check-server."
 
 #. description
 #: ../jobs/networking.txt.in:93
 msgid "Try to enable a remote printer on the network and print a test page."
-msgstr ""
+msgstr "嘗試啓動網路遠端印表機並且印出測試頁."
 
 #. description
 #: ../jobs/networking.txt.in:98
@@ -1591,7 +1623,7 @@ msgstr ""
 #. description
 #: ../jobs/networking.txt.in:118
 msgid "Test to measure the network bandwidth"
-msgstr ""
+msgstr "測試以衡量網路頻寬."
 
 #. description
 #: ../jobs/optical.txt.in:8
@@ -1601,7 +1633,7 @@ msgstr ""
 #. description
 #: ../jobs/optical.txt.in:13
 msgid "Optical Storage device read tests"
-msgstr ""
+msgstr "光碟儲存裝置讀取測試"
 
 #. description
 #: ../jobs/optical.txt.in:36
@@ -1840,7 +1872,7 @@ msgstr ""
 #. description
 #: ../jobs/power-management.txt.in:66
 msgid "Make sure that the RTC (Real-Time Clock) device exists."
-msgstr ""
+msgstr "確認 RTC (Real-Time Clock) 裝置存在."
 
 #. description
 #: ../jobs/power-management.txt.in:71
@@ -1948,14 +1980,14 @@ msgstr ""
 #: ../jobs/suspend.txt.in:25
 msgid ""
 "Dumps memory info to a file for comparison after suspend test has been run"
-msgstr ""
+msgstr "轉移記憶體資料存入檔案, 爲了執行暫停測試後做個比較."
 
 #. description
 #: ../jobs/suspend.txt.in:43
 msgid ""
 "This test disconnects all connections and then connects to the wireless "
 "interface. It then checks the connection to confirm it's working as expected."
-msgstr ""
+msgstr "這個測試打斷所有連線然後連線到無線界面. 然後檢查連線以確認連線一如預期發揮作用."
 
 #. description
 #: ../jobs/suspend.txt.in:73
@@ -2016,14 +2048,14 @@ msgid ""
 "This test checks that the wireless interface is working after suspending the "
 "system. It disconnects all interfaces and then connects to the wireless "
 "interface and checks that the connection is working as expected."
-msgstr ""
+msgstr "這個測試在暫停系統後檢查無線界面是否仍然有效. 它把所有界面斷線然後連通到無線界面, 並且檢查連線是否一如預期般有效."
 
 #. description
 #: ../jobs/suspend.txt.in:174
 msgid ""
 "This test grabs the hardware address of the bluetooth adapter after suspend "
 "and compares it to the address grabbed before suspend."
-msgstr ""
+msgstr "這個測試在暫停後抓獲藍牙適配器硬體位址, 並且與暫停前抓獲的位址比較."
 
 #. description
 #: ../jobs/suspend.txt.in:182
@@ -2064,7 +2096,7 @@ msgid ""
 "This test will check to make sure supported video modes work after a suspend "
 "and resume. This is done automatically by taking screenshots and uploading "
 "them as an attachment."
-msgstr ""
+msgstr "這個測試將會檢查暫停後復原時支援的視訊模式確信仍然有效. 選測試以開始."
 
 #. description
 #: ../jobs/suspend.txt.in:225
@@ -2095,6 +2127,8 @@ msgid ""
 "microphone, however, it works best if used with a cable connecting the audio-"
 "out jack to the audio-in jack."
 msgstr ""
+"這個測試將會檢查暫停後復原時確信你的音效裝置還能正確作用. 喇叭與主機版內建的麥克風可能可以運作良好, "
+"但是如果用一條音訊線從音訊輸出孔連接到音訊輸入孔, 效果會更好."
 
 #. description
 #: ../jobs/suspend.txt.in:255
@@ -2107,26 +2141,26 @@ msgid ""
 "This automatically tests Wake-on-LAN capability with the aid of a suitably "
 "configured server. During this process the system will suspend, then "
 "automatically wake up after no more than 5 minutes."
-msgstr ""
+msgstr "這個測試在適當設定的伺服器幫助下自動測試網卡的叫醒能力"
 
 #. description
 #: ../jobs/unity.txt.in:6
 msgid ""
 "Xlib is required for unity testing. This checks for Xlib and installs it if "
 "not available."
-msgstr ""
+msgstr "要測試 unity 需要 Xlib. 這個測試針對 Xlib, 如果還沒安裝將會自動安裝."
 
 #. description
 #: ../jobs/unity.txt.in:13
 msgid ""
 "This test will verify that Unity is running and then run the autopilot.py "
 "test against the Unity interface."
-msgstr ""
+msgstr "這個測試將會驗證 Unity 正執行中. 然後針對 Unity 界面執行 autopilot.py 測試."
 
 #. description
 #: ../jobs/usb.txt.in:5
 msgid "Detects and shows USB devices attached to this system."
-msgstr ""
+msgstr "偵測並顯出連接到 USB 裝置."
 
 #. description
 #: ../jobs/usb.txt.in:12
@@ -2208,7 +2242,7 @@ msgstr ""
 msgid ""
 "This test is automated and requires that you plug in at least one usb "
 "storage device before running checkbox."
-msgstr ""
+msgstr "這個測試是自動化的所以需要你在執行 checkbox 前先最少插進一個 USB 儲存裝置."
 
 #. description
 #: ../jobs/usb.txt.in:102
@@ -2905,7 +2939,7 @@ msgstr ""
 #: ../plugins/apport_prompt.py:231
 #, python-format
 msgid "Test %s failed."
-msgstr ""
+msgstr "測試 %s 失敗."
 
 #: ../plugins/apport_prompt.py:232
 msgid "Do you want to report a bug?"
