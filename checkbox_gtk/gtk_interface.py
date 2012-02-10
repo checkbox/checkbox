@@ -394,12 +394,13 @@ class GTKInterface(UserInterface):
         treeview.show()
 
         def set_options(options, default, parent=None):
-            keys = sorted(options.keys())
-            values = [options[k] for k in keys]
-            for text, child in zip(keys, values):
-                active = text in default
-                iter = treestore.append(parent, [text, active])
-                set_options(child, default.get(text, {}), iter)
+            if isinstance(options, dict):
+                keys = sorted(options.keys())
+                values = [options[k] for k in keys]
+                for text, child in zip(keys, values):
+                    active = text in default
+                    iter = treestore.append(parent, [text, active])
+                    set_options(child, default.get(text, {}), iter)
 
         set_options(options, default)
 

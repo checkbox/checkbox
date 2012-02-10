@@ -42,6 +42,7 @@ class SuitesPrompt(Plugin):
 
         self._depends = {}
         self._jobs = {}
+        self._statuses = {}
         self._persist = None
         self._recover = False 
 
@@ -79,6 +80,8 @@ class SuitesPrompt(Plugin):
             self._jobs[job["name"]] = job[attribute]
             if "suite" in job:
                 self._depends[job["name"]] = [job["suite"]]
+            if job.get("type") == "test":
+                self._statuses[job["name"]] = job["status"]
 
     def prompt_gather(self, interface):
         # Resolve dependencies
@@ -93,21 +96,18 @@ class SuitesPrompt(Plugin):
             suboptions = options
             dependencies = resolver.get_dependencies(job)
             for dependency in dependencies:
-                suboptions = suboptions.setdefault(self._jobs[dependency], {})
+                value = self._statuses.get(dependency, {})
+                suboptions = suboptions.setdefault(self._jobs[dependency], value)
 
         # Build defaults
         defaults = self.persist.get("default")
         if defaults is None:
             defaults = copy.deepcopy(options)
 
-        # Only prompt if not recovering
-        if interface.direction == PREV or not self._recover:
-            self._recover = False
-
-            # Get results
-            defaults = interface.show_tree(_("Select the suites to test"),
-                options, defaults)
-            self.persist.set("default", defaults)
+        # Get results
+        defaults = interface.show_tree(_("Select the suites to test"),
+            options, defaults)
+        self.persist.set("default", defaults)
 
         # Get tests to ignore
         def get_ignore_jobs(options, results):
