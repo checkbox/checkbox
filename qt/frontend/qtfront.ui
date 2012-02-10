@@ -7,14 +7,26 @@
     <x>0</x>
     <y>0</y>
     <width>640</width>
-    <height>443</height>
+    <height>480</height>
    </rect>
   </property>
   <property name="sizePolicy">
-   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>640</width>
+    <height>480</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>640</width>
+    <height>480</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Form</string>
@@ -28,8 +40,14 @@
    </property>
    <item>
     <widget class="QTabWidget" name="tabWidget">
+     <property name="tabPosition">
+      <enum>QTabWidget::North</enum>
+     </property>
+     <property name="tabShape">
+      <enum>QTabWidget::Rounded</enum>
+     </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tabWelcome">
       <attribute name="title">
@@ -141,7 +159,7 @@
              </rect>
             </property>
             <property name="frameShape">
-             <enum>QFrame::NoFrame</enum>
+             <enum>QFrame::Box</enum>
             </property>
             <property name="frameShadow">
              <enum>QFrame::Plain</enum>
@@ -225,63 +243,60 @@
            <property name="styleSheet">
             <string notr="true">background-color: #C2C7CB;</string>
            </property>
+           <widget class="QLabel" name="progressLabel">
+            <property name="geometry">
+             <rect>
+              <x>50</x>
+              <y>20</y>
+              <width>331</width>
+              <height>17</height>
+             </rect>
+            </property>
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="font">
+             <font>
+              <family>Ubuntu</family>
+              <pointsize>11</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>10 tests completed out of 30 (30%)</string>
+            </property>
+           </widget>
            <widget class="QProgressBar" name="progressBar">
             <property name="geometry">
              <rect>
               <x>50</x>
               <y>40</y>
-              <width>191</width>
+              <width>118</width>
               <height>16</height>
              </rect>
             </property>
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
+            <property name="minimum">
+             <number>0</number>
             </property>
-            <property name="autoFillBackground">
-             <bool>false</bool>
-            </property>
-            <property name="styleSheet">
-             <string notr="true"> QProgressBar {
-     border: 0px solid grey;
-     border-radius: 0px;
-     background: #FFFFFF;
- }
-
- QProgressBar::chunk {
-     background-color: #ed7341;
-     width: 20px;
- }</string>
+            <property name="maximum">
+             <number>0</number>
             </property>
             <property name="value">
-             <number>50</number>
+             <number>-1</number>
+            </property>
+            <property name="textVisible">
+             <bool>false</bool>
+            </property>
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
             </property>
             <property name="invertedAppearance">
              <bool>false</bool>
             </property>
             <property name="format">
              <string/>
-            </property>
-           </widget>
-           <widget class="QLabel" name="progressLabel">
-            <property name="geometry">
-             <rect>
-              <x>50</x>
-              <y>20</y>
-              <width>241</width>
-              <height>17</height>
-             </rect>
-            </property>
-            <property name="font">
-             <font>
-              <family>Ubuntu</family>
-              <pointsize>9</pointsize>
-             </font>
-            </property>
-            <property name="text">
-             <string>10 tests completed out of 30 (30%)</string>
             </property>
            </widget>
           </widget>
@@ -302,9 +317,9 @@
            </property>
            <property name="styleSheet">
             <string notr="true"> QTabWidget::pane#testsTab { /* The tab widget frame */
-     border-top: 10 solid #C2C7CB;
+     border-top: 15 solid #C2C7CB;
      position: absolute;
-     top: -1.2em;
+     top: -1.7em;
  }
 
 QTabWidget::tab-bar#testsTab {
@@ -317,8 +332,13 @@ QTabWidget::tab-bar#testsTab {
     background: #FFFFFF;
      border: 1px solid #000000;
      border-bottom-color: #000000; /* same as the pane color */
-     min-width: 8ex;
+     min-width: 10ex;
+     min-height: 3ex;
      padding: 0px;
+     border-top-left-radius: 4px;
+     border-top-right-radius: 4px;
+     border-bottom-left-radius: 4px;
+     border-bottom-right-radius: 4px;
  }
 
  QTabBar::tab:selected {
@@ -327,8 +347,11 @@ QTabWidget::tab-bar#testsTab {
      border-bottom-color: #000000; /* same as pane color */
  }</string>
            </property>
+           <property name="tabShape">
+            <enum>QTabWidget::Rounded</enum>
+           </property>
            <property name="currentIndex">
-            <number>1</number>
+            <number>3</number>
            </property>
            <widget class="QWidget" name="welcome">
             <property name="font">
@@ -391,8 +414,8 @@ QTabWidget::tab-bar#testsTab {
             <widget class="QLabel" name="label_2">
              <property name="geometry">
               <rect>
-               <x>40</x>
-               <y>48</y>
+               <x>50</x>
+               <y>50</y>
                <width>101</width>
                <height>17</height>
               </rect>
@@ -404,8 +427,8 @@ QTabWidget::tab-bar#testsTab {
             <widget class="QLabel" name="label_3">
              <property name="geometry">
               <rect>
-               <x>470</x>
-               <y>46</y>
+               <x>430</x>
+               <y>50</y>
                <width>67</width>
                <height>17</height>
               </rect>
@@ -424,7 +447,10 @@ QTabWidget::tab-bar#testsTab {
               </rect>
              </property>
              <property name="frameShape">
-              <enum>QFrame::NoFrame</enum>
+              <enum>QFrame::Box</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Plain</enum>
              </property>
             </widget>
             <widget class="QTreeView" name="treeView">
@@ -432,12 +458,15 @@ QTabWidget::tab-bar#testsTab {
               <rect>
                <x>50</x>
                <y>80</y>
-               <width>351</width>
+               <width>361</width>
                <height>171</height>
               </rect>
              </property>
              <property name="frameShape">
-              <enum>QFrame::NoFrame</enum>
+              <enum>QFrame::Box</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Plain</enum>
              </property>
              <property name="showDropIndicator" stdset="0">
               <bool>false</bool>
@@ -625,7 +654,7 @@ QTabWidget::tab-bar#testsTab {
                                  <rect>
                                   <x>0</x>
                                   <y>0</y>
-                                  <width>33</width>
+                                  <width>32</width>
                                   <height>178</height>
                                  </rect>
                                 </property>
@@ -659,14 +688,17 @@ QTabWidget::tab-bar#testsTab {
                                      <height>0</height>
                                     </size>
                                    </property>
+                                   <property name="autoFillBackground">
+                                    <bool>false</bool>
+                                   </property>
                                    <property name="frameShape">
-                                    <enum>QFrame::NoFrame</enum>
+                                    <enum>QFrame::Box</enum>
                                    </property>
                                    <property name="frameShadow">
                                     <enum>QFrame::Plain</enum>
                                    </property>
                                    <property name="lineWidth">
-                                    <number>0</number>
+                                    <number>1</number>
                                    </property>
                                   </widget>
                                  </item>
@@ -765,7 +797,7 @@ QTabWidget::tab-bar#testsTab {
                  <widget class="QPushButton" name="nextTestButton">
                   <property name="geometry">
                    <rect>
-                    <x>520</x>
+                    <x>510</x>
                     <y>10</y>
                     <width>80</width>
                     <height>25</height>
@@ -795,6 +827,9 @@ QTabWidget::tab-bar#testsTab {
             </layout>
            </widget>
            <widget class="QWidget" name="submitResults">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
             <property name="font">
              <font>
               <pointsize>11</pointsize>
@@ -851,7 +886,7 @@ p, li { white-space: pre-wrap; }
               <string>Review Results</string>
              </property>
             </widget>
-            <widget class="QPushButton" name="buttonSubmitAnounymously">
+            <widget class="QPushButton" name="buttonSubmitAnonymously">
              <property name="geometry">
               <rect>
                <x>90</x>
@@ -879,7 +914,7 @@ p, li { white-space: pre-wrap; }
               </font>
              </property>
              <property name="title">
-              <string>Submit To Your Launchpad Account</string>
+              <string>Submit To Your Launchpad Account (using Launchpad eMail ID)</string>
              </property>
              <property name="flat">
               <bool>false</bool>
@@ -903,7 +938,7 @@ p, li { white-space: pre-wrap; }
              <widget class="QLabel" name="label_5">
               <property name="geometry">
                <rect>
-                <x>10</x>
+                <x>0</x>
                 <y>30</y>
                 <width>101</width>
                 <height>17</height>
@@ -915,7 +950,7 @@ p, li { white-space: pre-wrap; }
                </font>
               </property>
               <property name="text">
-               <string>Launchpad ID:</string>
+               <string>Email Address:</string>
               </property>
              </widget>
              <widget class="QPushButton" name="buttonSubmit">
