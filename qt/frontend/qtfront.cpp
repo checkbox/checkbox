@@ -145,7 +145,7 @@ void QtFront::onStartTestsClicked()
 void QtFront::onSubmitTestsClicked()
 {
     ui->buttonSubmit->setEnabled(false);
-    ui->buttonSubmitAnounymously->setEnabled(false);
+    ui->buttonSubmitAnonymously->setEnabled(false);
     ui->lineEditLaunchpad->setEnabled(false);
     emit submitTestsClicked();
 }
@@ -202,7 +202,7 @@ void QtFront::showEntry(QString text)
     ui->nextPrevButtons->setVisible(false);
 
     ui->buttonSubmit->setEnabled(true);
-    ui->buttonSubmitAnounymously->setEnabled(true);
+    ui->buttonSubmitAnonymously->setEnabled(true);
     ui->lineEditLaunchpad->setEnabled(true);
 
 }
