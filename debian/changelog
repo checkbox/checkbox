@@ -16,6 +16,8 @@ checkbox (0.13.2) precise; urgency=low
   * Added submission_path_prompt config variable; if set, it will be shown to
     the user before the test selection screen, and the value entered will
     override the default filename for the xml report.
+  * Rearranged a misplaced changelog entry.
+  * Updated debian/control to remove unneeded Uploader: field.
 
   [Brendan Donegan]
   * Changed checkbox-cli text to clearly explain what + does (LP: #926417)
@@ -49,6 +51,8 @@ checkbox (0.13.1) precise; urgency=low
   * Added memory_compare script to automate the memory/info job
   * Switch audio settings to correct device before running audio tests
     (LP: #916859)
+  * Nixed graphics/xorg-version-output job and updated other job dependencies,
+    since it is redundant with graphics/xorg-version. (LP: #671144)
 
   [Gabor Kelemen]
   * Fixed last two remaining strings with backslashes (LP: #868571)
@@ -162,8 +166,6 @@ checkbox (0.13) precise; urgency=low
     the test description (LP: #890725)
   * Allow input/mouse test to run if a TOUCH device is present
     (LP: #886129)
-  * Nixed graphics/xorg-version-output job and updated other job dependencies,
-    since it is redundant with graphics/xorg-version. (LP: #671144)
 
   [ Javier Collado ]
   * Broken job dependencies fixed (LP: #888447)
