@@ -873,7 +873,7 @@ p, li { white-space: pre-wrap; }
               <bool>false</bool>
              </property>
             </widget>
-            <widget class="QPushButton" name="buttonReviewResults">
+            <widget class="QPushButton" name="buttonViewResults">
              <property name="geometry">
               <rect>
                <x>90</x>
@@ -883,10 +883,10 @@ p, li { white-space: pre-wrap; }
               </rect>
              </property>
              <property name="text">
-              <string>Review Results</string>
+              <string>View Results</string>
              </property>
             </widget>
-            <widget class="QPushButton" name="buttonSubmitAnonymously">
+            <widget class="QPushButton" name="buttonSubmitResults">
              <property name="geometry">
               <rect>
                <x>90</x>
@@ -896,7 +896,7 @@ p, li { white-space: pre-wrap; }
               </rect>
              </property>
              <property name="text">
-              <string>Submit Anounymously</string>
+              <string>Submit results</string>
              </property>
             </widget>
             <widget class="QGroupBox" name="groupBox">
@@ -914,7 +914,7 @@ p, li { white-space: pre-wrap; }
               </font>
              </property>
              <property name="title">
-              <string>Submit To Your Launchpad Account (using Launchpad eMail ID)</string>
+              <string>Tell us about your results</string>
              </property>
              <property name="flat">
               <bool>false</bool>
@@ -922,7 +922,7 @@ p, li { white-space: pre-wrap; }
              <property name="checkable">
               <bool>false</bool>
              </property>
-             <widget class="QLineEdit" name="lineEditLaunchpad">
+             <widget class="QLineEdit" name="lineEditEmailAddress">
               <property name="geometry">
                <rect>
                 <x>110</x>
@@ -951,19 +951,6 @@ p, li { white-space: pre-wrap; }
               </property>
               <property name="text">
                <string>Email Address:</string>
-              </property>
-             </widget>
-             <widget class="QPushButton" name="buttonSubmit">
-              <property name="geometry">
-               <rect>
-                <x>320</x>
-                <y>24</y>
-                <width>101</width>
-                <height>27</height>
-               </rect>
-              </property>
-              <property name="text">
-               <string>Submit</string>
               </property>
              </widget>
             </widget>

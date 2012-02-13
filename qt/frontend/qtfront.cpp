@@ -42,7 +42,7 @@ QtFront::QtFront(QApplication *parent) :
     connect(ui->noTestButton, SIGNAL(clicked()), this, SIGNAL(noTestClicked()));
     connect(ui->nextTestButton, SIGNAL(clicked()), this, SLOT(onNextTestClicked()));
     connect(ui->previousTestButton, SIGNAL(clicked()), this, SIGNAL(previousTestClicked()));
-    connect(ui->buttonSubmit, SIGNAL(clicked()), this, SLOT(onSubmitTestsClicked()));
+    connect(ui->buttonSubmitResults, SIGNAL(clicked()), this, SLOT(onSubmitTestsClicked()));
     connect(m_mainWindow, SIGNAL(closed()), this, SIGNAL(closedFrontend()));
     ui->stepsFrame->setFixedHeight(0);
 
@@ -144,9 +144,8 @@ void QtFront::onStartTestsClicked()
 
 void QtFront::onSubmitTestsClicked()
 {
-    ui->buttonSubmit->setEnabled(false);
-    ui->buttonSubmitAnonymously->setEnabled(false);
-    ui->lineEditLaunchpad->setEnabled(false);
+    ui->buttonSubmitResults->setEnabled(false);
+    ui->lineEditEmailAddress->setEnabled(false);
     emit submitTestsClicked();
 }
 
@@ -196,14 +195,13 @@ void QtFront::showEntry(QString text)
 {
     Q_UNUSED(text)
     currentState = SUBMISSION;
-    // launchpad id requested, so move to the results screen and hide the "run" screen contents
+    // Email address requested, so move to the results screen and hide the "run" screen contents
     ui->testsTab->setCurrentIndex(3);
     ui->radioTestTab->setVisible(false);
     ui->nextPrevButtons->setVisible(false);
 
-    ui->buttonSubmit->setEnabled(true);
-    ui->buttonSubmitAnonymously->setEnabled(true);
-    ui->lineEditLaunchpad->setEnabled(true);
+    ui->buttonSubmitResults->setEnabled(true);
+    ui->lineEditEmailAddress->setEnabled(true);
 
 }
 
@@ -316,9 +314,9 @@ QString QtFront::showInfo(QString text, QStringList options, QString defaultopti
     return result;
 }
 
-QString QtFront::getLaunchpadId()
+QString QtFront::getEmailAddress()
 {
-    return ui->lineEditLaunchpad->text();
+    return ui->lineEditEmailAddress->text();
 }
 
 QVariantMap QtFront::getTestsToRun()

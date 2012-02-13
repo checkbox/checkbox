@@ -53,7 +53,7 @@ public slots:
     void showTree(QString text, QMap<QString, QVariant> options);
     void showEntry(QString text);
     QVariantMap getTestsToRun();
-    QString getLaunchpadId();
+    QString getEmailAddress();
     void showTest(QString purpose, QString steps, QString verification, QString info, QString testType, bool enableTestButton);
     QString showInfo(QString text, QStringList options, QString defaultoption);
 

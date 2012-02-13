@@ -28,8 +28,11 @@ from checkbox.user_interface import PREV
 
 class LaunchpadPrompt(Plugin):
 
-    # E-mail address used to sign in to Launchpad.
+    # Email address used to sign in to Launchpad.
     email = String(required=False)
+
+    # Default email address used for anonymous submissions.
+    default_email = String(default="ubuntu-friendly-squad@lists.launchpad.net")
 
     def register(self, manager):
         super(LaunchpadPrompt, self).register(manager)
@@ -74,7 +77,7 @@ hardware database:
 
   [[%s|View Report]]
 
-You can submit this information about your system by providing the e-mail \
+You can submit this information about your system by providing the email \
 address you use to sign in to Launchpad. If you do not have a Launchpad \
 account, please register here:
 
@@ -84,9 +87,7 @@ account, please register here:
                 break
 
             if not email:
-                self._manager.reactor.fire("prompt-error", interface,
-                    _("No e-mail address provided, not submitting to Launchpad."))
-                break
+                email = self.default_email
 
             if not re.match(r"^\S+@\S+\.\S+$", email, re.I):
                 errors.append(_("Email address must be in a proper format."))
