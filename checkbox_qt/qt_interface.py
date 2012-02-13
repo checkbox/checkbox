@@ -57,8 +57,13 @@ class QTInterface(UserInterface):
                 time.sleep(0.5)
         self.bus.add_signal_receiver(self.onWelcomeScreenRequested, "welcomeScreenRequested")
         self.bus.add_signal_receiver(self.onClosedFrontend, "closedFrontend")
+        self.bus.add_signal_receiver(self.onReviewTestsClicked, "reviewTestsClicked")
         self.qtiface.setInitialState();
         self._set_main_title()
+
+    def onReviewTestsClicked(self):
+        print self.report_url
+        self.show_url(self.report_url) 
 
     def onWelcomeScreenRequested(self):
         pass

@@ -21,6 +21,8 @@ from checkbox.properties import Path, String
 from checkbox.user_interface import PREV
 
 import gettext
+import posixpath
+
 from gettext import gettext as _
 
 
@@ -46,12 +48,14 @@ class UserInterface(Plugin):
         super(UserInterface, self).register(manager)
 
         self._manager.reactor.call_on("run", self.run)
+        self._manager.reactor.call_on("launchpad-report", self.launchpad_report)
 
     def run(self):
         interface_module = __import__(self.interface_module,
             None, None, [''])
         interface_class = getattr(interface_module, self.interface_class)
         interface = interface_class(self.title, self.data_path)
+        self._interface = interface
 
         event_types = [
              "prompt-begin",
@@ -71,6 +75,13 @@ class UserInterface(Plugin):
                     index -= 1
             else:
                 index += 1
+
+    def launchpad_report(self, launchpad_report):
+        print launchpad_report
+        self._interface.report_url = "file://%s" % posixpath.abspath(launchpad_report)
+        print self._interface.report_url
+
+
 
 
 factory = UserInterface
