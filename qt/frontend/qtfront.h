@@ -43,6 +43,7 @@ public slots:
     void onFullTestsClicked();
     void onStartTestsClicked();
     void onSubmitTestsClicked();
+    void onReviewTestsClicked();
     void onNextTestClicked();
 
     void showText(QString text);
@@ -69,6 +70,7 @@ signals:
     void nextTestClicked();
     void previousTestClicked();
     void submitTestsClicked();
+    void reviewTestsClicked();
     // when the user clicks welcome during the tests
     void welcomeScreenRequested();
     // when the user clicks welcome from the tests selection tree
