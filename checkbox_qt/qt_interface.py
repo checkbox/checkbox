@@ -122,8 +122,8 @@ class QTInterface(UserInterface):
         newOptions = {}
         for section in options:
             newTests = {}
-            for test in options[section]:
-                newTests[str(test)] = str("")
+            for test, state in options[section].iteritems():
+                newTests[str(test)] = state
 
             if newTests == {}:
                 newTests = {'': ''}
@@ -185,7 +185,7 @@ class QTInterface(UserInterface):
 
         self.qtiface.showTest(
             test["purpose"], test["steps"], test["verification"], info,
-            test["suite"], enableTestButton)
+            test["suite"], test["name"], enableTestButton)
         self.wait_on_signals(
             startTestClicked=onStartTestClicked,
             nextTestClicked=onNextTestClicked,
