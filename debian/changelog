@@ -18,6 +18,7 @@ checkbox (0.13.2) precise; urgency=low
     override the default filename for the xml report.
   * Rearranged a misplaced changelog entry.
   * Updated debian/control to remove unneeded Uploader: field.
+  * plugins/suites_prompt.py: Fixed jobs being run despite being deselected. 
 
   [Brendan Donegan]
   * Changed checkbox-cli text to clearly explain what + does (LP: #926417)
