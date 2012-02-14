@@ -60,6 +60,7 @@ private slots:
     void onPreviousTestClicked();
     void onYesTestClicked();
     void onNoTestClicked();
+    void onReviewTestsClicked();
 
     void onTabChanged(int index);
     void onJobItemChanged(QModelIndex index);
@@ -74,6 +75,7 @@ signals:
     void nextTestClicked();
     void previousTestClicked();
     void submitTestsClicked();
+    void reviewTestsClicked();
     // when the user clicks welcome during the tests
     void welcomeScreenRequested();
     // when the user clicks welcome from the tests selection tree

@@ -70,6 +70,7 @@ class UserInterface(object):
         self.title = title
         self.data_path = data_path
 
+        self.report_url = None
         self.direction = NEXT
         self.gettext_domain = "checkbox"
         gettext.textdomain(self.gettext_domain)

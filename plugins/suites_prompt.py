@@ -112,12 +112,13 @@ class SuitesPrompt(Plugin):
         # Get tests to ignore
         def get_ignore_jobs(options, results):
             jobs = []
-            for k, v in options.iteritems():
-                if not v and k not in results:
-                    jobs.append(k)
+            if isinstance(options,dict):
+                for k, v in options.iteritems():
+                    if not v and k not in results:
+                        jobs.append(k)
 
-                else:
-                    jobs.extend(get_ignore_jobs(options[k], results.get(k, {})))
+                    else:
+                        jobs.extend(get_ignore_jobs(options[k], results.get(k, {})))
 
             return jobs
 

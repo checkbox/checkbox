@@ -46,6 +46,7 @@ QtFront::QtFront(QApplication *parent) :
     connect(ui->nextTestButton, SIGNAL(clicked()), this, SLOT(onNextTestClicked()));
     connect(ui->previousTestButton, SIGNAL(clicked()), this, SLOT(onPreviousTestClicked()));
     connect(ui->buttonSubmit, SIGNAL(clicked()), this, SLOT(onSubmitTestsClicked()));
+    connect(ui->buttonReviewResults, SIGNAL(clicked()), this, SLOT(onReviewTestsClicked()));
     connect(m_mainWindow, SIGNAL(closed()), this, SIGNAL(closedFrontend()));
     connect(ui->treeView, SIGNAL(collapsed(QModelIndex)), this, SLOT(onJobItemChanged(QModelIndex)));
     connect(ui->treeView, SIGNAL(expanded(QModelIndex)), this, SLOT(onJobItemChanged(QModelIndex)));
@@ -177,6 +178,11 @@ void QtFront::onSubmitTestsClicked()
     ui->buttonSubmitAnonymously->setEnabled(false);
     ui->lineEditLaunchpad->setEnabled(false);
     emit submitTestsClicked();
+}
+
+void QtFront::onReviewTestsClicked()
+{
+    emit reviewTestsClicked();
 }
 
 void QtFront::showText(QString text)
