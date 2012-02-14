@@ -7,6 +7,8 @@
 
 #include "step.h"
 
+#define STEP_COLOR "#DD3814"
+
 Step::Step(QWidget *parent, QString text, QString index)
 {
     setParent(parent);
@@ -16,7 +18,7 @@ Step::Step(QWidget *parent, QString text, QString index)
     if (index != "") {
         QGraphicsScene *scene = new QGraphicsScene(0, 0, 20, 20);
         QGraphicsEllipseItem *item = new QGraphicsEllipseItem(0, 0, 20, 20);
-        item->setBrush( Qt::yellow );
+        item->setBrush(QBrush(STEP_COLOR));
         item->setPos(0,0);
         scene->addItem(item);
         item->setPos(0,0);
