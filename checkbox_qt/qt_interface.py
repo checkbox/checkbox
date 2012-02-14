@@ -62,7 +62,6 @@ class QTInterface(UserInterface):
         self._set_main_title()
 
     def onReviewTestsClicked(self):
-        print self.report_url
         self.show_url(self.report_url) 
 
     def onWelcomeScreenRequested(self):
