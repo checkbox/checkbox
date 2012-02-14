@@ -20,6 +20,8 @@ import copy
 
 from checkbox.contrib.persist import Persist, MemoryBackend
 
+from checkbox.job import UNINITIATED
+
 from checkbox.lib.resolver import Resolver
 
 from checkbox.plugin import Plugin
@@ -114,9 +116,8 @@ class SuitesPrompt(Plugin):
             jobs = []
             if isinstance(options,dict):
                 for k, v in options.iteritems():
-                    if not v and k not in results:
+                    if v == UNINITIATED and k not in results:
                         jobs.append(k)
-
                     else:
                         jobs.extend(get_ignore_jobs(options[k], results.get(k, {})))
 
