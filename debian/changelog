@@ -1,5 +1,6 @@
 checkbox (0.13.2) precise; urgency=low
 
+  [ Daniel Manrique ]
   [Jeff Lane]
   * Added a Hard Disk Stats Test that was part of a much older merge request
     for server test suite.
@@ -25,7 +26,10 @@ checkbox (0.13.2) precise; urgency=low
     prettified tabs and updated Launchpad email text amongst other UI tweaks
     in qt/frontend/qtfront.ui
 
- -- Daniel Manrique <daniel.manrique@canonical.com>  Mon, 06 Feb 2012 14:55:58 -0500
+  [ Javier Collado ]
+  * Removed job that installed ipmitool by default (LP: #931954)
+
+ -- Javier Collado <javier.collado@canonical.com>  Tue, 14 Feb 2012 10:26:54 +0100
 
 checkbox (0.13.1) precise; urgency=low
 
