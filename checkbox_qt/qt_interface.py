@@ -128,7 +128,9 @@ class QTInterface(UserInterface):
         for section in options:
             newTests = {}
             for test, state in options[section].iteritems():
-                newTests[str(test)] = state
+                # TODO: add support for more than one level
+                if not isinstance(state, dict):
+                    newTests[str(test)] = state
 
             if newTests == {}:
                 newTests = {'': ''}
