@@ -40,12 +40,6 @@ public:
 
 public slots:
     void setInitialState();
-    void onFullTestsClicked();
-    void onStartTestsClicked();
-    void onSubmitTestsClicked();
-    void onReviewTestsClicked();
-    void onNextTestClicked();
-
     void showText(QString text);
     void setWindowTitle(QString title);
     void startProgressBar(QString text);
@@ -55,11 +49,22 @@ public slots:
     void showEntry(QString text);
     QVariantMap getTestsToRun();
     QString getLaunchpadId();
-    void showTest(QString purpose, QString steps, QString verification, QString info, QString testType, bool enableTestButton);
+    void showTest(QString purpose, QString steps, QString verification, QString info, QString testType, QString testName, bool enableTestButton);
     QString showInfo(QString text, QStringList options, QString defaultoption);
 
 private slots:
+    void onFullTestsClicked();
+    void onStartTestsClicked();
+    void onSubmitTestsClicked();
+    void onNextTestClicked();
+    void onPreviousTestClicked();
+    void onYesTestClicked();
+    void onNoTestClicked();
+    void onReviewTestsClicked();
+
     void onTabChanged(int index);
+    void onJobItemChanged(QModelIndex index);
+    void updateTestStatus(QString status = QString());
 
 signals:
     void fullTestsClicked();
@@ -82,10 +87,13 @@ private:
     Ui_main *ui;
     QWidget *m_mainWindow;
     TreeModel * m_model;
-    QMap <QString, QString> titleTestTypes;
-    QMap <int, QString> buttonMap;
+    QStandardItemModel *m_statusModel;
+    QMap<QString, QString> m_statusList;
+    QMap <QString, QString> m_titleTestTypes;
+    QMap <QString, QString> m_statusStrings;
     int m_currentTab;
     bool m_skipTestMessage;
+    QString m_currentTestName;
 };
 
 #endif // QTFRONT_H

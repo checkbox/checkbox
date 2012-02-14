@@ -21,11 +21,15 @@ Step::Step(QWidget *parent, QString text, QString index)
         scene->addItem(item);
         item->setPos(0,0);
         QGraphicsView *view = new QGraphicsView(scene);
+        view->setRenderHint(QPainter::Antialiasing, true);
+        view->setRenderHint(QPainter::TextAntialiasing, true);
         view->setFrameShape(QFrame::NoFrame);
         view->setBackgroundRole(QPalette::NoRole);
         view->setFixedSize(20, 20);
-        QGraphicsTextItem *text = new QGraphicsTextItem(" "+ index, item);
-        text->setTextWidth(20);
+        QGraphicsTextItem *text = new QGraphicsTextItem(item, scene);
+        text->setHtml("<center>"+index+"</center>");
+        text->setPos(1,-2);
+        text->setTextWidth(18);
         layout->addWidget(view);
     } else {
         QWidget *widget = new QWidget(this);
