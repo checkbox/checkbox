@@ -23,15 +23,9 @@ _description:
 command:
  fwts_test -l $CHECKBOX_DATA/fwts_results.log
 
-plugin: local
-name: miscellanea/check_and_install_ipmitool
-user: root
-command: dpkg -l | grep -iq 'ipmitool' || apt-get install -y ipmitool >/dev/null 2>&1
-_description: ipmitool is required for ipmi testing. This checks for ipmitool and installs it if not available.
-
 plugin: shell
 name: miscellanea/ipmi_test
-depends: miscellanea/check_and_install_ipmitool
+requires: package.name == 'ipmitool'
 user: root
 command: ipmi_test
 _description:

@@ -1,6 +1,7 @@
 #include <QtDBus>
 #include <QMessageBox>
 #include <QVariantMap>
+#include <QScrollBar>
 
 #include "qtfront.h"
 #include "treemodel.h"
@@ -22,6 +23,7 @@ QtFront::QtFront(QApplication *parent) :
     currentState(WELCOME),
     ui(new Ui_main),
     m_model(0),
+    m_statusModel(new QStandardItemModel()),
     m_currentTab(1),
     m_skipTestMessage(false)
 {
@@ -35,41 +37,67 @@ QtFront::QtFront(QApplication *parent) :
     connect(ui->testsTab, SIGNAL(currentChanged(int)), this, SLOT(onTabChanged(int)));
     ui->radioTestTab->setVisible(false);
     ui->nextPrevButtons->setVisible(false);
+    ui->treeView->verticalScrollBar()->setTracking(true);
     connect(ui->friendlyTestsButton, SIGNAL(clicked()), this, SLOT(onFullTestsClicked()));
     connect(ui->buttonStartTesting, SIGNAL(clicked()), this, SLOT(onStartTestsClicked()));
     connect(ui->testTestButton, SIGNAL(clicked()), this, SIGNAL(startTestClicked()));
-    connect(ui->yesTestButton, SIGNAL(clicked()), this, SIGNAL(yesTestClicked()));
-    connect(ui->noTestButton, SIGNAL(clicked()), this, SIGNAL(noTestClicked()));
+    connect(ui->yesTestButton, SIGNAL(clicked()), this, SLOT(onYesTestClicked()));
+    connect(ui->noTestButton, SIGNAL(clicked()), this, SLOT(onNoTestClicked()));
     connect(ui->nextTestButton, SIGNAL(clicked()), this, SLOT(onNextTestClicked()));
-    connect(ui->previousTestButton, SIGNAL(clicked()), this, SIGNAL(previousTestClicked()));
+    connect(ui->previousTestButton, SIGNAL(clicked()), this, SLOT(onPreviousTestClicked()));
     connect(ui->buttonSubmitResults, SIGNAL(clicked()), this, SLOT(onSubmitTestsClicked()));
+    connect(ui->buttonViewResults, SIGNAL(clicked()), this, SLOT(onReviewTestsClicked()));
     connect(m_mainWindow, SIGNAL(closed()), this, SIGNAL(closedFrontend()));
+    connect(ui->treeView, SIGNAL(collapsed(QModelIndex)), this, SLOT(onJobItemChanged(QModelIndex)));
+    connect(ui->treeView, SIGNAL(expanded(QModelIndex)), this, SLOT(onJobItemChanged(QModelIndex)));
+    connect(ui->treeView->verticalScrollBar(), SIGNAL(valueChanged(int)), ui->statusView->verticalScrollBar(), SLOT(setValue(int)));
     ui->stepsFrame->setFixedHeight(0);
 
-    titleTestTypes["__audio__"] = "Audio Test";
-    titleTestTypes["__bluetooth__"] = "Bluetooth Test";
-    titleTestTypes["__camera__"] = "Camera Test";
-    titleTestTypes["__cpu__"] = "CPU Test";
-    titleTestTypes["__disk__"] = "Disk Test";
-    titleTestTypes["__firewire__"] = "Firewire Test";
-    titleTestTypes["__graphics__"] = "Graphics Test";
-    titleTestTypes["__info__"] = "Info Test";
-    titleTestTypes["__input__"] = "Input Test";
-    titleTestTypes["__keys__"] = "Keys Test";
-    titleTestTypes["__mediacard__"] = "Media Card Test";
-    titleTestTypes["__memory__"] = "Memory Test";
-    titleTestTypes["__miscellanea__"] = "Miscellanea Test";
-    titleTestTypes["__monitor__"] = "Monitor Test";
-    titleTestTypes["__networking__"] = "Networking Test";
-    titleTestTypes["__wireless__"] = "Wireless Test";
-    titleTestTypes["__optical__"] = "Optical Test";
-    titleTestTypes["__pcmcia-pcix__"] = "PCMCIA/PCIX Test";
-    titleTestTypes["__power-management__"] = "Power Management Test";
-    titleTestTypes["__suspend__"] = "Suspend Test";
-    titleTestTypes["__usb__"] = "USB Test";
-    buttonMap[QMessageBox::Yes] = "yes";
-    buttonMap[QMessageBox::No] = "no";
+    m_titleTestTypes["__audio__"] = "Audio Test";
+    m_titleTestTypes["__bluetooth__"] = "Bluetooth Test";
+    m_titleTestTypes["__camera__"] = "Camera Test";
+    m_titleTestTypes["__cpu__"] = "CPU Test";
+    m_titleTestTypes["__disk__"] = "Disk Test";
+    m_titleTestTypes["__firewire__"] = "Firewire Test";
+    m_titleTestTypes["__graphics__"] = "Graphics Test";
+    m_titleTestTypes["__info__"] = "Info Test";
+    m_titleTestTypes["__input__"] = "Input Test";
+    m_titleTestTypes["__keys__"] = "Keys Test";
+    m_titleTestTypes["__mediacard__"] = "Media Card Test";
+    m_titleTestTypes["__memory__"] = "Memory Test";
+    m_titleTestTypes["__miscellanea__"] = "Miscellanea Test";
+    m_titleTestTypes["__monitor__"] = "Monitor Test";
+    m_titleTestTypes["__networking__"] = "Networking Test";
+    m_titleTestTypes["__wireless__"] = "Wireless Test";
+    m_titleTestTypes["__optical__"] = "Optical Test";
+    m_titleTestTypes["__pcmcia-pcix__"] = "PCMCIA/PCIX Test";
+    m_titleTestTypes["__power-management__"] = "Power Management Test";
+    m_titleTestTypes["__suspend__"] = "Suspend Test";
+    m_titleTestTypes["__usb__"] = "USB Test";
 
+    m_statusStrings["uninitiated"] = tr("Not Started");
+    m_statusStrings["pass"] = tr("Done");
+    m_statusStrings["fail"] = tr("Done");
+    m_statusStrings["unsupported"] = tr("Not Supported");
+    m_statusStrings["unresolved"] = tr("Not Resolved");
+    m_statusStrings["untested"] = tr("Not Tested");
+    m_statusStrings["inprogress"] = tr("In Progress");
+
+}
+void QtFront::onYesTestClicked() {
+    emit yesTestClicked();
+    updateTestStatus(m_statusStrings["pass"]);
+
+}
+
+void QtFront::onNoTestClicked() {
+    emit noTestClicked();
+    updateTestStatus(m_statusStrings["fail"]);
+}
+
+void QtFront::onPreviousTestClicked() {
+    emit previousTestClicked();
+    updateTestStatus(m_statusStrings["uninitiated"]);
 }
 
 void QtFront::setInitialState()
@@ -80,9 +108,10 @@ void QtFront::setInitialState()
     ui->nextPrevButtons->setVisible(false);
     ui->testsTab->setCurrentIndex(1);
     ui->tabWidget->setCurrentIndex(0);
-    this->m_model->deleteLater();
+    m_model->deleteLater();
     ui->treeView->setModel(0);
-    this->m_model = 0;
+    m_model = 0;
+    m_statusList.clear();
 }
 
 void QtFront::onNextTestClicked()
@@ -103,6 +132,7 @@ void QtFront::onNextTestClicked()
     } else {
         emit nextTestClicked();
     }
+    updateTestStatus(m_statusStrings["untested"]);
 }
 
 void QtFront::onTabChanged(int index)
@@ -147,6 +177,11 @@ void QtFront::onSubmitTestsClicked()
     ui->buttonSubmitResults->setEnabled(false);
     ui->lineEditEmailAddress->setEnabled(false);
     emit submitTestsClicked();
+}
+
+void QtFront::onReviewTestsClicked()
+{
+    emit reviewTestsClicked();
 }
 
 void QtFront::showText(QString text)
@@ -205,9 +240,11 @@ void QtFront::showEntry(QString text)
 
 }
 
-void QtFront::showTest(QString purpose, QString steps, QString verification, QString info, QString testType, bool enableTestButton)
+void QtFront::showTest(QString purpose, QString steps, QString verification, QString info, QString testType, QString testName, bool enableTestButton)
 {
     currentState = TESTING;
+    m_currentTestName = testName;
+    updateTestStatus(m_statusStrings["inprogress"]);
     ui->radioTestTab->setVisible(true);
     ui->nextPrevButtons->setVisible(true);
     ui->testTestButton->setEnabled(enableTestButton);
@@ -221,12 +258,13 @@ void QtFront::showTest(QString purpose, QString steps, QString verification, QSt
     ui->testsTab->setCurrentIndex(2);
     QStringList stepsList = steps.trimmed().split("\n");
 
-    qDebug() << "purpose" << purpose << "steps"<< stepsList  <<"verification" << verification;
     QRegExp r("[0-9]+\\. (.*)");
     int index = 1;
-    ui->testTypeLabel->setText(titleTestTypes[testType]);
+    ui->testTypeLabel->setText(m_titleTestTypes[testType]);
     ui->purposeLabel->setText(purpose);
     foreach(QString line, stepsList) {
+        if (line.isEmpty())
+            continue;
         bool isInfo = true;
         QString step;
         if (r.indexIn(line.trimmed()) == 0) {
@@ -247,10 +285,54 @@ void QtFront::showTest(QString purpose, QString steps, QString verification, QSt
         a->move(0, ui->stepsFrame->height());
         ui->stepsFrame->setFixedHeight(ui->stepsFrame->height() + a->height());
     }
+
+    if (!info.isEmpty()) {
+        Step *information = new Step(ui->stepsFrame, info);
+        information->move(0, ui->stepsFrame->height());
+        ui->stepsFrame->setFixedHeight(ui->stepsFrame->height() + information->height());
+    }
+
     Step *question = new Step(ui->stepsFrame, verification, QString("?"));
     question->move(0, ui->stepsFrame->height());
     ui->stepsFrame->setFixedHeight(ui->stepsFrame->height() + question->height());
 
+}
+
+void QtFront::updateTestStatus(QString status)
+{
+    QMap<QString, QVariant> selectedOptions;
+
+    int numRows = m_statusModel->rowCount();
+    for(int i=0; i< numRows; i++) {
+        int done = 0;
+        int inprogress = 0;
+        QStandardItem *item = m_statusModel->item(i, 0);
+        for(int j=0; j< item->rowCount(); j++) {
+            QStandardItem * childItem = item->child(j,0);
+            if (childItem->data(Qt::UserRole).toString() == m_currentTestName && !status.isEmpty()) {
+                childItem->setText(status);
+            }
+            if (childItem->text() == m_statusStrings["pass"]) {
+                childItem->setData(QVariant(Qt::Checked), Qt::CheckStateRole);
+                done++;
+            } else if (childItem->text() == m_statusStrings["inprogress"]) {
+                childItem->setData(QVariant(Qt::Unchecked), Qt::CheckStateRole);
+                inprogress++;
+            } else if (childItem->text() == m_statusStrings["uninitiated"]) {
+                childItem->setData(QVariant(Qt::Unchecked), Qt::CheckStateRole);
+            }
+        }
+        if (done == item->rowCount()) {
+            item->setText(m_statusStrings["pass"]);
+            item->setData(QVariant(Qt::Checked), Qt::CheckStateRole);
+        } else if (inprogress != 0 || done != 0) {
+            item->setText(m_statusStrings["inprogress"]);
+            item->setData(QVariant(Qt::PartiallyChecked), Qt::CheckStateRole);
+        } else {
+            item->setText(m_statusStrings["uninitiated"]);
+            item->setData(QVariant(Qt::Unchecked), Qt::CheckStateRole);
+        }
+    }
 }
 
 void QtFront::showTree(QString text, QMap<QString, QVariant > options)
@@ -271,6 +353,11 @@ void QtFront::showTree(QString text, QMap<QString, QVariant > options)
             QStandardItem *sectionItem = new QStandardItem(section);
             sectionItem->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled| Qt::ItemIsTristate);
             sectionItem->setData(QVariant(Qt::Checked), Qt::CheckStateRole);
+            QStandardItem *sectionItemStatus = new QStandardItem(m_statusStrings["uninitiated"]);
+            sectionItemStatus->setData(section, Qt::UserRole);
+            sectionItemStatus->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled| Qt::ItemIsTristate);
+            sectionItemStatus->setData(QVariant(Qt::Unchecked), Qt::CheckStateRole);
+
             QDBusArgument arg = i.value().value<QDBusArgument>();
             QMap<QString, QString> items = qdbus_cast<QMap<QString, QString> >(arg);
             QMapIterator<QString, QString> j(items);
@@ -283,15 +370,34 @@ void QtFront::showTree(QString text, QMap<QString, QVariant > options)
                 testItem->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
                 testItem->setData(QVariant(Qt::Checked), Qt::CheckStateRole);
                 sectionItem->appendRow(testItem);
+                QStandardItem *testItemStatus = new QStandardItem(m_statusStrings[j.value()]);
+                testItemStatus->setData(test, Qt::UserRole);
+                testItemStatus->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled|Qt::ItemIsTristate);
+                testItemStatus->setData(QVariant(Qt::Unchecked), Qt::CheckStateRole);
+                sectionItemStatus->appendRow(testItemStatus);
             }
-
+            m_statusModel->appendRow(sectionItemStatus);
             m_model->appendRow(sectionItem);
         }
         ui->treeView->setModel(m_model);
+        ui->statusView->setModel(m_statusModel);
+        updateTestStatus();
         ui->treeView->show();
     }
     ui->buttonStartTesting->setEnabled(true);
     m_model->setInteraction(true);
+}
+
+void QtFront::onJobItemChanged(QModelIndex index)
+{
+    QString job = m_model->data(index).toString();
+    int numRows = m_statusModel->rowCount();
+    for(int i=0; i< numRows; i++) {
+        QStandardItem *item = m_statusModel->item(i, 0);
+        if (item->data(Qt::UserRole) == job) {
+            ui->statusView->setExpanded(item->index(), ui->treeView->isExpanded(index));
+        }
+    }
 }
 
 QString QtFront::showInfo(QString text, QStringList options, QString defaultoption)

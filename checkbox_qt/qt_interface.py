@@ -57,8 +57,12 @@ class QTInterface(UserInterface):
                 time.sleep(0.5)
         self.bus.add_signal_receiver(self.onWelcomeScreenRequested, "welcomeScreenRequested")
         self.bus.add_signal_receiver(self.onClosedFrontend, "closedFrontend")
+        self.bus.add_signal_receiver(self.onReviewTestsClicked, "reviewTestsClicked")
         self.qtiface.setInitialState();
         self._set_main_title()
+
+    def onReviewTestsClicked(self):
+        self.show_url(self.report_url) 
 
     def onWelcomeScreenRequested(self):
         pass
@@ -122,8 +126,10 @@ class QTInterface(UserInterface):
         newOptions = {}
         for section in options:
             newTests = {}
-            for test in options[section]:
-                newTests[str(test)] = str("")
+            for test, state in options[section].iteritems():
+                # TODO: add support for more than one level
+                if not isinstance(state, dict):
+                    newTests[str(test)] = state
 
             if newTests == {}:
                 newTests = {'': ''}
@@ -185,7 +191,7 @@ class QTInterface(UserInterface):
 
         self.qtiface.showTest(
             test["purpose"], test["steps"], test["verification"], info,
-            test["suite"], enableTestButton)
+            test["suite"], test["name"], enableTestButton)
         self.wait_on_signals(
             startTestClicked=onStartTestClicked,
             nextTestClicked=onNextTestClicked,

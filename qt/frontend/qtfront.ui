@@ -315,6 +315,9 @@
              <height>0</height>
             </size>
            </property>
+           <property name="focusPolicy">
+            <enum>Qt::NoFocus</enum>
+           </property>
            <property name="styleSheet">
             <string notr="true"> QTabWidget::pane#testsTab { /* The tab widget frame */
      border-top: 15 solid #C2C7CB;
@@ -326,10 +329,8 @@ QTabWidget::tab-bar#testsTab {
      alignment: center;
  }
 
- /* Style the tab using the tab sub-control. Note that
-     it reads QTabBar _not_ QTabWidget */
  QTabBar::tab {
-    background: #FFFFFF;
+     background: #FFFFFF;
      border: 1px solid #000000;
      border-bottom-color: #000000; /* same as the pane color */
      min-width: 10ex;
@@ -342,9 +343,9 @@ QTabWidget::tab-bar#testsTab {
  }
 
  QTabBar::tab:selected {
-    background: #C2C7CB;
+     background: #C2C7CB;
      border-color: #000000;
-     border-bottom-color: #000000; /* same as pane color */
+     border-bottom-color: #000000;
  }</string>
            </property>
            <property name="tabShape">
@@ -437,7 +438,10 @@ QTabWidget::tab-bar#testsTab {
               <string>Status</string>
              </property>
             </widget>
-            <widget class="QListView" name="listView">
+            <widget class="QTreeView" name="statusView">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
              <property name="geometry">
               <rect>
                <x>430</x>
@@ -446,12 +450,61 @@ QTabWidget::tab-bar#testsTab {
                <height>171</height>
               </rect>
              </property>
+             <property name="palette">
+              <palette>
+               <active>
+                <colorrole role="Base">
+                 <brush brushstyle="SolidPattern">
+                  <color alpha="255">
+                   <red>255</red>
+                   <green>255</green>
+                   <blue>255</blue>
+                  </color>
+                 </brush>
+                </colorrole>
+               </active>
+               <inactive>
+                <colorrole role="Base">
+                 <brush brushstyle="SolidPattern">
+                  <color alpha="255">
+                   <red>255</red>
+                   <green>255</green>
+                   <blue>255</blue>
+                  </color>
+                 </brush>
+                </colorrole>
+               </inactive>
+               <disabled>
+                <colorrole role="Base">
+                 <brush brushstyle="SolidPattern">
+                  <color alpha="255">
+                   <red>255</red>
+                   <green>255</green>
+                   <blue>255</blue>
+                  </color>
+                 </brush>
+                </colorrole>
+               </disabled>
+              </palette>
+             </property>
              <property name="frameShape">
               <enum>QFrame::Box</enum>
              </property>
              <property name="frameShadow">
               <enum>QFrame::Plain</enum>
              </property>
+             <property name="verticalScrollBarPolicy">
+              <enum>Qt::ScrollBarAlwaysOff</enum>
+             </property>
+             <property name="horizontalScrollBarPolicy">
+              <enum>Qt::ScrollBarAlwaysOff</enum>
+             </property>
+             <property name="headerHidden">
+              <bool>true</bool>
+             </property>
+             <attribute name="headerVisible">
+              <bool>false</bool>
+             </attribute>
             </widget>
             <widget class="QTreeView" name="treeView">
              <property name="geometry">
@@ -555,7 +608,7 @@ QTabWidget::tab-bar#testsTab {
                         <property name="geometry">
                          <rect>
                           <x>20</x>
-                          <y>10</y>
+                          <y>6</y>
                           <width>291</width>
                           <height>31</height>
                          </rect>
@@ -574,9 +627,9 @@ QTabWidget::tab-bar#testsTab {
                         <property name="geometry">
                          <rect>
                           <x>30</x>
-                          <y>40</y>
-                          <width>571</width>
-                          <height>16</height>
+                          <y>35</y>
+                          <width>591</width>
+                          <height>21</height>
                          </rect>
                         </property>
                         <property name="font">

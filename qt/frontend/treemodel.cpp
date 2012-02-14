@@ -1,5 +1,4 @@
 #include "treemodel.h"
-#include <QDebug>
 #include <QErrorMessage>
 TreeModel::TreeModel() : m_messageBox(0) 
 {
@@ -8,21 +7,22 @@ TreeModel::TreeModel() : m_messageBox(0)
 
 void TreeModel::warn()
 {
-    if (!this->m_messageBox)
-        this->m_messageBox = new QErrorMessage();
-    this->m_messageBox->showMessage("Changeme: If you deselect this, the result wont be submitted to Ubuntu Friendly!");
+    if (!m_messageBox)
+        m_messageBox = new QErrorMessage();
+    m_messageBox->showMessage("Changeme: If you deselect this, the result wont be submitted to Ubuntu Friendly!");
 }
 
 bool TreeModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
-    qDebug() << index << value << role;
         QStandardItem *item = QStandardItemModel::itemFromIndex(index);
         if(!item)
             return false;
 
-        warn();
+        // do not warn when the item is checked
+        if ( value == QVariant(Qt::Unchecked) && role == Qt::CheckStateRole)
+            warn();
+
         if (item->parent()) {
-            qDebug() << "has parent";
             QStandardItemModel::setData(item->index(), value, role);
             // we are a child, and we have to update parent's status
             int selected = 0;
@@ -32,8 +32,6 @@ bool TreeModel::setData(const QModelIndex &index, const QVariant &value, int rol
                     selected++;
                 }
             }
-            qDebug() << "selected" << selected;
-            qDebug() << "rowCount" << item->parent()->rowCount();
             if (selected == item->parent()->rowCount()) {
                 item->parent()->setCheckState(Qt::Checked);
             } else if (selected == 0) {
