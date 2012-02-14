@@ -926,37 +926,11 @@ p, li { white-space: pre-wrap; }
               <bool>false</bool>
              </property>
             </widget>
-            <widget class="QPushButton" name="buttonReviewResults">
-             <property name="geometry">
-              <rect>
-               <x>90</x>
-               <y>80</y>
-               <width>461</width>
-               <height>27</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string>Review Results</string>
-             </property>
-            </widget>
-            <widget class="QPushButton" name="buttonSubmitAnonymously">
-             <property name="geometry">
-              <rect>
-               <x>90</x>
-               <y>120</y>
-               <width>461</width>
-               <height>27</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string>Submit Anounymously</string>
-             </property>
-            </widget>
             <widget class="QGroupBox" name="groupBox">
              <property name="geometry">
               <rect>
                <x>90</x>
-               <y>180</y>
+               <y>80</y>
                <width>461</width>
                <height>61</height>
               </rect>
@@ -967,7 +941,7 @@ p, li { white-space: pre-wrap; }
               </font>
              </property>
              <property name="title">
-              <string>Submit To Your Launchpad Account (using Launchpad eMail ID)</string>
+              <string>Personal details</string>
              </property>
              <property name="flat">
               <bool>false</bool>
@@ -975,7 +949,7 @@ p, li { white-space: pre-wrap; }
              <property name="checkable">
               <bool>false</bool>
              </property>
-             <widget class="QLineEdit" name="lineEditLaunchpad">
+             <widget class="QLineEdit" name="lineEditEmailAddress">
               <property name="geometry">
                <rect>
                 <x>110</x>
@@ -991,7 +965,7 @@ p, li { white-space: pre-wrap; }
              <widget class="QLabel" name="label_5">
               <property name="geometry">
                <rect>
-                <x>0</x>
+                <x>10</x>
                 <y>30</y>
                 <width>101</width>
                 <height>17</height>
@@ -1003,22 +977,35 @@ p, li { white-space: pre-wrap; }
                </font>
               </property>
               <property name="text">
-               <string>Email Address:</string>
+               <string>Email:</string>
               </property>
              </widget>
-             <widget class="QPushButton" name="buttonSubmit">
-              <property name="geometry">
-               <rect>
-                <x>320</x>
-                <y>24</y>
-                <width>101</width>
-                <height>27</height>
-               </rect>
-              </property>
-              <property name="text">
-               <string>Submit</string>
-              </property>
-             </widget>
+            </widget>
+            <widget class="QPushButton" name="buttonSubmitResults">
+             <property name="geometry">
+              <rect>
+               <x>90</x>
+               <y>160</y>
+               <width>461</width>
+               <height>27</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>Submit results</string>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="buttonViewResults">
+             <property name="geometry">
+              <rect>
+               <x>90</x>
+               <y>200</y>
+               <width>461</width>
+               <height>27</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>View results</string>
+             </property>
             </widget>
            </widget>
           </widget>

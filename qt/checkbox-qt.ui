@@ -838,7 +838,7 @@ p, li { white-space: pre-wrap; }
               <bool>false</bool>
              </property>
             </widget>
-            <widget class="QPushButton" name="buttonReviewResults">
+            <widget class="QPushButton" name="buttonViewResults">
              <property name="geometry">
               <rect>
                <x>90</x>
@@ -848,10 +848,10 @@ p, li { white-space: pre-wrap; }
               </rect>
              </property>
              <property name="text">
-              <string>Review Results</string>
+              <string>View results</string>
              </property>
             </widget>
-            <widget class="QPushButton" name="buttonSubmitAnounymously">
+            <widget class="QPushButton" name="buttonSubmitResults">
              <property name="geometry">
               <rect>
                <x>90</x>
@@ -861,7 +861,7 @@ p, li { white-space: pre-wrap; }
               </rect>
              </property>
              <property name="text">
-              <string>Submit Anounymously</string>
+              <string>Submit results</string>
              </property>
             </widget>
             <widget class="QGroupBox" name="groupBox">
@@ -879,7 +879,7 @@ p, li { white-space: pre-wrap; }
               </font>
              </property>
              <property name="title">
-              <string>Submit To Your Launchpad Account</string>
+              <string>Personal details</string>
              </property>
              <property name="flat">
               <bool>false</bool>
@@ -887,7 +887,7 @@ p, li { white-space: pre-wrap; }
              <property name="checkable">
               <bool>false</bool>
              </property>
-             <widget class="QLineEdit" name="lineEditLaunchpad">
+             <widget class="QLineEdit" name="lineEditEmailAddress">
               <property name="geometry">
                <rect>
                 <x>110</x>
@@ -915,20 +915,7 @@ p, li { white-space: pre-wrap; }
                </font>
               </property>
               <property name="text">
-               <string>Launchpad ID:</string>
-              </property>
-             </widget>
-             <widget class="QPushButton" name="buttonSubmit">
-              <property name="geometry">
-               <rect>
-                <x>320</x>
-                <y>24</y>
-                <width>101</width>
-                <height>27</height>
-               </rect>
-              </property>
-              <property name="text">
-               <string>Submit</string>
+               <string>Email:</string>
               </property>
              </widget>
             </widget>

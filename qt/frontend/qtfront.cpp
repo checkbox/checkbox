@@ -45,8 +45,8 @@ QtFront::QtFront(QApplication *parent) :
     connect(ui->noTestButton, SIGNAL(clicked()), this, SLOT(onNoTestClicked()));
     connect(ui->nextTestButton, SIGNAL(clicked()), this, SLOT(onNextTestClicked()));
     connect(ui->previousTestButton, SIGNAL(clicked()), this, SLOT(onPreviousTestClicked()));
-    connect(ui->buttonSubmit, SIGNAL(clicked()), this, SLOT(onSubmitTestsClicked()));
-    connect(ui->buttonReviewResults, SIGNAL(clicked()), this, SLOT(onReviewTestsClicked()));
+    connect(ui->buttonSubmitResults, SIGNAL(clicked()), this, SLOT(onSubmitTestsClicked()));
+    connect(ui->buttonViewResults, SIGNAL(clicked()), this, SLOT(onReviewTestsClicked()));
     connect(m_mainWindow, SIGNAL(closed()), this, SIGNAL(closedFrontend()));
     connect(ui->treeView, SIGNAL(collapsed(QModelIndex)), this, SLOT(onJobItemChanged(QModelIndex)));
     connect(ui->treeView, SIGNAL(expanded(QModelIndex)), this, SLOT(onJobItemChanged(QModelIndex)));
@@ -174,9 +174,8 @@ void QtFront::onStartTestsClicked()
 
 void QtFront::onSubmitTestsClicked()
 {
-    ui->buttonSubmit->setEnabled(false);
-    ui->buttonSubmitAnonymously->setEnabled(false);
-    ui->lineEditLaunchpad->setEnabled(false);
+    ui->buttonSubmitResults->setEnabled(false);
+    ui->lineEditEmailAddress->setEnabled(false);
     emit submitTestsClicked();
 }
 
@@ -231,14 +230,13 @@ void QtFront::showEntry(QString text)
 {
     Q_UNUSED(text)
     currentState = SUBMISSION;
-    // launchpad id requested, so move to the results screen and hide the "run" screen contents
+    // Email address requested, so move to the results screen and hide the "run" screen contents
     ui->testsTab->setCurrentIndex(3);
     ui->radioTestTab->setVisible(false);
     ui->nextPrevButtons->setVisible(false);
 
-    ui->buttonSubmit->setEnabled(true);
-    ui->buttonSubmitAnonymously->setEnabled(true);
-    ui->lineEditLaunchpad->setEnabled(true);
+    ui->buttonSubmitResults->setEnabled(true);
+    ui->lineEditEmailAddress->setEnabled(true);
 
 }
 
@@ -422,9 +420,9 @@ QString QtFront::showInfo(QString text, QStringList options, QString defaultopti
     return result;
 }
 
-QString QtFront::getLaunchpadId()
+QString QtFront::getEmailAddress()
 {
-    return ui->lineEditLaunchpad->text();
+    return ui->lineEditEmailAddress->text();
 }
 
 QVariantMap QtFront::getTestsToRun()

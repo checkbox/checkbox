@@ -105,7 +105,7 @@ class QTInterface(UserInterface):
 
         self.qtiface.showEntry(text)
         self.wait_on_signals(submitTestsClicked=onSubmitTestsClicked)
-        return self.qtiface.getLaunchpadId()
+        return self.qtiface.getEmailAddress()
 
     def show_check(self, text, options=[], default=[]):
         return False
