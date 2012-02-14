@@ -98,6 +98,9 @@ class JobsInfo(Plugin):
         def report_message(message):
             self._manager.reactor.fire("report-job", message)
 
+        # Send whitelist info to jobs-prompt for job ordering
+        self._manager.reactor.fire("whitelist", self.whitelist_patterns)
+
         # Set domain and message event handler
         old_domain = gettext.textdomain()
         gettext.textdomain(self.domain)

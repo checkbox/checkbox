@@ -17,6 +17,7 @@
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
 import os
+import re
 import logging
 
 from gettext import gettext as _
@@ -104,6 +105,58 @@ class Job(object):
 class JobStore(MessageStore):
     """A job store which stores its jobs in a file system hierarchy."""
 
+    msg = {}      # msg stored in a the /store filesystem
+    depends = {}  # jobs dependencies
+
+    def whitelist_ordering(self, whitelist_patterns):
+        """
+        Sort the Message file objects by whitelist patterns
+        """
+
+        logging.debug("Whitelist ordering in progress")
+        jobs = [] # ordered jobs
+
+        for filename in self._walk_messages():
+            message = self._read_message(filename, cache=True)
+            name = message.get("name")
+            os.rename(filename, filename + ".tmp")
+            self.msg[name] = filename
+            self.depends[name] = message.get("depends")
+
+        for p in whitelist_patterns:
+            job = next((n for n in self.msg.iterkeys() if p.match(n)), None)
+            if job:
+                jobs.append(job)
+
+        jobs_orig = list(jobs)
+
+        # Overrides the whitelist order and puts the requirements
+        # ahead of the dependent job
+        for name in [n for n in jobs if self.depends[n]]:
+            alldeps = self._get_dependencies([name])
+            missingdeps = set()
+            for dep in alldeps:
+                if dep not in jobs:
+                    logging.warning('"%s" dependency not found' % dep)
+                    missingdeps.add(dep)
+                    continue
+            # Dependencies must be run in whitelist order
+            for dep in sorted(alldeps-missingdeps, key=jobs_orig.index):
+                limit = jobs.index(name)
+                dep_index = jobs.index(dep)
+                if dep_index > limit:
+                    jobs.insert(limit, jobs.pop(dep_index))
+
+        for i, name in enumerate(jobs):
+            try:
+                os.rename(self.msg[name] + ".tmp",
+                          re.sub(r'\d+$', str(i), self.msg[name]))
+            except:
+                logging.warning(
+                    'Unable to process "%s", possible duplicated values' % name)
+
+        logging.debug("Whitelist ordering completed")
+
     def add(self, job):
         # TODO: Order alphabetically within suite or non-suite
 
@@ -122,7 +175,7 @@ class JobStore(MessageStore):
         if "depends" in job:
             for depends in job["depends"]:
                 for filename in self._find_matching_messages():
-                    message = self._read_message(filename)
+                    message = self._read_message(filename, cache=True)
                     if job["name"] in message.get("depends", []):
                         new_filename = self._get_next_message_filename()
                         os.rename(filename, new_filename)
@@ -132,9 +185,27 @@ class JobStore(MessageStore):
     # TODO: Optimize by only searching backwards until a given condition
     def _find_matching_messages(self, **kwargs):
         for filename in self._walk_messages():
-            message = self._read_message(filename)
+            message = self._read_message(filename,cache=True)
             for key, value in kwargs.iteritems():
                 if message.get(key) != value:
                     break
             else:
                 yield filename
+
+    def _get_dependencies(self, jobs):
+        """
+        Get all dependencies including ancestors
+        """
+
+        dependencies = set()
+
+        for name in jobs:
+            if name in self.msg:
+                msg = self.msg[name]
+                depends = self.depends[name]
+                if depends:
+                    dependencies.update(
+                        set(depends),
+                        self._get_dependencies(depends))
+
+        return dependencies

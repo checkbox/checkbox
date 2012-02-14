@@ -20,6 +20,7 @@ import os
 import logging
 import itertools
 import posixpath
+import sys
 
 from checkbox.contrib import bpickle
 from checkbox.lib.safe import safe_close
@@ -39,6 +40,9 @@ class Message(dict):
 
 class MessageStore(object):
     """A message store which stores its messages in a file system hierarchy."""
+
+    #This caches everything but a message's data, making it manageable to keep in memory.
+    _message_cache = {}
 
     def __init__(self, persist, directory, directory_size=1000):
         self._directory = directory
@@ -240,7 +244,11 @@ class MessageStore(object):
     def _dump_message(self, message):
         return bpickle.dumps(message)
 
-    def _read_message(self, filename):
+    def _read_message(self, filename, cache=False):
+        #cache basically indicates whether the caller cares about having "data"
+        if cache and filename in self._message_cache:
+            return Message(self._message_cache[filename],filename)
+
         data = self._get_content(filename)
         message = self._load_message(data)
         return Message(message, filename)
@@ -256,6 +264,14 @@ class MessageStore(object):
         safe_close(file)
 
         os.rename(filename + ".tmp", filename)
+
+        #Strip the big data element and shove it in the cache
+
+        temp_message=dict(message)
+        if "data" in temp_message:
+            temp_message["data"] = None
+
+        self._message_cache[filename] = temp_message
 
         # For now we use the inode as the message id, as it will work
         # correctly even faced with holding/unholding.  It will break
