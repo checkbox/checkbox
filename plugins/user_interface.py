@@ -77,11 +77,6 @@ class UserInterface(Plugin):
                 index += 1
 
     def launchpad_report(self, launchpad_report):
-        print launchpad_report
         self._interface.report_url = "file://%s" % posixpath.abspath(launchpad_report)
-        print self._interface.report_url
-
-
-
 
 factory = UserInterface
