@@ -61,8 +61,6 @@ class JobsPrompt(Plugin):
              ("prompt-job", self.prompt_job),
              ("prompt-jobs", self.prompt_jobs),
              ("prompt-finish", self.prompt_finish),
-             ("jobs-ordering", self.jobs_ordering),
-             ("whitelist", self.report_whitelist),
              ("report", self.report),
              ("report-job", self.report_job)]:
             self._manager.reactor.call_on(rt, rh)
@@ -124,13 +122,6 @@ class JobsPrompt(Plugin):
     def prompt_finish(self, interface):
         if interface.direction == NEXT:
             self.store.delete_all_messages()
-
-    def jobs_ordering(self):
-        if self.whitelist_patterns:
-            self.store.whitelist_ordering(self.whitelist_patterns)
-
-    def report_whitelist(self, whitelist):
-        self.whitelist_patterns = whitelist
 
     def report(self):
         self.store.set_pending_offset(0)

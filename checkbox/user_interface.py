@@ -27,8 +27,6 @@ import webbrowser
 import gettext
 from gettext import gettext as _
 
-from gi.repository import Gio
-
 from checkbox.contrib.REThread import REThread
 
 from checkbox.lib.environ import add_variable, get_variable, remove_variable
@@ -180,6 +178,8 @@ class UserInterface(object):
                 if os.getenv("DISPLAY") and \
                         subprocess.call(["pgrep", "-x", "-u", str(uid), "gnome-panel|gconfd-2"],
                                 stdout=subprocess.PIPE, stderr=subprocess.PIPE) == 0:
+                    from gi.repository import Gio
+
                     preferred_xml_app = Gio.app_info_get_default_for_type("application/xml",False)
                     if preferred_xml_app:
                         preferred_browser = preferred_xml_app.get_executable()

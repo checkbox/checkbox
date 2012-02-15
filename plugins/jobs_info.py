@@ -54,16 +54,16 @@ class JobsInfo(Plugin):
 
     # Space separated list of directories where job files are stored.
     directories = List(Path(),
-        default_factory=lambda:"%(checkbox_share)s/jobs")
+        default_factory=lambda: "%(checkbox_share)s/jobs")
 
     # List of jobs to blacklist
-    blacklist = List(String(), default_factory=lambda:"")
+    blacklist = List(String(), default_factory=lambda: "")
 
     # Path to blacklist file
     blacklist_file = Path(required=False)
 
     # List of jobs to whitelist
-    whitelist = List(String(), default_factory=lambda:"")
+    whitelist = List(String(), default_factory=lambda: "")
 
     # Path to whitelist file
     whitelist_file = Path(required=False)
@@ -82,8 +82,8 @@ class JobsInfo(Plugin):
             try:
                 file = open(filename)
             except IOError, e:
-                error_message=(gettext.gettext("Failed to open file '%s': %s") % 
-                        (filename,e.strerror))
+                error_message=(gettext.gettext("Failed to open file '%s': %s") %
+                        (filename, e.strerror))
                 logging.critical(error_message)
                 sys.stderr.write("%s\n" % error_message)
                 sys.exit(os.EX_NOINPUT)
@@ -95,11 +95,15 @@ class JobsInfo(Plugin):
 
     def gather(self):
         # Register temporary handler for report-message events
-        def report_message(message):
-            self._manager.reactor.fire("report-job", message)
+        messages = []
 
-        # Send whitelist info to jobs-prompt for job ordering
-        self._manager.reactor.fire("whitelist", self.whitelist_patterns)
+        def report_message(message):
+            if self.whitelist_patterns:
+                name = message["name"]
+                if not [name for p in self.whitelist_patterns if p.match(name)]:
+                    return
+
+            messages.append(message)
 
         # Set domain and message event handler
         old_domain = gettext.textdomain()
@@ -108,6 +112,23 @@ class JobsInfo(Plugin):
 
         for directory in self.directories:
             self._manager.reactor.fire("message-directory", directory)
+
+        # Apply whitelist ordering
+        def cmp_function(a, b):
+            a_name = a["name"]
+            b_name = b["name"]
+            for pattern in self.whitelist_patterns:
+                if pattern.match(a_name):
+                    a_index = self.whitelist_patterns.index(pattern)
+                elif pattern.match(b_name):
+                    b_index = self.whitelist_patterns.index(pattern)
+
+            return cmp(a_index, b_index)
+
+        if self.whitelist_patterns:
+            messages = sorted(messages, cmp=cmp_function)
+        for message in messages:
+            self._manager.reactor.fire("report-job", message)
 
         # Unset domain and event handler
         self._manager.reactor.cancel_call(event_id)
