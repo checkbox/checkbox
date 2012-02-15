@@ -47,7 +47,7 @@
       <enum>QTabWidget::Rounded</enum>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tabWelcome">
       <attribute name="title">
@@ -101,14 +101,20 @@
                 </property>
                 <property name="minimumSize">
                  <size>
-                  <width>120</width>
+                  <width>195</width>
                   <height>0</height>
                  </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">background-image: url(:/images/checkbox-qt-head.png);</string>
                 </property>
                </widget>
               </item>
               <item>
                <widget class="QWidget" name="welcomeTopText" native="true">
+                <property name="styleSheet">
+                 <string notr="true">background-color: #f0ebe2</string>
+                </property>
                 <widget class="QLabel" name="welcomeLabel">
                  <property name="geometry">
                   <rect>
@@ -125,7 +131,7 @@
                   </font>
                  </property>
                  <property name="text">
-                  <string>Ubuntu System Testing</string>
+                  <string>System Testing</string>
                  </property>
                 </widget>
                </widget>
@@ -352,7 +358,7 @@ QTabWidget::tab-bar#testsTab {
             <enum>QTabWidget::Rounded</enum>
            </property>
            <property name="currentIndex">
-            <number>3</number>
+            <number>1</number>
            </property>
            <widget class="QWidget" name="welcome">
             <property name="font">
@@ -707,7 +713,7 @@ QTabWidget::tab-bar#testsTab {
                                  <rect>
                                   <x>0</x>
                                   <y>0</y>
-                                  <width>32</width>
+                                  <width>85</width>
                                   <height>178</height>
                                  </rect>
                                 </property>

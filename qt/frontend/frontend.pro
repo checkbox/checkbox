@@ -20,3 +20,6 @@ HEADERS  += qtfront.h \
     step.h
 
 FORMS    += qtfront.ui
+
+RESOURCES += \
+    resources.qrc
