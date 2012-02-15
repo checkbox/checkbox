@@ -122,7 +122,7 @@ class JobStore(MessageStore):
         if "depends" in job:
             for depends in job["depends"]:
                 for filename in self._find_matching_messages():
-                    message = self._read_message(filename)
+                    message = self._read_message(filename, cache=True)
                     if job["name"] in message.get("depends", []):
                         new_filename = self._get_next_message_filename()
                         os.rename(filename, new_filename)
@@ -132,7 +132,7 @@ class JobStore(MessageStore):
     # TODO: Optimize by only searching backwards until a given condition
     def _find_matching_messages(self, **kwargs):
         for filename in self._walk_messages():
-            message = self._read_message(filename)
+            message = self._read_message(filename,cache=True)
             for key, value in kwargs.iteritems():
                 if message.get(key) != value:
                     break
