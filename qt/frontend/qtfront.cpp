@@ -30,6 +30,7 @@ QtFront::QtFront(QApplication *parent) :
 {
     m_mainWindow = (QWidget*)new CustomQWidget();
     ui->setupUi(m_mainWindow);
+    m_mainWindow->setWindowFlags(m_mainWindow->windowFlags()^Qt::WindowMaximizeButtonHint);
 
     CustomQTabWidget *tmpQTW = (CustomQTabWidget*)ui->tabWidget;
     tmpQTW->tabBar()->setVisible(false);
