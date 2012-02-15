@@ -65,6 +65,7 @@ private slots:
     void onTabChanged(int index);
     void onJobItemChanged(QModelIndex index);
     void updateTestStatus(QString status = QString());
+    void onSelectAllContextMenu(const QPoint& pos);
 
 signals:
     void fullTestsClicked();

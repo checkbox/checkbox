@@ -11,6 +11,7 @@ public:
     void warn();
     bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole);
     void setInteraction(bool value);
+    void selectAll(bool select = true);
     QErrorMessage *m_messageBox;
 };
 
