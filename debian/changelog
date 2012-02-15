@@ -22,8 +22,6 @@ checkbox (0.13.2) precise; urgency=low
   * Added submission_path_prompt config variable; if set, it will be shown to
     the user before the test selection screen, and the value entered will
     override the default filename for the xml report.
-  * Rearranged a misplaced changelog entry.
-  * Updated debian/control to remove unneeded Uploader: field.
   * plugins/suites_prompt.py: Fixed jobs being run despite being deselected. 
 
   [Brendan Donegan]
@@ -108,6 +106,8 @@ checkbox (0.13.1) precise; urgency=low
     screen when checkbox runs), so it can be changed without much effort.
   * Remove superflous bluetooth/detect job
   * Fixed typo in jobs/local.txt.in (phoronix misspelled as peripherals).
+  * Rearranged a misplaced changelog entry.
+  * Updated debian/control to remove unneeded Uploader: field.
 
   [Robert Roth]
   * Fixed spelling mistakes in user_apps job file. (LP: #904209)
@@ -134,7 +134,7 @@ checkbox (0.13.1) precise; urgency=low
   * Replaced xrandr_display_modes with automated check for VESA driver
   * Refactored Unity compatibility tests
 
- -- Daniel Manrique <daniel.manrique@canonical.com>  Tue, 31 Jan 2012 14:34:52 -0500
+ -- Daniel Manrique <daniel.manrique@canonical.com>  Fri, 10 Feb 2012 11:19:05 -0500
 
 checkbox (0.13) precise; urgency=low
 
