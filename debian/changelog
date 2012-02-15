@@ -36,6 +36,10 @@ checkbox (0.13.2) precise; urgency=low
   [Tiago Salem Herrmann]
   * Implementation of Qt frontend for checkbox.
   * Qt-related features and bugfixes.
+  
+  [Sylvain Pineau]
+  * Tests will run in in order specified by the whitelist.
+  * JobStore caches most of a job's attributes in memory to speed up sorting.
 
  -- Javier Collado <javier.collado@canonical.com>  Tue, 14 Feb 2012 10:26:54 +0100
 
