@@ -2,6 +2,7 @@
 #include <QMessageBox>
 #include <QVariantMap>
 #include <QScrollBar>
+#include <QMenu>
 
 #include "qtfront.h"
 #include "treemodel.h"
@@ -51,6 +52,8 @@ QtFront::QtFront(QApplication *parent) :
     connect(ui->treeView, SIGNAL(collapsed(QModelIndex)), this, SLOT(onJobItemChanged(QModelIndex)));
     connect(ui->treeView, SIGNAL(expanded(QModelIndex)), this, SLOT(onJobItemChanged(QModelIndex)));
     connect(ui->treeView->verticalScrollBar(), SIGNAL(valueChanged(int)), ui->statusView->verticalScrollBar(), SLOT(setValue(int)));
+    ui->treeView->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(ui->treeView, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(onSelectAllContextMenu(const QPoint&)));
     ui->stepsFrame->setFixedHeight(0);
 
     m_titleTestTypes["__audio__"] = "Audio Test";
@@ -84,6 +87,26 @@ QtFront::QtFront(QApplication *parent) :
     m_statusStrings["inprogress"] = tr("In Progress");
 
 }
+
+void QtFront::onSelectAllContextMenu(const QPoint& pos)
+{
+    if (currentState != TREE || !m_model)
+        return;
+
+    QPoint position = ui->treeView->mapToGlobal(pos);
+    QMenu menu;
+    QAction *selectAll = menu.addAction(tr("Select All"));
+    QAction *deselectAll = menu.addAction(tr("Deselect All"));
+
+    QAction* selectedItem = menu.exec(position);
+    if (selectedItem && selectedItem == selectAll)
+    {
+        m_model->selectAll();
+    } else if (selectedItem && selectedItem == deselectAll) {
+        m_model->selectAll(false);
+    }
+}
+
 void QtFront::onYesTestClicked() {
     emit yesTestClicked();
     updateTestStatus(m_statusStrings["pass"]);

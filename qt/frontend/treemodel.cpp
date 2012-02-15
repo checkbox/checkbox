@@ -64,3 +64,20 @@ void TreeModel::setInteraction(bool value)
         }
     }
 }
+
+void TreeModel::selectAll(bool select)
+{
+    Qt::CheckState state = select ? Qt::Checked : Qt::Unchecked;
+    for(int i=0; i< rowCount(); i++) {
+        QStandardItem  *item = this->item(i, 0);
+        if(!item)
+            continue;
+        item->setCheckState(state);
+        for(int j=0; j< item->rowCount(); j++) {
+            QStandardItem *childItem = item->child(j);
+            if(!childItem)
+                continue;
+            childItem->setCheckState(state);
+        }
+    }
+}
