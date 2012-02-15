@@ -4,6 +4,8 @@ checkbox (0.13.2) precise; urgency=low
   * Added a Hard Disk Stats Test that was part of a much older merge request
     for server test suite.
   * Modified apport-directory to provide feedback
+  * Added virt-check test to determine if a server will work as an OpenStack
+    Compute Node.
 
   [Marc Tardif]
   * Removed trailing directories from the devpath of disk devices (LP: #925582)
@@ -29,7 +31,7 @@ checkbox (0.13.2) precise; urgency=low
   [ Javier Collado ]
   * Removed job that installed ipmitool by default (LP: #931954)
 
- -- Javier Collado <javier.collado@canonical.com>  Tue, 14 Feb 2012 10:26:54 +0100
+ -- Jeff Lane <jeff@ubuntu.com>  Wed, 15 Feb 2012 00:11:21 -0500
 
 checkbox (0.13.1) precise; urgency=low
 
