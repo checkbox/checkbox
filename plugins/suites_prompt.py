@@ -84,9 +84,6 @@ class SuitesPrompt(Plugin):
                 self._statuses[job["name"]] = job["status"]
 
     def prompt_gather(self, interface):
-        # Whitelist ordering
-        self._manager.reactor.fire("jobs-ordering")
-
         # Resolve dependencies
         resolver = Resolver()
         for key in self._jobs.iterkeys():
