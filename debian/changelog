@@ -8,6 +8,8 @@ checkbox (0.13.2) precise; urgency=low
     optical drive testing
   * Created new resource job that creates an optical.{CD-R,DVD-R} resource to
     determine if a machine's optical drive supports writing or is read-only.
+  * Added virt-check test to determine if a server will work as an OpenStack
+    Compute Node.
 
   [Marc Tardif]
   * Removed trailing directories from the devpath of disk devices (LP: #925582)
@@ -41,7 +43,7 @@ checkbox (0.13.2) precise; urgency=low
   * Tests will run in in order specified by the whitelist.
   * JobStore caches most of a job's attributes in memory to speed up sorting.
 
- -- Javier Collado <javier.collado@canonical.com>  Tue, 14 Feb 2012 10:26:54 +0100
+ -- Jeff Lane <jeff@ubuntu.com>  Wed, 15 Feb 2012 00:11:21 -0500
 
 checkbox (0.13.1) precise; urgency=low
 
