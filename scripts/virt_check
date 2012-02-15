@@ -15,9 +15,9 @@ fi
 
 # Now let's do some math
 mem_total=0
-for size in `dmidecode -t 17 | grep Size | awk '{print $2}'`
+for size in `dmidecode -t 17 | grep Size | grep -vi "No module" |awk '{print $2}'`
 do
-    mem_total=`echo $mem_total + $size |bc`
+    mem_total=$(echo $mem_total + $size |bc)
 done
 
 if [ $mem_total -ge 4096 ]; then
