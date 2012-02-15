@@ -11,6 +11,7 @@ package
 uname
 sleep
 display
+optical_drive
 __audio__
 audio/alsa_record_playback_external
 audio/alsa_record_playback_internal
@@ -106,9 +107,6 @@ wireless/wireless_connection
 __optical__
 optical/detect
 optical/read
-optical/read_sr\d
-optical/cdrom-write
-optical/dvd-write
 __pcmcia-pcix__
 pcmcia-pcix/detect
 __power-management__

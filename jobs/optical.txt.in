@@ -1,46 +1,45 @@
 plugin: shell
 name: optical/detect
-requires: device.category == 'CDROM' 
+requires: device.category == 'CDROM'
 command:
  cat <<'EOF' | run_templates -t -s 'udev_resource | filter_templates -w "category=CDROM"' | sed '/^$/d'
  $vendor $product
  EOF
 _description: Test to detect the optical drives
 
-plugin: local
+plugin: manual
 name: optical/read
-requires: device.category == 'CDROM'
-_description: Optical Storage device read tests
-command:
- cat <<'EOF' | run_templates -t -s 'udev_resource | filter_templates -w "category=CDROM"'
- plugin: manual
- name: optical/read_`ls /sys$path/block`
- requires: device.path == "$path" and package.name == 'linux'
- depends: optical/detect
- user: root
- command: optical_read_test /dev/`ls /sys$path/block`
- _description:
-  PURPOSE:
-      This test will check your optical devices
-  STEPS:
-      1. Insert appropriate non-blank media into your optical drive(s). Movie and Audio Disks may not work. Self-created data disks have the greatest chance of working.
-  VERIFICATION:
-      Did it read correctly?
- EOF
+requires:
+ device.category == 'CDROM'
+user: root
+command: optical_read_test /dev/cdrom
+_description:
+ PURPOSE:
+     This test will check your optical devices ability to read CD media
+ STEPS:
+     1. Insert appropriate non-blank media into your optical drive(s). Movie and Audio Disks may not work. Self-created data disks have the greatest chance of working.
+     2. If a file browser does not open automatically, open the file browser and access the disk.
+     3. Attempt to open a text file on the disk, or copy a file from the disk to your home directory.
+ VERIFICATION:
+     Were you able to view files on the disk and either open a file to read or copy a file to your home directory?
 
 plugin: manual
 name: optical/cdrom-write
-depends: optical/detect
-requires: device.category == 'CDROM'
+requires:
+ device.category == 'CDROM'
+ optical_drive.cd == 'writable'
+user: root
+command: optical_write_test /dev/cdrom
 _description:
  PURPOSE:
-     This test will check your system's CDROM writing capabilities. If your drive does not support writing CDs or you do not have any blank CD media, please skip this test.
+     This test will check your system's CD writing capabilities. This test requires a blank CD-R. If you do not have a blank CD-R, skip this test.
  STEPS:
-     1. Enter a blank CDROM into your drive
-     2. Write something in the CDROM
-     3. Read the newly written CDROM
+     1. Enter a blank CD-R into your drive
+     2. Click "Test" to begin.
+     3. When the CD tray ejects the media after burning, close it (DO NOT remove the disk, it is needed for the second portion of the test). Note, you must close the drive within 10 seconds or the test will time out.
+     4. When the test completes, proceed by clicking "Next"
  VERIFICATION:
-     Was the data correctly written?
+     This test should automatically select "Yes" if it passes, "No" if it fails.
 
 plugin: manual
 name: optical/cdrom-audio-playback
@@ -63,17 +62,21 @@ _description:
 
 plugin: manual
 name: optical/dvd-write
-depends: optical/detect
-requires: device.category == 'CDROM'
+user: root
+requires:
+ device.category == 'CDROM'
+ optical_drive.dvd == 'writable'
+command: optical_write_test /dev/cdrom
 _description:
  PURPOSE:
-     This test will check your system's DVD writing capabilities. If your drive does not support writing DVDs or you do not have any blank DVD media, please skip this test.
+     This test will check your system's DVD writing capabilities. This test requires a blank DVD-R. If you do not have a blank DVD-R, skip this test.
  STEPS:
-     1. Enter a blank DVD into your drive
-     2. Write something in the DVD
-     3. Read the newly written DVD
+     1. Enter a blank DVD-R into your drive
+     2. Click "Test" to begin.
+     3. When the CD tray ejects the media after burning, close it (DO NOT remove the disk, it is needed for the second portion of the test). Note, you must close the drive within 10 seconds or the test will time out.
+     4. When the test completes, proceed by clicking "Next"
  VERIFICATION:
-     Was the data correctly written?
+     This test should automatically select "Yes" if it passes, "No" if it fails.
 
 plugin: manual
 name: optical/dvd_movie_playback

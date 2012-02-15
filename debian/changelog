@@ -4,6 +4,10 @@ checkbox (0.13.2) precise; urgency=low
   * Added a Hard Disk Stats Test that was part of a much older merge request
     for server test suite.
   * Modified apport-directory to provide feedback
+  * Added new optical_write_test script and created appropriate jobs to refine
+    optical drive testing
+  * Created new resource job that creates an optical.{CD-R,DVD-R} resource to
+    determine if a machine's optical drive supports writing or is read-only.
 
   [Marc Tardif]
   * Removed trailing directories from the devpath of disk devices (LP: #925582)

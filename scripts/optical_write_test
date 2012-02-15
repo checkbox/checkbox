@@ -1,0 +1,108 @@
+#!/bin/bash
+
+OPTICAL_DRIVE=$(readlink -f $1)
+TEMP_DIR='/tmp/optical-test'
+ISO_NAME='optical-test.iso'
+SAMPLE_FILE_PATH='/usr/share/example-content/'
+SAMPLE_FILE='Ubuntu_Free_Culture_Showcase'
+MD5SUM_FILE='optical_test.md5'
+START_DIR=$PWD
+
+create_working_dirs(){
+    # First, create the temp dir and cd there
+    echo "Creating Temp directory and moving there ..."
+    mkdir -p $TEMP_DIR || return 1
+    cd $TEMP_DIR
+    echo "Now working in $PWD ..."
+    }
+
+get_sample_data(){
+    # Get our sample files
+    echo "Getting sample files from $SAMPLE_FILE_PATH ..."
+    cp -a $SAMPLE_FILE_PATH/$SAMPLE_FILE $TEMP_DIR
+    return $?
+}
+
+generate_md5(){
+    # Generate the md5sum
+    echo "Generating md5sums of sample files ..."
+    CUR_DIR=$PWD
+    cd $SAMPLE_FILE
+    md5sum * > $TEMP_DIR/$MD5SUM_FILE
+    # Check the sums for paranoia sake
+    check_md5 $TEMP_DIR/$MD5SUM_FILE
+    rt=$?
+    cd $CUR_DIR
+    return $rt
+}
+
+check_md5(){
+    echo "Checking md5sums ..."
+    md5sum -c $1
+    return $?
+}
+
+generate_iso(){
+    # Generate ISO image
+    echo "Creating ISO Image ..."
+    genisoimage -r -J -o $ISO_NAME $SAMPLE_FILE
+    return $?
+}
+
+burn_iso(){
+    #Burn the ISO with wodim
+    echo "Sleeping 10 seconds in case drive is not yet ready ..."
+    sleep 10
+    echo "Beginning image burn ..."
+    wodim -eject dev=$OPTICAL_DRIVE $ISO_NAME
+    rt=$?
+    return $rt
+}
+
+check_disk(){
+    echo "Sleeping 15 seconds to allow drive to settle"
+    sleep 15
+    echo "Deleting original data files ..."
+    rm -rf $SAMPLE_FILE
+    if [ ! -z "$(mount | grep $OPTICAL_DRIVE)" ]; then
+        MOUNT_PT=$(mount | grep $OPTICAL_DRIVE | awk '{print $3}')
+        echo "Disk is already mounted to $MOUNT_PT"
+    else
+        MOUNT_PT=$TEMP_DIR/mnt
+        echo "Creating temp mount point: $MOUNT_PT ..."
+        mkdir $MOUNT_PT
+        echo "Mounting disk to mount point ..."
+        mount $OPTICAL_DRIVE $MOUNT_PT
+    fi
+    echo "Copying files from ISO ..."
+    cp $MOUNT_PT/* $TEMP_DIR
+    check_md5 $MD5SUM_FILE
+    return $?
+}
+
+cleanup(){
+    echo "Moving back to original location"
+    cd $START_DIR
+    echo "Now residing in $PWD"
+    echo "Cleaning up ..."
+    umount $MOUNT_PT
+    rm -fr $TEMP_DIR
+    echo "Ejecting spent media ..."
+    eject $OPTICAL_DRIVE
+}
+
+failed(){
+    echo $1
+    echo "Attempting to clean up ..."
+    cleanup
+    exit 1
+}
+
+create_working_dirs || failed "Failed to create working directories"
+get_sample_data || failed "Failed to copy sample data"
+generate_md5 || failed "Failed to generate initial md5"
+generate_iso || failed "Failed to create ISO image"
+burn_iso || failed "Failed to burn ISO image"
+check_disk || failed "Fiiles from Disk did not checksum"
+cleanup || failed "Failed to clean up"
+exit 0
