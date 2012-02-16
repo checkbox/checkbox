@@ -1,3 +1,10 @@
+checkbox (0.13.3) precise; urgency=low
+ 
+  [Javier Collado]
+  * Fixed running of disk/read_performance tests (LP: #933528)
+
+ -- Marc Tardif <marc@ubuntu.com>  Thu, 16 Feb 2012 10:31:18 -0500
+
 checkbox (0.13.2) precise; urgency=low
 
   [Jeff Lane]
@@ -51,7 +58,7 @@ checkbox (0.13.2) precise; urgency=low
   * Tweaked the memory_compare script a bit to make it easier to maintain.
   * Used regexes in default whitelist.
 
-  [ Javier Collado ]
+  [Javier Collado]
   * Removed job that installed ipmitool by default (LP: #931954)
 
   [Tiago Salem Herrmann]
