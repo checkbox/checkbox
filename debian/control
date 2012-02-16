@@ -48,7 +48,7 @@ Description: GTK interface for checkbox
 
 Package: checkbox-qt
 Architecture: any
-Depends: checkbox (= ${source:Version}), libqtgui4, libqt4-dbus
+Depends: checkbox (>= ${source:Version}), libqtgui4, libqt4-dbus, ${misc:Depends}
 Description: QT4 interface for checkbox
  This project provides an extensible interface for system testing. The
  results can then be sent to Launchpad.

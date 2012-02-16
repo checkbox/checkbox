@@ -24,6 +24,7 @@ checkbox (0.13.2) precise; urgency=low
   * Simplified running checkbox-qt from source tree, by compiling if needed.
   * Added support for decimals and multiple partitions in max_diskspace_used.
   * Fixed reference to xrandr_detect_modes replaced by VESA_drivers_not_in_use.
+  * Fixed depends in debian/control file for checkbox-qt.
 
   [Daniel Manrique]
   * Changed way of obtaining preferred browser to ensure we honor the user's
