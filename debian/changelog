@@ -10,10 +10,20 @@ checkbox (0.13.2) precise; urgency=low
     determine if a machine's optical drive supports writing or is read-only.
   * Added virt-check test to determine if a server will work as an OpenStack
     Compute Node.
+  * Moved apport-directory changes from an old branch to checkbox where the
+    job now resides.
 
   [Marc Tardif]
   * Removed trailing directories from the devpath of disk devices (LP: #925582)
   * Fixed awk regular expression in max_diskspace_used script (LP: #926312)
+  * Implemented anonymous submissions to Launchpad with a dummy e-mail
+    address.
+  * Qt: Moved widgets around in Results window.
+  * Changed options and arguments passed to show_tree method, and related UI
+    changes.
+  * Simplified running checkbox-qt from source tree, by compiling if needed.
+  * Added support for decimals and multiple partitions in max_diskspace_used.
+  * Fixed reference to xrandr_detect_modes replaced by VESA_drivers_not_in_use.
 
   [Daniel Manrique]
   * Changed way of obtaining preferred browser to ensure we honor the user's
@@ -23,19 +33,34 @@ checkbox (0.13.2) precise; urgency=low
     the user before the test selection screen, and the value entered will
     override the default filename for the xml report.
   * plugins/suites_prompt.py: Fixed jobs being run despite being deselected. 
+  * Qt: Changed color of the step bubbles to Ubuntu Orange, and made it
+    parametrizable.
+  * Qt: View report functionality.
+  * Qt: Set the runtime application icon.
+  * Fixed typo in network/info.
+  * Fixed typo in create_connection.
 
   [Brendan Donegan]
   * Changed checkbox-cli text to clearly explain what + does (LP: #926417)
   * Changed progress bar of Qt UI to standard rather than custom one,
     prettified tabs and updated Launchpad email text amongst other UI tweaks
     in qt/frontend/qtfront.ui
+  * Fixed some oversights in the mediacard job files regarding test 
+    descriptions and card types.
+  * Tweaked the memory_compare script a bit to make it easier to maintain.
+  * Used regexes in default whitelist.
 
   [ Javier Collado ]
   * Removed job that installed ipmitool by default (LP: #931954)
 
   [Tiago Salem Herrmann]
   * Implementation of Qt frontend for checkbox.
-  * Qt-related features and bugfixes.
+  * Qt-related features and bugfixes:
+  * Qt: Added welcome screen image and background color.
+  * Qt: Removed maximize/restore button.
+  * Qt: added select/deselect all popup menu.
+  * Qt: Status screen
+  * Qt: Antialiasing hint for step numbers and question mark.
   
   [Sylvain Pineau]
   * Tests will run in in order specified by the whitelist.
