@@ -92,7 +92,7 @@ _description:
 
 plugin: shell
 name: suspend/network_after_suspend
-depends: suspend/suspend_advanced networking/network_before_suspend
+depends: suspend/suspend_advanced suspend/network_before_suspend
 _description: Test the network after resuming.
 command: network_wait; internet_test | diff $CHECKBOX_DATA/network_before_suspend.txt -
 
