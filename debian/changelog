@@ -1,7 +1,10 @@
 checkbox (0.13.3) precise; urgency=low
-
+ 
   [Javier Collado]
   * Fixed running of disk/read_performance tests (LP: #933528)
+  
+  [Sylvain Pineau]
+  * Fix depends fields in info and suspend test suites (LP: #934051) 
 
  -- Marc Tardif <marc@ubuntu.com>  Thu, 16 Feb 2012 10:31:18 -0500
 
@@ -38,11 +41,11 @@ checkbox (0.13.2) precise; urgency=low
   [Daniel Manrique]
   * Changed way of obtaining preferred browser to ensure we honor the user's
     preference rather than Chromium's clobbering of
-    /etc/alternatives/gnome-www-browser (LP: #925603)
+    /etc/alternatives/gnome-www-browser (LP: #925603) 
   * Added submission_path_prompt config variable; if set, it will be shown to
     the user before the test selection screen, and the value entered will
     override the default filename for the xml report.
-  * plugins/suites_prompt.py: Fixed jobs being run despite being deselected.
+  * plugins/suites_prompt.py: Fixed jobs being run despite being deselected. 
   * Qt: Changed color of the step bubbles to Ubuntu Orange, and made it
     parametrizable.
   * Qt: View report functionality.
@@ -55,7 +58,7 @@ checkbox (0.13.2) precise; urgency=low
   * Changed progress bar of Qt UI to standard rather than custom one,
     prettified tabs and updated Launchpad email text amongst other UI tweaks
     in qt/frontend/qtfront.ui
-  * Fixed some oversights in the mediacard job files regarding test
+  * Fixed some oversights in the mediacard job files regarding test 
     descriptions and card types.
   * Tweaked the memory_compare script a bit to make it easier to maintain.
   * Used regexes in default whitelist.
@@ -71,11 +74,10 @@ checkbox (0.13.2) precise; urgency=low
   * Qt: added select/deselect all popup menu.
   * Qt: Status screen
   * Qt: Antialiasing hint for step numbers and question mark.
-
+  
   [Sylvain Pineau]
   * Tests will run in in order specified by the whitelist.
   * JobStore caches most of a job's attributes in memory to speed up sorting.
-  * Fix depends fields in info and suspend test suites (LP: #934051)
 
  -- Jeff Lane <jeff@ubuntu.com>  Wed, 15 Feb 2012 00:11:21 -0500
 
@@ -99,7 +101,7 @@ checkbox (0.13.1) precise; urgency=low
   * Add requirement for mem sleep state to be supported to the
     suspend_advanced_auto job (LP: #804190)
   * Fixed the camera/display test and removed the camera/video one.
-  * Added display resource and matching requirements to external video
+  * Added display resource and matching requirements to external video 
     output tests.
   * Added removable_storage_watcher script to replace watch_command to make
     testing USB, FireWire and MMC devices easier and more cohesive.
@@ -114,7 +116,7 @@ checkbox (0.13.1) precise; urgency=low
   * Fix misplaced parentheses, so translation can work (LP: #904876)
 
   [Marc Tardif]
-  * Refactored install scripts to be agnostic of variant name:
+  * Refactored install scripts to be agnostic of variant name: 
     install/postinst, install/config and debian/*.postinst.
   * Using title defined in user_interface plugin in GTK interface.
   * Updated default.whitelist to reflect renamed jobs.
@@ -149,7 +151,7 @@ checkbox (0.13.1) precise; urgency=low
   * Fixed spelling mistakes in user_apps job file. (LP: #904209)
 
   [Jeff Lane]
-  * Created automated network info test to get some config info during automated
+  * Created automated network info test to get some config info during automated 
     runs. (LP: #912038)
   * Added requires to suspend wireless jobs so they won't run if wireless isn't
     present (LP: #907150)
@@ -183,7 +185,7 @@ checkbox (0.13) precise; urgency=low
 
   [Daniel Manrique]
   * Use gettext for string (LP: #869267)
-  * Move progress indicator to main checkbox dialog instead of a
+  * Move progress indicator to main checkbox dialog instead of a 
     transient window (LP: #868995)
   * Ignore malformed dpkg entries in package_resource (LP: #794747)
   * Reset window title after finishing a manual test (LP: #874690)
@@ -195,7 +197,7 @@ checkbox (0.13) precise; urgency=low
     * Added descriptions where necessary
     * Added further details to some descriptions
     * Moved some jobs to more appropriate files
-    * Fixed job names in older job files to match new naming scheme
+    * Fixed job names in older job files to match new naming scheme 
       (suite/testname)
     * Added jobs to local.txt to ensure all job files are now parsed
       (this allows easier addition of existing tests to whitelists)
@@ -206,7 +208,7 @@ checkbox (0.13) precise; urgency=low
   [Ara Pulido]
   * Rewrote all job descriptions to match OEM QA syntax
 
-  [Brendan Donegan]
+  [Brendan Donegan]  
   * Fix the code that assigns keys in checkbox-cli so that it never assigns
     keys which have other uses. (LP: #877467)
   * Show details of unmet job requirements (LP: #855852)
@@ -239,7 +241,7 @@ checkbox (0.12.8) oneiric; urgency=low
   * Remove test for FTP connection from network_check script (LP: #854222)
   * Update a parameter in usb_test to have it run faster.
   * Remove record_playback_after_suspend from Ubuntu Friendly whitelist (LP: #855540)
-  * Fix minor typo in multi-monitor friendly resolution_test script which caused
+  * Fix minor typo in multi-monitor friendly resolution_test script which caused 
     minimum_resolution test to fail (LP: #855599)
   * Remove storage_devices_test from Ubuntu Friendly whitelist since bonnie++  (which it uses) is not installed by default (LP: #855841)
   * Changed description and name to reflect Ubuntu Friendly branding. Now when a user searches for Ubuntu Friendly in the lens, Checkbox will appear (LP: #852036)
@@ -254,7 +256,7 @@ checkbox (0.12.8) oneiric; urgency=low
   * Use diff instead of grep, better comparing of empty files (LP: #852014)
   * Apport integration: new mandatory "tag" value in ApportOptions (LP: #852201)
   * Add warning prior to starting the tests (LP: #855328)
-  * Apport integration: Fix instantiation of Gtk.RadioButton, needed due
+  * Apport integration: Fix instantiation of Gtk.RadioButton, needed due 
     to PyGI related API changes (LP: #805679)
   * Remove ping -R parameter that apparently caused ICMP packets to be dropped
     by some routers (LP: #861404)
@@ -265,17 +267,17 @@ checkbox (0.12.8) oneiric; urgency=low
 
   [Jeff Lane]
   * Fix names of optical drive tests and remove a non-existing test from the
-    whitelist (LP: #854808)
+    whitelist (LP: #854808) 
   * Fix wireless_*_suspend jobs so they recreate iface file instead of append
     each time (LP: #855845)
     (LP: #852201)
   * Clarify better the intend of the is_laptop question (LP: #861844)
-  * Fixed dependencies for tests that depend on suspend/suspend_advanced
+  * Fixed dependencies for tests that depend on suspend/suspend_advanced 
     (LP: #860651)
 
   [Tim Chen]
   * Fix cpu_scaling_test (LP: #811177)
-
+ 
   [Ara Pulido]
   * Avoid connect_wireless messing with AP with similar names (LP: #861538)
   * Remove bluetooth/file-transfer from the list of tests to run, since due to
@@ -339,12 +341,12 @@ checkbox (0.12.5) oneiric; urgency=low
   * Changed name of apt-get test to reflect the suite it's in.
   * Fixed typos in job definitions that caused them to not be run.
   * Added missing description to info/hdparm test (LP: #832351)
-  * Quote command to obtain bluetooth address, to avoid hanging if
+  * Quote command to obtain bluetooth address, to avoid hanging if 
     a device is not present (LP: #836756).
   * Added BLUETOOTH category to udev parser.
   * Removed some tests from default whitelist.
   * Fixed dependencies for keys/sleep.
-
+  
   [Jeff Lane]
   * Added new USB storage transfer test
   * Re-worked and added automated audio test
@@ -384,7 +386,7 @@ checkbox (0.12.4) oneiric; urgency=low
     specified and cannot be found.
   * Deselect a test suite automatically when none of its children is selected,
     in the GTK interface. (LP: #651878)
-  * Make the "Next" button the default action when Enter is pressed, to
+  * Make the "Next" button the default action when Enter is pressed, to 
     streamline testing with the GTK interface.
 
   [Marc Tardif]
@@ -396,7 +398,7 @@ checkbox (0.12.4) oneiric; urgency=low
     event.
 
   [Andrew Faulkner]
-  * Fix description for nautilus_file_create job (LP: #821141)
+  * Fix description for nautilus_file_create job (LP: #821141) 
 
   [Kenneth Wimer]
   * New header image that follows brand guidelines (LP: #554202)
@@ -481,7 +483,7 @@ checkbox (0.11.4) natty; urgency=low
 
   * Changed udev_resource to report CAPTURE for USB VIDEO devices
   * Fixed eval of resources with names like list item names
-
+  
   [Carl Milette]
   * Fixed hard coded disk in disk_bench_test so that it matches convention
     utilizing udev_resource for finding devices. (LP: #507943)
@@ -514,14 +516,14 @@ checkbox (0.11.2) natty; urgency=low
 
   [Daniel Manrique]
   * Fixed strings in audio tests and updated pot file (LP: #691241)
-
+  
   [Jochen Kemnade]
   * Fixed grammar in user-apps tests (LP: #642001)
 
   [Jeff Lane]
   * Added reboot instructions to suspend/hibernate tests (LP: #420493)
   * Made the firewire instructions make more sense (LP: #693068)
-
+  
   [Michael Terry]
   * Fixed several strings appear in English although translated (LP: #514401)
     - jobs/fingerprint.txt.in
@@ -555,7 +557,7 @@ checkbox (0.11) natty; urgency=low
   * Fixed lintian errors and warnings
 
   [Eitan Isaacson]
-  * Migrate the UI from libglade to gtkbuilder
+  * Migrate the UI from libglade to gtkbuilder  
 
  -- Marc Tardif <marc@ubuntu.com>  Mon, 14 Feb 2011 18:19:27 -0500
 
