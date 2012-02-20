@@ -21,6 +21,8 @@ import posixpath
 
 from gettext import gettext as _
 from string import Template
+from operator import itemgetter
+from contextlib import contextmanager
 
 from gi.repository import Gtk, Gdk, Pango, PangoCairo
 import cairo
@@ -109,6 +111,9 @@ class GTKInterface(UserInterface):
         self._notebook = self._get_widget("notebook_main")
         self._handlers = {}
 
+        # Set recorded bugs container
+        self.bugs = dict()
+
     def _get_widget(self, name):
         return self.widgets.get_object(name)
 
@@ -116,7 +121,7 @@ class GTKInterface(UserInterface):
         for radio_button, value in map.items():
             if self._get_widget(radio_button).get_active():
                 return value
-        raise Exception, "Failed to map radio_button."
+        raise Exception("Failed to map radio_button.")
 
     def _get_label(self, name):
         widget = self._get_widget(name)
@@ -210,6 +215,22 @@ class GTKInterface(UserInterface):
         if test_name:
             title += " - %s" % test_name
         self._get_widget("dialog_main").set_title(title)
+
+    @contextmanager
+    def _add_temporary_buttons(self, buttons):
+        """
+        Add buttons to dialog
+        and remove them after action is executed
+        """
+        action_area = self._dialog.get_action_area()
+        for position, button in enumerate(buttons):
+            action_area.pack_start(button, False, False, 0)
+            action_area.reorder_child(button, position)
+            button.show()
+        yield
+
+        for button in buttons:
+            action_area.remove(button)
 
     def _run_dialog(self, dialog=None):
         def on_dialog_response(dialog, response, self):
@@ -557,7 +578,8 @@ class GTKInterface(UserInterface):
             options.remove(default)
             options.append(default)
         for index, option in enumerate(options):
-            message_dialog.add_button(option, index)
+            button = getattr(Gtk, "STOCK_%s" % option.upper())
+            message_dialog.add_buttons(button, index)
 
         self._run_dialog(message_dialog)
         message_dialog.hide()
@@ -602,3 +624,208 @@ class GTKInterface(UserInterface):
         #Position to render text
         cairo_drawing_context.move_to(75,45)
         PangoCairo.show_layout(cairo_drawing_context,pango_text_layout)
+
+    @GTKHack
+    def show_report(self, text, results):
+        """
+        Display results report
+        """
+        # Set options page
+        self._notebook.set_current_page(1)
+
+        # Create treeview to display test cases results
+        # in a tree hierarchy
+        COLUMN_NAME, COLUMN_RESULT, RESULT_COLOR = range(3)
+        treestore = Gtk.TreeStore(str, str, str)
+        treeview = Gtk.TreeView()
+        treeview.set_model(treestore)
+        treeview.set_headers_visible(False)
+        treeview.show()
+
+        cell = Gtk.CellRendererText()
+        col = Gtk.TreeViewColumn(None, cell, text=COLUMN_NAME)
+        treeview.append_column(col)
+
+        col = Gtk.TreeViewColumn(None, cell,
+                                 text=COLUMN_RESULT,
+                                 foreground=RESULT_COLOR)
+        treeview.append_column(col)
+
+        status_color_table = {'pass': 'green',
+                              'fail': 'red',
+                              }
+
+        def set_results(results, parent=None):
+            for name, data in sorted(results.iteritems(),
+                                     key=itemgetter(0)):
+                is_suite = all(issubclass(type(value), dict)
+                               for value in data.itervalues())
+
+                if is_suite:
+                    iterator = treestore.append(parent, [name, '', None])
+                    set_results(data, iterator)
+                else:
+                    status = data['status']
+                    status_color = status_color_table.get(status)
+                    treestore.append(parent, [name, status, status_color])
+
+        set_results(results)
+
+        vbox = self._get_widget("vbox_options_list")
+        vbox.pack_start(treeview, False, False, 0)
+
+        self._set_hyper_text_view("hyper_text_view_options", text)
+
+        # Set extra buttons
+        def create_button(label, callback):
+            button = Gtk.Button(label)
+            button.connect("clicked", callback)
+            return button
+
+        button_data = ((_("Expand All"),
+                        lambda button: treeview.expand_all()),
+                       (_("Collapse All"),
+                        lambda button: treeview.collapse_all()),
+                       )
+        buttons = [create_button(label, callback)
+                   for label, callback in button_data]
+
+        with self._add_temporary_buttons(buttons):
+            self._run_dialog()
+
+        vbox.remove(treeview)
+
+    @GTKHack
+    def show_bugs(self, reactor, interface):
+        """
+        Display bug report
+        """
+        # Create a new page to handle the bug report
+        vbox_additional_bugs = Gtk.VBox()
+
+        frame1 = Gtk.Frame(label=None)
+        frame1.set_shadow_type(Gtk.ShadowType.NONE)
+        label1 = Gtk.Label("The following bugs have been recorded:")
+        label1.set_alignment(0, 0)
+        frame1.add(label1)
+        vbox_additional_bugs.pack_start(frame1, False, False, 0)
+        frame1.show()
+        label1.show()
+
+        sc1 = Gtk.ScrolledWindow()
+        sc1.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.ALWAYS)
+        sc1.show()
+        vbox_additional_bugs.pack_start(sc1, True, True, 0)
+
+        frame2 = Gtk.Frame(label=None)
+        frame2.set_shadow_type(Gtk.ShadowType.NONE)
+        label2 = Gtk.Label("Enter below additional bugs id you want"
+                           " to link to this report then Refresh")
+        label2.set_alignment(0, 0)
+        frame2.add(label2)
+        vbox_additional_bugs.pack_start(frame2, False, False, 0)
+        frame2.show()
+        label2.show()
+
+        textview = Gtk.TextView()
+        textview.show()
+
+        sc2 = Gtk.ScrolledWindow()
+        sc2.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.ALWAYS)
+        sc2.show()
+        sc2.add_with_viewport(textview)
+        vbox_additional_bugs.pack_end(sc2, False, False, 0)
+
+        vbox_additional_bugs.show()
+
+        # Create a liststore with string columns
+        liststore = Gtk.ListStore(str, str, str)
+
+        # Create a view for the liststore
+        listview = Gtk.TreeView()
+        listview.set_model(liststore)
+        listview.show()
+
+        # Create CellRenderers to render Text cells
+        cell1 = Gtk.CellRendererText()
+        cell2 = Gtk.CellRendererText()
+        cell3 = Gtk.CellRendererText()
+
+        # Create columns
+        tvcolumn1 = Gtk.TreeViewColumn('Id')
+        tvcolumn2 = Gtk.TreeViewColumn('Headline')
+        tvcolumn3 = Gtk.TreeViewColumn('Test')
+
+        # Liststore update
+        def liststore_update():
+            liststore.clear()
+            for id, data in self.bugs.iteritems():
+                test_name_pattern = re.compile(
+                    r'CheckboxTest:\s+(?P<test_name>.*?)\n')
+                match = test_name_pattern.search(data['messages'])
+                impacted_test = match.group('test_name') if match else ''
+                liststore.append([id, data['title'], impacted_test])
+
+        # Fill the liststore with recorded bugs
+        liststore_update()
+
+        # Add columns to the Treeview
+        listview.append_column(tvcolumn1)
+        listview.append_column(tvcolumn2)
+        listview.append_column(tvcolumn3)
+
+        tvcolumn1.pack_start(cell1, False)
+        tvcolumn2.pack_start(cell2, False)
+        tvcolumn3.pack_start(cell3, False)
+        tvcolumn1.add_attribute(cell1, "text", 0)
+        tvcolumn2.add_attribute(cell2, "text", 1)
+        tvcolumn3.add_attribute(cell3, "text", 2)
+
+        # Allow sorting for each column
+        tvcolumn1.set_sort_column_id(0)
+        tvcolumn2.set_sort_column_id(1)
+        tvcolumn3.set_sort_column_id(2)
+
+        sc1.add_with_viewport(listview)
+        self._notebook.append_page(vbox_additional_bugs, None)
+        self._notebook.set_current_page(4)
+
+        # Set extra buttons
+        def create_button(label, callback):
+            button = Gtk.Button(label)
+            button.connect("clicked", callback)
+            return button
+
+        # Callback to enter a new bug
+        def new_bug():
+            from checkbox_oem import bug
+            factory = bug.GTKBugReportingAssistant
+            assistant = factory()
+            assistant.run()
+            if hasattr(assistant, 'bug'):
+                bug = assistant.bug
+                reactor.fire("query-bugs", interface, [bug.id])
+                liststore_update()
+
+        # Callback to refresh the bug list
+        def refresh_bug_list():
+            textbuffer = textview.get_buffer()
+            (start, end) = textbuffer.get_bounds()
+            text = textbuffer.get_text(start, end, False)
+            bug_pattern = re.compile(r'\b\d+\b')
+            bugs_id = bug_pattern.findall(text)
+            if bugs_id:
+                reactor.fire("query-bugs", interface, bugs_id)
+                liststore_update()
+
+        button_data = ((_("New Bug"),
+                        lambda button: new_bug()),
+                       (_("Refresh"),
+                        lambda button: refresh_bug_list()),
+                       )
+
+        buttons = [create_button(label, callback)
+                   for label, callback in button_data]
+
+        with self._add_temporary_buttons(buttons):
+            self._run_dialog()
