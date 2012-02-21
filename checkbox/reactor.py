@@ -18,6 +18,7 @@
 #
 import logging
 import threading
+import time
 
 from checkbox.lib.log import format_object
 
@@ -58,6 +59,9 @@ class Reactor(object):
     def fire(self, event_type, *args, **kwargs):
         indent = "  " * self._depth
         self._depth += 1
+
+        time_start = time.time()
+
         logging.debug("%sStarted firing %s.", indent, event_type)
 
         handlers = self._event_handlers.get(event_type, ())
@@ -88,7 +92,9 @@ class Reactor(object):
                                   format_object(handler, *args, **kwargs),
                                   event_type)
 
-        logging.debug("%sFinished firing %s.", indent, event_type)
+        time = time.time() - time_start
+
+        logging.debug("%sFinished firing %s. took %f seconds", indent, event_type, time)
         self._depth -= 1
         return results
 
