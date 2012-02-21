@@ -575,8 +575,7 @@ class GTKInterface(UserInterface):
             options.remove(default)
             options.append(default)
         for index, option in enumerate(options):
-            button = getattr(Gtk, "STOCK_%s" % option.upper())
-            message_dialog.add_buttons(button, index)
+            message_dialog.add_button(option, index)
 
         self._run_dialog(message_dialog)
         message_dialog.hide()

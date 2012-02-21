@@ -725,7 +725,6 @@ class TreeNodeWidget(urwid.WidgetWrap):
             del_end_position = (del_start_position +
                                 len(self) - 1)
             del walker[del_start_position:del_end_position]
-            #self._collapse_children()
             self.expanded = False
         else:
             insert_position = position + 1
