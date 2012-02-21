@@ -1,4 +1,19 @@
+checkbox (0.13.3) precise; urgency=low
+ 
+  [Javier Collado]
+  * Fixed running of disk/read_performance tests (LP: #933528)
+  
+  [Sylvain Pineau]
+  * Fix depends fields in info and suspend test suites (LP: #934051) 
+
+  [Brendan Donegan]
+  * Typo in command for for miscellanea/virtualization-check (LP: #934243)
+
+ -- Marc Tardif <marc@ubuntu.com>  Thu, 16 Feb 2012 10:31:18 -0500
+
 checkbox (0.13.2) precise; urgency=low
+
+  New upstream release (LP: #933090):
 
   [Jeff Lane]
   * Added a Hard Disk Stats Test that was part of a much older merge request
@@ -24,6 +39,7 @@ checkbox (0.13.2) precise; urgency=low
   * Simplified running checkbox-qt from source tree, by compiling if needed.
   * Added support for decimals and multiple partitions in max_diskspace_used.
   * Fixed reference to xrandr_detect_modes replaced by VESA_drivers_not_in_use.
+  * Fixed depends in debian/control file for checkbox-qt.
 
   [Daniel Manrique]
   * Changed way of obtaining preferred browser to ensure we honor the user's
@@ -50,7 +66,7 @@ checkbox (0.13.2) precise; urgency=low
   * Tweaked the memory_compare script a bit to make it easier to maintain.
   * Used regexes in default whitelist.
 
-  [ Javier Collado ]
+  [Javier Collado]
   * Removed job that installed ipmitool by default (LP: #931954)
 
   [Tiago Salem Herrmann]

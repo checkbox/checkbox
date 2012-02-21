@@ -72,7 +72,7 @@ _description: Verify system storage performs at or above baseline performance
 command:
  cat <<'EOF' | run_templates -t -s 'udev_resource | filter_templates -w "category=DISK"'
  plugin: shell
- name: disk_read_performance_`ls /sys$path/block`
+ name: disk/read_performance_`ls /sys$path/block`
  requires:
   device.path == "$path"
   package.name == 'linux'
