@@ -42,6 +42,13 @@ class PersistInfo(Plugin):
         # Save persist data last
         self._manager.reactor.call_on("stop", self.save, 1000)
 
+        #This should fire first thing during the gathering phase.
+        self._manager.reactor.call_on("gather", self.begin_gather, -900)
+
+        #This should fire last during gathering (i.e. after
+        #all other gathering callbacks are finished)
+        self._manager.reactor.call_on("gather", self.end_gather, 900)
+
     def begin(self, interface=None):
         if self.persist is None:
             self.persist = Persist(self.filename)
@@ -52,5 +59,12 @@ class PersistInfo(Plugin):
         if self.persist:
             self.persist.save()
 
+    def begin_gather(self):
+        #Speed boost during the gathering phase. Not critical data anyway.
+        self.persist._backend.safe_file_closing = False
+
+    def end_gather(self):
+        #Back to saving data very carefully once gathering is done.
+        self.persist._backend.safe_file_closing = True 
 
 factory = PersistInfo

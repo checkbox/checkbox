@@ -72,22 +72,20 @@ class JobsPrompt(Plugin):
         #all other gathering callbacks are finished)
         self._manager.reactor.call_on("gather", self.end_gather, 900)
 
-    def begin_gather(self):
-        #Speed boost during the gathering phase. Not critical data anyway.
-        self._store.safe_file_closing = False
-        self._persist.safe_file_closing = False
-
-    def end_gather(self):
-        #Back to saving data very carefully once gathering is done.
-        self._store.safe_file_closing = True 
-        self._persist.safe_file_closing = True
-
     def begin_persist(self, persist):
         self._persist = persist
 
     def begin_recover(self, recover):
         if not recover:
             self.store.delete_all_messages()
+
+    def begin_gather(self):
+        #Speed boost during the gathering phase. Not critical data anyway.
+        self.store.safe_file_closing = False
+
+    def end_gather(self):
+        #Back to saving data very carefully once gathering is done.
+        self.store.safe_file_closing = True 
 
     def ignore_jobs(self, jobs):
         self._ignore = jobs
