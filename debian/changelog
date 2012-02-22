@@ -2,6 +2,8 @@ checkbox (0.13.3) precise; urgency=low
  
   [Javier Collado]
   * Fixed running of disk/read_performance tests (LP: #933528)
+  * Checkbox doesn't warn that invalid whitelist patterns are being used
+    (LP: #937651)
   
   [Sylvain Pineau]
   * Fix depends fields in info and suspend test suites (LP: #934051) 
