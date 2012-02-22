@@ -216,10 +216,10 @@ class UserInterface(object):
             os.write(w, str(e))
             sys.exit(1)
 
-    def show_report(self, results):
+    def show_report(self, text, results):
         """
         Display a report of all test case results
         and make it possible to modify them
         """
-        raise NotImplemented
+        raise NotImplementedError
 
