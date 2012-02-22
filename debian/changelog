@@ -1,14 +1,17 @@
 checkbox (0.13.3) precise; urgency=low
  
+  [Brendan Donegan]
+  * Typo in command for for miscellanea/virtualization-check (LP: #934243)
+
+  [Daniel Manrique]
+  * Use GObject from gi.repository instead of gobject (LP: #937099)
+
   [Javier Collado]
   * Fixed running of disk/read_performance tests (LP: #933528)
   
   [Sylvain Pineau]
   * Fix depends fields in info and suspend test suites (LP: #934051) 
   * Display results report in non-graphical interfaces (LP: #937657)
-
-  [Brendan Donegan]
-  * Typo in command for for miscellanea/virtualization-check (LP: #934243)
 
   [ Tiago Salem Herrmann ]
   * Remove auto generated qt resource file (LP: #938863)
