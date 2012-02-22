@@ -116,7 +116,7 @@ class GTKInterface(UserInterface):
         for radio_button, value in map.items():
             if self._get_widget(radio_button).get_active():
                 return value
-        raise Exception, "Failed to map radio_button."
+        raise Exception("Failed to map radio_button.")
 
     def _get_label(self, name):
         widget = self._get_widget(name)

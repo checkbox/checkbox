@@ -160,6 +160,94 @@ class CLIChoiceDialog(CLIDialog):
         self.options.append(option)
 
 
+class CLIReportDialog(CLIDialog):
+    """
+    Display test results
+    """
+    STATUS = {'pass': '[0;32m{0}[0m',
+              'fail': '[0;31m{0}[0m'}
+
+    def __init__(self, text, results):
+        super(CLIReportDialog, self).__init__(text)
+        self.results = results
+
+    def run(self):
+        """
+        Show root of the tree
+        and provide the ability to further display subtress
+        """
+        root = self.results
+        title = self.text
+        self._display(title, root)
+
+    def _is_suite(self, root):
+        """
+        Return True if root contains a suite
+        that is, a job containing other jobs
+        """
+        return all(issubclass(type(value), dict)
+                   for value in root.itervalues())
+
+    def _display(self, title, root):
+        """
+        Display dialog until user decides to exit
+        (recursively for subtrees)
+        """
+        while True:
+            self.put_newline()
+            self.put_newline()
+            self.put_line(title)
+            self.put_newline()
+
+            keys = []
+            options = []
+            def add_option(option, key=None):
+                """
+                Add option to list
+                and generate automatic key value
+                if not provided
+                """
+                if key is None:
+                    key = string.lowercase[len(keys)]
+                keys.append(key)
+                options.append(option)
+
+            for job_name, job_data in sorted(root.iteritems()):
+                if self._is_suite(job_data):
+                    add_option(job_name)
+                    self.put_line('{key}: {option}'
+                                  .format(key=keys[-1],
+                                          option=options[-1]))
+                else:
+                    job_status = job_data.get('status')
+                    status_string = (self.STATUS.get(job_status, '{0}')
+                                     .format(job_status))
+                    self.put_line('   {name} [{status}]'
+                                  .format(name=job_name,
+                                          status=status_string))
+
+            add_option(_("Space when finished"), " ")
+            self.put_line('{key}: {option}'
+                          .format(key=keys[-1],
+                                  option=options[-1]))
+
+            response = self.get(_("Please choose (%s): ") % ("/".join(keys)))
+
+            if response != ' ':
+                try:
+                    selected_option = options[keys.index(response)]
+                except ValueError:
+                    # Display again menu
+                    continue
+
+                # Display new menu with the contents of the selected option
+                self._display(selected_option, root[selected_option])
+            else:
+                # Exit from this menu display
+                # (display again parent menu or exit)
+                break
+
+
 class CLITextDialog(CLIDialog):
 
     limit = 255
@@ -271,7 +359,6 @@ class CLIInterface(UserInterface):
 
     def show_tree(self, text, options={}, default={}):
         keys = sorted(options.keys())
-        values = [options[k] for k in keys]
 
         dialog = CLIChoiceDialog(text)
         for option in keys:
@@ -313,6 +400,15 @@ class CLIInterface(UserInterface):
                     results[result] = branch_results
 
         return results
+
+
+    def show_report(self, text, results):
+        """
+        Show test case results in a tree hierarchy
+        """
+        dialog = CLIReportDialog(text, results)
+        dialog.run()
+
 
     def show_test(self, test, runner):
         options = list([ANSWER_TO_OPTION[a] for a in ALL_ANSWERS])

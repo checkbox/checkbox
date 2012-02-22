@@ -19,6 +19,7 @@
 import urwid
 
 import re, string
+from operator import itemgetter
 from gettext import gettext as _
 
 from checkbox.user_interface import (UserInterface, NEXT, PREV,
@@ -37,7 +38,12 @@ class Dialog(object):
                ('button focused', 'white', 'dark blue'),
                ('highlight', 'black', 'dark cyan'),
                ('highlight focused', 'white', 'dark blue'),
+               ('fail', 'light red', 'dark cyan'),
+               ('pass', 'light green', 'dark cyan'),
+               ('result', 'light gray', 'dark cyan'),
                )
+    PALETTE_MEMBERS = set(color_spec[0]
+                          for color_spec in PALETTE)
     header = None
     footer = None
 
@@ -368,12 +374,12 @@ class TreeChoiceDialog(ChoiceDialog):
         """
         Create a tree node and all its children
         """
-        widget = TreeNodeWidget(name, parent)
+        widget = SelectableTreeNodeWidget(name, parent)
         urwid.signals.connect_signal(widget, 'change',
                                      widget.changed_cb, self.walker)
 
         if isinstance(data, dict):
-            items = sorted(data.iteritems(), key=lambda item: item[0])
+            items = sorted(data.iteritems(), key=itemgetter(0))
             for children_name, children_data in items:
                 child_widget = self.create_tree(children_name, children_data, widget)
                 widget.append(child_widget)
@@ -402,14 +408,15 @@ class TreeChoiceDialog(ChoiceDialog):
 
         # Show tree
         self.option_widgets = []
-        items = sorted(self.options.iteritems(), key=lambda item: item[0])
+        items = sorted(self.options.iteritems(),
+                       key=itemgetter(0))
         for name, data in items:
             widget = self.create_tree(name, data)
             self.option_widgets.append(widget)
             self.walker.append(widget)
 
         self._set_default([node for node in self.walker
-                           if isinstance(node, TreeNodeWidget)],
+                           if isinstance(node, SelectableTreeNodeWidget)],
                           self.default)
 
         # Show buttons
@@ -422,9 +429,131 @@ class TreeChoiceDialog(ChoiceDialog):
         self.walker.append(buttons_box)
 
 
+class ReportDialog(ChoiceDialog):
+    """
+    Display test results dialog
+    """
+    footer = urwid.AttrMap(urwid.Columns((urwid.Text('Arrow keys/Page Up/Page Down: Move'),
+                                          urwid.Text(''),
+                                          urwid.Text('+/-/Enter/Space: Expand/Collapse'))),
+                           'footer')
+
+    def __init__(self, text, results):
+        Dialog.__init__(self, text)
+        self.results = results
+
+
+    def _get_tree_node(self, node):
+        """
+        Get tree node even if a column is wrapping it
+        """
+        if issubclass(type(node), TreeNodeWidget):
+            return node
+        elif issubclass(type(node), urwid.Columns):
+            for widget in child.widget_list:
+                if issubclass(type(widget), TreeNodeWidget):
+                    return widget
+        return node
+
+
+    def expand_all_clicked_cb(self, button):
+        """
+        Expand all elements in the tree to see results
+        """
+        for tree_node in [self._get_tree_node(node)
+                          for node in self.root_nodes]:
+            tree_node.expand(expand_all=True)
+
+
+    def collapse_all_clicked_cb(self, button):
+        """
+        Collapse all elements in the tree to see results
+        """
+        for tree_node in [self._get_tree_node(node)
+                          for node in self.root_nodes]:
+            tree_node.collapse(collapse_all=True)
+
+
+    def next_button_clicked_cb(self, button):
+        """
+        Set direction, response and exit
+        """
+        self.direction = NEXT
+        raise urwid.ExitMainLoop
+
+
+    def previous_button_clicked_cb(self, button):
+        """
+        Set direction, response and exit
+        """
+        self.direction = PREV
+        raise urwid.ExitMainLoop
+
+
+    def create_tree(self, name, data, parent=None):
+        """
+        Create a tree node and all its children
+        """
+        widget = TreeNodeWidget(name, parent)
+        urwid.signals.connect_signal(widget, 'change',
+                                     widget.changed_cb, self.walker)
+
+        items = sorted(data.iteritems(), key=itemgetter(0))
+        for child_name, child_data in items:
+            is_suite = all(issubclass(type(value), dict)
+                           for value in child_data.itervalues())
+
+            if is_suite:
+                child_widget = self.create_tree(child_name,
+                                                child_data,
+                                                widget)
+            else:
+                result=child_data['status']
+
+                # Use color specification for result
+                # if found or default one
+                attr = (result
+                        if result in self.PALETTE_MEMBERS
+                        else 'result')
+
+                child_widget = urwid.Columns(
+                    (TreeNodeWidget(child_name, widget),
+                     urwid.AttrMap(urwid.Text((attr, result)),
+                                   'highlight', 'highlight focused')))
+            widget.append(child_widget)
+
+        return widget
+
+
+    def show(self):
+        """
+        Display dialog text, options tree and buttons
+        """
+        # Show text
+        Dialog.show(self)
+
+        # Show tree
+        items = sorted(self.results.iteritems(),
+                       key=itemgetter(0))
+        for name, data in items:
+            widget = self.create_tree(name, data)
+            self.walker.append(widget)
+
+        self.root_nodes = [node for node in self.walker]
+
+        # Show buttons
+        labels = ((_('Expand All'), self.expand_all_clicked_cb),
+                  (_('Collapse All'), self.collapse_all_clicked_cb),
+                  (_('Previous'), self.previous_button_clicked_cb),
+                  (_('Next'), self.next_button_clicked_cb))
+        buttons_box = self.create_buttons(labels)
+        self.walker.append(urwid.Divider())
+        self.walker.append(buttons_box)
+
+
 class TreeNodeWidget(urwid.WidgetWrap):
     """
-    Implementation of a node in a tree that can be selected/deselected
+    Implementation of a node in a tree that can be expanded/unexpanded
     """
     signals = ['change']
 
@@ -436,17 +565,45 @@ class TreeNodeWidget(urwid.WidgetWrap):
 
         self.expanded = False
 
-        # Use a checkbox as internal representation of the widget
-        self.checkbox = urwid.CheckBox(self._get_label())
-        w = urwid.AttrMap(self.checkbox, 'highlight', 'highlight focused')
+        w = self._get_widget()
         super(TreeNodeWidget, self).__init__(w)
+
+
+    def _get_widget(self):
+        """
+        Create widget that is wrapped by this class
+        """
+        self.widget = urwid.Text(self._get_label())
+        w = urwid.AttrMap(self.widget, 'highlight', 'highlight focused')
+        return w
+
+
+    def _update_label(self):
+        """
+        Update text label
+        """
+        self.widget.set_text(self._get_label())
+
+
+    def _get_node(self, child):
+        """
+        Get TreeNode directly without traversing Columns
+        """
+        if issubclass(type(child), TreeNodeWidget):
+            return child
+        elif issubclass(type(child), urwid.Columns):
+            for widget in child.widget_list:
+                if issubclass(type(widget), TreeNodeWidget):
+                    return widget
+        return child
 
 
     def __iter__(self):
         """
         Iterate over children nodes
         """
-        return iter(self.children)
+        return iter([self._get_node(child)
+                     for child in self.children])
 
 
     def __len__(self):
@@ -476,12 +633,154 @@ class TreeNodeWidget(urwid.WidgetWrap):
         return True
 
 
+    def keypress(self, size, key):
+        """
+        Use key events to expand/collapse tree hierarchy
+        """
+        if self.children:
+            if (key in ('+', 'enter', ' ')
+                and self.expanded == False):
+                urwid.signals.emit_signal(self, 'change')
+                return None
+            elif (key in ('-', 'enter', ' ')
+                  and self.expanded == True):
+                urwid.signals.emit_signal(self, 'change')
+                return None
+
+        return key
+
+
+    def mouse_event(self, size, event, button, col, row, focus):
+        """
+        Use mouse events to expand/collapse tree hierarchy
+        """
+        # Ignore button release event
+        if button == 0:
+            pass
+        else:
+            urwid.signals.emit_signal(self, 'change')
+
+        return True
+
+
+    def _get_label(self):
+        """
+        Generate text label
+        """
+        prefix = ' '*(self.depth*2)
+        if self.children:
+            if self.expanded == False:
+                mark = '+'
+            else:
+                mark = '-'
+
+            label = prefix + '{0} {1}'.format(mark, self.name)
+        else:
+            label = prefix + self.name
+        return label
+
+
+    def collapse(self, collapse_all=False):
+        """
+        Collapse node
+        """
+        if self.expanded == True:
+            urwid.signals.emit_signal(self, 'change')
+
+        if collapse_all:
+            self._collapse_children()
+
+
+    def _collapse_children(self):
+        """
+        Collapse all children
+        """
+        for child in self:
+            child._collapse_children()
+            if child.expanded:
+                child.expanded = False
+                child._update_label()
+
+
+    def expand(self, expand_all=False):
+        """
+        Expand node
+        """
+        if self.expanded == False:
+            urwid.signals.emit_signal(self, 'change')
+
+            if expand_all:
+                for child in self:
+                    child.expand(expand_all)
+
+
+    def changed_cb(self, walker):
+        """
+        Handle node expansion in the tree
+        """
+        position = walker.index(self)
+
+        if self.expanded:
+            del_start_position = walker.index(self) + 1
+            del_end_position = (del_start_position +
+                                len(self) - 1)
+            del walker[del_start_position:del_end_position]
+            self.expanded = False
+        else:
+            insert_position = position + 1
+
+            # Append widgets to the list
+            subtree = list(self._get_subtree())
+            walker[insert_position:insert_position] = subtree
+            self.expanded = True
+
+        self._update_label()
+
+
+    def _get_subtree(self):
+        """
+        Return subtree with expanded children
+        """
+        for child in self.children:
+            yield child
+
+            child_node = self._get_node(child)
+            if child_node.expanded:
+                for descendant in child._get_subtree():
+                    yield descendant
+
+
+class SelectableTreeNodeWidget(TreeNodeWidget):
+    """
+    Implementation of a node in a tree that can be selected/deselected
+    """
+    def __init__(self, name, parent=None):
+        super(SelectableTreeNodeWidget, self).__init__(name, parent)
+
+
+    def _get_widget(self):
+        """
+        Create widget that is wrapped by this class
+        """
+        # Use a checkbox to preserve widget selection stat
+        self.widget = urwid.CheckBox(self._get_label())
+        w = urwid.AttrMap(self.widget, 'highlight', 'highlight focused')
+        return w
+
+
+    def _update_label(self):
+        """
+        Update text label
+        """
+        self.widget.set_label(self._get_label())
+
+
     @property
     def state(self):
         """
         Get state from checkbox widget
         """
-        return self.checkbox.get_state()
+        return self.widget.get_state()
 
 
     @state.setter
@@ -489,7 +788,7 @@ class TreeNodeWidget(urwid.WidgetWrap):
         """
         Set state to checkbox widget
         """
-        self.checkbox.set_state(value)
+        self.widget.set_state(value)
 
 
     def set_ancestors_state(self, new_state):
@@ -534,15 +833,8 @@ class TreeNodeWidget(urwid.WidgetWrap):
             self.set_children_state(new_state)
             self.set_ancestors_state(new_state)
             return None
-        elif self.children:
-            if key in ('+', 'enter') and self.expanded == False:
-                urwid.signals.emit_signal(self, 'change')
-                return None
-            elif key in ('-', 'enter') and self.expanded == True:
-                urwid.signals.emit_signal(self, 'change')
-                return None
 
-        return key
+        return super(SelectableTreeNodeWidget, self).keypress(size, key)
 
 
     def mouse_event(self, size, event, button, col, row, focus):
@@ -555,71 +847,10 @@ class TreeNodeWidget(urwid.WidgetWrap):
             self.state = new_state
             self.set_children_state(new_state)
             self.set_ancestors_state(new_state)
-        # Ignore button release event
-        elif button == 0:
-            pass
-        else:
-            urwid.signals.emit_signal(self, 'change')
+            return True
 
-        return True
-
-
-    def _get_label(self):
-        """
-        Generate text label
-        """
-        prefix = ' '*(self.depth*2)
-        if self.children:
-            if self.expanded == False:
-                mark = '+'
-            else:
-                mark = '-'
-
-            label = prefix + '{0} {1}'.format(mark, self.name)
-        else:
-            label = prefix + self.name
-        return label
-
-
-    def _update_label(self):
-        """
-        Update text label
-        """
-        self.checkbox.set_label(self._get_label())
-
-
-    def _collapse_children(self):
-        """
-        Collapse all children
-        """
-        for child in self:
-            if child.expanded:
-                child._collapse_children()
-                child.expanded = False
-                child._update_label()
-
-
-    def changed_cb(self, walker):
-        """
-        Handle node expansion in the tree
-        """
-        position = walker.index(self)
-
-        if self.expanded:
-            del_start_position = walker.index(self) + 1
-            del_end_position = (del_start_position +
-                                len(self) - 1)
-            del walker[del_start_position:del_end_position]
-            self._collapse_children()
-            self.expanded = False
-        else:
-            insert_position = position + 1
-
-            # Append widgets to the list
-            walker[insert_position:insert_position] = self.children
-            self.expanded = True
-
-        self._update_label()
+        return (super(SelectableTreeNodeWidget, self)
+                .mouse_event(size, event, button, col, row, focus))
 
 
 class ProgressDialog(Dialog):
@@ -753,6 +984,14 @@ class UrwidInterface(UserInterface):
         return dialog.response
 
 
+    def show_report(self, text, results):
+        """
+        Show test case results in a tree hierarchy
+        """
+        dialog = ReportDialog(text, results).run()
+        self.direction = dialog.direction
+
+
     def show_test(self, test, runner):
         """
         Show test description, radio buttons to set result
@@ -792,7 +1031,7 @@ class UrwidInterface(UserInterface):
         test['data'] = dialog.input
         test['status'] = ANSWER_TO_STATUS[answer]
         self.direction = dialog.direction
-        return self.response
+        return dialog.response
 
 
     def show_info(self, text, options=[], default=None):
