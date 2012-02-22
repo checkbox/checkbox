@@ -21,8 +21,6 @@ import posixpath
 
 from gettext import gettext as _
 from string import Template
-from operator import itemgetter
-from contextlib import contextmanager
 
 from gi.repository import Gtk, Gdk, Pango, PangoCairo
 import cairo
@@ -212,22 +210,6 @@ class GTKInterface(UserInterface):
         if test_name:
             title += " - %s" % test_name
         self._get_widget("dialog_main").set_title(title)
-
-    @contextmanager
-    def _add_temporary_buttons(self, buttons):
-        """
-        Add buttons to dialog
-        and remove them after action is executed
-        """
-        action_area = self._dialog.get_action_area()
-        for position, button in enumerate(buttons):
-            action_area.pack_start(button, False, False, 0)
-            action_area.reorder_child(button, position)
-            button.show()
-        yield
-
-        for button in buttons:
-            action_area.remove(button)
 
     def _run_dialog(self, dialog=None):
         def on_dialog_response(dialog, response, self):
@@ -620,73 +602,3 @@ class GTKInterface(UserInterface):
         #Position to render text
         cairo_drawing_context.move_to(75,45)
         PangoCairo.show_layout(cairo_drawing_context,pango_text_layout)
-
-    @GTKHack
-    def show_report(self, text, results):
-        """
-        Display results report
-        """
-        # Set options page
-        self._notebook.set_current_page(1)
-
-        # Create treeview to display test cases results
-        # in a tree hierarchy
-        COLUMN_NAME, COLUMN_RESULT, RESULT_COLOR = range(3)
-        treestore = Gtk.TreeStore(str, str, str)
-        treeview = Gtk.TreeView()
-        treeview.set_model(treestore)
-        treeview.set_headers_visible(False)
-        treeview.show()
-
-        cell = Gtk.CellRendererText()
-        col = Gtk.TreeViewColumn(None, cell, text=COLUMN_NAME)
-        treeview.append_column(col)
-
-        col = Gtk.TreeViewColumn(None, cell,
-                                 text=COLUMN_RESULT,
-                                 foreground=RESULT_COLOR)
-        treeview.append_column(col)
-
-        status_color_table = {'pass': 'green',
-                              'fail': 'red',
-                              }
-
-        def set_results(results, parent=None):
-            for name, data in sorted(results.iteritems(),
-                                     key=itemgetter(0)):
-                is_suite = all(issubclass(type(value), dict)
-                               for value in data.itervalues())
-
-                if is_suite:
-                    iterator = treestore.append(parent, [name, '', None])
-                    set_results(data, iterator)
-                else:
-                    status = data['status']
-                    status_color = status_color_table.get(status)
-                    treestore.append(parent, [name, status, status_color])
-
-        set_results(results)
-
-        vbox = self._get_widget("vbox_options_list")
-        vbox.pack_start(treeview, False, False, 0)
-
-        self._set_hyper_text_view("hyper_text_view_options", text)
-
-        # Set extra buttons
-        def create_button(label, callback):
-            button = Gtk.Button(label)
-            button.connect("clicked", callback)
-            return button
-
-        button_data = ((_("Expand All"),
-                        lambda button: treeview.expand_all()),
-                       (_("Collapse All"),
-                        lambda button: treeview.collapse_all()),
-                       )
-        buttons = [create_button(label, callback)
-                   for label, callback in button_data]
-
-        with self._add_temporary_buttons(buttons):
-            self._run_dialog()
-
-        vbox.remove(treeview)

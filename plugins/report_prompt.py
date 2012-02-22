@@ -40,7 +40,8 @@ class ReportPrompt(Plugin):
                 self._manager.reactor.fire, "report")
 
         self._manager.reactor.cancel_call(event_id)
-        self._manager.reactor.fire("report-review", interface)
+        if hasattr(interface, 'show_report'):
+            self._manager.reactor.fire("report-review", interface)
 
 
 factory = ReportPrompt
