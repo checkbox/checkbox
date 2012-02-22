@@ -66,6 +66,8 @@ class LaunchpadReport(Plugin):
              ("report-package", self.report_package),
              ("report-uname", self.report_uname),
              ("report-system_id", self.report_system_id),
+             ("report-suites", self.report_suites),
+             ("report-review", self.report_review),             
              ("report-tests", self.report_tests)]:
             self._manager.reactor.call_on(rt, rh)
 
@@ -136,6 +138,7 @@ class LaunchpadReport(Plugin):
         self._report["summary"]["system_id"] = system_id
 
     def report_tests(self, tests):
+        self.tests = tests
         for test in tests:
             question = {
                 "name": test["name"],
@@ -166,6 +169,51 @@ The generated report seems to have validation errors,
 so it might not be processed by Launchpad."""))
 
         self._manager.reactor.fire("launchpad-report", self.filename)
+
+    def report_review(self, interface):
+        """
+        Show test report in the interface
+        """
+        report = {}
+
+        def add_job(job):
+            is_suite = 'type' in job and job['type'] == 'suite'
+            if 'suite' in job:
+                suite_name = job['suite']
+                parent_node = add_job(self.suites[suite_name])
+
+                if is_suite:
+                    if job['description'] in parent_node:
+                        return parent_node[job['description']]
+
+                    node = {}
+                    parent_node[job['description']] = node
+                    return node
+                parent_node[job['name']] = job
+            else:
+                if is_suite:
+                    field = 'description'
+                else:
+                    field = 'name'
+
+                if job[field] in report:
+                    return report[job[field]]
+
+                node = {}
+                report[job[field]] = node
+                return node
+
+        for test in self.tests:
+            add_job(test)
+
+        interface.show_report("Test case results report", report)
+
+    def report_suites(self, suites):
+        """
+        Get tests results and store it
+        to display them later
+        """
+        self.suites = dict([(suite['name'], suite) for suite in suites])
 
 
 factory = LaunchpadReport
