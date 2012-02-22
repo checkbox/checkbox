@@ -5,6 +5,8 @@ checkbox (0.13.3) precise; urgency=low
 
   [Daniel Manrique]
   * Use GObject from gi.repository instead of gobject (LP: #937099)
+  * Disable flushing to disk after every file access during gathering phase for
+    a significant speed boost. (LP: #939019)
 
   [Javier Collado]
   * Fixed running of disk/read_performance tests (LP: #933528)

@@ -506,8 +506,11 @@ class MemoryBackend(Backend):
     def save(self, filepath, map):
         self._store[filepath] = map
 
+class DiskBackend(Backend):
 
-class PickleBackend(Backend):
+    safe_file_closing = True
+
+class PickleBackend(DiskBackend):
 
     def __init__(self):
         import cPickle
@@ -518,17 +521,17 @@ class PickleBackend(Backend):
         try:
             return self._pickle.load(file)
         finally:
-            safe_close(file)
+            safe_close(file, self.safe_file_closing)
 
     def save(self, filepath, map):
         file = open(filepath, "w")
         try:
             self._pickle.dump(map, file, 2)
         finally:
-            safe_close(file)
+            safe_close(file, self.safe_file_closing)
 
 
-class BPickleBackend(Backend):
+class BPickleBackend(DiskBackend):
 
     def __init__(self):
         from checkbox.contrib import bpickle
@@ -539,11 +542,11 @@ class BPickleBackend(Backend):
         try:
             return self._bpickle.loads(file.read())
         finally:
-            safe_close(file)
+            safe_close(file, self.safe_file_closing)
 
     def save(self, filepath, map):
         file = open(filepath, "w")
         try:
             file.write(self._bpickle.dumps(map))
         finally:
-            safe_close(file)
+            safe_close(file, self.safe_file_closing)

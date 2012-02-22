@@ -95,7 +95,8 @@ def safe_md5sum_file(name):
 
     return md5sum
 
-def safe_close(file):
-    file.flush()
-    os.fsync(file.fileno())
+def safe_close(file, safe=True):
+    if safe:
+        file.flush()
+        os.fsync(file.fileno())
     file.close()

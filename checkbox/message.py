@@ -44,6 +44,10 @@ class MessageStore(object):
     #This caches everything but a message's data, making it manageable to keep in memory.
     _message_cache = {}
 
+    #Setting this to False speeds things up considerably, at the expense 
+    #of a higher risk of data loss during a crash
+    safe_file_closing = True
+
     def __init__(self, persist, directory, directory_size=1000):
         self._directory = directory
         self._directory_size = directory_size
@@ -219,7 +223,7 @@ class MessageStore(object):
         try:
             return file.read()
         finally:
-            safe_close(file)
+            safe_close(file, safe=self.safe_file_closing)
 
     def _get_flags(self, path):
         basename = posixpath.basename(path)
@@ -261,7 +265,7 @@ class MessageStore(object):
 
         file = open(filename + ".tmp", "w")
         file.write(message_data)
-        safe_close(file)
+        safe_close(file, safe=self.safe_file_closing)
 
         os.rename(filename + ".tmp", filename)
 
