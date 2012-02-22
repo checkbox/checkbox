@@ -20,7 +20,7 @@ import sys
 import time
 import posixpath
 import inspect
-import gobject
+from gi.repository import GObject
 import os
 
 from gettext import gettext as _
@@ -51,7 +51,7 @@ class QTInterface(UserInterface):
                 self.bus = dbus.SessionBus(mainloop=DBusGMainLoop())
                 self.qtfront = self.bus.get_object('com.canonical.QtCheckbox', '/QtCheckbox')
                 self.qtiface = dbus.Interface(self.qtfront, dbus_interface='com.canonical.QtCheckbox')
-                self.loop = gobject.MainLoop()
+                self.loop = GObject.MainLoop()
                 notReady = False
             except:
                 time.sleep(0.5)
