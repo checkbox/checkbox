@@ -9,7 +9,7 @@ void TreeModel::warn()
 {
     if (!m_messageBox)
         m_messageBox = new QErrorMessage();
-    m_messageBox->showMessage("Changeme: If you deselect this, the result wont be submitted to Ubuntu Friendly!");
+    m_messageBox->showMessage("Unselecting a test will invalidate your submission for Ubuntu Friendly. If you plan to participate in Ubuntu Friendly, please, select all tests. You can always skip individual tests if you don't have the needed equipment.");
 }
 
 bool TreeModel::setData(const QModelIndex &index, const QVariant &value, int role)
