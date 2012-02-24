@@ -14,8 +14,8 @@ class CameraTest:
     """
     def __init__(self):
         self._mainloop = gobject.MainLoop()
-	self._width = 640
-	self._height = 480
+        self._width = 640
+        self._height = 480
 
 
     def detect(self):
@@ -39,11 +39,11 @@ class CameraTest:
         """
         Activate camera (switch on led), but don't display any output
         """
-	pipespec=("autovideosrc "
+        pipespec=("autovideosrc "
                   "! video/x-raw-yuv "
                   "! ffmpegcolorspace "
                   "! testsink")
-	self._pipeline = gst.parse_launch(pipespec)
+        self._pipeline = gst.parse_launch(pipespec)
         self._pipeline.set_state(gst.STATE_PLAYING)
         time.sleep(10)
         self._pipeline.set_state(gst.STATE_READY)
@@ -53,13 +53,13 @@ class CameraTest:
         """
         Displays the preview window
         """
-	pipespec=("autovideosrc "
+        pipespec=("autovideosrc "
                   "! video/x-raw-yuv,width=%(width)d,height=%(height)d "
                   "! ffmpegcolorspace "
                   "! autovideosink"
                   % {'width': self._width,
                      'height': self._height})
-	self._pipeline = gst.parse_launch(pipespec)
+        self._pipeline = gst.parse_launch(pipespec)
         self._pipeline.set_state(gst.STATE_PLAYING)
         time.sleep(10)
         self._pipeline.set_state(gst.STATE_READY)
