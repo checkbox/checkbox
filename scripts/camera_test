@@ -1,11 +1,11 @@
 #!/usr/bin/python
 import sys
 import time
-import tempfile
 import re
+from tempfile import NamedTemporaryFile
 from subprocess import check_call as call
 from subprocess import CalledProcessError, Popen, PIPE, STDOUT
-from optparse import OptionParser
+import argparse
 import gobject
 
 
@@ -13,8 +13,8 @@ class CameraTest:
     """
     A simple class that displays a test image via GStreamer.
     """
-    def __init__(self, device):
-        self.device = device
+    def __init__(self, args):
+        self.args = args
         self._mainloop = gobject.MainLoop()
         self._width = 640
         self._height = 480
@@ -43,7 +43,7 @@ class CameraTest:
                     "! video/x-raw-yuv "
                     "! ffmpegcolorspace "
                     "! testsink"
-                    % {'device': self.device})
+                    % {'device': self.args.device})
         self._pipeline = gst.parse_launch(pipespec)
         self._pipeline.set_state(gst.STATE_PLAYING)
         time.sleep(10)
@@ -57,7 +57,7 @@ class CameraTest:
                     "! video/x-raw-yuv,width=%(width)d,height=%(height)d "
                     "! ffmpegcolorspace "
                     "! autovideosink"
-                    % {'device': self.device,
+                    % {'device': self.args.device,
                        'width': self._width,
                        'height': self._height})
         self._pipeline = gst.parse_launch(pipespec)
@@ -69,57 +69,77 @@ class CameraTest:
         """
         Captures an image to a file
         """
-        with tempfile.NamedTemporaryFile(prefix='camera_test_',
-                                         suffix='.jpg',
-                                         delete=True) as file:
-            try:
-                call(["v4lctl", "-c", self.device,
-                      "snap", "jpeg", "%dx%d"
-                      % (self._width, self._height), file.name])
-                call(["eog", file.name])
-            except CalledProcessError:
-                pipespec = \
-                        ("v4l2src device=%(device)s "
-                         "! video/x-raw-yuv,width=%(width)d,height=%(height)d "
-                         "! ffmpegcolorspace "
-                         "! jpegenc "
-                         "! filesink location=%(filename)s"
-                         % {'device': self.device,
-                             'width': self._width,
-                            'height': self._height,
-                            'filename': file.name})
-                self._pipeline = gst.parse_launch(pipespec)
-                self._pipeline.set_state(gst.STATE_PLAYING)
-                time.sleep(3)
-                self._pipeline.set_state(gst.STATE_READY)
-                call(["eog", file.name])
+        if self.args.filename:
+            self._still_helper(self.args.filename)
+        else:
+            with NamedTemporaryFile(prefix='camera_test_', suffix='.jpg') as f:
+                self._still_helper(f.name)
+
+    def _still_helper(self, filename):
+        """
+        Captures an image to a given filename
+        """
+        try:
+            call(["v4lctl", "-c", self.args.device,
+                  "snap", "jpeg", "%dx%d"
+                  % (self._width, self._height), filename])
+        except CalledProcessError:
+            pipespec = \
+                    ("v4l2src device=%(device)s "
+                     "! video/x-raw-yuv,width=%(width)d,height=%(height)d "
+                     "! ffmpegcolorspace "
+                     "! jpegenc "
+                     "! filesink location=%(filename)s"
+                     % {'device': self.args.device,
+                         'width': self._width,
+                        'height': self._height,
+                        'filename': filename})
+            self._pipeline = gst.parse_launch(pipespec)
+            self._pipeline.set_state(gst.STATE_PLAYING)
+            time.sleep(3)
+            self._pipeline.set_state(gst.STATE_READY)
+
+        if not self.args.quiet:
+            call(["eog", filename])
 
 
 def parse_arguments(argv):
     """
     Parse command line arguments
     """
-    tests = ['detect', 'display', 'still', 'led']
-    parser = OptionParser(description="Run a camera-related test")
-    parser.add_option("-t", "--test", choices=tests,
-                      default=tests[0],
-                      help=("Test to execute (available choices: %s or %s)"
-                            % (", ".join(tests[:-1]), tests[-1])))
-    parser.add_option("-d", "--device", default="/dev/video0",
-                      help=("Device for the webcam to use "
-                            "(ignored for detect test)"))
+    parser = argparse.ArgumentParser(description="Run a camera-related test")
+    subparsers = parser.add_subparsers(dest='test',
+                                       title='test',
+                                       description='Available camera tests')
 
-    return parser.parse_args(argv)[0]
+    def add_device_parameter(parser):
+        parser.add_argument("-d", "--device", default="/dev/video0",
+                            help="Device for the webcam to use")
+
+    subparsers.add_parser('detect')
+    led_parser = subparsers.add_parser('led')
+    add_device_parameter(led_parser)
+    display_parser = subparsers.add_parser('display')
+    add_device_parameter(display_parser)
+    still_parser = subparsers.add_parser('still')
+    add_device_parameter(still_parser)
+    still_parser.add_argument("-f", "--filename",
+                              help="Filename to store the picture")
+    still_parser.add_argument("-q", "--quiet", action="store_true",
+                              help=("Don't display picture, "
+                                    "just write the picture to a file"))
+
+    return parser.parse_args(argv)
 
 
 if __name__ == "__main__":
-    options = parse_arguments(sys.argv[1:])
+    args = parse_arguments(sys.argv[1:])
 
     # Import gst only for the test cases that will need it
-    if options.test in ['display', 'still', 'led']:
+    if args.test in ['display', 'still', 'led']:
         import pygst
         pygst.require("0.10")
         import gst
 
-    camera = CameraTest(options.device)
-    sys.exit(getattr(camera, options.test)())
+    camera = CameraTest(args)
+    sys.exit(getattr(camera, args.test)())
