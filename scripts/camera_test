@@ -1,12 +1,13 @@
 #!/usr/bin/python
-
-import sys, time, tempfile, re
+import sys
+import time
+import tempfile
+import re
 from subprocess import check_call as call
 from subprocess import CalledProcessError, Popen, PIPE, STDOUT
-
 from optparse import OptionParser
-
 import gobject
+
 
 class CameraTest:
     """
@@ -16,7 +17,6 @@ class CameraTest:
         self._mainloop = gobject.MainLoop()
         self._width = 640
         self._height = 480
-
 
     def detect(self):
         """
@@ -34,36 +34,33 @@ class CameraTest:
         else:
             return 1
 
-
     def led(self):
         """
         Activate camera (switch on led), but don't display any output
         """
-        pipespec=("autovideosrc "
-                  "! video/x-raw-yuv "
-                  "! ffmpegcolorspace "
-                  "! testsink")
+        pipespec = ("autovideosrc "
+                    "! video/x-raw-yuv "
+                    "! ffmpegcolorspace "
+                    "! testsink")
         self._pipeline = gst.parse_launch(pipespec)
         self._pipeline.set_state(gst.STATE_PLAYING)
         time.sleep(10)
         self._pipeline.set_state(gst.STATE_READY)
-
 
     def display(self):
         """
         Displays the preview window
         """
-        pipespec=("autovideosrc "
-                  "! video/x-raw-yuv,width=%(width)d,height=%(height)d "
-                  "! ffmpegcolorspace "
-                  "! autovideosink"
-                  % {'width': self._width,
-                     'height': self._height})
+        pipespec = ("autovideosrc "
+                    "! video/x-raw-yuv,width=%(width)d,height=%(height)d "
+                    "! ffmpegcolorspace "
+                    "! autovideosink"
+                    % {'width': self._width,
+                       'height': self._height})
         self._pipeline = gst.parse_launch(pipespec)
         self._pipeline.set_state(gst.STATE_PLAYING)
         time.sleep(10)
         self._pipeline.set_state(gst.STATE_READY)
-
 
     def still(self):
         """
@@ -77,26 +74,28 @@ class CameraTest:
                       "%dx%d" % (self._width, self._height), file.name])
                 call(["eog", file.name])
             except CalledProcessError:
-                pipespec=("autovideosrc "
-                          "! video/x-raw-yuv,width=%(width)d,height=%(height)d "
-                          "! ffmpegcolorspace "
-                          "! jpegenc "
-                          "! filesink location=%(filename)s"
-                          % {'width': self._width,
-                             'height': self._height,
-                             'filename': file.name})
+                pipespec = \
+                        ("autovideosrc "
+                         "! video/x-raw-yuv,width=%(width)d,height=%(height)d "
+                         "! ffmpegcolorspace "
+                         "! jpegenc "
+                         "! filesink location=%(filename)s"
+                         % {'width': self._width,
+                            'height': self._height,
+                            'filename': file.name})
                 self._pipeline = gst.parse_launch(pipespec)
                 self._pipeline.set_state(gst.STATE_PLAYING)
                 time.sleep(3)
                 self._pipeline.set_state(gst.STATE_READY)
                 call(["eog", file.name])
 
+
 def parse_arguments(argv):
     """
     Parse command line arguments
     """
     tests = ['detect', 'display', 'still', 'led']
-    parser = OptionParser(description = "Run a camera-related test")
+    parser = OptionParser(description="Run a camera-related test")
     parser.add_option("-t", "--test", choices=tests,
                       default=tests[0],
                       help=("Test to execute (available choices: %s or %s)"
