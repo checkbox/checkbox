@@ -13,7 +13,8 @@ class CameraTest:
     """
     A simple class that displays a test image via GStreamer.
     """
-    def __init__(self):
+    def __init__(self, device):
+        self.device = device
         self._mainloop = gobject.MainLoop()
         self._width = 640
         self._height = 480
@@ -38,10 +39,11 @@ class CameraTest:
         """
         Activate camera (switch on led), but don't display any output
         """
-        pipespec = ("autovideosrc "
+        pipespec = ("v4l2src device=%(device)s "
                     "! video/x-raw-yuv "
                     "! ffmpegcolorspace "
-                    "! testsink")
+                    "! testsink"
+                    % {'device': self.device})
         self._pipeline = gst.parse_launch(pipespec)
         self._pipeline.set_state(gst.STATE_PLAYING)
         time.sleep(10)
@@ -51,11 +53,12 @@ class CameraTest:
         """
         Displays the preview window
         """
-        pipespec = ("autovideosrc "
+        pipespec = ("v4l2src device=%(device)s "
                     "! video/x-raw-yuv,width=%(width)d,height=%(height)d "
                     "! ffmpegcolorspace "
                     "! autovideosink"
-                    % {'width': self._width,
+                    % {'device': self.device,
+                       'width': self._width,
                        'height': self._height})
         self._pipeline = gst.parse_launch(pipespec)
         self._pipeline.set_state(gst.STATE_PLAYING)
@@ -70,17 +73,19 @@ class CameraTest:
                                          suffix='.jpg',
                                          delete=True) as file:
             try:
-                call(["v4lctl", "snap", "jpeg",
-                      "%dx%d" % (self._width, self._height), file.name])
+                call(["v4lctl", "-c", self.device,
+                      "snap", "jpeg", "%dx%d"
+                      % (self._width, self._height), file.name])
                 call(["eog", file.name])
             except CalledProcessError:
                 pipespec = \
-                        ("autovideosrc "
+                        ("v4l2src device=%(device)s "
                          "! video/x-raw-yuv,width=%(width)d,height=%(height)d "
                          "! ffmpegcolorspace "
                          "! jpegenc "
                          "! filesink location=%(filename)s"
-                         % {'width': self._width,
+                         % {'device': self.device,
+                             'width': self._width,
                             'height': self._height,
                             'filename': file.name})
                 self._pipeline = gst.parse_launch(pipespec)
@@ -100,6 +105,10 @@ def parse_arguments(argv):
                       default=tests[0],
                       help=("Test to execute (available choices: %s or %s)"
                             % (", ".join(tests[:-1]), tests[-1])))
+    parser.add_option("-d", "--device", default="/dev/video0",
+                      help=("Device for the webcam to use "
+                            "(ignored for detect test)"))
+
     return parser.parse_args(argv)[0]
 
 
@@ -112,5 +121,5 @@ if __name__ == "__main__":
         pygst.require("0.10")
         import gst
 
-    camera = CameraTest()
+    camera = CameraTest(options.device)
     sys.exit(getattr(camera, options.test)())
