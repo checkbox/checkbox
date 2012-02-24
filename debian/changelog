@@ -1,5 +1,9 @@
 checkbox (0.13.4) precise; urgency=low
 
+  [Brendan Donegan]
+  * Added 'scsi' as a valid bus ID for determining product in udevadm.py
+    (LP: #940249)
+
   [Javier Collado]
   * Added python-cairo as a dependency for checkbox-gtk (LP: #940163)
 
