@@ -345,7 +345,7 @@ class UdevadmDevice:
                     return decode_id(device._environment["ID_MODEL_ENC"])
 
         if self._environment.get("DEVTYPE") == "disk" \
-           and self._environment.get("ID_BUS") == "ata":
+           and self._environment.get("ID_BUS") in ("ata","scsi"):
             return decode_id(self._environment["ID_MODEL_ENC"])
 
         # floppy
