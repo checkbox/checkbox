@@ -3,16 +3,16 @@ name: camera/detect
 requires:
  package.name == 'xawtv'
  device.category == 'CAPTURE'
-command: camera_test -t detect
+command: camera_test detect
 _description: This Automated test attempts to detect a camera.
 
 plugin: manual
 name: camera/display
 depends: camera/detect
-requires: 
+requires:
  package.name == 'python-gst0.10'
  device.category == 'CAPTURE'
-command: camera_test -t display
+command: camera_test display
 _description:
  PURPOSE:
      This test will check that the built-in camera works
@@ -29,7 +29,7 @@ requires:
  package.name == 'eog'
  package.name == 'xawtv'
  device.category == 'CAPTURE'
-command: camera_test -t still
+command: camera_test still
 _description:
  PURPOSE:
      This test will check that the built-in camera works
