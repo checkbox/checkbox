@@ -27,7 +27,7 @@ depends: camera/detect
 requires:
  package.name == 'python-gst0.10'
  package.name == 'eog'
- package.name == 'xawtv'
+ package.name == 'fswebcam'
  device.category == 'CAPTURE'
 command: camera_test still
 _description:

@@ -80,8 +80,9 @@ class CameraTest:
         Captures an image to a given filename
         """
         try:
-            call(["v4lctl", "-c", self.args.device,
-                  "snap", "jpeg", "%dx%d"
+            call(["fswebcam", "-S 3", "--no-banner",
+                  "-d", self.args.device,
+                  "-r", "%dx%d"
                   % (self._width, self._height), filename])
         except CalledProcessError:
             pipespec = \
