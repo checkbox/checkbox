@@ -343,7 +343,6 @@ class UdevadmDevice:
             for device in reversed(self._stack):
                 if device._environment.get("ID_BUS") == "usb":
                     return decode_id(device._environment["ID_MODEL_ENC"])
-
         elif self._environment.get("DEVTYPE") == "disk" \
              and "ID_MODEL_ENC" in self._environment:
             return decode_id(self._environment["ID_MODEL_ENC"])
@@ -372,7 +371,6 @@ class UdevadmDevice:
             for device in reversed(self._stack):
                 if device._environment.get("ID_BUS") == "usb":
                     return decode_id(device._environment["ID_VENDOR_ENC"])
-
         elif self._environment.get("DEVTYPE") == "disk" \
              and "ID_VENDOR_ENC" in self._environment:
             return decode_id(self._environment["ID_VENDOR_ENC"])
