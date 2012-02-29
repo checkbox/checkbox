@@ -79,7 +79,7 @@ class Process:
         # stdout and stderr connected to pipe, so close all other files
         map(os.close, [self.outr, self.outw, self.errr, self.errw])
         try:
-            cmd = ["/bin/sh", "-c", cmd]
+            cmd = ["/bin/bash", "-c", cmd]
             os.execve(cmd[0], cmd, env)
         finally: #exit child on error
             os._exit(1)
