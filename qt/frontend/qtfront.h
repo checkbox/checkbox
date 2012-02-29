@@ -45,7 +45,7 @@ public slots:
     void startProgressBar(QString text);
     void showError(QString text);
     void stopProgressBar();
-    void showTree(QString text, QMap<QString, QVariant> options);
+    void showTree(QString text, QVariantMap options);
     void showEntry(QString text);
     QVariantMap getTestsToRun();
     QString getEmailAddress();
@@ -85,6 +85,8 @@ signals:
 
 private:
     bool registerService();
+    void buildTree(QVariantMap options, QString baseIndex = "1", QStandardItem *parentItem = 0, QStandardItem *parentStatusItem = 0);
+    void buildTestsToRun(QStandardItem *item, QString baseIndex, QVariantMap &items);
     Ui_main *ui;
     QWidget *m_mainWindow;
     TreeModel * m_model;
