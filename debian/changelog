@@ -8,6 +8,9 @@ checkbox (0.13.4) precise; urgency=low
 
   [Javier Collado]
   * Added python-cairo as a dependency for checkbox-gtk (LP: #940163)
+  * Updated camera_test script to use better tool for capturing the image
+    and allow specifying a device to use, plus other improvements. Create a
+    job which takes a capture from the webcam of the desktop.
 
   [Marc Tardif]
   * Tidied up logic for determining DISK device product and vendor 

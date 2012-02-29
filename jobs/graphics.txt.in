@@ -145,3 +145,21 @@ _description:
  VERIFICATION:
      1. Did the 3d animation appear?
      2. Was the animation free from slowness/jerkiness?
+
+plugin: shell
+name: graphics/screenshot
+requires: package.name == 'fswebcam'
+command: camera_test still -d /dev/video1 -f ${CHECKBOX_DATA}/screenshot.jpg -q 2>&1 | ansi_parser
+_description:
+ PURPOSE:
+     Take a screengrab of the current screen (logged on Unity desktop)
+ STEPS:
+     1. Take picture using USB webcam in /dev/video1
+ VERIFICATION:
+     1. Review attachment manually later
+
+plugin: attachment
+name: screenshot.jpg
+depends: graphics/screenshot
+command: cat ${CHECKBOX_DATA}/screenshot.jpg
+_description: Attaches the screenshot captured in graphics/screenshot.

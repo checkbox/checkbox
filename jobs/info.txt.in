@@ -76,20 +76,6 @@ plugin: attachment
 command: lsmod
 _description: Attaches a list of the currently running kernel modules.
 
-plugin: shell
-name: info/screenshot
-requires:
- package.name == 'xorg'
- package.name == 'imagemagick'
-command: import -window root ${CHECKBOX_DATA}/screenshot.png
-_description: Captures a screenshot.
-
-plugin: attachment
-name: screenshot.png
-depends: info/screenshot
-command: cat ${CHECKBOX_DATA}/screenshot.png
-_description: Attaches the screenshot captured in info/screenshot.
-
 plugin: attachment
 name: fwts_log
 depends: miscellanea/fwts_test
