@@ -5,9 +5,15 @@ checkbox (0.13.4) precise; urgency=low
     (LP: #940249)
   * Added 'cciss' as a valid bus ID for determining product in udevadm.py
     (LP: #942548)
+  * Updated command fields in composite disk jobs to address the ! in 
+    some disk paths (LP: #942769)
 
   [Javier Collado]
   * Added python-cairo as a dependency for checkbox-gtk (LP: #940163)
+
+  [Marc Tardif]
+  * Tidied up logic for determining DISK device product and vendor 
+    (LP: #942548)
 
  -- Daniel Manrique <roadmr@ubuntu.com>  Fri, 24 Feb 2012 11:43:37 -0500
 
