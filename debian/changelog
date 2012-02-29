@@ -8,6 +8,11 @@ checkbox (0.13.4) precise; urgency=low
   * Updated command fields in composite disk jobs to address the ! in 
     some disk paths (LP: #942769)
 
+  [Daniel Manrique]
+  * Tweaks to internet_test: don't try to ping an IP that's unreachable from 
+    the specified interface (or at all), try to find something pingable via
+    other means.
+
   [Javier Collado]
   * Added python-cairo as a dependency for checkbox-gtk (LP: #940163)
   * Updated camera_test script to use better tool for capturing the image
