@@ -7,6 +7,8 @@ checkbox (0.13.4) precise; urgency=low
     (LP: #942548)
   * Updated command fields in composite disk jobs to address the ! in 
     some disk paths (LP: #942769)
+  * Fixed command run by wireless_connection tests so that they fail if the
+    internet_test fails, but still clean up the connection file (LP: #944176)
 
   [Daniel Manrique]
   * Tweaks to internet_test: don't try to ping an IP that's unreachable from 
