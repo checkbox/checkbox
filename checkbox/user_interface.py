@@ -67,6 +67,7 @@ class UserInterface(object):
     def __init__(self, title, data_path=None):
         self.title = title
         self.data_path = data_path
+        self.progress = None
 
         self.direction = NEXT
         self.gettext_domain = "checkbox"
