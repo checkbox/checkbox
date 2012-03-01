@@ -272,7 +272,8 @@ user: root
 command: wake_on_lan_test ${WAKE_ON_LAN_URL} --debug
 
 plugin: shell
-name: suspend/sreenshot_after_suspend
+name: suspend/screenshot_after_suspend
+depends: suspend/suspend_advanced_auto
 requires: package.name == 'fswebcam'
 command: camera_test still -d /dev/video1 -f ${CHECKBOX_DATA}/screenshot_after_suspend.jpg -q 2>&1 | ansi_parser
 _description:
