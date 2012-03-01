@@ -24,7 +24,15 @@ checkbox (0.13.4) precise; urgency=low
     (LP: #942548)
   * Fixed filename matching expression for local jobs (LP: #942273)
 
- -- Marc Tardif <marc@ubuntu.com>  Mon, 27 Feb 2012 16:59:35 -0500
+  [Aurelien Gateau]
+  * lib/template.py, lib/template_i18n.py, plugins/jobs_info.py,
+    plugins/suites_prompt.py: Add a "sortkey" attribute to jobs, the sortkey
+    order matches the order in which they appear in jobfiles.
+  * checkbox_gtk/gtk_interface.py: Shows jobs and suites in sortkey order
+    (that is, as they appear in job definition files, rather than
+    alphabetically).
+
+ -- Daniel Manrique <roadmr@ubuntu.com>  Thu, 01 Mar 2012 16:40:07 -0500
 
 checkbox (0.13.3) precise; urgency=low
 

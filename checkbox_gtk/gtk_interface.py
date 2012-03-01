@@ -395,9 +395,9 @@ class GTKInterface(UserInterface):
 
         def set_options(options, default, parent=None):
             if isinstance(options, dict):
-                keys = sorted(options.keys())
-                values = [options[k] for k in keys]
-                for text, child in zip(keys, values):
+                items = options.items()
+                items.sort(key=lambda x: x[0].sortkey)
+                for text, child in items:
                     active = text in default
                     iter = treestore.append(parent, [text, active])
                     set_options(child, default.get(text, {}), iter)
