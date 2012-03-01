@@ -103,7 +103,7 @@ class DiskTest():
             except:
                 pass
 
-            if r == True: 
+            if r: 
                 passed_mount[k] = t
             else:
                 print "Error: can't mount %s" % (k)
@@ -123,7 +123,7 @@ class DiskTest():
             except:
                 pass
 
-            if r == False:
+            if not r:
                 print "Error: can't umount %s on %s" % (d, self.rem_disks_nm[d]) 
 
     def _umount(self, dir):
