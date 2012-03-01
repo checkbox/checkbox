@@ -211,6 +211,19 @@ class GTKInterface(UserInterface):
             title += " - %s" % test_name
         self._get_widget("dialog_main").set_title(title)
 
+    def _set_progress(self,progress):
+        # Update progress bar
+        bar = self._get_widget("progressbar_test")
+        if not self.progress: 
+            return
+        done, total = self.progress
+        bar.set_text("%(done)d/%(total)d" % {'done': done, 'total': total})
+        if total:
+            progress_fraction = float(done) / total
+        else:
+            progress_fraction=0
+        bar.set_fraction(progress_fraction)
+
     def _run_dialog(self, dialog=None):
         def on_dialog_response(dialog, response, self):
             # Keep dialog alive when the button that has been clicked
@@ -230,6 +243,7 @@ class GTKInterface(UserInterface):
             raise KeyboardInterrupt
 
     def show_progress_start(self, message):
+        self._set_progress(self.progress)
         self._set_sensitive("button_previous", False)
         self._set_sensitive("button_next", False)
 
@@ -519,6 +533,7 @@ class GTKInterface(UserInterface):
             self._set_hyper_text_view("hyper_text_view_test",
                 test["description"])
 
+        self._set_progress(self.progress) 
         # Set buttons
         if "command" in test:
             self._set_sensitive("button_test", True)

@@ -31,8 +31,11 @@ checkbox (0.13.4) precise; urgency=low
   * checkbox_gtk/gtk_interface.py: Shows jobs and suites in sortkey order
     (that is, as they appear in job definition files, rather than
     alphabetically).
+  * checkbox_gtk/gtk_interface.py, gtk/checkbox-gtk.ui,
+    plugins/jobs_prompt.py: Added a progress bar showing tests completed and
+    total.
 
- -- Daniel Manrique <roadmr@ubuntu.com>  Thu, 01 Mar 2012 16:40:07 -0500
+ -- Daniel Manrique <roadmr@ubuntu.com>  Thu, 01 Mar 2012 17:32:15 -0500
 
 checkbox (0.13.3) precise; urgency=low
 
