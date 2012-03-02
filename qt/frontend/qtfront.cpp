@@ -327,40 +327,44 @@ void QtFront::showTest(QString purpose, QString steps, QString verification, QSt
 
 }
 
-void QtFront::updateTestStatus(QString status)
+void QtFront::updateTestStatus(QStandardItem *item, QString status)
 {
-    QMap<QString, QVariant> selectedOptions;
-
-    int numRows = m_statusModel->rowCount();
+    int numRows = item->rowCount();
+    int done = 0;
+    int inprogress = 0;
     for(int i=0; i< numRows; i++) {
-        int done = 0;
-        int inprogress = 0;
-        QStandardItem *item = m_statusModel->item(i, 0);
-        for(int j=0; j< item->rowCount(); j++) {
-            QStandardItem * childItem = item->child(j,0);
-            if (childItem->data(Qt::UserRole).toString() == m_currentTestName && !status.isEmpty()) {
-                childItem->setText(status);
-            }
-            if (childItem->text() == m_statusStrings["pass"]) {
-                childItem->setData(QVariant(Qt::Checked), Qt::CheckStateRole);
-                done++;
-            } else if (childItem->text() == m_statusStrings["inprogress"]) {
-                childItem->setData(QVariant(Qt::Unchecked), Qt::CheckStateRole);
-                inprogress++;
-            } else if (childItem->text() == m_statusStrings["uninitiated"]) {
-                childItem->setData(QVariant(Qt::Unchecked), Qt::CheckStateRole);
-            }
+        QStandardItem * childItem = item->child(i,0);
+        if (childItem->hasChildren()) {
+            updateTestStatus(childItem, status);
         }
-        if (done == item->rowCount()) {
-            item->setText(m_statusStrings["pass"]);
-            item->setData(QVariant(Qt::Checked), Qt::CheckStateRole);
-        } else if (inprogress != 0 || done != 0) {
-            item->setText(m_statusStrings["inprogress"]);
-            item->setData(QVariant(Qt::PartiallyChecked), Qt::CheckStateRole);
-        } else {
-            item->setText(m_statusStrings["uninitiated"]);
-            item->setData(QVariant(Qt::Unchecked), Qt::CheckStateRole);
+        if (childItem->data(Qt::UserRole).toString() == m_currentTestName && !status.isEmpty()) {
+            childItem->setText(status);
         }
+        if (childItem->text() == m_statusStrings["pass"]) {
+            childItem->setData(QVariant(Qt::Checked), Qt::CheckStateRole);
+            done++;
+        } else if (childItem->text() == m_statusStrings["inprogress"]) {
+            childItem->setData(QVariant(Qt::Unchecked), Qt::CheckStateRole);
+            inprogress++;
+        } else if (childItem->text() == m_statusStrings["uninitiated"]) {
+            childItem->setData(QVariant(Qt::Unchecked), Qt::CheckStateRole);
+        }
+    }
+    if (done == item->rowCount() && done != 0) {
+        item->setText(m_statusStrings["pass"]);
+        item->setData(QVariant(Qt::Checked), Qt::CheckStateRole);
+    } else if (inprogress != 0 || done != 0) {
+        item->setText(m_statusStrings["inprogress"]);
+        item->setData(QVariant(Qt::PartiallyChecked), Qt::CheckStateRole);
+    } else {
+        item->setText(m_statusStrings["uninitiated"]);
+        item->setData(QVariant(Qt::Unchecked), Qt::CheckStateRole);
+    }
+}
+
+void QtFront::updateTestStatus(QString status) {
+    for (int i=0; i < m_statusModel->rowCount(); i++) {
+        updateTestStatus(m_statusModel->item(i,0), status);
     }
 }
 
@@ -419,10 +423,25 @@ void QtFront::showTree(QString text, QVariantMap options)
         ui->statusView->setModel(m_statusModel);
     }
 
-    updateTestStatus();
+    updateTestStatus("");
     ui->treeView->show();
     ui->buttonStartTesting->setEnabled(true);
     m_model->setInteraction(true);
+}
+
+void QtFront::onJobItemChanged(QStandardItem *item, QString job, QModelIndex baseIndex)
+{
+    if (item->hasChildren()) {
+        int numRows = item->rowCount();
+        for(int i=0; i< numRows; i++) {
+            QStandardItem *childItem = item->child(i, 0);
+            onJobItemChanged(childItem,job, baseIndex);
+        }
+    }
+    if (item->data(Qt::UserRole) == job) {
+        ui->statusView->setExpanded(item->index(), ui->treeView->isExpanded(baseIndex));
+    }
+
 }
 
 void QtFront::onJobItemChanged(QModelIndex index)
@@ -431,9 +450,7 @@ void QtFront::onJobItemChanged(QModelIndex index)
     int numRows = m_statusModel->rowCount();
     for(int i=0; i< numRows; i++) {
         QStandardItem *item = m_statusModel->item(i, 0);
-        if (item->data(Qt::UserRole) == job) {
-            ui->statusView->setExpanded(item->index(), ui->treeView->isExpanded(index));
-        }
+        onJobItemChanged(item, job, index);
     }
 }
 

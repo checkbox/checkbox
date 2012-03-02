@@ -64,6 +64,8 @@ private slots:
 
     void onTabChanged(int index);
     void onJobItemChanged(QModelIndex index);
+    void onJobItemChanged(QStandardItem *item, QString job, QModelIndex baseIndex);
+    void updateTestStatus(QStandardItem *item, QString status);
     void updateTestStatus(QString status = QString());
     void onSelectAllContextMenu(const QPoint& pos);
 
