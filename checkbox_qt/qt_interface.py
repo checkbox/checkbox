@@ -114,6 +114,7 @@ class QTInterface(UserInterface):
         return False
 
     def show_tree(self, text, options={}, default={}):
+        indexedOptions = {}
         def onStartTestsClicked():
             self.direction = NEXT
             self.loop.quit()
@@ -122,35 +123,44 @@ class QTInterface(UserInterface):
             self.direction = PREV
             self.loop.quit()
 
+        def buildBranch(options, baseIndex="1"):
+            internalIndex = 1
+            for test, state in options.iteritems():
+                if isinstance(state, dict):
+                    indexedOptions[baseIndex + "." + str(internalIndex)] = { test: '' }
+                    buildBranch(state, baseIndex + "." + str(internalIndex))
+                else:
+                    if state == {'', ''}:
+                        return
+                    indexedOptions[baseIndex+"."+str(internalIndex)] = { test: state }
+                internalIndex+=1
+
+        def buildDict(options, baseIndex="1"):
+            internalIndex = 1
+            branch = {}
+            while True:
+                currentIndex = baseIndex+"."+str(internalIndex)
+                if currentIndex in options:
+                    key = options[currentIndex].keys()[0]
+                    value = options[currentIndex].values()[0]
+                    if value == "menu":
+                        branch[key] = buildDict(options, currentIndex)
+                    else: 
+                        branch[key] = value
+                    internalIndex+=1
+                else:
+                    break
+            return branch
+
         self._set_main_title()
-        newOptions = {}
-        for section in options:
-            newTests = {}
-            for test, state in options[section].iteritems():
-                # TODO: add support for more than one level
-                if not isinstance(state, dict):
-                    newTests[str(test)] = state
+        newOptions = buildBranch(options)
 
-            if newTests == {}:
-                newTests = {'': ''}
-
-            newOptions[section] = newTests
-
-        self.qtiface.showTree(text, newOptions)
+        self.qtiface.showTree(text, indexedOptions)
         self.wait_on_signals(
             startTestsClicked=onStartTestsClicked,
             welcomeClicked=onWelcomeClicked)
 
-        newOptions = {}
-        testsFromInterface = self.qtiface.getTestsToRun()
-        for section in testsFromInterface:
-            newTests = {}
-            for test in testsFromInterface[section]:
-                if test != '':
-                    newTests[str(test)] = {}
-            newOptions[str(section)] = newTests
-
-        return newOptions
+        return buildDict(self.qtiface.getTestsToRun())
 
     def _run_test(self, test, runner):
         (status, data, duration) = runner(test)

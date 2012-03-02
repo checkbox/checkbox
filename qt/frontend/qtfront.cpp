@@ -3,12 +3,17 @@
 #include <QVariantMap>
 #include <QScrollBar>
 #include <QMenu>
+#include <QMetaType>
+#include <QDBusMetaType>
 
 #include "qtfront.h"
 #include "treemodel.h"
 #include "step.h"
 #include "ui_qtfront.h"
 
+typedef QMap<QString, QString> myQMap;
+
+Q_DECLARE_METATYPE(myQMap)
 Q_DECLARE_METATYPE(QVariantMap)
 
 class CustomQTabWidget : QTabWidget
@@ -322,94 +327,121 @@ void QtFront::showTest(QString purpose, QString steps, QString verification, QSt
 
 }
 
-void QtFront::updateTestStatus(QString status)
+void QtFront::updateTestStatus(QStandardItem *item, QString status)
 {
-    QMap<QString, QVariant> selectedOptions;
-
-    int numRows = m_statusModel->rowCount();
+    int numRows = item->rowCount();
+    int done = 0;
+    int inprogress = 0;
     for(int i=0; i< numRows; i++) {
-        int done = 0;
-        int inprogress = 0;
-        QStandardItem *item = m_statusModel->item(i, 0);
-        for(int j=0; j< item->rowCount(); j++) {
-            QStandardItem * childItem = item->child(j,0);
-            if (childItem->data(Qt::UserRole).toString() == m_currentTestName && !status.isEmpty()) {
-                childItem->setText(status);
-            }
-            if (childItem->text() == m_statusStrings["pass"]) {
-                childItem->setData(QVariant(Qt::Checked), Qt::CheckStateRole);
-                done++;
-            } else if (childItem->text() == m_statusStrings["inprogress"]) {
-                childItem->setData(QVariant(Qt::Unchecked), Qt::CheckStateRole);
-                inprogress++;
-            } else if (childItem->text() == m_statusStrings["uninitiated"]) {
-                childItem->setData(QVariant(Qt::Unchecked), Qt::CheckStateRole);
-            }
+        QStandardItem * childItem = item->child(i,0);
+        if (childItem->hasChildren()) {
+            updateTestStatus(childItem, status);
         }
-        if (done == item->rowCount()) {
-            item->setText(m_statusStrings["pass"]);
-            item->setData(QVariant(Qt::Checked), Qt::CheckStateRole);
-        } else if (inprogress != 0 || done != 0) {
-            item->setText(m_statusStrings["inprogress"]);
-            item->setData(QVariant(Qt::PartiallyChecked), Qt::CheckStateRole);
-        } else {
-            item->setText(m_statusStrings["uninitiated"]);
-            item->setData(QVariant(Qt::Unchecked), Qt::CheckStateRole);
+        if (childItem->data(Qt::UserRole).toString() == m_currentTestName && !status.isEmpty()) {
+            childItem->setText(status);
         }
+        if (childItem->text() == m_statusStrings["pass"]) {
+            childItem->setData(QVariant(Qt::Checked), Qt::CheckStateRole);
+            done++;
+        } else if (childItem->text() == m_statusStrings["inprogress"]) {
+            childItem->setData(QVariant(Qt::Unchecked), Qt::CheckStateRole);
+            inprogress++;
+        } else if (childItem->text() == m_statusStrings["uninitiated"]) {
+            childItem->setData(QVariant(Qt::Unchecked), Qt::CheckStateRole);
+        }
+    }
+    if (done == item->rowCount() && done != 0) {
+        item->setText(m_statusStrings["pass"]);
+        item->setData(QVariant(Qt::Checked), Qt::CheckStateRole);
+    } else if (inprogress != 0 || done != 0) {
+        item->setText(m_statusStrings["inprogress"]);
+        item->setData(QVariant(Qt::PartiallyChecked), Qt::CheckStateRole);
+    } else {
+        item->setText(m_statusStrings["uninitiated"]);
+        item->setData(QVariant(Qt::Unchecked), Qt::CheckStateRole);
     }
 }
 
-void QtFront::showTree(QString text, QMap<QString, QVariant > options)
+void QtFront::updateTestStatus(QString status) {
+    for (int i=0; i < m_statusModel->rowCount(); i++) {
+        updateTestStatus(m_statusModel->item(i,0), status);
+    }
+}
+
+void QtFront::buildTree(QVariantMap options, QString baseIndex, QStandardItem *parentItem, QStandardItem *parentStatusItem)
+{
+    int internalIndex = 1;
+    while (true) {
+        QString index = baseIndex+"."+QString::number(internalIndex);
+        QVariant value = options.value(index);
+        QDBusArgument arg = value.value<QDBusArgument>();
+        QMap<QString, QString> items = qdbus_cast<QMap<QString, QString> >(arg);
+        if (items.isEmpty()) {
+            break;
+        } else {
+            QString test = items.keys().at(0);
+            QString status = items.values().at(0);
+            QStandardItem *item = new QStandardItem(test);
+            QStandardItem *testStatusItem = new QStandardItem(m_statusStrings[status]);
+
+            item->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled| Qt::ItemIsTristate);
+            item->setData(QVariant(Qt::Checked), Qt::CheckStateRole);
+
+            testStatusItem->setData(test, Qt::UserRole);
+            testStatusItem->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled|Qt::ItemIsTristate);
+            testStatusItem->setData(QVariant(Qt::Unchecked), Qt::CheckStateRole);
+
+            if (parentItem) {
+                // for children nodes
+                parentItem->appendRow(item);
+                parentStatusItem->appendRow(testStatusItem);
+                buildTree(options, index, item, testStatusItem);
+            } else {
+                // for root nodes
+                buildTree(options, index, item, testStatusItem);
+                m_model->appendRow(item);
+                m_statusModel->appendRow(testStatusItem);
+            }
+        }
+        internalIndex++;
+    }
+}
+
+void QtFront::showTree(QString text, QVariantMap options)
 {
     Q_UNUSED(text);
     currentState = TREE;
     ui->testsTab->setCurrentIndex(1);
     ui->radioTestTab->setVisible(false);
     ui->nextPrevButtons->setVisible(false);
+
     // build the model only once
     if (!this->m_model) {
         this->m_model = new TreeModel();
-
-        QMapIterator<QString, QVariant> i(options);
-        while (i.hasNext()) {
-            i.next();
-            QString section = i.key();
-            QStandardItem *sectionItem = new QStandardItem(section);
-            sectionItem->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled| Qt::ItemIsTristate);
-            sectionItem->setData(QVariant(Qt::Checked), Qt::CheckStateRole);
-            QStandardItem *sectionItemStatus = new QStandardItem(m_statusStrings["uninitiated"]);
-            sectionItemStatus->setData(section, Qt::UserRole);
-            sectionItemStatus->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled| Qt::ItemIsTristate);
-            sectionItemStatus->setData(QVariant(Qt::Unchecked), Qt::CheckStateRole);
-
-            QDBusArgument arg = i.value().value<QDBusArgument>();
-            QMap<QString, QString> items = qdbus_cast<QMap<QString, QString> >(arg);
-            QMapIterator<QString, QString> j(items);
-            while (j.hasNext()) {
-                j.next();
-                QString test = j.key();
-                if (test.isEmpty())
-                    continue;
-                QStandardItem *testItem = new QStandardItem(test);
-                testItem->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
-                testItem->setData(QVariant(Qt::Checked), Qt::CheckStateRole);
-                sectionItem->appendRow(testItem);
-                QStandardItem *testItemStatus = new QStandardItem(m_statusStrings[j.value()]);
-                testItemStatus->setData(test, Qt::UserRole);
-                testItemStatus->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled|Qt::ItemIsTristate);
-                testItemStatus->setData(QVariant(Qt::Unchecked), Qt::CheckStateRole);
-                sectionItemStatus->appendRow(testItemStatus);
-            }
-            m_statusModel->appendRow(sectionItemStatus);
-            m_model->appendRow(sectionItem);
-        }
+        buildTree(options, "1");
         ui->treeView->setModel(m_model);
         ui->statusView->setModel(m_statusModel);
-        updateTestStatus();
-        ui->treeView->show();
     }
+
+    updateTestStatus("");
+    ui->treeView->show();
     ui->buttonStartTesting->setEnabled(true);
     m_model->setInteraction(true);
+}
+
+void QtFront::onJobItemChanged(QStandardItem *item, QString job, QModelIndex baseIndex)
+{
+    if (item->hasChildren()) {
+        int numRows = item->rowCount();
+        for(int i=0; i< numRows; i++) {
+            QStandardItem *childItem = item->child(i, 0);
+            onJobItemChanged(childItem,job, baseIndex);
+        }
+    }
+    if (item->data(Qt::UserRole) == job) {
+        ui->statusView->setExpanded(item->index(), ui->treeView->isExpanded(baseIndex));
+    }
+
 }
 
 void QtFront::onJobItemChanged(QModelIndex index)
@@ -418,9 +450,7 @@ void QtFront::onJobItemChanged(QModelIndex index)
     int numRows = m_statusModel->rowCount();
     for(int i=0; i< numRows; i++) {
         QStandardItem *item = m_statusModel->item(i, 0);
-        if (item->data(Qt::UserRole) == job) {
-            ui->statusView->setExpanded(item->index(), ui->treeView->isExpanded(index));
-        }
+        onJobItemChanged(item, job, index);
     }
 }
 
@@ -449,25 +479,41 @@ QString QtFront::getEmailAddress()
     return ui->lineEditEmailAddress->text();
 }
 
+void QtFront::buildTestsToRun(QStandardItem *item, QString baseIndex, QVariantMap &items)
+{
+    if (item->checkState() == Qt::Checked || item->checkState() == Qt::PartiallyChecked) {
+        if (item->hasChildren()) {
+            myQMap testMap;
+            testMap[item->text()] = "menu";
+            items[baseIndex] = QVariant::fromValue<QMap<QString,QString> >(testMap);
+            int internalIndex = 1;
+            for (int i = 0; i< item->rowCount(); i++) {
+                QStandardItem *childItem = item->child(i);
+                buildTestsToRun(childItem, baseIndex + "."+QString::number(internalIndex), items);
+                if(childItem->checkState() == Qt::Checked || childItem->checkState() == Qt::PartiallyChecked)
+                    internalIndex++;
+            }
+        } else {
+            myQMap testMap;
+            testMap[item->text()] = item->data(Qt::UserRole).toString();
+            items[baseIndex] = QVariant::fromValue<QMap<QString,QString> > (testMap);
+        }
+    }
+}
+
 QVariantMap QtFront::getTestsToRun()
 {
     QMap<QString, QVariant> selectedOptions;
-
+    qDBusRegisterMetaType<QMap<QString, QString> >();
     int numRows = m_model->rowCount();
+    int internalIndex = 1;
     for(int i=0; i< numRows; i++) {
         QStandardItem *item = m_model->item(i, 0);
-        QMap<QString, QVariant> itemDict;
-        for(int j=0; j< item->rowCount(); j++) {
-            if (item->child(j)->checkState() == Qt::Checked || item->child(j)->checkState() == Qt::PartiallyChecked) {
-                itemDict[item->child(j)->text()] = QString("");
-            }
-        }
-
         if (item->checkState() == Qt::Checked || item->checkState() == Qt::PartiallyChecked) {
-            selectedOptions[item->text()] = QVariant::fromValue<QVariantMap>(itemDict);
+            buildTestsToRun(item, "1." + QString::number(internalIndex), selectedOptions);
+            internalIndex++;
         }
     }
-
     return selectedOptions;
 }
 
