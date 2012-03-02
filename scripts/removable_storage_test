@@ -105,10 +105,16 @@ class DiskTest():
 
             if r: 
                 passed_mount[k] = t
+                print "Now mounting %s on %s" % (k, t)
             else:
                 print "Error: can't mount %s" % (k)
         
-        self.rem_disks_nm = passed_mount
+        if len(self.rem_disks_nm) == len(passed_mount):
+            self.rem_disks_nm = passed_mount
+            return 0
+        else:
+            self.rem_disks_nm = passed_mount
+            return 1
 
     def _mount(self, dev_file, tmp_dir):
         cmd = ['/bin/mount', dev_file, tmp_dir]
@@ -116,15 +122,22 @@ class DiskTest():
         self.process.communicate()
 
     def umount(self):
+        error = 0
+
         for d in self.rem_disks_nm:
             r = False
             try:
                 r = self.make_thread(self._umount(d))
             except:
+                error += 1
                 pass
 
-            if not r:
+            if r:
+                print "Now umounting %s on %s" % (d, self.rem_disks_nm[d]) 
+            else:
                 print "Error: can't umount %s on %s" % (d, self.rem_disks_nm[d]) 
+
+        return error
 
     def _umount(self, dir):
         # '-l': lazy umount, dealing problem of unable to umount the device.
@@ -186,6 +199,7 @@ def main():
 
     if len(test.rem_disks) > 0 or len(test.rem_disks_nm) > 0: #If we do have removable drives attached and mounted
         if args.list:   #Simply output a list of drives detected
+            print '-' * 20 
             print "removable devices currently mounted:"
             if len(test.rem_disks) > 0:
                 for k,v in test.rem_disks.iteritems():
@@ -200,6 +214,8 @@ def main():
             else:
                 print "None"
             
+            print '-' * 20
+
             return 0
 
         else: #Create a file, copy to USB and compare hashes
@@ -207,7 +223,8 @@ def main():
                 disks_all = test.rem_disks
             else:
                 # mount those haven't be mounted yet.
-                test.mount()
+                if test.mount() != 0:
+                    error += 1
                 disks_all = dict(test.rem_disks.items() + test.rem_disks_nm.items())
             
             print "Found the following mounted %s partitions:" % args.device
@@ -215,6 +232,7 @@ def main():
             for k,v in disks_all.iteritems():
                 print "%s : %s" % (k, v)
 
+            print '-' * 20
             print "Running %s file transfer test for %s iterations" % (args.device, args.count)
             
             try: 
@@ -237,17 +255,19 @@ def main():
                         test.clean_up(target)
                     test.clean_up(test.tfile.name)
 
-                if errors > 0:
-                    print "Completed %s test iterations, but there were errors" % args.count
-                    return 1
-                else:
-                    print "Successfully completed %s %s file transfer test iterations" % (args.count, args.device)
-                    return 0
             finally:
                 if( len(test.rem_disks_nm) > 0 ):
-                    test.umount()
+                    if test.umount() != 0:
+                        errors += 1
                     test.clean_tmp_dir()
-                   
+
+            if errors > 0:
+                print "Completed %s test iterations, but there were errors" % args.count
+                return 1
+            else:
+                print "Successfully completed %s %s file transfer test iterations" % (args.count, args.device)
+                return 0
+               
     else:  #If we don't have removable drives attached and mounted
         print "No removable drives were detected, aborting"
         return 1
