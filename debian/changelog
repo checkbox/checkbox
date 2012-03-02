@@ -18,6 +18,7 @@ checkbox (0.13.4) precise; urgency=low
   * Updated camera_test script to use better tool for capturing the image
     and allow specifying a device to use, plus other improvements. Create a
     job which takes a capture from the webcam of the desktop.
+  * Added jobs to take screenshots after suspend and attach the resulting jpg
 
   [Marc Tardif]
   * Tidied up logic for determining DISK device product and vendor 
@@ -35,7 +36,7 @@ checkbox (0.13.4) precise; urgency=low
     plugins/jobs_prompt.py: Added a progress bar showing tests completed and
     total.
 
- -- Daniel Manrique <roadmr@ubuntu.com>  Thu, 01 Mar 2012 17:32:15 -0500
+ -- Jeff Lane <jeff@ubuntu.com>  Fri, 02 Mar 2012 12:13:34 -0500
 
 checkbox (0.13.3) precise; urgency=low
 

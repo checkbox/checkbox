@@ -271,3 +271,21 @@ _description:
 user: root
 command: wake_on_lan_test ${WAKE_ON_LAN_URL} --debug
 
+plugin: shell
+name: suspend/screenshot_after_suspend
+depends: suspend/suspend_advanced_auto
+requires: package.name == 'fswebcam'
+command: camera_test still -d /dev/video1 -f ${CHECKBOX_DATA}/screenshot_after_suspend.jpg -q 2>&1 | ansi_parser
+_description:
+ PURPOSE:
+     Take a screengrab of the current screen after suspend (logged on Unity desktop)
+ STEPS:
+     1. Take picture using USB webcam in /dev/video1
+ VERIFICATION:
+     1. Review attachment manually later
+
+plugin: attachment
+name: screenshot_after_suspend.jpg
+depends: suspend/screenshot_after_suspend.jpg
+command: cat ${CHECKBOX_DATA}/screenshot_after_suspend.jpg
+_description: Attaches the screenshot captured in graphics/screenshot.
