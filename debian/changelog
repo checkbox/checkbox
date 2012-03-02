@@ -35,6 +35,12 @@ checkbox (0.13.4) precise; urgency=low
     plugins/jobs_prompt.py: Added a progress bar showing tests completed and
     total.
 
+  [Sylvain Pineau]
+  * Updated gst_pipeline_test to add a --fullscreen option for video playback.
+  * Add python-gtk2 dependency, Gst from gi.repository don't work well with 
+    messages (See https://bugzilla.gnome.org/show_bug.cgi?id=631901).
+  * Add a new job to capture screen during fullscreen video playback.
+
  -- Daniel Manrique <roadmr@ubuntu.com>  Thu, 01 Mar 2012 17:32:15 -0500
 
 checkbox (0.13.3) precise; urgency=low
