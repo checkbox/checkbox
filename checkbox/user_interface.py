@@ -67,6 +67,7 @@ class UserInterface(object):
     def __init__(self, title, data_path=None):
         self.title = title
         self.data_path = data_path
+        self.progress = None
 
         self.report_url = None
         self.direction = NEXT
