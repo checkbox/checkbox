@@ -184,7 +184,7 @@ def main():
 
     errors = 0
 
-    if test.rem_disks > 0 or test.rem_disks_nm > 0: #If we do have removable drives attached and mounted
+    if len(test.rem_disks) > 0 or len(test.rem_disks_nm) > 0: #If we do have removable drives attached and mounted
         if args.list:   #Simply output a list of drives detected
             print "removable devices currently mounted:"
             if len(test.rem_disks) > 0:
