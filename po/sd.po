@@ -1,80 +1,73 @@
-# Ukrainian translation for checkbox
-# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# Sindhi translation for checkbox
+# Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
 # This file is distributed under the same license as the checkbox package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: checkbox\n"
-"Report-Msgid-Bugs-To: \n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-01-06 12:39-0500\n"
-"PO-Revision-Date: 2012-03-02 11:09+0000\n"
-"Last-Translator: Maxim <kontact.cat@gmail.com>\n"
-"Language-Team: Ukrainian <uk@li.org>\n"
+"PO-Revision-Date: 2012-02-27 18:04+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Sindhi <sd@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-03-03 05:10+0000\n"
-"X-Generator: Launchpad (build 14886)\n"
-
-#: ../gtk/checkbox-gtk.ui.h:10
-msgid "Ne_xt"
-msgstr "Далі"
-
-#~ msgid "Exchange"
-#~ msgstr "Обмін"
-
-#~ msgid "Testing your connection to the Internet:"
-#~ msgstr "Перевірка підключення до інтернету:"
+"X-Launchpad-Export-Date: 2012-02-28 05:32+0000\n"
+"X-Generator: Launchpad (build 14874)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:6 ../checkbox_cli/cli_interface.py:444
 #: ../checkbox_urwid/urwid_interface.py:267
 msgid "Further information:"
-msgstr "Додаткова інформація:"
+msgstr ""
+
+#: ../gtk/checkbox-gtk.ui.h:10
+msgid "Ne_xt"
+msgstr ""
 
 #. Title of the user interface
 #: ../gtk/checkbox-gtk.ui.h:1 ../gtk/checkbox-gtk.desktop.in.h:1
 #: ../plugins/user_interface.py:42
 msgid "System Testing"
-msgstr "Тестування Системи"
+msgstr ""
 
 #: ../gtk/checkbox-gtk.ui.h:8
 msgid "_Deselect All"
-msgstr "_Прибрати виділення"
+msgstr ""
 
 #: ../gtk/checkbox-gtk.ui.h:4
 msgid "_No"
-msgstr "_Ні"
+msgstr ""
 
 #: ../gtk/checkbox-gtk.ui.h:9
 msgid "_Previous"
-msgstr "_Назад"
+msgstr ""
 
 #: ../gtk/checkbox-gtk.ui.h:7
 msgid "_Select All"
-msgstr "Виді_лити все"
+msgstr ""
 
 #: ../gtk/checkbox-gtk.ui.h:5
 msgid "_Skip this test"
-msgstr "_Пропустити цей тест"
+msgstr ""
 
 #: ../gtk/checkbox-gtk.ui.h:2 ../checkbox_gtk/gtk_interface.py:538
 msgid "_Test"
-msgstr "_Тест"
+msgstr ""
 
 #: ../gtk/checkbox-gtk.ui.h:3
 msgid "_Yes"
-msgstr "_Так"
+msgstr ""
 
 #: ../gtk/checkbox-gtk.desktop.in.h:2
 msgid "Test your system and submit results to the Ubuntu Friendly project"
 msgstr ""
-"Перевірте вашу систему і представте результати до Ubuntu Friendly проекту"
 
 #. description
 #: ../jobs/audio.txt.in:7
 msgid "Test to detect audio devices"
-msgstr "Перевірити наявність аудіо пристроїв"
+msgstr ""
 
 #. description
 #: ../jobs/audio.txt.in:16
@@ -88,14 +81,6 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear a tone?"
 msgstr ""
-"МЕТА:\n"
-"    Цей тест перевірить, чи внутрішні динаміки працюють правильно\n"
-"ПОРЯДОК ДІЙ:\n"
-"    1. Переконайтеся, що не підключено зовнішніх динаміків або навушників\n"
-"    Якщо перевіряється настільний комп'ютер, зовнішні динаміки дозволені\n"
-"    2. Натисніть кнопку Тест щоб програти звук на вашому аудіопристрої\n"
-"ПЕРЕВІРКА:\n"
-"    Ви чули звук?"
 
 #. description
 #: ../jobs/audio.txt.in:33
@@ -109,14 +94,6 @@ msgid ""
 "    Did you hear a sound through the headphones and did the sound play "
 "without any distortion, clicks or other strange noises from your headphones?"
 msgstr ""
-"МЕТА:\n"
-"    Цей тест перевірить чи навушники працюють правильно\n"
-"ПОРЯДОК ДІЙ:\n"
-"    1. Підключіть навушники до вашого аудіо пристрою\n"
-"    2. Натисніть кнопку Тест, щоб програти звук на вашому аудіопристрої\n"
-"ПЕРЕВІРКА:\n"
-"    Ви чули звук в навушниках, він грав без спотворень, клацань чи інших "
-"сторонніх шумів в ваших навушниках?"
 
 #. description
 #: ../jobs/audio.txt.in:49
@@ -131,15 +108,6 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear your speech played back?"
 msgstr ""
-"МЕТА:\n"
-"    Цей тест перевірить, що запис звуку, використовуючи вбудований мікрофон "
-"правильно працює\n"
-"ПОРЯДОК ДІЙ:\n"
-"    1. Відключіть всі підключені зовнішні мікрофони\n"
-"    2. Натисніть \"Тест\" і говоріть в вбудований мікрофон\n"
-"    3. Після кількох секунд те, що ви сказали буде відтворено.\n"
-"ПЕРЕВІРКА:\n"
-"    Ви чули те, що ви сказали?"
 
 #. description
 #: ../jobs/audio.txt.in:66
@@ -154,15 +122,6 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear your speech played back?"
 msgstr ""
-"МЕТА:\n"
-"    Цей тест перевірить, чи звук, записаний зовнішнім мікрофоном, "
-"відтвориться правильно\n"
-"ПОРЯДОК ДІЙ:\n"
-"    1. Під'єднайте мікрофон до порту\n"
-"    2. Натисніть \"Тест\", скажіть щось у мікрофон\n"
-"    3. Після кількох секунд те, що ви сказали буде відтворено\n"
-"ПЕРЕВІРКА:\n"
-"    Ви чули те, що ви сказали?"
 
 #. description
 #: ../jobs/audio.txt.in:82
@@ -180,18 +139,6 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear your speech played back through the USB headphones?"
 msgstr ""
-"МЕТА:\n"
-"    Цей тест перевірить, чи USB аудіо пристрій працює правильно\n"
-"ПОРЯДОК ДІЙ:\n"
-"    1. Під'єднайте USB аудіо пристрій до вашої системи\n"
-"    2. Відкрийте програму контролю звуку, натиснувши правою кнопкою мишки на "
-"значок динаміка на панелі. Виберіть \"Налаштування звуку\"\n"
-"    3. Виберіть вкладку \"Вхід\" і виберіть ваш USB аудіо пристрій\n"
-"    4. Виберіть вкладку \"Вивід\" і виберіть ваш USB аудіо пристрій\n"
-"    5. Натисніть \"Тест\" і скажіть щось у мікрофон\n"
-"    6. Після кількох секунд те, що ви сказали буде відтворено\n"
-"ПЕРЕВІРКА:\n"
-"    Ви чули те, що ви сказали у USB навушниках?"
 
 #. description
 #: ../jobs/audio.txt.in:99
@@ -208,9 +155,6 @@ msgid ""
 "   This test will attempt to install and run the Autotest Suite.  These "
 "tests can be destructive, so this test is blacklisted by default."
 msgstr ""
-"МЕТА:\n"
-"    Цей тест спробує встановити Autotest Suite (Авто-тестовий набір). Ці "
-"тести можуть бути руйнівні, тому цей тест за замовчуванню блокується"
 
 #. description
 #: ../jobs/bluetooth.txt.in:7
@@ -218,9 +162,6 @@ msgid ""
 "This test will detect your Bluetooth device and output the device's hardware "
 "address.  If no device is found, the test will exit with an error."
 msgstr ""
-"Цей тест спробує знайти пристрій Bluetooth і виведе його фізичний адрес. "
-"Якщо жодного пристрою не буде знайдено, тест зупиниться і вийде з "
-"повідомленням про помилку."
 
 #. description
 #: ../jobs/bluetooth.txt.in:8
@@ -246,22 +187,6 @@ msgid ""
 "VERIFICATION:\n"
 "    Did all the steps work?"
 msgstr ""
-"МЕТА:\n"
-"    Цей тест перевірить чи з'єднання bluetooth працює правильно\n"
-"ПОРЯДОК ДІЙ:\n"
-"    1. Ввімкніть bluetooth чи інший мобільний пристрій (PDA, смартфон, "
-"т.д.)\n"
-"    2. Натисніть на ікону bluetooth на рядку меню\n"
-"    3. Виберіть 'Встановити новий пристрій'\n"
-"    4. Знайдіть пристрій в списку і виберіть його\n"
-"    5. На пристрої введіть PIN код автоматично вибраний майстром тестування\n"
-"    6   . Пристрій має утворити з'єднання з комп'ютером\n"
-"    7. Клацніть правою кнопкою мишки на іконі bluetooth і виберіть "
-"переглянути файли\n"
-"    8. Авторизуйте комп'ютер на пристрої, якщо це потрібно\n"
-"   9. Ви маєте бути спроможні переглянути файли\n"
-"ПЕРЕВІРКА:\n"
-"    Все вийшло?"
 
 #. description
 #: ../jobs/bluetooth.txt.in:33
@@ -276,16 +201,6 @@ msgid ""
 "VERIFICATION:\n"
 "    Were all files copied correctly?"
 msgstr ""
-"МЕТА:\n"
-"    Цей тест перевірить, чи ви зможете передавати інформацію через "
-"bluetooth\n"
-"ПОРЯДОК ДІЙ:\n"
-"    1. Перевірте, чи ви можете переглянути файл на вашому мобільному "
-"пристрої\n"
-"    2. Скопіюйте файл з комп'ютера на мобільний пристрій\n"
-"    3. Скопіюйте файл з мобільного пристроя на комп'ютер\n"
-"ПЕРЕВРІКА:\n"
-"    Файли скопіювалися правильно?"
 
 #. description
 #: ../jobs/bluetooth.txt.in:47
@@ -305,20 +220,6 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear the sound you recorded in the bluetooth"
 msgstr ""
-"МЕТА:\n"
-"    Цей тест перевірить, чи зможете ви записати і почути аудіо "
-"використовуючи аудіо пристрій bluetooth\n"
-"ПОРЯДОК ДІЙ:\n"
-"    1. Включіть навушники bluetooth\n"
-"    2. Клацніть на ікону bluetooth в панелі меню\n"
-"    3. Виберіть 'Створити новий пристрій'\n"
-"    4. Знайдіть пристрій в списку та виберіть його\n"
-"    5. В пристрої введіть автоматично створений майстром PIN\n"
-"    6. Пристрій має з'єднатися з комп'ютером\n"
-"    7. Нажміть \"Тест\", щоб записати звук довжиною п'ять секунд і "
-"відтворити його на пристрої bluetooth\n"
-"ПЕРЕВІРКА:\n"
-"    Ви почули звук на пристрої bluetooth, який ви записали?"
 
 #. description
 #: ../jobs/bluetooth.txt.in:65
@@ -335,17 +236,6 @@ msgid ""
 "VERIFICATION:\n"
 "    Were you able to enter some text with the bluetooth keyboard?"
 msgstr ""
-"МЕТА:\n"
-"    Цей тест перевірить, чи ви зможете використовувати Bluetooth клавіатуру\n"
-"ПОРЯДОК ДІЙ:\n"
-"    1. Включіть Bluetooth клавіатуру\n"
-"    2. Натисніть на значок Bluetooth на панелі меню\n"
-"    3. Виберіть 'встановити новий пристрій'\n"
-"    4. Знайдіть пристрій в списку і виберіть його\n"
-"    5. Натисніть \"Тест\"\n"
-"    6. Введіть якийсь текст\n"
-"ПЕРЕВІРКА:\n"
-"    Ви змогли ввести текст через вашу Bluetooth клавіатуру?"
 
 #. description
 #: ../jobs/bluetooth.txt.in:81
@@ -362,22 +252,11 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the mouse work as expected?"
 msgstr ""
-"МЕТА:\n"
-"    Цей тест перевірить, чи можете ви використовувати Bluetooth мишку\n"
-"ПОРЯДОК ДІЙ:\n"
-"    1. Включіть Bluetooth мишу\n"
-"    2. Натисніть на значку Bluetooth в панелі меню\n"
-"    3. Виберіть 'Встановити новий пристрій'\n"
-"    4. Знайдіть пристрій у списку та виберіть його\n"
-"    5. Порухайте мишкою\n"
-"    6. Зробіть клац, подвійний клац або правий клац.\n"
-"ПЕРЕВІРКА:\n"
-"    Миша працює правильно?"
 
 #. description
 #: ../jobs/camera.txt.in:7
 msgid "This Automated test attempts to detect a camera."
-msgstr "Цей автоматизований тест спробує знайти камеру."
+msgstr ""
 
 #. description
 #: ../jobs/camera.txt.in:16
@@ -400,12 +279,6 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you see the image?"
 msgstr ""
-"МЕТА:\n"
-"    Цей тест перевірить, чи вбудована камера працює\n"
-"ПОРЯДОК ДІЙ:\n"
-"    1. Натисніть 'Тест', щоб вивести зображення з камери\n"
-"ПЕРЕВІРКА:\n"
-"    Ви бачили зображення?"
 
 #. description
 #: ../jobs/camera.txt.in:49
@@ -419,14 +292,6 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you see and hear the capture?"
 msgstr ""
-"МЕТА:\n"
-"    Цей тест перевірить, чи ви зможете зняти відео за допомогою вбудованої "
-"камери\n"
-"ПОРЯДОК ДІЙ:\n"
-"    1. Натисніть \"Тест\", щоб зняти відео у файл (він автоматично "
-"відкриється в Totem)\n"
-"ПЕРЕВІРКА:\n"
-"    Ви бачили і чули зняте?"
 
 #. description
 #: ../jobs/codecs.txt.in:7
@@ -440,14 +305,6 @@ msgid ""
 "VERIFICATION:\n"
 "   Did the sample play correctly?"
 msgstr ""
-"МЕТА:\n"
-"    Цей тест перевірить, чи ваша система може відтворити Ogg Vorbis аудіо "
-"файли.\n"
-"ПОРЯДОК ДІЙ:\n"
-"    1. Натисніть \"Тест\", щоб відтворити файл Ogg Vorbis (.ogg)\n"
-"    2. Будь ласка, закрийте програвач, щоб продовжити.\n"
-"ПЕРЕВІРКА:\n"
-"    Зразок був відтворений правильно?"
 
 #. description
 #: ../jobs/codecs.txt.in:22
@@ -460,13 +317,6 @@ msgid ""
 "VERIFICATION:\n"
 "   Did the sample play correctly?"
 msgstr ""
-"МЕТА:\n"
-"   Цей тест перевірить, чи система може відтворювати аудіо файли Wave.\n"
-"ПОРЯДОК ДІЙ:\n"
-"   1. Натисніть 'Тест', щоб відтворити звук формату Wave (.wav)\n"
-"   2. Будь ласка, закрийте плеєр, щоб продовжити.\n"
-"ПЕРЕВІРКА:\n"
-"   Зразок був відтворений коректно?"
 
 #. description
 #: ../jobs/cpu.txt.in:8
@@ -477,7 +327,7 @@ msgstr ""
 #. description
 #: ../jobs/cpu.txt.in:15
 msgid "Test for clock jitter."
-msgstr "Тестування годинникового джиттера."
+msgstr ""
 
 #. description
 #: ../jobs/cpu.txt.in:23
@@ -552,24 +402,22 @@ msgstr ""
 #. description
 #: ../jobs/disk.txt.in:4
 msgid "Detects and displays disks attached to the system."
-msgstr "Виявляє і відображає диски, підключені до системи."
+msgstr ""
 
 #. description
 #: ../jobs/disk.txt.in:9
 msgid "Benchmark for each disk "
-msgstr "Тестувати кожен диск "
+msgstr ""
 
 #. description
 #: ../jobs/disk.txt.in:40
 msgid "SMART test"
-msgstr "РОЗУМНИЙ тест"
+msgstr ""
 
 #. description
 #: ../jobs/disk.txt.in:56
 msgid "Maximum disk space used during a default installation test"
 msgstr ""
-"Максимальне місце на диску, яке буде заняте під час звичайного тесту "
-"інсталяції"
 
 #. description
 #: ../jobs/disk.txt.in:71
@@ -622,19 +470,6 @@ msgid ""
 "VERIFICATION:\n"
 "   Did the authentication procedure work correctly?"
 msgstr ""
-"МЕТА:\n"
-"   Цей тест перевірить, чи сканер пальців може використовуватися для "
-"розблокування заблокованої системи.\n"
-"ПОРЯДОК ДІЙ:\n"
-"   1. Натисніть на аплет зміни користувача.\n"
-"   2. Виберіть 'Заблокувати екран'.\n"
-"   3. Натисніть довільну кнопку або порухайте мишкою.\n"
-"   4. Має появитися вікно, для розблокування системи за допомогою пароля або "
-"відбитка пальця.\n"
-"   5. Використайте сканер пальців для розблокування.\n"
-"   6. Екран має розблоковуватися.\n"
-"ПЕРЕВІРКА:\n"
-"   Ви змогли розблокувати систему за допомогою сканера пальців?"
 
 #. description
 #: ../jobs/firewire.txt.in:3
@@ -650,26 +485,16 @@ msgid ""
 "VERIFICATION:\n"
 "    Do the copy operations work as expected?"
 msgstr ""
-"МЕТА:\n"
-"    Цей тест перевірить, чи порт Firewire працює\n"
-"ПОРЯДОК ДІЙ:\n"
-"    1. Підключіть Firewire HDD до комп'ютера\n"
-"    2. Появиться вікно, яке питає про дію, яку зробити з диском (відкрити "
-"каталог, менеджер фотографій тощо). Ви маєте відкрити каталог.\n"
-"    3. Скопіюйте довільні файли з вашого вбудованого HDD на Firewire HDD\n"
-"    4. Скопіюйте довільні файли з вашого Firewire HDD на вбудований HDD\n"
-"ПЕРЕВІРКА:\n"
-"    Все пройшло успішно? Все скопіювалося правильно?"
 
 #. description
 #: ../jobs/floppy.txt.in:4
 msgid "Floppy test"
-msgstr "Флопі тест"
+msgstr ""
 
 #. description
 #: ../jobs/graphics.txt.in:5
 msgid "Test to output the Xorg version"
-msgstr "Тест для виведення версії Xorg"
+msgstr ""
 
 #. description
 #: ../jobs/graphics.txt.in:12
@@ -691,15 +516,6 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the resolution change as expected?"
 msgstr ""
-"МЕТА:\n"
-"    Цей тест перевірить, чи GUI зможе працювати після зміни роздільної "
-"здатності\n"
-"ПОРЯДОК ДІЙ:\n"
-"    1. Відкрийте програму 'Екрани'\n"
-"    2. Виберіть роздільну здатність з випадаючого списку\n"
-"    5. Натисніть 'Застосувати'\n"
-"ПЕРЕВІРКА:\n"
-"    Роздільна здатність змінилася, як і очікувалося?"
 
 #. description
 #: ../jobs/graphics.txt.in:33
@@ -720,12 +536,12 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:50
 msgid "Test that the X process is running."
-msgstr "Перевірка, чи процес X виконується."
+msgstr ""
 
 #. description
 #: ../jobs/graphics.txt.in:56
 msgid "Test that the X is not running in failsafe mode."
-msgstr "Перевірка, чи процес X виконується не у відмовостійкому режимі."
+msgstr ""
 
 #. description
 #: ../jobs/graphics.txt.in:63
@@ -746,14 +562,6 @@ msgid ""
 "VERIFICATION:\n"
 "    Is this acceptable for your display?"
 msgstr ""
-"МЕТА:\n"
-"    Тест перевірить роздільну здатність екрана за замовчуванням.\n"
-"ПОРЯДОК ДІЙ:\n"
-"    1. Цей екран використовує наступну роздільну здатність:\n"
-"ІНФОРМАЦІЯ:\n"
-"    $output\n"
-"ПЕРЕВІРКА:\n"
-"    Це допустимо для вашого екрану?"
 
 #. description
 #: ../jobs/graphics.txt.in:85
@@ -765,7 +573,7 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:85
 msgid "https://help.ubuntu.com/community/Installation/SystemRequirements"
-msgstr "https://help.ubuntu.com/community/Installation/SystemRequirements"
+msgstr ""
 
 #. description
 #: ../jobs/graphics.txt.in:95
@@ -806,7 +614,7 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:133
 msgid "Check that the hardware is able to run compiz."
-msgstr "Перевірка відеокарти на можливість запуску compiz."
+msgstr ""
 
 #. description
 #: ../jobs/graphics.txt.in:139
@@ -821,15 +629,6 @@ msgid ""
 "    1. Did the 3d animation appear?\n"
 "    2. Was the animation free from slowness/jerkiness?"
 msgstr ""
-"МЕТА:\n"
-"    Цей тест перевірить прості 3D можливості вашої відеокарти\n"
-"ПОРЯДОК ДІЙ:\n"
-"    1. Натисніть \"Тест\", щоб виконати OpenGL демонстрацію. Натисніть ESC "
-"будь коли, щоб завершити її.\n"
-"    2. Переконайтеся, що анімація плавна і швидка.\n"
-"ПЕРЕВІРКА:\n"
-"    1. 3D анімація з'явилася?\n"
-"    2. Вона була не була переривчастою або повільною?"
 
 #. description
 #: ../jobs/hibernate.txt.in:7
@@ -848,18 +647,6 @@ msgid ""
 "    Did the system successfully hibernate and did it work properly after "
 "waking up?"
 msgstr ""
-"МЕТА:\n"
-"    Цей тест перевірить, чи зможе ваша система успішно заснути (якщо "
-"підтримується)\n"
-"ПОРЯДОК ДІЙ:\n"
-"    1. Натисніть на тест\n"
-"    2. Система засне, вона маєте включитись через 5 хвилин\n"
-"    3. Якщо вона не включиться назад через 5 хвилин, будь ласка, натисніть "
-"на кнопку живлення, щоб розбудити її вручну\n"
-"    4. Якщо системі не вдалося продовжити працювати після сну, "
-"перезавантажте систему та позначте цей тест, як провалений\n"
-"ПЕРЕВІРКА:\n"
-"    Система прокинулася і працювала правильно після сну?"
 
 #. description
 #: ../jobs/info.txt.in:5
@@ -930,7 +717,7 @@ msgstr ""
 #. description
 #: ../jobs/info.txt.in:85
 msgid "Captures a screenshot."
-msgstr "Знімає скріншот."
+msgstr ""
 
 #. description
 #: ../jobs/info.txt.in:91
@@ -955,7 +742,7 @@ msgstr ""
 #. description
 #: ../jobs/info.txt.in:116
 msgid "SATA/IDE device information."
-msgstr "SATA/IDE інформація пристроїв."
+msgstr ""
 
 #. description
 #: ../jobs/info.txt.in:133
@@ -1000,14 +787,6 @@ msgid ""
 "VERIFICATION:\n"
 "    Is your keyboard working properly?"
 msgstr ""
-"МЕТА:\n"
-"    Цей тест перевірить вашу клавіатуру\n"
-"ПОРЯДОК ДІЙ:\n"
-"    1. Натисніть 'Тест'\n"
-"    2. Введіть у ділянці для вводу довільний текст, використовуючи "
-"клавіатуру\n"
-"ПЕРЕВІРКА:\n"
-"    Ваша клавіатура працює правильно?"
 
 #. description
 #: ../jobs/install.txt.in:6
@@ -1027,12 +806,6 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the brightness change following to your key presses?"
 msgstr ""
-"МЕТА:\n"
-"    Цей тест перевірить клавішу яскравості\n"
-"ПОРЯДОК ДІЙ:\n"
-"    1. Натисніть кнопку яскравості на вашій клавіатурі\n"
-"ПЕРЕВІРКА:\n"
-"    Яскравість змінилася після натискання?"
 
 #. description
 #: ../jobs/keys.txt.in:14
@@ -1044,12 +817,6 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the volume change following to your key presses?"
 msgstr ""
-"МЕТА:\n"
-"    Цей тест перевірить клавіші гучності\n"
-"ПОРЯДОК ДІЙ:\n"
-"    1. Натисніть клавіші гучності на вашій клавіатурі\n"
-"ПЕРЕВІРКА:\n"
-"    Гучність змінилася після натискання кнопок гучності?"
 
 #. description
 #: ../jobs/keys.txt.in:25
@@ -1061,12 +828,6 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the volume mute following your key presses?"
 msgstr ""
-"МЕТА:\n"
-"    Цей тест перевірить клавішу приглушування\n"
-"ПОРЯДОК ДІЙ:\n"
-"    1. Натисніть клавішу приглушення на клавіатурі\n"
-"ПЕРЕВІРКА:\n"
-"    Звук зник після натискання клавіші приглушення?"
 
 #. description
 #: ../jobs/keys.txt.in:37
@@ -1079,13 +840,6 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the system go to sleep after pressing the sleep key?"
 msgstr ""
-"МЕТА:\n"
-"    Цей тест перевірить клавішу сну\n"
-"ПОРЯДОК ДІЙ:\n"
-"    1. Натисніть клавішу сну на клавіатурі\n"
-"    2. Розбудіть вашу систему, натиснувши кнопку живлення\n"
-"ПЕРЕВІРКА:\n"
-"    Система заснула після натискання клавіші сну?"
 
 #. description
 #: ../jobs/keys.txt.in:49
@@ -1097,12 +851,6 @@ msgid ""
 "VERIFICATION:\n"
 "    Did a notification appear showing the battery status?"
 msgstr ""
-"МЕТА:\n"
-"    Цей тест перевірить клавішу інформації про батарею\n"
-"ПОРЯДОК ДІЙ:\n"
-"    1. Натисніть клавішу інформації про батарею на клавіатурі\n"
-"ПЕРЕВІРКА:\n"
-"    Сповіщення про стан батареї з'явилося?"
 
 #. description
 #: ../jobs/keys.txt.in:60
@@ -1115,13 +863,6 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the wireless go off on the first press and on again on the second?"
 msgstr ""
-"МЕТА:\n"
-"    Цей тест перевірить клавішу бездротового з'єднання\n"
-"ПОРЯДОК ДІЙ:\n"
-"    1. Натисніть кнопку бездротового з'єднання на клавіатурі\n"
-"    2. Натисніть її ще раз\n"
-"ПЕРЕВІРКА:\n"
-"    З'єднання появилося після першого натискання і зникло після другого?"
 
 #. description
 #: ../jobs/keys.txt.in:76
@@ -1141,7 +882,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:3
 msgid "Audio tests"
-msgstr "Перевірка звуку"
+msgstr ""
 
 #. description
 #: ../jobs/local.txt.in:8
@@ -1176,17 +917,17 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:38
 msgid "Disk tests"
-msgstr "Перевірка дисків"
+msgstr ""
 
 #. description
 #: ../jobs/local.txt.in:43
 msgid "Fingerprint reader tests"
-msgstr "Перевірка пристрою зчитування відбитків пальців"
+msgstr ""
 
 #. description
 #: ../jobs/local.txt.in:48
 msgid "Firewire disk tests"
-msgstr "Перевірка дисків Firewire"
+msgstr ""
 
 #. description
 #: ../jobs/local.txt.in:53
@@ -1251,7 +992,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:113
 msgid "Monitor tests"
-msgstr "Перевірка морітору"
+msgstr ""
 
 #. description
 #: ../jobs/local.txt.in:118
@@ -1276,7 +1017,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:138
 msgid "Peripheral tests"
-msgstr "Перевірка периферії"
+msgstr ""
 
 #. description
 #: ../jobs/local.txt.in:143
@@ -1316,7 +1057,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:178
 msgid "User Applications"
-msgstr "Програми користувача"
+msgstr ""
 
 #. description
 #: ../jobs/local.txt.in:183
@@ -2012,7 +1753,7 @@ msgstr ""
 #. description
 #: ../jobs/power-management.txt.in:66
 msgid "Make sure that the RTC (Real-Time Clock) device exists."
-msgstr "Переконайтесь, що пристрій RTC (Real-Time Clock) існує."
+msgstr ""
 
 #. description
 #: ../jobs/power-management.txt.in:71
@@ -2105,8 +1846,6 @@ msgstr ""
 #: ../jobs/suspend.txt.in:9
 msgid "Record the current resolution before suspending."
 msgstr ""
-"Записати поточну розільну здатність, перш ніж перейти у режим економії "
-"електроенергії."
 
 #. description
 #: ../jobs/suspend.txt.in:17
@@ -2150,15 +1889,13 @@ msgstr ""
 #. description
 #: ../jobs/suspend.txt.in:96
 msgid "Test the network after resuming."
-msgstr "Перевірити мережу після виходу з режиму економії електроенергії"
+msgstr ""
 
 #. description
 #: ../jobs/suspend.txt.in:102
 msgid ""
 "Test to see that we have the same resolution after resuming as before."
 msgstr ""
-"Переконаємось, що роздільна здатність екрана не змінилась після виходу з "
-"режиму економії електроенергії"
 
 #. description
 #: ../jobs/suspend.txt.in:111
@@ -2544,7 +2281,7 @@ msgstr ""
 #. description
 #: ../jobs/user_apps.txt.in:207
 msgid "Common Document Types Test"
-msgstr "Перевірка стандартних типів документів"
+msgstr ""
 
 #. description
 #: ../jobs/user_apps.txt.in:228
@@ -2868,23 +2605,23 @@ msgstr ""
 
 #: ../checkbox/application.py:66
 msgid "Usage: checkbox [OPTIONS]"
-msgstr "Використання: checkbox [ПАРАМЕТРИ]"
+msgstr ""
 
 #: ../checkbox/application.py:70
 msgid "Print version information and exit."
-msgstr "Вивести інформацію про версію та вийти"
+msgstr ""
 
 #: ../checkbox/application.py:74
 msgid "The file to write the log to."
-msgstr "Файл для ведення логу"
+msgstr ""
 
 #: ../checkbox/application.py:77
 msgid "One of debug, info, warning, error or critical."
-msgstr "Одне із повідомлень, інформація, небезпека, помилка або критично."
+msgstr ""
 
 #: ../checkbox/application.py:82
 msgid "Configuration override parameters."
-msgstr "Налаштування параметрів заміщення."
+msgstr ""
 
 #: ../checkbox/application.py:84
 msgid "Shorthand for --config=.*/jobs_info/blacklist."
@@ -2904,7 +2641,7 @@ msgstr ""
 
 #: ../checkbox/application.py:115
 msgid "Missing configuration file as argument.\n"
-msgstr "Не вистачає конфігураційного файла як аргумента.\n"
+msgstr ""
 
 #: ../checkbox/job.py:84
 msgid "Command not found."
@@ -2919,196 +2656,190 @@ msgstr ""
 msgid ""
 "Hangup detected on controlling terminal or death of controlling process"
 msgstr ""
-"Виявлене зависання на контролюючому терміналі або смерть контролюючого "
-"процесу"
 
 #: ../checkbox/lib/signal.py:24
 msgid "Interrupt from keyboard"
-msgstr "Перервати з клавіатури"
+msgstr ""
 
 #: ../checkbox/lib/signal.py:25
 msgid "Quit from keyboard"
-msgstr "Вихід з клавіатури"
+msgstr ""
 
 #: ../checkbox/lib/signal.py:26
 msgid "Illegal Instruction"
-msgstr "Неприпустима інструкція"
+msgstr ""
 
 #: ../checkbox/lib/signal.py:27
 msgid "Abort signal from abort(3)"
-msgstr "Сигнал припинення від abort(3)"
+msgstr ""
 
 #: ../checkbox/lib/signal.py:28
 msgid "Floating point exception"
-msgstr "Помилка операції з крапкою, що плаває"
+msgstr ""
 
 #: ../checkbox/lib/signal.py:29
 msgid "Kill signal"
-msgstr "Сигнал зняття"
+msgstr ""
 
 #: ../checkbox/lib/signal.py:30
 msgid "Invalid memory reference"
-msgstr "Неправильне посилання на пам’ять"
+msgstr ""
 
 #: ../checkbox/lib/signal.py:31
 msgid "Broken pipe: write to pipe with no readers"
-msgstr "Зламаний конвеєр (pipe): запис до конвеєра без читачів"
+msgstr ""
 
 #: ../checkbox/lib/signal.py:32
 msgid "Timer signal from alarm(2)"
-msgstr "Сигнал таймера від alarm(2)"
+msgstr ""
 
 #: ../checkbox/lib/signal.py:33
 msgid "Termination signal"
-msgstr "Сигнал завершення"
+msgstr ""
 
 #: ../checkbox/lib/signal.py:34
 msgid "User-defined signal 1"
-msgstr "Визначений користувачем сигнал 1"
+msgstr ""
 
 #: ../checkbox/lib/signal.py:35
 msgid "User-defined signal 2"
-msgstr "Визначений користувачем сигнал 2"
+msgstr ""
 
 #: ../checkbox/lib/signal.py:36
 msgid "Child stopped or terminated"
-msgstr "Нащадок зупинений або перерваний"
+msgstr ""
 
 #: ../checkbox/lib/signal.py:37
 msgid "Continue if stopped"
-msgstr "Продовжувати, якщо зупинено"
+msgstr ""
 
 #: ../checkbox/lib/signal.py:38
 msgid "Stop process"
-msgstr "Зупинити процес"
+msgstr ""
 
 #: ../checkbox/lib/signal.py:39
 msgid "Stop typed at tty"
-msgstr "Зупинка набору на tty"
+msgstr ""
 
 #: ../checkbox/lib/signal.py:40
 msgid "tty input for background process"
-msgstr "ввід з tty для фонового процесу"
+msgstr ""
 
 #: ../checkbox/lib/signal.py:41
 msgid "tty output for background process"
-msgstr "вивід на tty для фонового процесу"
+msgstr ""
 
 #: ../checkbox/lib/signal.py:77
 msgid "UNKNOWN"
-msgstr "НЕВІДОМЕ"
+msgstr ""
 
 #: ../checkbox/lib/signal.py:89
 msgid "Unknown signal"
-msgstr "Невідомий сигнал"
+msgstr ""
 
 #: ../checkbox_cli/cli_interface.py:31
 #: ../checkbox_urwid/urwid_interface.py:917
 msgid "yes"
-msgstr "так"
+msgstr ""
 
 #: ../checkbox_cli/cli_interface.py:32
 #: ../checkbox_urwid/urwid_interface.py:918
 msgid "no"
-msgstr "ні"
+msgstr ""
 
 #: ../checkbox_cli/cli_interface.py:33
 #: ../checkbox_urwid/urwid_interface.py:919
 msgid "skip"
-msgstr "пропустити"
+msgstr ""
 
 #: ../checkbox_cli/cli_interface.py:126
 msgid "Press any key to continue..."
-msgstr "Натисніть будь-яку клавішу для продовження…"
+msgstr ""
 
 #: ../checkbox_cli/cli_interface.py:135 ../checkbox_cli/cli_interface.py:234
 #, python-format
 msgid "Please choose (%s): "
-msgstr "Будь ласка, оберіть (%s): "
+msgstr ""
 
 #: ../checkbox_cli/cli_interface.py:416
 msgid "test"
-msgstr "перевірка"
+msgstr ""
 
 #: ../checkbox_cli/cli_interface.py:440
 msgid "test again"
-msgstr "перевірити знову"
+msgstr ""
 
 #: ../checkbox_cli/cli_interface.py:446
 msgid "Please type here and press Ctrl-D when finished:\n"
-msgstr "Будь ласка напишіть сюди та натисніть Ctrl-D для закінчення:\n"
+msgstr ""
 
 #: ../checkbox_urwid/urwid_interface.py:66
 msgid "Checkbox System Testing"
-msgstr "Checkbox System Testing"
+msgstr ""
 
 #: ../checkbox_urwid/urwid_interface.py:105
 msgid "Continue"
-msgstr "Продовжити"
+msgstr ""
 
 #: ../checkbox_urwid/urwid_interface.py:198
 #: ../checkbox_urwid/urwid_interface.py:274
 #: ../checkbox_urwid/urwid_interface.py:425
 #: ../checkbox_urwid/urwid_interface.py:547
 msgid "Previous"
-msgstr "Попередній"
+msgstr ""
 
 #: ../checkbox_urwid/urwid_interface.py:199
 #: ../checkbox_urwid/urwid_interface.py:275
 #: ../checkbox_urwid/urwid_interface.py:426
 #: ../checkbox_urwid/urwid_interface.py:548
 msgid "Next"
-msgstr "Наступний"
+msgstr ""
 
 #. Show buttons
 #: ../checkbox_urwid/urwid_interface.py:423
 msgid "Select All"
-msgstr "Виділити все"
+msgstr ""
 
 #: ../checkbox_urwid/urwid_interface.py:424
 msgid "Deselect All"
-msgstr "Зняти виділення"
+msgstr ""
 
 #: ../checkbox_urwid/urwid_interface.py:1013
 msgid "Test"
-msgstr "Тест"
+msgstr ""
 
 #: ../checkbox_urwid/urwid_interface.py:1028
 msgid "Test Again"
-msgstr "Повторити тест"
+msgstr ""
 
 #: ../checkbox_gtk/gtk_interface.py:503
 msgid "_Test Again"
-msgstr "_Перевірити знову"
+msgstr ""
 
 #: ../checkbox_gtk/gtk_interface.py:551
 msgid "Info"
-msgstr "Інформація"
+msgstr ""
 
 #: ../checkbox_gtk/gtk_interface.py:575
 msgid "Error"
-msgstr "Помилка"
+msgstr ""
 
 #: ../checkbox/user_interface.py:137
 #, python-format
 msgid "Unable to start web browser to open %s."
-msgstr "Неможливо запустити переглядач тенет, щоб відкрити %s."
+msgstr ""
 
 #: ../plugins/apport_prompt.py:83
 msgid ""
 "Collecting information about this test.\n"
 "This might take a few minutes."
 msgstr ""
-"Йде збір інформації для цього тесту.\n"
-"Це може зайняти декілька хвилин."
 
 #: ../plugins/apport_prompt.py:118
 msgid ""
 "Collected information is being sent for bug tracking.\n"
 "This might take a few minutes."
 msgstr ""
-"Збирається інформація, що буде відправлена в систему відстеження помилок.\n"
-"Це може зайняти декілька хвилин."
 
 #: ../plugins/apport_prompt.py:227
 #, python-format
@@ -3122,24 +2853,24 @@ msgstr ""
 
 #: ../plugins/apport_prompt.py:232
 msgid "Do you want to report a bug?"
-msgstr "Ви хочете відправити звіт про помилку?"
+msgstr ""
 
 #: ../plugins/apport_prompt.py:249
 #, python-format
 msgid "Is a package upgrade in process? Error: %s"
-msgstr "оновлення пакунку відбувається? Помилка: %s"
+msgstr ""
 
 #: ../plugins/final_prompt.py:33
 msgid "Successfully finished testing!"
-msgstr "Перевірка закінчена успішно!"
+msgstr ""
 
 #: ../plugins/final_prompt.py:34
 msgid "_Finish"
-msgstr "_Завершити"
+msgstr ""
 
 #: ../plugins/gather_prompt.py:35
 msgid "Gathering information from your system..."
-msgstr "Збирається інформація про Ваш комп'ютер..."
+msgstr ""
 
 #: ../plugins/intro_prompt.py:28
 msgid ""
@@ -3149,11 +2880,6 @@ msgid ""
 "Once you are finished running the tests, you can view a summary report for "
 "your system."
 msgstr ""
-"Вітаємо у Тестуванні системи!\n"
-"\n"
-"Тестуванні системи виконує перевірку вашої системи, щоб підтвердити "
-"правильність її роботи. По закінченню тестування, ви зможете переглянути "
-"звіт про вашу систему."
 
 #: ../plugins/intro_prompt.py:33
 msgid ""
@@ -3167,7 +2893,7 @@ msgstr ""
 #: ../plugins/launchpad_exchange.py:136
 #, python-format
 msgid "Failed to process form: %s"
-msgstr "Не вдалось обробити форму: %s"
+msgstr ""
 
 #: ../plugins/launchpad_exchange.py:151
 #, python-format
@@ -3179,24 +2905,16 @@ msgid ""
 "directly to the system database:\n"
 "https://launchpad.net/+hwdb/+submit"
 msgstr ""
-"Не вдається з’єднатися з сервером. Будь ласка,\n"
-"спробуйте ще раз або завантажте файл:\n"
-"%s\n"
-"\n"
-"безпосередньо до бази даних пристроїв:\n"
-"https://launchpad.net/+hwdb/+submit"
 
 #: ../plugins/launchpad_exchange.py:160
 msgid ""
 "Failed to upload to server,\n"
 "please try again later."
 msgstr ""
-"Помилка вивантаження на сервер.\n"
-"Будь ласка, спробуйте ще раз пізніше."
 
 #: ../plugins/launchpad_exchange.py:172
 msgid "Information not posted to Launchpad."
-msgstr "Інформація не поміщена на Launchpad."
+msgstr ""
 
 #: ../plugins/launchpad_prompt.py:71
 #, python-format
@@ -3212,29 +2930,18 @@ msgid ""
 "\n"
 "  https://launchpad.net/+login"
 msgstr ""
-"Створено такий звіт для відправлення до бази даних апаратного устаткування "
-"Launchpad:\n"
-"\n"
-"  [[%s|Переглянути звіт]]\n"
-"\n"
-"Ви можете відправити цю інформацію про вашу систему, якщо вкажете адресу "
-"електронної пошти, яку ви використовуєте на Launchpad. Якщо ви не маєте "
-"облікового запису на Launchpad, будь ласка зареєструйтеся тут:\n"
-"\n"
-"  https://launchpad.net/+login"
 
 #: ../plugins/launchpad_prompt.py:88
 msgid "No e-mail address provided, not submitting to Launchpad."
-msgstr "Адресу електронної пошти не вказано, не відправляється до Launchpad."
+msgstr ""
 
 #: ../plugins/launchpad_prompt.py:93
 msgid "Email address must be in a proper format."
 msgstr ""
-"Адреса електронної пошти повинна бути записана у правильному форматі."
 
 #: ../plugins/launchpad_prompt.py:99
 msgid "Exchanging information with the server..."
-msgstr "Йде обмін інформацією з сервером..."
+msgstr ""
 
 #: ../plugins/launchpad_report.py:167
 msgid ""
@@ -3245,674 +2952,43 @@ msgstr ""
 #: ../plugins/lock_prompt.py:63
 msgid "There is another checkbox running. Please close it first."
 msgstr ""
-"Інша копія Тестування системи вже запущена. Будь ласка, спочатку закрийте її."
 
 #: ../plugins/recover_prompt.py:56
 msgid ""
 "Checkbox did not finish completely.\n"
 "Do you want to recover from the previous run?"
 msgstr ""
-"Перевірка не закінчена повністю.\n"
-"Відновити до попереднього стану?"
 
 #: ../plugins/report_prompt.py:39
 msgid "Building report..."
-msgstr "Формування звіту..."
+msgstr ""
 
 #: ../plugins/shell_test.py:52
 #, python-format
 msgid "Running %s..."
-msgstr "Виконується %s"
+msgstr ""
 
 #. Get results
 #: ../plugins/suites_prompt.py:110
 msgid "Select the suites to test"
-msgstr "Виберіть набори для перевірки"
+msgstr ""
 
 #: ../scripts/keyboard_test:21
 msgid "Enter text:\n"
-msgstr "Введіть текст:\n"
+msgstr ""
 
 #: ../scripts/keyboard_test:41
 msgid "Type Text"
-msgstr "Наберіть текст"
+msgstr ""
 
 #: ../scripts/internet_test:139
 msgid "No Internet connection"
-msgstr "Немає з’єднання з інтернет"
+msgstr ""
 
 #: ../scripts/internet_test:142
 msgid "Connection established lost a packet"
-msgstr "З’єднання встановлено але пакет втрачено"
+msgstr ""
 
 #: ../scripts/internet_test:145
 msgid "Internet connection fully established"
-msgstr "З’єднання з інтернет повністю встановлено"
-
-#~ msgid "Moving the mouse should move the cursor on the screen."
-#~ msgstr "Рух миші повинен рухати курсор на екрані."
-
-#~ msgid "Is your mouse working properly?"
-#~ msgstr "Ваша миша працює нормально?"
-
-#~ msgid "Is this correct?"
-#~ msgstr "Це правильно?"
-
-#~ msgid "_Server"
-#~ msgstr "_Сервер"
-
-#~ msgid "Detecting your network controller(s):"
-#~ msgstr "Визначення Ваших мережевих контролерів:"
-
-#~ msgid "$(network_test)"
-#~ msgstr "$(network_test)"
-
-#~ msgid "Do you see color bars and static?"
-#~ msgstr "Ви бачете кольорові полоски?"
-
-#~ msgid "Test and report system information"
-#~ msgstr "Тестувати та доповісти системну інформацію"
-
-#~ msgid "Do you hear a sound?"
-#~ msgstr "Ви чуєте звук?"
-
-#~ msgid "$output"
-#~ msgstr "$output"
-
-#~ msgid "Category"
-#~ msgstr "Категорія"
-
-#~ msgid "Running shell tests..."
-#~ msgstr "Виконується перевірка..."
-
-#, python-format
-#~ msgid "Running test %s..."
-#~ msgstr "Виконується перевірка %s..."
-
-#~ msgid "Network tests"
-#~ msgstr "Перевірка мережі"
-
-#~ msgid "Video tests"
-#~ msgstr "Перевірка відео"
-
-#~ msgid ""
-#~ "Click the Test button to play a sound on the automatically detected \\ "
-#~ "playback device."
-#~ msgstr ""
-#~ "Натисніть кнопку Перевірити, щоб зіграти звук на автоматично виявленому "
-#~ "пристрої програвання."
-
-#~ msgid "Kernel modesetting tests"
-#~ msgstr "Перевірка механізму ядра встановлення відеорежимів"
-
-#~ msgid ""
-#~ "Connect a microphone to your microphone port.  \\ Click the Test button, "
-#~ "then speak into the microphone.  \\ After a few seconds, your speech will be "
-#~ "played back to you."
-#~ msgstr ""
-#~ "Підключіть мікрофон у порт для мікрофона. \\ Натисніть кнопку Перевірити, "
-#~ "потів говоріть у мікрофон. \\ Через декілька секунд те, що ви скажете, буде "
-#~ "відтворено."
-
-#~ msgid "Detecting your sound device(s):"
-#~ msgstr "Визначення ваших звукових пристроїв:"
-
-#~ msgid ""
-#~ "Disconnect any external microphones that you have plugged in.  \\ Click the "
-#~ "Test button, then speak into your internal microphone.  \\ After a few "
-#~ "seconds, your speech will be played back to you."
-#~ msgstr ""
-#~ "Відключіть будь-які зовнішні підключені мікрофони. \\ Натисніть на кнопку "
-#~ "Перевірити, потім говоріть у внутрішній мікрофон. \\ Через декілька секунд "
-#~ "те, що ви скажете, буде відтворено."
-
-#~ msgid ""
-#~ "Play back a sound on the default output and listen for it on the default \\ "
-#~ "input.  This makes the most sense when the output and input are directly \\ "
-#~ "connected, as with a patch cable."
-#~ msgstr ""
-#~ "Відтворити звук на типовому виході та слухати на нього на типовому \\ вході. "
-#~ "Це має сенс, коли цей вихід під’єднано безпосередньо \\ до входу, наприклад, "
-#~ "кабелем."
-
-#~ msgid ""
-#~ "Connect a USB audio device to your system.  Then open the \\ volume control "
-#~ "application by right-clicking on the speaker \\ icon in the panel and "
-#~ "selecting \"Sound Preferences\".  Select \\ the \"Input\" tab and choose "
-#~ "your USB device.  Select the \\ \"Output\" tab and choose your USB device.  "
-#~ "When you are done, \\ click the Test button, then speak into the microphone. "
-#~ " \\ After a few seconds, your speech will be played back to you."
-#~ msgstr ""
-#~ "Підключіть USB пристрій до вашої системи. Потім відкрийте \\ регулятор "
-#~ "гучності, для цього натисніть правою кнопкою миші \\ на значку динаміка на "
-#~ "панелі і виберіть \\ \"Відкрити регулятор гучності\". У вкладці \"Запис\" "
-#~ "виберіть \\ ваш USB пристрій. У вкладці \"Відтворення\" виберіть ваш USB \\ "
-#~ "пристрій. Після цього натисніть на кнопку Перевірити і скажіть \\ щось у "
-#~ "мікрофон. Через декілька секунд те, що ви скажете, \\ буде відтворено."
-
-#~ msgid "Is this ok?"
-#~ msgstr "Чи це правильно?"
-
-#~ msgid "Disk benchmark:"
-#~ msgstr "Оцінка продуктивності диска:"
-
-#~ msgid "Did you hear your speech played back?"
-#~ msgstr "Ви чули відтворення вашого запису?"
-
-#~ msgid ""
-#~ "Prerequisites: This test case assumes that there's a testing account \\ from "
-#~ "which test cases are run and a personal account that the tester \\ uses to "
-#~ "verify the fingerprint reader"
-#~ msgstr ""
-#~ "Передумови: цей тест припускає, що є тестовий обліковий запис, з якого "
-#~ "виконується ця перевірка, і персональний обліковий запис, що "
-#~ "використовується для перевірки пристрою зчитування відбитків пальців"
-
-#~ msgid "Did the authentication procedure work correctly?"
-#~ msgstr "Процедура аутентифікації працювала правильно?"
-
-#~ msgid "Do the copy operations work as expected?"
-#~ msgstr "Операції копіювання працювали як очікувалося?"
-
-#~ msgid "Was the connection correctly established?"
-#~ msgstr "Чи з’єднання було встановлено правильно?"
-
-#~ msgid ""
-#~ "Click the Test button to open a text area where to type keys on your \\ "
-#~ "keyboard."
-#~ msgstr ""
-#~ "Натисніть кнопку Перевірити, щоб відкрити текстове поле вводу для \\ набору "
-#~ "з вашої клавіатури."
-
-#~ msgid "Note that this test may require you to enter your password."
-#~ msgstr "Зверніть увагу, що цей тест може запитати вас ввести ваш пароль."
-
-#~ msgid ""
-#~ "Click Test to switch to another virtual terminal and then back to X.  Your \\"
-#~ " screen will change temporarily to a text console and then switch back to "
-#~ "your \\ current session."
-#~ msgstr ""
-#~ "Натисніть кнопку Перевірити, щоб перейти до іншого віртуального терміналу \\ "
-#~ "і назад до X. Ваш екран буде тимчасово змінено на текстову консоль і потім \\"
-#~ " знову на вашу поточну сесію."
-
-#~ msgid "Insert a DVD.  Then click Test to play the DVD in Totem."
-#~ msgstr ""
-#~ "Вставте DVD диск. Потім натисніть кнопку Перевірити, щоб відтворити DVD у "
-#~ "відеопрогравачі Totem."
-
-#~ msgid "Did the screen change temporarily to a text console?"
-#~ msgstr "Екран було тимчасово змінено на текстову консоль?"
-
-#~ msgid ""
-#~ "Firewire HDD verification procedure: 1.- Plug a Firewire HDD into the "
-#~ "computer 2.- A window should be opened asking which action should be "
-#~ "performed (open folder, photo manager, etc). 3.- Copy some files from the "
-#~ "internal/firewire HDD to the firewire/internal HDD"
-#~ msgstr ""
-#~ "Процедура перевірки дисків Firewire: 1. Підключіть Firewire диск до "
-#~ "комп’ютера. 2. Повинно відкритися вікно з запитанням подальшої дії (відкрити "
-#~ "теку, менеджер фотографій, тощо). 3. Скопіюйте деякі файли з "
-#~ "внутрішнього/firewire диска на firewire/внутрішній диск."
-
-#~ msgid ""
-#~ "Built-in modem network connection procedure: 1.- Connect the telephone line "
-#~ "to the computer 2.- Right click on the Network Manager applet 3.- Select "
-#~ "'Edit Connections' 4.- Select the 'DSL' tab 5.- Click on add 'Add' button 6.-"
-#~ " Configure the connection parameters properly 7.- Notify OSD should confirm "
-#~ "that the connection has been established 8.- Select Test to verify that it's "
-#~ "possible to establish both http \\ and ftp connections"
-#~ msgstr ""
-#~ "Процедура підключення до мережі за допомогою вбудованого модема: 1. "
-#~ "Підключіть телефонну лінію до комп’ютера. 2. Натисніть правою кнопкою миші "
-#~ "на Мережевих з’єднаннях. 3. Виберіть \"Змінити з’єднання\". 4. Виберіть DSL. "
-#~ "5. Натисніть кнопку \"Додати\". 6. Вкажіть правильні параметри з’єднання. 7. "
-#~ "Виринаюче повідомлення повинно підтвердити, що з’єднання було встановлено. "
-#~ "8. Натисніть кнопку Перевірити, щоб перевірити можливість підключення через "
-#~ "http та ftp."
-
-#~ msgid "Did the file play?"
-#~ msgstr "Чи було відтворено файл?"
-
-#~ msgid "Check that hardware is able to run compiz."
-#~ msgstr "Перевірити, чи апаратне забезпечення дозволяє запускати compiz."
-
-#~ msgid ""
-#~ "Plug video output to an external monitor. Is the image displayed correctly?"
-#~ msgstr ""
-#~ "Підключіть відео-вихід до зовнішнього монітору. Зображення показано "
-#~ "правильно?"
-
-#~ msgid "Click Test to cycle through the detected video modes for your system."
-#~ msgstr ""
-#~ "Натисніть кнопку Перевірити, щоб перебрати відео-режими, знайдені для вашої "
-#~ "системи."
-
-#~ msgid "Did the screen appear to be working for each mode?"
-#~ msgstr "Екран працював у кожному з режимів?"
-
-#~ msgid "This display is using the following resolution:"
-#~ msgstr "На цьому екрані встановлено таку роздільну здатність:"
-
-#~ msgid ""
-#~ "The following screens and video modes have been detected on your system:"
-#~ msgstr "Такі екрани і відео-режими знайдені у вашій системі:"
-
-#~ msgid ""
-#~ "Please repeat the test for each kind of video output supported (VGA, DVI, "
-#~ "DisplayPort and HDMI)."
-#~ msgstr ""
-#~ "Будь ласка, повторіть перевірку для кожного з підтримуваних відео-виходів "
-#~ "(VGA, DVI, DisplayPort та HDMI)."
-
-#~ msgid ""
-#~ "For HDMI, please also check that sound is played in the monitor speakers."
-#~ msgstr ""
-#~ "Для HDMI, будь ласка, також перевірте, що звук відтворюється на динаміках "
-#~ "монітора."
-
-#~ msgid "Please connect a pair of headphones to your audio device."
-#~ msgstr "Будь ласка, під’єднайте навушники до аудіо пристрою."
-
-#~ msgid "Autotest suite (destructive)"
-#~ msgstr "Набір автоматичних тестів (деструктивно)"
-
-#~ msgid "Did the monitor go blank?"
-#~ msgstr "Монітор погас?"
-
-#~ msgid "Linux Test Project"
-#~ msgstr "Проект тестування Linux"
-
-#~ msgid "Did the 3d animation appear?"
-#~ msgstr "Чи появилась 3D-анімація?"
-
-#~ msgid "Automated benchmark testing"
-#~ msgstr "Автоматичне тестування продуктивності"
-
-#~ msgid ""
-#~ "Connect a display (if not already connected) to the HDMI port on your "
-#~ "system. Is the image displayed correctly?"
-#~ msgstr ""
-#~ "Підключіть дисплей (якщо він ще не підключений) до порту HDMI Вашої системи. "
-#~ "Чи показано зображення вірно?"
-
-#~ msgid "If your system does not have a HDMI port, please skip this test."
-#~ msgstr ""
-#~ "Якщо ваша система не має порту HDMI, будь ласка, пропустіть цей тест."
-
-#~ msgid ""
-#~ "Connect a display (if not already connected) to the DisplayPort on your "
-#~ "system. Is the image displayed correctly?"
-#~ msgstr ""
-#~ "Підключіть дисплей (якщо він ще не підключений) до порту DisplayPort Вашої "
-#~ "системи. Чи показано зображення вірно?"
-
-#~ msgid "If your system does not have DisplayPort, please skip this test."
-#~ msgstr ""
-#~ "Якщо ваша система не має порту DisplayPort, будь ласка, пропустіть цей тест."
-
-#~ msgid ""
-#~ "Connect a display (if not already connected) to the S-VIDEO port on your "
-#~ "system. Is the image displayed correctly?"
-#~ msgstr ""
-#~ "Підключіть дисплей (якщо він ще не підключений) до порту S_VIDEO Вашої "
-#~ "системи. Чи показано зображення вірно?"
-
-#~ msgid "If your system does not have a S-VIDEO port, please skip this test."
-#~ msgstr ""
-#~ "Якщо ваша система не має порту S_VIDEO, будь ласка, пропустіть цей тест."
-
-#~ msgid "If your system does not have a DVI port, please skip this test."
-#~ msgstr "Якщо ваша система не має порту DVI, будь ласка, пропустіть цей тест."
-
-#~ msgid ""
-#~ "Connect a display (if not already connected) to the DVI port on your system. "
-#~ "Is the image displayed correctly?"
-#~ msgstr ""
-#~ "Підключіть дисплей (якщо він ще не підключений) до порту DVI Вашої системи. "
-#~ "Чи показано зображення вірно?"
-
-#~ msgid "If your system does not have a VGA port, please skip this test."
-#~ msgstr "Якщо ваша система не має порту VGA, будь ласка, пропустіть цей тест."
-
-#~ msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist_file."
-#~ msgstr ""
-#~ "Коротка форма для --config=checkbox/plugins/jobs_info/blacklist_file."
-
-#~ msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist."
-#~ msgstr "Коротка форма для --config=checkbox/plugins/jobs_info/blacklist."
-
-#~ msgid ""
-#~ "Connect a display (if not already connected) to the RCA port on your system. "
-#~ "Is the image displayed correctly?"
-#~ msgstr ""
-#~ "Підключіть дисплей (якщо він ще не підключений) до порту RCA Вашої системи. "
-#~ "Чи показано зображення вірно?"
-
-#~ msgid "If your system does not have a RCA port, please skip this test."
-#~ msgstr ""
-#~ "Якщо ваша система не має порту RCA, будь ласка, пропустіть цей текст."
-
-#~ msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist."
-#~ msgstr "Коротка форма для --config=checkbox/plugins/jobs_info/whitelist."
-
-#~ msgid "Shorthand for --config=checkbox/plugins/jobs_info/whitelist_file."
-#~ msgstr ""
-#~ "Которка форма для --config=checkbox/plugins/jobs_info/whitelist_file."
-
-#~ msgid ""
-#~ "Connect a display (if not already connected) to the VGA port on your system. "
-#~ "Is the image displayed correctly?"
-#~ msgstr ""
-#~ "Підключіть дисплей (якщо ще не підключено) до VGA порту Вашої системи. "
-#~ "Зображення правильне?"
-
-#~ msgid "Google Talk"
-#~ msgstr "Google Talk"
-
-#~ msgid "Jabber"
-#~ msgstr "Jabber"
-
-#~ msgid "Facebook Chat"
-#~ msgstr "Facebook Чат"
-
-#~ msgid "MSN"
-#~ msgstr "MSN"
-
-#~ msgid "The address of your Bluetooth device is: $output"
-#~ msgstr "Адреса пристрою Bluetooth: $output"
-
-#~ msgid "Did you see the text?"
-#~ msgstr "Ви бачили текст?"
-
-#~ msgid "Test the audio before suspending."
-#~ msgstr "Перевірити звук, перш ніж перейти у режим економії електроенергії."
-
-#~ msgid "Close the File browser."
-#~ msgstr "Закрити переглядач файлів."
-
-#~ msgid "Did the Ubuntu Test page load correctly?"
-#~ msgstr "Тестову сторінку Ubuntu відображено нормально?"
-
-#~ msgid "Test the audio after resuming."
-#~ msgstr "Перевірити звук, перш ніж вийти з режиму економії електроенергії."
-
-#~ msgid "Test the network before suspending."
-#~ msgstr "Перевірити мережу, перш ніж перейти у режим економії електроенергії."
-
-#~ msgid "Were you able to connect correctly and send/receive messages?"
-#~ msgstr "Чи вдалося вам з'єднатися і прийняти / відправити повідомлення?"
-
-#~ msgid "Did the video play correctly?"
-#~ msgstr "Відео відтворювалось нормально?"
-
-#~ msgid ""
-#~ "Prerequisites: This test case assumes that there's a testing account from "
-#~ "which test cases are run and a personal account that the tester uses to "
-#~ "verify the fingerprint reader"
-#~ msgstr ""
-#~ "Передумови: Цей тест передбачає наявність тестового облікового запису, для "
-#~ "якого виконують тест, і власного облікового запису, щоб перевірити сканер "
-#~ "відбитків пальців"
-
-#~ msgid "The following hard drives were detected:"
-#~ msgstr "Було виявлено такі жорсткі диски:"
-
-#~ msgid "Does the icon automatically appear/disappear?"
-#~ msgstr "Піктограма автоматично з’являється/зникає?"
-
-#~ msgid "Power management Suspend and Resume test"
-#~ msgstr "Перевірка входу у режим економії електроенергії і виходу з нього."
-
-#~ msgid "QA regression tests (destructive)"
-#~ msgstr "Регресійні тести перевірки якості (деструктивно)"
-
-#~ msgid ""
-#~ "Verify a bluetooth peripheral.  An example verification procedure for a "
-#~ "bluetooth mouse is given."
-#~ msgstr "Перевірте bluetooth-пристрій. Наприклад, перевіримо bluetooth-мишу."
-
-#~ msgid "Did all the steps work?"
-#~ msgstr "Чи все було гаразд?"
-
-#~ msgid "Did the system successfully suspend and resume for 30 iterations?"
-#~ msgstr ""
-#~ "Чи успішно система виконала 30 циклів призупинення/відновлення роботи "
-#~ "комп’ютера?"
-
-#~ msgid "Did the system successfully hibernate and wake 30 times?"
-#~ msgstr ""
-#~ "Ваш комп’ютер прокинувся самотужки після 30-ти циклів засинання/прокидання?"
-
-#~ msgid ""
-#~ "This will check to make sure that your audio device works properly after a "
-#~ "suspend and resume.  You can use either internal or external microphone and "
-#~ "speakers."
-#~ msgstr ""
-#~ "Цей тест перевірить прецездатніть звукового пристрою після виходу з режиму "
-#~ "економії електроенергії. Натисніть Перевірка щоб почати"
-
-#~ msgid ""
-#~ "Did the system successfully hibernate and did it work properly after waking "
-#~ "up?"
-#~ msgstr ""
-#~ "Чи вдалося системі заснути і самотужки прокинутись? Чи все гаразд після "
-#~ "цього?"
-
-#~ msgid ""
-#~ "This will check to make sure your system can successfully hibernate (if "
-#~ "supported)."
-#~ msgstr ""
-#~ "Цей тест перевірить здатність комп’ютера переходити у режим сну (якщо "
-#~ "підтримується)"
-
-#~ msgid ""
-#~ "Also, you will need to ensure your system has no power-on or HDD passwords "
-#~ "set, and that grub is set to boot Ubuntu by default if you have a multi-boot "
-#~ "set-up."
-#~ msgstr ""
-#~ "Крім того, переконайтесь, що в системі не встановлено пароль на увімкнення "
-#~ "чи пароль на HDD, і що grub налаштовано завантажувати Ubuntu, якщо є ще й "
-#~ "інші операційні системи."
-
-#~ msgid ""
-#~ "Was the folder called Test Data successfully moved into the folder called "
-#~ "Test Folder?"
-#~ msgstr ""
-#~ "Чи була папка \"Test Data\" успішно переміщена у папку \"Test Folder\"?"
-
-#~ msgid "Double click the folder called Test Folder to open it up."
-#~ msgstr "Двічі клацніть на папку \"Test Folder\" щоб відкрити її."
-
-#~ msgid ""
-#~ "Right click on the folder called Test Folder(copy) and click Rename. Enter "
-#~ "the name Test Data in the name box and hit Enter."
-#~ msgstr ""
-#~ "Правою кнопкою натисніть на теку \"Test Folder (копія)\" і клікніть "
-#~ "Перейменувати. Уведіть ім'я \"Test Data\" в поле вводу і натисніть Enter."
-
-#~ msgid "Do you now have a folder called Test Data?"
-#~ msgstr "Ви бачите теку з ім'ям \"Test Data\"?"
-
-#~ msgid "Do you now have a new folder called Test Folder?"
-#~ msgstr "Ви бачите створену теку з ім'ям \"Test Folder\"?"
-
-#~ msgid ""
-#~ "This test will execute Update Manager and check to see if there are any "
-#~ "available updates for the system. Please follow the prompts and if updates "
-#~ "are found, install them. When Update Manager has finished, please close the "
-#~ "app by clicking the Close button in the lower right corner."
-#~ msgstr ""
-#~ "Цей тест запустить Менеджер оновлень і перевірить доступні оновлення для "
-#~ "системи. Будь-ласка дотримуйтесь підказок і якщо оновлення будуть знайдені - "
-#~ "встановіть їх. Коли Менеджер оновлень закінчить роботу - закрийте застосунок "
-#~ "натисканням кнопки \"Закрити\" в нижньому правому кутку."
-
-#~ msgid ""
-#~ "Right click on the file called Test File 1(copy) and click Rename. Enter the "
-#~ "name Test File 2 in the name box and hit Enter."
-#~ msgstr ""
-#~ "Натисніть праву клавішу миші на файлі \"Test File 1(copy)\" і виберіть "
-#~ "Перейменувати. Введіть ім’я \"Test File 2\" у полі імені і натисніть Enter."
-
-#~ msgid "Do you now have a file called Test File 1?"
-#~ msgstr "Зараз Ви маєте файл \"Test File 1\"?"
-
-#~ msgid "Is Test File 1 now gone?"
-#~ msgstr "Файл \"Test File 1\" зник?"
-
-#~ msgid "Do you now have a file called Test File 2?"
-#~ msgstr "Зараз Ви маєте файл \"Test File 2\"?"
-
-#~ msgid "AIM"
-#~ msgstr "AIM"
-
-#~ msgid "Has Test Folder been successfully deleted?"
-#~ msgstr "Теку \"Test Folder\" успішно видалено?"
-
-#~ msgid "Close the File Browser."
-#~ msgstr "Закрийте переглядач файлів."
-
-#~ msgid "Double click the icon for Test Data to open that folder up."
-#~ msgstr "Натисніть двічі на піктограмі теки \"Test Data\", щоб відкрити."
-
-#~ msgid ""
-#~ "Was the file Test File 2 successfully moved into the Test Data folder?"
-#~ msgstr "Файл \"Test File 2\" успішно переміщений у теку \"Test Data\"?"
-
-#~ msgid "Did the video play using a plugin?"
-#~ msgstr "Відео програється використовуючи модуль?"
-
-#~ msgid ""
-#~ "Ensure the current resolution meets or exceeds the recommended minimum "
-#~ "resolution (1024 x 600). See here for details:"
-#~ msgstr ""
-#~ "Переконайтесь, що поточна роздільна здатність відповідає або перевищує "
-#~ "рекомендований мінімум (1024 x 600). Дивись подробиці тут:"
-
-#~ msgid "Did the applet display?"
-#~ msgstr "Показувати аплет?"
-
-#~ msgid ""
-#~ "Ensure the current resolution meets or exceeds the recommended minimum "
-#~ "resolution (1024 x 768). See here for details:"
-#~ msgstr ""
-#~ "Переконайтесь, що поточна роздільна здатність відповідає або перевищує "
-#~ "рекомендований мінімум (1024 x 768). Дивись подробиці тут:"
-
-#~ msgid ""
-#~ "Pair a Bluetooth headset with your system.  Then open the \\ volume control "
-#~ "application by right-clicking on the speaker \\ icon in the panel and "
-#~ "selecting \"Sound Preferences\".  Select \\ the \"Input\" tab and choose "
-#~ "your Bluetooth device.  Select the \\ \"Output\" tab and choose your "
-#~ "Bluetooth device.  When you are done, \\ click the Test button, then speak "
-#~ "into the microphone.  \\ After a few seconds, your speech will be played "
-#~ "back to you."
-#~ msgstr ""
-#~ "Спаруйте гарнітуру Bluetooth із цією системою. Тоді відкрийте \\ програму "
-#~ "регулювання гучністю, натиснувши на панелі кнопку з \\ динаміком і вибравши "
-#~ "\"Налаштування звуку\". Перейдіть на вкладку \\ \"Ввід\" і виберіть Вашу "
-#~ "гарнітуру. Перейдіть на вкладку \"Вивід\", \\ де знов виберіть Вашу "
-#~ "гарнітуру. Завершивши, натисніть кнопку \\ \"Перевірити\" й говоріть щось у "
-#~ "мікрофон кілька секунд. Через \\ деякий час сказане Вами відтвориться для "
-#~ "перевірки налаштувань."
-
-#~ msgid ""
-#~ "Did you hear a sound and was that sound free of any distortion, clicks or "
-#~ "other strange noises?"
-#~ msgstr ""
-#~ "Чи чули Ви звук і чи не був цей звук спотворений, не містив клацань або "
-#~ "інших шумів?"
-
-#~ msgid ""
-#~ "Select Test to play a sound on the automatically detected playback device."
-#~ msgstr ""
-#~ "Натисніть Тест, щоб програти звук на автоматично визначеному аудіо пристрої."
-
-#~ msgid ""
-#~ "Did you hear a sound through the headphones and did the sound play without "
-#~ "any distortion, clicks or other strange noises from your headphones?"
-#~ msgstr ""
-#~ "Чи чули Ви звук у Ваших навушниках і чи не був цей звук спотворений, не "
-#~ "містив клацань або інших шумів?"
-
-#~ msgid "Insert a DVD.  Then select Test to play the DVD in Totem."
-#~ msgstr ""
-#~ "Вставте DVD диск. Натисніть Тест, щоб програти DVD фільм у програвачі Totem"
-
-#~ msgid ""
-#~ "Connect a microphone to your microphone port.  Select Test, then speak into "
-#~ "the microphone.  After a few seconds, your speech will be played back to you."
-#~ msgstr ""
-#~ "Підключіть мікрофон до комп’ютера. Виберіть Тест, потім говоріть в мікрофон. "
-#~ "Через декілька секунд після цього почнеться відтворення сказаного вами."
-
-#~ msgid ""
-#~ "Disconnect any external microphones that you have plugged in.  Select Test, "
-#~ "then speak into your internal microphone.  After a few seconds, your speech "
-#~ "will be played back to you."
-#~ msgstr ""
-#~ "Відключіть будь-який зовнішній мікрофон, що підключено до комп’ютера. "
-#~ "Виберіть Тест, потім говоріть у внутрішній мікрофон. Через декілька секунд "
-#~ "після цього почнеться відтворення сказаного вами."
-
-#~ msgid ""
-#~ "Connect a USB audio device to your system.  Then open the volume control "
-#~ "application by left-clicking on the speaker icon in the panel and selecting "
-#~ "\"Sound Preferences\".  Select the \"Input\" tab and choose your USB device. "
-#~ " Select the \"Output\" tab and choose your USB device.  When you are done, "
-#~ "select Test, then speak into the microphone.  After a few seconds, your "
-#~ "speech will be played back to you."
-#~ msgstr ""
-#~ "Під'єднайте аудіо-пристрій USB до вашої системи.  Потім відкрийте програму "
-#~ "управління гучністю натиснувши ліву кнопку миші на іконці з динаміком, що "
-#~ "розташована на панелі, і вибравши \"Налаштування звуку\".  Виберіть закладку "
-#~ "\"вхыд\" і оберіть ваш пристрій USB.  Виберіть закладку \"Вивід\" і оберіть "
-#~ "ваш пристрій USB.  Коли ви закінчите, натисніть Тест, потім говоріть в "
-#~ "мікрофон.  Через декілька секунд вашу промову буде відтворено."
-
-#~ msgid ""
-#~ "Select Test to capture video to a file and open it in totem. Please make "
-#~ "sure that both audio and video is captured."
-#~ msgstr ""
-#~ "Виберіть Тест щоб захопити відео у файл і відкрити його в totem. Будь ласка "
-#~ "переконайтеся що і відео і звук захоплюються."
-
-#~ msgid "Did you see the video capture?"
-#~ msgstr "Ви бачите захоплене відео?"
-
-#~ msgid "Did you see the image?"
-#~ msgstr "Ви бачите зображення?"
-
-#~ msgid "Is this acceptable for your display?"
-#~ msgstr "Це допустимо для вашого дисплею?"
-
-#~ msgid "_Laptop"
-#~ msgstr "_Ноутбук"
-
-#~ msgid "_Desktop"
-#~ msgstr "_Стільниця"
-
-#~ msgid "Click the Test button to display a video test."
-#~ msgstr "Натисніть на кнопку Перевірити, щоб запустити перевірку відео."
-
-#~ msgid "Authentication"
-#~ msgstr "Аутентифікація"
-
-#~ msgid "Done"
-#~ msgstr "Завершено"
-
-#~ msgid "Please select the category of your system."
-#~ msgstr "Будь ласка виберіть категорію вашої системи."
-
-#~ msgid "Welcome to System Testing!"
-#~ msgstr "Ласкаво просимо до перевірки системи!"
-
-#~ msgid "Successfully sent information!"
-#~ msgstr "Інформацію успішно надіслано!"
-
-#~ msgid "Test that the /var/crash directory doesn't contain anything."
-#~ msgstr "Перевірте чи пуста тека /var/crash"
-
-#~ msgid "Is your keyboard working properly?"
-#~ msgstr "Чи коректно працює Ваша клавіатура?"
+msgstr ""

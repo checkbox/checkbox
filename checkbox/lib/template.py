@@ -70,11 +70,11 @@ class Template(object):
 
     def load_file(self, file, filename="<stream>"):
         elements = []
-        for string in self._reader(file):
+        for index, string in enumerate(self._reader(file)):
             if not string:
                 break
 
-            element = {}
+            element = dict(sortkey=index)
 
             def _save(field, value, extended):
                 extended = extended.rstrip("\n")

@@ -127,6 +127,12 @@ class JobsPrompt(Plugin):
             if not messages:
                 break
 
+            done_count = self.store.get_pending_offset()
+            pending_count = self.store.count_pending_messages()
+
+            progress = (done_count, done_count + pending_count)
+            self._manager.reactor.fire("set-progress",progress)
+
             job = messages[0]
             self._manager.reactor.fire("prompt-job", interface, job)
             self.store.update(job)

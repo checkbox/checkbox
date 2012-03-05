@@ -50,6 +50,11 @@ class UserInterface(Plugin):
         self._manager.reactor.call_on("run", self.run)
         self._manager.reactor.call_on("launchpad-report", self.launchpad_report)
 
+        self._manager.reactor.call_on("set-progress",self.set_progress)
+
+    def set_progress(self, progress):
+        self._interface.progress = progress
+        
     def run(self):
         interface_module = __import__(self.interface_module,
             None, None, [''])
