@@ -85,7 +85,7 @@ class CameraTest:
                   "-d", self.args.device,
                   "-r", "%dx%d"
                   % (self._width, self._height), filename])
-        except CalledProcessError:
+        except (CalledProcessError, OSError):
             pipespec = \
                     ("v4l2src device=%(device)s "
                      "! video/x-raw-yuv,width=%(width)d,height=%(height)d "
