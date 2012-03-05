@@ -7,6 +7,10 @@ checkbox (0.13.4) precise; urgency=low
     (LP: #942548)
   * Updated command fields in composite disk jobs to address the ! in 
     some disk paths (LP: #942769)
+  * Updated create_connection to poll for registration of connection and 
+    then attempt to bring it up (LP: #944762)
+  * Fixed command run by wireless_connection tests so that they fail if the
+    internet_test fails, but still clean up the connection file (LP: #944176)
 
   [Daniel Manrique]
   * Tweaks to internet_test: don't try to ping an IP that's unreachable from 
@@ -18,6 +22,7 @@ checkbox (0.13.4) precise; urgency=low
   * Updated camera_test script to use better tool for capturing the image
     and allow specifying a device to use, plus other improvements. Create a
     job which takes a capture from the webcam of the desktop.
+  * Added jobs to take screenshots after suspend and attach the resulting jpg
 
   [Marc Tardif]
   * Tidied up logic for determining DISK device product and vendor 
@@ -35,7 +40,13 @@ checkbox (0.13.4) precise; urgency=low
     plugins/jobs_prompt.py: Added a progress bar showing tests completed and
     total.
 
- -- Daniel Manrique <roadmr@ubuntu.com>  Thu, 01 Mar 2012 17:32:15 -0500
+  [Tiago Salem Herrmann]
+  * checkbox_qt/qt_interface.py, qt/frontend/qtfront.cpp,
+    qt/frontend/qtfront.h, qt/frontend/treemodel.cpp, qt/frontend/treemodel.h:
+    Makes it possible for the job selection tree to have more than 2 levels of
+    children nodes.
+
+ -- Jeff Lane <jeff@ubuntu.com>  Fri, 02 Mar 2012 12:13:34 -0500
 
 checkbox (0.13.3) precise; urgency=low
 
