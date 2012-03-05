@@ -149,12 +149,12 @@ _description:
 plugin: shell
 name: graphics/screenshot
 requires: package.name == 'fswebcam'
-command: camera_test still -d /dev/video1 -f ${CHECKBOX_DATA}/screenshot.jpg -q 2>&1 | ansi_parser
+command: camera_test still --highest-device -f ${CHECKBOX_DATA}/screenshot.jpg -q 2>&1 | ansi_parser
 _description:
  PURPOSE:
      Take a screengrab of the current screen (logged on Unity desktop)
  STEPS:
-     1. Take picture using USB webcam in /dev/video1
+     1. Take picture using USB webcam
  VERIFICATION:
      1. Review attachment manually later
 
@@ -169,13 +169,13 @@ name: graphics/screenshot_fullscreen_video
 requires: package.name == 'fswebcam'
 command:
  gst_pipeline_test -t 20 -f "playbin2 uri=file://${CHECKBOX_SHARE}/data/video/Ogg_Theora_Video.ogv" &
- sleep 15 && camera_test still -d /dev/video1 -f ${CHECKBOX_DATA}/screenshot_fullscreen_video.jpg -q 2>&1 | ansi_parser
+ sleep 15 && camera_test still --highest-device -f ${CHECKBOX_DATA}/screenshot_fullscreen_video.jpg -q 2>&1 | ansi_parser
 _description:
  PURPOSE:
      Take a screengrab of the current screen during fullscreen video playback
  STEPS:
      1. Start a fullscreen video playback
-     2. Take picture using USB webcam in /dev/video1 after a few seconds
+     2. Take picture using USB webcam in after a few seconds
  VERIFICATION:
      1. Review attachment manually later
 
