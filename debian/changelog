@@ -47,8 +47,12 @@ checkbox (0.13.4) precise; urgency=low
     qt/frontend/qtfront.h, qt/frontend/treemodel.cpp, qt/frontend/treemodel.h:
     Makes it possible for the job selection tree to have more than 2 levels of
     children nodes.
+  
+  [Tim Chen]
+  * Modifications to removable_storage_test to handle cases where removable
+    media is not mounted prior to test running. (LP: #944623)
 
- -- Jeff Lane <jeff@ubuntu.com>  Fri, 02 Mar 2012 12:13:34 -0500
+ -- Jeff Lane <jeff@ubuntu.com>  Mon, 05 Mar 2012 13:43:02 -0500
 
 checkbox (0.13.3) precise; urgency=low
 
