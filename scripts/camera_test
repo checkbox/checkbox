@@ -6,6 +6,7 @@ from tempfile import NamedTemporaryFile
 from subprocess import check_call as call
 from subprocess import CalledProcessError, Popen, PIPE, STDOUT
 import argparse
+from glob import glob
 import gobject
 
 
@@ -84,7 +85,7 @@ class CameraTest:
                   "-d", self.args.device,
                   "-r", "%dx%d"
                   % (self._width, self._height), filename])
-        except CalledProcessError:
+        except (CalledProcessError, OSError):
             pipespec = \
                     ("v4l2src device=%(device)s "
                      "! video/x-raw-yuv,width=%(width)d,height=%(height)d "
@@ -114,8 +115,15 @@ def parse_arguments(argv):
                                        description='Available camera tests')
 
     def add_device_parameter(parser):
-        parser.add_argument("-d", "--device", default="/dev/video0",
-                            help="Device for the webcam to use")
+        group = parser.add_mutually_exclusive_group()
+        group.add_argument("-d", "--device", default="/dev/video0",
+                           help="Device for the webcam to use")
+        group.add_argument("--highest-device", action="store_true",
+                           help=("Use the /dev/videoN "
+                                 "where N is the highest value available"))
+        group.add_argument("--lowest-device", action="store_true",
+                           help=("Use the /dev/videoN "
+                                 "where N is the lowest value available"))
 
     subparsers.add_parser('detect')
     led_parser = subparsers.add_parser('led')
@@ -129,8 +137,19 @@ def parse_arguments(argv):
     still_parser.add_argument("-q", "--quiet", action="store_true",
                               help=("Don't display picture, "
                                     "just write the picture to a file"))
+    args = parser.parse_args(argv)
 
-    return parser.parse_args(argv)
+    def get_video_devices():
+        devices = sorted(glob('/dev/video[0-9]'),
+                         key=lambda d: re.search(r'\d', d).group(0))
+        assert len(devices) > 0, "No video devices found"
+        return devices
+
+    if args.highest_device:
+        args.device = get_video_devices()[-1]
+    elif args.lowest_device:
+        args.device = get_video_devices()[0]
+    return args
 
 
 if __name__ == "__main__":
