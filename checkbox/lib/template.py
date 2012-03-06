@@ -74,7 +74,7 @@ class Template(object):
             if not string:
                 break
 
-            element = dict(sortkey=index)
+            element = {}
 
             def _save(field, value, extended):
                 extended = extended.rstrip("\n")
@@ -133,6 +133,7 @@ class Template(object):
 
             _save(field, value, extended)
 
+            element.setdefault('sortkey', index)
             elements.append(element)
 
         return elements
