@@ -286,6 +286,6 @@ _description:
 
 plugin: attachment
 name: screenshot_after_suspend.jpg
-depends: suspend/screenshot_after_suspend.jpg
+depends: suspend/screenshot_after_suspend
 command: cat ${CHECKBOX_DATA}/screenshot_after_suspend.jpg
 _description: Attaches the screenshot captured in graphics/screenshot.
