@@ -52,8 +52,20 @@ class ChangeWorkspace(Thread):
     Start a thread performing fast workspace switches
     """
 
+    def __init__(self, size):
+        Thread.__init__(self)
+        self.size = size
+        self.cancel = False
+
     def run(self):
-        raise NotImplementedError
+        while(1):
+            for i in range(self.size):
+                call('wmctrl -s %s' %i, shell=True)
+                time.sleep(0.5)
+                if self.cancel:
+                    # Switch back to workspace #1
+                    call('wmctrl -s 0', shell=True)
+                    return
 
 
 class ChangeViewport(Thread):
@@ -141,19 +153,6 @@ def main():
     FlashVideo = FlashVideoThread()
     FlashVideo.start()
 
-    if is_unity_2d_running():
-        hsize = int(pexpect.run(
-            'gconftool --get /apps/metacity/general/num_workspaces'))
-        vsize = hsize
-    else:
-        hsize = int(pexpect.run(
-            'gconftool --get /apps/compiz-1/general/screen0/options/hsize'))
-        vsize = int(pexpect.run(
-            'gconftool --get /apps/compiz-1/general/screen0/options/vsize'))
-
-    (x_res, y_res) = re.search(r'DG:\s+(\d+)x(\d+)',
-                               pexpect.run('wmctrl -d')).groups()
-
     for i in range(2):
         GlxWindows.append(GlxThread())
         GlxWindows[i].start()
@@ -168,9 +167,16 @@ def main():
         GlxRotate[i].start()
 
     if is_unity_2d_running():
-        DesktopSwitch = ChangeWorkspace(
-            hsize, vsize, int(x_res) / hsize, int(y_res) / vsize)
+        size = int(pexpect.run(
+            'gconftool --get /apps/metacity/general/num_workspaces'))
+        DesktopSwitch = ChangeWorkspace(size)
     else:
+        (x_res, y_res) = re.search(r'DG:\s+(\d+)x(\d+)',
+                                   pexpect.run('wmctrl -d')).groups()
+        hsize = int(pexpect.run(
+            'gconftool --get /apps/compiz-1/general/screen0/options/hsize'))
+        vsize = int(pexpect.run(
+            'gconftool --get /apps/compiz-1/general/screen0/options/vsize'))
         DesktopSwitch = ChangeViewport(
             hsize, vsize, int(x_res) / hsize, int(y_res) / vsize)
     DesktopSwitch.start()
