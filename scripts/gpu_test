@@ -103,7 +103,7 @@ class FlashVideoThread(Thread):
              stderr=STDOUT, shell=True)
 
     def terminate(self):
-        call('pkill firefox', shell=True)
+        call('wmctrl -c firefox', shell=True)
         os.unlink(self.tempfile)
 
 
