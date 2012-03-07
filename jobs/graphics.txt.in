@@ -147,6 +147,27 @@ _description:
      2. Was the animation free from slowness/jerkiness?
 
 plugin: shell
+name: graphics/gpu_lockup_test
+requires:
+ package.name == 'firefox'
+ package.name == 'fwts'
+ package.name == 'wmctrl'
+ package.name == 'mesa-utils'
+depends: software/firefox-flash-video graphics/glxgears
+user: root
+command: gpu_test
+_description:
+ PURPOSE:
+     Do some challenging operations and check for lockup on the GPU
+ STEPS:
+     1. Create 2 glxgears windows and move them quickly
+     2. Switch workspaces/viewports with wmctrl
+     3. Launch a Flash playback in firefox
+     4. Suspend/resume
+ VERIFICATION:
+     1. Atfer a 60s workload, check kern.log for reported GPU errors
+
+plugin: shell
 name: graphics/screenshot
 requires: package.name == 'fswebcam'
 command: camera_test still --highest-device -f ${CHECKBOX_DATA}/screenshot.jpg -q 2>&1 | ansi_parser

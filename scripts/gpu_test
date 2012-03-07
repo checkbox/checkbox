@@ -1,0 +1,192 @@
+#!/usr/bin/python
+
+import re
+import os
+import sys
+import time
+import pexpect
+from subprocess import call, STDOUT
+from threading import Thread
+from tempfile import NamedTemporaryFile
+from math import cos, sin
+
+
+class GlxThread(Thread):
+    """
+    Start a thread running glxgears
+    """
+
+    def run(self):
+        pexpect.run('glxgears -geometry 400x400', timeout=None)
+
+    def terminate(self):
+        call('wmctrl -i -c %s' %self.id, shell=True)
+
+
+class RotateGlxThread(Thread):
+    """
+    Start a thread performing glxgears windows rotations
+    """
+
+    def __init__(self, id, offset):
+        Thread.__init__(self)
+        self.id = id
+        self.offset = offset
+        self.cancel = False
+
+    def run(self):
+        while(1):
+            for j in range(60):
+                x=int(200 * self.offset + 100 * sin(j * 0.2))
+                y=int(200 * self.offset + 100 * cos(j * 0.2))
+                coords="%s,%s" %(x, y)
+                call('wmctrl -i -r %s -e 0,%s,-1,-1' %(self.id, coords),
+                     shell=True)
+                time.sleep(0.002 * self.offset)
+                if self.cancel:
+                    return
+
+
+class ChangeWorkspace(Thread):
+    """
+    Start a thread performing fast workspace switches
+    """
+
+    def run(self):
+        raise NotImplementedError
+
+
+class ChangeViewport(Thread):
+    """
+    Start a thread performing fast viewport switches
+    """
+
+    def __init__(self, hsize, vsize, xsize, ysize):
+        Thread.__init__(self)
+        self.hsize = hsize
+        self.vsize = vsize
+        self.xsize = xsize
+        self.ysize = ysize
+        self.cancel = False
+
+    def run(self):
+        while(1):
+            for i in range(self.hsize):
+                for j in range(self.vsize):
+                    call('wmctrl -o %s,%s' %(self.xsize * j, self.ysize * i),
+                         shell=True)
+                    time.sleep(0.5)
+                    if self.cancel:
+                        # Switch back to viewport #1
+                        call('wmctrl -o 0,0', shell=True)
+                        return
+
+
+class FlashVideoThread(Thread):
+    """
+    Start a thread performing a Flash playback in firefox using totem
+    """
+
+    def run(self):
+        flv = os.environ['CHECKBOX_SHARE'] + '/data/websites/Flash_Video.flv'
+        source = """
+<html><head><meta http-equiv="refresh" content="5"></head><body>
+<p>This page will reload and play this Flash video every 5s.</p>
+<center><embed src="%s"></embed></center>
+</body></html>""" %flv
+
+        with NamedTemporaryFile(suffix='.html', delete=False) as f:
+            self.tempfile = f.name
+            f.write("%s" %source)
+            f.close()
+        call('firefox %s' %f.name, stdout=open(os.devnull, 'w'),
+             stderr=STDOUT, shell=True)
+
+    def terminate(self):
+        call('pkill firefox', shell=True)
+        os.unlink(self.tempfile)
+
+
+def pidof(name):
+    for pid in os.listdir("/proc"):
+        if not pid.isdigit():
+            continue
+        try:
+            exe = os.readlink(os.path.join("/proc", pid, "exe"))
+        except OSError:
+            continue
+        if os.path.basename(exe) == name:
+            return int(pid)
+    return 0
+
+
+def is_unity_2d_running():
+    return pidof("unity-2d-panel") > 0
+
+
+def check_gpu():
+    f = open('/var/log/kern.log', 'r')
+    with f:
+        if re.findall(r'gpu\s+hung', f.read(), flags=re.I):
+            print "GPU hung Detected"
+            sys.exit(1)
+
+
+def main():
+    check_gpu()
+    GlxWindows = []
+    GlxRotate = []
+    call("pkill 'glxgears|firefox'", shell=True)
+
+    FlashVideo = FlashVideoThread()
+    FlashVideo.start()
+
+    if is_unity_2d_running():
+        hsize = int(pexpect.run(
+            'gconftool --get /apps/metacity/general/num_workspaces'))
+        vsize = hsize
+    else:
+        hsize = int(pexpect.run(
+            'gconftool --get /apps/compiz-1/general/screen0/options/hsize'))
+        vsize = int(pexpect.run(
+            'gconftool --get /apps/compiz-1/general/screen0/options/vsize'))
+
+    (x_res, y_res) = re.search(r'DG:\s+(\d+)x(\d+)',
+                               pexpect.run('wmctrl -d')).groups()
+
+    for i in range(2):
+        GlxWindows.append(GlxThread())
+        GlxWindows[i].start()
+        time.sleep(0.5)
+        windows = pexpect.run('wmctrl -l | grep glxgears')
+        for app in sorted(windows.splitlines(), reverse=True):
+            if not 'glxgears' in app:
+                continue
+            GlxWindows[i].id = re.match(r'^(0x\w+)', app).group(0)
+            break
+        GlxRotate.append(RotateGlxThread(GlxWindows[i].id, i+1))
+        GlxRotate[i].start()
+
+    if is_unity_2d_running():
+        DesktopSwitch = ChangeWorkspace(
+            hsize, vsize, int(x_res) / hsize, int(y_res) / vsize)
+    else:
+        DesktopSwitch = ChangeViewport(
+            hsize, vsize, int(x_res) / hsize, int(y_res) / vsize)
+    DesktopSwitch.start()
+
+    time.sleep(20)
+    # Suspend/resume the SUT
+    call('fwts -q s3 --s3-sleep-delay=30', shell=True)
+    time.sleep(20)
+
+    for i in range(2):
+        GlxRotate[i].cancel = True
+        GlxWindows[i].terminate()
+    DesktopSwitch.cancel = True
+    time.sleep(10)
+    FlashVideo.terminate()
+    check_gpu()
+
+if __name__ == '__main__':
+    sys.exit(main())
