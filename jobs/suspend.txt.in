@@ -216,7 +216,7 @@ plugin: manual
 name: suspend/cycle_resolutions_after_suspend
 requires: package.name == 'xorg'
 depends: suspend/suspend_advanced graphics/cycle_resolution
-command: xrandr_cycle --keyword=after_suspend
+command: xrandr_cycle --keyword=after_suspend --screenshot-dir $CHECKBOX_DATA
 _description:
  PURPOSE:
      This test will cycle through the detected display modes
@@ -232,7 +232,7 @@ depends: suspend/suspend_advanced graphics/cycle_resolution
 _description:
  This test will check to make sure supported video modes work after a suspend and resume.
  This is done automatically by taking screenshots and uploading them as an attachment.
-command: xrandr_cycle --keyword=after_suspend
+command: xrandr_cycle --keyword=after_suspend --screenshot-dir $CHECKBOX_DATA
 
 plugin: attachment
 name: suspend/xrandr_screens_after_suspend.tar.gz
