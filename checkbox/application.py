@@ -60,7 +60,7 @@ class ApplicationManager(object):
     application_factory = Application
 
     default_log = os.path.join(get_variable("CHECKBOX_DATA", "."), "checkbox.log")
-    default_log_level = "debug"
+    default_log_level = "info"
 
     def parse_options(self, args):
         usage = _("Usage: checkbox [OPTIONS]")
