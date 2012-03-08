@@ -8,7 +8,7 @@ checkbox (0.13.4) precise; urgency=low
   * Updated command fields in composite disk jobs to address the ! in 
     some disk paths (LP: #942769)
   * Updated create_connection to poll for registration of connection and 
-    then attempt to bring it up (LP: #944762)
+    then attempt to bring it up (LP: #944662)
   * Fixed command run by wireless_connection tests so that they fail if the
     internet_test fails, but still clean up the connection file (LP: #944176)
   * Fixed wireless_connection_open_* jobs to not provide security options
