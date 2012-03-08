@@ -218,6 +218,10 @@ class QTInterface(UserInterface):
     def show_error(self, text):
         self.qtiface.showError(text)
 
+    def update_status(self, job):
+        if 'type' in job and job["type"] == "test":
+            self.qtiface.updateAutoTestStatus(job["status"], job["name"])
+
     def wait_on_signals(self, **signals):
         for name, function in signals.iteritems():
             self.bus.add_signal_receiver(function, name)

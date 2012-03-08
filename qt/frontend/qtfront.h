@@ -51,6 +51,7 @@ public slots:
     QString getEmailAddress();
     void showTest(QString purpose, QString steps, QString verification, QString info, QString testType, QString testName, bool enableTestButton);
     QString showInfo(QString text, QStringList options, QString defaultoption);
+    void updateAutoTestStatus(QString status, QString testName);
 
 private slots:
     void onFullTestsClicked();
