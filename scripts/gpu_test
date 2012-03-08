@@ -100,7 +100,8 @@ class FlashVideoThread(Thread):
     """
 
     def run(self):
-        flv = os.environ['CHECKBOX_SHARE'] + '/data/websites/Flash_Video.flv'
+        my_path = os.path.split(os.path.dirname(os.path.realpath(__file__)))[0]
+        flv = os.path.join(my_path + '/data/websites/Flash_Video.flv')
         source = """
 <html><head><meta http-equiv="refresh" content="5"></head><body>
 <p>This page will reload and play this Flash video every 5s.</p>
