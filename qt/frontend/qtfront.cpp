@@ -5,6 +5,7 @@
 #include <QMenu>
 #include <QMetaType>
 #include <QDBusMetaType>
+#include <QWidgetAction>
 
 #include "qtfront.h"
 #include "treemodel.h"
@@ -30,6 +31,7 @@ QtFront::QtFront(QApplication *parent) :
     ui(new Ui_main),
     m_model(0),
     m_statusModel(new QStandardItemModel()),
+    m_currentTextComment(new QTextEdit()),
     m_currentTab(1),
     m_skipTestMessage(false)
 {
@@ -61,6 +63,12 @@ QtFront::QtFront(QApplication *parent) :
     ui->treeView->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(ui->treeView, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(onSelectAllContextMenu(const QPoint&)));
     ui->stepsFrame->setFixedHeight(0);
+    connect(ui->commentTestButton, SIGNAL(clicked()), m_currentTextComment, SLOT(setFocus()));
+
+    ui->commentTestButton->setMenu(new QMenu());
+    QWidgetAction *action = new QWidgetAction(ui->commentTestButton);
+    action->setDefaultWidget(m_currentTextComment);
+    ui->commentTestButton->menu()->addAction(action);
 
     m_titleTestTypes["__audio__"] = "Audio Test";
     m_titleTestTypes["__bluetooth__"] = "Bluetooth Test";
@@ -269,10 +277,11 @@ void QtFront::showEntry(QString text)
 
 }
 
-void QtFront::showTest(QString purpose, QString steps, QString verification, QString info, QString testType, QString testName, bool enableTestButton)
+void QtFront::showTest(QString purpose, QString steps, QString verification, QString info, QString comment, QString testType, QString testName, bool enableTestButton)
 {
     currentState = TESTING;
     m_currentTestName = testName;
+    m_currentTextComment->setText(comment);
     updateTestStatus(m_statusStrings["inprogress"]);
     ui->radioTestTab->setVisible(true);
     ui->nextPrevButtons->setVisible(true);
@@ -515,6 +524,11 @@ QVariantMap QtFront::getTestsToRun()
         }
     }
     return selectedOptions;
+}
+
+QString QtFront::getTestComment()
+{
+    return m_currentTextComment->toPlainText();
 }
 
 QtFront::~QtFront()

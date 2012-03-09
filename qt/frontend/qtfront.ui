@@ -47,7 +47,7 @@
       <enum>QTabWidget::Rounded</enum>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tabWelcome">
       <attribute name="title">
@@ -457,7 +457,7 @@ QTabWidget::tab-bar#testsTab {
             <enum>QTabWidget::Rounded</enum>
            </property>
            <property name="currentIndex">
-            <number>2</number>
+            <number>1</number>
            </property>
            <widget class="QWidget" name="welcome">
             <property name="font">
@@ -867,6 +867,22 @@ QTabWidget::tab-bar#testsTab {
                            </property>
                            <property name="text">
                             <string>No</string>
+                           </property>
+                          </widget>
+                          <widget class="QToolButton" name="commentTestButton">
+                           <property name="geometry">
+                            <rect>
+                             <x>10</x>
+                             <y>120</y>
+                             <width>85</width>
+                             <height>27</height>
+                            </rect>
+                           </property>
+                           <property name="text">
+                            <string>Comment</string>
+                           </property>
+                           <property name="popupMode">
+                            <enum>QToolButton::InstantPopup</enum>
                            </property>
                           </widget>
                          </widget>
