@@ -69,10 +69,10 @@ class UserInterface(Plugin):
         self._persist = persist
 
     def prompt_begin(self, interface):
-        self._interface.show_welcome_message = self.persist.get("show_welcome_message", True)
+        self._interface.ui_flags = self.persist.get("ui_flags", {})
 
     def save_persist(self, *args):
-        self.persist.set("show_welcome_message", self._interface.show_welcome_message)
+        self.persist.set("ui_flags", self._interface.ui_flags)
         self.persist.save()
     
     def set_progress(self, progress):
