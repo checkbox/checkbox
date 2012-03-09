@@ -16,6 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
+from checkbox.contrib.persist import Persist, MemoryBackend
 from checkbox.plugin import Plugin
 from checkbox.properties import Path, String
 from checkbox.user_interface import PREV
@@ -44,14 +45,36 @@ class UserInterface(Plugin):
     # Path where data files are stored.
     data_path = Path(required=False)
 
+    @property
+    def persist(self):
+        if self._persist is None:
+            self._persist = Persist(backend=MemoryBackend())
+
+        return self._persist.root_at("user_interface")
+
     def register(self, manager):
         super(UserInterface, self).register(manager)
 
+        self._persist = None
+
+        self._manager.reactor.call_on("prompt-begin", self.prompt_begin)
+        self._manager.reactor.call_on("stop", self.save_persist)
+        self._manager.reactor.call_on("begin-persist", self.begin_persist)
         self._manager.reactor.call_on("run", self.run)
         self._manager.reactor.call_on("launchpad-report", self.launchpad_report)
 
         self._manager.reactor.call_on("set-progress",self.set_progress)
 
+    def begin_persist(self, persist):
+        self._persist = persist
+
+    def prompt_begin(self, interface):
+        self._interface.show_welcome_message = self.persist.get("show_welcome_message", True)
+
+    def save_persist(self, *args):
+        self.persist.set("show_welcome_message", self._interface.show_welcome_message)
+        self.persist.save()
+    
     def set_progress(self, progress):
         self._interface.progress = progress
         
