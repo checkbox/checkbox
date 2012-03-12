@@ -223,3 +223,13 @@ class UserInterface(object):
         and make it possible to modify them
         """
         raise NotImplementedError
+
+    def update_status(self, job):
+        """
+        If implemented, it will be called after each job finishes.
+        The passed Job object can be used to update in-UI status
+        about each job.
+        """
+        pass
+        
+

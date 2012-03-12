@@ -3,6 +3,10 @@ checkbox (0.13.5) precise; urgency=low
   [Tiago Salem Herrmann]
   * qt/frontend/qtfront.ui: If the test text is too long, then it is cut off
     (LP: #950111)
+  * checkbox/user_interface.py, checkbox_qt/qt_interface.py,
+    plugins/user_interface.py, qt/frontend/qtfront.cpp, qt/frontend/qtfront.h:
+    Correctly update automated test execution status in the Selection tab
+    (LP: #950105).
 
   [Jeff Lane]
   * Reset default checkbox log level to INFO from DEBUG to make logs less
