@@ -79,7 +79,8 @@ class JobsInfo(Plugin):
 
         self._manager.reactor.call_on("prompt-begin", self.prompt_begin)
         self._manager.reactor.call_on("gather", self.gather)
-        self._manager.reactor.call_on("prompt-gather", self.post_gather, 90)
+        if logging.getLogger().getEffectiveLevel() <= logging.DEBUG:
+            self._manager.reactor.call_on("prompt-gather", self.post_gather, 90)
         self._manager.reactor.call_on("report-job", self.report_job, -100)
 
 
