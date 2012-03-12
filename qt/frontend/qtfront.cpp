@@ -31,7 +31,8 @@ QtFront::QtFront(QApplication *parent) :
     m_model(0),
     m_statusModel(new QStandardItemModel()),
     m_currentTab(1),
-    m_skipTestMessage(false)
+    m_skipTestMessage(false),
+    isFirstTimeWelcome(true)
 {
     m_mainWindow = (QWidget*)new CustomQWidget();
     ui->setupUi(m_mainWindow);
@@ -55,6 +56,7 @@ QtFront::QtFront(QApplication *parent) :
     connect(ui->buttonSubmitResults, SIGNAL(clicked()), this, SLOT(onSubmitTestsClicked()));
     connect(ui->buttonViewResults, SIGNAL(clicked()), this, SLOT(onReviewTestsClicked()));
     connect(m_mainWindow, SIGNAL(closed()), this, SIGNAL(closedFrontend()));
+    connect(ui->checkBox, SIGNAL(toggled(bool)), SIGNAL(welcomeCheckboxToggled(bool)));
     connect(ui->treeView, SIGNAL(collapsed(QModelIndex)), this, SLOT(onJobItemChanged(QModelIndex)));
     connect(ui->treeView, SIGNAL(expanded(QModelIndex)), this, SLOT(onJobItemChanged(QModelIndex)));
     connect(ui->treeView->verticalScrollBar(), SIGNAL(valueChanged(int)), ui->statusView->verticalScrollBar(), SLOT(setValue(int)));
@@ -92,6 +94,13 @@ QtFront::QtFront(QApplication *parent) :
     m_statusStrings["untested"] = tr("Not Tested");
     m_statusStrings["inprogress"] = tr("In Progress");
 
+}
+
+void QtFront::setUiFlags(QVariantMap flags)
+{
+    // process all ui flags
+    QVariant checked = flags["show_welcome_message"];
+    ui->checkBox->setChecked(checked.toBool());
 }
 
 void QtFront::onSelectAllContextMenu(const QPoint& pos)
@@ -216,8 +225,15 @@ void QtFront::onReviewTestsClicked()
 void QtFront::showText(QString text)
 {
     if (currentState == WELCOME) {
+        if(isFirstTimeWelcome) {
+            isFirstTimeWelcome = false;
+            if (ui->checkBox->isChecked()) {
+                QTimer::singleShot(100, this, SLOT(onFullTestsClicked()));
+            }
+        } else {
+            ui->tabWidget->setCurrentIndex(0);
+        }
         m_mainWindow->show();
-        ui->tabWidget->setCurrentIndex(0);
         ui->welcomeTextBox->setPlainText(text);
     } else if (currentState == SUBMISSION) {
         ui->submissionWarningLabel->setText(text);
@@ -532,6 +548,5 @@ bool QtFront::registerService() {
          qDebug() << "error registering object";
          return false;
      }
-
      return true;
 }

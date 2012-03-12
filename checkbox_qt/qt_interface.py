@@ -58,7 +58,9 @@ class QTInterface(UserInterface):
         self.bus.add_signal_receiver(self.onWelcomeScreenRequested, "welcomeScreenRequested")
         self.bus.add_signal_receiver(self.onClosedFrontend, "closedFrontend")
         self.bus.add_signal_receiver(self.onReviewTestsClicked, "reviewTestsClicked")
-        self.qtiface.setInitialState();
+        self.bus.add_signal_receiver(self.onWelcomeCheckboxToggled, "welcomeCheckboxToggled")
+        self.qtiface.setInitialState()
+
         self._set_main_title()
 
     def onReviewTestsClicked(self):
@@ -66,6 +68,9 @@ class QTInterface(UserInterface):
 
     def onWelcomeScreenRequested(self):
         pass
+
+    def onWelcomeCheckboxToggled(self, checked):
+        self.ui_flags["show_welcome_message"] = bool(checked)
 
     def onClosedFrontend(self):
         self.direction = KeyboardInterrupt
@@ -95,6 +100,9 @@ class QTInterface(UserInterface):
             self.loop.quit()
         #Reset window title
         self._set_main_title()
+
+        if not self.ui_flags == {}:
+            self.qtiface.setUiFlags(self.ui_flags)
 
         self.qtiface.showText(text)
         self.wait_on_signals(fullTestsClicked=onFullTestsClicked)

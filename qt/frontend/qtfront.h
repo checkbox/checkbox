@@ -51,6 +51,7 @@ public slots:
     QString getEmailAddress();
     void showTest(QString purpose, QString steps, QString verification, QString info, QString testType, QString testName, bool enableTestButton);
     QString showInfo(QString text, QStringList options, QString defaultoption);
+    void setUiFlags(QVariantMap flags);
 
 private slots:
     void onFullTestsClicked();
@@ -84,6 +85,7 @@ signals:
     // when the user clicks welcome from the tests selection tree
     void welcomeClicked();
     void closedFrontend();
+    void welcomeCheckboxToggled(bool toogled);
 
 private:
     bool registerService();
@@ -99,6 +101,7 @@ private:
     int m_currentTab;
     bool m_skipTestMessage;
     QString m_currentTestName;
+    bool isFirstTimeWelcome;
 };
 
 #endif // QTFRONT_H
