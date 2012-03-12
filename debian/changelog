@@ -1,3 +1,18 @@
+checkbox (0.13.5) precise; urgency=low
+
+  [Tiago Salem Herrmann]
+  * qt/frontend/qtfront.ui: If the test text is too long, then it is cut off
+    (LP: #950111)
+
+  [Jeff Lane]
+  * Reset default checkbox log level to INFO from DEBUG to make logs less
+    confusing and verbose. (LP: #949745) 
+
+  [Marc Tardif]
+  * Linted qt_interface which had a few syntax errors (LP: #949957)
+
+ -- Daniel Manrique <roadmr@ubuntu.com>  Mon, 12 Mar 2012 16:40:00 -0400
+
 checkbox (0.13.4) precise; urgency=low
 
   [Brendan Donegan]
@@ -31,7 +46,6 @@ checkbox (0.13.4) precise; urgency=low
     (LP: #942548)
   * Fixed filename matching expression for local jobs (LP: #942273)
   * Fixed duplicate System Testing applications after upgrade (LP: #940627)
-  * Linted qt_interface which had a few syntax errors (LP: #949957)
 
   [Aurelien Gateau]
   * lib/template.py, lib/template_i18n.py, plugins/jobs_info.py,
@@ -55,14 +69,10 @@ checkbox (0.13.4) precise; urgency=low
     qt/frontend/qtfront.h, qt/frontend/treemodel.cpp, qt/frontend/treemodel.h:
     Makes it possible for the job selection tree to have more than 2 levels of
     children nodes.
-  
+ 
   [Tim Chen]
   * Modifications to removable_storage_test to handle cases where removable
     media is not mounted prior to test running. (LP: #944623)
-
-  [Jeff Lane]
-  * Reset default checkbox log level to INFO from DEBUG to make logs less
-    confusing and verbose. (LP: #949745) 
 
  -- Jeff Lane <jeff@ubuntu.com>  Thu, 08 Mar 2012 09:29:10 -0500
 
