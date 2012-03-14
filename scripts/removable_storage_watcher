@@ -7,8 +7,6 @@ import argparse
 
 from dbus.mainloop.glib import DBusGMainLoop
 
-import inspect
-
 class StorageDeviceListener(object):
 
     def __init__(self, action, devices):
@@ -43,7 +41,6 @@ class StorageDeviceListener(object):
         self._bus.add_signal_receiver(self.job_change_detected, signal_name='DeviceJobChanged', dbus_interface='org.freedesktop.UDisks')
 
     def remove_detected(self, removed_path):
-        print "JEFF: Entered %s" % inspect.stack()[1][3]
         if not self.is_device_inserted():
             print "Removable storage device has been removed"
         #TODO: figure out a way to get the DriveConnectionInterface of the
