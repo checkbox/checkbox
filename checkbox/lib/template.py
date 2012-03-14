@@ -70,7 +70,7 @@ class Template(object):
 
     def load_file(self, file, filename="<stream>"):
         elements = []
-        for index, string in enumerate(self._reader(file)):
+        for string in self._reader(file):
             if not string:
                 break
 

@@ -29,13 +29,6 @@ from checkbox.user_interface import PREV
 
 from gettext import gettext as _
 
-class OptionString(str):
-    def __init__(self, *args, **kwargs):
-        super(OptionString, self).__init__(*args, **kwargs)
-        self.sortkey = 0
-
-    def __repr__(self):
-        return "<text: %s, sortkey: %d>" % (self, self.sortkey)
 
 class SuitesPrompt(Plugin):
 
@@ -80,26 +73,22 @@ class SuitesPrompt(Plugin):
         suite.setdefault("type", "suite")
 
     def report_job(self, job):
-        self._jobs[job["name"]] = job
+        if job.get("type") == "suite":
+            attribute = "description"
+        else:
+            attribute = "name"
 
-    def prompt_gather(self, interface):
-        job_visible_names = {}
-        for job in self._jobs.values():
-            if job.get("type") == "suite":
-                attribute = "description"
-            else:
-                attribute = "name"
-
-            if attribute in job:
-                job_visible_names[job["name"]] = job[attribute]
-                if "suite" in job:
-                    self._depends[job["name"]] = [job["suite"]]
+        if attribute in job:
+            self._jobs[job["name"]] = job[attribute]
+            if "suite" in job:
+                self._depends[job["name"]] = [job["suite"]]
             if job.get("type") == "test":
                 self._statuses[job["name"]] = job["status"]
 
+    def prompt_gather(self, interface):
         # Resolve dependencies
         resolver = Resolver()
-        for key in job_visible_names.iterkeys():
+        for key in self._jobs.iterkeys():
             depends = self._depends.get(key, [])
             resolver.add(key, *depends)
 
@@ -110,11 +99,7 @@ class SuitesPrompt(Plugin):
             dependencies = resolver.get_dependencies(job)
             for dependency in dependencies:
                 value = self._statuses.get(dependency, {})
-                visible_name = job_visible_names[dependency]
-                dependency_job = self._jobs[dependency]
-                option = OptionString(visible_name)
-                option.sortkey = dependency_job["sortkey"]
-                suboptions = suboptions.setdefault(option, value)
+                suboptions = suboptions.setdefault(self._jobs[dependency], value)
 
         # Build defaults
         defaults = self.persist.get("default")
