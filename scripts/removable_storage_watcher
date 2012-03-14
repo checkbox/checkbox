@@ -69,7 +69,7 @@ class StorageDeviceListener(object):
 def main():
     parser = argparse.ArgumentParser(description="Wait for the specified device to be inserted or removed.")
     parser.add_argument('action', choices=['insert','remove'])
-    parser.add_argument('device', choices=['usb','sdio','firewire'],nargs=argparse.REMAINDER)
+    parser.add_argument('device', choices=['usb','sdio','firewire','scsi'],nargs=argparse.REMAINDER)
     parser.add_argument('--timeout', type=int, default=10)
     args = parser.parse_args()
 

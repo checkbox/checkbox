@@ -1,6 +1,6 @@
 plugin: manual
 name: mediacard/mmc-insert
-command: removable_storage_watcher insert sdio usb
+command: removable_storage_watcher insert sdio usb scsi
 _description:
  PURPOSE:
      This test will check that the systems media card reader can
@@ -24,7 +24,7 @@ _description:
 plugin: manual
 name: mediacard/mmc-remove
 depends: mediacard/mmc-storage
-command: removable_storage_watcher remove sdio usb
+command: removable_storage_watcher remove sdio usb scsi
 _description:
  PURPOSE:
      This test will check that the system correctly detects 
@@ -39,7 +39,7 @@ _description:
 plugin: manual
 name: mediacard/mmc-insert-after-suspend
 depends: suspend/suspend_advanced
-command: removable_storage_watcher insert sdio usb
+command: removable_storage_watcher insert sdio usb scsi
 _description:
  PURPOSE:
      This test will check that the systems media card reader can
@@ -63,7 +63,7 @@ _description:
 plugin: manual
 name: mediacard/mmc-remove-after-suspend
 depends: mediacard/mmc-storage-after-suspend
-command: removable_storage_watcher remove sdio usb
+command: removable_storage_watcher remove sdio usb scsi
 _description:
  PURPOSE:
      This test will check that the system correctly detects the removal
@@ -77,7 +77,7 @@ _description:
 
 plugin: manual
 name: mediacard/sd-insert
-command: removable_storage_watcher insert sdio usb
+command: removable_storage_watcher insert sdio usb scsi
 _description:
  PURPOSE:
      This test will check that the systems media card reader can
@@ -101,7 +101,7 @@ _description:
 plugin: manual
 name: mediacard/sd-remove
 depends: mediacard/sd-storage
-command: removable_storage_watcher remove sdio usb
+command: removable_storage_watcher remove sdio usb scsi
 _description:
  PURPOSE:
      This test will check that the system correctly detects 
@@ -116,7 +116,7 @@ _description:
 plugin: manual
 name: mediacard/sd-insert-after-suspend
 depends: suspend/suspend_advanced
-command: removable_storage_watcher insert sdio usb
+command: removable_storage_watcher insert sdio usb scsi
 _description:
  PURPOSE:
      This test will check that the systems media card reader can
@@ -140,7 +140,7 @@ _description:
 plugin: manual
 name: mediacard/sd-remove-after-suspend
 depends: mediacard/sd-storage-after-suspend
-command: removable_storage_watcher remove sdio usb
+command: removable_storage_watcher remove sdio usb scsi
 _description:
  PURPOSE:
      This test will check that the system correctly detects 
@@ -154,7 +154,7 @@ _description:
 
 plugin: manual
 name: mediacard/sdhc-insert
-command: removable_storage_watcher insert sdio usb
+command: removable_storage_watcher insert sdio usb scsi
 _description:
  PURPOSE:
      This test will check that the systems media card reader can
@@ -178,7 +178,7 @@ _description:
 plugin: manual
 name: mediacard/sdhc-remove
 depends: mediacard/sdhc-storage
-command: removable_storage_watcher remove sdio usb
+command: removable_storage_watcher remove sdio usb scsi
 _description:
  PURPOSE:
      This test will check that the system correctly detects 
@@ -193,7 +193,7 @@ _description:
 plugin: manual
 name: mediacard/sdhc-insert-after-suspend
 depends: suspend/suspend_advanced
-command: removable_storage_watcher insert sdio usb
+command: removable_storage_watcher insert sdio usb scsi
 _description:
  PURPOSE:
      This test will check that the systems media card reader can
@@ -217,7 +217,7 @@ _description:
 plugin: manual
 name: mediacard/sdhc-remove-after-suspend
 depends: mediacard/sdhc-storage-after-suspend
-command: removable_storage_watcher remove sdio usb
+command: removable_storage_watcher remove sdio usb scsi
 _description:
  PURPOSE:
      This test will check that the system correctly detects the removal
@@ -231,7 +231,7 @@ _description:
 
 plugin: manual
 name: mediacard/cf-insert
-command: removable_storage_watcher insert sdio usb
+command: removable_storage_watcher insert sdio usb scsi
 _description:
  PURPOSE:
      This test will check that the systems media card reader can
@@ -255,7 +255,7 @@ _description:
 plugin: manual
 name: mediacard/cf-remove
 depends: mediacard/cf-storage
-command: removable_storage_watcher remove sdio usb
+command: removable_storage_watcher remove sdio usb scsi
 _description:
  PURPOSE:
      This test will check that the system correctly detects 
@@ -270,7 +270,7 @@ _description:
 plugin: manual
 name: mediacard/cf-insert-after-suspend
 depends: suspend/suspend_advanced
-command: removable_storage_watcher insert sdio usb
+command: removable_storage_watcher insert sdio usb scsi
 _description:
  PURPOSE:
      This test will check that the systems media card reader can
@@ -294,7 +294,7 @@ _description:
 plugin: manual
 name: mediacard/cf-remove-after-suspend
 depends: mediacard/cf-storage-after-suspend
-command: removable_storage_watcher remove sdio usb
+command: removable_storage_watcher remove sdio usb scsi
 _description:
  PURPOSE:
      This test will check that the system correctly detects the removal
