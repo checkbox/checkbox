@@ -11,6 +11,8 @@ checkbox (0.13.5) precise; urgency=low
   [Jeff Lane]
   * Reset default checkbox log level to INFO from DEBUG to make logs less
     confusing and verbose. (LP: #949745) 
+  * Fixed the job descriptions for optical/read and optical/cdrom-audio-playback 
+    to account for changes in Precise and make them less confusing (LP: #954606)
 
   [Marc Tardif]
   * Linted qt_interface which had a few syntax errors (LP: #949957)
@@ -20,7 +22,7 @@ checkbox (0.13.5) precise; urgency=low
   * jobs/keys.txt.in: Fix definition for keys/media-keys test which failed to
     run (LP: #954480)
 
- -- Jeff Lane <jeff@ubuntu.com>  Tue, 13 Mar 2012 18:51:20 -0400
+ -- Jeff Lane <jeff@ubuntu.com>  Wed, 14 Mar 2012 15:47:21 -0400
 
 checkbox (0.13.4) precise; urgency=low
 
