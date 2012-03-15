@@ -72,8 +72,11 @@ class QTInterface(UserInterface):
     def onWelcomeCheckboxToggled(self, checked):
         self.ui_flags["show_welcome_message"] = bool(checked)
 
-    def onClosedFrontend(self):
-        self.direction = KeyboardInterrupt
+    def onClosedFrontend(self, finished):
+        if bool(finished):
+            self.direction = NEXT
+        else:
+            self.direction = KeyboardInterrupt
         self.loop.quit()
 
     def _set_main_title(self, test_name=None):

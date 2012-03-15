@@ -69,6 +69,7 @@ private slots:
     void updateTestStatus(QStandardItem *item, QString status);
     void updateTestStatus(QString status = QString());
     void onSelectAllContextMenu(const QPoint& pos);
+    void onClosedFrontend();
 
 signals:
     void fullTestsClicked();
@@ -84,7 +85,7 @@ signals:
     void welcomeScreenRequested();
     // when the user clicks welcome from the tests selection tree
     void welcomeClicked();
-    void closedFrontend();
+    void closedFrontend(bool testsFinished);
     void welcomeCheckboxToggled(bool toogled);
 
 private:
@@ -102,6 +103,7 @@ private:
     bool m_skipTestMessage;
     QString m_currentTestName;
     bool isFirstTimeWelcome;
+    bool m_doneTesting;
 };
 
 #endif // QTFRONT_H

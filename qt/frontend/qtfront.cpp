@@ -32,7 +32,8 @@ QtFront::QtFront(QApplication *parent) :
     m_statusModel(new QStandardItemModel()),
     m_currentTab(1),
     m_skipTestMessage(false),
-    isFirstTimeWelcome(true)
+    isFirstTimeWelcome(true),
+    m_doneTesting(false)
 {
     m_mainWindow = (QWidget*)new CustomQWidget();
     ui->setupUi(m_mainWindow);
@@ -55,7 +56,7 @@ QtFront::QtFront(QApplication *parent) :
     connect(ui->previousTestButton, SIGNAL(clicked()), this, SLOT(onPreviousTestClicked()));
     connect(ui->buttonSubmitResults, SIGNAL(clicked()), this, SLOT(onSubmitTestsClicked()));
     connect(ui->buttonViewResults, SIGNAL(clicked()), this, SLOT(onReviewTestsClicked()));
-    connect(m_mainWindow, SIGNAL(closed()), this, SIGNAL(closedFrontend()));
+    connect(m_mainWindow, SIGNAL(closed()), this, SLOT(onClosedFrontend()));
     connect(ui->checkBox, SIGNAL(toggled(bool)), SIGNAL(welcomeCheckboxToggled(bool)));
     connect(ui->treeView, SIGNAL(collapsed(QModelIndex)), this, SLOT(onJobItemChanged(QModelIndex)));
     connect(ui->treeView, SIGNAL(expanded(QModelIndex)), this, SLOT(onJobItemChanged(QModelIndex)));
@@ -101,6 +102,11 @@ void QtFront::setUiFlags(QVariantMap flags)
     // process all ui flags
     QVariant checked = flags["show_welcome_message"];
     ui->checkBox->setChecked(checked.toBool());
+}
+
+void QtFront::onClosedFrontend()
+{
+    emit closedFrontend(m_doneTesting);
 }
 
 void QtFront::onSelectAllContextMenu(const QPoint& pos)
@@ -214,11 +220,13 @@ void QtFront::onSubmitTestsClicked()
 {
     ui->buttonSubmitResults->setEnabled(false);
     ui->lineEditEmailAddress->setEnabled(false);
+    m_doneTesting = true;
     emit submitTestsClicked();
 }
 
 void QtFront::onReviewTestsClicked()
 {
+    m_doneTesting = true;
     emit reviewTestsClicked();
 }
 
