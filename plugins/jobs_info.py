@@ -44,9 +44,7 @@ job_schema = Map({
     "resources": List(String(), required=False),
     "timeout": Int(required=False),
     "user": String(required=False),
-    "data": String(required=False),
-    "sortkey": Int(required=False, value=0),
-    })
+    "data": String(required=False)})
 
 
 class JobsInfo(Plugin):

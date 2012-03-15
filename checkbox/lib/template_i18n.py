@@ -18,7 +18,6 @@
 #
 import re
 import locale
-import types
 
 from os import environ
 from gettext import gettext as _
@@ -117,11 +116,7 @@ class TemplateI18n(Template):
                     continue
 
             if key in element:
-                value = element[key]
-                if type(value) in types.StringTypes:
-                    filter[key] = self._filter_field(value)
-                else:
-                    filter[key] = value
+                filter[key] = self._filter_field(element[key])
                 continue
             else:
                 field = "_%s" % key

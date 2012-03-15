@@ -21,6 +21,8 @@ checkbox (0.13.5) precise; urgency=low
   * Bumpted revision number to 0.13.5 in trunk
   * jobs/keys.txt.in: Fix definition for keys/media-keys test which failed to
     run (LP: #954480)
+  * Reverted feature to keep tests ordered, as the sortkey attribute causes
+    undesirable secondary effects.
 
  -- Jeff Lane <jeff@ubuntu.com>  Wed, 14 Mar 2012 18:10:57 -0400
 
