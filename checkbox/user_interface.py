@@ -130,25 +130,6 @@ class UserInterface(object):
 
         Display an error dialog if everything fails."""
 
-        (r, w) = os.pipe()
-        if os.fork() > 0:
-            os.close(w)
-            (pid, status) = os.wait()
-            if status:
-                text = _("Unable to start web browser to open %s.") % url
-                message = os.fdopen(r).readline()
-                if message:
-                    text += "\n" + message
-                self.show_error(text)
-            try:
-                os.close(r)
-            except OSError:
-                pass
-            return
-
-        os.setsid()
-        os.close(r)
-
         # If we are called through sudo, determine the real user id and run the
         # browser with it to get the user's web browser settings.
         try:
@@ -167,8 +148,8 @@ class UserInterface(object):
                 if os.getenv("DISPLAY") and \
                         subprocess.call(["pgrep", "-x", "-u", str(uid), "ksmserver"],
                                 stdout=subprocess.PIPE, stderr=subprocess.PIPE) == 0:
-                    subprocess.call(sudo_prefix + ["kfmclient", "openURL", url])
-                    sys.exit(0)
+                    subprocess.Popen(sudo_prefix + ["kfmclient", "openURL", url])
+                    return
             except OSError:
                 pass
 
@@ -186,19 +167,19 @@ class UserInterface(object):
                         preferred_browser = preferred_xml_app.get_executable()
                         browser = re.match("((firefox|seamonkey|flock)[^\s]*)", preferred_browser)
                         if browser:
-                            subprocess.call(sudo_prefix + [browser.group(0), "-new-window", url])
-                            sys.exit(0)
+                            subprocess.Popen(sudo_prefix + [browser.group(0), "-new-window", url])
+                            return
 
                         browser = re.match("(epiphany[^\s]*)", preferred_browser)
                         if browser:
-                            subprocess.call(sudo_prefix + [browser.group(0), "--new-window", url])
-                            sys.exit(0)
+                            subprocess.Popen(sudo_prefix + [browser.group(0), "--new-window", url])
+                            return
 
-                        subprocess.call(sudo_prefix + [preferred_browser % url], shell=True)
-                        sys.exit(0)
+                        subprocess.Popen(sudo_prefix + [preferred_browser % url], shell=True)
+                        return
 
-                    if subprocess.call(sudo_prefix + ["gnome-open", url]) == 0:
-                        sys.exit(0)
+                    subprocess.Popen(sudo_prefix + ["gnome-open", url])
+                    return
             except OSError:
                 pass
 
@@ -211,11 +192,10 @@ class UserInterface(object):
                 add_variable("HOME", pwd.getpwuid(uid).pw_dir)
 
             webbrowser.open(url, new=True, autoraise=True)
-            sys.exit(0)
+            return
 
         except Exception, e:
-            os.write(w, str(e))
-            sys.exit(1)
+            pass
 
     def show_report(self, text, results):
         """
