@@ -16,20 +16,15 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-import sys
 import time
-import posixpath
-import inspect
 from gi.repository import GObject
-import os
 
 from gettext import gettext as _
 from string import Template
 
-from checkbox.job import UNINITIATED
 from checkbox.user_interface import (UserInterface,
     NEXT, PREV, YES_ANSWER, NO_ANSWER, SKIP_ANSWER,
-    ANSWER_TO_STATUS, STATUS_TO_ANSWER)
+    ANSWER_TO_STATUS)
 import dbus
 from dbus.mainloop.glib import DBusGMainLoop
 
@@ -41,6 +36,7 @@ ANSWER_TO_OPTION = {
 OPTION_TO_ANSWER = dict((o, a)
                         for a, o in ANSWER_TO_OPTION.items())
 
+
 class QTInterface(UserInterface):
     def __init__(self, title, data_path):
         super(QTInterface, self).__init__(title, data_path)
@@ -49,22 +45,28 @@ class QTInterface(UserInterface):
         while notReady:
             try:
                 self.bus = dbus.SessionBus(mainloop=DBusGMainLoop())
-                self.qtfront = self.bus.get_object('com.canonical.QtCheckbox', '/QtCheckbox')
-                self.qtiface = dbus.Interface(self.qtfront, dbus_interface='com.canonical.QtCheckbox')
+                self.qtfront = self.bus.get_object(
+                    'com.canonical.QtCheckbox', '/QtCheckbox')
+                self.qtiface = dbus.Interface(
+                    self.qtfront, dbus_interface='com.canonical.QtCheckbox')
                 self.loop = GObject.MainLoop()
                 notReady = False
             except:
                 time.sleep(0.5)
-        self.bus.add_signal_receiver(self.onWelcomeScreenRequested, "welcomeScreenRequested")
-        self.bus.add_signal_receiver(self.onClosedFrontend, "closedFrontend")
-        self.bus.add_signal_receiver(self.onReviewTestsClicked, "reviewTestsClicked")
-        self.bus.add_signal_receiver(self.onWelcomeCheckboxToggled, "welcomeCheckboxToggled")
+        self.bus.add_signal_receiver(
+            self.onWelcomeScreenRequested, "welcomeScreenRequested")
+        self.bus.add_signal_receiver(
+            self.onClosedFrontend, "closedFrontend")
+        self.bus.add_signal_receiver(
+            self.onReviewTestsClicked, "reviewTestsClicked")
+        self.bus.add_signal_receiver(
+            self.onWelcomeCheckboxToggled, "welcomeCheckboxToggled")
         self.qtiface.setInitialState()
 
         self._set_main_title()
 
     def onReviewTestsClicked(self):
-        self.show_url(self.report_url) 
+        self.show_url(self.report_url)
 
     def onWelcomeScreenRequested(self):
         pass
@@ -99,8 +101,10 @@ class QTInterface(UserInterface):
         def onFullTestsClicked():
             self.direction = NEXT
             self.loop.quit()
+
         def onCustomTestsClicked():
             self.loop.quit()
+
         #Reset window title
         self._set_main_title()
 
@@ -126,6 +130,7 @@ class QTInterface(UserInterface):
 
     def show_tree(self, text, options={}, default={}):
         indexedOptions = {}
+
         def onStartTestsClicked():
             self.direction = NEXT
             self.loop.quit()
@@ -138,33 +143,33 @@ class QTInterface(UserInterface):
             internalIndex = 1
             for test, state in options.iteritems():
                 if isinstance(state, dict):
-                    indexedOptions[baseIndex + "." + str(internalIndex)] = { test: '' }
+                    indexedOptions[
+                        baseIndex + "." + str(internalIndex)] = {test: ''}
                     buildBranch(state, baseIndex + "." + str(internalIndex))
                 else:
-                    if state == {'', ''}:
-                        return
-                    indexedOptions[baseIndex+"."+str(internalIndex)] = { test: state }
-                internalIndex+=1
+                    indexedOptions[
+                        baseIndex + "." + str(internalIndex)] = {test: state}
+                internalIndex += 1
 
         def buildDict(options, baseIndex="1"):
             internalIndex = 1
             branch = {}
             while True:
-                currentIndex = baseIndex+"."+str(internalIndex)
+                currentIndex = baseIndex + "." + str(internalIndex)
                 if currentIndex in options:
                     key = options[currentIndex].keys()[0]
                     value = options[currentIndex].values()[0]
                     if value == "menu":
                         branch[key] = buildDict(options, currentIndex)
-                    else: 
+                    else:
                         branch[key] = value
-                    internalIndex+=1
+                    internalIndex += 1
                 else:
                     break
             return branch
 
         self._set_main_title()
-        newOptions = buildBranch(options)
+        buildBranch(options)
 
         self.qtiface.showTree(text, indexedOptions)
         self.wait_on_signals(
@@ -228,6 +233,10 @@ class QTInterface(UserInterface):
 
     def show_error(self, text):
         self.qtiface.showError(text)
+
+    def update_status(self, job):
+        if 'type' in job and job["type"] == "test":
+            self.qtiface.updateAutoTestStatus(job["status"], job["name"])
 
     def wait_on_signals(self, **signals):
         for name, function in signals.iteritems():

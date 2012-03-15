@@ -64,6 +64,12 @@ class UserInterface(Plugin):
         self._manager.reactor.call_on("launchpad-report", self.launchpad_report)
 
         self._manager.reactor.call_on("set-progress",self.set_progress)
+        self._manager.reactor.call_on("prompt-job",self.update_status, 101)
+
+    def update_status(self, interface, job):
+        #The UI can choose to implement this method to get
+        #information about each job that completes
+        interface.update_status(job)
 
     def begin_persist(self, persist):
         self._persist = persist

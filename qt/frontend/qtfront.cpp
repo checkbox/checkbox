@@ -16,6 +16,14 @@ typedef QMap<QString, QString> myQMap;
 Q_DECLARE_METATYPE(myQMap)
 Q_DECLARE_METATYPE(QVariantMap)
 
+#define STATUS_UNINITIATED "uninitiated"
+#define STATUS_FAIL "fail"
+#define STATUS_PASS "pass"
+#define STATUS_UNSUPPORTED "unsupported"
+#define STATUS_UNRESOLVED "unresolved"
+#define STATUS_UNTESTED "untested"
+#define STATUS_INPROGRESS "inprogress"
+
 class CustomQTabWidget : QTabWidget
 {
 public:
@@ -87,13 +95,13 @@ QtFront::QtFront(QApplication *parent) :
     m_titleTestTypes["__suspend__"] = "Suspend Test";
     m_titleTestTypes["__usb__"] = "USB Test";
 
-    m_statusStrings["uninitiated"] = tr("Not Started");
-    m_statusStrings["pass"] = tr("Done");
-    m_statusStrings["fail"] = tr("Done");
-    m_statusStrings["unsupported"] = tr("Not Supported");
-    m_statusStrings["unresolved"] = tr("Not Resolved");
-    m_statusStrings["untested"] = tr("Not Tested");
-    m_statusStrings["inprogress"] = tr("In Progress");
+    m_statusStrings[STATUS_UNINITIATED] = tr("Not Started");
+    m_statusStrings[STATUS_PASS] = tr("Done");
+    m_statusStrings[STATUS_FAIL] = tr("Done");
+    m_statusStrings[STATUS_UNSUPPORTED] = tr("Not Supported");
+    m_statusStrings[STATUS_UNRESOLVED] = tr("Not Resolved");
+    m_statusStrings[STATUS_UNTESTED] = tr("Not Tested");
+    m_statusStrings[STATUS_INPROGRESS] = tr("In Progress");
 
 }
 
@@ -130,18 +138,17 @@ void QtFront::onSelectAllContextMenu(const QPoint& pos)
 
 void QtFront::onYesTestClicked() {
     emit yesTestClicked();
-    updateTestStatus(m_statusStrings["pass"]);
-
+    updateTestStatus(STATUS_PASS);
 }
 
 void QtFront::onNoTestClicked() {
     emit noTestClicked();
-    updateTestStatus(m_statusStrings["fail"]);
+    updateTestStatus(STATUS_FAIL);
 }
 
 void QtFront::onPreviousTestClicked() {
     emit previousTestClicked();
-    updateTestStatus(m_statusStrings["uninitiated"]);
+    updateTestStatus(STATUS_UNINITIATED);
 }
 
 void QtFront::setInitialState()
@@ -176,7 +183,7 @@ void QtFront::onNextTestClicked()
     } else {
         emit nextTestClicked();
     }
-    updateTestStatus(m_statusStrings["untested"]);
+    updateTestStatus(STATUS_UNTESTED);
 }
 
 void QtFront::onTabChanged(int index)
@@ -297,7 +304,7 @@ void QtFront::showTest(QString purpose, QString steps, QString verification, QSt
 {
     currentState = TESTING;
     m_currentTestName = testName;
-    updateTestStatus(m_statusStrings["inprogress"]);
+    updateTestStatus(STATUS_INPROGRESS);
     ui->radioTestTab->setVisible(true);
     ui->nextPrevButtons->setVisible(true);
     ui->testTestButton->setEnabled(enableTestButton);
@@ -362,26 +369,26 @@ void QtFront::updateTestStatus(QStandardItem *item, QString status)
             updateTestStatus(childItem, status);
         }
         if (childItem->data(Qt::UserRole).toString() == m_currentTestName && !status.isEmpty()) {
-            childItem->setText(status);
+            childItem->setText(m_statusStrings[status]);
         }
-        if (childItem->text() == m_statusStrings["pass"]) {
+        if (childItem->text() == m_statusStrings[STATUS_PASS]) {
             childItem->setData(QVariant(Qt::Checked), Qt::CheckStateRole);
             done++;
-        } else if (childItem->text() == m_statusStrings["inprogress"]) {
+        } else if (childItem->text() == m_statusStrings[STATUS_INPROGRESS]) {
             childItem->setData(QVariant(Qt::Unchecked), Qt::CheckStateRole);
             inprogress++;
-        } else if (childItem->text() == m_statusStrings["uninitiated"]) {
+        } else if (childItem->text() == m_statusStrings[STATUS_UNINITIATED]) {
             childItem->setData(QVariant(Qt::Unchecked), Qt::CheckStateRole);
         }
     }
     if (done == item->rowCount() && done != 0) {
-        item->setText(m_statusStrings["pass"]);
+        item->setText(m_statusStrings[STATUS_PASS]);
         item->setData(QVariant(Qt::Checked), Qt::CheckStateRole);
     } else if (inprogress != 0 || done != 0) {
-        item->setText(m_statusStrings["inprogress"]);
+        item->setText(m_statusStrings[STATUS_INPROGRESS]);
         item->setData(QVariant(Qt::PartiallyChecked), Qt::CheckStateRole);
     } else {
-        item->setText(m_statusStrings["uninitiated"]);
+        item->setText(m_statusStrings[STATUS_UNINITIATED]);
         item->setData(QVariant(Qt::Unchecked), Qt::CheckStateRole);
     }
 }
@@ -390,6 +397,13 @@ void QtFront::updateTestStatus(QString status) {
     for (int i=0; i < m_statusModel->rowCount(); i++) {
         updateTestStatus(m_statusModel->item(i,0), status);
     }
+}
+
+void QtFront::updateAutoTestStatus(QString status, QString currentTest) {
+    if (!currentTest.isEmpty()) {
+        m_currentTestName = currentTest;
+    }
+    updateTestStatus(status);
 }
 
 void QtFront::buildTree(QVariantMap options, QString baseIndex, QStandardItem *parentItem, QStandardItem *parentStatusItem)

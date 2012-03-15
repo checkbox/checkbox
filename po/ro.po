@@ -14,14 +14,14 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-02-07 04:36+0000\n"
-"X-Generator: Launchpad (build 14747)\n"
+"X-Launchpad-Export-Date: 2012-03-15 04:33+0000\n"
+"X-Generator: Launchpad (build 14933)\n"
 
-#: ../gtk/checkbox-gtk.ui.h:2
+#: ../gtk/checkbox-gtk.ui.h:10
 msgid "Ne_xt"
 msgstr "Î_nainte"
 
-#: ../gtk/checkbox-gtk.ui.h:6
+#: ../gtk/checkbox-gtk.ui.h:9
 msgid "_Previous"
 msgstr "Îna_poi"
 
@@ -35,22 +35,22 @@ msgstr "Se generează raportul..."
 #~ msgid "Is your keyboard working properly?"
 #~ msgstr "Tastatura dumneavoastră funcționează corect?"
 
-#: ../gtk/checkbox-gtk.ui.h:1 ../checkbox_cli/cli_interface.py:351
-#: ../checkbox_urwid/urwid_interface.py:261
+#: ../gtk/checkbox-gtk.ui.h:6 ../checkbox_cli/cli_interface.py:444
+#: ../checkbox_urwid/urwid_interface.py:267
 msgid "Further information:"
 msgstr "Mai multe informații:"
 
 #. Title of the user interface
-#: ../gtk/checkbox-gtk.ui.h:3 ../gtk/checkbox-gtk.desktop.in.h:1
-#: ../plugins/user_interface.py:40
+#: ../gtk/checkbox-gtk.ui.h:1 ../qt/checkbox-qt.desktop.in.h:1
+#: ../plugins/user_interface.py:42
 msgid "System Testing"
 msgstr "Testarea sistemului"
 
-#: ../gtk/checkbox-gtk.ui.h:4
+#: ../gtk/checkbox-gtk.ui.h:8
 msgid "_Deselect All"
 msgstr "_Deselectează tot"
 
-#: ../gtk/checkbox-gtk.ui.h:5
+#: ../gtk/checkbox-gtk.ui.h:4
 msgid "_No"
 msgstr "_Nu"
 
@@ -58,26 +58,27 @@ msgstr "_Nu"
 msgid "_Select All"
 msgstr "_Selectează tot"
 
-#: ../gtk/checkbox-gtk.ui.h:8
+#: ../gtk/checkbox-gtk.ui.h:5
 msgid "_Skip this test"
 msgstr "Omite ace_st test"
 
-#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:535
+#: ../gtk/checkbox-gtk.ui.h:2 ../checkbox_gtk/gtk_interface.py:538
 msgid "_Test"
 msgstr "_Test"
 
-#: ../gtk/checkbox-gtk.ui.h:10
+#: ../gtk/checkbox-gtk.ui.h:3
 msgid "_Yes"
 msgstr "_Da"
 
-#: ../gtk/checkbox-gtk.desktop.in.h:2
+#: ../qt/checkbox-qt.desktop.in.h:2
 msgid "Test your system and submit results to the Ubuntu Friendly project"
 msgstr ""
+"Testați-vă sistemul și trimiteți rezultatele către proiectul Ubuntu Friendly"
 
 #. description
 #: ../jobs/audio.txt.in:7
 msgid "Test to detect audio devices"
-msgstr ""
+msgstr "Test pentru detectarea dispozitivelor audio"
 
 #. description
 #: ../jobs/audio.txt.in:16
@@ -91,6 +92,16 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear a tone?"
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica dacă boxele interne lucrează corect\n"
+"PAȘI:\n"
+"    1. Asigurațți-vă că nu sunt conectate la sistem boxe externe sau căști "
+"audio\n"
+"       Dacă testați un sistem desktop, sunt permise boxele externe\n"
+"    2. Efectuați clic pe butonul Testează pentru a reda un sunet scurt pe "
+"dispozitivele audio\n"
+"VERIFICARE:\n"
+"    Ați auzit sunet?"
 
 #. description
 #: ../jobs/audio.txt.in:33
@@ -104,6 +115,15 @@ msgid ""
 "    Did you hear a sound through the headphones and did the sound play "
 "without any distortion, clicks or other strange noises from your headphones?"
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica buna funcționare a conectorului pentru căști\n"
+"PAȘI:\n"
+"    1. Conectați o pereche de căști la sistemul dumneavoastră\n"
+"    2. Efectuați clic pe butonul Testează pentru a reda un sunet pe "
+"dispozitivul audio\n"
+"VERIFICARE:\n"
+"    Ați auzit sunet prin căști iar acesta a fost redat fără distorsiuni, "
+"clicuri sau alte zgomote ciudate?"
 
 #. description
 #: ../jobs/audio.txt.in:49
@@ -118,6 +138,16 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear your speech played back?"
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica dacă puteți înregistra sunet folosind microfonul "
+"încorporat\n"
+"PAȘI:\n"
+"    1. Deconectați, dacă este cazul, orice microfon extern\n"
+"    2. Efectuați clic pe butonul „Testează”, apoi vorbiți în microfonul "
+"intern\n"
+"    3. După câteva secunde, cuvintele dumneavoastră vor fi redate.\n"
+"VERIFICARE:\n"
+"    Ați auzit înregistrarea redată?"
 
 #. description
 #: ../jobs/audio.txt.in:66
@@ -132,6 +162,16 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear your speech played back?"
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica dacă puteți înregistra sunet folosind un microfon "
+"extern\n"
+"PAȘI:\n"
+"    1. Conectați un microfon extern la sistem\n"
+"    2. Efectuați clic pe butonul „Testează”, apoi vorbiți în microfonul "
+"extern\n"
+"    3. După câteva secunde, cuvintele dumneavoastră vor fi redate.\n"
+"VERIFICARE:\n"
+"   Ați auzit înregistrarea redată?"
 
 #. description
 #: ../jobs/audio.txt.in:82
@@ -149,14 +189,29 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear your speech played back through the USB headphones?"
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica dacă un dispozitiv audio pe USB funcționează "
+"corect\n"
+"PAȘI:\n"
+"    1. Conectați la sistem un dispozitiv audio pe USB\n"
+"    2. Deschideți aplicația pentru controlul volumului prin efectuarea unui "
+"clic stânga pe iconița de volum din panou, alegând apoi „Configurări sunet”\n"
+"    3. Alegeți fila „Intrare” și selectați dispozitivul USB\n"
+"    4. Alegeți fila „Ieșire” și selectați dispozitivul USB\n"
+"    5. Efectuați clic pe „Test”, apoi vorbiți în microfon\n"
+"    6. După câteva secunde, cuvintele dumneavoastră vor fi redate\n"
+"VERIFICARE:\n"
+"    Ați auzit cuvintele dumneavoastră redate prin căștile USB?"
 
 #. description
-#: ../jobs/audio.txt.in:102
+#: ../jobs/audio.txt.in:99
 msgid ""
 "Play back a sound on the default output and listen for it on the  default "
 "input.  This makes the most sense when the output and input  are directly "
 "connected, as with a patch cable."
 msgstr ""
+"Redați un sunet pe ieșirea implicită și ascultați-l pe intrarea implicită. "
+"Are sens dacă ieșirea și intrarea sunt conectate, de exemplu cu un cablu."
 
 #. description
 #: ../jobs/autotest.txt.in:6
@@ -165,6 +220,9 @@ msgid ""
 "   This test will attempt to install and run the Autotest Suite.  These "
 "tests can be destructive, so this test is blacklisted by default."
 msgstr ""
+"SCOP:\n"
+"   Acest test va încerca să instaleze și să ruleze suita Autotest.  Aceste "
+"teste pot fi distructive, așa că acest test este implicit inhibat."
 
 #. description
 #: ../jobs/bluetooth.txt.in:7
@@ -172,15 +230,20 @@ msgid ""
 "This test will detect your Bluetooth device and output the device's hardware "
 "address.  If no device is found, the test will exit with an error."
 msgstr ""
+"Acest test va detecta dispozitivul Bluetooth și va afișa adresa fizică a "
+"dispozitivului. Dacă nu este găsit niciun dispozitiv, testul se va termina "
+"cu o eroare."
 
 #. description
-#: ../jobs/bluetooth.txt.in:16
+#: ../jobs/bluetooth.txt.in:8
 msgid ""
 "Automated test to store bluetooth device information in checkbox report"
 msgstr ""
+"Test automat pentru stocarea informațiilor despre dispozitivul bluetooth în "
+"raportul checkbox"
 
 #. description
-#: ../jobs/bluetooth.txt.in:22
+#: ../jobs/bluetooth.txt.in:14
 msgid ""
 "PURPOSE:\n"
 "    This test will check that bluetooth connection works correctly\n"
@@ -197,9 +260,26 @@ msgid ""
 "VERIFICATION:\n"
 "    Did all the steps work?"
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica dacă conexiunea bluetooth funcționează corect\n"
+"PAȘI:\n"
+"    1. Activați serviciul bluetooth pe orice dispozitiv mobil (PDA, "
+"smartphone, etc.)\n"
+"    2. Efectuați clic pe iconița bluetooth din bara de meniu\n"
+"    3. Selectați „Configurare dispozitiv nou”\n"
+"    4. Căutați dispozitivul în listă și selectați-l\n"
+"    5. Scrieți în dispozitiv codul PIN ales automat de asistent\n"
+"    6. Dispozitivul ar trebui să fie conectat la calculator\n"
+"    7. Efectuați clic dreapta pe iconița bluetooth și alegeți navigare "
+"fișiere\n"
+"    8. Autorizați calculatorul să răsfoiască fișierele de pe dispozitiv, "
+"dacă este necesar\n"
+"    9. Ar trebui să puteți răsfoi fișierele\n"
+"VERIFICAre:\n"
+"    Ați reușit să parcurgeți fără probleme toți pașii?"
 
 #. description
-#: ../jobs/bluetooth.txt.in:41
+#: ../jobs/bluetooth.txt.in:33
 msgid ""
 "PURPOSE:\n"
 "    This test will check that you can transfer information through a "
@@ -211,9 +291,19 @@ msgid ""
 "VERIFICATION:\n"
 "    Were all files copied correctly?"
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica dacă puteți transmite date printr-o conexiune "
+"bluetooth\n"
+"PAȘI:\n"
+"    1. Asigurați-vă că puteți naviga prin fișierele de pe dispozitivul "
+"mobil\n"
+"    2. Copiați un fișier de pe calculator pe dispozitivul mobil\n"
+"    3. Copiați un fișier de pe dispozitivul mobil pe calculator\n"
+"VERIFICARE:\n"
+"    Au fost copiate corect toate fișierele?"
 
 #. description
-#: ../jobs/bluetooth.txt.in:55
+#: ../jobs/bluetooth.txt.in:47
 msgid ""
 "PURPOSE:\n"
 "    This test will check that you can record and hear audio using a "
@@ -230,9 +320,23 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear the sound you recorded in the bluetooth"
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica dacă puteți înregistra și asculta sunet folosind "
+"un dispozitiv audio bluetooth\n"
+"PAȘI:\n"
+"    1. Activați dispozitivul bluetooth\n"
+"    2. Efectuați clic pe iconița bluetooth din bara de meniu\n"
+"    3. Alegeți „Configurare dispozitiv nou”\n"
+"    4. Căutați dispozitivul în listă și selectați-l\n"
+"    5. Pe dispozitiv introduceți codul PIN generat automat de asistent\n"
+"    6. Dispozitivul ar trebui să se conecteze la calculator\n"
+"    7. Efectuați clic pe butonul „Test” pentru a înregistra pentru cinci "
+"secunde, și pentru a reda înregistrarea prin dispozitivul bluetooth\n"
+"VERIFICARE:\n"
+"    Ar trebui să  auziți sunetul înregistrat prin bluetooth"
 
 #. description
-#: ../jobs/bluetooth.txt.in:73
+#: ../jobs/bluetooth.txt.in:65
 msgid ""
 "PURPOSE:\n"
 "    This test will check that you can use a bluetooth keyboard\n"
@@ -246,9 +350,20 @@ msgid ""
 "VERIFICATION:\n"
 "    Were you able to enter some text with the bluetooth keyboard?"
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica dacă puteți utiliza o tastatură bluetooth\n"
+"PAȘI:\n"
+"    1. Activați tastatura bluetooth\n"
+"    2. Efectuați clic pe iconița bluetooth din bara de meniu\n"
+"    3. Alegeți „Configurare dispozitiv nou” \n"
+"    4. Căutați dispozitivul în listă și selectați-l\n"
+"    5. Efectuați clic pe butonul „Test”\n"
+"    6. Introduceți un text\n"
+"VERIFICARE:\n"
+"    A fost afișat textul introdus de la tastatura bluetooth?"
 
 #. description
-#: ../jobs/bluetooth.txt.in:89
+#: ../jobs/bluetooth.txt.in:81
 msgid ""
 "PURPOSE:\n"
 "    This test will check that you can use a bluetooth mouse\n"
@@ -262,11 +377,22 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the mouse work as expected?"
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica dacă puteți utiliza un mouse bluetooth\n"
+"PAȘI:\n"
+"    1. Activați mouse-ul bluetooth\n"
+"    2. Efectuați clic pe iconița bluetooth din bara de meniu\n"
+"    3. Alegeți „Configurare dispozitiv nou”\n"
+"    4. Căutați dispozitivul în listă și selectați-l\n"
+"    5. Mișcați mouse-ul pentru a deplasa cursorul pe ecran\n"
+"    6. Efectuați operații care să solicite clic simplu/dublu/dreapta\n"
+"VERIFICARE:\n"
+"    A lucrat mouse-ul așa cum ar fi trebuit?"
 
 #. description
 #: ../jobs/camera.txt.in:7
 msgid "This Automated test attempts to detect a camera."
-msgstr ""
+msgstr "Acest test automat încearcă să detecteze camera web."
 
 #. description
 #: ../jobs/camera.txt.in:16
@@ -278,6 +404,12 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you see the video capture?"
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica dacă funcționează camera web încorporată\n"
+"PAȘI:\n"
+"    1. Efectuați clic pe Test pentru a afișa o captură video de la cameră\n"
+"VERIFICARE:\n"
+"    Ați văzut captura video?"
 
 #. description
 #: ../jobs/camera.txt.in:33
@@ -289,6 +421,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you see the image?"
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica dacă funcționează camera web încorporată\n"
+"PAȘI:\n"
+"    1. Efectuați clic pe Test pentru a afișa o fotografie luată cu camera "
+"web\n"
+"VERIFICARE:\n"
+"    Ați văzut fotografia?"
 
 #. description
 #: ../jobs/camera.txt.in:49
@@ -302,6 +441,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you see and hear the capture?"
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica dacă funcționează corect captura unui clip video "
+"realizată cu camera web încorporată\n"
+"PAȘI:\n"
+"    1. Efectuați clic pe butonul Test pentru a realiza o captură video într-"
+"un fișier (se va deschide automat Totem)\n"
+"VERIFICARE:\n"
+"    A fost redat corect clipul video realizat, cu sunet și imagine?"
 
 #. description
 #: ../jobs/codecs.txt.in:7
@@ -315,6 +462,15 @@ msgid ""
 "VERIFICATION:\n"
 "   Did the sample play correctly?"
 msgstr ""
+"SCOP:\n"
+"   Acest test va verifica abilitatea sistemului de a reda fișiere audio Ogg "
+"Vorbis.\n"
+"PAȘI:\n"
+"   1. Rfectuați clic pe butonul Test pentru a reda un fișier Ogg Vorbis "
+"(.ogg)\n"
+"   2. Alegeți playerul pentru redare.\n"
+"VERIFICARE:\n"
+"   A fost redat corect fișierul?"
 
 #. description
 #: ../jobs/codecs.txt.in:22
@@ -327,119 +483,158 @@ msgid ""
 "VERIFICATION:\n"
 "   Did the sample play correctly?"
 msgstr ""
+"SCOP:\n"
+"   Acest test va verifica abilitatea sistemului de a reda fișiere audio "
+"Wave.\n"
+"PAȘI:\n"
+"   1. Apăsați pe butonul Test pentru a reda un fișier audio în format Wave "
+"(.wav)\n"
+"   2. Alegeți playerul pentru redare.\n"
+"VERIFICARE:\n"
+"   A fost redat corect fișierul?"
 
 #. description
 #: ../jobs/cpu.txt.in:8
 msgid ""
 "Test the CPU scaling capabilities using Firmware Test Suite (fwts cpufreq)."
 msgstr ""
+"Testarea funcțiilor de scalare a procesorului utilizând suita Firmware Test "
+"(fwts cpufreq)."
 
 #. description
 #: ../jobs/cpu.txt.in:15
 msgid "Test for clock jitter."
-msgstr ""
+msgstr "Testare pentru frecvențe de ceas stresante."
 
 #. description
 #: ../jobs/cpu.txt.in:23
 msgid "Test offlining CPUs in a multicore system."
-msgstr ""
+msgstr "Testare procesoare offline într-un sistem multicore."
 
 #. description
 #: ../jobs/cpu.txt.in:30
 msgid "This test checks cpu topology for accuracy"
-msgstr ""
+msgstr "Acest test verifică acuratețea topologiei procesorului"
 
 #. description
 #: ../jobs/cpu.txt.in:38
 msgid "This test checks that CPU frequency governors are obeyed when set."
 msgstr ""
+"Acest test verifică dacă procesorul lucrează potrivit programelor de "
+"stabilire a frecvențelor (governors)."
 
 #. description
 #: ../jobs/daemons.txt.in:5
 msgid "Test if the atd daemon is running when the package is installed."
 msgstr ""
+"Testează dacă serviciul atd rulează, în cazul în care pachetul software este "
+"instalat."
 
 #. description
 #: ../jobs/daemons.txt.in:11
 msgid "Test if the cron daemon is running when the package is installed."
 msgstr ""
+"Testează dacă serviciul cron rulează, în cazul în care pachetul software "
+"este instalat."
 
 #. description
 #: ../jobs/daemons.txt.in:17
 msgid "Test if the cupsd daemon is running when the package is installed."
 msgstr ""
+"Testează dacă serviciul cupsd rulează, în cazul în care pachetul software "
+"este instalat."
 
 #. description
 #: ../jobs/daemons.txt.in:23
 msgid "Test if the getty daemon is running when the package is installed."
 msgstr ""
+"Testează dacă serviciul getty rulează, în cazul în care pachetul software "
+"este instalat."
 
 #. description
 #: ../jobs/daemons.txt.in:29
 msgid "Test if the init daemon is running when the package is installed."
 msgstr ""
+"Testează dacă serviciul init rulează, în cazul în care pachetul software "
+"este instalat."
 
 #. description
 #: ../jobs/daemons.txt.in:35
 msgid "Test if the klogd daemon is running when the package is installed."
 msgstr ""
+"Testează dacă serviciul klogd rulează, în cazul în care pachetul software "
+"este instalat."
 
 #. description
 #: ../jobs/daemons.txt.in:41
 msgid "Test if the nmbd daemon is running when the package is installed."
 msgstr ""
+"Testează dacă serviciul nmbd rulează, în cazul în care pachetul software "
+"este instalat."
 
 #. description
 #: ../jobs/daemons.txt.in:47
 msgid "Test if the smbd daemon is running when the package is installed."
 msgstr ""
+"Testează dacă serviciul smbd rulează, în cazul în care pachetul software "
+"este instalat."
 
 #. description
 #: ../jobs/daemons.txt.in:53
 msgid "Test if the syslogd daemon is running when the package is installed."
 msgstr ""
+"Testează dacă serviciul syslogd rulează, în cazul în care pachetul software "
+"este instalat."
 
 #. description
 #: ../jobs/daemons.txt.in:61
 msgid "Test if the udevd daemon is running when the package is installed."
 msgstr ""
+"Testează dacă serviciul udevd rulează, în cazul în care pachetul software "
+"este instalat."
 
 #. description
 #: ../jobs/daemons.txt.in:67
 msgid "Test if the winbindd daemon is running when the package is installed."
 msgstr ""
+"Testează dacă serviciul winbindd rulează, în cazul în care pachetul software "
+"este instalat."
 
 #. description
 #: ../jobs/disk.txt.in:4
 msgid "Detects and displays disks attached to the system."
-msgstr ""
+msgstr "Detectează și afișează discurile atașate la sistem."
 
 #. description
 #: ../jobs/disk.txt.in:9
 msgid "Benchmark for each disk "
-msgstr ""
+msgstr "Teste de stres pentru fiecare disc "
 
 #. description
-#: ../jobs/disk.txt.in:26
+#: ../jobs/disk.txt.in:40
 msgid "SMART test"
-msgstr ""
+msgstr "Test SMART"
 
 #. description
-#: ../jobs/disk.txt.in:42
+#: ../jobs/disk.txt.in:56
 msgid "Maximum disk space used during a default installation test"
 msgstr ""
+"Spațiul maxim utilizat pe disc pe parcursul instalării implicite a unui test"
 
 #. description
-#: ../jobs/disk.txt.in:57
+#: ../jobs/disk.txt.in:71
 msgid "Verify system storage performs at or above baseline performance"
 msgstr ""
+"Verifică dacă unitățile de stocare lucrează la sau sub parametrii specificați"
 
 #. description
-#: ../jobs/disk.txt.in:74
+#: ../jobs/disk.txt.in:88
 msgid ""
 "Verify that storage devices, such as Fibre Channel and RAID can be detected "
 "and perform under stress."
 msgstr ""
+"Verifică dacă unitățile de stocare, precum Fibre Channel sau RAID, pot fi "
+"detectate și pot opera în condiții de stres."
 
 #. description
 #: ../jobs/fingerprint.txt.in:3
@@ -462,6 +657,26 @@ msgid ""
 "VERIFICATION:\n"
 "   Did the authentication procedure work correctly?"
 msgstr ""
+"SCOP:\n"
+"   Acest test va verifica dacă cititorul de amprente funcționează bine, "
+"pentru a vă putea autentifica la sistem.\n"
+"PREMISE:\n"
+"   Acest test se bazează pe presupunerea că există un cont pentru teste, de "
+"pe care se pot rula toate cazurile de teste și un alt cont, personal, pe "
+"care se verifică cititorul de amprente\n"
+"PAȘI:\n"
+"   1. Efectuați clic pe miniaplicația pentru comutarea rapidă a "
+"utilizatorilor.\n"
+"   2. Alegeți numele dumneavoastră de utilizator\n"
+"   3. Ar trebui să apară o fereastră care să asigure posibilitatea de a vă "
+"autentifica fie prin parolă, fie utilizând autentificarea prin amprenta "
+"digitală.\n"
+"   4. Utilizați cititorul de amprente pentru a vă autentifica\n"
+"   5. Efectuați clic pe miniaplicația pentru comutarea rapidă a "
+"utilizatorilor.\n"
+"   6. Intrați în contul pentru teste pentru a continua efectuarea acestora.\n"
+"VERIFICARE:\n"
+"   Procedura de autentificare a fost încheiată corect?"
 
 #. description
 #: ../jobs/fingerprint.txt.in:20
@@ -480,6 +695,21 @@ msgid ""
 "VERIFICATION:\n"
 "   Did the authentication procedure work correctly?"
 msgstr ""
+"SCOP:\n"
+"   Acest test va verifica dacă cititorul de amprente poate fi utilizat "
+"pentru a debloca un sistem blocat.\n"
+"PAȘI:\n"
+"   1. Efectuați clic pe miniaplicația pentru comutarea rapidă a "
+"utilizatorilor.\n"
+"   2. Alegeți „Blocare ecran”.\n"
+"   3. Apăsați orice tastă sau mișcați mouse-ul.\n"
+"   4. Ar trebui să apară o fereastră care să asigure posibilitatea de a "
+"debloca ecranul fie prin parolă, fie utilizând autentificarea prin amprenta "
+"digitală.\n"
+"   5. Utilizați cititorul de amprente pentru a vă autentifica.\n"
+"   6. Ecranul ar trebui să fie deblocat.\n"
+"VERIFICARE:\n"
+"   A fost realizată corect operația de deblocare?"
 
 #. description
 #: ../jobs/firewire.txt.in:3
@@ -495,21 +725,36 @@ msgid ""
 "VERIFICATION:\n"
 "    Do the copy operations work as expected?"
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica dacă portul firewire lucrează corect\n"
+"PAȘI:\n"
+"    1. Conectați la calculator un disc Firewire\n"
+"    2. Se va deschide o fereastră care solicită executarea unei operații "
+"(deschiderea unui dosar, administrare fotografii, etc.) sau se va deschide "
+"un administrator de fișiere.\n"
+"    3. Copiați câteva fișiere de pe discul fix al calculatorului pe discul "
+"firewire\n"
+"    4. Copiați câteva fișiere de pe discul firewire pe discul fix al "
+"calculatorului\n"
+"VERIFICARE:\n"
+"    A fost executată corect operația de copiere a fișierelor?"
 
 #. description
 #: ../jobs/floppy.txt.in:4
 msgid "Floppy test"
-msgstr ""
+msgstr "Testare floppy"
 
 #. description
 #: ../jobs/graphics.txt.in:5
 msgid "Test to output the Xorg version"
-msgstr ""
+msgstr "Testare ieșire pentru versiunea Xorg"
 
 #. description
 #: ../jobs/graphics.txt.in:12
 msgid "Run gtkperf to make sure that GTK based test cases work"
 msgstr ""
+"Rulați gtkperf pentru a vă asigura că sunt realizate toate testele pentru "
+"mediul grafic GTK"
 
 #. description
 #: ../jobs/graphics.txt.in:18
@@ -526,6 +771,17 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the resolution change as expected?"
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica dacă interfața grafică este utilizabilă după "
+"modificarea manuală a rezoluției\n"
+"PAȘI:\n"
+"    1. Deschideți aplicația Monitoare\n"
+"    2. Alegeți o altă rezoluție din lista derulantă\n"
+"    3. Efectuați clic pe Aplică\n"
+"    4. Alegeți din nou rezoluția originală din lista derulantă\n"
+"    5. Efectuați clic pe Aplică\n"
+"VERIFICARE:\n"
+"    A fost modificată rezoluția așa cum ar fi trebuit?"
 
 #. description
 #: ../jobs/graphics.txt.in:33
@@ -542,16 +798,27 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the display rotation change as expected?"
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica rotirea imaginii în monitoare\n"
+"PAȘI:\n"
+"    1. Deschideți aplicația Monitoare\n"
+"    2. Alegeți o valoare nouă pentru rotație din lista derulantă\n"
+"    3. Efectuați clic pe Aplică\n"
+"    4. Efectuați clic pe Restaurează configurația anterioară\n"
+"    5. Efectuați clic pe Aplică\n"
+"    6. Repetați pașii 2-5 pentru valori diferite ale rotației\n"
+"VERIFICARE:\n"
+"    A funcționat aș cum ar trebui rotirea imaginii în monitoare?"
 
 #. description
 #: ../jobs/graphics.txt.in:50
 msgid "Test that the X process is running."
-msgstr ""
+msgstr "Testează dacă procesul X rulează."
 
 #. description
 #: ../jobs/graphics.txt.in:56
 msgid "Test that the X is not running in failsafe mode."
-msgstr ""
+msgstr "Testează dacă  procesul X nu rulează în modul de siguranță."
 
 #. description
 #: ../jobs/graphics.txt.in:63
@@ -559,6 +826,9 @@ msgid ""
 "Test that X does not leak memory when running programs on systems with intel "
 "based graphics."
 msgstr ""
+"Testarea serviciului grafic X pentru depistarea ocupării defectuoase a "
+"memoriei la rularea unor programe pe sisteme care au echipamente grafice "
+"intel."
 
 #. description
 #: ../jobs/graphics.txt.in:70
@@ -572,6 +842,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Is this acceptable for your display?"
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica rezoluția implicită a monitorului\n"
+"PAȘI:\n"
+"    1. Acest monitor utilizează următoarea rezoluție:\n"
+"INFO:\n"
+"    $output\n"
+"VERIFICARE:\n"
+"    Este rezoluția potrivită monitorului dumneavoastră?"
 
 #. description
 #: ../jobs/graphics.txt.in:85
@@ -579,6 +857,8 @@ msgid ""
 "Ensure the current resolution meets or exceeds the recommended minimum "
 "resolution (800x600). See here for details:"
 msgstr ""
+"Se asigură că rezoluția curentă este sau depășește rezoluția minimă "
+"recomandată (800x600). Consultați detaliile:"
 
 #. description
 #: ../jobs/graphics.txt.in:85
@@ -595,6 +875,12 @@ msgid ""
 "VERIFICATION:\n"
 "    Do you see color bars and static?"
 msgstr ""
+"SCOP:\n"
+"    Acest test va testa monitorul implicit\n"
+"PAȘI:\n"
+"    1. Efectuațți clic pe butonul „Test” pentru a afișa testul video.\n"
+"VERIFICARE:\n"
+"    Au fost afișate bare colorate și statice?"
 
 #. description
 #: ../jobs/graphics.txt.in:107
@@ -611,7 +897,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:122
+#: ../jobs/graphics.txt.in:113
 msgid ""
 "PURPOSE:\n"
 "    This test cycles through the detected video modes\n"
@@ -620,6 +906,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the screen appear to be working for each mode?"
 msgstr ""
+"SCOP:\n"
+"    Acest test comută prin toate modurile video detectate\n"
+"PAȘI:\n"
+"    1. Efectuați clic pe butonul „Test” pentru a începe comutarea modurilor "
+"video\n"
+"VERIFICARE:\n"
+"    A funcționat monitorul în fiecare mod video?"
 
 #. description
 #: ../jobs/graphics.txt.in:133
@@ -627,7 +920,7 @@ msgid "Check that the hardware is able to run compiz."
 msgstr "Verificați dacă hardware-ul poate să utilizeze compiz."
 
 #. description
-#: ../jobs/graphics.txt.in:140
+#: ../jobs/graphics.txt.in:139
 msgid ""
 "PURPOSE:\n"
 "    This test tests the basic 3D capabilities of your video card\n"
@@ -639,6 +932,15 @@ msgid ""
 "    1. Did the 3d animation appear?\n"
 "    2. Was the animation free from slowness/jerkiness?"
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica capacitățile 3D de bază ale plăcii video\n"
+"PAȘI:\n"
+"    1. Efectuați clic pe butonul „Test” pentru a rula un demo OpenGL. Pentru "
+"a opri demonstația, apăsați Esc.\n"
+"    2. Verificați ca animația să nu fie înceată sau de slabă calitate.\n"
+"VERIFICARE:\n"
+"    1. A apărut animația 3d?\n"
+"    2. Animația a fost redată la o calitate bună și cu o viteză mulțumitoare?"
 
 #. description
 #: ../jobs/hibernate.txt.in:7
@@ -657,122 +959,138 @@ msgid ""
 "    Did the system successfully hibernate and did it work properly after "
 "waking up?"
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica dacă sistemul poate intra în hibernare (dacă "
+"funcția este suportată)\n"
+"PAȘI:\n"
+"    1. Efectuați clic pe butonul Test\n"
+"    2. Sistemul va intra în hibernare și va reporni în aproximativ 5 minute\n"
+"    3. Dacă sistemul nu repornește în 5 minute, apăsați butonul de pornire "
+"pentru a trezi manual sistemul\n"
+"    4. Dacă sistemul nu poate reveni din hibernare, reporniți testarea "
+"sistemului și marcați acest test ca eșuat\n"
+"VERIFICARE:\n"
+"    Sistemul a intrat hibernare și a revenit fără probleme?"
 
 #. description
 #: ../jobs/info.txt.in:5
 msgid "Attaches a report of installed codecs for Intel HDA"
 msgstr ""
+"Atașează un raport care conține codecurile instalate pentru Intel HDA"
 
 #. description
 #: ../jobs/info.txt.in:10
 msgid "Attaches a report of CPU information"
-msgstr ""
+msgstr "Atașează un raport care conține informații despre procesor"
 
 #. description
 #: ../jobs/info.txt.in:15
 msgid "Attaches a copy of /var/log/dmesg to the test results"
-msgstr ""
+msgstr "Atașează la rezultatele testului o copie a fișierului var/log/dmesg"
 
 #. description
 #: ../jobs/info.txt.in:20
 msgid "Attaches info on DMI"
-msgstr ""
+msgstr "Atașează informații despre DMI"
 
 #. description
 #: ../jobs/info.txt.in:26
 msgid "Attaches dmidecode output"
-msgstr ""
+msgstr "Atașează informații despre ieșirea dmidecode"
 
 #. description
 #: ../jobs/info.txt.in:31
 msgid "Attaches very verbose lspci output."
-msgstr ""
+msgstr "Atașează ieșirea comenzii lspci în modul volubil."
 
 #. description
 #: ../jobs/info.txt.in:40
 msgid "Attaches the contents of the various modprobe conf files."
-msgstr ""
+msgstr "Atașează conținutul mai multor fișiere modprobe."
 
 #. description
 #: ../jobs/info.txt.in:45
 msgid "Attaches the contents of the /etc/modules file."
-msgstr ""
+msgstr "Atașează conținutul fișierului /etc/modules."
 
 #. description
 #: ../jobs/info.txt.in:50
 msgid "attaches the contents of various sysctl config files."
-msgstr ""
+msgstr "Atașează conținutul mai multor fișiere sysctl config."
 
 #. description
 #: ../jobs/info.txt.in:54
 msgid "Attaches a report of sysfs attributes."
-msgstr ""
+msgstr "Atașează un raport cu atributele sysfs."
 
 #. description
 #: ../jobs/info.txt.in:65
 msgid ""
 "Attaches a dump of the udev database showing system hardware information."
 msgstr ""
+"Atașează o imagine a bazei de date udev, care prezintă informații despre "
+"echipamentele sistemului."
 
 #. description
 #: ../jobs/info.txt.in:72
 msgid "Attaches a tarball of gcov data if present."
-msgstr ""
+msgstr "Atașează o arhivă a datelor gcov, dacă sunt prezente."
 
 #. description
 #: ../jobs/info.txt.in:77
 msgid "Attaches a list of the currently running kernel modules."
-msgstr ""
+msgstr "Atașează o listă a modulelor de kernel utilizate."
 
 #. description
 #: ../jobs/info.txt.in:85
 msgid "Captures a screenshot."
-msgstr ""
+msgstr "Realizează o captură de ecran."
 
 #. description
 #: ../jobs/info.txt.in:91
 msgid "Attaches the screenshot captured in info/screenshot."
-msgstr ""
+msgstr "Atașează captura de ecran în info/captură."
 
 #. description
 #: ../jobs/info.txt.in:96
 msgid "Gather log from the Firmware Test Suite run."
-msgstr ""
+msgstr "Adună date despre rularea suitei Firmware Test."
 
 #. description
 #: ../jobs/info.txt.in:103
 msgid "Attaches the contents of /proc/acpi/sleep if it exists."
-msgstr ""
+msgstr "Atașează conținutul fișierului /proc/acpi/sleep, dacă există."
 
 #. description
 #: ../jobs/info.txt.in:107
 msgid "Bootchart information."
-msgstr ""
+msgstr "Informații bootchart."
 
 #. description
 #: ../jobs/info.txt.in:116
 msgid "SATA/IDE device information."
-msgstr ""
+msgstr "Informații despre dispozitive SATA/IDE."
 
 #. description
 #: ../jobs/info.txt.in:133
 msgid "Attaches the bootchart png file for bootchart runs"
-msgstr ""
+msgstr "Atașează un fișier png care surprinde rularea bootchart"
 
 #. description
 #: ../jobs/info.txt.in:142
 msgid "Attaches the bootchart log for bootchart test runs."
-msgstr ""
+msgstr "Atașează jurnalul bootchart pentru testul propriu."
 
 #. description
 #: ../jobs/info.txt.in:150
 msgid "installs the installer bootchart tarball if it exists."
-msgstr ""
+msgstr "Instalează arhiva cu utilitarul de instalare bootchart dacă există."
 
 #. description
 #: ../jobs/info.txt.in:155
 msgid "Attaches the installer debug log if it exists."
 msgstr ""
+"Atașează jurnalul de depanare al utilitarului de instalare, dacă există."
 
 #. description
 #: ../jobs/input.txt.in:4
@@ -785,6 +1103,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the pointing device work as expected?"
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica dispozitivele de indicare (mouse)\n"
+"PAȘI:\n"
+"    1. Mutați cursorul utilizând mouse-ul sau ecranul tactil.\n"
+"    2. Executați câteva operații folosind clic simplu/dublu/dreapta.\n"
+"VERIFICARE:\n"
+"    A funcționat corespunzător dispozitivul de indicare?"
 
 #. description
 #: ../jobs/input.txt.in:17
@@ -797,6 +1122,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Is your keyboard working properly?"
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica tastatura\n"
+"PAȘI:\n"
+"    1. Efectuați clic pe butonul Test\n"
+"    2. În caseta pentru text utilizați tastaura pentru a tasta orice doriți\n"
+"VERIFICARE:\n"
+"    Tastaura a funcționat corect?"
 
 #. description
 #: ../jobs/install.txt.in:6
@@ -805,6 +1137,9 @@ msgid ""
 "install updates). This is done to confirm that you could recover from an "
 "incomplete or broken update."
 msgstr ""
+"Testează dacă apt poate accesa arhivele de programe și dacă poate obține "
+"actualizări (nu instalează actualizări). Este efectuat pentru a confirma "
+"posibilitatea recuperării după o actualizare incompletă sau defectuoasă."
 
 #. description
 #: ../jobs/keys.txt.in:4
@@ -816,6 +1151,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the brightness change following to your key presses?"
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica funcționarea tastelor pentru reglarea "
+"luminozității\n"
+"PAȘI:\n"
+"    1. Apăsați pe tastele pentru reglarea luminozității, de pe tastaură\n"
+"VERIFICARE:\n"
+"    A fost modificată luminozitatea ecranului în conformitate cu apăsarea "
+"tastelor?"
 
 #. description
 #: ../jobs/keys.txt.in:14
@@ -827,6 +1170,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the volume change following to your key presses?"
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica funcționarea tastelor pentru modificarea "
+"volumului\n"
+"PAȘI:\n"
+"    1. Apăsați tastele pentru modificarea volumului\n"
+"VERIFICARE:\n"
+"    A fost modificat volumul în conformitate cu apăsarea tastelor?"
 
 #. description
 #: ../jobs/keys.txt.in:25
@@ -838,6 +1188,12 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the volume mute following your key presses?"
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica funcționarea tastei mut\n"
+"PAȘI:\n"
+"    1. Apăsați tasta mut de pe tastatură\n"
+"VERIFICARE:\n"
+"    A fost tăiat sunetul la apăsarea tastei mut?"
 
 #. description
 #: ../jobs/keys.txt.in:37
@@ -850,6 +1206,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the system go to sleep after pressing the sleep key?"
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica funcționarea tastei pentru intrarea în suspendare "
+"a calculatorului\n"
+"PAȘI:\n"
+"    1. Apăsați tasta pentru intrarea în suspendare\n"
+"    2. Folosiți butonul Pornire pentru activarea sistemului\n"
+"VERIFICARE:\n"
+"    A intrat sistemul în suspendare la apăsarea tastei?"
 
 #. description
 #: ../jobs/keys.txt.in:49
@@ -861,6 +1225,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Did a notification appear showing the battery status?"
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica funcționarea tastei pentru prezentarea "
+"informațiilor despre baterie\n"
+"PAȘI:\n"
+"    1. Apăsați tasta pentru prezentarea informațiilor despre baterie\n"
+"VERIFICARE:\n"
+"    A fost afișată o notificare cu informațiile despre baterie la apăsarea "
+"tastei?"
 
 #. description
 #: ../jobs/keys.txt.in:60
@@ -873,6 +1245,15 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the wireless go off on the first press and on again on the second?"
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica funcționarea tastei pentru controlul plăcii de "
+"rețea fără fir\n"
+"PAȘI:\n"
+"    1. Apăsați tasta pentru controlul plăcii de rețea fără fir\n"
+"    2. Apăsați din nou aceeași tastă\n"
+"VERIFICARE:\n"
+"    A fost oprită și apoi repornită placa de rețea fără fir la apăsarea "
+"tastei corespunzătoare?"
 
 #. description
 #: ../jobs/keys.txt.in:76
@@ -895,189 +1276,189 @@ msgid "Audio tests"
 msgstr "Teste audio"
 
 #. description
-#: ../jobs/local.txt.in:8
+#: ../jobs/local.txt.in:10
 msgid "Autotest Suite tests"
-msgstr ""
+msgstr "Teste din suita Autotest"
 
 #. description
-#: ../jobs/local.txt.in:13
+#: ../jobs/local.txt.in:17
 msgid "Bluetooth tests"
-msgstr ""
+msgstr "Teste pentru conexiunea bluetooth"
 
 #. description
-#: ../jobs/local.txt.in:18
+#: ../jobs/local.txt.in:24
 msgid "Camera tests"
-msgstr ""
+msgstr "Teste pentru camera web"
 
 #. description
-#: ../jobs/local.txt.in:23
+#: ../jobs/local.txt.in:31
 msgid "Codec tests"
-msgstr ""
-
-#. description
-#: ../jobs/local.txt.in:28
-msgid "CPU tests"
-msgstr ""
-
-#. description
-#: ../jobs/local.txt.in:33
-msgid "System Daemon tests"
-msgstr ""
+msgstr "Teste pentru codecuri"
 
 #. description
 #: ../jobs/local.txt.in:38
+msgid "CPU tests"
+msgstr "Teste pentru procesor"
+
+#. description
+#: ../jobs/local.txt.in:45
+msgid "System Daemon tests"
+msgstr "Teste pentru serviciile de sistem"
+
+#. description
+#: ../jobs/local.txt.in:52
 msgid "Disk tests"
 msgstr "Teste disk"
 
 #. description
-#: ../jobs/local.txt.in:43
+#: ../jobs/local.txt.in:59
 msgid "Fingerprint reader tests"
 msgstr "Teste cititor amprente"
 
 #. description
-#: ../jobs/local.txt.in:48
+#: ../jobs/local.txt.in:66
 msgid "Firewire disk tests"
 msgstr "Teste disc firewire"
 
 #. description
-#: ../jobs/local.txt.in:53
-msgid "Floppy disk tests"
-msgstr ""
-
-#. description
-#: ../jobs/local.txt.in:58
-msgid "Graphics tests"
-msgstr ""
-
-#. description
-#: ../jobs/local.txt.in:63
-msgid "Hibernation tests"
-msgstr ""
-
-#. description
-#: ../jobs/local.txt.in:68
-msgid "Informational tests"
-msgstr ""
-
-#. description
 #: ../jobs/local.txt.in:73
+msgid "Floppy disk tests"
+msgstr "Teste pentru floppy"
+
+#. description
+#: ../jobs/local.txt.in:80
+msgid "Graphics tests"
+msgstr "Teste pentru grafică"
+
+#. description
+#: ../jobs/local.txt.in:87
+msgid "Hibernation tests"
+msgstr "Teste pentru funcția de hibernare"
+
+#. description
+#: ../jobs/local.txt.in:94
+msgid "Informational tests"
+msgstr "Teste pentru informare"
+
+#. description
+#: ../jobs/local.txt.in:101
 msgid "Input Devices tests"
-msgstr ""
-
-#. description
-#: ../jobs/local.txt.in:78
-msgid "Software Installation tests"
-msgstr ""
-
-#. description
-#: ../jobs/local.txt.in:83
-msgid "Hotkey tests"
-msgstr ""
-
-#. description
-#: ../jobs/local.txt.in:88
-msgid "Linux Test Project tests"
-msgstr ""
-
-#. description
-#: ../jobs/local.txt.in:93
-msgid "Mago Automated Desktop Testing"
-msgstr ""
-
-#. description
-#: ../jobs/local.txt.in:98
-msgid "Media Card tests"
-msgstr ""
-
-#. description
-#: ../jobs/local.txt.in:103
-msgid "Memory tests"
-msgstr ""
+msgstr "Teste pentru dispozitivele de intrare"
 
 #. description
 #: ../jobs/local.txt.in:108
-msgid "Miscellaneous tests"
-msgstr ""
+msgid "Software Installation tests"
+msgstr "Teste pentru programele instalate"
 
 #. description
-#: ../jobs/local.txt.in:113
+#: ../jobs/local.txt.in:115
+msgid "Hotkey tests"
+msgstr "Teste pentru tastele de funcții"
+
+#. description
+#: ../jobs/local.txt.in:122
+msgid "Linux Test Project tests"
+msgstr "Teste Linux Test Project"
+
+#. description
+#: ../jobs/local.txt.in:129
+msgid "Mago Automated Desktop Testing"
+msgstr "Testarea automată Mago pentru desktopuri"
+
+#. description
+#: ../jobs/local.txt.in:136
+msgid "Media Card tests"
+msgstr "Teste pentru carduri media"
+
+#. description
+#: ../jobs/local.txt.in:143
+msgid "Memory tests"
+msgstr "Teste pentru memorie"
+
+#. description
+#: ../jobs/local.txt.in:150
+msgid "Miscellaneous tests"
+msgstr "Teste diverse"
+
+#. description
+#: ../jobs/local.txt.in:157
 msgid "Monitor tests"
 msgstr "Teste de monitor"
 
 #. description
-#: ../jobs/local.txt.in:118
+#: ../jobs/local.txt.in:164
 msgid "Networking tests"
-msgstr ""
+msgstr "Teste pentru rețea"
 
 #. description
-#: ../jobs/local.txt.in:123
+#: ../jobs/local.txt.in:171
 msgid "Optical Drive tests"
-msgstr ""
+msgstr "Teste pentru CD/DVD"
 
 #. description
-#: ../jobs/local.txt.in:128
+#: ../jobs/local.txt.in:178
 msgid "Panel Clock Verification tests"
-msgstr ""
+msgstr "Teste pentru verificarea ceasului din panou"
 
 #. description
-#: ../jobs/local.txt.in:133
+#: ../jobs/local.txt.in:185
 msgid "PCMCIA/PCIX Card tests"
-msgstr ""
+msgstr "Teste pentru dispozitivele PCMCIA/PCIX"
 
 #. description
-#: ../jobs/local.txt.in:138
+#: ../jobs/local.txt.in:192
 msgid "Peripheral tests"
 msgstr "Teste de periferice"
 
 #. description
-#: ../jobs/local.txt.in:143
+#: ../jobs/local.txt.in:199
 msgid "Phoronix Test Suite tests"
-msgstr ""
+msgstr "Teste din suita Phoronix"
 
 #. description
-#: ../jobs/local.txt.in:148
+#: ../jobs/local.txt.in:206
 msgid "Power Management tests"
-msgstr ""
+msgstr "Teste pentru funcțiile de administrare a consumului"
 
 #. description
-#: ../jobs/local.txt.in:153
+#: ../jobs/local.txt.in:213
 msgid "QA Regression tests"
-msgstr ""
+msgstr "Teste tip întrebări și răspunsuri pentru determinarea regresiilor"
 
 #. description
-#: ../jobs/local.txt.in:158
+#: ../jobs/local.txt.in:220
 msgid "Server Services checks"
-msgstr ""
+msgstr "Verificări pentru serviciile serverelor"
 
 #. description
-#: ../jobs/local.txt.in:163
+#: ../jobs/local.txt.in:227
 msgid "Suspend tests"
-msgstr ""
+msgstr "Teste pentru funcția de suspendare"
 
 #. description
-#: ../jobs/local.txt.in:168
+#: ../jobs/local.txt.in:234
 msgid "Unity tests"
-msgstr ""
+msgstr "Teste pentru mediul grafic Unity"
 
 #. description
-#: ../jobs/local.txt.in:173
+#: ../jobs/local.txt.in:241
 msgid "USB tests"
-msgstr ""
+msgstr "Teste pentru conexiunile USB"
 
 #. description
-#: ../jobs/local.txt.in:178
+#: ../jobs/local.txt.in:248
 msgid "User Applications"
 msgstr "Aplicații pentru utilizatori"
 
 #. description
-#: ../jobs/local.txt.in:183
+#: ../jobs/local.txt.in:255
 msgid "Wireless networking tests"
-msgstr ""
+msgstr "Teste pentru rețeaua fără fir"
 
 #. description
-#: ../jobs/local.txt.in:188
+#: ../jobs/local.txt.in:262
 msgid "Stress tests"
-msgstr ""
+msgstr "Teste de stres"
 
 #. description
 #: ../jobs/ltp.txt.in:3
@@ -1085,6 +1466,8 @@ msgid ""
 "This test installs and runs Linux Test Project syscalls test. This can be "
 "destructive, thus this test is blacklisted by default."
 msgstr ""
+"Acest test va instala li rula testul syscalls din suita Linux Test Project. "
+"Acesta are un potențial distructiv, așa că este implicit omis."
 
 #. description
 #: ../jobs/mago.txt.in:8
@@ -1092,6 +1475,9 @@ msgid ""
 "PURPOSE:\n"
 "   This test installs and runs the Mago Automated Desktop Testing suite."
 msgstr ""
+"SCOP:\n"
+"   Acest test instalează și rulează suita de teste automate pentru desktop, "
+"Mago."
 
 #. description
 #: ../jobs/mediacard.txt.in:3
@@ -1282,9 +1668,9 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/memory.txt.in:19
+#: ../jobs/memory.txt.in:14
 msgid "Test and exercise memory."
-msgstr ""
+msgstr "Testează și antrenează memoria."
 
 #. description
 #: ../jobs/miscellanea.txt.in:8
@@ -1299,46 +1685,63 @@ msgid ""
 "    Did your screen change temporarily to a text console and then switch "
 "back to your current session?"
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica dacă sistemul poate comuta într-un terminal "
+"virtual și înapoi în mediul grafic X\n"
+"PAȘI:\n"
+"    1. Efectuați clic pe butonul „Test” pentru a comuta într-un terminal "
+"virtual și înapoi în mediul grafic X\n"
+"VERIFICARE:\n"
+"    A afișat temporar ecranul o consolă text, pentru ca apoi să revină la "
+"sesiunea curentă?"
 
 #. description
 #: ../jobs/miscellanea.txt.in:21
 msgid "Run Firmware Test Suite (fwts) automated tests."
-msgstr ""
+msgstr "Rulați suita de teste automate Firmware Test (fwts)."
 
 #. description
-#: ../jobs/miscellanea.txt.in:30
+#: ../jobs/miscellanea.txt.in:29
 msgid ""
 "ipmitool is required for ipmi testing. This checks for ipmitool and installs "
 "it if not available."
 msgstr ""
+"Pentru testul ipmi este necesar utilitarul ipmitool. Se va verifica "
+"existența programului ipmitool, care va fi instalat dacă nu este disponibil."
 
 #. description
-#: ../jobs/miscellanea.txt.in:37
+#: ../jobs/miscellanea.txt.in:31
 msgid ""
 "This will run some basic connectivity tests against a BMC, verifying that "
 "IPMI works."
 msgstr ""
+"Se vor executa teste de bază pentru conectivitate BMC, care verifică dacă "
+"IPMI funcționează."
 
 #. description
-#: ../jobs/miscellanea.txt.in:43
+#: ../jobs/miscellanea.txt.in:37
 msgid ""
 "   Determine if we need to run tests specific to portable computers that may "
 "not apply to desktops."
 msgstr ""
+"   Se tetermină dacă trebuie să fie rulate teste specifice calculatoarelor "
+"portabile, care nu sunt aplicabile sistemelor desktop."
 
 #. description
 #: ../jobs/miscellanea.txt.in:51
 msgid ""
 "This test checks /var/crash to see if there are any crash reports present."
 msgstr ""
+"Acest test verifică existența unor eventuale rapoarte de eroare în "
+"/var/crash."
 
 #. description
 #: ../jobs/miscellanea.txt.in:51
 msgid "If there are, this test will fail."
-msgstr ""
+msgstr "Dacă există, acest test se va încheia cu eroare."
 
 #. description
-#: ../jobs/monitor.txt.in:3
+#: ../jobs/monitor.txt.in:4
 msgid ""
 "PURPOSE:\n"
 "    This test will check your VGA port. Skip if your system does not have a "
@@ -1349,9 +1752,17 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the desktop displayed correctly on both screens?"
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica portul VGA. Treceți peste dacă sistemul nu are un "
+"port VGA.\n"
+"PAȘI:\n"
+"    1. Conectați un monitor (dacă nu este deja conectat) la portul VGA al "
+"sistemului dumneavoastră\n"
+"VERIFICARE:\n"
+"    Desktopul a fost afișat corect pe ambele monitoare?"
 
 #. description
-#: ../jobs/monitor.txt.in:13
+#: ../jobs/monitor.txt.in:15
 msgid ""
 "PURPOSE:\n"
 "    This test will check your DVI port. Skip if your system does not have a "
@@ -1362,9 +1773,17 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the desktop displayed correctly on both screens?"
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica portul DVI. Treceți peste dacă sistemul nu are un "
+"port DVI\n"
+"PAȘI:\n"
+"    1. Conectați un monitor (dacă nu este deja conectat) la portul DVI al "
+"sistemului\n"
+"VERIFICARE:\n"
+"    Desktopul a fost afișat corect pe ambele monitoare?"
 
 #. description
-#: ../jobs/monitor.txt.in:23
+#: ../jobs/monitor.txt.in:26
 msgid ""
 "PURPOSE:\n"
 "    This test will check your DisplayPort port. Skip if your system does not "
@@ -1375,9 +1794,17 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the desktop displayed correctly on both screens?"
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica portul DisplayPort. Treceți peste dacă sistemul "
+"nu are un port DisplayPort\n"
+"PAȘI:\n"
+"    1. Conectați un monitor (dacă nu este deja conectat) la portul "
+"DisplayPort al sistemului\n"
+"VERIFICARE:\n"
+"    Desktopul a fost afișat corect pe ambele monitoare?"
 
 #. description
-#: ../jobs/monitor.txt.in:33
+#: ../jobs/monitor.txt.in:37
 msgid ""
 "PURPOSE:\n"
 "    This test will check your HDMI port. Skip if your system does not have a "
@@ -1388,9 +1815,17 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the desktop displayed correctly on both screens?"
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica portul HDMI. Treceți peste dacă sistemul nu are "
+"un port HDMI\n"
+"PAȘI:\n"
+"    1. Conectați un monitor (dacă nu este deja conectat) la portul HDMI al "
+"sistemului\n"
+"VERIFICARE:\n"
+"    Desktopul a fost afișat corect pe ambele monitoare?"
 
 #. description
-#: ../jobs/monitor.txt.in:43
+#: ../jobs/monitor.txt.in:48
 msgid ""
 "PURPOSE:\n"
 "    This test will check your S-VIDEO port. Skip if your system does not "
@@ -1401,9 +1836,17 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the desktop displayed correctly on both screens?"
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica portul S-VIDEO. Treceți peste dacă sistemul nu "
+"are un port S-VIDEO\n"
+"PAȘI:\n"
+"    1. Conectați un monitor (dacă nu este deja conectat) la portul S-VIDEO "
+"al sistemului\n"
+"VERIFICARE:\n"
+"    Desktopul a fost afișat corect pe ambele monitoare?"
 
 #. description
-#: ../jobs/monitor.txt.in:53
+#: ../jobs/monitor.txt.in:59
 msgid ""
 "PURPOSE:\n"
 "    This test will check your RCA port. Skip if your system does not have a "
@@ -1414,9 +1857,17 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the desktop displayed correctly on both screens?"
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica portul RCA. Treceți peste dacă sistemul nu are un "
+"port RCA\n"
+"PAȘI:\n"
+"    1. Conectați un monitor (dacă nu este deja conectat) la portul RCA al "
+"sistemului\n"
+"VERIFICARE:\n"
+"    Desktopul a fost afișat corect pe ambele monitoare?"
 
 #. description
-#: ../jobs/monitor.txt.in:64
+#: ../jobs/monitor.txt.in:70
 msgid ""
 "PURPOSE:\n"
 "    This test will check your monitor power saving capabilities\n"
@@ -1426,24 +1877,33 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the the monitor go blank and turn on again?"
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica funcția de economisire a energiei integrată în "
+"monitorul dumneavoastră\n"
+"PAȘI:\n"
+"    1. Efectuați clic pe butonul „Test” pentru a verifica funcția de "
+"economisire a energiei integrată în monitor\n"
+"    2. Apăsați orice tastă sau mișcați mouse-ul pentru a reveni\n"
+"VERIFICARE:\n"
+"    Monitorul a fost întrerupt apoi a afișat din nou desktopul?"
 
 #. description
 #: ../jobs/networking.txt.in:5
 msgid "Test to detect the available network controllers"
-msgstr ""
+msgstr "Test pentru detectarea plăcilor de rețea"
 
 #. description
 #: ../jobs/networking.txt.in:11
 msgid "Tests whether the system has a working Internet connection."
-msgstr ""
+msgstr "Se testează dacă sistemul dispune de o conexiune validă la Internet."
 
 #. description
 #: ../jobs/networking.txt.in:16
 msgid "Network Information"
-msgstr ""
+msgstr "Informații despre rețea"
 
 #. description
-#: ../jobs/networking.txt.in:36
+#: ../jobs/networking.txt.in:46
 msgid ""
 "PURPOSE:\n"
 "    This test will check your wired connection\n"
@@ -1455,9 +1915,18 @@ msgid ""
 "VERIFICATION:\n"
 "    Did a notification show and was the connection correctly established?"
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica conexiunea cu fir\n"
+"PAȘI:\n"
+"    1. Efectuați clic pe iconița Rețea din panou\n"
+"    2. Alegeți o rețea din secțiunea „Rețea cu fir”\n"
+"    3. Efectuați clic pe butonul „Test” pentru a verifica posibilitatea "
+"stabilirii unei conexiuni HTTP\n"
+"VERIFICARE:\n"
+"    A apărut o notificare și conexiunea a fost stabilită corect?"
 
 #. description
-#: ../jobs/networking.txt.in:49
+#: ../jobs/networking.txt.in:59
 msgid ""
 "PURPOSE:\n"
 "    This test will check that a DSL modem can be configured and connected.\n"
@@ -1473,61 +1942,86 @@ msgid ""
 "VERIFICATION:\n"
 "    Did a notification show and was the connection correctly established?"
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica dacă un modem DSL poate fi configurat și "
+"conectat.\n"
+"PAȘI:\n"
+"    1. Conectați linia telefonică la calculator\n"
+"    2. Efectuați clic pe iconița Rețea din panou\n"
+"    3. Mergeți la „Editare conexiuni”\n"
+"    4. Selectați fila „DSL”\n"
+"    5. Efectuați clic pe „Adaugă”\n"
+"    6. Configurați corect parametrii conexiunii\n"
+"    7. Efectuați clic pe butonul „Test” pentru a verifica posibilitatea "
+"stabilirii unei conexiuni HTTP\n"
+"VERIFICARE:\n"
+"    A apărut o notificare și conexiunea a fost stabilită corect?"
 
 #. description
-#: ../jobs/networking.txt.in:66
+#: ../jobs/networking.txt.in:76
 msgid ""
 "Automated test case to verify availability of some system on the network "
 "using ICMP ECHO packets."
 msgstr ""
+"Testare automată pentru verificarea disponibilității în rețea a unor sisteme "
+"utilizând pachete ICMP ECHO."
 
 #. description
-#: ../jobs/networking.txt.in:73 ../jobs/peripheral.txt.in:37
+#: ../jobs/networking.txt.in:83 ../jobs/peripheral.txt.in:37
 msgid ""
 "Automated test case to make sure that it's possible to download files "
 "through HTTP"
 msgstr ""
+"Testare automată pentru verificarea posibilității de descărcare a fișierelor "
+"prin HTTP"
 
 #. description
-#: ../jobs/networking.txt.in:81
+#: ../jobs/networking.txt.in:91
 msgid "Test to see if we can sync local clock to an NTP server"
 msgstr ""
+"Test pentru verificarea configurării ceasului local printr-un server NTP"
 
 #. description
-#: ../jobs/networking.txt.in:87
+#: ../jobs/networking.txt.in:97
 msgid ""
 "Verify that an installation of checkbox-server on the network can be reached "
 "over SSH."
 msgstr ""
+"Se verifică dacă instalarea prin rețea a serverului checkbox poate fi "
+"realizată prin SSH."
 
 #. description
-#: ../jobs/networking.txt.in:93
+#: ../jobs/networking.txt.in:103
 msgid "Try to enable a remote printer on the network and print a test page."
 msgstr ""
+"Se încearcă activarea unei imprimante la distanță, prin rețea, și tipărirea "
+"unei pagini de test."
 
 #. description
-#: ../jobs/networking.txt.in:98
+#: ../jobs/networking.txt.in:108
 msgid ""
 "Automated test to walk multiple network cards and test each one in sequence."
 msgstr ""
+"Testare automată pentru mai multe plăci de rețea, fiecare fiind testată "
+"secvențial."
 
 #. description
-#: ../jobs/networking.txt.in:118
+#: ../jobs/networking.txt.in:128
 msgid "Test to measure the network bandwidth"
-msgstr ""
+msgstr "Test pentru măsurarea lățimii de bandă"
 
 #. description
 #: ../jobs/optical.txt.in:8
 msgid "Test to detect the optical drives"
-msgstr ""
+msgstr "Test pentru detectarea unităților optice"
 
 #. description
-#: ../jobs/optical.txt.in:13
+#: ../jobs/optical.txt.in:18
 msgid "Optical Storage device read tests"
 msgstr ""
 
 #. description
-#: ../jobs/optical.txt.in:36
+#: ../jobs/optical.txt.in:35
 msgid ""
 "PURPOSE:\n"
 "    This test will check your system's CDROM writing capabilities. If your "
@@ -1542,7 +2036,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/optical.txt.in:49
+#: ../jobs/optical.txt.in:47
 msgid ""
 "PURPOSE:\n"
 "    This test will check your CD audio playback capabilities\n"
@@ -1561,9 +2055,25 @@ msgid ""
 "VERIFICATION:\n"
 "    Did all the steps work?"
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica funcția de redare CD-uri audio\n"
+"PAȘI:\n"
+"    1. Introduceți un CD audio în unitatea de disc\n"
+"    2. Deschideți Panoul principal (efectuați clic pe butonul cu iconița "
+"Ubuntu din Lansator)\n"
+"    3. Efectuați clic pe „Redare muzică” pentru a deschide Rhythmbox\n"
+"    4. Alegeți CD din biblioteca Rhythmbox\n"
+"    5. Efectuați clic pe butonul Redare pentru a asculta muzică\n"
+"    6. Opriți redarea după un timp\n"
+"    7. Efectuați clic pe iconița CD din biblioteca Rhythmbox și alegeți "
+"„Scoate discul”\n"
+"    8. Discul ar trebui să fie scos\n"
+"    9. Închideți Rhythmbox\n"
+"VERIFICARE:\n"
+"    Au funcționat corect toții pașii?"
 
 #. description
-#: ../jobs/optical.txt.in:69
+#: ../jobs/optical.txt.in:68
 msgid ""
 "PURPOSE:\n"
 "    This test will check your system's DVD writing capabilities. If your "
@@ -1578,7 +2088,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/optical.txt.in:82
+#: ../jobs/optical.txt.in:84
 msgid ""
 "PURPOSE:\n"
 "    This test will check your DVD movie playback capabilities. Note that "
@@ -1595,9 +2105,24 @@ msgid ""
 "VERIFICATION:\n"
 "    Did all the steps work?"
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica funcția de redare DVD. Rețineți că este posibil "
+"să aveți nevoie de instalarea unor programe non-free (codecuri, playere, "
+"etc) înainte de rularea acestui test.\n"
+"PAȘI:\n"
+"    1. Introduceți un DVD care conține un film în unitatea optică\n"
+"    2. Deschideți Panoul principal (efectuați clic pe butonul cu iconița "
+"Ubuntu din Lansator)\n"
+"    3. Efectuați clic pe „Aplicații media” și mergeți la „Player pentru "
+"filme”\n"
+"    4. Redați filmul utilizând playerul pentru filme și opriți filmul după "
+"ce ați verificat că poate fi redat\n"
+"    6. Eject the DVD\n"
+"VERIFICARE:\n"
+"    Au funcționat toți pașii corect?"
 
 #. description
-#: ../jobs/optical.txt.in:100
+#: ../jobs/optical.txt.in:102
 msgid ""
 "PURPOSE:\n"
 "    This test will check your DVD  playback capabilities\n"
@@ -1607,6 +2132,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the file play?"
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica funcția de redare DVD-uri\n"
+"PAȘI:\n"
+"    1. Introduceți un DVD care conține un film în unitatea optică\n"
+"    2. Efectuați clic pe butonul „Test” pentru a reda filmul în Totem\n"
+"VERIFICARE:\n"
+"    A fost redat fișierul?"
 
 #. description
 #: ../jobs/panel_clock_test.txt.in:4
@@ -1618,6 +2150,11 @@ msgid ""
 "   Is the clock in the upper right corner of your desktop displaying the "
 "correct date and time for your timezone?"
 msgstr ""
+"SCOP:\n"
+"   Acest test va verifica dacă ceasul din panou afișează corect data și ora\n"
+"VERIFICARE:\n"
+"   Ceasul din panou afișează corect data și ora în zona de timp în care vă "
+"aflați?"
 
 #. description
 #: ../jobs/panel_clock_test.txt.in:16
@@ -1636,6 +2173,20 @@ msgid ""
 "   Is your system clock displaying the correct date and time for your "
 "timezone?"
 msgstr ""
+"SCOP:\n"
+"   Acest test va verifica dacă ceasul desktopului se poate sincroniza cu "
+"ceasul sistemului.\n"
+"PAȘI:\n"
+"   1. Efectuați clic pe butonul „Test button” și verificați dacă ceasul "
+"afișează o oră în avans.\n"
+"   Notă: ceasul are nevoie de aproximativ un minut pentru a se actualiza\n"
+"   2. Efectuați clic dreapta pe ceas, apoi mergeți la „Configurări dată și "
+"oră...”\n"
+"   3. Asigurați-vă că ceasul este configurat pe manual\n"
+"   4. Reveniți la ora inițială (cu una înapoi)\n"
+"   5. Închideți fereastra și reporniți\n"
+"VERIFICARE:\n"
+"   Ceasul afișează corect ora și data corespunzătoare zonei de timp?"
 
 #. description
 #: ../jobs/panel_reboot.txt.in:4
@@ -1652,6 +2203,18 @@ msgid ""
 "VERIFICATION:\n"
 "   Did your system restart and bring up the GUI login cleanly?"
 msgstr ""
+"SCOP:\n"
+"   Acest test va verifica dacă puteți reporni calculatorul din meniul "
+"desktopului\n"
+"PAȘI:\n"
+"   1. Efectuați clic pe iconița din colțul superior dreapta al desktopului "
+"și selectați „Oprire”\n"
+"   2. Efectuați clic pe butonul „Repornire” din partea stângă a dialogului "
+"Oprire\n"
+"   3. După reautentificare, reporniți programul Testare sistem, care ar "
+"trebui să fie reluat de unde ați rămas\n"
+"VERIFICARE:\n"
+"   A repornit sistemul, prezentând din nou ecranul grafic de autentificare?"
 
 #. description
 #: ../jobs/pcmcia-pcix.txt.in:3
@@ -1664,6 +2227,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the device correctly detected?"
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica dacă porturile PCMCIA sau ExpressCard pot detecta "
+"dispozitivele introduse\n"
+"PAȘI:\n"
+"    1. Introduceți în calculator un dispozitiv PCMCIA sau ExpressCard\n"
+"VERIFICARE:\n"
+"    A fost dispozitivul detectat corect?"
 
 #. description
 #: ../jobs/peripheral.txt.in:3
@@ -1681,6 +2251,19 @@ msgid ""
 "VERIFICATION:\n"
 "   Were you able to print a test page to the network printer?"
 msgstr ""
+"SCOP:\n"
+"   Acest test va verifica dacă o imprimantă de rețea este utilizabilă\n"
+"PAȘI:\n"
+"   1. Asigurați-vă că există o imprimantă disponibilă în rețeaua "
+"dumneavoastră\n"
+"   2. Efectuați clic pe iconița din colțul superior dreapta al desktopului "
+"și mergeți la Imprimante\n"
+"   3. Dacă imprimanta nu este deja listată, selectați Adaugă\n"
+"   4. Imprimanta ar trebui să fie detectată și afișate valorile corecte de "
+"configurare\n"
+"   5. Tipăriți o pagină de test\n"
+"VERIFICARE:\n"
+"   Ați putut tipări o pagină de test la imprimanta de rețea?"
 
 #. description
 #: ../jobs/peripheral.txt.in:18
@@ -1701,6 +2284,23 @@ msgid ""
 "VERIFICATION:\n"
 "   Was the connection correctly established?"
 msgstr ""
+"SCOP:\n"
+"   Acest test va verifica dacă un modem USB DLS sau de bandă largă mobilă "
+"funcționează corect\n"
+"PAȘI:\n"
+"   1. Conectați cablul USB la calculator\n"
+"   2. Efectuați clic pe butonul Rețea din panou\n"
+"   3. Mergeți la „Editare conexiuni”\n"
+"   4. Selectați fila „DSL” (pentru modemuri ADSL) sau „Internet mobil de "
+"bandă largă” (pentru modemuri 3G)\n"
+"   5. Efectuați clic pe butonul „Adaugă”\n"
+"   6. Configurați corect parametrii conexiunii\n"
+"   7. Serviciul de notificare OSD ar trebui să confirme stabilirea "
+"conexiunii\n"
+"   8. Selectați Test pentru a verifica dacă este posibilă stabilirea unei "
+"conexiuni HTTP\n"
+"VERIFICARE:\n"
+"   A fost stabilită corect conexiunea?"
 
 #. description
 #: ../jobs/phoronix.txt.in:9
@@ -1709,6 +2309,9 @@ msgid ""
 "   This test will download and install the Phoronix Test Suite and run some "
 "selected benchmarking tests."
 msgstr ""
+"SCOP:\n"
+"   Acest test va descărca și instala suita pentru teste Phoronix și va rula "
+"unele teste de stres."
 
 #. description
 #: ../jobs/power-management.txt.in:3
@@ -1722,6 +2325,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the system shutdown and rebooted correctly?"
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica ciclurile de oprire/pornire\n"
+"PAȘI:\n"
+"    1. Opriți calculatorul\n"
+"    2. Porniți calculatorul\n"
+"    3. Repetați pașii 1 și 2 de cel puțin 5 ori\n"
+"VERIFICARE:\n"
+"    Sistemul s-a oprit și a pornit corect?"
 
 #. description
 #: ../jobs/power-management.txt.in:15
@@ -1733,6 +2344,12 @@ msgid ""
 "VERIFICATION:\n"
 "   Does closing your laptop lid cause your system to suspend?"
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica sensorii capacului laptopului\n"
+"PAȘI:\n"
+"    1. Închideți capacul laptopului\n"
+"VERIFICARE:\n"
+"    Închiderea capacului laptopului a pus sistemul în suspendare?"
 
 #. description
 #: ../jobs/power-management.txt.in:32
@@ -1745,6 +2362,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the screen turn off while the lid was closed?"
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica sensorii capacului laptopului\n"
+"PAȘI:\n"
+"    1. Efectuați clic pe butonul „Test” \n"
+"    2. Închideți și deschideți capacul laptopului\n"
+"VERIFICARE:\n"
+"    Închiderea capacului laptopului a oprit ecranul?"
 
 #. description
 #: ../jobs/power-management.txt.in:50
@@ -1759,16 +2383,25 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the system resume when the lid was opened?"
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica senzorii capacului laptopului\n"
+"PAȘI:\n"
+"    1. Efectuați clic pe butonul „Test”\n"
+"    2. Închideți capacul laptopului\n"
+"    3. Așteptați 5 secunde cu capacul închis\n"
+"    4. Deschideți capacul\n"
+"VERIFICARE:\n"
+"    Sistemul a revenit din suspendare la deschiderea capacului laptopului?"
 
 #. description
 #: ../jobs/power-management.txt.in:66
 msgid "Make sure that the RTC (Real-Time Clock) device exists."
-msgstr ""
+msgstr "Asigurați-vă că dispozitivul RTC (Real-Time Clock) există."
 
 #. description
 #: ../jobs/power-management.txt.in:71
 msgid "Test ACPI Wakealarm (fwts wakealarm) "
-msgstr ""
+msgstr "Test pentru alarma ACPI (fwts wakealarm) "
 
 #. description
 #: ../jobs/power-management.txt.in:80
@@ -1776,6 +2409,8 @@ msgid ""
 "Check to see if CONFIG_NO_HZ is set in the kernel (this is just a simple "
 "regression check)"
 msgstr ""
+"Verifică dacă în kernel este configurată opțiunea CONFIG_NO_HZ (o simplă "
+"verificare pentru regresie)"
 
 #. description
 #: ../jobs/qa_regression.txt.in:7
@@ -1783,36 +2418,39 @@ msgid ""
 "PURPOSE:\n"
 "   This is to install and run the Ubuntu QA regression tests (destructive)"
 msgstr ""
+"SCOP:\n"
+"   Este destinat instalării și rulării testelor de regresie Ubuntu QA "
+"(distructive)"
 
 #. description
 #: ../jobs/server-services.txt.in:5
 msgid "Verifies that sshd is running."
-msgstr ""
+msgstr "Se verifică dacă sshd rulează."
 
 #. description
 #: ../jobs/server-services.txt.in:11
 msgid "Verifies that Print/CUPs server is running."
-msgstr ""
+msgstr "Se verifică dacă serviciul de tipărire CUPS rulează."
 
 #. description
 #: ../jobs/server-services.txt.in:18
 msgid "Verifies that DNS server is running and working."
-msgstr ""
+msgstr "Se verifică dacă serverul DNS rulează și funcționează corect."
 
 #. description
 #: ../jobs/server-services.txt.in:25
 msgid "Verifies that Samba server is running."
-msgstr ""
+msgstr "Se verifică dacă serviciul Samba rulează."
 
 #. description
 #: ../jobs/server-services.txt.in:32
 msgid "Verifies that the LAMP stack is running (Apache, MySQL and PHP)."
-msgstr ""
+msgstr "Se verifică dacă stiva LAMP (Apache, MySQL și PHP) rulează."
 
 #. description
 #: ../jobs/server-services.txt.in:39
 msgid "Verifies that Tomcat server is running and working."
-msgstr ""
+msgstr "Se verifică dacă serviciul Tomcat rulează și funcționează corect."
 
 #. description
 #: ../jobs/stress.txt.in:8
@@ -1821,6 +2459,9 @@ msgid ""
 "    Create jobs that use the CPU as much as possible for two hours. The test "
 "is considered passed if the system does not freeze."
 msgstr ""
+"SCOP:\n"
+"    Sunt create sarcini care utilizează procesorul cât de mult posibil "
+"pentru două ore . Testul este trecut dacă sistemul nu îngheață."
 
 #. description
 #: ../jobs/stress.txt.in:18
@@ -1838,6 +2479,22 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the system successfully hibernate and wake 30 times?"
 msgstr ""
+"SCOP:\n"
+"    Acest test va trimite sistemul în hibernare și-l va scoate din hibernare "
+"într-un ciclu repetat de 30 de ori\n"
+"PAȘI:\n"
+"    1. Asigurați-vă că sistemul nu are o parolă pe discurile fixe (HDD), iar "
+"grub este configurat pentru a porni implicit Ubuntu, dacă aveți un mediu "
+"multi-boot\n"
+"    2. Efectuați clic pe butonul „Test” pentru a începe (testul este de "
+"durată)\n"
+"    3. Dacă sistemul nu-și revine din hibernare după 2 minute, va trebui să "
+"apăsați butonul de pornire\n"
+"    4. Dacă sistemul eșuează în a reveni din hibernare și trebuie să-l "
+"reporniți, relansați programul Testare sistem și marcați acest test ca "
+"eșuat\n"
+"VERIFICARE:\n"
+"    A intrat sistemul în hibernare și a revenit cu succes de 30 de ori?"
 
 #. description
 #: ../jobs/stress.txt.in:35
@@ -1851,37 +2508,52 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the system successfully suspend and resume 30 times?"
 msgstr ""
+"SCOP:\n"
+"    Acest test va trimite sistemul în suspendare și-l va scoate într-un "
+"ciclu repetat de 30 de ori\n"
+"PAȘI:\n"
+"    1. Efectuați clic pe butonul „Test” pentru a începe (testul este de "
+"durată)\n"
+"    2. Dacă sistemul eșuează în a reveni din suspendare și trebuie repornit, "
+"relansați programul Testare sistem și marcați acest test ca eșuat\n"
+"VERIFICARE:\n"
+"    A intrat sistemul în suspendare și a revenit cu succes de 30 de ori?"
 
 #. description
-#: ../jobs/suspend.txt.in:3
+#: ../jobs/suspend.txt.in:9
 msgid "Record the current resolution before suspending."
 msgstr "Memorează rezoluția curentă înainte de suspendare."
 
 #. description
-#: ../jobs/suspend.txt.in:11
+#: ../jobs/suspend.txt.in:17
 msgid "Record mixer settings before suspending."
-msgstr ""
+msgstr "Înregistrează configurările mixerului înainte de suspendare."
 
 #. description
-#: ../jobs/suspend.txt.in:18
+#: ../jobs/suspend.txt.in:24
 msgid "Verify that all the CPUs are online before suspending"
-msgstr ""
+msgstr "Verifică ca toate procesoarele să fie online înainte de suspendare"
 
 #. description
-#: ../jobs/suspend.txt.in:25
+#: ../jobs/suspend.txt.in:31
 msgid ""
 "Dumps memory info to a file for comparison after suspend test has been run"
 msgstr ""
+"Copiază informațiile memoriei într-un fișier, pentru comparație, după "
+"rularea testului de suspendare"
 
 #. description
-#: ../jobs/suspend.txt.in:43
+#: ../jobs/suspend.txt.in:49
 msgid ""
 "This test disconnects all connections and then connects to the wireless "
 "interface. It then checks the connection to confirm it's working as expected."
 msgstr ""
+"Acest test întrerupe toate conexiunile și apoi realizează o conexiune prin "
+"interfața fără fir. Este verificată conexiunea realizată, pentru confirmarea "
+"funcționării corecte."
 
 #. description
-#: ../jobs/suspend.txt.in:73
+#: ../jobs/suspend.txt.in:83
 msgid ""
 "PURPOSE:\n"
 "    This test will check suspend and resume\n"
@@ -1895,36 +2567,55 @@ msgid ""
 "VERIFICATION:\n"
 "    Did your system suspend and resume correctly?"
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica funcția de suspendare și de revenire din "
+"suspendare\n"
+"PAȘI:\n"
+"    1. Efectuați clic pe butonul „Test” pentru ca sistemul să intre în "
+"suspendare pentru 30 - 60 de secunde\n"
+"    2. Dacă sistemul nu revine din suspendare după 60 seconds, apăsați scurt "
+"butonul de pornire pentru a comanda manual revenirea sistemului din "
+"suspendare\n"
+"    3. Dacă sistemul eșuează în a reveni din suspendare și trebuie repornit, "
+"relansați programul Testare sistem și marcați acest test ca eșuat\n"
+"VERIFICARE:\n"
+"    A intrat sistemul în suspendare și a revenit din suspendare corect?"
 
 #. description
-#: ../jobs/suspend.txt.in:86
+#: ../jobs/suspend.txt.in:96
 msgid "Test the network after resuming."
 msgstr "Testează rețeaua după revenire."
 
 #. description
-#: ../jobs/suspend.txt.in:92
+#: ../jobs/suspend.txt.in:102
 msgid ""
 "Test to see that we have the same resolution after resuming as before."
 msgstr "Testează pentru a vedea dacă s-a păstrat rezoluția după revenire."
 
 #. description
-#: ../jobs/suspend.txt.in:101
+#: ../jobs/suspend.txt.in:111
 msgid ""
 "Verify that mixer settings after suspend are the same as before suspend."
 msgstr ""
+"Se verifică dacă mixerul păstrează configurările avute înainte de intrarea "
+"în suspendare."
 
 #. description
-#: ../jobs/suspend.txt.in:117
+#: ../jobs/suspend.txt.in:127
 msgid "Verify that all CPUs are online after resuming."
 msgstr ""
+"Se verifică dacă toate procesoarele sunt online după revenirea din "
+"suspendare."
 
 #. description
-#: ../jobs/suspend.txt.in:134
+#: ../jobs/suspend.txt.in:144
 msgid "Verify that all memory is available after resuming from suspend."
 msgstr ""
+"Se verifică dacă toată memoria este disponibilă după revenirea din "
+"suspendare."
 
 #. description
-#: ../jobs/suspend.txt.in:143
+#: ../jobs/suspend.txt.in:153
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the display is correct after suspend and "
@@ -1932,31 +2623,45 @@ msgid ""
 "VERIFICATION:\n"
 "    Does the display work normally after resuming from suspend?"
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica dacă monitorul afișează corect după intrarea în "
+"suspendare și revenirea din suspendare\n"
+"VERIFICARE:\n"
+"    Monitorul afișează corect după revenirea din suspendare?"
 
 #. description
-#: ../jobs/suspend.txt.in:164
+#: ../jobs/suspend.txt.in:174
 msgid ""
 "This test checks that the wireless interface is working after suspending the "
 "system. It disconnects all interfaces and then connects to the wireless "
 "interface and checks that the connection is working as expected."
 msgstr ""
+"Acest test verifică dacă interfața fără fir lucrează după revenirea din "
+"suspendare a sistemului. Sunt deconectate toate interfețele apoi se "
+"realizează o conexiune fără fir și se verifică dacă această conexiune "
+"lucrează așa cum trebuie."
 
 #. description
-#: ../jobs/suspend.txt.in:174
+#: ../jobs/suspend.txt.in:186
 msgid ""
 "This test grabs the hardware address of the bluetooth adapter after suspend "
 "and compares it to the address grabbed before suspend."
 msgstr ""
+"Acest test preia adresa dispozitivului bluetooth după revenirea din "
+"suspendare și o compară cu adresa dispozitivului bluetooth reținută înainte "
+"de intrarea în suspendare."
 
 #. description
-#: ../jobs/suspend.txt.in:182
+#: ../jobs/suspend.txt.in:196
 msgid ""
 "This is an automated Bluetooth file transfer test. It sends an image to the "
 "device specified by the BTDEVADDR environment variable."
 msgstr ""
+"Acesta este un test automat de transfer al unui fișier prin Bluetooth. El "
+"trimite o imagine unui dispozitiv specificat în variabila de mediu BTDEVADDR."
 
 #. description
-#: ../jobs/suspend.txt.in:190
+#: ../jobs/suspend.txt.in:206
 msgid ""
 "PURPOSE:\n"
 "    This test will send the image 'JPEG_Color_Image_Ubuntu.jpg' to a "
@@ -1969,9 +2674,20 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the data correctly transferred?"
 msgstr ""
+"SCOP:\n"
+"    Acest test va trimite o imagine numită „JPEG_Color_Image_Ubuntu.jpg” "
+"unui dispozitiv anume\n"
+"PAȘI:\n"
+"    1. Efectuați clic pe butonul „Test” și veți fi solicitați să introduceți "
+"numele dispozitivului Bluetooth care acceptă transferuri de fișiere (după "
+"introducerea numelui pot trece câteva momente până la începerea "
+"transferului)\n"
+"    2. Accepați toate dialogurile propuse pe ambele dispozitive\n"
+"VERIFICARE:\n"
+"    A fost transmis corect fișierul?"
 
 #. description
-#: ../jobs/suspend.txt.in:204
+#: ../jobs/suspend.txt.in:220
 msgid ""
 "PURPOSE:\n"
 "    This test will cycle through the detected display modes\n"
@@ -1980,21 +2696,33 @@ msgid ""
 "VERIFICATION:\n"
 "    Did your display look fine in the detected mode?"
 msgstr ""
+"SCOP:\n"
+"    Acest test va comuta prin toate modurile detectate ale monitorului\n"
+"PAȘI:\n"
+"    1. Efectuați clic pe butonul „Test” și monitorul va începe să afișeze "
+"toate modurile detectate\n"
+"VERIFICARE:\n"
+"    Monitorul afișa corect în modurile detectate?"
 
 #. description
-#: ../jobs/suspend.txt.in:216
+#: ../jobs/suspend.txt.in:232
 msgid ""
 "This test will check to make sure supported video modes work after a suspend "
 "and resume. This is done automatically by taking screenshots and uploading "
 "them as an attachment."
 msgstr ""
+"Acest test va verifica dacă modurile video detectate vor funcționa corect "
+"după revenirea din suspendare. Este realizat automat, prin efectuarea unor "
+"capturi de ecran și încărcarea lor ca atașamente."
 
 #. description
-#: ../jobs/suspend.txt.in:225
+#: ../jobs/suspend.txt.in:241
 msgid ""
 "This attaches screenshots from the "
 "suspend/cycle_resolutions_after_suspend_auto test to the results submission."
 msgstr ""
+"Se atașează capturile de ecran luate în testul automat care verifică "
+"rezoluțiile după revenirea din suspendare."
 
 #. description
 #: ../jobs/suspend.txt.in:231
@@ -2011,26 +2739,37 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:248
+#: ../jobs/suspend.txt.in:251
 msgid ""
 "This will check to make sure that your audio device works properly after a "
 "suspend and resume.  This may work fine with speakers and onboard "
 "microphone, however, it works best if used with a cable connecting the audio-"
 "out jack to the audio-in jack."
 msgstr ""
+"Acest test verifică dacă dispozitivele audio funcționează corect după "
+"intrarea în suspendare și revenirea din suspedare. Poate funcționa corect la "
+"testatea boxelor și microfoanelor încorporate, totuși cele mai relevante "
+"rezultate sunt obținute dacă utilizați un cablu care conectează jack-ul "
+"ieșirii audio cu jack-ul intrării audio."
 
 #. description
-#: ../jobs/suspend.txt.in:255
+#: ../jobs/suspend.txt.in:260
 msgid "This is the automated version of suspend/suspend_advanced."
 msgstr ""
+"Aceasta este versiunea automată a testului de intrare în "
+"suspendare/suspendare_avansată."
 
 #. description
-#: ../jobs/suspend.txt.in:264
+#: ../jobs/suspend.txt.in:269
 msgid ""
 "This automatically tests Wake-on-LAN capability with the aid of a suitably "
 "configured server. During this process the system will suspend, then "
 "automatically wake up after no more than 5 minutes."
 msgstr ""
+"Acest test verifică funcția Wake-on-LAN (revenire din suspendare activată de "
+"rețea) cu ajutorul unui server configurat corect. Pe parcursul acestui "
+"proces sistemul va intra în suspendare și va reveni automat după maxim 5 "
+"minute."
 
 #. description
 #: ../jobs/unity.txt.in:6
@@ -2038,6 +2777,8 @@ msgid ""
 "Xlib is required for unity testing. This checks for Xlib and installs it if "
 "not available."
 msgstr ""
+"Pentru testele unity este nevoie de pachetul Xib. Așadar se va verifica "
+"existența pachetului și, dacă nu există, va fi instalat."
 
 #. description
 #: ../jobs/unity.txt.in:13
@@ -2045,11 +2786,13 @@ msgid ""
 "This test will verify that Unity is running and then run the autopilot.py "
 "test against the Unity interface."
 msgstr ""
+"Acest test va verifica dacă Unity rulează, pentru a porni testul "
+"autopilot.py pe interfața Unity."
 
 #. description
 #: ../jobs/usb.txt.in:5
 msgid "Detects and shows USB devices attached to this system."
-msgstr ""
+msgstr "Detectează și arată dispozitivele USB conectate la sistem."
 
 #. description
 #: ../jobs/usb.txt.in:12
@@ -2076,6 +2819,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Does the keyboard work?"
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica conexiunea USB.\n"
+"PAȘI:\n"
+"    1. Conectați la calculator o tastatură USB.\n"
+"    2. Efectuați clic pe butonul „Test” și introduceți un text.\n"
+"VERIFICARE:\n"
+"    A funcționat tastatura?"
 
 #. description
 #: ../jobs/usb.txt.in:41
@@ -2088,6 +2838,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Does the mouse work correctly?"
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica conexiunea USB.\n"
+"PAȘI:\n"
+"    1. Conectați la calculator un mouse USB.\n"
+"    2. Efectuați câteva operații care să necesite clic "
+"simplu/dublu/dreapta.\n"
+"VERIFICARE:\n"
+"    A funcționat corect mouse-ul?"
 
 #. description
 #: ../jobs/usb.txt.in:55
@@ -2127,14 +2885,14 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:96
+#: ../jobs/usb.txt.in:80
 msgid ""
 "This test is automated and requires that you plug in at least one usb "
 "storage device before running checkbox."
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:102
+#: ../jobs/usb.txt.in:119
 msgid ""
 "PURPOSE:\n"
 "    This test will check your USB connection.\n"
@@ -2148,6 +2906,16 @@ msgid ""
 "VERIFICATION:\n"
 "    Do all USB slots work with the device?"
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica conexiunea USB.\n"
+"PAȘI:\n"
+"    1. Conectați un mediu de memorie USB la un port USB extern.\n"
+"    2. În Lansator ar trebui să apară o iconiță.\n"
+"    3. Confirmați apariția iconiței.\n"
+"    4. Ejectați dispozitivul.\n"
+"    5. Repetați pașii pentru fiecare port USB.\n"
+"VERIFICARE:\n"
+"    Lucrează corect toate porturile USB?"
 
 #. description
 #: ../jobs/user_apps.txt.in:6
@@ -2163,6 +2931,19 @@ msgid ""
 " Did Update manager find and install updates (Pass if no updates are found,\n"
 " but Fail if updates are found but not installed)"
 msgstr ""
+"SCOP:\n"
+" Acest test va verifica dacă administratorul de actualizări funcționează "
+"corect.\n"
+"PAȘI:\n"
+" 1. Efectuați clic pe butonul Test pentru a porni administratorul de "
+"actualizări.\n"
+" 2. Urmăriți mesajele și dacă sunt găsite actualizări, instalați-le.\n"
+" 3. La terminarea procesului închideți prin apăsarea butonului Închide din "
+"colțul dreapta-jos.\n"
+"VERIFICARE:\n"
+" Au fost găsite și instalate actualizări (trece dacă nu sunt găsite "
+"actualizări eșuează dacă\n"
+" există actualizări dar nu sunt instalate)?"
 
 #. description
 #: ../jobs/user_apps.txt.in:22
@@ -2178,6 +2959,16 @@ msgid ""
 "VERIFICATION:\n"
 " Do you now have a new folder called Test Folder?"
 msgstr ""
+"SCOP:\n"
+" Acest test va verifica dacă administratorul de fișiere poate crea un dosar "
+"nou.\n"
+"PAȘI:\n"
+" 1. Efectuați clic pe Test pentru a deschide administratorul de fișiere.\n"
+" 2. În bara de meniu, efectuați clic pe Fișier -> Creează un dosar nou.\n"
+" 3. În câmpul numelui introduceți Dosar de test și apăsați pe tasta Enter.\n"
+" 4. Închideți administratorul de fișiere.\n"
+"VERIFICARE:\n"
+" Există un dosar nou, denumit Dosar de test?"
 
 #. description
 #: ../jobs/user_apps.txt.in:37
@@ -2194,6 +2985,22 @@ msgid ""
 "VERIFICATION:\n"
 " Do you now have a folder called Test Data?"
 msgstr ""
+"SCOP:\n"
+" Acest test va verifica dacă administratorul de fișiere poate copia un "
+"dosar\n"
+"PAȘI:\n"
+" 1. Efectuați clic pe butonul Test pentru a deschide navigatorul de "
+"fișiere.\n"
+" 2. Efectuați clic dreapta pe dosarul denumit Dosar de test și apoi alegeți "
+"Copiază.\n"
+" 3. Efectuați clic dreapta pe zona albă din fereastră și apoi alegeți "
+"Lipește.\n"
+" 4. Efectuați clic dreapta pe dosarul denumit Dosar de test (copie) și apoi "
+"alegeți Redenumește.\n"
+" 5. Introduceți numele de Date test și apăsați pe tasta Enter.\n"
+" 6. Închideți administratorul de fișiere.\n"
+"VERIFICARE:\n"
+" Există un dosar nou denumit Date test?"
 
 #. description
 #: ../jobs/user_apps.txt.in:54
@@ -2211,6 +3018,20 @@ msgid ""
 " Was the folder called Test Data successfully moved into the folder called "
 "Test Folder?"
 msgstr ""
+"SCOP:\n"
+" Acest test va verifica dacă administratorul de fișiere poate muta un "
+"dosar.\n"
+"PAȘI:\n"
+" 1. Efectuați clic pe butonul Test pentru a deschide administratorul de "
+"fișiere.\n"
+" 2. Efectuați clic și trageți dosarul denumit Date test pentru a-l plasa pe "
+"iconița denumită Dosar test.\n"
+" 3. Eliberați butonul mouse-ului.\n"
+" 4. Efectuați clic dublu pe dosarul denumit Dosar test pentru a-l deshide.\n"
+" 5. Închideți administratorul de fișiere.\n"
+"VERIFICARE:\n"
+" A fost mutat cu succes dosarul denumit Date test în dosarul denumit Dosar "
+"test?"
 
 #. description
 #: ../jobs/user_apps.txt.in:70
@@ -2226,6 +3047,19 @@ msgid ""
 "VERIFICATION:\n"
 " Do you now have a file called Test File 1?"
 msgstr ""
+"SCOP:\n"
+" Acest test va verifica dacă administratorul de fișiere poate crea un fișier "
+"nou.\n"
+"Pași:\n"
+" 1. Efectuați clic pe butonul Test pentru a deschide administratorul de "
+"fișiere.\n"
+" 2. Efectuați clic dreapta în zona albă și mergeți la Creează un document "
+"nou -> Document gol.\n"
+" 3. Introduceți numele Fișier test 1 în câmpul de nume și apăsați pe tasta "
+"Enter.\n"
+" 4. Închideți administratorul de fișiere.\n"
+"VERIFICARE:\n"
+" Există un fișier nou denumit Fișier test 1?"
 
 #. description
 #: ../jobs/user_apps.txt.in:85
@@ -2242,6 +3076,22 @@ msgid ""
 "VERIFICATION:\n"
 " Do you now have a file called Test File 2?"
 msgstr ""
+"SCOP:\n"
+" Acest test va verifica dacă administratorul de fișiere poate copia un "
+"fișier.\n"
+"PAȘI:\n"
+" 1. Efectuați clic pe butonul Test pentru a deschide administartorul de "
+"fișiere.\n"
+" 2. Efectuați clic dreapta pe fișierul denumit Fișier test 1 și apoi mergeți "
+"la Copiază.\n"
+" 3. Efectuați clic dreapta în zona albă și apoi alegeți Lipește.\n"
+" 4. Efectuați clic dreapta pe fișierul denumit Fișier test 1 (copie) și apoi "
+"alegeți redenumeștend click Redenumește.\n"
+" 5. Introduceți textul Fișier test 2 în câmpul de nume și apăsați pe tasta "
+"Enter.\n"
+" 6. Închideți administratorul de fișiere.\n"
+"VERIFICARE:\n"
+" Există un fișier denumit Fișier test 2?"
 
 #. description
 #: ../jobs/user_apps.txt.in:102
@@ -2258,6 +3108,19 @@ msgid ""
 "VERIFICATION:\n"
 " Was the file Test File 2 successfully moved into the Test Data folder?"
 msgstr ""
+"SCOP:\n"
+" Acest test va verifica dacă administratorul de fișiere poate muta un "
+"fișier.\n"
+"PAȘI:\n"
+" 1. Efectuați clic pe butonul Test pentru a deschide administartorul de "
+"fișiere.\n"
+" 2. Efectuați clic și trageți fișierul denumit Fișier test 2 pe iconița "
+"denumită Date test.\n"
+" 3. Eliberați butonul.\n"
+" 4. Efectuați clic pe iconița Date test pentru a deschide dosarul.\n"
+" 5. Închideți administratorul de fișiere.\n"
+"VERIFICARE:\n"
+" A fost mutat cu succes fișierul denumit Fișier test 2 în dosarul Date test?"
 
 #. description
 #: ../jobs/user_apps.txt.in:118
@@ -2272,6 +3135,18 @@ msgid ""
 "VERIFICATION:\n"
 "  Is Test File 1 now gone?"
 msgstr ""
+"SCOP:\n"
+" Acest test va verifica dacă administratorul de fișiere poate șterge un "
+"fișier.\n"
+"PAȘI:\n"
+" 1. Efectuați clic pe butonul Test pentru a deschide administratorul de "
+"fișiere.\n"
+" 2. Efectuați clic dreapta pe fișierul denumit Fișier test 1 și alegeți Mută "
+"la coșul de gunoi.\n"
+" 3. Verificați dacă fișierul denumit Fișier test 1 a fost șters.\n"
+" 4. Închideți administratorul de fișiere.\n"
+"VERIFICARE:\n"
+"  A fost șters fișierul denumit Fișier test 1?"
 
 #. description
 #: ../jobs/user_apps.txt.in:133
@@ -2287,6 +3162,18 @@ msgid ""
 "VERIFICATION:\n"
 " Has Test Folder been successfully deleted?"
 msgstr ""
+"SCOP:\n"
+" Acest test va verifica dacă administratorul de fișiere poate șterge un "
+"dosar.\n"
+"PAȘI:\n"
+" 1. Efectuați clic pe butonul Test pentru a deschide administratorul de "
+"fișiere.\n"
+" 2. Efectuați clic dreapta pe dosarul denumit Dosar test și alegeți Mută la "
+"coșul de gunoi.\n"
+" 3. Verificați dacă dosarul denumit Date test a fost șters.\n"
+" 4. Închideți administratorul de fișiere.\n"
+"VERIFICARE:\n"
+" A fost șters cu succes dosarul denumit Dosar test?"
 
 #. description
 #: ../jobs/user_apps.txt.in:207
@@ -2303,6 +3190,13 @@ msgid ""
 "VERIFICATION:\n"
 " Did the Ubuntu Test page load correctly?"
 msgstr ""
+"SCOP:\n"
+" Acest test va verifica dacă Firefox poate randa o pagină web obișnuită.\n"
+"PAȘI:\n"
+" 1. Efectuați clic pe butonul Test pentru a porni Firefox și pentru a "
+"vizualiza pagina de test.\n"
+"VERIFICARE:\n"
+" A fost încărcată corect pagina Testare Ubuntu?"
 
 #. description
 #: ../jobs/user_apps.txt.in:241
@@ -2317,6 +3211,16 @@ msgid ""
 "VERIFICATION:\n"
 " Did the applet display?"
 msgstr ""
+"SCOP:\n"
+" Acest test va verifica dacă Firefox poate rula o miniaplicație java într-o "
+"pagină web. Notă:\n"
+" acest test poate necesita instalarea de programe adiționale pentru a rula "
+"cu succes.\n"
+"PAȘI:\n"
+" 1. Efectuați clic pe butonul Test pentru a deschide Firefox în pagina de "
+"test Java și urmați instrucțiunile apărute.\n"
+"VERIFICARE:\n"
+" A fost afișată miniaplicația?"
 
 #. description
 #: ../jobs/user_apps.txt.in:255
@@ -2330,6 +3234,15 @@ msgid ""
 "VERIFICATION:\n"
 " Did you see the text?"
 msgstr ""
+"SCOP:\n"
+" Acest test va verifica dacă Firefox poate rula aplicații flash. Notă:\n"
+" acest test poate necesita instalarea de programe adiționale pentru a rula "
+"cu succes.\n"
+"PAȘI:\n"
+" 1. Efectuați clic pe butonul Test pentru a deschide Firefox și pentru a "
+"vizxualiza un test Flash.\n"
+"VERIFICARE:\n"
+" A fost afișat textul prezentat de aplicația Flash?"
 
 #. description
 #: ../jobs/user_apps.txt.in:269
@@ -2342,6 +3255,16 @@ msgid ""
 "VERIFICATION:\n"
 " Did the video play correctly?"
 msgstr ""
+"SCOP:\n"
+" Acest test va verifica dacă Firefox poate reda un clip video Flash. Notă: "
+"acest test\n"
+" poate necesita instalarea de programe suplimentare pentru a rula cu "
+"succes.\n"
+"PAȘI:\n"
+" 1. Efectuați clic pe butonul Test pentru a lansa Firefox și pentru a "
+"vizualiza un scurt clip video flash.\n"
+"VERIFICARE:\n"
+" A fost redat corect clipul video?"
 
 #. description
 #: ../jobs/user_apps.txt.in:283
@@ -2355,6 +3278,17 @@ msgid ""
 "VERIFICATION:\n"
 " Did the video play using a plugin?"
 msgstr ""
+"SCOP:\n"
+" Acest test va verifica dacă Firefox poate reda un clip video Quicktime "
+"(.mov).\n"
+" Notă: acest test  poate necesita instalarea de programe suplimentare "
+"pentru\n"
+" a rula cu succes.\n"
+"PAȘI:\n"
+" 1. Efectuați clic pe butonul Test pentru a lansa Firefox și pentru a "
+"vizualiza un scurt clip video.\n"
+"VERIFICARE:\n"
+" A fost redat corect clipul video utilizându-se un modul?"
 
 #. description
 #: ../jobs/user_apps.txt.in:297
@@ -2368,6 +3302,17 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to connect correctly and send/receive messages?"
 msgstr ""
+"SCOP:\n"
+" Acest test va verifica dacă Empathy (mesageria în timp real) funcționează "
+"corect.\n"
+"PAȘI:\n"
+" 1. Efectuați clic pe butonul Test pentru a rula Empathy.\n"
+" 2. Configurați clientul pentru a se conecta la serviciul de mesagerie "
+"Facebook.\n"
+" 3. Odată ce terminați testarea clientului, închideți Empathy pentru a "
+"continua cu restul testelor.\n"
+"VERIFICARE:\n"
+" V-ați putut conecta și ați putut primi/trimite mesaje?"
 
 #. description
 #: ../jobs/user_apps.txt.in:311
@@ -2381,6 +3326,16 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to connect correctly and send/receive messages?"
 msgstr ""
+"SCOP:\n"
+" Acest test va verifica dacă Empathy (mesageria în timp real) funcționează "
+"corect.\n"
+" 1. Efectuați clic pe butonul Test pentru a rula Empathy.\n"
+" 2. Configurați clientul pentru a se conecta la serviciul de mesagerie "
+"Google Talk (gtalk).\n"
+" 3. Odată ce terminați testarea clientului, închideți Empathy pentru a "
+"continua cu restul testelor.\n"
+"VERIFICARE:\n"
+" V-ați putut conecta și ați putut primi/trimite mesaje?"
 
 #. description
 #: ../jobs/user_apps.txt.in:325
@@ -2394,6 +3349,16 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to connect correctly and send/receive messages?"
 msgstr ""
+"SCOP:\n"
+" Acest test va verifica dacă Empathy (mesageria în timp real) funcționează "
+"corect.\n"
+" 1. Efectuați clic pe butonul Test pentru a rula Empathy.\n"
+" 2. Configurați clientul pentru a se conecta la serviciul de mesagerie "
+"Jabber.\n"
+" 3. Odată ce terminați testarea clientului, închideți Empathy pentru a "
+"continua cu restul testelor.\n"
+"VERIFICARE:\n"
+" V-ați putut conecta și ați putut primi/trimite mesaje?"
 
 #. description
 #: ../jobs/user_apps.txt.in:339
@@ -2407,6 +3372,16 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to connect correctly and send/receive messages?"
 msgstr ""
+"SCOP:\n"
+" Acest test va verifica dacă Empathy (mesageria în timp real) funcționează "
+"corect.\n"
+" 1. Efectuați clic pe butonul Test pentru a rula Empathy.\n"
+" 2. Configurați clientul pentru a se conecta la serviciul de mesagerie AOL "
+"Instant Messaging (AIM).\n"
+" 3. Odată ce terminați testarea clientului, închideți Empathy pentru a "
+"continua cu restul testelor.\n"
+"VERIFICARE:\n"
+" V-ați putut conecta și ați putut primi/trimite mesaje?"
 
 #. description
 #: ../jobs/user_apps.txt.in:353
@@ -2420,6 +3395,16 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to connect correctly and send/receive messages?"
 msgstr ""
+"SCOP:\n"
+" Acest test va verifica dacă Empathy (mesageria în timp real) funcționează "
+"corect.\n"
+" 1. Efectuați clic pe butonul Test pentru a rula Empathy.\n"
+" 2. Configurați clientul pentru a se conecta la serviciul de mesagerie "
+"Microsoft Network (MSN).\n"
+" 3. Odată ce terminați testarea clientului, închideți Empathy pentru a "
+"continua cu restul testelor.\n"
+"VERIFICARE:\n"
+" V-ați putut conecta și ați putut primi/trimite mesaje?"
 
 #. description
 #: ../jobs/user_apps.txt.in:367
@@ -2432,6 +3417,13 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to receive and read e-mail correctly?"
 msgstr ""
+"SCOP:\n"
+" Acest test va verifica dacă Evolution funcționează corect.\n"
+"PAȘI:\n"
+" 1. Efectuați clic pe butonul „Test” pentru a porni Evolution.\n"
+" 2. Configurați programulpentru a se conecta la un cont POP3.\n"
+"VERIFICARE:\n"
+" Ați putut primi și trimite mesaje e-mail?"
 
 #. description
 #: ../jobs/user_apps.txt.in:380
@@ -2444,6 +3436,13 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to receive and read e-mail correctly?"
 msgstr ""
+"SCOP:\n"
+" Acest test va verifica dacă Evolution funcționează corect.\n"
+"PAȘI:\n"
+" 1. Efectuați clic pe butonul „Test” pentru a porni Evolution.\n"
+" 2. Configurați programulpentru a se conecta la un cont IMAP.\n"
+"VERIFICARE:\n"
+" Ați putut primi și trimite mesaje e-mail?"
 
 #. description
 #: ../jobs/user_apps.txt.in:393
@@ -2456,6 +3455,13 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to send e-mail without errors?"
 msgstr ""
+"SCOP:\n"
+" Acest test va verifica dacă Evolution funcționează corect.\n"
+"PAȘI:\n"
+" 1. Efectuați clic pe butonul „Test” pentru a porni Evolution.\n"
+" 2. Configurați programulpentru a se conecta la un cont SMTP.\n"
+"VERIFICARE:\n"
+" Ați putut trimite mesaje e-mail?"
 
 #. description
 #: ../jobs/user_apps.txt.in:406
@@ -2467,6 +3473,13 @@ msgid ""
 "VERIFICATION:\n"
 " Did it launch correctly?"
 msgstr ""
+"SCOP:\n"
+" Acest test va verifica dacă programul gcalctool (Calculator) funcționează "
+"corect.\n"
+"PAȘI:\n"
+" Efectuați clic pe butonul „Test” pentru a deschide aplicația.\n"
+"VERIFICARE:\n"
+" Aplicația a pornit corect?"
 
 #. description
 #: ../jobs/user_apps.txt.in:419
@@ -2482,6 +3495,17 @@ msgid ""
 "VERIFICATION:\n"
 " Did the functions perform as expected?"
 msgstr ""
+"SCOP:\n"
+" Acest test va verifica dacă aplicația gcalctool (Calculator) funcționează "
+"corect.\n"
+"PAȘI:\n"
+" Efectuați clic pe butonul „Test” pentru a deschide aplicația și executați:\n"
+" 1. Funcții matematice simple (+,-,/,*)\n"
+" 2. Funcții matematice cu paranteze ((,))\n"
+" 3. Funcții matematice cu fracții\n"
+" 4. Funcții matematice cu numere raționale (cu virgulă)\n"
+"VERIFICARE:\n"
+" Operațiile au fost executate corect?"
 
 #. description
 #: ../jobs/user_apps.txt.in:436
@@ -2497,6 +3521,17 @@ msgid ""
 "VERIFICATION:\n"
 " Did the functions perform as expected?"
 msgstr ""
+"SCOP:\n"
+" Acest test va verifica dacă aplicația gcalctool (Calculator) funcționează "
+"corect.\n"
+"PAȘI:\n"
+" Efectuați clic pe butonul „Test” pentru a deschide aplicația și executați:\n"
+"  1. Introducere în memorie\n"
+"  2. Resetare memorie\n"
+"  3. Ștergere intrare ultimă în memorie\n"
+"  4. Ștergere memorie\n"
+"VERIFICARE:\n"
+" Operațiile au fost executate corect?"
 
 #. description
 #: ../jobs/user_apps.txt.in:453
@@ -2511,6 +3546,16 @@ msgid ""
 "VERIFICATION:\n"
 " Did the functions perform as expected?"
 msgstr ""
+"SCOP:\n"
+" Acest test va verifica dacă aplicația gcalctool (Calculator) funcționează "
+"corect.\n"
+"PAȘI:\n"
+" Efectuați clic pe butonul „Test” pentru a deschide aplicația și executați:\n"
+"  1. Tăiere\n"
+"  2. Copiere\n"
+"  3. Lipire\n"
+"VERIFICARE:\n"
+" Operațiile au fost executate corect?"
 
 #. description
 #: ../jobs/user_apps.txt.in:468
@@ -2524,6 +3569,14 @@ msgid ""
 "VERIFICATION:\n"
 " Did this perform as expected?"
 msgstr ""
+"SCOP:\n"
+" Acest test va verifica dacă aplicația gedit funcționează corect.\n"
+"PAȘI:\n"
+" 1. Efectuați clic pe butonul „Test” pentru a deschide aplicația.\n"
+" 2. Introduceți un text și salvați fișierul (rețineți numele fișierului), "
+"apoi închideți gedit.\n"
+"VERIFICARE:\n"
+" Operațiile au fost executate corect?"
 
 #. description
 #: ../jobs/user_apps.txt.in:482
@@ -2537,6 +3590,14 @@ msgid ""
 "VERIFICATION:\n"
 " Did this perform as expected?"
 msgstr ""
+"SCOP:\n"
+" Acest test va verifica dacă aplicația gedit funcționează corect.\n"
+"PAȘI:\n"
+" 1. Efectuați clic pe butonul „Test” pentru a deschide aplicația și "
+"redeschideți fișierul salvat anterior.\n"
+" 2. Editați, salvați fișierul și apoi închideți gedit.\n"
+"VERIFICARE:\n"
+" Operațiile au fost executate corect?"
 
 #. description
 #: ../jobs/user_apps.txt.in:495
@@ -2551,11 +3612,22 @@ msgid ""
 "VERIFICATION:\n"
 " Did this perform as expected?"
 msgstr ""
+"SCOP:\n"
+" Acest test va verifica dacă aplicația Gnome Terminal funcționează corect.\n"
+"PAȘI:\n"
+" 1. Efectuați clic pe butonul „Test” pentru a deschide Terminalul.\n"
+" 2. Introduceți „ls” și apăsați tasta Enter. Ar trebui să fie afișate o "
+"listă cu fișierele și dosarele din dosarul personal.\n"
+" 3. Închideți fereastra terminal.\n"
+"VERIFICARE:\n"
+" Operațiile au fost executate corect?"
 
 #. description
 #: ../jobs/wireless.txt.in:6
 msgid "Wireless scanning test. It scans and reports on discovered APs."
 msgstr ""
+"Test de scanare pentru rețele fără fir. Scanează și afișează punctele de "
+"acces descoperite."
 
 #. description
 #: ../jobs/wireless.txt.in:12
@@ -2570,6 +3642,15 @@ msgid ""
 "VERIFICATION:\n"
 "    Did a notification show and was the connection correctly established?"
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica conexiunea fără fir.\n"
+"PAȘI:\n"
+"    1. Efectuați clic pe iconița Rețea din panou.\n"
+"    2. Selectați o rețea din secțiunea „Rețele fără fir”.\n"
+"    3. Efectuați clic pe „Test” pentru a verifica dacă este posibilă "
+"stabilirea unei conexiuni HTTP.\n"
+"VERIFICARE:\n"
+"    A apărut o notificare, iar conexiunea a fost stabilită corect?"
 
 #. description
 #: ../jobs/wireless.txt.in:28
@@ -2577,6 +3658,8 @@ msgid ""
 "Tests that the systems wireless hardware can connect to a router using WPA "
 "security and the 802.11b/g protocols."
 msgstr ""
+"Se testează dacă placa de reța fără fir se poate conecta la un router "
+"folosind modelul de securitate WPA și protocoalele 802.11b/g."
 
 #. description
 #: ../jobs/wireless.txt.in:38
@@ -2591,6 +3674,8 @@ msgid ""
 "Tests that the systems wireless hardware can connect to a router using WPA "
 "security and the 802.11n protocol."
 msgstr ""
+"Se testează dacă placa de rețea fără fir se poate conecta la un router "
+"folosind modelul de securitate WPA și protocolul 802.11n."
 
 #. description
 #: ../jobs/wireless.txt.in:58
@@ -2605,6 +3690,8 @@ msgid ""
 "Tests the performance of a systems wireless connection through the iperf "
 "tool."
 msgstr ""
+"Se testează performanțele unei conexiuni fără fir a sistemului cu ajutorul "
+"utilitarului iperf."
 
 #. description
 #: ../jobs/wireless.txt.in:81
@@ -2612,6 +3699,8 @@ msgid ""
 "Tests the performance of a systems wireless connection through the iperf "
 "tool, using UDP packets."
 msgstr ""
+"Se testează performanțele unei conexiuni fără fir a sistemului cu ajutorul "
+"utilitarului iperf, utilizându-se pachete UDP."
 
 #: ../checkbox/application.py:66
 msgid "Usage: checkbox [OPTIONS]"
@@ -2635,19 +3724,19 @@ msgstr "Configurația suprascrie parametrii."
 
 #: ../checkbox/application.py:84
 msgid "Shorthand for --config=.*/jobs_info/blacklist."
-msgstr ""
+msgstr "Notare prescurtată pentru --config=.*/jobs_info/blacklist."
 
 #: ../checkbox/application.py:86
 msgid "Shorthand for --config=.*/jobs_info/blacklist_file."
-msgstr ""
+msgstr "Notare prescurtată pentru --config=.*/jobs_info/blacklist_file."
 
 #: ../checkbox/application.py:88
 msgid "Shorthand for --config=.*/jobs_info/whitelist."
-msgstr ""
+msgstr "Notare prescurtată pentru --config=.*/jobs_info/whitelist."
 
 #: ../checkbox/application.py:90
 msgid "Shorthand for --config=.*/jobs_info/whitelist_file."
-msgstr ""
+msgstr "Notare prescurtată pentru --config=.*/jobs_info/whitelist_file."
 
 #: ../checkbox/application.py:115
 msgid "Missing configuration file as argument.\n"
@@ -2655,12 +3744,12 @@ msgstr "Fișierul de configurație lipsește ca argument.\n"
 
 #: ../checkbox/job.py:84
 msgid "Command not found."
-msgstr ""
+msgstr "Comanda nu a fost găsită."
 
 #: ../checkbox/job.py:92
 #, python-format
 msgid "Command received signal %s: %s"
-msgstr ""
+msgstr "Comanda a primit semnalul %s: %s"
 
 #: ../checkbox/lib/signal.py:23
 msgid ""
@@ -2750,17 +3839,17 @@ msgid "Unknown signal"
 msgstr "Semnal necunoscut"
 
 #: ../checkbox_cli/cli_interface.py:31
-#: ../checkbox_urwid/urwid_interface.py:684
+#: ../checkbox_urwid/urwid_interface.py:917
 msgid "yes"
 msgstr "Da"
 
 #: ../checkbox_cli/cli_interface.py:32
-#: ../checkbox_urwid/urwid_interface.py:685
+#: ../checkbox_urwid/urwid_interface.py:918
 msgid "no"
 msgstr "nu"
 
 #: ../checkbox_cli/cli_interface.py:33
-#: ../checkbox_urwid/urwid_interface.py:686
+#: ../checkbox_urwid/urwid_interface.py:919
 msgid "skip"
 msgstr "omite"
 
@@ -2768,73 +3857,75 @@ msgstr "omite"
 msgid "Press any key to continue..."
 msgstr "Apăsaţi orice tastă pentru a continua..."
 
-#: ../checkbox_cli/cli_interface.py:135
+#: ../checkbox_cli/cli_interface.py:135 ../checkbox_cli/cli_interface.py:234
 #, python-format
 msgid "Please choose (%s): "
 msgstr "Vă rog alegeţi (%s): "
 
-#: ../checkbox_cli/cli_interface.py:323
+#: ../checkbox_cli/cli_interface.py:416
 msgid "test"
 msgstr "testare"
 
-#: ../checkbox_cli/cli_interface.py:347
+#: ../checkbox_cli/cli_interface.py:440
 msgid "test again"
 msgstr "testează din nou"
 
-#: ../checkbox_cli/cli_interface.py:353
+#: ../checkbox_cli/cli_interface.py:446
 msgid "Please type here and press Ctrl-D when finished:\n"
 msgstr "Vă rog scrieţi aici şi apăsaţi Ctrl-D când aţi terminat:\n"
 
-#: ../checkbox_urwid/urwid_interface.py:60
+#: ../checkbox_urwid/urwid_interface.py:66
 msgid "Checkbox System Testing"
 msgstr "Testarea sistemului Checkbox"
 
-#: ../checkbox_urwid/urwid_interface.py:99
+#: ../checkbox_urwid/urwid_interface.py:105
 msgid "Continue"
-msgstr ""
+msgstr "Continuă"
 
-#: ../checkbox_urwid/urwid_interface.py:192
-#: ../checkbox_urwid/urwid_interface.py:268
-#: ../checkbox_urwid/urwid_interface.py:416
+#: ../checkbox_urwid/urwid_interface.py:198
+#: ../checkbox_urwid/urwid_interface.py:274
+#: ../checkbox_urwid/urwid_interface.py:425
+#: ../checkbox_urwid/urwid_interface.py:547
 msgid "Previous"
 msgstr "Precedente"
 
-#: ../checkbox_urwid/urwid_interface.py:193
-#: ../checkbox_urwid/urwid_interface.py:269
-#: ../checkbox_urwid/urwid_interface.py:417
+#: ../checkbox_urwid/urwid_interface.py:199
+#: ../checkbox_urwid/urwid_interface.py:275
+#: ../checkbox_urwid/urwid_interface.py:426
+#: ../checkbox_urwid/urwid_interface.py:548
 msgid "Next"
-msgstr ""
+msgstr "Înainte"
 
 #. Show buttons
-#: ../checkbox_urwid/urwid_interface.py:414
+#: ../checkbox_urwid/urwid_interface.py:423
 msgid "Select All"
-msgstr ""
+msgstr "Selectează tot"
 
-#: ../checkbox_urwid/urwid_interface.py:415
+#: ../checkbox_urwid/urwid_interface.py:424
 msgid "Deselect All"
-msgstr ""
+msgstr "Deselectează tot"
 
-#: ../checkbox_urwid/urwid_interface.py:772
+#: ../checkbox_urwid/urwid_interface.py:1013
 msgid "Test"
-msgstr ""
+msgstr "Test"
 
-#: ../checkbox_urwid/urwid_interface.py:787
+#: ../checkbox_urwid/urwid_interface.py:1028
 msgid "Test Again"
 msgstr "Testează din nou"
 
-#: ../checkbox_gtk/gtk_interface.py:500
+#: ../checkbox_gtk/gtk_interface.py:503
 msgid "_Test Again"
 msgstr "_Testează din nou"
 
-#: ../checkbox_gtk/gtk_interface.py:548
+#: ../checkbox_gtk/gtk_interface.py:551
 msgid "Info"
 msgstr "Informații"
 
-#: ../checkbox_gtk/gtk_interface.py:567
+#: ../checkbox_gtk/gtk_interface.py:575
 msgid "Error"
 msgstr "Eroare"
 
-#: ../checkbox/user_interface.py:136
+#: ../checkbox/user_interface.py:137
 #, python-format
 msgid "Unable to start web browser to open %s."
 msgstr "Navigatorul web nu poate deschide %s."
@@ -2858,12 +3949,12 @@ msgstr ""
 #: ../plugins/apport_prompt.py:227
 #, python-format
 msgid "Test %(name)s from suite %(suite)s failed."
-msgstr ""
+msgstr "Testul %(name)s din suita %(suite)s a eșuat."
 
 #: ../plugins/apport_prompt.py:231
 #, python-format
 msgid "Test %s failed."
-msgstr ""
+msgstr "Testul %s a eșuat"
 
 #: ../plugins/apport_prompt.py:232
 msgid "Do you want to report a bug?"
@@ -2886,7 +3977,7 @@ msgstr "_Finalizează"
 msgid "Gathering information from your system..."
 msgstr "Culegere informaţii despre sistem..."
 
-#: ../plugins/intro_prompt.py:29
+#: ../plugins/intro_prompt.py:28
 msgid ""
 "Welcome to System Testing!\n"
 "\n"
@@ -2900,7 +3991,7 @@ msgstr ""
 "corespunzător. După ce ați terminat de rulat testele, veți putea vedea un "
 "raport pentru sistem."
 
-#: ../plugins/intro_prompt.py:34
+#: ../plugins/intro_prompt.py:33
 msgid ""
 "\n"
 "\n"
@@ -2908,6 +3999,11 @@ msgid ""
 "unresponsive. Please save all your work and close all other running "
 "applications before beginning the testing process."
 msgstr ""
+"\n"
+"\n"
+"Avertisment: Anumite teste pot îngheța sistemul sau îl pot face să răspundă "
+"foarte greu la comenzi. Salvați toate documentele deschise și închideți "
+"toate aplicațiile deschise înainte de a începe procesul de testare."
 
 #: ../plugins/launchpad_exchange.py:136
 #, python-format
@@ -2971,19 +4067,21 @@ msgstr ""
 msgid "No e-mail address provided, not submitting to Launchpad."
 msgstr "Nici o adresă email oferită, nu se trimite la Launchpad."
 
-#: ../plugins/launchpad_prompt.py:92
+#: ../plugins/launchpad_prompt.py:93
 msgid "Email address must be in a proper format."
 msgstr "Adresa de email trebuie să fie într-un format corect."
 
-#: ../plugins/launchpad_prompt.py:98
+#: ../plugins/launchpad_prompt.py:99
 msgid "Exchanging information with the server..."
 msgstr "Se schimbă date cu serverul..."
 
-#: ../plugins/launchpad_report.py:151
+#: ../plugins/launchpad_report.py:167
 msgid ""
 "The generated report seems to have validation errors,\n"
 "so it might not be processed by Launchpad."
 msgstr ""
+"Raportul generat pare a avea erori de validare,\n"
+"așa că ar putea să nu fie procesat în Launchpad."
 
 #: ../plugins/lock_prompt.py:63
 msgid "There is another checkbox running. Please close it first."
@@ -2991,7 +4089,7 @@ msgstr ""
 "Un alt checkbox este în execuție. Închideți-l pe primul înainte de a lansa "
 "checkbox din nou."
 
-#: ../plugins/recover_prompt.py:54
+#: ../plugins/recover_prompt.py:56
 msgid ""
 "Checkbox did not finish completely.\n"
 "Do you want to recover from the previous run?"
@@ -3005,7 +4103,7 @@ msgid "Running %s..."
 msgstr "Se execută %s..."
 
 #. Get results
-#: ../plugins/suites_prompt.py:108
+#: ../plugins/suites_prompt.py:110
 msgid "Select the suites to test"
 msgstr "Selectați seriile pentru testare"
 
@@ -3669,3 +4767,15 @@ msgstr "Conexiune la Internet stabilită complet"
 #~ "siguranță”.\n"
 #~ " 4.-Atât iconița de pe desktop cât și cea din meniul „Locuri” ar trebui să "
 #~ "dispară."
+
+#~ msgid ""
+#~ "Play back a sound on the default output and listen for it on the \\ default "
+#~ "input.  This makes the most sense when the output and input \\ are directly "
+#~ "connected, as with a patch cable."
+#~ msgstr ""
+#~ "Redați un sunet folosind ieșirea implicită și ascultați-l la \\ intrarea "
+#~ "implicită. Are sens dacă ieșirea și \\ intrarea implicită sunt conectate "
+#~ "direct, cum ar fi printr-un cablu."
+
+#~ msgid "Automated test to store output in checkbox report"
+#~ msgstr "Test automat pentru trecerea ieșirii în raportul checkbox"

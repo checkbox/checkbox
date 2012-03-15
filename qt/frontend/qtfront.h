@@ -52,6 +52,7 @@ public slots:
     void showTest(QString purpose, QString steps, QString verification, QString info, QString testType, QString testName, bool enableTestButton);
     QString showInfo(QString text, QStringList options, QString defaultoption);
     void setUiFlags(QVariantMap flags);
+    void updateAutoTestStatus(QString status, QString testName);
 
 private slots:
     void onFullTestsClicked();

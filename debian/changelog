@@ -1,3 +1,35 @@
+checkbox (0.13.5) precise; urgency=low
+
+  [Tiago Salem Herrmann]
+  * qt/frontend/qtfront.ui: If the test text is too long, then it is cut off
+    (LP: #950111)
+  * checkbox/user_interface.py, checkbox_qt/qt_interface.py,
+    plugins/user_interface.py, qt/frontend/qtfront.cpp, qt/frontend/qtfront.h:
+    Correctly update automated test execution status in the Selection tab
+    (LP: #950105).
+  * set interface.direction to NEXT if all the tests were executed and the user 
+    either analyzed or submitted the results. (LP: #956329)
+  * use the ui persistent storage to keep some ui configuration 
+    values. (LP: #937626)
+
+  [Jeff Lane]
+  * Reset default checkbox log level to INFO from DEBUG to make logs less
+    confusing and verbose. (LP: #949745) 
+  * Removed dependency on bluetooth/detect-output on the 
+    suspend/suspend_advanced job. (LP: #955375)
+
+  [Marc Tardif]
+  * Linted qt_interface which had a few syntax errors (LP: #949957)
+
+  [Daniel Manrique]
+  * Bumpted revision number to 0.13.5 in trunk
+  * jobs/keys.txt.in: Fix definition for keys/media-keys test which failed to
+    run (LP: #954480)
+  * Reverted feature to keep tests ordered, as the sortkey attribute causes
+    undesirable secondary effects.
+
+ -- Jeff Lane <jeff@ubuntu.com>  Wed, 14 Mar 2012 18:10:57 -0400
+
 checkbox (0.13.4) precise; urgency=low
 
   [Brendan Donegan]
@@ -54,18 +86,10 @@ checkbox (0.13.4) precise; urgency=low
     qt/frontend/qtfront.h, qt/frontend/treemodel.cpp, qt/frontend/treemodel.h:
     Makes it possible for the job selection tree to have more than 2 levels of
     children nodes.
-  * set interface.direction to NEXT if all the tests were executed and the user 
-    either analyzed or submitted the results. (LP: #956329)
-  * use the ui persistent storage to keep some ui configuration 
-    values. (LP: #937626)
-  
+ 
   [Tim Chen]
   * Modifications to removable_storage_test to handle cases where removable
     media is not mounted prior to test running. (LP: #944623)
-
-  [Jeff Lane]
-  * Reset default checkbox log level to INFO from DEBUG to make logs less
-    confusing and verbose. (LP: #949745) 
 
  -- Jeff Lane <jeff@ubuntu.com>  Thu, 08 Mar 2012 09:29:10 -0500
 

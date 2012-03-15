@@ -14,11 +14,11 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-02-22 04:51+0000\n"
-"X-Generator: Launchpad (build 14838)\n"
+"X-Launchpad-Export-Date: 2012-03-15 04:31+0000\n"
+"X-Generator: Launchpad (build 14933)\n"
 
 #. Title of the user interface
-#: ../gtk/checkbox-gtk.ui.h:1 ../gtk/checkbox-gtk.desktop.in.h:1
+#: ../gtk/checkbox-gtk.ui.h:1 ../qt/checkbox-qt.desktop.in.h:1
 #: ../plugins/user_interface.py:42
 msgid "System Testing"
 msgstr "Prebes del Sistema"
@@ -39,12 +39,12 @@ msgstr "Parámetros de configuración"
 msgid "Press any key to continue..."
 msgstr "Calque una tecla pa siguir..."
 
-#: ../checkbox_cli/cli_interface.py:135
+#: ../checkbox_cli/cli_interface.py:135 ../checkbox_cli/cli_interface.py:234
 #, python-format
 msgid "Please choose (%s): "
 msgstr "Por favor, escueya (%s): "
 
-#: ../checkbox_cli/cli_interface.py:350
+#: ../checkbox_cli/cli_interface.py:446
 msgid "Please type here and press Ctrl-D when finished:\n"
 msgstr "Por favor escriba equí y calque Ctrl-D cuando fine:\n"
 
@@ -97,8 +97,8 @@ msgstr "La direición de corréu tien de tar nun formatu afayaízu."
 #~ msgid "Running shell tests..."
 #~ msgstr "Executando prebes shell..."
 
-#: ../gtk/checkbox-gtk.ui.h:6 ../checkbox_cli/cli_interface.py:348
-#: ../checkbox_urwid/urwid_interface.py:261
+#: ../gtk/checkbox-gtk.ui.h:6 ../checkbox_cli/cli_interface.py:444
+#: ../checkbox_urwid/urwid_interface.py:267
 msgid "Further information:"
 msgstr "Más información:"
 
@@ -134,7 +134,7 @@ msgstr "_Prueba"
 msgid "_Yes"
 msgstr "_Sí"
 
-#: ../gtk/checkbox-gtk.desktop.in.h:2
+#: ../qt/checkbox-qt.desktop.in.h:2
 msgid "Test your system and submit results to the Ubuntu Friendly project"
 msgstr ""
 "Comprueba'l to sistema y unvia los resultaos al proyeutu Ubuntu Friendly"
@@ -156,7 +156,7 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear a tone?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 "    Esta prueba va verificar que los altavoces internos funcionen "
 "correchamente\n"
 "PASOS:\n"
@@ -181,7 +181,7 @@ msgid ""
 "    Did you hear a sound through the headphones and did the sound play "
 "without any distortion, clicks or other strange noises from your headphones?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 "    Esta prueba verificará que los auriculares coneutaos funcionen correcho\n"
 "PASOS:\n"
 "    1. Coneuta un par d'auriculares al preséu d'audio.\n"
@@ -203,7 +203,7 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear your speech played back?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 "\n"
 "Esta prueba comprueba que la grabación de soníu mediante'l micrófonu "
 "funciona correcho.\n"
@@ -229,7 +229,7 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear your speech played back?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 "\n"
 "Esta prueba comprueba que'l grabador de soníu, usando un micrófonu esternu, "
 "funciona correcho.\n"
@@ -280,6 +280,9 @@ msgid ""
 "input.  This makes the most sense when the output and input  are directly "
 "connected, as with a patch cable."
 msgstr ""
+"Reproducir un soníu na salida predeterminada y escuchala na entrada "
+"predeterminada. Esto tien xacíu cuando la salida y la entrada tán "
+"direutamente coneutaes, como con un cable de conexón."
 
 #. description
 #: ../jobs/autotest.txt.in:6
@@ -288,7 +291,7 @@ msgid ""
 "   This test will attempt to install and run the Autotest Suite.  These "
 "tests can be destructive, so this test is blacklisted by default."
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 "   Esta prueba intentará instalar y executar el Autotest Suit. Estes pruebes "
 "puen ser destructives, polo que tán na llista prieta de forma predefinida."
 
@@ -328,7 +331,7 @@ msgid ""
 "VERIFICATION:\n"
 "    Did all the steps work?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 "    Esta prueba verifica que la conexón bluetooth funciona correchamente\n"
 "PASOS:\n"
 "    1. Activar bluetooth en cualquier preséu móvil (PDA, smartphone, etc.).\n"
@@ -357,7 +360,7 @@ msgid ""
 "VERIFICATION:\n"
 "    Were all files copied correctly?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 "Esta prueba comprueba que pues tresferir información a traviés de una "
 "conexón Bluetooth\n"
 "PASOS:\n"
@@ -386,7 +389,7 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear the sound you recorded in the bluetooth"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 "Esta prueba comprobará que pues grabar y escuchar audio con un preséu "
 "d'audio Bluetooth\n"
 "PASOS:\n"
@@ -416,7 +419,7 @@ msgid ""
 "VERIFICATION:\n"
 "    Were you able to enter some text with the bluetooth keyboard?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 "    Esta prueba verifica que se pue usar un tecláu bluetooth\n"
 "PASOS:\n"
 "    1. Activar el tecláu bluetooth\n"
@@ -443,7 +446,7 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the mouse work as expected?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 "    Esta prueba verifica que se pue usar un mur bluetooth\n"
 "   PASOS:\n"
 "    1. Activar el mur bluetooth\n"
@@ -488,7 +491,7 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you see the image?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 "    Esta prueba verifica que funciona la cámara incorporada\n"
 "PASOS:\n"
 "    1. Primi en prueba p'amosar una imaxe fixa de la cámara\n"
@@ -527,7 +530,7 @@ msgid ""
 "VERIFICATION:\n"
 "   Did the sample play correctly?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 "   Esta prueba verifica la capacidá del sistema pa reproducir ficheros "
 "d'audio Ogg Vorbis.\n"
 "PASOS:\n"
@@ -547,7 +550,7 @@ msgid ""
 "VERIFICATION:\n"
 "   Did the sample play correctly?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 "   Esta prueba verifica la capacidá del sistema pa reproducir ficheros "
 "d'audio Wave.\n"
 "PASOS:\n"
@@ -701,7 +704,7 @@ msgid ""
 "VERIFICATION:\n"
 "   Did the authentication procedure work correctly?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 "   Esta prueba verifica qu'un llector de buelgues dactilares funcionará "
 "correutamente p'aniciar sesión nel sistema.\n"
 "REQUISITOS PREVIOS:\n"
@@ -736,7 +739,7 @@ msgid ""
 "VERIFICATION:\n"
 "   Did the authentication procedure work correctly?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 "    Esta prueba verificará que se pue usar un llector de buelgues dixitales "
 "pa desbloquiar la pantalla.\n"
 "PASOS:\n"
@@ -810,7 +813,7 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the resolution change as expected?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 "     Esta prueba va comprobar que la interfaz gráfica d'usuariu pue "
 "utilizase dempués de camudar manualmente la resolución de la pantalla\n"
 "PASOS:\n"
@@ -837,7 +840,7 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the display rotation change as expected?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 "     Esta prueba va comprobar la rotación de la pantalla\n"
 "PASOS:\n"
 "     1. Abri l'aplicación de Pantalles\n"
@@ -880,7 +883,7 @@ msgid ""
 "VERIFICATION:\n"
 "    Is this acceptable for your display?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 "     Esta prueba verifica la resolución predeterminada de la pantalla\n"
 "PASOS:\n"
 "     1. Esta pantalla usa la siguiente resolución:\n"
@@ -913,7 +916,7 @@ msgid ""
 "VERIFICATION:\n"
 "    Do you see color bars and static?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 "     Esta prueba verificará  la pantalla predeterminada\n"
 "PASOS:\n"
 "     1. Primi en Prueba p'amosar una prueba de videu.\n"
@@ -952,7 +955,7 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the screen appear to be working for each mode?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 "     Esta prueba pasa polos diferentes moos de videu deteutaos\n"
 "PASOS:\n"
 "     1. Primi «Prueba» pa entamar a comprobar los diferentes moos de videu\n"
@@ -1004,7 +1007,7 @@ msgid ""
 "    Did the system successfully hibernate and did it work properly after "
 "waking up?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 "     Esta prueba va comprobar que'l to sistema pue ivernar con ésitu (si "
 "ésti ye compatible)\n"
 "PASOS:\n"
@@ -1152,7 +1155,7 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the pointing device work as expected?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 "    Esta prueba va verificar el preséu de punteru\n"
 "PASOS:\n"
 "    1. Muevi'l cursor usando'l preséu de punteru o toca la pantalla.\n"
@@ -1171,7 +1174,7 @@ msgid ""
 "VERIFICATION:\n"
 "    Is your keyboard working properly?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 "     Esta prueba verificará'l to tecláu\n"
 "PASOS:\n"
 "     1. Primi en prueba\n"
@@ -1200,7 +1203,7 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the brightness change following to your key presses?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 "     Esti esame va poner a prueba la tecla de brillu\n"
 "PASOS:\n"
 "     1. Primi los botones de brillu de tecláu\n"
@@ -1217,7 +1220,7 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the volume change following to your key presses?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 "    Esti esame va poner a prueba les tecles de volume\n"
 "PASOS:\n"
 "    1. Primi los botones de volume del tecláu\n"
@@ -1234,7 +1237,7 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the volume mute following your key presses?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 "    Esta prueba va verificar la tecla de silenciu\n"
 "PASOS:\n"
 "    1. Primi la tecla de silenciu nel tecláu\n"
@@ -1252,7 +1255,7 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the system go to sleep after pressing the sleep key?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 "    Esto va probar la tecla d'ivernar\n"
 "PASOS:\n"
 "    1. Primi la tecla d'ivernar del tecláu\n"
@@ -1270,7 +1273,7 @@ msgid ""
 "VERIFICATION:\n"
 "    Did a notification appear showing the battery status?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 "     Esta prueba va verificar la tecla d'información de la batería\n"
 "PASOS:\n"
 "     1. Primi la tecla d'información de la batería nel tecláu\n"
@@ -1288,7 +1291,7 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the wireless go off on the first press and on again on the second?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 "    Esto va probar la tecla de la señal inalámbrica\n"
 "PASOS:\n"
 "    1. Primi la tecla de señal inalámbrica del tecláu\n"
@@ -1328,187 +1331,187 @@ msgid "Audio tests"
 msgstr "Prebes de soníu"
 
 #. description
-#: ../jobs/local.txt.in:8
+#: ../jobs/local.txt.in:10
 msgid "Autotest Suite tests"
 msgstr "Pruebes de la suite Autotest"
 
 #. description
-#: ../jobs/local.txt.in:13
+#: ../jobs/local.txt.in:17
 msgid "Bluetooth tests"
 msgstr "Pruebes de Bluetooth"
 
 #. description
-#: ../jobs/local.txt.in:18
+#: ../jobs/local.txt.in:24
 msgid "Camera tests"
 msgstr "Pruebes de cámara"
 
 #. description
-#: ../jobs/local.txt.in:23
+#: ../jobs/local.txt.in:31
 msgid "Codec tests"
 msgstr "Pruebes de códecs"
 
 #. description
-#: ../jobs/local.txt.in:28
+#: ../jobs/local.txt.in:38
 msgid "CPU tests"
 msgstr "Pruebes de CPU"
 
 #. description
-#: ../jobs/local.txt.in:33
+#: ../jobs/local.txt.in:45
 msgid "System Daemon tests"
 msgstr "Pruebes de degorriu de sistema"
 
 #. description
-#: ../jobs/local.txt.in:38
+#: ../jobs/local.txt.in:52
 msgid "Disk tests"
 msgstr "Prebes de discu"
 
 #. description
-#: ../jobs/local.txt.in:43
+#: ../jobs/local.txt.in:59
 msgid "Fingerprint reader tests"
 msgstr "Prebes de llector de buelga dactilar"
 
 #. description
-#: ../jobs/local.txt.in:48
+#: ../jobs/local.txt.in:66
 msgid "Firewire disk tests"
 msgstr "Prebes de discos firewire"
 
 #. description
-#: ../jobs/local.txt.in:53
+#: ../jobs/local.txt.in:73
 msgid "Floppy disk tests"
 msgstr "Pruebes de disquete"
 
 #. description
-#: ../jobs/local.txt.in:58
+#: ../jobs/local.txt.in:80
 msgid "Graphics tests"
 msgstr "Pruebes de gráficos"
 
 #. description
-#: ../jobs/local.txt.in:63
+#: ../jobs/local.txt.in:87
 msgid "Hibernation tests"
 msgstr "Pruebes d'ivernación"
 
 #. description
-#: ../jobs/local.txt.in:68
+#: ../jobs/local.txt.in:94
 msgid "Informational tests"
 msgstr "Pruebes informatives"
 
 #. description
-#: ../jobs/local.txt.in:73
+#: ../jobs/local.txt.in:101
 msgid "Input Devices tests"
 msgstr "Pruebes de preseos d'entrada"
 
 #. description
-#: ../jobs/local.txt.in:78
+#: ../jobs/local.txt.in:108
 msgid "Software Installation tests"
 msgstr "Pruebes d'instalación de software"
 
 #. description
-#: ../jobs/local.txt.in:83
+#: ../jobs/local.txt.in:115
 msgid "Hotkey tests"
 msgstr "Pruebes d'atayos de tecláu"
 
 #. description
-#: ../jobs/local.txt.in:88
+#: ../jobs/local.txt.in:122
 msgid "Linux Test Project tests"
 msgstr "Pruebes del proyeutu Linux Test"
 
 #. description
-#: ../jobs/local.txt.in:93
+#: ../jobs/local.txt.in:129
 msgid "Mago Automated Desktop Testing"
 msgstr "Prueba del escritoriu automatizáu Mago"
 
 #. description
-#: ../jobs/local.txt.in:98
+#: ../jobs/local.txt.in:136
 msgid "Media Card tests"
 msgstr "Pruebes de tarxetes multimedia"
 
 #. description
-#: ../jobs/local.txt.in:103
+#: ../jobs/local.txt.in:143
 msgid "Memory tests"
 msgstr "Pruebes de memoria"
 
 #. description
-#: ../jobs/local.txt.in:108
+#: ../jobs/local.txt.in:150
 msgid "Miscellaneous tests"
 msgstr "Pruebes miscelánees"
 
 #. description
-#: ../jobs/local.txt.in:113
+#: ../jobs/local.txt.in:157
 msgid "Monitor tests"
 msgstr "Pruebes de monitor"
 
 #. description
-#: ../jobs/local.txt.in:118
+#: ../jobs/local.txt.in:164
 msgid "Networking tests"
 msgstr "Pruebes de rede"
 
 #. description
-#: ../jobs/local.txt.in:123
+#: ../jobs/local.txt.in:171
 msgid "Optical Drive tests"
 msgstr "Pruebes de discos ópticos"
 
 #. description
-#: ../jobs/local.txt.in:128
+#: ../jobs/local.txt.in:178
 msgid "Panel Clock Verification tests"
 msgstr "Pruebes de verificación del reló del panel"
 
 #. description
-#: ../jobs/local.txt.in:133
+#: ../jobs/local.txt.in:185
 msgid "PCMCIA/PCIX Card tests"
 msgstr "Pruebes de tarxetes PCMCIA/PCIX"
 
 #. description
-#: ../jobs/local.txt.in:138
+#: ../jobs/local.txt.in:192
 msgid "Peripheral tests"
 msgstr "Prebes de periféricos"
 
 #. description
-#: ../jobs/local.txt.in:143
+#: ../jobs/local.txt.in:199
 msgid "Phoronix Test Suite tests"
 msgstr "Pruebes de Phoronix Test Suite"
 
 #. description
-#: ../jobs/local.txt.in:148
+#: ../jobs/local.txt.in:206
 msgid "Power Management tests"
 msgstr "Pruebes de xestión d'enerxía"
 
 #. description
-#: ../jobs/local.txt.in:153
+#: ../jobs/local.txt.in:213
 msgid "QA Regression tests"
 msgstr "Pruebes de regresión QA"
 
 #. description
-#: ../jobs/local.txt.in:158
+#: ../jobs/local.txt.in:220
 msgid "Server Services checks"
 msgstr "Comprueba los servicios del sirvidor"
 
 #. description
-#: ../jobs/local.txt.in:163
+#: ../jobs/local.txt.in:227
 msgid "Suspend tests"
 msgstr "Pruebes de suspensión"
 
 #. description
-#: ../jobs/local.txt.in:168
+#: ../jobs/local.txt.in:234
 msgid "Unity tests"
 msgstr "Pruebes d'Unity"
 
 #. description
-#: ../jobs/local.txt.in:173
+#: ../jobs/local.txt.in:241
 msgid "USB tests"
 msgstr "Pruebes d'USB"
 
 #. description
-#: ../jobs/local.txt.in:178
+#: ../jobs/local.txt.in:248
 msgid "User Applications"
 msgstr "Aplicaciones d'usuariu"
 
 #. description
-#: ../jobs/local.txt.in:183
+#: ../jobs/local.txt.in:255
 msgid "Wireless networking tests"
 msgstr "Pruebes de redes inalámbriques"
 
 #. description
-#: ../jobs/local.txt.in:188
+#: ../jobs/local.txt.in:262
 msgid "Stress tests"
 msgstr "Pruebes d'estrés"
 
@@ -1527,7 +1530,7 @@ msgid ""
 "PURPOSE:\n"
 "   This test installs and runs the Mago Automated Desktop Testing suite."
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 "   Esta prueba instala y executa la suite de pruebes de automatizaes "
 "d'escritoriu Mago"
 
@@ -1874,7 +1877,7 @@ msgid ""
 "    Did your screen change temporarily to a text console and then switch "
 "back to your current session?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 "    Esta prueba comprobará que'l sistema pue camudar a un terminal virtual y "
 "volver a X\n"
 "PASOS:\n"
@@ -1889,7 +1892,7 @@ msgid "Run Firmware Test Suite (fwts) automated tests."
 msgstr "Executa les pruebes automátiques del  Firmware Test Suite(fwts)."
 
 #. description
-#: ../jobs/miscellanea.txt.in:30
+#: ../jobs/miscellanea.txt.in:29
 msgid ""
 "ipmitool is required for ipmi testing. This checks for ipmitool and installs "
 "it if not available."
@@ -1912,6 +1915,8 @@ msgid ""
 "   Determine if we need to run tests specific to portable computers that may "
 "not apply to desktops."
 msgstr ""
+"   Determina si necesita realizar pruebes específiques pa portátiles nun "
+"aplicables a equipos d'escritoriu."
 
 #. description
 #: ../jobs/miscellanea.txt.in:51
@@ -1938,7 +1943,7 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the desktop displayed correctly on both screens?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 "    Esta prueba comprobará'l puertu VGA. Omítela si'l to equipu nun tien un "
 "puertu VGA.\n"
 "PASOS:\n"
@@ -1959,7 +1964,7 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the desktop displayed correctly on both screens?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 "    Esta prueba revisará'l puertu DVI. Omite esti pasu si'l to sistema nun "
 "tien un puertu DVI.\n"
 "PASOS:\n"
@@ -1980,7 +1985,7 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the desktop displayed correctly on both screens?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 "    Esta prueba revisará'l puertu DisplayPort. Omite esti pasu si'l to "
 "sistema nun tien un puertu DisplayPort.\n"
 "PASOS:\n"
@@ -2001,7 +2006,7 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the desktop displayed correctly on both screens?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 "    Esta prueba revisará'l puertu HDMI. Omite esti pasu si'l to sistema nun "
 "tien un puertu HDMI.\n"
 "PASOS:\n"
@@ -2022,7 +2027,7 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the desktop displayed correctly on both screens?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 "    Esta prueba revisará'l puertu S_VIDEO. Omite esti pasu si'l to sistema "
 "nun tien un puertu S_VIDEO.\n"
 "PASOS:\n"
@@ -2043,7 +2048,7 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the desktop displayed correctly on both screens?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 "    Esta prueba revisará'l puertu RCA. Omite esti pasu si'l sistema nun tien "
 "un puertu RCA.\n"
 "PASOS:\n"
@@ -2063,7 +2068,7 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the the monitor go blank and turn on again?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 "    Esta prueba va revisar la capacidá d'aforru d'enerxía del monitor.\n"
 "PASOS:\n"
 "    1. Primi «Prueba» pa probar les capacidaes d'aforru d'enerxía del "
@@ -2100,7 +2105,7 @@ msgid ""
 "VERIFICATION:\n"
 "    Did a notification show and was the connection correctly established?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 "    Esta prueba va revisar la to conexón cableada.\n"
 "PASOS:\n"
 "    1. Primi nel iconu de rede que s'alcuentra nel panel superior\n"
@@ -2126,7 +2131,7 @@ msgid ""
 "VERIFICATION:\n"
 "    Did a notification show and was the connection correctly established?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 "    Esta prueba revisará que se pue configurar y coneutar un módem DSL.\n"
 "PASOS:\n"
 "    1. Coneuta la llinia de teléfonu al equipu\n"
@@ -2197,7 +2202,7 @@ msgid "Test to detect the optical drives"
 msgstr "Prueba pa deteutar les unidaes óptiques"
 
 #. description
-#: ../jobs/optical.txt.in:13
+#: ../jobs/optical.txt.in:18
 msgid "Optical Storage device read tests"
 msgstr "Pruebes de llectura de preséu d'almacenamientu ópticu"
 
@@ -2247,7 +2252,7 @@ msgid ""
 "VERIFICATION:\n"
 "    Did all the steps work?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 "    Esta prueba va comprobar les capacidaes de reproducción de CD d'audiu.\n"
 "PASOS:\n"
 "    1. Introduz un CD d'audiu na unidá óptica\n"
@@ -2308,7 +2313,7 @@ msgid ""
 "VERIFICATION:\n"
 "    Did all the steps work?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 "    Esta prueba va revisar les capacidaes de reproducción de películes en "
 "DVD. Decátate que pue precisar la instalación de software non-llibre "
 "(códecs, reproductor, etc).\n"
@@ -2335,7 +2340,7 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the file play?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 "    Esta prueba revisará les capacidaes de reproducción de DVD.\n"
 "PASOS:\n"
 "    1. Inxerta un DVD que contenga cualesquier película na unidá óptica\n"
@@ -2353,7 +2358,7 @@ msgid ""
 "   Is the clock in the upper right corner of your desktop displaying the "
 "correct date and time for your timezone?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 "    Esta prueba verifica que'l reló d'escritoriu amuesa la data y hora "
 "correutes\n"
 "VERIFICACIÓN:\n"
@@ -2393,7 +2398,7 @@ msgid ""
 "VERIFICATION:\n"
 "   Did your system restart and bring up the GUI login cleanly?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 "   Esta prueba comprobará que pues reaniciar el sistema dende'l menú del "
 "escritoriu\n"
 "PASOS:\n"
@@ -2418,7 +2423,7 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the device correctly detected?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 "    Va comprobase qu'una ranura PCMCIA o ExpressCard pue deteutar los "
 "preseos inxertaos\n"
 "PASOS:\n"
@@ -2442,7 +2447,7 @@ msgid ""
 "VERIFICATION:\n"
 "   Were you able to print a test page to the network printer?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 "   Va comprobase que pue usase una imprentadora de rede.\n"
 "PASOS:\n"
 "   1. Asegúrate de qu'hai una imprentadora disponible na to rede\n"
@@ -2475,7 +2480,7 @@ msgid ""
 "VERIFICATION:\n"
 "   Was the connection correctly established?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 "   Esta prueba comprobará que'l módem USB DSL o de banda ancha móvil "
 "funciona.\n"
 "PASOS:\n"
@@ -2498,7 +2503,7 @@ msgid ""
 "   This test will download and install the Phoronix Test Suite and run some "
 "selected benchmarking tests."
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 "   Esta prueba descargará ya instalará Phoronix Test Suite y executará "
 "dalgunes pruebes de rendimientu."
 
@@ -2514,7 +2519,7 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the system shutdown and rebooted correctly?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 "    Esta prueba revisará'l ciclu d'apagáu/arranque del sistema\n"
 "PASOS:\n"
 "    1. Apaga l'equipu equipu\n"
@@ -2533,7 +2538,7 @@ msgid ""
 "VERIFICATION:\n"
 "   Does closing your laptop lid cause your system to suspend?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 "    Esta prueba revisará los sensores de la tapa\n"
 "PASOS:\n"
 "    1. Zarra la tapa del to portátil\n"
@@ -2551,7 +2556,7 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the screen turn off while the lid was closed?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 "    Esta prueba comprobará los sensores de la tapa\n"
 "PASOS:\n"
 "    1. Primi en «Prueba»\n"
@@ -2572,7 +2577,7 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the system resume when the lid was opened?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 "    Esta prueba revisará los sensores de la tapa\n"
 "PASOS:\n"
 "    1. Primi en «Prueba»\n"
@@ -2650,7 +2655,7 @@ msgid ""
 "    Create jobs that use the CPU as much as possible for two hours. The test "
 "is considered passed if the system does not freeze."
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 "    Crea xeres qu'usen la CPU tanto como ye posible durante dos hores. La "
 "prueba considérase superada si'l sistema nun se conxela."
 
@@ -2670,7 +2675,7 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the system successfully hibernate and wake 30 times?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 "    Esta prueba entra y vuelve a entamar dende la ivernación 30 vegaes\n"
 "PASOS:\n"
 "    1. Asegúrate que'l to sistema nun tien contraseña de prendíu o de discu "
@@ -2697,7 +2702,7 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the system successfully suspend and resume 30 times?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 "    Esti test entrará y saldrá de suspensión por 30 vegaes\n"
 "PASOS:\n"
 "    1. Primi en \"Probar\" p'aniciar el test (mui llargu)\n"
@@ -2755,7 +2760,7 @@ msgid ""
 "VERIFICATION:\n"
 "    Did your system suspend and resume correctly?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 "    Esti test verificará les funciones de suspender y reaniciar\n"
 "PASOS:\n"
 "    1. Primi en \"Probar\" y el sistema suspenderáse por cerca de 30-60 "
@@ -2807,7 +2812,7 @@ msgid ""
 "VERIFICATION:\n"
 "    Does the display work normally after resuming from suspend?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 "    Esti test verificará si la pantalla ta correuta dempués de suspender y "
 "reaniciar\n"
 "VERIFICACIÓN:\n"
@@ -2857,7 +2862,7 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the data correctly transferred?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 "    Esti test unviará la imaxe 'JPEG_Color_Image_Ubuntu.jpg' a un preséu "
 "especificáu\n"
 "PASOS:\n"
@@ -2878,7 +2883,7 @@ msgid ""
 "VERIFICATION:\n"
 "    Did your display look fine in the detected mode?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 "    Esti test alternará ente los moos de pantalla deteutaos\n"
 "PASOS:\n"
 "    1. Primi en \"Probar\" y la pantalla alternará ente los moos deteutaos\n"
@@ -3015,7 +3020,7 @@ msgid ""
 "VERIFICATION:\n"
 "    Does the keyboard work?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 "    Esti test verificará la conexón USB.\n"
 "PASOS:\n"
 "    1. Coneuta un tecláu USB al equipu.\n"
@@ -3034,7 +3039,7 @@ msgid ""
 "VERIFICATION:\n"
 "    Does the mouse work correctly?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 "    Esta prueba comprobará la conexón USB.\n"
 "PASOS:\n"
 "    1. Coneuta un mur USB nel equipu.\n"
@@ -3102,7 +3107,7 @@ msgstr ""
 "    La verificación d'esti test ye automática."
 
 #. description
-#: ../jobs/usb.txt.in:96
+#: ../jobs/usb.txt.in:80
 msgid ""
 "This test is automated and requires that you plug in at least one usb "
 "storage device before running checkbox."
@@ -3125,7 +3130,7 @@ msgid ""
 "VERIFICATION:\n"
 "    Do all USB slots work with the device?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 "    Esti test verificará la conexón USB.\n"
 "PASOS:\n"
 "    1. Coneuta un preséu d'almacenamientu USB nun slot USB esternu del "
@@ -3151,7 +3156,7 @@ msgid ""
 " Did Update manager find and install updates (Pass if no updates are found,\n"
 " but Fail if updates are found but not installed)"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 " Esti test verificará si'l Xestor d'anovamientos pue alcontrar "
 "anovamientos.\n"
 "PASOS:\n"
@@ -3194,7 +3199,7 @@ msgid ""
 "VERIFICATION:\n"
 " Do you now have a folder called Test Data?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 " Esti test verificará si'l to navegador de ficheros pue copiar una carpeta.\n"
 "PASOS:\n"
 " 1. Primi en \"Probar\" p'abrir el Navegador de ficheros.\n"
@@ -3225,7 +3230,7 @@ msgid ""
 " Was the folder called Test Data successfully moved into the folder called "
 "Test Folder?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 " Esti test va verificar si'l navegador de ficheros pue mover una carpeta.\n"
 "PASOS:\n"
 " 1. Primi en \"Probar\" p'abrir el navegador de ficheros.\n"
@@ -3252,7 +3257,7 @@ msgid ""
 "VERIFICATION:\n"
 " Do you now have a file called Test File 1?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 " Esti test va verificar si'l navegador de ficheros pue crear un ficheru "
 "nuevu.\n"
 "PASOS:\n"
@@ -3279,7 +3284,7 @@ msgid ""
 "VERIFICATION:\n"
 " Do you now have a file called Test File 2?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 " Esti test va verificar si'l navegador de ficheros pue copiar un ficheru.\n"
 "PASOS:\n"
 " 1. Primi en \"Probar\" p'abrir el navegador de ficheros.\n"
@@ -3308,7 +3313,7 @@ msgid ""
 "VERIFICATION:\n"
 " Was the file Test File 2 successfully moved into the Test Data folder?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 " Esti test va verificar si'l navegador de ficheros pue mover un ficheru.\n"
 "PASOS:\n"
 " 1. Primi en \"Probar\" p'abrir el navegador de ficheros.\n"
@@ -3334,7 +3339,7 @@ msgid ""
 "VERIFICATION:\n"
 "  Is Test File 1 now gone?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 " Esti test verificará si'l navegador de ficheros pue desaniciar un ficheru.\n"
 "PASOS:\n"
 " 1. Primi en \"Probar\" p'abrir el navegador de ficheros.\n"
@@ -3359,7 +3364,7 @@ msgid ""
 "VERIFICATION:\n"
 " Has Test Folder been successfully deleted?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 " Esti test verificará si'l navegador de ficheros pue desaniciar una "
 "carpeta.\n"
 "PASOS:\n"
@@ -3386,7 +3391,7 @@ msgid ""
 "VERIFICATION:\n"
 " Did the Ubuntu Test page load correctly?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 " Esti test verificará si Firefox pue renderizar una páxina web básica.\n"
 "PASOS:\n"
 " 1. Seleiciona \"Probar\" p'aniciar Firefox y ver la páxina web de test.\n"
@@ -3406,7 +3411,7 @@ msgid ""
 "VERIFICATION:\n"
 " Did the applet display?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 " Esti test va verificar si Firefox pue executar una miniaplicación Java nuna "
 "páxina web. Nota:\n"
 " esto pue desixir la instalación de software adicional pa concluyir "
@@ -3429,7 +3434,7 @@ msgid ""
 "VERIFICATION:\n"
 " Did you see the text?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 " Esti test va verificar si Firefox pue executar complementos flash. Nota: "
 "esto pue\n"
 " desixir la instalación de software adicional pa completar la prueba.\n"
@@ -3449,7 +3454,7 @@ msgid ""
 "VERIFICATION:\n"
 " Did the video play correctly?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 " Esti test va verificar si Firefox pue executar un videu flash. Nota: esto "
 "pue\n"
 " desixir la instalación de software adicional pa completar la prueba.\n"
@@ -3483,7 +3488,7 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to connect correctly and send/receive messages?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 " Esti test verificará si'l veceru de mensaxería Empathy funciona.\n"
 "PASOS:\n"
 " 1. Seleiciona \"Probar\" p'aniciar Empathy.\n"
@@ -3505,7 +3510,7 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to connect correctly and send/receive messages?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 " Esti test verificará si'l veceru de mensaxería Empathy funciona.\n"
 "PASOS:\n"
 " 1. Seleiciona \"Probar\" p'aniciar Empathy.\n"
@@ -3527,7 +3532,7 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to connect correctly and send/receive messages?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 " Esti test verificará si'l veceru de mensaxería Empathy funciona.\n"
 "PASOS:\n"
 " 1. Seleiciona \"Probar\" p'aniciar Empathy.\n"
@@ -3549,7 +3554,7 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to connect correctly and send/receive messages?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 " Esti test verificará si'l veceru de mensaxería Empathy funciona.\n"
 "PASOS:\n"
 " 1. Seleiciona \"Probar\" p'aniciar Empathy.\n"
@@ -3572,7 +3577,7 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to connect correctly and send/receive messages?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 " Esti test verificará si'l veceru de mensaxería Empathy funciona.\n"
 "PASOS:\n"
 " 1. Seleiciona \"Probar\" p'aniciar Empathy.\n"
@@ -3593,7 +3598,7 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to receive and read e-mail correctly?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 " Esti test va verificar si Evolution funciona.\n"
 "PASOS:\n"
 " 1. Primi nel botón \"Probar\" p'abrir Evolution.\n"
@@ -3612,7 +3617,7 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to receive and read e-mail correctly?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 " Esti test va verificar si Evolution funciona.\n"
 "PASOS:\n"
 " 1. Primi nel botón \"Probar\" p'abrir Evolution.\n"
@@ -3631,7 +3636,7 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to send e-mail without errors?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 " Esta prueba verifica qu'Evolution funciona.\n"
 "PASOS:\n"
 " 1. Primi'l botón «Prueba» pa llanzar Evolution.\n"
@@ -3649,7 +3654,7 @@ msgid ""
 "VERIFICATION:\n"
 " Did it launch correctly?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 " Esti test va verificar si gcalctool (Calculadora) funciona.\n"
 "PASOS:\n"
 " Primi nel botón \"Probar\" p'abrir a calculadora.\n"
@@ -3670,7 +3675,7 @@ msgid ""
 "VERIFICATION:\n"
 " Did the functions perform as expected?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 " Esti test verificará si gcalctool (Calculadora) funciona).\n"
 "PASOS:\n"
 " Primi nel botón \"Probar\" p'abrir a calculadora y fai:\n"
@@ -3695,7 +3700,7 @@ msgid ""
 "VERIFICATION:\n"
 " Did the functions perform as expected?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 " Esti test verificará si gcalctool (Calculadora) funciona).\n"
 "PASOS:\n"
 " Primi nel botón \"Probar\" p'abrir a calculadora y fai:\n"
@@ -3719,7 +3724,7 @@ msgid ""
 "VERIFICATION:\n"
 " Did the functions perform as expected?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 " Esta prueba comprueba que gcalctool (Calculadora) funciona.\n"
 "PASOS:\n"
 " Primi'l botón «Prueba» p'abrir la calculadora y facer:\n"
@@ -3741,7 +3746,7 @@ msgid ""
 "VERIFICATION:\n"
 " Did this perform as expected?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 " Esta prueba comprueba que gedit funciona.\n"
 "PASOS:\n"
 " 1. Primi'l botón «Prueba» p'abrir gedit.\n"
@@ -3762,7 +3767,7 @@ msgid ""
 "VERIFICATION:\n"
 " Did this perform as expected?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 " Esta prueba comprueba que gedit funciona.\n"
 "PASOS:\n"
 " 1. Primi'l botón «Prueba» p'abrir gedit y reabrir el ficheru que creasti "
@@ -3784,7 +3789,7 @@ msgid ""
 "VERIFICATION:\n"
 " Did this perform as expected?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 " Esti test verificará si'l terminal de Gnome funciona.\n"
 "PASOS:\n"
 " 1. Primi nel botón \"Prueba\" p'abrir el Terminal.\n"
@@ -3813,7 +3818,7 @@ msgid ""
 "VERIFICATION:\n"
 "    Did a notification show and was the connection correctly established?"
 msgstr ""
-"PROPÓSITU:\n"
+"OXETIVU:\n"
 "    Esta prueba comprobará la conexón inalámbrica.\n"
 "PASOS:\n"
 "    1. Primi sobre l'iconu de Rede nel panel.\n"
@@ -3988,62 +3993,64 @@ msgid "Unknown signal"
 msgstr "Señal desconocida"
 
 #: ../checkbox_cli/cli_interface.py:31
-#: ../checkbox_urwid/urwid_interface.py:686
+#: ../checkbox_urwid/urwid_interface.py:917
 msgid "yes"
 msgstr "sí"
 
 #: ../checkbox_cli/cli_interface.py:32
-#: ../checkbox_urwid/urwid_interface.py:687
+#: ../checkbox_urwid/urwid_interface.py:918
 msgid "no"
 msgstr "non"
 
 #: ../checkbox_cli/cli_interface.py:33
-#: ../checkbox_urwid/urwid_interface.py:688
+#: ../checkbox_urwid/urwid_interface.py:919
 msgid "skip"
 msgstr "saltar"
 
-#: ../checkbox_cli/cli_interface.py:320
+#: ../checkbox_cli/cli_interface.py:416
 msgid "test"
 msgstr "prueba"
 
-#: ../checkbox_cli/cli_interface.py:344
+#: ../checkbox_cli/cli_interface.py:440
 msgid "test again"
 msgstr "volver a probar"
 
-#: ../checkbox_urwid/urwid_interface.py:60
+#: ../checkbox_urwid/urwid_interface.py:66
 msgid "Checkbox System Testing"
 msgstr "Prueba del sistema Checkbox"
 
-#: ../checkbox_urwid/urwid_interface.py:99
+#: ../checkbox_urwid/urwid_interface.py:105
 msgid "Continue"
 msgstr "Siguir"
 
-#: ../checkbox_urwid/urwid_interface.py:192
-#: ../checkbox_urwid/urwid_interface.py:268
-#: ../checkbox_urwid/urwid_interface.py:418
+#: ../checkbox_urwid/urwid_interface.py:198
+#: ../checkbox_urwid/urwid_interface.py:274
+#: ../checkbox_urwid/urwid_interface.py:425
+#: ../checkbox_urwid/urwid_interface.py:547
 msgid "Previous"
 msgstr "Anterior"
 
-#: ../checkbox_urwid/urwid_interface.py:193
-#: ../checkbox_urwid/urwid_interface.py:269
-#: ../checkbox_urwid/urwid_interface.py:419
+#: ../checkbox_urwid/urwid_interface.py:199
+#: ../checkbox_urwid/urwid_interface.py:275
+#: ../checkbox_urwid/urwid_interface.py:426
+#: ../checkbox_urwid/urwid_interface.py:548
 msgid "Next"
 msgstr "Siguiente"
 
 #. Show buttons
-#: ../checkbox_urwid/urwid_interface.py:416
+#: ../checkbox_urwid/urwid_interface.py:423
 msgid "Select All"
 msgstr "Seleicionar too"
 
-#: ../checkbox_urwid/urwid_interface.py:417
+#: ../checkbox_urwid/urwid_interface.py:424
 msgid "Deselect All"
 msgstr "Deseleicionar too"
 
-#: ../checkbox_urwid/urwid_interface.py:774
+#: ../checkbox_urwid/urwid_interface.py:1013
 msgid "Test"
 msgstr "Probar"
 
-#: ../checkbox_urwid/urwid_interface.py:789
+#: ../checkbox_urwid/urwid_interface.py:1028
 msgid "Test Again"
 msgstr "Probar otra vegada"
 
@@ -4199,7 +4206,7 @@ msgstr ""
 msgid "Exchanging information with the server..."
 msgstr "Intercambiando información col sirvidor..."
 
-#: ../plugins/launchpad_report.py:164
+#: ../plugins/launchpad_report.py:167
 msgid ""
 "The generated report seems to have validation errors,\n"
 "so it might not be processed by Launchpad."
