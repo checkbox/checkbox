@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-02-29 04:37+0000\n"
-"X-Generator: Launchpad (build 14874)\n"
+"X-Launchpad-Export-Date: 2012-03-15 04:33+0000\n"
+"X-Generator: Launchpad (build 14933)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:5
 msgid "_Skip this test"
@@ -131,7 +131,7 @@ msgid "Ne_xt"
 msgstr "_Далее"
 
 #. Title of the user interface
-#: ../gtk/checkbox-gtk.ui.h:1 ../gtk/checkbox-gtk.desktop.in.h:1
+#: ../gtk/checkbox-gtk.ui.h:1 ../qt/checkbox-qt.desktop.in.h:1
 #: ../plugins/user_interface.py:42
 msgid "System Testing"
 msgstr "Проверка системы"
@@ -156,7 +156,7 @@ msgstr "_Выделить всё"
 msgid "_Test"
 msgstr "_Проверить"
 
-#: ../gtk/checkbox-gtk.desktop.in.h:2
+#: ../qt/checkbox-qt.desktop.in.h:2
 msgid "Test your system and submit results to the Ubuntu Friendly project"
 msgstr ""
 "Протестируйте свою систему, и отправьте результаты проекту Ubuntu Friendly"
@@ -1364,187 +1364,187 @@ msgid "Audio tests"
 msgstr "Проверка звука"
 
 #. description
-#: ../jobs/local.txt.in:8
+#: ../jobs/local.txt.in:10
 msgid "Autotest Suite tests"
 msgstr "Тесты из набора Autotest"
 
 #. description
-#: ../jobs/local.txt.in:13
+#: ../jobs/local.txt.in:17
 msgid "Bluetooth tests"
 msgstr "Проверка Bluetooth"
 
 #. description
-#: ../jobs/local.txt.in:18
+#: ../jobs/local.txt.in:24
 msgid "Camera tests"
 msgstr "Проверка камеры"
 
 #. description
-#: ../jobs/local.txt.in:23
+#: ../jobs/local.txt.in:31
 msgid "Codec tests"
 msgstr "Проверка кодеков"
 
 #. description
-#: ../jobs/local.txt.in:28
+#: ../jobs/local.txt.in:38
 msgid "CPU tests"
 msgstr "Проверка ЦПУ"
 
 #. description
-#: ../jobs/local.txt.in:33
+#: ../jobs/local.txt.in:45
 msgid "System Daemon tests"
 msgstr "Проверка системных служб"
 
 #. description
-#: ../jobs/local.txt.in:38
+#: ../jobs/local.txt.in:52
 msgid "Disk tests"
 msgstr "Проверка диска"
 
 #. description
-#: ../jobs/local.txt.in:43
+#: ../jobs/local.txt.in:59
 msgid "Fingerprint reader tests"
 msgstr "Проверка сканера отпечатков пальцев"
 
 #. description
-#: ../jobs/local.txt.in:48
+#: ../jobs/local.txt.in:66
 msgid "Firewire disk tests"
 msgstr "Проверка дисков Firewire"
 
 #. description
-#: ../jobs/local.txt.in:53
+#: ../jobs/local.txt.in:73
 msgid "Floppy disk tests"
 msgstr "Проверка дискет"
 
 #. description
-#: ../jobs/local.txt.in:58
+#: ../jobs/local.txt.in:80
 msgid "Graphics tests"
 msgstr "Проверка графической системы"
 
 #. description
-#: ../jobs/local.txt.in:63
+#: ../jobs/local.txt.in:87
 msgid "Hibernation tests"
 msgstr "Тесты спящего режима"
 
 #. description
-#: ../jobs/local.txt.in:68
+#: ../jobs/local.txt.in:94
 msgid "Informational tests"
 msgstr "Информационные тесты"
 
 #. description
-#: ../jobs/local.txt.in:73
+#: ../jobs/local.txt.in:101
 msgid "Input Devices tests"
 msgstr "Проверка устройств ввода"
 
 #. description
-#: ../jobs/local.txt.in:78
+#: ../jobs/local.txt.in:108
 msgid "Software Installation tests"
 msgstr "Проверка установки программного обеспечения"
 
 #. description
-#: ../jobs/local.txt.in:83
+#: ../jobs/local.txt.in:115
 msgid "Hotkey tests"
 msgstr "Проверка клавиш быстрого доступа"
 
 #. description
-#: ../jobs/local.txt.in:88
+#: ../jobs/local.txt.in:122
 msgid "Linux Test Project tests"
 msgstr "Тесты проекта «Linux Tests»"
 
 #. description
-#: ../jobs/local.txt.in:93
+#: ../jobs/local.txt.in:129
 msgid "Mago Automated Desktop Testing"
 msgstr "Автоматическое тестирование рабочего стола Mago"
 
 #. description
-#: ../jobs/local.txt.in:98
+#: ../jobs/local.txt.in:136
 msgid "Media Card tests"
 msgstr "Проверка карт памяти"
 
 #. description
-#: ../jobs/local.txt.in:103
+#: ../jobs/local.txt.in:143
 msgid "Memory tests"
 msgstr "Проверка памяти"
 
 #. description
-#: ../jobs/local.txt.in:108
+#: ../jobs/local.txt.in:150
 msgid "Miscellaneous tests"
 msgstr "Различные тесты"
 
 #. description
-#: ../jobs/local.txt.in:113
+#: ../jobs/local.txt.in:157
 msgid "Monitor tests"
 msgstr "Проверка монитора"
 
 #. description
-#: ../jobs/local.txt.in:118
+#: ../jobs/local.txt.in:164
 msgid "Networking tests"
 msgstr "Проверка сети"
 
 #. description
-#: ../jobs/local.txt.in:123
+#: ../jobs/local.txt.in:171
 msgid "Optical Drive tests"
 msgstr "Проверка оптических дисков"
 
 #. description
-#: ../jobs/local.txt.in:128
+#: ../jobs/local.txt.in:178
 msgid "Panel Clock Verification tests"
 msgstr "Проверка часов на панели"
 
 #. description
-#: ../jobs/local.txt.in:133
+#: ../jobs/local.txt.in:185
 msgid "PCMCIA/PCIX Card tests"
 msgstr "Проверка PCMCIA/PCIX карт"
 
 #. description
-#: ../jobs/local.txt.in:138
+#: ../jobs/local.txt.in:192
 msgid "Peripheral tests"
 msgstr "Проверка периферийного оборудования"
 
 #. description
-#: ../jobs/local.txt.in:143
+#: ../jobs/local.txt.in:199
 msgid "Phoronix Test Suite tests"
 msgstr "Тесты Phoronix Test Suite"
 
 #. description
-#: ../jobs/local.txt.in:148
+#: ../jobs/local.txt.in:206
 msgid "Power Management tests"
 msgstr "Проверка управления электропитанием"
 
 #. description
-#: ../jobs/local.txt.in:153
+#: ../jobs/local.txt.in:213
 msgid "QA Regression tests"
 msgstr "Регрессионные тесты качества"
 
 #. description
-#: ../jobs/local.txt.in:158
+#: ../jobs/local.txt.in:220
 msgid "Server Services checks"
 msgstr "Проверки серверных служб"
 
 #. description
-#: ../jobs/local.txt.in:163
+#: ../jobs/local.txt.in:227
 msgid "Suspend tests"
 msgstr "Тесты ждущего режима"
 
 #. description
-#: ../jobs/local.txt.in:168
+#: ../jobs/local.txt.in:234
 msgid "Unity tests"
 msgstr "Тесты Unity"
 
 #. description
-#: ../jobs/local.txt.in:173
+#: ../jobs/local.txt.in:241
 msgid "USB tests"
 msgstr "Проверка USB"
 
 #. description
-#: ../jobs/local.txt.in:178
+#: ../jobs/local.txt.in:248
 msgid "User Applications"
 msgstr "Пользовательские приложения"
 
 #. description
-#: ../jobs/local.txt.in:183
+#: ../jobs/local.txt.in:255
 msgid "Wireless networking tests"
 msgstr "Тесты беспроводных сетей"
 
 #. description
-#: ../jobs/local.txt.in:188
+#: ../jobs/local.txt.in:262
 msgid "Stress tests"
 msgstr "Стресс-тесты"
 
@@ -1931,7 +1931,7 @@ msgstr ""
 "Запустить набор автоматизированных тестов встроенных программ (FWTS)."
 
 #. description
-#: ../jobs/miscellanea.txt.in:30
+#: ../jobs/miscellanea.txt.in:29
 msgid ""
 "ipmitool is required for ipmi testing. This checks for ipmitool and installs "
 "it if not available."
@@ -2244,7 +2244,7 @@ msgid "Test to detect the optical drives"
 msgstr "Проверка определения оптических дисководов"
 
 #. description
-#: ../jobs/optical.txt.in:13
+#: ../jobs/optical.txt.in:18
 msgid "Optical Storage device read tests"
 msgstr "Проверка чтения на оптическом дисководе"
 
@@ -3167,7 +3167,7 @@ msgstr ""
 "    Эта проверка автоматизирована."
 
 #. description
-#: ../jobs/usb.txt.in:96
+#: ../jobs/usb.txt.in:80
 msgid ""
 "This test is automated and requires that you plug in at least one usb "
 "storage device before running checkbox."
