@@ -133,7 +133,6 @@ class Template(object):
 
             _save(field, value, extended)
 
-            element.setdefault('sortkey', index)
             elements.append(element)
 
         return elements
