@@ -42,15 +42,6 @@ _description:
  interface. It then checks the connection to confirm it's working as expected.
 
 plugin: shell
-name: suspend/wireless_before_suspend_auto
-depends: wireless/wireless_connection_wpa_bg
-requires: device.category == 'WIRELESS'
-command: nmcli -t -f UUID con status > $CHECKBOX_DATA/connections && connect_wireless && internet_test --interface=`nmcli dev list | grep -B 1 wireless | grep GENERAL.DEVICE | awk '{print $2}'` && for con in `cat $CHECKBOX_DATA/connections`; do nmcli con up uuid "$con"; done
-_description:
- This test disconnects all connections and then connects to the wireless
- interface. It then checks the connection to confirm it's working as expected.
-
-plugin: shell
 name: suspend/bluetooth_obex_before_suspend
 requires:
  package.name == 'bluez' and package.name == 'obexd-client'
@@ -167,14 +158,45 @@ _description:
  connection is working as expected.
 
 plugin: shell
-name: suspend/wireless_after_suspend_auto
-depends: suspend/suspend_advanced_auto suspend/wireless_before_suspend_auto
+name: suspend/wireless_connection_after_suspend_wpa_bg
+depends: suspend/suspend_advanced_auto
 requires: device.category == 'WIRELESS'
-command: connect_wireless && internet_test --interface=`nmcli dev list | grep -B 1 wireless | grep GENERAL.DEVICE | awk '{print $2}'` && for con in `cat $CHECKBOX_DATA/connections`; do nmcli con up uuid "$con"; done
+user: root
+environ: WPA_BG_SSID WPA_BG_PSK
+command: trap "rm -f /etc/NetworkManager/system-connections/$WPA_BG_SSID" EXIT; create_connection $WPA_BG_SSID --security=wpa --key=$WPA_BG_PSK; internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
 _description:
- This test checks that the wireless interface is working after suspending the system. It
- disconnects all interfaces and then connects to the wireless interface and checks that the
- connection is working as expected.
+ Tests that the systems wireless hardware can connect to a router using WPA
+ security and the 802.11b/g protocols after the system has been suspended.
+
+plugin: shell
+name: suspend/wireless_connection_after_suspend_open_bg
+requires: device.category == 'WIRELESS'
+user: root
+environ: OPEN_BG_SSID
+command: trap "rm -f /etc/NetworkManager/system-connections/$OPEN_BG_SSID" EXIT; create_connection $OPEN_BG_SSID; internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
+_description:
+ Tests that the systems wireless hardware can connect to a router using no
+ security and the 802.11b/g protocols after the system has been suspended.
+
+plugin: shell
+name: suspend/wireless_connection_after_suspend_wpa_n
+requires: device.category == 'WIRELESS'
+user: root
+environ: WPA_N_SSID WPA_N_PSK
+command: trap "rm -f /etc/NetworkManager/system-connections/$WPA_N_SSID" EXIT; create_connection $WPA_N_SSID --security=wpa --key=$WPA_N_PSK; internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
+_description:
+ Tests that the systems wireless hardware can connect to a router using WPA
+ security and the 802.11n protocol after the system has been suspended.
+
+plugin: shell
+name: suspend/wireless_connection_after_suspend_open_n
+requires: device.category == 'WIRELESS'
+user: root
+environ: OPEN_N_SSID
+command: trap "rm -f /etc/NetworkManager/system-connections/$OPEN_N_SSID" EXIT; create_connection $OPEN_N_SSID; internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
+_description:
+ Tests that the systems wireless hardware can connect to a router using no
+ security and the 802.11n protocol after the system has been suspended.
 
 plugin: shell
 name: suspend/bluetooth_detect_after_suspend
@@ -253,7 +275,7 @@ _description:
 
 plugin: shell
 name: suspend/suspend_advanced_auto
-depends: power-management/rtc suspend/network_before_suspend suspend/cpu_before_suspend suspend/memory_before_suspend suspend/wireless_before_suspend_auto
+depends: power-management/rtc suspend/network_before_suspend suspend/cpu_before_suspend suspend/memory_before_suspend wireless/wireless_connection_wpa_bg wireless/wireless_connection_open_bg wireless/wireless_connection_wpa_n wireless/wireless_connection_open_n
 requires:
     package.name == 'pm-utils'
     sleep.mem == 'supported'
