@@ -71,12 +71,15 @@ QtFront::QtFront(QApplication *parent) :
     ui->treeView->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(ui->treeView, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(onSelectAllContextMenu(const QPoint&)));
     ui->stepsFrame->setFixedHeight(0);
-    connect(ui->commentTestButton, SIGNAL(clicked()), m_currentTextComment, SLOT(setFocus()));
 
+    // comment box
     ui->commentTestButton->setMenu(new QMenu());
     QWidgetAction *action = new QWidgetAction(ui->commentTestButton);
     action->setDefaultWidget(m_currentTextComment);
     ui->commentTestButton->menu()->addAction(action);
+    // force cursor blink without having to click inside the QTextEdit
+    m_currentTextComment->setFocus();
+    m_currentTextComment->setStyleSheet("background-color: white");
 
     m_titleTestTypes["__audio__"] = "Audio Test";
     m_titleTestTypes["__bluetooth__"] = "Bluetooth Test";
