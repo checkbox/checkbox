@@ -13,6 +13,7 @@ checkbox (0.13.5) precise; urgency=low
     confusing and verbose. (LP: #949745) 
   * Removed dependency on bluetooth/detect-output on the 
     suspend/suspend_advanced job. (LP: #955375)
+  * Created automated version of optical/read for server testing (LP: #945178)
 
   [Marc Tardif]
   * Linted qt_interface which had a few syntax errors (LP: #949957)
@@ -22,7 +23,7 @@ checkbox (0.13.5) precise; urgency=low
   * jobs/keys.txt.in: Fix definition for keys/media-keys test which failed to
     run (LP: #954480)
 
- -- Jeff Lane <jeff@ubuntu.com>  Wed, 14 Mar 2012 18:10:57 -0400
+ -- Jeff Lane <jeff@ubuntu.com>  Thu, 15 Mar 2012 09:21:42 -0400
 
 checkbox (0.13.4) precise; urgency=low
 
