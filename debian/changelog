@@ -54,6 +54,10 @@ checkbox (0.13.4) precise; urgency=low
     qt/frontend/qtfront.h, qt/frontend/treemodel.cpp, qt/frontend/treemodel.h:
     Makes it possible for the job selection tree to have more than 2 levels of
     children nodes.
+  * set interface.direction to NEXT if all the tests were executed and the user 
+    either analyzed or submitted the results. (LP: #956329)
+  * use the ui persistent storage to keep some ui configuration 
+    values. (LP: #937626)
   
   [Tim Chen]
   * Modifications to removable_storage_test to handle cases where removable
