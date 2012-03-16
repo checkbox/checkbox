@@ -13,7 +13,11 @@ checkbox (0.13.5) precise; urgency=low
     confusing and verbose. (LP: #949745) 
   * Removed dependency on bluetooth/detect-output on the 
     suspend/suspend_advanced job. (LP: #955375)
-  * Created automated version of optical/read for server testing (LP: #945178)
+  * Created automated version of optical/read for server testing
+    Fixed issues with optical_read_test script:
+    - test could pass if /dev/cdrom did not exist
+    - test could pass if /dev/cdrom was inaccessible
+    - test could pass if no optical device was passed in (LP: #945178)
 
   [Marc Tardif]
   * Linted qt_interface which had a few syntax errors (LP: #949957)
@@ -29,7 +33,7 @@ checkbox (0.13.5) precise; urgency=low
   * Show the UF invalidation warning if all test cases are unchecked from the
     right click menu (LP: #956757)
 
- -- Jeff Lane <jeff@ubuntu.com>  Thu, 15 Mar 2012 09:21:42 -0400
+ -- Jeff Lane <jeff@ubuntu.com>  Fri, 16 Mar 2012 19:14:09 -0400
 
 checkbox (0.13.4) precise; urgency=low
 
