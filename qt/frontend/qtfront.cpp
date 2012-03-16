@@ -390,6 +390,9 @@ void QtFront::buildTree(QVariantMap options, QString baseIndex, QStandardItem *p
         QString index = baseIndex+"."+QString::number(internalIndex);
         QVariant value = options.value(index);
         QDBusArgument arg = value.value<QDBusArgument>();
+        if (arg.currentSignature().isEmpty()) {
+            break;
+        }
         QMap<QString, QString> items = qdbus_cast<QMap<QString, QString> >(arg);
         if (items.isEmpty()) {
             break;

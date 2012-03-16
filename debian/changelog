@@ -7,6 +7,8 @@ checkbox (0.13.5) precise; urgency=low
     plugins/user_interface.py, qt/frontend/qtfront.cpp, qt/frontend/qtfront.h:
     Correctly update automated test execution status in the Selection tab
     (LP: #950105).
+  * qt/frontend/qtfront.cpp: Avoid QDBusArgument warnings when running
+    checkbox-qt from a terminal (LP: #957476)
 
   [Jeff Lane]
   * Reset default checkbox log level to INFO from DEBUG to make logs less
