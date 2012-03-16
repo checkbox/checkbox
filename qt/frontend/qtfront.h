@@ -63,7 +63,6 @@ private slots:
     void onNoTestClicked();
     void onReviewTestsClicked();
 
-    void onTabChanged(int index);
     void onJobItemChanged(QModelIndex index);
     void onJobItemChanged(QStandardItem *item, QString job, QModelIndex baseIndex);
     void updateTestStatus(QStandardItem *item, QString status);

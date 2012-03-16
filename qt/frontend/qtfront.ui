@@ -457,18 +457,8 @@ QTabWidget::tab-bar#testsTab {
             <enum>QTabWidget::Rounded</enum>
            </property>
            <property name="currentIndex">
-            <number>2</number>
+            <number>0</number>
            </property>
-           <widget class="QWidget" name="welcome">
-            <property name="font">
-             <font>
-              <pointsize>11</pointsize>
-             </font>
-            </property>
-            <attribute name="title">
-             <string> Welcome </string>
-            </attribute>
-           </widget>
            <widget class="QWidget" name="testSelection">
             <property name="font">
              <font>
@@ -822,8 +812,8 @@ QTabWidget::tab-bar#testsTab {
                                <rect>
                                 <x>0</x>
                                 <y>0</y>
-                                <width>500</width>
-                                <height>200</height>
+                                <width>100</width>
+                                <height>30</height>
                                </rect>
                               </property>
                               <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -872,9 +862,6 @@ QTabWidget::tab-bar#testsTab {
                             </widget>
                            </item>
                           </layout>
-                          <zorder>stepsFrame</zorder>
-                          <zorder>stepsFrame</zorder>
-                          <zorder>scrollArea</zorder>
                          </widget>
                         </item>
                         <item>
