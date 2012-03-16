@@ -117,6 +117,7 @@ void QtFront::onSelectAllContextMenu(const QPoint& pos)
     {
         m_model->selectAll();
     } else if (selectedItem && selectedItem == deselectAll) {
+        m_model->warn();
         m_model->selectAll(false);
     }
 }

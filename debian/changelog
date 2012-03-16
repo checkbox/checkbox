@@ -24,6 +24,10 @@ checkbox (0.13.5) precise; urgency=low
   * Reverted feature to keep tests ordered, as the sortkey attribute causes
     undesirable secondary effects.
 
+  [Sylvain Pineau]
+  * Show the UF invalidation warning if all test cases are unchecked from the
+    right click menu (LP: #956757)
+
  -- Jeff Lane <jeff@ubuntu.com>  Wed, 14 Mar 2012 18:10:57 -0400
 
 checkbox (0.13.4) precise; urgency=low
