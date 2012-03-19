@@ -50,6 +50,8 @@ public slots:
     QVariantMap getTestsToRun();
     QString getEmailAddress();
     void showTest(QString purpose, QString steps, QString verification, QString info, QString testType, QString testName, bool enableTestButton);
+    void showTestControls(bool enableTestControls);
+    void setFocusTestYesNo(bool status);
     QString showInfo(QString text, QStringList options, QString defaultoption);
     void updateAutoTestStatus(QString status, QString testName);
 

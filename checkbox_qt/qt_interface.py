@@ -22,6 +22,7 @@ from gi.repository import GObject
 from gettext import gettext as _
 from string import Template
 
+from checkbox.job import PASS
 from checkbox.user_interface import (UserInterface,
     NEXT, PREV, YES_ANSWER, NO_ANSWER, SKIP_ANSWER,
     ANSWER_TO_STATUS)
@@ -167,7 +168,10 @@ class QTInterface(UserInterface):
         return buildDict(self.qtiface.getTestsToRun())
 
     def _run_test(self, test, runner):
+        self.qtiface.showTestControls(False)
         (status, data, duration) = runner(test)
+        self.qtiface.setFocusTestYesNo(True if status == PASS else False)
+        self.qtiface.showTestControls(True)
 
         return Template(test["info"]).substitute({
             "output": data.strip()})
@@ -195,13 +199,15 @@ class QTInterface(UserInterface):
             self.direction = NEXT
             self.loop.quit()
 
-        enableTestButton = True
+        enableTestButton = False
         self._set_main_title(test["name"])
         if test["info"] and "$output" in test["info"]:
             info = self._run_test(test, runner)
-            enableTestButton = False
         else:
             info = ""
+
+        if "command" in test:
+            enableTestButton = True    
 
         self.qtiface.showTest(
             test["purpose"], test["steps"], test["verification"], info,
