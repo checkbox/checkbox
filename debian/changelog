@@ -23,6 +23,11 @@ checkbox (0.13.5) precise; urgency=low
   * jobs/optical.txt.in: Fixed the job descriptions for optical/read and
     optical/cdrom-audio-playback to account for changes in Precise and make
     them less confusing (LP: #954606)
+  * Created automated version of optical/read for server testing
+    Fixed issues with optical_read_test script:
+    - test could pass if /dev/cdrom did not exist
+    - test could pass if /dev/cdrom was inaccessible
+    - test could pass if no optical device was passed in (LP: #945178)
 
   [Marc Tardif]
   * Linted qt_interface which had a few syntax errors (LP: #949957)
@@ -38,7 +43,7 @@ checkbox (0.13.5) precise; urgency=low
   * Show the UF invalidation warning if all test cases are unchecked from the
     right click menu (LP: #956757)
 
- -- Jeff Lane <jeff@ubuntu.com>  Wed, 14 Mar 2012 18:10:57 -0400
+ -- Jeff Lane <jeff@ubuntu.com>  Fri, 16 Mar 2012 19:14:09 -0400
 
 checkbox (0.13.4) precise; urgency=low
 
