@@ -79,7 +79,7 @@ class DiskTest():
             device_obj = bus.get_object("org.freedesktop.UDisks", dev)
             device_props = dbus.Interface(device_obj, dbus.PROPERTIES_IFACE)
             if not device_props.Get('org.freedesktop.UDisks.Device',"DeviceIsDrive"):
-                if device_props.Get('org.freedesktop.UDisks.Device', "DriveConnectionInterface") == device:
+                if device_props.Get('org.freedesktop.UDisks.Device', "DriveConnectionInterface") in device:
                     dev_file = str(device_props.Get('org.freedesktop.UDisks.Device',"DeviceFile"))
 
                     if len(device_props.Get('org.freedesktop.UDisks.Device',"DeviceMountPaths")) > 0:
@@ -168,7 +168,8 @@ class DiskTest():
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('device',
-                        choices=['usb','firewire','sdio'],
+                        choices=['usb','firewire','sdio', 'scsi'],
+                        nargs = '+',
                         help="The type of removable media (usb, firewire, sdio) to test.")
     parser.add_argument('-l','--list',
                         action='store_true',

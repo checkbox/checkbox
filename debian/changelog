@@ -15,6 +15,11 @@ checkbox (0.13.5) precise; urgency=low
     confusing and verbose. (LP: #949745) 
   * Removed dependency on bluetooth/detect-output on the 
     suspend/suspend_advanced job. (LP: #955375)
+  * jobs/mediacard.txt.in, scripts/removable_storage_test,
+    scripts/removable_storage_watcher: Modified removable_storage_watcher and
+    removable_storage_test to accept list of busses to watch to resolve
+    problems on systems with MMC readers that present themselves as USB
+    devices rather than SDIO (LP: #953160)
 
   [Marc Tardif]
   * Linted qt_interface which had a few syntax errors (LP: #949957)
