@@ -65,7 +65,6 @@ private slots:
     void onNoTestClicked();
     void onReviewTestsClicked();
 
-    void onTabChanged(int index);
     void onJobItemChanged(QModelIndex index);
     void onJobItemChanged(QStandardItem *item, QString job, QModelIndex baseIndex);
     void updateTestStatus(QStandardItem *item, QString status);
@@ -82,10 +81,6 @@ signals:
     void previousTestClicked();
     void submitTestsClicked();
     void reviewTestsClicked();
-    // when the user clicks welcome during the tests
-    void welcomeScreenRequested();
-    // when the user clicks welcome from the tests selection tree
-    void welcomeClicked();
     void closedFrontend();
 
 private:

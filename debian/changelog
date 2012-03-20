@@ -14,6 +14,8 @@ checkbox (0.13.5) precise; urgency=low
     for each test under the "Run" tab. (LP: #959452)
   * checkbox/user_interface.py: Avoid using fork() + call() to run a web
     browser. Use Popen instead.(LP: #956307)
+  * qt/frontend/qtfront.ui, qt/frontend/qtfront.cpp, qt/frontend/qtfront.h:
+    Removed welcome tab (LP: #957090)
 
   [Jeff Lane]
   * Reset default checkbox log level to INFO from DEBUG to make logs less

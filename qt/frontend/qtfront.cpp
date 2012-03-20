@@ -40,7 +40,7 @@ QtFront::QtFront(QApplication *parent) :
     m_model(0),
     m_statusModel(new QStandardItemModel()),
     m_currentTextComment(new QTextEdit()),
-    m_currentTab(1),
+    m_currentTab(0),
     m_skipTestMessage(false)
 {
     m_mainWindow = (QWidget*)new CustomQWidget();
@@ -51,7 +51,6 @@ QtFront::QtFront(QApplication *parent) :
     tmpQTW->tabBar()->setVisible(false);
     tmpQTW = (CustomQTabWidget*) ui->radioTestTab;
     tmpQTW->tabBar()->setVisible(false);
-    connect(ui->testsTab, SIGNAL(currentChanged(int)), this, SLOT(onTabChanged(int)));
     ui->radioTestTab->setVisible(false);
     ui->nextPrevButtons->setVisible(false);
     ui->treeView->verticalScrollBar()->setTracking(true);
@@ -154,8 +153,8 @@ void QtFront::setInitialState()
     m_skipTestMessage = false; 
     ui->radioTestTab->setVisible(false);
     ui->nextPrevButtons->setVisible(false);
-    ui->testsTab->setCurrentIndex(1);
-    ui->tabWidget->setCurrentIndex(0);
+    ui->testsTab->setCurrentIndex(0);
+    ui->tabWidget->setCurrentIndex(1);
     m_model->deleteLater();
     ui->treeView->setModel(0);
     m_model = 0;
@@ -181,30 +180,6 @@ void QtFront::onNextTestClicked()
         emit nextTestClicked();
     }
     updateTestStatus(STATUS_UNTESTED);
-}
-
-void QtFront::onTabChanged(int index)
-{
-    // check if the user asked to go back to the welcome screen
-    if (index == 0) {
-        if (currentState != TREE) {
-            QMessageBox::StandardButton button = QMessageBox::question(ui->tabWidget, "Are you sure?", 
-                    "This action will invalidate your tests, do you want to proceed?", 
-                    QMessageBox::Yes|QMessageBox::No, QMessageBox::No);
-            if(button == QMessageBox::Yes) {
-                emit welcomeScreenRequested();
-            } else {
-                // user aborted, go back to the previous tab
-                ui->testsTab->setCurrentIndex(m_currentTab);
-            }
-            return;
-        } else {
-            currentState = WELCOME;
-            emit welcomeClicked();
-        }
-        return;
-    }
-    m_currentTab = index;
 }
 
 void QtFront::onFullTestsClicked()
@@ -279,7 +254,7 @@ void QtFront::showEntry(QString text)
     Q_UNUSED(text)
     currentState = SUBMISSION;
     // Email address requested, so move to the results screen and hide the "run" screen contents
-    ui->testsTab->setCurrentIndex(3);
+    ui->testsTab->setCurrentIndex(2);
     ui->radioTestTab->setVisible(false);
     ui->nextPrevButtons->setVisible(false);
 
@@ -304,7 +279,7 @@ void QtFront::showTest(QString purpose, QString steps, QString verification, QSt
 
     ui->stepsFrame->setFixedHeight(0);
     ui->stepsFrame->update();
-    ui->testsTab->setCurrentIndex(2);
+    ui->testsTab->setCurrentIndex(1);
     QStringList stepsList = steps.trimmed().split("\n");
 
     QRegExp r("[0-9]+\\. (.*)");
@@ -441,7 +416,7 @@ void QtFront::showTree(QString text, QVariantMap options)
 {
     Q_UNUSED(text);
     currentState = TREE;
-    ui->testsTab->setCurrentIndex(1);
+    ui->testsTab->setCurrentIndex(0);
     ui->radioTestTab->setVisible(false);
     ui->nextPrevButtons->setVisible(false);
 
