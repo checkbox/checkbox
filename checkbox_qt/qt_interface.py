@@ -54,8 +54,6 @@ class QTInterface(UserInterface):
             except:
                 time.sleep(0.5)
         self.bus.add_signal_receiver(
-            self.onWelcomeScreenRequested, "welcomeScreenRequested")
-        self.bus.add_signal_receiver(
             self.onClosedFrontend, "closedFrontend")
         self.bus.add_signal_receiver(
             self.onReviewTestsClicked, "reviewTestsClicked")
@@ -64,9 +62,6 @@ class QTInterface(UserInterface):
 
     def onReviewTestsClicked(self):
         self.show_url(self.report_url)
-
-    def onWelcomeScreenRequested(self):
-        pass
 
     def onClosedFrontend(self):
         self.direction = KeyboardInterrupt
@@ -123,10 +118,6 @@ class QTInterface(UserInterface):
             self.direction = NEXT
             self.loop.quit()
 
-        def onWelcomeClicked():
-            self.direction = PREV
-            self.loop.quit()
-
         def buildBranch(options, baseIndex="1"):
             internalIndex = 1
             for test, state in options.iteritems():
@@ -161,8 +152,7 @@ class QTInterface(UserInterface):
 
         self.qtiface.showTree(text, indexedOptions)
         self.wait_on_signals(
-            startTestsClicked=onStartTestsClicked,
-            welcomeClicked=onWelcomeClicked)
+            startTestsClicked=onStartTestsClicked)
 
         return buildDict(self.qtiface.getTestsToRun())
 
