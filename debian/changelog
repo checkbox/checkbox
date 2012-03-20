@@ -28,6 +28,7 @@ checkbox (0.13.5) precise; urgency=low
     - test could pass if /dev/cdrom did not exist
     - test could pass if /dev/cdrom was inaccessible
     - test could pass if no optical device was passed in (LP: #945178)
+  * Removed files in /data that are not used in any job descriptions (LP: #957396)
 
   [Marc Tardif]
   * Linted qt_interface which had a few syntax errors (LP: #949957)
@@ -47,7 +48,7 @@ checkbox (0.13.5) precise; urgency=low
   * jobs/suspend.txt.in: Fixed dependencies on wireless and suspend_advanced
     jobs.
 
- -- Jeff Lane <jeff@ubuntu.com>  Fri, 16 Mar 2012 19:14:09 -0400
+ -- Jeff Lane <jeff@ubuntu.com>  Mon, 19 Mar 2012 20:18:09 -0400
 
 checkbox (0.13.4) precise; urgency=low
 
