@@ -50,6 +50,8 @@ checkbox (0.13.5) precise; urgency=low
   [Sylvain Pineau]
   * Show the UF invalidation warning if all test cases are unchecked from the
     right click menu (LP: #956757)
+  * checkbox_qt/qt_interface.py, qt/frontend/qtfront.cpp,
+    qt/frontend/qtfront.h: Tests now select Yes on PASS status (LP: #954556)
 
   [Brendan Donegan]
   * jobs/suspend.txt.in: Fixed dependencies on wireless and suspend_advanced

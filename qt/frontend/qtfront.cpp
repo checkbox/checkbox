@@ -322,6 +322,30 @@ void QtFront::showTest(QString purpose, QString steps, QString verification, QSt
 
 }
 
+void QtFront::showTestControls(bool enableTestControls)
+{
+    ui->testTestButton->setEnabled(enableTestControls);
+    ui->yesTestButton->setEnabled(enableTestControls);
+    ui->noTestButton->setEnabled(enableTestControls);
+    ui->nextPrevButtons->setEnabled(enableTestControls);
+}
+
+void QtFront::setFocusTestYesNo(bool status)
+{
+    if (status) {
+        ui->noTestButton->setDefault(false);
+        ui->noTestButton->clearFocus();
+        ui->yesTestButton->setDefault(true);
+        ui->yesTestButton->setFocus();
+    }
+    else {
+        ui->yesTestButton->setDefault(false);
+        ui->yesTestButton->clearFocus();
+        ui->noTestButton->setDefault(true);
+        ui->noTestButton->setFocus();
+    }
+}
+
 void QtFront::updateTestStatus(QStandardItem *item, QString status)
 {
     int numRows = item->rowCount();
