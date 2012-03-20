@@ -125,7 +125,7 @@ class ApportUserInterface(UserInterface):
         self.interface.show_progress_stop()
 
     def ui_present_report_details(self, *args):
-        return "full"
+        return dict(report=1)
 
     def ui_question_choice(self, text, options, multiple):
         self.interface.show_progress_stop()
@@ -224,9 +224,8 @@ class ApportPrompt(Plugin):
             return
 
         if test.get("suite"):
-            failed_test_message = _("Test %(name)s from suite %(suite)s failed.") % {
-                                   'name' : test["name"], 
-                                   'suite:' : test["suite"]}
+            failed_test_message = _("Test %(name)s failed.") % {
+                                   'name' : test["name"]}
         else:
             failed_test_message = _("Test %s failed.") % test["name"]
         failed_test_message += "\n" + _("Do you want to report a bug?")
