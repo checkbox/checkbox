@@ -12,8 +12,11 @@ import re
 parser = argparse.ArgumentParser()
 parser.add_argument('--keyword', default='',
                     help='A keyword to distinguish the screenshots taken in this run of the script')
-
+parser.add_argument('--screenshot-dir',
+                    default=os.environ['HOME'],
+                    help='Specify a directory to store screenshots in. Default is %(default)s')
 args = parser.parse_args()
+
 
 device_context = ''   # track what device's modes we are looking at
 modes = []            # keep track of all the devices and modes discovered
@@ -62,7 +65,8 @@ for line in output:
 
 # Now we have a list of the modes we need to test.  So let's do just that.
 profile_path = os.environ['HOME'] + '/.shutter/profiles/'
-screenshot_path = os.environ['CHECKBOX_DATA'] + 'xrandr_screens'
+screenshot_path = os.path.join(args.screenshot_dir,'xrandr_screens')
+script_home = os.path.split(os.path.dirname(os.path.realpath(__file__)))[0]
 
 if args.keyword: screenshot_path = screenshot_path + '_' + args.keyword
 
@@ -80,7 +84,7 @@ except OSError:
     pass
 
 try:
-    shutil.copy(os.environ['CHECKBOX_SHARE'] + '/data/settings/shutter.xml',
+    shutil.copy(script_home + '/data/settings/shutter.xml',
                 profile_path)
 except IOError:
     pass
