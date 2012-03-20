@@ -12,6 +12,14 @@ checkbox (0.13.5) precise; urgency=low
   * checkbox_qt/qt_interface.py, qt/frontend/qtfront.cpp,
     qt/frontend/qtfront.h, qt/frontend/qtfront.ui: add a popup comment box
     for each test under the "Run" tab. (LP: #959452)
+  * checkbox/user_interface.py, qt/frontend/qtfront.cpp,
+    qt/frontend/qtfront.h, checkbox_qt/qt_interface.py: Set
+    interface.direction to NEXT if all the tests were executed and the user
+    either analyzed or submitted the results. (LP: #956329)
+  * checkbox/user_interface.py, plugins/user_interface.py,
+    qt/frontend/qtfront.cpp, qt/frontend/qtfront.h,
+    checkbox_qt/qt_interface.py: Use the ui persistent storage to keep some ui
+    configuration values. (LP: #937626)
   * checkbox/user_interface.py: Avoid using fork() + call() to run a web
     browser. Use Popen instead.(LP: #956307)
   * qt/frontend/qtfront.ui, qt/frontend/qtfront.cpp, qt/frontend/qtfront.h:

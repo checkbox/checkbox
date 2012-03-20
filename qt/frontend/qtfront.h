@@ -55,6 +55,7 @@ public slots:
     void showTestControls(bool enableTestControls);
     void setFocusTestYesNo(bool status);
     QString showInfo(QString text, QStringList options, QString defaultoption);
+    void setUiFlags(QVariantMap flags);
     void updateAutoTestStatus(QString status, QString testName);
 
 private slots:
@@ -72,6 +73,7 @@ private slots:
     void updateTestStatus(QStandardItem *item, QString status);
     void updateTestStatus(QString status = QString());
     void onSelectAllContextMenu(const QPoint& pos);
+    void onClosedFrontend();
 
 signals:
     void fullTestsClicked();
@@ -83,7 +85,8 @@ signals:
     void previousTestClicked();
     void submitTestsClicked();
     void reviewTestsClicked();
-    void closedFrontend();
+    void closedFrontend(bool testsFinished);
+    void welcomeCheckboxToggled(bool toogled);
 
 private:
     bool registerService();
@@ -100,6 +103,8 @@ private:
     int m_currentTab;
     bool m_skipTestMessage;
     QString m_currentTestName;
+    bool isFirstTimeWelcome;
+    bool m_doneTesting;
 };
 
 #endif // QTFRONT_H

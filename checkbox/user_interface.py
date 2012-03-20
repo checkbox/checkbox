@@ -68,6 +68,7 @@ class UserInterface(object):
         self.title = title
         self.data_path = data_path
         self.progress = None
+        self.ui_flags = {}
 
         self.report_url = None
         self.direction = NEXT
