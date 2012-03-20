@@ -418,27 +418,35 @@ void QtFront::updateAutoTestStatus(QString status, QString currentTest) {
     updateTestStatus(status);
 }
 
-void QtFront::buildTree(QVariantMap options, QString baseIndex, QStandardItem *parentItem, QStandardItem *parentStatusItem)
+void QtFront::buildTree(QVariantMap options, QVariantMap defaults, QString baseIndex, QStandardItem *parentItem, QStandardItem *parentStatusItem)
 {
     int internalIndex = 1;
     while (true) {
         QString index = baseIndex+"."+QString::number(internalIndex);
         QVariant value = options.value(index);
+        QVariant defaultValue = defaults.value(index);
         QDBusArgument arg = value.value<QDBusArgument>();
+        QDBusArgument defaultArg = defaultValue.value<QDBusArgument>();
         if (arg.currentSignature().isEmpty()) {
             break;
         }
         QMap<QString, QString> items = qdbus_cast<QMap<QString, QString> >(arg);
+        QMap<QString, bool> defaultItems = qdbus_cast<QMap<QString, bool> >(defaultArg);
         if (items.isEmpty()) {
             break;
         } else {
             QString test = items.keys().at(0);
             QString status = items.values().at(0);
+            bool active = defaultItems.values().at(0);
             QStandardItem *item = new QStandardItem(test);
             QStandardItem *testStatusItem = new QStandardItem(m_statusStrings[status]);
 
             item->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled| Qt::ItemIsTristate);
-            item->setData(QVariant(Qt::Checked), Qt::CheckStateRole);
+            if (active) {
+                item->setData(QVariant(Qt::Checked), Qt::CheckStateRole);
+            } else {
+                item->setData(QVariant(Qt::Unchecked), Qt::CheckStateRole);
+            }
 
             testStatusItem->setData(test, Qt::UserRole);
             testStatusItem->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled|Qt::ItemIsTristate);
@@ -448,10 +456,10 @@ void QtFront::buildTree(QVariantMap options, QString baseIndex, QStandardItem *p
                 // for children nodes
                 parentItem->appendRow(item);
                 parentStatusItem->appendRow(testStatusItem);
-                buildTree(options, index, item, testStatusItem);
+                buildTree(options, defaults, index, item, testStatusItem);
             } else {
                 // for root nodes
-                buildTree(options, index, item, testStatusItem);
+                buildTree(options, defaults, index, item, testStatusItem);
                 m_model->appendRow(item);
                 m_statusModel->appendRow(testStatusItem);
             }
@@ -460,7 +468,7 @@ void QtFront::buildTree(QVariantMap options, QString baseIndex, QStandardItem *p
     }
 }
 
-void QtFront::showTree(QString text, QVariantMap options)
+void QtFront::showTree(QString text, QVariantMap options, QVariantMap defaults)
 {
     Q_UNUSED(text);
     currentState = TREE;
@@ -471,7 +479,7 @@ void QtFront::showTree(QString text, QVariantMap options)
     // build the model only once
     if (!this->m_model) {
         this->m_model = new TreeModel();
-        buildTree(options, "1");
+        buildTree(options, defaults, "1");
         ui->treeView->setModel(m_model);
         ui->statusView->setModel(m_statusModel);
     }

@@ -126,21 +126,27 @@ class QTInterface(UserInterface):
 
     def show_tree(self, text, options={}, default={}):
         indexedOptions = {}
+        indexedDefaults = {}
 
         def onStartTestsClicked():
             self.direction = NEXT
             self.loop.quit()
 
-        def buildBranch(options, baseIndex="1"):
+        def buildBranch(options, default, baseIndex="1"):
             internalIndex = 1
             for test, state in options.iteritems():
+                active = test in default
                 if isinstance(state, dict):
                     indexedOptions[
                         baseIndex + "." + str(internalIndex)] = {test: ''}
-                    buildBranch(state, baseIndex + "." + str(internalIndex))
+                    indexedDefaults[
+                        baseIndex + "." + str(internalIndex)] = {test: active}
+                    buildBranch(state, default.get(test, {}), baseIndex + "." + str(internalIndex))
                 else:
                     indexedOptions[
                         baseIndex + "." + str(internalIndex)] = {test: state}
+                    indexedDefaults[
+                        baseIndex + "." + str(internalIndex)] = {test: active}
                 internalIndex += 1
 
         def buildDict(options, baseIndex="1"):
@@ -211,7 +217,7 @@ class QTInterface(UserInterface):
         if not "data" in test:
             test["data"] = ""
         if "command" in test:
-            enableTestButton = True    
+            enableTestButton = True
 
         self.qtiface.showTest(
             test["purpose"], test["steps"], test["verification"], info, test["data"],

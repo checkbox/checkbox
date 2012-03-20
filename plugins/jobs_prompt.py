@@ -55,6 +55,7 @@ class JobsPrompt(Plugin):
         self._store = None
 
         for (rt, rh) in [
+             ("expose-msgstore", self.expose_msgstore),
              ("begin-persist", self.begin_persist),
              ("begin-recover", self.begin_recover),
              ("ignore-jobs", self.ignore_jobs),
@@ -71,6 +72,9 @@ class JobsPrompt(Plugin):
         #This should fire last during gathering (i.e. after
         #all other gathering callbacks are finished)
         self._manager.reactor.call_on("gather", self.end_gather, 900)
+
+    def expose_msgstore(self):
+        self._manager.reactor.fire("store-access", self.store)
 
     def begin_persist(self, persist):
         self._persist = persist

@@ -51,7 +51,8 @@ class SuitesPrompt(Plugin):
         for (rt, rh) in [
              ("begin-persist", self.begin_persist),
              ("begin-recover", self.begin_recover),
-             ("report-suite", self.report_suite)]:
+             ("report-suite", self.report_suite),
+             ("store-access", self.store_access)]:
             self._manager.reactor.call_on(rt, rh)
 
         for (rt, rh) in [
@@ -71,6 +72,9 @@ class SuitesPrompt(Plugin):
 
     def report_suite(self, suite):
         suite.setdefault("type", "suite")
+
+    def store_access(self, store):
+        self.store = store
 
     def report_job(self, job):
         if job.get("type") == "suite":
@@ -94,11 +98,21 @@ class SuitesPrompt(Plugin):
 
         # Build options
         options = {}
+        self._manager.reactor.fire("expose-msgstore")
+        offset = self.store.get_pending_offset()
+        self.store.set_pending_offset(0)
+        messages = self.store.get_pending_messages()
+        self.store.add_pending_offset(offset)
+        tests = dict([(m["name"], m) for m in messages
+              if m.get("type") in ("test", "metric")])
         for job in resolver.get_dependents():
             suboptions = options
             dependencies = resolver.get_dependencies(job)
             for dependency in dependencies:
-                value = self._statuses.get(dependency, {})
+                if dependency in tests:
+                    value = tests[dependency]["status"]
+                else:
+                    value = self._statuses.get(dependency, {})
                 suboptions = suboptions.setdefault(self._jobs[dependency], value)
 
         # Build defaults
