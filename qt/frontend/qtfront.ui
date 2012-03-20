@@ -457,7 +457,7 @@ QTabWidget::tab-bar#testsTab {
             <enum>QTabWidget::Rounded</enum>
            </property>
            <property name="currentIndex">
-            <number>2</number>
+            <number>1</number>
            </property>
            <widget class="QWidget" name="welcome">
             <property name="font">
@@ -823,7 +823,7 @@ QTabWidget::tab-bar#testsTab {
                                 <x>0</x>
                                 <y>0</y>
                                 <width>500</width>
-                                <height>200</height>
+                                <height>189</height>
                                </rect>
                               </property>
                               <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -872,9 +872,6 @@ QTabWidget::tab-bar#testsTab {
                             </widget>
                            </item>
                           </layout>
-                          <zorder>stepsFrame</zorder>
-                          <zorder>stepsFrame</zorder>
-                          <zorder>scrollArea</zorder>
                          </widget>
                         </item>
                         <item>
@@ -898,7 +895,7 @@ QTabWidget::tab-bar#testsTab {
                            <property name="geometry">
                             <rect>
                              <x>10</x>
-                             <y>0</y>
+                             <y>100</y>
                              <width>85</width>
                              <height>27</height>
                             </rect>
@@ -911,7 +908,7 @@ QTabWidget::tab-bar#testsTab {
                            <property name="geometry">
                             <rect>
                              <x>10</x>
-                             <y>40</y>
+                             <y>41</y>
                              <width>85</width>
                              <height>27</height>
                             </rect>
@@ -924,13 +921,29 @@ QTabWidget::tab-bar#testsTab {
                            <property name="geometry">
                             <rect>
                              <x>10</x>
-                             <y>80</y>
+                             <y>130</y>
                              <width>85</width>
                              <height>27</height>
                             </rect>
                            </property>
                            <property name="text">
                             <string>No</string>
+                           </property>
+                          </widget>
+                          <widget class="QToolButton" name="commentTestButton">
+                           <property name="geometry">
+                            <rect>
+                             <x>10</x>
+                             <y>170</y>
+                             <width>85</width>
+                             <height>27</height>
+                            </rect>
+                           </property>
+                           <property name="text">
+                            <string>Comment</string>
+                           </property>
+                           <property name="popupMode">
+                            <enum>QToolButton::InstantPopup</enum>
                            </property>
                           </widget>
                          </widget>
