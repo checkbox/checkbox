@@ -193,8 +193,11 @@ class QTInterface(UserInterface):
         else:
             info = ""
 
+        if not "data" in test:
+            test["data"] = ""
+
         self.qtiface.showTest(
-            test["purpose"], test["steps"], test["verification"], info,
+            test["purpose"], test["steps"], test["verification"], info, test["data"],
             test["suite"], test["name"], enableTestButton)
         self.wait_on_signals(
             startTestClicked=onStartTestClicked,
@@ -203,7 +206,7 @@ class QTInterface(UserInterface):
             noTestClicked=onNoTestClicked,
             yesTestClicked=onYesTestClicked)
 
-        test["data"] = ""
+        test["data"] = self.qtiface.getTestComment()
         return False
 
     def show_info(self, text, options=[], default=None):

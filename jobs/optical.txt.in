@@ -18,10 +18,20 @@ _description:
      This test will check your optical devices ability to read CD media
  STEPS:
      1. Insert appropriate non-blank media into your optical drive(s). Movie and Audio Disks may not work. Self-created data disks have the greatest chance of working.
-     2. If a file browser does not open automatically, open the file browser and access the disk.
-     3. Attempt to open a text file on the disk, or copy a file from the disk to your home directory.
+     2. If a file browser window opens, you can safely close or ignore that window.
+     3. Click "Test" to being the test.
+     4. When the test completes, proceed by clicking "Next"
  VERIFICATION:
-     Were you able to view files on the disk and either open a file to read or copy a file to your home directory?
+     This test should automatically select "Yes" if it passes, "No" if it fails.
+
+plugin: shell
+name: optical/read-automated
+requires:
+ device.category == 'CDROM'
+ user: root
+command: optical_read_test /dev/cdrom
+description:
+ This is an automated version of optical/read. It assumes you have already inserted a data CD into your optical drive prior to running Checkbox.
 
 plugin: manual
 name: optical/cdrom-write
@@ -49,14 +59,14 @@ _description:
      This test will check your CD audio playback capabilities
  STEPS:
      1. Insert an audio CD in your optical drive
-     2. Open the Dash (click on the Ubuntu Circle of Friends button on the Launcher)
-     3. Click "Listen to Music" to open Banshee
-     4. Select the CD under "Libraries" in the left panel of Banshee
-     5. Click the Play button to listen to music
+     2. When prompted, launch the Music Player
+     3. Locate the CD in the display of the Music Player
+     4. Select the CD in the Music Player
+     5. Click the Play button to listen to the music on the CD
      6. Stop playing after some time
-     7. Right click on the CD icon under "Libraries" and select "Eject Disc"
+     7. Right click on the CD icon and select "Eject Disc"
      8. The CD should be ejected
-     9. Close Banshee
+     9. Close the Music Player
  VERIFICATION:
      Did all the steps work?
 

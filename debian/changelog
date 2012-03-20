@@ -7,14 +7,35 @@ checkbox (0.13.5) precise; urgency=low
     plugins/user_interface.py, qt/frontend/qtfront.cpp, qt/frontend/qtfront.h:
     Correctly update automated test execution status in the Selection tab
     (LP: #950105).
+  * qt/frontend/qtfront.cpp: Avoid QDBusArgument warnings when running
+    checkbox-qt from a terminal (LP: #957476)
+  * checkbox_qt/qt_interface.py, qt/frontend/qtfront.cpp,
+    qt/frontend/qtfront.h, qt/frontend/qtfront.ui: add a popup comment box
+    for each test under the "Run" tab. (LP: #959452)
+  * checkbox/user_interface.py: Avoid using fork() + call() to run a web
+    browser. Use Popen instead.(LP: #956307)
   * qt/frontend/qtfront.ui, qt/frontend/qtfront.cpp, qt/frontend/qtfront.h:
     Removed welcome tab (LP: #957090)
 
   [Jeff Lane]
   * Reset default checkbox log level to INFO from DEBUG to make logs less
     confusing and verbose. (LP: #949745) 
-  * Removed dependency on bluetooth/detect-output on the 
+  * Removed dependency on bluetooth/detect-output on the
     suspend/suspend_advanced job. (LP: #955375)
+  * jobs/mediacard.txt.in, scripts/removable_storage_test,
+    scripts/removable_storage_watcher: Modified removable_storage_watcher and
+    removable_storage_test to accept list of busses to watch to resolve
+    problems on systems with MMC readers that present themselves as USB
+    devices rather than SDIO (LP: #953160)
+  * jobs/optical.txt.in: Fixed the job descriptions for optical/read and
+    optical/cdrom-audio-playback to account for changes in Precise and make
+    them less confusing (LP: #954606)
+  * Created automated version of optical/read for server testing
+    Fixed issues with optical_read_test script:
+    - test could pass if /dev/cdrom did not exist
+    - test could pass if /dev/cdrom was inaccessible
+    - test could pass if no optical device was passed in (LP: #945178)
+  * Removed hard coded paths from scripts (LP: #949435)
 
   [Marc Tardif]
   * Linted qt_interface which had a few syntax errors (LP: #949957)
@@ -30,7 +51,11 @@ checkbox (0.13.5) precise; urgency=low
   * Show the UF invalidation warning if all test cases are unchecked from the
     right click menu (LP: #956757)
 
- -- Jeff Lane <jeff@ubuntu.com>  Wed, 14 Mar 2012 18:10:57 -0400
+  [Brendan Donegan]
+  * jobs/suspend.txt.in: Fixed dependencies on wireless and suspend_advanced
+    jobs.
+
+ -- Jeff Lane <jeff@ubuntu.com>  Fri, 16 Mar 2012 19:14:09 -0400
 
 checkbox (0.13.4) precise; urgency=low
 

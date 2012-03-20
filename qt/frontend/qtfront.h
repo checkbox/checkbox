@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QtDBus>
 #include <QCloseEvent>
+#include <QTextEdit>
 
 #include "treemodel.h"
 
@@ -49,7 +50,8 @@ public slots:
     void showEntry(QString text);
     QVariantMap getTestsToRun();
     QString getEmailAddress();
-    void showTest(QString purpose, QString steps, QString verification, QString info, QString testType, QString testName, bool enableTestButton);
+    QString getTestComment();
+    void showTest(QString purpose, QString steps, QString verification, QString info, QString comment, QString testType, QString testName, bool enableTestButton);
     QString showInfo(QString text, QStringList options, QString defaultoption);
     void updateAutoTestStatus(QString status, QString testName);
 
@@ -89,6 +91,7 @@ private:
     QWidget *m_mainWindow;
     TreeModel * m_model;
     QStandardItemModel *m_statusModel;
+    QTextEdit *m_currentTextComment;
     QMap<QString, QString> m_statusList;
     QMap <QString, QString> m_titleTestTypes;
     QMap <QString, QString> m_statusStrings;

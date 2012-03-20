@@ -885,7 +885,7 @@ QTabWidget::tab-bar#testsTab {
                            <property name="geometry">
                             <rect>
                              <x>10</x>
-                             <y>0</y>
+                             <y>100</y>
                              <width>85</width>
                              <height>27</height>
                             </rect>
@@ -898,7 +898,7 @@ QTabWidget::tab-bar#testsTab {
                            <property name="geometry">
                             <rect>
                              <x>10</x>
-                             <y>40</y>
+                             <y>41</y>
                              <width>85</width>
                              <height>27</height>
                             </rect>
@@ -911,13 +911,29 @@ QTabWidget::tab-bar#testsTab {
                            <property name="geometry">
                             <rect>
                              <x>10</x>
-                             <y>80</y>
+                             <y>130</y>
                              <width>85</width>
                              <height>27</height>
                             </rect>
                            </property>
                            <property name="text">
                             <string>No</string>
+                           </property>
+                          </widget>
+                          <widget class="QToolButton" name="commentTestButton">
+                           <property name="geometry">
+                            <rect>
+                             <x>10</x>
+                             <y>170</y>
+                             <width>85</width>
+                             <height>27</height>
+                            </rect>
+                           </property>
+                           <property name="text">
+                            <string>Comment</string>
+                           </property>
+                           <property name="popupMode">
+                            <enum>QToolButton::InstantPopup</enum>
                            </property>
                           </widget>
                          </widget>

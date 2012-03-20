@@ -5,6 +5,7 @@
 #include <QMenu>
 #include <QMetaType>
 #include <QDBusMetaType>
+#include <QWidgetAction>
 
 #include "qtfront.h"
 #include "treemodel.h"
@@ -38,6 +39,7 @@ QtFront::QtFront(QApplication *parent) :
     ui(new Ui_main),
     m_model(0),
     m_statusModel(new QStandardItemModel()),
+    m_currentTextComment(new QTextEdit()),
     m_currentTab(0),
     m_skipTestMessage(false)
 {
@@ -68,6 +70,15 @@ QtFront::QtFront(QApplication *parent) :
     ui->treeView->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(ui->treeView, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(onSelectAllContextMenu(const QPoint&)));
     ui->stepsFrame->setFixedHeight(0);
+
+    // comment box
+    ui->commentTestButton->setMenu(new QMenu());
+    QWidgetAction *action = new QWidgetAction(ui->commentTestButton);
+    action->setDefaultWidget(m_currentTextComment);
+    ui->commentTestButton->menu()->addAction(action);
+    // force cursor blink without having to click inside the QTextEdit
+    m_currentTextComment->setFocus();
+    m_currentTextComment->setStyleSheet("background-color: white");
 
     m_titleTestTypes["__audio__"] = "Audio Test";
     m_titleTestTypes["__bluetooth__"] = "Bluetooth Test";
@@ -252,10 +263,11 @@ void QtFront::showEntry(QString text)
 
 }
 
-void QtFront::showTest(QString purpose, QString steps, QString verification, QString info, QString testType, QString testName, bool enableTestButton)
+void QtFront::showTest(QString purpose, QString steps, QString verification, QString info, QString comment, QString testType, QString testName, bool enableTestButton)
 {
     currentState = TESTING;
     m_currentTestName = testName;
+    m_currentTextComment->setText(comment);
     updateTestStatus(STATUS_INPROGRESS);
     ui->radioTestTab->setVisible(true);
     ui->nextPrevButtons->setVisible(true);
@@ -365,6 +377,9 @@ void QtFront::buildTree(QVariantMap options, QString baseIndex, QStandardItem *p
         QString index = baseIndex+"."+QString::number(internalIndex);
         QVariant value = options.value(index);
         QDBusArgument arg = value.value<QDBusArgument>();
+        if (arg.currentSignature().isEmpty()) {
+            break;
+        }
         QMap<QString, QString> items = qdbus_cast<QMap<QString, QString> >(arg);
         if (items.isEmpty()) {
             break;
@@ -505,6 +520,11 @@ QVariantMap QtFront::getTestsToRun()
         }
     }
     return selectedOptions;
+}
+
+QString QtFront::getTestComment()
+{
+    return m_currentTextComment->toPlainText();
 }
 
 QtFront::~QtFront()

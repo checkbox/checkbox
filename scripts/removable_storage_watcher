@@ -3,16 +3,15 @@
 import sys
 import gobject
 import dbus
+import argparse
 
-from argparse import ArgumentParser
 from dbus.mainloop.glib import DBusGMainLoop
-
 
 class StorageDeviceListener(object):
 
-    def __init__(self, action, device):
+    def __init__(self, action, devices):
         self._action = action
-        self._device = device
+        self._devices = devices
         self._bus = dbus.SystemBus(mainloop=DBusGMainLoop())
         self._loop = gobject.MainLoop()
         self._error = False
@@ -33,7 +32,7 @@ class StorageDeviceListener(object):
 
         return self._error
 
-    def job_change_detected(self, device, job_in_progress, job_id, job_num_tasks, job_cur_task_id, job_cur_task_percentage):
+    def job_change_detected(self, devices, job_in_progress, job_id, job_num_tasks, job_cur_task_id, job_cur_task_percentage):
         if job_id == "FilesystemMount" and self.is_device_inserted():
             print "Expected device %s inserted" % self._device
             self._loop.quit()
@@ -43,20 +42,21 @@ class StorageDeviceListener(object):
 
     def remove_detected(self, removed_path):
         if not self.is_device_inserted():
-            print "Expected device %s has been removed" % self._device
-
+            print "Removable storage device has been removed"
+        #TODO: figure out a way to get the DriveConnectionInterface of the
+        #device that was just removed.
         self._loop.quit()
 
     def is_device_inserted(self):
         ud_manager_obj = self._bus.get_object("org.freedesktop.UDisks", "/org/freedesktop/UDisks")
         ud_manager = dbus.Interface(ud_manager_obj, 'org.freedesktop.UDisks')
-
         for dev in ud_manager.EnumerateDevices():
             try:
                 device_obj = self._bus.get_object("org.freedesktop.UDisks", dev)
                 device_props = dbus.Interface(device_obj, dbus.PROPERTIES_IFACE)
+                self._device = device_props.Get('org.freedesktop.UDisks.Device', "DriveConnectionInterface")
                 if not device_props.Get('org.freedesktop.UDisks.Device',"DeviceIsDrive"):
-                    if device_props.Get('org.freedesktop.UDisks.Device', "DriveConnectionInterface") == self._device:
+                    if self._device in self._devices:
                         return True
             except dbus.DBusException:
                 pass
@@ -64,9 +64,9 @@ class StorageDeviceListener(object):
         return False
 
 def main():
-    parser = ArgumentParser(description="Wait for the specified device to be inserted or removed.")
+    parser = argparse.ArgumentParser(description="Wait for the specified device to be inserted or removed.")
     parser.add_argument('action', choices=['insert','remove'])
-    parser.add_argument('device', choices=['usb','firewire','sdio'])
+    parser.add_argument('device', choices=['usb','sdio','firewire','scsi'],nargs=argparse.REMAINDER)
     parser.add_argument('--timeout', type=int, default=10)
     args = parser.parse_args()
 
