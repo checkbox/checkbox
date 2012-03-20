@@ -9,9 +9,11 @@ checkbox (0.13.5) precise; urgency=low
     (LP: #950105).
   * qt/frontend/qtfront.cpp: Avoid QDBusArgument warnings when running
     checkbox-qt from a terminal (LP: #957476)
-   * checkbox_qt/qt_interface.py, qt/frontend/qtfront.cpp,
-     qt/frontend/qtfront.h, qt/frontend/qtfront.ui: add a popup comment box
-     for each test under the "Run" tab. (LP: #959452)
+  * checkbox_qt/qt_interface.py, qt/frontend/qtfront.cpp,
+    qt/frontend/qtfront.h, qt/frontend/qtfront.ui: add a popup comment box
+    for each test under the "Run" tab. (LP: #959452)
+  * checkbox/user_interface.py: Avoid using fork() + call() to run a web
+    browser. Use Popen instead.(LP: #956307)
 
   [Jeff Lane]
   * Reset default checkbox log level to INFO from DEBUG to make logs less
