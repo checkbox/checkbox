@@ -46,6 +46,8 @@ checkbox (0.13.5) precise; urgency=low
   [Brendan Donegan]
   * jobs/suspend.txt.in: Fixed dependencies on wireless and suspend_advanced
     jobs.
+  * Changed screenshot jobs to use /dev/external_webcam which will be set by
+    a udev rule (LP: #956885)
 
  -- Jeff Lane <jeff@ubuntu.com>  Fri, 16 Mar 2012 19:14:09 -0400
 
