@@ -20,6 +20,8 @@ import os, sys, re
 import gettext
 import logging
 
+from collections import defaultdict
+
 from checkbox.arguments import coerce_arguments
 from checkbox.properties import Float, Int, List, Map, Path, String, Unicode
 from checkbox.plugin import Plugin
@@ -73,9 +75,22 @@ class JobsInfo(Plugin):
 
         self.whitelist_patterns = self.get_patterns(self.whitelist, self.whitelist_file)
         self.blacklist_patterns = self.get_patterns(self.blacklist, self.blacklist_file)
+        self.selected_jobs = defaultdict(list)
 
+        self._manager.reactor.call_on("prompt-begin", self.prompt_begin)
         self._manager.reactor.call_on("gather", self.gather)
+        if logging.getLogger().getEffectiveLevel() <= logging.DEBUG:
+            self._manager.reactor.call_on("prompt-gather", self.post_gather, 90)
         self._manager.reactor.call_on("report-job", self.report_job, -100)
+
+
+    def prompt_begin(self, interface):
+        """
+        Capture interface object to use it later
+        to display errors
+        """
+        self.interface = interface
+        self.unused_patterns = self.whitelist_patterns + self.blacklist_patterns
 
     def get_patterns(self, strings, filename=None):
         if filename:
@@ -92,6 +107,7 @@ class JobsInfo(Plugin):
 
         return [re.compile(r"^%s$" % s) for s in strings
             if s and not s.startswith("#")]
+
 
     def gather(self):
         # Register temporary handler for report-message events
@@ -134,15 +150,50 @@ class JobsInfo(Plugin):
         self._manager.reactor.cancel_call(event_id)
         gettext.textdomain(old_domain)
 
+
+    def post_gather(self, interface):
+        """
+        Verify that all patterns were used
+        """
+        orphan_test_cases = []
+        for name, jobs in self.selected_jobs.iteritems():
+            is_test = any(job.get('type') == 'test' for job in jobs)
+            has_suite = any(job.get('suite') for job in jobs)
+            if is_test and not has_suite:
+                orphan_test_cases.append(name)
+
+        if orphan_test_cases:
+            error = ('Test cases not included in any test suite:\n'
+                     '{0}\n\n'
+                     'This might cause problems when uploading test cases results.\n'
+                     'Please make sure that the patterns you used are up-to-date\n'
+                     .format('\n'.join(['- {0}'.format(tc)
+                                        for tc in orphan_test_cases])))
+            self._manager.reactor.fire('prompt-error', self.interface, error)
+
+        if self.unused_patterns:
+            error = ('Unused patterns:\n'
+                     '{0}\n\n'
+                     "Please make sure that the patterns you used are up-to-date\n"
+                     .format('\n'.join(['- {0}'.format(p.pattern[1:-1])
+                                        for p in self.unused_patterns])))
+            self._manager.reactor.fire('prompt-error', self.interface, error)
+
+
     @coerce_arguments(job=job_schema)
     def report_job(self, job):
-        # Stop if job not in whitelist or in blacklist
         name = job["name"]
-        if self.whitelist_patterns:
-            if not [name for p in self.whitelist_patterns if p.match(name)]:
-                self._manager.reactor.stop()
-        elif self.blacklist_patterns:
-            if [name for p in self.blacklist_patterns if p.match(name)]:
+
+        patterns = self.whitelist_patterns or self.blacklist_patterns
+        if patterns:
+            match = next((p for p in patterns if p.match(name)), None)
+            if match:
+                # Keep track of which patterns didn't match any job
+                if match in self.unused_patterns:
+                    self.unused_patterns.remove(match)
+                self.selected_jobs[name].append(job)
+            else:
+                # Stop if job not in whitelist or in blacklist
                 self._manager.reactor.stop()
 
 
