@@ -1,4 +1,18 @@
+checkbox (0.13.6) precise; urgency=low
+
+  [Jeff Lane]
+  * Removed files in /data that are not used in any job descriptions
+    (LP: #957396)
+
+  [Javier Collado]
+  * plugins/jobs_info.py: Checkbox doesn't warn that invalid whitelist patterns
+    are being used (LP: #937651)
+
+ -- Daniel Manrique <roadmr@ubuntu.com>  Wed, 21 Mar 2012 10:04:47 -0400
+
 checkbox (0.13.5) precise; urgency=low
+
+  New upstream release (LP: #960633):
 
   [Tiago Salem Herrmann]
   * qt/frontend/qtfront.ui: If the test text is too long, then it is cut off
@@ -44,8 +58,6 @@ checkbox (0.13.5) precise; urgency=low
     - test could pass if /dev/cdrom was inaccessible
     - test could pass if no optical device was passed in (LP: #945178)
   * Removed hard coded paths from scripts (LP: #949435)
-  * Removed files in /data that are not used in any job descriptions
-    (LP: #957396)
 
   [Marc Tardif]
   * Linted qt_interface which had a few syntax errors (LP: #949957)
@@ -64,10 +76,6 @@ checkbox (0.13.5) precise; urgency=low
     right click menu (LP: #956757)
   * checkbox_qt/qt_interface.py, qt/frontend/qtfront.cpp,
     qt/frontend/qtfront.h: Tests now select Yes on PASS status (LP: #954556)
-
-  [Javier Collado]
-  * plugins/jobs_info.py: Checkbox doesn't warn that invalid whitelist patterns
-    are being used (LP: #937651)
 
   [Brendan Donegan]
   * jobs/suspend.txt.in: Fixed dependencies on wireless and suspend_advanced
