@@ -167,9 +167,9 @@ class QTInterface(UserInterface):
             return branch
 
         self._set_main_title()
-        buildBranch(options)
+        buildBranch(options, default)
 
-        self.qtiface.showTree(text, indexedOptions)
+        self.qtiface.showTree(text, indexedOptions, indexedDefaults)
         self.wait_on_signals(
             startTestsClicked=onStartTestsClicked)
 
