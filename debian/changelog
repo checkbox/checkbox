@@ -44,6 +44,8 @@ checkbox (0.13.5) precise; urgency=low
     - test could pass if /dev/cdrom was inaccessible
     - test could pass if no optical device was passed in (LP: #945178)
   * Removed hard coded paths from scripts (LP: #949435)
+  * Removed files in /data that are not used in any job descriptions
+    (LP: #957396)
 
   [Marc Tardif]
   * Linted qt_interface which had a few syntax errors (LP: #949957)
