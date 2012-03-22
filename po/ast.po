@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-01-06 12:39-0500\n"
-"PO-Revision-Date: 2012-02-21 13:57+0000\n"
+"PO-Revision-Date: 2012-03-21 15:37+0000\n"
 "Last-Translator: Xandru <xandru@softastur.org>\n"
 "Language-Team: Asturian <ast@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-03-15 04:31+0000\n"
-"X-Generator: Launchpad (build 14933)\n"
+"X-Launchpad-Export-Date: 2012-03-22 04:43+0000\n"
+"X-Generator: Launchpad (build 14981)\n"
 
 #. Title of the user interface
 #: ../gtk/checkbox-gtk.ui.h:1 ../qt/checkbox-qt.desktop.in.h:1
@@ -2382,6 +2382,20 @@ msgid ""
 "   Is your system clock displaying the correct date and time for your "
 "timezone?"
 msgstr ""
+"OXETIVU:\n"
+"Estra prueba verifica que'l reló del escritoriu se sincroniza col reló del "
+"sistema.\n"
+"PASOS A SIGUIR:\n"
+"1. Calca nel botón Prueba y verifica que'l reló avance una hora.\n"
+"Nota: Pue llevar como un minutu que'l reló anove la hora.\n"
+"2. Calca col botón drechu nel reló y llueu calca en Configuracion de data y "
+"hora...\n"
+"3. Asegúrate que'l reló tea configuráu en manual.\n"
+"4. Camuda la hora una hora p'atrás.\n"
+"5. Zarra la ventana y reanicia.\n"
+"VERIFICACIÓN:\n"
+"¿Ta'l reló del sistema amosando la data y hora correuta de la to zona "
+"horaria?"
 
 #. description
 #: ../jobs/panel_reboot.txt.in:4
@@ -3183,6 +3197,17 @@ msgid ""
 "VERIFICATION:\n"
 " Do you now have a new folder called Test Folder?"
 msgstr ""
+"PROPÓSITU:\n"
+"  Esta prueba va comprobar que'l esplorador de ficheros pue crear una "
+"carpeta nueva.\n"
+"PASOS:\n"
+"  1. Primi en Probar p'abrir l'esplorador de ficheros.\n"
+"  2. Na barra de menú, primi en Ficheru -> Crear una carpeta.\n"
+"  3. Nel cuadru Nome pa la nueva carpeta, escribi'l nome Carpeta de prueba y "
+"primi Intro.\n"
+"  4. Zarra l'esplorador de ficheros.\n"
+"VERIFICACIÓN:\n"
+"  ¿Usted ahora tiene una nueva carpeta llamada Carpeta de prueba?"
 
 #. description
 #: ../jobs/user_apps.txt.in:37
@@ -3475,6 +3500,14 @@ msgid ""
 "VERIFICATION:\n"
 " Did the video play using a plugin?"
 msgstr ""
+"PROPÓSITU:\n"
+" Esta prueba va comprobar que Firefox pue reproducir un ficheru mov. "
+"Quicktime.\n"
+" Nota: pue ser que se necesite instalar software adicional.\n"
+"PASOS:\n"
+" 1. Seleiciona Prueba p'aniciar Firefox con una amuesa de videu.\n"
+"VERIFICACIÓN:\n"
+" ¿Pues ver el videu utilizando un complementu?"
 
 #. description
 #: ../jobs/user_apps.txt.in:297
@@ -3833,6 +3866,8 @@ msgid ""
 "Tests that the systems wireless hardware can connect to a router using WPA "
 "security and the 802.11b/g protocols."
 msgstr ""
+"Comprueba que'l hardware inalámbricu del sistema pue coneutar con un router "
+"con seguridá WPA y protocolos 802.11b/g."
 
 #. description
 #: ../jobs/wireless.txt.in:38
@@ -3840,6 +3875,8 @@ msgid ""
 "Tests that the systems wireless hardware can connect to a router using no no "
 "security and the 802.11b/g protocols."
 msgstr ""
+"Prueba que'l hardwarewireless  del sistema pue coneutase al ruter usando "
+"protocolos 802.11b/g ensin seguridá."
 
 #. description
 #: ../jobs/wireless.txt.in:48
@@ -3847,6 +3884,8 @@ msgid ""
 "Tests that the systems wireless hardware can connect to a router using WPA "
 "security and the 802.11n protocol."
 msgstr ""
+"Comprueba que'l hardware inalámbricu del sistema pue coneutar col router "
+"ensin usar seguridá WPA y el protocolu 802.11n."
 
 #. description
 #: ../jobs/wireless.txt.in:58
@@ -3854,6 +3893,8 @@ msgid ""
 "Tests that the systems wireless hardware can connect to a router using no no "
 "security and the 802.11n protocol."
 msgstr ""
+"Prueba que'l hardwarewireless  del sistema pue coneutase al ruter usando "
+"protocolos 802.11b/n ensin seguridá."
 
 #. description
 #: ../jobs/wireless.txt.in:70
@@ -3861,6 +3902,7 @@ msgid ""
 "Tests the performance of a systems wireless connection through the iperf "
 "tool."
 msgstr ""
+"Comprueba la optimización d'una conexón inalámbrica cola ferramienta iperf."
 
 #. description
 #: ../jobs/wireless.txt.in:81
@@ -3868,6 +3910,8 @@ msgid ""
 "Tests the performance of a systems wireless connection through the iperf "
 "tool, using UDP packets."
 msgstr ""
+"Comprueba la optimización d'una conexón inalámbrica cola ferramienta iperf, "
+"utilizando paquetes UDP."
 
 #: ../checkbox/application.py:70
 msgid "Print version information and exit."
@@ -3899,12 +3943,12 @@ msgstr "Falta como argumentu l'archivu de configuración.\n"
 
 #: ../checkbox/job.py:84
 msgid "Command not found."
-msgstr ""
+msgstr "Comandu non alcontráu."
 
 #: ../checkbox/job.py:92
 #, python-format
 msgid "Command received signal %s: %s"
-msgstr ""
+msgstr "Orde de señal recibida %s: %s"
 
 #: ../checkbox/lib/signal.py:23
 msgid ""
@@ -4090,7 +4134,7 @@ msgstr ""
 #: ../plugins/apport_prompt.py:227
 #, python-format
 msgid "Test %(name)s from suite %(suite)s failed."
-msgstr ""
+msgstr "La prueba %(name)s del conxuntu %(suite)s falló."
 
 #: ../plugins/apport_prompt.py:231
 #, python-format
@@ -4211,6 +4255,8 @@ msgid ""
 "The generated report seems to have validation errors,\n"
 "so it might not be processed by Launchpad."
 msgstr ""
+"Paez ser que l'informe xeneráu tien fallos de validación,\n"
+"polo que pue ser que nun seya procesáu por Launchpad."
 
 #: ../plugins/lock_prompt.py:63
 msgid "There is another checkbox running. Please close it first."
