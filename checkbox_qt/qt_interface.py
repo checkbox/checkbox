@@ -36,13 +36,18 @@ ANSWER_TO_OPTION = {
 
 OPTION_TO_ANSWER = dict((o, a)
                         for a, o in ANSWER_TO_OPTION.items())
+def dummy_handle_reply(r=None):
+    return
 
+def dummy_handle_error(e=None):
+    return
 
 class QTInterface(UserInterface):
     def __init__(self, title, data_path):
         super(QTInterface, self).__init__(title, data_path)
         self._app_title = title
         notReady = True
+        infoResult = None
         while notReady:
             try:
                 self.bus = dbus.SessionBus(mainloop=DBusGMainLoop())
@@ -233,10 +238,26 @@ class QTInterface(UserInterface):
         return False
 
     def show_info(self, text, options=[], default=None):
-        return self.qtiface.showInfo(text, options, default)
+        def onInfoBoxResult(result):
+            self.infoResult = str(result)
+            self.loop.quit()
+
+        self.qtiface.showInfo(text, options, default, 
+            reply_handler=dummy_handle_reply,
+            error_handler=dummy_handle_error)
+        self.wait_on_signals(
+            infoBoxResult=onInfoBoxResult)
+        return self.infoResult
 
     def show_error(self, text):
-        self.qtiface.showError(text)
+        def onErrorBoxClosed():
+            self.loop.quit()
+
+        self.qtiface.showError(text,
+            reply_handler=dummy_handle_reply,
+            error_handler=dummy_handle_error)
+        self.wait_on_signals(
+            errorBoxClosed=onErrorBoxClosed)
 
     def update_status(self, job):
         if 'type' in job and job["type"] == "test":
