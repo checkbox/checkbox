@@ -13,6 +13,10 @@ checkbox (0.13.6) precise; urgency=low
     checkbox_qt/qt_interface.py, plugins/jobs_prompt.py: The selection tree is
     now updated when recovering from a previous run (LP: #937696)
 
+  [Tiago Salem Herrmann]
+  * checkbox_qt/qt_interface.py, qt/frontend/qtfront.cpp, qt/frontend/qtfront.h:
+    Do async calls to some ui methods and avoid unexpected dbus timeouts (LP: #962333)
+
  -- Jeff Lane <jeff@ubuntu.com>  Wed, 21 Mar 2012 18:08:46 -0400
 
 checkbox (0.13.5) precise; urgency=low
