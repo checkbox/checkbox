@@ -6,6 +6,8 @@
 
 QT       += core dbus service
 
+QMAKE_UIC = /usr/bin/uic-qt4 -tr checkboxTr 
+
 TARGET = checkbox-qt-service
 TEMPLATE = app
 
@@ -13,11 +15,13 @@ TEMPLATE = app
 SOURCES += main.cpp\
         qtfront.cpp \
     treemodel.cpp \
-    step.cpp
+    step.cpp \
+    checkboxtr.cpp
 
 HEADERS  += qtfront.h \
     treemodel.h \
-    step.h
+    step.h \
+    checkboxtr.h
 
 FORMS    += qtfront.ui
 
