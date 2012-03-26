@@ -8,12 +8,15 @@ checkbox (0.13.6) precise; urgency=low
   * plugins/jobs_info.py: Checkbox doesn't warn that invalid whitelist patterns
     are being used (LP: #937651)
   
+  [Marc Tardif]
+  * Fixed string_to_type conversion in network_bandwidth_test (LP: #954587)
+
   [Sylvain Pineau]
   * qt/frontend/qtfront.cpp, qt/frontend/qtfront.h, plugins/suites_prompt.py,
     checkbox_qt/qt_interface.py, plugins/jobs_prompt.py: The selection tree is
     now updated when recovering from a previous run (LP: #937696)
 
- -- Jeff Lane <jeff@ubuntu.com>  Wed, 21 Mar 2012 18:08:46 -0400
+ -- Marc Tardif <marc@ubuntu.com>  Mon, 26 Mar 2012 15:40:48 -0400
 
 checkbox (0.13.5) precise; urgency=low
 
