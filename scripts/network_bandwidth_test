@@ -13,27 +13,7 @@ from time import sleep
 from logging import StreamHandler, FileHandler, Formatter
 from optparse import OptionParser
 
-
-def string_to_type(string):
-    conversion_table = {
-        "(yes|true)": lambda v: True,
-        "(no|false)": lambda v: False,
-        "\d+\.\d+": lambda v: float(v.group(0)),
-        "(\d+)( ?b)?": lambda v: int(v.group(1)),
-        "(\d+) ?kb": lambda v: int(v.group(1)) * 1024,
-        "(\d+) ?mb": lambda v: int(v.group(1)) * 1024 * 1024,
-        "(\d+) ?gb": lambda v: int(v.group(1)) * 1024 * 1024 * 1024,
-        "(\d+)( ?hz)?": lambda v: int(v.group(1)),
-        "(\d+) ?khz": lambda v: int(v.group(1)) * 1024,
-        "(\d+) ?mhz": lambda v: int(v.group(1)) * 1024 * 1024,
-        "(\d+) ?ghz": lambda v: int(v.group(1)) * 1024 * 1024 * 1024}
-
-    for regex, func in conversion_table.items():
-        match = re.match("^%s$" % regex, string, re.IGNORECASE)
-        if match:
-            return func(match)
-
-    return string
+from checkbox.lib.conversion import string_to_type
 
 
 class CommandException(Exception):
@@ -496,7 +476,7 @@ class NetworkManager(object):
     #http://projects.gnome.org/NetworkManager/developers/
     #NetworkManager D-Bus API Specifications, look for the
     #NM_STATE enumeration to see which statuses indicate connection
-    #established and put them in this list. "3" works for NM 0.7 
+    #established and put them in this list. "3" works for NM 0.7
     #and 0.8, while "60" and "70" work for NM 0.9.
     STATES_CONNECTED = [3, 60, 70]
 
@@ -515,7 +495,7 @@ class NetworkManager(object):
 
     def is_connected(self):
         state = self.nm_service.state()
-        return state in self.STATES_CONNECTED 
+        return state in self.STATES_CONNECTED
 
 
 class Application(object):
