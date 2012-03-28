@@ -83,27 +83,27 @@ QtFront::QtFront(QApplication *parent) :
     m_currentTextComment->setFocus();
     m_currentTextComment->setStyleSheet("background-color: white");
 
-    m_titleTestTypes["__audio__"] = "Audio Test";
-    m_titleTestTypes["__bluetooth__"] = "Bluetooth Test";
-    m_titleTestTypes["__camera__"] = "Camera Test";
-    m_titleTestTypes["__cpu__"] = "CPU Test";
-    m_titleTestTypes["__disk__"] = "Disk Test";
-    m_titleTestTypes["__firewire__"] = "Firewire Test";
-    m_titleTestTypes["__graphics__"] = "Graphics Test";
-    m_titleTestTypes["__info__"] = "Info Test";
-    m_titleTestTypes["__input__"] = "Input Test";
-    m_titleTestTypes["__keys__"] = "Keys Test";
-    m_titleTestTypes["__mediacard__"] = "Media Card Test";
-    m_titleTestTypes["__memory__"] = "Memory Test";
-    m_titleTestTypes["__miscellanea__"] = "Miscellanea Test";
-    m_titleTestTypes["__monitor__"] = "Monitor Test";
-    m_titleTestTypes["__networking__"] = "Networking Test";
-    m_titleTestTypes["__wireless__"] = "Wireless Test";
-    m_titleTestTypes["__optical__"] = "Optical Test";
-    m_titleTestTypes["__pcmcia-pcix__"] = "PCMCIA/PCIX Test";
-    m_titleTestTypes["__power-management__"] = "Power Management Test";
-    m_titleTestTypes["__suspend__"] = "Suspend Test";
-    m_titleTestTypes["__usb__"] = "USB Test";
+    m_titleTestTypes["__audio__"] = checkboxTr("Audio Test",0);
+    m_titleTestTypes["__bluetooth__"] = checkboxTr("Bluetooth Test", 0);
+    m_titleTestTypes["__camera__"] = checkboxTr("Camera Test", 0);
+    m_titleTestTypes["__cpu__"] = checkboxTr("CPU Test", 0);
+    m_titleTestTypes["__disk__"] = checkboxTr("Disk Test", 0);
+    m_titleTestTypes["__firewire__"] = checkboxTr("Firewire Test", 0);
+    m_titleTestTypes["__graphics__"] = checkboxTr("Graphics Test", 0);
+    m_titleTestTypes["__info__"] = checkboxTr("Info Test", 0);
+    m_titleTestTypes["__input__"] = checkboxTr("Input Test", 0);
+    m_titleTestTypes["__keys__"] = checkboxTr("Keys Test", 0);
+    m_titleTestTypes["__mediacard__"] = checkboxTr("Media Card Test", 0);
+    m_titleTestTypes["__memory__"] = checkboxTr("Memory Test", 0);
+    m_titleTestTypes["__miscellanea__"] = checkboxTr("Miscellanea Test", 0);
+    m_titleTestTypes["__monitor__"] = checkboxTr("Monitor Test", 0);
+    m_titleTestTypes["__networking__"] = checkboxTr("Networking Test", 0);
+    m_titleTestTypes["__wireless__"] = checkboxTr("Wireless Test", 0);
+    m_titleTestTypes["__optical__"] = checkboxTr("Optical Test", 0);
+    m_titleTestTypes["__pcmcia-pcix__"] = checkboxTr("PCMCIA/PCIX Test", 0);
+    m_titleTestTypes["__power-management__"] = checkboxTr("Power Management Test", 0);
+    m_titleTestTypes["__suspend__"] = checkboxTr("Suspend Test", 0);
+    m_titleTestTypes["__usb__"] = checkboxTr("USB Test", 0);
 
     m_statusStrings[STATUS_UNINITIATED] = checkboxTr("Not Started", 0);
     m_statusStrings[STATUS_PASS] = checkboxTr("Done", 0);
@@ -244,7 +244,7 @@ void QtFront::showText(QString text)
 
 void QtFront::showError(QString text)
 {
-    QMessageBox::critical(ui->tabWidget, "Error", text);
+    QMessageBox::critical(ui->tabWidget, checkboxTr("Error", 0), text);
 }
 
 void QtFront::setWindowTitle(QString title)
@@ -528,7 +528,7 @@ QString QtFront::showInfo(QString text, QStringList options, QString defaultopti
         buttonMap[connectButton] = option;
     }
     dialog->setText(text);
-    dialog->setWindowTitle("Info");
+    dialog->setWindowTitle(checkboxTr("Info", 0));
     dialog->exec();
     QString result = buttonMap[dialog->clickedButton()];
     delete dialog;
