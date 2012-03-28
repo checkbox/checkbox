@@ -4,7 +4,7 @@
 
 int main(int argc, char *argv[])
 {
-    trInit("checkbox","");
+    trInit("checkbox","/usr/share/locale/");
 
     QApplication a(argc, argv);
     a.setWindowIcon(QIcon::fromTheme("checkbox"));
