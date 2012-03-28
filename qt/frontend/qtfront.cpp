@@ -105,13 +105,13 @@ QtFront::QtFront(QApplication *parent) :
     m_titleTestTypes["__suspend__"] = "Suspend Test";
     m_titleTestTypes["__usb__"] = "USB Test";
 
-    m_statusStrings[STATUS_UNINITIATED] = tr("Not Started");
-    m_statusStrings[STATUS_PASS] = tr("Done");
-    m_statusStrings[STATUS_FAIL] = tr("Done");
-    m_statusStrings[STATUS_UNSUPPORTED] = tr("Not Supported");
-    m_statusStrings[STATUS_UNRESOLVED] = tr("Not Resolved");
-    m_statusStrings[STATUS_UNTESTED] = tr("Not Tested");
-    m_statusStrings[STATUS_INPROGRESS] = tr("In Progress");
+    m_statusStrings[STATUS_UNINITIATED] = checkboxTr("Not Started", 0);
+    m_statusStrings[STATUS_PASS] = checkboxTr("Done", 0);
+    m_statusStrings[STATUS_FAIL] = checkboxTr("Done", 0);
+    m_statusStrings[STATUS_UNSUPPORTED] = checkboxTr("Not Supported", 0);
+    m_statusStrings[STATUS_UNRESOLVED] = checkboxTr("Not Resolved", 0);
+    m_statusStrings[STATUS_UNTESTED] = checkboxTr("Not Tested", 0);
+    m_statusStrings[STATUS_INPROGRESS] = checkboxTr("In Progress", 0);
 
 }
 
@@ -134,8 +134,8 @@ void QtFront::onSelectAllContextMenu(const QPoint& pos)
 
     QPoint position = ui->treeView->mapToGlobal(pos);
     QMenu menu;
-    QAction *selectAll = menu.addAction(tr("Select All"));
-    QAction *deselectAll = menu.addAction(tr("Deselect All"));
+    QAction *selectAll = menu.addAction(checkboxTr("Select All", 0));
+    QAction *deselectAll = menu.addAction(checkboxTr("Deselect All", 0));
 
     QAction* selectedItem = menu.exec(position);
     if (selectedItem && selectedItem == selectAll)
@@ -179,8 +179,8 @@ void QtFront::setInitialState()
 void QtFront::onNextTestClicked()
 {
     if (!m_skipTestMessage) {
-        QMessageBox msgBox(QMessageBox::Question, tr("Are you sure?"), tr("Do you really want to skip this test?"), 0, ui->tabWidget);
-        QCheckBox dontPrompt(tr("Don't ask me again"), &msgBox);
+        QMessageBox msgBox(QMessageBox::Question, checkboxTr("Are you sure?", 0), checkboxTr("Do you really want to skip this test?", 0), 0, ui->tabWidget);
+        QCheckBox dontPrompt(checkboxTr("Don't ask me again", 0), &msgBox);
         dontPrompt.blockSignals(true);
         msgBox.addButton(&dontPrompt, QMessageBox::ActionRole);
         QAbstractButton *yesButton = (QAbstractButton*)msgBox.addButton(QMessageBox::Yes);
