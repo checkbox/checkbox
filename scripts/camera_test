@@ -145,9 +145,9 @@ def parse_arguments(argv):
         assert len(devices) > 0, "No video devices found"
         return devices
 
-    if args.highest_device:
+    if hasattr(args, 'highest_device') and args.highest_device:
         args.device = get_video_devices()[-1]
-    elif args.lowest_device:
+    elif hasattr(args, 'lowest_device') and args.lowest_device:
         args.device = get_video_devices()[0]
     return args
 
