@@ -7,6 +7,8 @@ checkbox (0.13.6) precise; urgency=low
   [Javier Collado]
   * plugins/jobs_info.py: Checkbox doesn't warn that invalid whitelist patterns
     are being used (LP: #937651)
+  * [FEATURE] Added smoke test jobs, whitelist and local job to use for
+    checkbox development purposes. 
   
   [Marc Tardif]
   * Fixed string_to_type conversion in network_bandwidth_test (LP: #954587)
@@ -16,7 +18,7 @@ checkbox (0.13.6) precise; urgency=low
     checkbox_qt/qt_interface.py, plugins/jobs_prompt.py: The selection tree is
     now updated when recovering from a previous run (LP: #937696)
 
- -- Marc Tardif <marc@ubuntu.com>  Mon, 26 Mar 2012 15:40:48 -0400
+ -- Jeff Lane <jeff@ubuntu.com>  Wed, 28 Mar 2012 15:07:54 -0400
 
 checkbox (0.13.5) precise; urgency=low
 
