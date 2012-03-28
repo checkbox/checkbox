@@ -263,3 +263,11 @@ _description: Stress tests
 command:
   shopt -s extglob
   cat $CHECKBOX_SHARE/jobs/stress.txt?(.in)
+
+name: __smoke__
+plugin: local
+_description: Smoke tests
+command:
+  shopt -s extglob
+  cat $CHECKBOX_SHARE/jobs/smoke.txt?(.in)
+
