@@ -1,9 +1,10 @@
 /*
- * This file is part of checkbox
+ * This file is part of checkbox - taken from unity-2d 
  *
- * Copyright 2011 Canonical Ltd.
+ * Copyright 2012 Canonical Ltd.
  *
  * Authors:
+ * - Daniel Manrique <roadmr@ubuntu.com> - Checkbox modifications 
  * - Aurélien Gâteau <aurelien.gateau@canonical.com>
  *
  * This program is free software; you can redistribute it and/or modify

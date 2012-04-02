@@ -4,6 +4,7 @@
  * Copyright 2012 Canonical Ltd.
  *
  * Authors:
+ * - Daniel Manrique <roadmr@ubuntu.com> - Checkbox modifications 
  * - Aurélien Gâteau <aurelien.gateau@canonical.com>
  *
  * This program is free software; you can redistribute it and/or modify
