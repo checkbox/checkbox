@@ -6,6 +6,7 @@
 #include <QCloseEvent>
 #include <QTextEdit>
 
+#include "checkboxtr.h"
 #include "treemodel.h"
 
 class Ui_main;
