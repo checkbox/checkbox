@@ -7,21 +7,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-06 12:39-0500\n"
+"POT-Creation-Date: 2012-03-28 10:50-0400\n"
 "PO-Revision-Date: 2012-02-28 07:16+0000\n"
 "Last-Translator: zmicier <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-03-15 04:33+0000\n"
-"X-Generator: Launchpad (build 14933)\n"
+"X-Launchpad-Export-Date: 2012-04-03 04:40+0000\n"
+"X-Generator: Launchpad (build 15052)\n"
 
-#: ../gtk/checkbox-gtk.ui.h:5
+#: ../gtk/checkbox-gtk.ui.h:8
 msgid "_Skip this test"
 msgstr "Пропустить этот тест"
 
-#: ../gtk/checkbox-gtk.ui.h:3
+#: ../gtk/checkbox-gtk.ui.h:10
 msgid "_Yes"
 msgstr "_Да"
 
@@ -84,6 +84,10 @@ msgstr ""
 msgid "Information not posted to Launchpad."
 msgstr "Информация не была отправлена на Launchpad."
 
+#: ../qt/frontend/qtfront.cpp:109 ../qt/frontend/qtfront.cpp:110
+msgid "Done"
+msgstr "Выполнено"
+
 #~ msgid "Welcome to System Testing!"
 #~ msgstr "Добро пожаловать в программу проверки системы!"
 
@@ -112,39 +116,36 @@ msgstr "Информация не была отправлена на Launchpad."
 #~ msgid "Authentication"
 #~ msgstr "Аутентификация"
 
-#~ msgid "Done"
-#~ msgstr "Выполнено"
-
 #~ msgid "Do you hear a sound?"
 #~ msgstr "Слышите ли вы звук?"
 
 #~ msgid "Detecting your network controller(s):"
 #~ msgstr "Обнаружение сетевых устройств:"
 
-#: ../gtk/checkbox-gtk.ui.h:6 ../checkbox_cli/cli_interface.py:444
+#: ../gtk/checkbox-gtk.ui.h:1 ../checkbox_cli/cli_interface.py:444
 #: ../checkbox_urwid/urwid_interface.py:267
 msgid "Further information:"
 msgstr "Дополнительная информация:"
 
-#: ../gtk/checkbox-gtk.ui.h:10
+#: ../gtk/checkbox-gtk.ui.h:2
 msgid "Ne_xt"
 msgstr "_Далее"
 
 #. Title of the user interface
-#: ../gtk/checkbox-gtk.ui.h:1 ../qt/checkbox-qt.desktop.in.h:1
-#: ../plugins/user_interface.py:42
+#: ../gtk/checkbox-gtk.ui.h:3 ../qt/checkbox-qt.desktop.in.h:1
+#: ../plugins/user_interface.py:43 ../qt/frontend/ui_qtfront.h:589
 msgid "System Testing"
 msgstr "Проверка системы"
 
-#: ../gtk/checkbox-gtk.ui.h:8
+#: ../gtk/checkbox-gtk.ui.h:4
 msgid "_Deselect All"
 msgstr "_Снять выделение"
 
-#: ../gtk/checkbox-gtk.ui.h:4
+#: ../gtk/checkbox-gtk.ui.h:5
 msgid "_No"
 msgstr "_Нет"
 
-#: ../gtk/checkbox-gtk.ui.h:9
+#: ../gtk/checkbox-gtk.ui.h:6
 msgid "_Previous"
 msgstr "Н_азад"
 
@@ -152,7 +153,7 @@ msgstr "Н_азад"
 msgid "_Select All"
 msgstr "_Выделить всё"
 
-#: ../gtk/checkbox-gtk.ui.h:2 ../checkbox_gtk/gtk_interface.py:538
+#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:553
 msgid "_Test"
 msgstr "_Проверить"
 
@@ -269,31 +270,21 @@ msgid ""
 "    This test will check that a USB audio device works correctly\n"
 "STEPS:\n"
 "    1. Connect a USB audio device to your system\n"
-"    2. Open the volume control application by left-clicking on the speaker "
-"icon in the panel and selecting \"Sound Settings\"\n"
-"    3. Select the \"Input\" tab and choose your USB device\n"
-"    4. Select the \"Output\" tab and choose your USB device\n"
-"    5. Click \"Test\", then speak into the microphone\n"
-"    6. After a few seconds, your speech will be played back to you\n"
+"    2. Click \"Test\", then speak into the microphone\n"
+"    3. After a few seconds, your speech will be played back to you\n"
 "VERIFICATION:\n"
 "    Did you hear your speech played back through the USB headphones?"
 msgstr ""
 "ЦЕЛЬ:\n"
-"    Эта проверка позволит убедиться в работоспособности звукового устройства "
-"с интерфейсом USB\n"
+"    Эта проверка позволит убедиться в надлежащей работоспособности звукового "
+"устройства с интерфейсом USB\n"
 "ДЕЙСТВИЯ:\n"
 "    1. Подсоедините звуковое устройство с интерфейсом USB к вашей системе\n"
-"    2. Откройте приложение программу управления звуком, щёлкнув на значке "
-"громкоговорителя в верхней панели и выбрав \"Параметры звука...\"\n"
-"    3. Откройте вкладку \"Вход\" и выберите ваше устройство с интерфейсом "
-"USB\n"
-"    4. Откройте вкладку \"Выход\" и выберите ваше устройство с интерфейсом "
-"USB\n"
-"    5. Щёлкните \"Проверить\", затем начните говорить в микрофон\n"
-"    6. После нескольких секунд, произнесённая вами речь будет "
-"воспроизведена.\n"
+"    2. Щёлкните \"Проверить\", затем произнесите что-нибудь в микрофон\n"
+"    3. Через несколько секунд ваша речь будет воспроизведена\n"
 "ПРОВЕРКА:\n"
-"    Была ли воспроизведена ваша речь через наушники с интерфейсом USB?"
+"    Вы слышали вашу речь воспроизведённую с использованием наушников с "
+"интерфейсом USB?"
 
 #. description
 #: ../jobs/audio.txt.in:99
@@ -317,16 +308,6 @@ msgstr ""
 "   Эта проверка попытается установить комплект Autotest Suite.  Эти тесты "
 "могут привести систему в аварийное состояние, поэтому они по умолчанию "
 "отнесены в категорию запрещённых."
-
-#. description
-#: ../jobs/bluetooth.txt.in:7
-msgid ""
-"This test will detect your Bluetooth device and output the device's hardware "
-"address.  If no device is found, the test will exit with an error."
-msgstr ""
-"Эта проверка позволяет обнаружить устройство Bluetooth и выдать аппаратный "
-"адрес устройства.  Если устройство не найдено, проверка будет завершена с "
-"ошибкой."
 
 #. description
 #: ../jobs/bluetooth.txt.in:8
@@ -498,17 +479,18 @@ msgid ""
 "PURPOSE:\n"
 "    This test will check that the built-in camera works\n"
 "STEPS:\n"
-"    1. Click on Test to display a video capture from the camera\n"
+"    1. Click on Test to display a video capture from the camera for ten "
+"seconds.\n"
 "VERIFICATION:\n"
 "    Did you see the video capture?"
 msgstr ""
-"ЦЕЛЬ:\n"
-"    Эта проверка поможет вам убедиться в работоспособности встроенной "
-"камеры\n"
+"Цель:\n"
+"    Эта проверка позволит убедиться в работоспособности встроенной камеры\n"
 "ДЕЙСТВИЯ:\n"
-"    1. Щёлкните Проверить, для отображения видео вещания с камеры\n"
+"    1. Щёлкните Проверить, для отображения 10-и секундного фрагмента с видео "
+"с камеры.\n"
 "ПРОВЕРКА:\n"
-"    Видите ли вы видео вещание?"
+"    Был ли отображён видеофрагмент?"
 
 #. description
 #: ../jobs/camera.txt.in:33
@@ -526,27 +508,6 @@ msgstr ""
 "    1. Щёлкните Проверить для создания фотографии с камеры\n"
 "ПРОВЕРКА:\n"
 "    Видите ли вы фотографию?"
-
-#. description
-#: ../jobs/camera.txt.in:49
-msgid ""
-"PURPOSE:\n"
-"    This test will check that you can capture video with the built-in "
-"camera\n"
-"STEPS:\n"
-"    1. Click on Test to capture video to a file (it will automatically open "
-"in Totem)\n"
-"VERIFICATION:\n"
-"    Did you see and hear the capture?"
-msgstr ""
-"ЦЕЛЬ:\n"
-"    Эта проверка позволит убедиться в работоспособности записи видео со "
-"встроенной камеры\n"
-"ДЕЙСТВИЯ:\n"
-"    1. Щёлкните Проверить для выполнения записи видео в файл (он "
-"автоматически откроется в Totem)\n"
-"ПРОВЕРКА:\n"
-"    Вы слышали и видели видеозапись?"
 
 #. description
 #: ../jobs/codecs.txt.in:7
@@ -679,8 +640,13 @@ msgstr "Находит и отображает диски, подключенн�
 
 #. description
 #: ../jobs/disk.txt.in:9
-msgid "Benchmark for each disk "
-msgstr "Тест производительности каждого диска "
+msgid "Benchmark for each disk"
+msgstr "Проверка каждого диска"
+
+#. description
+#: ../jobs/disk.txt.in:23
+msgid "Check stats changes for each disk"
+msgstr "Проверка изменения состояния каждого диска"
 
 #. description
 #: ../jobs/disk.txt.in:40
@@ -782,32 +748,71 @@ msgstr ""
 "   Процедура аутентификации работает надлежащим образом?"
 
 #. description
-#: ../jobs/firewire.txt.in:3
+#: ../jobs/firewire.txt.in:4
 msgid ""
 "PURPOSE:\n"
-"    This test will check that the firewire port works\n"
+"    This test will check the system can detect the insertion of a FireWire "
+"HDD\n"
 "STEPS:\n"
-"    1. Plug a Firewire HDD into the computer\n"
-"    2. Either a window asking which action should be performed (open folder, "
-"photo manager, etc) or a file browser will open.\n"
-"    3. Copy some files from your internal HDD to the firewire HDD\n"
-"    4. Copy some files from the firewire HDD to your internal HDD\n"
+"    1. Click 'Test' to begin the test. This test will\n"
+"       timeout and fail if the insertion has not been detected within 10 "
+"seconds.\n"
+"    2. Plug a FireWire HDD into an available FireWire port.\n"
 "VERIFICATION:\n"
-"    Do the copy operations work as expected?"
+"    The verification of this test is automated. Do not change the "
+"automatically\n"
+"    selected result"
 msgstr ""
-"ЦЕЛЬ:\n"
-"    Эта проверка позволит убедиться в работоспособности порта firewire\n"
+"ЦУЛЬ:\n"
+"    Эта проверка позволит убедиться в возможности определения подсоединения "
+"жёсткого диска с интерфейсом FireWire\n"
 "ДЕЙСТВИЯ:\n"
-"    1. Подсоедините жёсткий диск с интерфейсом Firewire к компьютеру\n"
-"    2. Появится окно с запросом действия, которое может быть выполнено "
-"(открыть папку, диспетчер фотографий и т.п.) или открытие обозревателя "
-"файлов.\n"
-"    3. Скопируйте несколько файлов с внутреннего жёсткого диска на жёсткий "
-"диск с интерфейсом firewire\n"
-"    4. Скопируйте несколько файлов с жёсткого диска с интерфейсом firewire "
-"на внутренний жёсткий диск\n"
+"    1. Щёлкните 'Проверка' для выполнения проверки. Проверка не будет "
+"пройдена, \n"
+"         если подсоединение не было определено в течении 10 секунд.\n"
+"    2. Подсоедините жёсткий диск с интерфейсом FireWire в свободный порт "
+"FireWire.\n"
 "ПРОВЕРКА:\n"
-"    Операции копирования выполнены надлежащим образом?"
+"    Результаты проверки обрабатываются автоматически. Не вносите изменений в "
+"автоматически\n"
+"    выбранный результат"
+
+#. description
+#: ../jobs/firewire.txt.in:19
+msgid ""
+"This is an automated test which performs read/write operations on an "
+"attached FireWire HDD"
+msgstr ""
+"Это автоматизированный тест, который выполняет операции чтения/записи на "
+"присоединенённом жёстком диске с интерфейсом FireWire"
+
+#. description
+#: ../jobs/firewire.txt.in:27
+msgid ""
+" PURPOSE:\n"
+"   This test will check the system can detect the removal of a FireWire HDD\n"
+" STEPS:\n"
+"   1. Click 'Test' to begin the test. This test will timeout and fail if\n"
+"      the removal has not been detected within 10 seconds.\n"
+"   2. Remove the previously attached FireWire HDD from the FireWire port.\n"
+" VERIFICATION:\n"
+"   The verification of this test is automated. Do not change the "
+"automatically\n"
+"   selected result"
+msgstr ""
+" ЦУЛЬ:\n"
+"    Эта проверка позволит убедиться в возможности определения извлечения "
+"жёсткого диска с интерфейсом FireWire\n"
+"ДЕЙСТВИЯ:\n"
+"    1. Щёлкните 'Проверка' для выполнения проверки. Проверка не будет "
+"пройдена, \n"
+"         если отсоединение не было определено в течении 10 секунд.\n"
+"    2. Отсоедините, присоединённый ранее жёсткий диск с интерфейсом FireWire "
+"из свободного порта FireWire.\n"
+"ПРОВЕРКА:\n"
+"    Результаты проверки обрабатываются автоматически. Не вносите изменений в "
+"автоматически\n"
+"    выбранный результат"
 
 #. description
 #: ../jobs/floppy.txt.in:4
@@ -952,26 +957,9 @@ msgstr ""
 "    Видите ли вы цветные полосы и статические?"
 
 #. description
-#: ../jobs/graphics.txt.in:107
-msgid ""
-"PURPOSE:\n"
-"    This test checks the detected video modes\n"
-"STEPS:\n"
-"    1. The following screens and video modes have been detected on your "
-"system\n"
-"INFO:\n"
-"    $output\n"
-"VERIFICATION:\n"
-"    Are those correct?"
-msgstr ""
-"ЦЕЛЬ:\n"
-"    Эта проверка позволит определить режимы видео \n"
-"ДЕЙСТВИЯ:\n"
-"    1. Следующие экраны и режимы видео доступны на вашей системе\n"
-"СВЕДЕНИЯ:\n"
-"    $output\n"
-"ПРОВЕРКА:\n"
-"    Корректная ли получена информация?"
+#: ../jobs/graphics.txt.in:106
+msgid "Check that VESA drivers are not in use"
+msgstr "Проверка задействования драйверов VESA"
 
 #. description
 #: ../jobs/graphics.txt.in:113
@@ -992,9 +980,14 @@ msgstr ""
 "    Работает ли экран при переходе в каждый режим?"
 
 #. description
+#: ../jobs/graphics.txt.in:126
+msgid "Check that hardware is able to run compiz"
+msgstr "Проверка аппаратных возможностей для запуска compiz"
+
+#. description
 #: ../jobs/graphics.txt.in:133
-msgid "Check that the hardware is able to run compiz."
-msgstr "Проверьте оборудование на возможность запуска compiz."
+msgid "Check that hardware is able to run Unity 3D"
+msgstr "Проверка аппаратных возможностей для запуска Unity 3D"
 
 #. description
 #: ../jobs/graphics.txt.in:139
@@ -1018,6 +1011,55 @@ msgstr ""
 "ПРОВЕРКА:\n"
 "    1. Появился ли трёхмерный видеофрагмент?\n"
 "    2. В видеофрагменте отсутствовали рывки и замедления?"
+
+#. description
+#: ../jobs/graphics.txt.in:159
+msgid ""
+"PURPOSE:\n"
+"    Do some challenging operations and check for lockup on the GPU\n"
+"STEPS:\n"
+"    1. Create 2 glxgears windows and move them quickly\n"
+"    2. Switch workspaces/viewports with wmctrl\n"
+"    3. Launch a Flash playback in firefox\n"
+"    4. Suspend/resume\n"
+"VERIFICATION:\n"
+"    1. Atfer a 60s workload, check kern.log for reported GPU errors"
+msgstr ""
+
+#. description
+#: ../jobs/graphics.txt.in:174
+msgid ""
+"PURPOSE:\n"
+"    Take a screengrab of the current screen (logged on Unity desktop)\n"
+"STEPS:\n"
+"    1. Take picture using USB webcam\n"
+"VERIFICATION:\n"
+"    1. Review attachment manually later"
+msgstr ""
+
+#. description
+#: ../jobs/graphics.txt.in:186 ../jobs/suspend.txt.in:316
+msgid "Attaches the screenshot captured in graphics/screenshot."
+msgstr ""
+
+#. description
+#: ../jobs/graphics.txt.in:194
+msgid ""
+"PURPOSE:\n"
+"    Take a screengrab of the current screen during fullscreen video "
+"playback\n"
+"STEPS:\n"
+"    1. Start a fullscreen video playback\n"
+"    2. Take picture using USB webcam after a few seconds\n"
+"VERIFICATION:\n"
+"    1. Review attachment manually later"
+msgstr ""
+
+#. description
+#: ../jobs/graphics.txt.in:207
+msgid ""
+"Attaches the screenshot captured in graphics/screenshot_fullscreen_video."
+msgstr ""
 
 #. description
 #: ../jobs/hibernate.txt.in:7
@@ -1120,52 +1162,42 @@ msgid "Attaches a list of the currently running kernel modules."
 msgstr "Добавляет список выполняемых в данный момент модулей ядра."
 
 #. description
-#: ../jobs/info.txt.in:85
-msgid "Captures a screenshot."
-msgstr "Создаёт снимок экрана."
-
-#. description
-#: ../jobs/info.txt.in:91
-msgid "Attaches the screenshot captured in info/screenshot."
-msgstr "Добавляет снимок экрана записанный в info/screenshot."
-
-#. description
-#: ../jobs/info.txt.in:96
+#: ../jobs/info.txt.in:82
 msgid "Gather log from the Firmware Test Suite run."
 msgstr "Журналировать выводы набора тестов встроенных программ."
 
 #. description
-#: ../jobs/info.txt.in:103
+#: ../jobs/info.txt.in:89
 msgid "Attaches the contents of /proc/acpi/sleep if it exists."
 msgstr "Добавляет содержимое /proc/acpi/sleep, если оно есть."
 
 #. description
-#: ../jobs/info.txt.in:107
+#: ../jobs/info.txt.in:93
 msgid "Bootchart information."
 msgstr "Сведения Bootchart."
 
 #. description
-#: ../jobs/info.txt.in:116
+#: ../jobs/info.txt.in:102
 msgid "SATA/IDE device information."
 msgstr "Сведения о устройствах SATA/IDE."
 
 #. description
-#: ../jobs/info.txt.in:133
+#: ../jobs/info.txt.in:119
 msgid "Attaches the bootchart png file for bootchart runs"
 msgstr "Добавляет файл bootchart png для запуска bootchart"
 
 #. description
-#: ../jobs/info.txt.in:142
+#: ../jobs/info.txt.in:128
 msgid "Attaches the bootchart log for bootchart test runs."
 msgstr "Добавление журнала bootchart при запуске теста bootchart."
 
 #. description
-#: ../jobs/info.txt.in:150
+#: ../jobs/info.txt.in:136
 msgid "installs the installer bootchart tarball if it exists."
 msgstr "устанавливает инсталлятор bootchart tarball если он существует."
 
 #. description
-#: ../jobs/info.txt.in:155
+#: ../jobs/info.txt.in:141
 msgid "Attaches the installer debug log if it exists."
 msgstr ""
 "Прикрепляет отладочную информацию программы установки, если такая существует."
@@ -1333,30 +1365,17 @@ msgstr ""
 "отключение при втором нажатии?"
 
 #. description
-#: ../jobs/keys.txt.in:76
+#: ../jobs/keys.txt.in:74
 msgid ""
 "PURPOSE:\n"
 "    This test will test the media keys of your keyboard\n"
 "STEPS:\n"
-"    1. Click test to launch the media player\n"
-"    2. Press the play/pause key on the keyboard\n"
-"    3. Press the forward key on the keyboard\n"
-"    4. Press the backward key on the keyboard\n"
-"    5. Press stop key on the keyboard\n"
+"    1. Click test to open a window on which to test the media control keys.\n"
+"    2. If all the keys work, the test will be marked as passed.\n"
+"    3. If your computer has no media control keys, Skip this test.\n"
 "VERIFICATION:\n"
 "    Do the keys work as expected?"
 msgstr ""
-"ЦЕЛЬ:\n"
-"    Эта проверка позволит убедиться в работоспособности мультимедийных "
-"клавиш клавиатуры\n"
-"ДЕЙСТВИЯ:\n"
-"    1. Щёлкните Проверить для запуска мультимедийного проигрывателя\n"
-"    2. Нажмите клавишу воспроизведения/приостановки на клавиатуре\n"
-"    3. Нажмите клавишу вперёд на клавиатуре\n"
-"    4. Нажмите клавишу назад на клавиатуре\n"
-"    5. Нажмите клавишу остановить на клавиатуре\n"
-"ПРОВЕРКА:\n"
-"    Клавиши работают надлежащим образом?"
 
 #. description
 #: ../jobs/local.txt.in:3
@@ -1569,332 +1588,367 @@ msgstr ""
 "Mago."
 
 #. description
-#: ../jobs/mediacard.txt.in:3
+#: ../jobs/mediacard.txt.in:4
 msgid ""
 "PURPOSE:\n"
-"    This test will check your system Secure Digital (SD) media card support\n"
+"    This test will check that the systems media card reader can\n"
+"    detect the insertion of a Multimedia Card (MMC) media\n"
 "STEPS:\n"
-"    1. Plug a SD media card into the computer\n"
-"    2. An icon should appear on the Launcher\n"
-"    3. Right click on the Launcher icon and select \"Safely Remove Drive\"\n"
-"    4. The icon should disappear from the Launcher\n"
+"    1. Click \"Test\" and insert an MMC card into the reader.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
+"    2. Do not unplug the device after the test.\n"
 "VERIFICATION:\n"
-"    Does the icon automatically appear/disappear?"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
 msgstr ""
 "ЦЕЛЬ:\n"
-"    Эта проверка позволяет удостовериться в поддержке карт памяти Secure "
-"Digital (SD)\n"
+"    Эта проверка позволит убедиться в возможности определения вставки карт "
+"памяти Multimedia (MMC), \n"
+"    считывателем карт памяти установленным в системе\n"
 "ДЕЙСТВИЯ:\n"
-"    1. Вставьте карту памяти SD в соответствующий разъём компьютера\n"
-"    2. На панели запуска должен появиться значок\n"
-"    3. Щёлкните правой кнопкой мыши по значку на панели запуска и выберите "
-"\"Безопасное удаление устройства\"\n"
-"    4. После чего значок исчезнет с панели запуска\n"
+"    1. Щёлкните \"Проверить\" и вставьте карту памяти MMC в считыватель.\n"
+"       (Примечание: эта проверка выполняется в течении 10 секунд.)\n"
+"    2. Не отсоединяйте устройство после проверки.\n"
 "ПРОВЕРКА:\n"
-"    Появляется/исчезает ли значок автоматически?"
+"    Проверка автоматизирована. Не изменяйте автоматически\n"
+"    выбранный результат."
 
 #. description
-#: ../jobs/mediacard.txt.in:17
+#: ../jobs/mediacard.txt.in:20
+msgid ""
+"This test is automated and executes after the mediacard/mmc-insert test is "
+"run. It tests reading and writing to the MMC card."
+msgstr ""
+"Эта проверка автоматизирована и выполняется после запуска проверки вставки "
+"карты памяти mediacard/mmc. Будет выполнено чтение и запись на карту памяти "
+"MMC."
+
+#. description
+#: ../jobs/mediacard.txt.in:28
 msgid ""
 "PURPOSE:\n"
-"    This test will check your system Secure Digital (SD) media card support "
-"after suspend\n"
+"    This test will check that the system correctly detects\n"
+"    the removal of the MMC card from the systems card reader.\n"
 "STEPS:\n"
-"    1. Plug a SD media card into the computer\n"
-"    2. An icon should appear on the Launcher\n"
-"    3. Right click on the Launcher icon and select \"Safely Remove Drive\"\n"
-"    4. The icon should disappear from the Launcher\n"
+"    1. Click \"Test\" and remove the MMC card from the reader.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
 "VERIFICATION:\n"
-"    Does the icon automatically appear/disappear?"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
 msgstr ""
 "ЦЕЛЬ:\n"
-"    Эта проверка позволяет удостовериться в поддержке карт памяти Secure "
-"Digital (SD) после режима ожидания\n"
+"    Эта проверка позволит убедиться в возможности системы правильно "
+"определять\n"
+"    извлечение карты памяти MMC из системного считывателя карт памяти.\n"
 "ДЕЙСТВИЯ:\n"
-"    1. Вставьте карту памяти SD в соответствующий разъём компьютера\n"
-"    2. На панели запуска должен появиться значок\n"
-"    3. Щёлкните правой кнопкой мыши по значку на панели запуска и выберите "
-"\"Безопасное удаление устройства\"\n"
-"    4. После чего значок исчезнет с панели запуска\n"
+"    1. Щёлкните \"Проверить\" и извлеките карту памяти MMC из считывателя "
+"карт памяти.\n"
+"       (Примечание: эта проверка выполняется в течении 10 секунд.)\n"
 "ПРОВЕРКА:\n"
-"    Появляется/исчезает ли значок автоматически?"
+"    Проверка автоматизирована. Не изменяйте автоматически\n"
+"    выбранный результат."
 
 #. description
-#: ../jobs/mediacard.txt.in:30
+#: ../jobs/mediacard.txt.in:43
 msgid ""
 "PURPOSE:\n"
-"    This test will check your system Secure Digital High Capacity (SDHC) "
-"media card support\n"
+"    This test will check that the systems media card reader can\n"
+"    detect the insertion of an MMC card after the system has been suspended\n"
 "STEPS:\n"
-"    1. Plug a SDHC media card into the computer\n"
-"    2. An icon should appear on the Launcher\n"
-"    3. Right click on the Launcher icon and select \"Safely Remove Drive\"\n"
-"    4. The icon should disappear from the Launcher\n"
+"    1. Click \"Test\" and insert an MMC card into the reader.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
+"    2. Do not unplug the device after the test.\n"
 "VERIFICATION:\n"
-"    Does the icon automatically appear/disappear?"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
 msgstr ""
 "ЦЕЛЬ:\n"
-"    Эта проверка позволяет удостовериться в поддержке карт памяти Secure "
-"Digital High Capacity (SDHC)\n"
+"    Эта проверка позволит убедиться в возможности системы правильно "
+"определять\n"
+"    вставку карты памяти MMC из системного считывателя карт памяти, после "
+"выхода из спящего режима.\n"
 "ДЕЙСТВИЯ:\n"
-"    1. Вставьте карту памяти SDHC в соответствующий разъём компьютера\n"
-"    2. На панели запуска должен появиться значок\n"
-"    3. Щёлкните правой кнопкой мыши по значку на панели запуска и выберите "
-"\"Безопасное удаление устройства\"\n"
-"    4. После чего значок исчезнет с панели запуска\n"
+"    1. Щёлкните \"Проверить\" и вставьте карту памяти MMC в считыватель карт "
+"памяти.\n"
+"       (Примечание: эта проверка выполняется в течении 10 секунд.)\n"
+"    2. Не отсоединяйте устройство после проверки.\n"
 "ПРОВЕРКА:\n"
-"    Появляется/исчезает ли значок автоматически?"
+"    Проверка автоматизирована. Не изменяйте автоматически\n"
+"    выбранный результат."
 
 #. description
-#: ../jobs/mediacard.txt.in:44
+#: ../jobs/mediacard.txt.in:59
 msgid ""
-"    This test will check your system Secure Digital High Capacity (SDHC) "
-"media card support after suspend\n"
-"STEPS:\n"
-"    1. Plug a SDHC media card into the computer\n"
-"    2. An icon should appear on the Launcher\n"
-"    3. Right click on the Launcher icon and select \"Safely Remove Drive\"\n"
-"    4. The icon should disappear from the Launcher\n"
-"VERIFICATION:\n"
-"    Does the icon automatically appear/disappear?"
+"This test is automated and executes after the mediacard/mmc-insert-after-"
+"suspend test is run. It tests reading and writing to the MMC card after the "
+"system has been suspended."
 msgstr ""
-"    ЦЕЛЬ:\n"
-"    Эта проверка позволяет удостовериться в поддержке карт памяти Secure "
-"Digital High Capacity (SDHC) после режима ожидания\n"
-"ДЕЙСТВИЯ:\n"
-"    1. Вставьте карту памяти SDHC в соответствующий разъём компьютера\n"
-"    2. На панели запуска должен появиться значок\n"
-"    3. Щёлкните правой кнопкой мыши по значку на панели запуска и выберите "
-"\"Безопасное удаление устройства\"\n"
-"    4. После чего значок исчезнет с панели запуска\n"
-"ПРОВЕРКА:\n"
-"    Появляется/исчезает ли значок автоматически?"
+"Эта проверка автоматизирована и выполняется после запуска проверки вставки "
+"карты памяти mediacard/mmc, после выхода из спящего режима. Будет выполнено "
+"чтение и запись на карту памяти MMC, после выхода из спящего режима."
 
 #. description
-#: ../jobs/mediacard.txt.in:56
+#: ../jobs/mediacard.txt.in:67
 msgid ""
 "PURPOSE:\n"
-"    This test will check your system Multi Media Card (MMC) media card "
-"support\n"
+"    This test will check that the system correctly detects the removal\n"
+"    of an MMC card from the systems card reader after the system has been "
+"suspended.\n"
 "STEPS:\n"
-"    1. Plug a MMC media card into the computer\n"
-"    2. An icon should appear on the Launcher\n"
-"    3. Right click on the Launcher icon and select \"Safely Remove Drive\"\n"
-"    4. The icon should disappear from the Launcher\n"
+"    1. Click \"Test\" and remove the MMC card from the reader.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
 "VERIFICATION:\n"
-"    Does the icon automatically appear/disappear?"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
 msgstr ""
-"ЦЕЛЬ:\n"
-"    Эта проверка позволяет удостовериться в поддержке карт памяти Multi "
-"Media Card (MMC) \n"
-"ДЕЙСТВИЯ:\n"
-"    1. Вставьте карту памяти MMC в соответствующий разъём компьютера\n"
-"    2. На панели запуска должен появиться значок\n"
-"    3. Щёлкните правой кнопкой мыши по значку на панели запуска и выберите "
-"\"Безопасное удаление устройства\"\n"
-"    4. После чего значок исчезнет с панели запуска\n"
-"ПРОВЕРКА:\n"
-"    Появляется/исчезает ли значок автоматически?"
 
 #. description
-#: ../jobs/mediacard.txt.in:70
+#: ../jobs/mediacard.txt.in:81
 msgid ""
 "PURPOSE:\n"
-"    This test will check your system Multi Media Card (MMC) media card "
-"support after suspend\n"
+"    This test will check that the systems media card reader can\n"
+"    detect the insertion of a Secure Digital (SD) media card\n"
 "STEPS:\n"
-"    1. Plug a MMC media card into the computer\n"
-"    2. An icon should appear on the Launcher\n"
-"    3. Right click on the Launcher icon and select \"Safely Remove Drive\"\n"
-"    4. The icon should disappear from the Launcher\n"
+"    1. Click \"Test\" and insert an SD card into the reader.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
+"    2. Do not unplug the device after the test.\n"
 "VERIFICATION:\n"
-"    Does the icon automatically appear/disappear?"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
 msgstr ""
 "ЦЕЛЬ:\n"
-"    Эта проверка позволяет удостовериться в поддержке карт памяти Multi "
-"Media Card (MMC) после режима ожидания\n"
+"    Эта проверка позволит убедиться в работоспособности считывателя карт "
+"памяти для определения вставки карт памяти Secure Digital (SD)\n"
 "ДЕЙСТВИЯ:\n"
-"    1. Вставьте карту памяти MMC в соответствующий разъём компьютера\n"
-"    2. На панели запуска должен появиться значок\n"
-"    3. Щёлкните правой кнопкой мыши по значку на панели запуска и выберите "
-"\"Безопасное удаление устройства\"\n"
-"    4. После чего значок исчезнет с панели запуска\n"
+"    1. Щёлкните \"Проверить\" и вставьте карту SD в считыватель.\n"
+"       (Примечание: проверка выполняется в течении 10 секунд.)\n"
+"    2. Не отсоединяйте устройство после выполнения проверки.\n"
 "ПРОВЕРКА:\n"
-"    Появляется/исчезает ли значок автоматически?"
-
-#. description
-#: ../jobs/mediacard.txt.in:83
-msgid ""
-"PURPOSE:\n"
-"    This test will check your system Memory Stick (MS) media card support\n"
-"STEPS:\n"
-"    1. Plug a MS media card into the computer\n"
-"    2. An icon should appear on the Launcher\n"
-"    3. Right click on the Launcher icon and select \"Safely Remove Drive\"\n"
-"    4. The icon should disappear from the Launcher\n"
-"VERIFICATION:\n"
-"    Does the icon automatically appear/disappear?"
-msgstr ""
-"ЦЕЛЬ:\n"
-"    Эта проверка позволяет удостовериться в поддержке карт памяти Memory "
-"Stick (MS) \n"
-"ДЕЙСТВИЯ:\n"
-"    1. Вставьте карту памяти MS в соответствующий разъём компьютера\n"
-"    2. На панели запуска должен появиться значок\n"
-"    3. Щёлкните правой кнопкой мыши по значку на панели запуска и выберите "
-"\"Безопасное удаление устройства\"\n"
-"    4. После чего значок исчезнет с панели запуска\n"
-"ПРОВЕРКА:\n"
-"    Появляется/исчезает ли значок автоматически?"
+"    Проверка автоматизирована. Не изменяйте автоматически\n"
+"    выбранный результат."
 
 #. description
 #: ../jobs/mediacard.txt.in:97
 msgid ""
-"PURPOSE:\n"
-"    This test will check your system Memory Stick (MS) media card support "
-"after suspend\n"
-"STEPS:\n"
-"    1. Plug a MS media card into the computer\n"
-"    2. An icon should appear on the Launcher\n"
-"    3. Right click on the Launcher icon and select \"Safely Remove Drive\"\n"
-"    4. The icon should disappear from the Launcher\n"
-"VERIFICATION:\n"
-"    Does the icon automatically appear/disappear?"
+"This test is automated and executes after the mediacard/sd-insert test is "
+"run. It tests reading and writing to the SD card."
 msgstr ""
-"ЦЕЛЬ:\n"
-"    Эта проверка позволяет удостовериться в поддержке карт памяти Memory "
-"Stick (MS) после режима ожидания\n"
-"ДЕЙСТВИЯ:\n"
-"    1. Вставьте карту памяти MS в соответствующий разъём компьютера\n"
-"    2. На панели запуска должен появиться значок\n"
-"    3. Щёлкните правой кнопкой мыши по значку на панели запуска и выберите "
-"\"Безопасное удаление устройства\"\n"
-"    4. После чего значок исчезнет с панели запуска\n"
-"ПРОВЕРКА:\n"
-"    Появляется/исчезает ли значок автоматически?"
+"Эта проверка автоматизирована и выполняется после вставки карты памяти. "
+"Будет выполнена проверка чтения и записи на карту памяти SD."
 
 #. description
-#: ../jobs/mediacard.txt.in:110
+#: ../jobs/mediacard.txt.in:105
 msgid ""
 "PURPOSE:\n"
-"    This test will check your system Memory Stick Pro (MSP) media card "
-"support\n"
+"    This test will check that the system correctly detects\n"
+"    the removal of an SD card from the systems card reader.\n"
 "STEPS:\n"
-"    1. Plug a MSP media card into the computer\n"
-"    2. An icon should appear on the Launcher\n"
-"    3. Right click on the Launcher icon and select \"Safely Remove Drive\"\n"
-"    4. The icon should disappear from the Launcher\n"
+"    1. Click \"Test\" and remove the SD card from the reader.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
 "VERIFICATION:\n"
-"    Does the icon automatically appear/disappear?"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
 msgstr ""
-"ЦЕЛЬ:\n"
-"    Эта проверка позволяет удостовериться в поддержке карт памяти Memory "
-"Stick Pro (MSP)\n"
-"ДЕЙСТВИЯ:\n"
-"    1. Вставьте карту памяти MSP в соответствующий разъём компьютера\n"
-"    2. На панели запуска должен появиться значок\n"
-"    3. Щёлкните правой кнопкой мыши по значку на панели запуска и выберите "
-"\"Безопасное удаление устройства\"\n"
-"    4. После чего значок исчезнет с панели запуска\n"
-"ПРОВЕРКА:\n"
-"    Появляется/исчезает ли значок автоматически?"
 
 #. description
-#: ../jobs/mediacard.txt.in:124
+#: ../jobs/mediacard.txt.in:120
 msgid ""
 "PURPOSE:\n"
-"    This test will check your system Memory Stick Pro (MSP) media card "
-"support after suspend\n"
+"    This test will check that the systems media card reader can\n"
+"    detect the insertion of an SD card after the system has been suspended\n"
 "STEPS:\n"
-"    1. Plug a MSP media card into the computer\n"
-"    2. An icon should appear on the Launcher\n"
-"    3. Right click on the Launcher icon and select \"Safely Remove Drive\"\n"
-"    4. The icon should disappear from the Launcher\n"
+"    1. Click \"Test\" and insert an SD card into the reader.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
+"    2. Do not unplug the device after the test.\n"
 "VERIFICATION:\n"
-"    Does the icon automatically appear/disappear?"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
 msgstr ""
-"ЦЕЛЬ:\n"
-"    Эта проверка позволяет удостовериться в поддержке карт памяти Memory "
-"Stick Pro (MSP) после режима ожидания\n"
-"ДЕЙСТВИЯ:\n"
-"    1. Вставьте карту памяти MSP в соответствующий разъём компьютера\n"
-"    2. На панели запуска должен появиться значок\n"
-"    3. Щёлкните правой кнопкой мыши по значку на панели запуска и выберите "
-"\"Безопасное удаление устройства\"\n"
-"    4. После чего значок исчезнет с панели запуска\n"
-"ПРОВЕРКА:\n"
-"    Появляется/исчезает ли значок автоматически?"
 
 #. description
-#: ../jobs/mediacard.txt.in:137
+#: ../jobs/mediacard.txt.in:136
+msgid ""
+"This test is automated and executes after the mediacard/sd-insert-after-"
+"suspend test is run. It tests reading and writing to the SD card after the "
+"system has been suspended."
+msgstr ""
+"Эта проверка автоматизирована и выполняется после запуска проверки карты "
+"памяти/вставки sd после спящего режима. Выполняется проверка чтения и записи "
+"на карте памяти SD, после выхода системы из спящего режима."
+
+#. description
+#: ../jobs/mediacard.txt.in:144
 msgid ""
 "PURPOSE:\n"
-"    This test will check your system Compact Flash (CF) media card support\n"
+"    This test will check that the system correctly detects\n"
+"    the removal of an SD card from the systems card reader after the system "
+"has been suspended.\n"
 "STEPS:\n"
-"    1. Plug a CF media card into the computer\n"
-"    2. An icon should appear on the Launcher\n"
-"    3. Right click on the Launcher icon and select \"Safely Remove Drive\"\n"
-"    4. The icon should disappear from the Launcher\n"
+"    1. Click \"Test\" and remove the SD card from the reader.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
 "VERIFICATION:\n"
-"    Does the icon automatically appear/disappear?"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
 msgstr ""
-"ЦЕЛЬ:\n"
-"    Эта проверка позволяет удостовериться в поддержке карт памяти Compact "
-"Flash (CF)\n"
-"ДЕЙСТВИЯ:\n"
-"    1. Вставьте карту памяти CF в соответствующий разъём компьютера\n"
-"    2. На панели запуска должен появиться значок\n"
-"    3. Щёлкните правой кнопкой мыши по значку на панели запуска и выберите "
-"\"Безопасное удаление устройства\"\n"
-"    4. После чего значок исчезнет с панели запуска\n"
-"ПРОВЕРКА:\n"
-"    Появляется/исчезает ли значок автоматически?"
 
 #. description
-#: ../jobs/mediacard.txt.in:151
-msgid ""
-"    This test will check your system Compact Flash (CF) media card support "
-"after suspend\n"
-"STEPS:\n"
-"    1. Plug a CF media card into the computer\n"
-"    2. An icon should appear on the Launcher\n"
-"    3. Right click on the Launcher icon and select \"Safely Remove Drive\"\n"
-"    4. The icon should disappear from the Launcher\n"
-"VERIFICATION:\n"
-"    Does the icon automatically appear/disappear?"
-msgstr ""
-"    ЦЕЛЬ:\n"
-"    Эта проверка позволяет удостовериться в поддержке карт памяти Compact "
-"Flash (CF) после режима ожидания\n"
-"ДЕЙСТВИЯ:\n"
-"    1. Вставьте карту памяти CF в соответствующий разъём компьютера\n"
-"    2. На панели запуска должен появиться значок\n"
-"    3. Щёлкните правой кнопкой мыши по значку на панели запуска и выберите "
-"\"Безопасное удаление устройства\"\n"
-"    4. После чего значок исчезнет с панели запуска\n"
-"ПРОВЕРКА:\n"
-"    Появляется/исчезает ли значок автоматически?"
-
-#. description
-#: ../jobs/memory.txt.in:4
+#: ../jobs/mediacard.txt.in:158
 msgid ""
 "PURPOSE:\n"
-"    This test checks the amount of memory that is detected\n"
+"    This test will check that the systems media card reader can\n"
+"    detect the insertion of a Secure Digital High-Capacity (SDHC) media "
+"card\n"
 "STEPS:\n"
-"    1. Click Test to see the amount of detected memory\n"
-"INFO:\n"
-"    $output\n"
+"    1. Click \"Test\" and insert an SDHC card into the reader.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
+"    2. Do not unplug the device after the test.\n"
 "VERIFICATION:\n"
-"    Is the amount of detected memory correct?"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
 msgstr ""
-"ЦЕЛЬ:\n"
-"    Этот тест позволяет проверить объём обнаруженной памяти\n"
-"ДЕЙСТВИЯ:\n"
-"    1. Щёлкните Проверить для просмотра объёма обнаруженной памяти\n"
-"СВЕДЕНИЯ:\n"
-"    $output\n"
-"ПРОВЕРКА:\n"
-"    Объём памяти обнаружен правильно?"
+
+#. description
+#: ../jobs/mediacard.txt.in:174
+msgid ""
+"This test is automated and executes after the mediacard/sdhc-insert test is "
+"run. It tests reading and writing to the SDHC card."
+msgstr ""
+
+#. description
+#: ../jobs/mediacard.txt.in:182
+msgid ""
+"PURPOSE:\n"
+"    This test will check that the system correctly detects\n"
+"    the removal of an SDHC card from the systems card reader.\n"
+"STEPS:\n"
+"    1. Click \"Test\" and remove the SDHC card from the reader.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
+msgstr ""
+
+#. description
+#: ../jobs/mediacard.txt.in:197
+msgid ""
+"PURPOSE:\n"
+"    This test will check that the systems media card reader can\n"
+"    detect the insertion of an SDHC media card after the system has been "
+"suspended\n"
+"STEPS:\n"
+"    1. Click \"Test\" and insert an SDHC card into the reader.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
+"    2. Do not unplug the device after the test.\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
+msgstr ""
+
+#. description
+#: ../jobs/mediacard.txt.in:213
+msgid ""
+"This test is automated and executes after the mediacard/sdhc-insert-after-"
+"suspend test is run. It tests reading and writing to the SDHC card after the "
+"system has been suspended."
+msgstr ""
+
+#. description
+#: ../jobs/mediacard.txt.in:221
+msgid ""
+"PURPOSE:\n"
+"    This test will check that the system correctly detects the removal\n"
+"    of an SDHC card from the systems card reader after the system has been "
+"suspended.\n"
+"STEPS:\n"
+"    1. Click \"Test\" and remove the SDHC card from the reader.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
+msgstr ""
+
+#. description
+#: ../jobs/mediacard.txt.in:235
+msgid ""
+"PURPOSE:\n"
+"    This test will check that the systems media card reader can\n"
+"    detect the insertion of a Compact Flash (CF) media card\n"
+"STEPS:\n"
+"    1. Click \"Test\" and insert a CF card into the reader.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
+"    2. Do not unplug the device after the test.\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
+msgstr ""
+
+#. description
+#: ../jobs/mediacard.txt.in:251
+msgid ""
+"This test is automated and executes after the mediacard/cf-insert test is "
+"run. It tests reading and writing to the CF card."
+msgstr ""
+
+#. description
+#: ../jobs/mediacard.txt.in:259
+msgid ""
+"PURPOSE:\n"
+"    This test will check that the system correctly detects\n"
+"    the removal of a CF card from the systems card reader.\n"
+"STEPS:\n"
+"    1. Click \"Test\" and remove the CF card from the reader.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
+msgstr ""
+
+#. description
+#: ../jobs/mediacard.txt.in:274
+msgid ""
+"PURPOSE:\n"
+"    This test will check that the systems media card reader can\n"
+"    detect the insertion of a CF card after the system has been suspended\n"
+"STEPS:\n"
+"    1. Click \"Test\" and insert a CF card into the reader.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
+"    2. Do not unplug the device after the test.\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
+msgstr ""
+
+#. description
+#: ../jobs/mediacard.txt.in:290
+msgid ""
+"This test is automated and executes after the mediacard/cf-insert-after-"
+"suspend test is run. It tests reading and writing to the CF card after the "
+"system has been suspended."
+msgstr ""
+
+#. description
+#: ../jobs/mediacard.txt.in:298
+msgid ""
+"PURPOSE:\n"
+"    This test will check that the system correctly detects the removal\n"
+"    of a CF card from the systems card reader after the system has been "
+"suspended.\n"
+"STEPS:\n"
+"    1. Click \"Test\" and remove the CF card from the reader.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
+msgstr ""
+
+#. description
+#: ../jobs/memory.txt.in:5
+msgid ""
+"This test checks the amount of memory which is reporting in meminfo against "
+"the size of the memory modules detected by DMI."
+msgstr ""
+"Этот тест сверяет объем памяти сообщаемый meminfo с объемом модулей памяти, "
+"определенным с помощью DMI."
 
 #. description
 #: ../jobs/memory.txt.in:14
@@ -1931,15 +1985,6 @@ msgstr ""
 "Запустить набор автоматизированных тестов встроенных программ (FWTS)."
 
 #. description
-#: ../jobs/miscellanea.txt.in:29
-msgid ""
-"ipmitool is required for ipmi testing. This checks for ipmitool and installs "
-"it if not available."
-msgstr ""
-"Необходим ipmitool для выполнения проверки ipmi. Выполняет проверку ipmitool "
-"и устанавливает его, если он не доступен."
-
-#. description
 #: ../jobs/miscellanea.txt.in:31
 msgid ""
 "This will run some basic connectivity tests against a BMC, verifying that "
@@ -1958,17 +2003,19 @@ msgstr ""
 "компьютеров, которые могут быть не применимы к настольным компьютерам."
 
 #. description
-#: ../jobs/miscellanea.txt.in:51
+#: ../jobs/miscellanea.txt.in:45
 msgid ""
-"This test checks /var/crash to see if there are any crash reports present."
+"Test that the /var/crash directory doesn't contain anything. Lists the files "
+"contained within if it does, or echoes the status of the directory (doesn't "
+"exist/is empty)"
 msgstr ""
-"Этот тест проверяет содержимое файла «/var/crash» на наличие отчётов об "
-"ошибках."
 
 #. description
-#: ../jobs/miscellanea.txt.in:51
-msgid "If there are, this test will fail."
-msgstr "Если они есть, тест не будет пройден."
+#: ../jobs/miscellanea.txt.in:53
+msgid ""
+"Test to check that virtualization is supported and the test system has at "
+"least a minimal amount of RAM to function as an OpenStack Compute Node"
+msgstr ""
 
 #. description
 #: ../jobs/monitor.txt.in:4
@@ -2134,6 +2181,16 @@ msgid "Network Information"
 msgstr "Сведения о сети"
 
 #. description
+#: ../jobs/networking.txt.in:40
+msgid ""
+"This is an automated test to gather some info on the current state of your "
+"network devices. If no devices are found, the test will exit with an error."
+msgstr ""
+"Это автоматизированный тест для сбора информации о текущем состоянии ваших "
+"сетевых устройств. Если устройства не будут найдены, тест завершиться с "
+"ошибкой."
+
+#. description
 #: ../jobs/networking.txt.in:46
 msgid ""
 "PURPOSE:\n"
@@ -2244,101 +2301,95 @@ msgid "Test to detect the optical drives"
 msgstr "Проверка определения оптических дисководов"
 
 #. description
-#: ../jobs/optical.txt.in:18
-msgid "Optical Storage device read tests"
-msgstr "Проверка чтения на оптическом дисководе"
-
-#. description
-#: ../jobs/optical.txt.in:35
+#: ../jobs/optical.txt.in:16
 msgid ""
 "PURPOSE:\n"
-"    This test will check your system's CDROM writing capabilities. If your "
-"drive does not support writing CDs or you do not have any blank CD media, "
-"please skip this test.\n"
+"    This test will check your optical devices ability to read CD media\n"
 "STEPS:\n"
-"    1. Enter a blank CDROM into your drive\n"
-"    2. Write something in the CDROM\n"
-"    3. Read the newly written CDROM\n"
+"    1. Insert appropriate non-blank media into your optical drive(s). Movie "
+"and Audio Disks may not work. Self-created data disks have the greatest "
+"chance of working.\n"
+"    2. If a file browser window opens, you can safely close or ignore that "
+"window.\n"
+"    3. Click \"Test\" to being the test.\n"
+"    4. When the test completes, proceed by clicking \"Next\"\n"
 "VERIFICATION:\n"
-"    Was the data correctly written?"
+"    This test should automatically select \"Yes\" if it passes, \"No\" if it "
+"fails."
 msgstr ""
-"ЦЕЛЬ:\n"
-"    Эта проверки позволить удостовериться в возможности записи CDROM. Если "
-"ваш дисковод не поддерживает запись компакт-дисков или у вас отсутствует "
-"пустой носитель, пожалуйста, пропустите эту проверку.\n"
-"ДЕЙСТВИЯ:\n"
-"    1. Вставьте пустой CDROM в дисковод\n"
-"    2. Запишите что-нибудь на CDROM\n"
-"    3. Откройте записанный CDROM\n"
-"ПРОВЕРКА:\n"
-"    Данные были записаны надлежащим образом?"
 
 #. description
-#: ../jobs/optical.txt.in:47
+#: ../jobs/optical.txt.in:43
+msgid ""
+"PURPOSE:\n"
+"    This test will check your system's CD writing capabilities. This test "
+"requires a blank CD-R. If you do not have a blank CD-R, skip this test.\n"
+"STEPS:\n"
+"    1. Enter a blank CD-R into your drive\n"
+"    2. Click \"Test\" to begin.\n"
+"    3. When the CD tray ejects the media after burning, close it (DO NOT "
+"remove the disk, it is needed for the second portion of the test). Note, you "
+"must close the drive within 10 seconds or the test will time out.\n"
+"    4. When the test completes, proceed by clicking \"Next\"\n"
+"VERIFICATION:\n"
+"    This test should automatically select \"Yes\" if it passes, \"No\" if it "
+"fails."
+msgstr ""
+
+#. description
+#: ../jobs/optical.txt.in:57
 msgid ""
 "PURPOSE:\n"
 "    This test will check your CD audio playback capabilities\n"
 "STEPS:\n"
 "    1. Insert an audio CD in your optical drive\n"
-"    2. Open the Dash (click on the Ubuntu Circle of Friends button on the "
-"Launcher)\n"
-"    3. Click \"Listen to Music\" to open Banshee\n"
-"    4. Select the CD under \"Libraries\" in the left panel of Banshee\n"
-"    5. Click the Play button to listen to music\n"
+"    2. When prompted, launch the Music Player\n"
+"    3. Locate the CD in the display of the Music Player\n"
+"    4. Select the CD in the Music Player\n"
+"    5. Click the Play button to listen to the music on the CD\n"
 "    6. Stop playing after some time\n"
-"    7. Right click on the CD icon under \"Libraries\" and select \"Eject "
-"Disc\"\n"
+"    7. Right click on the CD icon and select \"Eject Disc\"\n"
 "    8. The CD should be ejected\n"
-"    9. Close Banshee\n"
+"    9. Close the Music Player\n"
 "VERIFICATION:\n"
 "    Did all the steps work?"
 msgstr ""
-"ЦЕЛЬ:\n"
-"    Эта проверки позволить удостовериться в возможности воспроизведения "
-"звуковых компакт-дисков\n"
-"ДЕЙСТВИЯ:\n"
-"    1. Вставьте звуковой компакт-диск в дисковод оптических дисков\n"
-"    2. Откройте меню быстрого доступа (щёлкните на кнопке круга друзей "
-"Ubuntu на панели запуска)\n"
-"    3. Щёлкните \"Музыка\" для открытия Banshee\n"
-"    4. Выберите компакт-диск в \"Библиотеке\" располагающейся в левой панели "
-"Banshee\n"
-"    5. Щёлкните на кнопке Воспроизвести для прослушивания музыки\n"
-"    6. Остановите воспроизведение через некоторое время\n"
-"    7. Щёлкните правой кнопкой мыши на значке компакт-диска над элементом "
-"\"Библиотека\" и выберите \"Извлечь диск\"\n"
-"    8. Компакт-диск должен быть извлечён\n"
-"    9. Закройте Banshee\n"
-"ПРОВЕРКА:\n"
-"    Все ли действия были выполнены без проблем?"
 
 #. description
-#: ../jobs/optical.txt.in:68
+#: ../jobs/optical.txt.in:80
 msgid ""
 "PURPOSE:\n"
-"    This test will check your system's DVD writing capabilities. If your "
-"drive does not support writing DVDs or you do not have any blank DVD media, "
-"please skip this test.\n"
+"    This test will check your system's DVD writing capabilities. This test "
+"requires a blank DVD-R. If you do not have a blank DVD-R, skip this test.\n"
 "STEPS:\n"
-"    1. Enter a blank DVD into your drive\n"
-"    2. Write something in the DVD\n"
-"    3. Read the newly written DVD\n"
+"    1. Enter a blank DVD-R into your drive\n"
+"    2. Click \"Test\" to begin.\n"
+"    3. When the CD tray ejects the media after burning, close it (DO NOT "
+"remove the disk, it is needed for the second portion of the test). Note, you "
+"must close the drive within 10 seconds or the test will time out.\n"
+"    4. When the test completes, proceed by clicking \"Next\"\n"
 "VERIFICATION:\n"
-"    Was the data correctly written?"
+"    This test should automatically select \"Yes\" if it passes, \"No\" if it "
+"fails."
 msgstr ""
 "ЦЕЛЬ:\n"
-"    Эта проверки позволить удостовериться в возможности записи DVD. Если ваш "
-"дисковод не поддерживает запись DVD или у вас отсутствует пустой носитель, "
-"пожалуйста, пропустите эту проверку.\n"
+"    Эта проверка позволит убедиться в возможности записи DVD на вашей "
+"системе. Для выполнения проверки, необходим пустой диск DVD-R. Если у вас "
+"нет пустого диска DVD-R, пропустите эту проверку.\n"
 "ДЕЙСТВИЯ:\n"
-"    1. Вставьте пустой DVD в дисковод\n"
-"    2. Запишите что-нибудь на DVD\n"
-"    3. Откройте записанный DVD\n"
+"    1. Вставьте пустой диск DVD-R в дисковод\n"
+"    2. Щёлкните \"Проверить\" для выполнения.\n"
+"    3. После завершения записи, будет открыт лоток с диском, задвиньте лоток "
+"дисковода обратно (НЕ извлекайте диск, так как он понадобиться для второй "
+"части проверки). Обратите внимание, вы должны закрыть лоток в течении 10 "
+"секунд, иначе проверка будет не завершена.\n"
+"    4. После завершения проверки, нажмите кнопку \"Далее\"\n"
 "ПРОВЕРКА:\n"
-"    Данные были записаны надлежащим образом?"
+"    Результат этой проверки должен быть \"Да\", если проверка пройдена или "
+"\"Нет\", если проверка не пройдена."
 
 #. description
-#: ../jobs/optical.txt.in:84
+#: ../jobs/optical.txt.in:94
 msgid ""
 "PURPOSE:\n"
 "    This test will check your DVD movie playback capabilities. Note that "
@@ -2372,7 +2423,7 @@ msgstr ""
 "    Все ли действия были выполнены без проблем?"
 
 #. description
-#: ../jobs/optical.txt.in:102
+#: ../jobs/optical.txt.in:112
 msgid ""
 "PURPOSE:\n"
 "    This test will check your DVD  playback capabilities\n"
@@ -2757,6 +2808,11 @@ msgstr ""
 "    Успешно ли переходила и возвращалась система из ждущего режима 30 раз?"
 
 #. description
+#: ../jobs/suspend.txt.in:4
+msgid "Record the current network before suspending."
+msgstr ""
+
+#. description
 #: ../jobs/suspend.txt.in:9
 msgid "Record the current resolution before suspending."
 msgstr ""
@@ -2782,7 +2838,7 @@ msgstr ""
 "ждущего режима"
 
 #. description
-#: ../jobs/suspend.txt.in:49
+#: ../jobs/suspend.txt.in:40
 msgid ""
 "This test disconnects all connections and then connects to the wireless "
 "interface. It then checks the connection to confirm it's working as expected."
@@ -2791,7 +2847,7 @@ msgstr ""
 "подключение к беспроводному интерфейсу. Затем проверяет"
 
 #. description
-#: ../jobs/suspend.txt.in:83
+#: ../jobs/suspend.txt.in:74
 msgid ""
 "PURPOSE:\n"
 "    This test will check suspend and resume\n"
@@ -2822,12 +2878,12 @@ msgstr ""
 "образом?"
 
 #. description
-#: ../jobs/suspend.txt.in:96
+#: ../jobs/suspend.txt.in:87
 msgid "Test the network after resuming."
 msgstr "Проверка сети после выхода из режима пониженного энергопотребления."
 
 #. description
-#: ../jobs/suspend.txt.in:102
+#: ../jobs/suspend.txt.in:93
 msgid ""
 "Test to see that we have the same resolution after resuming as before."
 msgstr ""
@@ -2835,7 +2891,7 @@ msgstr ""
 "режим пониженного энергопотребления."
 
 #. description
-#: ../jobs/suspend.txt.in:111
+#: ../jobs/suspend.txt.in:102
 msgid ""
 "Verify that mixer settings after suspend are the same as before suspend."
 msgstr ""
@@ -2843,17 +2899,17 @@ msgstr ""
 "и до него."
 
 #. description
-#: ../jobs/suspend.txt.in:127
+#: ../jobs/suspend.txt.in:118
 msgid "Verify that all CPUs are online after resuming."
 msgstr "Проверяет доступность всех ЦПУ после возобновления рабочего режима"
 
 #. description
-#: ../jobs/suspend.txt.in:144
+#: ../jobs/suspend.txt.in:135
 msgid "Verify that all memory is available after resuming from suspend."
 msgstr "Проверять доступность всей памяти после выхода из режима ожидания."
 
 #. description
-#: ../jobs/suspend.txt.in:153
+#: ../jobs/suspend.txt.in:144
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the display is correct after suspend and "
@@ -2868,7 +2924,7 @@ msgstr ""
 "    Работает ли экран нормально после выхода из режима ожидания?"
 
 #. description
-#: ../jobs/suspend.txt.in:174
+#: ../jobs/suspend.txt.in:155
 msgid ""
 "This test checks that the wireless interface is working after suspending the "
 "system. It disconnects all interfaces and then connects to the wireless "
@@ -2880,7 +2936,35 @@ msgstr ""
 "соединения."
 
 #. description
-#: ../jobs/suspend.txt.in:186
+#: ../jobs/suspend.txt.in:167
+msgid ""
+"Tests that the systems wireless hardware can connect to a router using WPA "
+"security and the 802.11b/g protocols after the system has been suspended."
+msgstr ""
+
+#. description
+#: ../jobs/suspend.txt.in:178
+msgid ""
+"Tests that the systems wireless hardware can connect to a router using no "
+"security and the 802.11b/g protocols after the system has been suspended."
+msgstr ""
+
+#. description
+#: ../jobs/suspend.txt.in:189
+msgid ""
+"Tests that the systems wireless hardware can connect to a router using WPA "
+"security and the 802.11n protocol after the system has been suspended."
+msgstr ""
+
+#. description
+#: ../jobs/suspend.txt.in:200
+msgid ""
+"Tests that the systems wireless hardware can connect to a router using no "
+"security and the 802.11n protocol after the system has been suspended."
+msgstr ""
+
+#. description
+#: ../jobs/suspend.txt.in:211
 msgid ""
 "This test grabs the hardware address of the bluetooth adapter after suspend "
 "and compares it to the address grabbed before suspend."
@@ -2890,7 +2974,7 @@ msgstr ""
 "режим."
 
 #. description
-#: ../jobs/suspend.txt.in:196
+#: ../jobs/suspend.txt.in:221
 msgid ""
 "This is an automated Bluetooth file transfer test. It sends an image to the "
 "device specified by the BTDEVADDR environment variable."
@@ -2900,7 +2984,7 @@ msgstr ""
 "BTDEVADDR."
 
 #. description
-#: ../jobs/suspend.txt.in:206
+#: ../jobs/suspend.txt.in:231
 msgid ""
 "PURPOSE:\n"
 "    This test will send the image 'JPEG_Color_Image_Ubuntu.jpg' to a "
@@ -2927,7 +3011,7 @@ msgstr ""
 "    Были ли данные переданы надлежащим образом?"
 
 #. description
-#: ../jobs/suspend.txt.in:220
+#: ../jobs/suspend.txt.in:245
 msgid ""
 "PURPOSE:\n"
 "    This test will cycle through the detected display modes\n"
@@ -2946,7 +3030,7 @@ msgstr ""
 "    Отображение в определённом режиме на экране выглядит надлежащим образом?"
 
 #. description
-#: ../jobs/suspend.txt.in:232
+#: ../jobs/suspend.txt.in:257
 msgid ""
 "This test will check to make sure supported video modes work after a suspend "
 "and resume. This is done automatically by taking screenshots and uploading "
@@ -2957,37 +3041,14 @@ msgstr ""
 "сохранением снимков экрана и передачей их во вложении."
 
 #. description
-#: ../jobs/suspend.txt.in:241
+#: ../jobs/suspend.txt.in:266
 msgid ""
 "This attaches screenshots from the "
 "suspend/cycle_resolutions_after_suspend_auto test to the results submission."
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:231
-msgid ""
-"PURPOSE:\n"
-"    This will test that USB functionality is restored after a suspend and "
-"resume cycle\n"
-"STEPS:\n"
-"    1. Plug in at least one USB storage device if one is not already "
-"connected\n"
-"    2. Click \"Test\" to start\n"
-"VERIFICATION:\n"
-"    Automatically verified"
-msgstr ""
-"ЦЕЛЬ:\n"
-"    Эта проверка позволит убедиться в возобновлении работоспособности USB "
-"после цикла перехода и выхода из режима ожидания\n"
-"ДЕЙСТВИЯ:\n"
-"    1. Подсоедините как минимум одно устройство хранения USB, если оно ещё "
-"не подсоединено\n"
-"    2. Щёлкните \"Проверить\" для выполнения\n"
-"ПРОВЕРКА:\n"
-"    Проверяется автоматически"
-
-#. description
-#: ../jobs/suspend.txt.in:251
+#: ../jobs/suspend.txt.in:276
 msgid ""
 "This will check to make sure that your audio device works properly after a "
 "suspend and resume.  This may work fine with speakers and onboard "
@@ -3000,12 +3061,12 @@ msgstr ""
 "кабельного соединения разъёма звукового выхода и разъёма звукового входа."
 
 #. description
-#: ../jobs/suspend.txt.in:260
+#: ../jobs/suspend.txt.in:285
 msgid "This is the automated version of suspend/suspend_advanced."
 msgstr "Это автоматизированная версия suspend/suspend_advanced."
 
 #. description
-#: ../jobs/suspend.txt.in:269
+#: ../jobs/suspend.txt.in:294
 msgid ""
 "This automatically tests Wake-on-LAN capability with the aid of a suitably "
 "configured server. During this process the system will suspend, then "
@@ -3015,6 +3076,18 @@ msgstr ""
 "соответствующе настроенного сервера. Во время выполнения будет произведён "
 "переход в ждущий режим, а затем автоматический переход в рабочий режим, "
 "через не более 5 минут."
+
+#. description
+#: ../jobs/suspend.txt.in:304
+msgid ""
+"PURPOSE:\n"
+"    Take a screengrab of the current screen after suspend (logged on Unity "
+"desktop)\n"
+"STEPS:\n"
+"    1. Take picture using USB webcam\n"
+"VERIFICATION:\n"
+"    1. Review attachment manually later"
+msgstr ""
 
 #. description
 #: ../jobs/unity.txt.in:6
@@ -3044,7 +3117,7 @@ msgstr ""
 #: ../jobs/usb.txt.in:12
 msgid ""
 "PURPOSE:\n"
-"    This test will check your USB connection.\n"
+"    This test will check that your system detects USB storage devices.\n"
 "STEPS:\n"
 "    1. Plug in one or more USB keys or hard drives.\n"
 "    2. Click on \"Test\".\n"
@@ -3054,15 +3127,16 @@ msgid ""
 "    Were the drives detected?"
 msgstr ""
 "ЦЕЛЬ:\n"
-"    Эта проверка позволит удостовериться в работоспособности соединения "
-"USB.\n"
+"    Эта проверка позволит убедиться в возможности определения накопителей с "
+"интерфейсом USB.\n"
 "ДЕЙСТВИЯ:\n"
-"    1. Подключите один или более USB-накопителей или жестких дисков.\n"
+"    1. Подсоедините один или более портативных USB устройств или жёстких "
+"дисков.\n"
 "    2. Щёлкните \"Проверить\".\n"
 "СВЕДЕНИЯ:\n"
 "    $output\n"
 "ПРОВЕРКА:\n"
-"    Были ли обнаружены накопители?"
+"    Накопители были определены?"
 
 #. description
 #: ../jobs/usb.txt.in:28
@@ -3109,43 +3183,54 @@ msgstr ""
 #: ../jobs/usb.txt.in:55
 msgid ""
 "PURPOSE:\n"
-"    This test will check your USB connection.\n"
+"    This test will check that the system correctly detects the insertion of\n"
+"    a USB storage device\n"
 "STEPS:\n"
-"    1. Click \"Test\" and insert a USB device within 5 seconds.\n"
+"    1. Click \"Test\" and insert a USB storage device (pen-drive/HDD).\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
 "    2. Do not unplug the device after the test.\n"
 "VERIFICATION:\n"
-"    The verification of this test is automated."
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
 msgstr ""
 "ЦЕЛЬ:\n"
-"    Эта проверка позволит убедиться в работоспособности соединения USB.\n"
+"    Эта проверка позволит удостовериться в возможности системы правильно "
+"определять подсоединение накопителей с интерфейсом USB\n"
 "ДЕЙСТВИЯ:\n"
-"    1. Щёлкните \"Проверить\" и вставьте устройство USB на 5 секунд.\n"
-"    2. Не отсоединяйте устройство после проверки.\n"
+"    1. Щёлкните \"Проверить\" и подсоедините накопитель с интерфейсом USB "
+"(портативный накопитель/жёстки диск).\n"
+"       (Примечание: эта проверка выполняется в течении 10 секунд.)\n"
+"    2. Не отсоединяйте устройство, после завершения проверки.\n"
 "ПРОВЕРКА:\n"
-"    Эта проверка автоматизирована."
+"    Проверка автоматизирована. Не изменяйте\n"
+"    автоматически выбираемый результат."
 
 #. description
-#: ../jobs/usb.txt.in:69
+#: ../jobs/usb.txt.in:72
 msgid ""
 "PURPOSE:\n"
-"    This test will check your USB connection.\n"
+"    This test will check that the system correctly detects the removal of\n"
+"    a USB storage device\n"
 "STEPS:\n"
-"    1. Click \"Test\" and remove the USB device within 5 seconds.\n"
-"    2. Do not unplug the device after the test.\n"
+"    1. Click \"Test\" and remove the USB device.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
 "VERIFICATION:\n"
-"    The verification of this test is automated."
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
 msgstr ""
 "ЦЕЛЬ:\n"
-"    Эта проверка позволит убедиться в работоспособности соединения USB.\n"
+"    Эта проверка позволит убедиться, в том, что система правильно определяет "
+"и извлекает\n"
+"    USB-накопитель\n"
 "ДЕЙСТВИЯ:\n"
-"    1. Щёлкните \"Проверить\" и выполните извлечение устройства USB на 5 "
-"секунд.\n"
-"    2. Не отсоединяйте устройство после проверки.\n"
+"    1. Щёлкните \"Проверить\" и отсоедините устройство USB.\n"
+"       (Примечание: проверка производится в течении 10 секунд.)\n"
 "ПРОВЕРКА:\n"
-"    Эта проверка автоматизирована."
+"    Проверка автоматизирована. Не изменяйте автоматически выбираемый "
+"результат."
 
 #. description
-#: ../jobs/usb.txt.in:82
+#: ../jobs/usb.txt.in:88
 msgid ""
 "PURPOSE:\n"
 "    This test will check your USB connection.\n"
@@ -3154,26 +3239,33 @@ msgid ""
 "    2. An icon should appear on the Launcher.\n"
 "    3. Click \"Test\" to begin the test.\n"
 "VERIFICATION:\n"
-"    The verification of this test is automated."
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
 msgstr ""
 "ЦЕЛЬ:\n"
-"    Эта проверка позволит убедиться в работоспособности соединения USB.\n"
+"    Эта проверка позволит вам убедиться в работоспособности вашего USB "
+"соединения.\n"
 "ДЕЙСТВИЯ:\n"
-"    1. Подсоедините жёсткий диск USB или другой накопитель в соответствующий "
-"разъём компьютера.\n"
-"    2. Должен появиться значок на панели запуска.\n"
-"    3. Щёлкните \"Проверить\", чтобы начать проверку.\n"
+"    1. Подсоедините жёсткий диск с интерфейсом USB или портативный "
+"накопитель к компьютеру.\n"
+"    2. На панели запуска должен появиться значок.\n"
+"    3. Щёлкните \"Проверить\" для начала выполнения проверки.\n"
 "ПРОВЕРКА:\n"
-"    Эта проверка автоматизирована."
+"    Проверка автоматизирована. Не изменяйте автоматически выбираемый "
+"результат."
 
 #. description
-#: ../jobs/usb.txt.in:80
-msgid ""
-"This test is automated and requires that you plug in at least one usb "
-"storage device before running checkbox."
+#: ../jobs/usb.txt.in:104
+msgid "This test is automated and executes after the usb/insert test is run."
 msgstr ""
-"Это автоматизированная проверка и необходимо, чтобы вы подсоединили как "
-"минимум одно устройство хранения с интерфейсом usb, перед запуском checkbox."
+
+#. description
+#: ../jobs/usb.txt.in:111
+msgid ""
+"This is an automated version of usb/storage-automated and assumes that the  "
+"server has usb storage devices plugged in prior to checkbox execution. It  "
+"is intended for servers and SRU automated testing."
+msgstr ""
 
 #. description
 #: ../jobs/usb.txt.in:119
@@ -3243,6 +3335,17 @@ msgid ""
 "VERIFICATION:\n"
 " Do you now have a new folder called Test Folder?"
 msgstr ""
+"ЦЕЛЬ:\n"
+" Эта проверка позволит вам убедиться, в возможности создания новой папки "
+"обозревателем файлов.\n"
+"ДЕЙСТВИЯ:\n"
+" 1. Щёлкните Проверить для открытия обозревателя файлов.\n"
+" 2. На панели меню, щёлкните Файл -> Создать новую папку.\n"
+" 3. В поле имени новой папки, введите в качестве имени \"Test Folder\" и "
+"нажмите клавишу Ввода.\n"
+" 4. Закройте обозреватель файлов.\n"
+"ПРОВЕРКА:\n"
+" Создана ли новая папка с именем \"Test Folder\"?"
 
 #. description
 #: ../jobs/user_apps.txt.in:37
@@ -3544,6 +3647,16 @@ msgid ""
 "VERIFICATION:\n"
 " Did the video play using a plugin?"
 msgstr ""
+"ЦЕЛЬ:\n"
+" Эта проверка позволит убедиться, в возможности воспроизведения "
+"видеофрагментов в формате Quicktime (.mov) в веб-обозревателе Firefox.\n"
+" Примечание: для выполнения проверки, возможно потребуется установка "
+"дополнительного программного обеспечения.\n"
+"ДЕЙСТВИЯ:\n"
+" 1. Выберите Проверить для запуска веб-обозревателя Firefox и "
+"видеофрагмента.\n"
+"ПРОВЕРКА:\n"
+" Воспроизвёлся ли видеофрагмент с использованием надстройки?"
 
 #. description
 #: ../jobs/user_apps.txt.in:297
@@ -3925,9 +4038,11 @@ msgstr ""
 #. description
 #: ../jobs/wireless.txt.in:38
 msgid ""
-"Tests that the systems wireless hardware can connect to a router using no no "
+"Tests that the systems wireless hardware can connect to a router using no "
 "security and the 802.11b/g protocols."
 msgstr ""
+"Тестирует возможность беспроводного оборудования подключиться к "
+"маршрутизатору по протоколу 802.11b/g не используя шифрование."
 
 #. description
 #: ../jobs/wireless.txt.in:48
@@ -3941,9 +4056,11 @@ msgstr ""
 #. description
 #: ../jobs/wireless.txt.in:58
 msgid ""
-"Tests that the systems wireless hardware can connect to a router using no no "
+"Tests that the systems wireless hardware can connect to a router using no "
 "security and the 802.11n protocol."
 msgstr ""
+"Тестирует возможность беспроводного оборудования подключиться к "
+"маршрутизатору по протоколу 802.11n не используя шифрование."
 
 #. description
 #: ../jobs/wireless.txt.in:70
@@ -3960,6 +4077,8 @@ msgid ""
 "Tests the performance of a systems wireless connection through the iperf "
 "tool, using UDP packets."
 msgstr ""
+"Проверяет производительность системного беспроводного соединения с помощью "
+"средства iperf, используя пакеты UDP."
 
 #: ../checkbox/application.py:66
 msgid "Usage: checkbox [OPTIONS]"
@@ -4086,23 +4205,32 @@ msgid "Unknown signal"
 msgstr "Неизвестный сигнал"
 
 #: ../checkbox_cli/cli_interface.py:31
-#: ../checkbox_urwid/urwid_interface.py:917
+#: ../checkbox_urwid/urwid_interface.py:917 ../checkbox_qt/qt_interface.py:33
 msgid "yes"
 msgstr "да"
 
 #: ../checkbox_cli/cli_interface.py:32
-#: ../checkbox_urwid/urwid_interface.py:918
+#: ../checkbox_urwid/urwid_interface.py:918 ../checkbox_qt/qt_interface.py:34
 msgid "no"
 msgstr "нет"
 
 #: ../checkbox_cli/cli_interface.py:33
-#: ../checkbox_urwid/urwid_interface.py:919
+#: ../checkbox_urwid/urwid_interface.py:919 ../checkbox_qt/qt_interface.py:35
 msgid "skip"
 msgstr "пропустить"
 
 #: ../checkbox_cli/cli_interface.py:126
 msgid "Press any key to continue..."
 msgstr "Чтобы продолжить, нажмите любую клавишу..."
+
+#: ../checkbox_cli/cli_interface.py:229 ../checkbox_cli/cli_interface.py:338
+#: ../checkbox_cli/cli_interface.py:368
+msgid "Space when finished"
+msgstr ""
+
+#: ../checkbox_cli/cli_interface.py:367
+msgid "Combine with character above to expand node"
+msgstr ""
 
 #: ../checkbox_cli/cli_interface.py:416
 msgid "test"
@@ -4119,27 +4247,36 @@ msgstr "Продолжить"
 #: ../checkbox_urwid/urwid_interface.py:198
 #: ../checkbox_urwid/urwid_interface.py:274
 #: ../checkbox_urwid/urwid_interface.py:425
-#: ../checkbox_urwid/urwid_interface.py:547
+#: ../checkbox_urwid/urwid_interface.py:547 ../qt/frontend/ui_qtfront.h:609
 msgid "Previous"
 msgstr "Назад"
 
 #: ../checkbox_urwid/urwid_interface.py:199
 #: ../checkbox_urwid/urwid_interface.py:275
 #: ../checkbox_urwid/urwid_interface.py:426
-#: ../checkbox_urwid/urwid_interface.py:548
+#: ../checkbox_urwid/urwid_interface.py:548 ../qt/frontend/ui_qtfront.h:608
 msgid "Next"
 msgstr "Далее"
 
 #. Show buttons
-#: ../checkbox_urwid/urwid_interface.py:423
+#: ../checkbox_urwid/urwid_interface.py:423 ../qt/frontend/qtfront.cpp:137
 msgid "Select All"
 msgstr "Выделить всё"
 
-#: ../checkbox_urwid/urwid_interface.py:424
+#: ../checkbox_urwid/urwid_interface.py:424 ../qt/frontend/qtfront.cpp:138
 msgid "Deselect All"
 msgstr "Отменить выбор"
 
-#: ../checkbox_urwid/urwid_interface.py:1013
+#. Show buttons
+#: ../checkbox_urwid/urwid_interface.py:545
+msgid "Expand All"
+msgstr "Развернуть всё"
+
+#: ../checkbox_urwid/urwid_interface.py:546
+msgid "Collapse All"
+msgstr "Свернуть всё"
+
+#: ../checkbox_urwid/urwid_interface.py:1013 ../qt/frontend/ui_qtfront.h:603
 msgid "Test"
 msgstr "Проверить"
 
@@ -4147,22 +4284,17 @@ msgstr "Проверить"
 msgid "Test Again"
 msgstr "Проверить снова"
 
-#: ../checkbox_gtk/gtk_interface.py:503
+#: ../checkbox_gtk/gtk_interface.py:517
 msgid "_Test Again"
 msgstr "Тестировать снова"
 
-#: ../checkbox_gtk/gtk_interface.py:551
+#: ../checkbox_gtk/gtk_interface.py:566
 msgid "Info"
 msgstr "Информация"
 
-#: ../checkbox_gtk/gtk_interface.py:575
+#: ../checkbox_gtk/gtk_interface.py:590
 msgid "Error"
 msgstr "Ошибка"
-
-#: ../checkbox/user_interface.py:137
-#, python-format
-msgid "Unable to start web browser to open %s."
-msgstr "Невозможно запустить веб-браузер, чтобы открыть %s."
 
 #: ../plugins/apport_prompt.py:83
 msgid ""
@@ -4183,19 +4315,19 @@ msgstr ""
 
 #: ../plugins/apport_prompt.py:227
 #, python-format
-msgid "Test %(name)s from suite %(suite)s failed."
+msgid "Test %(name)s failed."
 msgstr ""
 
-#: ../plugins/apport_prompt.py:231
+#: ../plugins/apport_prompt.py:230
 #, python-format
 msgid "Test %s failed."
 msgstr "Тест %s не пройден."
 
-#: ../plugins/apport_prompt.py:232
+#: ../plugins/apport_prompt.py:231
 msgid "Do you want to report a bug?"
 msgstr "Хотите отправить отчёт об ошибке?"
 
-#: ../plugins/apport_prompt.py:249
+#: ../plugins/apport_prompt.py:248
 #, python-format
 msgid "Is a package upgrade in process? Error: %s"
 msgstr "Запущено обновление пакетов? Ошибка: %s"
@@ -4240,7 +4372,7 @@ msgstr ""
 msgid "Failed to process form: %s"
 msgstr "Не удалось обработать форму: %s"
 
-#: ../plugins/launchpad_prompt.py:71
+#: ../plugins/launchpad_prompt.py:74
 #, python-format
 msgid ""
 "The following report has been generated for submission to the Launchpad "
@@ -4248,26 +4380,21 @@ msgid ""
 "\n"
 "  [[%s|View Report]]\n"
 "\n"
-"You can submit this information about your system by providing the e-mail "
+"You can submit this information about your system by providing the email "
 "address you use to sign in to Launchpad. If you do not have a Launchpad "
 "account, please register here:\n"
 "\n"
 "  https://launchpad.net/+login"
 msgstr ""
-"Этот отчёт был сгенерирован для отправки на базу данных оборудования "
-"Launchpad:\n"
+"Создан следующий отчёт для отправки в базу данных оборудования Launchpad:\n"
 "\n"
-"  [[%s|Посмотреть отчёт]]\n"
+"  [[%s|View Report]]\n"
 "\n"
-"Вы можете отправить эту информацию, указав электронный адрес вашей учётной "
-"записи на Launchpad. Если у вас нет учётной записи, пожалуйста, "
-"зарегистрируйтесь здесь:\n"
+"Вы можете отправить эту информацию о своей системе, указав адрес электронной "
+"почты, который использовали при регистрации на Launchpad. Если у вас ещё нет "
+"учётной записи на Launchpad, пожалуйста, зарегистрируйтесь здесь:\n"
 "\n"
 "  https://launchpad.net/+login"
-
-#: ../plugins/launchpad_prompt.py:88
-msgid "No e-mail address provided, not submitting to Launchpad."
-msgstr "Не указан электронный адрес, отчёт не отправлен на Launchpad."
 
 #: ../plugins/launchpad_prompt.py:93
 msgid "Email address must be in a proper format."
@@ -4289,6 +4416,14 @@ msgstr ""
 msgid "There is another checkbox running. Please close it first."
 msgstr "Checkbox уже запущен. Сначала завершите его."
 
+#: ../plugins/recover_prompt.py:53
+msgid "Recover"
+msgstr "Восстановить"
+
+#: ../plugins/recover_prompt.py:54
+msgid "Restart"
+msgstr "Перезапустить"
+
 #: ../plugins/recover_prompt.py:56
 msgid ""
 "Checkbox did not finish completely.\n"
@@ -4307,7 +4442,7 @@ msgid "Running %s..."
 msgstr "Запускается %s..."
 
 #. Get results
-#: ../plugins/suites_prompt.py:110
+#: ../plugins/suites_prompt.py:124
 msgid "Select the suites to test"
 msgstr "Выберите компоненты для тестирования"
 
@@ -4319,17 +4454,158 @@ msgstr "Введите текст:\n"
 msgid "Type Text"
 msgstr "Напечатать текст"
 
-#: ../scripts/internet_test:139
+#: ../scripts/internet_test:196
 msgid "No Internet connection"
 msgstr "Нет подключения к Интернет"
 
-#: ../scripts/internet_test:142
+#: ../scripts/internet_test:199
 msgid "Connection established lost a packet"
 msgstr "Потеря пакетов на установленном соединении"
 
-#: ../scripts/internet_test:145
+#: ../scripts/internet_test:202
 msgid "Internet connection fully established"
 msgstr "Интернет-подключение полностью работоспособно"
+
+#: ../qt/frontend/qtfront.cpp:108
+msgid "Not Started"
+msgstr ""
+
+#: ../qt/frontend/qtfront.cpp:111
+msgid "Not Supported"
+msgstr ""
+
+#: ../qt/frontend/qtfront.cpp:112
+msgid "Not Resolved"
+msgstr ""
+
+#: ../qt/frontend/qtfront.cpp:113
+msgid "Not Tested"
+msgstr ""
+
+#: ../qt/frontend/qtfront.cpp:114
+msgid "In Progress"
+msgstr ""
+
+#: ../qt/frontend/qtfront.cpp:182
+msgid "Are you sure?"
+msgstr ""
+
+#: ../qt/frontend/qtfront.cpp:182
+msgid "Do you really want to skip this test?"
+msgstr ""
+
+#: ../qt/frontend/qtfront.cpp:183
+msgid "Don't ask me again"
+msgstr ""
+
+#: ../qt/frontend/treemodel.cpp:13
+msgid ""
+"Unselecting a test will invalidate your submission for Ubuntu Friendly. If "
+"you plan to participate in Ubuntu Friendly, please, select all tests. You "
+"can always skip individual tests if you don't have the needed equipment."
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:588
+msgid "Form"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:590
+msgid "OK"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:591
+msgid "Don't show me this message in the future"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:592 ../qt/frontend/ui_qtfront.h:606
+msgid "Tab 1"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:593
+msgid "10 tests completed out of 30 (30%)"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:595
+msgid "Lists of tests to run based on your system:"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:596
+msgid "Components"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:597
+msgid "Status"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:598
+msgid "Start testing"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:599
+msgid " Selection "
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:600 ../qt/frontend/ui_qtfront.h:601
+msgid "TextLabel"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:602
+msgid "Yes"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:604
+msgid "No"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:605
+msgid "Comment"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:607 ../qt/frontend/ui_qtfront.h:623
+msgid "Tab 2"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:610
+msgid " Run "
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:611
+msgid ""
+"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" "
+"\"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style "
+"type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Ubuntu'; font-size:10pt; font-"
+"weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+"right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" "
+"color:#ff0000;\">Warning: Not all tests have been run yet.</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+"right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" "
+"color:#ff0000;\">You can send the results now, but the submission won't make "
+"it to Ubuntu Friendly.</span></p></body></html>"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:617
+msgid "Personal details"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:619
+msgid "Email:"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:620
+msgid "Submit results"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:621
+msgid "View results"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:622
+msgid " Results "
+msgstr ""
 
 #~ msgid "Is your mouse working properly?"
 #~ msgstr "Ваша мышь работает нормально?"
@@ -4366,6 +4642,33 @@ msgstr "Интернет-подключение полностью работо�
 
 #~ msgid "Click the Test button to display a video test."
 #~ msgstr "Для проверки видео нажмите Тест."
+
+#~ msgid "No e-mail address provided, not submitting to Launchpad."
+#~ msgstr "Не указан электронный адрес, отчёт не отправлен на Launchpad."
+
+#, python-format
+#~ msgid ""
+#~ "The following report has been generated for submission to the Launchpad "
+#~ "hardware database:\n"
+#~ "\n"
+#~ "  [[%s|View Report]]\n"
+#~ "\n"
+#~ "You can submit this information about your system by providing the e-mail "
+#~ "address you use to sign in to Launchpad. If you do not have a Launchpad "
+#~ "account, please register here:\n"
+#~ "\n"
+#~ "  https://launchpad.net/+login"
+#~ msgstr ""
+#~ "Этот отчёт был сгенерирован для отправки на базу данных оборудования "
+#~ "Launchpad:\n"
+#~ "\n"
+#~ "  [[%s|Посмотреть отчёт]]\n"
+#~ "\n"
+#~ "Вы можете отправить эту информацию, указав электронный адрес вашей учётной "
+#~ "записи на Launchpad. Если у вас нет учётной записи, пожалуйста, "
+#~ "зарегистрируйтесь здесь:\n"
+#~ "\n"
+#~ "  https://launchpad.net/+login"
 
 #~ msgid "Network tests"
 #~ msgstr "Проверка сети"
@@ -4555,6 +4858,9 @@ msgstr "Интернет-подключение полностью работо�
 #~ msgid "Insert a DVD.  Then click Test to play the DVD in Totem."
 #~ msgstr ""
 #~ "Вставьте DVD. Затем нажмите \"Проверка\", чтобы проиграть его в Totem'е."
+
+#~ msgid "Check that the hardware is able to run compiz."
+#~ msgstr "Проверьте оборудование на возможность запуска compiz."
 
 #~ msgid "If your system does not have DisplayPort, please skip this test."
 #~ msgstr ""
@@ -5335,11 +5641,18 @@ msgstr "Интернет-подключение полностью работо�
 #~ msgid "Is this acceptable for your display?"
 #~ msgstr "Для вашего экрана оно подходящее?"
 
+#, python-format
+#~ msgid "Unable to start web browser to open %s."
+#~ msgstr "Невозможно запустить веб-браузер, чтобы открыть %s."
+
 #~ msgid "Wireless scanning test."
 #~ msgstr "Проверка сканирования беспроводных сетей."
 
 #~ msgid "Multiple network cards"
 #~ msgstr "Несколько сетевых карт"
+
+#~ msgid "Benchmark for each disk "
+#~ msgstr "Тест производительности каждого диска "
 
 #~ msgid "Test that the /var/crash directory doesn't contain anything."
 #~ msgstr "Убедитесь, что каталог /var/crash пуст."
@@ -5472,6 +5785,9 @@ msgstr "Интернет-подключение полностью работо�
 #~ "Проверяет возможности доступа apt к репозиториям и выполнения обновлений (не "
 #~ "выполняет установку обновлений)"
 
+#~ msgid "Captures a screenshot."
+#~ msgstr "Создаёт снимок экрана."
+
 #~ msgid "Test that X does not leak memory when running programs."
 #~ msgstr ""
 #~ "Проверка процесса Х на отсутствие утечек памяти при выполнении программ."
@@ -5544,6 +5860,13 @@ msgstr "Интернет-подключение полностью работо�
 
 #~ msgid "Automated desktop testing"
 #~ msgstr "Автоматизированная проверка рабочего стола"
+
+#~ msgid ""
+#~ "ipmitool is required for ipmi testing. This checks for ipmitool and installs "
+#~ "it if not available."
+#~ msgstr ""
+#~ "Необходим ipmitool для выполнения проверки ipmi. Выполняет проверку ipmitool "
+#~ "и устанавливает его, если он не доступен."
 
 #~ msgid "Run Colin King's Firmware Test Suite automated tests."
 #~ msgstr "Запустить автоматизированные тесты Colin King's Firmware Test Suite."
@@ -5620,6 +5943,9 @@ msgstr "Интернет-подключение полностью работо�
 #~ msgstr ""
 #~ "Обнаруженный оптический дисковод поддерживает возможность записи. Вставьте "
 #~ "пустой CDROM \\ в дисковод и попробуйте выполнить на него запись."
+
+#~ msgid "Optical Storage device read tests"
+#~ msgstr "Проверка чтения на оптическом дисководе"
 
 #~ msgid "The following optical drives were detected:"
 #~ msgstr "Обнаружены следующие оптические дисководы:"
@@ -5698,6 +6024,13 @@ msgstr "Интернет-подключение полностью работо�
 #~ "Подсоедините устройство хранения с интерфейсом USB к внешнему разъёму USB на "
 #~ "этом компьютере. \\ Должен появиться значок на рабочем столе и в меню "
 #~ "\"Переход\" в верхней части экрана."
+
+#~ msgid ""
+#~ "This test is automated and requires that you plug in at least one usb "
+#~ "storage device before running checkbox."
+#~ msgstr ""
+#~ "Это автоматизированная проверка и необходимо, чтобы вы подсоединили как "
+#~ "минимум одно устройство хранения с интерфейсом usb, перед запуском checkbox."
 
 #~ msgid ""
 #~ "USB mouse verification procedure: 1.- Plug a USB mouse into the computer 2.- "
@@ -6130,3 +6463,6 @@ msgstr "Интернет-подключение полностью работо�
 
 #~ msgid "Run Colin Kings FWTS wakealarm test"
 #~ msgstr "Запустите тест тревоги FWTS"
+
+#~ msgid "Attaches the screenshot captured in info/screenshot."
+#~ msgstr "Добавляет снимок экрана записанный в info/screenshot."

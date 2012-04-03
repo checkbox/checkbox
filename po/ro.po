@@ -7,21 +7,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-06 12:39-0500\n"
+"POT-Creation-Date: 2012-03-28 10:50-0400\n"
 "PO-Revision-Date: 2011-07-19 20:19+0000\n"
 "Last-Translator: Claudia Cotună <special4ti@gmail.com>\n"
 "Language-Team: Romanian <ro@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-03-15 04:33+0000\n"
-"X-Generator: Launchpad (build 14933)\n"
+"X-Launchpad-Export-Date: 2012-04-03 04:40+0000\n"
+"X-Generator: Launchpad (build 15052)\n"
 
-#: ../gtk/checkbox-gtk.ui.h:10
+#: ../gtk/checkbox-gtk.ui.h:2
 msgid "Ne_xt"
 msgstr "Î_nainte"
 
-#: ../gtk/checkbox-gtk.ui.h:9
+#: ../gtk/checkbox-gtk.ui.h:6
 msgid "_Previous"
 msgstr "Îna_poi"
 
@@ -35,22 +35,22 @@ msgstr "Se generează raportul..."
 #~ msgid "Is your keyboard working properly?"
 #~ msgstr "Tastatura dumneavoastră funcționează corect?"
 
-#: ../gtk/checkbox-gtk.ui.h:6 ../checkbox_cli/cli_interface.py:444
+#: ../gtk/checkbox-gtk.ui.h:1 ../checkbox_cli/cli_interface.py:444
 #: ../checkbox_urwid/urwid_interface.py:267
 msgid "Further information:"
 msgstr "Mai multe informații:"
 
 #. Title of the user interface
-#: ../gtk/checkbox-gtk.ui.h:1 ../qt/checkbox-qt.desktop.in.h:1
-#: ../plugins/user_interface.py:42
+#: ../gtk/checkbox-gtk.ui.h:3 ../qt/checkbox-qt.desktop.in.h:1
+#: ../plugins/user_interface.py:43 ../qt/frontend/ui_qtfront.h:589
 msgid "System Testing"
 msgstr "Testarea sistemului"
 
-#: ../gtk/checkbox-gtk.ui.h:8
+#: ../gtk/checkbox-gtk.ui.h:4
 msgid "_Deselect All"
 msgstr "_Deselectează tot"
 
-#: ../gtk/checkbox-gtk.ui.h:4
+#: ../gtk/checkbox-gtk.ui.h:5
 msgid "_No"
 msgstr "_Nu"
 
@@ -58,15 +58,15 @@ msgstr "_Nu"
 msgid "_Select All"
 msgstr "_Selectează tot"
 
-#: ../gtk/checkbox-gtk.ui.h:5
+#: ../gtk/checkbox-gtk.ui.h:8
 msgid "_Skip this test"
 msgstr "Omite ace_st test"
 
-#: ../gtk/checkbox-gtk.ui.h:2 ../checkbox_gtk/gtk_interface.py:538
+#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:553
 msgid "_Test"
 msgstr "_Test"
 
-#: ../gtk/checkbox-gtk.ui.h:3
+#: ../gtk/checkbox-gtk.ui.h:10
 msgid "_Yes"
 msgstr "_Da"
 
@@ -95,7 +95,7 @@ msgstr ""
 "SCOP:\n"
 "    Acest test va verifica dacă boxele interne lucrează corect\n"
 "PAȘI:\n"
-"    1. Asigurațți-vă că nu sunt conectate la sistem boxe externe sau căști "
+"    1. Asigurați-vă că nu sunt conectate la sistem boxe externe sau căști "
 "audio\n"
 "       Dacă testați un sistem desktop, sunt permise boxele externe\n"
 "    2. Efectuați clic pe butonul Testează pentru a reda un sunet scurt pe "
@@ -180,28 +180,20 @@ msgid ""
 "    This test will check that a USB audio device works correctly\n"
 "STEPS:\n"
 "    1. Connect a USB audio device to your system\n"
-"    2. Open the volume control application by left-clicking on the speaker "
-"icon in the panel and selecting \"Sound Settings\"\n"
-"    3. Select the \"Input\" tab and choose your USB device\n"
-"    4. Select the \"Output\" tab and choose your USB device\n"
-"    5. Click \"Test\", then speak into the microphone\n"
-"    6. After a few seconds, your speech will be played back to you\n"
+"    2. Click \"Test\", then speak into the microphone\n"
+"    3. After a few seconds, your speech will be played back to you\n"
 "VERIFICATION:\n"
 "    Did you hear your speech played back through the USB headphones?"
 msgstr ""
 "SCOP:\n"
-"    Acest test va verifica dacă un dispozitiv audio pe USB funcționează "
+"    Acest test va verifica dacă  un dispozitiv audio pe USB funcționează "
 "corect\n"
 "PAȘI:\n"
-"    1. Conectați la sistem un dispozitiv audio pe USB\n"
-"    2. Deschideți aplicația pentru controlul volumului prin efectuarea unui "
-"clic stânga pe iconița de volum din panou, alegând apoi „Configurări sunet”\n"
-"    3. Alegeți fila „Intrare” și selectați dispozitivul USB\n"
-"    4. Alegeți fila „Ieșire” și selectați dispozitivul USB\n"
-"    5. Efectuați clic pe „Test”, apoi vorbiți în microfon\n"
-"    6. După câteva secunde, cuvintele dumneavoastră vor fi redate\n"
+"    1. Conectați la calculator un dispozitiv audio pe USB \n"
+"    2. Efectuați clic pe butonul „Test”, apoi vorbiți în microfon\n"
+"    3. După câteva secunde, înregistrarea va fi redată\n"
 "VERIFICARE:\n"
-"    Ați auzit cuvintele dumneavoastră redate prin căștile USB?"
+"    Ați auzit înregistrarea cuvintelor dumneavoastră redată prin căștile USB?"
 
 #. description
 #: ../jobs/audio.txt.in:99
@@ -223,16 +215,6 @@ msgstr ""
 "SCOP:\n"
 "   Acest test va încerca să instaleze și să ruleze suita Autotest.  Aceste "
 "teste pot fi distructive, așa că acest test este implicit inhibat."
-
-#. description
-#: ../jobs/bluetooth.txt.in:7
-msgid ""
-"This test will detect your Bluetooth device and output the device's hardware "
-"address.  If no device is found, the test will exit with an error."
-msgstr ""
-"Acest test va detecta dispozitivul Bluetooth și va afișa adresa fizică a "
-"dispozitivului. Dacă nu este găsit niciun dispozitiv, testul se va termina "
-"cu o eroare."
 
 #. description
 #: ../jobs/bluetooth.txt.in:8
@@ -400,16 +382,18 @@ msgid ""
 "PURPOSE:\n"
 "    This test will check that the built-in camera works\n"
 "STEPS:\n"
-"    1. Click on Test to display a video capture from the camera\n"
+"    1. Click on Test to display a video capture from the camera for ten "
+"seconds.\n"
 "VERIFICATION:\n"
 "    Did you see the video capture?"
 msgstr ""
 "SCOP:\n"
 "    Acest test va verifica dacă funcționează camera web încorporată\n"
 "PAȘI:\n"
-"    1. Efectuați clic pe Test pentru a afișa o captură video de la cameră\n"
+"    1. Efectuați clic pe butonul Test pentru a afișa o captură video luată "
+"cu camera web, pentru zece secunde.\n"
 "VERIFICARE:\n"
-"    Ați văzut captura video?"
+"    A fost redată corect captura video?"
 
 #. description
 #: ../jobs/camera.txt.in:33
@@ -428,27 +412,6 @@ msgstr ""
 "web\n"
 "VERIFICARE:\n"
 "    Ați văzut fotografia?"
-
-#. description
-#: ../jobs/camera.txt.in:49
-msgid ""
-"PURPOSE:\n"
-"    This test will check that you can capture video with the built-in "
-"camera\n"
-"STEPS:\n"
-"    1. Click on Test to capture video to a file (it will automatically open "
-"in Totem)\n"
-"VERIFICATION:\n"
-"    Did you see and hear the capture?"
-msgstr ""
-"SCOP:\n"
-"    Acest test va verifica dacă funcționează corect captura unui clip video "
-"realizată cu camera web încorporată\n"
-"PAȘI:\n"
-"    1. Efectuați clic pe butonul Test pentru a realiza o captură video într-"
-"un fișier (se va deschide automat Totem)\n"
-"VERIFICARE:\n"
-"    A fost redat corect clipul video realizat, cu sunet și imagine?"
 
 #. description
 #: ../jobs/codecs.txt.in:7
@@ -607,8 +570,13 @@ msgstr "Detectează și afișează discurile atașate la sistem."
 
 #. description
 #: ../jobs/disk.txt.in:9
-msgid "Benchmark for each disk "
-msgstr "Teste de stres pentru fiecare disc "
+msgid "Benchmark for each disk"
+msgstr "Teste de stres pentru fiecare disc"
+
+#. description
+#: ../jobs/disk.txt.in:23
+msgid "Check stats changes for each disk"
+msgstr "Verifică modificările în starea fiecărui disc"
 
 #. description
 #: ../jobs/disk.txt.in:40
@@ -712,32 +680,71 @@ msgstr ""
 "   A fost realizată corect operația de deblocare?"
 
 #. description
-#: ../jobs/firewire.txt.in:3
+#: ../jobs/firewire.txt.in:4
 msgid ""
 "PURPOSE:\n"
-"    This test will check that the firewire port works\n"
+"    This test will check the system can detect the insertion of a FireWire "
+"HDD\n"
 "STEPS:\n"
-"    1. Plug a Firewire HDD into the computer\n"
-"    2. Either a window asking which action should be performed (open folder, "
-"photo manager, etc) or a file browser will open.\n"
-"    3. Copy some files from your internal HDD to the firewire HDD\n"
-"    4. Copy some files from the firewire HDD to your internal HDD\n"
+"    1. Click 'Test' to begin the test. This test will\n"
+"       timeout and fail if the insertion has not been detected within 10 "
+"seconds.\n"
+"    2. Plug a FireWire HDD into an available FireWire port.\n"
 "VERIFICATION:\n"
-"    Do the copy operations work as expected?"
+"    The verification of this test is automated. Do not change the "
+"automatically\n"
+"    selected result"
 msgstr ""
 "SCOP:\n"
-"    Acest test va verifica dacă portul firewire lucrează corect\n"
+"    Acest test va verifica dacă sistemul poate detecta conectarea unui disc "
+"FireWire\n"
 "PAȘI:\n"
-"    1. Conectați la calculator un disc Firewire\n"
-"    2. Se va deschide o fereastră care solicită executarea unei operații "
-"(deschiderea unui dosar, administrare fotografii, etc.) sau se va deschide "
-"un administrator de fișiere.\n"
-"    3. Copiați câteva fișiere de pe discul fix al calculatorului pe discul "
-"firewire\n"
-"    4. Copiați câteva fișiere de pe discul firewire pe discul fix al "
-"calculatorului\n"
+"    1. Efectuați clic pe butonul „Test” pentru a începe testarea. Acest test "
+"se va\n"
+"       termina cu eroare dacă discul firewire nu a fost detectat într-un "
+"interval de 10 secunde.\n"
+"    2. Conectați la calculator un disc FireWire pe portul potrivit.\n"
 "VERIFICARE:\n"
-"    A fost executată corect operația de copiere a fișierelor?"
+"    Verificarea acestui test este automată. Nu modificați rezultatul "
+"selectat\n"
+"    automat"
+
+#. description
+#: ../jobs/firewire.txt.in:19
+msgid ""
+"This is an automated test which performs read/write operations on an "
+"attached FireWire HDD"
+msgstr ""
+"Acesta este un test automat care urmărește operațiile de citire/scriere pe "
+"un disc Firewire atașat la sistem"
+
+#. description
+#: ../jobs/firewire.txt.in:27
+msgid ""
+" PURPOSE:\n"
+"   This test will check the system can detect the removal of a FireWire HDD\n"
+" STEPS:\n"
+"   1. Click 'Test' to begin the test. This test will timeout and fail if\n"
+"      the removal has not been detected within 10 seconds.\n"
+"   2. Remove the previously attached FireWire HDD from the FireWire port.\n"
+" VERIFICATION:\n"
+"   The verification of this test is automated. Do not change the "
+"automatically\n"
+"   selected result"
+msgstr ""
+" SCOP:\n"
+"   Acest test va verifica dacă sistemul poate detecta scoaterea unui disc "
+"FireWire\n"
+" PAȘI:\n"
+"   1. Efectuați clic pe butonul „Test” pentru a începe testarea. Acest test "
+"se va termina\n"
+"       cu eroare dacă scoaterea discului firewire nu a fost detectat într-un "
+"interval de 10 secunde.\n"
+"   2. Scoateți discul FireWire atașat la sistem.\n"
+" VERIFICARE:\n"
+"    Verificarea acestui test este automată. Nu modificați rezultatul "
+"selectat\n"
+"    automat"
 
 #. description
 #: ../jobs/floppy.txt.in:4
@@ -878,23 +885,14 @@ msgstr ""
 "SCOP:\n"
 "    Acest test va testa monitorul implicit\n"
 "PAȘI:\n"
-"    1. Efectuațți clic pe butonul „Test” pentru a afișa testul video.\n"
+"    1. Efectuați clic pe butonul „Test” pentru a afișa testul video.\n"
 "VERIFICARE:\n"
 "    Au fost afișate bare colorate și statice?"
 
 #. description
-#: ../jobs/graphics.txt.in:107
-msgid ""
-"PURPOSE:\n"
-"    This test checks the detected video modes\n"
-"STEPS:\n"
-"    1. The following screens and video modes have been detected on your "
-"system\n"
-"INFO:\n"
-"    $output\n"
-"VERIFICATION:\n"
-"    Are those correct?"
-msgstr ""
+#: ../jobs/graphics.txt.in:106
+msgid "Check that VESA drivers are not in use"
+msgstr "Verifică dacă driverul VESA nu este utilizat"
 
 #. description
 #: ../jobs/graphics.txt.in:113
@@ -915,9 +913,14 @@ msgstr ""
 "    A funcționat monitorul în fiecare mod video?"
 
 #. description
+#: ../jobs/graphics.txt.in:126
+msgid "Check that hardware is able to run compiz"
+msgstr "Verifică dacă sistemul poate rula compiz"
+
+#. description
 #: ../jobs/graphics.txt.in:133
-msgid "Check that the hardware is able to run compiz."
-msgstr "Verificați dacă hardware-ul poate să utilizeze compiz."
+msgid "Check that hardware is able to run Unity 3D"
+msgstr "Verifică dacă sistemul poate rula Unity 3D"
 
 #. description
 #: ../jobs/graphics.txt.in:139
@@ -941,6 +944,55 @@ msgstr ""
 "VERIFICARE:\n"
 "    1. A apărut animația 3d?\n"
 "    2. Animația a fost redată la o calitate bună și cu o viteză mulțumitoare?"
+
+#. description
+#: ../jobs/graphics.txt.in:159
+msgid ""
+"PURPOSE:\n"
+"    Do some challenging operations and check for lockup on the GPU\n"
+"STEPS:\n"
+"    1. Create 2 glxgears windows and move them quickly\n"
+"    2. Switch workspaces/viewports with wmctrl\n"
+"    3. Launch a Flash playback in firefox\n"
+"    4. Suspend/resume\n"
+"VERIFICATION:\n"
+"    1. Atfer a 60s workload, check kern.log for reported GPU errors"
+msgstr ""
+
+#. description
+#: ../jobs/graphics.txt.in:174
+msgid ""
+"PURPOSE:\n"
+"    Take a screengrab of the current screen (logged on Unity desktop)\n"
+"STEPS:\n"
+"    1. Take picture using USB webcam\n"
+"VERIFICATION:\n"
+"    1. Review attachment manually later"
+msgstr ""
+
+#. description
+#: ../jobs/graphics.txt.in:186 ../jobs/suspend.txt.in:316
+msgid "Attaches the screenshot captured in graphics/screenshot."
+msgstr ""
+
+#. description
+#: ../jobs/graphics.txt.in:194
+msgid ""
+"PURPOSE:\n"
+"    Take a screengrab of the current screen during fullscreen video "
+"playback\n"
+"STEPS:\n"
+"    1. Start a fullscreen video playback\n"
+"    2. Take picture using USB webcam after a few seconds\n"
+"VERIFICATION:\n"
+"    1. Review attachment manually later"
+msgstr ""
+
+#. description
+#: ../jobs/graphics.txt.in:207
+msgid ""
+"Attaches the screenshot captured in graphics/screenshot_fullscreen_video."
+msgstr ""
 
 #. description
 #: ../jobs/hibernate.txt.in:7
@@ -1042,52 +1094,42 @@ msgid "Attaches a list of the currently running kernel modules."
 msgstr "Atașează o listă a modulelor de kernel utilizate."
 
 #. description
-#: ../jobs/info.txt.in:85
-msgid "Captures a screenshot."
-msgstr "Realizează o captură de ecran."
-
-#. description
-#: ../jobs/info.txt.in:91
-msgid "Attaches the screenshot captured in info/screenshot."
-msgstr "Atașează captura de ecran în info/captură."
-
-#. description
-#: ../jobs/info.txt.in:96
+#: ../jobs/info.txt.in:82
 msgid "Gather log from the Firmware Test Suite run."
 msgstr "Adună date despre rularea suitei Firmware Test."
 
 #. description
-#: ../jobs/info.txt.in:103
+#: ../jobs/info.txt.in:89
 msgid "Attaches the contents of /proc/acpi/sleep if it exists."
 msgstr "Atașează conținutul fișierului /proc/acpi/sleep, dacă există."
 
 #. description
-#: ../jobs/info.txt.in:107
+#: ../jobs/info.txt.in:93
 msgid "Bootchart information."
 msgstr "Informații bootchart."
 
 #. description
-#: ../jobs/info.txt.in:116
+#: ../jobs/info.txt.in:102
 msgid "SATA/IDE device information."
 msgstr "Informații despre dispozitive SATA/IDE."
 
 #. description
-#: ../jobs/info.txt.in:133
+#: ../jobs/info.txt.in:119
 msgid "Attaches the bootchart png file for bootchart runs"
 msgstr "Atașează un fișier png care surprinde rularea bootchart"
 
 #. description
-#: ../jobs/info.txt.in:142
+#: ../jobs/info.txt.in:128
 msgid "Attaches the bootchart log for bootchart test runs."
 msgstr "Atașează jurnalul bootchart pentru testul propriu."
 
 #. description
-#: ../jobs/info.txt.in:150
+#: ../jobs/info.txt.in:136
 msgid "installs the installer bootchart tarball if it exists."
 msgstr "Instalează arhiva cu utilitarul de instalare bootchart dacă există."
 
 #. description
-#: ../jobs/info.txt.in:155
+#: ../jobs/info.txt.in:141
 msgid "Attaches the installer debug log if it exists."
 msgstr ""
 "Atașează jurnalul de depanare al utilitarului de instalare, dacă există."
@@ -1256,19 +1298,27 @@ msgstr ""
 "tastei corespunzătoare?"
 
 #. description
-#: ../jobs/keys.txt.in:76
+#: ../jobs/keys.txt.in:74
 msgid ""
 "PURPOSE:\n"
 "    This test will test the media keys of your keyboard\n"
 "STEPS:\n"
-"    1. Click test to launch the media player\n"
-"    2. Press the play/pause key on the keyboard\n"
-"    3. Press the forward key on the keyboard\n"
-"    4. Press the backward key on the keyboard\n"
-"    5. Press stop key on the keyboard\n"
+"    1. Click test to open a window on which to test the media control keys.\n"
+"    2. If all the keys work, the test will be marked as passed.\n"
+"    3. If your computer has no media control keys, Skip this test.\n"
 "VERIFICATION:\n"
 "    Do the keys work as expected?"
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica tastele multimedia de pe tastatură\n"
+"PAȘI:\n"
+"    1. Efectuați clic pe butonul Test pentru a deschide o fereastră în care "
+"să fie testate tastele media.\n"
+"    2. Dacă toate tastele multimedia funcționează, testul trebuie să fie "
+"marcat ca încheiat cu succes.\n"
+"    3. Dacă tastatura nu are taste multimedia, săriți peste acest test.\n"
+"VERIFICARE:\n"
+"    Tastele multimedia au funcționat corespunzător?"
 
 #. description
 #: ../jobs/local.txt.in:3
@@ -1480,192 +1530,514 @@ msgstr ""
 "Mago."
 
 #. description
-#: ../jobs/mediacard.txt.in:3
+#: ../jobs/mediacard.txt.in:4
 msgid ""
 "PURPOSE:\n"
-"    This test will check your system Secure Digital (SD) media card support\n"
+"    This test will check that the systems media card reader can\n"
+"    detect the insertion of a Multimedia Card (MMC) media\n"
 "STEPS:\n"
-"    1. Plug a SD media card into the computer\n"
-"    2. An icon should appear on the Launcher\n"
-"    3. Right click on the Launcher icon and select \"Safely Remove Drive\"\n"
-"    4. The icon should disappear from the Launcher\n"
+"    1. Click \"Test\" and insert an MMC card into the reader.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
+"    2. Do not unplug the device after the test.\n"
 "VERIFICATION:\n"
-"    Does the icon automatically appear/disappear?"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica dacă cititorul de carduri media al sistemului "
+"poate\n"
+"    detecta introducerea unui card multimedia (MMC)\n"
+"PAȘI:\n"
+"    1. Efectuați clic pe butonul „Test” și introduceți un card MMC în "
+"cititorul de carduri.\n"
+"       (Notă: acest test se va încheia în 10 secunde.)\n"
+"    2. Nu scoateți cardul după terminarea testului.\n"
+"VERIFICARE:\n"
+"    Verificarea acestui test este automată. Nu modificați rezultatul\n"
+"    selectat automat."
 
 #. description
-#: ../jobs/mediacard.txt.in:17
+#: ../jobs/mediacard.txt.in:20
+msgid ""
+"This test is automated and executes after the mediacard/mmc-insert test is "
+"run. It tests reading and writing to the MMC card."
+msgstr ""
+"Acest test este automat și va fi executat după încheierea testului pentru "
+"detectarea cardului media/mmc. Acesta testează citirea și scrierea pe cardul "
+"MMC."
+
+#. description
+#: ../jobs/mediacard.txt.in:28
 msgid ""
 "PURPOSE:\n"
-"    This test will check your system Secure Digital (SD) media card support "
-"after suspend\n"
+"    This test will check that the system correctly detects\n"
+"    the removal of the MMC card from the systems card reader.\n"
 "STEPS:\n"
-"    1. Plug a SD media card into the computer\n"
-"    2. An icon should appear on the Launcher\n"
-"    3. Right click on the Launcher icon and select \"Safely Remove Drive\"\n"
-"    4. The icon should disappear from the Launcher\n"
+"    1. Click \"Test\" and remove the MMC card from the reader.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
 "VERIFICATION:\n"
-"    Does the icon automatically appear/disappear?"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica dacă sistemul detectează corect\n"
+"    scoaterea unui card MMC din cititorul de carduri.\n"
+"PAȘI:\n"
+"    1. Efectuați clic pe butonul „Test” și scoateți cardul MMC din cititor.\n"
+"       (Notă: acest test se va încheia în 10 secunde.)\n"
+"VERIFICARE:\n"
+"    Verificarea acestui test este automată. Nu modificați rezultatul\n"
+"    selectat automat."
 
 #. description
-#: ../jobs/mediacard.txt.in:30
+#: ../jobs/mediacard.txt.in:43
 msgid ""
 "PURPOSE:\n"
-"    This test will check your system Secure Digital High Capacity (SDHC) "
-"media card support\n"
+"    This test will check that the systems media card reader can\n"
+"    detect the insertion of an MMC card after the system has been suspended\n"
 "STEPS:\n"
-"    1. Plug a SDHC media card into the computer\n"
-"    2. An icon should appear on the Launcher\n"
-"    3. Right click on the Launcher icon and select \"Safely Remove Drive\"\n"
-"    4. The icon should disappear from the Launcher\n"
+"    1. Click \"Test\" and insert an MMC card into the reader.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
+"    2. Do not unplug the device after the test.\n"
 "VERIFICATION:\n"
-"    Does the icon automatically appear/disappear?"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica dacă cititorul de carduri media al sistemului "
+"poate\n"
+"    detecta introducerea unui card MMC după ce sistemul a revenit din "
+"suspendare\n"
+"PAȘI:\n"
+"    1. Efectuați clic pe butonul „Test” și intoduceți un card MMC în "
+"cititor.\n"
+"       (Notă: acest test se va încheia în 10 secunde.)\n"
+"    2. Nu scoateți cardul după terminarea testului.\n"
+"VERIFICARE:\n"
+"    Verificarea acestui test este automată. Nu modificați rezultatul\n"
+"    selectat automat."
 
 #. description
-#: ../jobs/mediacard.txt.in:44
+#: ../jobs/mediacard.txt.in:59
 msgid ""
-"    This test will check your system Secure Digital High Capacity (SDHC) "
-"media card support after suspend\n"
-"STEPS:\n"
-"    1. Plug a SDHC media card into the computer\n"
-"    2. An icon should appear on the Launcher\n"
-"    3. Right click on the Launcher icon and select \"Safely Remove Drive\"\n"
-"    4. The icon should disappear from the Launcher\n"
-"VERIFICATION:\n"
-"    Does the icon automatically appear/disappear?"
+"This test is automated and executes after the mediacard/mmc-insert-after-"
+"suspend test is run. It tests reading and writing to the MMC card after the "
+"system has been suspended."
 msgstr ""
+"Acest test este automat și se va executa după rularea testului care verifică "
+"detectarea unui card media/mmc după revenirea din supendare a sistemului. "
+"Verifică citirea și scrierea pe cardul MMC după revenirea din suspendare a "
+"sistemului."
 
 #. description
-#: ../jobs/mediacard.txt.in:56
-msgid ""
-"PURPOSE:\n"
-"    This test will check your system Multi Media Card (MMC) media card "
-"support\n"
-"STEPS:\n"
-"    1. Plug a MMC media card into the computer\n"
-"    2. An icon should appear on the Launcher\n"
-"    3. Right click on the Launcher icon and select \"Safely Remove Drive\"\n"
-"    4. The icon should disappear from the Launcher\n"
-"VERIFICATION:\n"
-"    Does the icon automatically appear/disappear?"
-msgstr ""
-
-#. description
-#: ../jobs/mediacard.txt.in:70
+#: ../jobs/mediacard.txt.in:67
 msgid ""
 "PURPOSE:\n"
-"    This test will check your system Multi Media Card (MMC) media card "
-"support after suspend\n"
+"    This test will check that the system correctly detects the removal\n"
+"    of an MMC card from the systems card reader after the system has been "
+"suspended.\n"
 "STEPS:\n"
-"    1. Plug a MMC media card into the computer\n"
-"    2. An icon should appear on the Launcher\n"
-"    3. Right click on the Launcher icon and select \"Safely Remove Drive\"\n"
-"    4. The icon should disappear from the Launcher\n"
+"    1. Click \"Test\" and remove the MMC card from the reader.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
 "VERIFICATION:\n"
-"    Does the icon automatically appear/disappear?"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica dacă sistemul detectează corect scoaterea\n"
+"    unui card MMC din cititorul de carduri după ce sistemul a revenit din "
+"suspendare.\n"
+"PAȘI:\n"
+"    1. Efectuați clic pe butonul „Test” și scoateți cardul MMC din cititor.\n"
+"      (Notă: acest test se va încheia în 10 secunde.)\n"
+"VERIFICARE:\n"
+"    Verificarea acestui test este automată. Nu modificați rezultatul\n"
+"    selectat automat."
 
 #. description
-#: ../jobs/mediacard.txt.in:83
+#: ../jobs/mediacard.txt.in:81
 msgid ""
 "PURPOSE:\n"
-"    This test will check your system Memory Stick (MS) media card support\n"
+"    This test will check that the systems media card reader can\n"
+"    detect the insertion of a Secure Digital (SD) media card\n"
 "STEPS:\n"
-"    1. Plug a MS media card into the computer\n"
-"    2. An icon should appear on the Launcher\n"
-"    3. Right click on the Launcher icon and select \"Safely Remove Drive\"\n"
-"    4. The icon should disappear from the Launcher\n"
+"    1. Click \"Test\" and insert an SD card into the reader.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
+"    2. Do not unplug the device after the test.\n"
 "VERIFICATION:\n"
-"    Does the icon automatically appear/disappear?"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica dacă cititorul de carduri media al sistemului "
+"poate\n"
+"    detecta introducerea unui card media Secure Digital (SD)\n"
+"PAȘI:\n"
+"    1. Efectuați clic pe butonul „Test” și introduceți în slotul potrivit un "
+"card SD.\n"
+"       (Notă: acest test se va încheia automat în 10 secunde.)\n"
+"    2. Nu scoateți cardul după testare.\n"
+"VERIFICARE:\n"
+"    Verificarea acestui test este automată. Nu modificați rezultatul\n"
+"    selectat în mod automat."
 
 #. description
 #: ../jobs/mediacard.txt.in:97
 msgid ""
-"PURPOSE:\n"
-"    This test will check your system Memory Stick (MS) media card support "
-"after suspend\n"
-"STEPS:\n"
-"    1. Plug a MS media card into the computer\n"
-"    2. An icon should appear on the Launcher\n"
-"    3. Right click on the Launcher icon and select \"Safely Remove Drive\"\n"
-"    4. The icon should disappear from the Launcher\n"
-"VERIFICATION:\n"
-"    Does the icon automatically appear/disappear?"
+"This test is automated and executes after the mediacard/sd-insert test is "
+"run. It tests reading and writing to the SD card."
 msgstr ""
+"Acest test este unul automat și se execută după rularea testului pentru "
+"detectarea introducerii cardul media/sd. Se testează citirea și scrierea pe "
+"cardul SD."
 
 #. description
-#: ../jobs/mediacard.txt.in:110
+#: ../jobs/mediacard.txt.in:105
 msgid ""
 "PURPOSE:\n"
-"    This test will check your system Memory Stick Pro (MSP) media card "
-"support\n"
+"    This test will check that the system correctly detects\n"
+"    the removal of an SD card from the systems card reader.\n"
 "STEPS:\n"
-"    1. Plug a MSP media card into the computer\n"
-"    2. An icon should appear on the Launcher\n"
-"    3. Right click on the Launcher icon and select \"Safely Remove Drive\"\n"
-"    4. The icon should disappear from the Launcher\n"
+"    1. Click \"Test\" and remove the SD card from the reader.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
 "VERIFICATION:\n"
-"    Does the icon automatically appear/disappear?"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica dacă sistemul detectează corect\n"
+"    scoaterea unui card SD din cititorul de carduri.\n"
+"PAȘI:\n"
+"    1. Efectuați clic pe butonul „Test” și scoateți cardul SD din cititor.\n"
+"       (Notă: acest test se va încheia în 10 secunde.)\n"
+"VERIFICARE:\n"
+"    Verificarea acestui test este automată. Nu modificați rezultatul\n"
+"    selectat automat."
 
 #. description
-#: ../jobs/mediacard.txt.in:124
+#: ../jobs/mediacard.txt.in:120
 msgid ""
 "PURPOSE:\n"
-"    This test will check your system Memory Stick Pro (MSP) media card "
-"support after suspend\n"
+"    This test will check that the systems media card reader can\n"
+"    detect the insertion of an SD card after the system has been suspended\n"
 "STEPS:\n"
-"    1. Plug a MSP media card into the computer\n"
-"    2. An icon should appear on the Launcher\n"
-"    3. Right click on the Launcher icon and select \"Safely Remove Drive\"\n"
-"    4. The icon should disappear from the Launcher\n"
+"    1. Click \"Test\" and insert an SD card into the reader.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
+"    2. Do not unplug the device after the test.\n"
 "VERIFICATION:\n"
-"    Does the icon automatically appear/disappear?"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica dacă sistemul detectează corect\n"
+"    introducerea unui card SD după ce sistemul a revenit din suspendare\n"
+"PAȘI:\n"
+"    1. Efectuați clic pe butonul „Test” și introduceți un card SD în "
+"cititor.\n"
+"       (Notă: acest test se va încheia în 10 secunde.)\n"
+"    2. Nu scoateți cardul după terminarea testului.\n"
+"VERIFICARE:\n"
+"    Verificarea acestui test este automată. Nu modificați rezultatul\n"
+"    selectat automat."
 
 #. description
-#: ../jobs/mediacard.txt.in:137
+#: ../jobs/mediacard.txt.in:136
+msgid ""
+"This test is automated and executes after the mediacard/sd-insert-after-"
+"suspend test is run. It tests reading and writing to the SD card after the "
+"system has been suspended."
+msgstr ""
+"Acest test este realizat automat și este executat după rularea testului "
+"pentru verificarea recunoașterii introducerii unui card media/sd după "
+"revenirea din suspendare. Testează citirea și scrierea pe cardul SD după "
+"revenirea din suspendare."
+
+#. description
+#: ../jobs/mediacard.txt.in:144
 msgid ""
 "PURPOSE:\n"
-"    This test will check your system Compact Flash (CF) media card support\n"
+"    This test will check that the system correctly detects\n"
+"    the removal of an SD card from the systems card reader after the system "
+"has been suspended.\n"
 "STEPS:\n"
-"    1. Plug a CF media card into the computer\n"
-"    2. An icon should appear on the Launcher\n"
-"    3. Right click on the Launcher icon and select \"Safely Remove Drive\"\n"
-"    4. The icon should disappear from the Launcher\n"
+"    1. Click \"Test\" and remove the SD card from the reader.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
 "VERIFICATION:\n"
-"    Does the icon automatically appear/disappear?"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica dacă sistemul detectează corect\n"
+"    scoaterea unui card SD după ce sistemul a revenit din suspendare\n"
+"PAȘI:\n"
+"    1. Efectuați clic pe butonul „Test” și scoateți cardul SD din cititor.\n"
+"       (Notă: acest test se va încheia în 10 secunde.)\n"
+"VERIFICARE:\n"
+"    Verificarea acestui test este automată. Nu modificați rezultatul\n"
+"    selectat automat."
 
 #. description
-#: ../jobs/mediacard.txt.in:151
-msgid ""
-"    This test will check your system Compact Flash (CF) media card support "
-"after suspend\n"
-"STEPS:\n"
-"    1. Plug a CF media card into the computer\n"
-"    2. An icon should appear on the Launcher\n"
-"    3. Right click on the Launcher icon and select \"Safely Remove Drive\"\n"
-"    4. The icon should disappear from the Launcher\n"
-"VERIFICATION:\n"
-"    Does the icon automatically appear/disappear?"
-msgstr ""
-
-#. description
-#: ../jobs/memory.txt.in:4
+#: ../jobs/mediacard.txt.in:158
 msgid ""
 "PURPOSE:\n"
-"    This test checks the amount of memory that is detected\n"
+"    This test will check that the systems media card reader can\n"
+"    detect the insertion of a Secure Digital High-Capacity (SDHC) media "
+"card\n"
 "STEPS:\n"
-"    1. Click Test to see the amount of detected memory\n"
-"INFO:\n"
-"    $output\n"
+"    1. Click \"Test\" and insert an SDHC card into the reader.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
+"    2. Do not unplug the device after the test.\n"
 "VERIFICATION:\n"
-"    Is the amount of detected memory correct?"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica dacă cititorul de carduri al sistemului poate "
+"detecta\n"
+"    introducerea unui card media Secure Digital High-Capacity (SDHC)\n"
+"PAȘI:\n"
+"    1. Efectuați clic pe butonul „Test” și inserați un card SDHC în "
+"cititor.\n"
+"       (Notă: acest test se va termina automat în 10 secunde.)\n"
+"    2. Nu scoateți cardul după terminarea testului.\n"
+"VERIFICARE:\n"
+"    Verificarea acestui test este automată. Nu modificați rezultatul\n"
+"    selectat automat de sistem."
+
+#. description
+#: ../jobs/mediacard.txt.in:174
+msgid ""
+"This test is automated and executes after the mediacard/sdhc-insert test is "
+"run. It tests reading and writing to the SDHC card."
+msgstr ""
+"Acest test este automat și se va executa după rularea testului care verifică "
+"detectarea introducerii unui card/sdhc. Verifică citirea și scrierea pe "
+"carduri SDHC."
+
+#. description
+#: ../jobs/mediacard.txt.in:182
+msgid ""
+"PURPOSE:\n"
+"    This test will check that the system correctly detects\n"
+"    the removal of an SDHC card from the systems card reader.\n"
+"STEPS:\n"
+"    1. Click \"Test\" and remove the SDHC card from the reader.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
+msgstr ""
+"SCOP:\n"
+"    Acest test va verifica dacă sistemul detectează corect\n"
+"    scoaterea unui card SDHC din cititorul de carduri.\n"
+"PAȘI:\n"
+"    1. Efectuați clic pe butonul „Test” și scoateți cardul SD din cititor.\n"
+"       (Notă: acest test se va încheia în 10 secunde.)\n"
+"VERIFICARE:\n"
+"    Verificarea acestui test este automată. Nu modificați rezultatul\n"
+"    selectat automat."
+
+#. description
+#: ../jobs/mediacard.txt.in:197
+msgid ""
+"PURPOSE:\n"
+"    This test will check that the systems media card reader can\n"
+"    detect the insertion of an SDHC media card after the system has been "
+"suspended\n"
+"STEPS:\n"
+"    1. Click \"Test\" and insert an SDHC card into the reader.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
+"    2. Do not unplug the device after the test.\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
+msgstr ""
+"SCOP:\n"
+"    Acest test va verifica dacă sistemul detectează corect\n"
+"    introducerea unui card SDHC după ce sistemul a revenit din suspendare\n"
+"PAȘI:\n"
+"    1. Efectuați clic pe butonul „Test” și introduceți un card SDHC în "
+"cititor.\n"
+"       (Notă: acest test se va încheia în 10 secunde.)\n"
+"    2. Nu scoateți cardul după terminarea testului.\n"
+"VERIFICARE:\n"
+"    Verificarea acestui test este automată. Nu modificați rezultatul\n"
+"    selectat automat."
+
+#. description
+#: ../jobs/mediacard.txt.in:213
+msgid ""
+"This test is automated and executes after the mediacard/sdhc-insert-after-"
+"suspend test is run. It tests reading and writing to the SDHC card after the "
+"system has been suspended."
+msgstr ""
+"Acest test este automat și va fi executat după rularea testului pentru "
+"detectarea introducerii unui card media/sdhc după revenirea din suspendare a "
+"sistemului. Testează citirea și scrierea pe cardul SDHC după revenirea din "
+"suspendare a sistemului."
+
+#. description
+#: ../jobs/mediacard.txt.in:221
+msgid ""
+"PURPOSE:\n"
+"    This test will check that the system correctly detects the removal\n"
+"    of an SDHC card from the systems card reader after the system has been "
+"suspended.\n"
+"STEPS:\n"
+"    1. Click \"Test\" and remove the SDHC card from the reader.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
+msgstr ""
+"SCOP:\n"
+"    Acest test va verifica dacă sistemul detectează corect scoaterea unui "
+"card\n"
+"    SDHC din cititorul de carduri al sistemului după revenirea din "
+"suspendare a sistemului.\n"
+"PAȘI:\n"
+"    1. Efectuați clic pe butonul „Test” și scoateți cardul SDHC din "
+"cititor.\n"
+"       (Notă: acest test se va încheia în 10 secunde.)\n"
+"VERIFICARE:\n"
+"    Verificarea acestui test este automată. Nu modificați rezultatul\n"
+"    selectat automat."
+
+#. description
+#: ../jobs/mediacard.txt.in:235
+msgid ""
+"PURPOSE:\n"
+"    This test will check that the systems media card reader can\n"
+"    detect the insertion of a Compact Flash (CF) media card\n"
+"STEPS:\n"
+"    1. Click \"Test\" and insert a CF card into the reader.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
+"    2. Do not unplug the device after the test.\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
+msgstr ""
+"SCOP:\n"
+"    Acest test va verifica dacă sistemul detectează corect introducerea "
+"unui\n"
+"    card Compact Flash (CF) în cititorul de carduri media al sistemului\n"
+"PAȘI:\n"
+"    1. Efectuați clic pe butonul „Test” și introduceți un card CF în "
+"cititor.\n"
+"       (Notă: acest test se va încheia în 10 secunde.)\n"
+"    2. Nu scoateți cardul după terminarea testului.\n"
+"VERIFICARE:\n"
+"    Verificarea acestui test este automată. Nu modificați rezultatul\n"
+"    selectat automat."
+
+#. description
+#: ../jobs/mediacard.txt.in:251
+msgid ""
+"This test is automated and executes after the mediacard/cf-insert test is "
+"run. It tests reading and writing to the CF card."
+msgstr ""
+"Acest test este automat și va fi executat după rularea testului pentru "
+"detectarea introducerii unui card media/cf. Testează citirea și scrierea pe "
+"cardul CF."
+
+#. description
+#: ../jobs/mediacard.txt.in:259
+msgid ""
+"PURPOSE:\n"
+"    This test will check that the system correctly detects\n"
+"    the removal of a CF card from the systems card reader.\n"
+"STEPS:\n"
+"    1. Click \"Test\" and remove the CF card from the reader.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
+msgstr ""
+"SCOP:\n"
+"    Acest test va verifica dacă sistemul detectează corect scoaterea unui "
+"card\n"
+"    CF din cititorul de carduri al sistemului.\n"
+"PAȘI:\n"
+"    1. Efectuați clic pe butonul „Test” și scoateți cardul CF din cititor.\n"
+"       (Notă: acest test se va încheia în 10 secunde.)\n"
+"VERIFICARE:\n"
+"    Verificarea acestui test este automată. Nu modificați rezultatul\n"
+"    selectat automat."
+
+#. description
+#: ../jobs/mediacard.txt.in:274
+msgid ""
+"PURPOSE:\n"
+"    This test will check that the systems media card reader can\n"
+"    detect the insertion of a CF card after the system has been suspended\n"
+"STEPS:\n"
+"    1. Click \"Test\" and insert a CF card into the reader.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
+"    2. Do not unplug the device after the test.\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
+msgstr ""
+"SCOP:\n"
+"    Acest test va verifica dacă sistemul detectează corect introducerea unui "
+"card\n"
+"    CF în cititorul de carduri al sistemului după revenirea din suspendare a "
+"sistemului.\n"
+"PAȘI:\n"
+"    1. Efectuați clic pe butonul „Test” și scoateți cardul SDHC din "
+"cititor.\n"
+"       (Notă: acest test se va încheia în 10 secunde.)\n"
+"    2. Nu scoateți cardul după terminarea testului.\n"
+"VERIFICARE:\n"
+"    Verificarea acestui test este automată. Nu modificați rezultatul\n"
+"    selectat automat."
+
+#. description
+#: ../jobs/mediacard.txt.in:290
+msgid ""
+"This test is automated and executes after the mediacard/cf-insert-after-"
+"suspend test is run. It tests reading and writing to the CF card after the "
+"system has been suspended."
+msgstr ""
+"Acest test este automat și va fi executat după rularea testului pentru "
+"detectarea introducerii unui card media/cf după revenirea din suspendare a "
+"sistemului. Testează citirea și scrierea pe cardul CF după revenirea din "
+"suspendare a sistemului."
+
+#. description
+#: ../jobs/mediacard.txt.in:298
+msgid ""
+"PURPOSE:\n"
+"    This test will check that the system correctly detects the removal\n"
+"    of a CF card from the systems card reader after the system has been "
+"suspended.\n"
+"STEPS:\n"
+"    1. Click \"Test\" and remove the CF card from the reader.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
+msgstr ""
+"SCOP:\n"
+"    Acest test va verifica dacă sistemul detectează corect scoaterea unui "
+"card\n"
+"    CF din cititorul de carduri după revenirea din suspendare a sistemului.\n"
+"PAȘI:\n"
+"    1. Efectuați clic pe butonul „Test” și scoateți cardul CF din cititor.\n"
+"       (Notă: acest test se va încheia în 10 secunde.)\n"
+"VERIFICARE:\n"
+"    Verificarea acestui test este automată. Nu modificați rezultatul\n"
+"    selectat automat."
+
+#. description
+#: ../jobs/memory.txt.in:5
+msgid ""
+"This test checks the amount of memory which is reporting in meminfo against "
+"the size of the memory modules detected by DMI."
+msgstr ""
+"Acest test verifică cantitatea de memorie care este raportată în "
+"informațiile despre memorie, în comparație cu modulele de memorie detectate "
+"de DMI."
 
 #. description
 #: ../jobs/memory.txt.in:14
@@ -1701,15 +2073,6 @@ msgid "Run Firmware Test Suite (fwts) automated tests."
 msgstr "Rulați suita de teste automate Firmware Test (fwts)."
 
 #. description
-#: ../jobs/miscellanea.txt.in:29
-msgid ""
-"ipmitool is required for ipmi testing. This checks for ipmitool and installs "
-"it if not available."
-msgstr ""
-"Pentru testul ipmi este necesar utilitarul ipmitool. Se va verifica "
-"existența programului ipmitool, care va fi instalat dacă nu este disponibil."
-
-#. description
 #: ../jobs/miscellanea.txt.in:31
 msgid ""
 "This will run some basic connectivity tests against a BMC, verifying that "
@@ -1728,17 +2091,25 @@ msgstr ""
 "portabile, care nu sunt aplicabile sistemelor desktop."
 
 #. description
-#: ../jobs/miscellanea.txt.in:51
+#: ../jobs/miscellanea.txt.in:45
 msgid ""
-"This test checks /var/crash to see if there are any crash reports present."
+"Test that the /var/crash directory doesn't contain anything. Lists the files "
+"contained within if it does, or echoes the status of the directory (doesn't "
+"exist/is empty)"
 msgstr ""
-"Acest test verifică existența unor eventuale rapoarte de eroare în "
-"/var/crash."
+"Se testează conținutul dosarului /var/crash. Se listează fișierele "
+"conținute, dacă există, sau se prezintă starea dosarului (nu există/este "
+"gol)."
 
 #. description
-#: ../jobs/miscellanea.txt.in:51
-msgid "If there are, this test will fail."
-msgstr "Dacă există, acest test se va încheia cu eroare."
+#: ../jobs/miscellanea.txt.in:53
+msgid ""
+"Test to check that virtualization is supported and the test system has at "
+"least a minimal amount of RAM to function as an OpenStack Compute Node"
+msgstr ""
+"Se testează dacă funcția de virtualizare este integrată în sistem și dacă "
+"sistemul testat are minimum necesar de memorie RAM pentru a funcționa ca "
+"OpenStack Compute Node."
 
 #. description
 #: ../jobs/monitor.txt.in:4
@@ -1903,6 +2274,16 @@ msgid "Network Information"
 msgstr "Informații despre rețea"
 
 #. description
+#: ../jobs/networking.txt.in:40
+msgid ""
+"This is an automated test to gather some info on the current state of your "
+"network devices. If no devices are found, the test will exit with an error."
+msgstr ""
+"Acest test este automat și adună informații despre starea curentă a "
+"dispozitivelor de rețea. Dacă nu este detectat niciun dispozitiv, testul va "
+"returna o eroare."
+
+#. description
 #: ../jobs/networking.txt.in:46
 msgid ""
 "PURPOSE:\n"
@@ -2016,79 +2397,133 @@ msgid "Test to detect the optical drives"
 msgstr "Test pentru detectarea unităților optice"
 
 #. description
-#: ../jobs/optical.txt.in:18
-msgid "Optical Storage device read tests"
-msgstr ""
-
-#. description
-#: ../jobs/optical.txt.in:35
+#: ../jobs/optical.txt.in:16
 msgid ""
 "PURPOSE:\n"
-"    This test will check your system's CDROM writing capabilities. If your "
-"drive does not support writing CDs or you do not have any blank CD media, "
-"please skip this test.\n"
+"    This test will check your optical devices ability to read CD media\n"
 "STEPS:\n"
-"    1. Enter a blank CDROM into your drive\n"
-"    2. Write something in the CDROM\n"
-"    3. Read the newly written CDROM\n"
+"    1. Insert appropriate non-blank media into your optical drive(s). Movie "
+"and Audio Disks may not work. Self-created data disks have the greatest "
+"chance of working.\n"
+"    2. If a file browser window opens, you can safely close or ignore that "
+"window.\n"
+"    3. Click \"Test\" to being the test.\n"
+"    4. When the test completes, proceed by clicking \"Next\"\n"
 "VERIFICATION:\n"
-"    Was the data correctly written?"
+"    This test should automatically select \"Yes\" if it passes, \"No\" if it "
+"fails."
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica dacă dispozitivele optice pot citi un CD cu date\n"
+"PAȘI:\n"
+"    1. Introduceți un CD care să conțină date în unitățile optice. Discurile "
+"care conțin filme sau muzică pot să nu funcționeze.\n"
+"    2. Dacă se deschide un administrator de fișiere, puteți ignora sau "
+"închide fereastra acestuia.\n"
+"    3. Efectuați clic pe butonul „Test” pentru a începe.\n"
+"    4. La terminarea testului apăsați pe „Înainte”\n"
+"VERIFICARE:\n"
+"    Testul ar trebui să selecteze automat „Da” în situația în care a fost "
+"încheiat cu succes și „Nu” pentru eșec."
 
 #. description
-#: ../jobs/optical.txt.in:47
+#: ../jobs/optical.txt.in:43
+msgid ""
+"PURPOSE:\n"
+"    This test will check your system's CD writing capabilities. This test "
+"requires a blank CD-R. If you do not have a blank CD-R, skip this test.\n"
+"STEPS:\n"
+"    1. Enter a blank CD-R into your drive\n"
+"    2. Click \"Test\" to begin.\n"
+"    3. When the CD tray ejects the media after burning, close it (DO NOT "
+"remove the disk, it is needed for the second portion of the test). Note, you "
+"must close the drive within 10 seconds or the test will time out.\n"
+"    4. When the test completes, proceed by clicking \"Next\"\n"
+"VERIFICATION:\n"
+"    This test should automatically select \"Yes\" if it passes, \"No\" if it "
+"fails."
+msgstr ""
+"SCOP:\n"
+"    Acest test va verifica funcția de scriere CD-uri. Acest test are nevoie "
+"de un CD-R gol. Bacă nu aveți un CD-R gol, treceți peste acest test.\n"
+"PAȘI:\n"
+"    1. Introduceți un CD-R gol în unitatea de disc\n"
+"    2. Efectuați clic pe butonul „Test” pentru a începe.\n"
+"    3. După ce unitatea scoate CD-ul după scriere, închideți-l la loc (NU "
+"scoateți discul, prezența lui este necesară pentru a doua fază a testului). "
+"Rețineți că trebuie să închideți tava unității de disc în cel mult 10 "
+"secunde, altfel testul se va încheia cu eroare.\n"
+"    4. După încheierea testului, apăsați pe „Înainte”\n"
+"VERIFICARE:\n"
+"    Acest test ar trebui să selecteze automat „Da” dacă reușește și „Nu” "
+"dacă eșuează."
+
+#. description
+#: ../jobs/optical.txt.in:57
 msgid ""
 "PURPOSE:\n"
 "    This test will check your CD audio playback capabilities\n"
 "STEPS:\n"
 "    1. Insert an audio CD in your optical drive\n"
-"    2. Open the Dash (click on the Ubuntu Circle of Friends button on the "
-"Launcher)\n"
-"    3. Click \"Listen to Music\" to open Banshee\n"
-"    4. Select the CD under \"Libraries\" in the left panel of Banshee\n"
-"    5. Click the Play button to listen to music\n"
+"    2. When prompted, launch the Music Player\n"
+"    3. Locate the CD in the display of the Music Player\n"
+"    4. Select the CD in the Music Player\n"
+"    5. Click the Play button to listen to the music on the CD\n"
 "    6. Stop playing after some time\n"
-"    7. Right click on the CD icon under \"Libraries\" and select \"Eject "
-"Disc\"\n"
+"    7. Right click on the CD icon and select \"Eject Disc\"\n"
 "    8. The CD should be ejected\n"
-"    9. Close Banshee\n"
+"    9. Close the Music Player\n"
 "VERIFICATION:\n"
 "    Did all the steps work?"
 msgstr ""
 "SCOP:\n"
-"    Acest test va verifica funcția de redare CD-uri audio\n"
+"    Acest test va verifica funcția de redare audio CD\n"
 "PAȘI:\n"
-"    1. Introduceți un CD audio în unitatea de disc\n"
-"    2. Deschideți Panoul principal (efectuați clic pe butonul cu iconița "
-"Ubuntu din Lansator)\n"
-"    3. Efectuați clic pe „Redare muzică” pentru a deschide Rhythmbox\n"
-"    4. Alegeți CD din biblioteca Rhythmbox\n"
-"    5. Efectuați clic pe butonul Redare pentru a asculta muzică\n"
+"    1. Introduceți un CD audio în unitatea optică\n"
+"    2. Când sunteți solicitat, lansați utilitarul pentru redare muzică\n"
+"    3. Arătați calea către CD în fereastra programului pentru redare muzică\n"
+"    4. Selectați sursa CD în playerul muzical\n"
+"    5. Efectuați clic pe butonul Redare pentru a asculta muzica de pe CD\n"
 "    6. Opriți redarea după un timp\n"
-"    7. Efectuați clic pe iconița CD din biblioteca Rhythmbox și alegeți "
-"„Scoate discul”\n"
-"    8. Discul ar trebui să fie scos\n"
-"    9. Închideți Rhythmbox\n"
+"    7. Efectuați clic pe iconița CD-ului și alegeți „Scoate discul”\n"
+"    8. CD-ul ar trebui să fie ejectat\n"
+"    9. Închideți programul pentru redare muzică\n"
 "VERIFICARE:\n"
-"    Au funcționat corect toții pașii?"
+"    Au funcționat toți pașii așa cum ar trebui?"
 
 #. description
-#: ../jobs/optical.txt.in:68
+#: ../jobs/optical.txt.in:80
 msgid ""
 "PURPOSE:\n"
-"    This test will check your system's DVD writing capabilities. If your "
-"drive does not support writing DVDs or you do not have any blank DVD media, "
-"please skip this test.\n"
+"    This test will check your system's DVD writing capabilities. This test "
+"requires a blank DVD-R. If you do not have a blank DVD-R, skip this test.\n"
 "STEPS:\n"
-"    1. Enter a blank DVD into your drive\n"
-"    2. Write something in the DVD\n"
-"    3. Read the newly written DVD\n"
+"    1. Enter a blank DVD-R into your drive\n"
+"    2. Click \"Test\" to begin.\n"
+"    3. When the CD tray ejects the media after burning, close it (DO NOT "
+"remove the disk, it is needed for the second portion of the test). Note, you "
+"must close the drive within 10 seconds or the test will time out.\n"
+"    4. When the test completes, proceed by clicking \"Next\"\n"
 "VERIFICATION:\n"
-"    Was the data correctly written?"
+"    This test should automatically select \"Yes\" if it passes, \"No\" if it "
+"fails."
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica funcția de scriere DVD-uri. Acest test are nevoie "
+"de un DVD-R gol. Dacă nu aveți un DVD-R gol, treceți peste acest test.\n"
+"PAȘI:\n"
+"    1. Introduceți un DVD-R gol în unitate\n"
+"    2. Efectuați clic pe butonul „Test” pentru a începe.\n"
+"    3. După ce unitatea scoate tava cu discul după scriere, închideți-o (NU "
+"scoateți discul, este nevoie de el pentru a doua fază a testului). Rețineți "
+"că trebuie să închideți tava în cel mult 10 secunde, altfel testul se va "
+"încheia cu eroare.\n"
+"    4. După terminarea testului, efectuați clic pe „Înainte”\n"
+"VERIFICARE:\n"
+"    Acest test va selecta automat „Da” dacă trece și „Nu” dacă eșuează."
 
 #. description
-#: ../jobs/optical.txt.in:84
+#: ../jobs/optical.txt.in:94
 msgid ""
 "PURPOSE:\n"
 "    This test will check your DVD movie playback capabilities. Note that "
@@ -2122,7 +2557,7 @@ msgstr ""
 "    Au funcționat toți pașii corect?"
 
 #. description
-#: ../jobs/optical.txt.in:102
+#: ../jobs/optical.txt.in:112
 msgid ""
 "PURPOSE:\n"
 "    This test will check your DVD  playback capabilities\n"
@@ -2520,6 +2955,11 @@ msgstr ""
 "    A intrat sistemul în suspendare și a revenit cu succes de 30 de ori?"
 
 #. description
+#: ../jobs/suspend.txt.in:4
+msgid "Record the current network before suspending."
+msgstr "Înregistrează rețeaua curentă înainte de suspendare."
+
+#. description
 #: ../jobs/suspend.txt.in:9
 msgid "Record the current resolution before suspending."
 msgstr "Memorează rezoluția curentă înainte de suspendare."
@@ -2543,7 +2983,7 @@ msgstr ""
 "rularea testului de suspendare"
 
 #. description
-#: ../jobs/suspend.txt.in:49
+#: ../jobs/suspend.txt.in:40
 msgid ""
 "This test disconnects all connections and then connects to the wireless "
 "interface. It then checks the connection to confirm it's working as expected."
@@ -2553,7 +2993,7 @@ msgstr ""
 "funcționării corecte."
 
 #. description
-#: ../jobs/suspend.txt.in:83
+#: ../jobs/suspend.txt.in:74
 msgid ""
 "PURPOSE:\n"
 "    This test will check suspend and resume\n"
@@ -2582,18 +3022,18 @@ msgstr ""
 "    A intrat sistemul în suspendare și a revenit din suspendare corect?"
 
 #. description
-#: ../jobs/suspend.txt.in:96
+#: ../jobs/suspend.txt.in:87
 msgid "Test the network after resuming."
 msgstr "Testează rețeaua după revenire."
 
 #. description
-#: ../jobs/suspend.txt.in:102
+#: ../jobs/suspend.txt.in:93
 msgid ""
 "Test to see that we have the same resolution after resuming as before."
 msgstr "Testează pentru a vedea dacă s-a păstrat rezoluția după revenire."
 
 #. description
-#: ../jobs/suspend.txt.in:111
+#: ../jobs/suspend.txt.in:102
 msgid ""
 "Verify that mixer settings after suspend are the same as before suspend."
 msgstr ""
@@ -2601,21 +3041,21 @@ msgstr ""
 "în suspendare."
 
 #. description
-#: ../jobs/suspend.txt.in:127
+#: ../jobs/suspend.txt.in:118
 msgid "Verify that all CPUs are online after resuming."
 msgstr ""
 "Se verifică dacă toate procesoarele sunt online după revenirea din "
 "suspendare."
 
 #. description
-#: ../jobs/suspend.txt.in:144
+#: ../jobs/suspend.txt.in:135
 msgid "Verify that all memory is available after resuming from suspend."
 msgstr ""
 "Se verifică dacă toată memoria este disponibilă după revenirea din "
 "suspendare."
 
 #. description
-#: ../jobs/suspend.txt.in:153
+#: ../jobs/suspend.txt.in:144
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the display is correct after suspend and "
@@ -2630,7 +3070,7 @@ msgstr ""
 "    Monitorul afișează corect după revenirea din suspendare?"
 
 #. description
-#: ../jobs/suspend.txt.in:174
+#: ../jobs/suspend.txt.in:155
 msgid ""
 "This test checks that the wireless interface is working after suspending the "
 "system. It disconnects all interfaces and then connects to the wireless "
@@ -2642,7 +3082,35 @@ msgstr ""
 "lucrează așa cum trebuie."
 
 #. description
-#: ../jobs/suspend.txt.in:186
+#: ../jobs/suspend.txt.in:167
+msgid ""
+"Tests that the systems wireless hardware can connect to a router using WPA "
+"security and the 802.11b/g protocols after the system has been suspended."
+msgstr ""
+
+#. description
+#: ../jobs/suspend.txt.in:178
+msgid ""
+"Tests that the systems wireless hardware can connect to a router using no "
+"security and the 802.11b/g protocols after the system has been suspended."
+msgstr ""
+
+#. description
+#: ../jobs/suspend.txt.in:189
+msgid ""
+"Tests that the systems wireless hardware can connect to a router using WPA "
+"security and the 802.11n protocol after the system has been suspended."
+msgstr ""
+
+#. description
+#: ../jobs/suspend.txt.in:200
+msgid ""
+"Tests that the systems wireless hardware can connect to a router using no "
+"security and the 802.11n protocol after the system has been suspended."
+msgstr ""
+
+#. description
+#: ../jobs/suspend.txt.in:211
 msgid ""
 "This test grabs the hardware address of the bluetooth adapter after suspend "
 "and compares it to the address grabbed before suspend."
@@ -2652,7 +3120,7 @@ msgstr ""
 "de intrarea în suspendare."
 
 #. description
-#: ../jobs/suspend.txt.in:196
+#: ../jobs/suspend.txt.in:221
 msgid ""
 "This is an automated Bluetooth file transfer test. It sends an image to the "
 "device specified by the BTDEVADDR environment variable."
@@ -2661,7 +3129,7 @@ msgstr ""
 "trimite o imagine unui dispozitiv specificat în variabila de mediu BTDEVADDR."
 
 #. description
-#: ../jobs/suspend.txt.in:206
+#: ../jobs/suspend.txt.in:231
 msgid ""
 "PURPOSE:\n"
 "    This test will send the image 'JPEG_Color_Image_Ubuntu.jpg' to a "
@@ -2687,7 +3155,7 @@ msgstr ""
 "    A fost transmis corect fișierul?"
 
 #. description
-#: ../jobs/suspend.txt.in:220
+#: ../jobs/suspend.txt.in:245
 msgid ""
 "PURPOSE:\n"
 "    This test will cycle through the detected display modes\n"
@@ -2705,7 +3173,7 @@ msgstr ""
 "    Monitorul afișa corect în modurile detectate?"
 
 #. description
-#: ../jobs/suspend.txt.in:232
+#: ../jobs/suspend.txt.in:257
 msgid ""
 "This test will check to make sure supported video modes work after a suspend "
 "and resume. This is done automatically by taking screenshots and uploading "
@@ -2716,7 +3184,7 @@ msgstr ""
 "capturi de ecran și încărcarea lor ca atașamente."
 
 #. description
-#: ../jobs/suspend.txt.in:241
+#: ../jobs/suspend.txt.in:266
 msgid ""
 "This attaches screenshots from the "
 "suspend/cycle_resolutions_after_suspend_auto test to the results submission."
@@ -2725,21 +3193,7 @@ msgstr ""
 "rezoluțiile după revenirea din suspendare."
 
 #. description
-#: ../jobs/suspend.txt.in:231
-msgid ""
-"PURPOSE:\n"
-"    This will test that USB functionality is restored after a suspend and "
-"resume cycle\n"
-"STEPS:\n"
-"    1. Plug in at least one USB storage device if one is not already "
-"connected\n"
-"    2. Click \"Test\" to start\n"
-"VERIFICATION:\n"
-"    Automatically verified"
-msgstr ""
-
-#. description
-#: ../jobs/suspend.txt.in:251
+#: ../jobs/suspend.txt.in:276
 msgid ""
 "This will check to make sure that your audio device works properly after a "
 "suspend and resume.  This may work fine with speakers and onboard "
@@ -2753,14 +3207,14 @@ msgstr ""
 "ieșirii audio cu jack-ul intrării audio."
 
 #. description
-#: ../jobs/suspend.txt.in:260
+#: ../jobs/suspend.txt.in:285
 msgid "This is the automated version of suspend/suspend_advanced."
 msgstr ""
 "Aceasta este versiunea automată a testului de intrare în "
 "suspendare/suspendare_avansată."
 
 #. description
-#: ../jobs/suspend.txt.in:269
+#: ../jobs/suspend.txt.in:294
 msgid ""
 "This automatically tests Wake-on-LAN capability with the aid of a suitably "
 "configured server. During this process the system will suspend, then "
@@ -2770,6 +3224,18 @@ msgstr ""
 "rețea) cu ajutorul unui server configurat corect. Pe parcursul acestui "
 "proces sistemul va intra în suspendare și va reveni automat după maxim 5 "
 "minute."
+
+#. description
+#: ../jobs/suspend.txt.in:304
+msgid ""
+"PURPOSE:\n"
+"    Take a screengrab of the current screen after suspend (logged on Unity "
+"desktop)\n"
+"STEPS:\n"
+"    1. Take picture using USB webcam\n"
+"VERIFICATION:\n"
+"    1. Review attachment manually later"
+msgstr ""
 
 #. description
 #: ../jobs/unity.txt.in:6
@@ -2798,7 +3264,7 @@ msgstr "Detectează și arată dispozitivele USB conectate la sistem."
 #: ../jobs/usb.txt.in:12
 msgid ""
 "PURPOSE:\n"
-"    This test will check your USB connection.\n"
+"    This test will check that your system detects USB storage devices.\n"
 "STEPS:\n"
 "    1. Plug in one or more USB keys or hard drives.\n"
 "    2. Click on \"Test\".\n"
@@ -2807,6 +3273,16 @@ msgid ""
 "VERIFICATION:\n"
 "    Were the drives detected?"
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica dacă sistemul detectează dispozitive de stocare "
+"USB.\n"
+"PAȘI:\n"
+"    1. Introduceți unul sau mai multe medii de memorie USB.\n"
+"    2. Efectuați clic pe „Test”.\n"
+"INFO:\n"
+"    $output\n"
+"VERIFICARE:\n"
+"    Au fost detectate mediile de memorie?"
 
 #. description
 #: ../jobs/usb.txt.in:28
@@ -2851,28 +3327,54 @@ msgstr ""
 #: ../jobs/usb.txt.in:55
 msgid ""
 "PURPOSE:\n"
-"    This test will check your USB connection.\n"
+"    This test will check that the system correctly detects the insertion of\n"
+"    a USB storage device\n"
 "STEPS:\n"
-"    1. Click \"Test\" and insert a USB device within 5 seconds.\n"
+"    1. Click \"Test\" and insert a USB storage device (pen-drive/HDD).\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
 "    2. Do not unplug the device after the test.\n"
 "VERIFICATION:\n"
-"    The verification of this test is automated."
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica dacă sistemul detectează corect introducerea "
+"unui\n"
+"    dispozitiv de stocare USB\n"
+"PAȘI:\n"
+"    1. Efectuați clic pe butonul „Test” și conectați un mediu de memorie USB "
+"(stick/HDD).\n"
+"       (Notă: acest test se va termina în 10 secunde.)\n"
+"    2. Nu scoateți dispozitivul după încheierea testului.\n"
+"VERIFICARE:\n"
+"    Verificarea acestui test este automată. Nu modificați rezultatul\n"
+"    selectat automat."
 
 #. description
-#: ../jobs/usb.txt.in:69
+#: ../jobs/usb.txt.in:72
 msgid ""
 "PURPOSE:\n"
-"    This test will check your USB connection.\n"
+"    This test will check that the system correctly detects the removal of\n"
+"    a USB storage device\n"
 "STEPS:\n"
-"    1. Click \"Test\" and remove the USB device within 5 seconds.\n"
-"    2. Do not unplug the device after the test.\n"
+"    1. Click \"Test\" and remove the USB device.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
 "VERIFICATION:\n"
-"    The verification of this test is automated."
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica dacă sistemul detectează corect scoaterea unui\n"
+"    dispozitiv de stocare USB\n"
+"PAȘI:\n"
+"    1. Efectuați clic pe butonul „Test” și scoateți dispozitivul USB.\n"
+"       (Notă: acest test se va termina în 10 secunde.)\n"
+"VERIFICARE:\n"
+"    Verificarea acestui test este automată. Nu modificați rezultatul\n"
+"    selectat automat."
 
 #. description
-#: ../jobs/usb.txt.in:82
+#: ../jobs/usb.txt.in:88
 msgid ""
 "PURPOSE:\n"
 "    This test will check your USB connection.\n"
@@ -2881,15 +3383,36 @@ msgid ""
 "    2. An icon should appear on the Launcher.\n"
 "    3. Click \"Test\" to begin the test.\n"
 "VERIFICATION:\n"
-"    The verification of this test is automated."
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
 msgstr ""
+"SCOP:\n"
+"    Acest test va verifica conexiunea USB.\n"
+"PAȘI:\n"
+"    1. Conectați ca calculator un mediu de stocare USB.\n"
+"    2. În lansator ar trebui să apară o iconiță.\n"
+"    3. Efectuați clic pe butonul „Test” pentru a începe.\n"
+"VERIFICARE:\n"
+"    Verificarea acestui test este automată. Nu modificați rezultatul\n"
+"    selectat automat."
 
 #. description
-#: ../jobs/usb.txt.in:80
-msgid ""
-"This test is automated and requires that you plug in at least one usb "
-"storage device before running checkbox."
+#: ../jobs/usb.txt.in:104
+msgid "This test is automated and executes after the usb/insert test is run."
 msgstr ""
+"Acest test este automat și se execută după rularea testului care verifică "
+"introducerea unui mediu/usb."
+
+#. description
+#: ../jobs/usb.txt.in:111
+msgid ""
+"This is an automated version of usb/storage-automated and assumes that the  "
+"server has usb storage devices plugged in prior to checkbox execution. It  "
+"is intended for servers and SRU automated testing."
+msgstr ""
+"Aceasta este o versiune automată a testului usb/medii de stocare și necesită "
+"pentru rulare medii de stocare conectate în prealabil la server. Este "
+"destinat testării automate a serverelor și dispozitivelor SRU."
 
 #. description
 #: ../jobs/usb.txt.in:119
@@ -3664,9 +4187,11 @@ msgstr ""
 #. description
 #: ../jobs/wireless.txt.in:38
 msgid ""
-"Tests that the systems wireless hardware can connect to a router using no no "
+"Tests that the systems wireless hardware can connect to a router using no "
 "security and the 802.11b/g protocols."
 msgstr ""
+"Se testează dacă placa de reța fără fir se poate conecta la un router fără a "
+"folosi vreun model de securitate, utilizând protocoalele 802.11b/g."
 
 #. description
 #: ../jobs/wireless.txt.in:48
@@ -3680,9 +4205,11 @@ msgstr ""
 #. description
 #: ../jobs/wireless.txt.in:58
 msgid ""
-"Tests that the systems wireless hardware can connect to a router using no no "
+"Tests that the systems wireless hardware can connect to a router using no "
 "security and the 802.11n protocol."
 msgstr ""
+"Se testează dacă placa de rețea fără fir se poate conecta la un router fără "
+"a folosi vreun model de securitate și utilizând protocolul 802.11n."
 
 #. description
 #: ../jobs/wireless.txt.in:70
@@ -3839,17 +4366,17 @@ msgid "Unknown signal"
 msgstr "Semnal necunoscut"
 
 #: ../checkbox_cli/cli_interface.py:31
-#: ../checkbox_urwid/urwid_interface.py:917
+#: ../checkbox_urwid/urwid_interface.py:917 ../checkbox_qt/qt_interface.py:33
 msgid "yes"
 msgstr "Da"
 
 #: ../checkbox_cli/cli_interface.py:32
-#: ../checkbox_urwid/urwid_interface.py:918
+#: ../checkbox_urwid/urwid_interface.py:918 ../checkbox_qt/qt_interface.py:34
 msgid "no"
 msgstr "nu"
 
 #: ../checkbox_cli/cli_interface.py:33
-#: ../checkbox_urwid/urwid_interface.py:919
+#: ../checkbox_urwid/urwid_interface.py:919 ../checkbox_qt/qt_interface.py:35
 msgid "skip"
 msgstr "omite"
 
@@ -3861,6 +4388,15 @@ msgstr "Apăsaţi orice tastă pentru a continua..."
 #, python-format
 msgid "Please choose (%s): "
 msgstr "Vă rog alegeţi (%s): "
+
+#: ../checkbox_cli/cli_interface.py:229 ../checkbox_cli/cli_interface.py:338
+#: ../checkbox_cli/cli_interface.py:368
+msgid "Space when finished"
+msgstr "Spațiu la sfârșit"
+
+#: ../checkbox_cli/cli_interface.py:367
+msgid "Combine with character above to expand node"
+msgstr "Combină cu caracterul de mai sus pentru extindere"
 
 #: ../checkbox_cli/cli_interface.py:416
 msgid "test"
@@ -3885,27 +4421,36 @@ msgstr "Continuă"
 #: ../checkbox_urwid/urwid_interface.py:198
 #: ../checkbox_urwid/urwid_interface.py:274
 #: ../checkbox_urwid/urwid_interface.py:425
-#: ../checkbox_urwid/urwid_interface.py:547
+#: ../checkbox_urwid/urwid_interface.py:547 ../qt/frontend/ui_qtfront.h:609
 msgid "Previous"
 msgstr "Precedente"
 
 #: ../checkbox_urwid/urwid_interface.py:199
 #: ../checkbox_urwid/urwid_interface.py:275
 #: ../checkbox_urwid/urwid_interface.py:426
-#: ../checkbox_urwid/urwid_interface.py:548
+#: ../checkbox_urwid/urwid_interface.py:548 ../qt/frontend/ui_qtfront.h:608
 msgid "Next"
 msgstr "Înainte"
 
 #. Show buttons
-#: ../checkbox_urwid/urwid_interface.py:423
+#: ../checkbox_urwid/urwid_interface.py:423 ../qt/frontend/qtfront.cpp:137
 msgid "Select All"
 msgstr "Selectează tot"
 
-#: ../checkbox_urwid/urwid_interface.py:424
+#: ../checkbox_urwid/urwid_interface.py:424 ../qt/frontend/qtfront.cpp:138
 msgid "Deselect All"
 msgstr "Deselectează tot"
 
-#: ../checkbox_urwid/urwid_interface.py:1013
+#. Show buttons
+#: ../checkbox_urwid/urwid_interface.py:545
+msgid "Expand All"
+msgstr "Extinde tot"
+
+#: ../checkbox_urwid/urwid_interface.py:546
+msgid "Collapse All"
+msgstr "Restrânge tot"
+
+#: ../checkbox_urwid/urwid_interface.py:1013 ../qt/frontend/ui_qtfront.h:603
 msgid "Test"
 msgstr "Test"
 
@@ -3913,22 +4458,17 @@ msgstr "Test"
 msgid "Test Again"
 msgstr "Testează din nou"
 
-#: ../checkbox_gtk/gtk_interface.py:503
+#: ../checkbox_gtk/gtk_interface.py:517
 msgid "_Test Again"
 msgstr "_Testează din nou"
 
-#: ../checkbox_gtk/gtk_interface.py:551
+#: ../checkbox_gtk/gtk_interface.py:566
 msgid "Info"
 msgstr "Informații"
 
-#: ../checkbox_gtk/gtk_interface.py:575
+#: ../checkbox_gtk/gtk_interface.py:590
 msgid "Error"
 msgstr "Eroare"
-
-#: ../checkbox/user_interface.py:137
-#, python-format
-msgid "Unable to start web browser to open %s."
-msgstr "Navigatorul web nu poate deschide %s."
 
 #: ../plugins/apport_prompt.py:83
 msgid ""
@@ -3948,19 +4488,19 @@ msgstr ""
 
 #: ../plugins/apport_prompt.py:227
 #, python-format
-msgid "Test %(name)s from suite %(suite)s failed."
-msgstr "Testul %(name)s din suita %(suite)s a eșuat."
+msgid "Test %(name)s failed."
+msgstr "Testul %(name)s a eșuat."
 
-#: ../plugins/apport_prompt.py:231
+#: ../plugins/apport_prompt.py:230
 #, python-format
 msgid "Test %s failed."
 msgstr "Testul %s a eșuat"
 
-#: ../plugins/apport_prompt.py:232
+#: ../plugins/apport_prompt.py:231
 msgid "Do you want to report a bug?"
 msgstr "Doriți să raportați o defecțiune?"
 
-#: ../plugins/apport_prompt.py:249
+#: ../plugins/apport_prompt.py:248
 #, python-format
 msgid "Is a package upgrade in process? Error: %s"
 msgstr "Se procesează o actualizare de pachet? Eroare: %s"
@@ -4039,7 +4579,7 @@ msgstr ""
 msgid "Information not posted to Launchpad."
 msgstr "Informațiile nu au fost publicate pe Launchpad."
 
-#: ../plugins/launchpad_prompt.py:71
+#: ../plugins/launchpad_prompt.py:74
 #, python-format
 msgid ""
 "The following report has been generated for submission to the Launchpad "
@@ -4047,25 +4587,22 @@ msgid ""
 "\n"
 "  [[%s|View Report]]\n"
 "\n"
-"You can submit this information about your system by providing the e-mail "
+"You can submit this information about your system by providing the email "
 "address you use to sign in to Launchpad. If you do not have a Launchpad "
 "account, please register here:\n"
 "\n"
 "  https://launchpad.net/+login"
 msgstr ""
-"A fost generat următorul raport, pentru a fi:\n"
+"A fost generat următorul raport pentru a fi trimis în baza de date  "
+"Launchpad cu echipamente hardware:\n"
 "\n"
-"  [[%s|View Report]]\n"
+"  [[%s|Vizualizare raport]]\n"
 "\n"
-"Puteți trimite aceste informații despre sistem prin oferirea unei adrese de "
-"e-mail folosite la autentificarea pe Launchpad. Dacă nu aveți un cont "
-"Launchpad, vă puteți înregistra aici:\n"
+"Puteți trimite aceste informații referitoare la sistemul dumneavoastră prin "
+"utilizarea adresei de e-mail  cu care vă autentificați pe Launchpad. Dacă nu "
+"aveți un cont Launchpad, înregistrați-vă aici:\n"
 "\n"
 "  https://launchpad.net/+login"
-
-#: ../plugins/launchpad_prompt.py:88
-msgid "No e-mail address provided, not submitting to Launchpad."
-msgstr "Nici o adresă email oferită, nu se trimite la Launchpad."
 
 #: ../plugins/launchpad_prompt.py:93
 msgid "Email address must be in a proper format."
@@ -4089,6 +4626,14 @@ msgstr ""
 "Un alt checkbox este în execuție. Închideți-l pe primul înainte de a lansa "
 "checkbox din nou."
 
+#: ../plugins/recover_prompt.py:53
+msgid "Recover"
+msgstr "Recuperare"
+
+#: ../plugins/recover_prompt.py:54
+msgid "Restart"
+msgstr "Repornire"
+
 #: ../plugins/recover_prompt.py:56
 msgid ""
 "Checkbox did not finish completely.\n"
@@ -4103,7 +4648,7 @@ msgid "Running %s..."
 msgstr "Se execută %s..."
 
 #. Get results
-#: ../plugins/suites_prompt.py:110
+#: ../plugins/suites_prompt.py:124
 msgid "Select the suites to test"
 msgstr "Selectați seriile pentru testare"
 
@@ -4115,17 +4660,162 @@ msgstr "Introduceți text:\n"
 msgid "Type Text"
 msgstr "Tastare text"
 
-#: ../scripts/internet_test:139
+#: ../scripts/internet_test:196
 msgid "No Internet connection"
 msgstr "Nicio conexiune la Internet"
 
-#: ../scripts/internet_test:142
+#: ../scripts/internet_test:199
 msgid "Connection established lost a packet"
 msgstr "Conexiunea stabilită a pierdut un pachet"
 
-#: ../scripts/internet_test:145
+#: ../scripts/internet_test:202
 msgid "Internet connection fully established"
 msgstr "Conexiune la Internet stabilită complet"
+
+#: ../qt/frontend/qtfront.cpp:108
+msgid "Not Started"
+msgstr ""
+
+#: ../qt/frontend/qtfront.cpp:109 ../qt/frontend/qtfront.cpp:110
+msgid "Done"
+msgstr "Gata"
+
+#: ../qt/frontend/qtfront.cpp:111
+msgid "Not Supported"
+msgstr ""
+
+#: ../qt/frontend/qtfront.cpp:112
+msgid "Not Resolved"
+msgstr ""
+
+#: ../qt/frontend/qtfront.cpp:113
+msgid "Not Tested"
+msgstr ""
+
+#: ../qt/frontend/qtfront.cpp:114
+msgid "In Progress"
+msgstr ""
+
+#: ../qt/frontend/qtfront.cpp:182
+msgid "Are you sure?"
+msgstr ""
+
+#: ../qt/frontend/qtfront.cpp:182
+msgid "Do you really want to skip this test?"
+msgstr ""
+
+#: ../qt/frontend/qtfront.cpp:183
+msgid "Don't ask me again"
+msgstr ""
+
+#: ../qt/frontend/treemodel.cpp:13
+msgid ""
+"Unselecting a test will invalidate your submission for Ubuntu Friendly. If "
+"you plan to participate in Ubuntu Friendly, please, select all tests. You "
+"can always skip individual tests if you don't have the needed equipment."
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:588
+msgid "Form"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:590
+msgid "OK"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:591
+msgid "Don't show me this message in the future"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:592 ../qt/frontend/ui_qtfront.h:606
+msgid "Tab 1"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:593
+msgid "10 tests completed out of 30 (30%)"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:595
+msgid "Lists of tests to run based on your system:"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:596
+msgid "Components"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:597
+msgid "Status"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:598
+msgid "Start testing"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:599
+msgid " Selection "
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:600 ../qt/frontend/ui_qtfront.h:601
+msgid "TextLabel"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:602
+msgid "Yes"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:604
+msgid "No"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:605
+msgid "Comment"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:607 ../qt/frontend/ui_qtfront.h:623
+msgid "Tab 2"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:610
+msgid " Run "
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:611
+msgid ""
+"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" "
+"\"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style "
+"type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Ubuntu'; font-size:10pt; font-"
+"weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+"right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" "
+"color:#ff0000;\">Warning: Not all tests have been run yet.</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+"right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" "
+"color:#ff0000;\">You can send the results now, but the submission won't make "
+"it to Ubuntu Friendly.</span></p></body></html>"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:617
+msgid "Personal details"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:619
+msgid "Email:"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:620
+msgid "Submit results"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:621
+msgid "View results"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:622
+msgid " Results "
+msgstr ""
 
 #~ msgid "_Desktop"
 #~ msgstr "_Desktop"
@@ -4159,6 +4849,10 @@ msgstr "Conexiune la Internet stabilită complet"
 
 #~ msgid "Do you see color bars and static?"
 #~ msgstr "Vedeți bare colorate și pureci?"
+
+#, python-format
+#~ msgid "Unable to start web browser to open %s."
+#~ msgstr "Navigatorul web nu poate deschide %s."
 
 #~ msgid "Running shell tests..."
 #~ msgstr "Se rulează testele de terminal..."
@@ -4205,6 +4899,32 @@ msgstr "Conexiune la Internet stabilită complet"
 #~ msgid "This display is using the following resolution:"
 #~ msgstr "Acest ecran folosește următoarea rezoluție:"
 
+#, python-format
+#~ msgid ""
+#~ "The following report has been generated for submission to the Launchpad "
+#~ "hardware database:\n"
+#~ "\n"
+#~ "  [[%s|View Report]]\n"
+#~ "\n"
+#~ "You can submit this information about your system by providing the e-mail "
+#~ "address you use to sign in to Launchpad. If you do not have a Launchpad "
+#~ "account, please register here:\n"
+#~ "\n"
+#~ "  https://launchpad.net/+login"
+#~ msgstr ""
+#~ "A fost generat următorul raport, pentru a fi:\n"
+#~ "\n"
+#~ "  [[%s|View Report]]\n"
+#~ "\n"
+#~ "Puteți trimite aceste informații despre sistem prin oferirea unei adrese de "
+#~ "e-mail folosite la autentificarea pe Launchpad. Dacă nu aveți un cont "
+#~ "Launchpad, vă puteți înregistra aici:\n"
+#~ "\n"
+#~ "  https://launchpad.net/+login"
+
+#~ msgid "No e-mail address provided, not submitting to Launchpad."
+#~ msgstr "Nici o adresă email oferită, nu se trimite la Launchpad."
+
 #~ msgid "Disk benchmark:"
 #~ msgstr "Test de performanță pentru disc:"
 
@@ -4249,6 +4969,9 @@ msgstr "Conexiune la Internet stabilită complet"
 
 #~ msgid "Is your mouse working properly?"
 #~ msgstr "Mouse-ul dumneavoastră funcționează corespunzător?"
+
+#~ msgid "Check that the hardware is able to run compiz."
+#~ msgstr "Verificați dacă hardware-ul poate să utilizeze compiz."
 
 #~ msgid "If your system does not have a VGA port, please skip this test."
 #~ msgstr "Dacă sistemul nu are un port VGA, omiteți acest test."
@@ -4404,9 +5127,6 @@ msgstr "Conexiune la Internet stabilită complet"
 
 #~ msgid "Authentication"
 #~ msgstr "Autentificare"
-
-#~ msgid "Done"
-#~ msgstr "Gata"
 
 #~ msgid "Test the audio before suspending."
 #~ msgstr "Testează dispozitivul audio înainte de suspendare."
@@ -4777,5 +5497,21 @@ msgstr "Conexiune la Internet stabilită complet"
 #~ "implicită. Are sens dacă ieșirea și \\ intrarea implicită sunt conectate "
 #~ "direct, cum ar fi printr-un cablu."
 
+#~ msgid "Benchmark for each disk "
+#~ msgstr "Teste de stres pentru fiecare disc "
+
 #~ msgid "Automated test to store output in checkbox report"
 #~ msgstr "Test automat pentru trecerea ieșirii în raportul checkbox"
+
+#~ msgid "Captures a screenshot."
+#~ msgstr "Realizează o captură de ecran."
+
+#~ msgid "Attaches the screenshot captured in info/screenshot."
+#~ msgstr "Atașează captura de ecran în info/captură."
+
+#~ msgid ""
+#~ "ipmitool is required for ipmi testing. This checks for ipmitool and installs "
+#~ "it if not available."
+#~ msgstr ""
+#~ "Pentru testul ipmi este necesar utilitarul ipmitool. Se va verifica "
+#~ "existența programului ipmitool, care va fi instalat dacă nu este disponibil."

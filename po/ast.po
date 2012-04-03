@@ -7,20 +7,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-01-06 12:39-0500\n"
+"POT-Creation-Date: 2012-03-28 10:50-0400\n"
 "PO-Revision-Date: 2012-03-27 09:15+0000\n"
 "Last-Translator: Xandru <xandru@softastur.org>\n"
 "Language-Team: Softastur <alministradores@softastur.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-03-28 04:35+0000\n"
-"X-Generator: Launchpad (build 15027)\n"
+"X-Launchpad-Export-Date: 2012-04-03 04:38+0000\n"
+"X-Generator: Launchpad (build 15052)\n"
 "Language: ast\n"
 
 #. Title of the user interface
-#: ../gtk/checkbox-gtk.ui.h:1 ../qt/checkbox-qt.desktop.in.h:1
-#: ../plugins/user_interface.py:43
+#: ../gtk/checkbox-gtk.ui.h:3 ../qt/checkbox-qt.desktop.in.h:1
+#: ../plugins/user_interface.py:43 ../qt/frontend/ui_qtfront.h:589
 msgid "System Testing"
 msgstr "Prebes del Sistema"
 
@@ -98,24 +98,24 @@ msgstr "La direición de corréu tien de tar nun formatu afayaízu."
 #~ msgid "Running shell tests..."
 #~ msgstr "Executando prebes shell..."
 
-#: ../gtk/checkbox-gtk.ui.h:6 ../checkbox_cli/cli_interface.py:444
+#: ../gtk/checkbox-gtk.ui.h:1 ../checkbox_cli/cli_interface.py:444
 #: ../checkbox_urwid/urwid_interface.py:267
 msgid "Further information:"
 msgstr "Más información:"
 
-#: ../gtk/checkbox-gtk.ui.h:10
+#: ../gtk/checkbox-gtk.ui.h:2
 msgid "Ne_xt"
 msgstr "_Siguiente"
 
-#: ../gtk/checkbox-gtk.ui.h:8
+#: ../gtk/checkbox-gtk.ui.h:4
 msgid "_Deselect All"
 msgstr "_Deseleicionar too"
 
-#: ../gtk/checkbox-gtk.ui.h:4
+#: ../gtk/checkbox-gtk.ui.h:5
 msgid "_No"
 msgstr "_Non"
 
-#: ../gtk/checkbox-gtk.ui.h:9
+#: ../gtk/checkbox-gtk.ui.h:6
 msgid "_Previous"
 msgstr "_Anterior"
 
@@ -123,15 +123,15 @@ msgstr "_Anterior"
 msgid "_Select All"
 msgstr "_Seleicionar too"
 
-#: ../gtk/checkbox-gtk.ui.h:5
+#: ../gtk/checkbox-gtk.ui.h:8
 msgid "_Skip this test"
 msgstr "_Saltase esta prueba"
 
-#: ../gtk/checkbox-gtk.ui.h:2 ../checkbox_gtk/gtk_interface.py:538
+#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:553
 msgid "_Test"
 msgstr "_Prueba"
 
-#: ../gtk/checkbox-gtk.ui.h:3
+#: ../gtk/checkbox-gtk.ui.h:10
 msgid "_Yes"
 msgstr "_Sí"
 
@@ -250,29 +250,19 @@ msgid ""
 "    This test will check that a USB audio device works correctly\n"
 "STEPS:\n"
 "    1. Connect a USB audio device to your system\n"
-"    2. Open the volume control application by left-clicking on the speaker "
-"icon in the panel and selecting \"Sound Settings\"\n"
-"    3. Select the \"Input\" tab and choose your USB device\n"
-"    4. Select the \"Output\" tab and choose your USB device\n"
-"    5. Click \"Test\", then speak into the microphone\n"
-"    6. After a few seconds, your speech will be played back to you\n"
+"    2. Click \"Test\", then speak into the microphone\n"
+"    3. After a few seconds, your speech will be played back to you\n"
 "VERIFICATION:\n"
 "    Did you hear your speech played back through the USB headphones?"
 msgstr ""
-"PROPÓSITU:\n"
-"Esta prueba comprobará que'l preséu d'audio USB funciona correcho.\n"
-"\n"
-"PASOS: \n"
-"    1. Coneuta un preséu d'audio USB.\n"
-"    2. Abri l'aplicación de control de volume col botón izquierdu nel iconu "
-"nel panel y seleicionando «Configuración de soníu»\n"
-"    3. Seleiciona «Entrada» y esbillar el to preséu USB\n"
-"    4. Selecciona «Salida» y elegir su dispositivo USB\n"
-"    5. Calca en «Probar», llueu fala nel micrófonu.\n"
-"    6. Dempués d'unos segundos escucharás la grabación\n"
-"\n"
-"VERIFICACIÓN\n"
-"¿Escuchóse la grabación nos auriculares USB?"
+"OXETIVOS:\n"
+"    Esta prueba va comprobar qu'un preséu d'audiu USB furrule correutamente\n"
+"PASOS:\n"
+"    1.Coneuta un preséu d'audiu USB al sistema\n"
+"    2.Calca en «Probar» y darréu fala pel micrófonu\n"
+"    3.Depués d'unos segundos, lo que digas va reproducise otra vuelta.\n"
+"VERIFICACIÓN:\n"
+"    ¿Sentisti la to voz al traviés de los auriculares USB?"
 
 #. description
 #: ../jobs/audio.txt.in:99
@@ -295,16 +285,6 @@ msgstr ""
 "OXETIVU:\n"
 "   Esta prueba intentará instalar y executar el Autotest Suit. Estes pruebes "
 "puen ser destructives, polo que tán na llista prieta de forma predefinida."
-
-#. description
-#: ../jobs/bluetooth.txt.in:7
-msgid ""
-"This test will detect your Bluetooth device and output the device's hardware "
-"address.  If no device is found, the test will exit with an error."
-msgstr ""
-"Esta prueba deteutará los tos preseos Bluetooth y va amosar les direiciones "
-"de hardware de los preseos. Si nun s'alcuentra dengún preséu, la prueba "
-"finará con un fallu."
 
 #. description
 #: ../jobs/bluetooth.txt.in:8
@@ -471,16 +451,18 @@ msgid ""
 "PURPOSE:\n"
 "    This test will check that the built-in camera works\n"
 "STEPS:\n"
-"    1. Click on Test to display a video capture from the camera\n"
+"    1. Click on Test to display a video capture from the camera for ten "
+"seconds.\n"
 "VERIFICATION:\n"
 "    Did you see the video capture?"
 msgstr ""
-"PROPÓSITU:\n"
-"    Esta prueba verifica que funciona la cámara incorporada\n"
-"PASOS:\n"
-"    1. Calca en prueba p'amosar una captura de videu dende la cámara\n"
+"OXETIVOS:\n"
+"    Esta prueba va verificar que la cámara integrada furrule\n"
+"PASOS A SIGUIR:\n"
+"    1.Calca en Probar pa ver una captura de videu de la cámara durante diez "
+"segundos.\n"
 "VERIFICACIÓN:\n"
-"    ¿Viose la captura de videu?"
+"    ¿Pudisti ver la captura de videu?"
 
 #. description
 #: ../jobs/camera.txt.in:33
@@ -498,26 +480,6 @@ msgstr ""
 "    1. Calca en prueba p'amosar una imaxe fixa de la cámara\n"
 "VERIFICACIÓN:\n"
 "    ¿Viose la imaxe?"
-
-#. description
-#: ../jobs/camera.txt.in:49
-msgid ""
-"PURPOSE:\n"
-"    This test will check that you can capture video with the built-in "
-"camera\n"
-"STEPS:\n"
-"    1. Click on Test to capture video to a file (it will automatically open "
-"in Totem)\n"
-"VERIFICATION:\n"
-"    Did you see and hear the capture?"
-msgstr ""
-"PROPÓSITU:\n"
-"    Esta prueba verifica que pues capturar videu cola cámara incorporada\n"
-"PASOS:\n"
-"    1. Calca en prueba pa capturar videu nun ficheru (va abrise "
-"automáticamente en Totem)\n"
-"VERIFICACIÓN:\n"
-"    ¿Ves y oyes la captura?"
 
 #. description
 #: ../jobs/codecs.txt.in:7
@@ -654,8 +616,13 @@ msgstr "Deteuta y amuesa los discos coneutaos al sistema."
 
 #. description
 #: ../jobs/disk.txt.in:9
-msgid "Benchmark for each disk "
-msgstr "Prueba pa cada discu "
+msgid "Benchmark for each disk"
+msgstr "Prueba comparativa de cada discu"
+
+#. description
+#: ../jobs/disk.txt.in:23
+msgid "Check stats changes for each disk"
+msgstr "Comprobar cambeos d'estáu de cada discu"
 
 #. description
 #: ../jobs/disk.txt.in:40
@@ -756,31 +723,65 @@ msgstr ""
 "    ¿Funcionó correutamente'l procesu d'autenticación?"
 
 #. description
-#: ../jobs/firewire.txt.in:3
+#: ../jobs/firewire.txt.in:4
 msgid ""
 "PURPOSE:\n"
-"    This test will check that the firewire port works\n"
+"    This test will check the system can detect the insertion of a FireWire "
+"HDD\n"
 "STEPS:\n"
-"    1. Plug a Firewire HDD into the computer\n"
-"    2. Either a window asking which action should be performed (open folder, "
-"photo manager, etc) or a file browser will open.\n"
-"    3. Copy some files from your internal HDD to the firewire HDD\n"
-"    4. Copy some files from the firewire HDD to your internal HDD\n"
+"    1. Click 'Test' to begin the test. This test will\n"
+"       timeout and fail if the insertion has not been detected within 10 "
+"seconds.\n"
+"    2. Plug a FireWire HDD into an available FireWire port.\n"
 "VERIFICATION:\n"
-"    Do the copy operations work as expected?"
+"    The verification of this test is automated. Do not change the "
+"automatically\n"
+"    selected result"
 msgstr ""
-"PROPÓSITU:\n"
-"     Esta prueba va comprobar el funcionamientu del puertu FireWire\n"
-"PASOS:\n"
-"     1. Coneuta un discu duru FireWire nel equipu\n"
-"     2. Va abrise una ventana entrugando qué aición tien de llevase a cabu "
-"(abrir carpeta, xestor de semeyes, etc) o un esplorador de ficheros.\n"
-"     3. Copia dellos ficheros del to discu duru internu al discu duru "
-"FireWire\n"
-"     4. Copia dellos ficheros del discu duru FireWire al to discu duru "
-"internu\n"
+"OXETIVOS:\n"
+"    Esta prueba va revisar si'l sistema ye a deteutar la conexón d'un "
+"FireWire HDD\n"
+"PASOS A SIGUIR:\n"
+"    1. Calca en «Prueba» p'aniciar la prueba. Esta prueba va\n"
+"       considerada fallida si nun se deteuta en 10 segundos.\n"
+"    2. Coneuta un FireWire HDD nun puerto FireWire disponible.\n"
 "VERIFICACIÓN:\n"
-"     ¿Funcionaron les operaciones de copia de ficheros como s'esperaba?"
+"    La verificación d'esta prueba ta automatizada. Nun cambies el resultáu\n"
+"    que se seleicione automáticamente."
+
+#. description
+#: ../jobs/firewire.txt.in:19
+msgid ""
+"This is an automated test which performs read/write operations on an "
+"attached FireWire HDD"
+msgstr ""
+"Esta ye una prueba automatizada que realiza operaciones de "
+"llectura/escritura nun FireWire HDD coneutáu"
+
+#. description
+#: ../jobs/firewire.txt.in:27
+msgid ""
+" PURPOSE:\n"
+"   This test will check the system can detect the removal of a FireWire HDD\n"
+" STEPS:\n"
+"   1. Click 'Test' to begin the test. This test will timeout and fail if\n"
+"      the removal has not been detected within 10 seconds.\n"
+"   2. Remove the previously attached FireWire HDD from the FireWire port.\n"
+" VERIFICATION:\n"
+"   The verification of this test is automated. Do not change the "
+"automatically\n"
+"   selected result"
+msgstr ""
+" OXETIVU:\n"
+"   Esta prueba ye pa comprobar si'l sistema deteuta la desconexón d'un discu "
+"duru FireWire\n"
+"PROCEDIMIENTU:\n"
+"   1. Calca en «Prueba» pa entamar. Esta prueba va encaboxase y fallar si\n"
+"      la retirada del discu duru nun se deteuta dientro de 10 segundos.\n"
+"   2. Retira'l discu duru FireWire previamente coneutáu al puertu FireWire.\n"
+"VERIFICACIÓN:\n"
+"   La verificación d'esta prueba ye automática. Nun cambies el resultáu\n"
+"   llográu automáticamente."
 
 #. description
 #: ../jobs/floppy.txt.in:4
@@ -925,26 +926,9 @@ msgstr ""
 "     ¿Vense les barres de color y la estática?"
 
 #. description
-#: ../jobs/graphics.txt.in:107
-msgid ""
-"PURPOSE:\n"
-"    This test checks the detected video modes\n"
-"STEPS:\n"
-"    1. The following screens and video modes have been detected on your "
-"system\n"
-"INFO:\n"
-"    $output\n"
-"VERIFICATION:\n"
-"    Are those correct?"
-msgstr ""
-"PROPÓSITU:\n"
-"     Esta prueba verifica los diferentes moos de videu deteutaos\n"
-"PASOS:\n"
-"     1. Deteutáronse les siguientes pantalles y moos de videu\n"
-"INFORMACIÓN:\n"
-"     $ salida\n"
-"VERIFICACIÓN:\n"
-"     ¿Son les pantalles y los moos de videu correutos?"
+#: ../jobs/graphics.txt.in:106
+msgid "Check that VESA drivers are not in use"
+msgstr "Verifica que los controladores VESA nun tean n'usu"
 
 #. description
 #: ../jobs/graphics.txt.in:113
@@ -964,9 +948,14 @@ msgstr ""
 "     ¿Paecióte ver que la pantalla trabayaba en cada ún de los moos de videu?"
 
 #. description
+#: ../jobs/graphics.txt.in:126
+msgid "Check that hardware is able to run compiz"
+msgstr "Verifica si'l hardware ye quien a correr Compiz"
+
+#. description
 #: ../jobs/graphics.txt.in:133
-msgid "Check that the hardware is able to run compiz."
-msgstr "Comprueba que'l hardware ye quien a executar compiz."
+msgid "Check that hardware is able to run Unity 3D"
+msgstr "Verifica si'l Hardware ye quien a facer correr Unity 3D"
 
 #. description
 #: ../jobs/graphics.txt.in:139
@@ -990,6 +979,55 @@ msgstr ""
 "VERIFICATION:\n"
 "    1. Did the 3d animation appear?\n"
 "    2. Was the animation free from slowness/jerkiness?"
+
+#. description
+#: ../jobs/graphics.txt.in:159
+msgid ""
+"PURPOSE:\n"
+"    Do some challenging operations and check for lockup on the GPU\n"
+"STEPS:\n"
+"    1. Create 2 glxgears windows and move them quickly\n"
+"    2. Switch workspaces/viewports with wmctrl\n"
+"    3. Launch a Flash playback in firefox\n"
+"    4. Suspend/resume\n"
+"VERIFICATION:\n"
+"    1. Atfer a 60s workload, check kern.log for reported GPU errors"
+msgstr ""
+
+#. description
+#: ../jobs/graphics.txt.in:174
+msgid ""
+"PURPOSE:\n"
+"    Take a screengrab of the current screen (logged on Unity desktop)\n"
+"STEPS:\n"
+"    1. Take picture using USB webcam\n"
+"VERIFICATION:\n"
+"    1. Review attachment manually later"
+msgstr ""
+
+#. description
+#: ../jobs/graphics.txt.in:186 ../jobs/suspend.txt.in:316
+msgid "Attaches the screenshot captured in graphics/screenshot."
+msgstr ""
+
+#. description
+#: ../jobs/graphics.txt.in:194
+msgid ""
+"PURPOSE:\n"
+"    Take a screengrab of the current screen during fullscreen video "
+"playback\n"
+"STEPS:\n"
+"    1. Start a fullscreen video playback\n"
+"    2. Take picture using USB webcam after a few seconds\n"
+"VERIFICATION:\n"
+"    1. Review attachment manually later"
+msgstr ""
+
+#. description
+#: ../jobs/graphics.txt.in:207
+msgid ""
+"Attaches the screenshot captured in graphics/screenshot_fullscreen_video."
+msgstr ""
 
 #. description
 #: ../jobs/hibernate.txt.in:7
@@ -1093,54 +1131,44 @@ msgstr ""
 "Axunta una llista de los módulos del nucleu que ta anguaño n'execución."
 
 #. description
-#: ../jobs/info.txt.in:85
-msgid "Captures a screenshot."
-msgstr "Captura la pantalla."
-
-#. description
-#: ../jobs/info.txt.in:91
-msgid "Attaches the screenshot captured in info/screenshot."
-msgstr "Axunta la captura de pantalla capturada en info/screenshot"
-
-#. description
-#: ../jobs/info.txt.in:96
+#: ../jobs/info.txt.in:82
 msgid "Gather log from the Firmware Test Suite run."
 msgstr ""
 "Reunir un rexistru de la execución de la suite pa la prueba de Firmware"
 
 #. description
-#: ../jobs/info.txt.in:103
+#: ../jobs/info.txt.in:89
 msgid "Attaches the contents of /proc/acpi/sleep if it exists."
 msgstr "Axunta'l conteníu de /proc/acpi/sleep si existe."
 
 #. description
-#: ../jobs/info.txt.in:107
+#: ../jobs/info.txt.in:93
 msgid "Bootchart information."
 msgstr "Información de la tabla d'arranque."
 
 #. description
-#: ../jobs/info.txt.in:116
+#: ../jobs/info.txt.in:102
 msgid "SATA/IDE device information."
 msgstr "Información de preseos SATA/IDE."
 
 #. description
-#: ../jobs/info.txt.in:133
+#: ../jobs/info.txt.in:119
 msgid "Attaches the bootchart png file for bootchart runs"
 msgstr "Axunta'l ficheru bootchart.png a les execuciones de bootchart"
 
 #. description
-#: ../jobs/info.txt.in:142
+#: ../jobs/info.txt.in:128
 msgid "Attaches the bootchart log for bootchart test runs."
 msgstr ""
 "Axunta'l rexistru de bootchart a les execuciones de prueba de bootchart."
 
 #. description
-#: ../jobs/info.txt.in:150
+#: ../jobs/info.txt.in:136
 msgid "installs the installer bootchart tarball if it exists."
 msgstr "instala l'instalador tarball bootchart si ye qu'esiste"
 
 #. description
-#: ../jobs/info.txt.in:155
+#: ../jobs/info.txt.in:141
 msgid "Attaches the installer debug log if it exists."
 msgstr "Axunta'l rexistru de depuración del instalador si existe."
 
@@ -1301,29 +1329,26 @@ msgstr ""
 "segundu?"
 
 #. description
-#: ../jobs/keys.txt.in:76
+#: ../jobs/keys.txt.in:74
 msgid ""
 "PURPOSE:\n"
 "    This test will test the media keys of your keyboard\n"
 "STEPS:\n"
-"    1. Click test to launch the media player\n"
-"    2. Press the play/pause key on the keyboard\n"
-"    3. Press the forward key on the keyboard\n"
-"    4. Press the backward key on the keyboard\n"
-"    5. Press stop key on the keyboard\n"
+"    1. Click test to open a window on which to test the media control keys.\n"
+"    2. If all the keys work, the test will be marked as passed.\n"
+"    3. If your computer has no media control keys, Skip this test.\n"
 "VERIFICATION:\n"
 "    Do the keys work as expected?"
 msgstr ""
-"PROPÓSITU:\n"
-"    Esto va probar les tecles multimedia del tecláu\n"
-"PASOS:\n"
-"    1. Calca Probar p'abrir el reproductor de medios\n"
-"    2. Calca la tecla de reproducir/posar\n"
-"    3. Calca la tecla d'avanzar\n"
-"    4. Calca la tecla de rebobinar\n"
-"    5. Calca la tecla de detener\n"
-"COMPROBACIÓN:\n"
-"    ¿Les tecles funcionaron debidamente?"
+"OXETIVU:\n"
+"Esta prueba va comprobar les tecles multimedia del tecláu\n"
+"PASOS A SIGUIR:\n"
+"1. Calca Probar p'abrir una ventana na que probar les tecles de control "
+"multimedia.\n"
+"2. Marca la prueba como pasada si toles tecles furrulen.\n"
+"3. Si l'equipu nun tien tecles de control multimedia inora la prueba.\n"
+"VERIFICACIÓN:\n"
+"¿Furrularon les tecles multimedia como s'esperaba?"
 
 #. description
 #: ../jobs/local.txt.in:3
@@ -1535,329 +1560,492 @@ msgstr ""
 "d'escritoriu Mago"
 
 #. description
-#: ../jobs/mediacard.txt.in:3
+#: ../jobs/mediacard.txt.in:4
 msgid ""
 "PURPOSE:\n"
-"    This test will check your system Secure Digital (SD) media card support\n"
+"    This test will check that the systems media card reader can\n"
+"    detect the insertion of a Multimedia Card (MMC) media\n"
 "STEPS:\n"
-"    1. Plug a SD media card into the computer\n"
-"    2. An icon should appear on the Launcher\n"
-"    3. Right click on the Launcher icon and select \"Safely Remove Drive\"\n"
-"    4. The icon should disappear from the Launcher\n"
+"    1. Click \"Test\" and insert an MMC card into the reader.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
+"    2. Do not unplug the device after the test.\n"
 "VERIFICATION:\n"
-"    Does the icon automatically appear/disappear?"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
 msgstr ""
-"PROPÓSITU:\n"
-"    Esta prueba va comprobar si'l sistema ye compatible con tarxetes Secure "
-"Dixital (SD)\n"
-"PASOS:\n"
-"    1. Inxerta una tarxeta SD nel equipu\n"
-"    2. Tendría d'apaecer un iconu nel llanzador\n"
-"    3. Calca col botón derechu del mur nel iconu y escueyi «Espulsar de mou "
-"seguru»\n"
-"    4. L'iconu tendría de sumise del llanzador\n"
-"COMPROBACIÓN:\n"
-"    ¿L'iconu apaez y desapaez automáticamente?"
-
-#. description
-#: ../jobs/mediacard.txt.in:17
-msgid ""
-"PURPOSE:\n"
-"    This test will check your system Secure Digital (SD) media card support "
-"after suspend\n"
-"STEPS:\n"
-"    1. Plug a SD media card into the computer\n"
-"    2. An icon should appear on the Launcher\n"
-"    3. Right click on the Launcher icon and select \"Safely Remove Drive\"\n"
-"    4. The icon should disappear from the Launcher\n"
-"VERIFICATION:\n"
-"    Does the icon automatically appear/disappear?"
-msgstr ""
-"PROPÓSITU:\n"
-"    Esta prueba va comprobar el sofitu de la tarxeta Secure Dixital (SD) del "
-"sistema dempués de la suspensión.\n"
-"PASOS:\n"
-"    1. Inxerta una tarxeta SD nel equipu\n"
-"    2. Tendría d'apaecer un iconu nel llanzador\n"
-"    3. Calca col botón derechu del sobre l'iconu nel llanzador y seleiciona "
-"«Espulsar de mou seguru»\n"
-"    4. L'iconu tendría de sumise del llanzador\n"
-"COMPROBACIÓN:\n"
-"    ¿L'iconu apaez y desapaez automáticamente?"
-
-#. description
-#: ../jobs/mediacard.txt.in:30
-msgid ""
-"PURPOSE:\n"
-"    This test will check your system Secure Digital High Capacity (SDHC) "
-"media card support\n"
-"STEPS:\n"
-"    1. Plug a SDHC media card into the computer\n"
-"    2. An icon should appear on the Launcher\n"
-"    3. Right click on the Launcher icon and select \"Safely Remove Drive\"\n"
-"    4. The icon should disappear from the Launcher\n"
-"VERIFICATION:\n"
-"    Does the icon automatically appear/disappear?"
-msgstr ""
-"PROPÓSITU:\n"
-"    Esta prueba va comprobar el sofitu de la tarxeta Secure Dixital High "
-"Capacity (SDHC).\n"
-"PASOS:\n"
-"    1. Inxerta una tarxeta SDHC nel equipu\n"
-"    2. Tendría d'apaecer un iconu nel llanzador\n"
-"    3. Calca col botón derechu del sobre l'iconu nel llanzador y seleiciona "
-"«Espulsar de mou seguru»\n"
-"    4. L'iconu tendría de sumise del llanzador\n"
-"COMPROBACIÓN:\n"
-"    ¿L'iconu apaez y desapaez automáticamente?"
-
-#. description
-#: ../jobs/mediacard.txt.in:44
-msgid ""
-"    This test will check your system Secure Digital High Capacity (SDHC) "
-"media card support after suspend\n"
-"STEPS:\n"
-"    1. Plug a SDHC media card into the computer\n"
-"    2. An icon should appear on the Launcher\n"
-"    3. Right click on the Launcher icon and select \"Safely Remove Drive\"\n"
-"    4. The icon should disappear from the Launcher\n"
-"VERIFICATION:\n"
-"    Does the icon automatically appear/disappear?"
-msgstr ""
-"    PROPÓSITU:\n"
-"    Esta prueba va comprobar el sofitu de la tarxeta Secure Dixital High "
-"Capacity (SDHC) dempués de la suspensión.\n"
-"PASOS:\n"
-"    1. Inxerta una tarxeta SDHC nel equipu\n"
-"    2. Tendría d'apaecer un iconu nel llanzador\n"
-"    3. Calca col botón drechu del sobre l'iconu nel llanzador y seleiciona "
-"«Espulsar de mou seguru»\n"
-"    4. L'iconu tendría de sumise del llanzador\n"
-"COMPROBACIÓN:\n"
-"    ¿L'iconu apaez y desapaez automáticamente?"
-
-#. description
-#: ../jobs/mediacard.txt.in:56
-msgid ""
-"PURPOSE:\n"
-"    This test will check your system Multi Media Card (MMC) media card "
-"support\n"
-"STEPS:\n"
-"    1. Plug a MMC media card into the computer\n"
-"    2. An icon should appear on the Launcher\n"
-"    3. Right click on the Launcher icon and select \"Safely Remove Drive\"\n"
-"    4. The icon should disappear from the Launcher\n"
-"VERIFICATION:\n"
-"    Does the icon automatically appear/disappear?"
-msgstr ""
-"PROPÓSITU:\n"
-"    Esta prueba va comprobar el sofitu de la tarxeta Multi Media Card "
-"(MMC).\n"
-"PASOS:\n"
-"    1. Inxerta una tarxeta MMC nel equipu\n"
-"    2. Tendría d'apaecer un iconu nel llanzador\n"
-"    3. Calca col botón derechu del sobre l'iconu nel llanzador y seleiciona "
-"«Espulsar de mou seguru»\n"
-"    4. L'iconu tendría de sumise del llanzador\n"
-"COMPROBACIÓN:\n"
-"    ¿L'iconu apaez y desapaez automáticamente?"
-
-#. description
-#: ../jobs/mediacard.txt.in:70
-msgid ""
-"PURPOSE:\n"
-"    This test will check your system Multi Media Card (MMC) media card "
-"support after suspend\n"
-"STEPS:\n"
-"    1. Plug a MMC media card into the computer\n"
-"    2. An icon should appear on the Launcher\n"
-"    3. Right click on the Launcher icon and select \"Safely Remove Drive\"\n"
-"    4. The icon should disappear from the Launcher\n"
-"VERIFICATION:\n"
-"    Does the icon automatically appear/disappear?"
-msgstr ""
-"PROPÓSITU:\n"
-"    Esta prueba va comprobar el sofitu de la tarxeta Multi Media Card (MMC) "
-"dempués de la suspensión\n"
-"PASOS:\n"
-"    1. Inxerta una tarxeta MMC nel equipu\n"
-"    2. Debería apaecer un iconu nel Llanzador\n"
-"    3. Calca col botón derechu sobre l'iconu del Llanzador y seleiciona "
-"«Espulsar de mou seguru»\n"
-"    4. L'iconu debería desapaecer del Llanzador.\n"
+"OXETIVU:\n"
+"    Esta prueba va comprobar si'l sistema pue deteutar que s'inxertó una "
+"tarxeta MMC\n"
+"PASOS A SIGUIR:\n"
+"    1. Calca Prueba ya inxerta una tarxeta MMC nel llector.\n"
+"       (Nota: esta prueba va durar unos 10 segundos.)\n"
+"    2. Nun desconeutes el preséu enantes de que fine la prueba.\n"
 "VERIFICACIÓN:\n"
-"    ¿L'iconu apaez y desapaez automáticamente?"
+"    La verificación de la prueba ye automática. Nun cambies los resultaos "
+"que salgan."
 
 #. description
-#: ../jobs/mediacard.txt.in:83
+#: ../jobs/mediacard.txt.in:20
+msgid ""
+"This test is automated and executes after the mediacard/mmc-insert test is "
+"run. It tests reading and writing to the MMC card."
+msgstr ""
+"Esta prueba ye automática y execútase darréu de la prueba mediacard/mmc-"
+"insert. Comprueba la llectura y escritura de la tarxeta MMC."
+
+#. description
+#: ../jobs/mediacard.txt.in:28
 msgid ""
 "PURPOSE:\n"
-"    This test will check your system Memory Stick (MS) media card support\n"
+"    This test will check that the system correctly detects\n"
+"    the removal of the MMC card from the systems card reader.\n"
 "STEPS:\n"
-"    1. Plug a MS media card into the computer\n"
-"    2. An icon should appear on the Launcher\n"
-"    3. Right click on the Launcher icon and select \"Safely Remove Drive\"\n"
-"    4. The icon should disappear from the Launcher\n"
+"    1. Click \"Test\" and remove the MMC card from the reader.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
 "VERIFICATION:\n"
-"    Does the icon automatically appear/disappear?"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
+msgstr ""
+"OXETIVU:\n"
+"    Esta prueba va comprobar que'l sistema deteuta\n"
+"    correutamente que se retira una tarxeta MMC.\n"
+"PASOS A SIGUIR:\n"
+"    1. Calca Prueba y saca la tarxeta MMC del llector.\n"
+"\n"
+"       (Nota: esta prueba va durar unos 10 segundos).\n"
+"VERIFICACIÓN:\n"
+"    La verificación d'esta prueba ye automática.\n"
+"    Nun cambies el resultáu de la prueba."
+
+#. description
+#: ../jobs/mediacard.txt.in:43
+msgid ""
+"PURPOSE:\n"
+"    This test will check that the systems media card reader can\n"
+"    detect the insertion of an MMC card after the system has been suspended\n"
+"STEPS:\n"
+"    1. Click \"Test\" and insert an MMC card into the reader.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
+"    2. Do not unplug the device after the test.\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
+msgstr ""
+"OXETIVU:\n"
+"    Esta prueba va comprobar que'l sistema pue deteutar\n"
+"    que s'inxerta una tarxeta MMC depués de que'l sistema se suspenda\n"
+"PASOS A SIGUIR:\n"
+"    1. Calca Prueba ya inxerta una tarxeta MMC nel llector.\n"
+"       (Nota: esta prueba va durar unos 10 segundos).\n"
+"    2. Nun desconeutes el preséu enantes de que fine la prueba.\n"
+"VERIFICACIÓN:\n"
+"    La verificación de la prueba ye automática.\n"
+"    Nun cambies los resultaos de la prueba."
+
+#. description
+#: ../jobs/mediacard.txt.in:59
+msgid ""
+"This test is automated and executes after the mediacard/mmc-insert-after-"
+"suspend test is run. It tests reading and writing to the MMC card after the "
+"system has been suspended."
+msgstr ""
+"Esta prueba ye automática y execútase depués de la prueba mediacard/mmc-"
+"insert-after-suspend. Comprueba la llectura y escritura na tarxeta MMC "
+"depués de que'l sistema se suspenda."
+
+#. description
+#: ../jobs/mediacard.txt.in:67
+msgid ""
+"PURPOSE:\n"
+"    This test will check that the system correctly detects the removal\n"
+"    of an MMC card from the systems card reader after the system has been "
+"suspended.\n"
+"STEPS:\n"
+"    1. Click \"Test\" and remove the MMC card from the reader.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
+msgstr ""
+"OXETIVU:\n"
+"    Esta prueba va comprobar que'l sistema deteuta correutamente que sacasti "
+"una tarxeta\n"
+"    MMC dempués de que'l sistema suspendiere.\n"
+"PASOS A SIGUIR:\n"
+"    1. Calca Prueba y saca la tarxeta MMC del llector.\n"
+"       (Nota: esta prueba va llevar unos 10 segundos.)\n"
+"VERIFICACIÓN:\n"
+"   La verificación d'esta prueba ye automática. Nun cambies los resultaos\n"
+"   seleicionaos automáticamente."
+
+#. description
+#: ../jobs/mediacard.txt.in:81
+msgid ""
+"PURPOSE:\n"
+"    This test will check that the systems media card reader can\n"
+"    detect the insertion of a Secure Digital (SD) media card\n"
+"STEPS:\n"
+"    1. Click \"Test\" and insert an SD card into the reader.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
+"    2. Do not unplug the device after the test.\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
 msgstr ""
 "PROPÓSITU:\n"
-"    Esta prueba va comprobar el sofitu de la tarxeta Memory Stick (MS)\n"
+"     Esta prueba va comprobar que los sistemes llectores de tarxetes "
+"multimedia puen\n"
+"     deteutar la inxerción d'una tarxeta multimedia Secure Digital (SD)\n"
 "PASOS:\n"
-"    1. Inxerta una tarxeta MS nel equipu\n"
-"    2. Debería apaecer un iconu nel Llanzador\n"
-"    3. Calca col botón derechu sobre l'iconu del Llanzador y seleiciona "
-"«Espulsar de mou seguru»\n"
-"    4. L'iconu debería desapaecer del Llanzador.\n"
+"     1. Primi en «Prueba» ya inxerta una tarxeta SD nel llector.\n"
+"        (Nota:. Esta prueba terminará dempués de 10 segundos)\n"
+"     2. Nun desconeutes el preséu dempués de la prueba.\n"
 "VERIFICACIÓN:\n"
-"    ¿L'iconu apaez y desapaez automáticamente?"
+"     La verificación d'esta prueba ye automática. Nun cambies el\n"
+"     resultáu seleicionáu automáticamente ."
 
 #. description
 #: ../jobs/mediacard.txt.in:97
 msgid ""
-"PURPOSE:\n"
-"    This test will check your system Memory Stick (MS) media card support "
-"after suspend\n"
-"STEPS:\n"
-"    1. Plug a MS media card into the computer\n"
-"    2. An icon should appear on the Launcher\n"
-"    3. Right click on the Launcher icon and select \"Safely Remove Drive\"\n"
-"    4. The icon should disappear from the Launcher\n"
-"VERIFICATION:\n"
-"    Does the icon automatically appear/disappear?"
+"This test is automated and executes after the mediacard/sd-insert test is "
+"run. It tests reading and writing to the SD card."
 msgstr ""
-"PROPÓSITU:\n"
-"    Esta prueba va comprobar el sofitu de la tarxeta de medios del sistema "
-"Memory Stick (MS) dempués de la suspensión\n"
-"PASOS:\n"
-"    1. Inxerta una tarxeta MS nel equipu\n"
-"    2. Debería apaecer un iconu nel Llanzador\n"
-"    3. Calca col botón derechu sobre l'iconu del Llanzador y seleiciona "
-"«Espulsar de mou seguru»\n"
-"    4. L'iconu debería desapaecer del Llanzador.\n"
-"VERIFICACIÓN:\n"
-"    ¿L'iconu apaez y desapaez automáticamente?"
+"Esta prueba ye automática y execútase depués de la prueba mediacard/sd-"
+"insert. Comprueba la llectura y escritura de la tarxeta SD."
 
 #. description
-#: ../jobs/mediacard.txt.in:110
+#: ../jobs/mediacard.txt.in:105
 msgid ""
 "PURPOSE:\n"
-"    This test will check your system Memory Stick Pro (MSP) media card "
-"support\n"
+"    This test will check that the system correctly detects\n"
+"    the removal of an SD card from the systems card reader.\n"
 "STEPS:\n"
-"    1. Plug a MSP media card into the computer\n"
-"    2. An icon should appear on the Launcher\n"
-"    3. Right click on the Launcher icon and select \"Safely Remove Drive\"\n"
-"    4. The icon should disappear from the Launcher\n"
+"    1. Click \"Test\" and remove the SD card from the reader.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
 "VERIFICATION:\n"
-"    Does the icon automatically appear/disappear?"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
 msgstr ""
 "PROPÓSITU:\n"
-"    Esta prueba va comprobar el sofitu de la tarxeta Memory Stick Pro (MSP)\n"
+"     Esta prueba va comprobar que'l sistema deteuta correutamente'l\n"
+"     desaniciu d'una tarxeta SD del llector de tarxetes del sistema\n"
 "PASOS:\n"
-"    1. Inxerta una tarxeta MSP nel equipu\n"
-"    2. Debería apaecer un iconu nel Llanzador\n"
-"    3. Calca col botón derechu sobre l'iconu del Llanzador y seleiciona "
-"«Espulsar de mou seguru»\n"
-"    4. L'iconu debería desapaecer del Llanzador.\n"
+"     1. Primi en «Prueba» y retira la tarxeta SD del llector.\n"
+"        (Nota:. Esta prueba terminará dempués de 10 segundos)\n"
 "VERIFICACIÓN:\n"
-"    ¿L'iconu apaez y desapaez automáticamente?"
+"     La verificación d'esta prueba ye automática. Nun cambies el\n"
+"     resultáu seleicionáu automáticamente ."
 
 #. description
-#: ../jobs/mediacard.txt.in:124
+#: ../jobs/mediacard.txt.in:120
 msgid ""
 "PURPOSE:\n"
-"    This test will check your system Memory Stick Pro (MSP) media card "
-"support after suspend\n"
+"    This test will check that the systems media card reader can\n"
+"    detect the insertion of an SD card after the system has been suspended\n"
 "STEPS:\n"
-"    1. Plug a MSP media card into the computer\n"
-"    2. An icon should appear on the Launcher\n"
-"    3. Right click on the Launcher icon and select \"Safely Remove Drive\"\n"
-"    4. The icon should disappear from the Launcher\n"
+"    1. Click \"Test\" and insert an SD card into the reader.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
+"    2. Do not unplug the device after the test.\n"
 "VERIFICATION:\n"
-"    Does the icon automatically appear/disappear?"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
 msgstr ""
 "PROPÓSITU:\n"
-"    Esta prueba va comprobar el sofitu de la tarxeta Memory Stick Pro (MSP) "
-"dempués de la suspensión\n"
+"     Esta prueba va comprobar que'l llector de tarxetes multimedia pue\n"
+"     deteutar la inxerción d'una tarxeta SD dempués de que'l sistema se "
+"suspenda\n"
 "PASOS:\n"
-"    1. Inxerta una tarxeta MSP nel equipu\n"
-"    2. Debería apaecer un iconu nel Llanzador\n"
-"    3. Calca col botón derechu sobre l'iconu del Llanzador y seleiciona "
-"«Espulsar de mou seguru»\n"
-"    4. L'iconu debería desapaecer del Llanzador.\n"
+"     1. Primi en «Prueba» ya inxerta una tarxeta SD nel llector.\n"
+"        (Nota:. Esta prueba terminará dempués de 10 segundos)\n"
+"     2. Nun desconeutes el preséu dempués de la prueba.\n"
 "VERIFICACIÓN:\n"
-"    ¿L'iconu apaez y desapaez automáticamente?"
+"     La verificación d'esta prueba ye automática. Nun cambies el\n"
+"     resultáu seleicionáu automáticamente ."
 
 #. description
-#: ../jobs/mediacard.txt.in:137
+#: ../jobs/mediacard.txt.in:136
+msgid ""
+"This test is automated and executes after the mediacard/sd-insert-after-"
+"suspend test is run. It tests reading and writing to the SD card after the "
+"system has been suspended."
+msgstr ""
+"Esta prueba ye automática y execútase depués de la prueba mediacard/sd-"
+"insert-after-suspend. Comprueba la llectura y escritura de la tarxeta SD "
+"depués de suspender el sistema."
+
+#. description
+#: ../jobs/mediacard.txt.in:144
 msgid ""
 "PURPOSE:\n"
-"    This test will check your system Compact Flash (CF) media card support\n"
+"    This test will check that the system correctly detects\n"
+"    the removal of an SD card from the systems card reader after the system "
+"has been suspended.\n"
 "STEPS:\n"
-"    1. Plug a CF media card into the computer\n"
-"    2. An icon should appear on the Launcher\n"
-"    3. Right click on the Launcher icon and select \"Safely Remove Drive\"\n"
-"    4. The icon should disappear from the Launcher\n"
+"    1. Click \"Test\" and remove the SD card from the reader.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
 "VERIFICATION:\n"
-"    Does the icon automatically appear/disappear?"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
 msgstr ""
 "PROPÓSITU:\n"
-"    Esta prueba va comprobar el sofitu de la tarxeta Compact Flash (CF)\n"
+"     Esta prueba va comprobar que'l sistema deteuta correutamente'l\n"
+"     desaniciu d'una tarxeta SD del llector de tarxetes del sistema dempués "
+"de suspendelu\n"
 "PASOS:\n"
-"    1. Inxerta una tarxeta CF nel equipu\n"
-"    2. Debería apaecer un iconu nel Llanzador\n"
-"    3. Calca col botón derechu sobre l'iconu del Llanzador y seleiciona "
-"«Espulsar de mou seguru»\n"
-"    4. L'iconu debería desapaecer del Llanzador.\n"
+"     1. Primi en «Prueba» ya inxerta una tarxeta SD nel llector.\n"
+"        (Nota:. Esta prueba terminará dempués de 10 segundos)\n"
 "VERIFICACIÓN:\n"
-"    ¿L'iconu apaez y desapaez automáticamente?"
+"     La verificación d'esta prueba ye automática. Nun cambies el\n"
+"     resultáu seleicionáu automáticamente ."
 
 #. description
-#: ../jobs/mediacard.txt.in:151
-msgid ""
-"    This test will check your system Compact Flash (CF) media card support "
-"after suspend\n"
-"STEPS:\n"
-"    1. Plug a CF media card into the computer\n"
-"    2. An icon should appear on the Launcher\n"
-"    3. Right click on the Launcher icon and select \"Safely Remove Drive\"\n"
-"    4. The icon should disappear from the Launcher\n"
-"VERIFICATION:\n"
-"    Does the icon automatically appear/disappear?"
-msgstr ""
-"    PROPÓSITU:\n"
-"    Esta prueba va comprobar el sofitu de la tarxeta Compact Flash (CF) "
-"dempués de la suspensión\n"
-"PASOS:\n"
-"    1. Inxerta una tarxeta CF nel equipu\n"
-"    2. Debería apaecer un iconu nel Llanzador\n"
-"    3. Calca col botón derechu sobre l'iconu del Llanzador y seleiciona "
-"«Espulsar de mou seguru»\n"
-"    4. L'iconu debería desapaecer del Llanzador.\n"
-"VERIFICACIÓN:\n"
-"    ¿L'iconu apaez y desapaez automáticamente?"
-
-#. description
-#: ../jobs/memory.txt.in:4
+#: ../jobs/mediacard.txt.in:158
 msgid ""
 "PURPOSE:\n"
-"    This test checks the amount of memory that is detected\n"
+"    This test will check that the systems media card reader can\n"
+"    detect the insertion of a Secure Digital High-Capacity (SDHC) media "
+"card\n"
 "STEPS:\n"
-"    1. Click Test to see the amount of detected memory\n"
-"INFO:\n"
-"    $output\n"
+"    1. Click \"Test\" and insert an SDHC card into the reader.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
+"    2. Do not unplug the device after the test.\n"
 "VERIFICATION:\n"
-"    Is the amount of detected memory correct?"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
 msgstr ""
 "PROPÓSITU:\n"
-"      Esta prueba mide la cantidá de memoria que se deteuta\n"
+"     Esta prueba va comprobar que'l llector de tarxetes multimedia pue\n"
+"     deteutar la inxerción d'una tarxeta multimedia Secure Digital High-"
+"Capacity (SDHC)\n"
 "PASOS:\n"
-"      1. Calca en Prueba pa ver la cantidá de memoria deteutada\n"
-"INFORMACIÓN:\n"
-"      $output\n"
+"     1. Primi en «Prueba» ya inxerta una tarxeta SDHC nel llector.\n"
+"        (Nota:. Esta prueba terminará dempués de 10 segundos)\n"
+"     2. Nun desconeutes el preséu dempués de la prueba.\n"
 "VERIFICACIÓN:\n"
-"      ¿Ye correuta la cantidá de memoria deteutada?"
+"     La verificación d'esta prueba ye automática. Nun cambies el\n"
+"     resultáu seleicionáu automáticamente ."
+
+#. description
+#: ../jobs/mediacard.txt.in:174
+msgid ""
+"This test is automated and executes after the mediacard/sdhc-insert test is "
+"run. It tests reading and writing to the SDHC card."
+msgstr ""
+"Esta prueba ye automática y execútase depués de mediacard/sdhc-insert. "
+"Comprueba la llectura y escritura de la tarxeta SDHC."
+
+#. description
+#: ../jobs/mediacard.txt.in:182
+msgid ""
+"PURPOSE:\n"
+"    This test will check that the system correctly detects\n"
+"    the removal of an SDHC card from the systems card reader.\n"
+"STEPS:\n"
+"    1. Click \"Test\" and remove the SDHC card from the reader.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
+msgstr ""
+"PROPÓSITU:\n"
+"     Esta prueba va comprobar que'l sistema deteuta correutamente'l\n"
+"     desaniciu d'una tarxeta SDHC del llector de tarxetes del sistema.\n"
+"PASOS:\n"
+"     1. Primi en «Prueba» y retira la tarxeta SDHC nel llector.\n"
+"        (Nota:. Esta prueba terminará dempués de 10 segundos)\n"
+"VERIFICACIÓN:\n"
+"     La verificación d'esta prueba ye automática. Nun cambies el\n"
+"     resultáu seleicionáu automáticamente ."
+
+#. description
+#: ../jobs/mediacard.txt.in:197
+msgid ""
+"PURPOSE:\n"
+"    This test will check that the systems media card reader can\n"
+"    detect the insertion of an SDHC media card after the system has been "
+"suspended\n"
+"STEPS:\n"
+"    1. Click \"Test\" and insert an SDHC card into the reader.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
+"    2. Do not unplug the device after the test.\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
+msgstr ""
+"PROPÓSITU:\n"
+"     Esta prueba va comprobar que'l llector de tarxetes multimedia pue\n"
+"     deteutar la inxerción d'una tarxeta multimedia SDHC dempués de "
+"suspender el sistema\n"
+"PASOS:\n"
+"     1. Primi en «Prueba» ya inxerta una tarxeta SDHC nel llector.\n"
+"        (Nota:. Esta prueba terminará dempués de 10 segundos)\n"
+"     2. Nun desconeutes el preséu dempués de la prueba.\n"
+"VERIFICACIÓN:\n"
+"     La verificación d'esta prueba ye automática. Nun cambies el\n"
+"     resultáu seleicionáu automáticamente ."
+
+#. description
+#: ../jobs/mediacard.txt.in:213
+msgid ""
+"This test is automated and executes after the mediacard/sdhc-insert-after-"
+"suspend test is run. It tests reading and writing to the SDHC card after the "
+"system has been suspended."
+msgstr ""
+"Esta prueba ye automática y execútase depués de mediacard/sdhc-insert. "
+"Comprueba la llectura y escritura de la tarxeta SDHC depués de suspender el "
+"sistema."
+
+#. description
+#: ../jobs/mediacard.txt.in:221
+msgid ""
+"PURPOSE:\n"
+"    This test will check that the system correctly detects the removal\n"
+"    of an SDHC card from the systems card reader after the system has been "
+"suspended.\n"
+"STEPS:\n"
+"    1. Click \"Test\" and remove the SDHC card from the reader.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
+msgstr ""
+"OXETIVU:\n"
+"    Esta prueba va comprobar que'l sistema deteuta correutamente que sacasti "
+"una tarxeta\n"
+"    SDHC dempués de que'l sistema suspendiere.\n"
+"PASOS A SIGUIR:\n"
+"    1. Calca Prueba y saca la tarxeta SDHC del llector.\n"
+"       (Nota: esta prueba va llevar unos 10 segundos.)\n"
+"VERIFICACIÓN:\n"
+"   La verificación d'esta prueba ye automática. Nun cambies los resultaos\n"
+"   seleicionaos automáticamente."
+
+#. description
+#: ../jobs/mediacard.txt.in:235
+msgid ""
+"PURPOSE:\n"
+"    This test will check that the systems media card reader can\n"
+"    detect the insertion of a Compact Flash (CF) media card\n"
+"STEPS:\n"
+"    1. Click \"Test\" and insert a CF card into the reader.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
+"    2. Do not unplug the device after the test.\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
+msgstr ""
+"OXETIVU:\n"
+"    Esta prueba va comprobar si'l sistema pue deteutar que\n"
+"    s'inxertó una tarxeta Compact Flash (CF)\n"
+"PASOS A SIGUIR:\n"
+"    1. Calca Prueba ya inxerta una tarxeta CF nel llector.\n"
+"       (Nota: esta prueba va durar unos 10 segundos.)\n"
+"    2. Nun desconeutes el preséu enantes de que fine la prueba.\n"
+"VERIFICACIÓN:\n"
+"    La verificación de la prueba ye automática.\n"
+"    Nun cambies los resultaos que salgan."
+
+#. description
+#: ../jobs/mediacard.txt.in:251
+msgid ""
+"This test is automated and executes after the mediacard/cf-insert test is "
+"run. It tests reading and writing to the CF card."
+msgstr ""
+"Esta prueba ye automática y execútase depués de mediacard/cf-insert. "
+"Comprueba la llectura y escritura de la tarxeta CF."
+
+#. description
+#: ../jobs/mediacard.txt.in:259
+msgid ""
+"PURPOSE:\n"
+"    This test will check that the system correctly detects\n"
+"    the removal of a CF card from the systems card reader.\n"
+"STEPS:\n"
+"    1. Click \"Test\" and remove the CF card from the reader.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
+msgstr ""
+"OXETIVU:\n"
+"    Esta prueba va comprobar que'l sistema deteuta\n"
+"    correutamente que se retira una tarxeta CF.\n"
+"PASOS A SIGUIR:\n"
+"    1. Calca Prueba y saca la tarxeta CF del llector.\n"
+"       (Nota: esta prueba va durar unos 10 segundos).\n"
+"VERIFICACIÓN:\n"
+"    La verificación d'esta prueba ye automática.\n"
+"    Nun cambies el resultáu de la prueba."
+
+#. description
+#: ../jobs/mediacard.txt.in:274
+msgid ""
+"PURPOSE:\n"
+"    This test will check that the systems media card reader can\n"
+"    detect the insertion of a CF card after the system has been suspended\n"
+"STEPS:\n"
+"    1. Click \"Test\" and insert a CF card into the reader.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
+"    2. Do not unplug the device after the test.\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
+msgstr ""
+"OXETIVU:\n"
+"    Esta prueba va comprobar que'l sistema pue deteutar\n"
+"    que s'inxerta una tarxeta CF depués de que'l sistema se suspenda\n"
+"PASOS A SIGUIR:\n"
+"    1. Calca Prueba ya inxerta una tarxeta CF nel llector.\n"
+"       (Nota: esta prueba va durar unos 10 segundos).\n"
+"    2. Nun desconeutes el preséu enantes de que fine la prueba.\n"
+"VERIFICACIÓN:\n"
+"    La verificación de la prueba ye automática.\n"
+"    Nun cambies los resultaos de la prueba."
+
+#. description
+#: ../jobs/mediacard.txt.in:290
+msgid ""
+"This test is automated and executes after the mediacard/cf-insert-after-"
+"suspend test is run. It tests reading and writing to the CF card after the "
+"system has been suspended."
+msgstr ""
+"Esta prueba ye automática y execútase depués de mediacard/cf-insert-after-"
+"suspend. Comprueba la llectura y escritura de la tarxeta CF depués de "
+"suspender el sistema."
+
+#. description
+#: ../jobs/mediacard.txt.in:298
+msgid ""
+"PURPOSE:\n"
+"    This test will check that the system correctly detects the removal\n"
+"    of a CF card from the systems card reader after the system has been "
+"suspended.\n"
+"STEPS:\n"
+"    1. Click \"Test\" and remove the CF card from the reader.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
+msgstr ""
+"OXETIVU:\n"
+"    Esta prueba va comprobar que'l sistema deteuta correutamente que sacasti "
+"una tarxeta\n"
+"    CF dempués de que'l sistema suspendiere.\n"
+"PASOS A SIGUIR:\n"
+"    1. Calca Prueba y saca la tarxeta CF del llector.\n"
+"       (Nota: esta prueba va llevar unos 10 segundos.)\n"
+"VERIFICACIÓN:\n"
+"   La verificación d'esta prueba ye automática.\n"
+"   Nun cambies los resultaos de la prueba."
+
+#. description
+#: ../jobs/memory.txt.in:5
+msgid ""
+"This test checks the amount of memory which is reporting in meminfo against "
+"the size of the memory modules detected by DMI."
+msgstr ""
+"Esta prueba compara la cantidá de memoria descrita en meminfo cola deteutada "
+"por DMI."
 
 #. description
 #: ../jobs/memory.txt.in:14
@@ -1892,15 +2080,6 @@ msgid "Run Firmware Test Suite (fwts) automated tests."
 msgstr "Executa les pruebes automátiques del  Firmware Test Suite(fwts)."
 
 #. description
-#: ../jobs/miscellanea.txt.in:29
-msgid ""
-"ipmitool is required for ipmi testing. This checks for ipmitool and installs "
-"it if not available."
-msgstr ""
-"ipmitool necesítase pa les pruebes de IPMI. Esto comprueba ipmitool ya "
-"instálalu si nun ta disponible."
-
-#. description
 #: ../jobs/miscellanea.txt.in:31
 msgid ""
 "This will run some basic connectivity tests against a BMC, verifying that "
@@ -1919,17 +2098,23 @@ msgstr ""
 "aplicables a equipos d'escritoriu."
 
 #. description
-#: ../jobs/miscellanea.txt.in:51
+#: ../jobs/miscellanea.txt.in:45
 msgid ""
-"This test checks /var/crash to see if there are any crash reports present."
+"Test that the /var/crash directory doesn't contain anything. Lists the files "
+"contained within if it does, or echoes the status of the directory (doesn't "
+"exist/is empty)"
 msgstr ""
-"Esta prueba ye pa revisar si hai dalgún informe de fallu presente en "
-"/var/crash"
+"Comprueba que'l direutoriu /var/crash ta ermu. Llista los ficheros que "
+"contién si nun lo ta, o amuesa l'estáu del direutoriu (nun esiste/ta ermu)"
 
 #. description
-#: ../jobs/miscellanea.txt.in:51
-msgid "If there are, this test will fail."
-msgstr "Si los hai, esta prueba fallará."
+#: ../jobs/miscellanea.txt.in:53
+msgid ""
+"Test to check that virtualization is supported and the test system has at "
+"least a minimal amount of RAM to function as an OpenStack Compute Node"
+msgstr ""
+"Prueba qué nivel de virtualización almite'l sistema y la cantidá mínima de "
+"RAM pa que furrule como un ñudu OpenStack"
 
 #. description
 #: ../jobs/monitor.txt.in:4
@@ -2093,6 +2278,15 @@ msgid "Network Information"
 msgstr "Información de la rede"
 
 #. description
+#: ../jobs/networking.txt.in:40
+msgid ""
+"This is an automated test to gather some info on the current state of your "
+"network devices. If no devices are found, the test will exit with an error."
+msgstr ""
+"Esta ye una prueba automática p'axuntar información del estáu actual de los "
+"preseos de rede. Si nun los alcuentra, amuesa un fallu."
+
+#. description
 #: ../jobs/networking.txt.in:46
 msgid ""
 "PURPOSE:\n"
@@ -2202,101 +2396,138 @@ msgid "Test to detect the optical drives"
 msgstr "Prueba pa deteutar les unidaes óptiques"
 
 #. description
-#: ../jobs/optical.txt.in:18
-msgid "Optical Storage device read tests"
-msgstr "Pruebes de llectura de preséu d'almacenamientu ópticu"
-
-#. description
-#: ../jobs/optical.txt.in:35
+#: ../jobs/optical.txt.in:16
 msgid ""
 "PURPOSE:\n"
-"    This test will check your system's CDROM writing capabilities. If your "
-"drive does not support writing CDs or you do not have any blank CD media, "
-"please skip this test.\n"
+"    This test will check your optical devices ability to read CD media\n"
 "STEPS:\n"
-"    1. Enter a blank CDROM into your drive\n"
-"    2. Write something in the CDROM\n"
-"    3. Read the newly written CDROM\n"
+"    1. Insert appropriate non-blank media into your optical drive(s). Movie "
+"and Audio Disks may not work. Self-created data disks have the greatest "
+"chance of working.\n"
+"    2. If a file browser window opens, you can safely close or ignore that "
+"window.\n"
+"    3. Click \"Test\" to being the test.\n"
+"    4. When the test completes, proceed by clicking \"Next\"\n"
 "VERIFICATION:\n"
-"    Was the data correctly written?"
+"    This test should automatically select \"Yes\" if it passes, \"No\" if it "
+"fails."
 msgstr ""
-"PROPÓSITU:\n"
-"    Esta prueba va comprobar les capacidaes d'escritura de CDROM del so "
-"equipu. Si la so unidá nun soporta la escritura de CD o nun tien nengún CD "
-"en blancu, omita esta prueba.\n"
-"PASOS:\n"
-"    1. Introduz un discu en blancu na unidá 2.\n"
-"    Escribi daqué nel CDROM\n"
-"    3. Llei'l CDROM acabante escribir\n"
-"    4. L'iconu tendría de sumise del Llanzador.\n"
+"OXETIVU:\n"
+"Esta prueba va comprobar la capacidá de los preseos ópticos pa lleer discos "
+"CD.\n"
+"PASOS A SIGUIR:\n"
+"1. Inxerta un CD amañosu, que nun tea ermu, nel llector(es) ópticu(os). Los "
+"discos de películes o música pue ser que nun furrulen. Los discos con datos "
+"creaos por ti mesmu ya más dable que furrulen.\n"
+"2. Si s'abre una ventan del restolador de ficheros pues zarrala o inorala.\n"
+"3. Calca Prueba p'aniciar la prueba.\n"
+"4. Cuando fine la prueba calca en Siguiente.\n"
 "VERIFICACIÓN:\n"
-"    ¿Los datos escribiéronse correutamente?"
+"Esta prueba debería marcar automáticamente Sí o Non."
 
 #. description
-#: ../jobs/optical.txt.in:47
+#: ../jobs/optical.txt.in:43
+msgid ""
+"PURPOSE:\n"
+"    This test will check your system's CD writing capabilities. This test "
+"requires a blank CD-R. If you do not have a blank CD-R, skip this test.\n"
+"STEPS:\n"
+"    1. Enter a blank CD-R into your drive\n"
+"    2. Click \"Test\" to begin.\n"
+"    3. When the CD tray ejects the media after burning, close it (DO NOT "
+"remove the disk, it is needed for the second portion of the test). Note, you "
+"must close the drive within 10 seconds or the test will time out.\n"
+"    4. When the test completes, proceed by clicking \"Next\"\n"
+"VERIFICATION:\n"
+"    This test should automatically select \"Yes\" if it passes, \"No\" if it "
+"fails."
+msgstr ""
+"PROPÓSITU:\n"
+"     Esta prueba va comprobar les capacidaes de grabación del CD nel "
+"sistema. Esta prueba requier d'un discu CD-R virxe. Si nun tienes un discu "
+"CD-R virxe, salta esta prueba.\n"
+"PASOS:\n"
+"     1. Introduz un discu CD-R virxe na unidá\n"
+"     2. Primi en «Prueba» pa entamar.\n"
+"     3. Cuando la bandexa de CD espulsa'l mediu dempués de la grabación, "
+"zárrala (nun saques el discu, ye necesario pa la segunda parte de la "
+"prueba). Nota: tien de zarrase la unidá dientro de los 10 segundos "
+"siguientes o la prueba terminará.\n"
+"     4. Cuando se complete la prueba, procede faciendo clic en «Siguiente»\n"
+"VERIFICACIÓN:\n"
+"     Esta prueba automáticamente seleicionará «Sí» si pasa, «Non» si hai "
+"dalgún fallu."
+
+#. description
+#: ../jobs/optical.txt.in:57
 msgid ""
 "PURPOSE:\n"
 "    This test will check your CD audio playback capabilities\n"
 "STEPS:\n"
 "    1. Insert an audio CD in your optical drive\n"
-"    2. Open the Dash (click on the Ubuntu Circle of Friends button on the "
-"Launcher)\n"
-"    3. Click \"Listen to Music\" to open Banshee\n"
-"    4. Select the CD under \"Libraries\" in the left panel of Banshee\n"
-"    5. Click the Play button to listen to music\n"
+"    2. When prompted, launch the Music Player\n"
+"    3. Locate the CD in the display of the Music Player\n"
+"    4. Select the CD in the Music Player\n"
+"    5. Click the Play button to listen to the music on the CD\n"
 "    6. Stop playing after some time\n"
-"    7. Right click on the CD icon under \"Libraries\" and select \"Eject "
-"Disc\"\n"
+"    7. Right click on the CD icon and select \"Eject Disc\"\n"
 "    8. The CD should be ejected\n"
-"    9. Close Banshee\n"
+"    9. Close the Music Player\n"
 "VERIFICATION:\n"
 "    Did all the steps work?"
 msgstr ""
-"OXETIVU:\n"
-"    Esta prueba va comprobar les capacidaes de reproducción de CD d'audiu.\n"
-"PASOS A SIGUIR:\n"
-"    1. Introduz un CD d'audiu na unidá óptica\n"
-"    2. Abri'l Tableru (calca nel botón del Círculu d'Amigos d'Ubuntu nel "
-"Llanzador)\n"
-"    3. Calca «Escuchar música» p'abrir Banshee\n"
-"    4. Escueyi'l CD baxo «Coleiciones» nel panel esquierdu de Banshee\n"
-"    5. Calca'l botón Reproducir pa escuchar la música\n"
-"    6. Para la reproducción dempués d'un tiempu\n"
-"    7. Calca col botón derechu sobre l'iconu del CD baxo «Coleiciones» y "
-"escueyi «Espulsar discu»\n"
-"    8. El CD tendría d'espulsase\n"
-"    9. Zarra Banshee\n"
+"PROPÓSITU:\n"
+"    Esta prueba va comprobar les capacidaes de reproducción de CD d'audio "
+"nel equipu.\n"
+"PASOS:\n"
+"    1. Introduz un CD d'audio nel llector de discos ópticu.\n"
+"    2. Cuando s'indique, llanza'l reproductor de música.\n"
+"    3. Llocaliza'l CD na pantalla del reproductor de música.\n"
+"    4. Seleiciona'l CD nel reproductor de música.\n"
+"    5. Primi'l botón Reproducir pa escuchar la música del CD.\n"
+"    6. Para la reproducción dempués d'un tiempu.\n"
+"    7. Primi col botón derechu sobre l'iconu del CD y seleiciona «Espulsar "
+"discu».\n"
+"    8. El CD tendría d'espulsase.\n"
+"    9. Zarra'l reproductor de música.\n"
 "VERIFICACIÓN:\n"
 "    ¿Funcionaron tolos pasos?"
 
 #. description
-#: ../jobs/optical.txt.in:68
+#: ../jobs/optical.txt.in:80
 msgid ""
 "PURPOSE:\n"
-"    This test will check your system's DVD writing capabilities. If your "
-"drive does not support writing DVDs or you do not have any blank DVD media, "
-"please skip this test.\n"
+"    This test will check your system's DVD writing capabilities. This test "
+"requires a blank DVD-R. If you do not have a blank DVD-R, skip this test.\n"
 "STEPS:\n"
-"    1. Enter a blank DVD into your drive\n"
-"    2. Write something in the DVD\n"
-"    3. Read the newly written DVD\n"
+"    1. Enter a blank DVD-R into your drive\n"
+"    2. Click \"Test\" to begin.\n"
+"    3. When the CD tray ejects the media after burning, close it (DO NOT "
+"remove the disk, it is needed for the second portion of the test). Note, you "
+"must close the drive within 10 seconds or the test will time out.\n"
+"    4. When the test completes, proceed by clicking \"Next\"\n"
 "VERIFICATION:\n"
-"    Was the data correctly written?"
+"    This test should automatically select \"Yes\" if it passes, \"No\" if it "
+"fails."
 msgstr ""
 "PROPÓSITU:\n"
-"    Esta prueba va comprobar les capacidaes d'escritura de DVD del so "
-"equipu. Si la so unidá nun soporta la escritura de DVD o nun tien nengún DVD "
-"en blancu, omita esta prueba.\n"
+"     Esta prueba va comprobar les capacidaes del sistema de grabación de "
+"DVD. Esta prueba requier d'un discu DVD-R virxe. Si nun tienes un discu DVD-"
+"R virxe, salta esta prueba.\n"
 "PASOS:\n"
-"    1. Introduz un discu en blancu na unidá\n"
-"    2. Escribi daqué nel DVD\n"
-"    3. Llei'l DVD recién escritu\n"
-"    4. L'iconu tendría de sumise del Llanzador.\n"
+"     1. Introduz un discu DVD-R na unidá\n"
+"     2. Primi en «Prueba» pa entamar.\n"
+"     3. Cuando la bandexa de CD espulsa'l mediu dempués de la grabación, "
+"zárralu (nun saques el discu, fai falta pa la segunda parte de la prueba). "
+"Nota: hai de zarrar la unidá dientro de los 10 segundos siguientes o la "
+"prueba terminará.\n"
+"     4. Cuando se complete la prueba, procede faciendo clic en «Siguiente»\n"
 "VERIFICACIÓN:\n"
-"    ¿Los datos escribiéronse correutamente?"
+"     Esta prueba automáticamente seleicionará «Sí» si pasa, «Non» si hai "
+"dalgún fallu."
 
 #. description
-#: ../jobs/optical.txt.in:85
+#: ../jobs/optical.txt.in:94
 msgid ""
 "PURPOSE:\n"
 "    This test will check your DVD movie playback capabilities. Note that "
@@ -2330,7 +2561,7 @@ msgstr ""
 "    ¿Tolos pasos funcionaron?"
 
 #. description
-#: ../jobs/optical.txt.in:103
+#: ../jobs/optical.txt.in:112
 msgid ""
 "PURPOSE:\n"
 "    This test will check your DVD  playback capabilities\n"
@@ -2727,6 +2958,11 @@ msgstr ""
 "    ¿Suspendióse y reanicióse correutamente'l sistema les 30 vegaes?"
 
 #. description
+#: ../jobs/suspend.txt.in:4
+msgid "Record the current network before suspending."
+msgstr "Graba la rede actual enantes de suspender."
+
+#. description
 #: ../jobs/suspend.txt.in:9
 msgid "Record the current resolution before suspending."
 msgstr "Grabar la resolución actual enantes de suspender."
@@ -2750,7 +2986,7 @@ msgstr ""
 "d'haber executao la prueba de suspensión"
 
 #. description
-#: ../jobs/suspend.txt.in:49
+#: ../jobs/suspend.txt.in:40
 msgid ""
 "This test disconnects all connections and then connects to the wireless "
 "interface. It then checks the connection to confirm it's working as expected."
@@ -2760,7 +2996,7 @@ msgstr ""
 "funciona como ye de esperar."
 
 #. description
-#: ../jobs/suspend.txt.in:83
+#: ../jobs/suspend.txt.in:74
 msgid ""
 "PURPOSE:\n"
 "    This test will check suspend and resume\n"
@@ -2787,18 +3023,18 @@ msgstr ""
 "    ¿Suspendióse y reanicióse'l sistema correutamente?"
 
 #. description
-#: ../jobs/suspend.txt.in:96
+#: ../jobs/suspend.txt.in:87
 msgid "Test the network after resuming."
 msgstr "Probar la rede dempués de reanudar."
 
 #. description
-#: ../jobs/suspend.txt.in:102
+#: ../jobs/suspend.txt.in:93
 msgid ""
 "Test to see that we have the same resolution after resuming as before."
 msgstr "Prueba pa ver si tienes la mesma resolución dempués de reanudar."
 
 #. description
-#: ../jobs/suspend.txt.in:111
+#: ../jobs/suspend.txt.in:102
 msgid ""
 "Verify that mixer settings after suspend are the same as before suspend."
 msgstr ""
@@ -2806,19 +3042,19 @@ msgstr ""
 "son les mesmes qu'enantes de suspender."
 
 #. description
-#: ../jobs/suspend.txt.in:127
+#: ../jobs/suspend.txt.in:118
 msgid "Verify that all CPUs are online after resuming."
 msgstr "Verificar que toles CPUs tán en llinia dempués de reaniciar."
 
 #. description
-#: ../jobs/suspend.txt.in:144
+#: ../jobs/suspend.txt.in:135
 msgid "Verify that all memory is available after resuming from suspend."
 msgstr ""
 "Verifica que tola memoria ta disponible dempués de la reanudación de la "
 "suspensión."
 
 #. description
-#: ../jobs/suspend.txt.in:153
+#: ../jobs/suspend.txt.in:144
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the display is correct after suspend and "
@@ -2833,7 +3069,7 @@ msgstr ""
 "    ¿La pantalla funciona normalmente dempués de retornar de la suspensión?"
 
 #. description
-#: ../jobs/suspend.txt.in:174
+#: ../jobs/suspend.txt.in:155
 msgid ""
 "This test checks that the wireless interface is working after suspending the "
 "system. It disconnects all interfaces and then connects to the wireless "
@@ -2844,7 +3080,35 @@ msgstr ""
 "comprueba que la conexón funciona de la manera esperada."
 
 #. description
-#: ../jobs/suspend.txt.in:186
+#: ../jobs/suspend.txt.in:167
+msgid ""
+"Tests that the systems wireless hardware can connect to a router using WPA "
+"security and the 802.11b/g protocols after the system has been suspended."
+msgstr ""
+
+#. description
+#: ../jobs/suspend.txt.in:178
+msgid ""
+"Tests that the systems wireless hardware can connect to a router using no "
+"security and the 802.11b/g protocols after the system has been suspended."
+msgstr ""
+
+#. description
+#: ../jobs/suspend.txt.in:189
+msgid ""
+"Tests that the systems wireless hardware can connect to a router using WPA "
+"security and the 802.11n protocol after the system has been suspended."
+msgstr ""
+
+#. description
+#: ../jobs/suspend.txt.in:200
+msgid ""
+"Tests that the systems wireless hardware can connect to a router using no "
+"security and the 802.11n protocol after the system has been suspended."
+msgstr ""
+
+#. description
+#: ../jobs/suspend.txt.in:211
 msgid ""
 "This test grabs the hardware address of the bluetooth adapter after suspend "
 "and compares it to the address grabbed before suspend."
@@ -2854,7 +3118,7 @@ msgstr ""
 "suspensión."
 
 #. description
-#: ../jobs/suspend.txt.in:196
+#: ../jobs/suspend.txt.in:221
 msgid ""
 "This is an automated Bluetooth file transfer test. It sends an image to the "
 "device specified by the BTDEVADDR environment variable."
@@ -2863,7 +3127,7 @@ msgstr ""
 "Unvia una imaxe al preséu especificáu pola variable d'entornu BTDEVADDR."
 
 #. description
-#: ../jobs/suspend.txt.in:206
+#: ../jobs/suspend.txt.in:231
 msgid ""
 "PURPOSE:\n"
 "    This test will send the image 'JPEG_Color_Image_Ubuntu.jpg' to a "
@@ -2888,7 +3152,7 @@ msgstr ""
 "    ¿Tresfiriéronse los datos correutamente?"
 
 #. description
-#: ../jobs/suspend.txt.in:220
+#: ../jobs/suspend.txt.in:245
 msgid ""
 "PURPOSE:\n"
 "    This test will cycle through the detected display modes\n"
@@ -2905,7 +3169,7 @@ msgstr ""
 "    ¿La pantalla amuésase correutamente nel mou deteutáu?"
 
 #. description
-#: ../jobs/suspend.txt.in:232
+#: ../jobs/suspend.txt.in:257
 msgid ""
 "This test will check to make sure supported video modes work after a suspend "
 "and resume. This is done automatically by taking screenshots and uploading "
@@ -2916,7 +3180,7 @@ msgstr ""
 "tomando captures de pantalla y xubiéndolas como datos axuntos."
 
 #. description
-#: ../jobs/suspend.txt.in:241
+#: ../jobs/suspend.txt.in:266
 msgid ""
 "This attaches screenshots from the "
 "suspend/cycle_resolutions_after_suspend_auto test to the results submission."
@@ -2925,30 +3189,7 @@ msgstr ""
 "suspensión/ciclu_resoluciones_dempués_suspensión a los resultaos del test ."
 
 #. description
-#: ../jobs/suspend.txt.in:231
-msgid ""
-"PURPOSE:\n"
-"    This will test that USB functionality is restored after a suspend and "
-"resume cycle\n"
-"STEPS:\n"
-"    1. Plug in at least one USB storage device if one is not already "
-"connected\n"
-"    2. Click \"Test\" to start\n"
-"VERIFICATION:\n"
-"    Automatically verified"
-msgstr ""
-"PROPÓSITU:\n"
-"    Esti test verificará si la función USB se restaura dempués d'un ciclu de "
-"suspensión y reaniciu\n"
-"PASOS:\n"
-"    1. Coneuta polo menos ún preséu d'almacenamientu USB si entá nun hai "
-"dengún coneutáu\n"
-"    2. Calca en \"Probar\" pa comenzar\n"
-"VERIFICACIÓN:\n"
-"    Verificáu automáticamente"
-
-#. description
-#: ../jobs/suspend.txt.in:251
+#: ../jobs/suspend.txt.in:276
 msgid ""
 "This will check to make sure that your audio device works properly after a "
 "suspend and resume.  This may work fine with speakers and onboard "
@@ -2961,12 +3202,12 @@ msgstr ""
 "coneuta'l jack de salida d'audio al jack d'entrada d'audio."
 
 #. description
-#: ../jobs/suspend.txt.in:260
+#: ../jobs/suspend.txt.in:285
 msgid "This is the automated version of suspend/suspend_advanced."
 msgstr "Esta ye la versión automatizada de suspensión/suspensión_avanzao."
 
 #. description
-#: ../jobs/suspend.txt.in:269
+#: ../jobs/suspend.txt.in:294
 msgid ""
 "This automatically tests Wake-on-LAN capability with the aid of a suitably "
 "configured server. During this process the system will suspend, then "
@@ -2976,6 +3217,18 @@ msgstr ""
 "de LAN (Wake-on-LAN) cola ayuda d'un sirvidor configuráu afayadizamente. "
 "Demientres esti procesu, el sistema entrará en suspensión y, dempués, "
 "reanudará enantes de que trenscurran un máximu de 5 minutos."
+
+#. description
+#: ../jobs/suspend.txt.in:304
+msgid ""
+"PURPOSE:\n"
+"    Take a screengrab of the current screen after suspend (logged on Unity "
+"desktop)\n"
+"STEPS:\n"
+"    1. Take picture using USB webcam\n"
+"VERIFICATION:\n"
+"    1. Review attachment manually later"
+msgstr ""
 
 #. description
 #: ../jobs/unity.txt.in:6
@@ -3004,7 +3257,7 @@ msgstr "Deteuta y amuesa los preseos USB coneutaos a esti sistema."
 #: ../jobs/usb.txt.in:12
 msgid ""
 "PURPOSE:\n"
-"    This test will check your USB connection.\n"
+"    This test will check that your system detects USB storage devices.\n"
 "STEPS:\n"
 "    1. Plug in one or more USB keys or hard drives.\n"
 "    2. Click on \"Test\".\n"
@@ -3013,15 +3266,16 @@ msgid ""
 "VERIFICATION:\n"
 "    Were the drives detected?"
 msgstr ""
-"PROPÓSITU:\n"
-"    Esti test verificará la conexón USB.\n"
-"PASOS:\n"
+"OXETIVU:\n"
+"    Esti test verificará que'l sistema deteuta preseps d'almacenamientu "
+"USB.\n"
+"PASOS A SIGUIR:\n"
 "    1. Coneuta ún o más pendrives o discos USB.\n"
-"    2. Calca en \"Probar\".\n"
+"    2. Calca en \"Prueba\".\n"
 "INFORMACIÓN:\n"
 "    $output\n"
 "VERIFICACIÓN\n"
-"¿Deteutáronse les unidaes?"
+"    ¿Deteutáronse les unidaes?"
 
 #. description
 #: ../jobs/usb.txt.in:28
@@ -3065,42 +3319,53 @@ msgstr ""
 #: ../jobs/usb.txt.in:55
 msgid ""
 "PURPOSE:\n"
-"    This test will check your USB connection.\n"
+"    This test will check that the system correctly detects the insertion of\n"
+"    a USB storage device\n"
 "STEPS:\n"
-"    1. Click \"Test\" and insert a USB device within 5 seconds.\n"
+"    1. Click \"Test\" and insert a USB storage device (pen-drive/HDD).\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
 "    2. Do not unplug the device after the test.\n"
 "VERIFICATION:\n"
-"    The verification of this test is automated."
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
 msgstr ""
-"PROPÓSITU:\n"
-"    Esti test verificará la conexón USB.\n"
-"PASOS:\n"
-"    1. Calca en \"Probar\" ya inxerta un USB en 5 segs.\n"
-"    2. Nun desconeutes el preséu dempués del test.\n"
+"OXETIVU:\n"
+"    Esta prueba va comprobar si'l sistema pue deteutar que\n"
+"    s'inxertó un preséu d'almacenamientu USB\n"
+"PASOS A SIGUIR:\n"
+"    1. Calca Prueba ya inxerta un preséu d'almacenamientu USB.\n"
+"       (Nota: esta prueba va durar unos 10 segundos.)\n"
+"    2. Nun desconeutes el preséu enantes de que fine la prueba.\n"
 "VERIFICACIÓN:\n"
-"    La verificación d'esti test ye automática."
+"    La verificación de la prueba ye automática.\n"
+"    Nun cambies los resultaos que salgan."
 
 #. description
-#: ../jobs/usb.txt.in:69
+#: ../jobs/usb.txt.in:72
 msgid ""
 "PURPOSE:\n"
-"    This test will check your USB connection.\n"
+"    This test will check that the system correctly detects the removal of\n"
+"    a USB storage device\n"
 "STEPS:\n"
-"    1. Click \"Test\" and remove the USB device within 5 seconds.\n"
-"    2. Do not unplug the device after the test.\n"
+"    1. Click \"Test\" and remove the USB device.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
 "VERIFICATION:\n"
-"    The verification of this test is automated."
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
 msgstr ""
 "PROPÓSITU:\n"
-"    Esti test verificará la conexón USB.\n"
+"     Esta prueba va comprobar que'l sistema deteuta correutamente'l\n"
+"     desaniciu d'un preséu d'almacenamientu USB\n"
 "PASOS:\n"
-"    1. Calca en \"Probar\" y espulsa'l preséu USB en 5 segundos.\n"
-"    2. Nun desconeutes el preséu dempués del test.\n"
+"     1. Primi en «Prueba» y retira'l preséu USB.\n"
+"        (Nota:. Esta prueba terminará dempués de 10 segundos)\n"
+"     2. Nun desconeutes el preséu dempués de la prueba.\n"
 "VERIFICACIÓN:\n"
-"    La verificación d'esti test ye automática."
+"     La verificación d'esta prueba ye automática. Nun cambies el\n"
+"     resultáu seleicionáu automáticamente ."
 
 #. description
-#: ../jobs/usb.txt.in:82
+#: ../jobs/usb.txt.in:88
 msgid ""
 "PURPOSE:\n"
 "    This test will check your USB connection.\n"
@@ -3109,25 +3374,34 @@ msgid ""
 "    2. An icon should appear on the Launcher.\n"
 "    3. Click \"Test\" to begin the test.\n"
 "VERIFICATION:\n"
-"    The verification of this test is automated."
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
 msgstr ""
 "PROPÓSITU:\n"
-"    Esti test verificará la conexón USB.\n"
+"     Esta prueba va comprobar la conexón USB\n"
 "PASOS:\n"
-"    1. Coneuta un HD USB o unidá thumb nel equipu.\n"
-"    2. Tendría d'apaecer un iconu nel Llanzador.\n"
-"    3. Calca en \"Probar\" p'aniciar el test.\n"
+"     1. Coneuta un discu duru USB o memoria USB nel equipu.\n"
+"     2. Tendrá d'apaecer un iconu nel llanzador.\n"
+"     3. Primi en 'Prueba' p'aniciar la prueba.\n"
 "VERIFICACIÓN:\n"
-"    La verificación d'esti test ye automática."
+"     La verificación d'esta prueba ye automática. Nun cambies el\n"
+"     resultáu seleicionáu automáticamente ."
 
 #. description
-#: ../jobs/usb.txt.in:80
+#: ../jobs/usb.txt.in:104
+msgid "This test is automated and executes after the usb/insert test is run."
+msgstr "Esta prueba ye automática y execútase dempués de usb/insert."
+
+#. description
+#: ../jobs/usb.txt.in:111
 msgid ""
-"This test is automated and requires that you plug in at least one usb "
-"storage device before running checkbox."
+"This is an automated version of usb/storage-automated and assumes that the  "
+"server has usb storage devices plugged in prior to checkbox execution. It  "
+"is intended for servers and SRU automated testing."
 msgstr ""
-"Esta prueba ye automática y requier que coneutes como mínimu un preséu "
-"d'almacenamiento USB enantes d'executar checkbox."
+"Esta ye una versión automática de usb/storage-automated y asume que'l "
+"sirvidor tien coneutaos preseos d'almacenamientu usb enantes d'entamar la "
+"execución. Empobínase a sirvidores y comprobación automática SRU."
 
 #. description
 #: ../jobs/usb.txt.in:119
@@ -3872,11 +4146,11 @@ msgstr ""
 #. description
 #: ../jobs/wireless.txt.in:38
 msgid ""
-"Tests that the systems wireless hardware can connect to a router using no no "
+"Tests that the systems wireless hardware can connect to a router using no "
 "security and the 802.11b/g protocols."
 msgstr ""
-"Prueba que'l hardwarewireless  del sistema pue coneutase al ruter usando "
-"protocolos 802.11b/g ensin seguridá."
+"Comprueba que'l hardware inalámbricu del sistema pue coneutar col router "
+"ensin usar seguridá y colos protocolos 802.11b/g."
 
 #. description
 #: ../jobs/wireless.txt.in:48
@@ -3890,11 +4164,11 @@ msgstr ""
 #. description
 #: ../jobs/wireless.txt.in:58
 msgid ""
-"Tests that the systems wireless hardware can connect to a router using no no "
+"Tests that the systems wireless hardware can connect to a router using no "
 "security and the 802.11n protocol."
 msgstr ""
-"Prueba que'l hardwarewireless  del sistema pue coneutase al ruter usando "
-"protocolos 802.11b/n ensin seguridá."
+"Comprueba que'l hardware inalámbricu del sistema pue coneutar col router "
+"ensin usar seguridá y el protocolu 802.11n."
 
 #. description
 #: ../jobs/wireless.txt.in:70
@@ -4037,19 +4311,28 @@ msgid "Unknown signal"
 msgstr "Señal desconocida"
 
 #: ../checkbox_cli/cli_interface.py:31
-#: ../checkbox_urwid/urwid_interface.py:917
+#: ../checkbox_urwid/urwid_interface.py:917 ../checkbox_qt/qt_interface.py:33
 msgid "yes"
 msgstr "sí"
 
 #: ../checkbox_cli/cli_interface.py:32
-#: ../checkbox_urwid/urwid_interface.py:918
+#: ../checkbox_urwid/urwid_interface.py:918 ../checkbox_qt/qt_interface.py:34
 msgid "no"
 msgstr "non"
 
 #: ../checkbox_cli/cli_interface.py:33
-#: ../checkbox_urwid/urwid_interface.py:919
+#: ../checkbox_urwid/urwid_interface.py:919 ../checkbox_qt/qt_interface.py:35
 msgid "skip"
 msgstr "saltar"
+
+#: ../checkbox_cli/cli_interface.py:229 ../checkbox_cli/cli_interface.py:338
+#: ../checkbox_cli/cli_interface.py:368
+msgid "Space when finished"
+msgstr "Calca espaciu cuando fines"
+
+#: ../checkbox_cli/cli_interface.py:367
+msgid "Combine with character above to expand node"
+msgstr "Combina col caráuter anterior pa espander el nodu"
 
 #: ../checkbox_cli/cli_interface.py:416
 msgid "test"
@@ -4070,27 +4353,36 @@ msgstr "Siguir"
 #: ../checkbox_urwid/urwid_interface.py:198
 #: ../checkbox_urwid/urwid_interface.py:274
 #: ../checkbox_urwid/urwid_interface.py:425
-#: ../checkbox_urwid/urwid_interface.py:547
+#: ../checkbox_urwid/urwid_interface.py:547 ../qt/frontend/ui_qtfront.h:609
 msgid "Previous"
 msgstr "Anterior"
 
 #: ../checkbox_urwid/urwid_interface.py:199
 #: ../checkbox_urwid/urwid_interface.py:275
 #: ../checkbox_urwid/urwid_interface.py:426
-#: ../checkbox_urwid/urwid_interface.py:548
+#: ../checkbox_urwid/urwid_interface.py:548 ../qt/frontend/ui_qtfront.h:608
 msgid "Next"
 msgstr "Siguiente"
 
 #. Show buttons
-#: ../checkbox_urwid/urwid_interface.py:423
+#: ../checkbox_urwid/urwid_interface.py:423 ../qt/frontend/qtfront.cpp:137
 msgid "Select All"
 msgstr "Seleicionar too"
 
-#: ../checkbox_urwid/urwid_interface.py:424
+#: ../checkbox_urwid/urwid_interface.py:424 ../qt/frontend/qtfront.cpp:138
 msgid "Deselect All"
 msgstr "Deseleicionar too"
 
-#: ../checkbox_urwid/urwid_interface.py:1013
+#. Show buttons
+#: ../checkbox_urwid/urwid_interface.py:545
+msgid "Expand All"
+msgstr "Espander too"
+
+#: ../checkbox_urwid/urwid_interface.py:546
+msgid "Collapse All"
+msgstr "Contrayer too"
+
+#: ../checkbox_urwid/urwid_interface.py:1013 ../qt/frontend/ui_qtfront.h:603
 msgid "Test"
 msgstr "Probar"
 
@@ -4098,22 +4390,17 @@ msgstr "Probar"
 msgid "Test Again"
 msgstr "Probar otra vegada"
 
-#: ../checkbox_gtk/gtk_interface.py:503
+#: ../checkbox_gtk/gtk_interface.py:517
 msgid "_Test Again"
 msgstr "_Probar otra vuelta"
 
-#: ../checkbox_gtk/gtk_interface.py:551
+#: ../checkbox_gtk/gtk_interface.py:566
 msgid "Info"
 msgstr "Información"
 
-#: ../checkbox_gtk/gtk_interface.py:575
+#: ../checkbox_gtk/gtk_interface.py:590
 msgid "Error"
 msgstr "Fallu"
-
-#: ../checkbox/user_interface.py:137
-#, python-format
-msgid "Unable to start web browser to open %s."
-msgstr "Nun pue arrancase'l ñavegador web p'abrir %s."
 
 #: ../plugins/apport_prompt.py:83
 msgid ""
@@ -4133,8 +4420,8 @@ msgstr ""
 
 #: ../plugins/apport_prompt.py:227
 #, python-format
-msgid "Test %(name)s from suite %(suite)s failed."
-msgstr "La prueba %(name)s del conxuntu %(suite)s falló."
+msgid "Test %(name)s failed."
+msgstr "Falló la prueba %(name)s."
 
 #: ../plugins/apport_prompt.py:230
 #, python-format
@@ -4215,7 +4502,7 @@ msgstr ""
 "Fallu al xubir archivos al sirvidor,\n"
 "por favor inténtelo otra vuelta más sero."
 
-#: ../plugins/launchpad_prompt.py:71
+#: ../plugins/launchpad_prompt.py:74
 #, python-format
 msgid ""
 "The following report has been generated for submission to the Launchpad "
@@ -4223,27 +4510,22 @@ msgid ""
 "\n"
 "  [[%s|View Report]]\n"
 "\n"
-"You can submit this information about your system by providing the e-mail "
+"You can submit this information about your system by providing the email "
 "address you use to sign in to Launchpad. If you do not have a Launchpad "
 "account, please register here:\n"
 "\n"
 "  https://launchpad.net/+login"
 msgstr ""
-"Xeneráronse los siguientes informes pa unviar a la base de datos de hardware "
+"El siguiente informe xeneróse como propuesta a la base de datos de hardware "
 "de Launchpad:\n"
 "\n"
-"  [[%s|View Report]]\n"
+"  [[%s|Ver Informe]]\n"
 "\n"
-"Puede unviar esta información sobro'l so sistema proporcionando la direición "
-"de corréu electrónicu qu'usa p'acceder a Launchpad. Si nun tien una cuenta "
-"de Launchpad, por favor, rexístrese equí:\n"
+"Pues presentar esta información sobre'l to sistema proporcionando'l corréu-e "
+"qu'uses p'acceder a Launchpad. Si nun tienes una cuenta en Launchpad, "
+"rexístrate equí:\n"
 "\n"
 "  https://launchpad.net/+login"
-
-#: ../plugins/launchpad_prompt.py:88
-msgid "No e-mail address provided, not submitting to Launchpad."
-msgstr ""
-"Nun se proporcionó una direición de corréu-e, nun s'unviará res a Launchpad."
 
 #: ../plugins/launchpad_prompt.py:99
 msgid "Exchanging information with the server..."
@@ -4260,6 +4542,14 @@ msgstr ""
 #: ../plugins/lock_prompt.py:63
 msgid "There is another checkbox running. Please close it first."
 msgstr "Hai otru checkbox executándose. Piésllalu primero."
+
+#: ../plugins/recover_prompt.py:53
+msgid "Recover"
+msgstr "Recuperar"
+
+#: ../plugins/recover_prompt.py:54
+msgid "Restart"
+msgstr "Reaniciar"
 
 #: ../plugins/recover_prompt.py:56
 msgid ""
@@ -4279,7 +4569,7 @@ msgid "Running %s..."
 msgstr "Executando %s..."
 
 #. Get results
-#: ../plugins/suites_prompt.py:110
+#: ../plugins/suites_prompt.py:124
 msgid "Select the suites to test"
 msgstr "Seleiciona los conxuntos a probar"
 
@@ -4291,17 +4581,162 @@ msgstr "Introduza'l testu:\n"
 msgid "Type Text"
 msgstr "Teclee'l testu"
 
-#: ../scripts/internet_test:139
+#: ../scripts/internet_test:196
 msgid "No Internet connection"
 msgstr "Nyn hai conexón a Internet"
 
-#: ../scripts/internet_test:142
+#: ../scripts/internet_test:199
 msgid "Connection established lost a packet"
 msgstr "La conexón actual perdió un paquete"
 
-#: ../scripts/internet_test:145
+#: ../scripts/internet_test:202
 msgid "Internet connection fully established"
 msgstr "Conexón a Internet afitada dafechu"
+
+#: ../qt/frontend/qtfront.cpp:108
+msgid "Not Started"
+msgstr ""
+
+#: ../qt/frontend/qtfront.cpp:109 ../qt/frontend/qtfront.cpp:110
+msgid "Done"
+msgstr "Fecho"
+
+#: ../qt/frontend/qtfront.cpp:111
+msgid "Not Supported"
+msgstr ""
+
+#: ../qt/frontend/qtfront.cpp:112
+msgid "Not Resolved"
+msgstr ""
+
+#: ../qt/frontend/qtfront.cpp:113
+msgid "Not Tested"
+msgstr ""
+
+#: ../qt/frontend/qtfront.cpp:114
+msgid "In Progress"
+msgstr ""
+
+#: ../qt/frontend/qtfront.cpp:182
+msgid "Are you sure?"
+msgstr ""
+
+#: ../qt/frontend/qtfront.cpp:182
+msgid "Do you really want to skip this test?"
+msgstr ""
+
+#: ../qt/frontend/qtfront.cpp:183
+msgid "Don't ask me again"
+msgstr ""
+
+#: ../qt/frontend/treemodel.cpp:13
+msgid ""
+"Unselecting a test will invalidate your submission for Ubuntu Friendly. If "
+"you plan to participate in Ubuntu Friendly, please, select all tests. You "
+"can always skip individual tests if you don't have the needed equipment."
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:588
+msgid "Form"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:590
+msgid "OK"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:591
+msgid "Don't show me this message in the future"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:592 ../qt/frontend/ui_qtfront.h:606
+msgid "Tab 1"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:593
+msgid "10 tests completed out of 30 (30%)"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:595
+msgid "Lists of tests to run based on your system:"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:596
+msgid "Components"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:597
+msgid "Status"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:598
+msgid "Start testing"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:599
+msgid " Selection "
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:600 ../qt/frontend/ui_qtfront.h:601
+msgid "TextLabel"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:602
+msgid "Yes"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:604
+msgid "No"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:605
+msgid "Comment"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:607 ../qt/frontend/ui_qtfront.h:623
+msgid "Tab 2"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:610
+msgid " Run "
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:611
+msgid ""
+"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" "
+"\"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style "
+"type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Ubuntu'; font-size:10pt; font-"
+"weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+"right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" "
+"color:#ff0000;\">Warning: Not all tests have been run yet.</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+"right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" "
+"color:#ff0000;\">You can send the results now, but the submission won't make "
+"it to Ubuntu Friendly.</span></p></body></html>"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:617
+msgid "Personal details"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:619
+msgid "Email:"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:620
+msgid "Submit results"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:621
+msgid "View results"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:622
+msgid " Results "
+msgstr ""
 
 #~ msgid "_Desktop"
 #~ msgstr "_Escritoriu"
@@ -4336,11 +4771,40 @@ msgstr "Conexón a Internet afitada dafechu"
 #~ msgid "Exchange"
 #~ msgstr "Cambéu"
 
-#~ msgid "Done"
-#~ msgstr "Fecho"
-
 #~ msgid "Category"
 #~ msgstr "Categoría"
+
+#, python-format
+#~ msgid "Unable to start web browser to open %s."
+#~ msgstr "Nun pue arrancase'l ñavegador web p'abrir %s."
+
+#, python-format
+#~ msgid ""
+#~ "The following report has been generated for submission to the Launchpad "
+#~ "hardware database:\n"
+#~ "\n"
+#~ "  [[%s|View Report]]\n"
+#~ "\n"
+#~ "You can submit this information about your system by providing the e-mail "
+#~ "address you use to sign in to Launchpad. If you do not have a Launchpad "
+#~ "account, please register here:\n"
+#~ "\n"
+#~ "  https://launchpad.net/+login"
+#~ msgstr ""
+#~ "Xeneráronse los siguientes informes pa unviar a la base de datos de hardware "
+#~ "de Launchpad:\n"
+#~ "\n"
+#~ "  [[%s|View Report]]\n"
+#~ "\n"
+#~ "Puede unviar esta información sobro'l so sistema proporcionando la direición "
+#~ "de corréu electrónicu qu'usa p'acceder a Launchpad. Si nun tien una cuenta "
+#~ "de Launchpad, por favor, rexístrese equí:\n"
+#~ "\n"
+#~ "  https://launchpad.net/+login"
+
+#~ msgid "No e-mail address provided, not submitting to Launchpad."
+#~ msgstr ""
+#~ "Nun se proporcionó una direición de corréu-e, nun s'unviará res a Launchpad."
 
 #~ msgid "Detecting your sound device(s):"
 #~ msgstr "Deteutando los sos preseos de soníu:"
@@ -4454,6 +4918,9 @@ msgstr "Conexón a Internet afitada dafechu"
 
 #~ msgid "QA regression tests (destructive)"
 #~ msgstr "Pruebes de regresión QA (destructivu)"
+
+#~ msgid "Check that the hardware is able to run compiz."
+#~ msgstr "Comprueba que'l hardware ye quien a executar compiz."
 
 #~ msgid "Shorthand for --config=checkbox/plugins/jobs_info/blacklist."
 #~ msgstr "Atayu pa -config=checkbox/plugins/jobs_info/blacklist."
@@ -5585,6 +6052,9 @@ msgstr "Conexón a Internet afitada dafechu"
 #~ "Paez que funcionen los gráficos en 2D, la versión n'execución de X.Org ye: "
 #~ "$output"
 
+#~ msgid "Captures a screenshot."
+#~ msgstr "Captura la pantalla."
+
 #~ msgid ""
 #~ "In the future add the returned time as a benchmark result to the checkbox "
 #~ "report"
@@ -5649,6 +6119,13 @@ msgstr "Conexón a Internet afitada dafechu"
 
 #~ msgid "The following amount of memory was detected:"
 #~ msgstr "Deteutóse la siguiente cantidá de memoria:"
+
+#~ msgid ""
+#~ "ipmitool is required for ipmi testing. This checks for ipmitool and installs "
+#~ "it if not available."
+#~ msgstr ""
+#~ "ipmitool necesítase pa les pruebes de IPMI. Esto comprueba ipmitool ya "
+#~ "instálalu si nun ta disponible."
 
 #~ msgid "Run Colin King's Firmware Test Suite automated tests."
 #~ msgstr ""
@@ -5831,6 +6308,9 @@ msgstr "Conexón a Internet afitada dafechu"
 #~ "Calca los botones de rellumu del tecláu. Tendría d'apaecer una ventana \\ "
 #~ "d'estáu y el brillu tendría de camudar."
 
+#~ msgid "Optical Storage device read tests"
+#~ msgstr "Pruebes de llectura de preséu d'almacenamientu ópticu"
+
 #~ msgid ""
 #~ "The detected optical drive seems to support writing. Enter a blank CDROM \\ "
 #~ "into your drive and try writing to it."
@@ -5870,6 +6350,13 @@ msgstr "Conexón a Internet afitada dafechu"
 #~ "Coneuta un preséu d'almacenamiento USB a una ranura USB esterna d'esti "
 #~ "equipu. \\ Tien d'apaecer un icono nel escritoriu y nel menú «Llugares» "
 #~ "allugáu na parte superior de la pantalla."
+
+#~ msgid ""
+#~ "This test is automated and requires that you plug in at least one usb "
+#~ "storage device before running checkbox."
+#~ msgstr ""
+#~ "Esta prueba ye automática y requier que coneutes como mínimu un preséu "
+#~ "d'almacenamiento USB enantes d'executar checkbox."
 
 #~ msgid ""
 #~ "Display resolution change procedure: 1.- Open System->Preferences->Monitors "
@@ -6066,3 +6553,9 @@ msgstr "Conexón a Internet afitada dafechu"
 #~ "5.- Tien d'apaecer un iconu nel escritoriu. 6.- Fai clic col botón derechu "
 #~ "nel iconu y seleiciona «Espulsar volume». 7.- El DVD tendría d'espulsase y "
 #~ "l'iconu tendría de desapaecer del escritoriu."
+
+#~ msgid "Attaches the screenshot captured in info/screenshot."
+#~ msgstr "Axunta la captura de pantalla capturada en info/screenshot"
+
+#~ msgid "Benchmark for each disk "
+#~ msgstr "Prueba pa cada discu "

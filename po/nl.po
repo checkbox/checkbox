@@ -14,17 +14,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-01-06 12:39-0500\n"
+"POT-Creation-Date: 2012-03-28 10:50-0400\n"
 "PO-Revision-Date: 2012-03-30 10:01+0000\n"
 "Last-Translator: cumulus007 <Unknown>\n"
 "Language-Team: Dutch <ubuntu-l10n-nl@lists.ubuntu.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-03-31 04:48+0000\n"
-"X-Generator: Launchpad (build 15032)\n"
+"X-Launchpad-Export-Date: 2012-04-03 04:38+0000\n"
+"X-Generator: Launchpad (build 15052)\n"
 
-#: ../gtk/checkbox-gtk.ui.h:5
+#: ../gtk/checkbox-gtk.ui.h:8
 msgid "_Skip this test"
 msgstr "_Test overslaan"
 
@@ -36,7 +36,7 @@ msgstr "Één van: debug, info, warning, error of critical"
 msgid "Press any key to continue..."
 msgstr "Druk op een toets om verder te gaan…"
 
-#: ../checkbox_gtk/gtk_interface.py:503
+#: ../checkbox_gtk/gtk_interface.py:517
 msgid "_Test Again"
 msgstr "Opnieuw _testen"
 
@@ -56,30 +56,30 @@ msgstr "Informatie met de server uitwisselen…"
 msgid "Building report..."
 msgstr "Rapport samenstellen…"
 
-#: ../gtk/checkbox-gtk.ui.h:6 ../checkbox_cli/cli_interface.py:444
+#: ../gtk/checkbox-gtk.ui.h:1 ../checkbox_cli/cli_interface.py:444
 #: ../checkbox_urwid/urwid_interface.py:267
 msgid "Further information:"
 msgstr "Extra informatie:"
 
-#: ../gtk/checkbox-gtk.ui.h:10
+#: ../gtk/checkbox-gtk.ui.h:2
 msgid "Ne_xt"
 msgstr "Vol_gende"
 
 #. Title of the user interface
-#: ../gtk/checkbox-gtk.ui.h:1 ../qt/checkbox-qt.desktop.in.h:1
-#: ../plugins/user_interface.py:43
+#: ../gtk/checkbox-gtk.ui.h:3 ../qt/checkbox-qt.desktop.in.h:1
+#: ../plugins/user_interface.py:43 ../qt/frontend/ui_qtfront.h:589
 msgid "System Testing"
 msgstr "Systeem testen"
 
-#: ../gtk/checkbox-gtk.ui.h:8
+#: ../gtk/checkbox-gtk.ui.h:4
 msgid "_Deselect All"
 msgstr "_Niets selecteren"
 
-#: ../gtk/checkbox-gtk.ui.h:4
+#: ../gtk/checkbox-gtk.ui.h:5
 msgid "_No"
 msgstr "_Nee"
 
-#: ../gtk/checkbox-gtk.ui.h:9
+#: ../gtk/checkbox-gtk.ui.h:6
 msgid "_Previous"
 msgstr "_Vorige"
 
@@ -87,11 +87,11 @@ msgstr "_Vorige"
 msgid "_Select All"
 msgstr "Alles _selecteren"
 
-#: ../gtk/checkbox-gtk.ui.h:2 ../checkbox_gtk/gtk_interface.py:538
+#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:553
 msgid "_Test"
 msgstr "_Testen"
 
-#: ../gtk/checkbox-gtk.ui.h:3
+#: ../gtk/checkbox-gtk.ui.h:10
 msgid "_Yes"
 msgstr "_Ja"
 
@@ -200,29 +200,19 @@ msgid ""
 "    This test will check that a USB audio device works correctly\n"
 "STEPS:\n"
 "    1. Connect a USB audio device to your system\n"
-"    2. Open the volume control application by left-clicking on the speaker "
-"icon in the panel and selecting \"Sound Settings\"\n"
-"    3. Select the \"Input\" tab and choose your USB device\n"
-"    4. Select the \"Output\" tab and choose your USB device\n"
-"    5. Click \"Test\", then speak into the microphone\n"
-"    6. After a few seconds, your speech will be played back to you\n"
+"    2. Click \"Test\", then speak into the microphone\n"
+"    3. After a few seconds, your speech will be played back to you\n"
 "VERIFICATION:\n"
 "    Did you hear your speech played back through the USB headphones?"
 msgstr ""
 "DOEL:\n"
-"    Deze test controleert of uw USB-adioapparaat goed werkt\n"
+"   Deze test zal controleren of een USB audioapparaat juist werkt\n"
 "STAPPEN:\n"
-"    1. Verbind een usb-audioapparaat met uw systeem.\n"
-"    2. Open daarna de geluidsvoorkeurentoepassing door links op het "
-"luidsprekerpictogram in het paneel te klikken. Ga daarna naar "
-"‘Geluidsvoorkeuren…’\n"
-"    3. Ga naar het ‘Invoer’-tabblad en kies uw usb-apparaat.\n"
-"    4. Ga daarna naar het ‘Uitvoer’-tabblad en kies uw usb-apparaat.\n"
-"    5. Klik als u klaar bent op ‘Testen’ en spreek duidelijk in de "
-"microfoon.\n"
-"    6. Na enkele seconden zal uw ingesproken tekst worden "
-"afgespeeld.VERIFICATIE:\n"
-"    Hoorde u uzelf terug?"
+"    1. Sluit een USB-audioapparaat op uw computer aan\n"
+"    2. Klik op \"Testen\", spreek dan in de microfoon\n"
+"    3. Na een paar seconden, zal uw spraak worden herhaald\n"
+"CONTROLE:\n"
+"    Heeft u uw ingesproken tekst gehoord via de USB koptelefoon?"
 
 #. description
 #: ../jobs/audio.txt.in:99
@@ -246,16 +236,6 @@ msgstr ""
 "   Deze test zal proberen de ‘Autotest Suite’ te installeren en uit te "
 "voeren. Deze test kan schade veroorzaken, daarom is deze test standaard "
 "geblokkeerd."
-
-#. description
-#: ../jobs/bluetooth.txt.in:7
-msgid ""
-"This test will detect your Bluetooth device and output the device's hardware "
-"address.  If no device is found, the test will exit with an error."
-msgstr ""
-"Deze test zal uw Bluetooth-apparaat detecteren en het hardware-adres ervan "
-"rapporteren. Als er geen apparaat gevonden wordt, zal de test eindigen met "
-"een foutmelding."
 
 #. description
 #: ../jobs/bluetooth.txt.in:8
@@ -422,16 +402,18 @@ msgid ""
 "PURPOSE:\n"
 "    This test will check that the built-in camera works\n"
 "STEPS:\n"
-"    1. Click on Test to display a video capture from the camera\n"
+"    1. Click on Test to display a video capture from the camera for ten "
+"seconds.\n"
 "VERIFICATION:\n"
 "    Did you see the video capture?"
 msgstr ""
 "DOEL:\n"
-"    Deze test zal controleren of uw ingebouwde camera werkt\n"
+"    Deze test zal controleren of de ingebouwde camera werkt\n"
 "STAPPEN:\n"
-"    1. Klik op Test om een opname van de camera te tonen\n"
-"VERIFICATIE:\n"
-"    Zag u de video-opname?"
+"    1. Klik op 'Test' om de videobeelden van de camera tien seconden te "
+"laten zien.\n"
+"CONTROLE:\n"
+"    Zag u het beeld verschijnen?"
 
 #. description
 #: ../jobs/camera.txt.in:33
@@ -449,27 +431,6 @@ msgstr ""
 "    1. Klik op de testknop om een beeld van uw camera weer te geven\n"
 "VERIFICATIE:\n"
 "    Zag u de foto?"
-
-#. description
-#: ../jobs/camera.txt.in:49
-msgid ""
-"PURPOSE:\n"
-"    This test will check that you can capture video with the built-in "
-"camera\n"
-"STEPS:\n"
-"    1. Click on Test to capture video to a file (it will automatically open "
-"in Totem)\n"
-"VERIFICATION:\n"
-"    Did you see and hear the capture?"
-msgstr ""
-"DOEL:\n"
-"    Deze test zal controleren of u een video kunt opnemen met de ingebouwde "
-"camera\n"
-"STAPPEN:\n"
-"    1. Klik op Test om een video op te nemen (het bestand zal automatisch "
-"geopend worden met Totem)\n"
-"VERIFICATIE:\n"
-"    Zag en hoorde u uw opname?"
 
 #. description
 #: ../jobs/codecs.txt.in:7
@@ -608,8 +569,13 @@ msgstr "Op het systeem aangesloten schijven detecteren en tonen."
 
 #. description
 #: ../jobs/disk.txt.in:9
-msgid "Benchmark for each disk "
-msgstr "Benchmark voor elke schrijf "
+msgid "Benchmark for each disk"
+msgstr "Prestatietest voor elke schijf"
+
+#. description
+#: ../jobs/disk.txt.in:23
+msgid "Check stats changes for each disk"
+msgstr "Statistiekwijzigingen voor elke schijf controleren"
 
 #. description
 #: ../jobs/disk.txt.in:40
@@ -708,30 +674,65 @@ msgstr ""
 "    Kon u het scherm met uw fingerafdruk ontgrendelen?"
 
 #. description
-#: ../jobs/firewire.txt.in:3
+#: ../jobs/firewire.txt.in:4
 msgid ""
 "PURPOSE:\n"
-"    This test will check that the firewire port works\n"
+"    This test will check the system can detect the insertion of a FireWire "
+"HDD\n"
 "STEPS:\n"
-"    1. Plug a Firewire HDD into the computer\n"
-"    2. Either a window asking which action should be performed (open folder, "
-"photo manager, etc) or a file browser will open.\n"
-"    3. Copy some files from your internal HDD to the firewire HDD\n"
-"    4. Copy some files from the firewire HDD to your internal HDD\n"
+"    1. Click 'Test' to begin the test. This test will\n"
+"       timeout and fail if the insertion has not been detected within 10 "
+"seconds.\n"
+"    2. Plug a FireWire HDD into an available FireWire port.\n"
 "VERIFICATION:\n"
-"    Do the copy operations work as expected?"
+"    The verification of this test is automated. Do not change the "
+"automatically\n"
+"    selected result"
 msgstr ""
 "DOEL:\n"
-"    Met deze test kunt u controleren of de firewire-poort goed werkt\n"
+"    Deze test zal controleren of het systeem het aansluiten van een FireWire "
+"harde schijf detecteert\n"
 "STAPPEN:\n"
-"    1.- Sluit een Firewire-schijf aan op de computer.\n"
-"    2.- Er verschijnt een venster dat vraagt welke actie er uitgevoerd moet "
-"worden (map openen, fotobeheer, enz.).\n"
-"    3.- Kopieer enkele bestanden van uw interne harde schijf naar de "
-"Firewire-schijf.\n"
-"    4.- Kopieer enkele bestanden van de Firewire-schijf naar uw interne "
-"harde schijf.VERIFICATIE:\n"
-"    Kon u bestanden van en naar de Firewire-schijf kopieren?"
+"    1. Klik op 'Test' om de test te starten. De test zal\n"
+"       mislukken indien het aansluiten niet binnen 10 seconden gedetecteerd "
+"wordt.\n"
+"CONTROLE:\n"
+"    De controle van deze test verloopt automatisch. Verander het "
+"automatisch\n"
+"    geselecteerde resultaat niet."
+
+#. description
+#: ../jobs/firewire.txt.in:19
+msgid ""
+"This is an automated test which performs read/write operations on an "
+"attached FireWire HDD"
+msgstr ""
+"Dit is een automatische test die lees/schrijf commando's op een aangesloten "
+"FireWire harde schijf uitvoert."
+
+#. description
+#: ../jobs/firewire.txt.in:27
+msgid ""
+" PURPOSE:\n"
+"   This test will check the system can detect the removal of a FireWire HDD\n"
+" STEPS:\n"
+"   1. Click 'Test' to begin the test. This test will timeout and fail if\n"
+"      the removal has not been detected within 10 seconds.\n"
+"   2. Remove the previously attached FireWire HDD from the FireWire port.\n"
+" VERIFICATION:\n"
+"   The verification of this test is automated. Do not change the "
+"automatically\n"
+"   selected result"
+msgstr ""
+" DOEL:\n"
+"   Deze test zal controleren of het systeem het afkoppelen van een FireWire "
+"harde schijf kan detecteren\n"
+" STAPPEN:\n"
+"   1. Klik op 'Test' om de test te beginnen. De test zal mislukken indien\n"
+"      het loskoppelen niet binnen 10 seconden is gedetecteerd.\n"
+" CONTROLE:\n"
+"   De controle van deze test verloopt automatisch. Verander het automatisch\n"
+"   geselecteerde resultaat niet"
 
 #. description
 #: ../jobs/floppy.txt.in:4
@@ -877,18 +878,9 @@ msgstr ""
 "    Ziet u gekleurde balken en statische ruis?"
 
 #. description
-#: ../jobs/graphics.txt.in:107
-msgid ""
-"PURPOSE:\n"
-"    This test checks the detected video modes\n"
-"STEPS:\n"
-"    1. The following screens and video modes have been detected on your "
-"system\n"
-"INFO:\n"
-"    $output\n"
-"VERIFICATION:\n"
-"    Are those correct?"
-msgstr ""
+#: ../jobs/graphics.txt.in:106
+msgid "Check that VESA drivers are not in use"
+msgstr "Controleren of de VESA stuurprogramma's niet in gebruik zijn"
 
 #. description
 #: ../jobs/graphics.txt.in:113
@@ -908,9 +900,14 @@ msgstr ""
 "    Werkte de monitor in elke modus?"
 
 #. description
+#: ../jobs/graphics.txt.in:126
+msgid "Check that hardware is able to run compiz"
+msgstr "Controleren of de hardware in staat is Compiz te draaien"
+
+#. description
 #: ../jobs/graphics.txt.in:133
-msgid "Check that the hardware is able to run compiz."
-msgstr "Controleer of de hardware compiz kan draaien."
+msgid "Check that hardware is able to run Unity 3D"
+msgstr "Controleren of de hardware in staat is Unity 3D te draaien"
 
 #. description
 #: ../jobs/graphics.txt.in:139
@@ -934,6 +931,55 @@ msgstr ""
 "VERIFICATIE:\n"
 "    1. Verscheen de 3D animatie?\n"
 "    2. Was de animatie niet schokkerig en of traag?"
+
+#. description
+#: ../jobs/graphics.txt.in:159
+msgid ""
+"PURPOSE:\n"
+"    Do some challenging operations and check for lockup on the GPU\n"
+"STEPS:\n"
+"    1. Create 2 glxgears windows and move them quickly\n"
+"    2. Switch workspaces/viewports with wmctrl\n"
+"    3. Launch a Flash playback in firefox\n"
+"    4. Suspend/resume\n"
+"VERIFICATION:\n"
+"    1. Atfer a 60s workload, check kern.log for reported GPU errors"
+msgstr ""
+
+#. description
+#: ../jobs/graphics.txt.in:174
+msgid ""
+"PURPOSE:\n"
+"    Take a screengrab of the current screen (logged on Unity desktop)\n"
+"STEPS:\n"
+"    1. Take picture using USB webcam\n"
+"VERIFICATION:\n"
+"    1. Review attachment manually later"
+msgstr ""
+
+#. description
+#: ../jobs/graphics.txt.in:186 ../jobs/suspend.txt.in:316
+msgid "Attaches the screenshot captured in graphics/screenshot."
+msgstr ""
+
+#. description
+#: ../jobs/graphics.txt.in:194
+msgid ""
+"PURPOSE:\n"
+"    Take a screengrab of the current screen during fullscreen video "
+"playback\n"
+"STEPS:\n"
+"    1. Start a fullscreen video playback\n"
+"    2. Take picture using USB webcam after a few seconds\n"
+"VERIFICATION:\n"
+"    1. Review attachment manually later"
+msgstr ""
+
+#. description
+#: ../jobs/graphics.txt.in:207
+msgid ""
+"Attaches the screenshot captured in graphics/screenshot_fullscreen_video."
+msgstr ""
 
 #. description
 #: ../jobs/hibernate.txt.in:7
@@ -1037,52 +1083,42 @@ msgid "Attaches a list of the currently running kernel modules."
 msgstr "Voegt een lijst van de huidige actieve kernelmodules."
 
 #. description
-#: ../jobs/info.txt.in:85
-msgid "Captures a screenshot."
-msgstr "Maakt een schermafdruk."
-
-#. description
-#: ../jobs/info.txt.in:91
-msgid "Attaches the screenshot captured in info/screenshot."
-msgstr "Voegt de schermafdruk die in info/schermafdruk gemaakt is toe."
-
-#. description
-#: ../jobs/info.txt.in:96
+#: ../jobs/info.txt.in:82
 msgid "Gather log from the Firmware Test Suite run."
 msgstr "Loggegevens van de ‘Firmware Test Suite’ verzamelen."
 
 #. description
-#: ../jobs/info.txt.in:103
+#: ../jobs/info.txt.in:89
 msgid "Attaches the contents of /proc/acpi/sleep if it exists."
 msgstr "Voegt de inhoud van /proc/acpi/sleep toe, als het bestaat."
 
 #. description
-#: ../jobs/info.txt.in:107
+#: ../jobs/info.txt.in:93
 msgid "Bootchart information."
 msgstr "Bootchart-informatie."
 
 #. description
-#: ../jobs/info.txt.in:116
+#: ../jobs/info.txt.in:102
 msgid "SATA/IDE device information."
 msgstr "SATA/IDE-informatie."
 
 #. description
-#: ../jobs/info.txt.in:133
+#: ../jobs/info.txt.in:119
 msgid "Attaches the bootchart png file for bootchart runs"
 msgstr "Voegt het bootchart png-bestand toe"
 
 #. description
-#: ../jobs/info.txt.in:142
+#: ../jobs/info.txt.in:128
 msgid "Attaches the bootchart log for bootchart test runs."
 msgstr "Voegt het bootchart-logbestand toe."
 
 #. description
-#: ../jobs/info.txt.in:150
+#: ../jobs/info.txt.in:136
 msgid "installs the installer bootchart tarball if it exists."
 msgstr "Installeert de installer bootchart tarball als deze bestaat."
 
 #. description
-#: ../jobs/info.txt.in:155
+#: ../jobs/info.txt.in:141
 msgid "Attaches the installer debug log if it exists."
 msgstr "Voegt het installer-debuglog toe, als deze bestaat."
 
@@ -1245,19 +1281,27 @@ msgstr ""
 "tweede keer weer ingeschakeld?"
 
 #. description
-#: ../jobs/keys.txt.in:76
+#: ../jobs/keys.txt.in:74
 msgid ""
 "PURPOSE:\n"
 "    This test will test the media keys of your keyboard\n"
 "STEPS:\n"
-"    1. Click test to launch the media player\n"
-"    2. Press the play/pause key on the keyboard\n"
-"    3. Press the forward key on the keyboard\n"
-"    4. Press the backward key on the keyboard\n"
-"    5. Press stop key on the keyboard\n"
+"    1. Click test to open a window on which to test the media control keys.\n"
+"    2. If all the keys work, the test will be marked as passed.\n"
+"    3. If your computer has no media control keys, Skip this test.\n"
 "VERIFICATION:\n"
 "    Do the keys work as expected?"
 msgstr ""
+"DOEL:\n"
+"    Met deze test kunt u de werking van de mediatoetsen op uw toetsenbord "
+"controleren.\n"
+"STAPPEN:\n"
+"    1. Klik op ‘Test’ om een venster te openen waarin u de mediatoetsen kunt "
+"testen.\n"
+"    2. Als alle toetsen werken zal deze test slagen.\n"
+"    3. Als uw computer geen mediatoetsen heeft kunt u deze test overslaan.\n"
+"VERIFICATIE:\n"
+"    Werken de mediatoetsen naar behoren?"
 
 #. description
 #: ../jobs/local.txt.in:3
@@ -1468,348 +1512,515 @@ msgstr ""
 "   Deze test installeert en draait de Mago Automated Desktop Testing Suite."
 
 #. description
-#: ../jobs/mediacard.txt.in:3
+#: ../jobs/mediacard.txt.in:4
 msgid ""
 "PURPOSE:\n"
-"    This test will check your system Secure Digital (SD) media card support\n"
+"    This test will check that the systems media card reader can\n"
+"    detect the insertion of a Multimedia Card (MMC) media\n"
 "STEPS:\n"
-"    1. Plug a SD media card into the computer\n"
-"    2. An icon should appear on the Launcher\n"
-"    3. Right click on the Launcher icon and select \"Safely Remove Drive\"\n"
-"    4. The icon should disappear from the Launcher\n"
+"    1. Click \"Test\" and insert an MMC card into the reader.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
+"    2. Do not unplug the device after the test.\n"
 "VERIFICATION:\n"
-"    Does the icon automatically appear/disappear?"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
 msgstr ""
 "DOEL:\n"
-"    Met deze test kunt u controleren of uw systeem Secure Digital (SD) "
-"kaarten kan gebruiken\n"
+"    Deze test zal controleren of de mediakaartlezer in het systeem kan\n"
+"    detecteren of er een MultiMedia Card (MMC) is ingevoerd.\n"
 "STAPPEN:\n"
-"    1.- Plaats een SD-kaart in de computer.\n"
-"    2.- Er moet pictogram op het bureaublad en in het ‘Locaties’-menu aan de "
-"bovenrand van het scherm verschijnen.\n"
-"    3.- Klik met de rechter muisknop op het bureaubladpictogram en selecteer "
-"‘Station veilig verwijderen’.\n"
-"    4.- Het pictogram zou zowel van het bureaublad als uit het ‘Locaties’-"
-"menu moeten verdwijnen.VERIFICATIE:\n"
-"    Kreeg u het pictogram te zien, en verdween het weer toen u de kaart "
-"veilig verwijderde?"
+"    1. Klik op \"Test\" en plaats een MMC-kaart in uw kaartlezer.\n"
+"       (Let wel: Deze test zal automatisch afbreken na 10 seconden.)\n"
+"    2. Ontkoppel het apparaat niet na de test.\n"
+"CONTROLE:\n"
+"    De controle van deze test gebeurt automatisch. Verander het\n"
+"    automatisch geselecteerde resultaat niet."
 
 #. description
-#: ../jobs/mediacard.txt.in:17
+#: ../jobs/mediacard.txt.in:20
+msgid ""
+"This test is automated and executes after the mediacard/mmc-insert test is "
+"run. It tests reading and writing to the MMC card."
+msgstr ""
+"Deze test verloopt automatisch en wordt gestart nadat de MMC-invoertest is "
+"gedraaid. Het test het lezen en schrijven naar de MMC kaart."
+
+#. description
+#: ../jobs/mediacard.txt.in:28
 msgid ""
 "PURPOSE:\n"
-"    This test will check your system Secure Digital (SD) media card support "
-"after suspend\n"
+"    This test will check that the system correctly detects\n"
+"    the removal of the MMC card from the systems card reader.\n"
 "STEPS:\n"
-"    1. Plug a SD media card into the computer\n"
-"    2. An icon should appear on the Launcher\n"
-"    3. Right click on the Launcher icon and select \"Safely Remove Drive\"\n"
-"    4. The icon should disappear from the Launcher\n"
+"    1. Click \"Test\" and remove the MMC card from the reader.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
 "VERIFICATION:\n"
-"    Does the icon automatically appear/disappear?"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
 msgstr ""
 "DOEL:\n"
-"    Met deze test kunt u controleren of uw systeem Secure Digital (SD) "
-"kaarten kan gebruiken nadat het systeem in slaapstand is geweest\n"
+"    Deze test zal controleren of de mediakaartlezer in het systeem kan\n"
+"    detecteren of er een MultiMedia Card (MMC) is ontkoppeld.\n"
 "STAPPEN:\n"
-"    1.- Plaats een SD-kaart in de computer.\n"
-"    2.- Er moet pictogram op het bureaublad en in het ‘Locaties’-menu aan de "
-"bovenrand van het scherm verschijnen.\n"
-"    3.- Klik met de rechter muisknop op het bureaubladpictogram en selecteer "
-"‘Station veilig verwijderen’.\n"
-"    4.- Het pictogram zou zowel van het bureaublad als uit het ‘Locaties’-"
-"menu moeten verdwijnen.VERIFICATIE:\n"
-"    Kreeg u het pictogram te zien, en verdween het weer toen u de kaart "
-"veilig verwijderde?"
+"    1. Klik op \"Test\" en haal de MMC kaart uit uw kaartlezer.\n"
+"       (Let wel: Deze test zal automatisch afbreken na 10 seconden.)\n"
+"CONTROLE:\n"
+"    De controle van deze test gebeurt automatisch. Verander het\n"
+"    automatisch geselecteerde resultaat niet."
 
 #. description
-#: ../jobs/mediacard.txt.in:30
+#: ../jobs/mediacard.txt.in:43
 msgid ""
 "PURPOSE:\n"
-"    This test will check your system Secure Digital High Capacity (SDHC) "
-"media card support\n"
+"    This test will check that the systems media card reader can\n"
+"    detect the insertion of an MMC card after the system has been suspended\n"
 "STEPS:\n"
-"    1. Plug a SDHC media card into the computer\n"
-"    2. An icon should appear on the Launcher\n"
-"    3. Right click on the Launcher icon and select \"Safely Remove Drive\"\n"
-"    4. The icon should disappear from the Launcher\n"
+"    1. Click \"Test\" and insert an MMC card into the reader.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
+"    2. Do not unplug the device after the test.\n"
 "VERIFICATION:\n"
-"    Does the icon automatically appear/disappear?"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
 msgstr ""
 "DOEL:\n"
-"    Met deze test kunt u controleren of uw systeem Secure Digital High "
-"Capacity (SDHC) kaarten kan gebruiken\n"
+"    Met deze test kunt u controleren of de mediakaartlezer van het systeem\n"
+"    het plaatsen van een MMC-kaart kan detecteren nadat het systeem in\n"
+"    slaapstand is geweest.\n"
 "STAPPEN:\n"
-"    1.- Plaats een SDHC-kaart in de computer.\n"
-"    2.- Er moet pictogram op het bureaublad en in het ‘Locaties’-menu aan de "
-"bovenrand van het scherm verschijnen.\n"
-"    3.- Klik met de rechter muisknop op het bureaubladpictogram en selecteer "
-"‘Station veilig verwijderen’.\n"
-"    4.- Het pictogram zou zowel van het bureaublad als uit het ‘Locaties’-"
-"menu moeten verdwijnen.VERIFICATIE:\n"
-"    Kreeg u het pictogram te zien, en verdween het weer toen u de kaart "
-"veilig verwijderde?"
+"    1. Klik op ‘Test’ en plaats een MMC-kaart in de lezer.\n"
+"       (Let op: deze test heeft een time-out van 10 seconden.)\n"
+"    2. Laat de kaart in de lezer zitten nadat de test voltooid is.\n"
+"VERIFICATIE:\n"
+"    De verificatie van deze test is geautomatiseerd. Verander het "
+"automatisch\n"
+"    gedetecteerde resultaat niet."
 
 #. description
-#: ../jobs/mediacard.txt.in:44
+#: ../jobs/mediacard.txt.in:59
 msgid ""
-"    This test will check your system Secure Digital High Capacity (SDHC) "
-"media card support after suspend\n"
-"STEPS:\n"
-"    1. Plug a SDHC media card into the computer\n"
-"    2. An icon should appear on the Launcher\n"
-"    3. Right click on the Launcher icon and select \"Safely Remove Drive\"\n"
-"    4. The icon should disappear from the Launcher\n"
-"VERIFICATION:\n"
-"    Does the icon automatically appear/disappear?"
+"This test is automated and executes after the mediacard/mmc-insert-after-"
+"suspend test is run. It tests reading and writing to the MMC card after the "
+"system has been suspended."
 msgstr ""
-"    DOEL:\n"
-"    Met deze test kunt u controleren of uw systeem Secure Digital (SDHC)-"
-"kaarten kan gebruiken nadat het systeem in slaapstand is geweest\n"
-"STAPPEN:\n"
-"    1.- Plaats een SDHC-kaart in de computer.\n"
-"    2.- Er moet pictogram op het bureaublad en in het ‘Locaties’-menu aan de "
-"bovenrand van het scherm verschijnen.\n"
-"    3.- Klik met de rechter muisknop op het bureaubladpictogram en selecteer "
-"‘Station veilig verwijderen’.\n"
-"    4.- Het pictogram zou zowel van het bureaublad als uit het ‘Locaties’-"
-"menu moeten verdwijnen.VERIFICATIE:\n"
-"    Kreeg u het pictogram te zien, en verdween het weer toen u de kaart "
-"veilig verwijderde?"
+"Deze test verloopt automatisch en start nadat de mediacard/mmc-invoer-na-"
+"slaapstand is gedraaid. Het test het lezen en schrijven naar de MMC kaart "
+"nadat het systeem in slaapstand is geweest."
 
 #. description
-#: ../jobs/mediacard.txt.in:56
+#: ../jobs/mediacard.txt.in:67
 msgid ""
 "PURPOSE:\n"
-"    This test will check your system Multi Media Card (MMC) media card "
-"support\n"
+"    This test will check that the system correctly detects the removal\n"
+"    of an MMC card from the systems card reader after the system has been "
+"suspended.\n"
 "STEPS:\n"
-"    1. Plug a MMC media card into the computer\n"
-"    2. An icon should appear on the Launcher\n"
-"    3. Right click on the Launcher icon and select \"Safely Remove Drive\"\n"
-"    4. The icon should disappear from the Launcher\n"
+"    1. Click \"Test\" and remove the MMC card from the reader.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
 "VERIFICATION:\n"
-"    Does the icon automatically appear/disappear?"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
 msgstr ""
 "DOEL:\n"
-"    Met deze test kunt u controleren of uw systeem Multi Media Card (MMC) "
-"kaarten kan gebruiken\n"
+"    Met deze test kunt u controleren of de mediakaartlezer van het systeem\n"
+"    het verwijderen van een MMC-kaart kan detecteren nadat het systeem in\n"
+"    slaapstand is geweest.\n"
 "STAPPEN:\n"
-"    1.- Plaats een MMC-kaart in de computer.\n"
-"    2.- Er moet pictogram op het bureaublad en in het ‘Locaties’-menu aan de "
-"bovenrand van het scherm verschijnen.\n"
-"    3.- Klik met de rechter muisknop op het bureaubladpictogram en selecteer "
-"‘Station veilig verwijderen’.\n"
-"    4.- Het pictogram zou zowel van het bureaublad als uit het ‘Locaties’-"
-"menu moeten verdwijnen.VERIFICATIE:\n"
-"    Kreeg u het pictogram te zien, en verdween het weer toen u de kaart "
-"veilig verwijderde?"
+"    1. Klik op ‘Test’ en verwijder de MMC-kaart uit de lezer.\n"
+"       (Let op: deze test heeft een time-out van 10 seconden.)\n"
+"VERIFICATIE:\n"
+"    De verificatie van deze test is geautomatiseerd. Verander het "
+"automatisch\n"
+"    gedetecteerde resultaat niet."
 
 #. description
-#: ../jobs/mediacard.txt.in:70
+#: ../jobs/mediacard.txt.in:81
 msgid ""
 "PURPOSE:\n"
-"    This test will check your system Multi Media Card (MMC) media card "
-"support after suspend\n"
+"    This test will check that the systems media card reader can\n"
+"    detect the insertion of a Secure Digital (SD) media card\n"
 "STEPS:\n"
-"    1. Plug a MMC media card into the computer\n"
-"    2. An icon should appear on the Launcher\n"
-"    3. Right click on the Launcher icon and select \"Safely Remove Drive\"\n"
-"    4. The icon should disappear from the Launcher\n"
+"    1. Click \"Test\" and insert an SD card into the reader.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
+"    2. Do not unplug the device after the test.\n"
 "VERIFICATION:\n"
-"    Does the icon automatically appear/disappear?"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
 msgstr ""
 "DOEL:\n"
-"    Met deze test kunt u controleren of uw systeem Multi Media Card (MMC) "
-"kaarten kan gebruiken nadat het systeem in slaapstand is geweest\n"
+"    Met deze test kunt u controleren of de mediakaartlezer van het systeem\n"
+"    het plaatsen van een Secure Digital (SD) media-kaart kan detecteren "
+"nadat het systeem in\n"
+"    slaapstand is geweest.\n"
 "STAPPEN:\n"
-"    1.- Plaats een MMC-kaart in de computer.\n"
-"    2.- Er moet pictogram op het bureaublad en in het ‘Locaties’-menu aan de "
-"bovenrand van het scherm verschijnen.\n"
-"    3.- Klik met de rechter muisknop op het bureaubladpictogram en selecteer "
-"‘Station veilig verwijderen’.\n"
-"    4.- Het pictogram zou zowel van het bureaublad als uit het ‘Locaties’-"
-"menu moeten verdwijnen.VERIFICATIE:\n"
-"    Kreeg u het pictogram te zien, en verdween het weer toen u de kaart "
-"veilig verwijderde?"
-
-#. description
-#: ../jobs/mediacard.txt.in:83
-msgid ""
-"PURPOSE:\n"
-"    This test will check your system Memory Stick (MS) media card support\n"
-"STEPS:\n"
-"    1. Plug a MS media card into the computer\n"
-"    2. An icon should appear on the Launcher\n"
-"    3. Right click on the Launcher icon and select \"Safely Remove Drive\"\n"
-"    4. The icon should disappear from the Launcher\n"
-"VERIFICATION:\n"
-"    Does the icon automatically appear/disappear?"
-msgstr ""
-"DOEL:\n"
-"    Met deze test kunt u controleren of uw systeem Memory Stick (MS) kaarten "
-"kan gebruiken\n"
-"STAPPEN:\n"
-"    1.- Plaats een MS-kaart in de computer.\n"
-"    2.- Er moet pictogram op het bureaublad en in het ‘Locaties’-menu aan de "
-"bovenrand van het scherm verschijnen.\n"
-"    3.- Klik met de rechter muisknop op het bureaubladpictogram en selecteer "
-"‘Station veilig verwijderen’.\n"
-"    4.- Het pictogram zou zowel van het bureaublad als uit het ‘Locaties’-"
-"menu moeten verdwijnen.VERIFICATIE:\n"
-"    Kreeg u het pictogram te zien, en verdween het weer toen u de kaart "
-"veilig verwijderde?"
+"    1. Klik op ‘Test’ en plaats een SD-kaart in de lezer.\n"
+"       (Let op: deze test heeft een time-out van 10 seconden.)\n"
+"    2. Laat de kaart in de lezer zitten nadat de test voltooid is.\n"
+"VERIFICATIE:\n"
+"    De verificatie van deze test is geautomatiseerd. Verander het "
+"automatisch\n"
+"    gedetecteerde resultaat niet."
 
 #. description
 #: ../jobs/mediacard.txt.in:97
 msgid ""
+"This test is automated and executes after the mediacard/sd-insert test is "
+"run. It tests reading and writing to the SD card."
+msgstr ""
+"Deze test verloopt automatisch en wordt gestart nadat de SD-invoertest is "
+"gedraaid. Het test het lezen en schrijven naar de SD kaart."
+
+#. description
+#: ../jobs/mediacard.txt.in:105
+msgid ""
 "PURPOSE:\n"
-"    This test will check your system Memory Stick (MS) media card support "
-"after suspend\n"
+"    This test will check that the system correctly detects\n"
+"    the removal of an SD card from the systems card reader.\n"
 "STEPS:\n"
-"    1. Plug a MS media card into the computer\n"
-"    2. An icon should appear on the Launcher\n"
-"    3. Right click on the Launcher icon and select \"Safely Remove Drive\"\n"
-"    4. The icon should disappear from the Launcher\n"
+"    1. Click \"Test\" and remove the SD card from the reader.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
 "VERIFICATION:\n"
-"    Does the icon automatically appear/disappear?"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
 msgstr ""
 "DOEL:\n"
-"    Met deze test kunt u controleren of uw systeem Memory Stick (MS) kaarten "
-"kan gebruiken nadat het systeem in slaapstand is geweest\n"
+"    Met deze test kunt u controleren of de mediakaartlezer van het systeem\n"
+"    het verwijderen van een SD-kaart kan detecteren nadat het systeem in\n"
+"    slaapstand is geweest.\n"
 "STAPPEN:\n"
-"    1.- Plaats een MS-kaart in de computer.\n"
-"    2.- Er moet pictogram op het bureaublad en in het ‘Locaties’-menu aan de "
-"bovenrand van het scherm verschijnen.\n"
-"    3.- Klik met de rechter muisknop op het bureaubladpictogram en selecteer "
-"‘Station veilig verwijderen’.\n"
-"    4.- Het pictogram zou zowel van het bureaublad als uit het ‘Locaties’-"
-"menu moeten verdwijnen.VERIFICATIE:\n"
-"    Kreeg u het pictogram te zien, en verdween het weer toen u de kaart "
-"veilig verwijderde?"
+"    1. Klik op ‘Test’ en verwijder de SD-kaart uit de lezer.\n"
+"       (Let op: deze test heeft een time-out van 10 seconden.)\n"
+"VERIFICATIE:\n"
+"    De verificatie van deze test is geautomatiseerd. Verander het "
+"automatisch\n"
+"    gedetecteerde resultaat niet."
 
 #. description
-#: ../jobs/mediacard.txt.in:110
+#: ../jobs/mediacard.txt.in:120
 msgid ""
 "PURPOSE:\n"
-"    This test will check your system Memory Stick Pro (MSP) media card "
-"support\n"
+"    This test will check that the systems media card reader can\n"
+"    detect the insertion of an SD card after the system has been suspended\n"
 "STEPS:\n"
-"    1. Plug a MSP media card into the computer\n"
-"    2. An icon should appear on the Launcher\n"
-"    3. Right click on the Launcher icon and select \"Safely Remove Drive\"\n"
-"    4. The icon should disappear from the Launcher\n"
+"    1. Click \"Test\" and insert an SD card into the reader.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
+"    2. Do not unplug the device after the test.\n"
 "VERIFICATION:\n"
-"    Does the icon automatically appear/disappear?"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
 msgstr ""
 "DOEL:\n"
-"    Met deze test kunt u controleren of uw systeem Memory Stick Pro (MSP)-"
-"kaarten kan gebruiken\n"
+"    Met deze test kunt u controleren of de mediakaartlezer van het systeem\n"
+"    het plaatsen van een (SD) media-kaart kan detecteren nadat het systeem "
+"in\n"
+"    slaapstand is geweest.\n"
 "STAPPEN:\n"
-"    1.- Plaats een MSP-kaart in de computer.\n"
-"    2.- Er moet pictogram op het bureaublad en in het ‘Locaties’-menu aan de "
-"bovenrand van het scherm verschijnen.\n"
-"    3.- Klik met de rechter muisknop op het bureaubladpictogram en selecteer "
-"‘Station veilig verwijderen’.\n"
-"    4.- Het pictogram zou zowel van het bureaublad als uit het ‘Locaties’-"
-"menu moeten verdwijnen.VERIFICATIE:\n"
-"    Kreeg u het pictogram te zien, en verdween het weer toen u de kaart "
-"veilig verwijderde?"
+"    1. Klik op ‘Test’ en plaats een SD-kaart in de lezer.\n"
+"       (Let op: deze test heeft een time-out van 10 seconden.)\n"
+"    2. Laat de kaart in de lezer zitten nadat de test voltooid is.\n"
+"VERIFICATIE:\n"
+"    De verificatie van deze test is geautomatiseerd. Verander het "
+"automatisch\n"
+"    gedetecteerde resultaat niet."
 
 #. description
-#: ../jobs/mediacard.txt.in:124
+#: ../jobs/mediacard.txt.in:136
+msgid ""
+"This test is automated and executes after the mediacard/sd-insert-after-"
+"suspend test is run. It tests reading and writing to the SD card after the "
+"system has been suspended."
+msgstr ""
+"Deze test verloopt automatisch en wordt gestart nadat de SD-invoertest-na-"
+"slaapstand gedraaid is. Het test het lezen en schrijven naar de SD-kaart "
+"nadat het systeem in slaapstand is geweest."
+
+#. description
+#: ../jobs/mediacard.txt.in:144
 msgid ""
 "PURPOSE:\n"
-"    This test will check your system Memory Stick Pro (MSP) media card "
-"support after suspend\n"
+"    This test will check that the system correctly detects\n"
+"    the removal of an SD card from the systems card reader after the system "
+"has been suspended.\n"
 "STEPS:\n"
-"    1. Plug a MSP media card into the computer\n"
-"    2. An icon should appear on the Launcher\n"
-"    3. Right click on the Launcher icon and select \"Safely Remove Drive\"\n"
-"    4. The icon should disappear from the Launcher\n"
+"    1. Click \"Test\" and remove the SD card from the reader.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
 "VERIFICATION:\n"
-"    Does the icon automatically appear/disappear?"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
 msgstr ""
 "DOEL:\n"
-"    Met deze test kunt u controleren of uw systeem Memory Stick Pro (MSP)-"
-"kaarten kan gebruiken nadat het systeem in slaapstand is geweest\n"
+"    Met deze test kunt u controleren of de mediakaartlezer van het systeem\n"
+"    het verwijderen van een SD-kaart kan detecteren nadat het systeem in\n"
+"    slaapstand is geweest.\n"
 "STAPPEN:\n"
-"    1.- Plaats een MSP-kaart in de computer.\n"
-"    2.- Er moet pictogram op het bureaublad en in het ‘Locaties’-menu aan de "
-"bovenrand van het scherm verschijnen.\n"
-"    3.- Klik met de rechter muisknop op het bureaubladpictogram en selecteer "
-"‘Station veilig verwijderen’.\n"
-"    4.- Het pictogram zou zowel van het bureaublad als uit het ‘Locaties’-"
-"menu moeten verdwijnen.VERIFICATIE:\n"
-"    Kreeg u het pictogram te zien, en verdween het weer toen u de kaart "
-"veilig verwijderde?"
+"    1. Klik op ‘Test’ en verwijder de SD-kaart uit de lezer.\n"
+"       (Let op: deze test heeft een time-out van 10 seconden.)\n"
+"VERIFICATIE:\n"
+"    De verificatie van deze test is geautomatiseerd. Verander het "
+"automatisch\n"
+"    gedetecteerde resultaat niet."
 
 #. description
-#: ../jobs/mediacard.txt.in:137
+#: ../jobs/mediacard.txt.in:158
 msgid ""
 "PURPOSE:\n"
-"    This test will check your system Compact Flash (CF) media card support\n"
+"    This test will check that the systems media card reader can\n"
+"    detect the insertion of a Secure Digital High-Capacity (SDHC) media "
+"card\n"
 "STEPS:\n"
-"    1. Plug a CF media card into the computer\n"
-"    2. An icon should appear on the Launcher\n"
-"    3. Right click on the Launcher icon and select \"Safely Remove Drive\"\n"
-"    4. The icon should disappear from the Launcher\n"
+"    1. Click \"Test\" and insert an SDHC card into the reader.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
+"    2. Do not unplug the device after the test.\n"
 "VERIFICATION:\n"
-"    Does the icon automatically appear/disappear?"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
 msgstr ""
 "DOEL:\n"
-"    Met deze test kunt u controleren of uw systeem Compact Flash (CF)-"
-"kaarten kan gebruiken\n"
+"    Met deze test kunt u controleren of de mediakaartlezer van het systeem\n"
+"    het plaatsen van een Secure Digital High-Capacity (SDHC) media-kaart "
+"kan\n"
+"    detecteren nadat het systeem in slaapstand is geweest.\n"
 "STAPPEN:\n"
-"    1.- Plaats een SDHC-kaart in de computer.\n"
-"    2.- Er moet pictogram op het bureaublad en in het ‘Locaties’-menu aan de "
-"bovenrand van het scherm verschijnen.\n"
-"    3.- Klik met de rechter muisknop op het bureaubladpictogram en selecteer "
-"‘Station veilig verwijderen’.\n"
-"    4.- Het pictogram zou zowel van het bureaublad als uit het ‘Locaties’-"
-"menu moeten verdwijnen.VERIFICATIE:\n"
-"    Kreeg u het pictogram te zien, en verdween het weer toen u de kaart "
-"veilig verwijderde?"
+"    1. Klik op ‘Test’ en plaats een SDHC-kaart in de lezer.\n"
+"       (Let op: deze test heeft een time-out van 10 seconden.)\n"
+"    2. Laat de kaart in de lezer zitten nadat de test voltooid is.\n"
+"VERIFICATIE:\n"
+"    De verificatie van deze test is geautomatiseerd. Verander het "
+"automatisch\n"
+"    gedetecteerde resultaat niet."
 
 #. description
-#: ../jobs/mediacard.txt.in:151
+#: ../jobs/mediacard.txt.in:174
 msgid ""
-"    This test will check your system Compact Flash (CF) media card support "
-"after suspend\n"
-"STEPS:\n"
-"    1. Plug a CF media card into the computer\n"
-"    2. An icon should appear on the Launcher\n"
-"    3. Right click on the Launcher icon and select \"Safely Remove Drive\"\n"
-"    4. The icon should disappear from the Launcher\n"
-"VERIFICATION:\n"
-"    Does the icon automatically appear/disappear?"
+"This test is automated and executes after the mediacard/sdhc-insert test is "
+"run. It tests reading and writing to the SDHC card."
 msgstr ""
-"    DOEL:\n"
-"    Met deze test kunt u controleren of uw systeem Compact Flash (CF)-"
-"kaarten kan gebruiken nadat het systeem in slaapstand is geweest\n"
-"STAPPEN:\n"
-"    1.- Plaats een CF-kaart in de computer.\n"
-"    2.- Er moet pictogram op het bureaublad en in het ‘Locaties’-menu aan de "
-"bovenrand van het scherm verschijnen.\n"
-"    3.- Klik met de rechter muisknop op het bureaubladpictogram en selecteer "
-"‘Station veilig verwijderen’.\n"
-"    4.- Het pictogram zou zowel van het bureaublad als uit het ‘Locaties’-"
-"menu moeten verdwijnen.VERIFICATIE:\n"
-"    Kreeg u het pictogram te zien, en verdween het weer toen u de kaart "
-"veilig verwijderde?"
+"Deze test verloopt automatisch en wordt gestart nadat de SDHC-invoertest is "
+"gedraaid. Het test het lezen en schrijven naar de SDHC-kaart."
 
 #. description
-#: ../jobs/memory.txt.in:4
+#: ../jobs/mediacard.txt.in:182
 msgid ""
 "PURPOSE:\n"
-"    This test checks the amount of memory that is detected\n"
+"    This test will check that the system correctly detects\n"
+"    the removal of an SDHC card from the systems card reader.\n"
 "STEPS:\n"
-"    1. Click Test to see the amount of detected memory\n"
-"INFO:\n"
-"    $output\n"
+"    1. Click \"Test\" and remove the SDHC card from the reader.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
 "VERIFICATION:\n"
-"    Is the amount of detected memory correct?"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
 msgstr ""
+"DOEL:\n"
+"    Met deze test kunt u controleren of de mediakaartlezer van het systeem\n"
+"    het verwijderen van een SDHC-kaart kan detecteren nadat het systeem in\n"
+"    slaapstand is geweest.\n"
+"STAPPEN:\n"
+"    1. Klik op ‘Test’ en verwijder de SDHC-kaart uit de lezer.\n"
+"       (Let op: deze test heeft een time-out van 10 seconden.)\n"
+"VERIFICATIE:\n"
+"    De verificatie van deze test is geautomatiseerd. Verander het "
+"automatisch\n"
+"    gedetecteerde resultaat niet."
+
+#. description
+#: ../jobs/mediacard.txt.in:197
+msgid ""
+"PURPOSE:\n"
+"    This test will check that the systems media card reader can\n"
+"    detect the insertion of an SDHC media card after the system has been "
+"suspended\n"
+"STEPS:\n"
+"    1. Click \"Test\" and insert an SDHC card into the reader.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
+"    2. Do not unplug the device after the test.\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
+msgstr ""
+"DOEL:\n"
+"    Met deze test kunt u controleren of de mediakaartlezer van het systeem\n"
+"    het plaatsen van een SDHC media-kaart kan detecteren nadat het systeem\n"
+"    in slaapstand is geweest.\n"
+"STAPPEN:\n"
+"    1. Klik op ‘Test’ en plaats een SDHC-kaart in de lezer.\n"
+"       (Let op: deze test heeft een time-out van 10 seconden.)\n"
+"    2. Laat de kaart in de lezer zitten nadat de test voltooid is.\n"
+"VERIFICATIE:\n"
+"    De verificatie van deze test is geautomatiseerd. Verander het "
+"automatisch\n"
+"    gedetecteerde resultaat niet."
+
+#. description
+#: ../jobs/mediacard.txt.in:213
+msgid ""
+"This test is automated and executes after the mediacard/sdhc-insert-after-"
+"suspend test is run. It tests reading and writing to the SDHC card after the "
+"system has been suspended."
+msgstr ""
+"Deze test verloopt automatisch en wordt gestart nadat de SDHC-invoertest-na-"
+"slaapstand gedraaid is. Het test het lezen en schrijven naar de SDHC-kaart "
+"nadat het systeem in slaapstand is geweest."
+
+#. description
+#: ../jobs/mediacard.txt.in:221
+msgid ""
+"PURPOSE:\n"
+"    This test will check that the system correctly detects the removal\n"
+"    of an SDHC card from the systems card reader after the system has been "
+"suspended.\n"
+"STEPS:\n"
+"    1. Click \"Test\" and remove the SDHC card from the reader.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
+msgstr ""
+"DOEL:\n"
+"    Met deze test kunt u controleren of de mediakaartlezer van het systeem\n"
+"    het verwijderen van een SDHC-kaart kan detecteren nadat het systeem in\n"
+"    slaapstand is geweest.\n"
+"STAPPEN:\n"
+"    1. Klik op ‘Test’ en verwijder de SDHC-kaart uit de lezer.\n"
+"       (Let op: deze test heeft een time-out van 10 seconden.)\n"
+"VERIFICATIE:\n"
+"    De verificatie van deze test is geautomatiseerd. Verander het "
+"automatisch\n"
+"    gedetecteerde resultaat niet."
+
+#. description
+#: ../jobs/mediacard.txt.in:235
+msgid ""
+"PURPOSE:\n"
+"    This test will check that the systems media card reader can\n"
+"    detect the insertion of a Compact Flash (CF) media card\n"
+"STEPS:\n"
+"    1. Click \"Test\" and insert a CF card into the reader.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
+"    2. Do not unplug the device after the test.\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
+msgstr ""
+"DOEL:\n"
+"    Met deze test kunt u controleren of de mediakaartlezer van het systeem\n"
+"    het plaatsen van een Compact Flash (CF) media-kaart kan detecteren nadat "
+"het systeem\n"
+"    in slaapstand is geweest.\n"
+"STAPPEN:\n"
+"    1. Klik op ‘Test’ en plaats een CF-kaart in de lezer.\n"
+"       (Let op: deze test heeft een time-out van 10 seconden.)\n"
+"    2. Laat de kaart in de lezer zitten nadat de test voltooid is.\n"
+"VERIFICATIE:\n"
+"    De verificatie van deze test is geautomatiseerd. Verander het "
+"automatisch\n"
+"    gedetecteerde resultaat niet."
+
+#. description
+#: ../jobs/mediacard.txt.in:251
+msgid ""
+"This test is automated and executes after the mediacard/cf-insert test is "
+"run. It tests reading and writing to the CF card."
+msgstr ""
+"Deze test verloopt automatisch en wordt gestart nadat de CF-invoertest is "
+"gedraaid. Het test het lezen en schrijven naar de CF-kaart."
+
+#. description
+#: ../jobs/mediacard.txt.in:259
+msgid ""
+"PURPOSE:\n"
+"    This test will check that the system correctly detects\n"
+"    the removal of a CF card from the systems card reader.\n"
+"STEPS:\n"
+"    1. Click \"Test\" and remove the CF card from the reader.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
+msgstr ""
+"DOEL:\n"
+"    Met deze test kunt u controleren of de mediakaartlezer van het systeem\n"
+"    het verwijderen van een CF-kaart kan detecteren nadat het systeem in\n"
+"    slaapstand is geweest.\n"
+"STAPPEN:\n"
+"    1. Klik op ‘Test’ en verwijder de CF-kaart uit de lezer.\n"
+"       (Let op: deze test heeft een time-out van 10 seconden.)\n"
+"VERIFICATIE:\n"
+"    De verificatie van deze test is geautomatiseerd. Verander het "
+"automatisch\n"
+"    gedetecteerde resultaat niet."
+
+#. description
+#: ../jobs/mediacard.txt.in:274
+msgid ""
+"PURPOSE:\n"
+"    This test will check that the systems media card reader can\n"
+"    detect the insertion of a CF card after the system has been suspended\n"
+"STEPS:\n"
+"    1. Click \"Test\" and insert a CF card into the reader.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
+"    2. Do not unplug the device after the test.\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
+msgstr ""
+"DOEL:\n"
+"    Met deze test kunt u controleren of de mediakaartlezer van het systeem\n"
+"    het plaatsen van een CF media-kaart kan detecteren nadat het systeem\n"
+"    in slaapstand is geweest.\n"
+"STAPPEN:\n"
+"    1. Klik op ‘Test’ en plaats een CF-kaart in de lezer.\n"
+"       (Let op: deze test heeft een time-out van 10 seconden.)\n"
+"    2. Laat de kaart in de lezer zitten nadat de test voltooid is.\n"
+"VERIFICATIE:\n"
+"    De verificatie van deze test is geautomatiseerd. Verander het "
+"automatisch\n"
+"    gedetecteerde resultaat niet."
+
+#. description
+#: ../jobs/mediacard.txt.in:290
+msgid ""
+"This test is automated and executes after the mediacard/cf-insert-after-"
+"suspend test is run. It tests reading and writing to the CF card after the "
+"system has been suspended."
+msgstr ""
+"Deze test verloopt automatisch en wordt gestart nadat de CF-invoertest-na-"
+"slaapstand gedraaid is. Het test het lezen en schrijven naar de CF-kaart "
+"nadat het systeem in slaapstand is geweest."
+
+#. description
+#: ../jobs/mediacard.txt.in:298
+msgid ""
+"PURPOSE:\n"
+"    This test will check that the system correctly detects the removal\n"
+"    of a CF card from the systems card reader after the system has been "
+"suspended.\n"
+"STEPS:\n"
+"    1. Click \"Test\" and remove the CF card from the reader.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
+msgstr ""
+"DOEL:\n"
+"    Met deze test kunt u controleren of de mediakaartlezer van het systeem\n"
+"    het verwijderen van een CF-kaart kan detecteren nadat het systeem in\n"
+"    slaapstand is geweest.\n"
+"STAPPEN:\n"
+"    1. Klik op ‘Test’ en verwijder de CF-kaart uit de lezer.\n"
+"       (Let op: deze test heeft een time-out van 10 seconden.)\n"
+"VERIFICATIE:\n"
+"    De verificatie van deze test is geautomatiseerd. Verander het "
+"automatisch\n"
+"    gedetecteerde resultaat niet."
+
+#. description
+#: ../jobs/memory.txt.in:5
+msgid ""
+"This test checks the amount of memory which is reporting in meminfo against "
+"the size of the memory modules detected by DMI."
+msgstr ""
+"Deze test vergelijkt de hoeveelheid geheugen die in meminfo staat met de "
+"grootte van de geheugenmodules die door DMI gedetecteerd worden."
 
 #. description
 #: ../jobs/memory.txt.in:14
@@ -1845,15 +2056,6 @@ msgid "Run Firmware Test Suite (fwts) automated tests."
 msgstr "Voer de automatische Firmware Test Suite (fwts) uit."
 
 #. description
-#: ../jobs/miscellanea.txt.in:29
-msgid ""
-"ipmitool is required for ipmi testing. This checks for ipmitool and installs "
-"it if not available."
-msgstr ""
-"ipmitool is benodigd voor het testen van ipmi. Dit controleert of ipmitool "
-"beschikbaar is en installeert het indien het niet beschikbaar is."
-
-#. description
 #: ../jobs/miscellanea.txt.in:31
 msgid ""
 "This will run some basic connectivity tests against a BMC, verifying that "
@@ -1868,17 +2070,28 @@ msgid ""
 "   Determine if we need to run tests specific to portable computers that may "
 "not apply to desktops."
 msgstr ""
+"   Aan het bepalen of we bepaalde tests specifiek voor draagbare computers "
+"moet uitvoeren die niet op vaste computers van toepassing zijn."
 
 #. description
-#: ../jobs/miscellanea.txt.in:51
+#: ../jobs/miscellanea.txt.in:45
 msgid ""
-"This test checks /var/crash to see if there are any crash reports present."
+"Test that the /var/crash directory doesn't contain anything. Lists the files "
+"contained within if it does, or echoes the status of the directory (doesn't "
+"exist/is empty)"
 msgstr ""
+"Controleert of de /var/crash map leeg is. Laat de bestanden zien als die "
+"aanwezig zijn, of geeft de status als deze leeg is (bestaat niet/is leeg)"
 
 #. description
-#: ../jobs/miscellanea.txt.in:51
-msgid "If there are, this test will fail."
+#: ../jobs/miscellanea.txt.in:53
+msgid ""
+"Test to check that virtualization is supported and the test system has at "
+"least a minimal amount of RAM to function as an OpenStack Compute Node"
 msgstr ""
+"Test om te controleren of virtualisatie ondersteund wordt en of het "
+"testsysteem de minimale hoeveelheid RAM heeft om als een OpenStack Compute "
+"Node gebruikt te worden."
 
 #. description
 #: ../jobs/monitor.txt.in:4
@@ -1892,6 +2105,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the desktop displayed correctly on both screens?"
 msgstr ""
+"DOEL:\n"
+"    Deze test controleert uw VGA-poort. Overslaan als uw systeem geen VGA-"
+"poort heeft.\n"
+"STAPPEN:\n"
+"    1. sluit een beeldscherm (indien niet reeds aangesloten) aan op de VGA-"
+"poort van uw systeem\n"
+"VERIFICATIE:\n"
+"    Werd het bureaublad op beide schermen correct weergegeven?"
 
 #. description
 #: ../jobs/monitor.txt.in:15
@@ -1905,6 +2126,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the desktop displayed correctly on both screens?"
 msgstr ""
+"DOEL:\n"
+"    Deze test controleert uw DVI-poort. Overslaan als uw systeem geen DVI-"
+"poort heeft.\n"
+"STAPPEN:\n"
+"    1. sluit een beeldscherm (indien niet reeds aangesloten) aan op de DVI-"
+"poort van uw systeem\n"
+"VERIFICATIE:\n"
+"    Werd het bureaublad op beide schermen correct weergegeven?"
 
 #. description
 #: ../jobs/monitor.txt.in:26
@@ -1918,6 +2147,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the desktop displayed correctly on both screens?"
 msgstr ""
+"DOEL:\n"
+"    Deze test controleert uw DisplayPort-poort. Overslaan als uw systeem "
+"geen DisplayPort-poort heeft.\n"
+"STAPPEN:\n"
+"    1. sluit een beeldscherm (indien niet reeds aangesloten) aan op de "
+"DisplayPort-poort van uw systeem\n"
+"VERIFICATIE:\n"
+"    Werd het bureaublad op beide schermen correct weergegeven?"
 
 #. description
 #: ../jobs/monitor.txt.in:37
@@ -1931,6 +2168,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the desktop displayed correctly on both screens?"
 msgstr ""
+"DOEL:\n"
+"    Deze test controleert uw HDMI-poort. Overslaan als uw systeem geen HDMI-"
+"poort heeft.\n"
+"STAPPEN:\n"
+"    1. sluit een beeldscherm (indien niet reeds aangesloten) aan op de HDMI-"
+"poort van uw systeem\n"
+"VERIFICATIE:\n"
+"    Werd het bureaublad op beide schermen correct weergegeven?"
 
 #. description
 #: ../jobs/monitor.txt.in:48
@@ -1944,6 +2189,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the desktop displayed correctly on both screens?"
 msgstr ""
+"DOEL:\n"
+"    Deze test controleert uw S-VIDEO-poort. Overslaan als uw systeem geen S-"
+"VIDEO-poort heeft.\n"
+"STAPPEN:\n"
+"    1. sluit een beeldscherm (indien niet reeds aangesloten) aan op de S-"
+"VIDEO-poort van uw systeem\n"
+"VERIFICATIE:\n"
+"    Werd het bureaublad op beide schermen correct weergegeven?"
 
 #. description
 #: ../jobs/monitor.txt.in:59
@@ -1957,6 +2210,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the desktop displayed correctly on both screens?"
 msgstr ""
+"DOEL:\n"
+"    Deze test zal controleren of uw RCA-poort goed werkt. Sla deze test over "
+"als uw systeem niet over een RCA-poort beschikt.\n"
+"STAPPEN:\n"
+"    1. Sluit, als dit nog niet gebeurd is, een beeldscherm aan op de RCA-"
+"poort van uw systeem.\n"
+"CONTROLE:\n"
+"    Werd het bureaublad goed weergegeven op beide schermen?"
 
 #. description
 #: ../jobs/monitor.txt.in:70
@@ -1994,6 +2255,16 @@ msgid "Network Information"
 msgstr "Netwerkinformatie"
 
 #. description
+#: ../jobs/networking.txt.in:40
+msgid ""
+"This is an automated test to gather some info on the current state of your "
+"network devices. If no devices are found, the test will exit with an error."
+msgstr ""
+"Dit is een automatische test om informatie te verkrijgen over de huidige "
+"status van uw netwerkapparaten. Indien er geen apparaten gevonden zijn, zal "
+"de test een fout geven."
+
+#. description
 #: ../jobs/networking.txt.in:46
 msgid ""
 "PURPOSE:\n"
@@ -2006,6 +2277,16 @@ msgid ""
 "VERIFICATION:\n"
 "    Did a notification show and was the connection correctly established?"
 msgstr ""
+"DOEL:\n"
+"    1. Deze test zal uw bekabelde verbinding testen\n"
+"STAPPEN:\n"
+"    1. Klik op het netwerkicoon in het bovenste paneel\n"
+"    2. Selecteer een netwerkapparaat onder de \"Bekabeld internet\" "
+"onderdeel\n"
+"    3. Klik op \"Test\" om te controleren of het mogelijk is een HTTP "
+"connectie op te zetten.\n"
+"CONTROLE:\n"
+"    Zag u een notificatie en was de connectie goed opgezet?"
 
 #. description
 #: ../jobs/networking.txt.in:59
@@ -2085,7 +2366,7 @@ msgstr ""
 #: ../jobs/networking.txt.in:108
 msgid ""
 "Automated test to walk multiple network cards and test each one in sequence."
-msgstr ""
+msgstr "Automatische test om meerdere netwerkkaarten na elkaar te testen."
 
 #. description
 #: ../jobs/networking.txt.in:128
@@ -2095,66 +2376,143 @@ msgstr "Test om de netwerkbandbreedte te meten"
 #. description
 #: ../jobs/optical.txt.in:8
 msgid "Test to detect the optical drives"
-msgstr ""
+msgstr "Test om optische stations te detecteren"
 
 #. description
-#: ../jobs/optical.txt.in:18
-msgid "Optical Storage device read tests"
-msgstr "Optische opslagapparaatlezer testen"
-
-#. description
-#: ../jobs/optical.txt.in:35
+#: ../jobs/optical.txt.in:16
 msgid ""
 "PURPOSE:\n"
-"    This test will check your system's CDROM writing capabilities. If your "
-"drive does not support writing CDs or you do not have any blank CD media, "
-"please skip this test.\n"
+"    This test will check your optical devices ability to read CD media\n"
 "STEPS:\n"
-"    1. Enter a blank CDROM into your drive\n"
-"    2. Write something in the CDROM\n"
-"    3. Read the newly written CDROM\n"
+"    1. Insert appropriate non-blank media into your optical drive(s). Movie "
+"and Audio Disks may not work. Self-created data disks have the greatest "
+"chance of working.\n"
+"    2. If a file browser window opens, you can safely close or ignore that "
+"window.\n"
+"    3. Click \"Test\" to being the test.\n"
+"    4. When the test completes, proceed by clicking \"Next\"\n"
 "VERIFICATION:\n"
-"    Was the data correctly written?"
+"    This test should automatically select \"Yes\" if it passes, \"No\" if it "
+"fails."
 msgstr ""
+"DOEL:\n"
+"    Deze test controleert het vermogen van uw optische apparaten om van CD-"
+"media te lezen\n"
+"STAPPEN:\n"
+"    1. voer een passende niet-lege media in uw optische station(s). Film- en "
+"audioschijven werken niet. Zelfgemaakte gegevensschijven hebben de grootste "
+"kans van werken.\n"
+"    2. als bestandsbeheer wordt geopend, dan kunt u dat venster veilig "
+"sluiten of negeren.\n"
+"    3. klik op 'Testen' om de test te starten.\n"
+"    4. wanneer de test is voltooid, gaat u verder door op \"Volgende\" te "
+"klikken\n"
+"VERIFICATIE:\n"
+"    Deze test moet automatisch \"Ja\"  selecteren als het slaagt, \"Nee\" "
+"als het mislukt."
 
 #. description
-#: ../jobs/optical.txt.in:47
+#: ../jobs/optical.txt.in:43
+msgid ""
+"PURPOSE:\n"
+"    This test will check your system's CD writing capabilities. This test "
+"requires a blank CD-R. If you do not have a blank CD-R, skip this test.\n"
+"STEPS:\n"
+"    1. Enter a blank CD-R into your drive\n"
+"    2. Click \"Test\" to begin.\n"
+"    3. When the CD tray ejects the media after burning, close it (DO NOT "
+"remove the disk, it is needed for the second portion of the test). Note, you "
+"must close the drive within 10 seconds or the test will time out.\n"
+"    4. When the test completes, proceed by clicking \"Next\"\n"
+"VERIFICATION:\n"
+"    This test should automatically select \"Yes\" if it passes, \"No\" if it "
+"fails."
+msgstr ""
+"DOEL:\n"
+"    Deze test controleert de CD-schrijfmogelijkheden van uw systeem. Deze "
+"test vereist een lege CD-R. Als u geen lege CD-R heeft, sla deze test over.\n"
+"STAPPEN:\n"
+"    1. voer een lege CD-R in uw optische station.\n"
+"    2. klik op \"Testen\" om te beginnen.\n"
+"    3. als de CD-lade de media na het branden uitwerpt, sluit u het (de disk "
+"NIET verwijderen, omdat het nodig is voor de tweede gedeelte van de test). "
+"Opmerking, u dient het station binnen 10 seconden te sluiten anders wordt de "
+"test onderbroken.\n"
+"    4. wanneer de test is voltooid, gaat u verder door op \"Volgende\" te "
+"klikken\n"
+"VERIFICATIE:\n"
+"    Deze test moet automatisch \"Ja\"  selecteren als het slaagt, \"Nee\" "
+"als het mislukt."
+
+#. description
+#: ../jobs/optical.txt.in:57
 msgid ""
 "PURPOSE:\n"
 "    This test will check your CD audio playback capabilities\n"
 "STEPS:\n"
 "    1. Insert an audio CD in your optical drive\n"
-"    2. Open the Dash (click on the Ubuntu Circle of Friends button on the "
-"Launcher)\n"
-"    3. Click \"Listen to Music\" to open Banshee\n"
-"    4. Select the CD under \"Libraries\" in the left panel of Banshee\n"
-"    5. Click the Play button to listen to music\n"
+"    2. When prompted, launch the Music Player\n"
+"    3. Locate the CD in the display of the Music Player\n"
+"    4. Select the CD in the Music Player\n"
+"    5. Click the Play button to listen to the music on the CD\n"
 "    6. Stop playing after some time\n"
-"    7. Right click on the CD icon under \"Libraries\" and select \"Eject "
-"Disc\"\n"
+"    7. Right click on the CD icon and select \"Eject Disc\"\n"
 "    8. The CD should be ejected\n"
-"    9. Close Banshee\n"
+"    9. Close the Music Player\n"
 "VERIFICATION:\n"
 "    Did all the steps work?"
 msgstr ""
+"DOEL: \n"
+"    Deze test controleert de afspeelmogelijkheden van uw muziek-CD\n"
+"stappen: \n"
+"    1. plaats een muziek-CD in het optische station\n"
+"    2. wanneer er om wordt gevraagd, start de muziekspeler\n"
+"    3  zoek de CD in de weergave van de muziekspeler\n"
+"    4. selecteer de CD in de muziekspeler\n"
+"    5. klik op de knop afspelen om naar de muziek op de CD te luisteren\n"
+"    6. stop na enige tijd het afspelen\n"
+"    7. klik met de rechtermuisknop op het CD-pictogram en selecteer \"Schijf "
+"uitwerpen\"\n"
+"    8. de CD moet worden uitgeworpen\n"
+"    9. sluit de muziekspeler\n"
+"VERIFICATIE:\n"
+"    Werkte alle stappen?"
 
 #. description
-#: ../jobs/optical.txt.in:68
+#: ../jobs/optical.txt.in:80
 msgid ""
 "PURPOSE:\n"
-"    This test will check your system's DVD writing capabilities. If your "
-"drive does not support writing DVDs or you do not have any blank DVD media, "
-"please skip this test.\n"
+"    This test will check your system's DVD writing capabilities. This test "
+"requires a blank DVD-R. If you do not have a blank DVD-R, skip this test.\n"
 "STEPS:\n"
-"    1. Enter a blank DVD into your drive\n"
-"    2. Write something in the DVD\n"
-"    3. Read the newly written DVD\n"
+"    1. Enter a blank DVD-R into your drive\n"
+"    2. Click \"Test\" to begin.\n"
+"    3. When the CD tray ejects the media after burning, close it (DO NOT "
+"remove the disk, it is needed for the second portion of the test). Note, you "
+"must close the drive within 10 seconds or the test will time out.\n"
+"    4. When the test completes, proceed by clicking \"Next\"\n"
 "VERIFICATION:\n"
-"    Was the data correctly written?"
+"    This test should automatically select \"Yes\" if it passes, \"No\" if it "
+"fails."
 msgstr ""
+"DOEL:\n"
+"    Deze test controleert uw systeems DVD-schrijfmogelijkheden. Deze test "
+"vereist een lege DVD-R. Als u geen lege DVD-R heeft, sla deze test over.\n"
+"STAPPEN:\n"
+"    1. voer een lege DVD-R in uw optisch station.\n"
+"    2. klik \"Testen\" om te beginnen.\n"
+"    3. als de CD-lade de media na het branden uitwerpt, sluit u het (de disk "
+"NIET verwijderen, omdat het nodig is voor de tweede gedeelte van de test). "
+"Opmerking, u moet het station binnen 10 seconden sluiten anders wordt de "
+"test onderbroken.\n"
+"    4. wanneer de test is voltooid, gaat u verder door op \"Volgende\" te "
+"klikken\n"
+"VERIFICATIE:\n"
+"    Deze test moet automatisch \"Ja\"  selecteren als het slaagt, \"Nee\" "
+"als het mislukt."
 
 #. description
-#: ../jobs/optical.txt.in:85
+#: ../jobs/optical.txt.in:94
 msgid ""
 "PURPOSE:\n"
 "    This test will check your DVD movie playback capabilities. Note that "
@@ -2171,9 +2529,22 @@ msgid ""
 "VERIFICATION:\n"
 "    Did all the steps work?"
 msgstr ""
+"DOEL:\n"
+"    Deze test controleert de afspeelmogelijkheden van uw DVD-film . Merk op "
+"dat installatie van niet-vrije software (codecs, speler, etc) kan worden "
+"vereist voorafgaand aan de test uit te voeren.\n"
+"STAPPEN:\n"
+"    1. plaats een willekeurige film-DVD in het optisch station\n"
+"    2  open Dash (Klik op het Ubuntu-logo op de Starter)\n"
+"    3. klik op \"Mediatoepassingen\" en kies dan \"Mediaspeler\"\n"
+"    4. de film met de mediaspeler afspelen, stop de film na het verifiëren "
+"dat het loopt\n"
+"    5. werp de DVD uit\n"
+"VERIFICATIE:\n"
+"    Werkte alle stappen?"
 
 #. description
-#: ../jobs/optical.txt.in:103
+#: ../jobs/optical.txt.in:112
 msgid ""
 "PURPOSE:\n"
 "    This test will check your DVD  playback capabilities\n"
@@ -2183,6 +2554,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the file play?"
 msgstr ""
+"DOEL:\n"
+"    Deze test controleert de afspeelmogelijkheden van uw DVD.\n"
+"STAPPEN:\n"
+"    1. plaats een DVD die elke film bevat in het optisch station\n"
+"    2. klik \"Testen\" om de DVD in Totem af te laten spelen\n"
+"VERIFICATIE:\n"
+"    Werd het bestand afgespeeld?"
 
 #. description
 #: ../jobs/panel_clock_test.txt.in:4
@@ -2194,6 +2572,12 @@ msgid ""
 "   Is the clock in the upper right corner of your desktop displaying the "
 "correct date and time for your timezone?"
 msgstr ""
+"DOEL: \n"
+"   Deze test zal controleren of de klok van het bureaublad de juiste datum "
+"en tijd weer geeft\n"
+"VERIFICATIE: \n"
+"   Geeft de klok in de rechterbovenhoek van uw bureaublad de juiste datum en "
+"tijd voor uw tijdzone weer?"
 
 #. description
 #: ../jobs/panel_clock_test.txt.in:16
@@ -2212,6 +2596,20 @@ msgid ""
 "   Is your system clock displaying the correct date and time for your "
 "timezone?"
 msgstr ""
+"DOEL:\n"
+"   Deze test controleert of de klok van het bureaublad wordt "
+"gesynchroniseerd met de systeemklok.\n"
+"STAPPEN:\n"
+"   1. klik op de knop \"Testen\" en controleer of de klok 1 uur vooruit "
+"wordt gezet.\n"
+"   Opmerking: Het kan ongeveer een minuut duren voor de klok zich ververst\n"
+"   2. rechtermuisklik op de klok, klik dan op \"Instellingen voor datum en "
+"tijd…\"\n"
+"   3. zorg ervoor dat uw klok-toepassing is ingesteld op handmatig.\n"
+"   4. verander de tijd 1 uur terug \n"
+"   5. sluit het venster en herstart\n"
+"VERIFICATIE: \n"
+"   Geeft uw systeemklok de juiste datum en tijd voor uw tijdzone weer?"
 
 #. description
 #: ../jobs/panel_reboot.txt.in:4
@@ -2228,6 +2626,18 @@ msgid ""
 "VERIFICATION:\n"
 "   Did your system restart and bring up the GUI login cleanly?"
 msgstr ""
+"DOEL:\n"
+"   Deze test zal controleren of u uw systeem vanaf het bureaubladmenu kunt "
+"herstarten\n"
+"STAPPEN:\n"
+"   1. klik op het tandwielpictogram in de rechterbovenhoek van het "
+"bureaublad en klik op ‘Uitschakelen’\n"
+"   2. klik op de knop ‘Herstarten’ aan de linkerzijde van het dialoogvenster "
+"Uitschakelen\n"
+"   3. na het opnieuw inloggen, herstart systeemtesten en het zou vanaf hier "
+"hervat moeten worden\n"
+"VERIFICATIE:\n"
+"   Herstartte uw systeem en kwam het aanmeldscherm netjes tevoorschijn?"
 
 #. description
 #: ../jobs/pcmcia-pcix.txt.in:3
@@ -2240,6 +2650,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the device correctly detected?"
 msgstr ""
+"DOEL:\n"
+"    Dit zal controleren of een PCMCIA- of ExpressCard-slot ingevoerde "
+"apparaten kan detecteren \n"
+"STAPPEN:\n"
+"    1. sluit een PCMCIA- of ExpressCard-apparaat aan op de computer\n"
+"VERIFICATIE:\n"
+"    Was het apparaat correct gedetecteerd?"
 
 #. description
 #: ../jobs/peripheral.txt.in:3
@@ -2313,6 +2730,9 @@ msgid ""
 "   This test will download and install the Phoronix Test Suite and run some "
 "selected benchmarking tests."
 msgstr ""
+"DOEL: \n"
+"   Deze test zal de Phoronix Test Suite downloaden en installeren en sommige "
+"geselecteerde prestatiemetingen uitvoeren."
 
 #. description
 #: ../jobs/power-management.txt.in:3
@@ -2326,6 +2746,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the system shutdown and rebooted correctly?"
 msgstr ""
+"DOEL:\n"
+"    Deze test controleert uw systeem uitschakelen/opstarten cyclus\n"
+"STAPPEN:\n"
+"    1. Schakel uw machine uit\n"
+"    2. Start uw machine\n"
+"    3. Herhaal de stappen 1 en 2 ten minste 5 keer\n"
+"VERIFICATIE:\n"
+"    Ging het uitschakelen en herstarten van het systeem correct?"
 
 #. description
 #: ../jobs/power-management.txt.in:15
@@ -2337,6 +2765,13 @@ msgid ""
 "VERIFICATION:\n"
 "   Does closing your laptop lid cause your system to suspend?"
 msgstr ""
+"DOEL:\n"
+"    Deze test zal uw schermsensoren controleren\n"
+"STAPPEN:\n"
+"    1. Sluit uw laptopscherm\n"
+"VERIFICATIE:\n"
+"   Veroorzaakte het sluiten van uw laptopscherm dat het systeem in "
+"pauzestand ging?"
 
 #. description
 #: ../jobs/power-management.txt.in:32
@@ -2349,6 +2784,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the screen turn off while the lid was closed?"
 msgstr ""
+"DOEL:\n"
+"    Deze test zal uw schermsensoren controleren\n"
+"STAPPEN:\n"
+"    1. Klik \"Testen\"\n"
+"    2. Sluit en open uw laptopscherm\n"
+"VERIFICATIE:\n"
+"    Ging het beeld uit toen het scherm gesloten was?"
 
 #. description
 #: ../jobs/power-management.txt.in:50
@@ -2363,6 +2805,15 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the system resume when the lid was opened?"
 msgstr ""
+"DOEL:\n"
+"    Deze test controleert uw schermsensoren\n"
+"STAPPEN:\n"
+"    1. Klik op \"Testen\"\n"
+"    2. Sluit het laptopscherm\n"
+"    3. Wacht 5 seconden met het scherm gesloten\n"
+"    4. Open het scherm \n"
+"VERIFICATIE:\n"
+"    Hervatte het systeem toen het scherm geopend werd?"
 
 #. description
 #: ../jobs/power-management.txt.in:66
@@ -2372,7 +2823,7 @@ msgstr "Zorg ervoor dat de RTC (Real-Time Clock) bestaat."
 #. description
 #: ../jobs/power-management.txt.in:71
 msgid "Test ACPI Wakealarm (fwts wakealarm) "
-msgstr ""
+msgstr "Testen van ACPI Wakealarm (fwts wakealarm) "
 
 #. description
 #: ../jobs/power-management.txt.in:80
@@ -2389,6 +2840,9 @@ msgid ""
 "PURPOSE:\n"
 "   This is to install and run the Ubuntu QA regression tests (destructive)"
 msgstr ""
+"DOEL:\n"
+"   Dit is om de Ubuntu QA-regressietesten te installeren en uit te voeren "
+"(verwoestend)"
 
 #. description
 #: ../jobs/server-services.txt.in:5
@@ -2403,7 +2857,7 @@ msgstr "Test of de Print/CUPs-server actief is."
 #. description
 #: ../jobs/server-services.txt.in:18
 msgid "Verifies that DNS server is running and working."
-msgstr ""
+msgstr "Controleert of de DNS-server wordt uitgevoerd en werkt."
 
 #. description
 #: ../jobs/server-services.txt.in:25
@@ -2414,11 +2868,12 @@ msgstr "Test of de Samba-server actief is."
 #: ../jobs/server-services.txt.in:32
 msgid "Verifies that the LAMP stack is running (Apache, MySQL and PHP)."
 msgstr ""
+"Controleert of de LAMP-stapel (Apache, MySQL en PHP) wordt uitgevoerd."
 
 #. description
 #: ../jobs/server-services.txt.in:39
 msgid "Verifies that Tomcat server is running and working."
-msgstr ""
+msgstr "Controleert of de Tomcat server wordt uitgevoerd en werkt."
 
 #. description
 #: ../jobs/stress.txt.in:8
@@ -2427,6 +2882,9 @@ msgid ""
 "    Create jobs that use the CPU as much as possible for two hours. The test "
 "is considered passed if the system does not freeze."
 msgstr ""
+"DOEL:\n"
+"    Creëert taken waarbij de CPU voor twee uur zoveel mogelijk wordt belast. "
+"De test wordt beschouwd als geslaagd als het systeem niet bevriest."
 
 #. description
 #: ../jobs/stress.txt.in:18
@@ -2481,6 +2939,11 @@ msgstr ""
 "    Ging het systeem 30 keer achter elkaar in pauzestand?"
 
 #. description
+#: ../jobs/suspend.txt.in:4
+msgid "Record the current network before suspending."
+msgstr "Het huidige netwerk opnemen voordat het systeem in pauzestand gaat."
+
+#. description
 #: ../jobs/suspend.txt.in:9
 msgid "Record the current resolution before suspending."
 msgstr ""
@@ -2509,7 +2972,7 @@ msgstr ""
 "test voor pauzestand is uitgevoerd"
 
 #. description
-#: ../jobs/suspend.txt.in:49
+#: ../jobs/suspend.txt.in:40
 msgid ""
 "This test disconnects all connections and then connects to the wireless "
 "interface. It then checks the connection to confirm it's working as expected."
@@ -2519,7 +2982,7 @@ msgstr ""
 "gecontroleerd worden om te kijken of deze correct werkt."
 
 #. description
-#: ../jobs/suspend.txt.in:83
+#: ../jobs/suspend.txt.in:74
 msgid ""
 "PURPOSE:\n"
 "    This test will check suspend and resume\n"
@@ -2546,12 +3009,12 @@ msgstr ""
 "    Ging het systeem 30 keer achter elkaar in slaapstand?"
 
 #. description
-#: ../jobs/suspend.txt.in:96
+#: ../jobs/suspend.txt.in:87
 msgid "Test the network after resuming."
 msgstr "Test het netwerk nadat het systeem uit de pauzestand is gekomen."
 
 #. description
-#: ../jobs/suspend.txt.in:102
+#: ../jobs/suspend.txt.in:93
 msgid ""
 "Test to see that we have the same resolution after resuming as before."
 msgstr ""
@@ -2559,23 +3022,27 @@ msgstr ""
 "pauzestand."
 
 #. description
-#: ../jobs/suspend.txt.in:111
+#: ../jobs/suspend.txt.in:102
 msgid ""
 "Verify that mixer settings after suspend are the same as before suspend."
 msgstr ""
+"Controleert of de mixer-instellingen na de pauzestand hetzelfde zijn als "
+"ervoor."
 
 #. description
-#: ../jobs/suspend.txt.in:127
+#: ../jobs/suspend.txt.in:118
 msgid "Verify that all CPUs are online after resuming."
 msgstr "Controleer of alle CUP's weer online zijn na hervatten."
 
 #. description
-#: ../jobs/suspend.txt.in:144
+#: ../jobs/suspend.txt.in:135
 msgid "Verify that all memory is available after resuming from suspend."
 msgstr ""
+"Controleer of alle geheugen, na het hervatten van een pauzestand, "
+"beschikbaar is."
 
 #. description
-#: ../jobs/suspend.txt.in:153
+#: ../jobs/suspend.txt.in:144
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the display is correct after suspend and "
@@ -2583,9 +3050,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Does the display work normally after resuming from suspend?"
 msgstr ""
+"DOEL:\n"
+"    Deze test controleert of het beeldscherm goed werkt na het in pauzestand "
+"gaan en ontwaken\n"
+"VERIFICATIE:\n"
+"    Werkt het beeldscherm correct na het ontwaken uit de pauzestand?"
 
 #. description
-#: ../jobs/suspend.txt.in:174
+#: ../jobs/suspend.txt.in:155
 msgid ""
 "This test checks that the wireless interface is working after suspending the "
 "system. It disconnects all interfaces and then connects to the wireless "
@@ -2597,7 +3069,35 @@ msgstr ""
 "zal worden op het correct functioneren."
 
 #. description
-#: ../jobs/suspend.txt.in:186
+#: ../jobs/suspend.txt.in:167
+msgid ""
+"Tests that the systems wireless hardware can connect to a router using WPA "
+"security and the 802.11b/g protocols after the system has been suspended."
+msgstr ""
+
+#. description
+#: ../jobs/suspend.txt.in:178
+msgid ""
+"Tests that the systems wireless hardware can connect to a router using no "
+"security and the 802.11b/g protocols after the system has been suspended."
+msgstr ""
+
+#. description
+#: ../jobs/suspend.txt.in:189
+msgid ""
+"Tests that the systems wireless hardware can connect to a router using WPA "
+"security and the 802.11n protocol after the system has been suspended."
+msgstr ""
+
+#. description
+#: ../jobs/suspend.txt.in:200
+msgid ""
+"Tests that the systems wireless hardware can connect to a router using no "
+"security and the 802.11n protocol after the system has been suspended."
+msgstr ""
+
+#. description
+#: ../jobs/suspend.txt.in:211
 msgid ""
 "This test grabs the hardware address of the bluetooth adapter after suspend "
 "and compares it to the address grabbed before suspend."
@@ -2606,14 +3106,17 @@ msgstr ""
 "en vergelijkt het met het adres van voor de pauzestand."
 
 #. description
-#: ../jobs/suspend.txt.in:196
+#: ../jobs/suspend.txt.in:221
 msgid ""
 "This is an automated Bluetooth file transfer test. It sends an image to the "
 "device specified by the BTDEVADDR environment variable."
 msgstr ""
+"Dit is een geautomatiseerde test voor bestandsoverdracht via Bluetooth. Het "
+"verstuurt een afbeelding naar het apparaat aangegeven door de BTDEVADDR-"
+"omgevingsvariabele."
 
 #. description
-#: ../jobs/suspend.txt.in:206
+#: ../jobs/suspend.txt.in:231
 msgid ""
 "PURPOSE:\n"
 "    This test will send the image 'JPEG_Color_Image_Ubuntu.jpg' to a "
@@ -2626,9 +3129,21 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the data correctly transferred?"
 msgstr ""
+"DOEL:\n"
+"    Deze test stuurt de afbeelding 'JPEG_Color_Image_Ubuntu.jpg' naar een "
+"opgegeven apparaat\n"
+"STAPPEN:\n"
+"    1. Klik op 'Testen' en u wordt gevraagd om de naam van het Bluetooth-"
+"apparaat of een apparaat dat bestandsoverdrachten kan accepteren (Na het "
+"invoeren van de naam kan het even duren voordat het bestand wordt "
+"verzonden)\n"
+"    2. accepteer eventuele aanwijzingen die op beide apparaten worden "
+"weergegeven\n"
+"VERIFICATIE:\n"
+"    Zijn de gegevens correct overgedragen?"
 
 #. description
-#: ../jobs/suspend.txt.in:220
+#: ../jobs/suspend.txt.in:245
 msgid ""
 "PURPOSE:\n"
 "    This test will cycle through the detected display modes\n"
@@ -2637,9 +3152,15 @@ msgid ""
 "VERIFICATION:\n"
 "    Did your display look fine in the detected mode?"
 msgstr ""
+"DOEL:\n"
+"    Deze test zal door de gedetecteerde weergavemodi lopen \n"
+"STAPPEN:\n"
+"    1. Klik op \"Testen\" en het beeldscherm zal de weergavemodi doorlopen\n"
+"VERIFICATIE:\n"
+"    Zag uw beeldscherm in de gedetecteerde modus er prima uit?"
 
 #. description
-#: ../jobs/suspend.txt.in:232
+#: ../jobs/suspend.txt.in:257
 msgid ""
 "This test will check to make sure supported video modes work after a suspend "
 "and resume. This is done automatically by taking screenshots and uploading "
@@ -2650,28 +3171,16 @@ msgstr ""
 "maken en deze bij het raport te voegen."
 
 #. description
-#: ../jobs/suspend.txt.in:241
+#: ../jobs/suspend.txt.in:266
 msgid ""
 "This attaches screenshots from the "
 "suspend/cycle_resolutions_after_suspend_auto test to the results submission."
 msgstr ""
+"Dit zal schermafdrukken van de pauze/resoluties_doorlopen_na_pauze_auto "
+"testen toevoegen aan het resultatenrapport."
 
 #. description
-#: ../jobs/suspend.txt.in:231
-msgid ""
-"PURPOSE:\n"
-"    This will test that USB functionality is restored after a suspend and "
-"resume cycle\n"
-"STEPS:\n"
-"    1. Plug in at least one USB storage device if one is not already "
-"connected\n"
-"    2. Click \"Test\" to start\n"
-"VERIFICATION:\n"
-"    Automatically verified"
-msgstr ""
-
-#. description
-#: ../jobs/suspend.txt.in:251
+#: ../jobs/suspend.txt.in:276
 msgid ""
 "This will check to make sure that your audio device works properly after a "
 "suspend and resume.  This may work fine with speakers and onboard "
@@ -2684,12 +3193,13 @@ msgstr ""
 "audio-in jack kunt verbinden."
 
 #. description
-#: ../jobs/suspend.txt.in:260
+#: ../jobs/suspend.txt.in:285
 msgid "This is the automated version of suspend/suspend_advanced."
 msgstr ""
+"Dit is de geautomatiseerde versie van pauzestand/geavanceerde_pauzestand."
 
 #. description
-#: ../jobs/suspend.txt.in:269
+#: ../jobs/suspend.txt.in:294
 msgid ""
 "This automatically tests Wake-on-LAN capability with the aid of a suitably "
 "configured server. During this process the system will suspend, then "
@@ -2698,6 +3208,18 @@ msgstr ""
 "Dit test automatisch Wake-on-LAN met behulp van een geschikte server. "
 "Tijdens dit proces zal het systeem in pauzestand worden gebracht, vervolgens "
 "zal het systeem binnen 5 minuten weer worden opgestart."
+
+#. description
+#: ../jobs/suspend.txt.in:304
+msgid ""
+"PURPOSE:\n"
+"    Take a screengrab of the current screen after suspend (logged on Unity "
+"desktop)\n"
+"STEPS:\n"
+"    1. Take picture using USB webcam\n"
+"VERIFICATION:\n"
+"    1. Review attachment manually later"
+msgstr ""
 
 #. description
 #: ../jobs/unity.txt.in:6
@@ -2726,7 +3248,7 @@ msgstr "Op het systeem aangesloten USB-apparaten detecteren en tonen."
 #: ../jobs/usb.txt.in:12
 msgid ""
 "PURPOSE:\n"
-"    This test will check your USB connection.\n"
+"    This test will check that your system detects USB storage devices.\n"
 "STEPS:\n"
 "    1. Plug in one or more USB keys or hard drives.\n"
 "    2. Click on \"Test\".\n"
@@ -2735,6 +3257,15 @@ msgid ""
 "VERIFICATION:\n"
 "    Were the drives detected?"
 msgstr ""
+"DOEL:\n"
+"    Deze test controleert of uw systeem USB-opslagapparaten detecteert.\n"
+"STAPPEN:\n"
+"    1. Sluit één of meer USB-geheugenpennen of harde schijven aan.\n"
+"    2. Klik op \"Testen\".\n"
+"INFO:\n"
+"    $output \n"
+"VERIFICATIE:\n"
+"    Werden de schijven gedetecteerd?"
 
 #. description
 #: ../jobs/usb.txt.in:28
@@ -2747,6 +3278,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Does the keyboard work?"
 msgstr ""
+"DOEL:\n"
+"    Deze test controleert uw USB-aansluiting.\n"
+"STAPPEN:\n"
+"    1. Sluit een USB-toetsenbord aan op de computer.\n"
+"    2. Klik op \"Testen\" en voer wat tekst in.\n"
+"VERIFICATIE:\n"
+"    Werkt het toetsenbord?"
 
 #. description
 #: ../jobs/usb.txt.in:41
@@ -2771,28 +3309,55 @@ msgstr ""
 #: ../jobs/usb.txt.in:55
 msgid ""
 "PURPOSE:\n"
-"    This test will check your USB connection.\n"
+"    This test will check that the system correctly detects the insertion of\n"
+"    a USB storage device\n"
 "STEPS:\n"
-"    1. Click \"Test\" and insert a USB device within 5 seconds.\n"
+"    1. Click \"Test\" and insert a USB storage device (pen-drive/HDD).\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
 "    2. Do not unplug the device after the test.\n"
 "VERIFICATION:\n"
-"    The verification of this test is automated."
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
 msgstr ""
+"DOEL:\n"
+"    Deze test controleert of het systeem het aansluiten van een USB-"
+"opslagapparaat\n"
+"    correct detecteert\n"
+"STAPPEN:\n"
+"    1. Klik op \"Testen\" en sluit een USB-opslagapparaat (pen-station/HDD) "
+"aan.\n"
+"       (Opmerking: na 10 seconden zal deze test stoppen.)\n"
+"    2. Na de test het apparaat niet loskoppelen.\n"
+"VERIFICATIE:\n"
+"    De verificatie van deze test is geautomatiseerd. Het automatisch "
+"geselecteerde resultaat niet wijzigen."
 
 #. description
-#: ../jobs/usb.txt.in:69
+#: ../jobs/usb.txt.in:72
 msgid ""
 "PURPOSE:\n"
-"    This test will check your USB connection.\n"
+"    This test will check that the system correctly detects the removal of\n"
+"    a USB storage device\n"
 "STEPS:\n"
-"    1. Click \"Test\" and remove the USB device within 5 seconds.\n"
-"    2. Do not unplug the device after the test.\n"
+"    1. Click \"Test\" and remove the USB device.\n"
+"       (Note: this test will time-out after 10 seconds.)\n"
 "VERIFICATION:\n"
-"    The verification of this test is automated."
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
 msgstr ""
+"DOEL:\n"
+"    Deze test controleert of het systeem het verwijderen van een USB-"
+"opslagapparaat\n"
+"    correct detecteert\n"
+"STAPPEN:\n"
+"    1. Klik op \"Testen\" en verwijder het USB-opslagapparaat.\n"
+"       (Opmerking: na 10 seconden zal deze test stoppen.)\n"
+" VERIFICATIE:\n"
+"    De verificatie van deze test is geautomatiseerd. Het automatisch "
+"geselecteerde resultaat niet wijzigen."
 
 #. description
-#: ../jobs/usb.txt.in:82
+#: ../jobs/usb.txt.in:88
 msgid ""
 "PURPOSE:\n"
 "    This test will check your USB connection.\n"
@@ -2801,17 +3366,37 @@ msgid ""
 "    2. An icon should appear on the Launcher.\n"
 "    3. Click \"Test\" to begin the test.\n"
 "VERIFICATION:\n"
-"    The verification of this test is automated."
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
 msgstr ""
+"DOEL:\n"
+"    Deze test controleert uw USB-aansluiting.\n"
+"STAPPEN:\n"
+"    1. sluit een USB HDD of thumbdrive op de computer aan.\n"
+"    2. er zal een pictogram op de Starter verschijnen.\n"
+"    3. klik op 'Testen' om de test te beginnen.\n"
+"VERIFICATIE:\n"
+"    De verificatie van deze test is geautomatiseerd. Het automatisch \n"
+"    geselecteerde resultaat niet wijzigen."
 
 #. description
-#: ../jobs/usb.txt.in:80
-msgid ""
-"This test is automated and requires that you plug in at least one usb "
-"storage device before running checkbox."
+#: ../jobs/usb.txt.in:104
+msgid "This test is automated and executes after the usb/insert test is run."
 msgstr ""
-"Deze test is geautomatiseerd en vereist dat u minimaal één USB-"
-"opslagapparaat aansluit voordat u checkbox start."
+"Deze test is geautomatiseerd en wordt gestart nadat de usb/invoegen test is "
+"uitgevoerd."
+
+#. description
+#: ../jobs/usb.txt.in:111
+msgid ""
+"This is an automated version of usb/storage-automated and assumes that the  "
+"server has usb storage devices plugged in prior to checkbox execution. It  "
+"is intended for servers and SRU automated testing."
+msgstr ""
+"Dit is een geautomatiseerde versie van usb/geautomatiseerde opslag en "
+"aangenomen wordt dat USB-opslagapparaten op de server zijn aangesloten "
+"voordat checkbox wordt uitgevoerd. Het is bedoeld voor servers en SRU "
+"geautomatiseerd testen."
 
 #. description
 #: ../jobs/usb.txt.in:119
@@ -2828,6 +3413,17 @@ msgid ""
 "VERIFICATION:\n"
 "    Do all USB slots work with the device?"
 msgstr ""
+"DOEL:\n"
+"    Deze test controleert uw USB-aansluiting.\n"
+"STAPPEN:\n"
+"    1. verbind een USB-opslagapparaat met een externe USB-poort op deze "
+"computer.\n"
+"    2. er zal een pictogram op de Starter verschijnen.\n"
+"    3. bevestigen dat het pictogram wordt weergegeven.\n"
+"    4. werpt het apparaat uit.\n"
+"    5. herhaal met elke externe USB-poort.\n"
+"VERIFICATIE:\n"
+"    Werken alle USB-poorten met het apparaat?"
 
 #. description
 #: ../jobs/user_apps.txt.in:6
@@ -2843,6 +3439,18 @@ msgid ""
 " Did Update manager find and install updates (Pass if no updates are found,\n"
 " but Fail if updates are found but not installed)"
 msgstr ""
+"DOEL:\n"
+" Deze test controleert of updatebeheer updates kan vinden.\n"
+"STAPPEN:\n"
+" 1. klik Testen om updatebeheer te starten.\n"
+" 2. volg de aanwijzingen en als er updates worden gevonden, installeert u "
+"deze.\n"
+" 3. wanneer updatebeheer is voltooid, sluit u het programma door op de knop "
+"Sluiten rechtsonder te klikken.\n"
+"VERIFICATIE:\n"
+" Heeft updatebeheer updates gevonden en geïnstalleerd (Overslaan als er geen "
+"updates gevonden waren,\n"
+" maar mislukt als er updates gevonden waren, maar niet zijn geïnstalleerd)"
 
 #. description
 #: ../jobs/user_apps.txt.in:22
@@ -2858,6 +3466,16 @@ msgid ""
 "VERIFICATION:\n"
 " Do you now have a new folder called Test Folder?"
 msgstr ""
+"DOEL:\n"
+" Deze test controleert of bestandsbeheer een nieuwe map kan aanmaken.\n"
+"STAPPEN:\n"
+" 1. klik op Testen om bestandsbeheer te openen.\n"
+" 2. klik in de menubalk op Bestand-> Map aanmaken.\n"
+" 3. vul in het naamvak voor de nieuwe map de naam Testmap in en druk op "
+"Enter.\n"
+" 4. sluit bestandsbeheer.\n"
+"VERIFICATIE:\n"
+" Heeft u nu een nieuwe map genaamd Testmap?"
 
 #. description
 #: ../jobs/user_apps.txt.in:37
@@ -2874,6 +3492,17 @@ msgid ""
 "VERIFICATION:\n"
 " Do you now have a folder called Test Data?"
 msgstr ""
+"DOEL:\n"
+" Deze test controleert of bestandsbeheer een map kan kopiëren.\n"
+"STAPPEN:\n"
+" 1. klik op Testen om bestandsbeheer te openen.\n"
+" 2. rechtsklik op de map Testmap en klik op Kopiëren.\n"
+" 3. rechtsklik op een witte gedeelte in het venster en klik op Plakken.\n"
+" 4. rechtsklik op de map genaamd Testmap (kopie) en klik op Hernoemen…\n"
+" 5. vul in het naamvak de naam Testdata in en druk op Enter.\n"
+" 6. sluit bestandsbeheer.\n"
+"VERIFICATIE:\n"
+" Heeft u nu een map genaamd Testdata?"
 
 #. description
 #: ../jobs/user_apps.txt.in:54
@@ -2891,6 +3520,16 @@ msgid ""
 " Was the folder called Test Data successfully moved into the folder called "
 "Test Folder?"
 msgstr ""
+"DOEL:\n"
+" Deze test controleert of bestandsbeheer een map kan verplaatsen.\n"
+"STAPPEN:\n"
+" 1. klik op Testen om bestandsbeheer te openen.\n"
+" 2. klik en sleep de map genaamd Testdata op het icoon genaamd Testmap.\n"
+" 3. laat de knop los.\n"
+" 4. dubbelklik op de map Testmap om het te openen.\n"
+" 5. sluit bestandsbeheer.\n"
+"VERIFICATIE:\n"
+" Was de map Testdata succesvol naar de map Testmap verplaatst?"
 
 #. description
 #: ../jobs/user_apps.txt.in:70
@@ -2906,6 +3545,16 @@ msgid ""
 "VERIFICATION:\n"
 " Do you now have a file called Test File 1?"
 msgstr ""
+"DOEL:\n"
+" Deze test controleert of bestandsbeheer een nieuw document kan aanmaken.\n"
+"STAPPEN:\n"
+" 1. klik op Testen om bestandsbeheer te openen.\n"
+" 2. klik met de rechter muisknop in de witte ruimte en kies voor Document "
+"aanmaken-> Leeg bestand.\n"
+" 3. vul in het naamvak de naam Testbestand 1 in en druk op Enter.\n"
+" 4. sluit bestandsbeheer.\n"
+"VERIFICATIE:\n"
+" Heeft u nu een nieuw bestand genaamd Testbestand 1?"
 
 #. description
 #: ../jobs/user_apps.txt.in:85
@@ -2922,6 +3571,18 @@ msgid ""
 "VERIFICATION:\n"
 " Do you now have a file called Test File 2?"
 msgstr ""
+"DOEL:\n"
+" Deze test controleert of bestandsbeheer een bestand kan kopiëren.\n"
+"STAPPEN:\n"
+" 1. klik op ‘Testen’ om bestandsbeheer te openen.\n"
+" 2. rechtsklik op het bestand Testbestand 1 en klik op Kopiëren.\n"
+" 3. rechtsklik in de witte ruimte en klik op Plakken.\n"
+" 4. rechtsklik op het bestand genaamd Testbestand 1 (kopie) en klik op "
+"Hernoemen…\n"
+" 5. vul in het naamvak de naam Testbestand 2 in en druk op Enter.\n"
+" 6. sluit bestandsbeheer.\n"
+"VERIFICATIE:\n"
+" Heeft u nu een bestand genaamd Testbestand 2?"
 
 #. description
 #: ../jobs/user_apps.txt.in:102
@@ -2938,6 +3599,17 @@ msgid ""
 "VERIFICATION:\n"
 " Was the file Test File 2 successfully moved into the Test Data folder?"
 msgstr ""
+"DOEL:\n"
+" Deze test controleert of bestandsbeheer een bestand kan verplaatsen.\n"
+"STAPPEN:\n"
+" 1. klik op Testen om bestandsbeheer te openen.\n"
+" 2. klik en sleep het bestand Testbestand 2 op het icoon van de map genaamd "
+"Testdata.\n"
+" 3. laat de knop los.\n"
+" 4. dubbelklik op de map Testdata om het te openen.\n"
+" 5. sluit bestandsbeheer.\n"
+"VERIFICATIE:\n"
+" Was het bestand Testbestand 2 succesvol naar de map Testdata verplaatst?"
 
 #. description
 #: ../jobs/user_apps.txt.in:118
@@ -2952,6 +3624,16 @@ msgid ""
 "VERIFICATION:\n"
 "  Is Test File 1 now gone?"
 msgstr ""
+"DOEL:\n"
+" Deze test controleert of bestandsbeheer een bestand kan verwijderen.\n"
+"STAPPEN:\n"
+" 1. klik op Testen om bestandsbeheer te openen.\n"
+" 2. rechtsklik op het bestand Testbestand 1 en klik op In prullenbak "
+"gooien.\n"
+" 3. controleer of Testbestand 1 weg is.\n"
+" 4. sluit bestandsbeheer.\n"
+"VERIFICATIE:\n"
+" Is Testbestand 1 nu weg?"
 
 #. description
 #: ../jobs/user_apps.txt.in:133
@@ -2967,6 +3649,15 @@ msgid ""
 "VERIFICATION:\n"
 " Has Test Folder been successfully deleted?"
 msgstr ""
+"DOEL:\n"
+" Deze test controleert of bestandsbeheer een map kan verwijderen.\n"
+"STAPPEN:\n"
+" 1. klik op ‘Testen’ om bestandsbeheer te openen.\n"
+" 2. rechtsklik op de map Testmap en klik op ‘In prullenbak’ gooien.\n"
+" 3. controleer of Testmap verwijderd is.\n"
+" 4. sluit bestandsbeheer.\n"
+"VERIFICATIE:\n"
+" Is Testmap succesvol verwijderd?"
 
 #. description
 #: ../jobs/user_apps.txt.in:207
@@ -2983,6 +3674,13 @@ msgid ""
 "VERIFICATION:\n"
 " Did the Ubuntu Test page load correctly?"
 msgstr ""
+"DOEL:\n"
+" Deze test controleert of Firefox een standaard webpagina kan weergeven.\n"
+"STAPPEN:\n"
+" 1. Klik op 'Testen' om Firefox te starten en de test webpagina te "
+"bekijken.\n"
+"VERIFICATIE:\n"
+" Werd de Ubuntu-testpagina correct geladen?"
 
 #. description
 #: ../jobs/user_apps.txt.in:241
@@ -2997,6 +3695,15 @@ msgid ""
 "VERIFICATION:\n"
 " Did the applet display?"
 msgstr ""
+"DOEL:\n"
+" Deze test controleert of Firefox een Java-applet in een webpagina kan "
+"uitvoeren.\n"
+" Opmerking: Het kan benodigd zijn om extra software te installeren.\n"
+"STAPPEN:\n"
+" 1. Selecteer Testen om Firefox met de Java-testpagina te openen, en volg de "
+"instructies daarin.\n"
+"VERIFICATIE:\n"
+" Werd de applet weergegeven?"
 
 #. description
 #: ../jobs/user_apps.txt.in:255
@@ -3010,6 +3717,13 @@ msgid ""
 "VERIFICATION:\n"
 " Did you see the text?"
 msgstr ""
+"DOEL: \n"
+" Deze test controleert of Firefox flash-toepassingen kan uitvoeren. \n"
+" Opmerking: het kan vereist zijn om extra software te installeren.\n"
+"STAPPEN:\n"
+" 1. Kies Testen om Firefox te starten en bekijk een voorbeeld Flash test.\n"
+"VERIFICATIE:\n"
+" Heeft u de tekst gezien?"
 
 #. description
 #: ../jobs/user_apps.txt.in:269
@@ -3022,6 +3736,13 @@ msgid ""
 "VERIFICATION:\n"
 " Did the video play correctly?"
 msgstr ""
+"DOEL: \n"
+" Deze test controleert of Firefox een Flash-video kan afspelen. \n"
+" Opmerking: het kan vereist zijn om extra software te installeren.\n"
+"STAPPEN:\n"
+" 1. Kies Testen om Firefox te starten en bekijk een korte Flash-video.\n"
+"VERIFICATIE:\n"
+" Werd de video correct afgespeeld?"
 
 #. description
 #: ../jobs/user_apps.txt.in:283
@@ -3035,6 +3756,14 @@ msgid ""
 "VERIFICATION:\n"
 " Did the video play using a plugin?"
 msgstr ""
+"DOEL: \n"
+" Deze test controleert of Firefox een Quicktime (.mov) videobestand kan "
+"afspelen. \n"
+" Opmerking: het kan vereist zijn om extra software te installeren.\n"
+"STAPPEN:\n"
+" 1. Kies Testen om Firefox te starten en bekijk de video.\n"
+"VERIFICATIE:\n"
+" Werd de video correct afgespeeld met behulp van een plug-in?"
 
 #. description
 #: ../jobs/user_apps.txt.in:297
@@ -3048,6 +3777,15 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to connect correctly and send/receive messages?"
 msgstr ""
+"DOEL:\n"
+" Deze test controleert of Empathy messaging client werkt.\n"
+"STAPPEN:\n"
+" 1. Kies Testen om Empathy te starten.\n"
+" 2. Stel het in om verbinding te maken met Facebook Chat.\n"
+" 3. Zodra u klaar bent met de test, kunt u Empathy sluiten om hier door te "
+"gaan.\n"
+"VERIFICATIE:\n"
+" Kon u verbinding maken en berichten verzenden/ontvangen?"
 
 #. description
 #: ../jobs/user_apps.txt.in:311
@@ -3061,6 +3799,15 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to connect correctly and send/receive messages?"
 msgstr ""
+"DOEL:\n"
+" Deze test controleert of Empathy messaging client werkt.\n"
+"STAPPEN:\n"
+" 1. Kies Testen om Empathy te starten.\n"
+" 2. Stel het in om verbinding te maken met Google Talk (gtalk).\n"
+" 3. Zodra u klaar bent met de test, kunt u Empathy sluiten om hier door te "
+"gaan.\n"
+"VERIFICATIE:\n"
+" Kon u verbinding maken en berichten verzenden/ontvangen?"
 
 #. description
 #: ../jobs/user_apps.txt.in:325
@@ -3074,6 +3821,15 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to connect correctly and send/receive messages?"
 msgstr ""
+"DOEL: \n"
+" Deze test controleert of Empathy messaging client werkt.\n"
+"STAPPEN:\n"
+" 1. Kies Testen om Empathy te starten.\n"
+" 2. Stel het in om verbinding te maken met Jabber.\n"
+" 3. Zodra u klaar bent met de test, kunt u Empathy sluiten om hier door te "
+"gaan.\n"
+"VERIFICATIE:\n"
+" Kon u verbinding maken en berichten verzenden/ontvangen?"
 
 #. description
 #: ../jobs/user_apps.txt.in:339
@@ -3087,6 +3843,15 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to connect correctly and send/receive messages?"
 msgstr ""
+"DOEL: \n"
+" Deze test controleert of Empathy messaging client werkt.\n"
+"STAPPEN:\n"
+" 1. Kies Testen om Empathy te starten.\n"
+" 2. Stel het in om verbinding te maken met AOL Instant Messaging (AIM).\n"
+" 3. Zodra u klaar bent met de test, kunt u Empathy sluiten om hier door te "
+"gaan.\n"
+"VERIFICATIE:\n"
+" Kon u verbinding maken en berichten verzenden/ontvangen?"
 
 #. description
 #: ../jobs/user_apps.txt.in:353
@@ -3100,6 +3865,15 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to connect correctly and send/receive messages?"
 msgstr ""
+"DOEL: \n"
+" Deze test controleert of Empathy messaging client werkt.\n"
+"STAPPEN:\n"
+" 1. Kies Testen om Empathy te starten.\n"
+" 2. Stel het in om verbinding te maken met Microsoft Network (MSN).\n"
+" 3. Zodra u klaar bent met de test, kunt u Empathy sluiten om hier door te "
+"gaan.\n"
+"VERIFICATIE:\n"
+" Kon u verbinding maken en berichten verzenden/ontvangen?"
 
 #. description
 #: ../jobs/user_apps.txt.in:367
@@ -3112,6 +3886,13 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to receive and read e-mail correctly?"
 msgstr ""
+"DOEL:\n"
+" Deze test controleert of Evolution werkt.\n"
+"STAPPEN:\n"
+" 1. Klik op de knop \"Testen\" om Evolution te starten.\n"
+" 2. Stel het in om verbinding te maken met een POP3 account.\n"
+"VERIFICATIE:\n"
+"Kon u e-mail ontvangen en lezen?"
 
 #. description
 #: ../jobs/user_apps.txt.in:380
@@ -3124,6 +3905,13 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to receive and read e-mail correctly?"
 msgstr ""
+"DOEL:\n"
+" Deze test controleert of Evolution werkt.\n"
+"STAPPEN:\n"
+" 1. Klik op de knop \"Testen\" om Evolution te starten.\n"
+" 2. Stel het in om verbinding te maken met een IMAP account.\n"
+"VERIFICATIE:\n"
+"Kon u e-mail ontvangen en lezen?"
 
 #. description
 #: ../jobs/user_apps.txt.in:393
@@ -3136,6 +3924,13 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to send e-mail without errors?"
 msgstr ""
+"DOEL:\n"
+" Deze test controleert of Evolution werkt.\n"
+"STAPPEN:\n"
+" 1. Klik op de knop \"Testen\" om Evolution te starten.\n"
+" 2. Stel het in om verbinding te maken met een SMTP account.\n"
+"VERIFICATIE:\n"
+"Kon u zonder fouten e-mail verzenden?"
 
 #. description
 #: ../jobs/user_apps.txt.in:406
@@ -3147,6 +3942,12 @@ msgid ""
 "VERIFICATION:\n"
 " Did it launch correctly?"
 msgstr ""
+"DOEL:\n"
+" Deze test controleert of gcalctool (rekenmachine) werkt.\n"
+"STAPPEN:\n"
+" Klik op de knop \"Testen\" om de rekenmachine te openen.\n"
+"VERIFICATIE:\n"
+" Werd het gestart?"
 
 #. description
 #: ../jobs/user_apps.txt.in:419
@@ -3162,6 +3963,16 @@ msgid ""
 "VERIFICATION:\n"
 " Did the functions perform as expected?"
 msgstr ""
+"DOEL: \n"
+" Deze test controleert of gcalctool (rekenmachine) werkt.\n"
+"STAPPEN:\n"
+" Klik op de knop \"Testen\" om de rekenmachine te openen en uit te voeren:\n"
+" 1. eenvoudige wiskundige functies (+,-, /, *)\n"
+" 2. wiskundige functies ((,))\n"
+" 3. breuken\n"
+" 4. decimalen\n"
+"VERIFICATIE:\n"
+" Werkte de functies zoals verwacht?"
 
 #. description
 #: ../jobs/user_apps.txt.in:436
@@ -3177,6 +3988,16 @@ msgid ""
 "VERIFICATION:\n"
 " Did the functions perform as expected?"
 msgstr ""
+"DOEL: \n"
+" Deze test controleert of gcalctool (rekenmachine) werkt.\n"
+"STAPPEN:\n"
+" Klik op de knop \"Testen\" om de rekenmachine te openen en uit te voeren:\n"
+"  1. geheugen instellen\n"
+"  2. geheugen resetten\n"
+"  3. laatste uit geheugen wissen\n"
+"  4. geheugen wissen\n"
+"VERIFICATIE:\n"
+" Werkte de functies zoals verwacht?"
 
 #. description
 #: ../jobs/user_apps.txt.in:453
@@ -3191,6 +4012,15 @@ msgid ""
 "VERIFICATION:\n"
 " Did the functions perform as expected?"
 msgstr ""
+"DOEL: \n"
+" Deze test controleert of gcalctool (rekenmachine) werkt.\n"
+"STAPPEN:\n"
+" Klik op de knop \"Testen\" om de rekenmachine te openen en uit te voeren:\n"
+" 1. knippen\n"
+" 2. kopiëren\n"
+" 3. plakken\n"
+"VERIFICATIE:\n"
+" Werkte de functies zoals verwacht?"
 
 #. description
 #: ../jobs/user_apps.txt.in:468
@@ -3204,6 +4034,14 @@ msgid ""
 "VERIFICATION:\n"
 " Did this perform as expected?"
 msgstr ""
+"DOEL:\n"
+" Deze test controleert of gedit werkt.\n"
+"STAPPEN:\n"
+" 1. Klik op de knop \"Testen\" om gedit te openen.\n"
+" 2. Voer wat tekst in en sla het bestand op (maak een notitie van de "
+"bestandsnaam die u gebruikt) en sluit gedit.\n"
+"VERIFICATIE:\n"
+" Werkte dit naar verwachting?"
 
 #. description
 #: ../jobs/user_apps.txt.in:482
@@ -3217,6 +4055,14 @@ msgid ""
 "VERIFICATION:\n"
 " Did this perform as expected?"
 msgstr ""
+"DOEL:\n"
+" Deze test controleert of gedit werkt.\n"
+"STAPPEN:\n"
+" 1. Klik op de knop \"Testen\" om gedit te openen, en open het bestand dat u "
+"eerder heeft gemaakt.\n"
+" 2. Bewerk het bestand, sla het op en sluit gedit.\n"
+"VERIFICATIE:\n"
+" Werkte dit naar verwachting?"
 
 #. description
 #: ../jobs/user_apps.txt.in:495
@@ -3231,11 +4077,20 @@ msgid ""
 "VERIFICATION:\n"
 " Did this perform as expected?"
 msgstr ""
+"DOEL:\n"
+" Deze test controleert of de terminal werkt.\n"
+"STAPPEN:\n"
+" 1. Klik op de knop \"Test\" om het terminalvenster te openen.\n"
+" 2. Type 'ls' en druk op enter. U zal nu een lijst met bestanden en mappen "
+"in uw persoonlijke map zien\n"
+" 3. Sluit het terminalvenster.\n"
+"VERIFICATIE:\n"
+" Werkte dit naar verwachting?"
 
 #. description
 #: ../jobs/wireless.txt.in:6
 msgid "Wireless scanning test. It scans and reports on discovered APs."
-msgstr ""
+msgstr "Draadloze scanner test. Het scant en doet verslag van ontdekte APs"
 
 #. description
 #: ../jobs/wireless.txt.in:12
@@ -3250,6 +4105,16 @@ msgid ""
 "VERIFICATION:\n"
 "    Did a notification show and was the connection correctly established?"
 msgstr ""
+"DOEL:\n"
+"    Deze test controleert uw draadloze verbinding.\n"
+"Stappen:\n"
+"    1. Klik op het netwerkicoon op het paneel\n"
+"    2. Selecteer een netwerk onder de sectie 'Draadloze netwerken'.\n"
+"    3. Klik \"Test\" om te controleren of uw computer een HTTP-verbinding "
+"tot stand kan brengen.\n"
+"VERIFICATIE:\n"
+"    Werd er een mededeling getoond en werd de verbinding correct tot stand "
+"gebracht?"
 
 #. description
 #: ../jobs/wireless.txt.in:28
@@ -3257,13 +4122,17 @@ msgid ""
 "Tests that the systems wireless hardware can connect to a router using WPA "
 "security and the 802.11b/g protocols."
 msgstr ""
+"Test of de draadloze hardware van het systeem een verbinding kunnen maken "
+"met een router met behulp van WPA beveiliging en de 802.11b/g protocollen."
 
 #. description
 #: ../jobs/wireless.txt.in:38
 msgid ""
-"Tests that the systems wireless hardware can connect to a router using no no "
+"Tests that the systems wireless hardware can connect to a router using no "
 "security and the 802.11b/g protocols."
 msgstr ""
+"Test of de draadloze hardware van het systeem een verbinding met de router "
+"kan maken zonder beveiliging via de 802.11b/g protocollen."
 
 #. description
 #: ../jobs/wireless.txt.in:48
@@ -3271,13 +4140,17 @@ msgid ""
 "Tests that the systems wireless hardware can connect to a router using WPA "
 "security and the 802.11n protocol."
 msgstr ""
+"Test of de draadloze hardware van het systeem een verbinding met de router "
+"kan maken met behulp van WPA beveiliging en de 802.11n-protocollen."
 
 #. description
 #: ../jobs/wireless.txt.in:58
 msgid ""
-"Tests that the systems wireless hardware can connect to a router using no no "
+"Tests that the systems wireless hardware can connect to a router using no "
 "security and the 802.11n protocol."
 msgstr ""
+"Test of de draadloze hardware van het systeem een verbinding met de router "
+"kan maken zonder beveiliging via de 802.11n-protocollen."
 
 #. description
 #: ../jobs/wireless.txt.in:70
@@ -3285,6 +4158,7 @@ msgid ""
 "Tests the performance of a systems wireless connection through the iperf "
 "tool."
 msgstr ""
+"Test de prestaties van een draadloze verbinding via het hulpprogramma iperf."
 
 #. description
 #: ../jobs/wireless.txt.in:81
@@ -3292,6 +4166,8 @@ msgid ""
 "Tests the performance of a systems wireless connection through the iperf "
 "tool, using UDP packets."
 msgstr ""
+"Test de prestaties van een draadloze verbinding via het hulpprogramma iperf, "
+"met behulp van UDP pakketten."
 
 #: ../checkbox/application.py:66
 msgid "Usage: checkbox [OPTIONS]"
@@ -3331,12 +4207,12 @@ msgstr "Configuratiebestand ontbreekt als argument.\n"
 
 #: ../checkbox/job.py:84
 msgid "Command not found."
-msgstr ""
+msgstr "Opdracht niet gevonden."
 
 #: ../checkbox/job.py:92
 #, python-format
 msgid "Command received signal %s: %s"
-msgstr ""
+msgstr "Opdracht ontving signaal %s: %s"
 
 #: ../checkbox/lib/signal.py:23
 msgid ""
@@ -3424,17 +4300,17 @@ msgid "Unknown signal"
 msgstr "Onbekend signaal"
 
 #: ../checkbox_cli/cli_interface.py:31
-#: ../checkbox_urwid/urwid_interface.py:917
+#: ../checkbox_urwid/urwid_interface.py:917 ../checkbox_qt/qt_interface.py:33
 msgid "yes"
 msgstr "ja"
 
 #: ../checkbox_cli/cli_interface.py:32
-#: ../checkbox_urwid/urwid_interface.py:918
+#: ../checkbox_urwid/urwid_interface.py:918 ../checkbox_qt/qt_interface.py:34
 msgid "no"
 msgstr "nee"
 
 #: ../checkbox_cli/cli_interface.py:33
-#: ../checkbox_urwid/urwid_interface.py:919
+#: ../checkbox_urwid/urwid_interface.py:919 ../checkbox_qt/qt_interface.py:35
 msgid "skip"
 msgstr "overslaan"
 
@@ -3442,6 +4318,15 @@ msgstr "overslaan"
 #, python-format
 msgid "Please choose (%s): "
 msgstr "Maak een keuze (%s): "
+
+#: ../checkbox_cli/cli_interface.py:229 ../checkbox_cli/cli_interface.py:338
+#: ../checkbox_cli/cli_interface.py:368
+msgid "Space when finished"
+msgstr "Spatie wanneer u klaar bent"
+
+#: ../checkbox_cli/cli_interface.py:367
+msgid "Combine with character above to expand node"
+msgstr "Met teken erboven combineren om de node uit te vouwen"
 
 #: ../checkbox_cli/cli_interface.py:416
 msgid "test"
@@ -3466,27 +4351,36 @@ msgstr "Doorgaan"
 #: ../checkbox_urwid/urwid_interface.py:198
 #: ../checkbox_urwid/urwid_interface.py:274
 #: ../checkbox_urwid/urwid_interface.py:425
-#: ../checkbox_urwid/urwid_interface.py:547
+#: ../checkbox_urwid/urwid_interface.py:547 ../qt/frontend/ui_qtfront.h:609
 msgid "Previous"
 msgstr "Vorige"
 
 #: ../checkbox_urwid/urwid_interface.py:199
 #: ../checkbox_urwid/urwid_interface.py:275
 #: ../checkbox_urwid/urwid_interface.py:426
-#: ../checkbox_urwid/urwid_interface.py:548
+#: ../checkbox_urwid/urwid_interface.py:548 ../qt/frontend/ui_qtfront.h:608
 msgid "Next"
 msgstr "Volgende"
 
 #. Show buttons
-#: ../checkbox_urwid/urwid_interface.py:423
+#: ../checkbox_urwid/urwid_interface.py:423 ../qt/frontend/qtfront.cpp:137
 msgid "Select All"
 msgstr "Alles selecteren"
 
-#: ../checkbox_urwid/urwid_interface.py:424
+#: ../checkbox_urwid/urwid_interface.py:424 ../qt/frontend/qtfront.cpp:138
 msgid "Deselect All"
 msgstr "Alles deselecteren"
 
-#: ../checkbox_urwid/urwid_interface.py:1013
+#. Show buttons
+#: ../checkbox_urwid/urwid_interface.py:545
+msgid "Expand All"
+msgstr "Alles uitvouwen"
+
+#: ../checkbox_urwid/urwid_interface.py:546
+msgid "Collapse All"
+msgstr "Alles invouwen"
+
+#: ../checkbox_urwid/urwid_interface.py:1013 ../qt/frontend/ui_qtfront.h:603
 msgid "Test"
 msgstr "Test"
 
@@ -3494,18 +4388,13 @@ msgstr "Test"
 msgid "Test Again"
 msgstr "Test opnieuw"
 
-#: ../checkbox_gtk/gtk_interface.py:551
+#: ../checkbox_gtk/gtk_interface.py:566
 msgid "Info"
 msgstr "Info"
 
-#: ../checkbox_gtk/gtk_interface.py:575
+#: ../checkbox_gtk/gtk_interface.py:590
 msgid "Error"
 msgstr "Fout"
-
-#: ../checkbox/user_interface.py:137
-#, python-format
-msgid "Unable to start web browser to open %s."
-msgstr "Niet in staat webbrowser te starten om %s te openen."
 
 #: ../plugins/apport_prompt.py:83
 msgid ""
@@ -3525,8 +4414,8 @@ msgstr ""
 
 #: ../plugins/apport_prompt.py:227
 #, python-format
-msgid "Test %(name)s from suite %(suite)s failed."
-msgstr ""
+msgid "Test %(name)s failed."
+msgstr "Test %(name)s mislukt."
 
 #: ../plugins/apport_prompt.py:230
 #, python-format
@@ -3607,7 +4496,7 @@ msgstr ""
 "Uploaden naar de server mislukt,\n"
 "probeer het later opnieuw."
 
-#: ../plugins/launchpad_prompt.py:71
+#: ../plugins/launchpad_prompt.py:74
 #, python-format
 msgid ""
 "The following report has been generated for submission to the Launchpad "
@@ -3615,40 +4504,46 @@ msgid ""
 "\n"
 "  [[%s|View Report]]\n"
 "\n"
-"You can submit this information about your system by providing the e-mail "
+"You can submit this information about your system by providing the email "
 "address you use to sign in to Launchpad. If you do not have a Launchpad "
 "account, please register here:\n"
 "\n"
 "  https://launchpad.net/+login"
 msgstr ""
-"Het volgende rapport is aangemaakt om in te dienen bij de Launchpad-"
-"hardwaredatabase:\n"
+"Het volgende verslag is gegenereerd voor verzending naar de Launchpad "
+"hardware-database:\n"
 "\n"
-"  [[%s|View Report]]\n"
+"  [[%s|Rapport weergeven]]\n"
 "\n"
-"U kunt deze informatie over uw systeem indienen door het e-mailadres op te "
-"geven dat u gebruikt om aan te melden bij Launchpad. Als u nog geen "
-"Launchpad-account heeft, registreer er dan hier een:\n"
+"U kunt deze informatie over uw systeem indienen, door middel van het e-"
+"mailadres dat u gebruikt om bij Launchpad aan te melden. Als u nog geen "
+"Launchpad account heeft, registreer dan hier:\n"
 "\n"
 "  https://launchpad.net/+login"
 
-#: ../plugins/launchpad_prompt.py:88
-msgid "No e-mail address provided, not submitting to Launchpad."
-msgstr "Geen e-mailadres opgegeven, niet indienen bij Launchpad."
-
 #: ../plugins/launchpad_prompt.py:93
 msgid "Email address must be in a proper format."
-msgstr "E-mailadres moet in het correcte formaat."
+msgstr "E-mailadres moet de correcte opmaak hebben."
 
 #: ../plugins/launchpad_report.py:167
 msgid ""
 "The generated report seems to have validation errors,\n"
 "so it might not be processed by Launchpad."
 msgstr ""
+"Het gegenereerde rapport lijkt validatiefouten te hebben,\n"
+"zodat het niet door Launchpad kan worden verwerkt ."
 
 #: ../plugins/lock_prompt.py:63
 msgid "There is another checkbox running. Please close it first."
 msgstr "Checkbox wordt al uitgevoerd. Sluit deze eerst."
+
+#: ../plugins/recover_prompt.py:53
+msgid "Recover"
+msgstr "Terughalen"
+
+#: ../plugins/recover_prompt.py:54
+msgid "Restart"
+msgstr "Herstarten"
 
 #: ../plugins/recover_prompt.py:56
 msgid ""
@@ -3664,7 +4559,7 @@ msgid "Running %s..."
 msgstr "%s uitvoeren…"
 
 #. Get results
-#: ../plugins/suites_prompt.py:110
+#: ../plugins/suites_prompt.py:124
 msgid "Select the suites to test"
 msgstr "Selecteer de tests die u wilt uitvoeren"
 
@@ -3676,17 +4571,162 @@ msgstr "Voer tekst in:\n"
 msgid "Type Text"
 msgstr "Typ tekst"
 
-#: ../scripts/internet_test:139
+#: ../scripts/internet_test:196
 msgid "No Internet connection"
 msgstr "Geen internetverbinding"
 
-#: ../scripts/internet_test:142
+#: ../scripts/internet_test:199
 msgid "Connection established lost a packet"
 msgstr "Verbinding gemaakt, pakket verloren"
 
-#: ../scripts/internet_test:145
+#: ../scripts/internet_test:202
 msgid "Internet connection fully established"
 msgstr "Internetverbinding gemaakt"
+
+#: ../qt/frontend/qtfront.cpp:108
+msgid "Not Started"
+msgstr ""
+
+#: ../qt/frontend/qtfront.cpp:109 ../qt/frontend/qtfront.cpp:110
+msgid "Done"
+msgstr "Voltooid"
+
+#: ../qt/frontend/qtfront.cpp:111
+msgid "Not Supported"
+msgstr ""
+
+#: ../qt/frontend/qtfront.cpp:112
+msgid "Not Resolved"
+msgstr ""
+
+#: ../qt/frontend/qtfront.cpp:113
+msgid "Not Tested"
+msgstr ""
+
+#: ../qt/frontend/qtfront.cpp:114
+msgid "In Progress"
+msgstr ""
+
+#: ../qt/frontend/qtfront.cpp:182
+msgid "Are you sure?"
+msgstr ""
+
+#: ../qt/frontend/qtfront.cpp:182
+msgid "Do you really want to skip this test?"
+msgstr ""
+
+#: ../qt/frontend/qtfront.cpp:183
+msgid "Don't ask me again"
+msgstr ""
+
+#: ../qt/frontend/treemodel.cpp:13
+msgid ""
+"Unselecting a test will invalidate your submission for Ubuntu Friendly. If "
+"you plan to participate in Ubuntu Friendly, please, select all tests. You "
+"can always skip individual tests if you don't have the needed equipment."
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:588
+msgid "Form"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:590
+msgid "OK"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:591
+msgid "Don't show me this message in the future"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:592 ../qt/frontend/ui_qtfront.h:606
+msgid "Tab 1"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:593
+msgid "10 tests completed out of 30 (30%)"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:595
+msgid "Lists of tests to run based on your system:"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:596
+msgid "Components"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:597
+msgid "Status"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:598
+msgid "Start testing"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:599
+msgid " Selection "
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:600 ../qt/frontend/ui_qtfront.h:601
+msgid "TextLabel"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:602
+msgid "Yes"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:604
+msgid "No"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:605
+msgid "Comment"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:607 ../qt/frontend/ui_qtfront.h:623
+msgid "Tab 2"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:610
+msgid " Run "
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:611
+msgid ""
+"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" "
+"\"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style "
+"type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Ubuntu'; font-size:10pt; font-"
+"weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+"right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" "
+"color:#ff0000;\">Warning: Not all tests have been run yet.</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+"right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" "
+"color:#ff0000;\">You can send the results now, but the submission won't make "
+"it to Ubuntu Friendly.</span></p></body></html>"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:617
+msgid "Personal details"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:619
+msgid "Email:"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:620
+msgid "Submit results"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:621
+msgid "View results"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:622
+msgid " Results "
+msgstr ""
 
 #~ msgid "_Desktop"
 #~ msgstr "_Bureaublad"
@@ -3717,9 +4757,6 @@ msgstr "Internetverbinding gemaakt"
 
 #~ msgid "Exchange"
 #~ msgstr "Uitwisselen"
-
-#~ msgid "Done"
-#~ msgstr "Voltooid"
 
 #~ msgid "Category"
 #~ msgstr "Categorie"
@@ -3801,6 +4838,33 @@ msgstr "Internetverbinding gemaakt"
 
 #~ msgid "Disk benchmark:"
 #~ msgstr "Schijfbenchmark:"
+
+#, python-format
+#~ msgid ""
+#~ "The following report has been generated for submission to the Launchpad "
+#~ "hardware database:\n"
+#~ "\n"
+#~ "  [[%s|View Report]]\n"
+#~ "\n"
+#~ "You can submit this information about your system by providing the e-mail "
+#~ "address you use to sign in to Launchpad. If you do not have a Launchpad "
+#~ "account, please register here:\n"
+#~ "\n"
+#~ "  https://launchpad.net/+login"
+#~ msgstr ""
+#~ "Het volgende rapport is aangemaakt om in te dienen bij de Launchpad-"
+#~ "hardwaredatabase:\n"
+#~ "\n"
+#~ "  [[%s|View Report]]\n"
+#~ "\n"
+#~ "U kunt deze informatie over uw systeem indienen door het e-mailadres op te "
+#~ "geven dat u gebruikt om aan te melden bij Launchpad. Als u nog geen "
+#~ "Launchpad-account heeft, registreer er dan hier een:\n"
+#~ "\n"
+#~ "  https://launchpad.net/+login"
+
+#~ msgid "No e-mail address provided, not submitting to Launchpad."
+#~ msgstr "Geen e-mailadres opgegeven, niet indienen bij Launchpad."
 
 #~ msgid "Is this acceptable for your display?"
 #~ msgstr "Is dit aanvaardbaar voor uw scherm?"
@@ -4218,6 +5282,10 @@ msgstr "Internetverbinding gemaakt"
 #~ msgid "Do you now have a new folder called Test Folder?"
 #~ msgstr "Heeft u nu een nieuwe map die Testmap heet?"
 
+#, python-format
+#~ msgid "Unable to start web browser to open %s."
+#~ msgstr "Niet in staat webbrowser te starten om %s te openen."
+
 #~ msgid "Did you see the video capture?"
 #~ msgstr "Heeft u de videobeelden gezien?"
 
@@ -4251,6 +5319,9 @@ msgstr "Internetverbinding gemaakt"
 
 #~ msgid "Did the video play and pause as expected?"
 #~ msgstr "Werd de video afgespeeld en gepauzeerd zoals verwacht?"
+
+#~ msgid "Benchmark for each disk "
+#~ msgstr "Benchmark voor elke schrijf "
 
 #~ msgid "Did it launch correctly?"
 #~ msgstr "Startte het correct?"
@@ -4359,6 +5430,9 @@ msgstr "Internetverbinding gemaakt"
 #~ msgid "* Play/Pause * Stop * Forward * Backward (Rewind)"
 #~ msgstr "* Starten/Pauzeren * Stoppen * Vooruit * Terug (terugspoelen)"
 
+#~ msgid "Optical Storage device read tests"
+#~ msgstr "Optische opslagapparaatlezer testen"
+
 #~ msgid ""
 #~ "Press the battery information key on the keyboard. A status window \\ should "
 #~ "appear and the amount of battery remaining should be displayed."
@@ -4448,6 +5522,13 @@ msgstr "Internetverbinding gemaakt"
 #~ "timezone?"
 #~ msgstr ""
 #~ "Geeft uw systeemklok de juiste datum en tijd aan voor uw \\ tijdzone?"
+
+#~ msgid ""
+#~ "ipmitool is required for ipmi testing. This checks for ipmitool and installs "
+#~ "it if not available."
+#~ msgstr ""
+#~ "ipmitool is benodigd voor het testen van ipmi. Dit controleert of ipmitool "
+#~ "beschikbaar is en installeert het indien het niet beschikbaar is."
 
 #~ msgid "Check to see if CONFIG_NO_HZ is set in the kernel"
 #~ msgstr "Controleer of CONFIG_NO_HZ ingesteld is in de kernel"
@@ -4777,6 +5858,9 @@ msgstr "Internetverbinding gemaakt"
 #~ "Select Test to cycle through the detected video modes for your system."
 #~ msgstr ""
 #~ "Klik op ‘Test’ om de voor uw systeem gedetecteerde beeldmodi te doorlopen."
+
+#~ msgid "Check that the hardware is able to run compiz."
+#~ msgstr "Controleer of de hardware compiz kan draaien."
 
 #~ msgid ""
 #~ "Select Test to execute glxgears to ensure that minimal 3d graphics support "
@@ -5321,6 +6405,13 @@ msgstr "Internetverbinding gemaakt"
 #~ "slaagt zult u merken dat dat hieronder ‘Ja’ is geselecteerd."
 
 #~ msgid ""
+#~ "This test is automated and requires that you plug in at least one usb "
+#~ "storage device before running checkbox."
+#~ msgstr ""
+#~ "Deze test is geautomatiseerd en vereist dat u minimaal één USB-"
+#~ "opslagapparaat aansluit voordat u checkbox start."
+
+#~ msgid ""
 #~ "Connect a USB storage device to an external USB slot on this computer. \\ An "
 #~ "icon should appear on the desktop and in the \"Places\" menu at the top of "
 #~ "the screen."
@@ -5513,3 +6604,9 @@ msgstr "Internetverbinding gemaakt"
 #~ "uw rechtermuisknop op het bluetooth-pictogram en selecteer ‘Bestanden "
 #~ "verkennen’ 8.- Authenticeer de computer om de bestanden te kunnen verkennen "
 #~ "indien nodig 9.- U zou nu door de bestanden moeten kunnen bladeren"
+
+#~ msgid "Captures a screenshot."
+#~ msgstr "Maakt een schermafdruk."
+
+#~ msgid "Attaches the screenshot captured in info/screenshot."
+#~ msgstr "Voegt de schermafdruk die in info/schermafdruk gemaakt is toe."
