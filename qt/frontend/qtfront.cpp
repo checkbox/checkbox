@@ -245,6 +245,7 @@ void QtFront::showText(QString text)
 void QtFront::showError(QString text)
 {
     QMessageBox::critical(ui->tabWidget, checkboxTr("Error", 0), text);
+    emit errorBoxClosed();
 }
 
 void QtFront::setWindowTitle(QString title)
@@ -515,7 +516,7 @@ void QtFront::onJobItemChanged(QModelIndex index)
     }
 }
 
-QString QtFront::showInfo(QString text, QStringList options, QString defaultoption)
+void QtFront::showInfo(QString text, QStringList options, QString defaultoption)
 {
     // workaround, show the main window if the welcome screen wasn't shown yet
     m_mainWindow->show();
@@ -532,7 +533,7 @@ QString QtFront::showInfo(QString text, QStringList options, QString defaultopti
     dialog->exec();
     QString result = buttonMap[dialog->clickedButton()];
     delete dialog;
-    return result;
+    emit infoBoxResult(result);
 }
 
 QString QtFront::getEmailAddress()

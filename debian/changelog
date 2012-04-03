@@ -24,6 +24,10 @@ checkbox (0.13.6) precise; urgency=low
   * [FEATURE] Added touchpad tests from CE QA Checkbox to allow touchpad
     testing to be performed
 
+  [Tiago Salem Herrmann]
+  * checkbox_qt/qt_interface.py, qt/frontend/qtfront.cpp, qt/frontend/qtfront.h:
+    Do async calls to some ui methods and avoid unexpected dbus timeouts (LP: #962333)
+
   [Daniel Manrique]
   * Internationalization support in checkbox-qt; updated checkbox.pot file
     (LP: #951054) 

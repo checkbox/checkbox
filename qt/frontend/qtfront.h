@@ -45,7 +45,7 @@ public slots:
     void showText(QString text);
     void setWindowTitle(QString title);
     void startProgressBar(QString text);
-    void showError(QString text);
+    Q_NOREPLY void showError(QString text);
     void stopProgressBar();
     void showTree(QString text, QVariantMap options, QVariantMap defaults);
     void showEntry(QString text);
@@ -55,7 +55,7 @@ public slots:
     void showTest(QString purpose, QString steps, QString verification, QString info, QString comment, QString testType, QString testName, bool enableTestButton);
     void showTestControls(bool enableTestControls);
     void setFocusTestYesNo(bool status);
-    QString showInfo(QString text, QStringList options, QString defaultoption);
+    Q_NOREPLY void showInfo(QString text, QStringList options, QString defaultoption);
     void setUiFlags(QVariantMap flags);
     void updateAutoTestStatus(QString status, QString testName);
 
@@ -88,6 +88,8 @@ signals:
     void reviewTestsClicked();
     void closedFrontend(bool testsFinished);
     void welcomeCheckboxToggled(bool toogled);
+    void infoBoxResult(QString result);
+    void errorBoxClosed();
 
 private:
     bool registerService();
