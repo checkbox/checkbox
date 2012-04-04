@@ -19,6 +19,8 @@ checkbox (0.13.6) precise; urgency=low
   * qt/frontend/qtfront.cpp, qt/frontend/qtfront.h, plugins/suites_prompt.py,
     checkbox_qt/qt_interface.py, plugins/jobs_prompt.py: The selection tree is
     now updated when recovering from a previous run (LP: #937696)
+  * qt/frontend/qtfront.cpp: Submit/View results buttons are disabled until
+    every selected test has been run (LP: #937715)
 
   [Brendan Donegan]
   * [FEATURE] Added touchpad tests from CE QA Checkbox to allow touchpad

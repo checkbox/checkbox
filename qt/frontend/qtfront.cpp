@@ -73,6 +73,9 @@ QtFront::QtFront(QApplication *parent) :
     ui->treeView->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(ui->treeView, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(onSelectAllContextMenu(const QPoint&)));
     ui->stepsFrame->setFixedHeight(0);
+    ui->buttonSubmitResults->setEnabled(false);
+    ui->lineEditEmailAddress->setEnabled(false);
+    ui->buttonViewResults->setEnabled(false);
 
     // comment box
     ui->commentTestButton->setMenu(new QMenu());
@@ -285,6 +288,7 @@ void QtFront::showEntry(QString text)
 
     ui->buttonSubmitResults->setEnabled(true);
     ui->lineEditEmailAddress->setEnabled(true);
+    ui->buttonViewResults->setEnabled(true);
 
 }
 
