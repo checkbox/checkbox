@@ -241,7 +241,7 @@ void QtFront::showText(QString text)
         m_mainWindow->show();
         ui->welcomeTextBox->setPlainText(text);
     } else if (currentState == SUBMISSION) {
-        ui->submissionWarningLabel->setText(text);
+        ui->submissionUbuntuFriendlyLabel->setText(text);
     }
 }
 
