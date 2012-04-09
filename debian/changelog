@@ -5,7 +5,11 @@ checkbox (0.13.7) precise; urgency=low
     qt/frontend/qtfront.h: Do async calls to some ui methods and avoid
     unexpected dbus timeouts (LP: #962333)
 
- -- Daniel Manrique <roadmr@ubuntu.com>  Thu, 05 Apr 2012 14:36:21 -0400
+  [Sylvain Pineau]
+  * qt/frontend/qtfront.cpp: Submit/View results buttons are disabled until
+    every selected test has been run (LP: #937715)
+
+ -- Jeff Lane <jeff@ubuntu.com>  Mon, 09 Apr 2012 15:15:01 -0400
 
 checkbox (0.13.6) precise; urgency=low
 
