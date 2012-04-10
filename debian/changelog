@@ -9,7 +9,13 @@ checkbox (0.13.7) precise; urgency=low
   * qt/frontend/qtfront.cpp: Submit/View results buttons are disabled until
     every selected test has been run (LP: #937715)
 
- -- Jeff Lane <jeff@ubuntu.com>  Mon, 09 Apr 2012 15:15:01 -0400
+  [Jeff Lane]
+  * Converted submissionWarningLabel and text to submissionUbuntuFriendlyLabel
+    wtih instructional text for submitting results. This is a workaround for
+    the bug causing the warning to be displayed at all times rather than only
+    when testing is incomplete. (LP: #967457)
+
+ -- Jeff Lane <jeff@ubuntu.com>  Mon, 09 Apr 2012 17:12:51 -0400
 
 checkbox (0.13.6) precise; urgency=low
 
