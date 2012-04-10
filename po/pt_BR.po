@@ -8,39 +8,39 @@ msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-03-28 10:50-0400\n"
-"PO-Revision-Date: 2011-09-21 19:47+0000\n"
+"PO-Revision-Date: 2012-04-10 03:27+0000\n"
 "Last-Translator: Neliton Pereira Junior <nelitonpjr@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-04-03 04:41+0000\n"
-"X-Generator: Launchpad (build 15052)\n"
+"X-Launchpad-Export-Date: 2012-04-10 04:44+0000\n"
+"X-Generator: Launchpad (build 15070)\n"
 
-#: ../gtk/checkbox-gtk.ui.h:1 ../checkbox_cli/cli_interface.py:444
+#: ../gtk/checkbox-gtk.ui.h:6 ../checkbox_cli/cli_interface.py:444
 #: ../checkbox_urwid/urwid_interface.py:267
 msgid "Further information:"
 msgstr "Informações adicionais:"
 
-#: ../gtk/checkbox-gtk.ui.h:2
+#: ../gtk/checkbox-gtk.ui.h:10
 msgid "Ne_xt"
 msgstr "Pró_ximo"
 
 #. Title of the user interface
-#: ../gtk/checkbox-gtk.ui.h:3 ../qt/checkbox-qt.desktop.in.h:1
+#: ../gtk/checkbox-gtk.ui.h:1 ../qt/checkbox-qt.desktop.in.h:1
 #: ../plugins/user_interface.py:43 ../qt/frontend/ui_qtfront.h:589
 msgid "System Testing"
 msgstr "Teste do sistema"
 
-#: ../gtk/checkbox-gtk.ui.h:4
+#: ../gtk/checkbox-gtk.ui.h:8
 msgid "_Deselect All"
 msgstr "_Desmarcar tudo"
 
-#: ../gtk/checkbox-gtk.ui.h:5
+#: ../gtk/checkbox-gtk.ui.h:4
 msgid "_No"
 msgstr "_Não"
 
-#: ../gtk/checkbox-gtk.ui.h:6
+#: ../gtk/checkbox-gtk.ui.h:9
 msgid "_Previous"
 msgstr "Anterio_r"
 
@@ -48,15 +48,15 @@ msgstr "Anterio_r"
 msgid "_Select All"
 msgstr "_Selecionar todos"
 
-#: ../gtk/checkbox-gtk.ui.h:8
+#: ../gtk/checkbox-gtk.ui.h:5
 msgid "_Skip this test"
 msgstr "_Pular este teste"
 
-#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:553
+#: ../gtk/checkbox-gtk.ui.h:2 ../checkbox_gtk/gtk_interface.py:538
 msgid "_Test"
 msgstr "_Teste"
 
-#: ../gtk/checkbox-gtk.ui.h:10
+#: ../gtk/checkbox-gtk.ui.h:3
 msgid "_Yes"
 msgstr "_Sim"
 
@@ -938,6 +938,17 @@ msgid ""
 "VERIFICATION:\n"
 "    1. Atfer a 60s workload, check kern.log for reported GPU errors"
 msgstr ""
+"PROPÓSITO:\n"
+"    Executar algumas operações desafiadoras e verificar se ocorre travamento "
+"da GPU\n"
+"PASSOS:\n"
+"    1. Crie 2 janelas glxgears e mova-as rapidamente\n"
+"    2. Alterne as áreas de trabalho/área de visualização com wmctrl\n"
+"    3. Inicie uma reprodução em Flash no Firefox\n"
+"    4. Suspenda/retorne\n"
+"VERIFICAÇÃO:\n"
+"    1. Após 60 segundos de operação, verifique no kern.log se há erros de "
+"GPU relatados"
 
 #. description
 #: ../jobs/graphics.txt.in:174
@@ -949,11 +960,17 @@ msgid ""
 "VERIFICATION:\n"
 "    1. Review attachment manually later"
 msgstr ""
+"PROPÓSITO:\n"
+"    Efetuar uma captura da tela atual (numa sessão do Unity)\n"
+"PASSOS:\n"
+"    1. Tire uma foto utilizando uma webcam USB\n"
+"VERIFICAÇÃO:\n"
+"    1. Confira o anexo manualmente mais tarde"
 
 #. description
 #: ../jobs/graphics.txt.in:186 ../jobs/suspend.txt.in:316
 msgid "Attaches the screenshot captured in graphics/screenshot."
-msgstr ""
+msgstr "Anexa a captura de tela efetuada em graphics/screenshot."
 
 #. description
 #: ../jobs/graphics.txt.in:194
@@ -967,12 +984,21 @@ msgid ""
 "VERIFICATION:\n"
 "    1. Review attachment manually later"
 msgstr ""
+"PROPÓSITO:\n"
+"    Efetuar uma captura da tela atual durante uma reprodução de vídeo em "
+"tela cheia\n"
+"PASSOS:\n"
+"    1. Inicie a reprodução do vídeo em tela cheia\n"
+"    2. Tire uma foto usando uma webcam USB depois de alguns segundos\n"
+"VERIFICAÇÃO:\n"
+"    1. Confira o anexo manualmente mais tarde"
 
 #. description
 #: ../jobs/graphics.txt.in:207
 msgid ""
 "Attaches the screenshot captured in graphics/screenshot_fullscreen_video."
 msgstr ""
+"Anexa uma captura de tela efetuada em graphics/screenshot_fullscreen_video."
 
 #. description
 #: ../jobs/hibernate.txt.in:7
@@ -1073,43 +1099,43 @@ msgid "Attaches a list of the currently running kernel modules."
 msgstr "Anexar uma lista dos módulos do kernel executados atualmente."
 
 #. description
-#: ../jobs/info.txt.in:82
+#: ../jobs/info.txt.in:96
 msgid "Gather log from the Firmware Test Suite run."
 msgstr "Coletar o registro da execução da suíte de testes de firmware."
 
 #. description
-#: ../jobs/info.txt.in:89
+#: ../jobs/info.txt.in:103
 msgid "Attaches the contents of /proc/acpi/sleep if it exists."
 msgstr "Anexar o conteúdo de /proc/acpi/sleep se este existir."
 
 #. description
-#: ../jobs/info.txt.in:93
+#: ../jobs/info.txt.in:107
 msgid "Bootchart information."
 msgstr "Informação do Bootchart."
 
 #. description
-#: ../jobs/info.txt.in:102
+#: ../jobs/info.txt.in:116
 msgid "SATA/IDE device information."
 msgstr "Informações de dispositivo SATA/IDE."
 
 #. description
-#: ../jobs/info.txt.in:119
+#: ../jobs/info.txt.in:133
 msgid "Attaches the bootchart png file for bootchart runs"
 msgstr ""
 "Anexar o arquivo png do bootchart para execução de análises e visualizações"
 
 #. description
-#: ../jobs/info.txt.in:128
+#: ../jobs/info.txt.in:142
 msgid "Attaches the bootchart log for bootchart test runs."
 msgstr "Anexar o registro do bootchart para execução de testes bootchart."
 
 #. description
-#: ../jobs/info.txt.in:136
+#: ../jobs/info.txt.in:150
 msgid "installs the installer bootchart tarball if it exists."
 msgstr "instalar o tarball instalador do bootchart, se este existir."
 
 #. description
-#: ../jobs/info.txt.in:141
+#: ../jobs/info.txt.in:155
 msgid "Attaches the installer debug log if it exists."
 msgstr "Anexar o registro de depuração do instalador, se este existir."
 
@@ -2369,7 +2395,7 @@ msgstr ""
 "\"Não\" se for reprovado."
 
 #. description
-#: ../jobs/optical.txt.in:43
+#: ../jobs/optical.txt.in:34
 msgid ""
 "PURPOSE:\n"
 "    This test will check your system's CD writing capabilities. This test "
@@ -2401,7 +2427,7 @@ msgstr ""
 "se falhar."
 
 #. description
-#: ../jobs/optical.txt.in:57
+#: ../jobs/optical.txt.in:48
 msgid ""
 "PURPOSE:\n"
 "    This test will check your CD audio playback capabilities\n"
@@ -2435,7 +2461,7 @@ msgstr ""
 "    Todos os passos funcionaram?"
 
 #. description
-#: ../jobs/optical.txt.in:80
+#: ../jobs/optical.txt.in:71
 msgid ""
 "PURPOSE:\n"
 "    This test will check your system's DVD writing capabilities. This test "
@@ -2467,7 +2493,7 @@ msgstr ""
 "se falhar."
 
 #. description
-#: ../jobs/optical.txt.in:94
+#: ../jobs/optical.txt.in:85
 msgid ""
 "PURPOSE:\n"
 "    This test will check your DVD movie playback capabilities. Note that "
@@ -2501,7 +2527,7 @@ msgstr ""
 "    Todas os passos funcionaram?"
 
 #. description
-#: ../jobs/optical.txt.in:112
+#: ../jobs/optical.txt.in:103
 msgid ""
 "PURPOSE:\n"
 "    This test will check your DVD  playback capabilities\n"
@@ -2925,7 +2951,7 @@ msgstr ""
 "teste de suspensão for executado."
 
 #. description
-#: ../jobs/suspend.txt.in:40
+#: ../jobs/suspend.txt.in:49
 msgid ""
 "This test disconnects all connections and then connects to the wireless "
 "interface. It then checks the connection to confirm it's working as expected."
@@ -2934,7 +2960,7 @@ msgstr ""
 "ele verifica a conexão para confirmar que está funcionando como o esperado."
 
 #. description
-#: ../jobs/suspend.txt.in:74
+#: ../jobs/suspend.txt.in:83
 msgid ""
 "PURPOSE:\n"
 "    This test will check suspend and resume\n"
@@ -2962,18 +2988,18 @@ msgstr ""
 "    Seu sistema suspendeu-se e retornou corretamente?"
 
 #. description
-#: ../jobs/suspend.txt.in:87
+#: ../jobs/suspend.txt.in:96
 msgid "Test the network after resuming."
 msgstr "Teste a rede após retornar."
 
 #. description
-#: ../jobs/suspend.txt.in:93
+#: ../jobs/suspend.txt.in:102
 msgid ""
 "Test to see that we have the same resolution after resuming as before."
 msgstr "Veja se a resolução permanece a mesma de antes."
 
 #. description
-#: ../jobs/suspend.txt.in:102
+#: ../jobs/suspend.txt.in:111
 msgid ""
 "Verify that mixer settings after suspend are the same as before suspend."
 msgstr ""
@@ -2981,18 +3007,18 @@ msgstr ""
 "de antes de suspender."
 
 #. description
-#: ../jobs/suspend.txt.in:118
+#: ../jobs/suspend.txt.in:127
 msgid "Verify that all CPUs are online after resuming."
 msgstr "Verifica que todas as CPUs estão conectadas depois de retomar."
 
 #. description
-#: ../jobs/suspend.txt.in:135
+#: ../jobs/suspend.txt.in:144
 msgid "Verify that all memory is available after resuming from suspend."
 msgstr ""
 "Verifique se toda memória está disponível após retornar da suspensão."
 
 #. description
-#: ../jobs/suspend.txt.in:144
+#: ../jobs/suspend.txt.in:153
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the display is correct after suspend and "
@@ -3007,7 +3033,7 @@ msgstr ""
 "    A tela funciona normalmente após retornar da suspensão?"
 
 #. description
-#: ../jobs/suspend.txt.in:155
+#: ../jobs/suspend.txt.in:174
 msgid ""
 "This test checks that the wireless interface is working after suspending the "
 "system. It disconnects all interfaces and then connects to the wireless "
@@ -3023,6 +3049,9 @@ msgid ""
 "Tests that the systems wireless hardware can connect to a router using WPA "
 "security and the 802.11b/g protocols after the system has been suspended."
 msgstr ""
+"Testa se o hardware de rede sem-fio do sistema é capaz de se conectar a um "
+"roteador, utilizando segurança WPA e os protocolos 802.11b/g, depois que o "
+"sistema tenha sido suspenso."
 
 #. description
 #: ../jobs/suspend.txt.in:178
@@ -3030,6 +3059,9 @@ msgid ""
 "Tests that the systems wireless hardware can connect to a router using no "
 "security and the 802.11b/g protocols after the system has been suspended."
 msgstr ""
+"Testa se o hardware de rede sem-fio do sistema é capaz de se conectar a um "
+"roteador, sem utilizar segurança e através dos protocolos 802.11b/g, depois "
+"que o sistema tenha sido suspenso."
 
 #. description
 #: ../jobs/suspend.txt.in:189
@@ -3037,6 +3069,9 @@ msgid ""
 "Tests that the systems wireless hardware can connect to a router using WPA "
 "security and the 802.11n protocol after the system has been suspended."
 msgstr ""
+"Testa se o hardware de rede sem-fio do sistema é capaz de se conectar a um "
+"roteador, utilizando segurança WPA e o protocolo 802.11n, depois que o "
+"sistema tenha sido suspenso."
 
 #. description
 #: ../jobs/suspend.txt.in:200
@@ -3044,9 +3079,12 @@ msgid ""
 "Tests that the systems wireless hardware can connect to a router using no "
 "security and the 802.11n protocol after the system has been suspended."
 msgstr ""
+"Testa se o hardware de rede sem-fio do sistema é capaz de se conectar a um "
+"roteador, sem utilizar segurança e através do protocolo 802.11n, depois que "
+"o sistema tenha sido suspenso."
 
 #. description
-#: ../jobs/suspend.txt.in:211
+#: ../jobs/suspend.txt.in:186
 msgid ""
 "This test grabs the hardware address of the bluetooth adapter after suspend "
 "and compares it to the address grabbed before suspend."
@@ -3055,7 +3093,7 @@ msgstr ""
 "suspender e compara com o endereço coletado antes da suspensão."
 
 #. description
-#: ../jobs/suspend.txt.in:221
+#: ../jobs/suspend.txt.in:196
 msgid ""
 "This is an automated Bluetooth file transfer test. It sends an image to the "
 "device specified by the BTDEVADDR environment variable."
@@ -3065,7 +3103,7 @@ msgstr ""
 "BTDEVADDR."
 
 #. description
-#: ../jobs/suspend.txt.in:231
+#: ../jobs/suspend.txt.in:206
 msgid ""
 "PURPOSE:\n"
 "    This test will send the image 'JPEG_Color_Image_Ubuntu.jpg' to a "
@@ -3091,7 +3129,7 @@ msgstr ""
 "    Os dados foram corretamente transferidos?"
 
 #. description
-#: ../jobs/suspend.txt.in:245
+#: ../jobs/suspend.txt.in:220
 msgid ""
 "PURPOSE:\n"
 "    This test will cycle through the detected display modes\n"
@@ -3108,7 +3146,7 @@ msgstr ""
 "    Sua tela parece correta no modo detectado?"
 
 #. description
-#: ../jobs/suspend.txt.in:257
+#: ../jobs/suspend.txt.in:232
 msgid ""
 "This test will check to make sure supported video modes work after a suspend "
 "and resume. This is done automatically by taking screenshots and uploading "
@@ -3119,7 +3157,7 @@ msgstr ""
 "tela e as enviando como um anexo."
 
 #. description
-#: ../jobs/suspend.txt.in:266
+#: ../jobs/suspend.txt.in:241
 msgid ""
 "This attaches screenshots from the "
 "suspend/cycle_resolutions_after_suspend_auto test to the results submission."
@@ -3128,7 +3166,7 @@ msgstr ""
 "suspend/cycle_resolutions_after_suspend_auto à submissão dos resultados."
 
 #. description
-#: ../jobs/suspend.txt.in:276
+#: ../jobs/suspend.txt.in:251
 msgid ""
 "This will check to make sure that your audio device works properly after a "
 "suspend and resume.  This may work fine with speakers and onboard "
@@ -3141,12 +3179,12 @@ msgstr ""
 "conectando a saída de áudio à entrada de áudio."
 
 #. description
-#: ../jobs/suspend.txt.in:285
+#: ../jobs/suspend.txt.in:260
 msgid "This is the automated version of suspend/suspend_advanced."
 msgstr "Esta á versão automática de suspend/suspend_advanced."
 
 #. description
-#: ../jobs/suspend.txt.in:294
+#: ../jobs/suspend.txt.in:269
 msgid ""
 "This automatically tests Wake-on-LAN capability with the aid of a suitably "
 "configured server. During this process the system will suspend, then "
@@ -3167,6 +3205,13 @@ msgid ""
 "VERIFICATION:\n"
 "    1. Review attachment manually later"
 msgstr ""
+"PROPÓSITO:\n"
+"    Efetuar uma captura da tela atual após uma suspensão (numa sessão do "
+"Unity)\n"
+"PASSOS:\n"
+"    1. Tire uma foto utilizando uma webcam USB\n"
+"VERIFICAÇÃO:\n"
+"    1. Confira o anexo manualmente mais tarde"
 
 #. description
 #: ../jobs/unity.txt.in:6
@@ -4267,17 +4312,17 @@ msgid "Unknown signal"
 msgstr "Sinal desconhecido"
 
 #: ../checkbox_cli/cli_interface.py:31
-#: ../checkbox_urwid/urwid_interface.py:917 ../checkbox_qt/qt_interface.py:33
+#: ../checkbox_urwid/urwid_interface.py:917 ../checkbox_qt/qt_interface.py:37
 msgid "yes"
 msgstr "sim"
 
 #: ../checkbox_cli/cli_interface.py:32
-#: ../checkbox_urwid/urwid_interface.py:918 ../checkbox_qt/qt_interface.py:34
+#: ../checkbox_urwid/urwid_interface.py:918 ../checkbox_qt/qt_interface.py:38
 msgid "no"
 msgstr "não"
 
 #: ../checkbox_cli/cli_interface.py:33
-#: ../checkbox_urwid/urwid_interface.py:919 ../checkbox_qt/qt_interface.py:35
+#: ../checkbox_urwid/urwid_interface.py:919 ../checkbox_qt/qt_interface.py:39
 msgid "skip"
 msgstr "pular"
 
@@ -4334,11 +4379,11 @@ msgid "Next"
 msgstr "Próximo"
 
 #. Show buttons
-#: ../checkbox_urwid/urwid_interface.py:423 ../qt/frontend/qtfront.cpp:137
+#: ../checkbox_urwid/urwid_interface.py:423 ../qt/frontend/qtfront.cpp:133
 msgid "Select All"
 msgstr "Selecionar todos"
 
-#: ../checkbox_urwid/urwid_interface.py:424 ../qt/frontend/qtfront.cpp:138
+#: ../checkbox_urwid/urwid_interface.py:424 ../qt/frontend/qtfront.cpp:134
 msgid "Deselect All"
 msgstr "Desmarcar todos"
 
@@ -4359,15 +4404,15 @@ msgstr "Testar"
 msgid "Test Again"
 msgstr "Testar novamente"
 
-#: ../checkbox_gtk/gtk_interface.py:517
+#: ../checkbox_gtk/gtk_interface.py:503
 msgid "_Test Again"
 msgstr "_Testar novamente"
 
-#: ../checkbox_gtk/gtk_interface.py:566
+#: ../checkbox_gtk/gtk_interface.py:551 ../qt/frontend/qtfront.cpp:485
 msgid "Info"
 msgstr "Informação"
 
-#: ../checkbox_gtk/gtk_interface.py:590
+#: ../checkbox_gtk/gtk_interface.py:575 ../qt/frontend/qtfront.cpp:244
 msgid "Error"
 msgstr "Erro"
 
@@ -4551,7 +4596,7 @@ msgid "Running %s..."
 msgstr "Executando %s..."
 
 #. Get results
-#: ../plugins/suites_prompt.py:124
+#: ../plugins/suites_prompt.py:110
 msgid "Select the suites to test"
 msgstr "Selecione as suítes para teste"
 
@@ -4563,53 +4608,53 @@ msgstr "Digite o texto:\n"
 msgid "Type Text"
 msgstr "Digite um texto"
 
-#: ../scripts/internet_test:196
+#: ../scripts/internet_test:139
 msgid "No Internet connection"
 msgstr "Sem conexão de Internet"
 
-#: ../scripts/internet_test:199
+#: ../scripts/internet_test:142
 msgid "Connection established lost a packet"
 msgstr "Conexão estabelecida perdeu um pacote"
 
-#: ../scripts/internet_test:202
+#: ../scripts/internet_test:145
 msgid "Internet connection fully established"
 msgstr "Conexão de Internet totalmente estabelecida"
 
-#: ../qt/frontend/qtfront.cpp:108
+#: ../qt/frontend/qtfront.cpp:104
 msgid "Not Started"
-msgstr ""
+msgstr "Não Iniciado"
 
-#: ../qt/frontend/qtfront.cpp:109 ../qt/frontend/qtfront.cpp:110
+#: ../qt/frontend/qtfront.cpp:105 ../qt/frontend/qtfront.cpp:106
 msgid "Done"
 msgstr "Concluído"
 
-#: ../qt/frontend/qtfront.cpp:111
+#: ../qt/frontend/qtfront.cpp:107
 msgid "Not Supported"
-msgstr ""
+msgstr "Não suportado"
 
-#: ../qt/frontend/qtfront.cpp:112
+#: ../qt/frontend/qtfront.cpp:108
 msgid "Not Resolved"
-msgstr ""
+msgstr "Não resolvido"
 
-#: ../qt/frontend/qtfront.cpp:113
+#: ../qt/frontend/qtfront.cpp:109
 msgid "Not Tested"
-msgstr ""
+msgstr "Não testado"
 
-#: ../qt/frontend/qtfront.cpp:114
+#: ../qt/frontend/qtfront.cpp:110
 msgid "In Progress"
-msgstr ""
+msgstr "Em progresso"
 
-#: ../qt/frontend/qtfront.cpp:182
+#: ../qt/frontend/qtfront.cpp:179
 msgid "Are you sure?"
-msgstr ""
+msgstr "Você tem certeza?"
 
-#: ../qt/frontend/qtfront.cpp:182
+#: ../qt/frontend/qtfront.cpp:179
 msgid "Do you really want to skip this test?"
-msgstr ""
+msgstr "Você realmente quer pular o teste?"
 
-#: ../qt/frontend/qtfront.cpp:183
+#: ../qt/frontend/qtfront.cpp:180
 msgid "Don't ask me again"
-msgstr ""
+msgstr "Não perguntar novamente"
 
 #: ../qt/frontend/treemodel.cpp:13
 msgid ""
@@ -4617,70 +4662,74 @@ msgid ""
 "you plan to participate in Ubuntu Friendly, please, select all tests. You "
 "can always skip individual tests if you don't have the needed equipment."
 msgstr ""
+"Desmarcando um teste invalidará a sua apresentação para o Ubuntu Friendly. "
+"Se você pretende participar no Ubuntu Friendly, por favor, selecione todos "
+"os testes. Você pode sempre ignorar os testes individuais, se você não tem o "
+"equipamento necessário."
 
 #: ../qt/frontend/ui_qtfront.h:588
 msgid "Form"
-msgstr ""
+msgstr "Formulário"
 
 #: ../qt/frontend/ui_qtfront.h:590
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: ../qt/frontend/ui_qtfront.h:591
 msgid "Don't show me this message in the future"
-msgstr ""
+msgstr "Não mostrar esta mensagem no futuro"
 
 #: ../qt/frontend/ui_qtfront.h:592 ../qt/frontend/ui_qtfront.h:606
 msgid "Tab 1"
-msgstr ""
+msgstr "Aba 1"
 
 #: ../qt/frontend/ui_qtfront.h:593
 msgid "10 tests completed out of 30 (30%)"
-msgstr ""
+msgstr "10 testes foram concluídos do total de 30 (30%)"
 
 #: ../qt/frontend/ui_qtfront.h:595
 msgid "Lists of tests to run based on your system:"
-msgstr ""
+msgstr "Listas de testes a serem executados com base no seu sistema:"
 
 #: ../qt/frontend/ui_qtfront.h:596
 msgid "Components"
-msgstr ""
+msgstr "Componentes"
 
 #: ../qt/frontend/ui_qtfront.h:597
 msgid "Status"
-msgstr ""
+msgstr "Estado"
 
 #: ../qt/frontend/ui_qtfront.h:598
 msgid "Start testing"
-msgstr ""
+msgstr "Iniciar o teste"
 
 #: ../qt/frontend/ui_qtfront.h:599
 msgid " Selection "
-msgstr ""
+msgstr " Seleção "
 
 #: ../qt/frontend/ui_qtfront.h:600 ../qt/frontend/ui_qtfront.h:601
 msgid "TextLabel"
-msgstr ""
+msgstr "Rótulo de texto"
 
 #: ../qt/frontend/ui_qtfront.h:602
 msgid "Yes"
-msgstr ""
+msgstr "Sim"
 
 #: ../qt/frontend/ui_qtfront.h:604
 msgid "No"
-msgstr ""
+msgstr "Não"
 
 #: ../qt/frontend/ui_qtfront.h:605
 msgid "Comment"
-msgstr ""
+msgstr "Comentário"
 
 #: ../qt/frontend/ui_qtfront.h:607 ../qt/frontend/ui_qtfront.h:623
 msgid "Tab 2"
-msgstr ""
+msgstr "Aba 2"
 
 #: ../qt/frontend/ui_qtfront.h:610
 msgid " Run "
-msgstr ""
+msgstr " Executar "
 
 #: ../qt/frontend/ui_qtfront.h:611
 msgid ""
@@ -4699,26 +4748,41 @@ msgid ""
 "color:#ff0000;\">You can send the results now, but the submission won't make "
 "it to Ubuntu Friendly.</span></p></body></html>"
 msgstr ""
+"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" "
+"\"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style "
+"type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Ubuntu'; font-size:10pt; font-"
+"weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+"right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" "
+"color:#ff0000;\">Atenção: Nem todos os testes foram executados "
+"ainda.</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+"right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" "
+"color:#ff0000;\">Você pode enviar os resultados agora, mas o envio não será "
+"suficiente para a certificação Ubuntu Friendly.</span></p></body></html>"
 
 #: ../qt/frontend/ui_qtfront.h:617
 msgid "Personal details"
-msgstr ""
+msgstr "Detalhes pessoais"
 
 #: ../qt/frontend/ui_qtfront.h:619
 msgid "Email:"
-msgstr ""
+msgstr "E-mail:"
 
 #: ../qt/frontend/ui_qtfront.h:620
 msgid "Submit results"
-msgstr ""
+msgstr "Enviar resultados"
 
 #: ../qt/frontend/ui_qtfront.h:621
 msgid "View results"
-msgstr ""
+msgstr "Ver os resultados"
 
 #: ../qt/frontend/ui_qtfront.h:622
 msgid " Results "
-msgstr ""
+msgstr " Resultados "
 
 #~ msgid "Successfully sent information!"
 #~ msgstr "Informação enviada com sucesso!"
