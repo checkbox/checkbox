@@ -16,9 +16,14 @@ checkbox (0.13.7) precise; urgency=low
     when testing is incomplete. (LP: #967457)
   * [FEATURE] Modified stress jobs so that they are all automated per decision
      made during the cert sprint.
+  * Removed dhclient call from networking/multi_nic tests because of a bug in
+    dhclient that can cause it to hang when run on eth0. New test requirement
+    will be that the tester must configure and bring up all ethernet devices
+    prior to running checkbox. Also added a check to make sure we're not trying
+    to run the test on a device that's not active. (LP: #926229)
 
 
- -- Jeff Lane <jeff@ubuntu.com>  Mon, 09 Apr 2012 17:12:51 -0400
+ -- Jeff Lane <jeff@ubuntu.com>  Wed, 11 Apr 2012 17:19:38 -0400
 
 checkbox (0.13.6) precise; urgency=low
 
