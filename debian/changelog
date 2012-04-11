@@ -20,8 +20,12 @@ checkbox (0.13.7) precise; urgency=low
   [Daniel Manrique]
   * jobs/optical.txt.in: Change test descriptions to avoid confusing
     instruction to press the "Next" button (which is incorrect). (LP: #971181)
+  * jobs/local.txt.in: Fixed touchpad local job which was using suspend.txt 
+    as the job source) (LP: #979344) 
+  * jobs/mediacards.txt.in: Added usb and scsi devices to
+    removable_storage_test commands (LP: #979356)
 
- -- Jeff Lane <jeff@ubuntu.com>  Mon, 09 Apr 2012 17:12:51 -0400
+ -- Jeff Lane <jeff@ubuntu.com>  Wed, 11 Apr 2012 19:23:45 -0400
 
 checkbox (0.13.6) precise; urgency=low
 

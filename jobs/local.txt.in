@@ -234,7 +234,7 @@ plugin: local
 _description: Touchpad tests
 command:
   shopt -s extglob
-  cat $CHECKBOX_SHARE/jobs/suspend.txt?(.in)
+  cat $CHECKBOX_SHARE/jobs/touchpad.txt?(.in)
 
 name: __unity__
 plugin: local
