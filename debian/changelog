@@ -21,6 +21,8 @@ checkbox (0.13.7) precise; urgency=low
   [Daniel Manrique]
   * jobs/local.txt.in: Fixed touchpad suite definition (was mistakenly using
     suspend.txt as the job source) (LP: #979344) 
+  * jobs/mediacards.txt.in: Added usb and scsi devices to
+    removable_storage_test commands (LP: #979356)
 
  -- Jeff Lane <jeff@ubuntu.com>  Mon, 09 Apr 2012 17:12:51 -0400
 
