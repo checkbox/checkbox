@@ -1,3 +1,13 @@
+checkbox (0.13.8) precise; urgency=low
+
+  [Jeff Lane]
+  * Bumped revision to 0.13.8
+  * scripts/removable_storage_watcher: increased default timeout to 20 seconds
+    to account for time for testers to plug devices in and for the system to
+    register the insert/remove event (LP: #978925)
+
+ -- Jeff Lane <jeff@ubuntu.com>  Thu, 12 Apr 2012 14:28:49 -0400
+
 checkbox (0.13.7) precise; urgency=low
 
   [Tiago Salem Herrmann]
