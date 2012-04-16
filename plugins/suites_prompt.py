@@ -65,9 +65,9 @@ class SuitesPrompt(Plugin):
         self._persist = persist
 
     def begin_recover(self, recover):
-        if recover == 'Continue':
+        if recover == _("Continue"):
             self._recover = True
-        elif recover == 'Rerun':
+        elif recover == _("Rerun"):
             self._recover = True
 
         if not self._recover:

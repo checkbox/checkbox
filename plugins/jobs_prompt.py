@@ -83,9 +83,9 @@ class JobsPrompt(Plugin):
         self._persist = persist
 
     def begin_recover(self, recover):
-        if recover == "Rerun":
+        if recover == _("Rerun"):
             logging.debug("Recovering from last job")
-        elif recover == "Continue":
+        elif recover == _("Continue"):
             logging.debug("Marking last job failed, starting from next job")
             self._fail_current = True
         else:

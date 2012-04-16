@@ -55,8 +55,9 @@ class RecoverPrompt(Plugin):
             moveon = _("Continue")
             response = interface.show_info(
                 _("Checkbox did not finish completely.\n"
-                  "Do you want to rerun the last test\n"
-                  "or continue to the next test?"),
+                  "Do you want to rerun the last test,\n"
+                  "continue to the next test, or\n"
+                  "restart from the beginning?"),
                 [recover, moveon, restart], recover)
             self._manager.reactor.fire("begin-recover", response)
 
