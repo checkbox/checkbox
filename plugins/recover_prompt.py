@@ -21,8 +21,8 @@ from gettext import gettext as _
 from checkbox.contrib.persist import Persist, MemoryBackend
 
 from checkbox.plugin import Plugin
-from checkbox.user_interface import NEXT
-
+from checkbox.user_interface import NEXT, CONTINUE_ANSWER, 
+                                    RERUN_ANSWER, RESTART_ANSWER
 
 class RecoverPrompt(Plugin):
 
@@ -50,20 +50,19 @@ class RecoverPrompt(Plugin):
     def prompt_begin(self, interface):
         if interface.direction == NEXT \
            and self.persist.get("recover", False):
-            recover = _("Rerun")
-            restart = _("Restart")
-            moveon = _("Continue")
+            responses = [CONTINUE_ANSWER, RERUN_ANSWER, RESTART_ANSWER]
+            #We need three things: the localized string to pass on, 
+            #the unicode version, and the original string
+            translated_responses = [_(re) for re in responses]a
+            translated_default = _(RESTART_ANSWER)
             response = interface.show_info(
                 _("Checkbox did not finish completely.\n"
                   "Do you want to rerun the last test,\n"
                   "continue to the next test, or\n"
                   "restart from the beginning?"),
-                [recover, moveon, restart], recover)
-            #We sent in three gettextized strings ("native" unicode, 
-            #but we get back a Pythonized unicode string (converted
-            #from dbus.String with unicode(). So if there are 
-            #special characters in the translation, response will
-            #not match any of recover, moveon, restart :(
+                translated_responses, translated_default)
+            #response will match unicode(_(SOMETHING)) for
+            #SOMETHING in the responses array.
             self._manager.reactor.fire("begin-recover", response)
 
         self.persist.set("recover", True)

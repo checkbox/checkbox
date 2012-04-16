@@ -25,7 +25,8 @@ from checkbox.job import UNINITIATED
 from checkbox.lib.resolver import Resolver
 
 from checkbox.plugin import Plugin
-from checkbox.user_interface import PREV
+from checkbox.user_interface import PREV, CONTINUE_ANSWER, RERUN_ANSWER, 
+                                    RESTART_ANSWER
 
 from gettext import gettext as _
 
@@ -65,9 +66,7 @@ class SuitesPrompt(Plugin):
         self._persist = persist
 
     def begin_recover(self, recover):
-        if recover == _("Continue"):
-            self._recover = True
-        elif recover == _("Rerun"):
+        if recover in [CONTINUE_ANSWER, RERUN_ANSWER]:
             self._recover = True
 
         if not self._recover:
