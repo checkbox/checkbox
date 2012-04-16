@@ -5,8 +5,17 @@ checkbox (0.13.8) precise; urgency=low
   * scripts/removable_storage_watcher: increased default timeout to 20 seconds
     to account for time for testers to plug devices in and for the system to
     register the insert/remove event (LP: #978925)
+  * [FEATURE] plugins/jobs_prompt.py, plugins/recover_prompt.py, 
+    plugins/suites_prompt.py: Added "Fail last test" functionality. Now if a
+    test causes a crash (checkbox, system or otherwise), when we recover we
+    have the option to just mark the last test failed and move on, or re-run
+    the last test and try again.
+  * [FEATURE] jobs/local.txt.in, jobs/sniff.txt.in added 8 simple manual sniff 
+    tests to be used for test purposes when developing features.
+  * [FEATURE] data/whitelists/sniff.whitelist added a whitelist to make use of 
+    the basic sniff tests.
 
- -- Jeff Lane <jeff@ubuntu.com>  Thu, 12 Apr 2012 14:28:49 -0400
+ -- Jeff Lane <jeff@ubuntu.com>  Mon, 16 Apr 2012 11:53:40 -0400
 
 checkbox (0.13.7) precise; urgency=low
 

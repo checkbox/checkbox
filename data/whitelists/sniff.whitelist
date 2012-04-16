@@ -1,0 +1,25 @@
+## This is an example whitelist to start from.
+## To use, copy this file and add the jobs you want to run to the copy. Delete
+## these comments. DO NOT delete the first 9 jobs in tis file. They are resource
+## gathering jobs and are necessary to do any testing at all.
+# Resource Jobs (listed in jobs/resource.txt)
+cpuinfo
+cdimage
+dmi
+dpkg
+gconf
+lsb
+meminfo
+module
+package
+device
+uname
+# Smoke sniffcases
+__sniff__
+sniff/sniff7
+sniff/sniff6
+sniff/sniff5
+sniff/sniff4
+sniff/sniff3
+sniff/sniff2
+sniff/sniff1
