@@ -59,6 +59,11 @@ class RecoverPrompt(Plugin):
                   "continue to the next test, or\n"
                   "restart from the beginning?"),
                 [recover, moveon, restart], recover)
+            #We sent in three gettextized strings ("native" unicode, 
+            #but we get back a Pythonized unicode string (converted
+            #from dbus.String with unicode(). So if there are 
+            #special characters in the translation, response will
+            #not match any of recover, moveon, restart :(
             self._manager.reactor.fire("begin-recover", response)
 
         self.persist.set("recover", True)
