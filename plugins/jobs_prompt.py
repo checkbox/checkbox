@@ -23,7 +23,7 @@ from checkbox.contrib.persist import Persist, MemoryBackend
 from checkbox.job import JobStore, PASS, UNINITIATED, UNTESTED
 from checkbox.properties import Int, Path
 from checkbox.plugin import Plugin
-from checkbox.user_interface import NEXT, PREV, CONTINUE_ANSWER, 
+from checkbox.user_interface import NEXT, PREV, CONTINUE_ANSWER, \
                                     RESTART_ANSWER, RERUN_ANSWER
 
 
