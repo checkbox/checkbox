@@ -21,8 +21,8 @@ from gettext import gettext as _
 from checkbox.contrib.persist import Persist, MemoryBackend
 
 from checkbox.plugin import Plugin
-from checkbox.user_interface import NEXT
-
+from checkbox.user_interface import NEXT, CONTINUE_ANSWER, \
+                                    RERUN_ANSWER, RESTART_ANSWER
 
 class RecoverPrompt(Plugin):
 
@@ -50,13 +50,22 @@ class RecoverPrompt(Plugin):
     def prompt_begin(self, interface):
         if interface.direction == NEXT \
            and self.persist.get("recover", False):
-            recover = _("Recover")
-            restart = _("Restart")
+            responses = [CONTINUE_ANSWER, RERUN_ANSWER, RESTART_ANSWER]
+            #The actual responses and default need to be translated...
+            translated_responses = [_(re) for re in responses]
+            translated_default = _(RESTART_ANSWER)
+            #Show_info will return a unicode version of the translated
+            #response. We need to map that to one of our response 
+            #constants, this dictionary helps with that:
+            response_map = { unicode(_(response), "utf-8"):response for response in responses} 
             response = interface.show_info(
                 _("Checkbox did not finish completely.\n"
-                  "Do you want to recover from the previous run?"),
-                [recover, restart], recover)
-            self._manager.reactor.fire("begin-recover", response == recover)
+                  "Do you want to rerun the last test,\n"
+                  "continue to the next test, or\n"
+                  "restart from the beginning?"),
+                translated_responses, translated_default)
+
+            self._manager.reactor.fire("begin-recover", response_map[response])
 
         self.persist.set("recover", True)
 

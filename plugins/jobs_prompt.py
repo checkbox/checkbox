@@ -16,12 +16,15 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
+import logging
+
 from checkbox.contrib.persist import Persist, MemoryBackend
 
 from checkbox.job import JobStore, PASS, UNINITIATED, UNTESTED
 from checkbox.properties import Int, Path
 from checkbox.plugin import Plugin
-from checkbox.user_interface import NEXT, PREV
+from checkbox.user_interface import NEXT, PREV, CONTINUE_ANSWER, \
+                                    RESTART_ANSWER, RERUN_ANSWER
 
 
 class JobsPrompt(Plugin):
@@ -53,6 +56,7 @@ class JobsPrompt(Plugin):
         self._ignore = []
         self._persist = None
         self._store = None
+        self._fail_current = False
 
         for (rt, rh) in [
              ("expose-msgstore", self.expose_msgstore),
@@ -80,7 +84,12 @@ class JobsPrompt(Plugin):
         self._persist = persist
 
     def begin_recover(self, recover):
-        if not recover:
+        if recover == RERUN_ANSWER:
+            logging.debug("Recovering from last job")
+        elif recover == CONTINUE_ANSWER:
+            logging.debug("Marking last job failed, starting from next job")
+            self._fail_current = True
+        else:
             self.store.delete_all_messages()
 
     def begin_gather(self):
@@ -126,6 +135,15 @@ class JobsPrompt(Plugin):
             if interface.direction == PREV:
                 if not self.store.remove_pending_offset():
                     break
+
+            if self._fail_current:
+                msg_to_fail = self.store.get_pending_messages(1)
+                job_to_fail = msg_to_fail[0]
+                job_to_fail["status"] = "fail"
+                logging.warning("Marking job %s as failed at user request" % job_to_fail["name"])
+                self.store.update(job_to_fail)
+                self.store.add_pending_offset()
+                self._fail_current = False
 
             messages = self.store.get_pending_messages(1)
             if not messages:
