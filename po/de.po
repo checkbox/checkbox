@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-03-28 10:50-0400\n"
-"PO-Revision-Date: 2012-03-04 19:03+0000\n"
+"PO-Revision-Date: 2012-04-16 19:42+0000\n"
 "Last-Translator: Dennis Baudys <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-04-03 04:39+0000\n"
-"X-Generator: Launchpad (build 15052)\n"
+"X-Launchpad-Export-Date: 2012-04-17 04:37+0000\n"
+"X-Generator: Launchpad (build 15099)\n"
 
-#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:553
+#: ../gtk/checkbox-gtk.ui.h:2 ../checkbox_gtk/gtk_interface.py:538
 msgid "_Test"
 msgstr "_Testen"
 
@@ -31,7 +31,7 @@ msgstr "_Fertig"
 
 #: ../plugins/gather_prompt.py:35
 msgid "Gathering information from your system..."
-msgstr "Informationen zu Ihrem System werden gesammelt …"
+msgstr "Informationen zum System werden gesammelt …"
 
 #: ../plugins/launchpad_exchange.py:160
 msgid ""
@@ -66,30 +66,30 @@ msgstr "Bericht wird erstellt …"
 #~ msgid "Is your mouse working properly?"
 #~ msgstr "Funktioniert Ihre Maus fehlerfrei?"
 
-#: ../gtk/checkbox-gtk.ui.h:1 ../checkbox_cli/cli_interface.py:444
+#: ../gtk/checkbox-gtk.ui.h:6 ../checkbox_cli/cli_interface.py:444
 #: ../checkbox_urwid/urwid_interface.py:267
 msgid "Further information:"
 msgstr "Weitere Informationen:"
 
-#: ../gtk/checkbox-gtk.ui.h:2
+#: ../gtk/checkbox-gtk.ui.h:10
 msgid "Ne_xt"
 msgstr "_Weiter"
 
 #. Title of the user interface
-#: ../gtk/checkbox-gtk.ui.h:3 ../qt/checkbox-qt.desktop.in.h:1
+#: ../gtk/checkbox-gtk.ui.h:1 ../qt/checkbox-qt.desktop.in.h:1
 #: ../plugins/user_interface.py:43 ../qt/frontend/ui_qtfront.h:589
 msgid "System Testing"
 msgstr "Systemüberprüfung"
 
-#: ../gtk/checkbox-gtk.ui.h:4
+#: ../gtk/checkbox-gtk.ui.h:8
 msgid "_Deselect All"
 msgstr "Auswahl au_fheben"
 
-#: ../gtk/checkbox-gtk.ui.h:5
+#: ../gtk/checkbox-gtk.ui.h:4
 msgid "_No"
 msgstr "_Nein"
 
-#: ../gtk/checkbox-gtk.ui.h:6
+#: ../gtk/checkbox-gtk.ui.h:9
 msgid "_Previous"
 msgstr "_Zurück"
 
@@ -97,18 +97,18 @@ msgstr "_Zurück"
 msgid "_Select All"
 msgstr "Alle au_swählen"
 
-#: ../gtk/checkbox-gtk.ui.h:8
+#: ../gtk/checkbox-gtk.ui.h:5
 msgid "_Skip this test"
 msgstr "Diesen Test _überspringen"
 
-#: ../gtk/checkbox-gtk.ui.h:10
+#: ../gtk/checkbox-gtk.ui.h:3
 msgid "_Yes"
 msgstr "_Ja"
 
 #: ../qt/checkbox-qt.desktop.in.h:2
 msgid "Test your system and submit results to the Ubuntu Friendly project"
 msgstr ""
-"Überprüfen Sie Ihr Sytem und übermitteln Sie das Ergebnis an das Ubuntu "
+"Überprüfen Sie Ihr Sytem und übermitteln Sie die Ergebnisse an das Ubuntu "
 "Friendly-Projekt"
 
 #. description
@@ -876,13 +876,14 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:50
 msgid "Test that the X process is running."
-msgstr "Testen, ob der X-Prozess ausgeführt wird."
+msgstr "Dieser Test überprüft, ob der X-Prozess ausgeführt wird."
 
 #. description
 #: ../jobs/graphics.txt.in:56
 msgid "Test that the X is not running in failsafe mode."
 msgstr ""
-"Testen, dass der X-Prozess im abgesicherten Modus nicht ausgeführt wird."
+"Dieser Test überprüft, dass der X-Prozess nicht im abgesicherten Modus "
+"ausgeführt wird."
 
 #. description
 #: ../jobs/graphics.txt.in:63
@@ -890,8 +891,8 @@ msgid ""
 "Test that X does not leak memory when running programs on systems with intel "
 "based graphics."
 msgstr ""
-"Überprüfen, dass X kein Speicherleck verursacht, wenn Programme auf Systemen "
-"mit Intel-basierter Grafik ausgeführt werden."
+"Dieser Test überprüft, dass der X-Prozess kein Speicherleck verursacht, wenn "
+"Programme auf Systemen mit Intel-basierter Grafik ausgeführt werden."
 
 #. description
 #: ../jobs/graphics.txt.in:70
@@ -1015,6 +1016,21 @@ msgid ""
 "VERIFICATION:\n"
 "    1. Atfer a 60s workload, check kern.log for reported GPU errors"
 msgstr ""
+"ZWECK:\n"
+"    Einige anspruchsvolle Vorgänge durchführen und prüfen, ob der\n"
+"    Grafikprozessor (GPU) so stark ausgelastet wird, dass er nicht mehr "
+"reagiert.\n"
+"DURCHFÜHRUNG:\n"
+"    1. Öffnen Sie zwei »glxgears«-Fenster und bewegen Sie sie schnell hin "
+"und her.\n"
+"    2. Wechseln Sie zwischen Arbeitsflächen/Viewports mit »wmctrl« hin und "
+"her.\n"
+"    3. Lassen Sie mit Firefox eine Flash-Animation oder ein Flash-Video "
+"wiedergeben.\n"
+"    4. Versetzen Sie den Rechner in Bereitschaft und wecken Sie ihn wieder "
+"auf.\n"
+"ÜBERPRÜFUNG:\n"
+"    Suchen Sie im Protokoll »kern.log« nach GPU-bezogenen Fehlern."
 
 #. description
 #: ../jobs/graphics.txt.in:174
@@ -1026,11 +1042,23 @@ msgid ""
 "VERIFICATION:\n"
 "    1. Review attachment manually later"
 msgstr ""
+"ZWECK:\n"
+"    Eine Aufnahme des aktuellen Bildschirminhalts machen (angemeldet in "
+"einer\n"
+"    Sitzung mit Unity-Benutzeroberfläche).\n"
+"DURCHFÜHRUNG:\n"
+"    1. Fotografieren Sie den Bildschirm mithilfe einer geeigneten USB-"
+"Webcam.\n"
+"ÜBERPRÜFUNG:\n"
+"    Begutachten Sie später das aufgenommene Foto als Anlage zu diesem "
+"Bericht."
 
 #. description
 #: ../jobs/graphics.txt.in:186 ../jobs/suspend.txt.in:316
 msgid "Attaches the screenshot captured in graphics/screenshot."
 msgstr ""
+"Dies legt dem Bericht das Bildschirmfoto als Anlage bei, das im Test "
+"»graphics/screenshot« aufgenommen wurde."
 
 #. description
 #: ../jobs/graphics.txt.in:194
@@ -1044,12 +1072,26 @@ msgid ""
 "VERIFICATION:\n"
 "    1. Review attachment manually later"
 msgstr ""
+"ZWECK:\n"
+"    Eine Aufnahme des aktuellen Bildschirminhalts während einer Video-"
+"Wiedergabe\n"
+"    im Vollbildmodus machen.\n"
+"DURCHFÜHRUNG:\n"
+"    1. Starten Sie die Wiedergabe eines Videos im Vollbildmodus.\n"
+"    2. Fotografieren Sie nach einigen Sekunden den Bildschirm mithilfe "
+"einer\n"
+"       geeigneten USB-Webcam.\n"
+"ÜBERPRÜFUNG:\n"
+"    Begutachten Sie später das aufgenommene Foto als Anlage zu diesem "
+"Bericht."
 
 #. description
 #: ../jobs/graphics.txt.in:207
 msgid ""
 "Attaches the screenshot captured in graphics/screenshot_fullscreen_video."
 msgstr ""
+"Dies legt dem Bericht das Bildschirmfoto als Anlage bei, das im Test "
+"»graphics/screenshot_fullscreen_video« aufgenommen wurde."
 
 #. description
 #: ../jobs/hibernate.txt.in:7
@@ -1092,112 +1134,135 @@ msgstr ""
 #. description
 #: ../jobs/info.txt.in:5
 msgid "Attaches a report of installed codecs for Intel HDA"
-msgstr "Legt einen Bericht über die installierten Codecs für Intel HDA an."
+msgstr ""
+"Dies legt dem Bericht einen Bericht über die installierten Codecs für Intel "
+"HDA als Anlage bei."
 
 #. description
 #: ../jobs/info.txt.in:10
 msgid "Attaches a report of CPU information"
-msgstr "Legt einen Bericht mit CPU-Informationen an"
+msgstr ""
+"Dies legt dem Bericht einen Bericht mit Prozessorinformationen als Anlage "
+"bei."
 
 #. description
 #: ../jobs/info.txt.in:15
 msgid "Attaches a copy of /var/log/dmesg to the test results"
-msgstr "Fügt den Testergebnissen eine Kopie von /var/log/dmesg hinzu"
+msgstr ""
+"Dies legt dem Bericht eine Kopie der Datei /var/log/dmesg als Anlage bei."
 
 #. description
 #: ../jobs/info.txt.in:20
 msgid "Attaches info on DMI"
-msgstr "Erstellt Informationen über DMI"
+msgstr "Dies legt dem Bericht Informationen zu DMI als Anlage bei."
 
 #. description
 #: ../jobs/info.txt.in:26
 msgid "Attaches dmidecode output"
-msgstr "Erstellt dmidecode-Ausgabe"
+msgstr "Dies legt dem Bericht die Ausgabe von dmidecode als Anlage bei."
 
 #. description
 #: ../jobs/info.txt.in:31
 msgid "Attaches very verbose lspci output."
-msgstr "Erstellt eine sehr lange lspci-Ausgabe"
+msgstr ""
+"Dies legt dem Bericht eine sehr lange Ausgabe von lspci als Anlage bei."
 
 #. description
 #: ../jobs/info.txt.in:40
 msgid "Attaches the contents of the various modprobe conf files."
-msgstr "Fügt die Inhalte der diversen modprobe-conf-Dateien hinzu."
+msgstr ""
+"Dies legt dem Bericht die Inhalte der verschiedenen modprobe-conf-Dateien "
+"als Anlage bei."
 
 #. description
 #: ../jobs/info.txt.in:45
 msgid "Attaches the contents of the /etc/modules file."
-msgstr "Fügt die Inhalte der Datei /etc/modules hinzu."
+msgstr ""
+"Dies legt dem Bericht die Inhalte der Datei /etc/modules als Anlage bei."
 
 #. description
 #: ../jobs/info.txt.in:50
 msgid "attaches the contents of various sysctl config files."
-msgstr "Fügt die Inhalte von diversen sysctl-config-Dateien hinzu."
+msgstr ""
+"Dies legt dem Bericht die Inhalte der verschiedenen sysctl-"
+"Konfigurationsdateien als Anlage bei."
 
 #. description
 #: ../jobs/info.txt.in:54
 msgid "Attaches a report of sysfs attributes."
-msgstr "Fügt einen Bericht über sysfs-Attribute hinzu."
+msgstr ""
+"Dies legt dem Bericht einen Bericht über sysfs-Attribute als Anlage bei."
 
 #. description
 #: ../jobs/info.txt.in:65
 msgid ""
 "Attaches a dump of the udev database showing system hardware information."
 msgstr ""
-"Fügt ein Abbild der udev-Datenbank mit System-Hardware-Informationen hinzu."
+"Dies legt dem Bericht ein Abbild der udev-Datenbank mit System-Hardware-"
+"Informationen als Anlage bei."
 
 #. description
 #: ../jobs/info.txt.in:72
 msgid "Attaches a tarball of gcov data if present."
-msgstr "Fügt ein Tar-Archiv mit gcov-Daten hinzu, wenn vorhanden."
+msgstr ""
+"Dies legt dem Bericht ein Tar-Archiv mit gcov-Daten als Anlage bei, wenn "
+"vorhanden."
 
 #. description
 #: ../jobs/info.txt.in:77
 msgid "Attaches a list of the currently running kernel modules."
-msgstr "Fügt eine Liste der momentan ausgeführten Kernelmodule hinzu."
+msgstr ""
+"Dies legt dem Bericht eine Liste der momentan ausgeführten Kernel-Module als "
+"Anlage bei."
 
 #. description
-#: ../jobs/info.txt.in:82
+#: ../jobs/info.txt.in:96
 msgid "Gather log from the Firmware Test Suite run."
 msgstr "Sammelprotokoll des Firmware-Test-Suite-Durchlaufs."
 
 #. description
-#: ../jobs/info.txt.in:89
+#: ../jobs/info.txt.in:103
 msgid "Attaches the contents of /proc/acpi/sleep if it exists."
-msgstr "Fügt die Inhalte von /proc/acpi/sleep hinzu, falls vorhanden."
+msgstr ""
+"Dies legt dem Bericht die Inhalte von /proc/acpi/sleep als Anlage bei, falls "
+"vorhanden."
 
 #. description
-#: ../jobs/info.txt.in:93
+#: ../jobs/info.txt.in:107
 msgid "Bootchart information."
 msgstr "Bootchart-Informationen."
 
 #. description
-#: ../jobs/info.txt.in:102
+#: ../jobs/info.txt.in:116
 msgid "SATA/IDE device information."
 msgstr "SATA/IDE-Geräteinformationen."
 
 #. description
-#: ../jobs/info.txt.in:119
+#: ../jobs/info.txt.in:133
 msgid "Attaches the bootchart png file for bootchart runs"
-msgstr "Fügt die Datei bootchart.png für Bootchart-Läufe hinzu"
+msgstr ""
+"Dies legt dem Bericht die Datei bootchart.png für Bootchart-Testläufe als "
+"Anlage bei."
 
 #. description
-#: ../jobs/info.txt.in:128
+#: ../jobs/info.txt.in:142
 msgid "Attaches the bootchart log for bootchart test runs."
-msgstr "Fügt das Bootchart-Protokoll für Bootchart Testläufe hinzu."
+msgstr ""
+"Dies legt dem Bericht das Bootchart-Protokoll für Bootchart-Testläufe als "
+"Anlage bei."
 
 #. description
-#: ../jobs/info.txt.in:136
+#: ../jobs/info.txt.in:150
 msgid "installs the installer bootchart tarball if it exists."
 msgstr ""
 "Installiert das Installationsprogramm-Bootchart-Tar-Archiv, falls vorhanden."
 
 #. description
-#: ../jobs/info.txt.in:141
+#: ../jobs/info.txt.in:155
 msgid "Attaches the installer debug log if it exists."
 msgstr ""
-"Fügt das Fehlerdiagnoseprotokoll des Installationsprogramms hinzu, falls "
-"vorhanden."
+"Dies legt dem Bericht das Fehlerdiagnoseprotokoll des Installationsprogramms "
+"als Anlage bei, falls vorhanden."
 
 #. description
 #: ../jobs/input.txt.in:4
@@ -1390,7 +1455,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:3
 msgid "Audio tests"
-msgstr "Audiotests"
+msgstr "Audio-Tests"
 
 #. description
 #: ../jobs/local.txt.in:10
@@ -1405,7 +1470,7 @@ msgstr "Bluetooth-Tests"
 #. description
 #: ../jobs/local.txt.in:24
 msgid "Camera tests"
-msgstr "Kamera-Tests"
+msgstr "Kameratests"
 
 #. description
 #: ../jobs/local.txt.in:31
@@ -1415,7 +1480,7 @@ msgstr "Codec-Tests"
 #. description
 #: ../jobs/local.txt.in:38
 msgid "CPU tests"
-msgstr "CPU-Tests"
+msgstr "Prozessortests"
 
 #. description
 #: ../jobs/local.txt.in:45
@@ -1435,7 +1500,7 @@ msgstr "Fingerabdruckleser-Tests"
 #. description
 #: ../jobs/local.txt.in:66
 msgid "Firewire disk tests"
-msgstr "Firewire-Festplatten-Tests"
+msgstr "Firewire-Festplattentests"
 
 #. description
 #: ../jobs/local.txt.in:73
@@ -1445,7 +1510,7 @@ msgstr "Diskettenlaufwerks-Tests"
 #. description
 #: ../jobs/local.txt.in:80
 msgid "Graphics tests"
-msgstr "Grafik-Tests"
+msgstr "Grafiktests"
 
 #. description
 #: ../jobs/local.txt.in:87
@@ -1455,12 +1520,12 @@ msgstr "Ruhezustandstest"
 #. description
 #: ../jobs/local.txt.in:94
 msgid "Informational tests"
-msgstr "Informelle Tests"
+msgstr "Informatorische Tests"
 
 #. description
 #: ../jobs/local.txt.in:101
 msgid "Input Devices tests"
-msgstr "Eingabegeräte-Tests"
+msgstr "Eingabegerätetests"
 
 #. description
 #: ../jobs/local.txt.in:108
@@ -1470,7 +1535,7 @@ msgstr "Anwendungsinstallations-Test"
 #. description
 #: ../jobs/local.txt.in:115
 msgid "Hotkey tests"
-msgstr "Hotkey-Tests"
+msgstr "Kurztastentests"
 
 #. description
 #: ../jobs/local.txt.in:122
@@ -1485,7 +1550,7 @@ msgstr "Automatisierter Arbeitsumgebungstest Mago"
 #. description
 #: ../jobs/local.txt.in:136
 msgid "Media Card tests"
-msgstr "Medienkarten-Tests"
+msgstr "Speicherkartentests"
 
 #. description
 #: ../jobs/local.txt.in:143
@@ -1505,7 +1570,7 @@ msgstr "Bildschirmtests"
 #. description
 #: ../jobs/local.txt.in:164
 msgid "Networking tests"
-msgstr "Netzwerk-Tests"
+msgstr "Netzwerktests"
 
 #. description
 #: ../jobs/local.txt.in:171
@@ -1520,7 +1585,7 @@ msgstr "Verifizierungstest für die Menüleistenuhr"
 #. description
 #: ../jobs/local.txt.in:185
 msgid "PCMCIA/PCIX Card tests"
-msgstr "PCMCIA/PCIX-Karten-Tests"
+msgstr "PCMCIA/PCIX-Kartentests"
 
 #. description
 #: ../jobs/local.txt.in:192
@@ -1535,7 +1600,7 @@ msgstr "Phoronix-Test-Suite-Tests"
 #. description
 #: ../jobs/local.txt.in:206
 msgid "Power Management tests"
-msgstr "Energieverwaltungs-Tests"
+msgstr "Energieverwaltungstests"
 
 #. description
 #: ../jobs/local.txt.in:213
@@ -1553,27 +1618,27 @@ msgid "Suspend tests"
 msgstr "Bereitschaftstests"
 
 #. description
-#: ../jobs/local.txt.in:234
+#: ../jobs/local.txt.in:241
 msgid "Unity tests"
 msgstr "Unity-Tests"
 
 #. description
-#: ../jobs/local.txt.in:241
+#: ../jobs/local.txt.in:248
 msgid "USB tests"
 msgstr "USB-Tests"
 
 #. description
-#: ../jobs/local.txt.in:248
+#: ../jobs/local.txt.in:255
 msgid "User Applications"
 msgstr "Benutzeranwendungen"
 
 #. description
-#: ../jobs/local.txt.in:255
+#: ../jobs/local.txt.in:262
 msgid "Wireless networking tests"
 msgstr "Funknetzwerktests"
 
 #. description
-#: ../jobs/local.txt.in:262
+#: ../jobs/local.txt.in:269
 msgid "Stress tests"
 msgstr "Stress-Tests"
 
@@ -1612,7 +1677,7 @@ msgid ""
 "    automatically selected result."
 msgstr ""
 "ZWECK:\n"
-"    Dieser Test überprüft, ob der Medien-Kartenleser des Systems das "
+"    Dieser Test überprüft, ob der Speicherkartenleser des Systems das "
 "Einlegen\n"
 "    und Entfernen einer Multimedia-Karte (MMC) feststellen kann.\n"
 "DURCHFÜHRUNG:\n"
@@ -1674,10 +1739,10 @@ msgid ""
 "    automatically selected result."
 msgstr ""
 "ZWECK:\n"
-"    Dieser Test überprüft, ob der Medien-Kartenleser des Systems das "
+"    Dieser Test überprüft, ob der Speicherkartenleser des Systems das "
 "Einlegen\n"
-"    einer MMC-Karte feststellen kann, nachdem sich der Rechner im "
-"Bereitschaftsmodus\n"
+"    einer MMC-Karte feststellen kann, nachdem sich der Rechner in "
+"Bereitschaft\n"
 "    befunden hat.\n"
 "DURCHFÜHRUNG:\n"
 "    1. Klicken Sie auf »Testen« und führen Sie eine MMC-Karte in das "
@@ -1717,8 +1782,8 @@ msgstr ""
 "ZWECK:\n"
 "    Dieser Test überprüft, ob der Medien-Kartenleser des Systems das "
 "Entfernen\n"
-"    einer MMC-Karte feststellen kann, nachdem sich der Rechner im "
-"Bereitschaftsmodus\n"
+"    einer MMC-Karte feststellen kann, nachdem sich der Rechner in "
+"Bereitschaft\n"
 "    befunden hat.\n"
 "DURCHFÜHRUNG:\n"
 "    1. Klicken Sie auf »Testen« und entfernen Sie die MMC-Karte aus dem "
@@ -1744,9 +1809,9 @@ msgid ""
 "    automatically selected result."
 msgstr ""
 "ZWECK:\n"
-"    Dieser Test überprüft, ob der Medien-Kartenleser des Systems das "
+"    Dieser Test überprüft, ob der Speicherkartenleser des Systems das "
 "Einlegen\n"
-"    einer »Secure Digital«-Medienkarte (SD-Karte) feststellen kann.\n"
+"    einer »Secure Digital«-Karte (SD-Karte) feststellen kann.\n"
 "DURCHFÜHRUNG:\n"
 "    1. Klicken Sie auf »Testen« und führen Sie eine SD-Karte in das "
 "Lesegerät ein.\n"
@@ -1808,10 +1873,10 @@ msgid ""
 "    automatically selected result."
 msgstr ""
 "ZWECK:\n"
-"    Dieser Test überprüft, ob der Medien-Kartenleser des Systems das "
+"    Dieser Test überprüft, ob der Speicherkartenleser des Systems das "
 "Einlegen\n"
-"    einer SD-Karte feststellen kann, nachdem sich der Rechner im "
-"Bereitschaftsmodus\n"
+"    einer SD-Karte feststellen kann, nachdem sich der Rechner in "
+"Bereitschaft\n"
 "    befunden hat.\n"
 "DURCHFÜHRUNG:\n"
 "    1. Klicken Sie auf »Testen« und führen Sie eine SD-Karte in das "
@@ -1851,8 +1916,8 @@ msgstr ""
 "ZWECK:\n"
 "    Dieser Test überprüft, ob der Medien-Kartenleser des Systems das "
 "Entfernen\n"
-"    einer SD-Karte feststellen kann,  nachdem sich der Rechner im "
-"Bereitschaftsmodus\n"
+"    einer SD-Karte feststellen kann,  nachdem sich der Rechner in "
+"Bereitschaft\n"
 "    befunden hat.\n"
 "DURCHFÜHRUNG:\n"
 "    1. Klicken Sie auf »Testen« und entfernen Sie die SD-Karte aus dem "
@@ -1879,9 +1944,10 @@ msgid ""
 "    automatically selected result."
 msgstr ""
 "ZWECK:\n"
-"    Dieser Test überprüft, ob der Medien-Kartenleser des Systems das "
+"    Dieser Test überprüft, ob der Speicherkartenleser des Systems das "
 "Einlegen\n"
-"    einer »Secure Digital High-Capacity«-Karte (SDHC) feststellen kann.\n"
+"    einer »Secure Digital High-Capacity«-Karte (SDHC-Karte) feststellen "
+"kann.\n"
 "DURCHFÜHRUNG:\n"
 "    1. Klicken Sie auf »Testen« und führen Sie eine SDHC-Karte in das "
 "Lesegerät ein.\n"
@@ -1943,10 +2009,10 @@ msgid ""
 "    automatically selected result."
 msgstr ""
 "ZWECK:\n"
-"    Dieser Test überprüft, ob der Medien-Kartenleser des Systems das "
+"    Dieser Test überprüft, ob der Speicherkartenleser des Systems das "
 "Einlegen\n"
-"    einer SDHC-Karte feststellen kann, nachdem sich der Rechner im "
-"Bereitschaftsmodus\n"
+"    einer SDHC-Karte feststellen kann, nachdem sich der Rechner in "
+"Bereitschaft\n"
 "    befunden hat.\n"
 "DURCHFÜHRUNG:\n"
 "    1. Klicken Sie auf »Testen« und führen Sie eine SDHC-Karte in das "
@@ -1986,8 +2052,8 @@ msgstr ""
 "ZWECK:\n"
 "    Dieser Test überprüft, ob der Medien-Kartenleser des Systems das "
 "Entfernen\n"
-"    einer SDHC-Karte feststellen kann, nachdem sich der Rechner im "
-"Bereitschaftsmodus\n"
+"    einer SDHC-Karte feststellen kann, nachdem sich der Rechner in "
+"Bereitschaft\n"
 "    befunden hat.\n"
 "DURCHFÜHRUNG:\n"
 "    1. Klicken Sie auf »Testen« und entfernen Sie die SDHC-Karte aus dem "
@@ -2013,9 +2079,9 @@ msgid ""
 "    automatically selected result."
 msgstr ""
 "ZWECK:\n"
-"    Dieser Test überprüft, ob der Medien-Kartenleser des Systems das "
+"    Dieser Test überprüft, ob der Speicherkartenleser des Systems das "
 "Einlegen\n"
-"    einer »Compact Flash«-Medienkarte (CF-Karte) feststellen kann.\n"
+"    einer »Compact Flash«-Karte (CF-Karte) feststellen kann.\n"
 "DURCHFÜHRUNG:\n"
 "    1. Klicken Sie auf »Testen« und führen Sie eine CF-Karte in das "
 "Lesegerät ein.\n"
@@ -2049,7 +2115,7 @@ msgid ""
 "    automatically selected result."
 msgstr ""
 "ZWECK:\n"
-"    Dieser Test überprüft, ob der Medien-Kartenleser des Systems das "
+"    Dieser Test überprüft, ob der Speicherkartenleser des Systems das "
 "Entfernen\n"
 "    einer CF-Karte feststellen kann.\n"
 "DURCHFÜHRUNG:\n"
@@ -2076,10 +2142,10 @@ msgid ""
 "    automatically selected result."
 msgstr ""
 "ZWECK:\n"
-"    Dieser Test überprüft, ob der Medien-Kartenleser des Systems das "
+"    Dieser Test überprüft, ob der Speicherkartenleser des Systems das "
 "Einlegen\n"
-"    einer CF-Karte feststellen kann, nachdem sich der Rechner im "
-"Bereitschaftsmodus\n"
+"    einer CF-Karte feststellen kann, nachdem sich der Rechner in "
+"Bereitschaft\n"
 "    befunden hat.\n"
 "DURCHFÜHRUNG:\n"
 "    1. Klicken Sie auf »Testen« und führen Sie eine CF-Karte in das "
@@ -2119,8 +2185,8 @@ msgstr ""
 "ZWECK:\n"
 "    Dieser Test überprüft, ob der Medien-Kartenleser des Systems das "
 "Entfernen\n"
-"    einer CF-Karte feststellen kann, nachdem sich der Rechner im "
-"Bereitschaftsmodus\n"
+"    einer CF-Karte feststellen kann, nachdem sich der Rechner in "
+"Bereitschaft\n"
 "    befunden hat.\n"
 "DURCHFÜHRUNG:\n"
 "    1. Klicken Sie auf »Testen« und entfernen Sie die CF-Karte aus dem "
@@ -2201,9 +2267,9 @@ msgid ""
 "contained within if it does, or echoes the status of the directory (doesn't "
 "exist/is empty)"
 msgstr ""
-"Dieser Test überprüft, ob das Verzeichnis /var/crash leer ist. Er listet "
-"alle darin enthalten Datein auf, falls vorhanden, oder gibt den "
-"Verzeichnisstatus zurück (existiert nicht/ist leer)."
+"Dieser Test überprüft, dass der Ordner /var/crash leer ist. Er listet alle "
+"darin enthalten Dateien auf, falls vorhanden, oder liefert den Status des "
+"Ordners zurück (»existiert nicht«/»ist leer«)."
 
 #. description
 #: ../jobs/miscellanea.txt.in:53
@@ -2546,7 +2612,7 @@ msgstr ""
 "verlaufe ist, und »Nein«, falls er fehlgeschlagen ist."
 
 #. description
-#: ../jobs/optical.txt.in:43
+#: ../jobs/optical.txt.in:34
 msgid ""
 "PURPOSE:\n"
 "    This test will check your system's CD writing capabilities. This test "
@@ -2582,7 +2648,7 @@ msgstr ""
 "    fehlgeschlagen ist."
 
 #. description
-#: ../jobs/optical.txt.in:57
+#: ../jobs/optical.txt.in:46
 msgid ""
 "PURPOSE:\n"
 "    This test will check your CD audio playback capabilities\n"
@@ -2618,7 +2684,7 @@ msgstr ""
 "    Haben alle Schritte funktioniert?"
 
 #. description
-#: ../jobs/optical.txt.in:80
+#: ../jobs/optical.txt.in:71
 msgid ""
 "PURPOSE:\n"
 "    This test will check your system's DVD writing capabilities. This test "
@@ -2653,7 +2719,7 @@ msgstr ""
 "bestanden wurde, oder »Nein«, falls er fehlgeschlagen ist."
 
 #. description
-#: ../jobs/optical.txt.in:94
+#: ../jobs/optical.txt.in:82
 msgid ""
 "PURPOSE:\n"
 "    This test will check your DVD movie playback capabilities. Note that "
@@ -2687,7 +2753,7 @@ msgstr ""
 "    Konnten alle Schritte erfolgreich ausgeführt werden?"
 
 #. description
-#: ../jobs/optical.txt.in:112
+#: ../jobs/optical.txt.in:100
 msgid ""
 "PURPOSE:\n"
 "    This test will check your DVD  playback capabilities\n"
@@ -2921,8 +2987,8 @@ msgstr ""
 "DURCHFÜHRUNG:\n"
 "    1. Schließen Sie den Laptop-Deckel.\n"
 "ÜBERPRÜFUNG:\n"
-"    Wechselt Ihr System in den Bereitschaftsmodus, wenn Sie den Laptop-"
-"Deckel schließen?"
+"    Wird Ihr System in Bereitschaft versetzt, wenn Sie den Laptop-Deckel "
+"schließen?"
 
 #. description
 #: ../jobs/power-management.txt.in:32
@@ -3092,8 +3158,8 @@ msgstr ""
 "DURCHFÜHRUNG:\n"
 "    1. Klicken Sie auf »Testen«, um den Test zu starten (dauert sehr "
 "lange).\n"
-"    2. Falls das System nicht aus dem Bereitschaftsmodus aufgeweckt werden "
-"kann und\n"
+"    2. Falls das System nicht aus der Bereitschaft aufgeweckt werden kann "
+"und\n"
 "       neu gestartet werden muss, starten Sie bitte die Systemüberprüfung "
 "erneut und markieren\n"
 "       diesen Test als gescheitert.\n"
@@ -3105,27 +3171,28 @@ msgstr ""
 #: ../jobs/suspend.txt.in:4
 msgid "Record the current network before suspending."
 msgstr ""
-"Das zur Zeit verwendete Netzwerk speichern, bevor das System in Bereitschaft "
-"versetzt wird."
+"Notieren Sie sich die aktuelle Netzwerkverbindung vor dem in Bereitschaft "
+"Versetzen."
 
 #. description
 #: ../jobs/suspend.txt.in:9
 msgid "Record the current resolution before suspending."
 msgstr ""
-"Aktuelle Bildschirmauflösung merken, bevor in Bereitschaft versetzt wird."
+"Notieren Sie sich die aktuelle Bildschirmauflösung vor dem in Bereitschaft "
+"Versetzen."
 
 #. description
 #: ../jobs/suspend.txt.in:17
 msgid "Record mixer settings before suspending."
 msgstr ""
-"Notieren Sie sich die Einstellungen des Lautstärkereglers vor dem Wechsel in "
-"den Ruhezustand."
+"Notieren Sie sich die Einstellungen der Lautstärkeregler vor dem in "
+"Bereitschaft Versetzen."
 
 #. description
 #: ../jobs/suspend.txt.in:24
 msgid "Verify that all the CPUs are online before suspending"
 msgstr ""
-"Stellen Sie vor dem Wechsel in den Ruhezustand sicher, dass alle Prozessoren "
+"Stellen Sie vor dem Versetzen in Bereitschaft sicher, dass alle Prozessoren "
 "in Betrieb sind."
 
 #. description
@@ -3137,7 +3204,7 @@ msgstr ""
 "Bereitschaftstest als Vergleich nutzen zu können."
 
 #. description
-#: ../jobs/suspend.txt.in:40
+#: ../jobs/suspend.txt.in:49
 msgid ""
 "This test disconnects all connections and then connects to the wireless "
 "interface. It then checks the connection to confirm it's working as expected."
@@ -3147,7 +3214,7 @@ msgstr ""
 "dass alles wie erwartet funktioniert."
 
 #. description
-#: ../jobs/suspend.txt.in:74
+#: ../jobs/suspend.txt.in:83
 msgid ""
 "PURPOSE:\n"
 "    This test will check suspend and resume\n"
@@ -3170,8 +3237,8 @@ msgstr ""
 "       zu versetzen.\n"
 "    2. Falls ihr System nach 60 Sekunden nicht startet, müssen Sie den Ein-"
 "/Ausschalter drücken.\n"
-"    3. Falls das System nicht aus dem Bereitschaftsmodus aufwacht und "
-"neugestartet werden\n"
+"    3. Falls das System nicht aus der Bereitschaft aufwacht und neugestartet "
+"werden\n"
 "       muss, starten Sie bitte die Systemüberprüfung erneut und markieren "
 "diesen Test als\n"
 "       gescheitert.\n"
@@ -3180,12 +3247,12 @@ msgstr ""
 "aufgeweckt?"
 
 #. description
-#: ../jobs/suspend.txt.in:87
+#: ../jobs/suspend.txt.in:96
 msgid "Test the network after resuming."
 msgstr "Netzwerk nach Wiedereinschalten prüfen."
 
 #. description
-#: ../jobs/suspend.txt.in:93
+#: ../jobs/suspend.txt.in:102
 msgid ""
 "Test to see that we have the same resolution after resuming as before."
 msgstr ""
@@ -3193,29 +3260,29 @@ msgstr ""
 "ist."
 
 #. description
-#: ../jobs/suspend.txt.in:102
+#: ../jobs/suspend.txt.in:111
 msgid ""
 "Verify that mixer settings after suspend are the same as before suspend."
 msgstr ""
-"Stellen Sie sicher, dass die Einstellungen des Lautstärkereglers nach dem "
-"Aufwecken aus dem Ruhezustand dieselben sind wie vorher."
+"Stellen Sie sicher, dass die Einstellungen der Lautstärkeregler nach dem "
+"Aufwecken aus der Bereitschaft dieselben sind, wie vorher."
 
 #. description
-#: ../jobs/suspend.txt.in:118
+#: ../jobs/suspend.txt.in:127
 msgid "Verify that all CPUs are online after resuming."
 msgstr ""
 "Stellen Sie sicher, dass alle Prozessoren nach dem Aufwecken aus dem "
 "Ruhezustand in Betrieb sind."
 
 #. description
-#: ../jobs/suspend.txt.in:135
+#: ../jobs/suspend.txt.in:144
 msgid "Verify that all memory is available after resuming from suspend."
 msgstr ""
-"Stellen Sie sicher, dass der gesamte Speicher nach dem Aufwecken aus dem "
-"Ruhezustand zur Verfügung steht."
+"Stellen Sie sicher, dass der gesamte Speicher nach dem Aufwecken aus der "
+"Bereitschaft zur Verfügung steht."
 
 #. description
-#: ../jobs/suspend.txt.in:144
+#: ../jobs/suspend.txt.in:153
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the display is correct after suspend and "
@@ -3224,24 +3291,23 @@ msgid ""
 "    Does the display work normally after resuming from suspend?"
 msgstr ""
 "ZWECK:\n"
-"    Dieser Test prüft, ob der Bildschirm korrekt arbeitet, nachdem sich das "
-"System im\n"
-"    Bereitschaftsmodus befunden hat und wieder aufgeweckt wurde.\n"
+"    Dieser Test prüft, ob der Bildschirm korrekt arbeitet, nachdem das "
+"System in\n"
+"    Bereitschaft versetzt und wieder aufgeweckt wurde.\n"
 "ÜBERPRÜFUNG:\n"
-"    Arbeitet der Bildschirm nach dem Aufwecken aus dem Bereitschaftsmodus "
-"normal?"
+"    Arbeitet der Bildschirm nach dem Aufwecken aus der Bereitschaft normal?"
 
 #. description
-#: ../jobs/suspend.txt.in:155
+#: ../jobs/suspend.txt.in:174
 msgid ""
 "This test checks that the wireless interface is working after suspending the "
 "system. It disconnects all interfaces and then connects to the wireless "
 "interface and checks that the connection is working as expected."
 msgstr ""
-"Dieser Test prüft, ob die Funknetzwerkgeräte nach der Bereitschaft korrekt "
-"arbeiten. Er unterbricht die Verbindung aller Geräte und verbindet sich dann "
-"mit dem Funknetzwerkgerät, um zu prüfen ob die Verbindung wie erwartet "
-"funktioniert."
+"Dieser Test prüft, dass die Funknetzwerkschnittstellen nach dem Aufwecken "
+"aus der Bereitschaft korrekt arbeiten. Er unterbricht die Verbindung aller "
+"Geräte und verbindet sich dann mit dem Funknetzwerkgerät, um zu prüfen ob "
+"die Verbindung wie erwartet funktioniert."
 
 #. description
 #: ../jobs/suspend.txt.in:167
@@ -3249,6 +3315,9 @@ msgid ""
 "Tests that the systems wireless hardware can connect to a router using WPA "
 "security and the 802.11b/g protocols after the system has been suspended."
 msgstr ""
+"Überprüft, ob sich die Funknetzwerk-Hardware des Systems nach dem Aufwecken "
+"aus der Bereitschaft mit einem Router, der WPA-Sicherheit und die Protokolle "
+"802.11b/g verwendet, verbinden kann."
 
 #. description
 #: ../jobs/suspend.txt.in:178
@@ -3256,6 +3325,9 @@ msgid ""
 "Tests that the systems wireless hardware can connect to a router using no "
 "security and the 802.11b/g protocols after the system has been suspended."
 msgstr ""
+"Überprüfung, die sicherstellt, dass sich die Funknetzwerk-Hardware Ihres "
+"Systems nach dem Aufwecken aus der Bereitschaft mit einem Router verbinden "
+"kann, der keine Verschlüsselung und die Protokolle 802.11b/g verwendet."
 
 #. description
 #: ../jobs/suspend.txt.in:189
@@ -3263,6 +3335,9 @@ msgid ""
 "Tests that the systems wireless hardware can connect to a router using WPA "
 "security and the 802.11n protocol after the system has been suspended."
 msgstr ""
+"Überprüft, ob sich die Funknetzwerk-Hardware des Systems nach dem Aufwecken "
+"aus der Bereitschaft mit einem Router, der WPA-Sicherheit und das Protokoll "
+"802.11n verwendet, verbinden kann."
 
 #. description
 #: ../jobs/suspend.txt.in:200
@@ -3270,9 +3345,12 @@ msgid ""
 "Tests that the systems wireless hardware can connect to a router using no "
 "security and the 802.11n protocol after the system has been suspended."
 msgstr ""
+"Überprüfung, die sicherstellt, dass sich die Funknetzwerk-Hardware Ihres "
+"Systems nach dem Aufwecken aus der Bereitschaft mit einem Router verbinden "
+"kann, der keine Verschlüsselung und das Protokoll 802.11n verwendet."
 
 #. description
-#: ../jobs/suspend.txt.in:211
+#: ../jobs/suspend.txt.in:186
 msgid ""
 "This test grabs the hardware address of the bluetooth adapter after suspend "
 "and compares it to the address grabbed before suspend."
@@ -3282,7 +3360,7 @@ msgstr ""
 "Bereitschaft ausgelesen wurde."
 
 #. description
-#: ../jobs/suspend.txt.in:221
+#: ../jobs/suspend.txt.in:196
 msgid ""
 "This is an automated Bluetooth file transfer test. It sends an image to the "
 "device specified by the BTDEVADDR environment variable."
@@ -3292,7 +3370,7 @@ msgstr ""
 "festgelegt ist."
 
 #. description
-#: ../jobs/suspend.txt.in:231
+#: ../jobs/suspend.txt.in:206
 msgid ""
 "PURPOSE:\n"
 "    This test will send the image 'JPEG_Color_Image_Ubuntu.jpg' to a "
@@ -3320,7 +3398,7 @@ msgstr ""
 "    Wurden die Daten fehlerfrei übertragen?"
 
 #. description
-#: ../jobs/suspend.txt.in:245
+#: ../jobs/suspend.txt.in:220
 msgid ""
 "PURPOSE:\n"
 "    This test will cycle through the detected display modes\n"
@@ -3338,53 +3416,53 @@ msgstr ""
 "    Sah die Anzeige auf Ihrem Bildschirm in den erkannten Modi korrekt aus?"
 
 #. description
-#: ../jobs/suspend.txt.in:257
+#: ../jobs/suspend.txt.in:232
 msgid ""
 "This test will check to make sure supported video modes work after a suspend "
 "and resume. This is done automatically by taking screenshots and uploading "
 "them as an attachment."
 msgstr ""
-"Dieser Test kontrolliert, ob unterstützte Video-Modi nach dem Aufwachen aus "
-"der Bereitschaft funktionieren. Dies geschieht automatisch, indem "
+"Dieser Test prüft, ob unterstützte Video-Modi nach dem Aufwecken aus der "
+"Bereitschaft funktionieren. Dies geschieht automatisch, indem "
 "Bildschirmfotos aufgenommen werden und diese als Anhang hochgeladen werden."
 
 #. description
-#: ../jobs/suspend.txt.in:266
+#: ../jobs/suspend.txt.in:241
 msgid ""
 "This attaches screenshots from the "
 "suspend/cycle_resolutions_after_suspend_auto test to the results submission."
 msgstr ""
-"Dies fügt Bildschirmfots vom suspend/cycle_resolutions_after_suspend_auto-"
-"Test zur Ergebnisbericht hinzu."
+"Dies legt dem Bericht die Bildschirmfotos vom Test "
+"suspend/cycle_resolutions_after_suspend_auto als Anlage bei."
 
 #. description
-#: ../jobs/suspend.txt.in:276
+#: ../jobs/suspend.txt.in:251
 msgid ""
 "This will check to make sure that your audio device works properly after a "
 "suspend and resume.  This may work fine with speakers and onboard "
 "microphone, however, it works best if used with a cable connecting the audio-"
 "out jack to the audio-in jack."
 msgstr ""
-"Dies testet, ob Ihre Audiogeräte nach dem Aufwachen aus der Bereitschaft "
+"Dies testet, ob Ihre Audio-Geräte nach dem Aufwecken aus der Bereitschaft "
 "korrekt funktionieren. Das funktioniert sowohl mit Lautsprechern als auch "
-"integrierten Mikrophonen, allerdings ist es am Besten, wenn Sie den Audio-"
+"integrierten Mikrofonen, allerdings ist es am Besten, wenn Sie den Audio-"
 "Ausgang mit einem Kabel mit dem Audio-Eingang verbinden."
 
 #. description
-#: ../jobs/suspend.txt.in:285
+#: ../jobs/suspend.txt.in:260
 msgid "This is the automated version of suspend/suspend_advanced."
 msgstr "Dies ist die automatisierte Version von suspend/suspend_advanced."
 
 #. description
-#: ../jobs/suspend.txt.in:294
+#: ../jobs/suspend.txt.in:269
 msgid ""
 "This automatically tests Wake-on-LAN capability with the aid of a suitably "
 "configured server. During this process the system will suspend, then "
 "automatically wake up after no more than 5 minutes."
 msgstr ""
 "Dies testet automatisch die Wake-on-LAN-Funktionen mitHilfe eines korrekt "
-"eingerichteten Servers. Während des Prozesses wird Ihr System in den "
-"Bereitschaftsmodus wechseln und nach maximal 5 Sekunden wieder aufgeweckt."
+"eingerichteten Servers. Während des Prozesses wird Ihr System in "
+"Bereitschaft versetzt und nach maximal 5 Sekunden wieder aufgeweckt."
 
 #. description
 #: ../jobs/suspend.txt.in:304
@@ -3397,6 +3475,16 @@ msgid ""
 "VERIFICATION:\n"
 "    1. Review attachment manually later"
 msgstr ""
+"ZWECK:\n"
+"    Eine Aufnahme des aktuellen Bildschirminhalts nach dem in Bereitschaft\n"
+"    Versetzen und wieder Aufwecken machen (angemeldet in einer Sitzung mit\n"
+"    Unity-Benutzeroberfläche).\n"
+"DURCHFÜHRUNG:\n"
+"    1. Fotografieren Sie den Bildschirm mithilfe einer geeigneten USB-"
+"Webcam.\n"
+"ÜBERPRÜFUNG:\n"
+"    Begutachten Sie später das aufgenommene Foto als Anlage zu diesem "
+"Bericht."
 
 #. description
 #: ../jobs/unity.txt.in:6
@@ -4555,17 +4643,17 @@ msgid "Unknown signal"
 msgstr "Unbekanntes Signal"
 
 #: ../checkbox_cli/cli_interface.py:31
-#: ../checkbox_urwid/urwid_interface.py:917 ../checkbox_qt/qt_interface.py:33
+#: ../checkbox_urwid/urwid_interface.py:917 ../checkbox_qt/qt_interface.py:37
 msgid "yes"
 msgstr "Ja"
 
 #: ../checkbox_cli/cli_interface.py:32
-#: ../checkbox_urwid/urwid_interface.py:918 ../checkbox_qt/qt_interface.py:34
+#: ../checkbox_urwid/urwid_interface.py:918 ../checkbox_qt/qt_interface.py:38
 msgid "no"
 msgstr "Nein"
 
 #: ../checkbox_cli/cli_interface.py:33
-#: ../checkbox_urwid/urwid_interface.py:919 ../checkbox_qt/qt_interface.py:35
+#: ../checkbox_urwid/urwid_interface.py:919 ../checkbox_qt/qt_interface.py:39
 msgid "skip"
 msgstr "Überspringen"
 
@@ -4620,11 +4708,11 @@ msgid "Next"
 msgstr "Weiter"
 
 #. Show buttons
-#: ../checkbox_urwid/urwid_interface.py:423 ../qt/frontend/qtfront.cpp:137
+#: ../checkbox_urwid/urwid_interface.py:423 ../qt/frontend/qtfront.cpp:136
 msgid "Select All"
 msgstr "Alles auswählen"
 
-#: ../checkbox_urwid/urwid_interface.py:424 ../qt/frontend/qtfront.cpp:138
+#: ../checkbox_urwid/urwid_interface.py:424 ../qt/frontend/qtfront.cpp:137
 msgid "Deselect All"
 msgstr "Auswahl aufheben"
 
@@ -4645,15 +4733,15 @@ msgstr "Testen"
 msgid "Test Again"
 msgstr "Erneut Testen"
 
-#: ../checkbox_gtk/gtk_interface.py:517
+#: ../checkbox_gtk/gtk_interface.py:503
 msgid "_Test Again"
 msgstr "Erneut _testen"
 
-#: ../checkbox_gtk/gtk_interface.py:566
+#: ../checkbox_gtk/gtk_interface.py:551 ../qt/frontend/qtfront.cpp:490
 msgid "Info"
 msgstr "Info"
 
-#: ../checkbox_gtk/gtk_interface.py:590
+#: ../checkbox_gtk/gtk_interface.py:575 ../qt/frontend/qtfront.cpp:247
 msgid "Error"
 msgstr "Fehler"
 
@@ -4720,9 +4808,9 @@ msgid ""
 msgstr ""
 "\n"
 "\n"
-"Warnung: Einige Tests können Ihr System einfrieren oder es nicht mehr "
-"reagieren lassen. Bitte speichern Sie all Ihre Arbeit und momentan laufende "
-"Anwendungen, bevor Sie mit den Tests beginnen."
+"Warnung: Einige Tests können Ihr System »einfrieren« lassen oder dazu "
+"führen, dass es nicht mehr reagiert. Bitte speichern Sie all Ihre Arbeit und "
+"schließen momentan laufende Anwendungen, bevor Sie mit den Tests beginnen."
 
 #: ../plugins/launchpad_exchange.py:136
 #, python-format
@@ -4811,7 +4899,7 @@ msgid "Running %s..."
 msgstr "%s wird ausgeführt …"
 
 #. Get results
-#: ../plugins/suites_prompt.py:124
+#: ../plugins/suites_prompt.py:110
 msgid "Select the suites to test"
 msgstr "Wählen Sie die zu testenden Bereiche aus"
 
@@ -4823,53 +4911,53 @@ msgstr "Text eingeben:\n"
 msgid "Type Text"
 msgstr "Text eintippen"
 
-#: ../scripts/internet_test:196
+#: ../scripts/internet_test:139
 msgid "No Internet connection"
 msgstr "Keine Internetverbindung"
 
-#: ../scripts/internet_test:199
+#: ../scripts/internet_test:142
 msgid "Connection established lost a packet"
 msgstr "Verlust eines Paketes bei der aufgebauten Verbindung"
 
-#: ../scripts/internet_test:202
+#: ../scripts/internet_test:145
 msgid "Internet connection fully established"
 msgstr "Internetverbinndung erfolgreich hergestellt"
 
-#: ../qt/frontend/qtfront.cpp:108
+#: ../qt/frontend/qtfront.cpp:107
 msgid "Not Started"
-msgstr ""
+msgstr "Nicht gestartet"
 
-#: ../qt/frontend/qtfront.cpp:109 ../qt/frontend/qtfront.cpp:110
+#: ../qt/frontend/qtfront.cpp:108 ../qt/frontend/qtfront.cpp:109
 msgid "Done"
 msgstr "Fertig"
 
-#: ../qt/frontend/qtfront.cpp:111
+#: ../qt/frontend/qtfront.cpp:110
 msgid "Not Supported"
-msgstr ""
+msgstr "Nicht unterstützt"
+
+#: ../qt/frontend/qtfront.cpp:111
+msgid "Not Resolved"
+msgstr "Nicht gelöst"
 
 #: ../qt/frontend/qtfront.cpp:112
-msgid "Not Resolved"
-msgstr ""
+msgid "Not Tested"
+msgstr "Nicht getestet"
 
 #: ../qt/frontend/qtfront.cpp:113
-msgid "Not Tested"
-msgstr ""
-
-#: ../qt/frontend/qtfront.cpp:114
 msgid "In Progress"
-msgstr ""
+msgstr "In Bearbeitung"
 
 #: ../qt/frontend/qtfront.cpp:182
 msgid "Are you sure?"
-msgstr ""
+msgstr "Sind Sie sicher?"
 
 #: ../qt/frontend/qtfront.cpp:182
 msgid "Do you really want to skip this test?"
-msgstr ""
+msgstr "Möchten Sie diesen Test wirklich überspringen?"
 
 #: ../qt/frontend/qtfront.cpp:183
 msgid "Don't ask me again"
-msgstr ""
+msgstr "Nicht mehr nachfragen"
 
 #: ../qt/frontend/treemodel.cpp:13
 msgid ""
@@ -4877,70 +4965,75 @@ msgid ""
 "you plan to participate in Ubuntu Friendly, please, select all tests. You "
 "can always skip individual tests if you don't have the needed equipment."
 msgstr ""
+"Die Abwahl einer Überprüfung führt dazu, dass Ihre Testergebnisse nicht an "
+"Ubuntu Friendly übertragen werden. Wenn Sie an Ubuntu Friendly teilnehmen "
+"möchten, wählen Sie bitte alle Prüfungen aus. Sie können einzelne "
+"Überprüfungen immer noch überspringen, wenn Sie die zugehörige Ausstattung "
+"nicht besitzen."
 
 #: ../qt/frontend/ui_qtfront.h:588
 msgid "Form"
-msgstr ""
+msgstr "Formular"
 
 #: ../qt/frontend/ui_qtfront.h:590
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: ../qt/frontend/ui_qtfront.h:591
 msgid "Don't show me this message in the future"
-msgstr ""
+msgstr "Diese Nachricht nicht mehr anzeigen"
 
 #: ../qt/frontend/ui_qtfront.h:592 ../qt/frontend/ui_qtfront.h:606
 msgid "Tab 1"
-msgstr ""
+msgstr "Reiter 1"
 
 #: ../qt/frontend/ui_qtfront.h:593
 msgid "10 tests completed out of 30 (30%)"
-msgstr ""
+msgstr "10 von 30 Tests abgeschlossen (30%)"
 
 #: ../qt/frontend/ui_qtfront.h:595
 msgid "Lists of tests to run based on your system:"
-msgstr ""
+msgstr "Liste der auszuführenden Tests auf Ihrem Rechner:"
 
 #: ../qt/frontend/ui_qtfront.h:596
 msgid "Components"
-msgstr ""
+msgstr "Bestandteile"
 
 #: ../qt/frontend/ui_qtfront.h:597
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 #: ../qt/frontend/ui_qtfront.h:598
 msgid "Start testing"
-msgstr ""
+msgstr "Tests starten"
 
 #: ../qt/frontend/ui_qtfront.h:599
 msgid " Selection "
-msgstr ""
+msgstr " Auswahl "
 
 #: ../qt/frontend/ui_qtfront.h:600 ../qt/frontend/ui_qtfront.h:601
 msgid "TextLabel"
-msgstr ""
+msgstr "TextLabel"
 
 #: ../qt/frontend/ui_qtfront.h:602
 msgid "Yes"
-msgstr ""
+msgstr "Ja"
 
 #: ../qt/frontend/ui_qtfront.h:604
 msgid "No"
-msgstr ""
+msgstr "Nein"
 
 #: ../qt/frontend/ui_qtfront.h:605
 msgid "Comment"
-msgstr ""
+msgstr "Bemerkung"
 
 #: ../qt/frontend/ui_qtfront.h:607 ../qt/frontend/ui_qtfront.h:623
 msgid "Tab 2"
-msgstr ""
+msgstr "Reiter 2"
 
 #: ../qt/frontend/ui_qtfront.h:610
 msgid " Run "
-msgstr ""
+msgstr " Laufend "
 
 #: ../qt/frontend/ui_qtfront.h:611
 msgid ""
@@ -4959,26 +5052,41 @@ msgid ""
 "color:#ff0000;\">You can send the results now, but the submission won't make "
 "it to Ubuntu Friendly.</span></p></body></html>"
 msgstr ""
+"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" "
+"\"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style "
+"type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Ubuntu'; font-size:10pt; font-"
+"weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+"right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" "
+"color:#ff0000;\">Warnung: Es wurden noch nicht alle Überprüfungen "
+"ausgeführt.</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+"right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" "
+"color:#ff0000;\">Sie können die Ergebnisse jetzt übertragen, aber Sie werden "
+"nicht an Ubuntu Friendly weitergeleitet.</span></p></body></html>"
 
 #: ../qt/frontend/ui_qtfront.h:617
 msgid "Personal details"
-msgstr ""
+msgstr "Persönliche Informationen"
 
 #: ../qt/frontend/ui_qtfront.h:619
 msgid "Email:"
-msgstr ""
+msgstr "E-Mail:"
 
 #: ../qt/frontend/ui_qtfront.h:620
 msgid "Submit results"
-msgstr ""
+msgstr "Ergebnisse übermitteln"
 
 #: ../qt/frontend/ui_qtfront.h:621
 msgid "View results"
-msgstr ""
+msgstr "Ergebnisse anzeigen"
 
 #: ../qt/frontend/ui_qtfront.h:622
 msgid " Results "
-msgstr ""
+msgstr " Ergebnisse "
 
 #~ msgid "Successfully sent information!"
 #~ msgstr "Informationen erfolgreich versandt!"
