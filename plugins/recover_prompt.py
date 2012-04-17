@@ -57,7 +57,7 @@ class RecoverPrompt(Plugin):
             #Show_info will return a unicode version of the translated
             #response. We need to map that to one of our response 
             #constants, this dictionary helps with that:
-            response_map = { unicode(_(response)):response for response in responses} 
+            response_map = { unicode(_(response), "utf-8"):response for response in responses} 
             response = interface.show_info(
                 _("Checkbox did not finish completely.\n"
                   "Do you want to rerun the last test,\n"

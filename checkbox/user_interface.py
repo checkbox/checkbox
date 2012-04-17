@@ -57,9 +57,9 @@ STATUS_TO_ANSWER = {
     UNSUPPORTED: SKIP_ANSWER,
     UNTESTED: SKIP_ANSWER}
 
-CONTINUE_ANSWER = 'continue'
-RERUN_ANSWER = 'rerun'
-RESTART_ANSWER = 'restart'
+CONTINUE_ANSWER = 'Continue'
+RERUN_ANSWER = 'Rerun'
+RESTART_ANSWER = 'Restart'
 
 
 class UserInterface(object):
