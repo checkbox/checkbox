@@ -14,6 +14,14 @@ checkbox (0.13.8) precise; urgency=low
     tests to be used for test purposes when developing features.
   * [FEATURE] data/whitelists/sniff.whitelist added a whitelist to make use of 
     the basic sniff tests.
+  
+  [Daniel Manrique]
+  * [FEATURE] checkbox/user_interface.py, checkbox/qt-interface.py,
+    plugins/jobs_prompt.py, plugins/recover_prompt.py,
+    plugins/suites_prompt.py: Made some modifications to the recover prompt
+    changes that better handle accented and other characters in translation.
+    This avoides a situation where the recovery could fail due to accented
+    characters in translations.
 
  -- Jeff Lane <jeff@ubuntu.com>  Mon, 16 Apr 2012 11:53:40 -0400
 

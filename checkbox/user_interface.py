@@ -57,6 +57,10 @@ STATUS_TO_ANSWER = {
     UNSUPPORTED: SKIP_ANSWER,
     UNTESTED: SKIP_ANSWER}
 
+CONTINUE_ANSWER = 'Continue'
+RERUN_ANSWER = 'Rerun'
+RESTART_ANSWER = 'Restart'
+
 
 class UserInterface(object):
     """Abstract base class for encapsulating the workflow and common code for

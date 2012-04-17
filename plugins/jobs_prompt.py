@@ -23,7 +23,8 @@ from checkbox.contrib.persist import Persist, MemoryBackend
 from checkbox.job import JobStore, PASS, UNINITIATED, UNTESTED
 from checkbox.properties import Int, Path
 from checkbox.plugin import Plugin
-from checkbox.user_interface import NEXT, PREV
+from checkbox.user_interface import NEXT, PREV, CONTINUE_ANSWER, \
+                                    RESTART_ANSWER, RERUN_ANSWER
 
 
 class JobsPrompt(Plugin):
@@ -83,9 +84,9 @@ class JobsPrompt(Plugin):
         self._persist = persist
 
     def begin_recover(self, recover):
-        if recover == _("Rerun"):
+        if recover == RERUN_ANSWER:
             logging.debug("Recovering from last job")
-        elif recover == _("Continue"):
+        elif recover == CONTINUE_ANSWER:
             logging.debug("Marking last job failed, starting from next job")
             self._fail_current = True
         else:

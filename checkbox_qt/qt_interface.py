@@ -239,7 +239,11 @@ class QTInterface(UserInterface):
 
     def show_info(self, text, options=[], default=None):
         def onInfoBoxResult(result):
-            self.infoResult = str(result)
+            #result here will always be a dbus String
+            #it may not be convertable with str due to the fact that it
+            #may contain non-ascii characters, so we need to convert to
+            #internal Python unicode instead.
+            self.infoResult = unicode(result)
             self.loop.quit()
 
         self.qtiface.showInfo(text, options, default, 
