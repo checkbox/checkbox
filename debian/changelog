@@ -23,7 +23,11 @@ checkbox (0.13.8) precise; urgency=low
     This avoides a situation where the recovery could fail due to accented
     characters in translations.
 
- -- Jeff Lane <jeff@ubuntu.com>  Mon, 16 Apr 2012 11:53:40 -0400
+  [Łukasz Zemczak]
+  * [FEATURE] checkbox_gtk/gtk_interface.py: Capture ESC keypresses so that
+    Checkbox doesn't close/die when user presses ESC.
+
+ -- Daniel Manrique <roadmr@ubuntu.com>  Wed, 18 Apr 2012 16:52:32 -0400
 
 checkbox (0.13.7) precise; urgency=low
 
