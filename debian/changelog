@@ -23,6 +23,10 @@ checkbox (0.13.8) precise; urgency=low
     This avoides a situation where the recovery could fail due to accented
     characters in translations.
 
+  [Sylvain Pineau]
+  * [FEATURE] jobs/info.txt.in: added new attachments, lspci -vvnnQ and
+    lsusb -vv and ensure outputs of lscpi, lsusb and dmidecode return UTF8.
+
  -- Jeff Lane <jeff@ubuntu.com>  Mon, 16 Apr 2012 11:53:40 -0400
 
 checkbox (0.13.7) precise; urgency=low

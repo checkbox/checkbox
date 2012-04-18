@@ -22,13 +22,25 @@ _description: Attaches info on DMI
 name: dmidecode_attachment
 plugin: attachment
 user: root
-command: dmidecode
+command: dmidecode | perl -ne 'use Encode; print encode_utf8($_)'
 _description: Attaches dmidecode output
 
 name: lspci_attachment
 plugin: attachment
-command: lspci -vvnn
+command: lspci -vvnn | perl -ne 'use Encode; print encode_utf8($_)'
 _description: Attaches very verbose lspci output.
+
+name: lspci_network_attachment
+plugin: attachment
+command: lspci -vvnnQ | perl -ne 'use Encode; print encode_utf8($_)'
+_description: Attaches very verbose lspci output (with central database Query).
+
+name: lsusb_attachment
+plugin: attachment
+requires: package.name == 'usbutils'
+user: root
+command: lsusb -vv | perl -ne 'use Encode; print encode_utf8($_)'
+_description: List USB devices
 
 name: meminfo_attachment
 plugin: attachment
