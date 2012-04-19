@@ -27,6 +27,10 @@ checkbox (0.13.8) precise; urgency=low
   * [FEATURE] checkbox_gtk/gtk_interface.py: Capture ESC keypresses so that
     Checkbox doesn't close/die when user presses ESC.
 
+  [Sylvain Pineau]
+  * [FEATURE] jobs/info.txt.in: added new attachments, lspci -vvnnQ and
+    lsusb -vv and ensure outputs of lscpi, lsusb and dmidecode return UTF8.
+
  -- Daniel Manrique <roadmr@ubuntu.com>  Wed, 18 Apr 2012 16:52:32 -0400
 
 checkbox (0.13.7) precise; urgency=low

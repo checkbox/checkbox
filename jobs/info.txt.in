@@ -22,13 +22,25 @@ _description: Attaches info on DMI
 name: dmidecode_attachment
 plugin: attachment
 user: root
-command: dmidecode
+command: dmidecode | iconv -t 'utf-8' -c
 _description: Attaches dmidecode output
 
 name: lspci_attachment
 plugin: attachment
-command: lspci -vvnn
+command: lspci -vvnn | iconv -t 'utf-8' -c
 _description: Attaches very verbose lspci output.
+
+name: lspci_network_attachment
+plugin: attachment
+command: lspci -vvnnQ | iconv -t 'utf-8' -c
+_description: Attaches very verbose lspci output (with central database Query).
+
+name: lsusb_attachment
+plugin: attachment
+requires: package.name == 'usbutils'
+user: root
+command: lsusb -vv | iconv -t 'utf-8' -c
+_description: List USB devices
 
 name: meminfo_attachment
 plugin: attachment
