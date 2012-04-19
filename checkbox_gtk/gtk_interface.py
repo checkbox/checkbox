@@ -234,8 +234,16 @@ class GTKInterface(UserInterface):
                 self.direction = response
                 Gtk.main_quit()
 
+        def on_dialog_key_press(dialog, event, self):
+            # Ignore ESC key presses
+            key = Gdk.keyval_name(event.keyval)
+            if "Escape" in key:
+                return True
+            return False
+
         dialog = dialog or self._dialog
         dialog.connect("response", on_dialog_response, self)
+        dialog.connect("key-press-event", on_dialog_key_press, self)
         dialog.set_default_response(NEXT)
         dialog.show()
         Gtk.main()
