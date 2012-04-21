@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-03-28 10:50-0400\n"
-"PO-Revision-Date: 2011-09-04 18:15+0000\n"
-"Last-Translator: Pavel Borecki <Unknown>\n"
+"PO-Revision-Date: 2012-04-20 20:19+0000\n"
+"Last-Translator: Tadeáš Pařík <tadeas.parik@gmail.com>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-04-03 04:38+0000\n"
-"X-Generator: Launchpad (build 15052)\n"
+"X-Launchpad-Export-Date: 2012-04-21 04:38+0000\n"
+"X-Generator: Launchpad (build 15120)\n"
 
-#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:553
+#: ../gtk/checkbox-gtk.ui.h:2 ../checkbox_gtk/gtk_interface.py:538
 msgid "_Test"
 msgstr "O_testovat"
 
@@ -35,30 +35,30 @@ msgstr "Vytváření hlášení..."
 #~ msgid "Testing your connection to the Internet:"
 #~ msgstr "Testování vašeho připojení k Internetu:"
 
-#: ../gtk/checkbox-gtk.ui.h:1 ../checkbox_cli/cli_interface.py:444
+#: ../gtk/checkbox-gtk.ui.h:6 ../checkbox_cli/cli_interface.py:444
 #: ../checkbox_urwid/urwid_interface.py:267
 msgid "Further information:"
 msgstr "Další informace:"
 
-#: ../gtk/checkbox-gtk.ui.h:2
+#: ../gtk/checkbox-gtk.ui.h:10
 msgid "Ne_xt"
 msgstr "_Další"
 
 #. Title of the user interface
-#: ../gtk/checkbox-gtk.ui.h:3 ../qt/checkbox-qt.desktop.in.h:1
+#: ../gtk/checkbox-gtk.ui.h:1 ../qt/checkbox-qt.desktop.in.h:1
 #: ../plugins/user_interface.py:43 ../qt/frontend/ui_qtfront.h:589
 msgid "System Testing"
 msgstr "Test systému"
 
-#: ../gtk/checkbox-gtk.ui.h:4
+#: ../gtk/checkbox-gtk.ui.h:8
 msgid "_Deselect All"
 msgstr "O_dznačit vše"
 
-#: ../gtk/checkbox-gtk.ui.h:5
+#: ../gtk/checkbox-gtk.ui.h:4
 msgid "_No"
 msgstr "_Ne"
 
-#: ../gtk/checkbox-gtk.ui.h:6
+#: ../gtk/checkbox-gtk.ui.h:9
 msgid "_Previous"
 msgstr "_Předchozí"
 
@@ -66,11 +66,11 @@ msgstr "_Předchozí"
 msgid "_Select All"
 msgstr "_Vybrat vše"
 
-#: ../gtk/checkbox-gtk.ui.h:8
+#: ../gtk/checkbox-gtk.ui.h:5
 msgid "_Skip this test"
 msgstr "_Vynechat tento test"
 
-#: ../gtk/checkbox-gtk.ui.h:10
+#: ../gtk/checkbox-gtk.ui.h:3
 msgid "_Yes"
 msgstr "_Ano"
 
@@ -101,7 +101,7 @@ msgstr ""
 "POSTUP:\n"
 "    1. Ujistěte se, že není připojen žádný externí reproduktor nebo "
 "sluchátka. \n"
-"       Reproduktory jsou povoleny u destopu.\n"
+"       Reproduktory jsou povoleny u destkopu.\n"
 "    2. Klikněte na tlačítko Testovat a poslouchejte, zda se ozve tón.\n"
 "DŮKAZ:\n"
 "    Byl slyšet tón?"
@@ -185,7 +185,7 @@ msgstr ""
 "CÍL:\n"
 "    Tento test otestuje zvukové zařízení na USB\n"
 "POSTUP:\n"
-"    1. Připojte zvokové zařízení do USB.\n"
+"    1. Připojte zvukové zařízení do USB.\n"
 "    2. Klikněte na \"Test\" a mluvte do mikrofonu.\n"
 "    3. Po několika sekundách uslyšíte svůj hlas z reproduktoru.\n"
 "DŮKAZ:\n"
@@ -1026,42 +1026,42 @@ msgid "Attaches a list of the currently running kernel modules."
 msgstr "Připojí seznam aktuálně běžících jaderných modulů"
 
 #. description
-#: ../jobs/info.txt.in:82
+#: ../jobs/info.txt.in:96
 msgid "Gather log from the Firmware Test Suite run."
 msgstr "Sebraz záznam o běhu Firmware Test Suite."
 
 #. description
-#: ../jobs/info.txt.in:89
+#: ../jobs/info.txt.in:103
 msgid "Attaches the contents of /proc/acpi/sleep if it exists."
 msgstr "Existuje-li, připojí obsah /proc/acpi/sleep"
 
 #. description
-#: ../jobs/info.txt.in:93
+#: ../jobs/info.txt.in:107
 msgid "Bootchart information."
 msgstr "Informace z bootchartu"
 
 #. description
-#: ../jobs/info.txt.in:102
+#: ../jobs/info.txt.in:116
 msgid "SATA/IDE device information."
 msgstr "Informace o zařízení na SATA/IDE"
 
 #. description
-#: ../jobs/info.txt.in:119
+#: ../jobs/info.txt.in:133
 msgid "Attaches the bootchart png file for bootchart runs"
 msgstr "Připojí graf bootu (bootchart) v obrázku png."
 
 #. description
-#: ../jobs/info.txt.in:128
+#: ../jobs/info.txt.in:142
 msgid "Attaches the bootchart log for bootchart test runs."
 msgstr "Připojí log bootchart pro testovací spouštění."
 
 #. description
-#: ../jobs/info.txt.in:136
+#: ../jobs/info.txt.in:150
 msgid "installs the installer bootchart tarball if it exists."
 msgstr "Existuje-li, nainstaluje bootchart"
 
 #. description
-#: ../jobs/info.txt.in:141
+#: ../jobs/info.txt.in:155
 msgid "Attaches the installer debug log if it exists."
 msgstr "Existuje-li, připojí ladicí záznam instalátoru"
 
@@ -1407,27 +1407,27 @@ msgid "Suspend tests"
 msgstr "Testy uspávání"
 
 #. description
-#: ../jobs/local.txt.in:234
+#: ../jobs/local.txt.in:241
 msgid "Unity tests"
 msgstr "Testy Unity"
 
 #. description
-#: ../jobs/local.txt.in:241
+#: ../jobs/local.txt.in:248
 msgid "USB tests"
 msgstr "Testy USB"
 
 #. description
-#: ../jobs/local.txt.in:248
+#: ../jobs/local.txt.in:255
 msgid "User Applications"
 msgstr "Uživatelské aplikace"
 
 #. description
-#: ../jobs/local.txt.in:255
+#: ../jobs/local.txt.in:262
 msgid "Wireless networking tests"
 msgstr "Testy bezdrátového připojení"
 
 #. description
-#: ../jobs/local.txt.in:262
+#: ../jobs/local.txt.in:269
 msgid "Stress tests"
 msgstr "Zátěžové testy"
 
@@ -2294,7 +2294,7 @@ msgstr ""
 "\"Ne\", bude-li neúspěšný."
 
 #. description
-#: ../jobs/optical.txt.in:43
+#: ../jobs/optical.txt.in:34
 msgid ""
 "PURPOSE:\n"
 "    This test will check your system's CD writing capabilities. This test "
@@ -2324,7 +2324,7 @@ msgstr ""
 "    Tento test automaticky zvolí \"Ano\" při úspěchu, nebo \"Ne\" při chybě."
 
 #. description
-#: ../jobs/optical.txt.in:57
+#: ../jobs/optical.txt.in:46
 msgid ""
 "PURPOSE:\n"
 "    This test will check your CD audio playback capabilities\n"
@@ -2357,7 +2357,7 @@ msgstr ""
 "    Proběhlo vše úspěšně?"
 
 #. description
-#: ../jobs/optical.txt.in:80
+#: ../jobs/optical.txt.in:71
 msgid ""
 "PURPOSE:\n"
 "    This test will check your system's DVD writing capabilities. This test "
@@ -2387,7 +2387,7 @@ msgstr ""
 "    Tento test automaticky vybere \"Ano\" při úspěchu, nebo \"Ne\" při chybě."
 
 #. description
-#: ../jobs/optical.txt.in:94
+#: ../jobs/optical.txt.in:82
 msgid ""
 "PURPOSE:\n"
 "    This test will check your DVD movie playback capabilities. Note that "
@@ -2421,7 +2421,7 @@ msgstr ""
 "    Proběhlo vše úspěšně?"
 
 #. description
-#: ../jobs/optical.txt.in:112
+#: ../jobs/optical.txt.in:100
 msgid ""
 "PURPOSE:\n"
 "    This test will check your DVD  playback capabilities\n"
@@ -2825,7 +2825,7 @@ msgid ""
 msgstr "Vypíše informace o paměti do souboru pro srovnání po testu uspání"
 
 #. description
-#: ../jobs/suspend.txt.in:40
+#: ../jobs/suspend.txt.in:49
 msgid ""
 "This test disconnects all connections and then connects to the wireless "
 "interface. It then checks the connection to confirm it's working as expected."
@@ -2834,7 +2834,7 @@ msgstr ""
 "zkontroluje, že připojení funguje podle očekávání."
 
 #. description
-#: ../jobs/suspend.txt.in:74
+#: ../jobs/suspend.txt.in:83
 msgid ""
 "PURPOSE:\n"
 "    This test will check suspend and resume\n"
@@ -2859,35 +2859,35 @@ msgstr ""
 "    Bylo uspání a probuzení systému úspěšné?"
 
 #. description
-#: ../jobs/suspend.txt.in:87
+#: ../jobs/suspend.txt.in:96
 msgid "Test the network after resuming."
 msgstr "Otestovat síť po probuzení."
 
 #. description
-#: ../jobs/suspend.txt.in:93
+#: ../jobs/suspend.txt.in:102
 msgid ""
 "Test to see that we have the same resolution after resuming as before."
 msgstr ""
 "Test pro ověření, že máme stejné rozlišení po probuzení z režimu spánku."
 
 #. description
-#: ../jobs/suspend.txt.in:102
+#: ../jobs/suspend.txt.in:111
 msgid ""
 "Verify that mixer settings after suspend are the same as before suspend."
 msgstr "Ověřit, že nastavení zvuku je po probuzení stejné jako před ním."
 
 #. description
-#: ../jobs/suspend.txt.in:118
+#: ../jobs/suspend.txt.in:127
 msgid "Verify that all CPUs are online after resuming."
 msgstr "Ověřit, že jsou všechna CPU po probuzení dstupná."
 
 #. description
-#: ../jobs/suspend.txt.in:135
+#: ../jobs/suspend.txt.in:144
 msgid "Verify that all memory is available after resuming from suspend."
 msgstr "Ověřit, že je po probuzení dostupná všechna paměť."
 
 #. description
-#: ../jobs/suspend.txt.in:144
+#: ../jobs/suspend.txt.in:153
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the display is correct after suspend and "
@@ -2901,7 +2901,7 @@ msgstr ""
 "    Obnovilo se nastavení monitoru po probuzení?"
 
 #. description
-#: ../jobs/suspend.txt.in:155
+#: ../jobs/suspend.txt.in:174
 msgid ""
 "This test checks that the wireless interface is working after suspending the "
 "system. It disconnects all interfaces and then connects to the wireless "
@@ -2940,7 +2940,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:211
+#: ../jobs/suspend.txt.in:186
 msgid ""
 "This test grabs the hardware address of the bluetooth adapter after suspend "
 "and compares it to the address grabbed before suspend."
@@ -2949,7 +2949,7 @@ msgstr ""
 "která byla zjištěna před uspáním."
 
 #. description
-#: ../jobs/suspend.txt.in:221
+#: ../jobs/suspend.txt.in:196
 msgid ""
 "This is an automated Bluetooth file transfer test. It sends an image to the "
 "device specified by the BTDEVADDR environment variable."
@@ -2958,7 +2958,7 @@ msgstr ""
 "zařízení určené proměnnou prostředí BTDEVADDR."
 
 #. description
-#: ../jobs/suspend.txt.in:231
+#: ../jobs/suspend.txt.in:206
 msgid ""
 "PURPOSE:\n"
 "    This test will send the image 'JPEG_Color_Image_Ubuntu.jpg' to a "
@@ -2982,7 +2982,7 @@ msgstr ""
 "    Přenesl se soubor úspěšně?"
 
 #. description
-#: ../jobs/suspend.txt.in:245
+#: ../jobs/suspend.txt.in:220
 msgid ""
 "PURPOSE:\n"
 "    This test will cycle through the detected display modes\n"
@@ -2999,7 +2999,7 @@ msgstr ""
 "    Byl obraz v pořádku v nalezeném režimu?"
 
 #. description
-#: ../jobs/suspend.txt.in:257
+#: ../jobs/suspend.txt.in:232
 msgid ""
 "This test will check to make sure supported video modes work after a suspend "
 "and resume. This is done automatically by taking screenshots and uploading "
@@ -3010,7 +3010,7 @@ msgstr ""
 "snímky obrazovky a nahrají se jako příloha."
 
 #. description
-#: ../jobs/suspend.txt.in:266
+#: ../jobs/suspend.txt.in:241
 msgid ""
 "This attaches screenshots from the "
 "suspend/cycle_resolutions_after_suspend_auto test to the results submission."
@@ -3019,7 +3019,7 @@ msgstr ""
 "výsledkům."
 
 #. description
-#: ../jobs/suspend.txt.in:276
+#: ../jobs/suspend.txt.in:251
 msgid ""
 "This will check to make sure that your audio device works properly after a "
 "suspend and resume.  This may work fine with speakers and onboard "
@@ -3031,12 +3031,12 @@ msgstr ""
 "zvukového vstupu s jackem zvukového výstupu."
 
 #. description
-#: ../jobs/suspend.txt.in:285
+#: ../jobs/suspend.txt.in:260
 msgid "This is the automated version of suspend/suspend_advanced."
 msgstr "Toto je automatická verze uspání/rozšířeného uspání."
 
 #. description
-#: ../jobs/suspend.txt.in:294
+#: ../jobs/suspend.txt.in:269
 msgid ""
 "This automatically tests Wake-on-LAN capability with the aid of a suitably "
 "configured server. During this process the system will suspend, then "
@@ -4120,17 +4120,17 @@ msgid "Unknown signal"
 msgstr "Neznámý signál"
 
 #: ../checkbox_cli/cli_interface.py:31
-#: ../checkbox_urwid/urwid_interface.py:917 ../checkbox_qt/qt_interface.py:33
+#: ../checkbox_urwid/urwid_interface.py:917 ../checkbox_qt/qt_interface.py:37
 msgid "yes"
 msgstr "ano"
 
 #: ../checkbox_cli/cli_interface.py:32
-#: ../checkbox_urwid/urwid_interface.py:918 ../checkbox_qt/qt_interface.py:34
+#: ../checkbox_urwid/urwid_interface.py:918 ../checkbox_qt/qt_interface.py:38
 msgid "no"
 msgstr "ne"
 
 #: ../checkbox_cli/cli_interface.py:33
-#: ../checkbox_urwid/urwid_interface.py:919 ../checkbox_qt/qt_interface.py:35
+#: ../checkbox_urwid/urwid_interface.py:919 ../checkbox_qt/qt_interface.py:39
 msgid "skip"
 msgstr "přeskočit"
 
@@ -4187,11 +4187,11 @@ msgid "Next"
 msgstr "Další"
 
 #. Show buttons
-#: ../checkbox_urwid/urwid_interface.py:423 ../qt/frontend/qtfront.cpp:137
+#: ../checkbox_urwid/urwid_interface.py:423 ../qt/frontend/qtfront.cpp:136
 msgid "Select All"
 msgstr "Vybrat vše"
 
-#: ../checkbox_urwid/urwid_interface.py:424 ../qt/frontend/qtfront.cpp:138
+#: ../checkbox_urwid/urwid_interface.py:424 ../qt/frontend/qtfront.cpp:137
 msgid "Deselect All"
 msgstr "Zrušit vše"
 
@@ -4212,15 +4212,15 @@ msgstr "Otestovat"
 msgid "Test Again"
 msgstr "Znovu otestovat"
 
-#: ../checkbox_gtk/gtk_interface.py:517
+#: ../checkbox_gtk/gtk_interface.py:503
 msgid "_Test Again"
 msgstr "_Znovu otestovat"
 
-#: ../checkbox_gtk/gtk_interface.py:566
+#: ../checkbox_gtk/gtk_interface.py:551 ../qt/frontend/qtfront.cpp:490
 msgid "Info"
 msgstr "Informace"
 
-#: ../checkbox_gtk/gtk_interface.py:590
+#: ../checkbox_gtk/gtk_interface.py:575 ../qt/frontend/qtfront.cpp:247
 msgid "Error"
 msgstr "Chyba"
 
@@ -4396,7 +4396,7 @@ msgid "Running %s..."
 msgstr "Běží %s..."
 
 #. Get results
-#: ../plugins/suites_prompt.py:124
+#: ../plugins/suites_prompt.py:110
 msgid "Select the suites to test"
 msgstr "Označte, co chcete otestovat"
 
@@ -4408,53 +4408,53 @@ msgstr "Zadejte text:\n"
 msgid "Type Text"
 msgstr "Napište text"
 
-#: ../scripts/internet_test:196
+#: ../scripts/internet_test:139
 msgid "No Internet connection"
 msgstr "Žádné připojení k Internetu"
 
-#: ../scripts/internet_test:199
+#: ../scripts/internet_test:142
 msgid "Connection established lost a packet"
 msgstr "Spojení navázáno, paket ztracen"
 
-#: ../scripts/internet_test:202
+#: ../scripts/internet_test:145
 msgid "Internet connection fully established"
 msgstr "Připojení k internetu plně funkční"
 
-#: ../qt/frontend/qtfront.cpp:108
+#: ../qt/frontend/qtfront.cpp:107
 msgid "Not Started"
-msgstr ""
+msgstr "Nespuštěno"
 
-#: ../qt/frontend/qtfront.cpp:109 ../qt/frontend/qtfront.cpp:110
+#: ../qt/frontend/qtfront.cpp:108 ../qt/frontend/qtfront.cpp:109
 msgid "Done"
 msgstr "Hotovo"
 
-#: ../qt/frontend/qtfront.cpp:111
+#: ../qt/frontend/qtfront.cpp:110
 msgid "Not Supported"
-msgstr ""
+msgstr "Nepodporováno"
 
-#: ../qt/frontend/qtfront.cpp:112
+#: ../qt/frontend/qtfront.cpp:111
 msgid "Not Resolved"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:113
+#: ../qt/frontend/qtfront.cpp:112
 msgid "Not Tested"
-msgstr ""
+msgstr "Netestováno"
 
-#: ../qt/frontend/qtfront.cpp:114
+#: ../qt/frontend/qtfront.cpp:113
 msgid "In Progress"
-msgstr ""
+msgstr "Probíhá"
 
 #: ../qt/frontend/qtfront.cpp:182
 msgid "Are you sure?"
-msgstr ""
+msgstr "Jste si jisti?"
 
 #: ../qt/frontend/qtfront.cpp:182
 msgid "Do you really want to skip this test?"
-msgstr ""
+msgstr "Jste si jisti, že chcete přeskočit tento test?"
 
 #: ../qt/frontend/qtfront.cpp:183
 msgid "Don't ask me again"
-msgstr ""
+msgstr "Příště se neptat"
 
 #: ../qt/frontend/treemodel.cpp:13
 msgid ""
@@ -4462,46 +4462,50 @@ msgid ""
 "you plan to participate in Ubuntu Friendly, please, select all tests. You "
 "can always skip individual tests if you don't have the needed equipment."
 msgstr ""
+"Pokud zrušíte výběr testu nebudou výsledky platné pro projekt Ubuntu "
+"Friendly. Pokud se chcete zúčastnit projektu Ubuntu Friendly vyberte prosím "
+"všechny testy. Pokud nemáte potřebné vybavení, můžete jednotlivé testy vždy "
+"přeskočit."
 
 #: ../qt/frontend/ui_qtfront.h:588
 msgid "Form"
-msgstr ""
+msgstr "Formulář"
 
 #: ../qt/frontend/ui_qtfront.h:590
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: ../qt/frontend/ui_qtfront.h:591
 msgid "Don't show me this message in the future"
-msgstr ""
+msgstr "Nezobrazovat tuto zprávu v budoucnu"
 
 #: ../qt/frontend/ui_qtfront.h:592 ../qt/frontend/ui_qtfront.h:606
 msgid "Tab 1"
-msgstr ""
+msgstr "Karta 1"
 
 #: ../qt/frontend/ui_qtfront.h:593
 msgid "10 tests completed out of 30 (30%)"
-msgstr ""
+msgstr "10 z 30 testů dokončeno (30 %)"
 
 #: ../qt/frontend/ui_qtfront.h:595
 msgid "Lists of tests to run based on your system:"
-msgstr ""
+msgstr "Seznam testů určených ke spuštění na vašem počítači:"
 
 #: ../qt/frontend/ui_qtfront.h:596
 msgid "Components"
-msgstr ""
+msgstr "Součásti"
 
 #: ../qt/frontend/ui_qtfront.h:597
 msgid "Status"
-msgstr ""
+msgstr "Stav"
 
 #: ../qt/frontend/ui_qtfront.h:598
 msgid "Start testing"
-msgstr ""
+msgstr "Spustit testování"
 
 #: ../qt/frontend/ui_qtfront.h:599
 msgid " Selection "
-msgstr ""
+msgstr " Výběr "
 
 #: ../qt/frontend/ui_qtfront.h:600 ../qt/frontend/ui_qtfront.h:601
 msgid "TextLabel"
@@ -4509,23 +4513,23 @@ msgstr ""
 
 #: ../qt/frontend/ui_qtfront.h:602
 msgid "Yes"
-msgstr ""
+msgstr "Ano"
 
 #: ../qt/frontend/ui_qtfront.h:604
 msgid "No"
-msgstr ""
+msgstr "Ne"
 
 #: ../qt/frontend/ui_qtfront.h:605
 msgid "Comment"
-msgstr ""
+msgstr "Komentář"
 
 #: ../qt/frontend/ui_qtfront.h:607 ../qt/frontend/ui_qtfront.h:623
 msgid "Tab 2"
-msgstr ""
+msgstr "Karta 2"
 
 #: ../qt/frontend/ui_qtfront.h:610
 msgid " Run "
-msgstr ""
+msgstr " Spustit "
 
 #: ../qt/frontend/ui_qtfront.h:611
 msgid ""
@@ -4544,26 +4548,41 @@ msgid ""
 "color:#ff0000;\">You can send the results now, but the submission won't make "
 "it to Ubuntu Friendly.</span></p></body></html>"
 msgstr ""
+"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" "
+"\"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style "
+"type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Ubuntu'; font-size:10pt; font-"
+"weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+"right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" "
+"color:#ff0000;\">Upozornění: Ještě nebyli spuštěny všechny "
+"testy.</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+"right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" "
+"color:#ff0000;\">Výsledky můžete odeslat, ale nebudou zařazeny do projektu "
+"Ubuntu Friendly.</span></p></body></html>"
 
 #: ../qt/frontend/ui_qtfront.h:617
 msgid "Personal details"
-msgstr ""
+msgstr "Osobní informace"
 
 #: ../qt/frontend/ui_qtfront.h:619
 msgid "Email:"
-msgstr ""
+msgstr "E-mail:"
 
 #: ../qt/frontend/ui_qtfront.h:620
 msgid "Submit results"
-msgstr ""
+msgstr "Odeslat výsledky"
 
 #: ../qt/frontend/ui_qtfront.h:621
 msgid "View results"
-msgstr ""
+msgstr "Zobrazit výsledky"
 
 #: ../qt/frontend/ui_qtfront.h:622
 msgid " Results "
-msgstr ""
+msgstr " Výsledky "
 
 #~ msgid "Successfully sent information!"
 #~ msgstr "Informace úspěšně odeslány!"
