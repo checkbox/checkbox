@@ -14,7 +14,9 @@ checkbox (0.13.8) precise; urgency=low
     tests to be used for test purposes when developing features.
   * [FEATURE] data/whitelists/sniff.whitelist added a whitelist to make use of 
     the basic sniff tests.
-  
+  * [FEATURE] jobs/miscellanea.txt.in: added a job to gather tester info for
+    certification purposes. Not to be used for UF.
+
   [Daniel Manrique]
   * [FEATURE] checkbox/user_interface.py, checkbox/qt-interface.py,
     plugins/jobs_prompt.py, plugins/recover_prompt.py,
@@ -31,7 +33,7 @@ checkbox (0.13.8) precise; urgency=low
   * [FEATURE] jobs/info.txt.in: added new attachments, lspci -vvnnQ and
     lsusb -vv and ensure outputs of lscpi, lsusb and dmidecode return UTF8.
 
- -- Daniel Manrique <roadmr@ubuntu.com>  Wed, 18 Apr 2012 16:52:32 -0400
+ -- Jeff Lane <jeff@ubuntu.com>  Mon, 23 Apr 2012 14:57:56 -0400
 
 checkbox (0.13.7) precise; urgency=low
 

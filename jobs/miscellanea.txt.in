@@ -1,4 +1,18 @@
 plugin: manual
+name: miscellanea/tester-info
+_description:
+ PURPOSE:
+    1. Keep tester related information in the report
+ STEPS:
+    1. Tester Information
+    2. Please enter the following information in the comments field:
+       a. Name
+       b. Email Address
+       c. Reason for this test run
+ VERIFICATION:
+    1. Nothing to verify for this test
+
+plugin: manual
 name: miscellanea/chvt
 requires:
  package.alias == 'linux'
