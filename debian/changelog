@@ -1,5 +1,7 @@
 checkbox (0.13.8) precise; urgency=low
-
+  [Brendan Donegan]
+  * Fixed cpu_offlining to work properly on systems with ten or more CPU
+    cores. (LP: #926136)
   [Nathan Williams]
   * fix typo in jobs/optical.txt.in (lp: #987652)
 
