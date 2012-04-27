@@ -18,6 +18,7 @@ name: miscellanea/fwts_test
 requires:
   package.name == 'linux'
   package.name == 'fwts'
+user: root
 _description:
  Run Firmware Test Suite (fwts) automated tests.
 command:
