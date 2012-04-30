@@ -27,7 +27,7 @@ plugin: shell
 name: optical/read-automated
 requires:
  device.category == 'CDROM'
- user: root
+user: root
 command: optical_read_test /dev/cdrom
 description:
  This is an automated version of optical/read. It assumes you have already inserted a data CD into your optical drive prior to running Checkbox.

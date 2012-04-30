@@ -3,6 +3,7 @@ checkbox (0.13.8) precise; urgency=low
   [Brendan Donegan]
   * Run fwts_test as root so that the log can be written to on servers and
     also because it's supposed to be run as root (LP: #989701)
+  * Fix identation on optical/read-automated (LP: #991737)
 
   [Nathan Williams]
   * fix typo in jobs/optical.txt.in (lp: #987652)
