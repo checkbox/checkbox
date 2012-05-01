@@ -21,6 +21,7 @@ requires:
 user: root
 _description:
  Run Firmware Test Suite (fwts) automated tests.
+environ: CHECKBOX_DATA
 command:
  fwts_test -l $CHECKBOX_DATA/fwts_results.log
 
