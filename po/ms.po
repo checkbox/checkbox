@@ -14,36 +14,36 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-04-03 04:40+0000\n"
-"X-Generator: Launchpad (build 15052)\n"
+"X-Launchpad-Export-Date: 2012-05-02 05:12+0000\n"
+"X-Generator: Launchpad (build 15177)\n"
 
 #~ msgid "Do you hear a sound?"
 #~ msgstr "Adakah anda dengan apa-apa bunyi?"
 
-#: ../gtk/checkbox-gtk.ui.h:1 ../checkbox_cli/cli_interface.py:444
+#: ../gtk/checkbox-gtk.ui.h:6 ../checkbox_cli/cli_interface.py:444
 #: ../checkbox_urwid/urwid_interface.py:267
 msgid "Further information:"
 msgstr "Maklumat lanjut:"
 
-#: ../gtk/checkbox-gtk.ui.h:2
+#: ../gtk/checkbox-gtk.ui.h:10
 msgid "Ne_xt"
 msgstr "Se_lanjutnya"
 
 #. Title of the user interface
-#: ../gtk/checkbox-gtk.ui.h:3 ../qt/checkbox-qt.desktop.in.h:1
+#: ../gtk/checkbox-gtk.ui.h:1 ../qt/checkbox-qt.desktop.in.h:1
 #: ../plugins/user_interface.py:43 ../qt/frontend/ui_qtfront.h:589
 msgid "System Testing"
 msgstr "Pengujian Sistem"
 
-#: ../gtk/checkbox-gtk.ui.h:4
+#: ../gtk/checkbox-gtk.ui.h:8
 msgid "_Deselect All"
 msgstr "_Nyahpilih Semua"
 
-#: ../gtk/checkbox-gtk.ui.h:5
+#: ../gtk/checkbox-gtk.ui.h:4
 msgid "_No"
 msgstr "_Tidak"
 
-#: ../gtk/checkbox-gtk.ui.h:6
+#: ../gtk/checkbox-gtk.ui.h:9
 msgid "_Previous"
 msgstr "_Sebelumnya"
 
@@ -51,15 +51,15 @@ msgstr "_Sebelumnya"
 msgid "_Select All"
 msgstr "_Pilih Semua"
 
-#: ../gtk/checkbox-gtk.ui.h:8
+#: ../gtk/checkbox-gtk.ui.h:5
 msgid "_Skip this test"
 msgstr "_Langkau ujian ini"
 
-#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:553
+#: ../gtk/checkbox-gtk.ui.h:2 ../checkbox_gtk/gtk_interface.py:538
 msgid "_Test"
 msgstr "_Uji"
 
-#: ../gtk/checkbox-gtk.ui.h:10
+#: ../gtk/checkbox-gtk.ui.h:3
 msgid "_Yes"
 msgstr "_Ya"
 
@@ -1046,42 +1046,42 @@ msgid "Attaches a list of the currently running kernel modules."
 msgstr "Lampir senarai modul kernel yang kini dijalankan."
 
 #. description
-#: ../jobs/info.txt.in:82
+#: ../jobs/info.txt.in:96
 msgid "Gather log from the Firmware Test Suite run."
 msgstr "Himpun log dari perjalanan Suit Ujian Perisian Tegar"
 
 #. description
-#: ../jobs/info.txt.in:89
+#: ../jobs/info.txt.in:103
 msgid "Attaches the contents of /proc/acpi/sleep if it exists."
 msgstr "Lampir kandungan bagi /proc/acpi/sleep jika ia wujud."
 
 #. description
-#: ../jobs/info.txt.in:93
+#: ../jobs/info.txt.in:107
 msgid "Bootchart information."
 msgstr "Maklumat Bootchart."
 
 #. description
-#: ../jobs/info.txt.in:102
+#: ../jobs/info.txt.in:116
 msgid "SATA/IDE device information."
 msgstr "Maklumat peranti SATA/IDE"
 
 #. description
-#: ../jobs/info.txt.in:119
+#: ../jobs/info.txt.in:133
 msgid "Attaches the bootchart png file for bootchart runs"
 msgstr "Lampir fail png bootchart untuk perjalanan bootchart"
 
 #. description
-#: ../jobs/info.txt.in:128
+#: ../jobs/info.txt.in:142
 msgid "Attaches the bootchart log for bootchart test runs."
 msgstr "Lampir log bootchart untuk perjalanan ujian bootchart"
 
 #. description
-#: ../jobs/info.txt.in:136
+#: ../jobs/info.txt.in:150
 msgid "installs the installer bootchart tarball if it exists."
 msgstr "pasang tarball pemasang bootchart jika ia wujud."
 
 #. description
-#: ../jobs/info.txt.in:141
+#: ../jobs/info.txt.in:155
 msgid "Attaches the installer debug log if it exists."
 msgstr "Lampir log pemasang nyahpepijat jika ia wujud."
 
@@ -1431,27 +1431,27 @@ msgid "Suspend tests"
 msgstr "Uji tangguh"
 
 #. description
-#: ../jobs/local.txt.in:234
+#: ../jobs/local.txt.in:241
 msgid "Unity tests"
 msgstr "Ujian unity"
 
 #. description
-#: ../jobs/local.txt.in:241
+#: ../jobs/local.txt.in:248
 msgid "USB tests"
 msgstr "Ujian USB"
 
 #. description
-#: ../jobs/local.txt.in:248
+#: ../jobs/local.txt.in:255
 msgid "User Applications"
 msgstr "Aplikasi Pengguna"
 
 #. description
-#: ../jobs/local.txt.in:255
+#: ../jobs/local.txt.in:262
 msgid "Wireless networking tests"
 msgstr "Uji rangkaian tanpa wayar"
 
 #. description
-#: ../jobs/local.txt.in:262
+#: ../jobs/local.txt.in:269
 msgid "Stress tests"
 msgstr "Ujian Tekanan"
 
@@ -2334,7 +2334,7 @@ msgstr ""
 "jika gagal."
 
 #. description
-#: ../jobs/optical.txt.in:43
+#: ../jobs/optical.txt.in:34
 msgid ""
 "PURPOSE:\n"
 "    This test will check your system's CD writing capabilities. This test "
@@ -2365,7 +2365,7 @@ msgstr ""
 "    Ujian ini sepatutnya pilih \"Ya\" jika ia lulus, \"Tidak\" jika ia gagal."
 
 #. description
-#: ../jobs/optical.txt.in:57
+#: ../jobs/optical.txt.in:46
 msgid ""
 "PURPOSE:\n"
 "    This test will check your CD audio playback capabilities\n"
@@ -2398,7 +2398,7 @@ msgstr ""
 "    Adakah semua langkah mengikut yang diarahkan?"
 
 #. description
-#: ../jobs/optical.txt.in:80
+#: ../jobs/optical.txt.in:71
 msgid ""
 "PURPOSE:\n"
 "    This test will check your system's DVD writing capabilities. This test "
@@ -2429,7 +2429,7 @@ msgstr ""
 "    Ujian ini sepatutnya pilih \"Ya\" jika ia lulus, \"Tidak\" jika ia gagal."
 
 #. description
-#: ../jobs/optical.txt.in:94
+#: ../jobs/optical.txt.in:82
 msgid ""
 "PURPOSE:\n"
 "    This test will check your DVD movie playback capabilities. Note that "
@@ -2462,7 +2462,7 @@ msgstr ""
 "    Adakah semua langkah berfungsi dengan baik?"
 
 #. description
-#: ../jobs/optical.txt.in:112
+#: ../jobs/optical.txt.in:100
 msgid ""
 "PURPOSE:\n"
 "    This test will check your DVD  playback capabilities\n"
@@ -2880,7 +2880,7 @@ msgstr ""
 "dijalankan"
 
 #. description
-#: ../jobs/suspend.txt.in:40
+#: ../jobs/suspend.txt.in:49
 msgid ""
 "This test disconnects all connections and then connects to the wireless "
 "interface. It then checks the connection to confirm it's working as expected."
@@ -2890,7 +2890,7 @@ msgstr ""
 "seperti dijangka."
 
 #. description
-#: ../jobs/suspend.txt.in:74
+#: ../jobs/suspend.txt.in:83
 msgid ""
 "PURPOSE:\n"
 "    This test will check suspend and resume\n"
@@ -2917,12 +2917,12 @@ msgstr ""
 "    Adakah sistem anda ditangguh dan disambung semula dengan baik?"
 
 #. description
-#: ../jobs/suspend.txt.in:87
+#: ../jobs/suspend.txt.in:96
 msgid "Test the network after resuming."
 msgstr "Uji rangkaian selepas disambung semula."
 
 #. description
-#: ../jobs/suspend.txt.in:93
+#: ../jobs/suspend.txt.in:102
 msgid ""
 "Test to see that we have the same resolution after resuming as before."
 msgstr ""
@@ -2930,7 +2930,7 @@ msgstr ""
 "seperti sebelum ini."
 
 #. description
-#: ../jobs/suspend.txt.in:102
+#: ../jobs/suspend.txt.in:111
 msgid ""
 "Verify that mixer settings after suspend are the same as before suspend."
 msgstr ""
@@ -2938,17 +2938,17 @@ msgstr ""
 "tangguh."
 
 #. description
-#: ../jobs/suspend.txt.in:118
+#: ../jobs/suspend.txt.in:127
 msgid "Verify that all CPUs are online after resuming."
 msgstr "Sahkan semua CPU adalah aktif selepas disambung semula."
 
 #. description
-#: ../jobs/suspend.txt.in:135
+#: ../jobs/suspend.txt.in:144
 msgid "Verify that all memory is available after resuming from suspend."
 msgstr "Sahkan semua ingatan tersedia selepas disambung semula dari tangguh."
 
 #. description
-#: ../jobs/suspend.txt.in:144
+#: ../jobs/suspend.txt.in:153
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the display is correct after suspend and "
@@ -2964,7 +2964,7 @@ msgstr ""
 "tangguh?"
 
 #. description
-#: ../jobs/suspend.txt.in:155
+#: ../jobs/suspend.txt.in:174
 msgid ""
 "This test checks that the wireless interface is working after suspending the "
 "system. It disconnects all interfaces and then connects to the wireless "
@@ -3004,7 +3004,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:211
+#: ../jobs/suspend.txt.in:186
 msgid ""
 "This test grabs the hardware address of the bluetooth adapter after suspend "
 "and compares it to the address grabbed before suspend."
@@ -3013,7 +3013,7 @@ msgstr ""
 "ditangguh dan bandingkannya ke alamat yang ditangkap sebelum ditangguh."
 
 #. description
-#: ../jobs/suspend.txt.in:221
+#: ../jobs/suspend.txt.in:196
 msgid ""
 "This is an automated Bluetooth file transfer test. It sends an image to the "
 "device specified by the BTDEVADDR environment variable."
@@ -3023,7 +3023,7 @@ msgstr ""
 "BTDEVADDR."
 
 #. description
-#: ../jobs/suspend.txt.in:231
+#: ../jobs/suspend.txt.in:206
 msgid ""
 "PURPOSE:\n"
 "    This test will send the image 'JPEG_Color_Image_Ubuntu.jpg' to a "
@@ -3049,7 +3049,7 @@ msgstr ""
 "    Adakah data dipindahkan dengan sempurna?"
 
 #. description
-#: ../jobs/suspend.txt.in:245
+#: ../jobs/suspend.txt.in:220
 msgid ""
 "PURPOSE:\n"
 "    This test will cycle through the detected display modes\n"
@@ -3066,7 +3066,7 @@ msgstr ""
 "    Adakah paparan anda kelihatan baik dalam mod tersebut?"
 
 #. description
-#: ../jobs/suspend.txt.in:257
+#: ../jobs/suspend.txt.in:232
 msgid ""
 "This test will check to make sure supported video modes work after a suspend "
 "and resume. This is done automatically by taking screenshots and uploading "
@@ -3077,7 +3077,7 @@ msgstr ""
 "mengambil cekupan skrin dan memuat naiknya sebagai lampiran."
 
 #. description
-#: ../jobs/suspend.txt.in:266
+#: ../jobs/suspend.txt.in:241
 msgid ""
 "This attaches screenshots from the "
 "suspend/cycle_resolutions_after_suspend_auto test to the results submission."
@@ -3086,7 +3086,7 @@ msgstr ""
 "suspend/cycle_resolutions_after_suspend_auto ke penyerahan keputusan."
 
 #. description
-#: ../jobs/suspend.txt.in:276
+#: ../jobs/suspend.txt.in:251
 msgid ""
 "This will check to make sure that your audio device works properly after a "
 "suspend and resume.  This may work fine with speakers and onboard "
@@ -3099,12 +3099,12 @@ msgstr ""
 "gunakan kabel yang dihubungkan pada jek audio-keluar ke jek audio-masuk."
 
 #. description
-#: ../jobs/suspend.txt.in:285
+#: ../jobs/suspend.txt.in:260
 msgid "This is the automated version of suspend/suspend_advanced."
 msgstr "Ini merupakan versi automatik bagi suspend/suspend_advanced."
 
 #. description
-#: ../jobs/suspend.txt.in:294
+#: ../jobs/suspend.txt.in:269
 msgid ""
 "This automatically tests Wake-on-LAN capability with the aid of a suitably "
 "configured server. During this process the system will suspend, then "
@@ -4209,17 +4209,17 @@ msgid "Unknown signal"
 msgstr "Isyarat tidak diketahui"
 
 #: ../checkbox_cli/cli_interface.py:31
-#: ../checkbox_urwid/urwid_interface.py:917 ../checkbox_qt/qt_interface.py:33
+#: ../checkbox_urwid/urwid_interface.py:917 ../checkbox_qt/qt_interface.py:37
 msgid "yes"
 msgstr "ya"
 
 #: ../checkbox_cli/cli_interface.py:32
-#: ../checkbox_urwid/urwid_interface.py:918 ../checkbox_qt/qt_interface.py:34
+#: ../checkbox_urwid/urwid_interface.py:918 ../checkbox_qt/qt_interface.py:38
 msgid "no"
 msgstr "tidak"
 
 #: ../checkbox_cli/cli_interface.py:33
-#: ../checkbox_urwid/urwid_interface.py:919 ../checkbox_qt/qt_interface.py:35
+#: ../checkbox_urwid/urwid_interface.py:919 ../checkbox_qt/qt_interface.py:39
 msgid "skip"
 msgstr "langkau"
 
@@ -4276,11 +4276,11 @@ msgid "Next"
 msgstr "Berikutnya"
 
 #. Show buttons
-#: ../checkbox_urwid/urwid_interface.py:423 ../qt/frontend/qtfront.cpp:137
+#: ../checkbox_urwid/urwid_interface.py:423 ../qt/frontend/qtfront.cpp:136
 msgid "Select All"
 msgstr "Pilih Semua"
 
-#: ../checkbox_urwid/urwid_interface.py:424 ../qt/frontend/qtfront.cpp:138
+#: ../checkbox_urwid/urwid_interface.py:424 ../qt/frontend/qtfront.cpp:137
 msgid "Deselect All"
 msgstr "Nyahpilih Semua"
 
@@ -4301,15 +4301,15 @@ msgstr "Uji"
 msgid "Test Again"
 msgstr "Uji Lagi"
 
-#: ../checkbox_gtk/gtk_interface.py:517
+#: ../checkbox_gtk/gtk_interface.py:503
 msgid "_Test Again"
 msgstr "_Uji Lagi"
 
-#: ../checkbox_gtk/gtk_interface.py:566
+#: ../checkbox_gtk/gtk_interface.py:551 ../qt/frontend/qtfront.cpp:490
 msgid "Info"
 msgstr "Maklumat"
 
-#: ../checkbox_gtk/gtk_interface.py:590
+#: ../checkbox_gtk/gtk_interface.py:575 ../qt/frontend/qtfront.cpp:247
 msgid "Error"
 msgstr "Ralat"
 
@@ -4493,7 +4493,7 @@ msgid "Running %s..."
 msgstr "Menjalankan %s..."
 
 #. Get results
-#: ../plugins/suites_prompt.py:124
+#: ../plugins/suites_prompt.py:110
 msgid "Select the suites to test"
 msgstr "Pilih suit untuk uji"
 
@@ -4505,53 +4505,53 @@ msgstr "Masukkan teks:\n"
 msgid "Type Text"
 msgstr "Taip Teks"
 
-#: ../scripts/internet_test:196
+#: ../scripts/internet_test:139
 msgid "No Internet connection"
 msgstr "Tiada sambungan Internet"
 
-#: ../scripts/internet_test:199
+#: ../scripts/internet_test:142
 msgid "Connection established lost a packet"
 msgstr "Sambungan kehilangan paket"
 
-#: ../scripts/internet_test:202
+#: ../scripts/internet_test:145
 msgid "Internet connection fully established"
 msgstr "Sambungan Internet telah mantap sepenuhnya"
 
-#: ../qt/frontend/qtfront.cpp:108
+#: ../qt/frontend/qtfront.cpp:107
 msgid "Not Started"
-msgstr ""
+msgstr "Tidak Dimulakan"
 
-#: ../qt/frontend/qtfront.cpp:109 ../qt/frontend/qtfront.cpp:110
+#: ../qt/frontend/qtfront.cpp:108 ../qt/frontend/qtfront.cpp:109
 msgid "Done"
-msgstr ""
+msgstr "Selesai"
+
+#: ../qt/frontend/qtfront.cpp:110
+msgid "Not Supported"
+msgstr "Tidak Disokong"
 
 #: ../qt/frontend/qtfront.cpp:111
-msgid "Not Supported"
-msgstr ""
+msgid "Not Resolved"
+msgstr "Tidak Dileraikan"
 
 #: ../qt/frontend/qtfront.cpp:112
-msgid "Not Resolved"
-msgstr ""
+msgid "Not Tested"
+msgstr "Tidak Diuji"
 
 #: ../qt/frontend/qtfront.cpp:113
-msgid "Not Tested"
-msgstr ""
-
-#: ../qt/frontend/qtfront.cpp:114
 msgid "In Progress"
-msgstr ""
+msgstr "Dalam Proses"
 
 #: ../qt/frontend/qtfront.cpp:182
 msgid "Are you sure?"
-msgstr ""
+msgstr "Anda pasti?"
 
 #: ../qt/frontend/qtfront.cpp:182
 msgid "Do you really want to skip this test?"
-msgstr ""
+msgstr "Anda pasti ingin melangkau ujian ini?"
 
 #: ../qt/frontend/qtfront.cpp:183
 msgid "Don't ask me again"
-msgstr ""
+msgstr "Jangan tanya lagi"
 
 #: ../qt/frontend/treemodel.cpp:13
 msgid ""
@@ -4559,70 +4559,73 @@ msgid ""
 "you plan to participate in Ubuntu Friendly, please, select all tests. You "
 "can always skip individual tests if you don't have the needed equipment."
 msgstr ""
+"Menyahpilih ujian akan membatalkan serahan ke Ubuntu Friendly. Jika anda "
+"cadang hendak menyerta Ubuntu Friendly, sila pilih semua ujian. Anda boleh "
+"langkau ujian individu jika anda tidak memerlukan peralatan tersebut."
 
 #: ../qt/frontend/ui_qtfront.h:588
 msgid "Form"
-msgstr ""
+msgstr "Bentuk"
 
 #: ../qt/frontend/ui_qtfront.h:590
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: ../qt/frontend/ui_qtfront.h:591
 msgid "Don't show me this message in the future"
-msgstr ""
+msgstr "Jangan papar lagi mesej ini dilain masa"
 
 #: ../qt/frontend/ui_qtfront.h:592 ../qt/frontend/ui_qtfront.h:606
 msgid "Tab 1"
-msgstr ""
+msgstr "Tab 1"
 
 #: ../qt/frontend/ui_qtfront.h:593
 msgid "10 tests completed out of 30 (30%)"
-msgstr ""
+msgstr "10 ujian selesai daripada 30 (30%)"
 
 #: ../qt/frontend/ui_qtfront.h:595
 msgid "Lists of tests to run based on your system:"
-msgstr ""
+msgstr "Senarai ujian yang dijalankan berdasarkan sistem anda:"
 
 #: ../qt/frontend/ui_qtfront.h:596
 msgid "Components"
-msgstr ""
+msgstr "Komponen"
 
 #: ../qt/frontend/ui_qtfront.h:597
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 #: ../qt/frontend/ui_qtfront.h:598
 msgid "Start testing"
-msgstr ""
+msgstr "Mula menguji"
 
 #: ../qt/frontend/ui_qtfront.h:599
 msgid " Selection "
-msgstr ""
+msgstr " Pemilihan "
 
 #: ../qt/frontend/ui_qtfront.h:600 ../qt/frontend/ui_qtfront.h:601
 msgid "TextLabel"
-msgstr ""
+msgstr "Label Teks"
 
 #: ../qt/frontend/ui_qtfront.h:602
 msgid "Yes"
-msgstr ""
+msgstr "Ya"
 
 #: ../qt/frontend/ui_qtfront.h:604
 msgid "No"
-msgstr ""
+msgstr "Tidak"
 
 #: ../qt/frontend/ui_qtfront.h:605
 msgid "Comment"
-msgstr ""
+msgstr "Ulasan"
 
 #: ../qt/frontend/ui_qtfront.h:607 ../qt/frontend/ui_qtfront.h:623
 msgid "Tab 2"
-msgstr ""
+msgstr "Tab 2"
 
 #: ../qt/frontend/ui_qtfront.h:610
 msgid " Run "
-msgstr ""
+msgstr " Jalan "
 
 #: ../qt/frontend/ui_qtfront.h:611
 msgid ""
@@ -4641,26 +4644,40 @@ msgid ""
 "color:#ff0000;\">You can send the results now, but the submission won't make "
 "it to Ubuntu Friendly.</span></p></body></html>"
 msgstr ""
+"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" "
+"\"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style "
+"type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Ubuntu'; font-size:10pt; font-"
+"weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+"right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" "
+"color:#ff0000;\">Amaran: Bukan semua ujian dijalankan lagi.</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+"right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" "
+"color:#ff0000;\">Anda boleh hantar keputusannya sekarang, tetapi serahan "
+"tersebut tidak akan hantar ke Ubuntu Friendly.</span></p></body></html>"
 
 #: ../qt/frontend/ui_qtfront.h:617
 msgid "Personal details"
-msgstr ""
+msgstr "Perincian peribadi"
 
 #: ../qt/frontend/ui_qtfront.h:619
 msgid "Email:"
-msgstr ""
+msgstr "E-mel:"
 
 #: ../qt/frontend/ui_qtfront.h:620
 msgid "Submit results"
-msgstr ""
+msgstr "Serah keputusan"
 
 #: ../qt/frontend/ui_qtfront.h:621
 msgid "View results"
-msgstr ""
+msgstr "Lihat keputusan"
 
 #: ../qt/frontend/ui_qtfront.h:622
 msgid " Results "
-msgstr ""
+msgstr " Keputusan "
 
 #~ msgid "Successfully sent information!"
 #~ msgstr "Berjaya menghantar maklumat!"

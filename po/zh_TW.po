@@ -14,20 +14,20 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-04-03 04:41+0000\n"
-"X-Generator: Launchpad (build 15052)\n"
+"X-Launchpad-Export-Date: 2012-05-02 05:14+0000\n"
+"X-Generator: Launchpad (build 15177)\n"
 
 #. Title of the user interface
-#: ../gtk/checkbox-gtk.ui.h:3 ../qt/checkbox-qt.desktop.in.h:1
+#: ../gtk/checkbox-gtk.ui.h:1 ../qt/checkbox-qt.desktop.in.h:1
 #: ../plugins/user_interface.py:43 ../qt/frontend/ui_qtfront.h:589
 msgid "System Testing"
 msgstr "系統測試"
 
-#: ../gtk/checkbox-gtk.ui.h:6
+#: ../gtk/checkbox-gtk.ui.h:9
 msgid "_Previous"
 msgstr "上一步(_P)"
 
-#: ../gtk/checkbox-gtk.ui.h:8
+#: ../gtk/checkbox-gtk.ui.h:5
 msgid "_Skip this test"
 msgstr "略過此測試(_S)"
 
@@ -60,7 +60,7 @@ msgstr "請選擇 (%s)： "
 msgid "Please type here and press Ctrl-D when finished:\n"
 msgstr "請在此輸入，並在完成後按 Ctrl-D：\n"
 
-#: ../checkbox_gtk/gtk_interface.py:517
+#: ../checkbox_gtk/gtk_interface.py:503
 msgid "_Test Again"
 msgstr "再測試(_T)"
 
@@ -118,20 +118,20 @@ msgstr "正建立報告..."
 #~ msgid "Do you see color bars and static?"
 #~ msgstr "您是否有看見彩色的長條與雜訊？"
 
-#: ../gtk/checkbox-gtk.ui.h:1 ../checkbox_cli/cli_interface.py:444
+#: ../gtk/checkbox-gtk.ui.h:6 ../checkbox_cli/cli_interface.py:444
 #: ../checkbox_urwid/urwid_interface.py:267
 msgid "Further information:"
 msgstr "深入資訊："
 
-#: ../gtk/checkbox-gtk.ui.h:2
+#: ../gtk/checkbox-gtk.ui.h:10
 msgid "Ne_xt"
 msgstr "下一步(_X)"
 
-#: ../gtk/checkbox-gtk.ui.h:4
+#: ../gtk/checkbox-gtk.ui.h:8
 msgid "_Deselect All"
 msgstr "全部不選(_D)"
 
-#: ../gtk/checkbox-gtk.ui.h:5
+#: ../gtk/checkbox-gtk.ui.h:4
 msgid "_No"
 msgstr "否(_N)"
 
@@ -139,11 +139,11 @@ msgstr "否(_N)"
 msgid "_Select All"
 msgstr "全選(_S)"
 
-#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:553
+#: ../gtk/checkbox-gtk.ui.h:2 ../checkbox_gtk/gtk_interface.py:538
 msgid "_Test"
 msgstr "測試(_T)"
 
-#: ../gtk/checkbox-gtk.ui.h:10
+#: ../gtk/checkbox-gtk.ui.h:3
 msgid "_Yes"
 msgstr "是(_Y)"
 
@@ -169,13 +169,13 @@ msgid ""
 "    Did you hear a tone?"
 msgstr ""
 "目的：\n"
-"　　這個測試會檢查內建擴音器是否正常運作\n"
+"　　這個測試會檢查內建喇叭是否正常運作\n"
 "步驟：\n"
-"　　1.請確定沒有連接任何外接擴音器或耳機\n"
-"　　　　如果測試的是一台桌上型電腦，外接擴音器是允許連接的。\n"
-"　　2.點擊Test按鈕以在您的音效裝置上播放一個簡短的曲子\n"
+"　　1. 請確定沒有連接任何外接喇叭或耳機\n"
+"　　　　如果測試的是一台桌上型電腦，可以接上外接喇叭。\n"
+"　　2. 點擊 『測試』按鈕將會透過音效裝置播放一段音效\n"
 "檢查：\n"
-"　　您聽見一個曲子了嗎？"
+"　　是否有聽到音效？"
 
 #. description
 #: ../jobs/audio.txt.in:33
@@ -190,12 +190,12 @@ msgid ""
 "without any distortion, clicks or other strange noises from your headphones?"
 msgstr ""
 "目的：\n"
-"　　這個測試會檢查耳機連接端子是否正常運作\n"
+"　　這個測試會測試外接耳機是否正常運作\n"
 "步驟：\n"
-"　　1.連接一步耳機至您的音效裝置\n"
-"　　2.點擊Test按鈕以在您的音效裝置上播放一個聲音\n"
+"　　1. 將外接耳機接上電腦\n"
+"　　2. 點擊『測試』按鈕將會播放一段音效\n"
 "檢查：\n"
-"　　您有自耳機聽見一個聲音且聲音播放沒有任何中斷、播出喀嗒聲或是其他奇怪的聲音嗎？"
+"　　您是否有從外接耳機聽到一段不間斷且清楚的音效？"
 
 #. description
 #: ../jobs/audio.txt.in:49
@@ -210,6 +210,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear your speech played back?"
 msgstr ""
+"目的：\n"
+"    這個測試會檢查內建的麥克風是否正常運作（用內建的麥克風錄下一段聲音）\n"
+"步驟：\n"
+"    1. 如果已經接上外接麥克風，請先移除\n"
+"    2. 點擊『測試』按鈕，然後對著內建的麥克風講一段話\n"
+"    3. 您剛剛講的話將透過喇叭播放出來\n"
+"檢查：\n"
+"    您是否有聽到自己剛剛錄下來的話？"
 
 #. description
 #: ../jobs/audio.txt.in:66
@@ -224,6 +232,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear your speech played back?"
 msgstr ""
+"目的：\n"
+"    這個測試會檢查外接的麥克風是否正常運作（用外接的麥克風錄下一段聲音）\n"
+"步驟：\n"
+"    1. 將外接的麥克風連接到電腦\n"
+"    2. 點擊『測試』按鈕，然後對著外接的麥克風講一段話\n"
+"    3. 您剛剛講的話將透過喇叭播放出來\n"
+"檢查：\n"
+"    您是否有聽到自己剛剛錄下來的話？"
 
 #. description
 #: ../jobs/audio.txt.in:82
@@ -237,6 +253,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear your speech played back through the USB headphones?"
 msgstr ""
+"目的：\n"
+"    這個測試會檢查 USB 音效裝置是否正常運作\n"
+"步驟：\n"
+"    1. 將 USB 音效裝置連接到電腦\n"
+"    2. 點擊『測試』按鈕，然後對著 USB 音效裝置的麥克風講一段話\n"
+"    3. 您剛剛講的話將透過喇叭播放出來\n"
+"檢查：\n"
+"    您是否有聽到自己剛剛錄下來的話？"
 
 #. description
 #: ../jobs/audio.txt.in:99
@@ -260,7 +284,7 @@ msgstr ""
 #: ../jobs/bluetooth.txt.in:8
 msgid ""
 "Automated test to store bluetooth device information in checkbox report"
-msgstr "自動執行測試將藍芽裝置資訊儲存到Checkbox報告裡"
+msgstr "此測試會把藍芽裝置資訊儲存到 checkbox 的報告"
 
 #. description
 #: ../jobs/bluetooth.txt.in:14
@@ -349,7 +373,7 @@ msgstr ""
 #. description
 #: ../jobs/camera.txt.in:7
 msgid "This Automated test attempts to detect a camera."
-msgstr ""
+msgstr "這個測試會自動偵測內建的攝影機"
 
 #. description
 #: ../jobs/camera.txt.in:16
@@ -403,7 +427,7 @@ msgstr ""
 #: ../jobs/cpu.txt.in:8
 msgid ""
 "Test the CPU scaling capabilities using Firmware Test Suite (fwts cpufreq)."
-msgstr ""
+msgstr "本測試將使用 Firmware Test Suite 測試 CPU 的微調時脈功能 (命令：fwts cpufreq)"
 
 #. description
 #: ../jobs/cpu.txt.in:15
@@ -418,7 +442,7 @@ msgstr "測試多核心系統的脫機 CPU."
 #. description
 #: ../jobs/cpu.txt.in:30
 msgid "This test checks cpu topology for accuracy"
-msgstr ""
+msgstr "這個測試會取得系統上 CPU 的數量與 ID"
 
 #. description
 #: ../jobs/cpu.txt.in:38
@@ -872,42 +896,42 @@ msgid "Attaches a list of the currently running kernel modules."
 msgstr ""
 
 #. description
-#: ../jobs/info.txt.in:82
+#: ../jobs/info.txt.in:96
 msgid "Gather log from the Firmware Test Suite run."
 msgstr ""
 
 #. description
-#: ../jobs/info.txt.in:89
+#: ../jobs/info.txt.in:103
 msgid "Attaches the contents of /proc/acpi/sleep if it exists."
 msgstr ""
 
 #. description
-#: ../jobs/info.txt.in:93
+#: ../jobs/info.txt.in:107
 msgid "Bootchart information."
 msgstr "Bootchart 資訊"
 
 #. description
-#: ../jobs/info.txt.in:102
+#: ../jobs/info.txt.in:116
 msgid "SATA/IDE device information."
 msgstr "SATA/IDE 裝置資訊"
 
 #. description
-#: ../jobs/info.txt.in:119
+#: ../jobs/info.txt.in:133
 msgid "Attaches the bootchart png file for bootchart runs"
 msgstr ""
 
 #. description
-#: ../jobs/info.txt.in:128
+#: ../jobs/info.txt.in:142
 msgid "Attaches the bootchart log for bootchart test runs."
 msgstr ""
 
 #. description
-#: ../jobs/info.txt.in:136
+#: ../jobs/info.txt.in:150
 msgid "installs the installer bootchart tarball if it exists."
 msgstr ""
 
 #. description
-#: ../jobs/info.txt.in:141
+#: ../jobs/info.txt.in:155
 msgid "Attaches the installer debug log if it exists."
 msgstr ""
 
@@ -1190,27 +1214,27 @@ msgid "Suspend tests"
 msgstr "休眠測試"
 
 #. description
-#: ../jobs/local.txt.in:234
+#: ../jobs/local.txt.in:241
 msgid "Unity tests"
 msgstr "Unity 測試"
 
 #. description
-#: ../jobs/local.txt.in:241
+#: ../jobs/local.txt.in:248
 msgid "USB tests"
 msgstr "USB 測試"
 
 #. description
-#: ../jobs/local.txt.in:248
+#: ../jobs/local.txt.in:255
 msgid "User Applications"
 msgstr "使用者應用程式"
 
 #. description
-#: ../jobs/local.txt.in:255
+#: ../jobs/local.txt.in:262
 msgid "Wireless networking tests"
 msgstr "無線網路測試"
 
 #. description
-#: ../jobs/local.txt.in:262
+#: ../jobs/local.txt.in:269
 msgid "Stress tests"
 msgstr "壓力測試"
 
@@ -1689,7 +1713,7 @@ msgstr "測試系統是否有個有效的網路連通."
 #. description
 #: ../jobs/networking.txt.in:16
 msgid "Network Information"
-msgstr ""
+msgstr "網路資訊"
 
 #. description
 #: ../jobs/networking.txt.in:40
@@ -1796,7 +1820,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/optical.txt.in:43
+#: ../jobs/optical.txt.in:34
 msgid ""
 "PURPOSE:\n"
 "    This test will check your system's CD writing capabilities. This test "
@@ -1814,7 +1838,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/optical.txt.in:57
+#: ../jobs/optical.txt.in:46
 msgid ""
 "PURPOSE:\n"
 "    This test will check your CD audio playback capabilities\n"
@@ -1833,7 +1857,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/optical.txt.in:80
+#: ../jobs/optical.txt.in:71
 msgid ""
 "PURPOSE:\n"
 "    This test will check your system's DVD writing capabilities. This test "
@@ -1851,7 +1875,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/optical.txt.in:94
+#: ../jobs/optical.txt.in:82
 msgid ""
 "PURPOSE:\n"
 "    This test will check your DVD movie playback capabilities. Note that "
@@ -1870,7 +1894,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/optical.txt.in:112
+#: ../jobs/optical.txt.in:100
 msgid ""
 "PURPOSE:\n"
 "    This test will check your DVD  playback capabilities\n"
@@ -2152,14 +2176,14 @@ msgid ""
 msgstr "轉移記憶體資料存入檔案, 爲了執行暫停測試後做個比較."
 
 #. description
-#: ../jobs/suspend.txt.in:40
+#: ../jobs/suspend.txt.in:49
 msgid ""
 "This test disconnects all connections and then connects to the wireless "
 "interface. It then checks the connection to confirm it's working as expected."
 msgstr "這個測試打斷所有連線然後連線到無線界面. 然後檢查連線以確認連線一如預期發揮作用."
 
 #. description
-#: ../jobs/suspend.txt.in:74
+#: ../jobs/suspend.txt.in:83
 msgid ""
 "PURPOSE:\n"
 "    This test will check suspend and resume\n"
@@ -2175,34 +2199,34 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:87
+#: ../jobs/suspend.txt.in:96
 msgid "Test the network after resuming."
 msgstr "在回復之後測試網路。"
 
 #. description
-#: ../jobs/suspend.txt.in:93
+#: ../jobs/suspend.txt.in:102
 msgid ""
 "Test to see that we have the same resolution after resuming as before."
 msgstr "測試看看在復原之後我們是否能擁有與之前相同的解析度。"
 
 #. description
-#: ../jobs/suspend.txt.in:102
+#: ../jobs/suspend.txt.in:111
 msgid ""
 "Verify that mixer settings after suspend are the same as before suspend."
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:118
+#: ../jobs/suspend.txt.in:127
 msgid "Verify that all CPUs are online after resuming."
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:135
+#: ../jobs/suspend.txt.in:144
 msgid "Verify that all memory is available after resuming from suspend."
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:144
+#: ../jobs/suspend.txt.in:153
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the display is correct after suspend and "
@@ -2212,7 +2236,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:155
+#: ../jobs/suspend.txt.in:174
 msgid ""
 "This test checks that the wireless interface is working after suspending the "
 "system. It disconnects all interfaces and then connects to the wireless "
@@ -2248,21 +2272,21 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:211
+#: ../jobs/suspend.txt.in:186
 msgid ""
 "This test grabs the hardware address of the bluetooth adapter after suspend "
 "and compares it to the address grabbed before suspend."
 msgstr "這個測試在暫停後抓獲藍牙適配器硬體位址, 並且與暫停前抓獲的位址比較."
 
 #. description
-#: ../jobs/suspend.txt.in:221
+#: ../jobs/suspend.txt.in:196
 msgid ""
 "This is an automated Bluetooth file transfer test. It sends an image to the "
 "device specified by the BTDEVADDR environment variable."
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:231
+#: ../jobs/suspend.txt.in:206
 msgid ""
 "PURPOSE:\n"
 "    This test will send the image 'JPEG_Color_Image_Ubuntu.jpg' to a "
@@ -2277,7 +2301,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:245
+#: ../jobs/suspend.txt.in:220
 msgid ""
 "PURPOSE:\n"
 "    This test will cycle through the detected display modes\n"
@@ -2288,7 +2312,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:257
+#: ../jobs/suspend.txt.in:232
 msgid ""
 "This test will check to make sure supported video modes work after a suspend "
 "and resume. This is done automatically by taking screenshots and uploading "
@@ -2296,14 +2320,14 @@ msgid ""
 msgstr "這個測試將會檢查暫停後復原時支援的視訊模式確信仍然有效. 選測試以開始."
 
 #. description
-#: ../jobs/suspend.txt.in:266
+#: ../jobs/suspend.txt.in:241
 msgid ""
 "This attaches screenshots from the "
 "suspend/cycle_resolutions_after_suspend_auto test to the results submission."
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:276
+#: ../jobs/suspend.txt.in:251
 msgid ""
 "This will check to make sure that your audio device works properly after a "
 "suspend and resume.  This may work fine with speakers and onboard "
@@ -2314,12 +2338,12 @@ msgstr ""
 "但是如果用一條音訊線從音訊輸出孔連接到音訊輸入孔, 效果會更好."
 
 #. description
-#: ../jobs/suspend.txt.in:285
+#: ../jobs/suspend.txt.in:260
 msgid "This is the automated version of suspend/suspend_advanced."
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:294
+#: ../jobs/suspend.txt.in:269
 msgid ""
 "This automatically tests Wake-on-LAN capability with the aid of a suitably "
 "configured server. During this process the system will suspend, then "
@@ -3050,17 +3074,17 @@ msgid "Unknown signal"
 msgstr "不明訊號"
 
 #: ../checkbox_cli/cli_interface.py:31
-#: ../checkbox_urwid/urwid_interface.py:917 ../checkbox_qt/qt_interface.py:33
+#: ../checkbox_urwid/urwid_interface.py:917 ../checkbox_qt/qt_interface.py:37
 msgid "yes"
 msgstr "是"
 
 #: ../checkbox_cli/cli_interface.py:32
-#: ../checkbox_urwid/urwid_interface.py:918 ../checkbox_qt/qt_interface.py:34
+#: ../checkbox_urwid/urwid_interface.py:918 ../checkbox_qt/qt_interface.py:38
 msgid "no"
 msgstr "否"
 
 #: ../checkbox_cli/cli_interface.py:33
-#: ../checkbox_urwid/urwid_interface.py:919 ../checkbox_qt/qt_interface.py:35
+#: ../checkbox_urwid/urwid_interface.py:919 ../checkbox_qt/qt_interface.py:39
 msgid "skip"
 msgstr "略過"
 
@@ -3104,11 +3128,11 @@ msgid "Next"
 msgstr "下一步"
 
 #. Show buttons
-#: ../checkbox_urwid/urwid_interface.py:423 ../qt/frontend/qtfront.cpp:137
+#: ../checkbox_urwid/urwid_interface.py:423 ../qt/frontend/qtfront.cpp:136
 msgid "Select All"
 msgstr "全部選取"
 
-#: ../checkbox_urwid/urwid_interface.py:424 ../qt/frontend/qtfront.cpp:138
+#: ../checkbox_urwid/urwid_interface.py:424 ../qt/frontend/qtfront.cpp:137
 msgid "Deselect All"
 msgstr "取消全選"
 
@@ -3129,11 +3153,11 @@ msgstr "測試"
 msgid "Test Again"
 msgstr "再次測試"
 
-#: ../checkbox_gtk/gtk_interface.py:566
+#: ../checkbox_gtk/gtk_interface.py:551 ../qt/frontend/qtfront.cpp:490
 msgid "Info"
 msgstr "資訊"
 
-#: ../checkbox_gtk/gtk_interface.py:590
+#: ../checkbox_gtk/gtk_interface.py:575 ../qt/frontend/qtfront.cpp:247
 msgid "Error"
 msgstr "錯誤"
 
@@ -3200,6 +3224,9 @@ msgid ""
 "unresponsive. Please save all your work and close all other running "
 "applications before beginning the testing process."
 msgstr ""
+"\n"
+"\n"
+"警告：某些測試可能令您的電腦當機或變成無反應。請在開始測試程序前儲存所有你的工作並且關閉所有其他正在執行的程式。"
 
 #: ../plugins/launchpad_exchange.py:136
 #, python-format
@@ -3265,7 +3292,7 @@ msgid "Running %s..."
 msgstr "正在執行 %s..."
 
 #. Get results
-#: ../plugins/suites_prompt.py:124
+#: ../plugins/suites_prompt.py:110
 msgid "Select the suites to test"
 msgstr "選取要進行之系列測試"
 
@@ -3277,39 +3304,39 @@ msgstr "輸入文字：\n"
 msgid "Type Text"
 msgstr "輸入文字"
 
-#: ../scripts/internet_test:196
+#: ../scripts/internet_test:139
 msgid "No Internet connection"
 msgstr "沒有網際網路連線"
 
-#: ../scripts/internet_test:199
+#: ../scripts/internet_test:142
 msgid "Connection established lost a packet"
 msgstr "已建立的連線丟失了一個資料包裹"
 
-#: ../scripts/internet_test:202
+#: ../scripts/internet_test:145
 msgid "Internet connection fully established"
 msgstr "網際網路連線已完全建立"
 
-#: ../qt/frontend/qtfront.cpp:108
+#: ../qt/frontend/qtfront.cpp:107
 msgid "Not Started"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:109 ../qt/frontend/qtfront.cpp:110
+#: ../qt/frontend/qtfront.cpp:108 ../qt/frontend/qtfront.cpp:109
 msgid "Done"
 msgstr "完成"
 
-#: ../qt/frontend/qtfront.cpp:111
+#: ../qt/frontend/qtfront.cpp:110
 msgid "Not Supported"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:112
+#: ../qt/frontend/qtfront.cpp:111
 msgid "Not Resolved"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:113
+#: ../qt/frontend/qtfront.cpp:112
 msgid "Not Tested"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:114
+#: ../qt/frontend/qtfront.cpp:113
 msgid "In Progress"
 msgstr ""
 

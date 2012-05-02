@@ -14,20 +14,20 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-04-03 04:38+0000\n"
-"X-Generator: Launchpad (build 15052)\n"
+"X-Launchpad-Export-Date: 2012-05-02 05:10+0000\n"
+"X-Generator: Launchpad (build 15177)\n"
 
 #. Title of the user interface
-#: ../gtk/checkbox-gtk.ui.h:3 ../qt/checkbox-qt.desktop.in.h:1
+#: ../gtk/checkbox-gtk.ui.h:1 ../qt/checkbox-qt.desktop.in.h:1
 #: ../plugins/user_interface.py:43 ../qt/frontend/ui_qtfront.h:589
 msgid "System Testing"
 msgstr "اختبار النظام"
 
-#: ../gtk/checkbox-gtk.ui.h:6
+#: ../gtk/checkbox-gtk.ui.h:9
 msgid "_Previous"
 msgstr "_السابق"
 
-#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:553
+#: ../gtk/checkbox-gtk.ui.h:2 ../checkbox_gtk/gtk_interface.py:538
 msgid "_Test"
 msgstr "_اختبر"
 
@@ -70,20 +70,20 @@ msgstr "لم تُرسل المعلومات إلى لنشباد."
 #~ msgid "$output"
 #~ msgstr "$مخرجات"
 
-#: ../gtk/checkbox-gtk.ui.h:1 ../checkbox_cli/cli_interface.py:444
+#: ../gtk/checkbox-gtk.ui.h:6 ../checkbox_cli/cli_interface.py:444
 #: ../checkbox_urwid/urwid_interface.py:267
 msgid "Further information:"
 msgstr "مزيد من المعلومات:"
 
-#: ../gtk/checkbox-gtk.ui.h:2
+#: ../gtk/checkbox-gtk.ui.h:10
 msgid "Ne_xt"
 msgstr "ال_تالي"
 
-#: ../gtk/checkbox-gtk.ui.h:4
+#: ../gtk/checkbox-gtk.ui.h:8
 msgid "_Deselect All"
 msgstr "_أزل تحديد الكل"
 
-#: ../gtk/checkbox-gtk.ui.h:5
+#: ../gtk/checkbox-gtk.ui.h:4
 msgid "_No"
 msgstr "_لا"
 
@@ -91,22 +91,22 @@ msgstr "_لا"
 msgid "_Select All"
 msgstr "_حدّد الكل"
 
-#: ../gtk/checkbox-gtk.ui.h:8
+#: ../gtk/checkbox-gtk.ui.h:5
 msgid "_Skip this test"
-msgstr "_تخطى هذا الاختبار"
+msgstr "_تخطَ هذا الاختبار"
 
-#: ../gtk/checkbox-gtk.ui.h:10
+#: ../gtk/checkbox-gtk.ui.h:3
 msgid "_Yes"
 msgstr "_نعم"
 
 #: ../qt/checkbox-qt.desktop.in.h:2
 msgid "Test your system and submit results to the Ubuntu Friendly project"
-msgstr ""
+msgstr "اختبر نظامك وأرسل النتائج إلى مشروع أبونتو الاجتماعي"
 
 #. description
 #: ../jobs/audio.txt.in:7
 msgid "Test to detect audio devices"
-msgstr ""
+msgstr "اختبار الكشف عن أجهزة الصوت"
 
 #. description
 #: ../jobs/audio.txt.in:16
@@ -120,6 +120,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear a tone?"
 msgstr ""
+"PURPOSE:\n"
+"    هذا الاختبار سيتحقق من أن مكبرات الصوت الداخلية تعمل بشكل سليم\n"
+"STEPS:\n"
+"    1. تأكد من عدم اتصال أي مكبرات صوت خارجية أو سماعات رأس\n"
+"       إذا كنت تستخدم جهاز مكتبي فإن السماعات الخارجية مسموح بتوصيلها\n"
+"    2. انقر على زر \"اختبر\" لتشغيل نغمة بسيطة على جهازك الصوتي\n"
+"VERIFICATION:\n"
+"    هل سمعت النغمة؟"
 
 #. description
 #: ../jobs/audio.txt.in:33
@@ -133,6 +141,14 @@ msgid ""
 "    Did you hear a sound through the headphones and did the sound play "
 "without any distortion, clicks or other strange noises from your headphones?"
 msgstr ""
+"PURPOSE:\n"
+"    هذا الاختبار سيتحقق من أن مدخل سماعات الرأس يعمل بشكل سليم\n"
+"STEPS:\n"
+"    1. وصّل زوج سماعات الرأس في جهازك الصوتي\n"
+"    2. انقر على زر \"اختبر\" لتشغيل صوت على جهازك الصوتي\n"
+"VERIFICATION:\n"
+"    هل تسمع صوت من خلال سماعات الرأس وهل الصوت يخرج بدون أي تشويش أو طقطقة "
+"أو أي أصوات أخرى غريبة؟"
 
 #. description
 #: ../jobs/audio.txt.in:49
@@ -805,42 +821,42 @@ msgid "Attaches a list of the currently running kernel modules."
 msgstr ""
 
 #. description
-#: ../jobs/info.txt.in:82
+#: ../jobs/info.txt.in:96
 msgid "Gather log from the Firmware Test Suite run."
 msgstr ""
 
 #. description
-#: ../jobs/info.txt.in:89
+#: ../jobs/info.txt.in:103
 msgid "Attaches the contents of /proc/acpi/sleep if it exists."
 msgstr ""
 
 #. description
-#: ../jobs/info.txt.in:93
+#: ../jobs/info.txt.in:107
 msgid "Bootchart information."
 msgstr ""
 
 #. description
-#: ../jobs/info.txt.in:102
+#: ../jobs/info.txt.in:116
 msgid "SATA/IDE device information."
 msgstr ""
 
 #. description
-#: ../jobs/info.txt.in:119
+#: ../jobs/info.txt.in:133
 msgid "Attaches the bootchart png file for bootchart runs"
 msgstr ""
 
 #. description
-#: ../jobs/info.txt.in:128
+#: ../jobs/info.txt.in:142
 msgid "Attaches the bootchart log for bootchart test runs."
 msgstr ""
 
 #. description
-#: ../jobs/info.txt.in:136
+#: ../jobs/info.txt.in:150
 msgid "installs the installer bootchart tarball if it exists."
 msgstr ""
 
 #. description
-#: ../jobs/info.txt.in:141
+#: ../jobs/info.txt.in:155
 msgid "Attaches the installer debug log if it exists."
 msgstr ""
 
@@ -970,12 +986,12 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:17
 msgid "Bluetooth tests"
-msgstr ""
+msgstr "اختبارات بلوتوث"
 
 #. description
 #: ../jobs/local.txt.in:24
 msgid "Camera tests"
-msgstr ""
+msgstr "اختبارات الكاميرا"
 
 #. description
 #: ../jobs/local.txt.in:31
@@ -985,7 +1001,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:38
 msgid "CPU tests"
-msgstr ""
+msgstr "اختبارات المعالج"
 
 #. description
 #: ../jobs/local.txt.in:45
@@ -1015,7 +1031,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:80
 msgid "Graphics tests"
-msgstr ""
+msgstr "اختبارات الرسوميات"
 
 #. description
 #: ../jobs/local.txt.in:87
@@ -1025,12 +1041,12 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:94
 msgid "Informational tests"
-msgstr ""
+msgstr "اختبارات استعلامية"
 
 #. description
 #: ../jobs/local.txt.in:101
 msgid "Input Devices tests"
-msgstr ""
+msgstr "اختبارات أجهزة الإدخال"
 
 #. description
 #: ../jobs/local.txt.in:108
@@ -1040,7 +1056,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:115
 msgid "Hotkey tests"
-msgstr ""
+msgstr "اختبارات مفاتيح الاختصار"
 
 #. description
 #: ../jobs/local.txt.in:122
@@ -1055,17 +1071,17 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:136
 msgid "Media Card tests"
-msgstr ""
+msgstr "اختبارات كروت الوسائط"
 
 #. description
 #: ../jobs/local.txt.in:143
 msgid "Memory tests"
-msgstr ""
+msgstr "اختبارات الذاكرة"
 
 #. description
 #: ../jobs/local.txt.in:150
 msgid "Miscellaneous tests"
-msgstr ""
+msgstr "اختبارات متنوعة"
 
 #. description
 #: ../jobs/local.txt.in:157
@@ -1075,12 +1091,12 @@ msgstr "اختبارات الشاشة"
 #. description
 #: ../jobs/local.txt.in:164
 msgid "Networking tests"
-msgstr ""
+msgstr "اختبارات الشبكة"
 
 #. description
 #: ../jobs/local.txt.in:171
 msgid "Optical Drive tests"
-msgstr ""
+msgstr "اختبارات القارئات البصرية"
 
 #. description
 #: ../jobs/local.txt.in:178
@@ -1090,7 +1106,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:185
 msgid "PCMCIA/PCIX Card tests"
-msgstr ""
+msgstr "اختبارات كروت PCMCIA/PCIX"
 
 #. description
 #: ../jobs/local.txt.in:192
@@ -1105,7 +1121,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:206
 msgid "Power Management tests"
-msgstr ""
+msgstr "اختبارات إدارة الطاقة"
 
 #. description
 #: ../jobs/local.txt.in:213
@@ -1120,30 +1136,30 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:227
 msgid "Suspend tests"
-msgstr ""
+msgstr "اختبارات التعليق"
 
 #. description
-#: ../jobs/local.txt.in:234
+#: ../jobs/local.txt.in:241
 msgid "Unity tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:241
+#: ../jobs/local.txt.in:248
 msgid "USB tests"
-msgstr ""
+msgstr "اختبارات USB"
 
 #. description
-#: ../jobs/local.txt.in:248
+#: ../jobs/local.txt.in:255
 msgid "User Applications"
 msgstr "تطبيقات المستخدم"
 
 #. description
-#: ../jobs/local.txt.in:255
+#: ../jobs/local.txt.in:262
 msgid "Wireless networking tests"
-msgstr ""
+msgstr "اختبارات الشبكة اللاسلكية"
 
 #. description
-#: ../jobs/local.txt.in:262
+#: ../jobs/local.txt.in:269
 msgid "Stress tests"
 msgstr ""
 
@@ -1729,7 +1745,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/optical.txt.in:43
+#: ../jobs/optical.txt.in:34
 msgid ""
 "PURPOSE:\n"
 "    This test will check your system's CD writing capabilities. This test "
@@ -1747,7 +1763,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/optical.txt.in:57
+#: ../jobs/optical.txt.in:46
 msgid ""
 "PURPOSE:\n"
 "    This test will check your CD audio playback capabilities\n"
@@ -1766,7 +1782,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/optical.txt.in:80
+#: ../jobs/optical.txt.in:71
 msgid ""
 "PURPOSE:\n"
 "    This test will check your system's DVD writing capabilities. This test "
@@ -1784,7 +1800,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/optical.txt.in:94
+#: ../jobs/optical.txt.in:82
 msgid ""
 "PURPOSE:\n"
 "    This test will check your DVD movie playback capabilities. Note that "
@@ -1803,7 +1819,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/optical.txt.in:112
+#: ../jobs/optical.txt.in:100
 msgid ""
 "PURPOSE:\n"
 "    This test will check your DVD  playback capabilities\n"
@@ -2085,14 +2101,14 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:40
+#: ../jobs/suspend.txt.in:49
 msgid ""
 "This test disconnects all connections and then connects to the wireless "
 "interface. It then checks the connection to confirm it's working as expected."
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:74
+#: ../jobs/suspend.txt.in:83
 msgid ""
 "PURPOSE:\n"
 "    This test will check suspend and resume\n"
@@ -2108,34 +2124,34 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:87
+#: ../jobs/suspend.txt.in:96
 msgid "Test the network after resuming."
-msgstr ""
-
-#. description
-#: ../jobs/suspend.txt.in:93
-msgid ""
-"Test to see that we have the same resolution after resuming as before."
 msgstr ""
 
 #. description
 #: ../jobs/suspend.txt.in:102
 msgid ""
+"Test to see that we have the same resolution after resuming as before."
+msgstr ""
+
+#. description
+#: ../jobs/suspend.txt.in:111
+msgid ""
 "Verify that mixer settings after suspend are the same as before suspend."
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:118
+#: ../jobs/suspend.txt.in:127
 msgid "Verify that all CPUs are online after resuming."
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:135
+#: ../jobs/suspend.txt.in:144
 msgid "Verify that all memory is available after resuming from suspend."
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:144
+#: ../jobs/suspend.txt.in:153
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the display is correct after suspend and "
@@ -2145,7 +2161,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:155
+#: ../jobs/suspend.txt.in:174
 msgid ""
 "This test checks that the wireless interface is working after suspending the "
 "system. It disconnects all interfaces and then connects to the wireless "
@@ -2181,21 +2197,21 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:211
+#: ../jobs/suspend.txt.in:186
 msgid ""
 "This test grabs the hardware address of the bluetooth adapter after suspend "
 "and compares it to the address grabbed before suspend."
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:221
+#: ../jobs/suspend.txt.in:196
 msgid ""
 "This is an automated Bluetooth file transfer test. It sends an image to the "
 "device specified by the BTDEVADDR environment variable."
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:231
+#: ../jobs/suspend.txt.in:206
 msgid ""
 "PURPOSE:\n"
 "    This test will send the image 'JPEG_Color_Image_Ubuntu.jpg' to a "
@@ -2210,7 +2226,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:245
+#: ../jobs/suspend.txt.in:220
 msgid ""
 "PURPOSE:\n"
 "    This test will cycle through the detected display modes\n"
@@ -2221,7 +2237,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:257
+#: ../jobs/suspend.txt.in:232
 msgid ""
 "This test will check to make sure supported video modes work after a suspend "
 "and resume. This is done automatically by taking screenshots and uploading "
@@ -2229,14 +2245,14 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:266
+#: ../jobs/suspend.txt.in:241
 msgid ""
 "This attaches screenshots from the "
 "suspend/cycle_resolutions_after_suspend_auto test to the results submission."
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:276
+#: ../jobs/suspend.txt.in:251
 msgid ""
 "This will check to make sure that your audio device works properly after a "
 "suspend and resume.  This may work fine with speakers and onboard "
@@ -2245,12 +2261,12 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:285
+#: ../jobs/suspend.txt.in:260
 msgid "This is the automated version of suspend/suspend_advanced."
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:294
+#: ../jobs/suspend.txt.in:269
 msgid ""
 "This automatically tests Wake-on-LAN capability with the aid of a suitably "
 "configured server. During this process the system will suspend, then "
@@ -2900,7 +2916,7 @@ msgstr "ملف التضبيط مفقود كمُعطى.\n"
 
 #: ../checkbox/job.py:84
 msgid "Command not found."
-msgstr ""
+msgstr "لم يُعثر على الأمر."
 
 #: ../checkbox/job.py:92
 #, python-format
@@ -2993,17 +3009,17 @@ msgid "Unknown signal"
 msgstr "إشارة مجهولة"
 
 #: ../checkbox_cli/cli_interface.py:31
-#: ../checkbox_urwid/urwid_interface.py:917 ../checkbox_qt/qt_interface.py:33
+#: ../checkbox_urwid/urwid_interface.py:917 ../checkbox_qt/qt_interface.py:37
 msgid "yes"
 msgstr "نعم"
 
 #: ../checkbox_cli/cli_interface.py:32
-#: ../checkbox_urwid/urwid_interface.py:918 ../checkbox_qt/qt_interface.py:34
+#: ../checkbox_urwid/urwid_interface.py:918 ../checkbox_qt/qt_interface.py:38
 msgid "no"
 msgstr "لا"
 
 #: ../checkbox_cli/cli_interface.py:33
-#: ../checkbox_urwid/urwid_interface.py:919 ../checkbox_qt/qt_interface.py:35
+#: ../checkbox_urwid/urwid_interface.py:919 ../checkbox_qt/qt_interface.py:39
 msgid "skip"
 msgstr "تخطى"
 
@@ -3038,21 +3054,21 @@ msgstr ""
 #: ../checkbox_urwid/urwid_interface.py:425
 #: ../checkbox_urwid/urwid_interface.py:547 ../qt/frontend/ui_qtfront.h:609
 msgid "Previous"
-msgstr ""
+msgstr "السّابق"
 
 #: ../checkbox_urwid/urwid_interface.py:199
 #: ../checkbox_urwid/urwid_interface.py:275
 #: ../checkbox_urwid/urwid_interface.py:426
 #: ../checkbox_urwid/urwid_interface.py:548 ../qt/frontend/ui_qtfront.h:608
 msgid "Next"
-msgstr ""
+msgstr "التالي"
 
 #. Show buttons
-#: ../checkbox_urwid/urwid_interface.py:423 ../qt/frontend/qtfront.cpp:137
+#: ../checkbox_urwid/urwid_interface.py:423 ../qt/frontend/qtfront.cpp:136
 msgid "Select All"
 msgstr ""
 
-#: ../checkbox_urwid/urwid_interface.py:424 ../qt/frontend/qtfront.cpp:138
+#: ../checkbox_urwid/urwid_interface.py:424 ../qt/frontend/qtfront.cpp:137
 msgid "Deselect All"
 msgstr ""
 
@@ -3073,15 +3089,15 @@ msgstr ""
 msgid "Test Again"
 msgstr ""
 
-#: ../checkbox_gtk/gtk_interface.py:517
+#: ../checkbox_gtk/gtk_interface.py:503
 msgid "_Test Again"
 msgstr "أ_عد الاختبار"
 
-#: ../checkbox_gtk/gtk_interface.py:566
+#: ../checkbox_gtk/gtk_interface.py:551 ../qt/frontend/qtfront.cpp:490
 msgid "Info"
 msgstr "بيان"
 
-#: ../checkbox_gtk/gtk_interface.py:590
+#: ../checkbox_gtk/gtk_interface.py:575 ../qt/frontend/qtfront.cpp:247
 msgid "Error"
 msgstr "عطل"
 
@@ -3126,7 +3142,7 @@ msgstr "اكتملت الاختبارات بنجاح"
 
 #: ../plugins/gather_prompt.py:35
 msgid "Gathering information from your system..."
-msgstr "يجري جمع المعلومات عن نظامك..."
+msgstr "يجمع المعلومات من نظامك..."
 
 #: ../plugins/intro_prompt.py:28
 msgid ""
@@ -3136,7 +3152,7 @@ msgid ""
 "Once you are finished running the tests, you can view a summary report for "
 "your system."
 msgstr ""
-"مرحبا في اختبار النظام,\n"
+"مرحبا في اختبار النظام!\n"
 "يوفر هذا البرنامج اختبارات لتتحقق من عمل النظام بكفاءة. بعد انتهاء "
 "الاختبارات، تستطيع الاطلاع على تقرير ملخص عن نظامك."
 
@@ -3148,6 +3164,11 @@ msgid ""
 "unresponsive. Please save all your work and close all other running "
 "applications before beginning the testing process."
 msgstr ""
+"\n"
+"\n"
+"تحذير: قد تتسبب بعض الاختبارات في تجميد نظامك أو جعله غير مستجيب. من فضلك "
+"احفظ جميع أعمالك وأغلق جميع التطبيقات الأخرى التي تعمل حاليًا قبل البدء في "
+"عملية الاختبار."
 
 #: ../plugins/launchpad_exchange.py:136
 #, python-format
@@ -3209,7 +3230,7 @@ msgstr ""
 
 #: ../plugins/lock_prompt.py:63
 msgid "There is another checkbox running. Please close it first."
-msgstr "يعمل صندوق اختبار آخر. أغلقه أولا."
+msgstr "يعمل حاليًا صندوق اختبار آخر. أغلقه أولا."
 
 #: ../plugins/recover_prompt.py:53
 msgid "Recover"
@@ -3224,8 +3245,8 @@ msgid ""
 "Checkbox did not finish completely.\n"
 "Do you want to recover from the previous run?"
 msgstr ""
-"لم ينتهي checkbox تماماً.\n"
-"هل تود استعادة الجلسة السابقة؟"
+"لم ينتهي اختبار النظام تمامًا.\n"
+"هل تود الاستعادة من آخر تشغيل؟"
 
 #: ../plugins/report_prompt.py:39
 msgid "Building report..."
@@ -3237,7 +3258,7 @@ msgid "Running %s..."
 msgstr "تنفيذ %s..."
 
 #. Get results
-#: ../plugins/suites_prompt.py:124
+#: ../plugins/suites_prompt.py:110
 msgid "Select the suites to test"
 msgstr "اختر حزمة اختبارات"
 
@@ -3249,53 +3270,53 @@ msgstr "أدخل نصا:\n"
 msgid "Type Text"
 msgstr "اكتب نصا"
 
-#: ../scripts/internet_test:196
+#: ../scripts/internet_test:139
 msgid "No Internet connection"
 msgstr "لا اتصال بالإنترنت"
 
-#: ../scripts/internet_test:199
+#: ../scripts/internet_test:142
 msgid "Connection established lost a packet"
 msgstr "الاتصال المُؤسَّس انقطعت إشارته"
 
-#: ../scripts/internet_test:202
+#: ../scripts/internet_test:145
 msgid "Internet connection fully established"
 msgstr "أُسس الاتصال بالإنترنت"
 
-#: ../qt/frontend/qtfront.cpp:108
+#: ../qt/frontend/qtfront.cpp:107
 msgid "Not Started"
-msgstr ""
+msgstr "لم يبدأ"
 
-#: ../qt/frontend/qtfront.cpp:109 ../qt/frontend/qtfront.cpp:110
+#: ../qt/frontend/qtfront.cpp:108 ../qt/frontend/qtfront.cpp:109
 msgid "Done"
 msgstr "تم"
 
-#: ../qt/frontend/qtfront.cpp:111
+#: ../qt/frontend/qtfront.cpp:110
 msgid "Not Supported"
-msgstr ""
+msgstr "غير مدعوم"
 
-#: ../qt/frontend/qtfront.cpp:112
+#: ../qt/frontend/qtfront.cpp:111
 msgid "Not Resolved"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:113
+#: ../qt/frontend/qtfront.cpp:112
 msgid "Not Tested"
-msgstr ""
+msgstr "لم يُختبر"
 
-#: ../qt/frontend/qtfront.cpp:114
+#: ../qt/frontend/qtfront.cpp:113
 msgid "In Progress"
 msgstr ""
 
 #: ../qt/frontend/qtfront.cpp:182
 msgid "Are you sure?"
-msgstr ""
+msgstr "هل أنت  متأكد؟"
 
 #: ../qt/frontend/qtfront.cpp:182
 msgid "Do you really want to skip this test?"
-msgstr ""
+msgstr "هل تريد حقًا تخطي هذا الاختبار؟"
 
 #: ../qt/frontend/qtfront.cpp:183
 msgid "Don't ask me again"
-msgstr ""
+msgstr "لا تسألني مرة أخرى"
 
 #: ../qt/frontend/treemodel.cpp:13
 msgid ""
@@ -3303,6 +3324,9 @@ msgid ""
 "you plan to participate in Ubuntu Friendly, please, select all tests. You "
 "can always skip individual tests if you don't have the needed equipment."
 msgstr ""
+"عدم اختيار اختبار ما سيلغي تسليمه إلى مجتمع أبونتو. إذا كان هدفك هو المشاركة "
+"في مجتمع أبونتو والمساعدة على تحسين النظام، من فضلك اختر جميع الاختبارات. "
+"يمكنك دائمًا تخطي اختبارات مفردة إذا لم تكن تمتلك المعدات اللازمة."
 
 #: ../qt/frontend/ui_qtfront.h:588
 msgid "Form"
@@ -3310,11 +3334,11 @@ msgstr ""
 
 #: ../qt/frontend/ui_qtfront.h:590
 msgid "OK"
-msgstr ""
+msgstr "موافق"
 
 #: ../qt/frontend/ui_qtfront.h:591
 msgid "Don't show me this message in the future"
-msgstr ""
+msgstr "لا تُظهر لي هذه الرسالة في المستقبل"
 
 #: ../qt/frontend/ui_qtfront.h:592 ../qt/frontend/ui_qtfront.h:606
 msgid "Tab 1"
@@ -3326,23 +3350,23 @@ msgstr ""
 
 #: ../qt/frontend/ui_qtfront.h:595
 msgid "Lists of tests to run based on your system:"
-msgstr ""
+msgstr "قوائم الاختبارات التي سيتم تشغيلها بناءً على نظامك:"
 
 #: ../qt/frontend/ui_qtfront.h:596
 msgid "Components"
-msgstr ""
+msgstr "المكونات"
 
 #: ../qt/frontend/ui_qtfront.h:597
 msgid "Status"
-msgstr ""
+msgstr "الحالة"
 
 #: ../qt/frontend/ui_qtfront.h:598
 msgid "Start testing"
-msgstr ""
+msgstr "ابدأ الاختبار"
 
 #: ../qt/frontend/ui_qtfront.h:599
 msgid " Selection "
-msgstr ""
+msgstr " الاختيار "
 
 #: ../qt/frontend/ui_qtfront.h:600 ../qt/frontend/ui_qtfront.h:601
 msgid "TextLabel"
@@ -3350,15 +3374,15 @@ msgstr ""
 
 #: ../qt/frontend/ui_qtfront.h:602
 msgid "Yes"
-msgstr ""
+msgstr "نعم"
 
 #: ../qt/frontend/ui_qtfront.h:604
 msgid "No"
-msgstr ""
+msgstr "لا"
 
 #: ../qt/frontend/ui_qtfront.h:605
 msgid "Comment"
-msgstr ""
+msgstr "تعليق"
 
 #: ../qt/frontend/ui_qtfront.h:607 ../qt/frontend/ui_qtfront.h:623
 msgid "Tab 2"
@@ -3366,7 +3390,7 @@ msgstr ""
 
 #: ../qt/frontend/ui_qtfront.h:610
 msgid " Run "
-msgstr ""
+msgstr " التنفيذ "
 
 #: ../qt/frontend/ui_qtfront.h:611
 msgid ""
@@ -3404,7 +3428,7 @@ msgstr ""
 
 #: ../qt/frontend/ui_qtfront.h:622
 msgid " Results "
-msgstr ""
+msgstr " النتائج "
 
 #~ msgid "Successfully sent information!"
 #~ msgstr "أُرسلت المعلومات بنجاح."

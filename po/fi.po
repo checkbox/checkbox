@@ -14,33 +14,33 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-04-03 04:38+0000\n"
-"X-Generator: Launchpad (build 15052)\n"
+"X-Launchpad-Export-Date: 2012-05-02 05:11+0000\n"
+"X-Generator: Launchpad (build 15177)\n"
 
-#: ../gtk/checkbox-gtk.ui.h:1 ../checkbox_cli/cli_interface.py:444
+#: ../gtk/checkbox-gtk.ui.h:6 ../checkbox_cli/cli_interface.py:444
 #: ../checkbox_urwid/urwid_interface.py:267
 msgid "Further information:"
 msgstr "Lisätietoja:"
 
-#: ../gtk/checkbox-gtk.ui.h:2
+#: ../gtk/checkbox-gtk.ui.h:10
 msgid "Ne_xt"
 msgstr "Seu_raava"
 
 #. Title of the user interface
-#: ../gtk/checkbox-gtk.ui.h:3 ../qt/checkbox-qt.desktop.in.h:1
+#: ../gtk/checkbox-gtk.ui.h:1 ../qt/checkbox-qt.desktop.in.h:1
 #: ../plugins/user_interface.py:43 ../qt/frontend/ui_qtfront.h:589
 msgid "System Testing"
 msgstr "Järjestelmän testaus"
 
-#: ../gtk/checkbox-gtk.ui.h:4
+#: ../gtk/checkbox-gtk.ui.h:8
 msgid "_Deselect All"
 msgstr "_Poista kaikki valinnat"
 
-#: ../gtk/checkbox-gtk.ui.h:5
+#: ../gtk/checkbox-gtk.ui.h:4
 msgid "_No"
 msgstr "_Ei"
 
-#: ../gtk/checkbox-gtk.ui.h:6
+#: ../gtk/checkbox-gtk.ui.h:9
 msgid "_Previous"
 msgstr "_Edellinen"
 
@@ -48,15 +48,15 @@ msgstr "_Edellinen"
 msgid "_Select All"
 msgstr "Valitse k_aikki"
 
-#: ../gtk/checkbox-gtk.ui.h:8
+#: ../gtk/checkbox-gtk.ui.h:5
 msgid "_Skip this test"
 msgstr "Ohita tämä te_sti"
 
-#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:553
+#: ../gtk/checkbox-gtk.ui.h:2 ../checkbox_gtk/gtk_interface.py:538
 msgid "_Test"
 msgstr "_Testaa"
 
-#: ../gtk/checkbox-gtk.ui.h:10
+#: ../gtk/checkbox-gtk.ui.h:3
 msgid "_Yes"
 msgstr "K_yllä"
 
@@ -86,7 +86,8 @@ msgstr ""
 "SUORITUS:\n"
 "    1. Varmista, että ulkoisia kaiuttimia tai kuulokkeita ei ole yhdistetty\n"
 "       Jos testaat pöytäkonetta, ulkoiset kaiuttimet voivat olla liitettynä\n"
-"    2. Paina Testaa painiketta toistaaksesi lyhyen äänen äänilaitteellasi\n"
+"    2. Napsauta Testaa-painiketta toistaaksesi lyhyen äänen "
+"äänilaitteellasi\n"
 "VAHVISTUS:\n"
 "    Kuulitko äänen?"
 
@@ -544,7 +545,7 @@ msgstr "Havaitsee ja näyttää järjestelmään kytketyt levyt."
 #. description
 #: ../jobs/disk.txt.in:9
 msgid "Benchmark for each disk"
-msgstr ""
+msgstr "Mittaa jokaisen levyn suorituskyky"
 
 #. description
 #: ../jobs/disk.txt.in:23
@@ -1051,43 +1052,43 @@ msgid "Attaches a list of the currently running kernel modules."
 msgstr "Liittää listan käytössä olevista ytimen moduuleista."
 
 #. description
-#: ../jobs/info.txt.in:82
+#: ../jobs/info.txt.in:96
 msgid "Gather log from the Firmware Test Suite run."
 msgstr "Kerää loki Firmware Test Suiten ajosta."
 
 #. description
-#: ../jobs/info.txt.in:89
+#: ../jobs/info.txt.in:103
 msgid "Attaches the contents of /proc/acpi/sleep if it exists."
 msgstr ""
 "Liittää /proc/acpi/sleep -tiedoston sisällön, jos kyseinen tiedosto löytyy."
 
 #. description
-#: ../jobs/info.txt.in:93
+#: ../jobs/info.txt.in:107
 msgid "Bootchart information."
 msgstr "Bootchart-tiedot"
 
 #. description
-#: ../jobs/info.txt.in:102
+#: ../jobs/info.txt.in:116
 msgid "SATA/IDE device information."
 msgstr "SATA-/IDE-laitteen tiedot."
 
 #. description
-#: ../jobs/info.txt.in:119
+#: ../jobs/info.txt.in:133
 msgid "Attaches the bootchart png file for bootchart runs"
 msgstr "Liittää käynnistyksen kartoituskaavion."
 
 #. description
-#: ../jobs/info.txt.in:128
+#: ../jobs/info.txt.in:142
 msgid "Attaches the bootchart log for bootchart test runs."
 msgstr "Liittää käynnistyksen kartoituslokin."
 
 #. description
-#: ../jobs/info.txt.in:136
+#: ../jobs/info.txt.in:150
 msgid "installs the installer bootchart tarball if it exists."
 msgstr ""
 
 #. description
-#: ../jobs/info.txt.in:141
+#: ../jobs/info.txt.in:155
 msgid "Attaches the installer debug log if it exists."
 msgstr ""
 
@@ -1260,6 +1261,15 @@ msgid ""
 "VERIFICATION:\n"
 "    Do the keys work as expected?"
 msgstr ""
+"TARKOITUS:\n"
+"    Tarkistetaan, että näppäimistön multimedianäppäimet toimivat.\n"
+"SUORITUS:\n"
+"    1. Napsauta \"Testaa\" avataksesi ikkunan, jossa voit testata "
+"multimedianäppäimiä.\n"
+"    2. Jos kaikki näppäimet toimivat, testi merkitään onnistuneeksi.\n"
+"    3. Jos näppäimistöllä ei ole multimedianäppäimiä, ohita tämä testi.\n"
+"VAHVISTUS:\n"
+"    Toimivatko multimedianäppäimet odotetulla tavalla?"
 
 #. description
 #: ../jobs/local.txt.in:3
@@ -1427,27 +1437,27 @@ msgid "Suspend tests"
 msgstr "Valmiustilatestit"
 
 #. description
-#: ../jobs/local.txt.in:234
+#: ../jobs/local.txt.in:241
 msgid "Unity tests"
 msgstr "Unity-testit"
 
 #. description
-#: ../jobs/local.txt.in:241
+#: ../jobs/local.txt.in:248
 msgid "USB tests"
 msgstr "USB-testit"
 
 #. description
-#: ../jobs/local.txt.in:248
+#: ../jobs/local.txt.in:255
 msgid "User Applications"
 msgstr "Käyttäjäsovellukset"
 
 #. description
-#: ../jobs/local.txt.in:255
+#: ../jobs/local.txt.in:262
 msgid "Wireless networking tests"
 msgstr "Langattoman verkon testit"
 
 #. description
-#: ../jobs/local.txt.in:262
+#: ../jobs/local.txt.in:269
 msgid "Stress tests"
 msgstr "Rasitustestit"
 
@@ -1483,6 +1493,16 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"TARKOITUS:\n"
+"    Tarkistetaan, että järjestelmä havaitsee MultiMediaCard-kortin (MMC)\n"
+"    liittämisen muistikortinlukijaan.\n"
+"SUORITUS:\n"
+"    1. Napsauta \"Testaa\" ja aseta MMC-kortti muistikortinlukijaan.\n"
+"       (Huom: tämä testi loppuu automaattisesti 10 sekunnin kuluessa.)\n"
+"    2. Älä irrota laitetta testin jälkeen.\n"
+"VAHVISTUS:\n"
+"    Testin tulos vahvistetaan automaattisesti. Älä muuta automaattisesti\n"
+"    valittua tulosta."
 
 #. description
 #: ../jobs/mediacard.txt.in:20
@@ -1490,6 +1510,9 @@ msgid ""
 "This test is automated and executes after the mediacard/mmc-insert test is "
 "run. It tests reading and writing to the MMC card."
 msgstr ""
+"Automaattinen testi, joka suoritetaan testin mediacard/mmc-insert "
+"suorittamisen jälkeen. Se testaa tiedon kirjoittamista ja lukemista MMC-"
+"kortilta."
 
 #. description
 #: ../jobs/mediacard.txt.in:28
@@ -1504,6 +1527,15 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"TARKOITUS:\n"
+"    Tarkistetaan, että järjestelmä havaitsee MultiMediaCard-kortin (MMC)\n"
+"    poistamisen muistikortinlukijasta.\n"
+"SUORITUS:\n"
+"    1. Napsauta \"Testaa\" ja poista MMC-kortti muistikortinlukijasta.\n"
+"       (Huom: tämä testi loppuu automaattisesti 10 sekunnin kuluessa.)\n"
+"VAHVISTUS:\n"
+"    Testin tulos vahvistetaan automaattisesti. Älä muuta automaattisesti\n"
+"    valittua tulosta."
 
 #. description
 #: ../jobs/mediacard.txt.in:43
@@ -1519,6 +1551,16 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"TARKOITUS:\n"
+"    Tarkistetaan, että järjestelmä havaitsee MultiMediaCard-kortin (MMC)\n"
+"    liittämisen muistikortinlukijaan valmiustilan jälkeen.\n"
+"SUORITUS:\n"
+"    1. Napsauta \"Testaa\" ja liitä MMC-kortti muistikortinlukijaan.\n"
+"       (Huom: tämä testi loppuu automaattisesti 10 sekunnin kuluessa.)\n"
+"    2. Älä irrota laitetta testin jälkeen.\n"
+"VAHVISTUS:\n"
+"    Testin tulos vahvistetaan automaattisesti. Älä muuta automaattisesti\n"
+"    valittua tulosta."
 
 #. description
 #: ../jobs/mediacard.txt.in:59
@@ -1527,6 +1569,9 @@ msgid ""
 "suspend test is run. It tests reading and writing to the MMC card after the "
 "system has been suspended."
 msgstr ""
+"Automaattinen testi, joka suoritetaan testin mediacard/mmc-insert-after-"
+"suspend suorittamisen jälkeen. Se testaa tiedon kirjoittamista ja lukemista "
+"MMC-kortilta valmiustilan jälkeen."
 
 #. description
 #: ../jobs/mediacard.txt.in:67
@@ -1542,6 +1587,15 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"TARKOITUS:\n"
+"    Tarkistetaan, että järjestelmä havaitsee MultiMediaCard-kortin (MMC)\n"
+"    poistamisen muistikortinlukijasta valmiustilan jälkeen.\n"
+"SUORITUS:\n"
+"    1. Napsauta \"Testaa\" ja poista MMC-kortti muistikortinlukijasta.\n"
+"       (Huom: tämä testi loppuu automaattisesti 10 sekunnin kuluessa.)\n"
+"VAHVISTUS:\n"
+"    Testin tulos vahvistetaan automaattisesti. Älä muuta automaattisesti\n"
+"    valittua tulosta."
 
 #. description
 #: ../jobs/mediacard.txt.in:81
@@ -1590,6 +1644,15 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"TARKOITUS:\n"
+"    Tarkistetaan, että järjestelmä havaitsee SD-kortin\n"
+"    poistamisen muistikortinlukijasta.\n"
+"SUORITUS:\n"
+"    1. Napsauta \"Testaa\" ja poista SD-kortti muistikortinlukijasta.\n"
+"       (Huom: tämä testi loppuu automaattisesti 10 sekunnin kuluessa.)\n"
+"VAHVISTUS:\n"
+"    Testin tulos vahvistetaan automaattisesti. Älä muuta automaattisesti\n"
+"    valittua tulosta."
 
 #. description
 #: ../jobs/mediacard.txt.in:120
@@ -1605,6 +1668,16 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"TARKOITUS:\n"
+"    Tarkistetaan, että järjestelmä havaitsee SD-kortin liittämisen\n"
+"    muistikortinlukijaan valmiustilan jälkeen.\n"
+"SUORITUS:\n"
+"    1. Napsauta \"Testaa\" ja liitä SD-kortti muistikortinlukijaan.\n"
+"       (Huom: tämä testi loppuu automaattisesti 10 sekunnin kuluessa.)\n"
+"    2. Älä irrota laitetta testin jälkeen.\n"
+"VAHVISTUS:\n"
+"    Testin tulos vahvistetaan automaattisesti. Älä muuta automaattisesti\n"
+"    valittua tulosta."
 
 #. description
 #: ../jobs/mediacard.txt.in:136
@@ -1631,6 +1704,15 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"TARKOITUS:\n"
+"    Tarkistetaan, että järjestelmän muistikortinlukija havaitsee\n"
+"    SD-kortin irrottamisen valmiustilan jälkeen.\n"
+"SUORITUS:\n"
+"    1. Napsauta \"Testaa\" ja poista SD-kortti muistikortinlukijasta.\n"
+"       (Huom: tämä testi loppuu automaattisesti 10 sekunnin kuluessa.)\n"
+"VAHVISTUS:\n"
+"    Testin tulos vahvistetaan automaattisesti. Älä muuta automaattisesti\n"
+"    valittua tulosta."
 
 #. description
 #: ../jobs/mediacard.txt.in:158
@@ -1665,6 +1747,9 @@ msgid ""
 "This test is automated and executes after the mediacard/sdhc-insert test is "
 "run. It tests reading and writing to the SDHC card."
 msgstr ""
+"Automaattinen testi, joka suoritetaan testin mediacard/sdhc-insert "
+"suorittamisen jälkeen. Se testaa tiedon kirjoittamista ja lukemista SDHC-"
+"kortilta."
 
 #. description
 #: ../jobs/mediacard.txt.in:182
@@ -1679,6 +1764,15 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"TARKOITUS:\n"
+"    Tarkistetaan, että järjestelmä havaitsee SDHC-kortin\n"
+"    poistamisen muistikortinlukijasta.\n"
+"SUORITUS:\n"
+"    1. Napsauta \"Testaa\" ja poista SDHC-kortti muistikortinlukijasta.\n"
+"       (Huom: tämä testi loppuu automaattisesti 10 sekunnin kuluessa.)\n"
+"VAHVISTUS:\n"
+"    Testin tulos vahvistetaan automaattisesti. Älä muuta automaattisesti\n"
+"    valittua tulosta."
 
 #. description
 #: ../jobs/mediacard.txt.in:197
@@ -1695,6 +1789,16 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"TARKOITUS:\n"
+"    Tarkistetaan, että järjestelmä havaitsee SDHC-kortin\n"
+"    liittämisen muistikortinlukijaan valmiustilan jälkeen.\n"
+"SUORITUS:\n"
+"    1. Napsauta \"Testaa\" ja liitä SDHC-kortti muistikortinlukijaan.\n"
+"       (Huom: tämä testi loppuu automaattisesti 10 sekunnin kuluessa.)\n"
+"    2. Älä irrota laitetta testin jälkeen.\n"
+"VAHVISTUS:\n"
+"    Testin tulos vahvistetaan automaattisesti. Älä muuta automaattisesti\n"
+"    valittua tulosta."
 
 #. description
 #: ../jobs/mediacard.txt.in:213
@@ -1703,6 +1807,9 @@ msgid ""
 "suspend test is run. It tests reading and writing to the SDHC card after the "
 "system has been suspended."
 msgstr ""
+"Automaattinen testi, joka suoritetaan testin mediacard/sdhc-insert-after-"
+"suspend suorittamisen jälkeen. Se testaa tiedon kirjoittamista ja lukemista "
+"SDHC-kortilta valmiustilan jälkeen."
 
 #. description
 #: ../jobs/mediacard.txt.in:221
@@ -1718,6 +1825,15 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"TARKOITUS:\n"
+"    Tarkistetaan, että järjestelmä havaitsee SDHC-kortin\n"
+"    poistamisen muistikortinlukijasta valmiustilan jälkeen.\n"
+"SUORITUS:\n"
+"    1. Napsauta \"Testaa\" ja poista SDHC-kortti muistikortinlukijasta.\n"
+"       (Huom: tämä testi loppuu automaattisesti 10 sekunnin kuluessa.)\n"
+"VAHVISTUS:\n"
+"    Testin tulos vahvistetaan automaattisesti. Älä muuta automaattisesti\n"
+"    valittua tulosta."
 
 #. description
 #: ../jobs/mediacard.txt.in:235
@@ -1733,6 +1849,16 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"TARKOITUS:\n"
+"    Tarkistetaan, että järjestelmä havaitsee\n"
+"    CompactFlash-kortin (CF) liittämisen muistikortinlukijaan.\n"
+"SUORITUS:\n"
+"    1. Napsauta \"Testaa\" ja aseta CF-kortti muistikortinlukijaan.\n"
+"       (Huom: tämä testi loppuu automaattisesti 10 sekunnin kuluessa.)\n"
+"    2. Älä irrota laitetta testin jälkeen.\n"
+"VAHVISTUS:\n"
+"    Testin tulos vahvistetaan automaattisesti. Älä muuta automaattisesti\n"
+"    valittua tulosta."
 
 #. description
 #: ../jobs/mediacard.txt.in:251
@@ -1740,6 +1866,9 @@ msgid ""
 "This test is automated and executes after the mediacard/cf-insert test is "
 "run. It tests reading and writing to the CF card."
 msgstr ""
+"Automaattinen testi, joka suoritetaan testin mediacard/cf-insert "
+"suorittamisen jälkeen. Se testaa tiedon kirjoittamista ja lukemista CF-"
+"kortilta."
 
 #. description
 #: ../jobs/mediacard.txt.in:259
@@ -1754,6 +1883,15 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"TARKOITUS:\n"
+"    Tarkistetaan, että järjestelmä havaitsee CF-kortin\n"
+"    poistamisen muistikortinlukijasta.\n"
+"SUORITUS:\n"
+"    1. Napsauta \"Testaa\" ja poista CF-kortti muistikortinlukijasta.\n"
+"       (Huom: tämä testi loppuu automaattisesti 10 sekunnin kuluessa.)\n"
+"VAHVISTUS:\n"
+"    Testin tulos vahvistetaan automaattisesti. Älä muuta automaattisesti\n"
+"    valittua tulosta."
 
 #. description
 #: ../jobs/mediacard.txt.in:274
@@ -1769,6 +1907,16 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"TARKOITUS:\n"
+"    Tarkistetaan, että järjestelmä havaitsee CF-kortin\n"
+"    liittämisen muistikortinlukijaan valmiustilan jälkeen.\n"
+"SUORITUS:\n"
+"    1. Napsauta \"Testaa\" ja liitä CF-kortti muistikortinlukijaan.\n"
+"       (Huom: tämä testi loppuu automaattisesti 10 sekunnin kuluessa.)\n"
+"    2. Älä irrota laitetta testin jälkeen.\n"
+"VAHVISTUS:\n"
+"    Testin tulos vahvistetaan automaattisesti. Älä muuta automaattisesti\n"
+"    valittua tulosta."
 
 #. description
 #: ../jobs/mediacard.txt.in:290
@@ -1777,6 +1925,9 @@ msgid ""
 "suspend test is run. It tests reading and writing to the CF card after the "
 "system has been suspended."
 msgstr ""
+"Automaattinen testi, joka suoritetaan testin mediacard/cf-insert-after-"
+"suspend suorittamisen jälkeen. Se testaa tiedon kirjoittamista ja lukemista "
+"CF-kortilta valmiustilan jälkeen."
 
 #. description
 #: ../jobs/mediacard.txt.in:298
@@ -1792,6 +1943,15 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"TARKOITUS:\n"
+"    Tarkistetaan, että järjestelmä havaitsee CF-kortin\n"
+"    poistamisen muistikortinlukijasta valmiustilan jälkeen.\n"
+"SUORITUS:\n"
+"    1. Napsauta \"Testaa\" ja poista CF-kortti muistikortinlukijasta.\n"
+"       (Huom: tämä testi loppuu automaattisesti 10 sekunnin kuluessa.)\n"
+"VAHVISTUS:\n"
+"    Testin tulos vahvistetaan automaattisesti. Älä muuta automaattisesti\n"
+"    valittua tulosta."
 
 #. description
 #: ../jobs/memory.txt.in:5
@@ -1799,6 +1959,8 @@ msgid ""
 "This test checks the amount of memory which is reporting in meminfo against "
 "the size of the memory modules detected by DMI."
 msgstr ""
+"Tämä testi vertaa meminfo-työkalun ilmoittamaa muistin määrää DMI:n "
+"havaitseman muistin määrään."
 
 #. description
 #: ../jobs/memory.txt.in:14
@@ -1846,6 +2008,8 @@ msgid ""
 "   Determine if we need to run tests specific to portable computers that may "
 "not apply to desktops."
 msgstr ""
+"   Tutkitaan, suoritetaanko kannettaville tietokoneille tarkoitettuja "
+"testejä, joita ei suoriteta pöytäkoneilla."
 
 #. description
 #: ../jobs/miscellanea.txt.in:45
@@ -1854,6 +2018,9 @@ msgid ""
 "contained within if it does, or echoes the status of the directory (doesn't "
 "exist/is empty)"
 msgstr ""
+"Tarkistetaan, että hakemisto /var/crash on tyhjä. Jos hakemistossa on "
+"tiedostoja, tulostetaan luettelo hakemiston tiedostoista. Muissa tapauksissa "
+"tulostetaan hakemiston tila (ei ole olemassa tai hakemisto on tyhjä)."
 
 #. description
 #: ../jobs/miscellanea.txt.in:53
@@ -2029,6 +2196,8 @@ msgid ""
 "This is an automated test to gather some info on the current state of your "
 "network devices. If no devices are found, the test will exit with an error."
 msgstr ""
+"Kerätään automaattisesti tietoa järjestelmän verkkolaitteiden tilasta. Jos "
+"laitteita ei löydy, testi päättyy virheeseen."
 
 #. description
 #: ../jobs/networking.txt.in:46
@@ -2153,9 +2322,21 @@ msgid ""
 "    This test should automatically select \"Yes\" if it passes, \"No\" if it "
 "fails."
 msgstr ""
+"TARKOITUS:\n"
+"    Tarkistetaan, että optinen asema osaa lukea CD-levyjä.\n"
+"SUORITUS:\n"
+"    1. Aseta tietoa sisältävä levy optiseen asemaan. Elokuva- tai äänilevyt "
+"eivät välttämättä toimi. Parhaat onnistumismahdollisuudet saavutetaan "
+"itseluodulla data-levyllä.\n"
+"    2. Jos tiedostonhallinta aukeaa, voit jättää sen huomiotta.\n"
+"    3. Paina \"Testaa\".\n"
+"    4. Kun testi on valmis, jatka painamalla \"Seuraava\"\n"
+"VAHVISTUS:\n"
+"    Testi valitsee automaattisesti \"Kyllä\", jos se menee läpi ja \"Ei\", "
+"jos se epäonnistuu."
 
 #. description
-#: ../jobs/optical.txt.in:43
+#: ../jobs/optical.txt.in:34
 msgid ""
 "PURPOSE:\n"
 "    This test will check your system's CD writing capabilities. This test "
@@ -2171,9 +2352,23 @@ msgid ""
 "    This test should automatically select \"Yes\" if it passes, \"No\" if it "
 "fails."
 msgstr ""
+"TARKOITUS:\n"
+"    Testataan järjestelmän kykyjä kirjoittaa tietoa CD-levylle. Tähän "
+"testiin tarvitaan tyhjä CD-R -levy. Jos sinulla ei ole tyhjää CD-R -levyä, "
+"ohita tämä testi.\n"
+"SUORITUS:\n"
+"    1. Aseta tyhjä CD-R -levy asemaan\n"
+"    2. Paina \"Testaa\"\n"
+"    3. Kun CD poistetaan asemasta, työnnä se takaisin (ÄLÄ poista levyä, "
+"sillä sitä tarvitaan tämän testin toiseen osaan). Huomaa, että sinun täytyy "
+"sulkea asema 10 sekunnin kuluessa tai testi loppuu.\n"
+"    4. Kun testi valmistuu, paina \"Seuraava\"\n"
+"VAHVISTUS:\n"
+"    Testi valitsee automaattisesti \"Kyllä\", jos se menee läpi ja \"Ei\", "
+"jos se epäonnistuu."
 
 #. description
-#: ../jobs/optical.txt.in:57
+#: ../jobs/optical.txt.in:46
 msgid ""
 "PURPOSE:\n"
 "    This test will check your CD audio playback capabilities\n"
@@ -2190,9 +2385,24 @@ msgid ""
 "VERIFICATION:\n"
 "    Did all the steps work?"
 msgstr ""
+"TARKOITUS:\n"
+"    Tarkistetaan, että järjestelmä osaa toistaa ääni-CD:tä.\n"
+"SUORITUS:\n"
+"    1. Aseta ääni-CD optiseen asemaan\n"
+"    2. Avaa musiikkisoitin kysyttäessä, mitä tehdään\n"
+"    3. Etsi CD musiikkisoittimen ikkunasta\n"
+"    4. Valitse CD musiikkisoittimessa\n"
+"    5. Napsauta Toista kuunnellaksesi CD:llä olevaa musiikkia\n"
+"    6. Lopeta toisto hetken kuluttua\n"
+"    7. Napsauta CD-levyn kuvaa hiiren oikealla painikkeella ja valitse "
+"\"Poista levy asemasta\"\n"
+"    8. CD:n pitäisi tulla ulos asemasta.\n"
+"    9. Sulje musiikkisoitin\n"
+"VAHVISTUS:\n"
+"    Onnistuivatko kaikki kohdat?"
 
 #. description
-#: ../jobs/optical.txt.in:80
+#: ../jobs/optical.txt.in:71
 msgid ""
 "PURPOSE:\n"
 "    This test will check your system's DVD writing capabilities. This test "
@@ -2208,9 +2418,23 @@ msgid ""
 "    This test should automatically select \"Yes\" if it passes, \"No\" if it "
 "fails."
 msgstr ""
+"TARKOITUS:\n"
+"    Testataan järjestelmän kykyjä kirjoittaa tietoa DVD-levylle. Tähän "
+"testiin tarvitaan tyhjä DVD-R -levy. Jos sinulla ei ole tyhjää DVD-R -levyä, "
+"ohita tämä testi.\n"
+"SUORITUS:\n"
+"    1. Aseta tyhjä DVD-R -levy asemaan\n"
+"    2. Paina \"Testaa\"\n"
+"    3. Kun DVD poistetaan asemasta, työnnä se takaisin (ÄLÄ poista levyä, "
+"sillä sitä tarvitaan tämän testin toiseen osaan). Huomaa, että sinun täytyy "
+"sulkea asema 10 sekunnin kuluessa tai testi loppuu.\n"
+"    4. Kun testi valmistuu, paina \"Seuraava\"\n"
+"VAHVISTUS:\n"
+"    Testi valitsee automaattisesti \"Kyllä\", jos se menee läpi ja \"Ei\", "
+"jos se epäonnistuu."
 
 #. description
-#: ../jobs/optical.txt.in:94
+#: ../jobs/optical.txt.in:82
 msgid ""
 "PURPOSE:\n"
 "    This test will check your DVD movie playback capabilities. Note that "
@@ -2242,7 +2466,7 @@ msgstr ""
 "    Toimivatko kaikki edellä mainitut toiminnot?"
 
 #. description
-#: ../jobs/optical.txt.in:112
+#: ../jobs/optical.txt.in:100
 msgid ""
 "PURPOSE:\n"
 "    This test will check your DVD  playback capabilities\n"
@@ -2293,6 +2517,19 @@ msgid ""
 "   Is your system clock displaying the correct date and time for your "
 "timezone?"
 msgstr ""
+"TARKOITUS:\n"
+"   Tarkistetaan, että työpöydän kello synkronoituu järjestelmän kellon "
+"kanssa.\n"
+"SUORITUS:\n"
+"   1. Napsauta \"Testaa\" ja odota, että kello siirtyy tunnilla eteenpäin.\n"
+"   Huom: Kellon päivittyminen voi viedä jopa minuutin.\n"
+"   2. Napsauta kelloa hiiren oikealla painikkeella ja valitse \"Ajan ja "
+"päivän asetukset...\"\n"
+"   3. Varmista, että kellon aika voidaan asettaa manuaalisesti.\n"
+"   4. Siirrä kelloa tunti taaksepäin\n"
+"   5. Sulje ikkuna ja käynnistä tietokone uudelleen\n"
+"VAHVISTUS:\n"
+"   Näyttääkö järjestelmän kello aikavyöhykkeesi oikeaa päivämäärää ja aikaa?"
 
 #. description
 #: ../jobs/panel_reboot.txt.in:4
@@ -2643,7 +2880,7 @@ msgstr ""
 "jälkeiseen muistivedokseen."
 
 #. description
-#: ../jobs/suspend.txt.in:40
+#: ../jobs/suspend.txt.in:49
 msgid ""
 "This test disconnects all connections and then connects to the wireless "
 "interface. It then checks the connection to confirm it's working as expected."
@@ -2653,7 +2890,7 @@ msgstr ""
 "tavalla."
 
 #. description
-#: ../jobs/suspend.txt.in:74
+#: ../jobs/suspend.txt.in:83
 msgid ""
 "PURPOSE:\n"
 "    This test will check suspend and resume\n"
@@ -2681,19 +2918,19 @@ msgstr ""
 "    Siirtyikö järjestelmä valmiustilaan ja palasi siitä onnistuneesti?"
 
 #. description
-#: ../jobs/suspend.txt.in:87
+#: ../jobs/suspend.txt.in:96
 msgid "Test the network after resuming."
 msgstr "Testaa verkkoyhteyden toimiminen valmiustilasta palaamisen jälkeen."
 
 #. description
-#: ../jobs/suspend.txt.in:93
+#: ../jobs/suspend.txt.in:102
 msgid ""
 "Test to see that we have the same resolution after resuming as before."
 msgstr ""
 "Testaa onko käytössä sama tarkkuus kuin ennen valmiustilaan siirtymistä."
 
 #. description
-#: ../jobs/suspend.txt.in:102
+#: ../jobs/suspend.txt.in:111
 msgid ""
 "Verify that mixer settings after suspend are the same as before suspend."
 msgstr ""
@@ -2701,21 +2938,21 @@ msgstr ""
 "valmiustilaa."
 
 #. description
-#: ../jobs/suspend.txt.in:118
+#: ../jobs/suspend.txt.in:127
 msgid "Verify that all CPUs are online after resuming."
 msgstr ""
 "Tarkista, että kaikki suoritinytimet ovat käynnissä valmiustilasta "
 "palaamisen jälkeen."
 
 #. description
-#: ../jobs/suspend.txt.in:135
+#: ../jobs/suspend.txt.in:144
 msgid "Verify that all memory is available after resuming from suspend."
 msgstr ""
 "Tarkistetaan, että kaikki muisti on käytössä valmiustilasta palautumisen "
 "jälkeen."
 
 #. description
-#: ../jobs/suspend.txt.in:144
+#: ../jobs/suspend.txt.in:153
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the display is correct after suspend and "
@@ -2729,7 +2966,7 @@ msgstr ""
 "    Toimiiko näyttö normaalilla tavalla valmiustilasta palautumisen jälkeen?"
 
 #. description
-#: ../jobs/suspend.txt.in:155
+#: ../jobs/suspend.txt.in:174
 msgid ""
 "This test checks that the wireless interface is working after suspending the "
 "system. It disconnects all interfaces and then connects to the wireless "
@@ -2769,7 +3006,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:211
+#: ../jobs/suspend.txt.in:186
 msgid ""
 "This test grabs the hardware address of the bluetooth adapter after suspend "
 "and compares it to the address grabbed before suspend."
@@ -2778,7 +3015,7 @@ msgstr ""
 "vertaa sitä ennen valmiustilaa tallennettuun osoitteeseen."
 
 #. description
-#: ../jobs/suspend.txt.in:221
+#: ../jobs/suspend.txt.in:196
 msgid ""
 "This is an automated Bluetooth file transfer test. It sends an image to the "
 "device specified by the BTDEVADDR environment variable."
@@ -2787,7 +3024,7 @@ msgstr ""
 "BTDEVADDR-ympäristömuuttujan määrittämään laitteeseen."
 
 #. description
-#: ../jobs/suspend.txt.in:231
+#: ../jobs/suspend.txt.in:206
 msgid ""
 "PURPOSE:\n"
 "    This test will send the image 'JPEG_Color_Image_Ubuntu.jpg' to a "
@@ -2811,7 +3048,7 @@ msgstr ""
 "    Onnistuiko tiedonsiirto?"
 
 #. description
-#: ../jobs/suspend.txt.in:245
+#: ../jobs/suspend.txt.in:220
 msgid ""
 "PURPOSE:\n"
 "    This test will cycle through the detected display modes\n"
@@ -2829,7 +3066,7 @@ msgstr ""
 "    Vaikuttiko näyttö toimivan havaituissa näyttötiloissa?"
 
 #. description
-#: ../jobs/suspend.txt.in:257
+#: ../jobs/suspend.txt.in:232
 msgid ""
 "This test will check to make sure supported video modes work after a suspend "
 "and resume. This is done automatically by taking screenshots and uploading "
@@ -2839,7 +3076,7 @@ msgstr ""
 "Tämä suoritetaan automaattisesti liittämällä kuvankaappaukset raporttiin."
 
 #. description
-#: ../jobs/suspend.txt.in:266
+#: ../jobs/suspend.txt.in:241
 msgid ""
 "This attaches screenshots from the "
 "suspend/cycle_resolutions_after_suspend_auto test to the results submission."
@@ -2847,7 +3084,7 @@ msgstr ""
 "Tämä liittää valmiustilatestin ottamat kuvankaappaukset tulosraporttiin."
 
 #. description
-#: ../jobs/suspend.txt.in:276
+#: ../jobs/suspend.txt.in:251
 msgid ""
 "This will check to make sure that your audio device works properly after a "
 "suspend and resume.  This may work fine with speakers and onboard "
@@ -2859,12 +3096,12 @@ msgstr ""
 "saavutetaan, jos äänilähtö on kiinnitetty kaapelilla sisääntuloporttiin."
 
 #. description
-#: ../jobs/suspend.txt.in:285
+#: ../jobs/suspend.txt.in:260
 msgid "This is the automated version of suspend/suspend_advanced."
 msgstr "Tämä on automaattinen versio edistyneestä valmiustilatestistä."
 
 #. description
-#: ../jobs/suspend.txt.in:294
+#: ../jobs/suspend.txt.in:269
 msgid ""
 "This automatically tests Wake-on-LAN capability with the aid of a suitably "
 "configured server. During this process the system will suspend, then "
@@ -2922,6 +3159,15 @@ msgid ""
 "VERIFICATION:\n"
 "    Were the drives detected?"
 msgstr ""
+"TARKOITUS:\n"
+"    Tarkistetaan, että järjestelmä havaitsee USB-tallennuslaitteet.\n"
+"SUORITUS:\n"
+"    1. Liitä yksi tai useampi USB-muistitikku tai -kiintolevy.\n"
+"    2. Napsauta \"Testaa\".\n"
+"TIETOJA:\n"
+"    $output\n"
+"VAHVISTUS:\n"
+"    Havaittiinko laitteet?"
 
 #. description
 #: ../jobs/usb.txt.in:28
@@ -2975,6 +3221,17 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"TARKOITUS:\n"
+"    Tarkistetaan, että järjestelmä havaitsee USB-tallennuslaitteen\n"
+"    liittämisen.\n"
+"SUORITUS:\n"
+"    1. Napsauta \"Testaa\" ja liitä USB-tallennuslaite (muistitikku tai "
+"kiintolevy).\n"
+"       (Huom: tämä testi loppuu automaattisesti 10 sekunnin kuluessa.)\n"
+"    2. Älä irrota laitetta testin jälkeen.\n"
+"VAHVISTUS:\n"
+"    Testin tulos vahvistetaan automaattisesti. Älä muuta automaattisesti\n"
+"    valittua tulosta."
 
 #. description
 #: ../jobs/usb.txt.in:72
@@ -2989,6 +3246,16 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"TARKOITUS:\n"
+"    Tarkistetaan, että järjestelmä havaitsee USB-tallennuslaitteen\n"
+"    irrottamisen.\n"
+"SUORITUS:\n"
+"    1. Napsauta \"Testaa\" ja irrota USB-tallennuslaite (muistitikku tai "
+"kiintolevy).\n"
+"       (Huom: tämä testi loppuu automaattisesti 10 sekunnin kuluessa.)\n"
+"VAHVISTUS:\n"
+"    Testin tulos vahvistetaan automaattisesti. Älä muuta automaattisesti\n"
+"    valittua tulosta."
 
 #. description
 #: ../jobs/usb.txt.in:88
@@ -3003,11 +3270,22 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"TARKOITUS:\n"
+"    Testataan USB-yhteyden toimivuutta.\n"
+"SUORITUS:\n"
+"    1. Liitä USB-kiintolevy tai -muistitikku tietokoneeseen.\n"
+"    2. Kuvakkeen tulisi ilmestyä käynnistimeen.\n"
+"    3. Napsauta \"Testaa\" aloittaaksesi testin.\n"
+"VAHVISTUS:\n"
+"    Testin tulos vahvistetaan automaattisesti. Älä muuta automaattisesti\n"
+"    valittua tulosta."
 
 #. description
 #: ../jobs/usb.txt.in:104
 msgid "This test is automated and executes after the usb/insert test is run."
 msgstr ""
+"Automaattinen testi, joka suoritetaan testin usb/insert suorittamisen "
+"jälkeen."
 
 #. description
 #: ../jobs/usb.txt.in:111
@@ -3083,6 +3361,15 @@ msgid ""
 "VERIFICATION:\n"
 " Do you now have a new folder called Test Folder?"
 msgstr ""
+"TARKOITUS:\n"
+" Tarkistetaan, että tiedostoselain pystyy luomaan uuden kansion.\n"
+"SUORITUS:\n"
+" 1. Napsauta \"Testaa\" avataksesi tiedostoselaimen.\n"
+" 2. Mene Tiedosto -> Luo uusi kansio.\n"
+" 3. Anna kansiolle nimeksi Testikansio ja paina enteriä.\n"
+" 4. Sulje tiedostoselain.\n"
+"VAHVISTUS:\n"
+" Onko sinulla nyt uusi kansio, jonka nimi on Testikansio?"
 
 #. description
 #: ../jobs/user_apps.txt.in:37
@@ -3325,6 +3612,13 @@ msgid ""
 "VERIFICATION:\n"
 " Did you see the text?"
 msgstr ""
+"TARKOITUS:\n"
+" Tarkistetaan, että Firefox pystyy toistamaan flash-sovelmia. Huomaa, että \n"
+" tämän suorittaminen saattaa vaatia ylimääräisen ohjelmiston asentamista.\n"
+"SUORITUS:\n"
+" 1. Valitse \"Testaa\" avataksesi Flash-testisivun Firefoxiin.\n"
+"VAHVISTUS:\n"
+" Näitkö tekstin?"
 
 #. description
 #: ../jobs/user_apps.txt.in:269
@@ -3337,6 +3631,13 @@ msgid ""
 "VERIFICATION:\n"
 " Did the video play correctly?"
 msgstr ""
+"TARKOITUS:\n"
+" Tarkistetaan, että Firefox osaa toistaa Flash-videoita. Huomaa, että \n"
+" tämän suorittaminen saattaa vaatia ylimääräisen ohjelmiston asentamista.\n"
+"SUORITUS:\n"
+" 1. Valitse \"Testaa\" avataksesi lyhyen flash-videon Firefoxiin.\n"
+"VAHVISTUS:\n"
+" Toistuiko video?"
 
 #. description
 #: ../jobs/user_apps.txt.in:283
@@ -3350,6 +3651,14 @@ msgid ""
 "VERIFICATION:\n"
 " Did the video play using a plugin?"
 msgstr ""
+"TARKOITUS:\n"
+" Tarkistetaan, että Firefox pystyy toistamaan Quicktime-videoita (.mov).\n"
+" Huomaa, että tämän suorittaminen saattaa vaatia ylimääräisen ohjelmiston\n"
+" asentamista.\n"
+"SUORITUS:\n"
+" 1. Valitse testaa avataksesi testivideon Firefoxiin.\n"
+"VAHVISTUS:\n"
+" Toistuiko video liitännäisen avulla?"
 
 #. description
 #: ../jobs/user_apps.txt.in:297
@@ -3363,6 +3672,14 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to connect correctly and send/receive messages?"
 msgstr ""
+"TARKOITUS:\n"
+" Tarkistetaan, että Empathy-pikaviestin toimii.\n"
+"SUORITUS:\n"
+" 1. Avaa Empathy painamalla \"Testaa\".\n"
+" 2. Luo Empathyllä yhteys Facebook-keskusteluihin.\n"
+" 3. Kun testi on suoritettu, sulje Empathy ja palaa tänne.\n"
+"VAHVISTUS:\n"
+" Muodostuiko yhteys ja onnistuiko viestien lähettäminen/vastaanottaminen?"
 
 #. description
 #: ../jobs/user_apps.txt.in:311
@@ -3376,6 +3693,14 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to connect correctly and send/receive messages?"
 msgstr ""
+"TARKOITUS:\n"
+" Tarkistetaan, että Empathy-pikaviestin toimii.\n"
+"SUORITUS:\n"
+" 1. Avaa Empathy painamalla \"Testaa\".\n"
+" 2. Luo Empathyllä yhteys Google Talk -palveluun (gtalk).\n"
+" 3. Kun testi on suoritettu, sulje Empathy ja palaa tänne.\n"
+"VAHVISTUS:\n"
+" Muodostuiko yhteys ja onnistuiko viestien lähettäminen/vastaanottaminen?"
 
 #. description
 #: ../jobs/user_apps.txt.in:325
@@ -3389,6 +3714,14 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to connect correctly and send/receive messages?"
 msgstr ""
+"TARKOITUS:\n"
+" Tarkistetaan, että Empathy-pikaviestin toimii.\n"
+"SUORITUS:\n"
+" 1. Avaa Empathy painamalla \"Testaa\".\n"
+" 2. Luo Empathyllä yhteys Jabber-palveluun.\n"
+" 3. Kun testi on suoritettu, sulje Empathy ja palaa tänne.\n"
+"VAHVISTUS:\n"
+" Muodostuiko yhteys ja onnistuiko viestien lähettäminen/vastaanottaminen?"
 
 #. description
 #: ../jobs/user_apps.txt.in:339
@@ -3402,6 +3735,14 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to connect correctly and send/receive messages?"
 msgstr ""
+"TARKOITUS:\n"
+" Tarkistetaan, että Empathy-pikaviestin toimii.\n"
+"SUORITUS:\n"
+" 1. Avaa Empathy painamalla \"Testaa\".\n"
+" 2. Luo Empathylla yhteys AOL Instant Messaging -palveluun (AIM).\n"
+" 3. Kun testi on suoritettu, sulje Empathy ja palaa tänne.\n"
+"VAHVISTUS:\n"
+" Muodostuiko yhteys ja onnistuiko viestien lähettäminen/vastaanottaminen?"
 
 #. description
 #: ../jobs/user_apps.txt.in:353
@@ -3415,6 +3756,14 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to connect correctly and send/receive messages?"
 msgstr ""
+"TARKOITUS:\n"
+" Tarkistetaan, että Empathy-pikaviestin toimii.\n"
+"SUORITUS:\n"
+" 1. Avaa Empathy painamalla \"Testaa\".\n"
+" 2. Luo Empathylla yhteys Windows Live -palveluun (MSN).\n"
+" 3. Kun testi on suoritettu, sulje Empathy ja palaa tänne.\n"
+"VAHVISTUS:\n"
+" Muodostuiko yhteys ja onnistuiko viestien lähettäminen/vastaanottaminen?"
 
 #. description
 #: ../jobs/user_apps.txt.in:367
@@ -3462,6 +3811,12 @@ msgid ""
 "VERIFICATION:\n"
 " Did it launch correctly?"
 msgstr ""
+"TARKOITUS:\n"
+" Tarkistetaan, että Laskin (gcalctool) toimii.\n"
+"SUORITUS:\n"
+" Napsauta \"Testaa\" avataksesi laskimen.\n"
+"VAHVISTUS:\n"
+" Aukesiko laskin?"
 
 #. description
 #: ../jobs/user_apps.txt.in:419
@@ -3477,6 +3832,18 @@ msgid ""
 "VERIFICATION:\n"
 " Did the functions perform as expected?"
 msgstr ""
+"TARKOITUS:\n"
+" Tarkistetaan, että Laskin (gcalctool) toimii.\n"
+"SUORITUS:\n"
+" Napsauta \"Testaa\" avataksesi laskimen ja suorita:\n"
+" 1. yksinkertaisia laskutoimituksia (+, -, /, *)\n"
+" 2. sulullisia laskutoimituksia ((,))\n"
+" 3. murtolukulaskutoimituksia\n"
+" 4. desimaalilukulaskutoimituksia\n"
+"VAHVISTUS:\n"
+" Toimivatko toiminnot odotetulla tavalla?\n"
+"VAHVISTUS:\n"
+" Aukesiko laskin?"
 
 #. description
 #: ../jobs/user_apps.txt.in:436
@@ -3652,6 +4019,8 @@ msgid ""
 "Tests the performance of a systems wireless connection through the iperf "
 "tool."
 msgstr ""
+"Testataan järjestelmän langattoman verkkoyhteyden suorituskykyä iperf-"
+"työkalun avulla."
 
 #. description
 #: ../jobs/wireless.txt.in:81
@@ -3659,6 +4028,8 @@ msgid ""
 "Tests the performance of a systems wireless connection through the iperf "
 "tool, using UDP packets."
 msgstr ""
+"Testataan järjestelmän langattoman verkkoyhteyden suorituskykyä iperf-"
+"työkalun avulla käyttäen UDP-paketteja."
 
 #: ../checkbox/application.py:66
 msgid "Usage: checkbox [OPTIONS]"
@@ -3797,17 +4168,17 @@ msgid "Unknown signal"
 msgstr "Tuntematon signaali"
 
 #: ../checkbox_cli/cli_interface.py:31
-#: ../checkbox_urwid/urwid_interface.py:917 ../checkbox_qt/qt_interface.py:33
+#: ../checkbox_urwid/urwid_interface.py:917 ../checkbox_qt/qt_interface.py:37
 msgid "yes"
 msgstr "kyllä"
 
 #: ../checkbox_cli/cli_interface.py:32
-#: ../checkbox_urwid/urwid_interface.py:918 ../checkbox_qt/qt_interface.py:34
+#: ../checkbox_urwid/urwid_interface.py:918 ../checkbox_qt/qt_interface.py:38
 msgid "no"
 msgstr "ei"
 
 #: ../checkbox_cli/cli_interface.py:33
-#: ../checkbox_urwid/urwid_interface.py:919 ../checkbox_qt/qt_interface.py:35
+#: ../checkbox_urwid/urwid_interface.py:919 ../checkbox_qt/qt_interface.py:39
 msgid "skip"
 msgstr "ohita"
 
@@ -3823,7 +4194,7 @@ msgstr "Valitse (%s): "
 #: ../checkbox_cli/cli_interface.py:229 ../checkbox_cli/cli_interface.py:338
 #: ../checkbox_cli/cli_interface.py:368
 msgid "Space when finished"
-msgstr ""
+msgstr "Tila valmistumisen jälkeen"
 
 #: ../checkbox_cli/cli_interface.py:367
 msgid "Combine with character above to expand node"
@@ -3864,11 +4235,11 @@ msgid "Next"
 msgstr "Seuraava"
 
 #. Show buttons
-#: ../checkbox_urwid/urwid_interface.py:423 ../qt/frontend/qtfront.cpp:137
+#: ../checkbox_urwid/urwid_interface.py:423 ../qt/frontend/qtfront.cpp:136
 msgid "Select All"
 msgstr "Valitse kaikki"
 
-#: ../checkbox_urwid/urwid_interface.py:424 ../qt/frontend/qtfront.cpp:138
+#: ../checkbox_urwid/urwid_interface.py:424 ../qt/frontend/qtfront.cpp:137
 msgid "Deselect All"
 msgstr "Poista kaikki valinnat"
 
@@ -3889,15 +4260,15 @@ msgstr "Testaa"
 msgid "Test Again"
 msgstr "Testaa uudelleen"
 
-#: ../checkbox_gtk/gtk_interface.py:517
+#: ../checkbox_gtk/gtk_interface.py:503
 msgid "_Test Again"
 msgstr "_Testaa uudelleen"
 
-#: ../checkbox_gtk/gtk_interface.py:566
+#: ../checkbox_gtk/gtk_interface.py:551 ../qt/frontend/qtfront.cpp:490
 msgid "Info"
 msgstr "Ohje"
 
-#: ../checkbox_gtk/gtk_interface.py:590
+#: ../checkbox_gtk/gtk_interface.py:575 ../qt/frontend/qtfront.cpp:247
 msgid "Error"
 msgstr "Virhe"
 
@@ -3956,7 +4327,7 @@ msgid ""
 "Once you are finished running the tests, you can view a summary report for "
 "your system."
 msgstr ""
-"Tervetuloa järjestelmän testaukseen\n"
+"Tervetuloa Järjestelmän testaukseen!\n"
 "\n"
 "Checkbox tarjoaa testejä, joilla järjestelmän oikeanlainen toimivuus voidaan "
 "varmistaa. Testien suorittamisen jälkeen on mahdollista katsella "
@@ -4024,6 +4395,15 @@ msgid ""
 "\n"
 "  https://launchpad.net/+login"
 msgstr ""
+"Seuraavaa raporttia ollaan lähettämässä Launchpadin laitteistotietokantaan:\n"
+"\n"
+"  [[%s|Näytä raportti]]\n"
+"\n"
+"Voit lähettää nämä tiedot järjestelmästä antamalla Launchpadissa käyttämäsi "
+"sähköpostiosoitteen. Jos sinulla ei vielä ole tiliä Launchpadissa, "
+"rekisteröidy käyttäjäksi täällä:\n"
+"\n"
+"  https://launchpad.net/+login"
 
 #: ../plugins/launchpad_prompt.py:93
 msgid "Email address must be in a proper format."
@@ -4038,6 +4418,8 @@ msgid ""
 "The generated report seems to have validation errors,\n"
 "so it might not be processed by Launchpad."
 msgstr ""
+"Luotu raportti näyttäisi sisältävän virheitä,\n"
+"joten sitä ei välttämättä käsitellä Launchpadissa."
 
 #: ../plugins/lock_prompt.py:63
 msgid "There is another checkbox running. Please close it first."
@@ -4069,7 +4451,7 @@ msgid "Running %s..."
 msgstr "Suoritetaan %s..."
 
 #. Get results
-#: ../plugins/suites_prompt.py:124
+#: ../plugins/suites_prompt.py:110
 msgid "Select the suites to test"
 msgstr "Valitse testattavat kohteet"
 
@@ -4081,53 +4463,53 @@ msgstr "Syötä tekstiä:\n"
 msgid "Type Text"
 msgstr "Kirjoita tekstiä"
 
-#: ../scripts/internet_test:196
+#: ../scripts/internet_test:139
 msgid "No Internet connection"
 msgstr "Ei Internet-yhteyttä"
 
-#: ../scripts/internet_test:199
+#: ../scripts/internet_test:142
 msgid "Connection established lost a packet"
 msgstr "Muodostettu yhteys hukkasi paketin"
 
-#: ../scripts/internet_test:202
+#: ../scripts/internet_test:145
 msgid "Internet connection fully established"
 msgstr "Internet-yhteys muodostettu"
 
-#: ../qt/frontend/qtfront.cpp:108
+#: ../qt/frontend/qtfront.cpp:107
 msgid "Not Started"
-msgstr ""
+msgstr "Ei aloitettu"
 
-#: ../qt/frontend/qtfront.cpp:109 ../qt/frontend/qtfront.cpp:110
+#: ../qt/frontend/qtfront.cpp:108 ../qt/frontend/qtfront.cpp:109
 msgid "Done"
 msgstr "Valmis"
 
-#: ../qt/frontend/qtfront.cpp:111
+#: ../qt/frontend/qtfront.cpp:110
 msgid "Not Supported"
-msgstr ""
+msgstr "Ei tuettu"
+
+#: ../qt/frontend/qtfront.cpp:111
+msgid "Not Resolved"
+msgstr "Ei selvitetty"
 
 #: ../qt/frontend/qtfront.cpp:112
-msgid "Not Resolved"
-msgstr ""
+msgid "Not Tested"
+msgstr "Ei testattu"
 
 #: ../qt/frontend/qtfront.cpp:113
-msgid "Not Tested"
-msgstr ""
-
-#: ../qt/frontend/qtfront.cpp:114
 msgid "In Progress"
-msgstr ""
+msgstr "Käynnissä"
 
 #: ../qt/frontend/qtfront.cpp:182
 msgid "Are you sure?"
-msgstr ""
+msgstr "Oletko varma?"
 
 #: ../qt/frontend/qtfront.cpp:182
 msgid "Do you really want to skip this test?"
-msgstr ""
+msgstr "Haluatko todella ohittaa tämän testin?"
 
 #: ../qt/frontend/qtfront.cpp:183
 msgid "Don't ask me again"
-msgstr ""
+msgstr "Älä kysy uudelleen"
 
 #: ../qt/frontend/treemodel.cpp:13
 msgid ""
@@ -4135,6 +4517,10 @@ msgid ""
 "you plan to participate in Ubuntu Friendly, please, select all tests. You "
 "can always skip individual tests if you don't have the needed equipment."
 msgstr ""
+"Testin poistaminen evää mahdollisuuden osallistua Ubuntu Friendly -"
+"projektiin. Jos haluat osallistua Ubuntu Friendly -projektiin, valitse "
+"kaikki testit. Voit aina ohittaa yksittäisiä testejä, jos et omaa niihin "
+"vaadittavia tarvikkeita."
 
 #: ../qt/frontend/ui_qtfront.h:588
 msgid "Form"
@@ -4146,35 +4532,35 @@ msgstr ""
 
 #: ../qt/frontend/ui_qtfront.h:591
 msgid "Don't show me this message in the future"
-msgstr ""
+msgstr "Älä näytä tätä viestiä uudelleen"
 
 #: ../qt/frontend/ui_qtfront.h:592 ../qt/frontend/ui_qtfront.h:606
 msgid "Tab 1"
-msgstr ""
+msgstr "Välilehti 1"
 
 #: ../qt/frontend/ui_qtfront.h:593
 msgid "10 tests completed out of 30 (30%)"
-msgstr ""
+msgstr "10/30 testiä suoritettu (30%)"
 
 #: ../qt/frontend/ui_qtfront.h:595
 msgid "Lists of tests to run based on your system:"
-msgstr ""
+msgstr "Järjestelmän kokoonpanon perusteella ajettavat testit:"
 
 #: ../qt/frontend/ui_qtfront.h:596
 msgid "Components"
-msgstr ""
+msgstr "Osiot"
 
 #: ../qt/frontend/ui_qtfront.h:597
 msgid "Status"
-msgstr ""
+msgstr "Tila"
 
 #: ../qt/frontend/ui_qtfront.h:598
 msgid "Start testing"
-msgstr ""
+msgstr "Aloita testaus"
 
 #: ../qt/frontend/ui_qtfront.h:599
 msgid " Selection "
-msgstr ""
+msgstr " Valinnat "
 
 #: ../qt/frontend/ui_qtfront.h:600 ../qt/frontend/ui_qtfront.h:601
 msgid "TextLabel"
@@ -4182,23 +4568,23 @@ msgstr ""
 
 #: ../qt/frontend/ui_qtfront.h:602
 msgid "Yes"
-msgstr ""
+msgstr "Kyllä"
 
 #: ../qt/frontend/ui_qtfront.h:604
 msgid "No"
-msgstr ""
+msgstr "Ei"
 
 #: ../qt/frontend/ui_qtfront.h:605
 msgid "Comment"
-msgstr ""
+msgstr "Lisätietoja"
 
 #: ../qt/frontend/ui_qtfront.h:607 ../qt/frontend/ui_qtfront.h:623
 msgid "Tab 2"
-msgstr ""
+msgstr "Välilehti 2"
 
 #: ../qt/frontend/ui_qtfront.h:610
 msgid " Run "
-msgstr ""
+msgstr " Suoritus "
 
 #: ../qt/frontend/ui_qtfront.h:611
 msgid ""
@@ -4217,26 +4603,41 @@ msgid ""
 "color:#ff0000;\">You can send the results now, but the submission won't make "
 "it to Ubuntu Friendly.</span></p></body></html>"
 msgstr ""
+"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" "
+"\"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style "
+"type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Ubuntu'; font-size:10pt; font-"
+"weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+"right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" "
+"color:#ff0000;\">Varoitus: Kaikkia testejä ei ole vielä "
+"suoritettu.</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+"right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" "
+"color:#ff0000;\">Voit lähettää tuloksesi heti, mutta ne eivät osallistu "
+"Ubuntu Friendly -projektiin.</span></p></body></html>"
 
 #: ../qt/frontend/ui_qtfront.h:617
 msgid "Personal details"
-msgstr ""
+msgstr "Henkilökohtaiset tiedot"
 
 #: ../qt/frontend/ui_qtfront.h:619
 msgid "Email:"
-msgstr ""
+msgstr "Sähköpostiosoite:"
 
 #: ../qt/frontend/ui_qtfront.h:620
 msgid "Submit results"
-msgstr ""
+msgstr "Lähetä tulokset"
 
 #: ../qt/frontend/ui_qtfront.h:621
 msgid "View results"
-msgstr ""
+msgstr "Tutki tuloksia"
 
 #: ../qt/frontend/ui_qtfront.h:622
 msgid " Results "
-msgstr ""
+msgstr " Tulokset "
 
 #~ msgid "Successfully sent information!"
 #~ msgstr "Tiedot lähetettiin onnistuneesti."

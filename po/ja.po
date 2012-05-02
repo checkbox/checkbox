@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-04-03 04:39+0000\n"
-"X-Generator: Launchpad (build 15052)\n"
+"X-Launchpad-Export-Date: 2012-05-02 05:12+0000\n"
+"X-Generator: Launchpad (build 15177)\n"
 
 #: ../checkbox/application.py:66
 msgid "Usage: checkbox [OPTIONS]"
@@ -45,30 +45,30 @@ msgstr "情報はLaunchpadへ登録されませんでした。"
 #~ msgid "_Laptop"
 #~ msgstr "ラップトップ、ノートパソコン(_L)"
 
-#: ../gtk/checkbox-gtk.ui.h:1 ../checkbox_cli/cli_interface.py:444
+#: ../gtk/checkbox-gtk.ui.h:6 ../checkbox_cli/cli_interface.py:444
 #: ../checkbox_urwid/urwid_interface.py:267
 msgid "Further information:"
 msgstr "詳細情報:"
 
-#: ../gtk/checkbox-gtk.ui.h:2
+#: ../gtk/checkbox-gtk.ui.h:10
 msgid "Ne_xt"
 msgstr "次ヘ(_X)"
 
 #. Title of the user interface
-#: ../gtk/checkbox-gtk.ui.h:3 ../qt/checkbox-qt.desktop.in.h:1
+#: ../gtk/checkbox-gtk.ui.h:1 ../qt/checkbox-qt.desktop.in.h:1
 #: ../plugins/user_interface.py:43 ../qt/frontend/ui_qtfront.h:589
 msgid "System Testing"
 msgstr "システムテストツール"
 
-#: ../gtk/checkbox-gtk.ui.h:4
+#: ../gtk/checkbox-gtk.ui.h:8
 msgid "_Deselect All"
 msgstr "すべて選択解除(_D)"
 
-#: ../gtk/checkbox-gtk.ui.h:5
+#: ../gtk/checkbox-gtk.ui.h:4
 msgid "_No"
 msgstr "いいえ(_N)"
 
-#: ../gtk/checkbox-gtk.ui.h:6
+#: ../gtk/checkbox-gtk.ui.h:9
 msgid "_Previous"
 msgstr "前へ(_P)"
 
@@ -76,15 +76,15 @@ msgstr "前へ(_P)"
 msgid "_Select All"
 msgstr "すべて選択(_S)"
 
-#: ../gtk/checkbox-gtk.ui.h:8
+#: ../gtk/checkbox-gtk.ui.h:5
 msgid "_Skip this test"
 msgstr "このテストをスキップする(_S)"
 
-#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:553
+#: ../gtk/checkbox-gtk.ui.h:2 ../checkbox_gtk/gtk_interface.py:538
 msgid "_Test"
 msgstr "テスト(_T)"
 
-#: ../gtk/checkbox-gtk.ui.h:10
+#: ../gtk/checkbox-gtk.ui.h:3
 msgid "_Yes"
 msgstr "はい(_Y)"
 
@@ -209,7 +209,7 @@ msgid ""
 "Play back a sound on the default output and listen for it on the  default "
 "input.  This makes the most sense when the output and input  are directly "
 "connected, as with a patch cable."
-msgstr ""
+msgstr "デフォルトの出力へ再生を行い、再生内容をデフォルトの入力から聴いて下さい。 最も良い方法は、ケーブルで入力と出力を接続することです。"
 
 #. description
 #: ../jobs/autotest.txt.in:6
@@ -243,6 +243,20 @@ msgid ""
 "VERIFICATION:\n"
 "    Did all the steps work?"
 msgstr ""
+"目的：\n"
+"    このテストはbluetooth接続が正しくされているかチェックをします。\n"
+"ステップ：\n"
+"    １． モバイル機器（PDAやスマートフォンなど）のbluetoothを有効にして下さい。\n"
+"    ２． メニューバーのbluetoothアイコンをクリックして下さい。\n"
+"    ３． ’新しいデバイスの設定’を選択して下さい。\n"
+"    ４． リストからモバイル機器を探して、選択して下さい。\n"
+"    ５． モバイル機器のPINコードはウィザードによって自動的に選択されます。\n"
+"    ６． モバイル機器はコンピューターとペアリングされます。\n"
+"    ７． bluetoothアイコンを右クリックし、ファイル閲覧を選択します。\n"
+"    ８． 必要であれば、コンピューターにモバイル機器のファイルが閲覧できるように許可を与えます。\n"
+"    ９． ファイルが閲覧できるはずです。\n"
+"確認：\n"
+"    全てのステップを実行できましたか？"
 
 #. description
 #: ../jobs/bluetooth.txt.in:33
@@ -257,6 +271,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Were all files copied correctly?"
 msgstr ""
+"目的：\n"
+"    このテストはbluetooth接続を介して情報のやり取りができるかチェックします。\n"
+"ステップ：\n"
+"    １． bluetooth接続を介したモバイル機器のファイルが閲覧できるか確認して下さい。\n"
+"    ２． コンピューターからモバイル機器へファイルをコピーします。\n"
+"    ３． モバイル機器からコンピューターへファイルをコピーします。\n"
+"確認：\n"
+"    両方共にコピーはできましたか？"
 
 #. description
 #: ../jobs/bluetooth.txt.in:47
@@ -276,6 +298,18 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear the sound you recorded in the bluetooth"
 msgstr ""
+"目的：\n"
+"    このテストはbluetoothオーディオデバイスを用いて音声の再生と録音ができるかチェックします。\n"
+"ステップ：\n"
+"    １． bluetoothヘッドセットの接続を有効にします。\n"
+"    ２． メニューバーのbluetoothアイコンをクリックします。\n"
+"    ３． ’新しいデバイスの設定’を選択します。\n"
+"    ４． リストからヘッドセットを探して、選択します。\n"
+"    ５． ヘッドセットのPINコードはウィザードによって自動的に選択されます。\n"
+"    ６． ヘッドセットはコンピューターとペアリングされます。\n"
+"    ７． ”テスト”をクリックして、５秒間録音を行いその後、再生されます。\n"
+"確認：\n"
+"    bluetoothヘッドセットから録音した音声が再生されましたか？"
 
 #. description
 #: ../jobs/bluetooth.txt.in:65
@@ -292,6 +326,17 @@ msgid ""
 "VERIFICATION:\n"
 "    Were you able to enter some text with the bluetooth keyboard?"
 msgstr ""
+"目的：\n"
+"    このテストはbluetoothキーボードが使用できるかチェックします。\n"
+"ステップ：\n"
+"    １． buletoothキーボードを有効にして下さい。\n"
+"    ２． メニューバーのbluetoothアイコンをクリックして下さい。\n"
+"    ３． ’新しいデバイスの設定’を選択して下さい。\n"
+"    ４． リストからキーボードを探し、選択して下さい。\n"
+"    ５． ”テスト”をクリックして下さい。\n"
+"    ６． 何かテキストを入力して下さい。\n"
+"確認：\n"
+"    bluetoothキーボードからテキストが入力できましたか？"
 
 #. description
 #: ../jobs/bluetooth.txt.in:81
@@ -308,11 +353,22 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the mouse work as expected?"
 msgstr ""
+"目的：\n"
+"    このテストはbluetoothマウスが使用できるかチェックします。\n"
+"ステップ：\n"
+"    １． buletoothマウスを有効にして下さい。\n"
+"    ２． メニューバーのbluetoothアイコンをクリックして下さい。\n"
+"    ３． ’新しいデバイスの設定’を選択して下さい。\n"
+"    ４． リストからマウスを探し、選択して下さい。\n"
+"    ５． マウスを動かして下さい。\n"
+"    ６． シングル/ダブル/右クリックをして下さい。\n"
+"確認：\n"
+"    マウスは予想通りに動きましたか？"
 
 #. description
 #: ../jobs/camera.txt.in:7
 msgid "This Automated test attempts to detect a camera."
-msgstr ""
+msgstr "この自動テストはカメラの検出を行います。"
 
 #. description
 #: ../jobs/camera.txt.in:16
@@ -336,6 +392,12 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you see the image?"
 msgstr ""
+"目的：\n"
+"    このテストは内蔵カメラが動作するかチェックします。\n"
+"ステップ：\n"
+"    １． カメラからの画像を表示させるためにテストをクリックして下さい。\n"
+"確認：\n"
+"    画像が見られましたか？"
 
 #. description
 #: ../jobs/codecs.txt.in:7
@@ -833,42 +895,42 @@ msgid "Attaches a list of the currently running kernel modules."
 msgstr ""
 
 #. description
-#: ../jobs/info.txt.in:82
+#: ../jobs/info.txt.in:96
 msgid "Gather log from the Firmware Test Suite run."
 msgstr ""
 
 #. description
-#: ../jobs/info.txt.in:89
+#: ../jobs/info.txt.in:103
 msgid "Attaches the contents of /proc/acpi/sleep if it exists."
 msgstr ""
 
 #. description
-#: ../jobs/info.txt.in:93
+#: ../jobs/info.txt.in:107
 msgid "Bootchart information."
 msgstr ""
 
 #. description
-#: ../jobs/info.txt.in:102
+#: ../jobs/info.txt.in:116
 msgid "SATA/IDE device information."
 msgstr "SATA/IDEデバイスの情報"
 
 #. description
-#: ../jobs/info.txt.in:119
+#: ../jobs/info.txt.in:133
 msgid "Attaches the bootchart png file for bootchart runs"
 msgstr ""
 
 #. description
-#: ../jobs/info.txt.in:128
+#: ../jobs/info.txt.in:142
 msgid "Attaches the bootchart log for bootchart test runs."
 msgstr ""
 
 #. description
-#: ../jobs/info.txt.in:136
+#: ../jobs/info.txt.in:150
 msgid "installs the installer bootchart tarball if it exists."
 msgstr ""
 
 #. description
-#: ../jobs/info.txt.in:141
+#: ../jobs/info.txt.in:155
 msgid "Attaches the installer debug log if it exists."
 msgstr ""
 
@@ -1093,7 +1155,7 @@ msgstr "メモリーテスト"
 #. description
 #: ../jobs/local.txt.in:150
 msgid "Miscellaneous tests"
-msgstr ""
+msgstr "その他のテスト"
 
 #. description
 #: ../jobs/local.txt.in:157
@@ -1151,27 +1213,27 @@ msgid "Suspend tests"
 msgstr "サスペンドテスト"
 
 #. description
-#: ../jobs/local.txt.in:234
+#: ../jobs/local.txt.in:241
 msgid "Unity tests"
 msgstr "Unityテスト"
 
 #. description
-#: ../jobs/local.txt.in:241
+#: ../jobs/local.txt.in:248
 msgid "USB tests"
 msgstr "USBテスト"
 
 #. description
-#: ../jobs/local.txt.in:248
+#: ../jobs/local.txt.in:255
 msgid "User Applications"
 msgstr "ユーザアプリケーション"
 
 #. description
-#: ../jobs/local.txt.in:255
+#: ../jobs/local.txt.in:262
 msgid "Wireless networking tests"
 msgstr "ワイヤレスネットワークテスト"
 
 #. description
-#: ../jobs/local.txt.in:262
+#: ../jobs/local.txt.in:269
 msgid "Stress tests"
 msgstr ""
 
@@ -1757,7 +1819,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/optical.txt.in:43
+#: ../jobs/optical.txt.in:34
 msgid ""
 "PURPOSE:\n"
 "    This test will check your system's CD writing capabilities. This test "
@@ -1775,7 +1837,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/optical.txt.in:57
+#: ../jobs/optical.txt.in:46
 msgid ""
 "PURPOSE:\n"
 "    This test will check your CD audio playback capabilities\n"
@@ -1794,7 +1856,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/optical.txt.in:80
+#: ../jobs/optical.txt.in:71
 msgid ""
 "PURPOSE:\n"
 "    This test will check your system's DVD writing capabilities. This test "
@@ -1812,7 +1874,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/optical.txt.in:94
+#: ../jobs/optical.txt.in:82
 msgid ""
 "PURPOSE:\n"
 "    This test will check your DVD movie playback capabilities. Note that "
@@ -1831,7 +1893,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/optical.txt.in:112
+#: ../jobs/optical.txt.in:100
 msgid ""
 "PURPOSE:\n"
 "    This test will check your DVD  playback capabilities\n"
@@ -2113,14 +2175,14 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:40
+#: ../jobs/suspend.txt.in:49
 msgid ""
 "This test disconnects all connections and then connects to the wireless "
 "interface. It then checks the connection to confirm it's working as expected."
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:74
+#: ../jobs/suspend.txt.in:83
 msgid ""
 "PURPOSE:\n"
 "    This test will check suspend and resume\n"
@@ -2136,34 +2198,34 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:87
+#: ../jobs/suspend.txt.in:96
 msgid "Test the network after resuming."
 msgstr "レジューム後のネットワークをテストする。"
 
 #. description
-#: ../jobs/suspend.txt.in:93
+#: ../jobs/suspend.txt.in:102
 msgid ""
 "Test to see that we have the same resolution after resuming as before."
 msgstr "レジューム後の解像度が変わっていないかテストする。"
 
 #. description
-#: ../jobs/suspend.txt.in:102
+#: ../jobs/suspend.txt.in:111
 msgid ""
 "Verify that mixer settings after suspend are the same as before suspend."
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:118
+#: ../jobs/suspend.txt.in:127
 msgid "Verify that all CPUs are online after resuming."
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:135
+#: ../jobs/suspend.txt.in:144
 msgid "Verify that all memory is available after resuming from suspend."
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:144
+#: ../jobs/suspend.txt.in:153
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the display is correct after suspend and "
@@ -2173,7 +2235,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:155
+#: ../jobs/suspend.txt.in:174
 msgid ""
 "This test checks that the wireless interface is working after suspending the "
 "system. It disconnects all interfaces and then connects to the wireless "
@@ -2209,21 +2271,21 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:211
+#: ../jobs/suspend.txt.in:186
 msgid ""
 "This test grabs the hardware address of the bluetooth adapter after suspend "
 "and compares it to the address grabbed before suspend."
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:221
+#: ../jobs/suspend.txt.in:196
 msgid ""
 "This is an automated Bluetooth file transfer test. It sends an image to the "
 "device specified by the BTDEVADDR environment variable."
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:231
+#: ../jobs/suspend.txt.in:206
 msgid ""
 "PURPOSE:\n"
 "    This test will send the image 'JPEG_Color_Image_Ubuntu.jpg' to a "
@@ -2238,7 +2300,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:245
+#: ../jobs/suspend.txt.in:220
 msgid ""
 "PURPOSE:\n"
 "    This test will cycle through the detected display modes\n"
@@ -2249,7 +2311,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:257
+#: ../jobs/suspend.txt.in:232
 msgid ""
 "This test will check to make sure supported video modes work after a suspend "
 "and resume. This is done automatically by taking screenshots and uploading "
@@ -2257,14 +2319,14 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:266
+#: ../jobs/suspend.txt.in:241
 msgid ""
 "This attaches screenshots from the "
 "suspend/cycle_resolutions_after_suspend_auto test to the results submission."
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:276
+#: ../jobs/suspend.txt.in:251
 msgid ""
 "This will check to make sure that your audio device works properly after a "
 "suspend and resume.  This may work fine with speakers and onboard "
@@ -2273,12 +2335,12 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:285
+#: ../jobs/suspend.txt.in:260
 msgid "This is the automated version of suspend/suspend_advanced."
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:294
+#: ../jobs/suspend.txt.in:269
 msgid ""
 "This automatically tests Wake-on-LAN capability with the aid of a suitably "
 "configured server. During this process the system will suspend, then "
@@ -3021,17 +3083,17 @@ msgid "Unknown signal"
 msgstr "不明なシグナル"
 
 #: ../checkbox_cli/cli_interface.py:31
-#: ../checkbox_urwid/urwid_interface.py:917 ../checkbox_qt/qt_interface.py:33
+#: ../checkbox_urwid/urwid_interface.py:917 ../checkbox_qt/qt_interface.py:37
 msgid "yes"
 msgstr "はい"
 
 #: ../checkbox_cli/cli_interface.py:32
-#: ../checkbox_urwid/urwid_interface.py:918 ../checkbox_qt/qt_interface.py:34
+#: ../checkbox_urwid/urwid_interface.py:918 ../checkbox_qt/qt_interface.py:38
 msgid "no"
 msgstr "いいえ"
 
 #: ../checkbox_cli/cli_interface.py:33
-#: ../checkbox_urwid/urwid_interface.py:919 ../checkbox_qt/qt_interface.py:35
+#: ../checkbox_urwid/urwid_interface.py:919 ../checkbox_qt/qt_interface.py:39
 msgid "skip"
 msgstr "スキップ"
 
@@ -3088,11 +3150,11 @@ msgid "Next"
 msgstr "次へ"
 
 #. Show buttons
-#: ../checkbox_urwid/urwid_interface.py:423 ../qt/frontend/qtfront.cpp:137
+#: ../checkbox_urwid/urwid_interface.py:423 ../qt/frontend/qtfront.cpp:136
 msgid "Select All"
 msgstr "すべて選択"
 
-#: ../checkbox_urwid/urwid_interface.py:424 ../qt/frontend/qtfront.cpp:138
+#: ../checkbox_urwid/urwid_interface.py:424 ../qt/frontend/qtfront.cpp:137
 msgid "Deselect All"
 msgstr "すべて選択解除"
 
@@ -3113,15 +3175,15 @@ msgstr "テスト"
 msgid "Test Again"
 msgstr "再テスト"
 
-#: ../checkbox_gtk/gtk_interface.py:517
+#: ../checkbox_gtk/gtk_interface.py:503
 msgid "_Test Again"
 msgstr "再テスト(_T)"
 
-#: ../checkbox_gtk/gtk_interface.py:566
+#: ../checkbox_gtk/gtk_interface.py:551 ../qt/frontend/qtfront.cpp:490
 msgid "Info"
 msgstr "情報"
 
-#: ../checkbox_gtk/gtk_interface.py:590
+#: ../checkbox_gtk/gtk_interface.py:575 ../qt/frontend/qtfront.cpp:247
 msgid "Error"
 msgstr "エラー"
 
@@ -3270,7 +3332,7 @@ msgid "Running %s..."
 msgstr "%s 実行中..."
 
 #. Get results
-#: ../plugins/suites_prompt.py:124
+#: ../plugins/suites_prompt.py:110
 msgid "Select the suites to test"
 msgstr "テストするスイートを選択してください"
 
@@ -3282,39 +3344,39 @@ msgstr "テキストを入力してください:\n"
 msgid "Type Text"
 msgstr "文章を入力してください。"
 
-#: ../scripts/internet_test:196
+#: ../scripts/internet_test:139
 msgid "No Internet connection"
 msgstr "インターネットに接続されていません"
 
-#: ../scripts/internet_test:199
+#: ../scripts/internet_test:142
 msgid "Connection established lost a packet"
 msgstr "接続先の応答がありません"
 
-#: ../scripts/internet_test:202
+#: ../scripts/internet_test:145
 msgid "Internet connection fully established"
 msgstr "インターネット接続が完全に確立されました"
 
-#: ../qt/frontend/qtfront.cpp:108
+#: ../qt/frontend/qtfront.cpp:107
 msgid "Not Started"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:109 ../qt/frontend/qtfront.cpp:110
+#: ../qt/frontend/qtfront.cpp:108 ../qt/frontend/qtfront.cpp:109
 msgid "Done"
 msgstr "完了"
 
-#: ../qt/frontend/qtfront.cpp:111
+#: ../qt/frontend/qtfront.cpp:110
 msgid "Not Supported"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:112
+#: ../qt/frontend/qtfront.cpp:111
 msgid "Not Resolved"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:113
+#: ../qt/frontend/qtfront.cpp:112
 msgid "Not Tested"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:114
+#: ../qt/frontend/qtfront.cpp:113
 msgid "In Progress"
 msgstr ""
 

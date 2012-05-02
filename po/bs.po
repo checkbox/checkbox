@@ -14,33 +14,33 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-04-03 04:38+0000\n"
-"X-Generator: Launchpad (build 15052)\n"
+"X-Launchpad-Export-Date: 2012-05-02 05:10+0000\n"
+"X-Generator: Launchpad (build 15177)\n"
 
-#: ../gtk/checkbox-gtk.ui.h:1 ../checkbox_cli/cli_interface.py:444
+#: ../gtk/checkbox-gtk.ui.h:6 ../checkbox_cli/cli_interface.py:444
 #: ../checkbox_urwid/urwid_interface.py:267
 msgid "Further information:"
 msgstr "Dodatne informacije:"
 
-#: ../gtk/checkbox-gtk.ui.h:2
+#: ../gtk/checkbox-gtk.ui.h:10
 msgid "Ne_xt"
 msgstr "Slj_edeći"
 
 #. Title of the user interface
-#: ../gtk/checkbox-gtk.ui.h:3 ../qt/checkbox-qt.desktop.in.h:1
+#: ../gtk/checkbox-gtk.ui.h:1 ../qt/checkbox-qt.desktop.in.h:1
 #: ../plugins/user_interface.py:43 ../qt/frontend/ui_qtfront.h:589
 msgid "System Testing"
 msgstr "Testiranje sistema"
 
-#: ../gtk/checkbox-gtk.ui.h:4
+#: ../gtk/checkbox-gtk.ui.h:8
 msgid "_Deselect All"
 msgstr "_Ukini izbor za sve"
 
-#: ../gtk/checkbox-gtk.ui.h:5
+#: ../gtk/checkbox-gtk.ui.h:4
 msgid "_No"
 msgstr "_Ne"
 
-#: ../gtk/checkbox-gtk.ui.h:6
+#: ../gtk/checkbox-gtk.ui.h:9
 msgid "_Previous"
 msgstr "_Prethodni"
 
@@ -48,15 +48,15 @@ msgstr "_Prethodni"
 msgid "_Select All"
 msgstr "_Označi sve"
 
-#: ../gtk/checkbox-gtk.ui.h:8
+#: ../gtk/checkbox-gtk.ui.h:5
 msgid "_Skip this test"
 msgstr "_Preskoči ovaj test"
 
-#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:553
+#: ../gtk/checkbox-gtk.ui.h:2 ../checkbox_gtk/gtk_interface.py:538
 msgid "_Test"
 msgstr "_Test"
 
-#: ../gtk/checkbox-gtk.ui.h:10
+#: ../gtk/checkbox-gtk.ui.h:3
 msgid "_Yes"
 msgstr "_Da"
 
@@ -67,7 +67,7 @@ msgstr "Testirajte svoj sistem i podnosi rezultate Ubuntu Friendly projektu"
 #. description
 #: ../jobs/audio.txt.in:7
 msgid "Test to detect audio devices"
-msgstr ""
+msgstr "Test za detekciju zvučnih uređaja"
 
 #. description
 #: ../jobs/audio.txt.in:16
@@ -81,6 +81,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear a tone?"
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će provjeriti da interni zvučnici rade ispravno\n"
+"KORACI:\n"
+"    1. Uvjerite se da nisu povezani eksterni zvučnici ili slušalice\n"
+"       Ako testiranje desktop, eksterni zvučnici su dozvoljeni\n"
+"    2. Kliknite na Test dugme da se odigra kratak ton na audio uređaju\n"
+"VERIFIKACIJA:\n"
+"    Da li ste čuli ton?"
 
 #. description
 #: ../jobs/audio.txt.in:33
@@ -94,6 +102,14 @@ msgid ""
 "    Did you hear a sound through the headphones and did the sound play "
 "without any distortion, clicks or other strange noises from your headphones?"
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će provjeriti da li konektor slušalice radi ispravno\n"
+"KORACI:\n"
+"    1. Povezivanje slušalica za vaš audio uređaj\n"
+"    2. Kliknite na Test dugme da pustite zvuk u audio uređaj\n"
+"VERIFIKACIJA:\n"
+"    Da li ste čuli zvuk kroz slušalice i čuli zvuk bez izobličenja, klikova "
+"ili druge čudne zvuke iz vaših slušalica?"
 
 #. description
 #: ../jobs/audio.txt.in:49
@@ -108,6 +124,15 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear your speech played back?"
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će provjeriti da snimanje zvuka pomoću mikrofona na ploči radi "
+"ispravno\n"
+"KORACI:\n"
+"    1. Isključite sve spoljne mikrofone koji su priključeni\n"
+"    2. Kliknite na dugme \"Test\", onda govorite u svoj interni mikrofon\n"
+"    3. Nakon nekoliko sekundi, vaš govor će se ponavlja.\n"
+"VERIFIKACIJA:\n"
+"    Da li ste čuli vaš govor reprodukovan?"
 
 #. description
 #: ../jobs/audio.txt.in:66
@@ -122,6 +147,15 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear your speech played back?"
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će provjeriti da snimanje zvuka pomoću spoljašnjeg mikrofona "
+"radi ispravno\n"
+"KORACI:\n"
+"    1. Priključite mikrofon na svoj mikrofon port\n"
+"    2. Kliknite na dugme \"Test\", onda govorite u spoljni mikrofon\n"
+"    3. Nakon nekoliko sekundi, vaš govor će se ponoviti\n"
+"VERIFIKACIJA:\n"
+"    Da li ste čuli vaš govor reprodukovan?"
 
 #. description
 #: ../jobs/audio.txt.in:82
@@ -135,6 +169,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear your speech played back through the USB headphones?"
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će provjeriti da USB audio uređaj radi ispravno\n"
+"KORACI:\n"
+"    1. Povežite USB audio uređaj na sistem\n"
+"    2. Kliknite na dugme \"Test\", onda govorite u mikrofon\n"
+"    3. Nakon nekoliko sekundi, vaš govor će se ponavljati\n"
+"VERIFIKACIJA:\n"
+"    Da li ste čuli vaš govor reprodukovan preko USB slušalice?"
 
 #. description
 #: ../jobs/audio.txt.in:99
@@ -143,6 +185,9 @@ msgid ""
 "input.  This makes the most sense when the output and input  are directly "
 "connected, as with a patch cable."
 msgstr ""
+"Reprodukujte zvuk na podrazumijevani izlaz za njega i slušajte ga na "
+"podrazumijevanom ulazu. To ima najviše smisla kada su izlaz i ulaz su "
+"direktno povezani, kao sa patch kablom."
 
 #. description
 #: ../jobs/autotest.txt.in:6
@@ -151,12 +196,17 @@ msgid ""
 "   This test will attempt to install and run the Autotest Suite.  These "
 "tests can be destructive, so this test is blacklisted by default."
 msgstr ""
+"NAMENA:\n"
+"   Ovaj test će pokušati da instalira i pokrene Autotest Suite. Ovi testovi "
+"mogu biti destruktivni, tako da je ovaj test podrazumijevano na crnoj listi."
 
 #. description
 #: ../jobs/bluetooth.txt.in:8
 msgid ""
 "Automated test to store bluetooth device information in checkbox report"
 msgstr ""
+"Automatizovano testiranje da bi se sačuvale informacije bluetooth uređaja u "
+"izvještaj programa checkbox"
 
 #. description
 #: ../jobs/bluetooth.txt.in:14
@@ -176,6 +226,23 @@ msgid ""
 "VERIFICATION:\n"
 "    Did all the steps work?"
 msgstr ""
+"NAMENA:\n"
+"    Ovaj test će provjeriti da li Bluetooth veza radi ispravno\n"
+"KORACI:\n"
+"    1. Omogući Bluetooth na bilo kom mobilnom uređaju (PDA, smart telefon, "
+"itd)\n"
+"    2. Kliknite na bluetooth ikonu na traci sa menijima\n"
+"    3. Izaberite 'Podesi novi uređaj \"\n"
+"    4. Potražite uređaj u listi i izaberite ga\n"
+"    5.. U uređaju napisati PIN automatski bira čarobnjaka\n"
+"    6. Uređaj bi trebalo da uparite sa računarom\n"
+"    7. Desnim tasterom miša kliknite na Bluetooth ikonu i izaberite Potraži "
+"datoteke\n"
+"    8. Ovlastite računar da pretražujete datoteke na uređaju ako je "
+"potrebno\n"
+"    9. Trebalo bi da budete u mogućnosti da pretražujete datoteke\n"
+"VERIFIKACIJA:\n"
+"    Da li svi koraci rade?"
 
 #. description
 #: ../jobs/bluetooth.txt.in:33
@@ -190,6 +257,16 @@ msgid ""
 "VERIFICATION:\n"
 "    Were all files copied correctly?"
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će provjeriti da možete prenijeti podatke preko Bluetooth "
+"veze\n"
+"KORACI:\n"
+"    1. Uvjerite se da ste u mogućnosti da pretražujete datoteke na vašem "
+"mobilnom uređaju\n"
+"    2. Kopiranje datoteke sa računara na mobilni uređaj\n"
+"    3. Kopiranje datoteke sa mobilnog uređaja na računar\n"
+"VERIFIKACIJA:\n"
+"    Da li su sve datoteke kopirane ispravno?"
 
 #. description
 #: ../jobs/bluetooth.txt.in:47
@@ -209,6 +286,20 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear the sound you recorded in the bluetooth"
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će proveriti da li možete da snimite i čujete zvuk preko "
+"Bluetooth audio uređaja\n"
+"KORACI:\n"
+"    1. Omogućite Bluetooth slušalice\n"
+"    2. Kliknite na bluetooth ikonu na traci sa menijima\n"
+"    3. Izaberite 'Postavi novi uređaj \"\n"
+"    4. Potražite uređaj u listi i izaberite ga\n"
+"    5. U uređaju napisati PIN automatski izabran čarobnjakom\n"
+"    6. Uređaj bi trebalo da uparite sa računarom\n"
+"    7. Kliknite na \"test\" za snimanje za pet sekundi i reprodukciju u "
+"Bluetooth uređaju\n"
+"VERIFIKACIJA:\n"
+"    Da li ste čuli zvuk ste snimili u Bluetooth"
 
 #. description
 #: ../jobs/bluetooth.txt.in:65
@@ -225,6 +316,17 @@ msgid ""
 "VERIFICATION:\n"
 "    Were you able to enter some text with the bluetooth keyboard?"
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će provjeriti da li možete da koristite tastaturu bluetooth\n"
+"KORACI:\n"
+"    1. Omogućite tastaturu bluetooth\n"
+"    2. Kliknite na bluetooth ikonu na traci sa menijima\n"
+"    3. Izaberite 'Podesi novi uređaj \"\n"
+"    4. Potražite uređaj u listi i izaberite ga\n"
+"    5. Kliknite na dugme \"Test\"\n"
+"    6. Unesite neki tekst\n"
+"VERIFIKACIJA:\n"
+"    Da li ste uspheli da unesete neki tekst sa Bluetooth tastaturom?"
 
 #. description
 #: ../jobs/bluetooth.txt.in:81
@@ -241,11 +343,22 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the mouse work as expected?"
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će provjeriti da možete da koristite Bluetooth miša\n"
+"KORACI:\n"
+"    1. Omogućite Bluetooth miša\n"
+"    2. Kliknite na bluetooth ikonu na traci sa menijima\n"
+"    3. Izaberite 'Podesi novi uređaj \"\n"
+"    4. Potražite uređaj u listi i izaberite ga\n"
+"    5. Pomjerajte miša po ekranu\n"
+"    6. Izvršite neke jednostruko / dvostruko / desne operacije klikova\n"
+"VERIFIKACIJA:\n"
+"    Da li miš radi kao što se očekuje?"
 
 #. description
 #: ../jobs/camera.txt.in:7
 msgid "This Automated test attempts to detect a camera."
-msgstr ""
+msgstr "Ovaj Automatizovano testiranje pokušava da detektuje kameru."
 
 #. description
 #: ../jobs/camera.txt.in:16
@@ -258,6 +371,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you see the video capture?"
 msgstr ""
+"NAMENA:\n"
+"    Ovaj test će provjeriti da li ugrađena kamera radi\n"
+"KORACI:\n"
+"    1. Kliknite na Test za prikazivanje video snimka iz kamere za deset "
+"sekundi.\n"
+"VERIFIKACIJA:\n"
+"    Da li ste vidjeli video snimanje?"
 
 #. description
 #: ../jobs/camera.txt.in:33
@@ -269,6 +389,12 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you see the image?"
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će provjeriti da li ugrađena kamera rai\n"
+"KORACI:\n"
+"    1. Kliknite na Test da biste prikazali statičnu sliku sa kamere\n"
+"VERIFIKACIJA:\n"
+"    Da li ste videli sliku?"
 
 #. description
 #: ../jobs/codecs.txt.in:7
@@ -282,6 +408,14 @@ msgid ""
 "VERIFICATION:\n"
 "   Did the sample play correctly?"
 msgstr ""
+"NAMENA:\n"
+"   Ovaj test će provjeriti sposobnosti vašeg sistema da reprodukuje Ogg "
+"Vorbis audio datotekee.\n"
+"KORACI:\n"
+"   1. Kliknite na dugme Testiraj da izvedete Ogg Vorbis OGG fajl (.)\n"
+"   2. Molimo vas da zatvorite izvođača za nastavak.\n"
+"VERIFIKACIJA:\n"
+"   Da li je uzorak izveden ispravno?"
 
 #. description
 #: ../jobs/codecs.txt.in:22
@@ -294,12 +428,22 @@ msgid ""
 "VERIFICATION:\n"
 "   Did the sample play correctly?"
 msgstr ""
+"NAMJENA:\n"
+"   Ovaj test će provjeriti sposobnosti vašeg sistema da reprodukuje VAV "
+"audio datoteke.\n"
+"KORACI:\n"
+"   1. Izaberite Test da izvedete Wave Audio (wav format datoteke.)\n"
+"   2. Molimo vas da zatvorite izvođača da nastavite.\n"
+"VERIFIKACIJA:\n"
+"   Da li je uzorak izveden ispravno?"
 
 #. description
 #: ../jobs/cpu.txt.in:8
 msgid ""
 "Test the CPU scaling capabilities using Firmware Test Suite (fwts cpufreq)."
 msgstr ""
+"Testirajte mogućnosti skaliranja procesora pomoću firmvera Test Suite (fwts "
+"cpufreq)."
 
 #. description
 #: ../jobs/cpu.txt.in:15
@@ -314,12 +458,14 @@ msgstr "Test odspajanja procesora u višejezgrenom sistemu"
 #. description
 #: ../jobs/cpu.txt.in:30
 msgid "This test checks cpu topology for accuracy"
-msgstr ""
+msgstr "Ovaj test provjerava topologiju procesora za tačnost"
 
 #. description
 #: ../jobs/cpu.txt.in:38
 msgid "This test checks that CPU frequency governors are obeyed when set."
 msgstr ""
+"Ovaj test provjerava da su CPU frekvencni guverneri poslušani kada je "
+"podešen."
 
 #. description
 #: ../jobs/daemons.txt.in:5
@@ -384,12 +530,12 @@ msgstr "Detektuje i prikazuje diskove prikopčane na sistem"
 #. description
 #: ../jobs/disk.txt.in:9
 msgid "Benchmark for each disk"
-msgstr ""
+msgstr "Mjerenje za svaki disk"
 
 #. description
 #: ../jobs/disk.txt.in:23
 msgid "Check stats changes for each disk"
-msgstr ""
+msgstr "Provjera promjene statistika za svaki disk"
 
 #. description
 #: ../jobs/disk.txt.in:40
@@ -437,6 +583,23 @@ msgid ""
 "VERIFICATION:\n"
 "   Did the authentication procedure work correctly?"
 msgstr ""
+"NAMJENA:\n"
+"   Ovaj test će provjeriti da li će čitač otiska prsta raditi ispravno za "
+"prijavljivanje na vaš sistem.\n"
+"PREDUSLOVI:\n"
+"   Ovaj test slučaj pretpostavlja da postoji testni nalog s koga su "
+"pokrenuti slučajevi testiranja i lični nalog da Tester koristi za provjeru "
+"čitača otiska prsta\n"
+"KORACI:\n"
+"   1. Kliknite na aplet za prebacivanje korisnika.\n"
+"   2. Izaberite korisničko ime.\n"
+"   3. Treba da se pojavi prozor koji pruža mogućnost da se prijavite bilo "
+"kucanjem lozinke ili pomoću otiska prsta \n"
+"   4. Koristite čitač otiska prsta da se prijavite.\n"
+"   5..Kliknite na aplet za prebacivanje korisnika.\n"
+"   6. Izaberite nalog za testiranje da nastavite rad testova.\n"
+"VERIFIKACIJA:\n"
+"   Da li procedura autentikacije raditi ispravno?"
 
 #. description
 #: ../jobs/fingerprint.txt.in:20
@@ -455,6 +618,19 @@ msgid ""
 "VERIFICATION:\n"
 "   Did the authentication procedure work correctly?"
 msgstr ""
+"NAMJENA:\n"
+"   Ovaj test će provjeriti da li se čitač otisaka prstiju može koristiti da "
+"biste otključali zaključani sistem.\n"
+"KORACI:\n"
+"   1. Kliknite na aplet za prebacivanje korisnika.\n"
+"   2. Izaberite 'Zaključaj ekran'.\n"
+"   3. Pritisnite bilo koji taster ili pomjerite miša.\n"
+"   4. Treba da se pojavi prozor koji pruža mogućnost da otključate bilo "
+"kucanjem lozinke ili pomoću otiska prsta .\n"
+"   5..Kliknite na aplet za prebacivanje korisnika.\n"
+"   6. Vaš ekran bi trebalo da bude otključan.\n"
+"VERIFIKACIJA:\n"
+"   Da li procedura autentikacije radi ispravno?"
 
 #. description
 #: ../jobs/firewire.txt.in:4
@@ -472,6 +648,16 @@ msgid ""
 "automatically\n"
 "    selected result"
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će provjeriti sistem može da detektuje ubacivanje FireWire "
+"HDD\n"
+"KORACI:\n"
+"    1. Kliknite na \"test 'da počne test. Ovaj test će\n"
+"       isteći i pasti ako umetanje nije otkriveno u roku od 10 sekundi.\n"
+"    2. Priključite FireWire HDD na slobodan FireWire port.\n"
+"VERIFIKACIJA:\n"
+"    Verifikacija ovog testa je automatizovana. Ne mijenjajte automatski\n"
+"    izabran rezultat"
 
 #. description
 #: ../jobs/firewire.txt.in:19
@@ -479,6 +665,8 @@ msgid ""
 "This is an automated test which performs read/write operations on an "
 "attached FireWire HDD"
 msgstr ""
+"Ovo je automatizovani test koji obavlja operacije čitanja / pisanja na "
+"priloženom FireWire HDD"
 
 #. description
 #: ../jobs/firewire.txt.in:27
@@ -494,6 +682,16 @@ msgid ""
 "automatically\n"
 "   selected result"
 msgstr ""
+" NAMJENA:\n"
+"   Ovaj test će provjeriti da li sistem može da detektuje uklanjanje "
+"FireWire HDD\n"
+" KORACI:\n"
+"   1. Kliknite na \"test 'da počne test. Ovaj test će isteći i pasti ako\n"
+"      uklanjanje nije otkriveno u roku od 10 sekundi.\n"
+"   2. Uklonite prethodno prikopčan FireWire HDD od FireVire porta.\n"
+" VERIFIKACIJA:\n"
+"   Verifikacija ovog testa je automatizovana. Ne mijenjajte automatski\n"
+"   izabran rezultat"
 
 #. description
 #: ../jobs/floppy.txt.in:4
@@ -503,7 +701,7 @@ msgstr "Test flopi diska"
 #. description
 #: ../jobs/graphics.txt.in:5
 msgid "Test to output the Xorg version"
-msgstr ""
+msgstr "Testza izlaz Xorg verzije"
 
 #. description
 #: ../jobs/graphics.txt.in:12
@@ -525,6 +723,17 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the resolution change as expected?"
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će provjeriti da li je GUI upotrebljiv nakon ručnog mijenjanja "
+"rezolucije\n"
+"KORACI:\n"
+"    1. Otvorite aplikaciju prikaza\n"
+"    2. Izaberite novu rezoluciju iz padajuće liste\n"
+"    3. Kliknite na Primijeni\n"
+"    4. Izaberite originalnu rezoluciju sa padajuće liste\n"
+"    5.. Kliknite na Primijeni\n"
+"VERIFIKACIJA:\n"
+"    Da li je promjena rezolucije kao što je očekivano?"
 
 #. description
 #: ../jobs/graphics.txt.in:33
@@ -541,6 +750,17 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the display rotation change as expected?"
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će testirati rotaciju ekrana\n"
+"KORACI:\n"
+"    1. Otvorite aplikaciju prikaza\n"
+"    2. Izaberite novu vrijednost rotacije iz padajuće liste\n"
+"    3. Kliknite na Primijeni\n"
+"    4. Kliknite na Vrati prethodnu konfiguraciju\n"
+"    5.. Kliknite na Primijeni\n"
+"    6. Ponovite 2-5 za različite vrednosti rotacije\n"
+"VERIFIKACIJA:\n"
+"    Da li je rotacija ekrana imala promjene kao što je očekivano?"
 
 #. description
 #: ../jobs/graphics.txt.in:50
@@ -558,6 +778,8 @@ msgid ""
 "Test that X does not leak memory when running programs on systems with intel "
 "based graphics."
 msgstr ""
+"Test da X ne izaziva oticanje memorije pri izvršavanju na sistemima s "
+"Intelovom grafikom."
 
 #. description
 #: ../jobs/graphics.txt.in:70
@@ -571,6 +793,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Is this acceptable for your display?"
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će provjeriti podrazumijevanu ekransku rezoluciju\n"
+"KORACI:\n"
+"    1. Ovaj ekran koristi sljedeću rezoluciju:\n"
+"INFO:\n"
+"    $output\n"
+"VERIFIKACIJA:\n"
+"    Je li ovo prihvatljivo za vaš ekran?"
 
 #. description
 #: ../jobs/graphics.txt.in:85
@@ -596,11 +826,17 @@ msgid ""
 "VERIFICATION:\n"
 "    Do you see color bars and static?"
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će provjeriti podrazumijevani ekran\n"
+"KORACI:\n"
+"    1. Kliknite na \"test\" da biste prikazali test video.\n"
+"VERIFIKACIJA:\n"
+"    Da li vidite šipke boja i statiku?"
 
 #. description
 #: ../jobs/graphics.txt.in:106
 msgid "Check that VESA drivers are not in use"
-msgstr ""
+msgstr "Provjera da VESA drajveri nisu u upotrebi"
 
 #. description
 #: ../jobs/graphics.txt.in:113
@@ -612,16 +848,22 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the screen appear to be working for each mode?"
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test kruži kroz otkrivene video režime\n"
+"KORACI:\n"
+"    1. Kliknite na \"test\" za početak vožnje kroz video režime\n"
+"VERIFIKACIJA:\n"
+"    Da li ekran izgleda da radi za svaki režim?"
 
 #. description
 #: ../jobs/graphics.txt.in:126
 msgid "Check that hardware is able to run compiz"
-msgstr ""
+msgstr "Provjera da li je hardver sposoban da pokrene compiz"
 
 #. description
 #: ../jobs/graphics.txt.in:133
 msgid "Check that hardware is able to run Unity 3D"
-msgstr ""
+msgstr "Provjera da li je hardver sposoban da pokrene Unity 3D"
 
 #. description
 #: ../jobs/graphics.txt.in:139
@@ -636,6 +878,17 @@ msgid ""
 "    1. Did the 3d animation appear?\n"
 "    2. Was the animation free from slowness/jerkiness?"
 msgstr ""
+"NAMJENA:\n"
+"Ovaj test testira osnovne 3D sposobnosti Vaše grafičke karte.\n"
+"\n"
+"KORACI:\n"
+"1. Kliknite na \"Test\" da se izvrši OpenGl demo. Stisni ESC u bilo koje "
+"vrijeme da zatvorite.\n"
+"2. Provjerite dali je animacija čudna ili loša.\n"
+"\n"
+"VERIFIKACIJA:\n"
+"1. Dali se 3D animacija pojavila?\n"
+"2. Dali je animacija oslobođena sporosti/čudnih pojava."
 
 #. description
 #: ../jobs/graphics.txt.in:159
@@ -703,112 +956,127 @@ msgid ""
 "    Did the system successfully hibernate and did it work properly after "
 "waking up?"
 msgstr ""
+"NAMJENA: \n"
+"Ovaj test će provjeriti da li se Vaš sistem može uspješno hibernirati "
+"(ukoliko je podržano)\n"
+"\n"
+"KORACI:\n"
+"1. Kliknite na Test\n"
+"2. Sistem će se hibernirati i trebao bi se probuditi nakon 5 minuta\n"
+"3. Ukoliko se nakon 5 minuta sistem ne probudi, mollimo Vas da pritisnete "
+"power dugme da probudite sistem ručno\n"
+"4. Ukoliko sistem ne uspije da se podigne iz hibernacije, molimo Vas da "
+"resetujete System Testing i označite ovaj test kao neuspješan.\n"
+"\n"
+"VERIFIKACIJA:\n"
+"Dali je sistem uspješno hibernirao, i dali je radio ispravno nakon buđenja?"
 
 #. description
 #: ../jobs/info.txt.in:5
 msgid "Attaches a report of installed codecs for Intel HDA"
-msgstr ""
+msgstr "Dodaje izvještaj o instaliranim kodecima za Intel HDA"
 
 #. description
 #: ../jobs/info.txt.in:10
 msgid "Attaches a report of CPU information"
-msgstr ""
+msgstr "Prilaže izvještaj o procesoru"
 
 #. description
 #: ../jobs/info.txt.in:15
 msgid "Attaches a copy of /var/log/dmesg to the test results"
-msgstr ""
+msgstr "Prilaže kopiju /var/log/dmesg na testne rezultate"
 
 #. description
 #: ../jobs/info.txt.in:20
 msgid "Attaches info on DMI"
-msgstr ""
+msgstr "Prilaže informacije o DMI"
 
 #. description
 #: ../jobs/info.txt.in:26
 msgid "Attaches dmidecode output"
-msgstr ""
+msgstr "Prilaže dmidecode izlaz"
 
 #. description
 #: ../jobs/info.txt.in:31
 msgid "Attaches very verbose lspci output."
-msgstr ""
+msgstr "Prilaže vrlo detaljan lspci izlaz."
 
 #. description
 #: ../jobs/info.txt.in:40
 msgid "Attaches the contents of the various modprobe conf files."
-msgstr ""
+msgstr "Prilaže sadržaj raznih modprobe coniguracionih datoteka."
 
 #. description
 #: ../jobs/info.txt.in:45
 msgid "Attaches the contents of the /etc/modules file."
-msgstr ""
+msgstr "Prilaže sadržaj /etc/modules datoteke."
 
 #. description
 #: ../jobs/info.txt.in:50
 msgid "attaches the contents of various sysctl config files."
-msgstr ""
+msgstr "Prilaže sadržaj raznih sysctl config datoteka."
 
 #. description
 #: ../jobs/info.txt.in:54
 msgid "Attaches a report of sysfs attributes."
-msgstr ""
+msgstr "Prilaže izvještaj o sysfs atributima."
 
 #. description
 #: ../jobs/info.txt.in:65
 msgid ""
 "Attaches a dump of the udev database showing system hardware information."
 msgstr ""
+"Prilaže ispis udev baze prikazujući sistemske hardverske informacije."
 
 #. description
 #: ../jobs/info.txt.in:72
 msgid "Attaches a tarball of gcov data if present."
-msgstr ""
+msgstr "Prilaže tar datoteku gcov podataka ako ih ima."
 
 #. description
 #: ../jobs/info.txt.in:77
 msgid "Attaches a list of the currently running kernel modules."
-msgstr ""
+msgstr "Prilaže listu trenutno izvršavanih kernel modula."
 
 #. description
-#: ../jobs/info.txt.in:82
+#: ../jobs/info.txt.in:96
 msgid "Gather log from the Firmware Test Suite run."
-msgstr ""
+msgstr "Dobavlja dnevnig iz kompleta za testiranje firmvera."
 
 #. description
-#: ../jobs/info.txt.in:89
+#: ../jobs/info.txt.in:103
 msgid "Attaches the contents of /proc/acpi/sleep if it exists."
-msgstr ""
+msgstr "Prilaže sadržaj /proc/acpi/sleep ako postoji."
 
 #. description
-#: ../jobs/info.txt.in:93
+#: ../jobs/info.txt.in:107
 msgid "Bootchart information."
 msgstr "Informacije o dijagramu podizanja."
 
 #. description
-#: ../jobs/info.txt.in:102
+#: ../jobs/info.txt.in:116
 msgid "SATA/IDE device information."
 msgstr "Informacija o SATA/IDE uređaju."
 
 #. description
-#: ../jobs/info.txt.in:119
+#: ../jobs/info.txt.in:133
 msgid "Attaches the bootchart png file for bootchart runs"
-msgstr ""
+msgstr "Prilaže  bootchart png datoteku prilikom pokretanja bootchart"
 
 #. description
-#: ../jobs/info.txt.in:128
+#: ../jobs/info.txt.in:142
 msgid "Attaches the bootchart log for bootchart test runs."
-msgstr ""
+msgstr "Prilaže bootchart dnevnik prilikom pokretanja bootchart testova."
 
 #. description
-#: ../jobs/info.txt.in:136
+#: ../jobs/info.txt.in:150
 msgid "installs the installer bootchart tarball if it exists."
-msgstr ""
+msgstr "installira instalersku bootchart tar datoteku ako postoji."
 
 #. description
-#: ../jobs/info.txt.in:141
+#: ../jobs/info.txt.in:155
 msgid "Attaches the installer debug log if it exists."
-msgstr ""
+msgstr "Prilaže instalerski debug dnevnik ako postoji."
 
 #. description
 #: ../jobs/input.txt.in:4
@@ -821,6 +1089,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the pointing device work as expected?"
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će testirati vaš pokazivački uređaj\n"
+"KORACI:\n"
+"    1. Pomjerite kursor pomoću pokazivačkog uređaja ili dodirnite ekran.\n"
+"    2. Izvršite neke jednostruke/dvostruke/desne operacije klikova.\n"
+"VERIFIKACIJA:\n"
+"    Da li radi pokazivački uređaj kao što je očekivano?"
 
 #. description
 #: ../jobs/input.txt.in:17
@@ -833,6 +1108,15 @@ msgid ""
 "VERIFICATION:\n"
 "    Is your keyboard working properly?"
 msgstr ""
+"NAMJENA:\n"
+"Ovaj test će testirati Vašu tastaturu.\n"
+"\n"
+"KORACI:\n"
+"1. Kliknite na Test\n"
+"2. Na otvorenom tekstualnom prostoru, koristite tastaturu da napišete nešto\n"
+"\n"
+"VERIFIKACIJA:\n"
+"Dali Vaša tastatura radi ispravno?"
 
 #. description
 #: ../jobs/install.txt.in:6
@@ -841,6 +1125,9 @@ msgid ""
 "install updates). This is done to confirm that you could recover from an "
 "incomplete or broken update."
 msgstr ""
+"Testira da provjeri dali Apt može pristupiti repozitoriju i preuzeti "
+"ažuriranje (neće ih instalirati). Ovo je urađeno kako bi se potvrdilo da se "
+"možete povratiti iz nepotpunog ili nekompletnog ažuriranja."
 
 #. description
 #: ../jobs/keys.txt.in:4
@@ -852,6 +1139,12 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the brightness change following to your key presses?"
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će provjeriti taster za osvjetljenje\n"
+"KORACI:\n"
+"    1. Pritisnite tastere za osvjetljenje na tastaturi\n"
+"PROVJERA:\n"
+"    Da li je promjena osvjetljenja pratila pritiske na tastere?"
 
 #. description
 #: ../jobs/keys.txt.in:14
@@ -863,6 +1156,12 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the volume change following to your key presses?"
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će provjeriti taster za jačinu zvuka\n"
+"KORACI:\n"
+"    1. Pritisnite tastere za jačinu zvuka na tastaturi\n"
+"PROVJERA:\n"
+"    Da li je promjena jačine zvuka pratila pritiske na tastere?"
 
 #. description
 #: ../jobs/keys.txt.in:25
@@ -874,6 +1173,12 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the volume mute following your key presses?"
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će provjeriti taster za utišanje zvuka\n"
+"KORACI:\n"
+"    1. Pritisnite tastere za utišanje zvuka na tastaturi\n"
+"PROVJERA:\n"
+"    Da li je utišanje pratilo pritiske na tastere?"
 
 #. description
 #: ../jobs/keys.txt.in:37
@@ -886,6 +1191,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the system go to sleep after pressing the sleep key?"
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će provjeriti taster za spavanje\n"
+"KORACI:\n"
+"    1. Pritisnite taster za spavanje na tastaturi\n"
+"    2. Priobudite sistem dugmetom za napajanje\n"
+"PROVJERA:\n"
+"    Da li je sistem se uspavao nakon pritiska na taster za spavanje?"
 
 #. description
 #: ../jobs/keys.txt.in:49
@@ -897,6 +1209,12 @@ msgid ""
 "VERIFICATION:\n"
 "    Did a notification appear showing the battery status?"
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će provjeriti taster za baterijskih informacija\n"
+"KORACI:\n"
+"    1. Pritisnite tastere za baterijske informacije na tastaturi\n"
+"PROVJERA:\n"
+"    Da li se pojavila informacija o statusu baterije?"
 
 #. description
 #: ../jobs/keys.txt.in:60
@@ -909,6 +1227,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the wireless go off on the first press and on again on the second?"
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će provjeriti taster za bežičnu mrežu\n"
+"KORACI:\n"
+"    1. Pritisnite tastere za bežičnu mrežu na tastaturi\n"
+"    2. Pritisnite isti taster ponovo\n"
+"PROVJERA:\n"
+"    Da li je se bežična mreža deaktivirala pa ponovo aktivirala?"
 
 #. description
 #: ../jobs/keys.txt.in:74
@@ -922,6 +1247,16 @@ msgid ""
 "VERIFICATION:\n"
 "    Do the keys work as expected?"
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će testirati medijske tastere na tastaturi\n"
+"KORACI:\n"
+"    1. Kliknite test da biste otvorili prozor na kojem se testiraju medijski "
+"kontrolni tasteri.\n"
+"    2. Ako svi tasteri rade, test će biti označen kao prošao.\n"
+"    3. Ako vaš računar nema medijske kontrolne tastere, preskočite ovaj "
+"test.\n"
+"VERIFIKACIJA:\n"
+"    Da li tasteri rade kao što se očekuje?"
 
 #. description
 #: ../jobs/local.txt.in:3
@@ -931,7 +1266,7 @@ msgstr "Audio testovi"
 #. description
 #: ../jobs/local.txt.in:10
 msgid "Autotest Suite tests"
-msgstr ""
+msgstr "Autotest Suite testovi"
 
 #. description
 #: ../jobs/local.txt.in:17
@@ -1011,12 +1346,12 @@ msgstr "Testovi vrućih tastera"
 #. description
 #: ../jobs/local.txt.in:122
 msgid "Linux Test Project tests"
-msgstr ""
+msgstr "Testovi iz projekta Linux testova"
 
 #. description
 #: ../jobs/local.txt.in:129
 msgid "Mago Automated Desktop Testing"
-msgstr ""
+msgstr "Mago automatsko desktop testiranje"
 
 #. description
 #: ../jobs/local.txt.in:136
@@ -1051,7 +1386,7 @@ msgstr "Testovi optičkih diskova"
 #. description
 #: ../jobs/local.txt.in:178
 msgid "Panel Clock Verification tests"
-msgstr ""
+msgstr "Testovi verifikacije sata na panelu"
 
 #. description
 #: ../jobs/local.txt.in:185
@@ -1066,7 +1401,7 @@ msgstr "Periferalni testovi"
 #. description
 #: ../jobs/local.txt.in:199
 msgid "Phoronix Test Suite tests"
-msgstr ""
+msgstr "Testovi Phoronix testirajućeg paketa"
 
 #. description
 #: ../jobs/local.txt.in:206
@@ -1076,12 +1411,12 @@ msgstr "Testovi upravljanja napajanjem"
 #. description
 #: ../jobs/local.txt.in:213
 msgid "QA Regression tests"
-msgstr ""
+msgstr "QA regresijski testovi"
 
 #. description
 #: ../jobs/local.txt.in:220
 msgid "Server Services checks"
-msgstr ""
+msgstr "Provjera serverskih usluga"
 
 #. description
 #: ../jobs/local.txt.in:227
@@ -1089,27 +1424,27 @@ msgid "Suspend tests"
 msgstr "Test suspenzije"
 
 #. description
-#: ../jobs/local.txt.in:234
+#: ../jobs/local.txt.in:241
 msgid "Unity tests"
 msgstr "Tesyt za Unity"
 
 #. description
-#: ../jobs/local.txt.in:241
+#: ../jobs/local.txt.in:248
 msgid "USB tests"
 msgstr "USB testovi"
 
 #. description
-#: ../jobs/local.txt.in:248
+#: ../jobs/local.txt.in:255
 msgid "User Applications"
 msgstr "Korisničke aplikacije"
 
 #. description
-#: ../jobs/local.txt.in:255
+#: ../jobs/local.txt.in:262
 msgid "Wireless networking tests"
 msgstr "Testovi bežične mreže"
 
 #. description
-#: ../jobs/local.txt.in:262
+#: ../jobs/local.txt.in:269
 msgid "Stress tests"
 msgstr "Testovi opterećenja"
 
@@ -1119,6 +1454,8 @@ msgid ""
 "This test installs and runs Linux Test Project syscalls test. This can be "
 "destructive, thus this test is blacklisted by default."
 msgstr ""
+"Ovaj test instalira i pokreće test sistemskih poziva. Ovo može biti "
+"destruktivno, pa ovaj test je podrazumevano na crnoj listi."
 
 #. description
 #: ../jobs/mago.txt.in:8
@@ -1126,6 +1463,9 @@ msgid ""
 "PURPOSE:\n"
 "   This test installs and runs the Mago Automated Desktop Testing suite."
 msgstr ""
+"NAMJENA:\n"
+"   Ovaj test instalira i pokreće paket za Mago Automatizovano Desktop "
+"Testiranje"
 
 #. description
 #: ../jobs/mediacard.txt.in:4
@@ -1141,6 +1481,16 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će proveriti da sistemi čitač kartica može\n"
+"    detektovati ubacivanje MultiMedia Card (MMC) medija\n"
+"KORACI:\n"
+"    1. Kliknite na dugme \"Test\" i ubacite MMC karticu u čitač.\n"
+"       (Napomena:. Ovaj test će isteći nakon10 sekundi)\n"
+"    2. Ne isključite uređaj posle testa.\n"
+"VERIFIKACIJA:\n"
+"    Verifikacija ovog testa je automatizovana. Ne mijenjajte\n"
+"    automatski izabran rezultat."
 
 #. description
 #: ../jobs/mediacard.txt.in:20
@@ -1148,6 +1498,8 @@ msgid ""
 "This test is automated and executes after the mediacard/mmc-insert test is "
 "run. It tests reading and writing to the MMC card."
 msgstr ""
+"Ovaj test je automatizovan i sprovodi posle mediacard / MMC-Insert testa. On "
+"testira čitanje i pisanje na MMC kartici."
 
 #. description
 #: ../jobs/mediacard.txt.in:28
@@ -1162,6 +1514,15 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će provjeriti da sistem pravilno detektuje\n"
+"    uklanjanje MMC kartice iz sistemskog čitača kartica.\n"
+"KORACI:\n"
+"    1. Kliknite na dugme \"Test\" i uklonite MMC karticu iz čitača.\n"
+"       (Napomena:. Ovaj test će isteći nakon 10 sekundi)\n"
+"VERIFIKACIJA:\n"
+"    Verifikacija ovog testa je automatizovana. Ne mijenjajte\n"
+"    automatski izabran rezultat."
 
 #. description
 #: ../jobs/mediacard.txt.in:43
@@ -1177,6 +1538,16 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će provjeriti da li sistemski čitač kartica može\n"
+"    detektovati ubacivanje MMC kartice nakon što je sistem suspendovan\n"
+"KORACI:\n"
+"    1. Kliknite na dugme \"Test\" i ubacite MMC karticu u čitač.\n"
+"       (Napomena:. Ovaj test će isteći nakon 10 sekundi)\n"
+"    2. Ne isključujte uređaj nakon testa.\n"
+"VERIFIKACIJA:\n"
+"    Verifikacija ovog testa je automatizovana. Ne mijenjajte\n"
+"    automatski izabran rezultat."
 
 #. description
 #: ../jobs/mediacard.txt.in:59
@@ -1185,6 +1556,9 @@ msgid ""
 "suspend test is run. It tests reading and writing to the MMC card after the "
 "system has been suspended."
 msgstr ""
+"Ovaj test je automatizovan i sprovodi se nakon mediacard / MMC-ubaci-nakon-"
+"suspenzije. On testira čitanje i pisanje na MMC karticu nakon što je sistem "
+"suspendovan."
 
 #. description
 #: ../jobs/mediacard.txt.in:67
@@ -1200,6 +1574,16 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će proveriti da sistem detektuje pravilno uklanjanje\n"
+"    MMC kartice iz sistemskog čitača kartica nakon što je sistem "
+"suspendovan.\n"
+"KORACI:\n"
+"    1. Kliknite na dugme \"Test\" i uklonite MMC karticu iz čitača.\n"
+"       (Napomena:. Ovaj test će isteći nakon 10 sekundi)\n"
+"VERIFIKACIJA:\n"
+"    Verifikacija ovog testa je automatizovana. Ne menjajte\n"
+"    automatski izabran rezultat."
 
 #. description
 #: ../jobs/mediacard.txt.in:81
@@ -1215,6 +1599,16 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će proveriti da sistemsk čitač kartica može\n"
+"    detektovati ubacivanje Secure Digital (SD) medija karticu\n"
+"KORACI:\n"
+"    1. Kliknite na dugme \"Test\" i ubacite SD karticu u čitač.\n"
+"       (Napomena:. Ovaj test će isteći nakon10 sekundi)\n"
+"    2. Ne isključite uređaj posle testa.\n"
+"VERIFIKACIJA:\n"
+"    Verifikacija ovog testa je automatizovana. Ne mijenjajte\n"
+"    automatski izabran rezultat."
 
 #. description
 #: ../jobs/mediacard.txt.in:97
@@ -1222,6 +1616,8 @@ msgid ""
 "This test is automated and executes after the mediacard/sd-insert test is "
 "run. It tests reading and writing to the SD card."
 msgstr ""
+"Ovaj test je automatski i izvršava se nakon izvršenja testa mediacard/sd-"
+"insert. On testira pisanje i čitanje prema  SD kartici."
 
 #. description
 #: ../jobs/mediacard.txt.in:105
@@ -1236,6 +1632,15 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će provjeriti da sistem pravilno detektuje\n"
+"    uklanjanje SD kartice iz sistemskog čitača kartica.\n"
+"KORACI:\n"
+"    1. Kliknite na dugme \"Test\" i uklonite SD karticu iz čitača.\n"
+"       (Napomena:. Ovaj test će isteći nakon 10 sekundi)\n"
+"VERIFIKACIJA:\n"
+"    Verifikacija ovog testa je automatizovana. Ne mijenjajte\n"
+"    automatski izabran rezultat."
 
 #. description
 #: ../jobs/mediacard.txt.in:120
@@ -1251,6 +1656,16 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će provjeriti da li sistemski čitač kartica može\n"
+"    detektovati ubacivanje SD kartice nakon što je sistem suspendovan\n"
+"KORACI:\n"
+"    1. Kliknite na dugme \"Test\" i ubacite SD karticu u čitač.\n"
+"       (Napomena:. Ovaj test će isteći nakon 10 sekundi)\n"
+"    2. Ne isključujte uređaj nakon testa.\n"
+"VERIFIKACIJA:\n"
+"    Verifikacija ovog testa je automatizovana. Ne mijenjajte\n"
+"    automatski izabran rezultat."
 
 #. description
 #: ../jobs/mediacard.txt.in:136
@@ -1259,6 +1674,9 @@ msgid ""
 "suspend test is run. It tests reading and writing to the SD card after the "
 "system has been suspended."
 msgstr ""
+"Ovaj test je automatski i izvršava se nakon izvršenja testa /sd-insert-after-"
+"suspend test is run.On testira pisanje i čitanje prema  SD kartici nakon što "
+"je sistem bio suspendovan."
 
 #. description
 #: ../jobs/mediacard.txt.in:144
@@ -1274,6 +1692,16 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će proveriti da sistem detektuje pravilno uklanjanje\n"
+"    SD kartice iz sistemskog čitača kartica nakon što je sistem "
+"suspendovan.\n"
+"KORACI:\n"
+"    1. Kliknite na dugme \"Test\" i uklonite SD karticu iz čitača.\n"
+"       (Napomena:. Ovaj test će isteći nakon 10 sekundi)\n"
+"VERIFIKACIJA:\n"
+"    Verifikacija ovog testa je automatizovana. Ne menjajte\n"
+"    automatski izabran rezultat."
 
 #. description
 #: ../jobs/mediacard.txt.in:158
@@ -1290,6 +1718,17 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će provjeriti da sistemski čitač kartica može da\n"
+"    detektuju ubacivanje Secure Digital High-Capaciti (SDHC) medijske "
+"kartice\n"
+"KORACI:\n"
+"    1. Kliknite na dugme \"Test\" i ubacite neku SDHC karticu u čitač.\n"
+"       (Napomena:. Ovaj test će isteći nakone 10 sekundi)\n"
+"    2. Ne isključujte uređaj nakon testa.\n"
+"VERIFIKACIJA:\n"
+"    Verifikacija ovog testa je automatizovan. Ne mijenjajte\n"
+"    automatski izabran rezultat."
 
 #. description
 #: ../jobs/mediacard.txt.in:174
@@ -1297,6 +1736,8 @@ msgid ""
 "This test is automated and executes after the mediacard/sdhc-insert test is "
 "run. It tests reading and writing to the SDHC card."
 msgstr ""
+"Ovaj test je automatski i izvršava se nakon izvršenja testa mediacard/sdhc-"
+"insert. On testira pisanje i čitanje prema  SDHC kartici."
 
 #. description
 #: ../jobs/mediacard.txt.in:182
@@ -1311,6 +1752,15 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će proveriti da sistem pravilno detektuje\n"
+"    uklanjanje SDHC kartice iz sistemskog čitača kartica.\n"
+"KORACI:\n"
+"    1. Kliknite na dugme \"Test\" i uklonite SDHC karticu iz čitača.\n"
+"       (Napomena:. Ovaj test će isteći nakon 10 sekundi)\n"
+"VERIFIKACIJA:\n"
+"    Verifikacija ovog testa je automatizovana. Ne mijenjajte\n"
+"    automatski izabran rezultat."
 
 #. description
 #: ../jobs/mediacard.txt.in:197
@@ -1327,6 +1777,17 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će proveriti da sistemski čitač kartica može\n"
+"    detektuju umetanje SDHC memorijske kartice nakon što je sistem "
+"suspendovan\n"
+"KORACI:\n"
+"    1. Kliknite na dugme \"Test\" i ubacite neku SDHC karticu u čitač.\n"
+"       (Napomena:. Ovaj test će isteći nakon 10 sekundi)\n"
+"    2. Ne isključujte uređaj nakon testa.\n"
+"VERIFIKACIJA:\n"
+"    Verifikacija ovog testa je automatizovan. Ne mijenjajte\n"
+"    automatski izabran rezultat."
 
 #. description
 #: ../jobs/mediacard.txt.in:213
@@ -1335,6 +1796,9 @@ msgid ""
 "suspend test is run. It tests reading and writing to the SDHC card after the "
 "system has been suspended."
 msgstr ""
+"Ovaj test je automatski i izvršava se nakon izvršenja testa /sdhc-insert-"
+"after-suspend test is run.On testira pisanje i čitanje prema  SDHC kartici "
+"nakon što je sistem bio suspendovan."
 
 #. description
 #: ../jobs/mediacard.txt.in:221
@@ -1350,6 +1814,16 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će proveriti da sistem detektuje pravilno uklanjanje\n"
+"    SDHC kartice iz sistemskog čitača kartica nakon što je sistem "
+"suspendovan.\n"
+"KORACI:\n"
+"    1. Kliknite na dugme \"Test\" i uklonite SDHC karticu iz čitača.\n"
+"       (Napomena:. Ovaj test će isteći nakon 10 sekundi)\n"
+"VERIFIKACIJA:\n"
+"    Verifikacija ovog testa je automatizovana. Ne menjajte\n"
+"    automatski izabran rezultat."
 
 #. description
 #: ../jobs/mediacard.txt.in:235
@@ -1365,6 +1839,16 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će provjeriti da sistemski čitač kartica može da\n"
+"    detektuje ubacivanje Compact Flash (CF) medijske kartice\n"
+"KORACI:\n"
+"    1. Kliknite na dugme \"Test\" i ubacite neku CF karticu u čitač.\n"
+"       (Napomena:. Ovaj test će isteći nakone 10 sekundi)\n"
+"    2. Ne isključujte uređaj nakon testa.\n"
+"VERIFIKACIJA:\n"
+"    Verifikacija ovog testa je automatizovan. Ne mijenjajte\n"
+"    automatski izabran rezultat."
 
 #. description
 #: ../jobs/mediacard.txt.in:251
@@ -1372,6 +1856,8 @@ msgid ""
 "This test is automated and executes after the mediacard/cf-insert test is "
 "run. It tests reading and writing to the CF card."
 msgstr ""
+"Ovaj test je automatski i izvršava se nakon izvršenja testa mediacard/cf-"
+"insert. On testira pisanje i čitanje prema CF kartici."
 
 #. description
 #: ../jobs/mediacard.txt.in:259
@@ -1386,6 +1872,15 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će proveriti da sistem pravilno detektuje\n"
+"    uklanjanje CF kartice iz sistemskog čitača kartica.\n"
+"KORACI:\n"
+"    1. Kliknite na dugme \"Test\" i uklonite CF karticu iz čitača.\n"
+"       (Napomena:. Ovaj test će isteći nakon 10 sekundi)\n"
+"VERIFIKACIJA:\n"
+"    Verifikacija ovog testa je automatizovana. Ne mijenjajte\n"
+"    automatski izabran rezultat."
 
 #. description
 #: ../jobs/mediacard.txt.in:274
@@ -1401,6 +1896,17 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će proveriti da sistemski čitač kartica može\n"
+"    detektuju umetanje CF memorijske kartice nakon što je sistem "
+"suspendovan\n"
+"KORACI:\n"
+"    1. Kliknite na dugme \"Test\" i ubacite neku CF karticu u čitač.\n"
+"       (Napomena:. Ovaj test će isteći nakon 10 sekundi)\n"
+"    2. Ne isključujte uređaj nakon testa.\n"
+"VERIFIKACIJA:\n"
+"    Verifikacija ovog testa je automatizovan. Ne mijenjajte\n"
+"    automatski izabran rezultat."
 
 #. description
 #: ../jobs/mediacard.txt.in:290
@@ -1409,6 +1915,9 @@ msgid ""
 "suspend test is run. It tests reading and writing to the CF card after the "
 "system has been suspended."
 msgstr ""
+"Ovaj test je automatski i izvršava se nakon izvršenja testa /cf-insert-after-"
+"suspend test is run.On testira pisanje i čitanje prema  CF kartici nakon što "
+"je sistem bio suspendovan."
 
 #. description
 #: ../jobs/mediacard.txt.in:298
@@ -1424,6 +1933,16 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će proveriti da sistem detektuje pravilno uklanjanje\n"
+"    CF kartice iz sistemskog čitača kartica nakon što je sistem "
+"suspendovan.\n"
+"KORACI:\n"
+"    1. Kliknite na dugme \"Test\" i uklonite CF karticu iz čitača.\n"
+"       (Napomena:. Ovaj test će isteći nakon 10 sekundi)\n"
+"VERIFIKACIJA:\n"
+"    Verifikacija ovog testa je automatizovana. Ne menjajte\n"
+"    automatski izabran rezultat."
 
 #. description
 #: ../jobs/memory.txt.in:5
@@ -1431,6 +1950,8 @@ msgid ""
 "This test checks the amount of memory which is reporting in meminfo against "
 "the size of the memory modules detected by DMI."
 msgstr ""
+"Ovaj test provjerava količinu memorije koja je izvještena u meminfo prema "
+"veličini memorijskih modula otkrivenih s DMI."
 
 #. description
 #: ../jobs/memory.txt.in:14
@@ -1450,11 +1971,20 @@ msgid ""
 "    Did your screen change temporarily to a text console and then switch "
 "back to your current session?"
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će provjeriti da sistem prebacite na virtuelni terminal i "
+"nazad na X\n"
+"KORACI:\n"
+"    1. Kliknite na \"test\" da biste se prebacili na drugi virtuelni "
+"terminal i onda nazad u X\n"
+"VERIFIKACIJA:\n"
+"    Da li će se vaš ekran privremeno promijeniti u tekstualnu konzolu, a "
+"zatim se prebacite nazad na vašoj trenutnoj sesiji?"
 
 #. description
 #: ../jobs/miscellanea.txt.in:21
 msgid "Run Firmware Test Suite (fwts) automated tests."
-msgstr ""
+msgstr "Pokreni Firmware Test Suite (fvts) automatizovane testove."
 
 #. description
 #: ../jobs/miscellanea.txt.in:31
@@ -1471,6 +2001,8 @@ msgid ""
 "   Determine if we need to run tests specific to portable computers that may "
 "not apply to desktops."
 msgstr ""
+"   Utvrdite da li nam je potrebno da pokrenete testove specifične prenosnim "
+"računarima koji ne moraju odnositi na desktop."
 
 #. description
 #: ../jobs/miscellanea.txt.in:45
@@ -1479,6 +2011,8 @@ msgid ""
 "contained within if it does, or echoes the status of the directory (doesn't "
 "exist/is empty)"
 msgstr ""
+"Test da /var/crash direktorij ne sadrži ništa. Lista datoteke sadržane "
+"unutra ako imaili prikazuje  status direktorija (ne postoji/prazan)"
 
 #. description
 #: ../jobs/miscellanea.txt.in:53
@@ -1486,6 +2020,8 @@ msgid ""
 "Test to check that virtualization is supported and the test system has at "
 "least a minimal amount of RAM to function as an OpenStack Compute Node"
 msgstr ""
+"Testirajte da provjerite da li se podržava virtuelizacija i test sistem ima "
+"bar minimalnu količinu RAM-a da funkcioniše kao OpenStack Compute Node"
 
 #. description
 #: ../jobs/monitor.txt.in:4
@@ -1499,6 +2035,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the desktop displayed correctly on both screens?"
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će proveriti vaš VGA port. Preskoči ako vaš sistem nema VGA "
+"port.\n"
+"KORACI:\n"
+"    1. Povežite ekran (ako već nije priključen) na VGA port na vašem "
+"sistemu\n"
+"VERIFIKACIJA:\n"
+"    Desktop je ispravno prikazan na oba ekrana?"
 
 #. description
 #: ../jobs/monitor.txt.in:15
@@ -1512,6 +2056,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the desktop displayed correctly on both screens?"
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će provjeriti vaš DVI port. Preskoči ako vaš sistem nema DVI "
+"port\n"
+"KORACI:\n"
+"    1. Povežite ekran (ako već nije priključen) na DVI port na vašem "
+"sistemu\n"
+"VERIFIKACIJA:\n"
+"    Desktop je ispravno prikazan na oba ekrana?"
 
 #. description
 #: ../jobs/monitor.txt.in:26
@@ -1525,6 +2077,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the desktop displayed correctly on both screens?"
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će provjeriti vaše DisplayPort priključak. Preskoči ako vaš "
+"sistem nema DisplayPort priključak\n"
+"KORACI:\n"
+"    1. Povežite ekran (ako već nije priključen) na DisplayPort priključak na "
+"vašem sistemu\n"
+"VERIFIKACIJA:\n"
+"    Desktop je ispravno prikazan na oba ekrana?"
 
 #. description
 #: ../jobs/monitor.txt.in:37
@@ -1538,6 +2098,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the desktop displayed correctly on both screens?"
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će proveriti HDMI port. Preskoči ako vaš sistem nema HDMI "
+"port\n"
+"KORACI:\n"
+"    1. Povežite ekran (ako već nije priključen) na HDMI port na vašem "
+"sistemu\n"
+"VERIFIKACIJA:\n"
+"    Desktop je ispravno prikazan na oba ekrana?"
 
 #. description
 #: ../jobs/monitor.txt.in:48
@@ -1551,6 +2119,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the desktop displayed correctly on both screens?"
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će proveriti vaše S-Video port. Preskoči ako vaš sistem nema S-"
+"Video port\n"
+"KORACI:\n"
+"    1. Povežite ekran (ako već nije priključen) na S-Video port na vašem "
+"sistemu\n"
+"VERIFIKACIJA:\n"
+"    Desktop je ispravno prikazane na oba ekrana?"
 
 #. description
 #: ../jobs/monitor.txt.in:59
@@ -1564,6 +2140,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the desktop displayed correctly on both screens?"
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će proveriti vaše RCA port. Preskoči ako vaš sistem nema RCA "
+"priključak\n"
+"KORACI:\n"
+"    1. Povežite ekran (ako već nije priključen) na RCA port na vašem "
+"sistemu\n"
+"VERIFIKACIJA:\n"
+"    Desktop je ispravno prikazan na oba ekrana?"
 
 #. description
 #: ../jobs/monitor.txt.in:70
@@ -1576,11 +2160,19 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the the monitor go blank and turn on again?"
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će provjeriti svoje mogućnosti uštede energije monitora\n"
+"KORACI:\n"
+"    1. Kliknite na \"test\" da pokušate mogućnosti uštede energije u vašem "
+"monitoru\n"
+"    2. Pritisnite bilo koji taster ili pomjerite miša da se oporavi\n"
+"VERIFIKACIJA:\n"
+"    Da li je monitor se ugasio i uključio ponovo?"
 
 #. description
 #: ../jobs/networking.txt.in:5
 msgid "Test to detect the available network controllers"
-msgstr ""
+msgstr "Test za detekciju dostupnih mrežnih kontrolera"
 
 #. description
 #: ../jobs/networking.txt.in:11
@@ -1598,6 +2190,8 @@ msgid ""
 "This is an automated test to gather some info on the current state of your "
 "network devices. If no devices are found, the test will exit with an error."
 msgstr ""
+"Ovo je automatizovani test da prikupi neke informacije o trenutnom stanju "
+"vaših mrežnih uređaja. Ako nema uređaji nađenih, test će izaći sa greškom."
 
 #. description
 #: ../jobs/networking.txt.in:46
@@ -1612,6 +2206,15 @@ msgid ""
 "VERIFICATION:\n"
 "    Did a notification show and was the connection correctly established?"
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će provjeriti vašu žičanu vezu\n"
+"KORACI:\n"
+"    1. Kliknite na mrežnu ikonu u gornjem panelu\n"
+"    2. Izaberite mrežu ispod sekcije \"Ožičena mreža\n"
+"    3. Kliknite na \"test\" da proverite da li je moguće uspostaviti vezu "
+"HTTP\n"
+"VERIFIKACIJA:\n"
+"    Da li se obaveštenja prikazala i da li je veza uspostavljena ispravno?"
 
 #. description
 #: ../jobs/networking.txt.in:59
@@ -1630,6 +2233,20 @@ msgid ""
 "VERIFICATION:\n"
 "    Did a notification show and was the connection correctly established?"
 msgstr ""
+"NAMEJNA:\n"
+"    Ovaj test će proveriti da li ADSL modem može biti konfigurisan i "
+"povezan.\n"
+"KORACI:\n"
+"    1. Povežite telefonsku liniju na računaru\n"
+"    2. Kliknite na mrežnu ikonu na gornjem panelu.\n"
+"    3. Odaberite \"Uredi konekcije\"\n"
+"    4. Izaberite karticu \"DSL\"\n"
+"    5.. Kliknite na \"Dodaj\" dugme\n"
+"    6. Konfigurišite pravilno parametre veze\n"
+"    7. Kliknite na \"test\" da provjerite da li je moguće da se uspostavi "
+"HTTP veza\n"
+"VERIFIKACIJA:\n"
+"    Da li se obaveštenja prikazala i da li je veza uspostavljena ispravno?"
 
 #. description
 #: ../jobs/networking.txt.in:76
@@ -1674,6 +2291,8 @@ msgstr ""
 msgid ""
 "Automated test to walk multiple network cards and test each one in sequence."
 msgstr ""
+"Automatizovano testiranje da prođe više mrežnih kartica i testira svaku u "
+"nizu."
 
 #. description
 #: ../jobs/networking.txt.in:128
@@ -1683,7 +2302,7 @@ msgstr "Test za mjerenje mrežne propusnosti"
 #. description
 #: ../jobs/optical.txt.in:8
 msgid "Test to detect the optical drives"
-msgstr ""
+msgstr "Test za detekciju optičkih diskova"
 
 #. description
 #: ../jobs/optical.txt.in:16
@@ -1704,7 +2323,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/optical.txt.in:43
+#: ../jobs/optical.txt.in:34
 msgid ""
 "PURPOSE:\n"
 "    This test will check your system's CD writing capabilities. This test "
@@ -1722,7 +2341,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/optical.txt.in:57
+#: ../jobs/optical.txt.in:46
 msgid ""
 "PURPOSE:\n"
 "    This test will check your CD audio playback capabilities\n"
@@ -1739,9 +2358,23 @@ msgid ""
 "VERIFICATION:\n"
 "    Did all the steps work?"
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će proveriti sposobnosti za reprodukciju audio CD\n"
+"KORACI:\n"
+"    1. Ubacite audio CD u vaš optički drajv\n"
+"    2. Kada budete upitani, pokrenite muzički plejer\n"
+"    3. Pronađite CD na displeju muzičkog plejera\n"
+"    4. Izaberite CD u muzički plejer\n"
+"    5. Kliknite na dugme Reprodukuj da slušate muziku na CD-u\n"
+"    6. Zaustavite reprodukciju nakon nekog vremena\n"
+"    7. Desni klik na CD ikonu i izaberite opciju \"Izbaci Disk\"\n"
+"    8. CD bi trebalo da bude izbačen\n"
+"    9. Zatvorite izvođača\n"
+"VERIFIKACIJA:\n"
+"    Da li svi koraci rade?"
 
 #. description
-#: ../jobs/optical.txt.in:80
+#: ../jobs/optical.txt.in:71
 msgid ""
 "PURPOSE:\n"
 "    This test will check your system's DVD writing capabilities. This test "
@@ -1759,7 +2392,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/optical.txt.in:94
+#: ../jobs/optical.txt.in:82
 msgid ""
 "PURPOSE:\n"
 "    This test will check your DVD movie playback capabilities. Note that "
@@ -1776,9 +2409,24 @@ msgid ""
 "VERIFICATION:\n"
 "    Did all the steps work?"
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će proveriti svoje mogućnosti reprodukcije DVD filmova. Imajte "
+"na umu da se instalacija ne-slobodnog softvera (kodeci, plaier, itd) može "
+"zahtijevati da prije obavljanja ovog testa.\n"
+"KORACI:\n"
+"    1. Ubacite DVD koji sadrži bilo koji film na svoj optički disk\n"
+"    2. Otvorite Dash (kliknite na Ubuntu krug prijatelja na dugmetu "
+"pokretača)\n"
+"    3. Kliknite na \"Mediajlne aplikacije\", a zatim kliknite na \"Izvođač "
+"medija\"\n"
+"    4. Pustite film koristeći Izvođač medija, zaustavite film pošto je "
+"utvrdilo da se izveo\n"
+"    6. Izvadite DVD\n"
+"VERIFIKACIJA:\n"
+"    Da li su svi koraci radili?"
 
 #. description
-#: ../jobs/optical.txt.in:112
+#: ../jobs/optical.txt.in:100
 msgid ""
 "PURPOSE:\n"
 "    This test will check your DVD  playback capabilities\n"
@@ -1788,6 +2436,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the file play?"
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će provjeriti vaše sposobnosti za DVD reprodukciju\n"
+"KORACI:\n"
+"    1. Ubacite DVD koji sadrži bilo koji film na svoj optički disk\n"
+"    2. Kliknite na \"test\" da izvedete u DVD Totem\n"
+"VERIFIKACIJA:\n"
+"    Da li datoteke igru?"
 
 #. description
 #: ../jobs/panel_clock_test.txt.in:4
@@ -1799,6 +2454,11 @@ msgid ""
 "   Is the clock in the upper right corner of your desktop displaying the "
 "correct date and time for your timezone?"
 msgstr ""
+"NAMJENA:\n"
+"   Ovaj test će provjeriti da stoni sat prikazuje tačan datum i vreme\n"
+"VERIFIKACIJA:\n"
+"   Da li sat u gornjem desnom uglu vašeg desktopa prikazuje tačan datum i "
+"vrijeme za vremensku zonu?"
 
 #. description
 #: ../jobs/panel_clock_test.txt.in:16
@@ -1817,6 +2477,20 @@ msgid ""
 "   Is your system clock displaying the correct date and time for your "
 "timezone?"
 msgstr ""
+"NAMJENA:\n"
+"   Ovaj test će proveriti da li se stoni časovnik sinhronizuje sa sistemskim "
+"časovnikom.\n"
+"KORACI:\n"
+"   1. Kliknite na \"test\" dugme i provjerite da li se časovnik pomijera "
+"unaprijed za 1 sat.\n"
+"   Napomena: To može da potraje minut ili tako za sat do osvežavanja\n"
+"   2. Desni klik na sat, a zatim kliknite na \"Podešavanje vremena i datuma "
+"...\"\n"
+"   3. Uverite se da vaša aplikacija za mjerenje vremena podešena na ručno.\n"
+"   4. Promijenite vreme 1 sat unazad\n"
+"   5.. Zatvorite prozor i restartujte\n"
+"VERIFIKACIJA:\n"
+"   Da li vaš sistem sat prikazuje tačan datum i vrijeme za vremensku zonu?"
 
 #. description
 #: ../jobs/panel_reboot.txt.in:4
@@ -1833,6 +2507,18 @@ msgid ""
 "VERIFICATION:\n"
 "   Did your system restart and bring up the GUI login cleanly?"
 msgstr ""
+"NAMJENA:\n"
+"   Ovaj test će proveriti da li možete da restartujete sistem iz desktop "
+"menija\n"
+"KORACI:\n"
+"   1. Kliknite na ikonu točka u gornjem desnom uglu radne površine i "
+"kliknite na \"Gašenje\"\n"
+"   2. Kliknite na dugme \"Ponovo pokreni\" dugme na levoj strani dijaloga za "
+"gašenje\n"
+"   3. Nakon ponovne prijave, ponovo pokrenite sistem testiranja, a trebalo "
+"bi da se ovde nastavi\n"
+"VERIFIKACIJA:\n"
+"   Da li vaš sistem ponovo pokrenutio i dovesti do čiste GUI prijave?"
 
 #. description
 #: ../jobs/pcmcia-pcix.txt.in:3
@@ -1845,6 +2531,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the device correctly detected?"
 msgstr ""
+"NAMJENA:\n"
+"    Ovo će potvrditi da PCMCIA ili ExpressCard slot detektuje umetnute "
+"uređaje\n"
+"KORACI:\n"
+"    1. Uključite PCMCIA ili ExpressCard uređaj u računar\n"
+"VERIFIKACIJA:\n"
+"    Da li se uređaj pravilno detektuje?"
 
 #. description
 #: ../jobs/peripheral.txt.in:3
@@ -1862,6 +2555,18 @@ msgid ""
 "VERIFICATION:\n"
 "   Were you able to print a test page to the network printer?"
 msgstr ""
+"NAMJENA:\n"
+"   Ovaj test će proveriti da li je mrežni štampač upotrebljiv\n"
+"KORACI:\n"
+"   1. Postarajte se da je štampač dostupan u vašoj mreži\n"
+"   2. Kliknite na zupčanika u gornjem desnom uglu i onda kliknite na "
+"Štampači\n"
+"   3. Ako štampač nije već naveden, kliknite na Dodaj\n"
+"   4. Štampač bi trebalo da bude otkriven i odgovarajuće vrednosti "
+"konfiguracije treba da se prikažu\n"
+"   5.. Odštampajte probnu stranicu\n"
+"VERIFIKACIJA:\n"
+"   Da li ste uspjeli da odštampate probnu stranicu na mrežni štampač?"
 
 #. description
 #: ../jobs/peripheral.txt.in:18
@@ -1882,6 +2587,21 @@ msgid ""
 "VERIFICATION:\n"
 "   Was the connection correctly established?"
 msgstr ""
+"NAMJENA:\n"
+"   Ovaj test će proveriti da USB DLS ili Mobilni širokopojasni modem radi\n"
+"KORACI:\n"
+"   1. Povežite USB kabl na računar\n"
+"   2. Desni klik na Network ikonu u panelu\n"
+"   3. Izaberite \"Uredi konekcije '\n"
+"   4. Izaberite '\"(DSL modem za ADSL) ili\" Mobilni širokopojasni \"(za 3G "
+"modem) karticu\n"
+"   5.. Kliknite na 'Dodaj' dugme \n"
+"   6. Konfigurišite pravilno parametre veze\n"
+"   7. Obavijesti OSD da potvrdi da se uspostavi veza\n"
+"   8. Izaberite Test biste provjerili da li je moguće da se uspostavi HTTP "
+"veza\n"
+"VERIFIKACIJA:\n"
+"   Je li veza uspostavljena ispravno?"
 
 #. description
 #: ../jobs/phoronix.txt.in:9
@@ -1890,6 +2610,9 @@ msgid ""
 "   This test will download and install the Phoronix Test Suite and run some "
 "selected benchmarking tests."
 msgstr ""
+"NAMJENA:\n"
+"   Ovaj test će preuzeti i instalirati Phoronix Test Suite i pokrenuti neke "
+"izabrane testove  mjerenja."
 
 #. description
 #: ../jobs/power-management.txt.in:3
@@ -1903,6 +2626,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the system shutdown and rebooted correctly?"
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će proveriti ciklus gašenja podizanja mašine\n"
+"KORACI:\n"
+"    1. Shutdown vaša mašina\n"
+"    2. Podignite vašu mašinu\n"
+"    3. Ponovite korake 1 i 2. Najmanje 5 puta\n"
+"VERIFIKACIJA:\n"
+"    Da li se sistem deaktivirao i restartovao ispravno?"
 
 #. description
 #: ../jobs/power-management.txt.in:15
@@ -1914,6 +2645,12 @@ msgid ""
 "VERIFICATION:\n"
 "   Does closing your laptop lid cause your system to suspend?"
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će provjeriti senzore poklopca\n"
+"KORACI:\n"
+"    1. Zatvorite poklopac laptop\n"
+"VERIFIKACIJA:\n"
+"   Da li vaš laptop zatvaranje poklopca izazvati vaš sistem da suspenduje?"
 
 #. description
 #: ../jobs/power-management.txt.in:32
@@ -1926,6 +2663,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the screen turn off while the lid was closed?"
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će Provjeri senzore poklopca\n"
+"KORACI:\n"
+"    1. Kliknite na dugme \"Test\"\n"
+"    2. Zatvorite i otvorite poklopac\n"
+"VERIFIKACIJA:\n"
+"    Da li je ekran isključen dok je poklopac zatvoren?"
 
 #. description
 #: ../jobs/power-management.txt.in:50
@@ -1940,6 +2684,15 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the system resume when the lid was opened?"
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će Proveri senzore poklopca\n"
+"KORACI:\n"
+"    1. Kliknite na dugme \"Test\"\n"
+"    2. Zatvorite poklopac\n"
+"    3. Sacekajte 5 sekundi sa poklopcem zatvorenim\n"
+"    4. Otvorite poklopac\n"
+"VERIFIKACIJA:\n"
+"    Da li se sistem nastavio kada je poklopac otvoren?"
 
 #. description
 #: ../jobs/power-management.txt.in:66
@@ -1949,7 +2702,7 @@ msgstr "Uvjerite se da RTC (sat realnog vremena) postoji."
 #. description
 #: ../jobs/power-management.txt.in:71
 msgid "Test ACPI Wakealarm (fwts wakealarm) "
-msgstr ""
+msgstr "Test ACPI alarma za buđenje (fwts wakealarm) "
 
 #. description
 #: ../jobs/power-management.txt.in:80
@@ -1957,6 +2710,8 @@ msgid ""
 "Check to see if CONFIG_NO_HZ is set in the kernel (this is just a simple "
 "regression check)"
 msgstr ""
+"Provjera da se vidi da li je CONFIG_NO_HZ postavljen u kernel (to je samo "
+"prosti test regresije)"
 
 #. description
 #: ../jobs/qa_regression.txt.in:7
@@ -1964,36 +2719,39 @@ msgid ""
 "PURPOSE:\n"
 "   This is to install and run the Ubuntu QA regression tests (destructive)"
 msgstr ""
+"NAMJENA:\n"
+"   Ovo je da instalirate i pokrenete Ubuntu KA testova regresija "
+"(destruktivni)"
 
 #. description
 #: ../jobs/server-services.txt.in:5
 msgid "Verifies that sshd is running."
-msgstr ""
+msgstr "Provjerava sa sshd radi"
 
 #. description
 #: ../jobs/server-services.txt.in:11
 msgid "Verifies that Print/CUPs server is running."
-msgstr ""
+msgstr "Provjerava da Print/CUPs server radi"
 
 #. description
 #: ../jobs/server-services.txt.in:18
 msgid "Verifies that DNS server is running and working."
-msgstr ""
+msgstr "Provjerava da li DNS server je pokrenut i radi"
 
 #. description
 #: ../jobs/server-services.txt.in:25
 msgid "Verifies that Samba server is running."
-msgstr ""
+msgstr "Provjerava da li Samba server radi"
 
 #. description
 #: ../jobs/server-services.txt.in:32
 msgid "Verifies that the LAMP stack is running (Apache, MySQL and PHP)."
-msgstr ""
+msgstr "Provjerava da li LAMP kolekcija radi (Apache, MySQL i PHP)."
 
 #. description
 #: ../jobs/server-services.txt.in:39
 msgid "Verifies that Tomcat server is running and working."
-msgstr ""
+msgstr "Provjerava da li Tomcat server radi ."
 
 #. description
 #: ../jobs/stress.txt.in:8
@@ -2002,6 +2760,9 @@ msgid ""
 "    Create jobs that use the CPU as much as possible for two hours. The test "
 "is considered passed if the system does not freeze."
 msgstr ""
+"NAMJENA:\n"
+"    Napravite posao koji koriste procesor u najvećoj mogućoj meri za dva "
+"sata. Test se smatra prošao ako sistem ne zamrzne."
 
 #. description
 #: ../jobs/stress.txt.in:18
@@ -2019,6 +2780,20 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the system successfully hibernate and wake 30 times?"
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će ući i vratiti se  iz hibernacije kroz 30 iteracija\n"
+"KORACI:\n"
+"    1. Uvjerite se da vaš sistem nema lozinke na uključenje ili na hadr "
+"disku i da je GRUB je postavljen da  pokrene Ubuntu po defaultu ako imate "
+"multi-boot postavka\n"
+"    2. Kliknite na \"test\" da biste pokrenuli test (veoma dugo)\n"
+"    3. Ako vaš se sistem ne  probudi posle 2 minuta, moraćete da pritisnete "
+"dugme za napajanje\n"
+"    4. Ako se sistem ne budi iz hibernacije i mora biti ponovo pokrenut, "
+"molimo Vas da restartujete sistem testiranja i obilježite ovaj test kao nije "
+"uspjelo\n"
+"VERIFIKACIJA:\n"
+"    Da li sistem uspešno hibernate i probuditi 30 puta?"
 
 #. description
 #: ../jobs/stress.txt.in:35
@@ -2032,11 +2807,20 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the system successfully suspend and resume 30 times?"
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će ući i vratiti iz suspenduje za 30 iteracija\n"
+"KORACI:\n"
+"    1. Kliknite na \"test\" da biste pokrenuli test (veoma dugo)\n"
+"    2. Ako sistem ne uspijeva da se vrati iz sa suspenzije i mora se ponovo "
+"pokrenuti, molimo Vas da restartujete sistem testiranja i obilježite ovaj "
+"test kao nije uspjelo\n"
+"VERIFIKACIJA:\n"
+"    Da li sistem uspešno suspenduje i nastaviti 30 puta?"
 
 #. description
 #: ../jobs/suspend.txt.in:4
 msgid "Record the current network before suspending."
-msgstr ""
+msgstr "Zabilježi trenutnu mrežu prije suspenzije"
 
 #. description
 #: ../jobs/suspend.txt.in:9
@@ -2046,12 +2830,12 @@ msgstr "Zapamti trenutnu rezoluciju prije suspendiranja."
 #. description
 #: ../jobs/suspend.txt.in:17
 msgid "Record mixer settings before suspending."
-msgstr ""
+msgstr "Zabilježi postavke miksera prije suspenzije"
 
 #. description
 #: ../jobs/suspend.txt.in:24
 msgid "Verify that all the CPUs are online before suspending"
-msgstr ""
+msgstr "Provjeri d su svi procesori aktivni prije suspenzije"
 
 #. description
 #: ../jobs/suspend.txt.in:31
@@ -2062,7 +2846,7 @@ msgstr ""
 "suspendovanja"
 
 #. description
-#: ../jobs/suspend.txt.in:40
+#: ../jobs/suspend.txt.in:49
 msgid ""
 "This test disconnects all connections and then connects to the wireless "
 "interface. It then checks the connection to confirm it's working as expected."
@@ -2071,7 +2855,7 @@ msgstr ""
 "provjerava vezu da biste potvrdili da li to radi kako je očekivano."
 
 #. description
-#: ../jobs/suspend.txt.in:74
+#: ../jobs/suspend.txt.in:83
 msgid ""
 "PURPOSE:\n"
 "    This test will check suspend and resume\n"
@@ -2085,36 +2869,48 @@ msgid ""
 "VERIFICATION:\n"
 "    Did your system suspend and resume correctly?"
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će proveriti obustavljanje i nastavak\n"
+"KORACI:\n"
+"    1. Kliknite na dugme \"Test\" i vaš sistem će da se suspenduje za oko 30 "
+"- 60 sekundi\n"
+"    2. Ako se vaš sistem ne  probudi nakon 60 sekundi, molimo pritisnite "
+"dugme za napajanje trenutno ručno da probudi sistem\n"
+"    3. Ako vaš sistem ne uspe da probudi uopšte i mora se ponovo pokrenuti, "
+"ponovo pokrenite sistem testiranja nakonrestarta i obeležiti ovaj test kao "
+"nije uspjelo\n"
+"VERIFIKACIJA:\n"
+"    Da li vaš sistem obustavitisuspendovao i nastavio pravilno?"
 
 #. description
-#: ../jobs/suspend.txt.in:87
+#: ../jobs/suspend.txt.in:96
 msgid "Test the network after resuming."
 msgstr "Test mreže nakon povratka."
 
 #. description
-#: ../jobs/suspend.txt.in:93
+#: ../jobs/suspend.txt.in:102
 msgid ""
 "Test to see that we have the same resolution after resuming as before."
 msgstr "Test da se vidi da li je ista rezolucija nakon buđenja,"
 
 #. description
-#: ../jobs/suspend.txt.in:102
+#: ../jobs/suspend.txt.in:111
 msgid ""
 "Verify that mixer settings after suspend are the same as before suspend."
-msgstr ""
+msgstr "Provjera da su postavke miksera iste kao prije suspenzije."
 
 #. description
-#: ../jobs/suspend.txt.in:118
+#: ../jobs/suspend.txt.in:127
 msgid "Verify that all CPUs are online after resuming."
-msgstr ""
-
-#. description
-#: ../jobs/suspend.txt.in:135
-msgid "Verify that all memory is available after resuming from suspend."
-msgstr ""
+msgstr "Provjeri sa su svi procesori aktivni nakon povratka."
 
 #. description
 #: ../jobs/suspend.txt.in:144
+msgid "Verify that all memory is available after resuming from suspend."
+msgstr "Provjeri da li je sva memorija dostupna nakon povratka iz suspenzije"
+
+#. description
+#: ../jobs/suspend.txt.in:153
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the display is correct after suspend and "
@@ -2122,9 +2918,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Does the display work normally after resuming from suspend?"
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će provjeriti da li je displej ispravan posle obustavljana i "
+"nastavka\n"
+"VERIFIKACIJA:\n"
+"    Da li ekran radi normalno nakon što nastavite sa suspenduje?"
 
 #. description
-#: ../jobs/suspend.txt.in:155
+#: ../jobs/suspend.txt.in:174
 msgid ""
 "This test checks that the wireless interface is working after suspending the "
 "system. It disconnects all interfaces and then connects to the wireless "
@@ -2163,7 +2964,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:211
+#: ../jobs/suspend.txt.in:186
 msgid ""
 "This test grabs the hardware address of the bluetooth adapter after suspend "
 "and compares it to the address grabbed before suspend."
@@ -2172,14 +2973,16 @@ msgstr ""
 "poredi je s adresom dobavljenom prije suspenzije."
 
 #. description
-#: ../jobs/suspend.txt.in:221
+#: ../jobs/suspend.txt.in:196
 msgid ""
 "This is an automated Bluetooth file transfer test. It sends an image to the "
 "device specified by the BTDEVADDR environment variable."
 msgstr ""
+"Ovo je automatizovan Bluetoothtest prenosa datoteka. On šalje slike u uređaj "
+"naveden BTDEVADDR varijablom okruženja."
 
 #. description
-#: ../jobs/suspend.txt.in:231
+#: ../jobs/suspend.txt.in:206
 msgid ""
 "PURPOSE:\n"
 "    This test will send the image 'JPEG_Color_Image_Ubuntu.jpg' to a "
@@ -2192,9 +2995,19 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the data correctly transferred?"
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će poslati To JPEG_Color_Image_Ubuntu.jpg 'sliku određenom "
+"uređaju\n"
+"KORACI:\n"
+"    1. Kliknite na dugme \"Test\" i vas će biti zatraženo da unesete ime "
+"Bluetooth uređaja za uređaj koji može da prihvati transfer datoteka (To može "
+"da potraje nekoliko trenutaka od unosa imena datoteke do početka slanja)\n"
+"    2. Prihvati sva obavještenja koja se pojavljuju na oba uređaja\n"
+"VERIFIKACIJA:\n"
+"    Su podaci ispravno preneti?"
 
 #. description
-#: ../jobs/suspend.txt.in:245
+#: ../jobs/suspend.txt.in:220
 msgid ""
 "PURPOSE:\n"
 "    This test will cycle through the detected display modes\n"
@@ -2203,9 +3016,16 @@ msgid ""
 "VERIFICATION:\n"
 "    Did your display look fine in the detected mode?"
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će kružiti kroz otkrivene režime prikaza\n"
+"KORACI:\n"
+"    1. Kliknite na dugme \"Test\" i na displej će kružiti kroz ciklus Režimi "
+"za prikazivanje\n"
+"VERIFIKACIJA:\n"
+"    Da li vaš ekran izgleda dobro u detektovanog režimu?"
 
 #. description
-#: ../jobs/suspend.txt.in:257
+#: ../jobs/suspend.txt.in:232
 msgid ""
 "This test will check to make sure supported video modes work after a suspend "
 "and resume. This is done automatically by taking screenshots and uploading "
@@ -2216,14 +3036,16 @@ msgstr ""
 "slanja kao prilog."
 
 #. description
-#: ../jobs/suspend.txt.in:266
+#: ../jobs/suspend.txt.in:241
 msgid ""
 "This attaches screenshots from the "
 "suspend/cycle_resolutions_after_suspend_auto test to the results submission."
 msgstr ""
+"Ovo prilaže slike ekrana iz suspenzije i ciklusa rezolucija nakon testova "
+"suspenzije na slanje rezultata."
 
 #. description
-#: ../jobs/suspend.txt.in:276
+#: ../jobs/suspend.txt.in:251
 msgid ""
 "This will check to make sure that your audio device works properly after a "
 "suspend and resume.  This may work fine with speakers and onboard "
@@ -2236,12 +3058,12 @@ msgstr ""
 "izlaz na audio ulaz."
 
 #. description
-#: ../jobs/suspend.txt.in:285
+#: ../jobs/suspend.txt.in:260
 msgid "This is the automated version of suspend/suspend_advanced."
-msgstr ""
+msgstr "Ovo je automatska verziaj suspenzije/napredne suspenzije."
 
 #. description
-#: ../jobs/suspend.txt.in:294
+#: ../jobs/suspend.txt.in:269
 msgid ""
 "This automatically tests Wake-on-LAN capability with the aid of a suitably "
 "configured server. During this process the system will suspend, then "
@@ -2299,6 +3121,16 @@ msgid ""
 "VERIFICATION:\n"
 "    Were the drives detected?"
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će provjeriti da li vaš sistem detektuje USB uređaja za "
+"skladištenje.\n"
+"KORACI:\n"
+"    1. Priključite jedan ili više tastera ili USB hard diskovi.\n"
+"    2. Kliknite na \"test\".\n"
+"INFO:\n"
+"    $output\n"
+"VERIFIKACIJA:\n"
+"    Da li su otkriveni diskovi?"
 
 #. description
 #: ../jobs/usb.txt.in:28
@@ -2311,6 +3143,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Does the keyboard work?"
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će proveriti vašu USB vezu.\n"
+"KORACI:\n"
+"    1. Priključite USB tastaturu u računar.\n"
+"    2. Kliknite na \"test\" i unesite neki tekst.\n"
+"VERIFIKACIJA:\n"
+"    Da li tastatura radi?\n"
+"    Does the keyboard work?"
 
 #. description
 #: ../jobs/usb.txt.in:41
@@ -2323,6 +3163,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Does the mouse work correctly?"
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će proveriti vaš USB vezu.\n"
+"KORACI:\n"
+"    1. Priključite USB miša u računar.\n"
+"    2. Izvršite neke jednostruke / dvostruke / desne operacije klikova.\n"
+"VERIFIKACIJA:\n"
+"    Da li miš radi ispravno?"
 
 #. description
 #: ../jobs/usb.txt.in:55
@@ -2338,6 +3185,17 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će proveriti da sistem pravilno detektuje ubacivanje\n"
+"    USB uređaj za skladištenje\n"
+"KORACI:\n"
+"    1. Kliknite na dugme \"Test\" i ubacite USB uređaj za skladištenje (pen-"
+"drive/HDD).\n"
+"       (Napomena:. Ovaj test će isteći nakon 10 sekundi)\n"
+"    2. Ne isključujte uređaj nakon testa.\n"
+"VERIFIKACIJA:\n"
+"    Verifikacija ovog testa je automatizovana. Ne mijenjajte\n"
+"    automatski izabran rezultat."
 
 #. description
 #: ../jobs/usb.txt.in:72
@@ -2352,6 +3210,15 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će proveriti da sistem detektuje pravilno uklanjanje\n"
+"    USB uređaja za skladištenje\n"
+"KORACI:\n"
+"    1. Kliknite na dugme \"Test\" i uklonite USB uređaj.\n"
+"       (Napomena:. Ovaj test će isteći nakon 10 sekundi)\n"
+"VERIFIKACIJA:\n"
+"    Verifikacija ovog testa je automatizovana. Ne mijenjajte\n"
+"    automatski izabran rezultat."
 
 #. description
 #: ../jobs/usb.txt.in:88
@@ -2366,11 +3233,20 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će provjeriti vašu USB vezu.\n"
+"KORACI:\n"
+"    1. Priključite USB HDD ili thumbdrive u računaru.\n"
+"    2. Ikona treba da se pojavi na Pokretaču.\n"
+"    3. Kliknite na \"test\" da počne test.\n"
+"VERIFIKACIJA:\n"
+"    Verifikacija ovog testa je automatizovana. Ne mijenjajte\n"
+"    automatski izabran rezultat."
 
 #. description
 #: ../jobs/usb.txt.in:104
 msgid "This test is automated and executes after the usb/insert test is run."
-msgstr ""
+msgstr "Ova j test je automatizovan i izvršava se nakon testa ubaivnja USB."
 
 #. description
 #: ../jobs/usb.txt.in:111
@@ -2379,6 +3255,9 @@ msgid ""
 "server has usb storage devices plugged in prior to checkbox execution. It  "
 "is intended for servers and SRU automated testing."
 msgstr ""
+"Ovo je automatizivana verzija testa usb/automatska memorija i pretpostavlja "
+"da server imaubačene memorijske uređaja prije nego se checkbox izvrši. "
+"Namijenjen je za servere i automatsko SRU testiranje."
 
 #. description
 #: ../jobs/usb.txt.in:119
@@ -2395,6 +3274,17 @@ msgid ""
 "VERIFICATION:\n"
 "    Do all USB slots work with the device?"
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će proveriti vašu USB vezu.\n"
+"KORACI:\n"
+"    1. Povežite USB uređaj za skladištenje na spoljni USB slot na ovom "
+"računaru.\n"
+"    2. Ikona treba da se pojavi na pokretaču.\n"
+"    3. Potvrdite da se ikon pojavi.\n"
+"    4. Izbaci uređaj.\n"
+"    5. Ponovite sa svakim spoljnom USB slotu.\n"
+"VERIFIKACIJA:\n"
+"    Da li svi USB slotovi rade sa uređajem?"
 
 #. description
 #: ../jobs/user_apps.txt.in:6
@@ -2410,6 +3300,17 @@ msgid ""
 " Did Update manager find and install updates (Pass if no updates are found,\n"
 " but Fail if updates are found but not installed)"
 msgstr ""
+"NAMJENA:\n"
+" Ovaj test će proveriti da menadžer ažuriranja pronađe nadogradnje.\n"
+"KORACI:\n"
+" 1. Kliknite na dugme Testiraj da biste pokrenuli update-manager.\n"
+" 2. Pratite uputstva i ako se nalaze ispravke, instalirajte ih.\n"
+" 3. Kada se menadžer ažuriranja završi rad, molimo vas da zatvorite "
+"aplikaciju klikom na dugme Zatvori u donjem desnom uglu.\n"
+"VERIFIKACIJA:\n"
+" Da li je Update Manager pronašao i instalirao nadogradnje (Prolaz ako "
+"ispravke nisu nađene,\n"
+" ali ne, ako se ispravke mogu naći, ali nije instalirano)"
 
 #. description
 #: ../jobs/user_apps.txt.in:22
@@ -2425,6 +3326,17 @@ msgid ""
 "VERIFICATION:\n"
 " Do you now have a new folder called Test Folder?"
 msgstr ""
+"NAMJENA:\n"
+" Ovaj test će proveriti da li je preglednik datoteka kreirao novi "
+"direktorij.\n"
+"KORACI:\n"
+" 1. Kliknite na dugme Testiraj da biste otvorili pregledač datoteka.\n"
+" 2. Na traci sa menijima, kliknite na Datoteka -> Kreiraj direktorij.\n"
+" 3. U polje Ime za novi direktorij, unesite ime Test Folder i pritisnite "
+"Enter.\n"
+" 4. Zatvorite pregledač datoteka.\n"
+"VERIFIKACIJA:\n"
+" Da li sada imate novi direktorij pod nazivom Test Folder?"
 
 #. description
 #: ../jobs/user_apps.txt.in:37
@@ -2441,6 +3353,19 @@ msgid ""
 "VERIFICATION:\n"
 " Do you now have a folder called Test Data?"
 msgstr ""
+"NAMJENA:\n"
+" Ovaj test će proveriti da preglednik datoteka  kopira direktorij\n"
+"KORACI:\n"
+" 1. Kliknite na dugme Testiraj da biste otvorili pregledač datoteka.\n"
+" 2. Desnim tasterom miša kliknite na direktorij pod nazivom Test Folder i "
+"kliknite na Kopiraj.\n"
+" 3. Desni klik na neku bijelu površine u prozoru i kliknite na Umetni.\n"
+" 4. Desnim tasterom miša kliknite na direktorij pod nazivom Test "
+"Folder(copy) i kliknite na dugme Preimenuj.\n"
+" 5.. Unesite naziv Test Data u polju Ime i pritisnite Enter.\n"
+" 6. Zatvorite pregledač datoteka.\n"
+"VERIFIKACIJA:\n"
+" Da li sada imate direktorijum koji se zove Test Data?"
 
 #. description
 #: ../jobs/user_apps.txt.in:54
@@ -2458,6 +3383,19 @@ msgid ""
 " Was the folder called Test Data successfully moved into the folder called "
 "Test Folder?"
 msgstr ""
+"NAMJENA:\n"
+" Ovaj test će proveriti da li preglednik datoteka premješta direktorij.\n"
+"KORACI:\n"
+" 1. Kliknite na dugme Testiraj da biste otvorili pregledač datoteka.\n"
+" 2. Kliknite i prevucite direktorijum koji se zove Test Data na ikonu zove "
+"Test Folder.\n"
+" 3. Otpustite taster.\n"
+" 4. Dvaput kliknite na direktorijum pod nazivom Test Folder da biste ga "
+"otvorili.\n"
+" 5. Zatvorite pregledač datoteka.\n"
+"VERIFIKACIJA:\n"
+" Je li direktorijum Test Data uspješno premješten u direktorij koji se zove "
+"Test Folder?"
 
 #. description
 #: ../jobs/user_apps.txt.in:70
@@ -2473,6 +3411,16 @@ msgid ""
 "VERIFICATION:\n"
 " Do you now have a file called Test File 1?"
 msgstr ""
+"NAMJENA:\n"
+" Ovaj test će proveriti da li preglednik datoteka kreira novu datoteku.\n"
+"KORACI:\n"
+" 1. Kliknite na dugme Izaberi Test da otvorite preglednik datoteka.\n"
+" 2. Kliknite desnim tasterom miša u ijbelom prostoru i kliknite na dugme "
+"Kreiraj dokument -> Prazan dokument.\n"
+" 3. Unesite naziv datoteke Test File 1 u imensko  polje i pritisnite Enter.\n"
+" 4. Zatvorite pregledač datoteka.\n"
+"VERIFIKACIJA:\n"
+" Da li sada imate fajl pod nazivom Test File 1?"
 
 #. description
 #: ../jobs/user_apps.txt.in:85
@@ -2489,6 +3437,19 @@ msgid ""
 "VERIFICATION:\n"
 " Do you now have a file called Test File 2?"
 msgstr ""
+"NAMJENA:\n"
+" Ovaj test će provjeriti da li preglednik datoteka kopira datoteke.\n"
+"KORACI:\n"
+" 1. Kliknite na dugme Testiraj da biste otvorili pregledač datoteka.\n"
+" 2. Desni klik na datoteku imena Test File 1 i kliknite na dugme Kopiraj.\n"
+" 3. Kliknite desnim tasterom miša u bijelom prostoru i kliknite na dugme "
+"Umetni.\n"
+" 4. Desni klik na datoteku imena  Test File 1 (copy) i kliknite na dugme "
+"Preimenuj.\n"
+" 5.. Unesite naziv datoteke Test File 2 u polju Imena i pritisnite Enter.\n"
+" 6. Zatvorite pregledač datoteka.\n"
+"VERIFIKACIJA:\n"
+" Da li sada imate datoteku koja se zove Test File 2?"
 
 #. description
 #: ../jobs/user_apps.txt.in:102
@@ -2505,6 +3466,18 @@ msgid ""
 "VERIFICATION:\n"
 " Was the file Test File 2 successfully moved into the Test Data folder?"
 msgstr ""
+"NAMENA:\n"
+" Ovaj test će provjeriti da preglednik datoteka može premjestiti datoteku.\n"
+"KORACI:\n"
+" 1. Kliknite na dugme Testiraj da biste otvorili pregledač datoteka.\n"
+" 2. Kliknite i prevucite datoteku koja se zove Test File 2 na ikonu za "
+"direktorijum koji se zove Test Data.\n"
+" 3. Otpustite taster.\n"
+" 4. Dvaput kliknite na ikonu za test podacima da biste otvorili taj "
+"direktorijum gore.\n"
+" 5.. Zatvorite pregledač datoteka.\n"
+"VERIFIKACIJA:\n"
+" Je li datoeka Test File 2. uspješno prebačen u direktorij Test Data?"
 
 #. description
 #: ../jobs/user_apps.txt.in:118
@@ -2519,6 +3492,16 @@ msgid ""
 "VERIFICATION:\n"
 "  Is Test File 1 now gone?"
 msgstr ""
+"NAMEJNA:\n"
+" Ovaj test će proveriti da pregledač datoteka briše datoteku.\n"
+"KORACI:\n"
+" 1. Kliknite na dugme Testiraj da biste otvorili pregledač datoteka.\n"
+" 2. Desni klik na datoteku koja se zove Test File 1 i kliknite na Premjesti "
+"u smeće.\n"
+" 3. Proverite da li je Test File 1 uklonjen.\n"
+" 4. Zatvorite pregledač datoteka.\n"
+"VERIFIKACIJA:\n"
+"  Da li je Test File1 sada nestala?"
 
 #. description
 #: ../jobs/user_apps.txt.in:133
@@ -2534,6 +3517,16 @@ msgid ""
 "VERIFICATION:\n"
 " Has Test Folder been successfully deleted?"
 msgstr ""
+"NAMJENA:\n"
+" Ovaj test će proveriti da li pregledač datoteka može izbrisati direktorij.\n"
+"KORACI:\n"
+" 1. Kliknite na dugme Testiraj da biste otvorili pregledač datoteka.\n"
+" 2. Desnim tasterom miša kliknite na direktorij pod nazivom Test Folder i "
+"kliknite na Premjesti u smeće.\n"
+" 3. Proverite da li je direktorij izbrisan.\n"
+" 4. Zatvorite pregledač datoteka.\n"
+"VERIFIKACIJA:\n"
+" Testiranje je fascikla je uspešno obrisan?"
 
 #. description
 #: ../jobs/user_apps.txt.in:207
@@ -2550,6 +3543,12 @@ msgid ""
 "VERIFICATION:\n"
 " Did the Ubuntu Test page load correctly?"
 msgstr ""
+"NAMJENA:\n"
+" Ovaj test će provjeriti da li Firefox prikazuje osnovnu stranicu.\n"
+"KORACI:\n"
+" 1. Izaberite Test za pokretanje Firefox i vidite testnu web stranicu.\n"
+"VERIFIKACIJA:\n"
+" Da li Ubuntu test stranicau učita ispravno?"
 
 #. description
 #: ../jobs/user_apps.txt.in:241
@@ -2564,6 +3563,15 @@ msgid ""
 "VERIFICATION:\n"
 " Did the applet display?"
 msgstr ""
+"NAMJENA:\n"
+" Ovaj test će provjeriti da li mogu da pokrenem Firefox java aplet u veb "
+"stranici. Napomena:\n"
+" ovo mogu da zahtevaju instaliranje dodatnog softvera da uspešno završi.\n"
+"KORACI:\n"
+" 1. Izaberite Test za otvaranje Firefox sa Java u probnoj stranici i sledite "
+"uputstva tamo.\n"
+"VERIFIKACIJA:\n"
+" Da li je prikazan aplet?"
 
 #. description
 #: ../jobs/user_apps.txt.in:255
@@ -2577,6 +3585,14 @@ msgid ""
 "VERIFICATION:\n"
 " Did you see the text?"
 msgstr ""
+"NAMJENA:\n"
+" Ovaj test će proveriti da Firefox radi s flash aplikacijama. Napomena: Ovo "
+"može\n"
+" zahtevaju instalaciju dodatnog softvera da uspešno završi.\n"
+"KORACI:\n"
+" 1. Izaberite Test za pokretanje Firefox i pogledate test uzorak Flash.\n"
+"VERIFIKACIJA:\n"
+" Da li ste vidjeli tekst?"
 
 #. description
 #: ../jobs/user_apps.txt.in:269
@@ -2589,6 +3605,14 @@ msgid ""
 "VERIFICATION:\n"
 " Did the video play correctly?"
 msgstr ""
+"NAMJENA:\n"
+" Ovaj test će proveriti da li može da radi Firefox Flash video. Napomena: "
+"Ovo može\n"
+" zahtijevati instalaciju dodatnog softvera da uspešno završi.\n"
+"KORACI:\n"
+" 1. Izaberite Test za pokretanje Firefox i vidite kratak video flash.\n"
+"VERIFIKACIJA:\n"
+" Da li je video spravno pokrenut?"
 
 #. description
 #: ../jobs/user_apps.txt.in:283
@@ -2602,6 +3626,16 @@ msgid ""
 "VERIFICATION:\n"
 " Did the video play using a plugin?"
 msgstr ""
+"NAMENA:\n"
+" Ovaj test će provjeriti da li može da radi Firefox QuickTime (mov.) Video "
+"fajl.\n"
+" Napomena: ovo mogu da zahijevati instaliranje dodatnog softvera za "
+"uspješno\n"
+" završa.\n"
+"KORACI:\n"
+" 1. Izaberite Test za pokretanje Firefox sa Primjer video snimka.\n"
+"VERIFIKACIJA:\n"
+" Da li je video izveden pomoću plugin?"
 
 #. description
 #: ../jobs/user_apps.txt.in:297
@@ -2615,6 +3649,14 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to connect correctly and send/receive messages?"
 msgstr ""
+"NAMJENA:\n"
+" Ovaj test će provjeriti da li radi klijent poruka Empathy.\n"
+"KORACI:\n"
+" 1. Izaberite Test za pokretanje Empathy.\n"
+" 2. Konfigurišite ga povežete na Facebook servis ćaskanja.\n"
+" 3. Kada završite test, molimo Vas da napustite Empathy i nastavite ovdje.\n"
+"VERIFIKACIJA:\n"
+" Da li ste u stanju da se pravilno povežete i šaljete / primate poruke?"
 
 #. description
 #: ../jobs/user_apps.txt.in:311
@@ -2628,6 +3670,14 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to connect correctly and send/receive messages?"
 msgstr ""
+"NAMJENA:\n"
+" Ovaj test će provjeriti da li radi klijent poruka Empathy.\n"
+"KORACI:\n"
+" 1. Izaberite Test za pokretanje Empathy.\n"
+" 2. Konfigurišite ga povežete na Google Talk servis ćaskanja.\n"
+" 3. Kada završite test, molimo Vas da napustite Empathy i nastavite ovdje.\n"
+"VERIFIKACIJA:\n"
+" Da li ste u stanju da se pravilno povežete i šaljete / primate poruke?"
 
 #. description
 #: ../jobs/user_apps.txt.in:325
@@ -2641,6 +3691,14 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to connect correctly and send/receive messages?"
 msgstr ""
+"NAMJENA:\n"
+" Ovaj test će provjeriti da li radi klijent poruka Empathy.\n"
+"KORACI:\n"
+" 1. Izaberite Test za pokretanje Empathy.\n"
+" 2. Konfigurišite ga povežete na Jabber servis.\n"
+" 3. Kada završite test, molimo Vas da napustite Empathy i nastavite ovdje.\n"
+"VERIFIKACIJA:\n"
+" Da li ste u stanju da se pravilno povežete i šaljete / primate poruke?"
 
 #. description
 #: ../jobs/user_apps.txt.in:339
@@ -2654,6 +3712,14 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to connect correctly and send/receive messages?"
 msgstr ""
+"NAMJENA:\n"
+" Ovaj test će provjeriti da li radi klijent poruka Empathy.\n"
+"KORACI:\n"
+" 1. Izaberite Test za pokretanje Empathy.\n"
+" 2. Konfigurišite ga povežete na AOL Instant Messaging (AIM) servis.\n"
+" 3. Kada završite test, molimo Vas da napustite Empathy i nastavite ovdje.\n"
+"VERIFIKACIJA:\n"
+" Da li ste u stanju da se pravilno povežete i šaljete / primate poruke?"
 
 #. description
 #: ../jobs/user_apps.txt.in:353
@@ -2667,6 +3733,14 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to connect correctly and send/receive messages?"
 msgstr ""
+"NAMJENA:\n"
+" Ovaj test će provjeriti da li radi klijent poruka Empathy.\n"
+"KORACI:\n"
+" 1. Izaberite Test za pokretanje Empathy.\n"
+" 2. Konfigurišite ga povežete na Microsoft Network (MSN) servis.\n"
+" 3. Kada završite test, molimo Vas da napustite Empathy i nastavite ovdje.\n"
+"VERIFIKACIJA:\n"
+" Da li ste u stanju da se pravilno povežete i šaljete / primate poruke?"
 
 #. description
 #: ../jobs/user_apps.txt.in:367
@@ -2679,6 +3753,13 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to receive and read e-mail correctly?"
 msgstr ""
+"NAMJENA:\n"
+" Ovaj test će proveriti da li Evolution funkcioniše.\n"
+"KORACI:\n"
+" 1. Kliknite na \"test\" dugme da pokrenete Evolution.\n"
+" 2. Konfigurišite ga za vezu sa POP3 nalogom.\n"
+"VERIFIKACIJA:\n"
+" Da li ste u stanju da primate i čitate e-poštu ispravno?"
 
 #. description
 #: ../jobs/user_apps.txt.in:380
@@ -2691,6 +3772,13 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to receive and read e-mail correctly?"
 msgstr ""
+"NAMJENA:\n"
+" Ovaj test će proveriti da li Evolution funkcioniše.\n"
+"KORACI:\n"
+" 1. Kliknite na \"test\" dugme da pokrenete Evolution.\n"
+" 2. Konfigurišite ga za vezu sa IMAP nalogom.\n"
+"VERIFIKACIJA:\n"
+" Da li ste u stanju da primate i čitate e-poštu ispravno?"
 
 #. description
 #: ../jobs/user_apps.txt.in:393
@@ -2703,6 +3791,13 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to send e-mail without errors?"
 msgstr ""
+"NAMJENA:\n"
+" Ovaj test će proveriti da li Evolution funkcioniše.\n"
+"KORACI:\n"
+" 1. Kliknite na \"test\" dugme da pokrenete Evolution.\n"
+" 2. Konfigurišite ga za vezu s POP3 nalogom.\n"
+"VERIFIKACIJA:\n"
+" Da li ste u stanju da primate i čitate e-poštu ispravno?"
 
 #. description
 #: ../jobs/user_apps.txt.in:406
@@ -2714,6 +3809,12 @@ msgid ""
 "VERIFICATION:\n"
 " Did it launch correctly?"
 msgstr ""
+"NAMENA:\n"
+" Ovaj test proverava da gcalctool (kalkulator) radi.\n"
+"KORACI:\n"
+" Kliknite na \"test\" dugme da biste otvorili kalkulator.\n"
+"VERIFIKACIJA:\n"
+" Da li je to ispravno pokrenuto?"
 
 #. description
 #: ../jobs/user_apps.txt.in:419
@@ -2729,6 +3830,16 @@ msgid ""
 "VERIFICATION:\n"
 " Did the functions perform as expected?"
 msgstr ""
+"NAMJENA:\n"
+" Ovaj test provjerava da gcalctool (kalkulator) radi.\n"
+"KORACI:\n"
+" Kliknite na \"test\" dugme da biste otvorili kalkulator i obavite:\n"
+" 1. Jednostavne matematičke funkcije (+, -, /, *)\n"
+" 2. Ugniježdene matematičke funkcije ((,))\n"
+" 3. Razlomačkiu matematiku\n"
+" 4. Decimalnu matematiku\n"
+"VERIFIKACIJA:\n"
+" Da li su funkcioniše kao što je očekivano?"
 
 #. description
 #: ../jobs/user_apps.txt.in:436
@@ -2744,6 +3855,15 @@ msgid ""
 "VERIFICATION:\n"
 " Did the functions perform as expected?"
 msgstr ""
+"NAMENA:\n"
+" Ovaj test proverava da gcalctool (kalkulator) radi.\n"
+"KORACI:\n"
+" Kliknite na \"test\" dugme da biste otvorili kalkulator i obavite:\n"
+"  1. Memorijsko smiejštanje\n"
+"  2. Memorijsko resetovanje\n"
+"  3. Memorijsko zadnje čišćenje\n"
+"  4. Memorijsko čišćenjeVERIFIKACIJA:\n"
+" Da li su funkcionisali kao što je očekivano?"
 
 #. description
 #: ../jobs/user_apps.txt.in:453
@@ -2758,6 +3878,15 @@ msgid ""
 "VERIFICATION:\n"
 " Did the functions perform as expected?"
 msgstr ""
+"NAMJENA:\n"
+" Ovaj test provjerava da gcalctool (kalkulator) radi.\n"
+"KORACI:\n"
+" Kliknite na \"test\" dugme da biste otvorili kalkulator i obavlja:\n"
+"  1. Isijecanje\n"
+"  2. Kopiranje\n"
+"  3. Umetanje\n"
+"VERIFIKACIJA:\n"
+" Da li su funkcionisali kao što je očekivano?"
 
 #. description
 #: ../jobs/user_apps.txt.in:468
@@ -2771,6 +3900,14 @@ msgid ""
 "VERIFICATION:\n"
 " Did this perform as expected?"
 msgstr ""
+"NAMJENA:\n"
+" Ovaj test provjerava da radi gedit.\n"
+"KORACI:\n"
+" 1. Kliknite na \"test\" dugme da biste otvorili gedit.\n"
+" 2. Unesite neki tekst i sačuvajte datotekul (zapišite ime datoteke koju "
+"koristite), zatim zatvorite gedit.\n"
+"VERIFIKACIJA:\n"
+" Da li ovo radi kao što se očekuje?"
 
 #. description
 #: ../jobs/user_apps.txt.in:482
@@ -2784,6 +3921,14 @@ msgid ""
 "VERIFICATION:\n"
 " Did this perform as expected?"
 msgstr ""
+"NAMJENA:\n"
+" Ovaj test provjerava da li radi gedit.\n"
+"KORACI:\n"
+" 1. Kliknite na \"test\" dugme da biste otvorili gedit, i ponovo otvorite "
+"datoteku koju ste ranije kreirali.\n"
+" 2. Izmijenitet zatim sačuvajte datoteku, a zatim zatvorite gedit.\n"
+"VERIFIKACIJA:\n"
+" Da li ovo radi kao što se očekuje?"
 
 #. description
 #: ../jobs/user_apps.txt.in:495
@@ -2798,11 +3943,21 @@ msgid ""
 "VERIFICATION:\n"
 " Did this perform as expected?"
 msgstr ""
+"NAMJENA:\n"
+" Ovaj test će proveriti da GNOME terminal radi.\n"
+"KORACI:\n"
+" 1. Kliknite na \"test\" dugme da otvorite Terminal.\n"
+" 2. Otkucajte 'ls' i pritisnite Enter. Trebalo bi da vidite listu datoteka i "
+"fascikli na vašem home direktorijumu.\n"
+" 3. Zatvorite prozor terminala.\n"
+"VERIFIKACIJA:\n"
+" Da li ovo radi kao što se očekuje?"
 
 #. description
 #: ../jobs/wireless.txt.in:6
 msgid "Wireless scanning test. It scans and reports on discovered APs."
 msgstr ""
+"Test bežičnog skaniranja, Skanira i prijavljuje otkrivene pristupne tačke-"
 
 #. description
 #: ../jobs/wireless.txt.in:12
@@ -2817,6 +3972,15 @@ msgid ""
 "VERIFICATION:\n"
 "    Did a notification show and was the connection correctly established?"
 msgstr ""
+"NAMJENA:\n"
+"    Ovaj test će provjeriti vašu bežičnu vezu.\n"
+"KORACI:\n"
+"    1. Kliknite na Netvork ikonu na panelu.\n"
+"    2. Izaberite mrežu odeljak 'bežične mreže \".\n"
+"    3. Kliknite na \"test\" da biste potvrdili da je moguće da uspostave "
+"HTTP vezu.\n"
+"VERIFIKACIJA:\n"
+"    Da li se obavještenja prikazala i da li je veza uspostavljena ispravno?"
 
 #. description
 #: ../jobs/wireless.txt.in:28
@@ -2824,6 +3988,8 @@ msgid ""
 "Tests that the systems wireless hardware can connect to a router using WPA "
 "security and the 802.11b/g protocols."
 msgstr ""
+"Testovi da li se bežični sistemski hardver povezuje na ruter preko WPA "
+"sigurnosti i  802.11b/g protokola."
 
 #. description
 #: ../jobs/wireless.txt.in:38
@@ -2831,6 +3997,8 @@ msgid ""
 "Tests that the systems wireless hardware can connect to a router using no "
 "security and the 802.11b/g protocols."
 msgstr ""
+"Testovi da li se bežični sistemski hardver povezuje na ruter bez sigurnosti "
+"i  802.11b/g protokola."
 
 #. description
 #: ../jobs/wireless.txt.in:48
@@ -2838,6 +4006,8 @@ msgid ""
 "Tests that the systems wireless hardware can connect to a router using WPA "
 "security and the 802.11n protocol."
 msgstr ""
+"Testovi da li se bežični sistemski hardver povezuje na ruter preko WPA "
+"sigurnosti i  802.11n protokola."
 
 #. description
 #: ../jobs/wireless.txt.in:58
@@ -2845,13 +4015,15 @@ msgid ""
 "Tests that the systems wireless hardware can connect to a router using no "
 "security and the 802.11n protocol."
 msgstr ""
+"Testovi da li se bežični sistemski hardver povezuje na ruterbez sigurnosti i "
+" 802.11n protokola."
 
 #. description
 #: ../jobs/wireless.txt.in:70
 msgid ""
 "Tests the performance of a systems wireless connection through the iperf "
 "tool."
-msgstr ""
+msgstr "Testovi performansi jednog sistema bežične veze preko iperf alata."
 
 #. description
 #: ../jobs/wireless.txt.in:81
@@ -2859,6 +4031,8 @@ msgid ""
 "Tests the performance of a systems wireless connection through the iperf "
 "tool, using UDP packets."
 msgstr ""
+"Testovi performansi jednog sistema bežične veze preko iperf alata, koristeći "
+"UDP pakete."
 
 #: ../checkbox/application.py:66
 msgid "Usage: checkbox [OPTIONS]"
@@ -2884,19 +4058,19 @@ msgstr "Konfiguracija piše preko parametara."
 
 #: ../checkbox/application.py:84
 msgid "Shorthand for --config=.*/jobs_info/blacklist."
-msgstr ""
+msgstr "Skraćenica za --config=.*/jobs_info/blacklist."
 
 #: ../checkbox/application.py:86
 msgid "Shorthand for --config=.*/jobs_info/blacklist_file."
-msgstr ""
+msgstr "Skraćenica za --config=.*/jobs_info/blacklist_file."
 
 #: ../checkbox/application.py:88
 msgid "Shorthand for --config=.*/jobs_info/whitelist."
-msgstr ""
+msgstr "Skraćenica za --config=.*/jobs_info/whitelist."
 
 #: ../checkbox/application.py:90
 msgid "Shorthand for --config=.*/jobs_info/whitelist_file."
-msgstr ""
+msgstr "Skraćenica za --config=.*/jobs_info/whitelist_file."
 
 #: ../checkbox/application.py:115
 msgid "Missing configuration file as argument.\n"
@@ -2904,12 +4078,12 @@ msgstr "Nedostaje konfiguraciona datoteka kao argument.\n"
 
 #: ../checkbox/job.py:84
 msgid "Command not found."
-msgstr ""
+msgstr "Nije pronađena naredba."
 
 #: ../checkbox/job.py:92
 #, python-format
 msgid "Command received signal %s: %s"
-msgstr ""
+msgstr "Komanda primila signal %s: %s"
 
 #: ../checkbox/lib/signal.py:23
 msgid ""
@@ -2999,17 +4173,17 @@ msgid "Unknown signal"
 msgstr "Nepoznati signal"
 
 #: ../checkbox_cli/cli_interface.py:31
-#: ../checkbox_urwid/urwid_interface.py:917 ../checkbox_qt/qt_interface.py:33
+#: ../checkbox_urwid/urwid_interface.py:917 ../checkbox_qt/qt_interface.py:37
 msgid "yes"
 msgstr "da"
 
 #: ../checkbox_cli/cli_interface.py:32
-#: ../checkbox_urwid/urwid_interface.py:918 ../checkbox_qt/qt_interface.py:34
+#: ../checkbox_urwid/urwid_interface.py:918 ../checkbox_qt/qt_interface.py:38
 msgid "no"
 msgstr "ne"
 
 #: ../checkbox_cli/cli_interface.py:33
-#: ../checkbox_urwid/urwid_interface.py:919 ../checkbox_qt/qt_interface.py:35
+#: ../checkbox_urwid/urwid_interface.py:919 ../checkbox_qt/qt_interface.py:39
 msgid "skip"
 msgstr "preskoči"
 
@@ -3025,11 +4199,11 @@ msgstr "Molim izaberite (%s): "
 #: ../checkbox_cli/cli_interface.py:229 ../checkbox_cli/cli_interface.py:338
 #: ../checkbox_cli/cli_interface.py:368
 msgid "Space when finished"
-msgstr ""
+msgstr "Razmak pri završetku"
 
 #: ../checkbox_cli/cli_interface.py:367
 msgid "Combine with character above to expand node"
-msgstr ""
+msgstr "Kombinuj s znakom iznad za ekspanziju čvora"
 
 #: ../checkbox_cli/cli_interface.py:416
 msgid "test"
@@ -3066,22 +4240,22 @@ msgid "Next"
 msgstr "Sljedeći"
 
 #. Show buttons
-#: ../checkbox_urwid/urwid_interface.py:423 ../qt/frontend/qtfront.cpp:137
+#: ../checkbox_urwid/urwid_interface.py:423 ../qt/frontend/qtfront.cpp:136
 msgid "Select All"
 msgstr "Izaberi sve"
 
-#: ../checkbox_urwid/urwid_interface.py:424 ../qt/frontend/qtfront.cpp:138
+#: ../checkbox_urwid/urwid_interface.py:424 ../qt/frontend/qtfront.cpp:137
 msgid "Deselect All"
 msgstr "Poništi izbor"
 
 #. Show buttons
 #: ../checkbox_urwid/urwid_interface.py:545
 msgid "Expand All"
-msgstr ""
+msgstr "Proširi sve"
 
 #: ../checkbox_urwid/urwid_interface.py:546
 msgid "Collapse All"
-msgstr ""
+msgstr "Sažmi sve"
 
 #: ../checkbox_urwid/urwid_interface.py:1013 ../qt/frontend/ui_qtfront.h:603
 msgid "Test"
@@ -3091,15 +4265,15 @@ msgstr "Testiraj"
 msgid "Test Again"
 msgstr "Ponovo testiraj"
 
-#: ../checkbox_gtk/gtk_interface.py:517
+#: ../checkbox_gtk/gtk_interface.py:503
 msgid "_Test Again"
 msgstr "_Testiraj ponovo"
 
-#: ../checkbox_gtk/gtk_interface.py:566
+#: ../checkbox_gtk/gtk_interface.py:551 ../qt/frontend/qtfront.cpp:490
 msgid "Info"
 msgstr "Informacije"
 
-#: ../checkbox_gtk/gtk_interface.py:590
+#: ../checkbox_gtk/gtk_interface.py:575 ../qt/frontend/qtfront.cpp:247
 msgid "Error"
 msgstr "Greška"
 
@@ -3122,7 +4296,7 @@ msgstr ""
 #: ../plugins/apport_prompt.py:227
 #, python-format
 msgid "Test %(name)s failed."
-msgstr ""
+msgstr "Test %(name)s neuspjelo."
 
 #: ../plugins/apport_prompt.py:230
 #, python-format
@@ -3224,6 +4398,15 @@ msgid ""
 "\n"
 "  https://launchpad.net/+login"
 msgstr ""
+"Sledeći izveštaj je generisan za podnošenje na Launchpad hardver bazu:\n"
+"\n"
+"  [[%s|View Report]]\n"
+"\n"
+"Možete da pošaljete ove informacije o vašem sistemu pružajući email adresu "
+"koju koristite za prijavljivanje na Launchpad. Ako nemate nalog Launchpad, "
+"molimo registrujte se ovde:\n"
+"\n"
+"  https://launchpad.net/+login"
 
 #: ../plugins/launchpad_prompt.py:93
 msgid "Email address must be in a proper format."
@@ -3238,6 +4421,8 @@ msgid ""
 "The generated report seems to have validation errors,\n"
 "so it might not be processed by Launchpad."
 msgstr ""
+"Generisani izveštaj izgleda da ima grešaka provjere valjanosti,\n"
+"tako da možda neće biti obrađen u Launchpad."
 
 #: ../plugins/lock_prompt.py:63
 msgid "There is another checkbox running. Please close it first."
@@ -3245,11 +4430,11 @@ msgstr "Još jedan checkbox je pokrenut. Molimo zatvorite ga prvo."
 
 #: ../plugins/recover_prompt.py:53
 msgid "Recover"
-msgstr ""
+msgstr "Obnovi"
 
 #: ../plugins/recover_prompt.py:54
 msgid "Restart"
-msgstr ""
+msgstr "Ponovo pokreni"
 
 #: ../plugins/recover_prompt.py:56
 msgid ""
@@ -3269,7 +4454,7 @@ msgid "Running %s..."
 msgstr "Izvršavam %s..."
 
 #. Get results
-#: ../plugins/suites_prompt.py:124
+#: ../plugins/suites_prompt.py:110
 msgid "Select the suites to test"
 msgstr "Izaberite komplet za testiranje"
 
@@ -3281,53 +4466,53 @@ msgstr "Unesite tekst:\n"
 msgid "Type Text"
 msgstr "Kucajte tekst"
 
-#: ../scripts/internet_test:196
+#: ../scripts/internet_test:139
 msgid "No Internet connection"
 msgstr "Nema Internet veze"
 
-#: ../scripts/internet_test:199
+#: ../scripts/internet_test:142
 msgid "Connection established lost a packet"
 msgstr "Uspostavljena veza izgubila paket"
 
-#: ../scripts/internet_test:202
+#: ../scripts/internet_test:145
 msgid "Internet connection fully established"
 msgstr "Internet veza je u potpunosti uspostavljena"
 
-#: ../qt/frontend/qtfront.cpp:108
+#: ../qt/frontend/qtfront.cpp:107
 msgid "Not Started"
-msgstr ""
+msgstr "Nije započelo"
 
-#: ../qt/frontend/qtfront.cpp:109 ../qt/frontend/qtfront.cpp:110
+#: ../qt/frontend/qtfront.cpp:108 ../qt/frontend/qtfront.cpp:109
 msgid "Done"
-msgstr ""
+msgstr "Završeno"
+
+#: ../qt/frontend/qtfront.cpp:110
+msgid "Not Supported"
+msgstr "Nije podržano"
 
 #: ../qt/frontend/qtfront.cpp:111
-msgid "Not Supported"
-msgstr ""
+msgid "Not Resolved"
+msgstr "Nije riješeno"
 
 #: ../qt/frontend/qtfront.cpp:112
-msgid "Not Resolved"
-msgstr ""
+msgid "Not Tested"
+msgstr "Nije testirano"
 
 #: ../qt/frontend/qtfront.cpp:113
-msgid "Not Tested"
-msgstr ""
-
-#: ../qt/frontend/qtfront.cpp:114
 msgid "In Progress"
-msgstr ""
+msgstr "U Toku"
 
 #: ../qt/frontend/qtfront.cpp:182
 msgid "Are you sure?"
-msgstr ""
+msgstr "Da li ste sigurni?"
 
 #: ../qt/frontend/qtfront.cpp:182
 msgid "Do you really want to skip this test?"
-msgstr ""
+msgstr "Da li zaista želite preskočiti ovaj test"
 
 #: ../qt/frontend/qtfront.cpp:183
 msgid "Don't ask me again"
-msgstr ""
+msgstr "Ne pitaj me više"
 
 #: ../qt/frontend/treemodel.cpp:13
 msgid ""
@@ -3335,70 +4520,73 @@ msgid ""
 "you plan to participate in Ubuntu Friendly, please, select all tests. You "
 "can always skip individual tests if you don't have the needed equipment."
 msgstr ""
+"Opoziv testa će poništiti vašu prijavu za Ubuntu Friendly. Ako planirate da "
+"učestvujete u Ubuntu Friendy, molimo Vas, izaberite sve testove. Uvijek "
+"možete preskočiti pojedinačne testove ako nemate potrebnu opremu."
 
 #: ../qt/frontend/ui_qtfront.h:588
 msgid "Form"
-msgstr ""
+msgstr "Forma"
 
 #: ../qt/frontend/ui_qtfront.h:590
 msgid "OK"
-msgstr ""
+msgstr "U redu"
 
 #: ../qt/frontend/ui_qtfront.h:591
 msgid "Don't show me this message in the future"
-msgstr ""
+msgstr "Ne prikazuj ovu poruku u budućnosti"
 
 #: ../qt/frontend/ui_qtfront.h:592 ../qt/frontend/ui_qtfront.h:606
 msgid "Tab 1"
-msgstr ""
+msgstr "Kartica 1"
 
 #: ../qt/frontend/ui_qtfront.h:593
 msgid "10 tests completed out of 30 (30%)"
-msgstr ""
+msgstr "10 testova završeno od 30 (30%)"
 
 #: ../qt/frontend/ui_qtfront.h:595
 msgid "Lists of tests to run based on your system:"
-msgstr ""
+msgstr "Lista testova koji će se izvršiti prema vašem sistemu"
 
 #: ../qt/frontend/ui_qtfront.h:596
 msgid "Components"
-msgstr ""
+msgstr "Komponente"
 
 #: ../qt/frontend/ui_qtfront.h:597
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 #: ../qt/frontend/ui_qtfront.h:598
 msgid "Start testing"
-msgstr ""
+msgstr "Počni testiranje"
 
 #: ../qt/frontend/ui_qtfront.h:599
 msgid " Selection "
-msgstr ""
+msgstr " Izbor "
 
 #: ../qt/frontend/ui_qtfront.h:600 ../qt/frontend/ui_qtfront.h:601
 msgid "TextLabel"
-msgstr ""
+msgstr "TekstualnaOznaka"
 
 #: ../qt/frontend/ui_qtfront.h:602
 msgid "Yes"
-msgstr ""
+msgstr "Da"
 
 #: ../qt/frontend/ui_qtfront.h:604
 msgid "No"
-msgstr ""
+msgstr "Ne"
 
 #: ../qt/frontend/ui_qtfront.h:605
 msgid "Comment"
-msgstr ""
+msgstr "Komentar"
 
 #: ../qt/frontend/ui_qtfront.h:607 ../qt/frontend/ui_qtfront.h:623
 msgid "Tab 2"
-msgstr ""
+msgstr "Kartica 2"
 
 #: ../qt/frontend/ui_qtfront.h:610
 msgid " Run "
-msgstr ""
+msgstr " Pokreni "
 
 #: ../qt/frontend/ui_qtfront.h:611
 msgid ""
@@ -3420,23 +4608,23 @@ msgstr ""
 
 #: ../qt/frontend/ui_qtfront.h:617
 msgid "Personal details"
-msgstr ""
+msgstr "Lični podaci"
 
 #: ../qt/frontend/ui_qtfront.h:619
 msgid "Email:"
-msgstr ""
+msgstr "Email:"
 
 #: ../qt/frontend/ui_qtfront.h:620
 msgid "Submit results"
-msgstr ""
+msgstr "Pošalji rezultate"
 
 #: ../qt/frontend/ui_qtfront.h:621
 msgid "View results"
-msgstr ""
+msgstr "Pogledaj rezultate"
 
 #: ../qt/frontend/ui_qtfront.h:622
 msgid " Results "
-msgstr ""
+msgstr " Rezultati "
 
 #~ msgid "Network tests"
 #~ msgstr "Mrežni testovi"
@@ -3749,6 +4937,9 @@ msgstr ""
 
 #~ msgid "Is your keyboard working properly?"
 #~ msgstr "Da li je vaša tastatura radila ispravno?"
+
+#~ msgid "Click the Test button to display a video test."
+#~ msgstr "Kliknite na dugme ''Testiraj'' da prikažete video test."
 
 #~ msgid "Do you see color bars and static?"
 #~ msgstr "Da li vidite trake boja i statik?"
@@ -5076,3 +6267,34 @@ msgstr ""
 #~ "Povežite USB uređaja za skladištenje na eksterni USB priključak na ovom "
 #~ "računaru. \\ Ikona treba da se pojavi na desktopu i u \"Mjesta\" menija na "
 #~ "vrhu ekrana."
+
+#~ msgid "Attaches the screenshot captured in info/screenshot."
+#~ msgstr "Prilaže sliku ekrana uhvaćenu u info/screenshot."
+
+#~ msgid "Do you hear a sound?"
+#~ msgstr "Da li ste čuli zvuk?"
+
+#~ msgid "_Server"
+#~ msgstr "_Server"
+
+#~ msgid "Successfully sent information!"
+#~ msgstr "Upspješno poslana informacija!"
+
+#~ msgid "_Laptop"
+#~ msgstr "_Laptop"
+
+#~ msgid "_Desktop"
+#~ msgstr "Radna površina"
+
+#~ msgid "$(network_test)"
+#~ msgstr "$(network_test)"
+
+#~ msgid "Authentication"
+#~ msgstr "Autentifikacija"
+
+#, python-format
+#~ msgid "Running test %s..."
+#~ msgstr "Trajanje testa %s..."
+
+#~ msgid "Category"
+#~ msgstr "Kategorija"

@@ -14,34 +14,34 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-04-03 04:38+0000\n"
-"X-Generator: Launchpad (build 15052)\n"
+"X-Launchpad-Export-Date: 2012-05-02 05:11+0000\n"
+"X-Generator: Launchpad (build 15177)\n"
 "X-Poedit-Language: Danish\n"
 
-#: ../gtk/checkbox-gtk.ui.h:1 ../checkbox_cli/cli_interface.py:444
+#: ../gtk/checkbox-gtk.ui.h:6 ../checkbox_cli/cli_interface.py:444
 #: ../checkbox_urwid/urwid_interface.py:267
 msgid "Further information:"
 msgstr "Yderligere information:"
 
-#: ../gtk/checkbox-gtk.ui.h:2
+#: ../gtk/checkbox-gtk.ui.h:10
 msgid "Ne_xt"
 msgstr "N_æste"
 
 #. Title of the user interface
-#: ../gtk/checkbox-gtk.ui.h:3 ../qt/checkbox-qt.desktop.in.h:1
+#: ../gtk/checkbox-gtk.ui.h:1 ../qt/checkbox-qt.desktop.in.h:1
 #: ../plugins/user_interface.py:43 ../qt/frontend/ui_qtfront.h:589
 msgid "System Testing"
 msgstr "Systemtest"
 
-#: ../gtk/checkbox-gtk.ui.h:4
+#: ../gtk/checkbox-gtk.ui.h:8
 msgid "_Deselect All"
 msgstr "_Afmarkér alle"
 
-#: ../gtk/checkbox-gtk.ui.h:5
+#: ../gtk/checkbox-gtk.ui.h:4
 msgid "_No"
 msgstr "_Nej"
 
-#: ../gtk/checkbox-gtk.ui.h:6
+#: ../gtk/checkbox-gtk.ui.h:9
 msgid "_Previous"
 msgstr "_Forrige"
 
@@ -49,15 +49,15 @@ msgstr "_Forrige"
 msgid "_Select All"
 msgstr "_Markér alle"
 
-#: ../gtk/checkbox-gtk.ui.h:8
+#: ../gtk/checkbox-gtk.ui.h:5
 msgid "_Skip this test"
 msgstr "_Spring denne test over"
 
-#: ../gtk/checkbox-gtk.ui.h:9 ../checkbox_gtk/gtk_interface.py:553
+#: ../gtk/checkbox-gtk.ui.h:2 ../checkbox_gtk/gtk_interface.py:538
 msgid "_Test"
 msgstr "_Test"
 
-#: ../gtk/checkbox-gtk.ui.h:10
+#: ../gtk/checkbox-gtk.ui.h:3
 msgid "_Yes"
 msgstr "_Ja"
 
@@ -69,7 +69,7 @@ msgstr ""
 #. description
 #: ../jobs/audio.txt.in:7
 msgid "Test to detect audio devices"
-msgstr ""
+msgstr "Test af detektering af lydenheder"
 
 #. description
 #: ../jobs/audio.txt.in:16
@@ -83,6 +83,16 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear a tone?"
 msgstr ""
+"FORMÅL:\n"
+"    Dette vil teste at de interne højtalere fungerer korrekt\n"
+"TRIN:\n"
+"    1. Sikr dig at der ikke er tilsluttet eksterne højtalere eller "
+"høretelefoner\n"
+"       Ved test af en stationær computer er eksterne højtalere tilladt\n"
+"    2. Tryk på \"Test\"-knappen for at afspille en kort tone via din "
+"lydenhed\n"
+"BEKRÆFTELSE:\n"
+"    Kunne du høre en tone?"
 
 #. description
 #: ../jobs/audio.txt.in:33
@@ -96,6 +106,15 @@ msgid ""
 "    Did you hear a sound through the headphones and did the sound play "
 "without any distortion, clicks or other strange noises from your headphones?"
 msgstr ""
+"FORMÅL:\n"
+"    Dette vil teste at høretelefoner fungerer korrekt\n"
+"TRIN:\n"
+"    1. Forbind et par høretelefoner til din lydenhed\n"
+"    2. Tryk på \"Test\"-knappen for at afspille en kort tone via din "
+"lydenhed\n"
+"BEKRÆFTELSE:\n"
+"    Kunne du høre en tone i dine høretelefoner, og blev denne tone afspillet "
+"uden forvrængning, klik eller andre mærkelige lyde?"
 
 #. description
 #: ../jobs/audio.txt.in:49
@@ -110,6 +129,15 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear your speech played back?"
 msgstr ""
+"FORMÅL:\n"
+"    Dette vil teste at optagelse af lyd ved hjælp af den indbyggede mikrofon "
+"fungerer korrekt\n"
+"TRIN:\n"
+"    1. Fjern alle eksterne mikrofoner som er sluttet til computeren\n"
+"    2. Tryk på \"Test\" og tal derefter ind i den interne mikrofon\n"
+"    3. Efter et par sekunder vil din tale blive afspillet for dig.\n"
+"BEKRÆFTELSE:\n"
+"    Kunne du høre din tale blive afspillet?"
 
 #. description
 #: ../jobs/audio.txt.in:66
@@ -124,6 +152,15 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear your speech played back?"
 msgstr ""
+"FORMÅL:\n"
+"    Dette vil teste at optagelse af lyd ved hjælp af en ekstern mikrofon "
+"fungerer korrekt\n"
+"TRIN:\n"
+"    1. Forbind en mikrofon til din mikrofonindgang\n"
+"    2. Tryk på \"Test\" og tal derefter ind i den eksterne mikrofon\n"
+"    3. Efter et par sekunder vil din tale blive afspillet for dig.\n"
+"BEKRÆFTELSE:\n"
+"    Kunne du høre din tale blive afspillet?"
 
 #. description
 #: ../jobs/audio.txt.in:82
@@ -137,6 +174,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear your speech played back through the USB headphones?"
 msgstr ""
+"FORMÅL:\n"
+"    Dette vil teste at en USB-lydenhed fungerer korrekt\n"
+"TRIN:\n"
+"    1. Forbind en USB-lydenhed til dit system\n"
+"    2. Tryk på \"Test\" og tal derefter ind i mikrofonen\n"
+"    3. Efter et par sekunder vil din tale blive afspillet for dig.\n"
+"BEKRÆFTELSE:\n"
+"    Kunne du høre din tale blive afspillet via USB-høretelefonerne?"
 
 #. description
 #: ../jobs/audio.txt.in:99
@@ -145,6 +190,9 @@ msgid ""
 "input.  This makes the most sense when the output and input  are directly "
 "connected, as with a patch cable."
 msgstr ""
+"Afspil en lyd via standard-lydoutput og lyt efter den via standard-input. "
+"Dette giver mest mening, når output og input er direkte forbundet f.eks. via "
+"et \"patch\"-kabel."
 
 #. description
 #: ../jobs/autotest.txt.in:6
@@ -153,12 +201,16 @@ msgid ""
 "   This test will attempt to install and run the Autotest Suite.  These "
 "tests can be destructive, so this test is blacklisted by default."
 msgstr ""
+"FORMÅL:\n"
+"   Denne test vil forsøge at installere og køre Autotestsuiten. Disse tester "
+"kan være destruktive, så denne test er fravalgt som standard."
 
 #. description
 #: ../jobs/bluetooth.txt.in:8
 msgid ""
 "Automated test to store bluetooth device information in checkbox report"
 msgstr ""
+"Automatisk test til at gemme bluetooth-enhedsinformation i checkbox-rapporten"
 
 #. description
 #: ../jobs/bluetooth.txt.in:14
@@ -178,6 +230,23 @@ msgid ""
 "VERIFICATION:\n"
 "    Did all the steps work?"
 msgstr ""
+"FORMÅL:\n"
+"    Denne test vil tjekke at bluetooth-forindelse fungerer korrekt\n"
+"TRIN:\n"
+"    1. Aktivér bluetooth på en vilkårlig mobilenhed (PDA, smarttelefon, "
+"osv.)\n"
+"    2. Klik på bluetooth-ikonet i menulinjen\n"
+"    3. Vælg \"Opsætning af ny enhed\"\n"
+"    4. Kig efter enheden på listen og vælg den\n"
+"    5. Indtast den adgangskode som opsætningsprogrammet automatisk genererer "
+"på enheden\n"
+"    6. Enheden bør nu danne par med din computer\n"
+"    7. Højreklik på bluetooth-ikonet og vælg \"Gennemse filer\"\n"
+"    8. Giv om nødvendigt computeren tilladelse til at gennemse filerne på "
+"enheden\n"
+"    9. Du bør nu være i stand til at gennemse filerne\n"
+"BEKRÆFTELSE:\n"
+"    Virkede alle trinnene?"
 
 #. description
 #: ../jobs/bluetooth.txt.in:33
@@ -192,6 +261,15 @@ msgid ""
 "VERIFICATION:\n"
 "    Were all files copied correctly?"
 msgstr ""
+"FORMÅL:\n"
+"    Denne test vil tjekke at du kan overføre information gennem en "
+"bluetoothforbindelse\n"
+"TRIN:\n"
+"    1. Sikr dig at du er i stand til at gennemse filer på din mobile enhed\n"
+"    2. Kopiér en fil fra computeren til den mobile enhed\n"
+"    3. Kopiér en fil fra den mobile enhed til computeren\n"
+"BEKRÆFTELSE:\n"
+"    Blev alle filer kopieret korrekt?"
 
 #. description
 #: ../jobs/bluetooth.txt.in:47
@@ -211,6 +289,21 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear the sound you recorded in the bluetooth"
 msgstr ""
+"FORMÅL:\n"
+"    Denne test vil tjekke om du kan optage og høre lyd vha. en bluetooth-"
+"lydenhed\n"
+"TRIN:\n"
+"    1. Aktiver et bluetooth-headset (høretelefon og mikrofon)\n"
+"    2. Klik på bluetooth-ikonet på menulinjen\n"
+"    3. Vælg \"Opsætning af ny enhed\"\n"
+"    4. Se efter enheden på listen og vælg den\n"
+"    5. Skriv adgangskoden, som installationsguiden har genereret, ind i "
+"enheden\n"
+"    6. Enheden bør nu danne par med computeren\n"
+"    7. Klik \"Test\" for at optage i fem sekunder og afspille via bluetooth-"
+"enheden\n"
+"BEKRÆFTELSE\n"
+"    Kunne du høre den lyd du optog via bluetooth-enheden?"
 
 #. description
 #: ../jobs/bluetooth.txt.in:65
@@ -227,6 +320,17 @@ msgid ""
 "VERIFICATION:\n"
 "    Were you able to enter some text with the bluetooth keyboard?"
 msgstr ""
+"FORMÅL:\n"
+"    Denne test vil kontrollere at du kan bruge et bluetooth-ikon\n"
+"TRIN:\n"
+"    1. Aktiver et bluetooth-tastatur\n"
+"    2. Klik på bluetooth-ikonet på menulinjen\n"
+"    3. Vælg \"Opsætning af ny enhed\"\n"
+"    4. Se efter enheden på listen og vælg den\n"
+"    5. Klik \"Test\"\n"
+"    6. Skriv noget tekst\n"
+"BEKRÆFTELSE:\n"
+"    Kunne du skrive noget tekst vha. bluetooth-tastaturet?"
 
 #. description
 #: ../jobs/bluetooth.txt.in:81
@@ -243,11 +347,22 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the mouse work as expected?"
 msgstr ""
+"FORMÅL:\n"
+"    Denne test vil tjekke om du kan bruge en bluetooth-mus\n"
+"TRIN:\n"
+"    1. Aktiver en bluetooth-mus\n"
+"    2. Klik på bluetooth-ikonet på menulinjen\n"
+"    3. Vælg \"Opsætning af ny enhed\"\n"
+"    4. Se efter enheden på listen og vælg den\n"
+"    5. Flyt musen omkring på skærmen\n"
+"    6. Udfør nogle enkelt-/dobbelt-/højreklikoperationer\n"
+"BEKRÆFTELSE:\n"
+"    Fungerede musen som forventet?"
 
 #. description
 #: ../jobs/camera.txt.in:7
 msgid "This Automated test attempts to detect a camera."
-msgstr ""
+msgstr "Denne automatiserede test forsøger at detektere et kamera."
 
 #. description
 #: ../jobs/camera.txt.in:16
@@ -260,6 +375,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you see the video capture?"
 msgstr ""
+"FORMÅL:\n"
+"    Denne test vil kontrollere at den indbyggede kamera fungerer\n"
+"TRIN:\n"
+"    1. Klik på \"Test\" for at vise en ti sekunders videooptagelse fra "
+"kameraet.\n"
+"BEKRÆFTELSE:\n"
+"    Kunne du se videooptagelsen?"
 
 #. description
 #: ../jobs/camera.txt.in:33
@@ -271,6 +393,12 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you see the image?"
 msgstr ""
+"FORMÅL:\n"
+"    Denne test vil tjekke at det interne kamera fungerer\n"
+"TRIN:\n"
+"    1. Klik på \"Test\" for at vise et billede fra kameraet\n"
+"BEKRÆFTELSE\n"
+"    Kunne du se billedet?"
 
 #. description
 #: ../jobs/codecs.txt.in:7
@@ -284,6 +412,14 @@ msgid ""
 "VERIFICATION:\n"
 "   Did the sample play correctly?"
 msgstr ""
+"FORMÅL:\n"
+"   Denne test vil bekræfte om dit system er i stand til at afspille Ogg "
+"Vorbis-lydfiler.\n"
+"TRIN:\n"
+"   1. Klik \"Test\" for at afspille en Ogg Vorbis-fil (.ogg)\n"
+"   2. Vælg venligst afspilleren som skal bruges.\n"
+"BEKRÆFTELSE:\n"
+"   Kunne du høre lydprøven blive afspillet korrekt?"
 
 #. description
 #: ../jobs/codecs.txt.in:22
@@ -296,12 +432,21 @@ msgid ""
 "VERIFICATION:\n"
 "   Did the sample play correctly?"
 msgstr ""
+"FORMÅL:\n"
+"   Denne test vil bekræfte om dit system er i stand til at afspille Wave-"
+"lydfiler.\n"
+"TRIN:\n"
+"   1. Klik \"Test\" for at afspille en Wave-fil (.wav)\n"
+"   2. Vælg venligst afspilleren som skal bruges.\n"
+"BEKRÆFTELSE:\n"
+"   Kunne du høre lydprøven blive afspillet korrekt?"
 
 #. description
 #: ../jobs/cpu.txt.in:8
 msgid ""
 "Test the CPU scaling capabilities using Firmware Test Suite (fwts cpufreq)."
 msgstr ""
+"Test CPU-skaleringsegenskaberne vha. Firmware-testsuiten (fwts cpufreq)."
 
 #. description
 #: ../jobs/cpu.txt.in:15
@@ -311,17 +456,19 @@ msgstr "Test for klokflimmer."
 #. description
 #: ../jobs/cpu.txt.in:23
 msgid "Test offlining CPUs in a multicore system."
-msgstr ""
+msgstr "Test offlining af CPU'er i multikernesystemer."
 
 #. description
 #: ../jobs/cpu.txt.in:30
 msgid "This test checks cpu topology for accuracy"
-msgstr ""
+msgstr "Denne test kontrollerer nøjagtigheden af cpu-topologien"
 
 #. description
 #: ../jobs/cpu.txt.in:38
 msgid "This test checks that CPU frequency governors are obeyed when set."
 msgstr ""
+"Denne test kontrollerer at CPU-frekvensregulatorerne blive adlydt når de "
+"bliver indstillet."
 
 #. description
 #: ../jobs/daemons.txt.in:5
@@ -386,12 +533,12 @@ msgstr "Detekterer og viser diske som er forbundet til systemet."
 #. description
 #: ../jobs/disk.txt.in:9
 msgid "Benchmark for each disk"
-msgstr ""
+msgstr "Udfør ydelsestest for hver disk"
 
 #. description
 #: ../jobs/disk.txt.in:23
 msgid "Check stats changes for each disk"
-msgstr ""
+msgstr "Kontroller tilstandsændringer for hver disk"
 
 #. description
 #: ../jobs/disk.txt.in:40
@@ -438,6 +585,23 @@ msgid ""
 "VERIFICATION:\n"
 "   Did the authentication procedure work correctly?"
 msgstr ""
+"FORMÅL:\n"
+"   Denne test vil verificere at en fingeraftrykslæser vil fungere korrekt "
+"til at logge ind på systemet med.\n"
+"FORUDSÆTNINGER:\n"
+"   Denne test antager at der findes en testkonto, som testen kan køres fra "
+"og en personlig konto som testeren bruger til at verificerer "
+"fingeraftrykslæseren\n"
+"TRIN:\n"
+"   1. Klik på brugerskifter-panelprogrammet.\n"
+"   2. Vælg dit brugernavn.\n"
+"   3. Der bør dukke et vindue op, som giver muligheden for at logge ind "
+"enten ved at indtaste adgangskode eller vha. fingeraftryksidentifikation.\n"
+"   4. Brug fingeraftrykslæseren til at logge ind med.\n"
+"   5. Klik på brugerskifter-panelprogrammet.\n"
+"   6. Vælg testkontoen for at fortsætte med at køre tester.\n"
+"BEKRÆFTELSE:\n"
+"   Virkede godkendelsesproceduren korrekt?"
 
 #. description
 #: ../jobs/fingerprint.txt.in:20
@@ -772,42 +936,42 @@ msgid "Attaches a list of the currently running kernel modules."
 msgstr ""
 
 #. description
-#: ../jobs/info.txt.in:82
+#: ../jobs/info.txt.in:96
 msgid "Gather log from the Firmware Test Suite run."
 msgstr ""
 
 #. description
-#: ../jobs/info.txt.in:89
+#: ../jobs/info.txt.in:103
 msgid "Attaches the contents of /proc/acpi/sleep if it exists."
 msgstr ""
 
 #. description
-#: ../jobs/info.txt.in:93
+#: ../jobs/info.txt.in:107
 msgid "Bootchart information."
 msgstr "Bootchart-information."
 
 #. description
-#: ../jobs/info.txt.in:102
+#: ../jobs/info.txt.in:116
 msgid "SATA/IDE device information."
 msgstr "SATA/IDE-enhedsinformation."
 
 #. description
-#: ../jobs/info.txt.in:119
+#: ../jobs/info.txt.in:133
 msgid "Attaches the bootchart png file for bootchart runs"
 msgstr ""
 
 #. description
-#: ../jobs/info.txt.in:128
+#: ../jobs/info.txt.in:142
 msgid "Attaches the bootchart log for bootchart test runs."
 msgstr ""
 
 #. description
-#: ../jobs/info.txt.in:136
+#: ../jobs/info.txt.in:150
 msgid "installs the installer bootchart tarball if it exists."
 msgstr ""
 
 #. description
-#: ../jobs/info.txt.in:141
+#: ../jobs/info.txt.in:155
 msgid "Attaches the installer debug log if it exists."
 msgstr ""
 
@@ -977,7 +1141,7 @@ msgstr "Test af firewiredisk"
 #. description
 #: ../jobs/local.txt.in:73
 msgid "Floppy disk tests"
-msgstr ""
+msgstr "Floppydisktester"
 
 #. description
 #: ../jobs/local.txt.in:80
@@ -992,22 +1156,22 @@ msgstr "Dvaletester"
 #. description
 #: ../jobs/local.txt.in:94
 msgid "Informational tests"
-msgstr ""
+msgstr "Informationeltester"
 
 #. description
 #: ../jobs/local.txt.in:101
 msgid "Input Devices tests"
-msgstr ""
+msgstr "Inputenhedestester"
 
 #. description
 #: ../jobs/local.txt.in:108
 msgid "Software Installation tests"
-msgstr ""
+msgstr "Programinstallationtester"
 
 #. description
 #: ../jobs/local.txt.in:115
 msgid "Hotkey tests"
-msgstr ""
+msgstr "Genvejstasttester"
 
 #. description
 #: ../jobs/local.txt.in:122
@@ -1022,7 +1186,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:136
 msgid "Media Card tests"
-msgstr ""
+msgstr "Mediekorttester"
 
 #. description
 #: ../jobs/local.txt.in:143
@@ -1047,7 +1211,7 @@ msgstr "Netværkstester"
 #. description
 #: ../jobs/local.txt.in:171
 msgid "Optical Drive tests"
-msgstr ""
+msgstr "Optisk drevtester"
 
 #. description
 #: ../jobs/local.txt.in:178
@@ -1057,7 +1221,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:185
 msgid "PCMCIA/PCIX Card tests"
-msgstr ""
+msgstr "PCMCIA/PCIX-tester"
 
 #. description
 #: ../jobs/local.txt.in:192
@@ -1087,30 +1251,30 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:227
 msgid "Suspend tests"
-msgstr ""
+msgstr "Hviletester"
 
 #. description
-#: ../jobs/local.txt.in:234
+#: ../jobs/local.txt.in:241
 msgid "Unity tests"
 msgstr "Unitytester"
 
 #. description
-#: ../jobs/local.txt.in:241
+#: ../jobs/local.txt.in:248
 msgid "USB tests"
 msgstr "USB-tester"
 
 #. description
-#: ../jobs/local.txt.in:248
+#: ../jobs/local.txt.in:255
 msgid "User Applications"
 msgstr "Brugerprogrammer"
 
 #. description
-#: ../jobs/local.txt.in:255
+#: ../jobs/local.txt.in:262
 msgid "Wireless networking tests"
-msgstr ""
+msgstr "Trådløs netværkstester"
 
 #. description
-#: ../jobs/local.txt.in:262
+#: ../jobs/local.txt.in:269
 msgid "Stress tests"
 msgstr "Stress-test"
 
@@ -1704,7 +1868,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/optical.txt.in:43
+#: ../jobs/optical.txt.in:34
 msgid ""
 "PURPOSE:\n"
 "    This test will check your system's CD writing capabilities. This test "
@@ -1722,7 +1886,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/optical.txt.in:57
+#: ../jobs/optical.txt.in:46
 msgid ""
 "PURPOSE:\n"
 "    This test will check your CD audio playback capabilities\n"
@@ -1741,7 +1905,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/optical.txt.in:80
+#: ../jobs/optical.txt.in:71
 msgid ""
 "PURPOSE:\n"
 "    This test will check your system's DVD writing capabilities. This test "
@@ -1759,7 +1923,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/optical.txt.in:94
+#: ../jobs/optical.txt.in:82
 msgid ""
 "PURPOSE:\n"
 "    This test will check your DVD movie playback capabilities. Note that "
@@ -1778,7 +1942,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/optical.txt.in:112
+#: ../jobs/optical.txt.in:100
 msgid ""
 "PURPOSE:\n"
 "    This test will check your DVD  playback capabilities\n"
@@ -2062,7 +2226,7 @@ msgstr ""
 "hviletesten er blevet kørt"
 
 #. description
-#: ../jobs/suspend.txt.in:40
+#: ../jobs/suspend.txt.in:49
 msgid ""
 "This test disconnects all connections and then connects to the wireless "
 "interface. It then checks the connection to confirm it's working as expected."
@@ -2071,7 +2235,7 @@ msgstr ""
 "grænseflade. Bagefter tjekkes derm at forbindelsen virker som forventet."
 
 #. description
-#: ../jobs/suspend.txt.in:74
+#: ../jobs/suspend.txt.in:83
 msgid ""
 "PURPOSE:\n"
 "    This test will check suspend and resume\n"
@@ -2087,34 +2251,34 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:87
+#: ../jobs/suspend.txt.in:96
 msgid "Test the network after resuming."
 msgstr "Test netværket efter genoptagelse."
 
 #. description
-#: ../jobs/suspend.txt.in:93
+#: ../jobs/suspend.txt.in:102
 msgid ""
 "Test to see that we have the same resolution after resuming as before."
 msgstr "Kontrollér at der bruges samme opløsning efter genoptagelse som før."
 
 #. description
-#: ../jobs/suspend.txt.in:102
+#: ../jobs/suspend.txt.in:111
 msgid ""
 "Verify that mixer settings after suspend are the same as before suspend."
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:118
+#: ../jobs/suspend.txt.in:127
 msgid "Verify that all CPUs are online after resuming."
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:135
+#: ../jobs/suspend.txt.in:144
 msgid "Verify that all memory is available after resuming from suspend."
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:144
+#: ../jobs/suspend.txt.in:153
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the display is correct after suspend and "
@@ -2124,7 +2288,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:155
+#: ../jobs/suspend.txt.in:174
 msgid ""
 "This test checks that the wireless interface is working after suspending the "
 "system. It disconnects all interfaces and then connects to the wireless "
@@ -2163,7 +2327,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:211
+#: ../jobs/suspend.txt.in:186
 msgid ""
 "This test grabs the hardware address of the bluetooth adapter after suspend "
 "and compares it to the address grabbed before suspend."
@@ -2172,14 +2336,14 @@ msgstr ""
 "sammenligner den med den adresse som blev indhentet før hvile."
 
 #. description
-#: ../jobs/suspend.txt.in:221
+#: ../jobs/suspend.txt.in:196
 msgid ""
 "This is an automated Bluetooth file transfer test. It sends an image to the "
 "device specified by the BTDEVADDR environment variable."
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:231
+#: ../jobs/suspend.txt.in:206
 msgid ""
 "PURPOSE:\n"
 "    This test will send the image 'JPEG_Color_Image_Ubuntu.jpg' to a "
@@ -2194,7 +2358,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:245
+#: ../jobs/suspend.txt.in:220
 msgid ""
 "PURPOSE:\n"
 "    This test will cycle through the detected display modes\n"
@@ -2205,41 +2369,52 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:257
+#: ../jobs/suspend.txt.in:232
 msgid ""
 "This test will check to make sure supported video modes work after a suspend "
 "and resume. This is done automatically by taking screenshots and uploading "
 "them as an attachment."
 msgstr ""
+"Denne test vil tjekke om alle understøttede videotilstande virker efter "
+"hvile og genoptagelse. Dette bliver gjort automatisk ved at tage "
+"skærmbilleder og overføre dem som vedhæftninger."
 
 #. description
-#: ../jobs/suspend.txt.in:266
+#: ../jobs/suspend.txt.in:241
 msgid ""
 "This attaches screenshots from the "
 "suspend/cycle_resolutions_after_suspend_auto test to the results submission."
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:276
+#: ../jobs/suspend.txt.in:251
 msgid ""
 "This will check to make sure that your audio device works properly after a "
 "suspend and resume.  This may work fine with speakers and onboard "
 "microphone, however, it works best if used with a cable connecting the audio-"
 "out jack to the audio-in jack."
 msgstr ""
+"Dette vil tjekke at din lydenhed virker korrekt efter en hvile og "
+"genoptagelse. Det kan muligvis fungere fint med højtalere og indbygget "
+"mirkrofon, men det virker bedst med at kabel som forbinder audio-ud-stikket "
+"med audio-ind-stikket."
 
 #. description
-#: ../jobs/suspend.txt.in:285
+#: ../jobs/suspend.txt.in:260
 msgid "This is the automated version of suspend/suspend_advanced."
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:294
+#: ../jobs/suspend.txt.in:269
 msgid ""
 "This automatically tests Wake-on-LAN capability with the aid of a suitably "
 "configured server. During this process the system will suspend, then "
 "automatically wake up after no more than 5 minutes."
 msgstr ""
+"Dette vil automatisk teste Wake-on-LAN-funktionalitet (opvågning via "
+"lokalnetværk) ved hjælp af en server, som er passende konfigureret. Under "
+"denne test vil systemet blive sat til at hvile og derefter automatisk vågne "
+"op efter mindre en 5 minutter."
 
 #. description
 #: ../jobs/suspend.txt.in:304
@@ -2985,17 +3160,17 @@ msgid "Unknown signal"
 msgstr "Ukendt signal"
 
 #: ../checkbox_cli/cli_interface.py:31
-#: ../checkbox_urwid/urwid_interface.py:917 ../checkbox_qt/qt_interface.py:33
+#: ../checkbox_urwid/urwid_interface.py:917 ../checkbox_qt/qt_interface.py:37
 msgid "yes"
 msgstr "ja"
 
 #: ../checkbox_cli/cli_interface.py:32
-#: ../checkbox_urwid/urwid_interface.py:918 ../checkbox_qt/qt_interface.py:34
+#: ../checkbox_urwid/urwid_interface.py:918 ../checkbox_qt/qt_interface.py:38
 msgid "no"
 msgstr "nej"
 
 #: ../checkbox_cli/cli_interface.py:33
-#: ../checkbox_urwid/urwid_interface.py:919 ../checkbox_qt/qt_interface.py:35
+#: ../checkbox_urwid/urwid_interface.py:919 ../checkbox_qt/qt_interface.py:39
 msgid "skip"
 msgstr "spring over"
 
@@ -3052,11 +3227,11 @@ msgid "Next"
 msgstr "Næste"
 
 #. Show buttons
-#: ../checkbox_urwid/urwid_interface.py:423 ../qt/frontend/qtfront.cpp:137
+#: ../checkbox_urwid/urwid_interface.py:423 ../qt/frontend/qtfront.cpp:136
 msgid "Select All"
 msgstr "Vælg alle"
 
-#: ../checkbox_urwid/urwid_interface.py:424 ../qt/frontend/qtfront.cpp:138
+#: ../checkbox_urwid/urwid_interface.py:424 ../qt/frontend/qtfront.cpp:137
 msgid "Deselect All"
 msgstr "Fravælg alle"
 
@@ -3077,15 +3252,15 @@ msgstr "Test"
 msgid "Test Again"
 msgstr "Test igen"
 
-#: ../checkbox_gtk/gtk_interface.py:517
+#: ../checkbox_gtk/gtk_interface.py:503
 msgid "_Test Again"
 msgstr "_Test igen"
 
-#: ../checkbox_gtk/gtk_interface.py:566
+#: ../checkbox_gtk/gtk_interface.py:551 ../qt/frontend/qtfront.cpp:490
 msgid "Info"
 msgstr "Info"
 
-#: ../checkbox_gtk/gtk_interface.py:590
+#: ../checkbox_gtk/gtk_interface.py:575 ../qt/frontend/qtfront.cpp:247
 msgid "Error"
 msgstr "Fejl"
 
@@ -3257,7 +3432,7 @@ msgid "Running %s..."
 msgstr "Kører %s..."
 
 #. Get results
-#: ../plugins/suites_prompt.py:124
+#: ../plugins/suites_prompt.py:110
 msgid "Select the suites to test"
 msgstr "Vælg hvilke dele som skal testes"
 
@@ -3269,39 +3444,39 @@ msgstr "Indtast tekst:\n"
 msgid "Type Text"
 msgstr "Skriv tekst"
 
-#: ../scripts/internet_test:196
+#: ../scripts/internet_test:139
 msgid "No Internet connection"
 msgstr "Ingen internetforbindelse"
 
-#: ../scripts/internet_test:199
+#: ../scripts/internet_test:142
 msgid "Connection established lost a packet"
 msgstr "Den etablerede forbindelse mistede en pakke"
 
-#: ../scripts/internet_test:202
+#: ../scripts/internet_test:145
 msgid "Internet connection fully established"
 msgstr "Internetforbindelse er fuldt etableret"
 
-#: ../qt/frontend/qtfront.cpp:108
+#: ../qt/frontend/qtfront.cpp:107
 msgid "Not Started"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:109 ../qt/frontend/qtfront.cpp:110
+#: ../qt/frontend/qtfront.cpp:108 ../qt/frontend/qtfront.cpp:109
 msgid "Done"
 msgstr "Færdig"
 
-#: ../qt/frontend/qtfront.cpp:111
+#: ../qt/frontend/qtfront.cpp:110
 msgid "Not Supported"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:112
+#: ../qt/frontend/qtfront.cpp:111
 msgid "Not Resolved"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:113
+#: ../qt/frontend/qtfront.cpp:112
 msgid "Not Tested"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:114
+#: ../qt/frontend/qtfront.cpp:113
 msgid "In Progress"
 msgstr ""
 
