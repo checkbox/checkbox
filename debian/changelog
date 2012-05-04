@@ -40,7 +40,11 @@ checkbox (0.13.8) precise; urgency=low
   * [FEATURE] jobs/info.txt.in: added new attachments, lspci -vvnnQ and
     lsusb -vv and ensure outputs of lscpi, lsusb and dmidecode return UTF8.
 
- -- Daniel Manrique <roadmr@ubuntu.com>  Wed, 18 Apr 2012 16:52:32 -0400
+  [Tim Chen]
+  * Use nmcli con delete instead of deleting the connection file, also avoid
+    bringing eth0 down when running the wireless_monitoring tests.
+
+ -- Daniel Manrique <roadmr@ubuntu.com>  Fri, 04 May 2012 16:05:04 -0400
 
 checkbox (0.13.7) precise; urgency=low
 
