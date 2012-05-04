@@ -21,8 +21,15 @@ requires:
 user: root
 _description:
  Run Firmware Test Suite (fwts) automated tests.
+environ: CHECKBOX_DATA
 command:
  fwts_test -l $CHECKBOX_DATA/fwts_results.log
+
+plugin: attachment
+name: fwts_results.log
+depends: miscellanea/fwts_test
+command: cat ${CHECKBOX_DATA}/fwts_results.log
+_description: Attaches the FWTS results log to the submission
 
 plugin: shell
 name: miscellanea/ipmi_test

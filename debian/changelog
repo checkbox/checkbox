@@ -5,6 +5,8 @@ checkbox (0.13.8) precise; urgency=low
     also because it's supposed to be run as root (LP: #989701)
   * Fixed cpu_offlining to work properly on systems with ten or more CPU
     cores. (LP: #926136)
+  * Give more verbose output from fwts_test script and upload results log as an
+    attachment. (LP: #992607)
 
   [Nathan Williams]
   * fix typo in jobs/optical.txt.in (lp: #987652)
