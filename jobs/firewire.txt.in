@@ -5,7 +5,7 @@ _description:
  PURPOSE:
      This test will check the system can detect the insertion of a FireWire HDD
  STEPS:
-     1. Click 'Test' to begin the test. This test will 
+     1. Click 'Test' to begin the test. This test will
         timeout and fail if the insertion has not been detected within 20 seconds.
      2. Plug a FireWire HDD into an available FireWire port.
  VERIFICATION:
@@ -25,13 +25,13 @@ name: firewire/remove
 depends: firewire/storage-test
 command: removable_storage_watcher remove firewire
 _description:
-  PURPOSE:
-    This test will check the system can detect the removal of a FireWire HDD
-  STEPS:
-    1. Click 'Test' to begin the test. This test will timeout and fail if
-       the removal has not been detected within 20 seconds.
-    2. Remove the previously attached FireWire HDD from the FireWire port.
-  VERIFICATION:
-    The verification of this test is automated. Do not change the automatically
-    selected result
+ PURPOSE:
+     This test will check the system can detect the removal of a FireWire HDD
+ STEPS:
+     1. Click 'Test' to begin the test. This test will timeout and fail if
+        the removal has not been detected within 20 seconds.
+     2. Remove the previously attached FireWire HDD from the FireWire port.
+ VERIFICATION:
+     The verification of this test is automated. Do not change the automatically
+     selected result
 
