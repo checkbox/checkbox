@@ -11,6 +11,58 @@ _description:
      Did the system shutdown and rebooted correctly?
 
 plugin: manual
+name: power-management/poweroff
+user: root
+requires:
+ package.name == 'upstart'
+ package.name == 'fwts'
+command: pm_test poweroff --log-level=debug --log-dir=$CHECKBOX_DATA
+_description:
+ PURPOSE:
+  This test will check the system's ability to power-off and boot.
+ STEPS:
+  1: Select "Test" to begin.
+  2: The machine will power off
+  3: If the machine does not power on automatically after about a minute,
+  please press the power button and boot it.
+  4: Once the system is running again, please restart Checkbox and select
+  Re-Run when prompted
+ VERIFICATION:
+  Verification should be automatic.
+
+plugin: attachment
+name: power-management/poweroff-log-attach
+command: tar cvfz power-management_poweroff.tgz $CHECKBOX_DATA/*poweroff*log* && cat $CHECKBOX_DATA/power-management_poweroff.tgz
+_description:
+ This will attach any logs from the power-management/poweroff test to the results.
+
+plugin: manual
+name: power-management/reboot
+user: root
+requires:
+ package.name == 'upstart'
+ package.name == 'fwts'
+command: pm_test reboot --log-level=debug --log-dir=$CHECKBOX_DATA
+_description:
+ PURPOSE:
+  This test will check the system's ability to reboot cleanly.
+ STEPS:
+  1: Select "Test" to begin.
+  2: The machine will reboot.
+  3: If the machine does not power on automatically after about a minute,
+  please press the power button and boot it.
+  4: Once the system is running again, please restart Checkbox and select
+  Re-Run when prompted
+ VERIFICATION:
+  Verification should be automatic.
+
+plugin: attachment
+name: power-management/reboot-log-attach
+command: tar cvfz power-management_reboot.tgz $CHECKBOX_DATA/*reboot*log* && cat $CHECKBOX_DATA/power-management_reboot.tgz
+_description:
+ This will attach any logs from the power-management/reboot test to the results.
+
+plugin: manual
 name: power-management/lid
 _description:
  PURPOSE:

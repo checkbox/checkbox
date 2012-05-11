@@ -1,9 +1,9 @@
 plugin: manual
 name: power-management/hibernate_advanced
 depends: power-management/rtc
-requires: package.name == 'pm-utils'
+requires: package.name == 'fwts'
 user: root
-command: sleep_test -s disk -w 120 --debug
+command: fwts s4 --s4-device-check --s4-sleep-delay 120 -r $CHECKBOX_DATA/hibernate-single.log
 _description:
  PURPOSE:
      This test will check to make sure your system can successfully hibernate (if supported)
@@ -14,3 +14,8 @@ _description:
      4. If the system fails to resume from hibernate, please restart System Testing and mark this test as Failed
  VERIFICATION:
      Did the system successfully hibernate and did it work properly after waking up?
+
+plugin: attachment
+name: power-management/hibernate-single-log-attach
+command: [ -e $CHECKBOX_DATA/hibernate-single.log ] && cat $CHECBOX_DATA/hibernate-single.log
+description: attaches log from single hibernate/resume test to results
