@@ -241,7 +241,7 @@ void QtFront::showText(QString text)
         m_mainWindow->show();
         ui->welcomeTextBox->setPlainText(text);
     } else if (currentState == SUBMISSION) {
-        ui->submissionUbuntuFriendlyLabel->setText(text);
+        ui->submissionLabel->setText(text);
     }
 }
 
@@ -279,9 +279,9 @@ void QtFront::stopProgressBar()
 
 void QtFront::showEntry(QString text) 
 {
-    Q_UNUSED(text)
     currentState = SUBMISSION;
     // Email address requested, so move to the results screen and hide the "run" screen contents
+    ui->submissionLabel->setText(text);
     ui->testsTab->setCurrentIndex(2);
     ui->radioTestTab->setVisible(false);
     ui->nextPrevButtons->setVisible(false);
