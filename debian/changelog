@@ -8,6 +8,7 @@ checkbox (0.13.8) precise; urgency=low
   * Give more verbose output from fwts_test script and upload results log as an
     attachment. (LP: #992607)
   * Fix identation on optical/read-automated (LP: #991737)
+  * Fixed problem with fwts test log attachment (No bug filed)
 
   [Nathan Williams]
   * fix typo in jobs/optical.txt.in (lp: #987652)
@@ -47,7 +48,7 @@ checkbox (0.13.8) precise; urgency=low
   * Use nmcli con delete instead of deleting the connection file, also avoid
     bringing eth0 down when running the wireless_monitoring tests.
 
- -- Daniel Manrique <roadmr@ubuntu.com>  Fri, 04 May 2012 16:05:04 -0400
+ -- Jeff Lane <jeff@ubuntu.com>  Mon, 14 May 2012 10:20:59 -0400
 
 checkbox (0.13.7) precise; urgency=low
 
