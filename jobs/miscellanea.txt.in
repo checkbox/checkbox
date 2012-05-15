@@ -27,7 +27,6 @@ command:
 
 plugin: attachment
 name: fwts_results.log
-depends: miscellanea/fwts_test
 command: cat ${CHECKBOX_DATA}/fwts_results.log
 _description: Attaches the FWTS results log to the submission
 

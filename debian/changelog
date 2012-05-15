@@ -1,5 +1,8 @@
-checkbox (0.14.0) quantal; urgency=low
-
+checkbox (0.14) quantal; urgency=low
+  
+  [Daniel Manrique]
+  * New version 0.14 for Quantal Quetzal development.
+  
   [Jeff Lane]
   * Bumped version up to being development on Quantal
   * [FEATURE] Changes to Power Management testing in Checkbox:
@@ -16,7 +19,7 @@ checkbox (0.14.0) quantal; urgency=low
       fwts. Added job to attach log from suspend_advanced and suspend_advanced_auto 
       to results.
 
- -- Jeff Lane <jeff@ubuntu.com>  Fri, 11 May 2012 12:15:33 -0400
+ -- Jeff Lane <jeff@ubuntu.com>  Tue, 15 May 2012 10:20:20 -0400
 
 checkbox (0.13.8) precise; urgency=low
 
@@ -28,6 +31,7 @@ checkbox (0.13.8) precise; urgency=low
   * Give more verbose output from fwts_test script and upload results log as an
     attachment. (LP: #992607)
   * Fix identation on optical/read-automated (LP: #991737)
+  * Fixed problem with fwts test log attachment (No bug filed)
 
   [Nathan Williams]
   * fix typo in jobs/optical.txt.in (lp: #987652)
@@ -67,7 +71,7 @@ checkbox (0.13.8) precise; urgency=low
   * Use nmcli con delete instead of deleting the connection file, also avoid
     bringing eth0 down when running the wireless_monitoring tests.
 
- -- Daniel Manrique <roadmr@ubuntu.com>  Fri, 04 May 2012 16:05:04 -0400
+ -- Jeff Lane <jeff@ubuntu.com>  Mon, 14 May 2012 10:20:59 -0400
 
 checkbox (0.13.7) precise; urgency=low
 
