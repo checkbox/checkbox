@@ -12,19 +12,31 @@ _description:
 plugin: shell
 name: power-management/hibernate_30_cycles
 depends: power-management/rtc
-requires: package.name == 'pm-utils'
+requires: package.name == 'fwts'
 user: root
-command: sleep_test -i 30 -s disk -w 120 --debug
+command: fwts s4 --s4-device-check --s4-sleep-delay 120 --s4-multiple=30 -r $CHECKBOX_DATA/hibernate_30_cycles.log
 _description:
  PURPOSE:
     This is an automated stress test that will force the system to hibernate/resume for 30 cycles
 
+plugin: attachment
+name: power-management/hibernate-30-cycle-log-attach
+command: [ -e $CHECKBOX_DATA/hibernate_30_cycles.log ] && cat $CHECKBOX_DATA/hibernate_30_cycles.log
+_description:
+ Attaches the log from the 30 cycle Hibernate/Resume test if it exists
+
 plugin: shell
 name: power-management/suspend_30_cycles
 depends: power-management/rtc
-requires: package.name == 'pm-utils'
+requires: package.name == 'fwts'
 user: root
-command: sleep_test -i 30 -s mem --debug
+command: fwts s3 --s3-device-check --s3-sleep-delay 30 --s3-multiple=30 -r $CHECKBOX_DATA/suspend_30_cycles.log
 _description:
  PURPOSE:
     This is an automated stress test that will force the system to suspend/resume for 30 cycles.
+
+plugin: attachment
+name: power-management/suspend-30-cycle-log-attach
+command: [ -e $CHECKBOX_DATA/suspend_30_cycles.log ] && cat $CHECKBOX_DATA/suspend_30_cycles.log
+_description:
+ Attaches the log from the 30 cycle Suspend/Resume test if it exists

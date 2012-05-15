@@ -1,8 +1,24 @@
 checkbox (0.14) quantal; urgency=low
-
+  
+  [Daniel Manrique]
   * New version 0.14 for Quantal Quetzal development.
+  
+  [Jeff Lane]
+  * [FEATURE] Changes to Power Management testing in Checkbox:
+    * scripts/pm_test: added a slightly modified version of OEM team's pm.py
+      script for reboot/poweroff testing
+    * jobs/hibernate.txt.in: modified hibernate test to use fwts and added new
+      jobs to attach log files from hibernate testing.
+    * jobs/power-management.txt.in: added new poweroff and reboot jobs using pm_test
+      script. Added jobs to attach logs from reboot and poweroff tests to
+      results.  
+    * jobs/stress.txt.in: modified suspend_30_cycles and hibernate_30_cycles to
+      use fwts. Added jobs to attach logs from 30 cycle tests to results.
+    * jobs/suspend.txt.in: Modified suspend_advanced and suspend_advanced_auto to use 
+      fwts. Added job to attach log from suspend_advanced and suspend_advanced_auto 
+      to results.
 
- -- Daniel Manrique <roadmr@ubuntu.com>  Mon, 14 May 2012 10:27:14 -0400
+ -- Jeff Lane <jeff@ubuntu.com>  Tue, 15 May 2012 10:20:20 -0400
 
 checkbox (0.13.8) precise; urgency=low
 
