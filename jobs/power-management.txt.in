@@ -22,13 +22,12 @@ _description:
   This test will check the system's ability to power-off and boot.
  STEPS:
   1: Select "Test" to begin.
-  2: The machine will power off
-  3: If the machine does not power on automatically after about a minute,
-  please press the power button and boot it.
-  4: Once the system is running again, please restart Checkbox and select
-  Re-Run when prompted
+  2: The machine will shut down.
+  3: Power the machine back on.
+  4: After rebooting, wait for the test prompts to inform you that the test is complete.
+  5: Once the test has completed, restart checkbox and select Re-Run when prompted
  VERIFICATION:
-  Verification should be automatic.
+  If the machine successfully shuts down and boots, select Yes then select Next.
 
 plugin: attachment
 name: power-management/poweroff-log-attach
@@ -49,12 +48,10 @@ _description:
  STEPS:
   1: Select "Test" to begin.
   2: The machine will reboot.
-  3: If the machine does not power on automatically after about a minute,
-  please press the power button and boot it.
-  4: Once the system is running again, please restart Checkbox and select
-  Re-Run when prompted
+  3: After rebooting, wait for the test prompts to inform you that the test is complete.
+  4: Once the test has completed, restart checkbox and select Re-Run when prompted
  VERIFICATION:
-  Verification should be automatic.
+  If the machine successfully reboots, select Yes then select Next.
 
 plugin: attachment
 name: power-management/reboot-log-attach
