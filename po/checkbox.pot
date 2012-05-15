@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/checkbox/+filebug\n"
-"POT-Creation-Date: 2012-05-11 12:35-0400\n"
+"POT-Creation-Date: 2012-05-15 13:32-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -479,16 +479,17 @@ msgstr ""
 #. description
 #: ../jobs/firewire.txt.in:27
 msgid ""
-" PURPOSE:\n"
-"   This test will check the system can detect the removal of a FireWire HDD\n"
-" STEPS:\n"
-"   1. Click 'Test' to begin the test. This test will timeout and fail if\n"
-"      the removal has not been detected within 20 seconds.\n"
-"   2. Remove the previously attached FireWire HDD from the FireWire port.\n"
-" VERIFICATION:\n"
-"   The verification of this test is automated. Do not change the "
+"PURPOSE:\n"
+"    This test will check the system can detect the removal of a FireWire "
+"HDD\n"
+"STEPS:\n"
+"    1. Click 'Test' to begin the test. This test will timeout and fail if\n"
+"       the removal has not been detected within 20 seconds.\n"
+"    2. Remove the previously attached FireWire HDD from the FireWire port.\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the "
 "automatically\n"
-"   selected result"
+"    selected result"
 msgstr ""
 
 #. description
@@ -657,7 +658,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:186 ../jobs/suspend.txt.in:328
+#: ../jobs/graphics.txt.in:186 ../jobs/suspend.txt.in:332
 msgid "Attaches the screenshot captured in graphics/screenshot."
 msgstr ""
 
@@ -1476,26 +1477,26 @@ msgid "Run Firmware Test Suite (fwts) automated tests."
 msgstr ""
 
 #. description
-#: ../jobs/miscellanea.txt.in:32
+#: ../jobs/miscellanea.txt.in:31
 msgid "Attaches the FWTS results log to the submission"
 msgstr ""
 
 #. description
-#: ../jobs/miscellanea.txt.in:39
+#: ../jobs/miscellanea.txt.in:38
 msgid ""
 "This will run some basic connectivity tests against a BMC, verifying that "
 "IPMI works."
 msgstr ""
 
 #. description
-#: ../jobs/miscellanea.txt.in:45
+#: ../jobs/miscellanea.txt.in:44
 msgid ""
 "   Determine if we need to run tests specific to portable computers that may "
 "not apply to desktops."
 msgstr ""
 
 #. description
-#: ../jobs/miscellanea.txt.in:53
+#: ../jobs/miscellanea.txt.in:52
 msgid ""
 "Test that the /var/crash directory doesn't contain anything. Lists the files "
 "contained within if it does, or echoes the status of the directory (doesn't "
@@ -1503,7 +1504,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/miscellanea.txt.in:61
+#: ../jobs/miscellanea.txt.in:60
 msgid ""
 "Test to check that virtualization is supported and the test system has at "
 "least a minimal amount of RAM to function as an OpenStack Compute Node"
@@ -1807,13 +1808,14 @@ msgid ""
 "PURPOSE:\n"
 "   This test will verify that the desktop clock displays the correct date "
 "and time\n"
+"STEPS:\n"
+"   1. Check the clock in the upper right corner of your desktop.\n"
 "VERIFICATION:\n"
-"   Is the clock in the upper right corner of your desktop displaying the "
-"correct date and time for your timezone?"
+"   Is the clock displaying the correct date and time for your timezone?"
 msgstr ""
 
 #. description
-#: ../jobs/panel_clock_test.txt.in:16
+#: ../jobs/panel_clock_test.txt.in:18
 msgid ""
 "PURPOSE:\n"
 "   This test will verify that the desktop clock synchronizes with the system "
@@ -1923,47 +1925,49 @@ msgid ""
 " This test will check the system's ability to power-off and boot.\n"
 "STEPS:\n"
 " 1: Select \"Test\" to begin.\n"
-" 2: The machine will power off\n"
-" 3: If the machine does not power on automatically after about a minute,\n"
-" please press the power button and boot it.\n"
-" 4: Once the system is running again, please restart Checkbox and select\n"
-" Re-Run when prompted\n"
+" 2: The machine will shut down.\n"
+" 3: Power the machine back on.\n"
+" 4: After rebooting, wait for the test prompts to inform you that the test "
+"is complete.\n"
+" 5: Once the test has completed, restart checkbox and select Re-Run when "
+"prompted\n"
 "VERIFICATION:\n"
-" Verification should be automatic."
+" If the machine successfully shuts down and boots, select Yes then select "
+"Next."
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:36
+#: ../jobs/power-management.txt.in:35
 msgid ""
 "This will attach any logs from the power-management/poweroff test to the "
 "results."
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:46
+#: ../jobs/power-management.txt.in:45
 msgid ""
 "PURPOSE:\n"
 " This test will check the system's ability to reboot cleanly.\n"
 "STEPS:\n"
 " 1: Select \"Test\" to begin.\n"
 " 2: The machine will reboot.\n"
-" 3: If the machine does not power on automatically after about a minute,\n"
-" please press the power button and boot it.\n"
-" 4: Once the system is running again, please restart Checkbox and select\n"
-" Re-Run when prompted\n"
+" 3: After rebooting, wait for the test prompts to inform you that the test "
+"is complete.\n"
+" 4: Once the test has completed, restart checkbox and select Re-Run when "
+"prompted\n"
 "VERIFICATION:\n"
-" Verification should be automatic."
+" If the machine successfully reboots, select Yes then select Next."
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:62
+#: ../jobs/power-management.txt.in:59
 msgid ""
 "This will attach any logs from the power-management/reboot test to the "
 "results."
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:67
+#: ../jobs/power-management.txt.in:64
 msgid ""
 "PURPOSE:\n"
 "    This test will check your lid sensors\n"
@@ -1974,7 +1978,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:84
+#: ../jobs/power-management.txt.in:81
 msgid ""
 "PURPOSE:\n"
 "    This test will check your lid sensors\n"
@@ -1986,7 +1990,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:102
+#: ../jobs/power-management.txt.in:99
 msgid ""
 "PURPOSE:\n"
 "    This test will check your lid sensors\n"
@@ -2000,17 +2004,17 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:118
+#: ../jobs/power-management.txt.in:115
 msgid "Make sure that the RTC (Real-Time Clock) device exists."
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:123
+#: ../jobs/power-management.txt.in:120
 msgid "Test ACPI Wakealarm (fwts wakealarm) "
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:132
+#: ../jobs/power-management.txt.in:129
 msgid ""
 "Check to see if CONFIG_NO_HZ is set in the kernel (this is just a simple "
 "regression check)"
@@ -2121,7 +2125,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:74
+#: ../jobs/suspend.txt.in:76
 msgid ""
 "PURPOSE:\n"
 "    This test will check suspend and resume\n"
@@ -2137,43 +2141,46 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:93
+#: ../jobs/suspend.txt.in:95
 msgid "Test the network after resuming."
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:99
+#: ../jobs/suspend.txt.in:101
 msgid "Test to see that we have the same resolution after resuming as before."
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:108
+#: ../jobs/suspend.txt.in:110
 msgid ""
 "Verify that mixer settings after suspend are the same as before suspend."
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:124
+#: ../jobs/suspend.txt.in:126
 msgid "Verify that all CPUs are online after resuming."
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:141
+#: ../jobs/suspend.txt.in:143
 msgid "Verify that all memory is available after resuming from suspend."
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:150
+#: ../jobs/suspend.txt.in:152
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the display is correct after suspend and "
 "resume\n"
+"STEPS:\n"
+"    1. Check that your display does not show up visual artifacts after "
+"resuming.\n"
 "VERIFICATION:\n"
 "    Does the display work normally after resuming from suspend?"
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:161
+#: ../jobs/suspend.txt.in:165
 msgid ""
 "This test checks that the wireless interface is working after suspending the "
 "system. It disconnects all interfaces and then connects to the wireless "
@@ -2181,49 +2188,49 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:173
+#: ../jobs/suspend.txt.in:177
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using WPA "
 "security and the 802.11b/g protocols after the system has been suspended."
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:184
+#: ../jobs/suspend.txt.in:188
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using no "
 "security and the 802.11b/g protocols after the system has been suspended."
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:195
+#: ../jobs/suspend.txt.in:199
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using WPA "
 "security and the 802.11n protocol after the system has been suspended."
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:206
+#: ../jobs/suspend.txt.in:210
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using no "
 "security and the 802.11n protocol after the system has been suspended."
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:217
+#: ../jobs/suspend.txt.in:221
 msgid ""
 "This test grabs the hardware address of the bluetooth adapter after suspend "
 "and compares it to the address grabbed before suspend."
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:227
+#: ../jobs/suspend.txt.in:231
 msgid ""
 "This is an automated Bluetooth file transfer test. It sends an image to the "
 "device specified by the BTDEVADDR environment variable."
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:237
+#: ../jobs/suspend.txt.in:241
 msgid ""
 "PURPOSE:\n"
 "    This test will send the image 'JPEG_Color_Image_Ubuntu.jpg' to a "
@@ -2238,7 +2245,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:251
+#: ../jobs/suspend.txt.in:255
 msgid ""
 "PURPOSE:\n"
 "    This test will cycle through the detected display modes\n"
@@ -2249,7 +2256,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:263
+#: ../jobs/suspend.txt.in:267
 msgid ""
 "This test will check to make sure supported video modes work after a suspend "
 "and resume. This is done automatically by taking screenshots and uploading "
@@ -2257,14 +2264,14 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:272
+#: ../jobs/suspend.txt.in:276
 msgid ""
 "This attaches screenshots from the suspend/"
 "cycle_resolutions_after_suspend_auto test to the results submission."
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:282
+#: ../jobs/suspend.txt.in:286
 msgid ""
 "This will check to make sure that your audio device works properly after a "
 "suspend and resume.  This may work fine with speakers and onboard "
@@ -2273,17 +2280,17 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:291
+#: ../jobs/suspend.txt.in:295
 msgid "This is the automated version of suspend/suspend_advanced."
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:299
+#: ../jobs/suspend.txt.in:303
 msgid "Attaches the log from the single suspend/resume test to the results"
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:306
+#: ../jobs/suspend.txt.in:310
 msgid ""
 "This automatically tests Wake-on-LAN capability with the aid of a suitably "
 "configured server. During this process the system will suspend, then "
@@ -2291,7 +2298,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:316
+#: ../jobs/suspend.txt.in:320
 msgid ""
 "PURPOSE:\n"
 "    Take a screengrab of the current screen after suspend (logged on Unity "
