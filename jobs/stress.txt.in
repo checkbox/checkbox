@@ -106,23 +106,23 @@ command: tar cvfz stress_poweroff.tgz $CHECKBOX_DATA/*poweroff.100.log && cat $C
 plugin: shell
 name: stress/reboot_check
 depends: stress/reboot
-command: pm_log_check --log-level=notset $CHECKBOX_DATA/*reboot.100.log
+command: pm_log_check --log-level=notset $CHECKBOX_DATA/*reboot.100.log $CHECKBOX_DATA/pm_log_check_reboot.100.log
 _description: Check logs for the stress reboot (100 cycles) test case
 
 plugin: attachment
 name: stress/reboot_check_log
 depends: stress/reboot_check
 command:
- tar cvfz stress_reboot_check.tgz $CHECKBOX_DATA/*check*reboot.100.log && cat $CHECKBOX_DATA/stress_reboot_check.tgz
+ tar cvfz stress_reboot_check.tgz $CHECKBOX_DATA/pm_log_check_reboot.100.log && cat $CHECKBOX_DATA/stress_reboot_check.tgz
 
 plugin: shell
 name: stress/poweroff_check
 depends: stress/poweroff
-command: pm_log_check --log-level=notset $CHECKBOX_DATA/*poweroff.100.log
+command: pm_log_check --log-level=notset $CHECKBOX_DATA/*poweroff.100.log $CHECKBOX_DATA/pm_log_check_poweroff.100.log
 _description: Check logs for the stress poweroff (100 cycles) test case
 
 plugin: attachment
 name: stress/poweroff_check_log
 depends: stress/poweroff_check
 command:
- tar cvfz stress_poweroff_check.tgz $CHECKBOX_DATA/*check*poweroff.100.log && cat $CHECKBOX_DATA/stress_poweroff_check.tgz
+ tar cvfz stress_poweroff_check.tgz $CHECKBOX_DATA/pm_log_check_poweroff.100.log && cat $CHECKBOX_DATA/stress_poweroff_check.tgz
