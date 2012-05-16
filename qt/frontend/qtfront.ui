@@ -47,7 +47,7 @@
       <enum>QTabWidget::Rounded</enum>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tabWelcome">
       <attribute name="title">
@@ -457,7 +457,7 @@ QTabWidget::tab-bar#testsTab {
             <enum>QTabWidget::Rounded</enum>
            </property>
            <property name="currentIndex">
-            <number>0</number>
+            <number>2</number>
            </property>
            <widget class="QWidget" name="testSelection">
             <property name="font">
@@ -1010,13 +1010,13 @@ QTabWidget::tab-bar#testsTab {
             <attribute name="title">
              <string> Results </string>
             </attribute>
-            <widget class="QLabel" name="submissionUbuntuFriendlyLabel">
+            <widget class="QLabel" name="submissionLabel">
              <property name="geometry">
               <rect>
                <x>30</x>
                <y>20</y>
                <width>571</width>
-               <height>41</height>
+               <height>62</height>
               </rect>
              </property>
              <property name="font">
@@ -1032,7 +1032,7 @@ QTabWidget::tab-bar#testsTab {
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;Please enter the e-mail address associated with your Launchpad account &#40;if applicable&#41;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;Please enter the e-mail address associated with your Launchpad account (if applicable)&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;and click the Submit Results button to submit these test results to Ubuntu Friendly.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
              <property name="scaledContents">
@@ -1043,6 +1043,9 @@ p, li { white-space: pre-wrap; }
              </property>
              <property name="wordWrap">
               <bool>false</bool>
+             </property>
+             <property name="openExternalLinks">
+              <bool>true</bool>
              </property>
             </widget>
             <widget class="QGroupBox" name="groupBox">
@@ -1060,7 +1063,7 @@ p, li { white-space: pre-wrap; }
               </font>
              </property>
              <property name="title">
-              <string>Personal details</string>
+              <string>Submission details</string>
              </property>
              <property name="flat">
               <bool>false</bool>
@@ -1068,7 +1071,7 @@ p, li { white-space: pre-wrap; }
              <property name="checkable">
               <bool>false</bool>
              </property>
-             <widget class="QLineEdit" name="lineEditEmailAddress">
+             <widget class="QLineEdit" name="submissionDataLineEdit">
               <property name="geometry">
                <rect>
                 <x>110</x>
@@ -1081,7 +1084,7 @@ p, li { white-space: pre-wrap; }
                <string/>
               </property>
              </widget>
-             <widget class="QLabel" name="label_5">
+             <widget class="QLabel" name="submissionDataLabel">
               <property name="geometry">
                <rect>
                 <x>10</x>

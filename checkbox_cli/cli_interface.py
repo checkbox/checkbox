@@ -325,7 +325,7 @@ class CLIInterface(UserInterface):
         dialog = CLIChoiceDialog(text)
         dialog.run()
 
-    def show_entry(self, text, value, previous=None, next=None):
+    def show_entry(self, text, value, label=None, previous=None, next=None):
         dialog = CLILineDialog(text)
 
         return dialog.run()

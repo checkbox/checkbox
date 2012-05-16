@@ -16,6 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
+import re
 import time
 from gi.repository import GObject
 
@@ -115,13 +116,21 @@ class QTInterface(UserInterface):
         self.qtiface.showText(text)
         self.wait_on_signals(fullTestsClicked=onFullTestsClicked)
 
-    def show_entry(self, text, value, previous=None, next=None):
+    def show_entry(self, text, value, label='', previous=None, next=None):
         def onSubmitTestsClicked():
             self.loop.quit()
 
-        self.qtiface.showEntry(text)
+        # Replace links wiki style markup with html markup
+        text = '<html>{}</html>'.format(text)
+        text = text.replace('\n', '<br/>')
+        text = re.sub(r'\[\[([^|]*)\|([^\]]*)\]\]',
+                      lambda m: '<a href="{}">{}</a>'
+                                .format(m.group(1), m.group(2)),
+                      text)
+
+        self.qtiface.showEntry(text, label)
         self.wait_on_signals(submitTestsClicked=onSubmitTestsClicked)
-        return self.qtiface.getEmailAddress()
+        return self.qtiface.getSubmissionData()
 
     def show_check(self, text, options=[], default=[]):
         return False

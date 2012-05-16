@@ -3,6 +3,11 @@ checkbox (0.14) quantal; urgency=low
   [Daniel Manrique]
   * New version 0.14 for Quantal Quetzal development.
   
+  [Javier Collado]
+  * Submission screen in Qt interface updated to support certification client:
+    - customize contents depending on the upload target (launchpad or certification)
+    - display links to the report properly in the show_entry method
+
   [Jeff Lane]
   * [FEATURE] Changes to Power Management testing in Checkbox:
     * scripts/pm_test: added a slightly modified version of OEM team's pm.py
