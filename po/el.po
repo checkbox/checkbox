@@ -7,23 +7,23 @@ msgid ""
 msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-28 10:50-0400\n"
+"POT-Creation-Date: 2012-05-15 13:32-0400\n"
 "PO-Revision-Date: 2012-02-18 19:04+0000\n"
 "Last-Translator: Kostas Milonas <milonas.ko@gmail.com>\n"
 "Language-Team: Greek <team@gnome.gr>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-05-02 05:11+0000\n"
-"X-Generator: Launchpad (build 15177)\n"
+"X-Launchpad-Export-Date: 2012-05-16 04:42+0000\n"
+"X-Generator: Launchpad (build 15247)\n"
+
+#: ../gtk/checkbox-gtk.ui.h:2 ../checkbox_gtk/gtk_interface.py:561
+msgid "_Test"
+msgstr "_Δοκιμή"
 
 #: ../gtk/checkbox-gtk.ui.h:5
 msgid "_Skip this test"
 msgstr "_Παράλειψη ελέγχου"
-
-#: ../gtk/checkbox-gtk.ui.h:2 ../checkbox_gtk/gtk_interface.py:538
-msgid "_Test"
-msgstr "_Δοκιμή"
 
 #: ../checkbox/application.py:77
 msgid "One of debug, info, warning, error or critical."
@@ -61,40 +61,40 @@ msgstr "Ανταλλαγή πληροφοριών με τον εξυπηρετη
 #~ msgid "Is your keyboard working properly?"
 #~ msgstr "Λειτουργεί το πληκτρολόγιό σας σωστά;"
 
-#: ../gtk/checkbox-gtk.ui.h:6 ../checkbox_cli/cli_interface.py:444
-#: ../checkbox_urwid/urwid_interface.py:267
-msgid "Further information:"
-msgstr "Περαιτέρω πληροφορίες:"
-
-#: ../gtk/checkbox-gtk.ui.h:10
-msgid "Ne_xt"
-msgstr "Επό_μενο"
-
 #. Title of the user interface
 #: ../gtk/checkbox-gtk.ui.h:1 ../qt/checkbox-qt.desktop.in.h:1
 #: ../plugins/user_interface.py:43 ../qt/frontend/ui_qtfront.h:589
 msgid "System Testing"
 msgstr "Δοκιμή συστήματος"
 
-#: ../gtk/checkbox-gtk.ui.h:8
-msgid "_Deselect All"
-msgstr "_Αποεπιλογή όλων"
+#: ../gtk/checkbox-gtk.ui.h:3
+msgid "_Yes"
+msgstr "_Ναι"
 
 #: ../gtk/checkbox-gtk.ui.h:4
 msgid "_No"
 msgstr "Ό_χι"
 
-#: ../gtk/checkbox-gtk.ui.h:9
-msgid "_Previous"
-msgstr "_Προηγούμενο"
+#: ../gtk/checkbox-gtk.ui.h:6 ../checkbox_cli/cli_interface.py:444
+#: ../checkbox_urwid/urwid_interface.py:267
+msgid "Further information:"
+msgstr "Περαιτέρω πληροφορίες:"
 
 #: ../gtk/checkbox-gtk.ui.h:7
 msgid "_Select All"
 msgstr "_Επιλογή όλων"
 
-#: ../gtk/checkbox-gtk.ui.h:3
-msgid "_Yes"
-msgstr "_Ναι"
+#: ../gtk/checkbox-gtk.ui.h:8
+msgid "_Deselect All"
+msgstr "_Αποεπιλογή όλων"
+
+#: ../gtk/checkbox-gtk.ui.h:9
+msgid "_Previous"
+msgstr "_Προηγούμενο"
+
+#: ../gtk/checkbox-gtk.ui.h:10
+msgid "Ne_xt"
+msgstr "Επό_μενο"
 
 #: ../qt/checkbox-qt.desktop.in.h:2
 msgid "Test your system and submit results to the Ubuntu Friendly project"
@@ -728,7 +728,7 @@ msgid ""
 "HDD\n"
 "STEPS:\n"
 "    1. Click 'Test' to begin the test. This test will\n"
-"       timeout and fail if the insertion has not been detected within 10 "
+"       timeout and fail if the insertion has not been detected within 20 "
 "seconds.\n"
 "    2. Plug a FireWire HDD into an available FireWire port.\n"
 "VERIFICATION:\n"
@@ -736,20 +736,6 @@ msgid ""
 "automatically\n"
 "    selected result"
 msgstr ""
-"ΣΚΟΠΟΣ:\n"
-"    Αυτό το τεστ θα ελέγξει αν το σύστημα μπορεί να ανιχνεύσει την εισαγωγή "
-"ενός σκληρού δίσκου FireWire\n"
-"ΒΗΜΑΤΑ:\n"
-"    1. Κάντε κλικ στην επιλογή «Δοκιμή» για να αρχίσει το τεστ. Αυτό το τεστ "
-"θα\n"
-"       λήξει λόγω υπέρβασης χρονικού ορίου αν η εισαγωγή δεν ανιχνευθεί μέσα "
-"σε 10 δευτερόλεπτα.\n"
-"    2. Συνδέστε έναν σκληρό δίσκο FireWire σε μία διαθέσιμη θύρα σύνδεσης "
-"FireWire.\n"
-"ΕΠΑΛΗΘΕΥΣΗ:\n"
-"    Η επαλήθευση αυτού του τεστ είναι αυτοματοποιημένη. Μην αλλάζετε το "
-"αυτομάτως\n"
-"    επιλεγμένο αποτέλεσμα."
 
 #. description
 #: ../jobs/firewire.txt.in:19
@@ -763,31 +749,18 @@ msgstr ""
 #. description
 #: ../jobs/firewire.txt.in:27
 msgid ""
-" PURPOSE:\n"
-"   This test will check the system can detect the removal of a FireWire HDD\n"
-" STEPS:\n"
-"   1. Click 'Test' to begin the test. This test will timeout and fail if\n"
-"      the removal has not been detected within 10 seconds.\n"
-"   2. Remove the previously attached FireWire HDD from the FireWire port.\n"
-" VERIFICATION:\n"
-"   The verification of this test is automated. Do not change the "
+"PURPOSE:\n"
+"    This test will check the system can detect the removal of a FireWire "
+"HDD\n"
+"STEPS:\n"
+"    1. Click 'Test' to begin the test. This test will timeout and fail if\n"
+"       the removal has not been detected within 20 seconds.\n"
+"    2. Remove the previously attached FireWire HDD from the FireWire port.\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the "
 "automatically\n"
-"   selected result"
+"    selected result"
 msgstr ""
-" ΣΚΟΠΟΣ:\n"
-"   Αυτό το τεστ θα ελέγξει αν το σύστημα μπορεί να ανιχνεύσει την αποσύνδεση "
-"ενός σκληρού δίσκου FireWire\n"
-" ΒΗΜΑΤΑ:\n"
-"   1. Κάντε κλικ στην επιλογή «Δοκιμή» για να αρχίσει το τεστ. Αυτό το τεστ "
-"θα\n"
-"       λήξει λόγω υπέρβασης χρονικού ορίου αν η αποσύνδεση δεν ανιχνευθεί "
-"μέσα σε 10 δευτερόλεπτα.\n"
-"   2. Αποσυνδέστε τον σκληρό δίσκο FireWire που προηγουμένως συνδέσατε από "
-"τη θύρα σύνδεσης FireWire.\n"
-" ΕΠΑΛΗΘΕΥΣΗ:\n"
-"   Η επαλήθευση αυτού του τεστ είναι αυτοματοποιημένη. Μην αλλάζετε το "
-"αυτομάτως\n"
-"   επιλεγμένο αποτέλεσμα."
 
 #. description
 #: ../jobs/floppy.txt.in:4
@@ -1018,7 +991,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:186 ../jobs/suspend.txt.in:316
+#: ../jobs/graphics.txt.in:186 ../jobs/suspend.txt.in:332
 msgid "Attaches the screenshot captured in graphics/screenshot."
 msgstr ""
 
@@ -1110,27 +1083,37 @@ msgid "Attaches very verbose lspci output."
 msgstr "Επισύναψη πολύ αναλυτικού αποτελέσματος της εντολής lspci"
 
 #. description
-#: ../jobs/info.txt.in:40
+#: ../jobs/info.txt.in:36
+msgid "Attaches very verbose lspci output (with central database Query)."
+msgstr ""
+
+#. description
+#: ../jobs/info.txt.in:43
+msgid "List USB devices"
+msgstr ""
+
+#. description
+#: ../jobs/info.txt.in:52
 msgid "Attaches the contents of the various modprobe conf files."
 msgstr "Επισύναψη του περιεχομένου των διαφόρων modprobe conf αρχείων"
 
 #. description
-#: ../jobs/info.txt.in:45
+#: ../jobs/info.txt.in:57
 msgid "Attaches the contents of the /etc/modules file."
 msgstr "Επισύναψη του περιεχομένου του αρχείου /etc/modules."
 
 #. description
-#: ../jobs/info.txt.in:50
+#: ../jobs/info.txt.in:62
 msgid "attaches the contents of various sysctl config files."
 msgstr "Επισύναψη των περιεχομένων διαφόρων αρχείων ρυθμίσεων sysctl"
 
 #. description
-#: ../jobs/info.txt.in:54
+#: ../jobs/info.txt.in:66
 msgid "Attaches a report of sysfs attributes."
 msgstr "Επισύναψη μίας αναφοράς των χαρακτηριστικών sysfs"
 
 #. description
-#: ../jobs/info.txt.in:65
+#: ../jobs/info.txt.in:77
 msgid ""
 "Attaches a dump of the udev database showing system hardware information."
 msgstr ""
@@ -1138,60 +1121,60 @@ msgstr ""
 "πληροφορίες για το υλικό του συστήματος."
 
 #. description
-#: ../jobs/info.txt.in:72
+#: ../jobs/info.txt.in:84
 msgid "Attaches a tarball of gcov data if present."
 msgstr "Επισύναψη ενός συμπιεσμένου αρχείου με δεδομένα gconv αν υπάρχουν."
 
 #. description
-#: ../jobs/info.txt.in:77
+#: ../jobs/info.txt.in:89
 msgid "Attaches a list of the currently running kernel modules."
 msgstr ""
 "Επισύναψη μίας λίστας των εκτελούμενων τη δεδομένη στιγμή αρθρωμάτων του "
 "πυρήνα."
 
 #. description
-#: ../jobs/info.txt.in:96
+#: ../jobs/info.txt.in:94
 msgid "Gather log from the Firmware Test Suite run."
 msgstr ""
 "Συγκέντρωση των καταγραφών από την εκτέλεση της σουίτας δοκιμών firmware."
 
 #. description
-#: ../jobs/info.txt.in:103
+#: ../jobs/info.txt.in:101
 msgid "Attaches the contents of /proc/acpi/sleep if it exists."
 msgstr "Επισύναψη του περιεχόμενου του αρχείου /proc/acpi/sleep αν υπάρχει."
 
 #. description
-#: ../jobs/info.txt.in:107
+#: ../jobs/info.txt.in:105
 msgid "Bootchart information."
 msgstr "Πληροφορίες Bootchart."
 
 #. description
-#: ../jobs/info.txt.in:116
+#: ../jobs/info.txt.in:114
 msgid "SATA/IDE device information."
 msgstr "Πληροφορίες συσκευών SATA/IDE"
 
 #. description
-#: ../jobs/info.txt.in:133
+#: ../jobs/info.txt.in:131
 msgid "Attaches the bootchart png file for bootchart runs"
 msgstr ""
 "Επισύναψη του αρχείου bootchart png για εκτελέσεις του προγράμματος bootchart"
 
 #. description
-#: ../jobs/info.txt.in:142
+#: ../jobs/info.txt.in:140
 msgid "Attaches the bootchart log for bootchart test runs."
 msgstr ""
 "Επισύναψη των καταγραφών bootchart για δοκιμαστικές εκτελέσεις του "
 "προγράμματος bootchart"
 
 #. description
-#: ../jobs/info.txt.in:150
+#: ../jobs/info.txt.in:148
 msgid "installs the installer bootchart tarball if it exists."
 msgstr ""
 "εγκαθιστά τον οδηγό εγκατάστασης του συμπιεσμένου αρχείου bootchart αν "
 "υπάρχει."
 
 #. description
-#: ../jobs/info.txt.in:155
+#: ../jobs/info.txt.in:153
 msgid "Attaches the installer debug log if it exists."
 msgstr "Επισύναψη της καταγραφής αποσφαλμάτωσης του εγκαταστάτη αν υπάρχει."
 
@@ -1546,6 +1529,11 @@ msgid "Suspend tests"
 msgstr "Έλεγχοι αναστολής λειτουργίας"
 
 #. description
+#: ../jobs/local.txt.in:234
+msgid "Touchpad tests"
+msgstr "Δοκιμές touchpad"
+
+#. description
 #: ../jobs/local.txt.in:241
 msgid "Unity tests"
 msgstr "Έλεγχοι του Unity"
@@ -1569,6 +1557,16 @@ msgstr "Έλεγχοι ασύρματης δικτύωσης"
 #: ../jobs/local.txt.in:269
 msgid "Stress tests"
 msgstr "Έλεγχοι υπερβολικού φόρτου"
+
+#. description
+#: ../jobs/local.txt.in:276
+msgid "Smoke tests"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:283
+msgid "Sniff Sniffers"
+msgstr ""
 
 #. description
 #: ../jobs/ltp.txt.in:3
@@ -1598,25 +1596,12 @@ msgid ""
 "    detect the insertion of a Multimedia Card (MMC) media\n"
 "STEPS:\n"
 "    1. Click \"Test\" and insert an MMC card into the reader.\n"
-"       (Note: this test will time-out after 10 seconds.)\n"
+"       (Note: this test will time-out after 20 seconds.)\n"
 "    2. Do not unplug the device after the test.\n"
 "VERIFICATION:\n"
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
-"ΣΚΟΠΟΣ:\n"
-"    Αυτό το τεστ θα ελέγξει ότι ο αναγνώστης καρτών μέσων του συστήματος "
-"μπορεί\n"
-"    να ανιχνεύσει την εισαγωγή μιας κάρτας μέσων Multimedia Card (MMC)\n"
-"ΒΗΜΑΤΑ:\n"
-"    1. Πατήστε στην επιλογή «Δοκιμή» και εισάγετε μία κάρτα MMC στον "
-"αναγνώστη\n"
-"       (Σημείωση: ο χρόνος αυτού του τεστ θα λήξει μετά από 10 "
-"δευτερόλεπτα.)\n"
-"    2. Μην αποσυνδέσετε τη συσκευή μετά τη δοκιμή.\n"
-"ΕΠΑΛΗΘΕΥΣΗ:\n"
-"    Η επαλήθευση αυτού του τεστ είναι αυτοματοποιημένη. Μην αλλάζετε το\n"
-"    αυτομάτως επιλεγμένο αποτέλεσμα."
 
 #. description
 #: ../jobs/mediacard.txt.in:20
@@ -1635,22 +1620,11 @@ msgid ""
 "    the removal of the MMC card from the systems card reader.\n"
 "STEPS:\n"
 "    1. Click \"Test\" and remove the MMC card from the reader.\n"
-"       (Note: this test will time-out after 10 seconds.)\n"
+"       (Note: this test will time-out after 20 seconds.)\n"
 "VERIFICATION:\n"
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
-"ΣΚΟΠΟΣ:\n"
-"    Αυτό το τεστ θα ελέγξει ότι το σύστημα ανιχνεύει σωστά\n"
-"    την αφαίρεση της κάρτας MMC από τον αναγνώστη καρτών του συστήματος.\n"
-"ΒΗΜΑΤΑ:\n"
-"    1.  Πατήστε στην επιλογή «Δοκιμή» και αφαιρέστε την κάρτα MMC από τον "
-"αναγνώστη.\n"
-"       (Σημείωση: ο χρόνος αυτού του τεστ θα λήξει μετά από 10 "
-"δευτερόλεπτα.)\n"
-"ΕΠΑΛΗΘΕΥΣΗ:\n"
-"    Η επαλήθευση αυτού του τεστ είναι αυτοματοποιημένη. Μην αλλάζετε το\n"
-"    αυτομάτως επιλεγμένο αποτέλεσμα."
 
 #. description
 #: ../jobs/mediacard.txt.in:43
@@ -1660,26 +1634,12 @@ msgid ""
 "    detect the insertion of an MMC card after the system has been suspended\n"
 "STEPS:\n"
 "    1. Click \"Test\" and insert an MMC card into the reader.\n"
-"       (Note: this test will time-out after 10 seconds.)\n"
+"       (Note: this test will time-out after 20 seconds.)\n"
 "    2. Do not unplug the device after the test.\n"
 "VERIFICATION:\n"
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
-"ΣΚΟΠΟΣ:\n"
-"    Αυτό το τεστ θα ελέγξει ότι ο αναγνώστης καρτών μέσων του συστήματος "
-"μπορεί\n"
-"    να ανιχνεύσει την εισαγωγή μιας κάρτας MMC μετά την αναστολή λειτουργίας "
-"του συστήματος\n"
-"ΒΗΜΑΤΑ:\n"
-"    1. Πατήστε στην επιλογή «Δοκιμή» και εισάγετε μία κάρτα MMC στον "
-"αναγνώστη.\n"
-"       (Σημείωση: ο χρόνος αυτού του τεστ θα λήξει μετά από 10 "
-"δευτερόλεπτα.)\n"
-"    2. Μην αποσυνδέσετε τη συσκευή μετά τη δοκιμή.\n"
-"ΕΠΑΛΗΘΕΥΣΗ:\n"
-"    Η επαλήθευση αυτού του τεστ είναι αυτοματοποιημένη. Μην αλλάζετε το\n"
-"    αυτομάτως επιλεγμένο αποτέλεσμα."
 
 #. description
 #: ../jobs/mediacard.txt.in:59
@@ -1701,24 +1661,11 @@ msgid ""
 "suspended.\n"
 "STEPS:\n"
 "    1. Click \"Test\" and remove the MMC card from the reader.\n"
-"       (Note: this test will time-out after 10 seconds.)\n"
+"       (Note: this test will time-out after 20 seconds.)\n"
 "VERIFICATION:\n"
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
-"ΣΚΟΠΟΣ:\n"
-"    Αυτό το τεστ θα ελέγξει ότι ο αναγνώστης καρτών μέσων του συστήματος "
-"μπορεί να ανιχνεύσει την απομάκρυνση\n"
-"    μιας κάρτας MMC από τον αναγνώστη μετά την αναστολή λειτουργίας του "
-"συστήματος.\n"
-"ΒΗΜΑΤΑ:\n"
-"    1. Πατήστε στην επιλογή «Δοκιμή» και αφαιρέστε την κάρτα MMC από τον "
-"αναγνώστη.\n"
-"       (Σημείωση: ο χρόνος αυτού του τεστ θα λήξει μετά από 10 "
-"δευτερόλεπτα.)\n"
-"ΕΠΑΛΗΘΕΥΣΗ:\n"
-"    Η επαλήθευση αυτού του τεστ είναι αυτοματοποιημένη. Μην αλλάζετε το\n"
-"    αυτομάτως επιλεγμένο αποτέλεσμα."
 
 #. description
 #: ../jobs/mediacard.txt.in:81
@@ -1728,25 +1675,12 @@ msgid ""
 "    detect the insertion of a Secure Digital (SD) media card\n"
 "STEPS:\n"
 "    1. Click \"Test\" and insert an SD card into the reader.\n"
-"       (Note: this test will time-out after 10 seconds.)\n"
+"       (Note: this test will time-out after 20 seconds.)\n"
 "    2. Do not unplug the device after the test.\n"
 "VERIFICATION:\n"
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
-"ΣΚΟΠΟΣ:\n"
-"    Αυτό το τεστ θα ελέγξει ότι ο αναγνώστης καρτών μέσων του συστήματος "
-"μπορεί\n"
-"    να ανιχνεύσει την εισαγωγή μίας κάρτας Secure Digital (SD)\n"
-"ΒΗΜΑΤΑ:\n"
-"    1. Κάντε κλικ στην επιλογή «Δοκιμή» και εισάγετε μια κάρτα SD στον "
-"αναγνώστη καρτών.\n"
-"       (Σημείωση: ο χρόνος αυτού του τεστ θα λήξει μετά από 10 "
-"δευτερόλεπτα.)\n"
-"    2. Μην αποσυνδέσετε τη συσκευή μετά τη δοκιμή.\n"
-"ΕΠΑΛΗΘΕΥΣΗ:\n"
-"    Η επαλήθευση αυτού του τεστ είναι αυτοματοποιημένη. Μην αλλάζετε το\n"
-"    αυτομάτως επιλεγμένο αποτέλεσμα."
 
 #. description
 #: ../jobs/mediacard.txt.in:97
@@ -1765,22 +1699,11 @@ msgid ""
 "    the removal of an SD card from the systems card reader.\n"
 "STEPS:\n"
 "    1. Click \"Test\" and remove the SD card from the reader.\n"
-"       (Note: this test will time-out after 10 seconds.)\n"
+"       (Note: this test will time-out after 20 seconds.)\n"
 "VERIFICATION:\n"
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
-"ΣΚΟΠΟΣ:\n"
-"    Αυτό το τεστ θα ελέγξει ότι το σύστημα ανιχνεύει σωστά\n"
-"    την αφαίρεση της κάρτας SD από τον αναγνώστη καρτών του συστήματος.\n"
-"ΒΗΜΑΤΑ:\n"
-"    1.  Πατήστε στην επιλογή «Δοκιμή» και αφαιρέστε την κάρτα SD από τον "
-"αναγνώστη.\n"
-"       (Σημείωση: ο χρόνος αυτού του τεστ θα λήξει μετά από 10 "
-"δευτερόλεπτα.)\n"
-"ΕΠΑΛΗΘΕΥΣΗ:\n"
-"    Η επαλήθευση αυτού του τεστ είναι αυτοματοποιημένη. Μην αλλάζετε το\n"
-"    αυτομάτως επιλεγμένο αποτέλεσμα."
 
 #. description
 #: ../jobs/mediacard.txt.in:120
@@ -1790,26 +1713,12 @@ msgid ""
 "    detect the insertion of an SD card after the system has been suspended\n"
 "STEPS:\n"
 "    1. Click \"Test\" and insert an SD card into the reader.\n"
-"       (Note: this test will time-out after 10 seconds.)\n"
+"       (Note: this test will time-out after 20 seconds.)\n"
 "    2. Do not unplug the device after the test.\n"
 "VERIFICATION:\n"
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
-"ΣΚΟΠΟΣ:\n"
-"    Αυτό το τεστ θα ελέγξει ότι ο αναγνώστης καρτών μέσων του συστήματος "
-"μπορεί\n"
-"    να ανιχνεύσει την εισαγωγή μιας κάρτας SD μετά την αναστολή λειτουργίας "
-"του συστήματος\n"
-"ΒΗΜΑΤΑ:\n"
-"    1. Πατήστε στην επιλογή «Δοκιμή» και εισάγετε μία κάρτα SD στον "
-"αναγνώστη.\n"
-"       (Σημείωση: ο χρόνος αυτού του τεστ θα λήξει μετά από 10 "
-"δευτερόλεπτα.)\n"
-"    2. Μην αποσυνδέσετε τη συσκευή μετά τη δοκιμή.\n"
-"ΕΠΑΛΗΘΕΥΣΗ:\n"
-"    Η επαλήθευση αυτού του τεστ είναι αυτοματοποιημένη. Μην αλλάζετε το\n"
-"    αυτομάτως επιλεγμένο αποτέλεσμα."
 
 #. description
 #: ../jobs/mediacard.txt.in:136
@@ -1831,23 +1740,11 @@ msgid ""
 "has been suspended.\n"
 "STEPS:\n"
 "    1. Click \"Test\" and remove the SD card from the reader.\n"
-"       (Note: this test will time-out after 10 seconds.)\n"
+"       (Note: this test will time-out after 20 seconds.)\n"
 "VERIFICATION:\n"
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
-"ΣΚΟΠΟΣ:\n"
-"    Αυτό το τεστ θα ελέγξει ότι το σύστημα ανιχνεύει σωστά\n"
-"    την απομάκρυνση μιας κάρτας SD από τον αναγνώστη καρτών του συστήματος "
-"μετά την αναστολή λειτουργίας.\n"
-"ΒΗΜΑΤΑ:\n"
-"    1. Κάντε κλικ στην επιλογή «Δοκιμή» και αφαιρέστε την κάρτα SD από τον "
-"αναγνώστη.\n"
-"       (Σημείωση: ο χρόνος αυτού του τεστ θα λήξει μετά από 10 "
-"δευτερόλεπτα.)\n"
-"ΕΠΑΛΗΘΕΥΣΗ:\n"
-"    Η επαλήθευση αυτού του τεστ είναι αυτοματοποιημένη. Μην αλλάζετε το\n"
-"    αυτομάτως επιλεγμένο αποτέλεσμα."
 
 #. description
 #: ../jobs/mediacard.txt.in:158
@@ -1858,26 +1755,12 @@ msgid ""
 "card\n"
 "STEPS:\n"
 "    1. Click \"Test\" and insert an SDHC card into the reader.\n"
-"       (Note: this test will time-out after 10 seconds.)\n"
+"       (Note: this test will time-out after 20 seconds.)\n"
 "    2. Do not unplug the device after the test.\n"
 "VERIFICATION:\n"
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
-"ΣΚΟΠΟΣ:\n"
-"    Αυτό το τεστ θα ελέγξει ότι ο αναγνώστης καρτών μέσων του συστήματος "
-"μπορεί \n"
-"    να ανιχνεύσει την εισαγωγή μίας κάρτας μέσων τύπου Secure Digital High-"
-"Capacity (SDHC)\n"
-"ΒΗΜΑΤΑ:\n"
-"    1. Πατήστε στην επιλογή «Δοκιμή» και εισάγετε μία κάρτα SDHC στον "
-"αναγνώστη.\n"
-"       ((Σημείωση: ο χρόνος αυτού του τεστ θα λήξει μετά από 10 "
-"δευτερόλεπτα.)\n"
-"    2. Μην αποσυνδέσετε τη συσκευή μετά από το τεστ.\n"
-"ΕΠΑΛΗΘΕΥΣΗ:\n"
-"    Η επαλήθευση αυτού του τεστ είναι αυτοματοποιημένη. Μην αλλάζετε το \n"
-"    αυτομάτως επιλεγμένο αποτέλεσμα."
 
 #. description
 #: ../jobs/mediacard.txt.in:174
@@ -1896,23 +1779,11 @@ msgid ""
 "    the removal of an SDHC card from the systems card reader.\n"
 "STEPS:\n"
 "    1. Click \"Test\" and remove the SDHC card from the reader.\n"
-"       (Note: this test will time-out after 10 seconds.)\n"
+"       (Note: this test will time-out after 20 seconds.)\n"
 "VERIFICATION:\n"
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
-"ΣΚΟΠΟΣ:\n"
-"    Αυτό το τεστ θα ελέγξει ότι το σύστημα ανιχνεύει σωστά\n"
-"    την απομάκρυνση μιας κάρτας SDHC από τον αναγνώστη καρτών του "
-"συστήματος.\n"
-"ΒΗΜΑΤΑ:\n"
-"    1. Κάντε κλικ στην επιλογή «Δοκιμή» και αφαιρέστε την κάρτα SDHC από τον "
-"αναγνώστη.\n"
-"       (Σημείωση: ο χρόνος αυτού του τεστ θα λήξει μετά από 10 "
-"δευτερόλεπτα.)\n"
-"ΕΠΑΛΗΘΕΥΣΗ:\n"
-"    Η επαλήθευση αυτού του τεστ είναι αυτοματοποιημένη. Μην αλλάζετε το\n"
-"    αυτομάτως επιλεγμένο αποτέλεσμα."
 
 #. description
 #: ../jobs/mediacard.txt.in:197
@@ -1923,25 +1794,12 @@ msgid ""
 "suspended\n"
 "STEPS:\n"
 "    1. Click \"Test\" and insert an SDHC card into the reader.\n"
-"       (Note: this test will time-out after 10 seconds.)\n"
+"       (Note: this test will time-out after 20 seconds.)\n"
 "    2. Do not unplug the device after the test.\n"
 "VERIFICATION:\n"
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
-"ΣΚΟΠΟΣ:\n"
-"    Αυτό το τεστ θα ελέγξει αν ο αναγνώστης καρτών του συστήματος μπορεί\n"
-"    να ανιχνεύσει την εισαγωγή μιας κάρτας μέσων SDHC μετά την αναστολή "
-"λειτουργίας του συστήματος\n"
-"ΒΗΜΑΤΑ:\n"
-"    1. Πατήστε στην επιλογή «Δοκιμή» και εισάγετε μία κάρτα SDHC στον "
-"αναγνώστη.\n"
-"       (Σημείωση: ο χρόνος αυτού του τεστ θα λήξει μετά από 10 "
-"δευτερόλεπτα.)\n"
-"    2. Μην αποσυνδέσετε τη συσκευή μετά το τεστ.\n"
-"ΕΠΑΛΗΘΕΥΣΗ:\n"
-"    Η επαλήθευση αυτού του τεστ είναι αυτοματοποιημένη. Μην αλλάζετε το\n"
-"    αυτομάτως επιλεγμένο αποτέλεσμα."
 
 #. description
 #: ../jobs/mediacard.txt.in:213
@@ -1963,23 +1821,11 @@ msgid ""
 "suspended.\n"
 "STEPS:\n"
 "    1. Click \"Test\" and remove the SDHC card from the reader.\n"
-"       (Note: this test will time-out after 10 seconds.)\n"
+"       (Note: this test will time-out after 20 seconds.)\n"
 "VERIFICATION:\n"
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
-"ΣΚΟΠΟΣ:\n"
-"    Αυτό το τεστ θα ελέγξει ότι το σύστημα ανιχνεύει σωστά την απομάκρυνση\n"
-"    μιας κάρτας SDHC από τον αναγνώστη καρτών του συστήματος μετά την "
-"αναστολή λειτουργίας.\n"
-"ΒΗΜΑΤΑ:\n"
-"    1. Κάντε κλικ στην επιλογή «Δοκιμή» και αφαιρέστε την κάρτα SDHC από τον "
-"αναγνώστη.\n"
-"       (Σημείωση: ο χρόνος αυτού του τεστ θα λήξει μετά από 10 "
-"δευτερόλεπτα.)\n"
-"ΕΠΑΛΗΘΕΥΣΗ:\n"
-"    Η επαλήθευση αυτού του τεστ είναι αυτοματοποιημένη. Μην αλλάζετε το\n"
-"    αυτομάτως επιλεγμένο αποτέλεσμα."
 
 #. description
 #: ../jobs/mediacard.txt.in:235
@@ -1989,24 +1835,12 @@ msgid ""
 "    detect the insertion of a Compact Flash (CF) media card\n"
 "STEPS:\n"
 "    1. Click \"Test\" and insert a CF card into the reader.\n"
-"       (Note: this test will time-out after 10 seconds.)\n"
+"       (Note: this test will time-out after 20 seconds.)\n"
 "    2. Do not unplug the device after the test.\n"
 "VERIFICATION:\n"
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
-"ΣΚΟΠΟΣ:\n"
-"    Αυτό το τεστ θα ελέγξει αν ο αναγνώστης καρτών του συστήματος μπορεί\n"
-"    να ανιχνεύσει την εισαγωγή μιας κάρτας μέσων Compact Flash (CF)\n"
-"ΒΗΜΑΤΑ:\n"
-"    1. Πατήστε στην επιλογή «Δοκιμή» και εισάγετε μία κάρτα CF στον "
-"αναγνώστη.\n"
-"       (Σημείωση: ο χρόνος αυτού του τεστ θα λήξει μετά από 10 "
-"δευτερόλεπτα.)\n"
-"    2. Μην αποσυνδέσετε τη συσκευή μετά το τεστ.\n"
-"ΕΠΑΛΗΘΕΥΣΗ:\n"
-"    Η επαλήθευση αυτού του τεστ είναι αυτοματοποιημένη. Μην αλλάζετε το\n"
-"    αυτομάτως επιλεγμένο αποτέλεσμα."
 
 #. description
 #: ../jobs/mediacard.txt.in:251
@@ -2025,22 +1859,11 @@ msgid ""
 "    the removal of a CF card from the systems card reader.\n"
 "STEPS:\n"
 "    1. Click \"Test\" and remove the CF card from the reader.\n"
-"       (Note: this test will time-out after 10 seconds.)\n"
+"       (Note: this test will time-out after 20 seconds.)\n"
 "VERIFICATION:\n"
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
-"ΣΚΟΠΟΣ:\n"
-"    Αυτό το τεστ θα ελέγξει ότι το σύστημα ανιχνεύει σωστά\n"
-"    την απομάκρυνση μιας κάρτας CF από τον αναγνώστη καρτών του συστήματος.\n"
-"ΒΗΜΑΤΑ:\n"
-"    1. Κάντε κλικ στην επιλογή «Δοκιμή» και αφαιρέστε την κάρτα CF από τον "
-"αναγνώστη.\n"
-"       (Σημείωση: ο χρόνος αυτού του τεστ θα λήξει μετά από 10 "
-"δευτερόλεπτα.)\n"
-"ΕΠΑΛΗΘΕΥΣΗ:\n"
-"    Η επαλήθευση αυτού του τεστ είναι αυτοματοποιημένη. Μην αλλάζετε το\n"
-"    αυτομάτως επιλεγμένο αποτέλεσμα."
 
 #. description
 #: ../jobs/mediacard.txt.in:274
@@ -2050,25 +1873,12 @@ msgid ""
 "    detect the insertion of a CF card after the system has been suspended\n"
 "STEPS:\n"
 "    1. Click \"Test\" and insert a CF card into the reader.\n"
-"       (Note: this test will time-out after 10 seconds.)\n"
+"       (Note: this test will time-out after 20 seconds.)\n"
 "    2. Do not unplug the device after the test.\n"
 "VERIFICATION:\n"
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
-"ΣΚΟΠΟΣ:\n"
-"    Αυτό το τεστ θα ελέγξει αν ο αναγνώστης καρτών του συστήματος μπορεί\n"
-"    να ανιχνεύσει την εισαγωγή μιας κάρτας μέσων CF μετά την αναστολή "
-"λειτουργίας του συστήματος\n"
-"ΒΗΜΑΤΑ:\n"
-"    1. Πατήστε στην επιλογή «Δοκιμή» και εισάγετε μία κάρτα CF στον "
-"αναγνώστη.\n"
-"       (Σημείωση: ο χρόνος αυτού του τεστ θα λήξει μετά από 10 "
-"δευτερόλεπτα.)\n"
-"    2. Μην αποσυνδέσετε τη συσκευή μετά το τεστ.\n"
-"ΕΠΑΛΗΘΕΥΣΗ:\n"
-"    Η επαλήθευση αυτού του τεστ είναι αυτοματοποιημένη. Μην αλλάζετε το\n"
-"    αυτομάτως επιλεγμένο αποτέλεσμα."
 
 #. description
 #: ../jobs/mediacard.txt.in:290
@@ -2090,24 +1900,11 @@ msgid ""
 "suspended.\n"
 "STEPS:\n"
 "    1. Click \"Test\" and remove the CF card from the reader.\n"
-"       (Note: this test will time-out after 10 seconds.)\n"
+"       (Note: this test will time-out after 20 seconds.)\n"
 "VERIFICATION:\n"
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
-"ΣΚΟΠΟΣ:\n"
-"    Αυτό το τεστ θα ελέγξει ότι ο αναγνώστης καρτών μέσων του συστήματος "
-"μπορεί να ανιχνεύσει την απομάκρυνση\n"
-"    μιας κάρτας CF από τον αναγνώστη μετά την αναστολή λειτουργίας του "
-"συστήματος.\n"
-"ΒΗΜΑΤΑ:\n"
-"    1. Πατήστε στην επιλογή «Δοκιμή» και αφαιρέστε την κάρτα CF από τον "
-"αναγνώστη.\n"
-"       (Σημείωση: ο χρόνος αυτού του τεστ θα λήξει μετά από 10 "
-"δευτερόλεπτα.)\n"
-"ΕΠΑΛΗΘΕΥΣΗ:\n"
-"    Η επαλήθευση αυτού του τεστ είναι αυτοματοποιημένη. Μην αλλάζετε το\n"
-"    αυτομάτως επιλεγμένο αποτέλεσμα."
 
 #. description
 #: ../jobs/memory.txt.in:5
@@ -2148,12 +1945,17 @@ msgstr ""
 "πίσω στην τρέχουσα συνεδρία σας;"
 
 #. description
-#: ../jobs/miscellanea.txt.in:21
+#: ../jobs/miscellanea.txt.in:22
 msgid "Run Firmware Test Suite (fwts) automated tests."
 msgstr "Εκτέλεση των αυτοματοποιημένων ελέγχων της σουίτας firmware (fwts)"
 
 #. description
 #: ../jobs/miscellanea.txt.in:31
+msgid "Attaches the FWTS results log to the submission"
+msgstr ""
+
+#. description
+#: ../jobs/miscellanea.txt.in:38
 msgid ""
 "This will run some basic connectivity tests against a BMC, verifying that "
 "IPMI works."
@@ -2163,7 +1965,7 @@ msgstr ""
 "Platform Management Interface (IPMI) λειτουργεί."
 
 #. description
-#: ../jobs/miscellanea.txt.in:37
+#: ../jobs/miscellanea.txt.in:44
 msgid ""
 "   Determine if we need to run tests specific to portable computers that may "
 "not apply to desktops."
@@ -2173,7 +1975,7 @@ msgstr ""
 "υπολογιστές."
 
 #. description
-#: ../jobs/miscellanea.txt.in:45
+#: ../jobs/miscellanea.txt.in:52
 msgid ""
 "Test that the /var/crash directory doesn't contain anything. Lists the files "
 "contained within if it does, or echoes the status of the directory (doesn't "
@@ -2184,7 +1986,7 @@ msgstr ""
 "αναφέρει την κατάσταση του καταλόγου (δεν υπάρχει/είναι κενός)"
 
 #. description
-#: ../jobs/miscellanea.txt.in:53
+#: ../jobs/miscellanea.txt.in:60
 msgid ""
 "Test to check that virtualization is supported and the test system has at "
 "least a minimal amount of RAM to function as an OpenStack Compute Node"
@@ -2491,29 +2293,14 @@ msgid ""
 "chance of working.\n"
 "    2. If a file browser window opens, you can safely close or ignore that "
 "window.\n"
-"    3. Click \"Test\" to being the test.\n"
-"    4. When the test completes, proceed by clicking \"Next\"\n"
+"    3. Click \"Test\" to begin the test.\n"
 "VERIFICATION:\n"
 "    This test should automatically select \"Yes\" if it passes, \"No\" if it "
 "fails."
 msgstr ""
-"ΣΚΟΠΟΣ:\n"
-"    Αυτό το τεστ θα ελέγξει τη δυνατότητα των οπτικών συσκευών σας να "
-"διαβάζουν μέσα CD\n"
-"ΒΗΜΑΤΑ:\n"
-"    1. Εισάγετε ένα κατάλληλο μη κενό μέσο στον οπτικό οδηγό (οδηγούς) σας. "
-"Δίσκοι ταινιών και μουσικής ενδέχεται να μη λειτουργούν. Μεγαλύτερη "
-"πιθανότητα λειτουργίας έχουν οι δίσκοι που έχετε φτιάξει εσείς.\n"
-"    2. Αν ανοίξει το παράθυρο ενός διαχειριστή αρχείων, είναι ασφαλές να το "
-"κλείσετε ή να το αγνοήσετε.\n"
-"    3. Πατήστε στην επιλογή «Δοκιμή» ώστε να ξεκινήσετε το τεστ.\n"
-"    4. Όταν ολοκληρωθεί το τεστ, προχωρήστε πατώντας την επιλογή «Επόμενο»\n"
-"ΕΠΑΛΗΘΕΥΣΗ:\n"
-"    Αυτό το τεστ θα πρέπει να επιλέξει αυτόματα «Ναι» αν είναι επιτυχημένο, "
-"ή «Όχι» αν είναι ανεπιτυχές."
 
 #. description
-#: ../jobs/optical.txt.in:34
+#: ../jobs/optical.txt.in:42
 msgid ""
 "PURPOSE:\n"
 "    This test will check your system's CD writing capabilities. This test "
@@ -2524,29 +2311,27 @@ msgid ""
 "    3. When the CD tray ejects the media after burning, close it (DO NOT "
 "remove the disk, it is needed for the second portion of the test). Note, you "
 "must close the drive within 10 seconds or the test will time out.\n"
-"    4. When the test completes, proceed by clicking \"Next\"\n"
 "VERIFICATION:\n"
 "    This test should automatically select \"Yes\" if it passes, \"No\" if it "
 "fails."
 msgstr ""
 "ΣΚΟΠΟΣ:\n"
-"    Αυτό το τεστ θα ελέγξει τη δυνατότητα του συστήματός σας για εγγραφή CD. "
-"Αυτό το τεστ απαιτεί ένα κενό δίσκο CD-R. Αν δεν έχετε έναν κενό δίσκο CD-R, "
-"παρακαλώ προσπεράστε αυτή τη δοκιμή.\n"
+"    Αυτή η δοκιμή θα ελέγξει τη δυνατότητα ανάγνωσης εγγραφής δίσκων CD από "
+"τον υπολογιστή σας. Πρέπει να χρησιμοποιήσετε ένα άδειο CD-R. Αν δεν έχετε "
+"άδειο CD-R, μην κάνετε αυτή την δοκιμή.\n"
 "ΒΗΜΑΤΑ:\n"
-"    1. Εισάγετε ένα κενό  CD-R στον οδηγό σας\n"
-"    2. Πατήστε στην επιλογή «Δοκιμή» για να ξεκινήσετε.\n"
-"    3. Όταν η υποδοχή του CD ανοίξει μετά το «κάψιμο» του δίσκου, κλείστε "
-"την (ΜΗΝ αφαιρέσετε το δίσκο, χρειάζεται για το δεύτερο μέρος του τεστ). "
-"Σημειώστε, πως πρέπει να κλείσετε την υποδοχή μέσα σε 10 δευτερόλεπτα αλλιώς "
-"θα λήξει ο χρόνος του τεστ.\n"
-"    4. Όταν ολοκληρωθεί το τεστ, προχωρήστε κάνοντας κλικ στο «Επόμενο»\n"
-"ΕΠΑΛΗΘΕΥΣΗ:\n"
-"    Αυτό το τεστ θα πρέπει να επιλέξει αυτόματα «Ναι» αν είναι επιτυχημένο, "
-"ή «Όχι» αν είναι ανεπιτυχές."
+"    1. Εισάγετε ένα άδειο CD-R στο υπολογιστή σας\n"
+"    2. Πατήστε στο «Δοκιμή» για να ξεκινήσετε.\n"
+"    3. Όταν ο υπολογιστής βγάλει τον δίσκο μετά την εγγραφή, βάλτε τον πίσω "
+"(κλείστε το συρτάρι) (ΜΗΝ βγάλετε το δίσκο, χρειάζεται για το δεύτερο μέρος "
+"της δοκιμής). Σημειώστε ότι πρέπει να κλείσετε το συρτάρι μέσα σε 10 "
+"δευτερόλεπτα διαφορετικά η δοκιμή θα ακυρωθεί.\n"
+"ΕΠΙΒΕΒΑΙΩΣΗ:\n"
+"    Αυτή η δοκιμή θα επιλέξει αυτόματα το «Ναι» αν είναι επιτυχής, ή «Όχι» "
+"σε περίπτωση αποτυχίας."
 
 #. description
-#: ../jobs/optical.txt.in:46
+#: ../jobs/optical.txt.in:55
 msgid ""
 "PURPOSE:\n"
 "    This test will check your CD audio playback capabilities\n"
@@ -2580,7 +2365,7 @@ msgstr ""
 "    Λειτούργησαν όλα τα βήματα;"
 
 #. description
-#: ../jobs/optical.txt.in:71
+#: ../jobs/optical.txt.in:78
 msgid ""
 "PURPOSE:\n"
 "    This test will check your system's DVD writing capabilities. This test "
@@ -2591,29 +2376,27 @@ msgid ""
 "    3. When the CD tray ejects the media after burning, close it (DO NOT "
 "remove the disk, it is needed for the second portion of the test). Note, you "
 "must close the drive within 10 seconds or the test will time out.\n"
-"    4. When the test completes, proceed by clicking \"Next\"\n"
 "VERIFICATION:\n"
 "    This test should automatically select \"Yes\" if it passes, \"No\" if it "
 "fails."
 msgstr ""
 "ΣΚΟΠΟΣ:\n"
-"    Αυτό το τεστ θα ελέγξει τη δυνατότητα του συστήματός σας για εγγραφή "
-"DVD. Αυτό το τεστ απαιτεί ένα κενό δίσκο DVD-R. Αν δεν έχετε έναν κενό δίσκο "
-"DVD-R, παρακαλώ προσπεράστε αυτή τη δοκιμή.\n"
+"    Αυτή η δοκιμή θα ελέγξει τη δυνατότητα ανάγνωσης εγγραφής δίσκων CD από "
+"τον υπολογιστή σας. Πρέπει να χρησιμοποιήσετε ένα άδειο CD-R. Αν δεν έχετε "
+"άδειο CD-R, μην κάνετε αυτή την δοκιμή.\n"
 "ΒΗΜΑΤΑ:\n"
-"    1. Εισάγετε ένα κενό  DVD-R στον οδηγό σας\n"
-"    2. Πατήστε στην επιλογή «Δοκιμή» για να ξεκινήσετε.\n"
-"    3. Όταν η υποδοχή του DVD ανοίξει μετά το «κάψιμο» του δίσκου, κλείστε "
-"την (ΜΗΝ αφαιρέσετε το δίσκο, χρειάζεται για το δεύτερο μέρος του τεστ). "
-"Σημειώστε, πως πρέπει να κλείσετε την υποδοχή μέσα σε 10 δευτερόλεπτα αλλιώς "
-"θα λήξει ο χρόνος του τεστ.\n"
-"    4. Όταν ολοκληρωθεί το τεστ, προχωρήστε κάνοντας κλικ στο «Επόμενο»\n"
-"ΕΠΑΛΗΘΕΥΣΗ:\n"
-"    Αυτό το τεστ θα πρέπει να επιλέξει αυτόματα «Ναι» αν είναι επιτυχημένο, "
-"ή «Όχι» αν είναι ανεπιτυχές."
+"    1. Εισάγετε ένα άδειο CD-R στο υπολογιστή σας\n"
+"    2. Πατήστε στο «Δοκιμή» για να ξεκινήσετε.\n"
+"    3. Όταν ο υπολογιστής βγάλει τον δίσκο μετά την εγγραφή, βάλτε τον πίσω "
+"(κλείστε το συρτάρι) (ΜΗΝ βγάλετε το δίσκο, χρειάζεται για το δεύτερο μέρος "
+"της δοκιμής). Σημειώστε ότι πρέπει να κλείσετε το συρτάρι μέσα σε 10 "
+"δευτερόλεπτα διαφορετικά η δοκιμή θα ακυρωθεί.\n"
+"ΕΠΙΒΕΒΑΙΩΣΗ:\n"
+"    Αυτή η δοκιμή θα επιλέξει αυτόματα το «Ναι» αν είναι επιτυχής, ή «Όχι» "
+"σε περίπτωση αποτυχίας."
 
 #. description
-#: ../jobs/optical.txt.in:82
+#: ../jobs/optical.txt.in:91
 msgid ""
 "PURPOSE:\n"
 "    This test will check your DVD movie playback capabilities. Note that "
@@ -2648,7 +2431,7 @@ msgstr ""
 "    Λειτούργησαν όλα τα βήματα;"
 
 #. description
-#: ../jobs/optical.txt.in:100
+#: ../jobs/optical.txt.in:109
 msgid ""
 "PURPOSE:\n"
 "    This test will check your DVD  playback capabilities\n"
@@ -2674,19 +2457,14 @@ msgid ""
 "PURPOSE:\n"
 "   This test will verify that the desktop clock displays the correct date "
 "and time\n"
+"STEPS:\n"
+"   1. Check the clock in the upper right corner of your desktop.\n"
 "VERIFICATION:\n"
-"   Is the clock in the upper right corner of your desktop displaying the "
-"correct date and time for your timezone?"
+"   Is the clock displaying the correct date and time for your timezone?"
 msgstr ""
-"ΣΚΟΠΟΣ:\n"
-"   Αυτό το τεστ θα επιβεβαιώσει πως το ρολόι του περιβάλλοντος εργασίας "
-"εμφανίζει τη σωστή ημερομηνία και ώρα\n"
-"ΕΠΑΛΗΘΕΥΣΗ:\n"
-"   Εμφανίζει τη σωστή ημερομηνία και ώρα για τη χρονική σας ζώνη το ρολόι "
-"που βρίσκεται στην επάνω δεξιά γωνία της επιφάνειας εργασίας σας;"
 
 #. description
-#: ../jobs/panel_clock_test.txt.in:16
+#: ../jobs/panel_clock_test.txt.in:18
 msgid ""
 "PURPOSE:\n"
 "   This test will verify that the desktop clock synchronizes with the system "
@@ -2869,7 +2647,55 @@ msgstr ""
 "    Έγινε σωστά ο τερματισμός και η εκκίνηση του συστήματος;"
 
 #. description
-#: ../jobs/power-management.txt.in:15
+#: ../jobs/power-management.txt.in:20
+msgid ""
+"PURPOSE:\n"
+" This test will check the system's ability to power-off and boot.\n"
+"STEPS:\n"
+" 1: Select \"Test\" to begin.\n"
+" 2: The machine will shut down.\n"
+" 3: Power the machine back on.\n"
+" 4: After rebooting, wait for the test prompts to inform you that the test "
+"is complete.\n"
+" 5: Once the test has completed, restart checkbox and select Re-Run when "
+"prompted\n"
+"VERIFICATION:\n"
+" If the machine successfully shuts down and boots, select Yes then select "
+"Next."
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:35
+msgid ""
+"This will attach any logs from the power-management/poweroff test to the "
+"results."
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:45
+msgid ""
+"PURPOSE:\n"
+" This test will check the system's ability to reboot cleanly.\n"
+"STEPS:\n"
+" 1: Select \"Test\" to begin.\n"
+" 2: The machine will reboot.\n"
+" 3: After rebooting, wait for the test prompts to inform you that the test "
+"is complete.\n"
+" 4: Once the test has completed, restart checkbox and select Re-Run when "
+"prompted\n"
+"VERIFICATION:\n"
+" If the machine successfully reboots, select Yes then select Next."
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:59
+msgid ""
+"This will attach any logs from the power-management/reboot test to the "
+"results."
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:64
 msgid ""
 "PURPOSE:\n"
 "    This test will check your lid sensors\n"
@@ -2886,7 +2712,7 @@ msgstr ""
 "   Προκαλεί το κλείσιμο του καπακιού την αναστολή λειτουργίας του συστήματος;"
 
 #. description
-#: ../jobs/power-management.txt.in:32
+#: ../jobs/power-management.txt.in:81
 msgid ""
 "PURPOSE:\n"
 "    This test will check your lid sensors\n"
@@ -2905,7 +2731,7 @@ msgstr ""
 "    Έσβησε η οθόνη όσο το καπάκι ήταν κλειστό;"
 
 #. description
-#: ../jobs/power-management.txt.in:50
+#: ../jobs/power-management.txt.in:99
 msgid ""
 "PURPOSE:\n"
 "    This test will check your lid sensors\n"
@@ -2928,17 +2754,17 @@ msgstr ""
 "    Συνέχισε το σύστημα τη λειτουργία του όταν άνοιξε το καπάκι;"
 
 #. description
-#: ../jobs/power-management.txt.in:66
+#: ../jobs/power-management.txt.in:115
 msgid "Make sure that the RTC (Real-Time Clock) device exists."
 msgstr "Βεβαιωθείτε ότι υπάρχει η συσκευή RTC (Real-Time Clock)."
 
 #. description
-#: ../jobs/power-management.txt.in:71
+#: ../jobs/power-management.txt.in:120
 msgid "Test ACPI Wakealarm (fwts wakealarm) "
 msgstr "Δοκιμή του ACPI Wakealarm (fwts wakealarm) "
 
 #. description
-#: ../jobs/power-management.txt.in:80
+#: ../jobs/power-management.txt.in:129
 msgid ""
 "Check to see if CONFIG_NO_HZ is set in the kernel (this is just a simple "
 "regression check)"
@@ -3004,61 +2830,27 @@ msgstr ""
 #: ../jobs/stress.txt.in:18
 msgid ""
 "PURPOSE:\n"
-"    This test will enter and resume from hibernate for 30 iterations\n"
-"STEPS:\n"
-"    1. Ensure your system has no power-on or HDD passwords set, and that "
-"grub is set to boot Ubuntu by default if you have a multi-boot set-up\n"
-"    2. Click \"Test\" to start the test (very lengthy)\n"
-"    3. If your system does not wake itself after 2 minutes, you will need to "
-"press the power button\n"
-"    4. If the system fails to resume from hibernation and must be rebooted, "
-"please restart System Testing and mark this test as Failed\n"
-"VERIFICATION:\n"
-"    Did the system successfully hibernate and wake 30 times?"
+"   This is an automated stress test that will force the system to "
+"hibernate/resume for 30 cycles"
 msgstr ""
-"ΣΚΟΠΟΣ:\n"
-"    Αυτό το τεστ θα προκαλέσει την αδρανοποίηση του συστήματος και την "
-"επαναφορά του για 30 επαναλήψεις\n"
-"ΒΗΜΑΤΑ:\n"
-"    1. Βεβαιωθείτε πως στο σύστημά σας δεν έχει τεθεί κάποιος κωδικός για "
-"την ενεργοποίηση ή τη χρήση του σκληρού δίσκου και πως ο φορτωτής εκκίνησης "
-"(grub) είναι ρυθμισμένος ώστε από προεπιλογή να εκκινεί το Ubuntu αν στον "
-"υπολογιστή σας έχετε διάταξη multi-boot (περισσότερα από ένα λειτουργικά "
-"συστήματα)\n"
-"    2. Πατήστε στην επιλογή «Δοκιμή» ώστε να εκκινήσει το τεστ (θα διαρκέσει "
-"πολλή ώρα)\n"
-"    3. Αν το σύστημά σας δεν ξυπνήσει αυτόματα μετά από 2 λεπτά, θα "
-"χρειαστεί να πατήσετε το κουμπί παροχής ενέργειας (On/Off)\n"
-"    4. Αν δεν γίνει επαναφορά του συστήματος από την αδρανοποίηση "
-"λειτουργίας και χρειαστεί να γίνει επανεκκίνηση, παρακαλώ αρχίστε ξανά αυτό "
-"το τεστ και σημειώστε το ως αποτυχημένο.\n"
-"ΕΠΑΛΗΘΕΥΣΗ:\n"
-"    Αδρανοποιήθηκε το σύστημα και επανήλθε επιτυχημένα και τις 30 φορές;"
 
 #. description
-#: ../jobs/stress.txt.in:35
+#: ../jobs/stress.txt.in:25
+msgid "Attaches the log from the 30 cycle Hibernate/Resume test if it exists"
+msgstr ""
+
+#. description
+#: ../jobs/stress.txt.in:34
 msgid ""
 "PURPOSE:\n"
-"    This test will enter and resume from suspend for 30 iterations\n"
-"STEPS:\n"
-"    1. Click \"Test\" to start the test (very lengthy)\n"
-"    2. If the system fails to resume from suspend and must be rebooted, "
-"please restart System Testing and mark this test as Failed\n"
-"VERIFICATION:\n"
-"    Did the system successfully suspend and resume 30 times?"
+"   This is an automated stress test that will force the system to "
+"suspend/resume for 30 cycles."
 msgstr ""
-"ΣΚΟΠΟΣ:\n"
-"    Αυτό το τεστ θα προκαλέσει την αναστολή του συστήματος και την επαναφορά "
-"του για 30 επαναλήψεις\n"
-"ΒΗΜΑΤΑ:\n"
-"    1. Πατήστε στην επιλογή «Δοκιμή» ώστε να εκκινήσει το τεστ (θα διαρκέσει "
-"πολλή ώρα)\n"
-"    2. Αν δεν γίνει επαναφορά του συστήματος από την αναστολή λειτουργίας "
-"και χρειαστεί να γίνει επανεκκίνηση, παρακαλώ αρχίστε ξανά αυτό το τεστ και "
-"σημειώστε το ως αποτυχημένο.\n"
-"ΕΠΑΛΗΘΕΥΣΗ:\n"
-"    Ανεστάλη η λειτουργία του συστήματος και επανήλθε επιτυχημένα και τις 30 "
-"φορές;"
+
+#. description
+#: ../jobs/stress.txt.in:41
+msgid "Attaches the log from the 30 cycle Suspend/Resume test if it exists"
+msgstr ""
 
 #. description
 #: ../jobs/suspend.txt.in:4
@@ -3091,7 +2883,7 @@ msgstr ""
 "μετά από την εκτέλεση της δοκιμής αναστολής λειτουργίας"
 
 #. description
-#: ../jobs/suspend.txt.in:49
+#: ../jobs/suspend.txt.in:40
 msgid ""
 "This test disconnects all connections and then connects to the wireless "
 "interface. It then checks the connection to confirm it's working as expected."
@@ -3101,7 +2893,7 @@ msgstr ""
 "αυτή λειτουργεί κατά το προσδοκώμενο."
 
 #. description
-#: ../jobs/suspend.txt.in:83
+#: ../jobs/suspend.txt.in:76
 msgid ""
 "PURPOSE:\n"
 "    This test will check suspend and resume\n"
@@ -3130,18 +2922,18 @@ msgstr ""
 "    Έγινε σωστά η αναστολή λειτουργίας του συστήματος και η επαναφορά του;"
 
 #. description
-#: ../jobs/suspend.txt.in:96
+#: ../jobs/suspend.txt.in:95
 msgid "Test the network after resuming."
 msgstr "Δοκιμή της σύνδεσης δικτύου μετά την επαναφορά."
 
 #. description
-#: ../jobs/suspend.txt.in:102
+#: ../jobs/suspend.txt.in:101
 msgid ""
 "Test to see that we have the same resolution after resuming as before."
 msgstr "Δοκιμή διατήρησης της ανάλυσης μετά την επαναφορά."
 
 #. description
-#: ../jobs/suspend.txt.in:111
+#: ../jobs/suspend.txt.in:110
 msgid ""
 "Verify that mixer settings after suspend are the same as before suspend."
 msgstr ""
@@ -3149,37 +2941,34 @@ msgstr ""
 "λειτουργίας."
 
 #. description
-#: ../jobs/suspend.txt.in:127
+#: ../jobs/suspend.txt.in:126
 msgid "Verify that all CPUs are online after resuming."
 msgstr ""
 "Επαλήθευση για το ότι όλες οι μονάδες επεξεργασίας (CPU) βρίσκονται σε "
 "σύνδεση μετά την επαναφορά από την αναστολή λειτουργίας."
 
 #. description
-#: ../jobs/suspend.txt.in:144
+#: ../jobs/suspend.txt.in:143
 msgid "Verify that all memory is available after resuming from suspend."
 msgstr ""
 "Επαλήθευση της διαθεσιμότητας ολόκληρης της μνήμης μετά την επαναφορά από "
 "την αναστολή λειτουργίας."
 
 #. description
-#: ../jobs/suspend.txt.in:153
+#: ../jobs/suspend.txt.in:152
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the display is correct after suspend and "
 "resume\n"
+"STEPS:\n"
+"    1. Check that your display does not show up visual artifacts after "
+"resuming.\n"
 "VERIFICATION:\n"
 "    Does the display work normally after resuming from suspend?"
 msgstr ""
-"ΣΚΟΠΟΣ:\n"
-"    Αυτό το τεστ θα ελέγξει ότι η απεικόνιση είναι σωστή μετά από την "
-"αναστολή λειτουργίας και την επαναφορά του συστήματος\n"
-"ΕΠΑΛΗΘΕΥΣΗ:\n"
-"    Λειτουργεί κανονικά η οθόνη μετά την επαναφορά του συστήματος από τη "
-"αναστολή λειτουργίας;"
 
 #. description
-#: ../jobs/suspend.txt.in:174
+#: ../jobs/suspend.txt.in:165
 msgid ""
 "This test checks that the wireless interface is working after suspending the "
 "system. It disconnects all interfaces and then connects to the wireless "
@@ -3191,35 +2980,35 @@ msgstr ""
 "επιβεβαιώσει πως αυτή λειτουργεί κατά το προσδοκώμενο."
 
 #. description
-#: ../jobs/suspend.txt.in:167
+#: ../jobs/suspend.txt.in:177
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using WPA "
 "security and the 802.11b/g protocols after the system has been suspended."
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:178
+#: ../jobs/suspend.txt.in:188
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using no "
 "security and the 802.11b/g protocols after the system has been suspended."
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:189
+#: ../jobs/suspend.txt.in:199
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using WPA "
 "security and the 802.11n protocol after the system has been suspended."
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:200
+#: ../jobs/suspend.txt.in:210
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using no "
 "security and the 802.11n protocol after the system has been suspended."
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:186
+#: ../jobs/suspend.txt.in:221
 msgid ""
 "This test grabs the hardware address of the bluetooth adapter after suspend "
 "and compares it to the address grabbed before suspend."
@@ -3229,7 +3018,7 @@ msgstr ""
 "συλληφθείσα διεύθυνση."
 
 #. description
-#: ../jobs/suspend.txt.in:196
+#: ../jobs/suspend.txt.in:231
 msgid ""
 "This is an automated Bluetooth file transfer test. It sends an image to the "
 "device specified by the BTDEVADDR environment variable."
@@ -3239,7 +3028,7 @@ msgstr ""
 "BTDEVADDR συσκευή."
 
 #. description
-#: ../jobs/suspend.txt.in:206
+#: ../jobs/suspend.txt.in:241
 msgid ""
 "PURPOSE:\n"
 "    This test will send the image 'JPEG_Color_Image_Ubuntu.jpg' to a "
@@ -3265,7 +3054,7 @@ msgstr ""
 "    Μεταφέρθηκαν σωστά τα δεδομένα;"
 
 #. description
-#: ../jobs/suspend.txt.in:220
+#: ../jobs/suspend.txt.in:255
 msgid ""
 "PURPOSE:\n"
 "    This test will cycle through the detected display modes\n"
@@ -3284,7 +3073,7 @@ msgstr ""
 "    Φαινόταν σωστά η οθόνη σας σε όλους τους τρόπος λειτουργίας;"
 
 #. description
-#: ../jobs/suspend.txt.in:232
+#: ../jobs/suspend.txt.in:267
 msgid ""
 "This test will check to make sure supported video modes work after a suspend "
 "and resume. This is done automatically by taking screenshots and uploading "
@@ -3296,7 +3085,7 @@ msgstr ""
 "στιγμιότυπα της οθόνης και μεταφορτώνοντάς τα ως επισυνάψεις."
 
 #. description
-#: ../jobs/suspend.txt.in:241
+#: ../jobs/suspend.txt.in:276
 msgid ""
 "This attaches screenshots from the "
 "suspend/cycle_resolutions_after_suspend_auto test to the results submission."
@@ -3306,7 +3095,7 @@ msgstr ""
 "αναφορά αποτελεσμάτων."
 
 #. description
-#: ../jobs/suspend.txt.in:251
+#: ../jobs/suspend.txt.in:286
 msgid ""
 "This will check to make sure that your audio device works properly after a "
 "suspend and resume.  This may work fine with speakers and onboard "
@@ -3320,13 +3109,18 @@ msgstr ""
 "καλώδιο το οποίο θα συνδέει το βύσμα εξόδου του ήχου με το βύσμα εισόδου του."
 
 #. description
-#: ../jobs/suspend.txt.in:260
+#: ../jobs/suspend.txt.in:295
 msgid "This is the automated version of suspend/suspend_advanced."
 msgstr ""
 "Αυτή είναι η αυτοματοποιημένη έκδοση του τεστ αναστολή/προχωρημένη_αναστολή."
 
 #. description
-#: ../jobs/suspend.txt.in:269
+#: ../jobs/suspend.txt.in:303
+msgid "Attaches the log from the single suspend/resume test to the results"
+msgstr ""
+
+#. description
+#: ../jobs/suspend.txt.in:310
 msgid ""
 "This automatically tests Wake-on-LAN capability with the aid of a suitably "
 "configured server. During this process the system will suspend, then "
@@ -3338,7 +3132,7 @@ msgstr ""
 "μέγιστο επιτρεπτό χρονικό όριο να μην υπερβαίνει τα 5 λεπτά."
 
 #. description
-#: ../jobs/suspend.txt.in:304
+#: ../jobs/suspend.txt.in:320
 msgid ""
 "PURPOSE:\n"
 "    Take a screengrab of the current screen after suspend (logged on Unity "
@@ -3347,6 +3141,52 @@ msgid ""
 "    1. Take picture using USB webcam\n"
 "VERIFICATION:\n"
 "    1. Review attachment manually later"
+msgstr ""
+
+#. description
+#: ../jobs/touchpad.txt.in:3
+msgid ""
+"PURPOSE:\n"
+"    1. Touchpad verification\n"
+"STEPS:\n"
+"    1. Make sure that touchpad is enabled\n"
+"    2. Try to move pointer using touchpad\n"
+"    3. Pointer should move accordingly\n"
+"VERIFICATION:\n"
+"    1. Did touchpad work as expected?"
+msgstr ""
+
+#. description
+#: ../jobs/touchpad.txt.in:18
+msgid ""
+"PURPOSE:\n"
+"    1. Touchpad verification\n"
+"STEPS:\n"
+"    1. Click on Power Indicator -> System Settings -> Mouse -> Touchpad\n"
+"    2. Make sure that the \"Enable horizontal scrolling\" checkbox is "
+"checked\n"
+"    3. Select 'Test' to open in GEdit a file with a really wide line\n"
+"    4. Verify that you can move the the horizontal slider by moving your "
+"finger side by side in the lower part of the touchpad\n"
+"VERIFICATION:\n"
+"    1. Did touchpad work as expected?"
+msgstr ""
+
+#. description
+#: ../jobs/touchpad.txt.in:34
+msgid ""
+"PURPOSE:\n"
+"    1. Touchpad verification\n"
+"STEPS:\n"
+"    1. Click on Power Indicator -> System Settings -> Mouse -> Touchpad\n"
+"    2. Make sure that the \"Edge scrolling\" radiobox is checked\n"
+"    3. Select 'Test' to open in GEdit a file with a multiple lines of text\n"
+"    4. Verify that you can move the the vertical slider by moving your "
+"finger side by side in the right part of the touchpad\n"
+"VERIFICATION:\n"
+"    1. Did touchpad work as expected?\n"
+"NOTES:\n"
+"    1. Edge Scrolling option should be enabled by default"
 msgstr ""
 
 #. description
@@ -3443,25 +3283,12 @@ msgid ""
 "    a USB storage device\n"
 "STEPS:\n"
 "    1. Click \"Test\" and insert a USB storage device (pen-drive/HDD).\n"
-"       (Note: this test will time-out after 10 seconds.)\n"
+"       (Note: this test will time-out after 20 seconds.)\n"
 "    2. Do not unplug the device after the test.\n"
 "VERIFICATION:\n"
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
-"ΣΚΟΠΟΣ:\n"
-"    Αυτό το τεστ θα ελέγξει ότι το σύστημα ανιχνεύει σωστά την εισαγωγή\n"
-"    μίας συσκευής αποθήκευσης USB\n"
-"ΒΗΜΑΤΑ:\n"
-"    1. Πατήτε στην επιλογή «Δοκιμή» και συνδέστε μία συσκευή αποθήκευσης USB "
-"(στικάκι/σκληρό δίσκο).\n"
-"       (Σημείωση: ο χρόνος αυτού του τεστ θα λήξει μετά από 10 "
-"δευτερόλεπτα.)\n"
-"    2. Μην αποσυνδέσετε τη συσκευή μετά το τεστ.\n"
-"ΕΠΑΛΗΘΕΥΣΗ:\n"
-"    Η επαλήθευση αυτού του τεστ είναι αυτοματοποιημένη. Μην αλλάζετε το "
-"αυτομάτως\n"
-"    επιλεγμένο αποτέλεσμα."
 
 #. description
 #: ../jobs/usb.txt.in:72
@@ -3471,23 +3298,11 @@ msgid ""
 "    a USB storage device\n"
 "STEPS:\n"
 "    1. Click \"Test\" and remove the USB device.\n"
-"       (Note: this test will time-out after 10 seconds.)\n"
+"       (Note: this test will time-out after 20 seconds.)\n"
 "VERIFICATION:\n"
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
-"ΣΚΟΠΟΣ:\n"
-"    Αυτό το τεστ θα ελέγξει ότι το σύστημα ανιχνεύει σωστά την απομάκρυνση\n"
-"    μίας συσκευής αποθήκευσης USB\n"
-"ΒΗΜΑΤΑ:\n"
-"    1. Πατήστε στην επιλογή «Δοκιμή» και αφαιρέστε τη συσκευή αποθήκευσης "
-"USB.\n"
-"       (Σημείωση: ο χρόνος αυτού του τεστ θα λήξει μετά από 10 "
-"δευτερόλεπτα.)\n"
-"ΕΠΑΛΗΘΕΥΣΗ:\n"
-"    Η επαλήθευση αυτού του τεστ είναι αυτοματοποιημένη. Μην αλλάζετε το "
-"αυτομάτως\n"
-"    επιλεγμένο αποτέλεσμα."
 
 #. description
 #: ../jobs/usb.txt.in:88
@@ -4483,17 +4298,17 @@ msgid "Unknown signal"
 msgstr "Άγνωστο σήμα"
 
 #: ../checkbox_cli/cli_interface.py:31
-#: ../checkbox_urwid/urwid_interface.py:917 ../checkbox_qt/qt_interface.py:37
+#: ../checkbox_urwid/urwid_interface.py:917 ../checkbox_qt/qt_interface.py:33
 msgid "yes"
 msgstr "ναι"
 
 #: ../checkbox_cli/cli_interface.py:32
-#: ../checkbox_urwid/urwid_interface.py:918 ../checkbox_qt/qt_interface.py:38
+#: ../checkbox_urwid/urwid_interface.py:918 ../checkbox_qt/qt_interface.py:34
 msgid "no"
 msgstr "όχι"
 
 #: ../checkbox_cli/cli_interface.py:33
-#: ../checkbox_urwid/urwid_interface.py:919 ../checkbox_qt/qt_interface.py:39
+#: ../checkbox_urwid/urwid_interface.py:919 ../checkbox_qt/qt_interface.py:35
 msgid "skip"
 msgstr "παράλειψη"
 
@@ -4550,11 +4365,11 @@ msgid "Next"
 msgstr "Επόμενο"
 
 #. Show buttons
-#: ../checkbox_urwid/urwid_interface.py:423 ../qt/frontend/qtfront.cpp:136
+#: ../checkbox_urwid/urwid_interface.py:423 ../qt/frontend/qtfront.cpp:140
 msgid "Select All"
 msgstr "Επιλογή όλων"
 
-#: ../checkbox_urwid/urwid_interface.py:424 ../qt/frontend/qtfront.cpp:137
+#: ../checkbox_urwid/urwid_interface.py:424 ../qt/frontend/qtfront.cpp:141
 msgid "Deselect All"
 msgstr "Αποεπιλογή όλων"
 
@@ -4575,15 +4390,15 @@ msgstr "Δοκιμή"
 msgid "Test Again"
 msgstr "Επανάληψη δοκιμής"
 
-#: ../checkbox_gtk/gtk_interface.py:503
+#: ../checkbox_gtk/gtk_interface.py:525
 msgid "_Test Again"
 msgstr "Έλεγχ_ος ξανά"
 
-#: ../checkbox_gtk/gtk_interface.py:551 ../qt/frontend/qtfront.cpp:490
+#: ../checkbox_gtk/gtk_interface.py:574 ../qt/frontend/qtfront.cpp:536
 msgid "Info"
 msgstr "Πληροφορίες"
 
-#: ../checkbox_gtk/gtk_interface.py:575 ../qt/frontend/qtfront.cpp:247
+#: ../checkbox_gtk/gtk_interface.py:598 ../qt/frontend/qtfront.cpp:250
 msgid "Error"
 msgstr "Σφάλμα"
 
@@ -4728,21 +4543,13 @@ msgstr ""
 "Εκτελείται ταυτόχρονα άλλο ένα πλαίσιο ελέγχου. Παρακαλούμε να το κλείσετε "
 "πρώτα."
 
-#: ../plugins/recover_prompt.py:53
-msgid "Recover"
-msgstr "Ανάκτηση"
-
-#: ../plugins/recover_prompt.py:54
-msgid "Restart"
-msgstr "Επανέναρξη"
-
-#: ../plugins/recover_prompt.py:56
+#: ../plugins/recover_prompt.py:62
 msgid ""
 "Checkbox did not finish completely.\n"
-"Do you want to recover from the previous run?"
+"Do you want to rerun the last test,\n"
+"continue to the next test, or\n"
+"restart from the beginning?"
 msgstr ""
-"Το πλαίσιο ελέγχου δεν ολοκληρώθηκε πλήρως.\n"
-"Θέλετε να ανακτηθεί από προηγούμενη εκτέλεση;"
 
 #: ../plugins/report_prompt.py:39
 msgid "Building report..."
@@ -4754,7 +4561,7 @@ msgid "Running %s..."
 msgstr "Εκτέλεση %s..."
 
 #. Get results
-#: ../plugins/suites_prompt.py:110
+#: ../plugins/suites_prompt.py:126
 msgid "Select the suites to test"
 msgstr "Επιλέξτε τις σουίτες προς δοκιμή"
 
@@ -4766,51 +4573,135 @@ msgstr "Εισάγετε κείμενο:\n"
 msgid "Type Text"
 msgstr "Πληκτρολογήστε κείμενο"
 
-#: ../scripts/internet_test:139
+#: ../scripts/internet_test:196
 msgid "No Internet connection"
 msgstr "Δεν υπάρχει σύνδεση με το Διαδίκτυο"
 
-#: ../scripts/internet_test:142
+#: ../scripts/internet_test:199
 msgid "Connection established lost a packet"
 msgstr "Η σύνδεση που πραγματοποιήθηκε έχασε ένα πακέτο"
 
-#: ../scripts/internet_test:145
+#: ../scripts/internet_test:202
 msgid "Internet connection fully established"
 msgstr "Η σύνδεση με το Διαδίκτυο πραγματοποιήθηκε πλήρως"
 
+#: ../qt/frontend/qtfront.cpp:89
+msgid "Audio Test"
+msgstr "Δοκιμή ήχου"
+
+#: ../qt/frontend/qtfront.cpp:90
+msgid "Bluetooth Test"
+msgstr "Έλεγχος Bluetooth"
+
+#: ../qt/frontend/qtfront.cpp:91
+msgid "Camera Test"
+msgstr "Δοκιμή κάμερας"
+
+#: ../qt/frontend/qtfront.cpp:92
+msgid "CPU Test"
+msgstr "Δοκιμή επεξεργαστή (CPU)"
+
+#: ../qt/frontend/qtfront.cpp:93
+msgid "Disk Test"
+msgstr "Δοκιμή δίσκου"
+
+#: ../qt/frontend/qtfront.cpp:94
+msgid "Firewire Test"
+msgstr "Δοκιμή Firewire"
+
+#: ../qt/frontend/qtfront.cpp:95
+msgid "Graphics Test"
+msgstr "Δοκιμή γραφικών"
+
+#: ../qt/frontend/qtfront.cpp:96
+msgid "Info Test"
+msgstr "Έλεγχος πληροφοριών"
+
+#: ../qt/frontend/qtfront.cpp:97
+msgid "Input Test"
+msgstr "Δοκιμή εισόδου"
+
+#: ../qt/frontend/qtfront.cpp:98
+msgid "Keys Test"
+msgstr "Δοκιμή πλήκτρων"
+
+#: ../qt/frontend/qtfront.cpp:99
+msgid "Media Card Test"
+msgstr "Έλεγχος κάρτας πολυμέσων"
+
+#: ../qt/frontend/qtfront.cpp:100
+msgid "Memory Test"
+msgstr "Δοκιμή μνήμης"
+
+#: ../qt/frontend/qtfront.cpp:101
+msgid "Miscellanea Test"
+msgstr "Διάφοροι ελέγχοι"
+
+#: ../qt/frontend/qtfront.cpp:102
+msgid "Monitor Test"
+msgstr "Δοκιμή οθόνης"
+
+#: ../qt/frontend/qtfront.cpp:103
+msgid "Networking Test"
+msgstr "Δοκιμή δικτύωσης"
+
+#: ../qt/frontend/qtfront.cpp:104
+msgid "Wireless Test"
+msgstr "Έλεγχος ασύρματης σύνδεσης"
+
+#: ../qt/frontend/qtfront.cpp:105
+msgid "Optical Test"
+msgstr "Έλεγχος οπτικού δίσκου"
+
+#: ../qt/frontend/qtfront.cpp:106
+msgid "PCMCIA/PCIX Test"
+msgstr "Έλεγχος PCMCIA/PCIX"
+
 #: ../qt/frontend/qtfront.cpp:107
+msgid "Power Management Test"
+msgstr "Έλεγχος διαχείρησης ενέργειας"
+
+#: ../qt/frontend/qtfront.cpp:108
+msgid "Suspend Test"
+msgstr "Δοκιμή αναστολής"
+
+#: ../qt/frontend/qtfront.cpp:109
+msgid "USB Test"
+msgstr "Έλεχγος USB"
+
+#: ../qt/frontend/qtfront.cpp:111
 msgid "Not Started"
 msgstr "Δεν έχει ξεκινήσει"
 
-#: ../qt/frontend/qtfront.cpp:108 ../qt/frontend/qtfront.cpp:109
+#: ../qt/frontend/qtfront.cpp:112 ../qt/frontend/qtfront.cpp:113
 msgid "Done"
 msgstr "Ολοκληρώθηκε"
 
-#: ../qt/frontend/qtfront.cpp:110
+#: ../qt/frontend/qtfront.cpp:114
 msgid "Not Supported"
 msgstr "Δεν υποστηρίζεται"
 
-#: ../qt/frontend/qtfront.cpp:111
+#: ../qt/frontend/qtfront.cpp:115
 msgid "Not Resolved"
 msgstr "Μη επιλυμένο"
 
-#: ../qt/frontend/qtfront.cpp:112
+#: ../qt/frontend/qtfront.cpp:116
 msgid "Not Tested"
 msgstr "Δεν ελέγχθηκε"
 
-#: ../qt/frontend/qtfront.cpp:113
+#: ../qt/frontend/qtfront.cpp:117
 msgid "In Progress"
 msgstr "Σε εξέλιξη"
 
-#: ../qt/frontend/qtfront.cpp:182
+#: ../qt/frontend/qtfront.cpp:185
 msgid "Are you sure?"
 msgstr "Σίγουρα;"
 
-#: ../qt/frontend/qtfront.cpp:182
+#: ../qt/frontend/qtfront.cpp:185
 msgid "Do you really want to skip this test?"
 msgstr "Θέλετε σίγουρα να παραλείψετε αυτή τη δοκιμή;"
 
-#: ../qt/frontend/qtfront.cpp:183
+#: ../qt/frontend/qtfront.cpp:186
 msgid "Don't ask me again"
 msgstr "Να μην ξαναγίνει η ερώτηση"
 
@@ -4900,11 +4791,12 @@ msgid ""
 "weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
 "right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" "
-"color:#ff0000;\">Warning: Not all tests have been run yet.</span></p>\n"
+"color:#000000;\">Please enter the e-mail address associated with your "
+"Launchpad account (if applicable)</span></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
 "right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" "
-"color:#ff0000;\">You can send the results now, but the submission won't make "
-"it to Ubuntu Friendly.</span></p></body></html>"
+"color:#000000;\">and click the Submit Results button to submit these test "
+"results to Ubuntu Friendly.</span></p></body></html>"
 msgstr ""
 "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" "
 "\"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
@@ -4915,12 +4807,12 @@ msgstr ""
 "weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
 "right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" "
-"color:#ff0000;\">Προειδοποίηση: Δεν έχουν εκτελεστεί ακόμα όλες οι "
-"δοκιμές.</span></p>\n"
+"color:#000000;\">Παρακαλώ εισάγετε τη διεύθυνση ηλεκτρονικού ταχυδρομείου "
+"που σχετίζεται με το λογαριασμό σας στο Launchpad (αν υπάρχει)</span></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
 "right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" "
-"color:#ff0000;\">Μπορείτε να στείλετε τα αποτελέσματα τώρα, ωστόσο η "
-"αποστολή σας δε θα μπει στο Ubuntu Friendly.</span></p></body></html>"
+"color:#000000;\">και πατήστε στο Υποβολή αποτελεσμάτων για να υποβάλετε αυτά "
+"τα αποτελέσματα δοκιμών στο Ubuntu Friendly.</span></p></body></html>"
 
 #: ../qt/frontend/ui_qtfront.h:617
 msgid "Personal details"
@@ -5169,6 +5061,13 @@ msgstr " Αποτελέσματα "
 
 #~ msgid "No e-mail address provided, not submitting to Launchpad."
 #~ msgstr "Δεν δόθηκε διεύθυνση e-mail, δεν θα γίνει αποστολή στο Launchpad."
+
+#~ msgid ""
+#~ "Checkbox did not finish completely.\n"
+#~ "Do you want to recover from the previous run?"
+#~ msgstr ""
+#~ "Το πλαίσιο ελέγχου δεν ολοκληρώθηκε πλήρως.\n"
+#~ "Θέλετε να ανακτηθεί από προηγούμενη εκτέλεση;"
 
 #~ msgid "Kernel modesetting tests"
 #~ msgstr "Δοκιμές ρυθμίσεων οθόνης του πυρήνα"
@@ -5888,8 +5787,736 @@ msgstr " Αποτελέσματα "
 #~ msgstr "Έλεγχοι ανάγνωσης οπτικών συσκευών αποθήκευσης"
 
 #~ msgid ""
+#~ "PURPOSE:\n"
+#~ "   This test will verify that the desktop clock displays the correct date "
+#~ "and time\n"
+#~ "VERIFICATION:\n"
+#~ "   Is the clock in the upper right corner of your desktop displaying the "
+#~ "correct date and time for your timezone?"
+#~ msgstr ""
+#~ "ΣΚΟΠΟΣ:\n"
+#~ "   Αυτό το τεστ θα επιβεβαιώσει πως το ρολόι του περιβάλλοντος εργασίας "
+#~ "εμφανίζει τη σωστή ημερομηνία και ώρα\n"
+#~ "ΕΠΑΛΗΘΕΥΣΗ:\n"
+#~ "   Εμφανίζει τη σωστή ημερομηνία και ώρα για τη χρονική σας ζώνη το ρολόι "
+#~ "που βρίσκεται στην επάνω δεξιά γωνία της επιφάνειας εργασίας σας;"
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "    This test will enter and resume from hibernate for 30 iterations\n"
+#~ "STEPS:\n"
+#~ "    1. Ensure your system has no power-on or HDD passwords set, and that "
+#~ "grub is set to boot Ubuntu by default if you have a multi-boot set-up\n"
+#~ "    2. Click \"Test\" to start the test (very lengthy)\n"
+#~ "    3. If your system does not wake itself after 2 minutes, you will need to "
+#~ "press the power button\n"
+#~ "    4. If the system fails to resume from hibernation and must be rebooted, "
+#~ "please restart System Testing and mark this test as Failed\n"
+#~ "VERIFICATION:\n"
+#~ "    Did the system successfully hibernate and wake 30 times?"
+#~ msgstr ""
+#~ "ΣΚΟΠΟΣ:\n"
+#~ "    Αυτό το τεστ θα προκαλέσει την αδρανοποίηση του συστήματος και την "
+#~ "επαναφορά του για 30 επαναλήψεις\n"
+#~ "ΒΗΜΑΤΑ:\n"
+#~ "    1. Βεβαιωθείτε πως στο σύστημά σας δεν έχει τεθεί κάποιος κωδικός για "
+#~ "την ενεργοποίηση ή τη χρήση του σκληρού δίσκου και πως ο φορτωτής εκκίνησης "
+#~ "(grub) είναι ρυθμισμένος ώστε από προεπιλογή να εκκινεί το Ubuntu αν στον "
+#~ "υπολογιστή σας έχετε διάταξη multi-boot (περισσότερα από ένα λειτουργικά "
+#~ "συστήματα)\n"
+#~ "    2. Πατήστε στην επιλογή «Δοκιμή» ώστε να εκκινήσει το τεστ (θα διαρκέσει "
+#~ "πολλή ώρα)\n"
+#~ "    3. Αν το σύστημά σας δεν ξυπνήσει αυτόματα μετά από 2 λεπτά, θα "
+#~ "χρειαστεί να πατήσετε το κουμπί παροχής ενέργειας (On/Off)\n"
+#~ "    4. Αν δεν γίνει επαναφορά του συστήματος από την αδρανοποίηση "
+#~ "λειτουργίας και χρειαστεί να γίνει επανεκκίνηση, παρακαλώ αρχίστε ξανά αυτό "
+#~ "το τεστ και σημειώστε το ως αποτυχημένο.\n"
+#~ "ΕΠΑΛΗΘΕΥΣΗ:\n"
+#~ "    Αδρανοποιήθηκε το σύστημα και επανήλθε επιτυχημένα και τις 30 φορές;"
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "    This test will enter and resume from suspend for 30 iterations\n"
+#~ "STEPS:\n"
+#~ "    1. Click \"Test\" to start the test (very lengthy)\n"
+#~ "    2. If the system fails to resume from suspend and must be rebooted, "
+#~ "please restart System Testing and mark this test as Failed\n"
+#~ "VERIFICATION:\n"
+#~ "    Did the system successfully suspend and resume 30 times?"
+#~ msgstr ""
+#~ "ΣΚΟΠΟΣ:\n"
+#~ "    Αυτό το τεστ θα προκαλέσει την αναστολή του συστήματος και την επαναφορά "
+#~ "του για 30 επαναλήψεις\n"
+#~ "ΒΗΜΑΤΑ:\n"
+#~ "    1. Πατήστε στην επιλογή «Δοκιμή» ώστε να εκκινήσει το τεστ (θα διαρκέσει "
+#~ "πολλή ώρα)\n"
+#~ "    2. Αν δεν γίνει επαναφορά του συστήματος από την αναστολή λειτουργίας "
+#~ "και χρειαστεί να γίνει επανεκκίνηση, παρακαλώ αρχίστε ξανά αυτό το τεστ και "
+#~ "σημειώστε το ως αποτυχημένο.\n"
+#~ "ΕΠΑΛΗΘΕΥΣΗ:\n"
+#~ "    Ανεστάλη η λειτουργία του συστήματος και επανήλθε επιτυχημένα και τις 30 "
+#~ "φορές;"
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "    This test will check that the display is correct after suspend and "
+#~ "resume\n"
+#~ "VERIFICATION:\n"
+#~ "    Does the display work normally after resuming from suspend?"
+#~ msgstr ""
+#~ "ΣΚΟΠΟΣ:\n"
+#~ "    Αυτό το τεστ θα ελέγξει ότι η απεικόνιση είναι σωστή μετά από την "
+#~ "αναστολή λειτουργίας και την επαναφορά του συστήματος\n"
+#~ "ΕΠΑΛΗΘΕΥΣΗ:\n"
+#~ "    Λειτουργεί κανονικά η οθόνη μετά την επαναφορά του συστήματος από τη "
+#~ "αναστολή λειτουργίας;"
+
+#~ msgid ""
 #~ "This test is automated and requires that you plug in at least one usb "
 #~ "storage device before running checkbox."
 #~ msgstr ""
 #~ "Αυτό το τεστ είναι αυτοματοποιημένο και απαιτεί την εισαγωγή μίας "
 #~ "τουλάχιστον συσκευής αποθήκευσης USB πριν την έναρξη του checkbox."
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "    This test will check the system can detect the insertion of a FireWire "
+#~ "HDD\n"
+#~ "STEPS:\n"
+#~ "    1. Click 'Test' to begin the test. This test will\n"
+#~ "       timeout and fail if the insertion has not been detected within 10 "
+#~ "seconds.\n"
+#~ "    2. Plug a FireWire HDD into an available FireWire port.\n"
+#~ "VERIFICATION:\n"
+#~ "    The verification of this test is automated. Do not change the "
+#~ "automatically\n"
+#~ "    selected result"
+#~ msgstr ""
+#~ "ΣΚΟΠΟΣ:\n"
+#~ "    Αυτό το τεστ θα ελέγξει αν το σύστημα μπορεί να ανιχνεύσει την εισαγωγή "
+#~ "ενός σκληρού δίσκου FireWire\n"
+#~ "ΒΗΜΑΤΑ:\n"
+#~ "    1. Κάντε κλικ στην επιλογή «Δοκιμή» για να αρχίσει το τεστ. Αυτό το τεστ "
+#~ "θα\n"
+#~ "       λήξει λόγω υπέρβασης χρονικού ορίου αν η εισαγωγή δεν ανιχνευθεί μέσα "
+#~ "σε 10 δευτερόλεπτα.\n"
+#~ "    2. Συνδέστε έναν σκληρό δίσκο FireWire σε μία διαθέσιμη θύρα σύνδεσης "
+#~ "FireWire.\n"
+#~ "ΕΠΑΛΗΘΕΥΣΗ:\n"
+#~ "    Η επαλήθευση αυτού του τεστ είναι αυτοματοποιημένη. Μην αλλάζετε το "
+#~ "αυτομάτως\n"
+#~ "    επιλεγμένο αποτέλεσμα."
+
+#~ msgid ""
+#~ " PURPOSE:\n"
+#~ "   This test will check the system can detect the removal of a FireWire HDD\n"
+#~ " STEPS:\n"
+#~ "   1. Click 'Test' to begin the test. This test will timeout and fail if\n"
+#~ "      the removal has not been detected within 10 seconds.\n"
+#~ "   2. Remove the previously attached FireWire HDD from the FireWire port.\n"
+#~ " VERIFICATION:\n"
+#~ "   The verification of this test is automated. Do not change the "
+#~ "automatically\n"
+#~ "   selected result"
+#~ msgstr ""
+#~ " ΣΚΟΠΟΣ:\n"
+#~ "   Αυτό το τεστ θα ελέγξει αν το σύστημα μπορεί να ανιχνεύσει την αποσύνδεση "
+#~ "ενός σκληρού δίσκου FireWire\n"
+#~ " ΒΗΜΑΤΑ:\n"
+#~ "   1. Κάντε κλικ στην επιλογή «Δοκιμή» για να αρχίσει το τεστ. Αυτό το τεστ "
+#~ "θα\n"
+#~ "       λήξει λόγω υπέρβασης χρονικού ορίου αν η αποσύνδεση δεν ανιχνευθεί "
+#~ "μέσα σε 10 δευτερόλεπτα.\n"
+#~ "   2. Αποσυνδέστε τον σκληρό δίσκο FireWire που προηγουμένως συνδέσατε από "
+#~ "τη θύρα σύνδεσης FireWire.\n"
+#~ " ΕΠΑΛΗΘΕΥΣΗ:\n"
+#~ "   Η επαλήθευση αυτού του τεστ είναι αυτοματοποιημένη. Μην αλλάζετε το "
+#~ "αυτομάτως\n"
+#~ "   επιλεγμένο αποτέλεσμα."
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "    This test will check that the systems media card reader can\n"
+#~ "    detect the insertion of a Secure Digital (SD) media card\n"
+#~ "STEPS:\n"
+#~ "    1. Click \"Test\" and insert an SD card into the reader.\n"
+#~ "       (Note: this test will time-out after 10 seconds.)\n"
+#~ "    2. Do not unplug the device after the test.\n"
+#~ "VERIFICATION:\n"
+#~ "    The verification of this test is automated. Do not change the\n"
+#~ "    automatically selected result."
+#~ msgstr ""
+#~ "ΣΚΟΠΟΣ:\n"
+#~ "    Αυτό το τεστ θα ελέγξει ότι ο αναγνώστης καρτών μέσων του συστήματος "
+#~ "μπορεί\n"
+#~ "    να ανιχνεύσει την εισαγωγή μίας κάρτας Secure Digital (SD)\n"
+#~ "ΒΗΜΑΤΑ:\n"
+#~ "    1. Κάντε κλικ στην επιλογή «Δοκιμή» και εισάγετε μια κάρτα SD στον "
+#~ "αναγνώστη καρτών.\n"
+#~ "       (Σημείωση: ο χρόνος αυτού του τεστ θα λήξει μετά από 10 "
+#~ "δευτερόλεπτα.)\n"
+#~ "    2. Μην αποσυνδέσετε τη συσκευή μετά τη δοκιμή.\n"
+#~ "ΕΠΑΛΗΘΕΥΣΗ:\n"
+#~ "    Η επαλήθευση αυτού του τεστ είναι αυτοματοποιημένη. Μην αλλάζετε το\n"
+#~ "    αυτομάτως επιλεγμένο αποτέλεσμα."
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "    This test will check that the systems media card reader can\n"
+#~ "    detect the insertion of a Secure Digital High-Capacity (SDHC) media "
+#~ "card\n"
+#~ "STEPS:\n"
+#~ "    1. Click \"Test\" and insert an SDHC card into the reader.\n"
+#~ "       (Note: this test will time-out after 10 seconds.)\n"
+#~ "    2. Do not unplug the device after the test.\n"
+#~ "VERIFICATION:\n"
+#~ "    The verification of this test is automated. Do not change the\n"
+#~ "    automatically selected result."
+#~ msgstr ""
+#~ "ΣΚΟΠΟΣ:\n"
+#~ "    Αυτό το τεστ θα ελέγξει ότι ο αναγνώστης καρτών μέσων του συστήματος "
+#~ "μπορεί \n"
+#~ "    να ανιχνεύσει την εισαγωγή μίας κάρτας μέσων τύπου Secure Digital High-"
+#~ "Capacity (SDHC)\n"
+#~ "ΒΗΜΑΤΑ:\n"
+#~ "    1. Πατήστε στην επιλογή «Δοκιμή» και εισάγετε μία κάρτα SDHC στον "
+#~ "αναγνώστη.\n"
+#~ "       ((Σημείωση: ο χρόνος αυτού του τεστ θα λήξει μετά από 10 "
+#~ "δευτερόλεπτα.)\n"
+#~ "    2. Μην αποσυνδέσετε τη συσκευή μετά από το τεστ.\n"
+#~ "ΕΠΑΛΗΘΕΥΣΗ:\n"
+#~ "    Η επαλήθευση αυτού του τεστ είναι αυτοματοποιημένη. Μην αλλάζετε το \n"
+#~ "    αυτομάτως επιλεγμένο αποτέλεσμα."
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "    This test will check that the system correctly detects the insertion of\n"
+#~ "    a USB storage device\n"
+#~ "STEPS:\n"
+#~ "    1. Click \"Test\" and insert a USB storage device (pen-drive/HDD).\n"
+#~ "       (Note: this test will time-out after 10 seconds.)\n"
+#~ "    2. Do not unplug the device after the test.\n"
+#~ "VERIFICATION:\n"
+#~ "    The verification of this test is automated. Do not change the\n"
+#~ "    automatically selected result."
+#~ msgstr ""
+#~ "ΣΚΟΠΟΣ:\n"
+#~ "    Αυτό το τεστ θα ελέγξει ότι το σύστημα ανιχνεύει σωστά την εισαγωγή\n"
+#~ "    μίας συσκευής αποθήκευσης USB\n"
+#~ "ΒΗΜΑΤΑ:\n"
+#~ "    1. Πατήτε στην επιλογή «Δοκιμή» και συνδέστε μία συσκευή αποθήκευσης USB "
+#~ "(στικάκι/σκληρό δίσκο).\n"
+#~ "       (Σημείωση: ο χρόνος αυτού του τεστ θα λήξει μετά από 10 "
+#~ "δευτερόλεπτα.)\n"
+#~ "    2. Μην αποσυνδέσετε τη συσκευή μετά το τεστ.\n"
+#~ "ΕΠΑΛΗΘΕΥΣΗ:\n"
+#~ "    Η επαλήθευση αυτού του τεστ είναι αυτοματοποιημένη. Μην αλλάζετε το "
+#~ "αυτομάτως\n"
+#~ "    επιλεγμένο αποτέλεσμα."
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "    This test will check that the system correctly detects the removal of\n"
+#~ "    a USB storage device\n"
+#~ "STEPS:\n"
+#~ "    1. Click \"Test\" and remove the USB device.\n"
+#~ "       (Note: this test will time-out after 10 seconds.)\n"
+#~ "VERIFICATION:\n"
+#~ "    The verification of this test is automated. Do not change the\n"
+#~ "    automatically selected result."
+#~ msgstr ""
+#~ "ΣΚΟΠΟΣ:\n"
+#~ "    Αυτό το τεστ θα ελέγξει ότι το σύστημα ανιχνεύει σωστά την απομάκρυνση\n"
+#~ "    μίας συσκευής αποθήκευσης USB\n"
+#~ "ΒΗΜΑΤΑ:\n"
+#~ "    1. Πατήστε στην επιλογή «Δοκιμή» και αφαιρέστε τη συσκευή αποθήκευσης "
+#~ "USB.\n"
+#~ "       (Σημείωση: ο χρόνος αυτού του τεστ θα λήξει μετά από 10 "
+#~ "δευτερόλεπτα.)\n"
+#~ "ΕΠΑΛΗΘΕΥΣΗ:\n"
+#~ "    Η επαλήθευση αυτού του τεστ είναι αυτοματοποιημένη. Μην αλλάζετε το "
+#~ "αυτομάτως\n"
+#~ "    επιλεγμένο αποτέλεσμα."
+
+#~ msgid "Recover"
+#~ msgstr "Ανάκτηση"
+
+#~ msgid "Restart"
+#~ msgstr "Επανέναρξη"
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "    This test will check that the system correctly detects\n"
+#~ "    the removal of an SD card from the systems card reader.\n"
+#~ "STEPS:\n"
+#~ "    1. Click \"Test\" and remove the SD card from the reader.\n"
+#~ "       (Note: this test will time-out after 10 seconds.)\n"
+#~ "VERIFICATION:\n"
+#~ "    The verification of this test is automated. Do not change the\n"
+#~ "    automatically selected result."
+#~ msgstr ""
+#~ "ΣΚΟΠΟΣ:\n"
+#~ "    Αυτό το τεστ θα ελέγξει ότι το σύστημα ανιχνεύει σωστά\n"
+#~ "    την αφαίρεση της κάρτας SD από τον αναγνώστη καρτών του συστήματος.\n"
+#~ "ΒΗΜΑΤΑ:\n"
+#~ "    1.  Πατήστε στην επιλογή «Δοκιμή» και αφαιρέστε την κάρτα SD από τον "
+#~ "αναγνώστη.\n"
+#~ "       (Σημείωση: ο χρόνος αυτού του τεστ θα λήξει μετά από 10 "
+#~ "δευτερόλεπτα.)\n"
+#~ "ΕΠΑΛΗΘΕΥΣΗ:\n"
+#~ "    Η επαλήθευση αυτού του τεστ είναι αυτοματοποιημένη. Μην αλλάζετε το\n"
+#~ "    αυτομάτως επιλεγμένο αποτέλεσμα."
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "    This test will check that the system correctly detects the removal\n"
+#~ "    of an MMC card from the systems card reader after the system has been "
+#~ "suspended.\n"
+#~ "STEPS:\n"
+#~ "    1. Click \"Test\" and remove the MMC card from the reader.\n"
+#~ "       (Note: this test will time-out after 10 seconds.)\n"
+#~ "VERIFICATION:\n"
+#~ "    The verification of this test is automated. Do not change the\n"
+#~ "    automatically selected result."
+#~ msgstr ""
+#~ "ΣΚΟΠΟΣ:\n"
+#~ "    Αυτό το τεστ θα ελέγξει ότι ο αναγνώστης καρτών μέσων του συστήματος "
+#~ "μπορεί να ανιχνεύσει την απομάκρυνση\n"
+#~ "    μιας κάρτας MMC από τον αναγνώστη μετά την αναστολή λειτουργίας του "
+#~ "συστήματος.\n"
+#~ "ΒΗΜΑΤΑ:\n"
+#~ "    1. Πατήστε στην επιλογή «Δοκιμή» και αφαιρέστε την κάρτα MMC από τον "
+#~ "αναγνώστη.\n"
+#~ "       (Σημείωση: ο χρόνος αυτού του τεστ θα λήξει μετά από 10 "
+#~ "δευτερόλεπτα.)\n"
+#~ "ΕΠΑΛΗΘΕΥΣΗ:\n"
+#~ "    Η επαλήθευση αυτού του τεστ είναι αυτοματοποιημένη. Μην αλλάζετε το\n"
+#~ "    αυτομάτως επιλεγμένο αποτέλεσμα."
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "    This test will check that the systems media card reader can\n"
+#~ "    detect the insertion of an MMC card after the system has been suspended\n"
+#~ "STEPS:\n"
+#~ "    1. Click \"Test\" and insert an MMC card into the reader.\n"
+#~ "       (Note: this test will time-out after 10 seconds.)\n"
+#~ "    2. Do not unplug the device after the test.\n"
+#~ "VERIFICATION:\n"
+#~ "    The verification of this test is automated. Do not change the\n"
+#~ "    automatically selected result."
+#~ msgstr ""
+#~ "ΣΚΟΠΟΣ:\n"
+#~ "    Αυτό το τεστ θα ελέγξει ότι ο αναγνώστης καρτών μέσων του συστήματος "
+#~ "μπορεί\n"
+#~ "    να ανιχνεύσει την εισαγωγή μιας κάρτας MMC μετά την αναστολή λειτουργίας "
+#~ "του συστήματος\n"
+#~ "ΒΗΜΑΤΑ:\n"
+#~ "    1. Πατήστε στην επιλογή «Δοκιμή» και εισάγετε μία κάρτα MMC στον "
+#~ "αναγνώστη.\n"
+#~ "       (Σημείωση: ο χρόνος αυτού του τεστ θα λήξει μετά από 10 "
+#~ "δευτερόλεπτα.)\n"
+#~ "    2. Μην αποσυνδέσετε τη συσκευή μετά τη δοκιμή.\n"
+#~ "ΕΠΑΛΗΘΕΥΣΗ:\n"
+#~ "    Η επαλήθευση αυτού του τεστ είναι αυτοματοποιημένη. Μην αλλάζετε το\n"
+#~ "    αυτομάτως επιλεγμένο αποτέλεσμα."
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "    This test will check that the systems media card reader can\n"
+#~ "    detect the insertion of an SD card after the system has been suspended\n"
+#~ "STEPS:\n"
+#~ "    1. Click \"Test\" and insert an SD card into the reader.\n"
+#~ "       (Note: this test will time-out after 10 seconds.)\n"
+#~ "    2. Do not unplug the device after the test.\n"
+#~ "VERIFICATION:\n"
+#~ "    The verification of this test is automated. Do not change the\n"
+#~ "    automatically selected result."
+#~ msgstr ""
+#~ "ΣΚΟΠΟΣ:\n"
+#~ "    Αυτό το τεστ θα ελέγξει ότι ο αναγνώστης καρτών μέσων του συστήματος "
+#~ "μπορεί\n"
+#~ "    να ανιχνεύσει την εισαγωγή μιας κάρτας SD μετά την αναστολή λειτουργίας "
+#~ "του συστήματος\n"
+#~ "ΒΗΜΑΤΑ:\n"
+#~ "    1. Πατήστε στην επιλογή «Δοκιμή» και εισάγετε μία κάρτα SD στον "
+#~ "αναγνώστη.\n"
+#~ "       (Σημείωση: ο χρόνος αυτού του τεστ θα λήξει μετά από 10 "
+#~ "δευτερόλεπτα.)\n"
+#~ "    2. Μην αποσυνδέσετε τη συσκευή μετά τη δοκιμή.\n"
+#~ "ΕΠΑΛΗΘΕΥΣΗ:\n"
+#~ "    Η επαλήθευση αυτού του τεστ είναι αυτοματοποιημένη. Μην αλλάζετε το\n"
+#~ "    αυτομάτως επιλεγμένο αποτέλεσμα."
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "    This test will check that the system correctly detects\n"
+#~ "    the removal of the MMC card from the systems card reader.\n"
+#~ "STEPS:\n"
+#~ "    1. Click \"Test\" and remove the MMC card from the reader.\n"
+#~ "       (Note: this test will time-out after 10 seconds.)\n"
+#~ "VERIFICATION:\n"
+#~ "    The verification of this test is automated. Do not change the\n"
+#~ "    automatically selected result."
+#~ msgstr ""
+#~ "ΣΚΟΠΟΣ:\n"
+#~ "    Αυτό το τεστ θα ελέγξει ότι το σύστημα ανιχνεύει σωστά\n"
+#~ "    την αφαίρεση της κάρτας MMC από τον αναγνώστη καρτών του συστήματος.\n"
+#~ "ΒΗΜΑΤΑ:\n"
+#~ "    1.  Πατήστε στην επιλογή «Δοκιμή» και αφαιρέστε την κάρτα MMC από τον "
+#~ "αναγνώστη.\n"
+#~ "       (Σημείωση: ο χρόνος αυτού του τεστ θα λήξει μετά από 10 "
+#~ "δευτερόλεπτα.)\n"
+#~ "ΕΠΑΛΗΘΕΥΣΗ:\n"
+#~ "    Η επαλήθευση αυτού του τεστ είναι αυτοματοποιημένη. Μην αλλάζετε το\n"
+#~ "    αυτομάτως επιλεγμένο αποτέλεσμα."
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "    This test will check that the systems media card reader can\n"
+#~ "    detect the insertion of a Multimedia Card (MMC) media\n"
+#~ "STEPS:\n"
+#~ "    1. Click \"Test\" and insert an MMC card into the reader.\n"
+#~ "       (Note: this test will time-out after 10 seconds.)\n"
+#~ "    2. Do not unplug the device after the test.\n"
+#~ "VERIFICATION:\n"
+#~ "    The verification of this test is automated. Do not change the\n"
+#~ "    automatically selected result."
+#~ msgstr ""
+#~ "ΣΚΟΠΟΣ:\n"
+#~ "    Αυτό το τεστ θα ελέγξει ότι ο αναγνώστης καρτών μέσων του συστήματος "
+#~ "μπορεί\n"
+#~ "    να ανιχνεύσει την εισαγωγή μιας κάρτας μέσων Multimedia Card (MMC)\n"
+#~ "ΒΗΜΑΤΑ:\n"
+#~ "    1. Πατήστε στην επιλογή «Δοκιμή» και εισάγετε μία κάρτα MMC στον "
+#~ "αναγνώστη\n"
+#~ "       (Σημείωση: ο χρόνος αυτού του τεστ θα λήξει μετά από 10 "
+#~ "δευτερόλεπτα.)\n"
+#~ "    2. Μην αποσυνδέσετε τη συσκευή μετά τη δοκιμή.\n"
+#~ "ΕΠΑΛΗΘΕΥΣΗ:\n"
+#~ "    Η επαλήθευση αυτού του τεστ είναι αυτοματοποιημένη. Μην αλλάζετε το\n"
+#~ "    αυτομάτως επιλεγμένο αποτέλεσμα."
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "    This test will check that the systems media card reader can\n"
+#~ "    detect the insertion of an SDHC media card after the system has been "
+#~ "suspended\n"
+#~ "STEPS:\n"
+#~ "    1. Click \"Test\" and insert an SDHC card into the reader.\n"
+#~ "       (Note: this test will time-out after 10 seconds.)\n"
+#~ "    2. Do not unplug the device after the test.\n"
+#~ "VERIFICATION:\n"
+#~ "    The verification of this test is automated. Do not change the\n"
+#~ "    automatically selected result."
+#~ msgstr ""
+#~ "ΣΚΟΠΟΣ:\n"
+#~ "    Αυτό το τεστ θα ελέγξει αν ο αναγνώστης καρτών του συστήματος μπορεί\n"
+#~ "    να ανιχνεύσει την εισαγωγή μιας κάρτας μέσων SDHC μετά την αναστολή "
+#~ "λειτουργίας του συστήματος\n"
+#~ "ΒΗΜΑΤΑ:\n"
+#~ "    1. Πατήστε στην επιλογή «Δοκιμή» και εισάγετε μία κάρτα SDHC στον "
+#~ "αναγνώστη.\n"
+#~ "       (Σημείωση: ο χρόνος αυτού του τεστ θα λήξει μετά από 10 "
+#~ "δευτερόλεπτα.)\n"
+#~ "    2. Μην αποσυνδέσετε τη συσκευή μετά το τεστ.\n"
+#~ "ΕΠΑΛΗΘΕΥΣΗ:\n"
+#~ "    Η επαλήθευση αυτού του τεστ είναι αυτοματοποιημένη. Μην αλλάζετε το\n"
+#~ "    αυτομάτως επιλεγμένο αποτέλεσμα."
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "    This test will check that the system correctly detects\n"
+#~ "    the removal of an SDHC card from the systems card reader.\n"
+#~ "STEPS:\n"
+#~ "    1. Click \"Test\" and remove the SDHC card from the reader.\n"
+#~ "       (Note: this test will time-out after 10 seconds.)\n"
+#~ "VERIFICATION:\n"
+#~ "    The verification of this test is automated. Do not change the\n"
+#~ "    automatically selected result."
+#~ msgstr ""
+#~ "ΣΚΟΠΟΣ:\n"
+#~ "    Αυτό το τεστ θα ελέγξει ότι το σύστημα ανιχνεύει σωστά\n"
+#~ "    την απομάκρυνση μιας κάρτας SDHC από τον αναγνώστη καρτών του "
+#~ "συστήματος.\n"
+#~ "ΒΗΜΑΤΑ:\n"
+#~ "    1. Κάντε κλικ στην επιλογή «Δοκιμή» και αφαιρέστε την κάρτα SDHC από τον "
+#~ "αναγνώστη.\n"
+#~ "       (Σημείωση: ο χρόνος αυτού του τεστ θα λήξει μετά από 10 "
+#~ "δευτερόλεπτα.)\n"
+#~ "ΕΠΑΛΗΘΕΥΣΗ:\n"
+#~ "    Η επαλήθευση αυτού του τεστ είναι αυτοματοποιημένη. Μην αλλάζετε το\n"
+#~ "    αυτομάτως επιλεγμένο αποτέλεσμα."
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "    This test will check that the system correctly detects\n"
+#~ "    the removal of an SD card from the systems card reader after the system "
+#~ "has been suspended.\n"
+#~ "STEPS:\n"
+#~ "    1. Click \"Test\" and remove the SD card from the reader.\n"
+#~ "       (Note: this test will time-out after 10 seconds.)\n"
+#~ "VERIFICATION:\n"
+#~ "    The verification of this test is automated. Do not change the\n"
+#~ "    automatically selected result."
+#~ msgstr ""
+#~ "ΣΚΟΠΟΣ:\n"
+#~ "    Αυτό το τεστ θα ελέγξει ότι το σύστημα ανιχνεύει σωστά\n"
+#~ "    την απομάκρυνση μιας κάρτας SD από τον αναγνώστη καρτών του συστήματος "
+#~ "μετά την αναστολή λειτουργίας.\n"
+#~ "ΒΗΜΑΤΑ:\n"
+#~ "    1. Κάντε κλικ στην επιλογή «Δοκιμή» και αφαιρέστε την κάρτα SD από τον "
+#~ "αναγνώστη.\n"
+#~ "       (Σημείωση: ο χρόνος αυτού του τεστ θα λήξει μετά από 10 "
+#~ "δευτερόλεπτα.)\n"
+#~ "ΕΠΑΛΗΘΕΥΣΗ:\n"
+#~ "    Η επαλήθευση αυτού του τεστ είναι αυτοματοποιημένη. Μην αλλάζετε το\n"
+#~ "    αυτομάτως επιλεγμένο αποτέλεσμα."
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "    This test will check that the system correctly detects the removal\n"
+#~ "    of an SDHC card from the systems card reader after the system has been "
+#~ "suspended.\n"
+#~ "STEPS:\n"
+#~ "    1. Click \"Test\" and remove the SDHC card from the reader.\n"
+#~ "       (Note: this test will time-out after 10 seconds.)\n"
+#~ "VERIFICATION:\n"
+#~ "    The verification of this test is automated. Do not change the\n"
+#~ "    automatically selected result."
+#~ msgstr ""
+#~ "ΣΚΟΠΟΣ:\n"
+#~ "    Αυτό το τεστ θα ελέγξει ότι το σύστημα ανιχνεύει σωστά την απομάκρυνση\n"
+#~ "    μιας κάρτας SDHC από τον αναγνώστη καρτών του συστήματος μετά την "
+#~ "αναστολή λειτουργίας.\n"
+#~ "ΒΗΜΑΤΑ:\n"
+#~ "    1. Κάντε κλικ στην επιλογή «Δοκιμή» και αφαιρέστε την κάρτα SDHC από τον "
+#~ "αναγνώστη.\n"
+#~ "       (Σημείωση: ο χρόνος αυτού του τεστ θα λήξει μετά από 10 "
+#~ "δευτερόλεπτα.)\n"
+#~ "ΕΠΑΛΗΘΕΥΣΗ:\n"
+#~ "    Η επαλήθευση αυτού του τεστ είναι αυτοματοποιημένη. Μην αλλάζετε το\n"
+#~ "    αυτομάτως επιλεγμένο αποτέλεσμα."
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "    This test will check that the systems media card reader can\n"
+#~ "    detect the insertion of a Compact Flash (CF) media card\n"
+#~ "STEPS:\n"
+#~ "    1. Click \"Test\" and insert a CF card into the reader.\n"
+#~ "       (Note: this test will time-out after 10 seconds.)\n"
+#~ "    2. Do not unplug the device after the test.\n"
+#~ "VERIFICATION:\n"
+#~ "    The verification of this test is automated. Do not change the\n"
+#~ "    automatically selected result."
+#~ msgstr ""
+#~ "ΣΚΟΠΟΣ:\n"
+#~ "    Αυτό το τεστ θα ελέγξει αν ο αναγνώστης καρτών του συστήματος μπορεί\n"
+#~ "    να ανιχνεύσει την εισαγωγή μιας κάρτας μέσων Compact Flash (CF)\n"
+#~ "ΒΗΜΑΤΑ:\n"
+#~ "    1. Πατήστε στην επιλογή «Δοκιμή» και εισάγετε μία κάρτα CF στον "
+#~ "αναγνώστη.\n"
+#~ "       (Σημείωση: ο χρόνος αυτού του τεστ θα λήξει μετά από 10 "
+#~ "δευτερόλεπτα.)\n"
+#~ "    2. Μην αποσυνδέσετε τη συσκευή μετά το τεστ.\n"
+#~ "ΕΠΑΛΗΘΕΥΣΗ:\n"
+#~ "    Η επαλήθευση αυτού του τεστ είναι αυτοματοποιημένη. Μην αλλάζετε το\n"
+#~ "    αυτομάτως επιλεγμένο αποτέλεσμα."
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "    This test will check that the system correctly detects\n"
+#~ "    the removal of a CF card from the systems card reader.\n"
+#~ "STEPS:\n"
+#~ "    1. Click \"Test\" and remove the CF card from the reader.\n"
+#~ "       (Note: this test will time-out after 10 seconds.)\n"
+#~ "VERIFICATION:\n"
+#~ "    The verification of this test is automated. Do not change the\n"
+#~ "    automatically selected result."
+#~ msgstr ""
+#~ "ΣΚΟΠΟΣ:\n"
+#~ "    Αυτό το τεστ θα ελέγξει ότι το σύστημα ανιχνεύει σωστά\n"
+#~ "    την απομάκρυνση μιας κάρτας CF από τον αναγνώστη καρτών του συστήματος.\n"
+#~ "ΒΗΜΑΤΑ:\n"
+#~ "    1. Κάντε κλικ στην επιλογή «Δοκιμή» και αφαιρέστε την κάρτα CF από τον "
+#~ "αναγνώστη.\n"
+#~ "       (Σημείωση: ο χρόνος αυτού του τεστ θα λήξει μετά από 10 "
+#~ "δευτερόλεπτα.)\n"
+#~ "ΕΠΑΛΗΘΕΥΣΗ:\n"
+#~ "    Η επαλήθευση αυτού του τεστ είναι αυτοματοποιημένη. Μην αλλάζετε το\n"
+#~ "    αυτομάτως επιλεγμένο αποτέλεσμα."
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "    This test will check that the systems media card reader can\n"
+#~ "    detect the insertion of a CF card after the system has been suspended\n"
+#~ "STEPS:\n"
+#~ "    1. Click \"Test\" and insert a CF card into the reader.\n"
+#~ "       (Note: this test will time-out after 10 seconds.)\n"
+#~ "    2. Do not unplug the device after the test.\n"
+#~ "VERIFICATION:\n"
+#~ "    The verification of this test is automated. Do not change the\n"
+#~ "    automatically selected result."
+#~ msgstr ""
+#~ "ΣΚΟΠΟΣ:\n"
+#~ "    Αυτό το τεστ θα ελέγξει αν ο αναγνώστης καρτών του συστήματος μπορεί\n"
+#~ "    να ανιχνεύσει την εισαγωγή μιας κάρτας μέσων CF μετά την αναστολή "
+#~ "λειτουργίας του συστήματος\n"
+#~ "ΒΗΜΑΤΑ:\n"
+#~ "    1. Πατήστε στην επιλογή «Δοκιμή» και εισάγετε μία κάρτα CF στον "
+#~ "αναγνώστη.\n"
+#~ "       (Σημείωση: ο χρόνος αυτού του τεστ θα λήξει μετά από 10 "
+#~ "δευτερόλεπτα.)\n"
+#~ "    2. Μην αποσυνδέσετε τη συσκευή μετά το τεστ.\n"
+#~ "ΕΠΑΛΗΘΕΥΣΗ:\n"
+#~ "    Η επαλήθευση αυτού του τεστ είναι αυτοματοποιημένη. Μην αλλάζετε το\n"
+#~ "    αυτομάτως επιλεγμένο αποτέλεσμα."
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "    This test will check your system's DVD writing capabilities. This test "
+#~ "requires a blank DVD-R. If you do not have a blank DVD-R, skip this test.\n"
+#~ "STEPS:\n"
+#~ "    1. Enter a blank DVD-R into your drive\n"
+#~ "    2. Click \"Test\" to begin.\n"
+#~ "    3. When the CD tray ejects the media after burning, close it (DO NOT "
+#~ "remove the disk, it is needed for the second portion of the test). Note, you "
+#~ "must close the drive within 10 seconds or the test will time out.\n"
+#~ "    4. When the test completes, proceed by clicking \"Next\"\n"
+#~ "VERIFICATION:\n"
+#~ "    This test should automatically select \"Yes\" if it passes, \"No\" if it "
+#~ "fails."
+#~ msgstr ""
+#~ "ΣΚΟΠΟΣ:\n"
+#~ "    Αυτό το τεστ θα ελέγξει τη δυνατότητα του συστήματός σας για εγγραφή "
+#~ "DVD. Αυτό το τεστ απαιτεί ένα κενό δίσκο DVD-R. Αν δεν έχετε έναν κενό δίσκο "
+#~ "DVD-R, παρακαλώ προσπεράστε αυτή τη δοκιμή.\n"
+#~ "ΒΗΜΑΤΑ:\n"
+#~ "    1. Εισάγετε ένα κενό  DVD-R στον οδηγό σας\n"
+#~ "    2. Πατήστε στην επιλογή «Δοκιμή» για να ξεκινήσετε.\n"
+#~ "    3. Όταν η υποδοχή του DVD ανοίξει μετά το «κάψιμο» του δίσκου, κλείστε "
+#~ "την (ΜΗΝ αφαιρέσετε το δίσκο, χρειάζεται για το δεύτερο μέρος του τεστ). "
+#~ "Σημειώστε, πως πρέπει να κλείσετε την υποδοχή μέσα σε 10 δευτερόλεπτα αλλιώς "
+#~ "θα λήξει ο χρόνος του τεστ.\n"
+#~ "    4. Όταν ολοκληρωθεί το τεστ, προχωρήστε κάνοντας κλικ στο «Επόμενο»\n"
+#~ "ΕΠΑΛΗΘΕΥΣΗ:\n"
+#~ "    Αυτό το τεστ θα πρέπει να επιλέξει αυτόματα «Ναι» αν είναι επιτυχημένο, "
+#~ "ή «Όχι» αν είναι ανεπιτυχές."
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "    This test will check your system's CD writing capabilities. This test "
+#~ "requires a blank CD-R. If you do not have a blank CD-R, skip this test.\n"
+#~ "STEPS:\n"
+#~ "    1. Enter a blank CD-R into your drive\n"
+#~ "    2. Click \"Test\" to begin.\n"
+#~ "    3. When the CD tray ejects the media after burning, close it (DO NOT "
+#~ "remove the disk, it is needed for the second portion of the test). Note, you "
+#~ "must close the drive within 10 seconds or the test will time out.\n"
+#~ "    4. When the test completes, proceed by clicking \"Next\"\n"
+#~ "VERIFICATION:\n"
+#~ "    This test should automatically select \"Yes\" if it passes, \"No\" if it "
+#~ "fails."
+#~ msgstr ""
+#~ "ΣΚΟΠΟΣ:\n"
+#~ "    Αυτό το τεστ θα ελέγξει τη δυνατότητα του συστήματός σας για εγγραφή CD. "
+#~ "Αυτό το τεστ απαιτεί ένα κενό δίσκο CD-R. Αν δεν έχετε έναν κενό δίσκο CD-R, "
+#~ "παρακαλώ προσπεράστε αυτή τη δοκιμή.\n"
+#~ "ΒΗΜΑΤΑ:\n"
+#~ "    1. Εισάγετε ένα κενό  CD-R στον οδηγό σας\n"
+#~ "    2. Πατήστε στην επιλογή «Δοκιμή» για να ξεκινήσετε.\n"
+#~ "    3. Όταν η υποδοχή του CD ανοίξει μετά το «κάψιμο» του δίσκου, κλείστε "
+#~ "την (ΜΗΝ αφαιρέσετε το δίσκο, χρειάζεται για το δεύτερο μέρος του τεστ). "
+#~ "Σημειώστε, πως πρέπει να κλείσετε την υποδοχή μέσα σε 10 δευτερόλεπτα αλλιώς "
+#~ "θα λήξει ο χρόνος του τεστ.\n"
+#~ "    4. Όταν ολοκληρωθεί το τεστ, προχωρήστε κάνοντας κλικ στο «Επόμενο»\n"
+#~ "ΕΠΑΛΗΘΕΥΣΗ:\n"
+#~ "    Αυτό το τεστ θα πρέπει να επιλέξει αυτόματα «Ναι» αν είναι επιτυχημένο, "
+#~ "ή «Όχι» αν είναι ανεπιτυχές."
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "    This test will check that the system correctly detects the removal\n"
+#~ "    of a CF card from the systems card reader after the system has been "
+#~ "suspended.\n"
+#~ "STEPS:\n"
+#~ "    1. Click \"Test\" and remove the CF card from the reader.\n"
+#~ "       (Note: this test will time-out after 10 seconds.)\n"
+#~ "VERIFICATION:\n"
+#~ "    The verification of this test is automated. Do not change the\n"
+#~ "    automatically selected result."
+#~ msgstr ""
+#~ "ΣΚΟΠΟΣ:\n"
+#~ "    Αυτό το τεστ θα ελέγξει ότι ο αναγνώστης καρτών μέσων του συστήματος "
+#~ "μπορεί να ανιχνεύσει την απομάκρυνση\n"
+#~ "    μιας κάρτας CF από τον αναγνώστη μετά την αναστολή λειτουργίας του "
+#~ "συστήματος.\n"
+#~ "ΒΗΜΑΤΑ:\n"
+#~ "    1. Πατήστε στην επιλογή «Δοκιμή» και αφαιρέστε την κάρτα CF από τον "
+#~ "αναγνώστη.\n"
+#~ "       (Σημείωση: ο χρόνος αυτού του τεστ θα λήξει μετά από 10 "
+#~ "δευτερόλεπτα.)\n"
+#~ "ΕΠΑΛΗΘΕΥΣΗ:\n"
+#~ "    Η επαλήθευση αυτού του τεστ είναι αυτοματοποιημένη. Μην αλλάζετε το\n"
+#~ "    αυτομάτως επιλεγμένο αποτέλεσμα."
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "    This test will check your optical devices ability to read CD media\n"
+#~ "STEPS:\n"
+#~ "    1. Insert appropriate non-blank media into your optical drive(s). Movie "
+#~ "and Audio Disks may not work. Self-created data disks have the greatest "
+#~ "chance of working.\n"
+#~ "    2. If a file browser window opens, you can safely close or ignore that "
+#~ "window.\n"
+#~ "    3. Click \"Test\" to being the test.\n"
+#~ "    4. When the test completes, proceed by clicking \"Next\"\n"
+#~ "VERIFICATION:\n"
+#~ "    This test should automatically select \"Yes\" if it passes, \"No\" if it "
+#~ "fails."
+#~ msgstr ""
+#~ "ΣΚΟΠΟΣ:\n"
+#~ "    Αυτό το τεστ θα ελέγξει τη δυνατότητα των οπτικών συσκευών σας να "
+#~ "διαβάζουν μέσα CD\n"
+#~ "ΒΗΜΑΤΑ:\n"
+#~ "    1. Εισάγετε ένα κατάλληλο μη κενό μέσο στον οπτικό οδηγό (οδηγούς) σας. "
+#~ "Δίσκοι ταινιών και μουσικής ενδέχεται να μη λειτουργούν. Μεγαλύτερη "
+#~ "πιθανότητα λειτουργίας έχουν οι δίσκοι που έχετε φτιάξει εσείς.\n"
+#~ "    2. Αν ανοίξει το παράθυρο ενός διαχειριστή αρχείων, είναι ασφαλές να το "
+#~ "κλείσετε ή να το αγνοήσετε.\n"
+#~ "    3. Πατήστε στην επιλογή «Δοκιμή» ώστε να ξεκινήσετε το τεστ.\n"
+#~ "    4. Όταν ολοκληρωθεί το τεστ, προχωρήστε πατώντας την επιλογή «Επόμενο»\n"
+#~ "ΕΠΑΛΗΘΕΥΣΗ:\n"
+#~ "    Αυτό το τεστ θα πρέπει να επιλέξει αυτόματα «Ναι» αν είναι επιτυχημένο, "
+#~ "ή «Όχι» αν είναι ανεπιτυχές."
+
+#~ msgid ""
+#~ "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" "
+#~ "\"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+#~ "<html><head><meta name=\"qrichtext\" content=\"1\" /><style "
+#~ "type=\"text/css\">\n"
+#~ "p, li { white-space: pre-wrap; }\n"
+#~ "</style></head><body style=\" font-family:'Ubuntu'; font-size:10pt; font-"
+#~ "weight:400; font-style:normal;\">\n"
+#~ "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+#~ "right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" "
+#~ "color:#ff0000;\">Warning: Not all tests have been run yet.</span></p>\n"
+#~ "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+#~ "right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" "
+#~ "color:#ff0000;\">You can send the results now, but the submission won't make "
+#~ "it to Ubuntu Friendly.</span></p></body></html>"
+#~ msgstr ""
+#~ "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" "
+#~ "\"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+#~ "<html><head><meta name=\"qrichtext\" content=\"1\" /><style "
+#~ "type=\"text/css\">\n"
+#~ "p, li { white-space: pre-wrap; }\n"
+#~ "</style></head><body style=\" font-family:'Ubuntu'; font-size:10pt; font-"
+#~ "weight:400; font-style:normal;\">\n"
+#~ "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+#~ "right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" "
+#~ "color:#ff0000;\">Προειδοποίηση: Δεν έχουν εκτελεστεί ακόμα όλες οι "
+#~ "δοκιμές.</span></p>\n"
+#~ "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+#~ "right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" "
+#~ "color:#ff0000;\">Μπορείτε να στείλετε τα αποτελέσματα τώρα, ωστόσο η "
+#~ "αποστολή σας δε θα μπει στο Ubuntu Friendly.</span></p></body></html>"
