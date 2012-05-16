@@ -16,6 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
+import re
 import time
 from gi.repository import GObject
 
@@ -118,6 +119,15 @@ class QTInterface(UserInterface):
     def show_entry(self, text, value, label='', previous=None, next=None):
         def onSubmitTestsClicked():
             self.loop.quit()
+
+        # Replace links wiki style markup with html markup
+        text = '<html>{}</html>'.format(text)
+        text = text.replace('\n', '<br/>')
+        text = re.sub(r'\[\[([^|]*)\|([^\]]*)\]\]',
+                      lambda m: '<a href="{}">{}</a>'
+                                .format(m.group(1), m.group(2)),
+                      text)
+        import ipdb; ipdb.set_trace()
 
         self.qtiface.showEntry(text, label)
         self.wait_on_signals(submitTestsClicked=onSubmitTestsClicked)
