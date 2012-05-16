@@ -9,9 +9,7 @@ import logging
 import logging.handlers
 import subprocess
 
-import pygtk
-pygtk.require('2.0')
-import gtk, glib
+from gi.repository import Gtk, GObject
 
 
 def main():
@@ -26,19 +24,9 @@ def main():
                          'permissions to run correctly\n')
         sys.exit(1)
 
-    # Verify wakeup alarm can be scheduled
-    if args.pm_operation != 'reboot':
-        WakeUpAlarm.check()
-
     LoggingConfiguration.set(args.log_level, args.log_filename, args.append)
     logging.debug('Arguments: {0!r}'.format(args))
     logging.debug('Extra Arguments: {0!r}'.format(extra_args))
-
-    # Log deprecation warning
-    if args.pm_operation in ('suspend', 'hibernate'):
-        logging.warning('{pm_operation!r} test case will be replaced '
-                        'with a new one based on fwts'
-                        .format(pm_operation=args.pm_operation))
 
     try:
         operation = PowerManagementOperation(args, extra_args)
@@ -53,7 +41,7 @@ def main():
             logging.info(message)
         else:
             title = '{0} test'.format(args.pm_operation.capitalize())
-            MessageDialog(title, message, gtk.MESSAGE_ERROR).run()
+            MessageDialog(title, message, Gtk.MessageType.ERROR).run()
 
         return exception.RETURN_CODE
 
@@ -72,36 +60,18 @@ class PowerManagementOperation(object):
         """
         Enable configuration file
         """
-        if self.args.pm_operation in ('reboot', 'poweroff'):
-            # Enagle autologin and sudo on first cycle
-            if self.args.total == self.args.repetitions:
-                AutoLoginConfigurator().enable()
-                SudoersConfigurator().enable()
+        # Enable autologin and sudo on first cycle
+        if self.args.total == self.args.repetitions:
+            AutoLoginConfigurator().enable()
+            SudoersConfigurator().enable()
 
-            # Schedule this script to be automatically executed
-            # on startup to continue testing
-            autostart_file = AutoStartFile(self.args)
-            autostart_file.write()
+        # Schedule this script to be automatically executed
+        # on startup to continue testing
+        autostart_file = AutoStartFile(self.args)
+        autostart_file.write()
 
 
     def run(self):
-        if self.args.pm_operation in ('reboot', 'poweroff'):
-            self.run_one_test_cycle()
-        else:
-            self.run_multiple_test_cycles()
-
-
-    def run_multiple_test_cycles(self):
-        """
-        Run multiple power management iterations
-        """
-        # Perform as many cycles as required
-        while self.args.repetitions >= 0:
-            self.run_one_test_cycle()
-            self.args.repetitions -= 1
-
-
-    def run_one_test_cycle(self):
         """
         Run a power management iteration
         """
@@ -151,14 +121,11 @@ class PowerManagementOperation(object):
                         self.args.total-self.args.repetitions,
                         self.args.total).run()
 
-        if self.args.pm_operation in ('suspend', 'hibernate'):
-            command_str = 'pm-{0}'.format(self.args.pm_operation)
-        else:
-            # A small sleep time is added to reboot and poweroff
-            # so that script has time to return a value
-            # (useful when running it as an automated test)
-            command_str = ('sleep {0}; {1}'
-                           .format(self.SLEEP_TIME, self.args.pm_operation))
+        # A small sleep time is added to reboot and poweroff
+        # so that script has time to return a value
+        # (useful when running it as an automated test)
+        command_str = ('sleep {0}; {1}'
+                       .format(self.SLEEP_TIME, self.args.pm_operation))
         if self.extra_args:
             command_str += ' {0}'.format(' '.join(self.extra_args))
 
@@ -167,25 +134,8 @@ class PowerManagementOperation(object):
 
         logging.info('Executing new {0!r} operation...'
                      .format(self.args.pm_operation))
-        if self.args.pm_operation in ('suspend', 'hibernate'):
-            command = Command(command_str, verbose=False).run()
-            min_pm_time = timedelta(seconds=self.args.min_pm_time)
-            max_pm_time = timedelta(seconds=self.args.max_pm_time)
-            if command.time < min_pm_time:
-                raise TestFailed('{0} time less than expected: {1} < {2}'
-                                 .format(self.args.pm_operation.capitalize(),
-                                         command.time, min_pm_time))
-            if command.time > max_pm_time:
-                raise TestFailed('{0} time greater than expected: {1} > {2}'
-                                 .format(self.args.pm_operation.capitalize(),
-                                         command.time, max_pm_time))
-
-            logging.info('{0} time: {1}'
-                         .format(self.args.pm_operation.capitalize(),
-                                 command.time))
-        else:
-            logging.debug('Executing: {0!r}...'.format(command_str))
-            subprocess.Popen(command_str, shell=True)
+        logging.debug('Executing: {0!r}...'.format(command_str))
+        subprocess.Popen(command_str, shell=True)
 
 
     def summary(self):
@@ -230,14 +180,13 @@ class PowerManagementOperation(object):
         """
         Restore configuration
         """
-        if self.args.pm_operation in ('reboot', 'poweroff'):
-            # Don't execute this script again on next reboot
-            autostart_file = AutoStartFile(self.args)
-            autostart_file.remove()
+        # Don't execute this script again on next reboot
+        autostart_file = AutoStartFile(self.args)
+        autostart_file.remove()
 
-            # Restore previous configuration
-            SudoersConfigurator().disable()
-            AutoLoginConfigurator().disable()
+        # Restore previous configuration
+        SudoersConfigurator().disable()
+        AutoLoginConfigurator().disable()
 
 
 class TestCancelled(Exception):
@@ -250,78 +199,9 @@ class TestFailed(Exception):
     MESSAGE = '{0} test failed'
 
 
-class FWTSDialog(gtk.Dialog):
-    """
-    Run fwts wakealarm test
-    and pulse a progress bar
-    """
-    def __init__(self):
-        super(FWTSDialog, self).__init__('fwts wakealarm')
-        self.set_resizable(False)
-        self.set_deletable(False)
-
-        alignment = gtk.Alignment(0.5, 0.5, 1.0, 0.1)
-        alignment.set_padding(10, 10, 10, 10)
-        self.vbox.pack_start(alignment)
-
-        progress_bar = gtk.ProgressBar()
-        progress_bar.set_text('Checking wakeup alarm...')
-        alignment.add(progress_bar)
-
-        self.show_all()
-
-        self.progress_bar = progress_bar
-        self.process = subprocess.Popen('fwts wakealarm --stdout-summary',
-                                        shell=True, stdout=subprocess.PIPE)
-
-
-    def run(self):
-        """
-        Run fwts in a separate process
-        and check periodically if it has already returned
-        """
-        glib.timeout_add(250, self.on_timeout_cb)
-        super(FWTSDialog, self).run()
-        self.destroy()
-
-        return self.process.stdout.read().splitlines()[-1]
-
-
-    def on_timeout_cb(self):
-        """
-        Poll for fwts process output and pulse progress bar if needed
-        """
-        returncode = self.process.poll()
-        if returncode is None:
-            self.progress_bar.pulse()
-            return True
-
-        self.response(gtk.RESPONSE_ACCEPT)
-        return False
-
-
 class WakeUpAlarm(object):
     ALARM_FILENAME = '/sys/class/rtc/rtc0/wakealarm'
     RTC_FILENAME = '/proc/driver/rtc'
-
-    @classmethod
-    def check(cls):
-        # Verify that wakeup related files exist
-        if not os.path.isfile(cls.ALARM_FILENAME):
-            sys.stderr.write('Alarm file ({0!r}) not found\n'
-                             .format(cls.ALARM_FILENAME))
-            sys.exit(1)
-
-        if not os.path.isfile(cls.RTC_FILENAME):
-            sys.stderr.write('RTC file ({0!r}) not found\n'
-                             .format(cls.RTC_FILENAME))
-            sys.exit(1)
-
-        dialog = FWTSDialog()
-        if dialog.run() != 'PASSED':
-            sys.stderr.write('FWTS wakealarm test failed\n')
-            sys.exit(1)
-
 
     @classmethod
     def set(cls, minutes=0, seconds=0):
@@ -429,7 +309,7 @@ class Command(object):
         return self
 
 
-class CountdownDialog(gtk.Dialog):
+class CountdownDialog(Gtk.Dialog):
     """
     Dialog that shows the amount of progress in the reboot test
     and lets the user cancel it if needed
@@ -438,18 +318,19 @@ class CountdownDialog(gtk.Dialog):
         self.pm_operation = pm_operation
         title = '{0} test'.format(pm_operation.capitalize())
 
-        buttons=(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,)
+        buttons=(Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,)
         super(CountdownDialog, self).__init__(title=title,
                                               buttons=buttons)
-        self.set_default_response(gtk.RESPONSE_CANCEL)
+        self.set_default_response(Gtk.ResponseType.CANCEL)
         self.set_resizable(False)
-        self.set_position(gtk.WIN_POS_CENTER)
+        self.set_position(Gtk.WindowPosition.CENTER)
 
-        progress_bar = gtk.ProgressBar()
+        progress_bar = Gtk.ProgressBar()
         progress_bar.set_fraction(iterations/float(iterations_count))
         progress_bar.set_text('{0}/{1}'
                               .format(iterations, iterations_count))
-        self.vbox.pack_start(progress_bar)
+        progress_bar.set_show_text(True)
+        self.vbox.pack_start(progress_bar, True, True, 0)
 
         operation_event = {'template': ('Next {0} in {{time}} seconds...'
                                         .format(self.pm_operation)),
@@ -474,8 +355,8 @@ class CountdownDialog(gtk.Dialog):
             # and finish the test
             self.events = [hardware_info_event]
 
-        self.label = gtk.Label()
-        self.vbox.pack_start(self.label)
+        self.label = Gtk.Label()
+        self.vbox.pack_start(self.label, True, True, 0)
         self.show_all()
 
 
@@ -487,7 +368,7 @@ class CountdownDialog(gtk.Dialog):
         response = super(CountdownDialog, self).run()
         self.destroy()
 
-        if response != gtk.RESPONSE_ACCEPT:
+        if response != Gtk.ResponseType.ACCEPT:
             raise TestCancelled()
 
 
@@ -500,11 +381,11 @@ class CountdownDialog(gtk.Dialog):
             self.timeout_counter = self.event.get('timeout', 0)
             self.label.set_text(self.event['template']
                                 .format(time=self.timeout_counter))
-            glib.timeout_add_seconds(1, self.on_timeout_cb)
+            GObject.timeout_add_seconds(1, self.on_timeout_cb)
         else:
             # Return Accept response
             # if there are no other events scheduled
-            self.response(gtk.RESPONSE_ACCEPT)
+            self.response(Gtk.ResponseType.ACCEPT)
 
 
     def on_timeout_cb(self):
@@ -550,28 +431,31 @@ class CountdownDialog(gtk.Dialog):
         logging.debug('Touchpad and Keyboard:\n'
                       '{xinput}'
                       .format(xinput=Command('xinput list').run().stdout))
-        logging.debug('Audio Device:\n'
-                      '{pactl}'
-                      .format(pactl=Command('pactl stat | grep Sink').run().stdout))
+        logging.debug('Pulse Audio Sink:\n'
+                      '{pactl_sink}'
+                      .format(pactl_sink=Command('pactl list | grep Sink').run().stdout))
+        logging.debug('Pulse Audio Source:\n'
+                      '{pactl_source}'
+                      .format(pactl_source=Command('pactl list | grep Source').run().stdout))
 
         # Check kernel logs using firmware test suite
         command = Command('fwts -r stdout klog dmesg_common oops').run()
         if command.process.returncode != 0:
-            #raise TestFailed('Problem found in logs by fwts')
+            # Don't abort the test loop, errors can be retrieved by pm_check
             logging.error('Problem found in logs by fwts')
 
 
 class MessageDialog(object):
     """
-    Simple wrapper aroung gtk.MessageDialog
+    Simple wrapper aroung Gtk.MessageDialog
     """
-    def __init__(self, title, message, type=gtk.MESSAGE_INFO):
+    def __init__(self, title, message, type=Gtk.MessageType.INFO):
         self.title = title
         self.message = message
         self.type = type
 
     def run(self):
-        dialog = gtk.MessageDialog(buttons=gtk.BUTTONS_OK,
+        dialog = Gtk.MessageDialog(buttons=Gtk.ButtonsType.OK,
                                    message_format=self.message,
                                    type=self.type)
         logging.info(self.message)
@@ -684,7 +568,7 @@ class AutoStartFile(object):
 [Desktop Entry]
 Name={pm_operation} test
 Comment=Verify {pm_operation} works properly
-Exec=sudo /usr/bin/python {script} -r {repetitions} -w {wakeup} --hardware-delay {hardware_delay} --pm-delay {pm_delay} --min-pm-time {min_pm_time} --max-pm-time {max_pm_time} --append --total {total} --start {start} --pm-timestamp {pm_timestamp} {silent} --log-level={log_level} {pm_operation}
+Exec=sudo /usr/bin/python {script} -r {repetitions} -w {wakeup} --hardware-delay {hardware_delay} --pm-delay {pm_delay} --min-pm-time {min_pm_time} --max-pm-time {max_pm_time} --append --total {total} --start {start} --pm-timestamp {pm_timestamp} {silent} --log-level={log_level} --log-dir={log_dir} {pm_operation}
 Type=Application
 X-GNOME-Autostart-enabled=true
 Hidden=false
@@ -727,6 +611,7 @@ Hidden=false
                             pm_timestamp=int(time()),
                             silent='--silent' if self.args.silent else '',
                             log_level=self.args.log_level_str,
+                            log_dir=self.args.log_dir,
                             pm_operation=self.args.pm_operation))
         logging.debug(contents)
 
@@ -782,10 +667,10 @@ class MyArgumentParser(object):
         """
         Create parser object
         """
-        pm_operations = ('suspend', 'hibernate', 'poweroff', 'reboot')
+        pm_operations = ('poweroff', 'reboot')
         description = 'Run power management operation as many times as needed'
         epilog = ('Unknown arguments will be passed to the underlying command: '
-                  'pm-suspend, pm-hibernate, poweroff or reboot.')
+                  'poweroff or reboot.')
         parser = ArgumentParser(description=description, epilog=epilog)
         parser.add_argument('-r', '--repetitions', type=int, default=1,
                             help=('Number of times that the power management operation '
