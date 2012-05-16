@@ -236,7 +236,9 @@ def parse_args():
     """
     parser = ArgumentParser(description='Check power management test case results')
     parser.add_argument('input_log_filename', metavar='log_filename',
-                        help='Path to the log file that should be used to perform the check')
+                        help='Path to the input log file on which to perform the check')
+    parser.add_argument('output_log_filename', metavar='log_filename',
+                        help='Path to the output log file for the results of the check')
     log_levels = ['notset', 'debug', 'info', 'warning', 'error', 'critical']
     parser.add_argument('--log-level', dest='log_level', default='info',
                         choices=log_levels,
@@ -245,8 +247,6 @@ def parse_args():
                               .format(', '.join(log_levels[:-1]), log_levels[-1])))
     args = parser.parse_args()
     args.log_level = getattr(logging, args.log_level.upper())
-
-    args.output_log_filename = os.path.abspath(args.input_log_filename).replace('pm_test', os.path.basename(__file__))
 
     return args
 
