@@ -20,10 +20,10 @@ _description:
     This is an automated stress test that will force the system to hibernate/resume for 30 cycles
 
 plugin: attachment
-name: power-management/hibernate-30-cycles-log-attach
+name: power-management/hibernate-30-cycle-log-attach
 command: [ -e $CHECKBOX_DATA/hibernate_30_cycles.log ] && cat $CHECKBOX_DATA/hibernate_30_cycles.log
 _description:
- Attaches the log from the 30 cycles Hibernate/Resume test if it exists
+ Attaches the log from the 30 cycle Hibernate/Resume test if it exists
 
 plugin: shell
 name: power-management/suspend_30_cycles
@@ -36,10 +36,10 @@ _description:
     This is an automated stress test that will force the system to suspend/resume for 30 cycles.
 
 plugin: attachment
-name: power-management/suspend-30-cycles-log-attach
+name: power-management/suspend-30-cycle-log-attach
 command: [ -e $CHECKBOX_DATA/suspend_30_cycles.log ] && cat $CHECKBOX_DATA/suspend_30_cycles.log
 _description:
- Attaches the log from the 30 cycles Suspend/Resume test if it exists
+ Attaches the log from the 30 cycle Suspend/Resume test if it exists
 
 plugin: shell
 name: stress/hibernate_250_cycles
@@ -52,10 +52,10 @@ _description:
     This is an automated stress test that will force the system to hibernate/resume for 250 cycles
 
 plugin: attachment
-name: stress/hibernate-250-cycles-log-attach
+name: stress/hibernate-250-cycle-log-attach
 command: [ -e $CHECKBOX_DATA/hibernate_250_cycles.log ] && cat $CHECKBOX_DATA/hibernate_250_cycles.log
 _description:
- Attaches the log from the 250 cycles Hibernate/Resume test if it exists
+ Attaches the log from the 250 cycle Hibernate/Resume test if it exists
 
 plugin: shell
 name: stress/suspend_250_cycles
@@ -68,10 +68,10 @@ _description:
     This is an automated stress test that will force the system to suspend/resume for 250 cycles.
 
 plugin: attachment
-name: stress/suspend-250-cycles-log-attach
+name: stress/suspend-250-cycle-log-attach
 command: [ -e $CHECKBOX_DATA/suspend_250_cycles.log ] && cat $CHECKBOX_DATA/suspend_250_cycles.log
 _description:
- Attaches the log from the 250 cycles Suspend/Resume test if it exists
+ Attaches the log from the 250 cycle Suspend/Resume test if it exists
 
 plugin: shell
 name: stress/reboot
