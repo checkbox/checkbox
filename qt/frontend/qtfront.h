@@ -48,9 +48,9 @@ public slots:
     Q_NOREPLY void showError(QString text);
     void stopProgressBar();
     void showTree(QString text, QVariantMap options, QVariantMap defaults);
-    void showEntry(QString text);
+    void showEntry(QString text, QString label);
     QVariantMap getTestsToRun();
-    QString getEmailAddress();
+    QString getSubmissionData();
     QString getTestComment();
     void showTest(QString purpose, QString steps, QString verification, QString info, QString comment, QString testType, QString testName, bool enableTestButton);
     void showTestControls(bool enableTestControls);

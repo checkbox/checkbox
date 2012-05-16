@@ -74,7 +74,7 @@ QtFront::QtFront(QApplication *parent) :
     connect(ui->treeView, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(onSelectAllContextMenu(const QPoint&)));
     ui->stepsFrame->setFixedHeight(0);
     ui->buttonSubmitResults->setEnabled(false);
-    ui->lineEditEmailAddress->setEnabled(false);
+    ui->submissionDataLineEdit->setEnabled(false);
     ui->buttonViewResults->setEnabled(false);
 
     // comment box
@@ -216,7 +216,7 @@ void QtFront::onStartTestsClicked()
 void QtFront::onSubmitTestsClicked()
 {
     ui->buttonSubmitResults->setEnabled(false);
-    ui->lineEditEmailAddress->setEnabled(false);
+    ui->submissionDataLineEdit->setEnabled(false);
     m_doneTesting = true;
     emit submitTestsClicked();
 }
@@ -277,17 +277,18 @@ void QtFront::stopProgressBar()
 
 }
 
-void QtFront::showEntry(QString text) 
+void QtFront::showEntry(QString text, QString label)
 {
     currentState = SUBMISSION;
-    // Email address requested, so move to the results screen and hide the "run" screen contents
+    // Submission data requested, so move to the results screen and hide the "run" screen contents
     ui->submissionLabel->setText(text);
+    ui->submissionDataLabel->setText(label);
     ui->testsTab->setCurrentIndex(2);
     ui->radioTestTab->setVisible(false);
     ui->nextPrevButtons->setVisible(false);
 
     ui->buttonSubmitResults->setEnabled(true);
-    ui->lineEditEmailAddress->setEnabled(true);
+    ui->submissionDataLineEdit->setEnabled(true);
     ui->buttonViewResults->setEnabled(true);
 
 }
@@ -540,9 +541,9 @@ void QtFront::showInfo(QString text, QStringList options, QString defaultoption)
     emit infoBoxResult(result);
 }
 
-QString QtFront::getEmailAddress()
+QString QtFront::getSubmissionData()
 {
-    return ui->lineEditEmailAddress->text();
+    return ui->submissionDataLineEdit->text();
 }
 
 void QtFront::buildTestsToRun(QStandardItem *item, QString baseIndex, QVariantMap &items)

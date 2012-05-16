@@ -115,13 +115,13 @@ class QTInterface(UserInterface):
         self.qtiface.showText(text)
         self.wait_on_signals(fullTestsClicked=onFullTestsClicked)
 
-    def show_entry(self, text, value, previous=None, next=None):
+    def show_entry(self, text, value, label='', previous=None, next=None):
         def onSubmitTestsClicked():
             self.loop.quit()
 
-        self.qtiface.showEntry(text)
+        self.qtiface.showEntry(text, label)
         self.wait_on_signals(submitTestsClicked=onSubmitTestsClicked)
-        return self.qtiface.getEmailAddress()
+        return self.qtiface.getSubmissionData()
 
     def show_check(self, text, options=[], default=[]):
         return False

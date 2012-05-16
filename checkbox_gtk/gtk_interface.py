@@ -288,7 +288,7 @@ class GTKInterface(UserInterface):
         self._set_button("button_next", next_state)
 
     @GTKHack
-    def show_entry(self, text, value, previous=None, next=None):
+    def show_entry(self, text, value, label=None, previous=None, next=None):
         #Reset window title
         self._set_main_title()
         # Set buttons

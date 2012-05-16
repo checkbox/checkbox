@@ -114,7 +114,7 @@ class UserInterface(object):
     def show_text(self, text, previous=None, next=None):
         return
 
-    def show_entry(self, text, value, previous=None, next=None):
+    def show_entry(self, text, value, label=None, previous=None, next=None):
         return value
 
     def show_check(self, text, options=[], default=[]):
