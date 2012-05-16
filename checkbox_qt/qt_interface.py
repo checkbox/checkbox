@@ -127,7 +127,6 @@ class QTInterface(UserInterface):
                       lambda m: '<a href="{}">{}</a>'
                                 .format(m.group(1), m.group(2)),
                       text)
-        import ipdb; ipdb.set_trace()
 
         self.qtiface.showEntry(text, label)
         self.wait_on_signals(submitTestsClicked=onSubmitTestsClicked)
