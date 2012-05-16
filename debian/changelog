@@ -1,5 +1,6 @@
 checkbox (0.13.8) precise; urgency=low
 
+  [ Daniel Manrique ]
   [Brendan Donegan]
   * Run fwts_test as root so that the log can be written to on servers and
     also because it's supposed to be run as root (LP: #989701)
@@ -47,7 +48,12 @@ checkbox (0.13.8) precise; urgency=low
   * Use nmcli con delete instead of deleting the connection file, also avoid
     bringing eth0 down when running the wireless_monitoring tests.
 
- -- Daniel Manrique <roadmr@ubuntu.com>  Fri, 04 May 2012 16:05:04 -0400
+  [ Javier Collado ]
+  * Submission screen in Qt interface updated to support certification client:
+    - customize contents depending on the upload target (launchpad or certification)
+    - display links to the report properly in the show_entry method
+
+ -- Javier Collado <javier.collado@canonical.com>  Wed, 16 May 2012 16:59:12 +0200
 
 checkbox (0.13.7) precise; urgency=low
 
