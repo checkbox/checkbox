@@ -1,8 +1,8 @@
 checkbox (0.14) quantal; urgency=low
-  
+
   [Daniel Manrique]
   * New version 0.14 for Quantal Quetzal development.
-  
+
   [Javier Collado]
   * Submission screen in Qt interface updated to support certification client:
     - customize contents depending on the upload target (launchpad or certification)
@@ -22,6 +22,8 @@ checkbox (0.14) quantal; urgency=low
     * jobs/suspend.txt.in: Modified suspend_advanced and suspend_advanced_auto to use 
       fwts. Added job to attach log from suspend_advanced and suspend_advanced_auto 
       to results.
+  * [FEATURE] jobs/miscellanea.txt.in: added a job to gather tester info for
+    certification purposes. Not to be used for UF.
 
   [Sylvain Pineau]
   * scripts/pm_log_check: added a slightly modified version of OEM team's pm_check.py
@@ -60,7 +62,7 @@ checkbox (0.13.8) precise; urgency=low
     tests to be used for test purposes when developing features.
   * [FEATURE] data/whitelists/sniff.whitelist added a whitelist to make use of 
     the basic sniff tests.
-  
+
   [Daniel Manrique]
   * [FEATURE] checkbox/user_interface.py, checkbox/qt-interface.py,
     plugins/jobs_prompt.py, plugins/recover_prompt.py,
