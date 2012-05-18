@@ -25,8 +25,7 @@ from checkbox.job import UNINITIATED
 from checkbox.lib.resolver import Resolver
 
 from checkbox.plugin import Plugin
-from checkbox.user_interface import PREV, CONTINUE_ANSWER, RERUN_ANSWER, \
-                                    RESTART_ANSWER
+from checkbox.user_interface import CONTINUE_ANSWER, RERUN_ANSWER
 
 from gettext import gettext as _
 
