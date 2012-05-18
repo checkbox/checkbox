@@ -128,6 +128,10 @@ class QTInterface(UserInterface):
                                 .format(m.group(1), m.group(2)),
                       text)
 
+        # Make sure that value is a string
+        if value is None:
+            value = ''
+
         self.qtiface.showEntry(text, value, label)
         self.wait_on_signals(submitTestsClicked=onSubmitTestsClicked)
         return self.qtiface.getSubmissionData()
