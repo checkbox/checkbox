@@ -47,7 +47,7 @@ public slots:
     void startProgressBar(QString text);
     Q_NOREPLY void showError(QString text);
     void stopProgressBar();
-    void showTree(QString text, QVariantMap options, QVariantMap defaults);
+    void showTree(QString text, QVariantMap options, QVariantMap defaults, QString deselect_warning_msg);
     void showEntry(QString text, QString label);
     QVariantMap getTestsToRun();
     QString getSubmissionData();

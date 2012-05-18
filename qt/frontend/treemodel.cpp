@@ -1,6 +1,7 @@
 #include "checkboxtr.h"
 #include "treemodel.h"
 #include <QErrorMessage>
+
 TreeModel::TreeModel() : m_messageBox(0) 
 {
 
@@ -10,7 +11,7 @@ void TreeModel::warn()
 {
     if (!m_messageBox)
         m_messageBox = new QErrorMessage();
-    m_messageBox->showMessage(checkboxTr("Unselecting a test will invalidate your submission for Ubuntu Friendly. If you plan to participate in Ubuntu Friendly, please, select all tests. You can always skip individual tests if you don't have the needed equipment.",0));
+    m_messageBox->showMessage(this->deselect_warning_msg);
 }
 
 void TreeModel::changeAllChildren(QStandardItem *item, const QVariant &value, int role )

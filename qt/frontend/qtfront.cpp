@@ -474,7 +474,8 @@ void QtFront::buildTree(QVariantMap options, QVariantMap defaults, QString baseI
     }
 }
 
-void QtFront::showTree(QString text, QVariantMap options, QVariantMap defaults)
+void QtFront::showTree(QString text, QVariantMap options, QVariantMap defaults,
+                       QString deselect_warning_msg)
 {
     ui->selectionLabel->setText(text);
     currentState = TREE;
@@ -489,6 +490,7 @@ void QtFront::showTree(QString text, QVariantMap options, QVariantMap defaults)
         ui->treeView->setModel(m_model);
         ui->statusView->setModel(m_statusModel);
     }
+    this->m_model->deselect_warning_msg = QString(deselect_warning_msg);
 
     updateTestStatus("");
     ui->treeView->show();
