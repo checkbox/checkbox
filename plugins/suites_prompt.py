@@ -123,7 +123,8 @@ class SuitesPrompt(Plugin):
             defaults = copy.deepcopy(options)
 
         # Get results
-        defaults = interface.show_tree(_("Select the suites to test"),
+        defaults = interface.show_tree(
+            _("Lists of tests to run based on your system:"),
             options, defaults)
         self.persist.set("default", defaults)
 

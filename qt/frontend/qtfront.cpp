@@ -476,7 +476,7 @@ void QtFront::buildTree(QVariantMap options, QVariantMap defaults, QString baseI
 
 void QtFront::showTree(QString text, QVariantMap options, QVariantMap defaults)
 {
-    Q_UNUSED(text);
+    ui->selectionLabel->setText(text);
     currentState = TREE;
     ui->testsTab->setCurrentIndex(0);
     ui->radioTestTab->setVisible(false);
