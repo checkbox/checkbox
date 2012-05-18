@@ -1,5 +1,6 @@
 checkbox (0.14) quantal; urgency=low
 
+  [ Marc Tardif ]
   [Daniel Manrique]
   * New version 0.14 for Quantal Quetzal development.
 
@@ -31,7 +32,11 @@ checkbox (0.14) quantal; urgency=low
   * jobs/stress.txt.in: add OEM team's stress tests (including reboot and poweroff)
     and log analysis jobs      
 
- -- Marc Tardif <marc@ubuntu.com>  Tue, 15 May 2012 13:51:13 -0400
+  [ Javier Collado ]
+  * Added customizable deselect_warning_msg in qt show_tree method (LP:
+    #1000443)
+
+ -- Javier Collado <javier.collado@canonical.com>  Fri, 18 May 2012 18:15:43 +0200
 
 checkbox (0.13.8) precise; urgency=low
 
