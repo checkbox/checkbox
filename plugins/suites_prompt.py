@@ -25,12 +25,19 @@ from checkbox.job import UNINITIATED
 from checkbox.lib.resolver import Resolver
 
 from checkbox.plugin import Plugin
+from checkbox.properties import String
 from checkbox.user_interface import CONTINUE_ANSWER, RERUN_ANSWER
 
 from gettext import gettext as _
 
 
 class SuitesPrompt(Plugin):
+
+    deselect_warning_msg = String(default=_("""\
+Unselecting a test will invalidate your submission for Ubuntu Friendly. \
+If you plan to participate in Ubuntu Friendly, please, select all tests. \
+You can always skip individual tests if you don't have the needed equipment.\
+"""))
 
     @property
     def persist(self):
@@ -125,7 +132,7 @@ class SuitesPrompt(Plugin):
         # Get results
         defaults = interface.show_tree(
             _("Lists of tests to run based on your system:"),
-            options, defaults)
+            options, defaults, self.deselect_warning_msg)
         self.persist.set("default", defaults)
 
         # Get tests to ignore
