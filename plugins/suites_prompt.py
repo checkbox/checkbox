@@ -46,7 +46,7 @@ class SuitesPrompt(Plugin):
         self._jobs = {}
         self._statuses = {}
         self._persist = None
-        self._recover = False 
+        self._recover = False
 
         for (rt, rh) in [
              ("begin-persist", self.begin_persist),
@@ -114,7 +114,8 @@ class SuitesPrompt(Plugin):
                     value = tests[dependency]["status"]
                 else:
                     value = self._statuses.get(dependency, {})
-                suboptions = suboptions.setdefault(self._jobs[dependency], value)
+                suboptions = suboptions.setdefault(self._jobs[dependency],
+                                                   value)
 
         # Build defaults
         defaults = self.persist.get("default")
@@ -130,12 +131,13 @@ class SuitesPrompt(Plugin):
         # Get tests to ignore
         def get_ignore_jobs(options, results):
             jobs = []
-            if isinstance(options,dict):
+            if isinstance(options, dict):
                 for k, v in options.iteritems():
                     if v == UNINITIATED and k not in results:
                         jobs.append(k)
                     else:
-                        jobs.extend(get_ignore_jobs(options[k], results.get(k, {})))
+                        jobs.extend(get_ignore_jobs(options[k],
+                                                    results.get(k, {})))
 
             return jobs
 
