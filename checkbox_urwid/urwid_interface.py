@@ -974,7 +974,7 @@ class UrwidInterface(UserInterface):
         return dialog.response
 
 
-    def show_tree(self, text, options={}, default={}):
+    def show_tree(self, text, options={}, default={}, deselect_warning_msg=""):
         """
         Show some options in a tree hierarchy
         and let the user choose between them
