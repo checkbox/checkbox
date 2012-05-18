@@ -277,7 +277,7 @@ void QtFront::stopProgressBar()
 
 }
 
-void QtFront::showEntry(QString text, QString label)
+void QtFront::showEntry(QString text, QString value, QString label)
 {
     currentState = SUBMISSION;
     // Submission data requested, so move to the results screen and hide the "run" screen contents
@@ -289,6 +289,7 @@ void QtFront::showEntry(QString text, QString label)
 
     ui->buttonSubmitResults->setEnabled(true);
     ui->submissionDataLineEdit->setEnabled(true);
+    ui->submissionDataLineEdit->setText(value);
     ui->buttonViewResults->setEnabled(true);
 
 }
