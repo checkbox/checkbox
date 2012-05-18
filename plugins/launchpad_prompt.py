@@ -81,7 +81,7 @@ You can submit this information about your system by providing the email \
 address you use to sign in to Launchpad. If you do not have a Launchpad \
 account, please register here:
 
-  https://launchpad.net/+login""") % url, email, label=_('Email') + ':')
+  https://launchpad.net/+login""") % url, email, label=_("Email") + ":")
 
             if interface.direction == PREV:
                 break
