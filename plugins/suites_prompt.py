@@ -131,7 +131,7 @@ You can always skip individual tests if you don't have the needed equipment.\
 
         # Get results
         defaults = interface.show_tree(
-            _("Lists of tests to run based on your system:"),
+            _("Choose tests to run on your system:"),
             options, defaults, self.deselect_warning_msg)
         self.persist.set("default", defaults)
 
