@@ -357,7 +357,7 @@ class CLIInterface(UserInterface):
         response = dialog.run()
         return options[response]
 
-    def show_tree(self, text, options={}, default={}, deselect_warning_msg=""):
+    def show_tree(self, text, options={}, default={}, deselect_warning=""):
         keys = sorted(options.keys())
 
         dialog = CLIChoiceDialog(text)

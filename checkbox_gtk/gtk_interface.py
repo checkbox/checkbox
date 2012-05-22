@@ -397,7 +397,7 @@ class GTKInterface(UserInterface):
         return result
 
     @GTKHack
-    def show_tree(self, text, options={}, default={}, deselect_warning_msg=""):
+    def show_tree(self, text, options={}, default={}, deselect_warning=""):
         #Reset window title
         self._set_main_title()
 

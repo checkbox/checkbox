@@ -11,7 +11,7 @@ void TreeModel::warn()
 {
     if (!m_messageBox)
         m_messageBox = new QErrorMessage();
-    m_messageBox->showMessage(this->deselect_warning_msg);
+    m_messageBox->showMessage(this->deselect_warning);
 }
 
 void TreeModel::changeAllChildren(QStandardItem *item, const QVariant &value, int role )

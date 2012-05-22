@@ -33,7 +33,7 @@ from gettext import gettext as _
 
 class SuitesPrompt(Plugin):
 
-    deselect_warning_msg = String(default=_("""\
+    deselect_warning = String(default=_("""\
 Unselecting a test will invalidate your submission for Ubuntu Friendly. \
 If you plan to participate in Ubuntu Friendly, please, select all tests. \
 You can always skip individual tests if you don't have the needed equipment.\
@@ -132,7 +132,7 @@ You can always skip individual tests if you don't have the needed equipment.\
         # Get results
         defaults = interface.show_tree(
             _("Choose tests to run on your system:"),
-            options, defaults, self.deselect_warning_msg)
+            options, defaults, self.deselect_warning)
         self.persist.set("default", defaults)
 
         # Get tests to ignore
