@@ -41,8 +41,8 @@ v0.4: corrected some minor things
       added option parsing to allow for many disks, or disks other than
       "/dev/sda"
 
-V0.3: Removed the arbitrary wait time and implemented a polling method to shorten
-    the test time.
+V0.3: Removed the arbitrary wait time and implemented a polling method
+    to shorten the test time.
     Added in Pass/Fail criteria for the final outcome.
     Added in documentation.
 
@@ -80,17 +80,23 @@ class ListHandler(logging.StreamHandler):
 def is_smart_enabled(disk):
     # Check with smartctl to see if SMART is available and enabled on the disk
     command = 'smartctl -i %s' % disk
-    diskinfo = Popen(command, stdout=PIPE, shell=True).communicate()[0].splitlines()
+    diskinfo = (Popen(command, stdout=PIPE, shell=True)
+                .communicate()[0].splitlines())
     logging.debug('SMART Info for disk %s', disk)
     logging.debug(diskinfo)
 
-    return len(diskinfo) > 2 and 'Enabled' in diskinfo[-2] and 'Available' in diskinfo[-3]
+    return (len(diskinfo) > 2
+            and 'Enabled' in diskinfo[-2]
+            and 'Available' in diskinfo[-3])
+
 
 def run_smart_test(disk, type='short'):
     command = 'smartctl -t %s %s' % (type, disk)
-    output = Popen(command, stdout=PIPE, shell=True).communicate()[0].splitlines()
+    output = (Popen(command, stdout=PIPE, shell=True)
+              .communicate()[0].splitlines())
     logging.debug('Begginning test with %s', command)
     logging.debug(output)
+
 
 def get_smart_entries(disk, type='selftest'):
     entries = []
@@ -101,7 +107,7 @@ def get_smart_entries(disk, type='selftest'):
     while True:
         line = stdout.readline()
         if not line:
-            raise Exception, 'Failed to parse log'
+            raise Exception('Failed to parse log')
 
         if line.startswith('SMART'):
             break
@@ -111,7 +117,8 @@ def get_smart_entries(disk, type='selftest'):
     if not line.startswith('Num'):
         return entries
 
-    columns = ['number', 'description', 'status', 'remaining', 'lifetime', 'lba']
+    columns = ['number', 'description', 'status',
+               'remaining', 'lifetime', 'lba']
     lengths = [line.index(i) for i in line.split()]
     lengths[columns.index('remaining')] += len('Remaining') - len('100%')
     lengths.append(len(line))
@@ -122,7 +129,7 @@ def get_smart_entries(disk, type='selftest'):
         if line.startswith('#'):
             entry = {}
             for i, column in enumerate(columns):
-                entry[column] = line[lengths[i]:lengths[i+1]].strip()
+                entry[column] = line[lengths[i]:lengths[i + 1]].strip()
 
             # Convert some columns to integers
             entry['number'] = int(entry['number'][1:])
@@ -132,21 +139,24 @@ def get_smart_entries(disk, type='selftest'):
 
     return entries
 
+
 def main():
     usage = 'usage: %prog [OPTIONS]'
     parser = OptionParser(usage)
-    parser.add_option('-b','--block-dev',
+    parser.add_option('-b', '--block-dev',
                         metavar='DISK',
                         default='/dev/sda',
-                        help = 'the DISK to run this test against [default is %default]')
-    parser.add_option('-d','--debug',
+                        help=('the DISK to run this test against '
+                              '[default is %default]'))
+    parser.add_option('-d', '--debug',
                         action='store_true',
                         default=False,
                         help='prints some debug info')
     parser.add_option('-s', '--sleep',
                         type='int',
                         default=5,
-                        help='number of seconds to sleep between checks [default is %default].')
+                        help=('number of seconds to sleep between checks '
+                              '[default is %default].'))
     parser.add_option('-t', '--timeout',
                         type='int',
                         help='number of seconds to timeout from sleeping.')
@@ -173,7 +183,8 @@ def main():
     previous_entries = get_smart_entries(disk)
     run_smart_test(disk)
     if len(previous_entries) > 20:
-        # Abort the previous instance so that polling can identify the difference
+        # Abort the previous instance
+        # so that polling can identify the difference
         run_smart_test(disk)
         previous_entries = get_smart_entries(disk)
 

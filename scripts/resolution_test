@@ -6,6 +6,7 @@ from optparse import OptionParser
 
 from gi.repository import Gdk
 
+
 def check_resolution():
     screen = Gdk.Screen.get_default()
     n = screen.get_n_monitors()
@@ -14,11 +15,13 @@ def check_resolution():
         print 'Monitor %d:' % (i + 1)
         print '  %d x %d' % (geom.width, geom.height)
 
+
 def compare_resolution(min_h, min_v):
     # Evaluate just the primary display
     screen = Gdk.Screen.get_default()
     geom = screen.get_monitor_geometry(screen.get_primary_monitor())
     return geom.width >= min_h and geom.height >= min_v
+
 
 def main(args):
     usage = "Usage: %prog [OPTIONS]"

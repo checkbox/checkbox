@@ -1,7 +1,7 @@
 /* $Id: threaded_memtest.c,v 1.7 2008/02/12 01:17:07 gnichols Exp $
  *
  * A scalable, threaded memory exerciser/tester.
- * 
+ *
  * Author: Will Woods <wwoods@redhat.com>
  * Copyright (C) 2006 Red Hat, Inc. All Rights Reserved.
  * This program is free software; you can redistribute it and/or
@@ -44,8 +44,8 @@
 #define setaffinity(mask) sched_setaffinity(0,sizeof(mask),&mask)
 #endif
 
-#define VERSION "$Revision: 1.7 $" /* CVS version info */ 
-#define DEFAULT_THREADS 2 
+#define VERSION "$Revision: 1.7 $" /* CVS version info */
+#define DEFAULT_THREADS 2
 #define DEFAULT_RUNTIME 60*15
 #define DEFAULT_MEMPCT 0.95
 #define BARLEN 40
@@ -55,7 +55,7 @@ int verbose = 0;
 int quiet = 0;
 int parallel = 0;
 unsigned num_threads, default_threads = DEFAULT_THREADS;
-unsigned runtime, default_runtime = DEFAULT_RUNTIME; 
+unsigned runtime, default_runtime = DEFAULT_RUNTIME;
 unsigned long memsize, default_memsize;
 /* system info */
 unsigned num_cpus;
@@ -116,7 +116,7 @@ long unsigned parse_memsize(const char *str) {
         }
     }
     return size;
-}    
+}
 char memsize_str[22]; /* a 64-bit int is 20 digits long */
 /* print a nice human-readable string for a large number of bytes */
 char *human_memsize(long unsigned size) {
@@ -149,8 +149,8 @@ void *mem_twiddler(void *arg) {
     long *lp;
     int t,offset;
     char *my_region;
-    unsigned long mapsize = *(unsigned long *)arg; 
-    
+    unsigned long mapsize = *(unsigned long *)arg;
+
     /* Make sure each thread gets a unique ID */
     pthread_mutex_lock(&ct_mutex);
     thread_id=created_threads++;
@@ -158,13 +158,13 @@ void *mem_twiddler(void *arg) {
     if (parallel) {
         /* let main() go as soon as the thread is created */
         mmap_done=1;
-        pthread_cond_signal(&mmap_cond); 
+        pthread_cond_signal(&mmap_cond);
     }
-    
+
     on_cpu(thread_id % num_cpus);
     pagesize=getpagesize();
     pages=mapsize/pagesize;
-    
+
     /* Map a chunk of memory */
     if (verbose) printf("thread %ld: mapping %s RAM\n",
                         thread_id,human_memsize(mapsize));
@@ -184,11 +184,11 @@ void *mem_twiddler(void *arg) {
     live_threads++;
     pthread_mutex_unlock(&lt_mutex);
     if (verbose) printf("thread %ld: mapping complete\n",thread_id);
-    
+
     /* let main() go now that the thread is finished initializing. */
     if (!parallel) {
         mmap_done=1;
-        pthread_cond_signal(&mmap_cond); 
+        pthread_cond_signal(&mmap_cond);
     } else if (live_threads == num_threads) {
         /* if this is the last thread to init, let main() know we're done */
         pthread_cond_signal(&init_cond);
@@ -196,18 +196,18 @@ void *mem_twiddler(void *arg) {
 
     /* Wait for the signal to begin testing */
     pthread_mutex_lock(&test_mutex);
-    while (start.tv_sec == 0) { 
+    while (start.tv_sec == 0) {
         pthread_cond_wait(&test_start,&test_mutex);
     }
     running_threads++;
     pthread_mutex_unlock(&test_mutex);
     if (verbose) printf("thread %lu: test start\n",thread_id);
-    
+
     loop_counters[thread_id]=0;
     while (!done) {
         /* Choose a random thread and a random page */
         t = rand() % num_threads;
-        p = rand() % pages; 
+        p = rand() % pages;
         lp = (long *)&(mmap_regions[t][p*pagesize]);
         /* Check the info we wrote there earlier */
         if (lp[0] != 0xDEADBEEF || lp[1] != t || lp[2] != p) {
@@ -226,7 +226,7 @@ void *mem_twiddler(void *arg) {
         }
         loop_counters[thread_id]++;
     }
-    
+
     /* make sure everyone's finished before we unmap */
     pthread_mutex_lock(&finish_mutex);
     if (verbose) printf("thread %lu finished.\n",thread_id);
@@ -284,13 +284,13 @@ int main(int argc, char **argv) {
     free_mem=(info.freeram+info.bufferram)*info.mem_unit;
     total_ram=info.totalram*info.mem_unit;
     /* default to using most of free_mem */
-    default_memsize = free_mem * DEFAULT_MEMPCT; 
-    
+    default_memsize = free_mem * DEFAULT_MEMPCT;
+
     /* Set configurable values to reasonable defaults */
     runtime = default_runtime;
     num_threads = default_threads;
     memsize = default_memsize;
-    
+
     /* parse options */
     while ((i = getopt(argc,argv,"hvqpt:n:m:")) != -1) {
         switch (i) {
@@ -348,7 +348,7 @@ int main(int argc, char **argv) {
 
     printf("Testing %s RAM for %u seconds using %u threads:\n",
             human_memsize(memsize),runtime,num_threads);
-    
+
     /* Allocate room for thread info */
     threads=(pthread_t *)malloc(num_threads*sizeof(pthread_t));
     mmap_regions=(char **)malloc(num_threads*sizeof(char *));
@@ -365,17 +365,17 @@ int main(int argc, char **argv) {
         /* Wait for it to finish initializing */
         while (!mmap_done) { pthread_cond_wait(&mmap_cond,&mmap_mutex); }
         pthread_mutex_unlock(&mmap_mutex);
-        if (!verbose && !quiet) 
+        if (!verbose && !quiet)
             progressbar("Starting threads",created_threads,num_threads);
     }
 
     if (parallel) {
-        /* Wait for the signal that everyone is finished initializing */        
+        /* Wait for the signal that everyone is finished initializing */
         pthread_mutex_lock(&init_mutex);
         while (live_threads < num_threads) { pthread_cond_wait(&init_cond,&init_mutex); }
         pthread_mutex_unlock(&init_mutex);
     }
-    
+
     /* Let the testing begin! */
     if (!verbose && !quiet) printf("\n");
     gettimeofday(&start,NULL);
@@ -395,7 +395,7 @@ int main(int argc, char **argv) {
     }
     if (i != runtime)
         rv=1;
-    
+
     /* Signal completion and join all threads */
     done=1;
     while (live_threads) {
@@ -414,7 +414,7 @@ int main(int argc, char **argv) {
         loops_per_sec += (float)loop_counters[i]/duration_f;
     }
     printf("Total loops per second: %.2f\n",loops_per_sec);
-    
+
     /* All done. Return success. */
     printf("Testing complete.\n");
     return rv;

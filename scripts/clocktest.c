@@ -36,11 +36,11 @@ int test_clock_jitter(){
         printf("Single CPU detected. No clock jitter testing necessary.\n");
         return 0;
     }
-    
+
     printf ("Testing for clock jitter on %u cpus\n", num_cpus);
 
     time=malloc(num_cpus * sizeof(struct timespec));
-    
+
     for (iter=0; iter<ITERATIONS; iter++){
         for (cpu=0; cpu < num_cpus; cpu++) {
             CPU_ZERO(&cpumask); CPU_SET(cpu,&cpumask);
@@ -56,17 +56,17 @@ int test_clock_jitter(){
                 perror("clock_gettime"); return 1;
             }
         }
-        
-        slow_cpu = fast_cpu = 0; 
+
+        slow_cpu = fast_cpu = 0;
         for (cpu=0; cpu < num_cpus; cpu++) {
             nsec = NSEC(time[cpu]);
             if (nsec < NSEC(time[slow_cpu])) { slow_cpu = cpu; }
             if (nsec > NSEC(time[fast_cpu])) { fast_cpu = cpu; }
         }
-        jitter = ((double)(NSEC(time[fast_cpu]) - NSEC(time[slow_cpu])) 
+        jitter = ((double)(NSEC(time[fast_cpu]) - NSEC(time[slow_cpu]))
                   / (double)NSEC_PER_SEC);
 
-#ifdef DEBUG        
+#ifdef DEBUG
         printf("DEBUG: max jitter for pass %u was %f (cpu %u,%u)\n",
                 iter,jitter,slow_cpu,fast_cpu);
 #endif
@@ -94,24 +94,24 @@ int test_clock_direction()
 	time_t stoptime = 0;
 	int sleeptime = 60;
 	int delta = 0;
-	
+
 	time(&starttime);
 	sleep(sleeptime);
 	time(&stoptime);
-	
+
 	delta = (int)stoptime - (int)starttime - sleeptime;
 	printf("clock direction test: start time %d, stop time %d, sleeptime %u, delta %u\n",
 				(int)starttime, (int)stoptime, sleeptime, delta);
 	if (delta != 0)
 	{
 		printf("FAILED\n");
-		return 1; 
+		return 1;
 	}
 	/* otherwise */
 	printf("PASSED\n");
 	return 0;
 }
-	
+
 
 int main()
 {

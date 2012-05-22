@@ -24,7 +24,7 @@ def mem_usage(process, samples=1):
         pid = commands.getoutput("pidof %s" % process)
         output = commands.getoutput("pmap -d %s" % pid)
         if not output:
-            raise Exception, "%s process not found" % process
+            raise Exception("%s process not found" % process)
 
         # mapped: 0K    writeable/private: 0K    shared: 0K
         lastline = output.splitlines()[-1]
@@ -38,6 +38,7 @@ def mem_usage(process, samples=1):
 
     return usage_sum / samples
 
+
 def get_gem_objects():
     dri = commands.getoutput("xdriinfo")
     if not dri.startswith('Screen'):
@@ -48,7 +49,7 @@ def get_gem_objects():
 
     # 2432 objects, 173256704 bytes
     try:
-        file = open(path, 'r');
+        file = open(path, 'r')
     except IOError:
         print >> sys.stderr, "File %s doesn't exist" % (path)
         sys.exit(1)
@@ -56,13 +57,16 @@ def get_gem_objects():
     objects, label = objects_label.split(" ")
     return int(objects)
 
+
 #compare pre-test and post-test video card mem values function
 #there is a 10% margin
 def compare_mem_results(orig, new, margin=0.1):
     return new < (orig + (orig * margin)) and new > (orig - (orig * margin))
 
+
 def compare_gem_results(orig, new, margin=0.1):
-    return new < (orig * ( 1 + margin )) and new > ( orig * ( 1 - margin ))
+    return new < (orig * (1 + margin)) and new > (orig * (1 - margin))
+
 
 def start_processes(name, number=1):
     pids = []
@@ -72,9 +76,11 @@ def start_processes(name, number=1):
 
     return pids
 
+
 def stop_processes(pids, signal=SIGKILL):
     for pid in pids:
         os.kill(pid, signal)
+
 
 def main(args):
     #Parse options
@@ -95,7 +101,8 @@ def main(args):
     parser.add_option("--sleep",
         default=DEFAULT_SLEEP,
         type="int",
-        help="Seconds to sleep between starting and stopping processes (default %default)")
+        help=("Seconds to sleep between starting and stopping processes "
+              "(default %default)"))
     (options, args) = parser.parse_args(args)
 
     #Parse args

@@ -19,12 +19,16 @@ DEFAULT_LOG_LEVEL = "critical"
 DEFAULT_SAVE_NAME = "checkbox"
 DEFAULT_TIMEOUT = 900
 
-UNIQUE_NAME_CHARACTERS = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+UNIQUE_NAME_CHARACTERS = ("0123456789"
+                          "abcdefghijklmnopqrstuvwxyz"
+                          "ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
 
 def unique_name(length=15):
     l = len(UNIQUE_NAME_CHARACTERS)
-    return "".join([UNIQUE_NAME_CHARACTERS[ord(c)%l] for c in os.urandom(length)])
+    return ("".join([UNIQUE_NAME_CHARACTERS[ord(c) % l]
+                     for c in os.urandom(length)]))
+
 
 def get_benchmark(node, name):
     for benchmark in node.getElementsByTagName("Benchmark"):
@@ -35,6 +39,7 @@ def get_benchmark(node, name):
 
     return None
 
+
 def get_result(node, name):
     for entry in node.getElementsByTagName("Entry"):
         for child in entry.childNodes:
@@ -44,9 +49,10 @@ def get_result(node, name):
 
     return None
 
+
 def parse_phoronix(options, suite):
-    file = posixpath.expanduser("~/.phoronix-test-suite/test-results/%s/composite.xml"
-        % options.save_name)
+    file = posixpath.expanduser("~/.phoronix-test-suite/test-results"
+                                "/%s/composite.xml" % options.save_name)
     tree = minidom.parse(file)
     benchmark = get_benchmark(tree, suite)
     if benchmark:
@@ -56,6 +62,7 @@ def parse_phoronix(options, suite):
             return value.firstChild.data
 
     return None
+
 
 def run_phoronix(options, suite):
     question_answer = [
@@ -87,6 +94,7 @@ def run_phoronix(options, suite):
         connection.send("%s\n" % answer)
 
     return parse_phoronix(options, suite)
+
 
 def main(args):
     usage = "Usage: %prog [OPTIONS] SUITE"

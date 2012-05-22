@@ -16,6 +16,7 @@ DEFAULT_IMAGE_DIR = 'image'
 
 CDROM_ID = '/lib/udev/cdrom_id'
 
+
 def _command(command, shell=True):
     proc = Popen(command,
                    shell=shell,
@@ -24,9 +25,11 @@ def _command(command, shell=True):
                    )
     return proc
 
+
 def _command_out(command, shell=True):
     proc = _command(command, shell)
     return proc.communicate()[0].strip()
+
 
 def compare_tree(source, target):
     for dirpath, dirnames, filenames in os.walk(source):
@@ -44,6 +47,7 @@ def compare_tree(source, target):
             else:
                 continue
     return True
+
 
 def read_test(device):
     passed = False
@@ -85,17 +89,19 @@ def get_capabilities(device):
     capabilities = _command_out(cmd)
     return capabilities
 
+
 def main():
     tests = []
     return_values = []
 
     parser = ArgumentParser()
     parser.add_argument("device", nargs='+',
-                        help='Specify an optical device or list of devices such as /dev/cdrom')
+                        help=('Specify an optical device or list of devices '
+                              'such as /dev/cdrom'))
     args = parser.parse_args()
 
     for device in args.device:
-        
+
         capabilities = get_capabilities(device)
         if not capabilities:
             print "Unable to get capabilities of %s" % device
@@ -116,4 +122,3 @@ def main():
 
 if __name__ == "__main__":
     sys.exit(main())
-

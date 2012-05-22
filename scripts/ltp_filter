@@ -7,11 +7,17 @@ from optparse import OptionParser
 
 # TPASS     The test case produced expected results.
 # TFAIL     The test case produced unexpected results.
-# TBROK     A resource needed to execute the test case was not available (e.g. a temporary file could not be opened).
-# TCONF     The test case was not appropriate for the current hardware or software configuration (e.g. MLS was not enabled).
+# TBROK     A resource needed to execute the test case was not available
+#           (e.g. a temporary file could not be opened).
+# TCONF     The test case was not appropriate for the current hardware
+#           or software configuration (e.g. MLS was not enabled).
 # TRETR     The test case was no longer valid and has been "retired."
-# TWARN     The testing procedure caused undesirable side effects that did not affect test results (e.g. a temporary file could not be removed after all test results were recorded).
-# TINFO     An informative message about the execution of the test that does not correspond to a test case result and does not indicate a problem.
+# TWARN     The testing procedure caused undesirable side effects
+#           that did not affect test results (e.g. a temporary file could not
+#           be removed after all test results were recorded).
+# TINFO     An informative message about the execution of the test
+#           that does not correspond to a test case result
+#           and does not indicate a problem.
 
 ltp_to_checkox_status = {
     "TPASS": "pass",
@@ -19,8 +25,10 @@ ltp_to_checkox_status = {
     "TBROK": "unresolved",
     "TCONF": "unsupported"}
 
+
 def print_line(key, value):
     print "%s: %s" % (key, value)
+
 
 def print_element(element):
     for key, value in element.iteritems():
@@ -28,8 +36,10 @@ def print_element(element):
 
     print
 
+
 def parse_file(file):
-    test_pattern = re.compile("(?P<case>\w+)\s+(?P<number>\d+)\s+(?P<status>[A-Z]+)\s+:\s+(?P<data>.*)")
+    test_pattern = re.compile("(?P<case>\w+)\s+(?P<number>\d+)\s+"
+                              "(?P<status>[A-Z]+)\s+:\s+(?P<data>.*)")
 
     elements = []
     for line in file.readlines():
@@ -38,14 +48,18 @@ def parse_file(file):
             if match.group("status") in ltp_to_checkox_status:
                 element = {
                     "plugin": "shell",
-                    "name": "%s.%s" % (match.group("case"), match.group("number")),
+                    "name": ("%s.%s"
+                             % (match.group("case"), match.group("number"))),
                     "requires": "package.alias == 'linux'",
-                    "description": "%s.%s" % (match.group("case"), match.group("number")),
+                    "description": ("%s.%s"
+                                    % (match.group("case"),
+                                       match.group("number"))),
                     "status": ltp_to_checkox_status[match.group("status")],
                     "data": match.group("data")}
                 elements.append(element)
 
     return elements
+
 
 def parse_filename(filename):
     if filename == "-":
@@ -55,12 +69,14 @@ def parse_filename(filename):
 
     return parse_file(file)
 
+
 def parse_filenames(filenames):
     elements = []
     for filename in filenames:
         elements.extend(parse_filename(filename))
 
     return elements
+
 
 def main(args):
     usage = "Usage: %prog [FILE...]"

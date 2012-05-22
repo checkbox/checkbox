@@ -43,6 +43,7 @@ def get_lsb_release():
 
     return lsb_release
 
+
 def main():
     lsb_release = get_lsb_release()
     for key, value in lsb_release.iteritems():

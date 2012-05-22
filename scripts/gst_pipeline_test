@@ -25,7 +25,7 @@ class GTK_Main:
         bus.connect("message", self.on_message)
         bus.connect("sync-message::element", self.on_sync_message)
         self.player.set_state(gst.STATE_PLAYING)
-        gobject.timeout_add(self.options.timeout*1000, self.timeout_cb)
+        gobject.timeout_add(self.options.timeout * 1000, self.timeout_cb)
         self.loop.run()
 
     def delete_event(self, widget, event, data=None):

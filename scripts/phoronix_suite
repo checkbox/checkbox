@@ -30,15 +30,18 @@ def print_line(key, value):
     else:
         print "%s: %s" % (key, value)
 
+
 def print_element(element):
     for key, value in element.iteritems():
         print_line(key, value)
 
     print
 
+
 def print_elements(elements):
     for element in elements:
         print_element(element)
+
 
 def parse_url(url):
     scheme, host, path, params, query, fragment = urlparse(url)
@@ -59,7 +62,9 @@ def parse_url(url):
     else:
         port = None
 
-    return scheme, username, password, host, port, path, params, query, fragment
+    return (scheme, username, password, host, port, path,
+            params, query, fragment)
+
 
 def lsb_release():
     key_map = {
@@ -85,13 +90,14 @@ def lsb_release():
 
     return lsb
 
+
 def phoronix_packages(directory):
     lsb = lsb_release()
     distributor = lsb["distributor_id"].lower()
     file = posixpath.join(directory, "pts-core", "static", "distro-xml",
         "%s-packages.xml" % distributor)
     if not posixpath.exists(file):
-        raise Exception, "Packages file does not exist: %s" % file
+        raise Exception("Packages file does not exist: %s" % file)
 
     packages = {}
     tree = minidom.parse(file)
@@ -102,6 +108,7 @@ def phoronix_packages(directory):
 
     return packages
 
+
 def phoronix_dependencies():
     dependencies = []
     if os.uname()[4] == "x86_64":
@@ -109,10 +116,11 @@ def phoronix_dependencies():
 
     return dependencies
 
+
 def phoronix_profile(directory, name):
     file = posixpath.join(directory, "pts", "test-profiles", "%s.xml" % name)
     if not posixpath.exists(file):
-        raise Exception, "Profile file does not exist: %s" % file
+        raise Exception("Profile file does not exist: %s" % file)
 
     profile = {}
     profile["Directory"] = directory
@@ -136,6 +144,7 @@ def phoronix_profile(directory, name):
 
     return profile
 
+
 def phoronix_profiles(directory):
     profiles = []
     profiles_directory = posixpath.join(directory, "pts", "test-profiles")
@@ -151,6 +160,7 @@ def phoronix_profiles(directory):
 
     return profiles
 
+
 def phoronix_clone(location, directory):
     if posixpath.exists(directory):
         return
@@ -163,7 +173,8 @@ def phoronix_clone(location, directory):
         stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     stdout, stderr = process.communicate()
     if process.returncode:
-        raise Exception, "Failed to clone phoronix from %s" % location
+        raise Exception("Failed to clone phoronix from %s" % location)
+
 
 def phoronix_batch_setup(location, directory):
     command = posixpath.join(directory, "phoronix-test-suite")
@@ -190,6 +201,7 @@ def phoronix_batch_setup(location, directory):
         answer = question_answer[index][1]
         connection.send("%s\n" % answer)
 
+
 def phoronix_network_setup(location, directory):
     command = posixpath.join(directory, "phoronix-test-suite")
     args = ["network-setup"]
@@ -215,10 +227,12 @@ def phoronix_network_setup(location, directory):
         answer = question_answer[index][1]
         connection.send("%s\n" % answer)
 
+
 def phoronix_setup(location, directory):
     phoronix_clone(location, directory)
     phoronix_batch_setup(location, directory)
     phoronix_network_setup(location, directory)
+
 
 def profile_to_test(profile, packages, timeout=None):
     # Default values
@@ -234,7 +248,8 @@ def profile_to_test(profile, packages, timeout=None):
         "directory": profile["Directory"],
         "suite": profile["Name"]}
     test["environ"] = [
-        "PATH=%s" % ":".join([profile["Directory"], os.environ.get("PATH", "")])]
+        "PATH=%s" % ":".join([profile["Directory"],
+                              os.environ.get("PATH", "")])]
 
     dependencies = phoronix_dependencies()
     if dependencies:
@@ -259,6 +274,7 @@ def profile_to_test(profile, packages, timeout=None):
 
     return test
 
+
 def profiles_to_tests(profiles, packages, timeout=None):
     tests = []
     for profile in profiles:
@@ -266,6 +282,7 @@ def profiles_to_tests(profiles, packages, timeout=None):
         tests.append(test)
 
     return tests
+
 
 def main(args):
     usage = "Usage: %prog [OPTIONS]"

@@ -6,6 +6,7 @@ Written by Jeffrey Lane <jeffrey.lane@canonical.com>
 import sys
 import os
 
+
 class proc_cpuinfo():
     '''
     Class to get and handle information from /proc/cpuinfo
@@ -13,8 +14,7 @@ class proc_cpuinfo():
     '''
     def __init__(self):
         self.cpuinfo = {}
-        cpu = ()
-        cpu_fh = open('/proc/cpuinfo','r')
+        cpu_fh = open('/proc/cpuinfo', 'r')
         try:
             temp = cpu_fh.readlines()
         finally:
@@ -22,14 +22,16 @@ class proc_cpuinfo():
 
         for i in temp:
             if i.startswith('processor'):
-                key = 'cpu'+(i.split(':')[1].strip())
+                key = 'cpu' + (i.split(':')[1].strip())
                 self.cpuinfo[key] = {}
             elif i.startswith('core id'):
-                self.cpuinfo[key].update({'core_id':i.split(':')[1].strip()})
+                self.cpuinfo[key].update({'core_id': i.split(':')[1].strip()})
             elif i.startswith('physical id'):
-                self.cpuinfo[key].update({'physical_package_id':i.split(':')[1].strip()})
+                self.cpuinfo[key].update({'physical_package_id':
+                                          i.split(':')[1].strip()})
             else:
                 continue
+
 
 class sysfs_cpu():
     '''
@@ -37,27 +39,28 @@ class sysfs_cpu():
     Creates an informational class to present information on various CPUs
     '''
 
-    def __init__(self,proc):
+    def __init__(self, proc):
         self.syscpu = {}
-        self.path = '/sys/devices/system/cpu/'+proc+'/topology'
+        self.path = '/sys/devices/system/cpu/' + proc + '/topology'
         items = ['core_id', 'physical_package_id']
         for i in items:
-            syscpu_fh = open(os.path.join(self.path,i),'r')
+            syscpu_fh = open(os.path.join(self.path, i), 'r')
             try:
                 self.syscpu[i] = syscpu_fh.readline().strip()
             finally:
                 syscpu_fh.close()
 
-def compare(proc_cpu,sys_cpu):
+
+def compare(proc_cpu, sys_cpu):
     cpu_map = {}
     '''
     If there is only 1 CPU the test don't look for core_id
-    and physical_package_id because those information are absent in 
+    and physical_package_id because those information are absent in
     /proc/cpuinfo on singlecore system
     '''
     for key in proc_cpu.iterkeys():
-        if not proc_cpu.has_key('cpu1'):
-            cpu_map[key] = True 
+        if 'cpu1' not in proc_cpu:
+            cpu_map[key] = True
         else:
             for subkey in proc_cpu[key].iterkeys():
                 if proc_cpu[key][subkey] == sys_cpu[key][subkey]:
@@ -66,6 +69,7 @@ def compare(proc_cpu,sys_cpu):
                     cpu_map[key] = False
     return cpu_map
 
+
 def main():
     cpuinfo = proc_cpuinfo()
     sys_cpu = {}
@@ -73,20 +77,19 @@ def main():
     for k in keys:
         sys_cpu[k] = sysfs_cpu(k).syscpu
 
-    cpu_map = compare(cpuinfo.cpuinfo,sys_cpu)
+    cpu_map = compare(cpuinfo.cpuinfo, sys_cpu)
 
     keys = [k for k in sys_cpu.iterkeys()]
     keys.sort()
     for key in keys:
-        print "%s:\tPhysical ID: %s\tCore ID: %s" % (key,
-                                                    sys_cpu[key]['physical_package_id'],
-                                                    sys_cpu[key]['core_id'])
+        print ("%s:\tPhysical ID: %s\tCore ID: %s"
+               % (key, sys_cpu[key]['physical_package_id'],
+                  sys_cpu[key]['core_id']))
 
     if False in cpu_map or len(cpu_map) < 1:
         return 1
     else:
         return 0
-
 
 
 if __name__ == '__main__':

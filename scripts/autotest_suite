@@ -13,7 +13,9 @@ DEFAULT_DIRECTORY = "/var/cache/checkbox/autotest"
 DEFAULT_LOCATION = "http://test.kernel.org/svn/autotest/trunk/client/"
 DEFAULT_TIMEOUT = 900
 
-COMMAND_TEMPLATE = "%(directory)s/bin/autotest %(directory)s/tests/%(test)s/control 2>/dev/null | autotest_filter --suite=autotest"
+COMMAND_TEMPLATE = ("%(directory)s/bin/autotest "
+                    "%(directory)s/tests/%(test)s/control 2>/dev/null "
+                    "| autotest_filter --suite=autotest")
 
 
 def print_line(key, value):
@@ -24,11 +26,13 @@ def print_line(key, value):
     else:
         print "%s: %s" % (key, value)
 
+
 def print_element(element):
     for key, value in element.iteritems():
         print_line(key, value)
 
     print
+
 
 def fetch_autotest(location, directory):
     if posixpath.exists(directory):
@@ -41,11 +45,12 @@ def fetch_autotest(location, directory):
     autotest_path = urlparse(location)[2]
     cut_dirs = len(autotest_path.strip(posixpath.sep).split(posixpath.sep))
 
-    command = "wget -q -e robots=off -R index.html -np -nH --cut-dirs=%d -P %s -r %s" \
-        % (cut_dirs, directory, location)
+    command = ("wget -q -e robots=off -R index.html "
+               "-np -nH --cut-dirs=%d -P %s -r %s"
+               % (cut_dirs, directory, location))
     logging.info("Running command: %s" % command)
     if os.system(command) != 0:
-        raise Exception, "Failed to run command: %s" % command
+        raise Exception("Failed to run command: %s" % command)
 
     # Change mode of binary files
     directories = [posixpath.join(directory, d)
@@ -61,18 +66,18 @@ def fetch_autotest(location, directory):
             elif posixpath.isdir(path):
                 directories.append(path)
 
+
 def list_autotest(location, directory):
     fetch_autotest(location, directory)
 
     directory = posixpath.join(directory, "tests")
     return os.listdir(directory)
 
+
 def run_autotest(names, location, directory, timeout=None):
     fetch_autotest(location, directory)
 
     for name in names:
-        path = posixpath.join(directory, "tests", name)
-
         # Initialize test structure
         test = {}
         test["plugin"] = "remote"
@@ -85,6 +90,7 @@ def run_autotest(names, location, directory, timeout=None):
             "test": name}
 
         yield test
+
 
 def main(args):
     usage = "Usage: %prog [OPTIONS] [NAMES]"
@@ -104,7 +110,8 @@ def main(args):
     if not names:
         names = list_autotest(options.location, options.directory)
 
-    suites = run_autotest(names, options.location, options.directory, options.timeout)
+    suites = run_autotest(names, options.location,
+                          options.directory, options.timeout)
     if not suites:
         return 1
 

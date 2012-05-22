@@ -1,9 +1,9 @@
 #!/bin/bash
 #
 # Verify dns server setup
-# Packages and ports can be verified offline but external connections 
+# Packages and ports can be verified offline but external connections
 # require a network connection.  The script will check for this.
-# 
+#
 
 # Verify process is running.  Expected output 'pgrep named' is a $pid
 check=`pgrep named`

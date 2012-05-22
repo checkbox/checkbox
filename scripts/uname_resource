@@ -26,6 +26,7 @@ def get_uname():
     values = os.uname()
     return dict(zip(keys, values))
 
+
 def main():
     uname = get_uname()
     for key, value in uname.iteritems():

@@ -54,15 +54,14 @@ class Command(object):
 
     def __init__(self, *arguments, **options):
         if len(arguments) != self.argument_count:
-            raise TypeError, "Invalid number of arguments: %d" \
-                % len(arguments)
+            raise TypeError("Invalid number of arguments: %d" % len(arguments))
 
         self._arguments = arguments
 
         self._options = self.option_defaults.copy()
         for name, string in options.items():
             if name not in self.option_strings:
-                raise TypeError, "Unknown option: %s" % name
+                raise TypeError("Unknown option: %s" % name)
             self._options[name] = string
 
     def get_command(self):
@@ -108,7 +107,7 @@ class Command(object):
             stderr=subprocess.PIPE)
         error = process.stderr.read()
         if error:
-            raise CommandException, error
+            raise CommandException(error)
 
         output = process.stdout.read()
         return self.parse_output(output)
@@ -387,7 +386,7 @@ class Ip(object):
     def count_0_bits(self):
         num = long(self.binary)
         if num < 0:
-            raise ValueError, "Only positive Numbers please: %s" % (num)
+            raise ValueError("Only positive Numbers please: %s" % (num))
         ret = 0
         while num > 0:
             if num & 1 == 1:
@@ -420,8 +419,8 @@ class IpRange(object):
         # now check if the rest consists only of ones
         while bits > 0:
             if (num & 1) == 0:
-                raise ValueError, "Netmask %s can't be expressed as an prefix." \
-                    % (hex(self.netmask.binary))
+                raise ValueError("Netmask %s can't be expressed as an prefix."
+                                 % (hex(self.netmask.binary)))
             num = num >> 1
             bits -= 1
 
@@ -484,14 +483,15 @@ class NetworkManager(object):
         try:
             import dbus
         except ImportError:
-            raise NetworkManagerException, "Python module not found: dbus"
+            raise NetworkManagerException("Python module not found: dbus")
 
         try:
             self._bus = dbus.SystemBus()
-            self.nm_object  = self._bus.get_object(self.NM_SERVICE, self.NM_PATH)
+            self.nm_object = self._bus.get_object(self.NM_SERVICE,
+                                                  self.NM_PATH)
             self.nm_service = dbus.Interface(self.nm_object, self.NM_INTERFACE)
         except dbus.exceptions.DBusException:
-            raise NetworkManagerException, "Failed to connect to dbus service"
+            raise NetworkManagerException("Failed to connect to dbus service")
 
     def is_connected(self):
         state = self.nm_service.state()
@@ -514,19 +514,25 @@ class Application(object):
                 ping = PingSmall(target, interface=interface.name)
                 result = ping.run()
                 if result.packet_loss:
-                    logging.debug("SKIP: Non-zero packet loss (%s%%) for [%s] [%s]->[%s]",
-                        result.packet_loss, interface.name, interface.inet_addr, target)
+                    logging.debug("SKIP: Non-zero packet loss (%s%%) "
+                                  "for [%s] [%s]->[%s]",
+                                  result.packet_loss, interface.name,
+                                  interface.inet_addr, target)
                     continue
 
-            mbps = 8 * (ping.packet_size + 28) * ping.packet_count / result.time / 1000
-            percent = 100 * 8 * (ping.packet_size + 28) * ping.packet_count / result.time / 1000 / interface.speed
+            mbps = (8 * (ping.packet_size + 28) * ping.packet_count
+                    / result.time / 1000)
+            percent = (100 * 8 * (ping.packet_size + 28) * ping.packet_count
+                       / result.time / 1000 / interface.speed)
             if percent >= 10:
-                logging.info("PASS: Effective rate: %s Mbps, %s%% of theoretical max (<10%%)",
-                    mbps, percent)
+                logging.info("PASS: Effective rate: %s Mbps, "
+                             "%s%% of theoretical max (<10%%)",
+                             mbps, percent)
                 return True
 
-        logging.info("FAIL: Unacceptable network effective rate found for [%s]",
-            interface.name)
+        logging.info("FAIL: Unacceptable network effective rate "
+                     "found for [%s]",
+                     interface.name)
         return False
 
     def run(self):
@@ -591,7 +597,8 @@ class ApplicationManager(object):
                           help="The file to write the log to.")
         parser.add_option("--log-level",
                           default=self.default_log_level,
-                          help="One of debug, info, warning, error or critical.")
+                          help=("One of debug, info, warning, "
+                                "error or critical."))
 
         return parser
 
@@ -642,7 +649,8 @@ class ApplicationManager(object):
             parser.error("Failed to check network.")
 
         targets = args
-        return self.application_factory(targets, options.interfaces, options.scan)
+        return self.application_factory(targets,
+                                        options.interfaces, options.scan)
 
 
 def main():

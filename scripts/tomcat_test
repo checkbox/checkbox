@@ -8,7 +8,7 @@
 run1=`netstat -ltnp | grep '8080' | grep 'java'`
 if [ -z "$run1" ]; then
   echo "FAIL: Tomcat is not running."
-  exit 1 
+  exit 1
 fi
 
 # Check if Tomcat is working; requires network connection so check it
