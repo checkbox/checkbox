@@ -6,7 +6,7 @@
 
 #Verify Samba processes are running
 smbd=`pgrep smbd`
-if [ -z "$smbd" ]; then 
+if [ -z "$smbd" ]; then
   echo "FAIL: smbd is not running."
   exit 1
 fi

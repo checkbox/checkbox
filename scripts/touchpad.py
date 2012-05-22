@@ -1,5 +1,7 @@
 #!/usr/bin/python
-import sys, subprocess, tempfile
+import sys
+import subprocess
+import tempfile
 from contextlib import contextmanager
 import gconf
 import argparse
@@ -19,7 +21,7 @@ def main(args):
 
 
 def parse_arguments():
-    parser = argparse.ArgumentParser(description = "Run touchpad test cases")
+    parser = argparse.ArgumentParser(description="Run touchpad test cases")
     parser.add_argument("test", choices=["horizontal", "vertical"],
                         help="Test case to execute")
     return parser.parse_args()
@@ -31,10 +33,13 @@ def gedit_wrap_none():
     Make sure that gedit word wrapping is set to None
     """
     client = gconf.Client()
-    wrap_mode = client.get_string('/apps/gedit-2/preferences/editor/wrap_mode/wrap_mode')
-    client.set_string('/apps/gedit-2/preferences/editor/wrap_mode/wrap_mode', 'GTK_WRAP_NONE')
+    wrap_mode = client.get_string('/apps/gedit-2/preferences/editor'
+                                  '/wrap_mode/wrap_mode')
+    client.set_string('/apps/gedit-2/preferences/editor/wrap_mode/wrap_mode',
+                      'GTK_WRAP_NONE')
     yield
-    client.set_string('/apps/gedit-2/preferences/editor/wrap_mode/wrap_mode', wrap_mode)
+    client.set_string('/apps/gedit-2/preferences/editor/wrap_mode/wrap_mode',
+                      wrap_mode)
 
 
 def get_horizontal_str():

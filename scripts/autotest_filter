@@ -28,15 +28,18 @@ class FakeJob():
 def print_line(key, value):
     print "%s: %s" % (key, value)
 
+
 def print_element(element):
     for key, value in element.iteritems():
         print_line(key, value)
 
     print
 
+
 def parse_file(file):
     log_pattern = re.compile(r"\d\d:\d\d:\d\d [A-Z ]{5}\| ")
-    persistent_pattern = re.compile(r"Persistent state file (?P<path>.*) does not exist")
+    persistent_pattern = re.compile(r"Persistent state file (?P<path>.*) "
+                                    r"does not exist")
     start_pattern = re.compile(r"\tSTART\t"
         "(?P<name1>[^\t]+)\t"
         "(?P<name2>[^\t]+)\t"
@@ -74,7 +77,8 @@ def parse_file(file):
 
         match = end_pattern.match(line)
         if match:
-            element["status"] = autotest_to_checkbox_status[match.group("status")]
+            autotest_status = match.group("status")
+            element["status"] = autotest_to_checkbox_status[autotest_status]
             elements.append(element)
             element = {}
             continue
@@ -85,6 +89,7 @@ def parse_file(file):
 
     return elements
 
+
 def parse_filename(filename):
     if filename == "-":
         file = sys.stdin
@@ -93,12 +98,14 @@ def parse_filename(filename):
 
     return parse_file(file)
 
+
 def parse_filenames(filenames):
     elements = []
     for filename in filenames:
         elements.extend(parse_filename(filename))
 
     return elements
+
 
 def main(args):
     usage = "Usage: %prog [FILE...]"

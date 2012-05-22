@@ -52,7 +52,7 @@ def get_packages(file):
 
     columns = ["desired", "status", "error", "name", "version", "description"]
     mandatory_columns = columns[:]
-    mandatory_columns.remove("error") #this is optional
+    mandatory_columns.remove("error")  # this is optional
     aliases = {
         "linux-image-" + os.uname()[2]: "linux"}
 
@@ -72,7 +72,7 @@ def get_packages(file):
     for line in file.readlines():
         package = {}
         for i, column in enumerate(columns):
-            value = line[lengths[i]:lengths[i+1]].strip()
+            value = line[lengths[i]:lengths[i + 1]].strip()
 
             # Convert value
             if column == "desired":
@@ -96,6 +96,7 @@ def get_packages(file):
             package["name"] = aliases[name]
 
         yield package
+
 
 def main(args):
     usage = "Usage: %prog [FILE...]"

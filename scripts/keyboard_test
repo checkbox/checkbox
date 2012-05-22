@@ -5,6 +5,7 @@ import sys
 from gettext import gettext as _
 import gettext
 
+
 def cli_prompt():
     import termios
 
@@ -30,8 +31,9 @@ def cli_prompt():
     finally:
         termios.tcsetattr(fileno, termios.TCSANOW, saved_attributes)
 
+
 def gtk_prompt():
-    from gi.repository import Gtk,Gdk
+    from gi.repository import Gtk, Gdk
 
     # create a new window
     window = Gtk.Window()
@@ -39,7 +41,7 @@ def gtk_prompt():
     window.set_size_request(200, 100)
     window.set_resizable(False)
     window.set_title(_("Type Text"))
-    window.connect("delete_event", lambda w,e: Gtk.main_quit())
+    window.connect("delete_event", lambda w, e: Gtk.main_quit())
 
     vbox = Gtk.VBox()
     vbox.set_homogeneous(False)
@@ -67,6 +69,7 @@ def gtk_prompt():
     window.show()
 
     Gtk.main()
+
 
 def main(args):
 

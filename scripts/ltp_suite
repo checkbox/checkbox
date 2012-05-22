@@ -15,7 +15,11 @@ DEFAULT_DIRECTORY = "/var/cache/checkbox/ltp"
 DEFAULT_LOCATION = ":pserver:anonymous:@ltp.cvs.sourceforge.net:/cvsroot/ltp"
 DEFAULT_TIMEOUT = 10800
 
-COMMAND_TEMPLATE = "cd '%(directory)s' && ./runltp -f %(suite)s -r '%(directory)s' -p -q 2>/dev/null | ltp_filter --suite=%(suite)s"
+COMMAND_TEMPLATE = ("cd '%(directory)s' "
+                    "&& ./runltp "
+                    "-f %(suite)s -r '%(directory)s' -p -q 2>/dev/null "
+                    "| ltp_filter --suite=%(suite)s")
+
 
 def print_line(key, value):
     if type(value) is list:
@@ -25,11 +29,13 @@ def print_line(key, value):
     else:
         print "%s: %s" % (key, value)
 
+
 def print_element(element):
     for key, value in element.iteritems():
         print_line(key, value)
 
     print
+
 
 def parse_url(url):
     scheme, host, path, params, query, fragment = urlparse(url)
@@ -50,7 +56,9 @@ def parse_url(url):
     else:
         port = None
 
-    return scheme, username, password, host, port, path, params, query, fragment
+    return (scheme, username, password, host, port,
+            path, params, query, fragment)
+
 
 def checkout_ltp(location, directory):
     if posixpath.exists(directory):
@@ -81,9 +89,10 @@ def checkout_ltp(location, directory):
         process = Popen(command, shell=True, stdout=PIPE, stderr=PIPE)
         stdout, stderr = process.communicate()
         if process.returncode:
-            raise Exception, "Failed to run command %s" % command
+            raise Exception("Failed to run command %s" % command)
 
     os.chdir(previous_directory)
+
 
 def run_ltp(location, directory, timeout=None):
     checkout_ltp(location, directory)
@@ -99,7 +108,6 @@ def run_ltp(location, directory, timeout=None):
             first_line = open(suite_path, "r").readline()
             match = description_pattern.match(first_line)
             if match:
-                description = match.group("description")
                 element = {}
                 element["plugin"] = "remote"
                 element["depends"] = "ltp"
@@ -109,11 +117,12 @@ def run_ltp(location, directory, timeout=None):
                 element["user"] = "root"
                 element["command"] = COMMAND_TEMPLATE % {
                     "suite": suite_name,
-                    "directory":directory}
+                    "directory": directory}
 
                 elements.append(element)
 
     return elements
+
 
 def main(args):
     usage = "Usage: %prog [OPTIONS]"

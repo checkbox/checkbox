@@ -6,7 +6,7 @@ use warnings;
 use Getopt::Long;
 
 my $action = shift @ARGV;
-my @types = ('sink','source');
+my @types = ('sink', 'source');
 
 if ($action eq "store") {
     # Find the current sink and and its mute/volume settings
@@ -26,7 +26,7 @@ if ($action eq "store") {
 }
 elsif ($action eq "set") {
     print "Updating audio settings\n";
-    
+
     my ($device, $mute, $volume);
     $mute = 0;
     $volume = 100;
@@ -62,7 +62,7 @@ elsif ($action eq "set") {
     }
 }
 elsif ($action eq "restore") {
-    
+
     my $file;
     GetOptions( 'file=s' => \$file);
 

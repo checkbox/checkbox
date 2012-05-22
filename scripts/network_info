@@ -8,17 +8,20 @@ import struct
 
 SYS_PATH = '/sys/class/net'
 
+
 def _read_file(file):
     source = open(file, 'r')
     content = source.read()
     source.close()
     return content
 
+
 def get_connected(interface):
     STATUS = ('No', 'Yes')
     carrier_file = os.path.join(SYS_PATH, interface, 'carrier')
     carrier = int(_read_file(carrier_file))
     return STATUS[carrier]
+
 
 def get_ip_address(interface):
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -28,9 +31,11 @@ def get_ip_address(interface):
         struct.pack('256s', interface[:15])
     )[20:24])
 
+
 def get_mac_address(interface):
     address_file = os.path.join(SYS_PATH, interface, 'address')
     return _read_file(address_file)
+
 
 def main(args):
     for interface in args:

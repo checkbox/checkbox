@@ -1,5 +1,8 @@
 #!/usr/bin/python
-import sys, os, shutil, re
+import sys
+import os
+import shutil
+import re
 from datetime import datetime, timedelta
 from time import time, localtime
 from calendar import timegm
@@ -55,7 +58,6 @@ class PowerManagementOperation(object):
         self.args = args
         self.extra_args = extra_args
 
-
     def setup(self):
         """
         Enable configuration file
@@ -70,7 +72,6 @@ class PowerManagementOperation(object):
         autostart_file = AutoStartFile(self.args)
         autostart_file.write()
 
-
     def run(self):
         """
         Run a power management iteration
@@ -83,7 +84,6 @@ class PowerManagementOperation(object):
             self.run_pm_command()
         else:
             self.summary()
-
 
     def check_last_cycle_duration(self):
         """
@@ -108,7 +108,6 @@ class PowerManagementOperation(object):
             logging.info('{0} time: {1}'
                          .format(self.args.pm_operation.capitalize(), pm_time))
 
-
     def run_pm_command(self):
         """
         Run power managment command and check result if needed
@@ -118,7 +117,7 @@ class PowerManagementOperation(object):
         CountdownDialog(self.args.pm_operation,
                         self.args.pm_delay,
                         self.args.hardware_delay,
-                        self.args.total-self.args.repetitions,
+                        self.args.total - self.args.repetitions,
                         self.args.total).run()
 
         # A small sleep time is added to reboot and poweroff
@@ -137,7 +136,6 @@ class PowerManagementOperation(object):
         logging.debug('Executing: {0!r}...'.format(command_str))
         subprocess.Popen(command_str, shell=True)
 
-
     def summary(self):
         """
         Gather hardware information for the last time,
@@ -147,7 +145,7 @@ class PowerManagementOperation(object):
         CountdownDialog(self.args.pm_operation,
                         self.args.pm_delay,
                         self.args.hardware_delay,
-                        self.args.total-self.args.repetitions,
+                        self.args.total - self.args.repetitions,
                         self.args.total).run()
 
         self.teardown()
@@ -156,20 +154,22 @@ class PowerManagementOperation(object):
         start = datetime.fromtimestamp(self.args.start)
         end = datetime.now()
         if self.args.pm_operation == 'reboot':
-            sleep_time=timedelta(seconds=self.SLEEP_TIME)
+            sleep_time = timedelta(seconds=self.SLEEP_TIME)
         else:
-            sleep_time=timedelta(seconds=self.args.wakeup)
+            sleep_time = timedelta(seconds=self.args.wakeup)
 
-        wait_time=timedelta(seconds=(self.args.pm_delay
-                                     +self.args.hardware_delay)*self.args.total)
-        average = (end-start-wait_time)/self.args.total-sleep_time
+        wait_time = timedelta(seconds=(self.args.pm_delay
+                                       + (self.args.hardware_delay)
+                                          * self.args.total))
+        average = (end - start - wait_time) / self.args.total - sleep_time
         time_message = ('Total elapsed time: {total}\n'
                         'Average recovery time: {average}'
-                        .format(total=end-start,
+                        .format(total=end - start,
                                 average=average))
         logging.info(time_message)
 
-        message = '{0} test complete'.format(self.args.pm_operation.capitalize())
+        message = ('{0} test complete'
+                   .format(self.args.pm_operation.capitalize()))
         if self.args.silent:
             logging.info(message)
         else:
@@ -214,13 +214,17 @@ class WakeUpAlarm(object):
         wakeup_time_local = timegm(localtime()) + timeout
 
         subprocess.check_call('echo 0 > %s' % cls.ALARM_FILENAME, shell=True)
-        subprocess.check_call('echo %d > %s' % (wakeup_time_utc, cls.ALARM_FILENAME), shell=True)
+        subprocess.check_call('echo %d > %s'
+                              % (wakeup_time_utc, cls.ALARM_FILENAME),
+                              shell=True)
 
         with open(cls.ALARM_FILENAME) as alarm_file:
             wakeup_time_stored_str = alarm_file.read()
 
             if not re.match('\d+', wakeup_time_stored_str):
-                subprocess.check_call('echo "+%d" > %s' % (timeout, cls.ALARM_FILENAME), shell=True)
+                subprocess.check_call('echo "+%d" > %s'
+                                      % (timeout, cls.ALARM_FILENAME),
+                                      shell=True)
                 with open(cls.ALARM_FILENAME) as alarm_file2:
                     wakeup_time_stored_str = alarm_file2.read()
                 if not re.match('\d+', wakeup_time_stored_str):
@@ -228,11 +232,12 @@ class WakeUpAlarm(object):
                                   .format(wakeup_time_stored_str))
                     sys.exit(1)
 
-            wakeup_time_stored =  int(wakeup_time_stored_str)
+            wakeup_time_stored = int(wakeup_time_stored_str)
             try:
                 logging.debug('Wakeup timestamp: {0} ({1})'
                               .format(wakeup_time_stored,
-                                      datetime.fromtimestamp(wakeup_time_stored).strftime('%c')))
+                                      datetime.fromtimestamp(
+                                          wakeup_time_stored).strftime('%c')))
             except ValueError as e:
                 logging.error(e)
                 sys.exit(1)
@@ -256,7 +261,6 @@ class WakeUpAlarm(object):
                 logging.error('alarm_IRQ not set properly: {0}'
                               .format(rtc_data['alarm_IRQ']))
                 sys.exit(1)
-
 
             if '*' in rtc_data['alrm_date']:
                 logging.error('alrm_date not set properly: {0}'
@@ -291,7 +295,7 @@ class Command(object):
         start = datetime.now()
         result = self.process.communicate()
         end = datetime.now()
-        self.time = end-start
+        self.time = end - start
 
         if self.verbose:
             stdout, stderr = result
@@ -314,11 +318,12 @@ class CountdownDialog(Gtk.Dialog):
     Dialog that shows the amount of progress in the reboot test
     and lets the user cancel it if needed
     """
-    def __init__(self, pm_operation, pm_delay, hardware_delay, iterations, iterations_count):
+    def __init__(self, pm_operation, pm_delay, hardware_delay,
+                 iterations, iterations_count):
         self.pm_operation = pm_operation
         title = '{0} test'.format(pm_operation.capitalize())
 
-        buttons=(Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,)
+        buttons = (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,)
         super(CountdownDialog, self).__init__(title=title,
                                               buttons=buttons)
         self.set_default_response(Gtk.ResponseType.CANCEL)
@@ -326,7 +331,7 @@ class CountdownDialog(Gtk.Dialog):
         self.set_position(Gtk.WindowPosition.CENTER)
 
         progress_bar = Gtk.ProgressBar()
-        progress_bar.set_fraction(iterations/float(iterations_count))
+        progress_bar.set_fraction(iterations / float(iterations_count))
         progress_bar.set_text('{0}/{1}'
                               .format(iterations, iterations_count))
         progress_bar.set_show_text(True)
@@ -359,7 +364,6 @@ class CountdownDialog(Gtk.Dialog):
         self.vbox.pack_start(self.label, True, True, 0)
         self.show_all()
 
-
     def run(self):
         """
         Set label text and run dialog
@@ -370,7 +374,6 @@ class CountdownDialog(Gtk.Dialog):
 
         if response != Gtk.ResponseType.ACCEPT:
             raise TestCancelled()
-
 
     def schedule_next_event(self):
         """
@@ -386,7 +389,6 @@ class CountdownDialog(Gtk.Dialog):
             # Return Accept response
             # if there are no other events scheduled
             self.response(Gtk.ResponseType.ACCEPT)
-
 
     def on_timeout_cb(self):
         """
@@ -408,7 +410,6 @@ class CountdownDialog(Gtk.Dialog):
 
         return False
 
-
     def on_hardware_info_timeout_cb(self):
         """
         Gather hardware information and print it to logs
@@ -419,12 +420,19 @@ class CountdownDialog(Gtk.Dialog):
                       '{ethernet}\n'
                       '{ifconfig}\n'
                       '{iwconfig}'
-                      .format(network=Command('lspci | grep Network').run().stdout,
-                              ethernet=Command('lspci | grep Ethernet').run().stdout,
-                              ifconfig=Command("ifconfig -a | grep -A1 '^\w'").run().stdout,
-                              iwconfig=Command("iwconfig | grep -A1 '^\w'").run().stdout))
+                      .format(network=(Command('lspci | grep Network')
+                                       .run().stdout),
+                              ethernet=(Command('lspci | grep Ethernet')
+                                        .run().stdout),
+                              ifconfig=(Command("ifconfig -a | grep -A1 '^\w'")
+                                        .run().stdout),
+                              iwconfig=(Command("iwconfig | grep -A1 '^\w'")
+                                        .run().stdout)))
         logging.debug('Bluetooth Device:\n'
-                      '{hciconfig}'.format(hciconfig=Command("hciconfig -a | grep -A2 '^\w'").run().stdout))
+                      '{hciconfig}'
+                      .format(hciconfig=(Command("hciconfig -a "
+                                                 "| grep -A2 '^\w'")
+                                         .run().stdout)))
         logging.debug('Video Card:\n'
                       '{lspci}'
                       .format(lspci=Command('lspci | grep VGA').run().stdout))
@@ -433,15 +441,18 @@ class CountdownDialog(Gtk.Dialog):
                       .format(xinput=Command('xinput list').run().stdout))
         logging.debug('Pulse Audio Sink:\n'
                       '{pactl_sink}'
-                      .format(pactl_sink=Command('pactl list | grep Sink').run().stdout))
+                      .format(pactl_sink=(Command('pactl list | grep Sink')
+                                          .run().stdout)))
         logging.debug('Pulse Audio Source:\n'
                       '{pactl_source}'
-                      .format(pactl_source=Command('pactl list | grep Source').run().stdout))
+                      .format(pactl_source=(Command('pactl list | grep Source')
+                                            .run().stdout)))
 
         # Check kernel logs using firmware test suite
         command = Command('fwts -r stdout klog dmesg_common oops').run()
         if command.process.returncode != 0:
-            # Don't abort the test loop, errors can be retrieved by pm_log_check
+            # Don't abort the test loop,
+            # errors can be retrieved by pm_log_check
             logging.error('Problem found in logs by fwts')
 
 
@@ -493,7 +504,6 @@ autologin-user-timeout=0
         with open(self.CONFIG_FILENAME, 'w') as f:
             f.write(self.TEMPLATE.format(username=os.getenv('SUDO_USER')))
 
-
     def disable(self):
         """
         Remove latest configuration file
@@ -517,7 +527,7 @@ autologin-user-timeout=0
         backup_filename = self.CONFIG_FILENAME + '.bak'
         yield backup_filename
 
-        index=0
+        index = 0
         while True:
             index += 1
             backup_filename = (self.CONFIG_FILENAME
@@ -547,7 +557,6 @@ class SudoersConfigurator(object):
 
         Command(command, verbose=False).run()
 
-
     def disable(self):
         """
         Revert sudoers configuration changes
@@ -573,6 +582,7 @@ Type=Application
 X-GNOME-Autostart-enabled=true
 Hidden=false
 """
+
     def __init__(self, args):
         self.args = args
 
@@ -600,7 +610,7 @@ Hidden=false
 
         contents = (self.TEMPLATE
                     .format(script=os.path.realpath(__file__),
-                            repetitions=self.args.repetitions-1,
+                            repetitions=self.args.repetitions - 1,
                             wakeup=self.args.wakeup,
                             hardware_delay=self.args.hardware_delay,
                             pm_delay=self.args.pm_delay,
@@ -646,9 +656,11 @@ class LoggingConfiguration(object):
             logger.addHandler(log_handler)
 
         # Log to rotating file using DEBUG log level
-        log_handler = logging.handlers.RotatingFileHandler(log_filename, mode='a+',
+        log_handler = logging.handlers.RotatingFileHandler(log_filename,
+                                                           mode='a+',
                                                            backupCount=3)
-        formatter = logging.Formatter('%(asctime)s %(levelname)-8s %(message)s')
+        formatter = logging.Formatter('%(asctime)s %(levelname)-8s '
+                                      '%(message)s')
         log_handler.setFormatter(formatter)
         log_handler.setLevel(logging.DEBUG)
         logger.addHandler(log_handler)
@@ -669,30 +681,36 @@ class MyArgumentParser(object):
         """
         pm_operations = ('poweroff', 'reboot')
         description = 'Run power management operation as many times as needed'
-        epilog = ('Unknown arguments will be passed to the underlying command: '
-                  'poweroff or reboot.')
+        epilog = ('Unknown arguments will be passed '
+                  'to the underlying command: poweroff or reboot.')
         parser = ArgumentParser(description=description, epilog=epilog)
         parser.add_argument('-r', '--repetitions', type=int, default=1,
-                            help=('Number of times that the power management operation '
-                                  'has to be repeated (%(default)s by default)'))
+                            help=('Number of times that the power management '
+                                  'operation has to be repeated '
+                                  '(%(default)s by default)'))
         parser.add_argument('-w', '--wakeup', type=int, default=60,
                             help=('Timeout in seconds for the wakeup alarm '
                                   '(%(default)s by default). '
-                                  "Note: wakeup alarm won't be scheduled for reboot."))
+                                  "Note: wakeup alarm won't be scheduled "
+                                  'for reboot.'))
         parser.add_argument('--min-pm-time', dest='min_pm_time',
                             type=int, default=0,
-                            help=('Minimum time in seconds that it should take '
-                                  'the power management operation each cycle '
-                                  '(0 for reboot and wakeup time minus two seconds '
-                                  'for the other power management operations by default)'))
+                            help=('Minimum time in seconds that '
+                                  'it should take the power management '
+                                  'operation each cycle (0 for reboot and '
+                                  'wakeup time minus two seconds '
+                                  'for the other power management operations '
+                                  'by default)'))
         parser.add_argument('--max-pm-time', dest='max_pm_time',
                             type=int, default=300,
-                            help=('Maximum time in seconds that it should take '
+                            help=('Maximum time in seconds '
+                                  'that it should take '
                                   'the power management operation each cycle '
                                   '(%(default)s by default)'))
         parser.add_argument('--pm-delay', dest='pm_delay',
                             type=int, default=5,
-                            help=('Delay in seconds after hardware information '
+                            help=('Delay in seconds '
+                                  'after hardware information '
                                   'has been gathered and before executing '
                                   'the power management operation '
                                   '(%(default)s by default)'))
@@ -701,20 +719,25 @@ class MyArgumentParser(object):
                             help=('Delay in seconds before gathering hardware '
                                   'information (%(default)s by default)'))
         parser.add_argument('--silent', action='store_true',
-                            help=("Don't display any dialog when test is complete "
-                                  'to let the script be used in automated tests'))
-        log_levels = ['notset', 'debug', 'info', 'warning', 'error', 'critical']
-        parser.add_argument('--log-level', dest='log_level_str', default='info',
-                            choices=log_levels,
+                            help=("Don't display any dialog "
+                                  'when test is complete '
+                                  'to let the script be used '
+                                  'in automated tests'))
+        log_levels = ['notset', 'debug', 'info',
+                      'warning', 'error', 'critical']
+        parser.add_argument('--log-level', dest='log_level_str',
+                            default='info', choices=log_levels,
                             help=('Log level. '
                                   'One of {0} or {1} (%(default)s by default)'
-                                  .format(', '.join(log_levels[:-1]), log_levels[-1])))
+                                  .format(', '.join(log_levels[:-1]),
+                                          log_levels[-1])))
         parser.add_argument('--log-dir', dest='log_dir', default='/var/log',
                             help=('Path to the directory to store log files'))
         parser.add_argument('pm_operation', choices=pm_operations,
                             help=('Power management operation to be performed '
                                   '(one of {0} or {1!r})'
-                                  .format(', '.join(map(repr, pm_operations[:-1])),
+                                  .format(', '.join(map(repr,
+                                                        pm_operations[:-1])),
                                           pm_operations[-1])))
 
         # Test timestamps
@@ -723,7 +746,8 @@ class MyArgumentParser(object):
                             type=int, default=0, help=SUPPRESS)
 
         # Append to log on subsequent startups
-        parser.add_argument('--append', action='store_true', default=False, help=SUPPRESS)
+        parser.add_argument('--append', action='store_true',
+                            default=False, help=SUPPRESS)
 
         # Total number of iterations initially passed through the command line
         parser.add_argument('--total', type=int, default=0, help=SUPPRESS)

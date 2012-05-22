@@ -4,7 +4,7 @@ Check that it's possible to establish a http connection against
 ubuntu.com
 """
 from subprocess import call
-from optparse import OptionParser, Option
+from optparse import OptionParser
 import urllib2
 import sys
 
@@ -20,6 +20,7 @@ def check_url(url):
 
     return True
 
+
 def main():
     """
     Check HTTP and connection
@@ -30,10 +31,10 @@ def main():
                         action='store_true',
                         default=False,
                         help='Runs in Automated mode, with no visible output')
-    
-    (options,args) = parser.parse_args()
 
-    url = { "http": "http://cdimage.ubuntu.com/daily/current/" }
+    (options, args) = parser.parse_args()
+
+    url = {"http": "http://cdimage.ubuntu.com/daily/current/"}
 
     results = {}
     for protocol, value in url.iteritems():
@@ -54,7 +55,7 @@ def main():
 
     if not options.auto:
         call(command)
-    
+
     if any(results.itervalues()):
         return 0
     else:

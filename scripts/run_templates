@@ -132,7 +132,7 @@ def main(args):
         runner_class = TemplateRunner
     else:
         runner_class = LineRunner
-        
+
     runner = runner_class(input, output_file)
     runner.process(args, options.shell)
 

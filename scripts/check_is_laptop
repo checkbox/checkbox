@@ -18,7 +18,7 @@ case $TYPE in
 Notebook|Laptop|Portable)
     exit 0
     ;;
-*) 
+*)
     # Give the system a second chance based on the battery info
     if [ $BATTERY == "YES" ]; then
     	exit 0

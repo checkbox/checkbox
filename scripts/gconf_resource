@@ -42,7 +42,8 @@ def get_gconf(command):
     # TODO: add support for multi-line values
 
     gconf = {}
-    output = Popen(command, stdout=PIPE, stderr=PIPE, shell=True).communicate()[0]
+    output = (Popen(command, stdout=PIPE, stderr=PIPE, shell=True)
+              .communicate()[0])
     for line in output.split("\n"):
         if not line:
             continue

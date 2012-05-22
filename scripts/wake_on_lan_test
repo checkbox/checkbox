@@ -19,13 +19,13 @@
 This script allows automated testing of Wake-on-Lan support.
  It asks a suitably configured server for a "wakeup call" in a set
  number of seconds (say, 120). It then uses rtcwake to send itself
- to sleep with a scheduled wakeup in a number of seconds, higher 
+ to sleep with a scheduled wakeup in a number of seconds, higher
  than the previous one (say, 300).
  The script then records time elapsed before waking up and uses that
  to determine whether WoL is working.
 
  Assumptions:
- - rtcwake works correctly and the system auto-wakes when rtcwakealarm 
+ - rtcwake works correctly and the system auto-wakes when rtcwakealarm
    goes off.
  - There's a URL that can be called to ask the server to schedule the wakeup
  call. It should specify the number of seconds to sleep as a parameter. If
@@ -43,18 +43,20 @@ import sys
 import time
 import urllib2
 
-RTCWAKE_COMMAND= "/usr/sbin/rtcwake"
+RTCWAKE_COMMAND = "/usr/sbin/rtcwake"
+
 
 def call_wol_url(url):
     try:
         return urllib2.urlopen(url).code
     except urllib2.URLError as error:
-        if hasattr(error,'code'):
-            logging.error("HTTP error calling Wake on LAN URL: %s" % 
+        if hasattr(error, 'code'):
+            logging.error("HTTP error calling Wake on LAN URL: %s" %
                     error.code)
         else:
             logging.error("Invalid Wake on LAN URL.")
         return False
+
 
 def sleep_for(seconds=120):
     rtcwake_command = "%s -s %d -m mem" % (RTCWAKE_COMMAND, seconds)
@@ -66,13 +68,14 @@ def sleep_for(seconds=120):
             logging.error("rtcwake command returned an error")
     except:
         logging.error("Unable to execute the rtcwake command")
-    
+
     return False
+
 
 def main():
     usage = "Usage: %prog [OPTIONS] WAKEUP_URL"
     parser = OptionParser(usage)
-    parser.add_option('-w','--wol',
+    parser.add_option('-w', '--wol',
             action='store',
             type='int',
             metavar='NUM',
@@ -84,7 +87,7 @@ def main():
                   assumed that WOL worked and success is returned. \
                   Must be smaller than --rtcwake time. \
                   Default is %default seconds")
-    parser.add_option('-r','--rtcwake',
+    parser.add_option('-r', '--rtcwake',
             action='store',
             type='int',
             metavar='NUM',
@@ -95,7 +98,7 @@ def main():
                   wakes up after this time, test is marked failed. \
                   Must be bigger than --wol time. \
                   Default is %default seconds")
-    parser.add_option('-d','--debug',
+    parser.add_option('-d', '--debug',
             action='store_true',
             default=False,
             help='Choose this to add verbose output for debug \
@@ -114,19 +117,19 @@ def main():
     wake_url = args[0]
 
     if options.debug:
-       logger = logging.getLogger()
-       logger.setLevel(logging.DEBUG)
+        logger = logging.getLogger()
+        logger.setLevel(logging.DEBUG)
 
     if not call_wol_url(wake_url):
         return 2
-    
+
     logging.info("Entering sleep for %d seconds" % options.rtcwake_seconds)
     fell_asleep_at = time.time()
-    
+
     #invoke rtcwake here, if fail just exit the whole operation.
     if not sleep_for(seconds=options.rtcwake_seconds):
         return 2
-    
+
     #I woke up, what time is it?
     awoke_at = time.time()
 
@@ -134,9 +137,9 @@ def main():
     sleep_time = awoke_at - fell_asleep_at
 
     logging.info("Slept for %d seconds" % sleep_time)
-    
+
     if sleep_time <= options.wol_seconds:
-        logging.info( "Test FAILED (sleep duration too short)")
+        logging.info("Test FAILED (sleep duration too short)")
         return 1
     if sleep_time > options.wol_seconds and \
        sleep_time < options.rtcwake_seconds:

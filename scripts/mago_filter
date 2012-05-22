@@ -10,11 +10,13 @@ from optparse import OptionParser
 def print_line(key, value):
     print "%s: %s" % (key, value)
 
+
 def print_element(element):
     for key, value in element.items():
         print_line(key, value)
 
     print
+
 
 def parse_file(file):
     elements = []
@@ -59,7 +61,8 @@ def parse_file(file):
                             element["data"] = subchild.firstChild.data
                         elif subchild.nodeName == "pass":
                             data = subchild.firstChild.data
-                            element["status"] = data == "1" and "pass" or "fail"
+                            element["status"] = (data == "1"
+                                                 and "pass" or "fail")
                         elif subchild.nodeName == "error":
                             element["status"] = "fail"
 
@@ -67,12 +70,14 @@ def parse_file(file):
 
     return elements
 
+
 def parse_files(files):
     elements = []
     for file in files:
         elements.extend(parse_file(file))
 
     return elements
+
 
 def main(args):
     usage = "Usage: %prog [FILE...]"

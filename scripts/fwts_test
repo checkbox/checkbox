@@ -34,25 +34,29 @@ TESTS = ['acpiinfo',
          'cstates',
          'dmar']
 
+
 def main():
     usage = 'usage %prog [OPTIONS]'
     parser = OptionParser(usage)
-    parser.add_option('-c','--cpufreq',
+    parser.add_option('-c', '--cpufreq',
                       action='store_true',
-                      help='Chose this option to run the CPU Frequency Scaling test only')
-    parser.add_option('-w','--wakealarm',
+                      help=('Chose this option to run '
+                            'the CPU Frequency Scaling test only'))
+    parser.add_option('-w', '--wakealarm',
                       action='store_true',
                       help='Run the fwts wakealarm test only')
-    parser.add_option('-a','--all',
+    parser.add_option('-a', '--all',
                       action='store_true',
                       help='Run ALL FWTS automated tests (assumes -w and -c)')
-    parser.add_option('-l','--log',
+    parser.add_option('-l', '--log',
                       default='/tmp/fwts_results.log',
-                      help='Specify the location and name of the log file. Default log path is %default')
+                      help=('Specify the location and name of the log file. '
+                            'Default log path is %default'))
     (options, args) = parser.parse_args()
 
     if options.cpufreq and options.wakealarm:
-        parser.error('cpufreq and wakealarm can not be chosen togehter. Choose -a instead')
+        parser.error('cpufreq and wakealarm can not be chosen together. '
+                     'Choose -a instead')
 
     tests = []
     results = {}
@@ -62,14 +66,16 @@ def main():
     elif options.wakealarm:
         tests += ['wakealarm']
     elif options.all:
-        tests += ['wakealarm','cpufreq'] + TESTS
+        tests += ['wakealarm', 'cpufreq'] + TESTS
     else:
         tests += TESTS
 
     # run the tests we want
     for test in tests:
-        command = 'fwts -q --stdout-summary -r %s %s' % (options.log,test)
-        results[test] = Popen(command, stdout=PIPE, shell=True).communicate()[0].strip()
+        command = ('fwts -q --stdout-summary -r %s %s'
+                   % (options.log, test))
+        results[test] = (Popen(command, stdout=PIPE, shell=True)
+                         .communicate()[0].strip())
 
     # parse the summaries
     passed = 0

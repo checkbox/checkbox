@@ -20,8 +20,9 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 The purpose of this script is to test a system's ability to suspend to ram
-(enter the S3 sleep state) or hibernate (enter S4 sleep state) and then resume 
-without loss of data, OS crashes, or any other Bad Things[tm] happening.
+(enter the S3 sleep state) or hibernate (enter S4 sleep state)
+and then resume without loss of data, OS crashes, or any other Bad Things[tm]
+happening.
 
 As we progress forward, it's become apparent that being able to suspend and
 wake up a system during slow times while offloading that systems's load to
@@ -48,7 +49,7 @@ TO DO:
 
 Changelog:
 v1.2:   Removed NetworkManager class and replaced with simple call to nmcli
-v1.1:   Added handling of NetworkManager 0.9 status codes. 
+v1.1:   Added handling of NetworkManager 0.9 status codes.
 v1.0:   Added code to support Hibernate (S4) and allow choice between S3 and S4
         at run-time.
         Created mechanism in SuspendTest() class to check /proc/driver/rtc as a
@@ -64,7 +65,7 @@ V0.9:   Added GPL info, last bit of cleaning up.
 v0.8:   Changed CanWeSleep() to utilize /sys/power/state instead of the
         precated /proc/acpi/sleep to maintain usefulness in future kernels.
 V0.7:   Fixed error in calculating how long suspend cycle lasted
-V0.6:   Added facility for setting maximum wait time (used to test whether we 
+V0.6:   Added facility for setting maximum wait time (used to test whether we
         woke automagically or manually.
 V0.5:   Added SuspendTest class to handle all the hard work.
         Added the rest of the debug logging stuff to get some useful output
@@ -81,10 +82,10 @@ from optparse import OptionParser
 
 class ListDictHandler(logging.StreamHandler):
     '''
-    Extends logging.StreamHandler to handle list, tuple and dict objects 
+    Extends logging.StreamHandler to handle list, tuple and dict objects
     internally, rather than through external code, mainly used for debugging
     purposes.
-    
+
     '''
     def emit(self, record):
         if isinstance(record.msg, (list, tuple,)):
@@ -105,27 +106,27 @@ class ListDictHandler(logging.StreamHandler):
         else:
             logging.StreamHandler.emit(self, record)
 
+
 class SuspendTest():
     '''
     Creates an object to handle the actions necessary for suspend/resume
-    testing.  
-    
+    testing.
+
     '''
-    def __init__(self,max_sleep):
+    def __init__(self, max_sleep):
         self.max_sleep_time = max_sleep
         self.wake_time = 0
         self.current_time = 0
         self.last_time = 0
 
-
-    def CanWeSleep(self,mode):
-        ''' 
+    def CanWeSleep(self, mode):
+        '''
         Test to see if S3 state is available to us.  /proc/acpi/* is old
         and will be deprecated, using /sys/power to maintine usefulness for
         future kernels.
-        
+
         '''
-        states_fh = open('/sys/power/state','r',0)
+        states_fh = open('/sys/power/state', 'r', 0)
         try:
             states = states_fh.read().split()
         finally:
@@ -139,16 +140,16 @@ class SuspendTest():
             return False
 
     def GetCurrentTime(self):
-        
-        time_fh = open('/sys/class/rtc/rtc0/since_epoch','r',0)
+
+        time_fh = open('/sys/class/rtc/rtc0/since_epoch', 'r', 0)
         try:
             time = int(time_fh.read())
         finally:
             time_fh.close()
         return time
 
-    def SetWakeTime(self,time):
-        ''' 
+    def SetWakeTime(self, time):
+        '''
         Get the current epoch time from /sys/class/rtc/rtc0/since_epoch
         then add time and write our new wake_alarm time to
         /sys/class/rtc/rtc0/wakealarm.
@@ -161,7 +162,7 @@ class SuspendTest():
         self.last_time = self.GetCurrentTime()
         logging.debug('Current epoch time: %s' % self.last_time)
 
-        wakealarm_fh = open('/sys/class/rtc/rtc0/wakealarm','w',0)
+        wakealarm_fh = open('/sys/class/rtc/rtc0/wakealarm', 'w', 0)
 
         try:
             wakealarm_fh.write('0\n')
@@ -174,8 +175,8 @@ class SuspendTest():
 
         logging.debug('Wake alarm in %s seconds' % time)
 
-    def DoSuspend(self,mode):
-        ''' 
+    def DoSuspend(self, mode):
+        '''
         Suspend the system and hope it wakes up.
         Previously tried writing new state to /sys/power/state but that
         seems to put the system into an uncrecoverable S3 state.  So far,
@@ -195,20 +196,20 @@ class SuspendTest():
         else:
             logging.debug('Error while running pm-suspend')
 
-    def CheckSleepTime(self,sleep_time):
+    def CheckSleepTime(self, sleep_time):
         '''
         This code will most likely be removed soon. In all but actal test, it
         has been superceded by CheckAlarm().  This is no longe called, but
         until the final decision is made to kill it or re-implement it, I will
-        leave it here. 
+        leave it here.
 
         A method for guessing if the system woke itself or was woken
         manually.
-        
+
         There has got to be a better way to do this that actually detects
         whether the system woke on a RTC alarm event instead of anything else
         (e.g. key press, WOL packet, USB, etc)
-        
+
         '''
         self.current_time = self.GetCurrentTime()
         delta = (self.current_time - self.last_time)
@@ -219,21 +220,21 @@ class SuspendTest():
             return False
         else:
             logging.debug(['Current epoch time is: %s' % self.current_time,
-                            'Suspend/Resume cycle lasted: %s seconds' % 
+                            'Suspend/Resume cycle lasted: %s seconds' %
                             (self.current_time - self.last_time)])
             return True
-    
-    def CheckAlarm(self,mode):
+
+    def CheckAlarm(self, mode):
         '''
-        A better method for checking if system woke via rtc alarm IRQ. If the 
+        A better method for checking if system woke via rtc alarm IRQ. If the
         system woke via IRQ, then alarm_IRQ will be 'no' and wakealarm will be
         an empty file.  Otherwise, alarm_IRQ should still say yes and wakealarm
         should still have a number in it (the original alarm time), indicating
         the system did not wake by alarm IRQ, but by some other means.
         '''
         rtc = {}
-        rtc_fh = open('/proc/driver/rtc','r',0)
-        alarm_fh = open('/sys/class/rtc/rtc0/wakealarm','r',0)
+        rtc_fh = open('/proc/driver/rtc', 'r', 0)
+        alarm_fh = open('/sys/class/rtc/rtc0/wakealarm', 'r', 0)
         try:
             rtc_data = rtc_fh.read().splitlines()
             for item in rtc_data:
@@ -261,31 +262,31 @@ class SuspendTest():
         # https://bugs.launchpad.net/ubuntu/+source/linux/+bug/571977
         if mode == 'mem':
             if (alarm is not None) or (rtc['alarm_IRQ'] == 'yes'):
-		logging.debug('alarm is %s' % alarm)
-		logging.debug('rtc says alarm_IRQ: %s' % rtc['alarm_IRQ'])
+                logging.debug('alarm is %s' % alarm)
+                logging.debug('rtc says alarm_IRQ: %s' % rtc['alarm_IRQ'])
                 return True
             else:
-		logging.debug('alarm was cleared')
+                logging.debug('alarm was cleared')
                 return False
-        else: 
+        else:
             # This needs to be changed after we get a way around the
             # hibernate bug.  For now, pretend that the alarm is unset for
             # hibernate tests.
-	    logging.debug('mode is %s so we\'re skipping success check' % mode)
+            logging.debug('mode is %s so we\'re skipping success check' % mode)
             return False
 
 
 def main():
     usage = 'Usage: %prog [OPTIONS]'
     parser = OptionParser(usage)
-    parser.add_option('-i','--iterations',
+    parser.add_option('-i', '--iterations',
                         action='store',
                         type='int',
                         metavar='NUM',
                         default=1,
                         help='The number of times to run the suspend/resume \
                         loop. Default is %default')
-    parser.add_option('-w','--wake-in',
+    parser.add_option('-w', '--wake-in',
                         action='store',
                         type='int',
                         metavar='NUM',
@@ -293,7 +294,7 @@ def main():
                         dest='wake_time',
                         help='Sets wake up time (in seconds) in the future \
                         from now. Default is %default.')
-    parser.add_option('-m','--max-sleep',
+    parser.add_option('-m', '--max-sleep',
                         action='store',
                         type='int',
                         metavar='NUM',
@@ -303,7 +304,7 @@ def main():
                         cycle is greater than this, we assume something has \
                         gone wrong and the system had to be manually woken. \
                         Default is %default')
-    parser.add_option('-s','--sleep-state',
+    parser.add_option('-s', '--sleep-state',
                         action='store',
                         default='mem',
                         metavar='MODE',
@@ -312,7 +313,7 @@ def main():
                         set the sleep state to Suspend-To-Ram or S3.  Passing \
                         disk will set the sleep state to Suspend-To-Disk or S4\
                         (hibernate). Default sleep state is %default')
-    parser.add_option('-d','--debug',
+    parser.add_option('-d', '--debug',
                         action='store_true',
                         default=False,
                         help='Choose this to add verbose output for debug \
@@ -326,12 +327,12 @@ def main():
     handler.setFormatter(logging.Formatter(format))
     logger = logging.getLogger()
     logger.addHandler(handler)
-    
+
     if options.debug:
         logger.setLevel(logging.DEBUG)
         logging.debug('Running with these options')
         logging.debug(options_dict)
-    
+
     suspender = SuspendTest(options.max_sleep)
 
     # Chcek fo the S3 state availability
@@ -339,10 +340,11 @@ def main():
         logging.error('%s sleep state not supported' % options.mode)
         return 1
     else:
-        logging.info('%s sleep state supported, continuing test' % options.mode)
+        logging.info('%s sleep state supported, continuing test'
+                     % options.mode)
 
     # We run the following for the number of iterations requested
-    for iteration in range(0,options.iterations):
+    for iteration in range(0, options.iterations):
         # Set new alarm time and suspend.
         suspender.SetWakeTime(options.wake_time)
         suspender.DoSuspend(options.mode)
@@ -350,6 +352,6 @@ def main():
             logging.debug('The alarm is still set')
 
     return 0
-    
+
 if __name__ == '__main__':
     sys.exit(main())

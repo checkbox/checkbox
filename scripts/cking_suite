@@ -1,12 +1,9 @@
 #!/usr/bin/python
 
 import os
-import re
 import sys
 import posixpath
 import subprocess
-
-from subprocess import Popen
 
 from optparse import OptionParser
 
@@ -16,6 +13,7 @@ DEFAULT_LOCATION = "git://kernel.ubuntu.com/cking/scripts"
 
 COMMAND_TEMPLATE = "cd %(scripts)s; ./%(script)s"
 
+
 def print_line(key, value):
     if type(value) is list:
         print "%s:" % key
@@ -24,11 +22,13 @@ def print_line(key, value):
     else:
         print "%s: %s" % (key, value)
 
+
 def print_element(element):
     for key, value in element.items():
         print_line(key, value)
 
     print
+
 
 def clone_cking_scripts(location, directory):
     if posixpath.exists(directory):
@@ -42,7 +42,8 @@ def clone_cking_scripts(location, directory):
         stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     stdout, stderr = process.communicate()
     if process.wait():
-        raise Exception, "Failed to clone cking scripts from %s" % location
+        raise Exception("Failed to clone cking scripts from %s" % location)
+
 
 def run_cking_scripts(scripts, location, directory, dry_run):
     if not dry_run:
@@ -69,6 +70,7 @@ def run_cking_scripts(scripts, location, directory, dry_run):
             test["description"] = "No description found"
 
         yield test
+
 
 def main(args):
     usage = "Usage: %prog [OPTIONS] [SCRIPTS]"

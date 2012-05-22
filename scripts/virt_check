@@ -1,6 +1,6 @@
 #!/bin/bash
 # A short script to determine if the test machine will
-# funtion properly as a Compute Node in an OpenStack 
+# funtion properly as a Compute Node in an OpenStack
 # environment.
 
 # First, let's see if we have processor flags
@@ -40,4 +40,4 @@ else
     echo "INFO: System does not support enough RAM for a Compute Node"
 fi
 
-exit 0 
+exit 0

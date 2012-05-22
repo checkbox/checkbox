@@ -101,7 +101,7 @@ class DeviceResource(object):
                     return "CAPTURE"
 
                 if subclass_id == Pci.CLASS_MULTIMEDIA_AUDIO \
-                   or subclass_id == Pci.CLASS_MULTIMEDIA_AUDIO_DEVICE: \
+                   or subclass_id == Pci.CLASS_MULTIMEDIA_AUDIO_DEVICE:
                     return "AUDIO"
 
             if class_id == Pci.BASE_CLASS_SERIAL \
@@ -302,7 +302,7 @@ class DmiDeviceResource(DeviceResource):
     def __init__(self, properties, category):
         super(DmiDeviceResource, self).__init__(properties)
         if category not in self._category_to_property:
-            raise Exception, "Unsupported category: %s" % category
+            raise Exception("Unsupported category: %s" % category)
 
         self._category = category
 
@@ -346,8 +346,10 @@ class HalResource(object):
     the corresponding device resource as value.
     """
 
-    # See also section "Deprecated Properties" of the "HAL 0.5.10 Specification",
-    # available from http://people.freedesktop.org/~david/hal-spec/hal-spec.html
+    # See also section "Deprecated Properties"
+    # of the "HAL 0.5.10 Specification",
+    # available from
+    # http://people.freedesktop.org/~david/hal-spec/hal-spec.html
     _deprecated_expressions = (
         (r"info\.bus",                             "info.subsystem"),
         (r"([^\.]+)\.physical_device",             "\1.originating_device"),
@@ -407,7 +409,8 @@ class HalResource(object):
 
         # Ignore invalid subsystem information
         if (device.subproduct_id is None and device.subvendor_id is not None) \
-           or (device.subproduct_id is not None and device.subvendor_id is None):
+           or (device.subproduct_id is not None
+               and device.subvendor_id is None):
             return True
 
         # Ignore virtual devices except for dmi information
@@ -421,7 +424,8 @@ class HalResource(object):
     def devices(self):
         devices = []
         bus = dbus.SystemBus()
-        manager_obj = bus.get_object("org.freedesktop.Hal", "/org/freedesktop/Hal/Manager")
+        manager_obj = bus.get_object("org.freedesktop.Hal",
+                                     "/org/freedesktop/Hal/Manager")
         manager = dbus.Interface(manager_obj, "org.freedesktop.Hal.Manager")
         for udi in manager.GetAllDevices():
             name = udi.split(posixpath.sep)[-1]

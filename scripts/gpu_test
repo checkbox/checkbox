@@ -20,7 +20,7 @@ class GlxThread(Thread):
         pexpect.run('glxgears -geometry 400x400', timeout=None)
 
     def terminate(self):
-        call('wmctrl -i -c %s' %self.id, shell=True)
+        call('wmctrl -i -c %s' % self.id, shell=True)
 
 
 class RotateGlxThread(Thread):
@@ -37,10 +37,10 @@ class RotateGlxThread(Thread):
     def run(self):
         while(1):
             for j in range(60):
-                x=int(200 * self.offset + 100 * sin(j * 0.2))
-                y=int(200 * self.offset + 100 * cos(j * 0.2))
-                coords="%s,%s" %(x, y)
-                call('wmctrl -i -r %s -e 0,%s,-1,-1' %(self.id, coords),
+                x = int(200 * self.offset + 100 * sin(j * 0.2))
+                y = int(200 * self.offset + 100 * cos(j * 0.2))
+                coords = "%s,%s" % (x, y)
+                call('wmctrl -i -r %s -e 0,%s,-1,-1' % (self.id, coords),
                      shell=True)
                 time.sleep(0.002 * self.offset)
                 if self.cancel:
@@ -60,7 +60,7 @@ class ChangeWorkspace(Thread):
     def run(self):
         while(1):
             for i in range(self.size):
-                call('wmctrl -s %s' %i, shell=True)
+                call('wmctrl -s %s' % i, shell=True)
                 time.sleep(0.5)
                 if self.cancel:
                     # Switch back to workspace #1
@@ -85,7 +85,7 @@ class ChangeViewport(Thread):
         while(1):
             for i in range(self.hsize):
                 for j in range(self.vsize):
-                    call('wmctrl -o %s,%s' %(self.xsize * j, self.ysize * i),
+                    call('wmctrl -o %s,%s' % (self.xsize * j, self.ysize * i),
                          shell=True)
                     time.sleep(0.5)
                     if self.cancel:
@@ -100,19 +100,21 @@ class FlashVideoThread(Thread):
     """
 
     def run(self):
-        script_home = os.path.split(os.path.dirname(os.path.realpath(__file__)))[0]
+        script_home = (os.path.split(
+                       os.path.dirname(
+                       os.path.realpath(__file__)))[0])
         flv = os.path.join(script_home + '/data/websites/Flash_Video.flv')
         source = """
 <html><head><meta http-equiv="refresh" content="5"></head><body>
 <p>This page will reload and play this Flash video every 5s.</p>
 <center><embed src="%s"></embed></center>
-</body></html>""" %flv
+</body></html>""" % flv
 
         with NamedTemporaryFile(suffix='.html', delete=False) as f:
             self.tempfile = f.name
-            f.write("%s" %source)
+            f.write("%s" % source)
             f.close()
-        call('firefox %s' %f.name, stdout=open(os.devnull, 'w'),
+        call('firefox %s' % f.name, stdout=open(os.devnull, 'w'),
              stderr=STDOUT, shell=True)
 
     def terminate(self):
@@ -164,7 +166,7 @@ def main():
                 continue
             GlxWindows[i].id = re.match(r'^(0x\w+)', app).group(0)
             break
-        GlxRotate.append(RotateGlxThread(GlxWindows[i].id, i+1))
+        GlxRotate.append(RotateGlxThread(GlxWindows[i].id, i + 1))
         GlxRotate[i].start()
 
     if is_unity_2d_running():

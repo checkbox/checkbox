@@ -35,8 +35,9 @@ import logging
 import signal
 import time
 from datetime import datetime, timedelta
-from subprocess import Popen, PIPE, STDOUT
-from optparse import OptionParser 
+from subprocess import Popen, PIPE
+from optparse import OptionParser
+
 
 def SilentCall(*popenargs):
     '''
@@ -44,9 +45,10 @@ def SilentCall(*popenargs):
     that is executed. Wait for command to complete, then return the returncode
     attribute.
     '''
-    null_fh = open('/dev/null','w',0)
+    null_fh = open('/dev/null', 'w', 0)
     try:
-        return Popen(*popenargs,shell=True,stdout=null_fh,stderr=null_fh).wait()
+        return (Popen(*popenargs, shell=True, stdout=null_fh, stderr=null_fh)
+                .wait())
     finally:
         null_fh.close()
 
@@ -56,25 +58,27 @@ def CheckNTPD():
     This checks to see if nptd is running or not, if so it returns a tuple
     (status,pid,command) where status is either on or off.
     '''
-    ps_list = Popen('ps axo pid,comm',shell=True,stdout=PIPE).communicate()[0].splitlines()
+    ps_list = (Popen('ps axo pid,comm', shell=True, stdout=PIPE)
+               .communicate()[0].splitlines())
     for item in ps_list:
         fields = item.split()
         if fields[1] == 'ntpd':
-            logging.debug('Found %s with PID %s' % (fields[1],fields[0]))
+            logging.debug('Found %s with PID %s'
+                          % (fields[1], fields[0]))
             break
     if fields[1] == 'ntpd':
-        return ('on',fields[0],fields[1])
+        return ('on', fields[0], fields[1])
     else:
-        return ('off','0','0')
+        return ('off', '0', '0')
 
 
-def StartStopNTPD(state,pid=0):
+def StartStopNTPD(state, pid=0):
     '''
     This is used to either start or stop ntpd if its running.
     '''
     if state == 'off':
         logging.info('Stopping ntpd process PID: %s' % pid)
-        os.kill(int(pid),signal.SIGHUP)
+        os.kill(int(pid), signal.SIGHUP)
     elif state == 'on':
         logging.debug('Starting ntp process')
         status = SilentCall('/etc/init.d/ntp start')
@@ -83,7 +87,7 @@ def StartStopNTPD(state,pid=0):
         if status == 0:
             logging.info('ntpd restarted with PID: %s' % ntpd_status[1])
         else:
-            logging.error('ntpd restart failed for some reason') 
+            logging.error('ntpd restart failed for some reason')
     else:
         logging.error('Unknown status')
 
@@ -94,11 +98,11 @@ def SyncTime(server):
     that syncs time faster than the slewed method that ntpdate uses by default,
     meaning we'll see something meaningful faster.
     '''
-    cmd='ntpdate -b ' + server
+    cmd = 'ntpdate -b ' + server
     logging.debug('using %s' % server)
-    sync = Popen(cmd,shell=True,stdout=PIPE,stderr=PIPE)
+    sync = Popen(cmd, shell=True, stdout=PIPE, stderr=PIPE)
     result = sync.communicate()
-    
+
     if sync.returncode == 0:
         logging.info('Successful NTP update from %s' % server)
         logging.info('%s' % result[0].strip())
@@ -108,28 +112,30 @@ def SyncTime(server):
         logging.error('%s' % result[1])
         return False
 
+
 def TimeCheck():
     '''
     Returns current time in a time.localtime() struct
     '''
     return time.localtime()
 
+
 def SkewTime():
     '''
     Optional function. We can skew time by 1 hour if we'd like to see real sync
     changes being enforced
     '''
-    TIME_SKEW=1
+    TIME_SKEW = 1
     logging.info('Time Skewing has been selected. Setting clock ahead 1 hour')
     # Let's get our current time
     skewed = datetime.now() + timedelta(hours=TIME_SKEW)
     logging.info('Current time is: %s' % time.asctime())
-    # Now create new time string in the form MMDDhhmmYYYY for the date program    
+    # Now create new time string in the form MMDDhhmmYYYY for the date program
     date_time_string = skewed.strftime('%m%d%H%M%Y')
     logging.debug('New date string is: %s' % date_time_string)
     logging.debug('Setting new system time/date')
-    status = SilentCall('/bin/date %s' % date_time_string)
     logging.info('Pre-sync time is: %s' % time.asctime())
+
 
 def main():
     usage = 'Usage: %prog [OPTIONS]'
@@ -139,14 +145,14 @@ def main():
                         type='string',
                         default='ntp.ubuntu.com',
                         help='The NTP server to sync from. The default server \
-                        is %default') 
+                        is %default')
     parser.add_option('--skew-time',
                         action='store_true',
                         default=False,
                         help='Setting this will change system time ahead by 1 \
                         hour to make the results of ntp syncing more dramatic \
                         and noticeable.')
-    parser.add_option('-d','--debug',
+    parser.add_option('-d', '--debug',
                         action='store_true',
                         default=False,
                         help='Verbose output for debugging purposes')
@@ -163,10 +169,10 @@ def main():
     logger.addHandler(handler)
 
     # Make sure NTP is installed
-    if not os.access('/usr/sbin/ntpdate',os.F_OK):
+    if not os.access('/usr/sbin/ntpdate', os.F_OK):
         logging.debug('NTP is not installed!')
         return 1
-    
+
     # Check for and stop the ntp daemon
     ntpd_status = CheckNTPD()
     logging.debug('Pre-sync ntpd status: %s %s %s' % (ntpd_status[0],
@@ -174,14 +180,14 @@ def main():
                                                       ntpd_status[2]))
     if ntpd_status[0] == 'on':
         logging.debug('Since ntpd is currently running, stopping it now')
-        StartStopNTPD('off',ntpd_status[1])
-    
+        StartStopNTPD('off', ntpd_status[1])
+
     if options.skew_time:
         logging.debug('Setting system time ahead one hour')
         SkewTime()
     else:
         logging.info('Pre-sync time is: %s' % time.asctime(TimeCheck()))
-    
+
     sync = SyncTime(options.server)
 
     logging.info('Current system time is: %s' % time.asctime(TimeCheck()))

@@ -4,6 +4,7 @@ import sys
 import dbus
 from subprocess import call
 
+
 def main():
     # Connect to the session
     bus = dbus.SessionBus()

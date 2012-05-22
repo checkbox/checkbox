@@ -25,8 +25,10 @@ def process_pids(process, *options):
     result = set(pids).difference(exclude_pids)
     return list(result)
 
+
 def process_count(*args):
     return len(process_pids(*args))
+
 
 def main(args):
     default_sleep = 1

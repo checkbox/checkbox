@@ -15,6 +15,7 @@ def get_meminfo():
 
     return meminfo
 
+
 def main(args):
     meminfo = get_meminfo()
     amount, units = meminfo["MemTotal"].split()
@@ -26,7 +27,7 @@ def main(args):
     while amount > 1024:
         amount = amount / 1024
         units = next_units[units]
-        
+
     print ("%.1f %s"
            % (amount, units))
     return 0
