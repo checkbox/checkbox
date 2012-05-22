@@ -468,7 +468,7 @@ QTabWidget::tab-bar#testsTab {
             <attribute name="title">
              <string> Selection </string>
             </attribute>
-            <widget class="QLabel" name="label">
+            <widget class="QLabel" name="selectionLabel">
              <property name="geometry">
               <rect>
                <x>50</x>
@@ -478,7 +478,7 @@ QTabWidget::tab-bar#testsTab {
               </rect>
              </property>
              <property name="text">
-              <string>Lists of tests to run based on your system:</string>
+              <string>Choose tests to run on your system:</string>
              </property>
             </widget>
             <widget class="Line" name="line">

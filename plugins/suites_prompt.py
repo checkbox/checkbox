@@ -25,13 +25,19 @@ from checkbox.job import UNINITIATED
 from checkbox.lib.resolver import Resolver
 
 from checkbox.plugin import Plugin
-from checkbox.user_interface import PREV, CONTINUE_ANSWER, RERUN_ANSWER, \
-                                    RESTART_ANSWER
+from checkbox.properties import String
+from checkbox.user_interface import CONTINUE_ANSWER, RERUN_ANSWER
 
 from gettext import gettext as _
 
 
 class SuitesPrompt(Plugin):
+
+    deselect_warning = String(default=_("""\
+Unselecting a test will invalidate your submission for Ubuntu Friendly. \
+If you plan to participate in Ubuntu Friendly, please, select all tests. \
+You can always skip individual tests if you don't have the needed equipment.\
+"""))
 
     @property
     def persist(self):
@@ -47,7 +53,7 @@ class SuitesPrompt(Plugin):
         self._jobs = {}
         self._statuses = {}
         self._persist = None
-        self._recover = False 
+        self._recover = False
 
         for (rt, rh) in [
              ("begin-persist", self.begin_persist),
@@ -115,7 +121,8 @@ class SuitesPrompt(Plugin):
                     value = tests[dependency]["status"]
                 else:
                     value = self._statuses.get(dependency, {})
-                suboptions = suboptions.setdefault(self._jobs[dependency], value)
+                suboptions = suboptions.setdefault(self._jobs[dependency],
+                                                   value)
 
         # Build defaults
         defaults = self.persist.get("default")
@@ -123,19 +130,21 @@ class SuitesPrompt(Plugin):
             defaults = copy.deepcopy(options)
 
         # Get results
-        defaults = interface.show_tree(_("Select the suites to test"),
-            options, defaults)
+        defaults = interface.show_tree(
+            _("Choose tests to run on your system:"),
+            options, defaults, self.deselect_warning)
         self.persist.set("default", defaults)
 
         # Get tests to ignore
         def get_ignore_jobs(options, results):
             jobs = []
-            if isinstance(options,dict):
+            if isinstance(options, dict):
                 for k, v in options.iteritems():
                     if v == UNINITIATED and k not in results:
                         jobs.append(k)
                     else:
-                        jobs.extend(get_ignore_jobs(options[k], results.get(k, {})))
+                        jobs.extend(get_ignore_jobs(options[k],
+                                                    results.get(k, {})))
 
             return jobs
 

@@ -15,6 +15,7 @@ public:
     void changeAllChildren(QStandardItem *item, const QVariant &value, int role);
     void enableAllChildren(bool enable, QStandardItem *item);
     QErrorMessage *m_messageBox;
+    QString deselect_warning;
 };
 
 #endif // TREEMODEL_H

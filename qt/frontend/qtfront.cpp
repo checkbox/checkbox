@@ -475,9 +475,10 @@ void QtFront::buildTree(QVariantMap options, QVariantMap defaults, QString baseI
     }
 }
 
-void QtFront::showTree(QString text, QVariantMap options, QVariantMap defaults)
+void QtFront::showTree(QString text, QVariantMap options, QVariantMap defaults,
+                       QString deselect_warning)
 {
-    Q_UNUSED(text);
+    ui->selectionLabel->setText(text);
     currentState = TREE;
     ui->testsTab->setCurrentIndex(0);
     ui->radioTestTab->setVisible(false);
@@ -490,6 +491,7 @@ void QtFront::showTree(QString text, QVariantMap options, QVariantMap defaults)
         ui->treeView->setModel(m_model);
         ui->statusView->setModel(m_statusModel);
     }
+    this->m_model->deselect_warning = QString(deselect_warning);
 
     updateTestStatus("");
     ui->treeView->show();

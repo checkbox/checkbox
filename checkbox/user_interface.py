@@ -123,7 +123,7 @@ class UserInterface(object):
     def show_radio(self, text, options=[], default=None):
         return default
 
-    def show_tree(self, text, options={}, default={}):
+    def show_tree(self, text, options={}, default={}, deselect_warning=""):
         return default
 
     def show_test(self, test, runner):

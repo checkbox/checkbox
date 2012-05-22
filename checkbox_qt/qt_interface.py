@@ -142,7 +142,7 @@ class QTInterface(UserInterface):
     def show_radio(self, text, options=[], default=None):
         return False
 
-    def show_tree(self, text, options={}, default={}):
+    def show_tree(self, text, options={}, default={}, deselect_warning=""):
         indexedOptions = {}
         indexedDefaults = {}
 
@@ -187,7 +187,8 @@ class QTInterface(UserInterface):
         self._set_main_title()
         buildBranch(options, default)
 
-        self.qtiface.showTree(text, indexedOptions, indexedDefaults)
+        self.qtiface.showTree(text, indexedOptions, indexedDefaults,
+                              deselect_warning)
         self.wait_on_signals(
             startTestsClicked=onStartTestsClicked)
 
