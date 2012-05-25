@@ -2,6 +2,7 @@
 import sys
 import subprocess
 import tempfile
+from gi.repository import Gio
 from contextlib import contextmanager
 import gconf
 import argparse
@@ -32,16 +33,17 @@ def gedit_wrap_none():
     """
     Make sure that gedit word wrapping is set to None
     """
-    client = gconf.Client()
-    wrap_mode = client.get_string('/apps/gedit-2/preferences/editor'
-                                  '/wrap_mode/wrap_mode')
-    client.set_string('/apps/gedit-2/preferences/editor/wrap_mode/wrap_mode',
-                      'GTK_WRAP_NONE')
+
+    gedit_settings = Gio.Settings.new("org.gnome.gedit.preferences.editor")
+    current_setting = gedit_settings.get_string("wrap-mode")
+
+    # Set to None
+    gedit_settings.set_string("wrap-mode", 'none')
+
     yield
-    client.set_string('/apps/gedit-2/preferences/editor/wrap_mode/wrap_mode',
-                      wrap_mode)
-
-
+    gedit_settings.set_string("wrap-mode", current_setting)
+   
+ 
 def get_horizontal_str():
     """
     Wide line to force horizontal scrolling
