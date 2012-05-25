@@ -70,13 +70,29 @@ plugin: manual
 name: keys/media-control
 requires:
  device.category == 'KEYBOARD'
-command: media_keys_test
+user: root
+command: key_test -s 0xe010,0xe090:Previous 0xe024,0xe0a4:Stop 0xe019,0xe099:Next 0xe022,0xe0a2:Play
 _description:
  PURPOSE:
      This test will test the media keys of your keyboard
  STEPS:
-     1. Click test to open a window on which to test the media control keys.
+     1. Click test to open a window on which to test the media keys.
      2. If all the keys work, the test will be marked as passed.
-     3. If your computer has no media control keys, Skip this test.
+     3. If your computer has no media keys, Skip this test.
  VERIFICATION:
      Do the keys work as expected?
+
+plugin: manual
+name: keys/super
+requires:
+ device.category == 'KEYBOARD'
+user: root
+command: key_test -s 0xe05b,0xe0db:Super
+_description:
+ PURPOSE:
+     This test will test the super key of your keyboard
+ STEPS:
+     1. Click test to open a window on which to test the super key.
+     2. If the key works, the test will pass and the window will close.
+ VERIFICATION:
+     Does the super key work as expected?
