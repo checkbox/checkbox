@@ -28,11 +28,6 @@ import termios
 
 from gettext import gettext as _
 from gi.repository import GObject
-try:
-    from gi.repository import Gtk, Gdk
-except ImportError:
-    pass
-
 from optparse import OptionParser
 
 
@@ -231,11 +226,19 @@ class GtkReporter(Reporter):
     def __init__(self, *args, **kwargs):
         super(GtkReporter, self).__init__(*args, **kwargs)
 
+        from gi.repository import Gdk, Gtk
+
         # Initialize GTK constants
         self.ICON_SIZE = Gtk.IconSize.BUTTON
         self.ICON_TESTED = Gtk.STOCK_YES
         self.ICON_UNTESTED = Gtk.STOCK_INDEX
         self.ICON_NOT_REQUIRED = Gtk.STOCK_REMOVE
+
+        self.button_factory = Gtk.Button
+        self.hbox_factory = Gtk.HBox
+        self.image_factory = Gtk.Image
+        self.label_factory = Gtk.Label
+        self.vbox_factory = Gtk.VBox
 
         # Create GTK window.
         window = Gtk.Window()
@@ -276,26 +279,26 @@ class GtkReporter(Reporter):
                          "from the test."))
 
     def _add_button(self, context, label, use_underline=False):
-        button = Gtk.Button(label=label, use_underline=use_underline)
+        button = self.button_factory(label=label, use_underline=use_underline)
         context.add(button)
         button.show()
         return button
 
     def _add_hbox(self, context, spacing=4):
-        hbox = Gtk.HBox()
+        hbox = self.hbox_factory()
         context.add(hbox)
         hbox.set_spacing(4)
         hbox.show()
         return hbox
 
     def _add_image(self, context, stock):
-        image = Gtk.Image(stock=stock, icon_size=self.ICON_SIZE)
+        image = self.image_factory(stock=stock, icon_size=self.ICON_SIZE)
         context.add(image)
         image.show()
         return image
 
     def _add_label(self, context, text=None):
-        label = Gtk.Label()
+        label = self.label_factory()
         context.add(label)
         label.set_size_request(0, 0)
         label.set_line_wrap(True)
@@ -305,7 +308,7 @@ class GtkReporter(Reporter):
         return label
 
     def _add_vbox(self, context):
-        vbox = Gtk.VBox()
+        vbox = self.vbox_factory()
         vbox.set_homogeneous(False)
         vbox.set_spacing(8)
         context.add(vbox)
@@ -393,7 +396,10 @@ Hint to find codes:
         keys.append(key)
 
     main_loop = GObject.MainLoop()
-    reporter = reporter_factory(main_loop, keys, options.scancodes)
+    try:
+        reporter = reporter_factory(main_loop, keys, options.scancodes)
+    except:
+        parser.error("Failed to initialize interface: %s" % options.interface)
     GObject.timeout_add_seconds(EXIT_TIMEOUT, reporter.quit)
 
     try:
