@@ -1,6 +1,10 @@
 checkbox (0.14) quantal; urgency=low
 
   [ Marc Tardif ]
+  * [FEATURE] Reworked media_keys_test into key_test, making it more generic
+    and able to test for any key that sends an scancode. Used it to implement
+    a test for the Super key.
+
   [Daniel Manrique]
   * New version 0.14 for Quantal Quetzal development.
 
@@ -37,7 +41,7 @@ checkbox (0.14) quantal; urgency=low
     user input (LP: #1000451)
   * Added customizable deselect_warning message in qt show_tree method (LP: #1000443)
 
- -- Javier Collado <javier.collado@canonical.com>  Fri, 18 May 2012 18:15:43 +0200
+ -- Daniel Manrique <roadmr@ubuntu.com>  Fri, 25 May 2012 16:38:54 -0400
 
 checkbox (0.13.8) precise; urgency=low
 
