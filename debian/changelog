@@ -3,6 +3,8 @@ checkbox (0.14) quantal; urgency=low
   [Daniel Manrique]
   * New version 0.14 for Quantal Quetzal development.
   * Set the correct user (root) for fwts-wakealarm test (LP: #1004102)
+  * Set correct user (root) for usb/storage-preinserted, so it works correctly
+    on servers (LP: #1004131)
 
   [Javier Collado]
   * Submission screen in Qt interface updated to support certification client:
