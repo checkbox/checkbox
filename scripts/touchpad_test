@@ -5,7 +5,7 @@ import sys
 import gettext
 from gettext import gettext as _
 
-from gi.repository import Gtk, Gdk
+from gi.repository import Gio, Gtk, Gdk
 
 from optparse import OptionParser
 
@@ -25,6 +25,7 @@ class Direction(object):
 
 class GtkScroller(object):
 
+    touchpad_key = "org.gnome.settings-daemon.peripherals.touchpad"
     exit_code = EXIT_WITH_FAILURE
 
     def __init__(self, directions):
@@ -110,10 +111,29 @@ class GtkScroller(object):
         return vbox
 
     def run(self):
+        # Save touchpad settings.
+        touchpad_settings = Gio.Settings.new(self.touchpad_key)
+        self.saved_horiz_scroll_enabled = touchpad_settings.get_boolean(
+            "horiz-scroll-enabled")
+        self.saved_scroll_method = touchpad_settings.get_string(
+            "scroll-method")
+
+        # Set touchpad settings.
+        touchpad_settings.set_boolean("horiz-scroll-enabled", True)
+        touchpad_settings.set_string("scroll-method", "edge-scrolling")
+
         Gtk.main()
 
     def quit(self, exit_code=EXIT_WITH_FAILURE):
         self.exit_code = exit_code
+
+        # Reset touchpad settings.
+        touchpad_settings = Gio.Settings.new(self.touchpad_key)
+        touchpad_settings.set_boolean(
+            "horiz-scroll-enabled", self.saved_horiz_scroll_enabled)
+        touchpad_settings.set_string(
+            "scroll-method", self.saved_scroll_method)
+
         Gtk.main_quit()
 
     def show_text(self, string):
@@ -158,7 +178,11 @@ def main(args):
         directions.append(direction)
 
     scroller = GtkScroller(directions)
-    scroller.run()
+    try:
+        scroller.run()
+    except KeyboardInterrupt:
+        scroller.show_text(_("Test interrupted"))
+        scroller.quit()
 
     return scroller.exit_code
 
