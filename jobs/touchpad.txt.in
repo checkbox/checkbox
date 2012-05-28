@@ -14,7 +14,7 @@ plugin: manual
 name: touchpad/horizontal
 depends: touchpad/basic
 requires: package.name == 'gedit'
-command: touchpad.py horizontal
+command: touchpad_test right left
 _description:
  PURPOSE:
      1. Touchpad verification
@@ -30,7 +30,7 @@ plugin: manual
 name: touchpad/vertical
 depends: touchpad/basic
 requires: package.name == 'gedit'
-command: touchpad.py vertical
+command: touchpad_test up down
 _description:
  PURPOSE:
      1. Touchpad verification
