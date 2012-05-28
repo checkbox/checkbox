@@ -106,6 +106,7 @@ _description:
 
 plugin: shell
 name: usb/storage-preinserted
+user: root
 requires: package.name == 'linux'
 command: removable_storage_test -l usb && removable_storage_test usb
 _description:
