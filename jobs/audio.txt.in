@@ -110,9 +110,9 @@ _description:
  under a controlled environment.
 
 plugin: attachment
-name: audio/alsa_info_attachment
+name: alsa_info.log
 depends: audio/alsa_info_collect
-command: [ -e ${CHECKBOX_DATA}/alsa_info.log && cat ${CHECKBOX_DATA}/alsa_info.log
+command: [ -e ${CHECKBOX_DATA}/alsa_info.log ] && cat ${CHECKBOX_DATA}/alsa_info.log
 _description:
  Attaches the audio hardware data collection log to the results.
 
