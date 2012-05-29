@@ -16,6 +16,8 @@ checkbox (0.14) quantal; urgency=low
   * Set the correct user (root) for fwts-wakealarm test (LP: #1004102)
   * Set correct user (root) for usb/storage-preinserted, so it works correctly
     on servers (LP: #1004131)
+  * [FEATURE] Added script and jobs to collect and attach output from
+    alsa-info.sh.
 
   [Javier Collado]
   * Submission screen in Qt interface updated to support certification client:
@@ -50,7 +52,7 @@ checkbox (0.14) quantal; urgency=low
     user input (LP: #1000451)
   * Added customizable deselect_warning message in qt show_tree method (LP: #1000443)
 
- -- Daniel Manrique <roadmr@ubuntu.com>  Fri, 25 May 2012 16:38:54 -0400
+ -- Daniel Manrique <roadmr@ubuntu.com>  Tue, 29 May 2012 15:23:46 -0400
 
 checkbox (0.13.8) precise; urgency=low
 

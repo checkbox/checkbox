@@ -100,3 +100,19 @@ _description:
  Play back a sound on the default output and listen for it on the 
  default input.  This makes the most sense when the output and input 
  are directly connected, as with a patch cable.
+
+plugin: shell
+name: audio/alsa_info_collect
+command: alsa-info.sh --no-upload --output ${CHECKBOX_DATA}/alsa_info.log
+_description:
+ Collect audio-related system information. This data can be used to
+ simulate this computer's audio subsystem and perform more detailed tests
+ under a controlled environment.
+
+plugin: attachment
+name: audio/alsa_info_attachment
+depends: audio/alsa_info_collect
+command: [ -e ${CHECKBOX_DATA}/alsa_info.log && cat ${CHECKBOX_DATA}/alsa_info.log
+_description:
+ Attaches the audio hardware data collection log to the results.
+
