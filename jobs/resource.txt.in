@@ -64,6 +64,11 @@ plugin: resource
 command: for media in CD DVD; do wodim -prcap 2>/dev/null | grep -q -i "Does write $media" && echo "$media: writable" || echo "$media: readonly"; done
 description: Create resource info for supported optical actions
 
+name: block_devices
+plugin: resource
+command: for device in `ls -F /sys/block/*/device | awk -F "/" '{print $4}'`; do ([ `cat /sys/block/$device/device/block/$device/removable` == 1 ] && echo "$device: removable" || echo "$device: internal") ; done
+description: Create resource info for removable block devices 
+
 name: display
 plugin: resource
 command: for display in `xrandr | grep connected | awk '{print $1}' | grep -o ^[A-Z]* | sort | uniq`; do echo "$display: supported"; done
