@@ -110,7 +110,7 @@ _description:
  under a controlled environment.
 
 plugin: attachment
-name: alsa_info.log
+name: audio/alsa_info_attachment
 depends: audio/alsa_info_collect
 command: [ -e ${CHECKBOX_DATA}/alsa_info.log ] && cat ${CHECKBOX_DATA}/alsa_info.log
 _description:
