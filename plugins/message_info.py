@@ -16,9 +16,10 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
+import logging
 import os
-import re
 import posixpath
+import re
 import signal
 
 from StringIO import StringIO
@@ -31,6 +32,7 @@ from checkbox.parsers.description import DescriptionParser
 from checkbox.job import Job, PASS
 from checkbox.plugin import Plugin
 
+from gettext import gettext as _
 
 class DescriptionResult:
 
@@ -81,6 +83,9 @@ class MessageInfo(Plugin):
             self._manager.reactor.fire("message-filename", filename)
 
     def message_exec(self, message):
+        if "name" in message:
+            logging.info(_("Executing %(test_name)s" % {"test_name": message["name"]} ))
+
         if "user" not in message:
 
             def stop():
