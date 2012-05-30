@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-05-16 04:42+0000\n"
-"X-Generator: Launchpad (build 15247)\n"
+"X-Launchpad-Export-Date: 2012-05-30 05:15+0000\n"
+"X-Generator: Launchpad (build 15316)\n"
 
 #: ../checkbox/application.py:66
 msgid "Usage: checkbox [OPTIONS]"
@@ -443,7 +443,7 @@ msgstr "マルチコアのシステムでオフラインのCPUをテストしま
 #. description
 #: ../jobs/cpu.txt.in:30
 msgid "This test checks cpu topology for accuracy"
-msgstr ""
+msgstr "このテストでは、CPUトポロジーの性能をチェックします"
 
 #. description
 #: ../jobs/cpu.txt.in:38
@@ -453,7 +453,7 @@ msgstr ""
 #. description
 #: ../jobs/daemons.txt.in:5
 msgid "Test if the atd daemon is running when the package is installed."
-msgstr ""
+msgstr "パッケージがインストールされている場合は、atdデーモンの実行をテストします。"
 
 #. description
 #: ../jobs/daemons.txt.in:11
@@ -513,12 +513,12 @@ msgstr "システムに取り付けられているディスクを検知し表示
 #. description
 #: ../jobs/disk.txt.in:9
 msgid "Benchmark for each disk"
-msgstr ""
+msgstr "各ディスクでのベンチマーク計測"
 
 #. description
 #: ../jobs/disk.txt.in:23
 msgid "Check stats changes for each disk"
-msgstr ""
+msgstr "各ディスクでの統計の変更点をチェック"
 
 #. description
 #: ../jobs/disk.txt.in:40
@@ -630,7 +630,7 @@ msgstr "フロッピーのテスト"
 #. description
 #: ../jobs/graphics.txt.in:5
 msgid "Test to output the Xorg version"
-msgstr ""
+msgstr "Xorgのバージョンを出力するテスト"
 
 #. description
 #: ../jobs/graphics.txt.in:12
@@ -725,7 +725,7 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:106
 msgid "Check that VESA drivers are not in use"
-msgstr ""
+msgstr "VESAドライバーが使用されていないかのチェック"
 
 #. description
 #: ../jobs/graphics.txt.in:113
@@ -741,12 +741,12 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:126
 msgid "Check that hardware is able to run compiz"
-msgstr ""
+msgstr "Compizを使用できるかチェックします"
 
 #. description
 #: ../jobs/graphics.txt.in:133
 msgid "Check that hardware is able to run Unity 3D"
-msgstr ""
+msgstr "Unity 3Dを使用できるかチェックします"
 
 #. description
 #: ../jobs/graphics.txt.in:139
@@ -832,27 +832,27 @@ msgstr ""
 #. description
 #: ../jobs/info.txt.in:5
 msgid "Attaches a report of installed codecs for Intel HDA"
-msgstr ""
+msgstr "Intel HDA向けにインストールされているコーデックについての報告を添付する"
 
 #. description
 #: ../jobs/info.txt.in:10
 msgid "Attaches a report of CPU information"
-msgstr ""
+msgstr "CPU情報についての報告を添付する"
 
 #. description
 #: ../jobs/info.txt.in:15
 msgid "Attaches a copy of /var/log/dmesg to the test results"
-msgstr ""
+msgstr "テスト結果に /var/log/dmesg のコピーを添付する"
 
 #. description
 #: ../jobs/info.txt.in:20
 msgid "Attaches info on DMI"
-msgstr ""
+msgstr "DMI情報を添付する"
 
 #. description
 #: ../jobs/info.txt.in:26
 msgid "Attaches dmidecode output"
-msgstr ""
+msgstr "DMIデコードの出力を添付する"
 
 #. description
 #: ../jobs/info.txt.in:31
@@ -872,17 +872,17 @@ msgstr ""
 #. description
 #: ../jobs/info.txt.in:52
 msgid "Attaches the contents of the various modprobe conf files."
-msgstr ""
+msgstr "様々なmodprobe.confファイルの内容を添付します。"
 
 #. description
 #: ../jobs/info.txt.in:57
 msgid "Attaches the contents of the /etc/modules file."
-msgstr ""
+msgstr "/etc/modulesファイルの内容を添付します。"
 
 #. description
 #: ../jobs/info.txt.in:62
 msgid "attaches the contents of various sysctl config files."
-msgstr ""
+msgstr "様々なsysctl configファイルの内容を添付します。"
 
 #. description
 #: ../jobs/info.txt.in:66
@@ -903,22 +903,22 @@ msgstr ""
 #. description
 #: ../jobs/info.txt.in:89
 msgid "Attaches a list of the currently running kernel modules."
-msgstr ""
+msgstr "現在利用しているカーネルモジュールのリストを添付します。"
 
 #. description
 #: ../jobs/info.txt.in:94
 msgid "Gather log from the Firmware Test Suite run."
-msgstr ""
+msgstr "ファームウェアのテストスイートの実行結果からログを収集する。"
 
 #. description
 #: ../jobs/info.txt.in:101
 msgid "Attaches the contents of /proc/acpi/sleep if it exists."
-msgstr ""
+msgstr "/proc/acpi/sleepが存在する場合は、内容を添付します。"
 
 #. description
 #: ../jobs/info.txt.in:105
 msgid "Bootchart information."
-msgstr ""
+msgstr "ブートチャート情報"
 
 #. description
 #: ../jobs/info.txt.in:114
@@ -928,12 +928,12 @@ msgstr "SATA/IDEデバイスの情報"
 #. description
 #: ../jobs/info.txt.in:131
 msgid "Attaches the bootchart png file for bootchart runs"
-msgstr ""
+msgstr "ブートチャートを実行した際のブートチャートpngファイルを添付する"
 
 #. description
 #: ../jobs/info.txt.in:140
 msgid "Attaches the bootchart log for bootchart test runs."
-msgstr ""
+msgstr "ブートチャートのテスト実行時のブートチャートログを添付します。"
 
 #. description
 #: ../jobs/info.txt.in:148
@@ -943,7 +943,7 @@ msgstr ""
 #. description
 #: ../jobs/info.txt.in:153
 msgid "Attaches the installer debug log if it exists."
-msgstr ""
+msgstr "インストーラーのデバッグのログが存在する場合は添付します。"
 
 #. description
 #: ../jobs/input.txt.in:4
@@ -1066,7 +1066,7 @@ msgstr "オーディオテスト"
 #. description
 #: ../jobs/local.txt.in:10
 msgid "Autotest Suite tests"
-msgstr ""
+msgstr "自動テストスイートのテスト"
 
 #. description
 #: ../jobs/local.txt.in:17
@@ -1136,7 +1136,7 @@ msgstr "入力デバイステスト"
 #. description
 #: ../jobs/local.txt.in:108
 msgid "Software Installation tests"
-msgstr ""
+msgstr "ソフトウェアインストールテスト"
 
 #. description
 #: ../jobs/local.txt.in:115
@@ -1146,12 +1146,12 @@ msgstr "ホットキーテスト"
 #. description
 #: ../jobs/local.txt.in:122
 msgid "Linux Test Project tests"
-msgstr ""
+msgstr "Linuxテストプロジェクトのテスト"
 
 #. description
 #: ../jobs/local.txt.in:129
 msgid "Mago Automated Desktop Testing"
-msgstr ""
+msgstr "Mogo自動デスクトップテスト"
 
 #. description
 #: ../jobs/local.txt.in:136
@@ -1201,7 +1201,7 @@ msgstr "周辺機器テスト"
 #. description
 #: ../jobs/local.txt.in:199
 msgid "Phoronix Test Suite tests"
-msgstr ""
+msgstr "Phoronixテストスイートのテスト"
 
 #. description
 #: ../jobs/local.txt.in:206
@@ -1211,12 +1211,12 @@ msgstr "パワーマネジメントテスト"
 #. description
 #: ../jobs/local.txt.in:213
 msgid "QA Regression tests"
-msgstr ""
+msgstr "QA Regressionテスト"
 
 #. description
 #: ../jobs/local.txt.in:220
 msgid "Server Services checks"
-msgstr ""
+msgstr "サーバーサービスのチェック"
 
 #. description
 #: ../jobs/local.txt.in:227
@@ -1226,7 +1226,7 @@ msgstr "サスペンドテスト"
 #. description
 #: ../jobs/local.txt.in:234
 msgid "Touchpad tests"
-msgstr ""
+msgstr "タッチパッドのテスト"
 
 #. description
 #: ../jobs/local.txt.in:241
@@ -1251,7 +1251,7 @@ msgstr "ワイヤレスネットワークテスト"
 #. description
 #: ../jobs/local.txt.in:269
 msgid "Stress tests"
-msgstr ""
+msgstr "ストレステスト"
 
 #. description
 #: ../jobs/local.txt.in:276
@@ -4889,3 +4889,6 @@ msgstr ""
 #, python-format
 #~ msgid "Unable to start web browser to open %s."
 #~ msgstr "%s を開くためのウェブブラウザーを起動できません"
+
+#~ msgid "Attaches the screenshot captured in info/screenshot."
+#~ msgstr "info/screenshotのスクリーンショットキャプチャを添付します。"

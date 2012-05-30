@@ -13,8 +13,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-05-16 04:42+0000\n"
-"X-Generator: Launchpad (build 15247)\n"
+"X-Launchpad-Export-Date: 2012-05-30 05:14+0000\n"
+"X-Generator: Launchpad (build 15316)\n"
 
 #. Title of the user interface
 #: ../gtk/checkbox-gtk.ui.h:1 ../qt/checkbox-qt.desktop.in.h:1
@@ -116,7 +116,7 @@ msgstr "_Précédent"
 
 #: ../gtk/checkbox-gtk.ui.h:10
 msgid "Ne_xt"
-msgstr "Sui_vant"
+msgstr "_Suivant"
 
 #: ../qt/checkbox-qt.desktop.in.h:2
 msgid "Test your system and submit results to the Ubuntu Friendly project"
@@ -140,16 +140,16 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear a tone?"
 msgstr ""
-"Objectif : \n"
+"OBJECTIF\n"
 "    Ce test va vérifier que les haut-parleurs internes fonctionnent "
-"correctement\n"
-"ÉTAPES :\n"
-"    1. Assurez vous qu'aucune enceinte externe ou casque n'est connecté\n"
-"       Si la machine testée est de type bureau , les enceintes externes sont "
+"correctement.\n"
+"ÉTAPES\n"
+"    1. Assurez-vous qu'aucune enceinte externe ou casque n'est connecté.\n"
+"       Si la machine testée est de type bureau, les enceintes externes sont "
 "permises.\n"
-"    1. Cliquez sur le bouton « Tester » pour faire jouer un courte mélodie à "
-"votre périphérique audio\n"
-"VÉRIFICATION :\n"
+"    2. Cliquez sur le bouton « Tester » pour faire jouer une courte mélodie "
+"à votre périphérique audio\n"
+"VÉRIFICATION\n"
 "    Avez-vous entendu la mélodie ?"
 
 #. description
@@ -251,9 +251,9 @@ msgid ""
 "input.  This makes the most sense when the output and input  are directly "
 "connected, as with a patch cable."
 msgstr ""
-"Joue un son sur la sortie par défaut et l'écoute via la sortie par défaut. "
+"Joue un son sur la sortie par défaut, et l'écoute via l'entrée par défaut. "
 "Cela a plus de sens lorsque la sortie et l'entrée sont connectées "
-"directement, par exemple via un câble gaîné."
+"directement, par exemple via un câble gainé."
 
 #. description
 #: ../jobs/autotest.txt.in:6
@@ -262,7 +262,7 @@ msgid ""
 "   This test will attempt to install and run the Autotest Suite.  These "
 "tests can be destructive, so this test is blacklisted by default."
 msgstr ""
-"OBJECTIF :\n"
+"OBJECTIF\n"
 "    Ce test va tenter d'installer et de démarrer la suite Autotest. Ces "
 "tests pouvant être destructifs, ils ont été mis sur la liste noire par "
 "défaut."
@@ -524,8 +524,7 @@ msgstr "Testez le jitter de l'horloge."
 #. description
 #: ../jobs/cpu.txt.in:23
 msgid "Test offlining CPUs in a multicore system."
-msgstr ""
-"Testez la mise hors-ligne des processeurs dans un système multicœurs."
+msgstr "Testez la mise hors-ligne des processeurs dans un système multicœur."
 
 #. description
 #: ../jobs/cpu.txt.in:30
@@ -549,7 +548,7 @@ msgstr ""
 #: ../jobs/daemons.txt.in:11
 msgid "Test if the cron daemon is running when the package is installed."
 msgstr ""
-"Testez le bon fonctionnement du démon crond lorsque le paquet est installé."
+"Testez le bon fonctionnement du démon cron lorsque le paquet est installé."
 
 #. description
 #: ../jobs/daemons.txt.in:17
@@ -561,7 +560,7 @@ msgstr ""
 #: ../jobs/daemons.txt.in:23
 msgid "Test if the getty daemon is running when the package is installed."
 msgstr ""
-"Testez le bon fonctionnement du démon gettyd lorsque le paquet est installé."
+"Testez le bon fonctionnement du démon getty lorsque le paquet est installé."
 
 #. description
 #: ../jobs/daemons.txt.in:29
@@ -614,12 +613,12 @@ msgstr "Détectez et affichez les disques attachés au système."
 #. description
 #: ../jobs/disk.txt.in:9
 msgid "Benchmark for each disk"
-msgstr "Benchmark des différents disques"
+msgstr "Évaluation des performances de chaque disque"
 
 #. description
 #: ../jobs/disk.txt.in:23
 msgid "Check stats changes for each disk"
-msgstr "Vérifiez les changements des performances des différents disques"
+msgstr "Vérifie les changements de performances de chaque disque"
 
 #. description
 #: ../jobs/disk.txt.in:40
@@ -636,7 +635,7 @@ msgstr ""
 #: ../jobs/disk.txt.in:71
 msgid "Verify system storage performs at or above baseline performance"
 msgstr ""
-"Vérifiez que les performances du système de stockage sont supérieures ou "
+"Vérifie si les performances du système de stockage sont supérieures ou "
 "égales au niveau de performance de base"
 
 #. description
@@ -645,7 +644,7 @@ msgid ""
 "Verify that storage devices, such as Fibre Channel and RAID can be detected "
 "and perform under stress."
 msgstr ""
-"Vérifiez que les appareils de stockage, tels que la « Fibre Channel » et le "
+"Vérifie que les appareils de stockage, tels que la « Fibre Channel » et le "
 "« RAID », peuvent être détectés et qu'ils fonctionnent en charge."
 
 #. description
@@ -776,7 +775,7 @@ msgstr "Test d'affichage de la version Xorg"
 #: ../jobs/graphics.txt.in:12
 msgid "Run gtkperf to make sure that GTK based test cases work"
 msgstr ""
-"Exécutez « gtkperf « pour être sûr que les tests basés sur GTK fonctionnent"
+"Exécute « gtkperf « pour être sûr que les tests basés sur GTK fonctionnent"
 
 #. description
 #: ../jobs/graphics.txt.in:18
@@ -820,6 +819,18 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the display rotation change as expected?"
 msgstr ""
+"OBJECTIF :\n"
+"    Ce test va vérifier la rotation de l'écran\n"
+"ÉTAPES :\n"
+"    1. Ouvrez l'application Dispositif d'affichage\n"
+"    2. Sélectionnez une nouvelle valeur de rotation dans la liste "
+"déroulante\n"
+"    3. Cliquez sur Appliquer\n"
+"    4. Cliquez sur Restaurer la configuration précédente\n"
+"    5. Cliquez sur Appliquer\n"
+"    6. Répétez 2-5 avec des valeurs de rotation différentes\n"
+"VÉRIFICATION :\n"
+"    Est-ce que la rotation de l'écran a fonctionné comme prévu?"
 
 #. description
 #: ../jobs/graphics.txt.in:50
@@ -837,6 +848,8 @@ msgid ""
 "Test that X does not leak memory when running programs on systems with intel "
 "based graphics."
 msgstr ""
+"Vérifie si X provoque une fuite mémoire lorsque des programmes tournent sur "
+"les systèmes avec des cartes graphiques Intel."
 
 #. description
 #: ../jobs/graphics.txt.in:70
@@ -865,7 +878,7 @@ msgid ""
 "Ensure the current resolution meets or exceeds the recommended minimum "
 "resolution (800x600). See here for details:"
 msgstr ""
-"Veillez à ce que la résolution actuelle corresponde ou dépasse la résolution "
+"Veille à ce que la résolution actuelle corresponde ou dépasse la résolution "
 "minimale recommandée (800x600). Voir ici pour plus de détails :"
 
 #. description
@@ -1012,36 +1025,51 @@ msgid ""
 "    Did the system successfully hibernate and did it work properly after "
 "waking up?"
 msgstr ""
+"Objectif :\n"
+"    Ce test va vérifier que votre système peut hiberner avec succès (si "
+"supporté)\n"
+"Étapes :\n"
+"    1. Cliquez sur Tester\n"
+"    2. Le système va hiberner et devrait se réveiller lui-même d'ici à 5 "
+"minutes\n"
+"    3. Si votre système ne se réveille pas de lui-même après 5 minutes, "
+"merci d'appuyer sur le bouton Power pour le réveiller manuellement\n"
+"    4. Si le système ne parvient pas à sortir de l'hibernation, merci de "
+"redémarrer l'application de test du système et de marquer ce test comme "
+"Échec\n"
+"Vérification :\n"
+"    Est-ce que le système a hiberné avec succès et a-t-il fonctionné "
+"correctement après son réveil ?"
 
 #. description
 #: ../jobs/info.txt.in:5
 msgid "Attaches a report of installed codecs for Intel HDA"
-msgstr ""
+msgstr "Joindre un rapport des codecs installés pour Intel HDA"
 
 #. description
 #: ../jobs/info.txt.in:10
 msgid "Attaches a report of CPU information"
-msgstr ""
+msgstr "Joindre un rapport d'information du processeur"
 
 #. description
 #: ../jobs/info.txt.in:15
 msgid "Attaches a copy of /var/log/dmesg to the test results"
-msgstr ""
+msgstr "Joindre une copie du fichier /var/log/dmesg aux résultats du test"
 
 #. description
 #: ../jobs/info.txt.in:20
 msgid "Attaches info on DMI"
-msgstr ""
+msgstr "Joindre l'information sur le DMI"
 
 #. description
 #: ../jobs/info.txt.in:26
 msgid "Attaches dmidecode output"
-msgstr ""
+msgstr "Joindre la sortie de dmidecode"
 
 #. description
 #: ../jobs/info.txt.in:31
 msgid "Attaches very verbose lspci output."
-msgstr ""
+msgstr "Joindre la sortie de la commande lspci en mode très verbeux"
 
 #. description
 #: ../jobs/info.txt.in:36
@@ -1056,48 +1084,50 @@ msgstr ""
 #. description
 #: ../jobs/info.txt.in:52
 msgid "Attaches the contents of the various modprobe conf files."
-msgstr ""
+msgstr "Joindre le contenu de divers fichiers de configuration modprobe"
 
 #. description
 #: ../jobs/info.txt.in:57
 msgid "Attaches the contents of the /etc/modules file."
-msgstr ""
+msgstr "Joindre le contenu du fichier /etc/modules"
 
 #. description
 #: ../jobs/info.txt.in:62
 msgid "attaches the contents of various sysctl config files."
-msgstr ""
+msgstr "Joindre le contenu de divers fichiers de configuration sysctl"
 
 #. description
 #: ../jobs/info.txt.in:66
 msgid "Attaches a report of sysfs attributes."
-msgstr ""
+msgstr "Joindre un rapport des attributs sysfs"
 
 #. description
 #: ../jobs/info.txt.in:77
 msgid ""
 "Attaches a dump of the udev database showing system hardware information."
 msgstr ""
+"Joindre un dump de la base de données udev montrant des informations sur le "
+"matériel"
 
 #. description
 #: ../jobs/info.txt.in:84
 msgid "Attaches a tarball of gcov data if present."
-msgstr ""
+msgstr "Joindre un fichier tar des données de gcov si ce dernier existe"
 
 #. description
 #: ../jobs/info.txt.in:89
 msgid "Attaches a list of the currently running kernel modules."
-msgstr ""
+msgstr "Joindre une liste des modules du noyau en fonctionnement"
 
 #. description
 #: ../jobs/info.txt.in:94
 msgid "Gather log from the Firmware Test Suite run."
-msgstr ""
+msgstr "Rassembler le log de l'exécution de Firmware Test Suite."
 
 #. description
 #: ../jobs/info.txt.in:101
 msgid "Attaches the contents of /proc/acpi/sleep if it exists."
-msgstr ""
+msgstr "Joindre le contenu du fichier /proc/acpi/sleep s'il existe."
 
 #. description
 #: ../jobs/info.txt.in:105
@@ -1112,22 +1142,22 @@ msgstr "Informations sur le périphérique SATA/IDE."
 #. description
 #: ../jobs/info.txt.in:131
 msgid "Attaches the bootchart png file for bootchart runs"
-msgstr ""
+msgstr "Joindre le fichier png du graphique de démarrage (bootchart)"
 
 #. description
 #: ../jobs/info.txt.in:140
 msgid "Attaches the bootchart log for bootchart test runs."
-msgstr ""
+msgstr "Joindre le log des exécutions du bootchart"
 
 #. description
 #: ../jobs/info.txt.in:148
 msgid "installs the installer bootchart tarball if it exists."
-msgstr ""
+msgstr "Installer le tarball du bootchart de l'installateur s'il existe"
 
 #. description
 #: ../jobs/info.txt.in:153
 msgid "Attaches the installer debug log if it exists."
-msgstr ""
+msgstr "Joindre le fichier de débuggage de l'installateur s'il existe."
 
 #. description
 #: ../jobs/input.txt.in:4
@@ -1140,6 +1170,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the pointing device work as expected?"
 msgstr ""
+"Objectif :\n"
+"    Ce test va vérifier votre périphérique de pointage\n"
+"Étapes :\n"
+"    1. Déplacez le curseur en utilisant le périphérique de pointage ou "
+"touchez l'écran.\n"
+"    2. Effectuez quelques clics, doubles-clics et clics droits.\n"
+"Vérification :\n"
+"    Est-ce que le périphérique de pointage a fonctionné correctement ?"
 
 #. description
 #: ../jobs/input.txt.in:17
@@ -1152,6 +1190,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Is your keyboard working properly?"
 msgstr ""
+"Objectif :\n"
+"    Ce test va vérifier le bon fonctionnement de votre clavier\n"
+"Étapes :\n"
+"    1. Cliquez sur Test\n"
+"    2. Dans la zone de texte, utilisez votre clavier pour y taper quelque "
+"chose\n"
+"Vérification :\n"
+"    Est-ce que votre clavier fonctionne correctement ?"
 
 #. description
 #: ../jobs/install.txt.in:6
@@ -1160,6 +1206,9 @@ msgid ""
 "install updates). This is done to confirm that you could recover from an "
 "incomplete or broken update."
 msgstr ""
+"Vérifie que apt peut accéder aux dépôts et obtenir les mises à jour "
+"(n'installe pas les mises à jour). Ceci est fait pour confirmer que vous "
+"pourrez récupérer une mise à jour incomplète ou cassée."
 
 #. description
 #: ../jobs/keys.txt.in:4
@@ -1171,6 +1220,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the brightness change following to your key presses?"
 msgstr ""
+"Objectif :\n"
+"    Ce test va vérifier le fonctionnement de la touche de modification de la "
+"luminosité de l'écran\n"
+"Étapes :\n"
+"    1. Appuyez sur les boutons de luminosité du clavier\n"
+"Vérification :\n"
+"    Est-ce que la luminosité a changé en fonction des touches utilisées ?"
 
 #. description
 #: ../jobs/keys.txt.in:14
@@ -1182,6 +1238,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the volume change following to your key presses?"
 msgstr ""
+"Objectif :\n"
+"    Ce test va vérifier le fonctionnement des touches de modification du "
+"volume du son\n"
+"Étapes :\n"
+"    1. Appuyez sur les touches de modification du volume du son\n"
+"Vérification :\n"
+"    Est-ce que le volume a changé en fonction des touches utilisées ?"
 
 #. description
 #: ../jobs/keys.txt.in:25
@@ -1193,6 +1256,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the volume mute following your key presses?"
 msgstr ""
+"Objectif :\n"
+"    Ce test va vérifier le fonctionnement de la touche permettant de couper "
+"le son\n"
+"Étape :\n"
+"    1. Appuyez sur le bouton de votre clavier permettant de couper le son\n"
+"Vérification :\n"
+"    Est-ce que le volume s'est coupé ?"
 
 #. description
 #: ../jobs/keys.txt.in:37
@@ -1205,6 +1275,16 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the system go to sleep after pressing the sleep key?"
 msgstr ""
+"Objectif :\n"
+"    Ce test va vérifier le fonctionnement de la touche permettant "
+"l'endormissement du système\n"
+"Étapes \n"
+"    1. Appuyer sur le bouton de votre clavier permettant l'endormissement du "
+"système\n"
+"    2. Réveillez votre système en appuyant sur le bouton pour allumer "
+"l'ordinateur\n"
+"Vérification :\n"
+"    Le système s'est-il endormi après avoir appuyé sur ce bouton ?"
 
 #. description
 #: ../jobs/keys.txt.in:49
@@ -1216,6 +1296,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Did a notification appear showing the battery status?"
 msgstr ""
+"Objectif :\n"
+"    Ce test va vérifier le fonctionnement de la touche permettant d'avoir "
+"des informations sur la batterie\n"
+"Étapes :\n"
+"    1. Appuyez sur la touche de votre clavier permettant d'avoir des "
+"informations sur la batterie\n"
+"Vérification :\n"
+"    Une notification est-elle apparu affichant l'état de la batterie ?"
 
 #. description
 #: ../jobs/keys.txt.in:60
@@ -1228,6 +1316,16 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the wireless go off on the first press and on again on the second?"
 msgstr ""
+"Objectif :\n"
+"    Ce test va vérifier le fonctionnement de la touche permettant d'utiliser "
+"ou d'arrêter le wifi\n"
+"Étapes :\n"
+"    1. Appuyez sur la touche de votre clavier permettant d'utiliser ou "
+"d'arrêter le wifi\n"
+"    2. Appuyez une nouvelle fois sur cette touche\n"
+"Vérification :\n"
+"    Le wifi n'a plus fonctionné après la première étape et est revenu après "
+"la seconde étape ?"
 
 #. description
 #: ../jobs/keys.txt.in:74
@@ -1250,7 +1348,7 @@ msgstr "Tests audio"
 #. description
 #: ../jobs/local.txt.in:10
 msgid "Autotest Suite tests"
-msgstr ""
+msgstr "Tests de la Suite Autotest"
 
 #. description
 #: ../jobs/local.txt.in:17
@@ -1330,12 +1428,12 @@ msgstr "Tests des touches de raccourci"
 #. description
 #: ../jobs/local.txt.in:122
 msgid "Linux Test Project tests"
-msgstr ""
+msgstr "Tests du projet Linux Test"
 
 #. description
 #: ../jobs/local.txt.in:129
 msgid "Mago Automated Desktop Testing"
-msgstr ""
+msgstr "Test de bureau automatisé Mago"
 
 #. description
 #: ../jobs/local.txt.in:136
@@ -1370,7 +1468,7 @@ msgstr "Tests des lecteurs optiques"
 #. description
 #: ../jobs/local.txt.in:178
 msgid "Panel Clock Verification tests"
-msgstr ""
+msgstr "Tests de vérification de l'horloge du panel"
 
 #. description
 #: ../jobs/local.txt.in:185
@@ -1385,7 +1483,7 @@ msgstr "Tests des périphériques"
 #. description
 #: ../jobs/local.txt.in:199
 msgid "Phoronix Test Suite tests"
-msgstr ""
+msgstr "Tests de la Suite de Test de Phoronix"
 
 #. description
 #: ../jobs/local.txt.in:206
@@ -1395,7 +1493,7 @@ msgstr "Tests de la gestion de l'alimentation"
 #. description
 #: ../jobs/local.txt.in:213
 msgid "QA Regression tests"
-msgstr ""
+msgstr "Tests d'Assurance Qualité"
 
 #. description
 #: ../jobs/local.txt.in:220
@@ -1410,7 +1508,7 @@ msgstr "Tests de la mise en veille"
 #. description
 #: ../jobs/local.txt.in:234
 msgid "Touchpad tests"
-msgstr ""
+msgstr "Tests du pavé tactile"
 
 #. description
 #: ../jobs/local.txt.in:241
@@ -1453,6 +1551,8 @@ msgid ""
 "This test installs and runs Linux Test Project syscalls test. This can be "
 "destructive, thus this test is blacklisted by default."
 msgstr ""
+"Ce test installe et lance un test d'appel système du projet Linux Test. Cela "
+"peut être destructif, c'est pourquoi ce test n'est pas effectué par défaut."
 
 #. description
 #: ../jobs/mago.txt.in:8
@@ -1460,6 +1560,9 @@ msgid ""
 "PURPOSE:\n"
 "   This test installs and runs the Mago Automated Desktop Testing suite."
 msgstr ""
+"Objectif :\n"
+"   Ce test installe et lance la suite de test automatisé pour ordinateur de "
+"bureau Mago."
 
 #. description
 #: ../jobs/mediacard.txt.in:4
@@ -1519,6 +1622,9 @@ msgid ""
 "suspend test is run. It tests reading and writing to the MMC card after the "
 "system has been suspended."
 msgstr ""
+"Ce tes est automatique et s'exécute après le test mediacard/mmc-insert-after-"
+"suspend. Il teste la lecture et l'écriture sur une carte MMC après que le "
+"système ait été mis en veille."
 
 #. description
 #: ../jobs/mediacard.txt.in:67
@@ -1556,6 +1662,8 @@ msgid ""
 "This test is automated and executes after the mediacard/sd-insert test is "
 "run. It tests reading and writing to the SD card."
 msgstr ""
+"Ce test est automatisé et s'exécute après le test mediacard/sd-insert. Il "
+"teste la lecture et l'écriture sur une carte SD."
 
 #. description
 #: ../jobs/mediacard.txt.in:105
@@ -1593,6 +1701,9 @@ msgid ""
 "suspend test is run. It tests reading and writing to the SD card after the "
 "system has been suspended."
 msgstr ""
+"Ce test est automatisé et s'exécute après le test mediacard/sd-insert-after-"
+"suspend. Il teste la lecture et l'écriture sur une carte SD après que le "
+"système ait été mis en veille."
 
 #. description
 #: ../jobs/mediacard.txt.in:144
@@ -1631,6 +1742,8 @@ msgid ""
 "This test is automated and executes after the mediacard/sdhc-insert test is "
 "run. It tests reading and writing to the SDHC card."
 msgstr ""
+"Ce test est automatisé et s'exécute après le test mediacard/sdhc-insert. Il "
+"teste la lecture et l'écriture sur une carte SDHC."
 
 #. description
 #: ../jobs/mediacard.txt.in:182
@@ -1669,6 +1782,9 @@ msgid ""
 "suspend test is run. It tests reading and writing to the SDHC card after the "
 "system has been suspended."
 msgstr ""
+"Ce test est automatisé et s'exécute après le test mediacard/sdhc-insert-"
+"after-suspend. Il teste la lecture et l'écriture sur une carte SDHC après "
+"que le système ait été mis en veille."
 
 #. description
 #: ../jobs/mediacard.txt.in:221
@@ -1706,6 +1822,8 @@ msgid ""
 "This test is automated and executes after the mediacard/cf-insert test is "
 "run. It tests reading and writing to the CF card."
 msgstr ""
+"Ce test est automatisé et s'exécute après le test mediacard/cf-insert. Il "
+"teste la lecture et l'écriture sur une carte CF."
 
 #. description
 #: ../jobs/mediacard.txt.in:259
@@ -1743,6 +1861,9 @@ msgid ""
 "suspend test is run. It tests reading and writing to the CF card after the "
 "system has been suspended."
 msgstr ""
+"Ce test est automatisé et s'exécute après le test mediacard/cf-insert-after-"
+"suspend. Il teste la lecture et l'écriture sur une carte CF après que le "
+"système ait été mis en veille."
 
 #. description
 #: ../jobs/mediacard.txt.in:298
@@ -1765,6 +1886,8 @@ msgid ""
 "This test checks the amount of memory which is reporting in meminfo against "
 "the size of the memory modules detected by DMI."
 msgstr ""
+"Ce teste compare la quantité de mémoire indiquée par meminfo et la taille "
+"des modules de mémoire détectés par DMI."
 
 #. description
 #: ../jobs/memory.txt.in:14
@@ -1788,7 +1911,7 @@ msgstr ""
 #. description
 #: ../jobs/miscellanea.txt.in:22
 msgid "Run Firmware Test Suite (fwts) automated tests."
-msgstr ""
+msgstr "Exécute les tests automatiques  de Firmware Test Suite (fwts)."
 
 #. description
 #: ../jobs/miscellanea.txt.in:31
@@ -1810,6 +1933,8 @@ msgid ""
 "   Determine if we need to run tests specific to portable computers that may "
 "not apply to desktops."
 msgstr ""
+"   Détermine s'il est nécessaire d'effectuer des tests spécifiques aux "
+"ordinateurs portables qui ne s'appliqueraient pas aux ordinateurs de bureau."
 
 #. description
 #: ../jobs/miscellanea.txt.in:52
@@ -1818,6 +1943,8 @@ msgid ""
 "contained within if it does, or echoes the status of the directory (doesn't "
 "exist/is empty)"
 msgstr ""
+"Vérifie si le dossier /var/crash ne contient rien. Liste les fichiers "
+"contenus, ou affiche le statut du dossier (n'existe pas/est vide)"
 
 #. description
 #: ../jobs/miscellanea.txt.in:60
@@ -1825,6 +1952,8 @@ msgid ""
 "Test to check that virtualization is supported and the test system has at "
 "least a minimal amount of RAM to function as an OpenStack Compute Node"
 msgstr ""
+"Vérifie si la virtualisation est supportée et si le système a un minimum de "
+"RAM pour fonctionner comme un OpenStack Compute Node"
 
 #. description
 #: ../jobs/monitor.txt.in:4
@@ -1838,6 +1967,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the desktop displayed correctly on both screens?"
 msgstr ""
+"Objectif :\n"
+"    Ce test va vérifier votre port VGA. Passez si votre système n'a pas de "
+"port VGA.\n"
+"Étape :\n"
+"    1. Connectez un écran (si il n'est pas déjà connecté) au port VGA de "
+"votre système\n"
+"Vérification :\n"
+"    Est-ce que le bureau était affiché correctement sur les deux écrans ?"
 
 #. description
 #: ../jobs/monitor.txt.in:15
@@ -1851,6 +1988,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the desktop displayed correctly on both screens?"
 msgstr ""
+"Objectif :\n"
+"    Ce test va vérifier votre port DVI. Passez si votre système n'a pas de "
+"port DVI\n"
+"Étape :\n"
+"    1. Connectez un écran (s'il n'est pas déjà connecté) au port DVI de "
+"votre système\n"
+"Vérification :\n"
+"    Est-ce que le bureau était affiché correctement sur les deux écrans ?"
 
 #. description
 #: ../jobs/monitor.txt.in:26
@@ -1864,6 +2009,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the desktop displayed correctly on both screens?"
 msgstr ""
+"Objectif :\n"
+"    Ce test va vérifier votre port DisplayPort. Passez si votre système n'a "
+"pas de port DisplayPort\n"
+"Étapes :\n"
+"    1. Connectez un écran (s'il n'est pas déjà connecté) au port DisplayPort "
+"de votre système\n"
+"Vérification :\n"
+"    Est-ce que le bureau était affiché correctement sur les deux écrans ?"
 
 #. description
 #: ../jobs/monitor.txt.in:37
@@ -1877,6 +2030,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the desktop displayed correctly on both screens?"
 msgstr ""
+"Objectif :\n"
+"    Ce test va vérifier votre port HDMI. Passez si votre système n'a pas de "
+"port HDMI\n"
+"Étape :\n"
+"    1. Connectez un écran (s'il n'est pas déjà connecté) au port HDMI de "
+"votre système\n"
+"Vérification :\n"
+"    Est-ce que le bureau était affiché correctement sur les deux écrans ?"
 
 #. description
 #: ../jobs/monitor.txt.in:48
@@ -1890,6 +2051,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the desktop displayed correctly on both screens?"
 msgstr ""
+"Objectif :\n"
+"    Ce test va vérifier votre port S-VIDEO. Passez si votre système n'a pas "
+"de port S-VIDEO\n"
+"Étape :\n"
+"    1. Connectez un écran (s'il n'est pas déjà connecté) au port S-VIDEO de "
+"votre système\n"
+"Vérification :\n"
+"    Est-ce que le bureau était affiché correctement sur les deux écrans ?"
 
 #. description
 #: ../jobs/monitor.txt.in:59
@@ -1903,6 +2072,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the desktop displayed correctly on both screens?"
 msgstr ""
+"Objectif :\n"
+"    Ce test va vérifier votre port RCA. Passez si votre système n'a pas de "
+"port RCA\n"
+"Étape :\n"
+"    1. Connectez un écran (s'il n'est pas déjà connecté) au port RCA de "
+"votre système\n"
+"Vérification :\n"
+"    Est-ce que le bureau était affiché correctement sur les deux écrans ?"
 
 #. description
 #: ../jobs/monitor.txt.in:70
@@ -1919,7 +2096,7 @@ msgstr ""
 #. description
 #: ../jobs/networking.txt.in:5
 msgid "Test to detect the available network controllers"
-msgstr ""
+msgstr "Test pour détecter les controleurs réseau disponibles"
 
 #. description
 #: ../jobs/networking.txt.in:11
@@ -1937,6 +2114,9 @@ msgid ""
 "This is an automated test to gather some info on the current state of your "
 "network devices. If no devices are found, the test will exit with an error."
 msgstr ""
+"Il s'agit d'un test automatique qui rassemble des informations à propos de "
+"l'état actuel de vos périphériques réseau. Si aucun périphérique n'est "
+"trouvé, le test s'arrête avec une erreur."
 
 #. description
 #: ../jobs/networking.txt.in:46
@@ -1951,6 +2131,16 @@ msgid ""
 "VERIFICATION:\n"
 "    Did a notification show and was the connection correctly established?"
 msgstr ""
+"Objectif :\n"
+"    Ce test va vérifier voter connexion filaire\n"
+"Étapes :\n"
+"    1. Cliquez sur l'icône Réseau dans le panneau supérieur\n"
+"    2. Sélectionnez un réseau en-dessous de la section \"Réseau filaire\"\n"
+"    3. Cliquez sur Test pour vérifier qu'il est possible d'établir une "
+"connexion HTTP\n"
+"Vérification :\n"
+"    Est-ce qu'une notification est apparue et est-ce que la connexion a été "
+"correctement établie ?"
 
 #. description
 #: ../jobs/networking.txt.in:59
@@ -1969,6 +2159,20 @@ msgid ""
 "VERIFICATION:\n"
 "    Did a notification show and was the connection correctly established?"
 msgstr ""
+"Objectif :\n"
+"    Ce test va vérifier qu'un modem DSL peut être configuré et connecté.\n"
+"Étapes :\n"
+"    1. Connectez la ligne téléphonique à l'ordinateur\n"
+"    2. Cliquez sur l'icône Réseau dans le panneau supérieur.\n"
+"    3. Sélectionnez \"Modification des connexions\"\n"
+"    4. Sélectionnez l'onglet \"DSL\"\n"
+"    5. Cliquez sur le bouton \"Ajouter\"\n"
+"    6. Configurer les paramètres de connexion correctement\n"
+"    7. Cliquez sur \"Test\" pour vérifier qu'il est possible d'établir une "
+"connexion HTTP\n"
+"Vérification :\n"
+"    Est-ce qu'une notification est apparue et est-ce que la connexion a été "
+"correctement établie ?"
 
 #. description
 #: ../jobs/networking.txt.in:76
@@ -2015,6 +2219,8 @@ msgstr ""
 msgid ""
 "Automated test to walk multiple network cards and test each one in sequence."
 msgstr ""
+"Test automatisé pour parcourir les différentes cartes réseaux et tester "
+"chacun en séquence."
 
 #. description
 #: ../jobs/networking.txt.in:128
@@ -2024,7 +2230,7 @@ msgstr "Test pour mesurer la bande passante du réseau"
 #. description
 #: ../jobs/optical.txt.in:8
 msgid "Test to detect the optical drives"
-msgstr ""
+msgstr "Test pour détecter les disques optiques"
 
 #. description
 #: ../jobs/optical.txt.in:16
@@ -2355,32 +2561,32 @@ msgstr ""
 #. description
 #: ../jobs/server-services.txt.in:5
 msgid "Verifies that sshd is running."
-msgstr ""
+msgstr "Vérifie que le démon sshd s'exécute."
 
 #. description
 #: ../jobs/server-services.txt.in:11
 msgid "Verifies that Print/CUPs server is running."
-msgstr ""
+msgstr "Vérifie que le serveur d'impression CUPs s'exécute."
 
 #. description
 #: ../jobs/server-services.txt.in:18
 msgid "Verifies that DNS server is running and working."
-msgstr ""
+msgstr "Vérifie que le serveur DNS s'exécute et fonctionne."
 
 #. description
 #: ../jobs/server-services.txt.in:25
 msgid "Verifies that Samba server is running."
-msgstr ""
+msgstr "Vérifie que le serveur Samba s'exécute."
 
 #. description
 #: ../jobs/server-services.txt.in:32
 msgid "Verifies that the LAMP stack is running (Apache, MySQL and PHP)."
-msgstr ""
+msgstr "Vérifie que la pile LAMP s'exécute (Apache, MySQL et PHP)."
 
 #. description
 #: ../jobs/server-services.txt.in:39
 msgid "Verifies that Tomcat server is running and working."
-msgstr ""
+msgstr "Vérifie que le serveur Tomcat s'exécute et fonctionne."
 
 #. description
 #: ../jobs/stress.txt.in:8
@@ -2429,12 +2635,13 @@ msgstr "Enregistrez la résolution actuelle avant la mise en veille."
 #. description
 #: ../jobs/suspend.txt.in:17
 msgid "Record mixer settings before suspending."
-msgstr ""
+msgstr "Enregistre les paramètres de son avant la mise en veille."
 
 #. description
 #: ../jobs/suspend.txt.in:24
 msgid "Verify that all the CPUs are online before suspending"
 msgstr ""
+"Vérifier que tous les processeurs sont connectés avant la mise en veille"
 
 #. description
 #: ../jobs/suspend.txt.in:31
@@ -2487,16 +2694,20 @@ msgstr ""
 msgid ""
 "Verify that mixer settings after suspend are the same as before suspend."
 msgstr ""
+"Vérifier que les paramètres du son après la mise en veille sont les mêmes "
+"qu'avant la mise en veille."
 
 #. description
 #: ../jobs/suspend.txt.in:126
 msgid "Verify that all CPUs are online after resuming."
-msgstr ""
+msgstr "Vérifier que tous les processeurs sont connectés après la reprise."
 
 #. description
 #: ../jobs/suspend.txt.in:143
 msgid "Verify that all memory is available after resuming from suspend."
 msgstr ""
+"Vérifier que toute la mémoire est disponible après la reprise d'une mise en "
+"veille."
 
 #. description
 #: ../jobs/suspend.txt.in:152
@@ -2565,6 +2776,9 @@ msgid ""
 "This is an automated Bluetooth file transfer test. It sends an image to the "
 "device specified by the BTDEVADDR environment variable."
 msgstr ""
+"Ceci est un test de transfert de fichier en Bluetooth automatisé. Il envoie "
+"une image à un périphérique spécifié par la variable d'environnement "
+"BTDEVADDR."
 
 #. description
 #: ../jobs/suspend.txt.in:241
@@ -3251,6 +3465,8 @@ msgstr ""
 #: ../jobs/wireless.txt.in:6
 msgid "Wireless scanning test. It scans and reports on discovered APs."
 msgstr ""
+"Test de balayage du sans fils. Ce test permet de balayer et d'informer sur "
+"les points d'accès découverts."
 
 #. description
 #: ../jobs/wireless.txt.in:12
@@ -3326,19 +3542,19 @@ msgstr "Paramètres prenant le pas sur la configuration."
 
 #: ../checkbox/application.py:84
 msgid "Shorthand for --config=.*/jobs_info/blacklist."
-msgstr ""
+msgstr "Abréviation de --config=.*/jobs_info/blacklist."
 
 #: ../checkbox/application.py:86
 msgid "Shorthand for --config=.*/jobs_info/blacklist_file."
-msgstr ""
+msgstr "Abréviation de --config=.*/jobs_info/blacklist_file."
 
 #: ../checkbox/application.py:88
 msgid "Shorthand for --config=.*/jobs_info/whitelist."
-msgstr ""
+msgstr "Abréviation de --config=.*/jobs_info/whitelist."
 
 #: ../checkbox/application.py:90
 msgid "Shorthand for --config=.*/jobs_info/whitelist_file."
-msgstr ""
+msgstr "Abréviation de --config=.*/jobs_info/whitelist_file."
 
 #: ../checkbox/application.py:115
 msgid "Missing configuration file as argument.\n"
@@ -3535,7 +3751,7 @@ msgstr "_Tester à nouveau"
 
 #: ../checkbox_gtk/gtk_interface.py:574 ../qt/frontend/qtfront.cpp:536
 msgid "Info"
-msgstr "Info"
+msgstr "Informations"
 
 #: ../checkbox_gtk/gtk_interface.py:598 ../qt/frontend/qtfront.cpp:250
 msgid "Error"
@@ -3613,8 +3829,8 @@ msgid ""
 msgstr ""
 "\n"
 "\n"
-"Attention : certains tests peuvent provoquer un blocage du système. Merci de "
-"sauvegarder votre travail et de fermer toutes autres applications avant de "
+"Attention : certains tests peuvent provoquer un blocage du système. Veuillez "
+"sauvegarder votre travail et fermer toutes les autres applications avant de "
 "commencer les tests."
 
 #: ../plugins/launchpad_exchange.py:136
@@ -3681,7 +3897,7 @@ msgstr "Saisissez le texte :\n"
 
 #: ../scripts/keyboard_test:41
 msgid "Type Text"
-msgstr "Tapez le texte"
+msgstr "Écrire du texte"
 
 #: ../scripts/internet_test:196
 msgid "No Internet connection"
@@ -3832,7 +4048,7 @@ msgstr ""
 
 #: ../qt/frontend/ui_qtfront.h:591
 msgid "Don't show me this message in the future"
-msgstr ""
+msgstr "Ne plus afficher ce message à l'avenir"
 
 #: ../qt/frontend/ui_qtfront.h:592 ../qt/frontend/ui_qtfront.h:606
 msgid "Tab 1"
@@ -3844,7 +4060,7 @@ msgstr ""
 
 #: ../qt/frontend/ui_qtfront.h:595
 msgid "Lists of tests to run based on your system:"
-msgstr ""
+msgstr "Liste de tests à effectuer sur votre système :"
 
 #: ../qt/frontend/ui_qtfront.h:596
 msgid "Components"
@@ -5892,6 +6108,9 @@ msgstr " Résultats "
 #~ msgstr ""
 #~ "Testez les capacités d'échelonnage de la fréquence du processeur en "
 #~ "utilisant la batterie de tests du micrologiciel de Colin King."
+
+#~ msgid "Attaches the screenshot captured in info/screenshot."
+#~ msgstr "Joindre la capture d'écran dans info/screenshot"
 
 #~ msgid "Recover"
 #~ msgstr "Restaurer"
