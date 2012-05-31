@@ -17,6 +17,9 @@ checkbox (0.14) quantal; urgency=low
   * Set the correct user (root) for fwts-wakealarm test (LP: #1004102)
   * Set correct user (root) for usb/storage-preinserted, so it works correctly
     on servers (LP: #1004131)
+  * Log (at level INFO) name of each message we execute, so the currently
+    running job can be determined by looking at the logfile, rather than
+    hunting through process lists.
 
   [Javier Collado]
   * Submission screen in Qt interface updated to support certification client:
