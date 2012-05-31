@@ -41,7 +41,8 @@ class IncludeDict(dict):
             if isinstance(value, list):
                 value = value[0]
             for path in split(value):
-                path = self._parser._interpolate("DEFAULT", None, path, self)
+                path = self._parser._interpolation.before_get(
+                    self._parser, "DEFAULT", None, path, self)
                 path = posixpath.expanduser(path)
                 if not posixpath.exists(path):
                     raise Exception("No such configuration file: %s" % path)
@@ -109,7 +110,7 @@ class ConfigDefaults(ConfigSection):
 class Config:
 
     def __init__(self):
-        self._parser = ConfigParser()
+        self._parser = ConfigParser(empty_lines_in_values=False)
         self._parser._defaults = IncludeDict(self._parser)
 
         # Copy attributes from the parser to avoid one additional
@@ -145,7 +146,7 @@ class Config:
     def read_file(self, file, filename="<stream>"):
         logging.info("Reading configurations from: %s", filename)
 
-        self._parser.readfp(file, filename)
+        self._parser.read_file(file, filename)
 
     def read_filename(self, filename):
         if not posixpath.exists(filename):
