@@ -16,9 +16,9 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-import libxml2
 import posixpath
 
+from lxml import etree
 from xml.dom.minidom import Document, Element, parseString
 
 
@@ -108,12 +108,12 @@ class ReportManager:
 
         return document
 
-    def loads(self, str):
+    def loads(self, string):
         """
         Load the given string which may be a container of any nodes
         supported by the reports added to the manager.
         """
-        document = parseString(str)
+        document = parseString(string)
         node = document.childNodes[0]
         assert(node.localName == self.name)
 
@@ -124,9 +124,9 @@ class ReportManager:
 
         return ret
 
-    def validate(self, str):
+    def validate(self, string):
         """
-        Validate the given string 
+        Validate the given string
         """
         if not self.schema:
             return False
@@ -137,18 +137,11 @@ class ReportManager:
         finally:
             file.close()
 
-        rngParser = libxml2.relaxNGNewMemParserCtxt(schema, len(schema))
-        rngSchema = rngParser.relaxNGParse()
-        ctxt = rngSchema.relaxNGNewValidCtxt()
-        doc = libxml2.parseDoc(str)
-        is_valid = doc.relaxNGValidateDoc(ctxt)
+        relaxng_doc = etree.fromstring(schema)
+        relaxng = etree.RelaxNG(relaxng_doc)
 
-        # Clean up
-        doc.freeDoc()
-        del rngParser, rngSchema, ctxt
-        libxml2.relaxNGCleanupTypes()
-        libxml2.cleanupParser()
-        return is_valid == 0
+        doc = etree.fromstring(string)
+        return relaxng.validate(doc)
 
 
 class Report:
