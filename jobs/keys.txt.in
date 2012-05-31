@@ -87,7 +87,7 @@ name: keys/super
 requires:
  device.category == 'KEYBOARD'
 user: root
-command: key_test -s 0xe05b,0xe0db:Super
+command: key_test -s '0xe05b,0xe0db:Left Super Key'
 _description:
  PURPOSE:
      This test will test the super key of your keyboard
