@@ -27,7 +27,7 @@ from checkbox.lib.pci import Pci
 from checkbox.lib.usb import Usb
 
 
-class UnknownName(object):
+class UnknownName:
     def __init__(self, function):
         self._function = function
 
@@ -43,7 +43,7 @@ class UnknownName(object):
         return name
 
 
-class DeviceResource(object):
+class DeviceResource:
     __slots__ = ("_properties")
 
     def __init__(self, properties):
@@ -339,7 +339,7 @@ class DmiDeviceResource(DeviceResource):
         return None
 
 
-class HalResource(object):
+class HalResource:
     """Resource for HAL information.
 
     Each item contained in this resource consists of the udi as key and

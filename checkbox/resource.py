@@ -22,7 +22,7 @@ import builtins
 __all__ = ["ResourceMap"]
 
 
-class ResourceObject(object):
+class ResourceObject:
     __slots__ = ("_iterator", "_name", "_convert",)
 
     def __init__(self, iterator, name, convert=lambda x: x):
@@ -67,7 +67,7 @@ class ResourceObject(object):
         return until if found else default
 
 
-class ResourceIterator(object):
+class ResourceIterator:
     __slots__ = ("_map", "_values",)
 
     def __init__(self, map, values):
@@ -91,7 +91,7 @@ class ResourceIterator(object):
         return ResourceObject(self, name)
 
 
-class ResourceBuiltin(object):
+class ResourceBuiltin:
     __slots__ = ("_function",)
 
     def __init__(self, function):

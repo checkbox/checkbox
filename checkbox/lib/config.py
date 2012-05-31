@@ -64,7 +64,7 @@ class IncludeDict(dict):
             super(IncludeDict, self).__setitem__(key, value)
 
 
-class ConfigSection(object):
+class ConfigSection:
 
     def __init__(self, parent, name, attributes={}):
         self.parent = parent
@@ -106,7 +106,7 @@ class ConfigDefaults(ConfigSection):
             return os.environ[name_upper]
 
 
-class Config(object):
+class Config:
 
     def __init__(self):
         self._parser = ConfigParser()

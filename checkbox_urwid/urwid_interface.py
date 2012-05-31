@@ -27,7 +27,7 @@ from checkbox.user_interface import (UserInterface, NEXT, PREV,
                                      ALL_ANSWERS, ANSWER_TO_STATUS)
 
 
-class Dialog(object):
+class Dialog:
     """
     Basic dialog class that displays some text
     """

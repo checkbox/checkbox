@@ -181,7 +181,7 @@ class VerifiedHTTPSConnection(http.client.HTTPSConnection):
                 "Failed to verify cert for hostname: %s" % self.host)
 
 
-class HTTPTransport(object):
+class HTTPTransport:
     """Transport makes a request to exchange message data over HTTP."""
 
     def __init__(self, url):

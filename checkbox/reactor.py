@@ -22,7 +22,7 @@ import threading
 from checkbox.lib.log import format_object
 
 
-class EventID(object):
+class EventID:
 
     def __init__(self, event_type, pair):
         self._event_type = event_type
@@ -39,7 +39,7 @@ class StopAllException(Exception):
     pass
 
 
-class Reactor(object):
+class Reactor:
 
     def __init__(self):
         self._event_handlers = {}

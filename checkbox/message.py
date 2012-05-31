@@ -38,7 +38,7 @@ class Message(dict):
         self.filename = filename
 
 
-class MessageStore(object):
+class MessageStore:
     """A message store which stores its messages in a file system hierarchy."""
 
     #This caches everything but a message's data, making it manageable to keep in memory.

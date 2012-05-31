@@ -21,7 +21,7 @@ from inspect import getargspec
 from checkbox.lib.decorator import merge_function_metadata
 
 
-class ArgumentReplacer(object):
+class ArgumentReplacer:
     """A decorator helper that filters arguments to be passed to a function.
 
     Create one with the original function and a function to replace

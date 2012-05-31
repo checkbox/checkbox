@@ -54,7 +54,7 @@ class Config(ConfigParser):
             fp.write("\n")
 
 
-class Install(object):
+class Install:
     """Install module for generating checkbox configuration files.
 
     The checkbox module and derivatives use a configuration file format

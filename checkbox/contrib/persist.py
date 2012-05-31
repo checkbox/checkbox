@@ -41,7 +41,7 @@ class PersistReadOnlyError(PersistError):
     pass
 
 
-class Persist(object):
+class Persist:
     """Persistence handler.
 
     There are three different kinds of opition maps, regarding the
@@ -317,7 +317,7 @@ class Persist(object):
         return RootedPersist(self, path)
 
 
-class RootedPersist(object):
+class RootedPersist:
 
     def __init__(self, parent, root):
         self.parent = parent
@@ -408,7 +408,7 @@ def path_tuple_to_string(path):
     return ".".join(result)
 
 
-class Backend(object):
+class Backend:
 
     def new(self):
         return {}

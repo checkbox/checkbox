@@ -62,7 +62,7 @@ RERUN_ANSWER = 'Rerun'
 RESTART_ANSWER = 'Restart'
 
 
-class UserInterface(object):
+class UserInterface:
     """Abstract base class for encapsulating the workflow and common code for
        any user interface implementation (like GTK, Qt, or CLI).
 

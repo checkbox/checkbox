@@ -22,7 +22,7 @@ import posixpath
 from xml.dom.minidom import Document, Element, parseString
 
 
-class ReportManager(object):
+class ReportManager:
     """The central point for dumping and loading information.
 
     This keeps references to all reports which have been added to the
@@ -151,7 +151,7 @@ class ReportManager(object):
         return is_valid == 0
 
 
-class Report(object):
+class Report:
     """A convenience for writing reports.
 
     This provides a register method which will set the manager attribute

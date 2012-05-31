@@ -40,7 +40,7 @@ class PluginManager(ComponentManager):
                 module.register(self)
 
 
-class Plugin(object):
+class Plugin:
     """
     Plugin base class which should be inherited by each plugin
     implementation. This class extends the component to automatically

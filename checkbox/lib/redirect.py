@@ -73,7 +73,7 @@ def redirect_to_lines(func, *args):
     return file.readlines()
 
 
-class RedirectTee(object):
+class RedirectTee:
 
     def __init__(self, *optargs):
         self._files = []
@@ -114,7 +114,7 @@ class RedirectTee(object):
         return 0
 
 
-class RedirectEcho(object):
+class RedirectEcho:
 
     def __init__(self, input, *output):
         self._infile = _file_read(input)

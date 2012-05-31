@@ -25,7 +25,7 @@ class EnumException(Exception):
     pass
 
 
-class Enum(object):
+class Enum:
 
     def __init__(self, *names):
         value = 0

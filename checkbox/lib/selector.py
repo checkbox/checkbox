@@ -39,7 +39,7 @@ SelectorState = Enum(
     "FAILED")
 
 
-class Selector(object):
+class Selector:
     __slots__ = ("_read_fds", "_write_fds", "_except_fds",
         "_save_read_fds", "_save_write_fds", "_save_except_fds",
         "_fd_set_size", "_timeout", "_state", "_errno")

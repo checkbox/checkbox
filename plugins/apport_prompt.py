@@ -46,7 +46,7 @@ CATEGORY_TO_SYMPTOM = {
     "DISK":  "storage"}
 
 
-class ApportOptions(object):
+class ApportOptions:
 
     def __init__(self, test, device, package, symptom):
         self.test = test

@@ -35,7 +35,7 @@ from checkbox.plugin import PluginManager
 from checkbox.reactor import Reactor
 
 
-class Application(object):
+class Application:
 
     reactor_factory = Reactor
 
@@ -55,7 +55,7 @@ class Application(object):
             raise
 
 
-class ApplicationManager(object):
+class ApplicationManager:
 
     application_factory = Application
 

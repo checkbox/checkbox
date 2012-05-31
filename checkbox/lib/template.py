@@ -23,7 +23,7 @@ import logging
 EXTENDED_STRING = "_extended"
 
 
-class Template(object):
+class Template:
 
     def _reader(self, file, size=4096, delimiter=r"\n{2,}"):
         buffer_old = ""

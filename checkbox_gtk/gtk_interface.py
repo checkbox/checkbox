@@ -47,7 +47,7 @@ STATUS_TO_BUTTON = dict((s, ANSWER_TO_BUTTON[a])
 
 # HACK: Setting and unsetting previous and next buttons to workaround
 #       for gnome bug #56070.
-class GTKHack(object):
+class GTKHack:
     def __init__(self, function):
         self._function = function
 

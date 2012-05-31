@@ -27,7 +27,7 @@ from checkbox.parsers.dmidecode import DmidecodeParser
 COMMAND = "dmidecode"
 
 
-class DmiResult(object):
+class DmiResult:
 
     attributes = ("path", "category", "product", "vendor", "serial",
         "version",)

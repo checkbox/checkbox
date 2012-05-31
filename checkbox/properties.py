@@ -23,7 +23,7 @@ from checkbox.variables import (ConstantVariable, BoolVariable, StringVariable,
     FileVariable, VariableFactory, Variable, get_variable)
 
 
-class Property(object):
+class Property:
 
     def __init__(self, variable_class=Variable, variable_kwargs={}):
         self._variable_class = variable_class

@@ -27,7 +27,7 @@ from checkbox.parsers.udevadm import UdevadmParser
 COMMAND = "udevadm info --export-db"
 
 
-class UdevResult(object):
+class UdevResult:
 
     attributes = ("path", "bus", "category", "driver", "product_id",
         "vendor_id", "subproduct_id", "subvendor_id", "product", "vendor",)

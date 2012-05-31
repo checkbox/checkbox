@@ -19,7 +19,7 @@
 from checkbox.variables import Variable
 
 
-class Attribute(object):
+class Attribute:
 
     def __init__(self, name, cls, variable_factory=None):
         self.name = name

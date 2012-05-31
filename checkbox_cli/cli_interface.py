@@ -35,7 +35,7 @@ ANSWER_TO_OPTION = {
 OPTION_TO_ANSWER = dict((o, a) for a, o in list(ANSWER_TO_OPTION.items()))
 
 
-class CLIDialog(object):
+class CLIDialog:
     """Command line dialog wrapper."""
 
     def __init__(self, text):

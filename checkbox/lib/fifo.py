@@ -22,7 +22,7 @@ import struct
 from checkbox.contrib.bpickle import dumps, loads
 from checkbox.lib.selector import Selector, SelectorIO
 
-class FifoBase(object):
+class FifoBase:
 
     mode = None
 

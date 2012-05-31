@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-class Cache(object):
+class Cache:
 
     def __init__(self, function):
         self._cache = {}

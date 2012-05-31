@@ -47,7 +47,7 @@ except ImportError:
     pass
 
 
-class Variable(object):
+class Variable:
 
     _value = None
     _required = True

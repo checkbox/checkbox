@@ -29,7 +29,7 @@ from checkbox.properties import List, String
 from checkbox.variables import get_variables
 
 
-class ComponentSection(object):
+class ComponentSection:
     """
     Component section which is essentially a container of modules. These
     map to the modules referenced in the configuration passed as argument
@@ -160,7 +160,7 @@ class ComponentSection(object):
         return modules
 
 
-class ComponentManager(object):
+class ComponentManager:
     """
     Component manager which is essentially a container of sections.
     """

@@ -18,7 +18,7 @@
 #
 
 
-class DeviceResult(object):
+class DeviceResult:
 
     def addDevice(self, device):
         pass

@@ -39,7 +39,7 @@ ALL_STATUS = [FAIL, PASS, UNINITIATED, UNRESOLVED, UNSUPPORTED, UNTESTED]
 
 DEFAULT_JOB_TIMEOUT = 30 # used in case a job specifies invalid timeout
 
-class Job(object):
+class Job:
 
     def __init__(self, command, environ=None, timeout=None):
         if environ is None:
