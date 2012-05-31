@@ -17,8 +17,13 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-import os
 import sys
+
+from io import StringIO
+from subprocess import (
+    Popen,
+    PIPE,
+    )
 
 from checkbox.parsers.udevadm import UdevadmParser
 
@@ -42,8 +47,8 @@ class UdevResult:
 
 
 def main():
-    stream = os.popen(COMMAND)
-    udev = UdevadmParser(stream)
+    output = Popen(COMMAND, stdout=PIPE, shell=True).communicate()[0]
+    udev = UdevadmParser(StringIO(output.decode("unicode-escape")))
 
     result = UdevResult()
     udev.run(result)

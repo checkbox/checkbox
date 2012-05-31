@@ -20,7 +20,10 @@
 import re
 import sys
 
-from subprocess import Popen, PIPE
+from subprocess import (
+    Popen,
+    PIPE,
+    )
 
 
 # Command to retrieve dpkg information.
@@ -28,12 +31,14 @@ COMMAND = "dpkg --version"
 
 
 def get_dpkg():
-    output = Popen(COMMAND, stdout=PIPE, shell=True).communicate()[0]
-    match = re.search(r"(?P<version>[\d\.]+) \((?P<architecture>.*)\)", output)
-
     dpkg = {}
-    dpkg["version"] = match.group("version")
-    dpkg["architecture"] = match.group("architecture")
+    output = Popen(COMMAND, stdout=PIPE, shell=True).communicate()[0]
+    match = re.search(
+        r"(?P<version>[\d\.]+) \((?P<architecture>.*)\)",
+        output.decode("ascii"))
+    if match:
+        dpkg["version"] = match.group("version")
+        dpkg["architecture"] = match.group("architecture")
 
     return dpkg
 

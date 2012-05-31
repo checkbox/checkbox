@@ -20,6 +20,7 @@
 import os
 import sys
 
+from io import StringIO
 from optparse import OptionParser
 from subprocess import Popen, PIPE
 
@@ -109,7 +110,8 @@ def main(args):
     if options.input:
         file = sys.stdin
     else:
-        file = Popen(COMMAND, stdout=PIPE, shell=True).stdout
+        output = Popen(COMMAND, stdout=PIPE, shell=True).communicate()[0]
+        file = StringIO(output.decode("utf-8"))
 
     packages = get_packages(file)
     for package in packages:
