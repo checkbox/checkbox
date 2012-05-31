@@ -42,12 +42,12 @@ class Template(object):
 
     def dump_file(self, elements, file, filename="<stream>"):
         for element in elements:
-            for long_key in element.keys():
+            for long_key in list(element.keys()):
                 if long_key.endswith(EXTENDED_STRING):
                     short_key = long_key.replace(EXTENDED_STRING, "")
                     del element[short_key]
 
-            for key, value in element.items():
+            for key, value in list(element.items()):
                 if key.endswith(EXTENDED_STRING):
                     key = key.replace(EXTENDED_STRING, "")
                     file.write("%s:\n" % key)
@@ -79,11 +79,10 @@ class Template(object):
             def _save(field, value, extended):
                 extended = extended.rstrip("\n")
                 if field:
-                    if element.has_key(field):
-                        raise Exception, \
-                            "Template %s has a duplicate field '%s'" \
+                    if field in element:
+                        raise Exception("Template %s has a duplicate field '%s'" \
                             " with a new value '%s'." \
-                                % (filename, field, value)
+                                % (filename, field, value))
                     element[field] = value
                     if extended:
                         element["%s%s" % (field, EXTENDED_STRING)] = extended
@@ -128,8 +127,8 @@ class Template(object):
                     extended += bit
                     continue
 
-                raise Exception, "Template %s parse error at: %s" \
-                    % (filename, line)
+                raise Exception("Template %s parse error at: %s" \
+                    % (filename, line))
 
             _save(field, value, extended)
 

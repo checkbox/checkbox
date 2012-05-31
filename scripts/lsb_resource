@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 #
 # This file is part of Checkbox.
 #
@@ -46,8 +46,8 @@ def get_lsb_release():
 
 def main():
     lsb_release = get_lsb_release()
-    for key, value in lsb_release.iteritems():
-        print "%s: %s" % (key, value)
+    for key, value in lsb_release.items():
+        print("%s: %s" % (key, value))
 
     return 0
 

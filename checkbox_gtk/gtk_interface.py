@@ -39,10 +39,10 @@ ANSWER_TO_BUTTON = {
     SKIP_ANSWER: "radio_button_skip"}
 
 BUTTON_TO_STATUS = dict((b, ANSWER_TO_STATUS[a])
-    for a, b in ANSWER_TO_BUTTON.items())
+    for a, b in list(ANSWER_TO_BUTTON.items()))
 
 STATUS_TO_BUTTON = dict((s, ANSWER_TO_BUTTON[a])
-    for s, a in STATUS_TO_ANSWER.items())
+    for s, a in list(STATUS_TO_ANSWER.items()))
 
 
 # HACK: Setting and unsetting previous and next buttons to workaround
@@ -113,7 +113,7 @@ class GTKInterface(UserInterface):
         return self.widgets.get_object(name)
 
     def _get_radio_button(self, map):
-        for radio_button, value in map.items():
+        for radio_button, value in list(map.items()):
             if self._get_widget(radio_button).get_active():
                 return value
         raise Exception("Failed to map radio_button.")
@@ -337,7 +337,7 @@ class GTKInterface(UserInterface):
 
         # Set callbacks
         def click_button(widget, active):
-            for check_button in option_table.itervalues():
+            for check_button in option_table.values():
                 check_button.set_active(active)
 
         for button_name in "button_select_all", "button_deselect_all":
@@ -353,7 +353,7 @@ class GTKInterface(UserInterface):
 
         # Get options
         results = []
-        for option, check_button in option_table.items():
+        for option, check_button in list(option_table.items()):
             if check_button.get_active():
                 results.append(option)
             vbox.remove(check_button)
@@ -389,7 +389,7 @@ class GTKInterface(UserInterface):
 
         # Get option
         result = None
-        for option, radio_button in option_table.items():
+        for option, radio_button in list(option_table.items()):
             if radio_button.get_active():
                 result = option
             vbox.remove(radio_button)
@@ -401,7 +401,7 @@ class GTKInterface(UserInterface):
         #Reset window title
         self._set_main_title()
 
-        (COLUMN_TEXT, COLUMN_ACTIVE) = range(2)
+        (COLUMN_TEXT, COLUMN_ACTIVE) = list(range(2))
 
         # Set buttons
         self._notebook.set_current_page(1)

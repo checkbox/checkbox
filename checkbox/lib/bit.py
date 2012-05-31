@@ -41,6 +41,6 @@ def test_bit(bit, bitmask, bits=None):
         bits = calcsize("l") * 8
     offset = bit % bits
     long = int(bit / bits)
-    if long >= len(bitmask):
+    if int >= len(bitmask):
         return 0
-    return (bitmask[long] >> offset) & 1
+    return (bitmask[int] >> offset) & 1

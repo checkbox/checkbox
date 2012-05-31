@@ -52,23 +52,23 @@ def redirect_to_file(file, func, *args):
     file = _file_write(file)
     sys.stdout, file = file, sys.stdout
     try:
-        ret = apply(func, args)
+        ret = func(*args)
     finally:
-        print ret
+        print(ret)
         sys.stdout, file = file, sys.stdout
     return ret
 
 def redirect_to_string(func, *args):
     # apply func(*args) with stdout redirected to return string.
     file = tempfile.TemporaryFile()
-    apply(redirect_to_file, (file, func) + args)
+    redirect_to_file(*(file, func) + args)
     file.seek(0)
     return file.read()
 
 def redirect_to_lines(func, *args):
     # apply func(*args), returning a list of redirected stdout lines.
     file = tempfile.TemporaryFile()
-    apply(redirect_to_file, (file, func) + args)
+    redirect_to_file(*(file, func) + args)
     file.seek(0)
     return file.readlines()
 
@@ -124,7 +124,7 @@ class RedirectEcho(object):
             self._output = None
 
     def read(self, *howmuch):
-        stuff = apply(self._infile.read, howmuch)
+        stuff = self._infile.read(*howmuch)
         if self._output:
             self._output.write(stuff)
         return stuff

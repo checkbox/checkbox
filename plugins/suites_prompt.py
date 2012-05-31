@@ -100,7 +100,7 @@ You can always skip individual tests if you don't have the needed equipment.\
     def prompt_gather(self, interface):
         # Resolve dependencies
         resolver = Resolver()
-        for key in self._jobs.iterkeys():
+        for key in self._jobs.keys():
             depends = self._depends.get(key, [])
             resolver.add(key, *depends)
 
@@ -139,7 +139,7 @@ You can always skip individual tests if you don't have the needed equipment.\
         def get_ignore_jobs(options, results):
             jobs = []
             if isinstance(options, dict):
-                for k, v in options.iteritems():
+                for k, v in options.items():
                     if v == UNINITIATED and k not in results:
                         jobs.append(k)
                     else:

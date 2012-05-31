@@ -21,7 +21,7 @@ import re
 import logging
 import posixpath
 
-from ConfigParser import ConfigParser
+from configparser import ConfigParser
 
 from checkbox.lib.text import split
 
@@ -32,7 +32,7 @@ class IncludeDict(dict):
         super(IncludeDict, self).__init__()
         self._parser = parser
 
-        for (key, value) in os.environ.iteritems():
+        for (key, value) in os.environ.items():
             if key.startswith("CHECKBOX"):
                 super(IncludeDict, self).__setitem__(key.lower(), value)
 
@@ -44,7 +44,7 @@ class IncludeDict(dict):
                 path = self._parser._interpolate("DEFAULT", None, path, self)
                 path = posixpath.expanduser(path)
                 if not posixpath.exists(path):
-                    raise Exception, "No such configuration file: %s" % path
+                    raise Exception("No such configuration file: %s" % path)
                 if posixpath.isdir(path):
                     logging.info("Parsing config filenames from directory: %s",
                         path)
@@ -70,14 +70,14 @@ class ConfigSection(object):
         self.parent = parent
         self.name = name
         self.attributes = {}
-        for key, value in attributes.iteritems():
+        for key, value in attributes.items():
             self.attributes[key] = re.sub("\n\.\n", "\n\n", value)
 
     def __getattr__(self, name):
         if name in self.attributes:
             return self.get(name)
 
-        raise AttributeError, name
+        raise AttributeError(name)
 
     def __contains__(self, name):
         return name in self.attributes
@@ -96,7 +96,7 @@ class ConfigDefaults(ConfigSection):
         if name in self.attributes:
             return self.get(name)
 
-        raise AttributeError, name
+        raise AttributeError(name)
 
     def get(self, name):
         name_upper = name.upper()
@@ -121,7 +121,7 @@ class Config(object):
         for config in configs:
             match = re.match("(.*)/([^/]+)=(.*)", config)
             if not match:
-                raise Exception, "Invalid config string: %s" % config
+                raise Exception("Invalid config string: %s" % config)
 
             (name, option, value) = match.groups()
 
@@ -149,7 +149,7 @@ class Config(object):
 
     def read_filename(self, filename):
         if not posixpath.exists(filename):
-            raise Exception, "No such configuration file: %s" % filename
+            raise Exception("No such configuration file: %s" % filename)
 
         file = open(filename, "r")
         return self.read_file(file, filename)

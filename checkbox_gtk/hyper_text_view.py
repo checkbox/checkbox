@@ -32,13 +32,13 @@ class HyperTextView(Gtk.TextView):
         try:
             return getattr(self, prop.name)
         except AttributeError:
-            raise AttributeError, "unknown property %s" % prop.name
+            raise AttributeError("unknown property %s" % prop.name)
 
     def do_set_property(self, prop, val):
-        if prop.name in self.__gproperties__.keys():
+        if prop.name in list(self.__gproperties__.keys()):
             setattr(self, prop.name, val)
         else:
-            raise AttributeError, "unknown property %s" % prop.name
+            raise AttributeError("unknown property %s" % prop.name)
 
     def __init__(self, buffer=None):
         super(HyperTextView, self).__init__(buffer=buffer)
@@ -55,8 +55,8 @@ class HyperTextView(Gtk.TextView):
         self.connect("focus-out-event", lambda w, e: self.get_buffer().get_tag_table().foreach(self.__tag_reset, e.window))
 
     def insert(self, text, _iter=None):
-        if not isinstance(text, unicode):
-            text = unicode(text, "utf-8")
+        if not isinstance(text, str):
+            text = str(text, "utf-8")
         b = self.get_buffer()
         if _iter is None:
             _iter = b.get_end_iter()
@@ -109,7 +109,7 @@ class HyperTextView(Gtk.TextView):
 
     def __set_anchor(self, window, tag, cursor, prop):
         window.set_cursor(cursor)
-        for key, val in prop.iteritems():
+        for key, val in prop.items():
             if val is not None:
                 tag.set_property(key, val)
 

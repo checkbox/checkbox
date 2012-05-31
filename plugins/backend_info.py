@@ -91,8 +91,8 @@ class BackendInfo(Plugin):
 
     def gather(self):
         self.directory = mkdtemp(prefix="checkbox")
-        child_input = create_fifo(os.path.join(self.directory, "input"), 0600)
-        child_output = create_fifo(os.path.join(self.directory, "output"), 0600)
+        child_input = create_fifo(os.path.join(self.directory, "input"), 0o600)
+        child_output = create_fifo(os.path.join(self.directory, "output"), 0o600)
 
         self.backend_is_alive = False
         for attempt in range(1,4):

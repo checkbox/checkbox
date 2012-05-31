@@ -23,4 +23,4 @@ then
     (cd $CHECKBOX_FRONTEND; qmake; make; ./checkbox-qt-service &)
 fi
 
-python $CHECKBOX_SHARE/run "$@" $CHECKBOX_SHARE/configs/$(basename $0).ini
+python3 $CHECKBOX_SHARE/run "$@" $CHECKBOX_SHARE/configs/$(basename $0).ini

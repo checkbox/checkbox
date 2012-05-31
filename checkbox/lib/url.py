@@ -16,11 +16,11 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-import urlparse
+import urllib.parse
 
 
 def parse_url(url):
-    scheme, host, path, params, query, fragment = urlparse.urlparse(url)
+    scheme, host, path, params, query, fragment = urllib.parse.urlparse(url)
 
     if "@" in host:
         username, host = host.rsplit("@", 1)

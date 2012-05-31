@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 #
 # This file is part of Checkbox.
 #
@@ -82,12 +82,12 @@ def main():
     command = COMMAND.replace("$source", source)
     gconf = get_gconf(command)
 
-    for name, value in gconf.iteritems():
-        print "name: %s" % name
-        print "value: %s" % value
+    for name, value in gconf.items():
+        print("name: %s" % name)
+        print("value: %s" % value)
 
         # Empty line
-        print
+        print()
 
     return 0
 

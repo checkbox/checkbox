@@ -43,7 +43,7 @@ class ReportManager(object):
         Call back method for reports to register dump handlers.
         """
         if type in self.dumps_table:
-            raise Exception, "Dumps type already handled: %s" % type
+            raise Exception("Dumps type already handled: %s" % type)
         self.dumps_table[type] = handler
 
     def handle_loads(self, type, handler):
@@ -51,7 +51,7 @@ class ReportManager(object):
         Call back method for reports to register load handlers.
         """
         if type in self.loads_table:
-            raise Exception, "Loads type already handled: %s" % type
+            raise Exception("Loads type already handled: %s" % type)
         self.loads_table[type] = handler
 
     def call_dumps(self, obj, node):
@@ -66,7 +66,7 @@ class ReportManager(object):
         Convenience method for reports to call the load handler
         corresponding to the content of the given node.
         """
-        if self.loads_table.has_key(node.localName):
+        if node.localName in self.loads_table:
             ret = self.loads_table[node.localName](node)
         elif isinstance(node, Element) and node.hasAttribute("type"):
             type = node.getAttribute("type")
@@ -103,8 +103,8 @@ class ReportManager(object):
 
         try:
             self.call_dumps(obj, node)
-        except KeyError, e:
-            raise ValueError, "Unsupported type: %s" % e
+        except KeyError as e:
+            raise ValueError("Unsupported type: %s" % e)
 
         return document
 
@@ -119,8 +119,8 @@ class ReportManager(object):
 
         try:
             ret = self.call_loads(document)
-        except KeyError, e:
-            raise ValueError, "Unsupported type: %s" % e
+        except KeyError as e:
+            raise ValueError("Unsupported type: %s" % e)
 
         return ret
 

@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 #
 # This file is part of Checkbox.
 #
@@ -41,8 +41,8 @@ def get_dpkg():
 def main():
     dpkg = get_dpkg()
 
-    for key, value in dpkg.iteritems():
-        print "%s: %s" % (key, value)
+    for key, value in dpkg.items():
+        print("%s: %s" % (key, value))
 
     return 0
 

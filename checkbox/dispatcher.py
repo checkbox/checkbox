@@ -83,9 +83,9 @@ class ListenerQueue(ListenerList):
         # then behaves like a list using the latest events.
         if self.event_types.issubset(self.kwargs):
             self.notify = notify = super(ListenerQueue, self).notify
-            keys = self.kwargs.keys()
-            for values in product(*self.kwargs.values()):
-                self.kwargs = dict(zip(keys, values))
+            keys = list(self.kwargs.keys())
+            for values in product(*list(self.kwargs.values())):
+                self.kwargs = dict(list(zip(keys, values)))
                 notify(event)
 
 
@@ -119,7 +119,7 @@ class Dispatcher:
 
         :param handler: The handler to unregister.
         """
-        for event_type, listeners in self._event_listeners.items():
+        for event_type, listeners in list(self._event_listeners.items()):
             listeners = [
                 listener for listener in listeners
                 if listener.handler == handler]
@@ -171,7 +171,7 @@ class DispatcherList(Dispatcher):
 
     def registerHandler(self, event_types, handler, count=None):
         """See Dispatcher."""
-        if not isinstance(event_types, (list, tuple,)):
+        if not isinstance(event_types, (list, tuple)):
             event_types = (event_types,)
 
         listener = self.listener_factory(event_types, handler, count)

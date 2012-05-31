@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 #
 # This file is part of Checkbox.
 #
@@ -36,9 +36,9 @@ class UdevResult(object):
         for attribute in self.attributes:
             value = getattr(device, attribute)
             if value is not None:
-                print "%s: %s" % (attribute, value)
+                print("%s: %s" % (attribute, value))
 
-        print
+        print()
 
 
 def main():

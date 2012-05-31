@@ -36,7 +36,7 @@ ANSWER_TO_OPTION = {
     SKIP_ANSWER: _('skip')}
 
 OPTION_TO_ANSWER = dict((o, a)
-                        for a, o in ANSWER_TO_OPTION.items())
+                        for a, o in list(ANSWER_TO_OPTION.items()))
 def dummy_handle_reply(r=None):
     return
 
@@ -152,7 +152,7 @@ class QTInterface(UserInterface):
 
         def buildBranch(options, default, baseIndex="1"):
             internalIndex = 1
-            for test, state in options.iteritems():
+            for test, state in options.items():
                 active = test in default
                 if isinstance(state, dict):
                     indexedOptions[
@@ -173,8 +173,8 @@ class QTInterface(UserInterface):
             while True:
                 currentIndex = baseIndex + "." + str(internalIndex)
                 if currentIndex in options:
-                    key = options[currentIndex].keys()[0]
-                    value = options[currentIndex].values()[0]
+                    key = list(options[currentIndex].keys())[0]
+                    value = list(options[currentIndex].values())[0]
                     if value == "menu":
                         branch[key] = buildDict(options, currentIndex)
                     else:
@@ -257,7 +257,7 @@ class QTInterface(UserInterface):
             #it may not be convertable with str due to the fact that it
             #may contain non-ascii characters, so we need to convert to
             #internal Python unicode instead.
-            self.infoResult = unicode(result)
+            self.infoResult = str(result)
             self.loop.quit()
 
         self.qtiface.showInfo(text, options, default, 
@@ -282,12 +282,12 @@ class QTInterface(UserInterface):
             self.qtiface.updateAutoTestStatus(job["status"], job["name"])
 
     def wait_on_signals(self, **signals):
-        for name, function in signals.iteritems():
+        for name, function in signals.items():
             self.bus.add_signal_receiver(function, name)
 
         self.loop.run()
         if self.direction == KeyboardInterrupt:
             raise KeyboardInterrupt
 
-        for name, function in signals.iteritems():
+        for name, function in signals.items():
             self.bus.remove_signal_receiver(function, name)

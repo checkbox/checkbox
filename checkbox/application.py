@@ -130,7 +130,7 @@ class ApplicationManager(object):
 
         # Check options
         if options.version:
-            print config.get_defaults().version
+            print(config.get_defaults().version)
             sys.exit(0)
 
         return self.application_factory(config)

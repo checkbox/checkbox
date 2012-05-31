@@ -44,7 +44,7 @@ class Enum(object):
                         "enum value does not define: %s" % value)
                 value = getattr(self, value)
 
-            if not isinstance(value, (int, long)):
+            if not isinstance(value, int):
                 raise EnumException(
                     "enum value is not an integer: %s" % value)
 
@@ -65,7 +65,7 @@ def enum_name_to_value(enum, name):
 
 
 def enum_value_to_name(enum, value):
-    for k, v in enum.__dict__.items():
+    for k, v in list(enum.__dict__.items()):
         if v == value:
             return k
 

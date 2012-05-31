@@ -290,9 +290,9 @@ class TestDialog(ChoiceDialog):
         """
         Return the label of the selected radio button
         """
-        label = (radio_button.get_label()
+        label = next((radio_button.get_label()
                  for radio_button in self.radio_button_group
-                 if radio_button.get_state()).next()
+                 if radio_button.get_state()))
         return label
 
 
@@ -379,7 +379,7 @@ class TreeChoiceDialog(ChoiceDialog):
                                      widget.changed_cb, self.walker)
 
         if isinstance(data, dict):
-            items = sorted(data.iteritems(), key=itemgetter(0))
+            items = sorted(iter(data.items()), key=itemgetter(0))
             for children_name, children_data in items:
                 child_widget = self.create_tree(children_name, children_data, widget)
                 widget.append(child_widget)
@@ -392,7 +392,7 @@ class TreeChoiceDialog(ChoiceDialog):
         Set selected nodes by default recursively
         """
         if isinstance(default, dict):
-            for name, default_children in default.iteritems():
+            for name, default_children in default.items():
                 for widget in widgets:
                     if widget.name == name:
                         widget.state = True
@@ -408,7 +408,7 @@ class TreeChoiceDialog(ChoiceDialog):
 
         # Show tree
         self.option_widgets = []
-        items = sorted(self.options.iteritems(),
+        items = sorted(iter(self.options.items()),
                        key=itemgetter(0))
         for name, data in items:
             widget = self.create_tree(name, data)
@@ -498,10 +498,10 @@ class ReportDialog(ChoiceDialog):
         urwid.signals.connect_signal(widget, 'change',
                                      widget.changed_cb, self.walker)
 
-        items = sorted(data.iteritems(), key=itemgetter(0))
+        items = sorted(iter(data.items()), key=itemgetter(0))
         for child_name, child_data in items:
             is_suite = all(issubclass(type(value), dict)
-                           for value in child_data.itervalues())
+                           for value in child_data.values())
 
             if is_suite:
                 child_widget = self.create_tree(child_name,
@@ -533,7 +533,7 @@ class ReportDialog(ChoiceDialog):
         Dialog.show(self)
 
         # Show tree
-        items = sorted(self.results.iteritems(),
+        items = sorted(iter(self.results.items()),
                        key=itemgetter(0))
         for name, data in items:
             widget = self.create_tree(name, data)
@@ -899,7 +899,7 @@ class ProgressDialog(Dialog):
         """
         Pulse progress bar
         """
-        start, end = self.progress_coordinates.next()
+        start, end = next(self.progress_coordinates)
         bar_data = [[0]]*start + [[1]]*(end-start) + [[0]]*(self.MAX_VALUE-end)
         self.progress_bar.set_data(bar_data, 1)
         self.loop.draw_screen()
@@ -919,7 +919,7 @@ class UrwidInterface(UserInterface):
         SKIP_ANSWER: _('skip')}
 
     OPTION_TO_ANSWER = dict((o, a)
-                            for a, o in ANSWER_TO_OPTION.items())
+                            for a, o in list(ANSWER_TO_OPTION.items()))
 
     def show_progress_start(self, text):
         """

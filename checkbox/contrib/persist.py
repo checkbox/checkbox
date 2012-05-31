@@ -257,7 +257,7 @@ class Persist(object):
             current = self._traverse(map, path)
             if type(current) is list and value in current:
                 return
-        path = path+(sys.maxint,)
+        path = path+(sys.maxsize,)
         self._traverse(map, path, setvalue=value)
 
     def remove(self, path, value=NOTHING, soft=False, weak=False):
@@ -491,7 +491,7 @@ class Backend(object):
         if keys:
             return keys()
         elif type(obj) is list:
-            return range(len(obj))
+            return list(range(len(obj)))
         return NotImplemented
 
 
@@ -513,7 +513,7 @@ class DiskBackend(Backend):
 class PickleBackend(DiskBackend):
 
     def __init__(self):
-        import cPickle
+        import pickle
         self._pickle = cPickle
 
     def load(self, filepath):

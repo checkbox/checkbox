@@ -349,7 +349,7 @@ class UdevadmDevice:
 
         # floppy
         if self.driver == "floppy":
-            return u"Platform Device"
+            return "Platform Device"
 
         return None
 

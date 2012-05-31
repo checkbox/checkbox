@@ -100,6 +100,6 @@ class FifoWriter(FifoBase):
         return self.write_string(string)
 
 
-def create_fifo(path, mode=0666):
+def create_fifo(path, mode=0o666):
     os.mkfifo(path, mode)
     return path

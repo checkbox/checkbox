@@ -26,7 +26,7 @@ class ResolverTest(unittest.TestCase):
         resolver = Resolver()
         try:
             resolver.get_dependencies('a')
-        except Exception, error:
+        except Exception as error:
             self.assertTrue(error.args[0].startswith('no dependencies'))
         else:
             self.fail('non existing element accepted by resolver')
@@ -67,7 +67,7 @@ class ResolverTest(unittest.TestCase):
         resolver.add('b', 'a')
         try:
             resolver.get_dependencies('a')
-        except Exception, error:
+        except Exception as error:
             self.assertTrue(error.args[0].startswith('circular dependency'))
         else:
             self.fail('circular dependency not detected')

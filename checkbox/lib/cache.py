@@ -27,7 +27,7 @@ class Cache(object):
         return self
 
     def __call__(self, *args):
-        if not self._cache.has_key((self._instance,) + args):
+        if (self._instance,) + args not in self._cache:
             self._cache[(self._instance,) + args] = self._function(self._instance, *args)
 
         return self._cache[(self._instance,) + args]

@@ -39,23 +39,23 @@ def dumps(obj, _dt=None):
 
     type_names = [type(obj)]
     for type_name in type_names:
-        if _dt.has_key(type_name):
+        if type_name in _dt:
             return _dt[type_name](obj)
 
         type_names.extend(type_name.__bases__)
 
-    raise ValueError, "Unsupported type: %s" % type(obj)
+    raise ValueError("Unsupported type: %s" % type(obj))
 
 
 def loads(str, _lt=loads_table):
     if not str:
-        raise ValueError, "Can't load empty string"
+        raise ValueError("Can't load empty string")
     try:
         return _lt[str[0]](str, 0)[0]
-    except KeyError, e:
-        raise ValueError, "Unknown type character: %s" % e
+    except KeyError as e:
+        raise ValueError("Unknown type character: %s" % e)
     except IndexError:
-        raise ValueError, "Corrupted data"
+        raise ValueError("Corrupted data")
 
 def dumps_bool(obj):
     return "b%d" % int(obj)
@@ -81,7 +81,7 @@ def dumps_tuple(obj, _dt=None):
 
 def dumps_dict(obj, _dt=None):
     res = []
-    keys = sorted(obj.iterkeys())
+    keys = sorted(obj.keys())
     append = res.append
     for key in keys:
         val = obj[key]
@@ -146,10 +146,10 @@ def loads_none(str, pos):
 
 dumps_table.update({       bool: dumps_bool,
                             int: dumps_int,
-                           long: dumps_int,
+                           int: dumps_int,
                           float: dumps_float,
                             str: dumps_str,
-                        unicode: dumps_unicode,
+                        str: dumps_unicode,
                            list: dumps_list,
                           tuple: dumps_tuple,
                            dict: dumps_dict,

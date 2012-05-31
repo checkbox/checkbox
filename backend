@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 import os
 import sys
@@ -41,7 +41,7 @@ def main(args):
                 result = (FAIL, "", 0,)
 
             writer.write_object(result)
-        except IOError, e:
+        except IOError as e:
             break
 
     return 0

@@ -105,5 +105,5 @@ class ReportManagerTest(unittest.TestCase):
         self.assertTrue("test1" in str)
 
         data = rm.loads(str)
-        self.assertTrue(data.has_key("test"))
+        self.assertTrue("test" in data)
         self.assertTrue(data["test"] == "test1")

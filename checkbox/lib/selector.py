@@ -166,7 +166,7 @@ class Selector(object):
             self._read_fds, self._write_fds, self._except_fds = select.select(
                 self._save_read_fds, self._save_write_fds,
                 self._save_except_fds, self._timeout)
-        except select.error, e:
+        except select.error as e:
             self._errno = e.errno
             if e.errno == errno.EINTR:
                 self._state = SelectorState.SIGNALED

@@ -36,10 +36,10 @@ class XmlReport(Report):
     def register_dumps(self):
         for (dt, dh) in [(bool, self.dumps_bool),
                          (int, self.dumps_int),
-                         (long, self.dumps_int),
+                         (int, self.dumps_int),
                          (float, self.dumps_float),
                          (str, self.dumps_str),
-                         (unicode, self.dumps_unicode),
+                         (str, self.dumps_unicode),
                          (list, self.dumps_list),
                          (tuple, self.dumps_list),
                          (dict, self.dumps_dict),
@@ -92,9 +92,9 @@ class XmlReport(Report):
             self._manager.call_dumps(value, element)
 
     def dumps_dict(self, obj, parent):
-        for key in sorted(obj.iterkeys()):
+        for key in sorted(obj.keys()):
             value = obj[key]
-            if self._manager.dumps_table.has_key(key):
+            if key in self._manager.dumps_table:
                 # Custom dumps handler
                 element = self._create_element(key, parent)
                 self._manager.dumps_table[key](value, element)
@@ -188,4 +188,4 @@ def convert_bool(string):
     elif re.match('^(no|false|0)$', string, re.IGNORECASE):
         return False
     else:
-        raise Exception, "Invalid boolean type: %s" % string
+        raise Exception("Invalid boolean type: %s" % string)

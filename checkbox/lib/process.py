@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-from __future__ import absolute_import
+
 
 import os
 import time
@@ -77,7 +77,7 @@ class Process:
         os.dup2(self.outw, STDOUT_FILENO)
         os.dup2(self.errw, STDERR_FILENO)
         # stdout and stderr connected to pipe, so close all other files
-        map(os.close, [self.outr, self.outw, self.errr, self.errw])
+        list(map(os.close, [self.outr, self.outw, self.errr, self.errw]))
         try:
             cmd = ["/bin/bash", "-c", cmd]
             os.execve(cmd[0], cmd, env)

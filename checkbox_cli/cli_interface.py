@@ -32,7 +32,7 @@ ANSWER_TO_OPTION = {
     NO_ANSWER: _("no"),
     SKIP_ANSWER: _("skip")}
 
-OPTION_TO_ANSWER = dict((o, a) for a, o in ANSWER_TO_OPTION.items())
+OPTION_TO_ANSWER = dict((o, a) for a, o in list(ANSWER_TO_OPTION.items()))
 
 
 class CLIDialog(object):
@@ -71,9 +71,9 @@ class CLIDialog(object):
                 ch = str(sys.stdin.read(1))
                 if ord(ch) == separator:
                     break
-                elif ord(ch) == 033: # ESC
+                elif ord(ch) == 0o33: # ESC
                     escape = 1
-                elif ord(ch) == termios.CERASE or ord(ch) == 010:
+                elif ord(ch) == termios.CERASE or ord(ch) == 0o10:
                     if len(input):
                         self.put("\010 \010")
                         del input[-1]
@@ -186,7 +186,7 @@ class CLIReportDialog(CLIDialog):
         that is, a job containing other jobs
         """
         return all(issubclass(type(value), dict)
-                   for value in root.itervalues())
+                   for value in root.values())
 
     def _display(self, title, root):
         """
@@ -212,7 +212,7 @@ class CLIReportDialog(CLIDialog):
                 keys.append(key)
                 options.append(option)
 
-            for job_name, job_data in sorted(root.iteritems()):
+            for job_name, job_data in sorted(root.items()):
                 if self._is_suite(job_data):
                     add_option(job_name)
                     self.put_line('{key}: {option}'
@@ -300,7 +300,7 @@ class CLIInterface(UserInterface):
             elif key in options:
                 if isinstance(options[key], dict):
                     results[key] = {}
-                elif isinstance(options[key], (list, tuple,)):
+                elif isinstance(options[key], (list, tuple)):
                     results[key] = []
                 else:
                     results[key] = None
@@ -308,7 +308,7 @@ class CLIInterface(UserInterface):
                 for k in options[key]:
                     self._toggle_results(k, options[key], results[key])
 
-        elif isinstance(results, (list, tuple,)):
+        elif isinstance(results, (list, tuple)):
             if key in results:
                 results.remove(key)
             elif key in options:

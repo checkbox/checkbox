@@ -24,7 +24,7 @@ import posixpath
 
 from gettext import gettext as _
 from socket import gethostname
-from StringIO import StringIO
+from io import StringIO
 
 from checkbox.lib.conversion import string_to_type
 from checkbox.lib.log import format_delta
@@ -132,7 +132,7 @@ class LaunchpadExchange(Plugin):
         # Encode form data
         try:
             form = FORM.coerce(self._form)
-        except ValueError, e:
+        except ValueError as e:
             self._manager.reactor.fire("exchange-error", _("""\
 Failed to process form: %s""" % e))
             return
@@ -142,7 +142,7 @@ Failed to process form: %s""" % e))
         try:
             response = transport.exchange(form, self._headers,
                 timeout=string_to_type(self.timeout))
-        except Exception, error:
+        except Exception as error:
             self._manager.reactor.fire("exchange-error", error)
             return
         end_time = time.time()

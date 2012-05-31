@@ -21,7 +21,7 @@ try:
 except ImportError:
     import cElementTree as etree
 
-from StringIO import StringIO
+from io import StringIO
 from logging import getLogger
 from pkg_resources import resource_string
 
@@ -103,7 +103,7 @@ class SubmissionResult:
             }
         parser = parsers.get(command)
         if parser:
-            if not isinstance(text, unicode):
+            if not isinstance(text, str):
                 text = text.decode("utf-8")
             stream = StringIO(text)
             p = parser(stream)
@@ -291,7 +291,7 @@ class SubmissionParser:
                 "Unexpected boolean value '%s' in <%s>" % (value, node.tag)
             return value == "True"
         elif type_ in ("str",):
-            return unicode(node.text.strip())
+            return str(node.text.strip())
         elif type_ in ("int", "long",):
             return int(node.text.strip())
         elif type_ in ("float",):
@@ -320,7 +320,7 @@ class SubmissionParser:
 
     def _getValueAsString(self, node):
         """Return the value of the attribute "value"."""
-        return unicode(node.attrib["value"])
+        return str(node.attrib["value"])
 
     def parseContext(self, result, node):
         """Parse the <context> part of a submission."""
@@ -354,7 +354,7 @@ class SubmissionParser:
                     parser(result, child)
                 else:
                     text = child.text
-                    if not isinstance(text, unicode):
+                    if not isinstance(text, str):
                         text = text.decode("utf-8")
                     stream = StringIO(text)
                     p = parser(stream)
@@ -389,11 +389,11 @@ class SubmissionParser:
 
             # Convert lists to space separated strings.
             properties = self._getProperties(child)
-            for key, value in properties.iteritems():
+            for key, value in properties.items():
                 if key in ("bogomips", "cache", "count", "speed",):
                     properties[key] = int(value)
                 elif isinstance(value, list):
-                    properties[key] = u" ".join(value)
+                    properties[key] = " ".join(value)
             processors.append(properties)
 
         # Check if /proc/cpuinfo was parsed already.
@@ -403,15 +403,15 @@ class SubmissionParser:
             lines = []
             for processor in processors:
                 # Convert some keys with underscores to spaces instead.
-                for key, value in processor.iteritems():
+                for key, value in processor.items():
                     if "_" in key and key != "vendor_id":
                         key = key.replace("_", " ")
 
-                    lines.append(u"%s: %s" % (key, value))
+                    lines.append("%s: %s" % (key, value))
 
-                lines.append(u"")
+                lines.append("")
 
-            stream = StringIO(u"\n".join(lines))
+            stream = StringIO("\n".join(lines))
             parser = result.parseCpuinfo(stream)
             parser.run(result)
 

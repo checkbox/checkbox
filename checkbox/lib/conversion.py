@@ -150,7 +150,7 @@ def string_to_type(string):
 
     :param string: The string representation.
     """
-    if isinstance(string, basestring):
+    if isinstance(string, str):
         for regex, formatter in TYPE_FORMATS:
             match = regex.match(string)
             if match:

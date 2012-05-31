@@ -96,7 +96,7 @@ class JobsInfo(Plugin):
         if filename:
             try:
                 file = open(filename)
-            except IOError, e:
+            except IOError as e:
                 error_message=(gettext.gettext("Failed to open file '%s': %s") %
                         (filename, e.strerror))
                 logging.critical(error_message)
@@ -156,7 +156,7 @@ class JobsInfo(Plugin):
         Verify that all patterns were used
         """
         orphan_test_cases = []
-        for name, jobs in self.selected_jobs.iteritems():
+        for name, jobs in self.selected_jobs.items():
             is_test = any(job.get('type') == 'test' for job in jobs)
             has_suite = any(job.get('suite') for job in jobs)
             if is_test and not has_suite:

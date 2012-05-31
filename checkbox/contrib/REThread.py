@@ -60,7 +60,7 @@ class REThread(threading.Thread):
         Does nothing if no exception was caught.'''
 
         if self._exception:
-            raise self._exception[0], self._exception[1], self._exception[2]
+            raise self._exception[0](self._exception[1]).with_traceback(self._exception[2])
 
 #
 # Unit test

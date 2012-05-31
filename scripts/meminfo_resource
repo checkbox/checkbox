@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 #
 # This file is part of Checkbox.
 #
@@ -28,8 +28,8 @@ MEMINFO_FILENAME = "/proc/meminfo"
 class MeminfoResult:
 
     def setMemory(self, memory):
-        for key, value in memory.iteritems():
-            print "%s: %s" % (key, value)
+        for key, value in memory.items():
+            print("%s: %s" % (key, value))
 
 
 def main():

@@ -109,7 +109,7 @@ class LsbReport(LaunchpadReport):
 
     def dumps_lsbrelease(self, obj, parent):
         logging.debug("Dumping lsbrelease")
-        for key, value in obj.iteritems():
+        for key, value in obj.items():
             property = self._create_element("property", parent)
             property.setAttribute("name", key)
             self._manager.call_dumps(value, property)

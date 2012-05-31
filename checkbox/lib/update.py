@@ -17,7 +17,7 @@
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
 def recursive_update(dst, src):
-    irecursive_update(dst, list(src.iteritems()))
+    irecursive_update(dst, list(src.items()))
     return dst
 
 def irecursive_update(a, blist):
@@ -37,6 +37,6 @@ def irecursive_update(a, blist):
                 while not blist:
                     blist, a = stack.pop() # current <- parent
                 continue
-            blist, a = list(bv.iteritems()), a[bk]
+            blist, a = list(bv.items()), a[bk]
     except IndexError:
         pass

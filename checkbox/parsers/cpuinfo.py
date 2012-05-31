@@ -130,9 +130,9 @@ class CpuinfoParser:
         processor["count"] = attributes.get("count", 1)
         bogompips_string = attributes.get("bogomips", "0.0")
         processor["bogomips"] = int(round(float(bogompips_string)))
-        for platform, conversion in platform_to_conversion.iteritems():
+        for platform, conversion in platform_to_conversion.items():
             if machine in platform:
-                for pkey, ckey in conversion.iteritems():
+                for pkey, ckey in conversion.items():
                     if isinstance(ckey, (list, tuple)):
                         processor[pkey] = "/".join([attributes[k]
                             for k in ckey])
@@ -141,9 +141,9 @@ class CpuinfoParser:
 
         # Adjust platform
         if machine[0] == "i" and machine[-2:] == "86":
-            processor["platform"] = u"i386"
+            processor["platform"] = "i386"
         elif machine[:5] == "alpha":
-            processor["platform"] = u"alpha"
+            processor["platform"] = "alpha"
 
         # Adjust cache
         if processor["cache"]:

@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 #
 # This file is part of Checkbox.
 #
@@ -381,7 +381,7 @@ class HalResource(object):
         dbus.Array: list,
         dbus.Dictionary: dict,
         dbus.String: str,
-        dbus.UTF8String: unicode}
+        dbus.UTF8String: str}
 
     def __init__(self, *args, **kwargs):
         super(HalResource, self).__init__(*args, **kwargs)
@@ -433,7 +433,7 @@ class HalResource(object):
             interface = dbus.Interface(object, "org.freedesktop.Hal.Device")
 
             properties = {}
-            for key, value in interface.GetAllProperties().iteritems():
+            for key, value in interface.GetAllProperties().items():
                 key = self._get_key(key)
                 value = self._get_value(value)
                 properties[key] = value
@@ -463,10 +463,10 @@ def main():
         for attribute in attributes:
             value = getattr(device, attribute)
             if value is not None:
-                print "%s: %s" % (attribute, value)
+                print("%s: %s" % (attribute, value))
 
         # Empty line
-        print
+        print()
 
     return 0
 

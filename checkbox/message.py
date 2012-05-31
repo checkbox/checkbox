@@ -108,7 +108,7 @@ class MessageStore(object):
                 break
             try:
                 message = self._read_message(filename)
-            except ValueError, e:
+            except ValueError as e:
                 logging.exception(e)
                 self._add_flags(filename, BROKEN)
             else:

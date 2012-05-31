@@ -22,7 +22,7 @@ import posixpath
 import re
 import signal
 
-from StringIO import StringIO
+from io import StringIO
 
 from checkbox.lib.path import path_expand_recursive
 from checkbox.lib.template_i18n import TemplateI18n
@@ -106,7 +106,7 @@ class MessageInfo(Plugin):
         messages = template.load_file(file, filename)
         for message in messages:
             long_ext = "_extended"
-            for long_key in message.keys():
+            for long_key in list(message.keys()):
                 if long_key.endswith(long_ext):
                     short_key = long_key.replace(long_ext, "")
                     message[short_key] = message.pop(long_key)

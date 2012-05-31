@@ -85,7 +85,7 @@ class UserInterface(object):
 
     def show_error(self, text):
         logging.error(text)
-        raise StopAllException, "Error: %s" % text
+        raise StopAllException("Error: %s" % text)
 
     def show_progress(self, message, function, *args, **kwargs):
         self.show_progress_start(message)
@@ -199,7 +199,7 @@ class UserInterface(object):
             webbrowser.open(url, new=True, autoraise=True)
             return
 
-        except Exception, e:
+        except Exception as e:
             pass
 
     def show_report(self, text, results):

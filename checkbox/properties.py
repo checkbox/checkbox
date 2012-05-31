@@ -47,7 +47,7 @@ class Property(object):
     def _detect_name(self, used_cls):
         self_id = id(self)
         for cls in used_cls.__mro__:
-            for attr, prop in cls.__dict__.iteritems():
+            for attr, prop in cls.__dict__.items():
                 if id(prop) == self_id:
                     return attr
         raise RuntimeError("Property used in an unknown class")
@@ -188,7 +188,7 @@ class Map(PropertyType):
     variable_class = MapVariable
 
     def __init__(self, schema={}, **kwargs):
-        for key, type in schema.iteritems():
+        for key, type in schema.items():
             schema[key] = VariableFactory(type._variable_class,
                 **type._variable_kwargs)
 
