@@ -114,12 +114,24 @@ class BoolVariable(Variable):
         return value
 
 
-class StringVariable(Variable):
+class BytesVariable(Variable):
     __slots__ = ()
 
     def coerce(self, value):
         if isinstance(value, str):
-            value = str(value)
+            value = value.encode('utf-8')
+        elif not isinstance(value, bytes):
+            raise ValueError("%r is not bytes" % (value,))
+
+        return value
+
+
+class StringVariable(Variable):
+    __slots__ = ()
+
+    def coerce(self, value):
+        if isinstance(value, bytes):
+            value = value.decode("utf-8")
         elif not isinstance(value, str):
             raise ValueError("%r is not a str" % (value,))
 
@@ -132,18 +144,6 @@ class PathVariable(StringVariable):
     def coerce(self, value):
         path = super(PathVariable, self).coerce(value)
         return posixpath.expanduser(path)
-
-
-class UnicodeVariable(Variable):
-    __slots__ = ()
-
-    def coerce(self, value):
-        if isinstance(value, str):
-            value = str(value, encoding="utf-8")
-        elif not isinstance(value, str):
-            raise ValueError("%r is not a unicode" % (value,))
-
-        return value
 
 
 class IntVariable(Variable):

@@ -17,8 +17,8 @@
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
 from checkbox.attribute import Attribute
-from checkbox.variables import (ConstantVariable, BoolVariable, StringVariable,
-    PathVariable, UnicodeVariable, IntVariable, FloatVariable, TimeVariable,
+from checkbox.variables import (ConstantVariable, BoolVariable, BytesVariable,
+    StringVariable, PathVariable, IntVariable, FloatVariable, TimeVariable,
     ListVariable, TupleVariable, AnyVariable, DictVariable, MapVariable,
     FileVariable, VariableFactory, Variable, get_variable)
 
@@ -116,6 +116,11 @@ class Bool(PropertyType):
     variable_class = BoolVariable
 
 
+class Bytes(PropertyType):
+
+    variable_class = BytesVariable
+
+
 class String(PropertyType):
 
     variable_class = StringVariable
@@ -124,11 +129,6 @@ class String(PropertyType):
 class Path(PropertyType):
 
     variable_class = PathVariable
-
-
-class Unicode(PropertyType):
-
-    variable_class = UnicodeVariable
 
 
 class Int(PropertyType):

@@ -23,7 +23,7 @@ import logging
 from collections import defaultdict
 
 from checkbox.arguments import coerce_arguments
-from checkbox.properties import Float, Int, List, Map, Path, String, Unicode
+from checkbox.properties import Float, Int, List, Map, Path, String
 from checkbox.plugin import Plugin
 
 
@@ -33,11 +33,11 @@ job_schema = Map({
     "type": String(required=False),
     "status": String(required=False),
     "suite": String(required=False),
-    "description": Unicode(required=False),
-    "purpose": Unicode(required=False),
-    "steps": Unicode(required=False),
-    "info": Unicode(required=False),
-    "verification": Unicode(required=False),
+    "description": String(required=False),
+    "purpose": String(required=False),
+    "steps": String(required=False),
+    "info": String(required=False),
+    "verification": String(required=False),
     "command": String(required=False),
     "depends": List(String(), required=False),
     "duration": Float(required=False),
