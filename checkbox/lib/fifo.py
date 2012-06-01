@@ -22,6 +22,7 @@ import struct
 from checkbox.contrib.bpickle import dumps, loads
 from checkbox.lib.selector import Selector, SelectorIO
 
+
 class FifoBase:
 
     mode = None
@@ -49,51 +50,52 @@ class FifoBase:
                 return False
         return True
 
+
 class FifoReader(FifoBase):
 
     mode = "rb"
 
-    def read_string(self):
+    def read_bytes(self):
         # Check if a connection arrived within the timeout
         if not self.wait_for(SelectorIO.READ):
             return None
 
         size = struct.calcsize("i")
-        length_string = self.file.read(size)
-        if not length_string:
-            return ""
+        length_bytes = self.file.read(size)
+        if not length_bytes:
+            return b""
 
-        length = struct.unpack(">i", length_string)[0]
-        return self.file.read(length).decode("utf-8")
+        length = struct.unpack(">i", length_bytes)[0]
+        return self.file.read(length)
 
     def read_object(self):
-        string = self.read_string()
-        if not string:
+        _bytes = self.read_bytes()
+        if not _bytes:
             return None
 
-        return loads(string)
+        return loads(_bytes)
 
 
 class FifoWriter(FifoBase):
 
     mode = "wb"
 
-    def write_string(self, string):
+    def write_bytes(self, _bytes):
 
-        # Wait until I can write 
+        # Wait until I can write
         if not self.wait_for(SelectorIO.WRITE):
-            return None 
+            return None
 
-        length = len(string)
-        length_string = struct.pack(">i", length)
-        self.file.write(length_string)
-        self.file.write(string.encode("utf-8"))
+        length = len(_bytes)
+        length_bytes = struct.pack(">i", length)
+        self.file.write(length_bytes)
+        self.file.write(_bytes)
         self.file.flush()
         return length
 
     def write_object(self, object):
-        string = dumps(object)
-        return self.write_string(string)
+        _bytes = dumps(object)
+        return self.write_bytes(_bytes)
 
 
 def create_fifo(path, mode=0o666):
