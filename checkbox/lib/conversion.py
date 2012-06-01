@@ -18,11 +18,12 @@
 #
 import re
 
-from dateutil import tz
 from datetime import (
     datetime,
     timedelta,
     )
+
+from checkbox.lib.tz import tzutc
 
 
 DATETIME_RE = re.compile(r"""
@@ -108,8 +109,7 @@ def string_to_datetime(string):
         milliseconds = 999999
 
     dt = datetime(
-        year, month, day, hour, minute, second, milliseconds,
-        tzinfo=tz.tzutc())
+        year, month, day, hour, minute, second, milliseconds, tzinfo=tzutc)
 
     tz_sign = time_parts['tz_sign']
     tz_hour = time_parts['tz_hour']
