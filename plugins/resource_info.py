@@ -56,7 +56,7 @@ class ResourceInfo(Plugin):
                 's' if len(failed_requirements) > 1 else '')
             
             for failed_require in failed_requirements:
-                data = data + " '" + failed_require + "'"
+                data += " '" + failed_require + "'"
                 
             job["data"] = data
             self._manager.reactor.stop()

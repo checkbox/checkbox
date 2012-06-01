@@ -34,7 +34,7 @@ class Config(ConfigParser):
                 value = str(value).replace('\n', '\n\t')
                 fp.write("%s = %s\n" % (key, value))
 
-            for (key, value) in list(defaults.items()):
+            for (key, value) in defaults.items():
                 value = str(value).replace('\n', '\n\t')
                 fp.write("%s = %s\n" % (key, value))
 

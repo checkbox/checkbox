@@ -75,7 +75,7 @@ class SystemInfo(Plugin):
                     chassis_type,
                     resource.get("vendor", ""),
                     resource.get("model", "")]:
-                fingerprint.update(str(field))
+                fingerprint.update(field)
 
             system_id = fingerprint.hexdigest()
             if self.persist:
