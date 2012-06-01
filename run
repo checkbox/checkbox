@@ -17,14 +17,14 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
+import os
 import sys
-import posixpath
 
 
 # Workaround for python-support on older systems
 directory = "/usr/share/python-support"
 for package in ["checkbox", "checkbox-cli", "checkbox-gtk"]:
-    sys.path.append(posixpath.join(directory, package))
+    sys.path.append(os.path.join(directory, package))
 
 
 from checkbox.application import ApplicationManager

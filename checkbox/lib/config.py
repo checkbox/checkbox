@@ -19,7 +19,6 @@
 import os
 import re
 import logging
-import posixpath
 
 from configparser import ConfigParser
 
@@ -43,19 +42,16 @@ class IncludeDict(dict):
             for path in split(value):
                 path = self._parser._interpolation.before_get(
                     self._parser, "DEFAULT", None, path, self)
-                path = posixpath.expanduser(path)
-                if not posixpath.exists(path):
+                path = os.path.expanduser(path)
+                if not os.path.exists(path):
                     raise Exception("No such configuration file: %s" % path)
-                if posixpath.isdir(path):
+                if os.path.isdir(path):
                     logging.info("Parsing config filenames from directory: %s",
                         path)
-                    def walk_func(arg, directory, names):
-                        for name in names:
-                            path = posixpath.join(directory, name)
-                            if not posixpath.isdir(path):
-                                arg._parser.read(path)
-
-                    posixpath.walk(path, walk_func, self)
+                    for dirpath, dirnames, filenames in os.walk(path):
+                        for filename in filenames:
+                            path = os.path.join(dirpath, filename)
+                            self._parser.read(path)
                 else:
                     logging.info("Parsing config filename: %s", path)
                     self._parser.read(path)
@@ -149,7 +145,7 @@ class Config:
         self._parser.read_file(file, filename)
 
     def read_filename(self, filename):
-        if not posixpath.exists(filename):
+        if not os.path.exists(filename):
             raise Exception("No such configuration file: %s" % filename)
 
         file = open(filename, "r")
