@@ -109,7 +109,7 @@ class ComponentSection:
                 basename = basename.replace(".py", "")
                 if basename == name:
                     globals = {}
-                    exec(open(filename), globals)
+                    exec(open(filename).read(), globals)
                     if "factory" not in globals:
                         raise Exception("Variable 'factory' not found in: %s" \
                             % filename)
