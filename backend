@@ -41,7 +41,7 @@ def main(args):
                 result = (FAIL, "", 0,)
 
             writer.write_object(result)
-        except IOError as e:
+        except IOError:
             break
 
     return 0

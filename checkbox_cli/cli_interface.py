@@ -32,7 +32,7 @@ ANSWER_TO_OPTION = {
     NO_ANSWER: _("no"),
     SKIP_ANSWER: _("skip")}
 
-OPTION_TO_ANSWER = dict((o, a) for a, o in list(ANSWER_TO_OPTION.items()))
+OPTION_TO_ANSWER = dict((o, a) for a, o in ANSWER_TO_OPTION.items())
 
 
 class CLIDialog:

@@ -119,7 +119,7 @@ class Dispatcher:
 
         :param handler: The handler to unregister.
         """
-        for event_type, listeners in list(self._event_listeners.items()):
+        for event_type, listeners in self._event_listeners.items():
             listeners = [
                 listener for listener in listeners
                 if listener.handler == handler]

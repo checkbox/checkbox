@@ -36,7 +36,7 @@ ANSWER_TO_OPTION = {
     SKIP_ANSWER: _('skip')}
 
 OPTION_TO_ANSWER = dict((o, a)
-                        for a, o in list(ANSWER_TO_OPTION.items()))
+                        for a, o in ANSWER_TO_OPTION.items())
 def dummy_handle_reply(r=None):
     return
 

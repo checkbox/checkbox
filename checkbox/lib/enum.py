@@ -65,7 +65,7 @@ def enum_name_to_value(enum, name):
 
 
 def enum_value_to_name(enum, value):
-    for k, v in list(enum.__dict__.items()):
+    for k, v in enum.__dict__.items():
         if v == value:
             return k
 

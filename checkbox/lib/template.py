@@ -42,12 +42,12 @@ class Template:
 
     def dump_file(self, elements, file, filename="<stream>"):
         for element in elements:
-            for long_key in list(element.keys()):
+            for long_key in element.keys():
                 if long_key.endswith(EXTENDED_STRING):
                     short_key = long_key.replace(EXTENDED_STRING, "")
                     del element[short_key]
 
-            for key, value in list(element.items()):
+            for key, value in element.items():
                 if key.endswith(EXTENDED_STRING):
                     key = key.replace(EXTENDED_STRING, "")
                     file.write("%s:\n" % key)

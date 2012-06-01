@@ -919,7 +919,7 @@ class UrwidInterface(UserInterface):
         SKIP_ANSWER: _('skip')}
 
     OPTION_TO_ANSWER = dict((o, a)
-                            for a, o in list(ANSWER_TO_OPTION.items()))
+                            for a, o in ANSWER_TO_OPTION.items())
 
     def show_progress_start(self, text):
         """
@@ -1004,8 +1004,7 @@ class UrwidInterface(UserInterface):
             output = ''
 
         # Get options
-        options = list([self.ANSWER_TO_OPTION[a]
-                        for a in ALL_ANSWERS])
+        options = [self.ANSWER_TO_OPTION[a] for a in ALL_ANSWERS]
 
         # Get buttons
         buttons = []
