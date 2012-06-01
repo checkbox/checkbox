@@ -19,8 +19,15 @@ def main(args):
     if len(args) < 2:
         parser.error("Missing INPUT and OUTPUT")
 
+    # Set PATH
     if options.path:
         os.environ["PATH"] = options.path
+
+    # Set PYTHONPATH
+    pythonpath = sys.path[0]
+    if "PYTHONPATH" in os.environ:
+        pythonpath = ":".join([pythonpath, os.environ["PYTHONPATH"]])
+    os.environ["PYTHONPATH"] = pythonpath
 
     reader = FifoReader(args[0])
     writer = FifoWriter(args[1])
@@ -36,11 +43,15 @@ def main(args):
             if isinstance(message, dict) and "command" in message:
                 job = Job(message["command"], message.get("environ"),
                     message.get("timeout"))
-                result = job.execute()
+                status, data, duration = job.execute()
+                try:
+                    data = data.decode("utf-8")
+                except UnicodeDecodeError:
+                    status, data, duration = (FAIL, "Decode error", 0,)
             else:
-                result = (FAIL, "", 0,)
+                status, data, duration = (FAIL, "", 0,)
 
-            writer.write_object(result)
+            writer.write_object((status, data, duration,))
         except IOError:
             break
 

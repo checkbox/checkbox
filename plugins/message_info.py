@@ -16,10 +16,10 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-import logging
 import os
-import posixpath
 import re
+import logging
+import posixpath
 import signal
 
 from io import StringIO
@@ -96,10 +96,16 @@ class MessageInfo(Plugin):
 
             # Kill the job if the stop event is fired during execution
             event_id = self._manager.reactor.call_on("stop", stop)
-            result = job.execute()
+            status, data, duration = job.execute()
             self._manager.reactor.cancel_call(event_id)
 
-            self._manager.reactor.fire("message-result", *result)
+            try:
+                data = data.decode("utf-8")
+            except UnicodeDecodeError:
+                status, data, duration = (FAIL, "Decode error", 0,)
+
+            self._manager.reactor.fire(
+                "message-result", status, data, duration)
 
     def message_file(self, file, filename="<stream>"):
         template = TemplateI18n()
@@ -120,7 +126,10 @@ class MessageInfo(Plugin):
 
     def message_filename(self, filename):
         file = open(filename, "r")
-        self._manager.reactor.fire("message-file", file, filename)
+        try:
+            self._manager.reactor.fire("message-file", file, filename)
+        finally:
+            file.close()
 
     def message_result(self, status, data, duration):
         if status == PASS:
