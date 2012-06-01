@@ -219,7 +219,7 @@ class MessageStore:
         return posixpath.join(self._directory, *args)
 
     def _get_content(self, filename):
-        file = open(filename)
+        file = open(filename, "rb")
         try:
             return file.read()
         finally:
@@ -263,7 +263,7 @@ class MessageStore:
 
         message_data = self._dump_message(message)
 
-        file = open(filename + ".tmp", "w")
+        file = open(filename + ".tmp", "wb")
         file.write(message_data)
         safe_close(file, safe=self.safe_file_closing)
 

@@ -517,14 +517,14 @@ class PickleBackend(DiskBackend):
         self._pickle = cPickle
 
     def load(self, filepath):
-        file = open(filepath)
+        file = open(filepath, "rb")
         try:
             return self._pickle.load(file)
         finally:
             safe_close(file, self.safe_file_closing)
 
     def save(self, filepath, map):
-        file = open(filepath, "w")
+        file = open(filepath, "wb")
         try:
             self._pickle.dump(map, file, 2)
         finally:
@@ -538,14 +538,14 @@ class BPickleBackend(DiskBackend):
         self._bpickle = bpickle
 
     def load(self, filepath):
-        file = open(filepath)
+        file = open(filepath, "rb")
         try:
             return self._bpickle.loads(file.read())
         finally:
             safe_close(file, self.safe_file_closing)
 
     def save(self, filepath, map):
-        file = open(filepath, "w")
+        file = open(filepath, "wb")
         try:
             file.write(self._bpickle.dumps(map))
         finally:
