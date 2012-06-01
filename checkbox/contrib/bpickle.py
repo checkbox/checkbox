@@ -66,11 +66,11 @@ def dumps_int(obj):
 def dumps_float(obj):
     return "f%r;" % obj
 
-def dumps_str(obj):
+def dumps_bytes(obj):
+    obj = obj.decode("utf-8")
     return "s%s:%s" % (len(obj), obj)
 
-def dumps_unicode(obj):
-    obj = obj.encode("utf-8")
+def dumps_str(obj):
     return "u%s:%s" % (len(obj), obj)
 
 def dumps_list(obj, _dt=None):
@@ -103,15 +103,15 @@ def loads_float(str, pos):
     endpos = str.index(";", pos)
     return float(str[pos+1:endpos]), endpos+1
 
+def loads_bytes(str, pos):
+    startpos = str.index(":", pos)+1
+    endpos = startpos+int(str[pos+1:startpos-1])
+    return str[startpos:endpos].encode("utf-8"), endpos
+
 def loads_str(str, pos):
     startpos = str.index(":", pos)+1
     endpos = startpos+int(str[pos+1:startpos-1])
     return str[startpos:endpos], endpos
-
-def loads_unicode(str, pos):
-    startpos = str.index(":", pos)+1
-    endpos = startpos+int(str[pos+1:startpos-1])
-    return str[startpos:endpos].decode("utf-8"), endpos
 
 def loads_list(str, pos, _lt=loads_table):
     pos += 1
@@ -146,10 +146,9 @@ def loads_none(str, pos):
 
 dumps_table.update({       bool: dumps_bool,
                             int: dumps_int,
-                           int: dumps_int,
                           float: dumps_float,
+                          bytes: dumps_bytes,
                             str: dumps_str,
-                        str: dumps_unicode,
                            list: dumps_list,
                           tuple: dumps_tuple,
                            dict: dumps_dict,
@@ -158,8 +157,8 @@ dumps_table.update({       bool: dumps_bool,
 loads_table.update({ "b": loads_bool,
                      "i": loads_int,
                      "f": loads_float,
-                     "s": loads_str,
-                     "u": loads_unicode,
+                     "s": loads_bytes,
+                     "u": loads_str,
                      "l": loads_list,
                      "t": loads_tuple,
                      "d": loads_dict,
