@@ -20,7 +20,7 @@ import re
 
 from string import (
     hexdigits,
-    uppercase,
+    ascii_uppercase,
     )
 
 from checkbox.lib.dmi import (
@@ -36,7 +36,7 @@ HANDLE_RE = re.compile(
     % hexdigits)
 KEY_VALUE_RE = re.compile(
     r"^\t(?P<key>[%s].+):( (?P<value>.+))?$"
-    % uppercase)
+    % ascii_uppercase)
 
 
 class DmidecodeParser:
