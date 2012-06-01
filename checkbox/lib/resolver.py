@@ -21,13 +21,10 @@ class Resolver:
     Main class. Instantiate with the root directory of your items.
     """
 
-    def __init__(self, compare=None, key=None):
-        if compare is None:
-            compare = lambda a, b: cmp(a, b)
+    def __init__(self, key=None):
         if key is None:
             key = lambda k: k
 
-        self.compare = compare
         self.key = key
 
         # detect repeated resolution attempts - these indicate some circular dependency
@@ -111,7 +108,7 @@ class Resolver:
             dependents = [x for x in iter(self.items.values()) if len(self.resolve(x)) == 1]
 
         index = 0
-        dependents = sorted(dependents, self.compare)
+        dependents = sorted(dependents)
         while index < len(dependents):
             sub_dependents = self.get_dependents(dependents[index])
             if sub_dependents:

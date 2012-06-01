@@ -130,19 +130,17 @@ class JobsInfo(Plugin):
             self._manager.reactor.fire("message-directory", directory)
 
         # Apply whitelist ordering
-        def cmp_function(a, b):
-            a_name = a["name"]
-            b_name = b["name"]
+        def key_function(obj):
+            name = obj["name"]
             for pattern in self.whitelist_patterns:
-                if pattern.match(a_name):
-                    a_index = self.whitelist_patterns.index(pattern)
-                elif pattern.match(b_name):
-                    b_index = self.whitelist_patterns.index(pattern)
+                if pattern.match(name):
+                    index = self.whitelist_patterns.index(pattern)
+                    break
 
-            return cmp(a_index, b_index)
+            return index
 
         if self.whitelist_patterns:
-            messages = sorted(messages, cmp=cmp_function)
+            messages = sorted(messages, key=key_function)
         for message in messages:
             self._manager.reactor.fire("report-job", message)
 
