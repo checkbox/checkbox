@@ -105,10 +105,9 @@ class ResourceGlobals(dict):
 
     def __init__(self, names, *args, **kwargs):
         super(ResourceGlobals, self).__init__(*args, **kwargs)
-        self["__builtins__"] = None
 
         for name in names:
-            function = getattr(__builtin__, name)
+            function = getattr(builtins, name)
             self[name] = ResourceBuiltin(function)
 
 
@@ -128,7 +127,7 @@ class ResourceMap(dict):
 
     def eval(self, source):
         self._results = []
-        resource_globals = ResourceGlobals(["bool", "float", "int", "long", "str"])
+        resource_globals = ResourceGlobals(["bool", "float", "int", "str"])
         try:
             value = eval(source, resource_globals, self)
             if (isinstance(value, (bool, int)) and value) \
