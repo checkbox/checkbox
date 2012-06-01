@@ -51,9 +51,7 @@ class FifoBase:
 
 class FifoReader(FifoBase):
 
-    #on Linux, opening a FIFO in read-write mode is non-blocking and
-    #succeeds even if other end is not open as per FIFO(7)
-    mode = "w+"
+    mode = "rb"
 
     def read_string(self):
         # Check if a connection arrived within the timeout
@@ -66,7 +64,7 @@ class FifoReader(FifoBase):
             return ""
 
         length = struct.unpack(">i", length_string)[0]
-        return self.file.read(length)
+        return self.file.read(length).decode("utf-8")
 
     def read_object(self):
         string = self.read_string()
@@ -78,9 +76,7 @@ class FifoReader(FifoBase):
 
 class FifoWriter(FifoBase):
 
-    #on Linux, opening a FIFO in read-write mode is non-blocking and
-    #succeeds even if other end is not open as per FIFO(7)
-    mode = "w+"
+    mode = "wb"
 
     def write_string(self, string):
 
@@ -91,7 +87,7 @@ class FifoWriter(FifoBase):
         length = len(string)
         length_string = struct.pack(">i", length)
         self.file.write(length_string)
-        self.file.write(string)
+        self.file.write(string.encode("utf-8"))
         self.file.flush()
         return length
 
