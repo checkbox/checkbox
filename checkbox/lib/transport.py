@@ -22,12 +22,11 @@ import os
 import re
 import stat
 import sys
-import posixpath
 
-import email
+import email.generator
+import http.client
 import mimetypes
 import socket
-import http.client
 import urllib.request, urllib.parse, urllib.error
 
 
@@ -69,7 +68,7 @@ except AttributeError:
 
 class ProxyHTTPConnection(http.client.HTTPConnection):
 
-    _ports = {"http" : http.client.HTTP_PORT, "https" : http.client.HTTPS_PORT}
+    _ports = {"http": http.client.HTTP_PORT, "https": http.client.HTTPS_PORT}
 
     def request(self, method, url, body=None, headers={}):
         #request is called before connect, so can interpret url and get
@@ -187,7 +186,7 @@ class HTTPTransport:
     def __init__(self, url):
         self.url = url
 
-        proxies = urllib.getproxies()
+        proxies = urllib.request.getproxies()
         self.http_proxy = proxies.get("http")
         self.https_proxy = proxies.get("https")
 
@@ -225,13 +224,13 @@ class HTTPTransport:
         return connection
 
     def _encode_multipart_formdata(self, fields=[], files=[]):
-        boundary = email.generator._make_boundary()
+        boundary = email.generator._make_boundary().encode("ascii")
 
         lines = []
         for (key, value) in fields:
-            lines.append("--" + boundary)
-            lines.append("Content-Disposition: form-data; name=\"%s\"" % key)
-            lines.append("")
+            lines.append(b"--" + boundary)
+            lines.append(b"Content-Disposition: form-data; name=\"" + key + b"\"")
+            lines.append(b"")
             lines.append(value)
 
         for (key, file) in files:
@@ -240,27 +239,30 @@ class HTTPTransport:
             else:
                 length = os.fstat(file.fileno())[stat.ST_SIZE]
 
-            filename = posixpath.basename(file.name)
-            if isinstance(filename, str):
-                filename = filename.encode("UTF-8")
+            content_type = mimetypes.guess_type(file.name)[0]
+            if content_type:
+                content_type = content_type.encode("ascii")
+            else:
+                content_type = b"application/octet-stream"
 
-            lines.append("--" + boundary)
-            lines.append("Content-Disposition: form-data; name=\"%s\"; filename=\"%s\""
-                % (key, filename))
-            lines.append("Content-Type: %s"
-                % mimetypes.guess_type(filename)[0] or "application/octet-stream")
-            lines.append("Content-Length: %s" % length)
-            lines.append("")
+            filename = os.path.basename(file.name)
+            filename = filename.encode("utf-8")
+
+            lines.append(b"--" + boundary)
+            lines.append(b"Content-Disposition: form-data; name=\"" + key + b"\"; filename=\"" + filename + b"\"")
+            lines.append(b"Content-Type: " + content_type)
+            lines.append(b"Content-Length: " + str(length).encode("ascii"))
+            lines.append(b"")
 
             if hasattr(file, "seek"):
                 file.seek(0)
             lines.append(file.read())
 
-        lines.append("--" + boundary + "--")
-        lines.append("")
+        lines.append(b"--" + boundary + b"--")
+        lines.append(b"")
 
-        content_type = "multipart/form-data; boundary=%s" % boundary
-        body = "\r\n".join(lines)
+        content_type = b"multipart/form-data; boundary=" + boundary
+        body = b"\r\n".join(lines)
 
         return content_type, body
 
@@ -268,8 +270,8 @@ class HTTPTransport:
         fields = []
         files = []
 
-        content_type = "application/octet-stream"
-        if body is not None and type(body) != str:
+        content_type = b"application/octet-stream"
+        if body is not None and type(body) != bytes:
             if hasattr(body, "items"):
                 body = list(body.items())
             else:
@@ -281,16 +283,18 @@ class HTTPTransport:
                     raise TypeError("Invalid non-string sequence or mapping").with_traceback(tb)
 
             for key, value in body:
+                key = key.encode("ascii")
                 if hasattr(value, "read"):
                     files.append((key, value))
                 else:
+                    value = value.encode("utf-8")
                     fields.append((key, value))
 
             if files:
-                content_type, body = self._encode_multipart_formdata(fields,
-                    files)
+                content_type, body = self._encode_multipart_formdata(
+                    fields, files)
             elif fields:
-                content_type = "application/x-www-form-urlencoded"
+                content_type = b"application/x-www-form-urlencoded"
                 body = urllib.parse.urlencode(fields)
             else:
                 body = ""
