@@ -55,12 +55,10 @@ class HyperTextView(Gtk.TextView):
         self.connect("focus-out-event", lambda w, e: self.get_buffer().get_tag_table().foreach(self.__tag_reset, e.window))
 
     def insert(self, text, _iter=None):
-        if not isinstance(text, str):
-            text = str(text, "utf-8")
         b = self.get_buffer()
         if _iter is None:
             _iter = b.get_end_iter()
-        b.insert(_iter, text.encode("utf-8"))
+        b.insert(_iter, text)
 
     def insert_with_anchor(self, text, anchor=None, _iter=None):
         b = self.get_buffer()
