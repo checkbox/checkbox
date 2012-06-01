@@ -24,7 +24,7 @@ import stat
 import sys
 import posixpath
 
-import mimetools
+import email
 import mimetypes
 import socket
 import http.client
@@ -225,7 +225,7 @@ class HTTPTransport:
         return connection
 
     def _encode_multipart_formdata(self, fields=[], files=[]):
-        boundary = mimetools.choose_boundary()
+        boundary = email.generator._make_boundary()
 
         lines = []
         for (key, value) in fields:
