@@ -70,11 +70,6 @@ class LockAlreadyAcquired(GlobalLockError):
     pass
 
 
-# Constants
-# ---------:
-if sys.version[:3] < '2.2':
-    True, False = 1, 0  # built-in in Python 2.2+
-
 #----------------------------------------------------------------------------
 class GlobalLock:
 #----------------------------------------------------------------------------
