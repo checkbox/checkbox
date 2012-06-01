@@ -391,7 +391,7 @@ class SubmissionParser:
             properties = self._getProperties(child)
             for key, value in properties.items():
                 if key in ("bogomips", "cache", "count", "speed",):
-                    properties[key] = int(value)
+                    properties[key] = int(float(value))
                 elif isinstance(value, list):
                     properties[key] = " ".join(value)
             processors.append(properties)
