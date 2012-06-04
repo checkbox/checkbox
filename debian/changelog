@@ -11,6 +11,7 @@ checkbox (0.14) quantal; urgency=low
   * [FEATURE] Added new interactive and auto-verifying touchpad scrolling
     test.
   * Removed sleep_test script no longer used by any test definition.
+  * Migrated project minus scripts to Python 3.
 
   [Daniel Manrique]
   * New version 0.14 for Quantal Quetzal development.
@@ -54,7 +55,7 @@ checkbox (0.14) quantal; urgency=low
     user input (LP: #1000451)
   * Added customizable deselect_warning message in qt show_tree method (LP: #1000443)
 
- -- Daniel Manrique <roadmr@ubuntu.com>  Fri, 25 May 2012 16:38:54 -0400
+ -- Marc Tardif <marc@ubuntu.com>  Mon, 04 Jun 2012 15:39:51 -0400
 
 checkbox (0.13.8) precise; urgency=low
 
