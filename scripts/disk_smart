@@ -65,8 +65,10 @@ from optparse import OptionParser
 class ListHandler(logging.StreamHandler):
 
     def emit(self, record):
-        if isinstance(record.msg, (list, tuple,)):
+        if isinstance(record.msg, (list, tuple)):
             for msg in record.msg:
+                if type(msg) is bytes:
+                    msg = bytes.decode(msg)
                 logger = logging.getLogger(record.name)
                 new_record = logger.makeRecord(record.name, record.levelno,
                     record.pathname, record.lineno, msg, record.args,
@@ -86,8 +88,8 @@ def is_smart_enabled(disk):
     logging.debug(diskinfo)
 
     return (len(diskinfo) > 2
-            and 'Enabled' in diskinfo[-2]
-            and 'Available' in diskinfo[-3])
+            and 'Enabled' in bytes.decode(diskinfo[-2])
+            and 'Available' in bytes.decode(diskinfo[-3]))
 
 
 def run_smart_test(disk, type='short'):
@@ -105,27 +107,27 @@ def get_smart_entries(disk, type='selftest'):
 
     # Skip intro lines
     while True:
-        line = stdout.readline()
+        line = bytes.decode(stdout.readline())
         if not line:
             raise Exception('Failed to parse log')
-
+        
         if line.startswith('SMART'):
             break
-
+    
     # Get lengths from header
-    line = stdout.readline()
+    line = bytes.decode(stdout.readline())
     if not line.startswith('Num'):
         return entries
-
     columns = ['number', 'description', 'status',
                'remaining', 'lifetime', 'lba']
     lengths = [line.index(i) for i in line.split()]
     lengths[columns.index('remaining')] += len('Remaining') - len('100%')
     lengths.append(len(line))
-
+    
     # Get remaining lines
     entries = []
     for line in stdout.readlines():
+        line = bytes.decode(line)
         if line.startswith('#'):
             entry = {}
             for i, column in enumerate(columns):
@@ -134,11 +136,9 @@ def get_smart_entries(disk, type='selftest'):
             # Convert some columns to integers
             entry['number'] = int(entry['number'][1:])
             entry['lifetime'] = int(entry['lifetime'])
-
             entries.append(entry)
 
     return entries
-
 
 def main():
     usage = 'usage: %prog [OPTIONS]'
@@ -176,7 +176,7 @@ def main():
     # test is pointless in this case.
     disk = options.block_dev
     if not is_smart_enabled(disk):
-        print 'SMART not available'
+        print('SMART not available')
         return 0
 
     # Initiate a self test and start polling until the test is done
@@ -197,6 +197,10 @@ def main():
         time.sleep(options.sleep)
 
         current_entries = get_smart_entries(disk)
+        logging.debug('%s %s %s %s' % (current_entries[0]['number'],
+                                       current_entries[0]['description'],
+                                       current_entries[0]['status'],
+                                       current_entries[0]['remaining']))
         if current_entries != previous_entries \
            and current_entries[0]["status"] != 'Self-test routine in progress':
             break
@@ -209,7 +213,7 @@ def main():
                 options.timeout -= options.sleep
 
     status = current_entries[0]['status']
-    print status
+    print(status)
 
     return status != 'Completed without error'
 
