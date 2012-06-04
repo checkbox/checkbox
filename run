@@ -20,13 +20,6 @@
 import os
 import sys
 
-
-# Workaround for python-support on older systems
-directory = "/usr/share/python-support"
-for package in ["checkbox", "checkbox-cli", "checkbox-gtk"]:
-    sys.path.append(os.path.join(directory, package))
-
-
 from checkbox.application import ApplicationManager
 
 
