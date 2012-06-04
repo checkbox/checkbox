@@ -200,8 +200,12 @@ class QTInterface(UserInterface):
         self.qtiface.setFocusTestYesNo(True if status == PASS else False)
         self.qtiface.showTestControls(True)
 
-        return Template(test["info"]).substitute({
-            "output": data.strip()})
+        if test["info"]:
+            info = Template(test["info"]).substitute({"output": data.strip()})
+        else:
+            info = ""
+
+        return info
 
     def show_test(self, test, runner):
         def onStartTestClicked():
@@ -260,7 +264,8 @@ class QTInterface(UserInterface):
             self.infoResult = str(result)
             self.loop.quit()
 
-        self.qtiface.showInfo(text, options, default, 
+        self.qtiface.showInfo(
+            text, options, default,
             reply_handler=dummy_handle_reply,
             error_handler=dummy_handle_error)
         self.wait_on_signals(
