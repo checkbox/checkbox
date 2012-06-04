@@ -44,6 +44,7 @@ class CLIDialog:
 
     def put(self, text):
         sys.stdout.write(text)
+        sys.stdout.flush()
 
     def put_line(self, line):
         self.put("%s\n" % line)
@@ -59,7 +60,7 @@ class CLIDialog:
         fileno = sys.stdin.fileno()
         saved_attributes = termios.tcgetattr(fileno)
         attributes = termios.tcgetattr(fileno)
-        attributes[3] = attributes[3] & ~(termios.ICANON | termios.ECHO)
+        attributes[3] &= ~(termios.ICANON | termios.ECHO)
         attributes[6][termios.VMIN] = 1
         attributes[6][termios.VTIME] = 0
         termios.tcsetattr(fileno, termios.TCSANOW, attributes)
@@ -68,10 +69,10 @@ class CLIDialog:
         escape = 0
         try:
             while len(input) < limit:
-                ch = str(sys.stdin.read(1))
+                ch = sys.stdin.read(1)
                 if ord(ch) == separator:
                     break
-                elif ord(ch) == 0o33: # ESC
+                elif ord(ch) == 0o33:  # ESC
                     escape = 1
                 elif ord(ch) == termios.CERASE or ord(ch) == 0o10:
                     if len(input):
@@ -208,7 +209,7 @@ class CLIReportDialog(CLIDialog):
                 if not provided
                 """
                 if key is None:
-                    key = string.lowercase[len(keys)]
+                    key = string.ascii_lowercase[len(keys)]
                 keys.append(key)
                 options.append(option)
 
