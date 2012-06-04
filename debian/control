@@ -3,14 +3,14 @@ Section: utils
 Priority: optional
 Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
 Standards-Version: 3.9.2
-X-Python-Version: >= 2.6
-Build-Depends: debhelper (>= 7.0.50~), dh-translations, libqt4-dev, python (>= 2.6.6-3~), po-debconf, python-distutils-extra, qt4-qmake
+X-Python3-Version: >= 3.2
+Build-Depends: debhelper (>= 9.2), dh-translations, libqt4-dev, python3 (>= 3.2), po-debconf, python3-distutils-extra, qt4-qmake
 Vcs-Bzr: https://code.launchpad.net/~hardware-certification/checkbox/trunk
 
 Package: checkbox
 Section: python
 Architecture: any
-Depends: ${misc:Depends}, ${python:Depends}, debconf, python3-lxml, udev
+Depends: ${misc:Depends}, ${python3:Depends}, debconf, python3-lxml, udev
 Recommends: dpkg (>= 1.13), gstreamer0.10-gconf, lsb-release, perl, pm-utils, python-apport, python-apt, python-gst0.10, python-gtk2, python3-gi
 Suggests: checkbox-cli | checkbox-gtk, bonnie++, bootchart, bzr, cvs, ethtool, flex, fwts, git-core, hdparm, lshw, make, nmap, obexd-client, python-pexpect, smartmontools, sox, stress, wodim, mesa-utils, wmctrl
 Description: System testing application 
