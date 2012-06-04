@@ -27,6 +27,26 @@ from checkbox.user_interface import (UserInterface, NEXT, PREV,
                                      ALL_ANSWERS, ANSWER_TO_STATUS)
 
 
+# HACK to workaround bug in urwid.container, line 1273
+class ComparableString(str):
+
+    def __init__(self, string):
+        self.string = string
+
+    def __getattr__(self, name):
+        return getattr(self.string, name)
+
+    def __lt__(self, other):
+        if not isinstance(other, str):
+            return False
+        return self.string < other
+
+    def __gt__(self, other):
+        if not isinstance(other, str):
+            return False
+        return self.string > other
+
+
 class Dialog:
     """
     Basic dialog class that displays some text
@@ -77,8 +97,10 @@ class Dialog:
         if not body:
             text = urwid.Text(self.text)
             walker = urwid.SimpleListWalker([])
+            list_box = urwid.ListBox(walker)
+            list_box.pref_col = ComparableString(list_box.pref_col)
             body = urwid.Pile((('flow', text),
-                               ('weight', 1, urwid.ListBox(walker))))
+                               ('weight', 1, list_box)))
             self.walker = walker
 
         frame = urwid.AttrMap(urwid.Frame(body, header, footer), 'body')
