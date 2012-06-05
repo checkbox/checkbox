@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 '''
 Script to automate disk SMART testing
 
@@ -65,7 +65,7 @@ from optparse import OptionParser
 class ListHandler(logging.StreamHandler):
 
     def emit(self, record):
-        if isinstance(record.msg, (list, tuple,)):
+        if isinstance(record.msg, (list, tuple)):
             for msg in record.msg:
                 logger = logging.getLogger(record.name)
                 new_record = logger.makeRecord(record.name, record.levelno,
@@ -176,7 +176,7 @@ def main():
     # test is pointless in this case.
     disk = options.block_dev
     if not is_smart_enabled(disk):
-        print 'SMART not available'
+        print('SMART not available')
         return 0
 
     # Initiate a self test and start polling until the test is done
@@ -209,7 +209,7 @@ def main():
                 options.timeout -= options.sleep
 
     status = current_entries[0]['status']
-    print status
+    print(status)
 
     return status != 'Completed without error'
 
