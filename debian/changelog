@@ -49,6 +49,10 @@ checkbox (0.14) quantal; urgency=low
   * [FEATURE] Python 2 to 3 conversion:
     * scripts/cpu_topology: ran 2to3, made modificates based on code review and
       tested script to verify functionality.
+    * scripts/disk_smart - ported to Python 3. Inserted bits to decode byte
+      data returned by Popen. Fixed list_handler to decode bytes types to clean
+      up debug output.  Added bits to improve debug output.
+
 
   [Sylvain Pineau]
   * scripts/pm_log_check: added a slightly modified version of OEM team's pm_check.py
