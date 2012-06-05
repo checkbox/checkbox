@@ -24,7 +24,7 @@ def print_line(key, value):
 
 
 def print_element(element):
-    for key, value in list(element.items()):
+    for key, value in element.items():
         print_line(key, value)
 
     print()
