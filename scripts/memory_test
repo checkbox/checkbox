@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 
 import os
 import sys
@@ -61,12 +61,12 @@ class MemoryTest():
 
     def get_limits(self):
         self._get_memory()
-        print "System Memory: %u MB" % self.system_memory
-        print "Free Memory: %u MB" % self.free_memory
-        print "Swap Memory: %u MB" % self.swap_memory
+        print("System Memory: %u MB" % self.system_memory)
+        print("Free Memory: %u MB" % self.free_memory)
+        print("Swap Memory: %u MB" % self.swap_memory)
 
         if self.system_memory == 0:
-            print "Error: could not determine system RAM"
+            print("Error: could not determine system RAM")
             return False
 
         # Process Memory
@@ -76,12 +76,12 @@ class MemoryTest():
             if re.match(r"(i[0-9]86|s390)", arch) and self.free_memory > 1024:
                 self.is_process_limited = True
                 self.process_memory = 1024  # MB, due to 32-bit address space
-                print "%s arch, Limiting Process Memory: %u" % (arch,
-                    self.process_memory)
+                print("%s arch, Limiting Process Memory: %u" % (arch,
+                    self.process_memory))
         # others?  what about PAE kernel?
-        except Exception, e:
-            print "Error: could not determine system architecture via arch"
-            print e
+        except Exception as e:
+            print("Error: could not determine system architecture via arch")
+            print(e)
             return False
         return True
 
@@ -117,24 +117,24 @@ class MemoryTest():
             # check to make sure there's enough swap
             required_memory = self.process_memory * processes
             if required_memory > self.system_memory + self.swap_memory:
-                print ("Error: this test requires a minimum of %u KB of swap "
+                print(("Error: this test requires a minimum of %u KB of swap "
                        "memory (%u configured)"
                        % (required_memory - self.system_memory,
-                          self.swap_memory))
-        print "Testing memory with %u processes" % processes
+                          self.swap_memory)))
+        print("Testing memory with %u processes" % processes)
 
-        print "Running threaded memory test:"
+        print("Running threaded memory test:")
         run_time = 60  # sec.
         if not self.run_processes(processes, "%s -qpv -m%um -t%u" % (
                 self.threaded_memtest_script, self.process_memory, run_time)):
-            print "Multi-process, threaded memory Test FAILED"
+            print("Multi-process, threaded memory Test FAILED")
             return False
 
         return True
 
     def run_threaded_memory_test(self):
         # single-process threaded test
-        print "Starting Threaded Memory Test"
+        print("Starting Threaded Memory Test")
 
         # run for Free Memory plus the lessor of 5% or 1GB
         memory = (self.free_memory * 5) / 100
@@ -147,27 +147,27 @@ class MemoryTest():
 
             # is there enough swap memory for the test?
             if memory > self.system_memory + self.swap_memory:
-                print ("Error: this test requires a minimum of %u KB of swap "
+                print(("Error: this test requires a minimum of %u KB of swap "
                        "memory (%u configured)"
-                       % (memory - self.system_memory, self.swap_memory))
+                       % (memory - self.system_memory, self.swap_memory)))
                 return False
 
             # otherwise
             run_time = 60  # sec.
-            print "running for more than free memory at %u MB for %u sec." % (
-                memory, run_time)
+            print("running for more than free memory at %u MB for %u sec." % (
+                memory, run_time))
             process = self._command("%s -qpv -m%um -t%u" % (
                 self.threaded_memtest_script, memory, run_time))
             process.communicate()
-            print "done."
+            print("done.")
             if process.returncode != 0:
                 return False
 
         # run again for 15 minutes
-        print "running for free memory"
+        print("running for free memory")
         process = self._command("%s -qpv" % self.threaded_memtest_script)
         process.communicate()
-        print "done."
+        print("done.")
         sys.stdout.flush()
         return (process.returncode == 0)
 
@@ -176,7 +176,7 @@ class MemoryTest():
         pipe = []
         for i in range(number):
             pipe.append(self._command(command))
-            print "Started: process %u pid %u: %s" % (i, pipe[i].pid, command)
+            print("Started: process %u pid %u: %s" % (i, pipe[i].pid, command))
         sys.stdout.flush()
         waiting = True
         while waiting:
@@ -185,18 +185,18 @@ class MemoryTest():
                 if pipe[i]:
                     line = pipe[i].communicate()[0]
                     if line and len(line) > 1:
-                        print "process %u pid %u: %s" % (i, pipe[i].pid, line)
+                        print("process %u pid %u: %s" % (i, pipe[i].pid, line))
                         sys.stdout.flush()
                     if pipe[i].poll() == -1:
                         waiting = True
                     else:
                         return_value = pipe[i].poll()
                         if return_value != 0:
-                            print ("Error: process  %u pid %u retuned %u"
-                                   % (i, pipe[i].pid, return_value))
+                            print(("Error: process  %u pid %u retuned %u"
+                                   % (i, pipe[i].pid, return_value)))
                             passed = False
-                        print ("process %u pid %u returned success"
-                               % (i, pipe[i].pid))
+                        print(("process %u pid %u returned success"
+                               % (i, pipe[i].pid)))
                         pipe[i] = None
         sys.stdout.flush()
         return passed
