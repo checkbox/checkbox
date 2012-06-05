@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 
 import os
 import sys
@@ -16,18 +16,18 @@ COMMAND_TEMPLATE = "cd %(scripts)s; ./%(script)s"
 
 def print_line(key, value):
     if type(value) is list:
-        print "%s:" % key
+        print("%s:" % key)
         for v in value:
-            print " %s" % v
+            print(" %s" % v)
     else:
-        print "%s: %s" % (key, value)
+        print("%s: %s" % (key, value))
 
 
 def print_element(element):
-    for key, value in element.items():
+    for key, value in list(element.items()):
         print_line(key, value)
 
-    print
+    print()
 
 
 def clone_cking_scripts(location, directory):
