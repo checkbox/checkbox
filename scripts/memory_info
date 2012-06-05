@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 
 import re
 import sys
@@ -28,8 +28,7 @@ def main(args):
         amount = amount / 1024
         units = next_units[units]
 
-    print ("%.1f %s"
-           % (amount, units))
+    print("%.1f %s" % (amount, units))
     return 0
 
 if __name__ == "__main__":
