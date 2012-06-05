@@ -3,7 +3,6 @@
 import os
 import sys
 import re
-import string
 
 from optparse import OptionParser
 from subprocess import Popen, PIPE
@@ -72,7 +71,7 @@ class MemoryTest():
         # Process Memory
         self.process_memory = self.free_memory
         try:
-            arch = str(self._command_out("arch"))
+            arch = bytes.decode(self._command_out("arch"))
             if re.match(r"(i[0-9]86|s390)", arch) and self.free_memory > 1024:
                 self.is_process_limited = True
                 self.process_memory = 1024  # MB, due to 32-bit address space
@@ -174,14 +173,14 @@ class MemoryTest():
     def run_processes(self, number, command):
         passed = True
         pipe = []
-        for i in range(number):
+        for i in range(int(number)):
             pipe.append(self._command(command))
             print("Started: process %u pid %u: %s" % (i, pipe[i].pid, command))
         sys.stdout.flush()
         waiting = True
         while waiting:
             waiting = False
-            for i in range(number):
+            for i in range(int(number)):
                 if pipe[i]:
                     line = pipe[i].communicate()[0]
                     if line and len(line) > 1:
