@@ -33,15 +33,15 @@ class MemoryTest():
                     if len(tokens) == 3:
                         if "MemTotal:" == tokens[0].strip():
                             self.system_memory = \
-                                string.atoi(tokens[1].strip()) / 1024
+                                int(tokens[1].strip()) / 1024
                         elif tokens[0].strip() in ["MemFree:",
                                                    "Cached:",
                                                    "Buffers:"]:
                             self.free_memory += \
-                                string.atoi(tokens[1].strip()) / 1024
+                                int(tokens[1].strip()) / 1024
                         elif "SwapTotal:" == tokens[0].strip():
                             self.swap_memory = \
-                                string.atoi(tokens[1].strip()) / 1024
+                                int(tokens[1].strip()) / 1024
                 else:
                     break
         finally:
@@ -72,7 +72,7 @@ class MemoryTest():
         # Process Memory
         self.process_memory = self.free_memory
         try:
-            arch = self._command_out("arch")
+            arch = str(self._command_out("arch"))
             if re.match(r"(i[0-9]86|s390)", arch) and self.free_memory > 1024:
                 self.is_process_limited = True
                 self.process_memory = 1024  # MB, due to 32-bit address space
@@ -117,10 +117,10 @@ class MemoryTest():
             # check to make sure there's enough swap
             required_memory = self.process_memory * processes
             if required_memory > self.system_memory + self.swap_memory:
-                print(("Error: this test requires a minimum of %u KB of swap "
+                print("Error: this test requires a minimum of %u KB of swap "
                        "memory (%u configured)"
                        % (required_memory - self.system_memory,
-                          self.swap_memory)))
+                          self.swap_memory))
         print("Testing memory with %u processes" % processes)
 
         print("Running threaded memory test:")
@@ -147,9 +147,9 @@ class MemoryTest():
 
             # is there enough swap memory for the test?
             if memory > self.system_memory + self.swap_memory:
-                print(("Error: this test requires a minimum of %u KB of swap "
+                print("Error: this test requires a minimum of %u KB of swap "
                        "memory (%u configured)"
-                       % (memory - self.system_memory, self.swap_memory)))
+                       % (memory - self.system_memory, self.swap_memory))
                 return False
 
             # otherwise
@@ -192,11 +192,11 @@ class MemoryTest():
                     else:
                         return_value = pipe[i].poll()
                         if return_value != 0:
-                            print(("Error: process  %u pid %u retuned %u"
-                                   % (i, pipe[i].pid, return_value)))
+                            print("Error: process  %u pid %u retuned %u"
+                                   % (i, pipe[i].pid, return_value))
                             passed = False
-                        print(("process %u pid %u returned success"
-                               % (i, pipe[i].pid)))
+                        print("process %u pid %u returned success"
+                               % (i, pipe[i].pid))
                         pipe[i] = None
         sys.stdout.flush()
         return passed
