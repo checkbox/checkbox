@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 '''
 cpu_topology
 Written by Jeffrey Lane <jeffrey.lane@canonical.com>
@@ -58,11 +58,11 @@ def compare(proc_cpu, sys_cpu):
     and physical_package_id because those information are absent in
     /proc/cpuinfo on singlecore system
     '''
-    for key in proc_cpu.iterkeys():
+    for key in proc_cpu.keys():
         if 'cpu1' not in proc_cpu:
             cpu_map[key] = True
         else:
-            for subkey in proc_cpu[key].iterkeys():
+            for subkey in proc_cpu[key].keys():
                 if proc_cpu[key][subkey] == sys_cpu[key][subkey]:
                     cpu_map[key] = True
                 else:
@@ -73,18 +73,18 @@ def compare(proc_cpu, sys_cpu):
 def main():
     cpuinfo = proc_cpuinfo()
     sys_cpu = {}
-    keys = cpuinfo.cpuinfo.iterkeys()
+    keys = iter(cpuinfo.cpuinfo.keys())
     for k in keys:
         sys_cpu[k] = sysfs_cpu(k).syscpu
 
     cpu_map = compare(cpuinfo.cpuinfo, sys_cpu)
 
-    keys = [k for k in sys_cpu.iterkeys()]
+    keys = [k for k in sys_cpu.keys()]
     keys.sort()
     for key in keys:
-        print ("%s:\tPhysical ID: %s\tCore ID: %s"
+        print(("%s:\tPhysical ID: %s\tCore ID: %s"
                % (key, sys_cpu[key]['physical_package_id'],
-                  sys_cpu[key]['core_id']))
+                  sys_cpu[key]['core_id'])))
 
     if False in cpu_map or len(cpu_map) < 1:
         return 1
