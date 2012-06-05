@@ -44,6 +44,11 @@ checkbox (0.14) quantal; urgency=low
       to results.
   * [FEATURE] jobs/miscellanea.txt.in: added a job to gather tester info for
     certification purposes. Not to be used for UF.
+  * [FEATURE] Python 2 to 3 conversion:
+    * scripts/disk_smart - ported to Python 3. Inserted bits to decode byte
+      data returned by Popen. Fixed list_handler to decode bytes types to clean
+      up debug output.  Added bits to improve debug output.
+
 
   [Sylvain Pineau]
   * scripts/pm_log_check: added a slightly modified version of OEM team's pm_check.py
@@ -56,7 +61,7 @@ checkbox (0.14) quantal; urgency=low
     user input (LP: #1000451)
   * Added customizable deselect_warning message in qt show_tree method (LP: #1000443)
 
- -- Daniel Manrique <roadmr@ubuntu.com>  Tue, 29 May 2012 15:23:46 -0400
+ -- Jeff Lane <jeff@ubuntu.com>  Mon, 04 Jun 2012 16:52:15 -0400
 
 checkbox (0.13.8) precise; urgency=low
 
