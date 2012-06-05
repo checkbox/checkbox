@@ -5,7 +5,14 @@
 
 override_dh_auto_build:
 	(cd qt/frontend; qmake-qt4; make)
-	dh_auto_build
+	set -ex; for python in $(shell py3versions -r); do \
+		$$python setup.py build; \
+	done;
+
+override_dh_auto_install:
+	set -ex; for python in $(shell py3versions -r); do \
+		$$python setup.py install --root=$(CURDIR)/debian/tmp --install-layout=deb; \
+	done;
 
 override_dh_installdeb:
 	cp debian/checkbox.postrm debian/checkbox-cli.postrm
