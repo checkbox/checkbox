@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/checkbox/+filebug\n"
-"POT-Creation-Date: 2012-05-15 13:32-0400\n"
+"POT-Creation-Date: 2012-06-05 15:36-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,7 +19,7 @@ msgstr ""
 
 #. Title of the user interface
 #: ../gtk/checkbox-gtk.ui.h:1 ../qt/checkbox-qt.desktop.in.h:1
-#: ../plugins/user_interface.py:43 ../qt/frontend/ui_qtfront.h:589
+#: ../plugins/user_interface.py:43 ../qt/frontend/ui_qtfront.h:590
 msgid "System Testing"
 msgstr ""
 
@@ -142,6 +142,19 @@ msgid ""
 "Play back a sound on the default output and listen for it on the  default "
 "input.  This makes the most sense when the output and input  are directly "
 "connected, as with a patch cable."
+msgstr ""
+
+#. description
+#: ../jobs/audio.txt.in:107
+msgid ""
+"Collect audio-related system information. This data can be used to simulate "
+"this computer's audio subsystem and perform more detailed tests under a "
+"controlled environment."
+msgstr ""
+
+#. description
+#: ../jobs/audio.txt.in:116
+msgid "Attaches the audio hardware data collection log to the results."
 msgstr ""
 
 #. description
@@ -916,16 +929,28 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/keys.txt.in:74
+#: ../jobs/keys.txt.in:75
 msgid ""
 "PURPOSE:\n"
 "    This test will test the media keys of your keyboard\n"
 "STEPS:\n"
-"    1. Click test to open a window on which to test the media control keys.\n"
+"    1. Click test to open a window on which to test the media keys.\n"
 "    2. If all the keys work, the test will be marked as passed.\n"
-"    3. If your computer has no media control keys, Skip this test.\n"
+"    3. If your computer has no media keys, Skip this test.\n"
 "VERIFICATION:\n"
 "    Do the keys work as expected?"
+msgstr ""
+
+#. description
+#: ../jobs/keys.txt.in:91
+msgid ""
+"PURPOSE:\n"
+"    This test will test the super key of your keyboard\n"
+"STEPS:\n"
+"    1. Click test to open a window on which to test the super key.\n"
+"    2. If the key works, the test will pass and the window will close.\n"
+"VERIFICATION:\n"
+"    Does the super key work as expected?"
 msgstr ""
 
 #. description
@@ -1100,36 +1125,31 @@ msgstr ""
 
 #. description
 #: ../jobs/local.txt.in:241
-msgid "Unity tests"
-msgstr ""
-
-#. description
-#: ../jobs/local.txt.in:248
 msgid "USB tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:255
+#: ../jobs/local.txt.in:248
 msgid "User Applications"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:262
+#: ../jobs/local.txt.in:255
 msgid "Wireless networking tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:269
+#: ../jobs/local.txt.in:262
 msgid "Stress tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:276
+#: ../jobs/local.txt.in:269
 msgid "Smoke tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:283
+#: ../jobs/local.txt.in:276
 msgid "Sniff Sniffers"
 msgstr ""
 
@@ -1458,7 +1478,22 @@ msgid "Test and exercise memory."
 msgstr ""
 
 #. description
-#: ../jobs/miscellanea.txt.in:8
+#: ../jobs/miscellanea.txt.in:3
+msgid ""
+"PURPOSE:\n"
+"    Keep tester related information in the report\n"
+"STEPS:\n"
+"    1. Tester Information\n"
+"    2. Please enter the following information in the comments field:\n"
+"       a. Name\n"
+"       b. Email Address\n"
+"       c. Reason for this test run\n"
+"VERIFICATION:\n"
+"    Nothing to verify for this test"
+msgstr ""
+
+#. description
+#: ../jobs/miscellanea.txt.in:22
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the system can switch to a virtual terminal "
@@ -1472,31 +1507,31 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/miscellanea.txt.in:22
+#: ../jobs/miscellanea.txt.in:36
 msgid "Run Firmware Test Suite (fwts) automated tests."
 msgstr ""
 
 #. description
-#: ../jobs/miscellanea.txt.in:31
+#: ../jobs/miscellanea.txt.in:45
 msgid "Attaches the FWTS results log to the submission"
 msgstr ""
 
 #. description
-#: ../jobs/miscellanea.txt.in:38
+#: ../jobs/miscellanea.txt.in:52
 msgid ""
 "This will run some basic connectivity tests against a BMC, verifying that "
 "IPMI works."
 msgstr ""
 
 #. description
-#: ../jobs/miscellanea.txt.in:44
+#: ../jobs/miscellanea.txt.in:58
 msgid ""
 "   Determine if we need to run tests specific to portable computers that may "
 "not apply to desktops."
 msgstr ""
 
 #. description
-#: ../jobs/miscellanea.txt.in:52
+#: ../jobs/miscellanea.txt.in:66
 msgid ""
 "Test that the /var/crash directory doesn't contain anything. Lists the files "
 "contained within if it does, or echoes the status of the directory (doesn't "
@@ -1504,7 +1539,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/miscellanea.txt.in:60
+#: ../jobs/miscellanea.txt.in:74
 msgid ""
 "Test to check that virtualization is supported and the test system has at "
 "least a minimal amount of RAM to function as an OpenStack Compute Node"
@@ -1919,7 +1954,12 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:20
+#: ../jobs/power-management.txt.in:16
+msgid "Test ACPI Wakealarm (fwts wakealarm)"
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:30
 msgid ""
 "PURPOSE:\n"
 " This test will check the system's ability to power-off and boot.\n"
@@ -1937,14 +1977,14 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:35
+#: ../jobs/power-management.txt.in:45
 msgid ""
 "This will attach any logs from the power-management/poweroff test to the "
 "results."
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:45
+#: ../jobs/power-management.txt.in:55
 msgid ""
 "PURPOSE:\n"
 " This test will check the system's ability to reboot cleanly.\n"
@@ -1960,14 +2000,14 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:59
+#: ../jobs/power-management.txt.in:69
 msgid ""
 "This will attach any logs from the power-management/reboot test to the "
 "results."
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:64
+#: ../jobs/power-management.txt.in:74
 msgid ""
 "PURPOSE:\n"
 "    This test will check your lid sensors\n"
@@ -1978,7 +2018,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:81
+#: ../jobs/power-management.txt.in:91
 msgid ""
 "PURPOSE:\n"
 "    This test will check your lid sensors\n"
@@ -1990,7 +2030,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:99
+#: ../jobs/power-management.txt.in:109
 msgid ""
 "PURPOSE:\n"
 "    This test will check your lid sensors\n"
@@ -2004,17 +2044,12 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:115
+#: ../jobs/power-management.txt.in:125
 msgid "Make sure that the RTC (Real-Time Clock) device exists."
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:120
-msgid "Test ACPI Wakealarm (fwts wakealarm) "
-msgstr ""
-
-#. description
-#: ../jobs/power-management.txt.in:129
+#: ../jobs/power-management.txt.in:131
 msgid ""
 "Check to see if CONFIG_NO_HZ is set in the kernel (this is just a simple "
 "regression check)"
@@ -2089,6 +2124,52 @@ msgstr ""
 #. description
 #: ../jobs/stress.txt.in:41
 msgid "Attaches the log from the 30 cycle Suspend/Resume test if it exists"
+msgstr ""
+
+#. description
+#: ../jobs/stress.txt.in:50
+msgid ""
+"PURPOSE:\n"
+"   This is an automated stress test that will force the system to hibernate/"
+"resume for 250 cycles"
+msgstr ""
+
+#. description
+#: ../jobs/stress.txt.in:57
+msgid "Attaches the log from the 250 cycle Hibernate/Resume test if it exists"
+msgstr ""
+
+#. description
+#: ../jobs/stress.txt.in:66
+msgid ""
+"PURPOSE:\n"
+"   This is an automated stress test that will force the system to suspend/"
+"resume for 250 cycles."
+msgstr ""
+
+#. description
+#: ../jobs/stress.txt.in:73
+msgid "Attaches the log from the 250 cycle Suspend/Resume test if it exists"
+msgstr ""
+
+#. description
+#: ../jobs/stress.txt.in:83
+msgid "Stress reboot system (100 cycles)"
+msgstr ""
+
+#. description
+#: ../jobs/stress.txt.in:98
+msgid "Stress poweroff system (100 cycles)"
+msgstr ""
+
+#. description
+#: ../jobs/stress.txt.in:110
+msgid "Check logs for the stress reboot (100 cycles) test case"
+msgstr ""
+
+#. description
+#: ../jobs/stress.txt.in:122
+msgid "Check logs for the stress poweroff (100 cycles) test case"
 msgstr ""
 
 #. description
@@ -2356,20 +2437,6 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/unity.txt.in:6
-msgid ""
-"Xlib is required for unity testing. This checks for Xlib and installs it if "
-"not available."
-msgstr ""
-
-#. description
-#: ../jobs/unity.txt.in:13
-msgid ""
-"This test will verify that Unity is running and then run the autopilot.py "
-"test against the Unity interface."
-msgstr ""
-
-#. description
 #: ../jobs/usb.txt.in:5
 msgid "Detects and shows USB devices attached to this system."
 msgstr ""
@@ -2461,7 +2528,7 @@ msgid "This test is automated and executes after the usb/insert test is run."
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:111
+#: ../jobs/usb.txt.in:112
 msgid ""
 "This is an automated version of usb/storage-automated and assumes that the  "
 "server has usb storage devices plugged in prior to checkbox execution. It  "
@@ -2469,7 +2536,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/usb.txt.in:119
+#: ../jobs/usb.txt.in:120
 msgid ""
 "PURPOSE:\n"
 "    This test will check your USB connection.\n"
@@ -3082,17 +3149,17 @@ msgid "Unknown signal"
 msgstr ""
 
 #: ../checkbox_cli/cli_interface.py:31
-#: ../checkbox_urwid/urwid_interface.py:917 ../checkbox_qt/qt_interface.py:33
+#: ../checkbox_urwid/urwid_interface.py:917 ../checkbox_qt/qt_interface.py:34
 msgid "yes"
 msgstr ""
 
 #: ../checkbox_cli/cli_interface.py:32
-#: ../checkbox_urwid/urwid_interface.py:918 ../checkbox_qt/qt_interface.py:34
+#: ../checkbox_urwid/urwid_interface.py:918 ../checkbox_qt/qt_interface.py:35
 msgid "no"
 msgstr ""
 
 #: ../checkbox_cli/cli_interface.py:33
-#: ../checkbox_urwid/urwid_interface.py:919 ../checkbox_qt/qt_interface.py:35
+#: ../checkbox_urwid/urwid_interface.py:919 ../checkbox_qt/qt_interface.py:36
 msgid "skip"
 msgstr ""
 
@@ -3137,14 +3204,14 @@ msgstr ""
 #: ../checkbox_urwid/urwid_interface.py:198
 #: ../checkbox_urwid/urwid_interface.py:274
 #: ../checkbox_urwid/urwid_interface.py:425
-#: ../checkbox_urwid/urwid_interface.py:547 ../qt/frontend/ui_qtfront.h:609
+#: ../checkbox_urwid/urwid_interface.py:547 ../qt/frontend/ui_qtfront.h:610
 msgid "Previous"
 msgstr ""
 
 #: ../checkbox_urwid/urwid_interface.py:199
 #: ../checkbox_urwid/urwid_interface.py:275
 #: ../checkbox_urwid/urwid_interface.py:426
-#: ../checkbox_urwid/urwid_interface.py:548 ../qt/frontend/ui_qtfront.h:608
+#: ../checkbox_urwid/urwid_interface.py:548 ../qt/frontend/ui_qtfront.h:609
 msgid "Next"
 msgstr ""
 
@@ -3166,7 +3233,7 @@ msgstr ""
 msgid "Collapse All"
 msgstr ""
 
-#: ../checkbox_urwid/urwid_interface.py:1013 ../qt/frontend/ui_qtfront.h:603
+#: ../checkbox_urwid/urwid_interface.py:1013 ../qt/frontend/ui_qtfront.h:604
 msgid "Test"
 msgstr ""
 
@@ -3178,7 +3245,7 @@ msgstr ""
 msgid "_Test Again"
 msgstr ""
 
-#: ../checkbox_gtk/gtk_interface.py:574 ../qt/frontend/qtfront.cpp:536
+#: ../checkbox_gtk/gtk_interface.py:574 ../qt/frontend/qtfront.cpp:540
 msgid "Info"
 msgstr ""
 
@@ -3288,6 +3355,10 @@ msgid ""
 "  https://launchpad.net/+login"
 msgstr ""
 
+#: ../plugins/launchpad_prompt.py:84
+msgid "Email"
+msgstr ""
+
 #: ../plugins/launchpad_prompt.py:93
 msgid "Email address must be in a proper format."
 msgstr ""
@@ -3323,28 +3394,34 @@ msgstr ""
 msgid "Running %s..."
 msgstr ""
 
-#. Get results
-#: ../plugins/suites_prompt.py:126
-msgid "Select the suites to test"
+#: ../plugins/suites_prompt.py:36
+msgid ""
+"Unselecting a test will invalidate your submission for Ubuntu Friendly. If "
+"you plan to participate in Ubuntu Friendly, please, select all tests. You "
+"can always skip individual tests if you don't have the needed equipment."
 msgstr ""
 
-#: ../scripts/keyboard_test:21
+#: ../plugins/suites_prompt.py:134 ../qt/frontend/ui_qtfront.h:596
+msgid "Choose tests to run on your system:"
+msgstr ""
+
+#: ../scripts/keyboard_test:22
 msgid "Enter text:\n"
 msgstr ""
 
-#: ../scripts/keyboard_test:41
+#: ../scripts/keyboard_test:43
 msgid "Type Text"
 msgstr ""
 
-#: ../scripts/internet_test:196
+#: ../scripts/internet_test:214
 msgid "No Internet connection"
 msgstr ""
 
-#: ../scripts/internet_test:199
+#: ../scripts/internet_test:217
 msgid "Connection established lost a packet"
 msgstr ""
 
-#: ../scripts/internet_test:202
+#: ../scripts/internet_test:220
 msgid "Internet connection fully established"
 msgstr ""
 
@@ -3468,78 +3545,67 @@ msgstr ""
 msgid "Don't ask me again"
 msgstr ""
 
-#: ../qt/frontend/treemodel.cpp:13
-msgid ""
-"Unselecting a test will invalidate your submission for Ubuntu Friendly. If "
-"you plan to participate in Ubuntu Friendly, please, select all tests. You "
-"can always skip individual tests if you don't have the needed equipment."
-msgstr ""
-
-#: ../qt/frontend/ui_qtfront.h:588
+#: ../qt/frontend/ui_qtfront.h:589
 msgid "Form"
 msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:590
+#: ../qt/frontend/ui_qtfront.h:591
 msgid "OK"
 msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:591
+#: ../qt/frontend/ui_qtfront.h:592
 msgid "Don't show me this message in the future"
 msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:592 ../qt/frontend/ui_qtfront.h:606
+#: ../qt/frontend/ui_qtfront.h:593 ../qt/frontend/ui_qtfront.h:607
 msgid "Tab 1"
 msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:593
+#: ../qt/frontend/ui_qtfront.h:594
 msgid "10 tests completed out of 30 (30%)"
 msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:595
-msgid "Lists of tests to run based on your system:"
-msgstr ""
-
-#: ../qt/frontend/ui_qtfront.h:596
+#: ../qt/frontend/ui_qtfront.h:597
 msgid "Components"
 msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:597
+#: ../qt/frontend/ui_qtfront.h:598
 msgid "Status"
 msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:598
+#: ../qt/frontend/ui_qtfront.h:599
 msgid "Start testing"
 msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:599
+#: ../qt/frontend/ui_qtfront.h:600
 msgid " Selection "
 msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:600 ../qt/frontend/ui_qtfront.h:601
+#: ../qt/frontend/ui_qtfront.h:601 ../qt/frontend/ui_qtfront.h:602
 msgid "TextLabel"
 msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:602
+#: ../qt/frontend/ui_qtfront.h:603
 msgid "Yes"
 msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:604
+#: ../qt/frontend/ui_qtfront.h:605
 msgid "No"
 msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:605
+#: ../qt/frontend/ui_qtfront.h:606
 msgid "Comment"
 msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:607 ../qt/frontend/ui_qtfront.h:623
+#: ../qt/frontend/ui_qtfront.h:608 ../qt/frontend/ui_qtfront.h:624
 msgid "Tab 2"
 msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:610
+#: ../qt/frontend/ui_qtfront.h:611
 msgid " Run "
 msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:611
+#: ../qt/frontend/ui_qtfront.h:612
 msgid ""
 "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
 "REC-html40/strict.dtd\">\n"
@@ -3558,22 +3624,22 @@ msgid ""
 "to Ubuntu Friendly.</span></p></body></html>"
 msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:617
-msgid "Personal details"
-msgstr ""
-
-#: ../qt/frontend/ui_qtfront.h:619
-msgid "Email:"
+#: ../qt/frontend/ui_qtfront.h:618
+msgid "Submission details"
 msgstr ""
 
 #: ../qt/frontend/ui_qtfront.h:620
-msgid "Submit results"
+msgid "Email:"
 msgstr ""
 
 #: ../qt/frontend/ui_qtfront.h:621
-msgid "View results"
+msgid "Submit results"
 msgstr ""
 
 #: ../qt/frontend/ui_qtfront.h:622
+msgid "View results"
+msgstr ""
+
+#: ../qt/frontend/ui_qtfront.h:623
 msgid " Results "
 msgstr ""
