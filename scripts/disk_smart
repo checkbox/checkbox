@@ -59,7 +59,7 @@ import time
 import logging
 
 from subprocess import Popen, PIPE
-from optparse import OptionParser
+from argparse import ArgumentParser
 
 
 class ListHandler(logging.StreamHandler):
@@ -143,26 +143,26 @@ def get_smart_entries(disk, type='selftest'):
     return entries
 
 def main():
-    usage = 'usage: %prog [OPTIONS]'
-    parser = OptionParser(usage)
-    parser.add_option('-b', '--block-dev',
+    description = 'Tests that SMART capabilities on disks that support SMART function.'
+    parser = ArgumentParser(description)
+    parser.add_argument('-b', '--block-dev',
                         metavar='DISK',
                         default='/dev/sda',
                         help=('the DISK to run this test against '
-                              '[default is %default]'))
-    parser.add_option('-d', '--debug',
+                              '[default: %(default)s]'))
+    parser.add_argument('-d', '--debug',
                         action='store_true',
                         default=False,
                         help='prints some debug info')
-    parser.add_option('-s', '--sleep',
-                        type='int',
+    parser.add_argument('-s', '--sleep',
+                        type=int,
                         default=5,
                         help=('number of seconds to sleep between checks '
-                              '[default is %default].'))
-    parser.add_option('-t', '--timeout',
-                        type='int',
+                              '[default: %(default)s].'))
+    parser.add_argument('-t', '--timeout',
+                        type=int,
                         help='number of seconds to timeout from sleeping.')
-    (options, args) = parser.parse_args()
+    args = parser.parse_args()
 
     # Set logging
     format = '%(levelname)-8s %(message)s'
@@ -171,12 +171,12 @@ def main():
     logger = logging.getLogger()
     logger.addHandler(handler)
 
-    if options.debug:
+    if args.debug:
         logger.setLevel(logging.DEBUG)
 
     # If SMART is available and enabled, we proceed.  Otherwise, we exit as the
     # test is pointless in this case.
-    disk = options.block_dev
+    disk = args.block_dev
     if not is_smart_enabled(disk):
         print('SMART not available')
         return 0
@@ -196,7 +196,7 @@ def main():
 
     while True:
         # Poll every sleep seconds until test is complete$
-        time.sleep(options.sleep)
+        time.sleep(args.sleep)
 
         current_entries = get_smart_entries(disk)
         logging.debug('%s %s %s %s' % (current_entries[0]['number'],
@@ -207,12 +207,12 @@ def main():
            and current_entries[0]["status"] != 'Self-test routine in progress':
             break
 
-        if options.timeout is not None:
-            if options.timeout <= 0:
+        if args.timeout is not None:
+            if args.timeout <= 0:
                 logging.debug('Polling timed out')
                 return 1
             else:
-                options.timeout -= options.sleep
+                args.timeout -= args.sleep
 
     status = current_entries[0]['status']
     print(status)
