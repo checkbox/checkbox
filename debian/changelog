@@ -51,7 +51,8 @@ checkbox (0.14) quantal; urgency=low
       tested script to verify functionality.
     * scripts/disk_smart - ported to Python 3. Inserted bits to decode byte
       data returned by Popen. Fixed list_handler to decode bytes types to clean
-      up debug output.  Added bits to improve debug output.
+      up debug output.  Added bits to improve debug output. Migrated from
+      optparse to argparse.
     * scripts/network_check: ran 2to3 and that was all that was needed. Also
       took the liberty of migrating from optparse to ArgParse sine we're
       Python3 only now.
@@ -68,7 +69,7 @@ checkbox (0.14) quantal; urgency=low
     user input (LP: #1000451)
   * Added customizable deselect_warning message in qt show_tree method (LP: #1000443)
 
- -- Jeff Lane <jeff@ubuntu.com>  Tue, 05 Jun 2012 17:37:39 -0400
+ -- Jeff Lane <jeff@ubuntu.com>  Tue, 05 Jun 2012 18:05:49 -0400
 
 checkbox (0.13.8) precise; urgency=low
 
