@@ -1,11 +1,11 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 """
 Check that it's possible to establish a http connection against
 ubuntu.com
 """
 from subprocess import call
-from optparse import OptionParser
-import urllib2
+from argparse import ArgumentParser
+import urllib.request, urllib.error, urllib.parse
 import sys
 
 
@@ -14,8 +14,8 @@ def check_url(url):
     Open URL and return True if no exceptions were raised
     """
     try:
-        urllib2.urlopen(url)
-    except urllib2.URLError:
+        urllib.request.urlopen(url)
+    except urllib.error.URLError:
         return False
 
     return True
@@ -25,38 +25,37 @@ def main():
     """
     Check HTTP and connection
     """
-    usage = 'Usage %prog [OPTIONS]'
-    parser = OptionParser(usage)
-    parser.add_option('-a', '--auto',
+    parser = ArgumentParser()
+    parser.add_argument('-a', '--auto',
                         action='store_true',
                         default=False,
                         help='Runs in Automated mode, with no visible output')
 
-    (options, args) = parser.parse_args()
+    args = parser.parse_args()
 
     url = {"http": "http://cdimage.ubuntu.com/daily/current/"}
 
     results = {}
-    for protocol, value in url.iteritems():
+    for protocol, value in url.items():
         results[protocol] = check_url(value)
 
     bool2str = {True: 'Success', False: 'Failed'}
     message = ("HTTP connection: %(http)s\n"
                % dict([(protocol, bool2str[value])
-                       for protocol, value in results.iteritems()]))
+                       for protocol, value in results.items()]))
 
     command = ["zenity", "--title=Network",
                "--text=%s" % message]
 
-    if all(results.itervalues()):
+    if all(results.values()):
         command.append("--info")
     else:
         command.append("--error")
 
-    if not options.auto:
+    if not args.auto:
         call(command)
 
-    if any(results.itervalues()):
+    if any(results.values()):
         return 0
     else:
         return 1
