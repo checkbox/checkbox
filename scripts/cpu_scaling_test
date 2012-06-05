@@ -106,8 +106,8 @@ class CPUScalingTest(object):
         parameterFile = open(path)
         line = parameterFile.readline()
         if not line or line.strip() != str(value):
-            print(("Error: could not verify that %s was set to %s"
-                   % (path, value)))
+            print("Error: could not verify that %s was set to %s"
+                   % (path, value))
             if line:
                 print("Actual Value: %s" % line)
             else:
@@ -165,8 +165,8 @@ class CPUScalingTest(object):
             parameterFile = open(parameterFilePath)
             line = parameterFile.readline()
             if not line:
-                print(("Error: failed to get %s for %s"
-                       % (parameter, self.cpufreqDirectory)))
+                print("Error: failed to get %s for %s"
+                       % (parameter, self.cpufreqDirectory))
                 return None
             value = line.strip()
             return value
@@ -183,8 +183,8 @@ class CPUScalingTest(object):
             parameterFile = open(path)
             line = parameterFile.readline()
             if not line:
-                print(("Error: failed to get %s for %s"
-                       % (parameter, cpufreqDirectory)))
+                print("Error: failed to get %s for %s"
+                       % (parameter, cpufreqDirectory))
                 return None
             values.append(line.strip())
         return values
@@ -218,8 +218,8 @@ class CPUScalingTest(object):
                     runTime = thisTime
             tries += 1
 
-        print(("Error: could not repeat load test times within %.1f%%"
-               % self.retryTolerance))
+        print("Error: could not repeat load test times within %.1f%%"
+               % self.retryTolerance)
         return None
 
     def pi(self):
@@ -336,8 +336,8 @@ class CPUScalingTest(object):
 
             # Set the the CPU speed to it's lowest value
             frequency = self.frequencies[-1]
-            print(("Setting CPU frequency to %u MHz"
-                   % (string.atoi(frequency) / 1000)))
+            print("Setting CPU frequency to %u MHz"
+                   % (string.atoi(frequency) / 1000))
             if not self.setFrequency(frequency):
                 success = False
 
@@ -347,9 +347,9 @@ class CPUScalingTest(object):
             if (not minimumFrequency
                 or not currentFrequency
                 or (minimumFrequency != currentFrequency)):
-                print(("Error: Could not verify that cpu frequency "
+                print("Error: Could not verify that cpu frequency "
                        "is set to the minimum value of %s"
-                       % minimumFrequency))
+                       % minimumFrequency)
                 success = False
 
             # Run Load Test
@@ -359,13 +359,13 @@ class CPUScalingTest(object):
                        "test's execution time.")
                 success = False
             else:
-                print(("Minimum frequency load test time: %.2f"
-                       % self.minimumFrequencyTestTime))
+                print("Minimum frequency load test time: %.2f"
+                       % self.minimumFrequencyTestTime)
 
             # Set the CPU speed to it's highest value as above.
             frequency = self.frequencies[0]
-            print(("Setting CPU frequency to %u MHz"
-                   % (string.atoi(frequency) / 1000)))
+            print("Setting CPU frequency to %u MHz"
+                   % (string.atoi(frequency) / 1000))
             if not self.setFrequency(frequency):
                 success = False
 
@@ -374,9 +374,9 @@ class CPUScalingTest(object):
             if (not maximumFrequency
                 or not currentFrequency
                 or (maximumFrequency != currentFrequency)):
-                print(("Error: Could not verify that cpu frequency is set "
+                print("Error: Could not verify that cpu frequency is set "
                        "to the maximum value of %s"
-                       % maximumFrequency))
+                       % maximumFrequency)
                 success = False
 
             # Repeat workload test
@@ -386,8 +386,8 @@ class CPUScalingTest(object):
                        "test's execution time.")
                 success = False
             else:
-                print(("Maximum frequency load test time: %.2f"
-                       % self.maximumFrequencyTestTime))
+                print("Maximum frequency load test time: %.2f"
+                       % self.maximumFrequencyTestTime)
 
             # Verify MHz increase is comparable to time % decrease
             predictedSpeedup = (string.atof(maximumFrequency)
@@ -395,9 +395,9 @@ class CPUScalingTest(object):
 
             # If "ida" turbo thing, increase the expectation by 8%
             if self.cpuFlags and self.idaFlag in self.cpuFlags:
-                print(("Note: found %s flag, increasing expected "
+                print("Note: found %s flag, increasing expected "
                        "speedup by %.1f%%"
-                       % (self.idaFlag, self.idaSpeedupFactor)))
+                       % (self.idaFlag, self.idaSpeedupFactor))
                 predictedSpeedup = \
                     (predictedSpeedup
                      * (1.0 / (1.0 - (self.idaSpeedupFactor / 100.0))))
@@ -412,9 +412,9 @@ class CPUScalingTest(object):
                                      / predictedSpeedup) * 100)
                 print("Percentage Difference %.1f%%" % differenceSpeedUp)
                 if differenceSpeedUp > self.speedUpTolerance:
-                    print(("Error: measured speedup vs expected speedup "
+                    print("Error: measured speedup vs expected speedup "
                            "is %.1f%% and is not within %.1f%% margin. "
-                           % (differenceSpeedUp, self.speedUpTolerance)))
+                           % (differenceSpeedUp, self.speedUpTolerance))
                     success = False
             else:
                 print ("Error: Not enough timing data to calculate "
@@ -459,13 +459,13 @@ class CPUScalingTest(object):
                 differenceOnDemandVsMaximum = \
                     (abs(onDemandTestTime - self.maximumFrequencyTestTime)
                      / self.maximumFrequencyTestTime) * 100
-                print(("Percentage Difference vs. maximum frequency: %.1f%%"
-                       % differenceOnDemandVsMaximum))
+                print("Percentage Difference vs. maximum frequency: %.1f%%"
+                       % differenceOnDemandVsMaximum)
                 if differenceOnDemandVsMaximum > self.speedUpTolerance:
-                    print(("Error: on demand performance vs maximum of %.1f%% "
+                    print("Error: on demand performance vs maximum of %.1f%% "
                            "is not within %.1f%% margin"
                            % (differenceOnDemandVsMaximum,
-                              self.speedUpTolerance)))
+                              self.speedUpTolerance))
                     success = False
             else:
                 print ("Error: Not enough timing data to calculate "
@@ -500,9 +500,9 @@ class CPUScalingTest(object):
             if (not maximumFrequency
                 or not currentFrequency
                 or (maximumFrequency != currentFrequency)):
-                print(("Error: Current cpu frequency of %s "
+                print("Error: Current cpu frequency of %s "
                        "is not set to the maximum value of %s"
-                       % (currentFrequency, maximumFrequency)))
+                       % (currentFrequency, maximumFrequency))
                 success = False
 
             # Repeat work load test
@@ -518,13 +518,13 @@ class CPUScalingTest(object):
                 differencePerformanceVsMaximum = \
                     (abs(performanceTestTime - self.maximumFrequencyTestTime)
                      / self.maximumFrequencyTestTime) * 100
-                print(("Percentage Difference vs. maximum frequency: %.1f%%"
-                       % differencePerformanceVsMaximum))
+                print("Percentage Difference vs. maximum frequency: %.1f%%"
+                       % differencePerformanceVsMaximum)
                 if differencePerformanceVsMaximum > self.speedUpTolerance:
-                    print(("Error: performance setting vs maximum of %.1f%% "
+                    print("Error: performance setting vs maximum of %.1f%% "
                            "is not within %.1f%% margin"
                            % (differencePerformanceVsMaximum,
-                              self.speedUpTolerance)))
+                              self.speedUpTolerance))
                     success = False
             else:
                 print ("Error: Not enough timing data to calculate "
@@ -571,21 +571,21 @@ class CPUScalingTest(object):
                 print("Error: No Conservative load test time available.")
                 success = False
             else:
-                print(("Conservative load test time: %.2f"
-                       % conservativeTestTime))
+                print("Conservative load test time: %.2f"
+                       % conservativeTestTime)
 
             if conservativeTestTime and self.minimumFrequencyTestTime:
                 # Compare the timing to the max results
                 differenceConservativeVsMinimum = \
                     (abs(conservativeTestTime - self.minimumFrequencyTestTime)
                      / self.minimumFrequencyTestTime) * 100
-                print(("Percentage Difference vs. minimum frequency: %.1f%%"
-                       % differenceConservativeVsMinimum))
+                print("Percentage Difference vs. minimum frequency: %.1f%%"
+                       % differenceConservativeVsMinimum)
                 if differenceConservativeVsMinimum > self.speedUpTolerance:
-                    print(("Error: performance setting vs minimum of %.1f%% "
+                    print("Error: performance setting vs minimum of %.1f%% "
                            "is not within %.1f%% margin"
                            % (differenceConservativeVsMinimum,
-                              self.speedUpTolerance)))
+                              self.speedUpTolerance))
                     success = False
             else:
                 print ("Error: Not enough timing data to calculate "
