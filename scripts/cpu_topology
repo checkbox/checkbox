@@ -73,14 +73,13 @@ def compare(proc_cpu, sys_cpu):
 def main():
     cpuinfo = proc_cpuinfo()
     sys_cpu = {}
-    keys = iter(cpuinfo.cpuinfo.keys())
+    keys = cpuinfo.cpuinfo.keys()
     for k in keys:
         sys_cpu[k] = sysfs_cpu(k).syscpu
 
     cpu_map = compare(cpuinfo.cpuinfo, sys_cpu)
 
-    keys = [k for k in sys_cpu.keys()]
-    keys.sort()
+    keys = sorted(sys_cpu.keys())
     for key in keys:
         print(("%s:\tPhysical ID: %s\tCore ID: %s"
                % (key, sys_cpu[key]['physical_package_id'],
