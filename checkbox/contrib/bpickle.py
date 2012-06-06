@@ -71,12 +71,12 @@ def dumps_float(obj):
 
 
 def dumps_bytes(obj):
-    return ("s%s:" % len(obj)).encode("ascii") + obj
+    return ("c%s:" % len(obj)).encode("ascii") + obj
 
 
 def dumps_str(obj):
     obj = obj.encode("utf-8")
-    return ("u%s:" % len(obj)).encode("ascii") + obj
+    return ("s%s:" % len(obj)).encode("ascii") + obj
 
 
 def dumps_list(obj, _dt=None):
@@ -178,8 +178,8 @@ loads_table.update({
     ord("b"): loads_bool,
     ord("i"): loads_int,
     ord("f"): loads_float,
+    ord("c"): loads_str,
     ord("s"): loads_str,
-    ord("u"): loads_str,
     ord("l"): loads_list,
     ord("t"): loads_tuple,
     ord("d"): loads_dict,
