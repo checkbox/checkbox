@@ -1,10 +1,10 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 
 import os
 import re
 import sys
 
-import commands
+import subprocess
 import logging
 import socket
 import struct
@@ -62,7 +62,7 @@ class Route(object):
         and is only used if could not get that from /proc
         """
         logging.debug("Reading default gateway information from route binary")
-        routebin = commands.getstatusoutput("export LANGUAGE=C; "
+        routebin = subprocess.getstatusoutput("export LANGUAGE=C; "
                                             "/usr/bin/env route -n")
 
         if routebin[0] == 0:
@@ -135,15 +135,15 @@ def get_host_to_ping(interface=None, verbose=False, default=None):
     # ping that.
     if default and default in pingable_ips:
         if verbose:
-            print ("Desired ip address %s is reachable, using it" % default)
+            print(("Desired ip address %s is reachable, using it" % default))
         return default
 
     #If not, choose another IP.
     address_to_ping = pingable_ips[0] if len(pingable_ips) else None
     if verbose:
-        print("Desired ip address %s is not reachable from %s. "
-              % (default, interface))
-        print("using %s instead." % address_to_ping)
+        print(("Desired ip address %s is not reachable from %s. "
+              % (default, interface)))
+        print(("using %s instead." % address_to_ping))
     return address_to_ping
 
 
@@ -159,7 +159,7 @@ def ping(host, interface, count, deadline, verbose=False):
     output = os.popen(command)
     for line in output.readlines():
         if verbose:
-            print line.rstrip()
+            print(line.rstrip())
 
         received = re.findall(reg, line)
         if received:
@@ -204,20 +204,20 @@ def main(args):
                             verbose=options.verbose, default=host)
 
     if options.verbose:
-        print("Checking connectivity to %s" % host)
+        print(("Checking connectivity to %s" % host))
     received_packets = 0
     if host:
         received_packets = ping(host, options.interface, options.count,
                                 options.deadline, options.verbose)
 
     if received_packets == 0:
-        print _("No Internet connection")
+        print(_("No Internet connection"))
         return 1
     elif received_packets != options.count:
-        print _("Connection established lost a packet")
+        print(_("Connection established lost a packet"))
         return 1
     else:
-        print _("Internet connection fully established")
+        print(_("Internet connection fully established"))
         return 0
 
 if __name__ == "__main__":
