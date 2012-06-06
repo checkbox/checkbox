@@ -98,11 +98,11 @@ def main():
         else:
             continue
 
-    print(("Critical Failures: %d" % failed_critical))
-    print(("High Failures: %d" % failed_high))
-    print(("Medium Failures: %d" % failed_medium))
-    print(("Low Failures: %d" % failed_low))
-    print(("Passed: %d" % passed))
+    print("Critical Failures: %d" % failed_critical)
+    print("High Failures: %d" % failed_high)
+    print("Medium Failures: %d" % failed_medium)
+    print("Low Failures: %d" % failed_low)
+    print("Passed: %d" % passed)
 
     if failed_critical != 0 or failed_high != 0:
         return 1
