@@ -1,89 +1,31 @@
-#!/usr/bin/python
-
-# Note: this code is not based on gi.repository because of a bug that prevents
-# sync-message to be decoded from the bus (current message reports "None" in
-# all cases). See https://bugzilla.gnome.org/show_bug.cgi?id=631901
+#!/usr/bin/python3
 
 import sys
-import gtk
-import gobject
-import pygst
-pygst.require("0.10")
-import gst
-from optparse import OptionParser
+import time
+from gi.repository import Gst
+from argparse import ArgumentParser
 
 
-class GTK_Main:
+def main():
+    parser = ArgumentParser(description = 'Simple GStreamer pipeline player')
+    parser.add_argument('PIPELINE',
+        help='Quoted GStreamer pipeline to launch')
+    parser.add_argument('-t', '--timeout',
+        type=int, required=True,
+        help='Timeout for running the pipeline')
+    args = parser.parse_args()
 
-    def __init__(self, pipeline, options):
-        self.options = options
-        self.loop = gobject.MainLoop()
-        self.player = gst.parse_launch(pipeline)
-        bus = self.player.get_bus()
-        bus.add_signal_watch()
-        bus.enable_sync_message_emission()
-        bus.connect("message", self.on_message)
-        bus.connect("sync-message::element", self.on_sync_message)
-        self.player.set_state(gst.STATE_PLAYING)
-        gobject.timeout_add(self.options.timeout * 1000, self.timeout_cb)
-        self.loop.run()
+    Gst.init(None)
+    element = Gst.parse_launch(args.PIPELINE)
+    element.set_state(Gst.State.PLAYING)
 
-    def delete_event(self, widget, event, data=None):
-        return False
-
-    def destroy(self, widget, data=None):
-        self.timeout_cb()
-
-    def on_message(self, bus, message):
-        t = message.type
-        if t == gst.MESSAGE_EOS:
-            self.player.seek_simple(gst.FORMAT_TIME, gst.SEEK_FLAG_FLUSH, 0)
-
-    def on_sync_message(self, bus, message):
-        if message.structure is None:
-            return
-        message_name = message.structure.get_name()
-        if message_name == "prepare-xwindow-id":
-            gtk.gdk.threads_enter()
-            gtk.gdk.display_get_default().sync()
-            self.window = gtk.Window()
-            self.window.connect("delete_event", self.delete_event)
-            self.window.connect("destroy", self.destroy)
-            self.movie_window = gtk.DrawingArea()
-            self.window.add(self.movie_window)
-            if self.options.fullscreen:
-                self.window.fullscreen()
-            self.window.show_all()
-            imagesink = message.src
-            imagesink.set_property("force-aspect-ratio", True)
-            imagesink.set_xwindow_id(self.movie_window.window.xid)
-            gtk.gdk.threads_leave()
-
-    def timeout_cb(self):
-        self.player.set_state(gst.STATE_NULL)
-        self.loop.quit()
-
-
-def main(args):
-    usage = "Usage: %prog [OPTIONS] PIPELINE"
-    parser = OptionParser(usage=usage)
-    parser.add_option("-t", "--timeout",
-        type="int",
-        default=-1,
-        help="Timeout for running the pipeline.")
-    parser.add_option("-f", "--fullscreen",
-        default=False,
-        action="store_true",
-        help="Fullscreen mode (pipeline with video sink only).")
-    (options, args) = parser.parse_args(args)
-
-    if len(args) != 1:
-        parser.error("Must provide a PIPELINE")
-
-    pipeline = args[0]
-    gtk.gdk.threads_init()
-    GTK_Main(pipeline, options)
+    if args.timeout:
+        time.sleep(args.timeout)
+        
+    element.set_state(Gst.State.NULL)
+    
+    return 0
 
 
 if __name__ == "__main__":
-    sys.exit(main(sys.argv[1:]))
+    sys.exit(main())
