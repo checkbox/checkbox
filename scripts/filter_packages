@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 
 import os
 import sys
@@ -111,10 +111,10 @@ def install_package_names(names):
         if stderr:
             logging.error(stderr)
 
-    except apt.cache.FetchCancelledException, e:
+    except apt.cache.FetchCancelledException as e:
         return False
 
-    except (apt.cache.LockFailedException, apt.cache.FetchFailedException), e:
+    except (apt.cache.LockFailedException, apt.cache.FetchFailedException) as e:
         logging.warning('Package fetching failed: %s', str(e))
         raise SystemError(str(e))
 
@@ -150,7 +150,7 @@ def main(args):
     else:
         try:
             output_file = open(options.output, "w")
-        except IOError, e:
+        except IOError as e:
             parser.error("%s: %s" % (options.output, e.strerror))
 
     # Parse args
@@ -161,7 +161,7 @@ def main(args):
         filename = args[0]
         try:
             input_file = open(filename, "r")
-        except IOError, e:
+        except IOError as e:
             parser.error("%s: %s" % (filename, e.strerror))
 
     else:
