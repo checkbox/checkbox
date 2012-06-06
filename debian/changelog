@@ -60,6 +60,9 @@ checkbox (0.14) quantal; urgency=low
     * scripts/network_device_info: ran 2to3 and changed shebang.
     * scripts/network_info: ran 2to3 and changed shebang. Fixed encoding issue
       with interface[:15] (needed to be a bytes object)
+    * scripts/fwts_test: ran 2to3 and changed shebang, fixed an encoding bug
+      with Popen output. Cleaned up the final output to be more useful for
+      debugging test failures.
 
 
   [Sylvain Pineau]
@@ -73,7 +76,7 @@ checkbox (0.14) quantal; urgency=low
     user input (LP: #1000451)
   * Added customizable deselect_warning message in qt show_tree method (LP: #1000443)
 
- -- Jeff Lane <jeff@ubuntu.com>  Tue, 05 Jun 2012 18:50:20 -0400
+ -- Jeff Lane <jeff@ubuntu.com>  Wed, 06 Jun 2012 15:12:25 -0400
 
 checkbox (0.13.8) precise; urgency=low
 
