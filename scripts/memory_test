@@ -109,7 +109,7 @@ class MemoryTest():
         return True
 
     def run_multiple_process_test(self):
-        processes = int(self.free_memory / self.process_memory)
+        processes = self.free_memory // self.process_memory
         # if not swap-less, add a process to hit swap
         if not self.swap_memory == 0:
             processes += 1
