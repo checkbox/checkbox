@@ -84,10 +84,13 @@ class Install:
         self._config = Config()
         if os.environ.get("DEBIAN_HAS_FRONTEND"):
             if os.environ.get("DEBCONF_REDIR"):
-                write = os.fdopen(3, "w")
+                write_fileno = 3
             else:
-                write = sys.stdout
-            self._debconf = Debconf(write=write)
+                write_fileno = 1
+
+            write = os.fdopen(write_fileno, "wb")
+            read = os.fdopen(0, "rb")
+            self._debconf = Debconf(read=read, write=write)
         else:
             self._debconf = DebconfCommunicator(self.name)
 
