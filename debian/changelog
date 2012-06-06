@@ -62,6 +62,9 @@ checkbox (0.14) quantal; urgency=low
 
 
   [Sylvain Pineau]
+  * [FEATURE] Python 2 to 3 conversion:
+    * scripts/gst_pipeline_test. Migrated to PyGI.
+  * Fullscreen playbacks are now performed with Totem instead of gst_pipeline_test.  
   * scripts/pm_log_check: added a slightly modified version of OEM team's pm_check.py
     script to analyze pm_test logs
   * jobs/stress.txt.in: add OEM team's stress tests (including reboot and poweroff)
