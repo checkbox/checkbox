@@ -59,7 +59,8 @@ checkbox (0.14) quantal; urgency=low
       Python3 only now.
     * scripts/network_device_info: ran 2to3 and changed shebang.
     * scripts/network_info: ran 2to3 and changed shebang. Fixed encoding issue
-      with interface[:15] (needed to be a bytes object)
+      with interface[:15] (needed to be a bytes object).
+    * scripts/keyboard_test: nothing to do for conversion beyond changing shebang.
 
 
   [Sylvain Pineau]
@@ -73,7 +74,7 @@ checkbox (0.14) quantal; urgency=low
     user input (LP: #1000451)
   * Added customizable deselect_warning message in qt show_tree method (LP: #1000443)
 
- -- Jeff Lane <jeff@ubuntu.com>  Tue, 05 Jun 2012 18:50:20 -0400
+ -- Jeff Lane <jeff@ubuntu.com>  Wed, 06 Jun 2012 11:29:19 -0400
 
 checkbox (0.13.8) precise; urgency=low
 
