@@ -45,7 +45,7 @@ def SilentCall(*popenargs):
     that is executed. Wait for command to complete, then return the returncode
     attribute.
     '''
-    null_fh = open('/dev/null', 'w', 0)
+    null_fh = open('/dev/null', 'wb', 0)
     try:
         return (Popen(*popenargs, shell=True, stdout=null_fh, stderr=null_fh)
                 .wait())
@@ -105,7 +105,7 @@ def SyncTime(server):
 
     if sync.returncode == 0:
         logging.info('Successful NTP update from %s' % server)
-        logging.info('%s' % result[0].strip())
+        logging.info('%s' % result[0].strip().decode())
         return True
     else:
         logging.error('Failed to sync with %s' % server)
@@ -134,6 +134,7 @@ def SkewTime():
     date_time_string = skewed.strftime('%m%d%H%M%Y')
     logging.debug('New date string is: %s' % date_time_string)
     logging.debug('Setting new system time/date')
+    status = SilentCall('/bin/date %s' % date_time_string)
     logging.info('Pre-sync time is: %s' % time.asctime())
 
 
