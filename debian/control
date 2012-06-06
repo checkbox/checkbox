@@ -11,7 +11,7 @@ Package: checkbox
 Section: python
 Architecture: any
 Depends: ${misc:Depends}, ${python3:Depends}, debconf, python3-lxml, udev
-Recommends: dpkg (>= 1.13), gstreamer0.10-gconf, lsb-release, perl, pm-utils, python-apport, python-apt, python-gst0.10, python-gtk2, python3-gi
+Recommends: dpkg (>= 1.13), gstreamer0.10-gconf, lsb-release, perl, pm-utils, python-apport, python-apt, python-gst0.10, python-gtk2, python3-dbus, python3-gi
 Suggests: checkbox-cli | checkbox-gtk, bonnie++, bootchart, bzr, cvs, ethtool, flex, fwts, git-core, hdparm, lshw, make, nmap, obexd-client, python-pexpect, smartmontools, sox, stress, wodim, mesa-utils, wmctrl
 Description: System testing application 
  This project provides an extensible interface for system testing. The
@@ -48,7 +48,7 @@ Description: GTK interface for checkbox
 
 Package: checkbox-qt
 Architecture: any
-Depends: checkbox (>= ${source:Version}), libqtgui4, libqt4-dbus, ${misc:Depends}
+Depends: checkbox (>= ${source:Version}), libqtgui4, libqt4-dbus, python3-dbus, ${misc:Depends}
 Description: QT4 interface for checkbox
  This project provides an extensible interface for system testing. The
  results can then be sent to Launchpad.
