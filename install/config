@@ -19,6 +19,34 @@ from debconf import Debconf, DebconfCommunicator
 DEFAULT_SECTION = "DEFAULT"
 
 
+_delegate_methods = ("fileno", "flush",)
+
+
+class fdopen_wrapper:
+
+    _uses_bytes = False
+
+    def __init__(self, fileno, mode):
+        self.file = os.fdopen(fileno, mode)
+
+        for method in _delegate_methods:
+            setattr(self, method, getattr(self.file, method))
+
+    def readline(self):
+        line = self.file.readline()
+        if fdopen_wrapper._uses_bytes:
+            line = line.encode()
+
+        return line
+
+    def write(self, data):
+        if isinstance(data, bytes):
+            fdopen_wrapper._uses_bytes = True
+            data = data.decode()
+
+        return self.file.write(data)
+
+
 class Config(ConfigParser):
 
     def write(self, fp):
@@ -88,8 +116,8 @@ class Install:
             else:
                 write_fileno = 1
 
-            write = os.fdopen(write_fileno, "wb")
-            read = os.fdopen(0, "rb")
+            write = fdopen_wrapper(write_fileno, "w")
+            read = fdopen_wrapper(0, "r")
             self._debconf = Debconf(read=read, write=write)
         else:
             self._debconf = DebconfCommunicator(self.name)
