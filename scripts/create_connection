@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import sys
 import os
@@ -6,7 +6,7 @@ import time
 
 from subprocess import Popen, PIPE
 from uuid import uuid4
-from optparse import OptionParser
+from argparse import ArgumentParser
 
 CONNECTIONS_PATH = '/etc/NetworkManager/system-connections/'
 
@@ -73,7 +73,7 @@ def block_until_created(connection, retries, interval):
         nmcli_con_list = Popen(['nmcli', 'con', 'list'], stdout=PIPE)
         (stdout, stderr) = nmcli_con_list.communicate()
 
-        if connection in stdout:
+        if connection in stdout.decode():
             print("Connection %s registered" % connection)
             break
 
@@ -88,7 +88,7 @@ def block_until_created(connection, retries, interval):
                              stdout=PIPE)
         (stdout, stderr) = nmcli_con_up.communicate()
 
-        if 'state: activated' in stdout:
+        if 'state: activated' in stdout.decode():
             print("Connection %s activated." % connection)
         else:
             print("Failed to activate %s." % connection)
@@ -96,45 +96,43 @@ def block_until_created(connection, retries, interval):
 
 
 def main():
-    parser = OptionParser()
+    parser = ArgumentParser()
 
-    parser.add_option('-S', '--security',
+    parser.add_argument('ssid',
+                      help="The SSID to connect to.")
+    parser.add_argument('-S', '--security',
                       help=("The type of security to be used "
                             "by the connection. One of wpa and wep. "
                             "No security will be used "
                             "if nothing is specified."))
-    parser.add_option('-K', '--key',
+    parser.add_argument('-K', '--key',
                       help="The encryption key required by the router.")
-    parser.add_option('-U', '--uuid',
+    parser.add_argument('-U', '--uuid',
                       help="""The uuid to assign to the connection for use by
                             NetworkManager. One will be generated if not
                             specified here.""")
-    parser.add_option('-R', '--retries',
+    parser.add_argument('-R', '--retries',
                       help="""The number of times to attempt bringing up the
                               connection until it is confirmed as active.""",
                       default=5)
-    parser.add_option('-I', '--interval',
+    parser.add_argument('-I', '--interval',
                       help=("The time to wait between attempts to detect the "
                             "registration of the connection."),
                       default=2)
 
-    (options, args) = parser.parse_args()
+    args = parser.parse_args()
 
-    if len(args) < 1:
-        print("Must specify an SSID to connect to.")
-        sys.exit(1)
+    connection_info = connection_section(args.ssid, args.uuid)
 
-    connection_info = connection_section(args[0], options.uuid)
-
-    if options.security:
+    if args.security:
         # Set security options
-        if not options.key:
+        if not args.key:
             print ("You need to specify a key using --key "
                    "if using wireless security.")
             sys.exit(1)
 
-        connection_info += security_section(options.security, options.key)
-    elif options.key:
+        connection_info += security_section(args.security, args.key)
+    elif args.key:
         print ("You specified an encryption key "
                "but did not give a security type using --security.")
         sys.exit(1)
@@ -142,16 +140,16 @@ def main():
     connection_info += ip_sections()
 
     try:
-        connection_file = open(CONNECTIONS_PATH + args[0], 'w')
+        connection_file = open(CONNECTIONS_PATH + args.ssid, 'w')
         connection_file.write(connection_info)
-        os.fchmod(connection_file.fileno(), 0600)
+        os.fchmod(connection_file.fileno(), 0o600)
         connection_file.close()
     except IOError:
-        print ("Can't write to " + CONNECTIONS_PATH + args[0]
+        print ("Can't write to " + CONNECTIONS_PATH + args.ssid
                + ". Is this command being run as root?")
         sys.exit(1)
 
-    block_until_created(args[0], options.retries, options.interval)
+    block_until_created(args.ssid, args.retries, args.interval)
 
 if __name__ == "__main__":
     main()
