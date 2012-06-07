@@ -90,7 +90,9 @@ _description:
 
 plugin: manual
 name: graphics/display
-requires: package.name == 'xorg' and package.name == 'python-gst0.10'
+requires: 
+ package.name == 'xorg'
+ package.name == 'gir1.2-gst-plugins-base-0.10' or package.name == 'gir1.2-gst-plugins-base-1.0'
 command: gst_pipeline_test -t 2 'videotestsrc ! ffmpegcolorspace ! autovideosink'
 _description:
  PURPOSE:

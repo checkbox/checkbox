@@ -10,7 +10,7 @@ plugin: manual
 name: camera/display
 depends: camera/detect
 requires:
- package.name == 'python-gst0.10'
+ package.name == 'gir1.2-gst-plugins-base-0.10' or package.name == 'gir1.2-gst-plugins-base-1.0'
  device.category == 'CAPTURE'
 command: camera_test display
 _description:
@@ -25,7 +25,7 @@ plugin: manual
 name: camera/still
 depends: camera/detect
 requires:
- package.name == 'python-gst0.10'
+ package.name == 'gir1.2-gst-plugins-base-0.10' or package.name == 'gir1.2-gst-plugins-base-1.0'
  package.name == 'eog'
  package.name == 'fswebcam'
  device.category == 'CAPTURE'
