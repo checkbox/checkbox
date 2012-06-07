@@ -118,11 +118,12 @@ class FlashVideoThread(Thread):
 
         with NamedTemporaryFile(suffix='.html', delete=False) as f:
             self.tempfile = f.name
-            f.write(source.encode("utf-8"))
+            f.write(source.encode())
             f.close()
-        os.chmod(f.name, stat.S_IROTH)
+        os.chmod(self.tempfile, stat.S_IROTH)
         subprocess.call(
-            'sudo -H -u %s firefox %s' % (os.getenv('SUDO_USER'), f.name),
+            'sudo -H -u %s firefox %s' % (os.getenv('SUDO_USER'),
+            self.tempfile),
             stdout=open(os.devnull, 'w'),
             stderr=subprocess.STDOUT,
             shell=True)
@@ -158,8 +159,8 @@ def check_gpu():
 
 
 def main():
-    if not (os.getuid() == 0):
-        print ("Must be run as root.")
+    if not (os.geteuid() == 0):
+        print("Must be run as root.")
         return 1
 
     check_gpu()
@@ -194,7 +195,6 @@ def main():
     else:
         (x_res, y_res) = re.search(b'DG:\s+(\d+)x(\d+)',
             subprocess.check_output('wmctrl -d', shell=True)).groups()
-        (x_res, y_res) = (int(x_res), int(y_res))
         hsize = int(subprocess.check_output(
             'gconftool --get /apps/compiz-1/general/screen0/options/hsize',
             shell=True))
@@ -202,7 +202,7 @@ def main():
             'gconftool --get /apps/compiz-1/general/screen0/options/vsize',
             shell=True))
         DesktopSwitch = ChangeViewport(
-            hsize, vsize, int(x_res / hsize), int(y_res / vsize))
+            hsize, vsize, int(x_res) // hsize, int(y_res) // vsize)
     DesktopSwitch.start()
 
     time.sleep(20)
