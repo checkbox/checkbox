@@ -4,7 +4,6 @@ import os
 import re
 import sys
 
-import subprocess
 import logging
 import socket
 import struct
@@ -135,15 +134,15 @@ def get_host_to_ping(interface=None, verbose=False, default=None):
     # ping that.
     if default and default in pingable_ips:
         if verbose:
-            print(("Desired ip address %s is reachable, using it" % default))
+            print("Desired ip address %s is reachable, using it" % default)
         return default
 
     #If not, choose another IP.
     address_to_ping = pingable_ips[0] if len(pingable_ips) else None
     if verbose:
-        print(("Desired ip address %s is not reachable from %s. "
-              % (default, interface)))
-        print(("using %s instead." % address_to_ping))
+        print("Desired ip address %s is not reachable from %s. "
+              % (default, interface))
+        print("using %s instead." % address_to_ping)
     return address_to_ping
 
 
@@ -175,8 +174,12 @@ def main(args):
     default_count = 2
     default_delay = 4
 
+    route = Route()
+
     parser = ArgumentParser()
-    parser.add_argument("-H", "--host",
+    parser.add_argument("host",
+        nargs='?',
+        default=route.get_default_gateway(),
         help="Host to ping")
     parser.add_argument("-c", "--count",
         default=default_count,
@@ -193,18 +196,12 @@ def main(args):
         help="Interface to ping from.")
     args = parser.parse_args()
 
-    if args.host:
-        host = args.host
-    else:
-        route = Route()
-        host = route.get_default_gateway()
-
     #If given host is not pingable, override with something pingable.
     host = get_host_to_ping(interface=args.interface,
-                            verbose=args.verbose, default=host)
+                            verbose=args.verbose, default=args.host)
 
     if args.verbose:
-        print(("Checking connectivity to %s" % host))
+        print("Checking connectivity to %s" % host)
     received_packets = 0
     if host:
         received_packets = ping(host, args.interface, args.count,
