@@ -90,8 +90,10 @@ _description:
 
 plugin: manual
 name: graphics/display
-requires: package.name == 'xorg' and package.name == 'python-gst0.10'
-command: gst_pipeline_test -t 2 'videotestsrc ! ffmpegcolorspace ! gconfvideosink'
+requires: 
+ package.name == 'xorg'
+ package.name == 'gir1.2-gst-plugins-base-0.10' or package.name == 'gir1.2-gst-plugins-base-1.0'
+command: gst_pipeline_test -t 2 'videotestsrc ! ffmpegcolorspace ! autovideosink'
 _description:
  PURPOSE:
      This test will test the default display
@@ -189,8 +191,11 @@ plugin: shell
 name: graphics/screenshot_fullscreen_video
 requires: package.name == 'fswebcam'
 command:
- gst_pipeline_test -t 20 -f "playbin2 uri=file://${CHECKBOX_SHARE}/data/video/Ogg_Theora_Video.ogv" &
+ dbus-launch gsettings set org.gnome.totem repeat true
+ totem --fullscreen ${CHECKBOX_SHARE}/data/video/Ogg_Theora_Video.ogv 2>/dev/null &
  sleep 15 && camera_test still --device=/dev/external_webcam -f ${CHECKBOX_DATA}/screenshot_fullscreen_video.jpg -q 2>&1 | ansi_parser
+ sleep 5 && totem --quit 2>/dev/null
+ dbus-launch gsettings set org.gnome.totem repeat false
 _description:
  PURPOSE:
      Take a screengrab of the current screen during fullscreen video playback

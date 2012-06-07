@@ -11,8 +11,9 @@ name: audio/playback_auto
 depends: audio/list_devices
 requires:
  device.category == 'AUDIO'
- package.name == 'alsa-base' and package.name == 'python-gst0.10'
-command: audio_settings store > $CHECKBOX_SHARE/pulseaudio_settings; audio_settings set --device=pci --volume=50; gst_pipeline_test -t 2 'audiotestsrc wave=sine freq=512 ! audioconvert ! audioresample ! gconfaudiosink'; audio_settings restore --file=$CHECKBOX_SHARE/pulseaudio_settings
+ package.name == 'alsa-base'
+ package.name == 'gir1.2-gst-plugins-base-0.10' or package.name == 'gir1.2-gst-plugins-base-1.0'
+command: audio_settings store > $CHECKBOX_SHARE/pulseaudio_settings; audio_settings set --device=pci --volume=50; gst_pipeline_test -t 2 'audiotestsrc wave=sine freq=512 ! audioconvert ! audioresample ! autoaudiosink'; audio_settings restore --file=$CHECKBOX_SHARE/pulseaudio_settings
 _description:
  PURPOSE:
      This test will check that internal speakers work correctly
@@ -28,8 +29,9 @@ name: audio/playback_headphones
 depends: audio/list_devices
 requires:
  device.category == 'AUDIO'
- package.name == 'alsa-base' and package.name == 'python-gst0.10'
-command: audio_settings store > $CHECKBOX_SHARE/pulseaudio_settings; audio_settings set --device=pci --volume=50; gst_pipeline_test -t 2 'audiotestsrc wave=sine freq=512 ! audioconvert ! audioresample ! gconfaudiosink'; audio_settings restore --file=$CHECKBOX_SHARE/pulseaudio_settings
+ package.name == 'alsa-base'
+ package.name == 'gir1.2-gst-plugins-base-0.10' or package.name == 'gir1.2-gst-plugins-base-1.0'
+command: audio_settings store > $CHECKBOX_SHARE/pulseaudio_settings; audio_settings set --device=pci --volume=50; gst_pipeline_test -t 2 'audiotestsrc wave=sine freq=512 ! audioconvert ! audioresample ! autoaudiosink'; audio_settings restore --file=$CHECKBOX_SHARE/pulseaudio_settings
 _description:
  PURPOSE:
      This test will check that headphones connector works correctly
