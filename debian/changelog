@@ -1,5 +1,10 @@
 checkbox (0.14) quantal; urgency=low
 
+  [Brendan Donegan]
+  * [FEATURE] Python 2 to 3 conversion:
+    * scripts/create_connection - switched to using argparse and fixed
+      representation of octal literal
+
   [Jeff Marcom]
   * [FEATURE] Python 2 to 3 conversion:
     * scripts/memory_info
