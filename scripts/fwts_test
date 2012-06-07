@@ -80,44 +80,36 @@ def main():
 
     # parse the summaries
     passed = 0
-    critical_count = 0
-    high_count = 0
-    medium_count = 0
-    low_count = 0
 
     for test in tests:
         if results[test] == 'FAILED_CRITICAL':
-            critical_count += 1
             critical_fails += [test]
         elif results[test] == 'FAILED_HIGH':
-            high_count += 1
             high_fails += [test]
         elif results[test] == 'FAILED_MEDIUM':
-            medium_count += 1
             medium_fails += [test]
         elif results[test] == 'FAILED_LOW':
-            low_count += 1
             low_fails += [test]
         elif results[test] == 'PASSED':
             passed += 1
         else:
             continue
     
-    if critical_count:
-        print("Critical Failures: %d" % critical_count)
+    if critical_fails:
+        print("Critical Failures: %d" % len(critical_fails))
         for test in critical_fails: print(" - " + test)
-    if high_count:
-        print("High Failures: %d" % high_count)
+    if high_fails:
+        print("High Failures: %d" % len(high_fails))
         for test in high_fails: print(" - " + test)
-    if medium_count:
-        print("Medium Failures: %d" % medium_count)
+    if medium_fails:
+        print("Medium Failures: %d" % len(medium_fails))
         for test in medium_fails: print(" - " + test)
-    if low_count:    
-        print("Low Failures: %d" % low_count)
+    if low_fails:    
+        print("Low Failures: %d" % len(low_fails))
         for test in low_fails: print(" - " + test)
     print("Passed: %d" % passed)
 
-    if critical_count != 0 or high_count != 0:
+    if critical_fails or high_fails:
         return 1
     else:
         return 0
