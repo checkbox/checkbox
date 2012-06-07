@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-05-30 05:16+0000\n"
-"X-Generator: Launchpad (build 15316)\n"
+"X-Launchpad-Export-Date: 2012-06-07 04:36+0000\n"
+"X-Generator: Launchpad (build 15353)\n"
 
 #. Title of the user interface
 #: ../gtk/checkbox-gtk.ui.h:1 ../qt/checkbox-qt.desktop.in.h:1
@@ -206,6 +206,8 @@ msgstr ""
 msgid ""
 "Automated test to store bluetooth device information in checkbox report"
 msgstr ""
+"Tèst automatizat per enregistrar las informacions de l'aparelh Bluetooth "
+"dins lo rapòrt de Checkbox"
 
 #. description
 #: ../jobs/bluetooth.txt.in:14
@@ -363,6 +365,8 @@ msgstr ""
 msgid ""
 "Test the CPU scaling capabilities using Firmware Test Suite (fwts cpufreq)."
 msgstr ""
+"Testatz las capacitats d'escala del CPU en utilizant Firmware Test Suite "
+"(fwts cpufreq)."
 
 #. description
 #: ../jobs/cpu.txt.in:15
@@ -378,11 +382,14 @@ msgstr "Tèst de mesa fòra-linha de processors dins un sistèma multicòrs."
 #: ../jobs/cpu.txt.in:30
 msgid "This test checks cpu topology for accuracy"
 msgstr ""
+"Aqueste tèst verifica l'arquitectura del processor amb de tòcas d'exactitud"
 
 #. description
 #: ../jobs/cpu.txt.in:38
 msgid "This test checks that CPU frequency governors are obeyed when set."
 msgstr ""
+"Aqueste tèst verifica que los directors de frequéncia CPU son respectats "
+"quand son definits."
 
 #. description
 #: ../jobs/daemons.txt.in:5
@@ -622,6 +629,8 @@ msgid ""
 "Test that X does not leak memory when running programs on systems with intel "
 "based graphics."
 msgstr ""
+"Verifica se X provòca una fugida de memòria quand de programas viran suls "
+"sistèmas amb de cartas graficas Intel."
 
 #. description
 #: ../jobs/graphics.txt.in:70
@@ -662,7 +671,7 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:106
 msgid "Check that VESA drivers are not in use"
-msgstr ""
+msgstr "Verifica que los pilòts VESA son pas utilizats"
 
 #. description
 #: ../jobs/graphics.txt.in:113
@@ -678,12 +687,12 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:126
 msgid "Check that hardware is able to run compiz"
-msgstr ""
+msgstr "Verifica que lo material es apte a aviar compiz"
 
 #. description
 #: ../jobs/graphics.txt.in:133
 msgid "Check that hardware is able to run Unity 3D"
-msgstr ""
+msgstr "Verifica que lo material es apte a aviar Unity 3D"
 
 #. description
 #: ../jobs/graphics.txt.in:139
@@ -769,32 +778,32 @@ msgstr ""
 #. description
 #: ../jobs/info.txt.in:5
 msgid "Attaches a report of installed codecs for Intel HDA"
-msgstr ""
+msgstr "Jónher un rapòrt dels codecs installats per Intel HDA"
 
 #. description
 #: ../jobs/info.txt.in:10
 msgid "Attaches a report of CPU information"
-msgstr ""
+msgstr "Jónher un rapòrt d'informacion del processor"
 
 #. description
 #: ../jobs/info.txt.in:15
 msgid "Attaches a copy of /var/log/dmesg to the test results"
-msgstr ""
+msgstr "Jónher una còpia del fichièr /var/log/dmesg als resultats del tèst"
 
 #. description
 #: ../jobs/info.txt.in:20
 msgid "Attaches info on DMI"
-msgstr ""
+msgstr "Jónher l'informacion sul DMI"
 
 #. description
 #: ../jobs/info.txt.in:26
 msgid "Attaches dmidecode output"
-msgstr ""
+msgstr "Jónher la sortida de dmidecode"
 
 #. description
 #: ../jobs/info.txt.in:31
 msgid "Attaches very verbose lspci output."
-msgstr ""
+msgstr "Jónher la sortida de la comanda lspci en mòde fòrça verbós"
 
 #. description
 #: ../jobs/info.txt.in:36
@@ -809,48 +818,51 @@ msgstr ""
 #. description
 #: ../jobs/info.txt.in:52
 msgid "Attaches the contents of the various modprobe conf files."
-msgstr ""
+msgstr "Jónher lo contengut de divèrses fichièrs de configuracion modprobe"
 
 #. description
 #: ../jobs/info.txt.in:57
 msgid "Attaches the contents of the /etc/modules file."
-msgstr ""
+msgstr "Jónher lo contengut del fichièr /etc/modules"
 
 #. description
 #: ../jobs/info.txt.in:62
 msgid "attaches the contents of various sysctl config files."
-msgstr ""
+msgstr "Jónher lo contengut de divèrses fichièrs de configuracion sysctl"
 
 #. description
 #: ../jobs/info.txt.in:66
 msgid "Attaches a report of sysfs attributes."
-msgstr ""
+msgstr "Jónher un rapòrt dels atributs sysfs"
 
 #. description
 #: ../jobs/info.txt.in:77
 msgid ""
 "Attaches a dump of the udev database showing system hardware information."
 msgstr ""
+"Jónher un dump de la banca de donadas udev que fa veire d'informacions sul "
+"material"
 
 #. description
 #: ../jobs/info.txt.in:84
 msgid "Attaches a tarball of gcov data if present."
 msgstr ""
+"Jónher un fichièr tar de las donadas de gcov se lo fichièr aqueste existís"
 
 #. description
 #: ../jobs/info.txt.in:89
 msgid "Attaches a list of the currently running kernel modules."
-msgstr ""
+msgstr "Jónher una lista dels moduls del nucli en foncionament"
 
 #. description
 #: ../jobs/info.txt.in:94
 msgid "Gather log from the Firmware Test Suite run."
-msgstr ""
+msgstr "Rassemblar lo log de l'execucion de Firmware Test Suite."
 
 #. description
 #: ../jobs/info.txt.in:101
 msgid "Attaches the contents of /proc/acpi/sleep if it exists."
-msgstr ""
+msgstr "Jónher lo contengut del fichièr /proc/acpi/sleep s'existís."
 
 #. description
 #: ../jobs/info.txt.in:105
@@ -865,22 +877,22 @@ msgstr "Informacions sul periferic SATA/IDE."
 #. description
 #: ../jobs/info.txt.in:131
 msgid "Attaches the bootchart png file for bootchart runs"
-msgstr ""
+msgstr "Jónher lo fichièr png del grafic d'aviada (bootchart)"
 
 #. description
 #: ../jobs/info.txt.in:140
 msgid "Attaches the bootchart log for bootchart test runs."
-msgstr ""
+msgstr "Jónher lo log de las execucions del bootchart"
 
 #. description
 #: ../jobs/info.txt.in:148
 msgid "installs the installer bootchart tarball if it exists."
-msgstr ""
+msgstr "Installar lo tarball del bootchart de l'installador s'existís"
 
 #. description
 #: ../jobs/info.txt.in:153
 msgid "Attaches the installer debug log if it exists."
-msgstr ""
+msgstr "Jónher lo fichièr de desbugatge de l'installador s'existís."
 
 #. description
 #: ../jobs/input.txt.in:4
@@ -1003,7 +1015,7 @@ msgstr "Tèsts àudio"
 #. description
 #: ../jobs/local.txt.in:10
 msgid "Autotest Suite tests"
-msgstr ""
+msgstr "Tèsts de la Seguida Autotest"
 
 #. description
 #: ../jobs/local.txt.in:17
@@ -1083,12 +1095,12 @@ msgstr "Tèsts de las tòcas d'acorchi"
 #. description
 #: ../jobs/local.txt.in:122
 msgid "Linux Test Project tests"
-msgstr ""
+msgstr "Tèsts del projècte Linux Test"
 
 #. description
 #: ../jobs/local.txt.in:129
 msgid "Mago Automated Desktop Testing"
-msgstr ""
+msgstr "Tèst de burèu automatizat Mago"
 
 #. description
 #: ../jobs/local.txt.in:136
@@ -1123,7 +1135,7 @@ msgstr "Tèsts dels lectors optics"
 #. description
 #: ../jobs/local.txt.in:178
 msgid "Panel Clock Verification tests"
-msgstr ""
+msgstr "Tèsts de verificacion del relòtge del panèl"
 
 #. description
 #: ../jobs/local.txt.in:185
@@ -1138,7 +1150,7 @@ msgstr "Tèsts dels periferics"
 #. description
 #: ../jobs/local.txt.in:199
 msgid "Phoronix Test Suite tests"
-msgstr ""
+msgstr "Tèsts de la Seguida de Tèst de Phoronix"
 
 #. description
 #: ../jobs/local.txt.in:206
@@ -1148,12 +1160,12 @@ msgstr "Tèsts de la gestion de l'alimentacion"
 #. description
 #: ../jobs/local.txt.in:213
 msgid "QA Regression tests"
-msgstr ""
+msgstr "Tèsts d'Assegurança Qualitat"
 
 #. description
 #: ../jobs/local.txt.in:220
 msgid "Server Services checks"
-msgstr ""
+msgstr "Verificacions de servicis servidor"
 
 #. description
 #: ../jobs/local.txt.in:227
@@ -1163,7 +1175,7 @@ msgstr "Tèsts de la mesa en velha"
 #. description
 #: ../jobs/local.txt.in:234
 msgid "Touchpad tests"
-msgstr ""
+msgstr "Tèsts del pavat tactil"
 
 #. description
 #: ../jobs/local.txt.in:241
@@ -3609,7 +3621,7 @@ msgstr " Seleccion "
 
 #: ../qt/frontend/ui_qtfront.h:600 ../qt/frontend/ui_qtfront.h:601
 msgid "TextLabel"
-msgstr ""
+msgstr "Etiqueta"
 
 #: ../qt/frontend/ui_qtfront.h:602
 msgid "Yes"
@@ -4639,3 +4651,6 @@ msgstr " Resultats "
 
 #~ msgid "Restart"
 #~ msgstr "Tornar amodar"
+
+#~ msgid "Attaches the screenshot captured in info/screenshot."
+#~ msgstr "Jónher la captura d'ecran dins info/screenshot"

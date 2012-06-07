@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-05-30 05:17+0000\n"
-"X-Generator: Launchpad (build 15316)\n"
+"X-Launchpad-Export-Date: 2012-06-07 04:37+0000\n"
+"X-Generator: Launchpad (build 15353)\n"
 
 #. Title of the user interface
 #: ../gtk/checkbox-gtk.ui.h:1 ../qt/checkbox-qt.desktop.in.h:1
@@ -185,6 +185,9 @@ msgid ""
 "input.  This makes the most sense when the output and input  are directly "
 "connected, as with a patch cable."
 msgstr ""
+"ئۈننى كۆڭۈلدىكى چىقىرىش ئۈسكۈنىسىدە قويۇپ، ئۇنى كۆڭۈلدىكى كىرگۈزۈش "
+"ئۈسكۈنىسىدە ئاڭلاڭ. ئەڭ ياخشى ئۇسۇل سىم بىلەن كىرگۈزۈش ۋە چىقىرىش "
+"ئۈسكۈنىسىنى باغلاشتۇر."
 
 #. description
 #: ../jobs/autotest.txt.in:6
@@ -203,6 +206,8 @@ msgstr ""
 msgid ""
 "Automated test to store bluetooth device information in checkbox report"
 msgstr ""
+"كۆكچىش ئۈسكۈنىسىنىڭ ئۇچۇرلىرىنى checkbox نىڭ مەلۇماتىغا ساقلايدىغان "
+"ئاپتوماتلاشقان سىناق"
 
 #. description
 #: ../jobs/bluetooth.txt.in:14
@@ -438,6 +443,8 @@ msgstr ""
 msgid ""
 "Test the CPU scaling capabilities using Firmware Test Suite (fwts cpufreq)."
 msgstr ""
+"مۇقىم دېتال سىناش يۈرۈشلۈك دېتالى (fwts cpufreq)  بىلەن CPU  نىڭ كېڭەيتىلگەن "
+"ئىقتىدارىنى سىنايدۇ."
 
 #. description
 #: ../jobs/cpu.txt.in:15
@@ -459,6 +466,7 @@ msgstr "بۇ سىناق توغرىلىق دەرىجىسى ئۈچۈن CPU نىڭ 
 #: ../jobs/cpu.txt.in:38
 msgid "This test checks that CPU frequency governors are obeyed when set."
 msgstr ""
+"بۇ CPU نىڭ چاستوتا باشقۇرغۇچىسى بەلگىلەنگەن قىممەتكە بويسۇندىمۇ يوق سىنايدۇ."
 
 #. description
 #: ../jobs/daemons.txt.in:5
@@ -539,7 +547,7 @@ msgstr "ھەر بىر دىسكىنىڭ ئاساسىي كۆرسەتكۈچى(Bench
 #. description
 #: ../jobs/disk.txt.in:23
 msgid "Check stats changes for each disk"
-msgstr ""
+msgstr "ھەر بىر دىسكىنىڭ ھالىتىنىڭ ئۆزگىرىشىنى تەكشۈرۈش"
 
 #. description
 #: ../jobs/disk.txt.in:40
@@ -765,6 +773,8 @@ msgid ""
 "Test that X does not leak memory when running programs on systems with intel "
 "based graphics."
 msgstr ""
+"intel كۆرسىتىش كارتىسى سەپلەنگەن سىستېمىدا پىروگرامما ئىجرا قىلغاندا X "
+"ئەسلەك تېشىپ كېتىش كۆرۈلگەن ياكى كۆرۈلمىگەنلىكىنى سىنايدۇ."
 
 #. description
 #: ../jobs/graphics.txt.in:70
@@ -1018,6 +1028,8 @@ msgstr "ھەر خىل sysfs خاسلىقلىرىنىڭ مەلۇماتىنى قا
 msgid ""
 "Attaches a dump of the udev database showing system hardware information."
 msgstr ""
+"قوشۇمچە سىستېما قاتتىق دېتال ئۇچۇرلىرىنىڭ udev ساندانىنى يۆتكەپ ساقلاشنى "
+"ئىپادىلەيدۇ."
 
 #. description
 #: ../jobs/info.txt.in:84
@@ -1054,11 +1066,15 @@ msgstr "SATA/IDE  ئۈسكۈنىسى ئۇچۇرى."
 #: ../jobs/info.txt.in:131
 msgid "Attaches the bootchart png file for bootchart runs"
 msgstr ""
+"قوشۇمچە bootchart نىڭ ئىجرا قىلىنىش ئەھۋالىغا نىسبەتەن bootchart png "
+"ھۆججەتكە قارىتىلغان."
 
 #. description
 #: ../jobs/info.txt.in:140
 msgid "Attaches the bootchart log for bootchart test runs."
 msgstr ""
+"قوشۇمچە bootchart سىناق ئىجرا قىلىش ئەھۋالىغا نىسبەتەن bootchart  خاتىرىسىنى "
+"كۆرسىتىدۇ."
 
 #. description
 #: ../jobs/info.txt.in:148
@@ -1812,7 +1828,7 @@ msgstr ""
 #. description
 #: ../jobs/memory.txt.in:14
 msgid "Test and exercise memory."
-msgstr ""
+msgstr "ئەسلەك سىنايدۇ ۋە ئىشلىتىدۇ."
 
 #. description
 #: ../jobs/miscellanea.txt.in:8
@@ -1862,6 +1878,8 @@ msgid ""
 "   Determine if we need to run tests specific to portable computers that may "
 "not apply to desktops."
 msgstr ""
+"   يان كومپيۇتېرغا نىسبەتەن مەخسۇس ئېلىپ بېرىلىدىغان سىناقنى ئىجرا قىلامسىز، "
+"بۇ سىناقلارنى ئۈستەل كومپيۇتېرلارغا ئىشلەتكىلى بولمايدۇ."
 
 #. description
 #: ../jobs/miscellanea.txt.in:52
@@ -2143,7 +2161,7 @@ msgstr ""
 #: ../jobs/networking.txt.in:108
 msgid ""
 "Automated test to walk multiple network cards and test each one in sequence."
-msgstr ""
+msgstr "بىر قانچە تور كارتىسىنى نۆۋەت بىلەن ئاپتوماتىك سىنايدۇ."
 
 #. description
 #: ../jobs/networking.txt.in:128
@@ -2454,6 +2472,21 @@ msgid ""
 "VERIFICATION:\n"
 "   Was the connection correctly established?"
 msgstr ""
+"مەقسەت:\n"
+"بۇ سىناق USB DLS ياكى كۆچمە كەڭ بەلباغ مودىمنىڭ نورمال ئىشلەۋاتقان ياكى "
+"ئىشلىمەيۋاتقانلىقىنى دەلىللەيدۇ\n"
+"قەدەم باسقۇچلىرى:\n"
+"1- USB سىمنى كومپيۇتېرغا چېتىڭ.\n"
+"2- چاشقىنەك ئوڭ توپچىسىدا تاختىدىكى تور سىنبەلگىسىنى چېكىڭ.\n"
+"3- «باغلىنىش تەھرىر»نى تاللاڭ.\n"
+"4- «DSL» (ADSL مودىم ئۈچۈن) ياكى «كۆچمە كەڭ بەلباغ» (3G مودىم ئۈچۈن) "
+"بەتكۈچنى تاللاڭ.\n"
+"5- «قوش»نى چېكىڭ.\n"
+"6- باغلىنىش پارامېتىرلىرىنى توغرا سەپلەڭ.\n"
+"7- OSD گە ئۇقتۇرۇپ بۇ باغلىنىشنىڭ قۇرۇلغانلىقىنى جەزملەڭ.\n"
+"8- «سىنا»نى تاللاپ HTTP باغلىنىشى قۇرۇلغان ياكى قۇرۇلمىغانلىقىنى دەلىللەڭ.\n"
+"دەلىللەش:\n"
+"بۇ باغلىنىش توغرا قۇرۇلدىمۇ؟"
 
 #. description
 #: ../jobs/phoronix.txt.in:9
@@ -2922,6 +2955,8 @@ msgid ""
 "This attaches screenshots from the "
 "suspend/cycle_resolutions_after_suspend_auto test to the results submission."
 msgstr ""
+"بۇنداق بولغاندا suspend/cycle_resolutions_after_suspend_auto سىناقتا "
+"ئېرىشكەن ئېكران كەسمىسى يوللانما نەتىجىسىگە قوشۇلىدۇ."
 
 #. description
 #: ../jobs/suspend.txt.in:286
@@ -3169,6 +3204,9 @@ msgid ""
 "server has usb storage devices plugged in prior to checkbox execution. It  "
 "is intended for servers and SRU automated testing."
 msgstr ""
+"بۇ usb/storage-automated  نىڭ ئاپتوماتلاشتۇرۇلغان نەشرى، ئەگەر كۆپ تاللاش "
+"رامكىسىنى ئىجرا قىلىشتىن ئىلگىرى usb ساقلىغۇچنى مۇلازىمېتىرغا چاتقان بولسا. "
+"ئۇنى مۇلازىمېتىر ۋە SRU ئاپتوماتىك سىناققا ئىشلىتىدۇ."
 
 #. description
 #: ../jobs/usb.txt.in:119
@@ -3986,19 +4024,19 @@ msgstr "سەپلىمىنى قاپلاپ يازىدىغان پارامېتىرل�
 
 #: ../checkbox/application.py:84
 msgid "Shorthand for --config=.*/jobs_info/blacklist."
-msgstr ""
+msgstr "قىسقارتىلمىسى (--config=.*/jobs_info/blacklist نىڭ)."
 
 #: ../checkbox/application.py:86
 msgid "Shorthand for --config=.*/jobs_info/blacklist_file."
-msgstr ""
+msgstr "قىسقارتىلمىسى (--config=.*/jobs_info/blacklist_file نىڭ)."
 
 #: ../checkbox/application.py:88
 msgid "Shorthand for --config=.*/jobs_info/whitelist."
-msgstr ""
+msgstr "قىسقارتىلمىسى (--config=.*/jobs_info/whitelist نىڭ)."
 
 #: ../checkbox/application.py:90
 msgid "Shorthand for --config=.*/jobs_info/whitelist_file."
-msgstr ""
+msgstr "قىسقارتىلمىسى (--config=.*/jobs_info/whitelist_file نىڭ)."
 
 #: ../checkbox/application.py:115
 msgid "Missing configuration file as argument.\n"
@@ -4127,11 +4165,11 @@ msgstr "تاللاڭ(%s): "
 #: ../checkbox_cli/cli_interface.py:229 ../checkbox_cli/cli_interface.py:338
 #: ../checkbox_cli/cli_interface.py:368
 msgid "Space when finished"
-msgstr ""
+msgstr "تاماملانغاندىكى بوشلۇق"
 
 #: ../checkbox_cli/cli_interface.py:367
 msgid "Combine with character above to expand node"
-msgstr ""
+msgstr "ئۇستىدىكى ھەرپلەر ئارىلىق كېڭەيتىش نۇقتىسىنى بىرىكتۈرىدۇ"
 
 #: ../checkbox_cli/cli_interface.py:416
 msgid "test"
@@ -4527,10 +4565,14 @@ msgid ""
 "you plan to participate in Ubuntu Friendly, please, select all tests. You "
 "can always skip individual tests if you don't have the needed equipment."
 msgstr ""
+"ئەگەر سىناش تۈرىنى بىكار قىلسىڭىز، نەتىجىڭىز Ubuntu Friendly تۈرىگە "
+"يوللانمايدۇ. ئەگەر Ubuntu Friendly تۈرىگە قاتناشماقچى بولسىڭىز، ھەممە سىناق "
+"تۈرلىرىنى تاللاڭ. ئەگەر سىناق جەريانىدا بەزى ئۈسكۈنىلەر كەم بولسا ۋاقتى "
+"كەلگەندە شۇ سىناق تۈرىدىن ئاتلاپ كېتىدۇ."
 
 #: ../qt/frontend/ui_qtfront.h:588
 msgid "Form"
-msgstr ""
+msgstr "جەدۋەل(Form)"
 
 #: ../qt/frontend/ui_qtfront.h:590
 msgid "OK"
