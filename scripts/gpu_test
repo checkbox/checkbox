@@ -1,11 +1,11 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 import re
 import os
+import stat
 import sys
 import time
-import pexpect
-from subprocess import call, STDOUT
+import subprocess
 from threading import Thread
 from tempfile import NamedTemporaryFile
 from math import cos, sin
@@ -17,10 +17,14 @@ class GlxThread(Thread):
     """
 
     def run(self):
-        pexpect.run('glxgears -geometry 400x400', timeout=None)
+        subprocess.call(
+            'glxgears -geometry 400x400',
+            stdout=open(os.devnull, 'w'),
+            stderr=subprocess.STDOUT,
+            shell=True)
 
     def terminate(self):
-        call('wmctrl -i -c %s' % self.id, shell=True)
+        subprocess.call('wmctrl -i -c %s' % self.id, shell=True)
 
 
 class RotateGlxThread(Thread):
@@ -40,8 +44,9 @@ class RotateGlxThread(Thread):
                 x = int(200 * self.offset + 100 * sin(j * 0.2))
                 y = int(200 * self.offset + 100 * cos(j * 0.2))
                 coords = "%s,%s" % (x, y)
-                call('wmctrl -i -r %s -e 0,%s,-1,-1' % (self.id, coords),
-                     shell=True)
+                subprocess.call(
+                    'wmctrl -i -r %s -e 0,%s,-1,-1' % (self.id, coords),
+                    shell=True)
                 time.sleep(0.002 * self.offset)
                 if self.cancel:
                     return
@@ -60,11 +65,11 @@ class ChangeWorkspace(Thread):
     def run(self):
         while(1):
             for i in range(self.size):
-                call('wmctrl -s %s' % i, shell=True)
+                subprocess.call('wmctrl -s %s' % i, shell=True)
                 time.sleep(0.5)
                 if self.cancel:
                     # Switch back to workspace #1
-                    call('wmctrl -s 0', shell=True)
+                    subprocess.call('wmctrl -s 0', shell=True)
                     return
 
 
@@ -85,12 +90,13 @@ class ChangeViewport(Thread):
         while(1):
             for i in range(self.hsize):
                 for j in range(self.vsize):
-                    call('wmctrl -o %s,%s' % (self.xsize * j, self.ysize * i),
-                         shell=True)
+                    subprocess.call(
+                        'wmctrl -o %s,%s' % (self.xsize * j, self.ysize * i),
+                        shell=True)
                     time.sleep(0.5)
                     if self.cancel:
                         # Switch back to viewport #1
-                        call('wmctrl -o 0,0', shell=True)
+                        subprocess.call('wmctrl -o 0,0', shell=True)
                         return
 
 
@@ -112,13 +118,18 @@ class FlashVideoThread(Thread):
 
         with NamedTemporaryFile(suffix='.html', delete=False) as f:
             self.tempfile = f.name
-            f.write("%s" % source)
+            f.write(source.encode())
             f.close()
-        call('firefox %s' % f.name, stdout=open(os.devnull, 'w'),
-             stderr=STDOUT, shell=True)
+        os.chmod(self.tempfile, stat.S_IROTH)
+        subprocess.call(
+            'sudo -H -u %s firefox %s' % (os.getenv('SUDO_USER'),
+            self.tempfile),
+            stdout=open(os.devnull, 'w'),
+            stderr=subprocess.STDOUT,
+            shell=True)
 
     def terminate(self):
-        call('wmctrl -c firefox', shell=True)
+        subprocess.call('wmctrl -c firefox', shell=True)
         os.unlink(self.tempfile)
 
 
@@ -143,15 +154,19 @@ def check_gpu():
     f = open('/var/log/kern.log', 'r')
     with f:
         if re.findall(r'gpu\s+hung', f.read(), flags=re.I):
-            print "GPU hung Detected"
+            print("GPU hung Detected")
             sys.exit(1)
 
 
 def main():
+    if not (os.geteuid() == 0):
+        print("Must be run as root.")
+        return 1
+
     check_gpu()
     GlxWindows = []
     GlxRotate = []
-    call("pkill 'glxgears|firefox'", shell=True)
+    subprocess.call("pkill 'glxgears|firefox'", shell=True)
 
     FlashVideo = FlashVideoThread()
     FlashVideo.start()
@@ -160,33 +175,39 @@ def main():
         GlxWindows.append(GlxThread())
         GlxWindows[i].start()
         time.sleep(0.5)
-        windows = pexpect.run('wmctrl -l | grep glxgears')
+        windows = subprocess.check_output(
+            'wmctrl -l | grep glxgears',
+            shell=True)
         for app in sorted(windows.splitlines(), reverse=True):
-            if not 'glxgears' in app:
+            if not b'glxgears' in app:
                 continue
-            GlxWindows[i].id = re.match(r'^(0x\w+)', app).group(0)
+            GlxWindows[i].id = str(
+                re.match(b'^(0x\w+)', app).group(0), 'utf-8')
             break
         GlxRotate.append(RotateGlxThread(GlxWindows[i].id, i + 1))
         GlxRotate[i].start()
 
     if is_unity_2d_running():
-        size = int(pexpect.run(
-            'gconftool --get /apps/metacity/general/num_workspaces'))
+        size = int(subprocess.check_output(
+            'gconftool --get /apps/metacity/general/num_workspaces',
+            shell=True))
         DesktopSwitch = ChangeWorkspace(size)
     else:
-        (x_res, y_res) = re.search(r'DG:\s+(\d+)x(\d+)',
-                                   pexpect.run('wmctrl -d')).groups()
-        hsize = int(pexpect.run(
-            'gconftool --get /apps/compiz-1/general/screen0/options/hsize'))
-        vsize = int(pexpect.run(
-            'gconftool --get /apps/compiz-1/general/screen0/options/vsize'))
+        (x_res, y_res) = re.search(b'DG:\s+(\d+)x(\d+)',
+            subprocess.check_output('wmctrl -d', shell=True)).groups()
+        hsize = int(subprocess.check_output(
+            'gconftool --get /apps/compiz-1/general/screen0/options/hsize',
+            shell=True))
+        vsize = int(subprocess.check_output(
+            'gconftool --get /apps/compiz-1/general/screen0/options/vsize',
+            shell=True))
         DesktopSwitch = ChangeViewport(
-            hsize, vsize, int(x_res) / hsize, int(y_res) / vsize)
+            hsize, vsize, int(x_res) // hsize, int(y_res) // vsize)
     DesktopSwitch.start()
 
     time.sleep(20)
     # Suspend/resume the SUT
-    call('fwts -q s3 --s3-sleep-delay=30', shell=True)
+    subprocess.call('fwts -q s3 --s3-sleep-delay=30', shell=True)
     time.sleep(20)
 
     for i in range(2):
