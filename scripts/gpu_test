@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 import re
 import os
@@ -143,7 +143,7 @@ def check_gpu():
     f = open('/var/log/kern.log', 'r')
     with f:
         if re.findall(r'gpu\s+hung', f.read(), flags=re.I):
-            print "GPU hung Detected"
+            print("GPU hung Detected")
             sys.exit(1)
 
 
