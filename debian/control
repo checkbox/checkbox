@@ -11,7 +11,7 @@ Package: checkbox
 Section: python
 Architecture: any
 Depends: ${misc:Depends}, ${python:Depends}, debconf, python-libxml2, udev
-Recommends: dpkg (>= 1.13), gstreamer0.10-gconf | gstreamer1.0-plugins-good, lsb-release, perl, pm-utils, python-apport, python-apt, python-dateutil, python3-gi, gir1.2-gst-plugins-base-0.10 | gir1.2-gst-plugins-base-1.0, totem
+Recommends: dpkg (>= 1.13), gstreamer0.10-gconf | gstreamer1.0-plugins-good, lsb-release, perl, pm-utils, python-apport, python-apt, python-dateutil, python3-gi, gir1.2-gst-plugins-base-0.10 | gir1.2-gst-plugins-base-1.0
 Suggests: checkbox-cli | checkbox-gtk, bonnie++, bootchart, bzr, cvs, ethtool, flex, fwts, git-core, hdparm, lshw, make, nmap, obexd-client, python-pexpect, smartmontools, sox, stress, wodim, mesa-utils, wmctrl
 Description: System testing application 
  This project provides an extensible interface for system testing. The
