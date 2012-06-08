@@ -180,6 +180,7 @@ loads_table.update({
     ord("f"): loads_float,
     ord("c"): loads_str,
     ord("s"): loads_str,
+    ord("u"): loads_str,
     ord("l"): loads_list,
     ord("t"): loads_tuple,
     ord("d"): loads_dict,
