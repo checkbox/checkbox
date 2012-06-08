@@ -6,6 +6,8 @@ checkbox (0.14) quantal; urgency=low
       representation of octal literal
     * scripts/internet_test - ran 2to3 tool and decoded result of
       check_output. Also replaced optparse with argparse
+    * scripts/removable_storage_test - ran 2to3 tool and fixed some
+      encoding issues
 
   [Jeff Marcom]
   * [FEATURE] Python 2 to 3 conversion:
