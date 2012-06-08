@@ -30,7 +30,7 @@ class DiskTest():
         self.tfile = tempfile.NamedTemporaryFile(delete=False)
         print("Creating Temp Data file")
         while os.path.getsize(self.tfile.name) < size:
-            self.tfile.write(str(r.randint(min, max)))
+            self.tfile.write(bytes(r.randint(min, max), 'UTF-8'))
 
         print("File name is :%s" % self.tfile.name)
         print("File size is %s bytes" % os.path.getsize(self.tfile.name))
@@ -43,7 +43,7 @@ class DiskTest():
                 data = fh.read(8192)
                 if not data:
                     break
-                md5.update(data)
+                md5.update(data.encode('utf-8'))
         finally:
             fh.close()
         return md5.hexdigest()
