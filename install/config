@@ -133,7 +133,7 @@ class Install:
 
         # Hack to retrieve questions from templates file
         if posixpath.exists(self._templates_path):
-            templates_file = open(self._templates_path)
+            templates_file = open(self._templates_path, encoding="utf-8")
             buffer = templates_file.read()
             for block in re.split(r"\n{2,}", buffer):
                 if not block:
