@@ -22,13 +22,12 @@ import os
 import re
 import stat
 import sys
-import posixpath
 
-import mimetools
+import email.generator
+import http.client
 import mimetypes
 import socket
-import httplib
-import urllib
+import urllib.request, urllib.parse, urllib.error
 
 
 # Build the appropriate socket wrapper for ssl
@@ -41,7 +40,7 @@ except ImportError:
     # they use httplib.FakeSocket
     def _ssl_wrap_socket(sock, key_file, cert_file):
         ssl_sock = socket.ssl(sock, key_file, cert_file)
-        return httplib.FakeSocket(sock, ssl_sock)
+        return http.client.FakeSocket(sock, ssl_sock)
 
 try:
     # Python 2.6 introduced create_connection convenience function
@@ -60,42 +59,42 @@ except AttributeError:
                 sock.connect(sa)
                 return sock
 
-            except socket.error, msg:
+            except socket.error as msg:
                 if sock is not None:
                     sock.close()
 
-        raise socket.error, msg
+        raise socket.error(msg)
 
 
-class ProxyHTTPConnection(httplib.HTTPConnection):
+class ProxyHTTPConnection(http.client.HTTPConnection):
 
-    _ports = {"http" : httplib.HTTP_PORT, "https" : httplib.HTTPS_PORT}
+    _ports = {"http": http.client.HTTP_PORT, "https": http.client.HTTPS_PORT}
 
     def request(self, method, url, body=None, headers={}):
         #request is called before connect, so can interpret url and get
         #real host/port to be used to make CONNECT request to proxy
-        scheme, rest = urllib.splittype(url)
+        scheme, rest = urllib.parse.splittype(url)
         if scheme is None:
-            raise ValueError, "unknown URL type: %s" % url
+            raise ValueError("unknown URL type: %s" % url)
         #get host
-        host, rest = urllib.splithost(rest)
+        host, rest = urllib.parse.splithost(rest)
         #try to get port
-        host, port = urllib.splitport(host)
+        host, port = urllib.parse.splitport(host)
         #if port is not defined try to get from scheme
         if port is None:
             try:
                 port = self._ports[scheme]
             except KeyError:
-                raise ValueError, "unknown protocol for: %s" % url
+                raise ValueError("unknown protocol for: %s" % url)
         else:
             port = int(port)
 
         self._real_host = host
         self._real_port = port
-        httplib.HTTPConnection.request(self, method, url, body, headers)
+        http.client.HTTPConnection.request(self, method, url, body, headers)
 
     def connect(self):
-        httplib.HTTPConnection.connect(self)
+        http.client.HTTPConnection.connect(self)
         #send proxy CONNECT request
         self.send("CONNECT %s:%d HTTP/1.0\r\n\r\n" % (self._real_host, self._real_port))
         #expect a HTTP/1.0 200 Connection established
@@ -105,7 +104,7 @@ class ProxyHTTPConnection(httplib.HTTPConnection):
         if code != 200:
             #proxy returned and error, abort connection, and raise exception
             self.close()
-            raise socket.error, "Proxy connection failed: %d %s" % (code, message.strip())
+            raise socket.error("Proxy connection failed: %d %s" % (code, message.strip()))
         #eat up header block from proxy....
         while True:
             #should not use directly fp probablu
@@ -116,7 +115,7 @@ class ProxyHTTPConnection(httplib.HTTPConnection):
 
 class ProxyHTTPSConnection(ProxyHTTPConnection):
 
-    default_port = httplib.HTTPS_PORT
+    default_port = http.client.HTTPS_PORT
 
     def __init__(self, host, port=None, key_file=None, cert_file=None, strict=None):
         ProxyHTTPConnection.__init__(self, host, port)
@@ -128,7 +127,7 @@ class ProxyHTTPSConnection(ProxyHTTPConnection):
         self.sock = _ssl_wrap_socket(self.sock, self.key_file, self.cert_file)
 
 
-class VerifiedHTTPSConnection(httplib.HTTPSConnection):
+class VerifiedHTTPSConnection(http.client.HTTPSConnection):
 
     # Compatibility layer with Python 2.5
     timeout = None
@@ -181,20 +180,20 @@ class VerifiedHTTPSConnection(httplib.HTTPSConnection):
                 "Failed to verify cert for hostname: %s" % self.host)
 
 
-class HTTPTransport(object):
+class HTTPTransport:
     """Transport makes a request to exchange message data over HTTP."""
 
     def __init__(self, url):
         self.url = url
 
-        proxies = urllib.getproxies()
+        proxies = urllib.request.getproxies()
         self.http_proxy = proxies.get("http")
         self.https_proxy = proxies.get("https")
 
     def _unpack_host_and_port(self, string):
-        scheme, rest = urllib.splittype(string)
-        host, rest = urllib.splithost(rest)
-        host, port = urllib.splitport(host)
+        scheme, rest = urllib.parse.splittype(string)
+        host, rest = urllib.parse.splithost(rest)
+        host, port = urllib.parse.splitport(host)
         if port is not None:
             port = int(port)
 
@@ -204,14 +203,14 @@ class HTTPTransport(object):
         if timeout:
             socket.setdefaulttimeout(timeout)
 
-        scheme, rest = urllib.splittype(self.url)
+        scheme, rest = urllib.parse.splittype(self.url)
         if scheme == "http":
             if self.http_proxy:
                 host, port = self._unpack_host_and_port(self.http_proxy)
             else:
                 host, port = self._unpack_host_and_port(self.url)
 
-            connection = httplib.HTTPConnection(host, port)
+            connection = http.client.HTTPConnection(host, port)
         elif scheme == "https":
             if self.https_proxy:
                 host, port = self._unpack_host_and_port(self.https_proxy)
@@ -220,18 +219,18 @@ class HTTPTransport(object):
                 host, port = self._unpack_host_and_port(self.url)
                 connection = VerifiedHTTPSConnection(host, port)
         else:
-            raise Exception, "Unknown URL scheme: %s" % scheme
+            raise Exception("Unknown URL scheme: %s" % scheme)
 
         return connection
 
     def _encode_multipart_formdata(self, fields=[], files=[]):
-        boundary = mimetools.choose_boundary()
+        boundary = email.generator._make_boundary().encode("ascii")
 
         lines = []
         for (key, value) in fields:
-            lines.append("--" + boundary)
-            lines.append("Content-Disposition: form-data; name=\"%s\"" % key)
-            lines.append("")
+            lines.append(b"--" + boundary)
+            lines.append(b"Content-Disposition: form-data; name=\"" + key + b"\"")
+            lines.append(b"")
             lines.append(value)
 
         for (key, file) in files:
@@ -240,27 +239,30 @@ class HTTPTransport(object):
             else:
                 length = os.fstat(file.fileno())[stat.ST_SIZE]
 
-            filename = posixpath.basename(file.name)
-            if isinstance(filename, unicode):
-                filename = filename.encode("UTF-8")
+            content_type = mimetypes.guess_type(file.name)[0]
+            if content_type:
+                content_type = content_type.encode("ascii")
+            else:
+                content_type = b"application/octet-stream"
 
-            lines.append("--" + boundary)
-            lines.append("Content-Disposition: form-data; name=\"%s\"; filename=\"%s\""
-                % (key, filename))
-            lines.append("Content-Type: %s"
-                % mimetypes.guess_type(filename)[0] or "application/octet-stream")
-            lines.append("Content-Length: %s" % length)
-            lines.append("")
+            filename = os.path.basename(file.name)
+            filename = filename.encode("utf-8")
+
+            lines.append(b"--" + boundary)
+            lines.append(b"Content-Disposition: form-data; name=\"" + key + b"\"; filename=\"" + filename + b"\"")
+            lines.append(b"Content-Type: " + content_type)
+            lines.append(b"Content-Length: " + str(length).encode("ascii"))
+            lines.append(b"")
 
             if hasattr(file, "seek"):
                 file.seek(0)
             lines.append(file.read())
 
-        lines.append("--" + boundary + "--")
-        lines.append("")
+        lines.append(b"--" + boundary + b"--")
+        lines.append(b"")
 
-        content_type = "multipart/form-data; boundary=%s" % boundary
-        body = "\r\n".join(lines)
+        content_type = b"multipart/form-data; boundary=" + boundary
+        body = b"\r\n".join(lines)
 
         return content_type, body
 
@@ -268,31 +270,32 @@ class HTTPTransport(object):
         fields = []
         files = []
 
-        content_type = "application/octet-stream"
-        if body is not None and type(body) != str:
+        content_type = b"application/octet-stream"
+        if body is not None and type(body) != bytes:
             if hasattr(body, "items"):
-                body = body.items()
+                body = list(body.items())
             else:
                 try:
                     if len(body) and not isinstance(body[0], tuple):
                         raise TypeError
                 except TypeError:
                     ty, va, tb = sys.exc_info()
-                    raise TypeError, \
-                        "Invalid non-string sequence or mapping", tb
+                    raise TypeError("Invalid non-string sequence or mapping").with_traceback(tb)
 
             for key, value in body:
+                key = key.encode("ascii")
                 if hasattr(value, "read"):
                     files.append((key, value))
                 else:
+                    value = value.encode("utf-8")
                     fields.append((key, value))
 
             if files:
-                content_type, body = self._encode_multipart_formdata(fields,
-                    files)
+                content_type, body = self._encode_multipart_formdata(
+                    fields, files)
             elif fields:
-                content_type = "application/x-www-form-urlencoded"
-                body = urllib.urlencode(fields)
+                content_type = b"application/x-www-form-urlencoded"
+                body = urllib.parse.urlencode(fields)
             else:
                 body = ""
 
@@ -325,10 +328,10 @@ class HTTPTransport(object):
         else:
             try:
                 response = connection.getresponse()
-            except httplib.BadStatusLine:
+            except http.client.BadStatusLine:
                 logging.warning("Service unavailable on %s", self.url)
             else:
-                if response.status == httplib.FOUND:
+                if response.status == http.client.FOUND:
                     # TODO prevent infinite redirect loop
                     self.url = response.getheader('location')
                     response = self.exchange(body, headers, timeout)

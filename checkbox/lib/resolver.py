@@ -21,13 +21,10 @@ class Resolver:
     Main class. Instantiate with the root directory of your items.
     """
 
-    def __init__(self, compare=None, key=None):
-        if compare is None:
-            compare = lambda a, b: cmp(a, b)
+    def __init__(self, key=None):
         if key is None:
             key = lambda k: k
 
-        self.compare = compare
         self.key = key
 
         # detect repeated resolution attempts - these indicate some circular dependency
@@ -43,7 +40,7 @@ class Resolver:
     def add(self, item, *dependencies):
         key = self.key(item)
         if key in self.items:
-            raise Exception, "%s: key already exists" % key
+            raise Exception("%s: key already exists" % key)
         self.items[key] = item
 
         dependency_keys = [self.key(d) for d in dependencies]
@@ -69,7 +66,7 @@ class Resolver:
             msg = "no dependencies found for %s" % key
             if found:
                 msg += " while resolving %s" % found
-            raise Exception, msg
+            raise Exception(msg)
 
         dependencies = self.dependencies.get(key, set())
         resolved = set()
@@ -81,7 +78,7 @@ class Resolver:
                     scapegoat = found
                 else:
                     scapegoat = dependency
-                raise Exception, "circular dependency involving %s and %s" % (key, scapegoat)
+                raise Exception("circular dependency involving %s and %s" % (key, scapegoat))
             # add resolution
             self.reentrant_resolution.add(resolution_step)
             # and its dependencies, if any
@@ -104,18 +101,14 @@ class Resolver:
         if item:
             # Immediate dependents
             key = self.key(item)
-            all_dependents = filter(
-                lambda x: key in self.resolve(x)[:-1],
-                self.items.itervalues())
-            dependents = filter(
-                lambda x: self.key(self.get_dependencies(x)[-2]) == key,
-                all_dependents)
+            all_dependents = [x for x in iter(self.items.values()) if key in self.resolve(x)[:-1]]
+            dependents = [x for x in all_dependents if self.key(self.get_dependencies(x)[-2]) == key]
         else:
             # First level of dependents
-            dependents = filter(lambda x: len(self.resolve(x)) == 1, self.items.itervalues())
+            dependents = [x for x in iter(self.items.values()) if len(self.resolve(x)) == 1]
 
         index = 0
-        dependents = sorted(dependents, self.compare)
+        dependents = sorted(dependents)
         while index < len(dependents):
             sub_dependents = self.get_dependents(dependents[index])
             if sub_dependents:

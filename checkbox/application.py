@@ -35,7 +35,7 @@ from checkbox.plugin import PluginManager
 from checkbox.reactor import Reactor
 
 
-class Application(object):
+class Application:
 
     reactor_factory = Reactor
 
@@ -55,7 +55,7 @@ class Application(object):
             raise
 
 
-class ApplicationManager(object):
+class ApplicationManager:
 
     application_factory = Application
 
@@ -130,7 +130,7 @@ class ApplicationManager(object):
 
         # Check options
         if options.version:
-            print config.get_defaults().version
+            print(config.get_defaults().version)
             sys.exit(0)
 
         return self.application_factory(config)

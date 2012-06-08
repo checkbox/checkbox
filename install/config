@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 #
 # This program is meant to be called by the debian installer in order to
 # create configuration files for the checkbox package and derived packages
@@ -7,16 +7,44 @@
 import os
 import re
 import sys
-import commands
+import subprocess
 import posixpath
 
-from ConfigParser import ConfigParser
+from configparser import ConfigParser
 from optparse import OptionParser
 
 from debconf import Debconf, DebconfCommunicator
 
 
 DEFAULT_SECTION = "DEFAULT"
+
+
+_delegate_methods = ("fileno", "flush",)
+
+
+class fdopen_wrapper:
+
+    _uses_bytes = False
+
+    def __init__(self, fileno, mode):
+        self.file = os.fdopen(fileno, mode)
+
+        for method in _delegate_methods:
+            setattr(self, method, getattr(self.file, method))
+
+    def readline(self):
+        line = self.file.readline()
+        if fdopen_wrapper._uses_bytes:
+            line = line.encode()
+
+        return line
+
+    def write(self, data):
+        if isinstance(data, bytes):
+            fdopen_wrapper._uses_bytes = True
+            data = data.decode()
+
+        return self.file.write(data)
 
 
 class Config(ConfigParser):
@@ -54,7 +82,7 @@ class Config(ConfigParser):
             fp.write("\n")
 
 
-class Install(object):
+class Install:
     """Install module for generating checkbox configuration files.
 
     The checkbox module and derivatives use a configuration file format
@@ -77,17 +105,20 @@ class Install(object):
             % {"name": name, "base_name": self.base_name}
         self._examples_path = examples_path or self.examples_base \
             % {"name": name, "base_name": self.base_name}
-        self._templates_path = commands.getoutput(
+        self._templates_path = subprocess.getoutput(
             "dpkg-query --control-path %(name)s templates"
             % {"name": name, "base_name": self.base_name})
 
         self._config = Config()
         if os.environ.get("DEBIAN_HAS_FRONTEND"):
             if os.environ.get("DEBCONF_REDIR"):
-                write = os.fdopen(3, "w")
+                write_fileno = 3
             else:
-                write = sys.stdout
-            self._debconf = Debconf(write=write)
+                write_fileno = 1
+
+            write = fdopen_wrapper(write_fileno, "w")
+            read = fdopen_wrapper(0, "r")
+            self._debconf = Debconf(read=read, write=write)
         else:
             self._debconf = DebconfCommunicator(self.name)
 
@@ -102,7 +133,7 @@ class Install(object):
 
         # Hack to retrieve questions from templates file
         if posixpath.exists(self._templates_path):
-            templates_file = open(self._templates_path)
+            templates_file = open(self._templates_path, encoding="utf-8")
             buffer = templates_file.read()
             for block in re.split(r"\n{2,}", buffer):
                 if not block:

@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 #
 # This file is part of Checkbox.
 #
@@ -27,7 +27,7 @@ from checkbox.parsers.dmidecode import DmidecodeParser
 COMMAND = "dmidecode"
 
 
-class DmiResult(object):
+class DmiResult:
 
     attributes = ("path", "category", "product", "vendor", "serial",
         "version",)
@@ -36,9 +36,9 @@ class DmiResult(object):
         for attribute in self.attributes:
             value = getattr(device, attribute)
             if value is not None:
-                print "%s: %s" % (attribute, value)
+                print("%s: %s" % (attribute, value))
 
-        print
+        print()
 
 
 def main():

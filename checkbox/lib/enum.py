@@ -25,7 +25,7 @@ class EnumException(Exception):
     pass
 
 
-class Enum(object):
+class Enum:
 
     def __init__(self, *names):
         value = 0
@@ -44,7 +44,7 @@ class Enum(object):
                         "enum value does not define: %s" % value)
                 value = getattr(self, value)
 
-            if not isinstance(value, (int, long)):
+            if not isinstance(value, int):
                 raise EnumException(
                     "enum value is not an integer: %s" % value)
 

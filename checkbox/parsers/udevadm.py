@@ -42,7 +42,7 @@ PNP_RE = re.compile(
     r"^acpi:"
     r"(?P<vendor_name>[%(upper)s]{3})"
     r"(?P<product_id>[%(hex)s]{4}):"
-    % {"upper": string.uppercase, "hex": string.hexdigits})
+    % {"upper": string.ascii_uppercase, "hex": string.hexdigits})
 USB_RE = re.compile(
     r"^usb:"
     r"v(?P<vendor_id>[%(hex)s]{4})"
@@ -349,7 +349,7 @@ class UdevadmDevice:
 
         # floppy
         if self.driver == "floppy":
-            return u"Platform Device"
+            return "Platform Device"
 
         return None
 
@@ -467,6 +467,4 @@ class UdevadmParser:
 
 
 def decode_id(id):
-    encoded_id = id.encode("utf-8")
-    decoded_id = encoded_id.decode("string-escape").decode("utf-8")
-    return decoded_id.strip()
+    return id.strip()

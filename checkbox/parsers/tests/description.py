@@ -17,7 +17,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-from StringIO import StringIO
+from io import StringIO
 
 from unittest import TestCase
 
@@ -115,7 +115,7 @@ OTHER:
         self.assertResult(result)
 
     def test_es(self):
-        result = self.getResult(u"""
+        result = self.getResult("""
 PROPÓSITO:
      Esta prueba verifica los diferentes modos de vídeo detectados
 PASOS:
@@ -131,7 +131,7 @@ VERIFICACIÓN:
         self.assertEquals(result.info, "$output\n")
 
     def test_ru(self):
-        result = self.getResult(u"""
+        result = self.getResult("""
 ЦЕЛЬ:
     Эта проверка позволит убедиться в работоспособности штекера наушников
 ДЕЙСТВИЯ:

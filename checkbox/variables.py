@@ -19,7 +19,7 @@
 import re
 import posixpath
 
-from StringIO import StringIO
+from io import StringIO
 
 from checkbox.lib.text import split
 
@@ -47,7 +47,7 @@ except ImportError:
     pass
 
 
-class Variable(object):
+class Variable:
 
     _value = None
     _required = True
@@ -101,7 +101,7 @@ class BoolVariable(Variable):
     __slots__ = ()
 
     def coerce(self, value):
-        if isinstance(value, (str, unicode)):
+        if isinstance(value, str):
             if re.match(r"(yes|true)", value, re.IGNORECASE):
                 value = True
             elif re.match(r"(no|false)", value, re.IGNORECASE):
@@ -114,12 +114,24 @@ class BoolVariable(Variable):
         return value
 
 
+class BytesVariable(Variable):
+    __slots__ = ()
+
+    def coerce(self, value):
+        if isinstance(value, str):
+            value = value.encode('utf-8')
+        elif not isinstance(value, bytes):
+            raise ValueError("%r is not bytes" % (value,))
+
+        return value
+
+
 class StringVariable(Variable):
     __slots__ = ()
 
     def coerce(self, value):
-        if isinstance(value, unicode):
-            value = str(value)
+        if isinstance(value, bytes):
+            value = value.decode("utf-8")
         elif not isinstance(value, str):
             raise ValueError("%r is not a str" % (value,))
 
@@ -134,25 +146,13 @@ class PathVariable(StringVariable):
         return posixpath.expanduser(path)
 
 
-class UnicodeVariable(Variable):
-    __slots__ = ()
-
-    def coerce(self, value):
-        if isinstance(value, str):
-            value = unicode(value, encoding="utf-8")
-        elif not isinstance(value, unicode):
-            raise ValueError("%r is not a unicode" % (value,))
-
-        return value
-
-
 class IntVariable(Variable):
     __slots__ = ()
 
     def coerce(self, value):
-        if isinstance(value, (str, unicode)):
+        if isinstance(value, str):
             value = int(value)
-        elif not isinstance(value, (int, long)):
+        elif not isinstance(value, int):
             raise ValueError("%r is not an int nor long" % (value,))
 
         return value
@@ -162,9 +162,9 @@ class FloatVariable(Variable):
     __slots__ = ()
 
     def coerce(self, value):
-        if isinstance(value, (str, unicode)):
+        if isinstance(value, str):
             value = float(value)
-        elif not isinstance(value, (int, long, float)):
+        elif not isinstance(value, (int, float)):
             raise ValueError("%r is not a float" % (value,))
 
         return value
@@ -186,7 +186,7 @@ class ListVariable(Variable):
 
     def coerce(self, values):
         item_factory = self._item_factory
-        if isinstance(values, (str, unicode)):
+        if isinstance(values, str):
             values = split(values, self._separator) if values else []
         elif not isinstance(values, (list, tuple)):
             raise ValueError("%r is not a list or tuple" % (values,))
@@ -235,7 +235,7 @@ class DictVariable(Variable):
         if not isinstance(value, dict):
             raise ValueError("%r is not a dict." % (value,))
 
-        for k, v in value.iteritems():
+        for k, v in value.items():
             value[self._key_schema(value=k).get()] = \
                 self._value_schema(value=v).get()
         return value
@@ -252,16 +252,16 @@ class MapVariable(Variable):
         if not isinstance(value, dict):
             raise ValueError("%r is not a dict." % (value,))
 
-        for k, v in value.iteritems():
+        for k, v in value.items():
             if k not in self._schema:
                 raise ValueError("%r is not a valid key as per %r"
                                    % (k, self._schema))
 
-        for attribute, variable in self._schema.iteritems():
+        for attribute, variable in self._schema.items():
             old_value = value.get(attribute)
             try:
                 new_value = variable(value=old_value).get()
-            except ValueError, e:
+            except ValueError as e:
                 raise ValueError(
                     "Value of %r key of dict %r could not be converted: %s"
                     % (attribute, value, e))
@@ -276,7 +276,7 @@ class FileVariable(Variable):
     __slots__ = ()
 
     def coerce(self, value):
-        if isinstance(value, basestring):
+        if isinstance(value, str):
             value = StringIO(value)
         elif not hasattr(value, "read"):
             raise ValueError("%r is not a file" % (value,))
@@ -295,7 +295,7 @@ def get_variables(obj):
     else:
         variables = {}
         cls = type(obj)
-        for attribute in get_attributes(cls).itervalues():
+        for attribute in get_attributes(cls).values():
             variable = attribute.variable_factory(attribute=attribute)
             variables[attribute] = variable
 

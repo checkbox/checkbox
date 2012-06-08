@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 #
 # This file is part of Checkbox.
 #
@@ -90,8 +90,8 @@ def main():
     if not disk:
         disk = get_disk_from_casper(CASPER_FILENAME)
 
-    for key, value in disk.iteritems():
-        print "%s: %s" % (key, value)
+    for key, value in disk.items():
+        print("%s: %s" % (key, value))
 
     return 0
 

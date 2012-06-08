@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-from __future__ import absolute_import
+
 
 import os
 import time
@@ -56,7 +56,7 @@ class Process:
         # that it would block waiting for a full BUFSIZ unless we explicitly
         # set the files non blocking, and there would be extra uneeded
         # overhead like EOL conversion. So I think it's handier to use os.read()
-        self.outdata = self.errdata = ""
+        self.outdata = self.errdata = b""
         self.starttime = self.endtime = None
         self._outeof = self._erreof = False
 
@@ -77,7 +77,8 @@ class Process:
         os.dup2(self.outw, STDOUT_FILENO)
         os.dup2(self.errw, STDERR_FILENO)
         # stdout and stderr connected to pipe, so close all other files
-        map(os.close, [self.outr, self.outw, self.errr, self.errw])
+        for fileno in self.outr, self.outw, self.errr, self.errw:
+            os.close(fileno)
         try:
             cmd = ["/bin/bash", "-c", cmd]
             os.execve(cmd[0], cmd, env)
@@ -103,12 +104,12 @@ class Process:
             else:
                 if self.outr in ready[0]:
                     outchunk = os.read(self.outr, self.BUFSIZ)
-                    if outchunk == "":
+                    if outchunk == b"":
                         self._outeof = True
                     self.outdata += outchunk
                 if self.errr in ready[0]:
                     errchunk = os.read(self.errr, self.BUFSIZ)
-                    if errchunk == "":
+                    if errchunk == b"":
                         self._erreof = True
                     self.errdata += errchunk
                 if self._outeof and self._erreof:

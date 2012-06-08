@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-class Cache(object):
+class Cache:
 
     def __init__(self, function):
         self._cache = {}
@@ -27,7 +27,7 @@ class Cache(object):
         return self
 
     def __call__(self, *args):
-        if not self._cache.has_key((self._instance,) + args):
+        if (self._instance,) + args not in self._cache:
             self._cache[(self._instance,) + args] = self._function(self._instance, *args)
 
         return self._cache[(self._instance,) + args]

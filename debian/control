@@ -3,15 +3,15 @@ Section: utils
 Priority: optional
 Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
 Standards-Version: 3.9.2
-X-Python-Version: >= 2.6
-Build-Depends: debhelper (>= 7.0.50~), dh-translations, libqt4-dev, python (>= 2.6.6-3~), po-debconf, python-distutils-extra, qt4-qmake
+X-Python3-Version: >= 3.2
+Build-Depends: debhelper (>= 9.2), dh-translations, libqt4-dev, python3 (>= 3.2), po-debconf, python3-distutils-extra, qt4-qmake
 Vcs-Bzr: https://code.launchpad.net/~hardware-certification/checkbox/trunk
 
 Package: checkbox
 Section: python
 Architecture: any
-Depends: ${misc:Depends}, ${python:Depends}, debconf, python-libxml2, udev
-Recommends: dpkg (>= 1.13), gstreamer0.10-gconf | gstreamer1.0-plugins-good, lsb-release, perl, pm-utils, python-apport, python-apt, python-dateutil, python3-gi, gir1.2-gst-plugins-base-0.10 | gir1.2-gst-plugins-base-1.0
+Depends: ${misc:Depends}, ${python3:Depends}, debconf, python3-lxml, udev
+Recommends: dpkg (>= 1.13), gstreamer0.10-gconf | gstreamer1.0-plugins-good, lsb-release, perl, pm-utils, python-apport, python-apt, python-dateutil, python3-dbus, python3-gi, gir1.2-gst-plugins-base-0.10 | gir1.2-gst-plugins-base-1.0
 Suggests: checkbox-cli | checkbox-gtk, bonnie++, bootchart, bzr, cvs, ethtool, flex, fwts, git-core, hdparm, lshw, make, nmap, obexd-client, python-pexpect, smartmontools, sox, stress, wodim, mesa-utils, wmctrl
 Description: System testing application 
  This project provides an extensible interface for system testing. The
@@ -28,7 +28,7 @@ Description: Command line interface for checkbox
 
 Package: checkbox-urwid
 Architecture: all
-Depends: checkbox (>= ${source:Version}), python-urwid, ${misc:Depends}
+Depends: checkbox (>= ${source:Version}), python3-urwid, ${misc:Depends}
 Description: Urwid interface for checkbox 
  This project provides an extensible interface for system testing. The
  results can then be sent to Launchpad.
@@ -39,7 +39,7 @@ Description: Urwid interface for checkbox
 Package: checkbox-gtk
 Section: gnome
 Architecture: all
-Depends: checkbox (>= ${source:Version}), gksu, python-gobject (>= 2.28), gir1.2-gtk-3.0, python-cairo, ${misc:Depends}
+Depends: checkbox (>= ${source:Version}), gir1.2-gtk-3.0, gksu, python3-gi-cairo, python3-gi, ${misc:Depends}
 Description: GTK interface for checkbox
  This project provides an extensible interface for system testing. The
  results can then be sent to Launchpad.
@@ -48,7 +48,7 @@ Description: GTK interface for checkbox
 
 Package: checkbox-qt
 Architecture: any
-Depends: checkbox (>= ${source:Version}), libqtgui4, libqt4-dbus, ${misc:Depends}
+Depends: checkbox (>= ${source:Version}), libqtgui4, libqt4-dbus, python3-dbus, ${misc:Depends}
 Description: QT4 interface for checkbox
  This project provides an extensible interface for system testing. The
  results can then be sent to Launchpad.

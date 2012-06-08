@@ -36,10 +36,9 @@ class XmlReport(Report):
     def register_dumps(self):
         for (dt, dh) in [(bool, self.dumps_bool),
                          (int, self.dumps_int),
-                         (long, self.dumps_int),
                          (float, self.dumps_float),
+                         (bytes, self.dumps_bytes),
                          (str, self.dumps_str),
-                         (unicode, self.dumps_unicode),
                          (list, self.dumps_list),
                          (tuple, self.dumps_list),
                          (dict, self.dumps_dict),
@@ -52,8 +51,8 @@ class XmlReport(Report):
                          ("int", self.loads_int),
                          ("long", self.loads_int),
                          ("float", self.loads_float),
+                         ("bytes", self.loads_bytes),
                          ("str", self.loads_str),
-                         ("unicode", self.loads_str),
                          ("list", self.loads_list),
                          ("value", self.loads_value),
                          ("property", self.loads_property),
@@ -78,11 +77,11 @@ class XmlReport(Report):
     def dumps_float(self, obj, parent):
         self._dumps_text(str(obj), parent, "float")
 
+    def dumps_bytes(self, obj, parent):
+        self._dumps_text(obj, parent, "bytes")
+
     def dumps_str(self, obj, parent):
         self._dumps_text(obj, parent, "str")
-
-    def dumps_unicode(self, obj, parent):
-        self._dumps_text(obj, parent, "unicode")
 
     def dumps_list(self, obj, parent):
         parent.setAttribute("type", "list")
@@ -92,9 +91,9 @@ class XmlReport(Report):
             self._manager.call_dumps(value, element)
 
     def dumps_dict(self, obj, parent):
-        for key in sorted(obj.iterkeys()):
+        for key in sorted(obj.keys()):
             value = obj[key]
-            if self._manager.dumps_table.has_key(key):
+            if key in self._manager.dumps_table:
                 # Custom dumps handler
                 element = self._create_element(key, parent)
                 self._manager.dumps_table[key](value, element)
@@ -130,8 +129,11 @@ class XmlReport(Report):
     def loads_float(self, node):
         return float(node.data)
 
+    def loads_bytes(self, node):
+        return node.data.strip().encode("utf-8")
+
     def loads_str(self, node):
-        return str(node.data.strip())
+        return node.data.strip()
 
     def loads_list(self, node):
         nodes = []
@@ -188,4 +190,4 @@ def convert_bool(string):
     elif re.match('^(no|false|0)$', string, re.IGNORECASE):
         return False
     else:
-        raise Exception, "Invalid boolean type: %s" % string
+        raise Exception("Invalid boolean type: %s" % string)

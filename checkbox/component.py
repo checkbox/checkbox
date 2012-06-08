@@ -29,7 +29,7 @@ from checkbox.properties import List, String
 from checkbox.variables import get_variables
 
 
-class ComponentSection(object):
+class ComponentSection:
     """
     Component section which is essentially a container of modules. These
     map to the modules referenced in the configuration passed as argument
@@ -99,7 +99,7 @@ class ComponentSection(object):
             name, self.name)
 
         if not self.has_module(name):
-            raise Exception, "No such such module: %s" % name
+            raise Exception("No such such module: %s" % name)
 
         filenames = itertools.chain(*[path_expand_recursive(m)
             for m in self.modules])
@@ -109,10 +109,10 @@ class ComponentSection(object):
                 basename = basename.replace(".py", "")
                 if basename == name:
                     globals = {}
-                    exec open(filename) in globals
+                    exec(open(filename).read(), globals)
                     if "factory" not in globals:
-                        raise Exception, "Variable 'factory' not found in: %s" \
-                            % filename
+                        raise Exception("Variable 'factory' not found in: %s" \
+                            % filename)
 
                     module = globals["factory"]()
                     module.__module__ = name
@@ -122,14 +122,14 @@ class ComponentSection(object):
 
                     # Set configuration values
                     variables = get_variables(module)
-                    environ = dict([(k.lower(), v) for k, v in os.environ.iteritems()])
-                    for attribute, variable in variables.iteritems():
+                    environ = dict([(k.lower(), v) for k, v in os.environ.items()])
+                    for attribute, variable in variables.items():
                         if config and attribute.name in config:
                             value = config.get(attribute.name)
                             variable.set(value)
                         else:
                             value = variable.get()
-                            if isinstance(value, basestring):
+                            if isinstance(value, str):
                                 value = value % environ
                                 variable.set(value)
                             elif isinstance(value, list):
@@ -137,16 +137,16 @@ class ComponentSection(object):
                                 variable.set(value)
 
                     # Check required attributes
-                    for attribute, variable in variables.iteritems():
+                    for attribute, variable in variables.items():
                         value = variable.get()
                         if value is None and variable._required:
-                            raise Exception, "Configuration '%s' missing " \
+                            raise Exception("Configuration '%s' missing " \
                                 "required attribute: %s" \
-                                % (config_name, attribute.name)
+                                % (config_name, attribute.name))
 
                     return module
 
-        raise Exception, "Failed to find module '%s' in: %s" % (name, filenames)
+        raise Exception("Failed to find module '%s' in: %s" % (name, filenames))
 
     def load_modules(self):
         """
@@ -160,7 +160,7 @@ class ComponentSection(object):
         return modules
 
 
-class ComponentManager(object):
+class ComponentManager:
     """
     Component manager which is essentially a container of sections.
     """

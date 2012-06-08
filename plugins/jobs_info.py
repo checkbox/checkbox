@@ -23,7 +23,7 @@ import logging
 from collections import defaultdict
 
 from checkbox.arguments import coerce_arguments
-from checkbox.properties import Float, Int, List, Map, Path, String, Unicode
+from checkbox.properties import Float, Int, List, Map, Path, String
 from checkbox.plugin import Plugin
 
 
@@ -33,11 +33,11 @@ job_schema = Map({
     "type": String(required=False),
     "status": String(required=False),
     "suite": String(required=False),
-    "description": Unicode(required=False),
-    "purpose": Unicode(required=False),
-    "steps": Unicode(required=False),
-    "info": Unicode(required=False),
-    "verification": Unicode(required=False),
+    "description": String(required=False),
+    "purpose": String(required=False),
+    "steps": String(required=False),
+    "info": String(required=False),
+    "verification": String(required=False),
     "command": String(required=False),
     "depends": List(String(), required=False),
     "duration": Float(required=False),
@@ -96,7 +96,7 @@ class JobsInfo(Plugin):
         if filename:
             try:
                 file = open(filename)
-            except IOError, e:
+            except IOError as e:
                 error_message=(gettext.gettext("Failed to open file '%s': %s") %
                         (filename, e.strerror))
                 logging.critical(error_message)
@@ -130,19 +130,17 @@ class JobsInfo(Plugin):
             self._manager.reactor.fire("message-directory", directory)
 
         # Apply whitelist ordering
-        def cmp_function(a, b):
-            a_name = a["name"]
-            b_name = b["name"]
+        def key_function(obj):
+            name = obj["name"]
             for pattern in self.whitelist_patterns:
-                if pattern.match(a_name):
-                    a_index = self.whitelist_patterns.index(pattern)
-                elif pattern.match(b_name):
-                    b_index = self.whitelist_patterns.index(pattern)
+                if pattern.match(name):
+                    index = self.whitelist_patterns.index(pattern)
+                    break
 
-            return cmp(a_index, b_index)
+            return index
 
         if self.whitelist_patterns:
-            messages = sorted(messages, cmp=cmp_function)
+            messages = sorted(messages, key=key_function)
         for message in messages:
             self._manager.reactor.fire("report-job", message)
 
@@ -156,7 +154,7 @@ class JobsInfo(Plugin):
         Verify that all patterns were used
         """
         orphan_test_cases = []
-        for name, jobs in self.selected_jobs.iteritems():
+        for name, jobs in self.selected_jobs.items():
             is_test = any(job.get('type') == 'test' for job in jobs)
             has_suite = any(job.get('suite') for job in jobs)
             if is_test and not has_suite:

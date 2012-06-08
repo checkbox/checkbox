@@ -1,7 +1,7 @@
 #
 # This file is part of Checkbox.
 #
-# Copyright 2008 Canonical Ltd.
+# Copyright 2012 Canonical Ltd.
 #
 # Checkbox is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,26 +16,40 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-import urllib.parse
+__all__ = [
+    "tzutc",
+    ]
+
+from datetime import (
+    timedelta,
+    tzinfo,
+    )
 
 
-def parse_url(url):
-    scheme, host, path, params, query, fragment = urllib.parse.urlparse(url)
+ZERO = timedelta(0)
 
-    if "@" in host:
-        username, host = host.rsplit("@", 1)
-        if ":" in username:
-            username, password = username.split(":", 1)
-        else:
-            password = None
-    else:
-        username = password = None
 
-    if ":" in host:
-        host, port = host.split(":")
-        assert port.isdigit()
-        port = int(port)
-    else:
-        port = None
+class _tzutc(tzinfo):
 
-    return scheme, username, password, host, port, path, params, query, fragment
+    def utcoffset(self, dt):
+        return ZERO
+
+    def dst(self, dt):
+        return ZERO
+
+    def tzname(self, dt):
+        return "UTC"
+
+    def __eq__(self, other):
+        return isinstance(other, tzutc)
+
+    def __ne__(self, other):
+        return not self.__eq__(other)
+
+    def __repr__(self):
+        return "%s()" % self.__class__.__name__
+
+    __reduce__ = object.__reduce__
+
+
+tzutc = _tzutc()

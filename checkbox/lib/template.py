@@ -23,7 +23,7 @@ import logging
 EXTENDED_STRING = "_extended"
 
 
-class Template(object):
+class Template:
 
     def _reader(self, file, size=4096, delimiter=r"\n{2,}"):
         buffer_old = ""
@@ -79,11 +79,10 @@ class Template(object):
             def _save(field, value, extended):
                 extended = extended.rstrip("\n")
                 if field:
-                    if element.has_key(field):
-                        raise Exception, \
-                            "Template %s has a duplicate field '%s'" \
+                    if field in element:
+                        raise Exception("Template %s has a duplicate field '%s'" \
                             " with a new value '%s'." \
-                                % (filename, field, value)
+                                % (filename, field, value))
                     element[field] = value
                     if extended:
                         element["%s%s" % (field, EXTENDED_STRING)] = extended
@@ -128,8 +127,8 @@ class Template(object):
                     extended += bit
                     continue
 
-                raise Exception, "Template %s parse error at: %s" \
-                    % (filename, line)
+                raise Exception("Template %s parse error at: %s" \
+                    % (filename, line))
 
             _save(field, value, extended)
 

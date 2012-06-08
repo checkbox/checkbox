@@ -47,7 +47,7 @@ STATUS_TO_BUTTON = dict((s, ANSWER_TO_BUTTON[a])
 
 # HACK: Setting and unsetting previous and next buttons to workaround
 #       for gnome bug #56070.
-class GTKHack(object):
+class GTKHack:
     def __init__(self, function):
         self._function = function
 
@@ -337,7 +337,7 @@ class GTKInterface(UserInterface):
 
         # Set callbacks
         def click_button(widget, active):
-            for check_button in option_table.itervalues():
+            for check_button in option_table.values():
                 check_button.set_active(active)
 
         for button_name in "button_select_all", "button_deselect_all":
@@ -401,7 +401,7 @@ class GTKInterface(UserInterface):
         #Reset window title
         self._set_main_title()
 
-        (COLUMN_TEXT, COLUMN_ACTIVE) = range(2)
+        (COLUMN_TEXT, COLUMN_ACTIVE) = list(range(2))
 
         # Set buttons
         self._notebook.set_current_page(1)

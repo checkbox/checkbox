@@ -39,7 +39,7 @@ ALL_STATUS = [FAIL, PASS, UNINITIATED, UNRESOLVED, UNSUPPORTED, UNTESTED]
 
 DEFAULT_JOB_TIMEOUT = 30 # used in case a job specifies invalid timeout
 
-class Job(object):
+class Job:
 
     def __init__(self, command, environ=None, timeout=None):
         if environ is None:
@@ -93,8 +93,8 @@ class Job(object):
                 (signal_to_name(term_signal),
                  signal_to_description(term_signal))
         else:
-            raise Exception, "Command not terminated: %s" \
-                % self.command
+            raise Exception("Command not terminated: %s" \
+                % self.command)
 
         duration = process.endtime - process.starttime
 
@@ -133,7 +133,7 @@ class JobStore(MessageStore):
     def _find_matching_messages(self, **kwargs):
         for filename in self._walk_messages():
             message = self._read_message(filename,cache=True)
-            for key, value in kwargs.iteritems():
+            for key, value in kwargs.items():
                 if message.get(key) != value:
                     break
             else:

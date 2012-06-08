@@ -53,7 +53,7 @@ class TemplateI18n(Template):
 
         language_match = re.match(r"([^_@.]+)(_[^_@.]+)?(\..+)?", language)
         if not language_match:
-            raise Exception, "Unknown language format: %s" % language
+            raise Exception("Unknown language format: %s" % language)
 
         ret = [language_match.group(1)]
         if modifier_match:
@@ -75,7 +75,7 @@ class TemplateI18n(Template):
 
     def _get_languages(self):
         languages = []
-        if environ.has_key("LANGUAGE") and environ["LANGUAGE"]:
+        if "LANGUAGE" in environ and environ["LANGUAGE"]:
             for language in environ["LANGUAGE"].split(":"):
                 if language:
                     languages.extend(self._get_language_list(language))
@@ -96,11 +96,11 @@ class TemplateI18n(Template):
     def _filter_languages(self, element):
         filter = {}
         basekeys = {}
-        for key in element.iterkeys():
+        for key in element.keys():
             basekey = re.sub(r"^_?([^-]+).*$", "\\1", key)
             basekeys[basekey] = None
 
-        for key in basekeys.iterkeys():
+        for key in basekeys.keys():
             if self._languages:
                 for language in self._languages:
                     field = "%s-%s" % (key, language)
@@ -124,7 +124,7 @@ class TemplateI18n(Template):
                     filter[key] = self._filter_field(element[field])
                     continue
 
-            raise Exception, "No language found for key: %s" % key
+            raise Exception("No language found for key: %s" % key)
 
         return filter
 

@@ -72,7 +72,7 @@ def signal_to_name(signal):
     signal -- number of the signal as returned by wait
     """
 
-    if signal_name_table.has_key(signal):
+    if signal in signal_name_table:
         return signal_name_table[signal]
     return _("UNKNOWN")
 
@@ -84,6 +84,6 @@ def signal_to_description(signal):
     """
 
     name = signal_to_name(signal)
-    if signal_description_table.has_key(name):
+    if name in signal_description_table:
         return signal_description_table[name]
     return _("Unknown signal")

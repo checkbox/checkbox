@@ -26,8 +26,8 @@ def get_globals(script):
     if not posixpath.exists(path):
         path = get_path(script)
         if not path:
-            raise Exception, "Script not found in PATH: %s" % script
+            raise Exception("Script not found in PATH: %s" % script)
 
     globals = {}
-    execfile(path, globals)
+    exec(compile(open(path).read(), path, 'exec'), globals)
     return globals

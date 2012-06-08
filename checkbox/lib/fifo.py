@@ -22,7 +22,8 @@ import struct
 from checkbox.contrib.bpickle import dumps, loads
 from checkbox.lib.selector import Selector, SelectorIO
 
-class FifoBase(object):
+
+class FifoBase:
 
     mode = None
 
@@ -49,57 +50,63 @@ class FifoBase(object):
                 return False
         return True
 
+
 class FifoReader(FifoBase):
 
-    #on Linux, opening a FIFO in read-write mode is non-blocking and
-    #succeeds even if other end is not open as per FIFO(7)
-    mode = "w+"
+    # In this case we want to read from the FIFO, but opening it in
+    # read-write mode (as opposed to read-only) is done specifically
+    # so that the frontend can open the FIFO without blocking until the
+    # backend starts; so that the frontend can wait a reasonable amount
+    # of time and then, if it hasn't received a reply from the backend,
+    # it can continue execution. This is done to prevent the frontend
+    # blocking forever if the user e.g. fails to input the password and
+    # the backend doesn't start (LP#588539).
+    mode = "r+b"
 
-    def read_string(self):
+    def read_bytes(self):
         # Check if a connection arrived within the timeout
         if not self.wait_for(SelectorIO.READ):
             return None
 
         size = struct.calcsize("i")
-        length_string = self.file.read(size)
-        if not length_string:
-            return ""
+        length_bytes = self.file.read(size)
+        if not length_bytes:
+            return b""
 
-        length = struct.unpack(">i", length_string)[0]
+        length = struct.unpack(">i", length_bytes)[0]
         return self.file.read(length)
 
     def read_object(self):
-        string = self.read_string()
-        if not string:
+        _bytes = self.read_bytes()
+        if not _bytes:
             return None
 
-        return loads(string)
+        return loads(_bytes)
 
 
 class FifoWriter(FifoBase):
 
-    #on Linux, opening a FIFO in read-write mode is non-blocking and
-    #succeeds even if other end is not open as per FIFO(7)
-    mode = "w+"
+    # See FifoReader.mode.
+    mode = "w+b"
 
-    def write_string(self, string):
+    def write_bytes(self, _bytes):
 
-        # Wait until I can write 
+        # Wait until I can write
         if not self.wait_for(SelectorIO.WRITE):
-            return None 
+            return None
 
-        length = len(string)
-        length_string = struct.pack(">i", length)
-        self.file.write(length_string)
-        self.file.write(string)
+        length = len(_bytes)
+        length_bytes = struct.pack(">i", length)
+        self.file.write(length_bytes)
+        self.file.write(_bytes)
         self.file.flush()
         return length
 
     def write_object(self, object):
-        string = dumps(object)
-        return self.write_string(string)
+        _bytes = dumps(object)
+        return self.write_bytes(_bytes)
 
 
-def create_fifo(path, mode=0666):
+def create_fifo(path, mode=0o666):
     os.mkfifo(path, mode)
     return path

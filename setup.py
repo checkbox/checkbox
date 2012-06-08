@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import os
 import re
@@ -109,7 +109,7 @@ class checkbox_clean(clean, object):
         for executable in self.executables:
             try:
                 os.unlink(executable)
-            except OSError, error:
+            except OSError as error:
                 if error.errno != errno.ENOENT:
                     raise
 

@@ -16,13 +16,13 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-import posixpath
+import os
 
 from glob import glob
 
 
 def path_split(path):
-    return path.split(posixpath.sep)
+    return path.split(os.path.sep)
 
 def path_common(l1, l2, common=[]):
     if len(l1) < 1:
@@ -40,26 +40,22 @@ def path_relative(p1, p2):
     (common, l1, l2) = path_common(path_split(p1), path_split(p2))
     p = []
     if len(l1) > 0:
-        p = ["..%s" % posixpath.sep * len(l1)]
+        p = ["..%s" % os.path.sep * len(l1)]
 
     p = p + l2
-    return posixpath.join( *p )
+    return os.path.join( *p )
 
 def path_expand(path):
-    path = posixpath.expanduser(path)
+    path = os.path.expanduser(path)
     return glob(path)
 
 def path_expand_recursive(path):
     paths = []
     for path in path_expand(path):
-        if posixpath.isdir(path):
-            def walk_func(arg, directory, names):
-                for name in names:
-                    path = posixpath.join(directory, name)
-                    if not posixpath.isdir(path):
-                        arg.append(path)
-
-            posixpath.walk(path, walk_func, paths)
+        if os.path.isdir(path):
+            for dirpath, dirnames, filenames in os.walk(path):
+                for filename in filenames:
+                    paths.append(os.path.join(dirpath, filename))
         else:
             paths.append(path)
 

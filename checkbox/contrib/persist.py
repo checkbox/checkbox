@@ -41,7 +41,7 @@ class PersistReadOnlyError(PersistError):
     pass
 
 
-class Persist(object):
+class Persist:
     """Persistence handler.
 
     There are three different kinds of opition maps, regarding the
@@ -257,7 +257,7 @@ class Persist(object):
             current = self._traverse(map, path)
             if type(current) is list and value in current:
                 return
-        path = path+(sys.maxint,)
+        path = path+(sys.maxsize,)
         self._traverse(map, path, setvalue=value)
 
     def remove(self, path, value=NOTHING, soft=False, weak=False):
@@ -317,7 +317,7 @@ class Persist(object):
         return RootedPersist(self, path)
 
 
-class RootedPersist(object):
+class RootedPersist:
 
     def __init__(self, parent, root):
         self.parent = parent
@@ -408,7 +408,7 @@ def path_tuple_to_string(path):
     return ".".join(result)
 
 
-class Backend(object):
+class Backend:
 
     def new(self):
         return {}
@@ -491,7 +491,7 @@ class Backend(object):
         if keys:
             return keys()
         elif type(obj) is list:
-            return range(len(obj))
+            return list(range(len(obj)))
         return NotImplemented
 
 
@@ -513,18 +513,18 @@ class DiskBackend(Backend):
 class PickleBackend(DiskBackend):
 
     def __init__(self):
-        import cPickle
+        import pickle
         self._pickle = cPickle
 
     def load(self, filepath):
-        file = open(filepath)
+        file = open(filepath, "rb")
         try:
             return self._pickle.load(file)
         finally:
             safe_close(file, self.safe_file_closing)
 
     def save(self, filepath, map):
-        file = open(filepath, "w")
+        file = open(filepath, "wb")
         try:
             self._pickle.dump(map, file, 2)
         finally:
@@ -538,14 +538,14 @@ class BPickleBackend(DiskBackend):
         self._bpickle = bpickle
 
     def load(self, filepath):
-        file = open(filepath)
+        file = open(filepath, "rb")
         try:
             return self._bpickle.loads(file.read())
         finally:
             safe_close(file, self.safe_file_closing)
 
     def save(self, filepath, map):
-        file = open(filepath, "w")
+        file = open(filepath, "wb")
         try:
             file.write(self._bpickle.dumps(map))
         finally:

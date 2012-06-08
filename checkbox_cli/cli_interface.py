@@ -35,7 +35,7 @@ ANSWER_TO_OPTION = {
 OPTION_TO_ANSWER = dict((o, a) for a, o in ANSWER_TO_OPTION.items())
 
 
-class CLIDialog(object):
+class CLIDialog:
     """Command line dialog wrapper."""
 
     def __init__(self, text):
@@ -44,6 +44,7 @@ class CLIDialog(object):
 
     def put(self, text):
         sys.stdout.write(text)
+        sys.stdout.flush()
 
     def put_line(self, line):
         self.put("%s\n" % line)
@@ -59,7 +60,7 @@ class CLIDialog(object):
         fileno = sys.stdin.fileno()
         saved_attributes = termios.tcgetattr(fileno)
         attributes = termios.tcgetattr(fileno)
-        attributes[3] = attributes[3] & ~(termios.ICANON | termios.ECHO)
+        attributes[3] &= ~(termios.ICANON | termios.ECHO)
         attributes[6][termios.VMIN] = 1
         attributes[6][termios.VTIME] = 0
         termios.tcsetattr(fileno, termios.TCSANOW, attributes)
@@ -68,12 +69,12 @@ class CLIDialog(object):
         escape = 0
         try:
             while len(input) < limit:
-                ch = str(sys.stdin.read(1))
+                ch = sys.stdin.read(1)
                 if ord(ch) == separator:
                     break
-                elif ord(ch) == 033: # ESC
+                elif ord(ch) == 0o33:  # ESC
                     escape = 1
-                elif ord(ch) == termios.CERASE or ord(ch) == 010:
+                elif ord(ch) == termios.CERASE or ord(ch) == 0o10:
                     if len(input):
                         self.put("\010 \010")
                         del input[-1]
@@ -186,7 +187,7 @@ class CLIReportDialog(CLIDialog):
         that is, a job containing other jobs
         """
         return all(issubclass(type(value), dict)
-                   for value in root.itervalues())
+                   for value in root.values())
 
     def _display(self, title, root):
         """
@@ -208,11 +209,11 @@ class CLIReportDialog(CLIDialog):
                 if not provided
                 """
                 if key is None:
-                    key = string.lowercase[len(keys)]
+                    key = string.ascii_lowercase[len(keys)]
                 keys.append(key)
                 options.append(option)
 
-            for job_name, job_data in sorted(root.iteritems()):
+            for job_name, job_data in sorted(root.items()):
                 if self._is_suite(job_data):
                     add_option(job_name)
                     self.put_line('{key}: {option}'
@@ -300,7 +301,7 @@ class CLIInterface(UserInterface):
             elif key in options:
                 if isinstance(options[key], dict):
                     results[key] = {}
-                elif isinstance(options[key], (list, tuple,)):
+                elif isinstance(options[key], (list, tuple)):
                     results[key] = []
                 else:
                     results[key] = None
@@ -308,7 +309,7 @@ class CLIInterface(UserInterface):
                 for k in options[key]:
                     self._toggle_results(k, options[key], results[key])
 
-        elif isinstance(results, (list, tuple,)):
+        elif isinstance(results, (list, tuple)):
             if key in results:
                 results.remove(key)
             elif key in options:

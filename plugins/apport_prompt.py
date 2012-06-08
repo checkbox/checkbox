@@ -46,7 +46,7 @@ CATEGORY_TO_SYMPTOM = {
     "DISK":  "storage"}
 
 
-class ApportOptions(object):
+class ApportOptions:
 
     def __init__(self, test, device, package, symptom):
         self.test = test
@@ -244,7 +244,7 @@ class ApportPrompt(Plugin):
         try:
             options = ApportOptions(test, device, package, symptom)
             apport_interface = ApportUserInterface(interface, options)
-        except ImportError, e:
+        except ImportError as e:
             interface.show_error(_("Is a package upgrade in process? Error: %s") % e)
             return
 
@@ -253,7 +253,7 @@ class ApportPrompt(Plugin):
                 apport_interface.run_symptom()
             else:
                 apport_interface.run_report_bug()
-        except SystemExit, e:
+        except SystemExit as e:
             # In case of error, show_error already have been called
             raise StopAllException
 
@@ -267,7 +267,7 @@ class ApportPrompt(Plugin):
                     file.write(message)
                 finally:
                     file.close()
-            except IOError, e:
+            except IOError as e:
                 logging.info("Failed to write to file '%s': %d %s",
                     filename, e.errno, e.strerror)
 

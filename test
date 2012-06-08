@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #
 # This file is part of Checkbox.
 #
@@ -119,40 +119,40 @@ def test_with_unittest(options):
             self.total_tests += tests
             self.total_failures += failures
             self.total_errors += errors
-            print "(tests=%d, failures=%d, errors=%d)" % \
-                  (tests, failures, errors)
+            print("(tests=%d, failures=%d, errors=%d)" % \
+                  (tests, failures, errors))
 
     unittest_summary = Summary()
     doctest_summary = Summary()
 
     if unittests:
-        print "Running unittests..."
+        print("Running unittests...")
         for relpath in unittests:
-            print "[%s]" % relpath
+            print("[%s]" % relpath)
             modpath = relpath.replace('/', '.')[:-3]
             module = __import__(modpath, None, None, [""])
             test = loader.loadTestsFromModule(module)
             result = runner.run(test)
             unittest_summary(test.countTestCases(),
                              len(result.failures), len(result.errors))
-            print
+            print()
 
     if doctests:
-        print "Running doctests..."
+        print("Running doctests...")
         doctest_flags = doctest.ELLIPSIS
         for relpath in doctests:
-            print "[%s]" % relpath
+            print("[%s]" % relpath)
             failures, total = doctest.testfile(relpath,
                                                optionflags=doctest_flags)
             doctest_summary(total, failures, 0)
-            print
+            print()
 
-    print "Total test cases: %d" % unittest_summary.total_tests
-    print "Total doctests: %d" % doctest_summary.total_tests
-    print "Total failures: %d" % (unittest_summary.total_failures +
-                                  doctest_summary.total_failures)
-    print "Total errors: %d" % (unittest_summary.total_errors +
-                                doctest_summary.total_errors)
+    print("Total test cases: %d" % unittest_summary.total_tests)
+    print("Total doctests: %d" % doctest_summary.total_tests)
+    print("Total failures: %d" % (unittest_summary.total_failures +
+                                  doctest_summary.total_failures))
+    print("Total errors: %d" % (unittest_summary.total_errors +
+                                doctest_summary.total_errors))
 
     failed = bool(unittest_summary.total_failures or
                   unittest_summary.total_errors or

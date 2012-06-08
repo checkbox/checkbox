@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 #
 # This file is part of Checkbox.
 #
@@ -60,12 +60,12 @@ def get_modules(filename):
 def main():
     modules = get_modules(MODULES_FILENAME)
     for module in modules:
-        for key, value in module.iteritems():
+        for key, value in module.items():
             if value != "":
-                print "%s: %s" % (key, value)
+                print("%s: %s" % (key, value))
 
         # Empty line
-        print
+        print()
 
     return 0
 

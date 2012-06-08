@@ -16,13 +16,13 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-import libxml2
 import posixpath
 
+from lxml import etree
 from xml.dom.minidom import Document, Element, parseString
 
 
-class ReportManager(object):
+class ReportManager:
     """The central point for dumping and loading information.
 
     This keeps references to all reports which have been added to the
@@ -43,7 +43,7 @@ class ReportManager(object):
         Call back method for reports to register dump handlers.
         """
         if type in self.dumps_table:
-            raise Exception, "Dumps type already handled: %s" % type
+            raise Exception("Dumps type already handled: %s" % type)
         self.dumps_table[type] = handler
 
     def handle_loads(self, type, handler):
@@ -51,7 +51,7 @@ class ReportManager(object):
         Call back method for reports to register load handlers.
         """
         if type in self.loads_table:
-            raise Exception, "Loads type already handled: %s" % type
+            raise Exception("Loads type already handled: %s" % type)
         self.loads_table[type] = handler
 
     def call_dumps(self, obj, node):
@@ -66,7 +66,7 @@ class ReportManager(object):
         Convenience method for reports to call the load handler
         corresponding to the content of the given node.
         """
-        if self.loads_table.has_key(node.localName):
+        if node.localName in self.loads_table:
             ret = self.loads_table[node.localName](node)
         elif isinstance(node, Element) and node.hasAttribute("type"):
             type = node.getAttribute("type")
@@ -103,30 +103,30 @@ class ReportManager(object):
 
         try:
             self.call_dumps(obj, node)
-        except KeyError, e:
-            raise ValueError, "Unsupported type: %s" % e
+        except KeyError as e:
+            raise ValueError("Unsupported type: %s" % e)
 
         return document
 
-    def loads(self, str):
+    def loads(self, string):
         """
         Load the given string which may be a container of any nodes
         supported by the reports added to the manager.
         """
-        document = parseString(str)
+        document = parseString(string)
         node = document.childNodes[0]
         assert(node.localName == self.name)
 
         try:
             ret = self.call_loads(document)
-        except KeyError, e:
-            raise ValueError, "Unsupported type: %s" % e
+        except KeyError as e:
+            raise ValueError("Unsupported type: %s" % e)
 
         return ret
 
-    def validate(self, str):
+    def validate(self, string):
         """
-        Validate the given string 
+        Validate the given string
         """
         if not self.schema:
             return False
@@ -137,21 +137,14 @@ class ReportManager(object):
         finally:
             file.close()
 
-        rngParser = libxml2.relaxNGNewMemParserCtxt(schema, len(schema))
-        rngSchema = rngParser.relaxNGParse()
-        ctxt = rngSchema.relaxNGNewValidCtxt()
-        doc = libxml2.parseDoc(str)
-        is_valid = doc.relaxNGValidateDoc(ctxt)
+        relaxng_doc = etree.fromstring(schema)
+        relaxng = etree.RelaxNG(relaxng_doc)
 
-        # Clean up
-        doc.freeDoc()
-        del rngParser, rngSchema, ctxt
-        libxml2.relaxNGCleanupTypes()
-        libxml2.cleanupParser()
-        return is_valid == 0
+        doc = etree.fromstring(string)
+        return relaxng.validate(doc)
 
 
-class Report(object):
+class Report:
     """A convenience for writing reports.
 
     This provides a register method which will set the manager attribute

@@ -39,7 +39,7 @@ SelectorState = Enum(
     "FAILED")
 
 
-class Selector(object):
+class Selector:
     __slots__ = ("_read_fds", "_write_fds", "_except_fds",
         "_save_read_fds", "_save_write_fds", "_save_except_fds",
         "_fd_set_size", "_timeout", "_state", "_errno")
@@ -166,7 +166,7 @@ class Selector(object):
             self._read_fds, self._write_fds, self._except_fds = select.select(
                 self._save_read_fds, self._save_write_fds,
                 self._save_except_fds, self._timeout)
-        except select.error, e:
+        except select.error as e:
             self._errno = e.errno
             if e.errno == errno.EINTR:
                 self._state = SelectorState.SIGNALED

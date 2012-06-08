@@ -59,13 +59,6 @@ update_configuration()
 
 case "$1" in
     configure)
-        # Workaround python-support which doesn't remove packages
-        # under /usr/lib/python*
-        for support_dir in python2.4 python2.5; do
-            package_dir="/usr/lib/$support_dir/site-packages/$package"
-            [ -e "$package_dir" ] && rm -fr $package_dir
-        done
-
         # Patch and update configuration file
         patch_configuration "$2"
         update_configuration

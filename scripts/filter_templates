@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 
 import re
 import sys
@@ -36,7 +36,7 @@ def compile_filters(filters):
 
 def match_patterns(patterns_table, element):
     matches = []
-    for key, patterns in patterns_table.iteritems():
+    for key, patterns in patterns_table.items():
         if key not in element:
             matches.append(False)
         else:
@@ -80,7 +80,7 @@ def parse_file(file, *args, **kwargs):
 
 def parse_path(path, *args, **kwargs):
     for filename in path_expand_recursive(path):
-        print "# %s" % filename
+        print("# %s" % filename)
 
         name = posixpath.basename(filename)
         if name.startswith(".") or name.endswith("~"):
@@ -124,7 +124,7 @@ def main(args):
     try:
         parse_func(args, options.attribute,
                    options.whitelist, options.blacklist)
-    except FilterError, error:
+    except FilterError as error:
         parser.error(error.args[0])
 
     return 0

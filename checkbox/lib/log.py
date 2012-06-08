@@ -36,7 +36,7 @@ def format_object(object, *args, **kwargs):
         if kwargs:
             args_string += ", "
     if kwargs:
-        args_string += ", ".join(["%s=%s" % (k, v) for k, v in kwargs.iteritems()])
+        args_string += ", ".join(["%s=%s" % (k, v) for k, v in kwargs.items()])
 
     module = object.__module__ if object.__module__ else inspect.getfile(object)
     if inspect.ismethod(object):

@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: latin1 -*-
 #----------------------------------------------------------------------------
 # glock.py:                 Global mutex
@@ -69,11 +69,6 @@ class LockAlreadyAcquired(GlobalLockError):
     '''
     pass
 
-
-# Constants
-# ---------:
-if sys.version[:3] < '2.2':
-    True, False = 1, 0  # built-in in Python 2.2+
 
 #----------------------------------------------------------------------------
 class GlobalLock:
@@ -177,7 +172,7 @@ class GlobalLock:
                 options = fcntl.LOCK_EX|fcntl.LOCK_NB
             try:
                 fcntl.flock(self.fdlock, options)
-            except IOError, message: #(errno 13: perm. denied,
+            except IOError as message: #(errno 13: perm. denied,
                             #       36: Resource deadlock avoided)
                 if not blocking and self._errnoOf (message) == errno.EWOULDBLOCK:
                     raise LockAlreadyAcquired('Lock %s already acquired by '
@@ -230,7 +225,7 @@ class GlobalLock:
                 try:
                     win32event.ReleaseMutex(self.mutex)
                     #print "released mutex"
-                except pywintypes.error, e:
+                except pywintypes.error as e:
                     errCode, fctName, errMsg =  e.args
                     if errCode == 288:
                         raise NotOwner("Attempt to release somebody else's lock")
@@ -264,7 +259,7 @@ def test():
 #----------------------------------------------------------------------------
     ##TODO: a more serious test with distinct processes !
 
-    print 'Testing glock.py...'
+    print('Testing glock.py...')
 
     # unfortunately can't test inter-process lock here!
     lockName = 'myFirstLock'
@@ -283,31 +278,31 @@ def test():
     # Check that <> threads of same process do block:
     import threading, time
     thread = threading.Thread(target=threadMain, args=(l,))
-    print 'main: locking...',
+    print('main: locking...', end=' ')
     l.acquire()
-    print ' done.'
+    print(' done.')
     thread.start()
     time.sleep(3)
-    print '\nmain: unlocking...',
+    print('\nmain: unlocking...', end=' ')
     l.release()
-    print ' done.'
+    print(' done.')
     time.sleep(0.1)
 
-    print '=> Test of glock.py passed.'
+    print('=> Test of glock.py passed.')
     return l
 
 def threadMain(lock):
-    print 'thread started(%s).' % lock
+    print('thread started(%s).' % lock)
     try: lock.acquire(blocking=False)
     except LockAlreadyAcquired: pass
     else: raise Exception('should have raised LockAlreadyAcquired')
-    print 'thread: locking (should stay blocked for ~ 3 sec)...',
+    print('thread: locking (should stay blocked for ~ 3 sec)...', end=' ')
     lock.acquire()
-    print 'thread: locking done.'
-    print 'thread: unlocking...',
+    print('thread: locking done.')
+    print('thread: unlocking...', end=' ')
     lock.release()
-    print ' done.'
-    print 'thread ended.'
+    print(' done.')
+    print('thread ended.')
 
 #----------------------------------------------------------------------------
 #       M A I N

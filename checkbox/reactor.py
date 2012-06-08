@@ -22,7 +22,7 @@ import threading
 from checkbox.lib.log import format_object
 
 
-class EventID(object):
+class EventID:
 
     def __init__(self, event_type, pair):
         self._event_type = event_type
@@ -39,7 +39,7 @@ class StopAllException(Exception):
     pass
 
 
-class Reactor(object):
+class Reactor:
 
     def __init__(self):
         self._event_handlers = {}
@@ -99,7 +99,7 @@ class Reactor(object):
         if type(id) is EventID:
             self._event_handlers[id._event_type].remove(id._pair)
         else:
-            raise Exception, "EventID instance expected, received %r" % id
+            raise Exception("EventID instance expected, received %r" % id)
 
     def cancel_all_calls(self, event_type):
         del self._event_handlers[event_type]

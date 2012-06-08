@@ -16,13 +16,13 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-import __builtin__
+import builtins
 
 
 __all__ = ["ResourceMap"]
 
 
-class ResourceObject(object):
+class ResourceObject:
     __slots__ = ("_iterator", "_name", "_convert",)
 
     def __init__(self, iterator, name, convert=lambda x: x):
@@ -67,7 +67,7 @@ class ResourceObject(object):
         return until if found else default
 
 
-class ResourceIterator(object):
+class ResourceIterator:
     __slots__ = ("_map", "_values",)
 
     def __init__(self, map, values):
@@ -91,7 +91,7 @@ class ResourceIterator(object):
         return ResourceObject(self, name)
 
 
-class ResourceBuiltin(object):
+class ResourceBuiltin:
     __slots__ = ("_function",)
 
     def __init__(self, function):
@@ -105,10 +105,9 @@ class ResourceGlobals(dict):
 
     def __init__(self, names, *args, **kwargs):
         super(ResourceGlobals, self).__init__(*args, **kwargs)
-        self["__builtins__"] = None
 
         for name in names:
-            function = getattr(__builtin__, name)
+            function = getattr(builtins, name)
             self[name] = ResourceBuiltin(function)
 
 
@@ -128,7 +127,7 @@ class ResourceMap(dict):
 
     def eval(self, source):
         self._results = []
-        resource_globals = ResourceGlobals(["bool", "float", "int", "long", "str"])
+        resource_globals = ResourceGlobals(["bool", "float", "int", "str"])
         try:
             value = eval(source, resource_globals, self)
             if (isinstance(value, (bool, int)) and value) \

@@ -19,9 +19,8 @@
 import os
 import re
 import logging
-import posixpath
 
-from ConfigParser import ConfigParser
+from configparser import ConfigParser
 
 from checkbox.lib.text import split
 
@@ -32,7 +31,7 @@ class IncludeDict(dict):
         super(IncludeDict, self).__init__()
         self._parser = parser
 
-        for (key, value) in os.environ.iteritems():
+        for (key, value) in os.environ.items():
             if key.startswith("CHECKBOX"):
                 super(IncludeDict, self).__setitem__(key.lower(), value)
 
@@ -41,20 +40,18 @@ class IncludeDict(dict):
             if isinstance(value, list):
                 value = value[0]
             for path in split(value):
-                path = self._parser._interpolate("DEFAULT", None, path, self)
-                path = posixpath.expanduser(path)
-                if not posixpath.exists(path):
-                    raise Exception, "No such configuration file: %s" % path
-                if posixpath.isdir(path):
+                path = self._parser._interpolation.before_get(
+                    self._parser, "DEFAULT", None, path, self)
+                path = os.path.expanduser(path)
+                if not os.path.exists(path):
+                    raise Exception("No such configuration file: %s" % path)
+                if os.path.isdir(path):
                     logging.info("Parsing config filenames from directory: %s",
                         path)
-                    def walk_func(arg, directory, names):
-                        for name in names:
-                            path = posixpath.join(directory, name)
-                            if not posixpath.isdir(path):
-                                arg._parser.read(path)
-
-                    posixpath.walk(path, walk_func, self)
+                    for dirpath, dirnames, filenames in os.walk(path):
+                        for filename in filenames:
+                            path = os.path.join(dirpath, filename)
+                            self._parser.read(path)
                 else:
                     logging.info("Parsing config filename: %s", path)
                     self._parser.read(path)
@@ -64,20 +61,20 @@ class IncludeDict(dict):
             super(IncludeDict, self).__setitem__(key, value)
 
 
-class ConfigSection(object):
+class ConfigSection:
 
     def __init__(self, parent, name, attributes={}):
         self.parent = parent
         self.name = name
         self.attributes = {}
-        for key, value in attributes.iteritems():
+        for key, value in attributes.items():
             self.attributes[key] = re.sub("\n\.\n", "\n\n", value)
 
     def __getattr__(self, name):
         if name in self.attributes:
             return self.get(name)
 
-        raise AttributeError, name
+        raise AttributeError(name)
 
     def __contains__(self, name):
         return name in self.attributes
@@ -96,7 +93,7 @@ class ConfigDefaults(ConfigSection):
         if name in self.attributes:
             return self.get(name)
 
-        raise AttributeError, name
+        raise AttributeError(name)
 
     def get(self, name):
         name_upper = name.upper()
@@ -106,10 +103,10 @@ class ConfigDefaults(ConfigSection):
             return os.environ[name_upper]
 
 
-class Config(object):
+class Config:
 
     def __init__(self):
-        self._parser = ConfigParser()
+        self._parser = ConfigParser(empty_lines_in_values=False)
         self._parser._defaults = IncludeDict(self._parser)
 
         # Copy attributes from the parser to avoid one additional
@@ -121,7 +118,7 @@ class Config(object):
         for config in configs:
             match = re.match("(.*)/([^/]+)=(.*)", config)
             if not match:
-                raise Exception, "Invalid config string: %s" % config
+                raise Exception("Invalid config string: %s" % config)
 
             (name, option, value) = match.groups()
 
@@ -145,11 +142,11 @@ class Config(object):
     def read_file(self, file, filename="<stream>"):
         logging.info("Reading configurations from: %s", filename)
 
-        self._parser.readfp(file, filename)
+        self._parser.read_file(file, filename)
 
     def read_filename(self, filename):
-        if not posixpath.exists(filename):
-            raise Exception, "No such configuration file: %s" % filename
+        if not os.path.exists(filename):
+            raise Exception("No such configuration file: %s" % filename)
 
         file = open(filename, "r")
         return self.read_file(file, filename)

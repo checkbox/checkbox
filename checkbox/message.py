@@ -38,7 +38,7 @@ class Message(dict):
         self.filename = filename
 
 
-class MessageStore(object):
+class MessageStore:
     """A message store which stores its messages in a file system hierarchy."""
 
     #This caches everything but a message's data, making it manageable to keep in memory.
@@ -108,7 +108,7 @@ class MessageStore(object):
                 break
             try:
                 message = self._read_message(filename)
-            except ValueError, e:
+            except ValueError as e:
                 logging.exception(e)
                 self._add_flags(filename, BROKEN)
             else:
@@ -219,7 +219,7 @@ class MessageStore(object):
         return posixpath.join(self._directory, *args)
 
     def _get_content(self, filename):
-        file = open(filename)
+        file = open(filename, "rb")
         try:
             return file.read()
         finally:
@@ -263,7 +263,7 @@ class MessageStore(object):
 
         message_data = self._dump_message(message)
 
-        file = open(filename + ".tmp", "w")
+        file = open(filename + ".tmp", "wb")
         file.write(message_data)
         safe_close(file, safe=self.safe_file_closing)
 
