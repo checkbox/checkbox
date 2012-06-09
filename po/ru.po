@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-15 13:32-0400\n"
+"POT-Creation-Date: 2012-06-04 15:38-0400\n"
 "PO-Revision-Date: 2012-02-28 07:16+0000\n"
 "Last-Translator: zmicier <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-06-07 04:36+0000\n"
-"X-Generator: Launchpad (build 15353)\n"
+"X-Launchpad-Export-Date: 2012-06-09 05:12+0000\n"
+"X-Generator: Launchpad (build 15376)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:3
 msgid "_Yes"
@@ -39,16 +39,16 @@ msgstr ""
 msgid "Configuration override parameters."
 msgstr "Конфигурирование перезаписало параметры."
 
-#: ../checkbox_cli/cli_interface.py:135 ../checkbox_cli/cli_interface.py:234
+#: ../checkbox_cli/cli_interface.py:136 ../checkbox_cli/cli_interface.py:235
 #, python-format
 msgid "Please choose (%s): "
 msgstr "Выберите (%s): "
 
-#: ../checkbox_cli/cli_interface.py:440
+#: ../checkbox_cli/cli_interface.py:441
 msgid "test again"
 msgstr "повторить тест"
 
-#: ../checkbox_cli/cli_interface.py:446
+#: ../checkbox_cli/cli_interface.py:447
 msgid "Please type here and press Ctrl-D when finished:\n"
 msgstr "Пожалуйста, наберите текст здесь и нажмите Ctrl-D:\n"
 
@@ -124,7 +124,7 @@ msgstr "Выполнено"
 
 #. Title of the user interface
 #: ../gtk/checkbox-gtk.ui.h:1 ../qt/checkbox-qt.desktop.in.h:1
-#: ../plugins/user_interface.py:43 ../qt/frontend/ui_qtfront.h:589
+#: ../plugins/user_interface.py:43 ../qt/frontend/ui_qtfront.h:590
 msgid "System Testing"
 msgstr "Проверка системы"
 
@@ -136,8 +136,8 @@ msgstr "_Проверить"
 msgid "_No"
 msgstr "_Нет"
 
-#: ../gtk/checkbox-gtk.ui.h:6 ../checkbox_cli/cli_interface.py:444
-#: ../checkbox_urwid/urwid_interface.py:267
+#: ../gtk/checkbox-gtk.ui.h:6 ../checkbox_cli/cli_interface.py:445
+#: ../checkbox_urwid/urwid_interface.py:289
 msgid "Further information:"
 msgstr "Дополнительная информация:"
 
@@ -1349,27 +1349,29 @@ msgstr ""
 "отключение при втором нажатии?"
 
 #. description
-#: ../jobs/keys.txt.in:74
+#: ../jobs/keys.txt.in:75
 msgid ""
 "PURPOSE:\n"
 "    This test will test the media keys of your keyboard\n"
 "STEPS:\n"
-"    1. Click test to open a window on which to test the media control keys.\n"
+"    1. Click test to open a window on which to test the media keys.\n"
 "    2. If all the keys work, the test will be marked as passed.\n"
-"    3. If your computer has no media control keys, Skip this test.\n"
+"    3. If your computer has no media keys, Skip this test.\n"
 "VERIFICATION:\n"
 "    Do the keys work as expected?"
 msgstr ""
-"ЦЕЛЬ:\n"
-"    Это тест для проверки мультимедийных клавиш на вашей клавиатуре\n"
-"ДЕЙСТВИЯ:\n"
-"    1. Щёлкните на тесте, чтобы открыть окно для проверки клавиш управления "
-"мультимедиа.\n"
-"    2. Если все клавиши работают, тест будет помечен, как пройденный.\n"
-"    3. Если на вашей клавиатуре отсутствуют клавиши управления мультимедиа, "
-"пропустите этот тест.\n"
-"ПРОВЕРКА:\n"
-"    Работают ли клавиши так, как ожидалось?"
+
+#. description
+#: ../jobs/keys.txt.in:91
+msgid ""
+"PURPOSE:\n"
+"    This test will test the super key of your keyboard\n"
+"STEPS:\n"
+"    1. Click test to open a window on which to test the super key.\n"
+"    2. If the key works, the test will pass and the window will close.\n"
+"VERIFICATION:\n"
+"    Does the super key work as expected?"
+msgstr ""
 
 #. description
 #: ../jobs/local.txt.in:3
@@ -1931,7 +1933,22 @@ msgid "Test and exercise memory."
 msgstr "Проверить и выполнить задачу с помощью памяти."
 
 #. description
-#: ../jobs/miscellanea.txt.in:8
+#: ../jobs/miscellanea.txt.in:3
+msgid ""
+"PURPOSE:\n"
+"    Keep tester related information in the report\n"
+"STEPS:\n"
+"    1. Tester Information\n"
+"    2. Please enter the following information in the comments field:\n"
+"       a. Name\n"
+"       b. Email Address\n"
+"       c. Reason for this test run\n"
+"VERIFICATION:\n"
+"    Nothing to verify for this test"
+msgstr ""
+
+#. description
+#: ../jobs/miscellanea.txt.in:22
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the system can switch to a virtual terminal "
@@ -1954,18 +1971,18 @@ msgstr ""
 "возвращается в ваш рабочий сеанс?"
 
 #. description
-#: ../jobs/miscellanea.txt.in:22
+#: ../jobs/miscellanea.txt.in:36
 msgid "Run Firmware Test Suite (fwts) automated tests."
 msgstr ""
 "Запустить набор автоматизированных тестов встроенных программ (FWTS)."
 
 #. description
-#: ../jobs/miscellanea.txt.in:31
+#: ../jobs/miscellanea.txt.in:45
 msgid "Attaches the FWTS results log to the submission"
 msgstr ""
 
 #. description
-#: ../jobs/miscellanea.txt.in:38
+#: ../jobs/miscellanea.txt.in:52
 msgid ""
 "This will run some basic connectivity tests against a BMC, verifying that "
 "IPMI works."
@@ -1974,7 +1991,7 @@ msgstr ""
 "работоспособности IPMI."
 
 #. description
-#: ../jobs/miscellanea.txt.in:44
+#: ../jobs/miscellanea.txt.in:58
 msgid ""
 "   Determine if we need to run tests specific to portable computers that may "
 "not apply to desktops."
@@ -1983,7 +2000,7 @@ msgstr ""
 "компьютеров, которые могут быть не применимы к настольным компьютерам."
 
 #. description
-#: ../jobs/miscellanea.txt.in:52
+#: ../jobs/miscellanea.txt.in:66
 msgid ""
 "Test that the /var/crash directory doesn't contain anything. Lists the files "
 "contained within if it does, or echoes the status of the directory (doesn't "
@@ -1994,7 +2011,7 @@ msgstr ""
 "каталога (не существует/пуст)"
 
 #. description
-#: ../jobs/miscellanea.txt.in:60
+#: ../jobs/miscellanea.txt.in:74
 msgid ""
 "Test to check that virtualization is supported and the test system has at "
 "least a minimal amount of RAM to function as an OpenStack Compute Node"
@@ -2639,7 +2656,12 @@ msgstr ""
 "    Система выключается и перезагружается надлежащим образом?"
 
 #. description
-#: ../jobs/power-management.txt.in:20
+#: ../jobs/power-management.txt.in:16
+msgid "Test ACPI Wakealarm (fwts wakealarm)"
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:30
 msgid ""
 "PURPOSE:\n"
 " This test will check the system's ability to power-off and boot.\n"
@@ -2657,14 +2679,14 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:35
+#: ../jobs/power-management.txt.in:45
 msgid ""
 "This will attach any logs from the power-management/poweroff test to the "
 "results."
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:45
+#: ../jobs/power-management.txt.in:55
 msgid ""
 "PURPOSE:\n"
 " This test will check the system's ability to reboot cleanly.\n"
@@ -2680,14 +2702,14 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:59
+#: ../jobs/power-management.txt.in:69
 msgid ""
 "This will attach any logs from the power-management/reboot test to the "
 "results."
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:64
+#: ../jobs/power-management.txt.in:74
 msgid ""
 "PURPOSE:\n"
 "    This test will check your lid sensors\n"
@@ -2704,7 +2726,7 @@ msgstr ""
 "   Переходит ли ваш ноутбук в режим ожидания при закрытии крышки?"
 
 #. description
-#: ../jobs/power-management.txt.in:81
+#: ../jobs/power-management.txt.in:91
 msgid ""
 "PURPOSE:\n"
 "    This test will check your lid sensors\n"
@@ -2723,7 +2745,7 @@ msgstr ""
 "    Выключился ли экран после закрытия крышки?"
 
 #. description
-#: ../jobs/power-management.txt.in:99
+#: ../jobs/power-management.txt.in:109
 msgid ""
 "PURPOSE:\n"
 "    This test will check your lid sensors\n"
@@ -2746,17 +2768,12 @@ msgstr ""
 "    Возобновилось ли рабочее состояние после открытия крышки?"
 
 #. description
-#: ../jobs/power-management.txt.in:115
+#: ../jobs/power-management.txt.in:125
 msgid "Make sure that the RTC (Real-Time Clock) device exists."
 msgstr "Проверьте доступность RTC устройства."
 
 #. description
-#: ../jobs/power-management.txt.in:120
-msgid "Test ACPI Wakealarm (fwts wakealarm) "
-msgstr "Проверить, есть ли ошибки в работе ACPI "
-
-#. description
-#: ../jobs/power-management.txt.in:129
+#: ../jobs/power-management.txt.in:131
 msgid ""
 "Check to see if CONFIG_NO_HZ is set in the kernel (this is just a simple "
 "regression check)"
@@ -2840,6 +2857,53 @@ msgstr ""
 #. description
 #: ../jobs/stress.txt.in:41
 msgid "Attaches the log from the 30 cycle Suspend/Resume test if it exists"
+msgstr ""
+
+#. description
+#: ../jobs/stress.txt.in:50
+msgid ""
+"PURPOSE:\n"
+"   This is an automated stress test that will force the system to "
+"hibernate/resume for 250 cycles"
+msgstr ""
+
+#. description
+#: ../jobs/stress.txt.in:57
+msgid ""
+"Attaches the log from the 250 cycle Hibernate/Resume test if it exists"
+msgstr ""
+
+#. description
+#: ../jobs/stress.txt.in:66
+msgid ""
+"PURPOSE:\n"
+"   This is an automated stress test that will force the system to "
+"suspend/resume for 250 cycles."
+msgstr ""
+
+#. description
+#: ../jobs/stress.txt.in:73
+msgid "Attaches the log from the 250 cycle Suspend/Resume test if it exists"
+msgstr ""
+
+#. description
+#: ../jobs/stress.txt.in:83
+msgid "Stress reboot system (100 cycles)"
+msgstr ""
+
+#. description
+#: ../jobs/stress.txt.in:98
+msgid "Stress poweroff system (100 cycles)"
+msgstr ""
+
+#. description
+#: ../jobs/stress.txt.in:110
+msgid "Check logs for the stress reboot (100 cycles) test case"
+msgstr ""
+
+#. description
+#: ../jobs/stress.txt.in:122
+msgid "Check logs for the stress poweroff (100 cycles) test case"
 msgstr ""
 
 #. description
@@ -3326,7 +3390,7 @@ msgstr ""
 "Этот тест запускается автоматически после выполнения теста «usb/insert»."
 
 #. description
-#: ../jobs/usb.txt.in:111
+#: ../jobs/usb.txt.in:112
 msgid ""
 "This is an automated version of usb/storage-automated and assumes that the  "
 "server has usb storage devices plugged in prior to checkbox execution. It  "
@@ -3337,7 +3401,7 @@ msgstr ""
 "проверки серверов и автоматического тестирования SRU."
 
 #. description
-#: ../jobs/usb.txt.in:119
+#: ../jobs/usb.txt.in:120
 msgid ""
 "PURPOSE:\n"
 "    This test will check your USB connection.\n"
@@ -4274,82 +4338,82 @@ msgid "Unknown signal"
 msgstr "Неизвестный сигнал"
 
 #: ../checkbox_cli/cli_interface.py:31
-#: ../checkbox_urwid/urwid_interface.py:917 ../checkbox_qt/qt_interface.py:33
+#: ../checkbox_urwid/urwid_interface.py:939 ../checkbox_qt/qt_interface.py:34
 msgid "yes"
 msgstr "да"
 
 #: ../checkbox_cli/cli_interface.py:32
-#: ../checkbox_urwid/urwid_interface.py:918 ../checkbox_qt/qt_interface.py:34
+#: ../checkbox_urwid/urwid_interface.py:940 ../checkbox_qt/qt_interface.py:35
 msgid "no"
 msgstr "нет"
 
 #: ../checkbox_cli/cli_interface.py:33
-#: ../checkbox_urwid/urwid_interface.py:919 ../checkbox_qt/qt_interface.py:35
+#: ../checkbox_urwid/urwid_interface.py:941 ../checkbox_qt/qt_interface.py:36
 msgid "skip"
 msgstr "пропустить"
 
-#: ../checkbox_cli/cli_interface.py:126
+#: ../checkbox_cli/cli_interface.py:127
 msgid "Press any key to continue..."
 msgstr "Чтобы продолжить, нажмите любую клавишу..."
 
-#: ../checkbox_cli/cli_interface.py:229 ../checkbox_cli/cli_interface.py:338
-#: ../checkbox_cli/cli_interface.py:368
+#: ../checkbox_cli/cli_interface.py:230 ../checkbox_cli/cli_interface.py:339
+#: ../checkbox_cli/cli_interface.py:369
 msgid "Space when finished"
 msgstr "Пробел после завершения"
 
-#: ../checkbox_cli/cli_interface.py:367
+#: ../checkbox_cli/cli_interface.py:368
 msgid "Combine with character above to expand node"
 msgstr "Совместите с символами сверху для расширения узла"
 
-#: ../checkbox_cli/cli_interface.py:416
+#: ../checkbox_cli/cli_interface.py:417
 msgid "test"
 msgstr "тест"
 
-#: ../checkbox_urwid/urwid_interface.py:66
+#: ../checkbox_urwid/urwid_interface.py:86
 msgid "Checkbox System Testing"
 msgstr "Тестирование системы Checkbox"
 
-#: ../checkbox_urwid/urwid_interface.py:105
+#: ../checkbox_urwid/urwid_interface.py:127
 msgid "Continue"
 msgstr "Продолжить"
 
-#: ../checkbox_urwid/urwid_interface.py:198
-#: ../checkbox_urwid/urwid_interface.py:274
-#: ../checkbox_urwid/urwid_interface.py:425
-#: ../checkbox_urwid/urwid_interface.py:547 ../qt/frontend/ui_qtfront.h:609
+#: ../checkbox_urwid/urwid_interface.py:220
+#: ../checkbox_urwid/urwid_interface.py:296
+#: ../checkbox_urwid/urwid_interface.py:447
+#: ../checkbox_urwid/urwid_interface.py:569 ../qt/frontend/ui_qtfront.h:610
 msgid "Previous"
 msgstr "Назад"
 
-#: ../checkbox_urwid/urwid_interface.py:199
-#: ../checkbox_urwid/urwid_interface.py:275
-#: ../checkbox_urwid/urwid_interface.py:426
-#: ../checkbox_urwid/urwid_interface.py:548 ../qt/frontend/ui_qtfront.h:608
+#: ../checkbox_urwid/urwid_interface.py:221
+#: ../checkbox_urwid/urwid_interface.py:297
+#: ../checkbox_urwid/urwid_interface.py:448
+#: ../checkbox_urwid/urwid_interface.py:570 ../qt/frontend/ui_qtfront.h:609
 msgid "Next"
 msgstr "Далее"
 
 #. Show buttons
-#: ../checkbox_urwid/urwid_interface.py:423 ../qt/frontend/qtfront.cpp:140
+#: ../checkbox_urwid/urwid_interface.py:445 ../qt/frontend/qtfront.cpp:140
 msgid "Select All"
 msgstr "Выделить всё"
 
-#: ../checkbox_urwid/urwid_interface.py:424 ../qt/frontend/qtfront.cpp:141
+#: ../checkbox_urwid/urwid_interface.py:446 ../qt/frontend/qtfront.cpp:141
 msgid "Deselect All"
 msgstr "Отменить выбор"
 
 #. Show buttons
-#: ../checkbox_urwid/urwid_interface.py:545
+#: ../checkbox_urwid/urwid_interface.py:567
 msgid "Expand All"
 msgstr "Развернуть всё"
 
-#: ../checkbox_urwid/urwid_interface.py:546
+#: ../checkbox_urwid/urwid_interface.py:568
 msgid "Collapse All"
 msgstr "Свернуть всё"
 
-#: ../checkbox_urwid/urwid_interface.py:1013 ../qt/frontend/ui_qtfront.h:603
+#: ../checkbox_urwid/urwid_interface.py:1034 ../qt/frontend/ui_qtfront.h:604
 msgid "Test"
 msgstr "Проверить"
 
-#: ../checkbox_urwid/urwid_interface.py:1028
+#: ../checkbox_urwid/urwid_interface.py:1049
 msgid "Test Again"
 msgstr "Проверить снова"
 
@@ -4357,7 +4421,7 @@ msgstr "Проверить снова"
 msgid "_Test Again"
 msgstr "Тестировать снова"
 
-#: ../checkbox_gtk/gtk_interface.py:574 ../qt/frontend/qtfront.cpp:536
+#: ../checkbox_gtk/gtk_interface.py:574 ../qt/frontend/qtfront.cpp:540
 msgid "Info"
 msgstr "Информация"
 
@@ -4465,6 +4529,10 @@ msgstr ""
 "\n"
 "  https://launchpad.net/+login"
 
+#: ../plugins/launchpad_prompt.py:84
+msgid "Email"
+msgstr ""
+
 #: ../plugins/launchpad_prompt.py:93
 msgid "Email address must be in a proper format."
 msgstr "Адрес электронной почты должен быть правильно написан."
@@ -4502,28 +4570,39 @@ msgstr "Формирование отчета..."
 msgid "Running %s..."
 msgstr "Запускается %s..."
 
-#. Get results
-#: ../plugins/suites_prompt.py:126
-msgid "Select the suites to test"
-msgstr "Выберите компоненты для тестирования"
+#: ../plugins/suites_prompt.py:36
+msgid ""
+"Unselecting a test will invalidate your submission for Ubuntu Friendly. If "
+"you plan to participate in Ubuntu Friendly, please, select all tests. You "
+"can always skip individual tests if you don't have the needed equipment."
+msgstr ""
+"Отмена выбора проверки не позволит вам отправить результаты проверки в "
+"Ubuntu Friendly. Если вы планируете содействовать Ubuntu Friendly, "
+"пожалуйста, выберите все предложенные проверки. Вы всегда можете пропустить "
+"определённые проверки, если у вас отсутствует необходимое для проверки "
+"оборудование."
 
-#: ../scripts/keyboard_test:21
+#: ../plugins/suites_prompt.py:134 ../qt/frontend/ui_qtfront.h:596
+msgid "Choose tests to run on your system:"
+msgstr ""
+
+#: ../scripts/keyboard_test:22
 msgid "Enter text:\n"
 msgstr "Введите текст:\n"
 
-#: ../scripts/keyboard_test:41
+#: ../scripts/keyboard_test:43
 msgid "Type Text"
 msgstr "Напечатать текст"
 
-#: ../scripts/internet_test:196
+#: ../scripts/internet_test:214
 msgid "No Internet connection"
 msgstr "Нет подключения к Интернет"
 
-#: ../scripts/internet_test:199
+#: ../scripts/internet_test:217
 msgid "Connection established lost a packet"
 msgstr "Потеря пакетов на установленном соединении"
 
-#: ../scripts/internet_test:202
+#: ../scripts/internet_test:220
 msgid "Internet connection fully established"
 msgstr "Интернет-подключение полностью работоспособно"
 
@@ -4643,83 +4722,67 @@ msgstr "Вы действительно хотите пропустить вып
 msgid "Don't ask me again"
 msgstr "Больше не спрашивать"
 
-#: ../qt/frontend/treemodel.cpp:13
-msgid ""
-"Unselecting a test will invalidate your submission for Ubuntu Friendly. If "
-"you plan to participate in Ubuntu Friendly, please, select all tests. You "
-"can always skip individual tests if you don't have the needed equipment."
-msgstr ""
-"Отмена выбора проверки не позволит вам отправить результаты проверки в "
-"Ubuntu Friendly. Если вы планируете содействовать Ubuntu Friendly, "
-"пожалуйста, выберите все предложенные проверки. Вы всегда можете пропустить "
-"определённые проверки, если у вас отсутствует необходимое для проверки "
-"оборудование."
-
-#: ../qt/frontend/ui_qtfront.h:588
+#: ../qt/frontend/ui_qtfront.h:589
 msgid "Form"
 msgstr "Форма"
 
-#: ../qt/frontend/ui_qtfront.h:590
+#: ../qt/frontend/ui_qtfront.h:591
 msgid "OK"
 msgstr "ОК"
 
-#: ../qt/frontend/ui_qtfront.h:591
+#: ../qt/frontend/ui_qtfront.h:592
 msgid "Don't show me this message in the future"
 msgstr "Не показывать это сообщение в дальнейшем"
 
-#: ../qt/frontend/ui_qtfront.h:592 ../qt/frontend/ui_qtfront.h:606
+#: ../qt/frontend/ui_qtfront.h:593 ../qt/frontend/ui_qtfront.h:607
 msgid "Tab 1"
 msgstr "Вкладка 1"
 
-#: ../qt/frontend/ui_qtfront.h:593
+#: ../qt/frontend/ui_qtfront.h:594
 msgid "10 tests completed out of 30 (30%)"
 msgstr "Выполнено 10 тестов из 30 (30%)"
 
-#: ../qt/frontend/ui_qtfront.h:595
-msgid "Lists of tests to run based on your system:"
-msgstr "Список тестов для выполнения, на базе вашей системы:"
-
-#: ../qt/frontend/ui_qtfront.h:596
+#: ../qt/frontend/ui_qtfront.h:597
 msgid "Components"
 msgstr "Компоненты"
 
-#: ../qt/frontend/ui_qtfront.h:597
+#: ../qt/frontend/ui_qtfront.h:598
 msgid "Status"
 msgstr "Состояние"
 
-#: ../qt/frontend/ui_qtfront.h:598
+#: ../qt/frontend/ui_qtfront.h:599
 msgid "Start testing"
 msgstr "Начать проверку"
 
-#: ../qt/frontend/ui_qtfront.h:599
+#: ../qt/frontend/ui_qtfront.h:600
 msgid " Selection "
 msgstr " Выбор "
 
-#: ../qt/frontend/ui_qtfront.h:600 ../qt/frontend/ui_qtfront.h:601
+#: ../qt/frontend/ui_qtfront.h:601 ../qt/frontend/ui_qtfront.h:602
 msgid "TextLabel"
 msgstr "Поле текста"
 
-#: ../qt/frontend/ui_qtfront.h:602
+#: ../qt/frontend/ui_qtfront.h:603
 msgid "Yes"
 msgstr "Да"
 
-#: ../qt/frontend/ui_qtfront.h:604
+#: ../qt/frontend/ui_qtfront.h:605
 msgid "No"
 msgstr "Нет"
 
-#: ../qt/frontend/ui_qtfront.h:605
+#: ../qt/frontend/ui_qtfront.h:606
 msgid "Comment"
 msgstr "Комментарий"
 
-#: ../qt/frontend/ui_qtfront.h:607 ../qt/frontend/ui_qtfront.h:623
+#: ../qt/frontend/ui_qtfront.h:608 ../qt/frontend/ui_qtfront.h:624
 msgid "Tab 2"
 msgstr "Вкладка 2"
 
-#: ../qt/frontend/ui_qtfront.h:610
+#: ../qt/frontend/ui_qtfront.h:611
 msgid " Run "
 msgstr " Выполнить "
 
-#: ../qt/frontend/ui_qtfront.h:611
+#: ../qt/frontend/ui_qtfront.h:612
 msgid ""
 "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" "
 "\"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
@@ -4753,23 +4816,23 @@ msgstr ""
 "color:#000000;\">и щёлкните на кнопке подтверждения результатов, для "
 "отправки результатов проверки в Ubuntu Friendly.</span></p></body></html>"
 
-#: ../qt/frontend/ui_qtfront.h:617
-msgid "Personal details"
-msgstr "Личные сведения"
+#: ../qt/frontend/ui_qtfront.h:618
+msgid "Submission details"
+msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:619
+#: ../qt/frontend/ui_qtfront.h:620
 msgid "Email:"
 msgstr "Электронная почта:"
 
-#: ../qt/frontend/ui_qtfront.h:620
+#: ../qt/frontend/ui_qtfront.h:621
 msgid "Submit results"
 msgstr "Отправить результаты"
 
-#: ../qt/frontend/ui_qtfront.h:621
+#: ../qt/frontend/ui_qtfront.h:622
 msgid "View results"
 msgstr "Просмотр результатов"
 
-#: ../qt/frontend/ui_qtfront.h:622
+#: ../qt/frontend/ui_qtfront.h:623
 msgid " Results "
 msgstr " Результаты "
 
@@ -5262,6 +5325,9 @@ msgstr " Результаты "
 #~ msgstr ""
 #~ "В случае с HDMI также проверьте, воспроизводится ли звук через динамики "
 #~ "монитора."
+
+#~ msgid "Select the suites to test"
+#~ msgstr "Выберите компоненты для тестирования"
 
 #~ msgid ""
 #~ "Connect a USB audio device to your system.  Then open the \\ volume control "
@@ -6788,6 +6854,9 @@ msgstr " Результаты "
 #~ "    Проверка автоматизирована. Не изменяйте автоматически\n"
 #~ "    выбранный результат."
 
+#~ msgid "Test ACPI Wakealarm (fwts wakealarm) "
+#~ msgstr "Проверить, есть ли ошибки в работе ACPI "
+
 #~ msgid "Recover"
 #~ msgstr "Восстановить"
 
@@ -6815,6 +6884,9 @@ msgstr " Результаты "
 #~ "ПРОВЕРКА:\n"
 #~ "    Проверка автоматизирована. Не изменяйте автоматически выбираемый "
 #~ "результат."
+
+#~ msgid "Personal details"
+#~ msgstr "Личные сведения"
 
 #~ msgid ""
 #~ "PURPOSE:\n"
@@ -6886,6 +6958,30 @@ msgstr " Результаты "
 #~ "ПРОВЕРКА:\n"
 #~ "    Проверка этого теста автоматизирована. Не изменяйте\n"
 #~ "    автоматически выбранный результат."
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "    This test will test the media keys of your keyboard\n"
+#~ "STEPS:\n"
+#~ "    1. Click test to open a window on which to test the media control keys.\n"
+#~ "    2. If all the keys work, the test will be marked as passed.\n"
+#~ "    3. If your computer has no media control keys, Skip this test.\n"
+#~ "VERIFICATION:\n"
+#~ "    Do the keys work as expected?"
+#~ msgstr ""
+#~ "ЦЕЛЬ:\n"
+#~ "    Это тест для проверки мультимедийных клавиш на вашей клавиатуре\n"
+#~ "ДЕЙСТВИЯ:\n"
+#~ "    1. Щёлкните на тесте, чтобы открыть окно для проверки клавиш управления "
+#~ "мультимедиа.\n"
+#~ "    2. Если все клавиши работают, тест будет помечен, как пройденный.\n"
+#~ "    3. Если на вашей клавиатуре отсутствуют клавиши управления мультимедиа, "
+#~ "пропустите этот тест.\n"
+#~ "ПРОВЕРКА:\n"
+#~ "    Работают ли клавиши так, как ожидалось?"
+
+#~ msgid "Lists of tests to run based on your system:"
+#~ msgstr "Список тестов для выполнения, на базе вашей системы:"
 
 #~ msgid ""
 #~ "PURPOSE:\n"

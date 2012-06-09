@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-15 13:32-0400\n"
+"POT-Creation-Date: 2012-06-04 15:38-0400\n"
 "PO-Revision-Date: 2011-09-13 05:37+0000\n"
 "Last-Translator: Wylmer Wang <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-06-07 04:37+0000\n"
-"X-Generator: Launchpad (build 15353)\n"
+"X-Launchpad-Export-Date: 2012-06-09 05:14+0000\n"
+"X-Generator: Launchpad (build 15376)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:9
 msgid "_Previous"
@@ -33,7 +33,7 @@ msgstr "下一个(_X)"
 
 #. Title of the user interface
 #: ../gtk/checkbox-gtk.ui.h:1 ../qt/checkbox-qt.desktop.in.h:1
-#: ../plugins/user_interface.py:43 ../qt/frontend/ui_qtfront.h:589
+#: ../plugins/user_interface.py:43 ../qt/frontend/ui_qtfront.h:590
 msgid "System Testing"
 msgstr "系统测试"
 
@@ -53,8 +53,8 @@ msgstr "否(_N)"
 msgid "_Skip this test"
 msgstr "跳过这个测试(_S)"
 
-#: ../gtk/checkbox-gtk.ui.h:6 ../checkbox_cli/cli_interface.py:444
-#: ../checkbox_urwid/urwid_interface.py:267
+#: ../gtk/checkbox-gtk.ui.h:6 ../checkbox_cli/cli_interface.py:445
+#: ../checkbox_urwid/urwid_interface.py:289
 msgid "Further information:"
 msgstr "更多信息："
 
@@ -1180,25 +1180,29 @@ msgstr ""
 "    第一次按时无线是否关闭，第二次按时是否又打开？"
 
 #. description
-#: ../jobs/keys.txt.in:74
+#: ../jobs/keys.txt.in:75
 msgid ""
 "PURPOSE:\n"
 "    This test will test the media keys of your keyboard\n"
 "STEPS:\n"
-"    1. Click test to open a window on which to test the media control keys.\n"
+"    1. Click test to open a window on which to test the media keys.\n"
 "    2. If all the keys work, the test will be marked as passed.\n"
-"    3. If your computer has no media control keys, Skip this test.\n"
+"    3. If your computer has no media keys, Skip this test.\n"
 "VERIFICATION:\n"
 "    Do the keys work as expected?"
 msgstr ""
-"目的：\n"
-"    此测试将测试键盘上的媒体键\n"
-"步骤：\n"
-"    1. 点击“测试”打开一个窗口，将在此窗口测试媒体控制键\n"
-"    2. 如果所有键都正常工作，此测试将会被标记为通过\n"
-"    3. 如果您的计算机没有媒体控制键，请跳过此测试\n"
-"验证：\n"
-"    这些键是否正常工作？"
+
+#. description
+#: ../jobs/keys.txt.in:91
+msgid ""
+"PURPOSE:\n"
+"    This test will test the super key of your keyboard\n"
+"STEPS:\n"
+"    1. Click test to open a window on which to test the super key.\n"
+"    2. If the key works, the test will pass and the window will close.\n"
+"VERIFICATION:\n"
+"    Does the super key work as expected?"
+msgstr ""
 
 #. description
 #: ../jobs/local.txt.in:3
@@ -1737,7 +1741,22 @@ msgid "Test and exercise memory."
 msgstr "测试和使用内存。"
 
 #. description
-#: ../jobs/miscellanea.txt.in:8
+#: ../jobs/miscellanea.txt.in:3
+msgid ""
+"PURPOSE:\n"
+"    Keep tester related information in the report\n"
+"STEPS:\n"
+"    1. Tester Information\n"
+"    2. Please enter the following information in the comments field:\n"
+"       a. Name\n"
+"       b. Email Address\n"
+"       c. Reason for this test run\n"
+"VERIFICATION:\n"
+"    Nothing to verify for this test"
+msgstr ""
+
+#. description
+#: ../jobs/miscellanea.txt.in:22
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the system can switch to a virtual terminal "
@@ -1757,31 +1776,31 @@ msgstr ""
 "    您的屏幕是否临时变为文本控制台，然后又切回到您当前的会话？"
 
 #. description
-#: ../jobs/miscellanea.txt.in:22
+#: ../jobs/miscellanea.txt.in:36
 msgid "Run Firmware Test Suite (fwts) automated tests."
 msgstr "运行固件测试用例(Firmware Test Suite, fwts)自动测试。"
 
 #. description
-#: ../jobs/miscellanea.txt.in:31
+#: ../jobs/miscellanea.txt.in:45
 msgid "Attaches the FWTS results log to the submission"
 msgstr ""
 
 #. description
-#: ../jobs/miscellanea.txt.in:38
+#: ../jobs/miscellanea.txt.in:52
 msgid ""
 "This will run some basic connectivity tests against a BMC, verifying that "
 "IPMI works."
 msgstr "本测试将检测 BMC 的联通性，以确认 IPMI 是否能够正常运行。"
 
 #. description
-#: ../jobs/miscellanea.txt.in:44
+#: ../jobs/miscellanea.txt.in:58
 msgid ""
 "   Determine if we need to run tests specific to portable computers that may "
 "not apply to desktops."
 msgstr "   确定是否需要运行特定于便携式计算机的测试，这些测试不能用于台式机。"
 
 #. description
-#: ../jobs/miscellanea.txt.in:52
+#: ../jobs/miscellanea.txt.in:66
 msgid ""
 "Test that the /var/crash directory doesn't contain anything. Lists the files "
 "contained within if it does, or echoes the status of the directory (doesn't "
@@ -1789,7 +1808,7 @@ msgid ""
 msgstr "测试 /var/crash 目录是否没有包含任何内容。列出其中包含的文件(如果有)，或者回显该目录的状态(不存在或为空)"
 
 #. description
-#: ../jobs/miscellanea.txt.in:60
+#: ../jobs/miscellanea.txt.in:74
 msgid ""
 "Test to check that virtualization is supported and the test system has at "
 "least a minimal amount of RAM to function as an OpenStack Compute Node"
@@ -2372,7 +2391,12 @@ msgstr ""
 "    该系统是否正确关闭和重新启动？"
 
 #. description
-#: ../jobs/power-management.txt.in:20
+#: ../jobs/power-management.txt.in:16
+msgid "Test ACPI Wakealarm (fwts wakealarm)"
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:30
 msgid ""
 "PURPOSE:\n"
 " This test will check the system's ability to power-off and boot.\n"
@@ -2390,14 +2414,14 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:35
+#: ../jobs/power-management.txt.in:45
 msgid ""
 "This will attach any logs from the power-management/poweroff test to the "
 "results."
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:45
+#: ../jobs/power-management.txt.in:55
 msgid ""
 "PURPOSE:\n"
 " This test will check the system's ability to reboot cleanly.\n"
@@ -2413,14 +2437,14 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:59
+#: ../jobs/power-management.txt.in:69
 msgid ""
 "This will attach any logs from the power-management/reboot test to the "
 "results."
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:64
+#: ../jobs/power-management.txt.in:74
 msgid ""
 "PURPOSE:\n"
 "    This test will check your lid sensors\n"
@@ -2437,7 +2461,7 @@ msgstr ""
 "   关闭您的笔记本电脑盖是否导致您的系统挂起？"
 
 #. description
-#: ../jobs/power-management.txt.in:81
+#: ../jobs/power-management.txt.in:91
 msgid ""
 "PURPOSE:\n"
 "    This test will check your lid sensors\n"
@@ -2456,7 +2480,7 @@ msgstr ""
 "    在关闭此盖时屏幕是否关闭？"
 
 #. description
-#: ../jobs/power-management.txt.in:99
+#: ../jobs/power-management.txt.in:109
 msgid ""
 "PURPOSE:\n"
 "    This test will check your lid sensors\n"
@@ -2479,17 +2503,12 @@ msgstr ""
 "    打开此盖时该系统是否恢复？"
 
 #. description
-#: ../jobs/power-management.txt.in:115
+#: ../jobs/power-management.txt.in:125
 msgid "Make sure that the RTC (Real-Time Clock) device exists."
 msgstr "确认实时时钟(RTC)设备存在"
 
 #. description
-#: ../jobs/power-management.txt.in:120
-msgid "Test ACPI Wakealarm (fwts wakealarm) "
-msgstr "测试 ACPI 的唤醒报警特性（fwts wakealarm） "
-
-#. description
-#: ../jobs/power-management.txt.in:129
+#: ../jobs/power-management.txt.in:131
 msgid ""
 "Check to see if CONFIG_NO_HZ is set in the kernel (this is just a simple "
 "regression check)"
@@ -2568,6 +2587,53 @@ msgstr ""
 #. description
 #: ../jobs/stress.txt.in:41
 msgid "Attaches the log from the 30 cycle Suspend/Resume test if it exists"
+msgstr ""
+
+#. description
+#: ../jobs/stress.txt.in:50
+msgid ""
+"PURPOSE:\n"
+"   This is an automated stress test that will force the system to "
+"hibernate/resume for 250 cycles"
+msgstr ""
+
+#. description
+#: ../jobs/stress.txt.in:57
+msgid ""
+"Attaches the log from the 250 cycle Hibernate/Resume test if it exists"
+msgstr ""
+
+#. description
+#: ../jobs/stress.txt.in:66
+msgid ""
+"PURPOSE:\n"
+"   This is an automated stress test that will force the system to "
+"suspend/resume for 250 cycles."
+msgstr ""
+
+#. description
+#: ../jobs/stress.txt.in:73
+msgid "Attaches the log from the 250 cycle Suspend/Resume test if it exists"
+msgstr ""
+
+#. description
+#: ../jobs/stress.txt.in:83
+msgid "Stress reboot system (100 cycles)"
+msgstr ""
+
+#. description
+#: ../jobs/stress.txt.in:98
+msgid "Stress poweroff system (100 cycles)"
+msgstr ""
+
+#. description
+#: ../jobs/stress.txt.in:110
+msgid "Check logs for the stress reboot (100 cycles) test case"
+msgstr ""
+
+#. description
+#: ../jobs/stress.txt.in:122
+msgid "Check logs for the stress poweroff (100 cycles) test case"
 msgstr ""
 
 #. description
@@ -2994,7 +3060,7 @@ msgid "This test is automated and executes after the usb/insert test is run."
 msgstr "此测试自动进行，并且在 usb/insert 测试运行后执行。"
 
 #. description
-#: ../jobs/usb.txt.in:111
+#: ../jobs/usb.txt.in:112
 msgid ""
 "This is an automated version of usb/storage-automated and assumes that the  "
 "server has usb storage devices plugged in prior to checkbox execution. It  "
@@ -3004,7 +3070,7 @@ msgstr ""
 "自动测试。"
 
 #. description
-#: ../jobs/usb.txt.in:119
+#: ../jobs/usb.txt.in:120
 msgid ""
 "PURPOSE:\n"
 "    This test will check your USB connection.\n"
@@ -3876,95 +3942,95 @@ msgid "Unknown signal"
 msgstr "未知信号"
 
 #: ../checkbox_cli/cli_interface.py:31
-#: ../checkbox_urwid/urwid_interface.py:917 ../checkbox_qt/qt_interface.py:33
+#: ../checkbox_urwid/urwid_interface.py:939 ../checkbox_qt/qt_interface.py:34
 msgid "yes"
 msgstr "是"
 
 #: ../checkbox_cli/cli_interface.py:32
-#: ../checkbox_urwid/urwid_interface.py:918 ../checkbox_qt/qt_interface.py:34
+#: ../checkbox_urwid/urwid_interface.py:940 ../checkbox_qt/qt_interface.py:35
 msgid "no"
 msgstr "否"
 
 #: ../checkbox_cli/cli_interface.py:33
-#: ../checkbox_urwid/urwid_interface.py:919 ../checkbox_qt/qt_interface.py:35
+#: ../checkbox_urwid/urwid_interface.py:941 ../checkbox_qt/qt_interface.py:36
 msgid "skip"
 msgstr "跳过"
 
-#: ../checkbox_cli/cli_interface.py:126
+#: ../checkbox_cli/cli_interface.py:127
 msgid "Press any key to continue..."
 msgstr "按下任何一个键继续…"
 
-#: ../checkbox_cli/cli_interface.py:135 ../checkbox_cli/cli_interface.py:234
+#: ../checkbox_cli/cli_interface.py:136 ../checkbox_cli/cli_interface.py:235
 #, python-format
 msgid "Please choose (%s): "
 msgstr "请选择 (%s)： "
 
-#: ../checkbox_cli/cli_interface.py:229 ../checkbox_cli/cli_interface.py:338
-#: ../checkbox_cli/cli_interface.py:368
+#: ../checkbox_cli/cli_interface.py:230 ../checkbox_cli/cli_interface.py:339
+#: ../checkbox_cli/cli_interface.py:369
 msgid "Space when finished"
 msgstr "完成后的空间大小"
 
-#: ../checkbox_cli/cli_interface.py:367
+#: ../checkbox_cli/cli_interface.py:368
 msgid "Combine with character above to expand node"
 msgstr "使用以上字符连接来展开节点"
 
-#: ../checkbox_cli/cli_interface.py:416
+#: ../checkbox_cli/cli_interface.py:417
 msgid "test"
 msgstr "测试"
 
-#: ../checkbox_cli/cli_interface.py:440
+#: ../checkbox_cli/cli_interface.py:441
 msgid "test again"
 msgstr "再次测试"
 
-#: ../checkbox_cli/cli_interface.py:446
+#: ../checkbox_cli/cli_interface.py:447
 msgid "Please type here and press Ctrl-D when finished:\n"
 msgstr "请在这里输入并在结束时按下 Ctrl-D ：\n"
 
-#: ../checkbox_urwid/urwid_interface.py:66
+#: ../checkbox_urwid/urwid_interface.py:86
 msgid "Checkbox System Testing"
 msgstr "Checkbox 系统测试"
 
-#: ../checkbox_urwid/urwid_interface.py:105
+#: ../checkbox_urwid/urwid_interface.py:127
 msgid "Continue"
 msgstr "继续"
 
-#: ../checkbox_urwid/urwid_interface.py:198
-#: ../checkbox_urwid/urwid_interface.py:274
-#: ../checkbox_urwid/urwid_interface.py:425
-#: ../checkbox_urwid/urwid_interface.py:547 ../qt/frontend/ui_qtfront.h:609
+#: ../checkbox_urwid/urwid_interface.py:220
+#: ../checkbox_urwid/urwid_interface.py:296
+#: ../checkbox_urwid/urwid_interface.py:447
+#: ../checkbox_urwid/urwid_interface.py:569 ../qt/frontend/ui_qtfront.h:610
 msgid "Previous"
 msgstr "上一个"
 
-#: ../checkbox_urwid/urwid_interface.py:199
-#: ../checkbox_urwid/urwid_interface.py:275
-#: ../checkbox_urwid/urwid_interface.py:426
-#: ../checkbox_urwid/urwid_interface.py:548 ../qt/frontend/ui_qtfront.h:608
+#: ../checkbox_urwid/urwid_interface.py:221
+#: ../checkbox_urwid/urwid_interface.py:297
+#: ../checkbox_urwid/urwid_interface.py:448
+#: ../checkbox_urwid/urwid_interface.py:570 ../qt/frontend/ui_qtfront.h:609
 msgid "Next"
 msgstr "下一个"
 
 #. Show buttons
-#: ../checkbox_urwid/urwid_interface.py:423 ../qt/frontend/qtfront.cpp:140
+#: ../checkbox_urwid/urwid_interface.py:445 ../qt/frontend/qtfront.cpp:140
 msgid "Select All"
 msgstr "选择全部"
 
-#: ../checkbox_urwid/urwid_interface.py:424 ../qt/frontend/qtfront.cpp:141
+#: ../checkbox_urwid/urwid_interface.py:446 ../qt/frontend/qtfront.cpp:141
 msgid "Deselect All"
 msgstr "取消全部选择"
 
 #. Show buttons
-#: ../checkbox_urwid/urwid_interface.py:545
+#: ../checkbox_urwid/urwid_interface.py:567
 msgid "Expand All"
 msgstr "全部展开"
 
-#: ../checkbox_urwid/urwid_interface.py:546
+#: ../checkbox_urwid/urwid_interface.py:568
 msgid "Collapse All"
 msgstr "全部折叠"
 
-#: ../checkbox_urwid/urwid_interface.py:1013 ../qt/frontend/ui_qtfront.h:603
+#: ../checkbox_urwid/urwid_interface.py:1034 ../qt/frontend/ui_qtfront.h:604
 msgid "Test"
 msgstr "测试"
 
-#: ../checkbox_urwid/urwid_interface.py:1028
+#: ../checkbox_urwid/urwid_interface.py:1049
 msgid "Test Again"
 msgstr "重新测试"
 
@@ -3972,7 +4038,7 @@ msgstr "重新测试"
 msgid "_Test Again"
 msgstr "再次测试(_T)"
 
-#: ../checkbox_gtk/gtk_interface.py:574 ../qt/frontend/qtfront.cpp:536
+#: ../checkbox_gtk/gtk_interface.py:574 ../qt/frontend/qtfront.cpp:540
 msgid "Info"
 msgstr "信息"
 
@@ -4107,6 +4173,10 @@ msgstr ""
 "\n"
 "  https://launchpad.net/+login"
 
+#: ../plugins/launchpad_prompt.py:84
+msgid "Email"
+msgstr ""
+
 #: ../plugins/launchpad_prompt.py:93
 msgid "Email address must be in a proper format."
 msgstr "电子邮件地址必须有正确的格式。"
@@ -4144,28 +4214,36 @@ msgstr "正在创建报告..."
 msgid "Running %s..."
 msgstr "正在运行 %s..."
 
-#. Get results
-#: ../plugins/suites_prompt.py:126
-msgid "Select the suites to test"
-msgstr "选择套件来测试"
+#: ../plugins/suites_prompt.py:36
+msgid ""
+"Unselecting a test will invalidate your submission for Ubuntu Friendly. If "
+"you plan to participate in Ubuntu Friendly, please, select all tests. You "
+"can always skip individual tests if you don't have the needed equipment."
+msgstr ""
+"如果您取消测试项目，您的结果将不会提交到 Ubuntu Freindly 项目。如果您准备参加 Ubuntu Friendly "
+"项目，请选择所有测试项目。如果在测试中缺乏相应设备，可以到时跳过对应测试项目。"
 
-#: ../scripts/keyboard_test:21
+#: ../plugins/suites_prompt.py:134 ../qt/frontend/ui_qtfront.h:596
+msgid "Choose tests to run on your system:"
+msgstr ""
+
+#: ../scripts/keyboard_test:22
 msgid "Enter text:\n"
 msgstr "输入文本：\n"
 
-#: ../scripts/keyboard_test:41
+#: ../scripts/keyboard_test:43
 msgid "Type Text"
 msgstr "键入文本"
 
-#: ../scripts/internet_test:196
+#: ../scripts/internet_test:214
 msgid "No Internet connection"
 msgstr "没有互联网连接"
 
-#: ../scripts/internet_test:199
+#: ../scripts/internet_test:217
 msgid "Connection established lost a packet"
 msgstr "连接建立但有丢包"
 
-#: ../scripts/internet_test:202
+#: ../scripts/internet_test:220
 msgid "Internet connection fully established"
 msgstr "互联网连接完整建立"
 
@@ -4289,80 +4367,67 @@ msgstr "确定要跳过这个测试吗？"
 msgid "Don't ask me again"
 msgstr "不要再次询问"
 
-#: ../qt/frontend/treemodel.cpp:13
-msgid ""
-"Unselecting a test will invalidate your submission for Ubuntu Friendly. If "
-"you plan to participate in Ubuntu Friendly, please, select all tests. You "
-"can always skip individual tests if you don't have the needed equipment."
-msgstr ""
-"如果您取消测试项目，您的结果将不会提交到 Ubuntu Freindly 项目。如果您准备参加 Ubuntu Friendly "
-"项目，请选择所有测试项目。如果在测试中缺乏相应设备，可以到时跳过对应测试项目。"
-
-#: ../qt/frontend/ui_qtfront.h:588
+#: ../qt/frontend/ui_qtfront.h:589
 msgid "Form"
 msgstr "来自"
 
-#: ../qt/frontend/ui_qtfront.h:590
+#: ../qt/frontend/ui_qtfront.h:591
 msgid "OK"
 msgstr "成功"
 
-#: ../qt/frontend/ui_qtfront.h:591
+#: ../qt/frontend/ui_qtfront.h:592
 msgid "Don't show me this message in the future"
 msgstr "不要再次显示这一信息"
 
-#: ../qt/frontend/ui_qtfront.h:592 ../qt/frontend/ui_qtfront.h:606
+#: ../qt/frontend/ui_qtfront.h:593 ../qt/frontend/ui_qtfront.h:607
 msgid "Tab 1"
 msgstr "标签一"
 
-#: ../qt/frontend/ui_qtfront.h:593
+#: ../qt/frontend/ui_qtfront.h:594
 msgid "10 tests completed out of 30 (30%)"
 msgstr "您已完成30项测试中的10项"
 
-#: ../qt/frontend/ui_qtfront.h:595
-msgid "Lists of tests to run based on your system:"
-msgstr "根据您的系统情况，您可以进行以下测试："
-
-#: ../qt/frontend/ui_qtfront.h:596
+#: ../qt/frontend/ui_qtfront.h:597
 msgid "Components"
 msgstr "组件"
 
-#: ../qt/frontend/ui_qtfront.h:597
+#: ../qt/frontend/ui_qtfront.h:598
 msgid "Status"
 msgstr "状态"
 
-#: ../qt/frontend/ui_qtfront.h:598
+#: ../qt/frontend/ui_qtfront.h:599
 msgid "Start testing"
 msgstr "开始测试"
 
-#: ../qt/frontend/ui_qtfront.h:599
+#: ../qt/frontend/ui_qtfront.h:600
 msgid " Selection "
 msgstr " 选择 "
 
-#: ../qt/frontend/ui_qtfront.h:600 ../qt/frontend/ui_qtfront.h:601
+#: ../qt/frontend/ui_qtfront.h:601 ../qt/frontend/ui_qtfront.h:602
 msgid "TextLabel"
 msgstr "文本标签"
 
-#: ../qt/frontend/ui_qtfront.h:602
+#: ../qt/frontend/ui_qtfront.h:603
 msgid "Yes"
 msgstr "是"
 
-#: ../qt/frontend/ui_qtfront.h:604
+#: ../qt/frontend/ui_qtfront.h:605
 msgid "No"
 msgstr "否"
 
-#: ../qt/frontend/ui_qtfront.h:605
+#: ../qt/frontend/ui_qtfront.h:606
 msgid "Comment"
 msgstr "注释"
 
-#: ../qt/frontend/ui_qtfront.h:607 ../qt/frontend/ui_qtfront.h:623
+#: ../qt/frontend/ui_qtfront.h:608 ../qt/frontend/ui_qtfront.h:624
 msgid "Tab 2"
 msgstr "标签二"
 
-#: ../qt/frontend/ui_qtfront.h:610
+#: ../qt/frontend/ui_qtfront.h:611
 msgid " Run "
 msgstr " 运行 "
 
-#: ../qt/frontend/ui_qtfront.h:611
+#: ../qt/frontend/ui_qtfront.h:612
 msgid ""
 "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" "
 "\"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
@@ -4395,23 +4460,23 @@ msgstr ""
 "color:#000000;\">然后点击提交按钮向 Ubuntu Friendly "
 "项目提交您的测试结果。</span></p></body></html>"
 
-#: ../qt/frontend/ui_qtfront.h:617
-msgid "Personal details"
-msgstr "个人信息"
+#: ../qt/frontend/ui_qtfront.h:618
+msgid "Submission details"
+msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:619
+#: ../qt/frontend/ui_qtfront.h:620
 msgid "Email:"
 msgstr "电子邮件地址："
 
-#: ../qt/frontend/ui_qtfront.h:620
+#: ../qt/frontend/ui_qtfront.h:621
 msgid "Submit results"
 msgstr "提交结果"
 
-#: ../qt/frontend/ui_qtfront.h:621
+#: ../qt/frontend/ui_qtfront.h:622
 msgid "View results"
 msgstr "查看结果"
 
-#: ../qt/frontend/ui_qtfront.h:622
+#: ../qt/frontend/ui_qtfront.h:623
 msgid " Results "
 msgstr " 结果 "
 
@@ -4843,6 +4908,9 @@ msgstr " 结果 "
 #~ " 3.- 从您的内部硬盘驱动器复制一些文件到火线硬盘驱动器。\n"
 #~ " 4.- 从火线硬盘驱动器复制一些文件到您的内置硬盘驱动器。"
 
+#~ msgid "Select the suites to test"
+#~ msgstr "选择套件来测试"
+
 #~ msgid ""
 #~ "Fingerprint unlock verification procedure:\n"
 #~ " 1.- Click on the user switcher applet.\n"
@@ -5211,6 +5279,25 @@ msgstr " 结果 "
 
 #~ msgid "Attaches the screenshot captured in info/screenshot."
 #~ msgstr "附加在信息/屏幕截图中抓取的屏幕截图。"
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "    This test will test the media keys of your keyboard\n"
+#~ "STEPS:\n"
+#~ "    1. Click test to open a window on which to test the media control keys.\n"
+#~ "    2. If all the keys work, the test will be marked as passed.\n"
+#~ "    3. If your computer has no media control keys, Skip this test.\n"
+#~ "VERIFICATION:\n"
+#~ "    Do the keys work as expected?"
+#~ msgstr ""
+#~ "目的：\n"
+#~ "    此测试将测试键盘上的媒体键\n"
+#~ "步骤：\n"
+#~ "    1. 点击“测试”打开一个窗口，将在此窗口测试媒体控制键\n"
+#~ "    2. 如果所有键都正常工作，此测试将会被标记为通过\n"
+#~ "    3. 如果您的计算机没有媒体控制键，请跳过此测试\n"
+#~ "验证：\n"
+#~ "    这些键是否正常工作？"
 
 #~ msgid ""
 #~ "PURPOSE:\n"
@@ -5814,5 +5901,14 @@ msgstr " 结果 "
 #~ "DisplayPort and HDMI)."
 #~ msgstr "请分别测试所有支持的视频输出接口 (VGA, DVI, DisplayPort 和 HDMI)。"
 
+#~ msgid "Test ACPI Wakealarm (fwts wakealarm) "
+#~ msgstr "测试 ACPI 的唤醒报警特性（fwts wakealarm） "
+
 #~ msgid "Recover"
 #~ msgstr "恢复"
+
+#~ msgid "Lists of tests to run based on your system:"
+#~ msgstr "根据您的系统情况，您可以进行以下测试："
+
+#~ msgid "Personal details"
+#~ msgstr "个人信息"

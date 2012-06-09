@@ -7,19 +7,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-15 13:32-0400\n"
+"POT-Creation-Date: 2012-06-04 15:38-0400\n"
 "PO-Revision-Date: 2011-09-21 14:29+0000\n"
 "Last-Translator: Gabor Kelemen <kelemeng@gnome.hu>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-06-07 04:35+0000\n"
-"X-Generator: Launchpad (build 15353)\n"
+"X-Launchpad-Export-Date: 2012-06-09 05:11+0000\n"
+"X-Generator: Launchpad (build 15376)\n"
 
 #. Title of the user interface
 #: ../gtk/checkbox-gtk.ui.h:1 ../qt/checkbox-qt.desktop.in.h:1
-#: ../plugins/user_interface.py:43 ../qt/frontend/ui_qtfront.h:589
+#: ../plugins/user_interface.py:43 ../qt/frontend/ui_qtfront.h:590
 msgid "System Testing"
 msgstr "Rendszerteszt"
 
@@ -39,8 +39,8 @@ msgstr "_Nem"
 msgid "_Skip this test"
 msgstr "Ezen te_szt kihagyása"
 
-#: ../gtk/checkbox-gtk.ui.h:6 ../checkbox_cli/cli_interface.py:444
-#: ../checkbox_urwid/urwid_interface.py:267
+#: ../gtk/checkbox-gtk.ui.h:6 ../checkbox_cli/cli_interface.py:445
+#: ../checkbox_urwid/urwid_interface.py:289
 msgid "Further information:"
 msgstr "Bővebb információ:"
 
@@ -1237,27 +1237,29 @@ msgstr ""
 "és bekapcsolt a másodikra?"
 
 #. description
-#: ../jobs/keys.txt.in:74
+#: ../jobs/keys.txt.in:75
 msgid ""
 "PURPOSE:\n"
 "    This test will test the media keys of your keyboard\n"
 "STEPS:\n"
-"    1. Click test to open a window on which to test the media control keys.\n"
+"    1. Click test to open a window on which to test the media keys.\n"
 "    2. If all the keys work, the test will be marked as passed.\n"
-"    3. If your computer has no media control keys, Skip this test.\n"
+"    3. If your computer has no media keys, Skip this test.\n"
 "VERIFICATION:\n"
 "    Do the keys work as expected?"
 msgstr ""
-"CÉL:\n"
-"    Ez a teszt a billentyűzete médiabillentyűit teszteli\n"
-"LÉPÉSEK:\n"
-"    1. Kattintson a „Teszt” gombra egy ablak megnyitásához, amelyben "
-"tesztelheti a médiavezérlő billentyűket.\n"
-"    2. Ha minden billentyű működik, akkor a teszt sikeresnek jelölhető.\n"
-"    3. Ha a számítógép nem rendelkezik médiavezérlő billentyűkkel, akkor "
-"hagyja ki ezt a tesztet.\n"
-"ELLENŐRZÉS:\n"
-"    A billentyűk megfelelően működtek?"
+
+#. description
+#: ../jobs/keys.txt.in:91
+msgid ""
+"PURPOSE:\n"
+"    This test will test the super key of your keyboard\n"
+"STEPS:\n"
+"    1. Click test to open a window on which to test the super key.\n"
+"    2. If the key works, the test will pass and the window will close.\n"
+"VERIFICATION:\n"
+"    Does the super key work as expected?"
+msgstr ""
 
 #. description
 #: ../jobs/local.txt.in:3
@@ -1816,7 +1818,22 @@ msgid "Test and exercise memory."
 msgstr "Memória tesztelés"
 
 #. description
-#: ../jobs/miscellanea.txt.in:8
+#: ../jobs/miscellanea.txt.in:3
+msgid ""
+"PURPOSE:\n"
+"    Keep tester related information in the report\n"
+"STEPS:\n"
+"    1. Tester Information\n"
+"    2. Please enter the following information in the comments field:\n"
+"       a. Name\n"
+"       b. Email Address\n"
+"       c. Reason for this test run\n"
+"VERIFICATION:\n"
+"    Nothing to verify for this test"
+msgstr ""
+
+#. description
+#: ../jobs/miscellanea.txt.in:22
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the system can switch to a virtual terminal "
@@ -1839,17 +1856,17 @@ msgstr ""
 "visszatért a jelenlegi munkamenetre?"
 
 #. description
-#: ../jobs/miscellanea.txt.in:22
+#: ../jobs/miscellanea.txt.in:36
 msgid "Run Firmware Test Suite (fwts) automated tests."
 msgstr "Firmware ellenőrzőcsomag (fwts) automatizált tesztjeinek indítása"
 
 #. description
-#: ../jobs/miscellanea.txt.in:31
+#: ../jobs/miscellanea.txt.in:45
 msgid "Attaches the FWTS results log to the submission"
 msgstr ""
 
 #. description
-#: ../jobs/miscellanea.txt.in:38
+#: ../jobs/miscellanea.txt.in:52
 msgid ""
 "This will run some basic connectivity tests against a BMC, verifying that "
 "IPMI works."
@@ -1858,7 +1875,7 @@ msgstr ""
 "ellenőrzéséhez."
 
 #. description
-#: ../jobs/miscellanea.txt.in:44
+#: ../jobs/miscellanea.txt.in:58
 msgid ""
 "   Determine if we need to run tests specific to portable computers that may "
 "not apply to desktops."
@@ -1867,7 +1884,7 @@ msgstr ""
 "tesztek szükségességének meghatározása."
 
 #. description
-#: ../jobs/miscellanea.txt.in:52
+#: ../jobs/miscellanea.txt.in:66
 msgid ""
 "Test that the /var/crash directory doesn't contain anything. Lists the files "
 "contained within if it does, or echoes the status of the directory (doesn't "
@@ -1877,7 +1894,7 @@ msgstr ""
 "vagy az állapotának kiírása (ha nem létezik vagy üres)"
 
 #. description
-#: ../jobs/miscellanea.txt.in:60
+#: ../jobs/miscellanea.txt.in:74
 msgid ""
 "Test to check that virtualization is supported and the test system has at "
 "least a minimal amount of RAM to function as an OpenStack Compute Node"
@@ -2518,7 +2535,12 @@ msgstr ""
 "    Megfelelően állt le és indult el a rendszer?"
 
 #. description
-#: ../jobs/power-management.txt.in:20
+#: ../jobs/power-management.txt.in:16
+msgid "Test ACPI Wakealarm (fwts wakealarm)"
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:30
 msgid ""
 "PURPOSE:\n"
 " This test will check the system's ability to power-off and boot.\n"
@@ -2536,14 +2558,14 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:35
+#: ../jobs/power-management.txt.in:45
 msgid ""
 "This will attach any logs from the power-management/poweroff test to the "
 "results."
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:45
+#: ../jobs/power-management.txt.in:55
 msgid ""
 "PURPOSE:\n"
 " This test will check the system's ability to reboot cleanly.\n"
@@ -2559,14 +2581,14 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:59
+#: ../jobs/power-management.txt.in:69
 msgid ""
 "This will attach any logs from the power-management/reboot test to the "
 "results."
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:64
+#: ../jobs/power-management.txt.in:74
 msgid ""
 "PURPOSE:\n"
 "    This test will check your lid sensors\n"
@@ -2583,7 +2605,7 @@ msgstr ""
 "    A laptop fedél lecsukása felfüggeszti a rendszert?"
 
 #. description
-#: ../jobs/power-management.txt.in:81
+#: ../jobs/power-management.txt.in:91
 msgid ""
 "PURPOSE:\n"
 "    This test will check your lid sensors\n"
@@ -2602,7 +2624,7 @@ msgstr ""
 "    Kikapcsolt a képernyő, amíg a fedél le volt csukva?"
 
 #. description
-#: ../jobs/power-management.txt.in:99
+#: ../jobs/power-management.txt.in:109
 msgid ""
 "PURPOSE:\n"
 "    This test will check your lid sensors\n"
@@ -2625,17 +2647,12 @@ msgstr ""
 "    Megfelelően folytatódott a rendszer működése a fedél felnyitásakor?"
 
 #. description
-#: ../jobs/power-management.txt.in:115
+#: ../jobs/power-management.txt.in:125
 msgid "Make sure that the RTC (Real-Time Clock) device exists."
 msgstr "Győződjön meg róla, hogy az RTC (Real-Time Clock) eszköz létezik."
 
 #. description
-#: ../jobs/power-management.txt.in:120
-msgid "Test ACPI Wakealarm (fwts wakealarm) "
-msgstr "Az ACPI ébresztőóra (fwts wakealarm) ellenőrzése "
-
-#. description
-#: ../jobs/power-management.txt.in:129
+#: ../jobs/power-management.txt.in:131
 msgid ""
 "Check to see if CONFIG_NO_HZ is set in the kernel (this is just a simple "
 "regression check)"
@@ -2719,6 +2736,53 @@ msgstr ""
 #. description
 #: ../jobs/stress.txt.in:41
 msgid "Attaches the log from the 30 cycle Suspend/Resume test if it exists"
+msgstr ""
+
+#. description
+#: ../jobs/stress.txt.in:50
+msgid ""
+"PURPOSE:\n"
+"   This is an automated stress test that will force the system to "
+"hibernate/resume for 250 cycles"
+msgstr ""
+
+#. description
+#: ../jobs/stress.txt.in:57
+msgid ""
+"Attaches the log from the 250 cycle Hibernate/Resume test if it exists"
+msgstr ""
+
+#. description
+#: ../jobs/stress.txt.in:66
+msgid ""
+"PURPOSE:\n"
+"   This is an automated stress test that will force the system to "
+"suspend/resume for 250 cycles."
+msgstr ""
+
+#. description
+#: ../jobs/stress.txt.in:73
+msgid "Attaches the log from the 250 cycle Suspend/Resume test if it exists"
+msgstr ""
+
+#. description
+#: ../jobs/stress.txt.in:83
+msgid "Stress reboot system (100 cycles)"
+msgstr ""
+
+#. description
+#: ../jobs/stress.txt.in:98
+msgid "Stress poweroff system (100 cycles)"
+msgstr ""
+
+#. description
+#: ../jobs/stress.txt.in:110
+msgid "Check logs for the stress reboot (100 cycles) test case"
+msgstr ""
+
+#. description
+#: ../jobs/stress.txt.in:122
+msgid "Check logs for the stress poweroff (100 cycles) test case"
 msgstr ""
 
 #. description
@@ -3184,7 +3248,7 @@ msgid "This test is automated and executes after the usb/insert test is run."
 msgstr "Ez a teszt automatizált, és az usb/insert teszt után hajtódik végre."
 
 #. description
-#: ../jobs/usb.txt.in:111
+#: ../jobs/usb.txt.in:112
 msgid ""
 "This is an automated version of usb/storage-automated and assumes that the  "
 "server has usb storage devices plugged in prior to checkbox execution. It  "
@@ -3196,7 +3260,7 @@ msgstr ""
 "automatizált ellenőrzésekhez készült teszt."
 
 #. description
-#: ../jobs/usb.txt.in:119
+#: ../jobs/usb.txt.in:120
 msgid ""
 "PURPOSE:\n"
 "    This test will check your USB connection.\n"
@@ -4126,95 +4190,95 @@ msgid "Unknown signal"
 msgstr "Ismeretlen szignál"
 
 #: ../checkbox_cli/cli_interface.py:31
-#: ../checkbox_urwid/urwid_interface.py:917 ../checkbox_qt/qt_interface.py:33
+#: ../checkbox_urwid/urwid_interface.py:939 ../checkbox_qt/qt_interface.py:34
 msgid "yes"
 msgstr "igen"
 
 #: ../checkbox_cli/cli_interface.py:32
-#: ../checkbox_urwid/urwid_interface.py:918 ../checkbox_qt/qt_interface.py:34
+#: ../checkbox_urwid/urwid_interface.py:940 ../checkbox_qt/qt_interface.py:35
 msgid "no"
 msgstr "nem"
 
 #: ../checkbox_cli/cli_interface.py:33
-#: ../checkbox_urwid/urwid_interface.py:919 ../checkbox_qt/qt_interface.py:35
+#: ../checkbox_urwid/urwid_interface.py:941 ../checkbox_qt/qt_interface.py:36
 msgid "skip"
 msgstr "kihagyás"
 
-#: ../checkbox_cli/cli_interface.py:126
+#: ../checkbox_cli/cli_interface.py:127
 msgid "Press any key to continue..."
 msgstr "A folytatáshoz nyomjon le egy billentyűt…"
 
-#: ../checkbox_cli/cli_interface.py:135 ../checkbox_cli/cli_interface.py:234
+#: ../checkbox_cli/cli_interface.py:136 ../checkbox_cli/cli_interface.py:235
 #, python-format
 msgid "Please choose (%s): "
 msgstr "Válasszon (%s): "
 
-#: ../checkbox_cli/cli_interface.py:229 ../checkbox_cli/cli_interface.py:338
-#: ../checkbox_cli/cli_interface.py:368
+#: ../checkbox_cli/cli_interface.py:230 ../checkbox_cli/cli_interface.py:339
+#: ../checkbox_cli/cli_interface.py:369
 msgid "Space when finished"
 msgstr "Nyomja le a Szóköz billentyűt, ha végzett"
 
-#: ../checkbox_cli/cli_interface.py:367
+#: ../checkbox_cli/cli_interface.py:368
 msgid "Combine with character above to expand node"
 msgstr "A fenti karakterrel kombinálva bővíthető a csomópont"
 
-#: ../checkbox_cli/cli_interface.py:416
+#: ../checkbox_cli/cli_interface.py:417
 msgid "test"
 msgstr "teszt"
 
-#: ../checkbox_cli/cli_interface.py:440
+#: ../checkbox_cli/cli_interface.py:441
 msgid "test again"
 msgstr "Újratesztelés"
 
-#: ../checkbox_cli/cli_interface.py:446
+#: ../checkbox_cli/cli_interface.py:447
 msgid "Please type here and press Ctrl-D when finished:\n"
 msgstr "Írja be ide, majd nyomja meg a Ctrl-D kombinációt, ha elkészült.\n"
 
-#: ../checkbox_urwid/urwid_interface.py:66
+#: ../checkbox_urwid/urwid_interface.py:86
 msgid "Checkbox System Testing"
 msgstr "Checkbox rendszerteszt"
 
-#: ../checkbox_urwid/urwid_interface.py:105
+#: ../checkbox_urwid/urwid_interface.py:127
 msgid "Continue"
 msgstr "Folytatás"
 
-#: ../checkbox_urwid/urwid_interface.py:198
-#: ../checkbox_urwid/urwid_interface.py:274
-#: ../checkbox_urwid/urwid_interface.py:425
-#: ../checkbox_urwid/urwid_interface.py:547 ../qt/frontend/ui_qtfront.h:609
+#: ../checkbox_urwid/urwid_interface.py:220
+#: ../checkbox_urwid/urwid_interface.py:296
+#: ../checkbox_urwid/urwid_interface.py:447
+#: ../checkbox_urwid/urwid_interface.py:569 ../qt/frontend/ui_qtfront.h:610
 msgid "Previous"
 msgstr "Előző"
 
-#: ../checkbox_urwid/urwid_interface.py:199
-#: ../checkbox_urwid/urwid_interface.py:275
-#: ../checkbox_urwid/urwid_interface.py:426
-#: ../checkbox_urwid/urwid_interface.py:548 ../qt/frontend/ui_qtfront.h:608
+#: ../checkbox_urwid/urwid_interface.py:221
+#: ../checkbox_urwid/urwid_interface.py:297
+#: ../checkbox_urwid/urwid_interface.py:448
+#: ../checkbox_urwid/urwid_interface.py:570 ../qt/frontend/ui_qtfront.h:609
 msgid "Next"
 msgstr "Következő"
 
 #. Show buttons
-#: ../checkbox_urwid/urwid_interface.py:423 ../qt/frontend/qtfront.cpp:140
+#: ../checkbox_urwid/urwid_interface.py:445 ../qt/frontend/qtfront.cpp:140
 msgid "Select All"
 msgstr "Összes"
 
-#: ../checkbox_urwid/urwid_interface.py:424 ../qt/frontend/qtfront.cpp:141
+#: ../checkbox_urwid/urwid_interface.py:446 ../qt/frontend/qtfront.cpp:141
 msgid "Deselect All"
 msgstr "Semelyik"
 
 #. Show buttons
-#: ../checkbox_urwid/urwid_interface.py:545
+#: ../checkbox_urwid/urwid_interface.py:567
 msgid "Expand All"
 msgstr "Összes kinyitása"
 
-#: ../checkbox_urwid/urwid_interface.py:546
+#: ../checkbox_urwid/urwid_interface.py:568
 msgid "Collapse All"
 msgstr "Összes összecsukása"
 
-#: ../checkbox_urwid/urwid_interface.py:1013 ../qt/frontend/ui_qtfront.h:603
+#: ../checkbox_urwid/urwid_interface.py:1034 ../qt/frontend/ui_qtfront.h:604
 msgid "Test"
 msgstr "Tesztelés"
 
-#: ../checkbox_urwid/urwid_interface.py:1028
+#: ../checkbox_urwid/urwid_interface.py:1049
 msgid "Test Again"
 msgstr "Teszt megismétlése"
 
@@ -4222,7 +4286,7 @@ msgstr "Teszt megismétlése"
 msgid "_Test Again"
 msgstr "_Teszt megismétlése"
 
-#: ../checkbox_gtk/gtk_interface.py:574 ../qt/frontend/qtfront.cpp:536
+#: ../checkbox_gtk/gtk_interface.py:574 ../qt/frontend/qtfront.cpp:540
 msgid "Info"
 msgstr "Információk"
 
@@ -4363,6 +4427,10 @@ msgstr ""
 "\n"
 "  https://launchpad.net/+login"
 
+#: ../plugins/launchpad_prompt.py:84
+msgid "Email"
+msgstr ""
+
 #: ../plugins/launchpad_prompt.py:93
 msgid "Email address must be in a proper format."
 msgstr "Az e-mail címet megfelelő formában kell megadni."
@@ -4400,28 +4468,38 @@ msgstr "Jelentés készítése…"
 msgid "Running %s..."
 msgstr "%s futtatása…"
 
-#. Get results
-#: ../plugins/suites_prompt.py:126
-msgid "Select the suites to test"
-msgstr "Válassza ki a teszteket"
+#: ../plugins/suites_prompt.py:36
+msgid ""
+"Unselecting a test will invalidate your submission for Ubuntu Friendly. If "
+"you plan to participate in Ubuntu Friendly, please, select all tests. You "
+"can always skip individual tests if you don't have the needed equipment."
+msgstr ""
+"Egy teszt kijelölésének törlése érvényteleníti az Ubuntu Friendly projektnek "
+"beküldött adatokat. Ha szeretne részt venni az Ubuntu Friendly projektben, "
+"akkor jelölje ki az összes tesztet. Az egyes teszteket bármikor kihagyhatja, "
+"ha nem rendelkezik a szükséges eszközökkel."
 
-#: ../scripts/keyboard_test:21
+#: ../plugins/suites_prompt.py:134 ../qt/frontend/ui_qtfront.h:596
+msgid "Choose tests to run on your system:"
+msgstr ""
+
+#: ../scripts/keyboard_test:22
 msgid "Enter text:\n"
 msgstr "Szövegbevitel:\n"
 
-#: ../scripts/keyboard_test:41
+#: ../scripts/keyboard_test:43
 msgid "Type Text"
 msgstr "Gépeljen valamit"
 
-#: ../scripts/internet_test:196
+#: ../scripts/internet_test:214
 msgid "No Internet connection"
 msgstr "Nincs internetkapcsolat"
 
-#: ../scripts/internet_test:199
+#: ../scripts/internet_test:217
 msgid "Connection established lost a packet"
 msgstr "A kapcsolat során csomagvesztés történt"
 
-#: ../scripts/internet_test:202
+#: ../scripts/internet_test:220
 msgid "Internet connection fully established"
 msgstr "Az internetkapcsolat működik"
 
@@ -4545,82 +4623,67 @@ msgstr "Biztosan ki szeretné hagyni ezt a tesztet?"
 msgid "Don't ask me again"
 msgstr "Ne kérdezzen többször"
 
-#: ../qt/frontend/treemodel.cpp:13
-msgid ""
-"Unselecting a test will invalidate your submission for Ubuntu Friendly. If "
-"you plan to participate in Ubuntu Friendly, please, select all tests. You "
-"can always skip individual tests if you don't have the needed equipment."
-msgstr ""
-"Egy teszt kijelölésének törlése érvényteleníti az Ubuntu Friendly projektnek "
-"beküldött adatokat. Ha szeretne részt venni az Ubuntu Friendly projektben, "
-"akkor jelölje ki az összes tesztet. Az egyes teszteket bármikor kihagyhatja, "
-"ha nem rendelkezik a szükséges eszközökkel."
-
-#: ../qt/frontend/ui_qtfront.h:588
+#: ../qt/frontend/ui_qtfront.h:589
 msgid "Form"
 msgstr "Űrlap"
 
-#: ../qt/frontend/ui_qtfront.h:590
+#: ../qt/frontend/ui_qtfront.h:591
 msgid "OK"
 msgstr "OK"
 
-#: ../qt/frontend/ui_qtfront.h:591
+#: ../qt/frontend/ui_qtfront.h:592
 msgid "Don't show me this message in the future"
 msgstr "A jövőben ne mutassa ezt az üzenetet"
 
-#: ../qt/frontend/ui_qtfront.h:592 ../qt/frontend/ui_qtfront.h:606
+#: ../qt/frontend/ui_qtfront.h:593 ../qt/frontend/ui_qtfront.h:607
 msgid "Tab 1"
 msgstr "1. lap"
 
-#: ../qt/frontend/ui_qtfront.h:593
+#: ../qt/frontend/ui_qtfront.h:594
 msgid "10 tests completed out of 30 (30%)"
 msgstr "Tíz teszt fejeződött be a harmincból (30%)"
 
-#: ../qt/frontend/ui_qtfront.h:595
-msgid "Lists of tests to run based on your system:"
-msgstr "A rendszerből kiindulva a futtatandó tesztek listája:"
-
-#: ../qt/frontend/ui_qtfront.h:596
+#: ../qt/frontend/ui_qtfront.h:597
 msgid "Components"
 msgstr "Összetevők"
 
-#: ../qt/frontend/ui_qtfront.h:597
+#: ../qt/frontend/ui_qtfront.h:598
 msgid "Status"
 msgstr "Állapot"
 
-#: ../qt/frontend/ui_qtfront.h:598
+#: ../qt/frontend/ui_qtfront.h:599
 msgid "Start testing"
 msgstr "Tesztelés elkezdése"
 
-#: ../qt/frontend/ui_qtfront.h:599
+#: ../qt/frontend/ui_qtfront.h:600
 msgid " Selection "
 msgstr " Kijelölés "
 
-#: ../qt/frontend/ui_qtfront.h:600 ../qt/frontend/ui_qtfront.h:601
+#: ../qt/frontend/ui_qtfront.h:601 ../qt/frontend/ui_qtfront.h:602
 msgid "TextLabel"
 msgstr "TextLabel"
 
-#: ../qt/frontend/ui_qtfront.h:602
+#: ../qt/frontend/ui_qtfront.h:603
 msgid "Yes"
 msgstr "Igen"
 
-#: ../qt/frontend/ui_qtfront.h:604
+#: ../qt/frontend/ui_qtfront.h:605
 msgid "No"
 msgstr "Nem"
 
-#: ../qt/frontend/ui_qtfront.h:605
+#: ../qt/frontend/ui_qtfront.h:606
 msgid "Comment"
 msgstr "Megjegyzés"
 
-#: ../qt/frontend/ui_qtfront.h:607 ../qt/frontend/ui_qtfront.h:623
+#: ../qt/frontend/ui_qtfront.h:608 ../qt/frontend/ui_qtfront.h:624
 msgid "Tab 2"
 msgstr "2. lap"
 
-#: ../qt/frontend/ui_qtfront.h:610
+#: ../qt/frontend/ui_qtfront.h:611
 msgid " Run "
 msgstr " Futtatás "
 
-#: ../qt/frontend/ui_qtfront.h:611
+#: ../qt/frontend/ui_qtfront.h:612
 msgid ""
 "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" "
 "\"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
@@ -4655,23 +4718,23 @@ msgstr ""
 "teszteredmények beküldéséhez az Ubuntu Friendly "
 "projektnek.</span></p></body></html>"
 
-#: ../qt/frontend/ui_qtfront.h:617
-msgid "Personal details"
-msgstr "Személyes adatok"
+#: ../qt/frontend/ui_qtfront.h:618
+msgid "Submission details"
+msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:619
+#: ../qt/frontend/ui_qtfront.h:620
 msgid "Email:"
 msgstr "E-mail:"
 
-#: ../qt/frontend/ui_qtfront.h:620
+#: ../qt/frontend/ui_qtfront.h:621
 msgid "Submit results"
 msgstr "Eredmények beküldése"
 
-#: ../qt/frontend/ui_qtfront.h:621
+#: ../qt/frontend/ui_qtfront.h:622
 msgid "View results"
 msgstr "Eredmények megjelenítése"
 
-#: ../qt/frontend/ui_qtfront.h:622
+#: ../qt/frontend/ui_qtfront.h:623
 msgid " Results "
 msgstr " Eredmények "
 
@@ -5630,6 +5693,9 @@ msgstr " Eredmények "
 
 #~ msgid "Did the video play using a plugin?"
 #~ msgstr "A videolejászához szüksége volt bővítményre?"
+
+#~ msgid "Select the suites to test"
+#~ msgstr "Válassza ki a teszteket"
 
 #~ msgid "Test that the /var/crash directory doesn't contain anything."
 #~ msgstr "Teszt, hogy a  /var/crash mappa tartalmaz-e valamit."
@@ -6621,6 +6687,9 @@ msgstr " Eredmények "
 #~ "   Az asztal jobb felső sarkában lévő óra az időzónának megfelelő dátumot és "
 #~ "időt mutatja?"
 
+#~ msgid "Test ACPI Wakealarm (fwts wakealarm) "
+#~ msgstr "Az ACPI ébresztőóra (fwts wakealarm) ellenőrzése "
+
 #~ msgid ""
 #~ "PURPOSE:\n"
 #~ "    This test will check that the display is correct after suspend and "
@@ -6684,6 +6753,9 @@ msgstr " Eredmények "
 #~ " ELLENŐRZÉS:\n"
 #~ "    A teszt ellenőrzése automatikusan történik. Ne változtassa meg az "
 #~ "automatikusan kijelölt eredményt."
+
+#~ msgid "Personal details"
+#~ msgstr "Személyes adatok"
 
 #~ msgid "Recover"
 #~ msgstr "Helyreállítás"
@@ -7052,3 +7124,27 @@ msgstr " Eredmények "
 #~ "ELLENŐRZÉS:\n"
 #~ "    A teszt ellenőrzése automatikus. Ne változtassa meg az\n"
 #~ "    automatikusan kijelölt eredményt."
+
+#~ msgid "Lists of tests to run based on your system:"
+#~ msgstr "A rendszerből kiindulva a futtatandó tesztek listája:"
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "    This test will test the media keys of your keyboard\n"
+#~ "STEPS:\n"
+#~ "    1. Click test to open a window on which to test the media control keys.\n"
+#~ "    2. If all the keys work, the test will be marked as passed.\n"
+#~ "    3. If your computer has no media control keys, Skip this test.\n"
+#~ "VERIFICATION:\n"
+#~ "    Do the keys work as expected?"
+#~ msgstr ""
+#~ "CÉL:\n"
+#~ "    Ez a teszt a billentyűzete médiabillentyűit teszteli\n"
+#~ "LÉPÉSEK:\n"
+#~ "    1. Kattintson a „Teszt” gombra egy ablak megnyitásához, amelyben "
+#~ "tesztelheti a médiavezérlő billentyűket.\n"
+#~ "    2. Ha minden billentyű működik, akkor a teszt sikeresnek jelölhető.\n"
+#~ "    3. Ha a számítógép nem rendelkezik médiavezérlő billentyűkkel, akkor "
+#~ "hagyja ki ezt a tesztet.\n"
+#~ "ELLENŐRZÉS:\n"
+#~ "    A billentyűk megfelelően működtek?"

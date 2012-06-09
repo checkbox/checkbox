@@ -7,19 +7,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-05-15 13:32-0400\n"
+"POT-Creation-Date: 2012-06-04 15:38-0400\n"
 "PO-Revision-Date: 2011-12-06 23:38+0000\n"
 "Last-Translator: Samir Ribić <Unknown>\n"
 "Language-Team: Bosnian <bs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-06-07 04:33+0000\n"
-"X-Generator: Launchpad (build 15353)\n"
+"X-Launchpad-Export-Date: 2012-06-09 05:10+0000\n"
+"X-Generator: Launchpad (build 15376)\n"
 
 #. Title of the user interface
 #: ../gtk/checkbox-gtk.ui.h:1 ../qt/checkbox-qt.desktop.in.h:1
-#: ../plugins/user_interface.py:43 ../qt/frontend/ui_qtfront.h:589
+#: ../plugins/user_interface.py:43 ../qt/frontend/ui_qtfront.h:590
 msgid "System Testing"
 msgstr "Testiranje sistema"
 
@@ -39,8 +39,8 @@ msgstr "_Ne"
 msgid "_Skip this test"
 msgstr "_Preskoči ovaj test"
 
-#: ../gtk/checkbox-gtk.ui.h:6 ../checkbox_cli/cli_interface.py:444
-#: ../checkbox_urwid/urwid_interface.py:267
+#: ../gtk/checkbox-gtk.ui.h:6 ../checkbox_cli/cli_interface.py:445
+#: ../checkbox_urwid/urwid_interface.py:289
 msgid "Further information:"
 msgstr "Dodatne informacije:"
 
@@ -1227,27 +1227,29 @@ msgstr ""
 "    Da li je se bežična mreža deaktivirala pa ponovo aktivirala?"
 
 #. description
-#: ../jobs/keys.txt.in:74
+#: ../jobs/keys.txt.in:75
 msgid ""
 "PURPOSE:\n"
 "    This test will test the media keys of your keyboard\n"
 "STEPS:\n"
-"    1. Click test to open a window on which to test the media control keys.\n"
+"    1. Click test to open a window on which to test the media keys.\n"
 "    2. If all the keys work, the test will be marked as passed.\n"
-"    3. If your computer has no media control keys, Skip this test.\n"
+"    3. If your computer has no media keys, Skip this test.\n"
 "VERIFICATION:\n"
 "    Do the keys work as expected?"
 msgstr ""
-"NAMJENA:\n"
-"    Ovaj test će testirati medijske tastere na tastaturi\n"
-"KORACI:\n"
-"    1. Kliknite test da biste otvorili prozor na kojem se testiraju medijski "
-"kontrolni tasteri.\n"
-"    2. Ako svi tasteri rade, test će biti označen kao prošao.\n"
-"    3. Ako vaš računar nema medijske kontrolne tastere, preskočite ovaj "
-"test.\n"
-"VERIFIKACIJA:\n"
-"    Da li tasteri rade kao što se očekuje?"
+
+#. description
+#: ../jobs/keys.txt.in:91
+msgid ""
+"PURPOSE:\n"
+"    This test will test the super key of your keyboard\n"
+"STEPS:\n"
+"    1. Click test to open a window on which to test the super key.\n"
+"    2. If the key works, the test will pass and the window will close.\n"
+"VERIFICATION:\n"
+"    Does the super key work as expected?"
+msgstr ""
 
 #. description
 #: ../jobs/local.txt.in:3
@@ -1806,7 +1808,22 @@ msgid "Test and exercise memory."
 msgstr "Testiraj i provježbaj memoriju."
 
 #. description
-#: ../jobs/miscellanea.txt.in:8
+#: ../jobs/miscellanea.txt.in:3
+msgid ""
+"PURPOSE:\n"
+"    Keep tester related information in the report\n"
+"STEPS:\n"
+"    1. Tester Information\n"
+"    2. Please enter the following information in the comments field:\n"
+"       a. Name\n"
+"       b. Email Address\n"
+"       c. Reason for this test run\n"
+"VERIFICATION:\n"
+"    Nothing to verify for this test"
+msgstr ""
+
+#. description
+#: ../jobs/miscellanea.txt.in:22
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the system can switch to a virtual terminal "
@@ -1829,17 +1846,17 @@ msgstr ""
 "zatim se prebacite nazad na vašoj trenutnoj sesiji?"
 
 #. description
-#: ../jobs/miscellanea.txt.in:22
+#: ../jobs/miscellanea.txt.in:36
 msgid "Run Firmware Test Suite (fwts) automated tests."
 msgstr "Pokreni Firmware Test Suite (fvts) automatizovane testove."
 
 #. description
-#: ../jobs/miscellanea.txt.in:31
+#: ../jobs/miscellanea.txt.in:45
 msgid "Attaches the FWTS results log to the submission"
 msgstr ""
 
 #. description
-#: ../jobs/miscellanea.txt.in:38
+#: ../jobs/miscellanea.txt.in:52
 msgid ""
 "This will run some basic connectivity tests against a BMC, verifying that "
 "IPMI works."
@@ -1848,7 +1865,7 @@ msgstr ""
 "radi."
 
 #. description
-#: ../jobs/miscellanea.txt.in:44
+#: ../jobs/miscellanea.txt.in:58
 msgid ""
 "   Determine if we need to run tests specific to portable computers that may "
 "not apply to desktops."
@@ -1857,7 +1874,7 @@ msgstr ""
 "računarima koji ne moraju odnositi na desktop."
 
 #. description
-#: ../jobs/miscellanea.txt.in:52
+#: ../jobs/miscellanea.txt.in:66
 msgid ""
 "Test that the /var/crash directory doesn't contain anything. Lists the files "
 "contained within if it does, or echoes the status of the directory (doesn't "
@@ -1867,7 +1884,7 @@ msgstr ""
 "unutra ako imaili prikazuje  status direktorija (ne postoji/prazan)"
 
 #. description
-#: ../jobs/miscellanea.txt.in:60
+#: ../jobs/miscellanea.txt.in:74
 msgid ""
 "Test to check that virtualization is supported and the test system has at "
 "least a minimal amount of RAM to function as an OpenStack Compute Node"
@@ -2505,7 +2522,12 @@ msgstr ""
 "    Da li se sistem deaktivirao i restartovao ispravno?"
 
 #. description
-#: ../jobs/power-management.txt.in:20
+#: ../jobs/power-management.txt.in:16
+msgid "Test ACPI Wakealarm (fwts wakealarm)"
+msgstr ""
+
+#. description
+#: ../jobs/power-management.txt.in:30
 msgid ""
 "PURPOSE:\n"
 " This test will check the system's ability to power-off and boot.\n"
@@ -2523,14 +2545,14 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:35
+#: ../jobs/power-management.txt.in:45
 msgid ""
 "This will attach any logs from the power-management/poweroff test to the "
 "results."
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:45
+#: ../jobs/power-management.txt.in:55
 msgid ""
 "PURPOSE:\n"
 " This test will check the system's ability to reboot cleanly.\n"
@@ -2546,14 +2568,14 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:59
+#: ../jobs/power-management.txt.in:69
 msgid ""
 "This will attach any logs from the power-management/reboot test to the "
 "results."
 msgstr ""
 
 #. description
-#: ../jobs/power-management.txt.in:64
+#: ../jobs/power-management.txt.in:74
 msgid ""
 "PURPOSE:\n"
 "    This test will check your lid sensors\n"
@@ -2570,7 +2592,7 @@ msgstr ""
 "   Da li vaš laptop zatvaranje poklopca izazvati vaš sistem da suspenduje?"
 
 #. description
-#: ../jobs/power-management.txt.in:81
+#: ../jobs/power-management.txt.in:91
 msgid ""
 "PURPOSE:\n"
 "    This test will check your lid sensors\n"
@@ -2589,7 +2611,7 @@ msgstr ""
 "    Da li je ekran isključen dok je poklopac zatvoren?"
 
 #. description
-#: ../jobs/power-management.txt.in:99
+#: ../jobs/power-management.txt.in:109
 msgid ""
 "PURPOSE:\n"
 "    This test will check your lid sensors\n"
@@ -2612,17 +2634,12 @@ msgstr ""
 "    Da li se sistem nastavio kada je poklopac otvoren?"
 
 #. description
-#: ../jobs/power-management.txt.in:115
+#: ../jobs/power-management.txt.in:125
 msgid "Make sure that the RTC (Real-Time Clock) device exists."
 msgstr "Uvjerite se da RTC (sat realnog vremena) postoji."
 
 #. description
-#: ../jobs/power-management.txt.in:120
-msgid "Test ACPI Wakealarm (fwts wakealarm) "
-msgstr "Test ACPI alarma za buđenje (fwts wakealarm) "
-
-#. description
-#: ../jobs/power-management.txt.in:129
+#: ../jobs/power-management.txt.in:131
 msgid ""
 "Check to see if CONFIG_NO_HZ is set in the kernel (this is just a simple "
 "regression check)"
@@ -2705,6 +2722,53 @@ msgstr ""
 #. description
 #: ../jobs/stress.txt.in:41
 msgid "Attaches the log from the 30 cycle Suspend/Resume test if it exists"
+msgstr ""
+
+#. description
+#: ../jobs/stress.txt.in:50
+msgid ""
+"PURPOSE:\n"
+"   This is an automated stress test that will force the system to "
+"hibernate/resume for 250 cycles"
+msgstr ""
+
+#. description
+#: ../jobs/stress.txt.in:57
+msgid ""
+"Attaches the log from the 250 cycle Hibernate/Resume test if it exists"
+msgstr ""
+
+#. description
+#: ../jobs/stress.txt.in:66
+msgid ""
+"PURPOSE:\n"
+"   This is an automated stress test that will force the system to "
+"suspend/resume for 250 cycles."
+msgstr ""
+
+#. description
+#: ../jobs/stress.txt.in:73
+msgid "Attaches the log from the 250 cycle Suspend/Resume test if it exists"
+msgstr ""
+
+#. description
+#: ../jobs/stress.txt.in:83
+msgid "Stress reboot system (100 cycles)"
+msgstr ""
+
+#. description
+#: ../jobs/stress.txt.in:98
+msgid "Stress poweroff system (100 cycles)"
+msgstr ""
+
+#. description
+#: ../jobs/stress.txt.in:110
+msgid "Check logs for the stress reboot (100 cycles) test case"
+msgstr ""
+
+#. description
+#: ../jobs/stress.txt.in:122
+msgid "Check logs for the stress poweroff (100 cycles) test case"
 msgstr ""
 
 #. description
@@ -3168,7 +3232,7 @@ msgid "This test is automated and executes after the usb/insert test is run."
 msgstr "Ova j test je automatizovan i izvršava se nakon testa ubaivnja USB."
 
 #. description
-#: ../jobs/usb.txt.in:111
+#: ../jobs/usb.txt.in:112
 msgid ""
 "This is an automated version of usb/storage-automated and assumes that the  "
 "server has usb storage devices plugged in prior to checkbox execution. It  "
@@ -3179,7 +3243,7 @@ msgstr ""
 "Namijenjen je za servere i automatsko SRU testiranje."
 
 #. description
-#: ../jobs/usb.txt.in:119
+#: ../jobs/usb.txt.in:120
 msgid ""
 "PURPOSE:\n"
 "    This test will check your USB connection.\n"
@@ -4092,95 +4156,95 @@ msgid "Unknown signal"
 msgstr "Nepoznati signal"
 
 #: ../checkbox_cli/cli_interface.py:31
-#: ../checkbox_urwid/urwid_interface.py:917 ../checkbox_qt/qt_interface.py:33
+#: ../checkbox_urwid/urwid_interface.py:939 ../checkbox_qt/qt_interface.py:34
 msgid "yes"
 msgstr "da"
 
 #: ../checkbox_cli/cli_interface.py:32
-#: ../checkbox_urwid/urwid_interface.py:918 ../checkbox_qt/qt_interface.py:34
+#: ../checkbox_urwid/urwid_interface.py:940 ../checkbox_qt/qt_interface.py:35
 msgid "no"
 msgstr "ne"
 
 #: ../checkbox_cli/cli_interface.py:33
-#: ../checkbox_urwid/urwid_interface.py:919 ../checkbox_qt/qt_interface.py:35
+#: ../checkbox_urwid/urwid_interface.py:941 ../checkbox_qt/qt_interface.py:36
 msgid "skip"
 msgstr "preskoči"
 
-#: ../checkbox_cli/cli_interface.py:126
+#: ../checkbox_cli/cli_interface.py:127
 msgid "Press any key to continue..."
 msgstr "Pritisnite bilo koji taster za nastavak..."
 
-#: ../checkbox_cli/cli_interface.py:135 ../checkbox_cli/cli_interface.py:234
+#: ../checkbox_cli/cli_interface.py:136 ../checkbox_cli/cli_interface.py:235
 #, python-format
 msgid "Please choose (%s): "
 msgstr "Molim izaberite (%s): "
 
-#: ../checkbox_cli/cli_interface.py:229 ../checkbox_cli/cli_interface.py:338
-#: ../checkbox_cli/cli_interface.py:368
+#: ../checkbox_cli/cli_interface.py:230 ../checkbox_cli/cli_interface.py:339
+#: ../checkbox_cli/cli_interface.py:369
 msgid "Space when finished"
 msgstr "Razmak pri završetku"
 
-#: ../checkbox_cli/cli_interface.py:367
+#: ../checkbox_cli/cli_interface.py:368
 msgid "Combine with character above to expand node"
 msgstr "Kombinuj s znakom iznad za ekspanziju čvora"
 
-#: ../checkbox_cli/cli_interface.py:416
+#: ../checkbox_cli/cli_interface.py:417
 msgid "test"
 msgstr "testiraj"
 
-#: ../checkbox_cli/cli_interface.py:440
+#: ../checkbox_cli/cli_interface.py:441
 msgid "test again"
 msgstr "testiraj ponovo"
 
-#: ../checkbox_cli/cli_interface.py:446
+#: ../checkbox_cli/cli_interface.py:447
 msgid "Please type here and press Ctrl-D when finished:\n"
 msgstr "Molim kucajte ovde i pritisnite ''Ctrl-D'' kada završite:\n"
 
-#: ../checkbox_urwid/urwid_interface.py:66
+#: ../checkbox_urwid/urwid_interface.py:86
 msgid "Checkbox System Testing"
 msgstr "Checkbox sistemsko testiranje"
 
-#: ../checkbox_urwid/urwid_interface.py:105
+#: ../checkbox_urwid/urwid_interface.py:127
 msgid "Continue"
 msgstr "Nastavi"
 
-#: ../checkbox_urwid/urwid_interface.py:198
-#: ../checkbox_urwid/urwid_interface.py:274
-#: ../checkbox_urwid/urwid_interface.py:425
-#: ../checkbox_urwid/urwid_interface.py:547 ../qt/frontend/ui_qtfront.h:609
+#: ../checkbox_urwid/urwid_interface.py:220
+#: ../checkbox_urwid/urwid_interface.py:296
+#: ../checkbox_urwid/urwid_interface.py:447
+#: ../checkbox_urwid/urwid_interface.py:569 ../qt/frontend/ui_qtfront.h:610
 msgid "Previous"
 msgstr "Prethodni"
 
-#: ../checkbox_urwid/urwid_interface.py:199
-#: ../checkbox_urwid/urwid_interface.py:275
-#: ../checkbox_urwid/urwid_interface.py:426
-#: ../checkbox_urwid/urwid_interface.py:548 ../qt/frontend/ui_qtfront.h:608
+#: ../checkbox_urwid/urwid_interface.py:221
+#: ../checkbox_urwid/urwid_interface.py:297
+#: ../checkbox_urwid/urwid_interface.py:448
+#: ../checkbox_urwid/urwid_interface.py:570 ../qt/frontend/ui_qtfront.h:609
 msgid "Next"
 msgstr "Sljedeći"
 
 #. Show buttons
-#: ../checkbox_urwid/urwid_interface.py:423 ../qt/frontend/qtfront.cpp:140
+#: ../checkbox_urwid/urwid_interface.py:445 ../qt/frontend/qtfront.cpp:140
 msgid "Select All"
 msgstr "Izaberi sve"
 
-#: ../checkbox_urwid/urwid_interface.py:424 ../qt/frontend/qtfront.cpp:141
+#: ../checkbox_urwid/urwid_interface.py:446 ../qt/frontend/qtfront.cpp:141
 msgid "Deselect All"
 msgstr "Poništi izbor"
 
 #. Show buttons
-#: ../checkbox_urwid/urwid_interface.py:545
+#: ../checkbox_urwid/urwid_interface.py:567
 msgid "Expand All"
 msgstr "Proširi sve"
 
-#: ../checkbox_urwid/urwid_interface.py:546
+#: ../checkbox_urwid/urwid_interface.py:568
 msgid "Collapse All"
 msgstr "Sažmi sve"
 
-#: ../checkbox_urwid/urwid_interface.py:1013 ../qt/frontend/ui_qtfront.h:603
+#: ../checkbox_urwid/urwid_interface.py:1034 ../qt/frontend/ui_qtfront.h:604
 msgid "Test"
 msgstr "Testiraj"
 
-#: ../checkbox_urwid/urwid_interface.py:1028
+#: ../checkbox_urwid/urwid_interface.py:1049
 msgid "Test Again"
 msgstr "Ponovo testiraj"
 
@@ -4188,7 +4252,7 @@ msgstr "Ponovo testiraj"
 msgid "_Test Again"
 msgstr "_Testiraj ponovo"
 
-#: ../checkbox_gtk/gtk_interface.py:574 ../qt/frontend/qtfront.cpp:536
+#: ../checkbox_gtk/gtk_interface.py:574 ../qt/frontend/qtfront.cpp:540
 msgid "Info"
 msgstr "Informacije"
 
@@ -4327,6 +4391,10 @@ msgstr ""
 "\n"
 "  https://launchpad.net/+login"
 
+#: ../plugins/launchpad_prompt.py:84
+msgid "Email"
+msgstr ""
+
 #: ../plugins/launchpad_prompt.py:93
 msgid "Email address must be in a proper format."
 msgstr "Adresa e-pošte mora biti u odgovarajućem formatu."
@@ -4364,28 +4432,37 @@ msgstr "Sastavljam izveštaj..."
 msgid "Running %s..."
 msgstr "Izvršavam %s..."
 
-#. Get results
-#: ../plugins/suites_prompt.py:126
-msgid "Select the suites to test"
-msgstr "Izaberite komplet za testiranje"
+#: ../plugins/suites_prompt.py:36
+msgid ""
+"Unselecting a test will invalidate your submission for Ubuntu Friendly. If "
+"you plan to participate in Ubuntu Friendly, please, select all tests. You "
+"can always skip individual tests if you don't have the needed equipment."
+msgstr ""
+"Opoziv testa će poništiti vašu prijavu za Ubuntu Friendly. Ako planirate da "
+"učestvujete u Ubuntu Friendy, molimo Vas, izaberite sve testove. Uvijek "
+"možete preskočiti pojedinačne testove ako nemate potrebnu opremu."
 
-#: ../scripts/keyboard_test:21
+#: ../plugins/suites_prompt.py:134 ../qt/frontend/ui_qtfront.h:596
+msgid "Choose tests to run on your system:"
+msgstr ""
+
+#: ../scripts/keyboard_test:22
 msgid "Enter text:\n"
 msgstr "Unesite tekst:\n"
 
-#: ../scripts/keyboard_test:41
+#: ../scripts/keyboard_test:43
 msgid "Type Text"
 msgstr "Kucajte tekst"
 
-#: ../scripts/internet_test:196
+#: ../scripts/internet_test:214
 msgid "No Internet connection"
 msgstr "Nema Internet veze"
 
-#: ../scripts/internet_test:199
+#: ../scripts/internet_test:217
 msgid "Connection established lost a packet"
 msgstr "Uspostavljena veza izgubila paket"
 
-#: ../scripts/internet_test:202
+#: ../scripts/internet_test:220
 msgid "Internet connection fully established"
 msgstr "Internet veza je u potpunosti uspostavljena"
 
@@ -4509,81 +4586,67 @@ msgstr "Da li zaista želite preskočiti ovaj test"
 msgid "Don't ask me again"
 msgstr "Ne pitaj me više"
 
-#: ../qt/frontend/treemodel.cpp:13
-msgid ""
-"Unselecting a test will invalidate your submission for Ubuntu Friendly. If "
-"you plan to participate in Ubuntu Friendly, please, select all tests. You "
-"can always skip individual tests if you don't have the needed equipment."
-msgstr ""
-"Opoziv testa će poništiti vašu prijavu za Ubuntu Friendly. Ako planirate da "
-"učestvujete u Ubuntu Friendy, molimo Vas, izaberite sve testove. Uvijek "
-"možete preskočiti pojedinačne testove ako nemate potrebnu opremu."
-
-#: ../qt/frontend/ui_qtfront.h:588
+#: ../qt/frontend/ui_qtfront.h:589
 msgid "Form"
 msgstr "Forma"
 
-#: ../qt/frontend/ui_qtfront.h:590
+#: ../qt/frontend/ui_qtfront.h:591
 msgid "OK"
 msgstr "U redu"
 
-#: ../qt/frontend/ui_qtfront.h:591
+#: ../qt/frontend/ui_qtfront.h:592
 msgid "Don't show me this message in the future"
 msgstr "Ne prikazuj ovu poruku u budućnosti"
 
-#: ../qt/frontend/ui_qtfront.h:592 ../qt/frontend/ui_qtfront.h:606
+#: ../qt/frontend/ui_qtfront.h:593 ../qt/frontend/ui_qtfront.h:607
 msgid "Tab 1"
 msgstr "Kartica 1"
 
-#: ../qt/frontend/ui_qtfront.h:593
+#: ../qt/frontend/ui_qtfront.h:594
 msgid "10 tests completed out of 30 (30%)"
 msgstr "10 testova završeno od 30 (30%)"
 
-#: ../qt/frontend/ui_qtfront.h:595
-msgid "Lists of tests to run based on your system:"
-msgstr "Lista testova koji će se izvršiti prema vašem sistemu"
-
-#: ../qt/frontend/ui_qtfront.h:596
+#: ../qt/frontend/ui_qtfront.h:597
 msgid "Components"
 msgstr "Komponente"
 
-#: ../qt/frontend/ui_qtfront.h:597
+#: ../qt/frontend/ui_qtfront.h:598
 msgid "Status"
 msgstr "Status"
 
-#: ../qt/frontend/ui_qtfront.h:598
+#: ../qt/frontend/ui_qtfront.h:599
 msgid "Start testing"
 msgstr "Počni testiranje"
 
-#: ../qt/frontend/ui_qtfront.h:599
+#: ../qt/frontend/ui_qtfront.h:600
 msgid " Selection "
 msgstr " Izbor "
 
-#: ../qt/frontend/ui_qtfront.h:600 ../qt/frontend/ui_qtfront.h:601
+#: ../qt/frontend/ui_qtfront.h:601 ../qt/frontend/ui_qtfront.h:602
 msgid "TextLabel"
 msgstr "TekstualnaOznaka"
 
-#: ../qt/frontend/ui_qtfront.h:602
+#: ../qt/frontend/ui_qtfront.h:603
 msgid "Yes"
 msgstr "Da"
 
-#: ../qt/frontend/ui_qtfront.h:604
+#: ../qt/frontend/ui_qtfront.h:605
 msgid "No"
 msgstr "Ne"
 
-#: ../qt/frontend/ui_qtfront.h:605
+#: ../qt/frontend/ui_qtfront.h:606
 msgid "Comment"
 msgstr "Komentar"
 
-#: ../qt/frontend/ui_qtfront.h:607 ../qt/frontend/ui_qtfront.h:623
+#: ../qt/frontend/ui_qtfront.h:608 ../qt/frontend/ui_qtfront.h:624
 msgid "Tab 2"
 msgstr "Kartica 2"
 
-#: ../qt/frontend/ui_qtfront.h:610
+#: ../qt/frontend/ui_qtfront.h:611
 msgid " Run "
 msgstr " Pokreni "
 
-#: ../qt/frontend/ui_qtfront.h:611
+#: ../qt/frontend/ui_qtfront.h:612
 msgid ""
 "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" "
 "\"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
@@ -4617,23 +4680,23 @@ msgstr ""
 "color:#000000;\">i kliknite na dugme Proslijedi Rezultate da podnesete ove "
 "rezultate testiranja na Ubuntu Friendly.</span></p></body></html>"
 
-#: ../qt/frontend/ui_qtfront.h:617
-msgid "Personal details"
-msgstr "Lični podaci"
+#: ../qt/frontend/ui_qtfront.h:618
+msgid "Submission details"
+msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:619
+#: ../qt/frontend/ui_qtfront.h:620
 msgid "Email:"
 msgstr "Email:"
 
-#: ../qt/frontend/ui_qtfront.h:620
+#: ../qt/frontend/ui_qtfront.h:621
 msgid "Submit results"
 msgstr "Pošalji rezultate"
 
-#: ../qt/frontend/ui_qtfront.h:621
+#: ../qt/frontend/ui_qtfront.h:622
 msgid "View results"
 msgstr "Pogledaj rezultate"
 
-#: ../qt/frontend/ui_qtfront.h:622
+#: ../qt/frontend/ui_qtfront.h:623
 msgid " Results "
 msgstr " Rezultati "
 
@@ -5024,6 +5087,9 @@ msgstr " Rezultati "
 
 #~ msgid "If your system does not have a S-VIDEO port, please skip this test."
 #~ msgstr "Ako vaš sistem nema S-VIDEO port, molim preskočite ovaj test."
+
+#~ msgid "Select the suites to test"
+#~ msgstr "Izaberite komplet za testiranje"
 
 #~ msgid "If your system does not have a VGA port, please skip this test."
 #~ msgstr "Ako vaš sistem nema VGA port, molim preskočite ovaj test."
@@ -6373,6 +6439,27 @@ msgstr " Rezultati "
 
 #~ msgid ""
 #~ "PURPOSE:\n"
+#~ "    This test will test the media keys of your keyboard\n"
+#~ "STEPS:\n"
+#~ "    1. Click test to open a window on which to test the media control keys.\n"
+#~ "    2. If all the keys work, the test will be marked as passed.\n"
+#~ "    3. If your computer has no media control keys, Skip this test.\n"
+#~ "VERIFICATION:\n"
+#~ "    Do the keys work as expected?"
+#~ msgstr ""
+#~ "NAMJENA:\n"
+#~ "    Ovaj test će testirati medijske tastere na tastaturi\n"
+#~ "KORACI:\n"
+#~ "    1. Kliknite test da biste otvorili prozor na kojem se testiraju medijski "
+#~ "kontrolni tasteri.\n"
+#~ "    2. Ako svi tasteri rade, test će biti označen kao prošao.\n"
+#~ "    3. Ako vaš računar nema medijske kontrolne tastere, preskočite ovaj "
+#~ "test.\n"
+#~ "VERIFIKACIJA:\n"
+#~ "    Da li tasteri rade kao što se očekuje?"
+
+#~ msgid ""
+#~ "PURPOSE:\n"
 #~ "    This test will check that the system correctly detects\n"
 #~ "    the removal of an SD card from the systems card reader.\n"
 #~ "STEPS:\n"
@@ -6750,6 +6837,9 @@ msgstr " Rezultati "
 #~ "   Da li sat u gornjem desnom uglu vašeg desktopa prikazuje tačan datum i "
 #~ "vrijeme za vremensku zonu?"
 
+#~ msgid "Test ACPI Wakealarm (fwts wakealarm) "
+#~ msgstr "Test ACPI alarma za buđenje (fwts wakealarm) "
+
 #~ msgid ""
 #~ "PURPOSE:\n"
 #~ "    This test will enter and resume from suspend for 30 iterations\n"
@@ -6856,3 +6946,9 @@ msgstr " Rezultati "
 #~ "VERIFIKACIJA:\n"
 #~ "    Verifikacija ovog testa je automatizovana. Ne mijenjajte\n"
 #~ "    automatski izabran rezultat."
+
+#~ msgid "Personal details"
+#~ msgstr "Lični podaci"
+
+#~ msgid "Lists of tests to run based on your system:"
+#~ msgstr "Lista testova koji će se izvršiti prema vašem sistemu"
