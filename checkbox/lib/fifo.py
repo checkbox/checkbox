@@ -25,24 +25,24 @@ from checkbox.lib.selector import Selector, SelectorIO
 
 class FifoBase:
 
-    mode = None
+    flags = None
 
     def __init__(self, path, timeout=None):
         self.path = path
-        self.file = open(path, self.mode)
+        self.fileno = os.open(path, self.flags)
         self._timeout = timeout
 
     def __del__(self):
         self.close()
 
     def close(self):
-        self.file.close()
+        os.close(self.fileno)
 
     def wait_for(self, operation):
         if self._timeout is not None:
             selector = Selector()
             selector.set_timeout(self._timeout)
-            selector.add_fd(self.file.fileno(), operation)
+            selector.add_fd(self.fileno, operation)
 
             selector.execute()
 
@@ -53,10 +53,7 @@ class FifoBase:
 
 class FifoReader(FifoBase):
 
-    # TODO: Not being able to read-write will cause the frontend to
-    # block forever if the user e.g. fails to input the password and the
-    # backend doesn't start (LP#588539).
-    mode = "rb"
+    flags = os.O_RDWR
 
     def read_bytes(self):
         # Check if a connection arrived within the timeout
@@ -64,12 +61,12 @@ class FifoReader(FifoBase):
             return None
 
         size = struct.calcsize("i")
-        length_bytes = self.file.read(size)
+        length_bytes = os.read(self.fileno, size)
         if not length_bytes:
             return b""
 
         length = struct.unpack(">i", length_bytes)[0]
-        return self.file.read(length)
+        return os.read(self.fileno, length)
 
     def read_object(self):
         _bytes = self.read_bytes()
@@ -81,8 +78,7 @@ class FifoReader(FifoBase):
 
 class FifoWriter(FifoBase):
 
-    # See FifoReader.mode.
-    mode = "wb"
+    flags = os.O_RDWR | os.O_CREAT | os.O_TRUNC
 
     def write_bytes(self, _bytes):
 
@@ -92,9 +88,8 @@ class FifoWriter(FifoBase):
 
         length = len(_bytes)
         length_bytes = struct.pack(">i", length)
-        self.file.write(length_bytes)
-        self.file.write(_bytes)
-        self.file.flush()
+        os.write(self.fileno, length_bytes)
+        os.write(self.fileno, _bytes)
         return length
 
     def write_object(self, object):
