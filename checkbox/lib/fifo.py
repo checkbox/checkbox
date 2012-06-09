@@ -53,15 +53,10 @@ class FifoBase:
 
 class FifoReader(FifoBase):
 
-    # In this case we want to read from the FIFO, but opening it in
-    # read-write mode (as opposed to read-only) is done specifically
-    # so that the frontend can open the FIFO without blocking until the
-    # backend starts; so that the frontend can wait a reasonable amount
-    # of time and then, if it hasn't received a reply from the backend,
-    # it can continue execution. This is done to prevent the frontend
-    # blocking forever if the user e.g. fails to input the password and
-    # the backend doesn't start (LP#588539).
-    mode = "r+b"
+    # TODO: Not being able to read-write will cause the frontend to
+    # block forever if the user e.g. fails to input the password and the
+    # backend doesn't start (LP#588539).
+    mode = "rb"
 
     def read_bytes(self):
         # Check if a connection arrived within the timeout
@@ -87,7 +82,7 @@ class FifoReader(FifoBase):
 class FifoWriter(FifoBase):
 
     # See FifoReader.mode.
-    mode = "w+b"
+    mode = "wb"
 
     def write_bytes(self, _bytes):
 

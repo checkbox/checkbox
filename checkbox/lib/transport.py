@@ -27,43 +27,8 @@ import email.generator
 import http.client
 import mimetypes
 import socket
+import ssl
 import urllib.request, urllib.parse, urllib.error
-
-
-# Build the appropriate socket wrapper for ssl
-try:
-    # Python 2.6 introduced a better ssl package
-    import ssl
-    _ssl_wrap_socket = ssl.wrap_socket
-except ImportError:
-    # Python versions prior to 2.6 don't have ssl and ssl.wrap_socket instead
-    # they use httplib.FakeSocket
-    def _ssl_wrap_socket(sock, key_file, cert_file):
-        ssl_sock = socket.ssl(sock, key_file, cert_file)
-        return http.client.FakeSocket(sock, ssl_sock)
-
-try:
-    # Python 2.6 introduced create_connection convenience function
-    create_connection = socket.create_connection
-except AttributeError:
-    def create_connection(address, timeout=None):
-        msg = "getaddrinfo returns an empty list"
-        host, port = address
-        for res in socket.getaddrinfo(host, port, 0, socket.SOCK_STREAM):
-            af, socktype, proto, canonname, sa = res
-            sock = None
-            try:
-                sock = socket.socket(af, socktype, proto)
-                if timeout is not None:
-                    sock.settimeout(timeout)
-                sock.connect(sa)
-                return sock
-
-            except socket.error as msg:
-                if sock is not None:
-                    sock.close()
-
-        raise socket.error(msg)
 
 
 class ProxyHTTPConnection(http.client.HTTPConnection):
@@ -96,9 +61,11 @@ class ProxyHTTPConnection(http.client.HTTPConnection):
     def connect(self):
         http.client.HTTPConnection.connect(self)
         #send proxy CONNECT request
-        self.send("CONNECT %s:%d HTTP/1.0\r\n\r\n" % (self._real_host, self._real_port))
+        self.send((
+            "CONNECT %s:%d HTTP/1.0\r\n\r\n" % (self._real_host, self._real_port)
+            ).encode("ascii"))
         #expect a HTTP/1.0 200 Connection established
-        response = self.response_class(self.sock, strict=self.strict, method=self._method)
+        response = self.response_class(self.sock, method=self._method)
         (version, code, message) = response._read_status()
         #probably here we can handle auth requests...
         if code != 200:
@@ -107,9 +74,9 @@ class ProxyHTTPConnection(http.client.HTTPConnection):
             raise socket.error("Proxy connection failed: %d %s" % (code, message.strip()))
         #eat up header block from proxy....
         while True:
-            #should not use directly fp probablu
+            #should not use directly fp probably
             line = response.fp.readline()
-            if line == "\r\n":
+            if line == b"\r\n":
                 break
 
 
@@ -124,7 +91,7 @@ class ProxyHTTPSConnection(ProxyHTTPConnection):
 
     def connect(self):
         ProxyHTTPConnection.connect(self)
-        self.sock = _ssl_wrap_socket(self.sock, self.key_file, self.cert_file)
+        self.sock = ssl.wrap_socket(self.sock, self.key_file, self.cert_file)
 
 
 class VerifiedHTTPSConnection(http.client.HTTPSConnection):
@@ -162,14 +129,14 @@ class VerifiedHTTPSConnection(http.client.HTTPSConnection):
     def connect(self):
         # overrides the version in httplib so that we do
         #    certificate verification
-        sock = create_connection((self.host, self.port), self.timeout)
+        sock = socket.create_connection((self.host, self.port), self.timeout)
         if self._tunnel_host:
             self.sock = sock
             self._tunnel()
 
         # wrap the socket using verification with the root
         #    certs in trusted_root_certs
-        self.sock = _ssl_wrap_socket(sock,
+        self.sock = ssl.wrap_socket(sock,
             self.key_file,
             self.cert_file,
             cert_reqs=ssl.CERT_REQUIRED,
@@ -295,9 +262,9 @@ class HTTPTransport:
                     fields, files)
             elif fields:
                 content_type = b"application/x-www-form-urlencoded"
-                body = urllib.parse.urlencode(fields)
+                body = urllib.parse.urlencode(fields).encode("utf-8")
             else:
-                body = ""
+                body = b""
 
         return content_type, body
 
