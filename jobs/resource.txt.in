@@ -66,7 +66,7 @@ description: Create resource info for supported optical actions
 
 name: block_devices
 plugin: resource
-command: for device in `ls -F /sys/block/*/device | awk -F "/" '{print $4}'`; do ([ `cat /sys/block/$device/device/block/$device/removable` == 1 ] && echo "$device: removable" || echo "$device: internal") ; done
+command: removable_resource
 description: Create resource info for removable block devices 
 
 name: display
