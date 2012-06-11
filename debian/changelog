@@ -72,10 +72,10 @@ checkbox (0.14) quantal; urgency=low
       with Popen output. Cleaned up the final output to be more useful for
       debugging test failures.
 
-
   [Sylvain Pineau]
   * [FEATURE] Python 2 to 3 conversion:
     * scripts/gst_pipeline_test. Migrated to PyGI.
+    * scripts/camera_test. Migrated to PyGI.    
     * scripts/gpu_test
   * Fullscreen playbacks are now performed with Totem instead of gst_pipeline_test.  
   * scripts/pm_log_check: added a slightly modified version of OEM team's pm_check.py
