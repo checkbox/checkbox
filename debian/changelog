@@ -69,10 +69,11 @@ checkbox (0.14) quantal; urgency=low
       Python3 only now.
     * scripts/network_device_info: ran 2to3 and changed shebang.
     * scripts/network_info: ran 2to3 and changed shebang. Fixed encoding issue
-      with interface[:15] (needed to be a bytes object)
+      with interface[:15] (needed to be a bytes object).
     * scripts/fwts_test: ran 2to3 and changed shebang, fixed an encoding bug
       with Popen output. Cleaned up the final output to be more useful for
       debugging test failures.
+    * scripts/keyboard_test: nothing to do for conversion beyond changing shebang.
 
   [Jeff Marcom]
   * [FEATURE] Python 2 to 3 conversion:
