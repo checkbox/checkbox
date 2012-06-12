@@ -1,5 +1,6 @@
 checkbox (0.13.8) precise; urgency=low
 
+  [ Jeff Lane ]
   [Brendan Donegan]
   * Run fwts_test as root so that the log can be written to on servers and
     also because it's supposed to be run as root (LP: #989701)
@@ -48,7 +49,11 @@ checkbox (0.13.8) precise; urgency=low
   * Use nmcli con delete instead of deleting the connection file, also avoid
     bringing eth0 down when running the wireless_monitoring tests.
 
- -- Jeff Lane <jeff@ubuntu.com>  Mon, 14 May 2012 10:20:59 -0400
+  [ Javier Collado ]
+  * show_error method shows long text properly in gtk/qt interfaces (LP:
+    #1012052)
+
+ -- Javier Collado <javier.collado@canonical.com>  Tue, 12 Jun 2012 15:04:49 +0200
 
 checkbox (0.13.7) precise; urgency=low
 
