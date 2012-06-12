@@ -45,7 +45,9 @@ public slots:
     void showText(QString text);
     void setWindowTitle(QString title);
     void startProgressBar(QString text);
-    Q_NOREPLY void showError(QString text);
+    Q_NOREPLY void showError(QString primary_text,
+                             QString secondary_text,
+                             QString detailed_text);
     void stopProgressBar();
     void showTree(QString text, QVariantMap options, QVariantMap defaults);
     void showEntry(QString text);
