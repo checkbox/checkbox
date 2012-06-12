@@ -12,7 +12,7 @@ Section: python
 Architecture: any
 Depends: ${misc:Depends}, ${python3:Depends}, debconf, python3-lxml, udev
 Recommends: dpkg (>= 1.13), gstreamer0.10-gconf | gstreamer1.0-plugins-good, lsb-release, perl, pm-utils, python-apport, python-apt, python-dateutil, python3-dbus, python3-gi, gir1.2-gst-plugins-base-0.10 | gir1.2-gst-plugins-base-1.0
-Suggests: checkbox-cli | checkbox-gtk, bonnie++, bootchart, bzr, cvs, ethtool, flex, fwts, git-core, hdparm, lshw, make, nmap, obexd-client, python-pexpect, smartmontools, sox, stress, wodim, mesa-utils, wmctrl
+Suggests: checkbox-cli | checkbox-gtk, bonnie++, bootchart, bzr, cvs, ethtool, flex, fwts, git-core, hdparm, lshw, make, nmap, obexd-client, smartmontools, sox, stress, wodim, mesa-utils, wmctrl, render-bench, glmark2-es2, glmark2, sysstat
 Description: System testing application 
  This project provides an extensible interface for system testing. The
  results can then be sent to Launchpad.

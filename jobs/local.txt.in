@@ -194,12 +194,12 @@ command:
   shopt -s extglob
   cat $CHECKBOX_SHARE/jobs/peripheral.txt?(.in)
 
-name: __phoronix__
+name: __benchmarks__
 plugin: local
-_description: Phoronix Test Suite tests
+_description: Benchmarks tests
 command:
   shopt -s extglob
-  cat $CHECKBOX_SHARE/jobs/phoronix.txt?(.in)
+  cat $CHECKBOX_SHARE/jobs/benchmarks.txt?(.in)
 
 name: __power-management__
 plugin: local
