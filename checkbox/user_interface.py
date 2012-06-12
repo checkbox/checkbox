@@ -83,7 +83,10 @@ class UserInterface:
         logging.info(text)
         return default
 
-    def show_error(self, text):
+    def show_error(self, primary_text,
+                   secondary_text=None, detailed_text=None):
+        text = filter(None, [primary_text, secondary_text, detailed_text])
+        text = '\n'.join(text)
         logging.error(text)
         raise StopAllException("Error: %s" % text)
 

@@ -1061,9 +1061,11 @@ class UrwidInterface(UserInterface):
         """
         return self.show_radio(text, options, default)
 
-
-    def show_error(self, text):
+    def show_error(self, primary_text,
+                   secondary_text=None, detailed_text=None):
         """
         Show an error message
         """
+        text = filter(None, [primary_text, secondary_text, detailed_text])
+        text = '\n'.join(text)
         return self.show_radio(text)

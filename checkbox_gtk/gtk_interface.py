@@ -589,15 +589,35 @@ class GTKInterface(UserInterface):
         self.direction = NEXT
         return options[response]
 
-    def show_error(self, text):
+    def show_error(self, primary_text,
+                   secondary_text=None, detailed_text=None):
         message_dialog = Gtk.MessageDialog(parent=self._dialog,
             type=Gtk.MessageType.ERROR,
             buttons=Gtk.ButtonsType.NONE,
-            message_format=text)
+            message_format=primary_text)
         message_dialog.set_modal(True)
         message_dialog.set_title(_("Error"))
         message_dialog.set_default_response(NEXT)
         message_dialog.add_buttons(Gtk.STOCK_CLOSE, NEXT)
+        if secondary_text:
+            message_dialog.format_secondary_text(secondary_text)
+        if detailed_text:
+            content_area = message_dialog.get_content_area()
+
+            expander = Gtk.Expander(label=_('Detailed information...'))
+
+            def expanded_cb(expander, *args):
+                message_dialog.set_resizable(expander.get_expanded())
+            expander.connect("notify::expanded", expanded_cb)
+            scrolled_window = Gtk.ScrolledWindow()
+            textview = Gtk.TextView()
+            textview.set_editable(False)
+            textview.get_buffer().set_text(detailed_text)
+            scrolled_window.add(textview)
+            expander.add(scrolled_window)
+            content_area.pack_start(expander,
+                                    expand=True, fill=True, padding=0)
+        message_dialog.show_all()
         self._run_dialog(message_dialog)
         message_dialog.hide()
 

@@ -148,7 +148,6 @@ class JobsInfo(Plugin):
         self._manager.reactor.cancel_call(event_id)
         gettext.textdomain(old_domain)
 
-
     def post_gather(self, interface):
         """
         Verify that all patterns were used
@@ -161,22 +160,32 @@ class JobsInfo(Plugin):
                 orphan_test_cases.append(name)
 
         if orphan_test_cases:
-            error = ('Test cases not included in any test suite:\n'
-                     '{0}\n\n'
-                     'This might cause problems when uploading test cases results.\n'
-                     'Please make sure that the patterns you used are up-to-date\n'
-                     .format('\n'.join(['- {0}'.format(tc)
-                                        for tc in orphan_test_cases])))
-            self._manager.reactor.fire('prompt-error', self.interface, error)
+            detailed_error = \
+                ('Test cases not included in any test suite:\n'
+                 '{0}\n\n'
+                 'This might cause problems '
+                 'when uploading test cases results.\n'
+                 'Please make sure that the patterns you used are up-to-date\n'
+                 .format('\n'.join(['- {0}'.format(tc)
+                                    for tc in orphan_test_cases])))
+            self._manager.reactor.fire('prompt-error', self.interface,
+                                       'Orphan test cases detected',
+                                       "Some test cases aren't included "
+                                       'in any test suite',
+                                       detailed_error)
 
         if self.unused_patterns:
-            error = ('Unused patterns:\n'
-                     '{0}\n\n'
-                     "Please make sure that the patterns you used are up-to-date\n"
-                     .format('\n'.join(['- {0}'.format(p.pattern[1:-1])
+            detailed_error = \
+                ('Unused patterns:\n'
+                 '{0}\n\n'
+                 "Please make sure that the patterns you used are up-to-date\n"
+                 .format('\n'.join(['- {0}'.format(p.pattern[1:-1])
                                         for p in self.unused_patterns])))
-            self._manager.reactor.fire('prompt-error', self.interface, error)
-
+            self._manager.reactor.fire('prompt-error', self.interface,
+                                       'Unused patterns',
+                                       'Please make sure that the patterns '
+                                       'you used are up-to-date',
+                                       detailed_error)
 
     @coerce_arguments(job=job_schema)
     def report_job(self, job):

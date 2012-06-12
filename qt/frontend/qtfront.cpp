@@ -245,9 +245,14 @@ void QtFront::showText(QString text)
     }
 }
 
-void QtFront::showError(QString text)
+void QtFront::showError(QString primary_text,
+                        QString secondary_text, QString detailed_text)
 {
-    QMessageBox::critical(ui->tabWidget, checkboxTr("Error", 0), text);
+    QMessageBox msgBox(QMessageBox::Critical, checkboxTr("Error", 0),
+                       primary_text, QMessageBox::Ok, ui->tabWidget);
+    msgBox.setInformativeText(secondary_text);
+    msgBox.setDetailedText(detailed_text);
+    msgBox.exec();
     emit errorBoxClosed();
 }
 

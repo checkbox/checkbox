@@ -25,6 +25,8 @@ checkbox (0.14) quantal; urgency=low
   * Fixed qt interface show_entry method preopulates widget that gets
     user input (LP: #1000451)
   * Added customizable deselect_warning message in qt show_tree method (LP: #1000443)
+  * show_error method shows long text properly in gtk/qt interfaces (LP:
+    #1012052)
 
   [Jeff Lane]
   * [FEATURE] Changes to Power Management testing in Checkbox:
