@@ -29,8 +29,8 @@ class StorageDeviceListener(object):
                                           dbus_interface=udisks)
 
         def timeout_callback():
-            print ("%s seconds have expired "
-                   "waiting for the device to be inserted." % timeout)
+            print(("%s seconds have expired "
+                   "waiting for the device to be inserted." % timeout))
             self._error = True
             self._loop.quit()
 
@@ -43,7 +43,7 @@ class StorageDeviceListener(object):
                             job_num_tasks, job_cur_task_id,
                             job_cur_task_percentage):
         if job_id == "FilesystemMount" and self.is_device_inserted():
-            print "Expected device %s inserted" % self._device
+            print("Expected device %s inserted" % self._device)
             self._loop.quit()
 
     def add_detected(self, added_path):
@@ -53,7 +53,7 @@ class StorageDeviceListener(object):
 
     def remove_detected(self, removed_path):
         if not self.is_device_inserted():
-            print "Removable storage device has been removed"
+            print("Removable storage device has been removed")
         #TODO: figure out a way to get the DriveConnectionInterface of the
         #device that was just removed.
         self._loop.quit()
