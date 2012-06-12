@@ -29,7 +29,7 @@ class DiskTest():
         self.tfile = tempfile.NamedTemporaryFile(delete=False)
         print("Creating Temp Data file")
         while os.path.getsize(self.tfile.name) < size:
-            self.tfile.write(str(random.randint(min, max)).ecnode('UTF-8'))
+            self.tfile.write(str(random.randint(min, max)).encode('UTF-8'))
 
         print("File name is :%s" % self.tfile.name)
         print("File size is %s bytes" % os.path.getsize(self.tfile.name))
