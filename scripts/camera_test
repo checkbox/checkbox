@@ -1,4 +1,5 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
+
 import sys
 import time
 import re
@@ -7,7 +8,7 @@ from subprocess import check_call as call
 from subprocess import CalledProcessError, Popen, PIPE, STDOUT
 import argparse
 from glob import glob
-import gobject
+from gi.repository import GObject
 
 
 class CameraTest:
@@ -16,7 +17,7 @@ class CameraTest:
     """
     def __init__(self, args):
         self.args = args
-        self._mainloop = gobject.MainLoop()
+        self._mainloop = GObject.MainLoop()
         self._width = 640
         self._height = 480
 
@@ -27,9 +28,9 @@ class CameraTest:
         process = Popen(["xawtv", "-hwscan"], stdout=PIPE, stderr=STDOUT)
         (output, _) = process.communicate()
 
-        output = "\n".join([line for line in output.splitlines()[2:]
+        output = "\n".join([line.decode() for line in output.splitlines()[2:]
                             if line])
-        print output
+        print(output)
 
         if re.search('^/dev/video\d+:\s+OK', output, re.M):
             return 0
@@ -45,10 +46,10 @@ class CameraTest:
                     "! ffmpegcolorspace "
                     "! testsink"
                     % {'device': self.args.device})
-        self._pipeline = gst.parse_launch(pipespec)
-        self._pipeline.set_state(gst.STATE_PLAYING)
+        self._pipeline = Gst.parse_launch(pipespec)
+        self._pipeline.set_state(Gst.State.PLAYING)
         time.sleep(10)
-        self._pipeline.set_state(gst.STATE_READY)
+        self._pipeline.set_state(Gst.State.NULL)
 
     def display(self):
         """
@@ -61,10 +62,10 @@ class CameraTest:
                     % {'device': self.args.device,
                        'width': self._width,
                        'height': self._height})
-        self._pipeline = gst.parse_launch(pipespec)
-        self._pipeline.set_state(gst.STATE_PLAYING)
+        self._pipeline = Gst.parse_launch(pipespec)
+        self._pipeline.set_state(Gst.State.PLAYING)
         time.sleep(10)
-        self._pipeline.set_state(gst.STATE_READY)
+        self._pipeline.set_state(Gst.State.NULL)
 
     def still(self):
         """
@@ -96,10 +97,10 @@ class CameraTest:
                          'width': self._width,
                         'height': self._height,
                         'filename': filename})
-            self._pipeline = gst.parse_launch(pipespec)
-            self._pipeline.set_state(gst.STATE_PLAYING)
+            self._pipeline = Gst.parse_launch(pipespec)
+            self._pipeline.set_state(Gst.State.PLAYING)
             time.sleep(3)
-            self._pipeline.set_state(gst.STATE_READY)
+            self._pipeline.set_state(Gst.State.NULL)
 
         if not self.args.quiet:
             call(["eog", filename])
@@ -155,11 +156,10 @@ def parse_arguments(argv):
 if __name__ == "__main__":
     args = parse_arguments(sys.argv[1:])
 
-    # Import gst only for the test cases that will need it
+    # Import Gst only for the test cases that will need it
     if args.test in ['display', 'still', 'led']:
-        import pygst
-        pygst.require("0.10")
-        import gst
+        from gi.repository import Gst
+        Gst.init(None)
 
     camera = CameraTest(args)
     sys.exit(getattr(camera, args.test)())
