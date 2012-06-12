@@ -1,10 +1,10 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 
 import sys
-import gobject
 import dbus
 import argparse
 
+from gi.repository import GObject
 from dbus.mainloop.glib import DBusGMainLoop
 
 
@@ -14,7 +14,7 @@ class StorageDeviceListener(object):
         self._action = action
         self._devices = devices
         self._bus = dbus.SystemBus(mainloop=DBusGMainLoop())
-        self._loop = gobject.MainLoop()
+        self._loop = GObject.MainLoop()
         self._error = False
 
     def check(self, timeout):
@@ -34,7 +34,7 @@ class StorageDeviceListener(object):
             self._error = True
             self._loop.quit()
 
-        gobject.timeout_add_seconds(timeout, timeout_callback)
+        GObject.timeout_add_seconds(timeout, timeout_callback)
         self._loop.run()
 
         return self._error
