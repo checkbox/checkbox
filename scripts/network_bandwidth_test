@@ -107,10 +107,10 @@ class Command(object):
             stderr=subprocess.PIPE)
         error = process.stderr.read()
         if error:
-            raise CommandException(error)
+            raise CommandException(error.decode("utf-8"))
 
         output = process.stdout.read()
-        return self.parse_output(output)
+        return self.parse_output(output.decode("utf-8"))
 
 
 class NetworkConfigOutput(CommandOutput):
