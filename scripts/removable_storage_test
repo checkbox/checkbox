@@ -24,13 +24,12 @@ class DiskTest():
 
     def generate_test_data(self, size):
         '''Generate a random data file of a given size'''
-        r = random
         min = 100
         max = 1000000
         self.tfile = tempfile.NamedTemporaryFile(delete=False)
         print("Creating Temp Data file")
         while os.path.getsize(self.tfile.name) < size:
-            self.tfile.write(bytes(r.randint(min, max), 'UTF-8'))
+            self.tfile.write(str(random.randint(min, max)).ecnode('UTF-8'))
 
         print("File name is :%s" % self.tfile.name)
         print("File size is %s bytes" % os.path.getsize(self.tfile.name))
