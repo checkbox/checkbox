@@ -50,7 +50,7 @@ class Command(object):
     output_patterns = {}
 
     # Convenient output patterns
-    alpha_numeric = r"[^ ]+"
+    non_space = r"[^ ]+"
 
     def __init__(self, *arguments, **options):
         if len(arguments) != self.argument_count:
@@ -142,12 +142,12 @@ class NetworkConfig(Command):
 
     output_factory = NetworkConfigOutput
     output_patterns = {
-        "name": r"(%s).*Link encap" % Command.alpha_numeric,
+        "name": r"(%s).*Link encap" % Command.non_space,
         "broadcast": r"Bcast:(%s)" % ipv4,
         "collisions": "collisions:(\d+)",
         "hwaddr": r"HWaddr (%s)" % mac_address,
         "inet_addr": r"inet addr:(%s)" % ipv4,
-        "link_encap": r"Link encap:(%s)" % Command.alpha_numeric,
+        "link_encap": r"Link encap:(%s)" % Command.non_space,
         "netmask": r"Mask:(%s)" % ipv4,
         "metric": r"Metric:(\d+)",
         "mtu": r"MTU:(\d+)",
@@ -227,19 +227,19 @@ class WirelessConfig(Command):
 
     fraction = r"\d+(/\d+)?"
     numeric = r"[\d\.]+"
-    numeric_with_unit = r"%s( %s)?" % (numeric, Command.alpha_numeric)
+    numeric_with_unit = r"%s( %s)?" % (numeric, Command.non_space)
 
     output_patterns = {
         "access_point": r"Access Point: (.*)",
         "bit_rate": r"Bit Rate[=:](%s)/s" % numeric_with_unit,
-        "channel": r"Channel=(%s)" % Command.alpha_numeric,
+        "channel": r"Channel=(%s)" % Command.non_space,
         "essid": r"ESSID:\"?([^\"]+)\"?",
         "fragment_thr": r"Fragment thr:(\w+)",
         "frequency": r"Frequency:(%s)" % numeric_with_unit,
         "invalid_misc": r"Invalid misc:(\d+)",
         "link_quality": r"Link Quality[=:](%s)" % fraction,
         "missed_beacon": r"Missed beacon:(\d+)",
-        "mode": r"Mode:(%s)" % Command.alpha_numeric,
+        "mode": r"Mode:(%s)" % Command.non_space,
         "noise_level": r"Noise level[=:](%s)" % numeric_with_unit,
         "power_management": r"Power Management:(.*)",
         "retry_limit": r"Retry limit:(\w+)",
