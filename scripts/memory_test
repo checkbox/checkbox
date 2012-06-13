@@ -32,15 +32,15 @@ class MemoryTest():
                     if len(tokens) == 3:
                         if "MemTotal:" == tokens[0].strip():
                             self.system_memory = \
-                                int(tokens[1].strip()) / 1024
+                                int(tokens[1].strip()) // 1024
                         elif tokens[0].strip() in ["MemFree:",
                                                    "Cached:",
                                                    "Buffers:"]:
                             self.free_memory += \
-                                int(tokens[1].strip()) / 1024
+                                int(tokens[1].strip()) // 1024
                         elif "SwapTotal:" == tokens[0].strip():
                             self.swap_memory = \
-                                int(tokens[1].strip()) / 1024
+                                int(tokens[1].strip()) // 1024
                 else:
                     break
         finally:
