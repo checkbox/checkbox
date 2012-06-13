@@ -110,7 +110,10 @@ command:
  cat <<'EOF' | run_templates -s 'udev_resource | filter_templates -w "category=NETWORK" | awk "/path: / { print \$2 }" | xargs -n 1 sh -c "for i in \`ls /sys\$0/net 2>/dev/null\`; do echo \$0 \$i; done"'
  plugin: shell
  name: networking/multi_nic_$2
- requires: device.path == "$1" and package.name == 'linux' and package.name == 'ethtool'
+ requires:
+  package.name == 'linux'
+  package.name == 'ethtool' and package.name == 'nmap'
+  device.path == "$1"
  user: root
  command: ethtool $2 | tail -1 | grep "detected: yes" && network_bandwidth_test --interface=$2 --scan=3 --log-level=debug
  description:
