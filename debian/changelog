@@ -7,6 +7,8 @@ checkbox (0.14) quantal; urgency=low
     * scripts/internet_test - ran 2to3 tool and decoded result of
       check_output. Also replaced optparse with argparse
     * scripts/memory_info
+    * scripts/removable_storage_test - ran 2to3 tool and fixed some
+      encoding issues
   * Update touchpad.py to use gsettings instead of deprecated gconf
     (LP: #1004212)
 
