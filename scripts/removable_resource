@@ -5,16 +5,16 @@ import re
 from glob import glob
 
 
-def device_removable(d):
+def device_removable(name):
     """
     Follow pmount policy to find removable devices
     """
-    with open('/sys/block/%s/device/block/%s/removable' % (d, d)) as f:
+    with open('/sys/block/%s/device/block/%s/removable' % (name, name)) as f:
         if f.read(1) == '1':
             return 'removable'
 
     rootdir_pattern = re.compile('^.*?/devices')
-    path = rootdir_pattern.sub('', os.readlink('/sys/block/%s' % d))
+    path = rootdir_pattern.sub('', os.readlink('/sys/block/%s' % name))
     hotplug_buses = ("usb", "ieee1394", "mmc", "pcmcia", "firewire")
     for bus in hotplug_buses:
         if os.path.exists('/sys/bus/%s' % bus):
@@ -27,8 +27,6 @@ def device_removable(d):
     return 'internal'
 
 
-devices = [re.sub('.*/(.*?)/device', '\g<1>', d)
-    for d in glob('/sys/block/*/device')]
-
-for d in devices:
-    print('%s: %s' % (d, device_removable(d)))
+for path in glob('/sys/block/*/device'):
+    name = re.sub('.*/(.*?)/device', '\g<1>', path)
+    print('%s: %s' % (name , device_removable(name)))
