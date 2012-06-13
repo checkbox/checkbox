@@ -5,9 +5,9 @@ import re
 from glob import glob
 
 
-def device_removable(name):
+def device_state(name):
     """
-    Follow pmount policy to find removable devices
+    Follow pmount policy to determine whether a device is removable or internal.
     """
     with open('/sys/block/%s/device/block/%s/removable' % (name, name)) as f:
         if f.read(1) == '1':
@@ -29,4 +29,8 @@ def device_removable(name):
 
 for path in glob('/sys/block/*/device'):
     name = re.sub('.*/(.*?)/device', '\g<1>', path)
-    print('%s: %s' % (name , device_removable(name)))
+    state = device_state(name)
+    print("""\
+name: %s
+state: %s
+""" % (name, state))

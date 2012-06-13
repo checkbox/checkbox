@@ -64,9 +64,9 @@ plugin: resource
 command: for media in CD DVD; do wodim -prcap 2>/dev/null | grep -q -i "Does write $media" && echo "$media: writable" || echo "$media: readonly"; done
 description: Create resource info for supported optical actions
 
-name: block_devices
+name: block_device
 plugin: resource
-command: removable_resource
+command: block_device_resource
 description: Create resource info for removable block devices 
 
 name: display
