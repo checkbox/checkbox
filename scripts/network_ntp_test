@@ -44,6 +44,7 @@ def SilentCall(*popenargs):
     Modified version of subprocess.call() to supress output from the command
     that is executed. Wait for command to complete, then return the returncode
     attribute.
+    This call is necessary for testing, otherwise TimeSkew() does nothing.
     '''
     null_fh = open('/dev/null', 'wb', 0)
     try:
@@ -81,7 +82,7 @@ def StartStopNTPD(state, pid=0):
         os.kill(int(pid), signal.SIGHUP)
     elif state == 'on':
         logging.debug('Starting ntp process')
-        status = SilentCall('/etc/init.d/ntp start')
+        SilentCall('/etc/init.d/ntp start')
         ntpd_status = CheckNTPD()
 
         if status == 0:
@@ -134,7 +135,7 @@ def SkewTime():
     date_time_string = skewed.strftime('%m%d%H%M%Y')
     logging.debug('New date string is: %s' % date_time_string)
     logging.debug('Setting new system time/date')
-    status = SilentCall('/bin/date %s' % date_time_string)
+    SilentCall('/bin/date %s' % date_time_string)
     logging.info('Pre-sync time is: %s' % time.asctime())
 
 
