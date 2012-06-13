@@ -74,6 +74,12 @@ checkbox (0.14) quantal; urgency=low
       with Popen output. Cleaned up the final output to be more useful for
       debugging test failures.
     * scripts/keyboard_test: nothing to do for conversion beyond changing shebang.
+    * scripts/network_ntp_test: 2to3 changed nothing, so modified shebang.
+      Fixed an encoding issue with Popen output in. Re-inserted a call to
+      SilentCall() that was removed from TimeSkew() by someone in a previous
+      revision, which made the TimeSkew() function do nothing. Fixed an
+      unbuffered I/O error in SilentCall() discovered while testing Python3
+      changes. 
 
   [Jeff Marcom]
   * [FEATURE] Python 2 to 3 conversion:
