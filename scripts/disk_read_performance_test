@@ -10,7 +10,7 @@ for disk in $@; do
   disk_type=`udevadm info --name /dev/$disk --query property | grep "ID_BUS" | awk '{gsub(/ID_BUS=/," ")}{printf $1}'`
 
   case $disk_type in
-    "usb" ) MIN_BUF_READ=15;; #Custom metrics are guesstimates for now...
+    "usb" ) MIN_BUF_READ=7;; #Custom metrics are guesstimates for now...
     "ide" ) MIN_BUF_READ=40;;
     *     ) MIN_BUF_READ=$DEFAULT_BUF_READ;;
   esac
