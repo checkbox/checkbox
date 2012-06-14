@@ -3,7 +3,6 @@
 import decimal
 import os
 import re
-import string
 import sys
 import time
 
@@ -270,7 +269,7 @@ class CPUScalingTest(object):
         print("")
         print("Supported CPU Frequencies: ")
         for freq in self.frequencies:
-            f = string.atoi(freq) / 1000
+            f = int(freq) / 1000
             print("    %u MHz" % f)
 
         # Check governors to verify all CPUs support the same control methods
@@ -336,8 +335,7 @@ class CPUScalingTest(object):
 
             # Set the the CPU speed to it's lowest value
             frequency = self.frequencies[-1]
-            print("Setting CPU frequency to %u MHz"
-                   % (string.atoi(frequency) / 1000))
+            print("Setting CPU frequency to %u MHz" % (int(frequency) / 1000))
             if not self.setFrequency(frequency):
                 success = False
 
@@ -364,8 +362,7 @@ class CPUScalingTest(object):
 
             # Set the CPU speed to it's highest value as above.
             frequency = self.frequencies[0]
-            print("Setting CPU frequency to %u MHz"
-                   % (string.atoi(frequency) / 1000))
+            print("Setting CPU frequency to %u MHz" % (int(frequency) / 1000))
             if not self.setFrequency(frequency):
                 success = False
 
@@ -390,8 +387,8 @@ class CPUScalingTest(object):
                        % self.maximumFrequencyTestTime)
 
             # Verify MHz increase is comparable to time % decrease
-            predictedSpeedup = (string.atof(maximumFrequency)
-                                / string.atof(minimumFrequency))
+            predictedSpeedup = (float(maximumFrequency)
+                                / float(minimumFrequency))
 
             # If "ida" turbo thing, increase the expectation by 8%
             if self.cpuFlags and self.idaFlag in self.cpuFlags:
