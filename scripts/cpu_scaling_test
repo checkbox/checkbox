@@ -5,8 +5,8 @@ import os
 import re
 import sys
 import time
+import argparse
 
-from optparse import OptionParser
 from subprocess import check_call, CalledProcessError
 
 
@@ -596,17 +596,14 @@ class CPUScalingTest(object):
 
 
 def main(args):
-    usage = "Usage: %prog [OPTIONS]"
-    parser = OptionParser(usage=usage)
-    parser.add_option("-q", "--quiet",
-                      action="store_true",
-                      help="Suppress output.")
-    parser.add_option("-c", "--capabilities",
-                      action="store_true",
-                      help="Only output CPU capabilities.")
-    (options, args) = parser.parse_args(args)
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-q", "--quiet", action="store_true",
+                        help="Suppress output.")
+    parser.add_argument("-c", "--capabilities", action="store_true",
+                        help="Only output CPU capabilities.")
+    args = parser.parse_args()
 
-    if options.quiet:
+    if args.quiet:
         sys.stdout = open(os.devnull, 'a')
         sys.stderr = open(os.devnull, 'a')
 
@@ -619,7 +616,7 @@ def main(args):
         parser.error("Failed to get system capabilities")
 
     returnValues = []
-    if not options.capabilities:
+    if not args.capabilities:
         returnValues.append(test.runUserSpaceTests())
         returnValues.append(test.runOnDemandTests())
         returnValues.append(test.runPerformanceTests())
