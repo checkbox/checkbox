@@ -11,6 +11,8 @@ checkbox (0.14) quantal; urgency=low
       encoding issues
   * Update touchpad.py to use gsettings instead of deprecated gconf
     (LP: #1004212)
+  * Instead of checking output of nmcli con up in create_connection,
+    check the return code is success instead (LP: #1013537)
 
   [Marc Tardif]
   * [FEATURE] Reworked media_keys_test into key_test, making it more generic
