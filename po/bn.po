@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-06-04 15:38-0400\n"
+"POT-Creation-Date: 2012-06-14 16:38-0400\n"
 "PO-Revision-Date: 2011-07-19 17:48+0000\n"
 "Last-Translator: nasir khan saikat <nasir8891@gmail.com>\n"
 "Language-Team: Bengali <bn@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-06-09 05:10+0000\n"
-"X-Generator: Launchpad (build 15376)\n"
+"X-Launchpad-Export-Date: 2012-06-15 04:36+0000\n"
+"X-Generator: Launchpad (build 15414)\n"
 
 #. Title of the user interface
 #: ../gtk/checkbox-gtk.ui.h:1 ../qt/checkbox-qt.desktop.in.h:1
@@ -71,7 +71,7 @@ msgid "Test to detect audio devices"
 msgstr "অডিও ডিভাইস সনাক্ত করতে পরীক্ষা করুন"
 
 #. description
-#: ../jobs/audio.txt.in:16
+#: ../jobs/audio.txt.in:17
 msgid ""
 "PURPOSE:\n"
 "    This test will check that internal speakers work correctly\n"
@@ -92,7 +92,7 @@ msgstr ""
 "    আপনি কি টোন শুনতে পেয়েছেন?"
 
 #. description
-#: ../jobs/audio.txt.in:33
+#: ../jobs/audio.txt.in:35
 msgid ""
 "PURPOSE:\n"
 "    This test will check that headphones connector works correctly\n"
@@ -114,7 +114,7 @@ msgstr ""
 "শুনতে পাচ্ছেন?"
 
 #. description
-#: ../jobs/audio.txt.in:49
+#: ../jobs/audio.txt.in:51
 msgid ""
 "PURPOSE:\n"
 "    This test will check that recording sound using the onboard microphone "
@@ -137,7 +137,7 @@ msgstr ""
 "    আপনি কি আপনার বক্তৃতা পুনরায় শুনতে পেয়েছিলেন?"
 
 #. description
-#: ../jobs/audio.txt.in:66
+#: ../jobs/audio.txt.in:68
 msgid ""
 "PURPOSE:\n"
 "    This test will check that recording sound using an external microphone "
@@ -160,7 +160,7 @@ msgstr ""
 "    আপনি কি আপনার বক্তৃতা পুনরায় শুনতে পেয়েছিলেন?"
 
 #. description
-#: ../jobs/audio.txt.in:82
+#: ../jobs/audio.txt.in:84
 msgid ""
 "PURPOSE:\n"
 "    This test will check that a USB audio device works correctly\n"
@@ -181,7 +181,7 @@ msgstr ""
 "    আপনি কি আপনার বক্তৃতা ইউএসবি হেডফোনের মাধ্যমে পুনরায় শুনতে পেয়েছিলেন?"
 
 #. description
-#: ../jobs/audio.txt.in:99
+#: ../jobs/audio.txt.in:101
 msgid ""
 "Play back a sound on the default output and listen for it on the  default "
 "input.  This makes the most sense when the output and input  are directly "
@@ -190,6 +190,19 @@ msgstr ""
 "ডিফল্ট আউটপুটে একটি ধ্বনি প্লেবেক করুন এবং ডিফল্ট ইনপুটে এটির জন্য শুনুন। "
 "এটি অধিকাংশ চেতনা সৃষ্টি করে যখন আউটপুট এবং ইনপুট সরাসরি সংযুক্ত থাকে, প্যাচ "
 "ক্যাবলের মত।"
+
+#. description
+#: ../jobs/audio.txt.in:109
+msgid ""
+"Collect audio-related system information. This data can be used to simulate "
+"this computer's audio subsystem and perform more detailed tests under a "
+"controlled environment."
+msgstr ""
+
+#. description
+#: ../jobs/audio.txt.in:118
+msgid "Attaches the audio hardware data collection log to the results."
+msgstr ""
 
 #. description
 #: ../jobs/autotest.txt.in:6
@@ -533,30 +546,30 @@ msgid "Benchmark for each disk"
 msgstr "প্রতিটি ডিস্কের জন্য বেঞ্চমার্ক"
 
 #. description
-#: ../jobs/disk.txt.in:23
+#: ../jobs/disk.txt.in:26
 msgid "Check stats changes for each disk"
 msgstr "প্রতিটি ডিস্কের জন্য পরিসংখ্যান পরিবর্তন বাছাই করুন"
 
 #. description
-#: ../jobs/disk.txt.in:40
+#: ../jobs/disk.txt.in:46
 msgid "SMART test"
 msgstr "SMART পরীক্ষা করুন"
 
 #. description
-#: ../jobs/disk.txt.in:56
+#: ../jobs/disk.txt.in:64
 msgid "Maximum disk space used during a default installation test"
 msgstr ""
 "পূর্বনির্ধারিত ইন্সটলেশন পরীক্ষার সময় সর্বোচ্চ ডিস্কের জায়গা ব্যবহার করা "
 "হয়েছে"
 
 #. description
-#: ../jobs/disk.txt.in:71
+#: ../jobs/disk.txt.in:81
 msgid "Verify system storage performs at or above baseline performance"
 msgstr ""
 "সিস্টেম যাচাই করুন সংগ্রহস্থল সঞ্চালিত সময়ের অথবা বেসলাইন কর্মক্ষমতার বেশি"
 
 #. description
-#: ../jobs/disk.txt.in:88
+#: ../jobs/disk.txt.in:99
 msgid ""
 "Verify that storage devices, such as Fibre Channel and RAID can be detected "
 "and perform under stress."
@@ -800,7 +813,7 @@ msgid "https://help.ubuntu.com/community/Installation/SystemRequirements"
 msgstr "https://help.ubuntu.com/community/Installation/SystemRequirements"
 
 #. description
-#: ../jobs/graphics.txt.in:95
+#: ../jobs/graphics.txt.in:97
 msgid ""
 "PURPOSE:\n"
 "    This test will test the default display\n"
@@ -817,12 +830,12 @@ msgstr ""
 "    আপনি কি রঙ বার এবং স্ট্যাটিক দেখতে পাচ্ছেন?"
 
 #. description
-#: ../jobs/graphics.txt.in:106
+#: ../jobs/graphics.txt.in:108
 msgid "Check that VESA drivers are not in use"
 msgstr "পরীক্ষা করে দেখুন যে VESA ড্রাইভার ব্যবহৃত হয় না"
 
 #. description
-#: ../jobs/graphics.txt.in:113
+#: ../jobs/graphics.txt.in:115
 msgid ""
 "PURPOSE:\n"
 "    This test cycles through the detected video modes\n"
@@ -839,17 +852,17 @@ msgstr ""
 "    প্রতিটি মোডের জন্য কাজ করার জন্য কি পর্দা প্রদর্শিত হয়েছিল?"
 
 #. description
-#: ../jobs/graphics.txt.in:126
+#: ../jobs/graphics.txt.in:128
 msgid "Check that hardware is able to run compiz"
 msgstr "পরীক্ষা করে দেখুন যে হার্ডওয়্যার compiz চালাতে সক্ষম"
 
 #. description
-#: ../jobs/graphics.txt.in:133
+#: ../jobs/graphics.txt.in:135
 msgid "Check that hardware is able to run Unity 3D"
 msgstr "পরীক্ষা করে দেখুন যে হার্ডওয়্যার Unity 3D চালাতে সক্ষম কিনা"
 
 #. description
-#: ../jobs/graphics.txt.in:139
+#: ../jobs/graphics.txt.in:141
 msgid ""
 "PURPOSE:\n"
 "    This test tests the basic 3D capabilities of your video card\n"
@@ -872,7 +885,7 @@ msgstr ""
 "    ২।  অ্যানিমেশন কি slowness / jerkiness থেকে মুক্ত ছিল?"
 
 #. description
-#: ../jobs/graphics.txt.in:159
+#: ../jobs/graphics.txt.in:161
 msgid ""
 "PURPOSE:\n"
 "    Do some challenging operations and check for lockup on the GPU\n"
@@ -886,7 +899,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:174
+#: ../jobs/graphics.txt.in:176
 msgid ""
 "PURPOSE:\n"
 "    Take a screengrab of the current screen (logged on Unity desktop)\n"
@@ -897,12 +910,12 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:186 ../jobs/suspend.txt.in:332
+#: ../jobs/graphics.txt.in:188 ../jobs/suspend.txt.in:332
 msgid "Attaches the screenshot captured in graphics/screenshot."
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:194
+#: ../jobs/graphics.txt.in:199
 msgid ""
 "PURPOSE:\n"
 "    Take a screengrab of the current screen during fullscreen video "
@@ -915,7 +928,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:207
+#: ../jobs/graphics.txt.in:212
 msgid ""
 "Attaches the screenshot captured in graphics/screenshot_fullscreen_video."
 msgstr ""
@@ -1423,36 +1436,31 @@ msgstr "টাচপ্যাড পরীক্ষা"
 
 #. description
 #: ../jobs/local.txt.in:241
-msgid "Unity tests"
-msgstr "ঐক্য পরীক্ষা করুন"
-
-#. description
-#: ../jobs/local.txt.in:248
 msgid "USB tests"
 msgstr "USB পরীক্ষা করুন"
 
 #. description
-#: ../jobs/local.txt.in:255
+#: ../jobs/local.txt.in:248
 msgid "User Applications"
 msgstr "ব্যবহারকারীর অ্যাপ্লিকেশন"
 
 #. description
-#: ../jobs/local.txt.in:262
+#: ../jobs/local.txt.in:255
 msgid "Wireless networking tests"
 msgstr "তারবিহীন নেটওয়ার্কিং পরীক্ষা করুন"
 
 #. description
-#: ../jobs/local.txt.in:269
+#: ../jobs/local.txt.in:262
 msgid "Stress tests"
 msgstr "স্ট্রেস পরীক্ষা করুন"
 
 #. description
-#: ../jobs/local.txt.in:276
+#: ../jobs/local.txt.in:269
 msgid "Smoke tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:283
+#: ../jobs/local.txt.in:276
 msgid "Sniff Sniffers"
 msgstr ""
 
@@ -2169,7 +2177,7 @@ msgstr ""
 "প্রতিটি পরীক্ষা করুন।"
 
 #. description
-#: ../jobs/networking.txt.in:128
+#: ../jobs/networking.txt.in:131
 msgid "Test to measure the network bandwidth"
 msgstr "নেটওয়ার্ক ব্যান্ডউইথের পরিমাপের জন্য পরীক্ষা করুন"
 
@@ -3048,24 +3056,6 @@ msgid ""
 "NOTES:\n"
 "    1. Edge Scrolling option should be enabled by default"
 msgstr ""
-
-#. description
-#: ../jobs/unity.txt.in:6
-msgid ""
-"Xlib is required for unity testing. This checks for Xlib and installs it if "
-"not available."
-msgstr ""
-"ইউনিটি টেস্টের জন্য Xlib আবশ্যক। Xlib এর জন্য এটি পরীক্ষা করে এবং যদি এটি "
-"সহজলভ্য না হলে ইনস্টল করে।"
-
-#. description
-#: ../jobs/unity.txt.in:13
-msgid ""
-"This test will verify that Unity is running and then run the autopilot.py "
-"test against the Unity interface."
-msgstr ""
-"এই পরীক্ষা যাচাই করে যে Unity চলছে এবং autopilot.py test চলবে Unity "
-"interface এর পরিবর্তে।"
 
 #. description
 #: ../jobs/usb.txt.in:5
@@ -4219,13 +4209,17 @@ msgstr "পুনরায় পরীক্ষা"
 msgid "_Test Again"
 msgstr "পুনরায় পরীক্ষা (_T)"
 
-#: ../checkbox_gtk/gtk_interface.py:574 ../qt/frontend/qtfront.cpp:540
+#: ../checkbox_gtk/gtk_interface.py:574 ../qt/frontend/qtfront.cpp:545
 msgid "Info"
 msgstr "তথ্য"
 
-#: ../checkbox_gtk/gtk_interface.py:598 ../qt/frontend/qtfront.cpp:250
+#: ../checkbox_gtk/gtk_interface.py:599 ../qt/frontend/qtfront.cpp:251
 msgid "Error"
 msgstr "ত্রুটি"
+
+#: ../checkbox_gtk/gtk_interface.py:607
+msgid "Detailed information..."
+msgstr ""
 
 #: ../plugins/apport_prompt.py:83
 msgid ""
@@ -4421,15 +4415,15 @@ msgstr "টেক্সট দিন:\n"
 msgid "Type Text"
 msgstr "টেক্সট টাইপ"
 
-#: ../scripts/internet_test:214
+#: ../scripts/internet_test:211
 msgid "No Internet connection"
 msgstr "কোনো ইন্টারনেট সংযোগ নেই"
 
-#: ../scripts/internet_test:217
+#: ../scripts/internet_test:214
 msgid "Connection established lost a packet"
 msgstr "সংযোগ স্থাপনার সময় প্যাকেট হারানো গেছে"
 
-#: ../scripts/internet_test:220
+#: ../scripts/internet_test:217
 msgid "Internet connection fully established"
 msgstr "সম্পূর্ণভাবে ইন্টারনেট সংযোগ স্থাপন"
 
@@ -5605,6 +5599,9 @@ msgstr ""
 #~ msgid "Attaches the screenshot captured in info/screenshot."
 #~ msgstr "info/screenshot তে ধরণকৃত স্ক্রীনশট সংযুক্ত করা হয়।"
 
+#~ msgid "Unity tests"
+#~ msgstr "ঐক্য পরীক্ষা করুন"
+
 #~ msgid ""
 #~ "PURPOSE:\n"
 #~ "    This test will check that the systems media card reader can\n"
@@ -6074,6 +6071,20 @@ msgstr ""
 #~ "করে\n"
 #~ "VERIFICATION:\n"
 #~ "    স্থগিত থেকে পুনরারম্ভের পর প্রদর্শনের কাজ কি স্বাভাবিকভাবে হচ্ছে?"
+
+#~ msgid ""
+#~ "Xlib is required for unity testing. This checks for Xlib and installs it if "
+#~ "not available."
+#~ msgstr ""
+#~ "ইউনিটি টেস্টের জন্য Xlib আবশ্যক। Xlib এর জন্য এটি পরীক্ষা করে এবং যদি এটি "
+#~ "সহজলভ্য না হলে ইনস্টল করে।"
+
+#~ msgid ""
+#~ "This test will verify that Unity is running and then run the autopilot.py "
+#~ "test against the Unity interface."
+#~ msgstr ""
+#~ "এই পরীক্ষা যাচাই করে যে Unity চলছে এবং autopilot.py test চলবে Unity "
+#~ "interface এর পরিবর্তে।"
 
 #~ msgid ""
 #~ "PURPOSE:\n"
