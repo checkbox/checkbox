@@ -88,7 +88,7 @@ def block_until_created(connection, retries, interval):
                              stdout=PIPE)
         (stdout, stderr) = nmcli_con_up.communicate()
 
-        if 'state: activated' in stdout.decode():
+        if nmcli_con_up.returncode == 0:
             print("Connection %s activated." % connection)
         else:
             print("Failed to activate %s." % connection)
