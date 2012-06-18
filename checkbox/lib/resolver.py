@@ -43,8 +43,7 @@ class Resolver:
             raise Exception("%s: key already exists" % key)
         self.items[key] = item
 
-        dependency_keys = [self.key(d) for d in dependencies]
-        self.dependencies[key] = set(dependency_keys)
+        self.dependencies[key] = set(dependencies)
 
     def remove(self, item):
         key = self.key(item)
@@ -87,7 +86,7 @@ class Resolver:
         # now it's time for sorting hierarchically... Since circular dependencies are excluded,
         # ancestors will always have fewer dependencies than descendants, so sorting by the
         # number of dependencies will give the desired order.
-        resolved = sorted(resolved, key=lambda x : len(self.dependents[x]))
+        resolved = sorted(resolved, key=lambda x: len(self.dependents[x]))
         resolved.append(key)
         self.dependents[key] = resolved
 
