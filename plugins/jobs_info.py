@@ -22,6 +22,8 @@ import logging
 
 from collections import defaultdict
 
+from checkbox.lib.resolver import Resolver
+
 from checkbox.arguments import coerce_arguments
 from checkbox.properties import Float, Int, List, Map, Path, String
 from checkbox.plugin import Plugin
@@ -83,7 +85,6 @@ class JobsInfo(Plugin):
             self._manager.reactor.call_on("prompt-gather", self.post_gather, 90)
         self._manager.reactor.call_on("report-job", self.report_job, -100)
 
-
     def prompt_begin(self, interface):
         """
         Capture interface object to use it later
@@ -108,6 +109,18 @@ class JobsInfo(Plugin):
         return [re.compile(r"^%s$" % s) for s in strings
             if s and not s.startswith("#")]
 
+    def get_order_errors(self, messages):
+        errors = []
+        names = set()
+        for message in messages:
+            name = message["name"]
+            for dependency in message.get("depends", "").split():
+                if dependency not in names:
+                    errors.append("%s > %s" % (name, dependency))
+
+            names.add(name)
+
+        return errors
 
     def gather(self):
         # Register temporary handler for report-message events
@@ -130,17 +143,36 @@ class JobsInfo(Plugin):
             self._manager.reactor.fire("message-directory", directory)
 
         # Apply whitelist ordering
-        def key_function(obj):
-            name = obj["name"]
-            for pattern in self.whitelist_patterns:
-                if pattern.match(name):
-                    index = self.whitelist_patterns.index(pattern)
-                    break
-
-            return index
-
         if self.whitelist_patterns:
+            def key_function(obj):
+                name = obj["name"]
+                for pattern in self.whitelist_patterns:
+                    if pattern.match(name):
+                        return self.whitelist_patterns.index(pattern)
+
+                return None
+
             messages = sorted(messages, key=key_function)
+
+            # Check if messages are already topologically ordered
+            order_errors = self.get_order_errors(messages)
+            if (order_errors and
+                logging.getLogger().getEffectiveLevel() <= logging.DEBUG):
+                detailed_text = "\n".join(order_errors)
+                self._manager.reactor.fire(
+                        'prompt-error',
+                        self.interface,
+                        'Whitelist not topologically ordered',
+                        'Jobs will be reordered to fix broken dependencies',
+                        detailed_text)
+
+        if not self.whitelist_patterns or order_errors:
+            resolver = Resolver(key=lambda m: m["name"])
+            for message in messages:
+                message.add(
+                    message, *message.get("depends", "").split())
+            messages = resolver.get_dependents()
+
         for message in messages:
             self._manager.reactor.fire("report-job", message)
 
