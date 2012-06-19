@@ -106,7 +106,7 @@ def main():
         if not capabilities:
             print("Unable to get capabilities of %s" % device)
             return 1
-        for capability in capabilities.split('\n'):
+        for capability in capabilities.decode().split('\n'):
             if capability[:3] == 'ID_':
                 cap = capability[3:-2]
                 if cap == 'CDROM' or cap == 'CDROM_DVD':
