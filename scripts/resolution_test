@@ -2,7 +2,7 @@
 
 import sys
 
-from optparse import OptionParser
+from argparse import ArgumentParser
 
 from gi.repository import Gdk
 
@@ -23,21 +23,20 @@ def compare_resolution(min_h, min_v):
     return geom.width >= min_h and geom.height >= min_v
 
 
-def main(args):
-    usage = "Usage: %prog [OPTIONS]"
-    parser = OptionParser(usage=usage)
-    parser.add_option("--horizontal",
-        type="int",
+def main():
+    parser = ArgumentParser()
+    parser.add_argument("--horizontal",
+        type=int,
         default=0,
         help="Minimum acceptable horizontal resolution.")
-    parser.add_option("--vertical",
-        type="int",
+    parser.add_argument("--vertical",
+        type=int,
         default=0,
         help="Minimum acceptable vertical resolution.")
-    (options, args) = parser.parse_args(args)
+    args = parser.parse_args()
 
-    if (options.horizontal > 0) and (options.vertical > 0):
-        return not compare_resolution(options.horizontal, options.vertical)
+    if (args.horizontal > 0) and (args.vertical > 0):
+        return not compare_resolution(args.horizontal, args.vertical)
     else:
         check_resolution()
 
@@ -45,4 +44,4 @@ def main(args):
 
 
 if __name__ == "__main__":
-    sys.exit(main(sys.argv[1:]))
+    sys.exit(main())
