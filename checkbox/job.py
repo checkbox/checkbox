@@ -104,4 +104,26 @@ class Job:
 class JobStore(MessageStore):
     """A job store which stores its jobs in a file system hierarchy."""
 
-    pass
+    def add(self, job):
+        # TODO: Order alphabetically within suite or non-suite
+
+        # Remove the same job if it already exists without a suite
+        if "suite" in job:
+            for filename in self._find_matching_messages(name=job["name"], suite=None):
+                os.unlink(filename)
+
+        # Return if the same job is already in the store
+        if list(self._find_matching_messages(name=job["name"])):
+            return
+
+        return super(JobStore, self).add(job)
+
+    # TODO: Optimize by only searching backwards until a given condition
+    def _find_matching_messages(self, **kwargs):
+        for filename in self._walk_messages():
+            message = self._read_message(filename,cache=True)
+            for key, value in kwargs.items():
+                if message.get(key) != value:
+                    break
+            else:
+                yield filename
