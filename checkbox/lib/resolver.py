@@ -81,7 +81,8 @@ class Resolver:
             # add resolution
             self.reentrant_resolution.add(resolution_step)
             # and its dependencies, if any
-            resolved.update(self.resolve(self.items[dependency], found=key))
+            if dependency in self.items:
+                resolved.update(self.resolve(self.items[dependency], found=key))
 
         # now it's time for sorting hierarchically... Since circular dependencies are excluded,
         # ancestors will always have fewer dependencies than descendants, so sorting by the

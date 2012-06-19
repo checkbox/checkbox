@@ -169,7 +169,7 @@ class JobsInfo(Plugin):
         if not self.whitelist_patterns or order_errors:
             resolver = Resolver(key=lambda m: m["name"])
             for message in messages:
-                message.add(
+                resolver.add(
                     message, *message.get("depends", "").split())
             messages = resolver.get_dependents()
 
