@@ -88,6 +88,8 @@ checkbox (0.14) quantal; urgency=low
       revision, which made the TimeSkew() function do nothing. Fixed an
       unbuffered I/O error in SilentCall() discovered while testing Python3
       changes. 
+    * scripts/optical_detect, scripts/optical_read_test: ran 2to3 and changed
+      shebang. Changes were minimal.
 
   [Jeff Marcom]
   * [FEATURE] Python 2 to 3 conversion:
@@ -120,7 +122,7 @@ checkbox (0.14) quantal; urgency=low
   * jobs/stress.txt.in: add OEM team's stress tests (including reboot and poweroff)
     and log analysis jobs      
 
- -- Jeff Lane <jeff@ubuntu.com>  Wed, 06 Jun 2012 15:12:25 -0400
+ -- Jeff Lane <jeff@ubuntu.com>  Mon, 18 Jun 2012 21:01:08 -0400
 
 checkbox (0.13.8) precise; urgency=low
 
