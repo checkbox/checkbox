@@ -108,7 +108,7 @@ class Resolver:
             dependents = [x for x in iter(self.items.values()) if len(self.resolve(x)) == 1]
 
         index = 0
-        dependents = sorted(dependents)
+        dependents = sorted(dependents, key=self.key)
         while index < len(dependents):
             sub_dependents = self.get_dependents(dependents[index])
             if sub_dependents:
