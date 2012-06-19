@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-04 15:38-0400\n"
+"POT-Creation-Date: 2012-06-14 16:38-0400\n"
 "PO-Revision-Date: 2012-05-17 05:10+0000\n"
 "Last-Translator: Paco Molinero <paco@byasl.com>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-06-09 05:13+0000\n"
-"X-Generator: Launchpad (build 15376)\n"
+"X-Launchpad-Export-Date: 2012-06-15 04:39+0000\n"
+"X-Generator: Launchpad (build 15414)\n"
 
 #: ../checkbox/application.py:70
 msgid "Print version information and exit."
@@ -170,7 +170,7 @@ msgid "Test to detect audio devices"
 msgstr "Prueba para detectar dispositivos de audio"
 
 #. description
-#: ../jobs/audio.txt.in:16
+#: ../jobs/audio.txt.in:17
 msgid ""
 "PURPOSE:\n"
 "    This test will check that internal speakers work correctly\n"
@@ -194,7 +194,7 @@ msgstr ""
 "    ¿Escuchó un sonido?"
 
 #. description
-#: ../jobs/audio.txt.in:33
+#: ../jobs/audio.txt.in:35
 msgid ""
 "PURPOSE:\n"
 "    This test will check that headphones connector works correctly\n"
@@ -217,7 +217,7 @@ msgstr ""
 "ruidos extraños producidos por los auriculares?"
 
 #. description
-#: ../jobs/audio.txt.in:49
+#: ../jobs/audio.txt.in:51
 msgid ""
 "PURPOSE:\n"
 "    This test will check that recording sound using the onboard microphone "
@@ -243,7 +243,7 @@ msgstr ""
 "¿Escuchó su grabación?"
 
 #. description
-#: ../jobs/audio.txt.in:66
+#: ../jobs/audio.txt.in:68
 msgid ""
 "PURPOSE:\n"
 "    This test will check that recording sound using an external microphone "
@@ -268,7 +268,7 @@ msgstr ""
 "¿Escuchó su grabación?"
 
 #. description
-#: ../jobs/audio.txt.in:82
+#: ../jobs/audio.txt.in:84
 msgid ""
 "PURPOSE:\n"
 "    This test will check that a USB audio device works correctly\n"
@@ -291,7 +291,7 @@ msgstr ""
 "auriculares USB?"
 
 #. description
-#: ../jobs/audio.txt.in:99
+#: ../jobs/audio.txt.in:101
 msgid ""
 "Play back a sound on the default output and listen for it on the  default "
 "input.  This makes the most sense when the output and input  are directly "
@@ -300,6 +300,19 @@ msgstr ""
 "Reproducir un sonido en la salida predeterminada y escucharla en la entrada "
 "predeterminada. Esto tiene sentido cuando la salida y la entrada y están "
 "directamente conectadas, como con un cable de conexión."
+
+#. description
+#: ../jobs/audio.txt.in:109
+msgid ""
+"Collect audio-related system information. This data can be used to simulate "
+"this computer's audio subsystem and perform more detailed tests under a "
+"controlled environment."
+msgstr ""
+
+#. description
+#: ../jobs/audio.txt.in:118
+msgid "Attaches the audio hardware data collection log to the results."
+msgstr ""
 
 #. description
 #: ../jobs/autotest.txt.in:6
@@ -669,31 +682,31 @@ msgid "Benchmark for each disk"
 msgstr "Prueba comparativa de cada disco"
 
 #. description
-#: ../jobs/disk.txt.in:23
+#: ../jobs/disk.txt.in:26
 msgid "Check stats changes for each disk"
 msgstr "Comprobar cambios de estado de cada disco"
 
 #. description
-#: ../jobs/disk.txt.in:40
+#: ../jobs/disk.txt.in:46
 msgid "SMART test"
 msgstr "Prueba SMART"
 
 #. description
-#: ../jobs/disk.txt.in:56
+#: ../jobs/disk.txt.in:64
 msgid "Maximum disk space used during a default installation test"
 msgstr ""
 "Máximo espacio de disco usado durante una prueba de instalación "
 "predeterminada"
 
 #. description
-#: ../jobs/disk.txt.in:71
+#: ../jobs/disk.txt.in:81
 msgid "Verify system storage performs at or above baseline performance"
 msgstr ""
 "Verifica que el rendimiento del almacenamiento del sistema, esté por sobre "
 "el rendimiento de referencia"
 
 #. description
-#: ../jobs/disk.txt.in:88
+#: ../jobs/disk.txt.in:99
 msgid ""
 "Verify that storage devices, such as Fibre Channel and RAID can be detected "
 "and perform under stress."
@@ -959,7 +972,7 @@ msgid "https://help.ubuntu.com/community/Installation/SystemRequirements"
 msgstr "https://help.ubuntu.com/community/Installation/SystemRequirements"
 
 #. description
-#: ../jobs/graphics.txt.in:95
+#: ../jobs/graphics.txt.in:97
 msgid ""
 "PURPOSE:\n"
 "    This test will test the default display\n"
@@ -976,12 +989,12 @@ msgstr ""
 "     ¿Ve las barras de color y la estática?"
 
 #. description
-#: ../jobs/graphics.txt.in:106
+#: ../jobs/graphics.txt.in:108
 msgid "Check that VESA drivers are not in use"
 msgstr "Verifica que los controladores VESA no estén en uso"
 
 #. description
-#: ../jobs/graphics.txt.in:113
+#: ../jobs/graphics.txt.in:115
 msgid ""
 "PURPOSE:\n"
 "    This test cycles through the detected video modes\n"
@@ -1000,17 +1013,17 @@ msgstr ""
 "vídeo?"
 
 #. description
-#: ../jobs/graphics.txt.in:126
+#: ../jobs/graphics.txt.in:128
 msgid "Check that hardware is able to run compiz"
 msgstr "Verifica si el hardware es capaz de correr Compiz"
 
 #. description
-#: ../jobs/graphics.txt.in:133
+#: ../jobs/graphics.txt.in:135
 msgid "Check that hardware is able to run Unity 3D"
 msgstr "Verifica si el Hardware es capaz de correr Unity 3D"
 
 #. description
-#: ../jobs/graphics.txt.in:139
+#: ../jobs/graphics.txt.in:141
 msgid ""
 "PURPOSE:\n"
 "    This test tests the basic 3D capabilities of your video card\n"
@@ -1034,7 +1047,7 @@ msgstr ""
 "2. ¿Estaba libre de lentitud/sacudidas?"
 
 #. description
-#: ../jobs/graphics.txt.in:159
+#: ../jobs/graphics.txt.in:161
 msgid ""
 "PURPOSE:\n"
 "    Do some challenging operations and check for lockup on the GPU\n"
@@ -1059,7 +1072,7 @@ msgstr ""
 "de bloqueo de GPU."
 
 #. description
-#: ../jobs/graphics.txt.in:174
+#: ../jobs/graphics.txt.in:176
 msgid ""
 "PURPOSE:\n"
 "    Take a screengrab of the current screen (logged on Unity desktop)\n"
@@ -1077,12 +1090,12 @@ msgstr ""
 "    1. Revisa el adjunto mas tarde manualmente."
 
 #. description
-#: ../jobs/graphics.txt.in:186 ../jobs/suspend.txt.in:332
+#: ../jobs/graphics.txt.in:188 ../jobs/suspend.txt.in:332
 msgid "Attaches the screenshot captured in graphics/screenshot."
 msgstr "Adjunta la instantánea capturada en graphics/screenshot."
 
 #. description
-#: ../jobs/graphics.txt.in:194
+#: ../jobs/graphics.txt.in:199
 msgid ""
 "PURPOSE:\n"
 "    Take a screengrab of the current screen during fullscreen video "
@@ -1103,7 +1116,7 @@ msgstr ""
 "    1. Revisa el adjunto mas tarde manualmente."
 
 #. description
-#: ../jobs/graphics.txt.in:207
+#: ../jobs/graphics.txt.in:212
 msgid ""
 "Attaches the screenshot captured in graphics/screenshot_fullscreen_video."
 msgstr ""
@@ -1619,36 +1632,31 @@ msgstr "Pruebas de Touchpad"
 
 #. description
 #: ../jobs/local.txt.in:241
-msgid "Unity tests"
-msgstr "Pruebas de Unity"
-
-#. description
-#: ../jobs/local.txt.in:248
 msgid "USB tests"
 msgstr "Pruebas de USB"
 
 #. description
-#: ../jobs/local.txt.in:255
+#: ../jobs/local.txt.in:248
 msgid "User Applications"
 msgstr "Aplicaciones de usuario"
 
 #. description
-#: ../jobs/local.txt.in:262
+#: ../jobs/local.txt.in:255
 msgid "Wireless networking tests"
 msgstr "Pruebas de redes inalámbricas"
 
 #. description
-#: ../jobs/local.txt.in:269
+#: ../jobs/local.txt.in:262
 msgid "Stress tests"
 msgstr "Pruebas de estrés"
 
 #. description
-#: ../jobs/local.txt.in:276
+#: ../jobs/local.txt.in:269
 msgid "Smoke tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:283
+#: ../jobs/local.txt.in:276
 msgid "Sniff Sniffers"
 msgstr ""
 
@@ -2488,7 +2496,7 @@ msgstr ""
 "una secuencialmente."
 
 #. description
-#: ../jobs/networking.txt.in:128
+#: ../jobs/networking.txt.in:131
 msgid "Test to measure the network bandwidth"
 msgstr "Prueba para medir el ancho de banda de red"
 
@@ -3457,24 +3465,6 @@ msgid ""
 "NOTES:\n"
 "    1. Edge Scrolling option should be enabled by default"
 msgstr ""
-
-#. description
-#: ../jobs/unity.txt.in:6
-msgid ""
-"Xlib is required for unity testing. This checks for Xlib and installs it if "
-"not available."
-msgstr ""
-"Se necesita Xlib para probar unity. Esta operación busca Xlib y lo instala "
-"si no está disponible."
-
-#. description
-#: ../jobs/unity.txt.in:13
-msgid ""
-"This test will verify that Unity is running and then run the autopilot.py "
-"test against the Unity interface."
-msgstr ""
-"Esta prueba comprobará que Unity funciona y, a continuación, ejecuta la "
-"prueba autopilot.py respecto a la interfaz de Unity."
 
 #. description
 #: ../jobs/usb.txt.in:5
@@ -4605,13 +4595,17 @@ msgstr "Probar de nuevo"
 msgid "_Test Again"
 msgstr "_Probar de nuevo"
 
-#: ../checkbox_gtk/gtk_interface.py:574 ../qt/frontend/qtfront.cpp:540
+#: ../checkbox_gtk/gtk_interface.py:574 ../qt/frontend/qtfront.cpp:545
 msgid "Info"
 msgstr "Info."
 
-#: ../checkbox_gtk/gtk_interface.py:598 ../qt/frontend/qtfront.cpp:250
+#: ../checkbox_gtk/gtk_interface.py:599 ../qt/frontend/qtfront.cpp:251
 msgid "Error"
 msgstr "Error"
+
+#: ../checkbox_gtk/gtk_interface.py:607
+msgid "Detailed information..."
+msgstr ""
 
 #: ../plugins/apport_prompt.py:83
 msgid ""
@@ -4777,15 +4771,15 @@ msgstr "Introduzca texto:\n"
 msgid "Type Text"
 msgstr "Teclee texto"
 
-#: ../scripts/internet_test:214
+#: ../scripts/internet_test:211
 msgid "No Internet connection"
 msgstr "No hay conexión a Internet"
 
-#: ../scripts/internet_test:217
+#: ../scripts/internet_test:214
 msgid "Connection established lost a packet"
 msgstr "La conexión establecida perdió un paquete"
 
-#: ../scripts/internet_test:220
+#: ../scripts/internet_test:217
 msgid "Internet connection fully established"
 msgstr "Conexión a Internet totalmente establecida"
 
@@ -5730,6 +5724,9 @@ msgstr " Resultados "
 
 #~ msgid "Click the \"Test\" button to open gedit."
 #~ msgstr "Pulse Probar para abrir gedit."
+
+#~ msgid "Unity tests"
+#~ msgstr "Pruebas de Unity"
 
 #~ msgid "Samba server test"
 #~ msgstr "Prueba de servidor Samba"
@@ -6756,6 +6753,20 @@ msgstr " Resultados "
 #~ msgstr ""
 #~ "Si no se retira el dispositivo USB o no se registra que se haya retirado, el "
 #~ "resultado de la prueba será negativo y se seleccionará «No» más abajo."
+
+#~ msgid ""
+#~ "Xlib is required for unity testing. This checks for Xlib and installs it if "
+#~ "not available."
+#~ msgstr ""
+#~ "Se necesita Xlib para probar unity. Esta operación busca Xlib y lo instala "
+#~ "si no está disponible."
+
+#~ msgid ""
+#~ "This test will verify that Unity is running and then run the autopilot.py "
+#~ "test against the Unity interface."
+#~ msgstr ""
+#~ "Esta prueba comprobará que Unity funciona y, a continuación, ejecuta la "
+#~ "prueba autopilot.py respecto a la interfaz de Unity."
 
 #~ msgid ""
 #~ "Plug a USB keyboard into the computer. Then, click on the Test button \\ to "

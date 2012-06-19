@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-04 15:38-0400\n"
+"POT-Creation-Date: 2012-06-14 16:38-0400\n"
 "PO-Revision-Date: 2011-07-19 20:19+0000\n"
 "Last-Translator: Claudia Cotună <special4ti@gmail.com>\n"
 "Language-Team: Romanian <ro@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-06-09 05:12+0000\n"
-"X-Generator: Launchpad (build 15376)\n"
+"X-Launchpad-Export-Date: 2012-06-15 04:38+0000\n"
+"X-Generator: Launchpad (build 15414)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:9
 msgid "_Previous"
@@ -81,7 +81,7 @@ msgid "Test to detect audio devices"
 msgstr "Test pentru detectarea dispozitivelor audio"
 
 #. description
-#: ../jobs/audio.txt.in:16
+#: ../jobs/audio.txt.in:17
 msgid ""
 "PURPOSE:\n"
 "    This test will check that internal speakers work correctly\n"
@@ -104,7 +104,7 @@ msgstr ""
 "    Ați auzit sunet?"
 
 #. description
-#: ../jobs/audio.txt.in:33
+#: ../jobs/audio.txt.in:35
 msgid ""
 "PURPOSE:\n"
 "    This test will check that headphones connector works correctly\n"
@@ -126,7 +126,7 @@ msgstr ""
 "clicuri sau alte zgomote ciudate?"
 
 #. description
-#: ../jobs/audio.txt.in:49
+#: ../jobs/audio.txt.in:51
 msgid ""
 "PURPOSE:\n"
 "    This test will check that recording sound using the onboard microphone "
@@ -150,7 +150,7 @@ msgstr ""
 "    Ați auzit înregistrarea redată?"
 
 #. description
-#: ../jobs/audio.txt.in:66
+#: ../jobs/audio.txt.in:68
 msgid ""
 "PURPOSE:\n"
 "    This test will check that recording sound using an external microphone "
@@ -174,7 +174,7 @@ msgstr ""
 "   Ați auzit înregistrarea redată?"
 
 #. description
-#: ../jobs/audio.txt.in:82
+#: ../jobs/audio.txt.in:84
 msgid ""
 "PURPOSE:\n"
 "    This test will check that a USB audio device works correctly\n"
@@ -196,7 +196,7 @@ msgstr ""
 "    Ați auzit înregistrarea cuvintelor dumneavoastră redată prin căștile USB?"
 
 #. description
-#: ../jobs/audio.txt.in:99
+#: ../jobs/audio.txt.in:101
 msgid ""
 "Play back a sound on the default output and listen for it on the  default "
 "input.  This makes the most sense when the output and input  are directly "
@@ -204,6 +204,19 @@ msgid ""
 msgstr ""
 "Redați un sunet pe ieșirea implicită și ascultați-l pe intrarea implicită. "
 "Are sens dacă ieșirea și intrarea sunt conectate, de exemplu cu un cablu."
+
+#. description
+#: ../jobs/audio.txt.in:109
+msgid ""
+"Collect audio-related system information. This data can be used to simulate "
+"this computer's audio subsystem and perform more detailed tests under a "
+"controlled environment."
+msgstr ""
+
+#. description
+#: ../jobs/audio.txt.in:118
+msgid "Attaches the audio hardware data collection log to the results."
+msgstr ""
 
 #. description
 #: ../jobs/autotest.txt.in:6
@@ -574,29 +587,29 @@ msgid "Benchmark for each disk"
 msgstr "Teste de stres pentru fiecare disc"
 
 #. description
-#: ../jobs/disk.txt.in:23
+#: ../jobs/disk.txt.in:26
 msgid "Check stats changes for each disk"
 msgstr "Verifică modificările în starea fiecărui disc"
 
 #. description
-#: ../jobs/disk.txt.in:40
+#: ../jobs/disk.txt.in:46
 msgid "SMART test"
 msgstr "Test SMART"
 
 #. description
-#: ../jobs/disk.txt.in:56
+#: ../jobs/disk.txt.in:64
 msgid "Maximum disk space used during a default installation test"
 msgstr ""
 "Spațiul maxim utilizat pe disc pe parcursul instalării implicite a unui test"
 
 #. description
-#: ../jobs/disk.txt.in:71
+#: ../jobs/disk.txt.in:81
 msgid "Verify system storage performs at or above baseline performance"
 msgstr ""
 "Verifică dacă unitățile de stocare lucrează la sau sub parametrii specificați"
 
 #. description
-#: ../jobs/disk.txt.in:88
+#: ../jobs/disk.txt.in:99
 msgid ""
 "Verify that storage devices, such as Fibre Channel and RAID can be detected "
 "and perform under stress."
@@ -848,7 +861,7 @@ msgid "https://help.ubuntu.com/community/Installation/SystemRequirements"
 msgstr "https://help.ubuntu.com/community/Installation/SystemRequirements"
 
 #. description
-#: ../jobs/graphics.txt.in:95
+#: ../jobs/graphics.txt.in:97
 msgid ""
 "PURPOSE:\n"
 "    This test will test the default display\n"
@@ -865,12 +878,12 @@ msgstr ""
 "    Au fost afișate bare colorate și statice?"
 
 #. description
-#: ../jobs/graphics.txt.in:106
+#: ../jobs/graphics.txt.in:108
 msgid "Check that VESA drivers are not in use"
 msgstr "Verifică dacă driverul VESA nu este utilizat"
 
 #. description
-#: ../jobs/graphics.txt.in:113
+#: ../jobs/graphics.txt.in:115
 msgid ""
 "PURPOSE:\n"
 "    This test cycles through the detected video modes\n"
@@ -888,17 +901,17 @@ msgstr ""
 "    A funcționat monitorul în fiecare mod video?"
 
 #. description
-#: ../jobs/graphics.txt.in:126
+#: ../jobs/graphics.txt.in:128
 msgid "Check that hardware is able to run compiz"
 msgstr "Verifică dacă sistemul poate rula compiz"
 
 #. description
-#: ../jobs/graphics.txt.in:133
+#: ../jobs/graphics.txt.in:135
 msgid "Check that hardware is able to run Unity 3D"
 msgstr "Verifică dacă sistemul poate rula Unity 3D"
 
 #. description
-#: ../jobs/graphics.txt.in:139
+#: ../jobs/graphics.txt.in:141
 msgid ""
 "PURPOSE:\n"
 "    This test tests the basic 3D capabilities of your video card\n"
@@ -921,7 +934,7 @@ msgstr ""
 "    2. Animația a fost redată la o calitate bună și cu o viteză mulțumitoare?"
 
 #. description
-#: ../jobs/graphics.txt.in:159
+#: ../jobs/graphics.txt.in:161
 msgid ""
 "PURPOSE:\n"
 "    Do some challenging operations and check for lockup on the GPU\n"
@@ -935,7 +948,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:174
+#: ../jobs/graphics.txt.in:176
 msgid ""
 "PURPOSE:\n"
 "    Take a screengrab of the current screen (logged on Unity desktop)\n"
@@ -946,12 +959,12 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:186 ../jobs/suspend.txt.in:332
+#: ../jobs/graphics.txt.in:188 ../jobs/suspend.txt.in:332
 msgid "Attaches the screenshot captured in graphics/screenshot."
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:194
+#: ../jobs/graphics.txt.in:199
 msgid ""
 "PURPOSE:\n"
 "    Take a screengrab of the current screen during fullscreen video "
@@ -964,7 +977,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:207
+#: ../jobs/graphics.txt.in:212
 msgid ""
 "Attaches the screenshot captured in graphics/screenshot_fullscreen_video."
 msgstr ""
@@ -1479,36 +1492,31 @@ msgstr "Teste touchpad"
 
 #. description
 #: ../jobs/local.txt.in:241
-msgid "Unity tests"
-msgstr "Teste pentru mediul grafic Unity"
-
-#. description
-#: ../jobs/local.txt.in:248
 msgid "USB tests"
 msgstr "Teste pentru conexiunile USB"
 
 #. description
-#: ../jobs/local.txt.in:255
+#: ../jobs/local.txt.in:248
 msgid "User Applications"
 msgstr "Aplicații pentru utilizatori"
 
 #. description
-#: ../jobs/local.txt.in:262
+#: ../jobs/local.txt.in:255
 msgid "Wireless networking tests"
 msgstr "Teste pentru rețeaua fără fir"
 
 #. description
-#: ../jobs/local.txt.in:269
+#: ../jobs/local.txt.in:262
 msgid "Stress tests"
 msgstr "Teste de stres"
 
 #. description
-#: ../jobs/local.txt.in:276
+#: ../jobs/local.txt.in:269
 msgid "Smoke tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:283
+#: ../jobs/local.txt.in:276
 msgid "Sniff Sniffers"
 msgstr ""
 
@@ -2235,7 +2243,7 @@ msgstr ""
 "secvențial."
 
 #. description
-#: ../jobs/networking.txt.in:128
+#: ../jobs/networking.txt.in:131
 msgid "Test to measure the network bandwidth"
 msgstr "Test pentru măsurarea lățimii de bandă"
 
@@ -3178,24 +3186,6 @@ msgid ""
 "NOTES:\n"
 "    1. Edge Scrolling option should be enabled by default"
 msgstr ""
-
-#. description
-#: ../jobs/unity.txt.in:6
-msgid ""
-"Xlib is required for unity testing. This checks for Xlib and installs it if "
-"not available."
-msgstr ""
-"Pentru testele unity este nevoie de pachetul Xib. Așadar se va verifica "
-"existența pachetului și, dacă nu există, va fi instalat."
-
-#. description
-#: ../jobs/unity.txt.in:13
-msgid ""
-"This test will verify that Unity is running and then run the autopilot.py "
-"test against the Unity interface."
-msgstr ""
-"Acest test va verifica dacă Unity rulează, pentru a porni testul "
-"autopilot.py pe interfața Unity."
 
 #. description
 #: ../jobs/usb.txt.in:5
@@ -4383,13 +4373,17 @@ msgstr "Testează din nou"
 msgid "_Test Again"
 msgstr "_Testează din nou"
 
-#: ../checkbox_gtk/gtk_interface.py:574 ../qt/frontend/qtfront.cpp:540
+#: ../checkbox_gtk/gtk_interface.py:574 ../qt/frontend/qtfront.cpp:545
 msgid "Info"
 msgstr "Informații"
 
-#: ../checkbox_gtk/gtk_interface.py:598 ../qt/frontend/qtfront.cpp:250
+#: ../checkbox_gtk/gtk_interface.py:599 ../qt/frontend/qtfront.cpp:251
 msgid "Error"
 msgstr "Eroare"
+
+#: ../checkbox_gtk/gtk_interface.py:607
+msgid "Detailed information..."
+msgstr ""
 
 #: ../plugins/apport_prompt.py:83
 msgid ""
@@ -4587,15 +4581,15 @@ msgstr "Introduceți text:\n"
 msgid "Type Text"
 msgstr "Tastare text"
 
-#: ../scripts/internet_test:214
+#: ../scripts/internet_test:211
 msgid "No Internet connection"
 msgstr "Nicio conexiune la Internet"
 
-#: ../scripts/internet_test:217
+#: ../scripts/internet_test:214
 msgid "Connection established lost a packet"
 msgstr "Conexiunea stabilită a pierdut un pachet"
 
-#: ../scripts/internet_test:220
+#: ../scripts/internet_test:217
 msgid "Internet connection fully established"
 msgstr "Conexiune la Internet stabilită complet"
 
@@ -5589,6 +5583,9 @@ msgstr " Rezultate "
 #~ msgid "Attaches the screenshot captured in info/screenshot."
 #~ msgstr "Atașează captura de ecran în info/captură."
 
+#~ msgid "Unity tests"
+#~ msgstr "Teste pentru mediul grafic Unity"
+
 #~ msgid ""
 #~ "PURPOSE:\n"
 #~ "    This test will check that the systems media card reader can\n"
@@ -6057,6 +6054,20 @@ msgstr " Rezultate "
 #~ "suspendare și revenirea din suspendare\n"
 #~ "VERIFICARE:\n"
 #~ "    Monitorul afișează corect după revenirea din suspendare?"
+
+#~ msgid ""
+#~ "This test will verify that Unity is running and then run the autopilot.py "
+#~ "test against the Unity interface."
+#~ msgstr ""
+#~ "Acest test va verifica dacă Unity rulează, pentru a porni testul "
+#~ "autopilot.py pe interfața Unity."
+
+#~ msgid ""
+#~ "Xlib is required for unity testing. This checks for Xlib and installs it if "
+#~ "not available."
+#~ msgstr ""
+#~ "Pentru testele unity este nevoie de pachetul Xib. Așadar se va verifica "
+#~ "existența pachetului și, dacă nu există, va fi instalat."
 
 #~ msgid ""
 #~ "PURPOSE:\n"

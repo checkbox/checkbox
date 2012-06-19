@@ -1,6 +1,5 @@
 checkbox (0.14) quantal; urgency=low
 
-  [ Jeff Lane ]
   [Brendan Donegan]
   * [FEATURE] Python 2 to 3 conversion:
     * scripts/create_connection - switched to using argparse and fixed
@@ -10,8 +9,12 @@ checkbox (0.14) quantal; urgency=low
     * scripts/memory_info
     * scripts/removable_storage_test - ran 2to3 tool and fixed some
       encoding issues
+    * scripts/removable_storage_watcher - ran 2to3 tool and swapped
+      use of gobject with gi.repository.GObject
   * Update touchpad.py to use gsettings instead of deprecated gconf
     (LP: #1004212)
+  * Instead of checking output of nmcli con up in create_connection,
+    check the return code is success instead (LP: #1013537)
 
   [Marc Tardif]
   * [FEATURE] Reworked media_keys_test into key_test, making it more generic
@@ -85,12 +88,19 @@ checkbox (0.14) quantal; urgency=low
       revision, which made the TimeSkew() function do nothing. Fixed an
       unbuffered I/O error in SilentCall() discovered while testing Python3
       changes. 
+    * scripts/optical_detect, scripts/optical_read_test: ran 2to3 and changed
+      shebang. Changes were minimal.
+    * scripts/xorg_memory_test: 2to3 made minimal changes, modifed shebang.
+      Converted optparse code to argparse code and replaced sys.argv[] stuff
+      with more useful positional arguments. Removed a redundant import that
+      2to3 injected.
 
   [Jeff Marcom]
   * [FEATURE] Python 2 to 3 conversion:
     * scripts/memory_info
     * scripts/memory_test
     * scripts/touchpad_test
+  * Deprecated: wake_on_lan_test
   * Update touchpad.py to use gsettings instead of deprecated gconf
     (LP: #1004212)
 

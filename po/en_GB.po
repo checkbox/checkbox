@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-04 15:38-0400\n"
+"POT-Creation-Date: 2012-06-14 16:38-0400\n"
 "PO-Revision-Date: 2012-01-23 15:04+0000\n"
 "Last-Translator: Anthony Harrington <untaintableangel@hotmail.co.uk>\n"
 "Language-Team: English (United Kingdom) <en_GB@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-06-09 05:13+0000\n"
-"X-Generator: Launchpad (build 15376)\n"
+"X-Launchpad-Export-Date: 2012-06-15 04:40+0000\n"
+"X-Generator: Launchpad (build 15414)\n"
 
 #~ msgid "Do you see color bars and static?"
 #~ msgstr "Do you see colour bars and static?"
@@ -73,7 +73,7 @@ msgid "Test to detect audio devices"
 msgstr "Test to detect audio devices"
 
 #. description
-#: ../jobs/audio.txt.in:16
+#: ../jobs/audio.txt.in:17
 msgid ""
 "PURPOSE:\n"
 "    This test will check that internal speakers work correctly\n"
@@ -94,7 +94,7 @@ msgstr ""
 "    Did you hear a tone?"
 
 #. description
-#: ../jobs/audio.txt.in:33
+#: ../jobs/audio.txt.in:35
 msgid ""
 "PURPOSE:\n"
 "    This test will check that headphones connector works correctly\n"
@@ -115,7 +115,7 @@ msgstr ""
 "without any distortion, clicks or other strange noises from your headphones?"
 
 #. description
-#: ../jobs/audio.txt.in:49
+#: ../jobs/audio.txt.in:51
 msgid ""
 "PURPOSE:\n"
 "    This test will check that recording sound using the onboard microphone "
@@ -138,7 +138,7 @@ msgstr ""
 "    Did you hear your speech played back?"
 
 #. description
-#: ../jobs/audio.txt.in:66
+#: ../jobs/audio.txt.in:68
 msgid ""
 "PURPOSE:\n"
 "    This test will check that recording sound using an external microphone "
@@ -161,7 +161,7 @@ msgstr ""
 "    Did you hear your speech played back?"
 
 #. description
-#: ../jobs/audio.txt.in:82
+#: ../jobs/audio.txt.in:84
 msgid ""
 "PURPOSE:\n"
 "    This test will check that a USB audio device works correctly\n"
@@ -182,7 +182,7 @@ msgstr ""
 "    Did you hear your speech played back through the USB headphones?"
 
 #. description
-#: ../jobs/audio.txt.in:99
+#: ../jobs/audio.txt.in:101
 msgid ""
 "Play back a sound on the default output and listen for it on the  default "
 "input.  This makes the most sense when the output and input  are directly "
@@ -191,6 +191,19 @@ msgstr ""
 "Play back a sound on the default output and listen for it on the  default "
 "input.  This makes the most sense when the output and input  are directly "
 "connected, as with a patch cable."
+
+#. description
+#: ../jobs/audio.txt.in:109
+msgid ""
+"Collect audio-related system information. This data can be used to simulate "
+"this computer's audio subsystem and perform more detailed tests under a "
+"controlled environment."
+msgstr ""
+
+#. description
+#: ../jobs/audio.txt.in:118
+msgid "Attaches the audio hardware data collection log to the results."
+msgstr ""
 
 #. description
 #: ../jobs/autotest.txt.in:6
@@ -528,27 +541,27 @@ msgid "Benchmark for each disk"
 msgstr "Benchmark for each disk"
 
 #. description
-#: ../jobs/disk.txt.in:23
+#: ../jobs/disk.txt.in:26
 msgid "Check stats changes for each disk"
 msgstr "Check stats changes for each disk"
 
 #. description
-#: ../jobs/disk.txt.in:40
+#: ../jobs/disk.txt.in:46
 msgid "SMART test"
 msgstr "SMART test"
 
 #. description
-#: ../jobs/disk.txt.in:56
+#: ../jobs/disk.txt.in:64
 msgid "Maximum disk space used during a default installation test"
 msgstr "Maximum disk space used during a default installation test"
 
 #. description
-#: ../jobs/disk.txt.in:71
+#: ../jobs/disk.txt.in:81
 msgid "Verify system storage performs at or above baseline performance"
 msgstr "Verify system storage performs at or above baseline performance"
 
 #. description
-#: ../jobs/disk.txt.in:88
+#: ../jobs/disk.txt.in:99
 msgid ""
 "Verify that storage devices, such as Fibre Channel and RAID can be detected "
 "and perform under stress."
@@ -792,7 +805,7 @@ msgid "https://help.ubuntu.com/community/Installation/SystemRequirements"
 msgstr "https://help.ubuntu.com/community/Installation/SystemRequirements"
 
 #. description
-#: ../jobs/graphics.txt.in:95
+#: ../jobs/graphics.txt.in:97
 msgid ""
 "PURPOSE:\n"
 "    This test will test the default display\n"
@@ -809,12 +822,12 @@ msgstr ""
 "    Do you see colour bars and static?"
 
 #. description
-#: ../jobs/graphics.txt.in:106
+#: ../jobs/graphics.txt.in:108
 msgid "Check that VESA drivers are not in use"
 msgstr "Check that VESA drivers are not in use"
 
 #. description
-#: ../jobs/graphics.txt.in:113
+#: ../jobs/graphics.txt.in:115
 msgid ""
 "PURPOSE:\n"
 "    This test cycles through the detected video modes\n"
@@ -831,17 +844,17 @@ msgstr ""
 "    Did the screen appear to be working for each mode?"
 
 #. description
-#: ../jobs/graphics.txt.in:126
+#: ../jobs/graphics.txt.in:128
 msgid "Check that hardware is able to run compiz"
 msgstr "Check that hardware is able to run compiz"
 
 #. description
-#: ../jobs/graphics.txt.in:133
+#: ../jobs/graphics.txt.in:135
 msgid "Check that hardware is able to run Unity 3D"
 msgstr "Check that hardware is able to run Unity 3D"
 
 #. description
-#: ../jobs/graphics.txt.in:139
+#: ../jobs/graphics.txt.in:141
 msgid ""
 "PURPOSE:\n"
 "    This test tests the basic 3D capabilities of your video card\n"
@@ -864,7 +877,7 @@ msgstr ""
 "    2. Was the animation free from slowness/jerkiness?"
 
 #. description
-#: ../jobs/graphics.txt.in:159
+#: ../jobs/graphics.txt.in:161
 msgid ""
 "PURPOSE:\n"
 "    Do some challenging operations and check for lockup on the GPU\n"
@@ -878,7 +891,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:174
+#: ../jobs/graphics.txt.in:176
 msgid ""
 "PURPOSE:\n"
 "    Take a screengrab of the current screen (logged on Unity desktop)\n"
@@ -889,12 +902,12 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:186 ../jobs/suspend.txt.in:332
+#: ../jobs/graphics.txt.in:188 ../jobs/suspend.txt.in:332
 msgid "Attaches the screenshot captured in graphics/screenshot."
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:194
+#: ../jobs/graphics.txt.in:199
 msgid ""
 "PURPOSE:\n"
 "    Take a screengrab of the current screen during fullscreen video "
@@ -907,7 +920,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:207
+#: ../jobs/graphics.txt.in:212
 msgid ""
 "Attaches the screenshot captured in graphics/screenshot_fullscreen_video."
 msgstr ""
@@ -1412,36 +1425,31 @@ msgstr "Touchpad tests"
 
 #. description
 #: ../jobs/local.txt.in:241
-msgid "Unity tests"
-msgstr "Unity tests"
-
-#. description
-#: ../jobs/local.txt.in:248
 msgid "USB tests"
 msgstr "USB tests"
 
 #. description
-#: ../jobs/local.txt.in:255
+#: ../jobs/local.txt.in:248
 msgid "User Applications"
 msgstr "User Applications"
 
 #. description
-#: ../jobs/local.txt.in:262
+#: ../jobs/local.txt.in:255
 msgid "Wireless networking tests"
 msgstr "Wireless networking tests"
 
 #. description
-#: ../jobs/local.txt.in:269
+#: ../jobs/local.txt.in:262
 msgid "Stress tests"
 msgstr "Stress tests"
 
 #. description
-#: ../jobs/local.txt.in:276
+#: ../jobs/local.txt.in:269
 msgid "Smoke tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:283
+#: ../jobs/local.txt.in:276
 msgid "Sniff Sniffers"
 msgstr ""
 
@@ -2149,7 +2157,7 @@ msgstr ""
 "Automated test to walk multiple network cards and test each one in sequence."
 
 #. description
-#: ../jobs/networking.txt.in:128
+#: ../jobs/networking.txt.in:131
 msgid "Test to measure the network bandwidth"
 msgstr "Test to measure the network bandwidth"
 
@@ -3067,24 +3075,6 @@ msgid ""
 "NOTES:\n"
 "    1. Edge Scrolling option should be enabled by default"
 msgstr ""
-
-#. description
-#: ../jobs/unity.txt.in:6
-msgid ""
-"Xlib is required for unity testing. This checks for Xlib and installs it if "
-"not available."
-msgstr ""
-"Xlib is required for unity testing. This checks for Xlib and installs it if "
-"not available."
-
-#. description
-#: ../jobs/unity.txt.in:13
-msgid ""
-"This test will verify that Unity is running and then run the autopilot.py "
-"test against the Unity interface."
-msgstr ""
-"This test will verify that Unity is running and then run the autopilot.py "
-"test against the Unity interface."
 
 #. description
 #: ../jobs/usb.txt.in:5
@@ -4218,13 +4208,17 @@ msgstr "Test Again"
 msgid "_Test Again"
 msgstr "_Test Again"
 
-#: ../checkbox_gtk/gtk_interface.py:574 ../qt/frontend/qtfront.cpp:540
+#: ../checkbox_gtk/gtk_interface.py:574 ../qt/frontend/qtfront.cpp:545
 msgid "Info"
 msgstr "Info"
 
-#: ../checkbox_gtk/gtk_interface.py:598 ../qt/frontend/qtfront.cpp:250
+#: ../checkbox_gtk/gtk_interface.py:599 ../qt/frontend/qtfront.cpp:251
 msgid "Error"
 msgstr "Error"
+
+#: ../checkbox_gtk/gtk_interface.py:607
+msgid "Detailed information..."
+msgstr ""
 
 #: ../plugins/apport_prompt.py:83
 msgid ""
@@ -4366,7 +4360,7 @@ msgstr ""
 
 #: ../plugins/launchpad_prompt.py:93
 msgid "Email address must be in a proper format."
-msgstr "Email address must be formatted properly."
+msgstr "E-mail address must be formatted properly."
 
 #: ../plugins/launchpad_prompt.py:99
 msgid "Exchanging information with the server..."
@@ -4423,15 +4417,15 @@ msgstr "Enter text:\n"
 msgid "Type Text"
 msgstr "Type Text"
 
-#: ../scripts/internet_test:214
+#: ../scripts/internet_test:211
 msgid "No Internet connection"
 msgstr "No Internet connection"
 
-#: ../scripts/internet_test:217
+#: ../scripts/internet_test:214
 msgid "Connection established lost a packet"
 msgstr "Connection established, lost a packet"
 
-#: ../scripts/internet_test:220
+#: ../scripts/internet_test:217
 msgid "Internet connection fully established"
 msgstr "Internet connection fully established"
 
@@ -6260,6 +6254,9 @@ msgstr " Results "
 #~ msgid "Play a media file and press each key in turn."
 #~ msgstr "Play a media file and press each key in turn."
 
+#~ msgid "Unity tests"
+#~ msgstr "Unity tests"
+
 #~ msgid "Automated desktop testing"
 #~ msgstr "Automated desktop testing"
 
@@ -6430,6 +6427,20 @@ msgstr " Results "
 #~ msgstr ""
 #~ "Hammer the CPU as hard as possible for two hours. Intention is to knock it "
 #~ "dead."
+
+#~ msgid ""
+#~ "Xlib is required for unity testing. This checks for Xlib and installs it if "
+#~ "not available."
+#~ msgstr ""
+#~ "Xlib is required for unity testing. This checks for Xlib and installs it if "
+#~ "not available."
+
+#~ msgid ""
+#~ "This test will verify that Unity is running and then run the autopilot.py "
+#~ "test against the Unity interface."
+#~ msgstr ""
+#~ "This test will verify that Unity is running and then run the autopilot.py "
+#~ "test against the Unity interface."
 
 #~ msgid ""
 #~ "Plug a USB keyboard into the computer. Then, click on the Test button \\ to "
