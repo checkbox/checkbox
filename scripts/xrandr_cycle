@@ -29,7 +29,7 @@ success_messages = []  # remember which modes succeeded
 
 # Run xrandr and ask it what devices and modes are supported
 xrandrinfo = subprocess.Popen('xrandr -q', shell=True, stdout=subprocess.PIPE)
-output = xrandrinfo.communicate()[0].split('\n')
+output = xrandrinfo.communicate()[0].decode().split('\n')
 
 
 # The results from xrandr are given in terms of the available display devices.

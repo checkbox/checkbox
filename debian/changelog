@@ -11,6 +11,7 @@ checkbox (0.14) quantal; urgency=low
       encoding issues
     * scripts/removable_storage_watcher - ran 2to3 tool and swapped
       use of gobject with gi.repository.GObject
+    * scripts/xrandr_cycle - ran 2to3 tool and fixed encoding issue
   * Update touchpad.py to use gsettings instead of deprecated gconf
     (LP: #1004212)
   * Instead of checking output of nmcli con up in create_connection,
