@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 
 import os
 import sys
@@ -78,9 +78,9 @@ def read_test(device):
                 shutil.rmtree(dir)
 
     if passed:
-        print "Passed"
+        print("Passed")
     else:
-        print "Failed"
+        print("Failed")
     return passed
 
 
@@ -104,7 +104,7 @@ def main():
 
         capabilities = get_capabilities(device)
         if not capabilities:
-            print "Unable to get capabilities of %s" % device
+            print("Unable to get capabilities of %s" % device)
             return 1
         for capability in capabilities.split('\n'):
             if capability[:3] == 'ID_':
