@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import subprocess
 import argparse
@@ -128,13 +128,13 @@ for mode in modes:
             retval = subprocess.call(shuttercmd, shell=False)
 
             if retval != 0:
-                print """Could not capture screenshot -
-                         you may need to install the package 'shutter'."""
+                print("""Could not capture screenshot -
+                         you may need to install the package 'shutter'.""")
 
         except:
-            print """Could not configure screenshot tool -
+            print("""Could not configure screenshot tool -
                      you may need to install the package 'shutter',
-                     or check that %s exists.""" % profile_path
+                     or check that %s exists.""" % profile_path)
 
         message = 'Set mode ' + mode[1] + ' for output ' + mode[0]
         success_messages.append(message)
@@ -157,10 +157,10 @@ except:
 # Output some fun facts and knock off for the day
 
 for message in failure_messages:
-    print >> sys.stderr, message
+    print(message, file=sys.stderr)
 
 for message in success_messages:
-    print message
+    print(message)
 
 if failures != 0:
     exit(1)
