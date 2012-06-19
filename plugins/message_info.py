@@ -103,6 +103,8 @@ class MessageInfo(Plugin):
                 data = data.decode("utf-8")
             except UnicodeDecodeError:
                 status, data, duration = (FAIL, "Decode error", 0,)
+            except AttributeError:
+                pass
 
             self._manager.reactor.fire(
                 "message-result", status, data, duration)
