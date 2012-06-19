@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/evn python3
 
 import sys
 
@@ -10,10 +10,10 @@ from gi.repository import Gdk
 def check_resolution():
     screen = Gdk.Screen.get_default()
     n = screen.get_n_monitors()
-    for i in xrange(n):
+    for i in range(n):
         geom = screen.get_monitor_geometry(i)
-        print 'Monitor %d:' % (i + 1)
-        print '  %d x %d' % (geom.width, geom.height)
+        print('Monitor %d:' % (i + 1))
+        print('  %d x %d' % (geom.width, geom.height))
 
 
 def compare_resolution(min_h, min_v):
