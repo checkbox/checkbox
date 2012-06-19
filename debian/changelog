@@ -94,6 +94,9 @@ checkbox (0.14) quantal; urgency=low
       Converted optparse code to argparse code and replaced sys.argv[] stuff
       with more useful positional arguments. Removed a redundant import that
       2to3 injected.
+    * scripts/resolution_test: ran 2to3 with minimal changes. Changed shebang.
+      Converted optparse to argparse and removed unnecessary calls to
+      sys.argv[]
 
   [Jeff Marcom]
   * [FEATURE] Python 2 to 3 conversion:
@@ -126,7 +129,7 @@ checkbox (0.14) quantal; urgency=low
   * jobs/stress.txt.in: add OEM team's stress tests (including reboot and poweroff)
     and log analysis jobs      
 
- -- Jeff Lane <jeff@ubuntu.com>  Tue, 19 Jun 2012 14:02:37 -0400
+ -- Jeff Lane <jeff@ubuntu.com>  Tue, 19 Jun 2012 14:22:02 -0400
 
 checkbox (0.13.8) precise; urgency=low
 
