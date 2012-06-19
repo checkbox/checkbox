@@ -1,12 +1,11 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 
-import commands
 import subprocess
 import os
 import time
 import sys
 
-from optparse import OptionParser
+from argparse import ArgumentParser
 from signal import SIGKILL
 
 #globals
@@ -20,9 +19,9 @@ DEFAULT_SLEEP = 30
 def mem_usage(process, samples=1):
     usage_sum = 0
 
-    for n in xrange(1, samples + 1):
-        pid = commands.getoutput("pidof %s" % process)
-        output = commands.getoutput("pmap -d %s" % pid)
+    for n in range(1, samples + 1):
+        pid = subprocess.getoutput("pidof %s" % process)
+        output = subprocess.getoutput("pmap -d %s" % pid)
         if not output:
             raise Exception("%s process not found" % process)
 
@@ -40,20 +39,20 @@ def mem_usage(process, samples=1):
 
 
 def get_gem_objects():
-    dri = commands.getoutput("xdriinfo")
+    dri = subprocess.getoutput("xdriinfo")
     if not dri.startswith('Screen'):
-        print >> sys.stderr, "xdriinfo fail : %s" % (dri)
+        print("xdriinfo fail : %s" % (dri), file=sys.stderr)
         sys.exit(1)
     screen = dri.split()[1][:-1]
     path = os.path.join("/sys/kernel/debug/dri/", screen, "i915_gem_objects")
 
     # 2432 objects, 173256704 bytes
     try:
-        file = open(path, 'r')
+        output = open(path, 'r')
     except IOError:
-        print >> sys.stderr, "File %s doesn't exist" % (path)
+        print("File %s doesn't exist" % (path), file=sys.stderr)
         sys.exit(1)
-    objects_label, bytes_label = file.readline().split(", ")
+    objects_label, bytes_label = output.readline().split(", ")
     objects, label = objects_label.split(" ")
     return int(objects)
 
@@ -70,7 +69,7 @@ def compare_gem_results(orig, new, margin=0.1):
 
 def start_processes(name, number=1):
     pids = []
-    for n in xrange(number):
+    for n in range(number):
         pid = subprocess.Popen(name).pid
         pids.append(pid)
 
@@ -82,65 +81,60 @@ def stop_processes(pids, signal=SIGKILL):
         os.kill(pid, signal)
 
 
-def main(args):
+def main():
     #Parse options
-    usage = "Usage: %prog [OPTIONS] PROGRAM"
-    parser = OptionParser(usage=usage)
-    parser.add_option("-m", "--margin",
+    parser = ArgumentParser()
+    parser.add_argument("program",
+        nargs=1,
+        help="Specify an X program to create memory load with.")
+    parser.add_argument("-m", "--margin",
         default=DEFAULT_MARGIN,
-        type="float",
-        help="Margin of error for memory usage (default %default)")
-    parser.add_option("-p", "--processes",
+        type=float,
+        help="Margin of error for memory usage [Default: %(default)s]")
+    parser.add_argument("-p", "--processes",
         default=DEFAULT_PROCESSES,
-        type="int",
-        help="Number of processes to start and stop (default %default)")
-    parser.add_option("--samples",
+        type=int,
+        help="Number of processes to start and stop [Default: %(default)s]")
+    parser.add_argument("--samples",
         default=DEFAULT_SAMPLES,
-        type="int",
-        help="Number of samples to get the memory usage (default %default)")
-    parser.add_option("--sleep",
+        type=int,
+        help="Number of samples to get the memory usage [Default: %(default)s]")
+    parser.add_argument("--sleep",
         default=DEFAULT_SLEEP,
-        type="int",
-        help=("Seconds to sleep between starting and stopping processes "
-              "(default %default)"))
-    (options, args) = parser.parse_args(args)
-
-    #Parse args
-    if not args:
-        parser.error("Must specify a program to start")
-    elif len(args) > 1:
-        parser.error("Must only specify a single program to start")
+        type=int,
+        help=("Seconds to sleep between starting and stopping processes [Default: %(default)s]"))
+    args = parser.parse_args()
 
     #Check current video card driver memory usage
-    begin_mem_usage = mem_usage("X", options.samples)
+    begin_mem_usage = mem_usage("X", args.samples)
 
     #Check current GEM object usage
     begin_gem_obj = get_gem_objects()
 
     #Open windows and let the system come upto speed
-    pids = start_processes(args[0], options.processes)
-    time.sleep(options.sleep)
+    pids = start_processes(args,program, args.processes)
+    time.sleep(args.sleep)
 
     #Close windows
     stop_processes(pids)
-    time.sleep(options.sleep)
+    time.sleep(args.sleep)
 
     #Check video card driver's memory usage again to see if it returned to
     #value found previously (give system time to normalize)
-    end_mem_usage = mem_usage("X", options.samples)
+    end_mem_usage = mem_usage("X", args.samples)
 
     #Check GEM object usage again, for state after running processes
     end_gem_obj = get_gem_objects()
 
     #compare new memory value to old memory value
-    if not compare_mem_results(begin_mem_usage, end_mem_usage, options.margin):
+    if not compare_mem_results(begin_mem_usage, end_mem_usage, args.margin):
         return "Xorg memory leak detected, before %d and after %d" \
             % (begin_mem_usage, end_mem_usage)
-    if not compare_gem_results(begin_gem_obj, end_gem_obj, options.margin):
+    if not compare_gem_results(begin_gem_obj, end_gem_obj, args.margin):
         return "DRI GEM objects leak detected, before %d and after %d" \
             % (begin_gem_obj, end_gem_obj)
 
     return 0
 
 if __name__ == "__main__":
-    sys.exit(main(sys.argv[1:]))
+    sys.exit(main())
