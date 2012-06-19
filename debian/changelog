@@ -38,6 +38,8 @@ checkbox (0.14) quantal; urgency=low
     hunting through process lists.
   * [FEATURE] Added script and jobs to collect and attach output from
     alsa-info.sh.
+  * Assume utf-8 encoding always, when opening template files. 
+    (LP: #1015174) 
 
   [Javier Collado]
   * Submission screen in Qt interface updated to support certification client:
@@ -125,10 +127,6 @@ checkbox (0.14) quantal; urgency=low
     script to analyze pm_test logs
   * jobs/stress.txt.in: add OEM team's stress tests (including reboot and poweroff)
     and log analysis jobs      
-
-  [Daniel Manrique]
-  * Assume utf-8 encoding always, when opening template files. 
-    (LP: #1015174) 
 
  -- Daniel Manrique <roadmr@ubuntu.com>  Tue, 19 Jun 2012 14:28:40 -0400
 
