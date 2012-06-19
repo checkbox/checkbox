@@ -69,6 +69,7 @@ plugin: shell
 name: benchmarks/graphics/glmark2
 requires:
  package.name == 'glmark2'
+ cpuinfo.platform in ("i386", "x86_64")
 command:
  glmark2 2>&1 | sed -e :a -e '$!N;s/\n/ /;ta' | sed -E 's/.*(Score:\s+[0-9]+).*/\1/'
 _description: Run GLmark2 benchmark
