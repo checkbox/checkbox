@@ -139,5 +139,5 @@ class Template:
     def load_filename(self, filename):
         logging.info("Loading elements from filename: %s", filename)
 
-        file = open(filename, "r")
+        file = open(filename, "r", encoding="utf-8")
         return self.load_file(file, filename)
