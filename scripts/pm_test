@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 import sys
 import os
 import shutil
@@ -253,7 +253,7 @@ class WakeUpAlarm(object):
                              for line in rtc_file])
             logging.debug('RTC data:\n{0}'
                           .format('\n'.join(['- {0}: {1}'.format(*pair)
-                                             for pair in rtc_data.items()])))
+                                             for pair in list(rtc_data.items())])))
 
             # Verify wakeup time has been set properly
             # by looking into the alarm_IRQ and alrm_date field
