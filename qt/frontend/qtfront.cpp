@@ -57,6 +57,8 @@ QtFront::QtFront(QApplication *parent) :
     ui->nextPrevButtons->setVisible(false);
     ui->treeView->verticalScrollBar()->setTracking(true);
     connect(ui->friendlyTestsButton, SIGNAL(clicked()), this, SLOT(onFullTestsClicked()));
+    connect(ui->deselectAllButton, SIGNAL(clicked()), this, SLOT(onDeselectAllClicked()));
+    connect(ui->selectAllButton, SIGNAL(clicked()), this, SLOT(onSelectAllClicked()));
     connect(ui->buttonStartTesting, SIGNAL(clicked()), this, SLOT(onStartTestsClicked()));
     connect(ui->testTestButton, SIGNAL(clicked()), this, SIGNAL(startTestClicked()));
     connect(ui->yesTestButton, SIGNAL(clicked()), this, SLOT(onYesTestClicked()));
@@ -148,6 +150,18 @@ void QtFront::onSelectAllContextMenu(const QPoint& pos)
         m_model->warn();
         m_model->selectAll(false);
     }
+}
+
+void QtFront::onDeselectAllClicked(){
+    if (currentState != TREE || !m_model)
+        return;
+    m_model->selectAll(false);
+}
+
+void QtFront::onSelectAllClicked(){
+    if (currentState != TREE || !m_model)
+        return;
+    m_model->selectAll();
 }
 
 void QtFront::onYesTestClicked() {

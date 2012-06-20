@@ -63,6 +63,8 @@ public slots:
 
 private slots:
     void onFullTestsClicked();
+    void onDeselectAllClicked();
+    void onSelectAllClicked();
     void onStartTestsClicked();
     void onSubmitTestsClicked();
     void onNextTestClicked();
