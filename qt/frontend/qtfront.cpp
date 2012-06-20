@@ -72,8 +72,6 @@ QtFront::QtFront(QApplication *parent) :
     connect(ui->treeView, SIGNAL(collapsed(QModelIndex)), this, SLOT(onJobItemChanged(QModelIndex)));
     connect(ui->treeView, SIGNAL(expanded(QModelIndex)), this, SLOT(onJobItemChanged(QModelIndex)));
     connect(ui->treeView->verticalScrollBar(), SIGNAL(valueChanged(int)), ui->statusView->verticalScrollBar(), SLOT(setValue(int)));
-    ui->treeView->setContextMenuPolicy(Qt::CustomContextMenu);
-    connect(ui->treeView, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(onSelectAllContextMenu(const QPoint&)));
     ui->stepsFrame->setFixedHeight(0);
     ui->buttonSubmitResults->setEnabled(false);
     ui->submissionDataLineEdit->setEnabled(false);
@@ -132,29 +130,10 @@ void QtFront::onClosedFrontend()
     emit closedFrontend(m_doneTesting);
 }
 
-void QtFront::onSelectAllContextMenu(const QPoint& pos)
-{
-    if (currentState != TREE || !m_model)
-        return;
-
-    QPoint position = ui->treeView->mapToGlobal(pos);
-    QMenu menu;
-    QAction *selectAll = menu.addAction(checkboxTr("Select All", 0));
-    QAction *deselectAll = menu.addAction(checkboxTr("Deselect All", 0));
-
-    QAction* selectedItem = menu.exec(position);
-    if (selectedItem && selectedItem == selectAll)
-    {
-        m_model->selectAll();
-    } else if (selectedItem && selectedItem == deselectAll) {
-        m_model->warn();
-        m_model->selectAll(false);
-    }
-}
-
 void QtFront::onDeselectAllClicked(){
     if (currentState != TREE || !m_model)
         return;
+    m_model->warn();
     m_model->selectAll(false);
 }
 
