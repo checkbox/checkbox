@@ -67,7 +67,8 @@ class JobsPrompt(Plugin):
              ("prompt-jobs", self.prompt_jobs),
              ("prompt-finish", self.prompt_finish),
              ("report", self.report),
-             ("report-job", self.report_job)]:
+             ("report-job", self.report_job),
+             ("report-jobs", self.report_jobs)]:
             self._manager.reactor.call_on(rt, rh)
 
         #This should fire first thing during the gathering phase.
@@ -108,7 +109,9 @@ class JobsPrompt(Plugin):
         job.setdefault("status", UNINITIATED)
         self._manager.reactor.fire("report-%s" % job["plugin"], job)
 
-        self.store.add(job)
+    def report_jobs(self, jobs):
+        for job in jobs:
+            self.store.add(job)
 
     def prompt_job(self, interface, job):
         attribute = "description" if job.get("type") == "suite" else "name"

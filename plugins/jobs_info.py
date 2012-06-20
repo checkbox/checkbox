@@ -114,13 +114,27 @@ class JobsInfo(Plugin):
         names = set()
         for message in messages:
             name = message["name"]
-            for dependency in message.get("depends", "").split():
+            for dependency in message.get("depends", []):
                 if dependency not in names:
                     errors.append("%s > %s" % (name, dependency))
 
             names.add(name)
 
         return errors
+
+    def get_unique_messages(self, messages):
+        unique_messages = []
+        unique_indexes = {}
+        for message in messages:
+            name = message["name"]
+            index = unique_indexes.get(name)
+            if index is None:
+                unique_indexes[name] = len(unique_messages)
+                unique_messages.append(message)
+            elif len(message) > len(unique_messages[index]):
+                unique_messages[index] = message
+
+        return unique_messages
 
     def gather(self):
         # Register temporary handler for report-message events
@@ -141,6 +155,16 @@ class JobsInfo(Plugin):
 
         for directory in self.directories:
             self._manager.reactor.fire("message-directory", directory)
+
+        for message in messages:
+            self._manager.reactor.fire("report-job", message)
+
+        # Unset domain and event handler
+        self._manager.reactor.cancel_call(event_id)
+        gettext.textdomain(old_domain)
+
+        # Get unique messages from the now complete list
+        messages = self.get_unique_messages(messages)
 
         # Apply whitelist ordering
         if self.whitelist_patterns:
@@ -170,15 +194,10 @@ class JobsInfo(Plugin):
             resolver = Resolver(key=lambda m: m["name"])
             for message in messages:
                 resolver.add(
-                    message, *message.get("depends", "").split())
+                    message, *message.get("depends", []))
             messages = resolver.get_dependents()
 
-        for message in messages:
-            self._manager.reactor.fire("report-job", message)
-
-        # Unset domain and event handler
-        self._manager.reactor.cancel_call(event_id)
-        gettext.textdomain(old_domain)
+        self._manager.reactor.fire("report-jobs", messages)
 
     def post_gather(self, interface):
         """

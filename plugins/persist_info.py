@@ -36,7 +36,7 @@ class PersistInfo(Plugin):
              ("begin", self.begin),
              ("prompt-begin", self.begin),
              ("prompt-job", self.save),
-             ("report-job", self.save)]:
+             ("report-jobs", self.save)]:
             self._manager.reactor.call_on(rt, rh, -100)
 
         # Save persist data last
