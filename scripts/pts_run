@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Exit on errors
+set -e 
+
+# Accept Terms & Conditions, disable anonymous reporting
+echo -e "Y\nn\nn" | phoronix-test-suite > /dev/null
+
+# Disable batch result saving and all test options selection
+echo -e "n\nn" | phoronix-test-suite batch-setup > /dev/null 
+
+# Run each test only one time
+export FORCE_TIMES_TO_RUN=1
+
+# Run only the following resolution
+export OVERRIDE_VIDEO_MODES=800x600
+
+output=$(phoronix-test-suite batch-benchmark $@ 2>&1)
+echo $output | sed 's/.*Average: //'
