@@ -15,8 +15,5 @@ export FORCE_TIMES_TO_RUN=1
 # Run only the following resolution
 export OVERRIDE_VIDEO_MODES=800x600
 
-# If available use the download cache provided by oem-qa-benchmark
-export PTS_DOWNLOAD_CACHE="/usr/share/oem-qa-benchmark"
-
 output=$(phoronix-test-suite batch-benchmark $@ 2>&1)
 echo $output | sed 's/.*Average: //'
