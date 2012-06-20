@@ -11,6 +11,8 @@ checkbox (0.14) quantal; urgency=low
       encoding issues
     * scripts/removable_storage_watcher - ran 2to3 tool and swapped
       use of gobject with gi.repository.GObject
+  * [FEATURE] Add suspend/bluetooth_obex_after_suspend_auto test to be
+    used during fully automated SRU testing
   * Update touchpad.py to use gsettings instead of deprecated gconf
     (LP: #1004212)
   * Instead of checking output of nmcli con up in create_connection,
