@@ -3,17 +3,15 @@ import sys
 import os
 import shutil
 import re
-from datetime import datetime, timedelta
-from time import time, localtime
-from calendar import timegm
-from argparse import ArgumentParser, SUPPRESS
-
 import logging
 import logging.handlers
 import subprocess
 
+from datetime import datetime, timedelta
+from time import time, localtime
+from calendar import timegm
+from argparse import ArgumentParser, SUPPRESS
 from gi.repository import Gtk, GObject
-
 
 def main():
     """
