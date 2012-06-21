@@ -99,6 +99,10 @@ checkbox (0.14) quantal; urgency=low
     * scripts/resolution_test: ran 2to3 with minimal changes. Changed shebang.
       Converted optparse to argparse and removed unnecessary calls to
       sys.argv[]
+  * plugins/intro_prompt: Modified the welcome message to explain to testers
+    that they will be prompted for their password and the reason why they are
+    being asked as well as a reassurance that their password is not stored by
+    checkbox nor used anywhere else. (LP: #886661)
 
   [Jeff Marcom]
   * [FEATURE] Python 2 to 3 conversion:
@@ -133,7 +137,7 @@ checkbox (0.14) quantal; urgency=low
   * jobs/stress.txt.in: add OEM team's stress tests (including reboot and poweroff)
     and log analysis jobs      
 
- -- Daniel Manrique <roadmr@ubuntu.com>  Tue, 19 Jun 2012 14:28:40 -0400
+ -- Jeff Lane <jeff@ubuntu.com>  Thu, 21 Jun 2012 09:27:34 -0400
 
 checkbox (0.13.8) precise; urgency=low
 
