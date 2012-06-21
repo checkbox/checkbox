@@ -16,6 +16,9 @@ checkbox (0.14) quantal; urgency=low
     (LP: #1004212)
   * Instead of checking output of nmcli con up in create_connection,
     check the return code is success instead (LP: #1013537)
+  * base64 encode the after suspend screenshot attachement so that it can
+    be uploaded properly (LP: #1016126)
+    
 
   [Marc Tardif]
   * [FEATURE] Reworked media_keys_test into key_test, making it more generic
