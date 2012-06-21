@@ -46,6 +46,8 @@ checkbox (0.14) quantal; urgency=low
     alsa-info.sh.
   * Assume utf-8 encoding always, when opening template files. 
     (LP: #1015174) 
+  * [FEATURE] Replaced the context menu in the selection tree with explicit
+    "select/deselect all" buttons.
 
   [Javier Collado]
   * Submission screen in Qt interface updated to support certification client:
@@ -139,7 +141,7 @@ checkbox (0.14) quantal; urgency=low
   * jobs/stress.txt.in: add OEM team's stress tests (including reboot and poweroff)
     and log analysis jobs      
 
- -- Daniel Manrique <roadmr@ubuntu.com>  Tue, 19 Jun 2012 14:28:40 -0400
+ -- Daniel Manrique <roadmr@ubuntu.com>  Thu, 21 Jun 2012 17:05:10 -0400
 
 checkbox (0.13.8) precise; urgency=low
 
