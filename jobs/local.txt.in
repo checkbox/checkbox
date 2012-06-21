@@ -187,13 +187,6 @@ command:
   shopt -s extglob
   cat $CHECKBOX_SHARE/jobs/power-management.txt?(.in)
 
-name: __qa__
-plugin: local
-_description: QA Regression tests
-command:
-  shopt -s extglob
-  cat $CHECKBOX_SHARE/jobs/qa_regression.txt?(.in)
-
 name: __server-services__
 plugin: local
 _description: Server Services checks
