@@ -212,6 +212,9 @@ class JobsInfo(Plugin):
         """
         Verify that all patterns were used
         """
+        if logging.getLogger().getEffectiveLevel() > logging.DEBUG:
+            return
+
         orphan_test_cases = []
         for name, jobs in self.selected_jobs.items():
             is_test = any(job.get('type') == 'test' for job in jobs)
