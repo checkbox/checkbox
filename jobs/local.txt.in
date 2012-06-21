@@ -12,6 +12,13 @@ command:
   shopt -s extglob
   cat $CHECKBOX_SHARE/jobs/autotest.txt?(.in)
 
+name: __benchmarks__
+plugin: local
+_description: Benchmarks tests
+command:
+  shopt -s extglob
+  cat $CHECKBOX_SHARE/jobs/benchmarks.txt?(.in)
+
 name: __bluetooth__
 plugin: local
 _description: Bluetooth tests
@@ -193,13 +200,6 @@ _description: Peripheral tests
 command:
   shopt -s extglob
   cat $CHECKBOX_SHARE/jobs/peripheral.txt?(.in)
-
-name: __phoronix__
-plugin: local
-_description: Phoronix Test Suite tests
-command:
-  shopt -s extglob
-  cat $CHECKBOX_SHARE/jobs/phoronix.txt?(.in)
 
 name: __power-management__
 plugin: local

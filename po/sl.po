@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-06-14 16:38-0400\n"
+"POT-Creation-Date: 2012-06-20 10:38-0400\n"
 "PO-Revision-Date: 2011-09-25 17:37+0000\n"
 "Last-Translator: Dražen Matešić <Unknown>\n"
 "Language-Team: Slovenian <sl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-06-15 04:39+0000\n"
-"X-Generator: Launchpad (build 15414)\n"
+"X-Launchpad-Export-Date: 2012-06-21 05:14+0000\n"
+"X-Generator: Launchpad (build 15435)\n"
 
 #. Title of the user interface
 #: ../gtk/checkbox-gtk.ui.h:1 ../qt/checkbox-qt.desktop.in.h:1
@@ -213,6 +213,151 @@ msgstr ""
 "NAMEN:\n"
 "   Ta preizkus bo poskusil namestiti in pognati zbirko Autotest. Ti "
 "preizkusi lahko povzročijo škodo, zato se privzeto ne izvedejo."
+
+#. description
+#: ../jobs/benchmarks.txt.in:18
+msgid "Benchmark for each disk"
+msgstr "Merjenje zmogljivosti za vsak disk"
+
+#. description
+#: ../jobs/benchmarks.txt.in:33
+msgid "Run Render-Bench XRender/Imlib2 benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:39
+msgid "Run Qgears2 XRender Extension gearsfancy benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:45
+msgid "Run Qgears2 XRender Extension image scaling benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:51
+msgid "Run Qgears2 OpenGL gearsfancy benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:57
+msgid "Run Qgears2 OpenGL image scaling benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:66
+msgid "Run GLmark2-ES2 benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:75
+msgid "Run GLmark2 benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:81
+msgid "Run Unigine Santuary benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:87
+msgid "Run Unigine Tropics benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:93
+msgid "Run Unigine Heaven benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:99
+msgid "Run Lightsmark benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:105
+msgid "Run Cachebench Read benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:111
+msgid "Run Cachebench Write benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:117
+msgid "Run Cachebench Read / Modify / Write benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:123
+msgid "Run Stream Copy benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:129
+msgid "Run Stream Scale benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:135
+msgid "Run Stream Add benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:141
+msgid "Run Stream Triad benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:147
+msgid "Run Network Loopback benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:153
+msgid "Run Encode MP3 benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:159
+msgid "Run x264 H.264/AVC encoder benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:165
+msgid "Run GnuPG benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:171
+msgid "Run Compress PBZIP2 benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:177
+msgid "Run Compress 7ZIP benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:183
+msgid "Run N-Queens benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:189
+msgid "Run Himeno benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:195
+msgid "CPU utilization on an idle system."
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:201
+msgid "Disk utilization on an idle system."
+msgstr ""
 
 #. description
 #: ../jobs/bluetooth.txt.in:8
@@ -549,33 +694,28 @@ msgstr "Zazna in izpiše diske, priključene na sistem."
 
 #. description
 #: ../jobs/disk.txt.in:9
-msgid "Benchmark for each disk"
-msgstr "Merjenje zmogljivosti za vsak disk"
-
-#. description
-#: ../jobs/disk.txt.in:26
 msgid "Check stats changes for each disk"
 msgstr "Preveri spremembe stanja za vsak disk"
 
 #. description
-#: ../jobs/disk.txt.in:46
+#: ../jobs/disk.txt.in:29
 msgid "SMART test"
 msgstr "Preizkus SMART"
 
 #. description
-#: ../jobs/disk.txt.in:64
+#: ../jobs/disk.txt.in:47
 msgid "Maximum disk space used during a default installation test"
 msgstr "Največ porabljenega prostora med preizkusom privzete namestitve"
 
 #. description
-#: ../jobs/disk.txt.in:81
+#: ../jobs/disk.txt.in:64
 msgid "Verify system storage performs at or above baseline performance"
 msgstr ""
 "Preveri, da je hitrost sistemske shrambe vsaj na najmanjšem zahtevanem "
 "nivoju."
 
 #. description
-#: ../jobs/disk.txt.in:99
+#: ../jobs/disk.txt.in:82
 msgid ""
 "Verify that storage devices, such as Fibre Channel and RAID can be detected "
 "and perform under stress."
@@ -918,7 +1058,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:188 ../jobs/suspend.txt.in:332
+#: ../jobs/graphics.txt.in:188 ../jobs/suspend.txt.in:323
 msgid "Attaches the screenshot captured in graphics/screenshot."
 msgstr ""
 
@@ -1290,138 +1430,138 @@ msgstr "Preizkusi zbirke samodejnih preizkusov"
 
 #. description
 #: ../jobs/local.txt.in:17
+msgid "Benchmarks tests"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:24
 msgid "Bluetooth tests"
 msgstr "Preizkusi Bluetooth"
 
 #. description
-#: ../jobs/local.txt.in:24
+#: ../jobs/local.txt.in:31
 msgid "Camera tests"
 msgstr "Preizkusi kamere"
 
 #. description
-#: ../jobs/local.txt.in:31
+#: ../jobs/local.txt.in:38
 msgid "Codec tests"
 msgstr "Preizkusi kodekov"
 
 #. description
-#: ../jobs/local.txt.in:38
+#: ../jobs/local.txt.in:45
 msgid "CPU tests"
 msgstr "Preizkusi procesorja"
 
 #. description
-#: ../jobs/local.txt.in:45
+#: ../jobs/local.txt.in:52
 msgid "System Daemon tests"
 msgstr "Preizkušanje odzanjih programov"
 
 #. description
-#: ../jobs/local.txt.in:52
+#: ../jobs/local.txt.in:59
 msgid "Disk tests"
 msgstr "Preizkusi diska"
 
 #. description
-#: ../jobs/local.txt.in:59
+#: ../jobs/local.txt.in:66
 msgid "Fingerprint reader tests"
 msgstr "Preizkusi čitalnika prstnih odtisov"
 
 #. description
-#: ../jobs/local.txt.in:66
+#: ../jobs/local.txt.in:73
 msgid "Firewire disk tests"
 msgstr "Preizkusi diska Firewire"
 
 #. description
-#: ../jobs/local.txt.in:73
+#: ../jobs/local.txt.in:80
 msgid "Floppy disk tests"
 msgstr "Preizkusi disket"
 
 #. description
-#: ../jobs/local.txt.in:80
+#: ../jobs/local.txt.in:87
 msgid "Graphics tests"
 msgstr "Preizkusi grafike"
 
 #. description
-#: ../jobs/local.txt.in:87
+#: ../jobs/local.txt.in:94
 msgid "Hibernation tests"
 msgstr "Preizkusi mirovanja"
 
 #. description
-#: ../jobs/local.txt.in:94
+#: ../jobs/local.txt.in:101
 msgid "Informational tests"
 msgstr "Informacijski preizkusi"
 
 #. description
-#: ../jobs/local.txt.in:101
+#: ../jobs/local.txt.in:108
 msgid "Input Devices tests"
 msgstr "Preizkusi vhodnih naprav"
 
 #. description
-#: ../jobs/local.txt.in:108
+#: ../jobs/local.txt.in:115
 msgid "Software Installation tests"
 msgstr "Preizkusi namestitve programske opreme"
 
 #. description
-#: ../jobs/local.txt.in:115
+#: ../jobs/local.txt.in:122
 msgid "Hotkey tests"
 msgstr "Preizkusi tipkovnih bližnjic"
 
 #. description
-#: ../jobs/local.txt.in:122
+#: ../jobs/local.txt.in:129
 msgid "Linux Test Project tests"
 msgstr "Preizkusi projekta Linuxovih Test Project"
 
 #. description
-#: ../jobs/local.txt.in:129
+#: ../jobs/local.txt.in:136
 msgid "Mago Automated Desktop Testing"
 msgstr "Samodejno preizkušanje namizja Mago"
 
 #. description
-#: ../jobs/local.txt.in:136
+#: ../jobs/local.txt.in:143
 msgid "Media Card tests"
 msgstr "Preizkusi spominskih kartic"
 
 #. description
-#: ../jobs/local.txt.in:143
+#: ../jobs/local.txt.in:150
 msgid "Memory tests"
 msgstr "Preizkusi pomnilnika"
 
 #. description
-#: ../jobs/local.txt.in:150
+#: ../jobs/local.txt.in:157
 msgid "Miscellaneous tests"
 msgstr "Razni preizkusi"
 
 #. description
-#: ../jobs/local.txt.in:157
+#: ../jobs/local.txt.in:164
 msgid "Monitor tests"
 msgstr "Preizkusi zaslona"
 
 #. description
-#: ../jobs/local.txt.in:164
+#: ../jobs/local.txt.in:171
 msgid "Networking tests"
 msgstr "Preizkusi omrežja"
 
 #. description
-#: ../jobs/local.txt.in:171
+#: ../jobs/local.txt.in:178
 msgid "Optical Drive tests"
 msgstr "Preizkusi optičnih pogonov"
 
 #. description
-#: ../jobs/local.txt.in:178
+#: ../jobs/local.txt.in:185
 msgid "Panel Clock Verification tests"
 msgstr "Preizkusi preverjanja ure nadzorne plošče"
 
 #. description
-#: ../jobs/local.txt.in:185
+#: ../jobs/local.txt.in:192
 msgid "PCMCIA/PCIX Card tests"
 msgstr "Preizkusi kartic PCMCIA/PCIX"
 
 #. description
-#: ../jobs/local.txt.in:192
+#: ../jobs/local.txt.in:199
 msgid "Peripheral tests"
 msgstr "Preizkusi zunanjih naprav"
-
-#. description
-#: ../jobs/local.txt.in:199
-msgid "Phoronix Test Suite tests"
-msgstr "Preizkusi iz zbirke preizkusov Phoronix"
 
 #. description
 #: ../jobs/local.txt.in:206
@@ -2511,17 +2651,6 @@ msgstr ""
 "   Ali je bila povezava uspešno vzpostavljena?"
 
 #. description
-#: ../jobs/phoronix.txt.in:9
-msgid ""
-"PURPOSE:\n"
-"   This test will download and install the Phoronix Test Suite and run some "
-"selected benchmarking tests."
-msgstr ""
-"NAMEN:\n"
-"   Ta preizkus bo prejel in namestil Phoronix Test Suite in pognal nekaj "
-"izbranih preizkusov merjenja zmogljivosti."
-
-#. description
 #: ../jobs/power-management.txt.in:3
 msgid ""
 "PURPOSE:\n"
@@ -3045,19 +3174,7 @@ msgid "Attaches the log from the single suspend/resume test to the results"
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:310
-msgid ""
-"This automatically tests Wake-on-LAN capability with the aid of a suitably "
-"configured server. During this process the system will suspend, then "
-"automatically wake up after no more than 5 minutes."
-msgstr ""
-"Samostojni preizkusi zmožnosti Wake-on-LAN s pomočjo ustrezno nastavljenega "
-"strežnika. Med tem opravilom bo sistem najprej prešel v stanje "
-"pripravljenosti, nato pa se bo po največ 5 minutah samostojno zbudil iz "
-"pripravljenosti."
-
-#. description
-#: ../jobs/suspend.txt.in:320
+#: ../jobs/suspend.txt.in:311
 msgid ""
 "PURPOSE:\n"
 "    Take a screengrab of the current screen after suspend (logged on Unity "
@@ -6216,6 +6333,16 @@ msgstr " Rezultati "
 #~ msgid "Select Test to play a Wave Audio format file (.wav)"
 #~ msgstr "Izberite preizkus za predvajanje zvočne datoteke Wave (.wav)"
 
+#~ msgid ""
+#~ "This automatically tests Wake-on-LAN capability with the aid of a suitably "
+#~ "configured server. During this process the system will suspend, then "
+#~ "automatically wake up after no more than 5 minutes."
+#~ msgstr ""
+#~ "Samostojni preizkusi zmožnosti Wake-on-LAN s pomočjo ustrezno nastavljenega "
+#~ "strežnika. Med tem opravilom bo sistem najprej prešel v stanje "
+#~ "pripravljenosti, nato pa se bo po največ 5 minutah samostojno zbudil iz "
+#~ "pripravljenosti."
+
 #~ msgid "Check to see if CONFIG_NO_HZ is set in the kernel"
 #~ msgstr "Preverite, da je CONFIG_NO_HZ nastavljen v jedru."
 
@@ -6373,6 +6500,9 @@ msgstr " Rezultati "
 
 #~ msgid "Attaches the screenshot captured in info/screenshot."
 #~ msgstr "Priloži zajeto zaslonsko sliko v info/screenshot."
+
+#~ msgid "Phoronix Test Suite tests"
+#~ msgstr "Preizkusi iz zbirke preizkusov Phoronix"
 
 #~ msgid "$(network_test)"
 #~ msgstr "$(network_test)"
@@ -6855,6 +6985,15 @@ msgstr " Rezultati "
 #~ "POTRDITEV:\n"
 #~ "    Ali je sistem 30-krat uspešno prešel in se povrnil iz stanja "
 #~ "pripravljenosti?"
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "   This test will download and install the Phoronix Test Suite and run some "
+#~ "selected benchmarking tests."
+#~ msgstr ""
+#~ "NAMEN:\n"
+#~ "   Ta preizkus bo prejel in namestil Phoronix Test Suite in pognal nekaj "
+#~ "izbranih preizkusov merjenja zmogljivosti."
 
 #~ msgid "Test ACPI Wakealarm (fwts wakealarm) "
 #~ msgstr "Preizkus alarm zbujanja ACPI (fwts wakealarm) "

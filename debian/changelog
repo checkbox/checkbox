@@ -11,10 +11,16 @@ checkbox (0.14) quantal; urgency=low
       encoding issues
     * scripts/removable_storage_watcher - ran 2to3 tool and swapped
       use of gobject with gi.repository.GObject
+    * scripts/xrandr_cycle - ran 2to3 tool and fixed encoding issue
+    * scripts/obex_send - ran 2to3 tool and swapped
+      use of gobject with gi.repository.GObject
   * Update touchpad.py to use gsettings instead of deprecated gconf
     (LP: #1004212)
   * Instead of checking output of nmcli con up in create_connection,
     check the return code is success instead (LP: #1013537)
+  * base64 encode the after suspend screenshot attachement so that it can
+    be uploaded properly (LP: #1016126)
+    
 
   [Marc Tardif]
   * [FEATURE] Reworked media_keys_test into key_test, making it more generic
@@ -38,6 +44,8 @@ checkbox (0.14) quantal; urgency=low
     hunting through process lists.
   * [FEATURE] Added script and jobs to collect and attach output from
     alsa-info.sh.
+  * Assume utf-8 encoding always, when opening template files. 
+    (LP: #1015174) 
 
   [Javier Collado]
   * Submission screen in Qt interface updated to support certification client:
@@ -94,6 +102,9 @@ checkbox (0.14) quantal; urgency=low
       Converted optparse code to argparse code and replaced sys.argv[] stuff
       with more useful positional arguments. Removed a redundant import that
       2to3 injected.
+    * scripts/resolution_test: ran 2to3 with minimal changes. Changed shebang.
+      Converted optparse to argparse and removed unnecessary calls to
+      sys.argv[]
 
   [Jeff Marcom]
   * [FEATURE] Python 2 to 3 conversion:
@@ -114,6 +125,8 @@ checkbox (0.14) quantal; urgency=low
   * Migrated project minus scripts to Python 3.
 
   [Sylvain Pineau]
+  * [FEATURE] jobs/benchmarks.txt.in, scripts/pts_run: Add a reworked launcher 
+    for phoronix-test-suite tests.
   * [FEATURE] Python 2 to 3 conversion:
     * scripts/gst_pipeline_test. Migrated to PyGI.
     * scripts/removable_resource: Add a resource job to identify removable
@@ -126,7 +139,7 @@ checkbox (0.14) quantal; urgency=low
   * jobs/stress.txt.in: add OEM team's stress tests (including reboot and poweroff)
     and log analysis jobs      
 
- -- Jeff Lane <jeff@ubuntu.com>  Tue, 19 Jun 2012 14:02:37 -0400
+ -- Daniel Manrique <roadmr@ubuntu.com>  Tue, 19 Jun 2012 14:28:40 -0400
 
 checkbox (0.13.8) precise; urgency=low
 

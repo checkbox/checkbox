@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-06-14 16:38-0400\n"
+"POT-Creation-Date: 2012-06-20 10:38-0400\n"
 "PO-Revision-Date: 2011-07-19 17:48+0000\n"
 "Last-Translator: nasir khan saikat <nasir8891@gmail.com>\n"
 "Language-Team: Bengali <bn@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-06-15 04:36+0000\n"
-"X-Generator: Launchpad (build 15414)\n"
+"X-Launchpad-Export-Date: 2012-06-21 05:11+0000\n"
+"X-Generator: Launchpad (build 15435)\n"
 
 #. Title of the user interface
 #: ../gtk/checkbox-gtk.ui.h:1 ../qt/checkbox-qt.desktop.in.h:1
@@ -215,6 +215,151 @@ msgstr ""
 "   এই পরীক্ষা থেকে ইনস্টল করার প্রচেষ্টা করা হবে এবং অটোটেস্ট স্যুইট চালানো "
 "হবে। এই পরীক্ষাগুলো নাশক হতে পারে, তাই এই পরীক্ষা ডিফল্টরূপে কালো "
 "তালিকাভুক্ত করা হয়।"
+
+#. description
+#: ../jobs/benchmarks.txt.in:18
+msgid "Benchmark for each disk"
+msgstr "প্রতিটি ডিস্কের জন্য বেঞ্চমার্ক"
+
+#. description
+#: ../jobs/benchmarks.txt.in:33
+msgid "Run Render-Bench XRender/Imlib2 benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:39
+msgid "Run Qgears2 XRender Extension gearsfancy benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:45
+msgid "Run Qgears2 XRender Extension image scaling benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:51
+msgid "Run Qgears2 OpenGL gearsfancy benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:57
+msgid "Run Qgears2 OpenGL image scaling benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:66
+msgid "Run GLmark2-ES2 benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:75
+msgid "Run GLmark2 benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:81
+msgid "Run Unigine Santuary benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:87
+msgid "Run Unigine Tropics benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:93
+msgid "Run Unigine Heaven benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:99
+msgid "Run Lightsmark benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:105
+msgid "Run Cachebench Read benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:111
+msgid "Run Cachebench Write benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:117
+msgid "Run Cachebench Read / Modify / Write benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:123
+msgid "Run Stream Copy benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:129
+msgid "Run Stream Scale benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:135
+msgid "Run Stream Add benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:141
+msgid "Run Stream Triad benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:147
+msgid "Run Network Loopback benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:153
+msgid "Run Encode MP3 benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:159
+msgid "Run x264 H.264/AVC encoder benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:165
+msgid "Run GnuPG benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:171
+msgid "Run Compress PBZIP2 benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:177
+msgid "Run Compress 7ZIP benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:183
+msgid "Run N-Queens benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:189
+msgid "Run Himeno benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:195
+msgid "CPU utilization on an idle system."
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:201
+msgid "Disk utilization on an idle system."
+msgstr ""
 
 #. description
 #: ../jobs/bluetooth.txt.in:8
@@ -542,34 +687,29 @@ msgstr "সিস্টেমের সাথে সংয়ুক্ত ডিস
 
 #. description
 #: ../jobs/disk.txt.in:9
-msgid "Benchmark for each disk"
-msgstr "প্রতিটি ডিস্কের জন্য বেঞ্চমার্ক"
-
-#. description
-#: ../jobs/disk.txt.in:26
 msgid "Check stats changes for each disk"
 msgstr "প্রতিটি ডিস্কের জন্য পরিসংখ্যান পরিবর্তন বাছাই করুন"
 
 #. description
-#: ../jobs/disk.txt.in:46
+#: ../jobs/disk.txt.in:29
 msgid "SMART test"
 msgstr "SMART পরীক্ষা করুন"
 
 #. description
-#: ../jobs/disk.txt.in:64
+#: ../jobs/disk.txt.in:47
 msgid "Maximum disk space used during a default installation test"
 msgstr ""
 "পূর্বনির্ধারিত ইন্সটলেশন পরীক্ষার সময় সর্বোচ্চ ডিস্কের জায়গা ব্যবহার করা "
 "হয়েছে"
 
 #. description
-#: ../jobs/disk.txt.in:81
+#: ../jobs/disk.txt.in:64
 msgid "Verify system storage performs at or above baseline performance"
 msgstr ""
 "সিস্টেম যাচাই করুন সংগ্রহস্থল সঞ্চালিত সময়ের অথবা বেসলাইন কর্মক্ষমতার বেশি"
 
 #. description
-#: ../jobs/disk.txt.in:99
+#: ../jobs/disk.txt.in:82
 msgid ""
 "Verify that storage devices, such as Fibre Channel and RAID can be detected "
 "and perform under stress."
@@ -910,7 +1050,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:188 ../jobs/suspend.txt.in:332
+#: ../jobs/graphics.txt.in:188 ../jobs/suspend.txt.in:323
 msgid "Attaches the screenshot captured in graphics/screenshot."
 msgstr ""
 
@@ -1276,138 +1416,138 @@ msgstr "অটোটেস্ট সুইট পরীক্ষা"
 
 #. description
 #: ../jobs/local.txt.in:17
+msgid "Benchmarks tests"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:24
 msgid "Bluetooth tests"
 msgstr "ব্লুটুথ পরীক্ষা"
 
 #. description
-#: ../jobs/local.txt.in:24
+#: ../jobs/local.txt.in:31
 msgid "Camera tests"
 msgstr "ক্যামেরা পরীক্ষা"
 
 #. description
-#: ../jobs/local.txt.in:31
+#: ../jobs/local.txt.in:38
 msgid "Codec tests"
 msgstr "কোডেক পরীক্ষা"
 
 #. description
-#: ../jobs/local.txt.in:38
+#: ../jobs/local.txt.in:45
 msgid "CPU tests"
 msgstr "সিপিও পরীক্ষা"
 
 #. description
-#: ../jobs/local.txt.in:45
+#: ../jobs/local.txt.in:52
 msgid "System Daemon tests"
 msgstr "সিস্টেম ডেমন পরীক্ষা"
 
 #. description
-#: ../jobs/local.txt.in:52
+#: ../jobs/local.txt.in:59
 msgid "Disk tests"
 msgstr "ডিস্ক পরীক্ষা"
 
 #. description
-#: ../jobs/local.txt.in:59
+#: ../jobs/local.txt.in:66
 msgid "Fingerprint reader tests"
 msgstr "ফিঙ্গার প্রিন্ট রীডার পরীক্ষা"
 
 #. description
-#: ../jobs/local.txt.in:66
+#: ../jobs/local.txt.in:73
 msgid "Firewire disk tests"
 msgstr "ফায়রওয়্যার ডিস্ক পরীক্ষা"
 
 #. description
-#: ../jobs/local.txt.in:73
+#: ../jobs/local.txt.in:80
 msgid "Floppy disk tests"
 msgstr "ফ্লপি ডিস্ক পরীক্ষা"
 
 #. description
-#: ../jobs/local.txt.in:80
+#: ../jobs/local.txt.in:87
 msgid "Graphics tests"
 msgstr "গ্রাফিক্স পরীক্ষা"
 
 #. description
-#: ../jobs/local.txt.in:87
+#: ../jobs/local.txt.in:94
 msgid "Hibernation tests"
 msgstr "হাইবারনেশন পরীক্ষা"
 
 #. description
-#: ../jobs/local.txt.in:94
+#: ../jobs/local.txt.in:101
 msgid "Informational tests"
 msgstr "তথ্যজনিত পরীক্ষা"
 
 #. description
-#: ../jobs/local.txt.in:101
+#: ../jobs/local.txt.in:108
 msgid "Input Devices tests"
 msgstr "ইনপুট ডিভাইস পরীক্ষা"
 
 #. description
-#: ../jobs/local.txt.in:108
+#: ../jobs/local.txt.in:115
 msgid "Software Installation tests"
 msgstr "সফটওয়্যার ইন্সটলেশন পরীক্ষা"
 
 #. description
-#: ../jobs/local.txt.in:115
+#: ../jobs/local.txt.in:122
 msgid "Hotkey tests"
 msgstr "হটকি পরীক্ষা"
 
 #. description
-#: ../jobs/local.txt.in:122
+#: ../jobs/local.txt.in:129
 msgid "Linux Test Project tests"
 msgstr "লিনাক্স টেস্ট এর প্রকল্প পরীক্ষা"
 
 #. description
-#: ../jobs/local.txt.in:129
+#: ../jobs/local.txt.in:136
 msgid "Mago Automated Desktop Testing"
 msgstr "Mago Automated ডেস্কটপ পরীক্ষা"
 
 #. description
-#: ../jobs/local.txt.in:136
+#: ../jobs/local.txt.in:143
 msgid "Media Card tests"
 msgstr "মিডিয়া কার্ড পরীক্ষা"
 
 #. description
-#: ../jobs/local.txt.in:143
+#: ../jobs/local.txt.in:150
 msgid "Memory tests"
 msgstr "মেমোরি পরীক্ষা"
 
 #. description
-#: ../jobs/local.txt.in:150
+#: ../jobs/local.txt.in:157
 msgid "Miscellaneous tests"
 msgstr "বিবিধ পরীক্ষা"
 
 #. description
-#: ../jobs/local.txt.in:157
+#: ../jobs/local.txt.in:164
 msgid "Monitor tests"
 msgstr "মনিটর পরীক্ষা"
 
 #. description
-#: ../jobs/local.txt.in:164
+#: ../jobs/local.txt.in:171
 msgid "Networking tests"
 msgstr "নেটওয়ার্ক পরীক্ষা"
 
 #. description
-#: ../jobs/local.txt.in:171
+#: ../jobs/local.txt.in:178
 msgid "Optical Drive tests"
 msgstr "অপটিক্যাল ড্রাইভ পরীক্ষা"
 
 #. description
-#: ../jobs/local.txt.in:178
+#: ../jobs/local.txt.in:185
 msgid "Panel Clock Verification tests"
 msgstr "প্যানেল ক্লক যাচাই পরীক্ষা"
 
 #. description
-#: ../jobs/local.txt.in:185
+#: ../jobs/local.txt.in:192
 msgid "PCMCIA/PCIX Card tests"
 msgstr "PCMCIA/PCIX কার্ড পরীক্ষা"
 
 #. description
-#: ../jobs/local.txt.in:192
+#: ../jobs/local.txt.in:199
 msgid "Peripheral tests"
 msgstr "প্রান্তিক টেস্ট পরীক্ষা"
-
-#. description
-#: ../jobs/local.txt.in:199
-msgid "Phoronix Test Suite tests"
-msgstr "ফরনিক্স টেস্ট সুইট পরীক্ষা"
 
 #. description
 #: ../jobs/local.txt.in:206
@@ -2460,17 +2600,6 @@ msgstr ""
 "   সংযোগ কি সঠিকভাবে স্থাপিত হয়েছে?"
 
 #. description
-#: ../jobs/phoronix.txt.in:9
-msgid ""
-"PURPOSE:\n"
-"   This test will download and install the Phoronix Test Suite and run some "
-"selected benchmarking tests."
-msgstr ""
-"PURPOSE:\n"
-"   এই পরীক্ষা ফোরোনিক্স পরীক্ষা সুইট ডাউনলোড এবং ইন্সটল করবে এবং সচল কিছু "
-"নির্বাচিত বেঞ্চমার্ক পরীক্ষা করবে।"
-
-#. description
 #: ../jobs/power-management.txt.in:3
 msgid ""
 "PURPOSE:\n"
@@ -2989,18 +3118,7 @@ msgid "Attaches the log from the single suspend/resume test to the results"
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:310
-msgid ""
-"This automatically tests Wake-on-LAN capability with the aid of a suitably "
-"configured server. During this process the system will suspend, then "
-"automatically wake up after no more than 5 minutes."
-msgstr ""
-"এটি একটি ভালো ভাবে কনফিগার সার্ভারের সাহায্যের সাথে Wake-on-LAN ক্ষমতা "
-"স্বয়ংক্রিয়ভাবে পরীক্ষা করে। এই প্রক্রিয়ার সময় সিস্টেম স্থগিত হবে, এরপর ৫ "
-"মিনিটের মধ্যে সক্রিয়ভাবে জেগে উঠবে।"
-
-#. description
-#: ../jobs/suspend.txt.in:320
+#: ../jobs/suspend.txt.in:311
 msgid ""
 "PURPOSE:\n"
 "    Take a screengrab of the current screen after suspend (logged on Unity "
@@ -5599,6 +5717,9 @@ msgstr ""
 #~ msgid "Attaches the screenshot captured in info/screenshot."
 #~ msgstr "info/screenshot তে ধরণকৃত স্ক্রীনশট সংযুক্ত করা হয়।"
 
+#~ msgid "Phoronix Test Suite tests"
+#~ msgstr "ফরনিক্স টেস্ট সুইট পরীক্ষা"
+
 #~ msgid "Unity tests"
 #~ msgstr "ঐক্য পরীক্ষা করুন"
 
@@ -6005,6 +6126,15 @@ msgstr ""
 #~ "   আপনার ডেস্কটপের উপরে ডানদিকে অবস্থিত ঘড়ি কি আপনার টাইমজোন জন্য সঠিকজ "
 #~ "তারিখ এবং সময় প্রদর্শন করছে?"
 
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "   This test will download and install the Phoronix Test Suite and run some "
+#~ "selected benchmarking tests."
+#~ msgstr ""
+#~ "PURPOSE:\n"
+#~ "   এই পরীক্ষা ফোরোনিক্স পরীক্ষা সুইট ডাউনলোড এবং ইন্সটল করবে এবং সচল কিছু "
+#~ "নির্বাচিত বেঞ্চমার্ক পরীক্ষা করবে।"
+
 #~ msgid "Test ACPI Wakealarm (fwts wakealarm) "
 #~ msgstr "Test ACPI Wakealarm (fwts wakealarm) "
 
@@ -6071,6 +6201,15 @@ msgstr ""
 #~ "করে\n"
 #~ "VERIFICATION:\n"
 #~ "    স্থগিত থেকে পুনরারম্ভের পর প্রদর্শনের কাজ কি স্বাভাবিকভাবে হচ্ছে?"
+
+#~ msgid ""
+#~ "This automatically tests Wake-on-LAN capability with the aid of a suitably "
+#~ "configured server. During this process the system will suspend, then "
+#~ "automatically wake up after no more than 5 minutes."
+#~ msgstr ""
+#~ "এটি একটি ভালো ভাবে কনফিগার সার্ভারের সাহায্যের সাথে Wake-on-LAN ক্ষমতা "
+#~ "স্বয়ংক্রিয়ভাবে পরীক্ষা করে। এই প্রক্রিয়ার সময় সিস্টেম স্থগিত হবে, এরপর ৫ "
+#~ "মিনিটের মধ্যে সক্রিয়ভাবে জেগে উঠবে।"
 
 #~ msgid ""
 #~ "Xlib is required for unity testing. This checks for Xlib and installs it if "

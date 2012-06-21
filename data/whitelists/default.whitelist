@@ -18,6 +18,11 @@ audio/alsa_record_playback_external
 audio/alsa_record_playback_internal
 audio/alsa_record_playback_usb
 audio/playback_auto
+__benchmarks__
+benchmarks/disk/hdparm-read
+benchmarks/disk/hdparm-read_.*
+benchmarks/disk/hdparm-cache-read
+benchmarks/disk/hdparm-cache-read_.*
 __bluetooth__
 bluetooth/detect-output
 __camera__
@@ -29,8 +34,6 @@ cpu/offlining_test
 cpu/topology
 cpu/clocktest
 __disk__
-disk/benchmarks
-disk/benchmark_sd\w
 disk/detect
 __firewire__
 firewire/insert

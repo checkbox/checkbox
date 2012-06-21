@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-14 16:38-0400\n"
+"POT-Creation-Date: 2012-06-20 10:38-0400\n"
 "PO-Revision-Date: 2011-09-21 14:29+0000\n"
 "Last-Translator: Gabor Kelemen <kelemeng@gnome.hu>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-06-15 04:37+0000\n"
-"X-Generator: Launchpad (build 15414)\n"
+"X-Launchpad-Export-Date: 2012-06-21 05:12+0000\n"
+"X-Generator: Launchpad (build 15435)\n"
 
 #. Title of the user interface
 #: ../gtk/checkbox-gtk.ui.h:1 ../qt/checkbox-qt.desktop.in.h:1
@@ -216,6 +216,151 @@ msgstr ""
 "   Ez a teszt megpróbálja telepíteni és futtatni az Autoteszt sorozatot. "
 "Ezek a tesztek romboló hatásúak lehetnek, ezért ez a teszt alapértelmezetten "
 "le van tiltva."
+
+#. description
+#: ../jobs/benchmarks.txt.in:18
+msgid "Benchmark for each disk"
+msgstr "Teljesítményteszt minden lemezen"
+
+#. description
+#: ../jobs/benchmarks.txt.in:33
+msgid "Run Render-Bench XRender/Imlib2 benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:39
+msgid "Run Qgears2 XRender Extension gearsfancy benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:45
+msgid "Run Qgears2 XRender Extension image scaling benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:51
+msgid "Run Qgears2 OpenGL gearsfancy benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:57
+msgid "Run Qgears2 OpenGL image scaling benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:66
+msgid "Run GLmark2-ES2 benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:75
+msgid "Run GLmark2 benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:81
+msgid "Run Unigine Santuary benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:87
+msgid "Run Unigine Tropics benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:93
+msgid "Run Unigine Heaven benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:99
+msgid "Run Lightsmark benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:105
+msgid "Run Cachebench Read benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:111
+msgid "Run Cachebench Write benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:117
+msgid "Run Cachebench Read / Modify / Write benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:123
+msgid "Run Stream Copy benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:129
+msgid "Run Stream Scale benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:135
+msgid "Run Stream Add benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:141
+msgid "Run Stream Triad benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:147
+msgid "Run Network Loopback benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:153
+msgid "Run Encode MP3 benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:159
+msgid "Run x264 H.264/AVC encoder benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:165
+msgid "Run GnuPG benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:171
+msgid "Run Compress PBZIP2 benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:177
+msgid "Run Compress 7ZIP benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:183
+msgid "Run N-Queens benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:189
+msgid "Run Himeno benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:195
+msgid "CPU utilization on an idle system."
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:201
+msgid "Disk utilization on an idle system."
+msgstr ""
 
 #. description
 #: ../jobs/bluetooth.txt.in:8
@@ -551,33 +696,28 @@ msgstr "Azonosítja és megjeleníti a csatlakoztatott lemezeket."
 
 #. description
 #: ../jobs/disk.txt.in:9
-msgid "Benchmark for each disk"
-msgstr "Teljesítményteszt minden lemezen"
-
-#. description
-#: ../jobs/disk.txt.in:26
 msgid "Check stats changes for each disk"
 msgstr "Statisztikai változások ellenőrzése minden lemezen"
 
 #. description
-#: ../jobs/disk.txt.in:46
+#: ../jobs/disk.txt.in:29
 msgid "SMART test"
 msgstr "SMART tesztek"
 
 #. description
-#: ../jobs/disk.txt.in:64
+#: ../jobs/disk.txt.in:47
 msgid "Maximum disk space used during a default installation test"
 msgstr "Az alapértelmezett telepítéskor használt legnagyobb lemezhely teszt"
 
 #. description
-#: ../jobs/disk.txt.in:81
+#: ../jobs/disk.txt.in:64
 msgid "Verify system storage performs at or above baseline performance"
 msgstr ""
 "Ellenőrzi, hogy a rendszer háttértára az átlagos teljesítményen vagy afölött "
 "teljesít-e"
 
 #. description
-#: ../jobs/disk.txt.in:99
+#: ../jobs/disk.txt.in:82
 msgid ""
 "Verify that storage devices, such as Fibre Channel and RAID can be detected "
 "and perform under stress."
@@ -920,7 +1060,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:188 ../jobs/suspend.txt.in:332
+#: ../jobs/graphics.txt.in:188 ../jobs/suspend.txt.in:323
 msgid "Attaches the screenshot captured in graphics/screenshot."
 msgstr ""
 
@@ -1286,138 +1426,138 @@ msgstr "Autoteszt csomag tesztek"
 
 #. description
 #: ../jobs/local.txt.in:17
+msgid "Benchmarks tests"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:24
 msgid "Bluetooth tests"
 msgstr "Bluetooth tesztek"
 
 #. description
-#: ../jobs/local.txt.in:24
+#: ../jobs/local.txt.in:31
 msgid "Camera tests"
 msgstr "Webkamera tesztek"
 
 #. description
-#: ../jobs/local.txt.in:31
+#: ../jobs/local.txt.in:38
 msgid "Codec tests"
 msgstr "Kodek tesztek"
 
 #. description
-#: ../jobs/local.txt.in:38
+#: ../jobs/local.txt.in:45
 msgid "CPU tests"
 msgstr "Processzor tesztek"
 
 #. description
-#: ../jobs/local.txt.in:45
+#: ../jobs/local.txt.in:52
 msgid "System Daemon tests"
 msgstr "Rendszer daemon tesztek"
 
 #. description
-#: ../jobs/local.txt.in:52
+#: ../jobs/local.txt.in:59
 msgid "Disk tests"
 msgstr "Lemeztesztek"
 
 #. description
-#: ../jobs/local.txt.in:59
+#: ../jobs/local.txt.in:66
 msgid "Fingerprint reader tests"
 msgstr "Ujjlenyomatolvasó-tesztek"
 
 #. description
-#: ../jobs/local.txt.in:66
+#: ../jobs/local.txt.in:73
 msgid "Firewire disk tests"
 msgstr "Firewire lemeztesztek"
 
 #. description
-#: ../jobs/local.txt.in:73
+#: ../jobs/local.txt.in:80
 msgid "Floppy disk tests"
 msgstr "Floppylemez tesztek"
 
 #. description
-#: ../jobs/local.txt.in:80
+#: ../jobs/local.txt.in:87
 msgid "Graphics tests"
 msgstr "Grafikus tesztek"
 
 #. description
-#: ../jobs/local.txt.in:87
+#: ../jobs/local.txt.in:94
 msgid "Hibernation tests"
 msgstr "Hibernációs tesztek"
 
 #. description
-#: ../jobs/local.txt.in:94
+#: ../jobs/local.txt.in:101
 msgid "Informational tests"
 msgstr "Információs tesztek"
 
 #. description
-#: ../jobs/local.txt.in:101
+#: ../jobs/local.txt.in:108
 msgid "Input Devices tests"
 msgstr "Bemeneti eszköz tesztek"
 
 #. description
-#: ../jobs/local.txt.in:108
+#: ../jobs/local.txt.in:115
 msgid "Software Installation tests"
 msgstr "Alkalmazás telepítés tesztek"
 
 #. description
-#: ../jobs/local.txt.in:115
+#: ../jobs/local.txt.in:122
 msgid "Hotkey tests"
 msgstr "Gyorsbillentyű tesztek"
 
 #. description
-#: ../jobs/local.txt.in:122
+#: ../jobs/local.txt.in:129
 msgid "Linux Test Project tests"
 msgstr "Linux teszt projekt tesztek"
 
 #. description
-#: ../jobs/local.txt.in:129
+#: ../jobs/local.txt.in:136
 msgid "Mago Automated Desktop Testing"
 msgstr "Mago automatizált asztalikörnyezet-tesztelés"
 
 #. description
-#: ../jobs/local.txt.in:136
+#: ../jobs/local.txt.in:143
 msgid "Media Card tests"
 msgstr "Médiakártya tesztek"
 
 #. description
-#: ../jobs/local.txt.in:143
+#: ../jobs/local.txt.in:150
 msgid "Memory tests"
 msgstr "Memória-tesztek"
 
 #. description
-#: ../jobs/local.txt.in:150
+#: ../jobs/local.txt.in:157
 msgid "Miscellaneous tests"
 msgstr "Egyéb tesztek"
 
 #. description
-#: ../jobs/local.txt.in:157
+#: ../jobs/local.txt.in:164
 msgid "Monitor tests"
 msgstr "Monitortesztek"
 
 #. description
-#: ../jobs/local.txt.in:164
+#: ../jobs/local.txt.in:171
 msgid "Networking tests"
 msgstr "Hálózati tesztek"
 
 #. description
-#: ../jobs/local.txt.in:171
+#: ../jobs/local.txt.in:178
 msgid "Optical Drive tests"
 msgstr "Optikaimeghajtó-tesztek"
 
 #. description
-#: ../jobs/local.txt.in:178
+#: ../jobs/local.txt.in:185
 msgid "Panel Clock Verification tests"
 msgstr "Panel óra ellenőrző tesztek"
 
 #. description
-#: ../jobs/local.txt.in:185
+#: ../jobs/local.txt.in:192
 msgid "PCMCIA/PCIX Card tests"
 msgstr "PCMCIA/PCIX kártya tesztek"
 
 #. description
-#: ../jobs/local.txt.in:192
+#: ../jobs/local.txt.in:199
 msgid "Peripheral tests"
 msgstr "Perifériatesztek"
-
-#. description
-#: ../jobs/local.txt.in:199
-msgid "Phoronix Test Suite tests"
-msgstr "Phoronix tesztcsomag tesztek"
 
 #. description
 #: ../jobs/local.txt.in:206
@@ -2511,17 +2651,6 @@ msgstr ""
 "   Megfelelően létrejött a kapcsolat?"
 
 #. description
-#: ../jobs/phoronix.txt.in:9
-msgid ""
-"PURPOSE:\n"
-"   This test will download and install the Phoronix Test Suite and run some "
-"selected benchmarking tests."
-msgstr ""
-"CÉL:\n"
-"   Ez a teszt letölti és telepíti a Phoronix tesztcsomagot, és lefuttat "
-"néhány teljesítménytesztet."
-
-#. description
 #: ../jobs/power-management.txt.in:3
 msgid ""
 "PURPOSE:\n"
@@ -3043,18 +3172,7 @@ msgid "Attaches the log from the single suspend/resume test to the results"
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:310
-msgid ""
-"This automatically tests Wake-on-LAN capability with the aid of a suitably "
-"configured server. During this process the system will suspend, then "
-"automatically wake up after no more than 5 minutes."
-msgstr ""
-"A teszt automatikusan ellenőrzi a Wake-on-LAN funkció működését egy előre "
-"konfigurált kiszolgálóval. A művelet alatt a rendszer felfüggesztésre kerül, "
-"majd kevesebb, mint 5 percen belül automatikusan vissza kell térnie."
-
-#. description
-#: ../jobs/suspend.txt.in:320
+#: ../jobs/suspend.txt.in:311
 msgid ""
 "PURPOSE:\n"
 "    Take a screengrab of the current screen after suspend (logged on Unity "
@@ -6324,6 +6442,15 @@ msgstr " Eredmények "
 #~ "Kattintson a Teszt gombra, majd próbáljon szöveget beírni."
 
 #~ msgid ""
+#~ "This automatically tests Wake-on-LAN capability with the aid of a suitably "
+#~ "configured server. During this process the system will suspend, then "
+#~ "automatically wake up after no more than 5 minutes."
+#~ msgstr ""
+#~ "A teszt automatikusan ellenőrzi a Wake-on-LAN funkció működését egy előre "
+#~ "konfigurált kiszolgálóval. A művelet alatt a rendszer felfüggesztésre kerül, "
+#~ "majd kevesebb, mint 5 percen belül automatikusan vissza kell térnie."
+
+#~ msgid ""
 #~ "Play back a sound on the default output and listen for it on the \\ default "
 #~ "input.  This makes the most sense when the output and input \\ are directly "
 #~ "connected, as with a patch cable."
@@ -6768,6 +6895,9 @@ msgstr " Eredmények "
 #~ msgid "Personal details"
 #~ msgstr "Személyes adatok"
 
+#~ msgid "Phoronix Test Suite tests"
+#~ msgstr "Phoronix tesztcsomag tesztek"
+
 #~ msgid "Recover"
 #~ msgstr "Helyreállítás"
 
@@ -7035,6 +7165,15 @@ msgstr " Eredmények "
 #~ "ELLENŐRZÉS:\n"
 #~ "    A teszt ellenőrzése automatikus. Ne változtassa meg az\n"
 #~ "    automatikusan kijelölt eredményt."
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "   This test will download and install the Phoronix Test Suite and run some "
+#~ "selected benchmarking tests."
+#~ msgstr ""
+#~ "CÉL:\n"
+#~ "   Ez a teszt letölti és telepíti a Phoronix tesztcsomagot, és lefuttat "
+#~ "néhány teljesítménytesztet."
 
 #~ msgid ""
 #~ "PURPOSE:\n"

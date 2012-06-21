@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-14 16:38-0400\n"
+"POT-Creation-Date: 2012-06-20 10:38-0400\n"
 "PO-Revision-Date: 2011-07-19 20:19+0000\n"
 "Last-Translator: Claudia Cotună <special4ti@gmail.com>\n"
 "Language-Team: Romanian <ro@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-06-15 04:38+0000\n"
-"X-Generator: Launchpad (build 15414)\n"
+"X-Launchpad-Export-Date: 2012-06-21 05:13+0000\n"
+"X-Generator: Launchpad (build 15435)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:9
 msgid "_Previous"
@@ -228,6 +228,151 @@ msgstr ""
 "SCOP:\n"
 "   Acest test va încerca să instaleze și să ruleze suita Autotest.  Aceste "
 "teste pot fi distructive, așa că acest test este implicit inhibat."
+
+#. description
+#: ../jobs/benchmarks.txt.in:18
+msgid "Benchmark for each disk"
+msgstr "Teste de stres pentru fiecare disc"
+
+#. description
+#: ../jobs/benchmarks.txt.in:33
+msgid "Run Render-Bench XRender/Imlib2 benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:39
+msgid "Run Qgears2 XRender Extension gearsfancy benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:45
+msgid "Run Qgears2 XRender Extension image scaling benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:51
+msgid "Run Qgears2 OpenGL gearsfancy benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:57
+msgid "Run Qgears2 OpenGL image scaling benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:66
+msgid "Run GLmark2-ES2 benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:75
+msgid "Run GLmark2 benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:81
+msgid "Run Unigine Santuary benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:87
+msgid "Run Unigine Tropics benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:93
+msgid "Run Unigine Heaven benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:99
+msgid "Run Lightsmark benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:105
+msgid "Run Cachebench Read benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:111
+msgid "Run Cachebench Write benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:117
+msgid "Run Cachebench Read / Modify / Write benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:123
+msgid "Run Stream Copy benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:129
+msgid "Run Stream Scale benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:135
+msgid "Run Stream Add benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:141
+msgid "Run Stream Triad benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:147
+msgid "Run Network Loopback benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:153
+msgid "Run Encode MP3 benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:159
+msgid "Run x264 H.264/AVC encoder benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:165
+msgid "Run GnuPG benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:171
+msgid "Run Compress PBZIP2 benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:177
+msgid "Run Compress 7ZIP benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:183
+msgid "Run N-Queens benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:189
+msgid "Run Himeno benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:195
+msgid "CPU utilization on an idle system."
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:201
+msgid "Disk utilization on an idle system."
+msgstr ""
 
 #. description
 #: ../jobs/bluetooth.txt.in:8
@@ -583,33 +728,28 @@ msgstr "Detectează și afișează discurile atașate la sistem."
 
 #. description
 #: ../jobs/disk.txt.in:9
-msgid "Benchmark for each disk"
-msgstr "Teste de stres pentru fiecare disc"
-
-#. description
-#: ../jobs/disk.txt.in:26
 msgid "Check stats changes for each disk"
 msgstr "Verifică modificările în starea fiecărui disc"
 
 #. description
-#: ../jobs/disk.txt.in:46
+#: ../jobs/disk.txt.in:29
 msgid "SMART test"
 msgstr "Test SMART"
 
 #. description
-#: ../jobs/disk.txt.in:64
+#: ../jobs/disk.txt.in:47
 msgid "Maximum disk space used during a default installation test"
 msgstr ""
 "Spațiul maxim utilizat pe disc pe parcursul instalării implicite a unui test"
 
 #. description
-#: ../jobs/disk.txt.in:81
+#: ../jobs/disk.txt.in:64
 msgid "Verify system storage performs at or above baseline performance"
 msgstr ""
 "Verifică dacă unitățile de stocare lucrează la sau sub parametrii specificați"
 
 #. description
-#: ../jobs/disk.txt.in:99
+#: ../jobs/disk.txt.in:82
 msgid ""
 "Verify that storage devices, such as Fibre Channel and RAID can be detected "
 "and perform under stress."
@@ -959,7 +1099,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:188 ../jobs/suspend.txt.in:332
+#: ../jobs/graphics.txt.in:188 ../jobs/suspend.txt.in:323
 msgid "Attaches the screenshot captured in graphics/screenshot."
 msgstr ""
 
@@ -1332,138 +1472,138 @@ msgstr "Teste din suita Autotest"
 
 #. description
 #: ../jobs/local.txt.in:17
+msgid "Benchmarks tests"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:24
 msgid "Bluetooth tests"
 msgstr "Teste pentru conexiunea bluetooth"
 
 #. description
-#: ../jobs/local.txt.in:24
+#: ../jobs/local.txt.in:31
 msgid "Camera tests"
 msgstr "Teste pentru camera web"
 
 #. description
-#: ../jobs/local.txt.in:31
+#: ../jobs/local.txt.in:38
 msgid "Codec tests"
 msgstr "Teste pentru codecuri"
 
 #. description
-#: ../jobs/local.txt.in:38
+#: ../jobs/local.txt.in:45
 msgid "CPU tests"
 msgstr "Teste pentru procesor"
 
 #. description
-#: ../jobs/local.txt.in:45
+#: ../jobs/local.txt.in:52
 msgid "System Daemon tests"
 msgstr "Teste pentru serviciile de sistem"
 
 #. description
-#: ../jobs/local.txt.in:52
+#: ../jobs/local.txt.in:59
 msgid "Disk tests"
 msgstr "Teste disk"
 
 #. description
-#: ../jobs/local.txt.in:59
+#: ../jobs/local.txt.in:66
 msgid "Fingerprint reader tests"
 msgstr "Teste cititor amprente"
 
 #. description
-#: ../jobs/local.txt.in:66
+#: ../jobs/local.txt.in:73
 msgid "Firewire disk tests"
 msgstr "Teste disc firewire"
 
 #. description
-#: ../jobs/local.txt.in:73
+#: ../jobs/local.txt.in:80
 msgid "Floppy disk tests"
 msgstr "Teste pentru floppy"
 
 #. description
-#: ../jobs/local.txt.in:80
+#: ../jobs/local.txt.in:87
 msgid "Graphics tests"
 msgstr "Teste pentru grafică"
 
 #. description
-#: ../jobs/local.txt.in:87
+#: ../jobs/local.txt.in:94
 msgid "Hibernation tests"
 msgstr "Teste pentru funcția de hibernare"
 
 #. description
-#: ../jobs/local.txt.in:94
+#: ../jobs/local.txt.in:101
 msgid "Informational tests"
 msgstr "Teste pentru informare"
 
 #. description
-#: ../jobs/local.txt.in:101
+#: ../jobs/local.txt.in:108
 msgid "Input Devices tests"
 msgstr "Teste pentru dispozitivele de intrare"
 
 #. description
-#: ../jobs/local.txt.in:108
+#: ../jobs/local.txt.in:115
 msgid "Software Installation tests"
 msgstr "Teste pentru programele instalate"
 
 #. description
-#: ../jobs/local.txt.in:115
+#: ../jobs/local.txt.in:122
 msgid "Hotkey tests"
 msgstr "Teste pentru tastele de funcții"
 
 #. description
-#: ../jobs/local.txt.in:122
+#: ../jobs/local.txt.in:129
 msgid "Linux Test Project tests"
 msgstr "Teste Linux Test Project"
 
 #. description
-#: ../jobs/local.txt.in:129
+#: ../jobs/local.txt.in:136
 msgid "Mago Automated Desktop Testing"
 msgstr "Testarea automată Mago pentru desktopuri"
 
 #. description
-#: ../jobs/local.txt.in:136
+#: ../jobs/local.txt.in:143
 msgid "Media Card tests"
 msgstr "Teste pentru carduri media"
 
 #. description
-#: ../jobs/local.txt.in:143
+#: ../jobs/local.txt.in:150
 msgid "Memory tests"
 msgstr "Teste pentru memorie"
 
 #. description
-#: ../jobs/local.txt.in:150
+#: ../jobs/local.txt.in:157
 msgid "Miscellaneous tests"
 msgstr "Teste diverse"
 
 #. description
-#: ../jobs/local.txt.in:157
+#: ../jobs/local.txt.in:164
 msgid "Monitor tests"
 msgstr "Teste de monitor"
 
 #. description
-#: ../jobs/local.txt.in:164
+#: ../jobs/local.txt.in:171
 msgid "Networking tests"
 msgstr "Teste pentru rețea"
 
 #. description
-#: ../jobs/local.txt.in:171
+#: ../jobs/local.txt.in:178
 msgid "Optical Drive tests"
 msgstr "Teste pentru CD/DVD"
 
 #. description
-#: ../jobs/local.txt.in:178
+#: ../jobs/local.txt.in:185
 msgid "Panel Clock Verification tests"
 msgstr "Teste pentru verificarea ceasului din panou"
 
 #. description
-#: ../jobs/local.txt.in:185
+#: ../jobs/local.txt.in:192
 msgid "PCMCIA/PCIX Card tests"
 msgstr "Teste pentru dispozitivele PCMCIA/PCIX"
 
 #. description
-#: ../jobs/local.txt.in:192
+#: ../jobs/local.txt.in:199
 msgid "Peripheral tests"
 msgstr "Teste de periferice"
-
-#. description
-#: ../jobs/local.txt.in:199
-msgid "Phoronix Test Suite tests"
-msgstr "Teste din suita Phoronix"
 
 #. description
 #: ../jobs/local.txt.in:206
@@ -2574,17 +2714,6 @@ msgstr ""
 "   A fost stabilită corect conexiunea?"
 
 #. description
-#: ../jobs/phoronix.txt.in:9
-msgid ""
-"PURPOSE:\n"
-"   This test will download and install the Phoronix Test Suite and run some "
-"selected benchmarking tests."
-msgstr ""
-"SCOP:\n"
-"   Acest test va descărca și instala suita pentru teste Phoronix și va rula "
-"unele teste de stres."
-
-#. description
 #: ../jobs/power-management.txt.in:3
 msgid ""
 "PURPOSE:\n"
@@ -3118,19 +3247,7 @@ msgid "Attaches the log from the single suspend/resume test to the results"
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:310
-msgid ""
-"This automatically tests Wake-on-LAN capability with the aid of a suitably "
-"configured server. During this process the system will suspend, then "
-"automatically wake up after no more than 5 minutes."
-msgstr ""
-"Acest test verifică funcția Wake-on-LAN (revenire din suspendare activată de "
-"rețea) cu ajutorul unui server configurat corect. Pe parcursul acestui "
-"proces sistemul va intra în suspendare și va reveni automat după maxim 5 "
-"minute."
-
-#. description
-#: ../jobs/suspend.txt.in:320
+#: ../jobs/suspend.txt.in:311
 msgid ""
 "PURPOSE:\n"
 "    Take a screengrab of the current screen after suspend (logged on Unity "
@@ -5586,6 +5703,9 @@ msgstr " Rezultate "
 #~ msgid "Unity tests"
 #~ msgstr "Teste pentru mediul grafic Unity"
 
+#~ msgid "Phoronix Test Suite tests"
+#~ msgstr "Teste din suita Phoronix"
+
 #~ msgid ""
 #~ "PURPOSE:\n"
 #~ "    This test will check that the systems media card reader can\n"
@@ -5987,6 +6107,15 @@ msgstr " Rezultate "
 #~ "   Ceasul din panou afișează corect data și ora în zona de timp în care vă "
 #~ "aflați?"
 
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "   This test will download and install the Phoronix Test Suite and run some "
+#~ "selected benchmarking tests."
+#~ msgstr ""
+#~ "SCOP:\n"
+#~ "   Acest test va descărca și instala suita pentru teste Phoronix și va rula "
+#~ "unele teste de stres."
+
 #~ msgid "Test ACPI Wakealarm (fwts wakealarm) "
 #~ msgstr "Test pentru alarma ACPI (fwts wakealarm) "
 
@@ -6054,6 +6183,16 @@ msgstr " Rezultate "
 #~ "suspendare și revenirea din suspendare\n"
 #~ "VERIFICARE:\n"
 #~ "    Monitorul afișează corect după revenirea din suspendare?"
+
+#~ msgid ""
+#~ "This automatically tests Wake-on-LAN capability with the aid of a suitably "
+#~ "configured server. During this process the system will suspend, then "
+#~ "automatically wake up after no more than 5 minutes."
+#~ msgstr ""
+#~ "Acest test verifică funcția Wake-on-LAN (revenire din suspendare activată de "
+#~ "rețea) cu ajutorul unui server configurat corect. Pe parcursul acestui "
+#~ "proces sistemul va intra în suspendare și va reveni automat după maxim 5 "
+#~ "minute."
 
 #~ msgid ""
 #~ "This test will verify that Unity is running and then run the autopilot.py "

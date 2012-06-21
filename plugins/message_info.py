@@ -125,7 +125,7 @@ class MessageInfo(Plugin):
             self._manager.reactor.fire("report-messages", messages)
 
     def message_filename(self, filename):
-        file = open(filename, "r")
+        file = open(filename, "r", encoding="utf-8")
         try:
             self._manager.reactor.fire("message-file", file, filename)
         finally:

@@ -4,23 +4,62 @@ Priority: optional
 Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
 Standards-Version: 3.9.2
 X-Python3-Version: >= 3.2
-Build-Depends: debhelper (>= 9.2), dh-translations, libqt4-dev, python3 (>= 3.2), po-debconf, python3-distutils-extra, qt4-qmake
+Build-Depends: debhelper (>= 9.2),
+               dh-translations,
+               libqt4-dev,
+               po-debconf,
+               python3 (>= 3.2),
+               python3-distutils-extra,
+               qt4-qmake
 Vcs-Bzr: https://code.launchpad.net/~hardware-certification/checkbox/trunk
 
 Package: checkbox
 Section: python
 Architecture: any
-Depends: ${misc:Depends}, ${python3:Depends}, debconf, python3-lxml, udev
-Recommends: dpkg (>= 1.13), gstreamer0.10-gconf | gstreamer1.0-plugins-good, lsb-release, perl, pm-utils, python-apport, python-apt, python-dateutil, python3-dbus, python3-gi, gir1.2-gst-plugins-base-0.10 | gir1.2-gst-plugins-base-1.0
-Suggests: checkbox-cli | checkbox-gtk, bonnie++, bootchart, bzr, cvs, ethtool, flex, fwts, git-core, hdparm, lshw, make, nmap, obexd-client, python-pexpect, smartmontools, sox, stress, wodim, mesa-utils, wmctrl
-Description: System testing application 
+Depends: debconf, python3-lxml, udev, ${misc:Depends}, ${python3:Depends}
+Recommends: dpkg (>= 1.13),
+            gir1.2-gst-plugins-base-0.10 | gir1.2-gst-plugins-base-1.0,
+            gstreamer0.10-gconf | gstreamer1.0-plugins-good,
+            lsb-release,
+            perl,
+            pm-utils,
+            python-apport,
+            python-apt,
+            python-dateutil,
+            python3-dbus,
+            python3-gi
+Suggests: bonnie++,
+          bootchart,
+          bzr,
+          checkbox-cli | checkbox-gtk,
+          cvs,
+          ethtool,
+          flex,
+          fwts,
+          git-core,
+          glmark2,
+          glmark2-es2,
+          hdparm,
+          lshw,
+          make,
+          mesa-utils,
+          nmap,
+          obexd-client,
+          render-bench,
+          smartmontools,
+          sox,
+          stress,
+          sysstat,
+          wmctrl,
+          wodim
+Description: System testing application
  This project provides an extensible interface for system testing. The
  results can then be sent to Launchpad.
 
 Package: checkbox-cli
 Architecture: all
 Depends: checkbox (>= ${source:Version}), ${misc:Depends}
-Description: Command line interface for checkbox 
+Description: Command line interface for checkbox
  This project provides an extensible interface for system testing. The
  results can then be sent to Launchpad.
  .
@@ -29,17 +68,22 @@ Description: Command line interface for checkbox
 Package: checkbox-urwid
 Architecture: all
 Depends: checkbox (>= ${source:Version}), python3-urwid, ${misc:Depends}
-Description: Urwid interface for checkbox 
+Description: Urwid interface for checkbox
  This project provides an extensible interface for system testing. The
  results can then be sent to Launchpad.
  .
- This package provides a command line interface (urwid version) for 
+ This package provides a command line interface (urwid version) for
  answering tests.
 
 Package: checkbox-gtk
 Section: gnome
 Architecture: all
-Depends: checkbox (>= ${source:Version}), gir1.2-gtk-3.0, gksu, python3-gi-cairo, python3-gi, ${misc:Depends}
+Depends: checkbox (>= ${source:Version}),
+         gir1.2-gtk-3.0,
+         gksu,
+         python3-gi,
+         python3-gi-cairo,
+         ${misc:Depends}
 Description: GTK interface for checkbox
  This project provides an extensible interface for system testing. The
  results can then be sent to Launchpad.
@@ -48,7 +92,11 @@ Description: GTK interface for checkbox
 
 Package: checkbox-qt
 Architecture: any
-Depends: checkbox (>= ${source:Version}), libqtgui4, libqt4-dbus, python3-dbus, ${misc:Depends}
+Depends: checkbox (>= ${source:Version}),
+         libqt4-dbus,
+         libqtgui4,
+         python3-dbus,
+         ${misc:Depends}
 Description: QT4 interface for checkbox
  This project provides an extensible interface for system testing. The
  results can then be sent to Launchpad.
