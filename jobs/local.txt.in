@@ -117,13 +117,6 @@ command:
   shopt -s extglob
   cat $CHECKBOX_SHARE/jobs/keys.txt?(.in)
 
-name: __ltp__
-plugin: local
-_description: Linux Test Project tests
-command:
-  shopt -s extglob
-  cat $CHECKBOX_SHARE/jobs/ltp.txt?(.in)
-
 name: __mediacard__
 plugin: local
 _description: Media Card tests
