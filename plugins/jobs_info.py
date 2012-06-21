@@ -101,11 +101,11 @@ class JobsInfo(Plugin):
             name = message["name"]
             for dependency in message.get("depends", []):
                 if dependency not in names:
-                    return True
+                    return False
 
             names.add(name)
 
-        return False
+        return True
 
     def get_patterns(self, strings, filename=None):
         """Return the list of strings as compiled regular expressions."""
