@@ -72,6 +72,8 @@ QtFront::QtFront(QApplication *parent) :
     connect(ui->treeView, SIGNAL(collapsed(QModelIndex)), this, SLOT(onJobItemChanged(QModelIndex)));
     connect(ui->treeView, SIGNAL(expanded(QModelIndex)), this, SLOT(onJobItemChanged(QModelIndex)));
     connect(ui->treeView->verticalScrollBar(), SIGNAL(valueChanged(int)), ui->statusView->verticalScrollBar(), SLOT(setValue(int)));
+    connect(ui->treeView, SIGNAL(clicked(QModelIndex)), this,  SLOT(onTestSelectionChanged()));
+    connect(this, SIGNAL(testSelectionChanged()), this,  SLOT(onTestSelectionChanged()));
     ui->stepsFrame->setFixedHeight(0);
     ui->buttonSubmitResults->setEnabled(false);
     ui->submissionDataLineEdit->setEnabled(false);
@@ -130,17 +132,25 @@ void QtFront::onClosedFrontend()
     emit closedFrontend(m_doneTesting);
 }
 
+void QtFront::onTestSelectionChanged()
+{
+    ui->selectAllButton->setEnabled(! m_model->allInStatus(Qt::Checked));
+    ui->deselectAllButton->setEnabled(! m_model->allInStatus(Qt::Unchecked));
+}
+
 void QtFront::onDeselectAllClicked(){
     if (currentState != TREE || !m_model)
         return;
     m_model->warn();
     m_model->selectAll(false);
+    emit testSelectionChanged();    
 }
 
 void QtFront::onSelectAllClicked(){
     if (currentState != TREE || !m_model)
         return;
     m_model->selectAll();
+    emit testSelectionChanged();
 }
 
 void QtFront::onYesTestClicked() {
@@ -495,6 +505,7 @@ void QtFront::showTree(QString text, QVariantMap options, QVariantMap defaults,
     ui->treeView->show();
     ui->buttonStartTesting->setEnabled(true);
     m_model->setInteraction(true);
+    emit testSelectionChanged();
 }
 
 void QtFront::onJobItemChanged(QStandardItem *item, QString job, QModelIndex baseIndex)
@@ -520,6 +531,7 @@ void QtFront::onJobItemChanged(QModelIndex index)
         QStandardItem *item = m_statusModel->item(i, 0);
         onJobItemChanged(item, job, index);
     }
+    
 }
 
 void QtFront::showInfo(QString text, QStringList options, QString defaultoption)

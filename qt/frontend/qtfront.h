@@ -65,6 +65,7 @@ private slots:
     void onFullTestsClicked();
     void onDeselectAllClicked();
     void onSelectAllClicked();
+    void onTestSelectionChanged();
     void onStartTestsClicked();
     void onSubmitTestsClicked();
     void onNextTestClicked();
@@ -93,6 +94,7 @@ signals:
     void welcomeCheckboxToggled(bool toogled);
     void infoBoxResult(QString result);
     void errorBoxClosed();
+    void testSelectionChanged();
 
 private:
     bool registerService();
