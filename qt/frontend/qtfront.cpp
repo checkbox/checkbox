@@ -127,18 +127,16 @@ void QtFront::setUiFlags(QVariantMap flags)
     ui->checkBox->setChecked(checked.toBool());
 }
 
-void QtFront::onClosedFrontend()
-{
+void QtFront::onClosedFrontend() {
     emit closedFrontend(m_doneTesting);
 }
 
-void QtFront::onTestSelectionChanged()
-{
+void QtFront::onTestSelectionChanged() {
     ui->selectAllButton->setEnabled(! m_model->allInStatus(Qt::Checked));
     ui->deselectAllButton->setEnabled(! m_model->allInStatus(Qt::Unchecked));
 }
 
-void QtFront::onDeselectAllClicked(){
+void QtFront::onDeselectAllClicked() {
     if (currentState != TREE || !m_model)
         return;
     m_model->warn();
@@ -146,7 +144,7 @@ void QtFront::onDeselectAllClicked(){
     emit testSelectionChanged();    
 }
 
-void QtFront::onSelectAllClicked(){
+void QtFront::onSelectAllClicked() {
     if (currentState != TREE || !m_model)
         return;
     m_model->selectAll();
@@ -520,7 +518,6 @@ void QtFront::onJobItemChanged(QStandardItem *item, QString job, QModelIndex bas
     if (item->data(Qt::UserRole) == job) {
         ui->statusView->setExpanded(item->index(), ui->treeView->isExpanded(baseIndex));
     }
-
 }
 
 void QtFront::onJobItemChanged(QModelIndex index)
