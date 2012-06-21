@@ -17,6 +17,7 @@
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
 import os, sys, re
+import difflib
 import gettext
 import logging
 
@@ -93,7 +94,21 @@ class JobsInfo(Plugin):
         self.interface = interface
         self.unused_patterns = self.whitelist_patterns + self.blacklist_patterns
 
+    def check_ordered_messages(self, messages):
+        """Return whether the list of messages are ordered or not."""
+        names = set()
+        for message in messages:
+            name = message["name"]
+            for dependency in message.get("depends", []):
+                if dependency not in names:
+                    return True
+
+            names.add(name)
+
+        return False
+
     def get_patterns(self, strings, filename=None):
+        """Return the list of strings as compiled regular expressions."""
         if filename:
             try:
                 file = open(filename)
@@ -109,20 +124,10 @@ class JobsInfo(Plugin):
         return [re.compile(r"^%s$" % s) for s in strings
             if s and not s.startswith("#")]
 
-    def get_order_errors(self, messages):
-        errors = []
-        names = set()
-        for message in messages:
-            name = message["name"]
-            for dependency in message.get("depends", []):
-                if dependency not in names:
-                    errors.append("%s > %s" % (name, dependency))
-
-            names.add(name)
-
-        return errors
-
     def get_unique_messages(self, messages):
+        """Return the list of messages without any duplicates, giving
+        precedence to messages that are the longest.
+        """
         unique_messages = []
         unique_indexes = {}
         for message in messages:
@@ -174,28 +179,32 @@ class JobsInfo(Plugin):
                     if pattern.match(name):
                         return self.whitelist_patterns.index(pattern)
 
-                return None
-
             messages = sorted(messages, key=key_function)
 
-            # Check if messages are already topologically ordered
-            order_errors = self.get_order_errors(messages)
-            if (order_errors and
-                logging.getLogger().getEffectiveLevel() <= logging.DEBUG):
-                detailed_text = "\n".join(order_errors)
-                self._manager.reactor.fire(
-                        'prompt-error',
-                        self.interface,
-                        'Whitelist not topologically ordered',
-                        'Jobs will be reordered to fix broken dependencies',
-                        detailed_text)
-
-        if not self.whitelist_patterns or order_errors:
+        if not self.check_ordered_messages(messages):
+            old_message_names = [message["name"] for message in messages]
             resolver = Resolver(key=lambda m: m["name"])
             for message in messages:
                 resolver.add(
                     message, *message.get("depends", []))
             messages = resolver.get_dependents()
+
+            # Check if messages are already topologically ordered
+            if (self.whitelist_patterns and
+                logging.getLogger().getEffectiveLevel() <= logging.DEBUG):
+                new_message_names = [message["name"] for message in messages]
+                detailed_text = "".join(
+                    difflib.unified_diff(
+                        old_message_names,
+                        new_message_names,
+                        "old whitelist",
+                        "new whitelist"))
+                self._manager.reactor.fire(
+                        "prompt-error",
+                        self.interface,
+                        "Whitelist not topologically ordered",
+                        "Jobs will be reordered to fix broken dependencies",
+                        detailed_text)
 
         self._manager.reactor.fire("report-jobs", messages)
 
