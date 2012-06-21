@@ -182,7 +182,7 @@ class JobsInfo(Plugin):
             messages = sorted(messages, key=key_function)
 
         if not self.check_ordered_messages(messages):
-            old_message_names = [message["name"] for message in messages]
+            old_message_names = [message["name"] + "\n" for message in messages]
             resolver = Resolver(key=lambda m: m["name"])
             for message in messages:
                 resolver.add(
@@ -192,7 +192,7 @@ class JobsInfo(Plugin):
             # Check if messages are already topologically ordered
             if (self.whitelist_patterns and
                 logging.getLogger().getEffectiveLevel() <= logging.DEBUG):
-                new_message_names = [message["name"] for message in messages]
+                new_message_names = [message["name"] + "\n" for message in messages]
                 detailed_text = "".join(
                     difflib.unified_diff(
                         old_message_names,
