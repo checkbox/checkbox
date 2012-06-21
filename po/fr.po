@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: checkbox 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-14 16:38-0400\n"
+"POT-Creation-Date: 2012-06-20 10:38-0400\n"
 "PO-Revision-Date: 2011-08-29 10:42+0000\n"
 "Last-Translator: Pierre Slamich <pierre.slamich@gmail.com>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-06-15 04:37+0000\n"
-"X-Generator: Launchpad (build 15414)\n"
+"X-Launchpad-Export-Date: 2012-06-21 05:12+0000\n"
+"X-Generator: Launchpad (build 15435)\n"
 
 #. Title of the user interface
 #: ../gtk/checkbox-gtk.ui.h:1 ../qt/checkbox-qt.desktop.in.h:1
@@ -279,6 +279,151 @@ msgstr ""
 "    Ce test va tenter d'installer et de démarrer la suite Autotest. Ces "
 "tests pouvant être destructifs, ils ont été mis sur la liste noire par "
 "défaut."
+
+#. description
+#: ../jobs/benchmarks.txt.in:18
+msgid "Benchmark for each disk"
+msgstr "Évaluation des performances de chaque disque"
+
+#. description
+#: ../jobs/benchmarks.txt.in:33
+msgid "Run Render-Bench XRender/Imlib2 benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:39
+msgid "Run Qgears2 XRender Extension gearsfancy benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:45
+msgid "Run Qgears2 XRender Extension image scaling benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:51
+msgid "Run Qgears2 OpenGL gearsfancy benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:57
+msgid "Run Qgears2 OpenGL image scaling benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:66
+msgid "Run GLmark2-ES2 benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:75
+msgid "Run GLmark2 benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:81
+msgid "Run Unigine Santuary benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:87
+msgid "Run Unigine Tropics benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:93
+msgid "Run Unigine Heaven benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:99
+msgid "Run Lightsmark benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:105
+msgid "Run Cachebench Read benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:111
+msgid "Run Cachebench Write benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:117
+msgid "Run Cachebench Read / Modify / Write benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:123
+msgid "Run Stream Copy benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:129
+msgid "Run Stream Scale benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:135
+msgid "Run Stream Add benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:141
+msgid "Run Stream Triad benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:147
+msgid "Run Network Loopback benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:153
+msgid "Run Encode MP3 benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:159
+msgid "Run x264 H.264/AVC encoder benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:165
+msgid "Run GnuPG benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:171
+msgid "Run Compress PBZIP2 benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:177
+msgid "Run Compress 7ZIP benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:183
+msgid "Run N-Queens benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:189
+msgid "Run Himeno benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:195
+msgid "CPU utilization on an idle system."
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:201
+msgid "Disk utilization on an idle system."
+msgstr ""
 
 #. description
 #: ../jobs/bluetooth.txt.in:8
@@ -625,34 +770,29 @@ msgstr "Détectez et affichez les disques attachés au système."
 
 #. description
 #: ../jobs/disk.txt.in:9
-msgid "Benchmark for each disk"
-msgstr "Évaluation des performances de chaque disque"
-
-#. description
-#: ../jobs/disk.txt.in:26
 msgid "Check stats changes for each disk"
 msgstr "Vérifie les changements de performances de chaque disque"
 
 #. description
-#: ../jobs/disk.txt.in:46
+#: ../jobs/disk.txt.in:29
 msgid "SMART test"
 msgstr "Test SMART"
 
 #. description
-#: ../jobs/disk.txt.in:64
+#: ../jobs/disk.txt.in:47
 msgid "Maximum disk space used during a default installation test"
 msgstr ""
 "Espace disque maximal utilisé lors d'un test d'installation par défaut"
 
 #. description
-#: ../jobs/disk.txt.in:81
+#: ../jobs/disk.txt.in:64
 msgid "Verify system storage performs at or above baseline performance"
 msgstr ""
 "Vérifie si les performances du système de stockage sont supérieures ou "
 "égales au niveau de performance de base"
 
 #. description
-#: ../jobs/disk.txt.in:99
+#: ../jobs/disk.txt.in:82
 msgid ""
 "Verify that storage devices, such as Fibre Channel and RAID can be detected "
 "and perform under stress."
@@ -998,7 +1138,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:188 ../jobs/suspend.txt.in:332
+#: ../jobs/graphics.txt.in:188 ../jobs/suspend.txt.in:323
 msgid "Attaches the screenshot captured in graphics/screenshot."
 msgstr ""
 
@@ -1377,138 +1517,138 @@ msgstr "Tests de la Suite Autotest"
 
 #. description
 #: ../jobs/local.txt.in:17
+msgid "Benchmarks tests"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:24
 msgid "Bluetooth tests"
 msgstr "Tests Bluetooth"
 
 #. description
-#: ../jobs/local.txt.in:24
+#: ../jobs/local.txt.in:31
 msgid "Camera tests"
 msgstr "Tests de la caméra"
 
 #. description
-#: ../jobs/local.txt.in:31
+#: ../jobs/local.txt.in:38
 msgid "Codec tests"
 msgstr "Tests de codecs"
 
 #. description
-#: ../jobs/local.txt.in:38
+#: ../jobs/local.txt.in:45
 msgid "CPU tests"
 msgstr "Tests du processeur"
 
 #. description
-#: ../jobs/local.txt.in:45
+#: ../jobs/local.txt.in:52
 msgid "System Daemon tests"
 msgstr "Tests des services système"
 
 #. description
-#: ../jobs/local.txt.in:52
+#: ../jobs/local.txt.in:59
 msgid "Disk tests"
 msgstr "Tests des disques"
 
 #. description
-#: ../jobs/local.txt.in:59
+#: ../jobs/local.txt.in:66
 msgid "Fingerprint reader tests"
 msgstr "Tests du lecteur d'empreinte digitale"
 
 #. description
-#: ../jobs/local.txt.in:66
+#: ../jobs/local.txt.in:73
 msgid "Firewire disk tests"
 msgstr "Tests des disques Firewire"
 
 #. description
-#: ../jobs/local.txt.in:73
+#: ../jobs/local.txt.in:80
 msgid "Floppy disk tests"
 msgstr "Tests du lecteur de disquette"
 
 #. description
-#: ../jobs/local.txt.in:80
+#: ../jobs/local.txt.in:87
 msgid "Graphics tests"
 msgstr "Tests graphiques"
 
 #. description
-#: ../jobs/local.txt.in:87
+#: ../jobs/local.txt.in:94
 msgid "Hibernation tests"
 msgstr "Tests de la mise en hibernation"
 
 #. description
-#: ../jobs/local.txt.in:94
+#: ../jobs/local.txt.in:101
 msgid "Informational tests"
 msgstr "Tests informatifs"
 
 #. description
-#: ../jobs/local.txt.in:101
+#: ../jobs/local.txt.in:108
 msgid "Input Devices tests"
 msgstr "Tests des périphériques d'entrée"
 
 #. description
-#: ../jobs/local.txt.in:108
+#: ../jobs/local.txt.in:115
 msgid "Software Installation tests"
 msgstr "Tests d'installation de logiciels"
 
 #. description
-#: ../jobs/local.txt.in:115
+#: ../jobs/local.txt.in:122
 msgid "Hotkey tests"
 msgstr "Tests des touches de raccourci"
 
 #. description
-#: ../jobs/local.txt.in:122
+#: ../jobs/local.txt.in:129
 msgid "Linux Test Project tests"
 msgstr "Tests du projet Linux Test"
 
 #. description
-#: ../jobs/local.txt.in:129
+#: ../jobs/local.txt.in:136
 msgid "Mago Automated Desktop Testing"
 msgstr "Test de bureau automatisé Mago"
 
 #. description
-#: ../jobs/local.txt.in:136
+#: ../jobs/local.txt.in:143
 msgid "Media Card tests"
 msgstr "Tests des cartes mémoire"
 
 #. description
-#: ../jobs/local.txt.in:143
+#: ../jobs/local.txt.in:150
 msgid "Memory tests"
 msgstr "Tests de la mémoire"
 
 #. description
-#: ../jobs/local.txt.in:150
+#: ../jobs/local.txt.in:157
 msgid "Miscellaneous tests"
 msgstr "Tests divers"
 
 #. description
-#: ../jobs/local.txt.in:157
+#: ../jobs/local.txt.in:164
 msgid "Monitor tests"
 msgstr "Tests de l'écran"
 
 #. description
-#: ../jobs/local.txt.in:164
+#: ../jobs/local.txt.in:171
 msgid "Networking tests"
 msgstr "Tests du réseau"
 
 #. description
-#: ../jobs/local.txt.in:171
+#: ../jobs/local.txt.in:178
 msgid "Optical Drive tests"
 msgstr "Tests des lecteurs optiques"
 
 #. description
-#: ../jobs/local.txt.in:178
+#: ../jobs/local.txt.in:185
 msgid "Panel Clock Verification tests"
 msgstr "Tests de vérification de l'horloge du panel"
 
 #. description
-#: ../jobs/local.txt.in:185
+#: ../jobs/local.txt.in:192
 msgid "PCMCIA/PCIX Card tests"
 msgstr "Tests des cartes PCMCIA/PCIX"
 
 #. description
-#: ../jobs/local.txt.in:192
+#: ../jobs/local.txt.in:199
 msgid "Peripheral tests"
 msgstr "Tests des périphériques"
-
-#. description
-#: ../jobs/local.txt.in:199
-msgid "Phoronix Test Suite tests"
-msgstr "Tests de la Suite de Test de Phoronix"
 
 #. description
 #: ../jobs/local.txt.in:206
@@ -2464,14 +2604,6 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/phoronix.txt.in:9
-msgid ""
-"PURPOSE:\n"
-"   This test will download and install the Phoronix Test Suite and run some "
-"selected benchmarking tests."
-msgstr ""
-
-#. description
 #: ../jobs/power-management.txt.in:3
 msgid ""
 "PURPOSE:\n"
@@ -2931,18 +3063,7 @@ msgid "Attaches the log from the single suspend/resume test to the results"
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:310
-msgid ""
-"This automatically tests Wake-on-LAN capability with the aid of a suitably "
-"configured server. During this process the system will suspend, then "
-"automatically wake up after no more than 5 minutes."
-msgstr ""
-"Ceci test automatiquement les capacités Wake-on-LAN à l'aide d'un serveur "
-"configuré à cet effet. Durant le processus, le système va se mettre en "
-"veille et se réveiller automatiquement avant 5 minutes."
-
-#. description
-#: ../jobs/suspend.txt.in:320
+#: ../jobs/suspend.txt.in:311
 msgid ""
 "PURPOSE:\n"
 "    Take a screengrab of the current screen after suspend (logged on Unity "
@@ -5253,6 +5374,15 @@ msgstr " Résultats "
 #~ msgid "Power management Suspend and Resume test"
 #~ msgstr "Test de mise en veille et de sortie de veille"
 
+#~ msgid ""
+#~ "This automatically tests Wake-on-LAN capability with the aid of a suitably "
+#~ "configured server. During this process the system will suspend, then "
+#~ "automatically wake up after no more than 5 minutes."
+#~ msgstr ""
+#~ "Ceci test automatiquement les capacités Wake-on-LAN à l'aide d'un serveur "
+#~ "configuré à cet effet. Durant le processus, le système va se mettre en "
+#~ "veille et se réveiller automatiquement avant 5 minutes."
+
 #~ msgid "Automatic power management Suspend and Resume test"
 #~ msgstr "Test automatique de la mise en veille et de la sortie de veille"
 
@@ -6261,3 +6391,6 @@ msgstr " Résultats "
 
 #~ msgid "Lists of tests to run based on your system:"
 #~ msgstr "Liste de tests à effectuer sur votre système :"
+
+#~ msgid "Phoronix Test Suite tests"
+#~ msgstr "Tests de la Suite de Test de Phoronix"

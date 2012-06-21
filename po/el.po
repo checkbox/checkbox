@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-14 16:38-0400\n"
+"POT-Creation-Date: 2012-06-20 10:38-0400\n"
 "PO-Revision-Date: 2012-02-18 19:04+0000\n"
 "Last-Translator: Kostas Milonas <milonas.ko@gmail.com>\n"
 "Language-Team: Greek <team@gnome.gr>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-06-15 04:37+0000\n"
-"X-Generator: Launchpad (build 15414)\n"
+"X-Launchpad-Export-Date: 2012-06-21 05:12+0000\n"
+"X-Generator: Launchpad (build 15435)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:2 ../checkbox_gtk/gtk_interface.py:561
 msgid "_Test"
@@ -260,6 +260,151 @@ msgstr ""
 "   Αυτό το τεστ θα επιχειρήσει να εγκαταστήσει και να εκτελέσει τη σουίτα "
 "δοκιμών Autotest Suite. Οι δοκιμές αυτές ενδέχεται να είναι καταστρεπτικές, "
 "έτσι αυτό το τεστ αποφεύγεται από προεπιλογή."
+
+#. description
+#: ../jobs/benchmarks.txt.in:18
+msgid "Benchmark for each disk"
+msgstr "Δοκιμές απόδοσης για κάθε δίσκο"
+
+#. description
+#: ../jobs/benchmarks.txt.in:33
+msgid "Run Render-Bench XRender/Imlib2 benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:39
+msgid "Run Qgears2 XRender Extension gearsfancy benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:45
+msgid "Run Qgears2 XRender Extension image scaling benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:51
+msgid "Run Qgears2 OpenGL gearsfancy benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:57
+msgid "Run Qgears2 OpenGL image scaling benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:66
+msgid "Run GLmark2-ES2 benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:75
+msgid "Run GLmark2 benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:81
+msgid "Run Unigine Santuary benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:87
+msgid "Run Unigine Tropics benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:93
+msgid "Run Unigine Heaven benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:99
+msgid "Run Lightsmark benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:105
+msgid "Run Cachebench Read benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:111
+msgid "Run Cachebench Write benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:117
+msgid "Run Cachebench Read / Modify / Write benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:123
+msgid "Run Stream Copy benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:129
+msgid "Run Stream Scale benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:135
+msgid "Run Stream Add benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:141
+msgid "Run Stream Triad benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:147
+msgid "Run Network Loopback benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:153
+msgid "Run Encode MP3 benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:159
+msgid "Run x264 H.264/AVC encoder benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:165
+msgid "Run GnuPG benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:171
+msgid "Run Compress PBZIP2 benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:177
+msgid "Run Compress 7ZIP benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:183
+msgid "Run N-Queens benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:189
+msgid "Run Himeno benchmark"
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:195
+msgid "CPU utilization on an idle system."
+msgstr ""
+
+#. description
+#: ../jobs/benchmarks.txt.in:201
+msgid "Disk utilization on an idle system."
+msgstr ""
 
 #. description
 #: ../jobs/bluetooth.txt.in:8
@@ -621,35 +766,30 @@ msgstr "Εντοπίζει και απεικονίζει τους συνημμέ
 
 #. description
 #: ../jobs/disk.txt.in:9
-msgid "Benchmark for each disk"
-msgstr "Δοκιμές απόδοσης για κάθε δίσκο"
-
-#. description
-#: ../jobs/disk.txt.in:26
 msgid "Check stats changes for each disk"
 msgstr "Έλεγχος αλλαγής κατάστασης για κάθε δίσκο"
 
 #. description
-#: ../jobs/disk.txt.in:46
+#: ../jobs/disk.txt.in:29
 msgid "SMART test"
 msgstr "Δοκιμή SMART"
 
 #. description
-#: ../jobs/disk.txt.in:64
+#: ../jobs/disk.txt.in:47
 msgid "Maximum disk space used during a default installation test"
 msgstr ""
 "Ο μέγιστος χώρος δίσκου που χρησιμοποιήθηκε κατά τη δοκιμή μιας "
 "προεπιλεγμένης εγκατάστασης"
 
 #. description
-#: ../jobs/disk.txt.in:81
+#: ../jobs/disk.txt.in:64
 msgid "Verify system storage performs at or above baseline performance"
 msgstr ""
 "Επαληθεύει ότι το σύστημα αποθήκευσης αποδίδει τουλάχιστον ή περισσότερο από "
 "τη μέση απόδοση"
 
 #. description
-#: ../jobs/disk.txt.in:99
+#: ../jobs/disk.txt.in:82
 msgid ""
 "Verify that storage devices, such as Fibre Channel and RAID can be detected "
 "and perform under stress."
@@ -1004,7 +1144,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:188 ../jobs/suspend.txt.in:332
+#: ../jobs/graphics.txt.in:188 ../jobs/suspend.txt.in:323
 msgid "Attaches the screenshot captured in graphics/screenshot."
 msgstr ""
 
@@ -1390,138 +1530,138 @@ msgstr "Δοκιμές της σουίτας Autotest"
 
 #. description
 #: ../jobs/local.txt.in:17
+msgid "Benchmarks tests"
+msgstr ""
+
+#. description
+#: ../jobs/local.txt.in:24
 msgid "Bluetooth tests"
 msgstr "Έλεγχοι bluetooth"
 
 #. description
-#: ../jobs/local.txt.in:24
+#: ../jobs/local.txt.in:31
 msgid "Camera tests"
 msgstr "Έλεγχοι κάμερας"
 
 #. description
-#: ../jobs/local.txt.in:31
+#: ../jobs/local.txt.in:38
 msgid "Codec tests"
 msgstr "Έλεγχοι κωδικοποιήσεων"
 
 #. description
-#: ../jobs/local.txt.in:38
+#: ../jobs/local.txt.in:45
 msgid "CPU tests"
 msgstr "Έλεγχοι επεξεργαστών"
 
 #. description
-#: ../jobs/local.txt.in:45
+#: ../jobs/local.txt.in:52
 msgid "System Daemon tests"
 msgstr "Έλεγχοι «δαιμόνων» του συστήματος"
 
 #. description
-#: ../jobs/local.txt.in:52
+#: ../jobs/local.txt.in:59
 msgid "Disk tests"
 msgstr "Δοκιμές δίσκου"
 
 #. description
-#: ../jobs/local.txt.in:59
+#: ../jobs/local.txt.in:66
 msgid "Fingerprint reader tests"
 msgstr "Δοκιμές αναγνώστη δακτυλικών αποτυπωμάτων"
 
 #. description
-#: ../jobs/local.txt.in:66
+#: ../jobs/local.txt.in:73
 msgid "Firewire disk tests"
 msgstr "Δοκιμές δίσκου Firewire"
 
 #. description
-#: ../jobs/local.txt.in:73
+#: ../jobs/local.txt.in:80
 msgid "Floppy disk tests"
 msgstr "Έλεγχοι δισκετών Floppy"
 
 #. description
-#: ../jobs/local.txt.in:80
+#: ../jobs/local.txt.in:87
 msgid "Graphics tests"
 msgstr "Έλεγχοι γραφικών"
 
 #. description
-#: ../jobs/local.txt.in:87
+#: ../jobs/local.txt.in:94
 msgid "Hibernation tests"
 msgstr "Έλεγχοι αδρανοποίησης"
 
 #. description
-#: ../jobs/local.txt.in:94
+#: ../jobs/local.txt.in:101
 msgid "Informational tests"
 msgstr "Πληροφοριακοί έλεγχοι"
 
 #. description
-#: ../jobs/local.txt.in:101
+#: ../jobs/local.txt.in:108
 msgid "Input Devices tests"
 msgstr "Έλεγχοι συσκευών εισόδου"
 
 #. description
-#: ../jobs/local.txt.in:108
+#: ../jobs/local.txt.in:115
 msgid "Software Installation tests"
 msgstr "Έλεγχοι εγκατάστασης λογισμικού"
 
 #. description
-#: ../jobs/local.txt.in:115
+#: ../jobs/local.txt.in:122
 msgid "Hotkey tests"
 msgstr "Έλεγχοι συντομεύσεων πλήκτρων"
 
 #. description
-#: ../jobs/local.txt.in:122
+#: ../jobs/local.txt.in:129
 msgid "Linux Test Project tests"
 msgstr "Έλεγχοι του Linux Test Project"
 
 #. description
-#: ../jobs/local.txt.in:129
+#: ../jobs/local.txt.in:136
 msgid "Mago Automated Desktop Testing"
 msgstr "Αυτοματοποιημένοι έλεγχοι περιβάλλοντος εργασίας Mago"
 
 #. description
-#: ../jobs/local.txt.in:136
+#: ../jobs/local.txt.in:143
 msgid "Media Card tests"
 msgstr "Έλεγχοι καρτών μέσων"
 
 #. description
-#: ../jobs/local.txt.in:143
+#: ../jobs/local.txt.in:150
 msgid "Memory tests"
 msgstr "Έλεγχοι μνήμης"
 
 #. description
-#: ../jobs/local.txt.in:150
+#: ../jobs/local.txt.in:157
 msgid "Miscellaneous tests"
 msgstr "Διάφοροι έλεγχοι"
 
 #. description
-#: ../jobs/local.txt.in:157
+#: ../jobs/local.txt.in:164
 msgid "Monitor tests"
 msgstr "Δοκιμές οθόνης"
 
 #. description
-#: ../jobs/local.txt.in:164
+#: ../jobs/local.txt.in:171
 msgid "Networking tests"
 msgstr "Έλεγχοι δικτύων"
 
 #. description
-#: ../jobs/local.txt.in:171
+#: ../jobs/local.txt.in:178
 msgid "Optical Drive tests"
 msgstr "Έλεγχοι οδηγών οπτικών συσκευών"
 
 #. description
-#: ../jobs/local.txt.in:178
+#: ../jobs/local.txt.in:185
 msgid "Panel Clock Verification tests"
 msgstr "Έλεγχοι επαλήθευσης ρολογιού πίνακα εφαρμογών"
 
 #. description
-#: ../jobs/local.txt.in:185
+#: ../jobs/local.txt.in:192
 msgid "PCMCIA/PCIX Card tests"
 msgstr "Έλεγχοι καρτών PCMCIA/PCIX"
 
 #. description
-#: ../jobs/local.txt.in:192
+#: ../jobs/local.txt.in:199
 msgid "Peripheral tests"
 msgstr "Έλεγχοι περιφερειακών"
-
-#. description
-#: ../jobs/local.txt.in:199
-msgid "Phoronix Test Suite tests"
-msgstr "Έλεγχοι σουίτας δοκιμών του Phoronix"
 
 #. description
 #: ../jobs/local.txt.in:206
@@ -2639,17 +2779,6 @@ msgstr ""
 "   Επιτεύχθηκε σωστά η σύνδεση;"
 
 #. description
-#: ../jobs/phoronix.txt.in:9
-msgid ""
-"PURPOSE:\n"
-"   This test will download and install the Phoronix Test Suite and run some "
-"selected benchmarking tests."
-msgstr ""
-"ΣΚΟΠΟΣ:\n"
-"   Αυτό το τεστ θα κατεβάσει και θα εγκαταστήσει τη σουίτα δοκιμών του "
-"Phoronix και θα εκκινήσει κάποιες επιλεγμένες δοκιμές ελέγχου απόδοσης."
-
-#. description
 #: ../jobs/power-management.txt.in:3
 msgid ""
 "PURPOSE:\n"
@@ -3192,19 +3321,7 @@ msgid "Attaches the log from the single suspend/resume test to the results"
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:310
-msgid ""
-"This automatically tests Wake-on-LAN capability with the aid of a suitably "
-"configured server. During this process the system will suspend, then "
-"automatically wake up after no more than 5 minutes."
-msgstr ""
-"Αυτό το τεστ ελέγχει αυτόματα τη δυνατότητα Wake-on-LAN με τη βοήθεια ενός "
-"κατάλληλα ρυθμισμένου εξυπηρετητή. Κατά τη διάρκεια της διεργασίας αυτής, το "
-"σύστημα θα αναστείλει τη λειτουργία του και θα επανέλθει αυτόματα με το "
-"μέγιστο επιτρεπτό χρονικό όριο να μην υπερβαίνει τα 5 λεπτά."
-
-#. description
-#: ../jobs/suspend.txt.in:320
+#: ../jobs/suspend.txt.in:311
 msgid ""
 "PURPOSE:\n"
 "    Take a screengrab of the current screen after suspend (logged on Unity "
@@ -5833,6 +5950,9 @@ msgstr " Αποτελέσματα "
 #~ msgid "Test %s from suite %s failed."
 #~ msgstr "Ο έλεγχος %s από την σουίτα %s απέτυχε."
 
+#~ msgid "Phoronix Test Suite tests"
+#~ msgstr "Έλεγχοι σουίτας δοκιμών του Phoronix"
+
 #~ msgid "Unity tests"
 #~ msgstr "Έλεγχοι του Unity"
 
@@ -5863,6 +5983,15 @@ msgstr " Αποτελέσματα "
 #~ "ΕΠΑΛΗΘΕΥΣΗ:\n"
 #~ "   Εμφανίζει τη σωστή ημερομηνία και ώρα για τη χρονική σας ζώνη το ρολόι "
 #~ "που βρίσκεται στην επάνω δεξιά γωνία της επιφάνειας εργασίας σας;"
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "   This test will download and install the Phoronix Test Suite and run some "
+#~ "selected benchmarking tests."
+#~ msgstr ""
+#~ "ΣΚΟΠΟΣ:\n"
+#~ "   Αυτό το τεστ θα κατεβάσει και θα εγκαταστήσει τη σουίτα δοκιμών του "
+#~ "Phoronix και θα εκκινήσει κάποιες επιλεγμένες δοκιμές ελέγχου απόδοσης."
 
 #~ msgid "Test ACPI Wakealarm (fwts wakealarm) "
 #~ msgstr "Δοκιμή του ACPI Wakealarm (fwts wakealarm) "
@@ -5936,6 +6065,16 @@ msgstr " Αποτελέσματα "
 #~ "ΕΠΑΛΗΘΕΥΣΗ:\n"
 #~ "    Λειτουργεί κανονικά η οθόνη μετά την επαναφορά του συστήματος από τη "
 #~ "αναστολή λειτουργίας;"
+
+#~ msgid ""
+#~ "This automatically tests Wake-on-LAN capability with the aid of a suitably "
+#~ "configured server. During this process the system will suspend, then "
+#~ "automatically wake up after no more than 5 minutes."
+#~ msgstr ""
+#~ "Αυτό το τεστ ελέγχει αυτόματα τη δυνατότητα Wake-on-LAN με τη βοήθεια ενός "
+#~ "κατάλληλα ρυθμισμένου εξυπηρετητή. Κατά τη διάρκεια της διεργασίας αυτής, το "
+#~ "σύστημα θα αναστείλει τη λειτουργία του και θα επανέλθει αυτόματα με το "
+#~ "μέγιστο επιτρεπτό χρονικό όριο να μην υπερβαίνει τα 5 λεπτά."
 
 #~ msgid ""
 #~ "Xlib is required for unity testing. This checks for Xlib and installs it if "
