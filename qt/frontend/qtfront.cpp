@@ -528,7 +528,6 @@ void QtFront::onJobItemChanged(QModelIndex index)
         QStandardItem *item = m_statusModel->item(i, 0);
         onJobItemChanged(item, job, index);
     }
-    
 }
 
 void QtFront::showInfo(QString text, QStringList options, QString defaultoption)
