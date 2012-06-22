@@ -29,6 +29,8 @@ from checkbox.plugin import Plugin
 from checkbox.properties import Path, Float 
 from checkbox.job import FAIL
 
+from gettext import gettext as _
+
 class BackendInfo(Plugin):
 
     # how long to wait for I/O from/to the backend before the call returns.
@@ -55,8 +57,8 @@ class BackendInfo(Plugin):
 
     def get_root_command(self, *args):
         uid = os.getuid()
-        password_text = "SYSTEM TESTING: Please enter your password. Some tests require root access to run properly. Your password will never be stored and will never be submitted wtih test results."
-        password_prompt = "PASSWORD: "
+        password_text = _("SYSTEM TESTING: Please enter your password. Some tests require root access to run properly. Your password will never be stored and will never be submitted wtih test results.")
+        password_prompt = _("PASSWORD: ")
         if uid == 0:
             prefix = []
         elif os.getenv("DISPLAY") and \
