@@ -105,6 +105,11 @@ checkbox (0.14) quantal; urgency=low
     * scripts/resolution_test: ran 2to3 with minimal changes. Changed shebang.
       Converted optparse to argparse and removed unnecessary calls to
       sys.argv[]
+    * scripts/pm_log_check: ran 2to3 and changed shebang.
+    * scripts/pm_test: ran 2to3 and changed shebang. After a lot of trial and
+      error, changed the way xinput is called to avoid confusing bytecode
+      embedded in the command output that was causing problems with
+      bytes.decode() on the "after reboot" hardware checks.
 
   [Jeff Marcom]
   * [FEATURE] Python 2 to 3 conversion:
@@ -139,7 +144,7 @@ checkbox (0.14) quantal; urgency=low
   * jobs/stress.txt.in: add OEM team's stress tests (including reboot and poweroff)
     and log analysis jobs      
 
- -- Daniel Manrique <roadmr@ubuntu.com>  Tue, 19 Jun 2012 14:28:40 -0400
+ -- Jeff Lane <jeff@ubuntu.com>  Fri, 22 Jun 2012 09:05:27 -0400
 
 checkbox (0.13.8) precise; urgency=low
 

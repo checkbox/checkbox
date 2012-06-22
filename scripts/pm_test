@@ -1,19 +1,17 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 import sys
 import os
 import shutil
 import re
-from datetime import datetime, timedelta
-from time import time, localtime
-from calendar import timegm
-from argparse import ArgumentParser, SUPPRESS
-
 import logging
 import logging.handlers
 import subprocess
 
+from datetime import datetime, timedelta
+from time import time, localtime
+from calendar import timegm
+from argparse import ArgumentParser, SUPPRESS
 from gi.repository import Gtk, GObject
-
 
 def main():
     """
@@ -302,8 +300,12 @@ class Command(object):
             message = ['Output:\n'
                        '- returncode:\n{0}'.format(self.process.returncode)]
             if stdout:
+                if type(stdout) is bytes:
+                    stdout = stdout.decode()
                 message.append('- stdout:\n{0}'.format(stdout))
             if stderr:
+                if type(stderr) is bytes:
+                    stderr = stderr.decode()
                 message.append('- stderr:\n{0}'.format(stderr))
             logging.debug('\n'.join(message))
 
@@ -438,7 +440,7 @@ class CountdownDialog(Gtk.Dialog):
                       .format(lspci=Command('lspci | grep VGA').run().stdout))
         logging.debug('Touchpad and Keyboard:\n'
                       '{xinput}'
-                      .format(xinput=Command('xinput list').run().stdout))
+                      .format(xinput=Command('xinput list --name-only').run().stdout))
         logging.debug('Pulse Audio Sink:\n'
                       '{pactl_sink}'
                       .format(pactl_sink=(Command('pactl list | grep Sink')
@@ -454,7 +456,6 @@ class CountdownDialog(Gtk.Dialog):
             # Don't abort the test loop,
             # errors can be retrieved by pm_log_check
             logging.error('Problem found in logs by fwts')
-
 
 class MessageDialog(object):
     """

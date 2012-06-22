@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 import os
 import sys
 import re
@@ -156,11 +156,11 @@ class LineIterator:
     def __iter__(self):
         return self
 
-    def next(self):
+    def __next__(self):
         if self.buffer:
             return self.buffer.pop()
 
-        return self.iterator.next()
+        return next(self.iterator)
 
     def unnext(self, line):
         self.buffer.append(line)
@@ -200,7 +200,7 @@ def compare_results(results):
 
     success = True
     for index, result in enumerate(results[1:]):
-        for command in baseline.iterkeys():
+        for command in baseline.keys():
             baseline_output = baseline[command]
             result_output = result[command]
 
