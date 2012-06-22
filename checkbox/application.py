@@ -102,7 +102,7 @@ class ApplicationManager:
 
         # Replace shorthands
         for shorthand in "blacklist", "blacklist_file", "whitelist", "whitelist_file":
-            key = "checkbox/plugins/jobs_info/%s" % shorthand
+            key = ".*/jobs_info/%s" % shorthand
             value = getattr(options, shorthand)
             if value:
                 options.config.append("=".join([key, value]))
