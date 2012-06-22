@@ -120,8 +120,7 @@ QtFront::QtFront(QApplication *parent) :
 
 }
 
-void QtFront::setUiFlags(QVariantMap flags)
-{
+void QtFront::setUiFlags(QVariantMap flags) {
     // process all ui flags
     QVariant checked = flags["show_welcome_message"];
     ui->checkBox->setChecked(checked.toBool());
@@ -166,8 +165,7 @@ void QtFront::onPreviousTestClicked() {
     updateTestStatus(STATUS_UNINITIATED);
 }
 
-void QtFront::setInitialState()
-{
+void QtFront::setInitialState() {
     currentState = WELCOME;
     m_skipTestMessage = false; 
     ui->radioTestTab->setVisible(false);
@@ -180,8 +178,7 @@ void QtFront::setInitialState()
     m_statusList.clear();
 }
 
-void QtFront::onNextTestClicked()
-{
+void QtFront::onNextTestClicked() {
     if (!m_skipTestMessage) {
         QMessageBox msgBox(QMessageBox::Question, checkboxTr("Are you sure?", 0), checkboxTr("Do you really want to skip this test?", 0), 0, ui->tabWidget);
         QCheckBox dontPrompt(checkboxTr("Don't ask me again", 0), &msgBox);
@@ -201,35 +198,30 @@ void QtFront::onNextTestClicked()
     updateTestStatus(STATUS_UNTESTED);
 }
 
-void QtFront::onFullTestsClicked()
-{
+void QtFront::onFullTestsClicked() {
     ui->tabWidget->setCurrentIndex(1);
     emit fullTestsClicked();
 }
 
-void QtFront::onStartTestsClicked()
-{
+void QtFront::onStartTestsClicked() {
     ui->buttonStartTesting->setEnabled(false);
     m_model->setInteraction(false);
     emit startTestsClicked();
 }
 
-void QtFront::onSubmitTestsClicked()
-{
+void QtFront::onSubmitTestsClicked() {
     ui->buttonSubmitResults->setEnabled(false);
     ui->submissionDataLineEdit->setEnabled(false);
     m_doneTesting = true;
     emit submitTestsClicked();
 }
 
-void QtFront::onReviewTestsClicked()
-{
+void QtFront::onReviewTestsClicked() {
     m_doneTesting = true;
     emit reviewTestsClicked();
 }
 
-void QtFront::showText(QString text)
-{
+void QtFront::showText(QString text) {
     if (currentState == WELCOME) {
         if(isFirstTimeWelcome) {
             isFirstTimeWelcome = false;
@@ -247,8 +239,8 @@ void QtFront::showText(QString text)
 }
 
 void QtFront::showError(QString primary_text,
-                        QString secondary_text, QString detailed_text)
-{
+                        QString secondary_text, 
+                        QString detailed_text) {
     QMessageBox msgBox(QMessageBox::Critical, checkboxTr("Error", 0),
                        primary_text, QMessageBox::Ok, ui->tabWidget);
     msgBox.setInformativeText(secondary_text);
@@ -286,7 +278,8 @@ void QtFront::stopProgressBar()
 void QtFront::showEntry(QString text, QString value, QString label)
 {
     currentState = SUBMISSION;
-    // Submission data requested, so move to the results screen and hide the "run" screen contents
+    // Submission data requested, so move to the results screen and 
+    // hide the "run" screen contents
     ui->submissionLabel->setText(text);
     ui->submissionDataLabel->setText(label);
     ui->testsTab->setCurrentIndex(2);
@@ -300,8 +293,14 @@ void QtFront::showEntry(QString text, QString value, QString label)
 
 }
 
-void QtFront::showTest(QString purpose, QString steps, QString verification, QString info, QString comment, QString testType, QString testName, bool enableTestButton)
-{
+void QtFront::showTest(QString purpose, 
+                       QString steps, 
+                       QString verification, 
+                       QString info, 
+                       QString comment, 
+                       QString testType, 
+                       QString testName, 
+                       bool enableTestButton) {
     currentState = TESTING;
     m_currentTestName = testName;
     m_currentTextComment->setText(comment);
@@ -359,16 +358,14 @@ void QtFront::showTest(QString purpose, QString steps, QString verification, QSt
 
 }
 
-void QtFront::showTestControls(bool enableTestControls)
-{
+void QtFront::showTestControls(bool enableTestControls) {
     ui->testTestButton->setEnabled(enableTestControls);
     ui->yesTestButton->setEnabled(enableTestControls);
     ui->noTestButton->setEnabled(enableTestControls);
     ui->nextPrevButtons->setEnabled(enableTestControls);
 }
 
-void QtFront::setFocusTestYesNo(bool status)
-{
+void QtFront::setFocusTestYesNo(bool status) {
     if (status) {
         ui->noTestButton->setDefault(false);
         ui->noTestButton->clearFocus();
@@ -383,8 +380,7 @@ void QtFront::setFocusTestYesNo(bool status)
     }
 }
 
-void QtFront::updateTestStatus(QStandardItem *item, QString status)
-{
+void QtFront::updateTestStatus(QStandardItem *item, QString status) {
     int numRows = item->rowCount();
     int done = 0;
     int inprogress = 0;
@@ -431,8 +427,11 @@ void QtFront::updateAutoTestStatus(QString status, QString currentTest) {
     updateTestStatus(status);
 }
 
-void QtFront::buildTree(QVariantMap options, QVariantMap defaults, QString baseIndex, QStandardItem *parentItem, QStandardItem *parentStatusItem)
-{
+void QtFront::buildTree(QVariantMap options, 
+                        QVariantMap defaults, 
+                        QString baseIndex, 
+                        QStandardItem *parentItem, 
+                        QStandardItem *parentStatusItem) {
     int internalIndex = 1;
     while (true) {
         QString index = baseIndex+"."+QString::number(internalIndex);
@@ -481,9 +480,10 @@ void QtFront::buildTree(QVariantMap options, QVariantMap defaults, QString baseI
     }
 }
 
-void QtFront::showTree(QString text, QVariantMap options, QVariantMap defaults,
-                       QString deselect_warning)
-{
+void QtFront::showTree(QString text, 
+                       QVariantMap options, 
+                       QVariantMap defaults,
+                       QString deselect_warning) {
     ui->selectionLabel->setText(text);
     currentState = TREE;
     ui->testsTab->setCurrentIndex(0);
@@ -506,8 +506,9 @@ void QtFront::showTree(QString text, QVariantMap options, QVariantMap defaults,
     emit testSelectionChanged();
 }
 
-void QtFront::onJobItemChanged(QStandardItem *item, QString job, QModelIndex baseIndex)
-{
+void QtFront::onJobItemChanged(QStandardItem *item, 
+                               QString job, 
+                               QModelIndex baseIndex) {
     if (item->hasChildren()) {
         int numRows = item->rowCount();
         for(int i=0; i< numRows; i++) {
@@ -520,8 +521,7 @@ void QtFront::onJobItemChanged(QStandardItem *item, QString job, QModelIndex bas
     }
 }
 
-void QtFront::onJobItemChanged(QModelIndex index)
-{
+void QtFront::onJobItemChanged(QModelIndex index) {
     QString job = m_model->data(index).toString();
     int numRows = m_statusModel->rowCount();
     for(int i=0; i< numRows; i++) {
@@ -530,8 +530,9 @@ void QtFront::onJobItemChanged(QModelIndex index)
     }
 }
 
-void QtFront::showInfo(QString text, QStringList options, QString defaultoption)
-{
+void QtFront::showInfo(QString text, 
+                       QStringList options, 
+                       QString defaultoption) {
     // workaround, show the main window if the welcome screen wasn't shown yet
     m_mainWindow->show();
     QMessageBox *dialog = new QMessageBox(ui->tabWidget);
@@ -550,13 +551,13 @@ void QtFront::showInfo(QString text, QStringList options, QString defaultoption)
     emit infoBoxResult(result);
 }
 
-QString QtFront::getSubmissionData()
-{
+QString QtFront::getSubmissionData() {
     return ui->submissionDataLineEdit->text();
 }
 
-void QtFront::buildTestsToRun(QStandardItem *item, QString baseIndex, QVariantMap &items)
-{
+void QtFront::buildTestsToRun(QStandardItem *item, 
+                              QString baseIndex, 
+                              QVariantMap &items) {
     if (item->checkState() == Qt::Checked || item->checkState() == Qt::PartiallyChecked) {
         if (item->hasChildren()) {
             myQMap testMap;
@@ -577,8 +578,7 @@ void QtFront::buildTestsToRun(QStandardItem *item, QString baseIndex, QVariantMa
     }
 }
 
-QVariantMap QtFront::getTestsToRun()
-{
+QVariantMap QtFront::getTestsToRun() {
     QMap<QString, QVariant> selectedOptions;
     qDBusRegisterMetaType<QMap<QString, QString> >();
     int numRows = m_model->rowCount();
@@ -593,13 +593,11 @@ QVariantMap QtFront::getTestsToRun()
     return selectedOptions;
 }
 
-QString QtFront::getTestComment()
-{
+QString QtFront::getTestComment() {
     return m_currentTextComment->toPlainText();
 }
 
-QtFront::~QtFront()
-{
+QtFront::~QtFront() {
     delete ui;
 }
 
