@@ -32,11 +32,6 @@ Checkbox provides tests to confirm that your system is working properly. \
 Once you are finished running the tests, you can view a summary report for \
 your system.
 """) + _("""
-In a moment, you will be prompted for your password. This is because some \
-tests require root access to run properly. Your password is NEVER stored \
-by System Testing and it is NEVER included in any results saved or submitted \
-to Ubuntu Friendly or any other place.
-""") + _("""
 Warning: Some tests could cause your system to freeze \
 or become unresponsive. Please save all your work \
 and close all other running applications before \
