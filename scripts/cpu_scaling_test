@@ -1,13 +1,12 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 
 import decimal
 import os
 import re
-import string
 import sys
 import time
+import argparse
 
-from optparse import OptionParser
 from subprocess import check_call, CalledProcessError
 
 
@@ -27,7 +26,7 @@ class CPUScalingTest(object):
 
     def getCPUFreqDirectories(self):
         if not os.path.exists(self.sysCPUDirectory):
-            print "Error: no file %s" % self.sysCPUDirectory
+            print("Error: no file %s" % self.sysCPUDirectory)
             return None
         # look for cpu subdirectories
         pattern = re.compile("cpu(?P<cpuNumber>[0-9]+)")
@@ -38,8 +37,8 @@ class CPUScalingTest(object):
                 cpufreqDirectory = os.path.join(self.sysCPUDirectory,
                     subdirectory, "cpufreq")
                 if not os.path.exists(cpufreqDirectory):
-                    print "Error: cpu %s has no cpufreq directory %s" \
-                        % (match.group("cpuNumber"), cpufreqDirectory)
+                    print("Error: cpu %s has no cpufreq directory %s" \
+                        % (match.group("cpuNumber"), cpufreqDirectory))
                     return None
                 # otherwise
                 self.cpufreqDirectories.append(cpufreqDirectory)
@@ -53,8 +52,8 @@ class CPUScalingTest(object):
         for cpufreqDirectory in self.cpufreqDirectories:
             parameters = self.getParameters(cpufreqDirectory, file)
             if not parameters:
-                print "Error: could not determine cpu parameters from %s" \
-                    % os.path.join(cpufreqDirectory, file)
+                print("Error: could not determine cpu parameters from %s" \
+                    % os.path.join(cpufreqDirectory, file))
                 return None
             if not current:
                 current = parameters
@@ -92,9 +91,9 @@ class CPUScalingTest(object):
 
             try:
                 check_call("echo \"%s\" > %s" % (value, path), shell=True)
-            except CalledProcessError, exception:
-                print "Error: command failed:"
-                print exception
+            except CalledProcessError as exception:
+                print("Error: command failed:")
+                print(exception)
                 return False
 
         # verify it has changed
@@ -106,12 +105,12 @@ class CPUScalingTest(object):
         parameterFile = open(path)
         line = parameterFile.readline()
         if not line or line.strip() != str(value):
-            print ("Error: could not verify that %s was set to %s"
+            print("Error: could not verify that %s was set to %s"
                    % (path, value))
             if line:
-                print "Actual Value: %s" % line
+                print("Actual Value: %s" % line)
             else:
-                print "parameter file was empty"
+                print("parameter file was empty")
             return False
 
         return True
@@ -142,8 +141,8 @@ class CPUScalingTest(object):
             try:
                 check_call("cpufreq-selector -%s %s"
                            % (switch, value), shell=True)
-            except CalledProcessError, exception:
-                print "Note: command failed: %s" % exception.cmd
+            except CalledProcessError as exception:
+                print("Note: command failed: %s" % exception.cmd)
                 skip = False
         else:
             skip = False
@@ -165,14 +164,14 @@ class CPUScalingTest(object):
             parameterFile = open(parameterFilePath)
             line = parameterFile.readline()
             if not line:
-                print ("Error: failed to get %s for %s"
+                print("Error: failed to get %s for %s"
                        % (parameter, self.cpufreqDirectory))
                 return None
             value = line.strip()
             return value
-        except IOError, exception:
-            print "Error: could not open %s" % parameterFilePath
-            print exception
+        except IOError as exception:
+            print("Error: could not open %s" % parameterFilePath)
+            print(exception)
 
         return None
 
@@ -183,19 +182,19 @@ class CPUScalingTest(object):
             parameterFile = open(path)
             line = parameterFile.readline()
             if not line:
-                print ("Error: failed to get %s for %s"
+                print("Error: failed to get %s for %s"
                        % (parameter, cpufreqDirectory))
                 return None
             values.append(line.strip())
         return values
 
     def runLoadTest(self):
-        print "Running CPU load test..."
+        print("Running CPU load test...")
         try:
             check_call("taskset -pc 0 %s" % os.getpid(), shell=True)
-        except CalledProcessError, exception:
-            print "Error: could not set task affinity"
-            print exception
+        except CalledProcessError as exception:
+            print("Error: could not set task affinity")
+            print(exception)
             return None
 
         runTime = None
@@ -218,7 +217,7 @@ class CPUScalingTest(object):
                     runTime = thisTime
             tries += 1
 
-        print ("Error: could not repeat load test times within %.1f%%"
+        print("Error: could not repeat load test times within %.1f%%"
                % self.retryTolerance)
         return None
 
@@ -251,15 +250,15 @@ class CPUScalingTest(object):
         return True
 
     def getSystemCapabilities(self):
-        print ""
-        print "System Capabilites:"
-        print "-------------------------------------------------"
+        print("")
+        print("System Capabilites:")
+        print("-------------------------------------------------")
 
         # Do the CPUs support scaling?
         if not self.getCPUFreqDirectories():
             return False
         if len(self.cpufreqDirectories) > 1:
-            print "System has %u cpus" % len(self.cpufreqDirectories)
+            print("System has %u cpus" % len(self.cpufreqDirectories))
 
         # Ensure all CPUs support the same frequencies
         freqFileName = "scaling_available_frequencies"
@@ -267,11 +266,11 @@ class CPUScalingTest(object):
         if not self.frequencies:
             return False
 
-        print ""
-        print "Supported CPU Frequencies: "
+        print("")
+        print("Supported CPU Frequencies: ")
         for freq in self.frequencies:
-            f = string.atoi(freq) / 1000
-            print "    %u MHz" % f
+            f = int(freq) / 1000
+            print("    %u MHz" % f)
 
         # Check governors to verify all CPUs support the same control methods
         governorFileName = "scaling_available_governors"
@@ -279,21 +278,21 @@ class CPUScalingTest(object):
         if not self.governors:
             return False
 
-        print ""
-        print "Supported Governors: "
+        print("")
+        print("Supported Governors: ")
         for governor in self.governors:
-            print "    %s" % governor
+            print("    %s" % governor)
 
         self.originalGovernors = self.getParameterList("scaling_governor")
         if self.originalGovernors:
-            print ""
-            print "Current governors:"
+            print("")
+            print("Current governors:")
             i = 0
             for g in self.originalGovernors:
-                print "    cpu%u: %s" % (i, g)
+                print("    cpu%u: %s" % (i, g))
                 i += 1
         else:
-            print "Error: could not determine current governor settings"
+            print("Error: could not determine current governor settings")
             return False
 
         self.getCPUFlags()
@@ -313,12 +312,12 @@ class CPUScalingTest(object):
                     self.cpuFlags = post.strip().split()
                     break
         except:
-            print "Warning: could not read CPU flags"
+            print("Warning: could not read CPU flags")
 
     def runUserSpaceTests(self):
-        print ""
-        print "Userspace Governor Test:"
-        print "-------------------------------------------------"
+        print("")
+        print("Userspace Governor Test:")
+        print("-------------------------------------------------")
         self.minimumFrequencyTestTime = None
         self.maximumFrequencyTestTime = None
 
@@ -326,18 +325,17 @@ class CPUScalingTest(object):
         differenceSpeedUp = None
         governor = "userspace"
         if governor not in self.governors:
-            print "Note: %s governor not supported" % governor
+            print("Note: %s governor not supported" % governor)
         else:
 
             # Set the governor to "userspace" and verify
-            print "Setting governor to %s" % governor
+            print("Setting governor to %s" % governor)
             if not self.setGovernor(governor):
                 success = False
 
             # Set the the CPU speed to it's lowest value
             frequency = self.frequencies[-1]
-            print ("Setting CPU frequency to %u MHz"
-                   % (string.atoi(frequency) / 1000))
+            print("Setting CPU frequency to %u MHz" % (int(frequency) / 1000))
             if not self.setFrequency(frequency):
                 success = False
 
@@ -347,7 +345,7 @@ class CPUScalingTest(object):
             if (not minimumFrequency
                 or not currentFrequency
                 or (minimumFrequency != currentFrequency)):
-                print ("Error: Could not verify that cpu frequency "
+                print("Error: Could not verify that cpu frequency "
                        "is set to the minimum value of %s"
                        % minimumFrequency)
                 success = False
@@ -359,13 +357,12 @@ class CPUScalingTest(object):
                        "test's execution time.")
                 success = False
             else:
-                print ("Minimum frequency load test time: %.2f"
+                print("Minimum frequency load test time: %.2f"
                        % self.minimumFrequencyTestTime)
 
             # Set the CPU speed to it's highest value as above.
             frequency = self.frequencies[0]
-            print ("Setting CPU frequency to %u MHz"
-                   % (string.atoi(frequency) / 1000))
+            print("Setting CPU frequency to %u MHz" % (int(frequency) / 1000))
             if not self.setFrequency(frequency):
                 success = False
 
@@ -374,7 +371,7 @@ class CPUScalingTest(object):
             if (not maximumFrequency
                 or not currentFrequency
                 or (maximumFrequency != currentFrequency)):
-                print ("Error: Could not verify that cpu frequency is set "
+                print("Error: Could not verify that cpu frequency is set "
                        "to the maximum value of %s"
                        % maximumFrequency)
                 success = False
@@ -386,16 +383,16 @@ class CPUScalingTest(object):
                        "test's execution time.")
                 success = False
             else:
-                print ("Maximum frequency load test time: %.2f"
+                print("Maximum frequency load test time: %.2f"
                        % self.maximumFrequencyTestTime)
 
             # Verify MHz increase is comparable to time % decrease
-            predictedSpeedup = (string.atof(maximumFrequency)
-                                / string.atof(minimumFrequency))
+            predictedSpeedup = (float(maximumFrequency)
+                                / float(minimumFrequency))
 
             # If "ida" turbo thing, increase the expectation by 8%
             if self.cpuFlags and self.idaFlag in self.cpuFlags:
-                print ("Note: found %s flag, increasing expected "
+                print("Note: found %s flag, increasing expected "
                        "speedup by %.1f%%"
                        % (self.idaFlag, self.idaSpeedupFactor))
                 predictedSpeedup = \
@@ -405,14 +402,14 @@ class CPUScalingTest(object):
             if self.minimumFrequencyTestTime and self.maximumFrequencyTestTime:
                 measuredSpeedup = (self.minimumFrequencyTestTime
                                    / self.maximumFrequencyTestTime)
-                print ""
-                print "CPU Frequency Speed Up: %.2f" % predictedSpeedup
-                print "Measured Speed Up: %.2f" % measuredSpeedup
+                print("")
+                print("CPU Frequency Speed Up: %.2f" % predictedSpeedup)
+                print("Measured Speed Up: %.2f" % measuredSpeedup)
                 differenceSpeedUp = ((abs(measuredSpeedup - predictedSpeedup)
                                      / predictedSpeedup) * 100)
-                print "Percentage Difference %.1f%%" % differenceSpeedUp
+                print("Percentage Difference %.1f%%" % differenceSpeedUp)
                 if differenceSpeedUp > self.speedUpTolerance:
-                    print ("Error: measured speedup vs expected speedup "
+                    print("Error: measured speedup vs expected speedup "
                            "is %.1f%% and is not within %.1f%% margin. "
                            % (differenceSpeedUp, self.speedUpTolerance))
                     success = False
@@ -423,18 +420,18 @@ class CPUScalingTest(object):
         return success
 
     def runOnDemandTests(self):
-        print ""
-        print "On Demand Governor Test:"
-        print "-------------------------------------------------"
+        print("")
+        print("On Demand Governor Test:")
+        print("-------------------------------------------------")
         differenceOnDemandVsMaximum = None
         onDemandTestTime = None
         governor = "ondemand"
         success = True
         if governor not in self.governors:
-            print "Note: %s governor not supported" % governor
+            print("Note: %s governor not supported" % governor)
         else:
             # Set the governor to "ondemand"
-            print "Setting governor to %s" % governor
+            print("Setting governor to %s" % governor)
             if not self.setGovernor(governor):
                 success = False
 
@@ -448,10 +445,10 @@ class CPUScalingTest(object):
             # Repeat workload test
             onDemandTestTime = self.runLoadTest()
             if not onDemandTestTime:
-                print "Error: No On Demand load test time available."
+                print("Error: No On Demand load test time available.")
                 success = False
             else:
-                print "On Demand load test time: %.2f" % onDemandTestTime
+                print("On Demand load test time: %.2f" % onDemandTestTime)
 
             if onDemandTestTime and self.maximumFrequencyTestTime:
                 # Compare the timing to the max results from earlier,
@@ -459,10 +456,10 @@ class CPUScalingTest(object):
                 differenceOnDemandVsMaximum = \
                     (abs(onDemandTestTime - self.maximumFrequencyTestTime)
                      / self.maximumFrequencyTestTime) * 100
-                print ("Percentage Difference vs. maximum frequency: %.1f%%"
+                print("Percentage Difference vs. maximum frequency: %.1f%%"
                        % differenceOnDemandVsMaximum)
                 if differenceOnDemandVsMaximum > self.speedUpTolerance:
-                    print ("Error: on demand performance vs maximum of %.1f%% "
+                    print("Error: on demand performance vs maximum of %.1f%% "
                            "is not within %.1f%% margin"
                            % (differenceOnDemandVsMaximum,
                               self.speedUpTolerance))
@@ -480,17 +477,17 @@ class CPUScalingTest(object):
         return success
 
     def runPerformanceTests(self):
-        print ""
-        print "Performance Governor Test:"
-        print "-------------------------------------------------"
+        print("")
+        print("Performance Governor Test:")
+        print("-------------------------------------------------")
         differencePerformanceVsMaximum = None
         governor = "performance"
         success = True
         if governor not in self.governors:
-            print "Note: %s governor not supported" % governor
+            print("Note: %s governor not supported" % governor)
         else:
             # Set the governor to "performance"
-            print "Setting governor to %s" % governor
+            print("Setting governor to %s" % governor)
             if not self.setGovernor(governor):
                 success = False
 
@@ -500,7 +497,7 @@ class CPUScalingTest(object):
             if (not maximumFrequency
                 or not currentFrequency
                 or (maximumFrequency != currentFrequency)):
-                print ("Error: Current cpu frequency of %s "
+                print("Error: Current cpu frequency of %s "
                        "is not set to the maximum value of %s"
                        % (currentFrequency, maximumFrequency))
                 success = False
@@ -508,20 +505,20 @@ class CPUScalingTest(object):
             # Repeat work load test
             performanceTestTime = self.runLoadTest()
             if not performanceTestTime:
-                print "Error: No Performance load test time available."
+                print("Error: No Performance load test time available.")
                 success = False
             else:
-                print "Performance load test time: %.2f" % performanceTestTime
+                print("Performance load test time: %.2f" % performanceTestTime)
 
             if performanceTestTime and self.maximumFrequencyTestTime:
                 # Compare the timing to the max results
                 differencePerformanceVsMaximum = \
                     (abs(performanceTestTime - self.maximumFrequencyTestTime)
                      / self.maximumFrequencyTestTime) * 100
-                print ("Percentage Difference vs. maximum frequency: %.1f%%"
+                print("Percentage Difference vs. maximum frequency: %.1f%%"
                        % differencePerformanceVsMaximum)
                 if differencePerformanceVsMaximum > self.speedUpTolerance:
-                    print ("Error: performance setting vs maximum of %.1f%% "
+                    print("Error: performance setting vs maximum of %.1f%% "
                            "is not within %.1f%% margin"
                            % (differencePerformanceVsMaximum,
                               self.speedUpTolerance))
@@ -533,17 +530,17 @@ class CPUScalingTest(object):
         return success
 
     def runConservativeTests(self):
-        print ""
-        print "Conservative Governor Test:"
-        print "-------------------------------------------------"
+        print("")
+        print("Conservative Governor Test:")
+        print("-------------------------------------------------")
         differenceConservativeVsMinimum = None
         governor = "conservative"
         success = True
         if governor not in self.governors:
-            print "Note: %s governor not supported" % governor
+            print("Note: %s governor not supported" % governor)
         else:
             # Set the governor to "conservative"
-            print "Setting governor to %s" % governor
+            print("Setting governor to %s" % governor)
             if not self.setGovernor(governor):
                 success = False
 
@@ -568,10 +565,10 @@ class CPUScalingTest(object):
             # Repeat work load test
             conservativeTestTime = self.runLoadTest()
             if not conservativeTestTime:
-                print "Error: No Conservative load test time available."
+                print("Error: No Conservative load test time available.")
                 success = False
             else:
-                print ("Conservative load test time: %.2f"
+                print("Conservative load test time: %.2f"
                        % conservativeTestTime)
 
             if conservativeTestTime and self.minimumFrequencyTestTime:
@@ -579,10 +576,10 @@ class CPUScalingTest(object):
                 differenceConservativeVsMinimum = \
                     (abs(conservativeTestTime - self.minimumFrequencyTestTime)
                      / self.minimumFrequencyTestTime) * 100
-                print ("Percentage Difference vs. minimum frequency: %.1f%%"
+                print("Percentage Difference vs. minimum frequency: %.1f%%"
                        % differenceConservativeVsMinimum)
                 if differenceConservativeVsMinimum > self.speedUpTolerance:
-                    print ("Error: performance setting vs minimum of %.1f%% "
+                    print("Error: performance setting vs minimum of %.1f%% "
                            "is not within %.1f%% margin"
                            % (differenceConservativeVsMinimum,
                               self.speedUpTolerance))
@@ -594,35 +591,32 @@ class CPUScalingTest(object):
         return success
 
     def restoreGovernors(self):
-        print "Restoring original governor to %s" % (self.originalGovernors[0])
+        print("Restoring original governor to %s" % (self.originalGovernors[0]))
         self.setGovernor(self.originalGovernors[0])
 
 
 def main(args):
-    usage = "Usage: %prog [OPTIONS]"
-    parser = OptionParser(usage=usage)
-    parser.add_option("-q", "--quiet",
-                      action="store_true",
-                      help="Suppress output.")
-    parser.add_option("-c", "--capabilities",
-                      action="store_true",
-                      help="Only output CPU capabilities.")
-    (options, args) = parser.parse_args(args)
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-q", "--quiet", action="store_true",
+                        help="Suppress output.")
+    parser.add_argument("-c", "--capabilities", action="store_true",
+                        help="Only output CPU capabilities.")
+    args = parser.parse_args()
 
-    if options.quiet:
+    if args.quiet:
         sys.stdout = open(os.devnull, 'a')
         sys.stderr = open(os.devnull, 'a')
 
     test = CPUScalingTest()
     if not os.path.exists(test.cpufreqDirectory):
-        print "CPU Frequency Scaling not supported"
+        print("CPU Frequency Scaling not supported")
         return 0
 
     if not test.getSystemCapabilities():
         parser.error("Failed to get system capabilities")
 
     returnValues = []
-    if not options.capabilities:
+    if not args.capabilities:
         returnValues.append(test.runUserSpaceTests())
         returnValues.append(test.runOnDemandTests())
         returnValues.append(test.runPerformanceTests())
