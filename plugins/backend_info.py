@@ -55,7 +55,8 @@ class BackendInfo(Plugin):
 
     def get_root_command(self, *args):
         uid = os.getuid()
-        password_prompt = "SYSTEM TESTING: Please enter your password. Some tests require root access to run properly. Your password will never be stored and will never be submitted wtih test results. Password: "
+        password_text = "SYSTEM TESTING: Please enter your password. Some tests require root access to run properly. Your password will never be stored and will never be submitted wtih test results."
+        password_prompt = "PASSWORD: "
         if uid == 0:
             prefix = []
         elif os.getenv("DISPLAY") and \
@@ -63,15 +64,15 @@ class BackendInfo(Plugin):
                     stdout=PIPE, stderr=PIPE) == 0 and \
                 call(["pgrep", "-x", "-u", str(uid), "ksmserver"],
                     stdout=PIPE, stderr=PIPE) == 0:
-            prefix = ["kdesudo", "--comment", password_prompt, "--"]
+            prefix = ["kdesudo", "--comment", password_text, "--"]
         elif os.getenv("DISPLAY") and \
                 call(["which", "gksu"],
                     stdout=PIPE, stderr=PIPE) == 0 and \
                 call(["pgrep", "-x", "-u", str(uid), "gnome-panel|gconfd-2"],
                     stdout=PIPE, stderr=PIPE) == 0:
-            prefix = ["gksu", "--message", password_prompt, "--"]
+            prefix = ["gksu", "--message", password_text, "--"]
         else:
-            prefix = ["sudo", "-p", password_prompt]
+            prefix = ["sudo", "-p", password_text + " " + password_prompt]
 
         return prefix + self.get_command(*args)
 
