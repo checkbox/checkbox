@@ -1,9 +1,9 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 
 import os
 import sys
 import filecmp
-import commands
+import subprocess
 import posixpath
 
 DEFAULT_DIR = "/tmp/checkbox.floppy"
@@ -28,9 +28,9 @@ class FloppyTest(object):
     def run(self):
         floppyDevice = self.device
         if floppyDevice:
-            print "  Testing on floppy drive %s " % floppyDevice
+            print("  Testing on floppy drive %s " % floppyDevice)
         else:
-            print "  Error ! No floppy drive found !"
+            print("  Error ! No floppy drive found !")
             return 1
         # remove temp files if they exist
         os.system("umount /media/floppy 2>/dev/null")
@@ -51,45 +51,45 @@ class FloppyTest(object):
         os.system("umount %s" % self.image_dir)
         # start testing
         (noFloppyDisk, junkOutput1) = \
-            commands.getstatusoutput("dd bs=1c if=%s count=0 2>/dev/null"
+            subprocess.getstatusoutput("dd bs=1c if=%s count=0 2>/dev/null"
                                      % floppyDevice)
         if noFloppyDisk != 0:
-            print "Error ! No floppy disc or bad media in %s !" % floppyDevice
+            print("Error ! No floppy disc or bad media in %s !" % floppyDevice)
             return 1
         else:
             # writing files
-            print "  Writing data to floppy disc ... "
+            print("  Writing data to floppy disc ... ")
             (ddStatus, ddOutput) = \
-                commands.getstatusoutput("dd if=%s of=%s bs=1k count=1440"
+                subprocess.getstatusoutput("dd if=%s of=%s bs=1k count=1440"
                                          % (self.image, floppyDevice))
             if ddStatus == 0:
-                print "  Write data to floppy disc done ! "
+                print("  Write data to floppy disc done ! ")
             else:
-                print "  Error ! Write data to floppy disc error ! "
-                print "  Please check if your floppy disc is write-protected !"
+                print("  Error ! Write data to floppy disc error ! ")
+                print("  Please check if your floppy disc is write-protected !")
                 return 1
             # comparing files
             os.system("mount %s %s" % (floppyDevice, self.device_dir))
             os.system("mount -o loop %s %s" % (self.image, self.image_dir))
-            print "  Comparing files ... "
+            print("  Comparing files ... ")
             fileList = os.listdir(self.image_dir)
             returnValue = 0
             for textFile in fileList:
                 file1 = os.path.join(self.device_dir, textFile)
                 file2 = os.path.join(self.image_dir, textFile)
                 if filecmp.cmp(file1, file2):
-                    print "        comparing file %s" % textFile
+                    print("        comparing file %s" % textFile)
                 else:
-                    print ("  --  Error ! File %s comparison failed ! -- "
-                           % textFile)
+                    print("  --  Error ! File %s comparison failed ! -- "
+                          % textFile)
                     returnValue = 1
-            print "  File comparison done ! "
+            print("  File comparison done ! ")
             # remove temp files
             os.system("umount /media/floppy 2>/dev/null")
             os.system("umount %s %s " % (self.image_dir, self.device_dir))
             os.system("rm -rf %s %s %s"
                       % (self.device_dir, self.image_dir, self.image))
-            print "Done !"
+            print("Done !")
             return returnValue
 
 

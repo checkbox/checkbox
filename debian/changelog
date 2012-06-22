@@ -31,8 +31,9 @@ checkbox (0.14) quantal; urgency=low
   * [FEATURE] Added new interactive and auto-verifying touchpad scrolling
     test.
   * [FEATURE] Python 2 to 3 conversion:
-    * scripts/cking_suite
     * scripts/ansi_parser
+    * scripts/cking_suite
+    * scripts/floppy_test
     * scripts/network_bandwidth_test
   * Removed sleep_test script no longer used by any test definition.
 
@@ -121,7 +122,7 @@ checkbox (0.14) quantal; urgency=low
   * Deprecated: wake_on_lan_test
   * Update touchpad.py to use gsettings instead of deprecated gconf
     (LP: #1004212)
-
+  [Marc Tardif]
   [Marc Tardif]
   * [FEATURE] Reworked media_keys_test into key_test, making it more generic
     and able to test for any key that sends an scancode. Used it to implement
@@ -130,7 +131,7 @@ checkbox (0.14) quantal; urgency=low
     test.
   * Removed sleep_test script no longer used by any test definition.
   * Migrated project minus scripts to Python 3.
-
+  [Sylvain Pineau]
   [Sylvain Pineau]
   * [FEATURE] jobs/benchmarks.txt.in, scripts/pts_run: Add a reworked launcher 
     for phoronix-test-suite tests.
