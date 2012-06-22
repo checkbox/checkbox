@@ -626,6 +626,38 @@ QTabWidget::tab-bar#testsTab {
               <bool>false</bool>
              </attribute>
             </widget>
+            <widget class="QPushButton" name="selectAllButton">
+             <property name="enabled">
+              <bool>true</bool>
+             </property>
+             <property name="geometry">
+              <rect>
+               <x>10</x>
+               <y>320</y>
+               <width>181</width>
+               <height>27</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>Select all</string>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="deselectAllButton">
+             <property name="enabled">
+              <bool>true</bool>
+             </property>
+             <property name="geometry">
+              <rect>
+               <x>201</x>
+               <y>320</y>
+               <width>181</width>
+               <height>27</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>Deselect all</string>
+             </property>
+            </widget>
             <widget class="QPushButton" name="buttonStartTesting">
              <property name="enabled">
               <bool>false</bool>

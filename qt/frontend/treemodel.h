@@ -14,6 +14,7 @@ public:
     void selectAll(bool select = true);
     void changeAllChildren(QStandardItem *item, const QVariant &value, int role);
     void enableAllChildren(bool enable, QStandardItem *item);
+    bool allInStatus(Qt::CheckState wanted_status);
     QErrorMessage *m_messageBox;
     QString deselect_warning;
 };

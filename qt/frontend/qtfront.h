@@ -63,6 +63,9 @@ public slots:
 
 private slots:
     void onFullTestsClicked();
+    void onDeselectAllClicked();
+    void onSelectAllClicked();
+    void onTestSelectionChanged();
     void onStartTestsClicked();
     void onSubmitTestsClicked();
     void onNextTestClicked();
@@ -75,7 +78,6 @@ private slots:
     void onJobItemChanged(QStandardItem *item, QString job, QModelIndex baseIndex);
     void updateTestStatus(QStandardItem *item, QString status);
     void updateTestStatus(QString status = QString());
-    void onSelectAllContextMenu(const QPoint& pos);
     void onClosedFrontend();
 
 signals:
@@ -92,6 +94,7 @@ signals:
     void welcomeCheckboxToggled(bool toogled);
     void infoBoxResult(QString result);
     void errorBoxClosed();
+    void testSelectionChanged();
 
 private:
     bool registerService();
