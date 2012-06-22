@@ -112,7 +112,7 @@ def main():
     begin_gem_obj = get_gem_objects()
 
     #Open windows and let the system come upto speed
-    pids = start_processes(args,program, args.processes)
+    pids = start_processes(args.program, args.processes)
     time.sleep(args.sleep)
 
     #Close windows
