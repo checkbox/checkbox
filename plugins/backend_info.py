@@ -63,10 +63,10 @@ class BackendInfo(Plugin):
             prefix = []
         elif os.getenv("DISPLAY") and \
                 call(["which", "kdesudo"],
-                    stdout=PIPE, stderr=PIPE) == 0 and \
-                call(["pgrep", "-x", "-u", str(uid), "ksmserver"],
-                    stdout=PIPE, stderr=PIPE) == 0:
-            prefix = ["kdesudo", "--comment", password_text, "--"]
+                    stdout=PIPE, stderr=PIPE) == 0: #and \
+                #call(["pgrep", "-x", "-u", str(uid), "ksmserver"],
+                    #stdout=PIPE, stderr=PIPE) == 0:
+            prefix = ["kdesudo", "--comment", password_text, "-d", "--"]
         elif os.getenv("DISPLAY") and \
                 call(["which", "gksu"],
                     stdout=PIPE, stderr=PIPE) == 0 and \
