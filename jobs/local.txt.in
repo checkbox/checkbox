@@ -5,13 +5,6 @@ command:
   shopt -s extglob
   cat $CHECKBOX_SHARE/jobs/audio.txt?(.in)
 
-name: __autotest__
-plugin: local
-_description: Autotest Suite tests
-command:
-  shopt -s extglob
-  cat $CHECKBOX_SHARE/jobs/autotest.txt?(.in)
-
 name: __benchmarks__
 plugin: local
 _description: Benchmarks tests
@@ -124,20 +117,6 @@ command:
   shopt -s extglob
   cat $CHECKBOX_SHARE/jobs/keys.txt?(.in)
 
-name: __ltp__
-plugin: local
-_description: Linux Test Project tests
-command:
-  shopt -s extglob
-  cat $CHECKBOX_SHARE/jobs/ltp.txt?(.in)
-
-name: __mago__
-plugin: local
-_description: Mago Automated Desktop Testing
-command:
-  shopt -s extglob
-  cat $CHECKBOX_SHARE/jobs/mago.txt?(.in)
-
 name: __mediacard__
 plugin: local
 _description: Media Card tests
@@ -207,13 +186,6 @@ _description: Power Management tests
 command:
   shopt -s extglob
   cat $CHECKBOX_SHARE/jobs/power-management.txt?(.in)
-
-name: __qa__
-plugin: local
-_description: QA Regression tests
-command:
-  shopt -s extglob
-  cat $CHECKBOX_SHARE/jobs/qa_regression.txt?(.in)
 
 name: __server-services__
 plugin: local
