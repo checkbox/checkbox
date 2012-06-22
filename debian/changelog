@@ -20,6 +20,8 @@ checkbox (0.14) quantal; urgency=low
     check the return code is success instead (LP: #1013537)
   * base64 encode the after suspend screenshot attachement so that it can
     be uploaded properly (LP: #1016126)
+  * Fixed simple type in xorg_memory_test, introduced by Python3
+    conversion (LP: #1016387)
     
 
   [Marc Tardif]
