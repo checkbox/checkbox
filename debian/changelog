@@ -22,7 +22,8 @@ checkbox (0.14) quantal; urgency=low
     be uploaded properly (LP: #1016126)
   * Fixed simple type in xorg_memory_test, introduced by Python3
     conversion (LP: #1016387)
-    
+  * [FEATURE] Add suspend/bluetooth_obex_after_suspend_auto test to be
+    used during fully automated SRU testing
 
   [Marc Tardif]
   * [FEATURE] Reworked media_keys_test into key_test, making it more generic
