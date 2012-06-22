@@ -29,6 +29,8 @@ from checkbox.plugin import Plugin
 from checkbox.properties import Path, Float 
 from checkbox.job import FAIL
 
+from gettext import gettext as _
+
 class BackendInfo(Plugin):
 
     # how long to wait for I/O from/to the backend before the call returns.
@@ -55,6 +57,8 @@ class BackendInfo(Plugin):
 
     def get_root_command(self, *args):
         uid = os.getuid()
+        password_text = _("SYSTEM TESTING: Please enter your password. Some tests require root access to run properly. Your password will never be stored and will never be submitted with test results.")
+        password_prompt = _("PASSWORD: ")
         if uid == 0:
             prefix = []
         elif os.getenv("DISPLAY") and \
@@ -62,15 +66,15 @@ class BackendInfo(Plugin):
                     stdout=PIPE, stderr=PIPE) == 0 and \
                 call(["pgrep", "-x", "-u", str(uid), "ksmserver"],
                     stdout=PIPE, stderr=PIPE) == 0:
-            prefix = ["kdesudo", "--desktop", "/usr/share/applications/checkbox-qt.desktop", "--"]
+            prefix = ["kdesudo", "--comment", password_text, "-d", "--"]
         elif os.getenv("DISPLAY") and \
                 call(["which", "gksu"],
                     stdout=PIPE, stderr=PIPE) == 0 and \
                 call(["pgrep", "-x", "-u", str(uid), "gnome-panel|gconfd-2"],
                     stdout=PIPE, stderr=PIPE) == 0:
-            prefix = ["gksu", "--description", "/usr/share/applications/checkbox-qt.desktop", "--"]
+            prefix = ["gksu", "--message", password_text, "--"]
         else:
-            prefix = ["sudo"]
+            prefix = ["sudo", "-p", password_text + " " + password_prompt]
 
         return prefix + self.get_command(*args)
 
