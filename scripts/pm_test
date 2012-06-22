@@ -134,7 +134,6 @@ class PowerManagementOperation(object):
         logging.debug('Executing: {0!r}...'.format(command_str))
         subprocess.Popen(command_str, shell=True)
 
-
     def summary(self):
         """
         Gather hardware information for the last time,
