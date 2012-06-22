@@ -42,7 +42,7 @@ class Template:
 
     def dump_file(self, elements, file, filename="<stream>"):
         for element in elements:
-            for long_key in element.keys():
+            for long_key in list(element.keys()):
                 if long_key.endswith(EXTENDED_STRING):
                     short_key = long_key.replace(EXTENDED_STRING, "")
                     del element[short_key]
