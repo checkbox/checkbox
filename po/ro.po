@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-20 10:38-0400\n"
+"POT-Creation-Date: 2012-06-21 12:15-0400\n"
 "PO-Revision-Date: 2011-07-19 20:19+0000\n"
 "Last-Translator: Claudia Cotună <special4ti@gmail.com>\n"
 "Language-Team: Romanian <ro@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-06-21 05:13+0000\n"
-"X-Generator: Launchpad (build 15435)\n"
+"X-Launchpad-Export-Date: 2012-06-23 04:35+0000\n"
+"X-Generator: Launchpad (build 15461)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:9
 msgid "_Previous"
@@ -217,17 +217,6 @@ msgstr ""
 #: ../jobs/audio.txt.in:118
 msgid "Attaches the audio hardware data collection log to the results."
 msgstr ""
-
-#. description
-#: ../jobs/autotest.txt.in:6
-msgid ""
-"PURPOSE:\n"
-"   This test will attempt to install and run the Autotest Suite.  These "
-"tests can be destructive, so this test is blacklisted by default."
-msgstr ""
-"SCOP:\n"
-"   Acest test va încerca să instaleze și să ruleze suita Autotest.  Aceste "
-"teste pot fi distructive, așa că acest test este implicit inhibat."
 
 #. description
 #: ../jobs/benchmarks.txt.in:18
@@ -1467,217 +1456,178 @@ msgstr "Teste audio"
 
 #. description
 #: ../jobs/local.txt.in:10
-msgid "Autotest Suite tests"
-msgstr "Teste din suita Autotest"
-
-#. description
-#: ../jobs/local.txt.in:17
 msgid "Benchmarks tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:24
+#: ../jobs/local.txt.in:17
 msgid "Bluetooth tests"
 msgstr "Teste pentru conexiunea bluetooth"
 
 #. description
-#: ../jobs/local.txt.in:31
+#: ../jobs/local.txt.in:24
 msgid "Camera tests"
 msgstr "Teste pentru camera web"
 
 #. description
-#: ../jobs/local.txt.in:38
+#: ../jobs/local.txt.in:31
 msgid "Codec tests"
 msgstr "Teste pentru codecuri"
 
 #. description
-#: ../jobs/local.txt.in:45
+#: ../jobs/local.txt.in:38
 msgid "CPU tests"
 msgstr "Teste pentru procesor"
 
 #. description
-#: ../jobs/local.txt.in:52
+#: ../jobs/local.txt.in:45
 msgid "System Daemon tests"
 msgstr "Teste pentru serviciile de sistem"
 
 #. description
-#: ../jobs/local.txt.in:59
+#: ../jobs/local.txt.in:52
 msgid "Disk tests"
 msgstr "Teste disk"
 
 #. description
-#: ../jobs/local.txt.in:66
+#: ../jobs/local.txt.in:59
 msgid "Fingerprint reader tests"
 msgstr "Teste cititor amprente"
 
 #. description
-#: ../jobs/local.txt.in:73
+#: ../jobs/local.txt.in:66
 msgid "Firewire disk tests"
 msgstr "Teste disc firewire"
 
 #. description
-#: ../jobs/local.txt.in:80
+#: ../jobs/local.txt.in:73
 msgid "Floppy disk tests"
 msgstr "Teste pentru floppy"
 
 #. description
-#: ../jobs/local.txt.in:87
+#: ../jobs/local.txt.in:80
 msgid "Graphics tests"
 msgstr "Teste pentru grafică"
 
 #. description
-#: ../jobs/local.txt.in:94
+#: ../jobs/local.txt.in:87
 msgid "Hibernation tests"
 msgstr "Teste pentru funcția de hibernare"
 
 #. description
-#: ../jobs/local.txt.in:101
+#: ../jobs/local.txt.in:94
 msgid "Informational tests"
 msgstr "Teste pentru informare"
 
 #. description
-#: ../jobs/local.txt.in:108
+#: ../jobs/local.txt.in:101
 msgid "Input Devices tests"
 msgstr "Teste pentru dispozitivele de intrare"
 
 #. description
-#: ../jobs/local.txt.in:115
+#: ../jobs/local.txt.in:108
 msgid "Software Installation tests"
 msgstr "Teste pentru programele instalate"
 
 #. description
-#: ../jobs/local.txt.in:122
+#: ../jobs/local.txt.in:115
 msgid "Hotkey tests"
 msgstr "Teste pentru tastele de funcții"
 
 #. description
-#: ../jobs/local.txt.in:129
-msgid "Linux Test Project tests"
-msgstr "Teste Linux Test Project"
-
-#. description
-#: ../jobs/local.txt.in:136
-msgid "Mago Automated Desktop Testing"
-msgstr "Testarea automată Mago pentru desktopuri"
-
-#. description
-#: ../jobs/local.txt.in:143
+#: ../jobs/local.txt.in:122
 msgid "Media Card tests"
 msgstr "Teste pentru carduri media"
 
 #. description
-#: ../jobs/local.txt.in:150
+#: ../jobs/local.txt.in:129
 msgid "Memory tests"
 msgstr "Teste pentru memorie"
 
 #. description
-#: ../jobs/local.txt.in:157
+#: ../jobs/local.txt.in:136
 msgid "Miscellaneous tests"
 msgstr "Teste diverse"
 
 #. description
-#: ../jobs/local.txt.in:164
+#: ../jobs/local.txt.in:143
 msgid "Monitor tests"
 msgstr "Teste de monitor"
 
 #. description
-#: ../jobs/local.txt.in:171
+#: ../jobs/local.txt.in:150
 msgid "Networking tests"
 msgstr "Teste pentru rețea"
 
 #. description
-#: ../jobs/local.txt.in:178
+#: ../jobs/local.txt.in:157
 msgid "Optical Drive tests"
 msgstr "Teste pentru CD/DVD"
 
 #. description
-#: ../jobs/local.txt.in:185
+#: ../jobs/local.txt.in:164
 msgid "Panel Clock Verification tests"
 msgstr "Teste pentru verificarea ceasului din panou"
 
 #. description
-#: ../jobs/local.txt.in:192
+#: ../jobs/local.txt.in:171
 msgid "PCMCIA/PCIX Card tests"
 msgstr "Teste pentru dispozitivele PCMCIA/PCIX"
 
 #. description
-#: ../jobs/local.txt.in:199
+#: ../jobs/local.txt.in:178
 msgid "Peripheral tests"
 msgstr "Teste de periferice"
 
 #. description
-#: ../jobs/local.txt.in:206
+#: ../jobs/local.txt.in:185
 msgid "Power Management tests"
 msgstr "Teste pentru funcțiile de administrare a consumului"
 
 #. description
-#: ../jobs/local.txt.in:213
-msgid "QA Regression tests"
-msgstr "Teste tip întrebări și răspunsuri pentru determinarea regresiilor"
-
-#. description
-#: ../jobs/local.txt.in:220
+#: ../jobs/local.txt.in:192
 msgid "Server Services checks"
 msgstr "Verificări pentru serviciile serverelor"
 
 #. description
-#: ../jobs/local.txt.in:227
+#: ../jobs/local.txt.in:199
 msgid "Suspend tests"
 msgstr "Teste pentru funcția de suspendare"
 
 #. description
-#: ../jobs/local.txt.in:234
+#: ../jobs/local.txt.in:206
 msgid "Touchpad tests"
 msgstr "Teste touchpad"
 
 #. description
-#: ../jobs/local.txt.in:241
+#: ../jobs/local.txt.in:213
 msgid "USB tests"
 msgstr "Teste pentru conexiunile USB"
 
 #. description
-#: ../jobs/local.txt.in:248
+#: ../jobs/local.txt.in:220
 msgid "User Applications"
 msgstr "Aplicații pentru utilizatori"
 
 #. description
-#: ../jobs/local.txt.in:255
+#: ../jobs/local.txt.in:227
 msgid "Wireless networking tests"
 msgstr "Teste pentru rețeaua fără fir"
 
 #. description
-#: ../jobs/local.txt.in:262
+#: ../jobs/local.txt.in:234
 msgid "Stress tests"
 msgstr "Teste de stres"
 
 #. description
-#: ../jobs/local.txt.in:269
+#: ../jobs/local.txt.in:241
 msgid "Smoke tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:276
+#: ../jobs/local.txt.in:248
 msgid "Sniff Sniffers"
 msgstr ""
-
-#. description
-#: ../jobs/ltp.txt.in:3
-msgid ""
-"This test installs and runs Linux Test Project syscalls test. This can be "
-"destructive, thus this test is blacklisted by default."
-msgstr ""
-"Acest test va instala li rula testul syscalls din suita Linux Test Project. "
-"Acesta are un potențial distructiv, așa că este implicit omis."
-
-#. description
-#: ../jobs/mago.txt.in:8
-msgid ""
-"PURPOSE:\n"
-"   This test installs and runs the Mago Automated Desktop Testing suite."
-msgstr ""
-"SCOP:\n"
-"   Acest test instalează și rulează suita de teste automate pentru desktop, "
-"Mago."
 
 #. description
 #: ../jobs/mediacard.txt.in:4
@@ -2859,16 +2809,6 @@ msgid ""
 msgstr ""
 "Verifică dacă în kernel este configurată opțiunea CONFIG_NO_HZ (o simplă "
 "verificare pentru regresie)"
-
-#. description
-#: ../jobs/qa_regression.txt.in:7
-msgid ""
-"PURPOSE:\n"
-"   This is to install and run the Ubuntu QA regression tests (destructive)"
-msgstr ""
-"SCOP:\n"
-"   Este destinat instalării și rulării testelor de regresie Ubuntu QA "
-"(distructive)"
 
 #. description
 #: ../jobs/server-services.txt.in:5
@@ -5634,6 +5574,15 @@ msgstr " Rezultate "
 #~ "implicită. Are sens dacă ieșirea și \\ intrarea implicită sunt conectate "
 #~ "direct, cum ar fi printr-un cablu."
 
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "   This test will attempt to install and run the Autotest Suite.  These "
+#~ "tests can be destructive, so this test is blacklisted by default."
+#~ msgstr ""
+#~ "SCOP:\n"
+#~ "   Acest test va încerca să instaleze și să ruleze suita Autotest.  Aceste "
+#~ "teste pot fi distructive, așa că acest test este implicit inhibat."
+
 #~ msgid "Benchmark for each disk "
 #~ msgstr "Teste de stres pentru fiecare disc "
 
@@ -5700,8 +5649,27 @@ msgstr " Rezultate "
 #~ msgid "Attaches the screenshot captured in info/screenshot."
 #~ msgstr "Atașează captura de ecran în info/captură."
 
+#~ msgid "Autotest Suite tests"
+#~ msgstr "Teste din suita Autotest"
+
+#~ msgid "Linux Test Project tests"
+#~ msgstr "Teste Linux Test Project"
+
+#~ msgid "Mago Automated Desktop Testing"
+#~ msgstr "Testarea automată Mago pentru desktopuri"
+
 #~ msgid "Unity tests"
 #~ msgstr "Teste pentru mediul grafic Unity"
+
+#~ msgid "QA Regression tests"
+#~ msgstr "Teste tip întrebări și răspunsuri pentru determinarea regresiilor"
+
+#~ msgid ""
+#~ "This test installs and runs Linux Test Project syscalls test. This can be "
+#~ "destructive, thus this test is blacklisted by default."
+#~ msgstr ""
+#~ "Acest test va instala li rula testul syscalls din suita Linux Test Project. "
+#~ "Acesta are un potențial distructiv, așa că este implicit omis."
 
 #~ msgid "Phoronix Test Suite tests"
 #~ msgstr "Teste din suita Phoronix"
@@ -5730,6 +5698,14 @@ msgstr " Rezultate "
 #~ "VERIFICARE:\n"
 #~ "    Verificarea acestui test este automată. Nu modificați rezultatul\n"
 #~ "    selectat în mod automat."
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "   This test installs and runs the Mago Automated Desktop Testing suite."
+#~ msgstr ""
+#~ "SCOP:\n"
+#~ "   Acest test instalează și rulează suita de teste automate pentru desktop, "
+#~ "Mago."
 
 #~ msgid ""
 #~ "PURPOSE:\n"
@@ -6115,6 +6091,14 @@ msgstr " Rezultate "
 #~ "SCOP:\n"
 #~ "   Acest test va descărca și instala suita pentru teste Phoronix și va rula "
 #~ "unele teste de stres."
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "   This is to install and run the Ubuntu QA regression tests (destructive)"
+#~ msgstr ""
+#~ "SCOP:\n"
+#~ "   Este destinat instalării și rulării testelor de regresie Ubuntu QA "
+#~ "(distructive)"
 
 #~ msgid "Test ACPI Wakealarm (fwts wakealarm) "
 #~ msgstr "Test pentru alarma ACPI (fwts wakealarm) "

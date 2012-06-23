@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-20 10:38-0400\n"
+"POT-Creation-Date: 2012-06-21 12:15-0400\n"
 "PO-Revision-Date: 2012-04-20 20:19+0000\n"
 "Last-Translator: Tadeáš Pařík <tadeas.parik@gmail.com>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-06-21 05:11+0000\n"
-"X-Generator: Launchpad (build 15435)\n"
+"X-Launchpad-Export-Date: 2012-06-23 04:33+0000\n"
+"X-Generator: Launchpad (build 15461)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:2 ../checkbox_gtk/gtk_interface.py:561
 msgid "_Test"
@@ -213,17 +213,6 @@ msgstr ""
 #: ../jobs/audio.txt.in:118
 msgid "Attaches the audio hardware data collection log to the results."
 msgstr ""
-
-#. description
-#: ../jobs/autotest.txt.in:6
-msgid ""
-"PURPOSE:\n"
-"   This test will attempt to install and run the Autotest Suite.  These "
-"tests can be destructive, so this test is blacklisted by default."
-msgstr ""
-"CÍL:\n"
-"   Test test potřebuje nainstalovaný a běžící Autotest Suite. Tyto testy "
-"mohou být nebezpečné, proto jsou ve výchozím stavu zakázané."
 
 #. description
 #: ../jobs/benchmarks.txt.in:18
@@ -1398,216 +1387,178 @@ msgstr "Testy zvuku"
 
 #. description
 #: ../jobs/local.txt.in:10
-msgid "Autotest Suite tests"
-msgstr "Testy z Autotest Suite"
-
-#. description
-#: ../jobs/local.txt.in:17
 msgid "Benchmarks tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:24
+#: ../jobs/local.txt.in:17
 msgid "Bluetooth tests"
 msgstr "Testy bluetooth"
 
 #. description
-#: ../jobs/local.txt.in:31
+#: ../jobs/local.txt.in:24
 msgid "Camera tests"
 msgstr "Testy webkamery"
 
 #. description
-#: ../jobs/local.txt.in:38
+#: ../jobs/local.txt.in:31
 msgid "Codec tests"
 msgstr "Testy kodeků"
 
 #. description
-#: ../jobs/local.txt.in:45
+#: ../jobs/local.txt.in:38
 msgid "CPU tests"
 msgstr "Testy procesoru"
 
 #. description
-#: ../jobs/local.txt.in:52
+#: ../jobs/local.txt.in:45
 msgid "System Daemon tests"
 msgstr "Testy systémových služeb (démonů)"
 
 #. description
-#: ../jobs/local.txt.in:59
+#: ../jobs/local.txt.in:52
 msgid "Disk tests"
 msgstr "Testy disku"
 
 #. description
-#: ../jobs/local.txt.in:66
+#: ../jobs/local.txt.in:59
 msgid "Fingerprint reader tests"
 msgstr "Testy čtečky otisků prstů"
 
 #. description
-#: ../jobs/local.txt.in:73
+#: ../jobs/local.txt.in:66
 msgid "Firewire disk tests"
 msgstr "Testy firewire disku"
 
 #. description
-#: ../jobs/local.txt.in:80
+#: ../jobs/local.txt.in:73
 msgid "Floppy disk tests"
 msgstr "Testy disketové mechaniky"
 
 #. description
-#: ../jobs/local.txt.in:87
+#: ../jobs/local.txt.in:80
 msgid "Graphics tests"
 msgstr "Testy grafiky"
 
 #. description
-#: ../jobs/local.txt.in:94
+#: ../jobs/local.txt.in:87
 msgid "Hibernation tests"
 msgstr "Testy hibernace"
 
 #. description
-#: ../jobs/local.txt.in:101
+#: ../jobs/local.txt.in:94
 msgid "Informational tests"
 msgstr "Informační testy"
 
 #. description
-#: ../jobs/local.txt.in:108
+#: ../jobs/local.txt.in:101
 msgid "Input Devices tests"
 msgstr "Testy vstupních zařízení"
 
 #. description
-#: ../jobs/local.txt.in:115
+#: ../jobs/local.txt.in:108
 msgid "Software Installation tests"
 msgstr "Testy instalace software"
 
 #. description
-#: ../jobs/local.txt.in:122
+#: ../jobs/local.txt.in:115
 msgid "Hotkey tests"
 msgstr "Testy funkčních kláves"
 
 #. description
-#: ../jobs/local.txt.in:129
-msgid "Linux Test Project tests"
-msgstr "Testy z Linux Test Project"
-
-#. description
-#: ../jobs/local.txt.in:136
-msgid "Mago Automated Desktop Testing"
-msgstr "Automatické testy pracovního prostředí Mago"
-
-#. description
-#: ../jobs/local.txt.in:143
+#: ../jobs/local.txt.in:122
 msgid "Media Card tests"
 msgstr "Testy paměťových karet"
 
 #. description
-#: ../jobs/local.txt.in:150
+#: ../jobs/local.txt.in:129
 msgid "Memory tests"
 msgstr "Testy paměti"
 
 #. description
-#: ../jobs/local.txt.in:157
+#: ../jobs/local.txt.in:136
 msgid "Miscellaneous tests"
 msgstr "Různé testy"
 
 #. description
-#: ../jobs/local.txt.in:164
+#: ../jobs/local.txt.in:143
 msgid "Monitor tests"
 msgstr "Testy monitoru"
 
 #. description
-#: ../jobs/local.txt.in:171
+#: ../jobs/local.txt.in:150
 msgid "Networking tests"
 msgstr "Testy síťového připojení"
 
 #. description
-#: ../jobs/local.txt.in:178
+#: ../jobs/local.txt.in:157
 msgid "Optical Drive tests"
 msgstr "Testy optických mechanik"
 
 #. description
-#: ../jobs/local.txt.in:185
+#: ../jobs/local.txt.in:164
 msgid "Panel Clock Verification tests"
 msgstr "Testy ověření hodin v panelu"
 
 #. description
-#: ../jobs/local.txt.in:192
+#: ../jobs/local.txt.in:171
 msgid "PCMCIA/PCIX Card tests"
 msgstr "Testy karet PCMCIA/PCIX"
 
 #. description
-#: ../jobs/local.txt.in:199
+#: ../jobs/local.txt.in:178
 msgid "Peripheral tests"
 msgstr "Testy periferií"
 
 #. description
-#: ../jobs/local.txt.in:206
+#: ../jobs/local.txt.in:185
 msgid "Power Management tests"
 msgstr "Testy správy napájení"
 
 #. description
-#: ../jobs/local.txt.in:213
-msgid "QA Regression tests"
-msgstr "Testy QA Regression"
-
-#. description
-#: ../jobs/local.txt.in:220
+#: ../jobs/local.txt.in:192
 msgid "Server Services checks"
 msgstr "Kontroly serverových služeb"
 
 #. description
-#: ../jobs/local.txt.in:227
+#: ../jobs/local.txt.in:199
 msgid "Suspend tests"
 msgstr "Testy uspávání"
 
 #. description
-#: ../jobs/local.txt.in:234
+#: ../jobs/local.txt.in:206
 msgid "Touchpad tests"
 msgstr "Testy touchpadu"
 
 #. description
-#: ../jobs/local.txt.in:241
+#: ../jobs/local.txt.in:213
 msgid "USB tests"
 msgstr "Testy USB"
 
 #. description
-#: ../jobs/local.txt.in:248
+#: ../jobs/local.txt.in:220
 msgid "User Applications"
 msgstr "Uživatelské aplikace"
 
 #. description
-#: ../jobs/local.txt.in:255
+#: ../jobs/local.txt.in:227
 msgid "Wireless networking tests"
 msgstr "Testy bezdrátového připojení"
 
 #. description
-#: ../jobs/local.txt.in:262
+#: ../jobs/local.txt.in:234
 msgid "Stress tests"
 msgstr "Zátěžové testy"
 
 #. description
-#: ../jobs/local.txt.in:269
+#: ../jobs/local.txt.in:241
 msgid "Smoke tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:276
+#: ../jobs/local.txt.in:248
 msgid "Sniff Sniffers"
 msgstr ""
-
-#. description
-#: ../jobs/ltp.txt.in:3
-msgid ""
-"This test installs and runs Linux Test Project syscalls test. This can be "
-"destructive, thus this test is blacklisted by default."
-msgstr ""
-"Tento test nainstaluje a spustí systémové testy balíku Linux Project. To "
-"může být nebezpečné, proto je tento test ve výchozím stavu zakázaný."
-
-#. description
-#: ../jobs/mago.txt.in:8
-msgid ""
-"PURPOSE:\n"
-"   This test installs and runs the Mago Automated Desktop Testing suite."
-msgstr ""
-"CÍL:\n"
-"   Tento test nainstaluje a spustí balík Mago Automated Destop Testing."
 
 #. description
 #: ../jobs/mediacard.txt.in:4
@@ -2745,15 +2696,6 @@ msgid ""
 "Check to see if CONFIG_NO_HZ is set in the kernel (this is just a simple "
 "regression check)"
 msgstr "Ověřit, zda má kernel volbu CONFIG_NO_HZ (jednoduché ověření)"
-
-#. description
-#: ../jobs/qa_regression.txt.in:7
-msgid ""
-"PURPOSE:\n"
-"   This is to install and run the Ubuntu QA regression tests (destructive)"
-msgstr ""
-"CÍL:\n"
-"   Nainstalovat a spustit testy Ubunu QA (nebezpečné)"
 
 #. description
 #: ../jobs/server-services.txt.in:5
@@ -6642,6 +6584,15 @@ msgstr " Výsledky "
 
 #~ msgid ""
 #~ "PURPOSE:\n"
+#~ "   This test will attempt to install and run the Autotest Suite.  These "
+#~ "tests can be destructive, so this test is blacklisted by default."
+#~ msgstr ""
+#~ "CÍL:\n"
+#~ "   Test test potřebuje nainstalovaný a běžící Autotest Suite. Tyto testy "
+#~ "mohou být nebezpečné, proto jsou ve výchozím stavu zakázané."
+
+#~ msgid ""
+#~ "PURPOSE:\n"
 #~ "    This test will check the system can detect the insertion of a FireWire "
 #~ "HDD\n"
 #~ "STEPS:\n"
@@ -6806,8 +6757,24 @@ msgstr " Výsledky "
 #~ "DŮKAZ:\n"
 #~ "    Výsledek testu se zvolí automaticky, prosím neměňte ho.."
 
+#~ msgid "Autotest Suite tests"
+#~ msgstr "Testy z Autotest Suite"
+
+#~ msgid "QA Regression tests"
+#~ msgstr "Testy QA Regression"
+
+#~ msgid "Linux Test Project tests"
+#~ msgstr "Testy z Linux Test Project"
+
 #~ msgid "Phoronix Test Suite tests"
 #~ msgstr "Testy z Phoronix test suite"
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "   This test installs and runs the Mago Automated Desktop Testing suite."
+#~ msgstr ""
+#~ "CÍL:\n"
+#~ "   Tento test nainstaluje a spustí balík Mago Automated Destop Testing."
 
 #~ msgid ""
 #~ "PURPOSE:\n"
@@ -6970,6 +6937,13 @@ msgstr " Výsledky "
 
 #~ msgid "Test ACPI Wakealarm (fwts wakealarm) "
 #~ msgstr "Test probuzení pomocí ACPI (fwts wakealarm) "
+
+#~ msgid ""
+#~ "This test installs and runs Linux Test Project syscalls test. This can be "
+#~ "destructive, thus this test is blacklisted by default."
+#~ msgstr ""
+#~ "Tento test nainstaluje a spustí systémové testy balíku Linux Project. To "
+#~ "může být nebezpečné, proto je tento test ve výchozím stavu zakázaný."
 
 #~ msgid ""
 #~ "PURPOSE:\n"
@@ -7177,6 +7151,16 @@ msgstr " Výsledky "
 #~ "DŮKAZ:\n"
 #~ "    Vyhodnocení testu je automatické, prosím neměňte\n"
 #~ "    zvolený výsledek."
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "   This is to install and run the Ubuntu QA regression tests (destructive)"
+#~ msgstr ""
+#~ "CÍL:\n"
+#~ "   Nainstalovat a spustit testy Ubunu QA (nebezpečné)"
+
+#~ msgid "Mago Automated Desktop Testing"
+#~ msgstr "Automatické testy pracovního prostředí Mago"
 
 #~ msgid ""
 #~ "PURPOSE:\n"

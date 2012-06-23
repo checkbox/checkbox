@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-20 10:38-0400\n"
+"POT-Creation-Date: 2012-06-21 12:15-0400\n"
 "PO-Revision-Date: 2011-09-21 14:29+0000\n"
 "Last-Translator: Gabor Kelemen <kelemeng@gnome.hu>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-06-21 05:12+0000\n"
-"X-Generator: Launchpad (build 15435)\n"
+"X-Launchpad-Export-Date: 2012-06-23 04:34+0000\n"
+"X-Generator: Launchpad (build 15461)\n"
 
 #. Title of the user interface
 #: ../gtk/checkbox-gtk.ui.h:1 ../qt/checkbox-qt.desktop.in.h:1
@@ -204,18 +204,6 @@ msgstr ""
 #: ../jobs/audio.txt.in:118
 msgid "Attaches the audio hardware data collection log to the results."
 msgstr ""
-
-#. description
-#: ../jobs/autotest.txt.in:6
-msgid ""
-"PURPOSE:\n"
-"   This test will attempt to install and run the Autotest Suite.  These "
-"tests can be destructive, so this test is blacklisted by default."
-msgstr ""
-"CÉL:\n"
-"   Ez a teszt megpróbálja telepíteni és futtatni az Autoteszt sorozatot. "
-"Ezek a tesztek romboló hatásúak lehetnek, ezért ez a teszt alapértelmezetten "
-"le van tiltva."
 
 #. description
 #: ../jobs/benchmarks.txt.in:18
@@ -1421,217 +1409,178 @@ msgstr "Hangtesztek"
 
 #. description
 #: ../jobs/local.txt.in:10
-msgid "Autotest Suite tests"
-msgstr "Autoteszt csomag tesztek"
-
-#. description
-#: ../jobs/local.txt.in:17
 msgid "Benchmarks tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:24
+#: ../jobs/local.txt.in:17
 msgid "Bluetooth tests"
 msgstr "Bluetooth tesztek"
 
 #. description
-#: ../jobs/local.txt.in:31
+#: ../jobs/local.txt.in:24
 msgid "Camera tests"
 msgstr "Webkamera tesztek"
 
 #. description
-#: ../jobs/local.txt.in:38
+#: ../jobs/local.txt.in:31
 msgid "Codec tests"
 msgstr "Kodek tesztek"
 
 #. description
-#: ../jobs/local.txt.in:45
+#: ../jobs/local.txt.in:38
 msgid "CPU tests"
 msgstr "Processzor tesztek"
 
 #. description
-#: ../jobs/local.txt.in:52
+#: ../jobs/local.txt.in:45
 msgid "System Daemon tests"
 msgstr "Rendszer daemon tesztek"
 
 #. description
-#: ../jobs/local.txt.in:59
+#: ../jobs/local.txt.in:52
 msgid "Disk tests"
 msgstr "Lemeztesztek"
 
 #. description
-#: ../jobs/local.txt.in:66
+#: ../jobs/local.txt.in:59
 msgid "Fingerprint reader tests"
 msgstr "Ujjlenyomatolvasó-tesztek"
 
 #. description
-#: ../jobs/local.txt.in:73
+#: ../jobs/local.txt.in:66
 msgid "Firewire disk tests"
 msgstr "Firewire lemeztesztek"
 
 #. description
-#: ../jobs/local.txt.in:80
+#: ../jobs/local.txt.in:73
 msgid "Floppy disk tests"
 msgstr "Floppylemez tesztek"
 
 #. description
-#: ../jobs/local.txt.in:87
+#: ../jobs/local.txt.in:80
 msgid "Graphics tests"
 msgstr "Grafikus tesztek"
 
 #. description
-#: ../jobs/local.txt.in:94
+#: ../jobs/local.txt.in:87
 msgid "Hibernation tests"
 msgstr "Hibernációs tesztek"
 
 #. description
-#: ../jobs/local.txt.in:101
+#: ../jobs/local.txt.in:94
 msgid "Informational tests"
 msgstr "Információs tesztek"
 
 #. description
-#: ../jobs/local.txt.in:108
+#: ../jobs/local.txt.in:101
 msgid "Input Devices tests"
 msgstr "Bemeneti eszköz tesztek"
 
 #. description
-#: ../jobs/local.txt.in:115
+#: ../jobs/local.txt.in:108
 msgid "Software Installation tests"
 msgstr "Alkalmazás telepítés tesztek"
 
 #. description
-#: ../jobs/local.txt.in:122
+#: ../jobs/local.txt.in:115
 msgid "Hotkey tests"
 msgstr "Gyorsbillentyű tesztek"
 
 #. description
-#: ../jobs/local.txt.in:129
-msgid "Linux Test Project tests"
-msgstr "Linux teszt projekt tesztek"
-
-#. description
-#: ../jobs/local.txt.in:136
-msgid "Mago Automated Desktop Testing"
-msgstr "Mago automatizált asztalikörnyezet-tesztelés"
-
-#. description
-#: ../jobs/local.txt.in:143
+#: ../jobs/local.txt.in:122
 msgid "Media Card tests"
 msgstr "Médiakártya tesztek"
 
 #. description
-#: ../jobs/local.txt.in:150
+#: ../jobs/local.txt.in:129
 msgid "Memory tests"
 msgstr "Memória-tesztek"
 
 #. description
-#: ../jobs/local.txt.in:157
+#: ../jobs/local.txt.in:136
 msgid "Miscellaneous tests"
 msgstr "Egyéb tesztek"
 
 #. description
-#: ../jobs/local.txt.in:164
+#: ../jobs/local.txt.in:143
 msgid "Monitor tests"
 msgstr "Monitortesztek"
 
 #. description
-#: ../jobs/local.txt.in:171
+#: ../jobs/local.txt.in:150
 msgid "Networking tests"
 msgstr "Hálózati tesztek"
 
 #. description
-#: ../jobs/local.txt.in:178
+#: ../jobs/local.txt.in:157
 msgid "Optical Drive tests"
 msgstr "Optikaimeghajtó-tesztek"
 
 #. description
-#: ../jobs/local.txt.in:185
+#: ../jobs/local.txt.in:164
 msgid "Panel Clock Verification tests"
 msgstr "Panel óra ellenőrző tesztek"
 
 #. description
-#: ../jobs/local.txt.in:192
+#: ../jobs/local.txt.in:171
 msgid "PCMCIA/PCIX Card tests"
 msgstr "PCMCIA/PCIX kártya tesztek"
 
 #. description
-#: ../jobs/local.txt.in:199
+#: ../jobs/local.txt.in:178
 msgid "Peripheral tests"
 msgstr "Perifériatesztek"
 
 #. description
-#: ../jobs/local.txt.in:206
+#: ../jobs/local.txt.in:185
 msgid "Power Management tests"
 msgstr "Energiagazdálkodás tesztek"
 
 #. description
-#: ../jobs/local.txt.in:213
-msgid "QA Regression tests"
-msgstr "Minőség-ellenőrző regressziós tesztek"
-
-#. description
-#: ../jobs/local.txt.in:220
+#: ../jobs/local.txt.in:192
 msgid "Server Services checks"
 msgstr "Kiszolgáló szolgáltatások tesztjei"
 
 #. description
-#: ../jobs/local.txt.in:227
+#: ../jobs/local.txt.in:199
 msgid "Suspend tests"
 msgstr "Felfüggesztés tesztek"
 
 #. description
-#: ../jobs/local.txt.in:234
+#: ../jobs/local.txt.in:206
 msgid "Touchpad tests"
 msgstr "Érintőtábla tesztjei"
 
 #. description
-#: ../jobs/local.txt.in:241
+#: ../jobs/local.txt.in:213
 msgid "USB tests"
 msgstr "USB-tesztek"
 
 #. description
-#: ../jobs/local.txt.in:248
+#: ../jobs/local.txt.in:220
 msgid "User Applications"
 msgstr "Felhasználói alkalmazások"
 
 #. description
-#: ../jobs/local.txt.in:255
+#: ../jobs/local.txt.in:227
 msgid "Wireless networking tests"
 msgstr "Vezeték nélküli hálózat tesztek"
 
 #. description
-#: ../jobs/local.txt.in:262
+#: ../jobs/local.txt.in:234
 msgid "Stress tests"
 msgstr "Terhelés tesztek"
 
 #. description
-#: ../jobs/local.txt.in:269
+#: ../jobs/local.txt.in:241
 msgid "Smoke tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:276
+#: ../jobs/local.txt.in:248
 msgid "Sniff Sniffers"
 msgstr ""
-
-#. description
-#: ../jobs/ltp.txt.in:3
-msgid ""
-"This test installs and runs Linux Test Project syscalls test. This can be "
-"destructive, thus this test is blacklisted by default."
-msgstr ""
-"Ez a teszt telepíti és futtatja a Linux teszt projekt syscalls tesztjeit. Ez "
-"a tönkreteheti a rendszert, ezért alapértelmezetten tiltva van."
-
-#. description
-#: ../jobs/mago.txt.in:8
-msgid ""
-"PURPOSE:\n"
-"   This test installs and runs the Mago Automated Desktop Testing suite."
-msgstr ""
-"CÉL:\n"
-"   Ez a teszt telepíti és futtatja a Mago automatizált asztali felület "
-"tesztelő csomagot."
 
 #. description
 #: ../jobs/mediacard.txt.in:4
@@ -2796,15 +2745,6 @@ msgid ""
 msgstr ""
 "A CONFIG_NO_HZ beállítás ellenőrzése a kernelben (ez egy egyszerű "
 "regresszióteszt)"
-
-#. description
-#: ../jobs/qa_regression.txt.in:7
-msgid ""
-"PURPOSE:\n"
-"   This is to install and run the Ubuntu QA regression tests (destructive)"
-msgstr ""
-"CÉL:\n"
-"   Az Ubuntu minőség-ellenőrző regresszióteszt (kárt tehet a rendszerben)"
 
 #. description
 #: ../jobs/server-services.txt.in:5
@@ -6695,6 +6635,27 @@ msgstr " Eredmények "
 #~ msgstr "Az info/screenshot útvonalon lévő képernyőmentés csatolása."
 
 #~ msgid ""
+#~ "This test installs and runs Linux Test Project syscalls test. This can be "
+#~ "destructive, thus this test is blacklisted by default."
+#~ msgstr ""
+#~ "Ez a teszt telepíti és futtatja a Linux teszt projekt syscalls tesztjeit. Ez "
+#~ "a tönkreteheti a rendszert, ezért alapértelmezetten tiltva van."
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "   This test installs and runs the Mago Automated Desktop Testing suite."
+#~ msgstr ""
+#~ "CÉL:\n"
+#~ "   Ez a teszt telepíti és futtatja a Mago automatizált asztali felület "
+#~ "tesztelő csomagot."
+
+#~ msgid "Linux Test Project tests"
+#~ msgstr "Linux teszt projekt tesztek"
+
+#~ msgid "Autotest Suite tests"
+#~ msgstr "Autoteszt csomag tesztek"
+
+#~ msgid ""
 #~ "PURPOSE:\n"
 #~ "    This test will check that the system correctly detects\n"
 #~ "    the removal of an SDHC card from the systems card reader.\n"
@@ -6825,6 +6786,13 @@ msgstr " Eredmények "
 #~ "   Az asztal jobb felső sarkában lévő óra az időzónának megfelelő dátumot és "
 #~ "időt mutatja?"
 
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "   This is to install and run the Ubuntu QA regression tests (destructive)"
+#~ msgstr ""
+#~ "CÉL:\n"
+#~ "   Az Ubuntu minőség-ellenőrző regresszióteszt (kárt tehet a rendszerben)"
+
 #~ msgid "Test ACPI Wakealarm (fwts wakealarm) "
 #~ msgstr "Az ACPI ébresztőóra (fwts wakealarm) ellenőrzése "
 
@@ -6894,6 +6862,9 @@ msgstr " Eredmények "
 
 #~ msgid "Personal details"
 #~ msgstr "Személyes adatok"
+
+#~ msgid "QA Regression tests"
+#~ msgstr "Minőség-ellenőrző regressziós tesztek"
 
 #~ msgid "Phoronix Test Suite tests"
 #~ msgstr "Phoronix tesztcsomag tesztek"
@@ -6997,6 +6968,9 @@ msgstr " Eredmények "
 #~ "ELLENŐRZÉS:\n"
 #~ "    A teszt ellenőrzése automatikus. Ne változtassa meg az automatikusan\n"
 #~ "    kijelölt eredményt."
+
+#~ msgid "Mago Automated Desktop Testing"
+#~ msgstr "Mago automatizált asztalikörnyezet-tesztelés"
 
 #~ msgid ""
 #~ "PURPOSE:\n"
@@ -7298,3 +7272,13 @@ msgstr " Eredmények "
 #~ "hagyja ki ezt a tesztet.\n"
 #~ "ELLENŐRZÉS:\n"
 #~ "    A billentyűk megfelelően működtek?"
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "   This test will attempt to install and run the Autotest Suite.  These "
+#~ "tests can be destructive, so this test is blacklisted by default."
+#~ msgstr ""
+#~ "CÉL:\n"
+#~ "   Ez a teszt megpróbálja telepíteni és futtatni az Autoteszt sorozatot. "
+#~ "Ezek a tesztek romboló hatásúak lehetnek, ezért ez a teszt alapértelmezetten "
+#~ "le van tiltva."

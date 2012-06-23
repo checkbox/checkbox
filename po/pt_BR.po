@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-20 10:38-0400\n"
+"POT-Creation-Date: 2012-06-21 12:15-0400\n"
 "PO-Revision-Date: 2012-04-10 03:27+0000\n"
 "Last-Translator: Neliton Pereira Jr. <nelitonpjr@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-06-21 05:14+0000\n"
-"X-Generator: Launchpad (build 15435)\n"
+"X-Launchpad-Export-Date: 2012-06-23 04:36+0000\n"
+"X-Generator: Launchpad (build 15461)\n"
 
 #. Title of the user interface
 #: ../gtk/checkbox-gtk.ui.h:1 ../qt/checkbox-qt.desktop.in.h:1
@@ -210,17 +210,6 @@ msgstr ""
 #: ../jobs/audio.txt.in:118
 msgid "Attaches the audio hardware data collection log to the results."
 msgstr ""
-
-#. description
-#: ../jobs/autotest.txt.in:6
-msgid ""
-"PURPOSE:\n"
-"   This test will attempt to install and run the Autotest Suite.  These "
-"tests can be destructive, so this test is blacklisted by default."
-msgstr ""
-"PROPÓSITO:\n"
-"   Esse teste vai tentar instalar e executar a suíte de autoteste. Esses "
-"testes podem ser destrutivos, então eles estão na lista negra por padrão."
 
 #. description
 #: ../jobs/benchmarks.txt.in:18
@@ -1470,217 +1459,178 @@ msgstr "Testes de áudio"
 
 #. description
 #: ../jobs/local.txt.in:10
-msgid "Autotest Suite tests"
-msgstr "Testes da suíte de auto-testes"
-
-#. description
-#: ../jobs/local.txt.in:17
 msgid "Benchmarks tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:24
+#: ../jobs/local.txt.in:17
 msgid "Bluetooth tests"
 msgstr "Testes de bluetooth"
 
 #. description
-#: ../jobs/local.txt.in:31
+#: ../jobs/local.txt.in:24
 msgid "Camera tests"
 msgstr "Testes da câmera"
 
 #. description
-#: ../jobs/local.txt.in:38
+#: ../jobs/local.txt.in:31
 msgid "Codec tests"
 msgstr "Testes de codec"
 
 #. description
-#: ../jobs/local.txt.in:45
+#: ../jobs/local.txt.in:38
 msgid "CPU tests"
 msgstr "Testes de CPU"
 
 #. description
-#: ../jobs/local.txt.in:52
+#: ../jobs/local.txt.in:45
 msgid "System Daemon tests"
 msgstr "Testes do daemon do sistema"
 
 #. description
-#: ../jobs/local.txt.in:59
+#: ../jobs/local.txt.in:52
 msgid "Disk tests"
 msgstr "Testes de disco"
 
 #. description
-#: ../jobs/local.txt.in:66
+#: ../jobs/local.txt.in:59
 msgid "Fingerprint reader tests"
 msgstr "Testes de leitor de impressão de digital"
 
 #. description
-#: ../jobs/local.txt.in:73
+#: ../jobs/local.txt.in:66
 msgid "Firewire disk tests"
 msgstr "Testes de disco firewire"
 
 #. description
-#: ../jobs/local.txt.in:80
+#: ../jobs/local.txt.in:73
 msgid "Floppy disk tests"
 msgstr "Testes de disco flexível"
 
 #. description
-#: ../jobs/local.txt.in:87
+#: ../jobs/local.txt.in:80
 msgid "Graphics tests"
 msgstr "Testes de gráficos"
 
 #. description
-#: ../jobs/local.txt.in:94
+#: ../jobs/local.txt.in:87
 msgid "Hibernation tests"
 msgstr "Testes de hibernação"
 
 #. description
-#: ../jobs/local.txt.in:101
+#: ../jobs/local.txt.in:94
 msgid "Informational tests"
 msgstr "Testes de informação"
 
 #. description
-#: ../jobs/local.txt.in:108
+#: ../jobs/local.txt.in:101
 msgid "Input Devices tests"
 msgstr "Testes de dispositivos de entrada"
 
 #. description
-#: ../jobs/local.txt.in:115
+#: ../jobs/local.txt.in:108
 msgid "Software Installation tests"
 msgstr "Testes de instalação de programas"
 
 #. description
-#: ../jobs/local.txt.in:122
+#: ../jobs/local.txt.in:115
 msgid "Hotkey tests"
 msgstr "Testes de teclas de atalho"
 
 #. description
-#: ../jobs/local.txt.in:129
-msgid "Linux Test Project tests"
-msgstr "Testes do projeto de testes do Linux"
-
-#. description
-#: ../jobs/local.txt.in:136
-msgid "Mago Automated Desktop Testing"
-msgstr "Teste automatizado de área de trabalho Mago"
-
-#. description
-#: ../jobs/local.txt.in:143
+#: ../jobs/local.txt.in:122
 msgid "Media Card tests"
 msgstr "Testes de cartão de mídia"
 
 #. description
-#: ../jobs/local.txt.in:150
+#: ../jobs/local.txt.in:129
 msgid "Memory tests"
 msgstr "Testes de memória"
 
 #. description
-#: ../jobs/local.txt.in:157
+#: ../jobs/local.txt.in:136
 msgid "Miscellaneous tests"
 msgstr "Testes diversos"
 
 #. description
-#: ../jobs/local.txt.in:164
+#: ../jobs/local.txt.in:143
 msgid "Monitor tests"
 msgstr "Testes de monitor"
 
 #. description
-#: ../jobs/local.txt.in:171
+#: ../jobs/local.txt.in:150
 msgid "Networking tests"
 msgstr "Testes de rede"
 
 #. description
-#: ../jobs/local.txt.in:178
+#: ../jobs/local.txt.in:157
 msgid "Optical Drive tests"
 msgstr "Testes de dispositivo ótico"
 
 #. description
-#: ../jobs/local.txt.in:185
+#: ../jobs/local.txt.in:164
 msgid "Panel Clock Verification tests"
 msgstr "Testes de verificação do painel de relógio"
 
 #. description
-#: ../jobs/local.txt.in:192
+#: ../jobs/local.txt.in:171
 msgid "PCMCIA/PCIX Card tests"
 msgstr "Testes de placas PCMCIA/PCIX"
 
 #. description
-#: ../jobs/local.txt.in:199
+#: ../jobs/local.txt.in:178
 msgid "Peripheral tests"
 msgstr "Testes de periférico"
 
 #. description
-#: ../jobs/local.txt.in:206
+#: ../jobs/local.txt.in:185
 msgid "Power Management tests"
 msgstr "Testes de gerenciamento de energia"
 
 #. description
-#: ../jobs/local.txt.in:213
-msgid "QA Regression tests"
-msgstr "Testes de regressão QA"
-
-#. description
-#: ../jobs/local.txt.in:220
+#: ../jobs/local.txt.in:192
 msgid "Server Services checks"
 msgstr "Verificação de serviços do servidor"
 
 #. description
-#: ../jobs/local.txt.in:227
+#: ../jobs/local.txt.in:199
 msgid "Suspend tests"
 msgstr "Testes de suspensão"
 
 #. description
-#: ../jobs/local.txt.in:234
+#: ../jobs/local.txt.in:206
 msgid "Touchpad tests"
 msgstr "Testes de touchpad"
 
 #. description
-#: ../jobs/local.txt.in:241
+#: ../jobs/local.txt.in:213
 msgid "USB tests"
 msgstr "Testes de USB"
 
 #. description
-#: ../jobs/local.txt.in:248
+#: ../jobs/local.txt.in:220
 msgid "User Applications"
 msgstr "Aplicativos do usuário"
 
 #. description
-#: ../jobs/local.txt.in:255
+#: ../jobs/local.txt.in:227
 msgid "Wireless networking tests"
 msgstr "Testes de rede sem fio"
 
 #. description
-#: ../jobs/local.txt.in:262
+#: ../jobs/local.txt.in:234
 msgid "Stress tests"
 msgstr "Testes de pressão"
 
 #. description
-#: ../jobs/local.txt.in:269
+#: ../jobs/local.txt.in:241
 msgid "Smoke tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:276
+#: ../jobs/local.txt.in:248
 msgid "Sniff Sniffers"
 msgstr ""
-
-#. description
-#: ../jobs/ltp.txt.in:3
-msgid ""
-"This test installs and runs Linux Test Project syscalls test. This can be "
-"destructive, thus this test is blacklisted by default."
-msgstr ""
-"Este teste irá instalar e executar os testes de chamadas de sistema do "
-"Projeto de testes do Linux. Isto pode ser destrutivo, portanto este teste "
-"está na lista negra por padrão."
-
-#. description
-#: ../jobs/mago.txt.in:8
-msgid ""
-"PURPOSE:\n"
-"   This test installs and runs the Mago Automated Desktop Testing suite."
-msgstr ""
-"PROPÓSITO:\n"
-"   Este teste irá instalar e executar a suíte de testes automáticos Mago"
 
 #. description
 #: ../jobs/mediacard.txt.in:4
@@ -2852,16 +2802,6 @@ msgid ""
 msgstr ""
 "Verifique para ver se CONFIG_NO_HZ está configurado no kernel (isto é apenas "
 "um simples teste de regressão)"
-
-#. description
-#: ../jobs/qa_regression.txt.in:7
-msgid ""
-"PURPOSE:\n"
-"   This is to install and run the Ubuntu QA regression tests (destructive)"
-msgstr ""
-"PROPÓSITO:\n"
-"   Isto é para para instalar e rodar os testes de regressão QA do Ubuntu "
-"(destrutivo)"
 
 #. description
 #: ../jobs/server-services.txt.in:5
@@ -6811,11 +6751,44 @@ msgstr " Resultados "
 #~ "sistema falhar a acordar totalmente e precisar ser reiniciado, reinicie o "
 #~ "Sistema de teste depois de reiniciar e marque esse teste como Falhou."
 
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "   This test will attempt to install and run the Autotest Suite.  These "
+#~ "tests can be destructive, so this test is blacklisted by default."
+#~ msgstr ""
+#~ "PROPÓSITO:\n"
+#~ "   Esse teste vai tentar instalar e executar a suíte de autoteste. Esses "
+#~ "testes podem ser destrutivos, então eles estão na lista negra por padrão."
+
 #~ msgid "Attaches the screenshot captured in info/screenshot."
 #~ msgstr "Anexar uma captura de tela presente em informação/captura de tela."
 
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "   This test installs and runs the Mago Automated Desktop Testing suite."
+#~ msgstr ""
+#~ "PROPÓSITO:\n"
+#~ "   Este teste irá instalar e executar a suíte de testes automáticos Mago"
+
 #~ msgid "Phoronix Test Suite tests"
 #~ msgstr "Testes da suíte de testes Phoronix"
+
+#~ msgid "Autotest Suite tests"
+#~ msgstr "Testes da suíte de auto-testes"
+
+#~ msgid "QA Regression tests"
+#~ msgstr "Testes de regressão QA"
+
+#~ msgid ""
+#~ "This test installs and runs Linux Test Project syscalls test. This can be "
+#~ "destructive, thus this test is blacklisted by default."
+#~ msgstr ""
+#~ "Este teste irá instalar e executar os testes de chamadas de sistema do "
+#~ "Projeto de testes do Linux. Isto pode ser destrutivo, portanto este teste "
+#~ "está na lista negra por padrão."
+
+#~ msgid "Linux Test Project tests"
+#~ msgstr "Testes do projeto de testes do Linux"
 
 #~ msgid ""
 #~ "PURPOSE:\n"
@@ -6825,6 +6798,17 @@ msgstr " Resultados "
 #~ "PROPÓSITO:\n"
 #~ "   Este teste irá baixar e instalar a suíte de testes Phoronix e executará "
 #~ "alguns testes de desempenho selecionados."
+
+#~ msgid "Mago Automated Desktop Testing"
+#~ msgstr "Teste automatizado de área de trabalho Mago"
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "   This is to install and run the Ubuntu QA regression tests (destructive)"
+#~ msgstr ""
+#~ "PROPÓSITO:\n"
+#~ "   Isto é para para instalar e rodar os testes de regressão QA do Ubuntu "
+#~ "(destrutivo)"
 
 #~ msgid "Test ACPI Wakealarm (fwts wakealarm) "
 #~ msgstr "Teste ACPI Wakealarm (fwts wakealarm) "

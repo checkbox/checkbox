@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-20 10:38-0400\n"
+"POT-Creation-Date: 2012-06-21 12:15-0400\n"
 "PO-Revision-Date: 2012-02-28 07:16+0000\n"
 "Last-Translator: zmicier <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-06-21 05:13+0000\n"
-"X-Generator: Launchpad (build 15435)\n"
+"X-Launchpad-Export-Date: 2012-06-23 04:35+0000\n"
+"X-Generator: Launchpad (build 15461)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:3
 msgid "_Yes"
@@ -308,18 +308,6 @@ msgstr ""
 #: ../jobs/audio.txt.in:118
 msgid "Attaches the audio hardware data collection log to the results."
 msgstr ""
-
-#. description
-#: ../jobs/autotest.txt.in:6
-msgid ""
-"PURPOSE:\n"
-"   This test will attempt to install and run the Autotest Suite.  These "
-"tests can be destructive, so this test is blacklisted by default."
-msgstr ""
-"ЦЕЛЬ:\n"
-"   Эта проверка попытается установить комплект Autotest Suite.  Эти тесты "
-"могут привести систему в аварийное состояние, поэтому они по умолчанию "
-"отнесены в категорию запрещённых."
 
 #. description
 #: ../jobs/benchmarks.txt.in:18
@@ -1533,218 +1521,178 @@ msgstr "Проверка звука"
 
 #. description
 #: ../jobs/local.txt.in:10
-msgid "Autotest Suite tests"
-msgstr "Тесты из набора Autotest"
-
-#. description
-#: ../jobs/local.txt.in:17
 msgid "Benchmarks tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:24
+#: ../jobs/local.txt.in:17
 msgid "Bluetooth tests"
 msgstr "Проверка Bluetooth"
 
 #. description
-#: ../jobs/local.txt.in:31
+#: ../jobs/local.txt.in:24
 msgid "Camera tests"
 msgstr "Проверка камеры"
 
 #. description
-#: ../jobs/local.txt.in:38
+#: ../jobs/local.txt.in:31
 msgid "Codec tests"
 msgstr "Проверка кодеков"
 
 #. description
-#: ../jobs/local.txt.in:45
+#: ../jobs/local.txt.in:38
 msgid "CPU tests"
 msgstr "Проверка ЦПУ"
 
 #. description
-#: ../jobs/local.txt.in:52
+#: ../jobs/local.txt.in:45
 msgid "System Daemon tests"
 msgstr "Проверка системных служб"
 
 #. description
-#: ../jobs/local.txt.in:59
+#: ../jobs/local.txt.in:52
 msgid "Disk tests"
 msgstr "Проверка диска"
 
 #. description
-#: ../jobs/local.txt.in:66
+#: ../jobs/local.txt.in:59
 msgid "Fingerprint reader tests"
 msgstr "Проверка сканера отпечатков пальцев"
 
 #. description
-#: ../jobs/local.txt.in:73
+#: ../jobs/local.txt.in:66
 msgid "Firewire disk tests"
 msgstr "Проверка дисков Firewire"
 
 #. description
-#: ../jobs/local.txt.in:80
+#: ../jobs/local.txt.in:73
 msgid "Floppy disk tests"
 msgstr "Проверка дискет"
 
 #. description
-#: ../jobs/local.txt.in:87
+#: ../jobs/local.txt.in:80
 msgid "Graphics tests"
 msgstr "Проверка графической системы"
 
 #. description
-#: ../jobs/local.txt.in:94
+#: ../jobs/local.txt.in:87
 msgid "Hibernation tests"
 msgstr "Проверка спящего режима"
 
 #. description
-#: ../jobs/local.txt.in:101
+#: ../jobs/local.txt.in:94
 msgid "Informational tests"
 msgstr "Информационные тесты"
 
 #. description
-#: ../jobs/local.txt.in:108
+#: ../jobs/local.txt.in:101
 msgid "Input Devices tests"
 msgstr "Проверка устройств ввода"
 
 #. description
-#: ../jobs/local.txt.in:115
+#: ../jobs/local.txt.in:108
 msgid "Software Installation tests"
 msgstr "Проверка установки программного обеспечения"
 
 #. description
-#: ../jobs/local.txt.in:122
+#: ../jobs/local.txt.in:115
 msgid "Hotkey tests"
 msgstr "Проверка клавиш быстрого доступа"
 
 #. description
-#: ../jobs/local.txt.in:129
-msgid "Linux Test Project tests"
-msgstr "Тесты проекта «Linux Tests»"
-
-#. description
-#: ../jobs/local.txt.in:136
-msgid "Mago Automated Desktop Testing"
-msgstr "Автоматическое тестирование рабочего стола Mago"
-
-#. description
-#: ../jobs/local.txt.in:143
+#: ../jobs/local.txt.in:122
 msgid "Media Card tests"
 msgstr "Проверка карт памяти"
 
 #. description
-#: ../jobs/local.txt.in:150
+#: ../jobs/local.txt.in:129
 msgid "Memory tests"
 msgstr "Проверка памяти"
 
 #. description
-#: ../jobs/local.txt.in:157
+#: ../jobs/local.txt.in:136
 msgid "Miscellaneous tests"
 msgstr "Различные тесты"
 
 #. description
-#: ../jobs/local.txt.in:164
+#: ../jobs/local.txt.in:143
 msgid "Monitor tests"
 msgstr "Проверка монитора"
 
 #. description
-#: ../jobs/local.txt.in:171
+#: ../jobs/local.txt.in:150
 msgid "Networking tests"
 msgstr "Проверка сети"
 
 #. description
-#: ../jobs/local.txt.in:178
+#: ../jobs/local.txt.in:157
 msgid "Optical Drive tests"
 msgstr "Проверка оптических дисков"
 
 #. description
-#: ../jobs/local.txt.in:185
+#: ../jobs/local.txt.in:164
 msgid "Panel Clock Verification tests"
 msgstr "Проверка часов на панели"
 
 #. description
-#: ../jobs/local.txt.in:192
+#: ../jobs/local.txt.in:171
 msgid "PCMCIA/PCIX Card tests"
 msgstr "Проверка PCMCIA/PCIX карт"
 
 #. description
-#: ../jobs/local.txt.in:199
+#: ../jobs/local.txt.in:178
 msgid "Peripheral tests"
 msgstr "Проверка периферийного оборудования"
 
 #. description
-#: ../jobs/local.txt.in:206
+#: ../jobs/local.txt.in:185
 msgid "Power Management tests"
 msgstr "Проверка управления электропитанием"
 
 #. description
-#: ../jobs/local.txt.in:213
-msgid "QA Regression tests"
-msgstr "Регрессионные тесты качества"
-
-#. description
-#: ../jobs/local.txt.in:220
+#: ../jobs/local.txt.in:192
 msgid "Server Services checks"
 msgstr "Проверки серверных служб"
 
 #. description
-#: ../jobs/local.txt.in:227
+#: ../jobs/local.txt.in:199
 msgid "Suspend tests"
 msgstr "Проверка ждущего режима"
 
 #. description
-#: ../jobs/local.txt.in:234
+#: ../jobs/local.txt.in:206
 msgid "Touchpad tests"
 msgstr "Проверка сенсорной панели"
 
 #. description
-#: ../jobs/local.txt.in:241
+#: ../jobs/local.txt.in:213
 msgid "USB tests"
 msgstr "Проверка USB"
 
 #. description
-#: ../jobs/local.txt.in:248
+#: ../jobs/local.txt.in:220
 msgid "User Applications"
 msgstr "Пользовательские приложения"
 
 #. description
-#: ../jobs/local.txt.in:255
+#: ../jobs/local.txt.in:227
 msgid "Wireless networking tests"
 msgstr "Проверка беспроводных сетей"
 
 #. description
-#: ../jobs/local.txt.in:262
+#: ../jobs/local.txt.in:234
 msgid "Stress tests"
 msgstr "Стресс-тесты"
 
 #. description
-#: ../jobs/local.txt.in:269
+#: ../jobs/local.txt.in:241
 msgid "Smoke tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:276
+#: ../jobs/local.txt.in:248
 msgid "Sniff Sniffers"
 msgstr ""
-
-#. description
-#: ../jobs/ltp.txt.in:3
-msgid ""
-"This test installs and runs Linux Test Project syscalls test. This can be "
-"destructive, thus this test is blacklisted by default."
-msgstr ""
-"Этот тест установит и запустит Project Linux syscalls test. Это может "
-"привести к нарушениям работоспособности, поэтому этот тест помещен в черный "
-"список (по умолчанию)."
-
-#. description
-#: ../jobs/mago.txt.in:8
-msgid ""
-"PURPOSE:\n"
-"   This test installs and runs the Mago Automated Desktop Testing suite."
-msgstr ""
-"ЦЕЛЬ:\n"
-"   Эта проверка устанавливает и выполняет набор автоматизированных тестов "
-"Mago."
 
 #. description
 #: ../jobs/mediacard.txt.in:4
@@ -2917,16 +2865,6 @@ msgid ""
 msgstr ""
 "Проверьте установлена ли в ядре директива CONFIG_NO_HZ (это простой тест на "
 "регрессию)"
-
-#. description
-#: ../jobs/qa_regression.txt.in:7
-msgid ""
-"PURPOSE:\n"
-"   This is to install and run the Ubuntu QA regression tests (destructive)"
-msgstr ""
-"Обратите внимание:\n"
-"    Это необходимо для установки и запуска регрессионных (разрушительных) "
-"тестов Ubuntu QA"
 
 #. description
 #: ../jobs/server-services.txt.in:5
@@ -6838,6 +6776,16 @@ msgstr " Результаты "
 #~ msgid "Run Colin Kings FWTS wakealarm test"
 #~ msgstr "Запустите тест тревоги FWTS"
 
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "   This test will attempt to install and run the Autotest Suite.  These "
+#~ "tests can be destructive, so this test is blacklisted by default."
+#~ msgstr ""
+#~ "ЦЕЛЬ:\n"
+#~ "   Эта проверка попытается установить комплект Autotest Suite.  Эти тесты "
+#~ "могут привести систему в аварийное состояние, поэтому они по умолчанию "
+#~ "отнесены в категорию запрещённых."
+
 #~ msgid "Attaches the screenshot captured in info/screenshot."
 #~ msgstr "Добавляет снимок экрана записанный в info/screenshot."
 
@@ -6869,6 +6817,17 @@ msgstr " Результаты "
 #~ "ПРОВЕРКА:\n"
 #~ "    Работает ли экран нормально после выхода из режима ожидания?"
 
+#~ msgid "Linux Test Project tests"
+#~ msgstr "Тесты проекта «Linux Tests»"
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "   This test installs and runs the Mago Automated Desktop Testing suite."
+#~ msgstr ""
+#~ "ЦЕЛЬ:\n"
+#~ "   Эта проверка устанавливает и выполняет набор автоматизированных тестов "
+#~ "Mago."
+
 #~ msgid ""
 #~ "PURPOSE:\n"
 #~ "   This test will download and install the Phoronix Test Suite and run some "
@@ -6878,8 +6837,25 @@ msgstr " Результаты "
 #~ "   Эта проверка загрузит и установит комплекс тестовых программ Phoronix и "
 #~ "выполнит некоторые выбранные тесты."
 
+#~ msgid "Autotest Suite tests"
+#~ msgstr "Тесты из набора Autotest"
+
 #~ msgid "Phoronix Test Suite tests"
 #~ msgstr "Тесты Phoronix Test Suite"
+
+#~ msgid ""
+#~ "This test installs and runs Linux Test Project syscalls test. This can be "
+#~ "destructive, thus this test is blacklisted by default."
+#~ msgstr ""
+#~ "Этот тест установит и запустит Project Linux syscalls test. Это может "
+#~ "привести к нарушениям работоспособности, поэтому этот тест помещен в черный "
+#~ "список (по умолчанию)."
+
+#~ msgid "QA Regression tests"
+#~ msgstr "Регрессионные тесты качества"
+
+#~ msgid "Mago Automated Desktop Testing"
+#~ msgstr "Автоматическое тестирование рабочего стола Mago"
 
 #~ msgid ""
 #~ "PURPOSE:\n"
@@ -7000,6 +6976,14 @@ msgstr " Результаты "
 #~ "ПРОВЕРКА:\n"
 #~ "    Проверка автоматизирована. Не изменяйте автоматически\n"
 #~ "    выбранный результат."
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "   This is to install and run the Ubuntu QA regression tests (destructive)"
+#~ msgstr ""
+#~ "Обратите внимание:\n"
+#~ "    Это необходимо для установки и запуска регрессионных (разрушительных) "
+#~ "тестов Ubuntu QA"
 
 #~ msgid "Test ACPI Wakealarm (fwts wakealarm) "
 #~ msgstr "Проверить, есть ли ошибки в работе ACPI "

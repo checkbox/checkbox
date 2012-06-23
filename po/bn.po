@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-06-20 10:38-0400\n"
+"POT-Creation-Date: 2012-06-21 12:15-0400\n"
 "PO-Revision-Date: 2011-07-19 17:48+0000\n"
 "Last-Translator: nasir khan saikat <nasir8891@gmail.com>\n"
 "Language-Team: Bengali <bn@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-06-21 05:11+0000\n"
-"X-Generator: Launchpad (build 15435)\n"
+"X-Launchpad-Export-Date: 2012-06-23 04:32+0000\n"
+"X-Generator: Launchpad (build 15461)\n"
 
 #. Title of the user interface
 #: ../gtk/checkbox-gtk.ui.h:1 ../qt/checkbox-qt.desktop.in.h:1
@@ -203,18 +203,6 @@ msgstr ""
 #: ../jobs/audio.txt.in:118
 msgid "Attaches the audio hardware data collection log to the results."
 msgstr ""
-
-#. description
-#: ../jobs/autotest.txt.in:6
-msgid ""
-"PURPOSE:\n"
-"   This test will attempt to install and run the Autotest Suite.  These "
-"tests can be destructive, so this test is blacklisted by default."
-msgstr ""
-"PURPOSE:\n"
-"   এই পরীক্ষা থেকে ইনস্টল করার প্রচেষ্টা করা হবে এবং অটোটেস্ট স্যুইট চালানো "
-"হবে। এই পরীক্ষাগুলো নাশক হতে পারে, তাই এই পরীক্ষা ডিফল্টরূপে কালো "
-"তালিকাভুক্ত করা হয়।"
 
 #. description
 #: ../jobs/benchmarks.txt.in:18
@@ -1411,217 +1399,178 @@ msgstr "অডিও পরীক্ষা"
 
 #. description
 #: ../jobs/local.txt.in:10
-msgid "Autotest Suite tests"
-msgstr "অটোটেস্ট সুইট পরীক্ষা"
-
-#. description
-#: ../jobs/local.txt.in:17
 msgid "Benchmarks tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:24
+#: ../jobs/local.txt.in:17
 msgid "Bluetooth tests"
 msgstr "ব্লুটুথ পরীক্ষা"
 
 #. description
-#: ../jobs/local.txt.in:31
+#: ../jobs/local.txt.in:24
 msgid "Camera tests"
 msgstr "ক্যামেরা পরীক্ষা"
 
 #. description
-#: ../jobs/local.txt.in:38
+#: ../jobs/local.txt.in:31
 msgid "Codec tests"
 msgstr "কোডেক পরীক্ষা"
 
 #. description
-#: ../jobs/local.txt.in:45
+#: ../jobs/local.txt.in:38
 msgid "CPU tests"
 msgstr "সিপিও পরীক্ষা"
 
 #. description
-#: ../jobs/local.txt.in:52
+#: ../jobs/local.txt.in:45
 msgid "System Daemon tests"
 msgstr "সিস্টেম ডেমন পরীক্ষা"
 
 #. description
-#: ../jobs/local.txt.in:59
+#: ../jobs/local.txt.in:52
 msgid "Disk tests"
 msgstr "ডিস্ক পরীক্ষা"
 
 #. description
-#: ../jobs/local.txt.in:66
+#: ../jobs/local.txt.in:59
 msgid "Fingerprint reader tests"
 msgstr "ফিঙ্গার প্রিন্ট রীডার পরীক্ষা"
 
 #. description
-#: ../jobs/local.txt.in:73
+#: ../jobs/local.txt.in:66
 msgid "Firewire disk tests"
 msgstr "ফায়রওয়্যার ডিস্ক পরীক্ষা"
 
 #. description
-#: ../jobs/local.txt.in:80
+#: ../jobs/local.txt.in:73
 msgid "Floppy disk tests"
 msgstr "ফ্লপি ডিস্ক পরীক্ষা"
 
 #. description
-#: ../jobs/local.txt.in:87
+#: ../jobs/local.txt.in:80
 msgid "Graphics tests"
 msgstr "গ্রাফিক্স পরীক্ষা"
 
 #. description
-#: ../jobs/local.txt.in:94
+#: ../jobs/local.txt.in:87
 msgid "Hibernation tests"
 msgstr "হাইবারনেশন পরীক্ষা"
 
 #. description
-#: ../jobs/local.txt.in:101
+#: ../jobs/local.txt.in:94
 msgid "Informational tests"
 msgstr "তথ্যজনিত পরীক্ষা"
 
 #. description
-#: ../jobs/local.txt.in:108
+#: ../jobs/local.txt.in:101
 msgid "Input Devices tests"
 msgstr "ইনপুট ডিভাইস পরীক্ষা"
 
 #. description
-#: ../jobs/local.txt.in:115
+#: ../jobs/local.txt.in:108
 msgid "Software Installation tests"
 msgstr "সফটওয়্যার ইন্সটলেশন পরীক্ষা"
 
 #. description
-#: ../jobs/local.txt.in:122
+#: ../jobs/local.txt.in:115
 msgid "Hotkey tests"
 msgstr "হটকি পরীক্ষা"
 
 #. description
-#: ../jobs/local.txt.in:129
-msgid "Linux Test Project tests"
-msgstr "লিনাক্স টেস্ট এর প্রকল্প পরীক্ষা"
-
-#. description
-#: ../jobs/local.txt.in:136
-msgid "Mago Automated Desktop Testing"
-msgstr "Mago Automated ডেস্কটপ পরীক্ষা"
-
-#. description
-#: ../jobs/local.txt.in:143
+#: ../jobs/local.txt.in:122
 msgid "Media Card tests"
 msgstr "মিডিয়া কার্ড পরীক্ষা"
 
 #. description
-#: ../jobs/local.txt.in:150
+#: ../jobs/local.txt.in:129
 msgid "Memory tests"
 msgstr "মেমোরি পরীক্ষা"
 
 #. description
-#: ../jobs/local.txt.in:157
+#: ../jobs/local.txt.in:136
 msgid "Miscellaneous tests"
 msgstr "বিবিধ পরীক্ষা"
 
 #. description
-#: ../jobs/local.txt.in:164
+#: ../jobs/local.txt.in:143
 msgid "Monitor tests"
 msgstr "মনিটর পরীক্ষা"
 
 #. description
-#: ../jobs/local.txt.in:171
+#: ../jobs/local.txt.in:150
 msgid "Networking tests"
 msgstr "নেটওয়ার্ক পরীক্ষা"
 
 #. description
-#: ../jobs/local.txt.in:178
+#: ../jobs/local.txt.in:157
 msgid "Optical Drive tests"
 msgstr "অপটিক্যাল ড্রাইভ পরীক্ষা"
 
 #. description
-#: ../jobs/local.txt.in:185
+#: ../jobs/local.txt.in:164
 msgid "Panel Clock Verification tests"
 msgstr "প্যানেল ক্লক যাচাই পরীক্ষা"
 
 #. description
-#: ../jobs/local.txt.in:192
+#: ../jobs/local.txt.in:171
 msgid "PCMCIA/PCIX Card tests"
 msgstr "PCMCIA/PCIX কার্ড পরীক্ষা"
 
 #. description
-#: ../jobs/local.txt.in:199
+#: ../jobs/local.txt.in:178
 msgid "Peripheral tests"
 msgstr "প্রান্তিক টেস্ট পরীক্ষা"
 
 #. description
-#: ../jobs/local.txt.in:206
+#: ../jobs/local.txt.in:185
 msgid "Power Management tests"
 msgstr "পাওয়ার ব্যবস্থাপনা পরীক্ষা"
 
 #. description
-#: ../jobs/local.txt.in:213
-msgid "QA Regression tests"
-msgstr "QA Regression পরীক্ষা করুন"
-
-#. description
-#: ../jobs/local.txt.in:220
+#: ../jobs/local.txt.in:192
 msgid "Server Services checks"
 msgstr "সার্ভার পরিসেবা বাছাই করুন"
 
 #. description
-#: ../jobs/local.txt.in:227
+#: ../jobs/local.txt.in:199
 msgid "Suspend tests"
 msgstr "পরীক্ষা স্থগিত"
 
 #. description
-#: ../jobs/local.txt.in:234
+#: ../jobs/local.txt.in:206
 msgid "Touchpad tests"
 msgstr "টাচপ্যাড পরীক্ষা"
 
 #. description
-#: ../jobs/local.txt.in:241
+#: ../jobs/local.txt.in:213
 msgid "USB tests"
 msgstr "USB পরীক্ষা করুন"
 
 #. description
-#: ../jobs/local.txt.in:248
+#: ../jobs/local.txt.in:220
 msgid "User Applications"
 msgstr "ব্যবহারকারীর অ্যাপ্লিকেশন"
 
 #. description
-#: ../jobs/local.txt.in:255
+#: ../jobs/local.txt.in:227
 msgid "Wireless networking tests"
 msgstr "তারবিহীন নেটওয়ার্কিং পরীক্ষা করুন"
 
 #. description
-#: ../jobs/local.txt.in:262
+#: ../jobs/local.txt.in:234
 msgid "Stress tests"
 msgstr "স্ট্রেস পরীক্ষা করুন"
 
 #. description
-#: ../jobs/local.txt.in:269
+#: ../jobs/local.txt.in:241
 msgid "Smoke tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:276
+#: ../jobs/local.txt.in:248
 msgid "Sniff Sniffers"
 msgstr ""
-
-#. description
-#: ../jobs/ltp.txt.in:3
-msgid ""
-"This test installs and runs Linux Test Project syscalls test. This can be "
-"destructive, thus this test is blacklisted by default."
-msgstr ""
-"এটি ইনস্টল পরীক্ষা করবে এবং Linux Test Project syscalls পরীক্ষা চালাবে। এই "
-"বিনাশক হতে পারে, সেই জন্য এই পরীক্ষাটি ডিফল্টরূপে কালো তালিকাভুক্ত করা হয়।"
-
-#. description
-#: ../jobs/mago.txt.in:8
-msgid ""
-"PURPOSE:\n"
-"   This test installs and runs the Mago Automated Desktop Testing suite."
-msgstr ""
-"PURPOSE:\n"
-"   এই পরীক্ষা ইনস্টল করা হয় এবং Mago স্বয়ংক্রিয় ডেস্কটপ টেস্টিং স্যুট "
-"চালনা করা হয়।"
 
 #. description
 #: ../jobs/mediacard.txt.in:4
@@ -2745,16 +2694,6 @@ msgid ""
 msgstr ""
 "CONFIG_NO_HZ তে kernel নির্ধারিত হয়েছে কিনা তা দেখার জন্য পরীক্ষা করুন (এটি "
 "শুধুমাত্র একটি সাধারণ নিবন্ধনের পরীক্ষা)"
-
-#. description
-#: ../jobs/qa_regression.txt.in:7
-msgid ""
-"PURPOSE:\n"
-"   This is to install and run the Ubuntu QA regression tests (destructive)"
-msgstr ""
-"PURPOSE:\n"
-"   এটি শুধুমাত্র ইনস্টল এবং উবুন্টু QA নিবন্ধনের পরীক্ষা চালানোর জন্য "
-"(ধ্বংসাত্নক)"
 
 #. description
 #: ../jobs/server-services.txt.in:5
@@ -5662,6 +5601,16 @@ msgstr ""
 
 #~ msgid ""
 #~ "PURPOSE:\n"
+#~ "   This test will attempt to install and run the Autotest Suite.  These "
+#~ "tests can be destructive, so this test is blacklisted by default."
+#~ msgstr ""
+#~ "PURPOSE:\n"
+#~ "   এই পরীক্ষা থেকে ইনস্টল করার প্রচেষ্টা করা হবে এবং অটোটেস্ট স্যুইট চালানো "
+#~ "হবে। এই পরীক্ষাগুলো নাশক হতে পারে, তাই এই পরীক্ষা ডিফল্টরূপে কালো "
+#~ "তালিকাভুক্ত করা হয়।"
+
+#~ msgid ""
+#~ "PURPOSE:\n"
 #~ "    This test will check the system can detect the insertion of a FireWire "
 #~ "HDD\n"
 #~ "STEPS:\n"
@@ -5717,11 +5666,38 @@ msgstr ""
 #~ msgid "Attaches the screenshot captured in info/screenshot."
 #~ msgstr "info/screenshot তে ধরণকৃত স্ক্রীনশট সংযুক্ত করা হয়।"
 
+#~ msgid "Autotest Suite tests"
+#~ msgstr "অটোটেস্ট সুইট পরীক্ষা"
+
+#~ msgid "Linux Test Project tests"
+#~ msgstr "লিনাক্স টেস্ট এর প্রকল্প পরীক্ষা"
+
+#~ msgid "Mago Automated Desktop Testing"
+#~ msgstr "Mago Automated ডেস্কটপ পরীক্ষা"
+
 #~ msgid "Phoronix Test Suite tests"
 #~ msgstr "ফরনিক্স টেস্ট সুইট পরীক্ষা"
 
+#~ msgid "QA Regression tests"
+#~ msgstr "QA Regression পরীক্ষা করুন"
+
 #~ msgid "Unity tests"
 #~ msgstr "ঐক্য পরীক্ষা করুন"
+
+#~ msgid ""
+#~ "This test installs and runs Linux Test Project syscalls test. This can be "
+#~ "destructive, thus this test is blacklisted by default."
+#~ msgstr ""
+#~ "এটি ইনস্টল পরীক্ষা করবে এবং Linux Test Project syscalls পরীক্ষা চালাবে। এই "
+#~ "বিনাশক হতে পারে, সেই জন্য এই পরীক্ষাটি ডিফল্টরূপে কালো তালিকাভুক্ত করা হয়।"
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "   This test installs and runs the Mago Automated Desktop Testing suite."
+#~ msgstr ""
+#~ "PURPOSE:\n"
+#~ "   এই পরীক্ষা ইনস্টল করা হয় এবং Mago স্বয়ংক্রিয় ডেস্কটপ টেস্টিং স্যুট "
+#~ "চালনা করা হয়।"
 
 #~ msgid ""
 #~ "PURPOSE:\n"
@@ -6137,6 +6113,14 @@ msgstr ""
 
 #~ msgid "Test ACPI Wakealarm (fwts wakealarm) "
 #~ msgstr "Test ACPI Wakealarm (fwts wakealarm) "
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "   This is to install and run the Ubuntu QA regression tests (destructive)"
+#~ msgstr ""
+#~ "PURPOSE:\n"
+#~ "   এটি শুধুমাত্র ইনস্টল এবং উবুন্টু QA নিবন্ধনের পরীক্ষা চালানোর জন্য "
+#~ "(ধ্বংসাত্নক)"
 
 #~ msgid ""
 #~ "PURPOSE:\n"

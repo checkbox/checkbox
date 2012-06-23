@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-20 10:38-0400\n"
+"POT-Creation-Date: 2012-06-21 12:15-0400\n"
 "PO-Revision-Date: 2012-02-18 19:04+0000\n"
 "Last-Translator: Kostas Milonas <milonas.ko@gmail.com>\n"
 "Language-Team: Greek <team@gnome.gr>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-06-21 05:12+0000\n"
-"X-Generator: Launchpad (build 15435)\n"
+"X-Launchpad-Export-Date: 2012-06-23 04:33+0000\n"
+"X-Generator: Launchpad (build 15461)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:2 ../checkbox_gtk/gtk_interface.py:561
 msgid "_Test"
@@ -248,18 +248,6 @@ msgstr ""
 #: ../jobs/audio.txt.in:118
 msgid "Attaches the audio hardware data collection log to the results."
 msgstr ""
-
-#. description
-#: ../jobs/autotest.txt.in:6
-msgid ""
-"PURPOSE:\n"
-"   This test will attempt to install and run the Autotest Suite.  These "
-"tests can be destructive, so this test is blacklisted by default."
-msgstr ""
-"ΣΚΟΠΟΣ:\n"
-"   Αυτό το τεστ θα επιχειρήσει να εγκαταστήσει και να εκτελέσει τη σουίτα "
-"δοκιμών Autotest Suite. Οι δοκιμές αυτές ενδέχεται να είναι καταστρεπτικές, "
-"έτσι αυτό το τεστ αποφεύγεται από προεπιλογή."
 
 #. description
 #: ../jobs/benchmarks.txt.in:18
@@ -1525,218 +1513,178 @@ msgstr "Έλεγχοι ήχου"
 
 #. description
 #: ../jobs/local.txt.in:10
-msgid "Autotest Suite tests"
-msgstr "Δοκιμές της σουίτας Autotest"
-
-#. description
-#: ../jobs/local.txt.in:17
 msgid "Benchmarks tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:24
+#: ../jobs/local.txt.in:17
 msgid "Bluetooth tests"
 msgstr "Έλεγχοι bluetooth"
 
 #. description
-#: ../jobs/local.txt.in:31
+#: ../jobs/local.txt.in:24
 msgid "Camera tests"
 msgstr "Έλεγχοι κάμερας"
 
 #. description
-#: ../jobs/local.txt.in:38
+#: ../jobs/local.txt.in:31
 msgid "Codec tests"
 msgstr "Έλεγχοι κωδικοποιήσεων"
 
 #. description
-#: ../jobs/local.txt.in:45
+#: ../jobs/local.txt.in:38
 msgid "CPU tests"
 msgstr "Έλεγχοι επεξεργαστών"
 
 #. description
-#: ../jobs/local.txt.in:52
+#: ../jobs/local.txt.in:45
 msgid "System Daemon tests"
 msgstr "Έλεγχοι «δαιμόνων» του συστήματος"
 
 #. description
-#: ../jobs/local.txt.in:59
+#: ../jobs/local.txt.in:52
 msgid "Disk tests"
 msgstr "Δοκιμές δίσκου"
 
 #. description
-#: ../jobs/local.txt.in:66
+#: ../jobs/local.txt.in:59
 msgid "Fingerprint reader tests"
 msgstr "Δοκιμές αναγνώστη δακτυλικών αποτυπωμάτων"
 
 #. description
-#: ../jobs/local.txt.in:73
+#: ../jobs/local.txt.in:66
 msgid "Firewire disk tests"
 msgstr "Δοκιμές δίσκου Firewire"
 
 #. description
-#: ../jobs/local.txt.in:80
+#: ../jobs/local.txt.in:73
 msgid "Floppy disk tests"
 msgstr "Έλεγχοι δισκετών Floppy"
 
 #. description
-#: ../jobs/local.txt.in:87
+#: ../jobs/local.txt.in:80
 msgid "Graphics tests"
 msgstr "Έλεγχοι γραφικών"
 
 #. description
-#: ../jobs/local.txt.in:94
+#: ../jobs/local.txt.in:87
 msgid "Hibernation tests"
 msgstr "Έλεγχοι αδρανοποίησης"
 
 #. description
-#: ../jobs/local.txt.in:101
+#: ../jobs/local.txt.in:94
 msgid "Informational tests"
 msgstr "Πληροφοριακοί έλεγχοι"
 
 #. description
-#: ../jobs/local.txt.in:108
+#: ../jobs/local.txt.in:101
 msgid "Input Devices tests"
 msgstr "Έλεγχοι συσκευών εισόδου"
 
 #. description
-#: ../jobs/local.txt.in:115
+#: ../jobs/local.txt.in:108
 msgid "Software Installation tests"
 msgstr "Έλεγχοι εγκατάστασης λογισμικού"
 
 #. description
-#: ../jobs/local.txt.in:122
+#: ../jobs/local.txt.in:115
 msgid "Hotkey tests"
 msgstr "Έλεγχοι συντομεύσεων πλήκτρων"
 
 #. description
-#: ../jobs/local.txt.in:129
-msgid "Linux Test Project tests"
-msgstr "Έλεγχοι του Linux Test Project"
-
-#. description
-#: ../jobs/local.txt.in:136
-msgid "Mago Automated Desktop Testing"
-msgstr "Αυτοματοποιημένοι έλεγχοι περιβάλλοντος εργασίας Mago"
-
-#. description
-#: ../jobs/local.txt.in:143
+#: ../jobs/local.txt.in:122
 msgid "Media Card tests"
 msgstr "Έλεγχοι καρτών μέσων"
 
 #. description
-#: ../jobs/local.txt.in:150
+#: ../jobs/local.txt.in:129
 msgid "Memory tests"
 msgstr "Έλεγχοι μνήμης"
 
 #. description
-#: ../jobs/local.txt.in:157
+#: ../jobs/local.txt.in:136
 msgid "Miscellaneous tests"
 msgstr "Διάφοροι έλεγχοι"
 
 #. description
-#: ../jobs/local.txt.in:164
+#: ../jobs/local.txt.in:143
 msgid "Monitor tests"
 msgstr "Δοκιμές οθόνης"
 
 #. description
-#: ../jobs/local.txt.in:171
+#: ../jobs/local.txt.in:150
 msgid "Networking tests"
 msgstr "Έλεγχοι δικτύων"
 
 #. description
-#: ../jobs/local.txt.in:178
+#: ../jobs/local.txt.in:157
 msgid "Optical Drive tests"
 msgstr "Έλεγχοι οδηγών οπτικών συσκευών"
 
 #. description
-#: ../jobs/local.txt.in:185
+#: ../jobs/local.txt.in:164
 msgid "Panel Clock Verification tests"
 msgstr "Έλεγχοι επαλήθευσης ρολογιού πίνακα εφαρμογών"
 
 #. description
-#: ../jobs/local.txt.in:192
+#: ../jobs/local.txt.in:171
 msgid "PCMCIA/PCIX Card tests"
 msgstr "Έλεγχοι καρτών PCMCIA/PCIX"
 
 #. description
-#: ../jobs/local.txt.in:199
+#: ../jobs/local.txt.in:178
 msgid "Peripheral tests"
 msgstr "Έλεγχοι περιφερειακών"
 
 #. description
-#: ../jobs/local.txt.in:206
+#: ../jobs/local.txt.in:185
 msgid "Power Management tests"
 msgstr "Έλεγχοι διαχείρισης ενέργειας"
 
 #. description
-#: ../jobs/local.txt.in:213
-msgid "QA Regression tests"
-msgstr "Έλεγχοι παλινδρομήσεων QA"
-
-#. description
-#: ../jobs/local.txt.in:220
+#: ../jobs/local.txt.in:192
 msgid "Server Services checks"
 msgstr "Έλεγχοι υπηρεσιών εξυπηρετητή"
 
 #. description
-#: ../jobs/local.txt.in:227
+#: ../jobs/local.txt.in:199
 msgid "Suspend tests"
 msgstr "Έλεγχοι αναστολής λειτουργίας"
 
 #. description
-#: ../jobs/local.txt.in:234
+#: ../jobs/local.txt.in:206
 msgid "Touchpad tests"
 msgstr "Δοκιμές touchpad"
 
 #. description
-#: ../jobs/local.txt.in:241
+#: ../jobs/local.txt.in:213
 msgid "USB tests"
 msgstr "Έλεγχοι USB"
 
 #. description
-#: ../jobs/local.txt.in:248
+#: ../jobs/local.txt.in:220
 msgid "User Applications"
 msgstr "Εφαρμογές χρήστη"
 
 #. description
-#: ../jobs/local.txt.in:255
+#: ../jobs/local.txt.in:227
 msgid "Wireless networking tests"
 msgstr "Έλεγχοι ασύρματης δικτύωσης"
 
 #. description
-#: ../jobs/local.txt.in:262
+#: ../jobs/local.txt.in:234
 msgid "Stress tests"
 msgstr "Έλεγχοι υπερβολικού φόρτου"
 
 #. description
-#: ../jobs/local.txt.in:269
+#: ../jobs/local.txt.in:241
 msgid "Smoke tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:276
+#: ../jobs/local.txt.in:248
 msgid "Sniff Sniffers"
 msgstr ""
-
-#. description
-#: ../jobs/ltp.txt.in:3
-msgid ""
-"This test installs and runs Linux Test Project syscalls test. This can be "
-"destructive, thus this test is blacklisted by default."
-msgstr ""
-"Αυτός ο έλεγχος εγκαθιστά και εκτελεί το σύστημα δοκιμών συστήματος Linux "
-"Test Project. Αυτός ο έλεγχος ενδέχεται να είναι καταστρεπτικός, οπότε από "
-"προεπιλογή είναι μη προτεινόμενος."
-
-#. description
-#: ../jobs/mago.txt.in:8
-msgid ""
-"PURPOSE:\n"
-"   This test installs and runs the Mago Automated Desktop Testing suite."
-msgstr ""
-"ΣΚΟΠΟΣ:\n"
-"   Αυτός ο έλεγχος εγκαθιστά και εκτελεί τη σουίτα δοκιμών αυτοματισμών "
-"περιβάλλοντος εργασίας Mago."
 
 #. description
 #: ../jobs/mediacard.txt.in:4
@@ -2925,16 +2873,6 @@ msgid ""
 msgstr ""
 "Έλεγχος για το αν το CONFIG_NO_HZ έχει ρυθμιστεί στον πυρήνα (Αυτός είναι "
 "ένας απλός έλεγχος παλινδρόμησης)"
-
-#. description
-#: ../jobs/qa_regression.txt.in:7
-msgid ""
-"PURPOSE:\n"
-"   This is to install and run the Ubuntu QA regression tests (destructive)"
-msgstr ""
-"ΣΚΟΠΟΣ:\n"
-"   Αυτό είναι για την εγκατάσταση και την εκτέλεση των ελέγχων παλινδρόμησης "
-"Ubuntu QA (καταστρεπτικό)"
 
 #. description
 #: ../jobs/server-services.txt.in:5
@@ -5950,14 +5888,52 @@ msgstr " Αποτελέσματα "
 #~ msgid "Test %s from suite %s failed."
 #~ msgstr "Ο έλεγχος %s από την σουίτα %s απέτυχε."
 
+#~ msgid "Linux Test Project tests"
+#~ msgstr "Έλεγχοι του Linux Test Project"
+
 #~ msgid "Phoronix Test Suite tests"
 #~ msgstr "Έλεγχοι σουίτας δοκιμών του Phoronix"
 
 #~ msgid "Unity tests"
 #~ msgstr "Έλεγχοι του Unity"
 
+#~ msgid ""
+#~ "This test installs and runs Linux Test Project syscalls test. This can be "
+#~ "destructive, thus this test is blacklisted by default."
+#~ msgstr ""
+#~ "Αυτός ο έλεγχος εγκαθιστά και εκτελεί το σύστημα δοκιμών συστήματος Linux "
+#~ "Test Project. Αυτός ο έλεγχος ενδέχεται να είναι καταστρεπτικός, οπότε από "
+#~ "προεπιλογή είναι μη προτεινόμενος."
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "   This test installs and runs the Mago Automated Desktop Testing suite."
+#~ msgstr ""
+#~ "ΣΚΟΠΟΣ:\n"
+#~ "   Αυτός ο έλεγχος εγκαθιστά και εκτελεί τη σουίτα δοκιμών αυτοματισμών "
+#~ "περιβάλλοντος εργασίας Mago."
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "   This test will attempt to install and run the Autotest Suite.  These "
+#~ "tests can be destructive, so this test is blacklisted by default."
+#~ msgstr ""
+#~ "ΣΚΟΠΟΣ:\n"
+#~ "   Αυτό το τεστ θα επιχειρήσει να εγκαταστήσει και να εκτελέσει τη σουίτα "
+#~ "δοκιμών Autotest Suite. Οι δοκιμές αυτές ενδέχεται να είναι καταστρεπτικές, "
+#~ "έτσι αυτό το τεστ αποφεύγεται από προεπιλογή."
+
+#~ msgid "QA Regression tests"
+#~ msgstr "Έλεγχοι παλινδρομήσεων QA"
+
 #~ msgid "Attaches the screenshot captured in info/screenshot."
 #~ msgstr "Επισύναψη του στιγμιότυπου που καταγράφηκε στο  info/screenshot."
+
+#~ msgid "Autotest Suite tests"
+#~ msgstr "Δοκιμές της σουίτας Autotest"
+
+#~ msgid "Mago Automated Desktop Testing"
+#~ msgstr "Αυτοματοποιημένοι έλεγχοι περιβάλλοντος εργασίας Mago"
 
 #~ msgid ""
 #~ "ipmitool is required for ipmi testing. This checks for ipmitool and installs "
@@ -5995,6 +5971,14 @@ msgstr " Αποτελέσματα "
 
 #~ msgid "Test ACPI Wakealarm (fwts wakealarm) "
 #~ msgstr "Δοκιμή του ACPI Wakealarm (fwts wakealarm) "
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "   This is to install and run the Ubuntu QA regression tests (destructive)"
+#~ msgstr ""
+#~ "ΣΚΟΠΟΣ:\n"
+#~ "   Αυτό είναι για την εγκατάσταση και την εκτέλεση των ελέγχων παλινδρόμησης "
+#~ "Ubuntu QA (καταστρεπτικό)"
 
 #~ msgid ""
 #~ "PURPOSE:\n"

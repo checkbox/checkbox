@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-20 10:38-0400\n"
+"POT-Creation-Date: 2012-06-21 12:15-0400\n"
 "PO-Revision-Date: 2011-09-13 05:37+0000\n"
 "Last-Translator: Wylmer Wang <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-06-21 05:15+0000\n"
-"X-Generator: Launchpad (build 15435)\n"
+"X-Launchpad-Export-Date: 2012-06-23 04:36+0000\n"
+"X-Generator: Launchpad (build 15461)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:9
 msgid "_Previous"
@@ -201,16 +201,6 @@ msgstr ""
 #: ../jobs/audio.txt.in:118
 msgid "Attaches the audio hardware data collection log to the results."
 msgstr ""
-
-#. description
-#: ../jobs/autotest.txt.in:6
-msgid ""
-"PURPOSE:\n"
-"   This test will attempt to install and run the Autotest Suite.  These "
-"tests can be destructive, so this test is blacklisted by default."
-msgstr ""
-"目的：\n"
-"   此测试将尝试安装并运行自动测试用例。这些测试可能具有破坏性，因此在默认情况下，此测试被列入黑名单。"
 
 #. description
 #: ../jobs/benchmarks.txt.in:18
@@ -1364,214 +1354,178 @@ msgstr "音频测试"
 
 #. description
 #: ../jobs/local.txt.in:10
-msgid "Autotest Suite tests"
-msgstr "自动测试用例测试"
-
-#. description
-#: ../jobs/local.txt.in:17
 msgid "Benchmarks tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:24
+#: ../jobs/local.txt.in:17
 msgid "Bluetooth tests"
 msgstr "蓝牙测试"
 
 #. description
-#: ../jobs/local.txt.in:31
+#: ../jobs/local.txt.in:24
 msgid "Camera tests"
 msgstr "摄像头测试"
 
 #. description
-#: ../jobs/local.txt.in:38
+#: ../jobs/local.txt.in:31
 msgid "Codec tests"
 msgstr "编解码器测试"
 
 #. description
-#: ../jobs/local.txt.in:45
+#: ../jobs/local.txt.in:38
 msgid "CPU tests"
 msgstr "中央处理器测试"
 
 #. description
-#: ../jobs/local.txt.in:52
+#: ../jobs/local.txt.in:45
 msgid "System Daemon tests"
 msgstr "系统守护进程测试"
 
 #. description
-#: ../jobs/local.txt.in:59
+#: ../jobs/local.txt.in:52
 msgid "Disk tests"
 msgstr "磁盘测试"
 
 #. description
-#: ../jobs/local.txt.in:66
+#: ../jobs/local.txt.in:59
 msgid "Fingerprint reader tests"
 msgstr "指纹阅读器测试"
 
 #. description
-#: ../jobs/local.txt.in:73
+#: ../jobs/local.txt.in:66
 msgid "Firewire disk tests"
 msgstr "火线(Firewire)磁盘测试"
 
 #. description
-#: ../jobs/local.txt.in:80
+#: ../jobs/local.txt.in:73
 msgid "Floppy disk tests"
 msgstr "软盘测试"
 
 #. description
-#: ../jobs/local.txt.in:87
+#: ../jobs/local.txt.in:80
 msgid "Graphics tests"
 msgstr "显卡测试"
 
 #. description
-#: ../jobs/local.txt.in:94
+#: ../jobs/local.txt.in:87
 msgid "Hibernation tests"
 msgstr "休眠测试"
 
 #. description
-#: ../jobs/local.txt.in:101
+#: ../jobs/local.txt.in:94
 msgid "Informational tests"
 msgstr "信息性测试"
 
 #. description
-#: ../jobs/local.txt.in:108
+#: ../jobs/local.txt.in:101
 msgid "Input Devices tests"
 msgstr "输入设备测试"
 
 #. description
-#: ../jobs/local.txt.in:115
+#: ../jobs/local.txt.in:108
 msgid "Software Installation tests"
 msgstr "软件安装测试"
 
 #. description
-#: ../jobs/local.txt.in:122
+#: ../jobs/local.txt.in:115
 msgid "Hotkey tests"
 msgstr "热键测试"
 
 #. description
-#: ../jobs/local.txt.in:129
-msgid "Linux Test Project tests"
-msgstr "Linux 测试项目测试"
-
-#. description
-#: ../jobs/local.txt.in:136
-msgid "Mago Automated Desktop Testing"
-msgstr "Mago 自动桌面测试"
-
-#. description
-#: ../jobs/local.txt.in:143
+#: ../jobs/local.txt.in:122
 msgid "Media Card tests"
 msgstr "媒体卡测试"
 
 #. description
-#: ../jobs/local.txt.in:150
+#: ../jobs/local.txt.in:129
 msgid "Memory tests"
 msgstr "内存测试"
 
 #. description
-#: ../jobs/local.txt.in:157
+#: ../jobs/local.txt.in:136
 msgid "Miscellaneous tests"
 msgstr "杂项测试"
 
 #. description
-#: ../jobs/local.txt.in:164
+#: ../jobs/local.txt.in:143
 msgid "Monitor tests"
 msgstr "显示器测试"
 
 #. description
-#: ../jobs/local.txt.in:171
+#: ../jobs/local.txt.in:150
 msgid "Networking tests"
 msgstr "联网测试"
 
 #. description
-#: ../jobs/local.txt.in:178
+#: ../jobs/local.txt.in:157
 msgid "Optical Drive tests"
 msgstr "光驱测试"
 
 #. description
-#: ../jobs/local.txt.in:185
+#: ../jobs/local.txt.in:164
 msgid "Panel Clock Verification tests"
 msgstr "面板时钟验证测试"
 
 #. description
-#: ../jobs/local.txt.in:192
+#: ../jobs/local.txt.in:171
 msgid "PCMCIA/PCIX Card tests"
 msgstr "PCMCIA/PCIX 卡测试"
 
 #. description
-#: ../jobs/local.txt.in:199
+#: ../jobs/local.txt.in:178
 msgid "Peripheral tests"
 msgstr "外围设备测试"
 
 #. description
-#: ../jobs/local.txt.in:206
+#: ../jobs/local.txt.in:185
 msgid "Power Management tests"
 msgstr "电源管理测试"
 
 #. description
-#: ../jobs/local.txt.in:213
-msgid "QA Regression tests"
-msgstr "QA 回归测试"
-
-#. description
-#: ../jobs/local.txt.in:220
+#: ../jobs/local.txt.in:192
 msgid "Server Services checks"
 msgstr "服务器服务检查"
 
 #. description
-#: ../jobs/local.txt.in:227
+#: ../jobs/local.txt.in:199
 msgid "Suspend tests"
 msgstr "挂起测试"
 
 #. description
-#: ../jobs/local.txt.in:234
+#: ../jobs/local.txt.in:206
 msgid "Touchpad tests"
 msgstr "触控板测试"
 
 #. description
-#: ../jobs/local.txt.in:241
+#: ../jobs/local.txt.in:213
 msgid "USB tests"
 msgstr "USB 测试"
 
 #. description
-#: ../jobs/local.txt.in:248
+#: ../jobs/local.txt.in:220
 msgid "User Applications"
 msgstr "用户应用程序"
 
 #. description
-#: ../jobs/local.txt.in:255
+#: ../jobs/local.txt.in:227
 msgid "Wireless networking tests"
 msgstr "无线联网测试"
 
 #. description
-#: ../jobs/local.txt.in:262
+#: ../jobs/local.txt.in:234
 msgid "Stress tests"
 msgstr "压力测试"
 
 #. description
-#: ../jobs/local.txt.in:269
+#: ../jobs/local.txt.in:241
 msgid "Smoke tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:276
+#: ../jobs/local.txt.in:248
 msgid "Sniff Sniffers"
 msgstr ""
-
-#. description
-#: ../jobs/ltp.txt.in:3
-msgid ""
-"This test installs and runs Linux Test Project syscalls test. This can be "
-"destructive, thus this test is blacklisted by default."
-msgstr "此测试安装并运行 Linux Test Project 系统调用测试。此测试可能具有破坏性，因此在默认情况下，此测试被列入黑名单。"
-
-#. description
-#: ../jobs/mago.txt.in:8
-msgid ""
-"PURPOSE:\n"
-"   This test installs and runs the Mago Automated Desktop Testing suite."
-msgstr ""
-"目的：\n"
-"   此测试安装并运行 Mago 桌面自动测试套件。"
 
 #. description
 #: ../jobs/mediacard.txt.in:4
@@ -2651,15 +2605,6 @@ msgid ""
 "Check to see if CONFIG_NO_HZ is set in the kernel (this is just a simple "
 "regression check)"
 msgstr "查看内核中是否设置了 CONFIG_NO_HZ(这只是一个简单回归检查)"
-
-#. description
-#: ../jobs/qa_regression.txt.in:7
-msgid ""
-"PURPOSE:\n"
-"   This is to install and run the Ubuntu QA regression tests (destructive)"
-msgstr ""
-"目的：\n"
-"   这将安装并运行 Ubuntu QA 回归测试(具有破坏性)"
 
 #. description
 #: ../jobs/server-services.txt.in:5
@@ -5352,6 +5297,14 @@ msgstr " 结果 "
 
 #~ msgid ""
 #~ "PURPOSE:\n"
+#~ "   This test will attempt to install and run the Autotest Suite.  These "
+#~ "tests can be destructive, so this test is blacklisted by default."
+#~ msgstr ""
+#~ "目的：\n"
+#~ "   此测试将尝试安装并运行自动测试用例。这些测试可能具有破坏性，因此在默认情况下，此测试被列入黑名单。"
+
+#~ msgid ""
+#~ "PURPOSE:\n"
 #~ "    This test will check the system can detect the insertion of a FireWire "
 #~ "HDD\n"
 #~ "STEPS:\n"
@@ -5419,8 +5372,32 @@ msgstr " 结果 "
 #~ "验证：\n"
 #~ "    这些键是否正常工作？"
 
+#~ msgid "Autotest Suite tests"
+#~ msgstr "自动测试用例测试"
+
+#~ msgid "Linux Test Project tests"
+#~ msgstr "Linux 测试项目测试"
+
+#~ msgid "Mago Automated Desktop Testing"
+#~ msgstr "Mago 自动桌面测试"
+
+#~ msgid "QA Regression tests"
+#~ msgstr "QA 回归测试"
+
 #~ msgid "Unity tests"
 #~ msgstr "Unity 测试"
+
+#~ msgid ""
+#~ "This test installs and runs Linux Test Project syscalls test. This can be "
+#~ "destructive, thus this test is blacklisted by default."
+#~ msgstr "此测试安装并运行 Linux Test Project 系统调用测试。此测试可能具有破坏性，因此在默认情况下，此测试被列入黑名单。"
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "   This test installs and runs the Mago Automated Desktop Testing suite."
+#~ msgstr ""
+#~ "目的：\n"
+#~ "   此测试安装并运行 Mago 桌面自动测试套件。"
 
 #~ msgid ""
 #~ "PURPOSE:\n"
@@ -5791,6 +5768,13 @@ msgstr " 结果 "
 #~ msgstr ""
 #~ "目的：\n"
 #~ "   此测试将下载并安装 Phoronix 测试套件，以及运行其中一些选中的基准测试。"
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "   This is to install and run the Ubuntu QA regression tests (destructive)"
+#~ msgstr ""
+#~ "目的：\n"
+#~ "   这将安装并运行 Ubuntu QA 回归测试(具有破坏性)"
 
 #~ msgid ""
 #~ "PURPOSE:\n"
