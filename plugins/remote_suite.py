@@ -31,15 +31,22 @@ class RemoteSuite(Plugin):
 
     def prompt_remote(self, interface, suite):
         self._manager.reactor.fire("prompt-suite", interface, suite)
+        messages = []
 
         # Register temporary handler for report-message events
         def report_message(message):
             message["suite"] = suite["name"]
-            self._manager.reactor.fire("report-job", message)
+            messages.append(message)
 
         event_id = self._manager.reactor.call_on("report-message", report_message)
         self._manager.reactor.fire("message-exec", suite)
+
+        for message in messages:
+            self._manager.reactor.fire("report-job", message)
+
         self._manager.reactor.cancel_call(event_id)
+
+        self._manager.reactor.fire("report-jobs", messages)
 
     def report_remote(self, suite):
         self._manager.reactor.fire("report-suite", suite)

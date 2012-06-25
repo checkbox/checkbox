@@ -1,12 +1,15 @@
 checkbox (0.14.1) quantal; urgency=low
 
-  [Marc Tardif]
-  * New version 0.14.1 for Quantal Quetzal development.
-
   [Brendan Donegan]
   * Fixed up a few things with the gpu_lockup tests. Removed depends,
     renamed to gpu_lockup_suspend to reflect behaviour and removed the
     requirement on Firefox
+
+  [Javier Collado]
+  * Make sure that jobs are topologically ordered (LP: #990075)
+
+  [Marc Tardif]
+  * New version 0.14.1 for Quantal Quetzal development.
 
  -- Marc Tardif <marc@ubuntu.com>  Fri, 22 Jun 2012 17:04:14 -0400
 

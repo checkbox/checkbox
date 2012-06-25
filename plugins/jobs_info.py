@@ -17,10 +17,13 @@
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
 import os, sys, re
+import difflib
 import gettext
 import logging
 
 from collections import defaultdict
+
+from checkbox.lib.resolver import Resolver
 
 from checkbox.arguments import coerce_arguments
 from checkbox.properties import Float, Int, List, Map, Path, String
@@ -83,7 +86,6 @@ class JobsInfo(Plugin):
             self._manager.reactor.call_on("prompt-gather", self.post_gather, 90)
         self._manager.reactor.call_on("report-job", self.report_job, -100)
 
-
     def prompt_begin(self, interface):
         """
         Capture interface object to use it later
@@ -92,7 +94,21 @@ class JobsInfo(Plugin):
         self.interface = interface
         self.unused_patterns = self.whitelist_patterns + self.blacklist_patterns
 
+    def check_ordered_messages(self, messages):
+        """Return whether the list of messages are ordered or not."""
+        names = set()
+        for message in messages:
+            name = message["name"]
+            for dependency in message.get("depends", []):
+                if dependency not in names:
+                    return False
+
+            names.add(name)
+
+        return True
+
     def get_patterns(self, strings, filename=None):
+        """Return the list of strings as compiled regular expressions."""
         if filename:
             try:
                 file = open(filename)
@@ -108,6 +124,22 @@ class JobsInfo(Plugin):
         return [re.compile(r"^%s$" % s) for s in strings
             if s and not s.startswith("#")]
 
+    def get_unique_messages(self, messages):
+        """Return the list of messages without any duplicates, giving
+        precedence to messages that are the longest.
+        """
+        unique_messages = []
+        unique_indexes = {}
+        for message in messages:
+            name = message["name"]
+            index = unique_indexes.get(name)
+            if index is None:
+                unique_indexes[name] = len(unique_messages)
+                unique_messages.append(message)
+            elif len(message) > len(unique_messages[index]):
+                unique_messages[index] = message
+
+        return unique_messages
 
     def gather(self):
         # Register temporary handler for report-message events
@@ -129,18 +161,6 @@ class JobsInfo(Plugin):
         for directory in self.directories:
             self._manager.reactor.fire("message-directory", directory)
 
-        # Apply whitelist ordering
-        def key_function(obj):
-            name = obj["name"]
-            for pattern in self.whitelist_patterns:
-                if pattern.match(name):
-                    index = self.whitelist_patterns.index(pattern)
-                    break
-
-            return index
-
-        if self.whitelist_patterns:
-            messages = sorted(messages, key=key_function)
         for message in messages:
             self._manager.reactor.fire("report-job", message)
 
@@ -148,10 +168,53 @@ class JobsInfo(Plugin):
         self._manager.reactor.cancel_call(event_id)
         gettext.textdomain(old_domain)
 
+        # Get unique messages from the now complete list
+        messages = self.get_unique_messages(messages)
+
+        # Apply whitelist ordering
+        if self.whitelist_patterns:
+            def key_function(obj):
+                name = obj["name"]
+                for pattern in self.whitelist_patterns:
+                    if pattern.match(name):
+                        return self.whitelist_patterns.index(pattern)
+
+            messages = sorted(messages, key=key_function)
+
+        if not self.check_ordered_messages(messages):
+            old_message_names = [message["name"] + "\n" for message in messages]
+            resolver = Resolver(key=lambda m: m["name"])
+            for message in messages:
+                resolver.add(
+                    message, *message.get("depends", []))
+            messages = resolver.get_dependents()
+
+            # Check if messages are already topologically ordered
+            if (self.whitelist_patterns and
+                logging.getLogger().getEffectiveLevel() <= logging.DEBUG):
+                new_message_names = [message["name"] + "\n" for message in messages]
+                detailed_text = "".join(
+                    difflib.unified_diff(
+                        old_message_names,
+                        new_message_names,
+                        "old whitelist",
+                        "new whitelist"))
+                self._manager.reactor.fire(
+                        "prompt-error",
+                        self.interface,
+                        "Whitelist not topologically ordered",
+                        "Jobs will be reordered to fix broken dependencies",
+                        detailed_text)
+
+        self._manager.reactor.fire("report-jobs", messages)
+
     def post_gather(self, interface):
         """
         Verify that all patterns were used
         """
+        if logging.getLogger().getEffectiveLevel() > logging.DEBUG:
+            return
+
         orphan_test_cases = []
         for name, jobs in self.selected_jobs.items():
             is_test = any(job.get('type') == 'test' for job in jobs)
