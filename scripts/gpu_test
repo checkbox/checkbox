@@ -122,7 +122,7 @@ class FlashVideoThread(Thread):
             f.close()
         os.chmod(self.tempfile, stat.S_IROTH)
         subprocess.call(
-            'sudo -H -u %s firefox %s' % (os.getenv('SUDO_USER'),
+            'sudo -H -u %s xdg-open %s' % (os.getenv('SUDO_USER'),
             self.tempfile),
             stdout=open(os.devnull, 'w'),
             stderr=subprocess.STDOUT,
