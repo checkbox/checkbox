@@ -16,7 +16,12 @@ checkbox (0.14.1) quantal; urgency=low
   [ Daniel Manrique ]
   * Fixed duplicate suspend/bluetooth_obex_after_suspend job name.
 
- -- Daniel Manrique <roadmr@ubuntu.com>  Tue, 26 Jun 2012 09:55:47 -0400
+  [Jeff Lane]
+  * Migrated audio/external-HDMI-playback into checkbox. Modified the
+    command to match our other audio tests that save and reset mixer
+    levels.
+
+ -- Jeff Lane <jeff@ubuntu.com>  Tue, 26 Jun 2012 15:47:56 -0400
 
 checkbox (0.14) quantal; urgency=low
 
