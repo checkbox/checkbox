@@ -16,104 +16,117 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
+from collections import defaultdict, OrderedDict
+
+
 class Resolver:
     """
     Main class. Instantiate with the root directory of your items.
     """
 
-    def __init__(self, key=None):
-        if key is None:
-            key = lambda k: k
+    def __init__(self, key_func=None):
+        if key_func is None:
+            key_func = lambda k: k
+        self.key_func = key_func
 
-        self.key = key
-
-        # detect repeated resolution attempts - these indicate some circular dependency
-        self.reentrant_resolution = set()
-
-        # collect all items
-        self.items = {}
-
-        # for each item, keep a set of dependents and dependencies
-        self.dependents = {}
-        self.dependencies = {}
+        self.items = OrderedDict()
+        self.items_added = OrderedDict()
+        self.items_blocked = {}
+        self.depends = {}  # Dependencies
+        self.rdepends = defaultdict(list)  # Reverse dependencies
+        self.resolved = False
 
     def add(self, item, *dependencies):
-        key = self.key(item)
-        if key in self.items:
+        """
+        Add item as pending
+        """
+        key = self.key_func(item)
+        if key in self.items_added:
             raise Exception("%s: key already exists" % key)
-        self.items[key] = item
 
-        self.dependencies[key] = set(dependencies)
-
-    def remove(self, item):
-        key = self.key(item)
-        del self.items[key]
-        del self.dependencies[key]
-
-    def resolve(self, item, found=None):
-        """
-        the center piece.
-        recursively resolve dependencies of scripts
-        return them as a flat list, sorted according to ancestral relationships
-        """
-        key = self.key(item)
-        resolved = self.dependents.get(key, None)
-        if resolved is not None:
-            return resolved
-
-        if key not in self.items:
-            msg = "no dependencies found for %s" % key
-            if found:
-                msg += " while resolving %s" % found
-            raise Exception(msg)
-
-        dependencies = self.dependencies.get(key, set())
-        resolved = set()
-
+        # Dependencies bookkeeping
+        self.items_added[key] = item
+        self.depends[key] = list(dependencies)
         for dependency in dependencies:
-            resolution_step = (key, dependency)
-            if resolution_step in self.reentrant_resolution:
-                if found:
-                    scapegoat = found
-                else:
-                    scapegoat = dependency
-                raise Exception("circular dependency involving %s and %s" % (key, scapegoat))
-            # add resolution
-            self.reentrant_resolution.add(resolution_step)
-            # and its dependencies, if any
-            if dependency in self.items:
-                resolved.update(self.resolve(self.items[dependency], found=key))
+            self.rdepends[dependency].append(key)
 
-        # now it's time for sorting hierarchically... Since circular dependencies are excluded,
-        # ancestors will always have fewer dependencies than descendants, so sorting by the
-        # number of dependencies will give the desired order.
-        resolved = sorted(resolved, key=lambda x: len(self.dependents[x]))
-        resolved.append(key)
-        self.dependents[key] = resolved
+        # Circular dependencies check
+        def circular_dependencies(key):
+            seen = circular_dependencies.seen
+            for dependency in self.depends.get(key, []):
+                if dependency in seen:
+                    raise Exception("circular dependency involving "
+                                    "%s and %s" % (key, dependency))
+                seen.add(dependency)
+                circular_dependencies(dependency)
+        circular_dependencies.seen = set((key,))
+        circular_dependencies(key)
 
-        return resolved
+    def _resolve(self):
+        """
+        Work through the pending items and reorder them properly
+        """
+        if self.resolved:
+            return
+
+        def add_unblocked(key):
+            """Add items that have been unblocked"""
+            for dependent in self.rdepends[key]:
+                if not dependent in self.items_blocked:
+                    continue
+
+                unblocked = all(dependency in self.items
+                                for dependency in self.depends[dependent]
+                                if dependency in self.items_added)
+                if unblocked:
+                    item = self.items_blocked[dependent]
+                    self.items[dependent] = item
+                    del self.items_blocked[dependent]
+
+                    add_unblocked(dependent)
+
+        for key, item in self.items_added.items():
+            # Avoid adding an item until all dependencies have been met
+            blocked = any(dependency not in self.items
+                          for dependency in self.depends[key]
+                          if dependency in self.items_added)
+
+            if blocked:
+                self.items_blocked[key] = item
+            else:
+                self.items[key] = item
+                add_unblocked(key)
+
+#        if self.items_blocked:
+#            raise Exception('There are {} items blocked: {}'
+#                            .format(len(self.items_blocked),
+#                                    ', '.join(self.items_blocked.keys())))
+
+        self.resolved = True
 
     def get_dependencies(self, item):
-        return [self.items[r] for r in self.resolve(item)]
+        """
+        Return a list of the dependencies for a given item
+        """
+        self._resolve()
+        key = self.key_func(item)
+        if key not in self.depends:
+            msg = "no dependencies found for %s" % key
+            raise Exception(msg)
+
+        dependencies = self.depends[key] + [key]
+
+        return dependencies
 
     def get_dependents(self, item=None):
-        dependents = []
-        if item:
-            # Immediate dependents
-            key = self.key(item)
-            all_dependents = [x for x in iter(self.items.values()) if key in self.resolve(x)[:-1]]
-            dependents = [x for x in all_dependents if self.key(self.get_dependencies(x)[-2]) == key]
-        else:
-            # First level of dependents
-            dependents = [x for x in iter(self.items.values()) if len(self.resolve(x)) == 1]
+        """
+        Return a list of the items that depend on the given one
+        or the whole list of items topologically ordered
+        """
+        self._resolve()
+        items = list(self.items.values())
+        if item is not None:
+            index = items.index(item)
+            items = items[index + 1:]
 
-        index = 0
-        dependents = sorted(dependents, key=self.key)
-        while index < len(dependents):
-            sub_dependents = self.get_dependents(dependents[index])
-            if sub_dependents:
-                dependents[index+1:index+1] = sub_dependents
-                index += len(sub_dependents)
-            index += 1
-
-        return dependents
+        return items

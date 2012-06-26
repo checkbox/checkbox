@@ -183,7 +183,7 @@ class JobsInfo(Plugin):
 
         if not self.check_ordered_messages(messages):
             old_message_names = [message["name"] + "\n" for message in messages]
-            resolver = Resolver(key=lambda m: m["name"])
+            resolver = Resolver(key_func=lambda m: m["name"])
             for message in messages:
                 resolver.add(
                     message, *message.get("depends", []))

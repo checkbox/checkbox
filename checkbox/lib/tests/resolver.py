@@ -63,9 +63,9 @@ class ResolverTest(unittest.TestCase):
 
     def test_dependencies_circular(self):
         resolver = Resolver()
-        resolver.add('a', 'b')
-        resolver.add('b', 'a')
         try:
+            resolver.add('a', 'b')
+            resolver.add('b', 'a')
             resolver.get_dependencies('a')
         except Exception as error:
             self.assertTrue(error.args[0].startswith('circular dependency'))
