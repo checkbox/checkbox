@@ -72,7 +72,8 @@ requires:
  package.name == 'fwts'
  sleep.mem == 'supported'
 user: root
-command: fwts s3 --s3-sleep-delay=30
+environ: CHECKBOX_DATA
+command: fwts s3 --s3-sleep-delay=30 -r $CHECKBOX_DATA/suspend_single_log || true; grep 'Critical failures: NONE' $CHECKBOX_DATA/suspend_single_log
 _description:
  PURPOSE:
      This test will check suspend and resume
@@ -92,26 +93,8 @@ requires:
 _description:
  This is the automated version of suspend/suspend_advanced.
 user: root
-command: fwts s3 --s3-sleep-delay=30
-     
-plugin: manual
-name: suspend/suspend_device_check
-depends: power-management/rtc suspend/network_before_suspend suspend/resolution_before_suspend suspend/wireless_before_suspend suspend/cpu_before_suspend suspend/memory_before_suspend
-requires:
- package.name == 'fwts'
- sleep.mem == 'supported'
-user: root
 environ: CHECKBOX_DATA
-command: fwts s3 --s3-device-check --s3-device-check-delay=30 -r $CHECKBOX_DATA/suspend_single_log --s3-sleep-delay=30
-_description:
- PURPOSE:
-     This test will suspend and resume the system and check whether there are any errors detectable that may cause devices to malfunction
- STEPS:
-     1. Click "Test" and your system will suspend for about 30 - 60 seconds
-     2. If your system does not wake itself up after 60 seconds, please press the power button momentarily to wake the system manually
-     3. If your system fails to wake at all and must be rebooted, restart System Testing after reboot and mark this test as Failed
- VERIFICATION:
-     Did your system suspend and resume correctly?
+command: fwts s3 --s3-sleep-delay=30 -r $CHECKBOX_DATA/suspend_single_log || true; grep 'Critical failures: NONE' $CHECKBOX_DATA/suspend_single_log
 
 plugin: attachment
 name: suspend/suspend-single-log-attach

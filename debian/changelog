@@ -4,9 +4,8 @@ checkbox (0.14.1) quantal; urgency=low
   * Fixed up a few things with the gpu_lockup tests. Removed depends,
     renamed to gpu_lockup_suspend to reflect behaviour and removed the
     requirement on Firefox
-  * Changed suspend_advanced and suspend_advanced_auto back to use less
-    strict definition of fwts s3 test and created a job called
-    suspend_device_check which still does
+  * Changed suspend_advanced and suspend_advanced_auto to use less
+    strict definition of fwts s3 test.
 
   [Javier Collado]
   * Make sure that jobs are topologically ordered (LP: #990075)
