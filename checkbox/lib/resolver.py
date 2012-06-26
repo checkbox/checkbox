@@ -97,10 +97,10 @@ class Resolver:
                 self.items[key] = item
                 add_unblocked(key)
 
-#        if self.items_blocked:
-#            raise Exception('There are {} items blocked: {}'
-#                            .format(len(self.items_blocked),
-#                                    ', '.join(self.items_blocked.keys())))
+        if self.items_blocked:
+            raise Exception('There are {} items blocked: {}'
+                            .format(len(self.items_blocked),
+                                    ', '.join(self.items_blocked.keys())))
 
         self.resolved = True
 
