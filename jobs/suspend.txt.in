@@ -232,7 +232,7 @@ _description:
  This is an automated Bluetooth file transfer test. It sends an image to the device specified by the BTDEVADDR environment variable.
 
 plugin: shell
-name: suspend/bluetooth_obex_after_suspend
+name: suspend/bluetooth_obex_after_suspend_auto
 depends: suspend/suspend_advanced_auto suspend/bluetooth_obex_before_suspend
 requires:
  package.name == 'bluez' and package.name == 'obexd-client'
