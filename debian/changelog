@@ -13,15 +13,17 @@ checkbox (0.14.1) quantal; urgency=low
   [Marc Tardif]
   * New version 0.14.1 for Quantal Quetzal development.
 
-  [ Daniel Manrique ]
+  [Daniel Manrique]
   * Fixed duplicate suspend/bluetooth_obex_after_suspend job name.
+  * scripts/dpkg_resource: Changed encoding from ascii to utf-8 to handle
+    non-ascii locales (LP: #1018353)
 
   [Jeff Lane]
   * Migrated audio/external-HDMI-playback into checkbox. Modified the
     command to match our other audio tests that save and reset mixer
     levels.
 
- -- Jeff Lane <jeff@ubuntu.com>  Tue, 26 Jun 2012 15:47:56 -0400
+ -- Daniel Manrique <roadmr@ubuntu.com>  Wed, 27 Jun 2012 11:23:01 -0400
 
 checkbox (0.14) quantal; urgency=low
 
