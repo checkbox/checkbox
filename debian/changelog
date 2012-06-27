@@ -12,6 +12,7 @@ checkbox (0.14.1) quantal; urgency=low
 
   [Marc Tardif]
   * New version 0.14.1 for Quantal Quetzal development.
+  * jobs/suspend.txt.in: Fixed trailing newline on otherwise empty line.
   * scripts/run_templates: Fixed calls to Popen to use universal_newlines
     to return strings instead of bytes (LP: #1018354)
 
