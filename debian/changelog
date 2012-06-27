@@ -9,6 +9,7 @@ checkbox (0.14.1) quantal; urgency=low
 
   [Javier Collado]
   * Make sure that jobs are topologically ordered (LP: #990075)
+  * Keep job ordering as close to whitelist as possible (LP: #1017951)
 
   [Marc Tardif]
   * New version 0.14.1 for Quantal Quetzal development.
@@ -26,7 +27,7 @@ checkbox (0.14.1) quantal; urgency=low
     command to match our other audio tests that save and reset mixer
     levels.
 
- -- Daniel Manrique <roadmr@ubuntu.com>  Wed, 27 Jun 2012 11:23:01 -0400
+ -- Javier Collado <javier.collado@canonical.com>  Tue, 26 Jun 2012 16:07:04 +0200
 
 checkbox (0.14) quantal; urgency=low
 
