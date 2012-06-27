@@ -62,6 +62,9 @@ class Resolver:
         circular_dependencies.seen = set((key,))
         circular_dependencies(key)
 
+        # Resolve on next call to get_dependencies/get_dependents
+        self.resolved = False
+
     def _resolve(self):
         """
         Work through the pending items and reorder them properly
@@ -102,6 +105,8 @@ class Resolver:
                             .format(len(self.items_blocked),
                                     ', '.join(self.items_blocked.keys())))
 
+        # Don't resolve again on next call to get_dependencies/get_dependents
+        # unless a new item is added
         self.resolved = True
 
     def get_dependencies(self, item):

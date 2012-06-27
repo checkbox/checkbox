@@ -98,3 +98,14 @@ class ResolverTest(unittest.TestCase):
         self.assertTrue(len(results) == 2)
         self.assertTrue(results[0] == 'b')
         self.assertTrue(results[1] == 'c')
+
+    def test_multiple_resolve_steps(self):
+        resolver = Resolver()
+        resolver.add('a', 'b')
+        results = resolver.get_dependents('a')
+        self.assertTrue(len(results) == 0)
+
+        resolver.add('b')
+        results = resolver.get_dependents('a')
+        self.assertTrue(len(results) == 1)
+        self.assertTrue(results[0] == 'b')
