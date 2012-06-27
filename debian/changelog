@@ -12,6 +12,8 @@ checkbox (0.14.1) quantal; urgency=low
 
   [Marc Tardif]
   * New version 0.14.1 for Quantal Quetzal development.
+  * scripts/run_templates: Fixed calls to Popen to use universal_newlines
+    to return strings instead of bytes (LP: #1018354)
 
   [Daniel Manrique]
   * Fixed duplicate suspend/bluetooth_obex_after_suspend job name.
