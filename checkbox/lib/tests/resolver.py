@@ -22,71 +22,60 @@ from checkbox.lib.resolver import Resolver
 
 
 class ResolverTest(unittest.TestCase):
+    def setUp(self):
+        self.resolver = Resolver()
+
     def test_dependencies_none(self):
-        resolver = Resolver()
         try:
-            resolver.get_dependencies('a')
+            self.resolver.get_dependencies('a')
         except Exception as error:
             self.assertTrue(error.args[0].startswith('no dependencies'))
         else:
             self.fail('non existing element accepted by resolver')
 
     def test_dependencies_one_level(self):
-        resolver = Resolver()
-        resolver.add('a')
+        self.resolver.add('a')
 
-        results = resolver.get_dependencies('a')
-        self.assertTrue(len(results) == 1)
-        self.assertTrue(results[0] == 'a')
+        results = self.resolver.get_dependencies('a')
+        self.assertListEqual(results, ['a'])
 
     def test_dependencies_two_level(self):
-        resolver = Resolver()
-        resolver.add('a')
-        resolver.add('b', 'a')
+        self.resolver.add('a')
+        self.resolver.add('b', 'a')
 
-        results = resolver.get_dependencies('b')
-        self.assertTrue(len(results) == 2)
-        self.assertTrue(results[0] == 'a')
-        self.assertTrue(results[1] == 'b')
+        results = self.resolver.get_dependencies('b')
+        self.assertListEqual(results, ['a', 'b'])
 
     def test_dependencies_multiple(self):
-        resolver = Resolver()
-        resolver.add('a')
-        resolver.add('b')
-        resolver.add('c', 'a', 'b')
+        self.resolver.add('a')
+        self.resolver.add('b')
+        self.resolver.add('c', 'a', 'b')
 
-        results = resolver.get_dependencies('c')
-        self.assertTrue(len(results) == 3)
-        self.assertTrue(results[0] == 'a')
-        self.assertTrue(results[1] == 'b')
-        self.assertTrue(results[2] == 'c')
+        results = self.resolver.get_dependencies('c')
+        self.assertListEqual(results, ['a', 'b', 'c'])
 
     def test_dependencies_circular(self):
-        resolver = Resolver()
         try:
-            resolver.add('a', 'b')
-            resolver.add('b', 'a')
-            resolver.get_dependencies('a')
+            self.resolver.add('a', 'b')
+            self.resolver.add('b', 'a')
+            self.resolver.get_dependencies('a')
         except Exception as error:
             self.assertTrue(error.args[0].startswith('circular dependency'))
         else:
             self.fail('circular dependency not detected')
 
     def test_dependents_none(self):
-        resolver = Resolver()
-        resolver.add('a')
+        self.resolver.add('a')
 
-        results = resolver.get_dependents('a')
+        results = self.resolver.get_dependents('a')
         self.assertTrue(len(results) == 0)
 
     def test_dependents_one(self):
-        resolver = Resolver()
-        resolver.add('a')
-        resolver.add('b', 'a')
+        self.resolver.add('a')
+        self.resolver.add('b', 'a')
 
-        results = resolver.get_dependents('a')
-        self.assertTrue(len(results) == 1)
-        self.assertTrue(results[0] == 'b')
+        results = self.resolver.get_dependents('a')
+        self.assertListEqual(results, ['b'])
 
     def test_dependents_two(self):
         resolver = Resolver()
@@ -95,17 +84,13 @@ class ResolverTest(unittest.TestCase):
         resolver.add('c', 'b')
 
         results = resolver.get_dependents('a')
-        self.assertTrue(len(results) == 2)
-        self.assertTrue(results[0] == 'b')
-        self.assertTrue(results[1] == 'c')
+        self.assertListEqual(results, ['b', 'c'])
 
     def test_multiple_resolve_steps(self):
-        resolver = Resolver()
-        resolver.add('a', 'b')
-        results = resolver.get_dependents('a')
+        self.resolver.add('a', 'b')
+        results = self.resolver.get_dependents('a')
         self.assertTrue(len(results) == 0)
 
-        resolver.add('b')
-        results = resolver.get_dependents('a')
-        self.assertTrue(len(results) == 1)
-        self.assertTrue(results[0] == 'b')
+        self.resolver.add('b')
+        results = self.resolver.get_dependents('a')
+        self.assertListEqual(results, ['b'])
