@@ -83,7 +83,7 @@ _description:
      3. If your system fails to wake at all and must be rebooted, restart System Testing after reboot and mark this test as Failed
  VERIFICATION:
      Did your system suspend and resume correctly?
-     
+
 plugin: shell
 name: suspend/suspend_advanced_auto
 depends: power-management/rtc

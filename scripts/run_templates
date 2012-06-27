@@ -35,7 +35,8 @@ class Runner(object):
         return env
 
     def process(self, args, shell=False):
-        process = Popen(args, shell=shell, stdout=PIPE)
+        process = Popen(
+            args, shell=shell, stdout=PIPE, universal_newlines=True)
         records = self.process_output(process.stdout)
 
         for nr, record in enumerate(records):
@@ -50,7 +51,8 @@ class Runner(object):
 
             process = Popen(command,
                 env=env,
-                stdout=self.output)
+                stdout=self.output,
+                universal_newlines=True)
             process.communicate()
 
     def process_output(self, output):
