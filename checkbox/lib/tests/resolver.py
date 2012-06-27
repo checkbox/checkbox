@@ -88,9 +88,9 @@ class ResolverTest(unittest.TestCase):
 
     def test_multiple_resolve_steps(self):
         self.resolver.add('a', 'b')
-        results = self.resolver.get_dependents('a')
-        self.assertTrue(len(results) == 0)
+        results = self.resolver.get_dependents()
+        self.assertListEqual(results, ['a'])
 
         self.resolver.add('b')
-        results = self.resolver.get_dependents('a')
-        self.assertListEqual(results, ['b'])
+        results = self.resolver.get_dependents()
+        self.assertListEqual(results, ['b', 'a'])

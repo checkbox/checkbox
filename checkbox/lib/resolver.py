@@ -29,11 +29,13 @@ class Resolver:
             key_func = lambda k: k
         self.key_func = key_func
 
-        self.items = OrderedDict()
         self.items_added = OrderedDict()
-        self.items_blocked = {}
         self.depends = {}  # Dependencies
         self.rdepends = defaultdict(list)  # Reverse dependencies
+
+        # Data used in _resolve method
+        self.items = None
+        self.items_blocked = None
         self.resolved = False
 
     def add(self, item, *dependencies):
@@ -71,6 +73,10 @@ class Resolver:
         """
         if self.resolved:
             return
+
+        # Initialize internal ordering data
+        self.items = OrderedDict()
+        self.items_blocked = {}
 
         def add_unblocked(key):
             """Add items that have been unblocked"""
