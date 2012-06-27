@@ -4,6 +4,7 @@ checkbox (0.14.2) quantal; urgency=low
   * New version 0.14.2 for Quantal Quetzal development.
 
   [Marc Tardif]
+  * Fixed duplicate jobs appearing in the store when rerunning jobs.
   * jobs/suspend.txt.in: Removed redundant dependencies which confuses
     the latest resolver algorithm.
 
