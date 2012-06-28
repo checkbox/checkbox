@@ -30,7 +30,4 @@ def device_state(name):
 for path in glob('/sys/block/*/device'):
     name = re.sub('.*/(.*?)/device', '\g<1>', path)
     state = device_state(name)
-    print("""\
-name: %s
-state: %s
-""" % (name, state))
+    print("%s: %s" % (name, state))

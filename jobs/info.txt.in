@@ -119,7 +119,9 @@ command:
  cat <<'EOF' | run_templates -t -s 'udev_resource | filter_templates -w "category=DISK"'
  plugin: attachment
  name: info/hdparm_`ls /sys$path/block`.txt
- requires: device.path == "$path"
+ requires: 
+  device.path == "$path"
+  block_device.`ls /sys$path/block` != 'removable'
  user: root
  command: hdparm -I /dev/`ls /sys$path/block`
  EOF
