@@ -53,12 +53,14 @@ class Resolver:
             self.rdepends[dependency].append(key)
 
         # Circular dependencies check
-        def circular_dependencies(key):
+        def circular_dependencies(node):
             seen = circular_dependencies.seen
-            for dependency in self.depends.get(key, []):
-                if dependency in seen:
+            for dependency in self.depends.get(node, []):
+                if key == dependency:
                     raise Exception("circular dependency involving "
-                                    "%s and %s" % (key, dependency))
+                                    "%s and %s" % (key, node))
+                if dependency in seen:
+                    continue
                 seen.add(dependency)
                 circular_dependencies(dependency)
         circular_dependencies.seen = set((key,))
