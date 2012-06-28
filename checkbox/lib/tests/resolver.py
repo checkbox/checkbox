@@ -48,7 +48,9 @@ class ResolverTest(unittest.TestCase):
 
     def test_dependencies_multiple(self):
         self.resolver.add('a')
-        self.resolver.add('b')
+        # A appears as a dependency multiple times
+        # in b and c, but isn't a circular dependency
+        self.resolver.add('b', 'a')
         self.resolver.add('c', 'a', 'b')
 
         results = self.resolver.get_dependencies('c')
