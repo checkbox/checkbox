@@ -9,7 +9,11 @@ checkbox (0.14.2) quantal; urgency=low
   [Marc Tardif]
   * Fixed duplicate jobs appearing in the store when rerunning jobs.
 
- -- Jeff Lane <jeff@ubuntu.com>  Wed, 27 Jun 2012 16:34:12 -0400
+  [Daniel Manrique]
+  * Added a message file format test that does some simplistic checks
+    on jobs/* files to ensure they are sane.
+
+ -- Daniel Manrique <roadmr@ubuntu.com>  Thu, 28 Jun 2012 17:01:13 -0400
 
 checkbox (0.14.1) quantal; urgency=low
 
