@@ -12,9 +12,10 @@ do
 		echo 0 > /sys/devices/system/cpu/$cpu_num/online
 
 		grep -w -i -q $cpu_num /proc/interrupts
-
-		if [ $? == 0 ]; then
+		
+        if [ $? == 0 ]; then
 			result=1
+            echo "ERROR: Failed to offline $cpu_num"
 		fi
 	fi
 done
@@ -29,6 +30,7 @@ do
 
         if [ $? == 1 ]; then
             result=1
+            echo "ERROR: Failed to online $cpu_num"
         fi
     fi
 done

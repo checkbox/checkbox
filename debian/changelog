@@ -5,6 +5,7 @@ checkbox (0.14.2) quantal; urgency=low
 
   [Jeff Lane]
   * New version 0.14.2 for Quantal Quetzal development.
+  * scripts/cpu_offlining: added an extra bit of output in case of failures. 
 
   [Marc Tardif]
   * Fixed duplicate jobs appearing in the store when rerunning jobs.
@@ -13,7 +14,7 @@ checkbox (0.14.2) quantal; urgency=low
   * Added a message file format test that does some simplistic checks
     on jobs/* files to ensure they are sane.
 
- -- Daniel Manrique <roadmr@ubuntu.com>  Thu, 28 Jun 2012 17:01:13 -0400
+ -- Jeff Lane <jeff@ubuntu.com>  Fri, 29 Jun 2012 17:53:49 -0400
 
 checkbox (0.14.1) quantal; urgency=low
 
