@@ -2,16 +2,16 @@ checkbox (0.14.2) quantal; urgency=low
 
   [Jeff Lane]
   * New version 0.14.2 for Quantal Quetzal development.
-  * scripts/block_device_resource: changed output of script
-    jobs/disk.txt, jobs/info.txt: modified jobs to use new resource name
-    format: block_device.sdX != 'removable' (LP: #1017741)
+  * jobs/disk.txt.in: modified block_device requirements so they'll work right
+    jobs/info.txt.in: added block_device resource requirements to hdparm job so
+    it won't run on removable stuff where it's not necessary.
 
   [Marc Tardif]
   * Fixed duplicate jobs appearing in the store when rerunning jobs.
   * jobs/suspend.txt.in: Removed redundant dependencies which confuses
     the latest resolver algorithm.
 
- -- Jeff Lane <jeff@ubuntu.com>  Thu, 28 Jun 2012 18:26:27 -0400
+ -- Jeff Lane <jeff@ubuntu.com>  Fri, 29 Jun 2012 15:46:37 -0400
 
 checkbox (0.14.1) quantal; urgency=low
 
