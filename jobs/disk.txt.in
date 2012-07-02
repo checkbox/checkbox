@@ -13,7 +13,7 @@ command:
  name: disk/stats_`ls /sys$path/block`
  requires: 
   device.path == "$path"
-  block_device.name == `ls /sys$path/block` and block_device.state != 'removable'
+  block_device.name == "`ls /sys$path/block`" and block_device.state != 'removable'
   package.name == 'linux'
  user: root
  command: disk_stats_test `ls /sys$path/block | sed 's|!|/|'`
@@ -33,7 +33,7 @@ command:
  name: disk/smart_`ls /sys$path/block`
  requires: 
   device.path == "$path"
-  block_device.name == `ls /sys$path/block` and block_device.state != 'removable'
+  block_device.name == "`ls /sys$path/block`" and block_device.state != 'removable'
  description:
   This tests the SMART capabilities for $product (Note that this test will not work against hardware RAID)
  user: root
@@ -51,7 +51,7 @@ command:
  name: disk/max_diskspace_used_`ls /sys$path/block`
  requires: 
   device.path == "$path"
-  block_device.name == `ls /sys$path/block` and block_device.state != 'removable'
+  block_device.name == "`ls /sys$path/block`" and block_device.state != 'removable'
  description: Maximum disk space test for $product
  user: root
  command: max_diskspace_used `ls /sys$path/block | sed 's|!|/|'`
@@ -68,7 +68,7 @@ command:
  name: disk/read_performance_`ls /sys$path/block`
  requires:
   device.path == "$path"
-  block_device.name == `ls /sys$path/block` and block_device.state != 'removable'
+  block_device.name == "`ls /sys$path/block`" and block_device.state != 'removable'
   package.name == 'linux'
  description: Disk performance test for $product
  user: root
@@ -87,7 +87,7 @@ command:
  user: root
  requires:
   device.path == "$path"
-  block_device.name == `ls /sys$path/block` and block_device.state != 'removable'
+  block_device.name == "`ls /sys$path/block`" and block_device.state != 'removable'
   package.name == 'linux'
  description: Disk I/O stress test for $product
  command: storage_test `ls /sys$path/block | sed 's|!|/|'`
