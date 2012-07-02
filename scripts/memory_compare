@@ -1,27 +1,70 @@
-#!/bin/bash
+#!/usr/bin/env python3
 
-MIN_LEVEL=90
+import os
+import sys
 
-meminfo_total=`grep 'MemTotal' /proc/meminfo | awk '{print $2}'`
-meminfo_units=`grep 'MemTotal' /proc/meminfo | awk '{print $3}'`
+from subprocess import check_output
 
-echo "Meminfo total: $meminfo_total $meminfo_units"
+THRESHOLD = 10
 
-dmi_total=0
+def get_installed_memory_size():
+    total_size = 0
 
-for size in `dmidecode -t 17 | grep Size | grep -o [0-9]*`
-do
-    dmi_total=`echo $dmi_total + $size | bc`
-done
+    dmi_output = check_output(['dmidecode','-t','17'], universal_newlines=True)
+    dmi_sections = dmi_output.split('\n\n')[1:-1]
 
-dmi_total=`echo "$dmi_total * 1000" | bc`
+    for section in dmi_sections:
+        section_lines = section.split('\n')[2:]
 
-echo "DMI total: $dmi_total $meminfo_units"
-accuracy=`echo "scale=2; $meminfo_total / $dmi_total * 100" | bc`
-echo "Accuracy: $accuracy"
+        dmi_fields = {}
+        for line in section_lines:
+            dmi_fields[line.split(':')[0].strip()] = line.split(':')[1].strip()
 
-if [ ${accuracy::-3} -lt $MIN_LEVEL ]
-then
-    echo "Memory totals not close enough"
-    exit 1
-fi
+        if 'IMM' in dmi_fields['Form Factor']:
+            size = int(dmi_fields['Size'].split()[0])
+            unit = dmi_fields['Size'].split()[1]
+
+            # Potentially adjust for the size of the unit
+            if unit == 'MB':
+                size = size * 1000
+
+            total_size += size
+
+    return total_size
+
+def get_visible_memory_size():
+    total_size = 0
+
+    meminfo_fields = {}
+
+    for line in [ln.strip() for ln in open('/proc/meminfo')]:
+        meminfo_fields[line.split(':')[0].strip()] = line.split(':')[1].strip()
+
+    size = int(meminfo_fields['MemTotal'].split()[0])
+    unit = meminfo_fields['MemTotal'].split()[1]
+
+    return size
+
+def main():
+    if os.geteuid() != 0:
+        print("This script must be run as root.")
+        return 1
+
+    installed_memory = get_installed_memory_size()
+    print("Installed memory: %d kB" % installed_memory)
+
+    visible_memory = get_visible_memory_size()
+    print("Visible memory: %d kB" % visible_memory)
+
+    difference = installed_memory - visible_memory
+    percentage = difference / installed_memory * 100
+
+    if percentage <= THRESHOLD:
+        print("Difference is %d kB (%.2f%%) and less than the %d%% threshold." % (difference, percentage, THRESHOLD))
+        return 0
+    else:
+        print("Difference is %d kB (%.2f%%) and greater than the %d%% threshold." % (difference, percentage, THRESHOLD))
+        return 1
+
+if __name__ == "__main__":
+    sys.exit(main())

@@ -13,6 +13,11 @@ checkbox (0.14.2) quantal; urgency=low
   * Added a message file format test that does some simplistic checks
     on jobs/* files to ensure they are sane.
 
+  [Brendan Donegan]
+  * Reimplemented memory_compare in python3 and restructured it to put
+    things into dictionaries for easy access. Also fixed bug with detecting
+    non-RAM devices as RAM. (LP: #960087)
+
  -- Daniel Manrique <roadmr@ubuntu.com>  Thu, 28 Jun 2012 17:01:13 -0400
 
 checkbox (0.14.1) quantal; urgency=low
