@@ -16,6 +16,12 @@ checkbox (0.14.2) quantal; urgency=low
   * Added a message file format test that does some simplistic checks
     on jobs/* files to ensure they are sane.
 
+  [Brendan Donegan]
+  * Make a call to rfkill unblock in the create_connection script, incase
+    those nasty Broadcom drivers have left a soft-block on the wireless after
+    loading. Also do a bit of refactoring to use check_output and check_call
+    instead of Popen (LP: #1019162)
+
  -- Jeff Lane <jeff@ubuntu.com>  Fri, 29 Jun 2012 15:46:37 -0400
 
 checkbox (0.14.1) quantal; urgency=low

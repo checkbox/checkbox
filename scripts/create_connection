@@ -4,7 +4,12 @@ import sys
 import os
 import time
 
-from subprocess import Popen, PIPE
+from subprocess import (
+    check_call,
+    check_output,
+    CalledProcessError,
+    )
+
 from uuid import uuid4
 from argparse import ArgumentParser
 
@@ -70,10 +75,9 @@ method=auto
 def block_until_created(connection, retries, interval):
 
     while retries > 0:
-        nmcli_con_list = Popen(['nmcli', 'con', 'list'], stdout=PIPE)
-        (stdout, dummy) = nmcli_con_list.communicate()
+        nmcli_con_list = check_output(['nmcli', 'con', 'list'], universal_newlines=True)
 
-        if connection in stdout.decode():
+        if connection in nmcli_con_list:
             print("Connection %s registered" % connection)
             break
 
@@ -84,16 +88,12 @@ def block_until_created(connection, retries, interval):
         print("Failed to register %s." % connection)
         sys.exit(1)
     else:
-        nmcli_con_up = Popen(['nmcli', 'con', 'up', 'id', connection],
-                             stdout=PIPE)
-        nmcli_con_up.communicate()
-
-        if nmcli_con_up.returncode == 0:
+        try:
+            nmcli_con_up = check_call(['nmcli', 'con', 'up', 'id', connection])
             print("Connection %s activated." % connection)
-        else:
+        except CalledProcessError as error:
             print("Failed to activate %s." % connection)
-            sys.exit(1)
-
+            sys.exit(error.returncode)
 
 def main():
     parser = ArgumentParser()
@@ -150,6 +150,11 @@ def main():
         sys.exit(1)
 
     block_until_created(args.ssid, args.retries, args.interval)
+
+    try:
+        rfkill_unblock = check_call(['rfkill','unblock','wlan','wifi'])
+    except CalledProcessError:
+        print("Could not unblock wireless devices with rfkill.")
 
 if __name__ == "__main__":
     main()
