@@ -4,6 +4,7 @@ import os
 import sys
 
 from subprocess import check_output
+from checkbox.parsers.meminfo import MeminfoParser
 
 THRESHOLD = 10
 
@@ -32,18 +33,21 @@ def get_installed_memory_size():
 
     return total_size
 
+class MeminfoResult:
+
+    memtotal = 0
+
+    def setMemory(self, memory):
+        self.memtotal = memory['total']
+
 def get_visible_memory_size():
-    total_size = 0
+    parser = MeminfoParser(open('/proc/meminfo'))
+    result = MeminfoResult()
+    parser.run(result)
 
-    meminfo_fields = {}
+    import pdb; pdb.set_trace()
 
-    for line in [ln.strip() for ln in open('/proc/meminfo')]:
-        meminfo_fields[line.split(':')[0].strip()] = line.split(':')[1].strip()
-
-    size = int(meminfo_fields['MemTotal'].split()[0])
-    unit = meminfo_fields['MemTotal'].split()[1]
-
-    return size
+    return result.memtotal
 
 def main():
     if os.geteuid() != 0:
