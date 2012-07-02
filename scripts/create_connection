@@ -152,7 +152,7 @@ def main():
     block_until_created(args.ssid, args.retries, args.interval)
 
     try:
-        rfkill_unblock = check_call(['rfkill','unblock','wlan','wifi'])
+        check_call(['rfkill','unblock','wlan','wifi'])
     except CalledProcessError:
         print("Could not unblock wireless devices with rfkill.")
 
