@@ -43,7 +43,7 @@ def get_visible_memory_size():
     result = MeminfoResult()
     parser.run(result)
 
-    return result.memtotal / 1000
+    return result.memtotal
 
 def main():
     if os.geteuid() != 0:
