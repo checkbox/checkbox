@@ -632,6 +632,7 @@ def main():
 
     if not test.getSystemCapabilities():
         logging.error("Failed to get system capabilities")
+        return 1
 
     returnValues = []
     if not args.capabilities:
