@@ -223,3 +223,25 @@ class DmiDevice:
             return version
 
         return None
+
+    @property
+    def size(self):
+        attribute = "%s_size" % self.category.lower()
+        size = self._attributes.get(attribute)
+
+        size = int(size.split()[0]) * 1024
+
+        if size:
+            return size
+
+        return None
+
+    @property
+    def form(self):
+        attribute = "%s_form" % self.category.lower()
+        form = self._attributes.get(attribute)
+
+        if form:
+            return form
+
+        return None

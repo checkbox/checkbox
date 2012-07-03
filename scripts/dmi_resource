@@ -30,11 +30,11 @@ COMMAND = "dmidecode"
 class DmiResult:
 
     attributes = ("path", "category", "product", "vendor", "serial",
-        "version",)
+        "version", "size", "form",)
 
     def addDmiDevice(self, device):
         for attribute in self.attributes:
-            value = getattr(device, attribute)
+            value = getattr(device, attribute, None)
             if value is not None:
                 print("%s: %s" % (attribute, value))
 
@@ -43,10 +43,10 @@ class DmiResult:
 
 def main():
     stream = os.popen(COMMAND)
-    udev = DmidecodeParser(stream)
+    dmi = DmidecodeParser(stream)
 
     result = DmiResult()
-    udev.run(result)
+    dmi.run(result)
 
     return 0
 

@@ -3,35 +3,33 @@
 import os
 import sys
 
-from subprocess import check_output
+from checkbox.parsers.dmidecode import DmidecodeParser
 from checkbox.parsers.meminfo import MeminfoParser
 
 THRESHOLD = 10
 
-def get_installed_memory_size():
+class DmiResult:
+
     total_size = 0
+    form = None
 
-    dmi_output = check_output(['dmidecode','-t','17'], universal_newlines=True)
-    dmi_sections = dmi_output.split('\n\n')[1:-1]
+    def addDmiDevice(self, device):
+        size = getattr(device, "size", None)
+        form = getattr(device, "form", None)
 
-    for section in dmi_sections:
-        section_lines = section.split('\n')[2:]
+        if form and "IMM" in form:
+            self.form = form
+        
+        if size:
+            self.total_size += size
 
-        dmi_fields = {}
-        for line in section_lines:
-            dmi_fields[line.split(':')[0].strip()] = line.split(':')[1].strip()
+def get_installed_memory_size():
+    dmi = DmidecodeParser(os.popen('dmidecode'))
+    result = DmiResult()
 
-        if 'IMM' in dmi_fields['Form Factor']:
-            size = int(dmi_fields['Size'].split()[0])
-            unit = dmi_fields['Size'].split()[1]
+    dmi.run(result)
 
-            # Potentially adjust for the size of the unit
-            if unit == 'MB':
-                size = size * 1000
-
-            total_size += size
-
-    return total_size
+    return result.total_size
 
 class MeminfoResult:
 
@@ -45,9 +43,7 @@ def get_visible_memory_size():
     result = MeminfoResult()
     parser.run(result)
 
-    import pdb; pdb.set_trace()
-
-    return result.memtotal
+    return result.memtotal / 1000
 
 def main():
     if os.geteuid() != 0:
@@ -64,10 +60,10 @@ def main():
     percentage = difference / installed_memory * 100
 
     if percentage <= THRESHOLD:
-        print("Difference is %d kB (%.2f%%) and less than the %d%% threshold." % (difference, percentage, THRESHOLD))
+        print("Difference is %d bytes (%.2f%%) and less than the %d%% threshold." % (difference, percentage, THRESHOLD))
         return 0
     else:
-        print("Difference is %d kB (%.2f%%) and greater than the %d%% threshold." % (difference, percentage, THRESHOLD))
+        print("Difference is %d bytes (%.2f%%) and greater than the %d%% threshold." % (difference, percentage, THRESHOLD))
         return 1
 
 if __name__ == "__main__":
