@@ -50,6 +50,8 @@ class DmidecodeParser:
         "Type": "type",
         "Vendor": "vendor",
         "Version": "version",
+        "Size": "size",
+        "Form Factor": "form",
         }
 
     def __init__(self, stream):
@@ -97,11 +99,12 @@ class DmidecodeParser:
             category = Dmi.type_names[type_index]
             category = category.upper().split(" ")[-1]
             if category not in (
-                "BOARD", "BIOS", "CHASSIS", "PROCESSOR", "SYSTEM"):
+                "BOARD", "BIOS", "CHASSIS", "DEVICE", "PROCESSOR", "SYSTEM"):
                 continue
 
             # Parse attributes
             attributes = {}
+
             for line in lines:
                 # Skip lines with an unsupported key/value pair
                 match = KEY_VALUE_RE.match(line)

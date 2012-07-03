@@ -18,6 +18,7 @@
 #
 import os
 
+from checkbox.lib.conversion import string_to_type
 
 # See also 3.3.4.1 of the "System Management BIOS Reference Specification,
 # Version 2.6.1" (Preliminary Standard) document, available from
@@ -223,3 +224,18 @@ class DmiDevice:
             return version
 
         return None
+
+    @property
+    def size(self):
+        attribute = "%s_size" % self.category.lower()
+        size = self._attributes.get(attribute)
+
+        if size:
+            size = string_to_type(size)
+
+        return size
+
+    @property
+    def form(self):
+        attribute = "%s_form" % self.category.lower()
+        return self._attributes.get(attribute)

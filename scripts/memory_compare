@@ -1,27 +1,70 @@
-#!/bin/bash
+#!/usr/bin/env python3
 
-MIN_LEVEL=90
+import os
+import sys
 
-meminfo_total=`grep 'MemTotal' /proc/meminfo | awk '{print $2}'`
-meminfo_units=`grep 'MemTotal' /proc/meminfo | awk '{print $3}'`
+from checkbox.parsers.dmidecode import DmidecodeParser
+from checkbox.parsers.meminfo import MeminfoParser
 
-echo "Meminfo total: $meminfo_total $meminfo_units"
+THRESHOLD = 10
 
-dmi_total=0
+class DmiResult:
 
-for size in `dmidecode -t 17 | grep Size | grep -o [0-9]*`
-do
-    dmi_total=`echo $dmi_total + $size | bc`
-done
+    total_size = 0
+    form = None
 
-dmi_total=`echo "$dmi_total * 1000" | bc`
+    def addDmiDevice(self, device):
+        size = getattr(device, "size", None)
+        form = getattr(device, "form", None)
 
-echo "DMI total: $dmi_total $meminfo_units"
-accuracy=`echo "scale=2; $meminfo_total / $dmi_total * 100" | bc`
-echo "Accuracy: $accuracy"
+        if form and "IMM" in form:
+            self.form = form
+        
+        if size:
+            self.total_size += size
 
-if [ ${accuracy::-3} -lt $MIN_LEVEL ]
-then
-    echo "Memory totals not close enough"
-    exit 1
-fi
+def get_installed_memory_size():
+    dmi = DmidecodeParser(os.popen('dmidecode'))
+    result = DmiResult()
+
+    dmi.run(result)
+
+    return result.total_size
+
+class MeminfoResult:
+
+    memtotal = 0
+
+    def setMemory(self, memory):
+        self.memtotal = memory['total']
+
+def get_visible_memory_size():
+    parser = MeminfoParser(open('/proc/meminfo'))
+    result = MeminfoResult()
+    parser.run(result)
+
+    return result.memtotal
+
+def main():
+    if os.geteuid() != 0:
+        print("This script must be run as root.")
+        return 1
+
+    installed_memory = get_installed_memory_size()
+    print("Installed memory: %d kB" % installed_memory)
+
+    visible_memory = get_visible_memory_size()
+    print("Visible memory: %d kB" % visible_memory)
+
+    difference = installed_memory - visible_memory
+    percentage = difference / installed_memory * 100
+
+    if percentage <= THRESHOLD:
+        print("Difference is %d bytes (%.2f%%) and less than the %d%% threshold." % (difference, percentage, THRESHOLD))
+        return 0
+    else:
+        print("Difference is %d bytes (%.2f%%) and greater than the %d%% threshold." % (difference, percentage, THRESHOLD))
+        return 1
+
+if __name__ == "__main__":
+    sys.exit(main())
