@@ -40,8 +40,9 @@ command:
  fwts_test -l $CHECKBOX_DATA/fwts_results.log
 
 plugin: attachment
-name: fwts_results.log
-command: cat ${CHECKBOX_DATA}/fwts_results.log
+name: miscellanea/fwts_results.log
+command: 
+ [[ -e ${CHECKBOX_DATA}/fwts_results.log ]] && cat ${CHECKBOX_DATA}/fwts_results.log
 _description: Attaches the FWTS results log to the submission
 
 plugin: shell

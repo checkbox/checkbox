@@ -89,13 +89,6 @@ command: lsmod
 _description: Attaches a list of the currently running kernel modules.
 
 plugin: attachment
-name: fwts_log
-depends: miscellanea/fwts_test
-_description: Gather log from the Firmware Test Suite run.
-command:
- cat $CHECKBOX_DATA/fwts_results.log
-
-plugin: attachment
 name: acpi_sleep_attachment
 command: [ -e /proc/acpi/sleep ] && cat /proc/acpi/sleep
 _description: Attaches the contents of /proc/acpi/sleep if it exists.
