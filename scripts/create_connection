@@ -4,7 +4,12 @@ import sys
 import os
 import time
 
-from subprocess import Popen, PIPE
+from subprocess import (
+    check_call,
+    check_output,
+    CalledProcessError,
+    )
+
 from uuid import uuid4
 from argparse import ArgumentParser
 
@@ -70,10 +75,9 @@ method=auto
 def block_until_created(connection, retries, interval):
 
     while retries > 0:
-        nmcli_con_list = Popen(['nmcli', 'con', 'list'], stdout=PIPE)
-        (stdout, dummy) = nmcli_con_list.communicate()
+        nmcli_con_list = check_output(['nmcli', 'con', 'list'], universal_newlines=True)
 
-        if connection in stdout.decode():
+        if connection in nmcli_con_list:
             print("Connection %s registered" % connection)
             break
 
@@ -81,19 +85,15 @@ def block_until_created(connection, retries, interval):
         retries = retries - 1
 
     if retries <= 0:
-        print("Failed to register %s." % connection)
+        print("Failed to register %s." % connection, file=sys.stderr)
         sys.exit(1)
     else:
-        nmcli_con_up = Popen(['nmcli', 'con', 'up', 'id', connection],
-                             stdout=PIPE)
-        nmcli_con_up.communicate()
-
-        if nmcli_con_up.returncode == 0:
+        try:
+            nmcli_con_up = check_call(['nmcli', 'con', 'up', 'id', connection])
             print("Connection %s activated." % connection)
-        else:
-            print("Failed to activate %s." % connection)
-            sys.exit(1)
-
+        except CalledProcessError as error:
+            print("Failed to activate %s." % connection, file=sys.stderr)
+            sys.exit(error.returncode)
 
 def main():
     parser = ArgumentParser()
@@ -128,13 +128,13 @@ def main():
         # Set security options
         if not args.key:
             print("You need to specify a key using --key "
-                  "if using wireless security.")
+                  "if using wireless security.", file=sys.stderr)
             sys.exit(1)
 
         connection_info += security_section(args.security, args.key)
     elif args.key:
         print("You specified an encryption key "
-              "but did not give a security type using --security.")
+              "but did not give a security type using --security.", file=sys.stderr)
         sys.exit(1)
 
     connection_info += ip_sections()
@@ -146,10 +146,16 @@ def main():
         connection_file.close()
     except IOError:
         print("Can't write to " + CONNECTIONS_PATH + args.ssid
-              + ". Is this command being run as root?")
+              + ". Is this command being run as root?", file=sys.stderr)
         sys.exit(1)
 
     block_until_created(args.ssid, args.retries, args.interval)
+
+    try:
+        check_call(['rfkill','unblock','wlan','wifi'])
+    except CalledProcessError:
+        print("Could not unblock wireless devices with rfkill.", file=sys.stderr)
+        # Don't fail the script if unblock didn't work though
 
 if __name__ == "__main__":
     main()
