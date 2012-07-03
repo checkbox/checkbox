@@ -34,6 +34,12 @@ plugin: shell
 name: cpu/frequency_governors
 requires: package.name == 'linux'
 user: root
-command: nice -n -20 cpu_scaling_test 
+command: nice -n -20 cpu_scaling_test --log ${CHECKBOX_DATA}/frequency_governors.log 
 _description:
  This test checks that CPU frequency governors are obeyed when set.
+
+plugin: attachment
+name: cpu/frequency_governors.log
+command: [[ -e ${CHECKBOX_DATA}/frequency_governors.log ]] && cat ${CHECKBOX_DATA/frequency_governors.log
+_description:
+ Attaches the log from the Frequency Governors test to the results
