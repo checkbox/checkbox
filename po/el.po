@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-06-23 04:33+0000\n"
-"X-Generator: Launchpad (build 15461)\n"
+"X-Launchpad-Export-Date: 2012-07-03 05:10+0000\n"
+"X-Generator: Launchpad (build 15531)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:2 ../checkbox_gtk/gtk_interface.py:561
 msgid "_Test"
@@ -63,7 +63,7 @@ msgstr "Ανταλλαγή πληροφοριών με τον εξυπηρετη
 
 #. Title of the user interface
 #: ../gtk/checkbox-gtk.ui.h:1 ../qt/checkbox-qt.desktop.in.h:1
-#: ../plugins/user_interface.py:43 ../qt/frontend/ui_qtfront.h:590
+#: ../plugins/user_interface.py:43 ../qt/frontend/ui_qtfront.h:600
 msgid "System Testing"
 msgstr "Δοκιμή συστήματος"
 
@@ -131,7 +131,7 @@ msgstr ""
 "    Ακούσατε τόνο;"
 
 #. description
-#: ../jobs/audio.txt.in:35
+#: ../jobs/audio.txt.in:55
 msgid ""
 "PURPOSE:\n"
 "    This test will check that headphones connector works correctly\n"
@@ -153,7 +153,7 @@ msgstr ""
 "κλικ ή άλλους περίεργους ήχους από τα ακουστικά σας;"
 
 #. description
-#: ../jobs/audio.txt.in:51
+#: ../jobs/audio.txt.in:71
 msgid ""
 "PURPOSE:\n"
 "    This test will check that recording sound using the onboard microphone "
@@ -178,7 +178,7 @@ msgstr ""
 "    Ακούσατε την αναπαραγωγή της ομιλίας σας;"
 
 #. description
-#: ../jobs/audio.txt.in:68
+#: ../jobs/audio.txt.in:88
 msgid ""
 "PURPOSE:\n"
 "    This test will check that recording sound using an external microphone "
@@ -203,7 +203,7 @@ msgstr ""
 "    Ακούσατε την αναπαραγωγή της ομιλίας σας;"
 
 #. description
-#: ../jobs/audio.txt.in:84
+#: ../jobs/audio.txt.in:104
 msgid ""
 "PURPOSE:\n"
 "    This test will check that a USB audio device works correctly\n"
@@ -225,7 +225,7 @@ msgstr ""
 "    Ακούσατε την αναπαραγωγή της ομιλίας σας μέσα από τα ακουστικά USB;"
 
 #. description
-#: ../jobs/audio.txt.in:101
+#: ../jobs/audio.txt.in:121
 msgid ""
 "Play back a sound on the default output and listen for it on the  default "
 "input.  This makes the most sense when the output and input  are directly "
@@ -237,7 +237,7 @@ msgstr ""
 "cable)."
 
 #. description
-#: ../jobs/audio.txt.in:109
+#: ../jobs/audio.txt.in:129
 msgid ""
 "Collect audio-related system information. This data can be used to simulate "
 "this computer's audio subsystem and perform more detailed tests under a "
@@ -245,7 +245,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/audio.txt.in:118
+#: ../jobs/audio.txt.in:138
 msgid "Attaches the audio hardware data collection log to the results."
 msgstr ""
 
@@ -1121,7 +1121,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:176
+#: ../jobs/graphics.txt.in:155
 msgid ""
 "PURPOSE:\n"
 "    Take a screengrab of the current screen (logged on Unity desktop)\n"
@@ -1132,12 +1132,12 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:188 ../jobs/suspend.txt.in:323
+#: ../jobs/graphics.txt.in:167 ../jobs/suspend.txt.in:335
 msgid "Attaches the screenshot captured in graphics/screenshot."
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:199
+#: ../jobs/graphics.txt.in:178
 msgid ""
 "PURPOSE:\n"
 "    Take a screengrab of the current screen during fullscreen video "
@@ -1150,7 +1150,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:212
+#: ../jobs/graphics.txt.in:191
 msgid ""
 "Attaches the screenshot captured in graphics/screenshot_fullscreen_video."
 msgstr ""
@@ -3032,7 +3032,7 @@ msgstr ""
 "αυτή λειτουργεί κατά το προσδοκώμενο."
 
 #. description
-#: ../jobs/suspend.txt.in:76
+#: ../jobs/suspend.txt.in:77
 msgid ""
 "PURPOSE:\n"
 "    This test will check suspend and resume\n"
@@ -3061,18 +3061,18 @@ msgstr ""
 "    Έγινε σωστά η αναστολή λειτουργίας του συστήματος και η επαναφορά του;"
 
 #. description
-#: ../jobs/suspend.txt.in:95
+#: ../jobs/suspend.txt.in:108
 msgid "Test the network after resuming."
 msgstr "Δοκιμή της σύνδεσης δικτύου μετά την επαναφορά."
 
 #. description
-#: ../jobs/suspend.txt.in:101
+#: ../jobs/suspend.txt.in:114
 msgid ""
 "Test to see that we have the same resolution after resuming as before."
 msgstr "Δοκιμή διατήρησης της ανάλυσης μετά την επαναφορά."
 
 #. description
-#: ../jobs/suspend.txt.in:110
+#: ../jobs/suspend.txt.in:123
 msgid ""
 "Verify that mixer settings after suspend are the same as before suspend."
 msgstr ""
@@ -3080,21 +3080,21 @@ msgstr ""
 "λειτουργίας."
 
 #. description
-#: ../jobs/suspend.txt.in:126
+#: ../jobs/suspend.txt.in:139
 msgid "Verify that all CPUs are online after resuming."
 msgstr ""
 "Επαλήθευση για το ότι όλες οι μονάδες επεξεργασίας (CPU) βρίσκονται σε "
 "σύνδεση μετά την επαναφορά από την αναστολή λειτουργίας."
 
 #. description
-#: ../jobs/suspend.txt.in:143
+#: ../jobs/suspend.txt.in:156
 msgid "Verify that all memory is available after resuming from suspend."
 msgstr ""
 "Επαλήθευση της διαθεσιμότητας ολόκληρης της μνήμης μετά την επαναφορά από "
 "την αναστολή λειτουργίας."
 
 #. description
-#: ../jobs/suspend.txt.in:152
+#: ../jobs/suspend.txt.in:165
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the display is correct after suspend and "
@@ -3107,7 +3107,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:165
+#: ../jobs/suspend.txt.in:178
 msgid ""
 "This test checks that the wireless interface is working after suspending the "
 "system. It disconnects all interfaces and then connects to the wireless "
@@ -3119,35 +3119,35 @@ msgstr ""
 "επιβεβαιώσει πως αυτή λειτουργεί κατά το προσδοκώμενο."
 
 #. description
-#: ../jobs/suspend.txt.in:177
+#: ../jobs/suspend.txt.in:190
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using WPA "
 "security and the 802.11b/g protocols after the system has been suspended."
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:188
+#: ../jobs/suspend.txt.in:201
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using no "
 "security and the 802.11b/g protocols after the system has been suspended."
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:199
+#: ../jobs/suspend.txt.in:212
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using WPA "
 "security and the 802.11n protocol after the system has been suspended."
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:210
+#: ../jobs/suspend.txt.in:223
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using no "
 "security and the 802.11n protocol after the system has been suspended."
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:221
+#: ../jobs/suspend.txt.in:234
 msgid ""
 "This test grabs the hardware address of the bluetooth adapter after suspend "
 "and compares it to the address grabbed before suspend."
@@ -3157,7 +3157,7 @@ msgstr ""
 "συλληφθείσα διεύθυνση."
 
 #. description
-#: ../jobs/suspend.txt.in:231
+#: ../jobs/suspend.txt.in:254
 msgid ""
 "This is an automated Bluetooth file transfer test. It sends an image to the "
 "device specified by the BTDEVADDR environment variable."
@@ -3167,7 +3167,7 @@ msgstr ""
 "BTDEVADDR συσκευή."
 
 #. description
-#: ../jobs/suspend.txt.in:241
+#: ../jobs/suspend.txt.in:264
 msgid ""
 "PURPOSE:\n"
 "    This test will send the image 'JPEG_Color_Image_Ubuntu.jpg' to a "
@@ -3193,7 +3193,7 @@ msgstr ""
 "    Μεταφέρθηκαν σωστά τα δεδομένα;"
 
 #. description
-#: ../jobs/suspend.txt.in:255
+#: ../jobs/suspend.txt.in:278
 msgid ""
 "PURPOSE:\n"
 "    This test will cycle through the detected display modes\n"
@@ -3212,7 +3212,7 @@ msgstr ""
 "    Φαινόταν σωστά η οθόνη σας σε όλους τους τρόπος λειτουργίας;"
 
 #. description
-#: ../jobs/suspend.txt.in:267
+#: ../jobs/suspend.txt.in:290
 msgid ""
 "This test will check to make sure supported video modes work after a suspend "
 "and resume. This is done automatically by taking screenshots and uploading "
@@ -3224,7 +3224,7 @@ msgstr ""
 "στιγμιότυπα της οθόνης και μεταφορτώνοντάς τα ως επισυνάψεις."
 
 #. description
-#: ../jobs/suspend.txt.in:276
+#: ../jobs/suspend.txt.in:299
 msgid ""
 "This attaches screenshots from the "
 "suspend/cycle_resolutions_after_suspend_auto test to the results submission."
@@ -3234,7 +3234,7 @@ msgstr ""
 "αναφορά αποτελεσμάτων."
 
 #. description
-#: ../jobs/suspend.txt.in:286
+#: ../jobs/suspend.txt.in:309
 msgid ""
 "This will check to make sure that your audio device works properly after a "
 "suspend and resume.  This may work fine with speakers and onboard "
@@ -3248,18 +3248,18 @@ msgstr ""
 "καλώδιο το οποίο θα συνδέει το βύσμα εξόδου του ήχου με το βύσμα εισόδου του."
 
 #. description
-#: ../jobs/suspend.txt.in:295
+#: ../jobs/suspend.txt.in:93
 msgid "This is the automated version of suspend/suspend_advanced."
 msgstr ""
 "Αυτή είναι η αυτοματοποιημένη έκδοση του τεστ αναστολή/προχωρημένη_αναστολή."
 
 #. description
-#: ../jobs/suspend.txt.in:303
+#: ../jobs/suspend.txt.in:315
 msgid "Attaches the log from the single suspend/resume test to the results"
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:311
+#: ../jobs/suspend.txt.in:323
 msgid ""
 "PURPOSE:\n"
 "    Take a screengrab of the current screen after suspend (logged on Unity "
@@ -4462,23 +4462,23 @@ msgstr "Συνέχεια"
 #: ../checkbox_urwid/urwid_interface.py:220
 #: ../checkbox_urwid/urwid_interface.py:296
 #: ../checkbox_urwid/urwid_interface.py:447
-#: ../checkbox_urwid/urwid_interface.py:569 ../qt/frontend/ui_qtfront.h:610
+#: ../checkbox_urwid/urwid_interface.py:569 ../qt/frontend/ui_qtfront.h:622
 msgid "Previous"
 msgstr "Προηγούμενο"
 
 #: ../checkbox_urwid/urwid_interface.py:221
 #: ../checkbox_urwid/urwid_interface.py:297
 #: ../checkbox_urwid/urwid_interface.py:448
-#: ../checkbox_urwid/urwid_interface.py:570 ../qt/frontend/ui_qtfront.h:609
+#: ../checkbox_urwid/urwid_interface.py:570 ../qt/frontend/ui_qtfront.h:621
 msgid "Next"
 msgstr "Επόμενο"
 
 #. Show buttons
-#: ../checkbox_urwid/urwid_interface.py:445 ../qt/frontend/qtfront.cpp:140
+#: ../checkbox_urwid/urwid_interface.py:445
 msgid "Select All"
 msgstr "Επιλογή όλων"
 
-#: ../checkbox_urwid/urwid_interface.py:446 ../qt/frontend/qtfront.cpp:141
+#: ../checkbox_urwid/urwid_interface.py:446
 msgid "Deselect All"
 msgstr "Αποεπιλογή όλων"
 
@@ -4491,7 +4491,7 @@ msgstr "Ανάπτυξη όλων"
 msgid "Collapse All"
 msgstr "Σύμπτυξη όλων"
 
-#: ../checkbox_urwid/urwid_interface.py:1034 ../qt/frontend/ui_qtfront.h:604
+#: ../checkbox_urwid/urwid_interface.py:1034 ../qt/frontend/ui_qtfront.h:616
 msgid "Test"
 msgstr "Δοκιμή"
 
@@ -4503,11 +4503,11 @@ msgstr "Επανάληψη δοκιμής"
 msgid "_Test Again"
 msgstr "Έλεγχ_ος ξανά"
 
-#: ../checkbox_gtk/gtk_interface.py:574 ../qt/frontend/qtfront.cpp:545
+#: ../checkbox_gtk/gtk_interface.py:574 ../qt/frontend/qtfront.cpp:547
 msgid "Info"
 msgstr "Πληροφορίες"
 
-#: ../checkbox_gtk/gtk_interface.py:599 ../qt/frontend/qtfront.cpp:251
+#: ../checkbox_gtk/gtk_interface.py:599 ../qt/frontend/qtfront.cpp:244
 msgid "Error"
 msgstr "Σφάλμα"
 
@@ -4688,7 +4688,7 @@ msgstr ""
 "τους ελέγχους. Μπορείτε επίσης να προσπεράσετε κάποιους ελέγχους αν δεν "
 "έχετε τον κατάλληλο εξοπλισμό."
 
-#: ../plugins/suites_prompt.py:134 ../qt/frontend/ui_qtfront.h:596
+#: ../plugins/suites_prompt.py:134 ../qt/frontend/ui_qtfront.h:606
 msgid "Choose tests to run on your system:"
 msgstr ""
 
@@ -4712,187 +4712,187 @@ msgstr "Η σύνδεση που πραγματοποιήθηκε έχασε έ�
 msgid "Internet connection fully established"
 msgstr "Η σύνδεση με το Διαδίκτυο πραγματοποιήθηκε πλήρως"
 
-#: ../qt/frontend/qtfront.cpp:89
+#: ../qt/frontend/qtfront.cpp:91
 msgid "Audio Test"
 msgstr "Δοκιμή ήχου"
 
-#: ../qt/frontend/qtfront.cpp:90
+#: ../qt/frontend/qtfront.cpp:92
 msgid "Bluetooth Test"
 msgstr "Έλεγχος Bluetooth"
 
-#: ../qt/frontend/qtfront.cpp:91
+#: ../qt/frontend/qtfront.cpp:93
 msgid "Camera Test"
 msgstr "Δοκιμή κάμερας"
 
-#: ../qt/frontend/qtfront.cpp:92
+#: ../qt/frontend/qtfront.cpp:94
 msgid "CPU Test"
 msgstr "Δοκιμή επεξεργαστή (CPU)"
 
-#: ../qt/frontend/qtfront.cpp:93
+#: ../qt/frontend/qtfront.cpp:95
 msgid "Disk Test"
 msgstr "Δοκιμή δίσκου"
 
-#: ../qt/frontend/qtfront.cpp:94
+#: ../qt/frontend/qtfront.cpp:96
 msgid "Firewire Test"
 msgstr "Δοκιμή Firewire"
 
-#: ../qt/frontend/qtfront.cpp:95
+#: ../qt/frontend/qtfront.cpp:97
 msgid "Graphics Test"
 msgstr "Δοκιμή γραφικών"
 
-#: ../qt/frontend/qtfront.cpp:96
+#: ../qt/frontend/qtfront.cpp:98
 msgid "Info Test"
 msgstr "Έλεγχος πληροφοριών"
 
-#: ../qt/frontend/qtfront.cpp:97
+#: ../qt/frontend/qtfront.cpp:99
 msgid "Input Test"
 msgstr "Δοκιμή εισόδου"
 
-#: ../qt/frontend/qtfront.cpp:98
+#: ../qt/frontend/qtfront.cpp:100
 msgid "Keys Test"
 msgstr "Δοκιμή πλήκτρων"
 
-#: ../qt/frontend/qtfront.cpp:99
+#: ../qt/frontend/qtfront.cpp:101
 msgid "Media Card Test"
 msgstr "Έλεγχος κάρτας πολυμέσων"
 
-#: ../qt/frontend/qtfront.cpp:100
+#: ../qt/frontend/qtfront.cpp:102
 msgid "Memory Test"
 msgstr "Δοκιμή μνήμης"
 
-#: ../qt/frontend/qtfront.cpp:101
+#: ../qt/frontend/qtfront.cpp:103
 msgid "Miscellanea Test"
 msgstr "Διάφοροι ελέγχοι"
 
-#: ../qt/frontend/qtfront.cpp:102
+#: ../qt/frontend/qtfront.cpp:104
 msgid "Monitor Test"
 msgstr "Δοκιμή οθόνης"
 
-#: ../qt/frontend/qtfront.cpp:103
+#: ../qt/frontend/qtfront.cpp:105
 msgid "Networking Test"
 msgstr "Δοκιμή δικτύωσης"
 
-#: ../qt/frontend/qtfront.cpp:104
+#: ../qt/frontend/qtfront.cpp:106
 msgid "Wireless Test"
 msgstr "Έλεγχος ασύρματης σύνδεσης"
 
-#: ../qt/frontend/qtfront.cpp:105
+#: ../qt/frontend/qtfront.cpp:107
 msgid "Optical Test"
 msgstr "Έλεγχος οπτικού δίσκου"
 
-#: ../qt/frontend/qtfront.cpp:106
+#: ../qt/frontend/qtfront.cpp:108
 msgid "PCMCIA/PCIX Test"
 msgstr "Έλεγχος PCMCIA/PCIX"
 
-#: ../qt/frontend/qtfront.cpp:107
+#: ../qt/frontend/qtfront.cpp:109
 msgid "Power Management Test"
 msgstr "Έλεγχος διαχείρησης ενέργειας"
 
-#: ../qt/frontend/qtfront.cpp:108
+#: ../qt/frontend/qtfront.cpp:110
 msgid "Suspend Test"
 msgstr "Δοκιμή αναστολής"
 
-#: ../qt/frontend/qtfront.cpp:109
+#: ../qt/frontend/qtfront.cpp:111
 msgid "USB Test"
 msgstr "Έλεχγος USB"
 
-#: ../qt/frontend/qtfront.cpp:111
+#: ../qt/frontend/qtfront.cpp:113
 msgid "Not Started"
 msgstr "Δεν έχει ξεκινήσει"
 
-#: ../qt/frontend/qtfront.cpp:112 ../qt/frontend/qtfront.cpp:113
+#: ../qt/frontend/qtfront.cpp:114 ../qt/frontend/qtfront.cpp:115
 msgid "Done"
 msgstr "Ολοκληρώθηκε"
 
-#: ../qt/frontend/qtfront.cpp:114
+#: ../qt/frontend/qtfront.cpp:116
 msgid "Not Supported"
 msgstr "Δεν υποστηρίζεται"
 
-#: ../qt/frontend/qtfront.cpp:115
+#: ../qt/frontend/qtfront.cpp:117
 msgid "Not Resolved"
 msgstr "Μη επιλυμένο"
 
-#: ../qt/frontend/qtfront.cpp:116
+#: ../qt/frontend/qtfront.cpp:118
 msgid "Not Tested"
 msgstr "Δεν ελέγχθηκε"
 
-#: ../qt/frontend/qtfront.cpp:117
+#: ../qt/frontend/qtfront.cpp:119
 msgid "In Progress"
 msgstr "Σε εξέλιξη"
 
-#: ../qt/frontend/qtfront.cpp:185
+#: ../qt/frontend/qtfront.cpp:183
 msgid "Are you sure?"
 msgstr "Σίγουρα;"
 
-#: ../qt/frontend/qtfront.cpp:185
+#: ../qt/frontend/qtfront.cpp:183
 msgid "Do you really want to skip this test?"
 msgstr "Θέλετε σίγουρα να παραλείψετε αυτή τη δοκιμή;"
 
-#: ../qt/frontend/qtfront.cpp:186
+#: ../qt/frontend/qtfront.cpp:184
 msgid "Don't ask me again"
 msgstr "Να μην ξαναγίνει η ερώτηση"
 
-#: ../qt/frontend/ui_qtfront.h:589
+#: ../qt/frontend/ui_qtfront.h:599
 msgid "Form"
 msgstr "Μορφή"
 
-#: ../qt/frontend/ui_qtfront.h:591
+#: ../qt/frontend/ui_qtfront.h:601
 msgid "OK"
 msgstr "Εντάξει"
 
-#: ../qt/frontend/ui_qtfront.h:592
+#: ../qt/frontend/ui_qtfront.h:602
 msgid "Don't show me this message in the future"
 msgstr "Να μη μου εμφανίζεται αυτό το μήνυμα στο μέλλον"
 
-#: ../qt/frontend/ui_qtfront.h:593 ../qt/frontend/ui_qtfront.h:607
+#: ../qt/frontend/ui_qtfront.h:603 ../qt/frontend/ui_qtfront.h:619
 msgid "Tab 1"
 msgstr "Καρτέλα 1"
 
-#: ../qt/frontend/ui_qtfront.h:594
+#: ../qt/frontend/ui_qtfront.h:604
 msgid "10 tests completed out of 30 (30%)"
 msgstr "Ολοκληρώθηκαν 10 δοκιμές από σύνολο 30 (30%)"
 
-#: ../qt/frontend/ui_qtfront.h:597
+#: ../qt/frontend/ui_qtfront.h:607
 msgid "Components"
 msgstr "Συστατικά"
 
-#: ../qt/frontend/ui_qtfront.h:598
+#: ../qt/frontend/ui_qtfront.h:608
 msgid "Status"
 msgstr "Κατάσταση"
 
-#: ../qt/frontend/ui_qtfront.h:599
+#: ../qt/frontend/ui_qtfront.h:611
 msgid "Start testing"
 msgstr "Έναρξη δοκιμής"
 
-#: ../qt/frontend/ui_qtfront.h:600
+#: ../qt/frontend/ui_qtfront.h:612
 msgid " Selection "
 msgstr " Επιλογή "
 
-#: ../qt/frontend/ui_qtfront.h:601 ../qt/frontend/ui_qtfront.h:602
+#: ../qt/frontend/ui_qtfront.h:613 ../qt/frontend/ui_qtfront.h:614
 msgid "TextLabel"
 msgstr "Ετικέτα κειμένου"
 
-#: ../qt/frontend/ui_qtfront.h:603
+#: ../qt/frontend/ui_qtfront.h:615
 msgid "Yes"
 msgstr "Ναι"
 
-#: ../qt/frontend/ui_qtfront.h:605
+#: ../qt/frontend/ui_qtfront.h:617
 msgid "No"
 msgstr "Όχι"
 
-#: ../qt/frontend/ui_qtfront.h:606
+#: ../qt/frontend/ui_qtfront.h:618
 msgid "Comment"
 msgstr "Σχόλιο"
 
-#: ../qt/frontend/ui_qtfront.h:608 ../qt/frontend/ui_qtfront.h:624
+#: ../qt/frontend/ui_qtfront.h:620 ../qt/frontend/ui_qtfront.h:636
 msgid "Tab 2"
 msgstr "Καρτέλα 2"
 
-#: ../qt/frontend/ui_qtfront.h:611
+#: ../qt/frontend/ui_qtfront.h:623
 msgid " Run "
 msgstr " Εκτέλεση "
 
-#: ../qt/frontend/ui_qtfront.h:612
+#: ../qt/frontend/ui_qtfront.h:624
 msgid ""
 "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" "
 "\"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
@@ -4926,23 +4926,23 @@ msgstr ""
 "color:#000000;\">και πατήστε στο Υποβολή αποτελεσμάτων για να υποβάλετε αυτά "
 "τα αποτελέσματα δοκιμών στο Ubuntu Friendly.</span></p></body></html>"
 
-#: ../qt/frontend/ui_qtfront.h:618
+#: ../qt/frontend/ui_qtfront.h:630
 msgid "Submission details"
 msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:620
+#: ../qt/frontend/ui_qtfront.h:632
 msgid "Email:"
 msgstr "Ηλ. διεύθυνση:"
 
-#: ../qt/frontend/ui_qtfront.h:621
+#: ../qt/frontend/ui_qtfront.h:633
 msgid "Submit results"
 msgstr "Υποβολή αποτελεσμάτων"
 
-#: ../qt/frontend/ui_qtfront.h:622
+#: ../qt/frontend/ui_qtfront.h:634
 msgid "View results"
 msgstr "Προβολή αποτελεσμάτων"
 
-#: ../qt/frontend/ui_qtfront.h:623
+#: ../qt/frontend/ui_qtfront.h:635
 msgid " Results "
 msgstr " Αποτελέσματα "
 
