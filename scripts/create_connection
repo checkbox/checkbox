@@ -85,14 +85,14 @@ def block_until_created(connection, retries, interval):
         retries = retries - 1
 
     if retries <= 0:
-        print("Failed to register %s." % connection)
+        print("Failed to register %s." % connection, file=sys.stderr)
         sys.exit(1)
     else:
         try:
             nmcli_con_up = check_call(['nmcli', 'con', 'up', 'id', connection])
             print("Connection %s activated." % connection)
         except CalledProcessError as error:
-            print("Failed to activate %s." % connection)
+            print("Failed to activate %s." % connection, file=sys.stderr)
             sys.exit(error.returncode)
 
 def main():
@@ -128,13 +128,13 @@ def main():
         # Set security options
         if not args.key:
             print("You need to specify a key using --key "
-                  "if using wireless security.")
+                  "if using wireless security.", file=sys.stderr)
             sys.exit(1)
 
         connection_info += security_section(args.security, args.key)
     elif args.key:
         print("You specified an encryption key "
-              "but did not give a security type using --security.")
+              "but did not give a security type using --security.", file=sys.stderr)
         sys.exit(1)
 
     connection_info += ip_sections()
@@ -146,7 +146,7 @@ def main():
         connection_file.close()
     except IOError:
         print("Can't write to " + CONNECTIONS_PATH + args.ssid
-              + ". Is this command being run as root?")
+              + ". Is this command being run as root?", file=sys.stderr)
         sys.exit(1)
 
     block_until_created(args.ssid, args.retries, args.interval)
@@ -154,7 +154,8 @@ def main():
     try:
         check_call(['rfkill','unblock','wlan','wifi'])
     except CalledProcessError:
-        print("Could not unblock wireless devices with rfkill.")
+        print("Could not unblock wireless devices with rfkill.", file=sys.stderr)
+        # Don't fail the script if unblock didn't work though
 
 if __name__ == "__main__":
     main()
