@@ -9,8 +9,10 @@ checkbox (0.14.2) quantal; urgency=low
   * jobs/disk.txt.in: modified block_device requirements so they'll work right
     jobs/info.txt.in: added block_device resource requirements to hdparm job so
     it won't run on removable stuff where it's not necessary.
-  * info.txt.in: removed extraneous fwts_log job
-    miscellanea.txt.in: modified fwts_results.log job
+  * jobs/info.txt.in: removed extraneous fwts_log job
+    jobs/miscellanea.txt.in: modified fwts_results.log job
+  * scripts/disk_stats_test: some minor changes to output. Also, error output
+    now goes to stderr on test failure.
 
   [Marc Tardif]
   * Fixed duplicate jobs appearing in the store when rerunning jobs.
@@ -29,7 +31,7 @@ checkbox (0.14.2) quantal; urgency=low
     things into dictionaries for easy access. Also fixed bug with detecting
     non-RAM devices as RAM. (LP: #960087)
 
- -- Jeff Lane <jeff@ubuntu.com>  Fri, 29 Jun 2012 16:30:33 -0400
+ -- Jeff Lane <jeff@ubuntu.com>  Thu, 05 Jul 2012 17:51:10 -0400
 
 checkbox (0.14.1) quantal; urgency=low
 
