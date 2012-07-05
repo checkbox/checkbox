@@ -12,7 +12,8 @@ checkbox (0.14.2) quantal; urgency=low
   * info.txt.in: removed extraneous fwts_log job
     miscellanea.txt.in: modified fwts_results.log job
   * scripts/cpu_topology: Changed it so there is less output on success and
-    more useful output on failure.
+    more useful output on failure. Fixed a bug in the test for Failure that
+    caused the False condition to never be met.
 
   [Marc Tardif]
   * Fixed duplicate jobs appearing in the store when rerunning jobs.
@@ -31,7 +32,7 @@ checkbox (0.14.2) quantal; urgency=low
     things into dictionaries for easy access. Also fixed bug with detecting
     non-RAM devices as RAM. (LP: #960087)
 
- -- Jeff Lane <jeff@ubuntu.com>  Thu, 05 Jul 2012 19:26:52 -0400
+ -- Jeff Lane <jeff@ubuntu.com>  Thu, 05 Jul 2012 19:33:21 -0400
 
 checkbox (0.14.1) quantal; urgency=low
 
