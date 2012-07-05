@@ -315,7 +315,7 @@ class CPUScalingTest(object):
         return True
 
     def getCPUFlags(self):
-        logging.info("Getting CPU flags")
+        logging.debug("Getting CPU flags")
         self.cpuFlags = None
         try:
             cpuinfo_file = open('/proc/cpuinfo', 'r')
@@ -598,32 +598,27 @@ def main():
                         help="Suppress output.")
     parser.add_argument("-c", "--capabilities", action="store_true",
                         help="Only output CPU capabilities.")
-    parser.add_argument("-l", "--log", action="store",
-                        default="/tmp/cpu_scaling_test.log",
-                        help="Specify the log file for verbose logging (Default: %(default)s")
+    parser.add_argument("-d", "--debug", action="store_true",
+                        help="Turn on debug level output for extra info during test run.")
     args = parser.parse_args()
 
     # Set up the logging system (unless we don't want ANY logging)
-    if not args.quiet or args.log:
+    if not args.quiet or args.debug:
         logger = logging.getLogger()
         logger.setLevel(logging.DEBUG)
         format = '%(asctime)s %(levelname)-8s %(message)s'
+        date_format = '%Y-%m-%d %H:%M:%S'
     
     # If we DO want console output
     if not args.quiet:
         console_handler = logging.StreamHandler() #logging.StreamHandler()
-        console_handler.setFormatter(logging.Formatter(format))
+        console_handler.setFormatter(logging.Formatter(format,date_format))
         console_handler.setLevel(logging.INFO)
         logger.addHandler(console_handler)
 
     # If we ALSO want to create a file for future reference
-    if args.log:
-        file_handler = logging.FileHandler(args.log)
-        file_handler.setFormatter(logging.Formatter(format))
-        file_handler.setLevel(logging.DEBUG)
-        logger.addHandler(file_handler)
-        log_path = os.path.abspath(args.log)
-        logging.info("The debug log can be found at %s" % log_path)
+    if args.debug:
+        console_handler.setLevel(logging.DEBUG)
 
     test = CPUScalingTest()
     if not os.path.exists(test.cpufreqDirectory):
