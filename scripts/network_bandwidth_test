@@ -562,7 +562,8 @@ class Application(object):
             elif interface.name != "lo":
                 targets = ip_range.scan(self.scan)
                 logging.info("The following targets were found for %s:" % interface.name)
-                logging.info("%s" % [t for t in targets])
+                for t in targets:
+                    logging.info("\t%s" % t)
 
             if not targets:
                 logging.debug("No targets found for [%s]", interface.name)
@@ -644,7 +645,7 @@ class ApplicationManager(object):
         date_format = '%Y-%m-%d %H:%M:%S'
         if log_handlers:
             for handler in log_handlers:
-                handler.setFormatter(Formatter(format,date_format))
+                handler.setFormatter(Formatter(format, date_format))
                 logging.getLogger().addHandler(handler)
             if log_level:
                 logging.getLogger().setLevel(log_level)
