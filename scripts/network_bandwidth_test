@@ -537,7 +537,7 @@ class Application(object):
 
         logging.warning("FAIL: Unacceptable network effective rate found for [%s]" % iface_name)
         logging.warning("Effective rate %3.4f Mbps, %3.2f%% of theoretical max (%5.2f Mbps)" %
-                        (mbps,percent,iface_speed))
+                        (mbps, percent, iface_speed))
         return False
 
     def run(self):
