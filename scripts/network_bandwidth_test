@@ -509,6 +509,8 @@ class Application(object):
         iface_name = interface.name
         iface_speed = interface.speed
         iface_addr = interface.inet_addr
+        mbps = 0
+        percent = 0
         logging.info("Testing %s at %s-Mbps", iface_name, iface_speed)
         for target in targets:
             ping = PingLarge(target, interface=iface_name)
@@ -517,7 +519,7 @@ class Application(object):
                 ping = PingSmall(target, interface=iface_name)
                 result = ping.run()
                 if result.packet_loss:
-                    logging.debug("SKIP: Non-zero packet loss (%s%%) "
+                    logging.warning("SKIP: Non-zero packet loss (%s%%) "
                                   "for [%s] [%s]->[%s]",
                                   result.packet_loss, iface_name,
                                   iface_addr, target)
@@ -559,8 +561,8 @@ class Application(object):
                         targets.append(target)
             elif interface.name != "lo":
                 targets = ip_range.scan(self.scan)
-                logging.debug("The following targets were found for %s:" % interface.name)
-                logging.debug("%s" % [t for t in targets])
+                logging.info("The following targets were found for %s:" % interface.name)
+                logging.info("%s" % [t for t in targets])
 
             if not targets:
                 logging.debug("No targets found for [%s]", interface.name)
@@ -653,7 +655,7 @@ class ApplicationManager(object):
             parser.error("Must be run as root.")
 
         if not self.check_network(options.timeout):
-            parser.error("Network Manager failed to connect before timeout expired")
+            parser.error("Network devices must be configured and connected to a LAN segment before testing")
 
         targets = args
         logging.info("Beginning bandwidth test...")
