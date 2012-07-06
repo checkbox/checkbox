@@ -37,7 +37,7 @@ class DiskTest():
     def md5_hash_file(self, path):
         try:
             fh = open(path, 'r')
-        except:
+        except IOError:
             print("ERROR: unable to open file %s" % path, file=sys.stderr)
             return 1
         md5 = hashlib.md5()
