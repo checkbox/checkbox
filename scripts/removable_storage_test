@@ -35,7 +35,11 @@ class DiskTest():
         print("File size is %s bytes" % os.path.getsize(self.tfile.name))
 
     def md5_hash_file(self, path):
-        fh = open(path, 'r')
+        try:
+            fh = open(path, 'r')
+        except:
+            print("ERROR: unable to open file %s" % path, file=sys.stderr)
+            return 1
         md5 = hashlib.md5()
         try:
             while True:
@@ -138,8 +142,8 @@ class DiskTest():
             if r:
                 print("Now umounting %s on %s" % (d, self.rem_disks_nm[d]))
             else:
-                print("Error: can't umount %s on %s"
-                       % (d, self.rem_disks_nm[d]))
+                print("ERROR: can't umount %s on %s"
+                       % (d, self.rem_disks_nm[d]), file=sys.stderr)
 
         return errors
 
@@ -258,21 +262,25 @@ def main():
                     for i in range(args.count):
                         test.generate_test_data(args.size)
                         parent_hash = test.md5_hash_file(test.tfile.name)
-                        print("Parent hash is: %s" % parent_hash)
+                        print("Hashing parent copy")
                         for k, v in disks_all.items():
                             print("Copying %s to %s" % (test.tfile.name, v))
                             if not test.copy_file(test.tfile.name, v):
+                                print("ERROR: Failed to copy %s to %s" %
+                                    (test.tfile.name, v), file=sys.stderr)
                                 errors += 1
                                 continue
                             print("Hashing copy on %s" % v)
                             target = os.path.join(v,
                                           os.path.basename(test.tfile.name))
                             child_hash = test.md5_hash_file(target)
-                            print("Hash of %s on %s is %s"
-                                   % (target, v, child_hash))
                             if not test.compare_hash(parent_hash, child_hash):
-                                print("[Iteration %s] Failure on file copy "
-                                      "to %s" % (i, k))
+                                print("ERROR: [Iteration %s] Parent and Child"
+                                        "copy hashes mismatch on %s!" % (i,k), file=sys.stderr)
+                                print("\tParent hash: %s" % parent_hash,
+                                        file=sys.stderr) 
+                                print("\tChild hash: %s" % child_hash,
+                                        file=sys.stderr)
                                 errors += 1
                             test.clean_up(target)
                         test.clean_up(test.tfile.name)
@@ -284,8 +292,8 @@ def main():
                         test.clean_tmp_dir()
 
                 if errors > 0:
-                    print("Completed %s test iterations, "
-                           "but there were errors" % args.count)
+                    print("ERROR: Completed %s test iterations, "
+                           "but there were errors" % args.count, file=sys.stderr)
                     return 1
                 else:
                     print("Successfully completed %s %s file transfer "
@@ -293,12 +301,12 @@ def main():
                            % (args.count, args.device))
                     return 0
             else:
-                print("No device being mounted successfully for testing, "
-                      "aborting")
+                print("ERROR: No device being mounted successfully for testing, "
+                      "aborting", file=sys.stderr)
                 return 1
 
     else:  # If we don't have removable drives attached and mounted
-        print("No removable drives were detected, aborting")
+        print("ERROR: No removable drives were detected, aborting", file=sys.stderr)
         return 1
 
 if __name__ == '__main__':
