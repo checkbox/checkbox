@@ -47,23 +47,30 @@ def get_visible_memory_size():
 
 def main():
     if os.geteuid() != 0:
-        print("This script must be run as root.")
+        print("This script must be run as root.", file=sys.stderr)
         return 1
 
     installed_memory = get_installed_memory_size()
-    print("Installed memory: %d kB" % installed_memory)
-
     visible_memory = get_visible_memory_size()
-    print("Visible memory: %d kB" % visible_memory)
 
     difference = installed_memory - visible_memory
-    percentage = difference / installed_memory * 100
-
+    try:
+        percentage = difference / installed_memory * 100
+    except ZeroDivisionError:
+        print("FAIL: Either dmi or /proc/meminfo returned a memory size of 0 kB", file=sys.stderr)
+        print("\t/proc/meminfo reports:\t%s kB" % visible_memory, file=sys.stderr)
+        print("\tdmi reports:\t%s kB" % installed_memory, file=sys.stderr)
+        return 1
+    
     if percentage <= THRESHOLD:
-        print("Difference is %d bytes (%.2f%%) and less than the %d%% threshold." % (difference, percentage, THRESHOLD))
+        print("PASS: Difference is %d bytes (%.2f%%) and less than the %d%% threshold." % (difference, percentage, THRESHOLD))
+        print("\t/proc/meminfo reports:\t%s kB" % visible_memory, file=sys.stderr)
+        print("\tdmi reports:\t%s kB" % installed_memory, file=sys.stderr)
         return 0
     else:
-        print("Difference is %d bytes (%.2f%%) and greater than the %d%% threshold." % (difference, percentage, THRESHOLD))
+        print("FAIL: Difference is %d bytes (%.2f%%) and greater than the %d%% threshold." % (difference, percentage, THRESHOLD), file=sys.stderr)
+        print("\t/proc/meminfo reports:\t%s kB" % visible_memory, file=sys.stderr)
+        print("\tdmi reports:\t%s kB" % installed_memory, file=sys.stderr)
         return 1
 
 if __name__ == "__main__":
