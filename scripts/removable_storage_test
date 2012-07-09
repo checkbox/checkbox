@@ -99,7 +99,7 @@ class DiskTest():
     def mount(self):
         passed_mount = {}
 
-        for key, _ in self.rem_disks_nm.items():
+        for key, unused_value in self.rem_disks_nm.items():
             file = tempfile.mkdtemp(dir='/tmp')
 
             result = False
@@ -216,8 +216,8 @@ def main():
             print('-' * 20)
             print("removable devices currently mounted:")
             if len(test.rem_disks) > 0:
-                for disk, mnt_point in test.rem_disks.items():
-                    print("%s : %s" % (disk, mnt_point))
+                for disk, mount_point in test.rem_disks.items():
+                    print("%s : %s" % (disk, mount_point))
             else:
                 print("None")
 
@@ -251,8 +251,8 @@ def main():
                 print("Found the following mounted %s partitions:"
                        % args.device)
 
-                for disk, mnt_point in disks_all.items():
-                    print("JEFF %s : %s" % (disk, mnt_point))
+                for disk, mount_point in disks_all.items():
+                    print("    %s : %s" % (disk, mount_point))
 
                 print('-' * 20)
                 print("Running %s file transfer test for %s iterations"
@@ -263,21 +263,21 @@ def main():
                         test.generate_test_data(args.size)
                         parent_hash = test.md5_hash_file(test.tfile.name)
                         print("Hashing parent copy")
-                        for disk, mnt_point in disks_all.items():
-                            print("Copying %s to %s" % (test.tfile.name, mnt_point))
-                            if not test.copy_file(test.tfile.name, mnt_point):
+                        for disk, mount_point in disks_all.items():
+                            print("Copying %s to %s" % (test.tfile.name, mount_point))
+                            if not test.copy_file(test.tfile.name, mount_point):
                                 print("ERROR: Failed to copy %s to %s" %
-                                    (test.tfile.name, mnt_point), file=sys.stderr)
+                                    (test.tfile.name, mount_point), file=sys.stderr)
                                 errors += 1
                                 continue
-                            print("Hashing copy on %s" % mnt_point)
-                            target = os.path.join(mnt_point,
+                            print("Hashing copy on %s" % mount_point)
+                            target = os.path.join(mount_point,
                                           os.path.basename(test.tfile.name))
                             child_hash = test.md5_hash_file(target)
                             if not test.compare_hash(parent_hash, child_hash):
                                 print("ERROR: [Iteration %s] Parent and Child"
                                         "copy hashes mismatch on %s!" %
-                                        (iteration,mnt_point), file=sys.stderr)
+                                        (iteration,mount_point), file=sys.stderr)
                                 print("\tParent hash: %s" % parent_hash,
                                         file=sys.stderr) 
                                 print("\tChild hash: %s" % child_hash,
@@ -285,7 +285,7 @@ def main():
                                 errors += 1
                             else:
                                 print("Successfully copied file to %s" %
-                                        mnt_point)
+                                        mount_point)
                             test.clean_up(target)
                         test.clean_up(test.tfile.name)
                 finally:
