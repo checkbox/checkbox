@@ -54,6 +54,7 @@ V0: First draft
 
 '''
 
+import os
 import sys
 import time
 import logging
@@ -111,7 +112,7 @@ def get_smart_entries(disk, type='selftest'):
     while True:
         line = stdout.readline().decode()
         if not line:
-            raise Exception('Failed to parse log')
+            raise Exception('Failed to parse SMART log entries')
 
         if line.startswith('SMART'):
             break
@@ -144,7 +145,7 @@ def get_smart_entries(disk, type='selftest'):
 
 def main():
     description = 'Tests that SMART capabilities on disks that support SMART function.'
-    parser = ArgumentParser(description)
+    parser = ArgumentParser(description = description)
     parser.add_argument('-b', '--block-dev',
                         metavar='DISK',
                         default='/dev/sda',
@@ -173,16 +174,23 @@ def main():
 
     if args.debug:
         logger.setLevel(logging.DEBUG)
+    else:
+        logger.setLevel(logging.INFO)
+
+    # Make sure we're root, because smartctl doesn't work otherwise.
+    if not os.geteuid()==0:
+        parser.error("You must be root to run this program")
 
     # If SMART is available and enabled, we proceed.  Otherwise, we exit as the
     # test is pointless in this case.
     disk = args.block_dev
     if not is_smart_enabled(disk):
-        print('SMART not available')
+        logging.warning('SMART not available on %s' % disk)
         return 0
 
     # Initiate a self test and start polling until the test is done
     previous_entries = get_smart_entries(disk)
+    logging.info("Starting SMART self-test on %s" % disk)
     run_smart_test(disk)
     if len(previous_entries) > 20:
         # Abort the previous instance
@@ -215,9 +223,16 @@ def main():
                 args.timeout -= args.sleep
 
     status = current_entries[0]['status']
-    print(status)
 
-    return status != 'Completed without error'
+    if status != 'Completed without error':
+        log = get_smart_entries(disk)
+        logging.warning("FAIL: SMART Self-Test appears to have failed for some reason. "
+                        "Run 'sudo smartctl -l selftest %s' to see the SMART log" % disk)
+        logging.warning("Last self-test run status: %s" % status)
+        return 1
+    else:
+        logging.info("PASS: SMART Self-Test completed without error")
+        return 0
 
 
 if __name__ == '__main__':
