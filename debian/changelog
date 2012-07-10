@@ -11,6 +11,10 @@ checkbox (0.14.2) quantal; urgency=low
     it won't run on removable stuff where it's not necessary.
   * info.txt.in: removed extraneous fwts_log job
     miscellanea.txt.in: modified fwts_results.log job
+  * scripts/network_ntp_test: Tweaked output to use log levels more
+    appropriately. Added some decoding so that bytes output show up as strings
+    properly in output. Converted from optparse to argparse. Added a root
+    check because this needs to be root to properly run.
 
   [Marc Tardif]
   * Fixed duplicate jobs appearing in the store when rerunning jobs.
@@ -29,7 +33,7 @@ checkbox (0.14.2) quantal; urgency=low
     things into dictionaries for easy access. Also fixed bug with detecting
     non-RAM devices as RAM. (LP: #960087)
 
- -- Jeff Lane <jeff@ubuntu.com>  Fri, 29 Jun 2012 16:30:33 -0400
+ -- Jeff Lane <jeff@ubuntu.com>  Tue, 10 Jul 2012 16:52:16 -0400
 
 checkbox (0.14.1) quantal; urgency=low
 
