@@ -64,8 +64,8 @@ def main():
     
     if percentage <= THRESHOLD:
         print("PASS: Difference is %d bytes (%.2f%%) and less than the %d%% threshold." % (difference, percentage, THRESHOLD))
-        print("\t/proc/meminfo reports:\t%s kB" % visible_memory, file=sys.stderr)
-        print("\tdmi reports:\t%s kB" % installed_memory, file=sys.stderr)
+        print("\t/proc/meminfo reports:\t%s kB" % visible_memory)
+        print("\tdmi reports:\t%s kB" % installed_memory)
         return 0
     else:
         print("FAIL: Difference is %d bytes (%.2f%%) and greater than the %d%% threshold." % (difference, percentage, THRESHOLD), file=sys.stderr)
