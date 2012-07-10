@@ -144,8 +144,7 @@ def get_smart_entries(disk, type='selftest'):
     return entries
 
 def main():
-    description = 'Tests that SMART capabilities on disks that support SMART function.'
-    parser = ArgumentParser(description = description)
+    parser = ArgumentParser(description = 'Tests that SMART capabilities on disks that support SMART function.')
     parser.add_argument('-b', '--block-dev',
                         metavar='DISK',
                         default='/dev/sda',
