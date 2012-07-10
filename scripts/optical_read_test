@@ -64,12 +64,21 @@ def read_test(device):
         mount = _command("mount -o ro %s %s" % (device, device_dir))
         mount.communicate()
         if mount.returncode != 0:
+            print("Unable to mount %s to %s" % 
+                    (device, device_dir), file=sys.stderr)
             return False
 
-        _command("cp -dpR %s %s" % (device_dir, image_dir)).communicate()
+        file_copy = _command("cp -dpR %s %s" % (device_dir, image_dir))
+        file_copy.communicate()
+        if file_copy.returncode != 0:
+            print("Failed to copy files from %s to %s" % 
+                    (device_dir, image_dir), file=sys.stderr)
+            return False
         if compare_tree(device_dir, image_dir):
             passed = True
     except:
+        print("File Comparison failed while testing %s" % device, 
+                file=sys.stderr)
         passed = False
     finally:
         _command("umount %s" % device_dir).communicate(3)
@@ -78,9 +87,8 @@ def read_test(device):
                 shutil.rmtree(dir)
 
     if passed:
-        print("Passed")
-    else:
-        print("Failed")
+        print("File Comparison passed (%s)" % device)
+    
     return passed
 
 
@@ -100,11 +108,14 @@ def main():
                               'such as /dev/cdrom'))
     args = parser.parse_args()
 
+    if os.geteuid() != 0:
+        parser.error("ERROR: Must be root to run this script.")
+
     for device in args.device:
 
         capabilities = get_capabilities(device)
         if not capabilities:
-            print("Unable to get capabilities of %s" % device)
+            print("Unable to get capabilities of %s" % device, file=sys.stderr)
             return 1
         for capability in capabilities.decode().split('\n'):
             if capability[:3] == 'ID_':
@@ -113,11 +124,10 @@ def main():
                     tests.append('read')
 
         for test in set(tests):
-            sys.stdout.write("Testing %s on %s ... " % (test, device))
+            print("Testing %s on %s ... " % (test, device), file=sys.stdout)
             tester = "%s_test" % test
             return_values.append(globals()[tester](device))
-            sys.stdout.flush()
-
+    
     return False in return_values
 
 if __name__ == "__main__":

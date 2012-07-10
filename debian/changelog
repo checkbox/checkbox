@@ -11,6 +11,11 @@ checkbox (0.14.2) quantal; urgency=low
     it won't run on removable stuff where it's not necessary.
   * info.txt.in: removed extraneous fwts_log job
     miscellanea.txt.in: modified fwts_results.log job
+  * scripts/optical_detect: minor tweak to send error output to stderr
+    scripts/optical_read_test: added root user check because this needs to be
+    run with root privileges. Added some additional output for stderr for
+    failures so we will know WHY a test or the script failed. Replaced 
+    sys.stdout.write() and flush() calls with simple print statements.
 
   [Marc Tardif]
   * Fixed duplicate jobs appearing in the store when rerunning jobs.
@@ -29,7 +34,7 @@ checkbox (0.14.2) quantal; urgency=low
     things into dictionaries for easy access. Also fixed bug with detecting
     non-RAM devices as RAM. (LP: #960087)
 
- -- Jeff Lane <jeff@ubuntu.com>  Fri, 29 Jun 2012 16:30:33 -0400
+ -- Jeff Lane <jeff@ubuntu.com>  Tue, 10 Jul 2012 17:40:02 -0400
 
 checkbox (0.14.1) quantal; urgency=low
 
