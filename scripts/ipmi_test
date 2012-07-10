@@ -7,11 +7,18 @@ for module in ipmi_si ipmi_devintf ipmi_msghandler; do
     else
         echo "Loading $module..."
         modprobe $module
+        result=$?
         # if ipmi_si fails to load, it's safe to assume the system
         # has no BMC, so we'll just politely exit.
-        if [ $? -eq 1 ] && [ "$module" == "ipmi_si" ]; then
-            echo "No BMC found. Aborting."
+        if [ $result -eq 1 ] && [ "$module" == "ipmi_si" ]; then
+            echo "WARNING: No BMC found. Aborting."
             exit 0
+        elif [ $result -eq 1 ]; then
+            echo "ERROR: Unable to load module $module" > dev/stderr
+            echo "Aborting IPMI test run." > /dev/stderr
+            exit 1
+        else;
+            echo "Successfully loaded module $module"
         fi
     fi
 done
