@@ -174,7 +174,7 @@ def main():
     for i in range(2):
         GlxWindows.append(GlxThread())
         GlxWindows[i].start()
-        time.sleep(0.5)
+        time.sleep(5)
         windows = subprocess.check_output(
             'wmctrl -l | grep glxgears',
             shell=True)
