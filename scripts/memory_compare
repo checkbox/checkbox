@@ -11,16 +11,17 @@ THRESHOLD = 10
 class DmiResult:
 
     total_size = 0
-    form = None
 
     def addDmiDevice(self, device):
-        size = getattr(device, "size", None)
         form = getattr(device, "form", None)
 
         if form and "IMM" in form:
-            self.form = form
-        
-        if size:
+            size = 0
+            try:
+                size = int(getattr(device, "size", None))
+            except ValueError:
+                pass
+
             self.total_size += size
 
 def get_installed_memory_size():

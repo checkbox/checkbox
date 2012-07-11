@@ -39,6 +39,8 @@ checkbox (0.14.2) quantal; urgency=low
   * Reimplemented memory_compare in python3 and restructured it to put
     things into dictionaries for easy access. Also fixed bug with detecting
     non-RAM devices as RAM. (LP: #960087)
+  * Catch exception raised in memory_compare by DMI RAM entries with No Module
+    Installed in the Size field (LP: #1023220)
 
  -- Jeff Lane <jeff@ubuntu.com>  Tue, 10 Jul 2012 17:40:02 -0400
 
