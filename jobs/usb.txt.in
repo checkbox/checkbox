@@ -1,13 +1,17 @@
 plugin: shell 
 name: usb/detect
-requires: package.name == 'linux'
+requires:
+ package.name == 'linux'
+ package.name == 'udisks'
 command: lsusb | sed 's/.*\(ID .*\)/\1/' | head -n 4 || echo "No USB devices were detected" >&2
 _description: Detects and shows USB devices attached to this system.
 
 plugin: manual
 name: usb/disk_detect
 depends: usb/detect
-requires: package.name == 'linux'
+requires:
+ package.name == 'linux'
+ package.name == 'udisks'
 command: removable_storage_test -l usb
 _description:
  PURPOSE:
@@ -50,7 +54,9 @@ _description:
 plugin: manual
 name: usb/insert
 depends: usb/detect
-requires: package.name == 'linux'
+requires:
+ package.name == 'linux'
+ package.name == 'udisks'
 command: removable_storage_watcher insert usb
 _description:
  PURPOSE:
@@ -67,7 +73,9 @@ _description:
 plugin: manual
 name: usb/remove
 depends: usb/storage-automated
-requires: package.name == 'linux'
+requires:
+ package.name == 'linux'
+ package.name == 'udisks'
 command: removable_storage_watcher remove usb
 _description:
  PURPOSE:
@@ -82,7 +90,9 @@ _description:
 
 plugin: manual
 name: usb/storage-transfer
-requires: package.name == 'linux'
+requires:
+ package.name == 'linux'
+ package.name == 'udisks'
 depends: usb/insert
 command: removable_storage_test usb
 _description:
@@ -98,7 +108,9 @@ _description:
 
 plugin: shell
 name: usb/storage-automated
-requires: package.name == 'linux'
+requires:
+ package.name == 'linux'
+ package.name == 'udisks'
 depends: usb/insert
 command: removable_storage_test usb
 _description:
@@ -107,7 +119,9 @@ _description:
 plugin: shell
 name: usb/storage-preinserted
 user: root
-requires: package.name == 'linux'
+requires:
+ package.name == 'linux'
+ package.name == 'udisks'
 command: removable_storage_test -l usb && removable_storage_test usb
 _description:
  This is an automated version of usb/storage-automated and assumes that the 

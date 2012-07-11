@@ -20,7 +20,10 @@ checkbox (0.14.2) quantal; urgency=low
     message is a little more clear. Module failed to load now generates an
     error rather than a simple exit.
   * jobs/usb.txt.in: Added output to usb/detect in case no USB controllers are
-    found.
+    found. Added dependencies on the udisks package which may not be installed
+    by default.
+    debian/control: Added udisks as a suggests for checkbox as it's required
+    for the USB tests to function.
 
   [Marc Tardif]
   * Fixed duplicate jobs appearing in the store when rerunning jobs.
@@ -39,7 +42,7 @@ checkbox (0.14.2) quantal; urgency=low
     things into dictionaries for easy access. Also fixed bug with detecting
     non-RAM devices as RAM. (LP: #960087)
 
- -- Jeff Lane <jeff@ubuntu.com>  Tue, 10 Jul 2012 21:20:02 -0400
+ -- Jeff Lane <jeff@ubuntu.com>  Wed, 11 Jul 2012 13:21:46 -0400
 
 checkbox (0.14.1) quantal; urgency=low
 
