@@ -40,6 +40,9 @@ checkbox (0.14.2) quantal; urgency=low
     users can understand what's going on. Moved the exit bits so the test will
     actuall run on multiple drives as originally intended and not exit on the
     first failure.
+  * scripts/memory_test: converted from optparse to argparse. Added some extra
+    stderr output that may be useful if this test fails. redirected some
+    existing error messages to stderr also
 
   [Marc Tardif]
   * Fixed duplicate jobs appearing in the store when rerunning jobs.
@@ -61,7 +64,7 @@ checkbox (0.14.2) quantal; urgency=low
   * Wait longer to get the window handle in gpu_test, so that we don't fall foul
     of timing issues. (LP: #1018563)
 
- -- Jeff Lane <jeff@ubuntu.com>  Tue, 10 Jul 2012 21:00:06 -0400
+ -- Jeff Lane <jeff@ubuntu.com>  Wed, 11 Jul 2012 11:08:05 -0400
 
 checkbox (0.14.1) quantal; urgency=low
 

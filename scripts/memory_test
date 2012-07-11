@@ -4,7 +4,7 @@ import os
 import sys
 import re
 
-from optparse import OptionParser
+from argparse import ArgumentParser
 from subprocess import Popen, PIPE
 
 
@@ -43,6 +43,9 @@ class MemoryTest():
                                 int(tokens[1].strip()) // 1024
                 else:
                     break
+        except Exception as e:
+            print("ERROR: Unable to get data from /proc/meminfo", file=sys.stderr)
+            print(e, file=sys.stderr)
         finally:
             mem_info.close()
 
@@ -65,7 +68,7 @@ class MemoryTest():
         print("Swap Memory: %u MB" % self.swap_memory)
 
         if self.system_memory == 0:
-            print("Error: could not determine system RAM")
+            print("ERROR: could not determine system RAM", file=sys.stderr)
             return False
 
         # Process Memory
@@ -79,8 +82,8 @@ class MemoryTest():
                     self.process_memory))
         # others?  what about PAE kernel?
         except Exception as e:
-            print("Error: could not determine system architecture via arch")
-            print(e)
+            print("ERROR: could not determine system architecture via arch", file=sys.stderr)
+            print(e, file=sys.stderr)
             return False
         return True
 
@@ -94,9 +97,11 @@ class MemoryTest():
 
         # if process memory is limited, run multiple processes
         if self.is_process_limited:
+            print("Running Multiple Process Memory Test")
             if not self.run_multiple_process_test():
                 return FAILED
         else:
+            print("Running Single Process Memory Test")
             if not self.run_single_process_test():
                 return FAILED
 
@@ -116,17 +121,17 @@ class MemoryTest():
             # check to make sure there's enough swap
             required_memory = self.process_memory * processes
             if required_memory > self.system_memory + self.swap_memory:
-                print("Error: this test requires a minimum of %u KB of swap "
+                print("ERROR: this test requires a minimum of %u KB of swap "
                        "memory (%u configured)"
                        % (required_memory - self.system_memory,
-                          self.swap_memory))
+                          self.swap_memory), file=sys.stderr)
         print("Testing memory with %u processes" % processes)
 
         print("Running threaded memory test:")
         run_time = 60  # sec.
         if not self.run_processes(processes, "%s -qpv -m%um -t%u" % (
                 self.threaded_memtest_script, self.process_memory, run_time)):
-            print("Multi-process, threaded memory Test FAILED")
+            print("Multi-process, threaded memory Test FAILED", file=sys.stderr)
             return False
 
         return True
@@ -140,33 +145,42 @@ class MemoryTest():
         if memory > 1024:  # MB
             memory = 1024  # MB
         memory = memory + self.free_memory
+        print("Running for %d MB total memory" % memory)
 
         # run a test that will swap
         if not self.swap_memory == 0:
 
             # is there enough swap memory for the test?
             if memory > self.system_memory + self.swap_memory:
-                print("Error: this test requires a minimum of %u KB of swap "
+                print("ERROR: this test requires a minimum of %u KB of swap "
                        "memory (%u configured)"
-                       % (memory - self.system_memory, self.swap_memory))
+                       % (memory - self.system_memory, self.swap_memory),
+                        file=sys.stderr)
                 return False
 
             # otherwise
             run_time = 60  # sec.
-            print("running for more than free memory at %u MB for %u sec." % (
+            print("Running for more than free memory at %u MB for %u sec." % (
                 memory, run_time))
+            print("Command is: %s -qpv -m%um -t%u" %
+                (self.threaded_memtest_script, memory, run_time), file=sys.stderr)
             process = self._command("%s -qpv -m%um -t%u" % (
                 self.threaded_memtest_script, memory, run_time))
             process.communicate()
-            print("done.")
             if process.returncode != 0:
+                print("%s returned code %s" % (self.threaded_memtest_script,
+                    process.returncode), file=sys.stderr)
+                print("More Than Free Memory Test failed", file=sys.stderr)
                 return False
+            print("More than free memory test complete.")
 
         # run again for 15 minutes
-        print("running for free memory")
+        print("Running for free memory")
         process = self._command("%s -qpv" % self.threaded_memtest_script)
         process.communicate()
-        print("done.")
+        if process.returncode != 0:
+            print("Free Memory Test failed", file=sys.stderr)
+        print("Free memory test complete.")
         sys.stdout.flush()
         return (process.returncode == 0)
 
@@ -175,7 +189,8 @@ class MemoryTest():
         pipe = []
         for i in range(number):
             pipe.append(self._command(command))
-            print("Started: process %u pid %u: %s" % (i, pipe[i].pid, command))
+            print("Started: process %u pid %u: %s" % (i, pipe[i].pid,
+            command))
         sys.stdout.flush()
         waiting = True
         while waiting:
@@ -191,8 +206,9 @@ class MemoryTest():
                     else:
                         return_value = pipe[i].poll()
                         if return_value != 0:
-                            print("Error: process  %u pid %u retuned %u"
-                                   % (i, pipe[i].pid, return_value))
+                            print("ERROR: process  %u pid %u retuned %u"
+                                   % (i, pipe[i].pid, return_value),
+                                   file=sys.stderr)
                             passed = False
                         print("process %u pid %u returned success"
                                % (i, pipe[i].pid))
@@ -202,12 +218,12 @@ class MemoryTest():
 
 
 def main(args):
-    parser = OptionParser()
-    parser.add_option("-q", "--quiet", action="store_true",
+    parser = ArgumentParser()
+    parser.add_argument("-q", "--quiet", action="store_true",
                       help="Suppress output.")
-    (options, args) = parser.parse_args(args)
+    args = parser.parse_args(args)
 
-    if options.quiet:
+    if args.quiet:
         sys.stdout = open(os.devnull, 'a')
         sys.stderr = open(os.devnull, 'a')
 
