@@ -19,6 +19,15 @@ requires:
  package.name == 'fwts'
 command: fwts_test -w -l $CHECKBOX_DATA/fwts-wakealarm.log
 
+plugin: attachment\
+name: power-management/fwts_wakealarm-log-attach
+depends: power-management/fwts_wakealarm
+_description: Attach log from fwts wakealarm test
+requres:
+ package.name == 'linux'
+ package.name == 'fwts'
+command: [ -e ${CHECKBOX_DATA}/fwts-wakealarm.log ] && cat ${CHECKBOX_DATA}/fwts-wakealarm.log
+
 plugin: manual
 name: power-management/poweroff
 depends: power-management/fwts_wakealarm
