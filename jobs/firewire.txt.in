@@ -1,5 +1,7 @@
 plugin: manual
 name: firewire/insert
+requires:
+ package.name == 'udisks'
 command: removable_storage_watcher insert firewire
 _description:
  PURPOSE:
@@ -15,6 +17,8 @@ _description:
 plugin: shell
 name: firewire/storage-test
 depends: firewire/insert
+requires:
+ package.name == 'udisks'
 command: removable_storage_test firewire
 _description:
  This is an automated test which performs read/write operations on an attached
@@ -23,6 +27,8 @@ _description:
 plugin: manual
 name: firewire/remove
 depends: firewire/storage-test
+requires:
+ package.name == 'udisks'
 command: removable_storage_watcher remove firewire
 _description:
  PURPOSE:
