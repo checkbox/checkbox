@@ -47,6 +47,8 @@ checkbox (0.14.2) quantal; urgency=low
     data to stderr and success to stdout. Also added a try/except block to
     catch possible ZeroDivisionError cases if dmi or meminfo return 0 (found on
     my local system due to a library issue)
+  * jobs/networking.txt.in: added some output to networking/multi_nic so a 
+    failure due to unconfigured ifaces generates something beyond a blank line
 
   [Marc Tardif]
   * Fixed duplicate jobs appearing in the store when rerunning jobs.
@@ -70,7 +72,7 @@ checkbox (0.14.2) quantal; urgency=low
   * Catch exception raised in memory_compare by DMI RAM entries with No Module
     Installed in the Size field (LP: #1023220)
 
- -- Jeff Lane <jeff@ubuntu.com>  Tue, 10 Jul 2012 21:00:06 -0400
+ -- Jeff Lane <jeff@ubuntu.com>  Wed, 11 Jul 2012 11:57:15 -0400
 
 checkbox (0.14.1) quantal; urgency=low
 
