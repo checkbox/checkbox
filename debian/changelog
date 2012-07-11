@@ -19,6 +19,8 @@ checkbox (0.14.2) quantal; urgency=low
   * scripts/ipmi_test: output tweaks so error messages now go to stderr. No BMC
     message is a little more clear. Module failed to load now generates an
     error rather than a simple exit.
+  * jobs/usb.txt.in: Added output to usb/detect in case no USB controllers are
+    found.
 
   [Marc Tardif]
   * Fixed duplicate jobs appearing in the store when rerunning jobs.
@@ -37,7 +39,7 @@ checkbox (0.14.2) quantal; urgency=low
     things into dictionaries for easy access. Also fixed bug with detecting
     non-RAM devices as RAM. (LP: #960087)
 
- -- Jeff Lane <jeff@ubuntu.com>  Tue, 10 Jul 2012 17:40:02 -0400
+ -- Jeff Lane <jeff@ubuntu.com>  Tue, 10 Jul 2012 21:20:02 -0400
 
 checkbox (0.14.1) quantal; urgency=low
 
