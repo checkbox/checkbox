@@ -90,6 +90,9 @@ class LaunchpadReport(Plugin):
             if "sysfs_attachment" in name:
                 self._report["hardware"]["sysfs-attributes"] = attachment["data"]
 
+            elif "firmware_version_attachment" in name:
+                self._report["hardware"]["firmware-version"] = attachment["data"]
+
             elif "dmi_attachment" in name:
                 self._report["hardware"]["dmi"] = attachment["data"]
 
