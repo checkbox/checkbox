@@ -21,6 +21,7 @@ checkbox (0.14.2) quantal; urgency=low
     error rather than a simple exit.
   * scripts/network_device_info: minor change so that the fail message now
     specifies that it was an error and outputs to stderr properly.
+  * scripts/disk_smart: Improvements to the logging and output during testing.
 
   [Marc Tardif]
   * Fixed duplicate jobs appearing in the store when rerunning jobs.
