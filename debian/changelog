@@ -27,6 +27,7 @@ checkbox (0.14.2) quantal; urgency=low
     confusing. Added a --log option to write logs to an actual file
     jobs/cpu.txt.in: added an attachment job to attach the freq_governors log.
     Modified cpu/frequency_governors to write to log file
+  * scripts/cpu_offlining: added an extra bit of output in case of failures. 
 
   [Marc Tardif]
   * Fixed duplicate jobs appearing in the store when rerunning jobs.

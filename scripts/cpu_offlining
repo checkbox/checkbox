@@ -5,29 +5,27 @@ echo "Beginning CPU Offlining Test"
 result=0
 
 # Turn CPU cores off
-for cpu_num in `ls /sys/devices/system/cpu | grep -o cpu[0-9]*`;
-do
-	if [ -f /sys/devices/system/cpu/$cpu_num/online ]; then
+for cpu_num in `ls /sys/devices/system/cpu | grep -o cpu[0-9]*`; do
+    if [ -f /sys/devices/system/cpu/$cpu_num/online ]; then
         echo "Offlining $cpu_num"
-		echo 0 > /sys/devices/system/cpu/$cpu_num/online
+        echo 0 > /sys/devices/system/cpu/$cpu_num/online
 
-		grep -w -i -q $cpu_num /proc/interrupts
-
-		if [ $? == 0 ]; then
-			result=1
-		fi
-	fi
+        grep -w -i -q $cpu_num /proc/interrupts
+        if [ $? -eq 0 ]; then
+            echo "ERROR: Failed to offline $cpu_num" >&2
+            result=1
+        fi
+    fi
 done
 
 # Back on again
-for cpu_num in `ls /sys/devices/system/cpu | grep -o cpu[0-9]*`;
-do
+for cpu_num in `ls /sys/devices/system/cpu | grep -o cpu[0-9]*`; do
     if [ -f /sys/devices/system/cpu/$cpu_num/online ]; then
         echo "Onlining $cpu_num"
         echo 1 > /sys/devices/system/cpu/$cpu_num/online
         grep -w -i -q $cpu_num /proc/interrupts
-
-        if [ $? == 1 ]; then
+        if [ $? -eq 1 ]; then
+            echo "ERROR: Failed to online $cpu_num" >&2
             result=1
         fi
     fi
