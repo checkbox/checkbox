@@ -16,13 +16,10 @@ class DmiResult:
         form = getattr(device, "form", None)
 
         if form and "IMM" in form:
-            size = 0
             try:
-                size = int(getattr(device, "size", None))
+                self.total_size = int(getattr(device, "size", 0))
             except ValueError:
                 pass
-
-            self.total_size += size
 
 def get_installed_memory_size():
     dmi = DmidecodeParser(os.popen('dmidecode'))
