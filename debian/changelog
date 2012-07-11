@@ -61,6 +61,9 @@ checkbox (0.14.2) quantal; urgency=low
   * Wait longer to get the window handle in gpu_test, so that we don't fall foul
     of timing issues. (LP: #1018563)
 
+  [Sylvain Pineau]
+  * Add the firmware version (BIOS or UEFI) to the XML report.
+
  -- Jeff Lane <jeff@ubuntu.com>  Tue, 10 Jul 2012 21:00:06 -0400
 
 checkbox (0.14.1) quantal; urgency=low

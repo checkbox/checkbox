@@ -20,6 +20,7 @@
                 </div>
                 <div id="content" class="clearfix">
                     <h2>Hardware Information</h2>
+                    <xsl:apply-templates select=".//hardware/firmware-version" />                    
                     <xsl:apply-templates select=".//hardware/dmi" />
                     <xsl:apply-templates select=".//hardware/sysfs-attributes" />
                     <xsl:apply-templates select=".//hardware/processors" />
@@ -59,6 +60,13 @@
     </div>
 </xsl:template>
 
+<xsl:template match="hardware/firmware-version">
+    <span onClick="showHide('firmware-version');"><h3 id="firmware-version"><img class="disclosureimg" src="%(CHECKBOX_SHARE)s/report/images/closed.png" />Firmware Version</h3></span>
+    <div class="data" id="firmware-version-contents" style="overflow: auto;">
+        <pre><xsl:value-of select="." /></pre>
+    </div>
+</xsl:template>
+
 <xsl:template match="hardware/dmi">
     <span onClick="showHide('dmi');"><h3 id="dmi"><img class="disclosureimg" src="%(CHECKBOX_SHARE)s/report/images/closed.png" />Desktop Management Interface information</h3></span>
     <div class="data" id="dmi-contents" style="overflow: auto;">
@@ -90,7 +98,7 @@
             </tr>
         </xsl:for-each>
         </table>
-	<br />
+    <br />
     </xsl:for-each>
     </div>
 </xsl:template>
@@ -176,11 +184,11 @@
 <xsl:template match="context">
     <div id="packages-contents">    
     <xsl:for-each select="info">
-	<span onClick="showHide('{generate-id(.)}');"><h3 id="{generate-id(.)}"><img class="disclosureimg" src="%(CHECKBOX_SHARE)s/report/images/closed.png" />
+    <span onClick="showHide('{generate-id(.)}');"><h3 id="{generate-id(.)}"><img class="disclosureimg" src="%(CHECKBOX_SHARE)s/report/images/closed.png" />
         <xsl:value-of select="@command" /></h3></span>
-	<div class="data" id="{generate-id(.)}-contents" style="overflow: auto;">
-	        <pre><xsl:value-of select="." /></pre>
-	</div>
+    <div class="data" id="{generate-id(.)}-contents" style="overflow: auto;">
+            <pre><xsl:value-of select="." /></pre>
+    </div>
     </xsl:for-each>
     </div>
 </xsl:template>
