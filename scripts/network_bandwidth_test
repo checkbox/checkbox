@@ -534,10 +534,10 @@ class Application(object):
                              "%3.2f%% of theoretical max (%5.2f Mbps)",
                              mbps, percent, iface_speed)
                 return True
-
-        logging.warning("FAIL: Unacceptable network effective rate found for [%s]" % iface_name)
-        logging.warning("Effective rate %3.4f Mbps, %3.2f%% of theoretical max (%5.2f Mbps)" %
-                        (mbps, percent, iface_speed))
+            else:
+                logging.warning("Unacceptable network effective rate found for [%s]" % iface_name)
+                logging.warning("Effective rate %3.4f Mbps, %3.2f%% of theoretical max (%5.2f Mbps)" %
+                                (mbps, percent, iface_speed))
         return False
 
     def run(self):
@@ -659,7 +659,6 @@ class ApplicationManager(object):
             parser.error("Network devices must be configured and connected to a LAN segment before testing")
 
         targets = args
-        logging.info("Beginning bandwidth test...")
         return self.application_factory(targets,
                                         options.interfaces, options.scan)
 
