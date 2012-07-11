@@ -82,14 +82,12 @@ class HardwareReport(LaunchpadReport):
 
     def register_dumps(self):
         for (dt, dh) in [("dmi", self.dumps_hardware),
-                         ("firmware-version", self.dumps_hardware),
                          ("sysfs-attributes", self.dumps_hardware),
                          ("udev", self.dumps_hardware)]:
             self._manager.handle_dumps(dt, dh)
 
     def register_loads(self):
         for (dt, dh) in [("dmi", self.loads_hardware),
-                         ("firmware-version", self.loads_hardware),
                          ("sysfs-attributes", self.loads_hardware),
                          ("udev", self.loads_hardware)]:
             self._manager.handle_loads(dt, dh)
