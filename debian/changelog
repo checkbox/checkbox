@@ -9,8 +9,8 @@ checkbox (0.14.2) quantal; urgency=low
   * jobs/disk.txt.in: modified block_device requirements so they'll work right
     jobs/info.txt.in: added block_device resource requirements to hdparm job so
     it won't run on removable stuff where it's not necessary.
-  * info.txt.in: removed extraneous fwts_log job
-    miscellanea.txt.in: modified fwts_results.log job
+  * jobs/info.txt.in: removed extraneous fwts_log job
+    jobs/miscellanea.txt.in: modified fwts_results.log job
   * scripts/optical_detect: minor tweak to send error output to stderr
     scripts/optical_read_test: added root user check because this needs to be
     run with root privileges. Added some additional output for stderr for
@@ -66,6 +66,8 @@ checkbox (0.14.2) quantal; urgency=low
   * scripts/memory_test: converted from optparse to argparse. Added some extra
     stderr output that may be useful if this test fails. redirected some
     existing error messages to stderr also
+  * scripts/disk_stats_test: some minor changes to output. Also, error output
+    now goes to stderr on test failure.
 
   [Marc Tardif]
   * Fixed duplicate jobs appearing in the store when rerunning jobs.
