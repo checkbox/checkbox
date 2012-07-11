@@ -43,6 +43,10 @@ checkbox (0.14.2) quantal; urgency=low
   * scripts/removable_storage_test: vastly improved the output from that script
     and also introduced some new error handling to cover a couple conditions
     that generated unhelpful tracebacks.
+  * scripts/memory_compare: changed the output a little so failures now dump
+    data to stderr and success to stdout. Also added a try/except block to
+    catch possible ZeroDivisionError cases if dmi or meminfo return 0 (found on
+    my local system due to a library issue)
 
   [Marc Tardif]
   * Fixed duplicate jobs appearing in the store when rerunning jobs.
