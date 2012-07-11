@@ -7,19 +7,31 @@
 DEFAULT_BUF_READ=15
 
 for disk in $@; do
+
+  echo "Beginning $0 test for $disk"
+  echo "---------------------------------------------------"
+
   disk_type=`udevadm info --name /dev/$disk --query property | grep "ID_BUS" | awk '{gsub(/ID_BUS=/," ")}{printf $1}'`
+  echo "INFO: $disk type is $disk_type"
 
   case $disk_type in
     "usb" ) MIN_BUF_READ=7;; #Custom metrics are guesstimates for now...
     "ide" ) MIN_BUF_READ=40;;
     *     ) MIN_BUF_READ=$DEFAULT_BUF_READ;;
   esac
+  echo "INFO: $disk_type: Using $MIN_BUF_READ MB/sec as the minimum throughput speed"
 
   max_speed=0
+  echo ""
+  echo "Beginning hdparm timing runs"
+  echo "---------------------------------------------------"
+
   for iteration in `seq 1 10`; do
     speed=`hdparm -t /dev/$disk 2>/dev/null | grep "Timing buffered disk reads" | awk -F"=" '{print $2}' | awk '{print $1}'`
+    echo "INFO: Iteration $iteration: Detected speed is $speed MB/sec"
+
     if [ -z "$speed" ]; then
-      echo "SKIP: device is too small"
+      echo "WARNING: Device $disk is too small! Aborting test."
       exit 0
     fi
 
@@ -28,12 +40,22 @@ for disk in $@; do
       max_speed=$speed
     fi
   done
-
+  echo "INFO: Maximum detected speed is $max_speed MB/sec"
+  echo "---------------------------------------------------"
+  echo ""
+  result=0
   if [ $max_speed -gt $MIN_BUF_READ ]; then
-    echo "PASS: $max_speed is faster than MIN_BUF_READ of $MIN_BUF_READ"
-    exit 0
+    echo "PASS: $disk Max Speed of $max_speed MB/sec is faster than Minimum Buffer Read Speed of $MIN_BUF_READ MB/sec"
   else
-    echo "FAIL: $max_speed is slower than MIN_BUF_READ of $MIN_BUF_READ"
-    exit 1
+    echo "FAIL: $disk Max Speed of $max_speed MB/sec is slower than Minimum Buffer Read Speed of $MIN_BUF_READ MB/sec"
+    result=1
   fi
 done
+
+if [ $result -gt 0 ]; then
+  echo "WARNING: One or more disks failed testing!"
+  exit 1
+else
+  echo "All devices passed testing!"
+  exit 0
+fi
