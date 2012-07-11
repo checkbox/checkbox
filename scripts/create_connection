@@ -137,6 +137,12 @@ def main():
               "but did not give a security type using --security.", file=sys.stderr)
         sys.exit(1)
 
+    try:
+        check_call(['rfkill','unblock','wlan','wifi'])
+    except CalledProcessError:
+        print("Could not unblock wireless devices with rfkill.", file=sys.stderr)
+        # Don't fail the script if unblock didn't work though
+
     connection_info += ip_sections()
 
     try:
@@ -150,12 +156,6 @@ def main():
         sys.exit(1)
 
     block_until_created(args.ssid, args.retries, args.interval)
-
-    try:
-        check_call(['rfkill','unblock','wlan','wifi'])
-    except CalledProcessError:
-        print("Could not unblock wireless devices with rfkill.", file=sys.stderr)
-        # Don't fail the script if unblock didn't work though
 
 if __name__ == "__main__":
     main()

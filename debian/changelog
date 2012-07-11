@@ -33,6 +33,7 @@ checkbox (0.14.2) quantal; urgency=low
     those nasty Broadcom drivers have left a soft-block on the wireless after
     loading. Also do a bit of refactoring to use check_output and check_call
     instead of Popen (LP: #1019162)
+  * Move the call to unblock to before the connection is created
   * Reimplemented memory_compare in python3 and restructured it to put
     things into dictionaries for easy access. Also fixed bug with detecting
     non-RAM devices as RAM. (LP: #960087)
