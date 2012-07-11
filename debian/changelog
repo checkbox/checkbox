@@ -16,6 +16,9 @@ checkbox (0.14.2) quantal; urgency=low
     run with root privileges. Added some additional output for stderr for
     failures so we will know WHY a test or the script failed. Replaced 
     sys.stdout.write() and flush() calls with simple print statements.
+  * scripts/ipmi_test: output tweaks so error messages now go to stderr. No BMC
+    message is a little more clear. Module failed to load now generates an
+    error rather than a simple exit.
 
   [Marc Tardif]
   * Fixed duplicate jobs appearing in the store when rerunning jobs.
