@@ -58,6 +58,11 @@ checkbox (0.14.2) quantal; urgency=low
     more useful in both debug and info levels. Was going to set the
     networking/bandwidth job to debug, but the info output should now be
     sufficient to begin diagnosing test failures.
+  * jobs/usb.txt.in: Added output to usb/detect in case no USB controllers are
+    found. Added dependencies on the udisks package which may not be installed
+    by default.
+    debian/control: Added udisks as a suggests for checkbox as it's required
+    for the USB tests to function.
 
   [Marc Tardif]
   * Fixed duplicate jobs appearing in the store when rerunning jobs.
@@ -81,7 +86,7 @@ checkbox (0.14.2) quantal; urgency=low
   * Catch exception raised in memory_compare by DMI RAM entries with No Module
     Installed in the Size field (LP: #1023220)
 
- -- Jeff Lane <jeff@ubuntu.com>  Wed, 11 Jul 2012 11:57:15 -0400
+ -- Jeff Lane <jeff@ubuntu.com>  Wed, 11 Jul 2012 13:21:46 -0400
 
 checkbox (0.14.1) quantal; urgency=low
 
