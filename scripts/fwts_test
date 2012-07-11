@@ -61,6 +61,7 @@ def main():
     high_fails = []
     medium_fails = []
     low_fails = []
+    passed = []
 
     if args.cpufreq:
         tests.append('cpufreq')
@@ -79,8 +80,6 @@ def main():
                          .communicate()[0].strip()).decode()
 
     # parse the summaries
-    passed = 0
-
     for test in tests:
         if results[test] == 'FAILED_CRITICAL':
             critical_fails.append(test)
@@ -91,7 +90,7 @@ def main():
         elif results[test] == 'FAILED_LOW':
             low_fails.append(test)
         elif results[test] == 'PASSED':
-            passed += 1
+            passed.append(test)
         else:
             continue
 
@@ -107,7 +106,9 @@ def main():
     if low_fails:
         print("Low Failures: %d" % len(low_fails))
         for test in low_fails: print(" - " + test)
-    print("Passed: %d" % passed)
+    if passed:
+        print("Passed: %d" % len(passed))
+        for test in passed: print(" - " + test)
 
     if critical_fails or high_fails:
         return 1

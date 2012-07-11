@@ -28,6 +28,10 @@ checkbox (0.14.2) quantal; urgency=low
     jobs/cpu.txt.in: added an attachment job to attach the freq_governors log.
     Modified cpu/frequency_governors to write to log file
   * scripts/cpu_offlining: added an extra bit of output in case of failures. 
+  * scripts/fwts_test: improved console output so that the info displayed in
+    submission.xml is more useful.
+    jobs/power-management.txt.in: added job to attach fwts_wakealarm.log to
+    results.
 
   [Marc Tardif]
   * Fixed duplicate jobs appearing in the store when rerunning jobs.
@@ -47,7 +51,7 @@ checkbox (0.14.2) quantal; urgency=low
     things into dictionaries for easy access. Also fixed bug with detecting
     non-RAM devices as RAM. (LP: #960087)
 
- -- Jeff Lane <jeff@ubuntu.com>  Tue, 10 Jul 2012 17:40:02 -0400
+ -- Jeff Lane <jeff@ubuntu.com>  Tue, 10 Jul 2012 21:00:06 -0400
 
 checkbox (0.14.1) quantal; urgency=low
 
