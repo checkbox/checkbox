@@ -506,7 +506,7 @@ class Application(object):
         self.scan = scan
 
     def test_interface(self, interface, targets):
-        logging.debug("Testing %s/%s-Mbps", interface.name, interface.speed)
+        logging.info("Testing %s at %s-Mbps", interface.name, interface.speed)
         for target in targets:
             ping = PingLarge(target, interface=interface.name)
             result = ping.run()
@@ -514,7 +514,7 @@ class Application(object):
                 ping = PingSmall(target, interface=interface.name)
                 result = ping.run()
                 if result.packet_loss:
-                    logging.debug("SKIP: Non-zero packet loss (%s%%) "
+                    logging.warning("SKIP: Non-zero packet loss (%s%%) "
                                   "for [%s] [%s]->[%s]",
                                   result.packet_loss, interface.name,
                                   interface.inet_addr, target)
@@ -525,17 +525,18 @@ class Application(object):
             percent = (100 * 8 * (ping.packet_size + 28) * ping.packet_count
                        / result.time / 1000 / interface.speed)
             if percent >= 10:
-                logging.info("PASS: Effective rate: %s Mbps, "
-                             "%s%% of theoretical max (<10%%)",
-                             mbps, percent)
+                logging.info("PASS: Effective rate: %3.4f Mbps, "
+                             "%3.2f%% of theoretical max (%5.2f Mbps)",
+                             mbps, percent, interface.speed)
                 return True
-
-        logging.info("FAIL: Unacceptable network effective rate "
-                     "found for [%s]",
-                     interface.name)
+            else:
+                logging.warning("Unacceptable network effective rate found for [%s]" % interface.name)
+                logging.warning("Effective rate %3.4f Mbps, %3.2f%% of theoretical max (%5.2f Mbps)" %
+                                (mbps, percent, interface.speed))
         return False
 
     def run(self):
+        logging.debug("Acquiring network Interfaces")
         if self.interfaces:
             interfaces = [NetworkConfig(i).run() for i in self.interfaces]
         else:
@@ -555,6 +556,9 @@ class Application(object):
                         targets.append(target)
             elif interface.name != "lo":
                 targets = ip_range.scan(self.scan)
+                logging.info("The following targets were found for %s:" % interface.name)
+                for target in targets:
+                    logging.info("\t%s" % target)
 
             if not targets:
                 logging.debug("No targets found for [%s]", interface.name)
@@ -633,9 +637,10 @@ class ApplicationManager(object):
 
         # Logging setup
         format = ("%(asctime)s %(levelname)-8s %(message)s")
+        date_format = '%Y-%m-%d %H:%M:%S'
         if log_handlers:
             for handler in log_handlers:
-                handler.setFormatter(Formatter(format))
+                handler.setFormatter(Formatter(format, date_format))
                 logging.getLogger().addHandler(handler)
             if log_level:
                 logging.getLogger().setLevel(log_level)
@@ -646,7 +651,7 @@ class ApplicationManager(object):
             parser.error("Must be run as root.")
 
         if not self.check_network(options.timeout):
-            parser.error("Failed to check network.")
+            parser.error("Network devices must be configured and connected to a LAN segment before testing")
 
         targets = args
         return self.application_factory(targets,

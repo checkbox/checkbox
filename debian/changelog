@@ -54,6 +54,10 @@ checkbox (0.14.2) quantal; urgency=low
   * scripts/cpu_topology: Changed it so there is less output on success and
     more useful output on failure. Fixed a bug in the test for Failure that
     caused the False condition to never be met.
+  * scripts/network_bandwidth_test: fleshed out the output to make it a little
+    more useful in both debug and info levels. Was going to set the
+    networking/bandwidth job to debug, but the info output should now be
+    sufficient to begin diagnosing test failures.
 
   [Marc Tardif]
   * Fixed duplicate jobs appearing in the store when rerunning jobs.
