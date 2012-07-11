@@ -121,7 +121,7 @@ plugin: shell
 name: power-management/rtc
 requires: package.name == 'linux'
 command:
- test -e /dev/rtc && echo "Real Time Clock found" || echo "ERROR: Real Time Clock not found" >&2
+ test -e /dev/rtc || ( echo "ERROR: Real Time Clock not found" >&2 && exit 1 )
 _description:
  Make sure that the RTC (Real-Time Clock) device exists.
 
@@ -130,4 +130,4 @@ name: power-management/tickless_idle
 requires: package.name == 'linux'
 _description: Check to see if CONFIG_NO_HZ is set in the kernel (this is just a simple regression check)
 command:
- zgrep 'CONFIG_NO_HZ=y' /boot/config-`uname -r` >/dev/null 2>&1 && echo "Tickless Idle is set" || echo "WARNING: Tickless Idle is NOT set" >&2
+ zgrep 'CONFIG_NO_HZ=y' /boot/config-`uname -r` >/dev/null 2>&1 || ( echo "WARNING: Tickless Idle is NOT set" >&2 && exit 1 )
