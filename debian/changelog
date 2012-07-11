@@ -22,6 +22,11 @@ checkbox (0.14.2) quantal; urgency=low
   * scripts/network_device_info: minor change so that the fail message now
     specifies that it was an error and outputs to stderr properly.
   * scripts/disk_smart: Improvements to the logging and output during testing.
+  * scripts/cpu_scaling_test: lots of output changes using logging module.
+    renamed script to frequency_governors_test to be more descriptive and less
+    confusing. Added a --log option to write logs to an actual file
+    jobs/cpu.txt.in: added an attachment job to attach the freq_governors log.
+    Modified cpu/frequency_governors to write to log file
 
   [Marc Tardif]
   * Fixed duplicate jobs appearing in the store when rerunning jobs.
