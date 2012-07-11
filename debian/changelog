@@ -63,6 +63,9 @@ checkbox (0.14.2) quantal; urgency=low
     by default.
     debian/control: Added udisks as a suggests for checkbox as it's required
     for the USB tests to function.
+  * scripts/memory_test: converted from optparse to argparse. Added some extra
+    stderr output that may be useful if this test fails. redirected some
+    existing error messages to stderr also
 
   [Marc Tardif]
   * Fixed duplicate jobs appearing in the store when rerunning jobs.
