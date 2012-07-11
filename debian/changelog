@@ -28,6 +28,8 @@ checkbox (0.14.2) quantal; urgency=low
   * Reimplemented memory_compare in python3 and restructured it to put
     things into dictionaries for easy access. Also fixed bug with detecting
     non-RAM devices as RAM. (LP: #960087)
+  * Wait longer to get the window handle in gpu_test, so that we don't fall foul
+    of timing issues. (LP: #1018563)
 
  -- Jeff Lane <jeff@ubuntu.com>  Fri, 29 Jun 2012 16:30:33 -0400
 
