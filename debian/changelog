@@ -51,6 +51,9 @@ checkbox (0.14.2) quantal; urgency=low
     provide more useful output, even though they are very simple tests.
   * jobs/networking.txt.in: added some output to networking/multi_nic so a 
     failure due to unconfigured ifaces generates something beyond a blank line
+  * scripts/cpu_topology: Changed it so there is less output on success and
+    more useful output on failure. Fixed a bug in the test for Failure that
+    caused the False condition to never be met.
 
   [Marc Tardif]
   * Fixed duplicate jobs appearing in the store when rerunning jobs.
