@@ -40,6 +40,9 @@ checkbox (0.14.2) quantal; urgency=low
     users can understand what's going on. Moved the exit bits so the test will
     actuall run on multiple drives as originally intended and not exit on the
     first failure.
+  * scripts/removable_storage_test: vastly improved the output from that script
+    and also introduced some new error handling to cover a couple conditions
+    that generated unhelpful tracebacks.
 
   [Marc Tardif]
   * Fixed duplicate jobs appearing in the store when rerunning jobs.
