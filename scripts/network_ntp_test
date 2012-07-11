@@ -36,7 +36,7 @@ import signal
 import time
 from datetime import datetime, timedelta
 from subprocess import Popen, PIPE
-from optparse import OptionParser
+from argparse import ArgumentParser
 
 
 def SilentCall(*popenargs):
@@ -80,16 +80,17 @@ def StartStopNTPD(state, pid=0):
         logging.info('Stopping ntpd process PID: %s' % pid)
         os.kill(int(pid), signal.SIGHUP)
     elif state == 'on':
-        logging.debug('Starting ntp process')
+        logging.info('Starting ntp process')
         SilentCall('/etc/init.d/ntp start')
         ntpd_status = CheckNTPD()
 
         if status == 0:
-            logging.info('ntpd restarted with PID: %s' % ntpd_status[1])
+            logging.debug('ntpd restarted with PID: %s' % ntpd_status[1])
         else:
             logging.error('ntpd restart failed for some reason')
     else:
-        logging.error('Unknown status')
+        logging.error('%s is an unknown state, unable to start/stop ntpd' %
+                        state)
 
 
 def SyncTime(server):
@@ -105,11 +106,11 @@ def SyncTime(server):
 
     if sync.returncode == 0:
         logging.info('Successful NTP update from %s' % server)
-        logging.info('%s' % result[0].strip().decode())
+        logging.debug(result[0].strip().decode())
         return True
     else:
         logging.error('Failed to sync with %s' % server)
-        logging.error('%s' % result[1])
+        logging.error(result[1].strip().decode())
         return False
 
 
@@ -140,39 +141,42 @@ def SkewTime():
 
 
 def main():
-    usage = 'Usage: %prog [OPTIONS]'
-    parser = OptionParser(usage)
-    parser.add_option('--server',
+    description = 'Tests the ability to skew and sync the clock with an NTP server'
+    parser = ArgumentParser(description=description)
+    parser.add_argument('--server',
                         action='store',
-                        type='string',
                         default='ntp.ubuntu.com',
                         help='The NTP server to sync from. The default server \
-                        is %default')
-    parser.add_option('--skew-time',
+                        is %(default)s')
+    parser.add_argument('--skew-time',
                         action='store_true',
                         default=False,
                         help='Setting this will change system time ahead by 1 \
                         hour to make the results of ntp syncing more dramatic \
                         and noticeable.')
-    parser.add_option('-d', '--debug',
+    parser.add_argument('-d', '--debug',
                         action='store_true',
                         default=False,
                         help='Verbose output for debugging purposes')
-    (options, args) = parser.parse_args()
+    args = parser.parse_args()
+
+    if os.geteuid() != 0:
+        parser.error("You must run this script as root")
 
     # Set up logging
     format = '%(asctime)s %(levelname)-8s %(message)s'
+    date_format = '%Y-%m-%d %H:%M:%S'
     handler = logging.StreamHandler()
-    handler.setFormatter(logging.Formatter(format))
+    handler.setFormatter(logging.Formatter(format, date_format))
     logger = logging.getLogger()
     logger.setLevel(logging.INFO)
-    if options.debug:
+    if args.debug:
         logger.setLevel(logging.DEBUG)
     logger.addHandler(handler)
-
+    
     # Make sure NTP is installed
     if not os.access('/usr/sbin/ntpdate', os.F_OK):
-        logging.debug('NTP is not installed!')
+        logging.error('NTP is not installed!')
         return 1
 
     # Check for and stop the ntp daemon
@@ -184,13 +188,13 @@ def main():
         logging.debug('Since ntpd is currently running, stopping it now')
         StartStopNTPD('off', ntpd_status[1])
 
-    if options.skew_time:
+    if args.skew_time:
         logging.debug('Setting system time ahead one hour')
         SkewTime()
     else:
         logging.info('Pre-sync time is: %s' % time.asctime(TimeCheck()))
 
-    sync = SyncTime(options.server)
+    sync = SyncTime(args.server)
 
     logging.info('Current system time is: %s' % time.asctime(TimeCheck()))
 

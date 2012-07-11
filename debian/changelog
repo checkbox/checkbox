@@ -32,6 +32,10 @@ checkbox (0.14.2) quantal; urgency=low
     submission.xml is more useful.
     jobs/power-management.txt.in: added job to attach fwts_wakealarm.log to
     results.
+  * scripts/network_ntp_test: Tweaked output to use log levels more
+    appropriately. Added some decoding so that bytes output show up as strings
+    properly in output. Converted from optparse to argparse. Added a root
+    check because this needs to be root to properly run.
 
   [Marc Tardif]
   * Fixed duplicate jobs appearing in the store when rerunning jobs.
