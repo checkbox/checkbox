@@ -17,7 +17,7 @@ for module in ipmi_si ipmi_devintf ipmi_msghandler; do
             echo "ERROR: Unable to load module $module" >&2
             echo "Aborting IPMI test run." >&2
             exit 1
-        else;
+        else
             echo "Successfully loaded module $module"
         fi
     fi
