@@ -212,6 +212,7 @@ setup(
 This project provides an extensible interface for system testing.
 """,
     data_files = [
+        ("lib/checkbox/qt/", ["qt/checkbox-qt.ui", "qt/*.png", "qt/frontend/checkbox-qt-service"]),
         ("share/checkbox/", ["backend", "run"]),
         ("share/checkbox/data/audio/", ["data/audio/*"]), 
         ("share/checkbox/data/documents/", ["data/documents/*"]), 
@@ -228,7 +229,6 @@ This project provides an extensible interface for system testing.
         ("share/checkbox/report/images/", ["report/images/*"]),
         ("share/checkbox/scripts/", ["scripts/*"]),
         ("share/checkbox/gtk/", ["gtk/checkbox-gtk.ui", "gtk/*.png"]),
-        ("share/checkbox/qt/", ["qt/checkbox-qt.ui", "qt/*.png", "qt/frontend/checkbox-qt-service"]),
         ("share/dbus-1/services/", ["qt/com.canonical.QtCheckbox.service"]),
         ("share/apport/package-hooks/", ["apport/source_checkbox.py"]),
         ("share/apport/general-hooks/", ["apport/checkbox.py"])],
