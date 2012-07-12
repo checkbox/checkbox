@@ -13,6 +13,8 @@ override_dh_auto_install:
 	set -ex; for python in $(shell py3versions -r); do \
 		$$python setup.py install --root=$(CURDIR)/debian/tmp --install-layout=deb; \
 	done;
+	mkdir -p $(CURDIR)/debian/tmp/usr/lib/checkbox
+	mv  $(CURDIR)/debian/tmp/usr/share/checkbox/scripts  $(CURDIR)/debian/tmp/usr/lib/checkbox/bin
 
 override_dh_installdeb:
 	cp debian/checkbox.postrm debian/checkbox-cli.postrm
