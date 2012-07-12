@@ -92,7 +92,8 @@ Depends: checkbox (>= ${source:Version}),
          libqt4-dbus,
          libqtgui4,
          python3-dbus,
-         ${misc:Depends}
+         ${misc:Depends},
+         ${shlibs:Depends}
 Description: QT4 interface for checkbox
  This project provides an extensible interface for system testing. The
  results can then be sent to Launchpad.
