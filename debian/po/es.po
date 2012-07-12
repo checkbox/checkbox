@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: checkbox@packages.debian.org\n"
-"POT-Creation-Date: 2011-03-29 15:19+0200\n"
+"POT-Creation-Date: 2012-07-12 15:37-0400\n"
 "PO-Revision-Date: 2012-04-06 14:01+0000\n"
 "Last-Translator: Daniel Manrique <daniel.manrique@canonical.com>\n"
 "Language-Team: Spanish <es@li.org>\n"
@@ -18,48 +18,15 @@ msgstr ""
 "X-Launchpad-Export-Date: 2012-07-03 05:13+0000\n"
 "X-Generator: Launchpad (build 15531)\n"
 
-#. Type: boolean
+#. Type: string
 #. Description
 #: ../checkbox.templates:1001
-msgid "Enable bug reporting by default? "
-msgstr "¿Activar informes de error de manera predeterminada? "
-
-#. Type: boolean
-#. Description
-#: ../checkbox.templates:1001
-msgid ""
-"If this option is set to Yes, then checkbox will ask if the user wants to "
-"file a bug for failing tests, even if apport is not enabled."
-msgstr ""
-"Si esta opción se establece a Sí, Checkbox preguntará al usuario si desea "
-"informar de errores por cada prueba fallida, aún si apport está desactivado."
-
-#. Type: string
-#. Description
-#: ../checkbox.templates:2001
-msgid "Default package to report bugs against:"
-msgstr "Paquete predeterminado sobre el cual informar errores:"
-
-#. Type: string
-#. Description
-#: ../checkbox.templates:2001
-msgid ""
-"When filing a new bug through checkbox, if it does not guess the  package, "
-"the default package that the bug will be file against."
-msgstr ""
-"Cuando se reporta un error a través de Comprobación del Sistema, si no se "
-"logra determinar automáticamente el paquete, éste es el paquete contra el "
-"cual se reportará el error."
-
-#. Type: string
-#. Description
-#: ../checkbox.templates:3001
 msgid "Test suite blacklist:"
 msgstr "Lista negra del conjunto de pruebas:"
 
 #. Type: string
 #. Description
-#: ../checkbox.templates:3001
+#: ../checkbox.templates:1001
 msgid "List of job files to never run when testing with checkbox."
 msgstr ""
 "Lista de archivos de trabajo a no ejecutar cuando se prueba con Comprobación "
@@ -67,61 +34,83 @@ msgstr ""
 
 #. Type: string
 #. Description
-#: ../checkbox.templates:4001
+#: ../checkbox.templates:2001
 msgid "Test suite whitelist:"
 msgstr "Lista blanca del conjunto de pruebas:"
 
 #. Type: string
 #. Description
-#: ../checkbox.templates:4001
+#: ../checkbox.templates:2001
 msgid "List of jobs to run when testing with checkbox."
 msgstr "Lista de tareas a ejecutar mientras se realizan pruebas con checkbox."
 
 #. Type: string
 #. Description
-#: ../checkbox.templates:5001
+#: ../checkbox.templates:3001
 msgid "Transport URL:"
 msgstr "URL de transporte:"
 
 #. Type: string
 #. Description
-#: ../checkbox.templates:5001
+#: ../checkbox.templates:3001
 msgid "URL where to send submissions."
 msgstr "URL de destino de los envíos."
 
 #. Type: string
 #. Description
-#: ../checkbox.templates:6001
+#: ../checkbox.templates:4001
 msgid "Launchpad E-mail:"
 msgstr "Correo electrónico de Launchpad:"
 
 #. Type: string
 #. Description
-#: ../checkbox.templates:6001
+#: ../checkbox.templates:4001
 msgid "E-mail address used to sign in to Launchpad."
 msgstr ""
 "Dirección de correo electrónico usada para iniciar sesión en Launchpad."
 
 #. Type: string
 #. Description
-#: ../checkbox.templates:7001
+#: ../checkbox.templates:5001
 msgid "HTTP Proxy:"
 msgstr "Proxy HTTP:"
 
 #. Type: string
 #. Description
-#: ../checkbox.templates:7001
+#: ../checkbox.templates:5001
 msgid "HTTP proxy to use instead of the one specified in environment."
 msgstr "Proxy HTTP que se usará en lugar del especificado en el entorno."
 
 #. Type: string
 #. Description
-#: ../checkbox.templates:8001
+#: ../checkbox.templates:6001
 msgid "HTTPS Proxy:"
 msgstr "Proxy HTTPS:"
 
 #. Type: string
 #. Description
-#: ../checkbox.templates:8001
+#: ../checkbox.templates:6001
 msgid "HTTPS proxy to use instead of the one specified in environment."
 msgstr "Proxy HTTPS que se usará en lugar del especificado en el entorno."
+
+#~ msgid "Enable bug reporting by default? "
+#~ msgstr "¿Activar informes de error de manera predeterminada? "
+
+#~ msgid ""
+#~ "If this option is set to Yes, then checkbox will ask if the user wants to "
+#~ "file a bug for failing tests, even if apport is not enabled."
+#~ msgstr ""
+#~ "Si esta opción se establece a Sí, Checkbox preguntará al usuario si desea "
+#~ "informar de errores por cada prueba fallida, aún si apport está "
+#~ "desactivado."
+
+#~ msgid "Default package to report bugs against:"
+#~ msgstr "Paquete predeterminado sobre el cual informar errores:"
+
+#~ msgid ""
+#~ "When filing a new bug through checkbox, if it does not guess the  "
+#~ "package, the default package that the bug will be file against."
+#~ msgstr ""
+#~ "Cuando se reporta un error a través de Comprobación del Sistema, si no se "
+#~ "logra determinar automáticamente el paquete, éste es el paquete contra el "
+#~ "cual se reportará el error."

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: checkbox@packages.debian.org\n"
-"POT-Creation-Date: 2011-03-29 15:19+0200\n"
+"POT-Creation-Date: 2012-07-12 15:37-0400\n"
 "PO-Revision-Date: 2012-05-12 03:33+0000\n"
 "Last-Translator: eniomarconcini <Unknown>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
@@ -18,48 +18,15 @@ msgstr ""
 "X-Launchpad-Export-Date: 2012-07-03 05:13+0000\n"
 "X-Generator: Launchpad (build 15531)\n"
 
-#. Type: boolean
+#. Type: string
 #. Description
 #: ../checkbox.templates:1001
-msgid "Enable bug reporting by default? "
-msgstr "Habilitar o relatório de erro por padrão? "
-
-#. Type: boolean
-#. Description
-#: ../checkbox.templates:1001
-msgid ""
-"If this option is set to Yes, then checkbox will ask if the user wants to "
-"file a bug for failing tests, even if apport is not enabled."
-msgstr ""
-"Se esta opção for definida como Sim, então o Checkbox irá perguntar se o "
-"usuário quer relatar o erro dos testes que falharam, mesmo que o Apport não "
-"esteja habilitado."
-
-#. Type: string
-#. Description
-#: ../checkbox.templates:2001
-msgid "Default package to report bugs against:"
-msgstr "Pacote padrão para relatar erros:"
-
-#. Type: string
-#. Description
-#: ../checkbox.templates:2001
-msgid ""
-"When filing a new bug through checkbox, if it does not guess the  package, "
-"the default package that the bug will be file against."
-msgstr ""
-"Quando estiver registrando um novo erro através do Checkbox, se ele não "
-"adivinhar o pacote, o pacote padrão do qual o erro será relatado."
-
-#. Type: string
-#. Description
-#: ../checkbox.templates:3001
 msgid "Test suite blacklist:"
 msgstr "Lista negra da suíte de testes:"
 
 #. Type: string
 #. Description
-#: ../checkbox.templates:3001
+#: ../checkbox.templates:1001
 msgid "List of job files to never run when testing with checkbox."
 msgstr ""
 "Lista de arquivos de trabalho para nunca serem executados quando estiver "
@@ -67,13 +34,13 @@ msgstr ""
 
 #. Type: string
 #. Description
-#: ../checkbox.templates:4001
+#: ../checkbox.templates:2001
 msgid "Test suite whitelist:"
 msgstr "Lista branca da suíte de testes:"
 
 #. Type: string
 #. Description
-#: ../checkbox.templates:4001
+#: ../checkbox.templates:2001
 msgid "List of jobs to run when testing with checkbox."
 msgstr ""
 "Lista de arquivos de trabalho para executar enquanto estiver testando com "
@@ -81,48 +48,69 @@ msgstr ""
 
 #. Type: string
 #. Description
-#: ../checkbox.templates:5001
+#: ../checkbox.templates:3001
 msgid "Transport URL:"
 msgstr "Transportar URL:"
 
 #. Type: string
 #. Description
-#: ../checkbox.templates:5001
+#: ../checkbox.templates:3001
 msgid "URL where to send submissions."
 msgstr "URL para enviar relatórios."
 
 #. Type: string
 #. Description
-#: ../checkbox.templates:6001
+#: ../checkbox.templates:4001
 msgid "Launchpad E-mail:"
 msgstr "E-mail do Launchpad:"
 
 #. Type: string
 #. Description
-#: ../checkbox.templates:6001
+#: ../checkbox.templates:4001
 msgid "E-mail address used to sign in to Launchpad."
 msgstr "Endereço de e-mail usado para entrar no Launchpad."
 
 #. Type: string
 #. Description
-#: ../checkbox.templates:7001
+#: ../checkbox.templates:5001
 msgid "HTTP Proxy:"
 msgstr "Proxy HTTP:"
 
 #. Type: string
 #. Description
-#: ../checkbox.templates:7001
+#: ../checkbox.templates:5001
 msgid "HTTP proxy to use instead of the one specified in environment."
 msgstr "Proxy HTTP para usar em vez do especificado pelo ambiente."
 
 #. Type: string
 #. Description
-#: ../checkbox.templates:8001
+#: ../checkbox.templates:6001
 msgid "HTTPS Proxy:"
 msgstr "Proxy HTTPS:"
 
 #. Type: string
 #. Description
-#: ../checkbox.templates:8001
+#: ../checkbox.templates:6001
 msgid "HTTPS proxy to use instead of the one specified in environment."
 msgstr "Proxy HTTPS para usar em vez do especificado pelo ambiente."
+
+#~ msgid "Enable bug reporting by default? "
+#~ msgstr "Habilitar o relatório de erro por padrão? "
+
+#~ msgid ""
+#~ "If this option is set to Yes, then checkbox will ask if the user wants to "
+#~ "file a bug for failing tests, even if apport is not enabled."
+#~ msgstr ""
+#~ "Se esta opção for definida como Sim, então o Checkbox irá perguntar se o "
+#~ "usuário quer relatar o erro dos testes que falharam, mesmo que o Apport "
+#~ "não esteja habilitado."
+
+#~ msgid "Default package to report bugs against:"
+#~ msgstr "Pacote padrão para relatar erros:"
+
+#~ msgid ""
+#~ "When filing a new bug through checkbox, if it does not guess the  "
+#~ "package, the default package that the bug will be file against."
+#~ msgstr ""
+#~ "Quando estiver registrando um novo erro através do Checkbox, se ele não "
+#~ "adivinhar o pacote, o pacote padrão do qual o erro será relatado."
