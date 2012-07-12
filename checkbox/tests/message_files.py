@@ -19,6 +19,10 @@
 import unittest
 from checkbox.lib.path import path_expand_recursive
 from checkbox.lib.template_i18n import TemplateI18n
+import tempfile
+import sys
+import os
+import subprocess
 
 
 class MessageFileFormatTest(unittest.TestCase):
@@ -34,8 +38,40 @@ class MessageFileFormatTest(unittest.TestCase):
                 messages += template.load_file(file, filename)
         return messages
 
+    def i18n_merge_jobs(self, dest_dir):
+        for filename in path_expand_recursive("./jobs"):
+            if not filename.endswith("~") :
+                subprocess.call(['intltool-merge',
+                                '-r',
+                                '-q',
+                                '-c', 
+                                os.path.join(self.temp_dir, "cache~"),
+                                'po',
+                                filename, 
+                                os.path.join(self.temp_dir, 
+                                             os.path.basename(filename))
+                               ])
+
+    def read_jobs(self, job_directory):
+        messages = []
+        for filename in path_expand_recursive(job_directory):
+            if not filename.endswith("~"):
+                file = open(filename, "r", encoding="utf-8")
+                template = TemplateI18n()
+                messages += template.load_file(file, filename)
+        return messages
+
     def setUp(self):
-        self.messages = self.read_jobs()
+        self.temp_dir = tempfile.mkdtemp()
+        self.i18n_merge_jobs(self.temp_dir)
+        self.messages = self.read_jobs(self.temp_dir)
+
+    def tearDown(self):
+        if self.temp_dir:
+            for filename in path_expand_recursive(self.temp_dir):
+                os.unlink(filename)
+            os.rmdir(self.temp_dir)
+            self.temp_dir = None
 
     def test_job_files_valid(self):
         messages = self.messages
