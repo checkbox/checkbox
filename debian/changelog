@@ -76,6 +76,9 @@ checkbox (0.14.2) quantal; urgency=low
   * Added a message file format test that does some simplistic checks
     on jobs/* files to ensure they are sane.
   * Fixed two typos in jobs/suspend.txt.in.
+  * Merging of translations into job files prior to running message 
+    file format test, to further ensure that translated strings
+    and field descriptions are parsed correctly.
 
   [Brendan Donegan]
   * Make a call to rfkill unblock in the create_connection script, incase
@@ -93,7 +96,7 @@ checkbox (0.14.2) quantal; urgency=low
   * Also unblock wireless before wireless_scanning test, as I neglected to do
     this before. (LP: #1023619)
 
- -- Jeff Lane <jeff@ubuntu.com>  Wed, 11 Jul 2012 13:21:46 -0400
+ -- Daniel Manrique <roadmr@ubuntu.com>  Thu, 12 Jul 2012 15:39:51 -0400
 
 checkbox (0.14.1) quantal; urgency=low
 
