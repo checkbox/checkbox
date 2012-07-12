@@ -16,7 +16,7 @@ Vcs-Bzr: https://code.launchpad.net/~hardware-certification/checkbox/trunk
 Package: checkbox
 Section: python
 Architecture: any
-Depends: debconf, python3-lxml, udev, ${misc:Depends}, ${python3:Depends}
+Depends: debconf, python3-lxml, udev, ${misc:Depends}, ${python3:Depends}, ${shlibs:Depends}
 Recommends: dpkg (>= 1.13),
             gir1.2-gst-plugins-base-0.10 | gir1.2-gst-plugins-base-1.0,
             gstreamer0.10-gconf | gstreamer1.0-plugins-good,
