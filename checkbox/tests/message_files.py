@@ -29,15 +29,6 @@ class MessageFileFormatTest(unittest.TestCase):
 
     name = "message file format test"
 
-    def read_jobs(self):
-        messages = []
-        for filename in path_expand_recursive("./jobs"):
-            if not filename.endswith("~"):
-                file = open(filename, "r", encoding="utf-8")
-                template = TemplateI18n()
-                messages += template.load_file(file, filename)
-        return messages
-
     def i18n_merge_jobs(self, dest_dir):
         for filename in path_expand_recursive("./jobs"):
             if not filename.endswith("~") :
