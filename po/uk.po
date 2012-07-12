@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-06-21 12:15-0400\n"
-"PO-Revision-Date: 2012-07-09 21:01+0000\n"
+"PO-Revision-Date: 2012-07-11 19:20+0000\n"
 "Last-Translator: Wildman <Unknown>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-07-10 05:12+0000\n"
-"X-Generator: Launchpad (build 15558)\n"
+"X-Launchpad-Export-Date: 2012-07-12 04:36+0000\n"
+"X-Generator: Launchpad (build 15593)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:10
 msgid "Ne_xt"
@@ -192,6 +192,8 @@ msgid ""
 "input.  This makes the most sense when the output and input  are directly "
 "connected, as with a patch cable."
 msgstr ""
+"Відтворіть звук на поточному звуковому виході та отримайте його на поточному "
+"вході. Це можливо коли вхід та вихід з'єднані між собою кабелем"
 
 #. description
 #: ../jobs/audio.txt.in:129
@@ -209,12 +211,12 @@ msgstr ""
 #. description
 #: ../jobs/benchmarks.txt.in:18
 msgid "Benchmark for each disk"
-msgstr ""
+msgstr "Тест для кожного диску"
 
 #. description
 #: ../jobs/benchmarks.txt.in:33
 msgid "Run Render-Bench XRender/Imlib2 benchmark"
-msgstr ""
+msgstr "Виконати тест XRender/Imlib2"
 
 #. description
 #: ../jobs/benchmarks.txt.in:39
@@ -234,7 +236,7 @@ msgstr ""
 #. description
 #: ../jobs/benchmarks.txt.in:57
 msgid "Run Qgears2 OpenGL image scaling benchmark"
-msgstr ""
+msgstr "Виконати тест Qgears2 OpenGL (масштабування зображення)"
 
 #. description
 #: ../jobs/benchmarks.txt.in:66
@@ -244,7 +246,7 @@ msgstr "Виконати тест GLmark2-ES2"
 #. description
 #: ../jobs/benchmarks.txt.in:75
 msgid "Run GLmark2 benchmark"
-msgstr ""
+msgstr "Виконати тест GLmark2"
 
 #. description
 #: ../jobs/benchmarks.txt.in:81
@@ -254,42 +256,42 @@ msgstr "Виконати тест Unigine Santuary"
 #. description
 #: ../jobs/benchmarks.txt.in:87
 msgid "Run Unigine Tropics benchmark"
-msgstr ""
+msgstr "Виконати тест UnigineTropics"
 
 #. description
 #: ../jobs/benchmarks.txt.in:93
 msgid "Run Unigine Heaven benchmark"
-msgstr ""
+msgstr "Виконати тест Unigine Heaven"
 
 #. description
 #: ../jobs/benchmarks.txt.in:99
 msgid "Run Lightsmark benchmark"
-msgstr ""
+msgstr "Виконати тест Lightsmark"
 
 #. description
 #: ../jobs/benchmarks.txt.in:105
 msgid "Run Cachebench Read benchmark"
-msgstr ""
+msgstr "Виконати тест Cachebench Read"
 
 #. description
 #: ../jobs/benchmarks.txt.in:111
 msgid "Run Cachebench Write benchmark"
-msgstr ""
+msgstr "Виконати тест Cachebench Write"
 
 #. description
 #: ../jobs/benchmarks.txt.in:117
 msgid "Run Cachebench Read / Modify / Write benchmark"
-msgstr ""
+msgstr "Виконати тест Cachebench Читання / Зміна / Запис"
 
 #. description
 #: ../jobs/benchmarks.txt.in:123
 msgid "Run Stream Copy benchmark"
-msgstr ""
+msgstr "Виконати тест Stream Copy"
 
 #. description
 #: ../jobs/benchmarks.txt.in:129
 msgid "Run Stream Scale benchmark"
-msgstr ""
+msgstr "Виконати тест Stream Scale"
 
 #. description
 #: ../jobs/benchmarks.txt.in:135
@@ -299,7 +301,7 @@ msgstr "Виконати тест Stream Add"
 #. description
 #: ../jobs/benchmarks.txt.in:141
 msgid "Run Stream Triad benchmark"
-msgstr ""
+msgstr "Виконати тест Stream Triad"
 
 #. description
 #: ../jobs/benchmarks.txt.in:147
@@ -309,37 +311,37 @@ msgstr ""
 #. description
 #: ../jobs/benchmarks.txt.in:153
 msgid "Run Encode MP3 benchmark"
-msgstr ""
+msgstr "Виконати тест кодування MP3"
 
 #. description
 #: ../jobs/benchmarks.txt.in:159
 msgid "Run x264 H.264/AVC encoder benchmark"
-msgstr ""
+msgstr "Виконати тест кодування x264 H.264/AVC"
 
 #. description
 #: ../jobs/benchmarks.txt.in:165
 msgid "Run GnuPG benchmark"
-msgstr ""
+msgstr "Виконати тест GnuPG"
 
 #. description
 #: ../jobs/benchmarks.txt.in:171
 msgid "Run Compress PBZIP2 benchmark"
-msgstr ""
+msgstr "Виконати тест зтискання PBZIP2"
 
 #. description
 #: ../jobs/benchmarks.txt.in:177
 msgid "Run Compress 7ZIP benchmark"
-msgstr ""
+msgstr "Виконати тест зтискання 7ZIP"
 
 #. description
 #: ../jobs/benchmarks.txt.in:183
 msgid "Run N-Queens benchmark"
-msgstr ""
+msgstr "Виконати тест N-Queens"
 
 #. description
 #: ../jobs/benchmarks.txt.in:189
 msgid "Run Himeno benchmark"
-msgstr ""
+msgstr "Виконати тест Himeno"
 
 #. description
 #: ../jobs/benchmarks.txt.in:195
@@ -589,6 +591,8 @@ msgstr ""
 msgid ""
 "Test the CPU scaling capabilities using Firmware Test Suite (fwts cpufreq)."
 msgstr ""
+"Провести перевірку процесора на зміну частоти використовуючи Firmware Test "
+"Suite (fwts cpufreq)."
 
 #. description
 #: ../jobs/cpu.txt.in:15
@@ -678,7 +682,7 @@ msgstr ""
 #. description
 #: ../jobs/disk.txt.in:29
 msgid "SMART test"
-msgstr "РОЗУМНИЙ тест"
+msgstr "SMART тест"
 
 #. description
 #: ../jobs/disk.txt.in:47
@@ -698,6 +702,8 @@ msgid ""
 "Verify that storage devices, such as Fibre Channel and RAID can be detected "
 "and perform under stress."
 msgstr ""
+"Перевірка накопичувачів, таких як Fibre Channel і RAID на можливість їх "
+"виявлення системою та роботою під навантаженням."
 
 #. description
 #: ../jobs/fingerprint.txt.in:3
@@ -806,6 +812,8 @@ msgstr "Тест для виведення версії Xorg"
 #: ../jobs/graphics.txt.in:12
 msgid "Run gtkperf to make sure that GTK based test cases work"
 msgstr ""
+"Виконання gtkperf для перевірити тестів, базованих на GTK, на корректне "
+"виконання"
 
 #. description
 #: ../jobs/graphics.txt.in:18
@@ -892,6 +900,8 @@ msgid ""
 "Ensure the current resolution meets or exceeds the recommended minimum "
 "resolution (800x600). See here for details:"
 msgstr ""
+"Переконайтеся, що поточна роздільна здатність не менша за рекомендований "
+"мінімум (800х600). Дивіться подробиці тут:"
 
 #. description
 #: ../jobs/graphics.txt.in:85
@@ -928,7 +938,7 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:128
 msgid "Check that hardware is able to run compiz"
-msgstr "Перевірити, чи апарати можуть запустити Compiz"
+msgstr "Перевірка обладнання на можливість запуску Compiz"
 
 #. description
 #: ../jobs/graphics.txt.in:135
@@ -1040,22 +1050,22 @@ msgstr ""
 #. description
 #: ../jobs/info.txt.in:5
 msgid "Attaches a report of installed codecs for Intel HDA"
-msgstr ""
+msgstr "Прикріплення звіту про встановленні кодеки для Intel HDA"
 
 #. description
 #: ../jobs/info.txt.in:10
 msgid "Attaches a report of CPU information"
-msgstr ""
+msgstr "Прикріплення звіту з інформацією про процесор"
 
 #. description
 #: ../jobs/info.txt.in:15
 msgid "Attaches a copy of /var/log/dmesg to the test results"
-msgstr ""
+msgstr "Прикріплення копії  /var/log/dmesg до результатів тесту"
 
 #. description
 #: ../jobs/info.txt.in:20
 msgid "Attaches info on DMI"
-msgstr ""
+msgstr "Прикріплення інформації про DMI"
 
 #. description
 #: ../jobs/info.txt.in:26
@@ -1075,27 +1085,27 @@ msgstr ""
 #. description
 #: ../jobs/info.txt.in:43
 msgid "List USB devices"
-msgstr ""
+msgstr "Перелік пристроїв USB"
 
 #. description
 #: ../jobs/info.txt.in:52
 msgid "Attaches the contents of the various modprobe conf files."
-msgstr ""
+msgstr "Прикріплення змісту всіх конфігураційних файлів modprobe."
 
 #. description
 #: ../jobs/info.txt.in:57
 msgid "Attaches the contents of the /etc/modules file."
-msgstr ""
+msgstr "Прикріплення змісту файлу /etc/modules."
 
 #. description
 #: ../jobs/info.txt.in:62
 msgid "attaches the contents of various sysctl config files."
-msgstr ""
+msgstr "прикріплення змісту всіх конфігураційних файлів sysctl."
 
 #. description
 #: ../jobs/info.txt.in:66
 msgid "Attaches a report of sysfs attributes."
-msgstr ""
+msgstr "Прикріплення звіту про атрибути sysfs."
 
 #. description
 #: ../jobs/info.txt.in:77
@@ -1111,7 +1121,7 @@ msgstr ""
 #. description
 #: ../jobs/info.txt.in:89
 msgid "Attaches a list of the currently running kernel modules."
-msgstr ""
+msgstr "Прикріплання переліку запущених модулів ядра."
 
 #. description
 #: ../jobs/info.txt.in:94
@@ -1127,12 +1137,12 @@ msgstr "Прикріплення змісту /proc/acpi/sleep, якщо так�
 #. description
 #: ../jobs/info.txt.in:105
 msgid "Bootchart information."
-msgstr ""
+msgstr "Інформація Bootchart"
 
 #. description
 #: ../jobs/info.txt.in:114
 msgid "SATA/IDE device information."
-msgstr "SATA/IDE інформація пристроїв."
+msgstr "Інформація про пристрої SATA/IDE."
 
 #. description
 #: ../jobs/info.txt.in:131
