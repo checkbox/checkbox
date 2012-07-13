@@ -33,6 +33,7 @@ from checkbox.parsers.cpuinfo import CpuinfoParser
 from checkbox.parsers.cputable import CputableParser
 from checkbox.parsers.deferred import DeferredParser
 from checkbox.parsers.dmidecode import DmidecodeParser
+from checkbox.parsers.efi import EfiParser
 from checkbox.parsers.meminfo import MeminfoParser
 from checkbox.parsers.udevadm import UdevadmParser
 from checkbox.job import (FAIL, PASS, UNINITIATED, UNRESOLVED,
@@ -94,13 +95,14 @@ class SubmissionResult:
             return
 
         self.dispatcher.publishEvent(
-            "attachment", {"name": command, "content": text })
+            "attachment", {"name": command, "content": text})
 
         context_parsers = {
             "/proc/cpuinfo": self.parseCpuinfo,
             "/proc/meminfo": self.parseMeminfo,
             "dmidecode": DmidecodeParser,
             "udevadm": self.parseUdevadm,
+            "efi": EfiParser,
             }
         for context, parser in context_parsers.items():
             if context in command:
@@ -225,6 +227,9 @@ class SubmissionResult:
     def setCpuinfo(self, cpuinfo, machine, cpuinfo_result):
         parser = CpuinfoParser(cpuinfo, machine)
         parser.run(cpuinfo_result)
+
+    def setEfiDevice(self, device):
+        self.dispatcher.publishEvent("dmi_device", device)
 
     def setMeminfo(self, meminfo, meminfo_result):
         parser = MeminfoParser(meminfo)

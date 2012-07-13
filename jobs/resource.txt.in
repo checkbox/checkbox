@@ -49,6 +49,11 @@ plugin: resource
 user: root
 command: dmi_resource
 
+name: efi
+plugin: resource
+user: root
+command: efi_resource
+
 name: uname
 plugin: resource
 command: uname_resource

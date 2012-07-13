@@ -25,7 +25,7 @@ user: root
 command: dmidecode | iconv -t 'utf-8' -c
 _description: Attaches dmidecode output
 
-name: firmware_version_attachment
+name: efi_attachment
 plugin: attachment
 user: root
 command: [ -d /sys/firmware/efi ] && grep -o --color=never 'EFI v.*' /var/log/kern.log || cat /sys/class/dmi/id/bios_version

@@ -3,6 +3,7 @@ cpuinfo
 device
 dmi
 dpkg
+efi
 gconf
 lsb
 meminfo
@@ -51,6 +52,7 @@ cpuinfo_attachment
 dmesg_attachment
 dmi_attachment
 dmidecode_attachment
+efi_attachment
 lsmod_attachment
 lspci_attachment
 gcov_attachment
@@ -59,7 +61,6 @@ modules_attachment
 sysfs_attachment
 sysctl_attachment
 udev_attachment
-firmware_version_attachment
 __input__
 input/keyboard
 input/mouse
