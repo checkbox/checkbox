@@ -32,7 +32,7 @@ patch_configuration()
         # Apply the patch file if it is less than the given version
         patch_version=`basename $patch_file`
         if dpkg --compare-versions $version lt $patch_version; then
-            $patch_file $patch_package
+            $patch_file $package
         fi
 
         previous_version=`basename $patch_file`
