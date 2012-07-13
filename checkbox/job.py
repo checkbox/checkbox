@@ -81,7 +81,7 @@ class Job:
                     data = process.errdata
             elif exit_status == 127:
                 status = UNRESOLVED
-                data = _("Command not found.")
+                data = _("Command not found.").encode("utf-8")
             else:
                 status = FAIL
                 data = (process.errdata
@@ -89,9 +89,9 @@ class Job:
         elif os.WIFSIGNALED(process_status):
             status = UNRESOLVED
             term_signal = os.WTERMSIG(process_status)
-            data = _("Command received signal %s: %s") % \
+            data = (_("Command received signal %s: %s") % \
                 (signal_to_name(term_signal),
-                 signal_to_description(term_signal))
+                 signal_to_description(term_signal))).encode("utf-8")
         else:
             raise Exception("Command not terminated: %s" \
                 % self.command)
