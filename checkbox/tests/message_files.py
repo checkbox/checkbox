@@ -16,6 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
+import os
 import unittest
 from checkbox.lib.path import path_expand_recursive
 from checkbox.lib.template_i18n import TemplateI18n
@@ -27,7 +28,12 @@ class MessageFileFormatTest(unittest.TestCase):
 
     def read_jobs(self):
         messages = []
-        for filename in path_expand_recursive("./jobs"):
+        if os.environ.get("CHECKBOX_PACKAGING", 0):
+            jobs_path = "./build/share/checkbox/jobs"
+        else:
+            jobs_path = "./jobs"
+
+        for filename in path_expand_recursive(jobs_path):
             if not filename.endswith("~"):
                 file = open(filename, "r", encoding="utf-8")
                 template = TemplateI18n()
