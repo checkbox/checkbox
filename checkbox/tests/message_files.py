@@ -20,7 +20,6 @@ import unittest
 from checkbox.lib.path import path_expand_recursive
 from checkbox.lib.template_i18n import TemplateI18n
 import os
-import shutil
 import subprocess
 import sys
 import tempfile
@@ -30,7 +29,7 @@ class MessageFileFormatTest(unittest.TestCase):
 
     name = "message file format test"
 
-    def read_jobs(self, job_directory):
+    def read_jobs(self):
         messages = []
         if os.environ.get("CHECKBOX_PACKAGING",0):
             job_path = "./build/share/checkbox/jobs"
@@ -45,13 +44,7 @@ class MessageFileFormatTest(unittest.TestCase):
         return messages
 
     def setUp(self):
-        self.temp_dir = tempfile.mkdtemp()
-        self.messages = self.read_jobs(self.temp_dir)
-
-    def tearDown(self):
-        if self.temp_dir:
-            shutil.rmtree(self.temp_dir)
-            self.temp_dir = None
+        self.messages = self.read_jobs()
 
     def test_job_files_valid(self):
         messages = self.messages
