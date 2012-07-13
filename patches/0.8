@@ -1,14 +1,14 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 
 import sys
 
-from StringIO import StringIO
+from io import StringIO
 
 
 def Config(filename):
     globals = {}
     module = "/usr/share/checkbox/install/config"
-    exec open(module) in globals
+    exec(open(module), globals)
     config = globals["Config"]()
     config.read(filename)
 

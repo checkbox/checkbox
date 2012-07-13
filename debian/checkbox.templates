@@ -1,15 +1,3 @@
-Template: checkbox/plugins/apport_prompt/default_enabled
-Type: boolean
-_Description: Enable bug reporting by default? 
- If this option is set to Yes, then checkbox will ask if the user wants
- to file a bug for failing tests, even if apport is not enabled.
-
-Template: checkbox/plugins/apport_prompt/default_package
-Type: string
-_Description: Default package to report bugs against:
- When filing a new bug through checkbox, if it does not guess the 
- package, the default package that the bug will be file against.
-
 Template: checkbox/plugins/jobs_info/blacklist
 Type: string
 _Description: Test suite blacklist:
