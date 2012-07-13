@@ -52,6 +52,7 @@ class SubmissionResult:
         register(("identifier",), self.addIdentifier)
         register(("test_run", "attachment",), self.addAttachment)
         register(("test_run", "device",), self.addDeviceState)
+        register(("test_run", "dmi_device",), self.addDmiDeviceState)
         register(("test_run", "distribution",), self.setDistribution)
         register(("test_run", "package_version",), self.addPackageVersion)
         register(("test_run", "test_result",), self.addTestResult)
@@ -95,19 +96,19 @@ class SubmissionResult:
         self.dispatcher.publishEvent(
             "attachment", {"name": command, "content": text })
 
-        parsers = {
-            "cat /proc/cpuinfo": self.parseCpuinfo,
-            "cat /proc/meminfo": self.parseMeminfo,
+        context_parsers = {
+            "/proc/cpuinfo": self.parseCpuinfo,
+            "/proc/meminfo": self.parseMeminfo,
             "dmidecode": DmidecodeParser,
-            "udevadm info --export-db": self.parseUdevadm,
+            "udevadm": self.parseUdevadm,
             }
-        parser = parsers.get(command)
-        if parser:
-            if not isinstance(text, str):
-                text = text.decode("utf-8")
-            stream = StringIO(text)
-            p = parser(stream)
-            p.run(self)
+        for context, parser in context_parsers.items():
+            if context in command:
+                if not isinstance(text, str):
+                    text = text.decode("utf-8")
+                stream = StringIO(text)
+                p = parser(stream)
+                p.run(self)
 
     def addCpu(self, cpu):
         self.dispatcher.publishEvent("cpu", cpu)
@@ -139,6 +140,17 @@ class SubmissionResult:
             self.dispatcher.publishEvent("model", device.product)
             self.dispatcher.publishEvent("make", device.vendor)
             self.dispatcher.publishEvent("version", device.version)
+
+        if device.category != "DEVICE":
+            self.dispatcher.publishEvent("dmi_device", device)
+
+    def addDmiDeviceState(self, test_run, dmi_device):
+        test_run.addDeviceState(
+            bus_name="dmi", category_name=dmi_device.category,
+            product_name=dmi_device.product, vendor_name=dmi_device.vendor,
+            product_id=None, vendor_id=None,
+            subproduct_id=None, subvendor_id=None,
+            driver_name=None, path=dmi_device.path)
 
     def addIdentifier(self, identifier):
         try:
