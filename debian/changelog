@@ -80,6 +80,9 @@ checkbox (0.14.2) quantal; urgency=low
   * Merging of translations into job files prior to running message 
     file format test, to further ensure that translated strings
     and field descriptions are parsed correctly.
+  * Explicit encoding of error strings in Job.execute, so that data returned
+    is consistent and invokers of this method don't choke on it. (LP:
+    #1024541)
 
   [Brendan Donegan]
   * Make a call to rfkill unblock in the create_connection script, incase
@@ -97,7 +100,7 @@ checkbox (0.14.2) quantal; urgency=low
   * Also unblock wireless before wireless_scanning test, as I neglected to do
     this before. (LP: #1023619)
 
- -- Daniel Manrique <roadmr@ubuntu.com>  Thu, 12 Jul 2012 15:39:51 -0400
+ -- Daniel Manrique <roadmr@ubuntu.com>  Fri, 13 Jul 2012 16:26:06 -0400
 
 checkbox (0.14.1) quantal; urgency=low
 
