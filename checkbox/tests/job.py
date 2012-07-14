@@ -22,8 +22,6 @@ from checkbox.job import Job
 
 class JobTest(unittest.TestCase):
 
-    name = "Job execution test"
-
     def test_command_not_found(self):
         job = Job('xwonkt','',10)
         status, data, duration = job.execute()
