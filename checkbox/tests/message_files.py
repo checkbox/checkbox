@@ -24,8 +24,6 @@ from checkbox.lib.template_i18n import TemplateI18n
 
 class MessageFileFormatTest(unittest.TestCase):
 
-    name = "message file format test"
-
     def read_jobs(self):
         messages = []
         if os.environ.get("CHECKBOX_PACKAGING", 0):
