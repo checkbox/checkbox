@@ -8,6 +8,9 @@ checkbox (0.14.2) quantal; urgency=low
 
   * New upstream release (LP: #1025869)
 
+  [Jeff Marcom]
+  * scripts/gpu_test - Fixed potential thread exiting issue.
+
   [Javier Collado]
   * Fixed detection of circular references in resolver.
 
@@ -277,7 +280,6 @@ checkbox (0.14) quantal; urgency=low
       bytes.decode() on the "after reboot" hardware checks.
 
   [Jeff Marcom]
-  * scripts/gpu_test - Fixed potential thread exiting issue.
   * [FEATURE] Python 2 to 3 conversion:
     * scripts/memory_info
     * scripts/memory_test
