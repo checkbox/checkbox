@@ -100,30 +100,16 @@ class ChangeViewport(Thread):
                         return
 
 
-class FlashVideoThread(Thread):
+class Html5VideoThread(Thread):
     """
-    Start a thread performing a Flash playback in firefox using totem
+    Start a thread performing playback of a HTML5 video in the default browser
     """
 
     def run(self):
-        script_home = (os.path.split(
-                       os.path.dirname(
-                       os.path.realpath(__file__)))[0])
-        flv = os.path.join(script_home + '/data/websites/Flash_Video.flv')
-        source = """
-<html><head><meta http-equiv="refresh" content="5"></head><body>
-<p>This page will reload and play this Flash video every 5s.</p>
-<center><embed src="%s"></embed></center>
-</body></html>""" % flv
-
-        with NamedTemporaryFile(suffix='.html', delete=False) as f:
-            self.tempfile = f.name
-            f.write(source.encode())
-            f.close()
-        os.chmod(self.tempfile, stat.S_IROTH)
+        html5_path = os.path.join(os.getenv('CHECKBOX_SHARE', 'data/websites/html5_video.html'))
+        print(html5_path)
         subprocess.call(
-            'sudo -H -u %s xdg-open %s' % (os.getenv('SUDO_USER'),
-            self.tempfile),
+            'sudo -H -u %s xdg-open %s' % (os.getenv('SUDO_USER'), html5_path),
             stdout=open(os.devnull, 'w'),
             stderr=subprocess.STDOUT,
             shell=True)
@@ -168,8 +154,8 @@ def main():
     GlxRotate = []
     subprocess.call("pkill 'glxgears|firefox'", shell=True)
 
-    FlashVideo = FlashVideoThread()
-    FlashVideo.start()
+    Html5Video = Html5VideoThread()
+    Html5Video.start()
 
     for i in range(2):
         GlxWindows.append(GlxThread())
