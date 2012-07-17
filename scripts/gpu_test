@@ -201,7 +201,7 @@ def main():
         GlxWindows[i].terminate()
     DesktopSwitch.cancel = True
     time.sleep(10)
-    FlashVideo.terminate()
+    Html5Video.terminate()
     check_gpu()
 
 if __name__ == '__main__':
