@@ -96,11 +96,16 @@ def is_smart_enabled(disk):
 
 
 def run_smart_test(disk, type='short'):
-    command = 'smartctl -t %s %s' % (type, disk)
-    output = (Popen(command, stdout=PIPE, shell=True)
-              .communicate()[0].splitlines())
-    logging.debug('Begginning test with %s', command)
-    logging.debug(output)
+    ctl_command = 'smartctl -t %s %s' % (type, disk)
+    logging.debug('Beginning test with %s', ctl_command)
+
+    smart_proc = Popen(ctl_command, stderr=PIPE, stdout=PIPE,
+                       universal_newlines=True, shell=True)
+    ctl_output, ctl_error = smart_proc.communicate()
+
+    logging.debug(ctl_error + ctl_output)
+
+    return smart_proc.returncode
 
 
 def get_smart_entries(disk, type='selftest'):
@@ -191,7 +196,10 @@ def main():
     # Initiate a self test and start polling until the test is done
     previous_entries = get_smart_entries(disk)
     logging.info("Starting SMART self-test on %s" % disk)
-    run_smart_test(disk)
+    if run_smart_test(disk) != 0:
+        logging.error("Error reported during smartctl test")
+        return 1
+
     if len(previous_entries) > 20:
         # Abort the previous instance
         # so that polling can identify the difference
@@ -226,9 +234,9 @@ def main():
 
     if status != 'Completed without error':
         log = get_smart_entries(disk)
-        logging.warning("FAIL: SMART Self-Test appears to have failed for some reason. "
+        logging.error("FAIL: SMART Self-Test appears to have failed for some reason. "
                         "Run 'sudo smartctl -l selftest %s' to see the SMART log" % disk)
-        logging.warning("Last self-test run status: %s" % status)
+        logging.debug("Last self-test run status: %s" % status)
         return 1
     else:
         logging.info("PASS: SMART Self-Test completed without error")
