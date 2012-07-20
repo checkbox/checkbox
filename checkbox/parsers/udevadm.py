@@ -467,4 +467,6 @@ class UdevadmParser:
 
 
 def decode_id(id):
-    return id.strip()
+    encoded_id = id.encode("utf-8")
+    decoded_id = encoded_id.decode("unicode-escape")
+    return decoded_id.strip()
