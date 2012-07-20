@@ -140,3 +140,21 @@ _description:
      5. Repeat with each external USB slot.
  VERIFICATION:
      Do all USB slots work with the device?
+
+plugin: local
+name: usb/usb3_read_performance
+requires:
+ device.category == 'DISK'
+_description: Verify USB3 external storage performs at or above baseline performance
+command:
+ cat <<'EOF' | run_templates -t -s 'udev_resource | filter_templates -w "category=DISK"'
+ plugin: shell
+ name: usb/usb3_read_performance_`ls /sys$path/block`
+ requires:
+  device.path == "$path"
+  block_device.name == "`ls /sys$path/block`" and block_device.state == 'removable' and block_device.usb3 == 'supported'
+  package.name == 'linux'
+ description: USB3 read performance test for $product
+ user: root
+ command: disk_read_performance_test `ls /sys$path/block | sed 's|!|/|'`
+ EOF
