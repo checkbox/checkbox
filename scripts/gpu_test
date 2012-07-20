@@ -2,12 +2,10 @@
 
 import re
 import os
-import stat
 import sys
 import time
 import subprocess
 from threading import Thread
-from tempfile import NamedTemporaryFile
 from math import cos, sin
 
 
@@ -107,7 +105,6 @@ class Html5VideoThread(Thread):
 
     def run(self):
         html5_path = os.path.join(os.getenv('CHECKBOX_SHARE', 'data/websites/html5_video.html'))
-        print(html5_path)
         subprocess.call(
             'sudo -H -u %s xdg-open %s' % (os.getenv('SUDO_USER'), html5_path),
             stdout=open(os.devnull, 'w'),
@@ -116,7 +113,6 @@ class Html5VideoThread(Thread):
 
     def terminate(self):
         subprocess.call('wmctrl -c firefox', shell=True)
-        os.unlink(self.tempfile)
 
 
 def pidof(name):
