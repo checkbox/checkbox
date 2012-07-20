@@ -20,7 +20,7 @@ from io import StringIO
 
 from unittest import TestCase
 
-from checkbox.parsers.udevadm import UdevadmParser
+from checkbox.parsers.udevadm import UdevadmParser, decode_id
 
 
 class DeviceResult:
@@ -50,6 +50,10 @@ class TestUdevadmParser(TestCase):
         result = DeviceResult()
         parser.run(result)
         return result
+
+    def test_decode_id(self):
+        self.assertEqual("USB 2.0", decode_id(r"USB\x202.0"))                
+        self.assertEqual("USB 2.0", decode_id("USB\\x202.0"))                
 
     def test_usb_capture(self):
         result = self.getResult("""
