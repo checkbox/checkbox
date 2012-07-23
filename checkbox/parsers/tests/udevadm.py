@@ -51,10 +51,6 @@ class TestUdevadmParser(TestCase):
         parser.run(result)
         return result
 
-    def test_decode_id(self):
-        self.assertEqual("USB 2.0", decode_id(r"USB\x202.0"))                
-        self.assertEqual("USB 2.0", decode_id("USB\\x202.0"))                
-
     def test_usb_capture(self):
         result = self.getResult("""
 P: /devices/pci0000:00/0000:00:1a.7/usb1/1-6/1-6:1.0
@@ -70,3 +66,11 @@ E: SUBSYSTEM=usb
 """)
         device = result.getDevice("CAPTURE")
         self.assertTrue(device)
+
+
+class TestDecodeId(TestCase):
+    def test_string(self):
+        self.assertEqual("USB 2.0", decode_id("USB 2.0"))
+    
+    def test_escape(self):
+        self.assertEqual("USB 2.0", decode_id("USB\\x202.0"))
