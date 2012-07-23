@@ -74,3 +74,6 @@ class TestDecodeId(TestCase):
     
     def test_escape(self):
         self.assertEqual("USB 2.0", decode_id("USB\\x202.0"))
+
+    def test_strip_whitespace(self):
+        self.assertEqual("USB 2.0", decode_id("  USB 2.0  "))
