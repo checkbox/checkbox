@@ -120,7 +120,7 @@ command:
  name: info/hdparm_`ls /sys$path/block`.txt
  requires: 
   device.path == "$path"
-  block_device.name == "`ls /sys$path/block`" and block_device.state != 'removable'
+  block_device.name == "`ls /sys$path/block`" and block_device.state_`ls /sys$path/block` != 'removable'
  user: root
  command: hdparm -I /dev/`ls /sys$path/block`
  EOF

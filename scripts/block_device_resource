@@ -32,5 +32,5 @@ for path in glob('/sys/block/*/device'):
     state = device_state(name)
     print("""\
 name: %s
-state: %s
-""" % (name, state))
+state_%s: %s
+""" % (name, name, state))
