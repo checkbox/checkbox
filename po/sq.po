@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-07-14 05:09+0000\n"
-"X-Generator: Launchpad (build 15614)\n"
+"X-Launchpad-Export-Date: 2012-07-24 04:34+0000\n"
+"X-Generator: Launchpad (build 15668)\n"
 
 #. Title of the user interface
 #: ../gtk/checkbox-gtk.ui.h:1 ../qt/checkbox-qt.desktop.in.h:1
@@ -882,7 +882,7 @@ msgstr ""
 #. description
 #: ../jobs/info.txt.in:20
 msgid "Attaches info on DMI"
-msgstr ""
+msgstr "Bashkangjit info në DMI"
 
 #. description
 #: ../jobs/info.txt.in:26
@@ -890,88 +890,88 @@ msgid "Attaches dmidecode output"
 msgstr ""
 
 #. description
-#: ../jobs/info.txt.in:31
+#: ../jobs/info.txt.in:37
 msgid "Attaches very verbose lspci output."
 msgstr ""
 
 #. description
-#: ../jobs/info.txt.in:36
+#: ../jobs/info.txt.in:42
 msgid "Attaches very verbose lspci output (with central database Query)."
 msgstr ""
 
 #. description
-#: ../jobs/info.txt.in:43
+#: ../jobs/info.txt.in:49
 msgid "List USB devices"
 msgstr ""
 
 #. description
-#: ../jobs/info.txt.in:52
+#: ../jobs/info.txt.in:58
 msgid "Attaches the contents of the various modprobe conf files."
 msgstr ""
 
 #. description
-#: ../jobs/info.txt.in:57
+#: ../jobs/info.txt.in:63
 msgid "Attaches the contents of the /etc/modules file."
 msgstr ""
 
 #. description
-#: ../jobs/info.txt.in:62
+#: ../jobs/info.txt.in:68
 msgid "attaches the contents of various sysctl config files."
 msgstr ""
 
 #. description
-#: ../jobs/info.txt.in:66
+#: ../jobs/info.txt.in:72
 msgid "Attaches a report of sysfs attributes."
 msgstr ""
 
 #. description
-#: ../jobs/info.txt.in:77
+#: ../jobs/info.txt.in:83
 msgid ""
 "Attaches a dump of the udev database showing system hardware information."
 msgstr ""
 
 #. description
-#: ../jobs/info.txt.in:84
+#: ../jobs/info.txt.in:90
 msgid "Attaches a tarball of gcov data if present."
 msgstr ""
 
 #. description
-#: ../jobs/info.txt.in:89
+#: ../jobs/info.txt.in:95
 msgid "Attaches a list of the currently running kernel modules."
 msgstr ""
 
 #. description
-#: ../jobs/info.txt.in:94
+#: ../jobs/info.txt.in:100
 msgid "Attaches the contents of /proc/acpi/sleep if it exists."
 msgstr ""
 
 #. description
-#: ../jobs/info.txt.in:98
+#: ../jobs/info.txt.in:104
 msgid "Bootchart information."
 msgstr "Informacioni i ndezjes."
 
 #. description
-#: ../jobs/info.txt.in:107
+#: ../jobs/info.txt.in:113
 msgid "SATA/IDE device information."
 msgstr "Informacion i pajisjeve SATA/IDE."
 
 #. description
-#: ../jobs/info.txt.in:126
+#: ../jobs/info.txt.in:132
 msgid "Attaches the bootchart png file for bootchart runs"
 msgstr ""
 
 #. description
-#: ../jobs/info.txt.in:135
+#: ../jobs/info.txt.in:141
 msgid "Attaches the bootchart log for bootchart test runs."
 msgstr ""
 
 #. description
-#: ../jobs/info.txt.in:143
+#: ../jobs/info.txt.in:149
 msgid "installs the installer bootchart tarball if it exists."
 msgstr ""
 
 #. description
-#: ../jobs/info.txt.in:148
+#: ../jobs/info.txt.in:154
 msgid "Attaches the installer debug log if it exists."
 msgstr ""
 
@@ -1238,7 +1238,7 @@ msgstr "Testim i menaxhimit të tensionit"
 #. description
 #: ../jobs/local.txt.in:192
 msgid "Server Services checks"
-msgstr ""
+msgstr "Kontroll i Shërbimeve të Serverit"
 
 #. description
 #: ../jobs/local.txt.in:199
@@ -1248,7 +1248,7 @@ msgstr "Pezullo testimet"
 #. description
 #: ../jobs/local.txt.in:206
 msgid "Touchpad tests"
-msgstr ""
+msgstr "Testime të tastierës me prekje"
 
 #. description
 #: ../jobs/local.txt.in:213
@@ -2194,7 +2194,7 @@ msgstr ""
 #. description
 #: ../jobs/server-services.txt.in:25
 msgid "Verifies that Samba server is running."
-msgstr ""
+msgstr "Verifikon që serveri Samba është në gjendje pune."
 
 #. description
 #: ../jobs/server-services.txt.in:32
@@ -2204,7 +2204,7 @@ msgstr ""
 #. description
 #: ../jobs/server-services.txt.in:39
 msgid "Verifies that Tomcat server is running and working."
-msgstr ""
+msgstr "Verifikon që serveri Tomcat është në gjendje pune."
 
 #. description
 #: ../jobs/stress.txt.in:8
@@ -3171,19 +3171,19 @@ msgstr "Parametrat e mbishkrimit të konfigurimit."
 
 #: ../checkbox/application.py:84
 msgid "Shorthand for --config=.*/jobs_info/blacklist."
-msgstr ""
+msgstr "Shkurim për --config=.*/jobs_info/blacklist."
 
 #: ../checkbox/application.py:86
 msgid "Shorthand for --config=.*/jobs_info/blacklist_file."
-msgstr ""
+msgstr "Shkurim për --config=.*/jobs_info/blacklist_file."
 
 #: ../checkbox/application.py:88
 msgid "Shorthand for --config=.*/jobs_info/whitelist."
-msgstr ""
+msgstr "Shkurim për --config=.*/jobs_info/whitelist."
 
 #: ../checkbox/application.py:90
 msgid "Shorthand for --config=.*/jobs_info/whitelist_file."
-msgstr ""
+msgstr "Shkurtim për --config=.*/jobs_info/whitelist_file."
 
 #: ../checkbox/application.py:115
 msgid "Missing configuration file as argument.\n"
@@ -3191,12 +3191,12 @@ msgstr "Skedari i konfigurimit mungon si argument.\n"
 
 #: ../checkbox/job.py:84
 msgid "Command not found."
-msgstr ""
+msgstr "Komanda nuk u gjet."
 
 #: ../checkbox/job.py:92
 #, python-format
 msgid "Command received signal %s: %s"
-msgstr ""
+msgstr "Komanda mori sinjalin %s: %s"
 
 #: ../checkbox/lib/signal.py:23
 msgid ""
@@ -3312,11 +3312,11 @@ msgstr "Ju lutemi të zgjidhni (%s): "
 #: ../checkbox_cli/cli_interface.py:230 ../checkbox_cli/cli_interface.py:339
 #: ../checkbox_cli/cli_interface.py:369
 msgid "Space when finished"
-msgstr ""
+msgstr "Hapësirë kur përfundon"
 
 #: ../checkbox_cli/cli_interface.py:368
 msgid "Combine with character above to expand node"
-msgstr ""
+msgstr "Kombino me karakterin më sipër për të zgjeruar nyjen"
 
 #: ../checkbox_cli/cli_interface.py:417
 msgid "test"
@@ -3364,11 +3364,11 @@ msgstr "Lësho Gjithçka"
 #. Show buttons
 #: ../checkbox_urwid/urwid_interface.py:567
 msgid "Expand All"
-msgstr ""
+msgstr "Shpalosi të gjitha"
 
 #: ../checkbox_urwid/urwid_interface.py:568
 msgid "Collapse All"
-msgstr ""
+msgstr "Palosi të Gjitha"
 
 #: ../checkbox_urwid/urwid_interface.py:1034 ../qt/frontend/ui_qtfront.h:616
 msgid "Test"
@@ -3413,7 +3413,7 @@ msgstr ""
 #: ../plugins/apport_prompt.py:227
 #, python-format
 msgid "Test %(name)s failed."
-msgstr ""
+msgstr "Testi %(name)s dështoi."
 
 #: ../plugins/apport_prompt.py:230
 #, python-format
@@ -3530,6 +3530,8 @@ msgid ""
 "The generated report seems to have validation errors,\n"
 "so it might not be processed by Launchpad."
 msgstr ""
+"Raporti i krijuar duket se ka gabime vlerësimi,\n"
+"Kështu që ai mund të mos përpunohet nga Launchpad."
 
 #: ../plugins/lock_prompt.py:63
 msgid "There is another checkbox running. Please close it first."
@@ -3560,6 +3562,10 @@ msgid ""
 "you plan to participate in Ubuntu Friendly, please, select all tests. You "
 "can always skip individual tests if you don't have the needed equipment."
 msgstr ""
+"Heqja e përzgjedhjes nga një test do ta zhvlerësojë regjistrimin tuaj për "
+"Ubuntu Miqësor. Nëse keni ndërmend të merrni pjesë tek Ubuntu Miqësor, ju "
+"lutemi të zgjidhni të gjitha testet. Ju gjithmonë mund i anashkaloni testet "
+"individuale nëse nuk keni pajisjen e duhur."
 
 #: ../plugins/suites_prompt.py:134 ../qt/frontend/ui_qtfront.h:606
 msgid "Choose tests to run on your system:"
@@ -3587,151 +3593,151 @@ msgstr "Lidhja me Internetin u stabilizua plotësisht"
 
 #: ../qt/frontend/qtfront.cpp:91
 msgid "Audio Test"
-msgstr ""
+msgstr "Testim i Audio"
 
 #: ../qt/frontend/qtfront.cpp:92
 msgid "Bluetooth Test"
-msgstr ""
+msgstr "Testim i Bluetooth"
 
 #: ../qt/frontend/qtfront.cpp:93
 msgid "Camera Test"
-msgstr ""
+msgstr "Testim i Kamerës"
 
 #: ../qt/frontend/qtfront.cpp:94
 msgid "CPU Test"
-msgstr ""
+msgstr "Testim i CPU"
 
 #: ../qt/frontend/qtfront.cpp:95
 msgid "Disk Test"
-msgstr ""
+msgstr "Testim i Diskut"
 
 #: ../qt/frontend/qtfront.cpp:96
 msgid "Firewire Test"
-msgstr ""
+msgstr "Testim i Firewire"
 
 #: ../qt/frontend/qtfront.cpp:97
 msgid "Graphics Test"
-msgstr ""
+msgstr "Testim i Grafikëve"
 
 #: ../qt/frontend/qtfront.cpp:98
 msgid "Info Test"
-msgstr ""
+msgstr "Info Test"
 
 #: ../qt/frontend/qtfront.cpp:99
 msgid "Input Test"
-msgstr ""
+msgstr "Testim i Hyrjes"
 
 #: ../qt/frontend/qtfront.cpp:100
 msgid "Keys Test"
-msgstr ""
+msgstr "Testim i butonave"
 
 #: ../qt/frontend/qtfront.cpp:101
 msgid "Media Card Test"
-msgstr ""
+msgstr "Testim i Kartës Media"
 
 #: ../qt/frontend/qtfront.cpp:102
 msgid "Memory Test"
-msgstr ""
+msgstr "Testim i Kujtesës"
 
 #: ../qt/frontend/qtfront.cpp:103
 msgid "Miscellanea Test"
-msgstr ""
+msgstr "Testim i Përzierë"
 
 #: ../qt/frontend/qtfront.cpp:104
 msgid "Monitor Test"
-msgstr ""
+msgstr "Testim Monitorimi"
 
 #: ../qt/frontend/qtfront.cpp:105
 msgid "Networking Test"
-msgstr ""
+msgstr "Testim Rrjeti"
 
 #: ../qt/frontend/qtfront.cpp:106
 msgid "Wireless Test"
-msgstr ""
+msgstr "Wireless Test"
 
 #: ../qt/frontend/qtfront.cpp:107
 msgid "Optical Test"
-msgstr ""
+msgstr "Testim Optik"
 
 #: ../qt/frontend/qtfront.cpp:108
 msgid "PCMCIA/PCIX Test"
-msgstr ""
+msgstr "PCMCIA/PCIX Test"
 
 #: ../qt/frontend/qtfront.cpp:109
 msgid "Power Management Test"
-msgstr ""
+msgstr "Testim i Menaxhimit të Tensionit"
 
 #: ../qt/frontend/qtfront.cpp:110
 msgid "Suspend Test"
-msgstr ""
+msgstr "Pezullo Testin"
 
 #: ../qt/frontend/qtfront.cpp:111
 msgid "USB Test"
-msgstr ""
+msgstr "TEstim i USB"
 
 #: ../qt/frontend/qtfront.cpp:113
 msgid "Not Started"
-msgstr ""
+msgstr "Nuk Është Nisur"
 
 #: ../qt/frontend/qtfront.cpp:114 ../qt/frontend/qtfront.cpp:115
 msgid "Done"
-msgstr ""
+msgstr "U Bë"
 
 #: ../qt/frontend/qtfront.cpp:116
 msgid "Not Supported"
-msgstr ""
+msgstr "Nuk Suportohet"
 
 #: ../qt/frontend/qtfront.cpp:117
 msgid "Not Resolved"
-msgstr ""
+msgstr "Nuk Është Zgjidhur"
 
 #: ../qt/frontend/qtfront.cpp:118
 msgid "Not Tested"
-msgstr ""
+msgstr "Nuk Është Testuar"
 
 #: ../qt/frontend/qtfront.cpp:119
 msgid "In Progress"
-msgstr ""
+msgstr "Në Zhvillim"
 
 #: ../qt/frontend/qtfront.cpp:183
 msgid "Are you sure?"
-msgstr ""
+msgstr "A jeni i sigurt?"
 
 #: ../qt/frontend/qtfront.cpp:183
 msgid "Do you really want to skip this test?"
-msgstr ""
+msgstr "Dëshiron me të vërtetë ta anashkalosh këtë tekst?"
 
 #: ../qt/frontend/qtfront.cpp:184
 msgid "Don't ask me again"
-msgstr ""
+msgstr "Mos më pyet përsëri"
 
 #: ../qt/frontend/ui_qtfront.h:599
 msgid "Form"
-msgstr ""
+msgstr "Forma"
 
 #: ../qt/frontend/ui_qtfront.h:601
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: ../qt/frontend/ui_qtfront.h:602
 msgid "Don't show me this message in the future"
-msgstr ""
+msgstr "Mos ma shfaq këtë mesazh në të ardhmen"
 
 #: ../qt/frontend/ui_qtfront.h:603 ../qt/frontend/ui_qtfront.h:619
 msgid "Tab 1"
-msgstr ""
+msgstr "Tab 1"
 
 #: ../qt/frontend/ui_qtfront.h:604
 msgid "10 tests completed out of 30 (30%)"
-msgstr ""
+msgstr "10 teste u kompletuan nga 30 (30%)"
 
 #: ../qt/frontend/ui_qtfront.h:607
 msgid "Components"
-msgstr ""
+msgstr "Përbërësit"
 
 #: ../qt/frontend/ui_qtfront.h:608
 msgid "Status"
-msgstr ""
+msgstr "Gjendja"
 
 #: ../qt/frontend/ui_qtfront.h:609
 msgid "Select all"
@@ -3743,35 +3749,35 @@ msgstr ""
 
 #: ../qt/frontend/ui_qtfront.h:611
 msgid "Start testing"
-msgstr ""
+msgstr "Nis testimin"
 
 #: ../qt/frontend/ui_qtfront.h:612
 msgid " Selection "
-msgstr ""
+msgstr " Përzgjedhja "
 
 #: ../qt/frontend/ui_qtfront.h:613 ../qt/frontend/ui_qtfront.h:614
 msgid "TextLabel"
-msgstr ""
+msgstr "TextLabel"
 
 #: ../qt/frontend/ui_qtfront.h:615
 msgid "Yes"
-msgstr ""
+msgstr "Po"
 
 #: ../qt/frontend/ui_qtfront.h:617
 msgid "No"
-msgstr ""
+msgstr "Jo"
 
 #: ../qt/frontend/ui_qtfront.h:618
 msgid "Comment"
-msgstr ""
+msgstr "Komento"
 
 #: ../qt/frontend/ui_qtfront.h:620 ../qt/frontend/ui_qtfront.h:636
 msgid "Tab 2"
-msgstr ""
+msgstr "Tab 2"
 
 #: ../qt/frontend/ui_qtfront.h:623
 msgid " Run "
-msgstr ""
+msgstr " Nis "
 
 #: ../qt/frontend/ui_qtfront.h:624
 msgid ""
@@ -3791,6 +3797,21 @@ msgid ""
 "color:#000000;\">and click the Submit Results button to submit these test "
 "results to Ubuntu Friendly.</span></p></body></html>"
 msgstr ""
+"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" "
+"\"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style "
+"type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Ubuntu'; font-size:10pt; font-"
+"weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+"right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" "
+"color:#000000;\">Please enter the e-mail address associated with your "
+"Launchpad account (if applicable)</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+"right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" "
+"color:#000000;\">and click the Submit Results button to submit these test "
+"results to Ubuntu Friendly.</span></p></body></html>"
 
 #: ../qt/frontend/ui_qtfront.h:630
 msgid "Submission details"
@@ -3798,19 +3819,19 @@ msgstr ""
 
 #: ../qt/frontend/ui_qtfront.h:632
 msgid "Email:"
-msgstr ""
+msgstr "Email:"
 
 #: ../qt/frontend/ui_qtfront.h:633
 msgid "Submit results"
-msgstr ""
+msgstr "Vendos rezultatet"
 
 #: ../qt/frontend/ui_qtfront.h:634
 msgid "View results"
-msgstr ""
+msgstr "Shfaq rezultatet"
 
 #: ../qt/frontend/ui_qtfront.h:635
 msgid " Results "
-msgstr ""
+msgstr " Rezultatet "
 
 #~ msgid "Kernel modesetting tests"
 #~ msgstr "Testimet e mënyrës së vendosjes së kernelit"
@@ -5237,3 +5258,18 @@ msgstr ""
 #~ "e ndezjes për momentin për ta zgjuar sistemin në mënyrë manuale. Nëse "
 #~ "sistemi juaj nuk zgjohet fare dhe duhet rindezur, rinisni Testimin e "
 #~ "Sistemit pas rindezjes dhe markojeni këtë test si Të Dështuar."
+
+#~ msgid "Personal details"
+#~ msgstr "Detajet personale"
+
+#~ msgid "Lists of tests to run based on your system:"
+#~ msgstr "Lista e testeve që do të nisen bazuar në sistemin tuaj:"
+
+#~ msgid "Recover"
+#~ msgstr "Rekupero"
+
+#~ msgid "Restart"
+#~ msgstr "Rinis"
+
+#~ msgid "Phoronix Test Suite tests"
+#~ msgstr "Grupi i testimeve Phoronix"
