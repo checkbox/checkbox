@@ -163,7 +163,8 @@ class UserInterface:
 
             # if gnome-session is running, try gnome-open; special-case firefox
             # (and more generally, mozilla browsers) and epiphany to open a new window
-            # with respectively -new-window and --new-window
+            # with respectively -new-window and --new-window; special-case chromium-browser
+            # to allow file:// URLs as needed by the checkbox report.
             try:
                 if os.getenv("DISPLAY") and \
                         subprocess.call(["pgrep", "-x", "-u", str(uid), "gnome-panel|gconfd-2"],
@@ -181,6 +182,11 @@ class UserInterface:
                         browser = re.match("(epiphany[^\s]*)", preferred_browser)
                         if browser:
                             subprocess.Popen(sudo_prefix + [browser.group(0), "--new-window", url])
+                            return
+                        
+                        browser = re.match("(chromium-browser[^\s]*)", preferred_browser)
+                        if browser:
+                            subprocess.Popen(sudo_prefix + [browser.group(0), "--allow-file-access-from-files", url])
                             return
 
                         subprocess.Popen(sudo_prefix + [preferred_browser % url], shell=True)

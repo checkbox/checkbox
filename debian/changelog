@@ -9,6 +9,8 @@ checkbox (0.14.3) precise; urgency=low
   * alsa_info is invoked with --no-dialog, otherwise if dialog is installed
     it results in invalid data in the submission file and results.
     (LP: #1028065)
+  * Instruct Chromium browser to accept file:// URLs so it can correctly
+    open the checkbox submission.xml report (LP: #1026614)
 
   [Jeff Marcom]
   * Added timeout to job call for disk smart test.
