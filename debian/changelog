@@ -1,11 +1,15 @@
 checkbox (0.14.3) precise; urgency=low
 
+  [ Marc Tardif ]
   [Brendan Donegan]
   * Removed call to unlink temporary file in Html5Thread part of gpu_test.
     Also addressed a few pyflakes complaints and removed a stray print.
 
   [Daniel Manrique]
   * New version 0.14.3 for Quantal Quetzal development.
+  * alsa_info is invoked with --no-dialog, otherwise if dialog is installed
+    it results in invalid data in the submission file and results.
+    (LP: #1028065)
 
   [Jeff Marcom]
   * Added timeout to job call for disk smart test.
@@ -13,7 +17,7 @@ checkbox (0.14.3) precise; urgency=low
   [Marc Tardif]
   * Escaping encoded strings in udevadm output (LP: #1025381)
 
- -- Marc Tardif <marc@ubuntu.com>  Fri, 20 Jul 2012 15:49:36 -0400
+ -- Daniel Manrique <roadmr@ubuntu.com>  Tue, 24 Jul 2012 13:32:37 -0400
 
 checkbox (0.14.2) quantal; urgency=low
 

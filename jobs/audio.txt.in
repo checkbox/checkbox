@@ -125,7 +125,7 @@ _description:
 
 plugin: shell
 name: audio/alsa_info_collect
-command: alsa_info --no-upload --output ${CHECKBOX_DATA}/alsa_info.log
+command: alsa_info --no-dialog --no-upload --output ${CHECKBOX_DATA}/alsa_info.log
 _description:
  Collect audio-related system information. This data can be used to
  simulate this computer's audio subsystem and perform more detailed tests
