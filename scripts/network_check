@@ -5,6 +5,7 @@ ubuntu.com
 """
 from subprocess import call
 from argparse import ArgumentParser
+import http.client
 import urllib.request, urllib.error, urllib.parse
 import sys
 
@@ -15,7 +16,7 @@ def check_url(url):
     """
     try:
         urllib.request.urlopen(url)
-    except urllib.error.URLError:
+    except (urllib.error.URLError, http.client.InvalidURL):
         return False
 
     return True
