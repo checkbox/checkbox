@@ -152,7 +152,7 @@ command:
  name: usb/usb3_read_performance_`ls /sys$path/block`
  requires:
   device.path == "$path"
-  block_device.name == "`ls /sys$path/block`" and block_device.state == 'removable' and block_device.usb3 == 'supported'
+  block_device.`ls /sys$path/block`_state == 'removable' and block_device.`ls /sys$path/block`_usb3 == 'supported'
   package.name == 'linux'
  description: USB3 read performance test for $product
  user: root
