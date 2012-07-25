@@ -21,7 +21,7 @@ import re
 import sys
 import posixpath
 
-from subprocess import Popen, PIPE
+from subprocess import check_output, PIPE
 
 from checkbox.lib.conversion import string_to_type
 
@@ -33,7 +33,7 @@ COMMAND = "gconftool-2 -R / --direct --config-source xml:readwrite:$source"
 SOURCE = "~/.gconf"
 
 
-def get_gconf(command):
+def get_gconf(output):
     id = None
     id_pattern = re.compile(r"\s+(?P<id>\/.+):")
     key_value_pattern = re.compile(r"\s+(?P<key>[\w\-]+) = (?P<value>.*)")
@@ -42,9 +42,7 @@ def get_gconf(command):
     # TODO: add support for multi-line values
 
     gconf = {}
-    output = (Popen(command, stdout=PIPE, stderr=PIPE, shell=True)
-              .communicate()[0])
-    for line in output.decode("ascii").split("\n"):
+    for line in output.decode("utf-8").split("\n"):
         if not line:
             continue
 
@@ -80,7 +78,8 @@ def get_gconf(command):
 def main():
     source = posixpath.expanduser(SOURCE)
     command = COMMAND.replace("$source", source)
-    gconf = get_gconf(command)
+    command_output = check_output(command, stderr=PIPE, shell=True)
+    gconf = get_gconf(command_output)
 
     for name, value in gconf.items():
         print("name: %s" % name)
