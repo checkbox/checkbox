@@ -59,10 +59,13 @@ for path in glob('/sys/block/*/device'):
     state = device_state(name)
     usb2 = usb_support(name, 2.00)
     usb3 = usb_support(name, 3.00)
+    # FIXME: Remove leading block device name when the requirements
+    # checking code in Checkbox allows it
     print("""\
-%s_state: %s
-%s_usb2: %s
-%s_usb3: %s
-""" % (name, state,
-       name, usb2,
-       name, usb3))
+%(name)s_state: %(state)s
+%(name)s_usb2: %(usb2)s
+%(name)s_usb3: %(usb3)s
+""" % {"name": name,
+       "state": state,
+       "usb2": usb2,
+       "usb3": usb3})
