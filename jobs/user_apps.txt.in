@@ -278,7 +278,9 @@ _description:
 plugin: manual
 name: software/firefox-totem
 depends: software/firefox
-requires: package.name == 'firefox'
+requires: 
+    package.name == 'firefox'
+    package.name == 'gstreamer0.10-ffmpeg'
 command: firefox $CHECKBOX_SHARE/data/video/Quicktime_Video.mov
 _description:
  PURPOSE:
