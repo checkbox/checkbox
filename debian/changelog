@@ -9,6 +9,17 @@ checkbox (0.14.3) precise; urgency=low
 
   [Daniel Manrique]
   * New version 0.14.3 for Quantal Quetzal development.
+  * alsa_info is invoked with --no-dialog, otherwise if dialog is installed
+    it results in invalid data in the submission file and results.
+    (LP: #1028065)
+  * Instruct Chromium browser to accept file:// URLs so it can correctly
+    open the checkbox submission.xml report (LP: #1026614)
+  
+  [Sylvain Pineau]
+  * jobs/usb.txt.in, scripts/disk_read_performance_test: Add a USB3 read
+    performance test.
+    scripts/block_device_resource: Add the maximum usb specification supported
+    by both a block device and the corresponding root hub port.
 
   [Jeff Marcom]
   * Added timeout to job call for disk smart test.
@@ -16,7 +27,7 @@ checkbox (0.14.3) precise; urgency=low
   [Marc Tardif]
   * Escaping encoded strings in udevadm output (LP: #1025381)
 
- -- Marc Tardif <marc@ubuntu.com>  Fri, 20 Jul 2012 15:49:36 -0400
+ -- Daniel Manrique <roadmr@ubuntu.com>  Tue, 24 Jul 2012 13:32:37 -0400
 
 checkbox (0.14.2) quantal; urgency=low
 
