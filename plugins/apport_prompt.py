@@ -18,7 +18,7 @@
 #
 import logging
 
-from subprocess import Popen, PIPE
+from subprocess import check_output
 
 from gettext import gettext as _
 
@@ -56,7 +56,7 @@ class ApportOptions:
         self.pid = None
         self.save = False
         self.tag = '' #Additional tags to add to reports filed
-                      #through this tool 
+                      #through this tool
 
 
 class ApportUserInterface(UserInterface):
@@ -181,9 +181,8 @@ class ApportPrompt(Plugin):
 
     def gather(self):
         if self.default_enabled is None:
-            value = Popen("unset enabled && . %s && echo ${enabled}"
-                % self.default_filename,
-                shell=True, stdout=PIPE, stderr=PIPE).communicate()[0]
+            value = check_output("unset enabled && . %s && echo ${enabled}"
+                % self.default_filename, shell=True, universal_newlines=True)
             self.default_enabled = value.strip() == "1"
 
     def prompt_test(self, interface, test):
@@ -225,7 +224,7 @@ class ApportPrompt(Plugin):
 
         if test.get("suite"):
             failed_test_message = _("Test %(name)s failed.") % {
-                                   'name' : test["name"]}
+                                   'name': test["name"]}
         else:
             failed_test_message = _("Test %s failed.") % test["name"]
         failed_test_message += "\n" + _("Do you want to report a bug?")

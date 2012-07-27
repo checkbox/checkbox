@@ -6,6 +6,8 @@ checkbox (0.14.3) precise; urgency=low
   * Include block device name in fields of block_device resource
     output. This will prevent different block device fields from being
     confused with each other (LP: #1027849)
+  * Fix apport_prompt.py so it properly checks the value in
+    /etc/default/apport (LP: #1029897)
 
   [Daniel Manrique]
   * New version 0.14.3 for Quantal Quetzal development.
