@@ -78,6 +78,7 @@ QtFront::QtFront(QApplication *parent) :
     ui->buttonSubmitResults->setEnabled(false);
     ui->submissionDataLineEdit->setEnabled(false);
     ui->buttonViewResults->setEnabled(false);
+    ui->testsTab->setTabEnabled(ui->testsTab->indexOf(ui->testing), false);
 
     // comment box
     ui->commentTestButton->setMenu(new QMenu());
@@ -205,6 +206,7 @@ void QtFront::onFullTestsClicked() {
 
 void QtFront::onStartTestsClicked() {
     ui->buttonStartTesting->setEnabled(false);
+    ui->testsTab->setTabEnabled(1, true);
     m_model->setInteraction(false);
     emit startTestsClicked();
 }
