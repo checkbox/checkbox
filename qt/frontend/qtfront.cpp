@@ -206,7 +206,7 @@ void QtFront::onFullTestsClicked() {
 
 void QtFront::onStartTestsClicked() {
     ui->buttonStartTesting->setEnabled(false);
-    ui->testsTab->setTabEnabled(1, true);
+    ui->testsTab->setTabEnabled(ui->testsTab->indexOf(ui->testing), true);
     m_model->setInteraction(false);
     emit startTestsClicked();
 }
