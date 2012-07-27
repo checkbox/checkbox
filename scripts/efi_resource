@@ -24,7 +24,7 @@ from checkbox.parsers.efi import EfiParser
 
 
 # Command to retrieve efi information.
-COMMAND = "[ -d /sys/firmware/efi ] && grep -o --color=never 'EFI v.*' /var/log/kern.log || cat /sys/class/dmi/id/bios_version"
+COMMAND = "[ -d /sys/firmware/efi ] && grep -o --color=never 'EFI v.*' /var/log/kern.log || true"
 
 
 class EfiResult:
