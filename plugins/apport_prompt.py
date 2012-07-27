@@ -18,7 +18,7 @@
 #
 import logging
 
-from subprocess import Popen, PIPE
+from subprocess import check_output
 
 from gettext import gettext as _
 
@@ -181,9 +181,9 @@ class ApportPrompt(Plugin):
 
     def gather(self):
         if self.default_enabled is None:
-            value = Popen("unset enabled && . %s && echo ${enabled}"
-                % self.default_filename,
-                shell=True, stdout=PIPE, stderr=PIPE).communicate()[0]
+            value = check_output("unset enabled && . %s && echo ${enabled}"
+                % self.default_filename, shell=True, universal_newlines=True)
+                
             self.default_enabled = value.strip() == "1"
 
     def prompt_test(self, interface, test):
