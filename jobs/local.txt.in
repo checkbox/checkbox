@@ -168,7 +168,7 @@ command:
 
 name: __pcmcia-pcix__
 plugin: local
-_description: PCMCIA/PCIX Card tests
+_description: PCMCIA/ExpressCard tests
 command:
   shopt -s extglob
   cat $CHECKBOX_SHARE/jobs/pcmcia-pcix.txt?(.in)
