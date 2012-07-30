@@ -206,7 +206,6 @@ void QtFront::onFullTestsClicked() {
 
 void QtFront::onStartTestsClicked() {
     ui->buttonStartTesting->setEnabled(false);
-    ui->testsTab->setTabEnabled(ui->testsTab->indexOf(ui->testing), true);
     m_model->setInteraction(false);
     emit startTestsClicked();
 }
@@ -310,6 +309,7 @@ void QtFront::showTest(QString purpose,
     ui->radioTestTab->setVisible(true);
     ui->nextPrevButtons->setVisible(true);
     ui->testTestButton->setEnabled(enableTestButton);
+    ui->testsTab->setTabEnabled(ui->testsTab->indexOf(ui->testing), true);
     ui->tabWidget->setCurrentIndex(1);
 
     foreach(QObject *object, ui->stepsFrame->children())
