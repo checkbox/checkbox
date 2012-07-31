@@ -410,6 +410,9 @@ background: transparent;</string>
          </item>
          <item>
           <widget class="QTabWidget" name="testsTab">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
              <horstretch>0</horstretch>
@@ -457,7 +460,7 @@ QTabWidget::tab-bar#testsTab {
             <enum>QTabWidget::Rounded</enum>
            </property>
            <property name="currentIndex">
-            <number>2</number>
+            <number>0</number>
            </property>
            <widget class="QWidget" name="testSelection">
             <property name="font">
@@ -471,14 +474,14 @@ QTabWidget::tab-bar#testsTab {
             <widget class="QLabel" name="selectionLabel">
              <property name="geometry">
               <rect>
-               <x>50</x>
+               <x>10</x>
                <y>20</y>
-               <width>401</width>
+               <width>501</width>
                <height>16</height>
               </rect>
              </property>
              <property name="text">
-              <string>Choose tests to run on your system:</string>
+              <string>Choose tests to run on your system and click 'Start Testing' when finished:</string>
              </property>
             </widget>
             <widget class="Line" name="line">
@@ -676,6 +679,9 @@ QTabWidget::tab-bar#testsTab {
             </widget>
            </widget>
            <widget class="QWidget" name="testing">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
             <property name="font">
              <font>
               <pointsize>11</pointsize>
@@ -844,8 +850,8 @@ QTabWidget::tab-bar#testsTab {
                                <rect>
                                 <x>0</x>
                                 <y>0</y>
-                                <width>100</width>
-                                <height>30</height>
+                                <width>500</width>
+                                <height>189</height>
                                </rect>
                               </property>
                               <layout class="QVBoxLayout" name="verticalLayout_4">
