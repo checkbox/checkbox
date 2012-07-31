@@ -46,6 +46,9 @@
      <property name="tabShape">
       <enum>QTabWidget::Rounded</enum>
      </property>
+     <property name="styleSheet">
+      <string notr="true">QTabBar::tab {min-height: 0ex;}</string>
+     </property>     
      <property name="currentIndex">
       <number>1</number>
      </property>
@@ -470,7 +473,7 @@ QTabWidget::tab-bar#testsTab {
             <widget class="QLabel" name="selectionLabel">
              <property name="geometry">
               <rect>
-               <x>50</x>
+               <x>10</x>
                <y>20</y>
                <width>401</width>
                <height>16</height>
@@ -673,6 +676,19 @@ QTabWidget::tab-bar#testsTab {
               <string>Start testing</string>
              </property>
             </widget>
+            <widget class="Line" name="selectionSeparator">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>0</y>
+               <width>640</width>
+               <height>3</height>
+              </rect>
+             </property>
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </widget>            
            </widget>
            <widget class="QWidget" name="testing">
             <property name="font">
@@ -1063,8 +1079,8 @@ QTabWidget::tab-bar#testsTab {
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;Please enter the e-mail address associated with your Launchpad account (if applicable)&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;and click the Submit Results button to submit these test results to Ubuntu Friendly.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=;&quot;&gt;Please enter the e-mail address associated with your Launchpad account (if applicable)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=;&quot;&gt;and click the Submit Results button to submit these test results to Ubuntu Friendly.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
              <property name="scaledContents">
               <bool>false</bool>
@@ -1158,6 +1174,19 @@ p, li { white-space: pre-wrap; }
              </property>
              <property name="text">
               <string>View results</string>
+             </property>
+            </widget>
+            <widget class="Line" name="submissionSeparator">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>0</y>
+               <width>640</width>
+               <height>3</height>
+              </rect>
+             </property>
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
              </property>
             </widget>
            </widget>
