@@ -1,5 +1,6 @@
 checkbox (0.14.3) precise; urgency=low
 
+  [ Daniel Manrique ]
   [Brendan Donegan]
   * Removed call to unlink temporary file in Html5Thread part of gpu_test.
     Also addressed a few pyflakes complaints and removed a stray print.
@@ -36,11 +37,12 @@ checkbox (0.14.3) precise; urgency=low
 
   [Jeff Marcom]
   * Added timeout to job call for disk smart test.
+  * Added Accelerometer test.
 
   [Marc Tardif]
   * Escaping encoded strings in udevadm output (LP: #1025381)
 
- -- Daniel Manrique <roadmr@ubuntu.com>  Wed, 25 Jul 2012 15:30:11 -0400
+ -- jeff <jeff.marcom@canonical.com>  Wed, 01 Aug 2012 13:24:00 -0400
 
 checkbox (0.14.2) quantal; urgency=low
 
