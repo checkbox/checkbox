@@ -164,10 +164,15 @@ def main(args):
         return 1
 
     nm_devices = []
-    nm_devices = get_nm_devices()
-    if len(nm_devices) != len(pci_devices):
-        print("ERROR: Devices missing: lspci showed %d devices, but NetworkManager saw %d devices" % (len(pci_devices), len(nm_devices)))
-        return 1
+    try:
+        nm_devices = get_nm_devices()
+        if len(nm_devices) != len(pci_devices):
+            print("ERROR: Devices missing: lspci showed %d devices, but NetworkManager saw %d devices" % (len(pci_devices), len(nm_devices)))
+            return 1
+    except dbus.exceptions.DBusException as e:
+        # server's don't have network manager installed
+        print ("Warning: Exception while talking to Network Manager over dbus. Skipping the remainder of this test. If this is a server, this is expected.\n%s" % e)
+        return 0
 
     print ("Devices found by Network Manager-------------------------")
     for nm_dev in nm_devices:
