@@ -490,7 +490,7 @@ void QtFront::showTree(QString text,
         buildTree(options, defaults, "1");
         ui->treeView->setModel(m_model);
         ui->treeView->header()->setResizeMode(0, QHeaderView::Stretch);
-        ui->treeView->header()->setResizeMode(1, QHeaderView::ResizeToContents);
+        ui->treeView->setColumnWidth(1, 150);
     }
     this->m_model->deselect_warning = QString(deselect_warning);
 

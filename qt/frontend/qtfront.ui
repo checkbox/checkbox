@@ -502,11 +502,17 @@ QTabWidget::tab-bar#testsTab {
             <widget class="QLabel" name="label_3">
              <property name="geometry">
               <rect>
-               <x>540</x>
+               <x>450</x>
                <y>50</y>
                <width>67</width>
                <height>17</height>
               </rect>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::NoFrame</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Plain</enum>
              </property>
              <property name="text">
               <string>Status</string>
@@ -521,6 +527,9 @@ QTabWidget::tab-bar#testsTab {
                <height>241</height>
               </rect>
              </property>
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
              <property name="frameShape">
               <enum>QFrame::Box</enum>
              </property>
@@ -529,6 +538,9 @@ QTabWidget::tab-bar#testsTab {
              </property>
              <property name="showDropIndicator" stdset="0">
               <bool>false</bool>
+             </property>
+             <property name="alternatingRowColors">
+              <bool>true</bool>
              </property>
              <property name="allColumnsShowFocus">
               <bool>false</bool>
@@ -777,8 +789,8 @@ QTabWidget::tab-bar#testsTab {
                                <rect>
                                 <x>0</x>
                                 <y>0</y>
-                                <width>62</width>
-                                <height>16</height>
+                                <width>500</width>
+                                <height>189</height>
                                </rect>
                               </property>
                               <layout class="QVBoxLayout" name="verticalLayout_4">
