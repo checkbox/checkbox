@@ -523,7 +523,7 @@ QTabWidget::tab-bar#testsTab {
               <rect>
                <x>10</x>
                <y>70</y>
-               <width>601</width>
+               <width>611</width>
                <height>241</height>
               </rect>
              </property>
@@ -535,6 +535,9 @@ QTabWidget::tab-bar#testsTab {
              </property>
              <property name="frameShadow">
               <enum>QFrame::Plain</enum>
+             </property>
+             <property name="verticalScrollBarPolicy">
+              <enum>Qt::ScrollBarAlwaysOn</enum>
              </property>
              <property name="showDropIndicator" stdset="0">
               <bool>false</bool>
@@ -789,8 +792,8 @@ QTabWidget::tab-bar#testsTab {
                                <rect>
                                 <x>0</x>
                                 <y>0</y>
-                                <width>500</width>
-                                <height>189</height>
+                                <width>100</width>
+                                <height>30</height>
                                </rect>
                               </property>
                               <layout class="QVBoxLayout" name="verticalLayout_4">
