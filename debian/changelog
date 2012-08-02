@@ -40,7 +40,11 @@ checkbox (0.14.3) precise; urgency=low
   [Marc Tardif]
   * Escaping encoded strings in udevadm output (LP: #1025381)
 
- -- Daniel Manrique <roadmr@ubuntu.com>  Wed, 25 Jul 2012 15:30:11 -0400
+  [Jeff Lane]
+  * jobs/cpu.txt.in: added a depends to cpu/scaling_test-log-attach to ensure
+    that job does not run until afte cpu/scaling_test (LP: #1031994)
+
+ -- Jeff Lane <jeff@ubuntu.com>  Wed, 01 Aug 2012 20:22:12 -0400
 
 checkbox (0.14.2) quantal; urgency=low
 
