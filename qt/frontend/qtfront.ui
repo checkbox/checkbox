@@ -40,15 +40,15 @@
    </property>
    <item>
     <widget class="QTabWidget" name="tabWidget">
+     <property name="styleSheet">
+      <string notr="true">QTabBar::tab {min-height: 0ex;}</string>
+     </property>
      <property name="tabPosition">
       <enum>QTabWidget::North</enum>
      </property>
      <property name="tabShape">
       <enum>QTabWidget::Rounded</enum>
      </property>
-     <property name="styleSheet">
-      <string notr="true">QTabBar::tab {min-height: 0ex;}</string>
-     </property>     
      <property name="currentIndex">
       <number>1</number>
      </property>
@@ -254,28 +254,28 @@
              <active>
               <colorrole role="Button">
                <brush brushstyle="SolidPattern">
-                <color alpha="255">
-                 <red>73</red>
-                 <green>73</green>
-                 <blue>80</blue>
+                <color alpha="0">
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>0</blue>
                 </color>
                </brush>
               </colorrole>
               <colorrole role="Base">
                <brush brushstyle="SolidPattern">
-                <color alpha="255">
-                 <red>73</red>
-                 <green>73</green>
-                 <blue>80</blue>
+                <color alpha="0">
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>0</blue>
                 </color>
                </brush>
               </colorrole>
               <colorrole role="Window">
                <brush brushstyle="SolidPattern">
-                <color alpha="255">
-                 <red>73</red>
-                 <green>73</green>
-                 <blue>80</blue>
+                <color alpha="0">
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>0</blue>
                 </color>
                </brush>
               </colorrole>
@@ -283,28 +283,28 @@
              <inactive>
               <colorrole role="Button">
                <brush brushstyle="SolidPattern">
-                <color alpha="255">
-                 <red>73</red>
-                 <green>73</green>
-                 <blue>80</blue>
+                <color alpha="0">
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>0</blue>
                 </color>
                </brush>
               </colorrole>
               <colorrole role="Base">
                <brush brushstyle="SolidPattern">
-                <color alpha="255">
-                 <red>73</red>
-                 <green>73</green>
-                 <blue>80</blue>
+                <color alpha="0">
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>0</blue>
                 </color>
                </brush>
               </colorrole>
               <colorrole role="Window">
                <brush brushstyle="SolidPattern">
-                <color alpha="255">
-                 <red>73</red>
-                 <green>73</green>
-                 <blue>80</blue>
+                <color alpha="0">
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>0</blue>
                 </color>
                </brush>
               </colorrole>
@@ -312,28 +312,28 @@
              <disabled>
               <colorrole role="Button">
                <brush brushstyle="SolidPattern">
-                <color alpha="255">
-                 <red>73</red>
-                 <green>73</green>
-                 <blue>80</blue>
+                <color alpha="0">
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>0</blue>
                 </color>
                </brush>
               </colorrole>
               <colorrole role="Base">
                <brush brushstyle="SolidPattern">
-                <color alpha="255">
-                 <red>73</red>
-                 <green>73</green>
-                 <blue>80</blue>
+                <color alpha="0">
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>0</blue>
                 </color>
                </brush>
               </colorrole>
               <colorrole role="Window">
                <brush brushstyle="SolidPattern">
-                <color alpha="255">
-                 <red>73</red>
-                 <green>73</green>
-                 <blue>80</blue>
+                <color alpha="0">
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>0</blue>
                 </color>
                </brush>
               </colorrole>
@@ -499,19 +499,6 @@ QTabWidget::tab-bar#testsTab {
               <enum>Qt::Horizontal</enum>
              </property>
             </widget>
-            <widget class="Line" name="line_2">
-             <property name="geometry">
-              <rect>
-               <x>390</x>
-               <y>40</y>
-               <width>20</width>
-               <height>271</height>
-              </rect>
-             </property>
-             <property name="orientation">
-              <enum>Qt::Vertical</enum>
-             </property>
-            </widget>
             <widget class="QLabel" name="label_2">
              <property name="geometry">
               <rect>
@@ -528,7 +515,7 @@ QTabWidget::tab-bar#testsTab {
             <widget class="QLabel" name="label_3">
              <property name="geometry">
               <rect>
-               <x>410</x>
+               <x>540</x>
                <y>50</y>
                <width>67</width>
                <height>17</height>
@@ -538,80 +525,12 @@ QTabWidget::tab-bar#testsTab {
               <string>Status</string>
              </property>
             </widget>
-            <widget class="QTreeView" name="statusView">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <property name="geometry">
-              <rect>
-               <x>410</x>
-               <y>80</y>
-               <width>201</width>
-               <height>231</height>
-              </rect>
-             </property>
-             <property name="palette">
-              <palette>
-               <active>
-                <colorrole role="Base">
-                 <brush brushstyle="SolidPattern">
-                  <color alpha="255">
-                   <red>255</red>
-                   <green>255</green>
-                   <blue>255</blue>
-                  </color>
-                 </brush>
-                </colorrole>
-               </active>
-               <inactive>
-                <colorrole role="Base">
-                 <brush brushstyle="SolidPattern">
-                  <color alpha="255">
-                   <red>255</red>
-                   <green>255</green>
-                   <blue>255</blue>
-                  </color>
-                 </brush>
-                </colorrole>
-               </inactive>
-               <disabled>
-                <colorrole role="Base">
-                 <brush brushstyle="SolidPattern">
-                  <color alpha="255">
-                   <red>255</red>
-                   <green>255</green>
-                   <blue>255</blue>
-                  </color>
-                 </brush>
-                </colorrole>
-               </disabled>
-              </palette>
-             </property>
-             <property name="frameShape">
-              <enum>QFrame::Box</enum>
-             </property>
-             <property name="frameShadow">
-              <enum>QFrame::Plain</enum>
-             </property>
-             <property name="verticalScrollBarPolicy">
-              <enum>Qt::ScrollBarAlwaysOff</enum>
-             </property>
-             <property name="horizontalScrollBarPolicy">
-              <enum>Qt::ScrollBarAlwaysOff</enum>
-             </property>
-             <property name="headerHidden">
-              <bool>true</bool>
-             </property>
-             <attribute name="headerVisible">
-              <bool>false</bool>
-             </attribute>
-            </widget>
             <widget class="QTreeView" name="treeView">
              <property name="geometry">
               <rect>
                <x>10</x>
                <y>80</y>
-               <width>381</width>
+               <width>601</width>
                <height>231</height>
               </rect>
              </property>
@@ -627,7 +546,22 @@ QTabWidget::tab-bar#testsTab {
              <property name="allColumnsShowFocus">
               <bool>false</bool>
              </property>
-             <attribute name="headerVisible">
+             <property name="headerHidden">
+              <bool>false</bool>
+             </property>
+              <attribute name="headerVisible">
+               <bool>false</bool>
+              </attribute>
+             <attribute name="headerCascadingSectionResizes">
+              <bool>false</bool>
+             </attribute>
+             <attribute name="headerHighlightSections">
+              <bool>true</bool>
+             </attribute>
+             <attribute name="headerShowSortIndicator" stdset="0">
+              <bool>false</bool>
+             </attribute>
+             <attribute name="headerStretchLastSection">
               <bool>false</bool>
              </attribute>
             </widget>
@@ -691,7 +625,7 @@ QTabWidget::tab-bar#testsTab {
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
              </property>
-            </widget>            
+            </widget>
            </widget>
            <widget class="QWidget" name="testing">
             <property name="enabled">
@@ -865,8 +799,8 @@ QTabWidget::tab-bar#testsTab {
                                <rect>
                                 <x>0</x>
                                 <y>0</y>
-                                <width>500</width>
-                                <height>189</height>
+                                <width>100</width>
+                                <height>30</height>
                                </rect>
                               </property>
                               <layout class="QVBoxLayout" name="verticalLayout_4">
