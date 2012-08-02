@@ -486,19 +486,6 @@ QTabWidget::tab-bar#testsTab {
               <string>Choose tests to run on your system:</string>
              </property>
             </widget>
-            <widget class="Line" name="line">
-             <property name="geometry">
-              <rect>
-               <x>10</x>
-               <y>60</y>
-               <width>601</width>
-               <height>20</height>
-              </rect>
-             </property>
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-            </widget>
             <widget class="QLabel" name="label_2">
              <property name="geometry">
               <rect>
@@ -529,9 +516,9 @@ QTabWidget::tab-bar#testsTab {
              <property name="geometry">
               <rect>
                <x>10</x>
-               <y>80</y>
+               <y>70</y>
                <width>601</width>
-               <height>231</height>
+               <height>241</height>
               </rect>
              </property>
              <property name="frameShape">
@@ -546,9 +533,9 @@ QTabWidget::tab-bar#testsTab {
              <property name="allColumnsShowFocus">
               <bool>false</bool>
              </property>
-              <attribute name="headerVisible">
-               <bool>false</bool>
-              </attribute>
+             <attribute name="headerVisible">
+              <bool>false</bool>
+             </attribute>
              <attribute name="headerCascadingSectionResizes">
               <bool>false</bool>
              </attribute>
@@ -790,8 +777,8 @@ QTabWidget::tab-bar#testsTab {
                                <rect>
                                 <x>0</x>
                                 <y>0</y>
-                                <width>100</width>
-                                <height>30</height>
+                                <width>62</width>
+                                <height>16</height>
                                </rect>
                               </property>
                               <layout class="QVBoxLayout" name="verticalLayout_4">
