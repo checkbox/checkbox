@@ -1,24 +1,184 @@
 #!/usr/bin/env python3
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software Foundation,
+# Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+#
+# Parts of this are based on the example python code that ships with
+# NetworkManager
+# http://cgit.freedesktop.org/NetworkManager/NetworkManager/tree/examples/python
+#
+# Copyright (C) 2012 Canonical, Ltd.
 
 import os
 import re
 import sys
+import dbus
+import subprocess
+import sys
 
+# This example lists basic information about network interfaces known to NM
+devtypes = { 1: "Ethernet",
+             2: "WiFi",
+             5: "Bluetooth",
+             6: "OLPC",
+             7: "WiMAX",
+             8: "Modem" }
+
+states = { 0: "Unknown",
+           10: "Unmanaged",
+           20: "Unavailable",
+           30: "Disconnected",
+           40: "Prepare",
+           50: "Config",
+           60: "Need Auth",
+           70: "IP Config",
+           80: "IP Check",
+           90: "Secondaries",
+           100: "Activated",
+           110: "Deactivating",
+           120: "Failed" }
+
+class NetworkingDevice():
+    def __init__(self, devtype, props, dev_proxy, bus):
+        self._devtype = devtype
+        try:
+            self._interface = props['Interface']
+        except KeyError:
+            self._interface = "Unknown"
+
+        try:
+            self._ip = self._int_to_ip(props['Ip4Address'])
+        except KeyError:
+            self._ip = "Unknown"
+
+        try:
+            self._driver = props['Driver']
+        except KeyError:
+            self._driver = "Unknown"
+
+        if self._driver != "Unknown":
+            self._driver_ver = self._find_driver_ver(props['Driver'])
+
+        try:
+            self._firmware_missing = props['FirmwareMissing']
+        except KeyError:
+            self._firmware_missing = False
+
+        try:
+            self._state = states[props['State']]
+        except KeyError:
+            self._state = "Unknown"
+
+    def __str__(self):
+        ret = "Type: %s\n" % self._devtype
+        ret += "Interface: %s\n" % self._interface
+        ret += "IP: %s\n" % self._ip
+        ret += "Driver: %s (ver: %s)\n" % (self._driver, self._driver_ver)
+        if self._firmware_missing:
+            ret += "Warning: Required Firmware Missing for device\n"
+        ret += "State: %s\n" % self._state
+        return ret
+
+    def getstate(self):
+        return self._state
+
+    def _bitrate_to_mbps(self, bitrate):
+        try:
+            intbr = int(bitrate)
+            return str(intbr/1000)
+        except Exception:
+            return "NaN"
+
+    def _byte_arr_to_str(self, arr):
+        return "".join(chr(b) for b in arr)
+
+    def _find_driver_ver(self, driver):
+        modinfo = subprocess.Popen('/sbin/modinfo -F version %s' % driver,
+            stderr=subprocess.PIPE, stdout=subprocess.PIPE, shell=True)
+        if not modinfo:
+            print ("Error while running modinfo")
+        else:
+            out, err = modinfo.communicate()
+            if err:
+                print ("modinfo (stderr) = %s" % err)
+            if out:
+                return self._byte_arr_to_str(out.strip())
+
+    def _int_to_ip (self, int_ip):
+        ip = [0,0,0,0]
+        ip[0] = int_ip & 0xff
+        ip[1] = (int_ip >> 8) & 0xff
+        ip[2] = (int_ip >> 16) & 0xff
+        ip[3] = (int_ip >> 24) & 0xff
+        return "%d.%d.%d.%d" % (ip[0], ip[1], ip[2], ip[3])
+
+def get_nm_devices():
+    devices = []
+    bus = dbus.SystemBus()
+
+    # Get a proxy for the base NetworkManager object
+    proxy = bus.get_object("org.freedesktop.NetworkManager",
+        "/org/freedesktop/NetworkManager")
+    manager = dbus.Interface(proxy, "org.freedesktop.NetworkManager")
+
+    # Get all devices known to NM and print their properties
+    nm_devices = manager.GetDevices()
+    for d in nm_devices:
+        dev_proxy = bus.get_object("org.freedesktop.NetworkManager", d)
+        prop_iface = dbus.Interface(dev_proxy,"org.freedesktop.DBus.Properties")
+        props = prop_iface.GetAll("org.freedesktop.NetworkManager.Device")
+        try:
+            devtype = devtypes[props['DeviceType']]
+        except KeyError:
+            devtype = "Unknown"
+
+        # only return Wifi and LAN devices
+        if devtype == "WiFi" or devtype == "Ethernet":
+            devices.append(NetworkingDevice(devtype, props, dev_proxy, bus))
+    return devices
 
 def main(args):
-    devices = []
+    pci_devices = []
     command = "lspci"
     for line in os.popen(command).readlines():
         match = re.match("^.*(Network|Ethernet) controller: (.*)", line)
         if match:
-            devices.append(match.group(2))
+            pci_devices.append(match.group(2))
 
-    if devices:
-        print("\n".join(devices))
-        return 0
+    if pci_devices:
+        print("Devices found by lspci------------------------------")
+        print("\n".join(pci_devices))
     else:
-        print("ERROR: No Ethernet devices found.", file=sys.stderr)
+        print("ERROR: No Networking devices found.", file=sys.stderr)
         return 1
+
+    nm_devices = []
+    try:
+        nm_devices = get_nm_devices()
+        if len(nm_devices) != len(pci_devices):
+            print("ERROR: Devices missing: lspci showed %d devices, but NetworkManager saw %d devices" % (len(pci_devices), len(nm_devices)))
+            return 1
+    except dbus.exceptions.DBusException as e:
+        # server's don't have network manager installed
+        print("Warning: Exception while talking to Network Manager over dbus. Skipping the remainder of this test. If this is a server, this is expected.")
+        print("The Error Generated was:\n %s" % e)
+        return 0
+
+    print("Devices found by Network Manager-------------------------")
+    for nm_dev in nm_devices:
+        print(nm_dev)
+    return 0
 
 if __name__ == "__main__":
     sys.exit(main(sys.argv[1:]))

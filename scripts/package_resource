@@ -96,7 +96,8 @@ def get_packages(file):
             yield dict(package)
             package["name"] = aliases[name]
 
-        yield package
+        if name not in aliases.values():
+            yield package
 
 
 def main(args):
