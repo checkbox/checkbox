@@ -4,14 +4,6 @@ requires: package.name == "x11-utils"
 command: xdpyinfo | grep "^X.Org version" | cut -d ':' -f 2 | tr -d ' '
 _description: Test to output the Xorg version
 
-plugin: shell
-name: graphics/gtkperf
-depends: graphics/xorg-version
-requires: package.name == 'gtkperf'
-command: gtkperf -a | grep "Total time:"
-_description:
- Run gtkperf to make sure that GTK based test cases work
-
 plugin: manual
 name: graphics/resolution-change
 depends: graphics/xorg-version
