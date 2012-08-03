@@ -1,5 +1,9 @@
 checkbox (0.14.3) precise; urgency=low
 
+  [Benjamin Kerensa]
+  * Changed description of PCMCIA/PCIX to PCMCIA/ExpressCard since PCIX
+    generally applies to servers (LP: #992249) 
+
   [Brendan Donegan]
   * Removed call to unlink temporary file in Html5Thread part of gpu_test.
     Also addressed a few pyflakes complaints and removed a stray print.
