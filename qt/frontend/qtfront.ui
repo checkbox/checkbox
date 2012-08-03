@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>640</width>
-    <height>480</height>
+    <height>470</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -18,14 +18,14 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>640</width>
-    <height>480</height>
+    <width>600</width>
+    <height>400</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>640</width>
-    <height>480</height>
+    <height>470</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -50,13 +50,13 @@
       <string notr="true">QTabBar::tab {min-height: 0ex;}</string>
      </property>     
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tabWelcome">
       <attribute name="title">
        <string>Tab 1</string>
       </attribute>
-      <layout class="QHBoxLayout" name="horizontalLayout_5">
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
        <property name="spacing">
         <number>0</number>
        </property>
@@ -64,7 +64,7 @@
         <number>0</number>
        </property>
        <item>
-        <layout class="QVBoxLayout" name="verticalLayout_5">
+        <layout class="QVBoxLayout" name="verticalLayout_2">
          <property name="spacing">
           <number>0</number>
          </property>
@@ -104,8 +104,8 @@
                 </property>
                 <property name="minimumSize">
                  <size>
-                  <width>195</width>
-                  <height>0</height>
+                  <width>500</width>
+                  <height>119</height>
                  </size>
                 </property>
                 <property name="styleSheet">
@@ -114,27 +114,34 @@
                </widget>
               </item>
               <item>
-               <widget class="QWidget" name="welcomeTopText" native="true">
+              <widget class="QWidget" name="welcomeTopText" native="true">
                 <property name="styleSheet">
-                 <string notr="true">background: transparent;</string>
+                 <string notr="true">background-color: #3c3b3f</string>
                 </property>
                 <widget class="QLabel" name="welcomeLabel">
                  <property name="geometry">
                   <rect>
-                   <x>30</x>
-                   <y>20</y>
-                   <width>330</width>
-                   <height>51</height>
+                   <x>0</x>
+                   <y>10</y>
+                   <width>120</width>
+                   <height>100</height>
                   </rect>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignLeading|Qt::AlignCenter|Qt::AlignRight</set>
                  </property>
                  <property name="font">
                   <font>
                    <family>Ubuntu</family>
-                   <pointsize>21</pointsize>
+                   <pointsize>18</pointsize>
                   </font>
                  </property>
+                 <property name="styleSheet">
+                  <string notr="true">color: #f0ebe2</string>
+                 </property>
                  <property name="text">
-                  <string>System Testing</string>
+                  <string>System 
+Testing</string>
                  </property>
                 </widget>
                </widget>
@@ -161,17 +168,20 @@
            <widget class="QTextEdit" name="welcomeTextBox">
             <property name="geometry">
              <rect>
-              <x>30</x>
-              <y>10</y>
-              <width>571</width>
-              <height>261</height>
+              <x>15</x>
+              <y>12</y>
+              <width>610</width>
+              <height>260</height>
              </rect>
             </property>
             <property name="frameShape">
-             <enum>QFrame::Box</enum>
+             <enum>QFrame::StyledPanel</enum>
             </property>
             <property name="frameShadow">
-             <enum>QFrame::Plain</enum>
+             <enum>QFrame::Raised</enum>
+            </property>
+            <property name="lineWidth">
+             <number>20</number>
             </property>
             <property name="readOnly">
              <bool>true</bool>
@@ -180,26 +190,26 @@
            <widget class="QPushButton" name="friendlyTestsButton">
             <property name="geometry">
              <rect>
-              <x>30</x>
-              <y>280</y>
-              <width>571</width>
+              <x>430</x>
+              <y>305</y>
+              <width>191</width>
               <height>31</height>
              </rect>
             </property>
             <property name="font">
              <font>
-              <pointsize>9</pointsize>
+              <pointsize>11</pointsize>
              </font>
             </property>
             <property name="text">
-             <string>OK</string>
+             <string>Continue</string>
             </property>
            </widget>
            <widget class="QCheckBox" name="checkBox">
             <property name="geometry">
              <rect>
-              <x>310</x>
-              <y>320</y>
+              <x>10</x>
+              <y>310</y>
               <width>321</width>
               <height>20</height>
              </rect>
@@ -210,7 +220,20 @@
              </font>
             </property>
             <property name="text">
-             <string>Don't show me this message in the future</string>
+             <string>Don't show this message on startup</string>
+            </property>
+           </widget>
+           <widget class="Line" name="line_3">
+            <property name="geometry">
+             <rect>
+              <x>15</x>
+              <y>280</y>
+              <width>608</width>
+              <height>20</height>
+             </rect>
+            </property>
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
             </property>
            </widget>
           </widget>
@@ -865,8 +888,8 @@ QTabWidget::tab-bar#testsTab {
                                <rect>
                                 <x>0</x>
                                 <y>0</y>
-                                <width>500</width>
-                                <height>189</height>
+                                <width>62</width>
+                                <height>16</height>
                                </rect>
                               </property>
                               <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -1209,3 +1232,4 @@ p, li { white-space: pre-wrap; }
  <resources/>
  <connections/>
 </ui>
+
