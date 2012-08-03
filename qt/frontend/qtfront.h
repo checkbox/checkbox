@@ -65,7 +65,7 @@ private slots:
     void onFullTestsClicked();
     void onDeselectAllClicked();
     void onSelectAllClicked();
-    void onTestSelectionChanged();
+    void onTestSelectionChanged(QModelIndex index);
     void onStartTestsClicked();
     void onSubmitTestsClicked();
     void onNextTestClicked();
