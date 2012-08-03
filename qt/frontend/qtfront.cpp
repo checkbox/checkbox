@@ -130,9 +130,11 @@ void QtFront::onClosedFrontend() {
     emit closedFrontend(m_doneTesting);
 }
 
-void QtFront::onTestSelectionChanged() {
-    ui->selectAllButton->setEnabled(! m_model->allInStatus(Qt::Checked));
-    ui->deselectAllButton->setEnabled(! m_model->allInStatus(Qt::Unchecked));
+void QtFront::onTestSelectionChanged(QModelIndex index) {
+    if (m_model->item(index.row())->isEnabled()) {
+        ui->selectAllButton->setEnabled(! m_model->allInStatus(Qt::Checked));
+        ui->deselectAllButton->setEnabled(! m_model->allInStatus(Qt::Unchecked));
+    }
 }
 
 void QtFront::onDeselectAllClicked() {
@@ -205,6 +207,8 @@ void QtFront::onFullTestsClicked() {
 
 void QtFront::onStartTestsClicked() {
     ui->buttonStartTesting->setEnabled(false);
+    ui->selectAllButton->setEnabled(false);
+    ui->deselectAllButton->setEnabled(false);
     m_model->setInteraction(false);
     emit startTestsClicked();
 }
