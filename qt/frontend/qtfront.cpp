@@ -71,7 +71,6 @@ QtFront::QtFront(QApplication *parent) :
     connect(ui->checkBox, SIGNAL(toggled(bool)), SIGNAL(welcomeCheckboxToggled(bool)));
     connect(ui->treeView, SIGNAL(collapsed(QModelIndex)), this, SLOT(onJobItemChanged(QModelIndex)));
     connect(ui->treeView, SIGNAL(expanded(QModelIndex)), this, SLOT(onJobItemChanged(QModelIndex)));
-    connect(ui->treeView->verticalScrollBar(), SIGNAL(valueChanged(int)), ui->statusView->verticalScrollBar(), SLOT(setValue(int)));
     connect(ui->treeView, SIGNAL(clicked(QModelIndex)), this,  SLOT(onTestSelectionChanged()));
     connect(this, SIGNAL(testSelectionChanged()), this,  SLOT(onTestSelectionChanged()));
     ui->stepsFrame->setFixedHeight(0);
@@ -382,43 +381,36 @@ void QtFront::setFocusTestYesNo(bool status) {
     }
 }
 
-void QtFront::updateTestStatus(QStandardItem *item, QString status) {
+void QtFront::updateTestStatus(QStandardItem *item, QStandardItem *statusItem, QString status) {
     int numRows = item->rowCount();
     int done = 0;
     int inprogress = 0;
-    for(int i=0; i< numRows; i++) {
-        QStandardItem * childItem = item->child(i,0);
+    for(int i = 0; i < numRows; i++) {
+        QStandardItem * childItem = item->child(i,1);
         if (childItem->hasChildren()) {
-            updateTestStatus(childItem, status);
+            updateTestStatus(childItem, statusItem, status);
         }
         if (childItem->data(Qt::UserRole).toString() == m_currentTestName && !status.isEmpty()) {
             childItem->setText(m_statusStrings[status]);
         }
         if (childItem->text() == m_statusStrings[STATUS_PASS]) {
-            childItem->setData(QVariant(Qt::Checked), Qt::CheckStateRole);
             done++;
         } else if (childItem->text() == m_statusStrings[STATUS_INPROGRESS]) {
-            childItem->setData(QVariant(Qt::Unchecked), Qt::CheckStateRole);
             inprogress++;
-        } else if (childItem->text() == m_statusStrings[STATUS_UNINITIATED]) {
-            childItem->setData(QVariant(Qt::Unchecked), Qt::CheckStateRole);
         }
     }
     if (done == item->rowCount() && done != 0) {
-        item->setText(m_statusStrings[STATUS_PASS]);
-        item->setData(QVariant(Qt::Checked), Qt::CheckStateRole);
+        statusItem->setText(m_statusStrings[STATUS_PASS]);
     } else if (inprogress != 0 || done != 0) {
-        item->setText(m_statusStrings[STATUS_INPROGRESS]);
-        item->setData(QVariant(Qt::PartiallyChecked), Qt::CheckStateRole);
+        statusItem->setText(m_statusStrings[STATUS_INPROGRESS]);
     } else {
-        item->setText(m_statusStrings[STATUS_UNINITIATED]);
-        item->setData(QVariant(Qt::Unchecked), Qt::CheckStateRole);
+        statusItem->setText(m_statusStrings[STATUS_UNINITIATED]);
     }
 }
 
 void QtFront::updateTestStatus(QString status) {
-    for (int i=0; i < m_statusModel->rowCount(); i++) {
-        updateTestStatus(m_statusModel->item(i,0), status);
+    for (int i=0; i < m_model->rowCount(); i++) {
+        updateTestStatus(m_model->item(i,0), m_model->item(i,1), status);
     }
 }
 
@@ -432,11 +424,10 @@ void QtFront::updateAutoTestStatus(QString status, QString currentTest) {
 void QtFront::buildTree(QVariantMap options, 
                         QVariantMap defaults, 
                         QString baseIndex, 
-                        QStandardItem *parentItem, 
-                        QStandardItem *parentStatusItem) {
+                        QStandardItem *parentItem) {
     int internalIndex = 1;
     while (true) {
-        QString index = baseIndex+"."+QString::number(internalIndex);
+        QString index = baseIndex + "." + QString::number(internalIndex);
         QVariant value = options.value(index);
         QVariant defaultValue = defaults.value(index);
         QDBusArgument arg = value.value<QDBusArgument>();
@@ -463,19 +454,19 @@ void QtFront::buildTree(QVariantMap options,
             }
 
             testStatusItem->setData(test, Qt::UserRole);
-            testStatusItem->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled|Qt::ItemIsTristate);
-            testStatusItem->setData(QVariant(Qt::Unchecked), Qt::CheckStateRole);
 
             if (parentItem) {
                 // for children nodes
-                parentItem->appendRow(item);
-                parentStatusItem->appendRow(testStatusItem);
-                buildTree(options, defaults, index, item, testStatusItem);
+                QList<QStandardItem *> itemList;
+                itemList << item << testStatusItem;
+                parentItem->appendRow(itemList);
+                buildTree(options, defaults, index, item);
             } else {
                 // for root nodes
-                buildTree(options, defaults, index, item, testStatusItem);
-                m_model->appendRow(item);
-                m_statusModel->appendRow(testStatusItem);
+                buildTree(options, defaults, index, item);
+                QList<QStandardItem *> itemList;
+                itemList << item << testStatusItem;
+                m_model->appendRow(itemList);
             }
         }
         internalIndex++;
@@ -495,9 +486,11 @@ void QtFront::showTree(QString text,
     // build the model only once
     if (!this->m_model) {
         this->m_model = new TreeModel();
+        this->m_model->setColumnCount(2);
         buildTree(options, defaults, "1");
         ui->treeView->setModel(m_model);
-        ui->statusView->setModel(m_statusModel);
+        ui->treeView->header()->setResizeMode(0, QHeaderView::Stretch);
+        ui->treeView->setColumnWidth(1, 150);
     }
     this->m_model->deselect_warning = QString(deselect_warning);
 
@@ -514,20 +507,17 @@ void QtFront::onJobItemChanged(QStandardItem *item,
     if (item->hasChildren()) {
         int numRows = item->rowCount();
         for(int i=0; i< numRows; i++) {
-            QStandardItem *childItem = item->child(i, 0);
+            QStandardItem *childItem = item->child(i, 1);
             onJobItemChanged(childItem,job, baseIndex);
         }
-    }
-    if (item->data(Qt::UserRole) == job) {
-        ui->statusView->setExpanded(item->index(), ui->treeView->isExpanded(baseIndex));
     }
 }
 
 void QtFront::onJobItemChanged(QModelIndex index) {
     QString job = m_model->data(index).toString();
-    int numRows = m_statusModel->rowCount();
+    int numRows = m_model->rowCount();
     for(int i=0; i< numRows; i++) {
-        QStandardItem *item = m_statusModel->item(i, 0);
+        QStandardItem *item = m_model->item(i, 1);
         onJobItemChanged(item, job, index);
     }
 }
