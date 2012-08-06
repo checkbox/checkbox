@@ -13,9 +13,33 @@ fi
 if [ "$CURRENT_VT" -ne "1" ]
 then
     chvt 1
+    if [ "$?" -ne "0" ]
+    then
+	echo "chvt returned a non-zero exit code of $?" >&2
+	exit $?
+    fi
 else
     chvt 2
+    if [ "$?" -ne "0" ]
+    then
+	echo "chvt returned a non-zero exit code of $?" >&2
+	exit $?
+    fi
 fi
 
 sleep 2
 chvt "$CURRENT_VT"
+if [ "$?" -ne "0" ]
+then
+    echo "chvt returned a non-zero exit code of $?" >&2
+    exit $?
+fi
+sleep 2
+
+# make sure we switched back
+END_VT=`/bin/fgconsole`
+if [ "$END_VT" -ne "$CURRENT_VT" ]
+then
+    echo "didn't get back to the original VT" >&2
+    exit 1
+fi
