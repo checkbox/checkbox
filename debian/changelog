@@ -43,13 +43,22 @@ checkbox (0.14.3) precise; urgency=low
   [Jeff Lane]
   * jobs/cpu.txt.in: added a depends to cpu/scaling_test-log-attach to ensure
     that job does not run until afte cpu/scaling_test (LP: #1031994)
+  * scripts/optical_write_test: changed behaviour to timeout after 5 minutes
+    rather than a few seconds to give testers a chance to complete the test
+    without having to sit on top of the machine waiting. If tester doesn't hit
+    the tray before timeout, the test makes a best efford to mount the disk
+    itself and proceed.
+    jobs/optical.txt.in: Cleared up text in the existing manual optical write
+    tests and added two automated tests that can be used if desired (they still
+    require the user to push the tray in after writing, but eliminate other
+    steps)
   
   [Matt Fischer]
   * scripts/network_device_info: added a check to ensure what lspci reports and
     what NetworkManger reports (if it is installed) are the same. Reports more
     useful info now like driver and driver version, IP address, etc.
 
- -- Jeff Lane <jeff@ubuntu.com>  Thu, 02 Aug 2012 16:08:30 -0400
+ -- Jeff Lane <jeff@ubuntu.com>  Mon, 06 Aug 2012 09:26:41 -0400
 
 checkbox (0.14.2) quantal; urgency=low
 
