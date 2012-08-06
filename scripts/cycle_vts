@@ -13,26 +13,29 @@ fi
 if [ "$CURRENT_VT" -ne "1" ]
 then
     chvt 1
-    if [ "$?" -ne "0" ]
+    CHVT_RC=$?
+    if [ "$CHVT_RC" -ne "0" ]
     then
-	echo "chvt returned a non-zero exit code of $?" >&2
-	exit $?
+	    echo "chvt returned a non-zero exit code of $CHVT_RC" >&2
+    	exit $CHVT_RC
     fi
 else
     chvt 2
-    if [ "$?" -ne "0" ]
+    CHVT_RC=$?
+    if [ "$CHVT_RC" -ne "0" ]
     then
-	echo "chvt returned a non-zero exit code of $?" >&2
-	exit $?
+	    echo "chvt returned a non-zero exit code of $CHVT_RC" >&2
+    	exit $CHVT_RC
     fi
 fi
 
 sleep 2
 chvt "$CURRENT_VT"
-if [ "$?" -ne "0" ]
+CHVT_RC=$?
+if [ "$CHVT_RC" -ne "0" ]
 then
-    echo "chvt returned a non-zero exit code of $?" >&2
-    exit $?
+    echo "chvt returned a non-zero exit code of $CHVT_RC" >&2
+    exit $CHVT_RC
 fi
 sleep 2
 
