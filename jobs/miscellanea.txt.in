@@ -15,7 +15,7 @@ _description:
 plugin: manual
 name: miscellanea/chvt
 requires:
- package.alias == 'linux'
+ package.name == 'linux'
  package.name == 'kbd'
 user: root
 command: cycle_vts
