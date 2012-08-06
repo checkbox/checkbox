@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -o errexit
+
 # NB: This script must be run with root privileges in order to have any effect!
 
 CURRENT_VT=`/bin/fgconsole`
@@ -13,30 +15,12 @@ fi
 if [ "$CURRENT_VT" -ne "1" ]
 then
     chvt 1
-    CHVT_RC=$?
-    if [ "$CHVT_RC" -ne "0" ]
-    then
-	    echo "chvt returned a non-zero exit code of $CHVT_RC" >&2
-    	exit $CHVT_RC
-    fi
 else
     chvt 2
-    CHVT_RC=$?
-    if [ "$CHVT_RC" -ne "0" ]
-    then
-	    echo "chvt returned a non-zero exit code of $CHVT_RC" >&2
-    	exit $CHVT_RC
-    fi
 fi
 
 sleep 2
 chvt "$CURRENT_VT"
-CHVT_RC=$?
-if [ "$CHVT_RC" -ne "0" ]
-then
-    echo "chvt returned a non-zero exit code of $CHVT_RC" >&2
-    exit $CHVT_RC
-fi
 sleep 2
 
 # make sure we switched back
