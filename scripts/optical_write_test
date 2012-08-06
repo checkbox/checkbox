@@ -1,6 +1,5 @@
 #!/bin/bash
 
-OPTICAL_DRIVE=$(readlink -f $1)
 TEMP_DIR='/tmp/optical-test'
 ISO_NAME='optical-test.iso'
 SAMPLE_FILE_PATH='/usr/share/example-content/'
@@ -127,6 +126,12 @@ failed(){
     cleanup
     exit 1
 }
+
+if [ -L $1 ]; then
+    OPTICAL_DRIVE=$(readlink -f $1)
+else
+    OPTICAL_DRIVE='/dev/sr0'
+    
 
 create_working_dirs || failed "Failed to create working directories"
 get_sample_data || failed "Failed to copy sample data"
