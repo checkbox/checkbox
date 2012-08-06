@@ -51,13 +51,17 @@ checkbox (0.14.3) precise; urgency=low
   [Jeff Lane]
   * jobs/cpu.txt.in: added a depends to cpu/scaling_test-log-attach to ensure
     that job does not run until afte cpu/scaling_test (LP: #1031994)
+  * jobs/esata.txt.in: added tests for removable eSATA drives
+    scripts/removable_storage_test: added support for ata_serial_esata devices
+    scripts/removable_storage_watcher: added support for ata_serial_esata
+    devices
   
   [Matt Fischer]
   * scripts/network_device_info: added a check to ensure what lspci reports and
     what NetworkManger reports (if it is installed) are the same. Reports more
     useful info now like driver and driver version, IP address, etc.
 
- -- Jeff Lane <jeff@ubuntu.com>  Thu, 02 Aug 2012 16:08:30 -0400
+ -- Jeff Lane <jeff@ubuntu.com>  Mon, 06 Aug 2012 12:33:03 -0400
 
 checkbox (0.14.2) quantal; urgency=low
 

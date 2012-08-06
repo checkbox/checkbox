@@ -180,10 +180,10 @@ class DiskTest():
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('device',
-                        choices=['usb', 'firewire', 'sdio', 'scsi'],
+                        choices=['usb', 'firewire', 'sdio', 'scsi', 'ata_serial_esata'],
                         nargs='+',
                         help=("The type of removable media "
-                              "(usb, firewire, sdio) to test."))
+                              "(usb, firewire, sdio, scsi or ata_serial_esata) to test."))
     parser.add_argument('-l', '--list',
                         action='store_true',
                         default=False,
@@ -208,6 +208,7 @@ def main():
     args = parser.parse_args()
 
     test = DiskTest()
+
     test.get_disk_info(args.device)
 
     errors = 0
