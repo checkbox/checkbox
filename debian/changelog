@@ -2,6 +2,12 @@ checkbox (0.14.4) quantal; urgency=low
 
   * New version 0.14.4 for Quantal Quetzal development.
 
+  [Jeff Lane]
+  * jobs/esata.txt.in: added tests for removable eSATA drives
+    scripts/removable_storage_test: added support for ata_serial_esata devices
+    scripts/removable_storage_watcher: added support for ata_serial_esata
+    devices
+
  -- Daniel Manrique <roadmr@ubuntu.com>  Mon, 06 Aug 2012 16:34:01 -0400
 
 checkbox (0.14.3) quantal; urgency=low
