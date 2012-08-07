@@ -5,7 +5,7 @@ requires:
 command: removable_storage_watcher insert ata_serial_esata
 _description:
  PURPOSE:
-     This test will check the system can detect the insertion of a eSATA HDD
+     This test will check the system can detect the insertion of an eSATA HDD
  STEPS:
      1. Click 'Test' to begin the test. This test will
         timeout and fail if the insertion has not been detected within 20 seconds.
@@ -32,7 +32,7 @@ requires:
 command: removable_storage_watcher remove ata_serial_esata
 _description:
  PURPOSE:
-     This test will check the system can detect the removal of a eSATA HDD
+     This test will check the system can detect the removal of an eSATA HDD
  STEPS:
      1. Click 'Test' to begin the test. This test will timeout and fail if
         the removal has not been detected within 20 seconds.
