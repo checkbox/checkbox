@@ -4,14 +4,20 @@ import sys
 import re
 
 from argparse import ArgumentParser
-from subprocess import check_output
+from subprocess import check_output, check_call, CalledProcessError
 
 TYPES = ("source","sink")
+DIRECTIONS = {"source": "input", "sink": "output"}
 
-entries_regex = re.compile("\* index.*?(?=current latency)", re.DOTALL)
-index_regex = re.compile("(?<=\* index: )[0-9]")
+active_entries_regex = re.compile("\* index.*?(?=properties)", re.DOTALL)
+index_regex = re.compile("(?<=index: )[0-9]*")
 muted_regex = re.compile("(?<=muted: ).*")
 volume_regex = re.compile("(?<=volume: 0: )\s*[0-9]*")
+steps_regex = re.compile("(?<=volume steps:)\s*[0-9]*")
+name_regex = re.compile("(?<=name:).*")
+
+#name_regex = re.compile("index: [0-9].*?(?=driver:)", re.DOTALL)
+entries_regex = re.compile("index.*?(?=properties)", re.DOTALL)
 
 def store_audio_settings(file):
 
@@ -20,21 +26,58 @@ def store_audio_settings(file):
     for type in TYPES:
         pacmd_entries = check_output(["pacmd","list-%ss" % type],
                                      universal_newlines=True)
-        entries = entries_regex.search(pacmd_entries)
-        print(entries.group(0))
+        active_entries = active_entries_regex.search(pacmd_entries)
 
-        index = index_regex.search(entries.group(0))
-        print("%s_index: %s" % (type, index.group(0).strip()), file=settings_file)
+        index = index_regex.search(active_entries.group())
+        print("%s_index: %s" % (type, index.group().strip()), file=settings_file)
         
-        muted = muted_regex.search(entries.group(0))
-        print("%s_muted: %s" % (type, muted.group(0).strip()), file=settings_file)
+        muted = muted_regex.search(active_entries.group())
+        print("%s_muted: %s" % (type, muted.group().strip()), file=settings_file)
         
-        volume = volume_regex.search(entries.group(0))
-        print("%s_volume: %s" % (type, volume.group(0).strip()), file=settings_file)
+        volume = volume_regex.search(active_entries.group())
+        print("%s_volume: %s" % (type, volume.group().strip()), file=settings_file)
 
 
 def set_audio_settings(device, mute, volume):
     print(device, mute, volume)
+
+    for type in TYPES:
+        pacmd_entries = check_output(["pacmd", "list-%ss" % type],
+                                     universal_newlines=True)
+
+        entries = entries_regex.findall(pacmd_entries)
+
+        for entry in entries:
+            name = name_regex.search(entry).group()
+                  
+            if device in name and DIRECTIONS[type] in name:
+                index = index_regex.search(entry).group().strip()
+
+                try:
+                    check_call(["pacmd", "set-default-%s" % type, index])
+                except CalledProcessError:
+                    print("Failed to set default %s" % type)
+                    sys.exit(1)
+
+                if type == "sink":
+                    for input_index in name_regex.findall(check_output(["pacmd", "list-sink-inputs"],
+                                                          universal_newlines=True)):
+                        check_call(["pacmd", "move-sink-input", input_index, index])
+
+                try:
+                    check_call(["pacmd", "set-%s-mute" % type, index, str(mute)])
+                except:
+                    print("Failed to set mute for %s" % device)
+                    sys.exit(1)
+
+                steps = int(steps_regex.search(entry).group().strip())
+                new_volume = int(steps / 100 * volume)
+
+                try:
+                    check_call(["pacmd", "set-%s-volume" % type, index, str(new_volume)])
+                except:
+                    print("Failed to set volume for %s" % device)
+                    sys.exit(1)
 
 def restore_audio_settings(file):
     print(file)
@@ -58,8 +101,6 @@ def main():
                         help="""The file to store settings in or restore
                                 settings from.""")
     args = parser.parse_args()
-
-    print(args.action)
 
     if args.action == "store":
         if not args.file:
