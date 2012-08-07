@@ -19,7 +19,7 @@ name_regex = re.compile("(?<=name:).*")
 entries_regex = re.compile("index.*?(?=properties)", re.DOTALL)
 
 def move_sinks(index):
-    for input_index in name_regex.findall(check_output(["pacmd", "list-sink-inputs"],
+    for input_index in index_regex.findall(check_output(["pacmd", "list-sink-inputs"],
                                           universal_newlines=True)):
         try:
             check_call(["pacmd", "move-sink-input", input_index, index])
@@ -34,20 +34,20 @@ def store_audio_settings(file):
     for type in TYPES:
         pacmd_entries = check_output(["pacmd","list-%ss" % type],
                                      universal_newlines=True)
-        active_entry = active_entries_regex.search(pacmd_entries)
+        active_entry = active_entries_regex.search(pacmd_entries).group()
 
-        index = index_regex.search(active_entry.group())
+        index = index_regex.search(active_entry)
         print("%s_index: %s" % (type, index.group().strip()), file=settings_file)
         
-        muted = muted_regex.search(active_entry.group())
+        muted = muted_regex.search(active_entry)
         print("%s_muted: %s" % (type, muted.group().strip()), file=settings_file)
         
-        steps = int(steps_regex.search(active_entry.group()))
-        volume = int(volume_regex.search(active_entry.group()))
+        steps = int(steps_regex.search(active_entry).group().strip())
+        volume = int(volume_regex.search(active_entry).group().strip())
         
         absolute_volume = int(steps / 100 * volume) 
         
-        print("%s_volume: %s" % (type, str(absolute_volume), file=settings_file)
+        print("%s_volume: %s" % (type, str(absolute_volume)), file=settings_file)
 
 def set_audio_settings(device, mute, volume):
     print(device, mute, volume)
