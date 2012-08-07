@@ -1,4 +1,22 @@
-checkbox (0.14.3) precise; urgency=low
+checkbox (0.14.4) quantal; urgency=low
+
+  * New version 0.14.4 for Quantal Quetzal development.
+
+  [Jeff Lane]
+  * jobs/esata.txt.in: added tests for removable eSATA drives
+    scripts/removable_storage_test: added support for ata_serial_esata devices
+    scripts/removable_storage_watcher: added support for ata_serial_esata
+    devices
+
+ -- Daniel Manrique <roadmr@ubuntu.com>  Mon, 06 Aug 2012 16:34:01 -0400
+
+checkbox (0.14.3) quantal; urgency=low
+
+  * New upstream release (LP: #1033652)
+
+  [Benjamin Kerensa]
+  * Changed description of PCMCIA/PCIX to PCMCIA/ExpressCard since PCIX
+    generally applies to servers (LP: #992249) 
 
   [Brendan Donegan]
   * Removed call to unlink temporary file in Html5Thread part of gpu_test.
@@ -8,6 +26,12 @@ checkbox (0.14.3) precise; urgency=low
     confused with each other (LP: #1027849)
   * Fix apport_prompt.py so it properly checks the value in
     /etc/default/apport (LP: #1029897)
+  * Initially disable the 'Run' tab in the Qt UI, re-enabling it when the
+    'Start Testing' has been clicked (LP: #1029815)
+  * Put Component and Status into one tree view on the selection screen,
+    rather than two seperate ones (LP: #1030871)
+  * Disable the Select All and Deselect All buttons in the selection
+    view during testing (LP: #1032259)
 
   [Daniel Manrique]
   * New version 0.14.3 for Quantal Quetzal development.
@@ -28,6 +52,9 @@ checkbox (0.14.3) precise; urgency=low
     performance test.
     scripts/block_device_resource: Add the maximum usb specification supported
     by both a block device and the corresponding root hub port.
+  * qt/frontend/qtfront.ui, qt/frontend/images/checkbox-qt-head.png: 
+    Add transparency properties to the main window header to keep the main theme
+    colors in the widget background (LP: #1030857)
 
   [Jeff Marcom]
   * Added timeout to job call for disk smart test.
@@ -35,7 +62,21 @@ checkbox (0.14.3) precise; urgency=low
   [Marc Tardif]
   * Escaping encoded strings in udevadm output (LP: #1025381)
 
- -- Daniel Manrique <roadmr@ubuntu.com>  Wed, 25 Jul 2012 15:30:11 -0400
+  [Jeff Lane]
+  * jobs/cpu.txt.in: added a depends to cpu/scaling_test-log-attach to ensure
+    that job does not run until afte cpu/scaling_test (LP: #1031994)
+  
+  [Matt Fischer]
+  * scripts/network_device_info: added a check to ensure what lspci reports and
+    what NetworkManger reports (if it is installed) are the same. Reports more
+    useful info now like driver and driver version, IP address, etc.
+  * scripts/cycle_vts: added checks to fail test if chvt returns a non-zero
+    exit code. Added a final check at the end to verify we did land back on the
+    original VT after testing.
+    jobs/miscellanea.txt.in: fixed a typo in the chvt job. It used to reqire
+    'package.alias' instead of 'package.name'
+
+ -- Jeff Lane <jeff@ubuntu.com>  Mon, 06 Aug 2012 15:35:26 -0400
 
 checkbox (0.14.2) quantal; urgency=low
 

@@ -84,7 +84,9 @@ def main():
     description = "Wait for the specified device to be inserted or removed."
     parser = argparse.ArgumentParser(description=description)
     parser.add_argument('action', choices=['insert', 'remove'])
-    parser.add_argument('device', choices=['usb', 'sdio', 'firewire', 'scsi'],
+    parser.add_argument('device', 
+                        choices=['usb', 'sdio', 'firewire', 
+                        'scsi', 'ata_serial_esata'],
                         nargs=argparse.REMAINDER)
     parser.add_argument('--timeout', type=int, default=20)
     args = parser.parse_args()

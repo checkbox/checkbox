@@ -65,7 +65,7 @@ private slots:
     void onFullTestsClicked();
     void onDeselectAllClicked();
     void onSelectAllClicked();
-    void onTestSelectionChanged();
+    void onTestSelectionChanged(QModelIndex index);
     void onStartTestsClicked();
     void onSubmitTestsClicked();
     void onNextTestClicked();
@@ -76,7 +76,7 @@ private slots:
 
     void onJobItemChanged(QModelIndex index);
     void onJobItemChanged(QStandardItem *item, QString job, QModelIndex baseIndex);
-    void updateTestStatus(QStandardItem *item, QString status);
+    void updateTestStatus(QStandardItem *item, QStandardItem* statusItem, QString status);
     void updateTestStatus(QString status = QString());
     void onClosedFrontend();
 
@@ -98,7 +98,7 @@ signals:
 
 private:
     bool registerService();
-    void buildTree(QVariantMap options, QVariantMap defaults, QString baseIndex = "1", QStandardItem *parentItem = 0, QStandardItem *parentStatusItem = 0);
+    void buildTree(QVariantMap options, QVariantMap defaults, QString baseIndex = "1", QStandardItem *parentItem = 0);
     void buildTestsToRun(QStandardItem *item, QString baseIndex, QVariantMap &items);
     Ui_main *ui;
     QWidget *m_mainWindow;

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>640</width>
-    <height>480</height>
+    <height>470</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -18,14 +18,14 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>640</width>
-    <height>480</height>
+    <width>600</width>
+    <height>400</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>640</width>
-    <height>480</height>
+    <height>470</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -40,6 +40,9 @@
    </property>
    <item>
     <widget class="QTabWidget" name="tabWidget">
+     <property name="styleSheet">
+      <string notr="true">QTabBar::tab {min-height: 0ex;}</string>
+     </property>
      <property name="tabPosition">
       <enum>QTabWidget::North</enum>
      </property>
@@ -47,13 +50,13 @@
       <enum>QTabWidget::Rounded</enum>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tabWelcome">
       <attribute name="title">
        <string>Tab 1</string>
       </attribute>
-      <layout class="QHBoxLayout" name="horizontalLayout_5">
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
        <property name="spacing">
         <number>0</number>
        </property>
@@ -61,7 +64,7 @@
         <number>0</number>
        </property>
        <item>
-        <layout class="QVBoxLayout" name="verticalLayout_5">
+        <layout class="QVBoxLayout" name="verticalLayout_2">
          <property name="spacing">
           <number>0</number>
          </property>
@@ -101,8 +104,8 @@
                 </property>
                 <property name="minimumSize">
                  <size>
-                  <width>195</width>
-                  <height>0</height>
+                  <width>500</width>
+                  <height>119</height>
                  </size>
                 </property>
                 <property name="styleSheet">
@@ -111,27 +114,34 @@
                </widget>
               </item>
               <item>
-               <widget class="QWidget" name="welcomeTopText" native="true">
+              <widget class="QWidget" name="welcomeTopText" native="true">
                 <property name="styleSheet">
-                 <string notr="true">background-color: #f0ebe2</string>
+                 <string notr="true">background-color: #3c3b3f</string>
                 </property>
                 <widget class="QLabel" name="welcomeLabel">
                  <property name="geometry">
                   <rect>
-                   <x>30</x>
-                   <y>20</y>
-                   <width>330</width>
-                   <height>51</height>
+                   <x>0</x>
+                   <y>10</y>
+                   <width>120</width>
+                   <height>100</height>
                   </rect>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignLeading|Qt::AlignCenter|Qt::AlignRight</set>
                  </property>
                  <property name="font">
                   <font>
                    <family>Ubuntu</family>
-                   <pointsize>21</pointsize>
+                   <pointsize>18</pointsize>
                   </font>
                  </property>
+                 <property name="styleSheet">
+                  <string notr="true">color: #f0ebe2</string>
+                 </property>
                  <property name="text">
-                  <string>System Testing</string>
+                  <string>System 
+Testing</string>
                  </property>
                 </widget>
                </widget>
@@ -158,17 +168,20 @@
            <widget class="QTextEdit" name="welcomeTextBox">
             <property name="geometry">
              <rect>
-              <x>30</x>
-              <y>10</y>
-              <width>571</width>
-              <height>261</height>
+              <x>15</x>
+              <y>12</y>
+              <width>610</width>
+              <height>260</height>
              </rect>
             </property>
             <property name="frameShape">
-             <enum>QFrame::Box</enum>
+             <enum>QFrame::StyledPanel</enum>
             </property>
             <property name="frameShadow">
-             <enum>QFrame::Plain</enum>
+             <enum>QFrame::Raised</enum>
+            </property>
+            <property name="lineWidth">
+             <number>20</number>
             </property>
             <property name="readOnly">
              <bool>true</bool>
@@ -177,26 +190,26 @@
            <widget class="QPushButton" name="friendlyTestsButton">
             <property name="geometry">
              <rect>
-              <x>30</x>
-              <y>280</y>
-              <width>571</width>
+              <x>430</x>
+              <y>305</y>
+              <width>191</width>
               <height>31</height>
              </rect>
             </property>
             <property name="font">
              <font>
-              <pointsize>9</pointsize>
+              <pointsize>11</pointsize>
              </font>
             </property>
             <property name="text">
-             <string>OK</string>
+             <string>Continue</string>
             </property>
            </widget>
            <widget class="QCheckBox" name="checkBox">
             <property name="geometry">
              <rect>
-              <x>310</x>
-              <y>320</y>
+              <x>10</x>
+              <y>310</y>
               <width>321</width>
               <height>20</height>
              </rect>
@@ -207,7 +220,20 @@
              </font>
             </property>
             <property name="text">
-             <string>Don't show me this message in the future</string>
+             <string>Don't show this message on startup</string>
+            </property>
+           </widget>
+           <widget class="Line" name="line_3">
+            <property name="geometry">
+             <rect>
+              <x>15</x>
+              <y>280</y>
+              <width>608</width>
+              <height>20</height>
+             </rect>
+            </property>
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
             </property>
            </widget>
           </widget>
@@ -251,28 +277,28 @@
              <active>
               <colorrole role="Button">
                <brush brushstyle="SolidPattern">
-                <color alpha="255">
-                 <red>73</red>
-                 <green>73</green>
-                 <blue>80</blue>
+                <color alpha="0">
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>0</blue>
                 </color>
                </brush>
               </colorrole>
               <colorrole role="Base">
                <brush brushstyle="SolidPattern">
-                <color alpha="255">
-                 <red>73</red>
-                 <green>73</green>
-                 <blue>80</blue>
+                <color alpha="0">
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>0</blue>
                 </color>
                </brush>
               </colorrole>
               <colorrole role="Window">
                <brush brushstyle="SolidPattern">
-                <color alpha="255">
-                 <red>73</red>
-                 <green>73</green>
-                 <blue>80</blue>
+                <color alpha="0">
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>0</blue>
                 </color>
                </brush>
               </colorrole>
@@ -280,28 +306,28 @@
              <inactive>
               <colorrole role="Button">
                <brush brushstyle="SolidPattern">
-                <color alpha="255">
-                 <red>73</red>
-                 <green>73</green>
-                 <blue>80</blue>
+                <color alpha="0">
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>0</blue>
                 </color>
                </brush>
               </colorrole>
               <colorrole role="Base">
                <brush brushstyle="SolidPattern">
-                <color alpha="255">
-                 <red>73</red>
-                 <green>73</green>
-                 <blue>80</blue>
+                <color alpha="0">
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>0</blue>
                 </color>
                </brush>
               </colorrole>
               <colorrole role="Window">
                <brush brushstyle="SolidPattern">
-                <color alpha="255">
-                 <red>73</red>
-                 <green>73</green>
-                 <blue>80</blue>
+                <color alpha="0">
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>0</blue>
                 </color>
                </brush>
               </colorrole>
@@ -309,28 +335,28 @@
              <disabled>
               <colorrole role="Button">
                <brush brushstyle="SolidPattern">
-                <color alpha="255">
-                 <red>73</red>
-                 <green>73</green>
-                 <blue>80</blue>
+                <color alpha="0">
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>0</blue>
                 </color>
                </brush>
               </colorrole>
               <colorrole role="Base">
                <brush brushstyle="SolidPattern">
-                <color alpha="255">
-                 <red>73</red>
-                 <green>73</green>
-                 <blue>80</blue>
+                <color alpha="0">
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>0</blue>
                 </color>
                </brush>
               </colorrole>
               <colorrole role="Window">
                <brush brushstyle="SolidPattern">
-                <color alpha="255">
-                 <red>73</red>
-                 <green>73</green>
-                 <blue>80</blue>
+                <color alpha="0">
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>0</blue>
                 </color>
                </brush>
               </colorrole>
@@ -338,7 +364,7 @@
             </palette>
            </property>
            <property name="styleSheet">
-            <string notr="true">background: #494950;</string>
+            <string notr="true">background: transparent;</string>
            </property>
            <widget class="QLabel" name="progressLabel">
             <property name="geometry">
@@ -365,8 +391,7 @@
              <bool>false</bool>
             </property>
             <property name="styleSheet">
-             <string notr="true">color: &quot;white&quot;;
-background: transparent;</string>
+             <string notr="true">background: transparent;</string>
             </property>
             <property name="text">
              <string>10 tests completed out of 30 (30%)</string>
@@ -410,6 +435,9 @@ background: transparent;</string>
          </item>
          <item>
           <widget class="QTabWidget" name="testsTab">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
              <horstretch>0</horstretch>
@@ -427,7 +455,7 @@ background: transparent;</string>
            </property>
            <property name="styleSheet">
             <string notr="true"> QTabWidget::pane#testsTab { /* The tab widget frame */
-     border-top: 15 solid #494950;
+     border-top: 15 solid transparent;
      position: absolute;
      top: -1.7em;
  }
@@ -457,7 +485,7 @@ QTabWidget::tab-bar#testsTab {
             <enum>QTabWidget::Rounded</enum>
            </property>
            <property name="currentIndex">
-            <number>2</number>
+            <number>0</number>
            </property>
            <widget class="QWidget" name="testSelection">
             <property name="font">
@@ -471,40 +499,14 @@ QTabWidget::tab-bar#testsTab {
             <widget class="QLabel" name="selectionLabel">
              <property name="geometry">
               <rect>
-               <x>50</x>
+               <x>10</x>
                <y>20</y>
-               <width>401</width>
+               <width>501</width>
                <height>16</height>
               </rect>
              </property>
              <property name="text">
               <string>Choose tests to run on your system:</string>
-             </property>
-            </widget>
-            <widget class="Line" name="line">
-             <property name="geometry">
-              <rect>
-               <x>10</x>
-               <y>60</y>
-               <width>601</width>
-               <height>20</height>
-              </rect>
-             </property>
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-            </widget>
-            <widget class="Line" name="line_2">
-             <property name="geometry">
-              <rect>
-               <x>390</x>
-               <y>40</y>
-               <width>20</width>
-               <height>271</height>
-              </rect>
-             </property>
-             <property name="orientation">
-              <enum>Qt::Vertical</enum>
              </property>
             </widget>
             <widget class="QLabel" name="label_2">
@@ -523,64 +525,33 @@ QTabWidget::tab-bar#testsTab {
             <widget class="QLabel" name="label_3">
              <property name="geometry">
               <rect>
-               <x>410</x>
+               <x>450</x>
                <y>50</y>
                <width>67</width>
                <height>17</height>
               </rect>
              </property>
+             <property name="frameShape">
+              <enum>QFrame::NoFrame</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Plain</enum>
+             </property>
              <property name="text">
               <string>Status</string>
              </property>
             </widget>
-            <widget class="QTreeView" name="statusView">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
+            <widget class="QTreeView" name="treeView">
              <property name="geometry">
               <rect>
-               <x>410</x>
-               <y>80</y>
-               <width>201</width>
-               <height>231</height>
+               <x>10</x>
+               <y>70</y>
+               <width>611</width>
+               <height>241</height>
               </rect>
              </property>
-             <property name="palette">
-              <palette>
-               <active>
-                <colorrole role="Base">
-                 <brush brushstyle="SolidPattern">
-                  <color alpha="255">
-                   <red>255</red>
-                   <green>255</green>
-                   <blue>255</blue>
-                  </color>
-                 </brush>
-                </colorrole>
-               </active>
-               <inactive>
-                <colorrole role="Base">
-                 <brush brushstyle="SolidPattern">
-                  <color alpha="255">
-                   <red>255</red>
-                   <green>255</green>
-                   <blue>255</blue>
-                  </color>
-                 </brush>
-                </colorrole>
-               </inactive>
-               <disabled>
-                <colorrole role="Base">
-                 <brush brushstyle="SolidPattern">
-                  <color alpha="255">
-                   <red>255</red>
-                   <green>255</green>
-                   <blue>255</blue>
-                  </color>
-                 </brush>
-                </colorrole>
-               </disabled>
-              </palette>
+             <property name="styleSheet">
+              <string notr="true"/>
              </property>
              <property name="frameShape">
               <enum>QFrame::Box</enum>
@@ -589,40 +560,24 @@ QTabWidget::tab-bar#testsTab {
               <enum>QFrame::Plain</enum>
              </property>
              <property name="verticalScrollBarPolicy">
-              <enum>Qt::ScrollBarAlwaysOff</enum>
-             </property>
-             <property name="horizontalScrollBarPolicy">
-              <enum>Qt::ScrollBarAlwaysOff</enum>
-             </property>
-             <property name="headerHidden">
-              <bool>true</bool>
-             </property>
-             <attribute name="headerVisible">
-              <bool>false</bool>
-             </attribute>
-            </widget>
-            <widget class="QTreeView" name="treeView">
-             <property name="geometry">
-              <rect>
-               <x>10</x>
-               <y>80</y>
-               <width>381</width>
-               <height>231</height>
-              </rect>
-             </property>
-             <property name="frameShape">
-              <enum>QFrame::Box</enum>
-             </property>
-             <property name="frameShadow">
-              <enum>QFrame::Plain</enum>
+              <enum>Qt::ScrollBarAlwaysOn</enum>
              </property>
              <property name="showDropIndicator" stdset="0">
               <bool>false</bool>
+             </property>
+             <property name="alternatingRowColors">
+              <bool>true</bool>
              </property>
              <property name="allColumnsShowFocus">
               <bool>false</bool>
              </property>
              <attribute name="headerVisible">
+              <bool>false</bool>
+             </attribute>
+             <attribute name="headerCascadingSectionResizes">
+              <bool>false</bool>
+             </attribute>
+             <attribute name="headerStretchLastSection">
               <bool>false</bool>
              </attribute>
             </widget>
@@ -674,8 +629,24 @@ QTabWidget::tab-bar#testsTab {
               <string>Start testing</string>
              </property>
             </widget>
+            <widget class="Line" name="selectionSeparator">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>0</y>
+               <width>640</width>
+               <height>3</height>
+              </rect>
+             </property>
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </widget>
            </widget>
            <widget class="QWidget" name="testing">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
             <property name="font">
              <font>
               <pointsize>11</pointsize>
@@ -1064,8 +1035,8 @@ QTabWidget::tab-bar#testsTab {
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;Please enter the e-mail address associated with your Launchpad account (if applicable)&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;and click the Submit Results button to submit these test results to Ubuntu Friendly.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=;&quot;&gt;Please enter the e-mail address associated with your Launchpad account (if applicable)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=;&quot;&gt;and click the Submit Results button to submit these test results to Ubuntu Friendly.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
              <property name="scaledContents">
               <bool>false</bool>
@@ -1161,6 +1132,19 @@ p, li { white-space: pre-wrap; }
               <string>View results</string>
              </property>
             </widget>
+            <widget class="Line" name="submissionSeparator">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>0</y>
+               <width>640</width>
+               <height>3</height>
+              </rect>
+             </property>
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </widget>
            </widget>
           </widget>
          </item>
@@ -1175,3 +1159,4 @@ p, li { white-space: pre-wrap; }
  <resources/>
  <connections/>
 </ui>
+
