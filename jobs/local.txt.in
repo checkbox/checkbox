@@ -54,6 +54,13 @@ command:
   shopt -s extglob
   cat $CHECKBOX_SHARE/jobs/disk.txt?(.in)
 
+name: __esata__
+plugin: local
+_description: eSATA disk tests
+command:
+  shopt -s extglob
+  cat $CHECKBOX_SHARE/jobs/esata.txt?(.in)
+
 name: __fingerprint__
 plugin: local
 _description: Fingerprint reader tests
@@ -168,7 +175,7 @@ command:
 
 name: __pcmcia-pcix__
 plugin: local
-_description: PCMCIA/PCIX Card tests
+_description: PCMCIA/ExpressCard tests
 command:
   shopt -s extglob
   cat $CHECKBOX_SHARE/jobs/pcmcia-pcix.txt?(.in)
