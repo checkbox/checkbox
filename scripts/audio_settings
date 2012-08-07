@@ -16,8 +16,16 @@ volume_regex = re.compile("(?<=volume: 0: )\s*[0-9]*")
 steps_regex = re.compile("(?<=volume steps:)\s*[0-9]*")
 name_regex = re.compile("(?<=name:).*")
 
-#name_regex = re.compile("index: [0-9].*?(?=driver:)", re.DOTALL)
 entries_regex = re.compile("index.*?(?=properties)", re.DOTALL)
+
+def move_sinks(index):
+    for input_index in name_regex.findall(check_output(["pacmd", "list-sink-inputs"],
+                                          universal_newlines=True)):
+        try:
+            check_call(["pacmd", "move-sink-input", input_index, index])
+        except CalledProcessError:
+            print("Failed to move input %d to sink %d" % (input_index, index))
+            sys.exit(1)
 
 def store_audio_settings(file):
 
@@ -26,17 +34,20 @@ def store_audio_settings(file):
     for type in TYPES:
         pacmd_entries = check_output(["pacmd","list-%ss" % type],
                                      universal_newlines=True)
-        active_entries = active_entries_regex.search(pacmd_entries)
+        active_entry = active_entries_regex.search(pacmd_entries)
 
-        index = index_regex.search(active_entries.group())
+        index = index_regex.search(active_entry.group())
         print("%s_index: %s" % (type, index.group().strip()), file=settings_file)
         
-        muted = muted_regex.search(active_entries.group())
+        muted = muted_regex.search(active_entry.group())
         print("%s_muted: %s" % (type, muted.group().strip()), file=settings_file)
         
-        volume = volume_regex.search(active_entries.group())
-        print("%s_volume: %s" % (type, volume.group().strip()), file=settings_file)
-
+        steps = int(steps_regex.search(active_entry.group()))
+        volume = int(volume_regex.search(active_entry.group()))
+        
+        absolute_volume = int(steps / 100 * volume) 
+        
+        print("%s_volume: %s" % (type, str(absolute_volume), file=settings_file)
 
 def set_audio_settings(device, mute, volume):
     print(device, mute, volume)
@@ -60,9 +71,7 @@ def set_audio_settings(device, mute, volume):
                     sys.exit(1)
 
                 if type == "sink":
-                    for input_index in name_regex.findall(check_output(["pacmd", "list-sink-inputs"],
-                                                          universal_newlines=True)):
-                        check_call(["pacmd", "move-sink-input", input_index, index])
+                    move_sinks(index)
 
                 try:
                     check_call(["pacmd", "set-%s-mute" % type, index, str(mute)])
@@ -80,7 +89,38 @@ def set_audio_settings(device, mute, volume):
                     sys.exit(1)
 
 def restore_audio_settings(file):
-    print(file)
+    settings_file = open(file).read().split()
+
+    for type in TYPES:
+        index = settings_file[settings_file.index("%s_index:" % type) + 1]
+        print(index)
+        
+        try:
+           check_call(["pacmd", "set-default-%s" % type, index])
+        except CalledProcessError:
+           print("Failed to set default %s" % type)
+           sys.exit(1)
+
+        if type == "sink":
+           move_sinks(index)
+
+        muted = settings_file[settings_file.index("%s_muted:" % type) + 1]
+        print(muted)
+        
+        try:
+            check_call(["pacmd", "set-%s-mute" % type, index, str(mute)])
+        except:
+            print("Failed to set mute for %s" % device)
+            sys.exit(1)        
+
+        volume = settings_file[settings_file.index("%s_volume:" % type) + 1]
+        print(volume)
+        
+        try:
+            check_call(["pacmd", "set-%s-volume" % type, index, volume])
+        except:
+            print("Failed to set volume for %s" % device)
+            sys.exit(1)
 
 def main():
     parser = ArgumentParser("Manipulate PulseAudio settings")
