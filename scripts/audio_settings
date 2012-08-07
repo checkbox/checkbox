@@ -108,7 +108,7 @@ def restore_audio_settings(file):
         print(muted)
         
         try:
-            check_call(["pacmd", "set-%s-mute" % type, index, str(mute)])
+            check_call(["pacmd", "set-%s-mute" % type, index, muted])
         except:
             print("Failed to set mute for %s" % device)
             sys.exit(1)        
