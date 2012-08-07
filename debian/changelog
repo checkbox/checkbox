@@ -8,6 +8,10 @@ checkbox (0.14.4) quantal; urgency=low
     scripts/removable_storage_watcher: added support for ata_serial_esata
     devices
 
+  [Sylvain Pineau]
+  * jobs/graphics.txt.in, jobs/benchmarks.txt.in: Move gtkperk to the benchmarks
+    section.
+
  -- Daniel Manrique <roadmr@ubuntu.com>  Mon, 06 Aug 2012 16:34:01 -0400
 
 checkbox (0.14.3) quantal; urgency=low
@@ -55,8 +59,6 @@ checkbox (0.14.3) quantal; urgency=low
   * qt/frontend/qtfront.ui, qt/frontend/images/checkbox-qt-head.png: 
     Add transparency properties to the main window header to keep the main theme
     colors in the widget background (LP: #1030857)
-  * jobs/graphics.txt.in, jobs/benchmarks.txt.in: Move gtkperk to the benchmarks
-    section.
 
   [Jeff Marcom]
   * Added timeout to job call for disk smart test.
