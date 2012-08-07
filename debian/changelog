@@ -1,5 +1,6 @@
 checkbox (0.14.4) quantal; urgency=low
 
+  [ Daniel Manrique ]
   * New version 0.14.4 for Quantal Quetzal development.
 
   [Jeff Lane]
@@ -7,8 +8,17 @@ checkbox (0.14.4) quantal; urgency=low
     scripts/removable_storage_test: added support for ata_serial_esata devices
     scripts/removable_storage_watcher: added support for ata_serial_esata
     devices
+  * scripts/optical_write_test: changed behaviour to timeout after 5 minutes
+    rather than a few seconds to give testers a chance to complete the test
+    without having to sit on top of the machine waiting. If tester doesn't hit
+    the tray before timeout, the test makes a best efford to mount the disk
+    itself and proceed.
+    jobs/optical.txt.in: Cleared up text in the existing manual optical write
+    tests and added two automated tests that can be used if desired (they still
+    require the user to push the tray in after writing, but eliminate other
+    steps)
 
- -- Daniel Manrique <roadmr@ubuntu.com>  Mon, 06 Aug 2012 16:34:01 -0400
+ -- Jeff Marcom <jeffmarcom@ubuntu.com>  Tue, 07 Aug 2012 15:44:25 -0400
 
 checkbox (0.14.3) quantal; urgency=low
 
@@ -76,7 +86,7 @@ checkbox (0.14.3) quantal; urgency=low
     jobs/miscellanea.txt.in: fixed a typo in the chvt job. It used to reqire
     'package.alias' instead of 'package.name'
 
- -- Jeff Lane <jeff@ubuntu.com>  Mon, 06 Aug 2012 15:35:26 -0400
+ -- Jeff Lane <jeff@ubuntu.com>  Mon, 06 Aug 2012 09:26:41 -0400
 
 checkbox (0.14.2) quantal; urgency=low
 
