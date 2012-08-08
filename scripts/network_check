@@ -54,7 +54,10 @@ def main():
         command.append("--error")
 
     if not args.auto:
-        call(command)
+        try:
+            call(command)
+        except OSError:
+            print "Oops! You seem to be missing zenity."
 
     if any(results.values()):
         return 0
