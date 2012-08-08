@@ -19,8 +19,11 @@ name_regex = re.compile("(?<=name:).*")
 entries_regex = re.compile("index.*?(?=properties)", re.DOTALL)
 
 def move_sinks(index):
-    for input_index in index_regex.findall(check_output(["pacmd", "list-sink-inputs"],
-                                          universal_newlines=True)):
+    sink_inputs = check_output(["pacmd", "list-sink-inputs"],
+                               universal_newlines=True)
+    input_indexes = index_regex.findall()
+    
+    for input_index in input_indexes:
         try:
             check_call(["pacmd", "move-sink-input", input_index, index])
         except CalledProcessError:
