@@ -8,10 +8,10 @@ checkbox (0.14.4) quantal; urgency=low
     scripts/removable_storage_test: added support for ata_serial_esata devices
     scripts/removable_storage_watcher: added support for ata_serial_esata
     devices
+    devices
   * scripts/optical_write_test: changed behaviour to timeout after 5 minutes
     rather than a few seconds to give testers a chance to complete the test
     without having to sit on top of the machine waiting. If tester doesn't hit
-    the tray before timeout, the test makes a best efford to mount the disk
     itself and proceed.
     jobs/optical.txt.in: Cleared up text in the existing manual optical write
     tests and added two automated tests that can be used if desired (they still
@@ -22,7 +22,13 @@ checkbox (0.14.4) quantal; urgency=low
   * jobs/graphics.txt.in, jobs/benchmarks.txt.in: Move gtkperk to the benchmarks
     section.
 
- -- Daniel Manrique <roadmr@ubuntu.com>  Mon, 06 Aug 2012 16:34:01 -0400
+  [Brendan Donegan]
+  * scripts/audio_settings: Converted script from Perl to Python(3), putting 
+    it in line with approved technology guidelines
+  * jobs/audio.txt.in: Fixed audio jobs to use --file option of audio_settings 
+    instead of piping to STDOUT.
+
+ -- Jeff Marcom <jeff.marcom@ubuntu.com>  Wed, 08 Aug 2012 10:25:45 -0400
 
 checkbox (0.14.3) quantal; urgency=low
 

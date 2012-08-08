@@ -1,108 +1,172 @@
-#!/usr/bin/perl
+#!/usr/bin/python3
 
-use strict;
-use warnings;
+import sys
+import re
 
-use Getopt::Long;
+from argparse import ArgumentParser
+from subprocess import check_output, check_call, CalledProcessError
 
-my $action = shift @ARGV;
-my @types = ('sink', 'source');
+TYPES = ("source","sink")
+DIRECTIONS = {"source": "input", "sink": "output"}
 
-if ($action eq "store") {
-    # Find the current sink and and its mute/volume settings
-    foreach my $type (@types) {
-         my $index = `pacmd list-${type}s | grep '* index' | awk -F': ' '{print \$2}'`;
-         chomp $index;
-         print "${type}_index: ${index}\n";
+active_entries_regex = re.compile("\* index.*?(?=properties)", re.DOTALL)
+index_regex = re.compile("(?<=index: )[0-9]*")
+muted_regex = re.compile("(?<=muted: ).*")
+volume_regex = re.compile("(?<=volume: 0: )\s*[0-9]*")
+steps_regex = re.compile("(?<=volume steps:)\s*[0-9]*")
+name_regex = re.compile("(?<=name:).*")
 
-         my $muted = `pacmd list-${type}s | grep -A15 '* index' | grep 'muted:' | awk -F': ' '{print \$2}'`;
-         chomp $muted;
-         print "${type}_muted: ${muted}\n";
+entries_regex = re.compile("index.*?(?=properties)", re.DOTALL)
 
-         my $volume = `pacmd list-${type}s | grep -A10 '* index' | grep 'volume: 0:' | awk '{print \$3}'`;
-         chomp $volume; chop $volume; # Strip off the trailing %
-         print "${type}_volume: ${volume}\n";
-    }
-}
-elsif ($action eq "set") {
-    print "Updating audio settings\n";
+def move_sinks(index):
+    sink_inputs = check_output(["pacmd", "list-sink-inputs"],
+                               universal_newlines=True)
+    input_indexes = index_regex.findall(sink_inputs)
+    
+    for input_index in input_indexes:
+        try:
+            check_call(["pacmd", "move-sink-input", input_index, index])
+        except CalledProcessError:
+            print("Failed to move input %d to sink %d" % (input_index, index))
+            sys.exit(1)
 
-    my ($device, $mute, $volume);
-    $mute = 0;
-    $volume = 100;
-    GetOptions( 'device=s' => \$device,
-                'mute' => \$mute,
-                'volume=s' => \$volume);
+def store_audio_settings(file):
 
-    if ($device) {
-        foreach my $type (@types) {
-            my $direction = ($type eq 'sink') ? 'out' : 'in';
-            my $index = `pacmd list-${type}s | grep -B4 alsa_${direction}put[.]$device | grep index | awk -F': ' '{print \$2}'`;
-            chomp $index;
-            system("pacmd set-default-$type $index");
+    settings_file = open(file, 'w')
 
-            if ($type eq 'sink') {
-                foreach my $input (`pacmd list-sink-inputs | grep index | awk -F': ' '{print \$2}'`) {
-                    chomp($input);
-                    system("pacmd move-sink-input $input $index");
-                }
-            }
+    for type in TYPES:
+        pacmd_entries = check_output(["pacmd","list-%ss" % type],
+                                     universal_newlines=True)
+        active_entry = active_entries_regex.search(pacmd_entries).group()
 
-            system("pacmd set-${type}-mute $index $mute");
+        index = index_regex.search(active_entry)
+        print("%s_index: %s" % (type, index.group().strip()), file=settings_file)
+        
+        muted = muted_regex.search(active_entry)
+        print("%s_muted: %s" % (type, muted.group().strip()), file=settings_file)
+        
+        steps = int(steps_regex.search(active_entry).group().strip())
+        volume = int(volume_regex.search(active_entry).group().strip())
+        
+        absolute_volume = int(steps / 100 * volume) 
+        
+        print("%s_volume: %s" % (type, str(absolute_volume)), file=settings_file)
 
-            # Set the volume as requested
-            my $base_volume = `pacmd list-${type}s | grep -A15 alsa_${direction}put[.]$device | grep 'volume steps:' | awk -F': ' '{print \$2}'`;
-            chomp $base_volume;
-            my $new_volume = int($base_volume / 100 * $volume);
-            system("pacmd set-${type}-volume $index $new_volume");
-        }
-    }
-    else {
-        print "No device specified\n";
-    }
-}
-elsif ($action eq "restore") {
+def set_audio_settings(device, mute, volume):
+    print(device, mute, volume)
 
-    my $file;
-    GetOptions( 'file=s' => \$file);
+    for type in TYPES:
+        pacmd_entries = check_output(["pacmd", "list-%ss" % type],
+                                     universal_newlines=True)
 
-    open PACMD_FILE, $file;
+        entries = entries_regex.findall(pacmd_entries)
 
-    my $index;
-    foreach (<PACMD_FILE>) {
-        chomp;
+        for entry in entries:
+            name = name_regex.search(entry).group()
+                  
+            if device in name and DIRECTIONS[type] in name:
+                index = index_regex.search(entry).group().strip()
 
-        foreach my $type (@types) {
-            if (/($type)_index/) {
-                $index = (split(/: /, $_))[-1];
+                try:
+                    check_call(["pacmd", "set-default-%s" % type, index])
+                except CalledProcessError:
+                    print("Failed to set default %s" % type)
+                    sys.exit(1)
 
-                system("pacmd set-default-$type $index");
+                if type == "sink":
+                    move_sinks(index)
 
-                if ($type eq 'sink') {
-                    foreach my $input (`pacmd list-sink-inputs | grep index | awk -F': ' '{print \$2}'`) {
-                        chomp($input);
-                        system("pacmd move-sink-input $input $index");
-                    }
-                }
-            }
-            elsif (/($type)_muted/) {
-                my $muted = (split(/: /, $_))[-1];
+                try:
+                    check_call(["pacmd", "set-%s-mute" % type, index, str(mute)])
+                except:
+                    print("Failed to set mute for %s" % device)
+                    sys.exit(1)
 
-                system("pacmd set-${type}-mute $index $muted");
-            }
-            elsif(/($type)_volume/) {
-                my $volume = (split(/: /, $_))[-1];
+                steps = int(steps_regex.search(entry).group().strip())
+                new_volume = int(steps / 100 * volume)
 
-                # Calculate volume from base volume
-                my $base_volume = `pacmd list-${type}s | grep -A15 'index: ${index}' | grep 'volume steps:' | awk -F': ' '{print \$2}'`;
-                chomp $base_volume;
+                try:
+                    check_call(["pacmd", "set-%s-volume" % type, index, str(new_volume)])
+                except:
+                    print("Failed to set volume for %s" % device)
+                    sys.exit(1)
 
-                my $new_volume = int($base_volume / 100 * $volume);
-                system("pacmd set-${type}-volume $index $new_volume");
-            }
-        }
-    }
-}
-else {
-    print "Invalid action!\n";
-}
+def restore_audio_settings(file):
+    settings_file = open(file).read().split()
+
+    for type in TYPES:
+        index = settings_file[settings_file.index("%s_index:" % type) + 1]
+        print(index)
+        
+        try:
+           check_call(["pacmd", "set-default-%s" % type, index])
+        except CalledProcessError:
+           print("Failed to set default %s" % type)
+           sys.exit(1)
+
+        if type == "sink":
+           move_sinks(index)
+
+        muted = settings_file[settings_file.index("%s_muted:" % type) + 1]
+        print(muted)
+        
+        try:
+            check_call(["pacmd", "set-%s-mute" % type, index, muted])
+        except:
+            print("Failed to set mute for %s" % device)
+            sys.exit(1)        
+
+        volume = settings_file[settings_file.index("%s_volume:" % type) + 1]
+        print(volume)
+        
+        try:
+            check_call(["pacmd", "set-%s-volume" % type, index, volume])
+        except:
+            print("Failed to set volume for %s" % device)
+            sys.exit(1)
+
+def main():
+    parser = ArgumentParser("Manipulate PulseAudio settings")
+    parser.add_argument("action",
+                        choices=['store','set','restore'],
+                        help="Action to perform with the audio settings")
+    parser.add_argument("-d","--device",
+                        help="The device to apply the new settings to.")
+    parser.add_argument("-m","--mute",
+                        action="store_true",
+                        help="""The new value for the mute setting
+                                of the specified device.""")
+    parser.add_argument("-v","--volume",
+                        type=int,
+                        help="""The new value for the volume setting
+                                of the specified device.""")
+    parser.add_argument("-f","--file",
+                        help="""The file to store settings in or restore
+                                settings from.""")
+    args = parser.parse_args()
+
+    if args.action == "store":
+        if not args.file:
+            print("No file specified to store audio settings!")
+            return 1
+
+        store_audio_settings(args.file)
+    elif args.action == "set":
+        if not args.device:
+            print("No device specified to change settings of!")
+            return 1
+        if not args.volume:
+            print("No volume level specified!")
+            return 1
+
+        set_audio_settings(args.device, args.mute, args.volume)
+    elif args.action == "restore":
+        restore_audio_settings(args.file)
+    else:
+        print(args.action + "is not a valid action")
+        return 1
+
+    return 0
+
+if __name__ == "__main__":
+    sys.exit(main())
