@@ -30,7 +30,7 @@ plugin: shell
 name: benchmarks/graphics/gtkperf
 depends: graphics/xorg-version
 requires: package.name == 'gtkperf'
-command: gtkperf -a 2>&1 | sed -e :a -e '$!N;s/\n/ /;ta' | sed -e 's/.*Total time:\s\+\(.*\)\s\+.*/\1Seconds/'
+command: python3 -c 'import re,sys,subprocess; (s, o) = subprocess.getstatusoutput("gtkperf -a"); [sys.exit(1) for i in [s] if s]; m = re.search("Total time:\s+(.*)\n", o); [print(i.group(1)+" Seconds") for i in [m] if m]'
 _description:
  Run gtkperf to make sure that GTK based test cases work
 
