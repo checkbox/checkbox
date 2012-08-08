@@ -128,7 +128,7 @@ class PAVolumeController(object):
             return False
         return True
 
-        
+
 
     def get_identifier(self):
         if self.type:
@@ -401,8 +401,8 @@ class Recorder(GstAudioObject):
 
 def process_arguments():
     description = """
-        Plays a single frequency through the default output, then records on 
-        the default input device. Analyzes the recorded signal to test for  
+        Plays a single frequency through the default output, then records on
+        the default input device. Analyzes the recorded signal to test for
         presence of the played frequency, if present it exits with success.
     """
     parser = argparse.ArgumentParser(description=description)
@@ -466,7 +466,7 @@ def main():
     pidctrl = PIDController(Kp=0.7, Ki=.01, Kd=0.01,
                             setpoint=REC_LEVEL_RANGE[0])
     pidctrl.set_change_limit(5)
-    #This  gathers spectrum data. 
+    #This  gathers spectrum data.
     analyzer = SpectrumAnalyzer(points=BINS,
                                 sampling_frequency=SAMPLING_FREQUENCY)
     #this receives 'buffer' messages and gathers raw audio data
@@ -502,7 +502,7 @@ def main():
     recorder.register_message_handler(gmh.bus_message_handler)
     recorder.register_buffer_handler(rawaudio.buffer_handler)
 
-    #Create the loop and add a few triggers 
+    #Create the loop and add a few triggers
     gobject.threads_init()
     loop = gobject.MainLoop()
     gobject.timeout_add_seconds(0, player.start)
@@ -542,15 +542,16 @@ def main():
     if args.audio:
         if args.verbose:
             print("Saving recorded audio as %s" % args.audio)
-        if not FileDumper().write_to_file(args.audio, [rawaudio.get_raw_audio()]):
+        if not FileDumper().write_to_file(args.audio,
+                                          [rawaudio.get_raw_audio()]):
             print("Couldn't save recorded audio", file=sys.stderr)
 
     if args.spectrum:
         if args.verbose:
             print("Saving spectrum data for plotting as %s" % args.spectrum)
         if not FileDumper().write_to_file(args.spectrum,
-                                       ["%s,%s" % t for t in 
-                                        zip(analyzer.frequencies, 
+                                       ["%s,%s" % t for t in
+                                        zip(analyzer.frequencies,
                                             analyzer.spectrum)]):
             print("Couldn't save spectrum data for plotting", file=sys.stderr)
 
