@@ -2,6 +2,7 @@ checkbox (0.14.4) quantal; urgency=low
 
   [ Daniel Manrique ]
   * New version 0.14.4 for Quantal Quetzal development.
+  * Added new audio_test and test definitions.
 
   [Jeff Lane]
   * jobs/esata.txt.in: added tests for removable eSATA drives
@@ -28,7 +29,7 @@ checkbox (0.14.4) quantal; urgency=low
   * jobs/audio.txt.in: Fixed audio jobs to use --file option of audio_settings 
     instead of piping to STDOUT.
 
- -- Jeff Marcom <jeff.marcom@ubuntu.com>  Wed, 08 Aug 2012 10:25:45 -0400
+ -- Daniel Manrique <roadmr@ubuntu.com>  Wed, 08 Aug 2012 14:44:05 -0400
 
 checkbox (0.14.3) quantal; urgency=low
 
