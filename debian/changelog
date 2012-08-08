@@ -28,7 +28,11 @@ checkbox (0.14.4) quantal; urgency=low
   * jobs/audio.txt.in: Fixed audio jobs to use --file option of audio_settings 
     instead of piping to STDOUT.
 
- -- Jeff Marcom <jeff.marcom@ubuntu.com>  Wed, 08 Aug 2012 10:25:45 -0400
+  [Nathan Williams]
+  * scripts/network_check: Fixed exception handling in the absence of zenity
+    (LP: #988260)
+
+ -- Daniel Manrique <roadmr@ubuntu.com>  Wed, 08 Aug 2012 12:43:25 -0400
 
 checkbox (0.14.3) quantal; urgency=low
 
