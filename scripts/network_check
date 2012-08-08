@@ -57,7 +57,7 @@ def main():
         try:
             call(command)
         except OSError:
-            print "Zenity missing; unable to report test result:\n %s" % message
+            print("Zenity missing; unable to report test result:\n %s" % message)
 
     if any(results.values()):
         return 0
