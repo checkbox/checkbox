@@ -26,6 +26,7 @@ to physical movement of hardware.
 
 import os
 import re
+import sys
 import time
 import logging
 import threading
@@ -80,11 +81,11 @@ class AccelerometerUI(Gtk.Window):
         w_table.attach_next_to(self.right_icon, self.debug_label,
                                Gtk.PositionType.RIGHT, 1, 1)
 
-    def update_axis_icon(self, value):
+    def update_axis_icon(self, direction):
         """Change desired directional icon to checkmark"""
-        exec('self.%s_icon.set_from_stock' % (value) \
+        exec('self.%s_icon.set_from_stock' % (direction) \
              + '(Gtk.STOCK_YES, size=Gtk.IconSize.BUTTON)')
-
+        
     def update_debug_label(self, text):
         """Update axis information in center of UI"""
         self.debug_label.set_text(text)
@@ -108,8 +109,8 @@ class AccelerometerUI(Gtk.Window):
 class AxisData(threading.Thread):
     """Acquire information from kernel regarding the state of the
     accelerometer axis positions. Gathered data will be compared to
-    a preset threshold reading. The default (either - or + ) for any
-    direction is 600."""
+    a preset threshold reading. The default threshold (either - or + ) 
+    for any direction is 600."""
 
     def __init__(self, device_path, ui_control=None):
         threading.Thread.__init__(self)
@@ -120,10 +121,10 @@ class AxisData(threading.Thread):
         self.y_test_pool = ["left", "right"]
 
     def grab_current_readings(self):
-        """Search kernel data found in /sys/devices/platform/{accelerometr_map}
-        and return relevent axis tuple"""
+        """Search device path and return axis tuple"""
         data_file = os.path.join("/sys", self.device_path,
                                  "device", "position")
+
         # Try and retrieve positional data from kernel
         try:
             position_tuple = open(data_file)
@@ -144,10 +145,10 @@ class AxisData(threading.Thread):
                 return 2
             return 1
 
-    def direction_poll(self, x, y):
-        direction_map = {"X": x, "Y": y}
+    def direction_poll(self, x_axis, y_axis):
+        """Poll for threshold being met per x, and y axis"""
+        direction_map = {"X": x_axis, "Y": y_axis}
 
-        # Check for threshold met
         for mapping, data in direction_map.items():
             reading = self.parse_reading(int(data), mapping)
 
@@ -167,9 +168,13 @@ class AxisData(threading.Thread):
                 return 1
 
             # Parse for current positional values
+            # Hdaps will only report X, and Y positional data
             x_data = int(axis_data_bundle[0])
             y_data = int(axis_data_bundle[1])
-            z_data = int(axis_data_bundle[2])
+            if len(axis_data_bundle) > 2:
+                z_data = int(axis_data_bundle[2])
+            else:
+                z_data = 0
 
             debug_info = "X: %s Y: %s Z: %s" % (x_data, y_data, z_data)
 
@@ -199,15 +204,49 @@ class AxisData(threading.Thread):
             self.ui.destroy()
         return 0
 
+def check_module_status():
+    """Looks to see if it can determine the hardware manufacturer
+    and report corresponding accelerometer driver status"""
+    oem_driver_pool = {"hewlett-packard": "hp_accel", 
+                       "toshiba": "hp_accel", 
+                       "ibm": "hdaps", "lenovo": "hdaps"}
 
+    oem_module = None
+    dmi_info = Popen(['dmidecode'], stdout=PIPE, universal_newlines=True)
+    vendor_data = re.findall("Manufacturer:\s.*", dmi_info.stdout.read())
+
+    try:
+        manufacturer = vendor_data[1].split(":")[1].strip()
+    except IndexError as error:
+        logging.error("Failed to find Manufacturing data")
+        return
+
+    # Now we look to see if there was any info during boot 
+    # time that would help in debugging this failure
+    for vendor, module in oem_driver_pool.items():
+        if manufacturer.lower() == vendor:
+            oem_module = oem_driver_pool.get(vendor)
+            break # We've found our desired module to probe.
+
+    if oem_module != None:
+        # Check dmesg status for supported module
+        driver_status = Popen(['dmesg'], stdout=PIPE, universal_newlines=True)
+        module_regex = oem_module + ".*"
+        kernel_notes = re.findall(module_regex, driver_status.stdout.read())
+        # Report ALL findings, it's useful to note it the driver failed init
+        # more than once of actually passed despite a reading failure
+        logging.debug("\n".join((kernel_notes)))
+    else:
+        logging.error("Unknown manufacturer")
+    
 def check_for_accelerometer():
     """Checks device list for existence of accelerometer and returns
-    vendor, name, manufacturer, and system path info."""
+    name, manufacturer, and system path info."""
 
+    found = False
     device_info = open("/proc/bus/input/devices").readlines()
-
     for line in device_info:
-        if "Accelerometer" in line:
+        if "accelerometer" in line.lower():
             target = device_info.index(line)
 
             name = device_info[target].split("=")[1]
@@ -219,11 +258,10 @@ def check_for_accelerometer():
         logger.debug("Name: %s\nPath: %s" % (name, path))
         return path.strip()
     else:
-        # Return 0 anyway as not every laptop contains this feature
-        logger.error("Accelerometer hardware not present")
+        # Return 1 as it's expected
+        logger.error("Accelerometer hardware not found")
 
-    return 0
-
+    return 1
 
 def main():
 
@@ -240,7 +278,8 @@ def main():
 
     sys_path = check_for_accelerometer()
     if sys_path == 1:
-        return 0
+        check_module_status()
+        sys.exit(1)
 
     ui = AccelerometerUI()
     grab_data = AxisData(sys_path, ui)
