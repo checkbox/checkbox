@@ -138,3 +138,13 @@ command: [ -e ${CHECKBOX_DATA}/alsa_info.log ] && cat ${CHECKBOX_DATA}/alsa_info
 _description:
  Attaches the audio hardware data collection log to the results.
 
+plugin: manual
+name: audio/channels
+command: speaker-test -c 2 -l 1 -t wav
+_description:
+ PURPOSE:
+     Check that the various audio channels are working properly
+ STEPS:
+     1. Click the Test button
+ VERIFICATION:
+     You should clearly hear a voice from the different audio channels
