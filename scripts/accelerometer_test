@@ -85,7 +85,7 @@ class AccelerometerUI(Gtk.Window):
         """Change desired directional icon to checkmark"""
         exec('self.%s_icon.set_from_stock' % (direction) \
              + '(Gtk.STOCK_YES, size=Gtk.IconSize.BUTTON)')
-        
+
     def update_debug_label(self, text):
         """Update axis information in center of UI"""
         self.debug_label.set_text(text)
@@ -109,7 +109,7 @@ class AccelerometerUI(Gtk.Window):
 class AxisData(threading.Thread):
     """Acquire information from kernel regarding the state of the
     accelerometer axis positions. Gathered data will be compared to
-    a preset threshold reading. The default threshold (either - or + ) 
+    a preset threshold reading. The default threshold (either - or + )
     for any direction is 600."""
 
     def __init__(self, device_path, ui_control=None):
@@ -204,11 +204,12 @@ class AxisData(threading.Thread):
             self.ui.destroy()
         return 0
 
+
 def check_module_status():
     """Looks to see if it can determine the hardware manufacturer
     and report corresponding accelerometer driver status"""
-    oem_driver_pool = {"hewlett-packard": "hp_accel", 
-                       "toshiba": "hp_accel", 
+    oem_driver_pool = {"hewlett-packard": "hp_accel",
+                       "toshiba": "hp_accel",
                        "ibm": "hdaps", "lenovo": "hdaps"}
 
     oem_module = None
@@ -221,12 +222,12 @@ def check_module_status():
         logging.error("Failed to find Manufacturing data")
         return
 
-    # Now we look to see if there was any info during boot 
+    # Now we look to see if there was any info during boot
     # time that would help in debugging this failure
     for vendor, module in oem_driver_pool.items():
         if manufacturer.lower() == vendor:
             oem_module = oem_driver_pool.get(vendor)
-            break # We've found our desired module to probe.
+            break  # We've found our desired module to probe.
 
     if oem_module != None:
         # Check dmesg status for supported module
@@ -238,7 +239,8 @@ def check_module_status():
         logging.debug("\n".join((kernel_notes)))
     else:
         logging.error("Unknown manufacturer")
-    
+
+
 def check_for_accelerometer():
     """Checks device list for existence of accelerometer and returns
     name, manufacturer, and system path info."""
@@ -262,6 +264,7 @@ def check_for_accelerometer():
         logger.error("Accelerometer hardware not found")
 
     return 1
+
 
 def main():
 

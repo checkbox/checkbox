@@ -22,3 +22,17 @@ _description:
      2. On the open text area, use your keyboard to type something
  VERIFICATION:
      Is your keyboard working properly?
+
+plugin: manual
+name: input/accelerometer
+command: accelerometer_test -m
+_description:
+ PURPOSE:
+     This test will test your accelerometer to see if it is detected
+     and operational as a joystiq device. 
+ STEPS:
+     1. Click on Test
+     2. Tilt your hardware in the directions onscreen until the axis threshold
+        is met. 
+ VERIFICATION:
+     Is your accelerometer properly detected? Can you use the device?
