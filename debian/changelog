@@ -8,7 +8,6 @@ checkbox (0.14.4) quantal; urgency=low
     scripts/removable_storage_test: added support for ata_serial_esata devices
     scripts/removable_storage_watcher: added support for ata_serial_esata
     devices
-    devices
   * scripts/optical_write_test: changed behaviour to timeout after 5 minutes
     rather than a few seconds to give testers a chance to complete the test
     without having to sit on top of the machine waiting. If tester doesn't hit
@@ -21,6 +20,7 @@ checkbox (0.14.4) quantal; urgency=low
   [Sylvain Pineau]
   * jobs/graphics.txt.in, jobs/benchmarks.txt.in: Move gtkperk to the benchmarks
     section.
+  * jobs/cpu.txt.in: Added a check for ARM Vector Floating Point Unit support.
 
   [Brendan Donegan]
   * scripts/audio_settings: Converted script from Perl to Python(3), putting 

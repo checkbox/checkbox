@@ -44,3 +44,10 @@ user: root
 command: nice -n -20 frequency_governors_test --debug
 _description:
  This test checks that CPU frequency governors are obeyed when set.
+
+plugin: shell
+name: cpu/arm_vfp_support
+requires: 'arm' in cpuinfo.type
+command: cat /var/log/messages | grep VFP
+_description:
+ Validate that the Vector Floating Point Unit is running on ARM device
