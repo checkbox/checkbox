@@ -15,16 +15,16 @@ def main():
     """
     Check the time needed to reconnect an active WIFI connection
     """
-    with open('/proc/net/wireless') as f:
-        match = re.search('(\w+):', ''.join(f.readlines()))
-        if match:
-            IFACE = match.group(1)
-        else:
-            print("No active wifi connection detected", file=sys.stderr)
-            return 1
+    devices = subprocess.getoutput('nmcli dev')
+    match = re.search('(\w+)\s+802-11-wireless\s+connected', devices)
+    if match:
+        IFACE = match.group(1)
+    else:
+        print("No active wifi connection detected", file=sys.stderr)
+        return 1
 
-    devices = subprocess.getoutput('nmcli -t -f devices,uuid con status')
-    match = re.search(IFACE+':(.*)', devices)
+    dev_status = subprocess.getoutput('nmcli -t -f devices,uuid con status')
+    match = re.search(IFACE+':(.*)', dev_status)
     uuid = None
     if match:
         uuid = match.group(1)
