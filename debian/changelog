@@ -21,6 +21,8 @@ checkbox (0.14.4) quantal; urgency=low
   [Sylvain Pineau]
   * jobs/graphics.txt.in, jobs/benchmarks.txt.in: Move gtkperk to the benchmarks
     section.
+  * jobs/benchmarks.txt.in, scripts/wifi_time2reconnect: Add a test to monitor
+    the time needed to reconnect to a WIFI access point.
 
   [Brendan Donegan]
   * scripts/audio_settings: Converted script from Perl to Python(3), putting 

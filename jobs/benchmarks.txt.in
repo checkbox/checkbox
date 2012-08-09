@@ -155,6 +155,12 @@ command: pts_run network-loopback
 _description: Run Network Loopback benchmark
 
 plugin: shell
+name: benchmarks/network/wifi_time_to_reconnect
+requires: device.category == 'WIRELESS'
+command: wifi_time2reconnect
+_description: Check the time needed to reconnect to a WIFI access point
+
+plugin: shell
 name: benchmarks/processor/encode-mp3
 requires: package.name == 'phoronix-test-suite'
 command: pts_run encode-mp3
