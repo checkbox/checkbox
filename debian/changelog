@@ -20,6 +20,9 @@ checkbox (0.14.4) quantal; urgency=low
     discover the currently running graphics driver and driver version
     jobs/graphics.txt.in: Added a new job to take advantage of the
     graphics_driver script.
+    data/whitelists/default.whitelist: Added the graphics_driver job to the
+    default whitelist because this would be good data to gather for UF and
+    doesn't cost much
 
   [Sylvain Pineau]
   * jobs/graphics.txt.in, jobs/benchmarks.txt.in: Move gtkperk to the benchmarks
@@ -44,7 +47,7 @@ checkbox (0.14.4) quantal; urgency=low
   [Samantha Jian]
   * Added disk spindown test script and definition.
 
- -- Jeff Lane <jeff@ubuntu.com>  Thu, 09 Aug 2012 20:36:56 -0400
+ -- Jeff Lane <jeff@ubuntu.com>  Thu, 09 Aug 2012 20:46:22 -0400
 
 checkbox (0.14.3) quantal; urgency=low
 
