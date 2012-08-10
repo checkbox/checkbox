@@ -8,6 +8,9 @@ import math
 import re
 import sys
 import subprocess
+#Trick to prevent gst from hijacking argv parsing
+argv = sys.argv
+sys.argv = []
 try:
     import gobject
     import gst
@@ -17,6 +20,7 @@ except ImportError:
           "version of Python, which is: " % sys.exc_info()[1], file=sys.stderr)
     print((sys.version), file=sys.stderr)
     sys.exit(127)
+sys.argv = argv
 
 
 #Frequency bands for FFT
@@ -54,7 +58,7 @@ class PIDController(object):
     def input_change(self, process_feedback, dt):
         """ Calculates desired input value change.
 
-            Based on process feedback and time inteval (dt).
+            Based on process feedback and time interval (dt).
         """
         error = self.setpoint - process_feedback
         self._integral = self._integral + (error * dt)
@@ -97,7 +101,7 @@ class PAVolumeController(object):
             self.method = self._pactl_output
         self.logger = logger
 
-    def set(self, volume):
+    def set_volume(self, volume):
         if not 0 <= volume <= 100:
             return False
         if not self.identifier:
@@ -111,7 +115,7 @@ class PAVolumeController(object):
         self._volume = volume
         return True
 
-    def get(self):
+    def get_volume(self):
         if not self.identifier:
             return None
         return self._volume
@@ -127,8 +131,6 @@ class PAVolumeController(object):
         if False == self.method(command):
             return False
         return True
-
-
 
     def get_identifier(self):
         if self.type:
@@ -162,15 +164,17 @@ class PAVolumeController(object):
         valid_elements = None
 
         if pa_info:
-            valid_elements = [(int(i.split()[0]), i.split()[1]) \
-                        for i in pa_info.splitlines() \
-                        if not re.match('.*monitor.*', i) \
-                        and not re.match('.*auto_null.*', i)]
+            reject_regex = '.*(monitor|auto_null).*'
+            valid_elements = [element for element in pa_info.splitlines() \
+                              if not re.match(reject_regex, element)]
         if not valid_elements:
             if self.logger:
                 self.logger.error("No valid PulseAudio elements"
                                   " for %s" % (self.type))
             return None
+        #We only need the pulseaudio numeric ID and long name for each element
+        valid_elements = [(int(element.split()[0]), element.split()[1]) \
+                          for e in valid_elements]
         return valid_elements[0]
 
     def _pactl_output(self, command):
@@ -305,7 +309,7 @@ class GStreamerMessageHandler(object):
     def level_method(self, level, pid_controller, volume_controller):
         #If volume controller doesn't return a valid volume,
         #we can't control it :(
-        current_volume = volume_controller.get()
+        current_volume = volume_controller.get_volume()
         if current_volume == None:
             self.logger.error("Unable to control recording volume."
                               "Test results may be wrong")
@@ -318,7 +322,7 @@ class GStreamerMessageHandler(object):
                       {'peak_level': level,
                        'change': change,
                        'volume': current_volume})
-        volume_controller.set(current_volume + change)
+        volume_controller.set_volume(current_volume + change)
 
     #Only sample if level is within the threshold
     def spectrum_method(self, analyzer, spectrum):
@@ -479,14 +483,14 @@ def main():
     if not recorder.volumecontroller.get_identifier():
         logging.warning("Unable to get input volume control identifier. "
                        "Test results will probably be invalid")
-    recorder.volumecontroller.set(0)
+    recorder.volumecontroller.set_volume(0)
 
     player.volumecontroller = PAVolumeController(type='output',
                                                  logger=logging)
     if not player.volumecontroller.get_identifier():
         logging.warning("Unable to get output volume control identifier. "
                        "Test results will probably be invalid")
-    player.volumecontroller.set(70)
+    player.volumecontroller.set_volume(70)
     player.volumecontroller.mute(False)
 
     #This handles the messages from gstreamer and orchestrates
@@ -517,8 +521,8 @@ def main():
     #When the loop ends, set things back to reasonable states
     player.stop()
     recorder.stop()
-    player.volumecontroller.set(50)
-    recorder.volumecontroller.set(10)
+    player.volumecontroller.set_volume(50)
+    recorder.volumecontroller.set_volume(10)
 
     #See if data gathering was successful.
     test_band = analyzer.frequency_band_for(args.frequency)
