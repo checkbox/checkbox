@@ -114,7 +114,9 @@ class AxisData(threading.Thread):
     """Acquire information from kernel regarding the state of the
     accelerometer axis positions. Gathered data will be compared to
     a preset threshold reading. The default threshold (either - or + )
-    for any direction is 600."""
+    for any direction is 600. Return values for thread are SUCCESS:0
+    FAILURE:1. FAILURE is likely to exists when thread is unable to
+    obtain a valid reading from the hardware."""
 
     def __init__(self, device_path, ui_control=None):
         threading.Thread.__init__(self)
