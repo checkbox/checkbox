@@ -45,7 +45,6 @@ class AccelerometerUI(Gtk.Window):
 
     def __init__(self):
         Gtk.Window.__init__(self, title="Accelerometer Test")
-        Gdk.threads_init()
 
         self.set_default_size(450, 100)
         self.set_type_hint(Gdk.WindowType.TOPLEVEL)
@@ -222,6 +221,7 @@ def check_module_status():
         logging.error("Failed to find Manufacturing data")
         return
 
+    logging.debug(manufacturer)
     # Now we look to see if there was any info during boot
     # time that would help in debugging this failure
     for vendor, module in oem_driver_pool.items():
