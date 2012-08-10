@@ -121,6 +121,8 @@ class AxisData(threading.Thread):
 
     def grab_current_readings(self):
         """Search device path and return axis tuple"""
+
+        time.sleep(0.5) # Sleep to accomodate slower processors
         data_file = os.path.join("/sys", self.device_path,
                                  "device", "position")
 
@@ -254,7 +256,7 @@ def check_module_status():
         # more than once of actually passed despite a reading failure
         logging.debug("\n".join((kernel_notes)))
     else:
-        logging.error("Unknown manufacturer")
+        logging.error("No supported module")
 
 
 def check_for_accelerometer():
@@ -308,7 +310,7 @@ def main():
     if args.manual:
         ui.enable()
     else:
-        time.sleep(10)
+        time.sleep(5)
 
 if __name__ == '__main__':
     main();
