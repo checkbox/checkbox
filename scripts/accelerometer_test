@@ -104,6 +104,12 @@ class AccelerometerUI(Gtk.Window):
         Gdk.threads_leave()
 
 
+class PermissionException(RuntimeError):
+    def __init__(self, error):
+        message = "Please re-run with root permissions"
+        RuntimeError.__init__(self, message, error)
+
+
 class AxisData(threading.Thread):
     """Acquire information from kernel regarding the state of the
     accelerometer axis positions. Gathered data will be compared to
@@ -123,8 +129,7 @@ class AxisData(threading.Thread):
 
     def grab_current_readings(self):
         """Search device path and return axis tuple"""
-
-        time.sleep(0.5) # Sleep to accomodate slower processors
+        time.sleep(0.5)  # Sleep to accomodate slower processors
         data_file = os.path.join("/sys", self.device_path,
                                  "device", "position")
 
@@ -207,6 +212,7 @@ class AxisData(threading.Thread):
             self.ui.destroy()
         return 0
 
+
 def insert_supported_module(oem_module):
     """Try and insert supported module to see if we get any init errors"""
     module_info = Popen(['modinfo %s' % oem_module], stdout=PIPE,
@@ -217,10 +223,15 @@ def insert_supported_module(oem_module):
     except IndexError as error:
         logging.error("Failed module insertion for " % module)
         return
-    insmod_output = Popen(['insmod %s' % module], stdout=PIPE,
+    insmod_output = Popen(['insmod %s' % module], stderr=PIPE,
                           shell=True, universal_newlines=True)
 
+    error = insmod_output.stderr.read()
+    if "Permission denied" in error:
+        raise PermissionException(error)
+
     return insmod_output.returncode
+
 
 def check_module_status():
     """Looks to see if it can determine the hardware manufacturer
@@ -230,16 +241,23 @@ def check_module_status():
                        "ibm": "hdaps", "lenovo": "hdaps"}
 
     oem_module = None
-    dmi_info = Popen(['dmidecode'], stdout=PIPE, universal_newlines=True)
-    vendor_data = re.findall("Manufacturer:\s.*", dmi_info.stdout.read())
+    dmi_info = Popen(['dmidecode'], stdout=PIPE, stderr=PIPE,
+                     universal_newlines=True)
 
+    output, error = dmi_info.communicate()
+
+    if "Permission denied" in error:
+        raise PermissionException(error)
+
+    vendor_data = re.findall("Manufacturer:\s.*", output)
     try:
         manufacturer = vendor_data[1].split(":")[1].strip()
-    except IndexError as error:
+    except IndexError:
         logging.error("Failed to find Manufacturing data")
         return
 
     logging.debug(manufacturer)
+
     # Now we look to see if there was any info during boot
     # time that would help in debugging this failure
     for vendor, module in oem_driver_pool.items():
@@ -284,6 +302,7 @@ def check_for_accelerometer():
         logger.error("Accelerometer hardware not found")
 
     return False
+
 
 def main():
 
