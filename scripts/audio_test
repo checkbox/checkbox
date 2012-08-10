@@ -46,7 +46,34 @@ MAGNITUDE_THRESHOLD = -5.0
 
 
 class PIDController(object):
+    """ A Proportional-Integrative-Derivative controller (PID) controls a
+    process's output to try to maintain a desired output value (known as
+    'setpoint', by continually adjusting the process's input.
+
+    It does so by calculating the "error" (difference between output and
+    setpoint) and attempting to minimize it manipulating the input.
+
+    The desired change to the input is calculated based on error and three
+    constants (Kp, Ki and Kd).  These values can be interpreted in terms of
+    time: P depends on the present error, I on the accumulation of past errors,
+    and D is a prediction of future errors, based on current rate of change.
+    The weighted sum of these three actions is used to adjust the process via a
+    control element.
+
+    In practice, Kp, Ki and Kd are process-dependent and usually have to
+    be tweaked by hand, but once reasonable constants are arrived at, they
+    can apply to a particular process without further modification.
+
+    """
     def __init__(self, Kp, Ki, Kd, setpoint=0):
+        """ Creates a PID controller with given constants and setpoint.
+
+           Arguments:
+           Kp, Ki, Kd: PID constants, see class description.
+           setpoint: desired output value; calls to input_change with
+                     a process output reading will return a desired change
+                     to the input to attempt matching output to this value.
+        """
         self.setpoint = setpoint
         self.Kp = Kp
         self.Ki = Ki
