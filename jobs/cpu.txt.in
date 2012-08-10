@@ -48,6 +48,6 @@ _description:
 plugin: shell
 name: cpu/arm_vfp_support
 requires: 'arm' in cpuinfo.type
-command: cat /var/log/messages | grep VFP
+command: cat /var/log/syslog | grep VFP
 _description:
  Validate that the Vector Floating Point Unit is running on ARM device
