@@ -203,6 +203,20 @@ class AxisData(threading.Thread):
             self.ui.destroy()
         return 0
 
+def insert_supported_module(oem_module):
+    """Try and insert supported module to see if we get any init errors"""
+    module_info = Popen(['modinfo %s' % oem_module], stdout=PIPE, 
+                        shell=True, universal_newlines=True)
+    info = module_info.stdout.read()
+    try:
+        module = re.findall("filename:\s.*", info)[0].split(":")[1].strip()
+    except IndexError as error:
+        logging.error("Failed module insertion for " % module)
+        return  
+    insmod_output = Popen(['insmod %s' % module], stdout=PIPE, 
+                          shell=True, universal_newlines=True)
+
+    return insmod_output.returncode
 
 def check_module_status():
     """Looks to see if it can determine the hardware manufacturer
@@ -230,6 +244,8 @@ def check_module_status():
             break  # We've found our desired module to probe.
 
     if oem_module != None:
+        if insert_supported_module(oem_module) != None:
+            logging.error("Failed module insertion")        
         # Check dmesg status for supported module
         driver_status = Popen(['dmesg'], stdout=PIPE, universal_newlines=True)
         module_regex = oem_module + ".*"
