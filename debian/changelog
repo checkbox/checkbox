@@ -16,6 +16,10 @@ checkbox (0.14.4) quantal; urgency=low
     tests and added two automated tests that can be used if desired (they still
     require the user to push the tray in after writing, but eliminate other
     steps)
+  * scripts/graphics_driver: Added this script based to parse Xorg.0.log and
+    discover the currently running graphics driver and driver version
+    jobs/graphics.txt.in: Added a new job to take advantage of the
+    graphics_driver script.
 
   [Sylvain Pineau]
   * jobs/graphics.txt.in, jobs/benchmarks.txt.in: Move gtkperk to the benchmarks
@@ -40,7 +44,7 @@ checkbox (0.14.4) quantal; urgency=low
   [Samantha Jian]
   * Added disk spindown test script and definition.
 
- -- Daniel Manrique <roadmr@ubuntu.com>  Wed, 08 Aug 2012 12:43:25 -0400
+ -- Jeff Lane <jeff@ubuntu.com>  Thu, 09 Aug 2012 20:36:56 -0400
 
 checkbox (0.14.3) quantal; urgency=low
 

@@ -1,4 +1,9 @@
 plugin: shell
+name: graphics/driver_version
+command: graphics_driver
+_description: Parses Xorg.0.Log and discovers the running X driver and version
+
+plugin: shell
 name: graphics/xorg-version
 requires: package.name == "x11-utils"
 command: xdpyinfo | grep "^X.Org version" | cut -d ':' -f 2 | tr -d ' '
