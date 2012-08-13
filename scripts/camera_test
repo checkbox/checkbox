@@ -1,4 +1,26 @@
 #!/usr/bin/env python3
+#
+# This file is part of Checkbox.
+#
+# Copyright 2008-2012 Canonical Ltd.
+#
+# The v4l2 ioctl code comes from the Python bindings for the v4l2
+# userspace api (http://pypi.python.org/pypi/v4l2):
+# Copyright (C) 1999-2009 the contributors
+#
+# Checkbox is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# Checkbox is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
+#
 
 import sys
 import time
@@ -74,7 +96,7 @@ class CameraTest:
         """
         Display information regarding webcam hardware
         """
-        status = 1
+        cap_status = dev_status = 1
         for i in range(10):
             cp = v4l2_capability()
             device = '/dev/video%d' %i
@@ -83,17 +105,21 @@ class CameraTest:
                     fcntl.ioctl(vd, VIDIOC_QUERYCAP, cp)
             except IOError:
                 continue
-            status = 0
+            dev_status = 0
             print("%s: OK" %device)
-            print("    name  : %s" %cp.card.decode('UTF-8'))
-            print("    driver: %s" %cp.driver.decode('UTF-8'))
-            print("    flags : 0x%x [" %cp.capabilities,
+            print("    name   : %s" %cp.card.decode('UTF-8'))
+            print("    driver : %s" %cp.driver.decode('UTF-8'))
+            print("    version: %s.%s.%s"
+            %(cp.version >> 16, (cp.version >> 8) & 0xff, cp.version & 0xff))
+            print("    flags  : 0x%x [" %cp.capabilities,
             ' CAPTURE' if cp.capabilities & V4L2_CAP_VIDEO_CAPTURE else '',
             ' OVERLAY' if cp.capabilities & V4L2_CAP_VIDEO_OVERLAY else '',
             ' READWRITE' if cp.capabilities & V4L2_CAP_READWRITE else '',
             ' STREAMING' if cp.capabilities & V4L2_CAP_STREAMING else '',
             ' ]', sep="")
-        return status
+            if cp.capabilities & V4L2_CAP_VIDEO_CAPTURE:
+                cap_status = 0
+        return dev_status | cap_status
 
     def led(self):
         """
