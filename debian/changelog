@@ -33,6 +33,8 @@ checkbox (0.14.4) quantal; urgency=low
     multitouch-zoom)
   * jobs/audio.txt.in: Added a test that verifies that the various audio 
     channels are working properly.
+  * scripts/camera_test, jobs/camera.txt.in: Replace the call to "xawtv -hwscan"
+    in camera_test by the VIDIOC_QUERYCAP ioctl, xawtv requirement removed.
 
   [Brendan Donegan]
   * scripts/audio_settings: Converted script from Perl to Python(3), putting 

@@ -3,6 +3,8 @@
 import sys
 import time
 import re
+import fcntl
+import ctypes
 from tempfile import NamedTemporaryFile
 from subprocess import check_call as call
 from subprocess import CalledProcessError, Popen, PIPE, STDOUT
@@ -10,6 +12,53 @@ import argparse
 from glob import glob
 from gi.repository import GObject
 
+
+_IOC_NRBITS = 8
+_IOC_TYPEBITS = 8
+_IOC_SIZEBITS = 14
+
+_IOC_NRSHIFT = 0
+_IOC_TYPESHIFT = _IOC_NRSHIFT + _IOC_NRBITS
+_IOC_SIZESHIFT = _IOC_TYPESHIFT + _IOC_TYPEBITS
+_IOC_DIRSHIFT = _IOC_SIZESHIFT + _IOC_SIZEBITS
+
+_IOC_READ = 2
+
+
+def _IOC(dir_, type_, nr, size):
+    return (
+        ctypes.c_int32(dir_ << _IOC_DIRSHIFT).value |
+        ctypes.c_int32(ord(type_) << _IOC_TYPESHIFT).value |
+        ctypes.c_int32(nr << _IOC_NRSHIFT).value |
+        ctypes.c_int32(size << _IOC_SIZESHIFT).value)
+
+
+def _IOR(type_, nr, size):
+    return _IOC(_IOC_READ, type_, nr, ctypes.sizeof(size))
+
+
+class v4l2_capability(ctypes.Structure):
+    """
+    Driver capabilities
+    """
+    _fields_ = [
+        ('driver', ctypes.c_char * 16),
+        ('card', ctypes.c_char * 32),
+        ('bus_info', ctypes.c_char * 32),
+        ('version', ctypes.c_uint32),
+        ('capabilities', ctypes.c_uint32),
+        ('reserved', ctypes.c_uint32 * 4),
+    ]
+
+
+# Values for 'capabilities' field
+V4L2_CAP_VIDEO_CAPTURE = 0x00000001
+V4L2_CAP_VIDEO_OVERLAY = 0x00000004
+V4L2_CAP_READWRITE = 0x01000000
+V4L2_CAP_STREAMING = 0x04000000
+
+# ioctl code for video devices
+VIDIOC_QUERYCAP = _IOR('V', 0, v4l2_capability)
 
 class CameraTest:
     """
@@ -25,17 +74,26 @@ class CameraTest:
         """
         Display information regarding webcam hardware
         """
-        process = Popen(["xawtv", "-hwscan"], stdout=PIPE, stderr=STDOUT)
-        (output, _) = process.communicate()
-
-        output = "\n".join([line.decode() for line in output.splitlines()[2:]
-                            if line])
-        print(output)
-
-        if re.search('^/dev/video\d+:\s+OK', output, re.M):
-            return 0
-        else:
-            return 1
+        status = 1
+        for i in range(10):
+            cp = v4l2_capability()
+            device = '/dev/video%d' %i
+            try:
+                with open(device, 'r') as vd:
+                    fcntl.ioctl(vd, VIDIOC_QUERYCAP, cp)
+            except IOError:
+                continue
+            status = 0
+            print("%s: OK" %device)
+            print("    name  : %s" %cp.card.decode('UTF-8'))
+            print("    driver: %s" %cp.driver.decode('UTF-8'))
+            print("    flags : 0x%x [" %cp.capabilities,
+            ' CAPTURE' if cp.capabilities & V4L2_CAP_VIDEO_CAPTURE else '',
+            ' OVERLAY' if cp.capabilities & V4L2_CAP_VIDEO_OVERLAY else '',
+            ' READWRITE' if cp.capabilities & V4L2_CAP_READWRITE else '',
+            ' STREAMING' if cp.capabilities & V4L2_CAP_STREAMING else '',
+            ' ]', sep="")
+        return status
 
     def led(self):
         """

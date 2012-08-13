@@ -1,7 +1,6 @@
 plugin: shell
 name: camera/detect
 requires:
- package.name == 'xawtv'
  device.category == 'CAPTURE'
 command: camera_test detect
 _description: This Automated test attempts to detect a camera.
