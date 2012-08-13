@@ -229,12 +229,15 @@ class CameraTest:
 
     def _still_helper(self, filename, width, height, quiet):
         """
-        Captures an image to a given filename.  Width, Height, and Quiet may be 
-        overridden using arguments (mainly for use by the multiple images test).
+        Captures an image to a given filename.  width and height specify the
+        image size and quiet controls whether the image is displayed to the
+        user (quiet = True means do not display image). 
         """
         try:
-            call(["fswebcam", "-S 3", "--no-banner", "-d", self.args.device,
-                  "-r", "%dx%d" % (width, height), filename ])
+            call(["fswebcam", "-S 3", "--no-banner",
+                  "-d", self.args.device,
+                  "-r", "%dx%d"
+                  % (width, height), filename ])
         except (CalledProcessError, OSError):
             pipespec = \
                     ("v4l2src device=%(device)s "
@@ -256,8 +259,7 @@ class CameraTest:
 
     def _supported_resolutions_to_string(self, supported_resolutions):
         """
-        Return a printable (logable) string representing a list of 
-        supported resolutions
+        Return a printable string representing a list of supported resolutions
         """
         ret = ""
         for sr in supported_resolutions:
@@ -276,8 +278,10 @@ class CameraTest:
         and see if they are valid
         """
         srs = self._get_supported_resolutions()
+        # print supported formats and resolutions for the logs
         print(self._supported_resolutions_to_string(srs))
-        # pick the first one, which seems to be what the driver wants for a
+
+        # pick the first format, which seems to be what the driver wants for a
         # default.  This also matches the logic that fswebcam uses to select
         # a default format.
         pf = srs[0]
