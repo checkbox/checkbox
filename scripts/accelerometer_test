@@ -106,8 +106,8 @@ class AccelerometerUI(Gtk.Window):
 
 class PermissionException(RuntimeError):
     def __init__(self, error):
-        message = "Please re-run with root permissions"
-        RuntimeError.__init__(self, message, error)
+        message = "Please re-run with root permissions: %s" % error.strip()
+        super(PermissionException, self).__init__(self, message)
 
 
 class AxisData(threading.Thread):
@@ -321,7 +321,10 @@ def main():
 
     sys_path = check_for_accelerometer()
     if not sys_path:
-        check_module_status()
+        try:
+            check_module_status()
+        except PermissionException as error:
+            print(error, file=sys.stderr)
         sys.exit(1)
 
     ui = AccelerometerUI()
