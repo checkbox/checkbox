@@ -305,8 +305,8 @@ class CameraTest:
         """
         Query the camera to see what pixel formats it supports.  A list of
         dicts is returned consisting of format and description.  The caller
-        is should check whether this camera supports VIDEO_CAPTURE before
-        calling this function. 
+        should check whether this camera supports VIDEO_CAPTURE before
+        calling this function.
         """
         supported_formats = []
         fmt = v4l2_fmtdesc()
@@ -340,9 +340,9 @@ class CameraTest:
         """
         Query the camera for supported resolutions for a given pixel_format.
         Data is returned in a list of dictionaries with supported pixel 
-        formats as follows:
+        formats as the following example shows:
         pf['pixelformat'] = "YUYV"
-        pf['description'] = "YUYV"
+        pf['description'] = "(YUV 4:2:2 (YUYV))"
         pf['resolutions'] = [[width, height], [640, 480], [1280, 720]... ]
     
         If we are unable to gather any information from the driver, then we
@@ -393,7 +393,8 @@ class CameraTest:
     def _validate_image(self, filename, width, height):
         """
         Given a filename, ensure that the image is the width and height 
-        specified and is a valid image file
+        specified and is a valid image file.  Identify will choke if given
+        an invalid file and return a non-zero value.
         """
         # XXX - if python-imaging (PIL) is ever ported to py3, we can drop 
         # the use of the identify command here and the requirement on 
@@ -404,16 +405,16 @@ class CameraTest:
             outw, outh = output.decode().split(",")
             if int(outw) != width:
                 print("Image width does not match, was %s should be %s" %
-                    (outw, width))
+                    (outw, width), file=sys.stderr)
                 return False
             if int(outh) != height:
                 print("Image width does not match, was %s should be %s" %
-                    (outh, height))
+                    (outh, height), file=sys.stderr)
                 return False
 
             return True
         except (CalledProcessError, OSError):
-            print ("Failed to verify the still %s" % filename)
+            print ("Failed to verify the still %s" % filename, file=sys.stderr)
             return False
 
         return True
