@@ -276,7 +276,7 @@ class CameraTest:
         and see if they are valid
         """
         srs = self._get_supported_resolutions()
-        print("%s", self._supported_resolutions_to_string(srs))
+        print(self._supported_resolutions_to_string(srs))
         # pick the first one, which seems to be what the driver wants for a
         # default.  This also matches the logic that fswebcam uses to select
         # a default format.
@@ -289,9 +289,10 @@ class CameraTest:
                 h = res[1]
                 f = NamedTemporaryFile(prefix='camera_test_%s%sx%s' % 
                     (pf['pixelformat'], w, h), suffix='.jpg', delete=False)
+                print("Taking a picture at %sx%s" % (w,h))
                 self._still_helper(f.name, w, h, True)
                 if self._validate_image(f.name, w, h):
-                    print("Validated image %s" % f.name, file=sys.stderr)
+                    print("Validated image %s" % f.name)
                     os.remove(f.name)
                 else:
                     print("Failed to validate image %s" % f.name, 
@@ -394,8 +395,9 @@ class CameraTest:
         Given a filename, ensure that the image is the width and height 
         specified and is a valid image file
         """
-        # XXX - if python-imaging (PIL) is ever ported to py3, we can drop the use
-        # of the identify command here
+        # XXX - if python-imaging (PIL) is ever ported to py3, we can drop 
+        # the use of the identify command here and the requirement on 
+        # ImageMagick
         try:
             output = check_output(["/usr/bin/identify", "-format",
                 "%[fx:w],%[fx:h]", filename])
@@ -474,5 +476,4 @@ if __name__ == "__main__":
         Gst.init(None)
 
     camera = CameraTest(args)
-    q = camera._get_supported_resolutions()
     sys.exit(getattr(camera, args.test)())
