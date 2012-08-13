@@ -36,3 +36,15 @@ _description:
      1. Click on Test to display a still image from the camera
  VERIFICATION:
      Did you see the image?
+
+plugin: shell
+name: camera/multiple-resolution-images
+depends: camera/detect
+requires:
+ package.name == 'fswebcam'
+ package.name == 'imagemagick'
+ device.category == 'CAPTURE'
+command: camera_test multiimages
+_description:
+  Takes multiple pictures based on the resolutions supported by the camera and
+  validates their size and that they are of a valid format.
