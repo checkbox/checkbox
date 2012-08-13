@@ -39,6 +39,8 @@ checkbox (0.14.4) quantal; urgency=low
     it in line with approved technology guidelines
   * jobs/audio.txt.in: Fixed audio jobs to use --file option of audio_settings 
     instead of piping to STDOUT.
+  * Prettify the Step icons that appear next to each test step in the test run
+    screen (LP: #1036085)
 
   [Nathan Williams]
   * scripts/network_check: Fixed exception handling in the absence of zenity

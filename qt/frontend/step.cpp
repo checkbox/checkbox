@@ -36,7 +36,7 @@ Step::Step(QWidget *parent, QString text, QString index)
         view->setFixedSize(25, 25);
         QGraphicsTextItem *text = new QGraphicsTextItem(item, scene);
         text->setHtml("<center>"+index+"</center>");
-        text->setPos(1,-2);
+        text->setPos(1,-3);
         text->setTextWidth(18);
         text->setDefaultTextColor(TEXT_COLOR);
         QFont boldFont;
