@@ -36,6 +36,9 @@
 #========================================================================
 import re
 import sys
+import os
+
+from subprocess import Popen, PIPE
 
 class XorgLog(object):
 
@@ -46,6 +49,7 @@ class XorgLog(object):
         self.info     = [ ]
         self.notimpl  = [ ]
         self.notices  = [ ]
+        self.cards    = [ ]
         self.displays = { }
         self.xserver_version = None
         self.boot_time = None
@@ -64,14 +68,19 @@ class XorgLog(object):
         display_name = "Unknown"
         in_file = open(filename, "r")
         gathering_module = False
+        found_ddx = False
         module = None
         for line in in_file.readlines():
+
             m = re.search(r'\(..\)', line)
             if m:
                 if gathering_module and module is not None:
                     self.modules.append(module)
                 gathering_module = False
                 module = None
+                m = re.search('\(II\) Loading.*modules\/drivers\/(.+)_drv\.so', line)
+                if m:
+                    found_ddx = True
                 m = re.search(r'\(II\) Module (\w+):', line)
                 if m:
                     module = {
@@ -81,7 +90,9 @@ class XorgLog(object):
                         'class':        None,
                         'abi_name':     None,
                         'abi_version':  None,
+                        'ddx':          found_ddx,
                         }
+                    found_ddx = False
                     gathering_module = True
 
             if gathering_module:
@@ -233,19 +244,78 @@ class XorgLog(object):
             ])
         return [err for err in self.warnings if err not in excludes]
 
-def main():
-    xlog = XorgLog("/var/log/Xorg.0.log")
-    
+def get_driver_info(xlog):
+    '''Return the running driver and version''' 
+    print('-'*13,'VIDEO DRIVER INFORMATION','-'*13)
     if xlog.video_driver:
         for module in xlog.modules:
-            if module['name'] == xlog.video_driver:
+            if module['name'] == xlog.video_driver.lower():
                 print("Video Driver: %s" % module['name'])
                 print("Driver Version: %s" % module['version'])
-        return 0
+                print('\n')
+                return 0
     else:
         print("ERROR: No video driver loaded! Possibly in failsafe mode!",
                 file=sys.stderr)
         return 1
+
+def is_laptop():
+    return os.path.isdir('/proc/acpi/button/lid')
+
+def hybrid_graphics_check(xlog):
+    '''Check for Hybrid Graphics'''
+    card_id1 = re.compile('.*0300: *(.+):(.+) \(.+\)')
+    card_id2 = re.compile('.*0300: *(.+):(.+)') 
+    cards_dict = {'8086': 'Intel', '10de': 'NVIDIA', '1002': 'AMD'}
+    cards = []
+    drivers = []
+    formatted_cards = []
+
+    output = Popen(['lspci', '-n'], stdout=PIPE, universal_newlines=True)
+    card_list = output.communicate()[0].split('\n')
+    
+    # List of discovered cards
+    for line in card_list:
+        m1 = card_id1.match(line)
+        m2 = card_id2.match(line)
+        if m1:
+            id1 = m1.group(1).strip().lower()
+            id2 = m1.group(2).strip().lower()
+            id = id1 + ':' + id2
+            cards.append(id)
+        elif m2:
+            id1 = m2.group(1).strip().lower()
+            id2 = m2.group(2).strip().lower()
+            id = id1 + ':' + id2
+            cards.append(id)
+
+    print('-'*13,'HYBRID GRAPHICS CHECK','-'*16)
+    for card in cards:
+        formatted_name = cards_dict.get(card.split(':')[0], 'Unknown')
+        formatted_cards.append(formatted_name)
+        print('%s graphics chipset detected (%s)' % (formatted_name, card))
+
+    for module in xlog.modules:
+        if module['ddx'] == True and module['name'] not in drivers:
+            drivers.append(module['name'])
+    print('Loaded DDX drivers: %s' %
+            ', '.join(drivers))
+
+    if (len(cards) > 1 and is_laptop()
+        and (cards_dict.get('8086') in formatted_cards
+        or cards_dict.get('1002') in formatted_cards)):
+            print('Hybrid graphics system detected')
+
+    return 0   
+    
+def main():
+    xlog = XorgLog("/var/log/Xorg.0.log")
+    results = []
+
+    results.append(get_driver_info(xlog))
+    results.append(hybrid_graphics_check(xlog))
+
+    return 1 if 1 in results else 0
 
 if __name__ == "__main__":
     sys.exit(main())

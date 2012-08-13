@@ -23,6 +23,10 @@ checkbox (0.14.4) quantal; urgency=low
     data/whitelists/default.whitelist: Added the graphics_driver job to the
     default whitelist because this would be good data to gather for UF and
     doesn't cost much
+  * scripts/graphics_driver: Merged Alberto Milone's work on a
+    hybrid_graphics_test into graphics_driver as his stuff and my stuff were
+    similar enough to be in the same script, plus this allows the advantage of
+    using Bryce Harrington's xorglog library down the road.
 
   [Sylvain Pineau]
   * jobs/graphics.txt.in, jobs/benchmarks.txt.in: Move gtkperk to the benchmarks
@@ -52,7 +56,7 @@ checkbox (0.14.4) quantal; urgency=low
   [Samantha Jian]
   * Added disk spindown test script and definition.
 
- -- Jeff Lane <jeff@ubuntu.com>  Thu, 09 Aug 2012 20:46:22 -0400
+ -- Jeff Lane <jeff@ubuntu.com>  Mon, 13 Aug 2012 13:51:01 -0400
 
 checkbox (0.14.3) quantal; urgency=low
 
