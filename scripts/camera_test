@@ -262,37 +262,39 @@ class CameraTest:
         Return a printable string representing a list of supported resolutions
         """
         ret = ""
-        for sr in supported_resolutions:
-            ret += "Format: %s (%s)\n" % (sr['pixelformat'], sr['description'])
+        for resolution in supported_resolutions:
+            ret += "Format: %s (%s)\n" % (resolution['pixelformat'],
+                resolution['description'])
             ret += "Resolutions: "
-            for res in sr['resolutions']:
+            for res in resolution['resolutions']:
                 ret += "%sx%s," % (res[0], res[1])
             # truncate the extra comma with :-1
             ret = ret[:-1] + "\n"
         return ret
 
-    def multiimages(self):
+    def resolutions(self):
         """
         After querying the webcam for supported formats and resolutions, 
         take multiple images using the first format returned by the driver,
         and see if they are valid
         """
-        srs = self._get_supported_resolutions()
+        resolutions = self._get_supported_resolutions()
         # print supported formats and resolutions for the logs
-        print(self._supported_resolutions_to_string(srs))
+        print(self._supported_resolutions_to_string(resolutions))
 
         # pick the first format, which seems to be what the driver wants for a
         # default.  This also matches the logic that fswebcam uses to select
         # a default format.
-        pf = srs[0]
-        if pf:
+        resolution = resolutions[0]
+        if resolution:
             print("Taking multiple images using the %s format"
-                % pf['pixelformat'])
-            for res in pf['resolutions']: 
+                % resolution['pixelformat'])
+            for res in resolution['resolutions']: 
                 w = res[0]
                 h = res[1]
                 f = NamedTemporaryFile(prefix='camera_test_%s%sx%s' % 
-                    (pf['pixelformat'], w, h), suffix='.jpg', delete=False)
+                    (resolution['pixelformat'], w, h), suffix='.jpg',
+                     delete=False)
                 print("Taking a picture at %sx%s" % (w,h))
                 self._still_helper(f.name, w, h, True)
                 if self._validate_image(f.name, w, h):
@@ -322,7 +324,7 @@ class CameraTest:
                     if fcntl.ioctl(vd, VIDIOC_ENUM_FMT, fmt) == 0:
                         pf = {}
                         # save the int type for re-use later
-                        pf['pfint'] = fmt.pixelformat
+                        pf['pixelformat_int'] = fmt.pixelformat
                         pf['pixelformat'] = "%s%s%s%s" % \
                             (chr(fmt.pixelformat & 0xFF), 
                             chr((fmt.pixelformat >> 8) & 0xFF),
@@ -345,9 +347,9 @@ class CameraTest:
         Query the camera for supported resolutions for a given pixel_format.
         Data is returned in a list of dictionaries with supported pixel 
         formats as the following example shows:
-        pf['pixelformat'] = "YUYV"
-        pf['description'] = "(YUV 4:2:2 (YUYV))"
-        pf['resolutions'] = [[width, height], [640, 480], [1280, 720]... ]
+        resolution['pixelformat'] = "YUYV"
+        resolution['description'] = "(YUV 4:2:2 (YUYV))"
+        resolution['resolutions'] = [[width, height], [640, 480], [1280, 720] ]
     
         If we are unable to gather any information from the driver, then we
         return YUYV and 640x480 which seems to be a safe default.  Per the 4vl2 
@@ -355,35 +357,35 @@ class CameraTest:
         """
         supported_formats = self._get_pixel_formats()
         if not supported_formats:
-            pf = {}
-            pf['description'] = "YUYV"
-            pf['pixelformat'] = "YUYV"
-            pf['resolutions'] = [[640, 480]]
-            supported_formats.append(pf)
+            resolution = {}
+            resolution['description'] = "YUYV"
+            resolution['pixelformat'] = "YUYV"
+            resolution['resolutions'] = [[640, 480]]
+            supported_formats.append(resolution)
             return supported_formats
             
-        for sf in supported_formats:
+        for supported_format in supported_formats:
             resolutions = []
-            fs = v4l2_frmsizeenum()
-            fs.index = 0
-            fs.pixel_format = sf['pfint']
+            framesize = v4l2_frmsizeenum()
+            framesize.index = 0
+            framesize.pixel_format = supported_format['pixelformat_int']
             with open(self.args.device, 'r') as vd:
                 try:
-                    while fcntl.ioctl(vd, VIDIOC_ENUM_FRAMESIZES, fs) == 0:
-                        if fs.type == V4L2_FRMSIZE_TYPE_DISCRETE:
-                            resolutions.append([fs.discrete.width, 
-                                fs.discrete.height])
+                    while fcntl.ioctl(vd,VIDIOC_ENUM_FRAMESIZES,framesize) == 0:
+                        if framesize.type == V4L2_FRMSIZE_TYPE_DISCRETE:
+                            resolutions.append([framesize.discrete.width, 
+                                framesize.discrete.height])
                         # for continuous and stepwise, let's just use min and 
                         # max they use the same structure and only return 
                         # one result
-                        elif fs.type == V4L2_FRMSIZE_TYPE_CONTINUOUS or\
-                             fs.type == V4L2_FRMSIZE_TYPE_STEPWISE:
-                            resolutions.append([fs.stepwise.min_width,
-                                fs.stepwise.min_height])
-                            resolutions.append([fs.stepwise.max_width,
-                                fs.stepwise.max_height])
+                        elif framesize.type == V4L2_FRMSIZE_TYPE_CONTINUOUS or\
+                             framesize.type == V4L2_FRMSIZE_TYPE_STEPWISE:
+                            resolutions.append([framesize.stepwise.min_width,
+                                framesize.stepwise.min_height])
+                            resolutions.append([framesize.stepwise.max_width,
+                                framesize.stepwise.max_height])
                             break
-                        fs.index = fs.index + 1
+                        framesize.index = framesize.index + 1
                 except IOError as e:
                     # EINVAL is the ioctl's way of telling us that there are no
                     # more formats, so we ignore it
@@ -391,7 +393,7 @@ class CameraTest:
                         print("Unable to determine supported framesizes "\
                               "(resolutions), this may be a driver issue.")
                         return supported_formats
-            sf['resolutions'] = resolutions 
+            supported_format['resolutions'] = resolutions 
         return supported_formats
 
     def _validate_image(self, filename, width, height):
@@ -455,8 +457,8 @@ def parse_arguments(argv):
     still_parser.add_argument("-q", "--quiet", action="store_true",
                               help=("Don't display picture, "
                                     "just write the picture to a file"))
-    multi_images_parser = subparsers.add_parser('multiimages')
-    add_device_parameter(multi_images_parser)
+    resolutions_parser = subparsers.add_parser('resolutions')
+    add_device_parameter(resolutions_parser)
     args = parser.parse_args(argv)
 
     def get_video_devices():
@@ -476,7 +478,7 @@ if __name__ == "__main__":
     args = parse_arguments(sys.argv[1:])
 
     # Import Gst only for the test cases that will need it
-    if args.test in ['display', 'still', 'led', 'multiimages']:
+    if args.test in ['display', 'still', 'led', 'resolutions']:
         from gi.repository import Gst
         Gst.init(None)
 
