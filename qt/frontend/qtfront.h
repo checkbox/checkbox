@@ -58,7 +58,6 @@ public slots:
     void showTestControls(bool enableTestControls);
     void setFocusTestYesNo(bool status);
     Q_NOREPLY void showInfo(QString text, QStringList options, QString defaultoption);
-    void setUiFlags(QVariantMap flags);
     void updateAutoTestStatus(QString status, QString testName);
 
 private slots:
@@ -91,7 +90,6 @@ signals:
     void submitTestsClicked();
     void reviewTestsClicked();
     void closedFrontend(bool testsFinished);
-    void welcomeCheckboxToggled(bool toogled);
     void infoBoxResult(QString result);
     void errorBoxClosed();
     void testSelectionChanged();

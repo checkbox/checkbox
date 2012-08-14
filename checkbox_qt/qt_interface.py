@@ -64,17 +64,12 @@ class QTInterface(UserInterface):
             self.onClosedFrontend, "closedFrontend")
         self.bus.add_signal_receiver(
             self.onReviewTestsClicked, "reviewTestsClicked")
-        self.bus.add_signal_receiver(
-            self.onWelcomeCheckboxToggled, "welcomeCheckboxToggled")
         self.qtiface.setInitialState()
 
         self._set_main_title()
 
     def onReviewTestsClicked(self):
         self.show_url(self.report_url)
-
-    def onWelcomeCheckboxToggled(self, checked):
-        self.ui_flags["show_welcome_message"] = bool(checked)
 
     def onClosedFrontend(self, finished):
         if bool(finished):
