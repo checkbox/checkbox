@@ -222,10 +222,11 @@ class CameraTest:
         """
         if self.args.filename:
             self._still_helper(self.args.filename, self._width, self._height,
-                self._quiet)
+                self.args.quiet)
         else:
             with NamedTemporaryFile(prefix='camera_test_', suffix='.jpg') as f:
-                self._still_helper(f.name)
+                self._still_helper(f.name, self._width, self._height,
+                    self.args.quiet)
 
     def _still_helper(self, filename, width, height, quiet):
         """
@@ -322,16 +323,16 @@ class CameraTest:
             while fmt.index < maxformats:
                 with open(self.args.device, 'r') as vd:
                     if fcntl.ioctl(vd, VIDIOC_ENUM_FMT, fmt) == 0:
-                        pf = {}
+                        pixelformat = {}
                         # save the int type for re-use later
-                        pf['pixelformat_int'] = fmt.pixelformat
-                        pf['pixelformat'] = "%s%s%s%s" % \
+                        pixelformat['pixelformat_int'] = fmt.pixelformat
+                        pixelformat['pixelformat'] = "%s%s%s%s" % \
                             (chr(fmt.pixelformat & 0xFF), 
                             chr((fmt.pixelformat >> 8) & 0xFF),
                             chr((fmt.pixelformat >> 16) & 0xFF),
                             chr((fmt.pixelformat >> 24) & 0xFF))
-                        pf['description'] = fmt.description.decode()
-                        supported_formats.append(pf)
+                        pixelformat['description'] = fmt.description.decode()
+                        supported_formats.append(pixelformat)
                 fmt.index = fmt.index + 1
         except IOError as e:
             # EINVAL is the ioctl's way of telling us that there are no
