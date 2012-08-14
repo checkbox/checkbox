@@ -46,6 +46,8 @@ checkbox (0.14.4) quantal; urgency=low
     screen (LP: #1036085)
   * Remove the 'Don't show this message on startup' checkbox from the
     introduction screen, since it isn't used (LP: #1036218)
+  * Continue to run the progress bar when the test dependencies are being
+    resolved so that it doesn't look like the UI hung (LP: #1036573)
 
   [Nathan Williams]
   * scripts/network_check: Fixed exception handling in the absence of zenity
