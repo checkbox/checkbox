@@ -402,7 +402,7 @@ class CameraTest:
         specified and is a valid image file.  Identify will choke if given
         an invalid file and return a non-zero value.
         """
-        # XXX - if python-imaging (PIL) is ever ported to py3, we can drop 
+        # FIXME - if python-imaging (PIL) is ever ported to py3, we can drop 
         # the use of the identify command here and the requirement on 
         # ImageMagick
         try:
