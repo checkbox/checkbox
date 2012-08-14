@@ -90,6 +90,11 @@ plugin: shell
 command: graphics_modes_info
 _description: Collect info on graphics modes (screen resolution and refresh rate)
 
+name: graphics/color_depth
+plugin: shell
+command: color_depth_info
+_description: Collect info on color depth and pixel format.
+
 plugin: manual
 name: graphics/display
 requires: 
