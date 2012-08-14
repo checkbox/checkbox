@@ -34,12 +34,16 @@ checkbox (0.14.4) quantal; urgency=low
     multitouch-zoom)
   * jobs/audio.txt.in: Added a test that verifies that the various audio 
     channels are working properly.
+  * scripts/camera_test, jobs/camera.txt.in: Replace the call to "xawtv -hwscan"
+    in camera_test by the VIDIOC_QUERYCAP ioctl, xawtv requirement removed.
 
   [Brendan Donegan]
   * scripts/audio_settings: Converted script from Perl to Python(3), putting 
     it in line with approved technology guidelines
   * jobs/audio.txt.in: Fixed audio jobs to use --file option of audio_settings 
     instead of piping to STDOUT.
+  * Prettify the Step icons that appear next to each test step in the test run
+    screen (LP: #1036085)
 
   [Nathan Williams]
   * scripts/network_check: Fixed exception handling in the absence of zenity
@@ -47,6 +51,9 @@ checkbox (0.14.4) quantal; urgency=low
 
   [Samantha Jian]
   * Added disk spindown test script and definition.
+
+  [Jeff Marcom]
+  * Added Accelerometer test.
 
  -- Jeff Lane <jeff@ubuntu.com>  Thu, 09 Aug 2012 20:46:22 -0400
 
