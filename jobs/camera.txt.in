@@ -26,7 +26,7 @@ depends: camera/detect
 requires:
  package.name == 'gir1.2-gst-plugins-base-0.10' or package.name == 'gir1.2-gst-plugins-base-1.0'
  package.name == 'eog'
- package.name == 'fswebcam'
+ package.name == 'fswebcam' or package.name == 'gir1.2-gst-plugins-base-0.10' or package.name == 'gir1.2-gst-plugins-base-1.0'
  device.category == 'CAPTURE'
 command: camera_test still
 _description:
@@ -41,8 +41,7 @@ plugin: shell
 name: camera/multiple-resolution-images
 depends: camera/detect
 requires:
- package.name == 'fswebcam'
- package.name == 'imagemagick'
+ package.name == 'fswebcam' or package.name == 'gir1.2-gst-plugins-base-0.10' or package.name == 'gir1.2-gst-plugins-base-1.0'
  device.category == 'CAPTURE'
 command: camera_test resolutions
 _description:
