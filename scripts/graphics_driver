@@ -245,7 +245,7 @@ class XorgLog(object):
         return [err for err in self.warnings if err not in excludes]
 
 def get_driver_info(xlog):
-    '''Return the running driver and version''' 
+    '''Return the running driver and version'''
     print('-'*13,'VIDEO DRIVER INFORMATION','-'*13)
     if xlog.video_driver:
         for module in xlog.modules:
@@ -265,7 +265,7 @@ def is_laptop():
 def hybrid_graphics_check(xlog):
     '''Check for Hybrid Graphics'''
     card_id1 = re.compile('.*0300: *(.+):(.+) \(.+\)')
-    card_id2 = re.compile('.*0300: *(.+):(.+)') 
+    card_id2 = re.compile('.*0300: *(.+):(.+)')
     cards_dict = {'8086': 'Intel', '10de': 'NVIDIA', '1002': 'AMD'}
     cards = []
     drivers = []
@@ -273,7 +273,7 @@ def hybrid_graphics_check(xlog):
 
     output = Popen(['lspci', '-n'], stdout=PIPE, universal_newlines=True)
     card_list = output.communicate()[0].split('\n')
-    
+
     # List of discovered cards
     for line in card_list:
         m1 = card_id1.match(line)
@@ -293,21 +293,23 @@ def hybrid_graphics_check(xlog):
     for card in cards:
         formatted_name = cards_dict.get(card.split(':')[0], 'Unknown')
         formatted_cards.append(formatted_name)
-        print('%s graphics chipset detected (%s)' % (formatted_name, card))
+        print('Graphics Chipset: %s (%s)' % (formatted_name, card))
 
     for module in xlog.modules:
         if module['ddx'] == True and module['name'] not in drivers:
             drivers.append(module['name'])
-    print('Loaded DDX drivers: %s' %
+    print('Loaded DDX Drivers: %s' %
             ', '.join(drivers))
 
-    if (len(cards) > 1 and is_laptop()
-        and (cards_dict.get('8086') in formatted_cards
-        or cards_dict.get('1002') in formatted_cards)):
-            print('Hybrid graphics system detected')
+    has_hybrid_graphics = (len(cards) > 1 and hybrid.is_laptop()
+        and (hybrid.cards_dict.get('8086') in formatted_cards
+        or hybrid.cards_dict.get('1002') in formatted_cards))
 
-    return 0   
-    
+    print('Hybrid Graphics: %s' % (has_hybrid_graphics
+                                   and 'yes' or 'no'))
+
+    return 0
+
 def main():
     xlog = XorgLog("/var/log/Xorg.0.log")
     results = []
