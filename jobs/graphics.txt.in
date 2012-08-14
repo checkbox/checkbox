@@ -85,6 +85,11 @@ _description:
  .
  https://help.ubuntu.com/community/Installation/SystemRequirements
 
+name: graphics/modes
+plugin: shell
+command: graphics_modes_info
+_description: Collect info on graphics modes (screen resolution and refresh rate)
+
 plugin: manual
 name: graphics/display
 requires: 
