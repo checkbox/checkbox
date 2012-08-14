@@ -6,6 +6,7 @@
 #include <QMetaType>
 #include <QDBusMetaType>
 #include <QWidgetAction>
+#include <QCheckBox>
 
 #include "qtfront.h"
 #include "treemodel.h"
@@ -68,7 +69,6 @@ QtFront::QtFront(QApplication *parent) :
     connect(ui->buttonSubmitResults, SIGNAL(clicked()), this, SLOT(onSubmitTestsClicked()));
     connect(ui->buttonViewResults, SIGNAL(clicked()), this, SLOT(onReviewTestsClicked()));
     connect(m_mainWindow, SIGNAL(closed()), this, SLOT(onClosedFrontend()));
-    connect(ui->checkBox, SIGNAL(toggled(bool)), SIGNAL(welcomeCheckboxToggled(bool)));
     connect(ui->treeView, SIGNAL(collapsed(QModelIndex)), this, SLOT(onJobItemChanged(QModelIndex)));
     connect(ui->treeView, SIGNAL(expanded(QModelIndex)), this, SLOT(onJobItemChanged(QModelIndex)));
     connect(ui->treeView, SIGNAL(clicked(QModelIndex)), this,  SLOT(onTestSelectionChanged()));
@@ -118,12 +118,6 @@ QtFront::QtFront(QApplication *parent) :
     m_statusStrings[STATUS_UNTESTED] = checkboxTr("Not Tested", 0);
     m_statusStrings[STATUS_INPROGRESS] = checkboxTr("In Progress", 0);
 
-}
-
-void QtFront::setUiFlags(QVariantMap flags) {
-    // process all ui flags
-    QVariant checked = flags["show_welcome_message"];
-    ui->checkBox->setChecked(checked.toBool());
 }
 
 void QtFront::onClosedFrontend() {
@@ -227,14 +221,7 @@ void QtFront::onReviewTestsClicked() {
 
 void QtFront::showText(QString text) {
     if (currentState == WELCOME) {
-        if(isFirstTimeWelcome) {
-            isFirstTimeWelcome = false;
-            if (ui->checkBox->isChecked()) {
-                QTimer::singleShot(100, this, SLOT(onFullTestsClicked()));
-            }
-        } else {
-            ui->tabWidget->setCurrentIndex(0);
-        }
+        ui->tabWidget->setCurrentIndex(0);
         m_mainWindow->show();
         ui->welcomeTextBox->setPlainText(text);
     } else if (currentState == SUBMISSION) {

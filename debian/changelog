@@ -44,6 +44,8 @@ checkbox (0.14.4) quantal; urgency=low
     instead of piping to STDOUT.
   * Prettify the Step icons that appear next to each test step in the test run
     screen (LP: #1036085)
+  * Remove the 'Don't show this message on startup' checkbox from the
+    introduction screen, since it isn't used (LP: #1036218)
   * Continue to run the progress bar when the test dependencies are being
     resolved so that it doesn't look like the UI hung (LP: #1036573)
 
