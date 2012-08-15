@@ -61,7 +61,7 @@ def check_muted():
                   " output for device %s\npacmd output was: %s" %
                   (vtype, name, pacmd_entries), file=sys.stderr)
             return 1
-
+    return retval
 
 def check_volume(minvol, maxvol):
     """
