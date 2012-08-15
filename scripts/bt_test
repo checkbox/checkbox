@@ -17,9 +17,9 @@ if [ $ACTION == "send" ]; then
     obexput -b $BTADDR $TEST_FILE 2>&1 | grep "Sending\(.*\)done"
     echo "PASS"
 elif [ $ACTION == "browse" ]; then
+    FILE_SIZE=`ls -al $TEST_FILE|awk '{print $5}'`
     echo "Checking" $BTADDR "for" $TEST_FILENAME
     echo "Will check for a filesize of " $FILE_SIZE
-    FILE_SIZE=`ls -al $TEST_FILE|awk '{print $5}'`
     obexftp -b $BTADDR -l | grep $TEST_FILENAME | grep 'size="'$FILE_SIZE'"'
     echo "PASS"
 elif [ $ACTION == "remove" ]; then
