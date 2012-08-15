@@ -114,14 +114,13 @@ _description:
 plugin: shell
 name: audio/alsa_record_playback_automated
 requires:
- package.name == 'sox'
+ package.name == 'python-gst0.10'
  package.name == 'alsa-base'
  device.category == 'AUDIO'
-command: audio_test
+command: audio_test -v
 _description:
  Play back a sound on the default output and listen for it on the 
- default input.  This makes the most sense when the output and input 
- are directly connected, as with a patch cable.
+ default input. 
 
 plugin: shell
 name: audio/alsa_info_collect
