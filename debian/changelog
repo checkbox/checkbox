@@ -24,6 +24,7 @@ checkbox (0.14.4) quantal; urgency=low
     data/whitelists/default.whitelist: Added the graphics_driver job to the
     default whitelist because this would be good data to gather for UF and
     doesn't cost much
+  * jobs/piglit.txt.in: added jobs that run the piglit graphics test suite
 
   [Sylvain Pineau]
   * jobs/graphics.txt.in, jobs/benchmarks.txt.in: Move gtkperk to the benchmarks
@@ -60,7 +61,7 @@ checkbox (0.14.4) quantal; urgency=low
   [Jeff Marcom]
   * Added Accelerometer test.
 
- -- Jeff Marcom <jeff.marcom@canonical.com>  Wed, 15 Aug 2012 10:34:36 -0400
+ -- Jeff Lane <jeff@ubuntu.com>  Wed, 15 Aug 2012 19:45:41 -0400
 
 checkbox (0.14.3) quantal; urgency=low
 
