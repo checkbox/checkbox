@@ -13,6 +13,7 @@ requires:
  device.category == 'AUDIO'
  package.name == 'alsa-base'
  package.name == 'gir1.2-gst-plugins-base-0.10' or package.name == 'gir1.2-gst-plugins-base-1.0'
+ package.name == 'pulseaudio-utils'
 command: audio_settings store --file=$CHECKBOX_SHARE/pulseaudio_settings; audio_settings set --device=pci --volume=50; gst_pipeline_test -t 2 'audiotestsrc wave=sine freq=512 ! audioconvert ! audioresample ! autoaudiosink'; audio_settings restore --file=$CHECKBOX_SHARE/pulseaudio_settings
 _description:
  PURPOSE:
@@ -30,6 +31,7 @@ requires:
  device.category == 'AUDIO'
  package.name == 'alsa-base'
  package.name == 'gir1.2-gst-plugins-base-0.10' or package.name == 'gir1.2-gst-plugins-base-1.0'
+ package.name == 'pulseaudio-utils'
 command:
  audio_settings store --file=$CHECKBOX_SHARE/pulseaudio_settings; audio_settings set --device=hdmi --volume=50; gst_pipeline_test -t 2 'audiotestsrc wave=sine freq=512 ! audioconvert ! audioresample ! gconfaudiosink'; audio_settings restore --file=$CHECKBOX_SHARE/pulseaudio_settings
 _description:
@@ -51,6 +53,7 @@ requires:
  device.category == 'AUDIO'
  package.name == 'alsa-base'
  package.name == 'gir1.2-gst-plugins-base-0.10' or package.name == 'gir1.2-gst-plugins-base-1.0'
+ package.name == 'pulseaudio-utils'
 command: audio_settings store --file=$CHECKBOX_SHARE/pulseaudio_settings; audio_settings set --device=pci --volume=50; gst_pipeline_test -t 2 'audiotestsrc wave=sine freq=512 ! audioconvert ! audioresample ! autoaudiosink'; audio_settings restore --file=$CHECKBOX_SHARE/pulseaudio_settings
 _description:
  PURPOSE:
@@ -67,6 +70,7 @@ depends: audio/playback_auto
 requires:
  device.category == 'AUDIO'
  package.name == 'alsa-base'
+ package.name == 'pulseaudio-utils'
 command: audio_settings store --file=$CHECKBOX_SHARE/pulseaudio_settings; audio_settings set --device=pci --volume=50; alsa_record_playback; audio_settings restore --file=$CHECKBOX_SHARE/pulseaudio_settings
 _description:
  PURPOSE:
@@ -84,6 +88,7 @@ depends: audio/playback_headphones
 requires:
  device.category == 'AUDIO'
  package.name == 'alsa-base'
+ package.name == 'pulseaudio-utils'
 command: audio_settings store --file=$CHECKBOX_SHARE/pulseaudio_settings; audio_settings set --device=pci --volume=50; alsa_record_playback; audio_settings restore --file=$CHECKBOX_SHARE/pulseaudio_settings
 _description:
  PURPOSE:
@@ -100,6 +105,7 @@ name: audio/alsa_record_playback_usb
 requires:
  device.category == 'AUDIO'
  package.name == 'alsa-base'
+ package.name == 'pulseaudio-utils'
 command: audio_settings store --file=$CHECKBOX_SHARE/pulseaudio_settings; audio_settings set --device=usb --volume=50; alsa_record_playback; audio_settings restore --file=$CHECKBOX_SHARE/pulseaudio_settings
 _description:
  PURPOSE:
@@ -120,7 +126,7 @@ requires:
 command: audio_test -v
 _description:
  Play back a sound on the default output and listen for it on the 
- default input. 
+ default input.
 
 plugin: shell
 name: audio/alsa_info_collect
@@ -147,3 +153,17 @@ _description:
      1. Click the Test button
  VERIFICATION:
      You should clearly hear a voice from the different audio channels
+
+plugin: shell
+name: audio/check_volume
+requires:
+ package.name == 'pulseaudio-utils'
+ device.category == 'AUDIO'
+command: volume_test --minvol 1 --maxvol 100
+_description:
+ This test will verify that the volume levels are at an acceptable level on
+ your local system.  The test will validate that the volume is greater than
+ or equal to minvol and less than or equal to maxvol for all sources (inputs)
+ and sinks (outputs) recognized by PulseAudio.  It will also validate that the
+ active source and sink are not muted.  You should not manually adjust the 
+ volume or mute before running this test.
