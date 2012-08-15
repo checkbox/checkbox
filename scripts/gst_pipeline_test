@@ -1,11 +1,31 @@
 #!/usr/bin/env python3
 
+from argparse import ArgumentParser
+import re
 import sys
 import time
 from gi.repository import Gst
-from argparse import ArgumentParser
+from subprocess import check_output
 
 
+def check_state(device):
+    """Checks available sink status for desired device
+    """ 
+    sink_info = check_output(['pacmd', 'list-sinks'], 
+                             universal_newlines=True)
+
+    data = sink_info.split("\n")
+    try:
+        device = re.findall(".*name:\s.*%s.*" % device, sink_info)[0].lstrip()
+        status = data[data.index("\t" + device) + 3]
+    except (IndexError, ValueError):
+        print("Failed to find status for device: %s" % device)
+        return "Failed"
+
+    print("Device: %s %s" % (device.strip(), status.strip()))
+    return status
+
+    
 def main():
     parser = ArgumentParser(description='Simple GStreamer pipeline player')
     parser.add_argument('PIPELINE',
@@ -13,18 +33,26 @@ def main():
     parser.add_argument('-t', '--timeout',
         type=int, required=True,
         help='Timeout for running the pipeline')
+
+    parser.add_argument('-d', '--device', type=str, 
+                        help="Device to watch for status")
     args = parser.parse_args()
 
     Gst.init(None)
     element = Gst.parse_launch(args.PIPELINE)
     element.set_state(Gst.State.PLAYING)
 
+    exit_code = 0 
     if args.timeout:
         time.sleep(args.timeout)
 
-    element.set_state(Gst.State.NULL)
+    if args.device:
+        if "RUNNING" not in check_state(args.device):
+            exit_code = 1
 
-    return 0
+    element.set_state(Gst.State.NULL)
+   
+    return exit_code
 
 
 if __name__ == "__main__":
