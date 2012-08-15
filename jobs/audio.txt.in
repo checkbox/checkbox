@@ -160,12 +160,11 @@ name: audio/check_volume
 requires:
  package.name == 'pulseaudio-utils'
  device.category == 'AUDIO'
-command: volume_test -d pci --minvol 1 --maxvol 101 
+command: volume_test --minvol 1 --maxvol 101 
 _description:
  This test will verify that the volume levels are at an acceptable level on
  your local system.  The test will validate that the volume is greater than
- minvol, less than maxvol, and not muted for all sources (inputs) and sinks
- (outputs) recognized by PulseAudio.  The test will check all sources and sinks
- even if the first one fails, so the logs may contain multiple failure
- messages.  You should not manually adjust the volume or mute before running
- this test.
+ minvol and less than maxvol for all sources (inputs) and sinks (outputs)
+ recognized by PulseAudio.  It will also validate that the active source and 
+ sink are not muted.  You should not manually adjust the volume or mute 
+ before running this test.
