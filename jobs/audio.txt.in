@@ -120,14 +120,13 @@ _description:
 plugin: shell
 name: audio/alsa_record_playback_automated
 requires:
- package.name == 'sox'
+ package.name == 'python-gst0.10'
  package.name == 'alsa-base'
  device.category == 'AUDIO'
-command: audio_test
+command: audio_test -v
 _description:
  Play back a sound on the default output and listen for it on the 
- default input.  This makes the most sense when the output and input 
- are directly connected, as with a patch cable.
+ default input.
 
 plugin: shell
 name: audio/alsa_info_collect
@@ -160,11 +159,11 @@ name: audio/check_volume
 requires:
  package.name == 'pulseaudio-utils'
  device.category == 'AUDIO'
-command: volume_test --minvol 1 --maxvol 101 
+command: volume_test --minvol 1 --maxvol 100
 _description:
  This test will verify that the volume levels are at an acceptable level on
  your local system.  The test will validate that the volume is greater than
- minvol and less than maxvol for all sources (inputs) and sinks (outputs)
- recognized by PulseAudio.  It will also validate that the active source and 
- sink are not muted.  You should not manually adjust the volume or mute 
- before running this test.
+ or equal to minvol and less than or equal to maxvol for all sources (inputs)
+ and sinks (outputs) recognized by PulseAudio.  It will also validate that the
+ active source and sink are not muted.  You should not manually adjust the 
+ volume or mute before running this test.
