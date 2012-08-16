@@ -10,9 +10,10 @@ from dbus.mainloop.glib import DBusGMainLoop
 
 class StorageDeviceListener:
 
-    def __init__(self, action, devices):
+    def __init__(self, action, devices, minimum_speed ):
         self._action = action
         self._devices = devices
+        self._minimum_speed = minimum_speed
         self._bus = dbus.SystemBus(mainloop=DBusGMainLoop())
         self._loop = GObject.MainLoop()
         self._error = False
@@ -28,6 +29,8 @@ class StorageDeviceListener:
                                           signal_name='DeviceRemoved',
                                           dbus_interface=udisks)
 
+        self._starting_devices = self.get_existing_devices()
+
         def timeout_callback():
             print("%s seconds have expired "
                   "waiting for the device to be inserted." % timeout)
@@ -39,12 +42,25 @@ class StorageDeviceListener:
 
         return self._error
 
+    def verify_device_change(self, changed_devices, message=""):
+        desired_bus_devices = [device for device in changed_devices \
+                              if device[1] in self._devices and \
+                              device[2] >= self._minimum_speed]
+        for dev in desired_bus_devices:
+            print(message % {'bus':dev[1], 'file': dev[0]})
+            if self._minimum_speed:
+                print("with speed of %(speed)s higher than %(min_speed)s" %
+                        {'speed': dev[2], 'min_speed': self._minimum_speed})
+            self._loop.quit()
+
     def job_change_detected(self, devices, job_in_progress, job_id,
                             job_num_tasks, job_cur_task_id,
                             job_cur_task_percentage):
-        if job_id == "FilesystemMount" and self.is_device_inserted():
-            print("Expected device %s inserted" % self._device)
-            self._loop.quit()
+        if job_id == "FilesystemMount":
+            inserted_devices = list(set(self.get_existing_devices()) - 
+                                    set(self._starting_devices))
+            self.verify_device_change(inserted_devices, 
+                      message="Expected %(bus)s device %(file)s inserted")
 
     def add_detected(self, added_path):
         self._bus.add_signal_receiver(self.job_change_detected,
@@ -52,16 +68,16 @@ class StorageDeviceListener:
                                       dbus_interface='org.freedesktop.UDisks')
 
     def remove_detected(self, removed_path):
-        if not self.is_device_inserted():
-            print("Removable storage device has been removed")
-        #TODO: figure out a way to get the DriveConnectionInterface of the
-        #device that was just removed.
-        self._loop.quit()
+        removed_devices = list(set(self._starting_devices) - 
+                               set(self.get_existing_devices()))
+        self.verify_device_change(removed_devices, 
+                  message="Removable %(bus)s device %(file)s has been removed")
 
-    def is_device_inserted(self):
+    def get_existing_devices(self):
         ud_manager_obj = self._bus.get_object("org.freedesktop.UDisks",
                                               "/org/freedesktop/UDisks")
         ud_manager = dbus.Interface(ud_manager_obj, 'org.freedesktop.UDisks')
+        existing_devices = [] 
         for dev in ud_manager.EnumerateDevices():
             try:
                 device_obj = self._bus.get_object("org.freedesktop.UDisks",
@@ -69,15 +85,20 @@ class StorageDeviceListener:
                 device_props = dbus.Interface(device_obj,
                                               dbus.PROPERTIES_IFACE)
                 udisks = 'org.freedesktop.UDisks.Device'
-                self._device = device_props.Get(udisks,
-                                                "DriveConnectionInterface")
+                _device_file = device_props.Get(udisks,
+                                           "DeviceFile")
+                _device = device_props.Get(udisks,
+                                           "DriveConnectionInterface")
+                _speed = device_props.Get(udisks,
+                                                "DriveConnectionSpeed")
                 if not device_props.Get(udisks, "DeviceIsDrive"):
-                    if self._device in self._devices:
-                        return True
+                    device=(str(_device_file),str(_device), int(_speed))
+                    existing_devices.append(device)
+
             except dbus.DBusException:
                 pass
 
-        return False
+        return existing_devices 
 
 
 def main():
@@ -89,9 +110,12 @@ def main():
                         'scsi', 'ata_serial_esata'],
                         nargs=argparse.REMAINDER)
     parser.add_argument('--timeout', type=int, default=20)
+    min_speed_help = ("Will only accept a device if its connection speed "
+                      "attribute is higher than this value")
+    parser.add_argument('--minimum_speed', '-m', help=min_speed_help, 
+                        type=int, default=0)
     args = parser.parse_args()
-
-    listener = StorageDeviceListener(args.action, args.device)
+    listener = StorageDeviceListener(args.action, args.device, args.minimum_speed)
     return(listener.check(args.timeout))
 
 if __name__ == "__main__":
