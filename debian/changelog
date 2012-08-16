@@ -70,7 +70,22 @@ checkbox (0.14.4) quantal; urgency=low
   * Added test to check that volume is within acceptable range and audio
     elements are not muted.
 
- -- Jeff Lane <jeff@ubuntu.com>  Thu, 16 Aug 2012 10:44:14 -0400
+  [Albeto Milone]
+  * checkbox/contrib/gdk.py: Added library for getting gtk.gdk.Screen object
+    checkbox/contrib/xrandr.py: Added library for manipulating graphics
+    settings similar to how xrandr does it.
+    scripts/brightness_test: Added automated test to verify that backlight
+    settings are properly honored
+    scripts/color_depth_info: Added script to get info on color depth and pixel
+    format
+    scripts/graphics_modes_info: Added script to gather info on the supported
+    graphics modes available
+    scripts/rotation_test: Added script to automate screen rotation testing
+    jobs/graphics.txt.in, jobs/monitor.txt.in: Added jobs to take advantage of
+    the new scripts added to Checkbox
+
+
+ -- Jeff Lane <jeff@ubuntu.com>  Thu, 16 Aug 2012 12:04:45 -0400
 
 checkbox (0.14.3) quantal; urgency=low
 
