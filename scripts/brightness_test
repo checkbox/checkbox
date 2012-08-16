@@ -67,11 +67,7 @@ class Brightness(object):
             path.close()
         # It's a file object
         else:
-            try:
-                path.write(str(bytes(value, 'UTF-8')))
-            except TypeError:
-                print('FIXME: something went wrong when writing',
-                      file=sys.stderr)
+            path.write(value)
 
     def get_max_brightness(self, path):
         full_path = os.path.join(path, 'max_brightness')
