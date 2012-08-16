@@ -28,4 +28,5 @@ plugin: shell
 name: piglit/tarball
 requires:
  package.name == 'piglit'
+depends: piglit/summarize_results
 command: [ -e $CHECKBOX_DATA/piglit-summary ] && tar cvfz $CHECKBOX_DATA/piglit-results.tar.gz $CHECKBOX_DATA/piglit-summary/
