@@ -357,6 +357,9 @@ _description:
 
 plugin: shell
 name: suspend/wifi_resume_time
+depends: suspend/suspend_advanced
+requires:
+   device.category == 'WIRELESS'
 command: wifi_reconnect_resume_test -t 20
 _description:
  Checks the length of time it takes to reconnect an existing wifi connection
