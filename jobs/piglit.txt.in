@@ -1,4 +1,4 @@
-plugin: remote
+plugin: shell
 name: piglit/fbo_tests
 requires:
  package.name == 'piglit'
@@ -7,7 +7,7 @@ command:
 _description:
  Runs the piglit test suite fbo test
 
-plugin: remote
+plugin: shell
 name: piglit/texturizing_tests
 requires:
  package.name == 'piglit'
@@ -24,7 +24,7 @@ command: [ -e $CHECKBOX_DATA/piglit-results ] && piglit-summary-html.py $CHECKBO
 _description:
  Runs the piglit results gathering.
 
-plugin:remote
+plugin: shell
 name: piglit/tarball
 requires:
  package.name == 'piglit'
