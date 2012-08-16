@@ -345,7 +345,7 @@ def main():
                     print("Average write speed: %0.4f KB/s" %
                             avg_write_speed)
                     #Pass is not assured!
-                    if args.pass_speed and avg_write_speed >= args.pass_speed:
+                    if not args.pass_speed or avg_write_speed >= args.pass_speed:
                         return 0
                     else:
                         print("FAIL: Average speed was lower than desired "
