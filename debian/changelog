@@ -3,6 +3,13 @@ checkbox (0.14.4) quantal; urgency=low
   [ Daniel Manrique ]
   * New version 0.14.4 for Quantal Quetzal development.
   * Added new audio_test and test definitions.
+  * jobs/resource.txt.in: Added usb resource that indicates which versions of
+    the protocol are supported (currently only reports for USB 2.0 and 3.0).
+  * scripts/removable_storage_watcher, scripts/removable_storage_test: Added
+    a parameter to specify minimum speed to accept a device, and a parameter
+    to fail removable_storage_test if the transfer speed is below a threshold.
+  * jobs/usb.txt.in: Added usb3 jobs that will only pass if an actual USB 3.0
+    device is inserted/removed/tested.
 
   [Jeff Lane]
   * jobs/esata.txt.in: added tests for removable eSATA drives
@@ -70,7 +77,7 @@ checkbox (0.14.4) quantal; urgency=low
   * Added test to check that volume is within acceptable range and audio
     elements are not muted.
 
- -- Jeff Lane <jeff@ubuntu.com>  Thu, 16 Aug 2012 10:44:14 -0400
+ -- Daniel Manrique <roadmr@ubuntu.com>  Thu, 16 Aug 2012 16:58:02 -0400
 
 checkbox (0.14.3) quantal; urgency=low
 
