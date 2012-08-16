@@ -200,7 +200,13 @@ def main():
                         default=0,
                         type=int,
                         help="Minimum speed a device must support to be "
-                             "considered eligible for being tested")
+                             "considered eligible for being tested (bits/s)")
+    parser.add_argument('-p', '--pass-speed',
+                        action='store',
+                        default=0,
+                        type=int,
+                        help="Minimum average throughput from all eligible"
+                             "devices for the test to pass (KB/s)")
     parser.add_argument('-c', '--count',
                         action='store',
                         default='1',
@@ -338,7 +344,14 @@ def main():
                     print("Average time per write: %0.4f" % avg_write_time)
                     print("Average write speed: %0.4f KB/s" %
                             avg_write_speed)
-                    return 0
+                    #Pass is not assured!
+                    if args.pass_speed and avg_write_speed >= args.pass_speed:
+                        return 0
+                    else:
+                        print("FAIL: Average speed was lower than desired "
+                              "pass speed of %s KB/s" % args.pass_speed)
+                        return 1
+
             else:
                 print("ERROR: No device being mounted successfully for testing, "
                       "aborting", file=sys.stderr)
