@@ -27,6 +27,14 @@ command:
  EOF
 
 plugin: shell
+name: benchmarks/graphics/gtkperf
+depends: graphics/xorg-version
+requires: package.name == 'gtkperf'
+command: python3 -c 'import re,sys,subprocess; (s, o) = subprocess.getstatusoutput("gtkperf -a"); [sys.exit(1) for i in [s] if s]; m = re.search("Total time:\s+(.*)\n", o); [print(i.group(1)+" Seconds") for i in [m] if m]'
+_description:
+ Run gtkperf to make sure that GTK based test cases work
+
+plugin: shell
 name: benchmarks/graphics/render-bench
 requires: package.name == 'render-bench'
 command: /usr/bin/time -f "%e Seconds" render_bench 2>&1 >/dev/null
@@ -145,6 +153,12 @@ name: benchmarks/network/network-loopback
 requires: package.name == 'phoronix-test-suite'
 command: pts_run network-loopback
 _description: Run Network Loopback benchmark
+
+plugin: shell
+name: benchmarks/network/wifi_time_to_reconnect
+requires: device.category == 'WIRELESS'
+command: wifi_time2reconnect
+_description: Check the time needed to reconnect to a WIFI access point
 
 plugin: shell
 name: benchmarks/processor/encode-mp3

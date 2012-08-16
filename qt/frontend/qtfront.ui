@@ -114,7 +114,7 @@
                </widget>
               </item>
               <item>
-              <widget class="QWidget" name="welcomeTopText" native="true">
+               <widget class="QWidget" name="welcomeTopText" native="true">
                 <property name="styleSheet">
                  <string notr="true">background-color: #3c3b3f</string>
                 </property>
@@ -126,9 +126,6 @@
                    <width>120</width>
                    <height>100</height>
                   </rect>
-                 </property>
-                 <property name="alignment">
-                  <set>Qt::AlignLeading|Qt::AlignCenter|Qt::AlignRight</set>
                  </property>
                  <property name="font">
                   <font>
@@ -142,6 +139,9 @@
                  <property name="text">
                   <string>System 
 Testing</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter|Qt::AlignHCenter|Qt::AlignLeading|Qt::AlignLeft|Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                  </property>
                 </widget>
                </widget>
@@ -190,9 +190,9 @@ Testing</string>
            <widget class="QPushButton" name="friendlyTestsButton">
             <property name="geometry">
              <rect>
-              <x>430</x>
-              <y>305</y>
-              <width>191</width>
+              <x>20</x>
+              <y>300</y>
+              <width>601</width>
               <height>31</height>
              </rect>
             </property>
@@ -203,24 +203,6 @@ Testing</string>
             </property>
             <property name="text">
              <string>Continue</string>
-            </property>
-           </widget>
-           <widget class="QCheckBox" name="checkBox">
-            <property name="geometry">
-             <rect>
-              <x>10</x>
-              <y>310</y>
-              <width>321</width>
-              <height>20</height>
-             </rect>
-            </property>
-            <property name="font">
-             <font>
-              <family>Ubuntu</family>
-             </font>
-            </property>
-            <property name="text">
-             <string>Don't show this message on startup</string>
             </property>
            </widget>
            <widget class="Line" name="line_3">
@@ -1159,4 +1141,3 @@ p, li { white-space: pre-wrap; }
  <resources/>
  <connections/>
 </ui>
-

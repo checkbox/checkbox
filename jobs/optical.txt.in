@@ -41,13 +41,23 @@ user: root
 command: optical_write_test /dev/cdrom
 _description:
  PURPOSE:
-     This test will check your system's CD writing capabilities. This test requires a blank CD-R. If you do not have a blank CD-R, skip this test.
+     This test will check your system's CD writing capabilities. This test requires a blank CD-R or CD+R. If you do not have a blank disk, skip this test.
  STEPS:
-     1. Enter a blank CD-R into your drive
+     1. Insert a blank CD-R or CD+R into your drive
      2. Click "Test" to begin.
-     3. When the CD tray ejects the media after burning, close it (DO NOT remove the disk, it is needed for the second portion of the test). Note, you must close the drive within 10 seconds or the test will time out.
+     3. When the CD tray ejects the media after burning, close it (DO NOT remove the disk, it is needed for the second portion of the test). Note, you must close the drive within 5 minutes or the test will time out.
  VERIFICATION:
      This test should automatically select "Yes" if it passes, "No" if it fails.
+
+plugin: shell
+name: optical/cdrom-write-automated
+user: root
+requires:
+ device.category == 'CDROM'
+ optical_drive.cd == 'writable'
+command: optical_write_test /dev/cdrom
+_description:
+ This is an automated version of optical/cdrom-write. It assumes you inserted a blank CD-R or CD+R disk before starting testing. You must watch for the tray opening. The test will attempt to close the tray and continue testing, however this is not possible in all optical drives, thus you may need to push the tray or disk back in manually to continue the test.  This test has a 5 minute timeout to allow for the tester to catch this.
 
 plugin: manual
 name: optical/cdrom-audio-playback
@@ -77,13 +87,23 @@ requires:
 command: optical_write_test /dev/cdrom
 _description:
  PURPOSE:
-     This test will check your system's DVD writing capabilities. This test requires a blank DVD-R. If you do not have a blank DVD-R, skip this test.
+     This test will check your system's DVD writing capabilities. This test requires a blank DVD-R or DVD+R. If you do not have a blank DVD disk, skip this test.
  STEPS:
-     1. Enter a blank DVD-R into your drive
+     1. Enter a blank DVD-R or DVD+R into your drive
      2. Click "Test" to begin.
-     3. When the CD tray ejects the media after burning, close it (DO NOT remove the disk, it is needed for the second portion of the test). Note, you must close the drive within 10 seconds or the test will time out.
+     3. When the CD tray ejects the media after burning, close it (DO NOT remove the disk, it is needed for the second portion of the test). Note, you must close the drive within 5 minutes or the test will time out.
  VERIFICATION:
      This test should automatically select "Yes" if it passes, "No" if it fails.
+
+plugin: shell
+name: optical/dvd-write-automated
+user: root
+requires:
+ device.category == 'CDROM'
+ optical_drive.dvd == 'writable'
+command: optical_write_test /dev/cdrom
+_description:
+ This is an automated version of optical/dvd-write. It assumes you inserted a blank DVD-R or DVD+R before starting testing. You must watch for the tray opening. The test will attempt to close the tray and continue testing, however this is not possible in all optical drives, thus you may need to push the tray or disk back in manually to continue the test.  This test has a 5 minute timeout to allow for the tester to catch this.
 
 plugin: manual
 name: optical/dvd_movie_playback
