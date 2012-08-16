@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 
+# Copyright (C) 2012 Canonical, Ltd.
+
 import re
 import subprocess
 import argparse
 import sys
 
 def getresumetime():
-    
     data =  subprocess.check_output(['dmesg'], universal_newlines=True)
     syntax = re.compile("\[(.*)\].*associated")
     results = re.findall(syntax,data)
@@ -16,7 +17,6 @@ def getresumetime():
         return results[-1]
 
 def getwifitime():
-
     data =  subprocess.check_output(['dmesg'], universal_newlines=True)
     syntax = re.compile("\[(.*)\].ACPI: Low-level resume complete")
     results = re.findall(syntax,data)
@@ -31,25 +31,23 @@ def main():
         required=True, help="Specified max time allowed for Wifi to reconnect")
     args = parser.parse_args()
 
-
     resumetime = getresumetime()
     if resumetime is None:
-        print("Error Obtaining resume time after S3")
+        print("Error Obtaining resume time after S3", file=sys.stderr)
         return 1
     
     wifitime = getwifitime()
     if wifitime is None:
-        print("Error Obtaining wifi startup time after S3")
+        print("Error Obtaining wifi startup time after S3", file=sys.stderr)
         return 1
-
 
     timedif = float(resumetime)-float(wifitime)
     print("Your Wifi Resumed in %s seconds after the last suspend" % timedif)
     if timedif > args.timeout:
-        print("Fail, the network failed to reconnect within the allotted time")
+        print("FAIL: the network failed to reconnect within the allotted time")
         return 1
     else:
-        print("Pass, the network connected within the allotted time specified")
+        print("PASS: the network connected within the allotted time specified")
         return 0
 
 if __name__ == "__main__":
