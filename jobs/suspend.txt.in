@@ -354,3 +354,10 @@ _description:
      4. Suspend/resume
  VERIFICATION:
      1. After a 60s workload, check kern.log for reported GPU errors
+
+plugin: shell
+name: suspend/wifi_resume_time
+command: wifi_reconnect_resume_test -t 20
+_description:
+ PURPOSE:
+     1. Check resume time for wifi connections after a suspend.
