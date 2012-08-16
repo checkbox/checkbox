@@ -7,10 +7,21 @@ import os
 import tempfile
 import hashlib
 import argparse
-from shutil import copy2
 import subprocess
 import threading
+import time
 
+from shutil import copy2
+
+class ActionTimer():
+    '''Class to implement a simple timer'''
+    def __enter__(self):
+        self.start = time.time()
+        return self
+
+    def __exit__(self, *args):
+        self.stop = time.time()
+        self.interval = self.stop - self.start
 
 class DiskTest():
     ''' Class to contain various methods for testing USB disks '''
@@ -27,12 +38,8 @@ class DiskTest():
         min = 100
         max = 1000000
         self.tfile = tempfile.NamedTemporaryFile(delete=False)
-        print("Creating Temp Data file")
         while os.path.getsize(self.tfile.name) < size:
             self.tfile.write(str(random.randint(min, max)).encode('UTF-8'))
-
-        print("File name is :%s" % self.tfile.name)
-        print("File size is %s bytes" % os.path.getsize(self.tfile.name))
 
     def md5_hash_file(self, path):
         try:
@@ -113,9 +120,8 @@ class DiskTest():
             # remove those devices fail at mounting
             if result:
                 passed_mount[key] = file
-                print("Now mounting %s on %s" % (key, file))
             else:
-                print("Error: can't mount %s" % (key))
+                print("ERROR: can't mount %s" % (key), file=sys.stderr)
 
         if len(self.rem_disks_nm) == len(passed_mount):
             self.rem_disks_nm = passed_mount
@@ -141,9 +147,7 @@ class DiskTest():
                 errors += 1
                 pass
 
-            if result:
-                print("Now umounting %s on %s" % (disk, self.rem_disks_nm[disk]))
-            else:
+            if not result:
                 print("ERROR: can't umount %s on %s"
                        % (disk, self.rem_disks_nm[disk]), file=sys.stderr)
 
@@ -212,7 +216,6 @@ def main():
     test.get_disk_info(args.device)
 
     errors = 0
-
     # If we do have removable drives attached and mounted
     if len(test.rem_disks) > 0 or len(test.rem_disks_nm) > 0:
         if args.list:  # Simply output a list of drives detected
@@ -258,22 +261,23 @@ def main():
                     print("    %s : %s" % (disk, mount_point))
 
                 print('-' * 20)
-                print("Running %s file transfer test for %s iterations"
-                      % (args.device, args.count))
 
+                write_times = []
                 try:
                     for iteration in range(args.count):
                         test.generate_test_data(args.size)
                         parent_hash = test.md5_hash_file(test.tfile.name)
-                        print("Hashing parent copy")
                         for disk, mount_point in disks_all.items():
-                            print("Copying %s to %s" % (test.tfile.name, mount_point))
-                            if not test.copy_file(test.tfile.name, mount_point):
-                                print("ERROR: Failed to copy %s to %s" %
-                                    (test.tfile.name, mount_point), file=sys.stderr)
-                                errors += 1
-                                continue
-                            print("Hashing copy on %s" % mount_point)
+                            with ActionTimer() as timer:
+                                if not test.copy_file(test.tfile.name, mount_point):
+                                    print("ERROR: Failed to copy %s to %s" %
+                                        (test.tfile.name, mount_point), file=sys.stderr)
+                                    errors += 1
+                                    continue
+                            print("[Iteration %s] Copy took %0.3f secs." %
+                                    (iteration, timer.interval))
+                            write_times.append(timer.interval)
+
                             target = os.path.join(mount_point,
                                           os.path.basename(test.tfile.name))
                             child_hash = test.md5_hash_file(target)
@@ -286,9 +290,6 @@ def main():
                                 print("\tChild hash: %s" % child_hash,
                                         file=sys.stderr)
                                 errors += 1
-                            else:
-                                print("Successfully copied file to %s" %
-                                        mount_point)
                             test.clean_up(target)
                         test.clean_up(test.tfile.name)
                 finally:
@@ -305,6 +306,13 @@ def main():
                     print("Successfully completed %s %s file transfer "
                            "test iterations"
                            % (args.count, args.device))
+                    total_write_time = sum(write_times)
+                    avg_write_time = total_write_time / args.count
+                    avg_write_speed = (args.size / avg_write_time) / 1024
+                    print("Total time writing data: %0.4f" % total_write_time)
+                    print("Average time per write: %0.4f" % avg_write_time)
+                    print("Average write speed: %0.4f KB/s" %
+                            avg_write_speed)
                     return 0
             else:
                 print("ERROR: No device being mounted successfully for testing, "

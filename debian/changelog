@@ -28,6 +28,8 @@ checkbox (0.14.4) quantal; urgency=low
     hybrid_graphics_test into graphics_driver as his stuff and my stuff were
     similar enough to be in the same script, plus this allows the advantage of
     using Bryce Harrington's xorglog library down the road.
+  * scripts/removable_storage_test: removed a lot of unnecessary output to
+    clean up the test run and also added in some basic performance monitoring.
 
   [Sylvain Pineau]
   * jobs/graphics.txt.in, jobs/benchmarks.txt.in: Move gtkperk to the benchmarks
@@ -68,7 +70,22 @@ checkbox (0.14.4) quantal; urgency=low
   * Added test to check that volume is within acceptable range and audio
     elements are not muted.
 
- -- Jeff Marcom <jeff.marcom@canonical.com>  Wed, 15 Aug 2012 10:34:36 -0400
+  [Albeto Milone]
+  * checkbox/contrib/gdk.py: Added library for getting gtk.gdk.Screen object
+    checkbox/contrib/xrandr.py: Added library for manipulating graphics
+    settings similar to how xrandr does it.
+    scripts/brightness_test: Added automated test to verify that backlight
+    settings are properly honored
+    scripts/color_depth_info: Added script to get info on color depth and pixel
+    format
+    scripts/graphics_modes_info: Added script to gather info on the supported
+    graphics modes available
+    scripts/rotation_test: Added script to automate screen rotation testing
+    jobs/graphics.txt.in, jobs/monitor.txt.in: Added jobs to take advantage of
+    the new scripts added to Checkbox
+
+
+ -- Jeff Lane <jeff@ubuntu.com>  Thu, 16 Aug 2012 12:04:45 -0400
 
 checkbox (0.14.3) quantal; urgency=low
 
