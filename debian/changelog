@@ -42,7 +42,7 @@ checkbox (0.14.4) quantal; urgency=low
   * scripts/camera_test, jobs/camera.txt.in: Replace the call to "xawtv -hwscan"
     in camera_test by the VIDIOC_QUERYCAP ioctl, xawtv requirement removed.
   * jobs/suspend.txt.in: Resurrect scripts/sleep_test as a fallback of fwts for
-    the suspend/suspend_advanced_auto test.
+    the suspend/suspend_advanced test.
 
   [Brendan Donegan]
   * scripts/audio_settings: Converted script from Perl to Python(3), putting 
