@@ -54,7 +54,7 @@ def main():
             error = 'N/A'
         # Collect the status and the error message
         rots_statuses[rots_dict.keys()[it]] = list((status, error))
-        time.sleep(2)
+        time.sleep(4)
         it += 1
 
     # Try to set the screen back to normal
