@@ -23,10 +23,11 @@
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 
 import sys
-from sys import stdout, stderr
 import os
-from glob import glob
 import time
+
+from sys import stdout, stderr
+from glob import glob
 
 
 class Brightness(object):
