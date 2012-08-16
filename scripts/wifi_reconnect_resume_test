@@ -1,0 +1,57 @@
+#!/usr/bin/env python3
+
+# Copyright (C) 2012 Canonical, Ltd.
+
+import re
+import subprocess
+import argparse
+import sys
+
+
+def get_wifi_time():
+    data = subprocess.check_output(['dmesg'], universal_newlines=True)
+    syntax = re.compile("\[(.*)\] wlan.* associated")
+    results = re.findall(syntax, data)
+    if not results:
+        return None
+    else:
+        return results[-1]
+
+
+def get_resume_time():
+    data = subprocess.check_output(['dmesg'], universal_newlines=True)
+    syntax = re.compile("\[(.*)\].ACPI: Low-level resume complete")
+    results = re.findall(syntax, data)
+    if not results:
+        return None
+    else:
+        return results[-1]
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-t', '--timeout', action="store", type=int,
+        required=True, help="Specified max time allowed for Wifi to reconnect")
+    args = parser.parse_args()
+
+    resume_time = get_resume_time()
+    if resume_time is None:
+        print("Error Obtaining resume time after S3", file=sys.stderr)
+        return 1
+
+    wifi_time = get_wifi_time()
+    if wifi_time is None:
+        print("Error Obtaining wifi startup time after S3", file=sys.stderr)
+        return 1
+
+    time_dif = float(wifi_time) - float(resume_time)
+    print("Your Wifi Resumed in %s seconds after the last suspend" % time_dif)
+    if time_dif > args.timeout:
+        print("FAIL: the network failed to reconnect within the allotted time")
+        return 1
+    else:
+        print("PASS: the network connected within the allotted time specified")
+        return 0
+
+if __name__ == "__main__":
+    sys.exit(main())
