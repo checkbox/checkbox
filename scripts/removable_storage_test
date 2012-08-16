@@ -271,15 +271,15 @@ def main():
                         test.generate_test_data(args.size)
                         parent_hash = test.md5_hash_file(test.tfile.name)
                         for disk, mount_point in disks_all.items():
-                            with ActionTimer() as t:
+                            with ActionTimer() as timer:
                                 if not test.copy_file(test.tfile.name, mount_point):
                                     print("ERROR: Failed to copy %s to %s" %
                                         (test.tfile.name, mount_point), file=sys.stderr)
                                     errors += 1
                                     continue
                             print("[Iteration %s] Copy took %0.3f secs." %
-                                    (iteration, t.interval))
-                            write_times.append(t.interval)
+                                    (iteration, timer.interval))
+                            write_times.append(timer.interval)
 
                             target = os.path.join(mount_point,
                                           os.path.basename(test.tfile.name))
