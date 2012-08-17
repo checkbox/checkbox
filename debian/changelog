@@ -43,6 +43,10 @@ checkbox (0.14.4) quantal; urgency=low
     channels are working properly.
   * scripts/camera_test, jobs/camera.txt.in: Replace the call to "xawtv -hwscan"
     in camera_test by the VIDIOC_QUERYCAP ioctl, xawtv requirement removed.
+  * jobs/led.txt.in, jobs/local.txt.in, scripts/led_hdd_test.py: Add LED
+    tests.
+  * jobs/suspend.txt.in: Resurrect scripts/sleep_test as a fallback of fwts for
+    the suspend/suspend_advanced test.
 
   [Brendan Donegan]
   * scripts/audio_settings: Converted script from Perl to Python(3), putting 
@@ -55,6 +59,8 @@ checkbox (0.14.4) quantal; urgency=low
     introduction screen, since it isn't used (LP: #1036218)
   * Continue to run the progress bar when the test dependencies are being
     resolved so that it doesn't look like the UI hung (LP: #1036573)
+  * Remove gcov_attachment from default whitelist since it depends on lcov
+    which is not in the default install, and is not used anyway.
 
   [Nathan Williams]
   * scripts/network_check: Fixed exception handling in the absence of zenity
@@ -65,12 +71,13 @@ checkbox (0.14.4) quantal; urgency=low
 
   [Jeff Marcom]
   * Added Accelerometer test.
+  * scripts/gst_pipeline_test, jobs/audio.txt.in: Added device sink check
 
   [Matt Fischer]
   * Added test to check that volume is within acceptable range and audio
     elements are not muted.
 
-  [Albeto Milone]
+  [Alberto Milone]
   * checkbox/contrib/gdk.py: Added library for getting gtk.gdk.Screen object
     checkbox/contrib/xrandr.py: Added library for manipulating graphics
     settings similar to how xrandr does it.
@@ -84,8 +91,10 @@ checkbox (0.14.4) quantal; urgency=low
     jobs/graphics.txt.in, jobs/monitor.txt.in: Added jobs to take advantage of
     the new scripts added to Checkbox
 
+  [ Sean Feole ]
+  * scripts/wifi_reconnect_resume_test, jobs/wifi_resume_time added.
 
- -- Jeff Lane <jeff@ubuntu.com>  Thu, 16 Aug 2012 12:04:45 -0400
+ -- Jeff Marcom <jeff.marcom@canonical.com>  Thu, 16 Aug 2012 17:36:11 -0400
 
 checkbox (0.14.3) quantal; urgency=low
 
