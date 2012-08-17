@@ -30,6 +30,8 @@ checkbox (0.14.4) quantal; urgency=low
     using Bryce Harrington's xorglog library down the road.
   * scripts/removable_storage_test: removed a lot of unnecessary output to
     clean up the test run and also added in some basic performance monitoring.
+  * scripts/wifi_reconnect_resume_test: fixed a bug where timestamps being
+    grabbed from dmesg were strings instead of floats (LP: #1038270)
 
   [Sylvain Pineau]
   * jobs/graphics.txt.in, jobs/benchmarks.txt.in: Move gtkperk to the benchmarks
@@ -101,7 +103,7 @@ checkbox (0.14.4) quantal; urgency=low
   * Fixed an output issue in scripts/wifi_reconnect_test that was not handled
     in the original merge. Also tweaked error messages to be more useful.
 
- -- Jeff Lane <jeff@ubuntu.com>  Fri, 17 Aug 2012 16:47:08 -0400
+ -- Jeff Lane <jeff@ubuntu.com>  Fri, 17 Aug 2012 17:22:31 -0400
 
 checkbox (0.14.3) quantal; urgency=low
 
