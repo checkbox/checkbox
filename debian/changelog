@@ -55,6 +55,8 @@ checkbox (0.14.4) quantal; urgency=low
     introduction screen, since it isn't used (LP: #1036218)
   * Continue to run the progress bar when the test dependencies are being
     resolved so that it doesn't look like the UI hung (LP: #1036573)
+  * Remove gcov_attachment from default whitelist since it depends on lcov
+    which is not in the default install, and is not used anyway.
 
   [Nathan Williams]
   * scripts/network_check: Fixed exception handling in the absence of zenity
@@ -71,7 +73,7 @@ checkbox (0.14.4) quantal; urgency=low
   * Added test to check that volume is within acceptable range and audio
     elements are not muted.
 
-  [Albeto Milone]
+  [Alberto Milone]
   * checkbox/contrib/gdk.py: Added library for getting gtk.gdk.Screen object
     checkbox/contrib/xrandr.py: Added library for manipulating graphics
     settings similar to how xrandr does it.
