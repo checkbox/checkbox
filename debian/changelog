@@ -77,6 +77,10 @@ checkbox (0.14.4) quantal; urgency=low
   [Matt Fischer]
   * Added test to check that volume is within acceptable range and audio
     elements are not muted.
+  * scripts/camera_test: added the resolutions option to take sample pictures
+    in all resolutions supported by the specified webcam
+    jobs/camera.txt.in: added the camera/multiple-resolution-images test which
+    utilitizes the changes to the camera_test script 
 
   [Alberto Milone]
   * checkbox/contrib/gdk.py: Added library for getting gtk.gdk.Screen object
@@ -95,7 +99,7 @@ checkbox (0.14.4) quantal; urgency=low
   [ Sean Feole ]
   * scripts/wifi_reconnect_resume_test, jobs/wifi_resume_time added.
 
- -- Jeff Marcom <jeff.marcom@canonical.com>  Thu, 16 Aug 2012 17:36:11 -0400
+ -- Jeff Lane <jeff@ubuntu.com>  Fri, 17 Aug 2012 15:10:16 -0400
 
 checkbox (0.14.3) quantal; urgency=low
 
