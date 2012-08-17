@@ -43,6 +43,8 @@ checkbox (0.14.4) quantal; urgency=low
     channels are working properly.
   * scripts/camera_test, jobs/camera.txt.in: Replace the call to "xawtv -hwscan"
     in camera_test by the VIDIOC_QUERYCAP ioctl, xawtv requirement removed.
+  * jobs/led.txt.in, jobs/local.txt.in, scripts/led_hdd_test.py: Add LED
+    tests.
 
   [Brendan Donegan]
   * scripts/audio_settings: Converted script from Perl to Python(3), putting 
