@@ -151,6 +151,10 @@ class UdevadmDevice:
                and subclass_id == Pci.CLASS_SERIAL_FIREWIRE:
                 return "FIREWIRE"
 
+            if class_id == Pci.BASE_CLASS_WIRELESS \
+               and subclass_id == Pci.CLASS_WIRELESS_BLUETOOTH:
+                return "BLUETOOTH"
+
             if class_id == Pci.BASE_CLASS_BRIDGE \
                and (subclass_id == Pci.CLASS_BRIDGE_PCMCIA \
                     or subclass_id == Pci.CLASS_BRIDGE_CARDBUS):
