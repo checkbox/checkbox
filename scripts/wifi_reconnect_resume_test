@@ -8,19 +8,48 @@ import argparse
 import sys
 
 
-def getwifitime():
+def get_time_difference():
+    """
+    Returns the difference in seconds between the last resume from suspend (S3)
+    and the time it took to reconnect to Wifi.  If there is a problem finding
+    the information, None is returned.
+    """
+    resume_time = get_resume_time()
+    if resume_time is None:
+        print("Error Obtaining resume time after S3", file=sys.stderr)
+        return None
+
+    wifi_reconnect_times = get_wifi_reconnect_times()
+    if not wifi_reconnect_times:
+        print("Error Obtaining wifi startup time after S3", file=sys.stderr)
+        return None
+
+    # since some wifi tests can disconnect and reconnect us multiple times
+    # after a suspend, we need to find the wifi reconnect that occurs
+    # immediately after the resume from S3
+    for wifi_reconnect_time in wifi_reconnect_times:
+        if wifi_reconnect_time >= resume_time:
+            return round((float(wifi_reconnect_time) - float(resume_time)), 2)
+    return None
+
+
+def get_wifi_reconnect_times():
+    """
+    Returns a list of all the timestamps for wifi reconnects.
+    """
     data = subprocess.check_output(['dmesg'], universal_newlines=True)
     syntax = re.compile("\[(.*)\] wlan.* associated")
     results = re.findall(syntax, data)
-    if not results:
-        return None
-    else:
-        return results[-1]
+    return results
 
 
-def getresumetime():
+def get_resume_time():
+    """
+    Returns the last (most recent) timestamp for an ACPI resume from sleep (S3)
+    If no resume is found, None is returned.
+    """
     data = subprocess.check_output(['dmesg'], universal_newlines=True)
-    syntax = re.compile("\[(.*)\].ACPI: Low-level resume complete")
+    syntax = re.compile("\[(.*)\].ACPI: Waking up from system sleep state S3")
     results = re.findall(syntax, data)
     if not results:
         return None
@@ -34,17 +63,10 @@ def main():
         required=True, help="Specified max time allowed for Wifi to reconnect")
     args = parser.parse_args()
 
-    resumetime = getresumetime()
-    if resumetime is None:
-        print("Error Obtaining resume time after S3", file=sys.stderr)
+    timedif = get_time_difference()
+    if not timedif:
         return 1
 
-    wifitime = getwifitime()
-    if wifitime is None:
-        print("Error Obtaining wifi startup time after S3", file=sys.stderr)
-        return 1
-
-    timedif = float(wifitime) - float(resumetime)
     print("Your Wifi Resumed in %s seconds after the last suspend" % timedif)
     if timedif > args.timeout:
         print("FAIL: the network failed to reconnect within the allotted time")
