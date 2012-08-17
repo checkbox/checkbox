@@ -37,7 +37,7 @@ checkbox (0.14.4) quantal; urgency=low
   * jobs/benchmarks.txt.in, scripts/wifi_time2reconnect: Add a test to monitor
     the time needed to reconnect to a WIFI access point.
   * jobs/cpu.txt.in: Added a check for ARM Vector Floating Point Unit support.
-  * jobs/touchscreen.txt.in: Add 3 new manual tests (tap-detect, drag-n-drop and 
+  * jobs/touchscreen.txt.in: Add 3 new manual tests (tap-detect, drag-n-drop and
     multitouch-zoom)
   * jobs/audio.txt.in: Added a test that verifies that the various audio 
     channels are working properly.
@@ -98,8 +98,10 @@ checkbox (0.14.4) quantal; urgency=low
 
   [ Sean Feole ]
   * scripts/wifi_reconnect_resume_test, jobs/wifi_resume_time added.
+  * Fixed an output issue in scripts/wifi_reconnect_test that was not handled
+    in the original merge. Also tweaked error messages to be more useful.
 
- -- Jeff Lane <jeff@ubuntu.com>  Fri, 17 Aug 2012 15:10:16 -0400
+ -- Jeff Lane <jeff@ubuntu.com>  Fri, 17 Aug 2012 16:47:08 -0400
 
 checkbox (0.14.3) quantal; urgency=low
 
