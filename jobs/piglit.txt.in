@@ -20,9 +20,9 @@ plugin: shell
 name: piglit/summarize_results
 requires:
  package.name == 'piglit'
-command: [ -e $CHECKBOX_DATA/piglit-results ] && piglit-summary-html.py $CHECKBOX_DATA/piglit-summary/ `find $CHECKBOX_DATA/piglit-results/ -name main` && echo "Successfully summarized piglit results. They are available in $CHECKBOX_DATA/piglit-results.tar.gz"
+command: [ -e $CHECKBOX_DATA/piglit-results ] && piglit-summary-html.py $CHECKBOX_DATA/piglit-summary/ `find $CHECKBOX_DATA/piglit-results/ -name main` && echo "Successfully summarized piglit results. They are available in $CHECKBOX_DATA/piglit-sumary/"
 _description:
- Runs the piglit results gathering.
+ Runs the piglit results summarizing tool
 
 plugin: shell
 name: piglit/tarball
