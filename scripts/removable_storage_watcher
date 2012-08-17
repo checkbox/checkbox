@@ -44,22 +44,26 @@ class StorageDeviceListener:
 
     def verify_device_change(self, changed_devices, message=""):
         desired_bus_devices = [device for device in changed_devices \
-                              if device[1] in self._devices and \
-                              device[2] >= self._minimum_speed]
+                              if device[1] in self._devices]
         for dev in desired_bus_devices:
             print(message % {'bus':dev[1], 'file': dev[0]})
             if self._minimum_speed:
-                print("with speed of %(speed)s higher than %(min_speed)s" %
-                        {'speed': dev[2], 'min_speed': self._minimum_speed})
+                if dev[2] >= self._minimum_speed:
+                    print("with speed of %(speed)s higher than %(min_speed)s" %
+                          {'speed': dev[2], 'min_speed': self._minimum_speed})
+                else:
+                    print("ERROR: speed of %(speed)s lower than %(min_speed)s" %
+                          {'speed': dev[2], 'min_speed': self._minimum_speed})
+                    self._error = True
             self._loop.quit()
 
     def job_change_detected(self, devices, job_in_progress, job_id,
                             job_num_tasks, job_cur_task_id,
                             job_cur_task_percentage):
         if job_id == "FilesystemMount":
-            inserted_devices = list(set(self.get_existing_devices()) - 
+            inserted_devices = list(set(self.get_existing_devices()) -
                                     set(self._starting_devices))
-            self.verify_device_change(inserted_devices, 
+            self.verify_device_change(inserted_devices,
                       message="Expected %(bus)s device %(file)s inserted")
 
     def add_detected(self, added_path):
@@ -68,16 +72,16 @@ class StorageDeviceListener:
                                       dbus_interface='org.freedesktop.UDisks')
 
     def remove_detected(self, removed_path):
-        removed_devices = list(set(self._starting_devices) - 
+        removed_devices = list(set(self._starting_devices) -
                                set(self.get_existing_devices()))
-        self.verify_device_change(removed_devices, 
+        self.verify_device_change(removed_devices,
                   message="Removable %(bus)s device %(file)s has been removed")
 
     def get_existing_devices(self):
         ud_manager_obj = self._bus.get_object("org.freedesktop.UDisks",
                                               "/org/freedesktop/UDisks")
         ud_manager = dbus.Interface(ud_manager_obj, 'org.freedesktop.UDisks')
-        existing_devices = [] 
+        existing_devices = []
         for dev in ud_manager.EnumerateDevices():
             try:
                 device_obj = self._bus.get_object("org.freedesktop.UDisks",
@@ -98,24 +102,25 @@ class StorageDeviceListener:
             except dbus.DBusException:
                 pass
 
-        return existing_devices 
+        return existing_devices
 
 
 def main():
     description = "Wait for the specified device to be inserted or removed."
     parser = argparse.ArgumentParser(description=description)
     parser.add_argument('action', choices=['insert', 'remove'])
-    parser.add_argument('device', 
-                        choices=['usb', 'sdio', 'firewire', 
+    parser.add_argument('device',
+                        choices=['usb', 'sdio', 'firewire',
                         'scsi', 'ata_serial_esata'],
                         nargs=argparse.REMAINDER)
     parser.add_argument('--timeout', type=int, default=20)
     min_speed_help = ("Will only accept a device if its connection speed "
                       "attribute is higher than this value")
-    parser.add_argument('--minimum_speed', '-m', help=min_speed_help, 
+    parser.add_argument('--minimum_speed', '-m', help=min_speed_help,
                         type=int, default=0)
     args = parser.parse_args()
-    listener = StorageDeviceListener(args.action, args.device, args.minimum_speed)
+    listener = StorageDeviceListener(args.action, args.device, 
+                                     args.minimum_speed)
     return(listener.check(args.timeout))
 
 if __name__ == "__main__":
