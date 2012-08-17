@@ -16,12 +16,12 @@ def get_time_difference():
     """
     resume_time = get_resume_time()
     if resume_time is None:
-        print("Error Obtaining resume time after S3", file=sys.stderr)
+        print("Error Obtaining wakeup/resume time in dmesg. Please be sure the system has been suspended", file=sys.stderr)
         return None
 
     wifi_reconnect_times = get_wifi_reconnect_times()
     if not wifi_reconnect_times:
-        print("Error Obtaining wifi startup time after S3", file=sys.stderr)
+        print("Error Obtaining wifi connection time after a S3. Please be sure that the system has been suspended", file=sys.stderr)
         return None
 
     # since some wifi tests can disconnect and reconnect us multiple times
