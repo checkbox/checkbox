@@ -45,6 +45,8 @@ checkbox (0.14.4) quantal; urgency=low
     in camera_test by the VIDIOC_QUERYCAP ioctl, xawtv requirement removed.
   * jobs/led.txt.in, jobs/local.txt.in, scripts/led_hdd_test.py: Add LED
     tests.
+  * jobs/suspend.txt.in: Resurrect scripts/sleep_test as a fallback of fwts for
+    the suspend/suspend_advanced test.
 
   [Brendan Donegan]
   * scripts/audio_settings: Converted script from Perl to Python(3), putting 
