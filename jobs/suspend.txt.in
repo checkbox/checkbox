@@ -73,7 +73,15 @@ requires:
  sleep.mem == 'supported'
 user: root
 environ: CHECKBOX_DATA
-command: fwts s3 --s3-sleep-delay=30 -r $CHECKBOX_DATA/suspend_single_log || true; grep 'Critical failures: NONE' $CHECKBOX_DATA/suspend_single_log
+command:
+ if type -P fwts >/dev/null; then
+  echo "Calling fwts"
+  fwts s3 --s3-sleep-delay=30 -r $CHECKBOX_DATA/suspend_single_log
+  grep 'Critical failures: NONE' $CHECKBOX_DATA/suspend_single_log
+ else
+  echo "Calling sleep_test"
+  sleep_test -d
+ fi
 _description:
  PURPOSE:
      This test will check suspend and resume
@@ -88,7 +96,7 @@ plugin: shell
 name: suspend/suspend_advanced_auto
 depends: power-management/rtc
 requires:
-    package.name == 'fwts'
+    package.name == 'fwts' or package.name == 'pm-utils'
     sleep.mem == 'supported'
 _description:
  This is the automated version of suspend/suspend_advanced.

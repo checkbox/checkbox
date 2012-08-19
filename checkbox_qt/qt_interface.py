@@ -237,6 +237,10 @@ class QTInterface(UserInterface):
         if "command" in test:
             enableTestButton = True
 
+        #If we were in progress, stop showing that now, as we're 
+        #awaiting user interaction
+        self.show_progress_stop()
+
         self.qtiface.showTest(
             test["purpose"], test["steps"], test["verification"], info, test["data"],
             test["suite"], test["name"], enableTestButton)
@@ -248,6 +252,8 @@ class QTInterface(UserInterface):
             yesTestClicked=onYesTestClicked)
 
         test["data"] = self.qtiface.getTestComment()
+        #Unset the title, since we finished the job
+        self._set_main_title()
         return False
 
     def show_info(self, text, options=[], default=None):
@@ -282,6 +288,8 @@ class QTInterface(UserInterface):
     def update_status(self, job):
         if 'type' in job and job["type"] == "test":
             self.qtiface.updateAutoTestStatus(job["status"], job["name"])
+       
+        self.show_progress_start(_("Working"))
 
     def wait_on_signals(self, **signals):
         for name, function in signals.items():
