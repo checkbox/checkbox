@@ -11,8 +11,6 @@ import subprocess
 import threading
 import time
 
-from shutil import copy2
-
 class ActionTimer():
     '''Class to implement a simple timer'''
     def __enter__(self):
@@ -61,28 +59,6 @@ class DiskTest():
         finally:
             fh.close()
         return md5.hexdigest()
-
-    def copy_file(self, source, dest):
-        infile = open(source,'rb')
-        outfile = open(dest,'wb',0)
-        source_data = infile.read(4096)
-        while source_data:
-            try:
-                outfile.write(source_data)
-            except IOError:
-                print("ERROR: Unable to copy the file from %s to %s" % 
-                    source,
-                    dest,
-                    file=sys.stderr)
-                infile.close()
-                outfile.close()
-                return False
-            source_data = infile.read(4096)
-
-        os.fsync(outfile)
-        outfile.close()
-        infile.close()
-        return True
 
     def read_file(self, source):
         infile = open(source, 'rb')
