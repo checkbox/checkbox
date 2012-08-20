@@ -32,6 +32,9 @@ class DiskTest():
         self.returnCode = None
         self.rem_disks = {}     # mounted before the script running
         self.rem_disks_nm = {}  # not mounted before the script running
+        self.tfile_name = ''
+        self.tfile_path = ''
+        self.data = ''
 
     def generate_test_data(self, size):
         '''Generate a random data file of a given size'''
@@ -40,10 +43,11 @@ class DiskTest():
         self.tfile = tempfile.NamedTemporaryFile(delete=False)
         while os.path.getsize(self.tfile.name) < size:
             self.tfile.write(str(random.randint(min, max)).encode('UTF-8'))
+        self.tfile_path, self.tfile_name = os.path.split(self.tfile.name)
 
     def md5_hash_file(self, path):
         try:
-            fh = open(path, 'r')
+            fh = open(path, 'rb')
         except IOError:
             print("ERROR: unable to open file %s" % path, file=sys.stderr)
             return 1
@@ -53,19 +57,56 @@ class DiskTest():
                 data = fh.read(8192)
                 if not data:
                     break
-                md5.update(data.encode('utf-8'))
+                md5.update(data)
         finally:
             fh.close()
         return md5.hexdigest()
 
     def copy_file(self, source, dest):
+        infile = open(source,'rb')
+        outfile = open(dest,'wb',0)
+        source_data = infile.read(4096)
+        while source_data:
+            try:
+                outfile.write(source_data)
+            except IOError:
+                print("ERROR: Unable to copy the file from %s to %s" % 
+                    source,
+                    dest,
+                    file=sys.stderr)
+                infile.close()
+                outfile.close()
+                return False
+            source_data = infile.read(4096)
+
+        os.fsync(outfile)
+        outfile.close()
+        infile.close()
+        return True
+
+    def read_file(self, source):
+        infile = open(source, 'rb')
         try:
-            copy2(source, dest)
+            self.data = infile.read()
         except IOError:
-            print("ERROR: Unable to copy the file to %s" % dest,
-                file=sys.stderr)
+            print("ERROR: Unable to read data from %s" % source,
+                  file=sys.stderr)
             return False
         else:
+            infile.close()
+            return True
+
+    def write_file(self, data, dest):
+        outfile = open(dest, 'wb', 0)
+        try:
+            outfile.write(self.data)
+        except IOError:
+            print("ERROR: Unable to write data to %s" % dest,
+                  file=sys.stderr)
+            return False
+        else:
+            os.fsync(outfile)
+            outfile.close()
             return True
 
     def compare_hash(self, parent, child):
@@ -266,32 +307,38 @@ def main():
                 try:
                     for iteration in range(args.count):
                         test.generate_test_data(args.size)
-                        parent_hash = test.md5_hash_file(test.tfile.name)
+                        parent_file = test.tfile.name
+                        parent_hash = test.md5_hash_file(parent_file)
+                        target_filename = test.tfile_name + '.%s' % iteration
+                        test.read_file(parent_file)
                         for disk, mount_point in disks_all.items():
+                            target_path = mount_point
+                            target_file = os.path.join(target_path, target_filename)
                             with ActionTimer() as timer:
-                                if not test.copy_file(test.tfile.name, mount_point):
+                                if not test.write_file(test.data, target_file):
                                     print("ERROR: Failed to copy %s to %s" %
-                                        (test.tfile.name, mount_point), file=sys.stderr)
+                                        (parent_file, target_file), file=sys.stderr)
                                     errors += 1
                                     continue
-                            print("[Iteration %s] Copy took %0.3f secs." %
-                                    (iteration, timer.interval))
+                            print("[Iteration %s] Copy took %0.4f secs."
+                                  " (%0.4f MB/s)" %
+                                  (iteration,
+                                  timer.interval,
+                                  (args.size / timer.interval / 1024 / 1024)))
                             write_times.append(timer.interval)
 
-                            target = os.path.join(mount_point,
-                                          os.path.basename(test.tfile.name))
-                            child_hash = test.md5_hash_file(target)
+                            child_hash = test.md5_hash_file(target_file)
                             if not test.compare_hash(parent_hash, child_hash):
                                 print("ERROR: [Iteration %s] Parent and Child"
                                         "copy hashes mismatch on %s!" %
-                                        (iteration,mount_point), file=sys.stderr)
+                                        (iteration,target_file), file=sys.stderr)
                                 print("\tParent hash: %s" % parent_hash,
                                         file=sys.stderr)
                                 print("\tChild hash: %s" % child_hash,
                                         file=sys.stderr)
                                 errors += 1
-                            test.clean_up(target)
-                        test.clean_up(test.tfile.name)
+                            test.clean_up(target_file)
+                        test.clean_up(parent_file)
                 finally:
                     if (len(test.rem_disks_nm) > 0):
                         if test.umount() != 0:
@@ -308,10 +355,10 @@ def main():
                            % (args.count, args.device))
                     total_write_time = sum(write_times)
                     avg_write_time = total_write_time / args.count
-                    avg_write_speed = (args.size / avg_write_time) / 1024
+                    avg_write_speed = (args.size / avg_write_time) / 1024 / 1024
                     print("Total time writing data: %0.4f" % total_write_time)
                     print("Average time per write: %0.4f" % avg_write_time)
-                    print("Average write speed: %0.4f KB/s" %
+                    print("Average write speed: %0.4f MB/s" %
                             avg_write_speed)
                     return 0
             else:
