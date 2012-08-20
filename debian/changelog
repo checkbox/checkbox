@@ -73,6 +73,8 @@ checkbox (0.14.4) quantal; urgency=low
   [Jeff Marcom]
   * Added Accelerometer test.
   * scripts/gst_pipeline_test, jobs/audio.txt.in: Added device sink check
+  * scripts/accelerometer_test, jobs/input.txt.in: Improved ability to detect 
+    oem manufacturer info, and cleanup up job step formatting.
 
   [Matt Fischer]
   * Added test to check that volume is within acceptable range and audio
@@ -105,7 +107,7 @@ checkbox (0.14.4) quantal; urgency=low
   * Added in bluetooth_test and related jobs for automated bluetooth
     testing
 
- -- Jeff Lane <jeff@ubuntu.com>  Fri, 17 Aug 2012 16:47:08 -0400
+ -- Jeff Marcom <jeff.marcom@canonical.com>  Mon, 20 Aug 2012 09:52:00 -0400
 
 checkbox (0.14.3) quantal; urgency=low
 
