@@ -126,3 +126,13 @@ name: stress/poweroff_check_log
 depends: stress/poweroff_check
 command:
  tar cvfz stress_poweroff_check.tgz $CHECKBOX_DATA/pm_log_check_poweroff.100.log && cat $CHECKBOX_DATA/stress_poweroff_check.tgz
+
+plugin: shell
+name: stress/usb
+command: removable_storage_test -s 10240000 -c 100 -i 3 usb
+_description: Runs a test that transfers 100 10MB files 3 times to usb.
+
+plugin: shell
+name: stress/sdhc
+command: removable_storage_test -s 10240000 -c 100 -i 3 sdio scsi
+_description: Runs a test that transfers 100 10MB files 3 times to a SDHC card.
