@@ -21,6 +21,23 @@ class ActionTimer():
         self.stop = time.time()
         self.interval = self.stop - self.start
 
+class RandomData():
+    '''Class to create data files'''
+    def __init__(self,size):
+        self.tfile = tempfile.NamedTemporaryFile(delete=False)
+        self.path = ''
+        self.name = ''
+        self._generate_test_data(size)
+        self.path, self.name = os.path.split(self.tfile.name)
+
+    def _generate_test_data(self, size):
+        min = 100
+        max = 1000000
+        while os.path.getsize(self.tfile.name) < size:
+            self.tfile.write(str(random.randint(min,max)).encode('UTF-8'))
+        self.path, self.name = os.path.split(self.tfile.name)
+        return self
+
 class DiskTest():
     ''' Class to contain various methods for testing USB disks '''
     def __init__(self):
@@ -30,18 +47,7 @@ class DiskTest():
         self.returnCode = None
         self.rem_disks = {}     # mounted before the script running
         self.rem_disks_nm = {}  # not mounted before the script running
-        self.tfile_name = ''
-        self.tfile_path = ''
         self.data = ''
-
-    def generate_test_data(self, size):
-        '''Generate a random data file of a given size'''
-        min = 100
-        max = 1000000
-        self.tfile = tempfile.NamedTemporaryFile(delete=False)
-        while os.path.getsize(self.tfile.name) < size:
-            self.tfile.write(str(random.randint(min, max)).encode('UTF-8'))
-        self.tfile_path, self.tfile_name = os.path.split(self.tfile.name)
 
     def md5_hash_file(self, path):
         try:
@@ -280,12 +286,16 @@ def main():
                 print('-' * 20)
 
                 write_times = []
+                test_files = {}
+                # Generate our data file(s)
+                for iteration in range(args.count):
+                    test_files[iteration] = RandomData(args.size)
+
                 try:
                     for iteration in range(args.count):
-                        test.generate_test_data(args.size)
-                        parent_file = test.tfile.name
+                        parent_file = test_files[iteration].tfile.name
                         parent_hash = test.md5_hash_file(parent_file)
-                        target_filename = test.tfile_name + '.%s' % iteration
+                        target_filename = test_files[iteration].name + '.%s' % iteration
                         test.read_file(parent_file)
                         for disk, mount_point in disks_all.items():
                             target_path = mount_point
