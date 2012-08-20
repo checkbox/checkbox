@@ -10,6 +10,7 @@ import argparse
 import subprocess
 import threading
 import time
+import collections
 
 class ActionTimer():
     '''Class to implement a simple timer'''
@@ -27,15 +28,36 @@ class RandomData():
         self.tfile = tempfile.NamedTemporaryFile(delete=False)
         self.path = ''
         self.name = ''
-        self._generate_test_data(size)
         self.path, self.name = os.path.split(self.tfile.name)
+        self._write_test_data_file(size)
 
-    def _generate_test_data(self, size):
-        min = 100
-        max = 1000000
+    def _generate_test_data(self):
+        seed = "104872948765827105728492766217823438120"
+        phrase = '''
+        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam 
+        nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat 
+        volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation 
+        ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. 
+        Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse 
+        molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero 
+        eros et accumsan et iusto odio dignissim qui blandit praesent luptatum 
+        zzril delenit augue duis dolore te feugait nulla facilisi.
+        '''
+        words = phrase.replace('\n', '').split() 
+
+        word_deque = collections.deque(words)
+        seed_deque = collections.deque(seed)
+        
+        while True:
+            yield ' '.join(list(word_deque))
+            word_deque.rotate(int(seed_deque[0]))
+            seed_deque.rotate(1)
+
+    def _write_test_data_file(self,size):
+        data = self._generate_test_data()
+
         while os.path.getsize(self.tfile.name) < size:
-            self.tfile.write(str(random.randint(min,max)).encode('UTF-8'))
-        self.path, self.name = os.path.split(self.tfile.name)
+            self.tfile.write(next(data).encode('UTF-8'))
         return self
 
 class DiskTest():
@@ -87,7 +109,8 @@ class DiskTest():
                   file=sys.stderr)
             return False
         else:
-            os.fsync(outfile)
+            outfile.flush()
+            os.fsync(outfile.fileno())
             outfile.close()
             return True
 
@@ -215,11 +238,18 @@ def main():
                         action='store_true',
                         default=False,
                         help="List the removable devices and mounting status")
+    parser.add_argument('-i', '--iterations',
+                        action='store',
+                        default='1',
+                        type=int,
+                        help=("The number of test cycles to run. One cycle is"
+                              "comprised of generating --count data files of "
+                              "--size bytes and writing them to each device."))
     parser.add_argument('-c', '--count',
                         action='store',
                         default='1',
                         type=int,
-                        help='The number of times to run the test')
+                        help='The number of random data files to generate')
     parser.add_argument('-s', '--size',
                         action='store',
                         type=int,
@@ -278,54 +308,80 @@ def main():
 
             if len(disks_all) > 0:
                 print("Found the following mounted %s partitions:"
-                       % args.device)
+                       % ', '.join(args.device))
 
                 for disk, mount_point in disks_all.items():
                     print("    %s : %s" % (disk, mount_point))
 
                 print('-' * 20)
 
-                write_times = []
+                write_sizes = []
                 test_files = {}
+                results = {}
                 # Generate our data file(s)
-                for iteration in range(args.count):
-                    test_files[iteration] = RandomData(args.size)
+                for count in range(args.count):
+                    test_files[count] = RandomData(args.size)
+                    write_sizes.append(os.path.getsize(test_files[count].tfile.name))
+                    total_write_size = sum(write_sizes)
 
                 try:
-                    for iteration in range(args.count):
-                        parent_file = test_files[iteration].tfile.name
-                        parent_hash = test.md5_hash_file(parent_file)
-                        target_filename = test_files[iteration].name + '.%s' % iteration
-                        test.read_file(parent_file)
-                        for disk, mount_point in disks_all.items():
-                            target_path = mount_point
-                            target_file = os.path.join(target_path, target_filename)
-                            with ActionTimer() as timer:
-                                if not test.write_file(test.data, target_file):
-                                    print("ERROR: Failed to copy %s to %s" %
-                                        (parent_file, target_file), file=sys.stderr)
+                    for disk, mount_point in disks_all.items():
+                        print("%s (Total Data Size / iteration: %0.4f MB):" % 
+                              (disk, (total_write_size / 1024 / 1024))) 
+                        for iteration in range(args.iterations):
+                            target_file_list = []
+                            write_times = []
+                            for file in range(args.count):
+                                parent_file = test_files[file].tfile.name
+                                parent_hash = test.md5_hash_file(parent_file)
+                                target_filename = test_files[file].name + \
+                                                  '.%s' % iteration
+                                target_path = mount_point
+                                target_file = os.path.join(target_path, target_filename)
+                                target_file_list.append(target_file)
+                                test.read_file(parent_file)
+                                with ActionTimer() as timer:
+                                    if not test.write_file(test.data, target_file):
+                                        print("ERROR: Failed to copy %s to %s" %
+                                              (parent_file, target_file), 
+                                              file=sys.stderr)
+                                        errors += 1
+                                        continue
+                                write_times.append(timer.interval)
+                                child_hash = test.md5_hash_file(target_file)
+                                if not test.compare_hash(parent_hash, child_hash):
+                                    print("WARNING: [Iteration %s] Parent and Child"
+                                          "copy hashes mismatch on %s!" %
+                                          (iteration,target_file))
+                                    print("\tParent hash: %s" % parent_hash)
+                                    print("\tChild hash: %s" % child_hash)
                                     errors += 1
-                                    continue
-                            print("[Iteration %s] Copy took %0.4f secs."
-                                  " (%0.4f MB/s)" %
-                                  (iteration,
-                                  timer.interval,
-                                  (args.size / timer.interval / 1024 / 1024)))
-                            write_times.append(timer.interval)
+                            for file in target_file_list:
+                                test.clean_up(file)
+                            total_write_time = sum(write_times)
+                            avg_write_time = total_write_time / args.count
+                            avg_write_speed = (total_write_size / total_write_time) / 1024 / 1024
 
-                            child_hash = test.md5_hash_file(target_file)
-                            if not test.compare_hash(parent_hash, child_hash):
-                                print("ERROR: [Iteration %s] Parent and Child"
-                                        "copy hashes mismatch on %s!" %
-                                        (iteration,target_file), file=sys.stderr)
-                                print("\tParent hash: %s" % parent_hash,
-                                        file=sys.stderr)
-                                print("\tChild hash: %s" % child_hash,
-                                        file=sys.stderr)
-                                errors += 1
-                            test.clean_up(target_file)
-                        test.clean_up(parent_file)
+                            results[iteration] = {'write_time': total_write_time,
+                                                  'avg_time': avg_write_time,
+                                                  'avg_speed': avg_write_speed}
+                            print("\t[Iteration %s] Average Speed: %0.4f"
+                                  % (iteration, results[iteration]['avg_speed']))
+                        iteration_write_size = (total_write_size * args.iterations) / 1024 / 1024
+                        iteration_write_times = []
+                        for iteration in range(args.iterations):
+                            iteration_write_times.append(results[iteration]['write_time'])
+                        iteration_write_time = sum(iteration_write_times)
+                        print("\tSummary:")
+                        print("\t\tTotal Data Written: %0.4f MB" % iteration_write_size)
+                        print("\t\tTotal Time to write: %0.4f secs" % iteration_write_time)
+                        print("\t\tAverage Write Time: %0.4f secs" % 
+                              (iteration_write_time / args.iterations))
+                        print("\t\tAverage Write Speed: %0.4f MB/s" %
+                              (iteration_write_size / iteration_write_time))
                 finally:
+                    for key in range(args.count):
+                        test.clean_up(test_files[key].tfile.name)
                     if (len(test.rem_disks_nm) > 0):
                         if test.umount() != 0:
                             errors += 1
@@ -338,14 +394,7 @@ def main():
                 else:
                     print("Successfully completed %s %s file transfer "
                            "test iterations"
-                           % (args.count, args.device))
-                    total_write_time = sum(write_times)
-                    avg_write_time = total_write_time / args.count
-                    avg_write_speed = (args.size / avg_write_time) / 1024 / 1024
-                    print("Total time writing data: %0.4f" % total_write_time)
-                    print("Average time per write: %0.4f" % avg_write_time)
-                    print("Average write speed: %0.4f MB/s" %
-                            avg_write_speed)
+                           % (args.count, ', '.join(args.device)))
                     return 0
             else:
                 print("ERROR: No device being mounted successfully for testing, "
