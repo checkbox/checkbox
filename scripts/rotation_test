@@ -1,4 +1,4 @@
-#!/usr/bin/python2
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 #
 #  rotation_test
@@ -21,9 +21,6 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
-
-from __future__ import print_function
-from __future__ import unicode_literals
 
 import time
 import sys
@@ -53,7 +50,7 @@ def main():
         else:
             error = 'N/A'
         # Collect the status and the error message
-        rots_statuses[rots_dict.keys()[it]] = list((status, error))
+        rots_statuses[list(rots_dict.keys())[it]] = list((status, error))
         time.sleep(4)
         it += 1
 
