@@ -32,13 +32,13 @@ import tempfile
 
 
 class RenderCheck(object):
-    """A simple class to run rendercheck"""
+    """A simple class to run the rendercheck suites"""
 
     def __init__(self, temp_dir=None):
         self._temp_dir = temp_dir
 
     def _print_test_info(self, suites='all', iteration=1, show_errors=False):
-        '''Print the output of the test suite to stdout'''
+        '''Print the output of the test suite'''
 
         main_command = 'rendercheck'
         passed = 0
@@ -85,13 +85,13 @@ class RenderCheck(object):
                     total = int(match_output.group(2).strip())
                     logging.debug('Results:')
                     logging.debug('    %d tests passed out of %d.'
-                          % (passed, total))
+                                  % (passed, total))
                 if show_errors and match_errors:
                     error = match_errors.group(0).strip()
                     if first_error:
                         logging.debug('Rendercheck %s suite errors '
-                              'from iteration %d:'
-                               % (suites, iteration))
+                                      'from iteration %d:'
+                                       % (suites, iteration))
                         first_error = False
                     logging.debug('    %s' % error)
 
@@ -105,7 +105,7 @@ class RenderCheck(object):
         for suite in suites:
             for it in range(iterations):
                 logging.debug('Iteration %d of Rendercheck %s suite...'
-                       % (it + 1, suite))
+                              % (it + 1, suite))
                 (status, passed, total) = \
                 self._print_test_info(suites=suite,
                                       iteration=it + 1,
@@ -113,8 +113,8 @@ class RenderCheck(object):
                 if status != 0:
                     # Make sure to catch a non-zero exit status
                     logging.debug('Iteration %d of Rendercheck %s suite '
-                          'exited with status %d.'
-                          % (it + 1, suite, status))
+                                  'exited with status %d.'
+                                  % (it + 1, suite, status))
                     exit_status = status
                 it += 1
 
