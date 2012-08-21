@@ -251,7 +251,7 @@ def main():
                         default=0,
                         type=int,
                         help="Minimum speed a device must support to be "
-                             "considered eligible for being tested (bytes/s)")
+                             "considered eligible for being tested (bits/s)")
     parser.add_argument('-p', '--pass-speed',
                         action='store',
                         default=0,
