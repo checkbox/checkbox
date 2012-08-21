@@ -1,0 +1,47 @@
+#!/bin/bash
+set -e
+
+TEST_FILENAME=`basename $1`
+TEST_FILE=$1
+BTADDR=$2
+ACTION=$3
+
+if ! dpkg-query -l obexftp; then
+    echo "You must install obexftp to run this script"
+    exit 1
+fi
+
+if [ $# -ne 3 ]; then
+    echo "Usage: bt_send.sh <file to send> <bluetooth mac address> <send|browse|get|remove>"
+    exit 1
+fi
+
+if [ $ACTION == "send" ]; then
+    echo "Using" $TEST_FILENAME "as a test file"
+    echo "Sending" $TEST_FILE "to" $BTADDR
+    obexput -b $BTADDR $TEST_FILE 2>&1 | grep "Sending\(.*\)done"
+    sleep 1
+    echo "PASS"
+elif [ $ACTION == "browse" ]; then
+    FILE_SIZE=`ls -al $TEST_FILE|awk '{print $5}'`
+    echo "Checking" $BTADDR "for" $TEST_FILENAME
+    echo "Will check for a filesize of " $FILE_SIZE
+    sleep 1
+    obexftp -b $BTADDR -l | grep $TEST_FILENAME | grep 'size="'$FILE_SIZE'"'
+    sleep 1
+    echo "PASS"
+elif [ $ACTION == "remove" ]; then
+    echo "Removing" $TEST_FILENAME "from" $BTADDR
+    sleep 1
+    obexrm -b $BTADDR $TEST_FILENAME 2>&1 | grep "Disconnecting"
+    echo "PASS"
+elif [ $ACTION == "get" ]; then
+    cd /tmp
+    echo "Checking for file size of" $TEST_FILENAME
+    RECV_FILE_SIZE=`obexftp -b $BTADDR -l | grep $TEST_FILENAME | awk '{print $3}'| tr -cd [:digit:]`
+    sleep 4
+    echo "Getting file" $TEST_FILENAME "from" $BTADDR "with a size of" $RECV_FILE_SIZE
+    obexget -b $BTADDR $TEST_FILENAME 2>&1 | grep "Receiving\(.*\)done"
+    ls -l |grep $TEST_FILENAME | grep $RECV_FILE_SIZE
+    echo "PASS"
+fi
