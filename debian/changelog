@@ -13,7 +13,22 @@ checkbox (0.14.5) quantal; urgency=low
   [ Daniel Manrique ]
   * jobs/peripheral.txt.in: Fixed a typo in the DSL job. (LP: #1039192)
 
- -- Daniel Manrique <roadmr@ubuntu.com>  Mon, 20 Aug 2012 15:56:59 -0400
+  [ Jeff Lane ]
+  * scripts/removable_storage_test (total overhaul):
+    * Added --iterations option, now you can run -i iterations of -c files of
+      -s size.
+    * Added RandomData class to generate test files using a much faster method.
+    * Replaced copy_file() with file_write() and file_read() to take advantage of
+      buffer flushing and fsync() opeations not available to shutils/copy2.
+    * Redid the runtime bits of main() so now for every device found, it runs I
+      iterations of C files.
+    * Redid output so now you get an avg write speed per iteration and a summary
+      at the end of all iterations for each device.
+  * jobs/stress.txt.in: added two sample jobs to demonstrate the new features
+    of removable_storage_test
+
+
+ -- Jeff Lane <jeff@ubuntu.com>  Mon, 20 Aug 2012 19:49:58 -0400
 
 checkbox (0.14.4) quantal; urgency=low
 
