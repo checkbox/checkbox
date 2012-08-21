@@ -1,6 +1,5 @@
 checkbox (0.14.5) quantal; urgency=low
 
-  [ Sylvain Pineau ]
   [Sylvain Pineau]
   * New version 0.14.5 for Quantal Quetzal development.
 
@@ -12,6 +11,13 @@ checkbox (0.14.5) quantal; urgency=low
 
   [ Daniel Manrique ]
   * jobs/peripheral.txt.in: Fixed a typo in the DSL job. (LP: #1039192)
+  * jobs/resource.txt.in: Added usb resource that indicates which versions of
+    the protocol are supported (currently only reports for USB 2.0 and 3.0).
+  * scripts/removable_storage_watcher, scripts/removable_storage_test: Added
+    a parameter to specify minimum speed to accept a device, and a parameter
+    to fail removable_storage_test if the transfer speed is below a threshold.
+  * jobs/usb.txt.in: Added usb3 jobs that will only pass if an actual USB 3.0
+    device is inserted/removed/tested.
 
   [ Jeff Lane ]
   * scripts/removable_storage_test (total overhaul):
@@ -26,7 +32,6 @@ checkbox (0.14.5) quantal; urgency=low
       at the end of all iterations for each device.
   * jobs/stress.txt.in: added two sample jobs to demonstrate the new features
     of removable_storage_test
-
 
  -- Jeff Lane <jeff@ubuntu.com>  Mon, 20 Aug 2012 19:49:58 -0400
 
