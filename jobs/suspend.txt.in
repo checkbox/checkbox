@@ -50,6 +50,35 @@ command: obex_send $BTDEVADDR $CHECKBOX_SHARE/data/images/JPEG_Color_Image_Ubunt
 _description:
  This is an automated Bluetooth file transfer test. It sends an image to the device specified by the BTDEVADDR environment variable.
 
+plugin: shell
+name: suspend/bluetooth_obex_send_before_suspend
+requires:
+ package.name == 'bluez' and package.name == 'obexftp'
+ device.category == 'BLUETOOTH'
+command: bluetooth_test $CHECKBOX_SHARE/data/images/JPEG_Color_Image_Ubuntu.jpg $BTDEVADDR send
+_description:
+ This is an automated Bluetooth file transfer test. It sends an image to the device specified by the BTDEVADDR environment variable.
+
+plugin: shell
+name: suspend/bluetooth_obex_browse_before_suspend
+depends: suspend/bluetooth_obex_send_before_suspend
+requires:
+ package.name == 'bluez' and package.name == 'obexftp'
+ device.category == 'BLUETOOTH'
+command: bluetooth_test $CHECKBOX_SHARE/data/images/JPEG_Color_Image_Ubuntu.jpg $BTDEVADDR browse
+_description:
+ This is an automated Bluetooth test. It emulates browsing on a remote device specified by the BTDEVADDR environment variable.
+
+plugin: shell
+name: suspend/bluetooth_obex_get_before_suspend
+depends: suspend/bluetooth_obex_browse_before_suspend
+requires:
+ package.name == 'bluez' and package.name == 'obexftp'
+ device.category == 'BLUETOOTH'
+command: bluetooth_test $CHECKBOX_SHARE/data/images/JPEG_Color_Image_Ubuntu.jpg $BTDEVADDR get; sleep 3; bluetooth_test $CHECKBOX_SHARE/data/images/JPEG_Color_Image_Ubuntu.jpg $BTDEVADDR remove
+_description:
+ This is an automated Bluetooth test. It receives the given file from a remote host specified by the BTDEVADDR environment variable
+
 plugin: manual
 name: suspend/bluetooth_obex_before_suspend_manual
 requires:
@@ -73,7 +102,15 @@ requires:
  sleep.mem == 'supported'
 user: root
 environ: CHECKBOX_DATA
-command: fwts s3 --s3-sleep-delay=30 -r $CHECKBOX_DATA/suspend_single_log || true; grep 'Critical failures: NONE' $CHECKBOX_DATA/suspend_single_log
+command:
+ if type -P fwts >/dev/null; then
+  echo "Calling fwts"
+  fwts s3 --s3-sleep-delay=30 -r $CHECKBOX_DATA/suspend_single_log
+  grep 'Critical failures: NONE' $CHECKBOX_DATA/suspend_single_log
+ else
+  echo "Calling sleep_test"
+  sleep_test -d
+ fi
 _description:
  PURPOSE:
      This test will check suspend and resume
@@ -88,7 +125,7 @@ plugin: shell
 name: suspend/suspend_advanced_auto
 depends: power-management/rtc
 requires:
-    package.name == 'fwts'
+    package.name == 'fwts' or package.name == 'pm-utils'
     sleep.mem == 'supported'
 _description:
  This is the automated version of suspend/suspend_advanced.
@@ -254,6 +291,37 @@ command: obex_send $BTDEVADDR $CHECKBOX_SHARE/data/images/JPEG_Color_Image_Ubunt
 _description:
  This is an automated Bluetooth file transfer test. It sends an image to the device specified by the BTDEVADDR environment variable.
 
+plugin: shell
+name: suspend/bluetooth_obex_send_after_suspend
+depends: suspend/suspend_advanced
+requires:
+ package.name == 'bluez' and package.name == 'obexftp'
+ device.category == 'BLUETOOTH'
+command: bluetooth_test $CHECKBOX_SHARE/data/images/JPEG_Color_Image_Ubuntu.jpg $BTDEVADDR send
+_description:
+ This is an automated Bluetooth file transfer test. It sends an image to the device specified by the BTDEVADDR environment variable.
+
+plugin: shell
+name: suspend/bluetooth_obex_browse_after_suspend
+depends: suspend/suspend_advanced suspend/bluetooth_obex_send_after_suspend
+requires:
+ package.name == 'bluez' and package.name == 'obexftp'
+ device.category == 'BLUETOOTH'
+command: bluetooth_test $CHECKBOX_SHARE/data/images/JPEG_Color_Image_Ubuntu.jpg $BTDEVADDR browse
+_description:
+ This is an automated Bluetooth test. It emulates browsing on a remote device specified by the BTDEVADDR environment variable.
+
+plugin: shell
+name: suspend/bluetooth_obex_get_after_suspend
+depends: suspend/suspend_advanced suspend/bluetooth_obex_browse_after_suspend
+requires:
+ package.name == 'bluez' and package.name == 'obexftp'
+ device.category == 'BLUETOOTH'
+command: bluetooth_test $CHECKBOX_SHARE/data/images/JPEG_Color_Image_Ubuntu.jpg $BTDEVADDR get; sleep 3; bluetooth_test $CHECKBOX_SHARE/data/images/JPEG_Color_Image_Ubuntu.jpg $BTDEVADDR remove
+_description:
+ This is an automated Bluetooth test. It receives the given file from a remote host specified by the BTDEVADDR environment variable
+
+
 plugin: manual
 name: suspend/bluetooth_obex_after_suspend_manual
 depends: suspend/suspend_advanced suspend/bluetooth_obex_before_suspend_manual
@@ -354,3 +422,13 @@ _description:
      4. Suspend/resume
  VERIFICATION:
      1. After a 60s workload, check kern.log for reported GPU errors
+
+plugin: shell
+name: suspend/wifi_resume_time
+depends: suspend/suspend_advanced
+requires:
+   device.category == 'WIRELESS'
+command: wifi_reconnect_resume_test -t 20
+_description:
+ Checks the length of time it takes to reconnect an existing wifi connection
+ after a suspend/resume cycle.  The timeout is specified with the -t option. 

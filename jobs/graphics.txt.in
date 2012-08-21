@@ -24,22 +24,6 @@ _description:
  VERIFICATION:
      Did the resolution change as expected?
 
-plugin: manual
-name: graphics/rotation
-depends: graphics/xorg-version
-_description:
- PURPOSE:
-     This test will test display rotation
- STEPS:
-     1. Open the Displays application
-     2. Select a new rotation value from the dropdown list
-     3. Click on Apply
-     4. Click on Restore Previous Configuration
-     5. Click on Apply
-     6. Repeat 2-5 for different rotation values
- VERIFICATION:
-     Did the display rotation change as expected?
-
 plugin: shell
 name: graphics/xorg-process
 requires: package.name == 'xorg' and package.name == 'procps'
@@ -85,6 +69,16 @@ _description:
  .
  https://help.ubuntu.com/community/Installation/SystemRequirements
 
+name: graphics/modes
+plugin: shell
+command: graphics_modes_info
+_description: Collect info on graphics modes (screen resolution and refresh rate)
+
+name: graphics/color_depth
+plugin: shell
+command: color_depth_info
+_description: Collect info on color depth and pixel format.
+
 plugin: manual
 name: graphics/display
 requires: 
@@ -116,6 +110,19 @@ _description:
      1. Click "Test" to start cycling through the video modes
  VERIFICATION:
      Did the screen appear to be working for each mode?
+
+plugin: manual
+name: graphics/rotation
+depends: graphics/xorg-version
+command: rotation_test
+_description:
+ PURPOSE:
+     This test will test display rotation
+ STEPS:
+     1. Click "Test" to test display rotation. The display will be rotated every 4 seconds.
+     2. Check if all rotations (normal right inverted left) took place without permanent screen corruption
+ VERIFICATION:
+     Did the display rotation take place without without permanent screen corruption?
 
 plugin: shell
 name: graphics/compiz_check

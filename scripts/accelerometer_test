@@ -107,7 +107,7 @@ class AccelerometerUI(Gtk.Window):
 class PermissionException(RuntimeError):
     def __init__(self, error):
         message = "Please re-run with root permissions: %s" % error.strip()
-        super(PermissionException, self).__init__(self, message)
+        super(PermissionException, self).__init__(message)
 
 
 class AxisData(threading.Thread):
@@ -251,10 +251,10 @@ def check_module_status():
     if "Permission denied" in error:
         raise PermissionException(error)
 
-    vendor_data = re.findall("Manufacturer:\s.*", output)
+    vendor_data = re.findall("Vendor:\s.*", output)
     try:
-        manufacturer = vendor_data[1].split(":")[1].strip()
-    except IndexError:
+        manufacturer = vendor_data[0].split(":")[1].strip()
+    except IndexError as exception:
         logging.error("Failed to find Manufacturing data")
         return
 

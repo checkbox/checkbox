@@ -1,8 +1,16 @@
-checkbox (0.14.4) quantal; urgency=low
+checkbox (0.14.5) quantal; urgency=low
+
+  [Sylvain Pineau]
+  * New version 0.14.5 for Quantal Quetzal development.
+
+  [Jeff Marcom]
+  * scripts/accelerometer_test, jobs/input.txt.in: Improved ability to detect 
+    oem manufacturer info, and cleanup up job step formatting.
+  * /jobs/touchpad.txt.in: Fixed instruction steps for manual touchpad horizontal 
+     and vertical tests.
 
   [ Daniel Manrique ]
-  * New version 0.14.4 for Quantal Quetzal development.
-  * Added new audio_test and test definitions.
+  * jobs/peripheral.txt.in: Fixed a typo in the DSL job. (LP: #1039192)
   * jobs/resource.txt.in: Added usb resource that indicates which versions of
     the protocol are supported (currently only reports for USB 2.0 and 3.0).
   * scripts/removable_storage_watcher, scripts/removable_storage_test: Added
@@ -10,6 +18,30 @@ checkbox (0.14.4) quantal; urgency=low
     to fail removable_storage_test if the transfer speed is below a threshold.
   * jobs/usb.txt.in: Added usb3 jobs that will only pass if an actual USB 3.0
     device is inserted/removed/tested.
+
+  [ Jeff Lane ]
+  * scripts/removable_storage_test (total overhaul):
+    * Added --iterations option, now you can run -i iterations of -c files of
+      -s size.
+    * Added RandomData class to generate test files using a much faster method.
+    * Replaced copy_file() with file_write() and file_read() to take advantage of
+      buffer flushing and fsync() opeations not available to shutils/copy2.
+    * Redid the runtime bits of main() so now for every device found, it runs I
+      iterations of C files.
+    * Redid output so now you get an avg write speed per iteration and a summary
+      at the end of all iterations for each device.
+  * jobs/stress.txt.in: added two sample jobs to demonstrate the new features
+    of removable_storage_test
+
+ -- Jeff Lane <jeff@ubuntu.com>  Mon, 20 Aug 2012 19:49:58 -0400
+
+checkbox (0.14.4) quantal; urgency=low
+
+  * New upstream release (LP #1039094):
+
+  [ Daniel Manrique ]
+  * New version 0.14.4 for Quantal Quetzal development.
+  * Added new audio_test and test definitions.
 
   [Jeff Lane]
   * jobs/esata.txt.in: added tests for removable eSATA drives
@@ -44,12 +76,16 @@ checkbox (0.14.4) quantal; urgency=low
   * jobs/benchmarks.txt.in, scripts/wifi_time2reconnect: Add a test to monitor
     the time needed to reconnect to a WIFI access point.
   * jobs/cpu.txt.in: Added a check for ARM Vector Floating Point Unit support.
-  * jobs/touchscreen.txt.in: Add 3 new manual tests (tap-detect, drag-n-drop and 
+  * jobs/touchscreen.txt.in: Add 3 new manual tests (tap-detect, drag-n-drop and
     multitouch-zoom)
   * jobs/audio.txt.in: Added a test that verifies that the various audio 
     channels are working properly.
   * scripts/camera_test, jobs/camera.txt.in: Replace the call to "xawtv -hwscan"
     in camera_test by the VIDIOC_QUERYCAP ioctl, xawtv requirement removed.
+  * jobs/led.txt.in, jobs/local.txt.in, scripts/led_hdd_test.py: Add LED
+    tests.
+  * jobs/suspend.txt.in: Resurrect scripts/sleep_test as a fallback of fwts for
+    the suspend/suspend_advanced test.
 
   [Brendan Donegan]
   * scripts/audio_settings: Converted script from Perl to Python(3), putting 
@@ -62,6 +98,8 @@ checkbox (0.14.4) quantal; urgency=low
     introduction screen, since it isn't used (LP: #1036218)
   * Continue to run the progress bar when the test dependencies are being
     resolved so that it doesn't look like the UI hung (LP: #1036573)
+  * Remove gcov_attachment from default whitelist since it depends on lcov
+    which is not in the default install, and is not used anyway.
 
   [Nathan Williams]
   * scripts/network_check: Fixed exception handling in the absence of zenity
@@ -69,15 +107,44 @@ checkbox (0.14.4) quantal; urgency=low
 
   [Samantha Jian]
   * Added disk spindown test script and definition.
+  * Added support for BT devices on PCI bus. (LP: #1036124)
 
   [Jeff Marcom]
   * Added Accelerometer test.
+  * scripts/gst_pipeline_test, jobs/audio.txt.in: Added device sink check
 
   [Matt Fischer]
   * Added test to check that volume is within acceptable range and audio
     elements are not muted.
+  * scripts/camera_test: added the resolutions option to take sample pictures
+    in all resolutions supported by the specified webcam
+    jobs/camera.txt.in: added the camera/multiple-resolution-images test which
+    utilitizes the changes to the camera_test script 
 
- -- Daniel Manrique <roadmr@ubuntu.com>  Thu, 16 Aug 2012 16:58:02 -0400
+  [Alberto Milone]
+  * checkbox/contrib/gdk.py: Added library for getting gtk.gdk.Screen object
+    checkbox/contrib/xrandr.py: Added library for manipulating graphics
+    settings similar to how xrandr does it.
+    scripts/brightness_test: Added automated test to verify that backlight
+    settings are properly honored
+    scripts/color_depth_info: Added script to get info on color depth and pixel
+    format
+    scripts/graphics_modes_info: Added script to gather info on the supported
+    graphics modes available
+    scripts/rotation_test: Added script to automate screen rotation testing
+    jobs/graphics.txt.in, jobs/monitor.txt.in: Added jobs to take advantage of
+    the new scripts added to Checkbox
+
+  [ Sean Feole ]
+  * scripts/wifi_reconnect_resume_test, jobs/wifi_resume_time added.
+  * Fixed an output issue in scripts/wifi_reconnect_test that was not handled
+    in the original merge. Also tweaked error messages to be more useful.
+
+  [Chris Wayne]
+  * Added in bluetooth_test and related jobs for automated bluetooth
+    testing
+
+ -- Jeff Lane <jeff@ubuntu.com>  Fri, 17 Aug 2012 16:47:08 -0400
 
 checkbox (0.14.3) quantal; urgency=low
 
