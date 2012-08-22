@@ -1,0 +1,20 @@
+plugin: shell
+name: virtualization/virtualization-check
+requires: cpuinfo.platform in ("i386", "x86_64")
+user: root
+command: virt_check
+_description:
+ Test to check that virtualization is supported and the test system has at least a minimal amount of RAM to function as an OpenStack Compute Node
+
+plugin: shell
+name: virtualization/kvm_ok
+command: kvm-ok
+_description:
+ Test to determine if this system is capable of running hardware accelerated KVM virtual machines
+
+plugin: shell
+name: virtualization/kvm_check_vm
+depends: virtualization/kvm_ok
+command: kvm_test $CLOUD_IMAGE
+_description:
+ Test to check that a cloud image boots and works properly with KVM
