@@ -15,7 +15,9 @@ _description:
 
 plugin: shell
 name: virtualization/kvm_check_vm
-requires: package.name == 'qemu-kvm'
+requires: 
+ package.name == 'qemu-kvm'
+ package.name == 'qemu-utils'
 depends: virtualization/kvm_ok
 command: kvm_test $CLOUD_IMAGE
 _description:
