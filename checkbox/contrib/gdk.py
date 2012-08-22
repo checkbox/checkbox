@@ -1,4 +1,4 @@
-#!/usr/bin/python2
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 #
 # Python-XRandR provides a high level API for the XRandR extension of the
@@ -26,27 +26,14 @@
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
-try:
-    import pygtk
-    pygtk.require("2.0")
-    import gtk.gdk
-    legacy = True
-except ImportError:
-    from gi.repository import Gdk
-    legacy = False
-
+from gi.repository import Gdk
 from checkbox.contrib import xrandr
 
 #FIXME: Perhaps using gdk_x11_screen_get_xscreen would be more elegant
 
 def get_default_screen_config():
-    if legacy:
-        dpy = gtk.gdk.display_get_default()
-        screen = dpy.get_default_screen()
-    else:
-        Gdk.Display.get_default()
-        dpy = Gdk.Display.get_default()
-        screen = Gdk.Display.get_default_screen(dpy)
+    dpy = Gdk.Display.get_default()
+    screen = Gdk.Display.get_default_screen(dpy)
     return get_screen_config(screen)
 
 def get_screen_config(screen):
