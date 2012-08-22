@@ -2,6 +2,9 @@ checkbox (0.14.5) quantal; urgency=low
 
   [Sylvain Pineau]
   * New version 0.14.5 for Quantal Quetzal development.
+  * jobs/virtualization.txt.in, scripts/kvm_test.py, jobs/miscellanea.txt.in,
+    setup.cfg: Added a new KVM test to ensure that a VM boots and works
+    properly with KVM.
 
   [Jeff Marcom]
   * scripts/accelerometer_test, jobs/input.txt.in: Improved ability to detect 
