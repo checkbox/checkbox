@@ -33,7 +33,11 @@ checkbox (0.14.5) quantal; urgency=low
   * jobs/stress.txt.in: added two sample jobs to demonstrate the new features
     of removable_storage_test
 
- -- Jeff Lane <jeff@ubuntu.com>  Mon, 20 Aug 2012 19:49:58 -0400
+  [ Jeff Marcom ]
+  * jobs/audio.txt.in, added method to bypass return code of /scripts/audio_settings
+    and instead only return the exit code for the appropriate audio test.
+
+ -- Jeff Marcom <jeff.marcom@canonical.com>  Wed, 22 Aug 2012 10:55:18 -0400
 
 checkbox (0.14.4) quantal; urgency=low
 
