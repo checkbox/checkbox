@@ -23,7 +23,7 @@ def check_state(device):
         return False
 
     print("Device: %s %s" % (device.strip(), status.strip()))
-    return status == "RUNNING"
+    return status 
 
 
 def main():

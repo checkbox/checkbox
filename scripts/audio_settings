@@ -18,6 +18,23 @@ name_regex = re.compile("(?<=name:).*")
 
 entries_regex = re.compile("index.*?(?=properties)", re.DOTALL)
 
+def set_profile_hdmi():
+    """Sets desired device as active profile. This is typically
+    used as a fallback for setting HDMI as the output device.
+    """
+
+    profile = "output:hdmi-stereo-extra1+input:analog-stereo"
+    output_list = check_output(["pactl", "list"], universal_newlines=True)
+
+    if profile not in output_list:
+        profile = profile.replace("-extra1", "")
+        
+    # Try and set device as default audio output
+    try: 
+        check_call(["pactl", "set-card-profile", "0", profile])
+    except CalledProcessError as error:
+        print("Failed setting audio output to:%s: %s" % (profile, error))
+    
 def move_sinks(index):
     sink_inputs = check_output(["pacmd", "list-sink-inputs"],
                                universal_newlines=True)
@@ -159,6 +176,8 @@ def main():
             print("No volume level specified!")
             return 1
 
+        if args.device == "hdmi":
+            set_profile_hdmi()
         set_audio_settings(args.device, args.mute, args.volume)
     elif args.action == "restore":
         restore_audio_settings(args.file)
