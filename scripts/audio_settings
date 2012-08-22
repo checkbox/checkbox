@@ -34,7 +34,32 @@ def set_profile_hdmi():
         check_call(["pactl", "set-card-profile", "0", profile])
     except CalledProcessError as error:
         print("Failed setting audio output to:%s: %s" % (profile, error))
+
+def get_current_profile_setting():
+    """Captures and Writes current audio profile setting"""
+    output_list = check_output(["pactl", "list"], universal_newlines=True)
+     
+    active_profile = re.findall("Active\sProfile.*", output_list)[0]
+
+    try:
+        open("active_output", 'w').write(active_profile)
+    except IOError:
+        print("Failed to save active output information")
+
+def restore_profile_setting():
+    try:
+        setting_info = open("active_output").read()
+        profile = setting_info.split("Active Profile:")[-1]
+    except (IOError, IndexError):
+        print("Failed to retrieve previous profile information")
+        return
+
+    try: 
+        check_call(["pactl", "set-card-profile", "0", profile.strip()])
+    except CalledProcessError as error:
+        print("Failed setting audio output to:%s: %s" % (profile, error))
     
+
 def move_sinks(index):
     sink_inputs = check_output(["pacmd", "list-sink-inputs"],
                                universal_newlines=True)
@@ -168,6 +193,7 @@ def main():
             return 1
 
         store_audio_settings(args.file)
+        get_current_profile_setting()
     elif args.action == "set":
         if not args.device:
             print("No device specified to change settings of!")
@@ -181,6 +207,7 @@ def main():
         set_audio_settings(args.device, args.mute, args.volume)
     elif args.action == "restore":
         restore_audio_settings(args.file)
+        restore_profile_setting()
     else:
         print(args.action + "is not a valid action")
         return 1
