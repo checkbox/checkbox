@@ -8,12 +8,14 @@ _description:
 
 plugin: shell
 name: virtualization/kvm_ok
+requires: package.name == 'cpu-checker'
 command: kvm-ok
 _description:
  Test to determine if this system is capable of running hardware accelerated KVM virtual machines
 
 plugin: shell
 name: virtualization/kvm_check_vm
+requires: package.name == 'qemu-kvm'
 depends: virtualization/kvm_ok
 command: kvm_test $CLOUD_IMAGE
 _description:
