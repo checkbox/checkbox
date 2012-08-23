@@ -12,6 +12,8 @@ checkbox (0.14.5) quantal; urgency=low
     HDMI interface, modified corresponding jobs file..
   * jobs/audio.txt.in, added method to bypass return code of /scripts/audio_settings
     and instead only return the exit code for the appropriate audio test.
+  * scripts/audio_settings: Added automated switch to restore previous 
+    audio profile setting
 
   [ Daniel Manrique ]
   * jobs/peripheral.txt.in: Fixed a typo in the DSL job. (LP: #1039192)
@@ -38,7 +40,8 @@ checkbox (0.14.5) quantal; urgency=low
   * jobs/stress.txt.in: added two sample jobs to demonstrate the new features
     of removable_storage_test
 
- -- Jeff Marcom <jeff.marcom@canonical.com>  Wed, 22 Aug 2012 10:55:18 -0400
+
+ -- Jeff Marcom <jeff.marcom@canonical.com>  Wed, 22 Aug 2012 16:56:41 -0400
 
 checkbox (0.14.4) quantal; urgency=low
 
