@@ -243,6 +243,13 @@ command:
   shopt -s extglob
   cat $CHECKBOX_SHARE/jobs/user_apps.txt?(.in)
 
+name: __virtualization__
+plugin: local
+_description: Virtualization tests
+command:
+  shopt -s extglob
+  cat $CHECKBOX_SHARE/jobs/virtualization.txt?(.in)
+
 name: __wireless__
 plugin: local
 _description: Wireless networking tests
