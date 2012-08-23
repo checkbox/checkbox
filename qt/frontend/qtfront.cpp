@@ -62,6 +62,7 @@ QtFront::QtFront(QApplication *parent) :
     connect(ui->selectAllButton, SIGNAL(clicked()), this, SLOT(onSelectAllClicked()));
     connect(ui->buttonStartTesting, SIGNAL(clicked()), this, SLOT(onStartTestsClicked()));
     connect(ui->testTestButton, SIGNAL(clicked()), this, SIGNAL(startTestClicked()));
+    connect(ui->test2TestButton, SIGNAL(clicked()), this, SIGNAL(startTestClicked()));
     connect(ui->yesTestButton, SIGNAL(clicked()), this, SLOT(onYesTestClicked()));
     connect(ui->noTestButton, SIGNAL(clicked()), this, SLOT(onNoTestClicked()));
     connect(ui->nextTestButton, SIGNAL(clicked()), this, SLOT(onNextTestClicked()));
@@ -299,6 +300,7 @@ void QtFront::showTest(QString purpose,
     ui->radioTestTab->setVisible(true);
     ui->nextPrevButtons->setVisible(true);
     ui->testTestButton->setEnabled(enableTestButton);
+    ui->skipTestRadioButton->setChecked(true);
     ui->testsTab->setTabEnabled(ui->testsTab->indexOf(ui->testing), true);
     ui->tabWidget->setCurrentIndex(1);
 
@@ -369,6 +371,15 @@ void QtFront::setFocusTestYesNo(bool status) {
         ui->yesTestButton->clearFocus();
         ui->noTestButton->setDefault(true);
         ui->noTestButton->setFocus();
+    }
+}
+
+void QtFront::setTestResult(bool status) {
+    if (status) {
+        ui->yesTestRadioButton->setChecked(true);
+    }
+    else {
+        ui->noTestRadioButton->setChecked(true);
     }
 }
 
@@ -578,6 +589,10 @@ QVariantMap QtFront::getTestsToRun() {
 
 QString QtFront::getTestComment() {
     return m_currentTextComment->toPlainText();
+}
+
+bool QtFront::getTestResult(){
+    return ui->yesTestRadioButton->isChecked();
 }
 
 QtFront::~QtFront() {

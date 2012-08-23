@@ -193,6 +193,7 @@ class QTInterface(UserInterface):
         self.qtiface.showTestControls(False)
         (status, data, duration) = runner(test)
         self.qtiface.setFocusTestYesNo(True if status == PASS else False)
+        self.qtiface.setTestResult(True if status == PASS else False)
         self.qtiface.showTestControls(True)
 
         if test["info"]:

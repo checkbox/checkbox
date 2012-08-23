@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>640</width>
-    <height>470</height>
+    <height>640</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -25,7 +25,7 @@
   <property name="maximumSize">
    <size>
     <width>640</width>
-    <height>470</height>
+    <height>640</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -659,271 +659,311 @@ QTabWidget::tab-bar#testsTab {
                    <string>Tab 1</string>
                   </attribute>
                   <layout class="QVBoxLayout" name="verticalLayout_3">
-                   <property name="spacing">
-                    <number>0</number>
-                   </property>
-                   <property name="margin">
-                    <number>0</number>
-                   </property>
                    <item>
-                    <layout class="QVBoxLayout" name="testVLayout">
-                     <property name="spacing">
-                      <number>0</number>
+                    <widget class="QFrame" name="titleFrame">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
                      </property>
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>56</height>
+                      </size>
+                     </property>
+                     <widget class="QLabel" name="testTypeLabel">
+                      <property name="geometry">
+                       <rect>
+                        <x>10</x>
+                        <y>0</y>
+                        <width>611</width>
+                        <height>25</height>
+                       </rect>
+                      </property>
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <property name="font">
+                       <font>
+                        <family>Ubuntu</family>
+                        <pointsize>16</pointsize>
+                       </font>
+                      </property>
+                      <property name="text">
+                       <string>TextLabel</string>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+                      </property>
+                      <property name="wordWrap">
+                       <bool>true</bool>
+                      </property>
+                     </widget>
+                     <widget class="QLabel" name="purposeLabel">
+                      <property name="geometry">
+                       <rect>
+                        <x>10</x>
+                        <y>30</y>
+                        <width>611</width>
+                        <height>21</height>
+                       </rect>
+                      </property>
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <property name="font">
+                       <font>
+                        <family>Ubuntu</family>
+                        <pointsize>8</pointsize>
+                        <weight>50</weight>
+                        <bold>false</bold>
+                        <kerning>false</kerning>
+                       </font>
+                      </property>
+                      <property name="text">
+                       <string>TextLabel</string>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+                      </property>
+                      <property name="wordWrap">
+                       <bool>true</bool>
+                      </property>
+                     </widget>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QFrame" name="testFrame">
+                     <layout class="QHBoxLayout" name="horizontalLayout_3">
+                      <item>
+                       <widget class="QFrame" name="frame">
+                        <property name="sizePolicy">
+                         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                          <horstretch>30</horstretch>
+                          <verstretch>0</verstretch>
+                         </sizepolicy>
+                        </property>
+                        <property name="frameShape">
+                         <enum>QFrame::Box</enum>
+                        </property>
+                        <property name="frameShadow">
+                         <enum>QFrame::Plain</enum>
+                        </property>
+                        <layout class="QVBoxLayout" name="verticalLayout_2">
+                         <property name="spacing">
+                          <number>0</number>
+                         </property>
+                         <property name="margin">
+                          <number>0</number>
+                         </property>
+                         <item>
+                          <widget class="QScrollArea" name="scrollArea">
+                           <property name="sizePolicy">
+                            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                             <horstretch>30</horstretch>
+                             <verstretch>30</verstretch>
+                            </sizepolicy>
+                           </property>
+                           <property name="frameShape">
+                            <enum>QFrame::NoFrame</enum>
+                           </property>
+                           <property name="lineWidth">
+                            <number>0</number>
+                           </property>
+                           <property name="widgetResizable">
+                            <bool>true</bool>
+                           </property>
+                           <widget class="QWidget" name="scrollAreaWidgetContents">
+                            <property name="geometry">
+                             <rect>
+                              <x>0</x>
+                              <y>0</y>
+                              <width>486</width>
+                              <height>76</height>
+                             </rect>
+                            </property>
+                            <layout class="QVBoxLayout" name="verticalLayout_4">
+                             <property name="spacing">
+                              <number>0</number>
+                             </property>
+                             <property name="margin">
+                              <number>0</number>
+                             </property>
+                             <item>
+                              <widget class="QFrame" name="stepsFrame">
+                               <property name="sizePolicy">
+                                <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                                 <horstretch>30</horstretch>
+                                 <verstretch>30</verstretch>
+                                </sizepolicy>
+                               </property>
+                               <property name="minimumSize">
+                                <size>
+                                 <width>0</width>
+                                 <height>0</height>
+                                </size>
+                               </property>
+                               <property name="sizeIncrement">
+                                <size>
+                                 <width>0</width>
+                                 <height>0</height>
+                                </size>
+                               </property>
+                               <property name="autoFillBackground">
+                                <bool>false</bool>
+                               </property>
+                               <property name="frameShape">
+                                <enum>QFrame::NoFrame</enum>
+                               </property>
+                               <property name="frameShadow">
+                                <enum>QFrame::Plain</enum>
+                               </property>
+                               <property name="lineWidth">
+                                <number>1</number>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </widget>
+                          </widget>
+                         </item>
+                        </layout>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QFrame" name="testButtonsFrame">
+                        <property name="sizePolicy">
+                         <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+                          <horstretch>6</horstretch>
+                          <verstretch>0</verstretch>
+                         </sizepolicy>
+                        </property>
+                        <property name="frameShape">
+                         <enum>QFrame::NoFrame</enum>
+                        </property>
+                        <property name="frameShadow">
+                         <enum>QFrame::Plain</enum>
+                        </property>
+                        <property name="lineWidth">
+                         <number>0</number>
+                        </property>
+                        <widget class="QPushButton" name="yesTestButton">
+                         <property name="geometry">
+                          <rect>
+                           <x>10</x>
+                           <y>100</y>
+                           <width>85</width>
+                           <height>27</height>
+                          </rect>
+                         </property>
+                         <property name="text">
+                          <string>Yes</string>
+                         </property>
+                        </widget>
+                        <widget class="QPushButton" name="testTestButton">
+                         <property name="geometry">
+                          <rect>
+                           <x>10</x>
+                           <y>41</y>
+                           <width>85</width>
+                           <height>27</height>
+                          </rect>
+                         </property>
+                         <property name="text">
+                          <string>Test</string>
+                         </property>
+                        </widget>
+                        <widget class="QPushButton" name="noTestButton">
+                         <property name="geometry">
+                          <rect>
+                           <x>10</x>
+                           <y>130</y>
+                           <width>85</width>
+                           <height>27</height>
+                          </rect>
+                         </property>
+                         <property name="text">
+                          <string>No</string>
+                         </property>
+                        </widget>
+                        <widget class="QToolButton" name="commentTestButton">
+                         <property name="geometry">
+                          <rect>
+                           <x>10</x>
+                           <y>170</y>
+                           <width>85</width>
+                           <height>27</height>
+                          </rect>
+                         </property>
+                         <property name="text">
+                          <string>Comment</string>
+                         </property>
+                         <property name="popupMode">
+                          <enum>QToolButton::InstantPopup</enum>
+                         </property>
+                        </widget>
+                       </widget>
+                      </item>
+                     </layout>
+                    </widget>
+                   </item>
+                   <item>
+                    <layout class="QHBoxLayout" name="testControlsHorizontalLayout">
                      <item>
-                      <widget class="QFrame" name="titleFrame">
-                       <property name="sizePolicy">
-                        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                         <horstretch>0</horstretch>
-                         <verstretch>0</verstretch>
-                        </sizepolicy>
+                      <widget class="QPushButton" name="test2TestButton">
+                       <property name="text">
+                        <string>Test2</string>
                        </property>
-                       <property name="minimumSize">
-                        <size>
-                         <width>0</width>
-                         <height>56</height>
-                        </size>
-                       </property>
-                       <widget class="QLabel" name="testTypeLabel">
-                        <property name="geometry">
-                         <rect>
-                          <x>10</x>
-                          <y>0</y>
-                          <width>611</width>
-                          <height>25</height>
-                         </rect>
-                        </property>
-                        <property name="sizePolicy">
-                         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                          <horstretch>0</horstretch>
-                          <verstretch>0</verstretch>
-                         </sizepolicy>
-                        </property>
-                        <property name="font">
-                         <font>
-                          <family>Ubuntu</family>
-                          <pointsize>16</pointsize>
-                         </font>
-                        </property>
-                        <property name="text">
-                         <string>TextLabel</string>
-                        </property>
-                        <property name="alignment">
-                         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-                        </property>
-                        <property name="wordWrap">
-                         <bool>true</bool>
-                        </property>
-                       </widget>
-                       <widget class="QLabel" name="purposeLabel">
-                        <property name="geometry">
-                         <rect>
-                          <x>10</x>
-                          <y>30</y>
-                          <width>611</width>
-                          <height>21</height>
-                         </rect>
-                        </property>
-                        <property name="sizePolicy">
-                         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                          <horstretch>0</horstretch>
-                          <verstretch>0</verstretch>
-                         </sizepolicy>
-                        </property>
-                        <property name="font">
-                         <font>
-                          <family>Ubuntu</family>
-                          <pointsize>8</pointsize>
-                          <weight>50</weight>
-                          <bold>false</bold>
-                          <kerning>false</kerning>
-                         </font>
-                        </property>
-                        <property name="text">
-                         <string>TextLabel</string>
-                        </property>
-                        <property name="alignment">
-                         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-                        </property>
-                        <property name="wordWrap">
-                         <bool>true</bool>
-                        </property>
-                       </widget>
                       </widget>
                      </item>
                      <item>
-                      <widget class="QFrame" name="testFrame">
-                       <layout class="QHBoxLayout" name="horizontalLayout_3">
-                        <item>
-                         <widget class="QFrame" name="frame">
-                          <property name="sizePolicy">
-                           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                            <horstretch>30</horstretch>
-                            <verstretch>0</verstretch>
-                           </sizepolicy>
-                          </property>
-                          <property name="frameShape">
-                           <enum>QFrame::Box</enum>
-                          </property>
-                          <property name="frameShadow">
-                           <enum>QFrame::Plain</enum>
-                          </property>
-                          <layout class="QVBoxLayout" name="verticalLayout_2">
-                           <property name="spacing">
-                            <number>0</number>
-                           </property>
-                           <property name="margin">
-                            <number>0</number>
-                           </property>
-                           <item>
-                            <widget class="QScrollArea" name="scrollArea">
-                             <property name="sizePolicy">
-                              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                               <horstretch>30</horstretch>
-                               <verstretch>30</verstretch>
-                              </sizepolicy>
-                             </property>
-                             <property name="frameShape">
-                              <enum>QFrame::NoFrame</enum>
-                             </property>
-                             <property name="lineWidth">
-                              <number>0</number>
-                             </property>
-                             <property name="widgetResizable">
-                              <bool>true</bool>
-                             </property>
-                             <widget class="QWidget" name="scrollAreaWidgetContents">
-                              <property name="geometry">
-                               <rect>
-                                <x>0</x>
-                                <y>0</y>
-                                <width>100</width>
-                                <height>30</height>
-                               </rect>
-                              </property>
-                              <layout class="QVBoxLayout" name="verticalLayout_4">
-                               <property name="spacing">
-                                <number>0</number>
-                               </property>
-                               <property name="margin">
-                                <number>0</number>
-                               </property>
-                               <item>
-                                <widget class="QFrame" name="stepsFrame">
-                                 <property name="sizePolicy">
-                                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                                   <horstretch>30</horstretch>
-                                   <verstretch>30</verstretch>
-                                  </sizepolicy>
-                                 </property>
-                                 <property name="minimumSize">
-                                  <size>
-                                   <width>0</width>
-                                   <height>0</height>
-                                  </size>
-                                 </property>
-                                 <property name="sizeIncrement">
-                                  <size>
-                                   <width>0</width>
-                                   <height>0</height>
-                                  </size>
-                                 </property>
-                                 <property name="autoFillBackground">
-                                  <bool>false</bool>
-                                 </property>
-                                 <property name="frameShape">
-                                  <enum>QFrame::NoFrame</enum>
-                                 </property>
-                                 <property name="frameShadow">
-                                  <enum>QFrame::Plain</enum>
-                                 </property>
-                                 <property name="lineWidth">
-                                  <number>1</number>
-                                 </property>
-                                </widget>
-                               </item>
-                              </layout>
-                             </widget>
-                            </widget>
-                           </item>
-                          </layout>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QFrame" name="testButtonsFrame">
-                          <property name="sizePolicy">
-                           <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
-                            <horstretch>6</horstretch>
-                            <verstretch>0</verstretch>
-                           </sizepolicy>
-                          </property>
-                          <property name="frameShape">
-                           <enum>QFrame::NoFrame</enum>
-                          </property>
-                          <property name="frameShadow">
-                           <enum>QFrame::Plain</enum>
-                          </property>
-                          <property name="lineWidth">
-                           <number>0</number>
-                          </property>
-                          <widget class="QPushButton" name="yesTestButton">
-                           <property name="geometry">
-                            <rect>
-                             <x>10</x>
-                             <y>100</y>
-                             <width>85</width>
-                             <height>27</height>
-                            </rect>
-                           </property>
-                           <property name="text">
-                            <string>Yes</string>
-                           </property>
-                          </widget>
-                          <widget class="QPushButton" name="testTestButton">
-                           <property name="geometry">
-                            <rect>
-                             <x>10</x>
-                             <y>41</y>
-                             <width>85</width>
-                             <height>27</height>
-                            </rect>
-                           </property>
-                           <property name="text">
-                            <string>Test</string>
-                           </property>
-                          </widget>
-                          <widget class="QPushButton" name="noTestButton">
-                           <property name="geometry">
-                            <rect>
-                             <x>10</x>
-                             <y>130</y>
-                             <width>85</width>
-                             <height>27</height>
-                            </rect>
-                           </property>
-                           <property name="text">
-                            <string>No</string>
-                           </property>
-                          </widget>
-                          <widget class="QToolButton" name="commentTestButton">
-                           <property name="geometry">
-                            <rect>
-                             <x>10</x>
-                             <y>170</y>
-                             <width>85</width>
-                             <height>27</height>
-                            </rect>
-                           </property>
-                           <property name="text">
-                            <string>Comment</string>
-                           </property>
-                           <property name="popupMode">
-                            <enum>QToolButton::InstantPopup</enum>
-                           </property>
-                          </widget>
-                         </widget>
-                        </item>
-                       </layout>
+                      <widget class="QRadioButton" name="yesTestRadioButton">
+                       <property name="text">
+                        <string>Yes</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QRadioButton" name="noTestRadioButton">
+                       <property name="text">
+                        <string>No</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QRadioButton" name="skipTestRadioButton">
+                       <property name="text">
+                        <string>Skip Test</string>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
+                   <item>
+                    <layout class="QVBoxLayout" name="commentsVerticalLayout">
+                     <item>
+                      <widget class="QLabel" name="label">
+                       <property name="text">
+                        <string>Comments</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QPlainTextEdit" name="commentsTextEdit">
+                       <property name="maximumSize">
+                        <size>
+                         <width>16777215</width>
+                         <height>200</height>
+                        </size>
+                       </property>
                       </widget>
                      </item>
                     </layout>
@@ -977,6 +1017,9 @@ QTabWidget::tab-bar#testsTab {
                    <string>Previous</string>
                   </property>
                  </widget>
+                 <zorder>nextTestButton</zorder>
+                 <zorder>previousTestButton</zorder>
+                 <zorder>radioTestTab</zorder>
                 </widget>
                </item>
               </layout>

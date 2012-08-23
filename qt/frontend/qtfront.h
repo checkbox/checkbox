@@ -54,9 +54,11 @@ public slots:
     QVariantMap getTestsToRun();
     QString getSubmissionData();
     QString getTestComment();
+    bool getTestResult();
     void showTest(QString purpose, QString steps, QString verification, QString info, QString comment, QString testType, QString testName, bool enableTestButton);
     void showTestControls(bool enableTestControls);
     void setFocusTestYesNo(bool status);
+    void setTestResult(bool status);
     Q_NOREPLY void showInfo(QString text, QStringList options, QString defaultoption);
     void updateAutoTestStatus(QString status, QString testName);
 
