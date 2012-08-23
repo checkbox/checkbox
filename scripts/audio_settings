@@ -6,7 +6,7 @@ import re
 from argparse import ArgumentParser
 from subprocess import check_output, check_call, CalledProcessError
 
-TYPES = ("source","sink")
+TYPES = ("source", "sink")
 DIRECTIONS = {"source": "input", "sink": "output"}
 
 active_entries_regex = re.compile("\* index.*?(?=properties)", re.DOTALL)
@@ -18,11 +18,55 @@ name_regex = re.compile("(?<=name:).*")
 
 entries_regex = re.compile("index.*?(?=properties)", re.DOTALL)
 
+
+def set_profile_hdmi():
+    """Sets desired device as active profile. This is typically
+    used as a fallback for setting HDMI as the output device.
+    """
+
+    profile = "output:hdmi-stereo-extra1+input:analog-stereo"
+    output_list = check_output(["pactl", "list"], universal_newlines=True)
+
+    if profile not in output_list:
+        profile = profile.replace("-extra1", "")
+
+    # Try and set device as default audio output
+    try:
+        check_call(["pactl", "set-card-profile", "0", profile])
+    except CalledProcessError as error:
+        print("Failed setting audio output to:%s: %s" % (profile, error))
+
+
+def get_current_profile_setting():
+    """Captures and Writes current audio profile setting"""
+    output_list = check_output(["pactl", "list"], universal_newlines=True)
+    active_profile = re.findall("Active\sProfile.*", output_list)[0]
+
+    try:
+        open("active_output", 'w').write(active_profile)
+    except IOError:
+        print("Failed to save active output information")
+
+
+def restore_profile_setting():
+    try:
+        setting_info = open("active_output").read()
+        profile = setting_info.split("Active Profile:")[-1]
+    except (IOError, IndexError):
+        print("Failed to retrieve previous profile information")
+        return
+
+    try:
+        check_call(["pactl", "set-card-profile", "0", profile.strip()])
+    except CalledProcessError as error:
+        print("Failed setting audio output to:%s: %s" % (profile, error))
+
+
 def move_sinks(index):
     sink_inputs = check_output(["pacmd", "list-sink-inputs"],
                                universal_newlines=True)
     input_indexes = index_regex.findall(sink_inputs)
-    
+
     for input_index in input_indexes:
         try:
             check_call(["pacmd", "move-sink-input", input_index, index])
@@ -30,27 +74,32 @@ def move_sinks(index):
             print("Failed to move input %d to sink %d" % (input_index, index))
             sys.exit(1)
 
+
 def store_audio_settings(file):
 
     settings_file = open(file, 'w')
 
     for type in TYPES:
-        pacmd_entries = check_output(["pacmd","list-%ss" % type],
+        pacmd_entries = check_output(["pacmd", "list-%ss" % type],
                                      universal_newlines=True)
         active_entry = active_entries_regex.search(pacmd_entries).group()
 
         index = index_regex.search(active_entry)
-        print("%s_index: %s" % (type, index.group().strip()), file=settings_file)
-        
+        print("%s_index: %s" % (type, index.group().strip()),
+                                file=settings_file)
+
         muted = muted_regex.search(active_entry)
-        print("%s_muted: %s" % (type, muted.group().strip()), file=settings_file)
-        
+        print("%s_muted: %s" % (type, muted.group().strip()),
+                                file=settings_file)
+
         steps = int(steps_regex.search(active_entry).group().strip())
         volume = int(volume_regex.search(active_entry).group().strip())
-        
-        absolute_volume = int(steps / 100 * volume) 
-        
-        print("%s_volume: %s" % (type, str(absolute_volume)), file=settings_file)
+
+        absolute_volume = int(steps / 100 * volume)
+
+        print("%s_volume: %s" % (type, str(absolute_volume)),
+                                 file=settings_file)
+
 
 def set_audio_settings(device, mute, volume):
     print(device, mute, volume)
@@ -63,7 +112,7 @@ def set_audio_settings(device, mute, volume):
 
         for entry in entries:
             name = name_regex.search(entry).group()
-                  
+
             if device in name and DIRECTIONS[type] in name:
                 index = index_regex.search(entry).group().strip()
 
@@ -77,7 +126,8 @@ def set_audio_settings(device, mute, volume):
                     move_sinks(index)
 
                 try:
-                    check_call(["pacmd", "set-%s-mute" % type, index, str(mute)])
+                    check_call(["pacmd",
+                                "set-%s-mute" % type, index, str(mute)])
                 except:
                     print("Failed to set mute for %s" % device)
                     sys.exit(1)
@@ -86,10 +136,12 @@ def set_audio_settings(device, mute, volume):
                 new_volume = int(steps / 100 * volume)
 
                 try:
-                    check_call(["pacmd", "set-%s-volume" % type, index, str(new_volume)])
+                    check_call(["pacmd",
+                               "set-%s-volume" % type, index, str(new_volume)])
                 except:
                     print("Failed to set volume for %s" % device)
                     sys.exit(1)
+
 
 def restore_audio_settings(file):
     settings_file = open(file).read().split()
@@ -97,50 +149,51 @@ def restore_audio_settings(file):
     for type in TYPES:
         index = settings_file[settings_file.index("%s_index:" % type) + 1]
         print(index)
-        
+
         try:
-           check_call(["pacmd", "set-default-%s" % type, index])
+            check_call(["pacmd", "set-default-%s" % type, index])
         except CalledProcessError:
-           print("Failed to set default %s" % type)
-           sys.exit(1)
+            print("Failed to set default %s" % type)
+            sys.exit(1)
 
         if type == "sink":
-           move_sinks(index)
+            move_sinks(index)
 
         muted = settings_file[settings_file.index("%s_muted:" % type) + 1]
         print(muted)
-        
+
         try:
             check_call(["pacmd", "set-%s-mute" % type, index, muted])
         except:
             print("Failed to set mute for %s" % device)
-            sys.exit(1)        
+            sys.exit(1)
 
         volume = settings_file[settings_file.index("%s_volume:" % type) + 1]
         print(volume)
-        
+
         try:
             check_call(["pacmd", "set-%s-volume" % type, index, volume])
         except:
             print("Failed to set volume for %s" % device)
             sys.exit(1)
 
+
 def main():
     parser = ArgumentParser("Manipulate PulseAudio settings")
     parser.add_argument("action",
-                        choices=['store','set','restore'],
+                        choices=['store', 'set', 'restore'],
                         help="Action to perform with the audio settings")
-    parser.add_argument("-d","--device",
+    parser.add_argument("-d", "--device",
                         help="The device to apply the new settings to.")
-    parser.add_argument("-m","--mute",
+    parser.add_argument("-m", "--mute",
                         action="store_true",
                         help="""The new value for the mute setting
                                 of the specified device.""")
-    parser.add_argument("-v","--volume",
+    parser.add_argument("-v", "--volume",
                         type=int,
                         help="""The new value for the volume setting
                                 of the specified device.""")
-    parser.add_argument("-f","--file",
+    parser.add_argument("-f", "--file",
                         help="""The file to store settings in or restore
                                 settings from.""")
     args = parser.parse_args()
@@ -151,6 +204,7 @@ def main():
             return 1
 
         store_audio_settings(args.file)
+        get_current_profile_setting()
     elif args.action == "set":
         if not args.device:
             print("No device specified to change settings of!")
@@ -159,9 +213,12 @@ def main():
             print("No volume level specified!")
             return 1
 
+        if args.device == "hdmi":
+            set_profile_hdmi()
         set_audio_settings(args.device, args.mute, args.volume)
     elif args.action == "restore":
         restore_audio_settings(args.file)
+        restore_profile_setting()
     else:
         print(args.action + "is not a valid action")
         return 1

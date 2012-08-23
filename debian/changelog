@@ -8,6 +8,12 @@ checkbox (0.14.5) quantal; urgency=low
     oem manufacturer info, and cleanup up job step formatting.
   * /jobs/touchpad.txt.in: Fixed instruction steps for manual touchpad horizontal 
      and vertical tests.
+  * scripts/audio_settings, jobs/audio.txt.in: Added automated switch to 
+    HDMI interface, modified corresponding jobs file..
+  * jobs/audio.txt.in, added method to bypass return code of /scripts/audio_settings
+    and instead only return the exit code for the appropriate audio test.
+  * scripts/audio_settings: Added automated switch to restore previous 
+    audio profile setting
 
   [ Daniel Manrique ]
   * jobs/peripheral.txt.in: Fixed a typo in the DSL job. (LP: #1039192)
@@ -18,6 +24,7 @@ checkbox (0.14.5) quantal; urgency=low
     to fail removable_storage_test if the transfer speed is below a threshold.
   * jobs/usb.txt.in: Added usb3 jobs that will only pass if an actual USB 3.0
     device is inserted/removed/tested.
+  * jobs/audio.txt.in: replaced gconfaudiosink by autoaudiosink (LP: #978895)
 
   [ Jeff Lane ]
   * scripts/removable_storage_test (total overhaul):
@@ -32,10 +39,9 @@ checkbox (0.14.5) quantal; urgency=low
       at the end of all iterations for each device.
   * jobs/stress.txt.in: added two sample jobs to demonstrate the new features
     of removable_storage_test
-  * jobs/audio.txt.in: replaced gconfaudiosink by autoaudiosink (LP: #978895)
-    and added bogus minor change to aid in diff generation
 
- -- Daniel Manrique <roadmr@ubuntu.com>  Mon, 20 Aug 2012 16:40:45 -0400
+
+ -- Jeff Marcom <jeff.marcom@canonical.com>  Wed, 22 Aug 2012 16:56:41 -0400
 
 checkbox (0.14.4) quantal; urgency=low
 
