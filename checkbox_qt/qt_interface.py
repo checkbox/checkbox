@@ -31,9 +31,9 @@ import dbus
 from dbus.mainloop.glib import DBusGMainLoop
 
 ANSWER_TO_OPTION = {
-    YES_ANSWER: _('yes'),
-    NO_ANSWER: _('no'),
-    SKIP_ANSWER: _('skip')}
+    YES_ANSWER: 'yes',
+    NO_ANSWER: 'no',
+    SKIP_ANSWER: 'skip'}
 
 OPTION_TO_ANSWER = dict((o, a)
                         for a, o in ANSWER_TO_OPTION.items())
@@ -208,7 +208,9 @@ class QTInterface(UserInterface):
             self._run_test(test, runner)
 
         def onNextTestClicked():
-            test["status"] = ANSWER_TO_STATUS[SKIP_ANSWER]
+            #Get response from UI
+            answer = self.qtiface.get2TestResult()
+            test["status"] = ANSWER_TO_STATUS[answer]
             self.direction = NEXT
             self.loop.quit()
 

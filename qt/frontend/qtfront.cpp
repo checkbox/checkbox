@@ -300,7 +300,9 @@ void QtFront::showTest(QString purpose,
     ui->radioTestTab->setVisible(true);
     ui->nextPrevButtons->setVisible(true);
     ui->testTestButton->setEnabled(enableTestButton);
+    ui->test2TestButton->setEnabled(enableTestButton);
     ui->skipTestRadioButton->setChecked(true);
+    ui->commentsTextEdit->setText(comment);
     ui->testsTab->setTabEnabled(ui->testsTab->indexOf(ui->testing), true);
     ui->tabWidget->setCurrentIndex(1);
 
@@ -382,6 +384,20 @@ void QtFront::setTestResult(bool status) {
         ui->noTestRadioButton->setChecked(true);
     }
 }
+
+QString QtFront::get2TestResult() {
+    QString result = "skip";
+    if (ui->yesTestRadioButton->isChecked()){
+        result = "yes";
+    }
+    if (ui->noTestRadioButton->isChecked()) {
+        result = "no";
+    }
+    qDebug() << result;
+    return result;
+}
+
+
 
 void QtFront::updateTestStatus(QStandardItem *item, QStandardItem *statusItem, QString status) {
     int numRows = item->rowCount();
@@ -588,7 +604,7 @@ QVariantMap QtFront::getTestsToRun() {
 }
 
 QString QtFront::getTestComment() {
-    return m_currentTextComment->toPlainText();
+    return ui->commentsTextEdit->toPlainText();
 }
 
 bool QtFront::getTestResult(){

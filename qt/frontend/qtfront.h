@@ -59,6 +59,7 @@ public slots:
     void showTestControls(bool enableTestControls);
     void setFocusTestYesNo(bool status);
     void setTestResult(bool status);
+    QString get2TestResult();
     Q_NOREPLY void showInfo(QString text, QStringList options, QString defaultoption);
     void updateAutoTestStatus(QString status, QString testName);
 
