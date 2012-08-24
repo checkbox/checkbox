@@ -79,46 +79,39 @@ def check_volume(minvol, maxvol):
               file=sys.stderr)
             return 1
 
-        active_entry_match = entries_regex.search(pacmd_entries)
-        if active_entry_match:
-            active_entry = active_entry_match.group()
-        else:
-            print("Unable to find a %s active_entry in the pacmd list-%ss"\
-                  " output\npacmd output was: %s" % 
-                  (vtype, vtype, pacmd_entries), file=sys.stderr)
-            return 1
+        entries = entries_regex.findall(pacmd_entries)
 
-        name_match = name_regex.search(active_entry)
-        if name_match:
-            name = name_match.group()
-        else:
-            print("Unable to determine device bus information from the"\
-                  " pacmd list-%ss output\npacmd output was: %s" % 
-                  (vtype, pacmd_entries), file=sys.stderr)
-            return 1
-
-        volume_match = volume_regex.search(active_entry)
-        if volume_match:
-            volume = int(volume_match.group().strip())
-            if volume >= maxvol:
-                print ("FAIL: Volume of %d is greater than or equal to"\
-                       " maximum of %d for %s %s" % (volume, maxvol,
-                       name, vtype))
-                retval = 1
-            elif volume <= minvol:
-                print ("FAIL: Volume of %d is less than or equal to"\
-                       " minimum of %d for %s %s" % (volume, minvol,
-                       name, vtype))
-                retval = 1
+        for entry in entries:
+            name_match = name_regex.search(entry)
+            if name_match:
+                name = name_match.group()
             else:
-                print ("PASS: Volume is %d for %s %s" % (volume, name,
-                       vtype))
-        else:
-            print("Unable to find volume information in the pacmd list-%ss"\
-                  " output for device %s.\npacmd output was: %s" % 
-                  (vtype, name, pacmd_entries), file=sys.stderr)
-            return 1
+                print("Unable to determine device bus information from the"\
+                      " pacmd list-%ss output\npacmd output was: %s" % 
+                      (vtype, pacmd_entries), file=sys.stderr)
+                return 1
 
+            volume_match = volume_regex.search(entry)
+            if volume_match:
+                volume = int(volume_match.group().strip())
+                if volume >= maxvol:
+                    print ("FAIL: Volume of %d is greater than or equal to"\
+                           " maximum of %d for %s %s" % (volume, maxvol,
+                           name, vtype))
+                    retval = 1
+                elif volume <= minvol:
+                    print ("FAIL: Volume of %d is less than or equal to"\
+                           " minimum of %d for %s %s" % (volume, minvol,
+                           name, vtype))
+                    retval = 1
+                else:
+                    print ("PASS: Volume is %d for %s %s" % (volume, name,
+                           vtype))
+            else:
+                print("Unable to find volume information in the pacmd list-%ss"\
+                      " output for device %s.\npacmd output was: %s" % 
+                      (vtype, name, pacmd_entries), file=sys.stderr)
+                return 1
     return retval
 
 def main():
