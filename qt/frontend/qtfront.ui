@@ -50,7 +50,7 @@
       <enum>QTabWidget::Rounded</enum>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tabWelcome">
       <attribute name="title">
@@ -467,7 +467,7 @@ QTabWidget::tab-bar#testsTab {
             <enum>QTabWidget::Rounded</enum>
            </property>
            <property name="currentIndex">
-            <number>0</number>
+            <number>1</number>
            </property>
            <widget class="QWidget" name="testSelection">
             <property name="font">
@@ -786,7 +786,7 @@ QTabWidget::tab-bar#testsTab {
                              <rect>
                               <x>0</x>
                               <y>0</y>
-                              <width>486</width>
+                              <width>590</width>
                               <height>76</height>
                              </rect>
                             </property>
@@ -838,110 +838,36 @@ QTabWidget::tab-bar#testsTab {
                         </layout>
                        </widget>
                       </item>
-                      <item>
-                       <widget class="QFrame" name="testButtonsFrame">
-                        <property name="sizePolicy">
-                         <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
-                          <horstretch>6</horstretch>
-                          <verstretch>0</verstretch>
-                         </sizepolicy>
-                        </property>
-                        <property name="frameShape">
-                         <enum>QFrame::NoFrame</enum>
-                        </property>
-                        <property name="frameShadow">
-                         <enum>QFrame::Plain</enum>
-                        </property>
-                        <property name="lineWidth">
-                         <number>0</number>
-                        </property>
-                        <widget class="QPushButton" name="yesTestButton">
-                         <property name="geometry">
-                          <rect>
-                           <x>10</x>
-                           <y>100</y>
-                           <width>85</width>
-                           <height>27</height>
-                          </rect>
-                         </property>
-                         <property name="text">
-                          <string>Yes</string>
-                         </property>
-                        </widget>
-                        <widget class="QPushButton" name="testTestButton">
-                         <property name="geometry">
-                          <rect>
-                           <x>10</x>
-                           <y>41</y>
-                           <width>85</width>
-                           <height>27</height>
-                          </rect>
-                         </property>
-                         <property name="text">
-                          <string>Test</string>
-                         </property>
-                        </widget>
-                        <widget class="QPushButton" name="noTestButton">
-                         <property name="geometry">
-                          <rect>
-                           <x>10</x>
-                           <y>130</y>
-                           <width>85</width>
-                           <height>27</height>
-                          </rect>
-                         </property>
-                         <property name="text">
-                          <string>No</string>
-                         </property>
-                        </widget>
-                        <widget class="QToolButton" name="commentTestButton">
-                         <property name="geometry">
-                          <rect>
-                           <x>10</x>
-                           <y>170</y>
-                           <width>85</width>
-                           <height>27</height>
-                          </rect>
-                         </property>
-                         <property name="text">
-                          <string>Comment</string>
-                         </property>
-                         <property name="popupMode">
-                          <enum>QToolButton::InstantPopup</enum>
-                         </property>
-                        </widget>
-                       </widget>
-                      </item>
                      </layout>
                     </widget>
                    </item>
                    <item>
                     <layout class="QHBoxLayout" name="testControlsHorizontalLayout">
                      <item>
-                      <widget class="QPushButton" name="test2TestButton">
+                      <widget class="QPushButton" name="testTestButton">
                        <property name="text">
-                        <string>Test2</string>
+                        <string>&amp;Test</string>
                        </property>
                       </widget>
                      </item>
                      <item>
                       <widget class="QRadioButton" name="yesTestRadioButton">
                        <property name="text">
-                        <string>Yes</string>
+                        <string>&amp;Yes</string>
                        </property>
                       </widget>
                      </item>
                      <item>
                       <widget class="QRadioButton" name="noTestRadioButton">
                        <property name="text">
-                        <string>No</string>
+                        <string>&amp;No</string>
                        </property>
                       </widget>
                      </item>
                      <item>
                       <widget class="QRadioButton" name="skipTestRadioButton">
                        <property name="text">
-                        <string>Skip Test</string>
+                        <string>&amp;Skip Test</string>
                        </property>
                       </widget>
                      </item>
@@ -1001,7 +927,7 @@ QTabWidget::tab-bar#testsTab {
                    </rect>
                   </property>
                   <property name="text">
-                   <string>Next</string>
+                   <string>Ne&amp;xt</string>
                   </property>
                  </widget>
                  <widget class="QPushButton" name="previousTestButton">
@@ -1014,12 +940,9 @@ QTabWidget::tab-bar#testsTab {
                    </rect>
                   </property>
                   <property name="text">
-                   <string>Previous</string>
+                   <string>&amp;Previous</string>
                   </property>
                  </widget>
-                 <zorder>nextTestButton</zorder>
-                 <zorder>previousTestButton</zorder>
-                 <zorder>radioTestTab</zorder>
                 </widget>
                </item>
               </layout>

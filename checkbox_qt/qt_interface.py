@@ -192,7 +192,6 @@ class QTInterface(UserInterface):
     def _run_test(self, test, runner):
         self.qtiface.showTestControls(False)
         (status, data, duration) = runner(test)
-        self.qtiface.setFocusTestYesNo(True if status == PASS else False)
         self.qtiface.setTestResult(True if status == PASS else False)
         self.qtiface.showTestControls(True)
 
@@ -209,23 +208,13 @@ class QTInterface(UserInterface):
 
         def onNextTestClicked():
             #Get response from UI
-            answer = self.qtiface.get2TestResult()
+            answer = self.qtiface.getTestResult()
             test["status"] = ANSWER_TO_STATUS[answer]
             self.direction = NEXT
             self.loop.quit()
 
         def onPreviousTestClicked():
             self.direction = PREV
-            self.loop.quit()
-
-        def onYesTestClicked():
-            test["status"] = ANSWER_TO_STATUS[YES_ANSWER]
-            self.direction = NEXT
-            self.loop.quit()
-
-        def onNoTestClicked():
-            test["status"] = ANSWER_TO_STATUS[NO_ANSWER]
-            self.direction = NEXT
             self.loop.quit()
 
         enableTestButton = False
@@ -250,9 +239,7 @@ class QTInterface(UserInterface):
         self.wait_on_signals(
             startTestClicked=onStartTestClicked,
             nextTestClicked=onNextTestClicked,
-            previousTestClicked=onPreviousTestClicked,
-            noTestClicked=onNoTestClicked,
-            yesTestClicked=onYesTestClicked)
+            previousTestClicked=onPreviousTestClicked)
 
         test["data"] = self.qtiface.getTestComment()
         #Unset the title, since we finished the job

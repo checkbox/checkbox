@@ -54,12 +54,10 @@ public slots:
     QVariantMap getTestsToRun();
     QString getSubmissionData();
     QString getTestComment();
-    bool getTestResult();
     void showTest(QString purpose, QString steps, QString verification, QString info, QString comment, QString testType, QString testName, bool enableTestButton);
     void showTestControls(bool enableTestControls);
-    void setFocusTestYesNo(bool status);
     void setTestResult(bool status);
-    QString get2TestResult();
+    QString getTestResult();
     Q_NOREPLY void showInfo(QString text, QStringList options, QString defaultoption);
     void updateAutoTestStatus(QString status, QString testName);
 
@@ -72,8 +70,6 @@ private slots:
     void onSubmitTestsClicked();
     void onNextTestClicked();
     void onPreviousTestClicked();
-    void onYesTestClicked();
-    void onNoTestClicked();
     void onReviewTestsClicked();
 
     void onJobItemChanged(QModelIndex index);
@@ -86,8 +82,6 @@ signals:
     void fullTestsClicked();
     void startTestsClicked();
     void startTestClicked();
-    void yesTestClicked();
-    void noTestClicked();
     void nextTestClicked();
     void previousTestClicked();
     void submitTestsClicked();
@@ -105,7 +99,6 @@ private:
     QWidget *m_mainWindow;
     TreeModel * m_model;
     QStandardItemModel *m_statusModel;
-    QTextEdit *m_currentTextComment;
     QMap<QString, QString> m_statusList;
     QMap <QString, QString> m_titleTestTypes;
     QMap <QString, QString> m_statusStrings;
