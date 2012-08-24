@@ -5,6 +5,8 @@ checkbox (0.14.5) quantal; urgency=low
   * jobs/virtualization.txt.in, scripts/kvm_test, jobs/miscellanea.txt.in,
     setup.cfg: Added a new KVM test to ensure that a VM boots and works
     properly with KVM.
+  * jobs/suspend.txt.in, scripts/gpu_test: Update the job description and the
+    script docstrings from Flash to HTML5 video playback.
 
   [Jeff Marcom]
   * scripts/accelerometer_test, jobs/input.txt.in: Improved ability to detect 
