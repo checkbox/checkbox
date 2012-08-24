@@ -145,6 +145,13 @@ command:
   shopt -s extglob
   cat $CHECKBOX_SHARE/jobs/memory.txt?(.in)
 
+name: __rendercheck__
+plugin: local
+_description: Rendercheck tests
+command:
+  shopt -s extglob
+  cat $CHECKBOX_SHARE/jobs/rendercheck.txt?(.in)
+
 name: __miscellanea__
 plugin: local
 _description: Miscellaneous tests

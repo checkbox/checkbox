@@ -10,5 +10,5 @@ plugin: shell
 name: rendercheck/tarball
 requires:
  package.name == 'x11-apps'
-depends: piglit/summarize_results
+depends: rendercheck/tests
 command: [ -e $CHECKBOX_DATA/rendercheck-results ] && tar cvfz $CHECKBOX_DATA/rendercheck-results.tar.gz $CHECKBOX_DATA/rendercheck-results
