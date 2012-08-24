@@ -98,6 +98,7 @@ def list_device_info():
 
 def main():
     parser = ArgumentParser("List audio device and driver information")
+    args = parser.parse_args()
     return list_device_info()
 
 if __name__ == "__main__":
