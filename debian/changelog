@@ -44,9 +44,15 @@ checkbox (0.14.5) quantal; urgency=low
       at the end of all iterations for each device.
   * jobs/stress.txt.in: added two sample jobs to demonstrate the new features
     of removable_storage_test
+  
+  [Matt Fischer]
+  * scripts/audio_driver_info: added script to find info on loaded drivers
+    jobs/audio.txt.in: added automated job to determine audio drivers loaded
+    jobs/networking.txt.in: added a requires on networking/info for
+    module-init-tools package.
 
 
- -- Jeff Marcom <jeff.marcom@canonical.com>  Wed, 22 Aug 2012 16:56:41 -0400
+ -- Jeff Lane <jeff@ubuntu.com>  Fri, 24 Aug 2012 14:51:40 -0400
 
 checkbox (0.14.4) quantal; urgency=low
 

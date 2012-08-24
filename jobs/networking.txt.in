@@ -1,6 +1,8 @@
 plugin: shell
 name: networking/detect
-requires: device.category == 'NETWORK' or device.category == 'WIRELESS'
+requires:
+ device.category == 'NETWORK' or device.category == 'WIRELESS'
+ package.name == 'module-init-tools'
 command: network_device_info
 _description: Test to detect the available network controllers
 
