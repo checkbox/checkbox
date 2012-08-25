@@ -83,8 +83,8 @@ class RenderCheck(object):
                 if match_output:
                     passed = int(match_output.group(1).strip())
                     total = int(match_output.group(2).strip())
-                    logging.debug('Results:')
-                    logging.debug('    %d tests passed out of %d.'
+                    logging.info('Results:')
+                    logging.info('    %d tests passed out of %d.'
                                   % (passed, total))
                 if show_errors and match_errors:
                     error = match_errors.group(0).strip()
@@ -104,7 +104,7 @@ class RenderCheck(object):
         exit_status = 0
         for suite in suites:
             for it in range(iterations):
-                logging.debug('Iteration %d of Rendercheck %s suite...'
+                logging.info('Iteration %d of Rendercheck %s suite...'
                               % (it + 1, suite))
                 (status, passed, total) = \
                 self._print_test_info(suites=suite,
@@ -112,7 +112,7 @@ class RenderCheck(object):
                                       show_errors=show_errors)
                 if status != 0:
                     # Make sure to catch a non-zero exit status
-                    logging.debug('Iteration %d of Rendercheck %s suite '
+                    logging.info('Iteration %d of Rendercheck %s suite '
                                   'exited with status %d.'
                                   % (it + 1, suite, status))
                     exit_status = status
@@ -178,14 +178,53 @@ def main():
                               Default is /tmp')
     args = parser.parse_args()
 
-    loglevel = logging.DEBUG
-    if not args.output:
-        logging.basicConfig(format='%(message)s',
-                            level=loglevel)
+    # Set up logging to console
+    format = '%(message)s'
+
+    console_handler = logging.StreamHandler()
+    console_handler.setFormatter(logging.Formatter(format))
+
+    # Set up the overall logger
+    logger = logging.getLogger()
+    # This is necessary to ensure debug messages are passed through the logger
+    # to the handler
+    logger.setLevel(logging.DEBUG)
+
+    # This is what happens when -d and/or -o are passed:
+    # -o ->     stdout (info)                - log (info)
+    # -d ->     only stdout (info and debug) - no log
+    # -d -o ->  stdout (info)                - log (info and debug)
+
+    # Write to a log
+    if args.output:
+        # Write INFO to stdout
+        console_handler.setLevel(logging.INFO)
+        logger.addHandler(console_handler)
+        # Specify a log file
+        logfile = args.output
+        logfile_handler = logging.FileHandler(logfile)
+        if args.debug:
+            # Write INFO and DEBUG to a log
+            logfile_handler.setLevel(logging.DEBUG)
+        else:
+            # Write INFO to a log
+            logfile_handler.setLevel(logging.INFO)
+
+        logfile_handler.setFormatter(logging.Formatter(format))
+        logger.addHandler(logfile_handler)
+        log_path = os.path.abspath(logfile)
+        logging.info("The log can be found at %s" % log_path)
+
+    # Write only to stdout
     else:
-        logging.basicConfig(filename=args.output,
-                            format='%(message)s',
-                            level=loglevel)
+        if args.debug:
+            # Write INFO and DEBUG to stdout
+            console_handler.setLevel(logging.DEBUG)
+            logger.addHandler(console_handler)
+        else:
+            # Write INFO to stdout
+            console_handler.setLevel(logging.INFO)
+            logger.addHandler(console_handler)
 
     exit_status = 0
 
