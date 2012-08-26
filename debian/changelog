@@ -2,12 +2,23 @@ checkbox (0.14.5) quantal; urgency=low
 
   [Sylvain Pineau]
   * New version 0.14.5 for Quantal Quetzal development.
+  * jobs/virtualization.txt.in, scripts/kvm_test, jobs/miscellanea.txt.in,
+    setup.cfg: Added a new KVM test to ensure that a VM boots and works
+    properly with KVM.
+  * jobs/suspend.txt.in, scripts/gpu_test: Update the job description and the
+    script docstrings from Flash to HTML5 video playback.
 
   [Jeff Marcom]
   * scripts/accelerometer_test, jobs/input.txt.in: Improved ability to detect 
     oem manufacturer info, and cleanup up job step formatting.
   * /jobs/touchpad.txt.in: Fixed instruction steps for manual touchpad horizontal 
      and vertical tests.
+  * scripts/audio_settings, jobs/audio.txt.in: Added automated switch to 
+    HDMI interface, modified corresponding jobs file..
+  * jobs/audio.txt.in, added method to bypass return code of /scripts/audio_settings
+    and instead only return the exit code for the appropriate audio test.
+  * scripts/audio_settings: Added automated switch to restore previous 
+    audio profile setting
 
   [ Daniel Manrique ]
   * jobs/peripheral.txt.in: Fixed a typo in the DSL job. (LP: #1039192)
@@ -18,6 +29,7 @@ checkbox (0.14.5) quantal; urgency=low
     to fail removable_storage_test if the transfer speed is below a threshold.
   * jobs/usb.txt.in: Added usb3 jobs that will only pass if an actual USB 3.0
     device is inserted/removed/tested.
+  * jobs/audio.txt.in: replaced gconfaudiosink by autoaudiosink (LP: #978895)
   * [FEATURE]: qt/frontend/qtfront.cpp, qt/frontend/qtfront.h,
     qt/frontend/qtfront.ui, checkbox_qt/qt_interface.py: Replaced test result
     buttons with radiobuttons,  made comment area always visible, and added
@@ -36,8 +48,16 @@ checkbox (0.14.5) quantal; urgency=low
       at the end of all iterations for each device.
   * jobs/stress.txt.in: added two sample jobs to demonstrate the new features
     of removable_storage_test
+  
+  [Matt Fischer]
+  * scripts/audio_driver_info: added script to find info on loaded drivers
+    jobs/audio.txt.in: added automated job to determine audio drivers loaded
+    jobs/networking.txt.in: added a requires on networking/info for
+    module-init-tools package.
+    scripts/volume_test: cleanup and fixing a small issue
 
- -- Jeff Lane <jeff@ubuntu.com>  Mon, 20 Aug 2012 19:49:58 -0400
+
+ -- Jeff Lane <jeff@ubuntu.com>  Fri, 24 Aug 2012 15:44:50 -0400
 
 checkbox (0.14.4) quantal; urgency=low
 

@@ -14,7 +14,7 @@ requires:
  package.name == 'alsa-base'
  package.name == 'gir1.2-gst-plugins-base-0.10' or package.name == 'gir1.2-gst-plugins-base-1.0'
  package.name == 'pulseaudio-utils'
-command: audio_settings store --file=$CHECKBOX_SHARE/pulseaudio_settings; audio_settings set --device=pci --volume=50; gst_pipeline_test -t 2 'audiotestsrc wave=sine freq=512 ! audioconvert ! audioresample ! autoaudiosink'; audio_settings restore --file=$CHECKBOX_SHARE/pulseaudio_settings
+command: audio_settings store --file=$CHECKBOX_SHARE/pulseaudio_settings; audio_settings set --device=pci --volume=50; gst_pipeline_test -t 2 'audiotestsrc wave=sine freq=512 ! audioconvert ! audioresample ! autoaudiosink'; EXIT_CODE=$?; audio_settings restore --file=$CHECKBOX_SHARE/pulseaudio_settings; exit $EXIT_CODE
 _description:
  PURPOSE:
      This test will check that internal speakers work correctly
@@ -33,15 +33,13 @@ requires:
  package.name == 'gir1.2-gst-plugins-base-0.10' or package.name == 'gir1.2-gst-plugins-base-1.0'
  package.name == 'pulseaudio-utils'
 command:
- audio_settings store --file=$CHECKBOX_SHARE/pulseaudio_settings; audio_settings set --device=hdmi --volume=50; gst_pipeline_test -t 2 --device hdmi 'audiotestsrc wave=sine freq=512 ! audioconvert ! audioresample ! gconfaudiosink'; audio_settings restore --file=$CHECKBOX_SHARE/pulseaudio_settings
+ audio_settings store --file=$CHECKBOX_SHARE/pulseaudio_settings; audio_settings set --device=hdmi --volume=50; gst_pipeline_test -t 2 --device hdmi 'audiotestsrc wave=sine freq=512 ! audioconvert ! audioresample ! autoaudiosink'; EXIT_CODE=$?; audio_settings restore --file=$CHECKBOX_SHARE/pulseaudio_settings; exit $EXIT_CODE
 _description:
  PURPOSE:
     1. HDMI interface verification
  STEPS:
-    1. Plug an external HDMI device with sound
-    2. Open system sound preferences
-    3. Click on Output and Select HDMI and click 'Test Speakers' to check left and right channels
-    4. Click the Test button
+    1. Plug an external HDMI device with sound (Use second port if you have more than one hdmi interface)
+    2. Click the Test button
  VERIFICATION:
     1. Do you hear the sound coming out on the  corresponding channel?
     2. Did you hear a sound?
@@ -54,7 +52,7 @@ requires:
  package.name == 'alsa-base'
  package.name == 'gir1.2-gst-plugins-base-0.10' or package.name == 'gir1.2-gst-plugins-base-1.0'
  package.name == 'pulseaudio-utils'
-command: audio_settings store --file=$CHECKBOX_SHARE/pulseaudio_settings; audio_settings set --device=pci --volume=50; gst_pipeline_test -t 2 'audiotestsrc wave=sine freq=512 ! audioconvert ! audioresample ! autoaudiosink'; audio_settings restore --file=$CHECKBOX_SHARE/pulseaudio_settings
+command: audio_settings store --file=$CHECKBOX_SHARE/pulseaudio_settings; audio_settings set --device=pci --volume=50; gst_pipeline_test -t 2 'audiotestsrc wave=sine freq=512 ! audioconvert ! audioresample ! autoaudiosink'; EXIT_CODE=$?; audio_settings restore --file=$CHECKBOX_SHARE/pulseaudio_settings; exit $EXIT_CODE
 _description:
  PURPOSE:
      This test will check that headphones connector works correctly
@@ -71,7 +69,7 @@ requires:
  device.category == 'AUDIO'
  package.name == 'alsa-base'
  package.name == 'pulseaudio-utils'
-command: audio_settings store --file=$CHECKBOX_SHARE/pulseaudio_settings; audio_settings set --device=pci --volume=50; alsa_record_playback; audio_settings restore --file=$CHECKBOX_SHARE/pulseaudio_settings
+command: audio_settings store --file=$CHECKBOX_SHARE/pulseaudio_settings; audio_settings set --device=pci --volume=50; alsa_record_playback; EXIT_CODE=$?; audio_settings restore --file=$CHECKBOX_SHARE/pulseaudio_settings; exit $EXIT_CODE
 _description:
  PURPOSE:
      This test will check that recording sound using the onboard microphone works correctly
@@ -89,7 +87,7 @@ requires:
  device.category == 'AUDIO'
  package.name == 'alsa-base'
  package.name == 'pulseaudio-utils'
-command: audio_settings store --file=$CHECKBOX_SHARE/pulseaudio_settings; audio_settings set --device=pci --volume=50; alsa_record_playback; audio_settings restore --file=$CHECKBOX_SHARE/pulseaudio_settings
+command: audio_settings store --file=$CHECKBOX_SHARE/pulseaudio_settings; audio_settings set --device=pci --volume=50; alsa_record_playback; EXIT_CODE=$?; audio_settings restore --file=$CHECKBOX_SHARE/pulseaudio_settings; exit $EXIT_CODE
 _description:
  PURPOSE:
      This test will check that recording sound using an external microphone works correctly
@@ -106,7 +104,7 @@ requires:
  device.category == 'AUDIO'
  package.name == 'alsa-base'
  package.name == 'pulseaudio-utils'
-command: audio_settings store --file=$CHECKBOX_SHARE/pulseaudio_settings; audio_settings set --device=usb --volume=50; alsa_record_playback; audio_settings restore --file=$CHECKBOX_SHARE/pulseaudio_settings
+command: audio_settings store --file=$CHECKBOX_SHARE/pulseaudio_settings; audio_settings set --device=usb --volume=50; alsa_record_playback; EXIT_CODE=$?; audio_settings restore --file=$CHECKBOX_SHARE/pulseaudio_settings; exit $EXIT_CODE
 _description:
  PURPOSE:
      This test will check that a USB audio device works correctly
@@ -159,7 +157,7 @@ name: audio/check_volume
 requires:
  package.name == 'pulseaudio-utils'
  device.category == 'AUDIO'
-command: volume_test --minvol 1 --maxvol 100
+command: volume_test --minvol 1 --maxvol 101
 _description:
  This test will verify that the volume levels are at an acceptable level on
  your local system.  The test will validate that the volume is greater than
@@ -167,3 +165,13 @@ _description:
  and sinks (outputs) recognized by PulseAudio.  It will also validate that the
  active source and sink are not muted.  You should not manually adjust the 
  volume or mute before running this test.
+
+plugin: shell
+name: audio/device_driver_info
+requires:
+ package.name == 'pulseaudio-utils'
+ package.name == 'module-init-tools'
+ device.category == 'AUDIO'
+command: audio_driver_info
+_description:
+ This test will list the device driver and version for all audio devices.

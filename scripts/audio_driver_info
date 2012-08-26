@@ -1,0 +1,105 @@
+#!/usr/bin/python3
+
+import sys
+import re
+
+from argparse import ArgumentParser
+from subprocess import check_output, Popen, PIPE
+
+TYPES = ("source", "sink")
+
+entries_regex = re.compile("index.*?(?=device.icon_name)", re.DOTALL)
+driver_regex = re.compile("(?<=driver_name = )\"(.*)\"")
+name_regex = re.compile("(?<=name:).*")
+
+
+class PacmdAudioDevice():
+    """
+    Class representing an audio device with information gathered from pacmd
+    """
+
+    def __init__(self, name, driver):
+        self._name = name
+        self._driver = driver
+        self._driver_version = self._find_driver_ver(self._driver)
+
+    def __str__(self):
+        retstr = "Device: %s\n" % self._name
+        if self._driver:
+            retstr += "Driver: %s (%s)" % (self._driver, self._driver_version)
+        else:
+            retstr += "Driver: Unknown"
+        return retstr
+
+    def _modinfo_wrapper(self, driver, field):
+        modinfo = Popen('/sbin/modinfo -F %s %s' % (field, driver),
+            stderr=PIPE, stdout=PIPE, shell=True, universal_newlines=True)
+        if not modinfo:
+            print ("Error while running modinfo", file=sys.stderr)
+            return None
+        else:
+            out, err = modinfo.communicate()
+            if err:
+                print ("modinfo (stderr) = %s" % err, file=sys.stderr)
+                return None
+            if out:
+                return out.strip()
+
+    def _find_driver_ver(self, driver):
+        # try the version field first, then vermagic second, some audio
+        # drivers don't report version if the driver is in-tree
+        version = self._modinfo_wrapper(driver, "version")
+        if version:
+            return version
+        else:
+            vermagic = self._modinfo_wrapper(driver, "vermagic")
+            # vermagic will look like this (below) and we only care about the
+            # first part:
+            # "3.2.0-29-generic SMP mod_unload modversions"
+            return vermagic.split()[0]
+
+
+def list_device_info():
+    """
+    Lists information on audio devices including device driver and version
+    """
+
+    retval = 0
+    for vtype in TYPES:
+        try:
+            pacmd_entries = check_output(["pacmd", "list-%ss" % vtype],
+                                         universal_newlines=True)
+        except Exception as e:
+            print("Error when running pacmd list-%ss: %s" % (vtype, e),
+                file=sys.stderr)
+            return 1
+
+        entries = entries_regex.findall(pacmd_entries)
+        for entry in entries:
+            name_match = name_regex.search(entry)
+            if name_match:
+                name = name_match.group().strip()
+            else:
+                print("Unable to determine device bus information from the"
+                      " pacmd list-%ss output\npacmd output was: %s" %
+                      (vtype, pacmd_entries), file=sys.stderr)
+                return 1
+
+            driver_name = driver_regex.findall(entry)
+            if driver_name:
+                driver = driver_name[0]
+            else:
+                driver = None
+
+            print("%s\n" % PacmdAudioDevice(name, driver))
+
+    return retval
+
+
+def main():
+    parser = ArgumentParser("List audio device and driver information")
+    args = parser.parse_args()
+    return list_device_info()
+
+if __name__ == "__main__":
+    sys.exit(main())

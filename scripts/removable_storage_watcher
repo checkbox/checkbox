@@ -49,10 +49,12 @@ class StorageDeviceListener:
             print(message % {'bus':dev[1], 'file': dev[0]})
             if self._minimum_speed:
                 if dev[2] >= self._minimum_speed:
-                    print("with speed of %(speed)s higher than %(min_speed)s" %
+                    print("with speed of %(speed)s bits/s "
+                          "higher than %(min_speed)s bits/s" %
                           {'speed': dev[2], 'min_speed': self._minimum_speed})
                 else:
-                    print("ERROR: speed of %(speed)s lower than %(min_speed)s" %
+                    print("ERROR: speed of %(speed)s bits/s lower "
+                          "than %(min_speed)s bits/s" %
                           {'speed': dev[2], 'min_speed': self._minimum_speed})
                     self._error = True
             self._loop.quit()
@@ -115,7 +117,8 @@ def main():
                         nargs=argparse.REMAINDER)
     parser.add_argument('--timeout', type=int, default=20)
     min_speed_help = ("Will only accept a device if its connection speed "
-                      "attribute is higher than this value")
+                      "attribute is higher than this value "
+                      "(in bits/s)")
     parser.add_argument('--minimum_speed', '-m', help=min_speed_help,
                         type=int, default=0)
     args = parser.parse_args()

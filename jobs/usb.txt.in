@@ -149,7 +149,7 @@ requires:
  package.name == 'udisks'
  usb.usb3 == 'supported'
 depends: usb3/insert
-command: removable_storage_test -m 500000000 -p 80 usb
+command: removable_storage_test -m 500000000 -p 7 usb
 _description:
  PURPOSE:
      This test will check your USB 3.0 connection.
@@ -178,7 +178,7 @@ requires:
  package.name == 'udisks'
  usb.usb3 == 'supported'
 depends: usb3/insert
-command: removable_storage_test -m 500000000 -p 80 usb
+command: removable_storage_test -m 500000000 -p 7 usb
 _description:
  This test is automated and executes after the usb3/insert test is run.
 
@@ -201,7 +201,7 @@ requires:
  package.name == 'linux'
  package.name == 'udisks'
  usb.usb3 == 'supported'
-command: removable_storage_test -l usb && removable_storage_test -m 500000000 -p 80 usb
+command: removable_storage_test -l usb && removable_storage_test -m 500000000 -p 7 usb
 _description:
  This is an automated version of usb3/storage-automated and assumes that the
  server has usb 3.0 storage devices plugged in prior to checkbox execution. It
