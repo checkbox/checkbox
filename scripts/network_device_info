@@ -224,7 +224,6 @@ def main(args):
     for nm_dev in nm_devices:
         print(nm_dev)
 
-    pci_devices.append(f)
     if not match_counts(nm_devices, pci_devices, "WiFi"):
         return 1
     elif not match_counts(nm_devices, pci_devices, "Ethernet"):
