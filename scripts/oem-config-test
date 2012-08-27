@@ -86,6 +86,12 @@ def run_oem_config(user, passw, images_dir):
             print("English already selected, clicking continue")
         finally:
             xp.click('continue_button')
+        try:
+            xp.wait('wireless')
+            print("Wireless screen found, skipping")
+            xp.click('continue_button')
+        except ImageNotFound:
+            print("Wireless screen not found, no WLAN setup")
         xp.wait('where_are_you')
         print("Timezone screen found. Leaving default, clicking continue")
         xp.click('continue_button')
