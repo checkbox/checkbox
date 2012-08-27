@@ -51,9 +51,16 @@ checkbox (0.14.5) quantal; urgency=low
     jobs/networking.txt.in: added a requires on networking/info for
     module-init-tools package.
     scripts/volume_test: cleanup and fixing a small issue
+  
+  [Alberto Milone]
+  * [FEATURE] scripts/rendercheck_test: added test to take advantage of the
+    rendercheck test suites.
+    [FEATURE] jobs/rendercheck.txt.in: added jobs to run the rendercheck_test
+    script.
+    [FEATURE] jobs/local.txt.in: added job to parse rendercheck.txt.in job file
 
 
- -- Jeff Lane <jeff@ubuntu.com>  Fri, 24 Aug 2012 15:44:50 -0400
+ -- Jeff Lane <jeff@ubuntu.com>  Mon, 27 Aug 2012 14:14:13 -0400
 
 checkbox (0.14.4) quantal; urgency=low
 
