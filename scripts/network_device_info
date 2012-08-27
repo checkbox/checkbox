@@ -28,26 +28,27 @@ import subprocess
 import sys
 
 # This example lists basic information about network interfaces known to NM
-devtypes = { 1: "Ethernet",
-             2: "WiFi",
-             5: "Bluetooth",
-             6: "OLPC",
-             7: "WiMAX",
-             8: "Modem" }
+devtypes = {1: "Ethernet",
+            2: "WiFi",
+            5: "Bluetooth",
+            6: "OLPC",
+            7: "WiMAX",
+            8: "Modem"}
 
-states = { 0: "Unknown",
-           10: "Unmanaged",
-           20: "Unavailable",
-           30: "Disconnected",
-           40: "Prepare",
-           50: "Config",
-           60: "Need Auth",
-           70: "IP Config",
-           80: "IP Check",
-           90: "Secondaries",
-           100: "Activated",
-           110: "Deactivating",
-           120: "Failed" }
+states = {0: "Unknown",
+          10: "Unmanaged",
+          20: "Unavailable",
+          30: "Disconnected",
+          40: "Prepare",
+          50: "Config",
+          60: "Need Auth",
+          70: "IP Config",
+          80: "IP Check",
+          90: "Secondaries",
+          100: "Activated",
+          110: "Deactivating",
+          120: "Failed"}
+
 
 class NetworkingDevice():
     def __init__(self, devtype, props, dev_proxy, bus):
@@ -93,35 +94,52 @@ class NetworkingDevice():
     def getstate(self):
         return self._state
 
+    def gettype(self):
+        return self._devtype
+
     def _bitrate_to_mbps(self, bitrate):
         try:
             intbr = int(bitrate)
-            return str(intbr/1000)
+            return str(intbr / 1000)
         except Exception:
             return "NaN"
 
-    def _byte_arr_to_str(self, arr):
-        return "".join(chr(b) for b in arr)
-
-    def _find_driver_ver(self, driver):
-        modinfo = subprocess.Popen('/sbin/modinfo -F version %s' % driver,
-            stderr=subprocess.PIPE, stdout=subprocess.PIPE, shell=True)
+    def _modinfo_wrapper(self, driver, field):
+        modinfo = subprocess.Popen('/sbin/modinfo -F %s %s' % (field, driver),
+            stderr=subprocess.PIPE, stdout=subprocess.PIPE, shell=True,
+            universal_newlines=True)
         if not modinfo:
-            print ("Error while running modinfo")
+            print ("Error while running modinfo", file=sys.stderr)
+            return None
         else:
             out, err = modinfo.communicate()
             if err:
-                print ("modinfo (stderr) = %s" % err)
+                print ("modinfo (stderr) = %s" % err, file=sys.stderr)
+                return None
             if out:
-                return self._byte_arr_to_str(out.strip())
+                return out.strip()
 
-    def _int_to_ip (self, int_ip):
-        ip = [0,0,0,0]
+    def _find_driver_ver(self, driver):
+        # try the version field first, then vermagic second, some audio
+        # drivers don't report version if the driver is in-tree
+        version = self._modinfo_wrapper(driver, "version")
+        if version:
+            return version
+        else:
+            vermagic = self._modinfo_wrapper(driver, "vermagic")
+            # vermagic will look like this (below) and we only care about the
+            # first part:
+            # "3.2.0-29-generic SMP mod_unload modversions"
+            return vermagic.split()[0]
+
+    def _int_to_ip(self, int_ip):
+        ip = [0, 0, 0, 0]
         ip[0] = int_ip & 0xff
         ip[1] = (int_ip >> 8) & 0xff
         ip[2] = (int_ip >> 16) & 0xff
         ip[3] = (int_ip >> 24) & 0xff
         return "%d.%d.%d.%d" % (ip[0], ip[1], ip[2], ip[3])
+
 
 def get_nm_devices():
     devices = []
@@ -143,22 +161,50 @@ def get_nm_devices():
         except KeyError:
             devtype = "Unknown"
 
-        # only return Wifi and LAN devices
+        # only return WiFi and LAN devices
         if devtype == "WiFi" or devtype == "Ethernet":
             devices.append(NetworkingDevice(devtype, props, dev_proxy, bus))
     return devices
+
+
+def match_counts(nm_devices, pci_devices, devtype):
+    """
+    Ensures that the count of devices matching devtype is the same for the
+    two passed in lists, devices from Network Manager and devices from lspci.
+    """
+    # now check that the count (by type) matches - WiFi
+    nm_type_devices = list(filter(lambda dev: dev.gettype() == devtype,
+        nm_devices))
+    pci_type_devices = list(filter(lambda dev: dev['type'] == devtype,
+        pci_devices))
+    if len(nm_type_devices) != len(pci_type_devices):
+        print("ERROR: %s devices missing: lspci showed %d devices, but "
+              "NetworkManager saw %d devices" % (devtype,
+              len(pci_type_devices), len(nm_type_devices)))
+        return False
+    else:
+        return True
+
 
 def main(args):
     pci_devices = []
     command = "lspci"
     for line in os.popen(command).readlines():
-        match = re.match("^.*(Network|Ethernet) controller: (.*)", line)
-        if match:
-            pci_devices.append(match.group(2))
+        if "Ethernet controller: " in line:
+            device = {}
+            device['name'] = line.split(": ")[1].strip()
+            device['type'] = "Ethernet"
+            pci_devices.append(device)
+        elif "Network controller: " in line:
+            device = {}
+            device['name'] = line.split(": ")[1].strip()
+            device['type'] = "WiFi"
+            pci_devices.append(device)
 
     if pci_devices:
         print("Devices found by lspci------------------------------")
-        print("\n".join(pci_devices))
+        for device in pci_devices:
+            print("%s: %s" % (device['type'], device['name']))
     else:
         print("ERROR: No Networking devices found.", file=sys.stderr)
         return 1
@@ -166,19 +212,24 @@ def main(args):
     nm_devices = []
     try:
         nm_devices = get_nm_devices()
-        if len(nm_devices) != len(pci_devices):
-            print("ERROR: Devices missing: lspci showed %d devices, but NetworkManager saw %d devices" % (len(pci_devices), len(nm_devices)))
-            return 1
     except dbus.exceptions.DBusException as e:
         # server's don't have network manager installed
-        print("Warning: Exception while talking to Network Manager over dbus. Skipping the remainder of this test. If this is a server, this is expected.")
-        print("The Error Generated was:\n %s" % e)
+        print("Warning: Exception while talking to Network Manager over dbus."
+              " Skipping the remainder of this test. If this is a server, this"
+              " is expected.", file=sys.stderr)
+        print("The Error Generated was:\n %s" % e, file=sys.stderr)
         return 0
 
     print("Devices found by Network Manager-------------------------")
     for nm_dev in nm_devices:
         print(nm_dev)
-    return 0
+
+    if not match_counts(nm_devices, pci_devices, "WiFi"):
+        return 1
+    elif not match_counts(nm_devices, pci_devices, "Ethernet"):
+        return 1
+    else:
+        return 0
 
 if __name__ == "__main__":
     sys.exit(main(sys.argv[1:]))

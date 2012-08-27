@@ -51,7 +51,11 @@ checkbox (0.14.5) quantal; urgency=low
     jobs/networking.txt.in: added a requires on networking/info for
     module-init-tools package.
     scripts/volume_test: cleanup and fixing a small issue
-  
+  * scripts/network-device-info: fixed a problem with output causing a
+    traceback and a problem where modules with improper modules field causes
+    problems. (LP: #1042395)
+    jobs/networking.txt.in: added requires for pciutils for the above bugfix
+
   [Alberto Milone]
   * [FEATURE] scripts/rendercheck_test: added test to take advantage of the
     rendercheck test suites.
@@ -66,7 +70,7 @@ checkbox (0.14.5) quantal; urgency=low
   [Chris Wayne]
   * [FEATURE] Added oem_config_test, related jobs and data files
 
- -- Daniel Manrique <roadmr@ubuntu.com>  Mon, 27 Aug 2012 15:59:29 -0400
+ -- Jeff Lane <jeff@ubuntu.com>  Mon, 27 Aug 2012 16:40:04 -0400
 
 checkbox (0.14.4) quantal; urgency=low
 
