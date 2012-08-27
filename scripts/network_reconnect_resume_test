@@ -53,7 +53,7 @@ def get_wired_reconnect_times():
     Returns a list of all the timestamps for wired reconnects.
     """
     data = subprocess.check_output(['dmesg'], universal_newlines=True)
-    syntax = re.compile("\[(.*)\].*eth.* Link is up")
+    syntax = re.compile("\[(.*)\].*eth.* Link is [uU]p")
     results = re.findall(syntax, data)
     return results
 
