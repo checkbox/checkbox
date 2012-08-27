@@ -114,7 +114,13 @@ def run_oem_config(user, passw, images_dir):
         xp.type(passw)
         print('Done editing, clicking continue')
         xp.click('continue_button')
-        print('OEM config setup completed, system installing')
+        print('OEM config user setup completed')
+        try:
+            xp.find('choose_your_picture')
+            print("Picture screen found, clicking continue")
+            xp.click('continue_button')
+        except:
+            print("No picture screen found")
 
 
 def is_oem_config_done(timeout):
