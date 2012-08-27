@@ -80,3 +80,47 @@ environ: WPA_BG_SSID WPA_BG_PSK SERVER_IPERF
 command: trap "nmcli con delete id $WPA_BG_SSID" EXIT; create_connection $WPA_BG_SSID --security=wpa --key=$WPA_BG_PSK && iperf -c $SERVER_IPERF -t 300 -i 30 -u -b 100m -p 5050
 _description:
  Tests the performance of a systems wireless connection through the iperf tool, using UDP packets.
+
+plugin: shell
+name: wireless/basic_802.11a_connection
+requires: device.category == 'WIRELESS'
+user: root
+environ: OPEN_A_SSID
+command: trap "nmcli con delete id $OPEN_A_SSID" EXIT; create_connection $OPEN_A_SSID && internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
+_description:
+  Test that the system's wireless hardware can connect to a router using the
+  802.11a protocol. This requires that you have a router pre-configured to only
+  respond to requests on the 802.11a protocol.
+
+plugin: shell
+name: wireless/basic_802.11b_connection
+requires: device.category == 'WIRELESS'
+user: root
+environ: OPEN_B_SSID
+command: trap "nmcli con delete id $OPEN_B_SSID" EXIT; create_connection $OPEN_B_SSID && internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
+_description:
+  Test that the system's wireless hardware can connect to a router using the
+  802.11b protocol. This requires that you have a router pre-configured to only
+  respond to requests on the 802.11b protocol.
+
+plugin: shell
+name: wireless/basic_802.11g_connection
+requires: device.category == 'WIRELESS'
+user: root
+environ: OPEN_G_SSID
+command: trap "nmcli con delete id $OPEN_G_SSID" EXIT; create_connection $OPEN_G_SSID && internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
+_description:
+  Test that the system's wireless hardware can connect to a router using the
+  802.11g protocol. This requires that you have a router pre-configured to only
+  respond to requests on the 802.11g protocol.
+
+plugin: shell
+name: wireless/basic_802.11n_connection
+requires: device.category == 'WIRELESS'
+user: root
+environ: OPEN_N_SSID
+command: trap "nmcli con delete id $OPEN_N_SSID" EXIT; create_connection $OPEN_N_SSID && internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
+_description:
+  Test that the system's wireless hardware can connect to a router using the
+  802.11n protocol. This requires that you have a router pre-configured to only
+  respond to requests on the 802.11n protocol.

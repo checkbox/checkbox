@@ -44,6 +44,8 @@ checkbox (0.14.5) quantal; urgency=low
       at the end of all iterations for each device.
   * jobs/stress.txt.in: added two sample jobs to demonstrate the new features
     of removable_storage_test
+  * jobs/wireless.txt.in: Added jobs to individually test 802.11a/b/g/n
+    connections. This is necessary for adequate QA testing (LP:#1042425)
   
   [Matt Fischer]
   * scripts/audio_driver_info: added script to find info on loaded drivers
@@ -70,7 +72,7 @@ checkbox (0.14.5) quantal; urgency=low
   [Chris Wayne]
   * [FEATURE] Added oem_config_test, related jobs and data files
 
- -- Jeff Lane <jeff@ubuntu.com>  Mon, 27 Aug 2012 16:40:04 -0400
+ -- Jeff Lane <jeff@ubuntu.com>  Mon, 27 Aug 2012 17:34:59 -0400
 
 checkbox (0.14.4) quantal; urgency=low
 
