@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>640</width>
-    <height>586</height>
+    <height>588</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -751,7 +751,7 @@ QTabWidget::tab-bar#testsTab {
                      <x>10</x>
                      <y>320</y>
                      <width>610</width>
-                     <height>81</height>
+                     <height>103</height>
                     </rect>
                    </property>
                    <layout class="QVBoxLayout" name="commentsVerticalLayout">
@@ -834,7 +834,7 @@ QTabWidget::tab-bar#testsTab {
                                <x>0</x>
                                <y>0</y>
                                <width>589</width>
-                               <height>159</height>
+                               <height>167</height>
                               </rect>
                              </property>
                              <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -902,7 +902,7 @@ QTabWidget::tab-bar#testsTab {
                          <string notr="true">QGroupBox {
      border: 2px solid gray;
      border-radius: 5px;
-     margin-top: 1ex; /* leave space at the top for the title */
+     margin-top: 0ex; /* leave space at the top for the title */
  }
 
  QGroupBox::title {
@@ -912,7 +912,7 @@ QTabWidget::tab-bar#testsTab {
  }</string>
                         </property>
                         <property name="title">
-                         <string>Response</string>
+                         <string/>
                         </property>
                         <property name="flat">
                          <bool>false</bool>
@@ -945,7 +945,7 @@ QTabWidget::tab-bar#testsTab {
                       <item>
                        <widget class="QPushButton" name="testTestButton">
                         <property name="sizePolicy">
-                         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                         <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
                           <horstretch>0</horstretch>
                           <verstretch>0</verstretch>
                          </sizepolicy>
@@ -990,10 +990,10 @@ QTabWidget::tab-bar#testsTab {
                  <widget class="QPushButton" name="nextTestButton">
                   <property name="geometry">
                    <rect>
-                    <x>520</x>
+                    <x>460</x>
                     <y>10</y>
-                    <width>100</width>
-                    <height>52</height>
+                    <width>160</width>
+                    <height>27</height>
                    </rect>
                   </property>
                   <property name="text">
@@ -1003,10 +1003,10 @@ QTabWidget::tab-bar#testsTab {
                  <widget class="QPushButton" name="previousTestButton">
                   <property name="geometry">
                    <rect>
-                    <x>400</x>
+                    <x>290</x>
                     <y>10</y>
-                    <width>100</width>
-                    <height>52</height>
+                    <width>160</width>
+                    <height>27</height>
                    </rect>
                   </property>
                   <property name="text">
