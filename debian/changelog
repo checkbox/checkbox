@@ -30,6 +30,10 @@ checkbox (0.14.5) quantal; urgency=low
   * jobs/usb.txt.in: Added usb3 jobs that will only pass if an actual USB 3.0
     device is inserted/removed/tested.
   * jobs/audio.txt.in: replaced gconfaudiosink by autoaudiosink (LP: #978895)
+  * [FEATURE]: qt/frontend/qtfront.cpp, qt/frontend/qtfront.h,
+    qt/frontend/qtfront.ui, checkbox_qt/qt_interface.py: Replaced test result
+    buttons with radiobuttons,  made comment area always visible, and added
+    keyboard shortcuts.
 
   [ Jeff Lane ]
   * scripts/removable_storage_test (total overhaul):
