@@ -34,6 +34,7 @@ checkbox (0.14.5) quantal; urgency=low
     qt/frontend/qtfront.ui, checkbox_qt/qt_interface.py: Replaced test result
     buttons with radiobuttons,  made comment area always visible, and added
     keyboard shortcuts.
+  * [FEATURE] Added oem-config directory to setup.py so it builds correctly.
 
   [ Jeff Lane ]
   * scripts/removable_storage_test (total overhaul):
@@ -77,7 +78,7 @@ checkbox (0.14.5) quantal; urgency=low
   [Chris Wayne]
   * [FEATURE] Added oem_config_test, related jobs and data files
 
- -- Jeff Lane <jeff@ubuntu.com>  Mon, 27 Aug 2012 16:40:04 -0400
+ -- Daniel Manrique <roadmr@ubuntu.com>  Tue, 28 Aug 2012 15:33:06 -0400
 
 checkbox (0.14.4) quantal; urgency=low
 
