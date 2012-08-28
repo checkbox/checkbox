@@ -42,6 +42,8 @@ checkbox (0.14.5) quantal; urgency=low
       iterations of C files.
     * Redid output so now you get an avg write speed per iteration and a summary
       at the end of all iterations for each device.
+  * scripts/wifi_reconnect_resume_test: fixed a bug where timestamps being
+    grabbed from dmesg were strings instead of floats (LP: #1038270)
   * jobs/stress.txt.in: added two sample jobs to demonstrate the new features
     of removable_storage_test
   * jobs/piglit.txt.in: added jobs that run the piglit graphics test suite
