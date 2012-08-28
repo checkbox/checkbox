@@ -140,6 +140,8 @@ class DiskTest():
         self.rem_disks = {}
         self.rem_disks_speed = {}
         self.rem_disks_nm = {}
+        self.rem_disks_memory_cards = {}
+        self.rem_disks_memory_cards_nm = {}
         for dev in ud_manager.EnumerateDevices():
             device_obj = bus.get_object("org.freedesktop.UDisks", dev)
             device_props = dbus.Interface(device_obj, dbus.PROPERTIES_IFACE)
@@ -153,6 +155,8 @@ class DiskTest():
                         if not re.search('SD|MMC|CF|MS|SM|xD|Card',
                             device_file_by_id, re.I):
                             continue
+                        else:
+                            self.rem_disks_memory_cards = {}
                     dev_file = str(device_props.Get(udisks, "DeviceFile"))
                     dev_speed = str(device_props.Get(udisks,
                                                      "DriveConnectionSpeed"))
@@ -161,8 +165,11 @@ class DiskTest():
                         devPath = str(device_props.Get(udisks,
                                                        "DeviceMountPaths")[0])
                         self.rem_disks[dev_file] = devPath
+                        self.rem_disks_memory_cards[dev_file] = devPath
                     else:
                         self.rem_disks_nm[dev_file] = None
+                        self.rem_disks_memory_cards_nm[dev_file] = None
+
 
     def mount(self):
         passed_mount = {}
@@ -309,18 +316,32 @@ def main():
         if args.list:  # Simply output a list of drives detected
             print('-' * 20)
             print("Removable devices currently mounted:")
-            if len(test.rem_disks) > 0:
-                for disk, mount_point in test.rem_disks.items():
-                    print("%s : %s" % (disk, mount_point))
-            else:
-                print("None")
+            if args.memorycard:
+                if len(test.rem_disks_memory_cards) > 0:
+                    for disk, mnt_point in test.rem_disks_memory_cards.items():
+                        print("%s : %s" % (disk, mnt_point))
+                else:
+                    print("None")
 
-            print("Removable devices currently not mounted:")
-            if len(test.rem_disks_nm) > 0:
-                for disk, dummy in test.rem_disks_nm.items():
-                    print(disk)
+                print("Removable devices currently not mounted:")
+                if len(test.rem_disks_memory_cards_nm) > 0:
+                    for disk, dummy in test.rem_disks_memory_cards_nm.items():
+                        print(disk)
+                else:
+                    print("None")
             else:
-                print("None")
+                if len(test.rem_disks) > 0:
+                    for disk, mnt_point in test.rem_disks.items():
+                        print("%s : %s" % (disk, mnt_point))
+                else:
+                    print("None")
+
+                print("Removable devices currently not mounted:")
+                if len(test.rem_disks_nm) > 0:
+                    for disk, dummy in test.rem_disks_nm.items():
+                        print(disk)
+                else:
+                    print("None")
 
             print('-' * 20)
 
