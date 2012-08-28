@@ -1,0 +1,178 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+#
+# graphics_stress_test
+#
+# This file is part of Checkbox.
+#
+# Copyright 2012 Canonical Ltd.
+#
+# Authors: Alberto Milone <alberto.milone@canonical.com>
+#
+# Checkbox is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# Checkbox is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
+
+import logging
+import os
+import re
+import sys
+import time
+
+from argparse import ArgumentParser
+from subprocess import call, Popen, PIPE
+
+
+class VtWrapper(object):
+    """docstring for VtWrapper"""
+    def __init__(self):
+        self.x_vt = self._get_x_vt()
+
+    def _get_x_vt(self):
+        '''Get the vt where X lives'''
+        vt = 0
+        proc = Popen(['ps', 'aux'], stdout=PIPE, universal_newlines=True)
+        proc_output = proc.communicate()[0].split('\n')
+        proc_line = re.compile('.*tty(\d+).+/usr/bin/X.*')
+        for line in proc_output:
+            match = proc_line.match(line)
+            if match:
+                vt = match.group(1).strip().lower()
+        return int(vt)
+
+    def set_vt(self, vt):
+        retcode = call(['chvt', '%d' % vt])
+        return retcode
+
+
+def main():
+    # Make sure that we have root privileges
+    if os.geteuid() != 0:
+        print('Error: please run this program as root',
+              file=sys.stderr)
+        exit(1)
+
+    cwd = os.getcwd()
+
+    usage = 'Usage: %prog [OPTIONS]'
+    parser = ArgumentParser(usage)
+    parser.add_argument('-i', '--iterations',
+                        type=int,
+                        default=10,
+                        help='The number of times to run the test. \
+                              Default is 10')
+    parser.add_argument('-o', '--output',
+                        default='',
+                        help='The path to the log which will be dumped. \
+                              Default is stdout')
+    parser.add_argument('-s', '--scripts_path',
+                        default='scripts',
+                        help='The path to the log which will be dumped. \
+                              Default is scripts/')
+    args = parser.parse_args()
+
+    loglevel = logging.DEBUG
+    if not args.output:
+        logging.basicConfig(format='%(message)s',
+                            level=loglevel)
+    else:
+        logging.basicConfig(filename=args.output,
+                            format='%(message)s',
+                            level=loglevel)
+
+    status = 0
+
+    # Switch between the tty where X lives and tty10
+    vt_wrap = VtWrapper()
+    target_vt = 10
+    if vt_wrap.x_vt != target_vt:
+        logging.info('== Vt switch test ==')
+        for it in range(args.iterations):
+            logging.info('Iteration %d...', it)
+            retcode = vt_wrap.set_vt(target_vt)
+            if retcode != 0:
+                logging.error('Error: switching to tty%d failed with code %d '
+                      'on iteration %d' % (target_vt, retcode, it))
+                status = 1
+            else:
+                logging.info('Switching to tty%d: passed' % (target_vt))
+            time.sleep(2)
+            retcode = vt_wrap.set_vt(vt_wrap.x_vt)
+            if retcode != 0:
+                logging.error('Error: switching to tty%d failed with code %d '
+                      'on iteration %d' % (vt_wrap.x_vt, retcode, it))
+            else:
+                logging.info('Switching to tty%d: passed' % (vt_wrap.x_vt))
+                status = 1
+    else:
+        logging.error('Error: please run X on a tty other than 10')
+
+    # Call sleep 10 times
+    logging.info('== Sleep test ==')
+    process = Popen([os.path.join(args.scripts_path, 'sleep_test'),
+                     '-d', '-i', '%d' % args.iterations], stdout=PIPE,
+                     stderr=PIPE, universal_newlines=True)
+    output, error = process.communicate()
+
+    if output:
+        logging.debug(output)
+    if error:
+        logging.debug(error)
+    if process.returncode != 0:
+        logging.error('Failed')
+        status = 1
+    else:
+        logging.info('Passed')
+
+    # Rotate the screen 10 times
+    # The app already rotates the screen 5 times
+    logging.info('== Rotation test ==')
+    for it in range(args.iterations):
+        # rotation_status = call(['scripts/rotation_test'])
+        # if sleep_status != 0:
+        #     logging.error('Error: rotating the screen on iteration %d'
+        #           % (it))
+        #     status = 1
+        process = Popen([os.path.join(args.scripts_path,
+                         'rotation_test')], stdout=PIPE,
+                         stderr=PIPE, universal_newlines=True)
+        output, error = process.communicate()
+
+        logging.info('Iteration %d...', it)
+        if output:
+            logging.debug(output)
+        if error:
+            logging.debug(error)
+        if process.returncode != 0:
+            logging.error('Failed')
+            status = 1
+        else:
+            logging.info('Passed')
+
+    # Call rendercheck 10 times
+    logging.info('== Rendercheck test ==')
+    if args.output:
+        render_status = call([os.path.join(args.scripts_path,
+                                           'rendercheck_test'),
+                              '-d', '-i', '%d' % args.iterations,
+                              '-o', args.output])
+    else:
+        render_status = call([os.path.join(args.scripts_path,
+                                           'rendercheck_test'),
+                              '-d', '-i', '%d' % args.iterations])
+    if render_status != 0:
+        status = render_status
+
+    return status
+
+if __name__ == '__main__':
+    exit(main())
