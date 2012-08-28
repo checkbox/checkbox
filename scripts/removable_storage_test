@@ -4,6 +4,7 @@ import dbus
 import sys
 import random
 import os
+import re
 import tempfile
 import hashlib
 import argparse
@@ -64,7 +65,7 @@ class RandomData():
 
 
 class DiskTest():
-    ''' Class to contain various methods for testing USB disks '''
+    ''' Class to contain various methods for testing removable disks '''
     def __init__(self):
         self.process = None
         self.cmd = None
@@ -130,7 +131,7 @@ class DiskTest():
             print("ERROR: Unable to remove tempfile %s" % target,
                 file=sys.stderr)
 
-    def get_disk_info(self, device):
+    def get_disk_info(self, args):
         ''' Probes dbus to find any attached/mounted devices'''
         bus = dbus.SystemBus()
         ud_manager_obj = bus.get_object("org.freedesktop.UDisks",
@@ -144,10 +145,16 @@ class DiskTest():
             device_props = dbus.Interface(device_obj, dbus.PROPERTIES_IFACE)
             udisks = 'org.freedesktop.UDisks.Device'
             if not device_props.Get(udisks, "DeviceIsDrive"):
-                if device_props.Get(udisks,
-                                    "DriveConnectionInterface") in device:
+                dev_bus = device_props.Get(udisks, "DriveConnectionInterface")
+                if dev_bus in args.device:
+                    if args.memorycard and dev_bus != 'sdio':
+                        device_file_by_id = device_props.Get(udisks,
+                            "DeviceFileById")[0]
+                        if not re.search('SD|MMC|CF|MS|SM|xD|Card',
+                            device_file_by_id, re.I):
+                            continue
                     dev_file = str(device_props.Get(udisks, "DeviceFile"))
-                    dev_speed = str(device_props.Get(udisks, 
+                    dev_speed = str(device_props.Get(udisks,
                                                      "DriveConnectionSpeed"))
                     self.rem_disks_speed[dev_file] = dev_speed
                     if len(device_props.Get(udisks, "DeviceMountPaths")) > 0:
@@ -193,6 +200,8 @@ class DiskTest():
 
         for disk in self.rem_disks_nm:
             result = False
+            if not self.rem_disks_nm[disk]:
+                continue
             try:
                 result = self.make_thread(self._umount(disk))
             except:
@@ -213,6 +222,8 @@ class DiskTest():
 
     def clean_tmp_dir(self):
         for disk in self.rem_disks_nm:
+            if not self.rem_disks_nm[disk]:
+                continue
             if not os.path.ismount(self.rem_disks_nm[disk]):
                 os.rmdir(self.rem_disks_nm[disk])
 
@@ -281,12 +292,16 @@ def main():
                         default=False,
                         help=("skip the removable devices "
                               "which haven't been mounted before the test."))
+    parser.add_argument('--memorycard', action="store_true",
+                        help=("Memory cards devices on bus other than sdio "
+                              "require this parameter to identify "
+                              "them as such"))
 
     args = parser.parse_args()
 
     test = DiskTest()
 
-    test.get_disk_info(args.device)
+    test.get_disk_info(args)
 
     errors = 0
     # If we do have removable drives attached and mounted
@@ -311,7 +326,7 @@ def main():
 
             return 0
 
-        else:  # Create a file, copy to USB and compare hashes
+        else:  # Create a file, copy to disk and compare hashes
             if args.skip_not_mount:
                 disks_all = test.rem_disks
             else:
@@ -332,7 +347,7 @@ def main():
 
                 for disk, mount_point in disks_all.items():
                     supported_speed = test.rem_disks_speed[disk]
-                    print("    %s : %s : %s bits/s" % 
+                    print("    %s : %s : %s bits/s" %
                             (disk, mount_point, supported_speed),
                             end="")
                     if (args.min_speed and int(args.min_speed) > int(supported_speed)):
@@ -426,7 +441,7 @@ def main():
                            "but there were errors" % args.count)
                     return 1
                 elif len(disks_eligible) == 0:
-                    print("ERROR: No %s disks with speed higher than %s bits/s" % 
+                    print("ERROR: No %s disks with speed higher than %s bits/s" %
                             (args.device, args.min_speed), file=sys.stderr)
                     return 1
 
