@@ -86,3 +86,12 @@ command:
      echo -n "usb$version: "
      lsusb |grep -q "Linux Foundation ${version}.0 root hub" && echo "supported" || echo "unsupported"
  done
+
+name: enviroment
+plugin: resource
+description: Create resource info for environment variables
+command:
+ IFS=$'\n'
+ for e in `env | sed 's/=/:/g'`; do
+     echo $e | awk -F':' '{print tolower($1) ": " $2}'
+ done
