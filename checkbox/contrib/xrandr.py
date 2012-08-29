@@ -1,4 +1,4 @@
-#!/usr/bin/python2
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 #
 # Python-XRandR provides a high level API for the XRandR extension of the
@@ -33,6 +33,8 @@
 # You should have received a copy of the GNU Lesser General Public
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+
+import pdb; pdb.set_trace()
 
 from ctypes import *
 import os
@@ -907,7 +909,15 @@ class Screen:
 def get_current_display():
     """Returns the currently used display"""
     display_url = os.getenv("DISPLAY")
-    dpy = xlib.XOpenDisplay(display_url)
+    open_display = xlib.XOpenDisplay
+    # Set .argtypes and .restype, to ensure proper
+    # type check and conversion
+    open_display.restype = c_void_p
+    open_display.argtypes = [c_char_p]
+    # XOpenDisplay accepts a char*, but
+    # display_url is a unicode string therefore
+    # we convert it to a bytes string
+    dpy = open_display(display_url.encode('utf-8'))
     return dpy
 
 def get_current_screen():
