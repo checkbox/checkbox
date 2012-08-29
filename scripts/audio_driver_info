@@ -5,6 +5,7 @@ import re
 
 from argparse import ArgumentParser
 from subprocess import check_output, Popen, PIPE
+from checkbox.parsers.modinfo import ModinfoParser
 
 TYPES = ("source", "sink")
 
@@ -21,7 +22,8 @@ class PacmdAudioDevice():
     def __init__(self, name, driver):
         self._name = name
         self._driver = driver
-        self._driver_version = self._find_driver_ver(self._driver)
+        self._modinfo = self._modinfo_parser(driver)
+        self._driver_version = self._find_driver_ver()
 
     def __str__(self):
         retstr = "Device: %s\n" % self._name
@@ -31,32 +33,35 @@ class PacmdAudioDevice():
             retstr += "Driver: Unknown"
         return retstr
 
-    def _modinfo_wrapper(self, driver, field):
-        modinfo = Popen('/sbin/modinfo -F %s %s' % (field, driver),
-            stderr=PIPE, stdout=PIPE, shell=True, universal_newlines=True)
-        if not modinfo:
-            print ("Error while running modinfo", file=sys.stderr)
+    def _modinfo_parser(self, driver):
+        cmd = '/sbin/modinfo %s' % driver
+        process = Popen(cmd, stderr=PIPE, stdout=PIPE,
+                        shell=True, universal_newlines=True)
+        stream, err = process.communicate()
+        if err:
+            print("Error running %s:" % cmd, file=sys.stderr)
+            print(err, file=sys.stderr)
+            return None
+        
+        if not stream:
+            print("Error running modinfo", file=sys.stderr)
             return None
         else:
-            out, err = modinfo.communicate()
-            if err:
-                print ("modinfo (stderr) = %s" % err, file=sys.stderr)
-                return None
-            if out:
-                return out.strip()
+            parser = ModinfoParser(stream)
+            modinfo = parser.get_all()
 
-    def _find_driver_ver(self, driver):
+        return modinfo
+
+    def _find_driver_ver(self):
         # try the version field first, then vermagic second, some audio
         # drivers don't report version if the driver is in-tree
-        version = self._modinfo_wrapper(driver, "version")
-        if version:
-            return version
+        if self._modinfo['version']:
+            return self._modinfo['version']
         else:
-            vermagic = self._modinfo_wrapper(driver, "vermagic")
             # vermagic will look like this (below) and we only care about the
             # first part:
             # "3.2.0-29-generic SMP mod_unload modversions"
-            return vermagic.split()[0]
+            return self._modinfo['vermagic'].split()[0]
 
 
 def list_device_info():

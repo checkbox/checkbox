@@ -32,6 +32,7 @@ import sys
 import threading
 import time
 from subprocess import Popen, PIPE
+from checkbox.parsers.modinfo import ModinfoParser
 
 handler = logging.StreamHandler()
 logger = logging.getLogger()
@@ -217,14 +218,17 @@ class AxisData(threading.Thread):
 
 def insert_supported_module(oem_module):
     """Try and insert supported module to see if we get any init errors"""
-    module_info = Popen(['modinfo %s' % oem_module], stdout=PIPE,
-                        shell=True, universal_newlines=True)
-    info = module_info.stdout.read()
-    try:
-        module = re.findall("filename:\s.*", info)[0].split(":")[1].strip()
-    except IndexError as error:
-        logging.error("Failed module insertion for " % module)
-        return
+    process = Popen(['modinfo %s' % oem_module], stdout=PIPE,
+                    stderr=PIPE, shell=True, universal_newlines=True)
+    stream, err = process.communicate()
+    if err:
+        print("Error accessing modinfo for %s: " % oem_module, file=sys.stderr)
+        print(err, file=sys.stderr)
+        return 1
+
+    parser = ModinfoParser(stream)
+    module = os.path.basename(parser.get_field('filename'))
+    
     insmod_output = Popen(['insmod %s' % module], stderr=PIPE,
                           shell=True, universal_newlines=True)
 
