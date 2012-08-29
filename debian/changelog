@@ -1,3 +1,15 @@
+checkbox (0.14.6) quantal; urgency=low
+
+  * checkbox/contrib/gdk.py: removed legacy code and used python 3.
+  * scripts/rotation_test:
+    * Made sure to report all failures, not only the first.
+    * Made it look more pythonic.
+    * Fixed issues with python 3 and used python 3.
+  * checkbox/contrib/xrandr.py:
+    * Fixed issues with python 3 and used python 3 (LP: #1043155).
+
+ -- Alberto Milone <alberto.milone@canonical.com>  Wed, 29 Aug 2012 10:54:01 +0200
+
 checkbox (0.14.5) quantal; urgency=low
 
   [ Sylvain Pineau ]
