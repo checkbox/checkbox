@@ -428,7 +428,19 @@ name: suspend/wifi_resume_time
 depends: suspend/suspend_advanced
 requires:
    device.category == 'WIRELESS'
-command: wifi_reconnect_resume_test -t 20
+command: network_reconnect_resume_test -t 20 -d wifi
 _description:
  Checks the length of time it takes to reconnect an existing wifi connection
- after a suspend/resume cycle.  The timeout is specified with the -t option. 
+ after a suspend/resume cycle.  The timeout is specified with the -t option.
+ Device is specified with a -d option 
+
+plugin: shell
+name: suspend/network_resume_time
+depends: suspend/suspend_advanced
+requires:
+   device.category == 'NETWORK'
+command: network_reconnect_resume_test -t 10 -d wired
+_description:
+ Checks the length of time it takes to reconnect an existing wired connection
+ after a suspend/resume cycle.  The timeout is specified with the -t option.
+ Device is specified with a -d option.

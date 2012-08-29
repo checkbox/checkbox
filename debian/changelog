@@ -30,6 +30,11 @@ checkbox (0.14.5) quantal; urgency=low
   * jobs/usb.txt.in: Added usb3 jobs that will only pass if an actual USB 3.0
     device is inserted/removed/tested.
   * jobs/audio.txt.in: replaced gconfaudiosink by autoaudiosink (LP: #978895)
+  * [FEATURE]: qt/frontend/qtfront.cpp, qt/frontend/qtfront.h,
+    qt/frontend/qtfront.ui, checkbox_qt/qt_interface.py: Replaced test result
+    buttons with radiobuttons,  made comment area always visible, and added
+    keyboard shortcuts.
+  * [FEATURE] Added oem-config directory to setup.py so it builds correctly.
 
   [ Jeff Lane ]
   * scripts/removable_storage_test (total overhaul):
@@ -42,8 +47,11 @@ checkbox (0.14.5) quantal; urgency=low
       iterations of C files.
     * Redid output so now you get an avg write speed per iteration and a summary
       at the end of all iterations for each device.
+  * scripts/wifi_reconnect_resume_test: fixed a bug where timestamps being
+    grabbed from dmesg were strings instead of floats (LP: #1038270)
   * jobs/stress.txt.in: added two sample jobs to demonstrate the new features
     of removable_storage_test
+  * jobs/piglit.txt.in: added jobs that run the piglit graphics test suite
   
   [Matt Fischer]
   * scripts/audio_driver_info: added script to find info on loaded drivers
@@ -51,9 +59,26 @@ checkbox (0.14.5) quantal; urgency=low
     jobs/networking.txt.in: added a requires on networking/info for
     module-init-tools package.
     scripts/volume_test: cleanup and fixing a small issue
+  * scripts/network-device-info: fixed a problem with output causing a
+    traceback and a problem where modules with improper modules field causes
+    problems. (LP: #1042395)
+    jobs/networking.txt.in: added requires for pciutils for the above bugfix
 
+  [Alberto Milone]
+  * [FEATURE] scripts/rendercheck_test: added test to take advantage of the
+    rendercheck test suites.
+    [FEATURE] jobs/rendercheck.txt.in: added jobs to run the rendercheck_test
+    script.
+    [FEATURE] jobs/local.txt.in: added job to parse rendercheck.txt.in job file
+  
+  [Sean Feole]
+  * scripts/network-reconnect-resume-time: fixed the wifi-reconnect-resume-time
+    script to also check wired connections for completeness (LP: #1042391)
 
- -- Jeff Lane <jeff@ubuntu.com>  Fri, 24 Aug 2012 15:44:50 -0400
+  [Chris Wayne]
+  * [FEATURE] Added oem_config_test, related jobs and data files
+
+ -- Daniel Manrique <roadmr@ubuntu.com>  Tue, 28 Aug 2012 15:33:06 -0400
 
 checkbox (0.14.4) quantal; urgency=low
 
