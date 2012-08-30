@@ -145,7 +145,8 @@ plugin: manual
 name: power-management/unplug_ac
 _description:
  PURPOSE:
-     This test will ensure that the AC is unplugged for the battery drain tests to run.
+     This test will ensure that the AC is unplugged for the battery drain tests
+ to run.
  STEPS:
      1. Unplug laptop from AC
  VERIFICATION:
@@ -155,7 +156,8 @@ plugin: shell
 name: power-management/battery_drain_idle
 requires: package.name == 'upower'
 depends: power-management/unplug_ac
-_description: Checks the battery drain during idle.  Reports time until empty and capacity as well.
+_description: Checks the battery drain during idle.  Reports time until empty
+ and capacity as well.
 command:
  battery_test -t 90 --idle
 
@@ -165,7 +167,8 @@ requires:
 package.name == 'upower'
 package.name == 'mplayer'
 depends: power-management/unplug_ac
-_description: Checks the battery drain while watching a movie.  Reports time until empty and capacity as well.  Requires MOVIE_VAR to be set.
+_description: Checks the battery drain while watching a movie.  Reports time
+ until empty and capacity as well.  Requires MOVIE_VAR to be set.
 command:
  battery_test -t 90 --movie $MOVIE_VAR
 
@@ -176,7 +179,8 @@ requires:
 package.name == 'upower' 
 package.name == 'fwts'
 depends: power-management/unplug_ac
-_description: Checks the battery drain during suspend.  Reports time until empty and capacity as well.
+_description: Checks the battery drain during suspend.  Reports time until
+ empty and capacity as well.
 command:
  battery_test -t 120 --sleep
 
@@ -187,7 +191,8 @@ depends: power-management/battery_drain_movie
 depends: power-management/battery_drain_sleep
 _description:
  PURPOSE:
-     This test will ensure that the AC is plugged back in after the battery tests
+     This test will ensure that the AC is plugged back in after the battery
+     tests
  STEPS:
      1. Plug laptop into AC
  VERIFICATION:
