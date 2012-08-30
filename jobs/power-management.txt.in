@@ -153,8 +153,8 @@ _description:
 
 plugin: shell
 name: power-management/battery_drain_idle
-requires: package.name == 'upower'
-depends: power-management/unplug_ac
+ requires: package.name == 'upower'
+ depends: power-management/unplug_ac
 _description: Checks the battery drain during idle.  Reports time until empty and capacity as well.
 command:
  battery_test -t 90 --idle
@@ -162,9 +162,9 @@ command:
 plugin: shell
 name: power-management/battery_drain_movie
 requires:
-package.name == 'upower'
-package.name == 'mplayer'
-depends: power-management/unplug_ac
+ package.name == 'upower'
+ package.name == 'mplayer'
+ depends: power-management/unplug_ac
 _description: Checks the battery drain while watching a movie.  Reports time until empty and capacity as well.  Requires MOVIE_VAR to be set.
 command:
  battery_test -t 90 --movie $MOVIE_VAR
@@ -173,18 +173,18 @@ plugin: shell
 name: power-management/battery_drain_sleep
 user: root
 requires: 
-package.name == 'upower' 
-package.name == 'fwts'
-depends: power-management/unplug_ac
+ package.name == 'upower' 
+ package.name == 'fwts'
+ depends: power-management/unplug_ac
 _description: Checks the battery drain during suspend.  Reports time until empty and capacity as well.
 command:
  battery_test -t 120 --sleep
 
 plugin: manual
 name: power-management/plug_ac
-depends: power-management/battery_drain_idle
-depends: power-management/battery_drain_movie
-depends: power-management/battery_drain_sleep
+ depends: power-management/battery_drain_idle
+ depends: power-management/battery_drain_movie
+ depends: power-management/battery_drain_sleep
 _description:
  PURPOSE:
      This test will ensure that the AC is plugged back in after the battery tests
