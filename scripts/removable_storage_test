@@ -152,7 +152,7 @@ class DiskTest():
                     if args.memorycard and dev_bus != 'sdio':
                         device_file_by_id = device_props.Get(udisks,
                             "DeviceFileById")[0]
-                        if not re.search('SD|MMC|CF|MS|SM|xD|Card',
+                        if not re.search('SD|MMC|CF|MS|SM|xD|Card|Generic',
                             device_file_by_id, re.I):
                             continue
                         else:

@@ -50,7 +50,8 @@ class StorageDeviceListener:
                               if device[1] in self._devices]
         for dev in desired_bus_devices:
             if self._memorycard and dev[1] != 'sdio':
-                if not re.search('SD|MMC|CF|MS|SM|xD|Card', dev[3], re.I):
+                if not re.search('SD|MMC|CF|MS|SM|xD|Card|Generic',
+                    dev[3], re.I):
                     return
                 print(message % {'bus':'memory card', 'file': dev[0]})
             else:
