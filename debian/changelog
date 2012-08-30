@@ -35,6 +35,8 @@ checkbox (0.14.5) quantal; urgency=low
     buttons with radiobuttons,  made comment area always visible, and added
     keyboard shortcuts.
   * [FEATURE] Added oem-config directory to setup.py so it builds correctly.
+  * scripts/audio_settings: Added exception handlers to catch problems with
+    unwritable or absent settings files (LP: #1041644) (LP: #1041340) 
 
   [ Jeff Lane ]
   * scripts/removable_storage_test (total overhaul):
@@ -85,7 +87,8 @@ checkbox (0.14.5) quantal; urgency=low
   [Chris Wayne]
   * [FEATURE] Added oem_config_test, related jobs and data files
 
- -- Daniel Manrique <roadmr@ubuntu.com>  Tue, 28 Aug 2012 15:33:06 -0400
+
+ -- Daniel Manrique <roadmr@ubuntu.com>  Thu, 30 Aug 2012 12:45:49 -0400
 
 checkbox (0.14.4) quantal; urgency=low
 
