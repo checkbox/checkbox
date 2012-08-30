@@ -39,9 +39,9 @@ class Battery():
         ret += "State: %s\n" % self._state
         ret += "Energy: %s %s\n" % (self._energy, self._energy_units)
         ret += "Energy Full: %s %s\n" % (self._energy_full,
-            self._energy_full_units)
+                                         self._energy_full_units)
         ret += "Energy Full-Design: %s %s\n" % (self._energy_full_design,
-            self._energy_full_design_units)
+                                                self._energy_full_design_units)
         return ret
 
 
@@ -96,17 +96,19 @@ def validate_battery_info(battery):
 
 def battery_life(before, after, time):
     capacity_difference = before._energy - after._energy
-    print("Battery drained by %f %s" % (capacity_difference, before._energy_units))
+    print("Battery drained by %f %s" % (capacity_difference,
+                                        before._energy_units))
     if capacity_difference == 0:
         print("Battery capacity did not change, unable to determine remaining"
               " time", file=sys.stderr)
         return 1
     drain_per_second = capacity_difference / time
-    print("Battery drained %f %s per second" % (drain_per_second, before._energy_units))
+    print("Battery drained %f %s per second" % (drain_per_second,
+                                                before._energy_units))
 
     # the battery at it's max design capacity (when it was brand new)
     design_life_minutes = round(
-            ((before._energy_full_design / drain_per_second) / 60), 2)
+        ((before._energy_full_design / drain_per_second) / 60), 2)
     print("Battery Life with full battery at design capacity (when new): %.2f"
           "minutes" % (design_life_minutes))
 
@@ -118,7 +120,7 @@ def battery_life(before, after, time):
 
     # the battery at it's current capacity
     current_life_minutes = round(
-        ((before._energy/ drain_per_second) / 60), 2)
+        ((before._energy / drain_per_second) / 60), 2)
     print("Battery Life with at current battery capacity: %.2f minutes" %
           (current_life_minutes))
     return 0
@@ -131,10 +133,10 @@ def main():
                        current capacity, capacity when battery is full,
                        and capacity when battery is full and was brand new
                        (design capacity)""")
-    parser.add_argument('-i', '--idle', help="Run the test while system is idling",
-                       action='store_true')
-    parser.add_argument('-s3', '--sleep', help="Run the test while system is suspended",
-                       action='store_true')
+    parser.add_argument('-i', '--idle', help="Run the test while system is"
+                        " idling", action='store_true')
+    parser.add_argument('-s3', '--sleep', help="Run the test while system"
+                        " is suspended", action='store_true')
     parser.add_argument('-t', '--time',
                         help="Specify the allotted time in seconds to run",
                         type=int, required=True)
@@ -155,7 +157,7 @@ def main():
         time.sleep(test_time)
         a.kill()
     elif args.sleep:
-        subprocess.call(['fwts', 's3', '--s3-sleep-delay='+str(test_time)])
+        subprocess.call(['fwts', 's3', '--s3-sleep-delay=' + str(test_time)])
 
     battery_after = get_battery_state()
     if not validate_battery_info(battery_after):
