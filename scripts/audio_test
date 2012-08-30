@@ -511,6 +511,7 @@ def main():
         logging.warning("Unable to get input volume control identifier. "
                        "Test results will probably be invalid")
     recorder.volumecontroller.set_volume(0)
+    recorder.volumecontroller.mute(False)
 
     player.volumecontroller = PAVolumeController(type='output',
                                                  logger=logging)
