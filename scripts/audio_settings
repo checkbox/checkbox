@@ -144,7 +144,11 @@ def set_audio_settings(device, mute, volume):
 
 
 def restore_audio_settings(file):
-    settings_file = open(file).read().split()
+    try:
+        settings_file = open(file).read().split()
+    except IOError:
+        print("Unable to open existing settings file")
+        sys.exit(1)
 
     for type in TYPES:
         index = settings_file[settings_file.index("%s_index:" % type) + 1]
