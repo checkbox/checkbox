@@ -24,14 +24,16 @@ class ModinfoParser:
     with each field.
 
     Basic usage in your script:
-    process = Popen('/sbin/modinfo e1000e', stdout=PIPE, stderr=PIPE,
-                    universal_newlines=True)
-    stream, err = process.communicate()
-    if err:
+    try:
+        output = subprocess.check_output('/sbin/modinfo e1000e',
+                                         stderr=subprocess.STDOUT,
+                                         universal_newlines=True)
+    except CalledProcessError as err:
         print("Error while running modinfo")
-        print(err)
-        return 1
-    parser = ModinfoParser(stream)
+        print(err.output)
+        return err.returncode
+
+    parser = ModinfoParser(output)
     all_fields = parser.get_all()
     one_field = parser.get_field(field)
     """
