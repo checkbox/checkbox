@@ -4,7 +4,7 @@ import sys
 import re
 
 from argparse import ArgumentParser
-from subprocess import check_output, Popen, PIPE
+from subprocess import check_output, STDOUT, CalledProcessError
 from checkbox.parsers.modinfo import ModinfoParser
 
 TYPES = ("source", "sink")
@@ -34,17 +34,16 @@ class PacmdAudioDevice():
         return retstr
 
     def _modinfo_parser(self, driver):
-        cmd = '/sbin/modinfo %s' % driver
-        process = Popen(cmd, stderr=PIPE, stdout=PIPE,
-                        shell=True, universal_newlines=True)
-        stream, err = process.communicate()
-        if err:
+        cmd = ['/sbin/modinfo', driver]
+        try:
+            stream = check_output(cmd, stderr=STDOUT, universal_newlines=True)
+        except CalledProcessError as err:
             print("Error running %s:" % cmd, file=sys.stderr)
-            print(err, file=sys.stderr)
+            print(err.output, file=sys.stderr)
             return None
         
         if not stream:
-            print("Error running modinfo", file=sys.stderr)
+            print("Error: modinfo returned nothing", file=sys.stderr)
             return None
         else:
             parser = ModinfoParser(stream)

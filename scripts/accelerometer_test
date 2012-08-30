@@ -31,7 +31,7 @@ import re
 import sys
 import threading
 import time
-from subprocess import Popen, PIPE
+from subprocess import Popen, PIPE, check_output, STDOUT, CalledProcessError
 from checkbox.parsers.modinfo import ModinfoParser
 
 handler = logging.StreamHandler()
@@ -218,13 +218,13 @@ class AxisData(threading.Thread):
 
 def insert_supported_module(oem_module):
     """Try and insert supported module to see if we get any init errors"""
-    process = Popen(['modinfo %s' % oem_module], stdout=PIPE,
-                    stderr=PIPE, shell=True, universal_newlines=True)
-    stream, err = process.communicate()
-    if err:
+    try:
+        stream = check_output(['modinfo', oem_module], stderr=STDOUT,
+                               universal_newlines=True)
+    except CalledProcessError as err:
         print("Error accessing modinfo for %s: " % oem_module, file=sys.stderr)
-        print(err, file=sys.stderr)
-        return 1
+        print(err.output, file=sys.stderr)
+        return err.returncode
 
     parser = ModinfoParser(stream)
     module = os.path.basename(parser.get_field('filename'))
