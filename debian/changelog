@@ -70,10 +70,6 @@ checkbox (0.14.5) quantal; urgency=low
     traceback and a problem where modules with improper modules field causes
     problems. (LP: #1042395)
     jobs/networking.txt.in: added requires for pciutils for the above bugfix
-  * scripts/camera_test: added an option to the script to capture images at 
-    all supported resolutions.
-    jobs/camera/txt.in: added an automated job to capture images at all
-    supported resolutions and validate them.
 
   [Alberto Milone]
   * [FEATURE] scripts/rendercheck_test: added test to take advantage of the
