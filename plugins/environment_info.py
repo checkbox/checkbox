@@ -28,6 +28,13 @@ class EnvironmentInfo(Plugin):
     router_ssid = String(default="")
     router_psk = String(default="")
 
+    wpa_bg_ssid = String(default="")
+    wpa_bg_psk = String(default="")
+    open_bg_ssid = String(default="")
+    wpa_n_ssid = String(default="")
+    wpa_n_psk = String(default="")
+    open_n_ssid = String(default="")
+
     def register(self, manager):
         super(EnvironmentInfo, self).register(manager)
 
@@ -35,7 +42,15 @@ class EnvironmentInfo(Plugin):
 
     def prompt_begin(self, interface):
         os.environ['ROUTERS'] = self.routers
+
         os.environ['ROUTER_SSID'] = self.router_ssid
         os.environ['ROUTER_PSK'] = self.router_psk
+
+        os.environ['WPA_BG_SSID'] = self.wpa_bg_ssid
+        os.environ['WPA_BG_PSK'] = self.wpa_bg_psk
+        os.environ['OPEN_BG_SSID'] = self.open_bg_ssid
+        os.environ['WPA_N_SSID'] = self.wpa_bg_ssid
+        os.environ['WPA_N_PSK'] = self.wpa_bg_psk
+        os.environ['OPEN_N_SSID'] = self.open_n_ssid
 
 factory = EnvironmentInfo
