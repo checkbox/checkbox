@@ -40,3 +40,10 @@ _description:
  VERIFICATION:
      1. Did touchpad work as expected?
 
+plugin: shell
+name: touchpad/driver_info
+requires: product.category = 'TOUCH'
+command: touchpad_driver_info
+_description:
+ Returns the name, driver name and driver version of any touchpad discovered on
+ the system.
