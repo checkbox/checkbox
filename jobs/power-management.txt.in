@@ -186,9 +186,7 @@ command:
 
 plugin: manual
 name: power-management/plug_ac
-depends: power-management/battery_drain_idle
- depends: power-management/battery_drain_movie
- depends: power-management/battery_drain_sleep
+depends: power-management/battery_drain_idle power-management/battery_drain_movie power-management/battery_drain_sleep
 _description:
  PURPOSE:
      This test will ensure that the AC is plugged back in after the battery
