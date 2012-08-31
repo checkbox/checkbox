@@ -165,7 +165,6 @@ plugin: shell
 name: power-management/battery_drain_movie
 requires:
  package.name == 'upower'
- package.name == 'mplayer'
 depends: power-management/unplug_ac
 _description: Checks the battery drain while watching a movie.  Reports time
  until empty and capacity as well.  Requires MOVIE_VAR to be set.
