@@ -86,3 +86,8 @@ command:
      echo -n "usb$version: "
      lsusb |grep -q "Linux Foundation ${version}.0 root hub" && echo "supported" || echo "unsupported"
  done
+
+name: touchpad_scroll
+plugin: resource
+command: touchpad_scroll_resource
+description: gives information on a touchpad's scroll support

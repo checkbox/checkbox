@@ -1,5 +1,10 @@
 checkbox (0.14.6) quantal; urgency=low
 
+  [Chris Wayne]
+  * [FEATURE] scripts/touchpad_scroll_resource, jobs/touchpad.txt.in:
+    adding in touchpad scroll detection resource job, and modified jobs
+    to require the capability to be present.
+
   [Jeff Lane]
   * Cleaning up duplicated modinfo code: (LP: #1043521)
     * checkbox/parsers/modinfo.py: added a parser to handle output from modinfo
