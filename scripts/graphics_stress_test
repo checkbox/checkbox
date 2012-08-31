@@ -406,7 +406,7 @@ def main():
             # Run the test
             logging.info('Iteration %d...', it + 1)
             # Set wake time
-            sleep_test.set_wake_time(10)
+            sleep_test.set_wake_time(20)
             # Suspend to RAM
             if sleep_test.do_suspend(sleep_mode) == 0:
                 logging.info('Passed')
