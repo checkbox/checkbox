@@ -6,6 +6,10 @@ checkbox (0.14.6) quantal; urgency=low
     * scripts/audio_driver_info: modified to use modinfo parser
     * scripts/network_device_info: modified to use modinfo parser
     * scripts/accelerometer_test: modified to use modinfo parser
+  * scripts/lsmod_info: added script to provide better lsmod output for the
+    lsmod_attachment job using the power of the modinfo parser
+    jobs/info.txt.in: modified lsmod_attachment job to use lsmod_info script
+    rather than just lsmod output (LP: #1043531)
 
   [Daniel Manrique]
   * Bumped to 0.14.6 to keep changelog size sane and fix a small mishap in the
