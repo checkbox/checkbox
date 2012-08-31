@@ -26,6 +26,10 @@ checkbox (0.14.6) quantal; urgency=low
   * [FEATURE] scripts/window_test, jobs/graphics.txt.in: Added script
     window_test to open and close 3D windows in various conditions for
     graphics testing. Added three new window_test based jobs to graphics.txt.in.
+  * [FEATURE] scripts/graphics_stress_test, jobs/stress.txt.in: Added script to
+    do some graphics stress by ensuring the graphics system continues to
+    function after several iterations of: switching VTs, suspend/resume, screen
+    rotation and running the rendercheck graphics suite.
 
   [Sean Feole]
   * [FEATURE] scripts/battery_test: measures battery capacity before and after
@@ -37,7 +41,7 @@ checkbox (0.14.6) quantal; urgency=low
    * power-management/battery_drain_movie
    * power-management/battery_drain_sleep
 
- -- Jeff Lane <jeff@ubuntu.com>  Fri, 31 Aug 2012 09:58:55 -0400
+ -- Jeff Lane <jeff@ubuntu.com>  Fri, 31 Aug 2012 13:30:24 -0400
 
 checkbox (0.14.5) quantal; urgency=low
 
