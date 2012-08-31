@@ -43,6 +43,9 @@ checkbox (0.14.5) quantal; urgency=low
     properly with KVM.
   * jobs/suspend.txt.in, scripts/gpu_test: Update the job description and the
     script docstrings from Flash to HTML5 video playback.
+  * [FEATURE] scripts/removable_storage_test, scripts/removable_storage_watcher,
+    jobs/mediacard.txt.in: Added memory cards detection (on bus other than sdio)
+    and a new automated (based on usb/storage-pre-inserted) for SD cards.
 
   [Jeff Marcom]
   * scripts/accelerometer_test, jobs/input.txt.in: Improved ability to detect 
