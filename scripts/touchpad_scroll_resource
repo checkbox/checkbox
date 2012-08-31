@@ -2,6 +2,7 @@
 
 import sys
 import re
+import argparse
 from io import StringIO
 from subprocess import Popen, PIPE, check_output, STDOUT, CalledProcessError
 from checkbox.parsers.udevadm import UdevadmParser
@@ -33,48 +34,45 @@ def get_touch_attributes():
 
     return result.attributes['product']
 
-def can_scroll(touchpad, direction):
+def can_scroll(touchpad):
     COMMAND = "xinput list '%s'" % touchpad
+    horizontal_supported = ""
+    vertical_supported = ""
     bl = re.compile("Button labels")
     vert_up = re.compile(".*Button Wheel Up.*")
     vert_down = re.compile(".*Button Wheel Down.*")
     horiz_left = re.compile(".*Button Horiz Wheel Left.*")
     horiz_right = re.compile(".*Button Horiz Wheel Right.*")
-    print(COMMAND)
     proc = Popen(COMMAND, stdout=PIPE, shell=True, universal_newlines=True)
     output = proc.stdout.read()
-    if bl.search(output):
-        print(direction)
-        if direction == 'vertical':
-            if vert_up.search(output) and vert_down.search(output):
-                return True
-            else:
-                print("Vertical scroll not found")
-                return False
-        elif direction == 'horizontal':
-            if horiz_left.search(output) and horiz_right.search(output):
-                return True
-            else:
-                print("Horizontal scroll not found")
-                return False
+    if bl.findall(output):
+        if vert_up.search(output) and vert_down.search(output):
+            vertical_supported = "supported"
+        else:
+            print("Vertical scroll not found")
+            vertical_supported = "unsupported"
+        if horiz_left.search(output) and horiz_right.search(output):
+            horizontal_supported = "supported"
+        else:
+            print("Horizontal scroll not found")
+            horizontal_supported = "unsupported"
     else:
         print("Button label capabilities not found")
         return False
+    return horizontal_supported, vertical_supported
 
 
 
-def main(direction):
+def main():
     product = get_touch_attributes()
     if product:
-        print(product)
+        print("device_name: %s" % product)
     else:
         print("No Touchpad Detected")
-        return 1
-    if can_scroll(product, direction):
-        print("%s is supported" % direction)
-        return 0
-    else:
-        return 1
+    horiz,vert = can_scroll(product)
+    print("horizontal_scroll: %s" % horiz)
+    print("vertical_scroll: %s" % vert)
+
 
 if __name__ == "__main__":
-    sys.exit(main(sys.argv[1]))
+    main()

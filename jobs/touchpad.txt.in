@@ -10,21 +10,10 @@ _description:
  VERIFICATION:
      1. Did touchpad work as expected?
 
-plugin: shell
-name: touchpad/detect_horizontal_scroll
-depends: touchpad/basic and device.category == "TOUCH"
-command: touchpad_scroll_detect 'horizontal'
-_description:  Detects that the touchpad supports horizontal scroll using xinput
-
-plugin: shell
-name: touchpad/detect_vertical_scroll
-depends: touchpad/basic and device.category == "TOUCH"
-command: touchpad_scroll_detect 'vertical'
-_description:  Detects that the touchpad supports vertical scroll using xinput
-
 plugin: manual
 name: touchpad/horizontal
-depends: touchpad/basic touchpad/detect_horizontal_scroll
+requires: touchpad_scroll.horizontal_scroll == 'supported'
+depends: touchpad/basic
 command: touchpad_test right left
 _description:
  PURPOSE:
@@ -38,7 +27,8 @@ _description:
 
 plugin: manual
 name: touchpad/vertical
-depends: touchpad/basic touchpad/detect_vertical_scroll
+requires: touchpad_scroll.vertical_scroll == 'supported'
+depends: touchpad/basic
 command: touchpad_test up down
 _description:
  PURPOSE:
