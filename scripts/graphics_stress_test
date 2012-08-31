@@ -53,6 +53,82 @@ class VtWrapper(object):
         retcode = call(['chvt', '%d' % vt])
         return retcode
 
+class SuspendWrapper(object):
+    def __init__(self):
+        pass
+
+    def can_we_sleep(self, mode):
+        '''
+        Test to see if S3 state is available to us.  /proc/acpi/* is old
+        and will be deprecated, using /sys/power to maintine usefulness for
+        future kernels.
+
+        '''
+        states_fh = open('/sys/power/state', 'r')
+        try:
+            states = states_fh.read().split()
+        finally:
+            states_fh.close()
+
+        if mode in states:
+            return True
+        else:
+            return False
+
+    def get_current_time(self):
+        cur_time = 0
+        time_fh = open('/sys/class/rtc/rtc0/since_epoch', 'r')
+        try:
+            cur_time = int(time_fh.read())
+        finally:
+            time_fh.close()
+        return cur_time
+
+    def set_wake_time(self, time):
+        '''
+        Get the current epoch time from /sys/class/rtc/rtc0/since_epoch
+        then add time and write our new wake_alarm time to
+        /sys/class/rtc/rtc0/wakealarm.
+
+        The math could probably be done better but this method avoids having to
+        worry about whether or not we're using UTC or local time for both the
+        hardware and system clocks.
+
+        '''
+        cur_time = self.get_current_time()
+        logging.debug('Current epoch time: %s' % cur_time)
+
+        wakealarm_fh = open('/sys/class/rtc/rtc0/wakealarm', 'w')
+
+        try:
+            wakealarm_fh.write('0\n')
+            wakealarm_fh.flush()
+
+            wakealarm_fh.write('+%s\n' % time)
+            wakealarm_fh.flush()
+        finally:
+            wakealarm_fh.close()
+
+        logging.debug('Wake alarm in %s seconds' % time)
+
+    def do_suspend(self, mode):
+        '''
+        Suspend the system and hope it wakes up.
+        Previously tried writing new state to /sys/power/state but that
+        seems to put the system into an uncrecoverable S3 state.  So far,
+        pm-suspend seems to be the most reliable way to go.
+
+        '''
+        if mode == 'mem':
+            status = call('/usr/sbin/pm-suspend')
+        elif mode == 'disk':
+            status = call('/usr/sbin/pm-hibernate')
+        else:
+            logging.debug('Unknown sleep state passed')
+            status == 1
+
+        return status
+
 
 def main():
     # Make sure that we have root privileges
@@ -60,8 +136,6 @@ def main():
         print('Error: please run this program as root',
               file=sys.stderr)
         exit(1)
-
-    cwd = os.getcwd()
 
     usage = 'Usage: %prog [OPTIONS]'
     parser = ArgumentParser(usage)
@@ -118,20 +192,23 @@ def main():
 
     # Call sleep 10 times
     logging.info('== Sleep test ==')
-    process = Popen([os.path.join(args.scripts_path, 'sleep_test'),
-                     '-d', '-i', '%d' % args.iterations], stdout=PIPE,
-                     stderr=PIPE, universal_newlines=True)
-    output, error = process.communicate()
-
-    if output:
-        logging.debug(output)
-    if error:
-        logging.debug(error)
-    if process.returncode != 0:
-        logging.error('Failed')
-        status = 1
+    sleep_test = SuspendWrapper()
+    sleep_mode = 'mem'
+    # See if we can sleep
+    if sleep_test.can_we_sleep(sleep_mode):
+        for it in range(args.iterations):
+            # Run the test
+            logging.info('Iteration %d...', it + 1)
+            # Set wake time
+            sleep_test.set_wake_time(10)
+            # Suspend to RAM
+            if sleep_test.do_suspend(sleep_mode) == 0:
+                logging.info('Passed')
+            else:
+                logging.error('Failed')
     else:
-        logging.info('Passed')
+        # Skip the test
+        logging.info('Skipped (the system does not seem to support S3')
 
     # Rotate the screen 10 times
     # The app already rotates the screen 5 times
@@ -147,7 +224,7 @@ def main():
                          stderr=PIPE, universal_newlines=True)
         output, error = process.communicate()
 
-        logging.info('Iteration %d...', it)
+        logging.info('Iteration %d...', it + 1)
         if output:
             logging.debug(output)
         if error:
