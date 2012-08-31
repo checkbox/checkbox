@@ -1,3 +1,24 @@
+checkbox (0.14.6) quantal; urgency=low
+
+  [Jeff Lane]
+  * Cleaning up duplicated modinfo code: (LP: #1043521)
+    * checkbox/parsers/modinfo.py: added a parser to handle output from modinfo
+    * scripts/audio_driver_info: modified to use modinfo parser
+    * scripts/network_device_info: modified to use modinfo parser
+    * scripts/accelerometer_test: modified to use modinfo parser
+  * scripts/lsmod_info: added script to provide better lsmod output for the
+    lsmod_attachment job using the power of the modinfo parser
+    jobs/info.txt.in: modified lsmod_attachment job to use lsmod_info script
+    rather than just lsmod output (LP: #1043531)
+
+  [Daniel Manrique]
+  * Bumped to 0.14.6 to keep changelog size sane and fix a small mishap in the
+    daily build recipe.
+  * scripts/audio_settings: Added exception handlers to catch problems with
+    unwritable or absent settings files (LP: #1041644) (LP: #1041340) 
+
+ -- Jeff Lane <jeff@ubuntu.com>  Thu, 30 Aug 2012 18:55:19 -0400
+
 checkbox (0.14.5) quantal; urgency=low
 
   [Sylvain Pineau]
@@ -30,6 +51,11 @@ checkbox (0.14.5) quantal; urgency=low
   * jobs/usb.txt.in: Added usb3 jobs that will only pass if an actual USB 3.0
     device is inserted/removed/tested.
   * jobs/audio.txt.in: replaced gconfaudiosink by autoaudiosink (LP: #978895)
+  * [FEATURE]: qt/frontend/qtfront.cpp, qt/frontend/qtfront.h,
+    qt/frontend/qtfront.ui, checkbox_qt/qt_interface.py: Replaced test result
+    buttons with radiobuttons,  made comment area always visible, and added
+    keyboard shortcuts.
+  * [FEATURE] Added oem-config directory to setup.py so it builds correctly.
 
   [ Jeff Lane ]
   * scripts/removable_storage_test (total overhaul):
@@ -42,8 +68,11 @@ checkbox (0.14.5) quantal; urgency=low
       iterations of C files.
     * Redid output so now you get an avg write speed per iteration and a summary
       at the end of all iterations for each device.
+  * scripts/wifi_reconnect_resume_test: fixed a bug where timestamps being
+    grabbed from dmesg were strings instead of floats (LP: #1038270)
   * jobs/stress.txt.in: added two sample jobs to demonstrate the new features
     of removable_storage_test
+  * jobs/piglit.txt.in: added jobs that run the piglit graphics test suite
   
   [Matt Fischer]
   * scripts/audio_driver_info: added script to find info on loaded drivers
@@ -62,7 +91,14 @@ checkbox (0.14.5) quantal; urgency=low
     [FEATURE] jobs/rendercheck.txt.in: added jobs to run the rendercheck_test
     script.
     [FEATURE] jobs/local.txt.in: added job to parse rendercheck.txt.in job file
-  
+  * checkbox/contrib/gdk.py: removed legacy code and used python 3.
+  * scripts/rotation_test:
+    * Made sure to report all failures, not only the first.
+    * Made it look more pythonic.
+    * Fixed issues with python 3 and used python 3.
+  * checkbox/contrib/xrandr.py:
+    * Fixed issues with python 3 and used python 3 (LP: #1043155).
+
   [Sean Feole]
   * scripts/network-reconnect-resume-time: fixed the wifi-reconnect-resume-time
     script to also check wired connections for completeness (LP: #1042391)
@@ -70,7 +106,7 @@ checkbox (0.14.5) quantal; urgency=low
   [Chris Wayne]
   * [FEATURE] Added oem_config_test, related jobs and data files
 
- -- Jeff Lane <jeff@ubuntu.com>  Mon, 27 Aug 2012 16:40:04 -0400
+ -- Daniel Manrique <roadmr@ubuntu.com>  Thu, 30 Aug 2012 12:45:49 -0400
 
 checkbox (0.14.4) quantal; urgency=low
 

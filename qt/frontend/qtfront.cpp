@@ -40,7 +40,6 @@ QtFront::QtFront(QApplication *parent) :
     ui(new Ui_main),
     m_model(0),
     m_statusModel(new QStandardItemModel()),
-    m_currentTextComment(new QTextEdit()),
     m_currentTab(0),
     m_skipTestMessage(false),
     isFirstTimeWelcome(true),
@@ -62,8 +61,6 @@ QtFront::QtFront(QApplication *parent) :
     connect(ui->selectAllButton, SIGNAL(clicked()), this, SLOT(onSelectAllClicked()));
     connect(ui->buttonStartTesting, SIGNAL(clicked()), this, SLOT(onStartTestsClicked()));
     connect(ui->testTestButton, SIGNAL(clicked()), this, SIGNAL(startTestClicked()));
-    connect(ui->yesTestButton, SIGNAL(clicked()), this, SLOT(onYesTestClicked()));
-    connect(ui->noTestButton, SIGNAL(clicked()), this, SLOT(onNoTestClicked()));
     connect(ui->nextTestButton, SIGNAL(clicked()), this, SLOT(onNextTestClicked()));
     connect(ui->previousTestButton, SIGNAL(clicked()), this, SLOT(onPreviousTestClicked()));
     connect(ui->buttonSubmitResults, SIGNAL(clicked()), this, SLOT(onSubmitTestsClicked()));
@@ -78,15 +75,6 @@ QtFront::QtFront(QApplication *parent) :
     ui->submissionDataLineEdit->setEnabled(false);
     ui->buttonViewResults->setEnabled(false);
     ui->testsTab->setTabEnabled(ui->testsTab->indexOf(ui->testing), false);
-
-    // comment box
-    ui->commentTestButton->setMenu(new QMenu());
-    QWidgetAction *action = new QWidgetAction(ui->commentTestButton);
-    action->setDefaultWidget(m_currentTextComment);
-    ui->commentTestButton->menu()->addAction(action);
-    // force cursor blink without having to click inside the QTextEdit
-    m_currentTextComment->setFocus();
-    m_currentTextComment->setStyleSheet("background-color: white");
 
     m_titleTestTypes["__audio__"] = checkboxTr("Audio Test",0);
     m_titleTestTypes["__bluetooth__"] = checkboxTr("Bluetooth Test", 0);
@@ -146,16 +134,6 @@ void QtFront::onSelectAllClicked() {
     emit testSelectionChanged();
 }
 
-void QtFront::onYesTestClicked() {
-    emit yesTestClicked();
-    updateTestStatus(STATUS_PASS);
-}
-
-void QtFront::onNoTestClicked() {
-    emit noTestClicked();
-    updateTestStatus(STATUS_FAIL);
-}
-
 void QtFront::onPreviousTestClicked() {
     emit previousTestClicked();
     updateTestStatus(STATUS_UNINITIATED);
@@ -175,7 +153,9 @@ void QtFront::setInitialState() {
 }
 
 void QtFront::onNextTestClicked() {
-    if (!m_skipTestMessage) {
+    QString currentResult = getTestResult();
+    QString currentStatus;
+    if (!m_skipTestMessage && currentResult == "skip") {
         QMessageBox msgBox(QMessageBox::Question, checkboxTr("Are you sure?", 0), checkboxTr("Do you really want to skip this test?", 0), 0, ui->tabWidget);
         QCheckBox dontPrompt(checkboxTr("Don't ask me again", 0), &msgBox);
         dontPrompt.blockSignals(true);
@@ -190,6 +170,15 @@ void QtFront::onNextTestClicked() {
             emit nextTestClicked();
     } else {
         emit nextTestClicked();
+    }
+    if (currentResult == "skip"){
+        currentStatus = STATUS_UNTESTED;
+    }
+    else if (currentResult == "yes"){
+        currentStatus = STATUS_PASS;
+    }
+    else if (currentResult == "no"){
+        currentStatus = STATUS_FAIL;
     }
     updateTestStatus(STATUS_UNTESTED);
 }
@@ -294,11 +283,12 @@ void QtFront::showTest(QString purpose,
                        bool enableTestButton) {
     currentState = TESTING;
     m_currentTestName = testName;
-    m_currentTextComment->setText(comment);
     updateTestStatus(STATUS_INPROGRESS);
     ui->radioTestTab->setVisible(true);
     ui->nextPrevButtons->setVisible(true);
     ui->testTestButton->setEnabled(enableTestButton);
+    ui->skipTestRadioButton->setChecked(true);
+    ui->commentsTextEdit->setPlainText(comment);
     ui->testsTab->setTabEnabled(ui->testsTab->indexOf(ui->testing), true);
     ui->tabWidget->setCurrentIndex(1);
 
@@ -351,25 +341,32 @@ void QtFront::showTest(QString purpose,
 }
 
 void QtFront::showTestControls(bool enableTestControls) {
-    ui->testTestButton->setEnabled(enableTestControls);
-    ui->yesTestButton->setEnabled(enableTestControls);
-    ui->noTestButton->setEnabled(enableTestControls);
     ui->nextPrevButtons->setEnabled(enableTestControls);
+    ui->noTestRadioButton->setEnabled(enableTestControls);
+    ui->skipTestRadioButton->setEnabled(enableTestControls);
+    ui->testTestButton->setEnabled(enableTestControls);
+    ui->yesTestRadioButton->setEnabled(enableTestControls);
+    ui->commentsTextEdit->setEnabled(enableTestControls);
 }
 
-void QtFront::setFocusTestYesNo(bool status) {
+void QtFront::setTestResult(bool status) {
     if (status) {
-        ui->noTestButton->setDefault(false);
-        ui->noTestButton->clearFocus();
-        ui->yesTestButton->setDefault(true);
-        ui->yesTestButton->setFocus();
+        ui->yesTestRadioButton->setChecked(true);
     }
     else {
-        ui->yesTestButton->setDefault(false);
-        ui->yesTestButton->clearFocus();
-        ui->noTestButton->setDefault(true);
-        ui->noTestButton->setFocus();
+        ui->noTestRadioButton->setChecked(true);
     }
+}
+
+QString QtFront::getTestResult() {
+    QString result = "skip";
+    if (ui->yesTestRadioButton->isChecked()){
+        result = "yes";
+    }
+    if (ui->noTestRadioButton->isChecked()) {
+        result = "no";
+    }
+    return result;
 }
 
 void QtFront::updateTestStatus(QStandardItem *item, QStandardItem *statusItem, QString status) {
@@ -577,7 +574,7 @@ QVariantMap QtFront::getTestsToRun() {
 }
 
 QString QtFront::getTestComment() {
-    return m_currentTextComment->toPlainText();
+    return ui->commentsTextEdit->toPlainText();
 }
 
 QtFront::~QtFront() {

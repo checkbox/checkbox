@@ -201,6 +201,13 @@ command:
   shopt -s extglob
   cat $CHECKBOX_SHARE/jobs/peripheral.txt?(.in)
 
+name: __piglit__
+plugin: local
+_description: Piglit tests
+command:
+  shopt -s extglob
+  cat $CHECKBOX_SHARE/jobs/piglit.txt?(.in)
+
 name: __power-management__
 plugin: local
 _description: Power Management tests
