@@ -152,3 +152,29 @@ plugin: attachment
 name: installer_debug.gz
 command: [ -e /var/log/installer/debug ] && gzip -9 -c /var/log/installer/debug
 _description: Attaches the installer debug log if it exists.
+
+plugin: attachment
+name: info/touchpad_driver
+requires: product.category == 'TOUCH'
+command: touchpad_driver_info
+_description:
+ Returns the name, driver name and driver version of any touchpad discovered on
+ the system.
+
+plugin: attachment
+name: info/audio_device_driver
+requires:
+ package.name == 'pulseaudio-utils'
+ package.name == 'module-init-tools'
+ device.category == 'AUDIO'
+command: audio_driver_info
+_description: Lists the device driver and version for all audio devices.
+
+plugin: attachment
+name: info/network_devices
+requires:
+ device.category == 'NETWORK' or device.category == 'WIRELESS'
+ package.name == 'module-init-tools'
+ package.name == 'pciutils'
+command: network_device_info
+_description: Provides information about network devices
