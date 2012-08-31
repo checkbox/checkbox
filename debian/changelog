@@ -17,7 +17,22 @@ checkbox (0.14.6) quantal; urgency=low
   * scripts/audio_settings: Added exception handlers to catch problems with
     unwritable or absent settings files (LP: #1041644) (LP: #1041340) 
 
- -- Jeff Lane <jeff@ubuntu.com>  Thu, 30 Aug 2012 18:55:19 -0400
+  [Alberto Milone]
+  * [FEATURE] scripts/window_test, jobs/graphics.txt.in: Added script
+    window_test to open and close 3D windows in various conditions for
+    graphics testing. Added three new window_test based jobs to graphics.txt.in.
+
+  [Sean Feole]
+  * [FEATURE] scripts/battery_test: measures battery capacity before and after
+    an activity and determines battery life at the rate of drain.
+    jobs/power-management.txt.in: added two manual tests to ask the user to
+    unplug and then re-plug the laptop so that three new automated battery
+    drain tests can run:
+   * power-management/battery_drain_idle
+   * power-management/battery_drain_movie
+   * power-management/battery_drain_sleep
+
+ -- Jeff Lane <jeff@ubuntu.com>  Fri, 31 Aug 2012 09:58:55 -0400
 
 checkbox (0.14.5) quantal; urgency=low
 
@@ -28,6 +43,9 @@ checkbox (0.14.5) quantal; urgency=low
     properly with KVM.
   * jobs/suspend.txt.in, scripts/gpu_test: Update the job description and the
     script docstrings from Flash to HTML5 video playback.
+  * [FEATURE] scripts/removable_storage_test, scripts/removable_storage_watcher,
+    jobs/mediacard.txt.in: Added memory cards detection (on bus other than sdio)
+    and a new automated (based on usb/storage-pre-inserted) for SD cards.
 
   [Jeff Marcom]
   * scripts/accelerometer_test, jobs/input.txt.in: Improved ability to detect 
