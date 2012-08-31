@@ -131,7 +131,7 @@ plugin: shell
 name: stress/graphics
 requires:
  package.name == 'x11-apps'
-command: graphics_stress_test -s $CHECKBOX_DATA/scripts/ -o $CHECKBOX_DATA/graphics-stress-results
+command: graphics_stress_test -d -o $CHECKBOX_DATA/graphics-stress-results
 _description:
  Run the graphics stress test. This test can take a few minutes.
 
