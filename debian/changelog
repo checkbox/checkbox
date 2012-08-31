@@ -17,7 +17,12 @@ checkbox (0.14.6) quantal; urgency=low
   * scripts/audio_settings: Added exception handlers to catch problems with
     unwritable or absent settings files (LP: #1041644) (LP: #1041340) 
 
- -- Jeff Lane <jeff@ubuntu.com>  Thu, 30 Aug 2012 18:55:19 -0400
+  [Alberto Milone]
+  * [FEATURE] scripts/window_test, jobs/graphics.txt.in: Added script
+    window_test to open and close 3D windows in various conditions for
+    graphics testing. Added three new window_test based jobs to graphics.txt.in.
+
+ -- Jeff Lane <jeff@ubuntu.com>  Fri, 31 Aug 2012 09:58:55 -0400
 
 checkbox (0.14.5) quantal; urgency=low
 
