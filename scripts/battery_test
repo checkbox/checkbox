@@ -153,9 +153,13 @@ def main():
     if args.idle:
         time.sleep(test_time)
     elif args.movie:
-        a = subprocess.Popen(['mplayer', '-fs', '-loop', '0', args.movie])
+        totem_settings = Gio.Settings.new("org.gnome.totem")
+        totem_settings.set_boolean("repeat",True)
+        a = subprocess.Popen(['totem', '--fullscreen', args.movie])
         time.sleep(test_time)
         a.kill()
+        totem_settings = Gio.Settings.new("org.gnome.totem")
+        totem_settings.set_boolean("repeat",False)
     elif args.sleep:
         subprocess.call(['fwts', 's3', '--s3-sleep-delay=' + str(test_time)])
 
