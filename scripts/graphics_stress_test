@@ -30,6 +30,7 @@ import time
 
 from argparse import ArgumentParser
 from subprocess import call, Popen, PIPE
+from checkbox.contrib import xrandr
 
 
 class VtWrapper(object):
@@ -129,6 +130,50 @@ class SuspendWrapper(object):
 
         return status
 
+class RotationWrapper(object):
+
+    def __init__(self):
+        self._screen = xrandr.get_current_screen()
+        self._rotations = {'normal': xrandr.RR_ROTATE_0,
+                           'right': xrandr.RR_ROTATE_90,
+                           'inverted': xrandr.RR_ROTATE_180,
+                           'left': xrandr.RR_ROTATE_270}
+
+    def _rotate_screen(self, rotation):
+        self._screen.set_rotation(rotation)
+        return self._screen.apply_config()
+
+    def do_rotation_cycle(self):
+        '''Cycle through all possible rotations'''
+        rots_statuses = {}
+
+        for rot in self._rotations:
+            try:
+                status = self._rotate_screen(self._rotations[rot])
+            except(xrandr.RRError, xrandr.UnsupportedRRError) as error:
+                status = 1
+            else:
+                error = 'N/A'
+            # Collect the status and the error message
+            rots_statuses[rot] = (status, error)
+            time.sleep(4)
+
+        # Try to set the screen back to normal
+        try:
+            self._rotate_screen(xrandr.RR_ROTATE_0)
+        except(xrandr.RRError, xrandr.UnsupportedRRError) as error:
+            print(error)
+
+        result = 0
+        for elem in rots_statuses:
+            status = rots_statuses.get(elem)[0]
+            error = rots_statuses.get(elem)[1]
+            if status != 0:
+                logging.error('Error: rotation "%s" failed with status %d: %s.'
+                              % (elem, status, error))
+                result = 1
+        return result
+
 
 def main():
     # Make sure that we have root privileges
@@ -148,10 +193,6 @@ def main():
                         default='',
                         help='The path to the log which will be dumped. \
                               Default is stdout')
-    parser.add_argument('-s', '--scripts_path',
-                        default='scripts',
-                        help='The path to the log which will be dumped. \
-                              Default is scripts/')
     args = parser.parse_args()
 
     loglevel = logging.DEBUG
@@ -206,6 +247,7 @@ def main():
                 logging.info('Passed')
             else:
                 logging.error('Failed')
+                status = 1
     else:
         # Skip the test
         logging.info('Skipped (the system does not seem to support S3')
@@ -213,27 +255,15 @@ def main():
     # Rotate the screen 10 times
     # The app already rotates the screen 5 times
     logging.info('== Rotation test ==')
-    for it in range(args.iterations):
-        # rotation_status = call(['scripts/rotation_test'])
-        # if sleep_status != 0:
-        #     logging.error('Error: rotating the screen on iteration %d'
-        #           % (it))
-        #     status = 1
-        process = Popen([os.path.join(args.scripts_path,
-                         'rotation_test')], stdout=PIPE,
-                         stderr=PIPE, universal_newlines=True)
-        output, error = process.communicate()
+    rotation_test = RotationWrapper()
 
+    for it in range(args.iterations):
         logging.info('Iteration %d...', it + 1)
-        if output:
-            logging.debug(output)
-        if error:
-            logging.debug(error)
-        if process.returncode != 0:
+        if rotation_test.do_rotation_cycle() == 0:
+            logging.info('Passed')
+        else:
             logging.error('Failed')
             status = 1
-        else:
-            logging.info('Passed')
 
     # Call rendercheck 10 times
     logging.info('== Rendercheck test ==')
