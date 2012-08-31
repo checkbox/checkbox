@@ -189,7 +189,7 @@ def main():
                         default='all',
                         help='The name of the test to run. \
                               Available tests: \
-                              %s. \
+                              %s, all. \
                               Default is all' % (', '.join(tests)))
     parser.add_argument('-i', '--iterations',
                         type=int,
@@ -207,11 +207,18 @@ def main():
                               Default is 3')
     parser.add_argument('-w', '--windows_number',
                         type=int,
-                        default=4,
-                        help='The number of windows to open. \
-                              Default is 4')
+                        help='The number of windows to open.')
 
     args = parser.parse_args()
+
+    if args.windows_number:
+        if args.test not in ('open-close-multi', 'all'):
+            parser.error('-w or --windows_number can only be used with '
+                         'the "open-close-multi" test or with the '
+                         '"all" test')
+        windows_number = args.windows_number
+    else:
+        windows_number = 4
 
     status = 0
     iterations = args.iterations
@@ -229,6 +236,10 @@ def main():
                                           windows_number)
                 if exit_status != 0:
                     status = exit_status
+        else:
+            parser.error('-t or --test can only be used with one '
+                         'of the following tests: '
+                         '%s, all' % (', '.join(tests)))
 
     return status
 
