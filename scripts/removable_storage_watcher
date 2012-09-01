@@ -48,10 +48,11 @@ class StorageDeviceListener:
     def verify_device_change(self, changed_devices, message=""):
         desired_bus_devices = [device for device in changed_devices \
                               if device[1] in self._devices]
+        pattern = re.compile('SD|MMC|CF|MS|SM|xD|Card|Generic')
         for dev in desired_bus_devices:
             if self._memorycard and dev[1] != 'sdio':
-                if not re.search('SD|MMC|CF|MS|SM|xD|Card|Generic',
-                    dev[3], re.I):
+                if not (pattern.search(dev[3], re.I) or
+                        pattern.search(dev[4], re.I)):
                     return
                 print(message % {'bus':'memory card', 'file': dev[0]})
             else:
@@ -77,8 +78,12 @@ class StorageDeviceListener:
             self._change_cache.append(devices)
             inserted_devices = list(set(self.get_existing_devices()) -
                                     set(self._starting_devices))
+            if self._memorycard:
+                message = "Expected memory card device %(file)s inserted"
+            else:
+                message = "Expected %(bus)s device %(file)s inserted"
             self.verify_device_change(inserted_devices,
-                      message="Expected %(bus)s device %(file)s inserted")
+                      message=message)
 
     def add_detected(self, added_path):
         self._change_cache = []
@@ -112,12 +117,23 @@ class StorageDeviceListener:
                                            "DriveConnectionInterface")
                 _speed = device_props.Get(udisks,
                                                 "DriveConnectionSpeed")
+                _parent_model = ''
+
+                if device_props.Get(udisks, "DeviceIsPartition"):
+                    parent_obj = self._bus.get_object(
+                        "org.freedesktop.UDisks",
+                        device_props.Get(udisks, "PartitionSlave"))
+                    parent_props = dbus.Interface(
+                        parent_obj, dbus.PROPERTIES_IFACE)
+                    _parent_model=parent_props.Get(udisks, "DriveModel")
+
                 if not device_props.Get(udisks, "DeviceIsDrive"):
                     device=(
                         str(_device_file),
                         str(_device),
                         int(_speed),
-                        str(_device_file_by_id))
+                        str(_device_file_by_id),
+                        str(_parent_model))
                     existing_devices.append(device)
 
             except dbus.DBusException:
