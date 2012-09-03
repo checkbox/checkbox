@@ -128,6 +128,22 @@ command:
  tar cvfz stress_poweroff_check.tgz $CHECKBOX_DATA/pm_log_check_poweroff.100.log && cat $CHECKBOX_DATA/stress_poweroff_check.tgz
 
 plugin: shell
+name: stress/graphics
+requires:
+ package.name == 'x11-apps'
+user: root
+command: graphics_stress_test -d -o $CHECKBOX_DATA/graphics-stress-results && echo "Graphics Stress Test completed successfully" || echo "Graphics Stress Test completed, but there are errors. Please see the log $CHECKBOX_DATA/graphics-stress-results for details"
+_description:
+ Run the graphics stress test. This test can take a few minutes.
+
+plugin: shell
+name: stress/graphics-tarball
+requires:
+ package.name == 'x11-apps'
+depends: stress/graphics
+command: [ -e $CHECKBOX_DATA/graphics-stress-results ] && tar cvfz $CHECKBOX_DATA/graphics-stress-results.tar.gz $CHECKBOX_DATA/graphics-stress-results
+
+plugin: shell
 name: stress/usb
 command: removable_storage_test -s 10240000 -c 100 -i 3 usb
 _description: Runs a test that transfers 100 10MB files 3 times to usb.

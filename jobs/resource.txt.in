@@ -87,7 +87,12 @@ command:
      lsusb |grep -q "Linux Foundation ${version}.0 root hub" && echo "supported" || echo "unsupported"
  done
 
-name: enviroment
+name: touchpad_scroll
+plugin: resource
+command: touchpad_scroll_resource
+description: gives information on a touchpad's scroll support
+
+name: environment
 plugin: resource
 description: Create resource info for environment variables
 command:

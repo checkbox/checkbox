@@ -1,4 +1,4 @@
-#!/usr/bin/python2
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 #
 #  rotation_test
@@ -22,9 +22,6 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 
-from __future__ import print_function
-from __future__ import unicode_literals
-
 import time
 import sys
 
@@ -38,24 +35,22 @@ def rotate_screen(screen, rotation):
 
 def main():
     screen = xrandr.get_current_screen()
-    rots_dict = {'normal': xrandr.RR_ROTATE_0,
-                  'right': xrandr.RR_ROTATE_90,
-                  'inverted': xrandr.RR_ROTATE_180,
-                  'left': xrandr.RR_ROTATE_270}
+    rotations = {'normal': xrandr.RR_ROTATE_0,
+                 'right': xrandr.RR_ROTATE_90,
+                 'inverted': xrandr.RR_ROTATE_180,
+                 'left': xrandr.RR_ROTATE_270}
     rots_statuses = {}
 
-    it = 0
-    for rotation in rots_dict.values():
+    for rot in rotations:
         try:
-            status = rotate_screen(screen, rotation)
+            status = rotate_screen(screen, rotations[rot])
         except(xrandr.RRError, xrandr.UnsupportedRRError) as error:
             status = 1
         else:
             error = 'N/A'
         # Collect the status and the error message
-        rots_statuses[rots_dict.keys()[it]] = list((status, error))
+        rots_statuses[rot] = (status, error)
         time.sleep(4)
-        it += 1
 
     # Try to set the screen back to normal
     try:
@@ -63,14 +58,15 @@ def main():
     except(xrandr.RRError, xrandr.UnsupportedRRError) as error:
         print(error)
 
+    result = 0
     for elem in rots_statuses:
         status = rots_statuses.get(elem)[0]
         error = rots_statuses.get(elem)[1]
         if status != 0:
             print('Error: rotation "%s" failed with status %d: %s.' %
-                 (elem, status, error), file=sys.stderr)
-            exit(1)
-    return 0
+                  (elem, status, error), file=sys.stderr)
+            result = 1
+    return result
 
 if __name__ == '__main__':
-    main()
+    exit(main())

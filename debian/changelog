@@ -1,3 +1,53 @@
+checkbox (0.14.6) quantal; urgency=low
+
+  [Chris Wayne]
+  * [FEATURE] scripts/touchpad_scroll_resource, jobs/touchpad.txt.in:
+    adding in touchpad scroll detection resource job, and modified jobs
+    to require the capability to be present.
+
+  [Jeff Lane]
+  * Cleaning up duplicated modinfo code: (LP: #1043521)
+    * checkbox/parsers/modinfo.py: added a parser to handle output from modinfo
+    * scripts/audio_driver_info: modified to use modinfo parser
+    * scripts/network_device_info: modified to use modinfo parser
+    * scripts/accelerometer_test: modified to use modinfo parser
+  * scripts/lsmod_info: added script to provide better lsmod output for the
+    lsmod_attachment job using the power of the modinfo parser
+    jobs/info.txt.in: modified lsmod_attachment job to use lsmod_info script
+    rather than just lsmod output (LP: #1043531)
+
+  [Daniel Manrique]
+  * Bumped to 0.14.6 to keep changelog size sane and fix a small mishap in the
+    daily build recipe.
+  * scripts/audio_settings: Added exception handlers to catch problems with
+    unwritable or absent settings files (LP: #1041644) (LP: #1041340) 
+
+  [Alberto Milone]
+  * [FEATURE] scripts/window_test, jobs/graphics.txt.in: Added script
+    window_test to open and close 3D windows in various conditions for
+    graphics testing. Added three new window_test based jobs to graphics.txt.in.
+  * [FEATURE] scripts/graphics_stress_test, jobs/stress.txt.in: Added script to
+    do some graphics stress by ensuring the graphics system continues to
+    function after several iterations of: switching VTs, suspend/resume, screen
+    rotation and running the rendercheck graphics suite.
+
+  [Sean Feole]
+  * [FEATURE] scripts/battery_test: measures battery capacity before and after
+    an activity and determines battery life at the rate of drain.
+    jobs/power-management.txt.in: added two manual tests to ask the user to
+    unplug and then re-plug the laptop so that three new automated battery
+    drain tests can run:
+   * power-management/battery_drain_idle
+   * power-management/battery_drain_movie
+   * power-management/battery_drain_sleep   
+
+  [Brendan Donegan]
+  * [FEATURE] Added semi-automated wireless tests which require only a single
+    router to run, prompting the user to modify the routers config during 
+    the test.
+
+ -- Jeff Lane <jeff@ubuntu.com>  Fri, 31 Aug 2012 13:30:24 -0400
+
 checkbox (0.14.5) quantal; urgency=low
 
   [Sylvain Pineau]
@@ -7,6 +57,9 @@ checkbox (0.14.5) quantal; urgency=low
     properly with KVM.
   * jobs/suspend.txt.in, scripts/gpu_test: Update the job description and the
     script docstrings from Flash to HTML5 video playback.
+  * [FEATURE] scripts/removable_storage_test, scripts/removable_storage_watcher,
+    jobs/mediacard.txt.in: Added memory cards detection (on bus other than sdio)
+    and a new automated (based on usb/storage-pre-inserted) for SD cards.
 
   [Jeff Marcom]
   * scripts/accelerometer_test, jobs/input.txt.in: Improved ability to detect 
@@ -70,7 +123,14 @@ checkbox (0.14.5) quantal; urgency=low
     [FEATURE] jobs/rendercheck.txt.in: added jobs to run the rendercheck_test
     script.
     [FEATURE] jobs/local.txt.in: added job to parse rendercheck.txt.in job file
-  
+  * checkbox/contrib/gdk.py: removed legacy code and used python 3.
+  * scripts/rotation_test:
+    * Made sure to report all failures, not only the first.
+    * Made it look more pythonic.
+    * Fixed issues with python 3 and used python 3.
+  * checkbox/contrib/xrandr.py:
+    * Fixed issues with python 3 and used python 3 (LP: #1043155).
+
   [Sean Feole]
   * scripts/network-reconnect-resume-time: fixed the wifi-reconnect-resume-time
     script to also check wired connections for completeness (LP: #1042391)
@@ -78,12 +138,7 @@ checkbox (0.14.5) quantal; urgency=low
   [Chris Wayne]
   * [FEATURE] Added oem_config_test, related jobs and data files
 
-  [Brendan Donegan]
-  * [FEATURE] Added semi-automated wireless tests which require only a single
-    router to run, prompting the user to modify the routers config during 
-    the test.
-
- -- Daniel Manrique <roadmr@ubuntu.com>  Tue, 28 Aug 2012 15:33:06 -0400
+ -- Daniel Manrique <roadmr@ubuntu.com>  Thu, 30 Aug 2012 12:45:49 -0400
 
 checkbox (0.14.4) quantal; urgency=low
 
