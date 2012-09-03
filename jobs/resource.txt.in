@@ -91,3 +91,12 @@ name: touchpad_scroll
 plugin: resource
 command: touchpad_scroll_resource
 description: gives information on a touchpad's scroll support
+
+name: environment
+plugin: resource
+description: Create resource info for environment variables
+command:
+ IFS=$'\n'
+ for e in `env | sed 's/=/:/g'`; do
+     echo $e | awk -F':' '{print tolower($1) ": " $2}'
+ done

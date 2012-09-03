@@ -44,6 +44,9 @@ checkbox (0.14.6) quantal; urgency=low
   [Brendan Donegan]
   * [FEATURE] Add environment_info plugin which sets environment variables
     according to the values set in the plugin via Checkboxes INI files.
+  * [FEATURE] Added semi-automated wireless tests which require only a single
+    router to run, prompting the user to modify the routers config during 
+    the test.
 
  -- Jeff Lane <jeff@ubuntu.com>  Fri, 31 Aug 2012 13:30:24 -0400
 
