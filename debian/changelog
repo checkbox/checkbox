@@ -31,6 +31,10 @@ checkbox (0.14.6) quantal; urgency=low
     function after several iterations of: switching VTs, suspend/resume, screen
     rotation and running the rendercheck graphics suite.
 
+  [Marc Tardif]
+  * scripts/touchpad_scroll_resource: Added support for systems without
+    a touchpad (LP #1045066)
+
   [Sean Feole]
   * [FEATURE] scripts/battery_test: measures battery capacity before and after
     an activity and determines battery life at the rate of drain.
