@@ -82,6 +82,11 @@ plugin: attachment
 command: udevadm info --export-db
 _description: Attaches a dump of the udev database showing system hardware information.
 
+name: udev_resource_attachment
+plugin: attachment
+command: udev_resource
+_description: Attaches the output of udev_resource, for debugging purposes
+
 name: gcov_attachment
 plugin: attachment
 requires: package.name == 'lcov'
