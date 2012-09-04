@@ -151,8 +151,6 @@ class DiskTest():
                 dev_bus = device_props.Get(udisks, "DriveConnectionInterface")
                 if dev_bus in args.device:
                     if args.memorycard and dev_bus != 'sdio':
-                        device_file_by_id = device_props.Get(udisks,
-                            "DeviceFileById")[0]
                         parent_model = ''
                         if device_props.Get(udisks, "DeviceIsPartition"):
                             parent_obj = bus.get_object(
@@ -161,8 +159,7 @@ class DiskTest():
                             parent_props = dbus.Interface(
                                 parent_obj, dbus.PROPERTIES_IFACE)
                             parent_model=parent_props.Get(udisks, "DriveModel")
-                        if not (pattern.search(device_file_by_id, re.I) or
-                                pattern.search(parent_model, re.I)):
+                        if not pattern.search(parent_model, re.I):
                             continue
                         else:
                             self.rem_disks_memory_cards = {}

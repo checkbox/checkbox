@@ -51,8 +51,7 @@ class StorageDeviceListener:
         pattern = re.compile('SD|MMC|CF|MS|SM|xD|Card|Generic')
         for dev in desired_bus_devices:
             if self._memorycard and dev[1] != 'sdio':
-                if not (pattern.search(dev[3], re.I) or
-                        pattern.search(dev[4], re.I)):
+                if not pattern.search(dev[3], re.I):
                     return
                 print(message % {'bus':'memory card', 'file': dev[0]})
             else:
@@ -111,8 +110,6 @@ class StorageDeviceListener:
                 udisks = 'org.freedesktop.UDisks.Device'
                 _device_file = device_props.Get(udisks,
                                            "DeviceFile")
-                _device_file_by_id = device_props.Get(udisks,
-                                           "DeviceFileById")[0]
                 _device = device_props.Get(udisks,
                                            "DriveConnectionInterface")
                 _speed = device_props.Get(udisks,
@@ -132,7 +129,6 @@ class StorageDeviceListener:
                         str(_device_file),
                         str(_device),
                         int(_speed),
-                        str(_device_file_by_id),
                         str(_parent_model))
                     existing_devices.append(device)
 
