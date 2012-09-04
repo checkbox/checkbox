@@ -259,9 +259,11 @@ _description:
  security and the 802.11n protocol after the system has been suspended.
 
 plugin: shell
-name: suspend/wireless_connection_after_suspend_after_suspend_open_n
+name: suspend/wireless_connection_after_suspend_open_n
 depends: suspend/suspend_advanced_auto
-requires: device.category == 'WIRELESS'
+requires:
+ device.category == 'WIRELESS'
+ environment.routers == 'multiple'
 user: root
 environ: OPEN_N_SSID
 command: trap "rm -f /etc/NetworkManager/system-connections/$OPEN_N_SSID" EXIT; create_connection $OPEN_N_SSID; internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
@@ -296,7 +298,7 @@ requires:
  device.category == 'WIRELESS'
  environment.routers == 'single'
 user: root
-environ: ROUTER_SSID ROUTER_PSK
+environ: ROUTER_SSID
 command: trap "nmcli con delete id $ROUTER_SSID" EXIT; create_connection $ROUTER_SSID && internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
 _description:
  PURPOSE:
@@ -338,7 +340,7 @@ requires:
  device.category == 'WIRELESS'
  environment.routers == 'single'
 user: root
-environ: ROUTER_SSID ROUTER_PSK
+environ: ROUTER_SSID
 command: trap "nmcli con delete id $ROUTER_SSID" EXIT; create_connection $ROUTER_SSID && internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
 _description:
  PURPOSE:
