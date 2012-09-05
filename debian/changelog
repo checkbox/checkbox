@@ -55,6 +55,10 @@ checkbox (0.14.6) quantal; urgency=low
     since they were missed in the previous merge    
   * Attach the output of udev_resource, for debugging purposes (LP: #974271)
 
+  [Sylvain Pineau]
+  * qt/frontend/qtfront.ui: Fixed the progressLabel widget size to support job
+    names > 50 chars (LP: #1046274)
+
   [Zygmunt Krynicki]
   * Fixed simple duplicate 'the' mistakes (LP: #1040022)
 
