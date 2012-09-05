@@ -24,7 +24,7 @@ import fcntl
 import struct
 import ctypes
 from glob import glob
-from subprocess import check_call
+from subprocess import call
 
 
 class sg_io_hdr(ctypes.Structure):
@@ -131,8 +131,8 @@ def main():
     matches = [dev for dev in glob('/dev/sg*') if
                re.search(pattern, inquire(dev), re.I)]
 
-    if matches or not check_call("grep -q -E '%s' /var/log/kern.log" % pattern,
-                                 shell=True):
+    if matches or not call(
+        "grep -q 'SDHCI controller found' /var/log/kern.log", shell=True):
         print('reader: detected')
     else:
         print('reader: none')
