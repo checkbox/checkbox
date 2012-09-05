@@ -210,7 +210,9 @@ _description:
 plugin: shell
 name: suspend/wireless_after_suspend
 depends: suspend/suspend_advanced suspend/wireless_before_suspend
-requires: device.category == 'WIRELESS'
+requires:
+ device.category == 'WIRELESS'
+ environment.routers == 'multiple'
 command: connect_wireless && internet_test --interface=`nmcli dev list | grep -B 1 wireless | grep GENERAL.DEVICE | awk '{print $2}'` && for con in `cat $CHECKBOX_DATA/connections`; do nmcli con up uuid "$con"; done
 _description:
  This test checks that the wireless interface is working after suspending the system. It
@@ -220,7 +222,9 @@ _description:
 plugin: shell
 name: suspend/wireless_connection_after_suspend_wpa_bg
 depends: suspend/suspend_advanced_auto
-requires: device.category == 'WIRELESS'
+requires:
+ device.category == 'WIRELESS'
+ environment.routers == 'multiple'
 user: root
 environ: WPA_BG_SSID WPA_BG_PSK
 command: trap "rm -f /etc/NetworkManager/system-connections/$WPA_BG_SSID" EXIT; create_connection $WPA_BG_SSID --security=wpa --key=$WPA_BG_PSK; internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
@@ -231,7 +235,9 @@ _description:
 plugin: shell
 name: suspend/wireless_connection_after_suspend_open_bg
 depends: suspend/suspend_advanced_auto
-requires: device.category == 'WIRELESS'
+requires:
+ device.category == 'WIRELESS'
+ environment.routers == 'multiple'
 user: root
 environ: OPEN_BG_SSID
 command: trap "rm -f /etc/NetworkManager/system-connections/$OPEN_BG_SSID" EXIT; create_connection $OPEN_BG_SSID; internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
@@ -242,7 +248,9 @@ _description:
 plugin: shell
 name: suspend/wireless_connection_after_suspend_wpa_n
 depends: suspend/suspend_advanced_auto
-requires: device.category == 'WIRELESS'
+requires:
+ device.category == 'WIRELESS'
+ environment.routers == 'multiple'
 user: root
 environ: WPA_N_SSID WPA_N_PSK
 command: trap "rm -f /etc/NetworkManager/system-connections/$WPA_N_SSID" EXIT; create_connection $WPA_N_SSID --security=wpa --key=$WPA_N_PSK; internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
@@ -253,13 +261,103 @@ _description:
 plugin: shell
 name: suspend/wireless_connection_after_suspend_open_n
 depends: suspend/suspend_advanced_auto
-requires: device.category == 'WIRELESS'
+requires:
+ device.category == 'WIRELESS'
+ environment.routers == 'multiple'
 user: root
 environ: OPEN_N_SSID
 command: trap "rm -f /etc/NetworkManager/system-connections/$OPEN_N_SSID" EXIT; create_connection $OPEN_N_SSID; internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
 _description:
  Tests that the systems wireless hardware can connect to a router using no
  security and the 802.11n protocol after the system has been suspended.
+
+plugin: manual
+name: suspend/wireless_connection_after_suspend_wpa_bg_manual
+depends: suspend/suspend_advanced
+requires:
+ device.category == 'WIRELESS'
+ environment.routers == 'single'
+user: root
+environ: ROUTER_SSID ROUTER_PSK
+command: trap "nmcli con delete id $ROUTER_SSID" EXIT; create_connection $ROUTER_SSID --security=wpa --key=$ROUTER_PSK && internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
+_description:
+ PURPOSE:
+     Tests that the systems wireless hardware can connect to a router using WPA
+     security and the 802.11b/g protocols.
+ STEPS:
+     1. Open your routers configuration tool
+     2. Change the settings to only accept connections on the B and G wireless bands
+     3. Make sure the SSID is set to ROUTER_SSID
+     4. Change the security settings to use WPA2 and ensure the PSK matches that set in ROUTER_PSK
+     5. Click the 'Test' button to create a connection to the router and test the connection
+ VERIFICATION:
+     Verification is automated, do not change the automatically selected result.
+
+plugin: manual
+name: suspend/wireless_connection_after_suspend_open_bg_manual
+depends: suspend/suspend_advanced
+requires:
+ device.category == 'WIRELESS'
+ environment.routers == 'single'
+user: root
+environ: ROUTER_SSID
+command: trap "nmcli con delete id $ROUTER_SSID" EXIT; create_connection $ROUTER_SSID && internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
+_description:
+ PURPOSE:
+     Tests that the systems wireless hardware can connect to a router using
+     no security and the 802.11b/g protocols.
+ STEPS:
+     1. Open your routers configuration tool
+     2. Change the settings to only accept connections on the B and G wireless bands
+     3. Make sure the SSID is set to ROUTER_SSID
+     4. Change the security settings to use no security
+     5. Click the 'Test' button to create a connection to the router and test the connection
+ VERIFICATION:
+     Verification is automated, do not change the automatically selected result.
+
+plugin: manual
+name: suspend/wireless_connection_after_suspend_wpa_n_manual
+depends: suspend/suspend_advanced
+requires:
+ device.category == 'WIRELESS'
+ environment.routers == 'single'
+user: root
+environ: ROUTER_SSID ROUTER_PSK
+command: trap "nmcli con delete id $ROUTER_SSID" EXIT; create_connection $ROUTER_SSID --security=wpa --key=$ROUTER_PSK && internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
+_description:
+ PURPOSE:
+     Tests that the systems wireless hardware can connect to a router using WPA
+     security and the 802.11n protocols.
+ STEPS:
+     1. Open your routers configuration tool
+     2. Change the settings to only accept connections on the N wireless band
+     3. Make sure the SSID is set to ROUTER_SSID
+     4. Change the security settings to use WPA2 and ensure the PSK matches that set in ROUTER_PSK
+     5. Click the 'Test' button to create a connection to the router and test the connection
+ VERIFICATION:
+     Verification is automated, do not change the automatically selected result.
+
+plugin: manual
+name: suspend/wireless_connection_after_suspend_open_n_manual
+depends: suspend/suspend_advanced
+requires:
+ device.category == 'WIRELESS'
+ environment.routers == 'single'
+user: root
+environ: ROUTER_SSID
+command: trap "nmcli con delete id $ROUTER_SSID" EXIT; create_connection $ROUTER_SSID && internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
+_description:
+ PURPOSE:
+     Tests that the systems wireless hardware can connect to a router using
+     no security and the 802.11n protocol.
+ STEPS:
+     1. Open your routers configuration tool
+     2. Change the settings to only accept connections on the N wireless band
+     3. Make sure the SSID is set to ROUTER_SSID
+     4. Change the security settings to use no security
+     5. Click the 'Test' button to create a connection to the router and test the connection
+ VERIFICATION:
+     Verification is automated, do not change the automatically selected result.
 
 plugin: shell
 name: suspend/bluetooth_detect_after_suspend
