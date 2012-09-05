@@ -132,7 +132,7 @@ def main():
                pattern.search(inquire(dev), re.I)]
 
     if matches or not call(
-        "grep -q 'SDHCI controller found' /var/log/kern.log", shell=True):
+        "grep -q 'SDHCI controller found' /var/log/kern.log*", shell=True):
         print('reader: detected')
     else:
         print('reader: none')
