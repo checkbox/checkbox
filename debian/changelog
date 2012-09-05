@@ -55,6 +55,10 @@ checkbox (0.14.6) quantal; urgency=low
     since they were missed in the previous merge    
   * Attach the output of udev_resource, for debugging purposes (LP: #974271)
 
+  [Sylvain Pineau]
+  * scripts/camera_test, jobs/camera.txt.in: Added a 10s timeout to the camera
+    still test (LP: #990133)
+
   [Zygmunt Krynicki]
   * Fixed simple duplicate 'the' mistakes (LP: #1040022)
 
