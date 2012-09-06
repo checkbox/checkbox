@@ -22,8 +22,6 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 
-import pdb; pdb.set_trace()
-
 import time
 import sys
 
@@ -36,7 +34,6 @@ def rotate_screen(screen, rotation):
 
 
 def main():
-    import pdb; pdb.set_trace()
     screen = xrandr.get_current_screen()
     rotations = {'normal': xrandr.RR_ROTATE_0,
                  'right': xrandr.RR_ROTATE_90,

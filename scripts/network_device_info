@@ -24,8 +24,9 @@ import os
 import re
 import sys
 import dbus
-import subprocess
 import sys
+from checkbox.parsers.modinfo import ModinfoParser
+from subprocess import check_output, CalledProcessError, STDOUT
 
 # This example lists basic information about network interfaces known to NM
 devtypes = {1: "Ethernet",
@@ -69,7 +70,8 @@ class NetworkingDevice():
             self._driver = "Unknown"
 
         if self._driver != "Unknown":
-            self._driver_ver = self._find_driver_ver(props['Driver'])
+            self._modinfo = self._modinfo_parser(props['Driver'])
+            self._driver_ver = self._find_driver_ver()
 
         try:
             self._firmware_missing = props['FirmwareMissing']
@@ -104,33 +106,34 @@ class NetworkingDevice():
         except Exception:
             return "NaN"
 
-    def _modinfo_wrapper(self, driver, field):
-        modinfo = subprocess.Popen('/sbin/modinfo -F %s %s' % (field, driver),
-            stderr=subprocess.PIPE, stdout=subprocess.PIPE, shell=True,
-            universal_newlines=True)
-        if not modinfo:
-            print ("Error while running modinfo", file=sys.stderr)
+    def _modinfo_parser(self, driver):
+        cmd = ['/sbin/modinfo', driver]
+        try:
+            stream = check_output(cmd, stderr=STDOUT, universal_newlines=True)
+        except CalledProcessError as err:
+            print("Error running %s:" % ' '.join(cmd), file=sys.stderr)
+            print(err.output, file=sys.stderr)
+            return None
+
+        if not stream:
+            print ("Error: modinfo returned nothing", file=sys.stderr)
             return None
         else:
-            out, err = modinfo.communicate()
-            if err:
-                print ("modinfo (stderr) = %s" % err, file=sys.stderr)
-                return None
-            if out:
-                return out.strip()
+            parser = ModinfoParser(stream)
+            modinfo = parser.get_all()
+        
+        return modinfo
 
-    def _find_driver_ver(self, driver):
+    def _find_driver_ver(self):
         # try the version field first, then vermagic second, some audio
         # drivers don't report version if the driver is in-tree
-        version = self._modinfo_wrapper(driver, "version")
-        if version:
-            return version
+        if self._modinfo['version'] and self._modinfo['version'] != 'in-tree:':
+            return self._modinfo['version']
         else:
-            vermagic = self._modinfo_wrapper(driver, "vermagic")
             # vermagic will look like this (below) and we only care about the
             # first part:
             # "3.2.0-29-generic SMP mod_unload modversions"
-            return vermagic.split()[0]
+            return self._modinfo['vermagic'].split()[0]
 
     def _int_to_ip(self, int_ip):
         ip = [0, 0, 0, 0]

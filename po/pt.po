@@ -8,20 +8,14 @@ msgstr ""
 "Project-Id-Version: checkbox\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-07-12 16:08-0400\n"
-"PO-Revision-Date: 2011-08-12 11:37+0000\n"
-"Last-Translator: João Ornelas <Unknown>\n"
+"PO-Revision-Date: 2012-09-01 16:58+0000\n"
+"Last-Translator: Francisco Machado <Unknown>\n"
 "Language-Team: Portuguese <pt@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-08-28 05:12+0000\n"
-"X-Generator: Launchpad (build 15864)\n"
-
-#. Title of the user interface
-#: ../gtk/checkbox-gtk.ui.h:1 ../qt/checkbox-qt.desktop.in.h:1
-#: ../plugins/user_interface.py:43
-msgid "System Testing"
-msgstr "Testes de sistema"
+"X-Launchpad-Export-Date: 2012-09-02 04:34+0000\n"
+"X-Generator: Launchpad (build 15890)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:5
 msgid "_Skip this test"
@@ -79,6 +73,12 @@ msgstr "A trocar informação com o servidor..."
 
 #~ msgid "Is your mouse working properly?"
 #~ msgstr "O seu rato está a funcionar correctamente?"
+
+#. Title of the user interface
+#: ../gtk/checkbox-gtk.ui.h:1 ../qt/checkbox-qt.desktop.in.h:1
+#: ../plugins/user_interface.py:43
+msgid "System Testing"
+msgstr "Teste de sistema"
 
 #: ../gtk/checkbox-gtk.ui.h:2 ../checkbox_gtk/gtk_interface.py:561
 msgid "_Test"
@@ -221,116 +221,120 @@ msgid ""
 "this computer's audio subsystem and perform more detailed tests under a "
 "controlled environment."
 msgstr ""
+"Recolhe informação relacionada com a componente audio do sistema. Estes "
+"dados podem ser utilizados para simular o sub-sistema audio deste computador "
+"e levar a cabo testes mais detalhados num ambiente controlado."
 
 #. description
 #: ../jobs/audio.txt.in:143
 msgid "Attaches the audio hardware data collection log to the results."
 msgstr ""
+"Anexa o registo de recolha de dados de hardware audio aos resultados."
 
 #. description
 #: ../jobs/benchmarks.txt.in:18
 msgid "Benchmark for each disk"
-msgstr ""
+msgstr "Avaliação para cada disco"
 
 #. description
 #: ../jobs/benchmarks.txt.in:41
 msgid "Run Render-Bench XRender/Imlib2 benchmark"
-msgstr ""
+msgstr "Correr o benchmark Render-Bench XRender/Imlib2"
 
 #. description
 #: ../jobs/benchmarks.txt.in:47
 msgid "Run Qgears2 XRender Extension gearsfancy benchmark"
-msgstr ""
+msgstr "Correr o benchmark Qgears2 XRender Extension gearsfancy"
 
 #. description
 #: ../jobs/benchmarks.txt.in:53
 msgid "Run Qgears2 XRender Extension image scaling benchmark"
-msgstr ""
+msgstr "Correr o benchmark Qgears2 XRender Extension image scaling"
 
 #. description
 #: ../jobs/benchmarks.txt.in:59
 msgid "Run Qgears2 OpenGL gearsfancy benchmark"
-msgstr ""
+msgstr "Correr o benchmark Qgears2 OpenGL gearsfancy"
 
 #. description
 #: ../jobs/benchmarks.txt.in:65
 msgid "Run Qgears2 OpenGL image scaling benchmark"
-msgstr ""
+msgstr "Correr o benchmark de image scaling Qgears2 OpenGL"
 
 #. description
 #: ../jobs/benchmarks.txt.in:74
 msgid "Run GLmark2-ES2 benchmark"
-msgstr ""
+msgstr "Correr o benchmark GLmark2-ES2"
 
 #. description
 #: ../jobs/benchmarks.txt.in:83
 msgid "Run GLmark2 benchmark"
-msgstr ""
+msgstr "Correr o benchmark GLmark2"
 
 #. description
 #: ../jobs/benchmarks.txt.in:89
 msgid "Run Unigine Santuary benchmark"
-msgstr ""
+msgstr "Correr o benchmark Unigine Santuary"
 
 #. description
 #: ../jobs/benchmarks.txt.in:95
 msgid "Run Unigine Tropics benchmark"
-msgstr ""
+msgstr "Correr o benchmark Unigine Tropics"
 
 #. description
 #: ../jobs/benchmarks.txt.in:101
 msgid "Run Unigine Heaven benchmark"
-msgstr ""
+msgstr "Correr o benchmark Unigine Heaven"
 
 #. description
 #: ../jobs/benchmarks.txt.in:107
 msgid "Run Lightsmark benchmark"
-msgstr ""
+msgstr "Correr o benchmark Lightsmark"
 
 #. description
 #: ../jobs/benchmarks.txt.in:113
 msgid "Run Cachebench Read benchmark"
-msgstr ""
+msgstr "Correr o benchmark de leitura Cachebench"
 
 #. description
 #: ../jobs/benchmarks.txt.in:119
 msgid "Run Cachebench Write benchmark"
-msgstr ""
+msgstr "Correr o benchmark de escrita Cachebench"
 
 #. description
 #: ../jobs/benchmarks.txt.in:125
 msgid "Run Cachebench Read / Modify / Write benchmark"
-msgstr ""
+msgstr "Correr o benchmark de Leitura/Moficação/Leitura Cachebench"
 
 #. description
 #: ../jobs/benchmarks.txt.in:131
 msgid "Run Stream Copy benchmark"
-msgstr ""
+msgstr "Correr o benchmark Stream Copy"
 
 #. description
 #: ../jobs/benchmarks.txt.in:137
 msgid "Run Stream Scale benchmark"
-msgstr ""
+msgstr "Correr o benchmark Stream Scale"
 
 #. description
 #: ../jobs/benchmarks.txt.in:143
 msgid "Run Stream Add benchmark"
-msgstr ""
+msgstr "Correr o benchmark  Stream Add"
 
 #. description
 #: ../jobs/benchmarks.txt.in:149
 msgid "Run Stream Triad benchmark"
-msgstr ""
+msgstr "Correr o benchmark Stream Triad"
 
 #. description
 #: ../jobs/benchmarks.txt.in:155
 msgid "Run Network Loopback benchmark"
-msgstr ""
+msgstr "Correr o benchmark Network Loopback"
 
 #. description
 #: ../jobs/benchmarks.txt.in:167
 msgid "Run Encode MP3 benchmark"
-msgstr ""
+msgstr "Correr o benchmark de codificação MP3"
 
 #. description
 #: ../jobs/benchmarks.txt.in:173
@@ -377,6 +381,8 @@ msgstr ""
 msgid ""
 "Automated test to store bluetooth device information in checkbox report"
 msgstr ""
+"Teste automatizado para armazenar informações sobre o dispositivo de "
+"bluetooth no relatório checkbox"
 
 #. description
 #: ../jobs/bluetooth.txt.in:14
@@ -737,7 +743,7 @@ msgstr "Teste à floppy"
 #. description
 #: ../jobs/graphics.txt.in:10
 msgid "Test to output the Xorg version"
-msgstr ""
+msgstr "Teste para a saída da versão Xorg"
 
 #. description
 #: ../jobs/benchmarks.txt.in:34
@@ -780,12 +786,12 @@ msgstr ""
 #. description
 #: ../jobs/graphics.txt.in:31
 msgid "Test that the X process is running."
-msgstr ""
+msgstr "testar que o processo X está a correr."
 
 #. description
 #: ../jobs/graphics.txt.in:37
 msgid "Test that the X is not running in failsafe mode."
-msgstr ""
+msgstr "testar que o X não está a correr em modo de segurança."
 
 #. description
 #: ../jobs/graphics.txt.in:44
@@ -813,6 +819,8 @@ msgid ""
 "Ensure the current resolution meets or exceeds the recommended minimum "
 "resolution (800x600). See here for details:"
 msgstr ""
+"Assegurar que a resolução atual atende ou excede a resolução mínima "
+"recomendada (800x600). Veja aqui para mais detalhes:"
 
 #. description
 #: ../jobs/graphics.txt.in:66
@@ -926,7 +934,7 @@ msgstr ""
 #. description
 #: ../jobs/info.txt.in:5
 msgid "Attaches a report of installed codecs for Intel HDA"
-msgstr ""
+msgstr "Anexa um relatório de codecs instalados para Intel HDA"
 
 #. description
 #: ../jobs/info.txt.in:10
@@ -976,7 +984,7 @@ msgstr ""
 #. description
 #: ../jobs/info.txt.in:68
 msgid "attaches the contents of various sysctl config files."
-msgstr ""
+msgstr "anexa o conteúdo de vários ficheiros de configuração sysctl."
 
 #. description
 #: ../jobs/info.txt.in:72
@@ -1007,12 +1015,12 @@ msgstr ""
 #. description
 #: ../jobs/info.txt.in:104
 msgid "Bootchart information."
-msgstr ""
+msgstr "Informações Bootchart."
 
 #. description
 #: ../jobs/info.txt.in:113
 msgid "SATA/IDE device information."
-msgstr ""
+msgstr "Informações do dispositivo SATA / IDE ."
 
 #. description
 #: ../jobs/info.txt.in:132
@@ -1172,27 +1180,27 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:17
 msgid "Bluetooth tests"
-msgstr ""
+msgstr "Testes Bluetooth"
 
 #. description
 #: ../jobs/local.txt.in:24
 msgid "Camera tests"
-msgstr ""
+msgstr "Testes de câmara"
 
 #. description
 #: ../jobs/local.txt.in:31
 msgid "Codec tests"
-msgstr ""
+msgstr "Testes de codec"
 
 #. description
 #: ../jobs/local.txt.in:38
 msgid "CPU tests"
-msgstr ""
+msgstr "testes  de CPU"
 
 #. description
 #: ../jobs/local.txt.in:45
 msgid "System Daemon tests"
-msgstr ""
+msgstr "Testes do Sistema Daemon"
 
 #. description
 #: ../jobs/local.txt.in:52
@@ -1212,17 +1220,17 @@ msgstr "Testes de disco firewire"
 #. description
 #: ../jobs/local.txt.in:80
 msgid "Floppy disk tests"
-msgstr ""
+msgstr "Testes à disquete"
 
 #. description
 #: ../jobs/local.txt.in:87
 msgid "Graphics tests"
-msgstr ""
+msgstr "Testes aos gráficos"
 
 #. description
 #: ../jobs/local.txt.in:94
 msgid "Hibernation tests"
-msgstr ""
+msgstr "testes de hibernação"
 
 #. description
 #: ../jobs/local.txt.in:101
@@ -1232,32 +1240,32 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:108
 msgid "Input Devices tests"
-msgstr ""
+msgstr "Testes aos dispositivos de entrada"
 
 #. description
 #: ../jobs/local.txt.in:115
 msgid "Software Installation tests"
-msgstr ""
+msgstr "Testes da instalação do software"
 
 #. description
 #: ../jobs/local.txt.in:122
 msgid "Hotkey tests"
-msgstr ""
+msgstr "testes das teclas de atalho"
 
 #. description
 #: ../jobs/local.txt.in:136
 msgid "Media Card tests"
-msgstr ""
+msgstr "testes dos cartões media"
 
 #. description
 #: ../jobs/local.txt.in:143
 msgid "Memory tests"
-msgstr ""
+msgstr "Testes à memória"
 
 #. description
 #: ../jobs/local.txt.in:150
 msgid "Miscellaneous tests"
-msgstr ""
+msgstr "Testes diversos"
 
 #. description
 #: ../jobs/local.txt.in:157
@@ -1267,12 +1275,12 @@ msgstr "Testes de monitor"
 #. description
 #: ../jobs/local.txt.in:164
 msgid "Networking tests"
-msgstr ""
+msgstr "testes ao funcionamento da rede"
 
 #. description
 #: ../jobs/local.txt.in:171
 msgid "Optical Drive tests"
-msgstr ""
+msgstr "testes à drive óptica"
 
 #. description
 #: ../jobs/local.txt.in:178
@@ -1282,7 +1290,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:171
 msgid "PCMCIA/PCIX Card tests"
-msgstr ""
+msgstr "Testes aos cartões PCMCIA/PCIX"
 
 #. description
 #: ../jobs/local.txt.in:192
@@ -1292,7 +1300,7 @@ msgstr "Testes de periféricos"
 #. description
 #: ../jobs/local.txt.in:199
 msgid "Power Management tests"
-msgstr ""
+msgstr "Testes à gestão de energia"
 
 #. description
 #: ../jobs/local.txt.in:206
@@ -1302,7 +1310,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:213
 msgid "Suspend tests"
-msgstr ""
+msgstr "Suspender testes"
 
 #. description
 #: ../jobs/local.txt.in:220
@@ -1312,7 +1320,7 @@ msgstr ""
 #. description
 #: ../jobs/local.txt.in:234
 msgid "USB tests"
-msgstr ""
+msgstr "testes ao USB"
 
 #. description
 #: ../jobs/local.txt.in:241
@@ -1322,7 +1330,7 @@ msgstr "Aplicações de Utilizador"
 #. description
 #: ../jobs/local.txt.in:248
 msgid "Wireless networking tests"
-msgstr ""
+msgstr "Testes à rede sem fios"
 
 #. description
 #: ../jobs/local.txt.in:255
@@ -1647,7 +1655,7 @@ msgstr ""
 #. description
 #: ../jobs/memory.txt.in:14
 msgid "Test and exercise memory."
-msgstr ""
+msgstr "Teste de esforço à memória"
 
 #. description
 #: ../jobs/miscellanea.txt.in:3
@@ -3804,7 +3812,7 @@ msgstr ""
 
 #: ../qt/frontend/ui_qtfront.h:620
 msgid "Submission details"
-msgstr ""
+msgstr "Detalhes de apresentação"
 
 #: ../qt/frontend/ui_qtfront.h:622
 msgid "Email:"

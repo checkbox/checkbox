@@ -34,8 +34,6 @@
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
-import pdb; pdb.set_trace()
-
 from ctypes import *
 import os
 
@@ -229,7 +227,7 @@ class Output:
         """Returns the display height reported by the connected output device"""
         return self._info.contents.mm_height
     def get_crtc(self):
-        """Returns the xid of the hardware pipe to which the the output is
+        """Returns the xid of the hardware pipe to which the output is
            attached. If the output is disabled it will return 0"""
         return self._info.contents.crtc
     def get_crtcs(self):

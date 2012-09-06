@@ -12,8 +12,8 @@ _description:
 
 plugin: manual
 name: touchpad/horizontal
+requires: touchpad_scroll.horizontal_scroll == 'supported'
 depends: touchpad/basic
-requires: package.name == 'gedit'
 command: touchpad_test right left
 _description:
  PURPOSE:
@@ -21,14 +21,14 @@ _description:
  STEPS:
      1. Make sure that touchpad is enabled
      2. Select "Test" when ready and place your cursor within the borders of the displayed test window.
-     3. Verify that you can move the the horizontal slider by moving your finger side by side in the lower part of the touchpad
+     3. Verify that you can move the horizontal slider by moving your finger side by side in the lower part of the touchpad
  VERIFICATION:
      1. Did touchpad work as expected?
 
 plugin: manual
 name: touchpad/vertical
+requires: touchpad_scroll.vertical_scroll == 'supported'
 depends: touchpad/basic
-requires: package.name == 'gedit'
 command: touchpad_test up down
 _description:
  PURPOSE:
@@ -36,7 +36,7 @@ _description:
  STEPS:
      1. Make sure that touchpad is enabled
      2. Select "Test" when ready and place your cursor within the borders of the displayed test window.
-     3. Verify that you can move the the vertical slider by moving your finger side by side in the right part of the touchpad
+     3. Verify that you can move the vertical slider by moving your finger side by side in the right part of the touchpad
  VERIFICATION:
      1. Did touchpad work as expected?
 

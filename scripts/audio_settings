@@ -45,7 +45,8 @@ def get_current_profile_setting():
     try:
         open("active_output", 'w').write(active_profile)
     except IOError:
-        print("Failed to save active output information")
+        print("Failed to save active output information: %s" %
+               sys.exc_info()[1])
 
 
 def restore_profile_setting():
@@ -77,7 +78,12 @@ def move_sinks(index):
 
 def store_audio_settings(file):
 
-    settings_file = open(file, 'w')
+    try:
+        settings_file = open(file, 'w')
+    except IOError:
+        print("Failed to save settings: %s" % sys.exc_info()[1])
+        sys.exit(1)
+
 
     for type in TYPES:
         pacmd_entries = check_output(["pacmd", "list-%ss" % type],
@@ -144,7 +150,12 @@ def set_audio_settings(device, mute, volume):
 
 
 def restore_audio_settings(file):
-    settings_file = open(file).read().split()
+    try:
+        settings_file = open(file).read().split()
+    except IOError:
+        print("Unable to open existing settings file: %s" % 
+                sys.exc_info()[1])
+        sys.exit(1)
 
     for type in TYPES:
         index = settings_file[settings_file.index("%s_index:" % type) + 1]
