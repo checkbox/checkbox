@@ -1,10 +1,8 @@
 #!/usr/bin/env python3
 
-import sys
 import re
-import argparse
 from io import StringIO
-from subprocess import Popen, PIPE, check_output, STDOUT, CalledProcessError
+from subprocess import Popen, PIPE
 from checkbox.parsers.udevadm import UdevadmParser
 
 # Command to retrieve udev information.
@@ -24,13 +22,14 @@ def get_touch_attributes():
     output, err = Popen(COMMAND, stdout=PIPE, shell=True).communicate()
     if err:
         return None
-        
+
     udev = UdevadmParser(StringIO(output.decode("unicode-escape")))
 
     result = TouchResult()
     udev.run(result)
 
-    return result.attributes['product']
+    return result.attributes.get('product')
+
 
 def can_scroll(touchpad):
     COMMAND = "xinput list '%s'" % touchpad
@@ -57,17 +56,15 @@ def can_scroll(touchpad):
     return horizontal_supported, vertical_supported
 
 
-
 def main():
     product = get_touch_attributes()
     if product:
         print("device_name: %s" % product)
+        horiz,vert = can_scroll(product)
+        print("horizontal_scroll: %s" % horiz)
+        print("vertical_scroll: %s" % vert)
     else:
         print("device_name: None")
-        sys.exit(1)
-    horiz,vert = can_scroll(product)
-    print("horizontal_scroll: %s" % horiz)
-    print("vertical_scroll: %s" % vert)
 
 
 if __name__ == "__main__":

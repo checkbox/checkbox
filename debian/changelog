@@ -31,6 +31,10 @@ checkbox (0.14.6) quantal; urgency=low
     function after several iterations of: switching VTs, suspend/resume, screen
     rotation and running the rendercheck graphics suite.
 
+  [Marc Tardif]
+  * scripts/touchpad_scroll_resource: Added support for systems without
+    a touchpad (LP #1045066)
+
   [Sean Feole]
   * [FEATURE] scripts/battery_test: measures battery capacity before and after
     an activity and determines battery life at the rate of drain.
@@ -41,7 +45,30 @@ checkbox (0.14.6) quantal; urgency=low
    * power-management/battery_drain_movie
    * power-management/battery_drain_sleep
 
- -- Jeff Lane <jeff@ubuntu.com>  Fri, 31 Aug 2012 13:30:24 -0400
+  [Brendan Donegan]
+  * [FEATURE] Add environment_info plugin which sets environment variables
+    according to the values set in the plugin via Checkboxes INI files.
+  * [FEATURE] Added semi-automated wireless tests which require only a single
+    router to run, prompting the user to modify the routers config during 
+    the test.
+  * [FEATURE] Added semi-automated wireless after suspend tests to suspend.txt.in,
+    since they were missed in the previous merge    
+  * Attach the output of udev_resource, for debugging purposes (LP: #974271)
+
+  [Sylvain Pineau]
+  * jobs/suspend.txt.in: Fixed suspend/suspend_advanced dependencies to avoid
+    calling fwts with the live CD (LP: #1045687)
+  * qt/frontend/qtfront.ui: Fixed the test purpose widget size to allow two
+    lines of description (LP: #1032255)
+  * qt/frontend/qtfront.ui: Fixed the progressLabel widget size to support job
+    names > 50 chars (LP: #1046274)
+  * scripts/camera_test, jobs/camera.txt.in: Added a 10s timeout to the camera
+    still test (LP: #990133)
+
+  [Zygmunt Krynicki]
+  * Fixed simple duplicate 'the' mistakes (LP: #1040022)
+
+ -- Daniel Manrique <roadmr@ubuntu.com>  Tue, 04 Sep 2012 17:32:05 -0400
 
 checkbox (0.14.5) quantal; urgency=low
 

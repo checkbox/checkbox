@@ -271,7 +271,10 @@ class CameraTest:
             self._pipeline.set_state(Gst.State.NULL)
 
         if not quiet:
-            call(["eog", filename])
+            try:
+                call(["timeout", "-k", "11", "10", "eog", filename])
+            except CalledProcessError:
+                pass
 
     def _supported_resolutions_to_string(self, supported_resolutions):
         """
