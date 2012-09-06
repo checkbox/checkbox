@@ -50,11 +50,13 @@ class StorageDeviceListener:
                               if device[1] in self._devices]
         pattern = re.compile('SD|MMC|CF|MS|SM|xD|Card|Generic')
         for dev in desired_bus_devices:
-            if self._memorycard and dev[1] != 'sdio':
-                if not pattern.search(dev[3], re.I):
+            if self._memorycard:
+                if dev[1] != 'sdio' and not pattern.search(dev[3], re.I):
                     return
                 print(message % {'bus':'memory card', 'file': dev[0]})
             else:
+                if pattern.search(dev[3], re.I):
+                    return
                 print(message % {'bus':dev[1], 'file': dev[0]})
             if self._minimum_speed:
                 if dev[2] >= self._minimum_speed:
