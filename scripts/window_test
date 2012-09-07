@@ -207,7 +207,6 @@ def main():
                               Default is 3')
     parser.add_argument('-w', '--windows_number',
                         type=int,
-                        default=4,
                         help='The number of windows to open.')
 
     args = parser.parse_args()
