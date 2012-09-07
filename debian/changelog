@@ -21,6 +21,7 @@ checkbox (0.14.6) quantal; urgency=low
     daily build recipe.
   * scripts/audio_settings: Added exception handlers to catch problems with
     unwritable or absent settings files (LP: #1041644) (LP: #1041340) 
+  * scripts/graphics_modes_info: updated shebang to python3 (LP: #1047515)
 
   [Alberto Milone]
   * [FEATURE] scripts/window_test, jobs/graphics.txt.in: Added script
@@ -72,7 +73,7 @@ checkbox (0.14.6) quantal; urgency=low
   [Zygmunt Krynicki]
   * Fixed simple duplicate 'the' mistakes (LP: #1040022)
 
- -- Daniel Manrique <roadmr@ubuntu.com>  Tue, 04 Sep 2012 17:32:05 -0400
+ -- Daniel Manrique <roadmr@ubuntu.com>  Fri, 07 Sep 2012 13:00:32 -0400
 
 checkbox (0.14.5) quantal; urgency=low
 
