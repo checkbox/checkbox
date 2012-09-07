@@ -54,6 +54,10 @@ checkbox (0.14.6) quantal; urgency=low
   * [FEATURE] Added semi-automated wireless after suspend tests to suspend.txt.in,
     since they were missed in the previous merge    
   * Attach the output of udev_resource, for debugging purposes (LP: #974271)
+  * Make audio_settings before/after suspend tests more robust by not requiring
+    every little audio setting to be the same before and after suspend, just
+    the major ones such as the current source/sink and the mute/volume settings
+    on them (LP: #1043144)
 
   [Sylvain Pineau]
   * jobs/suspend.txt.in: Fixed suspend/suspend_advanced dependencies to avoid
