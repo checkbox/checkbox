@@ -15,7 +15,7 @@ requires:
  device.category == 'AUDIO'
  package.name == 'alsa-base'
 _description: Record mixer settings before suspending.
-command: amixer > $CHECKBOX_DATA/audio_before_suspend.txt
+command: audio_settings store --file=$CHECKBOX_DATA/audio_settings_before_suspend
 
 plugin: shell
 name: suspend/cpu_before_suspend
@@ -158,7 +158,8 @@ requires:
  package.name == 'alsa-base'
 depends: suspend/suspend_advanced suspend/audio_before_suspend
 _description: Verify that mixer settings after suspend are the same as before suspend.
-command: amixer | diff $CHECKBOX_DATA/audio_before_suspend.txt -
+command: 
+ audio_settings store --file=$CHECKBOX_DATA/audio_settings_after_suspend; diff $CHECKBOX_DATA/audio_settings_before_suspend $CHECKBOX_DATA/audio_settings_after_suspend
 
 plugin: shell
 name: suspend/cpu_after_suspend
