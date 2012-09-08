@@ -268,8 +268,13 @@ class QTInterface(UserInterface):
         def onErrorBoxClosed():
             self.loop.quit()
 
-        self.qtiface.showError(primary_text,
-                secondary_text, detailed_text,
+        if secondary_text == None:
+            secondary_text = ""
+        if detailed_text == None:
+            detailed_text = ""
+
+        self.qtiface.showError(str(primary_text),
+                str(secondary_text), str(detailed_text),
                 reply_handler=dummy_handle_reply,
                 error_handler=dummy_handle_error)
         self.wait_on_signals(
