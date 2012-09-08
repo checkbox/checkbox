@@ -24,6 +24,7 @@ checkbox (0.14.6) quantal; urgency=low
   * Ensured that strings passed to qtiface.showError via dbus are strings, 
     and not NoneType as could happen under certain circumstances.
     (LP: #1032337)
+  * scripts/graphics_modes_info: updated shebang to python3 (LP: #1047515)
 
   [Alberto Milone]
   * [FEATURE] scripts/window_test, jobs/graphics.txt.in: Added script
