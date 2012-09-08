@@ -61,6 +61,8 @@ checkbox (0.14.6) quantal; urgency=low
     every little audio setting to be the same before and after suspend, just
     the major ones such as the current source/sink and the mute/volume settings
     on them (LP: #1043144)
+  * Remove default value from windows_number argument since the logic following
+    it dictates that it's only valid for certain tests (LP: #1047621)
 
   [Sylvain Pineau]
   * jobs/suspend.txt.in: Fixed suspend/suspend_advanced dependencies to avoid
