@@ -20,7 +20,10 @@ checkbox (0.14.6) quantal; urgency=low
   * Bumped to 0.14.6 to keep changelog size sane and fix a small mishap in the
     daily build recipe.
   * scripts/audio_settings: Added exception handlers to catch problems with
-    unwritable or absent settings files (LP: #1041644) (LP: #1041340) 
+    unwritable or absent settings files (LP: #1041644) (LP: #1041340)
+  * Ensured that strings passed to qtiface.showError via dbus are strings, 
+    and not NoneType as could happen under certain circumstances.
+    (LP: #1032337)
 
   [Alberto Milone]
   * [FEATURE] scripts/window_test, jobs/graphics.txt.in: Added script
@@ -72,7 +75,7 @@ checkbox (0.14.6) quantal; urgency=low
   [Zygmunt Krynicki]
   * Fixed simple duplicate 'the' mistakes (LP: #1040022)
 
- -- Daniel Manrique <roadmr@ubuntu.com>  Tue, 04 Sep 2012 17:32:05 -0400
+ -- Daniel Manrique <roadmr@ubuntu.com>  Fri, 07 Sep 2012 21:32:44 -0400
 
 checkbox (0.14.5) quantal; urgency=low
 
