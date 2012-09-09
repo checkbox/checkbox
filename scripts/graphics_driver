@@ -70,7 +70,15 @@ class XorgLog(object):
         gathering_module = False
         found_ddx = False
         module = None
-        for line in in_file.readlines():
+        lines = []
+        try:
+            lines = in_file.readlines()
+            
+        except UnicodeDecodeError as exception:
+            print("ERROR: Invalid character encoding in logfile",
+                  file=sys.stderr)
+
+        for line in lines:
 
             m = re.search(r'\(..\)', line)
             if m:

@@ -42,11 +42,14 @@ def get_color_depth(log_dir='/var/log/'):
             log = f
 
     with open(log) as f:
-        for match in re.finditer(
-            '\(==\) Depth (.+) pixmap format is (.+) bpp',
-            f.read()):
-            depth = match.group(1)
-            pixmap_format = match.group(2)
+        try:
+            for match in re.finditer(
+                '\(==\) Depth (.+) pixmap format is (.+) bpp',
+                f.read()):
+                depth = match.group(1)
+                pixmap_format = match.group(2)
+        except UnicodeDecodeError as exception:
+            pass
 
     return (depth, pixmap_format)
 

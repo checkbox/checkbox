@@ -25,6 +25,10 @@ checkbox (0.14.6) quantal; urgency=low
     and not NoneType as could happen under certain circumstances.
     (LP: #1032337)
   * scripts/graphics_modes_info: updated shebang to python3 (LP: #1047515)
+  * scripts/graphics_driver, scripts/color_depth_info: Added exception
+    handling for possible invalid characters in Xorg logfiles
+    (LP: #1048096)
+
 
   [Alberto Milone]
   * [FEATURE] scripts/window_test, jobs/graphics.txt.in: Added script
@@ -78,7 +82,7 @@ checkbox (0.14.6) quantal; urgency=low
   [Zygmunt Krynicki]
   * Fixed simple duplicate 'the' mistakes (LP: #1040022)
 
- -- Daniel Manrique <roadmr@ubuntu.com>  Fri, 07 Sep 2012 21:32:44 -0400
+ -- Daniel Manrique <roadmr@ubuntu.com>  Sat, 08 Sep 2012 23:29:19 -0400
 
 checkbox (0.14.5) quantal; urgency=low
 
