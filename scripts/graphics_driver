@@ -66,7 +66,7 @@ class XorgLog(object):
         self.displays = {}
         display = {}
         display_name = "Unknown"
-        in_file = open(filename, "r")
+        in_file = open(filename, errors='ignore')
         gathering_module = False
         found_ddx = False
         module = None
