@@ -28,6 +28,8 @@ import logging
 
 from dbus import SystemBus
 from dbus.mainloop.glib import DBusGMainLoop
+from dbus import (Array, Boolean, Byte, Dictionary, Double, Int16, Int32,
+                  Int64, ObjectPath, String, Struct, UInt16, UInt32, UInt64)
 from gi.repository import GObject
 
 
@@ -51,3 +53,37 @@ def connect_to_system_bus():
     logging.debug("Connecting to DBus system bus")
     system_bus = SystemBus(mainloop=DBusGMainLoop())
     return system_bus, loop
+
+
+def drop_dbus_type(value):
+    """
+    Convert types from the DBus bindings to their python counterparts.
+
+    This function is mostly lossless, except for arrays of bytes (DBus
+    signature "y") that are transparently converted to strings, assuming
+    an UTF-8 encoded string.
+
+    The point of this function is to simplify printing of nested DBus data that
+    gets displayed in a rather illegible way.
+    """
+    if isinstance(value, Array) and value.signature == "y":
+        # Some other things are reported as array of bytes that are just
+        # strings but due to Unix heritage the encoding is not known.
+        # In practice it is better to treat them as UTF-8 strings
+        return bytes(value).decode("UTF-8", "replace").strip("\0")
+    elif isinstance(value, (Struct, Array)):
+        return [drop_dbus_type(item) for item in value]
+    elif isinstance(value, (Dictionary)):
+        return {drop_dbus_type(dict_key): drop_dbus_type(dict_value)
+                for dict_key, dict_value in value.items()}
+    elif isinstance(value, (String, ObjectPath)):
+        return str(value)
+    elif isinstance(value, (Byte, UInt16, UInt32, UInt64,
+                            Int16, Int32, Int64)):
+        return int(value)
+    elif isinstance(value, Boolean):
+        return bool(value)
+    elif isinstance(value, Double):
+        return float(value)
+    else:
+        return value
