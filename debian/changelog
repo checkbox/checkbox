@@ -25,9 +25,8 @@ checkbox (0.14.6) quantal; urgency=low
     and not NoneType as could happen under certain circumstances.
     (LP: #1032337)
   * scripts/graphics_modes_info: updated shebang to python3 (LP: #1047515)
-  * scripts/graphics_driver, scripts/color_depth_info: Added exception
-    handling for possible invalid characters in Xorg logfiles
-    (LP: #1048096)
+  * scripts/graphics_driver, scripts/color_depth_info: Added ignoring
+    possible invalid characters in Xorg logfiles (LP: #1048096)
 
 
   [Alberto Milone]
