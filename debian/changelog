@@ -15,6 +15,8 @@ checkbox (0.14.6) quantal; urgency=low
     lsmod_attachment job using the power of the modinfo parser
     jobs/info.txt.in: modified lsmod_attachment job to use lsmod_info script
     rather than just lsmod output (LP: #1043531)
+  * jobs/wireless.txt.in: Added jobs to individually test 802.11a/b/g/n
+    connections. This is necessary for adequate QA testing (LP: #1042425)
 
   [Daniel Manrique]
   * Bumped to 0.14.6 to keep changelog size sane and fix a small mishap in the
