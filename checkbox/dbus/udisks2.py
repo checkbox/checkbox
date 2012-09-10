@@ -15,6 +15,9 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 """
+checkbox.dbus.udisks2
+=====================
+
 Module for working with UDisks2 from python.
 
 There are two main classes that are interesting here.
