@@ -17,6 +17,8 @@ checkbox (0.14.6) quantal; urgency=low
     rather than just lsmod output (LP: #1043531)
   * jobs/wireless.txt.in: Added jobs to individually test 802.11a/b/g/n
     connections. This is necessary for adequate QA testing (LP: #1042425)
+  * scripts/graphics_driver: fixed a bug causing the hybrid check to throw an
+    exception on hybrid systems (LP: #1048058)
 
   [Daniel Manrique]
   * Bumped to 0.14.6 to keep changelog size sane and fix a small mishap in the
@@ -86,7 +88,7 @@ checkbox (0.14.6) quantal; urgency=low
   [Zygmunt Krynicki]
   * Fixed simple duplicate 'the' mistakes (LP: #1040022)
 
- -- Daniel Manrique <roadmr@ubuntu.com>  Sat, 08 Sep 2012 23:29:19 -0400
+ -- Jeff Lane <jeff@ubuntu.com>  Tue, 11 Sep 2012 10:34:34 -0400
 
 checkbox (0.14.5) quantal; urgency=low
 
