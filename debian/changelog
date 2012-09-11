@@ -44,6 +44,8 @@ checkbox (0.14.6) quantal; urgency=low
   * scripts/touchpad_scroll_resource: Added support for systems without
     a touchpad (LP #1045066)
   * patch/0.14.2: Fixed patch to rmtree instead of rmdir scripts directory.
+  * [FEATURE] debian/checkbox.templates, debian/checkbox.config: Added support to
+    preseed properties in environment_info plugin.
 
   [Sean Feole]
   * [FEATURE] scripts/battery_test: measures battery capacity before and after
