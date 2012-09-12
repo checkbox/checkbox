@@ -207,10 +207,13 @@ class RenderCheckWrapper(object):
             # and we don't want to store it in memory
             process = Popen(full_command, stdout=temp_file,
                             universal_newlines=True)
-        except(OSError):
-            logging.debug('Error: please make sure that rendercheck '
-                          'is installed.')
-            exit(1)
+        except OSError as exc:
+            if exc.errno == errno.ENOENT:
+                logging.error('Error: please make sure that rendercheck '
+                              'is installed.')
+                exit(1)
+            else:
+                raise
 
         exit_code = process.wait()
 
@@ -271,8 +274,17 @@ class RenderCheckWrapper(object):
 
     def get_suites_list(self):
         '''Return a list of the available test suites'''
-        process = Popen(['rendercheck', '--help'], stdout=PIPE,
-                        stderr=PIPE, universal_newlines=True)
+        try:
+            process = Popen(['rendercheck', '--help'], stdout=PIPE,
+                            stderr=PIPE, universal_newlines=True)
+        except OSError as exc:
+            if exc.errno == errno.ENOENT:
+                logging.error('Error: please make sure that rendercheck '
+                              'is installed.')
+                exit(1)
+            else:
+                raise
+
         proc = process.communicate()[1].split('\n')
         found = False
         tests_pattern = re.compile('.*Available tests: *(.+).*')
@@ -356,7 +368,6 @@ def main():
         logfile_handler.setFormatter(logging.Formatter(format))
         logger.addHandler(logfile_handler)
         log_path = os.path.abspath(logfile)
-        logging.info("The log can be found at %s" % log_path)
 
     # Write only to stdout
     else:
@@ -370,6 +381,9 @@ def main():
             logger.addHandler(console_handler)
 
     status = 0
+
+    rendercheck = RenderCheckWrapper(args.temp)
+    tests = rendercheck.get_suites_list()
 
     # Switch between the tty where X lives and tty10
     vt_wrap = VtWrapper()
@@ -396,7 +410,7 @@ def main():
     else:
         logging.error('Error: please run X on a tty other than 10')
 
-    # Call sleep 10 times
+    # Call sleep x times
     logging.info('== Sleep test ==')
     sleep_test = SuspendWrapper()
     sleep_mode = 'mem'
@@ -417,7 +431,7 @@ def main():
         # Skip the test
         logging.info('Skipped (the system does not seem to support S3')
 
-    # Rotate the screen 10 times
+    # Rotate the screen x times
     # The app already rotates the screen 5 times
     logging.info('== Rotation test ==')
     rotation_test = RotationWrapper()
@@ -430,11 +444,8 @@ def main():
             logging.error('Failed')
             status = 1
 
-    # Call rendercheck 10 times
+    # Call rendercheck x times
     logging.info('== Rendercheck test ==')
-    rendercheck = RenderCheckWrapper(args.temp)
-    tests = rendercheck.get_suites_list()
-
     if rendercheck.run_test(tests, args.iterations,
                             args.debug) == 0:
         logging.info('Passed')
