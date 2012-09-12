@@ -101,9 +101,7 @@ def main():
         # message on precise where UDisks2 is not available
         if exc.get_dbus_name() == "org.freedesktop.DBus.Error.ServiceUnknown":
             print("You need to have udisks2 installed to run this program")
-            print("In practice you should run this script on Ubuntu 12.10")
-            print("(aka 'quantal'). You can use a Live CD to do that without")
-            print("having to upgrade your existing installation")
+            print("It is only applicable to Ubuntu 12.10, or later")
             raise SystemExit(1)
         else:
             raise  # main_shield() will catch this one
