@@ -74,6 +74,9 @@ checkbox (0.14.6) quantal; urgency=low
     on them (LP: #1043144)
   * Remove default value from windows_number argument since the logic following
     it dictates that it's only valid for certain tests (LP: #1047621)
+  * scripts/frequency_governors_test - Ensure that check for difference in
+    expected and actual speedup only fails if the actual speedup is less than
+    the expected speedup (LP: #999547)
 
   [Sylvain Pineau]
   * jobs/suspend.txt.in: Fixed suspend/suspend_advanced dependencies to avoid
