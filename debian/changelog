@@ -51,7 +51,7 @@ checkbox (0.14.6) quantal; urgency=low
   * [FEATURE] debian/checkbox.templates, debian/checkbox.config: Added support to
     preseed properties in environment_info plugin.
   * setup.py: Fixed required dependency on distutils-extra by providing
-    fake implementations of build_i18n and build_icons.
+    fake implementations of build_i18n and build_icons (LP #1049218)
 
   [Sean Feole]
   * [FEATURE] scripts/battery_test: measures battery capacity before and after
