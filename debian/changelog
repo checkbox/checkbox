@@ -50,6 +50,8 @@ checkbox (0.14.6) quantal; urgency=low
   * patch/0.14.2: Fixed patch to rmtree instead of rmdir scripts directory.
   * [FEATURE] debian/checkbox.templates, debian/checkbox.config: Added support to
     preseed properties in environment_info plugin.
+  * setup.py: Fixed required dependency on distutils-extra by providing
+    fake implementations of build_i18n and build_icons.
 
   [Sean Feole]
   * [FEATURE] scripts/battery_test: measures battery capacity before and after
