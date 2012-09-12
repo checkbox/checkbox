@@ -207,10 +207,13 @@ class RenderCheckWrapper(object):
             # and we don't want to store it in memory
             process = Popen(full_command, stdout=temp_file,
                             universal_newlines=True)
-        except(OSError):
-            logging.debug('Error: please make sure that rendercheck '
-                          'is installed.')
-            exit(1)
+        except OSError as exc:
+            if exc.errno == errno.ENOENT:
+                logging.error('Error: please make sure that rendercheck '
+                              'is installed.')
+                exit(1)
+            else:
+                raise
 
         exit_code = process.wait()
 
@@ -274,11 +277,14 @@ class RenderCheckWrapper(object):
         try:
             process = Popen(['rendercheck', '--help'], stdout=PIPE,
                             stderr=PIPE, universal_newlines=True)
-        except(OSError):
-            logging.error('Error: please make sure that rendercheck '
-                          'is installed.')
-            exit(1)
-            
+        except OSError as exc:
+            if exc.errno == errno.ENOENT:
+                logging.error('Error: please make sure that rendercheck '
+                              'is installed.')
+                exit(1)
+            else:
+                raise
+
         proc = process.communicate()[1].split('\n')
         found = False
         tests_pattern = re.compile('.*Available tests: *(.+).*')
