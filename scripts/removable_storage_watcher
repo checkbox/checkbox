@@ -11,7 +11,7 @@ from dbus.mainloop.glib import DBusGMainLoop
 
 class StorageDeviceListener:
 
-    def __init__(self, action, devices, minimum_speed, memorycard ):
+    def __init__(self, action, devices, minimum_speed, memorycard):
         self._action = action
         self._devices = devices
         self._minimum_speed = minimum_speed
@@ -46,18 +46,18 @@ class StorageDeviceListener:
         return self._error
 
     def verify_device_change(self, changed_devices, message=""):
-        desired_bus_devices = [device for device in changed_devices \
+        desired_bus_devices = [device for device in changed_devices
                               if device[1] in self._devices]
         pattern = re.compile('SD|MMC|CF|MS|SM|xD|Card|Generic')
         for dev in desired_bus_devices:
             if self._memorycard:
                 if dev[1] != 'sdio' and not pattern.search(dev[3], re.I):
                     return
-                print(message % {'bus':'memory card', 'file': dev[0]})
+                print(message % {'bus': 'memory card', 'file': dev[0]})
             else:
                 if pattern.search(dev[3], re.I):
                     return
-                print(message % {'bus':dev[1], 'file': dev[0]})
+                print(message % {'bus': dev[1], 'file': dev[0]})
             if self._minimum_speed:
                 if dev[2] >= self._minimum_speed:
                     print("with speed of %(speed)s bits/s "
@@ -124,10 +124,10 @@ class StorageDeviceListener:
                         device_props.Get(udisks, "PartitionSlave"))
                     parent_props = dbus.Interface(
                         parent_obj, dbus.PROPERTIES_IFACE)
-                    _parent_model=parent_props.Get(udisks, "DriveModel")
+                    _parent_model = parent_props.Get(udisks, "DriveModel")
 
                 if not device_props.Get(udisks, "DeviceIsDrive"):
-                    device=(
+                    device = (
                         str(_device_file),
                         str(_device),
                         int(_speed),
