@@ -1,0 +1,32 @@
+plugin: manual
+name: touchscreen/tap-detect
+_description:
+ PURPOSE:
+     Check touchscreen tap recognition
+ STEPS:
+     1. Tap an object on the screen with finger. The cursor should jump to location tapped and object should highlight
+ VERIFICATION:
+     Does tap recognition work?
+
+plugin: manual
+name: touchscreen/drag-n-drop
+_description:
+ PURPOSE:
+     Check touchscreen drag & drop
+ STEPS:
+     1. Double tap, hold, and drag an object on the desktop
+     2. Drop the object in a different location
+ VERIFICATION:
+     Does the object select and drag and drop?
+
+plugin: manual
+name: touchscreen/multitouch-zoom
+_description:
+ PURPOSE:
+     Check touchscreen pinch gesture for zoom
+ STEPS:
+     1. Place two fingers on the screen and pinch them together
+     2. Place two fingers on the screen and move then apart
+ VERIFICATION:
+     Does the screen zoom in and out?
+

@@ -99,6 +99,7 @@ You can always skip individual tests if you don't have the needed equipment.\
 
     def prompt_gather(self, interface):
         # Resolve dependencies
+        interface.show_progress_start(_("Gathering information from your system..."))
         resolver = Resolver()
         for key in self._jobs.keys():
             depends = self._depends.get(key, [])
@@ -130,6 +131,7 @@ You can always skip individual tests if you don't have the needed equipment.\
             defaults = copy.deepcopy(options)
 
         # Get results
+        interface.show_progress_stop()
         defaults = interface.show_tree(
             _("Choose tests to run on your system:"),
             options, defaults, self.deselect_warning)

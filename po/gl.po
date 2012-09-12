@@ -15,8 +15,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-08-09 04:33+0000\n"
-"X-Generator: Launchpad (build 15761)\n"
+"X-Launchpad-Export-Date: 2012-09-11 04:33+0000\n"
+"X-Generator: Launchpad (build 15924)\n"
 
 #. Title of the user interface
 #: ../gtk/checkbox-gtk.ui.h:1 ../qt/checkbox-qt.desktop.in.h:1
@@ -72,7 +72,7 @@ msgid "Test to detect audio devices"
 msgstr "Proba para detectar os dispositivos de son"
 
 #. description
-#: ../jobs/audio.txt.in:17
+#: ../jobs/audio.txt.in:18
 msgid ""
 "PURPOSE:\n"
 "    This test will check that internal speakers work correctly\n"
@@ -83,9 +83,19 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear a tone?"
 msgstr ""
+"PROPÓSITO:\n"
+"    Esta proba verificará que os altofalantes internos funcionan "
+"correctamente\n"
+"PASOS:\n"
+"    1. Asegúrese de que non ten conectados nin altofalantes externos nin "
+"auriculares\n"
+"        Se está a probar nun ordenador de sobremesa, pode deixar conectados "
+"os altofalantes externos\n"
+"VERIFICACIÓN\n"
+"    Oiu un ton sonoro?"
 
 #. description
-#: ../jobs/audio.txt.in:35
+#: ../jobs/audio.txt.in:37
 msgid ""
 "PURPOSE:\n"
 "   1. HDMI interface verification\n"
@@ -101,7 +111,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/audio.txt.in:55
+#: ../jobs/audio.txt.in:58
 msgid ""
 "PURPOSE:\n"
 "    This test will check that headphones connector works correctly\n"
@@ -112,9 +122,18 @@ msgid ""
 "    Did you hear a sound through the headphones and did the sound play "
 "without any distortion, clicks or other strange noises from your headphones?"
 msgstr ""
+"PROPÓSITO:\n"
+"    Esta proba verificará que o conector de auriculares funciona "
+"correctamente.\n"
+"PASOS:\n"
+"    1. Conectar uns auriculares estéreo no seu equipo\n"
+"    2. Pular o botón Test para reproducir un son polo seu equipo\n"
+"VERIFICACIÓN:\n"
+"    Oiu un son sen ningunha distorsión, clicks ou outros ruídos estranos "
+"polos seus auriculares?"
 
 #. description
-#: ../jobs/audio.txt.in:71
+#: ../jobs/audio.txt.in:75
 msgid ""
 "PURPOSE:\n"
 "    This test will check that recording sound using the onboard microphone "
@@ -126,9 +145,22 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear your speech played back?"
 msgstr ""
+"Copy text \t\n"
+"PROPÓSITO:\n"
+"\n"
+"Esta prueba comprueba que la grabación de son mediante el micrófono funciona "
+"correctamente.\n"
+"\n"
+"PASOS:\n"
+"1. Desconectar calquera micrófono externo que vostede teña conectado.\n"
+"2. Pulse «Probar», logo fale no seu micrófono interno.\n"
+"3. Despois duns segundos, súa gravación se reproducirá.\n"
+"\n"
+"VERIFICACIÓN:\n"
+"Escoitou a súa gravación?"
 
 #. description
-#: ../jobs/audio.txt.in:88
+#: ../jobs/audio.txt.in:93
 msgid ""
 "PURPOSE:\n"
 "    This test will check that recording sound using an external microphone "
@@ -140,9 +172,20 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear your speech played back?"
 msgstr ""
+"PROPÓSITO:\n"
+"Esta proba comprobará que o gravador de son, usando un micrófono externo, "
+"funciona correctamente.\n"
+"\n"
+"PASOS:\n"
+"1. Conecte un micrófono no porto de micrófono.\n"
+"2. Pulse «Probar», logo fale no seu micrófono externo.\n"
+"3. Logo duns segundos, a súa gravación reproducirase.\n"
+"\n"
+"VERIFICACIÓN:\n"
+"Escoitou a súa gravación?"
 
 #. description
-#: ../jobs/audio.txt.in:104
+#: ../jobs/audio.txt.in:110
 msgid ""
 "PURPOSE:\n"
 "    This test will check that a USB audio device works correctly\n"
@@ -153,6 +196,15 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear your speech played back through the USB headphones?"
 msgstr ""
+"PROPÓSITO:\n"
+"Esta proba verificará que un dispositivo de son USB funcione correctamente\n"
+"PASOS:\n"
+"    1.Conecte un dispositivo de son USB no seu sistema\n"
+"    2.Pulse en «Probar», a continuación fale polo micrófono\n"
+"    3.Despois duns segundos, a súa fala será reproducida de novo.\n"
+"VERIFICACIÓN:\n"
+"    Puido escoitar a súa fala reproducida de novo a través dos auriculares "
+"USB?"
 
 #. description
 #: ../jobs/audio.txt.in:121
@@ -163,7 +215,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/audio.txt.in:129
+#: ../jobs/audio.txt.in:134
 msgid ""
 "Collect audio-related system information. This data can be used to simulate "
 "this computer's audio subsystem and perform more detailed tests under a "
@@ -171,152 +223,152 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/audio.txt.in:138
+#: ../jobs/audio.txt.in:143
 msgid "Attaches the audio hardware data collection log to the results."
 msgstr ""
 
 #. description
 #: ../jobs/benchmarks.txt.in:18
 msgid "Benchmark for each disk"
-msgstr ""
+msgstr "Proba comparativa de cada disco"
 
 #. description
-#: ../jobs/benchmarks.txt.in:33
+#: ../jobs/benchmarks.txt.in:41
 msgid "Run Render-Bench XRender/Imlib2 benchmark"
 msgstr ""
 
 #. description
-#: ../jobs/benchmarks.txt.in:39
+#: ../jobs/benchmarks.txt.in:47
 msgid "Run Qgears2 XRender Extension gearsfancy benchmark"
 msgstr ""
 
 #. description
-#: ../jobs/benchmarks.txt.in:45
+#: ../jobs/benchmarks.txt.in:53
 msgid "Run Qgears2 XRender Extension image scaling benchmark"
 msgstr ""
 
 #. description
-#: ../jobs/benchmarks.txt.in:51
+#: ../jobs/benchmarks.txt.in:59
 msgid "Run Qgears2 OpenGL gearsfancy benchmark"
 msgstr ""
 
 #. description
-#: ../jobs/benchmarks.txt.in:57
+#: ../jobs/benchmarks.txt.in:65
 msgid "Run Qgears2 OpenGL image scaling benchmark"
 msgstr ""
 
 #. description
-#: ../jobs/benchmarks.txt.in:66
+#: ../jobs/benchmarks.txt.in:74
 msgid "Run GLmark2-ES2 benchmark"
 msgstr ""
 
 #. description
-#: ../jobs/benchmarks.txt.in:75
+#: ../jobs/benchmarks.txt.in:83
 msgid "Run GLmark2 benchmark"
 msgstr ""
 
 #. description
-#: ../jobs/benchmarks.txt.in:81
+#: ../jobs/benchmarks.txt.in:89
 msgid "Run Unigine Santuary benchmark"
 msgstr ""
 
 #. description
-#: ../jobs/benchmarks.txt.in:87
+#: ../jobs/benchmarks.txt.in:95
 msgid "Run Unigine Tropics benchmark"
-msgstr ""
+msgstr "Executar banco de probas de Unigine Tropics"
 
 #. description
-#: ../jobs/benchmarks.txt.in:93
+#: ../jobs/benchmarks.txt.in:101
 msgid "Run Unigine Heaven benchmark"
-msgstr ""
+msgstr "Executar banco de probas de Unigine Tropics"
 
 #. description
-#: ../jobs/benchmarks.txt.in:99
+#: ../jobs/benchmarks.txt.in:107
 msgid "Run Lightsmark benchmark"
-msgstr ""
+msgstr "Executar banco de probas Lightsmark"
 
 #. description
-#: ../jobs/benchmarks.txt.in:105
+#: ../jobs/benchmarks.txt.in:113
 msgid "Run Cachebench Read benchmark"
-msgstr ""
+msgstr "Executar banco de probas Cachebench Read"
 
 #. description
-#: ../jobs/benchmarks.txt.in:111
+#: ../jobs/benchmarks.txt.in:119
 msgid "Run Cachebench Write benchmark"
-msgstr ""
+msgstr "Executar banco de probas Cachebench Write"
 
 #. description
-#: ../jobs/benchmarks.txt.in:117
+#: ../jobs/benchmarks.txt.in:125
 msgid "Run Cachebench Read / Modify / Write benchmark"
 msgstr ""
 
 #. description
-#: ../jobs/benchmarks.txt.in:123
+#: ../jobs/benchmarks.txt.in:131
 msgid "Run Stream Copy benchmark"
-msgstr ""
+msgstr "Executar banco de probas Stream Copy"
 
 #. description
-#: ../jobs/benchmarks.txt.in:129
+#: ../jobs/benchmarks.txt.in:137
 msgid "Run Stream Scale benchmark"
-msgstr ""
+msgstr "Executar banco de probas Stream Scale"
 
 #. description
-#: ../jobs/benchmarks.txt.in:135
+#: ../jobs/benchmarks.txt.in:143
 msgid "Run Stream Add benchmark"
-msgstr ""
+msgstr "Executar banco de probas Stream"
 
 #. description
-#: ../jobs/benchmarks.txt.in:141
+#: ../jobs/benchmarks.txt.in:149
 msgid "Run Stream Triad benchmark"
-msgstr ""
+msgstr "Executar banco de probas Stream Triad"
 
 #. description
-#: ../jobs/benchmarks.txt.in:147
+#: ../jobs/benchmarks.txt.in:155
 msgid "Run Network Loopback benchmark"
 msgstr ""
 
 #. description
-#: ../jobs/benchmarks.txt.in:153
+#: ../jobs/benchmarks.txt.in:167
 msgid "Run Encode MP3 benchmark"
 msgstr ""
 
 #. description
-#: ../jobs/benchmarks.txt.in:159
+#: ../jobs/benchmarks.txt.in:173
 msgid "Run x264 H.264/AVC encoder benchmark"
 msgstr ""
 
 #. description
-#: ../jobs/benchmarks.txt.in:165
+#: ../jobs/benchmarks.txt.in:179
 msgid "Run GnuPG benchmark"
 msgstr ""
 
 #. description
-#: ../jobs/benchmarks.txt.in:171
+#: ../jobs/benchmarks.txt.in:185
 msgid "Run Compress PBZIP2 benchmark"
 msgstr ""
 
 #. description
-#: ../jobs/benchmarks.txt.in:177
+#: ../jobs/benchmarks.txt.in:191
 msgid "Run Compress 7ZIP benchmark"
 msgstr ""
 
 #. description
-#: ../jobs/benchmarks.txt.in:183
+#: ../jobs/benchmarks.txt.in:197
 msgid "Run N-Queens benchmark"
 msgstr ""
 
 #. description
-#: ../jobs/benchmarks.txt.in:189
+#: ../jobs/benchmarks.txt.in:203
 msgid "Run Himeno benchmark"
 msgstr ""
 
 #. description
-#: ../jobs/benchmarks.txt.in:195
+#: ../jobs/benchmarks.txt.in:209
 msgid "CPU utilization on an idle system."
 msgstr ""
 
 #. description
-#: ../jobs/benchmarks.txt.in:201
+#: ../jobs/benchmarks.txt.in:215
 msgid "Disk utilization on an idle system."
 msgstr ""
 
@@ -411,12 +463,12 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/camera.txt.in:7
+#: ../jobs/camera.txt.in:6
 msgid "This Automated test attempts to detect a camera."
 msgstr ""
 
 #. description
-#: ../jobs/camera.txt.in:16
+#: ../jobs/camera.txt.in:15
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the built-in camera works\n"
@@ -428,7 +480,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/camera.txt.in:33
+#: ../jobs/camera.txt.in:32
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the built-in camera works\n"
@@ -684,18 +736,18 @@ msgid "Floppy test"
 msgstr "Proba de disquete"
 
 #. description
-#: ../jobs/graphics.txt.in:5
+#: ../jobs/graphics.txt.in:10
 msgid "Test to output the Xorg version"
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:12
+#: ../jobs/benchmarks.txt.in:34
 msgid "Run gtkperf to make sure that GTK based test cases work"
 msgstr ""
 "Execute gtkperf para asegurarse de que as probas baseadas en GTK funcionan"
 
 #. description
-#: ../jobs/graphics.txt.in:18
+#: ../jobs/graphics.txt.in:15
 msgid ""
 "PURPOSE:\n"
 "    This test will verify that the GUI is usable after manually changing "
@@ -727,24 +779,24 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:50
+#: ../jobs/graphics.txt.in:31
 msgid "Test that the X process is running."
 msgstr "Proba que o proceso de X está en execución."
 
 #. description
-#: ../jobs/graphics.txt.in:56
+#: ../jobs/graphics.txt.in:37
 msgid "Test that the X is not running in failsafe mode."
 msgstr "Proba para saber se X non está funcionando en modo a proba de erros."
 
 #. description
-#: ../jobs/graphics.txt.in:63
+#: ../jobs/graphics.txt.in:44
 msgid ""
 "Test that X does not leak memory when running programs on systems with intel "
 "based graphics."
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:70
+#: ../jobs/graphics.txt.in:51
 msgid ""
 "PURPOSE:\n"
 "    This test will verify the default display resolution\n"
@@ -757,7 +809,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:85
+#: ../jobs/graphics.txt.in:66
 msgid ""
 "Ensure the current resolution meets or exceeds the recommended minimum "
 "resolution (800x600). See here for details:"
@@ -766,12 +818,12 @@ msgstr ""
 "recomendada (800x600). Consulte aquí para máis información:"
 
 #. description
-#: ../jobs/graphics.txt.in:85
+#: ../jobs/graphics.txt.in:66
 msgid "https://help.ubuntu.com/community/Installation/SystemRequirements"
 msgstr "https://help.ubuntu.com/community/Installation/SystemRequirements"
 
 #. description
-#: ../jobs/graphics.txt.in:97
+#: ../jobs/graphics.txt.in:88
 msgid ""
 "PURPOSE:\n"
 "    This test will test the default display\n"
@@ -782,12 +834,12 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:108
+#: ../jobs/graphics.txt.in:99
 msgid "Check that VESA drivers are not in use"
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:115
+#: ../jobs/graphics.txt.in:106
 msgid ""
 "PURPOSE:\n"
 "    This test cycles through the detected video modes\n"
@@ -798,17 +850,17 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:128
+#: ../jobs/graphics.txt.in:132
 msgid "Check that hardware is able to run compiz"
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:135
+#: ../jobs/graphics.txt.in:139
 msgid "Check that hardware is able to run Unity 3D"
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:141
+#: ../jobs/graphics.txt.in:145
 msgid ""
 "PURPOSE:\n"
 "    This test tests the basic 3D capabilities of your video card\n"
@@ -822,7 +874,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:155
+#: ../jobs/graphics.txt.in:159
 msgid ""
 "PURPOSE:\n"
 "    Take a screengrab of the current screen (logged on Unity desktop)\n"
@@ -833,12 +885,12 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:167 ../jobs/suspend.txt.in:335
+#: ../jobs/graphics.txt.in:171 ../jobs/suspend.txt.in:403
 msgid "Attaches the screenshot captured in graphics/screenshot."
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:178
+#: ../jobs/graphics.txt.in:182
 msgid ""
 "PURPOSE:\n"
 "    Take a screengrab of the current screen during fullscreen video "
@@ -851,7 +903,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/graphics.txt.in:191
+#: ../jobs/graphics.txt.in:195
 msgid ""
 "Attaches the screenshot captured in graphics/screenshot_fullscreen_video."
 msgstr ""
@@ -1151,82 +1203,82 @@ msgid "Disk tests"
 msgstr "Probas do disco"
 
 #. description
-#: ../jobs/local.txt.in:59
+#: ../jobs/local.txt.in:66
 msgid "Fingerprint reader tests"
 msgstr "Probas do lector de pegada dactilar"
 
 #. description
-#: ../jobs/local.txt.in:66
+#: ../jobs/local.txt.in:73
 msgid "Firewire disk tests"
 msgstr "Probas do disco Firewire"
 
 #. description
-#: ../jobs/local.txt.in:73
+#: ../jobs/local.txt.in:80
 msgid "Floppy disk tests"
 msgstr "Probas de disquete"
 
 #. description
-#: ../jobs/local.txt.in:80
+#: ../jobs/local.txt.in:87
 msgid "Graphics tests"
 msgstr "Probas de gráficos"
 
 #. description
-#: ../jobs/local.txt.in:87
+#: ../jobs/local.txt.in:94
 msgid "Hibernation tests"
 msgstr "Probas de hibernación"
 
 #. description
-#: ../jobs/local.txt.in:94
+#: ../jobs/local.txt.in:101
 msgid "Informational tests"
 msgstr "Probas informativas"
 
 #. description
-#: ../jobs/local.txt.in:101
+#: ../jobs/local.txt.in:108
 msgid "Input Devices tests"
 msgstr "Probas de dispositivos de entrada"
 
 #. description
-#: ../jobs/local.txt.in:108
+#: ../jobs/local.txt.in:115
 msgid "Software Installation tests"
 msgstr "Probas de instalación de software"
 
 #. description
-#: ../jobs/local.txt.in:115
+#: ../jobs/local.txt.in:122
 msgid "Hotkey tests"
 msgstr "Probas de atallos de teclado"
 
 #. description
-#: ../jobs/local.txt.in:122
+#: ../jobs/local.txt.in:136
 msgid "Media Card tests"
 msgstr "Probas de tarxetas multimedia"
 
 #. description
-#: ../jobs/local.txt.in:129
+#: ../jobs/local.txt.in:143
 msgid "Memory tests"
 msgstr "Probas de memoria"
 
 #. description
-#: ../jobs/local.txt.in:136
+#: ../jobs/local.txt.in:150
 msgid "Miscellaneous tests"
 msgstr "Probas misceláneas"
 
 #. description
-#: ../jobs/local.txt.in:143
+#: ../jobs/local.txt.in:157
 msgid "Monitor tests"
 msgstr "Probas de monitor"
 
 #. description
-#: ../jobs/local.txt.in:150
+#: ../jobs/local.txt.in:164
 msgid "Networking tests"
 msgstr "Probas de rede"
 
 #. description
-#: ../jobs/local.txt.in:157
+#: ../jobs/local.txt.in:171
 msgid "Optical Drive tests"
 msgstr "Proba de discos ópticos"
 
 #. description
-#: ../jobs/local.txt.in:164
+#: ../jobs/local.txt.in:178
 msgid "Panel Clock Verification tests"
 msgstr ""
 
@@ -1236,57 +1288,57 @@ msgid "PCMCIA/PCIX Card tests"
 msgstr "Probas de tarxetas PCMCIA/PCIX"
 
 #. description
-#: ../jobs/local.txt.in:178
+#: ../jobs/local.txt.in:192
 msgid "Peripheral tests"
 msgstr "Probas dos periféricos"
 
 #. description
-#: ../jobs/local.txt.in:185
+#: ../jobs/local.txt.in:199
 msgid "Power Management tests"
 msgstr "Probas de xestión de enerxía"
 
 #. description
-#: ../jobs/local.txt.in:192
+#: ../jobs/local.txt.in:206
 msgid "Server Services checks"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:199
+#: ../jobs/local.txt.in:213
 msgid "Suspend tests"
 msgstr "Probas de suspensión"
 
 #. description
-#: ../jobs/local.txt.in:206
+#: ../jobs/local.txt.in:220
 msgid "Touchpad tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:213
+#: ../jobs/local.txt.in:234
 msgid "USB tests"
 msgstr "Probas de USB"
 
 #. description
-#: ../jobs/local.txt.in:220
+#: ../jobs/local.txt.in:241
 msgid "User Applications"
 msgstr "Aplicativos de usuario"
 
 #. description
-#: ../jobs/local.txt.in:227
+#: ../jobs/local.txt.in:248
 msgid "Wireless networking tests"
 msgstr "Probas de redes sen fíos"
 
 #. description
-#: ../jobs/local.txt.in:234
+#: ../jobs/local.txt.in:255
 msgid "Stress tests"
 msgstr "Probas de estrés"
 
 #. description
-#: ../jobs/local.txt.in:241
+#: ../jobs/local.txt.in:262
 msgid "Smoke tests"
 msgstr ""
 
 #. description
-#: ../jobs/local.txt.in:248
+#: ../jobs/local.txt.in:269
 msgid "Sniff Sniffers"
 msgstr ""
 
@@ -1904,7 +1956,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/optical.txt.in:55
+#: ../jobs/optical.txt.in:65
 msgid ""
 "PURPOSE:\n"
 "    This test will check your CD audio playback capabilities\n"
@@ -1940,7 +1992,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/optical.txt.in:91
+#: ../jobs/optical.txt.in:111
 msgid ""
 "PURPOSE:\n"
 "    This test will check your DVD movie playback capabilities. Note that "
@@ -1959,7 +2011,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/optical.txt.in:109
+#: ../jobs/optical.txt.in:129
 msgid ""
 "PURPOSE:\n"
 "    This test will check your DVD  playback capabilities\n"
@@ -2336,7 +2388,7 @@ msgstr ""
 "continuación, comproba a conexión para confirmar que funciona como se agarda."
 
 #. description
-#: ../jobs/suspend.txt.in:77
+#: ../jobs/suspend.txt.in:114
 msgid ""
 "PURPOSE:\n"
 "    This test will check suspend and resume\n"
@@ -2352,17 +2404,17 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:93
+#: ../jobs/suspend.txt.in:130
 msgid "This is the automated version of suspend/suspend_advanced."
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:108
+#: ../jobs/suspend.txt.in:145
 msgid "Test the network after resuming."
 msgstr "Comprobar a rede logo de restaurar."
 
 #. description
-#: ../jobs/suspend.txt.in:114
+#: ../jobs/suspend.txt.in:151
 msgid ""
 "Test to see that we have the same resolution after resuming as before."
 msgstr ""
@@ -2370,23 +2422,23 @@ msgstr ""
 "que  tiña antes."
 
 #. description
-#: ../jobs/suspend.txt.in:123
+#: ../jobs/suspend.txt.in:160
 msgid ""
 "Verify that mixer settings after suspend are the same as before suspend."
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:139
+#: ../jobs/suspend.txt.in:176
 msgid "Verify that all CPUs are online after resuming."
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:156
+#: ../jobs/suspend.txt.in:193
 msgid "Verify that all memory is available after resuming from suspend."
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:165
+#: ../jobs/suspend.txt.in:202
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the display is correct after suspend and "
@@ -2399,7 +2451,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:178
+#: ../jobs/suspend.txt.in:215
 msgid ""
 "This test checks that the wireless interface is working after suspending the "
 "system. It disconnects all interfaces and then connects to the wireless "
@@ -2410,35 +2462,35 @@ msgstr ""
 "comproba que a conexión funciona da maneira agardada."
 
 #. description
-#: ../jobs/suspend.txt.in:190
+#: ../jobs/suspend.txt.in:227
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using WPA "
 "security and the 802.11b/g protocols after the system has been suspended."
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:201
+#: ../jobs/suspend.txt.in:238
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using no "
 "security and the 802.11b/g protocols after the system has been suspended."
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:212
+#: ../jobs/suspend.txt.in:249
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using WPA "
 "security and the 802.11n protocol after the system has been suspended."
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:223
+#: ../jobs/suspend.txt.in:260
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using no "
 "security and the 802.11n protocol after the system has been suspended."
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:234
+#: ../jobs/suspend.txt.in:271
 msgid ""
 "This test grabs the hardware address of the bluetooth adapter after suspend "
 "and compares it to the address grabbed before suspend."
@@ -2448,14 +2500,14 @@ msgstr ""
 "suspensión."
 
 #. description
-#: ../jobs/suspend.txt.in:254
+#: ../jobs/suspend.txt.in:301
 msgid ""
 "This is an automated Bluetooth file transfer test. It sends an image to the "
 "device specified by the BTDEVADDR environment variable."
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:264
+#: ../jobs/suspend.txt.in:332
 msgid ""
 "PURPOSE:\n"
 "    This test will send the image 'JPEG_Color_Image_Ubuntu.jpg' to a "
@@ -2470,7 +2522,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:278
+#: ../jobs/suspend.txt.in:346
 msgid ""
 "PURPOSE:\n"
 "    This test will cycle through the detected display modes\n"
@@ -2481,7 +2533,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:290
+#: ../jobs/suspend.txt.in:358
 msgid ""
 "This test will check to make sure supported video modes work after a suspend "
 "and resume. This is done automatically by taking screenshots and uploading "
@@ -2492,14 +2544,14 @@ msgstr ""
 "tomando capturas de pantalla e subíndoas como datos adxuntos."
 
 #. description
-#: ../jobs/suspend.txt.in:299
+#: ../jobs/suspend.txt.in:367
 msgid ""
 "This attaches screenshots from the "
 "suspend/cycle_resolutions_after_suspend_auto test to the results submission."
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:309
+#: ../jobs/suspend.txt.in:377
 msgid ""
 "This will check to make sure that your audio device works properly after a "
 "suspend and resume.  This may work fine with speakers and onboard "
@@ -2512,12 +2564,12 @@ msgstr ""
 "conecte o jack de saída de son ao jack de entrada de son."
 
 #. description
-#: ../jobs/suspend.txt.in:315
+#: ../jobs/suspend.txt.in:383
 msgid "Attaches the log from the single suspend/resume test to the results"
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:323
+#: ../jobs/suspend.txt.in:391
 msgid ""
 "PURPOSE:\n"
 "    Take a screengrab of the current screen after suspend (logged on Unity "
@@ -2529,7 +2581,7 @@ msgid ""
 msgstr ""
 
 #. description
-#: ../jobs/suspend.txt.in:346
+#: ../jobs/suspend.txt.in:414
 msgid ""
 "PURPOSE:\n"
 "    Do some challenging operations, suspend the system, do more challenging\n"
@@ -3305,17 +3357,17 @@ msgid "Unknown signal"
 msgstr "Sinal descoñecido"
 
 #: ../checkbox_cli/cli_interface.py:31
-#: ../checkbox_urwid/urwid_interface.py:939 ../checkbox_qt/qt_interface.py:34
+#: ../checkbox_urwid/urwid_interface.py:939
 msgid "yes"
 msgstr "si"
 
 #: ../checkbox_cli/cli_interface.py:32
-#: ../checkbox_urwid/urwid_interface.py:940 ../checkbox_qt/qt_interface.py:35
+#: ../checkbox_urwid/urwid_interface.py:940
 msgid "no"
 msgstr "non"
 
 #: ../checkbox_cli/cli_interface.py:33
-#: ../checkbox_urwid/urwid_interface.py:941 ../checkbox_qt/qt_interface.py:36
+#: ../checkbox_urwid/urwid_interface.py:941
 msgid "skip"
 msgstr "omitir"
 
@@ -3353,21 +3405,21 @@ msgstr "Escriba aquí e ao rematar prema Ctrl-D:\n"
 msgid "Checkbox System Testing"
 msgstr "Proba do sistema Checkbox"
 
-#: ../checkbox_urwid/urwid_interface.py:127 ../qt/frontend/ui_qtfront.h:600
+#: ../checkbox_urwid/urwid_interface.py:127 ../qt/frontend/ui_qtfront.h:637
 msgid "Continue"
 msgstr "Continuar"
 
 #: ../checkbox_urwid/urwid_interface.py:220
 #: ../checkbox_urwid/urwid_interface.py:296
 #: ../checkbox_urwid/urwid_interface.py:447
-#: ../checkbox_urwid/urwid_interface.py:569 ../qt/frontend/ui_qtfront.h:621
+#: ../checkbox_urwid/urwid_interface.py:569
 msgid "Previous"
 msgstr "Anterior"
 
 #: ../checkbox_urwid/urwid_interface.py:221
 #: ../checkbox_urwid/urwid_interface.py:297
 #: ../checkbox_urwid/urwid_interface.py:448
-#: ../checkbox_urwid/urwid_interface.py:570 ../qt/frontend/ui_qtfront.h:620
+#: ../checkbox_urwid/urwid_interface.py:570
 msgid "Next"
 msgstr "Seguinte"
 
@@ -3389,7 +3441,7 @@ msgstr ""
 msgid "Collapse All"
 msgstr ""
 
-#: ../checkbox_urwid/urwid_interface.py:1034 ../qt/frontend/ui_qtfront.h:615
+#: ../checkbox_urwid/urwid_interface.py:1034
 msgid "Test"
 msgstr "Probar"
 
@@ -3401,11 +3453,11 @@ msgstr "Probar de novo"
 msgid "_Test Again"
 msgstr "_Probar de novo"
 
-#: ../checkbox_gtk/gtk_interface.py:574 ../qt/frontend/qtfront.cpp:543
+#: ../checkbox_gtk/gtk_interface.py:574 ../qt/frontend/qtfront.cpp:527
 msgid "Info"
 msgstr "Información"
 
-#: ../checkbox_gtk/gtk_interface.py:599 ../qt/frontend/qtfront.cpp:248
+#: ../checkbox_gtk/gtk_interface.py:599 ../qt/frontend/qtfront.cpp:224
 msgid "Error"
 msgstr "Erro"
 
@@ -3456,7 +3508,8 @@ msgstr "Comprobación rematada correctamente."
 msgid "_Finish"
 msgstr "_Rematar"
 
-#: ../plugins/gather_prompt.py:35
+#. Resolve dependencies
+#: ../plugins/gather_prompt.py:35 ../plugins/suites_prompt.py:102
 msgid "Gathering information from your system..."
 msgstr "Obtendo información do seu sistema..."
 
@@ -3583,7 +3636,7 @@ msgid ""
 "can always skip individual tests if you don't have the needed equipment."
 msgstr ""
 
-#: ../plugins/suites_prompt.py:134 ../qt/frontend/ui_qtfront.h:605
+#: ../plugins/suites_prompt.py:136 ../qt/frontend/ui_qtfront.h:641
 msgid "Choose tests to run on your system:"
 msgstr ""
 
@@ -3607,127 +3660,127 @@ msgstr "A conexión establecida perdeu un paquete"
 msgid "Internet connection fully established"
 msgstr "Conexión a Internet totalmente establecida"
 
-#: ../qt/frontend/qtfront.cpp:91
+#: ../qt/frontend/qtfront.cpp:79
 msgid "Audio Test"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:92
+#: ../qt/frontend/qtfront.cpp:80
 msgid "Bluetooth Test"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:93
+#: ../qt/frontend/qtfront.cpp:81
 msgid "Camera Test"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:94
+#: ../qt/frontend/qtfront.cpp:82
 msgid "CPU Test"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:95
+#: ../qt/frontend/qtfront.cpp:83
 msgid "Disk Test"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:96
+#: ../qt/frontend/qtfront.cpp:84
 msgid "Firewire Test"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:97
+#: ../qt/frontend/qtfront.cpp:85
 msgid "Graphics Test"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:98
+#: ../qt/frontend/qtfront.cpp:86
 msgid "Info Test"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:99
+#: ../qt/frontend/qtfront.cpp:87
 msgid "Input Test"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:100
+#: ../qt/frontend/qtfront.cpp:88
 msgid "Keys Test"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:101
+#: ../qt/frontend/qtfront.cpp:89
 msgid "Media Card Test"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:102
+#: ../qt/frontend/qtfront.cpp:90
 msgid "Memory Test"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:103
+#: ../qt/frontend/qtfront.cpp:91
 msgid "Miscellanea Test"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:104
+#: ../qt/frontend/qtfront.cpp:92
 msgid "Monitor Test"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:105
+#: ../qt/frontend/qtfront.cpp:93
 msgid "Networking Test"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:106
+#: ../qt/frontend/qtfront.cpp:94
 msgid "Wireless Test"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:107
+#: ../qt/frontend/qtfront.cpp:95
 msgid "Optical Test"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:108
+#: ../qt/frontend/qtfront.cpp:96
 msgid "PCMCIA/PCIX Test"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:109
+#: ../qt/frontend/qtfront.cpp:97
 msgid "Power Management Test"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:110
+#: ../qt/frontend/qtfront.cpp:98
 msgid "Suspend Test"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:111
+#: ../qt/frontend/qtfront.cpp:99
 msgid "USB Test"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:113
+#: ../qt/frontend/qtfront.cpp:101
 msgid "Not Started"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:114 ../qt/frontend/qtfront.cpp:115
+#: ../qt/frontend/qtfront.cpp:102 ../qt/frontend/qtfront.cpp:103
 msgid "Done"
 msgstr "Feito"
 
-#: ../qt/frontend/qtfront.cpp:116
+#: ../qt/frontend/qtfront.cpp:104
 msgid "Not Supported"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:117
+#: ../qt/frontend/qtfront.cpp:105
 msgid "Not Resolved"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:118
+#: ../qt/frontend/qtfront.cpp:106
 msgid "Not Tested"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:119
+#: ../qt/frontend/qtfront.cpp:107
 msgid "In Progress"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:185
+#: ../qt/frontend/qtfront.cpp:159
 msgid "Are you sure?"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:185
+#: ../qt/frontend/qtfront.cpp:159
 msgid "Do you really want to skip this test?"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:186
+#: ../qt/frontend/qtfront.cpp:160
 msgid "Don't ask me again"
 msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:597
+#: ../qt/frontend/ui_qtfront.h:634
 msgid "Form"
 msgstr ""
 
@@ -3739,59 +3792,59 @@ msgstr ""
 msgid "Don't show me this message in the future"
 msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:602 ../qt/frontend/ui_qtfront.h:618
+#: ../qt/frontend/ui_qtfront.h:638 ../qt/frontend/ui_qtfront.h:656
 msgid "Tab 1"
 msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:603
+#: ../qt/frontend/ui_qtfront.h:639
 msgid "10 tests completed out of 30 (30%)"
 msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:606
+#: ../qt/frontend/ui_qtfront.h:642
 msgid "Components"
 msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:607
+#: ../qt/frontend/ui_qtfront.h:643
 msgid "Status"
 msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:608
+#: ../qt/frontend/ui_qtfront.h:644
 msgid "Select all"
 msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:609
+#: ../qt/frontend/ui_qtfront.h:645
 msgid "Deselect all"
 msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:610
+#: ../qt/frontend/ui_qtfront.h:646
 msgid "Start testing"
 msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:611
+#: ../qt/frontend/ui_qtfront.h:647
 msgid " Selection "
 msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:612 ../qt/frontend/ui_qtfront.h:613
+#: ../qt/frontend/ui_qtfront.h:648 ../qt/frontend/ui_qtfront.h:649
 msgid "TextLabel"
 msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:614
+#: ../qt/frontend/ui_qtfront.h:605
 msgid "Yes"
 msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:616
+#: ../qt/frontend/ui_qtfront.h:607
 msgid "No"
 msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:617
+#: ../qt/frontend/ui_qtfront.h:608
 msgid "Comment"
 msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:619 ../qt/frontend/ui_qtfront.h:635
+#: ../qt/frontend/ui_qtfront.h:657 ../qt/frontend/ui_qtfront.h:673
 msgid "Tab 2"
 msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:622
+#: ../qt/frontend/ui_qtfront.h:660
 msgid " Run "
 msgstr ""
 
@@ -3814,23 +3867,23 @@ msgid ""
 "results to Ubuntu Friendly.</span></p></body></html>"
 msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:629
+#: ../qt/frontend/ui_qtfront.h:667
 msgid "Submission details"
 msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:631
+#: ../qt/frontend/ui_qtfront.h:669
 msgid "Email:"
 msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:632
+#: ../qt/frontend/ui_qtfront.h:670
 msgid "Submit results"
 msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:633
+#: ../qt/frontend/ui_qtfront.h:671
 msgid "View results"
 msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:634
+#: ../qt/frontend/ui_qtfront.h:672
 msgid " Results "
 msgstr ""
 

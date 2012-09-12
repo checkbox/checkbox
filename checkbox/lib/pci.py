@@ -80,6 +80,9 @@ class Pci:
     CLASS_SERIAL_FIREWIRE           = 0
     CLASS_SERIAL_ACCESS             = 1
 
+    BASE_CLASS_WIRELESS             = 13
+    CLASS_WIRELESS_BLUETOOTH        = 17
+
     CLASS_SERIAL_SSA                = 2
     CLASS_SERIAL_USB                = 3
     CLASS_SERIAL_FIBER              = 4

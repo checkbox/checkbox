@@ -15,7 +15,7 @@ requires:
  device.category == 'AUDIO'
  package.name == 'alsa-base'
 _description: Record mixer settings before suspending.
-command: amixer > $CHECKBOX_DATA/audio_before_suspend.txt
+command: audio_settings store --file=$CHECKBOX_DATA/audio_settings_before_suspend
 
 plugin: shell
 name: suspend/cpu_before_suspend
@@ -50,6 +50,35 @@ command: obex_send $BTDEVADDR $CHECKBOX_SHARE/data/images/JPEG_Color_Image_Ubunt
 _description:
  This is an automated Bluetooth file transfer test. It sends an image to the device specified by the BTDEVADDR environment variable.
 
+plugin: shell
+name: suspend/bluetooth_obex_send_before_suspend
+requires:
+ package.name == 'bluez' and package.name == 'obexftp'
+ device.category == 'BLUETOOTH'
+command: bluetooth_test $CHECKBOX_SHARE/data/images/JPEG_Color_Image_Ubuntu.jpg $BTDEVADDR send
+_description:
+ This is an automated Bluetooth file transfer test. It sends an image to the device specified by the BTDEVADDR environment variable.
+
+plugin: shell
+name: suspend/bluetooth_obex_browse_before_suspend
+depends: suspend/bluetooth_obex_send_before_suspend
+requires:
+ package.name == 'bluez' and package.name == 'obexftp'
+ device.category == 'BLUETOOTH'
+command: bluetooth_test $CHECKBOX_SHARE/data/images/JPEG_Color_Image_Ubuntu.jpg $BTDEVADDR browse
+_description:
+ This is an automated Bluetooth test. It emulates browsing on a remote device specified by the BTDEVADDR environment variable.
+
+plugin: shell
+name: suspend/bluetooth_obex_get_before_suspend
+depends: suspend/bluetooth_obex_browse_before_suspend
+requires:
+ package.name == 'bluez' and package.name == 'obexftp'
+ device.category == 'BLUETOOTH'
+command: bluetooth_test $CHECKBOX_SHARE/data/images/JPEG_Color_Image_Ubuntu.jpg $BTDEVADDR get; sleep 3; bluetooth_test $CHECKBOX_SHARE/data/images/JPEG_Color_Image_Ubuntu.jpg $BTDEVADDR remove
+_description:
+ This is an automated Bluetooth test. It receives the given file from a remote host specified by the BTDEVADDR environment variable
+
 plugin: manual
 name: suspend/bluetooth_obex_before_suspend_manual
 requires:
@@ -69,11 +98,19 @@ plugin: manual
 name: suspend/suspend_advanced
 depends: power-management/rtc suspend/network_before_suspend suspend/resolution_before_suspend suspend/wireless_before_suspend suspend/cpu_before_suspend suspend/memory_before_suspend
 requires:
- package.name == 'fwts'
+ package.name == 'fwts' or package.name == 'pm-utils'
  sleep.mem == 'supported'
 user: root
 environ: CHECKBOX_DATA
-command: fwts s3 --s3-sleep-delay=30 -r $CHECKBOX_DATA/suspend_single_log || true; grep 'Critical failures: NONE' $CHECKBOX_DATA/suspend_single_log
+command:
+ if type -P fwts >/dev/null; then
+  echo "Calling fwts"
+  fwts s3 --s3-sleep-delay=30 -r $CHECKBOX_DATA/suspend_single_log
+  grep 'Critical failures: NONE' $CHECKBOX_DATA/suspend_single_log
+ else
+  echo "Calling sleep_test"
+  sleep_test -d
+ fi
 _description:
  PURPOSE:
      This test will check suspend and resume
@@ -151,7 +188,8 @@ requires:
  package.name == 'alsa-base'
 depends: suspend/suspend_advanced suspend/audio_before_suspend
 _description: Verify that mixer settings after suspend are the same as before suspend.
-command: amixer | diff $CHECKBOX_DATA/audio_before_suspend.txt -
+command: 
+ audio_settings store --file=$CHECKBOX_DATA/audio_settings_after_suspend; diff $CHECKBOX_DATA/audio_settings_before_suspend $CHECKBOX_DATA/audio_settings_after_suspend
 
 plugin: shell
 name: suspend/cpu_after_suspend
@@ -203,7 +241,9 @@ _description:
 plugin: shell
 name: suspend/wireless_after_suspend
 depends: suspend/suspend_advanced suspend/wireless_before_suspend
-requires: device.category == 'WIRELESS'
+requires:
+ device.category == 'WIRELESS'
+ environment.routers == 'multiple'
 command: connect_wireless && internet_test --interface=`nmcli dev list | grep -B 1 wireless | grep GENERAL.DEVICE | awk '{print $2}'` && for con in `cat $CHECKBOX_DATA/connections`; do nmcli con up uuid "$con"; done
 _description:
  This test checks that the wireless interface is working after suspending the system. It
@@ -213,7 +253,9 @@ _description:
 plugin: shell
 name: suspend/wireless_connection_after_suspend_wpa_bg
 depends: suspend/suspend_advanced_auto
-requires: device.category == 'WIRELESS'
+requires:
+ device.category == 'WIRELESS'
+ environment.routers == 'multiple'
 user: root
 environ: WPA_BG_SSID WPA_BG_PSK
 command: trap "rm -f /etc/NetworkManager/system-connections/$WPA_BG_SSID" EXIT; create_connection $WPA_BG_SSID --security=wpa --key=$WPA_BG_PSK; internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
@@ -224,7 +266,9 @@ _description:
 plugin: shell
 name: suspend/wireless_connection_after_suspend_open_bg
 depends: suspend/suspend_advanced_auto
-requires: device.category == 'WIRELESS'
+requires:
+ device.category == 'WIRELESS'
+ environment.routers == 'multiple'
 user: root
 environ: OPEN_BG_SSID
 command: trap "rm -f /etc/NetworkManager/system-connections/$OPEN_BG_SSID" EXIT; create_connection $OPEN_BG_SSID; internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
@@ -235,7 +279,9 @@ _description:
 plugin: shell
 name: suspend/wireless_connection_after_suspend_wpa_n
 depends: suspend/suspend_advanced_auto
-requires: device.category == 'WIRELESS'
+requires:
+ device.category == 'WIRELESS'
+ environment.routers == 'multiple'
 user: root
 environ: WPA_N_SSID WPA_N_PSK
 command: trap "rm -f /etc/NetworkManager/system-connections/$WPA_N_SSID" EXIT; create_connection $WPA_N_SSID --security=wpa --key=$WPA_N_PSK; internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
@@ -246,13 +292,103 @@ _description:
 plugin: shell
 name: suspend/wireless_connection_after_suspend_open_n
 depends: suspend/suspend_advanced_auto
-requires: device.category == 'WIRELESS'
+requires:
+ device.category == 'WIRELESS'
+ environment.routers == 'multiple'
 user: root
 environ: OPEN_N_SSID
 command: trap "rm -f /etc/NetworkManager/system-connections/$OPEN_N_SSID" EXIT; create_connection $OPEN_N_SSID; internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
 _description:
  Tests that the systems wireless hardware can connect to a router using no
  security and the 802.11n protocol after the system has been suspended.
+
+plugin: manual
+name: suspend/wireless_connection_after_suspend_wpa_bg_manual
+depends: suspend/suspend_advanced
+requires:
+ device.category == 'WIRELESS'
+ environment.routers == 'single'
+user: root
+environ: ROUTER_SSID ROUTER_PSK
+command: trap "nmcli con delete id $ROUTER_SSID" EXIT; create_connection $ROUTER_SSID --security=wpa --key=$ROUTER_PSK && internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
+_description:
+ PURPOSE:
+     Tests that the systems wireless hardware can connect to a router using WPA
+     security and the 802.11b/g protocols.
+ STEPS:
+     1. Open your routers configuration tool
+     2. Change the settings to only accept connections on the B and G wireless bands
+     3. Make sure the SSID is set to ROUTER_SSID
+     4. Change the security settings to use WPA2 and ensure the PSK matches that set in ROUTER_PSK
+     5. Click the 'Test' button to create a connection to the router and test the connection
+ VERIFICATION:
+     Verification is automated, do not change the automatically selected result.
+
+plugin: manual
+name: suspend/wireless_connection_after_suspend_open_bg_manual
+depends: suspend/suspend_advanced
+requires:
+ device.category == 'WIRELESS'
+ environment.routers == 'single'
+user: root
+environ: ROUTER_SSID
+command: trap "nmcli con delete id $ROUTER_SSID" EXIT; create_connection $ROUTER_SSID && internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
+_description:
+ PURPOSE:
+     Tests that the systems wireless hardware can connect to a router using
+     no security and the 802.11b/g protocols.
+ STEPS:
+     1. Open your routers configuration tool
+     2. Change the settings to only accept connections on the B and G wireless bands
+     3. Make sure the SSID is set to ROUTER_SSID
+     4. Change the security settings to use no security
+     5. Click the 'Test' button to create a connection to the router and test the connection
+ VERIFICATION:
+     Verification is automated, do not change the automatically selected result.
+
+plugin: manual
+name: suspend/wireless_connection_after_suspend_wpa_n_manual
+depends: suspend/suspend_advanced
+requires:
+ device.category == 'WIRELESS'
+ environment.routers == 'single'
+user: root
+environ: ROUTER_SSID ROUTER_PSK
+command: trap "nmcli con delete id $ROUTER_SSID" EXIT; create_connection $ROUTER_SSID --security=wpa --key=$ROUTER_PSK && internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
+_description:
+ PURPOSE:
+     Tests that the systems wireless hardware can connect to a router using WPA
+     security and the 802.11n protocols.
+ STEPS:
+     1. Open your routers configuration tool
+     2. Change the settings to only accept connections on the N wireless band
+     3. Make sure the SSID is set to ROUTER_SSID
+     4. Change the security settings to use WPA2 and ensure the PSK matches that set in ROUTER_PSK
+     5. Click the 'Test' button to create a connection to the router and test the connection
+ VERIFICATION:
+     Verification is automated, do not change the automatically selected result.
+
+plugin: manual
+name: suspend/wireless_connection_after_suspend_open_n_manual
+depends: suspend/suspend_advanced
+requires:
+ device.category == 'WIRELESS'
+ environment.routers == 'single'
+user: root
+environ: ROUTER_SSID
+command: trap "nmcli con delete id $ROUTER_SSID" EXIT; create_connection $ROUTER_SSID && internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
+_description:
+ PURPOSE:
+     Tests that the systems wireless hardware can connect to a router using
+     no security and the 802.11n protocol.
+ STEPS:
+     1. Open your routers configuration tool
+     2. Change the settings to only accept connections on the N wireless band
+     3. Make sure the SSID is set to ROUTER_SSID
+     4. Change the security settings to use no security
+     5. Click the 'Test' button to create a connection to the router and test the connection
+ VERIFICATION:
+     Verification is automated, do not change the automatically selected result.
 
 plugin: shell
 name: suspend/bluetooth_detect_after_suspend
@@ -283,6 +419,37 @@ requires:
 command: obex_send $BTDEVADDR $CHECKBOX_SHARE/data/images/JPEG_Color_Image_Ubuntu.jpg
 _description:
  This is an automated Bluetooth file transfer test. It sends an image to the device specified by the BTDEVADDR environment variable.
+
+plugin: shell
+name: suspend/bluetooth_obex_send_after_suspend
+depends: suspend/suspend_advanced
+requires:
+ package.name == 'bluez' and package.name == 'obexftp'
+ device.category == 'BLUETOOTH'
+command: bluetooth_test $CHECKBOX_SHARE/data/images/JPEG_Color_Image_Ubuntu.jpg $BTDEVADDR send
+_description:
+ This is an automated Bluetooth file transfer test. It sends an image to the device specified by the BTDEVADDR environment variable.
+
+plugin: shell
+name: suspend/bluetooth_obex_browse_after_suspend
+depends: suspend/suspend_advanced suspend/bluetooth_obex_send_after_suspend
+requires:
+ package.name == 'bluez' and package.name == 'obexftp'
+ device.category == 'BLUETOOTH'
+command: bluetooth_test $CHECKBOX_SHARE/data/images/JPEG_Color_Image_Ubuntu.jpg $BTDEVADDR browse
+_description:
+ This is an automated Bluetooth test. It emulates browsing on a remote device specified by the BTDEVADDR environment variable.
+
+plugin: shell
+name: suspend/bluetooth_obex_get_after_suspend
+depends: suspend/suspend_advanced suspend/bluetooth_obex_browse_after_suspend
+requires:
+ package.name == 'bluez' and package.name == 'obexftp'
+ device.category == 'BLUETOOTH'
+command: bluetooth_test $CHECKBOX_SHARE/data/images/JPEG_Color_Image_Ubuntu.jpg $BTDEVADDR get; sleep 3; bluetooth_test $CHECKBOX_SHARE/data/images/JPEG_Color_Image_Ubuntu.jpg $BTDEVADDR remove
+_description:
+ This is an automated Bluetooth test. It receives the given file from a remote host specified by the BTDEVADDR environment variable
+
 
 plugin: manual
 name: suspend/bluetooth_obex_after_suspend_manual
@@ -333,9 +500,9 @@ name: suspend/record_playback_after_suspend
 depends: suspend/suspend_advanced
 requires:
  device.category == 'AUDIO'
- package.name == 'sox'
+ package.name == 'python-gst0.10'
  package.name == 'alsa-base'
-command: audio_test
+command: audio_test -v
 _description:
  This will check to make sure that your audio device works properly after a suspend and resume.  This may work fine with speakers and onboard microphone, however, it works best if used with a cable connecting the audio-out jack to the audio-in jack.
 
@@ -380,7 +547,29 @@ _description:
  STEPS:
      1. Create 2 glxgears windows and move them quickly
      2. Switch workspaces/viewports with wmctrl
-     3. Launch a Flash playback in firefox
+     3. Launch an HTML5 video playback in firefox
      4. Suspend/resume
  VERIFICATION:
      1. After a 60s workload, check kern.log for reported GPU errors
+
+plugin: shell
+name: suspend/wifi_resume_time
+depends: suspend/suspend_advanced
+requires:
+   device.category == 'WIRELESS'
+command: network_reconnect_resume_test -t 20 -d wifi
+_description:
+ Checks the length of time it takes to reconnect an existing wifi connection
+ after a suspend/resume cycle.  The timeout is specified with the -t option.
+ Device is specified with a -d option 
+
+plugin: shell
+name: suspend/network_resume_time
+depends: suspend/suspend_advanced
+requires:
+   device.category == 'NETWORK'
+command: network_reconnect_resume_test -t 10 -d wired
+_description:
+ Checks the length of time it takes to reconnect an existing wired connection
+ after a suspend/resume cycle.  The timeout is specified with the -t option.
+ Device is specified with a -d option.

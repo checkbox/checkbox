@@ -1,0 +1,143 @@
+#!/usr/bin/python3
+#
+# This file is part of Checkbox.
+#
+# Copyright 2012 Canonical Ltd.
+#
+# Checkbox is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# Checkbox is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
+#
+
+import re
+import sys
+import fcntl
+import struct
+import ctypes
+from glob import glob
+from subprocess import call
+
+
+class sg_io_hdr(ctypes.Structure):
+    """
+    Do ioctl's using Linux generic SCSI interface.
+    """
+    SG_IO = 0x2285
+
+    _fields_ = [("interface_id", ctypes.c_int),
+                ("dxfer_direction", ctypes.c_int),
+                ("cmd_len", ctypes.c_ubyte),
+                ("mx_sb_len", ctypes.c_ubyte),
+                ("iovec_count", ctypes.c_ushort),
+                ("dxfer_len", ctypes.c_int),
+                ("dxferp", ctypes.c_char_p),
+                ("cmdp", ctypes.c_char_p),
+                ("sbp", ctypes.c_char_p),
+                ("timeout", ctypes.c_uint),
+                ("flags", ctypes.c_uint),
+                ("pack_id", ctypes.c_int),
+                ("usr_ptr", ctypes.c_char_p),
+                ("status", ctypes.c_ubyte),
+                ("masked_status", ctypes.c_ubyte),
+                ("msg_status", ctypes.c_ubyte),
+                ("sb_len_wr", ctypes.c_ubyte),
+                ("host_status", ctypes.c_ushort),
+                ("driver_status", ctypes.c_ushort),
+                ("resid", ctypes.c_int),
+                ("duration", ctypes.c_uint),
+                ("info", ctypes.c_uint)]
+
+    def __init__(self):
+        self.interface_id = ord('S')
+        self.dxfer_direction = 0
+        self.cmd_len = 0
+        self.mx_sb_len = 0
+        self.iovec_count = 0
+        self.dxfer_len = 0
+        self.dxferp = None
+        self.cmdp = None
+        self.timeout = 20000
+        self.flags = 0
+        self.pack_id = 0
+        self.usr_ptr = None
+        self.status = 0
+        self.masked_status = 0
+        self.msg_status = 0
+        self.sb_len_wr = 0
+        self.host_status = 0
+        self.driver_status = 0
+        self.resid = 0
+        self.duration = 0
+        self.info = 0
+
+
+def _get_sub_page(size, control_block, device):
+    """
+    ioctl to retrieve a sub-page from the device.
+    """
+    io_hdr = sg_io_hdr()
+    io_hdr.dxfer_direction = -3
+    io_hdr.cmd_len = len(control_block)
+    io_hdr.cmdp = control_block
+    page_buffer = ctypes.create_string_buffer(size)
+    io_hdr.dxfer_len = size
+    io_hdr.dxferp = ctypes.cast(page_buffer, ctypes.c_char_p)
+
+    i = -1
+    try:
+        with open(device, 'r') as fd:
+            i = fcntl.ioctl(fd, sg_io_hdr.SG_IO, io_hdr)
+    except IOError:
+        return None
+
+    if i < 0:
+        raise IOError("SG_IO ioctl error")
+
+    if io_hdr.status != 0x00:
+        raise IOError("io_hdr status is: %x" % io_hdr.status)
+
+    if io_hdr.resid > 0:
+        retsize = size - io_hdr.resid
+    else:
+        retsize = size
+
+    return page_buffer[0:retsize]
+
+
+def inquire(device):
+    """
+    Issue a SCSI INQUIRY command
+    """
+    fields = '>BBBBBBBB8s16s4s20sBB8HH'
+    fields_len = struct.calcsize(fields)
+    control_block = struct.pack("BBBBBB", 0x12, 0, 0, 0, fields_len, 0)
+    try:
+        return _get_sub_page(fields_len, control_block, device)[8:32].decode()
+    except TypeError:
+        return ''
+
+
+def main():
+    pattern = re.compile('SD|MMC|CF|MS|SM|xD|Card|Generic')
+    matches = [dev for dev in glob('/dev/sg*') if
+               pattern.search(inquire(dev), re.I)]
+
+    if matches or not call(
+        "grep -q 'SDHCI controller found' /var/log/kern.log*", shell=True):
+        print('reader: detected')
+    else:
+        print('reader: none')
+
+    return 0
+
+if __name__ == "__main__":
+    sys.exit(main())

@@ -1,7 +1,195 @@
+checkbox (0.14.6) quantal; urgency=low
+
+  [Chris Wayne]
+  * [FEATURE] scripts/touchpad_scroll_resource, jobs/touchpad.txt.in:
+    adding in touchpad scroll detection resource job, and modified jobs
+    to require the capability to be present.
+
+  [Jeff Lane]
+  * Cleaning up duplicated modinfo code: (LP: #1043521)
+    * checkbox/parsers/modinfo.py: added a parser to handle output from modinfo
+    * scripts/audio_driver_info: modified to use modinfo parser
+    * scripts/network_device_info: modified to use modinfo parser
+    * scripts/accelerometer_test: modified to use modinfo parser
+  * scripts/lsmod_info: added script to provide better lsmod output for the
+    lsmod_attachment job using the power of the modinfo parser
+    jobs/info.txt.in: modified lsmod_attachment job to use lsmod_info script
+    rather than just lsmod output (LP: #1043531)
+  * jobs/wireless.txt.in: Added jobs to individually test 802.11a/b/g/n
+    connections. This is necessary for adequate QA testing (LP: #1042425)
+  * scripts/graphics_driver: fixed a bug causing the hybrid check to throw an
+    exception on hybrid systems (LP: #1048058)
+
+  [Daniel Manrique]
+  * Bumped to 0.14.6 to keep changelog size sane and fix a small mishap in the
+    daily build recipe.
+  * scripts/audio_settings: Added exception handlers to catch problems with
+    unwritable or absent settings files (LP: #1041644) (LP: #1041340)
+  * Ensured that strings passed to qtiface.showError via dbus are strings, 
+    and not NoneType as could happen under certain circumstances.
+    (LP: #1032337)
+  * scripts/graphics_modes_info: updated shebang to python3 (LP: #1047515)
+  * scripts/graphics_driver, scripts/color_depth_info: Added ignoring
+    possible invalid characters in Xorg logfiles (LP: #1048096)
+
+
+  [Alberto Milone]
+  * [FEATURE] scripts/window_test, jobs/graphics.txt.in: Added script
+    window_test to open and close 3D windows in various conditions for
+    graphics testing. Added three new window_test based jobs to graphics.txt.in.
+  * [FEATURE] scripts/graphics_stress_test, jobs/stress.txt.in: Added script to
+    do some graphics stress by ensuring the graphics system continues to
+    function after several iterations of: switching VTs, suspend/resume, screen
+    rotation and running the rendercheck graphics suite.
+
+  [Marc Tardif]
+  * scripts/touchpad_scroll_resource: Added support for systems without
+    a touchpad (LP #1045066)
+  * patch/0.14.2: Fixed patch to rmtree instead of rmdir scripts directory.
+  * [FEATURE] debian/checkbox.templates, debian/checkbox.config: Added support to
+    preseed properties in environment_info plugin.
+
+  [Sean Feole]
+  * [FEATURE] scripts/battery_test: measures battery capacity before and after
+    an activity and determines battery life at the rate of drain.
+    jobs/power-management.txt.in: added two manual tests to ask the user to
+    unplug and then re-plug the laptop so that three new automated battery
+    drain tests can run:
+   * power-management/battery_drain_idle
+   * power-management/battery_drain_movie
+   * power-management/battery_drain_sleep
+
+  [Brendan Donegan]
+  * [FEATURE] Add environment_info plugin which sets environment variables
+    according to the values set in the plugin via Checkboxes INI files.
+  * [FEATURE] Added semi-automated wireless tests which require only a single
+    router to run, prompting the user to modify the routers config during 
+    the test.
+  * [FEATURE] Added semi-automated wireless after suspend tests to suspend.txt.in,
+    since they were missed in the previous merge    
+  * Attach the output of udev_resource, for debugging purposes (LP: #974271)
+  * Make audio_settings before/after suspend tests more robust by not requiring
+    every little audio setting to be the same before and after suspend, just
+    the major ones such as the current source/sink and the mute/volume settings
+    on them (LP: #1043144)
+  * Remove default value from windows_number argument since the logic following
+    it dictates that it's only valid for certain tests (LP: #1047621)
+
+  [Sylvain Pineau]
+  * jobs/suspend.txt.in: Fixed suspend/suspend_advanced dependencies to avoid
+    calling fwts with the live CD (LP: #1045687)
+  * qt/frontend/qtfront.ui: Fixed the test purpose widget size to allow two
+    lines of description (LP: #1032255)
+  * qt/frontend/qtfront.ui: Fixed the progressLabel widget size to support job
+    names > 50 chars (LP: #1046274)
+  * scripts/camera_test, jobs/camera.txt.in: Added a 10s timeout to the camera
+    still test (LP: #990133)
+  * jobs/suspend.txt.in: Add usb wakeup tests (mouse and keyboard).
+
+  [Zygmunt Krynicki]
+  * Fixed simple duplicate 'the' mistakes (LP: #1040022)
+
+ -- Jeff Lane <jeff@ubuntu.com>  Tue, 11 Sep 2012 10:34:34 -0400
+
+checkbox (0.14.5) quantal; urgency=low
+
+  [Sylvain Pineau]
+  * New version 0.14.5 for Quantal Quetzal development.
+  * jobs/virtualization.txt.in, scripts/kvm_test, jobs/miscellanea.txt.in,
+    setup.cfg: Added a new KVM test to ensure that a VM boots and works
+    properly with KVM.
+  * jobs/suspend.txt.in, scripts/gpu_test: Update the job description and the
+    script docstrings from Flash to HTML5 video playback.
+  * [FEATURE] scripts/removable_storage_test, scripts/removable_storage_watcher,
+    jobs/mediacard.txt.in: Added memory cards detection (on bus other than sdio)
+    and a new automated (based on usb/storage-pre-inserted) for SD cards.
+
+  [Jeff Marcom]
+  * scripts/accelerometer_test, jobs/input.txt.in: Improved ability to detect 
+    oem manufacturer info, and cleanup up job step formatting.
+  * /jobs/touchpad.txt.in: Fixed instruction steps for manual touchpad horizontal 
+     and vertical tests.
+  * scripts/audio_settings, jobs/audio.txt.in: Added automated switch to 
+    HDMI interface, modified corresponding jobs file..
+  * jobs/audio.txt.in, added method to bypass return code of /scripts/audio_settings
+    and instead only return the exit code for the appropriate audio test.
+  * scripts/audio_settings: Added automated switch to restore previous 
+    audio profile setting
+
+  [ Daniel Manrique ]
+  * jobs/peripheral.txt.in: Fixed a typo in the DSL job. (LP: #1039192)
+  * jobs/resource.txt.in: Added usb resource that indicates which versions of
+    the protocol are supported (currently only reports for USB 2.0 and 3.0).
+  * scripts/removable_storage_watcher, scripts/removable_storage_test: Added
+    a parameter to specify minimum speed to accept a device, and a parameter
+    to fail removable_storage_test if the transfer speed is below a threshold.
+  * jobs/usb.txt.in: Added usb3 jobs that will only pass if an actual USB 3.0
+    device is inserted/removed/tested.
+  * jobs/audio.txt.in: replaced gconfaudiosink by autoaudiosink (LP: #978895)
+  * [FEATURE]: qt/frontend/qtfront.cpp, qt/frontend/qtfront.h,
+    qt/frontend/qtfront.ui, checkbox_qt/qt_interface.py: Replaced test result
+    buttons with radiobuttons,  made comment area always visible, and added
+    keyboard shortcuts.
+  * [FEATURE] Added oem-config directory to setup.py so it builds correctly.
+
+  [ Jeff Lane ]
+  * scripts/removable_storage_test (total overhaul):
+    * Added --iterations option, now you can run -i iterations of -c files of
+      -s size.
+    * Added RandomData class to generate test files using a much faster method.
+    * Replaced copy_file() with file_write() and file_read() to take advantage of
+      buffer flushing and fsync() opeations not available to shutils/copy2.
+    * Redid the runtime bits of main() so now for every device found, it runs I
+      iterations of C files.
+    * Redid output so now you get an avg write speed per iteration and a summary
+      at the end of all iterations for each device.
+  * scripts/wifi_reconnect_resume_test: fixed a bug where timestamps being
+    grabbed from dmesg were strings instead of floats (LP: #1038270)
+  * jobs/stress.txt.in: added two sample jobs to demonstrate the new features
+    of removable_storage_test
+  * jobs/piglit.txt.in: added jobs that run the piglit graphics test suite
+  
+  [Matt Fischer]
+  * scripts/audio_driver_info: added script to find info on loaded drivers
+    jobs/audio.txt.in: added automated job to determine audio drivers loaded
+    jobs/networking.txt.in: added a requires on networking/info for
+    module-init-tools package.
+    scripts/volume_test: cleanup and fixing a small issue
+  * scripts/network-device-info: fixed a problem with output causing a
+    traceback and a problem where modules with improper modules field causes
+    problems. (LP: #1042395)
+    jobs/networking.txt.in: added requires for pciutils for the above bugfix
+
+  [Alberto Milone]
+  * [FEATURE] scripts/rendercheck_test: added test to take advantage of the
+    rendercheck test suites.
+    [FEATURE] jobs/rendercheck.txt.in: added jobs to run the rendercheck_test
+    script.
+    [FEATURE] jobs/local.txt.in: added job to parse rendercheck.txt.in job file
+  * checkbox/contrib/gdk.py: removed legacy code and used python 3.
+  * scripts/rotation_test:
+    * Made sure to report all failures, not only the first.
+    * Made it look more pythonic.
+    * Fixed issues with python 3 and used python 3.
+  * checkbox/contrib/xrandr.py:
+    * Fixed issues with python 3 and used python 3 (LP: #1043155).
+
+  [Sean Feole]
+  * scripts/network-reconnect-resume-time: fixed the wifi-reconnect-resume-time
+    script to also check wired connections for completeness (LP: #1042391)
+
+  [Chris Wayne]
+  * [FEATURE] Added oem_config_test, related jobs and data files
+
+ -- Daniel Manrique <roadmr@ubuntu.com>  Thu, 30 Aug 2012 12:45:49 -0400
+
 checkbox (0.14.4) quantal; urgency=low
+
+  * New upstream release (LP #1039094):
 
   [ Daniel Manrique ]
   * New version 0.14.4 for Quantal Quetzal development.
+  * Added new audio_test and test definitions.
 
   [Jeff Lane]
   * jobs/esata.txt.in: added tests for removable eSATA drives
@@ -16,17 +204,50 @@ checkbox (0.14.4) quantal; urgency=low
     tests and added two automated tests that can be used if desired (they still
     require the user to push the tray in after writing, but eliminate other
     steps)
+  * scripts/graphics_driver: Added this script based to parse Xorg.0.log and
+    discover the currently running graphics driver and driver version
+    jobs/graphics.txt.in: Added a new job to take advantage of the
+    graphics_driver script.
+    data/whitelists/default.whitelist: Added the graphics_driver job to the
+    default whitelist because this would be good data to gather for UF and
+    doesn't cost much
+  * scripts/graphics_driver: Merged Alberto Milone's work on a
+    hybrid_graphics_test into graphics_driver as his stuff and my stuff were
+    similar enough to be in the same script, plus this allows the advantage of
+    using Bryce Harrington's xorglog library down the road.
+  * scripts/removable_storage_test: removed a lot of unnecessary output to
+    clean up the test run and also added in some basic performance monitoring.
 
   [Sylvain Pineau]
   * jobs/graphics.txt.in, jobs/benchmarks.txt.in: Move gtkperk to the benchmarks
     section.
-  * jobs/suspend.txt.in: Add usb wakeup tests (mouse and keyboard).
+  * jobs/benchmarks.txt.in, scripts/wifi_time2reconnect: Add a test to monitor
+    the time needed to reconnect to a WIFI access point.
+  * jobs/cpu.txt.in: Added a check for ARM Vector Floating Point Unit support.
+  * jobs/touchscreen.txt.in: Add 3 new manual tests (tap-detect, drag-n-drop and
+    multitouch-zoom)
+  * jobs/audio.txt.in: Added a test that verifies that the various audio 
+    channels are working properly.
+  * scripts/camera_test, jobs/camera.txt.in: Replace the call to "xawtv -hwscan"
+    in camera_test by the VIDIOC_QUERYCAP ioctl, xawtv requirement removed.
+  * jobs/led.txt.in, jobs/local.txt.in, scripts/led_hdd_test.py: Add LED
+    tests.
+  * jobs/suspend.txt.in: Resurrect scripts/sleep_test as a fallback of fwts for
+    the suspend/suspend_advanced test.
 
   [Brendan Donegan]
   * scripts/audio_settings: Converted script from Perl to Python(3), putting 
     it in line with approved technology guidelines
   * jobs/audio.txt.in: Fixed audio jobs to use --file option of audio_settings 
     instead of piping to STDOUT.
+  * Prettify the Step icons that appear next to each test step in the test run
+    screen (LP: #1036085)
+  * Remove the 'Don't show this message on startup' checkbox from the
+    introduction screen, since it isn't used (LP: #1036218)
+  * Continue to run the progress bar when the test dependencies are being
+    resolved so that it doesn't look like the UI hung (LP: #1036573)
+  * Remove gcov_attachment from default whitelist since it depends on lcov
+    which is not in the default install, and is not used anyway.
 
   [Nathan Williams]
   * scripts/network_check: Fixed exception handling in the absence of zenity
@@ -34,8 +255,44 @@ checkbox (0.14.4) quantal; urgency=low
 
   [Samantha Jian]
   * Added disk spindown test script and definition.
+  * Added support for BT devices on PCI bus. (LP: #1036124)
 
- -- Daniel Manrique <roadmr@ubuntu.com>  Wed, 08 Aug 2012 12:43:25 -0400
+  [Jeff Marcom]
+  * Added Accelerometer test.
+  * scripts/gst_pipeline_test, jobs/audio.txt.in: Added device sink check
+
+  [Matt Fischer]
+  * Added test to check that volume is within acceptable range and audio
+    elements are not muted.
+  * scripts/camera_test: added the resolutions option to take sample pictures
+    in all resolutions supported by the specified webcam
+    jobs/camera.txt.in: added the camera/multiple-resolution-images test which
+    utilitizes the changes to the camera_test script 
+
+  [Alberto Milone]
+  * checkbox/contrib/gdk.py: Added library for getting gtk.gdk.Screen object
+    checkbox/contrib/xrandr.py: Added library for manipulating graphics
+    settings similar to how xrandr does it.
+    scripts/brightness_test: Added automated test to verify that backlight
+    settings are properly honored
+    scripts/color_depth_info: Added script to get info on color depth and pixel
+    format
+    scripts/graphics_modes_info: Added script to gather info on the supported
+    graphics modes available
+    scripts/rotation_test: Added script to automate screen rotation testing
+    jobs/graphics.txt.in, jobs/monitor.txt.in: Added jobs to take advantage of
+    the new scripts added to Checkbox
+
+  [ Sean Feole ]
+  * scripts/wifi_reconnect_resume_test, jobs/wifi_resume_time added.
+  * Fixed an output issue in scripts/wifi_reconnect_test that was not handled
+    in the original merge. Also tweaked error messages to be more useful.
+
+  [Chris Wayne]
+  * Added in bluetooth_test and related jobs for automated bluetooth
+    testing
+
+ -- Jeff Lane <jeff@ubuntu.com>  Fri, 17 Aug 2012 16:47:08 -0400
 
 checkbox (0.14.3) quantal; urgency=low
 

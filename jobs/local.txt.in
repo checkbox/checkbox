@@ -124,6 +124,13 @@ command:
   shopt -s extglob
   cat $CHECKBOX_SHARE/jobs/keys.txt?(.in)
 
+name: __led__
+plugin: local
+_description: LED tests
+command:
+  shopt -s extglob
+  cat $CHECKBOX_SHARE/jobs/led.txt?(.in)
+
 name: __mediacard__
 plugin: local
 _description: Media Card tests
@@ -137,6 +144,13 @@ _description: Memory tests
 command:
   shopt -s extglob
   cat $CHECKBOX_SHARE/jobs/memory.txt?(.in)
+
+name: __rendercheck__
+plugin: local
+_description: Rendercheck tests
+command:
+  shopt -s extglob
+  cat $CHECKBOX_SHARE/jobs/rendercheck.txt?(.in)
 
 name: __miscellanea__
 plugin: local
@@ -187,6 +201,13 @@ command:
   shopt -s extglob
   cat $CHECKBOX_SHARE/jobs/peripheral.txt?(.in)
 
+name: __piglit__
+plugin: local
+_description: Piglit tests
+command:
+  shopt -s extglob
+  cat $CHECKBOX_SHARE/jobs/piglit.txt?(.in)
+
 name: __power-management__
 plugin: local
 _description: Power Management tests
@@ -215,6 +236,13 @@ command:
   shopt -s extglob
   cat $CHECKBOX_SHARE/jobs/touchpad.txt?(.in)
 
+name: __touchscreen__
+plugin: local
+_description: Touchscreen tests
+command:
+  shopt -s extglob
+  cat $CHECKBOX_SHARE/jobs/touchscreen.txt?(.in)
+
 name: __usb__
 plugin: local
 _description: USB tests
@@ -228,6 +256,13 @@ _description: User Applications
 command:
   shopt -s extglob
   cat $CHECKBOX_SHARE/jobs/user_apps.txt?(.in)
+
+name: __virtualization__
+plugin: local
+_description: Virtualization tests
+command:
+  shopt -s extglob
+  cat $CHECKBOX_SHARE/jobs/virtualization.txt?(.in)
 
 name: __wireless__
 plugin: local

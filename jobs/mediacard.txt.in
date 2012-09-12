@@ -176,6 +176,18 @@ _description:
      The verification of this test is automated. Do not change the
      automatically selected result.
 
+plugin: shell
+name: mediacard/sd-preinserted
+user: root
+requires:
+ package.name == 'udisks'
+ memory_card.reader == 'detected'
+command: removable_storage_test --memorycard -l sdio usb scsi && removable_storage_test --memorycard sdio usb scsi
+_description:
+ This is a fully automated version of mediacard/sd-automated and assumes that the
+ system under test has a memory card device plugged in prior to checkbox execution.
+ It is intended for SRU automated testing.
+
 plugin: manual
 name: mediacard/sdhc-insert
 requires:

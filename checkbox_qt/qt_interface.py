@@ -31,9 +31,9 @@ import dbus
 from dbus.mainloop.glib import DBusGMainLoop
 
 ANSWER_TO_OPTION = {
-    YES_ANSWER: _('yes'),
-    NO_ANSWER: _('no'),
-    SKIP_ANSWER: _('skip')}
+    YES_ANSWER: 'yes',
+    NO_ANSWER: 'no',
+    SKIP_ANSWER: 'skip'}
 
 OPTION_TO_ANSWER = dict((o, a)
                         for a, o in ANSWER_TO_OPTION.items())
@@ -64,17 +64,12 @@ class QTInterface(UserInterface):
             self.onClosedFrontend, "closedFrontend")
         self.bus.add_signal_receiver(
             self.onReviewTestsClicked, "reviewTestsClicked")
-        self.bus.add_signal_receiver(
-            self.onWelcomeCheckboxToggled, "welcomeCheckboxToggled")
         self.qtiface.setInitialState()
 
         self._set_main_title()
 
     def onReviewTestsClicked(self):
         self.show_url(self.report_url)
-
-    def onWelcomeCheckboxToggled(self, checked):
-        self.ui_flags["show_welcome_message"] = bool(checked)
 
     def onClosedFrontend(self, finished):
         if bool(finished):
@@ -197,7 +192,7 @@ class QTInterface(UserInterface):
     def _run_test(self, test, runner):
         self.qtiface.showTestControls(False)
         (status, data, duration) = runner(test)
-        self.qtiface.setFocusTestYesNo(True if status == PASS else False)
+        self.qtiface.setTestResult(True if status == PASS else False)
         self.qtiface.showTestControls(True)
 
         if test["info"]:
@@ -212,22 +207,14 @@ class QTInterface(UserInterface):
             self._run_test(test, runner)
 
         def onNextTestClicked():
-            test["status"] = ANSWER_TO_STATUS[SKIP_ANSWER]
+            #Get response from UI
+            answer = self.qtiface.getTestResult()
+            test["status"] = ANSWER_TO_STATUS[answer]
             self.direction = NEXT
             self.loop.quit()
 
         def onPreviousTestClicked():
             self.direction = PREV
-            self.loop.quit()
-
-        def onYesTestClicked():
-            test["status"] = ANSWER_TO_STATUS[YES_ANSWER]
-            self.direction = NEXT
-            self.loop.quit()
-
-        def onNoTestClicked():
-            test["status"] = ANSWER_TO_STATUS[NO_ANSWER]
-            self.direction = NEXT
             self.loop.quit()
 
         enableTestButton = False
@@ -242,17 +229,21 @@ class QTInterface(UserInterface):
         if "command" in test:
             enableTestButton = True
 
+        #If we were in progress, stop showing that now, as we're 
+        #awaiting user interaction
+        self.show_progress_stop()
+
         self.qtiface.showTest(
             test["purpose"], test["steps"], test["verification"], info, test["data"],
             test["suite"], test["name"], enableTestButton)
         self.wait_on_signals(
             startTestClicked=onStartTestClicked,
             nextTestClicked=onNextTestClicked,
-            previousTestClicked=onPreviousTestClicked,
-            noTestClicked=onNoTestClicked,
-            yesTestClicked=onYesTestClicked)
+            previousTestClicked=onPreviousTestClicked)
 
         test["data"] = self.qtiface.getTestComment()
+        #Unset the title, since we finished the job
+        self._set_main_title()
         return False
 
     def show_info(self, text, options=[], default=None):
@@ -277,8 +268,13 @@ class QTInterface(UserInterface):
         def onErrorBoxClosed():
             self.loop.quit()
 
-        self.qtiface.showError(primary_text,
-                secondary_text, detailed_text,
+        if secondary_text == None:
+            secondary_text = ""
+        if detailed_text == None:
+            detailed_text = ""
+
+        self.qtiface.showError(str(primary_text),
+                str(secondary_text), str(detailed_text),
                 reply_handler=dummy_handle_reply,
                 error_handler=dummy_handle_error)
         self.wait_on_signals(
@@ -287,6 +283,8 @@ class QTInterface(UserInterface):
     def update_status(self, job):
         if 'type' in job and job["type"] == "test":
             self.qtiface.updateAutoTestStatus(job["status"], job["name"])
+       
+        self.show_progress_start(_("Working"))
 
     def wait_on_signals(self, **signals):
         for name, function in signals.items():

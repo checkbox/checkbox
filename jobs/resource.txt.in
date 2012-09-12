@@ -77,3 +77,32 @@ description: Create resource info for removable block devices
 name: display
 plugin: resource
 command: for display in `xrandr | grep connected | awk '{print $1}' | grep -o ^[A-Z]* | sort | uniq`; do echo "$display: supported"; done
+
+name: usb
+plugin: resource
+description: Creates resource info for supported USB versions
+command: 
+ for version in 2 3; do 
+     echo -n "usb$version: "
+     lsusb |grep -q "Linux Foundation ${version}.0 root hub" && echo "supported" || echo "unsupported"
+ done
+
+name: touchpad_scroll
+plugin: resource
+command: touchpad_scroll_resource
+description: gives information on a touchpad's scroll support
+
+name: environment
+plugin: resource
+description: Create resource info for environment variables
+command:
+ IFS=$'\n'
+ for e in `env | sed 's/=/:/g'`; do
+     echo $e | awk -F':' '{print tolower($1) ": " $2}'
+ done
+
+name: memory_card
+plugin: resource
+user: root
+command: memorycard_resource
+description: Create resource info for memorycard readers

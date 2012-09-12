@@ -1,4 +1,9 @@
 plugin: shell
+name: graphics/driver_version
+command: graphics_driver
+_description: Parses Xorg.0.Log and discovers the running X driver and version
+
+plugin: shell
 name: graphics/xorg-version
 requires: package.name == "x11-utils"
 command: xdpyinfo | grep "^X.Org version" | cut -d ':' -f 2 | tr -d ' '
@@ -18,22 +23,6 @@ _description:
      5. Click on Apply
  VERIFICATION:
      Did the resolution change as expected?
-
-plugin: manual
-name: graphics/rotation
-depends: graphics/xorg-version
-_description:
- PURPOSE:
-     This test will test display rotation
- STEPS:
-     1. Open the Displays application
-     2. Select a new rotation value from the dropdown list
-     3. Click on Apply
-     4. Click on Restore Previous Configuration
-     5. Click on Apply
-     6. Repeat 2-5 for different rotation values
- VERIFICATION:
-     Did the display rotation change as expected?
 
 plugin: shell
 name: graphics/xorg-process
@@ -80,6 +69,16 @@ _description:
  .
  https://help.ubuntu.com/community/Installation/SystemRequirements
 
+name: graphics/modes
+plugin: shell
+command: graphics_modes_info
+_description: Collect info on graphics modes (screen resolution and refresh rate)
+
+name: graphics/color_depth
+plugin: shell
+command: color_depth_info
+_description: Collect info on color depth and pixel format.
+
 plugin: manual
 name: graphics/display
 requires: 
@@ -112,6 +111,19 @@ _description:
  VERIFICATION:
      Did the screen appear to be working for each mode?
 
+plugin: manual
+name: graphics/rotation
+depends: graphics/xorg-version
+command: rotation_test
+_description:
+ PURPOSE:
+     This test will test display rotation
+ STEPS:
+     1. Click "Test" to test display rotation. The display will be rotated every 4 seconds.
+     2. Check if all rotations (normal right inverted left) took place without permanent screen corruption
+ VERIFICATION:
+     Did the display rotation take place without without permanent screen corruption?
+
 plugin: shell
 name: graphics/compiz_check
 requires: package.name == 'nux-tools'
@@ -139,6 +151,24 @@ _description:
  VERIFICATION:
      1. Did the 3d animation appear?
      2. Was the animation free from slowness/jerkiness?
+
+plugin: shell
+name: graphics/3d_window_open_close
+requires: package.name == 'mesa-utils'
+command: window_test -t open-close -i 10
+_description: Open and close a 3D window multiple times
+
+plugin: shell
+name: graphics/3d_window_suspend_resume
+requires: package.name == 'mesa-utils'
+command: window_test -t suspend-resume -i 10
+_description: Open, suspend resume and close a 3D window multiple times
+
+plugin: shell
+name: graphics/multi_3d_windows_open_close
+requires: package.name == 'mesa-utils'
+command: window_test -t open-close-multi -i 10 -w 4
+_description: Open and close 4 3D windows multiple times
 
 plugin: shell
 name: graphics/screenshot

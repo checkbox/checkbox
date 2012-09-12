@@ -140,3 +140,57 @@ requires: package.name == 'linux'
 _description: Check to see if CONFIG_NO_HZ is set in the kernel (this is just a simple regression check)
 command:
  zgrep 'CONFIG_NO_HZ=y' /boot/config-`uname -r` >/dev/null 2>&1 || ( echo "WARNING: Tickless Idle is NOT set" >&2 && exit 1 )
+
+plugin: manual
+name: power-management/unplug_ac
+_description:
+ PURPOSE:
+     This test will ensure that the AC is unplugged for the battery drain tests
+ to run.
+ STEPS:
+     1. Unplug laptop from AC
+ VERIFICATION:
+     Was the laptop unplugged from AC?
+
+plugin: shell
+name: power-management/battery_drain_idle
+requires: package.name == 'upower'
+depends: power-management/unplug_ac
+_description: Checks the battery drain during idle.  Reports time until empty
+ and capacity as well.
+command:
+ battery_test -t 90 --idle
+
+plugin: shell
+name: power-management/battery_drain_movie
+requires:
+ package.name == 'upower'
+depends: power-management/unplug_ac
+_description: Checks the battery drain while watching a movie.  Reports time
+ until empty and capacity as well.  Requires MOVIE_VAR to be set.
+command:
+ battery_test -t 90 --movie $MOVIE_VAR
+
+plugin: shell
+name: power-management/battery_drain_sleep
+user: root
+requires: 
+ package.name == 'upower' 
+ package.name == 'fwts'
+depends: power-management/unplug_ac
+_description: Checks the battery drain during suspend.  Reports time until
+ empty and capacity as well.
+command:
+ battery_test -t 120 --sleep
+
+plugin: manual
+name: power-management/plug_ac
+depends: power-management/battery_drain_idle power-management/battery_drain_movie power-management/battery_drain_sleep
+_description:
+ PURPOSE:
+     This test will ensure that the AC is plugged back in after the battery
+     tests
+ STEPS:
+     1. Plug laptop into AC
+ VERIFICATION:
+     Was the laptop plugged into AC?
