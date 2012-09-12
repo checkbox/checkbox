@@ -152,7 +152,7 @@ _description:
      2. Press "Test" to enter suspend (S3) mode
      3. Press any key of USB keyboard to wake system up
  VERIFICATION:
-     Did the system wake up from suspend mode?
+     Did the system wake up from suspend mode when you pressed a keyboard key?
 
 plugin: manual
 name: power-management/usb_wakeup_mouse
@@ -165,9 +165,9 @@ _description:
  STEPS:
      1. Enable "Wake by USB KB/Mouse" item in BIOS
      2. Press "Test" to enter suspend (S3) mode
-     3. Press any key of USB mouse to wake system up
+     3. Press any button of USB mouse to wake system up
  VERIFICATION:
-     Did the system wake up from suspend mode?
+     Did the system wake up from suspend mode when you pressed the mouse button?
 
 plugin: shell
 name: suspend/network_after_suspend
