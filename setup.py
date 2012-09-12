@@ -10,13 +10,36 @@ from distutils.core import setup
 from distutils.util import change_root, convert_path
 
 from distutils.ccompiler import new_compiler
+from distutils.command.build import build
 from distutils.command.clean import clean
 from distutils.command.install import install
 from distutils.command.install_data import install_data
 from distutils.command.install_scripts import install_scripts
-from DistUtilsExtra.command.build_extra import build_extra
-from DistUtilsExtra.command.build_i18n import build_i18n
-from DistUtilsExtra.command.build_icons import build_icons
+try:
+    from DistUtilsExtra.command.build_extra import build_extra
+    from DistUtilsExtra.command.build_i18n import build_i18n
+    from DistUtilsExtra.command.build_icons import build_icons
+except ImportError:
+    from distutils.cmd import Command
+
+    class build_extra(build):
+        """Adds fake support for i18n and icons to the build target."""
+        def __init__(self, dist):
+            build.__init__(self, dist)
+            self.user_options.extend([("i18n", None, "use the localisation"),
+                                      ("icons", None, "use icons"),
+                                     ])
+
+        def initialize_options(self):
+            build.initialize_options(self)
+            self.i18n = False
+            self.icons = False
+
+    class build_i18n(Command):
+        """Placeholder concrete class for fake i18n support."""
+
+    class build_icons(Command):
+        """Placeholder concrete class for fake icons support."""
 
 
 def changelog_version(changelog="debian/changelog"):
