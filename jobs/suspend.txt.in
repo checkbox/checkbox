@@ -472,7 +472,7 @@ requires:
  device.category == 'AUDIO'
  package.name == 'python-gst0.10'
  package.name == 'alsa-base'
-command: audio_test -v
+command: audio_test
 _description:
  This will check to make sure that your audio device works properly after a suspend and resume.  This may work fine with speakers and onboard microphone, however, it works best if used with a cable connecting the audio-out jack to the audio-in jack.
 

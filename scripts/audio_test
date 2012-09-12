@@ -449,10 +449,10 @@ def process_arguments():
             default=None,
             type=str,
             help="File to save recorded audio in .wav format")
-    parser.add_argument("-v", "--verbose",
+    parser.add_argument("-q", "--quiet",
             action='store_true',
             default=False,
-            help="Be verbose")
+            help="Be quiet, no output unless there's an error.")
     parser.add_argument("-d", "--debug",
             action='store_true',
             default=False,
@@ -476,11 +476,11 @@ def main():
     args = process_arguments()
 
     #Setup logging
-    level = logging.ERROR
+    level = logging.INFO
     if args.debug:
         level = logging.DEBUG
-    if args.verbose:
-        level = logging.INFO
+    if args.quiet:
+        level = logging.ERROR
     logging.basicConfig(level=level)
     try:
         #Launches recording pipeline. I need to hook up into the gst
@@ -511,6 +511,7 @@ def main():
         logging.warning("Unable to get input volume control identifier. "
                        "Test results will probably be invalid")
     recorder.volumecontroller.set_volume(0)
+    recorder.volumecontroller.mute(False)
 
     player.volumecontroller = PAVolumeController(type='output',
                                                  logger=logging)
@@ -556,35 +557,35 @@ def main():
     candidate_bands = analyzer.frequencies_over_average(MAGNITUDE_THRESHOLD)
     if test_band in candidate_bands:
         freqs_for_band = analyzer.frequencies_for_band(test_band)
-        print("PASS: Test frequency of %s in band (%.2f, %.2f) "
+        logging.info("PASS: Test frequency of %s in band (%.2f, %.2f) "
               "which had a magnitude higher than the average" %
             ((args.frequency,) + freqs_for_band))
         return_value = 0
     else:
-        print("FAIL: Test frequency of %s is not in one of the "
+        logging.info("FAIL: Test frequency of %s is not in one of the "
               "bands with higher-than-average magnitude" % args.frequency)
         return_value = 1
     #Is the microphone broken?
     if len(set(analyzer.spectrum)) <= 1:
-        print("WARNING: Microphone seems broken, didn't even record ambient"
+        logging.info("WARNING: Microphone seems broken, didn't even record ambient"
               " noise")
 
     #Write some files to disk for later analysis
     if args.audio:
         if args.verbose:
-            print("Saving recorded audio as %s" % args.audio)
+            logging.info("Saving recorded audio as %s" % args.audio)
         if not FileDumper().write_to_file(args.audio,
                                           [rawaudio.get_raw_audio()]):
-            print("Couldn't save recorded audio", file=sys.stderr)
+            logging.error("Couldn't save recorded audio", file=sys.stderr)
 
     if args.spectrum:
         if args.verbose:
-            print("Saving spectrum data for plotting as %s" % args.spectrum)
+            logging.info("Saving spectrum data for plotting as %s" % args.spectrum)
         if not FileDumper().write_to_file(args.spectrum,
                                        ["%s,%s" % t for t in
                                         zip(analyzer.frequencies,
                                             analyzer.spectrum)]):
-            print("Couldn't save spectrum data for plotting", file=sys.stderr)
+            logging.error("Couldn't save spectrum data for plotting", file=sys.stderr)
 
     return return_value
 

@@ -121,7 +121,7 @@ requires:
  package.name == 'python-gst0.10'
  package.name == 'alsa-base'
  device.category == 'AUDIO'
-command: audio_test -v
+command: audio_test
 _description:
  Play back a sound on the default output and listen for it on the 
  default input.
