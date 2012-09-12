@@ -84,6 +84,8 @@ checkbox (0.14.6) quantal; urgency=low
     names > 50 chars (LP: #1046274)
   * scripts/camera_test, jobs/camera.txt.in: Added a 10s timeout to the camera
     still test (LP: #990133)
+  * scripts/graphics_stress_test, jobs/stress.txt.in: Exit with proper error
+    message if rendercheck is not installed (LP: #1048262)
 
   [Zygmunt Krynicki]
   * Fixed simple duplicate 'the' mistakes (LP: #1040022)
