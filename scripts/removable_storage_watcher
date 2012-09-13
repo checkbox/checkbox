@@ -173,7 +173,7 @@ def main():
     listener = StorageDeviceListener(
         system_bus, loop,
         args.action, args.device, args.minimum_speed, args.memorycard)
-    return(listener.check(args.timeout))
+    return listener.check(args.timeout)
 
 if __name__ == "__main__":
     sys.exit(main())
