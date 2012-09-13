@@ -212,7 +212,7 @@ setup(
 This project provides an extensible interface for system testing.
 """,
     data_files = [
-        ("lib/checkbox/qt/", ["qt/checkbox-qt.ui", "qt/*.png", "qt/frontend/checkbox-qt-service"]),
+        ("lib/checkbox/qt/", ["qt/frontend/checkbox-qt-service"]),
         ("share/checkbox/", ["backend", "run"]),
         ("share/checkbox/data/audio/", ["data/audio/*"]), 
         ("share/checkbox/data/documents/", ["data/documents/*"]), 
