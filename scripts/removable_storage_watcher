@@ -48,8 +48,12 @@ class StorageDeviceListener:
         return self._error
 
     def verify_device_change(self, changed_devices, message=""):
-        desired_bus_devices = [device for device in changed_devices
-                              if device[1] in self._devices]
+        # Filter the applicable bus types, as provided on the command line
+        # (values of self._devices can be 'usb', 'firewire', etc)
+        desired_bus_devices = [
+            device
+            for device in changed_devices
+            if device[1] in self._devices]
         pattern = re.compile('SD|MMC|CF|MS|SM|xD|Card|Generic')
         for dev in desired_bus_devices:
             if self._memorycard:
