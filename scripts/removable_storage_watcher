@@ -164,9 +164,6 @@ def main():
                         type=int, default=0)
     args = parser.parse_args()
 
-    print(args.device)
-    return 0
-
     # Connect to the system bus, we also get the event
     # loop as we need it to start listening for signals.
     system_bus, loop = connect_to_system_bus()
