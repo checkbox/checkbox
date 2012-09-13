@@ -1,23 +1,25 @@
 #!/usr/bin/env python3
 
+import argparse
+import dbus
 import re
 import sys
-import dbus
-import argparse
 
 from gi.repository import GObject
-from dbus.mainloop.glib import DBusGMainLoop
+
+from checkbox.dbus import connect_to_system_bus
 
 
 class StorageDeviceListener:
 
-    def __init__(self, action, devices, minimum_speed, memorycard):
+    def __init__(self, system_bus, loop, action, devices, minimum_speed,
+                 memorycard):
         self._action = action
         self._devices = devices
         self._minimum_speed = minimum_speed
         self._memorycard = memorycard
-        self._bus = dbus.SystemBus(mainloop=DBusGMainLoop())
-        self._loop = GObject.MainLoop()
+        self._bus = system_bus
+        self._loop = loop
         self._error = False
         self._change_cache = []
 
@@ -159,8 +161,16 @@ def main():
     parser.add_argument('--minimum_speed', '-m', help=min_speed_help,
                         type=int, default=0)
     args = parser.parse_args()
-    listener = StorageDeviceListener(args.action, args.device,
-                                     args.minimum_speed, args.memorycard)
+
+    # Connect to the system bus, we also get the event
+    # loop as we need it to start listening for signals.
+    system_bus, loop = connect_to_system_bus()
+
+    # Construct the listener with all of the arguments provided on the command
+    # line and the explicit system_bus, loop objects.
+    listener = StorageDeviceListener(
+        system_bus, loop,
+        args.action, args.device, args.minimum_speed, args.memorycard)
     return(listener.check(args.timeout))
 
 if __name__ == "__main__":
