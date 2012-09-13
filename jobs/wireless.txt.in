@@ -5,6 +5,10 @@ requires:
   device.category == 'WIRELESS'
 command:
  rfkill unblock wlan wifi
+ if rfkill list wlan wifi | grep -q 'Hard blocked: yes'; then
+   echo "Hard block is applied to WiFi device. Please remove and retest."
+   exit 1
+ fi
  wireless_networks=`nmcli -f SSID dev wifi list`
  if [ `echo "$wireless_networks" | wc -l` -gt 1 ]; then
    echo "Wireless networks discovered: "
