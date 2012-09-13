@@ -82,6 +82,8 @@ checkbox (0.14.6) quantal; urgency=low
   * jobs/cpu.txt.in, jobs/stress.txt.in - add environ field containing
     CHECKBOX_DATA to allow that environment variable to be used in the command
     (LP: #1049595)
+  * jobs/wireless.txt.in - replace use of network_wireless_test in wireless_scanning
+    with a simple Bash script using nmcli and delete network_wireless_test (LP: #900370)
 
   [Sylvain Pineau]
   * jobs/suspend.txt.in: Fixed suspend/suspend_advanced dependencies to avoid
