@@ -146,10 +146,8 @@ def main():
     description = "Wait for the specified device to be inserted or removed."
     parser = argparse.ArgumentParser(description=description)
     parser.add_argument('action', choices=['insert', 'remove'])
-    parser.add_argument('device',
-                        choices=['usb', 'sdio', 'firewire',
-                        'scsi', 'ata_serial_esata'],
-                        nargs=argparse.REMAINDER)
+    parser.add_argument('device', choices=['usb', 'sdio', 'firewire', 'scsi',
+                                 'ata_serial_esata'], nargs="+")
     memorycard_help = ("Memory cards devices on bus other than sdio require "
                        "this parameter to identify them as such")
     parser.add_argument('--memorycard', action="store_true",
