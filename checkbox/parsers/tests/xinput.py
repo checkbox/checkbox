@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #
 # This file is part of Checkbox.
 #
@@ -20,10 +21,57 @@ import os
 
 from unittest import TestCase
 
-from checkbox.parsers.xinput import XinputParser
+from checkbox.parsers.xinput import (
+    DEVICE_RE,
+    ATTRIBUTE_RE,
+    CLASS_VALUE_RE,
+    LIST_VALUE_RE,
+    IXinputResult,
+    XinputParser,
+    )
 
 
-class XinputResult:
+class TestDeviceRe(TestCase):
+
+    def test_string(self):
+        match = DEVICE_RE.match(
+            """⎡ Virtual core pointer                      """
+            """id=2    [master pointer  (3)]""")
+        self.assertTrue(match)
+        self.assertEquals(match.group("name"), "Virtual core pointer")
+        self.assertEquals(match.group("id"), "2")
+
+
+class TestAttributeRe(TestCase):
+
+    def test_string(self):
+        match = ATTRIBUTE_RE.match("""Buttons supported: 12""")
+        self.assertTrue(match)
+        self.assertEquals(match.group("key"), "Buttons supported")
+        self.assertEquals(match.group("value"), "12")
+
+
+class TestClassValueRe(TestCase):
+
+    def test_string(self):
+        match = CLASS_VALUE_RE.match("""12. Type: XIButtonClass""")
+        self.assertTrue(match)
+        self.assertEquals(match.group("class"), "XIButtonClass")
+
+
+class TestListValueRe(TestCase):
+
+    def test_string(self):
+        elements = LIST_VALUE_RE.split(
+            """"Button Horiz Wheel Right" None None""")[1::2]
+        self.assertTrue(elements)
+        self.assertEquals(len(elements), 3)
+        self.assertEquals(elements[0], '"Button Horiz Wheel Right"')
+        self.assertEquals(elements[1], "None")
+        self.assertEquals(elements[2], "None")
+
+
+class XinputResult(IXinputResult):
 
     def __init__(self):
         self.devices = {}

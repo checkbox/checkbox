@@ -23,14 +23,17 @@ import sys
 from argparse import ArgumentParser
 
 from checkbox.lib.template import Template
-from checkbox.parsers.xinput import XinputParser
+from checkbox.parsers.xinput import (
+    IXinputResult,
+    XinputParser,
+    )
 
 
 # Command to retrieve xinput information.
 COMMAND = "xinput --list --long"
 
 
-class XinputResult:
+class XinputResult(IXinputResult):
 
     def __init__(self):
         self.elements = []
