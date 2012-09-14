@@ -127,9 +127,8 @@ def inquire(device):
 
 
 def main():
-    pattern = re.compile('SD|MMC|CF|MS|SM|xD|Card|Generic')
-    matches = [dev for dev in glob('/dev/sg*') if
-               pattern.search(inquire(dev), re.I)]
+    pattern = re.compile('SD|MMC|CF|MS|SM|xD|Card|Generic', re.I)
+    matches = [dev for dev in glob('/dev/sg*') if pattern.search(inquire(dev))]
 
     if matches or not call(
         "grep -q 'SDHCI controller found' /var/log/kern.log*", shell=True):

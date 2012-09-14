@@ -142,7 +142,7 @@ class DiskTest():
         self.rem_disks_nm = {}
         self.rem_disks_memory_cards = {}
         self.rem_disks_memory_cards_nm = {}
-        pattern = re.compile('SD|MMC|CF|MS|SM|xD|Card|Generic')
+        pattern = re.compile('SD|MMC|CF|MS|SM|xD|Card|Generic', re.I)
         for dev in ud_manager.EnumerateDevices():
             device_obj = bus.get_object("org.freedesktop.UDisks", dev)
             device_props = dbus.Interface(device_obj, dbus.PROPERTIES_IFACE)
@@ -150,7 +150,7 @@ class DiskTest():
             if not device_props.Get(udisks, "DeviceIsDrive"):
                 dev_bus = device_props.Get(udisks, "DriveConnectionInterface")
                 if dev_bus in args.device:
-                    parent_model = ''
+                    parent_model = parent_vendor = ''
                     if device_props.Get(udisks, "DeviceIsPartition"):
                         parent_obj = bus.get_object(
                             "org.freedesktop.UDisks",
@@ -158,12 +158,13 @@ class DiskTest():
                         parent_props = dbus.Interface(
                             parent_obj, dbus.PROPERTIES_IFACE)
                         parent_model=parent_props.Get(udisks, "DriveModel")
+                        parent_vendor=parent_props.Get(udisks, "DriveVendor")
                     if args.memorycard:
                         if dev_bus != 'sdio' and not pattern.search(
-                            parent_model, re.I):
+                            parent_model+parent_vendor):
                             continue
                     else:
-                        if pattern.search(parent_model, re.I):
+                        if pattern.search(parent_model+parent_vendor):
                             continue
                     dev_file = str(device_props.Get(udisks, "DeviceFile"))
                     dev_speed = str(device_props.Get(udisks,
