@@ -84,6 +84,7 @@ checkbox (0.14.6) quantal; urgency=low
     (LP: #1049595)
   * jobs/wireless.txt.in - replace use of network_wireless_test in wireless_scanning
     with a simple Bash script using nmcli and delete network_wireless_test (LP: #900370)
+  * jobs/audio.txt.in - fix description of audio/playback_hdmi (LP: #1052136)
 
   [Sylvain Pineau]
   * jobs/suspend.txt.in: Fixed suspend/suspend_advanced dependencies to avoid

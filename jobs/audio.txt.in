@@ -36,13 +36,12 @@ command:
  audio_settings store --file=$CHECKBOX_DATA/pulseaudio_settings; audio_settings set --device=hdmi --volume=50; gst_pipeline_test -t 2 --device hdmi 'audiotestsrc wave=sine freq=512 ! audioconvert ! audioresample ! autoaudiosink'; EXIT_CODE=$?; audio_settings restore --file=$CHECKBOX_DATA/pulseaudio_settings; exit $EXIT_CODE
 _description:
  PURPOSE:
-    1. HDMI interface verification
+    HDMI interface verification
  STEPS:
     1. Plug an external HDMI device with sound (Use second port if you have more than one hdmi interface)
     2. Click the Test button
  VERIFICATION:
-    1. Do you hear the sound coming out on the  corresponding channel?
-    2. Did you hear a sound?
+    1. Did you hear the sound from the HDMI device?
 
 plugin: manual
 name: audio/playback_headphones
