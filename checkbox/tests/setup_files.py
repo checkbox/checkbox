@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #
 # This file is part of Checkbox.
 #
@@ -16,10 +17,11 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-import os
-import unittest
 import configparser
 import glob
+import os
+import re
+import unittest
 
 class SetupFiles(unittest.TestCase):
 
@@ -38,9 +40,25 @@ class SetupFiles(unittest.TestCase):
     def test_job_files_in_potfiles(self):
         potfile_lines = [line.strip() for line in open('po/POTFILES.in','r')]
         potfile_jobfiles = [file for file in potfile_lines if "rfc822deb" in file]
-        potfile_jobfiles = [line.split(']')[1].strip() for line in potfile_jobfiles if ']' in line]
+        potfile_jobfiles = [line.split(']')[1].strip() 
+                            for line in potfile_jobfiles if ']' in line]
 
         potfile_jobfiles = sorted(potfile_jobfiles)
         existing_files = sorted(glob.glob('jobs/*.in'))
-        print (potfile_jobfiles)
         self.assertEqual(potfile_jobfiles, existing_files)
+
+    def test_job_files_in_local_txt(self):
+        local_lines = [line.strip() for line in open('jobs/local.txt.in','r')]
+        local_jobfiles = [file for file in local_lines if "$CHECKBOX_SHARE/jobs" in file]
+        local_jobfiles = [re.search('\$CHECKBOX_SHARE\/(?P<job_file>jobs\/(.+)\.txt)\?.*',
+                          file).group('job_file')+".in" for file in local_jobfiles]
+
+        local_jobfiles = sorted(local_jobfiles)
+        existing_files = sorted(glob.glob('jobs/*.in'))
+        #We need to remove local.txt.in from existing_files since it doesn't contain 
+        #itself, also removing resource.txt.in which does not need
+        #to be included in a suite.
+        existing_files.remove("jobs/local.txt.in")
+        existing_files.remove("jobs/resource.txt.in")
+        self.assertEqual(local_jobfiles, existing_files)
+

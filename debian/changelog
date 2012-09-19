@@ -1,6 +1,5 @@
 checkbox (0.14.6) quantal; urgency=low
 
-  [ Jeff Lane ]
   [Chris Wayne]
   * [FEATURE] scripts/touchpad_scroll_resource, jobs/touchpad.txt.in:
     adding in touchpad scroll detection resource job, and modified jobs
@@ -38,8 +37,9 @@ checkbox (0.14.6) quantal; urgency=low
   * scripts/audio_test: made the default mode verbose, it now sends all
     output to stderr (but still exits a proper return value). Jobs using it 
     are updated to remove the now-unneeded -v parameter.
-  * Added tests to ensure all job files are declared in setup.cfg and
-    po/POTFILES.in"/POTFILES.in
+  * Added tests to ensure all job files are declared in setup.cfg, 
+    po/POTFILES.in and included in jobs/local.txt.in.
+  * setup.cfg, po/POTFILES.in, jobs/local.txt.in: Fixed so the tests pass.
 
   [Alberto Milone]
   * [FEATURE] scripts/window_test, jobs/graphics.txt.in: Added script
