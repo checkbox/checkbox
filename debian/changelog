@@ -23,6 +23,8 @@ checkbox (0.14.6) quantal; urgency=low
   * scripts/graphics_driver: fixed a bug causing the hybrid check to throw an
     exception on hybrid systems (LP: #1048058)
   * setup.py: added checkbox.dbus to packages (LP: #1052601)
+  * jobs/optical.txt.in: removed the optical/dvd_movie_playback job definition
+    as it was redundant (LP: #868643)
 
   [Daniel Manrique]
   * Bumped to 0.14.6 to keep changelog size sane and fix a small mishap in the

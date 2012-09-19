@@ -106,21 +106,6 @@ _description:
  This is an automated version of optical/dvd-write. It assumes you inserted a blank DVD-R or DVD+R before starting testing. You must watch for the tray opening. The test will attempt to close the tray and continue testing, however this is not possible in all optical drives, thus you may need to push the tray or disk back in manually to continue the test.  This test has a 5 minute timeout to allow for the tester to catch this.
 
 plugin: manual
-name: optical/dvd_movie_playback
-depends: optical/read
-_description:
- PURPOSE:
-     This test will check your DVD movie playback capabilities. Note that installation of non-free software (codecs, player, etc) may be required prior to performing this test.
- STEPS:
-     1. Insert a DVD that contains any movie in your optical drive
-     2. Open the Dash (click on the Ubuntu Circle of Friends button on the Launcher)
-     3. Click "Media Apps" and then click on "Movie Player"
-     4. Play the movie using Movie Player, stop the movie after verifying that it plays
-     6. Eject the DVD
- VERIFICATION:
-     Did all the steps work?
-
-plugin: manual
 name: optical/dvd_playback
 command: totem /media/cdrom
 requires:
