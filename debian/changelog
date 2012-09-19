@@ -22,6 +22,8 @@ checkbox (0.14.6) quantal; urgency=low
     connections. This is necessary for adequate QA testing (LP: #1042425)
   * scripts/graphics_driver: fixed a bug causing the hybrid check to throw an
     exception on hybrid systems (LP: #1048058)
+  * jobs/fingerprint.txt.in: Cleaned up the definitions to match current Unity
+    (LP: #946184)
 
   [Daniel Manrique]
   * Bumped to 0.14.6 to keep changelog size sane and fix a small mishap in the
@@ -114,7 +116,7 @@ checkbox (0.14.6) quantal; urgency=low
     the 'device' argument (bus type) and require at least one value
   * [FEATURE] scripts/removable_storage_watcher: add support for debugging
 
- -- Jeff Lane <jeff@ubuntu.com>  Wed, 19 Sep 2012 10:33:17 -0400
+ -- Jeff Lane <jeff@ubuntu.com>  Wed, 19 Sep 2012 11:27:45 -0400
 
 checkbox (0.14.5) quantal; urgency=low
 
