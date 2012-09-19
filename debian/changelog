@@ -25,6 +25,8 @@ checkbox (0.14.6) quantal; urgency=low
   * setup.py: added checkbox.dbus to packages (LP: #1052601)
   * jobs/optical.txt.in: removed the optical/dvd_movie_playback job definition
     as it was redundant (LP: #868643)
+  * [FEATURE] jobs/fingerprint.txt.in: Cleaned up the definitions to
+    match current Unity (LP: #946184)
   * [FEATURE] jobs/usb.txt.in: replaced the usb/mouse and usb/keyboard tests 
     with usb/HID to combine them so the tester can choose one device rather 
     than requiring multiple devices. (LP: #1053032)
