@@ -164,13 +164,3 @@ _description:
  and sinks (outputs) recognized by PulseAudio.  It will also validate that the
  active source and sink are not muted.  You should not manually adjust the 
  volume or mute before running this test.
-
-plugin: shell
-name: audio/device_driver_info
-requires:
- package.name == 'pulseaudio-utils'
- package.name == 'module-init-tools'
- device.category == 'AUDIO'
-command: audio_driver_info
-_description:
- This test will list the device driver and version for all audio devices.

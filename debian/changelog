@@ -4,17 +4,20 @@ checkbox (0.14.6) quantal; urgency=low
   * [FEATURE] scripts/touchpad_scroll_resource, jobs/touchpad.txt.in:
     adding in touchpad scroll detection resource job, and modified jobs
     to require the capability to be present.
-
+  
   [Jeff Lane]
   * Cleaning up duplicated modinfo code: (LP: #1043521)
     * checkbox/parsers/modinfo.py: added a parser to handle output from modinfo
     * scripts/audio_driver_info: modified to use modinfo parser
     * scripts/network_device_info: modified to use modinfo parser
     * scripts/accelerometer_test: modified to use modinfo parser
-  * scripts/lsmod_info: added script to provide better lsmod output for the
-    lsmod_attachment job using the power of the modinfo parser
-    jobs/info.txt.in: modified lsmod_attachment job to use lsmod_info script
-    rather than just lsmod output (LP: #1043531)
+  * Cleaning up missing touchpad driver info bits: (LP: #1052942)
+    * scripts/touchpad_driver_info: added script from automation sprint to get
+      driver info for installed/detected touchpad devices
+    * jobs/info.txt.in: added job to get driver info during info job phase.
+      Moved audio_driver_info and network_driver_info into info.txt.in because
+      they are better suited there. Moved network_device_info job into
+      info.txt.in.
   * jobs/wireless.txt.in: Added jobs to individually test 802.11a/b/g/n
     connections. This is necessary for adequate QA testing (LP: #1042425)
   * scripts/graphics_driver: fixed a bug causing the hybrid check to throw an
@@ -111,7 +114,7 @@ checkbox (0.14.6) quantal; urgency=low
     the 'device' argument (bus type) and require at least one value
   * [FEATURE] scripts/removable_storage_watcher: add support for debugging
 
- -- Jeff Lane <jeff@ubuntu.com>  Tue, 11 Sep 2012 10:34:34 -0400
+ -- Jeff Lane <jeff@ubuntu.com>  Wed, 19 Sep 2012 10:33:17 -0400
 
 checkbox (0.14.5) quantal; urgency=low
 
@@ -170,6 +173,10 @@ checkbox (0.14.5) quantal; urgency=low
   * jobs/stress.txt.in: added two sample jobs to demonstrate the new features
     of removable_storage_test
   * jobs/piglit.txt.in: added jobs that run the piglit graphics test suite
+  * scripts/lsmod_info: added script to provide better lsmod output for the
+    lsmod_attachment job using the power of the modinfo parser
+    jobs/info.txt.in: modified lsmod_attachment job to use lsmod_info script
+    rather than just lsmod output (LP: #1043531)
   
   [Matt Fischer]
   * scripts/audio_driver_info: added script to find info on loaded drivers
