@@ -12,3 +12,4 @@ requires:
  package.name == 'x11-apps'
 depends: rendercheck/tests
 command: [ -e $CHECKBOX_DATA/rendercheck-results ] && tar cvfz $CHECKBOX_DATA/rendercheck-results.tar.gz $CHECKBOX_DATA/rendercheck-results
+_description: Attaches the rendercheck test results to the submission.
