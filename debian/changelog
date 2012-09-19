@@ -22,6 +22,19 @@ checkbox (0.14.6) quantal; urgency=low
     connections. This is necessary for adequate QA testing (LP: #1042425)
   * scripts/graphics_driver: fixed a bug causing the hybrid check to throw an
     exception on hybrid systems (LP: #1048058)
+  * setup.py: added checkbox.dbus to packages (LP: #1052601)
+  * jobs/optical.txt.in: removed the optical/dvd_movie_playback job definition
+    as it was redundant (LP: #868643)
+  * [FEATURE] jobs/fingerprint.txt.in: Cleaned up the definitions to
+    match current Unity (LP: #946184)
+  * [FEATURE] jobs/usb.txt.in: replaced the usb/mouse and usb/keyboard tests 
+    with usb/HID to combine them so the tester can choose one device rather 
+    than requiring multiple devices. (LP: #1053032)
+  * [FEATURE] jobs/keys.txt.in: modified the battery info key job to
+    use the keys_test script as we do with other hotkey tests (LP: #990538)
+  * [FEATURE] jobs/bluetooth.txt.in: removed the bluetooth/keyboard job
+    and modified bluetooth/mouse to be bluetooth/HID and allow the tester
+    to choose a device to use. (LP: #1053010)
 
   [Daniel Manrique]
   * Bumped to 0.14.6 to keep changelog size sane and fix a small mishap in the
@@ -105,7 +118,10 @@ checkbox (0.14.6) quantal; urgency=low
     Exit with proper error message if rendercheck is not installed.
     (LP: #1048262)
   * [FEATURE] jobs/suspend.txt.in: Add usb wakeup tests (mouse and keyboard).
-  * setup.py, qt/checkbox-qt.ui: Removed the old UI design file (LP: #1049912) 
+  * setup.py, qt/checkbox-qt.ui: Removed the old UI design file (LP: #1049912)
+  * [FEATURE] jobs/rendercheck.txt.in, po/POTFILES.in, setup.cfg: Fixed
+    the rendercheck tests, added the suite file to setup.cfg/POTFILES.in
+    and moved the rendercheck/tarball job into an attachment (LP #1053033)
 
   [Zygmunt Krynicki]
   * Fixed simple duplicate 'the' mistakes (LP: #1040022)

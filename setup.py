@@ -202,16 +202,16 @@ class checkbox_build_icons(build_icons, object):
 
 
 setup(
-    name = "checkbox",
-    version = changelog_version(),
-    author = "Marc Tardif",
-    author_email = "marc.tardif@canonical.com",
-    license = "GPL",
-    description = "Checkbox System Testing",
-    long_description = """
+    name="checkbox",
+    version=changelog_version(),
+    author="Marc Tardif",
+    author_email="marc.tardif@canonical.com",
+    license="GPL",
+    description="Checkbox System Testing",
+    long_description="""
 This project provides an extensible interface for system testing.
 """,
-    data_files = [
+    data_files=[
         ("lib/checkbox/qt/", ["qt/frontend/checkbox-qt-service"]),
         ("share/checkbox/", ["backend", "run"]),
         ("share/checkbox/data/audio/", ["data/audio/*"]), 
@@ -233,12 +233,16 @@ This project provides an extensible interface for system testing.
         ("share/dbus-1/services/", ["qt/com.canonical.QtCheckbox.service"]),
         ("share/apport/package-hooks/", ["apport/source_checkbox.py"]),
         ("share/apport/general-hooks/", ["apport/checkbox.py"])],
-    scripts = ["bin/checkbox-cli", "bin/checkbox-gtk", "bin/checkbox-urwid", "bin/checkbox-qt"],
-    packages = ["checkbox", "checkbox.contrib", "checkbox.lib", "checkbox.parsers",
-        "checkbox.reports", "checkbox_cli", "checkbox_gtk", "checkbox_urwid", "checkbox_qt"],
-    package_data = {
+    scripts=[
+        "bin/checkbox-cli", "bin/checkbox-gtk", "bin/checkbox-urwid",
+        "bin/checkbox-qt"],
+    packages=[
+        "checkbox", "checkbox.contrib", "checkbox.dbus", "checkbox.lib",
+        "checkbox.parsers", "checkbox.reports", "checkbox_cli",
+        "checkbox_gtk", "checkbox_urwid", "checkbox_qt"],
+    package_data={
         "": ["cputable"]},
-    cmdclass = {
+    cmdclass={
         "build": checkbox_build,
         "build_i18n": build_i18n,
         "build_icons": checkbox_build_icons,
