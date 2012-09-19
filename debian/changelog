@@ -19,6 +19,9 @@ checkbox (0.14.6) quantal; urgency=low
     connections. This is necessary for adequate QA testing (LP: #1042425)
   * scripts/graphics_driver: fixed a bug causing the hybrid check to throw an
     exception on hybrid systems (LP: #1048058)
+  * jobs/bluetooth.txt.in: removed the bluetooth/keyboard job and modified
+    bluetooth/mouse to be bluetooth/HID and allow the tester to choose a
+    device to use. (LP: #1053010)
 
   [Daniel Manrique]
   * Bumped to 0.14.6 to keep changelog size sane and fix a small mishap in the
@@ -110,7 +113,7 @@ checkbox (0.14.6) quantal; urgency=low
     the 'device' argument (bus type) and require at least one value
   * [FEATURE] scripts/removable_storage_watcher: add support for debugging
 
- -- Jeff Lane <jeff@ubuntu.com>  Tue, 11 Sep 2012 10:34:34 -0400
+ -- Jeff Lane <jeff@ubuntu.com>  Wed, 19 Sep 2012 13:09:08 -0400
 
 checkbox (0.14.5) quantal; urgency=low
 
