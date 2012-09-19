@@ -19,9 +19,9 @@ checkbox (0.14.6) quantal; urgency=low
     connections. This is necessary for adequate QA testing (LP: #1042425)
   * scripts/graphics_driver: fixed a bug causing the hybrid check to throw an
     exception on hybrid systems (LP: #1048058)
-  * jobs/usb.txt.in: replaced the usb/mouse and usb/keyboard tests with usb/HID
-    to combine them so the tester can choose one device rather than requiring
-    multiple devices. (LP: #1053032)
+  * [FEATURE] jobs/usb.txt.in: replaced the usb/mouse and usb/keyboard tests 
+    with usb/HID to combine them so the tester can choose one device rather 
+    than requiring multiple devices. (LP: #1053032)
 
   [Daniel Manrique]
   * Bumped to 0.14.6 to keep changelog size sane and fix a small mishap in the
