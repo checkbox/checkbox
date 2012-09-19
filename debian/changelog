@@ -25,6 +25,8 @@ checkbox (0.14.6) quantal; urgency=low
   * setup.py: added checkbox.dbus to packages (LP: #1052601)
   * jobs/optical.txt.in: removed the optical/dvd_movie_playback job definition
     as it was redundant (LP: #868643)
+  * [FEATURE] jobs/keys.txt.in: modified the battery info key job to
+    use the keys_test script as we do with other hotkey tests (LP: #990538)
 
   [Daniel Manrique]
   * Bumped to 0.14.6 to keep changelog size sane and fix a small mishap in the
