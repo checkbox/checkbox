@@ -99,7 +99,10 @@ checkbox (0.14.6) quantal; urgency=low
     Exit with proper error message if rendercheck is not installed.
     (LP: #1048262)
   * [FEATURE] jobs/suspend.txt.in: Add usb wakeup tests (mouse and keyboard).
-  * setup.py, qt/checkbox-qt.ui: Removed the old UI design file (LP: #1049912) 
+  * setup.py, qt/checkbox-qt.ui: Removed the old UI design file (LP: #1049912)
+  * jobs/rendercheck.txt.in, po/POTFILES.in, setup.cfg: Fixed the rendercheck
+    tests, added the suite file to setup.cfg/POTFILES.in and moved the 
+    rendercheck/tarball job into an attachment (LP #1053033)
 
   [Zygmunt Krynicki]
   * Fixed simple duplicate 'the' mistakes (LP: #1040022)
