@@ -25,6 +25,9 @@ checkbox (0.14.6) quantal; urgency=low
   * setup.py: added checkbox.dbus to packages (LP: #1052601)
   * jobs/optical.txt.in: removed the optical/dvd_movie_playback job definition
     as it was redundant (LP: #868643)
+  * [FEATURE] jobs/usb.txt.in: replaced the usb/mouse and usb/keyboard tests 
+    with usb/HID to combine them so the tester can choose one device rather 
+    than requiring multiple devices. (LP: #1053032)
   * [FEATURE] jobs/keys.txt.in: modified the battery info key job to
     use the keys_test script as we do with other hotkey tests (LP: #990538)
   * [FEATURE] jobs/bluetooth.txt.in: removed the bluetooth/keyboard job
@@ -122,7 +125,7 @@ checkbox (0.14.6) quantal; urgency=low
     the 'device' argument (bus type) and require at least one value
   * [FEATURE] scripts/removable_storage_watcher: add support for debugging
 
- -- Jeff Lane <jeff@ubuntu.com>  Wed, 19 Sep 2012 13:09:08 -0400
+ -- Jeff Lane <jeff@ubuntu.com>  Wed, 19 Sep 2012 14:20:15 -0400
 
 checkbox (0.14.5) quantal; urgency=low
 

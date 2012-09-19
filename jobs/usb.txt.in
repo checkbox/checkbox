@@ -23,31 +23,19 @@ _description:
      Were the drives detected?
 
 plugin: manual
-name: usb/keyboard
+name: usb/HID
 depends: usb/detect
 requires: package.name == 'linux'
 command: keyboard_test
 _description:
  PURPOSE:
-     This test will check your USB connection.
+     This test will check that you can use a USB HID device
  STEPS:
-     1. Plug a USB keyboard into the computer.
-     2. Click on "Test" and enter some text.
+     1. Enable either a USB mouse or keyboard
+     2. For mice, perform actions such as moving the pointer, right and left button clicks and double clicks
+     3. For keyboards, click the Test button to lauch a small tool. Type some text and close the tool.
  VERIFICATION:
-     Does the keyboard work?
-
-plugin: manual
-name: usb/mouse
-depends: usb/detect
-requires: package.name == 'linux'
-_description:
- PURPOSE:
-     This test will check your USB connection.
- STEPS:
-     1. Plug a USB mouse into the computer.
-     2. Perform some single/double/right click operations.
- VERIFICATION:
-     Does the mouse work correctly?
+     Did the device work as expected?
 
 plugin: manual
 name: usb/insert
