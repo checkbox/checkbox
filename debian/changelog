@@ -297,6 +297,8 @@ checkbox (0.14.4) quantal; urgency=low
     resolved so that it doesn't look like the UI hung (LP: #1036573)
   * Remove gcov_attachment from default whitelist since it depends on lcov
     which is not in the default install, and is not used anyway.
+  * Better feedback from resolution_test script. Display the expected and
+    detected resolution values.
 
   [Nathan Williams]
   * scripts/network_check: Fixed exception handling in the absence of zenity
