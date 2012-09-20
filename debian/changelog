@@ -101,7 +101,7 @@ checkbox (0.14.6) quantal; urgency=low
   * jobs/wireless.txt.in - replace use of network_wireless_test in wireless_scanning
     with a simple Bash script using nmcli and delete network_wireless_test (LP: #900370)
   * jobs/audio.txt.in - fix description of audio/playback_hdmi (LP: #1052136)
-  * qt/frontend/qtfront.ui, qt/frontend/qtfront.cpp - set focus to Continue
+  * [UIFe] qt/frontend/qtfront.ui, qt/frontend/qtfront.cpp - set focus to Continue
     button and make it the default so that it can be 'clicked' using Enter,
     as well as renaming it to 'continueButton' (LP: #1052506)
 
