@@ -56,7 +56,7 @@ QtFront::QtFront(QApplication *parent) :
     ui->radioTestTab->setVisible(false);
     ui->nextPrevButtons->setVisible(false);
     ui->treeView->verticalScrollBar()->setTracking(true);
-    connect(ui->friendlyTestsButton, SIGNAL(clicked()), this, SLOT(onFullTestsClicked()));
+    connect(ui->continueButton, SIGNAL(clicked()), this, SLOT(onFullTestsClicked()));
     connect(ui->deselectAllButton, SIGNAL(clicked()), this, SLOT(onDeselectAllClicked()));
     connect(ui->selectAllButton, SIGNAL(clicked()), this, SLOT(onSelectAllClicked()));
     connect(ui->buttonStartTesting, SIGNAL(clicked()), this, SLOT(onStartTestsClicked()));
@@ -70,6 +70,7 @@ QtFront::QtFront(QApplication *parent) :
     connect(ui->treeView, SIGNAL(expanded(QModelIndex)), this, SLOT(onJobItemChanged(QModelIndex)));
     connect(ui->treeView, SIGNAL(clicked(QModelIndex)), this,  SLOT(onTestSelectionChanged()));
     connect(this, SIGNAL(testSelectionChanged()), this,  SLOT(onTestSelectionChanged()));
+    ui->continueButton->setFocus();
     ui->stepsFrame->setFixedHeight(0);
     ui->buttonSubmitResults->setEnabled(false);
     ui->submissionDataLineEdit->setEnabled(false);
