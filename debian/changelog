@@ -68,6 +68,8 @@ checkbox (0.14.6) quantal; urgency=low
     preseed properties in environment_info plugin.
   * [FEATURE] qt/frontend/qtfront.ui: Fixed warnings when building with
     qtcreator (LP #1053126)
+  * setup.py: Fixed required dependency on distutils-extra by providing
+    fake implementations of build_i18n and build_icons (LP #1049218)
 
   [Sean Feole]
   * [FEATURE] scripts/battery_test: measures battery capacity before and after
