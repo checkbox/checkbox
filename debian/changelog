@@ -116,6 +116,8 @@ checkbox (0.14.6) quantal; urgency=low
   * [UIFe] qt/frontend/qtfront.ui, qt/frontend/qtfront.cpp - set focus to Continue
     button and make it the default so that it can be 'clicked' using Enter,
     as well as renaming it to 'continueButton' (LP: #1052506)
+  * jobs/power-management.txt.in - Fix incorrect formatting of job descriptions
+    to allow steps to be displayed by the UI (LP: #1054208)
 
   [Sylvain Pineau]
   * jobs/suspend.txt.in: Fixed suspend/suspend_advanced dependencies to avoid
