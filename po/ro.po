@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-08-28 05:12+0000\n"
-"X-Generator: Launchpad (build 15864)\n"
+"X-Launchpad-Export-Date: 2012-09-11 04:35+0000\n"
+"X-Generator: Launchpad (build 15924)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:9
 msgid "_Previous"
@@ -4353,17 +4353,17 @@ msgid "Unknown signal"
 msgstr "Semnal necunoscut"
 
 #: ../checkbox_cli/cli_interface.py:31
-#: ../checkbox_urwid/urwid_interface.py:939 ../checkbox_qt/qt_interface.py:34
+#: ../checkbox_urwid/urwid_interface.py:939
 msgid "yes"
 msgstr "Da"
 
 #: ../checkbox_cli/cli_interface.py:32
-#: ../checkbox_urwid/urwid_interface.py:940 ../checkbox_qt/qt_interface.py:35
+#: ../checkbox_urwid/urwid_interface.py:940
 msgid "no"
 msgstr "nu"
 
 #: ../checkbox_cli/cli_interface.py:33
-#: ../checkbox_urwid/urwid_interface.py:941 ../checkbox_qt/qt_interface.py:36
+#: ../checkbox_urwid/urwid_interface.py:941
 msgid "skip"
 msgstr "omite"
 
@@ -4401,21 +4401,21 @@ msgstr "Vă rog scrieţi aici şi apăsaţi Ctrl-D când aţi terminat:\n"
 msgid "Checkbox System Testing"
 msgstr "Testarea sistemului Checkbox"
 
-#: ../checkbox_urwid/urwid_interface.py:127 ../qt/frontend/ui_qtfront.h:592
+#: ../checkbox_urwid/urwid_interface.py:127 ../qt/frontend/ui_qtfront.h:637
 msgid "Continue"
 msgstr "Continuă"
 
 #: ../checkbox_urwid/urwid_interface.py:220
 #: ../checkbox_urwid/urwid_interface.py:296
 #: ../checkbox_urwid/urwid_interface.py:447
-#: ../checkbox_urwid/urwid_interface.py:569 ../qt/frontend/ui_qtfront.h:612
+#: ../checkbox_urwid/urwid_interface.py:569
 msgid "Previous"
 msgstr "Precedente"
 
 #: ../checkbox_urwid/urwid_interface.py:221
 #: ../checkbox_urwid/urwid_interface.py:297
 #: ../checkbox_urwid/urwid_interface.py:448
-#: ../checkbox_urwid/urwid_interface.py:570 ../qt/frontend/ui_qtfront.h:611
+#: ../checkbox_urwid/urwid_interface.py:570
 msgid "Next"
 msgstr "Înainte"
 
@@ -4437,7 +4437,7 @@ msgstr "Extinde tot"
 msgid "Collapse All"
 msgstr "Restrânge tot"
 
-#: ../checkbox_urwid/urwid_interface.py:1034 ../qt/frontend/ui_qtfront.h:606
+#: ../checkbox_urwid/urwid_interface.py:1034
 msgid "Test"
 msgstr "Test"
 
@@ -4449,11 +4449,11 @@ msgstr "Testează din nou"
 msgid "_Test Again"
 msgstr "_Testează din nou"
 
-#: ../checkbox_gtk/gtk_interface.py:574 ../qt/frontend/qtfront.cpp:530
+#: ../checkbox_gtk/gtk_interface.py:574 ../qt/frontend/qtfront.cpp:527
 msgid "Info"
 msgstr "Informații"
 
-#: ../checkbox_gtk/gtk_interface.py:599 ../qt/frontend/qtfront.cpp:235
+#: ../checkbox_gtk/gtk_interface.py:599 ../qt/frontend/qtfront.cpp:224
 msgid "Error"
 msgstr "Eroare"
 
@@ -4646,7 +4646,7 @@ msgstr ""
 "rugăm să parcurgeți toate testele. Puteți oricând să săriți peste testele "
 "pentru care nu dețineți echipamentul fizic necesar."
 
-#: ../plugins/suites_prompt.py:136 ../qt/frontend/ui_qtfront.h:596
+#: ../plugins/suites_prompt.py:136 ../qt/frontend/ui_qtfront.h:641
 msgid "Choose tests to run on your system:"
 msgstr ""
 
@@ -4670,127 +4670,127 @@ msgstr "Conexiunea stabilită a pierdut un pachet"
 msgid "Internet connection fully established"
 msgstr "Conexiune la Internet stabilită complet"
 
-#: ../qt/frontend/qtfront.cpp:91
+#: ../qt/frontend/qtfront.cpp:79
 msgid "Audio Test"
 msgstr "Test audio"
 
-#: ../qt/frontend/qtfront.cpp:92
+#: ../qt/frontend/qtfront.cpp:80
 msgid "Bluetooth Test"
 msgstr "Test bluetooth"
 
-#: ../qt/frontend/qtfront.cpp:93
+#: ../qt/frontend/qtfront.cpp:81
 msgid "Camera Test"
 msgstr "Test cameră"
 
-#: ../qt/frontend/qtfront.cpp:94
+#: ../qt/frontend/qtfront.cpp:82
 msgid "CPU Test"
 msgstr "Test CPU"
 
-#: ../qt/frontend/qtfront.cpp:95
+#: ../qt/frontend/qtfront.cpp:83
 msgid "Disk Test"
 msgstr "Test disc"
 
-#: ../qt/frontend/qtfront.cpp:96
+#: ../qt/frontend/qtfront.cpp:84
 msgid "Firewire Test"
 msgstr "Test port fireware"
 
-#: ../qt/frontend/qtfront.cpp:97
+#: ../qt/frontend/qtfront.cpp:85
 msgid "Graphics Test"
 msgstr "Test grafică"
 
-#: ../qt/frontend/qtfront.cpp:98
+#: ../qt/frontend/qtfront.cpp:86
 msgid "Info Test"
 msgstr "Test informații"
 
-#: ../qt/frontend/qtfront.cpp:99
+#: ../qt/frontend/qtfront.cpp:87
 msgid "Input Test"
 msgstr "Test intrare"
 
-#: ../qt/frontend/qtfront.cpp:100
+#: ../qt/frontend/qtfront.cpp:88
 msgid "Keys Test"
 msgstr "Test taste"
 
-#: ../qt/frontend/qtfront.cpp:101
+#: ../qt/frontend/qtfront.cpp:89
 msgid "Media Card Test"
 msgstr "Test card media"
 
-#: ../qt/frontend/qtfront.cpp:102
+#: ../qt/frontend/qtfront.cpp:90
 msgid "Memory Test"
 msgstr "Test memorie"
 
-#: ../qt/frontend/qtfront.cpp:103
+#: ../qt/frontend/qtfront.cpp:91
 msgid "Miscellanea Test"
 msgstr "Test diverse"
 
-#: ../qt/frontend/qtfront.cpp:104
+#: ../qt/frontend/qtfront.cpp:92
 msgid "Monitor Test"
 msgstr "Test monitor"
 
-#: ../qt/frontend/qtfront.cpp:105
+#: ../qt/frontend/qtfront.cpp:93
 msgid "Networking Test"
 msgstr "Test rețea"
 
-#: ../qt/frontend/qtfront.cpp:106
+#: ../qt/frontend/qtfront.cpp:94
 msgid "Wireless Test"
 msgstr "Test wireless"
 
-#: ../qt/frontend/qtfront.cpp:107
+#: ../qt/frontend/qtfront.cpp:95
 msgid "Optical Test"
 msgstr "Test optic"
 
-#: ../qt/frontend/qtfront.cpp:108
+#: ../qt/frontend/qtfront.cpp:96
 msgid "PCMCIA/PCIX Test"
 msgstr "Test PCMCIA/PCIX"
 
-#: ../qt/frontend/qtfront.cpp:109
+#: ../qt/frontend/qtfront.cpp:97
 msgid "Power Management Test"
 msgstr "Test administrarea consumului"
 
-#: ../qt/frontend/qtfront.cpp:110
+#: ../qt/frontend/qtfront.cpp:98
 msgid "Suspend Test"
 msgstr "Test pentru funcția de suspendare"
 
-#: ../qt/frontend/qtfront.cpp:111
+#: ../qt/frontend/qtfront.cpp:99
 msgid "USB Test"
 msgstr "Test USB"
 
-#: ../qt/frontend/qtfront.cpp:113
+#: ../qt/frontend/qtfront.cpp:101
 msgid "Not Started"
 msgstr "Nepornit"
 
-#: ../qt/frontend/qtfront.cpp:114 ../qt/frontend/qtfront.cpp:115
+#: ../qt/frontend/qtfront.cpp:102 ../qt/frontend/qtfront.cpp:103
 msgid "Done"
 msgstr "Gata"
 
-#: ../qt/frontend/qtfront.cpp:116
+#: ../qt/frontend/qtfront.cpp:104
 msgid "Not Supported"
 msgstr "Nu este suportat"
 
-#: ../qt/frontend/qtfront.cpp:117
+#: ../qt/frontend/qtfront.cpp:105
 msgid "Not Resolved"
 msgstr "Nu este rezolvat"
 
-#: ../qt/frontend/qtfront.cpp:118
+#: ../qt/frontend/qtfront.cpp:106
 msgid "Not Tested"
 msgstr "Nu este testat"
 
-#: ../qt/frontend/qtfront.cpp:119
+#: ../qt/frontend/qtfront.cpp:107
 msgid "In Progress"
 msgstr "În desfășurare"
 
-#: ../qt/frontend/qtfront.cpp:179
+#: ../qt/frontend/qtfront.cpp:159
 msgid "Are you sure?"
 msgstr "Sigur doriți să continuați?"
 
-#: ../qt/frontend/qtfront.cpp:179
+#: ../qt/frontend/qtfront.cpp:159
 msgid "Do you really want to skip this test?"
 msgstr "Sigur doriți să săriți peste acest test?"
 
-#: ../qt/frontend/qtfront.cpp:180
+#: ../qt/frontend/qtfront.cpp:160
 msgid "Don't ask me again"
 msgstr "Nu mă întreba din nou"
 
-#: ../qt/frontend/ui_qtfront.h:589
+#: ../qt/frontend/ui_qtfront.h:634
 msgid "Form"
 msgstr "Formular"
 
@@ -4802,39 +4802,39 @@ msgstr "De acord"
 msgid "Don't show me this message in the future"
 msgstr "Nu mai afișa acest mesaj"
 
-#: ../qt/frontend/ui_qtfront.h:593 ../qt/frontend/ui_qtfront.h:609
+#: ../qt/frontend/ui_qtfront.h:638 ../qt/frontend/ui_qtfront.h:656
 msgid "Tab 1"
 msgstr "Fila 1"
 
-#: ../qt/frontend/ui_qtfront.h:594
+#: ../qt/frontend/ui_qtfront.h:639
 msgid "10 tests completed out of 30 (30%)"
 msgstr "10 teste completate din 30 (30%)"
 
-#: ../qt/frontend/ui_qtfront.h:597
+#: ../qt/frontend/ui_qtfront.h:642
 msgid "Components"
 msgstr "Componente"
 
-#: ../qt/frontend/ui_qtfront.h:598
+#: ../qt/frontend/ui_qtfront.h:643
 msgid "Status"
 msgstr "Stare"
 
-#: ../qt/frontend/ui_qtfront.h:599
+#: ../qt/frontend/ui_qtfront.h:644
 msgid "Select all"
 msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:600
+#: ../qt/frontend/ui_qtfront.h:645
 msgid "Deselect all"
 msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:601
+#: ../qt/frontend/ui_qtfront.h:646
 msgid "Start testing"
 msgstr "Start teste"
 
-#: ../qt/frontend/ui_qtfront.h:602
+#: ../qt/frontend/ui_qtfront.h:647
 msgid " Selection "
 msgstr " Selecție "
 
-#: ../qt/frontend/ui_qtfront.h:603 ../qt/frontend/ui_qtfront.h:604
+#: ../qt/frontend/ui_qtfront.h:648 ../qt/frontend/ui_qtfront.h:649
 msgid "TextLabel"
 msgstr "EtichetăText"
 
@@ -4850,11 +4850,11 @@ msgstr "Nu"
 msgid "Comment"
 msgstr "Comentariu"
 
-#: ../qt/frontend/ui_qtfront.h:610 ../qt/frontend/ui_qtfront.h:626
+#: ../qt/frontend/ui_qtfront.h:657 ../qt/frontend/ui_qtfront.h:673
 msgid "Tab 2"
 msgstr "Fila 2"
 
-#: ../qt/frontend/ui_qtfront.h:613
+#: ../qt/frontend/ui_qtfront.h:660
 msgid " Run "
 msgstr " Execută "
 
@@ -4892,23 +4892,23 @@ msgstr ""
 "color:#000000;\">and click the Submit Results button to submit these test "
 "results to Ubuntu Friendly.</span></p></body></html>"
 
-#: ../qt/frontend/ui_qtfront.h:620
+#: ../qt/frontend/ui_qtfront.h:667
 msgid "Submission details"
 msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:622
+#: ../qt/frontend/ui_qtfront.h:669
 msgid "Email:"
 msgstr "E-mail:"
 
-#: ../qt/frontend/ui_qtfront.h:623
+#: ../qt/frontend/ui_qtfront.h:670
 msgid "Submit results"
 msgstr "Transmite rezultatele"
 
-#: ../qt/frontend/ui_qtfront.h:624
+#: ../qt/frontend/ui_qtfront.h:671
 msgid "View results"
 msgstr "Vizualizează rezultatele"
 
-#: ../qt/frontend/ui_qtfront.h:625
+#: ../qt/frontend/ui_qtfront.h:672
 msgid " Results "
 msgstr " Rezultate "
 

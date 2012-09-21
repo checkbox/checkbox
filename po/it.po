@@ -14,11 +14,11 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-08-28 05:12+0000\n"
-"X-Generator: Launchpad (build 15864)\n"
+"X-Launchpad-Export-Date: 2012-09-11 04:34+0000\n"
+"X-Generator: Launchpad (build 15924)\n"
 
 #: ../checkbox_cli/cli_interface.py:33
-#: ../checkbox_urwid/urwid_interface.py:941 ../checkbox_qt/qt_interface.py:36
+#: ../checkbox_urwid/urwid_interface.py:941
 msgid "skip"
 msgstr "ometti"
 
@@ -4335,12 +4335,12 @@ msgid "Unknown signal"
 msgstr "Segnale sconosciuto"
 
 #: ../checkbox_cli/cli_interface.py:31
-#: ../checkbox_urwid/urwid_interface.py:939 ../checkbox_qt/qt_interface.py:34
+#: ../checkbox_urwid/urwid_interface.py:939
 msgid "yes"
 msgstr "sì"
 
 #: ../checkbox_cli/cli_interface.py:32
-#: ../checkbox_urwid/urwid_interface.py:940 ../checkbox_qt/qt_interface.py:35
+#: ../checkbox_urwid/urwid_interface.py:940
 msgid "no"
 msgstr "no"
 
@@ -4378,21 +4378,21 @@ msgstr "Scrivere qui e premere Ctrl+D quando terminato:\n"
 msgid "Checkbox System Testing"
 msgstr "Test del sistema Checkbox"
 
-#: ../checkbox_urwid/urwid_interface.py:127 ../qt/frontend/ui_qtfront.h:592
+#: ../checkbox_urwid/urwid_interface.py:127 ../qt/frontend/ui_qtfront.h:637
 msgid "Continue"
 msgstr "Continua"
 
 #: ../checkbox_urwid/urwid_interface.py:220
 #: ../checkbox_urwid/urwid_interface.py:296
 #: ../checkbox_urwid/urwid_interface.py:447
-#: ../checkbox_urwid/urwid_interface.py:569 ../qt/frontend/ui_qtfront.h:612
+#: ../checkbox_urwid/urwid_interface.py:569
 msgid "Previous"
 msgstr "Indietro"
 
 #: ../checkbox_urwid/urwid_interface.py:221
 #: ../checkbox_urwid/urwid_interface.py:297
 #: ../checkbox_urwid/urwid_interface.py:448
-#: ../checkbox_urwid/urwid_interface.py:570 ../qt/frontend/ui_qtfront.h:611
+#: ../checkbox_urwid/urwid_interface.py:570
 msgid "Next"
 msgstr "Avanti"
 
@@ -4414,7 +4414,7 @@ msgstr "Espandi tutto"
 msgid "Collapse All"
 msgstr "Contrai tutto"
 
-#: ../checkbox_urwid/urwid_interface.py:1034 ../qt/frontend/ui_qtfront.h:606
+#: ../checkbox_urwid/urwid_interface.py:1034
 msgid "Test"
 msgstr "Prova"
 
@@ -4426,11 +4426,11 @@ msgstr "Prova ancora"
 msgid "_Test Again"
 msgstr "_Prova ancora"
 
-#: ../checkbox_gtk/gtk_interface.py:574 ../qt/frontend/qtfront.cpp:530
+#: ../checkbox_gtk/gtk_interface.py:574 ../qt/frontend/qtfront.cpp:527
 msgid "Info"
 msgstr "Informazioni"
 
-#: ../checkbox_gtk/gtk_interface.py:599 ../qt/frontend/qtfront.cpp:235
+#: ../checkbox_gtk/gtk_interface.py:599 ../qt/frontend/qtfront.cpp:224
 msgid "Error"
 msgstr "Errore"
 
@@ -4607,7 +4607,7 @@ msgstr ""
 "intenzionati a partecipare al progetto, selezionare tutti i test. È sempre "
 "possibile saltare singoli test se non si possiedono i dispositivi necessari."
 
-#: ../plugins/suites_prompt.py:136 ../qt/frontend/ui_qtfront.h:596
+#: ../plugins/suites_prompt.py:136 ../qt/frontend/ui_qtfront.h:641
 msgid "Choose tests to run on your system:"
 msgstr ""
 
@@ -4631,127 +4631,127 @@ msgstr "Connessione stabilita, perso un pacchetto"
 msgid "Internet connection fully established"
 msgstr "Connessione a Internet stabilita"
 
-#: ../qt/frontend/qtfront.cpp:91
+#: ../qt/frontend/qtfront.cpp:79
 msgid "Audio Test"
 msgstr "Test dell'audio"
 
-#: ../qt/frontend/qtfront.cpp:92
+#: ../qt/frontend/qtfront.cpp:80
 msgid "Bluetooth Test"
 msgstr "Test del Bluetooth"
 
-#: ../qt/frontend/qtfront.cpp:93
+#: ../qt/frontend/qtfront.cpp:81
 msgid "Camera Test"
 msgstr "Test della webcam"
 
-#: ../qt/frontend/qtfront.cpp:94
+#: ../qt/frontend/qtfront.cpp:82
 msgid "CPU Test"
 msgstr "Test della CPU"
 
-#: ../qt/frontend/qtfront.cpp:95
+#: ../qt/frontend/qtfront.cpp:83
 msgid "Disk Test"
 msgstr "Test del disco"
 
-#: ../qt/frontend/qtfront.cpp:96
+#: ../qt/frontend/qtfront.cpp:84
 msgid "Firewire Test"
 msgstr "Test Firewire"
 
-#: ../qt/frontend/qtfront.cpp:97
+#: ../qt/frontend/qtfront.cpp:85
 msgid "Graphics Test"
 msgstr "Test della grafica"
 
-#: ../qt/frontend/qtfront.cpp:98
+#: ../qt/frontend/qtfront.cpp:86
 msgid "Info Test"
 msgstr "Test informativi"
 
-#: ../qt/frontend/qtfront.cpp:99
+#: ../qt/frontend/qtfront.cpp:87
 msgid "Input Test"
 msgstr "Test dispositivi di input"
 
-#: ../qt/frontend/qtfront.cpp:100
+#: ../qt/frontend/qtfront.cpp:88
 msgid "Keys Test"
 msgstr "Test dei tasti"
 
-#: ../qt/frontend/qtfront.cpp:101
+#: ../qt/frontend/qtfront.cpp:89
 msgid "Media Card Test"
 msgstr "Test schede di memoria"
 
-#: ../qt/frontend/qtfront.cpp:102
+#: ../qt/frontend/qtfront.cpp:90
 msgid "Memory Test"
 msgstr "Test della memoria"
 
-#: ../qt/frontend/qtfront.cpp:103
+#: ../qt/frontend/qtfront.cpp:91
 msgid "Miscellanea Test"
 msgstr "Test vari"
 
-#: ../qt/frontend/qtfront.cpp:104
+#: ../qt/frontend/qtfront.cpp:92
 msgid "Monitor Test"
 msgstr "Test del monitor"
 
-#: ../qt/frontend/qtfront.cpp:105
+#: ../qt/frontend/qtfront.cpp:93
 msgid "Networking Test"
 msgstr "Test di rete"
 
-#: ../qt/frontend/qtfront.cpp:106
+#: ../qt/frontend/qtfront.cpp:94
 msgid "Wireless Test"
 msgstr "Test reti senza fili"
 
-#: ../qt/frontend/qtfront.cpp:107
+#: ../qt/frontend/qtfront.cpp:95
 msgid "Optical Test"
 msgstr "Test dei dispositivi ottici"
 
-#: ../qt/frontend/qtfront.cpp:108
+#: ../qt/frontend/qtfront.cpp:96
 msgid "PCMCIA/PCIX Test"
 msgstr "Test PCMCIA/PCIX"
 
-#: ../qt/frontend/qtfront.cpp:109
+#: ../qt/frontend/qtfront.cpp:97
 msgid "Power Management Test"
 msgstr "Test di gestione dell'alimentazione"
 
-#: ../qt/frontend/qtfront.cpp:110
+#: ../qt/frontend/qtfront.cpp:98
 msgid "Suspend Test"
 msgstr "Test di sospensione"
 
-#: ../qt/frontend/qtfront.cpp:111
+#: ../qt/frontend/qtfront.cpp:99
 msgid "USB Test"
 msgstr "Test USB"
 
-#: ../qt/frontend/qtfront.cpp:113
+#: ../qt/frontend/qtfront.cpp:101
 msgid "Not Started"
 msgstr "Non iniziato"
 
-#: ../qt/frontend/qtfront.cpp:114 ../qt/frontend/qtfront.cpp:115
+#: ../qt/frontend/qtfront.cpp:102 ../qt/frontend/qtfront.cpp:103
 msgid "Done"
 msgstr "Completato"
 
-#: ../qt/frontend/qtfront.cpp:116
+#: ../qt/frontend/qtfront.cpp:104
 msgid "Not Supported"
 msgstr "Non supportato"
 
-#: ../qt/frontend/qtfront.cpp:117
+#: ../qt/frontend/qtfront.cpp:105
 msgid "Not Resolved"
 msgstr "Non risolto"
 
-#: ../qt/frontend/qtfront.cpp:118
+#: ../qt/frontend/qtfront.cpp:106
 msgid "Not Tested"
 msgstr "Non effettuato"
 
-#: ../qt/frontend/qtfront.cpp:119
+#: ../qt/frontend/qtfront.cpp:107
 msgid "In Progress"
 msgstr "In corso"
 
-#: ../qt/frontend/qtfront.cpp:179
+#: ../qt/frontend/qtfront.cpp:159
 msgid "Are you sure?"
 msgstr "Procedere veramente?"
 
-#: ../qt/frontend/qtfront.cpp:179
+#: ../qt/frontend/qtfront.cpp:159
 msgid "Do you really want to skip this test?"
 msgstr "Saltare veramente questo test?"
 
-#: ../qt/frontend/qtfront.cpp:180
+#: ../qt/frontend/qtfront.cpp:160
 msgid "Don't ask me again"
 msgstr "Non chiedere più"
 
-#: ../qt/frontend/ui_qtfront.h:589
+#: ../qt/frontend/ui_qtfront.h:634
 msgid "Form"
 msgstr "Modulo"
 
@@ -4763,39 +4763,39 @@ msgstr "OK"
 msgid "Don't show me this message in the future"
 msgstr "Non mostrare più questo messaggio"
 
-#: ../qt/frontend/ui_qtfront.h:593 ../qt/frontend/ui_qtfront.h:609
+#: ../qt/frontend/ui_qtfront.h:638 ../qt/frontend/ui_qtfront.h:656
 msgid "Tab 1"
 msgstr "Scheda 1"
 
-#: ../qt/frontend/ui_qtfront.h:594
+#: ../qt/frontend/ui_qtfront.h:639
 msgid "10 tests completed out of 30 (30%)"
 msgstr "10 test su 30 completati (30%)"
 
-#: ../qt/frontend/ui_qtfront.h:597
+#: ../qt/frontend/ui_qtfront.h:642
 msgid "Components"
 msgstr "Componenti"
 
-#: ../qt/frontend/ui_qtfront.h:598
+#: ../qt/frontend/ui_qtfront.h:643
 msgid "Status"
 msgstr "Stato"
 
-#: ../qt/frontend/ui_qtfront.h:599
+#: ../qt/frontend/ui_qtfront.h:644
 msgid "Select all"
 msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:600
+#: ../qt/frontend/ui_qtfront.h:645
 msgid "Deselect all"
 msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:601
+#: ../qt/frontend/ui_qtfront.h:646
 msgid "Start testing"
 msgstr "Avvia test"
 
-#: ../qt/frontend/ui_qtfront.h:602
+#: ../qt/frontend/ui_qtfront.h:647
 msgid " Selection "
 msgstr " Selezione "
 
-#: ../qt/frontend/ui_qtfront.h:603 ../qt/frontend/ui_qtfront.h:604
+#: ../qt/frontend/ui_qtfront.h:648 ../qt/frontend/ui_qtfront.h:649
 msgid "TextLabel"
 msgstr "TextLabel"
 
@@ -4811,11 +4811,11 @@ msgstr "No"
 msgid "Comment"
 msgstr "Commento"
 
-#: ../qt/frontend/ui_qtfront.h:610 ../qt/frontend/ui_qtfront.h:626
+#: ../qt/frontend/ui_qtfront.h:657 ../qt/frontend/ui_qtfront.h:673
 msgid "Tab 2"
 msgstr "Scheda 2"
 
-#: ../qt/frontend/ui_qtfront.h:613
+#: ../qt/frontend/ui_qtfront.h:660
 msgid " Run "
 msgstr " Esecuzione "
 
@@ -4853,23 +4853,23 @@ msgstr ""
 "color:#000000;\">e fare clic sul pulsante «Invia risultati» per inviare i "
 "risultati dei test a Ubuntu Friendly.</span></p></body></html>"
 
-#: ../qt/frontend/ui_qtfront.h:620
+#: ../qt/frontend/ui_qtfront.h:667
 msgid "Submission details"
 msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:622
+#: ../qt/frontend/ui_qtfront.h:669
 msgid "Email:"
 msgstr "Email:"
 
-#: ../qt/frontend/ui_qtfront.h:623
+#: ../qt/frontend/ui_qtfront.h:670
 msgid "Submit results"
 msgstr "Invia risultati"
 
-#: ../qt/frontend/ui_qtfront.h:624
+#: ../qt/frontend/ui_qtfront.h:671
 msgid "View results"
 msgstr "Visualizza risultati"
 
-#: ../qt/frontend/ui_qtfront.h:625
+#: ../qt/frontend/ui_qtfront.h:672
 msgid " Results "
 msgstr " Risultati "
 

@@ -34,6 +34,7 @@ class EnvironmentInfo(Plugin):
     wpa_n_ssid = String(default="")
     wpa_n_psk = String(default="")
     open_n_ssid = String(default="")
+    btdevaddr = String(default="")
 
     def register(self, manager):
         super(EnvironmentInfo, self).register(manager)
@@ -52,5 +53,7 @@ class EnvironmentInfo(Plugin):
         os.environ['WPA_N_SSID'] = self.wpa_bg_ssid
         os.environ['WPA_N_PSK'] = self.wpa_bg_psk
         os.environ['OPEN_N_SSID'] = self.open_n_ssid
+
+        os.environ['BTDEVADDR'] = self.btdevaddr
 
 factory = EnvironmentInfo

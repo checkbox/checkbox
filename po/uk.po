@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-08-29 05:01+0000\n"
-"X-Generator: Launchpad (build 15864)\n"
+"X-Launchpad-Export-Date: 2012-09-11 04:35+0000\n"
+"X-Generator: Launchpad (build 15924)\n"
 
 #: ../gtk/checkbox-gtk.ui.h:10
 msgid "Ne_xt"
@@ -3528,17 +3528,17 @@ msgid "Unknown signal"
 msgstr "Невідомий сигнал"
 
 #: ../checkbox_cli/cli_interface.py:31
-#: ../checkbox_urwid/urwid_interface.py:939 ../checkbox_qt/qt_interface.py:34
+#: ../checkbox_urwid/urwid_interface.py:939
 msgid "yes"
 msgstr "так"
 
 #: ../checkbox_cli/cli_interface.py:32
-#: ../checkbox_urwid/urwid_interface.py:940 ../checkbox_qt/qt_interface.py:35
+#: ../checkbox_urwid/urwid_interface.py:940
 msgid "no"
 msgstr "ні"
 
 #: ../checkbox_cli/cli_interface.py:33
-#: ../checkbox_urwid/urwid_interface.py:941 ../checkbox_qt/qt_interface.py:36
+#: ../checkbox_urwid/urwid_interface.py:941
 msgid "skip"
 msgstr "пропустити"
 
@@ -3576,21 +3576,21 @@ msgstr "Будь ласка напишіть сюди та натисніть Ct
 msgid "Checkbox System Testing"
 msgstr "Checkbox System Testing"
 
-#: ../checkbox_urwid/urwid_interface.py:127 ../qt/frontend/ui_qtfront.h:592
+#: ../checkbox_urwid/urwid_interface.py:127 ../qt/frontend/ui_qtfront.h:637
 msgid "Continue"
 msgstr "Продовжити"
 
 #: ../checkbox_urwid/urwid_interface.py:220
 #: ../checkbox_urwid/urwid_interface.py:296
 #: ../checkbox_urwid/urwid_interface.py:447
-#: ../checkbox_urwid/urwid_interface.py:569 ../qt/frontend/ui_qtfront.h:612
+#: ../checkbox_urwid/urwid_interface.py:569
 msgid "Previous"
 msgstr "Попередній"
 
 #: ../checkbox_urwid/urwid_interface.py:221
 #: ../checkbox_urwid/urwid_interface.py:297
 #: ../checkbox_urwid/urwid_interface.py:448
-#: ../checkbox_urwid/urwid_interface.py:570 ../qt/frontend/ui_qtfront.h:611
+#: ../checkbox_urwid/urwid_interface.py:570
 msgid "Next"
 msgstr "Наступний"
 
@@ -3612,7 +3612,7 @@ msgstr ""
 msgid "Collapse All"
 msgstr ""
 
-#: ../checkbox_urwid/urwid_interface.py:1034 ../qt/frontend/ui_qtfront.h:606
+#: ../checkbox_urwid/urwid_interface.py:1034
 msgid "Test"
 msgstr "Тест"
 
@@ -3624,11 +3624,11 @@ msgstr "Повторити тест"
 msgid "_Test Again"
 msgstr "_Перевірити знову"
 
-#: ../checkbox_gtk/gtk_interface.py:574 ../qt/frontend/qtfront.cpp:530
+#: ../checkbox_gtk/gtk_interface.py:574 ../qt/frontend/qtfront.cpp:527
 msgid "Info"
 msgstr "Інформація"
 
-#: ../checkbox_gtk/gtk_interface.py:599 ../qt/frontend/qtfront.cpp:235
+#: ../checkbox_gtk/gtk_interface.py:599 ../qt/frontend/qtfront.cpp:224
 msgid "Error"
 msgstr "Помилка"
 
@@ -3804,7 +3804,7 @@ msgid ""
 "can always skip individual tests if you don't have the needed equipment."
 msgstr ""
 
-#: ../plugins/suites_prompt.py:136 ../qt/frontend/ui_qtfront.h:596
+#: ../plugins/suites_prompt.py:136 ../qt/frontend/ui_qtfront.h:641
 msgid "Choose tests to run on your system:"
 msgstr ""
 
@@ -3828,127 +3828,127 @@ msgstr "З’єднання встановлено але пакет втрач�
 msgid "Internet connection fully established"
 msgstr "З’єднання з інтернет повністю встановлено"
 
-#: ../qt/frontend/qtfront.cpp:91
+#: ../qt/frontend/qtfront.cpp:79
 msgid "Audio Test"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:92
+#: ../qt/frontend/qtfront.cpp:80
 msgid "Bluetooth Test"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:93
+#: ../qt/frontend/qtfront.cpp:81
 msgid "Camera Test"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:94
+#: ../qt/frontend/qtfront.cpp:82
 msgid "CPU Test"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:95
+#: ../qt/frontend/qtfront.cpp:83
 msgid "Disk Test"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:96
+#: ../qt/frontend/qtfront.cpp:84
 msgid "Firewire Test"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:97
+#: ../qt/frontend/qtfront.cpp:85
 msgid "Graphics Test"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:98
+#: ../qt/frontend/qtfront.cpp:86
 msgid "Info Test"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:99
+#: ../qt/frontend/qtfront.cpp:87
 msgid "Input Test"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:100
+#: ../qt/frontend/qtfront.cpp:88
 msgid "Keys Test"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:101
+#: ../qt/frontend/qtfront.cpp:89
 msgid "Media Card Test"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:102
+#: ../qt/frontend/qtfront.cpp:90
 msgid "Memory Test"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:103
+#: ../qt/frontend/qtfront.cpp:91
 msgid "Miscellanea Test"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:104
+#: ../qt/frontend/qtfront.cpp:92
 msgid "Monitor Test"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:105
+#: ../qt/frontend/qtfront.cpp:93
 msgid "Networking Test"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:106
+#: ../qt/frontend/qtfront.cpp:94
 msgid "Wireless Test"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:107
+#: ../qt/frontend/qtfront.cpp:95
 msgid "Optical Test"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:108
+#: ../qt/frontend/qtfront.cpp:96
 msgid "PCMCIA/PCIX Test"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:109
+#: ../qt/frontend/qtfront.cpp:97
 msgid "Power Management Test"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:110
+#: ../qt/frontend/qtfront.cpp:98
 msgid "Suspend Test"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:111
+#: ../qt/frontend/qtfront.cpp:99
 msgid "USB Test"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:113
+#: ../qt/frontend/qtfront.cpp:101
 msgid "Not Started"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:114 ../qt/frontend/qtfront.cpp:115
+#: ../qt/frontend/qtfront.cpp:102 ../qt/frontend/qtfront.cpp:103
 msgid "Done"
 msgstr "Завершено"
 
-#: ../qt/frontend/qtfront.cpp:116
+#: ../qt/frontend/qtfront.cpp:104
 msgid "Not Supported"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:117
+#: ../qt/frontend/qtfront.cpp:105
 msgid "Not Resolved"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:118
+#: ../qt/frontend/qtfront.cpp:106
 msgid "Not Tested"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:119
+#: ../qt/frontend/qtfront.cpp:107
 msgid "In Progress"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:179
+#: ../qt/frontend/qtfront.cpp:159
 msgid "Are you sure?"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:179
+#: ../qt/frontend/qtfront.cpp:159
 msgid "Do you really want to skip this test?"
 msgstr ""
 
-#: ../qt/frontend/qtfront.cpp:180
+#: ../qt/frontend/qtfront.cpp:160
 msgid "Don't ask me again"
 msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:589
+#: ../qt/frontend/ui_qtfront.h:634
 msgid "Form"
 msgstr ""
 
@@ -3960,39 +3960,39 @@ msgstr ""
 msgid "Don't show me this message in the future"
 msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:593 ../qt/frontend/ui_qtfront.h:609
+#: ../qt/frontend/ui_qtfront.h:638 ../qt/frontend/ui_qtfront.h:656
 msgid "Tab 1"
 msgstr "Вкладка 1"
 
-#: ../qt/frontend/ui_qtfront.h:594
+#: ../qt/frontend/ui_qtfront.h:639
 msgid "10 tests completed out of 30 (30%)"
 msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:597
+#: ../qt/frontend/ui_qtfront.h:642
 msgid "Components"
 msgstr "Компоненти"
 
-#: ../qt/frontend/ui_qtfront.h:598
+#: ../qt/frontend/ui_qtfront.h:643
 msgid "Status"
 msgstr "Стан"
 
-#: ../qt/frontend/ui_qtfront.h:599
+#: ../qt/frontend/ui_qtfront.h:644
 msgid "Select all"
 msgstr "Позначити все"
 
-#: ../qt/frontend/ui_qtfront.h:600
+#: ../qt/frontend/ui_qtfront.h:645
 msgid "Deselect all"
 msgstr "Зняти позначення з усіх"
 
-#: ../qt/frontend/ui_qtfront.h:601
+#: ../qt/frontend/ui_qtfront.h:646
 msgid "Start testing"
 msgstr "Почати тестування"
 
-#: ../qt/frontend/ui_qtfront.h:602
+#: ../qt/frontend/ui_qtfront.h:647
 msgid " Selection "
 msgstr " Виділення "
 
-#: ../qt/frontend/ui_qtfront.h:603 ../qt/frontend/ui_qtfront.h:604
+#: ../qt/frontend/ui_qtfront.h:648 ../qt/frontend/ui_qtfront.h:649
 msgid "TextLabel"
 msgstr "Текстова мітка"
 
@@ -4008,11 +4008,11 @@ msgstr "Ні"
 msgid "Comment"
 msgstr "Примітка"
 
-#: ../qt/frontend/ui_qtfront.h:610 ../qt/frontend/ui_qtfront.h:626
+#: ../qt/frontend/ui_qtfront.h:657 ../qt/frontend/ui_qtfront.h:673
 msgid "Tab 2"
 msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:613
+#: ../qt/frontend/ui_qtfront.h:660
 msgid " Run "
 msgstr " Запустити "
 
@@ -4035,23 +4035,23 @@ msgid ""
 "results to Ubuntu Friendly.</span></p></body></html>"
 msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:620
+#: ../qt/frontend/ui_qtfront.h:667
 msgid "Submission details"
 msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:622
+#: ../qt/frontend/ui_qtfront.h:669
 msgid "Email:"
 msgstr "Ел. пошта:"
 
-#: ../qt/frontend/ui_qtfront.h:623
+#: ../qt/frontend/ui_qtfront.h:670
 msgid "Submit results"
 msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:624
+#: ../qt/frontend/ui_qtfront.h:671
 msgid "View results"
 msgstr "Переглянути результати"
 
-#: ../qt/frontend/ui_qtfront.h:625
+#: ../qt/frontend/ui_qtfront.h:672
 msgid " Results "
 msgstr " Результати "
 

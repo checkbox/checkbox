@@ -2,6 +2,7 @@
 
 import os
 import sys
+import shutil
 
 
 def main(args):
@@ -9,7 +10,7 @@ def main(args):
         share_dir = "/usr/share/checkbox/scripts"
         lib_dir = "../../lib/checkbox/bin"
         if os.path.isdir(share_dir) and not os.path.islink(share_dir):
-            os.rmdir(share_dir)
+            shutil.rmtree(share_dir)
             os.symlink(lib_dir, share_dir)
 
 

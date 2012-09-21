@@ -100,3 +100,9 @@ command:
  for e in `env | sed 's/=/:/g'`; do
      echo $e | awk -F':' '{print tolower($1) ": " $2}'
  done
+
+name: memory_card
+plugin: resource
+user: root
+command: memorycard_resource
+description: Create resource info for memorycard readers

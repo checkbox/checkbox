@@ -142,6 +142,7 @@ class DiskTest():
         self.rem_disks_nm = {}
         self.rem_disks_memory_cards = {}
         self.rem_disks_memory_cards_nm = {}
+        pattern = re.compile('SD|MMC|CF|MS|SM|xD|Card|Generic')
         for dev in ud_manager.EnumerateDevices():
             device_obj = bus.get_object("org.freedesktop.UDisks", dev)
             device_props = dbus.Interface(device_obj, dbus.PROPERTIES_IFACE)
@@ -149,14 +150,21 @@ class DiskTest():
             if not device_props.Get(udisks, "DeviceIsDrive"):
                 dev_bus = device_props.Get(udisks, "DriveConnectionInterface")
                 if dev_bus in args.device:
-                    if args.memorycard and dev_bus != 'sdio':
-                        device_file_by_id = device_props.Get(udisks,
-                            "DeviceFileById")[0]
-                        if not re.search('SD|MMC|CF|MS|SM|xD|Card|Generic',
-                            device_file_by_id, re.I):
+                    parent_model = ''
+                    if device_props.Get(udisks, "DeviceIsPartition"):
+                        parent_obj = bus.get_object(
+                            "org.freedesktop.UDisks",
+                            device_props.Get(udisks, "PartitionSlave"))
+                        parent_props = dbus.Interface(
+                            parent_obj, dbus.PROPERTIES_IFACE)
+                        parent_model=parent_props.Get(udisks, "DriveModel")
+                    if args.memorycard:
+                        if dev_bus != 'sdio' and not pattern.search(
+                            parent_model, re.I):
                             continue
-                        else:
-                            self.rem_disks_memory_cards = {}
+                    else:
+                        if pattern.search(parent_model, re.I):
+                            continue
                     dev_file = str(device_props.Get(udisks, "DeviceFile"))
                     dev_speed = str(device_props.Get(udisks,
                                                      "DriveConnectionSpeed"))

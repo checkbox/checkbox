@@ -417,13 +417,16 @@ class CPUScalingTest(object):
                                    / self.maximumFrequencyTestTime)
                 logging.info("CPU Frequency Speed Up: %.2f" % predictedSpeedup)
                 logging.info("Measured Speed Up: %.2f" % measuredSpeedup)
-                differenceSpeedUp = ((abs(measuredSpeedup - predictedSpeedup)
-                                     / predictedSpeedup) * 100)
+                differenceSpeedUp = (((measuredSpeedup - predictedSpeedup) / predictedSpeedup) * 100)
                 logging.info("Percentage Difference %.1f%%" % differenceSpeedUp)
                 if differenceSpeedUp > self.speedUpTolerance:
                     logging.error("Measured speedup vs expected speedup is %.1f%% and is not within %.1f%% margin."
                            % (differenceSpeedUp, self.speedUpTolerance))
                     success = False
+                elif differenceSpeedUp < 0:
+                    logging.info("""
+                                 Measured speed up %.2f exceeded expected speedup %.2f
+                                 """ % (measuredSpeedup, predictedSpeedup))
             else:
                 logging.error("Not enough timing data to calculate speed differences.")
 

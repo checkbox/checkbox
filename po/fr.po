@@ -7,14 +7,14 @@ msgstr ""
 "Project-Id-Version: checkbox 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-07-12 16:08-0400\n"
-"PO-Revision-Date: 2011-08-29 10:42+0000\n"
-"Last-Translator: Pierre Slamich <pierre.slamich@gmail.com>\n"
+"PO-Revision-Date: 2012-09-17 15:54+0000\n"
+"Last-Translator: gisele perreault <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-08-28 05:11+0000\n"
-"X-Generator: Launchpad (build 15864)\n"
+"X-Launchpad-Export-Date: 2012-09-18 04:37+0000\n"
+"X-Generator: Launchpad (build 15966)\n"
 
 #. Title of the user interface
 #: ../gtk/checkbox-gtk.ui.h:1 ../qt/checkbox-qt.desktop.in.h:1
@@ -140,16 +140,16 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear a tone?"
 msgstr ""
-"OBJECTIF\n"
+"BUT :\n"
 "    Ce test va vérifier que les haut-parleurs internes fonctionnent "
 "correctement.\n"
-"ÉTAPES\n"
+"ÉTAPES :\n"
 "    1. Assurez-vous qu'aucune enceinte externe ou casque n'est connecté.\n"
 "       Si la machine testée est de type bureau, les enceintes externes sont "
 "permises.\n"
 "    2. Cliquez sur le bouton « Tester » pour faire jouer une courte mélodie "
 "à votre périphérique audio\n"
-"VÉRIFICATION\n"
+"VÉRIFICATION :\n"
 "    Avez-vous entendu la mélodie ?"
 
 #. description
@@ -176,8 +176,8 @@ msgstr ""
 "enceintes' pour vérifier les canaux gauche et droit\n"
 "   4. Cliquer sur le bouton Tester\n"
 "VÉRIFICATION :\n"
-"   1. Entendez-vous le son sortant du canal correspondant ?\n"
-"   2. Entendez-vous un son ?"
+"   1. Entendez-vous le son sortant du canal correspondant ?\n"
+"   2. Entendez-vous un son ?"
 
 #. description
 #: ../jobs/audio.txt.in:58
@@ -191,7 +191,7 @@ msgid ""
 "    Did you hear a sound through the headphones and did the sound play "
 "without any distortion, clicks or other strange noises from your headphones?"
 msgstr ""
-"OBJECTIF :\n"
+"BUT :\n"
 "    Ce test va vérifier que votre connecteur d'écouteurs fonctionne "
 "correctement\n"
 "ÉTAPES :\n"
@@ -215,7 +215,7 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear your speech played back?"
 msgstr ""
-"OBJECTIF :\n"
+"BUT :\n"
 "    Ce test va vérifier que l'enregistrement sonore via le microphone "
 "intégré fonctionne correctement\n"
 "ÉTAPES :\n"
@@ -239,7 +239,7 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear your speech played back?"
 msgstr ""
-"OBJECTIF :\n"
+"BUT :\n"
 "    Ce test va vérifier que l'enregistrement sonore via un microphone "
 "externe fonctionne correctement\n"
 "ÉTAPES :\n"
@@ -262,7 +262,7 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear your speech played back through the USB headphones?"
 msgstr ""
-"OBJECTIF :\n"
+"BUT :\n"
 "    Ce test va vérifier qu'un casque audio USB fonctionne correctement\n"
 "ÉTAPES :\n"
 "    1. Connectez un casque audio USB à votre système\n"
@@ -471,7 +471,7 @@ msgid ""
 "VERIFICATION:\n"
 "    Did all the steps work?"
 msgstr ""
-"OBJECTIF :\n"
+"BUT :\n"
 "    Ce test va vérifier que la connexion Bluetooth fonctionne correctement\n"
 "ÉTAPES :\n"
 "    1. Activez le mode Bluetooth sur votre appareil mobile (PDA, smartphone, "
@@ -481,7 +481,7 @@ msgstr ""
 "    4. Cherchez l'appareil dans la liste et sélectionnez-le\n"
 "    5. Entrez le code PIN choisi automatiquement par l'assistant dans votre "
 "appareil\n"
-"    6. L'appareil devrait se s'associer avec l'ordinateur\n"
+"    6. L'appareil devrait s'associer avec l'ordinateur\n"
 "    7. Faites un clic droit sur l'icône Bluetooth et sélectionnez "
 "« Parcourir les fichiers d'un périphérique »\n"
 "    8. Autorisez l'ordinateur à parcourir les fichier de l'appareil au "
@@ -503,7 +503,7 @@ msgid ""
 "VERIFICATION:\n"
 "    Were all files copied correctly?"
 msgstr ""
-"OBJECTIF :\n"
+"BUT :\n"
 "    Ce test va vérifier que vous pouvez transférer des informations via la "
 "connexion Bluetooth\n"
 "ÉTAPES :\n"
@@ -532,7 +532,7 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear the sound you recorded in the bluetooth"
 msgstr ""
-"OBJECTIF :\n"
+"BUT :\n"
 "    Ce test va vérifier que vous pouvez enregistrer et écouter des sons en "
 "utilisant un périphérique audio Bluetooth\n"
 "ÉTAPES :\n"
@@ -563,7 +563,7 @@ msgid ""
 "VERIFICATION:\n"
 "    Were you able to enter some text with the bluetooth keyboard?"
 msgstr ""
-"OBJECTIF :\n"
+"BUT :\n"
 "    Ce test va vérifier que vous pouvez utiliser un clavier Bluetooth\n"
 "ÉTAPES :\n"
 "    1. Activez le clavier Bluetooth\n"
@@ -590,7 +590,7 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the mouse work as expected?"
 msgstr ""
-"OBJECTIF :\n"
+"BUT :\n"
 "    Ce test va vérifier que vous pouvez utiliser une souris Bluetooth\n"
 "ÉTAPES :\n"
 "    1. Activez la souris Bluetooth\n"
@@ -618,7 +618,7 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you see the video capture?"
 msgstr ""
-"OBJECTIF :\n"
+"BUT :\n"
 "    Ce test va vérifier que la caméra intégrée fonctionne\n"
 "ÉTAPES :\n"
 "    1. Cliquez sur le bouton « Tester » pour afficher une capture vidéo "
@@ -636,7 +636,7 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you see the image?"
 msgstr ""
-"OBJECTIF :\n"
+"BUT :\n"
 "    Ce test va vérifier que l'appareil photo intégré fonctionne\n"
 "ÉTAPES :\n"
 "    1. Cliquez sur le bouton « Tester » pour visualiser une image fixe de "
@@ -656,7 +656,7 @@ msgid ""
 "VERIFICATION:\n"
 "   Did the sample play correctly?"
 msgstr ""
-"OBJECTIF :\n"
+"BUT :\n"
 "   Ce test va vérifier les capacités de votre système à jouer les fichiers "
 "audio au format Ogg Vorbis.\n"
 "ÉTAPES :\n"
@@ -677,10 +677,10 @@ msgid ""
 "VERIFICATION:\n"
 "   Did the sample play correctly?"
 msgstr ""
-"OBJECTIF :\n"
+"BUT :\n"
 "   Ce test va vérifier les capacités de votre système à jouer les fichiers "
-"audio au format Ogg Vorbis.\n"
-"ÉTAPES :\n"
+"audio au format Wave.\n"
+"ÉTAPES :\n"
 "   1. Cliquez sur le bouton « Tester » pour jouer un fichier Wave (.wav)\n"
 "   2. Veuillez fermer le lecteur pour continuer.\n"
 "VÉRIFICATION :\n"
@@ -846,23 +846,23 @@ msgid ""
 "VERIFICATION:\n"
 "   Did the authentication procedure work correctly?"
 msgstr ""
-"OBJECTIF\n"
+"BUT :\n"
 "   Ce test va vérifier que le lecteur d'empreintes digitales fonctionne "
 "correctement pour se connecter au système.\n"
-"PRÉREQUIS\n"
+"PRÉREQUIS :\n"
 "   Ce test suppose qu'il y a un compte test à partir duquel les tests sont "
 "exécutés, et un compte personnel que le testeur utilise pour vérifier le "
 "lecteur d'empreintes digitales.\n"
-"ÉTAPES\n"
+"ÉTAPES :\n"
 "   1. Cliquez sur l'applet de changement d'utilisateur.\n"
 "   2. Sélectionnez votre nom d'utilisateur.\n"
-"   3. Une fenêtre devrait apparaitre offrant la possibilité de se connecter "
+"   3. Une fenêtre devrait apparaître offrant la possibilité de se connecter "
 "soit en entrant votre mot de passe, soit en utilisant l'authentification par "
 "empreintes digitales.\n"
 "   4. Utilisez le lecteur d'empreintes digitales pour vous connecter.\n"
 "   5. Cliquez sur l'applet de changement d'utilisateur.\n"
 "   6. Sélectionnez le compte test pour continuer les tests.\n"
-"VÉRIFICATION\n"
+"VÉRIFICATION :\n"
 "   Est-ce que la procédure d'authentification a fonctionné correctement ?"
 
 #. description
@@ -882,19 +882,19 @@ msgid ""
 "VERIFICATION:\n"
 "   Did the authentication procedure work correctly?"
 msgstr ""
-"OBJECTIF\n"
+"BUT :\n"
 "   Ce test va vérifier qu'un lecteur d'empreintes digitales peut être "
 "utilisé pour déverrouiller un système verrouillé.\n"
-"ÉTAPES\n"
+"ÉTAPES :\n"
 "   1. Cliquez sur l'applet de changement d'utilisateur.\n"
-"   2. Sélectionnez « Verrouiller l'écran ».\n"
+"   2. Sélectionnez « Verrouiller l'écran ».\n"
 "   3. Appuyez sur une touche ou bougez la souris.\n"
-"   4. Une fenêtre devrait apparaitre offrant la possibilité de déverrouiller "
+"   4. Une fenêtre devrait apparaître offrant la possibilité de déverrouiller "
 "soit en utilisant votre mot de passe, soit en utilisant l'authentification "
 "par empreintes digitales.\n"
 "   5. Utilisez le lecteur d'empreintes digitales pour déverrouiller.\n"
 "   6. Votre écran devrait être déverrouillé.\n"
-"VÉRIFICATION\n"
+"VÉRIFICATION :\n"
 "   Est-ce que la procédure d'authentification s'est déroulée correctement ?"
 
 #. description
@@ -917,7 +917,8 @@ msgstr ""
 "    Ce test va vérifier que le système peut détecter l'insertion d'un disque "
 "dur FireWire.\n"
 "ÉTAPES :\n"
-"    1. Cliquez sur \"Test\" pour commencer le test. Ce test s’interrompra\n"
+"    1.  Cliquez sur « Tester » pour commencer le test. Ce test "
+"s’interrompra\n"
 "        et échouera si l'insertion n'a pas été détectée dans un délai de 20 "
 "secondes.\n"
 "    2. Branchez un disque dur FireWire dans un port FireWire disponible.\n"
@@ -953,7 +954,8 @@ msgstr ""
 "    Ce test va vérifier que le système peut détecter le retrait d'un disque "
 "dur FireWire.\n"
 "ÉTAPES :\n"
-"    1. Cliquez sur \"Test\" pour commencer le test. Ce test s’interrompra\n"
+"    1.  Cliquez sur « Tester » pour commencer le test. Ce test "
+"s’interrompra\n"
 "        et échouera si le retrait n'a pas été détectée dans un délai de 20 "
 "secondes.\n"
 "    2. Retirez le disque dur FireWire branché précédemment du port "
@@ -993,7 +995,7 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the resolution change as expected?"
 msgstr ""
-"OBJECTIF\n"
+"BUT\n"
 "    Ce test va vérifier que l'interface graphique est utilisable après la "
 "modification manuelle de la résolution.\n"
 "ÉTAPES\n"
@@ -1020,7 +1022,7 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the display rotation change as expected?"
 msgstr ""
-"OBJECTIF :\n"
+"BUT :\n"
 "    Ce test va vérifier la rotation de l'écran\n"
 "ÉTAPES :\n"
 "    1. Ouvrez l'application Dispositif d'affichage\n"
@@ -1064,14 +1066,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Is this acceptable for your display?"
 msgstr ""
-"OBJECTIF:\n"
+"BUT :\n"
 "    Ce test va vérifier la résolution par défaut de l'écran.\n"
-"ÉTAPE:\n"
+"ÉTAPE :\n"
 "    1. Cet écran utilise la résolution suivante :\n"
-"INFORMATION:\n"
+"INFORMATION :\n"
 "    $output\n"
-"VÉRIFICATION:\n"
-"    Est-ce acceptable pour votre affichage ?"
+"VÉRIFICATION :\n"
+"    Est-ce acceptable pour votre affichage ?"
 
 #. description
 #: ../jobs/graphics.txt.in:66
@@ -1097,12 +1099,12 @@ msgid ""
 "VERIFICATION:\n"
 "    Do you see color bars and static?"
 msgstr ""
-"OBJECTIF:\n"
+"BUT :\n"
 "    Ce test va vérifier l'affichage par défaut.\n"
-"ÉTAPE:\n"
+"ÉTAPE :\n"
 "    1. Cliquez sur « Tester » pour afficher la vidéo de test.\n"
-"VÉRIFICATION:\n"
-"    Voyez-vous des barres colorées et fixes ?"
+"VÉRIFICATION :\n"
+"    Voyez-vous des barres colorées et fixes ?"
 
 #. description
 #: ../jobs/graphics.txt.in:99
@@ -1119,12 +1121,12 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the screen appear to be working for each mode?"
 msgstr ""
-"OBJECTIF\n"
+"BUT :\n"
 "    Ce test parcourt les différents modes vidéos détectés.\n"
-"ÉTAPE\n"
+"ÉTAPE :\n"
 "    1. Cliquez sur « Tester » pour commencer le défilement des différents "
 "modes vidéos.\n"
-"VÉRIFICATION\n"
+"VÉRIFICATION :\n"
 "    Est-ce que l'écran semble fonctionner pour chacun des modes ?"
 
 #. description
@@ -1150,14 +1152,14 @@ msgid ""
 "    1. Did the 3d animation appear?\n"
 "    2. Was the animation free from slowness/jerkiness?"
 msgstr ""
-"OBJECTIF\n"
+"BUT :\n"
 "    Ce test va vérifier les capacités 3D de base de votre carte vidéo.\n"
-"ÉTAPES\n"
+"ÉTAPES :\n"
 "    1. Cliquez sur « Tester » pour exécuter une démonstration de OpenGL. "
 "Appuyez sur « Échap » à tout moment pour fermer.\n"
 "    2. Vérifiez que l'animation n'est pas saccadée ou lente.\n"
-"VÉRIFICATIONS\n"
-"    1. Est-ce l'animation 3D est apparue ?\n"
+"VÉRIFICATIONS :\n"
+"    1. Est-ce que l'animation 3D est apparue ?\n"
 "    2. Est-ce que l'animation était sans lenteur/saccade ?"
 
 #. description
@@ -1200,7 +1202,7 @@ msgstr ""
 "écran\n"
 "ÉTAPES :\n"
 "    1. Démarrez la lecture d'une vidéo en plein écran\n"
-"    2. Après quelques secondes, prenez une photo à l'aide d'une webcam USB \n"
+"    2. Après quelques secondes, prenez une photo à l'aide d'une webcam USB\n"
 "VÉRIFICATION :\n"
 "    1. Vérifiez l'attachement manuellement plus tard"
 
@@ -1229,51 +1231,51 @@ msgid ""
 "    Did the system successfully hibernate and did it work properly after "
 "waking up?"
 msgstr ""
-"Objectif :\n"
+"BUT :\n"
 "    Ce test va vérifier que votre système peut hiberner avec succès (si "
 "supporté)\n"
-"Étapes :\n"
-"    1. Cliquez sur Tester\n"
-"    2. Le système va hiberner et devrait se réveiller lui-même d'ici à 5 "
+"ÉTAPES :\n"
+"    1. Cliquez sur « Tester »\n"
+"    2. Le système va hiberner et devrait se réveiller lui-même dans les 5 "
 "minutes\n"
 "    3. Si votre système ne se réveille pas de lui-même après 5 minutes, "
 "merci d'appuyer sur le bouton Power pour le réveiller manuellement\n"
 "    4. Si le système ne parvient pas à sortir de l'hibernation, merci de "
 "redémarrer l'application de test du système et de marquer ce test comme "
 "Échec\n"
-"Vérification :\n"
+"VÉRIFICATION :\n"
 "    Est-ce que le système a hiberné avec succès et a-t-il fonctionné "
-"correctement après son réveil ?"
+"correctement après son réveil ?"
 
 #. description
 #: ../jobs/info.txt.in:5
 msgid "Attaches a report of installed codecs for Intel HDA"
-msgstr "Joindre un rapport des codecs installés pour Intel HDA"
+msgstr "Joint un rapport des codecs installés pour Intel HDA"
 
 #. description
 #: ../jobs/info.txt.in:10
 msgid "Attaches a report of CPU information"
-msgstr "Joindre un rapport d'information du processeur"
+msgstr "Joint un rapport d'information du processeur"
 
 #. description
 #: ../jobs/info.txt.in:15
 msgid "Attaches a copy of /var/log/dmesg to the test results"
-msgstr "Joindre une copie du fichier /var/log/dmesg aux résultats du test"
+msgstr "Joint une copie du fichier /var/log/dmesg aux résultats du test"
 
 #. description
 #: ../jobs/info.txt.in:20
 msgid "Attaches info on DMI"
-msgstr "Joindre l'information sur le DMI"
+msgstr "Joint l'information sur le DMI"
 
 #. description
 #: ../jobs/info.txt.in:26
 msgid "Attaches dmidecode output"
-msgstr "Joindre la sortie de dmidecode"
+msgstr "Joint la sortie de dmidecode"
 
 #. description
 #: ../jobs/info.txt.in:37
 msgid "Attaches very verbose lspci output."
-msgstr "Joindre la sortie de la commande lspci en mode très verbeux"
+msgstr "Joint la sortie de la commande lspci en mode très verbeux."
 
 #. description
 #: ../jobs/info.txt.in:42
@@ -1290,45 +1292,45 @@ msgstr "Liste les périphériques USB"
 #. description
 #: ../jobs/info.txt.in:58
 msgid "Attaches the contents of the various modprobe conf files."
-msgstr "Joindre le contenu de divers fichiers de configuration modprobe"
+msgstr "Joint le contenu de divers fichiers de configuration modprobe."
 
 #. description
 #: ../jobs/info.txt.in:63
 msgid "Attaches the contents of the /etc/modules file."
-msgstr "Joindre le contenu du fichier /etc/modules"
+msgstr "Joint le contenu du fichier /etc/modules."
 
 #. description
 #: ../jobs/info.txt.in:68
 msgid "attaches the contents of various sysctl config files."
-msgstr "Joindre le contenu de divers fichiers de configuration sysctl"
+msgstr "Joint le contenu de divers fichiers de configuration sysctl."
 
 #. description
 #: ../jobs/info.txt.in:72
 msgid "Attaches a report of sysfs attributes."
-msgstr "Joindre un rapport des attributs sysfs"
+msgstr "Joint un rapport des attributs sysfs."
 
 #. description
 #: ../jobs/info.txt.in:83
 msgid ""
 "Attaches a dump of the udev database showing system hardware information."
 msgstr ""
-"Joindre un dump de la base de données udev montrant des informations sur le "
-"matériel"
+"Joint un dump de la base de données udev montrant des informations sur le "
+"matériel."
 
 #. description
 #: ../jobs/info.txt.in:90
 msgid "Attaches a tarball of gcov data if present."
-msgstr "Joindre un fichier tar des données de gcov si ce dernier existe"
+msgstr "Joint un fichier tar des données de gcov si ce dernier existe."
 
 #. description
 #: ../jobs/info.txt.in:95
 msgid "Attaches a list of the currently running kernel modules."
-msgstr "Joindre une liste des modules du noyau en fonctionnement"
+msgstr "Joint une liste des modules du noyau en fonctionnement."
 
 #. description
 #: ../jobs/info.txt.in:100
 msgid "Attaches the contents of /proc/acpi/sleep if it exists."
-msgstr "Joindre le contenu du fichier /proc/acpi/sleep s'il existe."
+msgstr "Joint le contenu du fichier /proc/acpi/sleep s'il existe."
 
 #. description
 #: ../jobs/info.txt.in:104
@@ -1343,22 +1345,22 @@ msgstr "Informations sur le périphérique SATA/IDE."
 #. description
 #: ../jobs/info.txt.in:132
 msgid "Attaches the bootchart png file for bootchart runs"
-msgstr "Joindre le fichier png du graphique de démarrage (bootchart)"
+msgstr "Joint le fichier png du graphique de démarrage (bootchart)"
 
 #. description
 #: ../jobs/info.txt.in:141
 msgid "Attaches the bootchart log for bootchart test runs."
-msgstr "Joindre le log des exécutions du bootchart"
+msgstr "Joint le journal des exécutions du bootchart."
 
 #. description
 #: ../jobs/info.txt.in:149
 msgid "installs the installer bootchart tarball if it exists."
-msgstr "Installer le tarball du bootchart de l'installateur s'il existe"
+msgstr "Installe le tarball du bootchart de l'installateur s'il existe."
 
 #. description
 #: ../jobs/info.txt.in:154
 msgid "Attaches the installer debug log if it exists."
-msgstr "Joindre le fichier de débuggage de l'installateur s'il existe."
+msgstr "Joint le journal de débogage de l'installateur s'il existe."
 
 #. description
 #: ../jobs/input.txt.in:4
@@ -1371,14 +1373,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the pointing device work as expected?"
 msgstr ""
-"Objectif :\n"
+"BUT :\n"
 "    Ce test va vérifier votre périphérique de pointage\n"
-"Étapes :\n"
+"ÉTAPES :\n"
 "    1. Déplacez le curseur en utilisant le périphérique de pointage ou "
 "touchez l'écran.\n"
 "    2. Effectuez quelques clics, doubles-clics et clics droits.\n"
-"Vérification :\n"
-"    Est-ce que le périphérique de pointage a fonctionné correctement ?"
+"VÉRIFICATION :\n"
+"    Est-ce que le périphérique de pointage a fonctionné correctement ?"
 
 #. description
 #: ../jobs/input.txt.in:17
@@ -1391,14 +1393,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Is your keyboard working properly?"
 msgstr ""
-"Objectif :\n"
+"BUT :\n"
 "    Ce test va vérifier le bon fonctionnement de votre clavier\n"
-"Étapes :\n"
-"    1. Cliquez sur Test\n"
+"ÉTAPES :\n"
+"    1. Cliquez sur « Tester »\n"
 "    2. Dans la zone de texte, utilisez votre clavier pour y taper quelque "
 "chose\n"
-"Vérification :\n"
-"    Est-ce que votre clavier fonctionne correctement ?"
+"VÉRIFICATION :\n"
+"    Est-ce que votre clavier fonctionne correctement ?"
 
 #. description
 #: ../jobs/install.txt.in:6
@@ -1421,13 +1423,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the brightness change following to your key presses?"
 msgstr ""
-"Objectif :\n"
+"BUT :\n"
 "    Ce test va vérifier le fonctionnement de la touche de modification de la "
 "luminosité de l'écran\n"
-"Étapes :\n"
+"ÉTAPES :\n"
 "    1. Appuyez sur les boutons de luminosité du clavier\n"
-"Vérification :\n"
-"    Est-ce que la luminosité a changé en fonction des touches utilisées ?"
+"VÉRIFICATION :\n"
+"    Est-ce que la luminosité a changé en fonction des touches utilisées ?"
 
 #. description
 #: ../jobs/keys.txt.in:14
@@ -1439,13 +1441,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the volume change following to your key presses?"
 msgstr ""
-"Objectif :\n"
+"BUT :\n"
 "    Ce test va vérifier le fonctionnement des touches de modification du "
 "volume du son\n"
-"Étapes :\n"
+"ÉTAPES :\n"
 "    1. Appuyez sur les touches de modification du volume du son\n"
-"Vérification :\n"
-"    Est-ce que le volume a changé en fonction des touches utilisées ?"
+"VÉRIFICATION :\n"
+"    Est-ce que le volume a changé en fonction des touches utilisées ?"
 
 #. description
 #: ../jobs/keys.txt.in:25
@@ -1457,13 +1459,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the volume mute following your key presses?"
 msgstr ""
-"Objectif :\n"
+"BUT :\n"
 "    Ce test va vérifier le fonctionnement de la touche permettant de couper "
 "le son\n"
-"Étape :\n"
+"ÉTAPES :\n"
 "    1. Appuyez sur le bouton de votre clavier permettant de couper le son\n"
-"Vérification :\n"
-"    Est-ce que le volume s'est coupé ?"
+"VÉRIFICATION :\n"
+"    Est-ce que le volume s'est coupé ?"
 
 #. description
 #: ../jobs/keys.txt.in:37
@@ -1476,16 +1478,17 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the system go to sleep after pressing the sleep key?"
 msgstr ""
-"Objectif :\n"
-"    Ce test va vérifier le fonctionnement de la touche permettant "
-"l'endormissement du système\n"
-"Étapes \n"
-"    1. Appuyer sur le bouton de votre clavier permettant l'endormissement du "
+"BUT :\n"
+"    Ce test va vérifier le fonctionnement de la touche de mise en veille du "
 "système\n"
+"ÉTAPES :\n"
+"    1. Appuyer sur le bouton de votre clavier permettant la mise en veille "
+"du système\n"
 "    2. Réveillez votre système en appuyant sur le bouton pour allumer "
 "l'ordinateur\n"
-"Vérification :\n"
-"    Le système s'est-il endormi après avoir appuyé sur ce bouton ?"
+"VÉRIFICATION :\n"
+"    Le système s'est-il mis en veille après avoir appuyé sur la touche de "
+"mise en veille ?"
 
 #. description
 #: ../jobs/keys.txt.in:49
@@ -1497,14 +1500,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Did a notification appear showing the battery status?"
 msgstr ""
-"Objectif :\n"
+"BUT :\n"
 "    Ce test va vérifier le fonctionnement de la touche permettant d'avoir "
 "des informations sur la batterie\n"
-"Étapes :\n"
+"ÉTAPES :\n"
 "    1. Appuyez sur la touche de votre clavier permettant d'avoir des "
 "informations sur la batterie\n"
-"Vérification :\n"
-"    Une notification est-elle apparu affichant l'état de la batterie ?"
+"VÉRIFICATION :\n"
+"    Une notification est-elle apparue affichant l'état de la batterie ?"
 
 #. description
 #: ../jobs/keys.txt.in:60
@@ -1517,16 +1520,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the wireless go off on the first press and on again on the second?"
 msgstr ""
-"Objectif :\n"
-"    Ce test va vérifier le fonctionnement de la touche permettant d'utiliser "
-"ou d'arrêter le wifi\n"
-"Étapes :\n"
-"    1. Appuyez sur la touche de votre clavier permettant d'utiliser ou "
-"d'arrêter le wifi\n"
+"BUT :\n"
+"    Ce test va vérifier le fonctionnement de la touche wifi\n"
+"ÉTAPES :\n"
+"    1. Appuyez sur la touche de votre clavier permettant d'activer ou "
+"désactiver le wifi\n"
 "    2. Appuyez une nouvelle fois sur cette touche\n"
-"Vérification :\n"
-"    Le wifi n'a plus fonctionné après la première étape et est revenu après "
-"la seconde étape ?"
+"VÉRIFICATION :\n"
+"    Le wifi a-t-il été désactivé puis réactivé ?"
 
 #. description
 #: ../jobs/keys.txt.in:75
@@ -1543,13 +1544,13 @@ msgstr ""
 "BUT :\n"
 "    Ce test testera les touches média de votre clavier\n"
 "ÉTAPES :\n"
-"    1. Cliquez sur test pour ouvrir une fenêtre dans laquelle vous testerez "
-"les touches média.\n"
+"    1. Cliquez sur « Tester » pour ouvrir une fenêtre dans laquelle vous "
+"testerez les touches média.\n"
 "    2. Si toutes les touches fonctionnent, le test sera marqué comme "
 "réussi.\n"
 "    3. Si votre ordinateur n'a pas de touches média, Passez ce test.\n"
 "VÉRIFICATION :\n"
-"    Les touches fonctionnent-elles comme attendu ?"
+"    Les touches fonctionnent-elles comme attendu ?"
 
 #. description
 #: ../jobs/keys.txt.in:91
@@ -1565,11 +1566,11 @@ msgstr ""
 "BUT :\n"
 "    Ce test testera la touche super de votre clavier\n"
 "ÉTAPES :\n"
-"    1. Cliquez sur test pour ouvrir une fenêtre dans laquelle vous testerez "
-"la touche super.\n"
+"    1. Cliquez sur « Tester » pour ouvrir une fenêtre dans laquelle vous "
+"testerez la touche super.\n"
 "    2. Si la touche fonctionne, le test marchera et la fenêtre se fermera.\n"
 "VÉRIFICATION :\n"
-"    La touche super fonctionne-t-elle comme attendu ?"
+"    La touche super fonctionne-t-elle comme attendu ?"
 
 #. description
 #: ../jobs/local.txt.in:3
@@ -1689,7 +1690,7 @@ msgstr "Tests des lecteurs optiques"
 #. description
 #: ../jobs/local.txt.in:178
 msgid "Panel Clock Verification tests"
-msgstr "Tests de vérification de l'horloge du panel"
+msgstr "Tests de vérification de l'horloge du tableau de bord"
 
 #. description
 #: ../jobs/local.txt.in:171
@@ -1744,7 +1745,7 @@ msgstr "Stress tests"
 #. description
 #: ../jobs/local.txt.in:262
 msgid "Smoke tests"
-msgstr ""
+msgstr "Test de détection de fumée"
 
 #. description
 #: ../jobs/local.txt.in:269
@@ -1769,7 +1770,7 @@ msgstr ""
 "    Ce test vérifiera que le lecteur de cartes média du système peut\n"
 "    détecter l'insertion d'une carte Multimedia Card (MMC).\n"
 "ÉTAPES :\n"
-"    1. Cliquez sur \"Test\" et insérez une carte MMC dans le lecteur.\n"
+"    1.  Cliquez sur « Tester » et insérez une carte MMC dans le lecteur.\n"
 "        (Note : ce test s'interrompra après 20 secondes.)\n"
 "    2. Ne débranchez pas l'appareil après le test.\n"
 "VÉRIFICATION :\n"
@@ -1802,8 +1803,8 @@ msgstr ""
 "    Ce test vérifiera que le système détecte correctement\n"
 "    le retrait de la carte MMC du lecteur de carte du système.\n"
 "ÉTAPES :\n"
-"    1. Cliquez sur \"Test\" et retirez la carte MMC du le lecteur.\n"
-"        (Note : ce test s'interrompra après 20 secondes.)\n"
+"    1. Cliquez sur « Tester » et retirez la carte MMC du lecteur.\n"
+"       (Note : ce test s'interrompra après 20 secondes.)\n"
 "VÉRIFICATION :\n"
 "    La vérification de ce test est automatisée. Ne changez pas le\n"
 "    résultat sélectionné automatiquement."
@@ -1828,8 +1829,8 @@ msgstr ""
 "    l'insertion d'une carte Multimedia Card (MMC) après que le système ait "
 "été suspendu.\n"
 "ÉTAPES :\n"
-"    1. Cliquez sur \"Test\" et insérez une carte MMC dans le lecteur.\n"
-"        (Note : ce test s'interrompra après 20 secondes.)\n"
+"    1. Cliquez sur « Tester » et insérez une carte MMC dans le lecteur.\n"
+"       (Note : ce test s'interrompra après 20 secondes.)\n"
 "    2. Ne débranchez pas l'appareil après le test.\n"
 "VÉRIFICATION :\n"
 "    La vérification de ce test est automatisée. Ne changez pas le\n"
@@ -1865,8 +1866,8 @@ msgstr ""
 "    de la carte MMC du lecteur de carte du système après que le système ait "
 "été suspendu..\n"
 "ÉTAPES :\n"
-"    1. Cliquez sur \"Test\" et retirez la carte MMC du le lecteur.\n"
-"        (Note : ce test s'interrompra après 20 secondes.)\n"
+"    1. Cliquez sur « Tester » et retirez la carte MMC du lecteur.\n"
+"       (Note : ce test s'interrompra après 20 secondes.)\n"
 "VÉRIFICATION :\n"
 "    La vérification de ce test est automatisée. Ne changez pas le\n"
 "    résultat sélectionné automatiquement."
@@ -1889,8 +1890,8 @@ msgstr ""
 "    Ce test vérifiera que le lecteur de cartes média du système peut\n"
 "    détecter l'insertion d'une carte Secure Digital (SD).\n"
 "ÉTAPES :\n"
-"    1. Cliquez sur \"Test\" et insérez une carte SD dans le lecteur.\n"
-"        (Note : ce test s'interrompra après 20 secondes.)\n"
+"    1. Cliquez sur « Tester » et insérez une carte SD dans le lecteur.\n"
+"       (Note : ce test s'interrompra après 20 secondes.)\n"
 "    2. Ne débranchez pas l'appareil après le test.\n"
 "VÉRIFICATION :\n"
 "    La vérification de ce test est automatisée. Ne changez pas le\n"
@@ -1922,8 +1923,8 @@ msgstr ""
 "    Ce test vérifiera que le système détecte correctement\n"
 "    le retrait d'une carte SD du lecteur de carte du système.\n"
 "ÉTAPES :\n"
-"    1. Cliquez sur \"Test\" et retirez la carte SD du le lecteur.\n"
-"        (Note : ce test s'interrompra après 20 secondes.)\n"
+"    1.  Cliquez sur « Tester » et retirez la carte SD du le lecteur.\n"
+"        (Note : ce test s'interrompra après 20 secondes.)\n"
 "VÉRIFICATION :\n"
 "    La vérification de ce test est automatisée. Ne changez pas le\n"
 "    résultat sélectionné automatiquement."
@@ -1947,8 +1948,8 @@ msgstr ""
 "détecter\n"
 "    l'insertion d'une carte SD card après que le système ait été suspendu.\n"
 "ÉTAPES :\n"
-"    1. Cliquez sur \"Test\" et insérez une carte SD dans le lecteur.\n"
-"        (Note : ce test s'interrompra après 20 secondes.)\n"
+"    1.  Cliquez sur « Tester » et insérez une carte SD dans le lecteur.\n"
+"        (Note : ce test s'interrompra après 20 secondes.)\n"
 "    2. Ne débranchez pas l'appareil après le test.\n"
 "VÉRIFICATION :\n"
 "    La vérification de ce test est automatisée. Ne changez pas le\n"
@@ -1984,8 +1985,8 @@ msgstr ""
 "    d'une carte SD card du lecteur de carte du système après que le système "
 "ait été suspendu..\n"
 "ÉTAPES :\n"
-"    1. Cliquez sur \"Test\" et retirez la carte SD du le lecteur.\n"
-"        (Note : ce test s'interrompra après 20 secondes.)\n"
+"    1.  Cliquez sur « Tester » et retirez la carte SD du le lecteur.\n"
+"        (Note : ce test s'interrompra après 20 secondes.)\n"
 "VÉRIFICATION :\n"
 "    La vérification de ce test est automatisée. Ne changez pas le\n"
 "    résultat sélectionné automatiquement."
@@ -2009,8 +2010,8 @@ msgstr ""
 "    Ce test vérifiera que le lecteur de cartes média du système peut\n"
 "    détecter l'insertion d'une carte Secure Digital High-Capacity  (SDHC).\n"
 "ÉTAPES :\n"
-"    1. Cliquez sur \"Test\" et insérez une carte SDHC dans le lecteur.\n"
-"        (Note : ce test s'interrompra après 20 secondes.)\n"
+"    1.  Cliquez sur « Tester » et insérez une carte SDHC dans le lecteur.\n"
+"        (Note : ce test s'interrompra après 20 secondes.)\n"
 "    2. Ne débranchez pas l'appareil après le test.\n"
 "VÉRIFICATION :\n"
 "    La vérification de ce test est automatisée. Ne changez pas le\n"
@@ -2042,8 +2043,8 @@ msgstr ""
 "    Ce test vérifiera que le système détecte correctement\n"
 "    le retrait d'une carte SDHC du lecteur de carte du système.\n"
 "ÉTAPES :\n"
-"    1. Cliquez sur \"Test\" et retirez la carte SDHC du le lecteur.\n"
-"        (Note : ce test s'interrompra après 20 secondes.)\n"
+"    1.  Cliquez sur « Tester » et retirez la carte SDHC du le lecteur.\n"
+"        (Note : ce test s'interrompra après 20 secondes.)\n"
 "VÉRIFICATION :\n"
 "    La vérification de ce test est automatisée. Ne changez pas le\n"
 "    résultat sélectionné automatiquement."
@@ -2068,8 +2069,8 @@ msgstr ""
 "détecter\n"
 "    l'insertion d'une carte SDHC après que le système ait été suspendu.\n"
 "ÉTAPES :\n"
-"    1. Cliquez sur \"Test\" et insérez une carte SDHC dans le lecteur.\n"
-"        (Note : ce test s'interrompra après 20 secondes.)\n"
+"    1.  Cliquez sur « Tester » et insérez une carte SDHC dans le lecteur.\n"
+"        (Note : ce test s'interrompra après 20 secondes.)\n"
 "    2. Ne débranchez pas l'appareil après le test.\n"
 "VÉRIFICATION :\n"
 "    La vérification de ce test est automatisée. Ne changez pas le\n"
@@ -2105,8 +2106,8 @@ msgstr ""
 "    d'une carte SDHC du lecteur de carte du système après que le système ait "
 "été suspendu.\n"
 "ÉTAPES :\n"
-"    1. Cliquez sur \"Test\" et retirez la carte SDHC du le lecteur.\n"
-"        (Note : ce test s'interrompra après 20 secondes.)\n"
+"    1.  Cliquez sur « Tester » et retirez la carte SDHC du le lecteur.\n"
+"        (Note : ce test s'interrompra après 20 secondes.)\n"
 "VÉRIFICATION :\n"
 "    La vérification de ce test est automatisée. Ne changez pas le\n"
 "    résultat sélectionné automatiquement."
@@ -2129,8 +2130,8 @@ msgstr ""
 "    Ce test vérifiera que le lecteur de cartes média du système peut\n"
 "    détecter l'insertion d'une carte Compact Flash (CF).\n"
 "ÉTAPES :\n"
-"    1. Cliquez sur \"Test\" et insérez une carte CF dans le lecteur.\n"
-"        (Note : ce test s'interrompra après 20 secondes.)\n"
+"    1.  Cliquez sur « Tester » et insérez une carte CF dans le lecteur.\n"
+"        (Note : ce test s'interrompra après 20 secondes.)\n"
 "    2. Ne débranchez pas l'appareil après le test.\n"
 "VÉRIFICATION :\n"
 "    La vérification de ce test est automatisée. Ne changez pas le\n"
@@ -2162,8 +2163,8 @@ msgstr ""
 "    Ce test vérifiera que le système détecte correctement\n"
 "    le retrait d'une carte CF du lecteur de carte du système.\n"
 "ÉTAPES :\n"
-"    1. Cliquez sur \"Test\" et retirez la carte CF du le lecteur.\n"
-"        (Note : ce test s'interrompra après 20 secondes.)\n"
+"    1.  Cliquez sur « Tester » et retirez la carte CF du le lecteur.\n"
+"        (Note : ce test s'interrompra après 20 secondes.)\n"
 "VÉRIFICATION :\n"
 "    La vérification de ce test est automatisée. Ne changez pas le\n"
 "    résultat sélectionné automatiquement."
@@ -2187,8 +2188,8 @@ msgstr ""
 "détecter\n"
 "    l'insertion d'une carte CF après que le système ait été suspendu.\n"
 "ÉTAPES :\n"
-"    1. Cliquez sur \"Test\" et insérez une carte CF le lecteur.\n"
-"        (Note : ce test s'interrompra après 20 secondes.)\n"
+"    1.  Cliquez sur « Tester » et insérez une carte CF le lecteur.\n"
+"        (Note : ce test s'interrompra après 20 secondes.)\n"
 "    2. Ne débranchez pas l'appareil après le test.\n"
 "VÉRIFICATION :\n"
 "    La vérification de ce test est automatisée. Ne changez pas le\n"
@@ -2224,8 +2225,8 @@ msgstr ""
 "    d'une carte CF du lecteur de carte du système après que le système ait "
 "été suspendu..\n"
 "ÉTAPES :\n"
-"    1. Cliquez sur \"Test\" et retirez la carte CF du le lecteur.\n"
-"        (Note : ce test s'interrompra après 20 secondes.)\n"
+"    1.  Cliquez sur « Tester » et retirez la carte CF du le lecteur.\n"
+"        (Note : ce test s'interrompra après 20 secondes.)\n"
 "VÉRIFICATION :\n"
 "    La vérification de ce test est automatisée. Ne changez pas le\n"
 "    résultat sélectionné automatiquement."
@@ -2263,7 +2264,7 @@ msgstr ""
 "ÉTAPES :\n"
 "    1. Informations sur le testeur\n"
 "    2. Veuillez entrer les informations suivantes dans les zones de "
-"commentaires :\n"
+"commentaires :\n"
 "        a. Nom\n"
 "        b. Adresse de courrier électronique\n"
 "        c. La raison de l'exécution de ce test\n"
@@ -2287,7 +2288,7 @@ msgstr ""
 "    Ce test va vérifier que le système peut passer à un terminal virtuel et "
 "revenir à X.\n"
 "ÉTAPE :\n"
-"    1. Cliquez sur \"Tester\" pour passer à un autre terminal virtuel et "
+"    1. Cliquez sur « Tester » pour passer à un autre terminal virtuel et "
 "revenir ensuite à X.\n"
 "VÉRIFICATION :\n"
 "    Votre écran a-t-il affiché une console texte et est-il revenu ensuite à "
@@ -2352,14 +2353,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the desktop displayed correctly on both screens?"
 msgstr ""
-"Objectif :\n"
+"BUT :\n"
 "    Ce test va vérifier votre port VGA. Passez si votre système n'a pas de "
 "port VGA.\n"
-"Étape :\n"
-"    1. Connectez un écran (si il n'est pas déjà connecté) au port VGA de "
+"ÉTAPE :\n"
+"    1. Connectez un écran (s'il n'est pas déjà connecté) au port VGA de "
 "votre système\n"
-"Vérification :\n"
-"    Est-ce que le bureau était affiché correctement sur les deux écrans ?"
+"VÉRIFICATION :\n"
+"    Est-ce que le bureau était affiché correctement sur les deux écrans ?"
 
 #. description
 #: ../jobs/monitor.txt.in:15
@@ -2373,14 +2374,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the desktop displayed correctly on both screens?"
 msgstr ""
-"Objectif :\n"
+"BUT :\n"
 "    Ce test va vérifier votre port DVI. Passez si votre système n'a pas de "
-"port DVI\n"
-"Étape :\n"
+"port DVI.\n"
+"ÉTAPE :\n"
 "    1. Connectez un écran (s'il n'est pas déjà connecté) au port DVI de "
 "votre système\n"
-"Vérification :\n"
-"    Est-ce que le bureau était affiché correctement sur les deux écrans ?"
+"VÉRIFICATION :\n"
+"    Est-ce que le bureau était affiché correctement sur les deux écrans ?"
 
 #. description
 #: ../jobs/monitor.txt.in:26
@@ -2394,14 +2395,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the desktop displayed correctly on both screens?"
 msgstr ""
-"Objectif :\n"
+"BUT :\n"
 "    Ce test va vérifier votre port DisplayPort. Passez si votre système n'a "
-"pas de port DisplayPort\n"
-"Étapes :\n"
+"pas de port DisplayPort.\n"
+"ÉTAPE :\n"
 "    1. Connectez un écran (s'il n'est pas déjà connecté) au port DisplayPort "
 "de votre système\n"
-"Vérification :\n"
-"    Est-ce que le bureau était affiché correctement sur les deux écrans ?"
+"VÉRIFICATION :\n"
+"    Est-ce que le bureau était affiché correctement sur les deux écrans ?"
 
 #. description
 #: ../jobs/monitor.txt.in:37
@@ -2415,14 +2416,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the desktop displayed correctly on both screens?"
 msgstr ""
-"Objectif :\n"
+"BUT :\n"
 "    Ce test va vérifier votre port HDMI. Passez si votre système n'a pas de "
-"port HDMI\n"
-"Étape :\n"
+"port HDMI.\n"
+"ÉTAPE :\n"
 "    1. Connectez un écran (s'il n'est pas déjà connecté) au port HDMI de "
 "votre système\n"
-"Vérification :\n"
-"    Est-ce que le bureau était affiché correctement sur les deux écrans ?"
+"VÉRIFICATION :\n"
+"    Est-ce que le bureau était affiché correctement sur les deux écrans ?"
 
 #. description
 #: ../jobs/monitor.txt.in:48
@@ -2436,14 +2437,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the desktop displayed correctly on both screens?"
 msgstr ""
-"Objectif :\n"
+"BUT :\n"
 "    Ce test va vérifier votre port S-VIDEO. Passez si votre système n'a pas "
-"de port S-VIDEO\n"
-"Étape :\n"
+"de port S-VIDEO.\n"
+"ÉTAPE :\n"
 "    1. Connectez un écran (s'il n'est pas déjà connecté) au port S-VIDEO de "
 "votre système\n"
-"Vérification :\n"
-"    Est-ce que le bureau était affiché correctement sur les deux écrans ?"
+"VÉRIFICATION :\n"
+"    Est-ce que le bureau était affiché correctement sur les deux écrans ?"
 
 #. description
 #: ../jobs/monitor.txt.in:59
@@ -2457,14 +2458,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the desktop displayed correctly on both screens?"
 msgstr ""
-"Objectif :\n"
+"BUT :\n"
 "    Ce test va vérifier votre port RCA. Passez si votre système n'a pas de "
-"port RCA\n"
-"Étape :\n"
+"port RCA.\n"
+"ÉTAPE :\n"
 "    1. Connectez un écran (s'il n'est pas déjà connecté) au port RCA de "
 "votre système\n"
-"Vérification :\n"
-"    Est-ce que le bureau était affiché correctement sur les deux écrans ?"
+"VÉRIFICATION :\n"
+"    Est-ce que le bureau était affiché correctement sur les deux écrans ?"
 
 #. description
 #: ../jobs/monitor.txt.in:70
@@ -2479,8 +2480,8 @@ msgid ""
 msgstr ""
 "BUT :\n"
 "    Ce test va vérifier les aptitudes d'économies d'énergie de votre écran.\n"
-"DÉMARCHE :\n"
-"    1. Cliquez sur \"Tester\" pour tester les aptitudes d'économies "
+"ÉTAPES :\n"
+"    1. Cliquez sur « Tester » pour tester les aptitudes d'économies "
 "d'énergie de votre écran.\n"
 "    2. Appuyez sur n'importe quelle touche du clavier ou déplacez la souris "
 "pour rétablir l'affichage.\n"
@@ -2490,7 +2491,7 @@ msgstr ""
 #. description
 #: ../jobs/networking.txt.in:5
 msgid "Test to detect the available network controllers"
-msgstr "Test pour détecter les controleurs réseau disponibles"
+msgstr "Test pour détecter les contrôleurs réseau disponibles"
 
 #. description
 #: ../jobs/networking.txt.in:11
@@ -2525,16 +2526,16 @@ msgid ""
 "VERIFICATION:\n"
 "    Did a notification show and was the connection correctly established?"
 msgstr ""
-"Objectif :\n"
-"    Ce test va vérifier voter connexion filaire\n"
-"Étapes :\n"
+"BUT :\n"
+"    Ce test va vérifier votre connexion filaire\n"
+"ÉTAPES :\n"
 "    1. Cliquez sur l'icône Réseau dans le panneau supérieur\n"
-"    2. Sélectionnez un réseau en-dessous de la section \"Réseau filaire\"\n"
-"    3. Cliquez sur Test pour vérifier qu'il est possible d'établir une "
+"    2. Sélectionnez un réseau en-dessous de la section « Réseau filaire »\n"
+"    3. Cliquez sur « Tester » pour vérifier qu'il est possible d'établir une "
 "connexion HTTP\n"
-"Vérification :\n"
-"    Est-ce qu'une notification est apparue et est-ce que la connexion a été "
-"correctement établie ?"
+"VÉRIFICATION :\n"
+"    Est-ce qu'une notification est apparue et la connexion a-t-elle été "
+"correctement établie ?"
 
 #. description
 #: ../jobs/networking.txt.in:59
@@ -2553,20 +2554,20 @@ msgid ""
 "VERIFICATION:\n"
 "    Did a notification show and was the connection correctly established?"
 msgstr ""
-"Objectif :\n"
+"BUT :\n"
 "    Ce test va vérifier qu'un modem DSL peut être configuré et connecté.\n"
-"Étapes :\n"
+"ÉTAPES :\n"
 "    1. Connectez la ligne téléphonique à l'ordinateur\n"
 "    2. Cliquez sur l'icône Réseau dans le panneau supérieur.\n"
-"    3. Sélectionnez \"Modification des connexions\"\n"
-"    4. Sélectionnez l'onglet \"DSL\"\n"
-"    5. Cliquez sur le bouton \"Ajouter\"\n"
+"    3. Sélectionnez « Modification des connexions »\n"
+"    4. Sélectionnez l'onglet « DSL »\n"
+"    5. Cliquez sur le bouton « Ajouter »\n"
 "    6. Configurer les paramètres de connexion correctement\n"
-"    7. Cliquez sur \"Test\" pour vérifier qu'il est possible d'établir une "
+"    7. Cliquez sur « Tester » pour vérifier qu'il est possible d'établir une "
 "connexion HTTP\n"
-"Vérification :\n"
-"    Est-ce qu'une notification est apparue et est-ce que la connexion a été "
-"correctement établie ?"
+"VÉRIFICATION :\n"
+"    Est-ce qu'une notification est apparue et la connexion a-t-elle été "
+"correctement établie ?"
 
 #. description
 #: ../jobs/networking.txt.in:76
@@ -2651,10 +2652,10 @@ msgstr ""
 "données que vous avez créés ont plus de chances de fonctionner.\n"
 "    2. Si une fenêtre d'explorateur de fichiers s'ouvre, vous pouvez la "
 "fermer en toute sécurité ou ignorer cette fenêtre.\n"
-"    3. Cliquez sur \"Test\" pour démarrer le test.\n"
+"    3.  Cliquez sur « Tester » pour démarrer le test.\n"
 "VÉRIFICATION :\n"
-"    Ce test devrait sélectionner automatiquement \"Oui\" s'il réussit, "
-"\"Non\" s'il échoue."
+"    Ce test devrait sélectionner automatiquement « Oui » s'il réussit, "
+"« Non » s'il échoue."
 
 #. description
 #: ../jobs/optical.txt.in:42
@@ -2672,6 +2673,19 @@ msgid ""
 "    This test should automatically select \"Yes\" if it passes, \"No\" if it "
 "fails."
 msgstr ""
+"BUT :\n"
+"    Ce test va vérifier la capacité d'écriture du graveur de CD. Ce test "
+"requiert un CD-R vierge. Si vous n'en possédez pas, passez ce test.\n"
+"ÉTAPES :\n"
+"    1. Insérez un CD-R vierge dans votre lecteur.\n"
+"    2. Cliquez sur \"Tester\" pour démarrer la gravure.\n"
+"    3. Lorsque le système éjecte le CD après la gravure, refermez-le "
+"(N'ENLEVEZ PAS le disque, il est nécessaire pour la seconde partie du test). "
+"(Note : Si le CD n'est pas inséré dans les 10 secondes, le test sera "
+"annulé.)\n"
+"VÉRIFICATION :\n"
+"    Le test devrait sélectionner automatiquement \"Oui\" s'il réussit, ou "
+"\"Non\" s'il échoue."
 
 #. description
 #: ../jobs/optical.txt.in:65
@@ -2699,15 +2713,15 @@ msgstr ""
 "    2. Une fois le CD détecté, lancez le lecteur de musique.\n"
 "    3. Localisez le CD dans la fenêtre du lecteur de musique.\n"
 "    4. Sélectionnez le CD dans le lecteur de musique.\n"
-"    5. Cliquez sur le bouton \"Lecture\" pour écouter la musique à partir du "
+"    5. Cliquez sur le bouton « Lecture » pour écouter la musique à partir du "
 "CD.\n"
 "    6. Arrêtez la lecture après quelques instants d'écoute.\n"
-"    7. Faites un clic droit sur l'icône du CD et cliquez sur \"Éjecter le "
-"disque\".\n"
+"    7. Faites un clic droit sur l'icône du CD et cliquez sur « Éjecter le "
+"disque ».\n"
 "    8. Le CD devrait s'éjecter.\n"
 "    9. Fermez le lecteur de musique.\n"
 "VÉRIFICATION :\n"
-"    Chaque étape s'est-elle déroulée correctement ?"
+"    Chaque étape s'est-elle déroulée correctement ?"
 
 #. description
 #: ../jobs/optical.txt.in:78
@@ -2725,6 +2739,19 @@ msgid ""
 "    This test should automatically select \"Yes\" if it passes, \"No\" if it "
 "fails."
 msgstr ""
+"BUT :\n"
+"    Ce test va vérifier la capacité d'écriture du graveur de DVD. Ce test "
+"requiert un DVD-R vierge. Si vous n'en possédez pas, passez ce test.\n"
+"DÉMARCHE :\n"
+"    1. Insérez un DVD-R vierge dans votre lecteur.\n"
+"    2. Cliquez sur \"Tester\" pour démarrer la gravure.\n"
+"    3. Lorsque le graveur éjecte le DVD après la gravure, refermez-le "
+"(N'ENLEVEZ PAS le disque, il est nécessaire pour la seconde partie du test.) "
+"Note : Si le DVD n'est pas inséré dans les 10 secondes, le test sera "
+"annulé.\n"
+"VÉRIFICATION :\n"
+"    Le test devrait sélectionner automatiquement \"Oui\" s'il réussit, ou "
+"\"Non\" s'il échoue."
 
 #. description
 #: ../jobs/optical.txt.in:111
@@ -2745,10 +2772,10 @@ msgid ""
 "    Did all the steps work?"
 msgstr ""
 "BUT :\n"
-"    Ce test va vérifier la capacité de lecture de DVD vidéo. Note : "
+"    Ce test va vérifier la capacité de lecture de DVD vidéo. Note : "
 "l'installation de logiciels non-libres (codecs, lecteurs, etc) peut être "
 "nécessaire avant d'effectuer le test.\n"
-"DÉMARCHE :\n"
+"ÉTAPES :\n"
 "    1. Insérez un DVD vidéo dans votre lecteur.\n"
 "    2. Ouvrez le Dash (cliquez sur le logo Ubuntu en haut du lanceur)\n"
 "    3. Dans Multimédia, sélectionnez le Lecteur vidéo\n"
@@ -2756,7 +2783,7 @@ msgstr ""
 "vérification\n"
 "    5. Éjectez le DVD\n"
 "VÉRIFICATION :\n"
-"    Chaque étape s'est-elle déroulée correctement ?"
+"    Chaque étape s'est-elle déroulée correctement ?"
 
 #. description
 #: ../jobs/optical.txt.in:129
@@ -2771,11 +2798,11 @@ msgid ""
 msgstr ""
 "BUT :\n"
 "    Ce test va vérifer  la capacité de lecture de DVD.\n"
-"DÉMARCHE :\n"
+"ÉTAPES :\n"
 "    1. Insérez un DVD contenant un film dans votre lecteur.\n"
-"    2. Cliquez sur \"Tester\" pour lire le DVD avec Totem.\n"
+"    2. Cliquez sur « Tester » pour lire le DVD avec Totem.\n"
 "VÉRIFICATION :\n"
-"    Le film s'est-il lu correctement ?"
+"    Le film s'est-il lu correctement ?"
 
 #. description
 #: ../jobs/panel_clock_test.txt.in:4
@@ -2791,11 +2818,11 @@ msgstr ""
 "BUT :\n"
 "Ce test va vérifier que l'horloge du bureau affiche la date et l'heure "
 "correctes\n"
-"DÉMARCHE :\n"
+"ÉTAPES :\n"
 "1. Vérifier l'horloge dans le coin en haut à droite du bureau\n"
 "VÉRIFICATION :\n"
 "L'horloge affiche-t-elle la date et l'heure correctes pour votre fuseau "
-"horaire ?"
+"horaire ?"
 
 #. description
 #: ../jobs/panel_clock_test.txt.in:18
@@ -2814,6 +2841,21 @@ msgid ""
 "   Is your system clock displaying the correct date and time for your "
 "timezone?"
 msgstr ""
+"BUT :\n"
+"    Ce test va vérifier que l'horloge du bureau est synchronisée avec "
+"l'horloge système.\n"
+"ÉTAPES :\n"
+"    1. Cliquez sur « Tester » et vérifiez que l'horloge avance d'une heure.\n"
+"        (Note : L'horloge peut mettre presque une minute pour "
+"s'actualiser.)\n"
+"    2. Faites un clic droit sur l'horloge et cliquez sur « Réglages de la "
+"date et de l'heure... »\n"
+"    3. Vérifiez que l'horloge est en réglage manuel.\n"
+"    4. Reculez l'horloge d'une heure.\n"
+"    5. Fermez la fenêtre et redémarrez l'ordinateur.\n"
+"VÉRIFICATION :\n"
+"        L'horloge affiche-t-elle l'heure et la date correctes de votre "
+"fuseau horaire ?"
 
 #. description
 #: ../jobs/panel_reboot.txt.in:4
@@ -2830,6 +2872,19 @@ msgid ""
 "VERIFICATION:\n"
 "   Did your system restart and bring up the GUI login cleanly?"
 msgstr ""
+"BUT :\n"
+"    Ce test va vérifier que vous pouvez redémarrer l'ordinateur à partir du "
+"menu du bureau.\n"
+"ÉTAPES :\n"
+"    1. Cliquez sur l'icône Engrenage dans le coin supérieur droit de l'écran "
+"et cliquez sur « Éteindre ».\n"
+"    2. Cliquez sur le bouton « Redémarrer » à gauche de la boîte de dialogue "
+"de fermeture.\n"
+"    3. Après le redémarrage, relancez le Test Système. Il devrait reprendre "
+"à cet endroit.\n"
+"VÉRIFICATION :\n"
+"    Le système a-t-il redémarré correctement et a-t-il affiché correctement "
+"l'interface de connexion ?"
 
 #. description
 #: ../jobs/pcmcia-pcix.txt.in:3
@@ -2845,10 +2900,10 @@ msgstr ""
 "BUT :\n"
 "    Ce test va vérifier qu'un port PCMCIA ou ExpressCard détecte les "
 "appareils insérés.\n"
-"DÉMARCHE :\n"
+"ÉTAPES :\n"
 "    1. Branchez un dispositif PCMCIA ou ExpressCard à votre ordinateur.\n"
 "VÉRIFICATION :\n"
-"    Le dispositif a-t-il été correctement détecté ?"
+"    Le dispositif a-t-il été correctement détecté ?"
 
 #. description
 #: ../jobs/peripheral.txt.in:3
@@ -2866,6 +2921,19 @@ msgid ""
 "VERIFICATION:\n"
 "   Were you able to print a test page to the network printer?"
 msgstr ""
+"BUT :\n"
+"    Ce test va vérifier que les imprimantes en réseau sont utilisables.\n"
+"ÉTAPES :\n"
+"    1. Assurez-vous qu'une imprimante soit disponible sur votre réseau.\n"
+"    2. Cliquez sur l'icône Engrenage dans le coin supérieur droit de votre "
+"écran puis cliquez sur « Imprimantes ».\n"
+"    3. Si l'imprimante n'est pas répertoriée, cliquez sur « Ajouter ».\n"
+"    4. L'imprimante devrait être détectée et les paramètres de configuration "
+"devraient s'afficher.\n"
+"    5. Imprimez une page de test.\n"
+"VÉRIFICATION :\n"
+"    Êtes-vous parvenu à imprimer une page de test sur l'imprimante en "
+"réseau ?"
 
 #. description
 #: ../jobs/peripheral.txt.in:18
@@ -2886,6 +2954,23 @@ msgid ""
 "VERIFICATION:\n"
 "   Was the connection correctly established?"
 msgstr ""
+"BUT :\n"
+"    Ce test va vérifier qu'une connexion DSL USB ou modem mobile à large "
+"bande fonctionne\n"
+"ÉTAPES :\n"
+"    1. Connectez le câble USB à l'ordinateur\n"
+"    2. Cliquez droit sur l'icône réseau dans le tableau de bord\n"
+"    3. Sélectionnez « Modifier les connexions »\n"
+"    4. Sélectionnez l'onglet « DSL » (pour un modem ADSL) ou « Connexion "
+"mobile à large bande » (pour un modem 3G)\n"
+"    5. Cliquez sur le bouton « Ajouter »\n"
+"    6. Configurez les paramètres de connexion correctement\n"
+"    7. Une notification à l'écran devrait confirmer que la connexion a été "
+"établie\n"
+"    8. Sélectionnez « Tester » pour vérifier qu'il est possible d'établir "
+"une connexion HTTP\n"
+"VÉRIFICATION :\n"
+"    La connexion a-t-elle été établie correctement ?"
 
 #. description
 #: ../jobs/power-management.txt.in:3
@@ -2901,12 +2986,12 @@ msgid ""
 msgstr ""
 "BUT :\n"
 "    Ce test va vérifier le cycle d'arrêt/démarrage de votre système\n"
-"DÉMARCHE :\n"
+"ÉTAPES :\n"
 "    1. Éteindre votre machine\n"
 "    2. Allumer votre machine\n"
 "    3. Répéter les étapes 1 et 2 au moins 5 fois\n"
 "VÉRIFICATION :\n"
-"    Le système s'est-il éteint et rallumé correctement ?"
+"    Le système s'est-il éteint et rallumé correctement ?"
 
 #. description
 #: ../jobs/power-management.txt.in:16
@@ -2935,6 +3020,20 @@ msgid ""
 " If the machine successfully shuts down and boots, select Yes then select "
 "Next."
 msgstr ""
+"BUT :\n"
+"    Ce test va vérifier la capacité du système de s'éteindre et de "
+"redémarrer.\n"
+"ÉTAPES :\n"
+"    1. Sélectionnez « Tester » pour démarrer.\n"
+"    2. L'ordinateur devrait s'éteindre.\n"
+"    3. Rallumez l'ordinateur.\n"
+"    4. Après le démarrage, attendez le message du test vous informant que le "
+"test est terminé.\n"
+"    5. Lorsque le test est terminé, redémarrez Checkbox et sélectionnez « Ré-"
+"exécuter » quand cela est proposé\n"
+"VÉRIFICATION :\n"
+"    Si l'ordinateur s'éteint et redémarre correctement, sélectionnez « Oui » "
+"puis « Suivant »."
 
 #. description
 #: ../jobs/power-management.txt.in:54
@@ -2960,6 +3059,18 @@ msgid ""
 "VERIFICATION:\n"
 " If the machine successfully reboots, select Yes then select Next."
 msgstr ""
+"BUT :\n"
+"    Ce test va vérifier la capacité du système à redémarrer proprement.\n"
+"ÉTAPES :\n"
+"    1. Sélectionnez « Tester » pour démarrer.\n"
+"    2. L'ordinateur devrait redémarrer.\n"
+"    3. Après le redémarrage, attendez le message du test vous informant que "
+"le test est terminé.\n"
+"    4. Lorsque le test est terminé, redémarrez Checkbox et sélectionnez « Ré-"
+"exécuter » quand cela est proposé\n"
+"VÉRIFICATION :\n"
+"    Si l'ordinateur redémarre correctement, sélectionnez « Oui«  puis "
+"« Suivant »."
 
 #. description
 #: ../jobs/power-management.txt.in:78
@@ -2986,7 +3097,7 @@ msgstr ""
 "ÉTAPES :\n"
 "    1. Rabattez le couvercle de votre ordinateur portable\n"
 "VÉRIFICATION :\n"
-"    Est-ce que votre système se met en veille à la fermeture du couvercle ?"
+"    Est-ce que votre système se met en veille à la fermeture du couvercle ?"
 
 #. description
 #: ../jobs/power-management.txt.in:100
@@ -2999,6 +3110,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the screen turn off while the lid was closed?"
 msgstr ""
+"BUT :\n"
+"    Ce test va vérifier les capteurs du couvercle de votre ordinateur "
+"portable\n"
+"ÉTAPES :\n"
+"    1. Cliquez sur « Tester »\n"
+"    2. Rabattez et rouvrez le couvercle de votre ordinateur portable\n"
+"VÉRIFICATION :\n"
+"    Est-ce que l'écran s'est éteint quand le couvercle était fermé ?"
 
 #. description
 #: ../jobs/power-management.txt.in:118
@@ -3013,6 +3132,16 @@ msgid ""
 "VERIFICATION:\n"
 "    Did the system resume when the lid was opened?"
 msgstr ""
+"BUT :\n"
+"    Ce test va vérifier les capteurs du couvercle de votre ordinateur "
+"portable\n"
+"ÉTAPES :\n"
+"    1. Cliquez sur « Tester »\n"
+"    2. Rabattez le couvercle\n"
+"    3. Laissez le couvercle fermé 5 secondes\n"
+"    4. Ouvrez le couvercle de votre ordinateur portable\n"
+"VÉRIFICATION :\n"
+"    Le système a-t-il repris à l'ouverture du couvercle ?"
 
 #. description
 #: ../jobs/power-management.txt.in:134
@@ -3025,6 +3154,8 @@ msgid ""
 "Check to see if CONFIG_NO_HZ is set in the kernel (this is just a simple "
 "regression check)"
 msgstr ""
+"Vérifier si CONFIG_NO_HZ est paramétré dans le noyau (c'est juste un simple "
+"contrôle de régression)"
 
 #. description
 #: ../jobs/server-services.txt.in:5
@@ -3074,14 +3205,14 @@ msgid ""
 "   This is an automated stress test that will force the system to "
 "hibernate/resume for 30 cycles"
 msgstr ""
-"OBJECTIF :\n"
+"BUT :\n"
 "   Ceci est un test d'endurance automatisé qui forcera le système à "
 "hiberner/se réveiller pendant 30 cycles"
 
 #. description
 #: ../jobs/stress.txt.in:25
 msgid "Attaches the log from the 30 cycle Hibernate/Resume test if it exists"
-msgstr ""
+msgstr "Joint le journal du test de 30 cycles Hibernation/Réveil s'il existe"
 
 #. description
 #: ../jobs/stress.txt.in:34
@@ -3090,7 +3221,7 @@ msgid ""
 "   This is an automated stress test that will force the system to "
 "suspend/resume for 30 cycles."
 msgstr ""
-"OBJECTIF :\n"
+"BUT :\n"
 "   Ceci est un test d'endurance automatisé qui forcera le système à se "
 "mettre en veille/se réveiller pendant 30 cycles"
 
@@ -3098,6 +3229,7 @@ msgstr ""
 #: ../jobs/stress.txt.in:41
 msgid "Attaches the log from the 30 cycle Suspend/Resume test if it exists"
 msgstr ""
+"Joint le journal du test de 30 cycles Mise en veille/Réveil s'il existe"
 
 #. description
 #: ../jobs/stress.txt.in:50
@@ -3106,7 +3238,7 @@ msgid ""
 "   This is an automated stress test that will force the system to "
 "hibernate/resume for 250 cycles"
 msgstr ""
-"OBJECTIF :\n"
+"BUT :\n"
 "   Ceci est un test d'endurance automatisé qui forcera le système à "
 "hiberner/se réveiller pendant 250 cycles"
 
@@ -3115,6 +3247,7 @@ msgstr ""
 msgid ""
 "Attaches the log from the 250 cycle Hibernate/Resume test if it exists"
 msgstr ""
+"Joint le journal du test de 250 cycles Hibernation/Réveil s'il existe"
 
 #. description
 #: ../jobs/stress.txt.in:66
@@ -3123,7 +3256,7 @@ msgid ""
 "   This is an automated stress test that will force the system to "
 "suspend/resume for 250 cycles."
 msgstr ""
-"OBJECTIF :\n"
+"BUT :\n"
 "   Ceci est un test d'endurance automatisé qui forcera le système à se "
 "mettre en veille/se réveiller pendant 250 cycles"
 
@@ -3131,26 +3264,29 @@ msgstr ""
 #: ../jobs/stress.txt.in:73
 msgid "Attaches the log from the 250 cycle Suspend/Resume test if it exists"
 msgstr ""
+"Joint le journal du test de 250 cycles Mise en veille/Réveil s'il existe"
 
 #. description
 #: ../jobs/stress.txt.in:83
 msgid "Stress reboot system (100 cycles)"
-msgstr ""
+msgstr "Test de résistance du redémarrage du système (100 cycles)"
 
 #. description
 #: ../jobs/stress.txt.in:98
 msgid "Stress poweroff system (100 cycles)"
-msgstr ""
+msgstr "Test de résistance de l'extinction du système (100 cycles)"
 
 #. description
 #: ../jobs/stress.txt.in:110
 msgid "Check logs for the stress reboot (100 cycles) test case"
 msgstr ""
+"Vérifier les journaux du test de résistance du redémarrage (100 cycles)"
 
 #. description
 #: ../jobs/stress.txt.in:122
 msgid "Check logs for the stress poweroff (100 cycles) test case"
 msgstr ""
+"Vérifier les journaux du test de résistance d'extinction (100 cycles)"
 
 #. description
 #: ../jobs/suspend.txt.in:4
@@ -3188,7 +3324,8 @@ msgid ""
 "interface. It then checks the connection to confirm it's working as expected."
 msgstr ""
 "Ce test coupe toutes les connexions puis se connecte à l'interface sans fil. "
-"Il vérifie ensuite la connexion pour confirmer qu'il fonctionne comme prévu."
+"Il vérifie ensuite la connexion pour confirmer qu'elle fonctionne comme "
+"prévu."
 
 #. description
 #: ../jobs/suspend.txt.in:114
@@ -3205,11 +3342,24 @@ msgid ""
 "VERIFICATION:\n"
 "    Did your system suspend and resume correctly?"
 msgstr ""
+"BUT :\n"
+"    Ce test va vérifier la mise en veille et la sortie de veille\n"
+"ÉTAPES :\n"
+"    1. Cliquez sur « Tester » et votre système se mettra en veille pendant "
+"environ 30 - 60 secondes\n"
+"    2. Si votre système ne se réveille pas de lui-même après 60 secondes, "
+"veuillez appuyer momentanément sur le bouton de mise en marche pour "
+"réveiller le système manuellement\n"
+"    3. Si votre système ne parvient pas du tout à se réveiller et doit être "
+"redémarré, relancez les Tests Système après le redémarrage et marquez ce "
+"test comme Échoué\n"
+"VÉRIFICATION :\n"
+"    Votre système s'est-il mis en veille et réveillé correctement ?"
 
 #. description
 #: ../jobs/suspend.txt.in:130
 msgid "This is the automated version of suspend/suspend_advanced."
-msgstr ""
+msgstr "Ceci est la version automatisée de suspend/suspend_advanced."
 
 #. description
 #: ../jobs/suspend.txt.in:145
@@ -3256,6 +3406,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Does the display work normally after resuming from suspend?"
 msgstr ""
+"BUT :\n"
+"    Ce test va vérifier que l'affichage est correct après mise en veille et "
+"réveil\n"
+"ÉTAPES :\n"
+"    1. Vérifiez que votre affichage ne présente pas de défaut visuel après "
+"sortie de veille\n"
+"VÉRIFICATION :\n"
+"    L'affichage fonctionne-t-il correctement après la sortie de veille ?"
 
 #. description
 #: ../jobs/suspend.txt.in:215
@@ -3274,6 +3432,8 @@ msgid ""
 "Tests that the systems wireless hardware can connect to a router using WPA "
 "security and the 802.11b/g protocols after the system has been suspended."
 msgstr ""
+"Teste si le matériel sans fil peut se connecter à un routeur en utilisant la "
+"sécurité WPA et les protocoles 802.11b/g après une mise en veille du système."
 
 #. description
 #: ../jobs/suspend.txt.in:238
@@ -3281,6 +3441,9 @@ msgid ""
 "Tests that the systems wireless hardware can connect to a router using no "
 "security and the 802.11b/g protocols after the system has been suspended."
 msgstr ""
+"Teste si le matériel sans fil peut se connecter à un routeur sans utiliser "
+"de sécurité et en utilisant les protocoles 802.11b/g après une mise en "
+"veille du système."
 
 #. description
 #: ../jobs/suspend.txt.in:249
@@ -3288,6 +3451,8 @@ msgid ""
 "Tests that the systems wireless hardware can connect to a router using WPA "
 "security and the 802.11n protocol after the system has been suspended."
 msgstr ""
+"Teste si le matériel sans fil peut se connecter à un routeur en utilisant la "
+"sécurité WPA et le protocole 802.11n après une mise en veille du système."
 
 #. description
 #: ../jobs/suspend.txt.in:260
@@ -3295,6 +3460,9 @@ msgid ""
 "Tests that the systems wireless hardware can connect to a router using no "
 "security and the 802.11n protocol after the system has been suspended."
 msgstr ""
+"Teste si le matériel sans fil peut se connecter à un routeur sans utiliser "
+"de sécurité et en utilisant les protocoles 802.11b/g après une mise en "
+"veille du système."
 
 #. description
 #: ../jobs/suspend.txt.in:271
@@ -3329,6 +3497,16 @@ msgid ""
 "VERIFICATION:\n"
 "    Was the data correctly transferred?"
 msgstr ""
+"BUT :\n"
+"    Ce test va envoyer l'image 'JPEG_Color_Image_Ubuntu.jpg' au périphérique "
+"spécifié\n"
+"ÉTAPES :\n"
+"    1. Cliquez sur « Tester » et il vous sera demandé de saisir le nom d'un "
+"périphérique Bluetooth qui peut accepter les transferts de fichiers (Il peut "
+"y avoir un petit délai entre la saisie du nom et le début du transfert)\n"
+"    2. Acceptez toute demande apparaissant sur les deux appareils\n"
+"VÉRIFICATION :\n"
+"    Les données ont-elles été correctement transférées ?"
 
 #. description
 #: ../jobs/suspend.txt.in:346
@@ -3340,7 +3518,7 @@ msgid ""
 "VERIFICATION:\n"
 "    Did your display look fine in the detected mode?"
 msgstr ""
-"OBJECTIF :\n"
+"BUT :\n"
 "    Ce test va faire défiler les modes d'affichage détectés\n"
 "ÉTAPES :\n"
 "    1. Cliquez sur « Tester » pour faire défiler les modes d'affichage\n"
@@ -3364,6 +3542,8 @@ msgid ""
 "This attaches screenshots from the "
 "suspend/cycle_resolutions_after_suspend_auto test to the results submission."
 msgstr ""
+"Ceci joint les copies d'écran du test "
+"suspend/cycle_resolutions_after_suspend_auto à la soumission des résultats."
 
 #. description
 #: ../jobs/suspend.txt.in:377
@@ -3382,7 +3562,7 @@ msgstr ""
 #. description
 #: ../jobs/suspend.txt.in:383
 msgid "Attaches the log from the single suspend/resume test to the results"
-msgstr ""
+msgstr "Joint le journal du simple test mise en veille/réveil aux résultats"
 
 #. description
 #: ../jobs/suspend.txt.in:391
@@ -3395,6 +3575,13 @@ msgid ""
 "VERIFICATION:\n"
 "    1. Review attachment manually later"
 msgstr ""
+"BUT :\n"
+"    Faire une copie d'écran de l'écran courant après mise en veille (dans "
+"l'environnement Unity)\n"
+"ÉTAPES :\n"
+"    1. Prenez une photo en utilisant une webcam USB\n"
+"VÉRIFICATION :\n"
+"    1. Vérifiez la pièce jointe manuellement plus tard"
 
 #. description
 #: ../jobs/suspend.txt.in:414
@@ -3410,6 +3597,18 @@ msgid ""
 "VERIFICATION:\n"
 "    1. After a 60s workload, check kern.log for reported GPU errors"
 msgstr ""
+"BUT :\n"
+"    Effectuez des opérations délicates, mettez le système en veille, "
+"effectuez davantage d'opérations délicates - puis vérifiez les blocages du "
+"GPU (processeur graphique)\n"
+"ÉTAPES :\n"
+"    1. Créez 2 fenêtres glxgears et déplacez-les rapidement\n"
+"    2. Changez d'espaces de travail et fenêtres avec wmctrl\n"
+"    3. Lancez une lecture Flash dans firefox\n"
+"    4. Mettez le système en veille et réveillez-le\n"
+"VÉRIFICATION :\n"
+"    1. Après une charge de travail de 60s, regardez si kern.log contient des "
+"erreurs GPU"
 
 #. description
 #: ../jobs/touchpad.txt.in:3
@@ -3423,6 +3622,14 @@ msgid ""
 "VERIFICATION:\n"
 "    1. Did touchpad work as expected?"
 msgstr ""
+"BUT :\n"
+"    1. Vérification du pavé tactile\n"
+"ÉTAPES :\n"
+"    1. Assurez-vous que le pavé tactile est activé\n"
+"    2. Essayez de déplacer le pointeur à l'aide du pavé tactile\n"
+"    3. Le pointeur devrait se déplacer en conséquence\n"
+"VÉRIFICATION : \n"
+"    Le pavé tactile a-t-il fonctionné comme espéré ?"
 
 #. description
 #: ../jobs/touchpad.txt.in:18
@@ -3439,6 +3646,19 @@ msgid ""
 "VERIFICATION:\n"
 "    1. Did touchpad work as expected?"
 msgstr ""
+"BUT :\n"
+"    Vérification du pavé tactile\n"
+"ÉTAPES :\n"
+"    1. Cliquez sur Indicateur de session -> Paramètres système… -> Souris -> "
+"Pavé tactile\n"
+"    2. Assurez-vous que la case  « Activer le défilement horizontal » est "
+"bien cochée\n"
+"    3. Cliquez sur « Tester » pour ouvrir dans GEdit un fichier avec une "
+"très longue ligne\n"
+"    4. Vérifiez que vous pouvez déplacer le curseur horizontal en déplaçant "
+"votre doigt d'un bord à l'autre sur la partie inférieure du pavé tactile\n"
+"VÉRIFICATION :\n"
+"    1. Le pavé tactile a-t-il fonctionné comme prévu ?"
 
 #. description
 #: ../jobs/touchpad.txt.in:34
@@ -3456,6 +3676,19 @@ msgid ""
 "NOTES:\n"
 "    1. Edge Scrolling option should be enabled by default"
 msgstr ""
+"BUT :\n"
+"    Vérification du pavé tactile\n"
+"ÉTAPES :\n"
+"    1. Cliquez sur Indicateur de session -> Paramètres système… -> Souris -> "
+"Pavé tactile\n"
+"    2. Assurez-vous que le bouton radio « Défilement sur le bord » est "
+"coché\n"
+"    3. Cliquez sur « Tester » pour ouvrir dans GEdit un fichier avec de "
+"multiples lignes de texte\n"
+"    4. Vérifiez que vous pouvez déplacer le curseur vertical en déplaçant "
+"votre doigt d'un bord à l'autre sur la partie droite du pavé tactile\n"
+"VÉRIFICATION :\n"
+"    1. Le pavé tactile a-t-il fonctionné comme prévu ?"
 
 #. description
 #: ../jobs/usb.txt.in:5
@@ -3475,6 +3708,16 @@ msgid ""
 "VERIFICATION:\n"
 "    Were the drives detected?"
 msgstr ""
+"BUT :\n"
+"    Ce test va vérifier que votre système détecte les périphériques de "
+"stockage USB.\n"
+"ÉTAPES :\n"
+"    1. Branchez une ou plusieurs clés USB ou disques durs.\n"
+"    2. Cliquez sur « Tester ».\n"
+"INFORMATION :\n"
+"    $output\n"
+"VÉRIFICATION :\n"
+"    Les lecteurs ont-ils été détectés ?"
 
 #. description
 #: ../jobs/usb.txt.in:30
@@ -3491,9 +3734,9 @@ msgstr ""
 "    Ce test va vérifier votre connexion USB.\n"
 "ÉTAPES :\n"
 "    1. Brancher un clavier USB sur l'ordinateur.\n"
-"    2. Cliquer \"Test\" et taper du texte.\n"
+"    2. Cliquer sur « Tester » et taper du texte.\n"
 "VÉRIFICATION :\n"
-"    Le clavier fonctionne-t-il ?"
+"    Le clavier fonctionne-t-il ?"
 
 #. description
 #: ../jobs/usb.txt.in:43
@@ -3506,6 +3749,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Does the mouse work correctly?"
 msgstr ""
+"BUT :\n"
+"    Ce test va vérifier votre connexion USB.\n"
+"ÉTAPES :\n"
+"    1. Brancher une souris USB sur l'ordinateur.\n"
+"    2. Faire plusieurs clic gauche/double clic/clic droit.\n"
+"VÉRIFICATION :\n"
+"    La souris fonctionne-t-elle correctement ?"
 
 #. description
 #: ../jobs/usb.txt.in:59
@@ -3521,6 +3771,17 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"BUT :\n"
+"    Ce test va vérifier que le système détecte correctement l'insertion\n"
+"    d'un périphérique de stockage USB\n"
+"ÉTAPES :\n"
+"    1. Cliquez sur « Tester » et insérez un périphérique de stockage USB "
+"(mémoire flash USB \"pen-drive\"/disque dur).\n"
+"        Note : ce test s'interrompra après 20 secondes).\n"
+"    2. Ne débranchez pas le périphérique après le test.\n"
+"VÉRIFICATION :\n"
+"    La vérification de ce test est automatisée. Ne modifiez pas le\n"
+"    résultat sélectionné automatiquement."
 
 #. description
 #: ../jobs/usb.txt.in:78
@@ -3535,6 +3796,15 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"BUT :\n"
+"    Ce test va vérifier que le système détecte correctement le retrait\n"
+"    d'un périphérique de stockage USB\n"
+"ÉTAPES :\n"
+"    1. Cliquez sur « Tester » et retirez le périphérique USB.\n"
+"        (Note : ce test s'interrompra après 20 secondes.)\n"
+"VÉRIFICATION :\n"
+"    La vérification de ce test est automatisée. Ne modifiez pas le\n"
+"    résultat sélectionné automatiquement."
 
 #. description
 #: ../jobs/usb.txt.in:96
@@ -3549,11 +3819,21 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"BUT :\n"
+"    Ce test va vérifier votre connexion USB.\n"
+"ÉTAPES :\n"
+"    1. Branchez un disque dur USB ou une clé USB sur l'ordinateur.\n"
+"    2. Une icône devrait apparaître sur le lanceur d'application.\n"
+"    3. Cliquez sur « Tester » pour démarrer le test.\n"
+"VÉRIFICATION :\n"
+"    La vérification de ce test est automatisée. Ne modifiez pas le\n"
+"    résultat sélectionné automatiquement."
 
 #. description
 #: ../jobs/usb.txt.in:114
 msgid "This test is automated and executes after the usb/insert test is run."
 msgstr ""
+"Ce test est automatisé et s'exécute après avoir lancé le test insertion/USB."
 
 #. description
 #: ../jobs/usb.txt.in:124
@@ -3562,6 +3842,10 @@ msgid ""
 "server has usb storage devices plugged in prior to checkbox execution. It is "
 "intended for servers and SRU automated testing."
 msgstr ""
+"Ceci est une version automatisée du test usb/storage-automated qui nécessite "
+"la présence de périphériques de stockage USB connectés au serveur avant "
+"l'exécution de checkbox. Il est destiné aux serveurs et aux tests "
+"automatisés des SRU (Stable Release Updates)."
 
 #. description
 #: ../jobs/usb.txt.in:132
@@ -3578,6 +3862,17 @@ msgid ""
 "VERIFICATION:\n"
 "    Do all USB slots work with the device?"
 msgstr ""
+"BUT :\n"
+"    Ce test va vérifier votre connexion USB\n"
+"ÉTAPES :\n"
+"    1. Connectez un périphérique de stockage USB à un port USB externe de "
+"votre ordinateur.\n"
+"    2. Une icône devrait s'afficher sur le Lanceur d'application.\n"
+"    3. Confirmez que l'icône s'affiche.\n"
+"    4. Éjectez le périphérique.\n"
+"    5. Répétez pour chaque port USB externe.\n"
+"VÉRIFICATION :\n"
+"    Tous les ports USB fonctionnent-ils avec ce périphérique ?"
 
 #. description
 #: ../jobs/user_apps.txt.in:6
@@ -3593,6 +3888,20 @@ msgid ""
 " Did Update manager find and install updates (Pass if no updates are found,\n"
 " but Fail if updates are found but not installed)"
 msgstr ""
+"BUT :\n"
+" Ce test va vérifier que le gestionnaire de mises à jour peut trouver les "
+"mises à jour.\n"
+"ÉTAPES :\n"
+" 1. Cliquez sur « Tester » pour lancer le gestionnaire de mises à jour.\n"
+" 2. Suivez les messages affichés à l'écran et, si des mises à jour sont "
+"trouvées, installez-les.\n"
+" 3. Lorsque le gestionnaire de mises à jour a terminé, veuillez fermer "
+"l'application en cliquant sur le bouton Fermer en bas à droite de la "
+"fenêtre.\n"
+"VÉRIFICATION :\n"
+" Le gestionnaire de mises à jour a-t-il trouvé et installé des mises à "
+"jour ? (Réussi si aucune mise à jour trouvée, mais Échec si des mises à jour "
+"ont été trouvées mais pas installées)"
 
 #. description
 #: ../jobs/user_apps.txt.in:22
@@ -3608,6 +3917,17 @@ msgid ""
 "VERIFICATION:\n"
 " Do you now have a new folder called Test Folder?"
 msgstr ""
+"BUT :\n"
+" Ce test va vérifier que l'explorateur de fichiers peut créer un nouveau "
+"dossier.\n"
+"ÉTAPES :\n"
+" 1. Cliquez sur « Tester » pour ouvrir l'explorateur de fichiers.\n"
+" 2. Dans la barre de menus, cliquez Fichier -> Créer un dossier.\n"
+" 3. Dans la boîte de saisie du nom du nouveau dossier, taper le nom "
+"« Dossier Essai » et tapez Entrée.\n"
+" 4. Fermez l'explorateur de fichiers.\n"
+"VÉRIFICATION :\n"
+" Avez-vous maintenant un nouveau dossier nommé « Dossier Essai » ?"
 
 #. description
 #: ../jobs/user_apps.txt.in:37
@@ -3624,6 +3944,21 @@ msgid ""
 "VERIFICATION:\n"
 " Do you now have a folder called Test Data?"
 msgstr ""
+"BUT :\n"
+" Ce test va vérifier que le gestionnaire de fichiers peut copier un "
+"dossier.\n"
+"ÉTAPES :\n"
+" 1. Cliquez sur « Tester » pour lancer le gestionnaire de fichiers.\n"
+" 2. Faites un clic droit sur le dossier Test Folder et cliquez sur Copier.\n"
+" 3. Faites un clic droit dans la partie blanche de la fenêtre et cliquez sur "
+"Coller.\n"
+" 4. Faites un clic droit sur le dossier Test Folder(copie) et cliquez sur "
+"Renommer.\n"
+" 5. Saisissez le nom Test Data dans le champ de saisie et appuyez sur "
+"Entrée.\n"
+" 6. Fermez le gestionnaire de fichiers.\n"
+"VÉRIFICATION :\n"
+" Avez-vous maintenant un dossier appelé Test Data ?"
 
 #. description
 #: ../jobs/user_apps.txt.in:54
@@ -3641,6 +3976,17 @@ msgid ""
 " Was the folder called Test Data successfully moved into the folder called "
 "Test Folder?"
 msgstr ""
+"BUT :\n"
+" Ce test va vérifier que le gestionnaire de fichiers peut déplacer un "
+"dossier.\n"
+"ÉTAPES :\n"
+" 1. Cliquez sur « Tester » pour lancer le gestionnaire de fichiers.\n"
+" 2. Cliquez et déplacez le dossier Test Data sur l'icône Test Folder.\n"
+" 3. Relâchez le bouton.\n"
+" 4. Double cliquez sur le dossier Test Folder pour l'ouvrir.\n"
+" 5. Fermez le gestionnaire de fichiers.\n"
+"VÉRIFICATION :\n"
+" Le dossier Test Data a-t-il bien été déplacé dans le dossier Test Folder ?"
 
 #. description
 #: ../jobs/user_apps.txt.in:70
@@ -3656,6 +4002,18 @@ msgid ""
 "VERIFICATION:\n"
 " Do you now have a file called Test File 1?"
 msgstr ""
+"BUT :\n"
+" Ce test va vérifier que le gestionnaire de fichiers peut créer un nouveau "
+"fichier.\n"
+"ÉTAPES :\n"
+" 1. Cliquez sur « Tester » pour lancer le gestionnaire de fichiers.\n"
+" 2. Faites un clic droit dans la partie blanche et cliquez sur Créer un "
+"nouveau document -> document vide.\n"
+" 3. Saisissez le nom Test File 1 dans le champ de saisie et appuyez sur "
+"Entrée.\n"
+" 4. Fermez le gestionnaire de fichiers.\n"
+"VÉRIFICATION :\n"
+" Avez-vous maintenant un fichier Test File 1 ?"
 
 #. description
 #: ../jobs/user_apps.txt.in:85
@@ -3672,6 +4030,21 @@ msgid ""
 "VERIFICATION:\n"
 " Do you now have a file called Test File 2?"
 msgstr ""
+"BUT :\n"
+" Ce test va vérifier que le gestionnaire de fichiers peut copier un "
+"fichier.\n"
+"ÉTAPES :\n"
+" 1. Cliquez sur « Tester » pour lancer le gestionnaire de fichiers.\n"
+" 2. Faites un clic droit sur le fichier Test File 1 et cliquez sur Copier.\n"
+" 3. Faites un clic droit dans la partie blanche de la fenêtre et cliquez sur "
+"Coller.\n"
+" 4. Faites un clic droit sur le fichier Test File 1(copie) et cliquez sur "
+"Renommer.\n"
+" 5. Saisissez le nom Test File 2 dans le champ de saisie et appuyez sur "
+"Entrée.\n"
+" 6. Fermez le gestionnaire de fichiers.\n"
+"VÉRIFICATION :\n"
+" Avez-vous maintenant un fichier appelé Test File 2 ?"
 
 #. description
 #: ../jobs/user_apps.txt.in:102
@@ -3688,6 +4061,18 @@ msgid ""
 "VERIFICATION:\n"
 " Was the file Test File 2 successfully moved into the Test Data folder?"
 msgstr ""
+"BUT :\n"
+" Ce test va vérifier que le gestionnaire de fichiers peut déplacer un "
+"fichier.\n"
+"ÉTAPES :\n"
+" 1. Cliquez sur « Tester » pour lancer le gestionnaire de fichiers.\n"
+" 2. Cliquez et déplacez le fichier Test File 2 sur l'icône du dossier Test "
+"Data.\n"
+" 3. Relâchez le bouton.\n"
+" 4. Double cliquez sur le dossier Test Data pour l'ouvrir.\n"
+" 5. Fermez le gestionnaire de fichiers.\n"
+"VÉRIFICATION :\n"
+" Le fichier Test File 2 a-t-il bien été déplacé dans le dossier Test Data ?"
 
 #. description
 #: ../jobs/user_apps.txt.in:118
@@ -3702,6 +4087,17 @@ msgid ""
 "VERIFICATION:\n"
 "  Is Test File 1 now gone?"
 msgstr ""
+"BUT :\n"
+" Ce test va vérifier que le gestionnaire de fichiers peut supprimer un "
+"fichier.\n"
+"ÉTAPES :\n"
+" 1. Cliquez sur « Tester » pour lancer le gestionnaire de fichiers.\n"
+" 2. Faites un clic droit sur le fichier Test File 1 et cliquez sur Mettre à "
+"la corbeille.\n"
+" 3. Vérifiez que Test File 1 a bien été supprimé.\n"
+" 4. Fermez le gestionnaire de fichiers.\n"
+"VÉRIFICATION :\n"
+" Test File 1 a-t-il bien disparu ?"
 
 #. description
 #: ../jobs/user_apps.txt.in:133
@@ -3717,6 +4113,17 @@ msgid ""
 "VERIFICATION:\n"
 " Has Test Folder been successfully deleted?"
 msgstr ""
+"BUT :\n"
+" Ce test va vérifier que le gestionnaire de fichiers peut supprimer un "
+"dossier.\n"
+"ÉTAPES :\n"
+" 1. Cliquez sur « Tester » pour lancer le gestionnaire de fichiers.\n"
+" 2. Faites un clic droit sur le dossier Test Folder et cliquez sur Mettre à "
+"la corbeille.\n"
+" 3. Vérifiez que Test Folder a bien été supprimé.\n"
+" 4. Fermez le gestionnaire de fichiers.\n"
+"VÉRIFICATION :\n"
+" Test Folder a-t-il bien été supprimé ?"
 
 #. description
 #: ../jobs/user_apps.txt.in:207
@@ -3735,10 +4142,10 @@ msgid ""
 msgstr ""
 "BUT :\n"
 " Ce test va vérifier que Firefox peut afficher une page web basique.\n"
-"DÉMARCHE :\n"
-" 1. Choisissez \"Tester\" pour lancer Firefox et voir la page web de test.\n"
+"ÉTAPES :\n"
+" 1. Choisissez « Tester » pour lancer Firefox et voir la page web de test.\n"
 "VÉRIFICATION :\n"
-" La page de test Ubuntu s'est-elle chargée correctement ?"
+" La page de test Ubuntu s'est-elle chargée correctement ?"
 
 #. description
 #: ../jobs/user_apps.txt.in:241
@@ -3756,13 +4163,13 @@ msgstr ""
 "BUT :\n"
 " Ce test va vérifier que Firefox peut exécuter une applet java dans une page "
 "web.\n"
-" Note : ceci peut nécessiter l'installation de logiciels supplémentaires "
+" Note : ceci peut nécessiter l'installation de logiciels supplémentaires "
 "pour réussir.\n"
-"DÉMARCHE :\n"
-" 1. Choisissez \"Tester\" pour lancer Firefox avec la page de test Java, et "
+"ÉTAPES :\n"
+" 1. Choisissez « Tester » pour lancer Firefox avec la page de test Java, et "
 "suivez les instructions.\n"
 "VÉRIFICATION :\n"
-" L'applet s'est-elle affichée ?"
+" L'applet s'est-elle affichée ?"
 
 #. description
 #: ../jobs/user_apps.txt.in:255
@@ -3776,6 +4183,14 @@ msgid ""
 "VERIFICATION:\n"
 " Did you see the text?"
 msgstr ""
+"BUT :\n"
+" Ce test va vérifier que Firefox peut exécuter des applications Flash. "
+"Note : ceci\n"
+" peut nécessiter l'installation de logiciels supplémentaires pour réussir.\n"
+"ÉTAPES :\n"
+" 1. Choisissez « Tester » pour lancer Firefox et voir un test Flash.\n"
+"VÉRIFICATION :\n"
+" Avez-vous vu le texte ?"
 
 #. description
 #: ../jobs/user_apps.txt.in:269
@@ -3791,11 +4206,11 @@ msgstr ""
 "BUT :\n"
 " Ce test va vérifier que Firefox peut jouer une vidéo Flash. Notez que ceci\n"
 " peut nécessiter l'installation de logiciels supplémentaires pour réussir.\n"
-"DÉMARCHE :\n"
-" 1. Choisissez \"Tester\" pour lancer Firefox et visionner une courte vidéo "
+"ÉTAPES :\n"
+" 1. Choisissez « Tester » pour lancer Firefox et visionner une courte vidéo "
 "Flash.\n"
 "VÉRIFICATION :\n"
-" La vidéo a-t-elle été jouée correctement ?"
+" La vidéo a-t-elle été jouée correctement ?"
 
 #. description
 #: ../jobs/user_apps.txt.in:285
@@ -3809,6 +4224,14 @@ msgid ""
 "VERIFICATION:\n"
 " Did the video play using a plugin?"
 msgstr ""
+"BUT :\n"
+" Ce test va vérifier que Firefox peut jouer une vidéo Quicktime (.mov).\n"
+" Notez que ceci peut nécessiter l'installation de logiciels supplémentaires\n"
+" pour réussir.\n"
+"ÉTAPES :\n"
+" 1. Choisissez « Tester » pour lancer Firefox avec un exemple de vidéo.\n"
+"VÉRIFICATION :\n"
+" La vidéo a-t-elle été jouée à l'aide d'une extension ?"
 
 #. description
 #: ../jobs/user_apps.txt.in:299
@@ -3822,6 +4245,14 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to connect correctly and send/receive messages?"
 msgstr ""
+"BUT :\n"
+" Ce test va vérifier que le client de messagerie Empathy fonctionne.\n"
+"ÉTAPES :\n"
+" 1. Choisissez « Tester » pour lancer Empathy.\n"
+" 2. Configurez-le pour vous connecter au service de Chat de Facebook.\n"
+" 3. Une fois le test réalisé, veuillez quitter Empathy et continuer ici.\n"
+"VÉRIFICATION :\n"
+" Avez-vous pu vous connecter et envoyer/recevoir des messages ?"
 
 #. description
 #: ../jobs/user_apps.txt.in:313
@@ -3835,6 +4266,14 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to connect correctly and send/receive messages?"
 msgstr ""
+"BUT :\n"
+" Ce test va vérifier que le client de messagerie Empathy fonctionne.\n"
+"ÉTAPES :\n"
+" 1. Choisissez « Tester » pour lancer Empathy.\n"
+" 2. Configurez-le pour vous connecter au service Google Talk (gtalk).\n"
+" 3. Une fois le test réalisé, veuillez quitter Empathy et continuer ici.\n"
+"VÉRIFICATION :\n"
+" Avez-vous pu vous connecter et envoyer/recevoir des messages ?"
 
 #. description
 #: ../jobs/user_apps.txt.in:327
@@ -3848,6 +4287,14 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to connect correctly and send/receive messages?"
 msgstr ""
+"BUT :\n"
+" Ce test va vérifier que le client de messagerie Empathy fonctionne.\n"
+"ÉTAPES :\n"
+" 1. Choisissez « Tester » pour lancer Empathy.\n"
+" 2. Configurez-le pour vous connecter au service Jabber.\n"
+" 3. Une fois le test réalisé, veuillez quitter Empathy et continuer ici.\n"
+"VÉRIFICATION :\n"
+" Avez-vous pu vous connecter et envoyer/recevoir des messages ?"
 
 #. description
 #: ../jobs/user_apps.txt.in:341
@@ -3861,6 +4308,15 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to connect correctly and send/receive messages?"
 msgstr ""
+"BUT :\n"
+" Ce test va vérifier que le client de messagerie Empathy fonctionne.\n"
+"ÉTAPES :\n"
+" 1. Choisissez « Tester » pour lancer Empathy.\n"
+" 2. Configurez-le pour vous connecter à la messagerie instantanée d'AOL "
+"(AIM).\n"
+" 3. Une fois le test réalisé, veuillez quitter Empathy et continuer ici.\n"
+"VÉRIFICATION :\n"
+" Avez-vous pu vous connecter et envoyer/recevoir des messages ?"
 
 #. description
 #: ../jobs/user_apps.txt.in:355
@@ -3874,6 +4330,14 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to connect correctly and send/receive messages?"
 msgstr ""
+"BUT :\n"
+" Ce test va vérifier que le client de messagerie Empathy fonctionne.\n"
+"ÉTAPES :\n"
+" 1. Choisissez « Tester » pour lancer Empathy.\n"
+" 2. Configurez-le pour vous connecter au service Microsoft Network (MSN).\n"
+" 3. Une fois le test réalisé, veuillez quitter Empathy et continuer ici.\n"
+"VÉRIFICATION :\n"
+" Avez-vous pu vous connecter et envoyer/recevoir des messages ?"
 
 #. description
 #: ../jobs/user_apps.txt.in:369
@@ -3886,6 +4350,13 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to receive and read e-mail correctly?"
 msgstr ""
+"BUT :\n"
+" Ce test va vérifier que Evolution fonctionne.\n"
+"ÉTAPES :\n"
+" 1. Cliquez sur « Tester » pour lancer Evolution.\n"
+" 2. Configurez-le pour vous connecter à un compte POP3.\n"
+"VÉRIFICATION :\n"
+" Avez-vous réussi à recevoir et lire correctement des courriels ?"
 
 #. description
 #: ../jobs/user_apps.txt.in:382
@@ -3898,6 +4369,13 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to receive and read e-mail correctly?"
 msgstr ""
+"BUT :\n"
+" Ce test va vérifier que Evolution fonctionne.\n"
+"ÉTAPES :\n"
+" 1. Cliquez sur « Tester » pour lancer Evolution.\n"
+" 2. Configurez-le pour vous connecter à un compte IMAP.\n"
+"VÉRIFICATION :\n"
+" Avez-vous réussi à recevoir et lire correctement des courriels ?"
 
 #. description
 #: ../jobs/user_apps.txt.in:395
@@ -3910,6 +4388,13 @@ msgid ""
 "VERIFICATION:\n"
 " Were you able to send e-mail without errors?"
 msgstr ""
+"BUT :\n"
+" Ce test va vérifier que Evolution fonctionne.\n"
+"ÉTAPES :\n"
+" 1. Cliquez sur « Tester » pour lancer Evolution.\n"
+" 2. Configurez-le pour vous connecter à un compte SMTP.\n"
+"VÉRIFICATION :\n"
+" Avez-vous réussi à envoyer des courriels sans erreurs ?"
 
 #. description
 #: ../jobs/user_apps.txt.in:408
@@ -3921,6 +4406,12 @@ msgid ""
 "VERIFICATION:\n"
 " Did it launch correctly?"
 msgstr ""
+"BUT :\n"
+"Ce test vérifie si gcalctool (Calculatrice) fonctionne.\n"
+"ÉTAPES :\n"
+" Cliquez sur « Tester » pour ouvrir la calculatrice.\n"
+"VÉRIFICATION :\n"
+" S'est-elle lancée correctement ?"
 
 #. description
 #: ../jobs/user_apps.txt.in:421
@@ -3936,6 +4427,16 @@ msgid ""
 "VERIFICATION:\n"
 " Did the functions perform as expected?"
 msgstr ""
+"BUT :\n"
+"Ce test vérifie si gcalctool (Calculatrice) fonctionne.\n"
+"ÉTAPES :\n"
+" Cliquez sur « Tester » pour ouvrir la calculatrice et faites :\n"
+" 1. Des opérations simples (+,-,/,*)\n"
+" 2. Des opérations emboîtées ((,))\n"
+" 3. Du calcul fractionnaire\n"
+" 4. Du calcul décimal\n"
+"VÉRIFICATION :\n"
+" Les opérations ont-elles fonctionné comme prévu ?"
 
 #. description
 #: ../jobs/user_apps.txt.in:438
@@ -3951,6 +4452,16 @@ msgid ""
 "VERIFICATION:\n"
 " Did the functions perform as expected?"
 msgstr ""
+"BUT :\n"
+"Ce test vérifie si gcalctool (Calculatrice) fonctionne.\n"
+"ÉTAPES :\n"
+"Cliquez sur « Tester » pour ouvrir la calculatrice et faites :\n"
+"    1. Activation de la mémoire\n"
+"    2. Réinitialisation de la mémoire\n"
+"    3. Effacement de la dernière entrée mémorisée\n"
+"    4. Vidage de la mémoire\n"
+"VÉRIFICATION :\n"
+"Les actions ont-elles fonctionné comme prévu ?"
 
 #. description
 #: ../jobs/user_apps.txt.in:455
@@ -3965,6 +4476,15 @@ msgid ""
 "VERIFICATION:\n"
 " Did the functions perform as expected?"
 msgstr ""
+"BUT :\n"
+"Ce test vérifie si gcalctool (Calculatrice) fonctionne.\n"
+"ÉTAPES :\n"
+" Cliquez sur « Tester » pour ouvrir la calculatrice et faites :\n"
+" 1. Couper\n"
+" 2. Copier\n"
+" 3. Coller\n"
+"VÉRIFICATION :\n"
+" Les fonctions ont-elles donné les résultats attendus  ?"
 
 #. description
 #: ../jobs/user_apps.txt.in:470
@@ -3978,6 +4498,14 @@ msgid ""
 "VERIFICATION:\n"
 " Did this perform as expected?"
 msgstr ""
+"BUT :\n"
+"Ce test vérifie si gedit fonctionne.\n"
+"ÉTAPES :\n"
+" 1. Cliquez sur « Tester » pour ouvrir gedit.\n"
+" 2. Saisissez du texte et enregistrez le fichier (notez le nom du fichier "
+"utilisé), et fermez gedit.\n"
+"VÉRIFICATION :\n"
+" Tout s'est-il passé comme prévu ?"
 
 #. description
 #: ../jobs/user_apps.txt.in:484
@@ -3991,14 +4519,14 @@ msgid ""
 "VERIFICATION:\n"
 " Did this perform as expected?"
 msgstr ""
-"OBJECTIF:\n"
+"BUT:\n"
 " Ce test vérifie que gedit fonctionne.\n"
 "ÉTAPES:\n"
-" 1. Cliquez sur le bouton \"Test\" pour ouvrir gedit, et ré-ouvrez le "
-"fichier que vous avez créé précédemment.\n"
+" 1. Cliquez sur « Tester » pour ouvrir gedit, et ré-ouvrez le fichier que "
+"vous avez créé précédemment.\n"
 " 2. Modifiez puis enregistrez le fichier, puis fermez gedit.\n"
 "VÉRIFICATION:\n"
-" Cela a t-il fonctionné comme prévu?"
+" Cela a t-il fonctionné comme prévu ?"
 
 #. description
 #: ../jobs/user_apps.txt.in:497
@@ -4013,6 +4541,15 @@ msgid ""
 "VERIFICATION:\n"
 " Did this perform as expected?"
 msgstr ""
+"BUT :\n"
+"Ce test vérifie si le terminal GNOME fonctionne.\n"
+"ÉTAPES :\n"
+" 1. Cliquez sur « Tester » pour ouvrir le terminal.\n"
+" 2. Tapez « ls » et appuyez sur Entrée. Vous devriez voir une liste de "
+"fichiers et dossiers de votre dossier personnel.\n"
+" 3. Fermez la fenêtre du terminal.\n"
+"VÉRIFICATION :\n"
+" Tout s'est-il passé comme prévu ?"
 
 #. description
 #: ../jobs/wireless.txt.in:6
@@ -4034,6 +4571,16 @@ msgid ""
 "VERIFICATION:\n"
 "    Did a notification show and was the connection correctly established?"
 msgstr ""
+"BUT :\n"
+"    Ce test va vérifier votre connexion sans fil.\n"
+"ÉTAPES :\n"
+"    1. Cliquez sur l'icône Réseau du tableau de bord..\n"
+"    2. Sélectionnez un réseau dans la section « Réseaux sans fil ».\n"
+"    3. Cliquez sur « Tester » pour vérifier que vous pouvez établir une "
+"connexion HTTP.\n"
+"VÉRIFICATION :\n"
+"    Une notification est-elle apparue et la connexion a-t-elle été "
+"correctement établie ?"
 
 #. description
 #: ../jobs/wireless.txt.in:28
@@ -4041,6 +4588,8 @@ msgid ""
 "Tests that the systems wireless hardware can connect to a router using WPA "
 "security and the 802.11b/g protocols."
 msgstr ""
+"Teste si le dispositif de connexion sans fil peut se connecter à un routeur "
+"utilisant la sécurité WPA et les protocoles 802.11b/g."
 
 #. description
 #: ../jobs/wireless.txt.in:38
@@ -4048,6 +4597,8 @@ msgid ""
 "Tests that the systems wireless hardware can connect to a router using no "
 "security and the 802.11b/g protocols."
 msgstr ""
+"Teste si le dispositif de connexion sans fil peut se connecter à un routeur "
+"n'utilisant pas de sécurité et les protocoles 802.11b/g."
 
 #. description
 #: ../jobs/wireless.txt.in:48
@@ -4055,6 +4606,8 @@ msgid ""
 "Tests that the systems wireless hardware can connect to a router using WPA "
 "security and the 802.11n protocol."
 msgstr ""
+"Teste si le dispositif de connexion sans fil peut se connecter à un routeur "
+"utilisant la sécurité WPA et le protocole 802.11n."
 
 #. description
 #: ../jobs/wireless.txt.in:58
@@ -4062,6 +4615,8 @@ msgid ""
 "Tests that the systems wireless hardware can connect to a router using no "
 "security and the 802.11n protocol."
 msgstr ""
+"Teste si le dispositif de connexion sans fil peut se connecter à un routeur "
+"n'utilisant pas de sécurité et le protocole 802.11n."
 
 #. description
 #: ../jobs/wireless.txt.in:70
@@ -4069,6 +4624,7 @@ msgid ""
 "Tests the performance of a systems wireless connection through the iperf "
 "tool."
 msgstr ""
+"Teste les performances d'une connexion sans fil à l'aide de l'outil iperf."
 
 #. description
 #: ../jobs/wireless.txt.in:81
@@ -4076,6 +4632,8 @@ msgid ""
 "Tests the performance of a systems wireless connection through the iperf "
 "tool, using UDP packets."
 msgstr ""
+"Teste les performances d'une connexion sans fil à l'aide de l'outil iperf, "
+"en utilisant des paquets UDP."
 
 #: ../checkbox/application.py:66
 msgid "Usage: checkbox [OPTIONS]"
@@ -4115,12 +4673,12 @@ msgstr "Fichier de configuration manquant en argument.\n"
 
 #: ../checkbox/job.py:84
 msgid "Command not found."
-msgstr ""
+msgstr "Commande non trouvée."
 
 #: ../checkbox/job.py:92
 #, python-format
 msgid "Command received signal %s: %s"
-msgstr ""
+msgstr "Signal commande reçue %s: %s"
 
 #: ../checkbox/lib/signal.py:23
 msgid ""
@@ -4187,7 +4745,7 @@ msgstr "Continuer en cas d'arrêt"
 
 #: ../checkbox/lib/signal.py:38
 msgid "Stop process"
-msgstr "Arrêt du processus"
+msgstr "Interrompre le processus"
 
 #: ../checkbox/lib/signal.py:39
 msgid "Stop typed at tty"
@@ -4210,23 +4768,23 @@ msgid "Unknown signal"
 msgstr "Signal inconnu"
 
 #: ../checkbox_cli/cli_interface.py:31
-#: ../checkbox_urwid/urwid_interface.py:939 ../checkbox_qt/qt_interface.py:34
+#: ../checkbox_urwid/urwid_interface.py:939
 msgid "yes"
 msgstr "oui"
 
 #: ../checkbox_cli/cli_interface.py:32
-#: ../checkbox_urwid/urwid_interface.py:940 ../checkbox_qt/qt_interface.py:35
+#: ../checkbox_urwid/urwid_interface.py:940
 msgid "no"
 msgstr "non"
 
 #: ../checkbox_cli/cli_interface.py:33
-#: ../checkbox_urwid/urwid_interface.py:941 ../checkbox_qt/qt_interface.py:36
+#: ../checkbox_urwid/urwid_interface.py:941
 msgid "skip"
 msgstr "passer"
 
 #: ../checkbox_cli/cli_interface.py:127
 msgid "Press any key to continue..."
-msgstr "Appuyez sur une touche pour continuer..."
+msgstr "Appuyez sur une touche pour continuer…"
 
 #: ../checkbox_cli/cli_interface.py:136 ../checkbox_cli/cli_interface.py:235
 #, python-format
@@ -4236,7 +4794,7 @@ msgstr "Veuillez choisir (%s) : "
 #: ../checkbox_cli/cli_interface.py:230 ../checkbox_cli/cli_interface.py:339
 #: ../checkbox_cli/cli_interface.py:369
 msgid "Space when finished"
-msgstr ""
+msgstr "Espace quand terminé"
 
 #: ../checkbox_cli/cli_interface.py:368
 msgid "Combine with character above to expand node"
@@ -4254,21 +4812,21 @@ msgstr "Veuillez saisir ici et appuyer sur Ctrl-D lorsque vous avez fini :\n"
 msgid "Checkbox System Testing"
 msgstr "Test du système Checkbox"
 
-#: ../checkbox_urwid/urwid_interface.py:127 ../qt/frontend/ui_qtfront.h:592
+#: ../checkbox_urwid/urwid_interface.py:127 ../qt/frontend/ui_qtfront.h:637
 msgid "Continue"
 msgstr "Poursuivre"
 
 #: ../checkbox_urwid/urwid_interface.py:220
 #: ../checkbox_urwid/urwid_interface.py:296
 #: ../checkbox_urwid/urwid_interface.py:447
-#: ../checkbox_urwid/urwid_interface.py:569 ../qt/frontend/ui_qtfront.h:612
+#: ../checkbox_urwid/urwid_interface.py:569
 msgid "Previous"
 msgstr "Précédent"
 
 #: ../checkbox_urwid/urwid_interface.py:221
 #: ../checkbox_urwid/urwid_interface.py:297
 #: ../checkbox_urwid/urwid_interface.py:448
-#: ../checkbox_urwid/urwid_interface.py:570 ../qt/frontend/ui_qtfront.h:611
+#: ../checkbox_urwid/urwid_interface.py:570
 msgid "Next"
 msgstr "Suivant"
 
@@ -4290,7 +4848,7 @@ msgstr "Tout afficher"
 msgid "Collapse All"
 msgstr "Tout réduire"
 
-#: ../checkbox_urwid/urwid_interface.py:1034 ../qt/frontend/ui_qtfront.h:606
+#: ../checkbox_urwid/urwid_interface.py:1034
 msgid "Test"
 msgstr "Tester"
 
@@ -4302,11 +4860,11 @@ msgstr "Tester à nouveau"
 msgid "_Test Again"
 msgstr "_Tester à nouveau"
 
-#: ../checkbox_gtk/gtk_interface.py:574 ../qt/frontend/qtfront.cpp:530
+#: ../checkbox_gtk/gtk_interface.py:574 ../qt/frontend/qtfront.cpp:527
 msgid "Info"
 msgstr "Informations"
 
-#: ../checkbox_gtk/gtk_interface.py:599 ../qt/frontend/qtfront.cpp:235
+#: ../checkbox_gtk/gtk_interface.py:599 ../qt/frontend/qtfront.cpp:224
 msgid "Error"
 msgstr "Erreur"
 
@@ -4348,7 +4906,7 @@ msgstr "Souhaitez-vous signaler un bogue ?"
 #: ../plugins/apport_prompt.py:247
 #, python-format
 msgid "Is a package upgrade in process? Error: %s"
-msgstr "Une mise à jour de paquet est-elle en cours ? Erreur : %s"
+msgstr "Une mise à niveau de paquet est-elle en cours ? Erreur : %s"
 
 #: ../plugins/final_prompt.py:33
 msgid "Successfully finished testing!"
@@ -4410,6 +4968,17 @@ msgid ""
 "\n"
 "  https://launchpad.net/+login"
 msgstr ""
+"Le rapport suivant a été généré pour être soumis à la base de données "
+"matériel Launchpad\n"
+"\n"
+"  [[%s|Voir le rapport]]\n"
+"\n"
+"Vous pouvez soumettre ces informations concernant votre système en "
+"fournissant l'adresse e-mail que vous utilisez pour vous connecter à "
+"Launchpad. Si vous n'avez pas de compte Launchpad, veuillez vous enregistrer "
+"ici :\n"
+"\n"
+"  https://launchpad.net/+login"
 
 #: ../plugins/launchpad_prompt.py:84
 msgid "Email"
@@ -4417,7 +4986,7 @@ msgstr "Courriel"
 
 #: ../plugins/launchpad_prompt.py:99
 msgid "Exchanging information with the server..."
-msgstr "Échange d'informations avec le serveur..."
+msgstr "Échange d'informations avec le serveur…"
 
 #: ../plugins/launchpad_report.py:167
 msgid ""
@@ -4443,7 +5012,7 @@ msgstr ""
 "Checkbox n'est pas complètement terminé.\n"
 "Voulez-vous relancer le dernier test,\n"
 "passer au test suivant, ou\n"
-"redémarrer depuis le début ?"
+"redémarrer depuis le début ?"
 
 #: ../plugins/report_prompt.py:39
 msgid "Building report..."
@@ -4465,9 +5034,9 @@ msgstr ""
 "tests. Vous pouvez toujours sauter des tests individuels si vous n'avez pas "
 "l'équipement requis."
 
-#: ../plugins/suites_prompt.py:136 ../qt/frontend/ui_qtfront.h:596
+#: ../plugins/suites_prompt.py:136 ../qt/frontend/ui_qtfront.h:641
 msgid "Choose tests to run on your system:"
-msgstr "Sélectionnez les tests à exécuter sur votre système :"
+msgstr "Sélectionnez les tests à exécuter sur votre système :"
 
 #: ../scripts/keyboard_test:22
 msgid "Enter text:\n"
@@ -4489,129 +5058,129 @@ msgstr "Connexion établie avec perte d'un paquet"
 msgid "Internet connection fully established"
 msgstr "Connexion Internet complètement établie"
 
-#: ../qt/frontend/qtfront.cpp:91
+#: ../qt/frontend/qtfront.cpp:79
 msgid "Audio Test"
 msgstr "Test audio"
 
-#: ../qt/frontend/qtfront.cpp:92
+#: ../qt/frontend/qtfront.cpp:80
 msgid "Bluetooth Test"
 msgstr "Test bluetooth"
 
-#: ../qt/frontend/qtfront.cpp:93
+#: ../qt/frontend/qtfront.cpp:81
 msgid "Camera Test"
 msgstr "Test appareil photo"
 
-#: ../qt/frontend/qtfront.cpp:94
+#: ../qt/frontend/qtfront.cpp:82
 msgid "CPU Test"
-msgstr "Test micropresseur"
+msgstr "Test microprocesseur"
 
-#: ../qt/frontend/qtfront.cpp:95
+#: ../qt/frontend/qtfront.cpp:83
 msgid "Disk Test"
 msgstr "Test disque"
 
-#: ../qt/frontend/qtfront.cpp:96
+#: ../qt/frontend/qtfront.cpp:84
 msgid "Firewire Test"
 msgstr "Test Firewire"
 
-#: ../qt/frontend/qtfront.cpp:97
+#: ../qt/frontend/qtfront.cpp:85
 msgid "Graphics Test"
 msgstr "Test graphique"
 
-#: ../qt/frontend/qtfront.cpp:98
+#: ../qt/frontend/qtfront.cpp:86
 msgid "Info Test"
 msgstr "Test de récupération d'information"
 
-#: ../qt/frontend/qtfront.cpp:99
+#: ../qt/frontend/qtfront.cpp:87
 msgid "Input Test"
 msgstr "Test de saisie"
 
-#: ../qt/frontend/qtfront.cpp:100
+#: ../qt/frontend/qtfront.cpp:88
 msgid "Keys Test"
 msgstr "Test des touches"
 
-#: ../qt/frontend/qtfront.cpp:101
+#: ../qt/frontend/qtfront.cpp:89
 msgid "Media Card Test"
 msgstr "Test des cartes média"
 
-#: ../qt/frontend/qtfront.cpp:102
+#: ../qt/frontend/qtfront.cpp:90
 msgid "Memory Test"
 msgstr "Test mémoire"
 
-#: ../qt/frontend/qtfront.cpp:103
+#: ../qt/frontend/qtfront.cpp:91
 msgid "Miscellanea Test"
 msgstr "Tests divers"
 
-#: ../qt/frontend/qtfront.cpp:104
+#: ../qt/frontend/qtfront.cpp:92
 msgid "Monitor Test"
 msgstr "Test moniteur"
 
-#: ../qt/frontend/qtfront.cpp:105
+#: ../qt/frontend/qtfront.cpp:93
 msgid "Networking Test"
 msgstr "Test réseau"
 
-#: ../qt/frontend/qtfront.cpp:106
+#: ../qt/frontend/qtfront.cpp:94
 msgid "Wireless Test"
 msgstr "Test liaison sans fil"
 
-#: ../qt/frontend/qtfront.cpp:107
+#: ../qt/frontend/qtfront.cpp:95
 msgid "Optical Test"
 msgstr "Test optique"
 
-#: ../qt/frontend/qtfront.cpp:108
+#: ../qt/frontend/qtfront.cpp:96
 msgid "PCMCIA/PCIX Test"
 msgstr "Test PCMCIA/PCIX"
 
-#: ../qt/frontend/qtfront.cpp:109
+#: ../qt/frontend/qtfront.cpp:97
 msgid "Power Management Test"
 msgstr "Test de gestion de l'énergie"
 
-#: ../qt/frontend/qtfront.cpp:110
+#: ../qt/frontend/qtfront.cpp:98
 msgid "Suspend Test"
 msgstr "Test de mise en veille"
 
-#: ../qt/frontend/qtfront.cpp:111
+#: ../qt/frontend/qtfront.cpp:99
 msgid "USB Test"
 msgstr "Test USB"
 
-#: ../qt/frontend/qtfront.cpp:113
+#: ../qt/frontend/qtfront.cpp:101
 msgid "Not Started"
 msgstr "Non démarré"
 
-#: ../qt/frontend/qtfront.cpp:114 ../qt/frontend/qtfront.cpp:115
+#: ../qt/frontend/qtfront.cpp:102 ../qt/frontend/qtfront.cpp:103
 msgid "Done"
 msgstr "Terminé"
 
-#: ../qt/frontend/qtfront.cpp:116
+#: ../qt/frontend/qtfront.cpp:104
 msgid "Not Supported"
 msgstr "Non pris en charge"
 
-#: ../qt/frontend/qtfront.cpp:117
+#: ../qt/frontend/qtfront.cpp:105
 msgid "Not Resolved"
 msgstr "Non résolu"
 
-#: ../qt/frontend/qtfront.cpp:118
+#: ../qt/frontend/qtfront.cpp:106
 msgid "Not Tested"
 msgstr "Non testé"
 
-#: ../qt/frontend/qtfront.cpp:119
+#: ../qt/frontend/qtfront.cpp:107
 msgid "In Progress"
 msgstr "En cours"
 
-#: ../qt/frontend/qtfront.cpp:179
+#: ../qt/frontend/qtfront.cpp:159
 msgid "Are you sure?"
-msgstr "Êtes-vous sûr(e) ?"
+msgstr "Êtes-vous sûr(e) ?"
 
-#: ../qt/frontend/qtfront.cpp:179
+#: ../qt/frontend/qtfront.cpp:159
 msgid "Do you really want to skip this test?"
-msgstr "Voulez-vous vraiment sauter ce test ?"
+msgstr "Voulez-vous vraiment sauter ce test ?"
 
-#: ../qt/frontend/qtfront.cpp:180
+#: ../qt/frontend/qtfront.cpp:160
 msgid "Don't ask me again"
 msgstr "Ne plus me reposer la question"
 
-#: ../qt/frontend/ui_qtfront.h:589
+#: ../qt/frontend/ui_qtfront.h:634
 msgid "Form"
-msgstr ""
+msgstr "Formulaire"
 
 #: ../qt/frontend/ui_qtfront.h:601
 msgid "OK"
@@ -4621,41 +5190,41 @@ msgstr ""
 msgid "Don't show me this message in the future"
 msgstr "Ne plus afficher ce message à l'avenir"
 
-#: ../qt/frontend/ui_qtfront.h:593 ../qt/frontend/ui_qtfront.h:609
+#: ../qt/frontend/ui_qtfront.h:638 ../qt/frontend/ui_qtfront.h:656
 msgid "Tab 1"
 msgstr "Onglet 1"
 
-#: ../qt/frontend/ui_qtfront.h:594
+#: ../qt/frontend/ui_qtfront.h:639
 msgid "10 tests completed out of 30 (30%)"
 msgstr "10 tests sur 30 réalisés (30%)"
 
-#: ../qt/frontend/ui_qtfront.h:597
+#: ../qt/frontend/ui_qtfront.h:642
 msgid "Components"
 msgstr "Composants"
 
-#: ../qt/frontend/ui_qtfront.h:598
+#: ../qt/frontend/ui_qtfront.h:643
 msgid "Status"
 msgstr "État"
 
-#: ../qt/frontend/ui_qtfront.h:599
+#: ../qt/frontend/ui_qtfront.h:644
 msgid "Select all"
 msgstr "Sélectionner tout"
 
-#: ../qt/frontend/ui_qtfront.h:600
+#: ../qt/frontend/ui_qtfront.h:645
 msgid "Deselect all"
 msgstr "Tout désélectionner"
 
-#: ../qt/frontend/ui_qtfront.h:601
+#: ../qt/frontend/ui_qtfront.h:646
 msgid "Start testing"
 msgstr "Démarrer le test"
 
-#: ../qt/frontend/ui_qtfront.h:602
+#: ../qt/frontend/ui_qtfront.h:647
 msgid " Selection "
 msgstr " Sélection "
 
-#: ../qt/frontend/ui_qtfront.h:603 ../qt/frontend/ui_qtfront.h:604
+#: ../qt/frontend/ui_qtfront.h:648 ../qt/frontend/ui_qtfront.h:649
 msgid "TextLabel"
-msgstr ""
+msgstr "Étiquette"
 
 #: ../qt/frontend/ui_qtfront.h:605
 msgid "Yes"
@@ -4667,13 +5236,13 @@ msgstr "Non"
 
 #: ../qt/frontend/ui_qtfront.h:608
 msgid "Comment"
-msgstr ""
+msgstr "Commentaire"
 
-#: ../qt/frontend/ui_qtfront.h:610 ../qt/frontend/ui_qtfront.h:626
+#: ../qt/frontend/ui_qtfront.h:657 ../qt/frontend/ui_qtfront.h:673
 msgid "Tab 2"
 msgstr "Onglet 2"
 
-#: ../qt/frontend/ui_qtfront.h:613
+#: ../qt/frontend/ui_qtfront.h:660
 msgid " Run "
 msgstr " Exécuter "
 
@@ -4711,23 +5280,23 @@ msgstr ""
 "color:#000000;\">et cliquer sur le bouton \"Envoyer\" pour envoyer ces "
 "résultats de tests à Ubuntu Friendly.</span></p></body></html>"
 
-#: ../qt/frontend/ui_qtfront.h:620
+#: ../qt/frontend/ui_qtfront.h:667
 msgid "Submission details"
 msgstr "Détails de la soumission"
 
-#: ../qt/frontend/ui_qtfront.h:622
+#: ../qt/frontend/ui_qtfront.h:669
 msgid "Email:"
 msgstr "Adresse de courriel :"
 
-#: ../qt/frontend/ui_qtfront.h:623
+#: ../qt/frontend/ui_qtfront.h:670
 msgid "Submit results"
 msgstr "Envoyer les résultats"
 
-#: ../qt/frontend/ui_qtfront.h:624
+#: ../qt/frontend/ui_qtfront.h:671
 msgid "View results"
 msgstr "Voir les résultats"
 
-#: ../qt/frontend/ui_qtfront.h:625
+#: ../qt/frontend/ui_qtfront.h:672
 msgid " Results "
 msgstr " Résultats "
 
@@ -6734,14 +7303,6 @@ msgstr " Résultats "
 #~ msgid "QA Regression tests"
 #~ msgstr "Tests d'Assurance Qualité"
 
-#~ msgid ""
-#~ "PURPOSE:\n"
-#~ "   This test installs and runs the Mago Automated Desktop Testing suite."
-#~ msgstr ""
-#~ "Objectif :\n"
-#~ "   Ce test installe et lance la suite de test automatisé pour ordinateur de "
-#~ "bureau Mago."
-
 #~ msgid "Recover"
 #~ msgstr "Restaurer"
 
@@ -6750,67 +7311,6 @@ msgstr " Résultats "
 
 #~ msgid "Personal details"
 #~ msgstr "Informations personnelles"
-
-#~ msgid ""
-#~ "PURPOSE:\n"
-#~ "   This test will attempt to install and run the Autotest Suite.  These "
-#~ "tests can be destructive, so this test is blacklisted by default."
-#~ msgstr ""
-#~ "OBJECTIF\n"
-#~ "    Ce test va tenter d'installer et de démarrer la suite Autotest. Ces "
-#~ "tests pouvant être destructifs, ils ont été mis sur la liste noire par "
-#~ "défaut."
-
-#~ msgid ""
-#~ "PURPOSE:\n"
-#~ "    This test will check the system can detect the insertion of a FireWire "
-#~ "HDD\n"
-#~ "STEPS:\n"
-#~ "    1. Click 'Test' to begin the test. This test will\n"
-#~ "       timeout and fail if the insertion has not been detected within 10 "
-#~ "seconds.\n"
-#~ "    2. Plug a FireWire HDD into an available FireWire port.\n"
-#~ "VERIFICATION:\n"
-#~ "    The verification of this test is automated. Do not change the "
-#~ "automatically\n"
-#~ "    selected result"
-#~ msgstr ""
-#~ "OBJECTIF\n"
-#~ "    Ce test va vérifier que le système peut détecter l'insertion d'un disque "
-#~ "dur FireWire.\n"
-#~ "ÉTAPES\n"
-#~ "    1. Cliquez sur « Test » pour commencer le test. Ce test\n"
-#~ "       s’interrompra et échouera si l'insertion n'a pas été détectée en 10 "
-#~ "secondes.\n"
-#~ "    2. Branchez un disque dur FireWire dans un port FireWire disponible.\n"
-#~ "VÉRIFICATION\n"
-#~ "    La vérification de ce test est automatique. Ne pas changer le résultat \n"
-#~ "   automatique."
-
-#~ msgid ""
-#~ " PURPOSE:\n"
-#~ "   This test will check the system can detect the removal of a FireWire HDD\n"
-#~ " STEPS:\n"
-#~ "   1. Click 'Test' to begin the test. This test will timeout and fail if\n"
-#~ "      the removal has not been detected within 10 seconds.\n"
-#~ "   2. Remove the previously attached FireWire HDD from the FireWire port.\n"
-#~ " VERIFICATION:\n"
-#~ "   The verification of this test is automated. Do not change the "
-#~ "automatically\n"
-#~ "   selected result"
-#~ msgstr ""
-#~ " OBJECTIF\n"
-#~ "   Ce test vérifiera que le système peut détecter le retrait d'un disque dur "
-#~ "FireWire.\n"
-#~ " ÉTAPES\n"
-#~ "   1. Cliquez sur « Tester » pour commencer le test. Ce test s’interrompra "
-#~ "et échouera si \n"
-#~ "      le retrait n'a pas été détecté en 10 secondes.\n"
-#~ "   2. Retirez le disque dur FireWire précédemment connecté du port "
-#~ "FireWire.\n"
-#~ " VÉRIFICATION\n"
-#~ "   La vérification de ce test est automatique. Ne pas changer le résultat \n"
-#~ "   automatique."
 
 #~ msgid "Lists of tests to run based on your system:"
 #~ msgstr "Liste de tests à effectuer sur votre système :"
@@ -6839,6 +7339,75 @@ msgstr " Résultats "
 
 #~ msgid ""
 #~ "PURPOSE:\n"
+#~ "   This test installs and runs the Mago Automated Desktop Testing suite."
+#~ msgstr ""
+#~ "BUT :\n"
+#~ "   Ce test installe et lance la suite de test automatisé pour ordinateur de "
+#~ "bureau Mago."
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "   This test will attempt to install and run the Autotest Suite.  These "
+#~ "tests can be destructive, so this test is blacklisted by default."
+#~ msgstr ""
+#~ "BUT\n"
+#~ "    Ce test va tenter d'installer et de démarrer la suite Autotest. Ces "
+#~ "tests pouvant être destructifs, ils ont été mis sur la liste noire par "
+#~ "défaut."
+
+#~ msgid ""
+#~ "PURPOSE:\n"
+#~ "    This test will check the system can detect the insertion of a FireWire "
+#~ "HDD\n"
+#~ "STEPS:\n"
+#~ "    1. Click 'Test' to begin the test. This test will\n"
+#~ "       timeout and fail if the insertion has not been detected within 10 "
+#~ "seconds.\n"
+#~ "    2. Plug a FireWire HDD into an available FireWire port.\n"
+#~ "VERIFICATION:\n"
+#~ "    The verification of this test is automated. Do not change the "
+#~ "automatically\n"
+#~ "    selected result"
+#~ msgstr ""
+#~ "BUT\n"
+#~ "    Ce test va vérifier que le système peut détecter l'insertion d'un disque "
+#~ "dur FireWire.\n"
+#~ "ÉTAPES\n"
+#~ "    1. Cliquez sur « Test » pour commencer le test. Ce test\n"
+#~ "       s’interrompra et échouera si l'insertion n'a pas été détectée en 10 "
+#~ "secondes.\n"
+#~ "    2. Branchez un disque dur FireWire dans un port FireWire disponible.\n"
+#~ "VÉRIFICATION\n"
+#~ "    La vérification de ce test est automatique. Ne pas changer le résultat \n"
+#~ "   automatique."
+
+#~ msgid ""
+#~ " PURPOSE:\n"
+#~ "   This test will check the system can detect the removal of a FireWire HDD\n"
+#~ " STEPS:\n"
+#~ "   1. Click 'Test' to begin the test. This test will timeout and fail if\n"
+#~ "      the removal has not been detected within 10 seconds.\n"
+#~ "   2. Remove the previously attached FireWire HDD from the FireWire port.\n"
+#~ " VERIFICATION:\n"
+#~ "   The verification of this test is automated. Do not change the "
+#~ "automatically\n"
+#~ "   selected result"
+#~ msgstr ""
+#~ " BUT\n"
+#~ "   Ce test vérifiera que le système peut détecter le retrait d'un disque dur "
+#~ "FireWire.\n"
+#~ " ÉTAPES\n"
+#~ "   1. Cliquez sur « Tester » pour commencer le test. Ce test s’interrompra "
+#~ "et échouera si \n"
+#~ "      le retrait n'a pas été détecté en 10 secondes.\n"
+#~ "   2. Retirez le disque dur FireWire précédemment connecté du port "
+#~ "FireWire.\n"
+#~ " VÉRIFICATION\n"
+#~ "   La vérification de ce test est automatique. Ne pas changer le résultat \n"
+#~ "   automatique."
+
+#~ msgid ""
+#~ "PURPOSE:\n"
 #~ "    This test will test the media keys of your keyboard\n"
 #~ "STEPS:\n"
 #~ "    1. Click test to open a window on which to test the media control keys.\n"
@@ -6849,14 +7418,14 @@ msgstr " Résultats "
 #~ msgstr ""
 #~ "BUT :\n"
 #~ "    Ce test va tester les touches média de votre clavier.\n"
-#~ "DÉMARCHE :\n"
-#~ "    1. Cliquez sur \"Tester\" pour ouvrir une fenêtre sur laquelle tester "
+#~ "ÉTAPES :\n"
+#~ "    1. Cliquez sur « Tester » pour ouvrir une fenêtre sur laquelle tester "
 #~ "vos touches média.\n"
 #~ "    2. Si toutes les touches fonctionnent, le test sera validé.\n"
 #~ "    3. Si votre ordinateur ne possède pas de touches média, passez cette "
 #~ "étape.\n"
 #~ "VÉRIFICATION :\n"
-#~ "    Les touches fonctionnent-elles correctement ?"
+#~ "    Les touches fonctionnent-elles correctement ?"
 
 #~ msgid ""
 #~ "PURPOSE:\n"
@@ -6873,8 +7442,8 @@ msgstr " Résultats "
 #~ "BUT :\n"
 #~ "    Ce test va vérifier que le système détecte correctement le retrait de la "
 #~ "carte multimédia (MMC) du lecteur après que le système ait été suspendu.\n"
-#~ "DÉMARCHE :\n"
-#~ "    1. Cliquez sur \"Tester\" et retirez la carte MMC du lecteur.\n"
+#~ "ÉTAPES :\n"
+#~ "    1. Cliquez sur « Tester » et retirez la carte MMC du lecteur.\n"
 #~ "        (Note : Le test sera invalidé après 10 secondes d'inactivité.)\n"
 #~ "    2. Ne retirez pas la carte après le test.\n"
 #~ "VÉRIFICATION :\n"
@@ -6896,8 +7465,8 @@ msgstr " Résultats "
 #~ "BUT :\n"
 #~ "    Ce test va vérifier que le lecteur de cartes détecte l'insertion d'une "
 #~ "carte multimédia (MMC) après que le système ait été suspendu.\n"
-#~ "DÉMARCHE :\n"
-#~ "    1. Cliquez sur \"Tester\" et insérez une carte MMC dans le lecteur.\n"
+#~ "ÉTAPES :\n"
+#~ "    1. Cliquez sur « Tester » et insérez une carte MMC dans le lecteur.\n"
 #~ "        (Note : Le test sera invalidé après 10 secondes d'inactivité.)\n"
 #~ "    2. Ne retirez pas la carte après le test.\n"
 #~ "VÉRIFICATION :\n"
@@ -6918,8 +7487,8 @@ msgstr " Résultats "
 #~ "BUT :\n"
 #~ "    Ce test va vérifier que le système détecte correctement le retrait de la "
 #~ "carte multimédia (MMC) du lecteur.\n"
-#~ "DÉMARCHE :\n"
-#~ "    1. Cliquez sur \"Tester\" et retirez la carte MMC du lecteur.\n"
+#~ "ÉTAPES :\n"
+#~ "    1. Cliquez sur « Tester » et retirez la carte MMC du lecteur.\n"
 #~ "        (Note : Le test sera invalidé après 10 secondes d'inactivité.)\n"
 #~ "    2. Ne retirez pas la carte après le test.\n"
 #~ "VÉRIFICATION :\n"
@@ -6941,8 +7510,8 @@ msgstr " Résultats "
 #~ "BUT :\n"
 #~ "    Ce test va vérifier que le lecteur de cartes détecte l'insertion d'une "
 #~ "carte multimédia (MMC).\n"
-#~ "DÉMARCHE :\n"
-#~ "    1. Cliquez sur \"Tester\" et insérez une carte MMC dans le lecteur.\n"
+#~ "ÉTAPES :\n"
+#~ "    1. Cliquez sur « Tester » et insérez une carte MMC dans le lecteur.\n"
 #~ "        (Note : Le test sera invalidé après 10 secondes d'inactivité.)\n"
 #~ "    2. Ne retirez pas la carte après le test.\n"
 #~ "VÉRIFICATION :\n"

@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-08-28 05:10+0000\n"
-"X-Generator: Launchpad (build 15864)\n"
+"X-Launchpad-Export-Date: 2012-09-11 04:32+0000\n"
+"X-Generator: Launchpad (build 15924)\n"
 
 #. Title of the user interface
 #: ../gtk/checkbox-gtk.ui.h:1 ../qt/checkbox-qt.desktop.in.h:1
@@ -82,6 +82,15 @@ msgid ""
 "VERIFICATION:\n"
 "    Did you hear a tone?"
 msgstr ""
+"QËLLIMI:\n"
+"    Ky test do të kontrollojë nëse folëset e brendshme punojnë si duhet\n"
+"HAPAT:\n"
+"    1. Sigurohuni që nuk janë lidhur folëse të jashtme ose kufje\n"
+"       Nëse po testoni një kompjuter tavoline, lejohen folëset e jashtme\n"
+"    2. Klikoni butonin Test për të luajtur një tingull të shkurtër më "
+"pajisjen tuaj audio\n"
+"VERIFIKIMI:\n"
+"    A dëgjuat një tingull?"
 
 #. description
 #: ../jobs/audio.txt.in:37
@@ -111,6 +120,15 @@ msgid ""
 "    Did you hear a sound through the headphones and did the sound play "
 "without any distortion, clicks or other strange noises from your headphones?"
 msgstr ""
+"QËLLIMI:\n"
+"    Ky test do të kontrollojë nëse lidhja e kufjeve punon si duhet\n"
+"HAPAT:\n"
+"    1. Lidhni një palë kufje në pajisjen tuaj audio\n"
+"    2. Klikoni butonin Test për të luajtur një tingull të shkurtër më "
+"pajisjen tuaj audio\n"
+"VERIFIKIMI:\n"
+"    A dëgjuat një tingull nga kufjet dhe a u luajt tingulli pa shtrembërime, "
+"klike ose zhurma të tjera të çuditshme nga kufjet tuaja?"
 
 #. description
 #: ../jobs/audio.txt.in:75
@@ -3286,17 +3304,17 @@ msgid "Unknown signal"
 msgstr "Sinjal i panjohur"
 
 #: ../checkbox_cli/cli_interface.py:31
-#: ../checkbox_urwid/urwid_interface.py:939 ../checkbox_qt/qt_interface.py:34
+#: ../checkbox_urwid/urwid_interface.py:939
 msgid "yes"
 msgstr "po"
 
 #: ../checkbox_cli/cli_interface.py:32
-#: ../checkbox_urwid/urwid_interface.py:940 ../checkbox_qt/qt_interface.py:35
+#: ../checkbox_urwid/urwid_interface.py:940
 msgid "no"
 msgstr "jo"
 
 #: ../checkbox_cli/cli_interface.py:33
-#: ../checkbox_urwid/urwid_interface.py:941 ../checkbox_qt/qt_interface.py:36
+#: ../checkbox_urwid/urwid_interface.py:941
 msgid "skip"
 msgstr "anashkalo"
 
@@ -3334,21 +3352,21 @@ msgstr "Ju lutemi të shtypni këtu dhe të klikoni Ctrl-D kur përfundoni:\n"
 msgid "Checkbox System Testing"
 msgstr "Checkbox Testim i Sistemit"
 
-#: ../checkbox_urwid/urwid_interface.py:127 ../qt/frontend/ui_qtfront.h:592
+#: ../checkbox_urwid/urwid_interface.py:127 ../qt/frontend/ui_qtfront.h:637
 msgid "Continue"
 msgstr "Vazhdo"
 
 #: ../checkbox_urwid/urwid_interface.py:220
 #: ../checkbox_urwid/urwid_interface.py:296
 #: ../checkbox_urwid/urwid_interface.py:447
-#: ../checkbox_urwid/urwid_interface.py:569 ../qt/frontend/ui_qtfront.h:612
+#: ../checkbox_urwid/urwid_interface.py:569
 msgid "Previous"
 msgstr "E mëparshmja"
 
 #: ../checkbox_urwid/urwid_interface.py:221
 #: ../checkbox_urwid/urwid_interface.py:297
 #: ../checkbox_urwid/urwid_interface.py:448
-#: ../checkbox_urwid/urwid_interface.py:570 ../qt/frontend/ui_qtfront.h:611
+#: ../checkbox_urwid/urwid_interface.py:570
 msgid "Next"
 msgstr "Tjetra"
 
@@ -3370,7 +3388,7 @@ msgstr "Shpalosi të gjitha"
 msgid "Collapse All"
 msgstr "Palosi të Gjitha"
 
-#: ../checkbox_urwid/urwid_interface.py:1034 ../qt/frontend/ui_qtfront.h:606
+#: ../checkbox_urwid/urwid_interface.py:1034
 msgid "Test"
 msgstr "Testo"
 
@@ -3382,11 +3400,11 @@ msgstr "Testo Përsëri"
 msgid "_Test Again"
 msgstr "_Testo Përsëri"
 
-#: ../checkbox_gtk/gtk_interface.py:574 ../qt/frontend/qtfront.cpp:530
+#: ../checkbox_gtk/gtk_interface.py:574 ../qt/frontend/qtfront.cpp:527
 msgid "Info"
 msgstr "Info"
 
-#: ../checkbox_gtk/gtk_interface.py:599 ../qt/frontend/qtfront.cpp:235
+#: ../checkbox_gtk/gtk_interface.py:599 ../qt/frontend/qtfront.cpp:224
 msgid "Error"
 msgstr "Gabim"
 
@@ -3568,7 +3586,7 @@ msgstr ""
 "lutemi të zgjidhni të gjitha testet. Ju gjithmonë mund i anashkaloni testet "
 "individuale nëse nuk keni pajisjen e duhur."
 
-#: ../plugins/suites_prompt.py:136 ../qt/frontend/ui_qtfront.h:596
+#: ../plugins/suites_prompt.py:136 ../qt/frontend/ui_qtfront.h:641
 msgid "Choose tests to run on your system:"
 msgstr ""
 
@@ -3592,127 +3610,127 @@ msgstr "Lidhja u krye dhe humbi një paketë"
 msgid "Internet connection fully established"
 msgstr "Lidhja me Internetin u stabilizua plotësisht"
 
-#: ../qt/frontend/qtfront.cpp:91
+#: ../qt/frontend/qtfront.cpp:79
 msgid "Audio Test"
 msgstr "Testim i Audio"
 
-#: ../qt/frontend/qtfront.cpp:92
+#: ../qt/frontend/qtfront.cpp:80
 msgid "Bluetooth Test"
 msgstr "Testim i Bluetooth"
 
-#: ../qt/frontend/qtfront.cpp:93
+#: ../qt/frontend/qtfront.cpp:81
 msgid "Camera Test"
 msgstr "Testim i Kamerës"
 
-#: ../qt/frontend/qtfront.cpp:94
+#: ../qt/frontend/qtfront.cpp:82
 msgid "CPU Test"
 msgstr "Testim i CPU"
 
-#: ../qt/frontend/qtfront.cpp:95
+#: ../qt/frontend/qtfront.cpp:83
 msgid "Disk Test"
 msgstr "Testim i Diskut"
 
-#: ../qt/frontend/qtfront.cpp:96
+#: ../qt/frontend/qtfront.cpp:84
 msgid "Firewire Test"
 msgstr "Testim i Firewire"
 
-#: ../qt/frontend/qtfront.cpp:97
+#: ../qt/frontend/qtfront.cpp:85
 msgid "Graphics Test"
 msgstr "Testim i Grafikëve"
 
-#: ../qt/frontend/qtfront.cpp:98
+#: ../qt/frontend/qtfront.cpp:86
 msgid "Info Test"
 msgstr "Info Test"
 
-#: ../qt/frontend/qtfront.cpp:99
+#: ../qt/frontend/qtfront.cpp:87
 msgid "Input Test"
 msgstr "Testim i Hyrjes"
 
-#: ../qt/frontend/qtfront.cpp:100
+#: ../qt/frontend/qtfront.cpp:88
 msgid "Keys Test"
 msgstr "Testim i butonave"
 
-#: ../qt/frontend/qtfront.cpp:101
+#: ../qt/frontend/qtfront.cpp:89
 msgid "Media Card Test"
 msgstr "Testim i Kartës Media"
 
-#: ../qt/frontend/qtfront.cpp:102
+#: ../qt/frontend/qtfront.cpp:90
 msgid "Memory Test"
 msgstr "Testim i Kujtesës"
 
-#: ../qt/frontend/qtfront.cpp:103
+#: ../qt/frontend/qtfront.cpp:91
 msgid "Miscellanea Test"
 msgstr "Testim i Përzierë"
 
-#: ../qt/frontend/qtfront.cpp:104
+#: ../qt/frontend/qtfront.cpp:92
 msgid "Monitor Test"
 msgstr "Testim Monitorimi"
 
-#: ../qt/frontend/qtfront.cpp:105
+#: ../qt/frontend/qtfront.cpp:93
 msgid "Networking Test"
 msgstr "Testim Rrjeti"
 
-#: ../qt/frontend/qtfront.cpp:106
+#: ../qt/frontend/qtfront.cpp:94
 msgid "Wireless Test"
 msgstr "Wireless Test"
 
-#: ../qt/frontend/qtfront.cpp:107
+#: ../qt/frontend/qtfront.cpp:95
 msgid "Optical Test"
 msgstr "Testim Optik"
 
-#: ../qt/frontend/qtfront.cpp:108
+#: ../qt/frontend/qtfront.cpp:96
 msgid "PCMCIA/PCIX Test"
 msgstr "PCMCIA/PCIX Test"
 
-#: ../qt/frontend/qtfront.cpp:109
+#: ../qt/frontend/qtfront.cpp:97
 msgid "Power Management Test"
 msgstr "Testim i Menaxhimit të Tensionit"
 
-#: ../qt/frontend/qtfront.cpp:110
+#: ../qt/frontend/qtfront.cpp:98
 msgid "Suspend Test"
 msgstr "Pezullo Testin"
 
-#: ../qt/frontend/qtfront.cpp:111
+#: ../qt/frontend/qtfront.cpp:99
 msgid "USB Test"
 msgstr "TEstim i USB"
 
-#: ../qt/frontend/qtfront.cpp:113
+#: ../qt/frontend/qtfront.cpp:101
 msgid "Not Started"
 msgstr "Nuk Është Nisur"
 
-#: ../qt/frontend/qtfront.cpp:114 ../qt/frontend/qtfront.cpp:115
+#: ../qt/frontend/qtfront.cpp:102 ../qt/frontend/qtfront.cpp:103
 msgid "Done"
 msgstr "U Bë"
 
-#: ../qt/frontend/qtfront.cpp:116
+#: ../qt/frontend/qtfront.cpp:104
 msgid "Not Supported"
 msgstr "Nuk Suportohet"
 
-#: ../qt/frontend/qtfront.cpp:117
+#: ../qt/frontend/qtfront.cpp:105
 msgid "Not Resolved"
 msgstr "Nuk Është Zgjidhur"
 
-#: ../qt/frontend/qtfront.cpp:118
+#: ../qt/frontend/qtfront.cpp:106
 msgid "Not Tested"
 msgstr "Nuk Është Testuar"
 
-#: ../qt/frontend/qtfront.cpp:119
+#: ../qt/frontend/qtfront.cpp:107
 msgid "In Progress"
 msgstr "Në Zhvillim"
 
-#: ../qt/frontend/qtfront.cpp:179
+#: ../qt/frontend/qtfront.cpp:159
 msgid "Are you sure?"
 msgstr "A jeni i sigurt?"
 
-#: ../qt/frontend/qtfront.cpp:179
+#: ../qt/frontend/qtfront.cpp:159
 msgid "Do you really want to skip this test?"
 msgstr "Dëshiron me të vërtetë ta anashkalosh këtë tekst?"
 
-#: ../qt/frontend/qtfront.cpp:180
+#: ../qt/frontend/qtfront.cpp:160
 msgid "Don't ask me again"
 msgstr "Mos më pyet përsëri"
 
-#: ../qt/frontend/ui_qtfront.h:589
+#: ../qt/frontend/ui_qtfront.h:634
 msgid "Form"
 msgstr "Forma"
 
@@ -3724,39 +3742,39 @@ msgstr "OK"
 msgid "Don't show me this message in the future"
 msgstr "Mos ma shfaq këtë mesazh në të ardhmen"
 
-#: ../qt/frontend/ui_qtfront.h:593 ../qt/frontend/ui_qtfront.h:609
+#: ../qt/frontend/ui_qtfront.h:638 ../qt/frontend/ui_qtfront.h:656
 msgid "Tab 1"
 msgstr "Tab 1"
 
-#: ../qt/frontend/ui_qtfront.h:594
+#: ../qt/frontend/ui_qtfront.h:639
 msgid "10 tests completed out of 30 (30%)"
 msgstr "10 teste u kompletuan nga 30 (30%)"
 
-#: ../qt/frontend/ui_qtfront.h:597
+#: ../qt/frontend/ui_qtfront.h:642
 msgid "Components"
 msgstr "Përbërësit"
 
-#: ../qt/frontend/ui_qtfront.h:598
+#: ../qt/frontend/ui_qtfront.h:643
 msgid "Status"
 msgstr "Gjendja"
 
-#: ../qt/frontend/ui_qtfront.h:599
+#: ../qt/frontend/ui_qtfront.h:644
 msgid "Select all"
 msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:600
+#: ../qt/frontend/ui_qtfront.h:645
 msgid "Deselect all"
 msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:601
+#: ../qt/frontend/ui_qtfront.h:646
 msgid "Start testing"
 msgstr "Nis testimin"
 
-#: ../qt/frontend/ui_qtfront.h:602
+#: ../qt/frontend/ui_qtfront.h:647
 msgid " Selection "
 msgstr " Përzgjedhja "
 
-#: ../qt/frontend/ui_qtfront.h:603 ../qt/frontend/ui_qtfront.h:604
+#: ../qt/frontend/ui_qtfront.h:648 ../qt/frontend/ui_qtfront.h:649
 msgid "TextLabel"
 msgstr "TextLabel"
 
@@ -3772,11 +3790,11 @@ msgstr "Jo"
 msgid "Comment"
 msgstr "Komento"
 
-#: ../qt/frontend/ui_qtfront.h:610 ../qt/frontend/ui_qtfront.h:626
+#: ../qt/frontend/ui_qtfront.h:657 ../qt/frontend/ui_qtfront.h:673
 msgid "Tab 2"
 msgstr "Tab 2"
 
-#: ../qt/frontend/ui_qtfront.h:613
+#: ../qt/frontend/ui_qtfront.h:660
 msgid " Run "
 msgstr " Nis "
 
@@ -3814,23 +3832,23 @@ msgstr ""
 "color:#000000;\">and click the Submit Results button to submit these test "
 "results to Ubuntu Friendly.</span></p></body></html>"
 
-#: ../qt/frontend/ui_qtfront.h:620
+#: ../qt/frontend/ui_qtfront.h:667
 msgid "Submission details"
 msgstr ""
 
-#: ../qt/frontend/ui_qtfront.h:622
+#: ../qt/frontend/ui_qtfront.h:669
 msgid "Email:"
 msgstr "Email:"
 
-#: ../qt/frontend/ui_qtfront.h:623
+#: ../qt/frontend/ui_qtfront.h:670
 msgid "Submit results"
 msgstr "Vendos rezultatet"
 
-#: ../qt/frontend/ui_qtfront.h:624
+#: ../qt/frontend/ui_qtfront.h:671
 msgid "View results"
 msgstr "Shfaq rezultatet"
 
-#: ../qt/frontend/ui_qtfront.h:625
+#: ../qt/frontend/ui_qtfront.h:672
 msgid " Results "
 msgstr " Rezultatet "
 
