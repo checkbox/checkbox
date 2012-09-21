@@ -104,5 +104,11 @@ command:
 name: memory_card
 plugin: resource
 user: root
-command: memorycard_resource
+command: 
+ run_templates -st "udev_resource | filter_templates -w 'driver=sd'" <<'EOF' \
+   | (egrep -qi '(SD|MMC|CF|MS|SM|xD|Card|Generic)' || grep -q 'SDHCI controller found' /var/log/kern.log*) \
+     && echo 'reader: detected' \
+     || echo 'reader: none'
+ $product $vendor
+ EOF
 description: Create resource info for memorycard readers
