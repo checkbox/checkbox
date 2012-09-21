@@ -134,6 +134,8 @@ checkbox (0.14.6) quantal; urgency=low
   * [FEATURE] jobs/rendercheck.txt.in, po/POTFILES.in, setup.cfg: Fixed
     the rendercheck tests, added the suite file to setup.cfg/POTFILES.in
     and moved the rendercheck/tarball job into an attachment (LP #1053033)
+  * scripts/optical_write_test: Filter ANSI escape char outputed by wodim 
+    (LP: #1052803)
 
   [Zygmunt Krynicki]
   * Fixed simple duplicate 'the' mistakes (LP: #1040022)
