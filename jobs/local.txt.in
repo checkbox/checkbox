@@ -187,6 +187,13 @@ command:
   shopt -s extglob
   cat $CHECKBOX_SHARE/jobs/panel_clock_test.txt?(.in)
 
+name: __panel_reboot__
+plugin: local
+_description: Panel Reboot Verification tests
+command:
+  shopt -s extglob
+  cat $CHECKBOX_SHARE/jobs/panel_reboot.txt?(.in)
+
 name: __pcmcia-pcix__
 plugin: local
 _description: PCMCIA/ExpressCard tests
