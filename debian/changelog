@@ -51,8 +51,9 @@ checkbox (0.14.6) quantal; urgency=low
     output to stderr (but still exits a proper return value). Jobs using it 
     are updated to remove the now-unneeded -v parameter.
   * Added tests to ensure all job files are declared in setup.cfg, 
-    po/POTFILES.in and included in jobs/local.txt.in.
+    po/POTFILES.in and included in jobs/local.txt.in. (LP: #1052986)
   * setup.cfg, po/POTFILES.in, jobs/local.txt.in: Fixed so the tests pass.
+    (LP: #1052986)
 
   [Alberto Milone]
   * [FEATURE] scripts/window_test, jobs/graphics.txt.in: Added script
