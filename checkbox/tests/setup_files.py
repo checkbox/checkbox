@@ -19,7 +19,6 @@
 #
 import configparser
 import glob
-import os
 import re
 import unittest
 
