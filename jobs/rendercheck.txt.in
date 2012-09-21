@@ -6,9 +6,8 @@ command: rendercheck_test -d -o $CHECKBOX_DATA/rendercheck-results && echo "Rend
 _description:
  Runs all of the rendercheck test suites. This test can take a few minutes.
 
-plugin: shell
+plugin: attachment
 name: rendercheck/tarball
-requires:
- package.name == 'x11-apps'
 depends: rendercheck/tests
-command: [ -e $CHECKBOX_DATA/rendercheck-results ] && tar cvfz $CHECKBOX_DATA/rendercheck-results.tar.gz $CHECKBOX_DATA/rendercheck-results
+command: [ -e $CHECKBOX_DATA/rendercheck-results ] && tar cvfz $CHECKBOX_DATA/rendercheck-results.tar.gz $CHECKBOX_DATA/rendercheck-results && cat $CHECKBOX_DATA/rendercheck-results.tar.gz
+_description: Attach log from rendercheck tests

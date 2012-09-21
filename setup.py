@@ -15,20 +15,43 @@ from distutils.command.clean import clean
 from distutils.command.install import install
 from distutils.command.install_data import install_data
 from distutils.command.install_scripts import install_scripts
-from DistUtilsExtra.command.build_extra import build_extra
-from DistUtilsExtra.command.build_i18n import build_i18n
-from DistUtilsExtra.command.build_icons import build_icons
+try:
+    from DistUtilsExtra.command.build_extra import build_extra
+    from DistUtilsExtra.command.build_i18n import build_i18n
+    from DistUtilsExtra.command.build_icons import build_icons
+except ImportError:
+    from distutils.cmd import Command
+
+    class build_extra(build):
+        """Adds fake support for i18n and icons to the build target."""
+        def __init__(self, dist):
+            build.__init__(self, dist)
+            self.user_options.extend([("i18n", None, "use the localisation"),
+                                      ("icons", None, "use icons"),
+                                     ])
+
+        def initialize_options(self):
+            build.initialize_options(self)
+            self.i18n = False
+            self.icons = False
+
+    class build_i18n(Command):
+        """Placeholder concrete class for fake i18n support."""
+
+    class build_icons(Command):
+        """Placeholder concrete class for fake icons support."""
 
 
 def changelog_version(changelog="debian/changelog"):
     version = "dev"
     if posixpath.exists(changelog):
-        head=open(changelog).readline()
+        head = open(changelog).readline()
         match = re.compile(".*\((.*)\).*").match(head)
         if match:
             version = match.group(1)
 
     return version
+
 
 def expand_data_files(data_files):
     for f in data_files:
@@ -45,6 +68,7 @@ def expand_data_files(data_files):
 
     return data_files
 
+
 def extract_sources_from_data_files(data_files):
     all_sources = []
     data_files = expand_data_files(data_files)
@@ -53,9 +77,11 @@ def extract_sources_from_data_files(data_files):
 
     return all_sources
 
+
 def extract_executables_from_data_files(data_files):
     sources = extract_sources_from_data_files(data_files)
     return [os.path.splitext(s)[0] for s in sources]
+
 
 def substitute_variables(infile, outfile, variables={}):
     file_in = open(infile, "r")
@@ -86,7 +112,8 @@ class checkbox_build(build_extra, object):
         cc = new_compiler()
         for source in self.sources:
             executable = os.path.splitext(source)[0]
-            cc.link_executable([source], executable, libraries=["rt", "pthread"])
+            cc.link_executable(
+                [source], executable, libraries=["rt", "pthread"])
 
 
 class checkbox_clean(clean, object):
@@ -202,26 +229,27 @@ class checkbox_build_icons(build_icons, object):
 
 
 setup(
-    name = "checkbox",
-    version = changelog_version(),
-    author = "Marc Tardif",
-    author_email = "marc.tardif@canonical.com",
-    license = "GPL",
-    description = "Checkbox System Testing",
-    long_description = """
+    name="checkbox",
+    version=changelog_version(),
+    author="Marc Tardif",
+    author_email="marc.tardif@canonical.com",
+    license="GPL",
+    description="Checkbox System Testing",
+    long_description="""
 This project provides an extensible interface for system testing.
 """,
-    data_files = [
+    data_files=[
         ("lib/checkbox/qt/", ["qt/frontend/checkbox-qt-service"]),
         ("share/checkbox/", ["backend", "run"]),
-        ("share/checkbox/data/audio/", ["data/audio/*"]), 
-        ("share/checkbox/data/documents/", ["data/documents/*"]), 
-        ("share/checkbox/data/images/", ["data/images/*.*"]), 
-        ("share/checkbox/data/images/oem-config", ["data/images/oem-config/*"]), 
-        ("share/checkbox/data/video/", ["data/video/*"]), 
-        ("share/checkbox/data/settings/", ["data/settings/*"]), 
-        ("share/checkbox/data/websites/", ["data/websites/*"]), 
-        ("share/checkbox/data/whitelists/", ["data/whitelists/*"]), 
+        ("share/checkbox/data/audio/", ["data/audio/*"]),
+        ("share/checkbox/data/documents/", ["data/documents/*"]),
+        ("share/checkbox/data/images/", ["data/images/*.*"]),
+        ("share/checkbox/data/images/oem-config",
+            ["data/images/oem-config/*"]),
+        ("share/checkbox/data/video/", ["data/video/*"]),
+        ("share/checkbox/data/settings/", ["data/settings/*"]),
+        ("share/checkbox/data/websites/", ["data/websites/*"]),
+        ("share/checkbox/data/whitelists/", ["data/whitelists/*"]),
         ("share/checkbox/examples/", ["examples/*"]),
         ("share/checkbox/install/", ["install/*"]),
         ("share/checkbox/patches/", ["patches/*"]),
@@ -233,12 +261,16 @@ This project provides an extensible interface for system testing.
         ("share/dbus-1/services/", ["qt/com.canonical.QtCheckbox.service"]),
         ("share/apport/package-hooks/", ["apport/source_checkbox.py"]),
         ("share/apport/general-hooks/", ["apport/checkbox.py"])],
-    scripts = ["bin/checkbox-cli", "bin/checkbox-gtk", "bin/checkbox-urwid", "bin/checkbox-qt"],
-    packages = ["checkbox", "checkbox.contrib", "checkbox.lib", "checkbox.parsers",
-        "checkbox.reports", "checkbox_cli", "checkbox_gtk", "checkbox_urwid", "checkbox_qt"],
-    package_data = {
+    scripts=[
+        "bin/checkbox-cli", "bin/checkbox-gtk", "bin/checkbox-urwid",
+        "bin/checkbox-qt"],
+    packages=[
+        "checkbox", "checkbox.contrib", "checkbox.dbus", "checkbox.lib",
+        "checkbox.parsers", "checkbox.reports", "checkbox_cli",
+        "checkbox_gtk", "checkbox_urwid", "checkbox_qt"],
+    package_data={
         "": ["cputable"]},
-    cmdclass = {
+    cmdclass={
         "build": checkbox_build,
         "build_i18n": build_i18n,
         "build_icons": checkbox_build_icons,
