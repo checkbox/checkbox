@@ -118,6 +118,8 @@ checkbox (0.14.6) quantal; urgency=low
   * [UIFe] qt/frontend/qtfront.ui, qt/frontend/qtfront.cpp - set focus to Continue
     button and make it the default so that it can be 'clicked' using Enter,
     as well as renaming it to 'continueButton' (LP: #1052506)
+  * jobs/keys.txt.in, scripts/key_test - Fix keys/battery test to have correct
+    fields and tidy up pep8 violations in key_test script (LP: #1054410)
 
   [Sylvain Pineau]
   * jobs/suspend.txt.in: Fixed suspend/suspend_advanced dependencies to avoid
