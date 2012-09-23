@@ -2,7 +2,7 @@ plugin: manual
 name: touchpad/basic
 _description:
  PURPOSE:
-     1. Touchpad verification
+     Touchpad verification
  STEPS:
      1. Make sure that touchpad is enabled
      2. Try to move pointer using touchpad
@@ -17,7 +17,7 @@ depends: touchpad/basic
 command: touchpad_test right left
 _description:
  PURPOSE:
-     1. Touchpad verification
+     Touchpad verification
  STEPS:
      1. Make sure that touchpad is enabled
      2. Select "Test" when ready and place your cursor within the borders of the displayed test window.
@@ -32,7 +32,7 @@ depends: touchpad/basic
 command: touchpad_test up down
 _description:
  PURPOSE:
-     1. Touchpad verification
+     Touchpad verification
  STEPS:
      1. Make sure that touchpad is enabled
      2. Select "Test" when ready and place your cursor within the borders of the displayed test window.
