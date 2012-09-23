@@ -143,6 +143,7 @@ requires:
  package.name == 'x11-apps'
 depends: stress/graphics
 command: [ -e $CHECKBOX_DATA/graphics-stress-results ] && tar cvfz $CHECKBOX_DATA/graphics-stress-results.tar.gz $CHECKBOX_DATA/graphics-stress-results
+_description: Attaches the graphics stress results to the submission.
 
 plugin: shell
 name: stress/usb

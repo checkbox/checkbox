@@ -54,6 +54,10 @@ checkbox (0.14.6) quantal; urgency=low
     po/POTFILES.in and included in jobs/local.txt.in. (LP: #1052986)
   * setup.cfg, po/POTFILES.in, jobs/local.txt.in: Fixed so the tests pass.
     (LP: #1052986)
+  * [FEATURE] checkbox/tests/message_files.py: Added a test to validate
+    that all shell jobs have descriptions (LP: #1052992).
+  * [FEATURE] jobs/stress.txt.in: Updated some shell jobs that had no
+    description (LP: #1052992).
 
   [Alberto Milone]
   * [FEATURE] scripts/window_test, jobs/graphics.txt.in: Added script
