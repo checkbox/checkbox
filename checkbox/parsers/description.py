@@ -16,6 +16,8 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
+import re
+
 from checkbox.lib.enum import Enum
 
 
@@ -35,6 +37,18 @@ TransitionStates = {
     DescriptionState.VERIFICATION: DescriptionState.OTHER,
     DescriptionState.OTHER: DescriptionState.OTHER,
     }
+
+# PURPOSE string:
+#   1. Foo
+# substitute to:
+#   Foo
+PURPOSE_RE = re.compile(r"(\d+)\.(\s+)", re.M)
+
+# STEPS string:
+#   1: Foo
+# substitute to:
+#   1. Foo
+STEPS_RE = re.compile(r"(\d+):(\s+)", re.M)
 
 
 class DescriptionParser:
@@ -67,6 +81,14 @@ class DescriptionParser:
 
         # Only set the description if the last state is still VERIFICATION.
         if state == DescriptionState.VERIFICATION:
+            # Substitute the PURPOSE part
+            parts[DescriptionState.PURPOSE] = PURPOSE_RE.sub(
+                r"", parts[DescriptionState.PURPOSE])
+
+            # Substitute the STEPS part
+            parts[DescriptionState.STEPS] = STEPS_RE.sub(
+                r"\1.\2", parts[DescriptionState.STEPS])
+
             result.setDescription(
                 parts[DescriptionState.PURPOSE],
                 parts[DescriptionState.STEPS],

@@ -76,6 +76,8 @@ checkbox (0.14.6) quantal; urgency=low
     qtcreator (LP #1053126)
   * setup.py: Fixed required dependency on distutils-extra by providing
     fake implementations of build_i18n and build_icons (LP #1049218)
+  * checkbox/parsers/description.py: Fixed the PURPOSE and STEPS parts
+    of the description parser to automatically fix bad descriptions.
 
   [Sean Feole]
   * [FEATURE] scripts/battery_test: measures battery capacity before and after
@@ -116,9 +118,11 @@ checkbox (0.14.6) quantal; urgency=low
   * [UIFe] qt/frontend/qtfront.ui, qt/frontend/qtfront.cpp - set focus to Continue
     button and make it the default so that it can be 'clicked' using Enter,
     as well as renaming it to 'continueButton' (LP: #1052506)
-  * [FEATURE] jobs/power-management.txt.in - Fix incorrect formatting of job descriptions
-    to allow steps to be displayed by the UI (LP: #1054208)
-
+  * jobs/keys.txt.in, scripts/key_test - Fix keys/battery test to have correct
+    fields and tidy up pep8 violations in key_test script (LP: #1054410)
+  * [FEATURE] jobs/power-management.txt.in - Fix incorrect formatting of job
+    descriptions to allow steps to be displayed by the UI (LP: #1054208)
+ 
   [Sylvain Pineau]
   * jobs/suspend.txt.in: Fixed suspend/suspend_advanced dependencies to avoid
     calling fwts with the live CD (LP: #1045687)
@@ -136,6 +140,8 @@ checkbox (0.14.6) quantal; urgency=low
   * [FEATURE] jobs/rendercheck.txt.in, po/POTFILES.in, setup.cfg: Fixed
     the rendercheck tests, added the suite file to setup.cfg/POTFILES.in
     and moved the rendercheck/tarball job into an attachment (LP #1053033)
+  * scripts/optical_write_test: Filter ANSI escape char outputed by wodim 
+    (LP: #1052803)
 
   [Zygmunt Krynicki]
   * Fixed simple duplicate 'the' mistakes (LP: #1040022)
