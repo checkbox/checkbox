@@ -38,7 +38,7 @@ requires:
  device.category == 'CDROM'
  optical_drive.cd == 'writable'
 user: root
-command: optical_write_test /dev/cdrom
+command: optical_write_test /dev/cdrom | ansi_parser
 _description:
  PURPOSE:
      This test will check your system's CD writing capabilities. This test requires a blank CD-R or CD+R. If you do not have a blank disk, skip this test.
@@ -55,7 +55,7 @@ user: root
 requires:
  device.category == 'CDROM'
  optical_drive.cd == 'writable'
-command: optical_write_test /dev/cdrom
+command: optical_write_test /dev/cdrom | ansi_parser
 _description:
  This is an automated version of optical/cdrom-write. It assumes you inserted a blank CD-R or CD+R disk before starting testing. You must watch for the tray opening. The test will attempt to close the tray and continue testing, however this is not possible in all optical drives, thus you may need to push the tray or disk back in manually to continue the test.  This test has a 5 minute timeout to allow for the tester to catch this.
 
@@ -84,7 +84,7 @@ user: root
 requires:
  device.category == 'CDROM'
  optical_drive.dvd == 'writable'
-command: optical_write_test /dev/cdrom
+command: optical_write_test /dev/cdrom | ansi_parser
 _description:
  PURPOSE:
      This test will check your system's DVD writing capabilities. This test requires a blank DVD-R or DVD+R. If you do not have a blank DVD disk, skip this test.
@@ -101,7 +101,7 @@ user: root
 requires:
  device.category == 'CDROM'
  optical_drive.dvd == 'writable'
-command: optical_write_test /dev/cdrom
+command: optical_write_test /dev/cdrom | ansi_parser
 _description:
  This is an automated version of optical/dvd-write. It assumes you inserted a blank DVD-R or DVD+R before starting testing. You must watch for the tray opening. The test will attempt to close the tray and continue testing, however this is not possible in all optical drives, thus you may need to push the tray or disk back in manually to continue the test.  This test has a 5 minute timeout to allow for the tester to catch this.
 
