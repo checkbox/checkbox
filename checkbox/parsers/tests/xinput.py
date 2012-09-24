@@ -91,7 +91,7 @@ class TestXinputParser(TestCase):
 
     def getParser(self, name):
         fixture = self.getFixture(name)
-        stream = open(fixture)
+        stream = open(fixture, encoding="utf-8")
         return XinputParser(stream)
 
     def getResult(self, name):
