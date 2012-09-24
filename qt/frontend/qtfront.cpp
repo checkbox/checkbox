@@ -335,9 +335,11 @@ void QtFront::showTest(QString purpose,
         ui->stepsFrame->setFixedHeight(ui->stepsFrame->height() + information->height());
     }
 
-    Step *question = new Step(ui->stepsFrame, verification, QString("?"));
-    question->move(0, ui->stepsFrame->height());
-    ui->stepsFrame->setFixedHeight(ui->stepsFrame->height() + question->height());
+    if (!verification.isEmpty()) {
+        Step *question = new Step(ui->stepsFrame, verification, QString("?"));
+        question->move(0, ui->stepsFrame->height());
+        ui->stepsFrame->setFixedHeight(ui->stepsFrame->height() + question->height());
+    }
 
 }
 

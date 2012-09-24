@@ -284,7 +284,11 @@ class QTInterface(UserInterface):
     def update_status(self, job):
         if 'type' in job and job["type"] == "test":
             self.qtiface.updateAutoTestStatus(job["status"], job["name"])
-       
+     
+        # Remove current test description and instruction steps 
+        # when automated is running 
+        self.qtiface.showTest("", "", "", "", "", "", "", False)
+
         self.show_progress_start(_("Working"))
 
     def wait_on_signals(self, **signals):
