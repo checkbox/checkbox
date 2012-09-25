@@ -213,7 +213,7 @@ class UdevadmDevice:
             if self.driver.startswith("mmc"):
                 return "CARDREADER"
 
-            if self.driver == "sd":
+            if self.driver == "sd" and self.product:
                 if CARD_READER_RE.search(self.product):
                     return "CARDREADER"
                 if self.vendor == "Generic":
