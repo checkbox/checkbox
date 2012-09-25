@@ -16,12 +16,11 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
-#
-import optparse
 
+import optparse
 import os
-import sys
 import posixpath
+import sys
 
 lib_dir = posixpath.abspath(posixpath.dirname(__file__))
 sys.path.insert(0, lib_dir)
