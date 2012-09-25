@@ -36,13 +36,13 @@ EXIT_WITH_SUCCESS = 0
 EXIT_TIMEOUT = 30
 
 # Keyboard options from /usr/include/linux/kd.h
-K_RAW       = 0x00
-K_XLATE     = 0x01
+K_RAW = 0x00
+K_XLATE = 0x01
 K_MEDIUMRAW = 0x02
-K_UNICODE   = 0x03
-K_OFF       = 0x04
-KDGKBMODE   = 0x4B44
-KDSKBMODE   = 0x4B45
+K_UNICODE = 0x03
+K_OFF = 0x04
+KDGKBMODE = 0x4B44
+KDSKBMODE = 0x4B45
 
 
 def ioctl_p_int(fd, request, value=0):
@@ -106,10 +106,8 @@ class Reporter(object):
         index = 0
         length = len(characters)
         while index < length:
-            if (index + 1 < length
-                and characters[index] == 0xE0):
-                code = ((characters[index] << 8)
-                    | characters[index + 1])
+            if (index + 1 < length and characters[index] == 0xE0):
+                code = ((characters[index] << 8) | characters[index + 1])
                 index += 2
             else:
                 code = characters[0]
@@ -122,12 +120,11 @@ class Reporter(object):
         index = 0
         length = len(characters)
         while index < length:
-            if (index + 2 < length
-                and (characters[index] & 0x7f) == 0
-                and (characters[index + 1] & 0x80) != 0
-                and (characters[index + 2] & 0x80) != 0):
-                code = (((characters[index + 1] & 0x7f) << 7)
-                    | (characters[2] & 0x7f))
+            if (index + 2 < length and (characters[index] & 0x7f) == 0
+                    and (characters[index + 1] & 0x80) != 0
+                    and (characters[index + 2] & 0x80) != 0):
+                code = (((characters[index + 1] & 0x7f) << 7) |
+                        (characters[2] & 0x7f))
                 index += 3
             else:
                 code = (characters[0] & 0x7f)
@@ -356,12 +353,12 @@ Hint to find codes:
 """
     parser = OptionParser(usage=usage)
     parser.add_option("-i", "--interface",
-        default="auto",
-        help="Interface to use: cli, gtk or auto")
+                      default="auto",
+                      help="Interface to use: cli, gtk or auto")
     parser.add_option("-s", "--scancodes",
-        default=False,
-        action="store_true",
-        help="Test for scancodes instead of keycodes.")
+                      default=False,
+                      action="store_true",
+                      help="Test for scancodes instead of keycodes.")
     (options, args) = parser.parse_args(args)
 
     # Get reporter factory from options or environment.

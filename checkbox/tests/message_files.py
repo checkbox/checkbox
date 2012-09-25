@@ -55,3 +55,9 @@ class MessageFileFormatTest(unittest.TestCase):
         messages = self.messages
         for message in messages:
             self.assertTrue("command" in message or "description" in message)
+    
+    def test_shell_jobs_have_description(self):
+        messages = self.messages
+        for message in messages:
+            if message['plugin']=='shell':
+                self.assertTrue("description" in message, message['name'])

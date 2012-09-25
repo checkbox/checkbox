@@ -17,6 +17,7 @@
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+
 class ModinfoParser:
     """
     Parser for modinfo information.
@@ -57,25 +58,25 @@ class ModinfoParser:
         for line in stream.splitlines():
             # At this point, stream should be the stdout from the modinfo
             # command, in a list.
-            key, data = line.split(':',1)
+            key, data = line.split(':', 1)
             data = data.strip()
-            # First, we need to handle alias, parm, firmware, and depends 
+            # First, we need to handle alias, parm, firmware, and depends
             # because there can be multiple lines of output for these.
-            if key in ('alias', 'depend', 'firmware', 'parm'):
+            if key in ('alias', 'depend', 'firmware', 'parm',):
                 self._modinfo[key].append(data)
             # Now handle unknown keys
             elif key not in self._modinfo.keys():
                 self._modinfo[key] = ("WARNING: Unknown Key %s providing "
-                                     "data: %s") % (key,data)
+                                     "data: %s") % (key, data)
             # And finally known keys
             else:
                 self._modinfo[key] = data
-        
+
     def get_all(self):
         return self._modinfo
 
     def get_field(self, field):
         if field not in self._modinfo.keys():
-            raise Excepion("Key not found: %s" % field)
+            raise Exception("Key not found: %s" % field)
         else:
             return self._modinfo[field]

@@ -21,7 +21,11 @@ from io import StringIO
 
 from unittest import TestCase
 
-from checkbox.parsers.description import DescriptionParser
+from checkbox.parsers.description import (
+    DescriptionParser,
+    PURPOSE_RE,
+    STEPS_RE,
+    )
 
 
 class DescriptionResult:
@@ -36,6 +40,28 @@ class DescriptionResult:
         self.steps = steps
         self.verification = verification
         self.info = info
+
+
+class TestPurposeRe(TestCase):
+
+    def test_one_line(self):
+        line = PURPOSE_RE.sub(r"", "1. foo\n")
+        self.assertEquals(line, "foo\n")
+
+    def test_two_lines(self):
+        line = PURPOSE_RE.sub(r"", "1. foo\n2. bar\n")
+        self.assertEquals(line, "foo\nbar\n")
+
+
+class TestStepsRe(TestCase):
+
+    def test_one_line(self):
+        line = STEPS_RE.sub(r"\1.\2", "1: foo\n")
+        self.assertEquals(line, "1. foo\n")
+
+    def test_two_lines(self):
+        line = STEPS_RE.sub(r"\1.\2", "1: foo\n2: bar\n")
+        self.assertEquals(line, "1. foo\n2. bar\n")
 
 
 class TestDescriptionParser(TestCase):
@@ -144,3 +170,25 @@ VERIFICACIÓN:
         self.assertNotEquals(result.steps, None)
         self.assertNotEquals(result.verification, None)
         self.assertEquals(result.info, None)
+
+    def test_substitute_purpose(self):
+        result = self.getResult("""
+PURPOSE:
+    1. foo
+STEPS:
+    bar
+VERIFICATION:
+    baz
+""")
+        self.assertResult(result, "foo\n", "bar\n", "baz\n")
+
+    def test_substitute_steps(self):
+        result = self.getResult("""
+PURPOSE:
+    foo
+STEPS:
+    1: bar
+VERIFICATION:
+    baz
+""")
+        self.assertResult(result, "foo\n", "1. bar\n", "baz\n")

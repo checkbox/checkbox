@@ -46,7 +46,8 @@ _description:
 plugin: manual
 name: keys/battery-info
 requires: dmi.product in ['Notebook','Laptop','Portable']
-comand: key_test -s '0xe071,0xef1:Battery Info'
+user: root
+command: key_test -s '0xe071,0xef1:Battery Info'
 _description:
  PURPOSE:
      This test will test the battery information key
