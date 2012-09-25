@@ -53,7 +53,7 @@ burn_iso(){
     echo "Sleeping 10 seconds in case drive is not yet ready ..."
     sleep 10
     echo "Beginning image burn ..."
-    wodim  -dummy -eject dev=$OPTICAL_DRIVE $ISO_NAME | /usr/share/checkbox/scripts/ansi_parser
+    wodim -eject dev=$OPTICAL_DRIVE $ISO_NAME
     rt=$?
     return $rt
 }
