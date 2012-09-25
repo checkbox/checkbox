@@ -6,12 +6,38 @@ import logging
 import re
 import sys
 
+from dbus.exceptions import DBusException
 from gi.repository import GObject
 
 from checkbox.dbus import connect_to_system_bus
+from checkbox.dbus.udisks2 import UDisks2Observer
 
 
-class StorageDeviceListener:
+def is_udisks2_supported(system_bus):
+    """
+    Check if udisks2 is available on the system bus.
+
+    ..note::
+        Calling this _may_ trigger activation of the UDisks2 daemon but it
+        should only happen on systems where it is already expected to run all
+        the time.
+    """
+    observer = UDisks2Observer()
+    try:
+        logging.debug("Trying to connect to UDisks2...")
+        observer.connect_to_bus(system_bus)
+    except DBusException as exc:
+        if exc.get_dbus_name() == "org.freedesktop.DBus.Error.ServiceUnknown":
+            logging.debug("No UDisks2 on the system bus")
+            return False
+        else:
+            raise
+    else:
+        logging.debug("Got UDisks2 connection")
+        return True
+
+
+class UDisks1StorageDeviceListener:
 
     def __init__(self, system_bus, loop, action, devices, minimum_speed,
                  memorycard):
@@ -224,11 +250,21 @@ def main():
     # loop as we need it to start listening for signals.
     system_bus, loop = connect_to_system_bus()
 
-    # Construct the listener with all of the arguments provided on the command
-    # line and the explicit system_bus, loop objects.
-    listener = StorageDeviceListener(
-        system_bus, loop,
-        args.action, args.device, args.minimum_speed, args.memorycard)
+    # Check if system bus has the UDisks2 object
+    if is_udisks2_supported(system_bus):
+        # Construct the listener with all of the arguments provided on the
+        # command line and the explicit system_bus, loop objects.
+        logging.debug("Using UDisks2 interface")
+        raise NotImplementedError("UDisks2 support is not implemented")
+    else:
+        # Construct the listener with all of the arguments provided on the
+        # command line and the explicit system_bus, loop objects.
+        logging.debug("Using UDisks1 interface")
+        listener = UDisks1StorageDeviceListener(
+            system_bus, loop,
+            args.action, args.device, args.minimum_speed, args.memorycard)
+    # Run the actual listener and wait till it either times out of discovers
+    # the appropriate media changes
     return listener.check(args.timeout)
 
 if __name__ == "__main__":
