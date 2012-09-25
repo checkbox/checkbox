@@ -157,14 +157,14 @@ class DiskTest():
                             device_props.Get(udisks, "PartitionSlave"))
                         parent_props = dbus.Interface(
                             parent_obj, dbus.PROPERTIES_IFACE)
-                        parent_model=parent_props.Get(udisks, "DriveModel")
-                        parent_vendor=parent_props.Get(udisks, "DriveVendor")
+                        parent_model = parent_props.Get(udisks, "DriveModel")
+                        parent_vendor = parent_props.Get(udisks, "DriveVendor")
                     if args.memorycard:
                         if dev_bus != 'sdio' and not pattern.search(
-                            parent_model+parent_vendor):
+                            parent_model + parent_vendor):
                             continue
                     else:
-                        if pattern.search(parent_model+parent_vendor):
+                        if pattern.search(parent_model + parent_vendor):
                             continue
                     dev_file = str(device_props.Get(udisks, "DeviceFile"))
                     dev_speed = str(device_props.Get(udisks,
@@ -178,7 +178,6 @@ class DiskTest():
                     else:
                         self.rem_disks_nm[dev_file] = None
                         self.rem_disks_memory_cards_nm[dev_file] = None
-
 
     def mount(self):
         passed_mount = {}
@@ -380,7 +379,8 @@ def main():
                     print("    %s : %s : %s bits/s" %
                             (disk, mount_point, supported_speed),
                             end="")
-                    if (args.min_speed and int(args.min_speed) > int(supported_speed)):
+                    if (args.min_speed
+                        and int(args.min_speed) > int(supported_speed)):
                         print(" (Will not test it, speed is below %s bits/s)" %
                                 args.min_speed, end="")
 
@@ -390,7 +390,8 @@ def main():
 
                 disks_eligible = {disk: disks_all[disk] for disk in disks_all \
                                   if not args.min_speed or \
-                                  int(test.rem_disks_speed[disk]) >= int(args.min_speed) }
+                                  int(test.rem_disks_speed[disk]) \
+                                  >= int(args.min_speed)}
                 write_sizes = []
                 test_files = {}
                 # Generate our data file(s)
@@ -442,8 +443,9 @@ def main():
                                 test.clean_up(file)
                             total_write_time = sum(write_times)
                             avg_write_time = total_write_time / args.count
-                            avg_write_speed = (
-                                total_write_size / total_write_time) / 1024 / 1024
+                            avg_write_speed = ((
+                                total_write_size / total_write_time)
+                                / 1024 / 1024)
                             iteration_write_times.append(total_write_time)
                             print("\t[Iteration %s] Average Speed: %0.4f"
                                   % (iteration, avg_write_speed))
@@ -471,25 +473,27 @@ def main():
                            "but there were errors" % args.count)
                     return 1
                 elif len(disks_eligible) == 0:
-                    print("ERROR: No %s disks with speed higher than %s bits/s" %
-                            (args.device, args.min_speed), file=sys.stderr)
+                    print("ERROR: No %s disks with speed higher than %s bits/s"
+                            % (args.device, args.min_speed), file=sys.stderr)
                     return 1
 
                 else:
                     #Pass is not assured!
-                    if not args.pass_speed or avg_write_speed >= args.pass_speed:
+                    if (not args.pass_speed or
+                        avg_write_speed >= args.pass_speed):
                         return 0
                     else:
                         print("FAIL: Average speed was lower than desired "
                               "pass speed of %s MB/s" % args.pass_speed)
                         return 1
             else:
-                print("ERROR: No device being mounted successfully for testing, "
-                      "aborting", file=sys.stderr)
+                print("ERROR: No device being mounted successfully "
+                      "for testing, aborting", file=sys.stderr)
                 return 1
 
     else:  # If we don't have removable drives attached and mounted
-        print("ERROR: No removable drives were detected, aborting", file=sys.stderr)
+        print("ERROR: No removable drives were detected, aborting",
+              file=sys.stderr)
         return 1
 
 if __name__ == '__main__':

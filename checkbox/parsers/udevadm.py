@@ -209,7 +209,7 @@ class UdevadmDevice:
         if self.driver:
             if self.driver.startswith("sdhci"):
                 return "CARDREADER"
-    
+
             if self.driver.startswith("mmc"):
                 return "CARDREADER"
 

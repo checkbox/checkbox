@@ -68,14 +68,14 @@ class StorageDeviceListener:
         pattern = re.compile('SD|MMC|CF|MS|SM|xD|Card|Generic', re.I)
         for dev in desired_bus_devices:
             if self._memorycard:
-                if dev[1] != 'sdio' and not pattern.search(dev[3]+dev[4]):
+                if dev[1] != 'sdio' and not pattern.search(dev[3] + dev[4]):
                     logging.debug("The device does not seem to be a memory"
                                   " card (dev[1]: %r, dev[3]: %r), skipping",
                                  dev[1], dev[3])
                     return
                 print(message % {'bus': 'memory card', 'file': dev[0]})
             else:
-                if pattern.search(dev[3]+dev[4]):
+                if pattern.search(dev[3] + dev[4]):
                     logging.debug("The device seems to be a memory"
                                   " card %s (dev[3]: %r), skipping",
                                   pattern, dev[3])
@@ -175,8 +175,8 @@ class StorageDeviceListener:
                         device_props.Get(udisks, "PartitionSlave"))
                     parent_props = dbus.Interface(
                         parent_obj, dbus.PROPERTIES_IFACE)
-                    _parent_model=parent_props.Get(udisks, "DriveModel")
-                    _parent_vendor=parent_props.Get(udisks, "DriveVendor")
+                    _parent_model = parent_props.Get(udisks, "DriveModel")
+                    _parent_vendor = parent_props.Get(udisks, "DriveVendor")
 
                 if not device_props.Get(udisks, "DeviceIsDrive"):
                     device = (
