@@ -43,7 +43,7 @@ def find_tests(testpaths=()):
     for root, dirnames, filenames in os.walk(topdir):
         for filename in filenames:
             filepath = posixpath.join(root, filename)
-            relpath = filepath[len(topdir)+1:]
+            relpath = filepath[len(topdir) + 1:]
 
             if (filename == "__init__.py"
                or filename.endswith(".pyc")
@@ -66,15 +66,17 @@ def find_tests(testpaths=()):
 
     return unittests, doctests
 
+
 def parse_sys_argv():
     """Extract any arguments not starting with '-' from sys.argv."""
     testpaths = []
-    for i in range(len(sys.argv)-1,0,-1):
+    for i in range(len(sys.argv) - 1, 0, -1):
         arg = sys.argv[i]
         if not arg.startswith("-"):
             testpaths.append(arg)
             del sys.argv[i]
     return testpaths
+
 
 def test_with_subunit(options):
     import unittest
@@ -99,6 +101,7 @@ def test_with_subunit(options):
 
     return 0
 
+
 def test_with_unittest(options):
     import unittest
     import doctest
@@ -111,15 +114,17 @@ def test_with_unittest(options):
     unittests, doctests = find_tests(options.args)
 
     class Summary:
+
         def __init__(self):
             self.total_failures = 0
             self.total_errors = 0
             self.total_tests = 0
+
         def __call__(self, tests, failures, errors):
             self.total_tests += tests
             self.total_failures += failures
             self.total_errors += errors
-            print("(tests=%d, failures=%d, errors=%d)" % \
+            print("(tests=%d, failures=%d, errors=%d)" %
                   (tests, failures, errors))
 
     unittest_summary = Summary()
