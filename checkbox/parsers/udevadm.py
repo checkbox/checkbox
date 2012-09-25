@@ -59,6 +59,7 @@ SCSI_RE = re.compile(
     r"^scsi:"
     r"t-0x(?P<type>[%(hex)s]{2})"
     % {"hex": string.hexdigits})
+CARD_READER_RE = re.compile(r"SD|MMC|CF|MS|SM|xD|Card", re.I)
 
 
 class UdevadmDevice:
@@ -204,6 +205,19 @@ class UdevadmDevice:
 
             if test_bit(Input.BTN_MOUSE, bitmask, self._bits):
                 return "MOUSE"
+
+        if self.driver:
+            if self.driver.startswith("sdhci"):
+                return "CARDREADER"
+    
+            if self.driver.startswith("mmc"):
+                return "CARDREADER"
+
+            if self.driver == "sd":
+                if CARD_READER_RE.search(self.product):
+                    return "CARDREADER"
+                if self.vendor == "Generic":
+                    return "CARDREADER"
 
         if "ID_TYPE" in self._environment:
             id_type = self._environment["ID_TYPE"]
