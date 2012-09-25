@@ -166,7 +166,8 @@ def test_with_unittest(options):
 
     return failed
 
-if __name__ == "__main__":
+
+def main():
     usage = "test [options] [<test filename>, ...]"
 
     parser = optparse.OptionParser(usage=usage)
@@ -180,5 +181,9 @@ if __name__ == "__main__":
         sys.exit("Test runner not found: %s" % runner)
 
     sys.exit(runner_func(opts))
+
+
+if __name__ == "__main__":
+    main()
 
 # vim:ts=4:sw=4:et
