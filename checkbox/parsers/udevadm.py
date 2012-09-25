@@ -159,7 +159,7 @@ class UdevadmDevice:
                 return "BLUETOOTH"
 
             if class_id == Pci.BASE_CLASS_BRIDGE \
-               and (subclass_id == Pci.CLASS_BRIDGE_PCMCIA \
+               and (subclass_id == Pci.CLASS_BRIDGE_PCMCIA
                     or subclass_id == Pci.CLASS_BRIDGE_CARDBUS):
                 return "SOCKET"
 
