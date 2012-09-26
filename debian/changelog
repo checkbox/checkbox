@@ -149,6 +149,9 @@ checkbox (0.14.6) quantal; urgency=low
     and moved the rendercheck/tarball job into an attachment (LP #1053033)
   * scripts/optical_write_test: Filter ANSI escape char outputed by wodim 
     (LP: #1052803)
+  * checkbox/parsers/udevadm.py: Improved wireless devices detection.
+    The wireless category is now set if the subsystem is equal to ieee80211 
+    (LP: #855382)
 
   [Zygmunt Krynicki]
   * Fixed simple duplicate 'the' mistakes (LP: #1040022)
