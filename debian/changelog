@@ -58,6 +58,8 @@ checkbox (0.14.6) quantal; urgency=low
     that all shell jobs have descriptions (LP: #1052992).
   * [FEATURE] jobs/stress.txt.in: Updated some shell jobs that had no
     description (LP: #1052992).
+  * Added consecutive numbering to messages sent to the backend, so the
+    frontend knows to discard out-of-sequence messages. (LP: #886118)
 
   [Alberto Milone]
   * [FEATURE] scripts/window_test, jobs/graphics.txt.in: Added script
@@ -164,7 +166,7 @@ checkbox (0.14.6) quantal; urgency=low
     the 'device' argument (bus type) and require at least one value
   * [FEATURE] scripts/removable_storage_watcher: add support for debugging
 
- -- Daniel Manrique <roadmr@ubuntu.com>  Wed, 19 Sep 2012 16:26:56 -0400
+ -- Daniel Manrique <roadmr@ubuntu.com>  Wed, 26 Sep 2012 17:10:13 -0400
 
 checkbox (0.14.5) quantal; urgency=low
 

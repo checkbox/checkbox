@@ -39,6 +39,37 @@ class BackendInfo(Plugin):
 
     command = Path(default="%(checkbox_share)s/backend")
 
+    next_sequence = 0
+    expected_sequence = 0
+
+    def write_to_parent(self, object):
+        message = (self.next_sequence, object,)
+        logging.debug("Sending message with sequence number %s to backend" % 
+                       self.next_sequence)
+        self.parent_writer.write_object(message)
+        self.expected_sequence = self.next_sequence
+        self.next_sequence += 1
+
+    def read_from_parent(self):
+        correct_sequence = False
+        while not correct_sequence:
+            ro = self.parent_reader.read_object()
+            if ro:
+                sequence, result = ro
+                logging.debug("Expecting sequence number %s from backend, "
+                              "got sequence number %s" %
+                       (self.expected_sequence, sequence))
+                if (self.expected_sequence == sequence):
+                    correct_sequence = True
+                else:
+                    logging.warning("Backend sent wrong sequence number, "
+                                    "Discarding message and re-reading")
+            else:
+                #If we timed out, just return nothing, the rest of
+                #the code knows how to handle this.
+                return ro
+        return result
+
     def register(self, manager):
         super(BackendInfo, self).register(manager)
 
@@ -88,8 +119,8 @@ class BackendInfo(Plugin):
     def ping_backend(self):
         if not self.parent_reader or not self.parent_writer:
             return False
-        self.parent_writer.write_object("ping")
-        result = self.parent_reader.read_object()
+        self.write_to_parent("ping")
+        result = self.read_from_parent()
         return result == "pong"
 
 
@@ -131,9 +162,9 @@ class BackendInfo(Plugin):
                 self.backend_is_alive = False
 
             if self.backend_is_alive:
-                self.parent_writer.write_object(message)
+                self.write_to_parent(message)
                 while True:
-                    result = self.parent_reader.read_object()
+                    result = self.read_from_parent()
                     if result:
                         break
                     else:
@@ -145,7 +176,7 @@ class BackendInfo(Plugin):
                 self._manager.reactor.fire("message-result", *result)
 
     def stop(self):
-        self.parent_writer.write_object("stop")
+        self.write_to_parent("stop")
         self.parent_writer.close()
         self.parent_reader.close()
         shutil.rmtree(self.directory)
