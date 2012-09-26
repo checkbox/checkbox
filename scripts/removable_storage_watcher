@@ -6,12 +6,38 @@ import logging
 import re
 import sys
 
+from dbus.exceptions import DBusException
 from gi.repository import GObject
 
 from checkbox.dbus import connect_to_system_bus
+from checkbox.dbus.udisks2 import UDisks2Model, UDisks2Observer
 
 
-class StorageDeviceListener:
+def is_udisks2_supported(system_bus):
+    """
+    Check if udisks2 is available on the system bus.
+
+    ..note::
+        Calling this _may_ trigger activation of the UDisks2 daemon but it
+        should only happen on systems where it is already expected to run all
+        the time.
+    """
+    observer = UDisks2Observer()
+    try:
+        logging.debug("Trying to connect to UDisks2...")
+        observer.connect_to_bus(system_bus)
+    except DBusException as exc:
+        if exc.get_dbus_name() == "org.freedesktop.DBus.Error.ServiceUnknown":
+            logging.debug("No UDisks2 on the system bus")
+            return False
+        else:
+            raise
+    else:
+        logging.debug("Got UDisks2 connection")
+        return True
+
+
+class UDisks1StorageDeviceListener:
 
     def __init__(self, system_bus, loop, action, devices, minimum_speed,
                  memorycard):
@@ -191,6 +217,163 @@ class StorageDeviceListener:
         return existing_devices
 
 
+class UDisks2StorageDeviceListener:
+    """
+    Implementation of the storage device listener concept for UDisks2 backend.
+    Loosely modeled on the UDisks-based implementation above.
+    """
+
+    # Name of the DBus interface exposed UDisks2 for various drives
+    UDISKS2_DRIVE_INTERFACE = "org.freedesktop.UDisks2.Drive"
+
+    # Name of the DBus property provided by the "Drive" interface above
+    UDISKS2_DRIVE_PROPERTY_CONNECTION_BUS = "ConnectionBus"
+
+    def __init__(self, system_bus, loop, action, devices, minimum_speed,
+                 memorycard):
+        # TODO: Document arguments
+        # Requested action to detect
+        if action not in ("insert", "remove"):
+            raise ValueError("Unsupported action: {}".format(action))
+        self._action = action
+        # We'll use the UDisks2 "ConnectionBus" property on the "Drive"
+        # interface to do primary filtering. According to the documentation it
+        # may have the following values: usb, sdio, ieee1394. The 'devices'
+        # argument uses somewhat different strings. In particular we need to
+        # map 'ieee1394' to 'firewire'
+        #
+        # See: http://udisks.freedesktop.org/docs/latest/gdbus-org.freedesktop.UDisks2.Drive.html#gdbus-property-org-freedesktop-UDisks2-Drive.ConnectionBus
+        #
+        # TODO: Report old unsupported possibilities that are still offered by
+        # the command-line interface. We also need samples to understand how
+        # UDisks2 behaves in practice on various devices.
+        self._desired_connection_buses = [
+            device if device != 'firewire' else 'ieee1394'
+            for device in devices]
+        # Store DBus bus object as we need to pass it to UDisks2 observer
+        self._bus = system_bus
+        # Store main loop object
+        self._loop = loop
+        # Setup UDisks2Observer class to track changes published by UDisks2
+        self._udisks2_observer = UDisks2Observer()
+        # Register a callback for either device insertion or removal, depending
+        # on the required test. IMPORTANT: those callbacks will be processed
+        # before the internal callbacks registered by UDisks2Model. This is
+        # essential as it will allow us to react before the model is updated.
+        if self._action == "insert":
+            self._udisks2_observer.on_interfaces_added.connect(
+                self._on_interfaces_added)
+        elif self._action == "remove":
+            self._udisks2_observer.on_interfaces_removed.connect(
+                self._on_interfaces_removed)
+        # Setup UDisks2Model to know what the current state is. This is needed
+        # when remove events are reported as they don't carry enough state for
+        # the program to work correctly. Since UDisks2Model only applies the
+        # changes _after_ processing the signals from UDisks2Observer we can
+        # reliably check all of the properties of the removed object / device.
+        self._udisks2_model = UDisks2Model(self._udisks2_observer)
+        # Assume the test passes, this is changed when timeout expires or when
+        # an incorrect device gets inserted.
+        self._error = False
+
+    def check(self, timeout):
+        """
+        Run the configured test and return the result
+
+        The result is False if the test has failed.  The timeout, when
+        non-zero, will make the test fail after the specified seconds have
+        elapsed without conclusive result.
+        """
+        # Setup a timeout if requested
+        if timeout > 0:
+            GObject.timeout_add_seconds(timeout, self._on_timeout_expired)
+        # Connect the observer to the bus. This will start giving us events
+        # (actually when the loop starts later below)
+        self._udisks2_observer.connect_to_bus(self._bus)
+        # Start the loop and wait. The loop will exit either when:
+        # 1) A proper device has been detected (either insertion or removal)
+        # 2) A timeout (optional) has expired
+        self._loop.run()
+        # Return the outcome of the test
+        return self._error
+
+    def _on_timeout_expired(self):
+        """
+        Internal function called when the timer expires.
+
+        Basically it's just here to tell the user the test failed or that the
+        user was unable to alter the device during the allowed time.
+        """
+        print("You have not inserted / removed any devices in time")
+        # Fail the test when the timeout was reached
+        self._error = True
+        # Stop the loop now
+        self._loop.quit()
+
+    def _on_interfaces_added(self, object_path, interfaces_and_properties):
+        """
+        Internal function called when UDisks2 notices new objects
+        """
+        for interface, properties in interfaces_and_properties.items():
+            # Check all added interfaces, look for the "Drive" interface only
+            if interface != self.UDISKS2_DRIVE_INTERFACE:
+                continue
+            # Stop the test after seeing a "Drive" interface
+            self._loop.quit()
+            # Whenever a drive is plugged in but not on the bus that we
+            # expected signal an error and quit looking for more.
+            connection_bus = (
+                properties.get(self.UDISKS2_DRIVE_PROPERTY_CONNECTION_BUS))
+            if connection_bus not in self._desired_connection_buses:
+                self._error = True
+                print("You have inserted a device on bus {!r},"
+                      " expected: {!r}".format(connection_bus,
+                                               self._desired_connection_buses))
+            else:
+                print("Expected device {path} "
+                      "inserted on the {bus} bus".format(
+                          path=object_path, bus=connection_bus))
+            # TODO: check for memory cards precisely
+            # TODO: minimum speed unsupported in UDisks2,
+            # needs separate USB3 checks
+
+    def _on_interfaces_removed(self, object_path, interfaces):
+        """
+        Internal function called when UDisks2 notices removed objects
+        """
+        for interface in interfaces:
+            # Check all added interfaces, look for the "Drive" interface only
+            if interface != self.UDISKS2_DRIVE_INTERFACE:
+                continue
+            # Stop the test after seeing a "Drive" interface
+            self._loop.quit()
+            # Whenever a drive is removed but not on the bus that we
+            # expected signal an error and quit looking for more.
+            try:
+                interfaces_and_properties = (
+                    self._udisks2_model.managed_objects[object_path])
+                properties = (
+                    interfaces_and_properties[self.UDISKS2_DRIVE_INTERFACE])
+                connection_bus = (
+                    properties[self.UDISKS2_DRIVE_PROPERTY_CONNECTION_BUS])
+            except KeyError:
+                logging.error(
+                    "Unable to locate connection bus used by %r", object_path)
+                continue
+            if connection_bus not in self._desired_connection_buses:
+                self._error = True
+                print("You have removed a device on bus {!r},"
+                      " expected: {!r}".format(connection_bus,
+                                               self._desired_connection_buses))
+            else:
+                print("Expected device {path} "
+                      "removed from the {bus} bus".format(
+                          path=object_path, bus=connection_bus))
+            # TODO: check for memory cards precisely
+            # TODO: minimum speed unsupported in UDisks2,
+            # needs separate USB3 checks
+
+
 def main():
     description = "Wait for the specified device to be inserted or removed."
     parser = argparse.ArgumentParser(description=description)
@@ -224,11 +407,23 @@ def main():
     # loop as we need it to start listening for signals.
     system_bus, loop = connect_to_system_bus()
 
-    # Construct the listener with all of the arguments provided on the command
-    # line and the explicit system_bus, loop objects.
-    listener = StorageDeviceListener(
-        system_bus, loop,
-        args.action, args.device, args.minimum_speed, args.memorycard)
+    # Check if system bus has the UDisks2 object
+    if is_udisks2_supported(system_bus):
+        # Construct the listener with all of the arguments provided on the
+        # command line and the explicit system_bus, loop objects.
+        logging.debug("Using UDisks2 interface")
+        listener = UDisks2StorageDeviceListener(
+            system_bus, loop,
+            args.action, args.device, args.minimum_speed, args.memorycard)
+    else:
+        # Construct the listener with all of the arguments provided on the
+        # command line and the explicit system_bus, loop objects.
+        logging.debug("Using UDisks1 interface")
+        listener = UDisks1StorageDeviceListener(
+            system_bus, loop,
+            args.action, args.device, args.minimum_speed, args.memorycard)
+    # Run the actual listener and wait till it either times out of discovers
+    # the appropriate media changes
     return listener.check(args.timeout)
 
 if __name__ == "__main__":
