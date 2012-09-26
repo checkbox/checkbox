@@ -36,6 +36,10 @@ checkbox (0.14.6) quantal; urgency=low
     and modified bluetooth/mouse to be bluetooth/HID and allow the tester
     to choose a device to use. (LP: #1053010)
 
+  [Jeff Marcom]
+  * jobs/optical.txt.in: Changed optical read/write job commands to use
+    a more reliable dev path (LP: #990560)
+
   [Daniel Manrique]
   * Bumped to 0.14.6 to keep changelog size sane and fix a small mishap in the
     daily build recipe.
@@ -164,7 +168,7 @@ checkbox (0.14.6) quantal; urgency=low
     the 'device' argument (bus type) and require at least one value
   * [FEATURE] scripts/removable_storage_watcher: add support for debugging
 
- -- Daniel Manrique <roadmr@ubuntu.com>  Wed, 19 Sep 2012 16:26:56 -0400
+ -- Jeff Marcom <jeff.marcom@canonical.com>  Thu, 20 Sep 2012 18:03:21 -0400
 
 checkbox (0.14.5) quantal; urgency=low
 

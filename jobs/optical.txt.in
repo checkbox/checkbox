@@ -1,63 +1,88 @@
 plugin: shell
 name: optical/detect
 requires: device.category == 'CDROM'
+_description: Test to detect the optical drives
 command:
  cat <<'EOF' | run_templates -t -s 'udev_resource | filter_templates -w "category=CDROM"' | sed '/^$/d'
  $vendor $product
  EOF
-_description: Test to detect the optical drives
 
-plugin: manual
+plugin: local
 name: optical/read
 requires:
  device.category == 'CDROM'
-user: root
-command: optical_read_test /dev/cdrom
-_description:
- PURPOSE:
-     This test will check your optical devices ability to read CD media
- STEPS:
-     1. Insert appropriate non-blank media into your optical drive(s). Movie and Audio Disks may not work. Self-created data disks have the greatest chance of working.
-     2. If a file browser window opens, you can safely close or ignore that window.
-     3. Click "Test" to begin the test.
- VERIFICATION:
-     This test should automatically select "Yes" if it passes, "No" if it fails.
+_description: Optical read test.
+command:
+ cat <<'EOF' | run_templates -t -s 'udev_resource | filter_templates -w "category=CDROM"'
+ plugin: manual
+ name: optical/read_`ls /sys$path/block`
+ requires: device.path == "$path"
+ user: root
+ command: optical_read_test /dev/`ls /sys$path/block`
+ description:
+  PURPOSE:
+      This test will check your $product device's ability to read CD media
+  STEPS:
+      1. Insert appropriate non-blank media into your optical drive(s). Movie and Audio Disks may not work. Self-created data disks have the greatest chance of working.
+      2. If a file browser window opens, you can safely close or ignore that window.
+      3. Click "Test" to begin the test.
+  VERIFICATION:
+      This test should automatically select "Yes" if it passes, "No" if it fails.
+ EOF
 
-plugin: shell
+plugin: local
 name: optical/read-automated
 requires:
  device.category == 'CDROM'
-user: root
-command: optical_read_test /dev/cdrom
-description:
- This is an automated version of optical/read. It assumes you have already inserted a data CD into your optical drive prior to running Checkbox.
+_description: Optical read test.
+command:
+ cat <<'EOF' | run_templates -t -s 'udev_resource | filter_templates -w "category=CDROM"'
+ plugin: shell
+ name: optical/read-automated_`ls /sys$path/block`
+ requires: device.path == "$path"
+ user: root
+ command: optical_read_test /dev/`ls /sys$path/block`
+ description:
+  This is an automated version of optical/read. It assumes you have already inserted a data CD into your optical drive prior to running Checkbox.
+ EOF
 
-plugin: manual
+plugin: local
 name: optical/cdrom-write
 requires:
  device.category == 'CDROM'
  optical_drive.cd == 'writable'
-user: root
-command: optical_write_test /dev/cdrom | ansi_parser
-_description:
- PURPOSE:
-     This test will check your system's CD writing capabilities. This test requires a blank CD-R or CD+R. If you do not have a blank disk, skip this test.
- STEPS:
-     1. Insert a blank CD-R or CD+R into your drive
-     2. Click "Test" to begin.
-     3. When the CD tray ejects the media after burning, close it (DO NOT remove the disk, it is needed for the second portion of the test). Note, you must close the drive within 5 minutes or the test will time out.
- VERIFICATION:
-     This test should automatically select "Yes" if it passes, "No" if it fails.
+_description: Optical write test.
+command:
+ cat <<'EOF' | run_templates -t -s 'udev_resource | filter_templates -w "category=CDROM"'
+ plugin: manual
+ name: optical/cdrom-write_`ls /sys$path/block`
+ requires: device.path == "$path"
+ user: root
+ command: optical_write_test /dev/`ls /sys$path/block` | ansi_parser
+ description:
+  PURPOSE:
+      This test will check your system's $product CD writing capabilities. This test requires a blank CD-R or CD+R. If you do not have a blank disk, skip this test.
+  STEPS:
+      1. Insert a blank CD-R or CD+R into your drive
+      2. Click "Test" to begin.
+      3. When the CD tray ejects the media after burning, close it (DO NOT remove the disk, it is needed for the second portion of the test). Note, you must close the drive within 5 minutes or the test will time out.
+ EOF
 
-plugin: shell
+plugin: local
 name: optical/cdrom-write-automated
-user: root
 requires:
  device.category == 'CDROM'
  optical_drive.cd == 'writable'
-command: optical_write_test /dev/cdrom | ansi_parser
-_description:
- This is an automated version of optical/cdrom-write. It assumes you inserted a blank CD-R or CD+R disk before starting testing. You must watch for the tray opening. The test will attempt to close the tray and continue testing, however this is not possible in all optical drives, thus you may need to push the tray or disk back in manually to continue the test.  This test has a 5 minute timeout to allow for the tester to catch this.
+command:
+ cat <<'EOF' | run_templates -t -s 'udev_resource | filter_templates -w "category"'
+ plugin: shell
+ name: optical/cdrom-write-automated_`ls /sys$path/block`
+ requires: device.path == "$path"
+ user: root
+ command: optical_write_test /dev/`ls /sys$path/block` | ansi_parser
+ description:
+  This is an automated version of optical/cdrom-write. It assumes you have already inserted a data CD into your optical drive prior to running Checkbox.
+ EOF
 
 plugin: manual
 name: optical/cdrom-audio-playback
@@ -78,32 +103,45 @@ _description:
  VERIFICATION:
      Did all the steps work?
 
-plugin: manual
+plugin: local
 name: optical/dvd-write
-user: root
 requires:
  device.category == 'CDROM'
  optical_drive.dvd == 'writable'
-command: optical_write_test /dev/cdrom | ansi_parser
-_description:
- PURPOSE:
-     This test will check your system's DVD writing capabilities. This test requires a blank DVD-R or DVD+R. If you do not have a blank DVD disk, skip this test.
- STEPS:
-     1. Enter a blank DVD-R or DVD+R into your drive
-     2. Click "Test" to begin.
-     3. When the CD tray ejects the media after burning, close it (DO NOT remove the disk, it is needed for the second portion of the test). Note, you must close the drive within 5 minutes or the test will time out.
- VERIFICATION:
-     This test should automatically select "Yes" if it passes, "No" if it fails.
+_description: Optical write test.
+command:
+ cat <<'EOF' | run_templates -t -s 'udev_resource | filter_templates -w "category=CDROM"'
+ plugin: manual
+ name: optical/dvd-write_`ls /sys$path/block`
+ requires: device.path == "$path"
+ user: root
+ command: optical_write_test /dev/`ls /sys$path/block` | ansi_parser
+ description:
+  PURPOSE:
+      This test will check your system's $product writing capabilities. This test requires a blank DVD-R or DVD+R. If you do not have a blank DVD disk, skip this test.
+  STEPS:
+      1. Enter a blank DVD-R or DVD+R into your drive
+      2. Click "Test" to begin.
+      3. When the CD tray ejects the media after burning, close it (DO NOT remove the disk, it is needed for the second portion of the test). Note, you must close the drive within 5 minutes or the test will time out.
+  VERIFICATION:
+      This test should automatically select "Yes" if it passes, "No" if it fails.
+ EOF
 
-plugin: shell
+plugin: local
 name: optical/dvd-write-automated
-user: root
 requires:
  device.category == 'CDROM'
  optical_drive.dvd == 'writable'
-command: optical_write_test /dev/cdrom | ansi_parser
-_description:
- This is an automated version of optical/dvd-write. It assumes you inserted a blank DVD-R or DVD+R before starting testing. You must watch for the tray opening. The test will attempt to close the tray and continue testing, however this is not possible in all optical drives, thus you may need to push the tray or disk back in manually to continue the test.  This test has a 5 minute timeout to allow for the tester to catch this.
+command:
+ cat <<'EOF' | run_templates -t -s 'udev_resource | filter_templates -w "category"'
+ plugin: shell
+ name: optical/dvd-write-automated_`ls /sys$path/block`
+ requires: device.path == "$path"
+ user: root
+ command: optical_write_test /dev/`ls /sys$path/block` | ansi_parser
+ description:
+  This is an automated version of optical/dvd-write. It assumes you have already inserted a data CD into your optical drive prior to running Checkbox.
+ EOF
 
 plugin: manual
 name: optical/dvd_playback
