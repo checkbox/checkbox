@@ -243,6 +243,99 @@ class UDisks1StorageDeviceListener:
         return existing_devices
 
 
+def udisks2_objects_delta(old, new):
+    """
+    Compute the delta between two snapshots of udisks2 objects
+
+    The objects are encoded as {s:{s:{s:v}}} where the first dictionary maps
+    from DBus object path to a dictionary that maps from interface name to a
+    dictionary that finally maps from property name to property value.
+
+    The result is a generator of DeltaRecord objects that encodes the changes:
+        * the 'delta_dir' is either DELTA_DIR_PLUS or DELTA_DIR_MINUS
+        * the 'value' is a tuple that differs for interfaces and properties.
+          Interfaces use the format (DELTA_TYPE_IFACE, object_path, iface_name)
+          while properties use the format (DELTA_TYPE_PROP, object_path,
+          iface_name, prop_name, prop_value)
+
+    Interfaces are never "changed", they are only added or removed. Properties
+    can be changed and this is encoded as removal followed by an addition where
+    both differ only by the 'delta_dir' and the last element of the 'value'
+    tuple.
+    """
+    # Traverse all objects, old or new
+    all_object_paths = set()
+    all_object_paths |= old.keys()
+    all_object_paths |= new.keys()
+    for object_path in sorted(all_object_paths):
+        old_object = old.get(object_path, {})
+        new_object = new.get(object_path, {})
+        # Traverse all interfaces of each object, old or new
+        all_iface_names = set()
+        all_iface_names |= old_object.keys()
+        all_iface_names |= new_object.keys()
+        for iface_name in sorted(all_iface_names):
+            if iface_name not in old_object and iface_name in new_object:
+                # Report each ADDED interface
+                assert iface_name in new_object
+                delta_value = InterfaceDelta(
+                    DELTA_TYPE_IFACE, object_path, iface_name)
+                yield DeltaRecord(DELTA_DIR_PLUS, delta_value)
+                # Report all properties ADDED on that interface
+                for prop_name, prop_value in new_object[iface_name].items():
+                    delta_value = PropertyDelta(DELTA_TYPE_PROP, object_path,
+                                                iface_name, prop_name,
+                                                prop_value)
+                    yield DeltaRecord(DELTA_DIR_PLUS, delta_value)
+            elif iface_name not in new_object and iface_name in old_object:
+                # Report each REMOVED interface
+                assert iface_name in old_object
+                delta_value = InterfaceDelta(
+                    DELTA_TYPE_IFACE, object_path, iface_name)
+                yield DeltaRecord(DELTA_DIR_MINUS, delta_value)
+                # Report all properties REMOVED on that interface
+                for prop_name, prop_value in old_object[iface_name].items():
+                    delta_value = PropertyDelta(DELTA_TYPE_PROP, object_path,
+                                                iface_name, prop_name,
+                                                prop_value)
+                    yield DeltaRecord(DELTA_DIR_MINUS, delta_value)
+            else:
+                # Analyze properties of each interface that existed both in old
+                # and new object trees.
+                assert iface_name in new_object
+                assert iface_name in old_object
+                old_props = old_object[iface_name]
+                new_props = new_object[iface_name]
+                all_prop_names = set()
+                all_prop_names |= old_props.keys()
+                all_prop_names |= new_props.keys()
+                # Traverse all properties, old or new
+                for prop_name in sorted(all_prop_names):
+                    if prop_name not in old_props and prop_name in new_props:
+                        # Report each ADDED property
+                        delta_value = PropertyDelta(
+                            DELTA_TYPE_PROP, object_path, iface_name,
+                            prop_name, new_props[prop_name])
+                        yield DeltaRecord(DELTA_DIR_PLUS, delta_value)
+                    elif prop_name not in new_props and prop_name in old_props:
+                        # Report each REMOVED property
+                        delta_value = PropertyDelta(
+                            DELTA_TYPE_PROP, object_path, iface_name,
+                            prop_name, old_props[prop_name])
+                        yield DeltaRecord(DELTA_DIR_MINUS, delta_value)
+                    else:
+                        old_value = old_props[prop_name]
+                        new_value = new_props[prop_name]
+                        if old_value != new_value:
+                            # Report each changed property
+                            yield DeltaRecord(DELTA_DIR_MINUS, PropertyDelta(
+                                DELTA_TYPE_PROP, object_path, iface_name,
+                                prop_name, old_value))
+                            yield DeltaRecord(DELTA_DIR_PLUS, PropertyDelta(
+                                DELTA_TYPE_PROP, object_path, iface_name,
+                                prop_name, new_value))
+
+
 class UDisks2StorageDeviceListener:
     """
     Implementation of the storage device listener concept for UDisks2 backend.
