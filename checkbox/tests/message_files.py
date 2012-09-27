@@ -55,9 +55,27 @@ class MessageFileFormatTest(unittest.TestCase):
         messages = self.messages
         for message in messages:
             self.assertTrue("command" in message or "description" in message)
-    
+
     def test_shell_jobs_have_description(self):
         messages = self.messages
         for message in messages:
-            if message['plugin']=='shell':
+            if message['plugin'] == 'shell':
                 self.assertTrue("description" in message, message['name'])
+
+    def test_jobs_comply_with_schema(self):
+        globals = {}
+        exec(open("plugins/jobs_info.py").read(), globals)
+        schema_map = globals["job_schema"]
+        keys_dict = schema_map.__dict__['_variable_kwargs']['schema']
+        acceptable_keys = keys_dict.keys()
+        acceptable_keys_set = set(acceptable_keys)
+        # The description parser may add a few extended keys
+        for key in list(acceptable_keys_set):
+            acceptable_keys_set.add(key + "_extended")
+
+        messages = self.messages
+        for message in messages:
+            message_keys_set = set(message.keys())
+            self.assertTrue(message_keys_set.issubset(acceptable_keys_set),
+                    "Message %s has invalid keys %s" %
+                    (message['name'], message_keys_set - acceptable_keys_set))
