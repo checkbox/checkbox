@@ -424,7 +424,10 @@ def main():
             args.action, args.device, args.minimum_speed, args.memorycard)
     # Run the actual listener and wait till it either times out of discovers
     # the appropriate media changes
-    return listener.check(args.timeout)
+    try:
+        return listener.check(args.timeout)
+    except KeyboardInterrupt:
+        return 1
 
 if __name__ == "__main__":
     sys.exit(main())
