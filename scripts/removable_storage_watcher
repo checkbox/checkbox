@@ -537,6 +537,8 @@ class UDisks2StorageDeviceListener:
         """
         # Compute the changes that had occurred since the reference point
         delta_records = list(self._get_delta_records())
+        # Display a summary of changes when we are done
+        self._summarize_changes(delta_records)
         # If the changes are what we wanted stop the loop
         matching_devices = self._get_matching_devices(delta_records)
         if matching_devices:
@@ -679,6 +681,88 @@ class UDisks2StorageDeviceListener:
         old = self._reference_objects
         new = self._current_objects
         return udisks2_objects_delta(old, new)
+
+    def _summarize_changes(self, delta_records):
+        """
+        Internal method used to summarize changes (compared to reference state)
+        called whenever _on_change() gets called. Only visible in verbose mode
+        """
+        # Filter out anything but interface changes
+        flat_records = [record
+                        for record in delta_records
+                        if record.value.delta_type == DELTA_TYPE_IFACE]
+        # Group changes by DBus object path
+        grouped_records = collections.defaultdict(list)
+        for record in flat_records:
+            grouped_records[record.value.object_path].append(record)
+        # Bail out quickly when nothing got changed
+        if not flat_records:
+            if not self._is_reference:
+                logging.info("You have returned to the reference state")
+                self._is_reference = True
+            return
+        else:
+            self._is_reference = False
+        # Iterate over grouped delta records for all objects
+        logging.info("Compared to the reference state you have:")
+        for object_path in sorted(grouped_records.keys()):
+            records_for_object = sorted(
+                grouped_records[object_path],
+                key=lambda record: record.value.iface_name)
+            # Skip any job objects as they just add noise
+            if any((record.value.iface_name == "org.freedesktop.UDisks2.Job"
+                    for record in records_for_object)):
+                continue
+            logging.info("For object %s", object_path)
+            for record in records_for_object:
+                # Ignore property changes for now
+                if record.value.delta_type != DELTA_TYPE_IFACE:
+                    continue
+                # Get the name of the interface that was affected
+                iface_name = record.value.iface_name
+                # Get the properties for that interface (for removals get the
+                # reference values, for additions get the current values)
+                if record.delta_dir == DELTA_DIR_PLUS:
+                    props = self._current_objects[object_path][iface_name]
+                    action = "inserted"
+                else:
+                    props = self._reference_objects[object_path][iface_name]
+                    action = "removed"
+                # Display some human-readable information associated with each
+                # interface change
+                if iface_name == "org.freedesktop.UDisks2.Drive":
+                    logging.info("\t * %s a drive", action)
+                    logging.info("\t   vendor and name: %r %r",
+                                 props['Vendor'], props['Model'])
+                    logging.info("\t   bus: %s", props['ConnectionBus'])
+                    logging.info("\t   size: %s", format_bytes(props['Size']))
+                    logging.info("\t   is media card: %s", is_memory_card(
+                        props['Vendor'], props['Model'], props['Media']))
+                    logging.info("\t   current media: %s",
+                                 props['Media'] or "???" if
+                                 props['MediaAvailable'] else "N/A")
+                elif iface_name == "org.freedesktop.UDisks2.Block":
+                    logging.info("\t * %s block device", action)
+                    logging.info("\t   from drive: %s", props['Drive'])
+                    logging.info("\t   having device: %s", props['Device'])
+                    logging.info("\t   having usage, type and version:"
+                                 " %s %s %s", props['IdUsage'],
+                                 props['IdType'], props['IdVersion'])
+                    logging.info("\t   having label: %s", props['IdLabel'])
+                elif iface_name == "org.freedesktop.UDisks2.PartitionTable":
+                    logging.info("\t * %s partition table", action)
+                    logging.info("\t   having type: %r", props['Type'])
+                elif iface_name == "org.freedesktop.UDisks2.Partition":
+                    logging.info("\t * %s partition", action)
+                    logging.info("\t   from partition table: %s",
+                                 props['Table'])
+                    logging.info("\t   having size: %s",
+                                 format_bytes(props['Size']))
+                    logging.info("\t   having name: %r", props['Name'])
+                elif iface_name == "org.freedesktop.UDisks2.Filesystem":
+                    logging.info("\t * %s file system", action)
+                    logging.info("\t   having mount points: %r",
+                                 props['MountPoints'])
 
 
 def main():
