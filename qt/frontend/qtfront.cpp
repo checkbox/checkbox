@@ -294,13 +294,13 @@ void QtFront::showTest(QString purpose,
     updateTestStatus(STATUS_INPROGRESS);
     ui->radioTestTab->setVisible(true);
     ui->nextPrevButtons->setVisible(true);
+    this->showTestControls(true);
     ui->testTestButton->setEnabled(enableTestButton);
     ui->skipTestRadioButton->setChecked(true);
     ui->commentsTextEdit->setPlainText(comment);
     ui->testsTab->setTabEnabled(ui->testsTab->indexOf(ui->testing), true);
     ui->tabWidget->setCurrentIndex(1);
 
-    this->showTestControls(true);
     ui->testTypeLabel->setVisible(true);
     ui->purposeLabel->setVisible(true);
     ui->stepsFrame->setVisible(true);
