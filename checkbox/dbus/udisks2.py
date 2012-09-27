@@ -35,7 +35,7 @@ To work with this model you will likely want to look at:
 
 import logging
 
-from dbus import Interface
+from dbus import Interface, PROPERTIES_IFACE
 
 from checkbox.dbus import drop_dbus_type
 
@@ -181,6 +181,14 @@ class UDisks2Observer:
         object
         """
 
+    @Signal.define
+    def on_properties_changed(self, interface_name, changed_properties,
+                              invalidated_properties, sender=None):
+        """
+        Signal fired when one or more property changes value or becomes
+        invalidated.
+        """
+
     def connect_to_bus(self, bus):
         """
         Establish initial connection to UDisks2 on the specified DBus bus.
@@ -214,6 +222,18 @@ class UDisks2Observer:
         logging.debug("Accessing ObjectManager interface on UDisks2 object")
         self._udisks2_obj_manager = Interface(
             self._udisks2_obj, OBJECT_MANAGER_INTERFACE)
+        # Connect to the PropertiesChanged signal. Here unlike before we want
+        # to listen to all signals, regardless of who was sending them in the
+        # first place.
+        logging.debug("Setting up DBus signal handler for PropertiesChanged")
+        bus.add_signal_receiver(
+            self._on_properties_changed,
+            signal_name="PropertiesChanged",
+            dbus_interface=PROPERTIES_IFACE,
+            # Use the sender_keyword keyword argument to indicate that we wish
+            # to know the sender of each signal. For consistency with other
+            # signals we choose to use the 'object_path' keyword argument.
+            sender_keyword='sender')
 
     def _get_initial_objects(self):
         """
@@ -266,6 +286,28 @@ class UDisks2Observer:
                       object_path, interfaces)
         # Call the signal handler
         self.on_interfaces_removed(object_path, interfaces)
+
+    def _on_properties_changed(self, interface_name, changed_properties,
+                               invalidated_properties, sender=None):
+        """
+        Internal callback that is called by DBus
+
+        This function is responsible for firing the public signal
+        """
+        # Convert from dbus types
+        interface_name = drop_dbus_type(interface_name)
+        changed_properties = drop_dbus_type(changed_properties)
+        invalidated_properties = drop_dbus_type(invalidated_properties)
+        sender = drop_dbus_type(sender)
+        # Log what's going on
+        logging.debug("Some object with the interface %r has changed "
+                      "properties: %r and invalidated properties %r "
+                      "(sender: %s)",
+                      interface_name, changed_properties,
+                      invalidated_properties, sender)
+        # Call the signal handler
+        self.on_properties_changed(interface_name, changed_properties,
+                                   invalidated_properties, sender)
 
 
 class UDisks2Model:
