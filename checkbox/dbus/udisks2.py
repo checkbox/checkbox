@@ -37,6 +37,8 @@ import logging
 
 from dbus import Interface
 
+from checkbox.dbus import drop_dbus_type
+
 __all__ = ['UDisks2Observer', 'UDisks2Model', 'Signal']
 
 
@@ -224,6 +226,7 @@ class UDisks2Observer:
         # We can use the standard method GetManagedObjects() to do that
         logging.debug("Accessing GetManagedObjects() on UDisks2 object")
         managed_objects = self._udisks2_obj_manager.GetManagedObjects()
+        managed_objects = drop_dbus_type(managed_objects)
         # Fire the public signal for getting initial objects
         self.on_initial_objects(managed_objects)
         # Connect our internal handles to the DBus signal handlers
@@ -240,10 +243,12 @@ class UDisks2Observer:
 
         This function is responsible for firing the public signal
         """
+        # Convert from dbus types
+        object_path = drop_dbus_type(object_path)
+        interfaces_and_properties = drop_dbus_type(interfaces_and_properties)
         # Log what's going on
-        logging.debug("The object %r has gained the following interfaces and"
-                      " properties: %r", object_path,
-                      interfaces_and_properties)
+        logging.debug("The object %r has gained the following interfaces and "
+                      "properties: %r", object_path, interfaces_and_properties)
         # Call the signal handler
         self.on_interfaces_added(object_path, interfaces_and_properties)
 
@@ -253,9 +258,12 @@ class UDisks2Observer:
 
         This function is responsible for firing the public signal
         """
+        # Convert from dbus types
+        object_path = drop_dbus_type(object_path)
+        interfaces = drop_dbus_type(interfaces)
         # Log what's going on
         logging.debug("The object %r has lost the following interfaces: %r",
-                      object_path,  interfaces)
+                      object_path, interfaces)
         # Call the signal handler
         self.on_interfaces_removed(object_path, interfaces)
 
@@ -299,7 +307,7 @@ class UDisks2Model:
         """
         Internal callback called when we get the initial collection of objects
         """
-        self._managed_objects = managed_objects
+        self._managed_objects = drop_dbus_type(managed_objects)
 
     def _on_interfaces_added(self, object_path, interfaces_and_properties):
         """
