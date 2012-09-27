@@ -1,5 +1,6 @@
 checkbox (0.14.6) quantal; urgency=low
 
+  [ Jeff Marcom ]
   [Chris Wayne]
   * [FEATURE] scripts/touchpad_scroll_resource, jobs/touchpad.txt.in:
     adding in touchpad scroll detection resource job, and modified jobs
@@ -62,6 +63,8 @@ checkbox (0.14.6) quantal; urgency=low
     that all shell jobs have descriptions (LP: #1052992).
   * [FEATURE] jobs/stress.txt.in: Updated some shell jobs that had no
     description (LP: #1052992).
+  * [FEATURE] Added a test to verify that jobs contain only keys
+    declared in the schema (avoid stray keys).
 
   [Alberto Milone]
   * [FEATURE] scripts/window_test, jobs/graphics.txt.in: Added script
@@ -170,7 +173,7 @@ checkbox (0.14.6) quantal; urgency=low
     the 'device' argument (bus type) and require at least one value
   * [FEATURE] scripts/removable_storage_watcher: add support for debugging
 
- -- Jeff Marcom <jeff.marcom@canonical.com>  Thu, 20 Sep 2012 18:03:21 -0400
+ -- Daniel Manrique <roadmr@ubuntu.com>  Thu, 27 Sep 2012 13:02:24 -0400
 
 checkbox (0.14.5) quantal; urgency=low
 
