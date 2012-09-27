@@ -89,7 +89,10 @@ class BackendInfo(Plugin):
 
     def get_root_command(self, *args):
         uid = os.getuid()
-        password_text = _("SYSTEM TESTING: Please enter your password. Some tests require root access to run properly. Your password will never be stored and will never be submitted with test results.")
+        password_text = _("SYSTEM TESTING: Please enter your password. "
+                          "Some tests require root access to run properly. "
+                          "Your password will never be stored and will never "
+                          "be submitted with test results.")
         password_prompt = _("PASSWORD: ")
         if uid == 0:
             prefix = []
