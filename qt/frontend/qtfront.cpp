@@ -245,6 +245,13 @@ void QtFront::startProgressBar(QString text)
     ui->progressLabel->setVisible(true);
     ui->progressLabel->setText(text);
 
+    if (text.contains("Working")) {
+        this->showTestControls(false);
+        ui->testTypeLabel->setVisible(false);
+        ui->purposeLabel->setVisible(false);
+        ui->stepsFrame->setVisible(false);
+    }
+
 }
 
 void QtFront::stopProgressBar()
@@ -293,6 +300,11 @@ void QtFront::showTest(QString purpose,
     ui->testsTab->setTabEnabled(ui->testsTab->indexOf(ui->testing), true);
     ui->tabWidget->setCurrentIndex(1);
 
+    this->showTestControls(true);
+    ui->testTypeLabel->setVisible(true);
+    ui->purposeLabel->setVisible(true);
+    ui->stepsFrame->setVisible(true);
+
     foreach(QObject *object, ui->stepsFrame->children())
         object->deleteLater();
 
@@ -335,11 +347,9 @@ void QtFront::showTest(QString purpose,
         ui->stepsFrame->setFixedHeight(ui->stepsFrame->height() + information->height());
     }
 
-    if (!verification.isEmpty()) {
-        Step *question = new Step(ui->stepsFrame, verification, QString("?"));
-        question->move(0, ui->stepsFrame->height());
-        ui->stepsFrame->setFixedHeight(ui->stepsFrame->height() + question->height());
-    }
+    Step *question = new Step(ui->stepsFrame, verification, QString("?"));
+    question->move(0, ui->stepsFrame->height());
+    ui->stepsFrame->setFixedHeight(ui->stepsFrame->height() + question->height());
 
 }
 

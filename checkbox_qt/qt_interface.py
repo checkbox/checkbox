@@ -86,11 +86,9 @@ class QTInterface(UserInterface):
 
     def show_progress_start(self, message):
         self.qtiface.startProgressBar(message)
-        self.qtiface.showTestControls(False)
 
     def show_progress_stop(self):
         self.qtiface.stopProgressBar()
-        self.qtiface.showTestControls(True)
 
     def show_progress_pulse(self):
         # not used if we have a main event loop
@@ -234,6 +232,7 @@ class QTInterface(UserInterface):
         #If we were in progress, stop showing that now, as we're 
         #awaiting user interaction
         self.show_progress_stop()
+
         self.qtiface.showTest(
             test["purpose"], test["steps"], test["verification"], info, test["data"],
             test["suite"], test["name"], enableTestButton)
@@ -284,11 +283,7 @@ class QTInterface(UserInterface):
     def update_status(self, job):
         if 'type' in job and job["type"] == "test":
             self.qtiface.updateAutoTestStatus(job["status"], job["name"])
-     
-        # Remove current test description and instruction steps 
-        # when automated is running 
-        self.qtiface.showTest("", "", "", "", "", "", "", False)
-
+       
         self.show_progress_start(_("Working"))
 
     def wait_on_signals(self, **signals):
