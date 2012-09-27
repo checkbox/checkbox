@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import argparse
+import collections
 import dbus
 import logging
 import re
@@ -11,6 +12,31 @@ from gi.repository import GObject
 
 from checkbox.dbus import connect_to_system_bus
 from checkbox.dbus.udisks2 import UDisks2Model, UDisks2Observer
+
+# Delta record that encapsulates difference:
+# delta_dir -- directon of the difference, either DELTA_DIR_PLUS or
+#              DELTA_DIR_MINUS
+# value -- the actual value being removed or added, either InterfaceDelta or
+# PropertyDelta instance, see below
+DeltaRecord = collections.namedtuple("DeltaRecord", "delta_dir value")
+
+# Delta value for representing interface changes
+InterfaceDelta = collections.namedtuple(
+    "InterfaceDelta",
+    "delta_type object_path iface_name")
+
+# Delta value for representing property changes
+PropertyDelta = collections.namedtuple(
+    "PropertyDelta",
+    "delta_type object_path iface_name prop_name prop_value")
+
+# Tokens that encode additions and removals
+DELTA_DIR_PLUS = '+'
+DELTA_DIR_MINUS = '-'
+
+# Tokens that encode interface and property deltas
+DELTA_TYPE_IFACE = 'i'
+DELTA_TYPE_PROP = 'p'
 
 
 def is_udisks2_supported(system_bus):
