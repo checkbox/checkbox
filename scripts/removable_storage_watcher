@@ -304,7 +304,7 @@ class UDisks2StorageDeviceListener:
         Basically it's just here to tell the user the test failed or that the
         user was unable to alter the device during the allowed time.
         """
-        print("You have not inserted / removed any devices in time")
+        print("You have failed to perform the required manipulation in time")
         # Fail the test when the timeout was reached
         self._error = True
         # Stop the loop now
