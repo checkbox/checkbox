@@ -88,6 +88,8 @@ checkbox (0.14.6) quantal; urgency=low
     of the description parser to automatically fix bad descriptions.
   * plugins/suites_prompt.py: Fixed tree view in selection window (LP #1056432)
   * [FEATURE] tools/lint: Added script to consistently check syntax.
+  * plugins/apport_prompt.py: Removed apport plugin that caused crashes
+    when trying to send bug report (LP #1047857)
 
   [Sean Feole]
   * [FEATURE] scripts/battery_test: measures battery capacity before and after
