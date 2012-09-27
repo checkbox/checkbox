@@ -79,6 +79,22 @@ def main():
         sys.stdout.flush()
     observer.on_interfaces_added.connect(print_interfaces_added)
 
+    # Setup a callback on PropertiesChanged signal. This way we will get
+    # notified on any changes to the values of properties exported by various
+    # objects on the bus.
+    def print_properties_changed(object_path, interface_name,
+                                 changed_properties, invalidated_properties):
+        print("The object")
+        print("  {}".format(object_path))
+        print("has changed the following properties")
+        print("   - Interface {}".format(interface_name))
+        for prop_name, prop_value in changed_properties.items():
+            prop_value = drop_dbus_type(prop_value)
+            print("     * Property {}: {}".format(prop_name, prop_value))
+        for prop_name in invalidated_properties:
+            print("     * Property {} (invalidated)".format(prop_name))
+    observer.on_properties_changed.connect(print_properties_changed)
+
     # Again, a similar callback for interfaces that go away. It's not spelled
     # out explicitly but it seems that objects with no interfaces left are
     # simply gone. We'll treat them as such
