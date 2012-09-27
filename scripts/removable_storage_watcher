@@ -390,18 +390,20 @@ def main():
                       "(in bits/s)")
     parser.add_argument('--minimum_speed', '-m', help=min_speed_help,
                         type=int, default=0)
-    parser.add_argument('--debug', default=False, action="store_true",
-                        help="Enable debugging")
+    parser.add_argument('--verbose', action='store_const', const=logging.INFO,
+                        dest='logging_level', help="Enable verbose output")
+    parser.add_argument('--debug', action='store_const', const=logging.DEBUG,
+                        dest='logging_level', help="Enable debugging")
+    parser.set_defaults(logging_level=logging.WARNING)
     args = parser.parse_args()
 
-    # Enable debugging if requested
+    # Configure logging as requested
     # XXX: This may be incorrect as logging.basicConfig() fails after any other
     # call to logging.log(). The proper solution is to setup a verbose logging
     # configuration and I didn't want to do it now.
-    if args.debug:
-        logging.basicConfig(
-            level=logging.DEBUG,
-            format='[%(asctime)s] %(levelname)s:%(name)s:%(message)s')
+    logging.basicConfig(
+        level=args.logging_level,
+        format='[%(asctime)s] %(levelname)s:%(name)s:%(message)s')
 
     # Connect to the system bus, we also get the event
     # loop as we need it to start listening for signals.
