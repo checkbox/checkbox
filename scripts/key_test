@@ -94,40 +94,40 @@ class Reporter(object):
         mode = K_RAW if scancodes else K_MEDIUMRAW
         fcntl.ioctl(self.fileno, KDSKBMODE, mode)
 
-    def _parse_codes(self, characters):
-        """Parse the given string of characters to scancodes or keycodes."""
+    def _parse_codes(self, raw_bytes):
+        """Parse the given string of bytes to scancodes or keycodes."""
         if self.scancodes:
-            return self._parse_scancodes(characters)
+            return self._parse_scancodes(raw_bytes)
         else:
-            return self._parse_keycodes(characters)
+            return self._parse_keycodes(raw_bytes)
 
-    def _parse_scancodes(self, characters):
-        """Parse the characters into a scancode."""
+    def _parse_scancodes(self, raw_bytes):
+        """Parse the bytes in raw_bytes into a scancode."""
         index = 0
-        length = len(characters)
+        length = len(raw_bytes)
         while index < length:
-            if (index + 1 < length and characters[index] == 0xE0):
-                code = ((characters[index] << 8) | characters[index + 1])
+            if (index + 1 < length and raw_bytes[index] == 0xE0):
+                code = ((raw_bytes[index] << 8) | raw_bytes[index + 1])
                 index += 2
             else:
-                code = characters[0]
+                code = raw_bytes[0]
                 index += 1
 
             yield code
 
-    def _parse_keycodes(self, characters):
-        """Parse the characters into a keycode."""
+    def _parse_keycodes(self, raw_bytes):
+        """Parse the bytes in raw_bytes into a keycode."""
         index = 0
-        length = len(characters)
+        length = len(raw_bytes)
         while index < length:
-            if (index + 2 < length and (characters[index] & 0x7f) == 0
-                    and (characters[index + 1] & 0x80) != 0
-                    and (characters[index + 2] & 0x80) != 0):
-                code = (((characters[index + 1] & 0x7f) << 7) |
-                        (characters[2] & 0x7f))
+            if (index + 2 < length and (raw_bytes[index] & 0x7f) == 0
+                    and (raw_bytes[index + 1] & 0x80) != 0
+                    and (raw_bytes[index + 2] & 0x80) != 0):
+                code = (((raw_bytes[index + 1] & 0x7f) << 7) |
+                        (raw_bytes[2] & 0x7f))
                 index += 3
             else:
-                code = (characters[0] & 0x7f)
+                code = (raw_bytes[0] & 0x7f)
                 index += 1
 
             yield code
@@ -157,8 +157,8 @@ class Reporter(object):
         key.tested = False
 
     def on_key(self, source, cb_condition):
-        characters = os.read(source, 18)
-        for code in self._parse_codes(characters):
+        raw_bytes = os.read(source, 18)
+        for code in self._parse_codes(raw_bytes):
             if code == 1:
                 # Check for ESC key pressed
                 self.show_text(_("Test cancelled"))

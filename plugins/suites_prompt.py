@@ -114,9 +114,16 @@ You can always skip individual tests if you don't have the needed equipment.\
         self.store.add_pending_offset(offset)
         tests = dict([(m["name"], m) for m in messages
               if m.get("type") in ("test", "metric")])
+
+        def walk_dependencies(job, all_dependencies):
+            for dependency in resolver.get_dependencies(job)[:-1]:
+                walk_dependencies(dependency, all_dependencies)
+            all_dependencies.append(job)
+
         for job in resolver.get_dependents():
             suboptions = options
-            dependencies = resolver.get_dependencies(job)
+            dependencies = []
+            walk_dependencies(job, dependencies)
             for dependency in dependencies:
                 if dependency in tests:
                     value = tests[dependency]["status"]

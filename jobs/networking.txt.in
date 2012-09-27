@@ -122,13 +122,3 @@ command:
  description:
   Testing for NIC $2
  EOF
-
-plugin: shell
-name: networking/bandwidth
-requires:
- package.name == 'linux'
- package.name == 'ethtool' and package.name == 'nmap'
- device.category == 'NETWORK'
-user: root
-command: network_bandwidth_test --log-level=info --scan=3
-_description: Test to measure the network bandwidth

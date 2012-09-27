@@ -36,6 +36,10 @@ checkbox (0.14.6) quantal; urgency=low
     and modified bluetooth/mouse to be bluetooth/HID and allow the tester
     to choose a device to use. (LP: #1053010)
 
+  [Jeff Marcom]
+  * jobs/optical.txt.in: Changed optical read/write job commands to use
+    a more reliable dev path (LP: #990560)
+
   [Daniel Manrique]
   * Bumped to 0.14.6 to keep changelog size sane and fix a small mishap in the
     daily build recipe.
@@ -82,6 +86,7 @@ checkbox (0.14.6) quantal; urgency=low
     fake implementations of build_i18n and build_icons (LP #1049218)
   * checkbox/parsers/description.py: Fixed the PURPOSE and STEPS parts
     of the description parser to automatically fix bad descriptions.
+  * plugins/suites_prompt.py: Fixed tree view in selection window (LP #1056432)
   * [FEATURE] tools/lint: Added script to consistently check syntax.
 
   [Sean Feole]
@@ -128,6 +133,9 @@ checkbox (0.14.6) quantal; urgency=low
   * [FEATURE] jobs/power-management.txt.in, jobs/touchpad.txt.in,
     jobs/sniff.txt.in - Fix incorrect formatting of job descriptions to
     allow steps to be displayed by the UI (LP: #1054208)
+  * jobs/usb.txt.in - Fix dependencies of USB tests so that things work properly if
+    the usb/storage-automated test fails (LP: #987876)
+  * Remove networking/bandwidth job since it is not useful (LP: #1009658)
 
   [Sylvain Pineau]
   * jobs/suspend.txt.in: Fixed suspend/suspend_advanced dependencies to avoid
@@ -148,6 +156,9 @@ checkbox (0.14.6) quantal; urgency=low
     and moved the rendercheck/tarball job into an attachment (LP #1053033)
   * scripts/optical_write_test: Filter ANSI escape char outputed by wodim 
     (LP: #1052803)
+  * checkbox/parsers/udevadm.py: Improved wireless devices detection.
+    The wireless category is now set if the subsystem is equal to ieee80211 
+    (LP: #855382)
 
   [Zygmunt Krynicki]
   * Fixed simple duplicate 'the' mistakes (LP: #1040022)
@@ -159,7 +170,7 @@ checkbox (0.14.6) quantal; urgency=low
     the 'device' argument (bus type) and require at least one value
   * [FEATURE] scripts/removable_storage_watcher: add support for debugging
 
- -- Daniel Manrique <roadmr@ubuntu.com>  Wed, 19 Sep 2012 16:26:56 -0400
+ -- Jeff Marcom <jeff.marcom@canonical.com>  Thu, 20 Sep 2012 18:03:21 -0400
 
 checkbox (0.14.5) quantal; urgency=low
 

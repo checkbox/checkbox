@@ -16,12 +16,11 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
-#
-import optparse
 
+import optparse
 import os
-import sys
 import posixpath
+import sys
 
 lib_dir = posixpath.abspath(posixpath.dirname(__file__))
 sys.path.insert(0, lib_dir)
@@ -43,7 +42,7 @@ def find_tests(testpaths=()):
     for root, dirnames, filenames in os.walk(topdir):
         for filename in filenames:
             filepath = posixpath.join(root, filename)
-            relpath = filepath[len(topdir)+1:]
+            relpath = filepath[len(topdir) + 1:]
 
             if (filename == "__init__.py"
                or filename.endswith(".pyc")
@@ -66,15 +65,17 @@ def find_tests(testpaths=()):
 
     return unittests, doctests
 
+
 def parse_sys_argv():
     """Extract any arguments not starting with '-' from sys.argv."""
     testpaths = []
-    for i in range(len(sys.argv)-1,0,-1):
+    for i in range(len(sys.argv) - 1, 0, -1):
         arg = sys.argv[i]
         if not arg.startswith("-"):
             testpaths.append(arg)
             del sys.argv[i]
     return testpaths
+
 
 def test_with_subunit(options):
     import unittest
@@ -99,6 +100,7 @@ def test_with_subunit(options):
 
     return 0
 
+
 def test_with_unittest(options):
     import unittest
     import doctest
@@ -111,15 +113,17 @@ def test_with_unittest(options):
     unittests, doctests = find_tests(options.args)
 
     class Summary:
+
         def __init__(self):
             self.total_failures = 0
             self.total_errors = 0
             self.total_tests = 0
+
         def __call__(self, tests, failures, errors):
             self.total_tests += tests
             self.total_failures += failures
             self.total_errors += errors
-            print("(tests=%d, failures=%d, errors=%d)" % \
+            print("(tests=%d, failures=%d, errors=%d)" %
                   (tests, failures, errors))
 
     unittest_summary = Summary()
@@ -161,7 +165,33 @@ def test_with_unittest(options):
 
     return failed
 
-if __name__ == "__main__":
+
+def setup_test_locale(test_lang="C"):
+    """
+    Configure locale for testing
+
+    This effectively sets the LANG environment variable C (or any custom value,
+    if specified) and removes all other settings.
+
+    This particular setting matches the default locale on ubuntu systems
+    created by Ubuntu package builders (buildds). This setting makes the
+    built-in open to use 'ansi' encoding for text files (something that we want
+    to avoid entirely but that's why there is the explicit encoding argument
+    that we should all be using).
+    """
+    # Unset LANG and LANGUAGE, if set
+    for key in ('LANG', 'LANGUAGE'):
+        if key in os.environ:
+            del os.environ[key]
+    # Unset all LC_* variables
+    for key in [key for key in os.environ.keys() if key.startswith("LC_")]:
+        del os.environ[key]
+    # Set LANG to the test value
+    os.environ['LANG'] = test_lang
+
+
+def main():
+    setup_test_locale()
     usage = "test [options] [<test filename>, ...]"
 
     parser = optparse.OptionParser(usage=usage)
@@ -175,5 +205,9 @@ if __name__ == "__main__":
         sys.exit("Test runner not found: %s" % runner)
 
     sys.exit(runner_func(opts))
+
+
+if __name__ == "__main__":
+    main()
 
 # vim:ts=4:sw=4:et
