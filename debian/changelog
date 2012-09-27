@@ -134,6 +134,7 @@ checkbox (0.14.6) quantal; urgency=low
     allow steps to be displayed by the UI (LP: #1054208)
   * jobs/usb.txt.in - Fix dependencies of USB tests so that things work properly if
     the usb/storage-automated test fails (LP: #987876)
+  * Remove networking/bandwidth job since it is not useful (LP: #1009658)
 
   [Sylvain Pineau]
   * jobs/suspend.txt.in: Fixed suspend/suspend_advanced dependencies to avoid
