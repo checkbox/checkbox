@@ -336,6 +336,16 @@ class UDisks2Model:
         self._observer.on_interfaces_added.connect(self._on_interfaces_added)
         self._observer.on_interfaces_removed.connect(
             self._on_interfaces_removed)
+        self._observer.on_properties_changed.connect(
+            self._on_properties_changed)
+
+    @Signal.define
+    def on_change(self):
+        """
+        Signal sent whenever the collection of managed object changes
+
+        Note that this signal is fired _after_ the change has occurred
+        """
 
     @property
     def managed_objects(self):
@@ -355,18 +365,33 @@ class UDisks2Model:
         """
         Internal callback called when an interface is added to certain object
         """
+        # Update internal state
         if object_path not in self._managed_objects:
             self._managed_objects[object_path] = {}
         obj = self._managed_objects[object_path]
         obj.update(interfaces_and_properties)
+        # Fire the change signal
+        self.on_change()
 
     def _on_interfaces_removed(self, object_path, interfaces):
         """
         Internal callback called when an interface is removed from a certain
         object
         """
+        # Update internal state
         if object_path in self._managed_objects:
             obj = self._managed_objects[object_path]
             for interface in interfaces:
                 if interface in obj:
                     del obj[interface]
+        # Fire the change signal
+        self.on_change()
+
+    def _on_properties_changed(self, interface_name, changed_properties,
+                               invalidated_properties, sender=None):
+        # XXX: This is a workaround the fact that we cannot
+        # properly track changes to all properties :-(
+        self._managed_objects = drop_dbus_type(
+            self._observer._udisks2_obj_manager.GetManagedObjects())
+        # Fire the change signal()
+        self.on_change()
