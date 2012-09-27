@@ -20,7 +20,6 @@ def main():
     except subprocess.CalledProcessError:
         return 0
 
-    #xrandr_output = ''.join(sys.stdin.readlines())
     xrandr_output = "\n" + ''.join(xrandr_output.splitlines(True)[1:])
     supported_connections = dict()
 
