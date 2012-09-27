@@ -63,6 +63,20 @@ def is_udisks2_supported(system_bus):
         return True
 
 
+def format_bytes(size):
+    """
+    Format size to be easily read by humans
+
+    The result is disk-size compatible (using multiples of 10
+    rather than 2) string like "4.5GB"
+    """
+    for index, prefix in enumerate(" KMGTPEZY", 0):
+        factor = 10 ** (index * 3)
+        if size // factor <= 1000:
+            break
+    return "{}{}B".format(size // factor, prefix.strip())
+
+
 class UDisks1StorageDeviceListener:
 
     def __init__(self, system_bus, loop, action, devices, minimum_speed,
