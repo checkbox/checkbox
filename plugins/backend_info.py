@@ -26,10 +26,11 @@ from tempfile import mkdtemp
 from checkbox.lib.fifo import FifoReader, FifoWriter, create_fifo
 
 from checkbox.plugin import Plugin
-from checkbox.properties import Path, Float 
+from checkbox.properties import Path, Float
 from checkbox.job import FAIL
 
 from gettext import gettext as _
+
 
 class BackendInfo(Plugin):
 
@@ -44,7 +45,7 @@ class BackendInfo(Plugin):
 
     def write_to_parent(self, object):
         message = (self.next_sequence, object,)
-        logging.debug("Sending message with sequence number %s to backend" % 
+        logging.debug("Sending message with sequence number %s to backend" %
                        self.next_sequence)
         self.parent_writer.write_object(message)
         self.expected_sequence = self.next_sequence
@@ -123,27 +124,31 @@ class BackendInfo(Plugin):
         result = self.read_from_parent()
         return result == "pong"
 
-
     def gather(self):
         self.directory = mkdtemp(prefix="checkbox")
-        child_input = create_fifo(os.path.join(self.directory, "input"), 0o600)
-        child_output = create_fifo(os.path.join(self.directory, "output"), 0o600)
+        child_input = create_fifo(os.path.join(self.directory, "input"),
+                                  0o600)
+        child_output = create_fifo(os.path.join(self.directory, "output"),
+                                   0o600)
 
         self.backend_is_alive = False
-        for attempt in range(1,4):
+        for attempt in range(1, 4):
             self.spawn_backend(child_input, child_output)
-            #Only returns if I'm still the parent, so I can do parent stuff here
+            #Only returns if I'm still the parent,
+            #so I can do parent stuff here
             self.parent_writer = FifoWriter(child_input, timeout=self.timeout)
-            self.parent_reader = FifoReader(child_output, timeout=self.timeout)
+            self.parent_reader = FifoReader(child_output,
+                                            timeout=self.timeout)
             if self.ping_backend():
                 logging.debug("Backend responded, continuing execution.")
                 self.backend_is_alive = True
                 break
             else:
-                logging.debug("Backend didn't respond, trying to create again.")
+                logging.debug("Backend didn't respond, "
+                              "trying to create again.")
 
-        if not self.backend_is_alive: 
-            logging.warning("Privileged backend not responding. " + 
+        if not self.backend_is_alive:
+            logging.warning("Privileged backend not responding. " +
                             "jobs specifying user will not be run")
 
     def message_exec(self, message):
@@ -151,12 +156,12 @@ class BackendInfo(Plugin):
             if "environ" in message:
                 #Prepare variables to be "exported" from my environment
                 #to the backend's.
-                backend_environ=["%s=%s" % (key, os.environ[key])
-                             for key in message["environ"] 
+                backend_environ = ["%s=%s" % (key, os.environ[key])
+                             for key in message["environ"]
                              if key in os.environ]
-                message=dict(message) #so as to not wreck the
-                                      #original message
-                message["environ"]=backend_environ
+                message = dict(message)  # so as to not wreck the
+                                         # original message
+                message["environ"] = backend_environ
 
             if (self.backend_is_alive and not self.ping_backend()):
                 self.backend_is_alive = False
