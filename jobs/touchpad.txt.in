@@ -42,13 +42,13 @@ _description:
 
 plugin: shell
 name: touchpad/singletouch-automated
-command: !(xinput_resource | filter_templates -w 'class=XITouchClass' -w 'touch_mode=dependent' -b 'name=Virtual core pointer'| grep 'name:')
+command: !(xinput_resource | filter_templates -w 'class=XITouchClass' | grep -q 'touch_mode: dependent')
 _description:
  Determine whether the touchpad is detected as a singletouch device automatically.
 
 plugin: shell
 name: touchpad/multitouch-automated
-command: xinput_resource | filter_templates -w 'class=XITouchClass' -w 'touch_mode=dependent' -b 'name=Virtual core pointer'| grep 'name:'
+command: xinput_resource | filter_templates -w 'class=XITouchClass' | grep -q 'touch_mode: dependent'
 _description:
  Determine whether the touchpad is detected as a multitouch device automatically.
 
