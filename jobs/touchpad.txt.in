@@ -39,3 +39,26 @@ _description:
      3. Verify that you can move the vertical slider by moving your finger side by side in the right part of the touchpad
  VERIFICATION:
      1. Did touchpad work as expected?
+
+plugin: shell
+name: touchpad/singletouch-automated
+command: !(xinput_resource | filter_templates -w 'class=XITouchClass' -b 'name=Virtual core pointer'| grep 'name:')
+_description:
+ Determine whether the touchpad is detected as a multitouch device automatically.
+
+plugin: shell
+name: touchpad/multitouch-automated
+command: xinput_resource | filter_templates -w 'class=XITouchClass' -b 'name=Virtual core pointer'| grep 'name:'
+_description:
+ Determine whether the touchpad is detected as a multitouch device automatically.
+
+plugin: manual
+name: touchpad/multitouch-manual
+depends: touchpad/singletouch-automated
+_description:
+ PURPOSE:
+     Touchpad manual detection of multitouch.
+ STEPS:
+     1. Look at specifications from system vendor.
+ VERIFICATION:
+     1. Is the touchpad supposed to be multitouch?
