@@ -523,7 +523,7 @@ _description:
  STEPS:
      1. Take picture using USB webcam
  VERIFICATION:
-     1. Review attachment manually later
+     Review attachment manually later
 
 plugin: attachment
 name: screenshot_after_suspend.jpg
@@ -550,7 +550,7 @@ _description:
      3. Launch an HTML5 video playback in firefox
      4. Suspend/resume
  VERIFICATION:
-     1. After a 60s workload, check kern.log for reported GPU errors
+     After a 60s workload, check kern.log for reported GPU errors
 
 plugin: shell
 name: suspend/wifi_resume_time
