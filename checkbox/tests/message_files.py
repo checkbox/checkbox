@@ -42,40 +42,30 @@ class MessageFileFormatTest(unittest.TestCase):
         self.messages = self.read_jobs()
 
     def test_job_files_valid(self):
-        messages = self.messages
-        self.assertTrue(messages)
-        self.assertTrue(len(messages) > 0)
+        self.assertTrue(self.messages)
+        self.assertTrue(len(self.messages) > 0)
 
     def test_all_messages_have_name(self):
-        messages = self.messages
-        for message in messages:
+        for message in self.messages:
             self.assertIn("name", message)
 
     def test_all_messages_have_command_or_description(self):
-        messages = self.messages
-        for message in messages:
+        for message in self.messages:
             self.assertTrue("command" in message or "description" in message)
 
     def test_shell_jobs_have_description(self):
-        messages = self.messages
-        for message in messages:
+        for message in self.messages:
             if message['plugin'] == 'shell':
                 self.assertTrue("description" in message, message['name'])
 
     def test_jobs_comply_with_schema(self):
         globals = {}
         exec(open("plugins/jobs_info.py").read(), globals)
-        schema_map = globals["job_schema"]
-        keys_dict = schema_map.__dict__['_variable_kwargs']['schema']
-        acceptable_keys = keys_dict.keys()
-        acceptable_keys_set = set(acceptable_keys)
-        # The description parser may add a few extended keys
-        for key in list(acceptable_keys_set):
-            acceptable_keys_set.add(key + "_extended")
-
-        messages = self.messages
-        for message in messages:
-            message_keys_set = set(message.keys())
-            self.assertTrue(message_keys_set.issubset(acceptable_keys_set),
-                    "Message %s has invalid keys %s" %
-                    (message['name'], message_keys_set - acceptable_keys_set))
+        job_schema = globals["job_schema"]
+        for message in self.messages:
+            long_ext = "_extended"
+            for long_key in list(message.keys()):
+                if long_key.endswith(long_ext):
+                    short_key = long_key.replace(long_ext, "")
+                    message[short_key] = message.pop(long_key)
+            job_schema.coerce(message)
