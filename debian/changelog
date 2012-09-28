@@ -62,6 +62,8 @@ checkbox (0.14.6) quantal; urgency=low
     that all shell jobs have descriptions (LP: #1052992).
   * [FEATURE] jobs/stress.txt.in: Updated some shell jobs that had no
     description (LP: #1052992).
+  * Added consecutive numbering to messages sent to the backend, so the
+    frontend knows to discard out-of-sequence messages. (LP: #886118)
 
   [Alberto Milone]
   * [FEATURE] scripts/window_test, jobs/graphics.txt.in: Added script
