@@ -32,10 +32,11 @@ class MessageFileFormatTest(unittest.TestCase):
             jobs_path = "./jobs"
 
         for filename in path_expand_recursive(jobs_path):
-            if not filename.endswith("~"):
-                file = open(filename, "r", encoding="utf-8")
+            basename = os.path.basename(filename)
+            if not basename.startswith(".") and not basename.endswith("~"):
                 template = TemplateI18n()
-                messages += template.load_file(file, filename)
+                messages += template.load_filename(filename)
+
         return messages
 
     def setUp(self):
