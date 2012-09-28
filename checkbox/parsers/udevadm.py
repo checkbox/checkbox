@@ -157,7 +157,7 @@ class UdevadmDevice:
                 return "BLUETOOTH"
 
             if class_id == Pci.BASE_CLASS_BRIDGE \
-               and (subclass_id == Pci.CLASS_BRIDGE_PCMCIA \
+               and (subclass_id == Pci.CLASS_BRIDGE_PCMCIA
                     or subclass_id == Pci.CLASS_BRIDGE_CARDBUS):
                 return "SOCKET"
 
@@ -214,10 +214,23 @@ class UdevadmDevice:
                 return "CARDREADER"
 
             if self.driver == "sd" and self.product:
-                if CARD_READER_RE.search(self.product):
+                if self._environment.get("ID_DRIVE_FLASH_SD") == '1':
                     return "CARDREADER"
-                if self.vendor == "Generic":
+                if self._environment.get("ID_DRIVE_FLASH_CF") == '1':
                     return "CARDREADER"
+                if self._environment.get("ID_DRIVE_FLASH_MS") == '1':
+                    return "CARDREADER"
+                if self._environment.get("ID_DRIVE_FLASH_SM") == '1':
+                    return "CARDREADER"
+                if self._environment.get("ID_DRIVE_FLASH_SDHC") == '1':
+                    return "CARDREADER"
+                if self._environment.get("ID_DRIVE_FLASH_MMC") == '1':
+                    return "CARDREADER"
+                if [device for device in self._stack if device.bus == 'usb']:
+                    if CARD_READER_RE.search(self.product):
+                        return "CARDREADER"
+                    if self.vendor == "Generic":
+                        return "CARDREADER"
 
         if "ID_TYPE" in self._environment:
             id_type = self._environment["ID_TYPE"]
