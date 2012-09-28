@@ -42,13 +42,13 @@ _description:
 
 plugin: shell
 name: touchpad/singletouch-automated
-command: !(xinput_resource | filter_templates -w 'class=XITouchClass' -b 'name=Virtual core pointer'| grep 'name:')
+command: !(xinput_resource | filter_templates -w 'class=XITouchClass' -w 'touch_mode=dependent' -b 'name=Virtual core pointer'| grep 'name:')
 _description:
- Determine whether the touchpad is detected as a multitouch device automatically.
+ Determine whether the touchpad is detected as a singletouch device automatically.
 
 plugin: shell
 name: touchpad/multitouch-automated
-command: xinput_resource | filter_templates -w 'class=XITouchClass' -b 'name=Virtual core pointer'| grep 'name:'
+command: xinput_resource | filter_templates -w 'class=XITouchClass' -w 'touch_mode=dependent' -b 'name=Virtual core pointer'| grep 'name:'
 _description:
  Determine whether the touchpad is detected as a multitouch device automatically.
 
@@ -59,6 +59,6 @@ _description:
  PURPOSE:
      Touchpad manual detection of multitouch.
  STEPS:
-     1. Look at specifications from system vendor.
+     1. Look at the specifications for your system.
  VERIFICATION:
      Is the touchpad supposed to be multitouch?
