@@ -60,6 +60,8 @@ SCSI_RE = re.compile(
     r"t-0x(?P<type>[%(hex)s]{2})"
     % {"hex": string.hexdigits})
 CARD_READER_RE = re.compile(r"SD|MMC|CF|MS|SM|xD|Card", re.I)
+GENERIC_RE = re.compile(r"Generic", re.I)
+FLASH_RE = re.compile(r"Flash", re.I)
 
 
 class UdevadmDevice:
@@ -214,22 +216,12 @@ class UdevadmDevice:
                 return "CARDREADER"
 
             if self.driver == "sd" and self.product:
-                if self._environment.get("ID_DRIVE_FLASH_SD") == '1':
+                if any(FLASH_RE.search(k) for k in self._environment.keys()):
                     return "CARDREADER"
-                if self._environment.get("ID_DRIVE_FLASH_CF") == '1':
-                    return "CARDREADER"
-                if self._environment.get("ID_DRIVE_FLASH_MS") == '1':
-                    return "CARDREADER"
-                if self._environment.get("ID_DRIVE_FLASH_SM") == '1':
-                    return "CARDREADER"
-                if self._environment.get("ID_DRIVE_FLASH_SDHC") == '1':
-                    return "CARDREADER"
-                if self._environment.get("ID_DRIVE_FLASH_MMC") == '1':
-                    return "CARDREADER"
-                if [device for device in self._stack if device.bus == 'usb']:
+                if any(d.bus == 'usb' for d in self._stack):
                     if CARD_READER_RE.search(self.product):
                         return "CARDREADER"
-                    if self.vendor == "Generic":
+                    if GENERIC_RE.search(self.vendor):
                         return "CARDREADER"
 
         if "ID_TYPE" in self._environment:
