@@ -5,10 +5,10 @@ import sys
 import subprocess
 
 CONNECTOR_RE = re.compile(
-    r"\n([\w\-]+)"
+    r"\n(?P<Name>[\w\-]+)"
     r"(?:\s+.*?"
-    r"SignalFormat:\s+([\w\-_]+)\s+.*?"
-    r"ConnectorType:\s+([\w\-_]+))?", re.S)
+    r"SignalFormat:\s+(?P<SignalFormat>[\w\-_]+)\s+.*?"
+    r"ConnectorType:\s+(?P<ConnectorType>[\w\-_]+))?", re.S)
 SVIDEO_RE = re.compile(r"s\-?video|din|cv", re.I)
 DP_RE = re.compile(r"dp|displayport", re.I)
 
@@ -24,12 +24,12 @@ def main():
     supported_connections = dict()
 
     for m in CONNECTOR_RE.finditer(xrandr_output):
-        name = m.group(1).lower()
+        name = m.group('Name').lower()
         signal_format = connector_type = ''  # RandR 1.3 only
-        if m.group(2):
-            signal_format = m.group(2).lower()
-        if m.group(3):
-            connector_type = m.group(3).lower()
+        if m.group('SignalFormat'):
+            signal_format = m.group('SignalFormat').lower()
+        if m.group('ConnectorType'):
+            connector_type = m.group('ConnectorType').lower()
 
         if name.startswith('vga'):
             supported_connections['vga'] = 'supported'
