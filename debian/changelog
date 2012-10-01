@@ -165,6 +165,9 @@ checkbox (0.14.6) quantal; urgency=low
   * checkbox/parsers/udevadm.py: Improved wireless devices detection.
     The wireless category is now set if the subsystem is equal to ieee80211 
     (LP: #855382)
+  * scripts/memorycard_resource, scripts/removable_storage_test,
+    scripts/removable_storage_watcher: Fixed the memorycard regexp flags and 
+    add the DriveVendor Udisks property to the re.search() string (LP: #1050920)
 
   [Zygmunt Krynicki]
   * Fixed simple duplicate 'the' mistakes (LP: #1040022)

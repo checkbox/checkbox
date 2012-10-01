@@ -181,7 +181,7 @@ name: mediacard/sd-preinserted
 user: root
 requires:
  package.name == 'udisks'
- memory_card.reader == 'detected'
+ device.category == 'CARDREADER'
 command: removable_storage_test --memorycard -l sdio usb scsi && removable_storage_test --memorycard sdio usb scsi
 _description:
  This is a fully automated version of mediacard/sd-automated and assumes that the

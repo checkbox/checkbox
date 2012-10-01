@@ -59,6 +59,9 @@ SCSI_RE = re.compile(
     r"^scsi:"
     r"t-0x(?P<type>[%(hex)s]{2})"
     % {"hex": string.hexdigits})
+CARD_READER_RE = re.compile(r"SD|MMC|CF|MS|SM|xD|Card", re.I)
+GENERIC_RE = re.compile(r"Generic", re.I)
+FLASH_RE = re.compile(r"Flash", re.I)
 
 
 class UdevadmDevice:
@@ -207,6 +210,22 @@ class UdevadmDevice:
 
             if test_bit(Input.BTN_MOUSE, bitmask, self._bits):
                 return "MOUSE"
+
+        if self.driver:
+            if self.driver.startswith("sdhci"):
+                return "CARDREADER"
+
+            if self.driver.startswith("mmc"):
+                return "CARDREADER"
+
+            if self.driver == "sd" and self.product:
+                if any(FLASH_RE.search(k) for k in self._environment.keys()):
+                    return "CARDREADER"
+                if any(d.bus == 'usb' for d in self._stack):
+                    if CARD_READER_RE.search(self.product):
+                        return "CARDREADER"
+                    if GENERIC_RE.search(self.vendor):
+                        return "CARDREADER"
 
         if "ID_TYPE" in self._environment:
             id_type = self._environment["ID_TYPE"]
