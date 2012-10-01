@@ -16,7 +16,7 @@ DP_RE = re.compile(r"dp|displayport", re.I)
 def main():
     try:
         xrandr_output = subprocess.check_output(
-            ["xrandr", "-q", "--verbose"]).decode()
+            ["xrandr", "-q", "--verbose"], universal_newlines=True)
     except subprocess.CalledProcessError:
         return 0
 
