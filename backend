@@ -35,10 +35,14 @@ def main(args):
     while True:
         try:
             message = reader.read_object()
+            #"unpack" the message
+            sequence, message = message
             if message == "stop":
                 break
             if message == "ping":
-                writer.write_object("pong")
+                #Build a tuple with the sequence number as
+                #received
+                writer.write_object((sequence, "pong",))
                 continue
             if isinstance(message, dict) and "command" in message:
                 job = Job(message["command"], message.get("environ"),
@@ -50,8 +54,8 @@ def main(args):
                     status, data, duration = (FAIL, "Decode error", 0,)
             else:
                 status, data, duration = (FAIL, "", 0,)
-
-            writer.write_object((status, data, duration,))
+            #Build a tuple with sequence number
+            writer.write_object((sequence, (status, data, duration,),))
         except IOError:
             break
 

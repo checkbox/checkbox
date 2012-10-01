@@ -62,6 +62,10 @@ checkbox (0.14.6) quantal; urgency=low
     that all shell jobs have descriptions (LP: #1052992).
   * [FEATURE] jobs/stress.txt.in: Updated some shell jobs that had no
     description (LP: #1052992).
+  * Added consecutive numbering to messages sent to the backend, so the
+    frontend knows to discard out-of-sequence messages. (LP: #886118)
+  * [FEATURE] Added a test to verify that jobs contain only keys
+    declared in the schema (avoid stray keys).
 
   [Alberto Milone]
   * [FEATURE] scripts/window_test, jobs/graphics.txt.in: Added script
@@ -161,6 +165,9 @@ checkbox (0.14.6) quantal; urgency=low
   * checkbox/parsers/udevadm.py: Improved wireless devices detection.
     The wireless category is now set if the subsystem is equal to ieee80211 
     (LP: #855382)
+  * scripts/memorycard_resource, scripts/removable_storage_test,
+    scripts/removable_storage_watcher: Fixed the memorycard regexp flags and 
+    add the DriveVendor Udisks property to the re.search() string (LP: #1050920)
   * scripts/display_resource, jobs/resource.txt.in: Added a new display 
     resource script to properly handle connector names returned by proprietary
     drivers (LP: #956139 and #992727)
@@ -175,7 +182,7 @@ checkbox (0.14.6) quantal; urgency=low
     the 'device' argument (bus type) and require at least one value
   * [FEATURE] scripts/removable_storage_watcher: add support for debugging
 
- -- Jeff Marcom <jeff.marcom@canonical.com>  Thu, 20 Sep 2012 18:03:21 -0400
+ -- Daniel Manrique <roadmr@ubuntu.com>  Thu, 27 Sep 2012 13:02:24 -0400
 
 checkbox (0.14.5) quantal; urgency=low
 

@@ -3,14 +3,17 @@
 import argparse
 import dbus
 import logging
-import re
 import sys
 
 from dbus.exceptions import DBusException
 from gi.repository import GObject
 
+from collections import namedtuple
 from checkbox.dbus import connect_to_system_bus
 from checkbox.dbus.udisks2 import UDisks2Model, UDisks2Observer
+from checkbox.parsers.udevadm import CARD_READER_RE, GENERIC_RE, FLASH_RE
+
+Properties = namedtuple('Properties', 'file bus speed model vendor media')
 
 
 def is_udisks2_supported(system_bus):
@@ -89,33 +92,39 @@ class UDisks1StorageDeviceListener:
         desired_bus_devices = [
             device
             for device in changed_devices
-            if device[1] in self._devices]
+            if device.bus in self._devices]
         logging.debug("Desired bus devices: %s", desired_bus_devices)
-        pattern = re.compile('SD|MMC|CF|MS|SM|xD|Card|Generic')
         for dev in desired_bus_devices:
             if self._memorycard:
-                if dev[1] != 'sdio' and not pattern.search(dev[3], re.I):
+                if (dev.bus != 'sdio'
+                    and not FLASH_RE.search(dev.media)
+                    and not CARD_READER_RE.search(dev.model)
+                    and not GENERIC_RE.search(dev.vendor)):
                     logging.debug("The device does not seem to be a memory"
-                                  " card (dev[1]: %r, dev[3]: %r), skipping",
-                                 dev[1], dev[3])
+                                  " card (bus: %r, model: %r), skipping",
+                                 dev.bus, dev.model)
                     return
-                print(message % {'bus': 'memory card', 'file': dev[0]})
+                print(message % {'bus': 'memory card', 'file': dev.file})
             else:
-                if pattern.search(dev[3], re.I):
+                if (FLASH_RE.search(dev.media)
+                    or CARD_READER_RE.search(dev.model)
+                    or GENERIC_RE.search(dev.vendor)):
                     logging.debug("The device seems to be a memory"
-                                  " card %s (dev[3]: %r), skipping",
-                                  pattern, dev[3])
+                                  " card (bus: %r (model: %r), skipping",
+                                  dev.bus, dev.model)
                     return
-                print(message % {'bus': dev[1], 'file': dev[0]})
+                print(message % {'bus': dev.bus, 'file': dev.file})
             if self._minimum_speed:
-                if dev[2] >= self._minimum_speed:
+                if dev.speed >= self._minimum_speed:
                     print("with speed of %(speed)s bits/s "
                           "higher than %(min_speed)s bits/s" %
-                          {'speed': dev[2], 'min_speed': self._minimum_speed})
+                          {'speed': dev.speed,
+                           'min_speed': self._minimum_speed})
                 else:
                     print("ERROR: speed of %(speed)s bits/s lower "
                           "than %(min_speed)s bits/s" %
-                          {'speed': dev[2], 'min_speed': self._minimum_speed})
+                          {'speed': dev.speed,
+                           'min_speed': self._minimum_speed})
                     self._error = True
             logging.debug("Device matches requirements, exiting event loop")
             self._loop.quit()
@@ -189,11 +198,11 @@ class UDisks1StorageDeviceListener:
                 udisks = 'org.freedesktop.UDisks.Device'
                 _device_file = device_props.Get(udisks,
                                            "DeviceFile")
-                _device = device_props.Get(udisks,
+                _bus = device_props.Get(udisks,
                                            "DriveConnectionInterface")
                 _speed = device_props.Get(udisks,
                                                 "DriveConnectionSpeed")
-                _parent_model = ''
+                _parent_model = _parent_vendor = ''
 
                 if device_props.Get(udisks, "DeviceIsPartition"):
                     parent_obj = self._bus.get_object(
@@ -202,13 +211,17 @@ class UDisks1StorageDeviceListener:
                     parent_props = dbus.Interface(
                         parent_obj, dbus.PROPERTIES_IFACE)
                     _parent_model = parent_props.Get(udisks, "DriveModel")
+                    _parent_vendor = parent_props.Get(udisks, "DriveVendor")
+                    _parent_media = parent_props.Get(udisks, "DriveMedia")
 
                 if not device_props.Get(udisks, "DeviceIsDrive"):
-                    device = (
+                    device = Properties(
                         str(_device_file),
-                        str(_device),
+                        str(_bus),
                         int(_speed),
-                        str(_parent_model))
+                        str(_parent_model),
+                        str(_parent_vendor),
+                        str(_parent_media))
                     existing_devices.append(device)
 
             except dbus.DBusException:
@@ -242,7 +255,7 @@ class UDisks2StorageDeviceListener:
         # argument uses somewhat different strings. In particular we need to
         # map 'ieee1394' to 'firewire'
         #
-        # See: http://udisks.freedesktop.org/docs/latest/gdbus-org.freedesktop.UDisks2.Drive.html#gdbus-property-org-freedesktop-UDisks2-Drive.ConnectionBus
+        # See: http://goo.gl/jaUAa
         #
         # TODO: Report old unsupported possibilities that are still offered by
         # the command-line interface. We also need samples to understand how

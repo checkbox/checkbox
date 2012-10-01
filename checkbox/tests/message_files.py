@@ -32,32 +32,41 @@ class MessageFileFormatTest(unittest.TestCase):
             jobs_path = "./jobs"
 
         for filename in path_expand_recursive(jobs_path):
-            if not filename.endswith("~"):
-                file = open(filename, "r", encoding="utf-8")
+            basename = os.path.basename(filename)
+            if not basename.startswith(".") and not basename.endswith("~"):
                 template = TemplateI18n()
-                messages += template.load_file(file, filename)
+                messages += template.load_filename(filename)
+
         return messages
 
     def setUp(self):
         self.messages = self.read_jobs()
 
     def test_job_files_valid(self):
-        messages = self.messages
-        self.assertTrue(messages)
-        self.assertTrue(len(messages) > 0)
+        self.assertTrue(self.messages)
+        self.assertTrue(len(self.messages) > 0)
 
     def test_all_messages_have_name(self):
-        messages = self.messages
-        for message in messages:
+        for message in self.messages:
             self.assertIn("name", message)
 
     def test_all_messages_have_command_or_description(self):
-        messages = self.messages
-        for message in messages:
+        for message in self.messages:
             self.assertTrue("command" in message or "description" in message)
-    
+
     def test_shell_jobs_have_description(self):
-        messages = self.messages
-        for message in messages:
-            if message['plugin']=='shell':
+        for message in self.messages:
+            if message['plugin'] == 'shell':
                 self.assertTrue("description" in message, message['name'])
+
+    def test_jobs_comply_with_schema(self):
+        globals = {}
+        exec(open("plugins/jobs_info.py").read(), globals)
+        job_schema = globals["job_schema"]
+        for message in self.messages:
+            long_ext = "_extended"
+            for long_key in list(message.keys()):
+                if long_key.endswith(long_ext):
+                    short_key = long_key.replace(long_ext, "")
+                    message[short_key] = message.pop(long_key)
+            job_schema.coerce(message)
