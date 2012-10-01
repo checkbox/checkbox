@@ -77,7 +77,7 @@ _description:
 
 plugin: manual
 name: usb/remove
-depends: usb/storage-automated
+depends: usb/insert
 requires:
  package.name == 'linux'
  package.name == 'udisks'
@@ -95,7 +95,7 @@ _description:
 
 plugin: manual
 name: usb3/remove
-depends: usb3/storage-automated
+depends: usb3/insert
 requires:
  package.name == 'linux'
  package.name == 'udisks'
@@ -151,10 +151,10 @@ _description:
 
 plugin: shell
 name: usb/storage-automated
+depends: usb/insert
 requires:
  package.name == 'linux'
  package.name == 'udisks'
-depends: usb/insert
 command: removable_storage_test usb
 _description:
  This test is automated and executes after the usb/insert test is run.

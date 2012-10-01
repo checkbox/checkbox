@@ -94,6 +94,9 @@ class UdevadmDevice:
         if "IFINDEX" in self._environment:
             return "NETWORK"
 
+        if self.bus == "ieee80211":
+            return "WIRELESS"
+
         if "PCI_CLASS" in self._environment:
             pci_class_string = self._environment["PCI_CLASS"]
             pci_class = int(pci_class_string, 16)
@@ -414,6 +417,10 @@ class UdevadmParser:
         # Ignore devices without bus information
         if not device.bus:
             return True
+
+        # Keep 80211 devices
+        if device.bus == "ieee80211":
+            return False
 
         # Ignore devices without product information
         if not device.product and device.product_id is None:
