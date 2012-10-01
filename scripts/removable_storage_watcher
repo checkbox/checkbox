@@ -15,6 +15,7 @@ from checkbox.parsers.udevadm import CARD_READER_RE, GENERIC_RE, FLASH_RE
 
 Properties = namedtuple('Properties', 'file bus speed model vendor media')
 
+
 def is_udisks2_supported(system_bus):
     """
     Check if udisks2 is available on the system bus.
@@ -254,7 +255,7 @@ class UDisks2StorageDeviceListener:
         # argument uses somewhat different strings. In particular we need to
         # map 'ieee1394' to 'firewire'
         #
-        # See: http://udisks.freedesktop.org/docs/latest/gdbus-org.freedesktop.UDisks2.Drive.html#gdbus-property-org-freedesktop-UDisks2-Drive.ConnectionBus
+        # See: http://goo.gl/jaUAa
         #
         # TODO: Report old unsupported possibilities that are still offered by
         # the command-line interface. We also need samples to understand how
