@@ -173,6 +173,9 @@ checkbox (0.14.6) quantal; urgency=low
   * scripts/display_resource, jobs/resource.txt.in: Added a new display 
     resource script to properly handle connector names returned by proprietary
     drivers (LP: #956139 and #992727)
+  * debian/control, jobs/esata.txt.in, jobs/firewire.txt.in, jobs/usb.txt.in,
+    jobs/mediacard.txt.in: Remove udisks package references in all of the jobs
+    that use removable_storage scripts (LP: #1059620) 
 
   [Zygmunt Krynicki]
   * Fixed simple duplicate 'the' mistakes (LP: #1040022)

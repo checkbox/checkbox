@@ -1,7 +1,5 @@
 plugin: manual
 name: mediacard/mmc-insert
-requires:
- package.name == 'udisks'
 command: removable_storage_watcher insert sdio usb scsi
 _description:
  PURPOSE:
@@ -18,8 +16,6 @@ _description:
 plugin: shell
 name: mediacard/mmc-storage
 depends: mediacard/mmc-insert
-requires:
- package.name == 'udisks'
 command: removable_storage_test sdio usb scsi
 _description:
  This test is automated and executes after the mediacard/mmc-insert
@@ -28,8 +24,6 @@ _description:
 plugin: manual
 name: mediacard/mmc-remove
 depends: mediacard/mmc-storage
-requires:
- package.name == 'udisks'
 command: removable_storage_watcher remove sdio usb scsi
 _description:
  PURPOSE:
@@ -45,8 +39,6 @@ _description:
 plugin: manual
 name: mediacard/mmc-insert-after-suspend
 depends: suspend/suspend_advanced
-requires:
- package.name == 'udisks'
 command: removable_storage_watcher insert sdio usb scsi
 _description:
  PURPOSE:
@@ -63,8 +55,6 @@ _description:
 plugin: shell
 name: mediacard/mmc-storage-after-suspend
 depends: mediacard/mmc-insert-after-suspend
-requires:
- package.name == 'udisks'
 command: removable_storage_test sdio usb scsi
 _description:
  This test is automated and executes after the mediacard/mmc-insert-after-suspend test
@@ -73,8 +63,6 @@ _description:
 plugin: manual
 name: mediacard/mmc-remove-after-suspend
 depends: mediacard/mmc-storage-after-suspend
-requires:
- package.name == 'udisks'
 command: removable_storage_watcher remove sdio usb scsi
 _description:
  PURPOSE:
@@ -89,8 +77,6 @@ _description:
 
 plugin: manual
 name: mediacard/sd-insert
-requires:
- package.name == 'udisks'
 command: removable_storage_watcher insert sdio usb scsi
 _description:
  PURPOSE:
@@ -107,8 +93,6 @@ _description:
 plugin: shell
 name: mediacard/sd-storage
 depends: mediacard/sd-insert
-requires:
- package.name == 'udisks'
 command: removable_storage_test sdio usb scsi
 _description:
  This test is automated and executes after the mediacard/sd-insert
@@ -117,8 +101,6 @@ _description:
 plugin: manual
 name: mediacard/sd-remove
 depends: mediacard/sd-storage
-requires:
- package.name == 'udisks'
 command: removable_storage_watcher remove sdio usb scsi
 _description:
  PURPOSE:
@@ -134,8 +116,6 @@ _description:
 plugin: manual
 name: mediacard/sd-insert-after-suspend
 depends: suspend/suspend_advanced
-requires:
- package.name == 'udisks'
 command: removable_storage_watcher insert sdio usb scsi
 _description:
  PURPOSE:
@@ -152,8 +132,6 @@ _description:
 plugin: shell
 name: mediacard/sd-storage-after-suspend
 depends: mediacard/sd-insert-after-suspend
-requires:
- package.name == 'udisks'
 command: removable_storage_test sdio usb scsi
 _description:
  This test is automated and executes after the mediacard/sd-insert-after-suspend test
@@ -162,8 +140,6 @@ _description:
 plugin: manual
 name: mediacard/sd-remove-after-suspend
 depends: mediacard/sd-storage-after-suspend
-requires:
- package.name == 'udisks'
 command: removable_storage_watcher remove sdio usb scsi
 _description:
  PURPOSE:
@@ -179,9 +155,7 @@ _description:
 plugin: shell
 name: mediacard/sd-preinserted
 user: root
-requires:
- package.name == 'udisks'
- device.category == 'CARDREADER'
+requires: device.category == 'CARDREADER'
 command: removable_storage_test --memorycard -l sdio usb scsi && removable_storage_test --memorycard sdio usb scsi
 _description:
  This is a fully automated version of mediacard/sd-automated and assumes that the
@@ -190,8 +164,6 @@ _description:
 
 plugin: manual
 name: mediacard/sdhc-insert
-requires:
- package.name == 'udisks'
 command: removable_storage_watcher insert sdio usb scsi
 _description:
  PURPOSE:
@@ -208,8 +180,6 @@ _description:
 plugin: shell
 name: mediacard/sdhc-storage
 depends: mediacard/sdhc-insert
-requires:
- package.name == 'udisks'
 command: removable_storage_test sdio usb scsi
 _description:
  This test is automated and executes after the mediacard/sdhc-insert
@@ -218,8 +188,6 @@ _description:
 plugin: manual
 name: mediacard/sdhc-remove
 depends: mediacard/sdhc-storage
-requires:
- package.name == 'udisks'
 command: removable_storage_watcher remove sdio usb scsi
 _description:
  PURPOSE:
@@ -235,8 +203,6 @@ _description:
 plugin: manual
 name: mediacard/sdhc-insert-after-suspend
 depends: suspend/suspend_advanced
-requires:
- package.name == 'udisks'
 command: removable_storage_watcher insert sdio usb scsi
 _description:
  PURPOSE:
@@ -253,8 +219,6 @@ _description:
 plugin: shell
 name: mediacard/sdhc-storage-after-suspend
 depends: mediacard/sdhc-insert-after-suspend
-requires:
- package.name == 'udisks'
 command: removable_storage_test sdio usb scsi
 _description:
  This test is automated and executes after the mediacard/sdhc-insert-after-suspend test
@@ -263,8 +227,6 @@ _description:
 plugin: manual
 name: mediacard/sdhc-remove-after-suspend
 depends: mediacard/sdhc-storage-after-suspend
-requires:
- package.name == 'udisks'
 command: removable_storage_watcher remove sdio usb scsi
 _description:
  PURPOSE:
@@ -279,8 +241,6 @@ _description:
 
 plugin: manual
 name: mediacard/cf-insert
-requires:
- package.name == 'udisks'
 command: removable_storage_watcher insert sdio usb scsi
 _description:
  PURPOSE:
@@ -297,8 +257,6 @@ _description:
 plugin: shell
 name: mediacard/cf-storage
 depends: mediacard/cf-insert
-requires:
- package.name == 'udisks'
 command: removable_storage_test sdio usb scsi
 _description:
  This test is automated and executes after the mediacard/cf-insert
@@ -307,8 +265,6 @@ _description:
 plugin: manual
 name: mediacard/cf-remove
 depends: mediacard/cf-storage
-requires:
- package.name == 'udisks'
 command: removable_storage_watcher remove sdio usb scsi
 _description:
  PURPOSE:
@@ -324,8 +280,6 @@ _description:
 plugin: manual
 name: mediacard/cf-insert-after-suspend
 depends: suspend/suspend_advanced
-requires:
- package.name == 'udisks'
 command: removable_storage_watcher insert sdio usb scsi
 _description:
  PURPOSE:
@@ -342,8 +296,6 @@ _description:
 plugin: shell
 name: mediacard/cf-storage-after-suspend
 depends: mediacard/cf-insert-after-suspend
-requires:
- package.name == 'udisks'
 command: removable_storage_test sdio usb scsi
 _description:
  This test is automated and executes after the mediacard/cf-insert-after-suspend test
@@ -352,8 +304,6 @@ _description:
 plugin: manual
 name: mediacard/cf-remove-after-suspend
 depends: mediacard/cf-storage-after-suspend
-requires:
- package.name == 'udisks'
 command: removable_storage_watcher remove sdio usb scsi
 _description:
  PURPOSE:
