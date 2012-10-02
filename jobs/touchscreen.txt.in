@@ -30,3 +30,25 @@ _description:
  VERIFICATION:
      Does the screen zoom in and out?
 
+plugin: shell
+name: touchscreen/nontouch-automated
+command: !(xinput_resource | filter_templates -w 'class=XITouchClass' | grep -q 'touch_mode: direct')
+_description:
+ Determine whether the screen is detected as a non-touch device automatically.
+
+plugin: shell
+name: touchscreen/multitouch-automated
+command: xinput_resource | filter_templates -w 'class=XITouchClass' | grep -q 'touch_mode: direct'
+_description:
+ Determine whether the screen is detected as a multitouch device automatically.
+
+plugin: manual
+name: touchscreen/multitouch-manual
+depends: touchscreen/nontouch-automated
+_description:
+ PURPOSE:
+     Touchscreen manual detection of multitouch.
+ STEPS:
+     1. Look at the specifications for your system.
+ VERIFICATION:
+     Is the screen supposed to be multitouch?

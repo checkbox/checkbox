@@ -6,7 +6,7 @@ _description:
  STEPS:
      1. Power LED should be on while device is switched on
  VERIFICATION:
-     1. Does the power LED light as expected?
+     Does the power LED light as expected?
 
 plugin: manual
 name: led/battery-charging
@@ -17,7 +17,7 @@ _description:
      1. Let system run on battery for a while
      2. Plug in AC plug
  VERIFICATION:
-     1. Did the battery indicator LED turn orange?
+     Did the battery indicator LED turn orange?
 
 plugin: manual
 name: led/battery-charged
@@ -29,7 +29,7 @@ _description:
      2. Plug in AC
      3. Let system run on AC
  VERIFICATION:
-     1. Does the orange battery LED shut off when system is fully charged?
+     Does the orange battery LED shut off when system is fully charged?
 
 plugin: manual
 name: led/battery-low
@@ -40,7 +40,7 @@ _description:
      1. Let system run on battery for several hours
      2. Monitor battery LED carefully
  VERIFICATION:
-     1. Does the LED light orange when battery is low?
+     Does the LED light orange when battery is low?
 
 plugin: manual
 name: led/hdd
@@ -52,7 +52,7 @@ _description:
      1. Select "Test" to write and read a temporary file for a few seconds
      2. HDD LED should light when writing to/reading from HDD
  VERIFICATION:
-     1. Did the HDD LED light?
+     Did the HDD LED light?
 
 plugin: manual
 name: led/numeric-keypad
@@ -77,7 +77,7 @@ _description:
      1. Press "Block Cap Keys" to activate/deactivate cap keys blocking
      2. Cap Keys LED should be switched on/off every time the key is pressed
  VERIFICATION:
-     1. Did the Cap Keys LED light as expected?
+     Did the Cap Keys LED light as expected?
 
 plugin: manual
 name: led/wlan
@@ -93,7 +93,7 @@ _description:
      3. Select Test to open Firefox
      4. WLAN LED should flash while downloading data
  VERIFICATION:
-     1. Did the WLAN LED light and flash as expected?
+     Did the WLAN LED light and flash as expected?
 
 plugin: manual
 name: led/wlan-disabled
@@ -107,7 +107,7 @@ _description:
      3. Re-enable
      4. Use Network-Manager to disable WLAN
  VERIFICATION:
-     1. Did the LED turn off then WLAN is disabled?
+     Did the LED turn off then WLAN is disabled?
 
 plugin: manual
 name: led/bluetooth
@@ -121,7 +121,7 @@ _description:
      3. Switch bluetooth off from the panel applet
      4. Switch bluetooth back on
  VERIFICATION:
-     1. Did the bluetooth LED turn off and on twice?
+     Did the bluetooth LED turn off and on twice?
 
 plugin: manual
 name: led/camera
@@ -134,7 +134,7 @@ _description:
      1. Select Test to activate camera
      2. Camera LED should light for a few seconds
  VERIFICATION:
-     1. Did the camera LED light?
+     Did the camera LED light?
 
 plugin: manual
 name: led/touchpad
@@ -162,5 +162,5 @@ _description:
      3. Switch WLAN and Bluetooth off from the panel applet
      4. Switch them back on
  VERIFICATION:
-     1. Did the WLAN/Bluetooth LED light as expected?
+     Did the WLAN/Bluetooth LED light as expected?
 
