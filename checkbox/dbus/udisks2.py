@@ -35,7 +35,9 @@ To work with this model you will likely want to look at:
 
 import logging
 
-from dbus import Interface
+from dbus import Interface, PROPERTIES_IFACE
+
+from checkbox.dbus import drop_dbus_type
 
 __all__ = ['UDisks2Observer', 'UDisks2Model', 'Signal']
 
@@ -179,6 +181,14 @@ class UDisks2Observer:
         object
         """
 
+    @Signal.define
+    def on_properties_changed(self, interface_name, changed_properties,
+                              invalidated_properties, sender=None):
+        """
+        Signal fired when one or more property changes value or becomes
+        invalidated.
+        """
+
     def connect_to_bus(self, bus):
         """
         Establish initial connection to UDisks2 on the specified DBus bus.
@@ -212,6 +222,18 @@ class UDisks2Observer:
         logging.debug("Accessing ObjectManager interface on UDisks2 object")
         self._udisks2_obj_manager = Interface(
             self._udisks2_obj, OBJECT_MANAGER_INTERFACE)
+        # Connect to the PropertiesChanged signal. Here unlike before we want
+        # to listen to all signals, regardless of who was sending them in the
+        # first place.
+        logging.debug("Setting up DBus signal handler for PropertiesChanged")
+        bus.add_signal_receiver(
+            self._on_properties_changed,
+            signal_name="PropertiesChanged",
+            dbus_interface=PROPERTIES_IFACE,
+            # Use the sender_keyword keyword argument to indicate that we wish
+            # to know the sender of each signal. For consistency with other
+            # signals we choose to use the 'object_path' keyword argument.
+            sender_keyword='sender')
 
     def _get_initial_objects(self):
         """
@@ -224,6 +246,7 @@ class UDisks2Observer:
         # We can use the standard method GetManagedObjects() to do that
         logging.debug("Accessing GetManagedObjects() on UDisks2 object")
         managed_objects = self._udisks2_obj_manager.GetManagedObjects()
+        managed_objects = drop_dbus_type(managed_objects)
         # Fire the public signal for getting initial objects
         self.on_initial_objects(managed_objects)
         # Connect our internal handles to the DBus signal handlers
@@ -240,10 +263,12 @@ class UDisks2Observer:
 
         This function is responsible for firing the public signal
         """
+        # Convert from dbus types
+        object_path = drop_dbus_type(object_path)
+        interfaces_and_properties = drop_dbus_type(interfaces_and_properties)
         # Log what's going on
-        logging.debug("The object %r has gained the following interfaces and"
-                      " properties: %r", object_path,
-                      interfaces_and_properties)
+        logging.debug("The object %r has gained the following interfaces and "
+                      "properties: %r", object_path, interfaces_and_properties)
         # Call the signal handler
         self.on_interfaces_added(object_path, interfaces_and_properties)
 
@@ -253,11 +278,36 @@ class UDisks2Observer:
 
         This function is responsible for firing the public signal
         """
+        # Convert from dbus types
+        object_path = drop_dbus_type(object_path)
+        interfaces = drop_dbus_type(interfaces)
         # Log what's going on
         logging.debug("The object %r has lost the following interfaces: %r",
-                      object_path,  interfaces)
+                      object_path, interfaces)
         # Call the signal handler
         self.on_interfaces_removed(object_path, interfaces)
+
+    def _on_properties_changed(self, interface_name, changed_properties,
+                               invalidated_properties, sender=None):
+        """
+        Internal callback that is called by DBus
+
+        This function is responsible for firing the public signal
+        """
+        # Convert from dbus types
+        interface_name = drop_dbus_type(interface_name)
+        changed_properties = drop_dbus_type(changed_properties)
+        invalidated_properties = drop_dbus_type(invalidated_properties)
+        sender = drop_dbus_type(sender)
+        # Log what's going on
+        logging.debug("Some object with the interface %r has changed "
+                      "properties: %r and invalidated properties %r "
+                      "(sender: %s)",
+                      interface_name, changed_properties,
+                      invalidated_properties, sender)
+        # Call the signal handler
+        self.on_properties_changed(interface_name, changed_properties,
+                                   invalidated_properties, sender)
 
 
 class UDisks2Model:
@@ -286,6 +336,16 @@ class UDisks2Model:
         self._observer.on_interfaces_added.connect(self._on_interfaces_added)
         self._observer.on_interfaces_removed.connect(
             self._on_interfaces_removed)
+        self._observer.on_properties_changed.connect(
+            self._on_properties_changed)
+
+    @Signal.define
+    def on_change(self):
+        """
+        Signal sent whenever the collection of managed object changes
+
+        Note that this signal is fired _after_ the change has occurred
+        """
 
     @property
     def managed_objects(self):
@@ -299,24 +359,39 @@ class UDisks2Model:
         """
         Internal callback called when we get the initial collection of objects
         """
-        self._managed_objects = managed_objects
+        self._managed_objects = drop_dbus_type(managed_objects)
 
     def _on_interfaces_added(self, object_path, interfaces_and_properties):
         """
         Internal callback called when an interface is added to certain object
         """
+        # Update internal state
         if object_path not in self._managed_objects:
             self._managed_objects[object_path] = {}
         obj = self._managed_objects[object_path]
         obj.update(interfaces_and_properties)
+        # Fire the change signal
+        self.on_change()
 
     def _on_interfaces_removed(self, object_path, interfaces):
         """
         Internal callback called when an interface is removed from a certain
         object
         """
+        # Update internal state
         if object_path in self._managed_objects:
             obj = self._managed_objects[object_path]
             for interface in interfaces:
                 if interface in obj:
                     del obj[interface]
+        # Fire the change signal
+        self.on_change()
+
+    def _on_properties_changed(self, interface_name, changed_properties,
+                               invalidated_properties, sender=None):
+        # XXX: This is a workaround the fact that we cannot
+        # properly track changes to all properties :-(
+        self._managed_objects = drop_dbus_type(
+            self._observer._udisks2_obj_manager.GetManagedObjects())
+        # Fire the change signal()
+        self.on_change()
