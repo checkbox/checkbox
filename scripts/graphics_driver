@@ -40,17 +40,18 @@ import os
 
 from subprocess import Popen, PIPE
 
+
 class XorgLog(object):
 
     def __init__(self, logfile=None):
-        self.modules  = [ ]
-        self.errors   = [ ]
-        self.warnings = [ ]
-        self.info     = [ ]
-        self.notimpl  = [ ]
-        self.notices  = [ ]
-        self.cards    = [ ]
-        self.displays = { }
+        self.modules = []
+        self.errors = []
+        self.warnings = []
+        self.info = []
+        self.notimpl = []
+        self.notices = []
+        self.cards = []
+        self.displays = {}
         self.xserver_version = None
         self.boot_time = None
         self.boot_logfile = None
@@ -78,7 +79,8 @@ class XorgLog(object):
                     self.modules.append(module)
                 gathering_module = False
                 module = None
-                m = re.search('\(II\) Loading.*modules\/drivers\/(.+)_drv\.so', line)
+                m = re.search(
+                    '\(II\) Loading.*modules\/drivers\/(.+)_drv\.so', line)
                 if m:
                     found_ddx = True
                 m = re.search(r'\(II\) Module (\w+):', line)
@@ -96,26 +98,26 @@ class XorgLog(object):
                     gathering_module = True
 
             if gathering_module:
-                   m = re.search(r'vendor="(.*:?)"', line)
-                   if m:
-                       module['vendor'] = m.group(1)
+                m = re.search(r'vendor="(.*:?)"', line)
+                if m:
+                    module['vendor'] = m.group(1)
 
-                   m = re.search(r'module version = (.*)', line)
-                   if m:
-                       module['version'] = m.group(1)
+                m = re.search(r'module version = (.*)', line)
+                if m:
+                    module['version'] = m.group(1)
 
-                   m = re.search(r'class: (.*)', line)
-                   if m:
-                       module['class'] = m.group(1)
+                m = re.search(r'class: (.*)', line)
+                if m:
+                    module['class'] = m.group(1)
 
-                   m = re.search(r'ABI class:\s+(.*:?), version\s+(.*:?)', line)
-                   if m:
-                       if m.group(1)[:5] == "X.Org":
-                           module['abi_name'] = m.group(1)[6:]
-                       else:
-                           module['abi_name'] = m.group(1)
-                       module['abi_version'] = m.group(2)
-                   continue
+                m = re.search(r'ABI class:\s+(.*:?), version\s+(.*:?)', line)
+                if m:
+                    if m.group(1)[:5] == "X.Org":
+                        module['abi_name'] = m.group(1)[6:]
+                    else:
+                        module['abi_name'] = m.group(1)
+                    module['abi_version'] = m.group(2)
+                continue
 
             # General details
             m = re.search(r'Current Operating System: (.*)$', line)
@@ -163,7 +165,8 @@ class XorgLog(object):
                 display = {'Output': display_name}
                 continue
 
-            m = re.search(r'\(II\) (.*)\(\d+\): Assigned Display Device: (.*)$', line)
+            m = re.search(
+                r'\(II\) (.*)\(\d+\): Assigned Display Device: (.*)$', line)
             if m:
                 self.displays[display_name] = display
                 self.video_driver = m.group(1)
@@ -171,11 +174,12 @@ class XorgLog(object):
                 display = {'Output': display_name}
                 continue
 
-            m = re.search(r'Manufacturer: (.*) *Model: (.*) *Serial#: (.*)', line)
+            m = re.search(
+                r'Manufacturer: (.*) *Model: (.*) *Serial#: (.*)', line)
             if m:
                 display['display manufacturer'] = m.group(1)
-                display['display model']        = m.group(2)
-                display['display serial no.']   = m.group(3)
+                display['display model'] = m.group(2)
+                display['display serial no.'] = m.group(3)
 
             m = re.search(r'EDID Version: (.*)', line)
             if m:
@@ -186,15 +190,18 @@ class XorgLog(object):
                 display['vendor'] = m.group(1)
                 display['product id'] = m.group(2)
 
-            m = re.search(r'Max Image Size \[(.*)\]: *horiz.: (.*) *vert.: (.*)', line)
+            m = re.search(
+                r'Max Image Size \[(.*)\]: *horiz.: (.*) *vert.: (.*)', line)
             if m:
-                display['size max horizontal'] = "%s %s" %(m.group(2), m.group(1))
-                display['size max vertical'] = "%s %s" %(m.group(3), m.group(1))
+                display['size max horizontal'] = "%s %s" % (
+                    m.group(2), m.group(1))
+                display['size max vertical'] = "%s %s" % (
+                    m.group(3), m.group(1))
 
             m = re.search(r'Image Size: *(.*) x (.*) (.*)', line)
             if m:
-                display['size horizontal'] = "%s %s" %(m.group(1), m.group(3))
-                display['size vertical'] = "%s %s" %(m.group(2), m.group(3))
+                display['size horizontal'] = "%s %s" % (m.group(1), m.group(3))
+                display['size vertical'] = "%s %s" % (m.group(2), m.group(3))
 
             m = re.search(r'(.*) is preferred mode', line)
             if m:
@@ -202,7 +209,7 @@ class XorgLog(object):
 
             m = re.search(r'Modeline \"(\d+)x(\d+)\"x([0-9\.]+) *(.*)$', line)
             if m:
-                key = "mode %sx%s@%s" %(m.group(1), m.group(2), m.group(3))
+                key = "mode %sx%s@%s" % (m.group(1), m.group(2), m.group(3))
                 display[key] = m.group(4)
                 continue
 
@@ -244,9 +251,10 @@ class XorgLog(object):
             ])
         return [err for err in self.warnings if err not in excludes]
 
+
 def get_driver_info(xlog):
     '''Return the running driver and version'''
-    print('-'*13,'VIDEO DRIVER INFORMATION','-'*13)
+    print('-' * 13, 'VIDEO DRIVER INFORMATION', '-' * 13)
     if xlog.video_driver:
         for module in xlog.modules:
             if module['name'] == xlog.video_driver.lower():
@@ -259,8 +267,10 @@ def get_driver_info(xlog):
                 file=sys.stderr)
         return 1
 
+
 def is_laptop():
     return os.path.isdir('/proc/acpi/button/lid')
+
 
 def hybrid_graphics_check(xlog):
     '''Check for Hybrid Graphics'''
@@ -289,14 +299,14 @@ def hybrid_graphics_check(xlog):
             id = id1 + ':' + id2
             cards.append(id)
 
-    print('-'*13,'HYBRID GRAPHICS CHECK','-'*16)
+    print('-' * 13, 'HYBRID GRAPHICS CHECK', '-' * 16)
     for card in cards:
         formatted_name = cards_dict.get(card.split(':')[0], 'Unknown')
         formatted_cards.append(formatted_name)
         print('Graphics Chipset: %s (%s)' % (formatted_name, card))
 
     for module in xlog.modules:
-        if module['ddx'] == True and module['name'] not in drivers:
+        if module['ddx'] and module['name'] not in drivers:
             drivers.append(module['name'])
     print('Loaded DDX Drivers: %s' %
             ', '.join(drivers))
@@ -309,6 +319,7 @@ def hybrid_graphics_check(xlog):
                                    and 'yes' or 'no'))
 
     return 0
+
 
 def main():
     xlog = XorgLog("/var/log/Xorg.0.log")
