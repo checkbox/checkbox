@@ -38,7 +38,7 @@ import re
 import sys
 import os
 
-from subprocess import Popen, PIPE
+from subprocess import Popen, PIPE, check_output, CalledProcessError
 
 
 class XorgLog(object):
@@ -106,6 +106,18 @@ class XorgLog(object):
                 if m:
                     module['version'] = m.group(1)
 
+                if module['name'] == 'nvidia':
+                    try:
+                        version = check_output(
+                            "nvidia-settings -v",
+                            shell=True,
+                            universal_newlines=True)
+                        m = re.search(r'.*version\s+([0-9\.]+).*', version)
+                        if m:
+                            module['version'] = m.group(1)
+                    except CalledProcessError:
+                        pass
+
                 m = re.search(r'class: (.*)', line)
                 if m:
                     module['class'] = m.group(1)
@@ -167,6 +179,14 @@ class XorgLog(object):
 
             m = re.search(
                 r'\(II\) (.*)\(\d+\): Assigned Display Device: (.*)$', line)
+            if m:
+                self.displays[display_name] = display
+                self.video_driver = m.group(1)
+                display_name = m.group(2)
+                display = {'Output': display_name}
+                continue
+
+            m = re.search(r'\(II\) (.*)\(\d+\): Setting mode "(.*?):', line)
             if m:
                 self.displays[display_name] = display
                 self.video_driver = m.group(1)
