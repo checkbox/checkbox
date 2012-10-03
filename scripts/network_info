@@ -23,7 +23,7 @@ def get_connected(interface):
     carrier = 0
     try:
         carrier = int(_read_file(carrier_file))
-    except:
+    except IOError:
         pass
 
     return STATUS[carrier]
@@ -44,7 +44,7 @@ def get_mac_address(interface):
     address = ''
     try:
         address = _read_file(address_file)
-    except:
+    except IOError:
         pass
 
     return address
