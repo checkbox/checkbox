@@ -19,7 +19,13 @@ def _read_file(file):
 def get_connected(interface):
     STATUS = ('No', 'Yes')
     carrier_file = os.path.join(SYS_PATH, interface, 'carrier')
-    carrier = int(_read_file(carrier_file))
+
+    carrier = 0
+    try:
+        carrier = int(_read_file(carrier_file))
+    except IOError:
+        pass
+
     return STATUS[carrier]
 
 
@@ -34,7 +40,14 @@ def get_ip_address(interface):
 
 def get_mac_address(interface):
     address_file = os.path.join(SYS_PATH, interface, 'address')
-    return _read_file(address_file)
+
+    address = ''
+    try:
+        address = _read_file(address_file)
+    except IOError:
+        pass
+
+    return address
 
 
 def main(args):
