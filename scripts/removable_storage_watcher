@@ -458,6 +458,12 @@ class UDisks2StorageDeviceListener:
         # The 'devices' argument uses somewhat different strings.  So we need
         # to adapt them to match the implementation.
         self._desired_connection_buses = set(devices)
+        # Map unsupported ata_seriale_esata to empty value. eSATA detection is
+        # gone from UDisks2 and all SATA and eSATA drives simply don't have any
+        # value there.
+        if "ata_serial_esata" in self._desired_connection_buses:
+            self._desired_connection_buses.remove("ata_serial_esata")
+            self._desired_connection_buses.add("")
         # Map firewire to 'ieee1934', it's great when upstream decides to
         # rename something for no real reason.
         if "firewire" in self._desired_connection_buses:
