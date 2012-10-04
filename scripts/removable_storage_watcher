@@ -464,6 +464,12 @@ class UDisks2StorageDeviceListener:
         if "ata_serial_esata" in self._desired_connection_buses:
             self._desired_connection_buses.remove("ata_serial_esata")
             self._desired_connection_buses.add("")
+        # Map unsupported scsi value to the empty value. In the UDisks1
+        # implementation they were only present in one media card reader.
+        # Now the same machine reports ConnectionBus == ""
+        if "scsi" in self._desired_connection_buses:
+            self._desired_connection_buses.remove("scsi")
+            self._desired_connection_buses.add("")
         # Map firewire to 'ieee1934', it's great when upstream decides to
         # rename something for no real reason.
         if "firewire" in self._desired_connection_buses:
