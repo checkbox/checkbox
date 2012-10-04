@@ -142,7 +142,7 @@ checkbox (0.14.6) quantal; urgency=low
   * jobs/usb.txt.in - Fix dependencies of USB tests so that things work properly if
     the usb/storage-automated test fails (LP: #987876)
   * Remove networking/bandwidth job since it is not useful (LP: #1009658)
-  * jobs/suspend.txt.in - pipe output of bluetooth_obex jobs through ansi_parser
+  * [FEATURE] jobs/suspend.txt.in - pipe output of bluetooth_obex jobs through ansi_parser
     to avoid invalid characters ending up in the submission.xml (LP: #1060332)
 
   [Sylvain Pineau]
