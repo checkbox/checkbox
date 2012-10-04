@@ -436,10 +436,14 @@ class UDisks2StorageDeviceListener:
         * UDisks2.Filesystem
             (because we want to ensure that a filesystem gets mounted)
             - having MountPoints != []
+            - as a special exception this rule is REMOVED from eSATA and SATA
+              devices as they are not automatically mounted anymore.
 
     This object must be traceable to an UDisks.Drive object:
         (because we need the medium to be inserted somewhere)
             - having ConnectionBus in (desired_connection_buses)
+            - as a special exception this rule is weakened for eSATA because
+              for such devices the ConnectionBus property is empty.
     """
 
     # Name of the DBus interface exposed UDisks2 for various drives
@@ -451,21 +455,30 @@ class UDisks2StorageDeviceListener:
     def __init__(self, system_bus, loop, action, devices, minimum_speed,
                  memorycard):
         # TODO: Document arguments
-        # We'll use the UDisks2 "ConnectionBus" property on the "Drive"
-        # interface to do primary filtering. According to the documentation it
-        # may have the following values: usb, sdio, ieee1394. The 'devices'
-        # argument uses somewhat different strings. In particular we need to
-        # map 'ieee1394' to 'firewire'
-        #
-        # See: http://udisks.freedesktop.org/docs/latest/gdbus-org.freedesktop.
-        # UDisks2.Drive.html#gdbus-property-org-freedesktop-UDisks2-Drive.
-        # ConnectionBus (note URL split into multiple lines)
-        # TODO: Report old unsupported possibilities that are still offered by
-        # the command-line interface. We also need samples to understand how
-        # UDisks2 behaves in practice on various devices.
-        self._desired_connection_buses = [
-            device if device != 'firewire' else 'ieee1394'
-            for device in devices]
+        # Compute the allowed UDisks2.Drive.ConnectionBus value based on the
+        # legacy arguments passed from the command line.  According to the
+        # UDissk2 documentation it may have the following values: usb, sdio,
+        # ieee1394.
+        # The 'devices' argument uses somewhat different strings.  So we need
+        # to adapt them to match the implementation.
+        self._desired_connection_buses = set(devices)
+        # Map unsupported ata_seriale_esata to empty value. eSATA detection is
+        # gone from UDisks2 and all SATA and eSATA drives simply don't have any
+        # value there.
+        if "ata_serial_esata" in self._desired_connection_buses:
+            self._desired_connection_buses.remove("ata_serial_esata")
+            self._desired_connection_buses.add("")
+        # Map unsupported scsi value to the empty value. In the UDisks1
+        # implementation they were only present in one media card reader.
+        # Now the same machine reports ConnectionBus == ""
+        if "scsi" in self._desired_connection_buses:
+            self._desired_connection_buses.remove("scsi")
+            self._desired_connection_buses.add("")
+        # Map firewire to 'ieee1934', it's great when upstream decides to
+        # rename something for no real reason.
+        if "firewire" in self._desired_connection_buses:
+            self._desired_connection_buses.remove("firewire")
+            self._desired_connection_buses.add("ieee1934")
         # Check if we are explicitly looking for memory cards
         self._desired_memory_card = memorycard
         # Store the desired "delta" direction depending on
@@ -581,6 +594,12 @@ class UDisks2StorageDeviceListener:
             if object_path in self._ignored_objects:
                 continue
             needs = set(('block-fs', 'partition', 'non-empty', 'mounted'))
+            # As a special exception when the ConnectionBus is allowed to be
+            # empty, as is the case with eSATA devices, do not require the
+            # filesystem to be mounted as gvfs may choose not to mount it
+            # automatically.
+            if "" in self._desired_connection_buses:
+                needs.remove('mounted')
             found = set()
             drive_object_path = None
             object_block_device = None
@@ -596,7 +615,7 @@ class UDisks2StorageDeviceListener:
                     and record.value.prop_value == "filesystem"):
                     found.add('block-fs')
                 # Memorize the block device path
-                if (record.value.iface_name ==
+                elif (record.value.iface_name ==
                     "org.freedesktop.UDisks2.Block"
                     and record.value.delta_type == DELTA_TYPE_PROP
                     and record.value.prop_name == "PreferredDevice"):
