@@ -3,4 +3,5 @@
 # allows a merge request to land into trunk
 set -x -e
 ./test
-./lint
+# ZK: disabled as bzr crashes when invoked from tarmac
+# ./lint
