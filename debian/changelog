@@ -35,6 +35,8 @@ checkbox (0.14.6) quantal; urgency=low
   * [FEATURE] jobs/bluetooth.txt.in: removed the bluetooth/keyboard job
     and modified bluetooth/mouse to be bluetooth/HID and allow the tester
     to choose a device to use. (LP: #1053010)
+  * jobs/piglit.txt.in: fixed the texturing job that was incorrectly using the
+    word texturize, causing the tests to not run (LP: #1060432)
 
   [Jeff Marcom]
   * jobs/optical.txt.in: Changed optical read/write job commands to use
@@ -94,6 +96,10 @@ checkbox (0.14.6) quantal; urgency=low
   * [FEATURE] tools/lint: Added script to consistently check syntax.
   * plugins/apport_prompt.py: Removed apport plugin that caused crashes
     when trying to send bug report (LP #1047857)
+  * jobs/optical.txt.in: Fixed missing category assignment in optical
+    dvd write tests (LP: #1057762)
+  * [FEATURE] jobs/touchpad.txt.in, jobs/touchscreen.txt.in: Added singletouch
+    and multitouch for touchpads and touchscreens.
 
   [Sean Feole]
   * [FEATURE] scripts/battery_test: measures battery capacity before and after
@@ -142,9 +148,11 @@ checkbox (0.14.6) quantal; urgency=low
   * jobs/usb.txt.in - Fix dependencies of USB tests so that things work properly if
     the usb/storage-automated test fails (LP: #987876)
   * Remove networking/bandwidth job since it is not useful (LP: #1009658)
+  * scripts/network_info - add exception handling to file reading so that
+    sensible values are given if the required file cannot be read (LP: #823606)
   * [FEATURE] jobs/suspend.txt.in - pipe output of bluetooth_obex jobs through ansi_parser
     to avoid invalid characters ending up in the submission.xml (LP: #1060332)
-
+ 
   [Sylvain Pineau]
   * jobs/suspend.txt.in: Fixed suspend/suspend_advanced dependencies to avoid
     calling fwts with the live CD (LP: #1045687)
@@ -170,6 +178,13 @@ checkbox (0.14.6) quantal; urgency=low
   * scripts/memorycard_resource, scripts/removable_storage_test,
     scripts/removable_storage_watcher: Fixed the memorycard regexp flags and 
     add the DriveVendor Udisks property to the re.search() string (LP: #1050920)
+  * scripts/display_resource, jobs/resource.txt.in: Added a new display 
+    resource script to properly handle connector names returned by proprietary
+    drivers (LP: #956139 and #992727)
+  * debian/control, jobs/esata.txt.in, jobs/firewire.txt.in, jobs/usb.txt.in,
+    jobs/mediacard.txt.in: Remove udisks package references in all of the jobs
+    that use removable_storage scripts (LP: #1059620)
+  * scripts/graphics_driver: Added NVIDIA driver detection (LP: #1060211)
 
   [Zygmunt Krynicki]
   * Fixed simple duplicate 'the' mistakes (LP: #1040022)
@@ -181,7 +196,7 @@ checkbox (0.14.6) quantal; urgency=low
     the 'device' argument (bus type) and require at least one value
   * [FEATURE] scripts/removable_storage_watcher: add support for debugging
 
- -- Daniel Manrique <roadmr@ubuntu.com>  Thu, 27 Sep 2012 13:02:24 -0400
+ -- Jeff Lane <jeff@ubuntu.com>  Tue, 02 Oct 2012 16:21:12 -0400
 
 checkbox (0.14.5) quantal; urgency=low
 

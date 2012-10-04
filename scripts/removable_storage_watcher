@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
 import argparse
+import collections
+import copy
 import dbus
 import logging
 import sys
@@ -14,6 +16,31 @@ from checkbox.dbus.udisks2 import UDisks2Model, UDisks2Observer
 from checkbox.parsers.udevadm import CARD_READER_RE, GENERIC_RE, FLASH_RE
 
 Properties = namedtuple('Properties', 'file bus speed model vendor media')
+
+# Delta record that encapsulates difference:
+# delta_dir -- directon of the difference, either DELTA_DIR_PLUS or
+#              DELTA_DIR_MINUS
+# value -- the actual value being removed or added, either InterfaceDelta or
+# PropertyDelta instance, see below
+DeltaRecord = collections.namedtuple("DeltaRecord", "delta_dir value")
+
+# Delta value for representing interface changes
+InterfaceDelta = collections.namedtuple(
+    "InterfaceDelta",
+    "delta_type object_path iface_name")
+
+# Delta value for representing property changes
+PropertyDelta = collections.namedtuple(
+    "PropertyDelta",
+    "delta_type object_path iface_name prop_name prop_value")
+
+# Tokens that encode additions and removals
+DELTA_DIR_PLUS = '+'
+DELTA_DIR_MINUS = '-'
+
+# Tokens that encode interface and property deltas
+DELTA_TYPE_IFACE = 'i'
+DELTA_TYPE_PROP = 'p'
 
 
 def is_udisks2_supported(system_bus):
@@ -38,6 +65,47 @@ def is_udisks2_supported(system_bus):
     else:
         logging.debug("Got UDisks2 connection")
         return True
+
+
+def format_bytes(size):
+    """
+    Format size to be easily read by humans
+
+    The result is disk-size compatible (using multiples of 10
+    rather than 2) string like "4.5GB"
+    """
+    for index, prefix in enumerate(" KMGTPEZY", 0):
+        factor = 10 ** (index * 3)
+        if size // factor <= 1000:
+            break
+    return "{}{}B".format(size // factor, prefix.strip())
+
+
+def is_memory_card(vendor, model, udisks2_media):
+    """
+    Check if the device seems to be a memory card
+
+    This is rather fuzzy, sadly udev and udisks2 don't do a very good job and
+    mostly don't specify the "media" property (it has a few useful values, such
+    as flash_cf, flash_ms, flash_sm, flash_sd, flash_sdhc, flash_sdxc and
+    flash_mmc but I have yet to see a device that reports such values)
+    """
+    # Treat any device that match model name to the following regular
+    # expression as a memory card reader.
+    if re.search('SD|MMC|CF|MS|SM|xD|Card', model, re.I):
+        return True
+    # Treat any device that contains the word 'Generic' in the vendor string as
+    # a memory card reader.
+    #
+    # XXX: This seems odd but strangely enough seems to gets the job done. I
+    # guess if I should start filing tons of bugs/patches on udev/udisks2 to
+    # just have a few more rules and make this rule obsolete.
+    if re.match('Generic', vendor, re.I):
+        return True
+    # Treat any udisks2_media that starts with 'flash' as a memory card
+    if udisks2_media is not None and udisks2_media.startswith('flash'):
+        return True
+    return False
 
 
 class UDisks1StorageDeviceListener:
@@ -230,10 +298,147 @@ class UDisks1StorageDeviceListener:
         return existing_devices
 
 
+def udisks2_objects_delta(old, new):
+    """
+    Compute the delta between two snapshots of udisks2 objects
+
+    The objects are encoded as {s:{s:{s:v}}} where the first dictionary maps
+    from DBus object path to a dictionary that maps from interface name to a
+    dictionary that finally maps from property name to property value.
+
+    The result is a generator of DeltaRecord objects that encodes the changes:
+        * the 'delta_dir' is either DELTA_DIR_PLUS or DELTA_DIR_MINUS
+        * the 'value' is a tuple that differs for interfaces and properties.
+          Interfaces use the format (DELTA_TYPE_IFACE, object_path, iface_name)
+          while properties use the format (DELTA_TYPE_PROP, object_path,
+          iface_name, prop_name, prop_value)
+
+    Interfaces are never "changed", they are only added or removed. Properties
+    can be changed and this is encoded as removal followed by an addition where
+    both differ only by the 'delta_dir' and the last element of the 'value'
+    tuple.
+    """
+    # Traverse all objects, old or new
+    all_object_paths = set()
+    all_object_paths |= old.keys()
+    all_object_paths |= new.keys()
+    for object_path in sorted(all_object_paths):
+        old_object = old.get(object_path, {})
+        new_object = new.get(object_path, {})
+        # Traverse all interfaces of each object, old or new
+        all_iface_names = set()
+        all_iface_names |= old_object.keys()
+        all_iface_names |= new_object.keys()
+        for iface_name in sorted(all_iface_names):
+            if iface_name not in old_object and iface_name in new_object:
+                # Report each ADDED interface
+                assert iface_name in new_object
+                delta_value = InterfaceDelta(
+                    DELTA_TYPE_IFACE, object_path, iface_name)
+                yield DeltaRecord(DELTA_DIR_PLUS, delta_value)
+                # Report all properties ADDED on that interface
+                for prop_name, prop_value in new_object[iface_name].items():
+                    delta_value = PropertyDelta(DELTA_TYPE_PROP, object_path,
+                                                iface_name, prop_name,
+                                                prop_value)
+                    yield DeltaRecord(DELTA_DIR_PLUS, delta_value)
+            elif iface_name not in new_object and iface_name in old_object:
+                # Report each REMOVED interface
+                assert iface_name in old_object
+                delta_value = InterfaceDelta(
+                    DELTA_TYPE_IFACE, object_path, iface_name)
+                yield DeltaRecord(DELTA_DIR_MINUS, delta_value)
+                # Report all properties REMOVED on that interface
+                for prop_name, prop_value in old_object[iface_name].items():
+                    delta_value = PropertyDelta(DELTA_TYPE_PROP, object_path,
+                                                iface_name, prop_name,
+                                                prop_value)
+                    yield DeltaRecord(DELTA_DIR_MINUS, delta_value)
+            else:
+                # Analyze properties of each interface that existed both in old
+                # and new object trees.
+                assert iface_name in new_object
+                assert iface_name in old_object
+                old_props = old_object[iface_name]
+                new_props = new_object[iface_name]
+                all_prop_names = set()
+                all_prop_names |= old_props.keys()
+                all_prop_names |= new_props.keys()
+                # Traverse all properties, old or new
+                for prop_name in sorted(all_prop_names):
+                    if prop_name not in old_props and prop_name in new_props:
+                        # Report each ADDED property
+                        delta_value = PropertyDelta(
+                            DELTA_TYPE_PROP, object_path, iface_name,
+                            prop_name, new_props[prop_name])
+                        yield DeltaRecord(DELTA_DIR_PLUS, delta_value)
+                    elif prop_name not in new_props and prop_name in old_props:
+                        # Report each REMOVED property
+                        delta_value = PropertyDelta(
+                            DELTA_TYPE_PROP, object_path, iface_name,
+                            prop_name, old_props[prop_name])
+                        yield DeltaRecord(DELTA_DIR_MINUS, delta_value)
+                    else:
+                        old_value = old_props[prop_name]
+                        new_value = new_props[prop_name]
+                        if old_value != new_value:
+                            # Report each changed property
+                            yield DeltaRecord(DELTA_DIR_MINUS, PropertyDelta(
+                                DELTA_TYPE_PROP, object_path, iface_name,
+                                prop_name, old_value))
+                            yield DeltaRecord(DELTA_DIR_PLUS, PropertyDelta(
+                                DELTA_TYPE_PROP, object_path, iface_name,
+                                prop_name, new_value))
+
+
 class UDisks2StorageDeviceListener:
     """
     Implementation of the storage device listener concept for UDisks2 backend.
     Loosely modeled on the UDisks-based implementation above.
+
+    Implementation details
+    ^^^^^^^^^^^^^^^^^^^^^^
+
+    The class, once configured reacts to asynchronous events from the event
+    loop. Those are either DBus signals or GLib timeout.
+
+    The timeout, if reached, terminates the test and fails with an appropriate
+    end-user message. The user is expected to manipulate storage devices while
+    the test is running.
+
+    DBus signals (that correspond to UDisks2 DBus signals) cause callbacks into
+    this code. Each time a signal is reported "delta" is computed and verified
+    to determine if there was a successful match. The delta contains a list or
+    DeltaRecord objects that encode difference (either addition or removal) and
+    the value of the difference (interface name or interface property value).
+    This delta is computed by udisks2_objects_delta(). The delta is then passed
+    to _validate_delta() which has a chance to end the test but also prints
+    diagnostic messages in verbose mode. This is very useful for understanding
+    what the test actually sees occurring.
+
+    Insertion/removal detection strategy
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+    Compared to initial state, the following changes objects need to be
+    detected
+
+    * At least one UDisks2 object with the following _all_ interfaces:
+        * UDisks2.Partition
+            (because we want a partitioned device)
+        * UDisks2.Block
+            (because we want that device to have a block device that users can
+            format)
+            - having IdUsage == 'filesystem'
+            (because it should not be a piece of raid or lvm)
+            - having Size > 0
+            (because it should not be and empty removable storage reader)
+        * UDisks2.Filesystem
+            (because we want to ensure that a filesystem gets mounted)
+            - having MountPoints != []
+
+    This object must be traceable to an UDisks.Drive object:
+        (because we need the medium to be inserted somewhere)
+            - having ConnectionBus in (desired_connection_buses)
     """
 
     # Name of the DBus interface exposed UDisks2 for various drives
@@ -245,46 +450,52 @@ class UDisks2StorageDeviceListener:
     def __init__(self, system_bus, loop, action, devices, minimum_speed,
                  memorycard):
         # TODO: Document arguments
-        # Requested action to detect
-        if action not in ("insert", "remove"):
-            raise ValueError("Unsupported action: {}".format(action))
-        self._action = action
         # We'll use the UDisks2 "ConnectionBus" property on the "Drive"
         # interface to do primary filtering. According to the documentation it
         # may have the following values: usb, sdio, ieee1394. The 'devices'
         # argument uses somewhat different strings. In particular we need to
         # map 'ieee1394' to 'firewire'
         #
-        # See: http://goo.gl/jaUAa
-        #
+        # See: http://udisks.freedesktop.org/docs/latest/gdbus-org.freedesktop.
+        # UDisks2.Drive.html#gdbus-property-org-freedesktop-UDisks2-Drive.
+        # ConnectionBus (note URL split into multiple lines)
         # TODO: Report old unsupported possibilities that are still offered by
         # the command-line interface. We also need samples to understand how
         # UDisks2 behaves in practice on various devices.
         self._desired_connection_buses = [
             device if device != 'firewire' else 'ieee1394'
             for device in devices]
+        # Check if we are explicitly looking for memory cards
+        self._desired_memory_card = memorycard
+        # Store the desired "delta" direction depending on
+        # whether we test for insertion or removal
+        if action == "insert":
+            self._desired_delta_dir = DELTA_DIR_PLUS
+        elif action == "remove":
+            self._desired_delta_dir = DELTA_DIR_MINUS
+        else:
+            raise ValueError("Unsupported action: {}".format(action))
         # Store DBus bus object as we need to pass it to UDisks2 observer
         self._bus = system_bus
-        # Store main loop object
+        # Store event loop object
         self._loop = loop
         # Setup UDisks2Observer class to track changes published by UDisks2
         self._udisks2_observer = UDisks2Observer()
-        # Register a callback for either device insertion or removal, depending
-        # on the required test. IMPORTANT: those callbacks will be processed
-        # before the internal callbacks registered by UDisks2Model. This is
-        # essential as it will allow us to react before the model is updated.
-        if self._action == "insert":
-            self._udisks2_observer.on_interfaces_added.connect(
-                self._on_interfaces_added)
-        elif self._action == "remove":
-            self._udisks2_observer.on_interfaces_removed.connect(
-                self._on_interfaces_removed)
+        # Set the initial value of reference_objects.
+        # The actual value is only set once in check()
+        self._reference_objects = None
+        # As above, just initializing in init for sake of consistency
+        self._is_reference = None
         # Setup UDisks2Model to know what the current state is. This is needed
         # when remove events are reported as they don't carry enough state for
         # the program to work correctly. Since UDisks2Model only applies the
         # changes _after_ processing the signals from UDisks2Observer we can
         # reliably check all of the properties of the removed object / device.
         self._udisks2_model = UDisks2Model(self._udisks2_observer)
+        # Whenever anything changes call our local change handler
+        # This handler always computes the full delta (versus the
+        # reference state) and decides if we have a match or not
+        self._udisks2_model.on_change.connect(self._on_change)
         # Assume the test passes, this is changed when timeout expires or when
         # an incorrect device gets inserted.
         self._error = False
@@ -303,6 +514,17 @@ class UDisks2StorageDeviceListener:
         # Connect the observer to the bus. This will start giving us events
         # (actually when the loop starts later below)
         self._udisks2_observer.connect_to_bus(self._bus)
+        # Get the reference snapshot of available devices
+        self._reference_objects = copy.deepcopy(self._current_objects)
+        logging.debug("Reference devices: %r", self._reference_objects)
+        # Mark the current _reference_objects as ... reference, this is sadly
+        # needed by _summarize_changes() as it sees the snapshot _after_ a
+        # change has occurred and cannot determine if the slope of the 'edge'
+        # of the change. It is purely needed for UI in verbose mode
+        self._is_reference = True
+        # A collection of objects that we gladly ignore because we already
+        # reported on them being somehow inappropriate
+        self._ignored_objects = set()
         # Start the loop and wait. The loop will exit either when:
         # 1) A proper device has been detected (either insertion or removal)
         # 2) A timeout (optional) has expired
@@ -317,74 +539,244 @@ class UDisks2StorageDeviceListener:
         Basically it's just here to tell the user the test failed or that the
         user was unable to alter the device during the allowed time.
         """
-        print("You have not inserted / removed any devices in time")
+        print("You have failed to perform the required manipulation in time")
         # Fail the test when the timeout was reached
         self._error = True
         # Stop the loop now
         self._loop.quit()
 
-    def _on_interfaces_added(self, object_path, interfaces_and_properties):
+    def _on_change(self):
         """
-        Internal function called when UDisks2 notices new objects
+        Internal method called by UDisks2Model whenever a change had occurred
         """
-        for interface, properties in interfaces_and_properties.items():
-            # Check all added interfaces, look for the "Drive" interface only
-            if interface != self.UDISKS2_DRIVE_INTERFACE:
-                continue
-            # Stop the test after seeing a "Drive" interface
+        # Compute the changes that had occurred since the reference point
+        delta_records = list(self._get_delta_records())
+        # Display a summary of changes when we are done
+        self._summarize_changes(delta_records)
+        # If the changes are what we wanted stop the loop
+        matching_devices = self._get_matching_devices(delta_records)
+        if matching_devices:
+            print("Expected device manipulation complete: {}".format(
+                ', '.join(matching_devices)))
+            # And call it a day
             self._loop.quit()
-            # Whenever a drive is plugged in but not on the bus that we
-            # expected signal an error and quit looking for more.
-            connection_bus = (
-                properties.get(self.UDISKS2_DRIVE_PROPERTY_CONNECTION_BUS))
-            if connection_bus not in self._desired_connection_buses:
-                self._error = True
-                print("You have inserted a device on bus {!r},"
-                      " expected: {!r}".format(connection_bus,
-                                               self._desired_connection_buses))
-            else:
-                print("Expected device {path} "
-                      "inserted on the {bus} bus".format(
-                          path=object_path, bus=connection_bus))
-            # TODO: check for memory cards precisely
-            # TODO: minimum speed unsupported in UDisks2,
-            # needs separate USB3 checks
 
-    def _on_interfaces_removed(self, object_path, interfaces):
+    def _get_matching_devices(self, delta_records):
         """
-        Internal function called when UDisks2 notices removed objects
+        Internal method called that checks if the delta records match the type
+        of device manipulation we were expecting. Only called from _on_change()
+
+        Returns a set of paths of block devices that matched
         """
-        for interface in interfaces:
-            # Check all added interfaces, look for the "Drive" interface only
-            if interface != self.UDISKS2_DRIVE_INTERFACE:
+        # Results
+        results = set()
+        # Group changes by DBus object path
+        grouped_records = collections.defaultdict(list)
+        for record in delta_records:
+            grouped_records[record.value.object_path].append(record)
+        # Look for objects that are, at the same time, a Filesystem and Block
+        # device
+        for object_path, records_for_object in grouped_records.items():
+            if object_path in self._ignored_objects:
                 continue
-            # Stop the test after seeing a "Drive" interface
-            self._loop.quit()
-            # Whenever a drive is removed but not on the bus that we
-            # expected signal an error and quit looking for more.
+            needs = set(('block-fs', 'partition', 'non-empty', 'mounted'))
+            found = set()
+            drive_object_path = None
+            object_block_device = None
+            for record in records_for_object:
+                # Skip changes opposite to the ones we need
+                if record.delta_dir != self._desired_delta_dir:
+                    continue
+                # Detect block devices designated for filesystems
+                if (record.value.iface_name ==
+                    "org.freedesktop.UDisks2.Block"
+                    and record.value.delta_type == DELTA_TYPE_PROP
+                    and record.value.prop_name == "IdUsage"
+                    and record.value.prop_value == "filesystem"):
+                    found.add('block-fs')
+                # Memorize the block device path
+                if (record.value.iface_name ==
+                    "org.freedesktop.UDisks2.Block"
+                    and record.value.delta_type == DELTA_TYPE_PROP
+                    and record.value.prop_name == "PreferredDevice"):
+                    object_block_device = record.value.prop_value
+                # Ensure the device is a partition
+                elif (record.value.iface_name ==
+                      "org.freedesktop.UDisks2.Partition"
+                      and record.value.delta_type == DELTA_TYPE_IFACE):
+                    found.add('partition')
+                # Ensure the device is not empty
+                elif (record.value.iface_name ==
+                      "org.freedesktop.UDisks2.Block"
+                      and record.value.delta_type == DELTA_TYPE_PROP
+                      and record.value.prop_name == "Size"
+                      and record.value.prop_value > 0):
+                    found.add('non-empty')
+                # Ensure the filesystem is mounted
+                elif (record.value.iface_name ==
+                      "org.freedesktop.UDisks2.Filesystem"
+                      and record.value.delta_type == DELTA_TYPE_PROP
+                      and record.value.prop_name == "MountPoints"
+                      and record.value.prop_value != []):
+                    found.add('mounted')
+                # Finally memorize the drive the block device belongs to
+                elif (record.value.iface_name ==
+                      "org.freedesktop.UDisks2.Block"
+                      and record.value.delta_type == DELTA_TYPE_PROP
+                      and record.value.prop_name == "Drive"):
+                    drive_object_path = record.value.prop_value
+            logging.debug("Finished analyzing %s, found: %s,"
+                          " drive_object_path: %s", object_path, found,
+                          drive_object_path)
+            if needs != found or drive_object_path is None:
+                continue
+            # We've found our candidate, let's look at the drive it belongs
+            # to. We need to do this as some properties are associated with
+            # the drive, not the filesystem/block device and the drive may
+            # not have been inserted at all.
             try:
-                interfaces_and_properties = (
-                    self._udisks2_model.managed_objects[object_path])
-                properties = (
-                    interfaces_and_properties[self.UDISKS2_DRIVE_INTERFACE])
-                connection_bus = (
-                    properties[self.UDISKS2_DRIVE_PROPERTY_CONNECTION_BUS])
+                drive_object = self._current_objects[drive_object_path]
+            except KeyError:
+                # The drive may be removed along with the device, let's check
+                # if we originally saw it
+                try:
+                    drive_object = self._reference_objects[drive_object_path]
+                except KeyError:
+                    logging.error(
+                        "A block device belongs to a drive we could not find")
+                    logging.error("missing drive: %r", drive_object_path)
+                    continue
+            try:
+                drive_props = drive_object["org.freedesktop.UDisks2.Drive"]
             except KeyError:
                 logging.error(
-                    "Unable to locate connection bus used by %r", object_path)
+                    "A block device belongs to an object that is not a Drive")
+                logging.error("strange object: %r", drive_object_path)
                 continue
+            # Ensure the drive is on the appropriate bus
+            connection_bus = drive_props["ConnectionBus"]
             if connection_bus not in self._desired_connection_buses:
-                self._error = True
-                print("You have removed a device on bus {!r},"
-                      " expected: {!r}".format(connection_bus,
-                                               self._desired_connection_buses))
-            else:
-                print("Expected device {path} "
-                      "removed from the {bus} bus".format(
-                          path=object_path, bus=connection_bus))
-            # TODO: check for memory cards precisely
-            # TODO: minimum speed unsupported in UDisks2,
-            # needs separate USB3 checks
+                logging.warning("The object %r belongs to drive %r that"
+                                " is attached to the bus %r but but we are"
+                                " looking for one of %r so it cannot match",
+                                object_block_device, drive_object_path,
+                                connection_bus,
+                                ", ".join(self._desired_connection_buses))
+                # Ignore this object so that we don't spam the user twice
+                self._ignored_objects.add(object_path)
+                continue
+            # Ensure it is a media card reader if this was explicitly requested
+            drive_is_reader = is_memory_card(
+                drive_props['Vendor'], drive_props['Model'],
+                drive_props['Media'])
+            if self._desired_memory_card and not drive_is_reader:
+                logging.warning(
+                    "The object %s belongs to drive %s that does not seem to"
+                    " be a media reader", object_block_device,
+                    drive_object_path)
+                # Ignore this object so that we don't spam the user twice
+                self._ignored_objects.add(object_path)
+                continue
+            # TODO: Add support for detecting USB3
+            # Yay, success
+            results.add(object_block_device)
+        return results
+
+    @property
+    def _current_objects(self):
+        return self._udisks2_model.managed_objects
+
+    def _get_delta_records(self):
+        """
+        Internal method used to compute the delta between reference devices and
+        current devices. The result is a generator of DeltaRecord objects.
+        """
+        assert self._reference_objects is not None, "Only usable after check()"
+        old = self._reference_objects
+        new = self._current_objects
+        return udisks2_objects_delta(old, new)
+
+    def _summarize_changes(self, delta_records):
+        """
+        Internal method used to summarize changes (compared to reference state)
+        called whenever _on_change() gets called. Only visible in verbose mode
+        """
+        # Filter out anything but interface changes
+        flat_records = [record
+                        for record in delta_records
+                        if record.value.delta_type == DELTA_TYPE_IFACE]
+        # Group changes by DBus object path
+        grouped_records = collections.defaultdict(list)
+        for record in flat_records:
+            grouped_records[record.value.object_path].append(record)
+        # Bail out quickly when nothing got changed
+        if not flat_records:
+            if not self._is_reference:
+                logging.info("You have returned to the reference state")
+                self._is_reference = True
+            return
+        else:
+            self._is_reference = False
+        # Iterate over grouped delta records for all objects
+        logging.info("Compared to the reference state you have:")
+        for object_path in sorted(grouped_records.keys()):
+            records_for_object = sorted(
+                grouped_records[object_path],
+                key=lambda record: record.value.iface_name)
+            # Skip any job objects as they just add noise
+            if any((record.value.iface_name == "org.freedesktop.UDisks2.Job"
+                    for record in records_for_object)):
+                continue
+            logging.info("For object %s", object_path)
+            for record in records_for_object:
+                # Ignore property changes for now
+                if record.value.delta_type != DELTA_TYPE_IFACE:
+                    continue
+                # Get the name of the interface that was affected
+                iface_name = record.value.iface_name
+                # Get the properties for that interface (for removals get the
+                # reference values, for additions get the current values)
+                if record.delta_dir == DELTA_DIR_PLUS:
+                    props = self._current_objects[object_path][iface_name]
+                    action = "inserted"
+                else:
+                    props = self._reference_objects[object_path][iface_name]
+                    action = "removed"
+                # Display some human-readable information associated with each
+                # interface change
+                if iface_name == "org.freedesktop.UDisks2.Drive":
+                    logging.info("\t * %s a drive", action)
+                    logging.info("\t   vendor and name: %r %r",
+                                 props['Vendor'], props['Model'])
+                    logging.info("\t   bus: %s", props['ConnectionBus'])
+                    logging.info("\t   size: %s", format_bytes(props['Size']))
+                    logging.info("\t   is media card: %s", is_memory_card(
+                        props['Vendor'], props['Model'], props['Media']))
+                    logging.info("\t   current media: %s",
+                                 props['Media'] or "???" if
+                                 props['MediaAvailable'] else "N/A")
+                elif iface_name == "org.freedesktop.UDisks2.Block":
+                    logging.info("\t * %s block device", action)
+                    logging.info("\t   from drive: %s", props['Drive'])
+                    logging.info("\t   having device: %s", props['Device'])
+                    logging.info("\t   having usage, type and version:"
+                                 " %s %s %s", props['IdUsage'],
+                                 props['IdType'], props['IdVersion'])
+                    logging.info("\t   having label: %s", props['IdLabel'])
+                elif iface_name == "org.freedesktop.UDisks2.PartitionTable":
+                    logging.info("\t * %s partition table", action)
+                    logging.info("\t   having type: %r", props['Type'])
+                elif iface_name == "org.freedesktop.UDisks2.Partition":
+                    logging.info("\t * %s partition", action)
+                    logging.info("\t   from partition table: %s",
+                                 props['Table'])
+                    logging.info("\t   having size: %s",
+                                 format_bytes(props['Size']))
+                    logging.info("\t   having name: %r", props['Name'])
+                elif iface_name == "org.freedesktop.UDisks2.Filesystem":
+                    logging.info("\t * %s file system", action)
+                    logging.info("\t   having mount points: %r",
+                                 props['MountPoints'])
 
 
 def main():
@@ -403,18 +795,20 @@ def main():
                       "(in bits/s)")
     parser.add_argument('--minimum_speed', '-m', help=min_speed_help,
                         type=int, default=0)
-    parser.add_argument('--debug', default=False, action="store_true",
-                        help="Enable debugging")
+    parser.add_argument('--verbose', action='store_const', const=logging.INFO,
+                        dest='logging_level', help="Enable verbose output")
+    parser.add_argument('--debug', action='store_const', const=logging.DEBUG,
+                        dest='logging_level', help="Enable debugging")
+    parser.set_defaults(logging_level=logging.WARNING)
     args = parser.parse_args()
 
-    # Enable debugging if requested
+    # Configure logging as requested
     # XXX: This may be incorrect as logging.basicConfig() fails after any other
     # call to logging.log(). The proper solution is to setup a verbose logging
     # configuration and I didn't want to do it now.
-    if args.debug:
-        logging.basicConfig(
-            level=logging.DEBUG,
-            format='[%(asctime)s] %(levelname)s:%(name)s:%(message)s')
+    logging.basicConfig(
+        level=args.logging_level,
+        format='[%(asctime)s] %(levelname)s:%(name)s:%(message)s')
 
     # Connect to the system bus, we also get the event
     # loop as we need it to start listening for signals.
@@ -437,7 +831,10 @@ def main():
             args.action, args.device, args.minimum_speed, args.memorycard)
     # Run the actual listener and wait till it either times out of discovers
     # the appropriate media changes
-    return listener.check(args.timeout)
+    try:
+        return listener.check(args.timeout)
+    except KeyboardInterrupt:
+        return 1
 
 if __name__ == "__main__":
     sys.exit(main())

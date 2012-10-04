@@ -8,13 +8,13 @@ _description:
  Runs the piglit test suite fbo test
 
 plugin: shell
-name: piglit/texturizing_tests
+name: piglit/texturing_tests
 requires:
  package.name == 'piglit'
 command: 
- piglit-run.py -t texturize /usr/share/piglit/tests/all.tests $CHECKBOX_DATA/piglit-results/texturize
+ piglit-run.py -t texturing /usr/share/piglit/tests/all.tests $CHECKBOX_DATA/piglit-results/texturing
 _description:
- Runs the piglit test suite texturizing tests
+ Runs the piglit test suite texturing tests
 
 plugin: shell
 name: piglit/summarize_results

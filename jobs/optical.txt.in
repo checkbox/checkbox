@@ -74,7 +74,7 @@ requires:
  device.category == 'CDROM'
  optical_drive.cd == 'writable'
 command:
- cat <<'EOF' | run_templates -t -s 'udev_resource | filter_templates -w "category"'
+ cat <<'EOF' | run_templates -t -s 'udev_resource | filter_templates -w "category=CDROM"'
  plugin: shell
  name: optical/cdrom-write-automated_`ls /sys$path/block`
  requires: device.path == "$path"
@@ -133,7 +133,7 @@ requires:
  device.category == 'CDROM'
  optical_drive.dvd == 'writable'
 command:
- cat <<'EOF' | run_templates -t -s 'udev_resource | filter_templates -w "category"'
+ cat <<'EOF' | run_templates -t -s 'udev_resource | filter_templates -w "category=CDROM"'
  plugin: shell
  name: optical/dvd-write-automated_`ls /sys$path/block`
  requires: device.path == "$path"

@@ -1,7 +1,5 @@
 plugin: manual
 name: esata/insert
-requires:
- package.name == 'udisks'
 command: removable_storage_watcher insert ata_serial_esata
 _description:
  PURPOSE:
@@ -17,8 +15,6 @@ _description:
 plugin: shell
 name: esata/storage-test
 depends: esata/insert
-requires:
- package.name == 'udisks'
 command: removable_storage_test ata_serial_esata
 _description:
  This is an automated test which performs read/write operations on an attached
@@ -27,8 +23,6 @@ _description:
 plugin: manual
 name: esata/remove
 depends: esata/storage-test
-requires:
- package.name == 'udisks'
 command: removable_storage_watcher remove ata_serial_esata
 _description:
  PURPOSE:
