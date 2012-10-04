@@ -451,21 +451,18 @@ class UDisks2StorageDeviceListener:
     def __init__(self, system_bus, loop, action, devices, minimum_speed,
                  memorycard):
         # TODO: Document arguments
-        # We'll use the UDisks2 "ConnectionBus" property on the "Drive"
-        # interface to do primary filtering. According to the documentation it
-        # may have the following values: usb, sdio, ieee1394. The 'devices'
-        # argument uses somewhat different strings. In particular we need to
-        # map 'ieee1394' to 'firewire'
-        #
-        # See: http://udisks.freedesktop.org/docs/latest/gdbus-org.freedesktop.
-        # UDisks2.Drive.html#gdbus-property-org-freedesktop-UDisks2-Drive.
-        # ConnectionBus (note URL split into multiple lines)
-        # TODO: Report old unsupported possibilities that are still offered by
-        # the command-line interface. We also need samples to understand how
-        # UDisks2 behaves in practice on various devices.
-        self._desired_connection_buses = [
-            device if device != 'firewire' else 'ieee1394'
-            for device in devices]
+        # Compute the allowed UDisks2.Drive.ConnectionBus value based on the
+        # legacy arguments passed from the command line.  According to the
+        # UDissk2 documentation it may have the following values: usb, sdio,
+        # ieee1394.
+        # The 'devices' argument uses somewhat different strings.  So we need
+        # to adapt them to match the implementation.
+        self._desired_connection_buses = set(devices)
+        # Map firewire to 'ieee1934', it's great when upstream decides to
+        # rename something for no real reason.
+        if "firewire" in self._desired_connection_buses:
+            self._desired_connection_buses.remove("firewire")
+            self._desired_connection_buses.add("ieee1934")
         # Check if we are explicitly looking for memory cards
         self._desired_memory_card = memorycard
         # Store the desired "delta" direction depending on
