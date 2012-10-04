@@ -615,7 +615,7 @@ class UDisks2StorageDeviceListener:
                     and record.value.prop_value == "filesystem"):
                     found.add('block-fs')
                 # Memorize the block device path
-                if (record.value.iface_name ==
+                elif (record.value.iface_name ==
                     "org.freedesktop.UDisks2.Block"
                     and record.value.delta_type == DELTA_TYPE_PROP
                     and record.value.prop_name == "PreferredDevice"):
