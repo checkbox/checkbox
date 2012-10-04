@@ -436,10 +436,14 @@ class UDisks2StorageDeviceListener:
         * UDisks2.Filesystem
             (because we want to ensure that a filesystem gets mounted)
             - having MountPoints != []
+            - as a special exception this rule is REMOVED from eSATA and SATA
+              devices as they are not automatically mounted anymore.
 
     This object must be traceable to an UDisks.Drive object:
         (because we need the medium to be inserted somewhere)
             - having ConnectionBus in (desired_connection_buses)
+            - as a special exception this rule is weakened for eSATA because
+              for such devices the ConnectionBus property is empty.
     """
 
     # Name of the DBus interface exposed UDisks2 for various drives
@@ -590,6 +594,12 @@ class UDisks2StorageDeviceListener:
             if object_path in self._ignored_objects:
                 continue
             needs = set(('block-fs', 'partition', 'non-empty', 'mounted'))
+            # As a special exception when the ConnectionBus is allowed to be
+            # empty, as is the case with eSATA devices, do not require the
+            # filesystem to be mounted as gvfs may choose not to mount it
+            # automatically.
+            if "" in self._desired_connection_buses:
+                needs.remove('mounted')
             found = set()
             drive_object_path = None
             object_block_device = None
