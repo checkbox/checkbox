@@ -101,3 +101,28 @@ _description:
      2. If the key works, the test will pass and the window will close.
  VERIFICATION:
      Does the super key work as expected?
+
+plugin: manual
+name: keys/video-out
+requires: dmi.product in ['Notebook','Laptop','Portable']
+_description:
+ PURPOSE:
+     Validate that the External Video hot key is working as expected
+ STEPS:
+     1. Plug in an external monitor
+     2. Press the display hot key to change the monitors configuration
+ VERIFICATION:
+     Check that the video signal can be mirrored, extended, displayed on external or onboard only.
+
+plugin: manual
+name: keys/touchpad
+requires: dmi.product in ['Notebook','Laptop','Portable']
+_description:
+ PURPOSE:
+     Verify touchpad hotkey toggles touchpad functionality on and off
+ STEPS:
+     1. Verify the touchpad is functional
+     2. Tap the touchpad toggle hotkey
+     3. Tap the touchpad toggle hotkey again
+ VERIFICATION:
+     Verify the touchpad has been disabled and re-enabled.
