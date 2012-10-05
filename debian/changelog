@@ -1,6 +1,5 @@
 checkbox (0.14.6) quantal; urgency=low
 
-  [ Daniel Manrique ]
   [Chris Wayne]
   * [FEATURE] scripts/touchpad_scroll_resource, jobs/touchpad.txt.in:
     adding in touchpad scroll detection resource job, and modified jobs
@@ -198,7 +197,6 @@ checkbox (0.14.6) quantal; urgency=low
   * Make scripts/removable_storage_watcher {insert,remove} properly validate
     the 'device' argument (bus type) and require at least one value
   * [FEATURE] scripts/removable_storage_watcher: add support for debugging
-
 
  -- Jeff Lane <jeff@ubuntu.com>  Tue, 02 Oct 2012 16:21:12 -0400
 
