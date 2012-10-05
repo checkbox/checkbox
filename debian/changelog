@@ -150,7 +150,9 @@ checkbox (0.14.6) quantal; urgency=low
   * Remove networking/bandwidth job since it is not useful (LP: #1009658)
   * scripts/network_info - add exception handling to file reading so that
     sensible values are given if the required file cannot be read (LP: #823606)
-
+  * [FEATURE] jobs/suspend.txt.in - pipe output of bluetooth_obex jobs through ansi_parser
+    to avoid invalid characters ending up in the submission.xml (LP: #1060332)
+ 
   [Sylvain Pineau]
   * jobs/suspend.txt.in: Fixed suspend/suspend_advanced dependencies to avoid
     calling fwts with the live CD (LP: #1045687)
