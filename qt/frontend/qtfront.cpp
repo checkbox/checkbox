@@ -245,7 +245,8 @@ void QtFront::startProgressBar(QString text)
     ui->progressLabel->setVisible(true);
     ui->progressLabel->setText(text);
 
-    if (text.contains("Working")) {
+    
+    if (text.contains(checkboxTr("Working", 0))) {
         this->showTestControls(false);
         ui->testTypeLabel->setVisible(false);
         ui->purposeLabel->setVisible(false);
