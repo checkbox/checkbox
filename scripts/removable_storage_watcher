@@ -11,12 +11,14 @@ import sys
 from dbus.exceptions import DBusException
 from gi.repository import GObject
 
-from collections import namedtuple
 from checkbox.dbus import connect_to_system_bus
 from checkbox.dbus.udisks2 import UDisks2Model, UDisks2Observer
 from checkbox.parsers.udevadm import CARD_READER_RE, GENERIC_RE, FLASH_RE
 
-Properties = namedtuple('Properties', 'file bus speed model vendor media')
+# Record representing properties of a UDisks1 Drive object needed by the
+# UDisks1 version of the watcher implementation
+UDisks1DriveProperties = collections.namedtuple(
+    'UDisks1DriveProperties', 'file bus speed model vendor media')
 
 # Delta record that encapsulates difference:
 # delta_dir -- directon of the difference, either DELTA_DIR_PLUS or
@@ -284,13 +286,13 @@ class UDisks1StorageDeviceListener:
                     _parent_media = parent_props.Get(udisks, "DriveMedia")
 
                 if not device_props.Get(udisks, "DeviceIsDrive"):
-                    device = Properties(
-                        str(_device_file),
-                        str(_bus),
-                        int(_speed),
-                        str(_parent_model),
-                        str(_parent_vendor),
-                        str(_parent_media))
+                    device = UDisks1DriveProperties(
+                        file=str(_device_file),
+                        bus=str(_bus),
+                        speed=int(_speed),
+                        model=str(_parent_model),
+                        vendor=str(_parent_vendor),
+                        media=str(_parent_media))
                     existing_devices.append(device)
 
             except dbus.DBusException:
