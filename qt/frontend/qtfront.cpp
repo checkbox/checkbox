@@ -245,6 +245,13 @@ void QtFront::startProgressBar(QString text)
     ui->progressLabel->setVisible(true);
     ui->progressLabel->setText(text);
 
+    if (text.contains("Working")) {
+        this->showTestControls(false);
+        ui->testTypeLabel->setVisible(false);
+        ui->purposeLabel->setVisible(false);
+        ui->stepsFrame->setVisible(false);
+    }
+
 }
 
 void QtFront::stopProgressBar()
@@ -287,11 +294,16 @@ void QtFront::showTest(QString purpose,
     updateTestStatus(STATUS_INPROGRESS);
     ui->radioTestTab->setVisible(true);
     ui->nextPrevButtons->setVisible(true);
+    this->showTestControls(true);
     ui->testTestButton->setEnabled(enableTestButton);
     ui->skipTestRadioButton->setChecked(true);
     ui->commentsTextEdit->setPlainText(comment);
     ui->testsTab->setTabEnabled(ui->testsTab->indexOf(ui->testing), true);
     ui->tabWidget->setCurrentIndex(1);
+
+    ui->testTypeLabel->setVisible(true);
+    ui->purposeLabel->setVisible(true);
+    ui->stepsFrame->setVisible(true);
 
     foreach(QObject *object, ui->stepsFrame->children())
         object->deleteLater();
