@@ -22,6 +22,7 @@ Architecture: any
 Depends: debconf,
          python3-lxml,
          udev,
+         gir1.2-gudev-1.0,
          udisks2 | udisks,
          ${misc:Depends},
          ${python3:Depends},

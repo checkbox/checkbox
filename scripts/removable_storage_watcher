@@ -9,11 +9,13 @@ import re
 import sys
 
 from dbus.exceptions import DBusException
-from gi.repository import GObject
+from gi.repository import GObject, GUdev
 
 from checkbox.dbus import connect_to_system_bus
 from checkbox.dbus.udisks2 import UDisks2Model, UDisks2Observer
+from checkbox.heuristics.udev import is_virtual_device
 from checkbox.parsers.udevadm import CARD_READER_RE, GENERIC_RE, FLASH_RE
+from checkbox.udev import get_interconnect_speed
 
 # Record representing properties of a UDisks1 Drive object needed by the
 # UDisks1 version of the watcher implementation
@@ -456,7 +458,9 @@ class UDisks2StorageDeviceListener:
 
     def __init__(self, system_bus, loop, action, devices, minimum_speed,
                  memorycard):
-        # TODO: Document arguments
+        # Store the desired minimum speed of the device in Mbit/s. The argument
+        # is passed as the number of bits per second so let's fix that.
+        self._desired_minimum_speed = minimum_speed / 10 ** 6
         # Compute the allowed UDisks2.Drive.ConnectionBus value based on the
         # legacy arguments passed from the command line.  According to the
         # UDissk2 documentation it may have the following values: usb, sdio,
@@ -512,6 +516,10 @@ class UDisks2StorageDeviceListener:
         # This handler always computes the full delta (versus the
         # reference state) and decides if we have a match or not
         self._udisks2_model.on_change.connect(self._on_change)
+        # We may need an udev context for checking the speed of USB devices
+        self._udev_client = GUdev.Client()
+        # A snapshot of udev devices, set in check()
+        self._reference_udev_devices = None
         # Assume the test passes, this is changed when timeout expires or when
         # an incorrect device gets inserted.
         self._error = False
@@ -541,6 +549,8 @@ class UDisks2StorageDeviceListener:
         # A collection of objects that we gladly ignore because we already
         # reported on them being somehow inappropriate
         self._ignored_objects = set()
+        # Get the reference snapshot of available udev devices
+        self._reference_udev_devices = self._get_udev_block_devices()
         # Start the loop and wait. The loop will exit either when:
         # 1) A proper device has been detected (either insertion or removal)
         # 2) A timeout (optional) has expired
@@ -590,9 +600,13 @@ class UDisks2StorageDeviceListener:
         grouped_records = collections.defaultdict(list)
         for record in delta_records:
             grouped_records[record.value.object_path].append(record)
-        # Look for objects that are, at the same time, a Filesystem and Block
-        # device
+        # Create another snapshot od udev devices so that we don't do it over
+        # and over in the loop below (besides, if we did that then results
+        # could differ each time).
+        current_udev_devices = self._get_udev_block_devices()
+        # Iterate over all UDisks2 objects and their delta records
         for object_path, records_for_object in grouped_records.items():
+            # Skip objects we already ignored and complained about before
             if object_path in self._ignored_objects:
                 continue
             needs = set(('block-fs', 'partition', 'non-empty', 'mounted'))
@@ -699,7 +713,60 @@ class UDisks2StorageDeviceListener:
                 # Ignore this object so that we don't spam the user twice
                 self._ignored_objects.add(object_path)
                 continue
-            # TODO: Add support for detecting USB3
+            # Ensure the desired minimum speed is enforced
+            if self._desired_minimum_speed:
+                # We need to discover the speed of the UDisks2 object that is
+                # about to be matched. Sadly UDisks2 no longer supports this
+                # property so we need to poke deeper and resort to udev.
+                #
+                # The UDisks2 object that we are interested in implements a
+                # number of interfaces, most notably
+                # org.freedesktop.UDisks2.Block, that has the Device property
+                # holding the unix filesystem path (like /dev/sdb1). We already
+                # hold a reference to that as 'object_block_device'
+                #
+                # We take this as a start and attempt to locate the udev Device
+                # (don't confuse with UDisks2.Device, they are _not_ the same)
+                # that is associated with that path.
+                if self._desired_delta_dir == DELTA_DIR_PLUS:
+                    # If we are looking for additions then look at _current_
+                    # collection of udev devices
+                    udev_devices = current_udev_devices
+                else:
+                    # If we are looking for removals then look at referece
+                    # collection of udev devices
+                    udev_devices = self._reference_udev_devices
+                for udev_device in udev_devices:
+                    if udev_device.get_device_file() == object_block_device:
+                        break
+                else:
+                    logging.error("Unable to map UDisks2 object %s to udev",
+                                  object_block_device)
+                    # Ignore this object so that we don't spam the user twice
+                    self._ignored_objects.add(object_path)
+                    continue
+                interconnect_speed = get_interconnect_speed(udev_device)
+                # Now that we know the speed of the interconnect we can try to
+                # validate it against our desired speed.
+                if interconnect_speed is None:
+                    logging.warning("Unable to determine interconnect speed of"
+                                    " device %s", object_block_device)
+                    # Ignore this object so that we don't spam the user twice
+                    self._ignored_objects.add(object_path)
+                    continue
+                elif interconnect_speed < self._desired_minimum_speed:
+                    logging.warning(
+                        "Device %s is connected via an interconnect that has"
+                        " the speed of %dMbit/s but the required speed was"
+                        " %dMbit/s", object_block_device, interconnect_speed,
+                        self._desired_minimum_speed)
+                    # Ignore this object so that we don't spam the user twice
+                    self._ignored_objects.add(object_path)
+                    continue
+                else:
+                    logging.info("Device %s is connected via an USB"
+                                 " interconnect with the speed of %dMbit/s",
+                                 object_block_device, interconnect_speed)
             # Yay, success
             results.add(object_block_device)
         return results
@@ -707,6 +774,27 @@ class UDisks2StorageDeviceListener:
     @property
     def _current_objects(self):
         return self._udisks2_model.managed_objects
+
+    def _get_udev_block_devices(self):
+        """
+        Internal method used for listing all udev devices.
+
+        Returns a list of GUdev.Device objects representing all block devices
+        in the system. Virtual devices are filtered away.
+        """
+        # setup an enumerator so that we can list devices
+        enumerator = GUdev.Enumerator(client=self._udev_client)
+        # Iterate over block devices only
+        enumerator.add_match_subsystem('block')
+        # Convert the enumerator into a plain list and filter-away all devices
+        # deemed virtual by the heuristic.
+        devices = [
+            device for device in enumerator.execute()
+            if is_virtual_device(device.get_device_file()) == False]
+        # Sort the list, this is not needed but makes various debugging dumps
+        # look better.
+        devices.sort(key=lambda device: device.get_device_file())
+        return devices
 
     def _get_delta_records(self):
         """
