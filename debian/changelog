@@ -41,6 +41,8 @@ checkbox (0.14.6) quantal; urgency=low
   [Jeff Marcom]
   * jobs/optical.txt.in: Changed optical read/write job commands to use
     a more reliable dev path (LP: #990560)
+  * Fixed bug where previous test description and instructions were displayed
+    while an automated test was running (LP: #1012377)
 
   [Daniel Manrique]
   * Bumped to 0.14.6 to keep changelog size sane and fix a small mishap in the
