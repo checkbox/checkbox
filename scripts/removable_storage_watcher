@@ -273,7 +273,9 @@ class UDisks1StorageDeviceListener:
                                            "DriveConnectionInterface")
                 _speed = device_props.Get(udisks,
                                                 "DriveConnectionSpeed")
-                _parent_model = _parent_vendor = ''
+                _parent_model = ''
+                _parent_media = ''
+                _parent_vendor = ''
 
                 if device_props.Get(udisks, "DeviceIsPartition"):
                     parent_obj = self._bus.get_object(
