@@ -524,6 +524,22 @@ class UDisks2StorageDeviceListener:
         # an incorrect device gets inserted.
         self._error = False
 
+    def _dump_reference_udisks_objects(self):
+        logging.debug("Reference UDisks2 objects:")
+        for udisks2_object in self._reference_objects:
+            logging.debug(" - %s", udisks2_object)
+
+    def _dump_reference_udev_devices(self):
+        logging.debug("Reference udev devices:")
+        for udev_device in self._reference_udev_devices:
+            interconnect_speed = get_interconnect_speed(udev_device)
+            if interconnect_speed:
+                logging.debug(" - %s (USB %dMBit/s)",
+                              udev_device.get_device_file(),
+                              interconnect_speed)
+            else:
+                logging.debug(" - %s", udev_device.get_device_file())
+
     def check(self, timeout):
         """
         Run the configured test and return the result
@@ -540,7 +556,7 @@ class UDisks2StorageDeviceListener:
         self._udisks2_observer.connect_to_bus(self._bus)
         # Get the reference snapshot of available devices
         self._reference_objects = copy.deepcopy(self._current_objects)
-        logging.debug("Reference devices: %r", self._reference_objects)
+        self._dump_reference_udisks_objects()
         # Mark the current _reference_objects as ... reference, this is sadly
         # needed by _summarize_changes() as it sees the snapshot _after_ a
         # change has occurred and cannot determine if the slope of the 'edge'
@@ -551,6 +567,7 @@ class UDisks2StorageDeviceListener:
         self._ignored_objects = set()
         # Get the reference snapshot of available udev devices
         self._reference_udev_devices = self._get_udev_block_devices()
+        self._dump_reference_udev_devices()
         # Start the loop and wait. The loop will exit either when:
         # 1) A proper device has been detected (either insertion or removal)
         # 2) A timeout (optional) has expired
