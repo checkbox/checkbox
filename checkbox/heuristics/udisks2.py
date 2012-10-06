@@ -28,7 +28,7 @@ Heuristics for udisks2.
     Bug tracker: http://bugs.freedesktop.org/ (using systemd product)
 """
 
-import re
+from checkbox.parsers.udevadm import CARD_READER_RE, GENERIC_RE
 
 
 def is_memory_card(vendor, model, udisks2_media):
@@ -46,7 +46,7 @@ def is_memory_card(vendor, model, udisks2_media):
     """
     # Treat any device that match model name to the following regular
     # expression as a memory card reader.
-    if re.search('SD|MMC|CF|MS|SM|xD|Card', model, re.I):
+    if CARD_READER_RE.search(model):
         return True
     # Treat any device that contains the word 'Generic' in the vendor string as
     # a memory card reader.
@@ -54,8 +54,9 @@ def is_memory_card(vendor, model, udisks2_media):
     # XXX: This seems odd but strangely enough seems to gets the job done. I
     # guess if I should start filing tons of bugs/patches on udev/udisks2 to
     # just have a few more rules and make this rule obsolete.
-    if re.match('Generic', vendor, re.I):
+    if GENERIC_RE(vendor):
         return True
+    # TODO: use FLASH_RE
     # Treat any udisks2_media that starts with 'flash' as a memory card
     if udisks2_media is not None and udisks2_media.startswith('flash'):
         return True
