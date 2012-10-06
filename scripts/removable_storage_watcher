@@ -782,7 +782,7 @@ class UDisks2StorageDeviceListener:
         # deemed virtual by the heuristic.
         devices = [
             device for device in enumerator.execute()
-            if is_virtual_device(device.get_device_file()) == False]
+            if not is_virtual_device(device.get_device_file())]
         # Sort the list, this is not needed but makes various debugging dumps
         # look better.
         devices.sort(key=lambda device: device.get_device_file())
