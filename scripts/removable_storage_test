@@ -176,7 +176,7 @@ class DiskTest():
         passed_mount = {}
 
         for key in self.rem_disks_nm:
-            file = tempfile.mkdtemp(dir='/tmp')
+            file = tempfile.mkdtemp()
 
             result = False
             try:
