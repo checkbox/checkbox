@@ -82,7 +82,8 @@ def md5_hash_file(path):
 
 class DiskTest():
     ''' Class to contain various methods for testing removable disks '''
-    def __init__(self):
+
+    def __init__(self, device, memorycard):
         self.process = None
         self.cmd = None
         self.timeout = 3
@@ -93,6 +94,9 @@ class DiskTest():
         self.rem_disks_memory_cards_nm = {}
         self.rem_disks_speed = {}
         self.data = ''
+        self.device = device
+        self.memorycard = memorycard
+        self._probe_disks()
 
     def read_file(self, source):
         with open(source, 'rb') as infile:
@@ -122,7 +126,7 @@ class DiskTest():
         except OSError as exc:
             logging.error("Unable to remove tempfile %s: %s", target, exc)
 
-    def get_disk_info(self, args):
+    def _probe_disks(self):
         ''' Probes dbus to find any attached/mounted devices'''
         bus = dbus.SystemBus()
         ud_manager_obj = bus.get_object("org.freedesktop.UDisks",
@@ -134,7 +138,7 @@ class DiskTest():
             udisks = 'org.freedesktop.UDisks.Device'
             if not device_props.Get(udisks, "DeviceIsDrive"):
                 dev_bus = device_props.Get(udisks, "DriveConnectionInterface")
-                if dev_bus in args.device:
+                if dev_bus in self.device:
                     parent_model = parent_vendor = ''
                     if device_props.Get(udisks, "DeviceIsPartition"):
                         parent_obj = bus.get_object(
@@ -145,7 +149,7 @@ class DiskTest():
                         parent_model = parent_props.Get(udisks, "DriveModel")
                         parent_vendor = parent_props.Get(udisks, "DriveVendor")
                         parent_media = parent_props.Get(udisks, "DriveMedia")
-                    if args.memorycard:
+                    if self.memorycard:
                         if (dev_bus != 'sdio'
                             and not FLASH_RE.search(parent_media)
                             and not CARD_READER_RE.search(parent_model)
@@ -268,9 +272,7 @@ def main():
 
     args = parser.parse_args()
 
-    test = DiskTest()
-
-    test.get_disk_info(args)
+    test = DiskTest(args.device, args.memorycard)
 
     errors = 0
     # If we do have removable drives attached and mounted
