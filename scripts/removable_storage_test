@@ -176,17 +176,17 @@ class DiskTest():
         passed_mount = {}
 
         for key in self.rem_disks_nm:
-            file = tempfile.mkdtemp()
+            temp_dir = tempfile.mkdtemp()
 
             result = False
             try:
-                result = self.make_thread(self._mount(key, file))
+                result = self.make_thread(self._mount(key, temp_dir))
             except:
                 pass
 
             # remove those devices fail at mounting
             if result:
-                passed_mount[key] = file
+                passed_mount[key] = temp_dir
             else:
                 logging.error("can't mount %s", key)
 
