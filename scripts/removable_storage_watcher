@@ -7,11 +7,11 @@ import dbus
 import logging
 import sys
 
-from dbus.exceptions import DBusException
 from gi.repository import GObject, GUdev
 
 from checkbox.dbus import connect_to_system_bus
 from checkbox.dbus.udisks2 import UDisks2Model, UDisks2Observer
+from checkbox.dbus.udisks2 import is_udisks2_supported
 from checkbox.heuristics.udev import is_virtual_device
 from checkbox.heuristics.udisks2 import is_memory_card
 from checkbox.parsers.udevadm import CARD_READER_RE, GENERIC_RE, FLASH_RE
@@ -46,30 +46,6 @@ DELTA_DIR_MINUS = '-'
 # Tokens that encode interface and property deltas
 DELTA_TYPE_IFACE = 'i'
 DELTA_TYPE_PROP = 'p'
-
-
-def is_udisks2_supported(system_bus):
-    """
-    Check if udisks2 is available on the system bus.
-
-    ..note::
-        Calling this _may_ trigger activation of the UDisks2 daemon but it
-        should only happen on systems where it is already expected to run all
-        the time.
-    """
-    observer = UDisks2Observer()
-    try:
-        logging.debug("Trying to connect to UDisks2...")
-        observer.connect_to_bus(system_bus)
-    except DBusException as exc:
-        if exc.get_dbus_name() == "org.freedesktop.DBus.Error.ServiceUnknown":
-            logging.debug("No UDisks2 on the system bus")
-            return False
-        else:
-            raise
-    else:
-        logging.debug("Got UDisks2 connection")
-        return True
 
 
 def format_bytes(size):
