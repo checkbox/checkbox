@@ -36,10 +36,35 @@ To work with this model you will likely want to look at:
 import logging
 
 from dbus import Interface, PROPERTIES_IFACE
+from dbus.exceptions import DBusException
 
 from checkbox.dbus import drop_dbus_type
 
-__all__ = ['UDisks2Observer', 'UDisks2Model', 'Signal']
+__all__ = ['UDisks2Observer', 'UDisks2Model', 'Signal', 'is_udisks2_supported']
+
+
+def is_udisks2_supported(system_bus):
+    """
+    Check if udisks2 is available on the system bus.
+
+    ..note::
+        Calling this _may_ trigger activation of the UDisks2 daemon but it
+        should only happen on systems where it is already expected to run all
+        the time.
+    """
+    observer = UDisks2Observer()
+    try:
+        logging.debug("Trying to connect to UDisks2...")
+        observer.connect_to_bus(system_bus)
+    except DBusException as exc:
+        if exc.get_dbus_name() == "org.freedesktop.DBus.Error.ServiceUnknown":
+            logging.debug("No UDisks2 on the system bus")
+            return False
+        else:
+            raise
+    else:
+        logging.debug("Got UDisks2 connection")
+        return True
 
 
 # The well-known name for the ObjectManager interface, sadly it is not a part
