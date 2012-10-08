@@ -187,6 +187,8 @@ checkbox (0.14.6) quantal; urgency=low
     jobs/mediacard.txt.in: Remove udisks package references in all of the jobs
     that use removable_storage scripts (LP: #1059620)
   * scripts/graphics_driver: Added NVIDIA driver detection (LP: #1060211)
+  * [FEATURE] jobs/mediacard.txt.in: Added SDXC, MS, MSP and XD memory card
+    tests.
 
   [Zygmunt Krynicki]
   * Fixed simple duplicate 'the' mistakes (LP: #1040022)
