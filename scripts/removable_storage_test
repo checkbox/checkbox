@@ -9,7 +9,6 @@ import os
 import subprocess
 import sys
 import tempfile
-import threading
 import time
 
 from checkbox.parsers.udevadm import CARD_READER_RE, GENERIC_RE, FLASH_RE
@@ -177,18 +176,10 @@ class DiskTest():
 
         for key in self.rem_disks_nm:
             temp_dir = tempfile.mkdtemp()
-
-            result = False
-            try:
-                result = self.make_thread(self._mount(key, temp_dir))
-            except:
-                pass
-
-            # remove those devices fail at mounting
-            if result:
-                passed_mount[key] = temp_dir
-            else:
+            if self._mount(key, temp_dir) != 0:
                 logging.error("can't mount %s", key)
+            else:
+                passed_mount[key] = temp_dir
 
         if len(self.rem_disks_nm) == len(passed_mount):
             self.rem_disks_nm = passed_mount
@@ -198,35 +189,23 @@ class DiskTest():
             self.rem_disks_nm = passed_mount
             return count
 
-    def _mount(self, dev_file, tmp_dir):
-        cmd = ['/bin/mount', dev_file, tmp_dir]
-        self.process = subprocess.Popen(cmd)
-        self.process.communicate()
+    def _mount(self, dev_file, mount_point):
+        return subprocess.call(['mount', dev_file, mount_point])
 
     def umount(self):
         errors = 0
-
         for disk in self.rem_disks_nm:
-            result = False
             if not self.rem_disks_nm[disk]:
                 continue
-            try:
-                result = self.make_thread(self._umount(disk))
-            except:
+            if self._umount(disk) != 0:
                 errors += 1
-                pass
-
-            if not result:
                 logging.error("can't umount %s on %s",
                               disk, self.rem_disks_nm[disk])
-
         return errors
 
-    def _umount(self, dir):
+    def _umount(self, mount_point):
         # '-l': lazy umount, dealing problem of unable to umount the device.
-        cmd = ['/bin/umount', '-l', dir]
-        self.process = subprocess.Popen(cmd)
-        self.process.communicate()
+        return subprocess.call(['umount', '-l', mount_point])
 
     def clean_tmp_dir(self):
         for disk in self.rem_disks_nm:
@@ -234,22 +213,6 @@ class DiskTest():
                 continue
             if not os.path.ismount(self.rem_disks_nm[disk]):
                 os.rmdir(self.rem_disks_nm[disk])
-
-    def make_thread(self, target):
-        thread = threading.Thread(target=target)
-        thread.start()
-        thread.join(self.timeout)
-
-        if thread.is_alive():
-            self.process.terminate()
-            thread.join()
-
-        result = getattr(self.process, 'returncode', 1)
-
-        if result == 0:
-            return True
-        else:
-            return False
 
 
 def main():
