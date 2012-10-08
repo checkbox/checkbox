@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
 
-import dbus
-import sys
-import random
-import os
-import tempfile
-import hashlib
 import argparse
-import subprocess
-import threading
-import time
 import collections
+import dbus
+import hashlib
+import logging
+import os
+import subprocess
+import sys
+import tempfile
+import time
+
 from checkbox.parsers.udevadm import CARD_READER_RE, GENERIC_RE, FLASH_RE
 
 
@@ -64,91 +64,81 @@ class RandomData():
         return self
 
 
+def md5_hash_file(path):
+    md5 = hashlib.md5()
+    try:
+        with open(path, 'rb') as stream:
+            while True:
+                data = stream.read(8192)
+                if not data:
+                    break
+                md5.update(data)
+    except IOError as exc:
+        logging.error("unable to checksum %s: %s", path, exc)
+        return None
+    else:
+        return md5.hexdigest()
+
+
 class DiskTest():
     ''' Class to contain various methods for testing removable disks '''
-    def __init__(self):
+
+    def __init__(self, device, memorycard):
         self.process = None
         self.cmd = None
         self.timeout = 3
         self.returnCode = None
         self.rem_disks = {}     # mounted before the script running
         self.rem_disks_nm = {}  # not mounted before the script running
+        self.rem_disks_memory_cards = {}
+        self.rem_disks_memory_cards_nm = {}
+        self.rem_disks_speed = {}
         self.data = ''
-
-    def md5_hash_file(self, path):
-        try:
-            fh = open(path, 'rb')
-        except IOError:
-            print("ERROR: unable to open file %s" % path, file=sys.stderr)
-            return 1
-        md5 = hashlib.md5()
-        try:
-            while True:
-                data = fh.read(8192)
-                if not data:
-                    break
-                md5.update(data)
-        finally:
-            fh.close()
-        return md5.hexdigest()
+        self.device = device
+        self.memorycard = memorycard
+        self._probe_disks()
 
     def read_file(self, source):
-        infile = open(source, 'rb')
-        try:
-            self.data = infile.read()
-        except IOError:
-            print("ERROR: Unable to read data from %s" % source,
-                  file=sys.stderr)
-            return False
-        else:
-            infile.close()
-            return True
+        with open(source, 'rb') as infile:
+            try:
+                self.data = infile.read()
+            except IOError as exc:
+                logging.error("Unable to read data from %s: %s", source, exc)
+                return False
+            else:
+                return True
 
     def write_file(self, data, dest):
-        outfile = open(dest, 'wb', 0)
-        try:
-            outfile.write(self.data)
-        except IOError:
-            print("ERROR: Unable to write data to %s" % dest,
-                  file=sys.stderr)
-            return False
-        else:
-            outfile.flush()
-            os.fsync(outfile.fileno())
-            outfile.close()
-            return True
-
-    def compare_hash(self, parent, child):
-        if not parent == child:
-            return False
-        else:
-            return True
+        with open(dest, 'wb', 0) as outfile:
+            try:
+                outfile.write(self.data)
+            except IOError as exc:
+                logging.error("Unable to write data to %s: %s", dest, exc)
+                return False
+            else:
+                outfile.flush()
+                os.fsync(outfile.fileno())
+                return True
 
     def clean_up(self, target):
         try:
             os.unlink(target)
-        except:
-            print("ERROR: Unable to remove tempfile %s" % target,
-                file=sys.stderr)
+        except OSError as exc:
+            logging.error("Unable to remove tempfile %s: %s", target, exc)
 
-    def get_disk_info(self, args):
+    def _probe_disks(self):
         ''' Probes dbus to find any attached/mounted devices'''
         bus = dbus.SystemBus()
         ud_manager_obj = bus.get_object("org.freedesktop.UDisks",
                                         "/org/freedesktop/UDisks")
         ud_manager = dbus.Interface(ud_manager_obj, 'org.freedesktop.UDisks')
-        self.rem_disks = {}
-        self.rem_disks_speed = {}
-        self.rem_disks_nm = {}
-        self.rem_disks_memory_cards = {}
-        self.rem_disks_memory_cards_nm = {}
         for dev in ud_manager.EnumerateDevices():
             device_obj = bus.get_object("org.freedesktop.UDisks", dev)
             device_props = dbus.Interface(device_obj, dbus.PROPERTIES_IFACE)
             udisks = 'org.freedesktop.UDisks.Device'
             if not device_props.Get(udisks, "DeviceIsDrive"):
                 dev_bus = device_props.Get(udisks, "DriveConnectionInterface")
-                if dev_bus in args.device:
+                if dev_bus in self.device:
                     parent_model = parent_vendor = ''
                     if device_props.Get(udisks, "DeviceIsPartition"):
                         parent_obj = bus.get_object(
@@ -159,7 +149,7 @@ class DiskTest():
                         parent_model = parent_props.Get(udisks, "DriveModel")
                         parent_vendor = parent_props.Get(udisks, "DriveVendor")
                         parent_media = parent_props.Get(udisks, "DriveMedia")
-                    if args.memorycard:
+                    if self.memorycard:
                         if (dev_bus != 'sdio'
                             and not FLASH_RE.search(parent_media)
                             and not CARD_READER_RE.search(parent_model)
@@ -186,20 +176,12 @@ class DiskTest():
     def mount(self):
         passed_mount = {}
 
-        for key, dummy in self.rem_disks_nm.items():
-            file = tempfile.mkdtemp(dir='/tmp')
-
-            result = False
-            try:
-                result = self.make_thread(self._mount(key, file))
-            except:
-                pass
-
-            # remove those devices fail at mounting
-            if result:
-                passed_mount[key] = file
+        for key in self.rem_disks_nm:
+            temp_dir = tempfile.mkdtemp()
+            if self._mount(key, temp_dir) != 0:
+                logging.error("can't mount %s", key)
             else:
-                print("ERROR: can't mount %s" % (key), file=sys.stderr)
+                passed_mount[key] = temp_dir
 
         if len(self.rem_disks_nm) == len(passed_mount):
             self.rem_disks_nm = passed_mount
@@ -209,35 +191,23 @@ class DiskTest():
             self.rem_disks_nm = passed_mount
             return count
 
-    def _mount(self, dev_file, tmp_dir):
-        cmd = ['/bin/mount', dev_file, tmp_dir]
-        self.process = subprocess.Popen(cmd)
-        self.process.communicate()
+    def _mount(self, dev_file, mount_point):
+        return subprocess.call(['mount', dev_file, mount_point])
 
     def umount(self):
         errors = 0
-
         for disk in self.rem_disks_nm:
-            result = False
             if not self.rem_disks_nm[disk]:
                 continue
-            try:
-                result = self.make_thread(self._umount(disk))
-            except:
+            if self._umount(disk) != 0:
                 errors += 1
-                pass
-
-            if not result:
-                print("ERROR: can't umount %s on %s"
-                       % (disk, self.rem_disks_nm[disk]), file=sys.stderr)
-
+                logging.error("can't umount %s on %s",
+                              disk, self.rem_disks_nm[disk])
         return errors
 
-    def _umount(self, dir):
+    def _umount(self, mount_point):
         # '-l': lazy umount, dealing problem of unable to umount the device.
-        cmd = ['/bin/umount', '-l', dir]
-        self.process = subprocess.Popen(cmd)
-        self.process.communicate()
+        return subprocess.call(['umount', '-l', mount_point])
 
     def clean_tmp_dir(self):
         for disk in self.rem_disks_nm:
@@ -245,22 +215,6 @@ class DiskTest():
                 continue
             if not os.path.ismount(self.rem_disks_nm[disk]):
                 os.rmdir(self.rem_disks_nm[disk])
-
-    def make_thread(self, target):
-        thread = threading.Thread(target=target)
-        thread.start()
-        thread.join(self.timeout)
-
-        if thread.is_alive():
-            self.process.terminate()
-            thread.join()
-
-        result = getattr(self.process, 'returncode', 1)
-
-        if result == 0:
-            return True
-        else:
-            return False
 
 
 def main():
@@ -318,9 +272,7 @@ def main():
 
     args = parser.parse_args()
 
-    test = DiskTest()
-
-    test.get_disk_info(args)
+    test = DiskTest(args.device, args.memorycard)
 
     errors = 0
     # If we do have removable drives attached and mounted
@@ -337,7 +289,7 @@ def main():
 
                 print("Removable devices currently not mounted:")
                 if len(test.rem_disks_memory_cards_nm) > 0:
-                    for disk, dummy in test.rem_disks_memory_cards_nm.items():
+                    for disk in test.rem_disks_memory_cards_nm:
                         print(disk)
                 else:
                     print("None")
@@ -350,7 +302,7 @@ def main():
 
                 print("Removable devices currently not mounted:")
                 if len(test.rem_disks_nm) > 0:
-                    for disk, dummy in test.rem_disks_nm.items():
+                    for disk in test.rem_disks_nm:
                         print(disk)
                 else:
                     print("None")
@@ -415,11 +367,12 @@ def main():
                         for iteration in range(args.iterations):
                             target_file_list = []
                             write_times = []
-                            for file in range(args.count):
-                                parent_file = test_files[file].tfile.name
-                                parent_hash = test.md5_hash_file(parent_file)
-                                target_filename = test_files[file].name + \
-                                                  '.%s' % iteration
+                            for file_index in range(args.count):
+                                parent_file = test_files[file_index].tfile.name
+                                parent_hash = md5_hash_file(parent_file)
+                                target_filename = (
+                                    test_files[file_index].name +
+                                    '.%s' % iteration)
                                 target_path = mount_point
                                 target_file = os.path.join(target_path,
                                                            target_filename)
@@ -428,20 +381,22 @@ def main():
                                 with ActionTimer() as timer:
                                     if not test.write_file(test.data,
                                                            target_file):
-                                        print("ERROR: Failed to copy %s to %s"
-                                              % (parent_file, target_file),
-                                              file=sys.stderr)
+                                        logging.error(
+                                            "Failed to copy %s to %s",
+                                            parent_file, target_file)
                                         errors += 1
                                         continue
                                 write_times.append(timer.interval)
-                                child_hash = test.md5_hash_file(target_file)
-                                if not test.compare_hash(parent_hash,
-                                                         child_hash):
-                                    print("WARNING: [Iteration %s] Parent and "
-                                          "Child copy hashes mismatch on %s!" %
-                                          (iteration, target_file))
-                                    print("\tParent hash: %s" % parent_hash)
-                                    print("\tChild hash: %s" % child_hash)
+                                child_hash = md5_hash_file(target_file)
+                                if parent_hash != child_hash:
+                                    logging.warning(
+                                        "[Iteration %s] Parent and Child"
+                                        " copy hashes mismatch on %s!",
+                                        iteration, target_file)
+                                    logging.warning(
+                                        "\tParent hash: %s", parent_hash)
+                                    logging.warning(
+                                        "\tChild hash: %s", child_hash)
                                     errors += 1
                             for file in target_file_list:
                                 test.clean_up(file)
@@ -473,12 +428,14 @@ def main():
                         test.clean_tmp_dir()
 
                 if errors > 0:
-                    print("WARNING: Completed %s test iterations, "
-                           "but there were errors" % args.count)
+                    logging.warning(
+                        "Completed %s test iterations, but there were"
+                        " errors", args.count)
                     return 1
                 elif len(disks_eligible) == 0:
-                    print("ERROR: No %s disks with speed higher than %s bits/s"
-                            % (args.device, args.min_speed), file=sys.stderr)
+                    logging.error(
+                        "No %s disks with speed higher than %s bits/s",
+                        args.device, args.min_speed)
                     return 1
 
                 else:
@@ -491,13 +448,12 @@ def main():
                               "pass speed of %s MB/s" % args.pass_speed)
                         return 1
             else:
-                print("ERROR: No device being mounted successfully "
-                      "for testing, aborting", file=sys.stderr)
+                logging.error("No device being mounted successfully "
+                              "for testing, aborting")
                 return 1
 
     else:  # If we don't have removable drives attached and mounted
-        print("ERROR: No removable drives were detected, aborting",
-              file=sys.stderr)
+        logging.error("No removable drives were detected, aborting")
         return 1
 
 if __name__ == '__main__':
