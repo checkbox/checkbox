@@ -95,8 +95,8 @@ class DiskTest():
         with open(source, 'rb') as infile:
             try:
                 self.data = infile.read()
-            except IOError:
-                logging.error("Unable to read data from %s", source)
+            except IOError as exc:
+                logging.error("Unable to read data from %s: %s", source, exc)
                 return False
             else:
                 return True
@@ -105,8 +105,8 @@ class DiskTest():
         with open(dest, 'wb', 0) as outfile:
             try:
                 outfile.write(self.data)
-            except IOError:
-                logging.error("Unable to write data to %s", dest)
+            except IOError as exc:
+                logging.error("Unable to write data to %s: %s", dest, exc)
                 return False
             else:
                 outfile.flush()
@@ -116,8 +116,8 @@ class DiskTest():
     def clean_up(self, target):
         try:
             os.unlink(target)
-        except:
-            logging.error("Unable to remove tempfile %s", target)
+        except OSError as exc:
+            logging.error("Unable to remove tempfile %s: %s", target, exc)
 
     def get_disk_info(self, args):
         ''' Probes dbus to find any attached/mounted devices'''
