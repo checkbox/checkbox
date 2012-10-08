@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
 
-import dbus
-import sys
-import random
-import os
-import tempfile
-import hashlib
 import argparse
+import collections
+import dbus
+import hashlib
+import os
 import subprocess
+import sys
+import tempfile
 import threading
 import time
-import collections
+
 from checkbox.parsers.udevadm import CARD_READER_RE, GENERIC_RE, FLASH_RE
 
 
