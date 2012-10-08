@@ -367,11 +367,12 @@ def main():
                         for iteration in range(args.iterations):
                             target_file_list = []
                             write_times = []
-                            for file in range(args.count):
-                                parent_file = test_files[file].tfile.name
+                            for file_index in range(args.count):
+                                parent_file = test_files[file_index].tfile.name
                                 parent_hash = md5_hash_file(parent_file)
-                                target_filename = test_files[file].name + \
-                                                  '.%s' % iteration
+                                target_filename = (
+                                    test_files[file_index].name +
+                                    '.%s' % iteration)
                                 target_path = mount_point
                                 target_file = os.path.join(target_path,
                                                            target_filename)
