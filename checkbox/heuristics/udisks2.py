@@ -28,7 +28,7 @@ Heuristics for udisks2.
     Bug tracker: http://bugs.freedesktop.org/ (using systemd product)
 """
 
-from checkbox.parsers.udevadm import CARD_READER_RE, GENERIC_RE
+from checkbox.parsers.udevadm import CARD_READER_RE, GENERIC_RE, FLASH_RE
 
 
 def is_memory_card(vendor, model, udisks2_media):
@@ -44,6 +44,9 @@ def is_memory_card(vendor, model, udisks2_media):
     as flash_cf, flash_ms, flash_sm, flash_sd, flash_sdhc, flash_sdxc and
     flash_mmc but I have yet to see a device that reports such values)
     """
+    # Treat any udisks2_media that contains 'flash' as a memory card
+    if udisks2_media is not None and FLASH_RE.search(udisks2_media):
+        return True
     # Treat any device that match model name to the following regular
     # expression as a memory card reader.
     if CARD_READER_RE.search(model):
@@ -55,9 +58,5 @@ def is_memory_card(vendor, model, udisks2_media):
     # guess if I should start filing tons of bugs/patches on udev/udisks2 to
     # just have a few more rules and make this rule obsolete.
     if GENERIC_RE.search(vendor):
-        return True
-    # TODO: use FLASH_RE
-    # Treat any udisks2_media that starts with 'flash' as a memory card
-    if udisks2_media is not None and udisks2_media.startswith('flash'):
         return True
     return False
