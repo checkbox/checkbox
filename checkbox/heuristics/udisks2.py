@@ -54,7 +54,7 @@ def is_memory_card(vendor, model, udisks2_media):
     # XXX: This seems odd but strangely enough seems to gets the job done. I
     # guess if I should start filing tons of bugs/patches on udev/udisks2 to
     # just have a few more rules and make this rule obsolete.
-    if GENERIC_RE(vendor):
+    if GENERIC_RE.search(vendor):
         return True
     # TODO: use FLASH_RE
     # Treat any udisks2_media that starts with 'flash' as a memory card
