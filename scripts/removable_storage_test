@@ -93,7 +93,6 @@ class DiskTest():
         self.rem_disks_nm = {}  # not mounted before the script running
         self.data = ''
 
-
     def read_file(self, source):
         infile = open(source, 'rb')
         try:
@@ -118,12 +117,6 @@ class DiskTest():
             outfile.flush()
             os.fsync(outfile.fileno())
             outfile.close()
-            return True
-
-    def compare_hash(self, parent, child):
-        if not parent == child:
-            return False
-        else:
             return True
 
     def clean_up(self, target):
@@ -437,8 +430,7 @@ def main():
                                         continue
                                 write_times.append(timer.interval)
                                 child_hash = md5_hash_file(target_file)
-                                if not test.compare_hash(parent_hash,
-                                                         child_hash):
+                                if parent_hash != child_hash:
                                     print("WARNING: [Iteration %s] Parent and "
                                           "Child copy hashes mismatch on %s!" %
                                           (iteration, target_file))
