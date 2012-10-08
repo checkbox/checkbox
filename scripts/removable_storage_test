@@ -177,7 +177,7 @@ class DiskTest():
     def mount(self):
         passed_mount = {}
 
-        for key, dummy in self.rem_disks_nm.items():
+        for key in self.rem_disks_nm:
             file = tempfile.mkdtemp(dir='/tmp')
 
             result = False
@@ -328,7 +328,7 @@ def main():
 
                 print("Removable devices currently not mounted:")
                 if len(test.rem_disks_memory_cards_nm) > 0:
-                    for disk, dummy in test.rem_disks_memory_cards_nm.items():
+                    for disk in test.rem_disks_memory_cards_nm:
                         print(disk)
                 else:
                     print("None")
@@ -341,7 +341,7 @@ def main():
 
                 print("Removable devices currently not mounted:")
                 if len(test.rem_disks_nm) > 0:
-                    for disk, dummy in test.rem_disks_nm.items():
+                    for disk in test.rem_disks_nm:
                         print(disk)
                 else:
                     print("None")
