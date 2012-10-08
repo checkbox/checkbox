@@ -89,6 +89,9 @@ class DiskTest():
         self.returnCode = None
         self.rem_disks = {}     # mounted before the script running
         self.rem_disks_nm = {}  # not mounted before the script running
+        self.rem_disks_memory_cards = {}
+        self.rem_disks_memory_cards_nm = {}
+        self.rem_disks_speed = {}
         self.data = ''
 
     def read_file(self, source):
@@ -125,11 +128,6 @@ class DiskTest():
         ud_manager_obj = bus.get_object("org.freedesktop.UDisks",
                                         "/org/freedesktop/UDisks")
         ud_manager = dbus.Interface(ud_manager_obj, 'org.freedesktop.UDisks')
-        self.rem_disks = {}
-        self.rem_disks_speed = {}
-        self.rem_disks_nm = {}
-        self.rem_disks_memory_cards = {}
-        self.rem_disks_memory_cards_nm = {}
         for dev in ud_manager.EnumerateDevices():
             device_obj = bus.get_object("org.freedesktop.UDisks", dev)
             device_props = dbus.Interface(device_obj, dbus.PROPERTIES_IFACE)
