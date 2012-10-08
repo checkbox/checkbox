@@ -66,21 +66,19 @@ class RandomData():
 
 
 def md5_hash_file(path):
-    try:
-        fh = open(path, 'rb')
-    except IOError:
-        logging.error("unable to open file %s", path)
-        return 1
     md5 = hashlib.md5()
     try:
-        while True:
-            data = fh.read(8192)
-            if not data:
-                break
-            md5.update(data)
-    finally:
-        fh.close()
-    return md5.hexdigest()
+        with open(path, 'rb') as stream:
+            while True:
+                data = stream.read(8192)
+                if not data:
+                    break
+                md5.update(data)
+    except IOError as exc:
+        logging.error("unable to checksum %s: %s", path, exc)
+        return None
+    else:
+        return md5.hexdigest()
 
 
 class DiskTest():
