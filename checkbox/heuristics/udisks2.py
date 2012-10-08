@@ -28,7 +28,7 @@ Heuristics for udisks2.
     Bug tracker: http://bugs.freedesktop.org/ (using systemd product)
 """
 
-from checkbox.parsers.udevadm import CARD_READER_RE, GENERIC_RE
+from checkbox.parsers.udevadm import CARD_READER_RE, GENERIC_RE, FLASH_RE
 
 
 def is_memory_card(vendor, model, udisks2_media):
@@ -56,8 +56,7 @@ def is_memory_card(vendor, model, udisks2_media):
     # just have a few more rules and make this rule obsolete.
     if GENERIC_RE.search(vendor):
         return True
-    # TODO: use FLASH_RE
-    # Treat any udisks2_media that starts with 'flash' as a memory card
-    if udisks2_media is not None and udisks2_media.startswith('flash'):
+    # Treat any udisks2_media that contains 'flash' as a memory card
+    if udisks2_media is not None and FLASH_RE.search(udisks2_media):
         return True
     return False
