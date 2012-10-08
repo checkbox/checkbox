@@ -94,30 +94,28 @@ class DiskTest():
         self.data = ''
 
     def read_file(self, source):
-        infile = open(source, 'rb')
-        try:
-            self.data = infile.read()
-        except IOError:
-            print("ERROR: Unable to read data from %s" % source,
-                  file=sys.stderr)
-            return False
-        else:
-            infile.close()
-            return True
+        with open(source, 'rb') as infile:
+            try:
+                self.data = infile.read()
+            except IOError:
+                print("ERROR: Unable to read data from %s" % source,
+                      file=sys.stderr)
+                return False
+            else:
+                return True
 
     def write_file(self, data, dest):
-        outfile = open(dest, 'wb', 0)
-        try:
-            outfile.write(self.data)
-        except IOError:
-            print("ERROR: Unable to write data to %s" % dest,
-                  file=sys.stderr)
-            return False
-        else:
-            outfile.flush()
-            os.fsync(outfile.fileno())
-            outfile.close()
-            return True
+        with open(dest, 'wb', 0) as outfile:
+            try:
+                outfile.write(self.data)
+            except IOError:
+                print("ERROR: Unable to write data to %s" % dest,
+                      file=sys.stderr)
+                return False
+            else:
+                outfile.flush()
+                os.fsync(outfile.fileno())
+                return True
 
     def clean_up(self, target):
         try:
