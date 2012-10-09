@@ -40,7 +40,8 @@ from dbus.exceptions import DBusException
 
 from checkbox.dbus import drop_dbus_type
 
-__all__ = ['UDisks2Observer', 'UDisks2Model', 'Signal', 'is_udisks2_supported']
+__all__ = ['UDisks2Observer', 'UDisks2Model', 'Signal', 'is_udisks2_supported',
+           'lookup_udev_device']
 
 
 def is_udisks2_supported(system_bus):
@@ -81,6 +82,34 @@ def map_udisks1_connection_bus(udisks1_connection_bus):
         'sdio': 'sdio',          # as-is
         'usb': 'usb',            # as-is
     }[udisks1_connection_bus]
+
+
+def lookup_udev_device(udisks2_object, udev_devices):
+    """
+    Find the udev_device that corresponds to the udisks2 object
+
+    Devices are matched by unix filesystem path of the special file (device).
+    The udisks2_object must implement the block device interface (so that the
+    block device path can be determined) or a ValueError is raised.
+
+    The udisks2_object must be the dictionary that maps from interface names to
+    dictionaries of properties. For compatible data see
+    UDisks2Model.managed_objects The udev_devices must be a list of udev
+    device, as returned from GUdev.
+
+    If there is no match, LookupError is raised with the unix block device
+    path.
+    """
+    try:
+        block_props = udisks2_object[UDISKS2_BLOCK_INTERFACE]
+    except KeyError:
+        raise ValueError("udisks2_object must be a block device")
+    else:
+        block_dev = block_props['Device']
+    for udev_device in udev_devices:
+        if udev_device.get_device_file() == block_dev:
+            return udev_device
+    raise LookupError(block_dev)
 
 
 # The well-known name for the ObjectManager interface, sadly it is not a part
