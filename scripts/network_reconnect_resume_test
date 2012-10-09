@@ -20,9 +20,9 @@ def get_time_difference(device):
               " system has been suspended", file=sys.stderr)
         return None
     if device == "wifi":
-        reconnect_times = get_wifi_reconnect_times()
+        reconnect_times = list(get_wifi_reconnect_times())
     elif device == "wired":
-        reconnect_times = get_wired_reconnect_times()
+        reconnect_times = list(get_wired_reconnect_times())
 
     if not reconnect_times:
         print("Error obtaining %s connection time after a S3. Please be sure"
