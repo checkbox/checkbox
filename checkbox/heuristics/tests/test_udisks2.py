@@ -19,10 +19,10 @@
 
 """
 
-checkbox.tests.heuristics
-=========================
+checkbox.heuristics.tests.test_udisks2
+======================================
 
-Unit tests for checkbox.heuristics package
+Unit tests for checkbox.heuristics.udisks2 module
 """
 
 from unittest import TestCase
