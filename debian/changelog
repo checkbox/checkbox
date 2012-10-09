@@ -154,6 +154,8 @@ checkbox (0.14.6) quantal; urgency=low
     sensible values are given if the required file cannot be read (LP: #823606)
   * [FEATURE] jobs/suspend.txt.in - pipe output of bluetooth_obex jobs through ansi_parser
     to avoid invalid characters ending up in the submission.xml (LP: #1060332)
+  * scripts/network_reconnect_resume_test - map reconnect time strings to float
+    that they can be used in calculations later on (LP: #1064385)
  
   [Sylvain Pineau]
   * jobs/suspend.txt.in: Fixed suspend/suspend_advanced dependencies to avoid
