@@ -21,7 +21,7 @@ command:
  cat <<'EOF' | run_templates -s 'udev_resource | filter_templates -w "category=NETWORK" | awk "/path: / { print \$2 }" | xargs -n 1 sh -c "for i in \`ls /sys\$0/net 2>/dev/null\`; do echo \$0 \$i; done"'
  plugin: manual
  name: networking/info_$2
- requires: device.path == "$1" and package.name == 'linux'
+ requires: device.path == "$1"
  command: network_info $2
  _description:
   PURPOSE:
@@ -114,7 +114,6 @@ command:
  plugin: shell
  name: networking/multi_nic_$2
  requires:
-  package.name == 'linux'
   package.name == 'ethtool' and package.name == 'nmap'
   device.path == "$1"
  user: root

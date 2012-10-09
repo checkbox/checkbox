@@ -103,6 +103,7 @@ checkbox (0.14.6) quantal; urgency=low
   * [FEATURE] jobs/touchpad.txt.in, jobs/touchscreen.txt.in: Added singletouch
     and multitouch for touchpads and touchscreens.
   * Cleaning up test modules.
+  * Removed package.name == 'linux' only needed by the apport_prompt plugin.
 
   [Sean Feole]
   * [FEATURE] scripts/battery_test: measures battery capacity before and after
@@ -155,6 +156,8 @@ checkbox (0.14.6) quantal; urgency=low
     sensible values are given if the required file cannot be read (LP: #823606)
   * [FEATURE] jobs/suspend.txt.in - pipe output of bluetooth_obex jobs through ansi_parser
     to avoid invalid characters ending up in the submission.xml (LP: #1060332)
+  * scripts/network_reconnect_resume_test - map reconnect time strings to float
+    that they can be used in calculations later on (LP: #1064385)
  
   [Sylvain Pineau]
   * jobs/suspend.txt.in: Fixed suspend/suspend_advanced dependencies to avoid

@@ -19,15 +19,11 @@ command: audio_settings store --file=$CHECKBOX_DATA/audio_settings_before_suspen
 
 plugin: shell
 name: suspend/cpu_before_suspend
-requires:
- package.name == 'linux'
 _description: Verify that all the CPUs are online before suspending
 command: cpuinfo_resource > $CHECKBOX_DATA/cpuinfo_before_suspend
 
 plugin: shell
 name: suspend/memory_before_suspend
-requires:
- package.name == 'linux'
 _description:
  Dumps memory info to a file for comparison after suspend test has been run
 command: meminfo_resource > $CHECKBOX_DATA/meminfo_before_suspend
@@ -191,24 +187,18 @@ command:
 
 plugin: shell
 name: suspend/cpu_after_suspend
-requires:
- package.name == 'linux'
 depends: suspend/suspend_advanced suspend/cpu_before_suspend
 _description: Verify that all CPUs are online after resuming.
 command: cpuinfo_resource | diff $CHECKBOX_DATA/cpuinfo_before_suspend -
 
 plugin: shell
 name: suspend/cpu_after_suspend_auto
-requires:
- package.name == 'linux'
 depends: suspend/suspend_advanced_auto suspend/cpu_before_suspend
 _description: Verify that all CPUs are online after resuming.
 command: cpuinfo_resource | diff $CHECKBOX_DATA/cpuinfo_before_suspend -
 
 plugin: shell
 name: suspend/memory_after_suspend
-requires:
- package.name == 'linux'
 depends: suspend/suspend_advanced suspend/memory_before_suspend
 _description:
  Verify that all memory is available after resuming from suspend.
@@ -216,8 +206,6 @@ command: meminfo_resource | diff $CHECKBOX_DATA/meminfo_before_suspend -
 
 plugin: shell
 name: suspend/memory_after_suspend_auto
-requires:
- package.name == 'linux'
 depends: suspend/suspend_advanced_auto suspend/memory_before_suspend
 _description:
  Verify that all memory is available after resuming from suspend.
@@ -225,8 +213,6 @@ command: meminfo_resource | diff $CHECKBOX_DATA/meminfo_before_suspend -
 
 plugin: manual
 name: suspend/display_after_suspend
-requires:
- package.name == 'linux'
 depends: suspend/suspend_advanced
 _description:
  PURPOSE:
