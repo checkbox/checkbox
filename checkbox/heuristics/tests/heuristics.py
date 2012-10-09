@@ -19,8 +19,8 @@
 
 """
 
-checkbox.tests.heuristics
-=========================
+checkbox.heuristics.tests.heuristics
+====================================
 
 Unit tests for checkbox.heuristics package
 """
