@@ -11,6 +11,7 @@ import sys
 import tempfile
 import time
 
+from checkbox.dbus import connect_to_system_bus
 from checkbox.parsers.udevadm import CARD_READER_RE, GENERIC_RE, FLASH_RE
 
 
@@ -128,14 +129,14 @@ class DiskTest():
 
         Indirectly sets self.rem_disks{,_nm,_memory_cards,_memory_cards_nm}
         """
-        self._probe_disks_udisks1()
+        bus, loop = connect_to_system_bus()
+        self._probe_disks_udisks1(bus)
 
-    def _probe_disks_udisks1():
+    def _probe_disks_udisks1(self, bus):
         """
         Internal method used to probe / discover available disks using udisks1
-        dbus interface.
+        dbus interface using the provided dbus bus (presumably the system bus)
         """
-        bus = dbus.SystemBus()
         ud_manager_obj = bus.get_object("org.freedesktop.UDisks",
                                         "/org/freedesktop/UDisks")
         ud_manager = dbus.Interface(ud_manager_obj, 'org.freedesktop.UDisks')
