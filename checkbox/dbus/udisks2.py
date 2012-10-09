@@ -71,6 +71,18 @@ def is_udisks2_supported(system_bus):
 # of the python binding along with the rest of well-known names.
 OBJECT_MANAGER_INTERFACE = "org.freedesktop.DBus.ObjectManager"
 
+# The well-known name of the filesystem interface implemented by certain
+# objects exposed by UDisks2
+UDISKS2_FILESYSTEM_INTERFACE = "org.freedesktop.UDisks2.Filesystem"
+
+# The well-known name of the block (device) interface implemented by certain
+# objects exposed by UDisks2
+UDISKS2_BLOCK_INTERFACE = "org.freedesktop.UDisks2.Block"
+
+# The well-known name of the drive interface implemented by certain objects
+# exposed by UDisks2
+UDISKS2_DRIVE_INTERFACE = "org.freedesktop.UDisks2.Drive"
+
 
 class Signal:
     """
