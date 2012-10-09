@@ -84,10 +84,6 @@ class DiskTest():
     ''' Class to contain various methods for testing removable disks '''
 
     def __init__(self, device, memorycard):
-        self.process = None
-        self.cmd = None
-        self.timeout = 3
-        self.returnCode = None
         self.rem_disks = {}     # mounted before the script running
         self.rem_disks_nm = {}  # not mounted before the script running
         self.rem_disks_memory_cards = {}
