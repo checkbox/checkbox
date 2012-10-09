@@ -123,7 +123,18 @@ class DiskTest():
             logging.error("Unable to remove tempfile %s: %s", target, exc)
 
     def _probe_disks(self):
-        ''' Probes dbus to find any attached/mounted devices'''
+        """
+        Internal method used to probe for available disks
+
+        Indirectly sets self.rem_disks{,_nm,_memory_cards,_memory_cards_nm}
+        """
+        self._probe_disks_udisks1()
+
+    def _probe_disks_udisks1():
+        """
+        Internal method used to probe / discover available disks using udisks1
+        dbus interface.
+        """
         bus = dbus.SystemBus()
         ud_manager_obj = bus.get_object("org.freedesktop.UDisks",
                                         "/org/freedesktop/UDisks")
