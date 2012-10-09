@@ -24,6 +24,10 @@ checkbox.udev
 A collection of utility function sfor interacting with GUdev
 """
 
+from gi.repository import GUdev
+
+from checkbox.heuristics.udev import is_virtual_device
+
 
 def get_interconnect_speed(device):
     """
@@ -64,3 +68,26 @@ def get_interconnect_speed(device):
         # TODO: get_parent_with_subsystem('usb', 'usb_device')
         device = device.get_parent()
     return interconnect_speed
+
+
+def get_udev_block_devices(udev_client):
+    """
+    Get a list of all block devices
+
+    Returns a list of GUdev.Device objects representing all block devices in
+    the system. Virtual devices are filtered away using
+    checkbox.heuristics.udev.is_virtual_device.
+    """
+    # setup an enumerator so that we can list devices
+    enumerator = GUdev.Enumerator(client=udev_client)
+    # Iterate over block devices only
+    enumerator.add_match_subsystem('block')
+    # Convert the enumerator into a plain list and filter-away all
+    # devices deemed virtual by the heuristic.
+    devices = [
+        device for device in enumerator.execute()
+        if not is_virtual_device(device.get_device_file())]
+    # Sort the list, this is not needed but makes various debugging dumps
+    # look better.
+    devices.sort(key=lambda device: device.get_device_file())
+    return devices
