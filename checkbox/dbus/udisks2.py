@@ -67,6 +67,22 @@ def is_udisks2_supported(system_bus):
         return True
 
 
+def map_udisks1_connection_bus(udisks1_connection_bus):
+    """
+    Map the value of udisks1 ConnectionBus property to the corresponding values
+    in udisks2. This a lossy function as some values are no longer supported.
+
+    Incorrect values raise LookupError
+    """
+    return {
+        'ata_serial_esata': '',  # gone from udisks2
+        'firewire': 'ieee1934',  # renamed
+        'scsi': '',              # gone from udisks2
+        'sdio': 'sdio',          # as-is
+        'usb': 'usb',            # as-is
+    }[udisks1_connection_bus]
+
+
 # The well-known name for the ObjectManager interface, sadly it is not a part
 # of the python binding along with the rest of well-known names.
 OBJECT_MANAGER_INTERFACE = "org.freedesktop.DBus.ObjectManager"
