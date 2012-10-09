@@ -1,7 +1,6 @@
 plugin: shell
 name: cpu/scaling_test
 requires:
- package.name == 'linux'
  package.name == 'fwts'
 user: root
 environ: CHECKBOX_DATA
@@ -18,14 +17,12 @@ _description:
 
 plugin: shell
 name: cpu/clocktest
-requires: package.name == 'linux'
 command: clocktest
 _description:
  Test for clock jitter.
 
 plugin: shell
 name: cpu/offlining_test
-requires: package.name == 'linux'
 user: root
 command: cpu_offlining
 _description:
@@ -40,7 +37,6 @@ _description:
 
 plugin: shell
 name: cpu/frequency_governors
-requires: package.name == 'linux'
 user: root
 command: nice -n -20 frequency_governors_test --debug
 _description:

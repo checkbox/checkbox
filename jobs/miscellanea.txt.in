@@ -15,7 +15,6 @@ _description:
 plugin: manual
 name: miscellanea/chvt
 requires:
- package.name == 'linux'
  package.name == 'kbd'
 user: root
 command: cycle_vts
@@ -30,7 +29,6 @@ _description:
 plugin: shell
 name: miscellanea/fwts_test
 requires:
-  package.name == 'linux'
   package.name == 'fwts'
 user: root
 _description:

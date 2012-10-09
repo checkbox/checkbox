@@ -102,6 +102,7 @@ checkbox (0.14.6) quantal; urgency=low
     dvd write tests (LP: #1057762)
   * [FEATURE] jobs/touchpad.txt.in, jobs/touchscreen.txt.in: Added singletouch
     and multitouch for touchpads and touchscreens.
+  * Removed package.name == 'linux' only needed by the apport_prompt plugin.
 
   [Sean Feole]
   * [FEATURE] scripts/battery_test: measures battery capacity before and after

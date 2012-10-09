@@ -6,7 +6,7 @@ command:
  cat <<'EOF' | run_templates -t -s 'udev_resource | filter_templates -w "category=DISK"'
  plugin: shell
  name: benchmarks/disk/hdparm-read_`ls /sys$path/block`
- requires: device.path == "$path" and package.name == 'linux'
+ requires: device.path == "$path"
  user: root
  command: hdparm -t /dev/`ls /sys$path/block | sed 's|!|/|'` | sed -e :a -e '$!N;s/\n/ /;ta' | sed 's/.*= *//'
  description: This test runs hdparm timing of device reads as a benchmark for $path
@@ -20,7 +20,7 @@ command:
  cat <<'EOF' | run_templates -t -s 'udev_resource | filter_templates -w "category=DISK"'
  plugin: shell
  name: benchmarks/disk/hdparm-cache-read_`ls /sys$path/block`
- requires: device.path == "$path" and package.name == 'linux'
+ requires: device.path == "$path"
  user: root
  command: hdparm -T /dev/`ls /sys$path/block | sed 's|!|/|'` | sed -e :a -e '$!N;s/\n/ /;ta' | sed 's/.*= *//'
  description: This test runs hdparm timing of cache reads as a benchmark for $path

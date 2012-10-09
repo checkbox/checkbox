@@ -8,7 +8,6 @@ _description:
 
 plugin: shell
 name: memory/check
-requires: package.name == 'linux'
 user: root
 command: memory_test
 _description:

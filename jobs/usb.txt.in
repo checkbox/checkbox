@@ -1,13 +1,11 @@
 plugin: shell
 name: usb/detect
-requires: package.name == 'linux'
 command: lsusb | sed 's/.*\(ID .*\)/\1/' | head -n 4 || echo "No USB devices were detected" >&2
 _description: Detects and shows USB devices attached to this system.
 
 plugin: manual
 name: usb/disk_detect
 depends: usb/detect
-requires: package.name == 'linux'
 command: removable_storage_test -l usb
 _description:
  PURPOSE:
@@ -23,7 +21,6 @@ _description:
 plugin: manual
 name: usb/HID
 depends: usb/detect
-requires: package.name == 'linux'
 command: keyboard_test
 _description:
  PURPOSE:
@@ -38,7 +35,6 @@ _description:
 plugin: manual
 name: usb/insert
 depends: usb/detect
-requires: package.name == 'linux'
 command: removable_storage_watcher insert usb
 _description:
  PURPOSE:
@@ -55,7 +51,6 @@ _description:
 plugin: manual
 name: usb3/insert
 requires:
- package.name == 'linux'
  usb.usb3 == 'supported'
 command: removable_storage_watcher -m 500000000 insert usb
 _description:
@@ -73,7 +68,6 @@ _description:
 plugin: manual
 name: usb/remove
 depends: usb/insert
-requires: package.name == 'linux'
 command: removable_storage_watcher remove usb
 _description:
  PURPOSE:
@@ -90,7 +84,6 @@ plugin: manual
 name: usb3/remove
 depends: usb3/insert
 requires:
- package.name == 'linux'
  usb.usb3 == 'supported'
 command: removable_storage_watcher -m 500000000 remove usb
 _description:
@@ -106,7 +99,6 @@ _description:
 
 plugin: manual
 name: usb/storage-transfer
-requires: package.name == 'linux'
 depends: usb/insert
 command: removable_storage_test usb
 _description:
@@ -123,7 +115,6 @@ _description:
 plugin: manual
 name: usb3/storage-transfer
 requires:
- package.name == 'linux'
  usb.usb3 == 'supported'
 depends: usb3/insert
 command: removable_storage_test -m 500000000 -p 7 usb
@@ -141,7 +132,6 @@ _description:
 plugin: shell
 name: usb/storage-automated
 depends: usb/insert
-requires: package.name == 'linux'
 command: removable_storage_test usb
 _description:
  This test is automated and executes after the usb/insert test is run.
@@ -149,7 +139,6 @@ _description:
 plugin: shell
 name: usb3/storage-automated
 requires:
- package.name == 'linux'
  usb.usb3 == 'supported'
 depends: usb3/insert
 command: removable_storage_test -m 500000000 -p 7 usb
@@ -159,7 +148,6 @@ _description:
 plugin: shell
 name: usb/storage-preinserted
 user: root
-requires: package.name == 'linux'
 command: removable_storage_test -l usb && removable_storage_test usb
 _description:
  This is an automated version of usb/storage-automated and assumes that the
@@ -170,7 +158,6 @@ plugin: shell
 name: usb3/storage-preinserted
 user: root
 requires:
- package.name == 'linux'
  usb.usb3 == 'supported'
 command: removable_storage_test -l usb && removable_storage_test -m 500000000 -p 7 usb
 _description:
@@ -180,7 +167,6 @@ _description:
 
 plugin: manual
 name: usb/panels
-requires: package.name == 'linux'
 _description:
  PURPOSE:
      This test will check your USB connection.
@@ -205,7 +191,6 @@ command:
  requires:
   device.path == "$path"
   block_device.`ls /sys$path/block`_state == 'removable' and block_device.`ls /sys$path/block`_usb3 == 'supported'
-  package.name == 'linux'
  description: USB3 read performance test for $product
  user: root
  command: disk_read_performance_test `ls /sys$path/block | sed 's|!|/|'`
