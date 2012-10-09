@@ -157,6 +157,8 @@ checkbox (0.14.6) quantal; urgency=low
     to avoid invalid characters ending up in the submission.xml (LP: #1060332)
   * scripts/network_reconnect_resume_test - map reconnect time strings to float
     that they can be used in calculations later on (LP: #1064385)
+  * scripts/network_reconnect_resume_test - convert map of reconnect times into
+    a list in order to check if the list is empty (LP: #1064425)
  
   [Sylvain Pineau]
   * jobs/suspend.txt.in: Fixed suspend/suspend_advanced dependencies to avoid
