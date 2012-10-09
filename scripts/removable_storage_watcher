@@ -12,6 +12,7 @@ from gi.repository import GObject, GUdev
 from checkbox.dbus import connect_to_system_bus
 from checkbox.dbus.udisks2 import UDisks2Model, UDisks2Observer
 from checkbox.dbus.udisks2 import is_udisks2_supported
+from checkbox.dbus.udisks2 import lookup_udev_device
 from checkbox.dbus.udisks2 import map_udisks1_connection_bus
 from checkbox.heuristics.udev import is_virtual_device
 from checkbox.heuristics.udisks2 import is_memory_card
@@ -685,10 +686,13 @@ class UDisks2StorageDeviceListener:
                     # If we are looking for removals then look at referece
                     # collection of udev devices
                     udev_devices = self._reference_udev_devices
-                for udev_device in udev_devices:
-                    if udev_device.get_device_file() == object_block_device:
-                        break
-                else:
+                try:
+                    # Try to locate the corresponding udev device among the
+                    # collection we've selected. Use the drive object as the
+                    # key -- this looks for the drive, not partition objects!
+                    udev_device = lookup_udev_device(drive_object,
+                                                     udev_devices)
+                except LookupError:
                     logging.error("Unable to map UDisks2 object %s to udev",
                                   object_block_device)
                     # Ignore this object so that we don't spam the user twice
