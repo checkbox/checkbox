@@ -190,6 +190,8 @@ checkbox (0.14.6) quantal; urgency=low
   * [FEATURE] jobs/mediacard.txt.in: Added SDXC, MS, MSP and XD memory card
     tests.
   * setup.py: Add the missing checkbox.heuristics module (LP: #1064220)
+  * scripts/pts_run: Force pts_run to exit on errors as phoronix-test-suite
+    always exits with success (LP: #1061297)
 
   [Zygmunt Krynicki]
   * Fixed simple duplicate 'the' mistakes (LP: #1040022)
