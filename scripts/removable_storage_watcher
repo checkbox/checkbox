@@ -682,15 +682,17 @@ class UDisks2StorageDeviceListener:
                     # If we are looking for additions then look at _current_
                     # collection of udev devices
                     udev_devices = current_udev_devices
+                    udisks2_object = self._current_objects[object_path]
                 else:
                     # If we are looking for removals then look at referece
                     # collection of udev devices
                     udev_devices = self._reference_udev_devices
+                    udisks2_object = self._reference_objects[object_path]
                 try:
                     # Try to locate the corresponding udev device among the
                     # collection we've selected. Use the drive object as the
                     # key -- this looks for the drive, not partition objects!
-                    udev_device = lookup_udev_device(drive_object,
+                    udev_device = lookup_udev_device(udisks2_object,
                                                      udev_devices)
                 except LookupError:
                     logging.error("Unable to map UDisks2 object %s to udev",
