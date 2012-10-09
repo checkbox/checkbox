@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Exit on errors
-set -e 
+# Exit on any error
+set -o errexit
 
 # Accept Terms & Conditions, disable anonymous reporting
 echo -e "Y\nn\nn" | phoronix-test-suite > /dev/null
@@ -16,4 +16,5 @@ export FORCE_TIMES_TO_RUN=1
 export OVERRIDE_VIDEO_MODES=800x600
 
 output=$(phoronix-test-suite batch-benchmark $@ 2>&1)
+echo $output | grep -q -i 'This test failed to run properly'
 echo $output | sed 's/.*Average: //'
