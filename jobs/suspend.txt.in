@@ -107,7 +107,7 @@ command:
   grep 'Critical failures: NONE' $CHECKBOX_DATA/suspend_single_log
  else
   echo "Calling sleep_test"
-  sleep_test -d
+  sleep_test -d -p
  fi
 _description:
  PURPOSE:
