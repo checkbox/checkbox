@@ -199,6 +199,9 @@ checkbox (0.14.6) quantal; urgency=low
   * scripts/pts_run: Force pts_run to exit on errors as phoronix-test-suite
     always exits with success (LP: #1061297)
   * [FEATURE] jobs/keys.txt.in: Added video-out and touchpad keys tests.
+  * [FEATURE] jobs/keys.txt.in, jobs/led.txt.in, jobs/suspend.txt.in: Provide
+    leds and special keys tests after suspend. Volume and Mute key tests now
+    use the key_test script. Fix steps numbering for led/wireless.
 
   [Zygmunt Krynicki]
   * Fixed simple duplicate 'the' mistakes (LP: #1040022)
