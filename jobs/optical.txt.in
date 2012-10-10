@@ -34,7 +34,7 @@ plugin: local
 name: optical/read-automated
 requires:
  device.category == 'CDROM'
-_description: Automated Optical read test.
+_description: Automated optical read test.
 command:
  cat <<'EOF' | run_templates -t -s 'udev_resource | filter_templates -w "category=CDROM"'
  plugin: shell
@@ -73,7 +73,7 @@ name: optical/cdrom-write-automated
 requires:
  device.category == 'CDROM'
  optical_drive.cd == 'writable'
-_description: Automated Optical write test
+_description: Automated optical write test
 command:
  cat <<'EOF' | run_templates -t -s 'udev_resource | filter_templates -w "category=CDROM"'
  plugin: shell
@@ -133,7 +133,7 @@ name: optical/dvd-write-automated
 requires:
  device.category == 'CDROM'
  optical_drive.dvd == 'writable'
-_description: Automated Optical write test.
+_description: Automated optical write test.
 command:
  cat <<'EOF' | run_templates -t -s 'udev_resource | filter_templates -w "category=CDROM"'
  plugin: shell
