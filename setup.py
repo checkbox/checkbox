@@ -266,8 +266,8 @@ This project provides an extensible interface for system testing.
         "bin/checkbox-qt"],
     packages=[
         "checkbox", "checkbox.contrib", "checkbox.dbus", "checkbox.lib",
-        "checkbox.parsers", "checkbox.reports", "checkbox_cli",
-        "checkbox_gtk", "checkbox_urwid", "checkbox_qt"],
+        "checkbox.parsers", "checkbox.reports", "checkbox.heuristics",
+        "checkbox_cli", "checkbox_gtk", "checkbox_urwid", "checkbox_qt"],
     package_data={
         "": ["cputable"]},
     cmdclass={

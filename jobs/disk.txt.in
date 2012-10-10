@@ -14,7 +14,6 @@ command:
  requires: 
   device.path == "$path"
   block_device.`ls /sys$path/block`_state != 'removable'
-  package.name == 'linux'
  user: root
  command: disk_stats_test `ls /sys$path/block | sed 's|!|/|'`
  description: This test checks disk stats, generates some activity and rechecks stats to verify they've changed. It also verifies that disks appear in the various files they're supposed to.
@@ -24,7 +23,6 @@ plugin: local
 name: disk/smart
 requires:
  package.name == 'smartmontools'
- package.name == 'linux'
  device.category == 'DISK'
 _description: SMART test
 command:
@@ -69,7 +67,6 @@ command:
  requires:
   device.path == "$path"
   block_device.`ls /sys$path/block`_state != 'removable'
-  package.name == 'linux'
  description: Disk performance test for $product
  user: root
  command: disk_read_performance_test `ls /sys$path/block | sed 's|!|/|'`
@@ -88,7 +85,6 @@ command:
  requires:
   device.path == "$path"
   block_device.`ls /sys$path/block`_state != 'removable'
-  package.name == 'linux'
  description: Disk I/O stress test for $product
  command: storage_test `ls /sys$path/block | sed 's|!|/|'`
  EOF

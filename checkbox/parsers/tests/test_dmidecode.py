@@ -21,7 +21,7 @@ from io import StringIO
 from unittest import TestCase
 
 from checkbox.parsers.dmidecode import DmidecodeParser
-from checkbox.parsers.tests.dmi import TestDmiMixin
+from checkbox.parsers.tests.test_dmi import TestDmiMixin
 
 
 FAKE_DMIDECODE = """\

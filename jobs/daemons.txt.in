@@ -56,7 +56,6 @@ plugin: shell
 name: daemons/udevd
 requires:
  package.name == 'udevd'
- package.name == 'linux'
 command: pgrep -f '/sbin/udevd' >/dev/null
 _description: Test if the udevd daemon is running when the package is installed.
 
