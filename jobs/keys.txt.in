@@ -11,28 +11,39 @@ _description:
 
 plugin: manual
 name: keys/volume
+requires:
+ device.category == 'KEYBOARD'
+user: root
+command: key_test -s '0xe02e,0xe0ae:Volume Up' '0xe030,0xe0b0:Volume Down'
 _description:
  PURPOSE:
-     This test will test the volume keys
+     This test will test the volume keys of your keyboard
  STEPS:
-     1. Press the volume buttons on the keyboard
+     1. Click test to open a window on which to test the volume keys.
+     2. If all the keys work, the test will be marked as passed.
+     3. If your computer has no volume keys, Skip this test.
  VERIFICATION:
-     Did the volume change following to your key presses?
+     Do the keys work as expected?
 
 plugin: manual
 name: keys/mute
-requires: dmi.product in ['Notebook','Laptop','Portable']
+requires:
+ device.category == 'KEYBOARD'
+user: root
+command: key_test -s '0xe020,0xe0a0:Mute'
 _description:
  PURPOSE:
-     This test will test the mute key
+     This test will test the mute key of your keyboard
  STEPS:
-     1. Press the mute button on the keyboard
+     1. Click test to open a window on which to test the mute key.
+     2. If the key works, the test will pass and the window will close.
  VERIFICATION:
-     Did the volume mute following your key presses?
+     Does the mute key work as expected?
 
 plugin: manual
 name: keys/sleep
-requires: dmi.product in ['Notebook','Laptop','Portable']
+requires:
+ device.category == 'KEYBOARD'
 depends: suspend/suspend_advanced
 _description:
  PURPOSE:
