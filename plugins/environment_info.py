@@ -21,6 +21,8 @@ import os
 
 from checkbox.plugin import Plugin
 from checkbox.properties import String
+from checkbox.variables import get_variables
+
 
 class EnvironmentInfo(Plugin):
 
@@ -42,18 +44,10 @@ class EnvironmentInfo(Plugin):
         self._manager.reactor.call_on("prompt-begin", self.prompt_begin, 100)
 
     def prompt_begin(self, interface):
-        os.environ['ROUTERS'] = self.routers
+        for key, value in get_variables(self).items():
+            name = key.name.upper()
+            if name not in os.environ:
+                os.environ[name] = value.get()
 
-        os.environ['ROUTER_SSID'] = self.router_ssid
-        os.environ['ROUTER_PSK'] = self.router_psk
-
-        os.environ['WPA_BG_SSID'] = self.wpa_bg_ssid
-        os.environ['WPA_BG_PSK'] = self.wpa_bg_psk
-        os.environ['OPEN_BG_SSID'] = self.open_bg_ssid
-        os.environ['WPA_N_SSID'] = self.wpa_bg_ssid
-        os.environ['WPA_N_PSK'] = self.wpa_bg_psk
-        os.environ['OPEN_N_SSID'] = self.open_n_ssid
-
-        os.environ['BTDEVADDR'] = self.btdevaddr
 
 factory = EnvironmentInfo
