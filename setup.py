@@ -173,11 +173,11 @@ class checkbox_install_data(install_data, object):
             return
 
         # Create etc directory
-        etcdir = convert_path("/etc/checkbox.d")
-        if not posixpath.isabs(etcdir):
-            etcdir = posixpath.join(self.install_dir, etcdir)
-        elif self.root:
-            etcdir = change_root(self.root, etcdir)
+        if self.install_dir == "/usr":
+            basedir = posixpath.sep
+        else:
+            basedir = self.install_dir
+        etcdir = posixpath.join(basedir, "etc", "checkbox.d")
         self.mkpath(etcdir)
 
         # Create configs symbolic link
