@@ -153,3 +153,15 @@ plugin: shell
 name: stress/sdhc
 command: removable_storage_test -s 10240000 -c 100 -i 3 sdio scsi
 _description: Runs a test that transfers 100 10MB files 3 times to a SDHC card.
+
+plugin: manual
+name: stress/wireless_hotkey
+requires: dmi.product in ['Notebook','Laptop','Portable']
+_description:
+ PURPOSE:
+     To make sure that stressing the wifi hotkey does not cause applets to disappear from the panel or the system to lock up
+ STEPS:
+     1. Log in to desktop
+     2. Press wifi hotkey at a rate of 1 press per second and slowly increase the speed of the tap, until you are tapping as fast as possible
+ VERIFICATION:
+     Verify the system is not frozen and the wifi and bluetooth applets are still visible and functional
