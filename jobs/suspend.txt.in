@@ -786,7 +786,7 @@ _description:
      2. If all the keys work, the test will be marked as passed.
      3. If your computer has no volume keys, Skip this test.
  VERIFICATION:
-     Do the keys work as expected after resuming from suspend?
+     Did the volume change following to your key presses?
 
 plugin: manual
 name: suspend/keys_after_suspend/mute
@@ -802,7 +802,7 @@ _description:
      1. Click test to open a window on which to test the mute key.
      2. If the key works, the test will pass and the window will close.
  VERIFICATION:
-     Does the mute key work as expected after resuming from suspend?
+     Did the volume mute following your key presses?
 
 plugin: manual
 name: suspend/keys_after_suspend/sleep
