@@ -12,7 +12,6 @@ from distutils.util import change_root, convert_path
 from distutils.ccompiler import new_compiler
 from distutils.command.build import build
 from distutils.command.clean import clean
-from distutils.command.install import install
 from distutils.command.install_data import install_data
 from distutils.command.install_scripts import install_scripts
 try:
@@ -141,19 +140,6 @@ class checkbox_clean(clean, object):
                     raise
 
 
-# Hack to workaround unsupported option in Python << 2.5
-class checkbox_install(install, object):
-
-    user_options = install.user_options + [
-        ('install-layout=', None,
-         "installation layout to choose (known values: deb)")]
-
-    def initialize_options(self):
-        super(checkbox_install, self).initialize_options()
-
-        self.install_layout = None
-
-
 class checkbox_install_data(install_data, object):
 
     def finalize_options(self):
@@ -275,7 +261,6 @@ This project provides an extensible interface for system testing.
         "build_i18n": build_i18n,
         "build_icons": checkbox_build_icons,
         "clean": checkbox_clean,
-        "install": checkbox_install,
         "install_data": checkbox_install_data,
         "install_scripts": checkbox_install_scripts}
 )
