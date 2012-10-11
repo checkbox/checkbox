@@ -4,6 +4,7 @@ import os
 import re
 import errno
 import posixpath
+import subprocess
 from glob import glob
 
 from distutils.core import setup
@@ -107,6 +108,11 @@ class checkbox_build(build_extra, object):
 
     def run(self):
         super(checkbox_build, self).run()
+
+        errno = subprocess.call(
+            "(cd qt/frontend; qmake-qt4; make)", shell=True)
+        if errno:
+            raise SystemExit(errno)
 
         cc = new_compiler()
         for source in self.sources:
