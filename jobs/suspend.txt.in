@@ -584,3 +584,326 @@ command: network_reconnect_resume_test -t 10 -d wired
 _description:
  Checks the length of time it takes to reconnect an existing wired connection
   after a suspend/resume cycle.
+
+plugin: manual
+name: suspend/led_after_suspend/power
+depends: suspend/suspend_advanced_auto
+_description:
+ PURPOSE:
+     Validate that the power LED operated the same after resuming from suspend
+ STEPS:
+     1. Power LED should be on while device is switched on
+ VERIFICATION:
+     Does the power LED remain on after resuming from suspend?
+
+plugin: manual
+name: suspend/led_after_suspend/battery-charging
+depends: suspend/suspend_advanced_auto
+_description:
+ PURPOSE:
+     Validate that the battery light shows charging status after resuming from suspend
+ STEPS:
+     1. Let system run on battery for a while
+     2. Plug in AC plug
+ VERIFICATION:
+     Did the battery indicator LED still turn orange after resuming from suspend?
+
+plugin: manual
+name: suspend/led_after_suspend/battery-charged
+depends: suspend/suspend_advanced_auto
+_description:
+ PURPOSE:
+     Validate that the battery LED properly displays charged status after resuming from suspend
+ STEPS:
+     1. Let system run on battery for a short time
+     2. Plug in AC
+     3. Let system run on AC
+ VERIFICATION:
+     Does the orange battery LED still shut off when system is fully charged after resuming from suspend?
+
+plugin: manual
+name: suspend/led_after_suspend/battery-low
+_description:
+ PURPOSE:
+     Validate that the battery LED indicated low power after resuming from suspend
+ STEPS:
+     1. Let system run on battery for several hours
+     2. Monitor battery LED carefully
+ VERIFICATION:
+     Does the LED light orange when battery is low after resuming from suspend?
+
+plugin: manual
+name: suspend/led_after_suspend/hdd
+depends: suspend/suspend_advanced_auto
+command: led_hdd_test
+_description:
+ PURPOSE:
+     Validate that the HDD LED still operates as expected after resuming from suspend
+ STEPS:
+     1. Select "Test" to write and read a temporary file for a few seconds
+     2. HDD LED should blink when writing to/reading from HDD
+ VERIFICATION:
+     Did the HDD LED still blink with HDD activity after resuming from suspend?
+
+plugin: manual
+name: suspend/led_after_suspend/numeric-keypad
+depends: suspend/suspend_advanced_auto
+command: keyboard_test
+_description:
+ PURPOSE:
+     Validate that the numeric keypad LED operates the same before and after resuming from suspend
+ STEPS:
+     1. Press "Block Num" key to toggle numeric keypad LED
+     2. Click on the "Test" button to open a window to verify your typing
+     3. Type using the numeric keypad both when the LED is on and off
+ VERIFICATION:
+     1. Numeric keypad LED status should toggle everytime the "Block Num" key is pressed
+     2. Numbers should only be entered in the keyboard verification window when the LED is on
+
+plugin: manual
+name: suspend/led_after_suspend/caps-lock
+depends: suspend/suspend_advanced_auto
+_description:
+ PURPOSE:
+     Validate that the Caps Lock key operates the same before and after resuming from suspend
+ STEPS:
+     1. Press "Block Cap Keys" to activate/deactivate cap keys blocking
+     2. Cap Keys LED should be switched on/off every time the key is pressed
+ VERIFICATION:
+     Did the Cap Keys LED light as expected after resuming from suspend?
+
+plugin: manual
+name: suspend/led_after_suspend/wlan
+depends: suspend/suspend_advanced_auto
+_description:
+ PURPOSE:
+     WLAN LED verification after resuming from suspend
+ STEPS:
+     1. Make sure WLAN connection is established
+     2. WLAN LED should light
+     3. Select Test to open Firefox
+     4. WLAN LED should flash while downloading data
+ VERIFICATION:
+     Did the WLAN LED light and flash as expected after resuming from suspend?
+
+plugin: manual
+name: suspend/led_after_suspend/wlan-disabled
+depends: suspend/suspend_advanced_auto
+_description:
+ PURPOSE:
+     Validate that WLAN LED shuts off when disabled after resuming from suspend
+ STEPS:
+     1. Connect to AP
+     2. Use Physical switch to disable WLAN
+     3. Re-enable
+     4. Use Network-Manager to disable WLAN
+ VERIFICATION:
+     Did the LED turn off then WLAN is disabled after resuming from suspend?
+
+plugin: manual
+name: suspend/led_after_suspend/bluetooth
+depends: suspend/suspend_advanced_auto
+_description:
+ PURPOSE:
+     Validate that the Bluetooth LED turns on and off when BT is enabled/disabled after resuming from suspend
+ STEPS:
+     1. Switch bluetooth off from a hardware switch (if present)
+     2. Switch bluetooth back on
+     3. Switch bluetooth off from the panel applet
+     4. Switch bluetooth back on
+ VERIFICATION:
+     Did the bluetooth LED turn off and on twice after resuming from suspend?
+
+plugin: manual
+name: suspend/led_after_suspend/camera
+depends:
+ camera/detect
+ suspend/suspend_advanced_auto
+command: camera_test led
+_description:
+ PURPOSE:
+     Validate that the camera LED still works as expected after resuming from suspend
+ STEPS:
+     1. Select Test to activate camera
+     2. Camera LED should light for a few seconds
+ VERIFICATION:
+     Did the camera LED still turn on and off after resuming from suspend?
+
+plugin: manual
+name: suspend/led_after_suspend/touchpad
+depends: suspend/suspend_advanced_auto
+_description:
+ PURPOSE:
+     Touchpad LED verification after resuming from suspend
+ STEPS:
+     1. Click on the touchpad button or press key combination to enable/disable touchpad button
+     2. Slide your finger on the touchpad
+ VERIFICATION:
+     1. Touchpad LED status should toggle everytime the button is clicked or the key combination is pressed
+     2. When the LED is on, the mouse pointer should move on touchpad usage
+     3. When the LED is off, the mouse pointer should not move on touchpad usage
+
+plugin: manual
+name: suspend/led_after_suspend/wireless
+depends: suspend/suspend_advanced_auto
+_description:
+ PURPOSE:
+     Validate Wireless (WLAN + Bluetooth) LED operated the same after resuming from suspend
+ STEPS:
+     1. Make sure WLAN connection is established and Bluetooth is enabled.
+     2. WLAN/Bluetooth LED should light
+     3. Switch WLAN and Bluetooth off from a hardware switch (if present)
+     4. Switch them back on
+     5. Switch WLAN and Bluetooth off from the panel applet
+     6. Switch them back on
+ VERIFICATION:
+     Did the WLAN/Bluetooth LED light as expected after resuming from suspend?
+
+plugin: manual
+name: suspend/keys_after_suspend/brightness
+depends: suspend/suspend_advanced_auto
+requires: dmi.product in ['Notebook','Laptop','Portable']
+_description:
+ PURPOSE:
+     This test will test the brightness key after resuming from suspend
+ STEPS:
+     1. Press the brightness buttons on the keyboard
+ VERIFICATION:
+     Did the brightness change following to your key presses after resuming from suspend?
+
+plugin: manual
+name: suspend/keys_after_suspend/volume
+depends: suspend/suspend_advanced_auto
+requires:
+ device.category == 'KEYBOARD'
+user: root
+command: key_test -s '0xe02e,0xe0ae:Volume Up' '0xe030,0xe0b0:Volume Down'
+_description:
+ PURPOSE:
+     This test will test the volume keys of your keyboard after resuming from suspend
+ STEPS:
+     1. Click test to open a window on which to test the volume keys.
+     2. If all the keys work, the test will be marked as passed.
+     3. If your computer has no volume keys, Skip this test.
+ VERIFICATION:
+     Did the volume change following to your key presses?
+
+plugin: manual
+name: suspend/keys_after_suspend/mute
+depends: suspend/suspend_advanced_auto
+requires:
+ device.category == 'KEYBOARD'
+user: root
+command: key_test -s '0xe020,0xe0a0:Mute'
+_description:
+ PURPOSE:
+     This test will test the mute key of your keyboard after resuming from suspend
+ STEPS:
+     1. Click test to open a window on which to test the mute key.
+     2. If the key works, the test will pass and the window will close.
+ VERIFICATION:
+     Did the volume mute following your key presses?
+
+plugin: manual
+name: suspend/keys_after_suspend/sleep
+depends: suspend/suspend_advanced_auto
+requires:
+ device.category == 'KEYBOARD'
+_description:
+ PURPOSE:
+     This test will test the sleep key after resuming from suspend
+ STEPS:
+     1. Press the sleep key on the keyboard
+     2. Wake your system up by pressing the power button
+ VERIFICATION:
+     Did the system go to sleep after pressing the sleep key after resuming from suspend?
+
+plugin: manual
+name: suspend/keys_after_suspend/battery-info
+depends: suspend/suspend_advanced_auto
+requires: dmi.product in ['Notebook','Laptop','Portable']
+user: root
+command: key_test -s '0xe071,0xef1:Battery Info'
+_description:
+ PURPOSE:
+     This test will test the battery information key after resuming from suspend
+ STEPS:
+     If you do not have a Battery Button, skip this test
+     1. Click Test to begin
+     2. Press the Battery Info button (or combo like Fn+F3)
+     3: Close the Power Statistics tool if it opens
+ VERIFICATION:
+     Did the Battery Info key work as expected after resuming from suspend?
+
+plugin: manual
+name: suspend/keys_after_suspend/wireless
+depends: suspend/suspend_advanced_auto
+requires: dmi.product in ['Notebook','Laptop','Portable']
+_description:
+ PURPOSE:
+     This test will test the wireless key after resuming from suspend
+ STEPS:
+     1. Press the wireless key on the keyboard
+     2. Press the same key again
+ VERIFICATION:
+     Did the wireless go off on the first press and on again on the second after resuming from suspend?
+
+plugin: manual
+name: suspend/keys_after_suspend/media-control
+depends: suspend/suspend_advanced_auto
+requires:
+ device.category == 'KEYBOARD'
+user: root
+command: key_test -s 0xe010,0xe090:Previous 0xe024,0xe0a4:Stop 0xe019,0xe099:Next 0xe022,0xe0a2:Play
+_description:
+ PURPOSE:
+     This test will test the media keys of your keyboard after resuming from suspend
+ STEPS:
+     1. Click test to open a window on which to test the media keys.
+     2. If all the keys work, the test will be marked as passed.
+     3. If your computer has no media keys, Skip this test.
+ VERIFICATION:
+     Do the keys work as expected after resuming from suspend?
+
+plugin: manual
+name: suspend/keys_after_suspend/super
+depends: suspend/suspend_advanced_auto
+requires:
+ device.category == 'KEYBOARD'
+user: root
+command: key_test -s '0xe05b,0xe0db:Left Super Key'
+_description:
+ PURPOSE:
+     This test will test the super key of your keyboard after resuming from suspend
+ STEPS:
+     1. Click test to open a window on which to test the super key.
+     2. If the key works, the test will pass and the window will close.
+ VERIFICATION:
+     Does the super key work as expected after resuming from suspend?
+
+plugin: manual
+name: suspend/keys_after_suspend/video-out
+depends: suspend/suspend_advanced_auto
+requires: dmi.product in ['Notebook','Laptop','Portable']
+_description:
+ PURPOSE:
+     Validate that the External Video hot key is working as expected after resuming from suspend
+ STEPS:
+     1. Plug in an external monitor
+     2. Press the display hot key to change the monitors configuration
+ VERIFICATION:
+     Check that the video signal can be mirrored, extended, displayed on external or onboard only, after resuming from suspend.
+
+plugin: manual
+name: suspend/keys_after_suspend/touchpad
+depends: suspend/suspend_advanced_auto
+requires: dmi.product in ['Notebook','Laptop','Portable']
+_description:
+ PURPOSE:
+     Verify touchpad hotkey toggles touchpad functionality on and off after resuming from suspend
+ STEPS:
+     1. Verify the touchpad is functional
+     2. Tap the touchpad toggle hotkey
+     3. Tap the touchpad toggle hotkey again
+ VERIFICATION:
+     Verify the touchpad has been disabled and re-enabled.
