@@ -106,7 +106,7 @@ class SubmissionResult:
             }
         for context, parser in context_parsers.items():
             if context in command:
-                if not isinstance(text, str):
+                if hasattr(text, "decode"):
                     text = text.decode("utf-8")
                 stream = StringIO(text)
                 p = parser(stream)
@@ -371,7 +371,7 @@ class SubmissionParser:
                     parser(result, child)
                 else:
                     text = child.text
-                    if not isinstance(text, str):
+                    if hasattr(text, "decode"):
                         text = text.decode("utf-8")
                     stream = StringIO(text)
                     p = parser(stream)

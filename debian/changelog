@@ -2,6 +2,10 @@ checkbox (0.14.10) quantal; urgency=low
 
   * Increased version number after final Ubuntu Quantal release.
 
+  [Marc Tardif]
+  * checkbox/parsers/submission.py: Fixed submission parser to work with both
+    python3.2 and python2.7.
+
   [Sean Feole]
   * [FEATURE] jobs/optical.txt.in: modified existing automation test
     jobs. Added a _description field to each so that the test cases properly
