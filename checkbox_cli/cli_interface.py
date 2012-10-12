@@ -275,7 +275,7 @@ class CLILineDialog(CLITextDialog):
 class Twirly(object):
     def __init__(self):
         self.index = 0
-        self.twirlies = "←↖↑↗→↘↓↙"
+        self.twirlies = "-\\|/"
 
     def next(self):
         next_twirly = self.twirlies[self.index]
