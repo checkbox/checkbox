@@ -107,12 +107,12 @@ class checkbox_build(build_extra, object):
         self.sources = extract_sources_from_data_files(data_files)
 
     def run(self):
-        super(checkbox_build, self).run()
-
         errno = subprocess.call(
             "(cd qt/frontend; qmake-qt4; make)", shell=True)
         if errno:
             raise SystemExit(errno)
+
+        super(checkbox_build, self).run()
 
         cc = new_compiler()
         for source in self.sources:
