@@ -37,7 +37,8 @@ UNTESTED = "untested"
 
 ALL_STATUS = [FAIL, PASS, UNINITIATED, UNRESOLVED, UNSUPPORTED, UNTESTED]
 
-DEFAULT_JOB_TIMEOUT = 30 # used in case a job specifies invalid timeout
+DEFAULT_JOB_TIMEOUT = 30  # used in case a job specifies invalid timeout
+
 
 class Job:
 
@@ -89,9 +90,11 @@ class Job:
         elif os.WIFSIGNALED(process_status):
             status = UNRESOLVED
             term_signal = os.WTERMSIG(process_status)
-            data = (_("Command received signal %s: %s") % \
-                (signal_to_name(term_signal),
-                 signal_to_description(term_signal))).encode("utf-8")
+            data = (_("Command received signal %(signal_name)s: "
+                      "%(signal_description)s") % \
+                      {'signal_name': signal_to_name(term_signal),
+                      'signal_description': signal_to_description(term_signal)}
+                   ).encode("utf-8")
         else:
             raise Exception("Command not terminated: %s" \
                 % self.command)
@@ -113,7 +116,7 @@ class JobStore(MessageStore):
 
     def _find_matching_messages(self, **kwargs):
         for filename in self._walk_messages():
-            message = self._read_message(filename,cache=True)
+            message = self._read_message(filename, cache=True)
             for key, value in kwargs.items():
                 if message.get(key) != value:
                     break

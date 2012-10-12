@@ -6,11 +6,16 @@ checkbox (0.14.10) quantal; urgency=low
   * [FEATURE] jobs/optical.txt.in: modified existing automation test
     jobs. Added a _description field to each so that the test cases properly
     appear in the checkbox UI (LP: #1064189)
+
   [Marc Tardif]
   * plugins/environment_info.py: Enabling environment to take precedence
     over configuration files.
+  
+  [Daniel Manrique]
+  * [FEATURE] checkbox/job.py: Fixed intltool warning about unnamed
+    parameters in string, applied pep8 fixes.
 
- -- Daniel Manrique <roadmr@ubuntu.com>  Wed, 10 Oct 2012 09:45:08 -0400
+ -- Daniel Manrique <roadmr@ubuntu.com>  Fri, 12 Oct 2012 10:47:26 -0400
 
 checkbox (0.14.6) quantal; urgency=low
 
