@@ -71,6 +71,7 @@ def datetime_to_string(dt):
     """
     return dt.isoformat()
 
+
 def string_to_datetime(string):
     """Return a datetime object from a consistent string representation.
 
@@ -123,6 +124,7 @@ def string_to_datetime(string):
 
     return dt
 
+
 def sizeof_bytes(bytes):
     for x in ["bytes", "KB", "MB", "GB", "TB"]:
         string = "%3.1f%s" % (bytes, x)
@@ -131,6 +133,7 @@ def sizeof_bytes(bytes):
         bytes /= 1024.0
 
     return string
+
 
 def sizeof_hertz(hertz):
     for x in ["Hz", "KHz", "MHz", "GHz"]:
@@ -141,6 +144,7 @@ def sizeof_hertz(hertz):
 
     return string
 
+
 def string_to_type(string):
     """Return a typed representation for the given string.
 
@@ -150,20 +154,19 @@ def string_to_type(string):
 
     :param string: The string representation.
     """
-    if isinstance(string, str):
-        for regex, formatter in TYPE_FORMATS:
-            match = regex.match(string)
-            if match:
-                string = formatter(match)
-                if len(match.groups()) > 1:
-                    unit = match.group(2)
-                    for regex, multiplier in TYPE_MULTIPLIERS:
-                        match = regex.match(unit)
-                        if match:
-                            string *= multiplier
-                            break
-                    else:
-                        raise ValueError("Unknown multiplier: %s" % unit)
-                break
+    for regex, formatter in TYPE_FORMATS:
+        match = regex.match(string)
+        if match:
+            string = formatter(match)
+            if len(match.groups()) > 1:
+                unit = match.group(2)
+                for regex, multiplier in TYPE_MULTIPLIERS:
+                    match = regex.match(unit)
+                    if match:
+                        string *= multiplier
+                        break
+                else:
+                    raise ValueError("Unknown multiplier: %s" % unit)
+            break
 
     return string
