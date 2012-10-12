@@ -4,7 +4,6 @@
 	dh "$@" --with python2,python3,translations
 
 override_dh_auto_build:
-	(cd qt/frontend; qmake-qt4; make)
 	set -ex; for python in $(shell py3versions -r); do \
 		$$python setup.py build; \
 	done;

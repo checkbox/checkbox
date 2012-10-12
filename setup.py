@@ -4,6 +4,7 @@ import os
 import re
 import errno
 import posixpath
+import subprocess
 from glob import glob
 
 from distutils.core import setup
@@ -12,7 +13,6 @@ from distutils.util import change_root, convert_path
 from distutils.ccompiler import new_compiler
 from distutils.command.build import build
 from distutils.command.clean import clean
-from distutils.command.install import install
 from distutils.command.install_data import install_data
 from distutils.command.install_scripts import install_scripts
 try:
@@ -107,6 +107,11 @@ class checkbox_build(build_extra, object):
         self.sources = extract_sources_from_data_files(data_files)
 
     def run(self):
+        errno = subprocess.call(
+            "(cd qt/frontend; qmake-qt4; make)", shell=True)
+        if errno:
+            raise SystemExit(errno)
+
         super(checkbox_build, self).run()
 
         cc = new_compiler()
@@ -141,19 +146,6 @@ class checkbox_clean(clean, object):
                     raise
 
 
-# Hack to workaround unsupported option in Python << 2.5
-class checkbox_install(install, object):
-
-    user_options = install.user_options + [
-        ('install-layout=', None,
-         "installation layout to choose (known values: deb)")]
-
-    def initialize_options(self):
-        super(checkbox_install, self).initialize_options()
-
-        self.install_layout = None
-
-
 class checkbox_install_data(install_data, object):
 
     def finalize_options(self):
@@ -181,11 +173,11 @@ class checkbox_install_data(install_data, object):
             return
 
         # Create etc directory
-        etcdir = convert_path("/etc/checkbox.d")
-        if not posixpath.isabs(etcdir):
-            etcdir = posixpath.join(self.install_dir, etcdir)
-        elif self.root:
-            etcdir = change_root(self.root, etcdir)
+        if self.install_dir == "/usr":
+            basedir = posixpath.sep
+        else:
+            basedir = self.install_dir
+        etcdir = posixpath.join(basedir, "etc", "checkbox.d")
         self.mkpath(etcdir)
 
         # Create configs symbolic link
@@ -275,7 +267,6 @@ This project provides an extensible interface for system testing.
         "build_i18n": build_i18n,
         "build_icons": checkbox_build_icons,
         "clean": checkbox_clean,
-        "install": checkbox_install,
         "install_data": checkbox_install_data,
         "install_scripts": checkbox_install_scripts}
 )
