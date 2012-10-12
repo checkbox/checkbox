@@ -71,6 +71,7 @@ def datetime_to_string(dt):
     """
     return dt.isoformat()
 
+
 def string_to_datetime(string):
     """Return a datetime object from a consistent string representation.
 
@@ -123,6 +124,7 @@ def string_to_datetime(string):
 
     return dt
 
+
 def sizeof_bytes(bytes):
     for x in ["bytes", "KB", "MB", "GB", "TB"]:
         string = "%3.1f%s" % (bytes, x)
@@ -132,6 +134,7 @@ def sizeof_bytes(bytes):
 
     return string
 
+
 def sizeof_hertz(hertz):
     for x in ["Hz", "KHz", "MHz", "GHz"]:
         string = "%3.1f%s" % (hertz, x)
@@ -140,6 +143,7 @@ def sizeof_hertz(hertz):
         hertz /= 1000.0
 
     return string
+
 
 def string_to_type(string):
     """Return a typed representation for the given string.

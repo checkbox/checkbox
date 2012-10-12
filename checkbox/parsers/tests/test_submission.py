@@ -184,6 +184,7 @@ class TestSubmissionParser(TestCase):
         self.assertEquals(len(result["test_results"]), 1)
 
         test_result = result["test_results"][0]
-        self.assertEquals(test_result["name"], "audio/alsa_record_playback_external")
+        self.assertEquals(
+            test_result["name"], "audio/alsa_record_playback_external")
         self.assertEquals(test_result["output"], "")
         self.assertEquals(test_result["status"], "pass")
