@@ -150,20 +150,19 @@ def string_to_type(string):
 
     :param string: The string representation.
     """
-    if isinstance(string, str):
-        for regex, formatter in TYPE_FORMATS:
-            match = regex.match(string)
-            if match:
-                string = formatter(match)
-                if len(match.groups()) > 1:
-                    unit = match.group(2)
-                    for regex, multiplier in TYPE_MULTIPLIERS:
-                        match = regex.match(unit)
-                        if match:
-                            string *= multiplier
-                            break
-                    else:
-                        raise ValueError("Unknown multiplier: %s" % unit)
-                break
+    for regex, formatter in TYPE_FORMATS:
+        match = regex.match(string)
+        if match:
+            string = formatter(match)
+            if len(match.groups()) > 1:
+                unit = match.group(2)
+                for regex, multiplier in TYPE_MULTIPLIERS:
+                    match = regex.match(unit)
+                    if match:
+                        string *= multiplier
+                        break
+                else:
+                    raise ValueError("Unknown multiplier: %s" % unit)
+            break
 
     return string

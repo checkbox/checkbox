@@ -428,9 +428,12 @@ class SubmissionParser:
 
                 lines.append("")
 
-            stream = StringIO("\n".join(lines))
-            parser = result.parseCpuinfo(stream)
-            parser.run(result)
+            if lines:
+                if hasattr(lines[0], "decode"):
+                    lines = [line.decode("utf-8") for line in lines]
+                stream = StringIO("\n".join(lines))
+                parser = result.parseCpuinfo(stream)
+                parser.run(result)
 
     def parseQuestions(self, result, node):
         """Parse the <questions> part of a submission."""

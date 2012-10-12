@@ -69,7 +69,7 @@ class TestSubmissionParser(TestCase):
 
     def getParser(self, name):
         fixture = self.getFixture(name)
-        stream = open(fixture, encoding="utf-8")
+        stream = open(fixture)
         return SubmissionParser(stream)
 
     def getResult(self, name, project="test"):
