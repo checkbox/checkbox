@@ -2,20 +2,24 @@ checkbox (0.14.10) quantal; urgency=low
 
   * Increased version number after final Ubuntu Quantal release.
 
-  [Sean Feole]
-  * [FEATURE] jobs/optical.txt.in: modified existing automation test
-    jobs. Added a _description field to each so that the test cases properly
-    appear in the checkbox UI (LP: #1064189)
+  [Brendan Donegan]
+  * jobs/suspend.txt.in - make sure FWTS logs end with .log so file names
+    don't get tampered with (LP: #1065932)
+
+  [Daniel Manrique]
+  * [FEATURE] checkbox/job.py: Fixed intltool warning about unnamed
+    parameters in string, applied pep8 fixes.
 
   [Marc Tardif]
   * plugins/environment_info.py: Enabling environment to take precedence
     over configuration files.
 
-  [Brendan Donegan]
-  * jobs/suspend.txt.in - make sure FWTS logs end with .log so file names
-    don't get tampered with (LP: #1065932)
+  [Sean Feole]
+  * [FEATURE] jobs/optical.txt.in: modified existing automation test
+    jobs. Added a _description field to each so that the test cases properly
+    appear in the checkbox UI (LP: #1064189)
 
- -- Daniel Manrique <roadmr@ubuntu.com>  Wed, 10 Oct 2012 09:45:08 -0400
+ -- Daniel Manrique <roadmr@ubuntu.com>  Fri, 12 Oct 2012 10:47:26 -0400
 
 checkbox (0.14.6) quantal; urgency=low
 
@@ -23,7 +27,7 @@ checkbox (0.14.6) quantal; urgency=low
   * [FEATURE] scripts/touchpad_scroll_resource, jobs/touchpad.txt.in:
     adding in touchpad scroll detection resource job, and modified jobs
     to require the capability to be present.
-  
+
   [Jeff Lane]
   * Cleaning up duplicated modinfo code: (LP: #1043521)
     * checkbox/parsers/modinfo.py: added a parser to handle output from modinfo
@@ -46,8 +50,8 @@ checkbox (0.14.6) quantal; urgency=low
     as it was redundant (LP: #868643)
   * [FEATURE] jobs/fingerprint.txt.in: Cleaned up the definitions to
     match current Unity (LP: #946184)
-  * [FEATURE] jobs/usb.txt.in: replaced the usb/mouse and usb/keyboard tests 
-    with usb/HID to combine them so the tester can choose one device rather 
+  * [FEATURE] jobs/usb.txt.in: replaced the usb/mouse and usb/keyboard tests
+    with usb/HID to combine them so the tester can choose one device rather
     than requiring multiple devices. (LP: #1053032)
   * [FEATURE] jobs/keys.txt.in: modified the battery info key job to
     use the keys_test script as we do with other hotkey tests (LP: #990538)
@@ -68,16 +72,16 @@ checkbox (0.14.6) quantal; urgency=low
     daily build recipe.
   * scripts/audio_settings: Added exception handlers to catch problems with
     unwritable or absent settings files (LP: #1041644) (LP: #1041340)
-  * Ensured that strings passed to qtiface.showError via dbus are strings, 
+  * Ensured that strings passed to qtiface.showError via dbus are strings,
     and not NoneType as could happen under certain circumstances.
     (LP: #1032337)
   * scripts/graphics_modes_info: updated shebang to python3 (LP: #1047515)
   * scripts/graphics_driver, scripts/color_depth_info: Added ignoring
     possible invalid characters in Xorg logfiles (LP: #1048096)
   * scripts/audio_test: made the default mode verbose, it now sends all
-    output to stderr (but still exits a proper return value). Jobs using it 
+    output to stderr (but still exits a proper return value). Jobs using it
     are updated to remove the now-unneeded -v parameter.
-  * Added tests to ensure all job files are declared in setup.cfg, 
+  * Added tests to ensure all job files are declared in setup.cfg,
     po/POTFILES.in and included in jobs/local.txt.in. (LP: #1052986)
   * setup.cfg, po/POTFILES.in, jobs/local.txt.in: Fixed so the tests pass.
     (LP: #1052986)
