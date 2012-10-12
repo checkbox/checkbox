@@ -7,6 +7,10 @@ checkbox (0.14.10) quantal; urgency=low
     jobs. Added a _description field to each so that the test cases properly
     appear in the checkbox UI (LP: #1064189)
 
+  [Brendan Donegan]
+  * jobs/suspend.txt.in - make sure FWTS logs end with .log so file names
+    don't get tampered with (LP: #1065932)
+
  -- Daniel Manrique <roadmr@ubuntu.com>  Wed, 10 Oct 2012 09:45:08 -0400
 
 checkbox (0.14.6) quantal; urgency=low

@@ -99,8 +99,8 @@ environ: CHECKBOX_DATA
 command:
  if type -P fwts >/dev/null; then
   echo "Calling fwts"
-  fwts s3 --s3-sleep-delay=30 -r $CHECKBOX_DATA/suspend_single_log
-  grep 'Critical failures: NONE' $CHECKBOX_DATA/suspend_single_log
+  fwts s3 --s3-sleep-delay=30 -r $CHECKBOX_DATA/suspend_single.log
+  grep 'Critical failures: NONE' $CHECKBOX_DATA/suspend_single.log
  else
   echo "Calling sleep_test"
   sleep_test -d
@@ -125,11 +125,11 @@ _description:
  This is the automated version of suspend/suspend_advanced.
 user: root
 environ: CHECKBOX_DATA
-command: fwts s3 --s3-sleep-delay=30 -r $CHECKBOX_DATA/suspend_single_log || true; grep 'Critical failures: NONE' $CHECKBOX_DATA/suspend_single_log.log
+command: fwts s3 --s3-sleep-delay=30 -r $CHECKBOX_DATA/suspend_single.log || true; grep 'Critical failures: NONE' $CHECKBOX_DATA/suspend_single.log
 
 plugin: attachment
 name: suspend/suspend-single-log-attach
-command: [ -e $CHECKBOX_DATA/suspend_single_log ] && cat $CHECKBOX_DATA/suspend_single_log
+command: [ -e $CHECKBOX_DATA/suspend_single.log ] && cat $CHECKBOX_DATA/suspend_single.log
 _description:
  Attaches the log from the single suspend/resume test to the results
 
