@@ -153,3 +153,15 @@ plugin: shell
 name: stress/sdhc
 command: removable_storage_test -s 10240000 -c 100 -i 3 sdio scsi
 _description: Runs a test that transfers 100 10MB files 3 times to a SDHC card.
+
+plugin: shell
+name: stress/network_restart
+user: root
+environ: CHECKBOX_DATA
+command: network_restart -t 1 -o $CHECKBOX_DATA
+_description: Ping ubuntu.com and restart network interfaces 100 times
+
+plugin: attachment
+name: stress/network_restart_log
+depends: stress/network_restart
+command: file=$CHECKBOX_DATA/network_restart.log; if [ -e "$file" ]; then iconv -t 'ascii' -c "$file"; fi
