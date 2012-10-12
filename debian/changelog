@@ -7,6 +7,11 @@ checkbox (0.14.10) quantal; urgency=low
     jobs. Added a _description field to each so that the test cases properly
     appear in the checkbox UI (LP: #1064189)
 
+  [Sylvain Pineau]
+  * jobs/stress.txt.in: stress/sdhc now launches removable_storage_test with
+    --memorycard. stress/sdhc and stress/usb run with root privileges to mount
+    all partitions (LP: #1065862)
+
  -- Daniel Manrique <roadmr@ubuntu.com>  Wed, 10 Oct 2012 09:45:08 -0400
 
 checkbox (0.14.6) quantal; urgency=low
