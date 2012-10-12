@@ -272,12 +272,25 @@ class CLILineDialog(CLITextDialog):
     separator = ord("\n")
 
 
+class Twirly(object):
+    def __init__(self):
+        self.index = 0
+        self.twirlies = "←↖↑↗→↘↓↙"
+
+    def next(self):
+        next_twirly = self.twirlies[self.index]
+        self.index += 1
+        if self.index >= len(self.twirlies):
+            self.index = 0
+        return next_twirly
+
 class CLIProgressDialog(CLIDialog):
     """Command line progress dialog wrapper."""
 
     def __init__(self, text):
         super(CLIProgressDialog, self).__init__(text)
         self.progress_count = 0
+        self.twirly = Twirly()
 
     def set(self, progress=None):
         self.progress_count = (self.progress_count + 1) % 5
@@ -287,7 +300,9 @@ class CLIProgressDialog(CLIDialog):
         if progress != None:
             self.put("\r%u%%" % (progress * 100))
         else:
-            self.put(".")
+            self.put("\b\b")
+            self.put(self.twirly.next())
+            self.put(" ")
         sys.stdout.flush()
 
 
