@@ -34,7 +34,7 @@ plugin: local
 name: optical/read-automated
 requires:
  device.category == 'CDROM'
-_description: Optical read test.
+_description: Automated optical read test.
 command:
  cat <<'EOF' | run_templates -t -s 'udev_resource | filter_templates -w "category=CDROM"'
  plugin: shell
@@ -51,7 +51,7 @@ name: optical/cdrom-write
 requires:
  device.category == 'CDROM'
  optical_drive.cd == 'writable'
-_description: Optical write test.
+_description: CD write test.
 command:
  cat <<'EOF' | run_templates -t -s 'udev_resource | filter_templates -w "category=CDROM"'
  plugin: manual
@@ -73,6 +73,7 @@ name: optical/cdrom-write-automated
 requires:
  device.category == 'CDROM'
  optical_drive.cd == 'writable'
+_description: Automated CD write test
 command:
  cat <<'EOF' | run_templates -t -s 'udev_resource | filter_templates -w "category=CDROM"'
  plugin: shell
@@ -108,7 +109,7 @@ name: optical/dvd-write
 requires:
  device.category == 'CDROM'
  optical_drive.dvd == 'writable'
-_description: Optical write test.
+_description: DVD write test.
 command:
  cat <<'EOF' | run_templates -t -s 'udev_resource | filter_templates -w "category=CDROM"'
  plugin: manual
@@ -132,6 +133,7 @@ name: optical/dvd-write-automated
 requires:
  device.category == 'CDROM'
  optical_drive.dvd == 'writable'
+_description: Automated DVD write test.
 command:
  cat <<'EOF' | run_templates -t -s 'udev_resource | filter_templates -w "category=CDROM"'
  plugin: shell
@@ -140,7 +142,7 @@ command:
  user: root
  command: optical_write_test /dev/`ls /sys$path/block` | ansi_parser
  description:
-  This is an automated version of optical/dvd-write. It assumes you have already inserted a data CD into your optical drive prior to running Checkbox.
+  This is an automated version of optical/dvd-write. It assumes you have already inserted a data DVD into your optical drive prior to running Checkbox.
  EOF
 
 plugin: manual

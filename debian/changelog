@@ -2,9 +2,14 @@ checkbox (0.14.10) quantal; urgency=low
 
   * Increased version number after final Ubuntu Quantal release.
 
+  [Sean Feole]
+  * [FEATURE] jobs/optical.txt.in: modified existing automation test
+    jobs. Added a _description field to each so that the test cases properly
+    appear in the checkbox UI (LP: #1064189)
+
   [Sylvain Pineau]
   * [FEATURE] scripts/network_restart, jobs/stress.txt.in: Added a new stress
-  test: network restart.
+    test: network restart.
 
  -- Daniel Manrique <roadmr@ubuntu.com>  Wed, 10 Oct 2012 09:45:08 -0400
 
