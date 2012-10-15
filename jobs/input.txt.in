@@ -1,3 +1,22 @@
+plugin: local
+name: input/pointing
+requires:
+ device.category == 'MOUSE' or device.category == 'TOUCH'
+_description: Pointing device tests.
+command:
+ cat <<'EOF' | run_templates -t -s 'udev_resource | filter_templates -w "category=MOUSE" -w "category=TOUCH"'
+ plugin: manual
+ name: input/pointing_`ls /sys$path/block`
+ requires: device.path == "$path"
+ description:
+  PURPOSE:
+      This will test your $product device
+  STEPS:
+      1. Move the cursor with your $product.
+  VERIFICATION:
+      Did the cursor move?
+ EOF
+
 plugin: manual
 name: input/mouse
 requires: device.category == 'MOUSE' or device.category == 'TOUCH'
