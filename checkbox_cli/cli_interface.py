@@ -133,7 +133,8 @@ class CLIChoiceDialog(CLIDialog):
                     default = "*" if option in defaults else " "
                     self.put_line("%s %s: %s" % (default, key, option))
 
-                response = self.get(_("Please choose (%s): ") % ("/".join(self.keys)))
+                response = self.get(_("Please choose (%s): ") %
+                                     ("/".join(self.keys)))
                 if response >= 0:
                     return response
 
@@ -151,7 +152,7 @@ class CLIChoiceDialog(CLIDialog):
                    string.digits + \
                    string.punctuation
 
-            keys = keys.replace(' ','')
+            keys = keys.replace(' ', '')
             keys = keys.replace('+', '')
 
             for key in keys:
@@ -202,6 +203,7 @@ class CLIReportDialog(CLIDialog):
 
             keys = []
             options = []
+
             def add_option(option, key=None):
                 """
                 Add option to list
@@ -272,12 +274,24 @@ class CLILineDialog(CLITextDialog):
     separator = ord("\n")
 
 
+class Twirly(object):
+    def __init__(self):
+        self.index = 0
+        self.twirlies = "-\\|/"
+
+    def next(self):
+        next_twirly = self.twirlies[self.index]
+        self.index = (self.index + 1) % len(self.twirlies)
+        return next_twirly
+
+
 class CLIProgressDialog(CLIDialog):
     """Command line progress dialog wrapper."""
 
     def __init__(self, text):
         super(CLIProgressDialog, self).__init__(text)
         self.progress_count = 0
+        self.twirly = Twirly()
 
     def set(self, progress=None):
         self.progress_count = (self.progress_count + 1) % 5
@@ -287,7 +301,9 @@ class CLIProgressDialog(CLIDialog):
         if progress != None:
             self.put("\r%u%%" % (progress * 100))
         else:
-            self.put(".")
+            self.put("\b\b")
+            self.put(self.twirly.next())
+            self.put(" ")
         sys.stdout.flush()
 
 
@@ -365,7 +381,8 @@ class CLIInterface(UserInterface):
         for option in keys:
             dialog.add_option(option)
 
-        dialog.add_option(_("Combine with character above to expand node"), "+")
+        dialog.add_option(_("Combine with character above to expand node"),
+                          "+")
         dialog.add_option(_("Space when finished"), " ")
 
         do_expand = False
@@ -395,13 +412,12 @@ class CLIInterface(UserInterface):
             # Expand tree
             dialog.visible = False
             if options[result]:
-                branch_results =  results.get(result, {})
+                branch_results = results.get(result, {})
                 self.show_tree(result, options[result], branch_results)
                 if branch_results and result not in results:
                     results[result] = branch_results
 
         return results
-
 
     def show_report(self, text, results):
         """
@@ -409,7 +425,6 @@ class CLIInterface(UserInterface):
         """
         dialog = CLIReportDialog(text, results)
         dialog.run()
-
 
     def show_test(self, test, runner):
         options = list([ANSWER_TO_OPTION[a] for a in ALL_ANSWERS])
