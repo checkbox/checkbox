@@ -26,7 +26,6 @@ from gettext import gettext as _
 from socket import gethostname
 from io import BytesIO
 
-from checkbox.lib.conversion import string_to_type
 from checkbox.lib.log import format_delta
 from checkbox.lib.transport import HTTPTransport
 
@@ -141,7 +140,7 @@ Failed to process form: %s""" % e))
         start_time = time.time()
         try:
             response = transport.exchange(form, self._headers,
-                timeout=string_to_type(self.timeout))
+                timeout=self.timeout)
         except Exception as error:
             self._manager.reactor.fire("exchange-error", error)
             return
