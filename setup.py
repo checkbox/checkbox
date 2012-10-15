@@ -65,6 +65,7 @@ DATA_FILES = [
     ("share/apport/package-hooks/", ["apport/source_checkbox.py"]),
     ("share/apport/general-hooks/", ["apport/checkbox.py"])]
 
+
 def changelog_version(changelog="debian/changelog"):
     version = "dev"
     if posixpath.exists(changelog):
