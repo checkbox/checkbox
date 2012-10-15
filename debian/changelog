@@ -23,6 +23,8 @@ checkbox (0.14.10) quantal; urgency=low
   [Sylvain Pineau]
   * [FEATURE] scripts/network_restart, jobs/stress.txt.in: Added a new stress
     test: network restart.
+  * debian/control: Fixed a missing dependency (python3-pkg-resources) to build
+    the package (LP: #1066502)
 
  -- Daniel Manrique <roadmr@ubuntu.com>  Fri, 12 Oct 2012 10:47:26 -0400
 
