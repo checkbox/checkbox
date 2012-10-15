@@ -67,7 +67,7 @@ class LaunchpadPrompt(Plugin):
         while True:
             if errors or not self.email:
                 for error in errors:
-                    self._manager.reactor.fire("prompt-error", interface, error)
+                    self._manager.reactor.fire("prompt-error", interface, str(error))
 
                 url = "file://%s" % posixpath.abspath(self.report)
 
