@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import sys
-from argparse import ArgumentParser
+from argparse import ArgumentParser, RawTextHelpFormatter, REMAINDER
 from subprocess import Popen, PIPE
 
 TESTS = ['acpiinfo',
@@ -34,10 +34,31 @@ TESTS = ['acpiinfo',
          'cstates',
          'dmar']
 
-
 def main():
-    parser = ArgumentParser(description='Tests the system BIOS using the \
-                            Firmware Test Suite')
+    description_text = 'Tests the system BIOS using the Firmware Test Suite'
+    epilog_text = ('To perform sleep testing, you will need at least some of '
+                   'the following options: \n'
+                   's3 or s4: tells fwts which type of sleep to perform.\n'
+                   '--s3-delay-delta\n'
+                   '--s3-device-check\n'
+                   '--s3-device-check-delay\n'
+                   '--s3-max-delay\n'
+                   '--s3-min-delay\n'
+                   '--s3-multiple\n'
+                   '--s3-quirks\n'
+                   '--s3-sleep-delay\n'
+                   '--s3power-sleep-delay\n\n'
+                   'Example: fwts-test --sleep s3 --s3-min-delay 30 '
+                   '--s3-multiple 10 --s3-device-check\n\n'
+                   'For further help with sleep options:\n'
+                   'fwts-test --fwts-help')
+    parser = ArgumentParser(description=description_text,
+                            epilog=epilog_text,
+                            formatter_class=RawTextHelpFormatter)
+    parser.add_argument('-l', '--log',
+                      default='/tmp/fwts_results.log',
+                      help=('Specify the location and name of the log file. '
+                            '[Default: %(default)s]'))
     group = parser.add_mutually_exclusive_group()
     group.add_argument('-c', '--cpufreq',
                       action='store_true',
@@ -46,13 +67,18 @@ def main():
     group.add_argument('-w', '--wakealarm',
                       action='store_true',
                       help='Run the fwts wakealarm test only')
-    parser.add_argument('-a', '--all',
+    group.add_argument('-a', '--all',
                       action='store_true',
                       help='Run ALL FWTS automated tests (assumes -w and -c)')
-    parser.add_argument('-l', '--log',
-                      default='/tmp/fwts_results.log',
-                      help=('Specify the location and name of the log file. '
-                            '[Default: %(default)s]'))
+    group.add_argument('-s', '--sleep',
+                      nargs=REMAINDER,
+                      help=('Perform sleep tests. All arguments after -s will '
+                            'be passed directly to fwts to perform those '
+                            'tests.'))
+    group.add_argument('--fwts-help',
+                      dest='fwts_help',
+                      action='store_true',
+                      help='Display the help info for fwts itself (lengthy)')
     args = parser.parse_args()
 
     tests = []
@@ -69,18 +95,31 @@ def main():
         tests.append('wakealarm')
     elif args.all:
         tests.extend(['wakealarm', 'cpufreq'] + TESTS)
+    elif args.sleep:
+        tests.extend(args.sleep)
     else:
         tests.extend(TESTS)
 
+    if args.fwts_help:
+        Popen('fwts -h', shell=True).communicate()[0]
+        return 0
+
+    
     # run the tests we want
-    for test in tests:
+    if args.sleep:
         command = ('fwts -q --stdout-summary -r %s %s'
-                   % (args.log, test))
-        results[test] = (Popen(command, stdout=PIPE, shell=True)
-                         .communicate()[0].strip()).decode()
+                   % (args.log, ' '.join(tests)))
+        results['sleep'] = (Popen(command, stdout=PIPE, shell=True)
+                            .communicate()[0].strip()).decode()
+    else:
+        for test in tests:
+            command = ('fwts -q --stdout-summary -r %s %s'
+                       % (args.log, test))
+            results[test] = (Popen(command, stdout=PIPE, shell=True)
+                             .communicate()[0].strip()).decode()
 
     # parse the summaries
-    for test in tests:
+    for test in results.keys():
         if results[test] == 'FAILED_CRITICAL':
             critical_fails.append(test)
         elif results[test] == 'FAILED_HIGH':

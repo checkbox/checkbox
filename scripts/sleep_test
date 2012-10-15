@@ -74,6 +74,7 @@ V0:     First draft
 
 '''
 
+import os
 import sys
 import logging
 import re
@@ -251,8 +252,8 @@ class SuspendTest():
 
             sleep_elapsed = float(sleep_end_time) - float(sleep_start_time)
             resume_elapsed = float(resume_end_time) - float(resume_start_time)
-            logging.info('Sleep elapsed: %.4f seconds' % sleep_elapsed)
-            logging.info('Resume elapsed: %.4f seconds' % resume_elapsed)
+            logging.debug('Sleep elapsed: %.4f seconds' % sleep_elapsed)
+            logging.debug('Resume elapsed: %.4f seconds' % resume_elapsed)
         else:
             if self.end_marker in loglist:
                 logging.debug('End Marker found, run appears to have completed') 
@@ -405,6 +406,10 @@ def main():
     (options, args) = parser.parse_args()
     options_dict = vars(options)
 
+    if not (os.geteuid() == 0):
+        parser.error("Must be run as root.")
+        return 1
+
     # Set up logging handler
     format = '%(asctime)s %(levelname)-8s %(message)s'
     handler = ListDictHandler()
@@ -447,6 +452,7 @@ def main():
     if options.perf:
         sleep_total = 0.0
         resume_total = 0.0
+        logging.info('='*20 + ' Test Results ' + '='*20)
         logging.info(run_result)
         for k in run_result.iterkeys():
             sleep_total += run_result[k][1]
