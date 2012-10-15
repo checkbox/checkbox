@@ -6,7 +6,7 @@ _description: Pointing device tests.
 command:
  cat <<'EOF' | run_templates -t -s 'udev_resource | filter_templates -w "category=MOUSE" -w "category=TOUCH"'
  plugin: manual
- name: input/pointing_`ls /sys$path/block`
+ name: input/pointing_`basename $path`
  requires: device.path == "$path"
  description:
   PURPOSE:
