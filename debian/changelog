@@ -5,6 +5,8 @@ checkbox (0.14.10) quantal; urgency=low
   [Brendan Donegan]
   * jobs/suspend.txt.in - make sure FWTS logs end with .log so file names
     don't get tampered with (LP: #1065932)
+  * plugins/launchpad_exchange.py - Remove call to string_to_type on
+    self.timeout, which is an int (LP: #1066967)
 
   [Daniel Manrique]
   * [FEATURE] checkbox/job.py: Fixed intltool warning about unnamed
