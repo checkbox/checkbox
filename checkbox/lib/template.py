@@ -97,7 +97,7 @@ class Template:
                 match = re.search(r"^([-_.A-Za-z0-9@]*):\s?(.*)", line)
                 if match:
                     _save(field, value, extended)
-                    field = match.groups()[0].lower()
+                    field = match.groups()[0]
                     value = match.groups()[1].rstrip()
                     extended = ""
                     continue
