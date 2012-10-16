@@ -71,8 +71,10 @@ class GtkScroller(object):
             self.icons[direction] = self._add_image(
                 validation_hbox, Gtk.STOCK_INDEX)
 
-        self.show_text(_("Please move the mouse cursor to this window."))
-        self.show_text(_("Then scroll in each direction on your touchpad."))
+        self.show_text(
+            _("Please move the mouse cursor to this window.") +
+            "\n" + 
+            _("Then scroll in each direction on your touchpad."))
 
     def _add_button(self, context, stock):
         button = self.button_factory(stock=stock)
@@ -135,10 +137,10 @@ class GtkScroller(object):
 
         Gtk.main_quit()
 
-    def show_text(self, string, widget=None):
+    def show_text(self, text, widget=None):
         if widget is None:
             widget = self.label
-        widget.set_text(widget.get_text() + "\n" + string)
+        widget.set_text(text)
 
     def found_direction(self, direction):
         direction.tested = True
@@ -184,7 +186,7 @@ def main(args):
     try:
         scroller.run()
     except KeyboardInterrupt:
-        scroller.show_text(_("Test interrupted"))
+        scroller.show_text(_("Test interrupted"), self.status)
         scroller.quit()
 
     return scroller.exit_code
