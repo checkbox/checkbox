@@ -29,7 +29,9 @@ class ErrorPrompt(Plugin):
 
     def prompt_error(self, interface,
                      primary_text, secondary_text=None, detailed_text=None):
-        interface.show_error(primary_text, secondary_text, detailed_text)
+        interface.show_error(str(primary_text),
+                             str(secondary_text),
+                             str(detailed_text))
 
 
 factory = ErrorPrompt
