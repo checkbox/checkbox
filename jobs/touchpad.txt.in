@@ -12,7 +12,6 @@ _description:
 plugin: manual
 name: touchpad/horizontal
 requires: touchpad_scroll.horizontal_scroll == 'supported'
-depends: touchpad/basic
 command: touchpad_test right left
 _description:
  PURPOSE:
@@ -26,7 +25,6 @@ _description:
 plugin: manual
 name: touchpad/vertical
 requires: touchpad_scroll.vertical_scroll == 'supported'
-depends: touchpad/basic
 command: touchpad_test up down
 _description:
  PURPOSE:
