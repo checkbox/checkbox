@@ -7,6 +7,9 @@ checkbox (0.14.10) quantal; urgency=low
     don't get tampered with (LP: #1065932)
   * plugins/launchpad_exchange.py - Remove call to string_to_type on
     self.timeout, which is an int (LP: #1066967)
+  * checkbox/lib/templates.py, jobs/resources.txt.in, jobs/wireless.txt.in,
+    jobs/suspend.txt.in - Don't try and coerce keys of resource jobs to
+    lowercase, as it upset the core of Checkbox (LP: #1067280)
 
   [Daniel Manrique]
   * [FEATURE] checkbox/job.py: Fixed intltool warning about unnamed
