@@ -20,6 +20,7 @@ checkbox (0.14.10) quantal; urgency=low
   * plugins/environment_info.py: Enabling environment to take precedence
     over configuration files.
   * setup.py: added support for installing in virtualenv
+  * setup.py: made build dependency on qt4-make optional
 
   [Sean Feole]
   * [FEATURE] jobs/optical.txt.in: modified existing automation test
@@ -36,7 +37,7 @@ checkbox (0.14.10) quantal; urgency=low
     all partitions (LP: #1065862)
   * [FEATURE] jobs/stress.txt.in: Added a wireless hotkey stress test.
 
- -- Daniel Manrique <roadmr@ubuntu.com>  Fri, 12 Oct 2012 10:47:26 -0400
+ -- Marc Tardif <marc@ubuntu.com>  Fri, 12 Oct 2012 10:47:26 -0400
 
 checkbox (0.14.6) quantal; urgency=low
 
