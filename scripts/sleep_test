@@ -234,11 +234,10 @@ class SuspendTest():
                 if 'PM: Syncing filesystems' in loglist[idx]:
                     sleep_start_time = re.split('[\[\]]',loglist[idx])[1].strip()
                     logging.debug('Sleep started at %s' % sleep_start_time)
-                if 'Extended CMOS year: 2000' in loglist[idx] \
-                and 'ACPI: Low-level resume complete' in loglist[idx+1]:
-                    sleep_end_time = re.split('[\[\]]',loglist[idx])[1].strip()
+                if 'ACPI: Low-level resume complete' in loglist[idx]:
+                    sleep_end_time = re.split('[\[\]]',loglist[idx-1])[1].strip()
                     logging.debug('Sleep ended at %s' % sleep_end_time)
-                    resume_start_time = re.split('[\[\]]', loglist[idx+1])[1].strip()
+                    resume_start_time = re.split('[\[\]]', loglist[idx])[1].strip()
                     logging.debug('Resume started at %s' % resume_start_time)
                     idx += 1
                 if 'Restarting tasks' in loglist[idx]:
