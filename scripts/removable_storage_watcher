@@ -611,8 +611,8 @@ class UDisks2StorageDeviceListener:
                       and record.value.delta_type == DELTA_TYPE_PROP
                       and record.value.prop_name == "Drive"):
                     drive_object_path = record.value.prop_value
-            logging.debug("Finished analyzing %s, found: %s,"
-                          " drive_object_path: %s", object_path, found,
+            logging.debug("Finished analyzing %s, found: %s, needs: %s"
+                          " drive_object_path: %s", object_path, found, needs,
                           drive_object_path)
             if needs != found or drive_object_path is None:
                 continue
