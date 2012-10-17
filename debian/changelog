@@ -33,6 +33,12 @@ checkbox (0.14.10) quantal; urgency=low
     all partitions (LP: #1065862)
   * [FEATURE] jobs/stress.txt.in: Added a wireless hotkey stress test.
 
+  [Zygmunt Krynicki]
+  * scripts/removable_storage_watcher - properly detect removal of 'firewire',
+    'usb' and 'sdio devices' when either or both 'ata_serial_esata' or 'scsi'
+    were provided on command line, in addition to the device actually being
+    manipulated. (LP: #1066948)
+
  -- Daniel Manrique <roadmr@ubuntu.com>  Fri, 12 Oct 2012 10:47:26 -0400
 
 checkbox (0.14.6) quantal; urgency=low

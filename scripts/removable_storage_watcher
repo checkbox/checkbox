@@ -564,8 +564,6 @@ class UDisks2StorageDeviceListener:
             # empty, as is the case with eSATA devices, do not require the
             # filesystem to be mounted as gvfs may choose not to mount it
             # automatically.
-            if "" in self._desired_connection_buses:
-                needs.remove('mounted')
             found = set()
             drive_object_path = None
             object_block_device = None
@@ -573,6 +571,14 @@ class UDisks2StorageDeviceListener:
                 # Skip changes opposite to the ones we need
                 if record.delta_dir != self._desired_delta_dir:
                     continue
+                # For devices with empty "ConnectionBus" property, don't
+                # require the device to be mounted
+                if (record.value.iface_name ==
+                    "org.freedesktop.UDisks2.Drive"
+                    and record.value.delta_type == DELTA_TYPE_PROP
+                    and record.value.prop_name == "ConnectionBus"
+                    and record.value.prop_value == ""):
+                    needs.remove('mounted')
                 # Detect block devices designated for filesystems
                 if (record.value.iface_name ==
                     "org.freedesktop.UDisks2.Block"
