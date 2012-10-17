@@ -25,6 +25,8 @@ checkbox (0.14.10) quantal; urgency=low
   * setup.py: added support for installing in virtualenv
   * setup.py: made build dependency on qt4-make optional
   * debian/control: Added python3-gi to run checkbox-qt.
+  * jobs/input.txt.in, jobs/touchpad.txt.in: Added input/pointing tests
+    and simplified horizontal/vertical scrolling tests.
 
   [Sean Feole]
   * [FEATURE] jobs/optical.txt.in: modified existing automation test
