@@ -60,8 +60,9 @@ class GtkScroller(object):
         self.label = self._add_label(vbox)
         button_hbox = self._add_hbox(vbox)
         validation_hbox = self._add_hbox(vbox)
-        exit_button = self._add_button(vbox, Gtk.STOCK_CLOSE)
-        exit_button.connect("clicked", lambda w: self.quit())
+        self.status = self._add_label(vbox)
+        self.exit_button = self._add_button(vbox, Gtk.STOCK_CLOSE)
+        self.exit_button.connect("clicked", lambda w: self.quit())
 
         # Add widgets for each direction.
         self.icons = {}
@@ -70,8 +71,10 @@ class GtkScroller(object):
             self.icons[direction] = self._add_image(
                 validation_hbox, Gtk.STOCK_INDEX)
 
-        self.show_text(_("Please move the mouse cursor to this window."))
-        self.show_text(_("Then scroll in each direction on your touchpad."))
+        self.show_text(
+            _("Please move the mouse cursor to this window.") +
+            "\n" + 
+            _("Then scroll in each direction on your touchpad."))
 
     def _add_button(self, context, stock):
         button = self.button_factory(stock=stock)
@@ -124,9 +127,7 @@ class GtkScroller(object):
 
         Gtk.main()
 
-    def quit(self, exit_code=EXIT_WITH_FAILURE):
-        self.exit_code = exit_code
-
+    def quit(self):
         # Reset touchpad settings.
         touchpad_settings = Gio.Settings.new(self.touchpad_key)
         touchpad_settings.set_boolean(
@@ -136,8 +137,10 @@ class GtkScroller(object):
 
         Gtk.main_quit()
 
-    def show_text(self, string):
-        self.label.set_text(self.label.get_text() + "\n" + string)
+    def show_text(self, text, widget=None):
+        if widget is None:
+            widget = self.label
+        widget.set_text(text)
 
     def found_direction(self, direction):
         direction.tested = True
@@ -147,8 +150,10 @@ class GtkScroller(object):
 
     def check_directions(self):
         if all([direction.tested for direction in self.directions]):
-            self.show_text(_("All required directions have been tested!"))
-            self.quit(EXIT_WITH_SUCCESS)
+            self.show_text(
+                _("All required directions have been tested!"), self.status)
+            self.exit_code = EXIT_WITH_SUCCESS
+            self.exit_button.grab_focus()
 
     def on_scroll(self, window, event):
         for direction in self.directions:
@@ -181,7 +186,7 @@ def main(args):
     try:
         scroller.run()
     except KeyboardInterrupt:
-        scroller.show_text(_("Test interrupted"))
+        scroller.show_text(_("Test interrupted"), self.status)
         scroller.quit()
 
     return scroller.exit_code
