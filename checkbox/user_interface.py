@@ -29,10 +29,20 @@ from gettext import gettext as _
 
 from checkbox.contrib.REThread import REThread
 
-from checkbox.lib.environ import add_variable, get_variable, remove_variable
+from checkbox.lib.environ import (
+    add_variable,
+    get_variable,
+    remove_variable,
+    )
 
-from checkbox.job import (FAIL, PASS, UNINITIATED,
-    UNRESOLVED, UNSUPPORTED, UNTESTED)
+from checkbox.job import (
+    FAIL,
+    PASS,
+    UNINITIATED,
+    UNRESOLVED,
+    UNSUPPORTED,
+    UNTESTED,
+    )
 from checkbox.reactor import StopAllException
 
 
@@ -83,12 +93,21 @@ class UserInterface:
         logging.info(text)
         return default
 
-    def show_error(self, primary_text,
-                   secondary_text=None, detailed_text=None):
+    def show_error(
+        self, primary_text, secondary_text=None, detailed_text=None):
         text = filter(None, [primary_text, secondary_text, detailed_text])
         text = '\n'.join(text)
         logging.error(text)
         raise StopAllException("Error: %s" % text)
+
+    def show_warning(
+        self, primary_text, secondary_text=None, detailed_text=None):
+        try:
+            self.show_error(primary_text, secondary_text, detailed_text)
+        except StopAllException:
+            # The only difference with show_error for now is that warnings
+            # don't stop the reactor.
+            pass
 
     def show_progress(self, message, function, *args, **kwargs):
         self.show_progress_start(message)
@@ -138,8 +157,8 @@ class UserInterface:
 
         Display an error dialog if everything fails."""
 
-        # If we are called through sudo, determine the real user id and run the
-        # browser with it to get the user's web browser settings.
+        # If we are called through sudo, determine the real user id and
+        # run the browser with it to get the user's web browser settings.
         try:
             uid = int(get_variable("SUDO_UID"))
             gid = int(get_variable("SUDO_GID"))
@@ -149,67 +168,78 @@ class UserInterface:
             gid = None
             sudo_prefix = []
 
-        # figure out appropriate web browser
+        # if ksmserver is running, try kfmclient
         try:
-            # if ksmserver is running, try kfmclient
-            try:
-                if os.getenv("DISPLAY") and \
-                        subprocess.call(["pgrep", "-x", "-u", str(uid), "ksmserver"],
-                                stdout=subprocess.PIPE, stderr=subprocess.PIPE) == 0:
-                    subprocess.Popen(sudo_prefix + ["kfmclient", "openURL", url])
-                    return
-            except OSError:
-                pass
+            if (os.getenv("DISPLAY") and
+                    subprocess.call(
+                        ["pgrep", "-x", "-u", str(uid), "ksmserver"],
+                        stdout=subprocess.PIPE, stderr=subprocess.PIPE) == 0):
+                subprocess.Popen(sudo_prefix + ["kfmclient", "openURL", url])
+                return
+        except OSError:
+            pass
 
-            # if gnome-session is running, try gnome-open; special-case firefox
-            # (and more generally, mozilla browsers) and epiphany to open a new window
-            # with respectively -new-window and --new-window; special-case chromium-browser
-            # to allow file:// URLs as needed by the checkbox report.
-            try:
-                if os.getenv("DISPLAY") and \
-                        subprocess.call(["pgrep", "-x", "-u", str(uid), "gnome-panel|gconfd-2"],
-                                stdout=subprocess.PIPE, stderr=subprocess.PIPE) == 0:
-                    from gi.repository import Gio
+        # if gnome-session is running, try gnome-open; special-case
+        # firefox (and more generally, mozilla browsers) and epiphany
+        # to open a new window with respectively -new-window and
+        # --new-window; special-case chromium-browser to allow file://
+        # URLs as needed by the checkbox report.
+        try:
+            if (os.getenv("DISPLAY") and
+                subprocess.call(
+                    ["pgrep", "-x", "-u", str(uid), "gnome-panel|gconfd-2"],
+                    stdout=subprocess.PIPE, stderr=subprocess.PIPE) == 0):
+                from gi.repository import Gio
 
-                    preferred_xml_app = Gio.app_info_get_default_for_type("application/xml",False)
-                    if preferred_xml_app:
-                        preferred_browser = preferred_xml_app.get_executable()
-                        browser = re.match("((firefox|seamonkey|flock)[^\s]*)", preferred_browser)
-                        if browser:
-                            subprocess.Popen(sudo_prefix + [browser.group(0), "-new-window", url])
-                            return
-
-                        browser = re.match("(epiphany[^\s]*)", preferred_browser)
-                        if browser:
-                            subprocess.Popen(sudo_prefix + [browser.group(0), "--new-window", url])
-                            return
-                        
-                        browser = re.match("(chromium-browser[^\s]*)", preferred_browser)
-                        if browser:
-                            subprocess.Popen(sudo_prefix + [browser.group(0), "--allow-file-access-from-files", url])
-                            return
-
-                        subprocess.Popen(sudo_prefix + [preferred_browser % url], shell=True)
+                preferred_xml_app = Gio.app_info_get_default_for_type(
+                    "application/xml", False)
+                if preferred_xml_app:
+                    preferred_browser = preferred_xml_app.get_executable()
+                    browser = re.match(
+                        "((firefox|seamonkey|flock)[^\s]*)",
+                        preferred_browser)
+                    if browser:
+                        subprocess.Popen(
+                            sudo_prefix +
+                            [browser.group(0), "-new-window", url])
                         return
 
-                    subprocess.Popen(sudo_prefix + ["gnome-open", url])
+                    browser = re.match("(epiphany[^\s]*)", preferred_browser)
+                    if browser:
+                        subprocess.Popen(
+                            sudo_prefix +
+                            [browser.group(0), "--new-window", url])
+                        return
+
+                    browser = re.match(
+                        "(chromium-browser[^\s]*)", preferred_browser)
+                    if browser:
+                        subprocess.Popen(
+                            sudo_prefix +
+                            [browser.group(0),
+                                "--allow-file-access-from-files", url])
+                        return
+
+                    subprocess.Popen(
+                        sudo_prefix +
+                        [preferred_browser % url], shell=True)
                     return
-            except OSError:
-                pass
 
-            # fall back to webbrowser
-            if uid and gid:
-                os.setgroups([gid])
-                os.setgid(gid)
-                os.setuid(uid)
-                remove_variable("SUDO_USER")
-                add_variable("HOME", pwd.getpwuid(uid).pw_dir)
-
-            webbrowser.open(url, new=True, autoraise=True)
-            return
-
-        except Exception as e:
+                subprocess.Popen(sudo_prefix + ["gnome-open", url])
+                return
+        except OSError:
             pass
+
+        # fall back to webbrowser
+        if uid and gid:
+            os.setgroups([gid])
+            os.setgid(gid)
+            os.setuid(uid)
+            remove_variable("SUDO_USER")
+            add_variable("HOME", pwd.getpwuid(uid).pw_dir)
+
+        webbrowser.open(url, new=True, autoraise=True)
+        return
 
     def show_report(self, text, results):
         """
@@ -225,5 +255,3 @@ class UserInterface:
         about each job.
         """
         pass
-        
-
