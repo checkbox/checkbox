@@ -3,7 +3,15 @@ name: power-management/hibernate_advanced
 depends: power-management/rtc
 requires: package.name == 'fwts'
 user: root
-command: fwts s4 --s4-device-check --s4-device-check-delay=30 --s4-sleep-delay=120 -r $CHECKBOX_DATA/hibernate-single.log
+command:
+ if type -P fwts >/dev/null; then
+  echo "Calling fwts"
+  fwts_test -l $CHECKBOX_DATA/hibernate-single.log -s s4 --s4-device-check --s4-device-check-delay=30 --s4-sleep-delay=120
+  grep 'Critical failures: NONE' $CHECKBOX_DATA/suspend_single_log
+ else
+  echo "Calling sleep_test"
+  sleep_test -s disk -w 120
+ fi
 _description:
  PURPOSE:
      This test will check to make sure your system can successfully hibernate (if supported)

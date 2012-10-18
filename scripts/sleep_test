@@ -74,11 +74,13 @@ V0:     First draft
 
 '''
 
+import os
 import sys
 import logging
+import re
 from subprocess import call
-from optparse import OptionParser
-
+from optparse import OptionParser, OptionGroup
+from syslog import *
 
 class ListDictHandler(logging.StreamHandler):
     '''
@@ -122,7 +124,7 @@ class SuspendTest():
     def CanWeSleep(self, mode):
         '''
         Test to see if S3 state is available to us.  /proc/acpi/* is old
-        and will be deprecated, using /sys/power to maintine usefulness for
+        and will be deprecated, using /sys/power to maintain usefulness for
         future kernels.
 
         '''
@@ -183,18 +185,91 @@ class SuspendTest():
         pm-suspend seems to be the most reliable way to go.
 
         '''
+        # Set up our start and finish markers
+        self.time_stamp = self.GetCurrentTime()
+        self.start_marker = 'CHECKBOX SLEEP TEST START %s' % self.time_stamp
+        self.end_marker = 'CHECKBOX SLEEP TEST STOP %s' % self.time_stamp
+        self.MarkLog(self.start_marker)
+
         if mode == 'mem':
             status = call('/usr/sbin/pm-suspend')
         elif mode == 'disk':
             status = call('/usr/sbin/pm-hibernate')
         else:
-            logging.debug('Unknown sleep state passed')
+            logging.debug('Unknown sleep state passed: %s' % mode)
             status == 1
 
         if status == 0:
             logging.debug('Successful suspend')
         else:
             logging.debug('Error while running pm-suspend')
+        self.MarkLog(self.end_marker)
+
+    def GetResults(self,mode,perf):
+        '''
+        This will parse /var/log/messages for our start and end markers. Then 
+        it'll find a few key phrases that are part of the sleep and resume 
+        process, grab their timestamps, Bob's your Uncle and return a 
+        three-tuple consisting of: (PASS/FAIL,Sleep elapsed time, Resume 
+        elapsed time)
+        '''
+        # figure out our elapsed time
+        logfile = '/var/log/syslog'
+        log_fh = open(logfile,'r')
+        line = ''
+        run_complete = 'Fail'
+        sleep_start_time = 0.0
+        sleep_end_time = 0.0
+        resume_start_time = 0.0
+        resume_end_time = 0.0
+
+        while self.start_marker not in line:
+            line = log_fh.readline()
+            if self.start_marker in line:
+                logging.debug("Found Start Marker")
+                loglist = log_fh.readlines()
+
+        if perf:
+            for idx in range(0,len(loglist)):
+                if 'PM: Syncing filesystems' in loglist[idx]:
+                    sleep_start_time = re.split('[\[\]]',loglist[idx])[1].strip()
+                    logging.debug('Sleep started at %s' % sleep_start_time)
+                if 'ACPI: Low-level resume complete' in loglist[idx]:
+                    sleep_end_time = re.split('[\[\]]',loglist[idx-1])[1].strip()
+                    logging.debug('Sleep ended at %s' % sleep_end_time)
+                    resume_start_time = re.split('[\[\]]', loglist[idx])[1].strip()
+                    logging.debug('Resume started at %s' % resume_start_time)
+                    idx += 1
+                if 'Restarting tasks' in loglist[idx]:
+                    resume_end_time = re.split('[\[\]]',loglist[idx])[1].strip()
+                    logging.debug('Resume ended at %s' % resume_end_time)
+                if self.end_marker in loglist[idx]:
+                    logging.debug('End Marker found, run appears to ' 
+                                  'have completed')
+                    run_complete = 'Pass'
+                    break
+
+            sleep_elapsed = float(sleep_end_time) - float(sleep_start_time)
+            resume_elapsed = float(resume_end_time) - float(resume_start_time)
+            logging.debug('Sleep elapsed: %.4f seconds' % sleep_elapsed)
+            logging.debug('Resume elapsed: %.4f seconds' % resume_elapsed)
+        else:
+            if self.end_marker in loglist:
+                logging.debug('End Marker found, run appears to have completed') 
+                run_complete = 'Pass'
+            sleep_elapsed = None
+            resume_elapsed = None
+
+        return (run_complete,sleep_elapsed,resume_elapsed)
+
+    def MarkLog(self,marker):
+        '''
+        Write a stamped marker to syslogd (will appear in /var/log/messages).iii
+        This is used to calculate the elapsed time for each iteration.
+        '''
+        syslog(LOG_INFO,'---' + marker + '---')
+
+
 
     def CheckSleepTime(self, sleep_time):
         '''
@@ -279,6 +354,14 @@ class SuspendTest():
 def main():
     usage = 'Usage: %prog [OPTIONS]'
     parser = OptionParser(usage)
+    group = OptionGroup(parser,"This may not work on all systems due to a" \
+                        "kernel timestamp bug when hibernating")
+    group.add_option('-p','--perf',
+                        action='store_true',
+                        default=False,
+                        help='Add some output that tells you how long it' \
+                        'takes to enter a sleep state and how long it' \
+                        'takes to resume.')
     parser.add_option('-i', '--iterations',
                         action='store',
                         type='int',
@@ -318,29 +401,41 @@ def main():
                         default=False,
                         help='Choose this to add verbose output for debug \
                         purposes')
+    parser.add_option_group(group)
     (options, args) = parser.parse_args()
     options_dict = vars(options)
 
-    # create logging device
+    if not (os.geteuid() == 0):
+        parser.error("Must be run as root.")
+        return 1
+
+    # Set up logging handler
     format = '%(asctime)s %(levelname)-8s %(message)s'
     handler = ListDictHandler()
     handler.setFormatter(logging.Formatter(format))
-    logger = logging.getLogger()
-    logger.addHandler(handler)
+    handler.setLevel(logging.INFO)
 
+    # Set up the logger
+    logger = logging.getLogger()
+    logger.setLevel(logging.DEBUG)
+     
     if options.debug:
-        logger.setLevel(logging.DEBUG)
-        logging.debug('Running with these options')
-        logging.debug(options_dict)
+        handler.setLevel(logging.DEBUG)
+        
+    logger.addHandler(handler)
+    logging.debug('Running with these options')
+    logging.debug(options_dict)
 
     suspender = SuspendTest(options.max_sleep)
+    run_result = {}
+    run_count = 0
 
     # Chcek fo the S3 state availability
     if not suspender.CanWeSleep(options.mode):
         logging.error('%s sleep state not supported' % options.mode)
         return 1
     else:
-        logging.info('%s sleep state supported, continuing test'
+        logging.debug('%s sleep state supported, continuing test'
                      % options.mode)
 
     # We run the following for the number of iterations requested
@@ -348,10 +443,32 @@ def main():
         # Set new alarm time and suspend.
         suspender.SetWakeTime(options.wake_time)
         suspender.DoSuspend(options.mode)
+        run_count += 1
+        run_result[run_count] = suspender.GetResults(options.mode,options.perf)
         if suspender.CheckAlarm(options.mode):
             logging.debug('The alarm is still set')
 
-    return 0
+    if options.perf:
+        sleep_total = 0.0
+        resume_total = 0.0
+        logging.info('='*20 + ' Test Results ' + '='*20)
+        logging.info(run_result)
+        for k in run_result.iterkeys():
+            sleep_total += run_result[k][1]
+            resume_total += run_result[k][2]
+        sleep_avg = sleep_total / run_count
+        resume_avg = resume_total / run_count
+        logging.info('Average time to sleep: %.4f' % sleep_avg)
+        logging.info('Average time to resume: %.4f' % resume_avg)
+
+    if 'Fail' in run_result.values():
+        logging.error('One or more suspend tests failed')
+        logging.error(run_result)
+        return 1
+    else:
+        logging.info('Successfully completed %s sleep iterations' %
+                     options.iterations)
+        return 0
 
 if __name__ == '__main__':
     sys.exit(main())
