@@ -37,10 +37,11 @@ TESTS = ['acpiinfo',
          'cstates',
          'dmar']
 
-def get_sleep_times(start_marker, end_marker):
+def get_sleep_times(start_marker, end_marker, sleep_time, resume_time):
     logfile = '/var/log/syslog'
     log_fh = open(logfile, 'r')
     line = ''
+    run = 'FAIL'
     sleep_start_time = 0.0
     sleep_end_time = 0.0
     resume_start_time = 0.0
@@ -61,11 +62,14 @@ def get_sleep_times(start_marker, end_marker):
         if 'Restarting tasks' in loglist[idx]:
             resume_end_time = re.split('[\[\]]',loglist[idx])[1].strip()
         if end_marker in loglist[idx]:
+            run = 'PASS'
             break
         
     sleep_elapsed = float(sleep_end_time) - float(sleep_start_time)
     resume_elapsed = float(resume_end_time) - float(resume_start_time)
-    return (sleep_elapsed, resume_elapsed)
+    if sleep_elapsed > float(sleep_time): run = 'FAIL'
+    if resume_elapsed > float(resume_time): run = 'FAIL'
+    return (run, sleep_elapsed, resume_elapsed)
 
 def average_times(runs):
     sleep_total = 0.0
@@ -73,8 +77,8 @@ def average_times(runs):
     run_count = 0
     for run in runs.keys():
         run_count +=1
-        sleep_total += runs[run][0]
-        resume_total += runs[run][1]
+        sleep_total += runs[run][1]
+        resume_total += runs[run][2]
     sleep_avg = sleep_total / run_count
     resume_avg = resume_total / run_count
     print('Average time to sleep: %0.5f' % sleep_avg)
@@ -112,15 +116,36 @@ def main():
                             formatter_class=RawTextHelpFormatter)
     parser.add_argument('-l', '--log',
                       default='/tmp/fwts_results.log',
-                      help=('Specify the location and name of the log file. '
+                      help=('Specify the location and name of the log file.\n'
                             '[Default: %(default)s]'))
+
+    sleep_args = parser.add_argument_group('Sleep Options',
+                    ('The following arguments are to only be used with the '
+                    '--sleep test option'))
+    sleep_args.add_argument('--sleep-time',
+                            dest='sleep_time',
+                            action='store',
+                            help=('The max time in seconds that a system '
+                                  'should take\nto completely enter sleep. '
+                                  'Anything more than this\ntime will cause '
+                                  'that test iteration to fail.\n'
+                                  '[Default: 10s]'))
+    sleep_args.add_argument('--resume-time',
+                            dest='resume_time',
+                            action='store',
+                            default='5',
+                            help=('Same as --sleep-time, except this applies '
+                                  'to the\ntime it takes a system to fully '
+                                  'wake from sleep.\n[Default: 5s]'))
+
+
     group = parser.add_mutually_exclusive_group()
     group.add_argument('-c', '--cpufreq',
                       action='store_true',
-                      help=('Chose this option to run '
-                            'the CPU Frequency Scaling test only'))
+                      help=('Chose this option to run the CPU Frequency\n'
+                            'Scaling test only'))
     group.add_argument('-w', '--wakealarm',
-                      action='store_true',
+                      action='store_true', 
                       help='Run the fwts wakealarm test only')
     group.add_argument('-a', '--all',
                       action='store_true',
@@ -128,11 +153,11 @@ def main():
     group.add_argument('-s', '--sleep',
                       nargs=REMAINDER,
                       action='store',
-                      help=('Perform sleep test(s) using the additional '
-                            'arguments provided after --sleep. All remaining '
-                            'items on the command line will be passed through '
-                            'to fwts for performing sleep tests.  For info on '
-                            'these extra fwts options, please see the epilog '
+                      help=('Perform sleep test(s) using the additional\n'
+                            'arguments provided after --sleep. All remaining\n'
+                            'items on the command line will be passed through\n'
+                            'to fwts for performing sleep tests.  For info on\n'
+                            'these extra fwts options, please see the epilog\n'
                             'below and the --fwts-help option.'))
     group.add_argument('--fwts-help',
                       dest='fwts_help',
@@ -148,6 +173,10 @@ def main():
     low_fails = []
     passed = []
 
+    # Enforce only using sleep opts with --sleep
+    if args.sleep_time or args.resume_time and not args.sleep:
+        parser.error('--sleep-time and --resume-time only apply to the '
+                     '--sleep testing option.')
     if args.fwts_help:
         Popen('fwts -h', shell=True).communicate()[0]
         return 0
@@ -159,19 +188,39 @@ def main():
         tests.extend(['wakealarm', 'cpufreq'] + TESTS)
     elif args.sleep:
         args.sleep = fix_sleep_args(args.sleep)
+        iterations = 1
+        # if multiple iterations are requested, we need to intercept
+        # that argument and keep it from being presented to fwts since
+        # we're handling the iterations directly.
         s3 = '--s3-multiple'
         s4 = '--s4-multiple'
-        iterations = 1
         if s3 in args.sleep:
             iterations = int(args.sleep.pop(args.sleep.index(s3)+1))
             args.sleep.remove(s3)
         if s4 in args.sleep:
             iterations = int(args.sleep.pop(args.sleep.index(s4)+1))
             args.sleep.remove(s4)
+        # if we've passed our custom sleep arguments for resume or sleep
+        # time, we need to intercept those as well.
+        resume_time_arg = '--resume-time'
+        sleep_time_arg = '--sleep-time'
+        if resume_time_arg in args.sleep:
+            args.resume_time = int(args.sleep.pop(
+                                    args.sleep.index(resume_time_arg)+1))
+            args.sleep.remove(resume_time_arg)
+        if sleep_time_arg in args.sleep:
+            args.sleep_time = int(args.sleep.pop(
+                                    args.sleep.index(sleep_time_arg)+1))
+            args.sleep.remove(sleep_time_arg)
+        # if we still haven't set a sleep or resume time, use defauts.
+        if not args.sleep_time:
+            args.sleep_time = 10
+        if not args.resume_time:
+            args.resume_time = 5
         tests.extend(args.sleep)
     else:
         tests.extend(TESTS)
-    
+
     # run the tests we want
     if args.sleep:
         iteration_results = {}
@@ -186,12 +235,17 @@ def main():
             results['sleep'] = (Popen(command, stdout=PIPE, shell=True)
                                 .communicate()[0].strip()).decode()
             syslog(LOG_INFO, '---' + end_marker + '---' + str(time()))
-            iteration_results[iteration] = get_sleep_times(start_marker, end_marker)
-            print(' - Cycle %s: Sleep Elapsed: %0.5f    Resume Elapsed: %0.5f'
-                  % (iteration, 
+            iteration_results[iteration] = get_sleep_times(start_marker,
+                                            end_marker, args.sleep_time, args.resume_time)
+            print(' - Cycle %s: Status: %s  Sleep Elapsed: %0.5f    '
+                  'Resume Elapsed: %0.5f' % (iteration, 
                      iteration_results[iteration][0],
-                     iteration_results[iteration][1]))
+                     iteration_results[iteration][1],
+                     iteration_results[iteration][2]))
         average_times(iteration_results)
+        for run in iteration_results.keys():
+            if 'FAIL' in iteration_results[run]:
+                results['sleep'] = 'FAILED_HIGH'
     else:
         for test in tests:
             command = ('fwts -q --stdout-summary -r %s %s'
