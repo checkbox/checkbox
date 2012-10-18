@@ -290,7 +290,7 @@ def main():
                         'that test iteration will fail. Default is %default')
     group.add_option('--resume-time',
                         action='store',
-                        default=5,
+                        default=3,
                         help='Exactly like --sleep-time, but applies to the '\
                         'time the system takes to resume from sleep. Default '\
                         'is %default')
