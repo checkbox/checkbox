@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#! /usr/bin/python3
 
 import sys
 import re
@@ -67,21 +67,27 @@ def get_sleep_times(start_marker, end_marker):
     resume_elapsed = float(resume_end_time) - float(resume_start_time)
     return (sleep_elapsed, resume_elapsed)
 
-def get_average_times(runs):
+def average_times(runs):
     sleep_total = 0.0
     resume_total = 0.0
     run_count = 0
-    print('='*20 + ' Test Results ' + '='*20)
     for run in runs.keys():
         run_count +=1
-        print(' - Cycle %s: Sleep Elapsed: %0.5f    Resume Elapsed: %0.5f'
-              % (run, runs[run][0], runs[run][1]))
         sleep_total += runs[run][0]
         resume_total += runs[run][1]
     sleep_avg = sleep_total / run_count
     resume_avg = resume_total / run_count
     print('Average time to sleep: %0.5f' % sleep_avg)
     print('Average time to resume: %0.5f' % resume_avg)
+
+def fix_sleep_args(args):
+    new_args = []
+    for arg in args:
+        if "=" in arg:
+            new_args.extend(arg.split('='))
+        else:
+            new_args.append(arg)
+    return new_args
 
 def main():
     description_text = 'Tests the system BIOS using the Firmware Test Suite'
@@ -152,6 +158,7 @@ def main():
     elif args.all:
         tests.extend(['wakealarm', 'cpufreq'] + TESTS)
     elif args.sleep:
+        args.sleep = fix_sleep_args(args.sleep)
         s3 = '--s3-multiple'
         s4 = '--s4-multiple'
         iterations = 1
@@ -168,6 +175,7 @@ def main():
     # run the tests we want
     if args.sleep:
         iteration_results = {}
+        print('='*20 + ' Test Results ' + '='*20)
         for iteration in range(0,iterations):
             timestamp = int(time())
             start_marker = 'CHECKBOX SLEEP TEST START %s' % timestamp
@@ -179,16 +187,17 @@ def main():
                                 .communicate()[0].strip()).decode()
             syslog(LOG_INFO, '---' + end_marker + '---' + str(time()))
             iteration_results[iteration] = get_sleep_times(start_marker, end_marker)
-        get_average_times(iteration_results)
-
+            print(' - Cycle %s: Sleep Elapsed: %0.5f    Resume Elapsed: %0.5f'
+                  % (iteration, 
+                     iteration_results[iteration][0],
+                     iteration_results[iteration][1]))
+        average_times(iteration_results)
     else:
         for test in tests:
             command = ('fwts -q --stdout-summary -r %s %s'
                        % (args.log, test))
             results[test] = (Popen(command, stdout=PIPE, shell=True)
                              .communicate()[0].strip()).decode()
-
-    
 
     # parse the summaries
     for test in results.keys():
