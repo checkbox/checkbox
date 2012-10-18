@@ -235,17 +235,19 @@ def main():
             results['sleep'] = (Popen(command, stdout=PIPE, shell=True)
                                 .communicate()[0].strip()).decode()
             syslog(LOG_INFO, '---' + end_marker + '---' + str(time()))
-            iteration_results[iteration] = get_sleep_times(start_marker,
+            if 's4' not in args.sleep:
+                iteration_results[iteration] = get_sleep_times(start_marker,
                                             end_marker, args.sleep_time, args.resume_time)
-            print(' - Cycle %s: Status: %s  Sleep Elapsed: %0.5f    '
+                print(' - Cycle %s: Status: %s  Sleep Elapsed: %0.5f    '
                   'Resume Elapsed: %0.5f' % (iteration, 
                      iteration_results[iteration][0],
                      iteration_results[iteration][1],
                      iteration_results[iteration][2]))
-        average_times(iteration_results)
-        for run in iteration_results.keys():
-            if 'FAIL' in iteration_results[run]:
-                results['sleep'] = 'FAILED_HIGH'
+        if 's4' not in args.sleep:
+            average_times(iteration_results)
+            for run in iteration_results.keys():
+                if 'FAIL' in iteration_results[run]:
+                    results['sleep'] = 'FAILED_HIGH'
     else:
         for test in tests:
             command = ('fwts -q --stdout-summary -r %s %s'
