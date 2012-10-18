@@ -14,6 +14,9 @@ checkbox (0.14.10) quantal; urgency=low
     suspend_advanced so that they will run in manual testing (LP: #1067678)
   * scripts/resolution_test - Slightly clarify output of script so that it's
     a bit more obvious why it failed (LP: #1065976)
+  * Allow verification and interaction to be used as aliases for manual tests
+    so that we can distinguish between tests which are partly manual and
+    those which are entirely manual.
 
   [Daniel Manrique]
   * [FEATURE] checkbox/job.py: Fixed intltool warning about unnamed

@@ -23,8 +23,20 @@ from checkbox.contrib.persist import Persist, MemoryBackend
 from checkbox.job import JobStore, PASS, UNINITIATED, UNTESTED
 from checkbox.properties import Int, Path
 from checkbox.plugin import Plugin
-from checkbox.user_interface import NEXT, PREV, CONTINUE_ANSWER, \
-                                    RESTART_ANSWER, RERUN_ANSWER
+from checkbox.user_interface import (
+    NEXT,
+    PREV,
+    CONTINUE_ANSWER,
+    RESTART_ANSWER,
+    RERUN_ANSWER,
+)
+
+
+def plugin_alias(plugin):
+    if plugin in ('verification', 'interaction'):
+        return 'manual'
+    else:
+        return plugin
 
 
 class JobsPrompt(Plugin):
@@ -46,7 +58,7 @@ class JobsPrompt(Plugin):
     def store(self):
         if self._store is None:
             self._store = JobStore(self.persist, self.store_directory,
-                self.store_directory_size)
+                                   self.store_directory_size)
 
         return self._store
 
@@ -58,17 +70,16 @@ class JobsPrompt(Plugin):
         self._store = None
         self._fail_current = False
 
-        for (rt, rh) in [
-             ("expose-msgstore", self.expose_msgstore),
-             ("begin-persist", self.begin_persist),
-             ("begin-recover", self.begin_recover),
-             ("ignore-jobs", self.ignore_jobs),
-             ("prompt-job", self.prompt_job),
-             ("prompt-jobs", self.prompt_jobs),
-             ("prompt-finish", self.prompt_finish),
-             ("report", self.report),
-             ("report-job", self.report_job),
-             ("report-jobs", self.report_jobs)]:
+        for (rt, rh) in [("expose-msgstore", self.expose_msgstore),
+                         ("begin-persist", self.begin_persist),
+                         ("begin-recover", self.begin_recover),
+                         ("ignore-jobs", self.ignore_jobs),
+                         ("prompt-job", self.prompt_job),
+                         ("prompt-jobs", self.prompt_jobs),
+                         ("prompt-finish", self.prompt_finish),
+                         ("report", self.report),
+                         ("report-job", self.report_job),
+                         ("report-jobs", self.report_jobs)]:
             self._manager.reactor.call_on(rt, rh)
 
         #This should fire first thing during the gathering phase.
@@ -99,7 +110,7 @@ class JobsPrompt(Plugin):
 
     def end_gather(self):
         #Back to saving data very carefully once gathering is done.
-        self.store.safe_file_closing = True 
+        self.store.safe_file_closing = True
 
     def ignore_jobs(self, jobs):
         self._ignore = jobs
@@ -107,7 +118,8 @@ class JobsPrompt(Plugin):
     def report_job(self, job):
         # Update job
         job.setdefault("status", UNINITIATED)
-        self._manager.reactor.fire("report-%s" % job["plugin"], job)
+        self._manager.reactor.fire("report-%s" % plugin_alias(job["plugin"]),
+                                   job)
 
     def report_jobs(self, jobs):
         for job in jobs:
@@ -127,11 +139,13 @@ class JobsPrompt(Plugin):
                 # Skip if any message in the depends doesn't pass
                 depends = job["depends"]
                 for message in messages:
-                    if message["name"] in depends \
-                       and message["status"] != PASS:
+                    if message["name"] in depends and \
+                       message["status"] != PASS:
                         return
 
-            self._manager.reactor.fire("prompt-%s" % job["plugin"], interface, job)
+            self._manager.reactor.fire("prompt-%s" %
+                                       plugin_alias(job["plugin"]),
+                                       interface, job)
 
     def prompt_jobs(self, interface):
         while True:
@@ -143,7 +157,8 @@ class JobsPrompt(Plugin):
                 msg_to_fail = self.store.get_pending_messages(1)
                 job_to_fail = msg_to_fail[0]
                 job_to_fail["status"] = "fail"
-                logging.warning("Marking job %s as failed at user request" % job_to_fail["name"])
+                logging.warning("Marking job %s as failed"
+                                "at user request" % job_to_fail["name"])
                 self.store.update(job_to_fail)
                 self.store.add_pending_offset()
                 self._fail_current = False
@@ -156,7 +171,7 @@ class JobsPrompt(Plugin):
             pending_count = self.store.count_pending_messages()
 
             progress = (done_count, done_count + pending_count)
-            self._manager.reactor.fire("set-progress",progress)
+            self._manager.reactor.fire("set-progress", progress)
 
             job = messages[0]
             self._manager.reactor.fire("prompt-job", interface, job)
@@ -180,7 +195,8 @@ class JobsPrompt(Plugin):
         suites = [m for m in messages if m.get("type") == "suite"]
         self._manager.reactor.fire("report-suites", suites)
 
-        attachments = [m for m in messages if m.get("type") == "attachment" and "data" in m]
+        attachments = [m for m in messages
+                      if m.get("type") == "attachment" and "data" in m]
         self._manager.reactor.fire("report-attachments", attachments)
 
 

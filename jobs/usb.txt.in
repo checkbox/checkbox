@@ -32,7 +32,7 @@ _description:
  VERIFICATION:
      Did the device work as expected?
 
-plugin: manual
+plugin: interaction
 name: usb/insert
 depends: usb/detect
 command: removable_storage_watcher insert usb
