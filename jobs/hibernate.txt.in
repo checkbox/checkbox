@@ -6,8 +6,7 @@ user: root
 command:
  if type -P fwts >/dev/null; then
   echo "Calling fwts"
-  fwts_test -l $CHECKBOX_DATA/hibernate-single.log -s s4 --s4-device-check --s4-device-check-delay=30 --s4-sleep-delay=120
-  grep 'Critical failures: NONE' $CHECKBOX_DATA/suspend_single_log
+  fwts_test -l $CHECKBOX_DATA/hibernate-single -s s4 --s4-device-check --s4-device-check-delay=30 --s4-sleep-delay=120
  else
   echo "Calling sleep_test"
   sleep_test -s disk -w 120
