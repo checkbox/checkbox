@@ -31,6 +31,8 @@ checkbox (0.14.10) quantal; urgency=low
   * debian/control: Added python3-gi to run checkbox-qt.
   * jobs/input.txt.in, jobs/touchpad.txt.in: Added input/pointing tests
     and simplified horizontal/vertical scrolling tests.
+  * scripts/touchpad_scroll_resource, scripts/xinput_resource: Replaced
+    the touchpad_scroll_resource by reusing the xinput_resource script.
 
   [Sean Feole]
   * [FEATURE] jobs/optical.txt.in: modified existing automation test

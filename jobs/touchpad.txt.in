@@ -11,7 +11,9 @@ _description:
 
 plugin: manual
 name: touchpad/horizontal
-requires: touchpad_scroll.horizontal_scroll == 'supported'
+requires:
+  xinput.touch_mode == 'dependent'
+  'Button Horiz Wheel Left' in xinput.button_labels and 'Button Horiz Wheel Right' in xinput.button_labels
 command: touchpad_test right left
 _description:
  PURPOSE:
@@ -24,7 +26,9 @@ _description:
 
 plugin: manual
 name: touchpad/vertical
-requires: touchpad_scroll.vertical_scroll == 'supported'
+requires:
+  xinput.touch_mode == 'dependent'
+  'Button Horiz Up' in xinput.button_labels and 'Button Horiz Down' in xinput.button_labels
 command: touchpad_test up down
 _description:
  PURPOSE:
