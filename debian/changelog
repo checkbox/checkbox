@@ -12,6 +12,8 @@ checkbox (0.14.10) quantal; urgency=low
     lowercase, as it upset the core of Checkbox (LP: #1067280)
   * jobs/suspend.txt.in - created new batch of wireless tests depending only on
     suspend_advanced so that they will run in manual testing (LP: #1067678)
+  * scripts/resolution_test - Slightly clarify output of script so that it's
+    a bit more obvious why it failed (LP: #1065976)
 
   [Daniel Manrique]
   * [FEATURE] checkbox/job.py: Fixed intltool warning about unnamed
