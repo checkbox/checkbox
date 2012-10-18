@@ -20,8 +20,8 @@ def compare_resolution(min_h, min_v):
     # Evaluate just the primary display
     screen = Gdk.Screen.get_default()
     geom = screen.get_monitor_geometry(screen.get_primary_monitor())
-    print("Expected monitor dimensions: %d x %d" % (min_h, min_v))
-    print("Detected monitor dimensions: %d x %d" % (geom.width, geom.height))
+    print("Minimum acceptable display resolution: %d x %d" % (min_h, min_v))
+    print("Detected display resolution: %d x %d" % (geom.width, geom.height))
     return geom.width >= min_h and geom.height >= min_v
 
 
