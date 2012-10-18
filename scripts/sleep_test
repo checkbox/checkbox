@@ -18,60 +18,6 @@ GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-The purpose of this script is to test a system's ability to suspend to ram
-(enter the S3 sleep state) or hibernate (enter S4 sleep state)
-and then resume without loss of data, OS crashes, or any other Bad Things[tm]
-happening.
-
-As we progress forward, it's become apparent that being able to suspend and
-wake up a system during slow times while offloading that systems's load to
-another system accomplishes at least two goals.
-
-1:  The system that stays awake handling the load is more fully utilized
-2:  Un-needed systems are suspended creating savings in power usage, cooling,
-    and other assorted expenses related to datacenter operations
-
-Thus, this test will allow us to determine of Ubuntu and a given system can
-happily suspend and wake up, without experiencing any difficulties.
-
-The test will, in the most basic sense do the following:
-
-1:  Determine if the S3/S4 states are available
-2:  Set a wakeup alarm in the RTC via rtcwake
-3:  Put the system to sleep.
-4:  Wake the system and resume normal operation
-
-TO DO:
-* remove workaround once we get a fix for the pm scripts issue that causes the
-  wakealarm and alarm_IRQ entries to not be reset after resume from S4
-* Add in checks to factor in the consumer-test hibernate/suspend test cases
-
-Changelog:
-v1.2:   Removed NetworkManager class and replaced with simple call to nmcli
-v1.1:   Added handling of NetworkManager 0.9 status codes.
-v1.0:   Added code to support Hibernate (S4) and allow choice between S3 and S4
-        at run-time.
-        Created mechanism in SuspendTest() class to check /proc/driver/rtc as a
-        means to see if system woke via alarm IRQ or other means (indicating
-        that the system did not wake itself via timer.
-        Adjusted code to fail test if several conditions are not met (test to
-        see if /sys/class/rtc/rtc0/wakealarm is still set and is < current
-        epoch time and see if /proc/driver/rtc.Alarm_IRQ still says Yes).  All
-        those indicate that the system did not wake properly.
-V0.9:   Added GPL info, last bit of cleaning up.
-        Changed supid way I was handling reading files to a more appropriate
-        manner
-v0.8:   Changed CanWeSleep() to utilize /sys/power/state instead of the
-        precated /proc/acpi/sleep to maintain usefulness in future kernels.
-V0.7:   Fixed error in calculating how long suspend cycle lasted
-V0.6:   Added facility for setting maximum wait time (used to test whether we
-        woke automagically or manually.
-V0.5:   Added SuspendTest class to handle all the hard work.
-        Added the rest of the debug logging stuff to get some useful output
-        when we use -d
-V0:     First draft
-
 '''
 
 import os
@@ -115,8 +61,7 @@ class SuspendTest():
     testing.
 
     '''
-    def __init__(self, max_sleep):
-        self.max_sleep_time = max_sleep
+    def __init__(self):
         self.wake_time = 0
         self.current_time = 0
         self.last_time = 0
@@ -269,36 +214,6 @@ class SuspendTest():
         '''
         syslog(LOG_INFO,'---' + marker + '---')
 
-
-
-    def CheckSleepTime(self, sleep_time):
-        '''
-        This code will most likely be removed soon. In all but actal test, it
-        has been superceded by CheckAlarm().  This is no longe called, but
-        until the final decision is made to kill it or re-implement it, I will
-        leave it here.
-
-        A method for guessing if the system woke itself or was woken
-        manually.
-
-        There has got to be a better way to do this that actually detects
-        whether the system woke on a RTC alarm event instead of anything else
-        (e.g. key press, WOL packet, USB, etc)
-
-        '''
-        self.current_time = self.GetCurrentTime()
-        delta = (self.current_time - self.last_time)
-
-        if delta > self.max_sleep_time:
-            logging.debug(['Current epoch time is: %s' % self.current_time,
-                            'Wake time is too long: %s secs' % delta])
-            return False
-        else:
-            logging.debug(['Current epoch time is: %s' % self.current_time,
-                            'Suspend/Resume cycle lasted: %s seconds' %
-                            (self.current_time - self.last_time)])
-            return True
-
     def CheckAlarm(self, mode):
         '''
         A better method for checking if system woke via rtc alarm IRQ. If the
@@ -354,13 +269,14 @@ class SuspendTest():
 def main():
     usage = 'Usage: %prog [OPTIONS]'
     parser = OptionParser(usage)
-    group = OptionGroup(parser,"This may not work on all systems due to a" \
-                        "kernel timestamp bug when hibernating")
+    group = OptionGroup(parser,'This will not work for hibernat testing due ' \
+                        'to a kernel timestamp bug when doing an S4 ' \
+                        '(hibernate/resume) sleep cycle')
     group.add_option('-p','--perf',
                         action='store_true',
                         default=False,
-                        help='Add some output that tells you how long it' \
-                        'takes to enter a sleep state and how long it' \
+                        help='Add some output that tells you how long it ' \
+                        'takes to enter a sleep state and how long it ' \
                         'takes to resume.')
     parser.add_option('-i', '--iterations',
                         action='store',
@@ -377,16 +293,6 @@ def main():
                         dest='wake_time',
                         help='Sets wake up time (in seconds) in the future \
                         from now. Default is %default.')
-    parser.add_option('-m', '--max-sleep',
-                        action='store',
-                        type='int',
-                        metavar='NUM',
-                        default=120,
-                        help='Sets the maximum sleep time.  If the difference \
-                        between current_time and last_time after a suspend \
-                        cycle is greater than this, we assume something has \
-                        gone wrong and the system had to be manually woken. \
-                        Default is %default')
     parser.add_option('-s', '--sleep-state',
                         action='store',
                         default='mem',
@@ -426,7 +332,7 @@ def main():
     logging.debug('Running with these options')
     logging.debug(options_dict)
 
-    suspender = SuspendTest(options.max_sleep)
+    suspender = SuspendTest()
     run_result = {}
     run_count = 0
 
