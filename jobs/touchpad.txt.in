@@ -29,7 +29,7 @@ plugin: manual
 name: touchpad/vertical
 requires:
   xinput.touch_mode == 'dependent'
-  'Button Horiz Up' in xinput.button_labels and 'Button Horiz Down' in xinput.button_labels
+  'Button Wheel Up' in xinput.button_labels and 'Button Wheel Down' in xinput.button_labels
 command: touchpad_test up down
 _description:
  PURPOSE:
