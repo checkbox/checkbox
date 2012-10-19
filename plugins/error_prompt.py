@@ -27,11 +27,12 @@ class ErrorPrompt(Plugin):
         self._manager.reactor.call_on("prompt-error",
             self.prompt_error)
 
-    def prompt_error(self, interface,
-                     primary_text, secondary_text=None, detailed_text=None):
-        interface.show_error(str(primary_text),
-                             str(secondary_text),
-                             str(detailed_text))
+    def prompt_error(self, interface, primary_text, secondary_text=None,
+                     detailed_text=None):
+
+        args = (arg if arg is None else str(arg) for arg in (
+                primary_text, secondary_text, detailed_text))
+        interface.show_error(*args)
 
 
 factory = ErrorPrompt
