@@ -1,7 +1,6 @@
 plugin: manual
 name: power-management/hibernate_advanced
 depends: power-management/rtc
-requires: package.name == 'fwts'
 user: root
 command:
  if type -P fwts >/dev/null; then

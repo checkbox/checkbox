@@ -92,7 +92,6 @@ plugin: manual
 name: suspend/suspend_advanced
 depends: power-management/rtc suspend/network_before_suspend suspend/resolution_before_suspend suspend/wireless_before_suspend suspend/cpu_before_suspend suspend/memory_before_suspend
 requires:
- package.name == 'fwts' or package.name == 'pm-utils'
  sleep.mem == 'supported'
 user: root
 environ: CHECKBOX_DATA
@@ -118,7 +117,6 @@ plugin: shell
 name: suspend/suspend_advanced_auto
 depends: power-management/rtc
 requires:
-    package.name == 'fwts'
     sleep.mem == 'supported'
 _description:
  This is the automated version of suspend/suspend_advanced.

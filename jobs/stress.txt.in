@@ -11,7 +11,6 @@ _description:
 plugin: shell
 name: power-management/hibernate_30_cycles
 depends: power-management/rtc
-requires: package.name == 'fwts'
 user: root
 command:
  if type -P fwts >/dev/null; then
@@ -34,7 +33,6 @@ _description:
 plugin: shell
 name: power-management/suspend_30_cycles
 depends: power-management/rtc
-requires: package.name == 'fwts'
 user: root
 command: 
  if type -P fwts >/dev/null; then
@@ -57,7 +55,6 @@ _description:
 plugin: shell
 name: stress/hibernate_250_cycles
 depends: power-management/rtc
-requires: package.name == 'fwts'
 user: root
 command:
  if type -P fwts >/dev/null; then
@@ -80,7 +77,6 @@ _description:
 plugin: shell
 name: stress/suspend_250_cycles
 depends: power-management/rtc
-requires: package.name == 'fwts'
 user: root
 command:
  if type -P fwts >/dev/null; then
