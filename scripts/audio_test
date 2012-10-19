@@ -8,6 +8,7 @@ import math
 import re
 import sys
 import subprocess
+import time
 #Trick to prevent gst from hijacking argv parsing
 argv = sys.argv
 sys.argv = []
@@ -205,10 +206,18 @@ class PAVolumeController(object):
         return valid_elements[0]
 
     def _pactl_output(self, command):
-        try:
-            return subprocess.check_output(command, universal_newlines=True)
-        except (subprocess.CalledProcessError, AttributeError):
-            return False
+        #This method mainly calls pactl (hence the name). Since pactl may
+        #return a failure if the audio layer is not yet initialized, we will
+        #try running a few times in case of failure. All our invocations of 
+        #pactl should be "idempotent" so repeating them should not have 
+        #any bad effects.
+        for attempt in range(0, 3):
+            try:
+                return subprocess.check_output(command, 
+                                               universal_newlines=True)
+            except (subprocess.CalledProcessError, AttributeError):
+                time.sleep(5)
+        return False
 
 
 class FileDumper(object):
@@ -567,8 +576,8 @@ def main():
         return_value = 1
     #Is the microphone broken?
     if len(set(analyzer.spectrum)) <= 1:
-        logging.info("WARNING: Microphone seems broken, didn't even record ambient"
-              " noise")
+        logging.info("WARNING: Microphone seems broken, didn't even "
+                     "record ambient noise")
 
     #Write some files to disk for later analysis
     if args.audio:
@@ -580,12 +589,14 @@ def main():
 
     if args.spectrum:
         if args.verbose:
-            logging.info("Saving spectrum data for plotting as %s" % args.spectrum)
+            logging.info("Saving spectrum data for plotting as %s" % 
+                         args.spectrum)
         if not FileDumper().write_to_file(args.spectrum,
                                        ["%s,%s" % t for t in
                                         zip(analyzer.frequencies,
                                             analyzer.spectrum)]):
-            logging.error("Couldn't save spectrum data for plotting", file=sys.stderr)
+            logging.error("Couldn't save spectrum data for plotting", 
+                          file=sys.stderr)
 
     return return_value
 
