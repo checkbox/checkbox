@@ -49,6 +49,7 @@ _description:
 
 plugin: shell
 name: touchpad/multitouch-automated
+requires: dmi.product in ['Notebook','Laptop','Portable']
 command: xinput_resource | filter_templates -w 'class=XITouchClass' | grep -q 'touch_mode: dependent'
 _description:
  Determine whether the touchpad is detected as a multitouch device automatically.
