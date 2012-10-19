@@ -358,6 +358,7 @@ def main():
     suspender = SuspendTest()
     run_result = {}
     run_count = 0
+    fail_count = 0
 
     # Chcek fo the S3 state availability
     if not suspender.CanWeSleep(options.mode):
@@ -380,7 +381,6 @@ def main():
             logging.debug('The alarm is still set')
 
     if options.perf:
-        fail_count = 0
         sleep_total = 0.0
         resume_total = 0.0
         logging.info('=' * 20 + ' Test Results ' + '=' * 20)
