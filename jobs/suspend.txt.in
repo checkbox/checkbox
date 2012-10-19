@@ -90,7 +90,7 @@ _description:
 
 plugin: manual
 name: suspend/suspend_advanced
-depends: power-management/rtc suspend/network_before_suspend suspend/resolution_before_suspend suspend/wireless_before_suspend suspend/cpu_before_suspend suspend/memory_before_suspend
+depends: power-management/rtc
 requires:
  package.name == 'fwts' or package.name == 'pm-utils'
  sleep.mem == 'supported'
@@ -227,7 +227,7 @@ name: suspend/wireless_after_suspend
 depends: suspend/suspend_advanced suspend/wireless_before_suspend
 requires:
  device.category == 'WIRELESS'
- environment.routers == 'multiple'
+ environment.ROUTERS == 'multiple'
 command: connect_wireless && internet_test --interface=`nmcli dev list | grep -B 1 wireless | grep GENERAL.DEVICE | awk '{print $2}'` && for con in `cat $CHECKBOX_DATA/connections`; do nmcli con up uuid "$con"; done
 _description:
  This test checks that the wireless interface is working after suspending the system. It
@@ -236,10 +236,10 @@ _description:
 
 plugin: shell
 name: suspend/wireless_connection_after_suspend_wpa_bg
-depends: suspend/suspend_advanced_auto
+depends: suspend/suspend_advanced
 requires:
  device.category == 'WIRELESS'
- environment.routers == 'multiple'
+ environment.ROUTERS == 'multiple'
 user: root
 environ: WPA_BG_SSID WPA_BG_PSK
 command: trap "rm -f /etc/NetworkManager/system-connections/$WPA_BG_SSID" EXIT; create_connection $WPA_BG_SSID --security=wpa --key=$WPA_BG_PSK; internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
@@ -249,10 +249,10 @@ _description:
 
 plugin: shell
 name: suspend/wireless_connection_after_suspend_open_bg
-depends: suspend/suspend_advanced_auto
+depends: suspend/suspend_advanced
 requires:
  device.category == 'WIRELESS'
- environment.routers == 'multiple'
+ environment.ROUTERS == 'multiple'
 user: root
 environ: OPEN_BG_SSID
 command: trap "rm -f /etc/NetworkManager/system-connections/$OPEN_BG_SSID" EXIT; create_connection $OPEN_BG_SSID; internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
@@ -262,10 +262,10 @@ _description:
 
 plugin: shell
 name: suspend/wireless_connection_after_suspend_wpa_n
-depends: suspend/suspend_advanced_auto
+depends: suspend/suspend_advanced
 requires:
  device.category == 'WIRELESS'
- environment.routers == 'multiple'
+ environment.ROUTERS == 'multiple'
 user: root
 environ: WPA_N_SSID WPA_N_PSK
 command: trap "rm -f /etc/NetworkManager/system-connections/$WPA_N_SSID" EXIT; create_connection $WPA_N_SSID --security=wpa --key=$WPA_N_PSK; internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
@@ -275,10 +275,62 @@ _description:
 
 plugin: shell
 name: suspend/wireless_connection_after_suspend_open_n
+depends: suspend/suspend_advanced
+requires:
+ device.category == 'WIRELESS'
+ environment.ROUTERS == 'multiple'
+user: root
+environ: OPEN_N_SSID
+command: trap "rm -f /etc/NetworkManager/system-connections/$OPEN_N_SSID" EXIT; create_connection $OPEN_N_SSID; internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
+_description:
+ Tests that the systems wireless hardware can connect to a router using no
+ security and the 802.11n protocol after the system has been suspended.
+
+plugin: shell
+name: suspend/wireless_connection_after_suspend_wpa_bg_auto
 depends: suspend/suspend_advanced_auto
 requires:
  device.category == 'WIRELESS'
- environment.routers == 'multiple'
+ environment.ROUTERS == 'multiple'
+user: root
+environ: WPA_BG_SSID WPA_BG_PSK
+command: trap "rm -f /etc/NetworkManager/system-connections/$WPA_BG_SSID" EXIT; create_connection $WPA_BG_SSID --security=wpa --key=$WPA_BG_PSK; internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
+_description:
+ Tests that the systems wireless hardware can connect to a router using WPA
+ security and the 802.11b/g protocols after the system has been suspended.
+
+plugin: shell
+name: suspend/wireless_connection_after_suspend_open_bg_auto
+depends: suspend/suspend_advanced_auto
+requires:
+ device.category == 'WIRELESS'
+ environment.ROUTERS == 'multiple'
+user: root
+environ: OPEN_BG_SSID
+command: trap "rm -f /etc/NetworkManager/system-connections/$OPEN_BG_SSID" EXIT; create_connection $OPEN_BG_SSID; internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
+_description:
+ Tests that the systems wireless hardware can connect to a router using no
+ security and the 802.11b/g protocols after the system has been suspended.
+
+plugin: shell
+name: suspend/wireless_connection_after_suspend_wpa_n_auto
+depends: suspend/suspend_advanced_auto
+requires:
+ device.category == 'WIRELESS'
+ environment.ROUTERS == 'multiple'
+user: root
+environ: WPA_N_SSID WPA_N_PSK
+command: trap "rm -f /etc/NetworkManager/system-connections/$WPA_N_SSID" EXIT; create_connection $WPA_N_SSID --security=wpa --key=$WPA_N_PSK; internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
+_description:
+ Tests that the systems wireless hardware can connect to a router using WPA
+ security and the 802.11n protocol after the system has been suspended.
+
+plugin: shell
+name: suspend/wireless_connection_after_suspend_open_n_auto
+depends: suspend/suspend_advanced_auto
+requires:
+ device.category == 'WIRELESS'
+ environment.ROUTERS == 'multiple'
 user: root
 environ: OPEN_N_SSID
 command: trap "rm -f /etc/NetworkManager/system-connections/$OPEN_N_SSID" EXIT; create_connection $OPEN_N_SSID; internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
@@ -291,7 +343,7 @@ name: suspend/wireless_connection_after_suspend_wpa_bg_manual
 depends: suspend/suspend_advanced
 requires:
  device.category == 'WIRELESS'
- environment.routers == 'single'
+ environment.ROUTERS == 'single'
 user: root
 environ: ROUTER_SSID ROUTER_PSK
 command: trap "nmcli con delete id $ROUTER_SSID" EXIT; create_connection $ROUTER_SSID --security=wpa --key=$ROUTER_PSK && internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
@@ -313,7 +365,7 @@ name: suspend/wireless_connection_after_suspend_open_bg_manual
 depends: suspend/suspend_advanced
 requires:
  device.category == 'WIRELESS'
- environment.routers == 'single'
+ environment.ROUTERS == 'single'
 user: root
 environ: ROUTER_SSID
 command: trap "nmcli con delete id $ROUTER_SSID" EXIT; create_connection $ROUTER_SSID && internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
@@ -335,7 +387,7 @@ name: suspend/wireless_connection_after_suspend_wpa_n_manual
 depends: suspend/suspend_advanced
 requires:
  device.category == 'WIRELESS'
- environment.routers == 'single'
+ environment.ROUTERS == 'single'
 user: root
 environ: ROUTER_SSID ROUTER_PSK
 command: trap "nmcli con delete id $ROUTER_SSID" EXIT; create_connection $ROUTER_SSID --security=wpa --key=$ROUTER_PSK && internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`
@@ -357,7 +409,7 @@ name: suspend/wireless_connection_after_suspend_open_n_manual
 depends: suspend/suspend_advanced
 requires:
  device.category == 'WIRELESS'
- environment.routers == 'single'
+ environment.ROUTERS == 'single'
 user: root
 environ: ROUTER_SSID
 command: trap "nmcli con delete id $ROUTER_SSID" EXIT; create_connection $ROUTER_SSID && internet_test --interface=`nmcli dev status | awk '/802-11-wireless/ {print $1}'`

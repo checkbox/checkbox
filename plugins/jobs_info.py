@@ -16,18 +16,29 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-import os, sys, re
+import os
+import re
+import sys
+
 import difflib
 import gettext
 import logging
 
 from collections import defaultdict
+from gettext import gettext as _
 
 from checkbox.lib.resolver import Resolver
 
 from checkbox.arguments import coerce_arguments
-from checkbox.properties import Float, Int, List, Map, Path, String
 from checkbox.plugin import Plugin
+from checkbox.properties import (
+    Float,
+    Int,
+    List,
+    Map,
+    Path,
+    String,
+    )
 
 
 job_schema = Map({
@@ -76,14 +87,17 @@ class JobsInfo(Plugin):
     def register(self, manager):
         super(JobsInfo, self).register(manager)
 
-        self.whitelist_patterns = self.get_patterns(self.whitelist, self.whitelist_file)
-        self.blacklist_patterns = self.get_patterns(self.blacklist, self.blacklist_file)
+        self.whitelist_patterns = self.get_patterns(
+            self.whitelist, self.whitelist_file)
+        self.blacklist_patterns = self.get_patterns(
+            self.blacklist, self.blacklist_file)
         self.selected_jobs = defaultdict(list)
 
         self._manager.reactor.call_on("prompt-begin", self.prompt_begin)
         self._manager.reactor.call_on("gather", self.gather)
         if logging.getLogger().getEffectiveLevel() <= logging.DEBUG:
-            self._manager.reactor.call_on("prompt-gather", self.post_gather, 90)
+            self._manager.reactor.call_on(
+                "prompt-gather", self.post_gather, 90)
         self._manager.reactor.call_on("report-job", self.report_job, -100)
 
     def prompt_begin(self, interface):
@@ -92,7 +106,8 @@ class JobsInfo(Plugin):
         to display errors
         """
         self.interface = interface
-        self.unused_patterns = self.whitelist_patterns + self.blacklist_patterns
+        self.unused_patterns = (
+            self.whitelist_patterns + self.blacklist_patterns)
 
     def check_ordered_messages(self, messages):
         """Return whether the list of messages are ordered or not."""
@@ -113,8 +128,8 @@ class JobsInfo(Plugin):
             try:
                 file = open(filename)
             except IOError as e:
-                error_message=(gettext.gettext("Failed to open file '%s': %s") %
-                        (filename, e.strerror))
+                error_message = (_("Failed to open file '%s': %s")
+                    % (filename, e.strerror))
                 logging.critical(error_message)
                 sys.stderr.write("%s\n" % error_message)
                 sys.exit(os.EX_NOINPUT)
@@ -148,7 +163,9 @@ class JobsInfo(Plugin):
         def report_message(message):
             if self.whitelist_patterns:
                 name = message["name"]
-                if not [name for p in self.whitelist_patterns if p.match(name)]:
+                names = [name for p in self.whitelist_patterns
+                    if p.match(name)]
+                if not names:
                     return
 
             messages.append(message)
@@ -156,7 +173,8 @@ class JobsInfo(Plugin):
         # Set domain and message event handler
         old_domain = gettext.textdomain()
         gettext.textdomain(self.domain)
-        event_id = self._manager.reactor.call_on("report-message", report_message, 100)
+        event_id = self._manager.reactor.call_on(
+            "report-message", report_message, 100)
 
         for directory in self.directories:
             self._manager.reactor.fire("message-directory", directory)
@@ -182,7 +200,8 @@ class JobsInfo(Plugin):
             messages = sorted(messages, key=key_function)
 
         if not self.check_ordered_messages(messages):
-            old_message_names = [message["name"] + "\n" for message in messages]
+            old_message_names = [
+                message["name"] + "\n" for message in messages]
             resolver = Resolver(key_func=lambda m: m["name"])
             for message in messages:
                 resolver.add(
@@ -192,7 +211,8 @@ class JobsInfo(Plugin):
             # Check if messages are already topologically ordered
             if (self.whitelist_patterns and
                 logging.getLogger().getEffectiveLevel() <= logging.DEBUG):
-                new_message_names = [message["name"] + "\n" for message in messages]
+                new_message_names = [
+                    message["name"] + "\n" for message in messages]
                 detailed_text = "".join(
                     difflib.unified_diff(
                         old_message_names,
@@ -200,7 +220,7 @@ class JobsInfo(Plugin):
                         "old whitelist",
                         "new whitelist"))
                 self._manager.reactor.fire(
-                        "prompt-error",
+                        "prompt-warning",
                         self.interface,
                         "Whitelist not topologically ordered",
                         "Jobs will be reordered to fix broken dependencies",
@@ -231,7 +251,7 @@ class JobsInfo(Plugin):
                  'Please make sure that the patterns you used are up-to-date\n'
                  .format('\n'.join(['- {0}'.format(tc)
                                     for tc in orphan_test_cases])))
-            self._manager.reactor.fire('prompt-error', self.interface,
+            self._manager.reactor.fire('prompt-warning', self.interface,
                                        'Orphan test cases detected',
                                        "Some test cases aren't included "
                                        'in any test suite',
@@ -244,7 +264,7 @@ class JobsInfo(Plugin):
                  "Please make sure that the patterns you used are up-to-date\n"
                  .format('\n'.join(['- {0}'.format(p.pattern[1:-1])
                                         for p in self.unused_patterns])))
-            self._manager.reactor.fire('prompt-error', self.interface,
+            self._manager.reactor.fire('prompt-warning', self.interface,
                                        'Unused patterns',
                                        'Please make sure that the patterns '
                                        'you used are up-to-date',

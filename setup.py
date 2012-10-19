@@ -42,6 +42,30 @@ except ImportError:
         """Placeholder concrete class for fake icons support."""
 
 
+DATA_FILES = [
+    ("share/checkbox/", ["backend", "run"]),
+    ("share/checkbox/data/audio/", ["data/audio/*"]),
+    ("share/checkbox/data/documents/", ["data/documents/*"]),
+    ("share/checkbox/data/images/", ["data/images/*.*"]),
+    ("share/checkbox/data/images/oem-config",
+        ["data/images/oem-config/*"]),
+    ("share/checkbox/data/video/", ["data/video/*"]),
+    ("share/checkbox/data/settings/", ["data/settings/*"]),
+    ("share/checkbox/data/websites/", ["data/websites/*"]),
+    ("share/checkbox/data/whitelists/", ["data/whitelists/*"]),
+    ("share/checkbox/examples/", ["examples/*"]),
+    ("share/checkbox/install/", ["install/*"]),
+    ("share/checkbox/patches/", ["patches/*"]),
+    ("share/checkbox/plugins/", ["plugins/*.py"]),
+    ("share/checkbox/report/", ["report/*.*"]),
+    ("share/checkbox/report/images/", ["report/images/*"]),
+    ("share/checkbox/scripts/", ["scripts/*"]),
+    ("share/checkbox/gtk/", ["gtk/checkbox-gtk.ui", "gtk/*.png"]),
+    ("share/dbus-1/services/", ["qt/com.canonical.QtCheckbox.service"]),
+    ("share/apport/package-hooks/", ["apport/source_checkbox.py"]),
+    ("share/apport/general-hooks/", ["apport/checkbox.py"])]
+
+
 def changelog_version(changelog="debian/changelog"):
     version = "dev"
     if posixpath.exists(changelog):
@@ -107,10 +131,15 @@ class checkbox_build(build_extra, object):
         self.sources = extract_sources_from_data_files(data_files)
 
     def run(self):
-        errno = subprocess.call(
-            "(cd qt/frontend; qmake-qt4; make)", shell=True)
-        if errno:
-            raise SystemExit(errno)
+        # This should always work when building a Debian package.
+        if os.path.exists("/usr/bin/qmake-qt4"):
+            errno = subprocess.call(
+                "(cd qt/frontend; qmake-qt4; make)", shell=True)
+            if errno:
+                raise SystemExit(errno)
+
+            DATA_FILES.append(("lib/checkbox/qt/",
+              ["qt/frontend/checkbox-qt-service"]))
 
         super(checkbox_build, self).run()
 
@@ -230,29 +259,7 @@ setup(
     long_description="""
 This project provides an extensible interface for system testing.
 """,
-    data_files=[
-        ("lib/checkbox/qt/", ["qt/frontend/checkbox-qt-service"]),
-        ("share/checkbox/", ["backend", "run"]),
-        ("share/checkbox/data/audio/", ["data/audio/*"]),
-        ("share/checkbox/data/documents/", ["data/documents/*"]),
-        ("share/checkbox/data/images/", ["data/images/*.*"]),
-        ("share/checkbox/data/images/oem-config",
-            ["data/images/oem-config/*"]),
-        ("share/checkbox/data/video/", ["data/video/*"]),
-        ("share/checkbox/data/settings/", ["data/settings/*"]),
-        ("share/checkbox/data/websites/", ["data/websites/*"]),
-        ("share/checkbox/data/whitelists/", ["data/whitelists/*"]),
-        ("share/checkbox/examples/", ["examples/*"]),
-        ("share/checkbox/install/", ["install/*"]),
-        ("share/checkbox/patches/", ["patches/*"]),
-        ("share/checkbox/plugins/", ["plugins/*.py"]),
-        ("share/checkbox/report/", ["report/*.*"]),
-        ("share/checkbox/report/images/", ["report/images/*"]),
-        ("share/checkbox/scripts/", ["scripts/*"]),
-        ("share/checkbox/gtk/", ["gtk/checkbox-gtk.ui", "gtk/*.png"]),
-        ("share/dbus-1/services/", ["qt/com.canonical.QtCheckbox.service"]),
-        ("share/apport/package-hooks/", ["apport/source_checkbox.py"]),
-        ("share/apport/general-hooks/", ["apport/checkbox.py"])],
+    data_files=DATA_FILES,
     scripts=[
         "bin/checkbox-cli", "bin/checkbox-gtk", "bin/checkbox-urwid",
         "bin/checkbox-qt"],

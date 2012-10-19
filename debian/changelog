@@ -5,6 +5,20 @@ checkbox (0.14.10) quantal; urgency=low
   [Brendan Donegan]
   * jobs/suspend.txt.in - make sure FWTS logs end with .log so file names
     don't get tampered with (LP: #1065932)
+  * plugins/launchpad_exchange.py - Remove call to string_to_type on
+    self.timeout, which is an int (LP: #1066967)
+  * checkbox/lib/templates.py, jobs/resources.txt.in, jobs/wireless.txt.in,
+    jobs/suspend.txt.in - Don't try and coerce keys of resource jobs to
+    lowercase, as it upset the core of Checkbox (LP: #1067280)
+  * jobs/suspend.txt.in - created new batch of wireless tests depending only on
+    suspend_advanced so that they will run in manual testing (LP: #1067678)
+  * jobs/suspend.txt.in - Let suspend_advanced only depend on
+    power-management/rtc (LP: #1067692)
+  * scripts/resolution_test - Slightly clarify output of script so that it's
+    a bit more obvious why it failed (LP: #1065976)
+  * Allow verification and interaction to be used as aliases for manual tests
+    so that we can distinguish between tests which are partly manual and
+    those which are entirely manual.
   * plugins/error_prompt.py - Convert all show_errors argument to string to
     prevent crash in the UserInterface class (LP: #1066862)
 
@@ -14,11 +28,16 @@ checkbox (0.14.10) quantal; urgency=low
   * checkbox-cli progress indicator is now static, spinning around instead of
     filling the screen with dots. (LP: #926104)
   * Increased version number after final Ubuntu Quantal release.
+  * Added environment resource to whitelists (LP: #1067038)
 
   [Marc Tardif]
   * plugins/environment_info.py: Enabling environment to take precedence
     over configuration files.
   * setup.py: added support for installing in virtualenv
+  * setup.py: made build dependency on qt4-make optional
+  * debian/control: Added python3-gi to run checkbox-qt.
+  * jobs/input.txt.in, jobs/touchpad.txt.in: Added input/pointing tests
+    and simplified horizontal/vertical scrolling tests.
 
   [Sean Feole]
   * [FEATURE] jobs/optical.txt.in: modified existing automation test
@@ -30,8 +49,18 @@ checkbox (0.14.10) quantal; urgency=low
     test: network restart.
   * debian/control: Fixed a missing dependency (python3-pkg-resources) to build
     the package (LP: #1066502)
+  * jobs/stress.txt.in: stress/sdhc now launches removable_storage_test with
+    --memorycard. stress/sdhc and stress/usb run with root privileges to mount
+    all partitions (LP: #1065862)
+  * [FEATURE] jobs/stress.txt.in: Added a wireless hotkey stress test.
 
- -- Daniel Manrique <roadmr@ubuntu.com>  Fri, 12 Oct 2012 10:47:26 -0400
+  [Zygmunt Krynicki]
+  * scripts/removable_storage_watcher - properly detect removal of 'firewire',
+    'usb' and 'sdio devices' when either or both 'ata_serial_esata' or 'scsi'
+    were provided on command line, in addition to the device actually being
+    manipulated. (LP: #1066948)
+
+ -- Marc Tardif <marc@ubuntu.com>  Fri, 12 Oct 2012 10:47:26 -0400
 
 checkbox (0.14.6) quantal; urgency=low
 
