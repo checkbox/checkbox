@@ -32,13 +32,6 @@ from checkbox.user_interface import (
 )
 
 
-def plugin_alias(plugin):
-    if plugin in ('verification', 'interaction'):
-        return 'manual'
-    else:
-        return plugin
-
-
 class JobsPrompt(Plugin):
 
     # Directory where messages are stored
@@ -118,8 +111,7 @@ class JobsPrompt(Plugin):
     def report_job(self, job):
         # Update job
         job.setdefault("status", UNINITIATED)
-        self._manager.reactor.fire("report-%s" % plugin_alias(job["plugin"]),
-                                   job)
+        self._manager.reactor.fire("report-%s" % job["plugin"], job)
 
     def report_jobs(self, jobs):
         for job in jobs:
@@ -143,8 +135,7 @@ class JobsPrompt(Plugin):
                        message["status"] != PASS:
                         return
 
-            self._manager.reactor.fire("prompt-%s" %
-                                       plugin_alias(job["plugin"]),
+            self._manager.reactor.fire("prompt-%s" % job["plugin"],
                                        interface, job)
 
     def prompt_jobs(self, interface):
