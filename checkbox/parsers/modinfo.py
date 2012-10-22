@@ -58,19 +58,26 @@ class ModinfoParser:
         for line in stream.splitlines():
             # At this point, stream should be the stdout from the modinfo
             # command, in a list.
-            key, data = line.split(':', 1)
-            data = data.strip()
-            # First, we need to handle alias, parm, firmware, and depends
-            # because there can be multiple lines of output for these.
-            if key in ('alias', 'depend', 'firmware', 'parm',):
-                self._modinfo[key].append(data)
-            # Now handle unknown keys
-            elif key not in self._modinfo.keys():
-                self._modinfo[key] = ("WARNING: Unknown Key %s providing "
-                                     "data: %s") % (key, data)
-            # And finally known keys
+            try:
+                key, data = line.split(':', 1)
+            except ValueError:
+                # Most likely this will be caused by a blank line in the
+                # stream, so we just ignore it and move on.
+                continue                
             else:
-                self._modinfo[key] = data
+                key = key.strip()
+                data = data.strip()
+                # First, we need to handle alias, parm, firmware, and depends
+                # because there can be multiple lines of output for these.
+                if key in ('alias', 'depend', 'firmware', 'parm',):
+                    self._modinfo[key].append(data)
+                # Now handle unknown keys
+                elif key not in self._modinfo.keys():
+                    self._modinfo[key] = ("WARNING: Unknown Key %s providing "
+                                     "data: %s") % (key, data)
+                # And finally known keys
+                else:
+                    self._modinfo[key] = data
 
     def get_all(self):
         return self._modinfo
