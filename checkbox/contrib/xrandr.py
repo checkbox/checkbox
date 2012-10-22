@@ -102,6 +102,7 @@ Status = c_int
 xlib = cdll.LoadLibrary('libX11.so.6')
 rr = cdll.LoadLibrary('libXrandr.so.2')
 
+
 # query resources
 class _XRRModeInfo(Structure):
     _fields_ = [
@@ -121,6 +122,7 @@ class _XRRModeInfo(Structure):
         ("modeFlags", c_long),
         ]
 
+
 class _XRRScreenSize(Structure):
     _fields_ = [
         ("width", c_int),
@@ -128,6 +130,7 @@ class _XRRScreenSize(Structure):
         ("mwidth", c_int),
         ("mheight", c_int)
         ]
+
 
 class _XRRCrtcInfo(Structure):
     _fields_ = [
@@ -145,6 +148,7 @@ class _XRRCrtcInfo(Structure):
         ("possible", POINTER(RROutput)),
         ]
 
+
 class _XRRScreenResources(Structure):
     _fields_ = [
         ("timestamp", Time),
@@ -157,15 +161,18 @@ class _XRRScreenResources(Structure):
         ("modes", POINTER(_XRRModeInfo)),
         ]
 
+
 class RRError(Exception):
     """Base exception class of the module"""
     pass
+
 
 class UnsupportedRRError(RRError):
     """Raised if the required XRandR extension version is not available"""
     def __init__(self, required, current):
         self.required = required
         self.current = current
+
 
 # XRRGetOutputInfo
 class _XRROutputInfo(Structure):
@@ -187,6 +194,7 @@ class _XRROutputInfo(Structure):
         ("modes", POINTER(RRMode))
         ]
 
+
 class _XRRCrtcGamma(Structure):
     _fields_ = [
         ('size', c_int),
@@ -195,12 +203,14 @@ class _XRRCrtcGamma(Structure):
         ('blue', POINTER(c_ushort)),
         ]
 
+
 def _array_conv(array, type, conv = lambda x:x):
     length = len(array)
     res = (type*length)()
     for i in range(length):
         res[i] = conv(array[i])
     return res
+
 
 class Output:
     """The output is a reference to a supported output jacket of the graphics
@@ -232,16 +242,20 @@ class Output:
         """Frees the internal reference to the output info if the output gets
            removed"""
         rr.XRRFreeOutputInfo(self._info)
+
     def get_physical_width(self):
         """Returns the display width reported by the connected output device"""
         return self._info.contents.mm_width
+
     def get_physical_height(self):
         """Returns the display height reported by the connected output device"""
         return self._info.contents.mm_height
+
     def get_crtc(self):
         """Returns the xid of the hardware pipe to which the output is
            attached. If the output is disabled it will return 0"""
         return self._info.contents.crtc
+
     def get_crtcs(self):
         """Returns the xids of the hardware pipes to which the output could
            be attached"""
@@ -354,9 +368,11 @@ class Output:
         else:
             return self._changes != CHANGES_NONE
 
+
 class Crtc:
     """The crtc is a reference to a hardware pipe that is provided by the
        graphics device. Outputs can be attached to crtcs"""
+
     def __init__(self, info, xid, screen):
         """Initializes the hardware pipe object"""
         self._info = info
@@ -482,6 +498,7 @@ class Crtc:
             if not output in self._outputs: return True
             if output.has_changed(): return True
         return False
+
 
 class Screen:
     def __init__(self, dpy, screen=-1):
@@ -916,6 +933,7 @@ class Screen:
                 self._width = width
         #FIXME: Physical size is missing
 
+
 def get_current_display():
     """Returns the currently used display"""
     display_url = os.getenv("DISPLAY")
@@ -930,15 +948,18 @@ def get_current_display():
     dpy = open_display(display_url.encode('utf-8'))
     return dpy
 
+
 def get_current_screen():
     """Returns the currently used screen"""
     screen = Screen(get_current_display())
     return screen
 
+
 def get_screen_of_display(display, count):
     """Returns the screen of the given display"""
     dpy = xlib.XOpenDisplay(display)
     return Screen(dpy, count)
+
 
 def get_version():
     """Returns a tuple containing the major and minor version of the xrandr
@@ -951,11 +972,13 @@ def get_version():
         return (major.value, minor.value)
     return None
 
+
 def has_extension():
     """Returns True if the xrandr extension is available"""
     if XRANDR_VERSION:
         return True
     return False
+
 
 def _to_gamma(gamma):
     g = rr.XRRAllocGamma(len(gamma[0]))
@@ -965,6 +988,7 @@ def _to_gamma(gamma):
         g.blue[i] = gamma[2][i]
     return g
 
+
 def _from_gamma(g):
     gamma = ([], [], [])
     for i in range(g.size):
@@ -973,11 +997,13 @@ def _from_gamma(g):
         gamma[2].append(g.blue[i])
     rr.XRRFreeGamma(g)
 
+
 def _check_required_version(version):
     """Raises an exception if the given or a later version of xrandr is not
        available"""
     if XRANDR_VERSION == None or XRANDR_VERSION < version:
         raise UnsupportedRRError(version, XRANDR_VERSION)
+
 
 def get_mode_height(mode, rotation):
     """Return the height of the given mode taking the rotation into account"""
@@ -987,6 +1013,7 @@ def get_mode_height(mode, rotation):
         return mode.width
     else:
         return 0
+
 
 def get_mode_width(mode, rotation):
     """Return the width of the given mode taking the rotation into account"""
