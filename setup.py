@@ -8,7 +8,6 @@ import subprocess
 from glob import glob
 
 from distutils.core import setup
-from distutils.util import change_root, convert_path
 
 from distutils.ccompiler import new_compiler
 from distutils.command.build import build
