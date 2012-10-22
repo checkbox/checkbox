@@ -1,5 +1,6 @@
 checkbox (0.14.10) quantal; urgency=low
 
+  [ Jeff Lane ]
   * Increased version number after final Ubuntu Quantal release.
 
   [Brendan Donegan]
@@ -27,6 +28,8 @@ checkbox (0.14.10) quantal; urgency=low
     filling the screen with dots. (LP: #926104)
   * Increased version number after final Ubuntu Quantal release.
   * Added environment resource to whitelists (LP: #1067038)
+  * Added retrying pactl commands in case audio layer is not up yet
+    (LP: #1065908)
 
   [Marc Tardif]
   * plugins/environment_info.py: Enabling environment to take precedence
