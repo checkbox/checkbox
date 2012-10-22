@@ -20,7 +20,6 @@ import os
 import logging
 import itertools
 import posixpath
-import sys
 
 from checkbox.contrib import bpickle
 from checkbox.lib.safe import safe_close
@@ -41,11 +40,12 @@ class Message(dict):
 class MessageStore:
     """A message store which stores its messages in a file system hierarchy."""
 
-    #This caches everything but a message's data, making it manageable to keep in memory.
+    # This caches everything but a message's data, making it manageable to keep
+    # in memory.
     _message_cache = {}
 
-    #Setting this to False speeds things up considerably, at the expense 
-    #of a higher risk of data loss during a crash
+    # Setting this to False speeds things up considerably, at the expense of a
+    # higher risk of data loss during a crash
     safe_file_closing = True
 
     def __init__(self, persist, directory, directory_size=1000):
@@ -128,11 +128,12 @@ class MessageStore:
 
     def delete_old_messages(self):
         """Delete messages which are unlikely to be needed in the future."""
-        filenames = self._get_sorted_filenames()
-        for fn in itertools.islice(self._walk_messages(exclude=HELD+BROKEN),
-                                   self.get_pending_offset()):
-            os.unlink(fn)
-            containing_dir = posixpath.split(fn)[0]
+        filenames = itertools.islice(
+            self._walk_messages(exclude=HELD + BROKEN),
+            self.get_pending_offset())
+        for filename in filenames:
+            os.unlink(filename)
+            containing_dir = os.path.dirname(filename)
             if not os.listdir(containing_dir):
                 os.rmdir(containing_dir)
 
@@ -194,8 +195,9 @@ class MessageStore:
     def _walk_pending_messages(self):
         """Walk the files which are definitely pending."""
         pending_offset = self.get_pending_offset()
-        for i, filename in enumerate(self._walk_messages(exclude=HELD+BROKEN)):
-            if i >= pending_offset:
+        filenames = self._walk_messages(exclude=HELD + BROKEN)
+        for index, filename in enumerate(filenames):
+            if index >= pending_offset:
                 yield filename
 
     def _walk_messages(self, exclude=None):
@@ -235,12 +237,12 @@ class MessageStore:
         dirname, basename = posixpath.split(path)
         new_path = posixpath.join(dirname, basename.split("_")[0])
         if flags:
-            new_path += "_"+"".join(sorted(set(flags)))
+            new_path += "_" + "".join(sorted(set(flags)))
         os.rename(path, new_path)
         return new_path
 
     def _add_flags(self, path, flags):
-        self._set_flags(path, self._get_flags(path)+flags)
+        self._set_flags(path, self._get_flags(path) + flags)
 
     def _load_message(self, data):
         return bpickle.loads(data)
@@ -251,7 +253,7 @@ class MessageStore:
     def _read_message(self, filename, cache=False):
         #cache basically indicates whether the caller cares about having "data"
         if cache and filename in self._message_cache:
-            return Message(self._message_cache[filename],filename)
+            return Message(self._message_cache[filename], filename)
 
         data = self._get_content(filename)
         message = self._load_message(data)
@@ -271,7 +273,7 @@ class MessageStore:
 
         #Strip the big data element and shove it in the cache
 
-        temp_message=dict(message)
+        temp_message = dict(message)
         if "data" in temp_message:
             temp_message["data"] = None
 
