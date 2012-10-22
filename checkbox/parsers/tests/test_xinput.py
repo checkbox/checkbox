@@ -118,7 +118,7 @@ class TestXinputParser(TestCase):
         self.assertEquals(len(devices), 1)
 
         classes = [cls for cls in devices[0]["classes"]
-            if cls["class"] == "XITouchClass"]
+            if cls["device_class"] == "XITouchClass"]
         self.assertEquals(len(classes), 1)
         self.assertEquals(classes[0]["touch_mode"], "dependent")
 
@@ -130,6 +130,6 @@ class TestXinputParser(TestCase):
         self.assertEquals(len(devices), 1)
 
         classes = [cls for cls in devices[0]["classes"]
-            if cls["class"] == "XITouchClass"]
+            if cls["device_class"] == "XITouchClass"]
         self.assertEquals(len(classes), 1)
         self.assertEquals(classes[0]["touch_mode"], "direct")
