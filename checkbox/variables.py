@@ -215,7 +215,7 @@ class AnyVariable(Variable):
         for schema in self._schemas:
             try:
                 # Only check that the value can be coerced
-                dummy = schema(value=value).get()
+                schema(value=value).get()
                 return value
             except ValueError:
                 pass
@@ -286,6 +286,7 @@ class FileVariable(Variable):
 
 def get_variable(obj, attribute):
     return get_variables(obj)[attribute]
+
 
 def get_variables(obj):
     from checkbox.attribute import get_attributes
