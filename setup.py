@@ -133,10 +133,10 @@ class checkbox_build(build_extra, object):
     def run(self):
         # This should always work when building a Debian package.
         if os.path.exists("/usr/bin/qmake-qt4"):
-            errno = subprocess.call(
+            retval = subprocess.call(
                 "(cd qt/frontend; qmake-qt4; make)", shell=True)
-            if errno:
-                raise SystemExit(errno)
+            if retval:
+                raise SystemExit(retval)
 
             DATA_FILES.append(("lib/checkbox/qt/",
               ["qt/frontend/checkbox-qt-service"]))
