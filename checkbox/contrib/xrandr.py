@@ -316,7 +316,8 @@ class Output:
 
     def disable(self):
         """Disables the output"""
-        if not self.is_active(): return
+        if not self.is_active():
+            return
         self._mode = None
         self._crtc._outputs.remove(self)
         self._crtc = None
@@ -465,17 +466,26 @@ class Crtc:
             return False
         if len(self._outputs):
             for other in self._outputs:
-                if other == output: continue
-                if other._x != output._x: return False
-                if other._y != output._y: return False
-                if other._mode != output._mode: return False
-                if other._rotation != output._rotation: return False
+                if other == output:
+                    continue
+                if other._x != output._x:
+                    return False
+                if other._y != output._y:
+                    return False
+                if other._mode != output._mode:
+                    return False
+                if other._rotation != output._rotation:
+                    return False
         #FIXME: pick_crtc is still missing
         elif self._info.contents.noutput > 0:
-            if self._info.contents.x != output._x: return False
-            if self._info.contents.y != output._y: return False
-            if self._info.contents.mode_info != output._mode: return False
-            if self._info.rotation != output._rotation: return False
+            if self._info.contents.x != output._x:
+                return False
+            if self._info.contents.y != output._y:
+                return False
+            if self._info.contents.mode_info != output._mode:
+                return False
+            if self._info.rotation != output._rotation:
+                return False
         return True
 
     def supports_rotation(self, rotation):
@@ -496,8 +506,10 @@ class Crtc:
         for i in range(self._info.contents.noutput):
             id = self._info.contents.outputs[i]
             output = self._screen.get_output_by_id(id)
-            if not output in self._outputs: return True
-            if output.has_changed(): return True
+            if not output in self._outputs:
+                return True
+            if output.has_changed():
+                return True
         return False
 
 
@@ -763,10 +775,14 @@ class Screen:
             i += 1
         print("Rotations:")
         rots = self.get_available_rotations()
-        if rots & RR_ROTATE_0: print("normal")
-        if rots & RR_ROTATE_90: print("right")
-        if rots & RR_ROTATE_180: print("inverted")
-        if rots & RR_ROTATE_270: print("left")
+        if rots & RR_ROTATE_0:
+            print("normal")
+        if rots & RR_ROTATE_90:
+            print("right")
+        if rots & RR_ROTATE_180:
+            print("inverted")
+        if rots & RR_ROTATE_270:
+            print("left")
         print("")
         print("Outputs:")
         for o in list(self.outputs.keys()):
@@ -791,10 +807,14 @@ class Screen:
                     print("")
                 print("    Rotations:")
                 rots = output.get_available_rotations()
-                if rots & RR_ROTATE_0: print("normal")
-                if rots & RR_ROTATE_90: print("right")
-                if rots & RR_ROTATE_180: print("inverted")
-                if rots & RR_ROTATE_270: print("left")
+                if rots & RR_ROTATE_0:
+                    print("normal")
+                if rots & RR_ROTATE_90:
+                    print("right")
+                if rots & RR_ROTATE_180:
+                    print("inverted")
+                if rots & RR_ROTATE_270:
+                    print("left")
                 print("")
             else:
                 print("(not connected)")
@@ -817,7 +837,8 @@ class Screen:
         """Apply the given pixel and physical size to the screen"""
         _check_required_version((1, 2))
         # Check if we really need to apply the changes
-        if (width, height, width_mm, height_mm) == self.get_size(): return
+        if (width, height, width_mm, height_mm) == self.get_size():
+            return
         rr.XRRSetScreenSize(self._display, self._root,
                             c_int(width), c_int(height),
                             c_int(width_mm), c_int(height_mm))
@@ -832,7 +853,8 @@ class Screen:
 
         # Assign all active outputs to crtcs
         for output in list(self.outputs.values()):
-            if not output._mode or output._crtc: continue
+            if not output._mode or output._crtc:
+                continue
             for crtc in output.get_crtcs():
                 if crtc and crtc.supports_output(output):
                     crtc.add_output(output)
@@ -864,7 +886,8 @@ class Screen:
         for output in self.get_outputs():
             # Skip not changed and not used outputs
             if not output.has_changed(CHANGES_RELATION) or \
-               output._mode == None: continue
+               output._mode == None:
+                continue
             relative = output._relative_to
             mode = self.get_mode_by_xid(output._mode)
             mode_relative = self.get_mode_by_xid(relative._mode)
@@ -897,11 +920,15 @@ class Screen:
         min_x = 32768
         min_y = 32768
         for output in self.get_outputs():
-            if output._mode == None: continue
-            if output._x < min_x: min_x = output._x
-            if output._y < min_y: min_y = output._y
+            if output._mode == None:
+                continue
+            if output._x < min_x:
+                min_x = output._x
+            if output._y < min_y:
+                min_y = output._y
         for output in self.get_outputs():
-            if output._mode == None: continue
+            if output._mode == None:
+                continue
             output._x -= min_x
             output._y -= min_y
             output._changes = output._changes | CHANGES_POSITION
@@ -912,14 +939,17 @@ class Screen:
         width = self._width
         height = self._height
         for output in self.get_outputs():
-            if not output._mode: continue
+            if not output._mode:
+                continue
             mode = self.get_mode_by_xid(output._mode)
             x = output._x
             y = output._y
             w = get_mode_width(mode, output._rotation)
             h = get_mode_height(mode, output._rotation)
-            if x + w > width: width = x + w
-            if y + h > height: height = y + h
+            if x + w > width:
+                width = x + w
+            if y + h > height:
+                height = y + h
         if width > self._width_max or height > self._height_max:
             raise RRError("The required size is not supported",
                           (width, height), (self._width_max, self._width_min))
