@@ -106,7 +106,7 @@ rr = cdll.LoadLibrary('libXrandr.so.2')
 # query resources
 class _XRRModeInfo(Structure):
     _fields_ = [
-        ("id", RRMode), # XID is c_long
+        ("id", RRMode),  # XID is c_long
         ("width", c_int),
         ("height", c_int),
         ("dotClock", c_long),
@@ -204,9 +204,9 @@ class _XRRCrtcGamma(Structure):
         ]
 
 
-def _array_conv(array, type, conv = lambda x:x):
+def _array_conv(array, type, conv=lambda x: x):
     length = len(array)
-    res = (type*length)()
+    res = (type * length)()
     for i in range(length):
         res[i] = conv(array[i])
     return res
@@ -481,8 +481,9 @@ class Crtc:
     def supports_rotation(self, rotation):
         """Check if the given rotation is supported by the crtc"""
         rotations = self._info.contents.rotations
-        dir = rotation & (RR_ROTATE_0|RR_ROTATE_90|RR_ROTATE_180|RR_ROTATE_270)
-        reflect = rotation & (RR_REFLECT_X|RR_REFLECT_Y)
+        dir = rotation & (RR_ROTATE_0 | RR_ROTATE_90 | RR_ROTATE_180 |
+                          RR_ROTATE_270)
+        reflect = rotation & (RR_REFLECT_X | RR_REFLECT_Y)
         if (((rotations & dir) != 0) and ((rotations & reflect) == reflect)):
             return True
         return False
@@ -529,7 +530,7 @@ class Screen:
         self._load_config()
         (self._width, self._height,
          self._width_mm, self._height_mm) = self.get_size()
-        if XRANDR_VERSION >= (1,2):
+        if XRANDR_VERSION >= (1, 2):
             self._load_screen_size_range()
             self._load_crtcs()
             self._load_outputs()
@@ -625,7 +626,7 @@ class Screen:
 
     def get_current_rate(self):
         """Returns the currently used refresh rate"""
-        _check_required_version((1,0))
+        _check_required_version((1, 0))
         xccr = rr.XRRConfigCurrentRate
         xccr.restype = c_int
         return xccr(self._config)
@@ -634,7 +635,7 @@ class Screen:
         """Returns the refresh rates that are supported by the screen for
            the given resolution. See get_available_sizes for the resolution to
            which size_index points"""
-        _check_required_version((1,0))
+        _check_required_version((1, 0))
         rates = []
         nrates = c_int()
         rr.XRRConfigRates.restype = POINTER(c_ushort)
@@ -646,14 +647,14 @@ class Screen:
     def get_current_rotation(self):
         """Returns the currently used rotation. Can be RR_ROTATE_0,
         RR_ROTATE_90, RR_ROTATE_180 or RR_ROTATE_270"""
-        _check_required_version((1,0))
+        _check_required_version((1, 0))
         current = c_ushort()
         rotations = rr.XRRConfigRotations(self._config, byref(current))
         return current.value
 
     def get_available_rotations(self):
         """Returns a binary flag that holds the available resolutions"""
-        _check_required_version((1,0))
+        _check_required_version((1, 0))
         current = c_ushort()
         rotations = rr.XRRConfigRotations(self._config, byref(current))
         return rotations
@@ -661,7 +662,7 @@ class Screen:
     def get_current_size_index(self):
         """Returns the position of the currently used resolution size in the
            list of available resolutions. See get_available_sizes"""
-        _check_required_version((1,0))
+        _check_required_version((1, 0))
         rotation = c_ushort()
         size = rr.XRRConfigCurrentConfiguration(self._config,
                                                 byref(rotation))
@@ -670,7 +671,7 @@ class Screen:
     def get_available_sizes(self):
         """Returns the available resolution sizes of the screen. The size
            index points to the corresponding resolution of this list"""
-        _check_required_version((1,0))
+        _check_required_version((1, 0))
         sizes = []
         nsizes = c_int()
         xcs = rr.XRRConfigSizes
@@ -684,7 +685,7 @@ class Screen:
         """Configures the screen with the given resolution at the given size
            index, rotation and refresh rate. To get in effect call
            Screen.apply_config()"""
-        _check_required_version((1,0))
+        _check_required_version((1, 0))
         self.set_size_index(size_index)
         self.set_refresh_rate(rate)
         self.set_rotation(rotation)
@@ -739,7 +740,7 @@ class Screen:
 
     def print_info(self, verbose=False):
         """Prints some information about the detected screen and its outputs"""
-        _check_required_version((1,0))
+        _check_required_version((1, 0))
         print("Screen %s: minimum %s x %s, current %s x %s, maximum %s x %s" %\
               (self._screen,
                self._width_min, self._height_min,
@@ -770,7 +771,7 @@ class Screen:
         print("Outputs:")
         for o in list(self.outputs.keys()):
             output = self.outputs[o]
-            print("  %s"  % o)
+            print("  %s" % o)
             if output.is_connected():
                 print("(%smm x %smm)" % (output.get_physical_width(),
                                          output.get_physical_height()))
@@ -805,16 +806,16 @@ class Screen:
 
     def get_outputs(self):
         """Returns the outputs of the screen"""
-        _check_required_version((1,2))
+        _check_required_version((1, 2))
         return list(self.outputs.values())
 
     def get_output_names(self):
-        _check_required_version((1,2))
+        _check_required_version((1, 2))
         return list(self.outputs.keys())
 
     def set_size(self, width, height, width_mm, height_mm):
         """Apply the given pixel and physical size to the screen"""
-        _check_required_version((1,2))
+        _check_required_version((1, 2))
         # Check if we really need to apply the changes
         if (width, height, width_mm, height_mm) == self.get_size(): return
         rr.XRRSetScreenSize(self._display, self._root,
@@ -823,7 +824,7 @@ class Screen:
 
     def apply_output_config(self):
         """Used for instantly applying RandR 1.2 changes"""
-        _check_required_version((1,2))
+        _check_required_version((1, 2))
         self._arrange_outputs()
         self._calculate_size()
         self.set_size(self._width, self._height,
@@ -848,7 +849,7 @@ class Screen:
 
     def apply_config(self):
         """Used for instantly applying RandR 1.0 changes"""
-        _check_required_version((1,0))
+        _check_required_version((1, 0))
         status = rr.XRRSetScreenConfigAndRate(self._display,
                                               self._config,
                                               self._root,
