@@ -19,13 +19,11 @@
 import re
 import os
 import pwd
-import sys
 import logging
 import subprocess
 import webbrowser
 
 import gettext
-from gettext import gettext as _
 
 from checkbox.contrib.REThread import REThread
 
