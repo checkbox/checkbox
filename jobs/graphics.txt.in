@@ -79,7 +79,7 @@ plugin: shell
 command: color_depth_info
 _description: Collect info on color depth and pixel format.
 
-plugin: manual
+plugin: verification
 name: graphics/display
 requires: 
  package.name == 'xorg'
@@ -98,7 +98,7 @@ name: graphics/VESA_drivers_not_in_use
 command: cat /var/log/Xorg.0.log | perl -e '$a=0;while(<>){$a++ if /Loading.*vesa_drv\.so/;$a-- if /Unloading.*vesa/&&$a}exit 1 if $a'
 _description: Check that VESA drivers are not in use
 
-plugin: manual
+plugin: verification
 name: graphics/cycle_resolution
 requires: package.name == 'xorg'
 depends: graphics/VESA_drivers_not_in_use
@@ -111,7 +111,7 @@ _description:
  VERIFICATION:
      Did the screen appear to be working for each mode?
 
-plugin: manual
+plugin: verification
 name: graphics/rotation
 depends: graphics/xorg-version
 command: rotation_test
@@ -138,7 +138,7 @@ command:
  perl -e '$a=`/usr/lib/nux/unity_support_test -p`;$a=~s/\e\[[\d;]*m//g;print $a;exit($? ? 1:0)'
 _description: Check that hardware is able to run Unity 3D
 
-plugin: manual
+plugin: verification
 name: graphics/glxgears
 requires: package.name == 'mesa-utils'
 command: glxgears; true

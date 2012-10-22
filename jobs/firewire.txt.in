@@ -1,4 +1,4 @@
-plugin: manual
+plugin: interaction
 name: firewire/insert
 command: removable_storage_watcher insert firewire
 _description:
@@ -20,7 +20,7 @@ _description:
  This is an automated test which performs read/write operations on an attached
  FireWire HDD
 
-plugin: manual
+plugin: interaction
 name: firewire/remove
 depends: firewire/storage-test
 command: removable_storage_watcher remove firewire

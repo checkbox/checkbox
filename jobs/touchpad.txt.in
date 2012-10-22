@@ -9,7 +9,7 @@ _description:
  VERIFICATION:
      Did the cursor move?
 
-plugin: manual
+plugin: interaction
 name: touchpad/horizontal
 requires: touchpad_scroll.horizontal_scroll == 'supported'
 command: touchpad_test right left
@@ -22,7 +22,7 @@ _description:
  VERIFICATION:
      Could you scroll right and left?
 
-plugin: manual
+plugin: interaction
 name: touchpad/vertical
 requires: touchpad_scroll.vertical_scroll == 'supported'
 command: touchpad_test up down

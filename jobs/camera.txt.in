@@ -5,7 +5,7 @@ requires:
 command: camera_test detect
 _description: This Automated test attempts to detect a camera.
 
-plugin: manual
+plugin: verification
 name: camera/display
 depends: camera/detect
 requires:
@@ -20,7 +20,7 @@ _description:
  VERIFICATION:
      Did you see the video capture?
 
-plugin: manual
+plugin: verification
 name: camera/still
 depends: camera/detect
 requires:
