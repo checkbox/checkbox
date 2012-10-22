@@ -29,10 +29,11 @@ from checkbox.lib.template_i18n import TemplateI18n
 
 from checkbox.parsers.description import DescriptionParser
 
-from checkbox.job import Job, PASS
+from checkbox.job import Job, PASS, FAIL
 from checkbox.plugin import Plugin
 
 from gettext import gettext as _
+
 
 class DescriptionResult:
 
