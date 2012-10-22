@@ -84,7 +84,8 @@ class MessageInfo(Plugin):
 
     def message_exec(self, message):
         if "name" in message:
-            logging.info(_("Executing %(test_name)s" % {"test_name": message["name"]} ))
+            logging.info(_("Executing %(test_name)s" % {
+                "test_name": message["name"]}))
 
         if "user" not in message:
 
