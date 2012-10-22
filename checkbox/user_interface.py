@@ -16,23 +16,20 @@
 # You should have received a copy of the GNU General Public License
 # along with Checkbox.  If not, see <http://www.gnu.org/licenses/>.
 #
-import re
+import gettext
+import logging
 import os
 import pwd
-import logging
+import re
 import subprocess
 import webbrowser
 
-import gettext
-
 from checkbox.contrib.REThread import REThread
-
 from checkbox.lib.environ import (
     add_variable,
     get_variable,
     remove_variable,
     )
-
 from checkbox.job import (
     FAIL,
     PASS,
