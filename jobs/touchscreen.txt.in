@@ -32,13 +32,17 @@ _description:
 
 plugin: shell
 name: touchscreen/nontouch-automated
-command: !(xinput_resource | filter_templates -w 'class=XITouchClass' | grep -q 'touch_mode: direct')
+requires:
+  xinput.device_class == 'XITouchClass' and xinput.touch_mode != 'direct'
+command: true
 _description:
  Determine whether the screen is detected as a non-touch device automatically.
 
 plugin: shell
 name: touchscreen/multitouch-automated
-command: xinput_resource | filter_templates -w 'class=XITouchClass' | grep -q 'touch_mode: direct'
+requires:
+  xinput.device_class == 'XITouchClass' and xinput.touch_mode == 'direct'
+command: true
 _description:
  Determine whether the screen is detected as a multitouch device automatically.
 
