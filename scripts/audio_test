@@ -215,7 +215,7 @@ class PAVolumeController(object):
             try:
                 return subprocess.check_output(command, 
                                                universal_newlines=True)
-            except (subprocess.CalledProcessError, AttributeError):
+            except (subprocess.CalledProcessError):
                 time.sleep(5)
         return False
 
