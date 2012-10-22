@@ -248,7 +248,9 @@ class Output:
         return self._info.contents.mm_width
 
     def get_physical_height(self):
-        """Returns the display height reported by the connected output device"""
+        """
+        Returns the display height reported by the connected output device
+        """
         return self._info.contents.mm_height
 
     def get_crtc(self):
@@ -770,8 +772,9 @@ class Screen:
         i = 0
         print("Sizes @ Refresh Rates:")
         for s in self.get_available_sizes():
-            print("  [%s] %s x %s @ %s" % (i, s.width, s.height,
-                                           self.get_available_rates_for_size_index(i)))
+            print("  [%s] %s x %s @ %s" % (
+                i, s.width, s.height,
+                self.get_available_rates_for_size_index(i)))
             i += 1
         print("Rotations:")
         rots = self.get_available_rotations()
@@ -820,9 +823,9 @@ class Screen:
                 print("(not connected)")
             if verbose:
                 print("    Core properties:")
-                for (f,t) in output._info.contents._fields_:
-                    print("      %s: %s" % (f,
-                                            getattr(output._info.contents, f)))
+                for (f, t) in output._info.contents._fields_:
+                    print("      %s: %s" % (
+                        f, getattr(output._info.contents, f)))
 
     def get_outputs(self):
         """Returns the outputs of the screen"""
