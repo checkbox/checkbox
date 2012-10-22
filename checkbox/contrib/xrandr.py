@@ -663,7 +663,7 @@ class Screen:
         RR_ROTATE_90, RR_ROTATE_180 or RR_ROTATE_270"""
         _check_required_version((1, 0))
         current = c_ushort()
-        rotations = rr.XRRConfigRotations(self._config, byref(current))
+        rr.XRRConfigRotations(self._config, byref(current))
         return current.value
 
     def get_available_rotations(self):
