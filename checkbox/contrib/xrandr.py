@@ -35,7 +35,18 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 # MA  02110-1301  USA
 
-from ctypes import *
+from ctypes import (
+    POINTER,
+    Structure,
+    byref,
+    c_char_p,
+    c_void_p,
+    c_int,
+    c_long,
+    c_ulong,
+    c_ushort,
+    cdll,
+)
 import os
 
 RR_ROTATE_0 = 1
