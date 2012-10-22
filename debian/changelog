@@ -59,8 +59,27 @@ checkbox (0.14.10) quantal; urgency=low
     'usb' and 'sdio devices' when either or both 'ata_serial_esata' or 'scsi'
     were provided on command line, in addition to the device actually being
     manipulated. (LP: #1066948)
+  
+  [Jeff Lane]
+  * scripts/sleep_test - Added timeing code to create start/end markers in
+    for each sleep/resume iteration.  Pull kernel timestamps to determine the
+    time to sleep and time to resume for each iteration.  Output the times for
+    each iteration and an average time for all iterations.  Tweaks to output to
+    make it all look better. Verified perf code doesn't run on S4 tests.
+    scripts/fwts_test - Added similar performance code to fwts_test.  Added
+    sleep test functions to fwts_test to provide the ability to run sleep tests
+    via fwts using the wrapper.  Tweaked the output to make it pretty. Added
+    some code to prevent the perf stuff from running on S4 tests.
+    jobs/suspend.txt, jobs/stress.txt, jobs/hibernate.txt - modifed jobs to use
+    the shell code to call fwts_test if fwts is installed and fall back to
+    sleep_test otherwise.  Modifed the commands so that they all call fwts_test
+    rather than fwts directly.  Ensured all are calling with the proper
+    options. Fixed log name problems that caused log attachment jobs to not
+    work.
+  * checkbox/parsers/modinfo.py - added exception handling to address possible
+    bad output from modinfo causing a ValueError to occur. (LP: #1066118)
 
- -- Marc Tardif <marc@ubuntu.com>  Fri, 12 Oct 2012 10:47:26 -0400
+ -- Jeff Lane <jeff@ubuntu.com>  Mon, 22 Oct 2012 10:35:36 -0400
 
 checkbox (0.14.6) quantal; urgency=low
 
