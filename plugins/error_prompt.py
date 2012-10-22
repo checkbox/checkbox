@@ -29,9 +29,6 @@ class ErrorPrompt(Plugin):
 
     def prompt_error(self, interface, primary_text, secondary_text=None,
                      detailed_text=None):
-
-        args = (arg if arg is None else str(arg) for arg in (
-                primary_text, secondary_text, detailed_text))
         interface.show_error(*args)
 
 

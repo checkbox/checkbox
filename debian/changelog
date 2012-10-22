@@ -19,8 +19,8 @@ checkbox (0.14.10) quantal; urgency=low
   * Allow verification and interaction to be used as aliases for manual tests
     so that we can distinguish between tests which are partly manual and
     those which are entirely manual.
-  * plugins/error_prompt.py - Convert all show_errors argument to string to
-    prevent crash in the UserInterface class (LP: #1066862)
+  * plugins/launchpad_exchange.py - make sure exchange-error signal is sent
+    with a string instead of an Exception (LP: #1066862)
 
   [Daniel Manrique]
   * [FEATURE] checkbox/job.py: Fixed intltool warning about unnamed

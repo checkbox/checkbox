@@ -142,7 +142,7 @@ Failed to process form: %s""" % e))
             response = transport.exchange(form, self._headers,
                 timeout=self.timeout)
         except Exception as error:
-            self._manager.reactor.fire("exchange-error", error)
+            self._manager.reactor.fire("exchange-error", str(error))
             return
         end_time = time.time()
 
