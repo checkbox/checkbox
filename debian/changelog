@@ -58,6 +58,8 @@ checkbox (0.14.10) quantal; urgency=low
     --memorycard. stress/sdhc and stress/usb run with root privileges to mount
     all partitions (LP: #1065862)
   * [FEATURE] jobs/stress.txt.in: Added a wireless hotkey stress test.
+  * jobs/power-management.txt.in: Fixed path to the /proc acpi lid button
+    (LP: #1068799)
 
   [Zygmunt Krynicki]
   * scripts/removable_storage_watcher - properly detect removal of 'firewire',
