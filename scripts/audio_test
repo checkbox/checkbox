@@ -581,16 +581,14 @@ def main():
 
     #Write some files to disk for later analysis
     if args.audio:
-        if args.verbose:
-            logging.info("Saving recorded audio as %s" % args.audio)
+        logging.info("Saving recorded audio as %s" % args.audio)
         if not FileDumper().write_to_file(args.audio,
                                           [rawaudio.get_raw_audio()]):
             logging.error("Couldn't save recorded audio", file=sys.stderr)
 
     if args.spectrum:
-        if args.verbose:
-            logging.info("Saving spectrum data for plotting as %s" % 
-                         args.spectrum)
+        logging.info("Saving spectrum data for plotting as %s" % 
+                     args.spectrum)
         if not FileDumper().write_to_file(args.spectrum,
                                        ["%s,%s" % t for t in
                                         zip(analyzer.frequencies,

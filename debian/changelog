@@ -32,6 +32,7 @@ checkbox (0.14.10) quantal; urgency=low
   * Added environment resource to whitelists (LP: #1067038)
   * Added retrying pactl commands in case audio layer is not up yet
     (LP: #1065908)
+  * Removed references to inexistent opts.verbose setting (LP: #1070829)
 
   [Marc Tardif]
   * plugins/environment_info.py: Enabling environment to take precedence
@@ -86,7 +87,7 @@ checkbox (0.14.10) quantal; urgency=low
   * checkbox/parsers/modinfo.py - added exception handling to address possible
     bad output from modinfo causing a ValueError to occur. (LP: #1066118)
 
- -- Jeff Lane <jeff@ubuntu.com>  Mon, 22 Oct 2012 10:35:36 -0400
+ -- Daniel Manrique <roadmr@ubuntu.com>  Wed, 24 Oct 2012 10:00:12 -0400
 
 checkbox (0.14.6) quantal; urgency=low
 
