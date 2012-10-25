@@ -22,6 +22,8 @@ checkbox (0.14.10) quantal; urgency=low
     those which are entirely manual.
   * plugins/launchpad_exchange.py - make sure exchange-error signal is sent
     with a string instead of an Exception (LP: #1066862)
+  * scripts/network_check - Get the base page for cdimage.ubuntu.com instead
+    of some subdirectory which may or may not change in future (LP: #1065855)
 
   [Daniel Manrique]
   * [FEATURE] checkbox/job.py: Fixed intltool warning about unnamed
