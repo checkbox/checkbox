@@ -100,6 +100,7 @@ _description:
 plugin: manual
 name: usb/storage-transfer
 depends: usb/insert
+user: root
 command: removable_storage_test usb
 _description:
  PURPOSE:
@@ -117,6 +118,7 @@ name: usb3/storage-transfer
 requires:
  usb.usb3 == 'supported'
 depends: usb3/insert
+user: root
 command: removable_storage_test -m 500000000 -p 7 usb
 _description:
  PURPOSE:
@@ -132,6 +134,7 @@ _description:
 plugin: shell
 name: usb/storage-automated
 depends: usb/insert
+user: root
 command: removable_storage_test usb
 _description:
  This test is automated and executes after the usb/insert test is run.
@@ -141,6 +144,7 @@ name: usb3/storage-automated
 requires:
  usb.usb3 == 'supported'
 depends: usb3/insert
+user: root
 command: removable_storage_test -m 500000000 -p 7 usb
 _description:
  This test is automated and executes after the usb3/insert test is run.

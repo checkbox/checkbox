@@ -88,8 +88,10 @@ checkbox (0.14.10) quantal; urgency=low
     work.
   * checkbox/parsers/modinfo.py - added exception handling to address possible
     bad output from modinfo causing a ValueError to occur. (LP: #1066118)
+  * Added root user requirement to all jobs using removable storage test 
+    (LP: #1014813)
 
- -- Daniel Manrique <roadmr@ubuntu.com>  Wed, 24 Oct 2012 10:00:12 -0400
+ -- Jeff Lane <jeff@ubuntu.com>  Thu, 25 Oct 2012 16:24:56 -0400
 
 checkbox (0.14.6) quantal; urgency=low
 
