@@ -71,7 +71,7 @@ class MessageFileFormatTest(unittest.TestCase):
                     message[short_key] = message.pop(long_key)
             job_schema.coerce(message)
 
-    def test_verification_interaction_jobs_have_command(self):
+    def test_verify_interact_jobs_have_command(self):
         for message in self.messages:
-            if message['plugin'] in ('verification', 'interaction'):
+            if message['plugin'] in ('user-verify', 'user-interact'):
                 self.assertTrue("command" in message)

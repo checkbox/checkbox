@@ -24,7 +24,8 @@ checkbox (0.14.10) quantal; urgency=low
     with a string instead of an Exception (LP: #1066862)
   * scripts/network_check - Get the base page for cdimage.ubuntu.com instead
     of some subdirectory which may or may not change in future (LP: #1065855)
-  * Added a unit test to ensure verification and interaction jobs have a command
+  * Added a unit test to ensure user-verify and user-interact jobs
+    have a command
 
   [Daniel Manrique]
   * [FEATURE] checkbox/job.py: Fixed intltool warning about unnamed
