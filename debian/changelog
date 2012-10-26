@@ -39,6 +39,8 @@ checkbox (0.14.10) quantal; urgency=low
   * Removed references to inexistent opts.verbose setting (LP: #1070829)
   * Added unit test to catch jobs with mismatching environ and actual
     variables used in shell command (LP: #955053)
+  * Forced utf-8 decoding on modinfo output and updated to use check_output
+    instead of communicate (LP: #1055730)
 
   [Marc Tardif]
   * plugins/environment_info.py: Enabling environment to take precedence
@@ -94,7 +96,7 @@ checkbox (0.14.10) quantal; urgency=low
   * checkbox/parsers/modinfo.py - added exception handling to address possible
     bad output from modinfo causing a ValueError to occur. (LP: #1066118)
 
- -- Daniel Manrique <roadmr@ubuntu.com>  Thu, 25 Oct 2012 17:35:57 -0400
+ -- Daniel Manrique <roadmr@ubuntu.com>  Fri, 26 Oct 2012 15:56:14 -0400
 
 checkbox (0.14.6) quantal; urgency=low
 
