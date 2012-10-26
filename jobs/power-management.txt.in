@@ -91,7 +91,7 @@ name: power-management/lid_close
 requires: device.product == 'Lid Switch'
 command:
  for i in `seq 20`; do
-  state=`cat /proc/acpi/button/lid/LID/state | awk '{print $2}'`
+  state=`cat /proc/acpi/button/lid/*/state | awk '{print $2}'`
   [ "$state" = "closed" ] && exit 0 || sleep 0.5
  done
  exit 1
@@ -109,7 +109,7 @@ name: power-management/lid_open
 requires: device.product == 'Lid Switch'
 command:
  for i in `seq 20`; do
-  state=`cat /proc/acpi/button/lid/LID/state | awk '{print $2}'`
+  state=`cat /proc/acpi/button/lid/*/state | awk '{print $2}'`
   [ "$state" = "open" ] && exit 0 || sleep 0.5
  done
  exit 1

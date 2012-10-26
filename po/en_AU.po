@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-09-11 04:36+0000\n"
-"X-Generator: Launchpad (build 15924)\n"
+"X-Launchpad-Export-Date: 2012-10-23 04:36+0000\n"
+"X-Generator: Launchpad (build 16179)\n"
 
 #. Title of the user interface
 #: ../gtk/checkbox-gtk.ui.h:1 ../qt/checkbox-qt.desktop.in.h:1
@@ -105,6 +105,17 @@ msgid ""
 "   1. Do you hear the sound coming out on the  corresponding channel?\n"
 "   2. Did you hear a sound?"
 msgstr ""
+"PURPOSE:\n"
+"   1. HDMI interface verification\n"
+"STEPS:\n"
+"   1. Plug an external HDMI device with sound\n"
+"   2. Open system sound preferences\n"
+"   3. Click on Output and Select HDMI and click 'Test Speakers' to check "
+"left and right channels\n"
+"   4. Click the Test button\n"
+"VERIFICATION:\n"
+"   1. Do you hear the sound coming out on the  corresponding channel?\n"
+"   2. Did you hear a sound?"
 
 #. description
 #: ../jobs/audio.txt.in:58
@@ -212,11 +223,14 @@ msgid ""
 "this computer's audio subsystem and perform more detailed tests under a "
 "controlled environment."
 msgstr ""
+"Collect audio-related system information. This data can be used to simulate "
+"this computer's audio subsystem and perform more detailed tests under a "
+"controlled environment."
 
 #. description
 #: ../jobs/audio.txt.in:143
 msgid "Attaches the audio hardware data collection log to the results."
-msgstr ""
+msgstr "Attaches the audio hardware data collection log to the results."
 
 #. description
 #: ../jobs/benchmarks.txt.in:18
@@ -226,142 +240,142 @@ msgstr "Benchmark for each disk"
 #. description
 #: ../jobs/benchmarks.txt.in:41
 msgid "Run Render-Bench XRender/Imlib2 benchmark"
-msgstr ""
+msgstr "Run Render-Bench XRender/Imlib2 benchmark"
 
 #. description
 #: ../jobs/benchmarks.txt.in:47
 msgid "Run Qgears2 XRender Extension gearsfancy benchmark"
-msgstr ""
+msgstr "Run Qgears2 XRender Extension gearsfancy benchmark"
 
 #. description
 #: ../jobs/benchmarks.txt.in:53
 msgid "Run Qgears2 XRender Extension image scaling benchmark"
-msgstr ""
+msgstr "Run Qgears2 XRender Extension image scaling benchmark"
 
 #. description
 #: ../jobs/benchmarks.txt.in:59
 msgid "Run Qgears2 OpenGL gearsfancy benchmark"
-msgstr ""
+msgstr "Run Qgears2 OpenGL gearsfancy benchmark"
 
 #. description
 #: ../jobs/benchmarks.txt.in:65
 msgid "Run Qgears2 OpenGL image scaling benchmark"
-msgstr ""
+msgstr "Run Qgears2 OpenGL image scaling benchmark"
 
 #. description
 #: ../jobs/benchmarks.txt.in:74
 msgid "Run GLmark2-ES2 benchmark"
-msgstr ""
+msgstr "Run GLmark2-ES2 benchmark"
 
 #. description
 #: ../jobs/benchmarks.txt.in:83
 msgid "Run GLmark2 benchmark"
-msgstr ""
+msgstr "Run GLmark2 benchmark"
 
 #. description
 #: ../jobs/benchmarks.txt.in:89
 msgid "Run Unigine Santuary benchmark"
-msgstr ""
+msgstr "Run Unigine Sanctuary benchmark"
 
 #. description
 #: ../jobs/benchmarks.txt.in:95
 msgid "Run Unigine Tropics benchmark"
-msgstr ""
+msgstr "Run Unigine Tropics benchmark"
 
 #. description
 #: ../jobs/benchmarks.txt.in:101
 msgid "Run Unigine Heaven benchmark"
-msgstr ""
+msgstr "Run Unigine Heaven benchmark"
 
 #. description
 #: ../jobs/benchmarks.txt.in:107
 msgid "Run Lightsmark benchmark"
-msgstr ""
+msgstr "Run Lightsmark benchmark"
 
 #. description
 #: ../jobs/benchmarks.txt.in:113
 msgid "Run Cachebench Read benchmark"
-msgstr ""
+msgstr "Run Cachebench Read benchmark"
 
 #. description
 #: ../jobs/benchmarks.txt.in:119
 msgid "Run Cachebench Write benchmark"
-msgstr ""
+msgstr "Run Cachebench Write benchmark"
 
 #. description
 #: ../jobs/benchmarks.txt.in:125
 msgid "Run Cachebench Read / Modify / Write benchmark"
-msgstr ""
+msgstr "Run Cachebench Read / Modify / Write benchmark"
 
 #. description
 #: ../jobs/benchmarks.txt.in:131
 msgid "Run Stream Copy benchmark"
-msgstr ""
+msgstr "Run Stream Copy benchmark"
 
 #. description
 #: ../jobs/benchmarks.txt.in:137
 msgid "Run Stream Scale benchmark"
-msgstr ""
+msgstr "Run Stream Scale benchmark"
 
 #. description
 #: ../jobs/benchmarks.txt.in:143
 msgid "Run Stream Add benchmark"
-msgstr ""
+msgstr "Run Stream Add benchmark"
 
 #. description
 #: ../jobs/benchmarks.txt.in:149
 msgid "Run Stream Triad benchmark"
-msgstr ""
+msgstr "Run Stream Triad benchmark"
 
 #. description
 #: ../jobs/benchmarks.txt.in:155
 msgid "Run Network Loopback benchmark"
-msgstr ""
+msgstr "Run Network Loopback benchmark"
 
 #. description
 #: ../jobs/benchmarks.txt.in:167
 msgid "Run Encode MP3 benchmark"
-msgstr ""
+msgstr "Run Encode MP3 benchmark"
 
 #. description
 #: ../jobs/benchmarks.txt.in:173
 msgid "Run x264 H.264/AVC encoder benchmark"
-msgstr ""
+msgstr "Run x264 H.264/AVC encoder benchmark"
 
 #. description
 #: ../jobs/benchmarks.txt.in:179
 msgid "Run GnuPG benchmark"
-msgstr ""
+msgstr "Run GnuPG benchmark"
 
 #. description
 #: ../jobs/benchmarks.txt.in:185
 msgid "Run Compress PBZIP2 benchmark"
-msgstr ""
+msgstr "Run Compress PBZIP2 benchmark"
 
 #. description
 #: ../jobs/benchmarks.txt.in:191
 msgid "Run Compress 7ZIP benchmark"
-msgstr ""
+msgstr "Run Compress 7ZIP benchmark"
 
 #. description
 #: ../jobs/benchmarks.txt.in:197
 msgid "Run N-Queens benchmark"
-msgstr ""
+msgstr "Run N-Queens benchmark"
 
 #. description
 #: ../jobs/benchmarks.txt.in:203
 msgid "Run Himeno benchmark"
-msgstr ""
+msgstr "Run Himeno benchmark"
 
 #. description
 #: ../jobs/benchmarks.txt.in:209
 msgid "CPU utilization on an idle system."
-msgstr ""
+msgstr "CPU utilisation on an idle system."
 
 #. description
 #: ../jobs/benchmarks.txt.in:215
 msgid "Disk utilization on an idle system."
-msgstr ""
+msgstr "Disk utilisation on an idle system."
 
 #. description
 #: ../jobs/bluetooth.txt.in:8
@@ -595,34 +609,34 @@ msgstr ""
 "   Did the sample play correctly?"
 
 #. description
-#: ../jobs/cpu.txt.in:8
+#: ../jobs/cpu.txt.in:9
 msgid ""
 "Test the CPU scaling capabilities using Firmware Test Suite (fwts cpufreq)."
 msgstr ""
 "Test the CPU scaling capabilities using Firmware Test Suite (fwts cpufreq)."
 
 #. description
-#: ../jobs/cpu.txt.in:15
+#: ../jobs/cpu.txt.in:16
 msgid "Attaches the log generated by cpu/scaling_test to the results"
-msgstr ""
+msgstr "Attaches the log generated by cpu/scaling_test to the results"
 
 #. description
-#: ../jobs/cpu.txt.in:22
+#: ../jobs/cpu.txt.in:23
 msgid "Test for clock jitter."
 msgstr "Test for clock jitter."
 
 #. description
-#: ../jobs/cpu.txt.in:30
+#: ../jobs/cpu.txt.in:31
 msgid "Test offlining CPUs in a multicore system."
 msgstr "Test off-lining CPUs in a multi-core system."
 
 #. description
-#: ../jobs/cpu.txt.in:37
+#: ../jobs/cpu.txt.in:38
 msgid "This test checks cpu topology for accuracy"
 msgstr "This test checks cpu topology for accuracy"
 
 #. description
-#: ../jobs/cpu.txt.in:45
+#: ../jobs/cpu.txt.in:46
 msgid "This test checks that CPU frequency governors are obeyed when set."
 msgstr "This test checks that CPU frequency governors are obeyed when set."
 
@@ -787,7 +801,7 @@ msgstr ""
 "   Did the authentication procedure work correctly?"
 
 #. description
-#: ../jobs/firewire.txt.in:6
+#: ../jobs/firewire.txt.in:4
 msgid ""
 "PURPOSE:\n"
 "    This test will check the system can detect the insertion of a FireWire "
@@ -802,9 +816,21 @@ msgid ""
 "automatically\n"
 "    selected result"
 msgstr ""
+"PURPOSE:\n"
+"    This test will check the system can detect the insertion of a FireWire "
+"HDD\n"
+"STEPS:\n"
+"    1. Click 'Test' to begin the test. This test will\n"
+"       timeout and fail if the insertion has not been detected within 20 "
+"seconds.\n"
+"    2. Plug a FireWire HDD into an available FireWire port.\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the "
+"automatically\n"
+"    selected result"
 
 #. description
-#: ../jobs/firewire.txt.in:23
+#: ../jobs/firewire.txt.in:19
 msgid ""
 "This is an automated test which performs read/write operations on an "
 "attached FireWire HDD"
@@ -813,7 +839,7 @@ msgstr ""
 "attached FireWire HDD"
 
 #. description
-#: ../jobs/firewire.txt.in:33
+#: ../jobs/firewire.txt.in:27
 msgid ""
 "PURPOSE:\n"
 "    This test will check the system can detect the removal of a FireWire "
@@ -827,6 +853,17 @@ msgid ""
 "automatically\n"
 "    selected result"
 msgstr ""
+"PURPOSE:\n"
+"    This test will check the system can detect the removal of a FireWire "
+"HDD\n"
+"STEPS:\n"
+"    1. Click 'Test' to begin the test. This test will timeout and fail if\n"
+"       the removal has not been detected within 20 seconds.\n"
+"    2. Remove the previously attached FireWire HDD from the FireWire port.\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the "
+"automatically\n"
+"    selected result"
 
 #. description
 #: ../jobs/floppy.txt.in:4
@@ -1033,11 +1070,17 @@ msgid ""
 "VERIFICATION:\n"
 "    1. Review attachment manually later"
 msgstr ""
+"PURPOSE:\n"
+"    Take a screen shot of the current screen (logged on Unity desktop)\n"
+"STEPS:\n"
+"    1. Take picture using USB webcam\n"
+"VERIFICATION:\n"
+"    1. Review attachment manually later"
 
 #. description
-#: ../jobs/graphics.txt.in:171 ../jobs/suspend.txt.in:403
+#: ../jobs/graphics.txt.in:171 ../jobs/suspend.txt.in:404
 msgid "Attaches the screenshot captured in graphics/screenshot."
-msgstr ""
+msgstr "Attaches the screen shot captured in graphics/screen shot."
 
 #. description
 #: ../jobs/graphics.txt.in:182
@@ -1051,12 +1094,21 @@ msgid ""
 "VERIFICATION:\n"
 "    1. Review attachment manually later"
 msgstr ""
+"PURPOSE:\n"
+"    Take a screen shot of the current screen during fullscreen video "
+"playback\n"
+"STEPS:\n"
+"    1. Start a fullscreen video playback\n"
+"    2. Take picture using USB webcam after a few seconds\n"
+"VERIFICATION:\n"
+"    1. Review attachment manually later"
 
 #. description
 #: ../jobs/graphics.txt.in:195
 msgid ""
 "Attaches the screenshot captured in graphics/screenshot_fullscreen_video."
 msgstr ""
+"Attaches the screen shot captured in graphics/screenshot_fullscreen_video."
 
 #. description
 #: ../jobs/hibernate.txt.in:7
@@ -1122,12 +1174,12 @@ msgstr "Attaches very verbose lspci output."
 #. description
 #: ../jobs/info.txt.in:42
 msgid "Attaches very verbose lspci output (with central database Query)."
-msgstr ""
+msgstr "Attaches very verbose lspci output (with central database Query)."
 
 #. description
 #: ../jobs/info.txt.in:49
 msgid "List USB devices"
-msgstr ""
+msgstr "List USB devices"
 
 #. description
 #: ../jobs/info.txt.in:58
@@ -1368,6 +1420,14 @@ msgid ""
 "VERIFICATION:\n"
 "    Do the keys work as expected?"
 msgstr ""
+"PURPOSE:\n"
+"    This test will test the media keys of your keyboard\n"
+"STEPS:\n"
+"    1. Click test to open a window on which to test the media keys.\n"
+"    2. If all the keys work, the test will be marked as passed.\n"
+"    3. If your computer has no media keys, Skip this test.\n"
+"VERIFICATION:\n"
+"    Do the keys work as expected?"
 
 #. description
 #: ../jobs/keys.txt.in:91
@@ -1380,6 +1440,13 @@ msgid ""
 "VERIFICATION:\n"
 "    Does the super key work as expected?"
 msgstr ""
+"PURPOSE:\n"
+"    This test will test the super key of your keyboard\n"
+"STEPS:\n"
+"    1. Click test to open a window on which to test the super key.\n"
+"    2. If the key works, the test will pass and the window will close.\n"
+"VERIFICATION:\n"
+"    Does the super key work as expected?"
 
 #. description
 #: ../jobs/local.txt.in:3
@@ -1389,7 +1456,7 @@ msgstr "Audio tests"
 #. description
 #: ../jobs/local.txt.in:10
 msgid "Benchmarks tests"
-msgstr ""
+msgstr "Benchmarks tests"
 
 #. description
 #: ../jobs/local.txt.in:17
@@ -1554,15 +1621,15 @@ msgstr "Stress tests"
 #. description
 #: ../jobs/local.txt.in:262
 msgid "Smoke tests"
-msgstr ""
+msgstr "Smoke tests"
 
 #. description
 #: ../jobs/local.txt.in:269
 msgid "Sniff Sniffers"
-msgstr ""
+msgstr "Sniff Sniffers"
 
 #. description
-#: ../jobs/mediacard.txt.in:6
+#: ../jobs/mediacard.txt.in:4
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the systems media card reader can\n"
@@ -1575,9 +1642,19 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"PURPOSE:\n"
+"    This test will check that the systems media card reader can\n"
+"    detect the insertion of a Multimedia Card (MMC) media\n"
+"STEPS:\n"
+"    1. Click \"Test\" and insert an MMC card into the reader.\n"
+"       (Note: this test will time-out after 20 seconds.)\n"
+"    2. Do not unplug the device after the test.\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
 
 #. description
-#: ../jobs/mediacard.txt.in:24
+#: ../jobs/mediacard.txt.in:20
 msgid ""
 "This test is automated and executes after the mediacard/mmc-insert test is "
 "run. It tests reading and writing to the MMC card."
@@ -1586,7 +1663,7 @@ msgstr ""
 "run. It tests reading and writing to the MMC card."
 
 #. description
-#: ../jobs/mediacard.txt.in:34
+#: ../jobs/mediacard.txt.in:28
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the system correctly detects\n"
@@ -1598,9 +1675,18 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"PURPOSE:\n"
+"    This test will check that the system correctly detects\n"
+"    the removal of the MMC card from the systems card reader.\n"
+"STEPS:\n"
+"    1. Click \"Test\" and remove the MMC card from the reader.\n"
+"       (Note: this test will time-out after 20 seconds.)\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
 
 #. description
-#: ../jobs/mediacard.txt.in:51
+#: ../jobs/mediacard.txt.in:43
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the systems media card reader can\n"
@@ -1613,9 +1699,19 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"PURPOSE:\n"
+"    This test will check that the systems media card reader can\n"
+"    detect the insertion of an MMC card after the system has been suspended\n"
+"STEPS:\n"
+"    1. Click \"Test\" and insert an MMC card into the reader.\n"
+"       (Note: this test will time-out after 20 seconds.)\n"
+"    2. Do not unplug the device after the test.\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
 
 #. description
-#: ../jobs/mediacard.txt.in:69
+#: ../jobs/mediacard.txt.in:59
 msgid ""
 "This test is automated and executes after the mediacard/mmc-insert-after-"
 "suspend test is run. It tests reading and writing to the MMC card after the "
@@ -1626,7 +1722,7 @@ msgstr ""
 "system has been suspended."
 
 #. description
-#: ../jobs/mediacard.txt.in:79
+#: ../jobs/mediacard.txt.in:67
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the system correctly detects the removal\n"
@@ -1639,9 +1735,19 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"PURPOSE:\n"
+"    This test will check that the system correctly detects the removal\n"
+"    of an MMC card from the systems card reader after the system has been "
+"suspended.\n"
+"STEPS:\n"
+"    1. Click \"Test\" and remove the MMC card from the reader.\n"
+"       (Note: this test will time-out after 20 seconds.)\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
 
 #. description
-#: ../jobs/mediacard.txt.in:95
+#: ../jobs/mediacard.txt.in:81
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the systems media card reader can\n"
@@ -1654,9 +1760,19 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"PURPOSE:\n"
+"    This test will check that the systems media card reader can\n"
+"    detect the insertion of a Secure Digital (SD) media card\n"
+"STEPS:\n"
+"    1. Click \"Test\" and insert an SD card into the reader.\n"
+"       (Note: this test will time-out after 20 seconds.)\n"
+"    2. Do not unplug the device after the test.\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
 
 #. description
-#: ../jobs/mediacard.txt.in:113
+#: ../jobs/mediacard.txt.in:97
 msgid ""
 "This test is automated and executes after the mediacard/sd-insert test is "
 "run. It tests reading and writing to the SD card."
@@ -1665,7 +1781,7 @@ msgstr ""
 "run. It tests reading and writing to the SD card."
 
 #. description
-#: ../jobs/mediacard.txt.in:123
+#: ../jobs/mediacard.txt.in:105
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the system correctly detects\n"
@@ -1677,9 +1793,18 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"PURPOSE:\n"
+"    This test will check that the system correctly detects\n"
+"    the removal of an SD card from the systems card reader.\n"
+"STEPS:\n"
+"    1. Click \"Test\" and remove the SD card from the reader.\n"
+"       (Note: this test will time-out after 20 seconds.)\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
 
 #. description
-#: ../jobs/mediacard.txt.in:140
+#: ../jobs/mediacard.txt.in:120
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the systems media card reader can\n"
@@ -1692,9 +1817,19 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"PURPOSE:\n"
+"    This test will check that the systems media card reader can\n"
+"    detect the insertion of an SD card after the system has been suspended\n"
+"STEPS:\n"
+"    1. Click \"Test\" and insert an SD card into the reader.\n"
+"       (Note: this test will time-out after 20 seconds.)\n"
+"    2. Do not unplug the device after the test.\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
 
 #. description
-#: ../jobs/mediacard.txt.in:158
+#: ../jobs/mediacard.txt.in:136
 msgid ""
 "This test is automated and executes after the mediacard/sd-insert-after-"
 "suspend test is run. It tests reading and writing to the SD card after the "
@@ -1705,7 +1840,7 @@ msgstr ""
 "system has been suspended."
 
 #. description
-#: ../jobs/mediacard.txt.in:168
+#: ../jobs/mediacard.txt.in:144
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the system correctly detects\n"
@@ -1718,9 +1853,19 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"PURPOSE:\n"
+"    This test will check that the system correctly detects\n"
+"    the removal of an SD card from the systems card reader after the system "
+"has been suspended.\n"
+"STEPS:\n"
+"    1. Click \"Test\" and remove the SD card from the reader.\n"
+"       (Note: this test will time-out after 20 seconds.)\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
 
 #. description
-#: ../jobs/mediacard.txt.in:184
+#: ../jobs/mediacard.txt.in:158
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the systems media card reader can\n"
@@ -1734,9 +1879,20 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"PURPOSE:\n"
+"    This test will check that the systems media card reader can\n"
+"    detect the insertion of a Secure Digital High-Capacity (SDHC) media "
+"card\n"
+"STEPS:\n"
+"    1. Click \"Test\" and insert an SDHC card into the reader.\n"
+"       (Note: this test will time-out after 20 seconds.)\n"
+"    2. Do not unplug the device after the test.\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
 
 #. description
-#: ../jobs/mediacard.txt.in:202
+#: ../jobs/mediacard.txt.in:174
 msgid ""
 "This test is automated and executes after the mediacard/sdhc-insert test is "
 "run. It tests reading and writing to the SDHC card."
@@ -1745,7 +1901,7 @@ msgstr ""
 "run. It tests reading and writing to the SDHC card."
 
 #. description
-#: ../jobs/mediacard.txt.in:212
+#: ../jobs/mediacard.txt.in:182
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the system correctly detects\n"
@@ -1757,9 +1913,18 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"PURPOSE:\n"
+"    This test will check that the system correctly detects\n"
+"    the removal of an SDHC card from the systems card reader.\n"
+"STEPS:\n"
+"    1. Click \"Test\" and remove the SDHC card from the reader.\n"
+"       (Note: this test will time-out after 20 seconds.)\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
 
 #. description
-#: ../jobs/mediacard.txt.in:229
+#: ../jobs/mediacard.txt.in:197
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the systems media card reader can\n"
@@ -1773,9 +1938,20 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"PURPOSE:\n"
+"    This test will check that the systems media card reader can\n"
+"    detect the insertion of an SDHC media card after the system has been "
+"suspended\n"
+"STEPS:\n"
+"    1. Click \"Test\" and insert an SDHC card into the reader.\n"
+"       (Note: this test will time-out after 20 seconds.)\n"
+"    2. Do not unplug the device after the test.\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
 
 #. description
-#: ../jobs/mediacard.txt.in:247
+#: ../jobs/mediacard.txt.in:213
 msgid ""
 "This test is automated and executes after the mediacard/sdhc-insert-after-"
 "suspend test is run. It tests reading and writing to the SDHC card after the "
@@ -1786,7 +1962,7 @@ msgstr ""
 "system has been suspended."
 
 #. description
-#: ../jobs/mediacard.txt.in:257
+#: ../jobs/mediacard.txt.in:221
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the system correctly detects the removal\n"
@@ -1799,9 +1975,19 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"PURPOSE:\n"
+"    This test will check that the system correctly detects the removal\n"
+"    of an SDHC card from the systems card reader after the system has been "
+"suspended.\n"
+"STEPS:\n"
+"    1. Click \"Test\" and remove the SDHC card from the reader.\n"
+"       (Note: this test will time-out after 20 seconds.)\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
 
 #. description
-#: ../jobs/mediacard.txt.in:273
+#: ../jobs/mediacard.txt.in:235
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the systems media card reader can\n"
@@ -1814,9 +2000,19 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"PURPOSE:\n"
+"    This test will check that the systems media card reader can\n"
+"    detect the insertion of a Compact Flash (CF) media card\n"
+"STEPS:\n"
+"    1. Click \"Test\" and insert a CF card into the reader.\n"
+"       (Note: this test will time-out after 20 seconds.)\n"
+"    2. Do not unplug the device after the test.\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
 
 #. description
-#: ../jobs/mediacard.txt.in:291
+#: ../jobs/mediacard.txt.in:251
 msgid ""
 "This test is automated and executes after the mediacard/cf-insert test is "
 "run. It tests reading and writing to the CF card."
@@ -1825,7 +2021,7 @@ msgstr ""
 "run. It tests reading and writing to the CF card."
 
 #. description
-#: ../jobs/mediacard.txt.in:301
+#: ../jobs/mediacard.txt.in:259
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the system correctly detects\n"
@@ -1837,9 +2033,18 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"PURPOSE:\n"
+"    This test will check that the system correctly detects\n"
+"    the removal of a CF card from the systems card reader.\n"
+"STEPS:\n"
+"    1. Click \"Test\" and remove the CF card from the reader.\n"
+"       (Note: this test will time-out after 20 seconds.)\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
 
 #. description
-#: ../jobs/mediacard.txt.in:318
+#: ../jobs/mediacard.txt.in:274
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the systems media card reader can\n"
@@ -1852,9 +2057,19 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"PURPOSE:\n"
+"    This test will check that the systems media card reader can\n"
+"    detect the insertion of a CF card after the system has been suspended\n"
+"STEPS:\n"
+"    1. Click \"Test\" and insert a CF card into the reader.\n"
+"       (Note: this test will time-out after 20 seconds.)\n"
+"    2. Do not unplug the device after the test.\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
 
 #. description
-#: ../jobs/mediacard.txt.in:336
+#: ../jobs/mediacard.txt.in:290
 msgid ""
 "This test is automated and executes after the mediacard/cf-insert-after-"
 "suspend test is run. It tests reading and writing to the CF card after the "
@@ -1865,7 +2080,7 @@ msgstr ""
 "system has been suspended."
 
 #. description
-#: ../jobs/mediacard.txt.in:346
+#: ../jobs/mediacard.txt.in:298
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the system correctly detects the removal\n"
@@ -1878,6 +2093,16 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"PURPOSE:\n"
+"    This test will check that the system correctly detects the removal\n"
+"    of a CF card from the systems card reader after the system has been "
+"suspended.\n"
+"STEPS:\n"
+"    1. Click \"Test\" and remove the CF card from the reader.\n"
+"       (Note: this test will time-out after 20 seconds.)\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
 
 #. description
 #: ../jobs/memory.txt.in:5
@@ -1907,6 +2132,16 @@ msgid ""
 "VERIFICATION:\n"
 "    Nothing to verify for this test"
 msgstr ""
+"PURPOSE:\n"
+"    Keep tester related information in the report\n"
+"STEPS:\n"
+"    1. Tester Information\n"
+"    2. Please enter the following information in the comments field:\n"
+"       a. Name\n"
+"       b. Email Address\n"
+"       c. Reason for this test run\n"
+"VERIFICATION:\n"
+"    Nothing to verify for this test"
 
 #. description
 #: ../jobs/miscellanea.txt.in:22
@@ -1939,7 +2174,7 @@ msgstr "Run Firmware Test Suite (fwts) automated tests."
 #. description
 #: ../jobs/miscellanea.txt.in:46
 msgid "Attaches the FWTS results log to the submission"
-msgstr ""
+msgstr "Attaches the FWTS results log to the submission"
 
 #. description
 #: ../jobs/miscellanea.txt.in:53
@@ -2125,22 +2360,22 @@ msgstr ""
 "    Did the the monitor go blank and turn on again?"
 
 #. description
-#: ../jobs/networking.txt.in:5
+#: ../jobs/networking.txt.in:8
 msgid "Test to detect the available network controllers"
 msgstr "Test to detect the available network controllers"
 
 #. description
-#: ../jobs/networking.txt.in:11
+#: ../jobs/networking.txt.in:14
 msgid "Tests whether the system has a working Internet connection."
 msgstr "Tests whether the system has a working Internet connection."
 
 #. description
-#: ../jobs/networking.txt.in:16
+#: ../jobs/networking.txt.in:19
 msgid "Network Information"
 msgstr "Network Information"
 
 #. description
-#: ../jobs/networking.txt.in:40
+#: ../jobs/networking.txt.in:43
 msgid ""
 "This is an automated test to gather some info on the current state of your "
 "network devices. If no devices are found, the test will exit with an error."
@@ -2149,7 +2384,7 @@ msgstr ""
 "network devices. If no devices are found, the test will exit with an error."
 
 #. description
-#: ../jobs/networking.txt.in:46
+#: ../jobs/networking.txt.in:49
 msgid ""
 "PURPOSE:\n"
 "    This test will check your wired connection\n"
@@ -2172,7 +2407,7 @@ msgstr ""
 "    Did a notification show and was the connection correctly established?"
 
 #. description
-#: ../jobs/networking.txt.in:59
+#: ../jobs/networking.txt.in:62
 msgid ""
 "PURPOSE:\n"
 "    This test will check that a DSL modem can be configured and connected.\n"
@@ -2203,7 +2438,7 @@ msgstr ""
 "    Did a notification show and was the connection correctly established?"
 
 #. description
-#: ../jobs/networking.txt.in:76
+#: ../jobs/networking.txt.in:79
 msgid ""
 "Automated test case to verify availability of some system on the network "
 "using ICMP ECHO packets."
@@ -2212,7 +2447,7 @@ msgstr ""
 "using ICMP ECHO packets."
 
 #. description
-#: ../jobs/networking.txt.in:83 ../jobs/peripheral.txt.in:37
+#: ../jobs/networking.txt.in:86 ../jobs/peripheral.txt.in:37
 msgid ""
 "Automated test case to make sure that it's possible to download files "
 "through HTTP"
@@ -2221,12 +2456,12 @@ msgstr ""
 "through HTTP"
 
 #. description
-#: ../jobs/networking.txt.in:91
+#: ../jobs/networking.txt.in:94
 msgid "Test to see if we can sync local clock to an NTP server"
 msgstr "Test to see if we can sync local clock to an NTP server"
 
 #. description
-#: ../jobs/networking.txt.in:97
+#: ../jobs/networking.txt.in:100
 msgid ""
 "Verify that an installation of checkbox-server on the network can be reached "
 "over SSH."
@@ -2235,24 +2470,24 @@ msgstr ""
 "over SSH."
 
 #. description
-#: ../jobs/networking.txt.in:103
+#: ../jobs/networking.txt.in:106
 msgid "Try to enable a remote printer on the network and print a test page."
 msgstr "Try to enable a remote printer on the network and print a test page."
 
 #. description
-#: ../jobs/networking.txt.in:108
+#: ../jobs/networking.txt.in:111
 msgid ""
 "Automated test to walk multiple network cards and test each one in sequence."
 msgstr ""
 "Automated test to walk multiple network cards and test each one in sequence."
 
 #. description
-#: ../jobs/networking.txt.in:131
+#: ../jobs/networking.txt.in:134
 msgid "Test to measure the network bandwidth"
 msgstr "Test to measure the network bandwidth"
 
 #. description
-#: ../jobs/optical.txt.in:8
+#: ../jobs/optical.txt.in:4
 msgid "Test to detect the optical drives"
 msgstr "Test to detect the optical drives"
 
@@ -2272,6 +2507,18 @@ msgid ""
 "    This test should automatically select \"Yes\" if it passes, \"No\" if it "
 "fails."
 msgstr ""
+"PURPOSE:\n"
+"    This test will check your optical devices ability to read CD media\n"
+"STEPS:\n"
+"    1. Insert appropriate non-blank media into your optical drive(s). Movie "
+"and Audio Disks may not work. Self-created data disks have the greatest "
+"chance of working.\n"
+"    2. If a file browser window opens, you can safely close or ignore that "
+"window.\n"
+"    3. Click \"Test\" to begin the test.\n"
+"VERIFICATION:\n"
+"    This test should automatically select \"Yes\" if it passes, \"No\" if it "
+"fails."
 
 #. description
 #: ../jobs/optical.txt.in:42
@@ -2303,7 +2550,7 @@ msgstr ""
 "fails."
 
 #. description
-#: ../jobs/optical.txt.in:65
+#: ../jobs/optical.txt.in:90
 msgid ""
 "PURPOSE:\n"
 "    This test will check your CD audio playback capabilities\n"
@@ -2365,7 +2612,7 @@ msgstr ""
 "fails."
 
 #. description
-#: ../jobs/optical.txt.in:111
+#: ../jobs/optical.txt.in:149
 msgid ""
 "PURPOSE:\n"
 "    This test will check your DVD movie playback capabilities. Note that "
@@ -2398,7 +2645,7 @@ msgstr ""
 "    Did all the steps work?"
 
 #. description
-#: ../jobs/optical.txt.in:129
+#: ../jobs/optical.txt.in:167
 msgid ""
 "PURPOSE:\n"
 "    This test will check your DVD  playback capabilities\n"
@@ -2427,6 +2674,13 @@ msgid ""
 "VERIFICATION:\n"
 "   Is the clock displaying the correct date and time for your timezone?"
 msgstr ""
+"PURPOSE:\n"
+"   This test will verify that the desktop clock displays the correct date "
+"and time\n"
+"STEPS:\n"
+"   1. Check the clock in the upper right corner of your desktop.\n"
+"VERIFICATION:\n"
+"   Is the clock displaying the correct date and time for your timezone?"
 
 #. description
 #: ../jobs/panel_clock_test.txt.in:18
@@ -2593,12 +2847,12 @@ msgstr ""
 #. description
 #: ../jobs/power-management.txt.in:16
 msgid "Test ACPI Wakealarm (fwts wakealarm)"
-msgstr ""
+msgstr "Test ACPI Wakealarm (fwts wakealarm)"
 
 #. description
 #: ../jobs/power-management.txt.in:25
 msgid "Attach log from fwts wakealarm test"
-msgstr ""
+msgstr "Attach log from fwts wakealarm test"
 
 #. description
 #: ../jobs/power-management.txt.in:39
@@ -2617,6 +2871,19 @@ msgid ""
 " If the machine successfully shuts down and boots, select Yes then select "
 "Next."
 msgstr ""
+"PURPOSE:\n"
+" This test will check the system's ability to power-off and boot.\n"
+"STEPS:\n"
+" 1: Select \"Test\" to begin.\n"
+" 2: The machine will shut down.\n"
+" 3: Power the machine back on.\n"
+" 4: After rebooting, wait for the test prompts to inform you that the test "
+"is complete.\n"
+" 5: Once the test has completed, restart checkbox and select Re-Run when "
+"prompted\n"
+"VERIFICATION:\n"
+" If the machine successfully shuts down and boots, select Yes then select "
+"Next."
 
 #. description
 #: ../jobs/power-management.txt.in:54
@@ -2624,6 +2891,8 @@ msgid ""
 "This will attach any logs from the power-management/poweroff test to the "
 "results."
 msgstr ""
+"This will attach any logs from the power-management/poweroff test to the "
+"results."
 
 #. description
 #: ../jobs/power-management.txt.in:64
@@ -2640,6 +2909,17 @@ msgid ""
 "VERIFICATION:\n"
 " If the machine successfully reboots, select Yes then select Next."
 msgstr ""
+"PURPOSE:\n"
+" This test will check the system's ability to reboot cleanly.\n"
+"STEPS:\n"
+" 1: Select \"Test\" to begin.\n"
+" 2: The machine will reboot.\n"
+" 3: After rebooting, wait for the test prompts to inform you that the test "
+"is complete.\n"
+" 4: Once the test has completed, restart checkbox and select Re-Run when "
+"prompted\n"
+"VERIFICATION:\n"
+" If the machine successfully reboots, select Yes then select Next."
 
 #. description
 #: ../jobs/power-management.txt.in:78
@@ -2647,6 +2927,8 @@ msgid ""
 "This will attach any logs from the power-management/reboot test to the "
 "results."
 msgstr ""
+"This will attach any logs from the power-management/reboot test to the "
+"results."
 
 #. description
 #: ../jobs/power-management.txt.in:83
@@ -2769,11 +3051,15 @@ msgid ""
 "   This is an automated stress test that will force the system to "
 "hibernate/resume for 30 cycles"
 msgstr ""
+"PURPOSE:\n"
+"   This is an automated stress test that will force the system to "
+"hibernate/resume for 30 cycles"
 
 #. description
 #: ../jobs/stress.txt.in:25
 msgid "Attaches the log from the 30 cycle Hibernate/Resume test if it exists"
 msgstr ""
+"Attaches the log from the 30 cycle Hibernate/Resume test if it exists"
 
 #. description
 #: ../jobs/stress.txt.in:34
@@ -2782,11 +3068,14 @@ msgid ""
 "   This is an automated stress test that will force the system to "
 "suspend/resume for 30 cycles."
 msgstr ""
+"PURPOSE:\n"
+"   This is an automated stress test that will force the system to "
+"suspend/resume for 30 cycles."
 
 #. description
 #: ../jobs/stress.txt.in:41
 msgid "Attaches the log from the 30 cycle Suspend/Resume test if it exists"
-msgstr ""
+msgstr "Attaches the log from the 30 cycle Suspend/Resume test if it exists"
 
 #. description
 #: ../jobs/stress.txt.in:50
@@ -2795,12 +3084,16 @@ msgid ""
 "   This is an automated stress test that will force the system to "
 "hibernate/resume for 250 cycles"
 msgstr ""
+"PURPOSE:\n"
+"   This is an automated stress test that will force the system to "
+"hibernate/resume for 250 cycles"
 
 #. description
 #: ../jobs/stress.txt.in:57
 msgid ""
 "Attaches the log from the 250 cycle Hibernate/Resume test if it exists"
 msgstr ""
+"Attaches the log from the 250 cycle Hibernate/Resume test if it exists"
 
 #. description
 #: ../jobs/stress.txt.in:66
@@ -2809,31 +3102,34 @@ msgid ""
 "   This is an automated stress test that will force the system to "
 "suspend/resume for 250 cycles."
 msgstr ""
+"PURPOSE:\n"
+"   This is an automated stress test that will force the system to "
+"suspend/resume for 250 cycles."
 
 #. description
 #: ../jobs/stress.txt.in:73
 msgid "Attaches the log from the 250 cycle Suspend/Resume test if it exists"
-msgstr ""
+msgstr "Attaches the log from the 250 cycle Suspend/Resume test if it exists"
 
 #. description
 #: ../jobs/stress.txt.in:83
 msgid "Stress reboot system (100 cycles)"
-msgstr ""
+msgstr "Stress reboot system (100 cycles)"
 
 #. description
 #: ../jobs/stress.txt.in:98
 msgid "Stress poweroff system (100 cycles)"
-msgstr ""
+msgstr "Stress poweroff system (100 cycles)"
 
 #. description
 #: ../jobs/stress.txt.in:110
 msgid "Check logs for the stress reboot (100 cycles) test case"
-msgstr ""
+msgstr "Check logs for the stress reboot (100 cycles) test case"
 
 #. description
 #: ../jobs/stress.txt.in:122
 msgid "Check logs for the stress poweroff (100 cycles) test case"
-msgstr ""
+msgstr "Check logs for the stress poweroff (100 cycles) test case"
 
 #. description
 #: ../jobs/suspend.txt.in:4
@@ -2923,17 +3219,17 @@ msgstr ""
 "Verify that mixer settings after suspend are the same as before suspend."
 
 #. description
-#: ../jobs/suspend.txt.in:176
+#: ../jobs/suspend.txt.in:177
 msgid "Verify that all CPUs are online after resuming."
 msgstr "Verify that all CPUs are online after resuming."
 
 #. description
-#: ../jobs/suspend.txt.in:193
+#: ../jobs/suspend.txt.in:194
 msgid "Verify that all memory is available after resuming from suspend."
 msgstr "Verify that all memory is available after resuming from suspend."
 
 #. description
-#: ../jobs/suspend.txt.in:202
+#: ../jobs/suspend.txt.in:203
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the display is correct after suspend and "
@@ -2944,9 +3240,17 @@ msgid ""
 "VERIFICATION:\n"
 "    Does the display work normally after resuming from suspend?"
 msgstr ""
+"PURPOSE:\n"
+"    This test will check that the display is correct after suspend and "
+"resume\n"
+"STEPS:\n"
+"    1. Check that your display does not show up visual artefacts after "
+"resuming.\n"
+"VERIFICATION:\n"
+"    Does the display work normally after resuming from suspend?"
 
 #. description
-#: ../jobs/suspend.txt.in:215
+#: ../jobs/suspend.txt.in:216
 msgid ""
 "This test checks that the wireless interface is working after suspending the "
 "system. It disconnects all interfaces and then connects to the wireless "
@@ -2957,7 +3261,7 @@ msgstr ""
 "interface and checks that the connection is working as expected."
 
 #. description
-#: ../jobs/suspend.txt.in:227
+#: ../jobs/suspend.txt.in:228
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using WPA "
 "security and the 802.11b/g protocols after the system has been suspended."
@@ -2966,7 +3270,7 @@ msgstr ""
 "security and the 802.11b/g protocols after the system has been suspended."
 
 #. description
-#: ../jobs/suspend.txt.in:238
+#: ../jobs/suspend.txt.in:239
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using no "
 "security and the 802.11b/g protocols after the system has been suspended."
@@ -2975,7 +3279,7 @@ msgstr ""
 "security and the 802.11b/g protocols after the system has been suspended."
 
 #. description
-#: ../jobs/suspend.txt.in:249
+#: ../jobs/suspend.txt.in:250
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using WPA "
 "security and the 802.11n protocol after the system has been suspended."
@@ -2984,7 +3288,7 @@ msgstr ""
 "security and the 802.11n protocol after the system has been suspended."
 
 #. description
-#: ../jobs/suspend.txt.in:260
+#: ../jobs/suspend.txt.in:261
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using no "
 "security and the 802.11n protocol after the system has been suspended."
@@ -2993,7 +3297,7 @@ msgstr ""
 "security and the 802.11n protocol after the system has been suspended."
 
 #. description
-#: ../jobs/suspend.txt.in:271
+#: ../jobs/suspend.txt.in:272
 msgid ""
 "This test grabs the hardware address of the bluetooth adapter after suspend "
 "and compares it to the address grabbed before suspend."
@@ -3002,7 +3306,7 @@ msgstr ""
 "and compares it to the address grabbed before suspend."
 
 #. description
-#: ../jobs/suspend.txt.in:301
+#: ../jobs/suspend.txt.in:302
 msgid ""
 "This is an automated Bluetooth file transfer test. It sends an image to the "
 "device specified by the BTDEVADDR environment variable."
@@ -3011,7 +3315,7 @@ msgstr ""
 "device specified by the BTDEVADDR environment variable."
 
 #. description
-#: ../jobs/suspend.txt.in:332
+#: ../jobs/suspend.txt.in:333
 msgid ""
 "PURPOSE:\n"
 "    This test will send the image 'JPEG_Color_Image_Ubuntu.jpg' to a "
@@ -3036,7 +3340,7 @@ msgstr ""
 "    Was the data correctly transferred?"
 
 #. description
-#: ../jobs/suspend.txt.in:346
+#: ../jobs/suspend.txt.in:347
 msgid ""
 "PURPOSE:\n"
 "    This test will cycle through the detected display modes\n"
@@ -3053,7 +3357,7 @@ msgstr ""
 "    Did your display look fine in the detected mode?"
 
 #. description
-#: ../jobs/suspend.txt.in:358
+#: ../jobs/suspend.txt.in:359
 msgid ""
 "This test will check to make sure supported video modes work after a suspend "
 "and resume. This is done automatically by taking screenshots and uploading "
@@ -3064,7 +3368,7 @@ msgstr ""
 "them as an attachment."
 
 #. description
-#: ../jobs/suspend.txt.in:367
+#: ../jobs/suspend.txt.in:368
 msgid ""
 "This attaches screenshots from the "
 "suspend/cycle_resolutions_after_suspend_auto test to the results submission."
@@ -3073,7 +3377,7 @@ msgstr ""
 "suspend/cycle_resolutions_after_suspend_auto test to the results submission."
 
 #. description
-#: ../jobs/suspend.txt.in:377
+#: ../jobs/suspend.txt.in:378
 msgid ""
 "This will check to make sure that your audio device works properly after a "
 "suspend and resume.  This may work fine with speakers and onboard "
@@ -3086,12 +3390,12 @@ msgstr ""
 "out jack to the audio-in jack."
 
 #. description
-#: ../jobs/suspend.txt.in:383
+#: ../jobs/suspend.txt.in:384
 msgid "Attaches the log from the single suspend/resume test to the results"
-msgstr ""
+msgstr "Attaches the log from the single suspend/resume test to the results"
 
 #. description
-#: ../jobs/suspend.txt.in:391
+#: ../jobs/suspend.txt.in:392
 msgid ""
 "PURPOSE:\n"
 "    Take a screengrab of the current screen after suspend (logged on Unity "
@@ -3101,9 +3405,16 @@ msgid ""
 "VERIFICATION:\n"
 "    1. Review attachment manually later"
 msgstr ""
+"PURPOSE:\n"
+"    Take a screen shot of the current screen after suspend (logged on Unity "
+"desktop)\n"
+"STEPS:\n"
+"    1. Take picture using USB webcam\n"
+"VERIFICATION:\n"
+"    1. Review attachment manually later"
 
 #. description
-#: ../jobs/suspend.txt.in:414
+#: ../jobs/suspend.txt.in:415
 msgid ""
 "PURPOSE:\n"
 "    Do some challenging operations, suspend the system, do more challenging\n"
@@ -3116,6 +3427,16 @@ msgid ""
 "VERIFICATION:\n"
 "    1. After a 60s workload, check kern.log for reported GPU errors"
 msgstr ""
+"PURPOSE:\n"
+"    Do some challenging operations, suspend the system, do more challenging\n"
+"    operations - then check for lockup on the GPU\n"
+"STEPS:\n"
+"    1. Create 2 glxgears windows and move them quickly\n"
+"    2. Switch workspaces/viewports with wmctrl\n"
+"    3. Launch a Flash playback in firefox\n"
+"    4. Suspend/resume\n"
+"VERIFICATION:\n"
+"    1. After a 60s workload, check kern.log for reported GPU errors"
 
 #. description
 #: ../jobs/touchpad.txt.in:3
@@ -3129,6 +3450,14 @@ msgid ""
 "VERIFICATION:\n"
 "    1. Did touchpad work as expected?"
 msgstr ""
+"PURPOSE:\n"
+"    1. Touchpad verification\n"
+"STEPS:\n"
+"    1. Make sure that touchpad is enabled\n"
+"    2. Try to move pointer using touchpad\n"
+"    3. Pointer should move accordingly\n"
+"VERIFICATION:\n"
+"    1. Did touchpad work as expected?"
 
 #. description
 #: ../jobs/touchpad.txt.in:18
@@ -3145,6 +3474,17 @@ msgid ""
 "VERIFICATION:\n"
 "    1. Did touchpad work as expected?"
 msgstr ""
+"PURPOSE:\n"
+"    1. Touchpad verification\n"
+"STEPS:\n"
+"    1. Click on Power Indicator -> System Settings -> Mouse -> Touchpad\n"
+"    2. Make sure that the \"Enable horizontal scrolling\" checkbox is "
+"checked\n"
+"    3. Select 'Test' to open in GEdit a file with a really wide line\n"
+"    4. Verify that you can move the the horizontal slider by moving your "
+"finger side by side in the lower part of the touchpad\n"
+"VERIFICATION:\n"
+"    1. Did touchpad work as expected?"
 
 #. description
 #: ../jobs/touchpad.txt.in:34
@@ -3162,6 +3502,18 @@ msgid ""
 "NOTES:\n"
 "    1. Edge Scrolling option should be enabled by default"
 msgstr ""
+"PURPOSE:\n"
+"    1. Touchpad verification\n"
+"STEPS:\n"
+"    1. Click on Power Indicator -> System Settings -> Mouse -> Touchpad\n"
+"    2. Make sure that the \"Edge scrolling\" radiobox is checked\n"
+"    3. Select 'Test' to open in GEdit a file with a multiple lines of text\n"
+"    4. Verify that you can move the the vertical slider by moving your "
+"finger side by side in the right part of the touchpad\n"
+"VERIFICATION:\n"
+"    1. Did touchpad work as expected?\n"
+"NOTES:\n"
+"    1. Edge Scrolling option should be enabled by default"
 
 #. description
 #: ../jobs/usb.txt.in:5
@@ -3169,7 +3521,7 @@ msgid "Detects and shows USB devices attached to this system."
 msgstr "Detects and shows USB devices attached to this system."
 
 #. description
-#: ../jobs/usb.txt.in:14
+#: ../jobs/usb.txt.in:12
 msgid ""
 "PURPOSE:\n"
 "    This test will check that your system detects USB storage devices.\n"
@@ -3192,7 +3544,7 @@ msgstr ""
 "    Were the drives detected?"
 
 #. description
-#: ../jobs/usb.txt.in:30
+#: ../jobs/usb.txt.in:28
 msgid ""
 "PURPOSE:\n"
 "    This test will check your USB connection.\n"
@@ -3211,7 +3563,7 @@ msgstr ""
 "    Does the keyboard work?"
 
 #. description
-#: ../jobs/usb.txt.in:43
+#: ../jobs/usb.txt.in:41
 msgid ""
 "PURPOSE:\n"
 "    This test will check your USB connection.\n"
@@ -3230,7 +3582,7 @@ msgstr ""
 "    Does the mouse work correctly?"
 
 #. description
-#: ../jobs/usb.txt.in:59
+#: ../jobs/usb.txt.in:55
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the system correctly detects the insertion of\n"
@@ -3243,9 +3595,19 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"PURPOSE:\n"
+"    This test will check that the system correctly detects the insertion of\n"
+"    a USB storage device\n"
+"STEPS:\n"
+"    1. Click \"Test\" and insert a USB storage device (pen-drive/HDD).\n"
+"       (Note: this test will time-out after 20 seconds.)\n"
+"    2. Do not unplug the device after the test.\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
 
 #. description
-#: ../jobs/usb.txt.in:78
+#: ../jobs/usb.txt.in:72
 msgid ""
 "PURPOSE:\n"
 "    This test will check that the system correctly detects the removal of\n"
@@ -3257,9 +3619,18 @@ msgid ""
 "    The verification of this test is automated. Do not change the\n"
 "    automatically selected result."
 msgstr ""
+"PURPOSE:\n"
+"    This test will check that the system correctly detects the removal of\n"
+"    a USB storage device\n"
+"STEPS:\n"
+"    1. Click \"Test\" and remove the USB device.\n"
+"       (Note: this test will time-out after 20 seconds.)\n"
+"VERIFICATION:\n"
+"    The verification of this test is automated. Do not change the\n"
+"    automatically selected result."
 
 #. description
-#: ../jobs/usb.txt.in:96
+#: ../jobs/usb.txt.in:88
 msgid ""
 "PURPOSE:\n"
 "    This test will check your USB connection.\n"
@@ -3282,21 +3653,24 @@ msgstr ""
 "    automatically selected result."
 
 #. description
-#: ../jobs/usb.txt.in:114
+#: ../jobs/usb.txt.in:104
 msgid "This test is automated and executes after the usb/insert test is run."
 msgstr ""
 "This test is automated and executes after the usb/insert test is run."
 
 #. description
-#: ../jobs/usb.txt.in:124
+#: ../jobs/usb.txt.in:112
 msgid ""
 "This is an automated version of usb/storage-automated and assumes that the "
 "server has usb storage devices plugged in prior to checkbox execution. It is "
 "intended for servers and SRU automated testing."
 msgstr ""
+"This is an automated version of usb/storage-automated and assumes that the "
+"server has usb storage devices plugged in prior to checkbox execution. It is "
+"intended for servers and SRU automated testing."
 
 #. description
-#: ../jobs/usb.txt.in:132
+#: ../jobs/usb.txt.in:120
 msgid ""
 "PURPOSE:\n"
 "    This test will check your USB connection.\n"
@@ -3980,12 +4354,12 @@ msgstr ""
 " Did this perform as expected?"
 
 #. description
-#: ../jobs/wireless.txt.in:6
+#: ../jobs/wireless.txt.in:20
 msgid "Wireless scanning test. It scans and reports on discovered APs."
 msgstr "Wireless scanning test. It scans and reports on discovered APs."
 
 #. description
-#: ../jobs/wireless.txt.in:12
+#: ../jobs/wireless.txt.in:26
 msgid ""
 "PURPOSE:\n"
 "    This test will check your wireless connection.\n"
@@ -4008,7 +4382,7 @@ msgstr ""
 "    Did a notification show and was the connection correctly established?"
 
 #. description
-#: ../jobs/wireless.txt.in:28
+#: ../jobs/wireless.txt.in:42
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using WPA "
 "security and the 802.11b/g protocols."
@@ -4017,7 +4391,7 @@ msgstr ""
 "security and the 802.11b/g protocols."
 
 #. description
-#: ../jobs/wireless.txt.in:38
+#: ../jobs/wireless.txt.in:52
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using no "
 "security and the 802.11b/g protocols."
@@ -4026,7 +4400,7 @@ msgstr ""
 "security and the 802.11b/g protocols."
 
 #. description
-#: ../jobs/wireless.txt.in:48
+#: ../jobs/wireless.txt.in:62
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using WPA "
 "security and the 802.11n protocol."
@@ -4035,7 +4409,7 @@ msgstr ""
 "security and the 802.11n protocol."
 
 #. description
-#: ../jobs/wireless.txt.in:58
+#: ../jobs/wireless.txt.in:72
 msgid ""
 "Tests that the systems wireless hardware can connect to a router using no "
 "security and the 802.11n protocol."
@@ -4044,7 +4418,7 @@ msgstr ""
 "security and the 802.11n protocol."
 
 #. description
-#: ../jobs/wireless.txt.in:70
+#: ../jobs/wireless.txt.in:84
 msgid ""
 "Tests the performance of a systems wireless connection through the iperf "
 "tool."
@@ -4053,7 +4427,7 @@ msgstr ""
 "tool."
 
 #. description
-#: ../jobs/wireless.txt.in:81
+#: ../jobs/wireless.txt.in:95
 msgid ""
 "Tests the performance of a systems wireless connection through the iperf "
 "tool, using UDP packets."
@@ -4245,7 +4619,7 @@ msgstr "Please type here and press Ctrl-D when finished:\n"
 msgid "Checkbox System Testing"
 msgstr "Checkbox System Testing"
 
-#: ../checkbox_urwid/urwid_interface.py:127 ../qt/frontend/ui_qtfront.h:637
+#: ../checkbox_urwid/urwid_interface.py:127 ../qt/frontend/ui_qtfront.h:638
 msgid "Continue"
 msgstr "Continue"
 
@@ -4293,17 +4667,17 @@ msgstr "Test Again"
 msgid "_Test Again"
 msgstr "_Test Again"
 
-#: ../checkbox_gtk/gtk_interface.py:574 ../qt/frontend/qtfront.cpp:527
+#: ../checkbox_gtk/gtk_interface.py:574 ../qt/frontend/qtfront.cpp:528
 msgid "Info"
 msgstr "Info"
 
-#: ../checkbox_gtk/gtk_interface.py:599 ../qt/frontend/qtfront.cpp:224
+#: ../checkbox_gtk/gtk_interface.py:599 ../qt/frontend/qtfront.cpp:225
 msgid "Error"
 msgstr "Error"
 
 #: ../checkbox_gtk/gtk_interface.py:607
 msgid "Detailed information..."
-msgstr ""
+msgstr "Detailed information..."
 
 #: ../plugins/apport_prompt.py:83
 msgid ""
@@ -4442,7 +4816,7 @@ msgstr ""
 
 #: ../plugins/launchpad_prompt.py:84
 msgid "Email"
-msgstr ""
+msgstr "E-mail"
 
 #: ../plugins/launchpad_prompt.py:93
 msgid "Email address must be in a proper format."
@@ -4471,6 +4845,10 @@ msgid ""
 "continue to the next test, or\n"
 "restart from the beginning?"
 msgstr ""
+"Checkbox did not finish completely.\n"
+"Do you want to rerun the last test,\n"
+"continue to the next test, or\n"
+"restart from the beginning?"
 
 #: ../plugins/report_prompt.py:39
 msgid "Building report..."
@@ -4491,9 +4869,9 @@ msgstr ""
 "you plan to participate in Ubuntu Friendly, please, select all tests. You "
 "can always skip individual tests if you don't have the needed equipment."
 
-#: ../plugins/suites_prompt.py:136 ../qt/frontend/ui_qtfront.h:641
+#: ../plugins/suites_prompt.py:143 ../qt/frontend/ui_qtfront.h:642
 msgid "Choose tests to run on your system:"
-msgstr ""
+msgstr "Choose tests to run on your system:"
 
 #: ../scripts/keyboard_test:22
 msgid "Enter text:\n"
@@ -4515,127 +4893,127 @@ msgstr "Connection established lost a packet"
 msgid "Internet connection fully established"
 msgstr "Internet connection fully established"
 
-#: ../qt/frontend/qtfront.cpp:79
+#: ../qt/frontend/qtfront.cpp:80
 msgid "Audio Test"
 msgstr "Audio Test"
 
-#: ../qt/frontend/qtfront.cpp:80
+#: ../qt/frontend/qtfront.cpp:81
 msgid "Bluetooth Test"
 msgstr "Bluetooth Test"
 
-#: ../qt/frontend/qtfront.cpp:81
+#: ../qt/frontend/qtfront.cpp:82
 msgid "Camera Test"
 msgstr "Camera Test"
 
-#: ../qt/frontend/qtfront.cpp:82
+#: ../qt/frontend/qtfront.cpp:83
 msgid "CPU Test"
 msgstr "CPU Test"
 
-#: ../qt/frontend/qtfront.cpp:83
+#: ../qt/frontend/qtfront.cpp:84
 msgid "Disk Test"
 msgstr "Disk Test"
 
-#: ../qt/frontend/qtfront.cpp:84
+#: ../qt/frontend/qtfront.cpp:85
 msgid "Firewire Test"
 msgstr "Firewire Test"
 
-#: ../qt/frontend/qtfront.cpp:85
+#: ../qt/frontend/qtfront.cpp:86
 msgid "Graphics Test"
 msgstr "Graphics Test"
 
-#: ../qt/frontend/qtfront.cpp:86
+#: ../qt/frontend/qtfront.cpp:87
 msgid "Info Test"
 msgstr "Info Test"
 
-#: ../qt/frontend/qtfront.cpp:87
+#: ../qt/frontend/qtfront.cpp:88
 msgid "Input Test"
 msgstr "Input Test"
 
-#: ../qt/frontend/qtfront.cpp:88
+#: ../qt/frontend/qtfront.cpp:89
 msgid "Keys Test"
 msgstr "Keys Test"
 
-#: ../qt/frontend/qtfront.cpp:89
+#: ../qt/frontend/qtfront.cpp:90
 msgid "Media Card Test"
 msgstr "Media Card Test"
 
-#: ../qt/frontend/qtfront.cpp:90
+#: ../qt/frontend/qtfront.cpp:91
 msgid "Memory Test"
 msgstr "Memory Test"
 
-#: ../qt/frontend/qtfront.cpp:91
+#: ../qt/frontend/qtfront.cpp:92
 msgid "Miscellanea Test"
 msgstr "Miscellanea Test"
 
-#: ../qt/frontend/qtfront.cpp:92
+#: ../qt/frontend/qtfront.cpp:93
 msgid "Monitor Test"
 msgstr "Monitor Test"
 
-#: ../qt/frontend/qtfront.cpp:93
+#: ../qt/frontend/qtfront.cpp:94
 msgid "Networking Test"
 msgstr "Networking Test"
 
-#: ../qt/frontend/qtfront.cpp:94
+#: ../qt/frontend/qtfront.cpp:95
 msgid "Wireless Test"
 msgstr "Wireless Test"
 
-#: ../qt/frontend/qtfront.cpp:95
+#: ../qt/frontend/qtfront.cpp:96
 msgid "Optical Test"
 msgstr "Optical Test"
 
-#: ../qt/frontend/qtfront.cpp:96
+#: ../qt/frontend/qtfront.cpp:97
 msgid "PCMCIA/PCIX Test"
 msgstr "PCMCIA/PCIX Test"
 
-#: ../qt/frontend/qtfront.cpp:97
+#: ../qt/frontend/qtfront.cpp:98
 msgid "Power Management Test"
 msgstr "Power Management Test"
 
-#: ../qt/frontend/qtfront.cpp:98
+#: ../qt/frontend/qtfront.cpp:99
 msgid "Suspend Test"
 msgstr "Suspend Test"
 
-#: ../qt/frontend/qtfront.cpp:99
+#: ../qt/frontend/qtfront.cpp:100
 msgid "USB Test"
 msgstr "USB Test"
 
-#: ../qt/frontend/qtfront.cpp:101
+#: ../qt/frontend/qtfront.cpp:102
 msgid "Not Started"
 msgstr "Not Started"
 
-#: ../qt/frontend/qtfront.cpp:102 ../qt/frontend/qtfront.cpp:103
+#: ../qt/frontend/qtfront.cpp:103 ../qt/frontend/qtfront.cpp:104
 msgid "Done"
 msgstr "Done"
 
-#: ../qt/frontend/qtfront.cpp:104
+#: ../qt/frontend/qtfront.cpp:105
 msgid "Not Supported"
 msgstr "Not Supported"
 
-#: ../qt/frontend/qtfront.cpp:105
+#: ../qt/frontend/qtfront.cpp:106
 msgid "Not Resolved"
 msgstr "Not Resolved"
 
-#: ../qt/frontend/qtfront.cpp:106
+#: ../qt/frontend/qtfront.cpp:107
 msgid "Not Tested"
 msgstr "Not Tested"
 
-#: ../qt/frontend/qtfront.cpp:107
+#: ../qt/frontend/qtfront.cpp:108
 msgid "In Progress"
 msgstr "In Progress"
 
-#: ../qt/frontend/qtfront.cpp:159
+#: ../qt/frontend/qtfront.cpp:160
 msgid "Are you sure?"
 msgstr "Are you sure?"
 
-#: ../qt/frontend/qtfront.cpp:159
+#: ../qt/frontend/qtfront.cpp:160
 msgid "Do you really want to skip this test?"
 msgstr "Do you really want to skip this test?"
 
-#: ../qt/frontend/qtfront.cpp:160
+#: ../qt/frontend/qtfront.cpp:161
 msgid "Don't ask me again"
 msgstr "Don't ask me again"
 
-#: ../qt/frontend/ui_qtfront.h:634
+#: ../qt/frontend/ui_qtfront.h:635
 msgid "Form"
 msgstr "Form"
 
@@ -4647,39 +5025,39 @@ msgstr "OK"
 msgid "Don't show me this message in the future"
 msgstr "Don't show me this message in the future"
 
-#: ../qt/frontend/ui_qtfront.h:638 ../qt/frontend/ui_qtfront.h:656
+#: ../qt/frontend/ui_qtfront.h:639 ../qt/frontend/ui_qtfront.h:657
 msgid "Tab 1"
 msgstr "Tab 1"
 
-#: ../qt/frontend/ui_qtfront.h:639
+#: ../qt/frontend/ui_qtfront.h:640
 msgid "10 tests completed out of 30 (30%)"
 msgstr "10 tests completed out of 30 (30%)"
 
-#: ../qt/frontend/ui_qtfront.h:642
+#: ../qt/frontend/ui_qtfront.h:643
 msgid "Components"
 msgstr "Components"
 
-#: ../qt/frontend/ui_qtfront.h:643
+#: ../qt/frontend/ui_qtfront.h:644
 msgid "Status"
 msgstr "Status"
 
-#: ../qt/frontend/ui_qtfront.h:644
-msgid "Select all"
-msgstr ""
-
 #: ../qt/frontend/ui_qtfront.h:645
-msgid "Deselect all"
-msgstr ""
+msgid "Select all"
+msgstr "Select all"
 
 #: ../qt/frontend/ui_qtfront.h:646
+msgid "Deselect all"
+msgstr "Deselect all"
+
+#: ../qt/frontend/ui_qtfront.h:647
 msgid "Start testing"
 msgstr "Start testing"
 
-#: ../qt/frontend/ui_qtfront.h:647
+#: ../qt/frontend/ui_qtfront.h:648
 msgid " Selection "
 msgstr " Selection "
 
-#: ../qt/frontend/ui_qtfront.h:648 ../qt/frontend/ui_qtfront.h:649
+#: ../qt/frontend/ui_qtfront.h:649 ../qt/frontend/ui_qtfront.h:650
 msgid "TextLabel"
 msgstr "TextLabel"
 
@@ -4695,11 +5073,11 @@ msgstr "No"
 msgid "Comment"
 msgstr "Comment"
 
-#: ../qt/frontend/ui_qtfront.h:657 ../qt/frontend/ui_qtfront.h:673
+#: ../qt/frontend/ui_qtfront.h:658 ../qt/frontend/ui_qtfront.h:674
 msgid "Tab 2"
 msgstr "Tab 2"
 
-#: ../qt/frontend/ui_qtfront.h:660
+#: ../qt/frontend/ui_qtfront.h:661
 msgid " Run "
 msgstr " Run "
 
@@ -4737,23 +5115,23 @@ msgstr ""
 "color:#000000;\">and click the Submit Results button to submit these test "
 "results to Ubuntu Friendly.</span></p></body></html>"
 
-#: ../qt/frontend/ui_qtfront.h:667
+#: ../qt/frontend/ui_qtfront.h:668
 msgid "Submission details"
-msgstr ""
+msgstr "Submission details"
 
-#: ../qt/frontend/ui_qtfront.h:669
+#: ../qt/frontend/ui_qtfront.h:670
 msgid "Email:"
 msgstr "Email:"
 
-#: ../qt/frontend/ui_qtfront.h:670
+#: ../qt/frontend/ui_qtfront.h:671
 msgid "Submit results"
 msgstr "Submit results"
 
-#: ../qt/frontend/ui_qtfront.h:671
+#: ../qt/frontend/ui_qtfront.h:672
 msgid "View results"
 msgstr "View results"
 
-#: ../qt/frontend/ui_qtfront.h:672
+#: ../qt/frontend/ui_qtfront.h:673
 msgid " Results "
 msgstr " Results "
 

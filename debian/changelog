@@ -1,5 +1,6 @@
 checkbox (0.14.10) quantal; urgency=low
 
+  [ Jeff Lane ]
   * Increased version number after final Ubuntu Quantal release.
 
   [Brendan Donegan]
@@ -12,11 +13,17 @@ checkbox (0.14.10) quantal; urgency=low
     lowercase, as it upset the core of Checkbox (LP: #1067280)
   * jobs/suspend.txt.in - created new batch of wireless tests depending only on
     suspend_advanced so that they will run in manual testing (LP: #1067678)
+  * jobs/suspend.txt.in - Let suspend_advanced only depend on
+    power-management/rtc (LP: #1067692)
   * scripts/resolution_test - Slightly clarify output of script so that it's
     a bit more obvious why it failed (LP: #1065976)
   * Allow verification and interaction to be used as aliases for manual tests
     so that we can distinguish between tests which are partly manual and
     those which are entirely manual.
+  * plugins/launchpad_exchange.py - make sure exchange-error signal is sent
+    with a string instead of an Exception (LP: #1066862)
+  * scripts/network_check - Get the base page for cdimage.ubuntu.com instead
+    of some subdirectory which may or may not change in future (LP: #1065855)
   * Added a unit test to ensure verification and interaction jobs have a command
 
   [Daniel Manrique]
@@ -26,6 +33,9 @@ checkbox (0.14.10) quantal; urgency=low
     filling the screen with dots. (LP: #926104)
   * Increased version number after final Ubuntu Quantal release.
   * Added environment resource to whitelists (LP: #1067038)
+  * Added retrying pactl commands in case audio layer is not up yet
+    (LP: #1065908)
+  * Removed references to inexistent opts.verbose setting (LP: #1070829)
 
   [Marc Tardif]
   * plugins/environment_info.py: Enabling environment to take precedence
@@ -35,6 +45,8 @@ checkbox (0.14.10) quantal; urgency=low
   * debian/control: Added python3-gi to run checkbox-qt.
   * jobs/input.txt.in, jobs/touchpad.txt.in: Added input/pointing tests
     and simplified horizontal/vertical scrolling tests.
+  * scripts/touchpad_scroll_resource, scripts/xinput_resource: Replaced
+    the touchpad_scroll_resource by reusing the xinput_resource script.
 
   [Sean Feole]
   * [FEATURE] jobs/optical.txt.in: modified existing automation test
@@ -50,14 +62,35 @@ checkbox (0.14.10) quantal; urgency=low
     --memorycard. stress/sdhc and stress/usb run with root privileges to mount
     all partitions (LP: #1065862)
   * [FEATURE] jobs/stress.txt.in: Added a wireless hotkey stress test.
+  * jobs/power-management.txt.in: Fixed path to the /proc acpi lid button
+    (LP: #1068799)
 
   [Zygmunt Krynicki]
   * scripts/removable_storage_watcher - properly detect removal of 'firewire',
     'usb' and 'sdio devices' when either or both 'ata_serial_esata' or 'scsi'
     were provided on command line, in addition to the device actually being
     manipulated. (LP: #1066948)
+  
+  [Jeff Lane]
+  * scripts/sleep_test - Added timeing code to create start/end markers in
+    for each sleep/resume iteration.  Pull kernel timestamps to determine the
+    time to sleep and time to resume for each iteration.  Output the times for
+    each iteration and an average time for all iterations.  Tweaks to output to
+    make it all look better. Verified perf code doesn't run on S4 tests.
+    scripts/fwts_test - Added similar performance code to fwts_test.  Added
+    sleep test functions to fwts_test to provide the ability to run sleep tests
+    via fwts using the wrapper.  Tweaked the output to make it pretty. Added
+    some code to prevent the perf stuff from running on S4 tests.
+    jobs/suspend.txt, jobs/stress.txt, jobs/hibernate.txt - modifed jobs to use
+    the shell code to call fwts_test if fwts is installed and fall back to
+    sleep_test otherwise.  Modifed the commands so that they all call fwts_test
+    rather than fwts directly.  Ensured all are calling with the proper
+    options. Fixed log name problems that caused log attachment jobs to not
+    work.
+  * checkbox/parsers/modinfo.py - added exception handling to address possible
+    bad output from modinfo causing a ValueError to occur. (LP: #1066118)
 
- -- Marc Tardif <marc@ubuntu.com>  Fri, 12 Oct 2012 10:47:26 -0400
+ -- Daniel Manrique <roadmr@ubuntu.com>  Wed, 24 Oct 2012 10:00:12 -0400
 
 checkbox (0.14.6) quantal; urgency=low
 
