@@ -32,7 +32,7 @@ _description:
  VERIFICATION:
      Did the device work as expected?
 
-plugin: interaction
+plugin: user-interact
 name: usb/insert
 depends: usb/detect
 command: removable_storage_watcher insert usb
@@ -45,10 +45,10 @@ _description:
         (Note: this test will time-out after 20 seconds.)
      2. Do not unplug the device after the test.
  VERIFICATION:
-     The verification of this test is automated. Do not change the
+     The user-verify of this test is automated. Do not change the
      automatically selected result.
 
-plugin: interaction
+plugin: user-interact
 name: usb3/insert
 requires:
  usb.usb3 == 'supported'
@@ -62,10 +62,10 @@ _description:
         a USB 3.0 port. (Note: this test will time-out after 20 seconds.)
      2. Do not unplug the device after the test.
  VERIFICATION:
-     The verification of this test is automated. Do not change the
+     The user-verify of this test is automated. Do not change the
      automatically selected result.
 
-plugin: interaction
+plugin: user-interact
 name: usb/remove
 depends: usb/insert
 command: removable_storage_watcher remove usb
@@ -77,10 +77,10 @@ _description:
      1. Click "Test" and remove the USB device.
         (Note: this test will time-out after 20 seconds.)
  VERIFICATION:
-     The verification of this test is automated. Do not change the
+     The user-verify of this test is automated. Do not change the
      automatically selected result.
 
-plugin: interaction
+plugin: user-interact
 name: usb3/remove
 depends: usb3/insert
 requires:
@@ -94,7 +94,7 @@ _description:
      1. Click "Test" and remove the USB 3.0 device.
         (Note: this test will time-out after 20 seconds.)
  VERIFICATION:
-     The verification of this test is automated. Do not change the
+     The user-verify of this test is automated. Do not change the
      automatically selected result.
 
 plugin: manual
@@ -109,7 +109,7 @@ _description:
      2. An icon should appear on the Launcher.
      3. Click "Test" to begin the test.
  VERIFICATION:
-     The verification of this test is automated. Do not change the
+     The user-verify of this test is automated. Do not change the
      automatically selected result.
 
 plugin: manual
@@ -126,7 +126,7 @@ _description:
      2. An icon should appear on the Launcher.
      3. Click "Test" to begin the test.
  VERIFICATION:
-     The verification of this test is automated. Do not change the
+     The user-verify of this test is automated. Do not change the
      automatically selected result.
 
 plugin: shell

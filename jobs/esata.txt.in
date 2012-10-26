@@ -1,4 +1,4 @@
-plugin: interaction
+plugin: user-interact
 name: esata/insert
 command: removable_storage_watcher insert ata_serial_esata
 _description:
@@ -9,7 +9,7 @@ _description:
         timeout and fail if the insertion has not been detected within 20 seconds.
      2. Plug an eSATA HDD into an available eSATA port.
  VERIFICATION:
-     The verification of this test is automated. Do not change the automatically
+     The user-verify of this test is automated. Do not change the automatically
      selected result
 
 plugin: shell
@@ -20,7 +20,7 @@ _description:
  This is an automated test which performs read/write operations on an attached
  eSATA HDD
 
-plugin: interaction
+plugin: user-interact
 name: esata/remove
 depends: esata/storage-test
 command: removable_storage_watcher remove ata_serial_esata
@@ -32,5 +32,5 @@ _description:
         the removal has not been detected within 20 seconds.
      2. Remove the previously attached eSATA HDD from the eSATA port.
  VERIFICATION:
-     The verification of this test is automated. Do not change the automatically
+     The user-verify of this test is automated. Do not change the automatically
      selected result

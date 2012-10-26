@@ -2,33 +2,33 @@ plugin: manual
 name: touchpad/basic
 _description:
  PURPOSE:
-     Touchpad verification
+     Touchpad user-verify
  STEPS:
      1. Make sure that touchpad is enabled.
      2. Move cursor using the touchpad.
  VERIFICATION:
      Did the cursor move?
 
-plugin: interaction
+plugin: user-interact
 name: touchpad/horizontal
 requires: touchpad_scroll.horizontal_scroll == 'supported'
 command: touchpad_test right left
 _description:
  PURPOSE:
-     Touchpad horizontal scroll verification
+     Touchpad horizontal scroll user-verify
  STEPS:
      1. Select "Test" when ready and place your cursor within the borders of the displayed test window.
      2. Verify that you can move the horizontal slider by moving your finger right and left in the lower part of the touchpad.
  VERIFICATION:
      Could you scroll right and left?
 
-plugin: interaction
+plugin: user-interact
 name: touchpad/vertical
 requires: touchpad_scroll.vertical_scroll == 'supported'
 command: touchpad_test up down
 _description:
  PURPOSE:
-     Touchpad vertical scroll verification
+     Touchpad vertical scroll user-verify
  STEPS:
      1. Select "Test" when ready and place your cursor within the borders of the displayed test window.
      2. Verify that you can move the vertical slider by moving your finger up and down in the right part of the touchpad.

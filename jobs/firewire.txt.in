@@ -1,4 +1,4 @@
-plugin: interaction
+plugin: user-interact
 name: firewire/insert
 command: removable_storage_watcher insert firewire
 _description:
@@ -9,7 +9,7 @@ _description:
         timeout and fail if the insertion has not been detected within 20 seconds.
      2. Plug a FireWire HDD into an available FireWire port.
  VERIFICATION:
-     The verification of this test is automated. Do not change the automatically
+     The user-verify of this test is automated. Do not change the automatically
      selected result
 
 plugin: shell
@@ -20,7 +20,7 @@ _description:
  This is an automated test which performs read/write operations on an attached
  FireWire HDD
 
-plugin: interaction
+plugin: user-interact
 name: firewire/remove
 depends: firewire/storage-test
 command: removable_storage_watcher remove firewire
@@ -32,6 +32,6 @@ _description:
         the removal has not been detected within 20 seconds.
      2. Remove the previously attached FireWire HDD from the FireWire port.
  VERIFICATION:
-     The verification of this test is automated. Do not change the automatically
+     The user-verify of this test is automated. Do not change the automatically
      selected result
 

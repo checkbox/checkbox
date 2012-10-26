@@ -2,7 +2,7 @@ plugin: manual
 name: led/power
 _description:
  PURPOSE:
-     Power LED verification
+     Power LED user-verify
  STEPS:
      1. Power LED should be on while device is switched on
  VERIFICATION:
@@ -47,7 +47,7 @@ name: led/hdd
 command: led_hdd_test
 _description:
  PURPOSE:
-     HDD LED verification
+     HDD LED user-verify
  STEPS:
      1. Select "Test" to write and read a temporary file for a few seconds
      2. HDD LED should light when writing to/reading from HDD
@@ -59,20 +59,20 @@ name: led/numeric-keypad
 command: keyboard_test
 _description:
  PURPOSE:
-     Numeric keypad LED verification
+     Numeric keypad LED user-verify
  STEPS:
      1. Press "Block Num" key to toggle numeric keypad LED
      2. Click on the "Test" button to open a window to verify your typing
      3. Type using the numeric keypad both when the LED is on and off
  VERIFICATION:
      1. Numeric keypad LED status should toggle everytime the "Block Num" key is pressed
-     2. Numbers should only be entered in the keyboard verification window when the LED is on
+     2. Numbers should only be entered in the keyboard user-verify window when the LED is on
 
 plugin: manual
 name: led/caps-lock
 _description:
  PURPOSE:
-     Block cap keys LED verification
+     Block cap keys LED user-verify
  STEPS:
      1. Press "Block Cap Keys" to activate/deactivate cap keys blocking
      2. Cap Keys LED should be switched on/off every time the key is pressed
@@ -86,7 +86,7 @@ requires: package.name == 'firefox'
 command: firefox http://www.ubuntu.com
 _description:
  PURPOSE:
-     WLAN LED verification
+     WLAN LED user-verify
  STEPS:
      1. Make sure WLAN connection is established
      2. WLAN LED should light
@@ -129,7 +129,7 @@ depends: camera/detect
 command: camera_test led
 _description:
  PURPOSE:
-     Camera LED verification
+     Camera LED user-verify
  STEPS:
      1. Select Test to activate camera
      2. Camera LED should light for a few seconds
@@ -140,7 +140,7 @@ plugin: manual
 name: led/touchpad
 _description:
  PURPOSE:
-     Touchpad LED verification
+     Touchpad LED user-verify
  STEPS:
      1. Click on the touchpad button or press key combination to enable/disable touchpad button
      2. Slide your finger on the touchpad
@@ -153,7 +153,7 @@ plugin: manual
 name: led/wireless
 _description:
  PURPOSE:
-     Wireless (WLAN + Bluetooth) LED verification
+     Wireless (WLAN + Bluetooth) LED user-verify
  STEPS:
      1. Make sure WLAN connection is established and Bluetooth is enabled.
      2. WLAN/Bluetooth LED should light

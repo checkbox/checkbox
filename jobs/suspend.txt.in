@@ -88,7 +88,7 @@ _description:
  VERIFICATION:
      Was the data correctly transferred?
 
-plugin: verification
+plugin: user-verify
 name: suspend/suspend_advanced
 depends: power-management/rtc
 requires:
@@ -707,7 +707,7 @@ _description:
      3. Type using the numeric keypad both when the LED is on and off
  VERIFICATION:
      1. Numeric keypad LED status should toggle everytime the "Block Num" key is pressed
-     2. Numbers should only be entered in the keyboard verification window when the LED is on
+     2. Numbers should only be entered in the keyboard user-verify window when the LED is on
 
 plugin: manual
 name: suspend/led_after_suspend/caps-lock
@@ -726,7 +726,7 @@ name: suspend/led_after_suspend/wlan
 depends: suspend/suspend_advanced_auto
 _description:
  PURPOSE:
-     WLAN LED verification after resuming from suspend
+     WLAN LED user-verify after resuming from suspend
  STEPS:
      1. Make sure WLAN connection is established
      2. WLAN LED should light
@@ -783,7 +783,7 @@ name: suspend/led_after_suspend/touchpad
 depends: suspend/suspend_advanced_auto
 _description:
  PURPOSE:
-     Touchpad LED verification after resuming from suspend
+     Touchpad LED user-verify after resuming from suspend
  STEPS:
      1. Click on the touchpad button or press key combination to enable/disable touchpad button
      2. Slide your finger on the touchpad
