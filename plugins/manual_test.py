@@ -26,11 +26,11 @@ class ManualTest(Plugin):
 
         for (rt, rh) in [
              ("prompt-manual", self.prompt_manual),
-             ("prompt-verification", self.prompt_manual),
-             ("prompt-interaction", self.prompt_manual),
+             ("prompt-user-verify", self.prompt_manual),
+             ("prompt-user-interact", self.prompt_manual),
              ("report-manual", self.report_manual),
-             ("report-verification", self.report_manual),
-             ("report-interaction", self.report_manual)]:
+             ("report-user-verify", self.report_manual),
+             ("report-user-interact", self.report_manual)]:
             self._manager.reactor.call_on(rt, rh)
 
     def prompt_manual(self, interface, test):

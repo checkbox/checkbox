@@ -24,6 +24,8 @@ checkbox (0.14.10) quantal; urgency=low
     with a string instead of an Exception (LP: #1066862)
   * scripts/network_check - Get the base page for cdimage.ubuntu.com instead
     of some subdirectory which may or may not change in future (LP: #1065855)
+  * Change the plugin types verification and interaction to user-verify and
+    user-interact, to clarify their meaning.
 
   [Daniel Manrique]
   * [FEATURE] checkbox/job.py: Fixed intltool warning about unnamed
