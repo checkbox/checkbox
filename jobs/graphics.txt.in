@@ -43,7 +43,7 @@ user: root
 command: xorg_memory_test xeyes
 _description: Test that X does not leak memory when running programs on systems with intel based graphics.
 
-plugin: verification
+plugin: user-verify
 name: graphics/resolution
 requires:
  device.category == 'VIDEO'
