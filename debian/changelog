@@ -93,8 +93,21 @@ checkbox (0.14.10) quantal; urgency=low
     work.
   * checkbox/parsers/modinfo.py - added exception handling to address possible
     bad output from modinfo causing a ValueError to occur. (LP: #1066118)
+  * [FEATURE] jobs/expresscard.txt.in - renamed pcmcia-pcix.txt to
+    expresscard.txt.
+    renamed pcmcia-pcix/detect to expresscard/verification. Modified
+    instructions slightly.
+    data/whitelists/default.whitelist - modified list to reflect new
+    expresscard test name.
+    jobs/local.txt.in - changed __pcmcia-pcix__ job to reflect changes to the
+    job name
+    qt/frontend/qtfront.cpp - modified the list of testnames to reflect changes
+    to the expresscard test
+    setup.cfg - modified the list of job files since I renamed pcmcia-pcix.txt
+    po/POTFILES.in - changed the pcmcia-pcix.txt.in pointer to expresscard.txt.in
 
- -- Daniel Manrique <roadmr@ubuntu.com>  Thu, 25 Oct 2012 17:35:57 -0400
+
+ -- Jeff Lane <jeff@ubuntu.com>  Fri, 26 Oct 2012 16:36:21 -0400
 
 checkbox (0.14.6) quantal; urgency=low
 
