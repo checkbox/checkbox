@@ -62,7 +62,7 @@ class MessageFileFormatTest(unittest.TestCase):
     def test_shell_jobs_with_root_have_needed_environ(self):
         import re
         shell_variables_regex = r'\$\{?([A-Z_]+)\}?'
-        environ_variables_regex= r'([A-Z_]+)'
+        environ_variables_regex = r'([A-Z_]+)'
         for message in self.messages:
             if message['plugin'] == 'shell' and 'user' in message:
                 shell_variables = []
