@@ -71,6 +71,7 @@ checkbox (0.14.10) quantal; urgency=low
     'usb' and 'sdio devices' when either or both 'ata_serial_esata' or 'scsi'
     were provided on command line, in addition to the device actually being
     manipulated. (LP: #1066948)
+  * checkbox/dbus/udisks2.py: Fix typo in fireware name LP: #1070859
   
   [Jeff Lane]
   * scripts/sleep_test - Added timeing code to create start/end markers in
