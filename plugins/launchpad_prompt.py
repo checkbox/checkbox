@@ -59,15 +59,18 @@ class LaunchpadPrompt(Plugin):
 
         # Register temporary handler for exchange-error events
         errors = []
+
         def exchange_error(e):
             errors.append(e)
 
-        event_id = self._manager.reactor.call_on("exchange-error", exchange_error)
+        event_id = self._manager.reactor.call_on("exchange-error",
+                                                 exchange_error)
 
         while True:
             if errors or not self.email:
                 for error in errors:
-                    self._manager.reactor.fire("prompt-error", interface, error)
+                    self._manager.reactor.fire("prompt-error",
+                                               interface, error)
 
                 url = "file://%s" % posixpath.abspath(self.report)
 

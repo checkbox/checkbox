@@ -69,7 +69,7 @@ class XinputParser:
         "Buttons supported": "buttons_supported",
         "Button labels": "button_labels",
         "Button state": "button_state",
-        "Class originated from": "class",
+        "Class originated from": "device_class",
         "Keycodes supported": "keycodes_supported",
         "Touch mode": "touch_mode",
         "Max number of touches": "max_touch",
@@ -185,7 +185,7 @@ class XinputParser:
                 value = self._parseValue(match.group("value"))
 
                 # Special case for the class
-                if key == "class" and device_class:
+                if key == "device_class" and device_class:
                     result.addXinputDeviceClass(device, device_class)
                     device_class = {}
                     prefix = ""
