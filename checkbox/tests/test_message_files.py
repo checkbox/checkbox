@@ -59,6 +59,25 @@ class MessageFileFormatTest(unittest.TestCase):
             if message['plugin'] == 'shell':
                 self.assertTrue("description" in message, message['name'])
 
+    def test_shell_jobs_with_root_have_needed_environ(self):
+        import re
+        shell_variables_regex = r'\$\{?([A-Z_]+)\}?'
+        environ_variables_regex = r'([A-Z_]+)'
+        for message in self.messages:
+            if message['plugin'] == 'shell' and 'user' in message:
+                shell_variables = []
+                environ_variables = []
+                for key in ['command', 'command_extended']:
+                    if key in message:
+                        shell_variables += re.findall(shell_variables_regex,
+                                                      message[key])
+                if 'environ' in message:
+                    environ_variables = re.findall(environ_variables_regex, 
+                                                   message['environ'])
+                self.assertEquals(set(environ_variables),
+                                  set(shell_variables),
+                                  message['name'])
+
     def test_jobs_comply_with_schema(self):
         globals = {}
         exec(open("plugins/jobs_info.py").read(), globals)

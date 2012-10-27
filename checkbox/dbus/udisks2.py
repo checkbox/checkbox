@@ -77,7 +77,7 @@ def map_udisks1_connection_bus(udisks1_connection_bus):
     """
     return {
         'ata_serial_esata': '',  # gone from udisks2
-        'firewire': 'ieee1934',  # renamed
+        'firewire': 'ieee1394',  # renamed
         'scsi': '',              # gone from udisks2
         'sdio': 'sdio',          # as-is
         'usb': 'usb',            # as-is
