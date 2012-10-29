@@ -194,12 +194,12 @@ command:
   shopt -s extglob
   cat $CHECKBOX_SHARE/jobs/panel_reboot.txt?(.in)
 
-name: __pcmcia-pcix__
+name: __expresscard__
 plugin: local
-_description: PCMCIA/ExpressCard tests
+_description: ExpressCard tests
 command:
   shopt -s extglob
-  cat $CHECKBOX_SHARE/jobs/pcmcia-pcix.txt?(.in)
+  cat $CHECKBOX_SHARE/jobs/expresscard.txt?(.in)
 
 name: __peripheral__
 plugin: local
