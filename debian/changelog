@@ -26,6 +26,8 @@ checkbox (0.14.10) quantal; urgency=low
     of some subdirectory which may or may not change in future (LP: #1065855)
   * Change the plugin types verification and interaction to user-verify and
     user-interact, to clarify their meaning.
+  * Added a unit test to ensure user-verify and user-interact jobs
+    have a command
 
   [Daniel Manrique]
   * [FEATURE] checkbox/job.py: Fixed intltool warning about unnamed
