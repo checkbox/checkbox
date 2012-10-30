@@ -82,7 +82,7 @@ _description:
  VERIFICATION:
      Did the wireless go off on the first press and on again on the second?
 
-plugin: manual
+plugin: user-interact
 name: keys/media-control
 requires:
  device.category == 'KEYBOARD'
@@ -98,7 +98,7 @@ _description:
  VERIFICATION:
      Do the keys work as expected?
 
-plugin: manual
+plugin: user-interact
 name: keys/super
 requires:
  device.category == 'KEYBOARD'

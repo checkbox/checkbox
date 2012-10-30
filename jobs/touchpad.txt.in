@@ -3,14 +3,14 @@ name: touchpad/basic
 requires: dmi.product in ['Notebook','Laptop','Portable']
 _description:
  PURPOSE:
-     Touchpad verification
+     Touchpad user-verify
  STEPS:
      1. Make sure that touchpad is enabled.
      2. Move cursor using the touchpad.
  VERIFICATION:
      Did the cursor move?
 
-plugin: manual
+plugin: user-interact
 name: touchpad/horizontal
 requires:
   xinput.touch_mode == 'dependent'
@@ -25,7 +25,7 @@ _description:
  VERIFICATION:
      Could you scroll right and left?
 
-plugin: manual
+plugin: user-interact
 name: touchpad/vertical
 requires:
   xinput.touch_mode == 'dependent'

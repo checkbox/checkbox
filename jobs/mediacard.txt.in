@@ -1,4 +1,4 @@
-plugin: manual
+plugin: user-interact
 name: mediacard/mmc-insert
 command: removable_storage_watcher --memorycard insert sdio usb scsi
 _description:
@@ -21,7 +21,7 @@ _description:
  This test is automated and executes after the mediacard/mmc-insert
  test is run. It tests reading and writing to the MMC card.
 
-plugin: manual
+plugin: user-interact
 name: mediacard/mmc-remove
 depends: mediacard/mmc-storage
 command: removable_storage_watcher --memorycard remove sdio usb scsi
@@ -36,7 +36,7 @@ _description:
      The verification of this test is automated. Do not change the
      automatically selected result.
 
-plugin: manual
+plugin: user-interact
 name: mediacard/mmc-insert-after-suspend
 depends: suspend/suspend_advanced
 command: removable_storage_watcher --memorycard insert sdio usb scsi
@@ -60,7 +60,7 @@ _description:
  This test is automated and executes after the mediacard/mmc-insert-after-suspend test
  is run. It tests reading and writing to the MMC card after the system has been suspended.
 
-plugin: manual
+plugin: user-interact
 name: mediacard/mmc-remove-after-suspend
 depends: mediacard/mmc-storage-after-suspend
 command: removable_storage_watcher --memorycard remove sdio usb scsi
@@ -75,7 +75,7 @@ _description:
      The verification of this test is automated. Do not change the
      automatically selected result.
 
-plugin: manual
+plugin: user-interact
 name: mediacard/sd-insert
 command: removable_storage_watcher --memorycard insert sdio usb scsi
 _description:
@@ -98,7 +98,7 @@ _description:
  This test is automated and executes after the mediacard/sd-insert
  test is run. It tests reading and writing to the SD card.
 
-plugin: manual
+plugin: user-interact
 name: mediacard/sd-remove
 depends: mediacard/sd-storage
 command: removable_storage_watcher --memorycard remove sdio usb scsi
@@ -113,7 +113,7 @@ _description:
      The verification of this test is automated. Do not change the
      automatically selected result.
 
-plugin: manual
+plugin: user-interact
 name: mediacard/sd-insert-after-suspend
 depends: suspend/suspend_advanced
 command: removable_storage_watcher --memorycard insert sdio usb scsi
@@ -137,7 +137,7 @@ _description:
  This test is automated and executes after the mediacard/sd-insert-after-suspend test
  is run. It tests reading and writing to the SD card after the system has been suspended.
 
-plugin: manual
+plugin: user-interact
 name: mediacard/sd-remove-after-suspend
 depends: mediacard/sd-storage-after-suspend
 command: removable_storage_watcher --memorycard remove sdio usb scsi
@@ -162,7 +162,7 @@ _description:
  system under test has a memory card device plugged in prior to checkbox execution.
  It is intended for SRU automated testing.
 
-plugin: manual
+plugin: user-interact
 name: mediacard/sdhc-insert
 command: removable_storage_watcher --memorycard insert sdio usb scsi
 _description:
@@ -185,7 +185,7 @@ _description:
  This test is automated and executes after the mediacard/sdhc-insert
  test is run. It tests reading and writing to the SDHC card.
 
-plugin: manual
+plugin: user-interact
 name: mediacard/sdhc-remove
 depends: mediacard/sdhc-storage
 command: removable_storage_watcher --memorycard remove sdio usb scsi
@@ -200,7 +200,7 @@ _description:
      The verification of this test is automated. Do not change the
      automatically selected result.
 
-plugin: manual
+plugin: user-interact
 name: mediacard/sdhc-insert-after-suspend
 depends: suspend/suspend_advanced
 command: removable_storage_watcher --memorycard insert sdio usb scsi
@@ -224,7 +224,7 @@ _description:
  This test is automated and executes after the mediacard/sdhc-insert-after-suspend test
  is run. It tests reading and writing to the SDHC card after the system has been suspended.
 
-plugin: manual
+plugin: user-interact
 name: mediacard/sdhc-remove-after-suspend
 depends: mediacard/sdhc-storage-after-suspend
 command: removable_storage_watcher --memorycard remove sdio usb scsi
@@ -239,7 +239,7 @@ _description:
      The verification of this test is automated. Do not change the
      automatically selected result.
 
-plugin: manual
+plugin: user-interact
 name: mediacard/cf-insert
 command: removable_storage_watcher --memorycard insert sdio usb scsi
 _description:
@@ -262,7 +262,7 @@ _description:
  This test is automated and executes after the mediacard/cf-insert
  test is run. It tests reading and writing to the CF card.
 
-plugin: manual
+plugin: user-interact
 name: mediacard/cf-remove
 depends: mediacard/cf-storage
 command: removable_storage_watcher --memorycard remove sdio usb scsi
@@ -277,7 +277,7 @@ _description:
      The verification of this test is automated. Do not change the
      automatically selected result.
 
-plugin: manual
+plugin: user-interact
 name: mediacard/cf-insert-after-suspend
 depends: suspend/suspend_advanced
 command: removable_storage_watcher --memorycard insert sdio usb scsi
@@ -301,7 +301,7 @@ _description:
  This test is automated and executes after the mediacard/cf-insert-after-suspend test
  is run. It tests reading and writing to the CF card after the system has been suspended.
 
-plugin: manual
+plugin: user-interact
 name: mediacard/cf-remove-after-suspend
 depends: mediacard/cf-storage-after-suspend
 command: removable_storage_watcher --memorycard remove sdio usb scsi
@@ -316,7 +316,7 @@ _description:
      The verification of this test is automated. Do not change the
      automatically selected result.
 
-plugin: manual
+plugin: user-interact
 name: mediacard/sdxc-insert
 command: removable_storage_watcher --memorycard insert sdio usb scsi
 _description:
@@ -339,7 +339,7 @@ _description:
  This test is automated and executes after the mediacard/sdxc-insert
  test is run. It tests reading and writing to the SDXC card.
 
-plugin: manual
+plugin: user-interact
 name: mediacard/sdxc-remove
 depends: mediacard/sdxc-storage
 command: removable_storage_watcher --memorycard remove sdio usb scsi
@@ -354,7 +354,7 @@ _description:
      The verification of this test is automated. Do not change the
      automatically selected result.
 
-plugin: manual
+plugin: user-interact
 name: mediacard/sdxc-insert-after-suspend
 depends: suspend/suspend_advanced
 command: removable_storage_watcher --memorycard insert sdio usb scsi
@@ -378,7 +378,7 @@ _description:
  This test is automated and executes after the mediacard/sdxc-insert-after-suspend test
  is run. It tests reading and writing to the SDXC card after the system has been suspended.
 
-plugin: manual
+plugin: user-interact
 name: mediacard/sdxc-remove-after-suspend
 depends: mediacard/sdxc-storage-after-suspend
 command: removable_storage_watcher --memorycard remove sdio usb scsi
@@ -393,7 +393,7 @@ _description:
      The verification of this test is automated. Do not change the
      automatically selected result.
 
-plugin: manual
+plugin: user-interact
 name: mediacard/ms-insert
 command: removable_storage_watcher --memorycard insert sdio usb scsi
 _description:
@@ -416,7 +416,7 @@ _description:
  This test is automated and executes after the mediacard/ms-insert
  test is run. It tests reading and writing to the MS card.
 
-plugin: manual
+plugin: user-interact
 name: mediacard/ms-remove
 depends: mediacard/ms-storage
 command: removable_storage_watcher --memorycard remove sdio usb scsi
@@ -431,7 +431,7 @@ _description:
      The verification of this test is automated. Do not change the
      automatically selected result.
 
-plugin: manual
+plugin: user-interact
 name: mediacard/ms-insert-after-suspend
 depends: suspend/suspend_advanced
 command: removable_storage_watcher --memorycard insert sdio usb scsi
@@ -455,7 +455,7 @@ _description:
  This test is automated and executes after the mediacard/ms-insert-after-suspend test
  is run. It tests reading and writing to the MS card after the system has been suspended.
 
-plugin: manual
+plugin: user-interact
 name: mediacard/ms-remove-after-suspend
 depends: mediacard/ms-storage-after-suspend
 command: removable_storage_watcher --memorycard remove sdio usb scsi
@@ -470,7 +470,7 @@ _description:
      The verification of this test is automated. Do not change the
      automatically selected result.
 
-plugin: manual
+plugin: user-interact
 name: mediacard/msp-insert
 command: removable_storage_watcher --memorycard insert sdio usb scsi
 _description:
@@ -493,7 +493,7 @@ _description:
  This test is automated and executes after the mediacard/msp-insert
  test is run. It tests reading and writing to the MSP card.
 
-plugin: manual
+plugin: user-interact
 name: mediacard/msp-remove
 depends: mediacard/msp-storage
 command: removable_storage_watcher --memorycard remove sdio usb scsi
@@ -508,7 +508,7 @@ _description:
      The verification of this test is automated. Do not change the
      automatically selected result.
 
-plugin: manual
+plugin: user-interact
 name: mediacard/msp-insert-after-suspend
 depends: suspend/suspend_advanced
 command: removable_storage_watcher --memorycard insert sdio usb scsi
@@ -532,7 +532,7 @@ _description:
  This test is automated and executes after the mediacard/msp-insert-after-suspend test
  is run. It tests reading and writing to the MSP card after the system has been suspended.
 
-plugin: manual
+plugin: user-interact
 name: mediacard/msp-remove-after-suspend
 depends: mediacard/msp-storage-after-suspend
 command: removable_storage_watcher --memorycard remove sdio usb scsi
@@ -547,7 +547,7 @@ _description:
      The verification of this test is automated. Do not change the
      automatically selected result.
 
-plugin: manual
+plugin: user-interact
 name: mediacard/xd-insert
 command: removable_storage_watcher --memorycard insert sdio usb scsi
 _description:
@@ -570,7 +570,7 @@ _description:
  This test is automated and executes after the mediacard/xd-insert
  test is run. It tests reading and writing to the xD card.
 
-plugin: manual
+plugin: user-interact
 name: mediacard/xd-remove
 depends: mediacard/xd-storage
 command: removable_storage_watcher --memorycard remove sdio usb scsi
@@ -585,7 +585,7 @@ _description:
      The verification of this test is automated. Do not change the
      automatically selected result.
 
-plugin: manual
+plugin: user-interact
 name: mediacard/xd-insert-after-suspend
 depends: suspend/suspend_advanced
 command: removable_storage_watcher --memorycard insert sdio usb scsi
@@ -609,7 +609,7 @@ _description:
  This test is automated and executes after the mediacard/xd-insert-after-suspend test
  is run. It tests reading and writing to the xD card after the system has been suspended.
 
-plugin: manual
+plugin: user-interact
 name: mediacard/xd-remove-after-suspend
 depends: mediacard/xd-storage-after-suspend
 command: removable_storage_watcher --memorycard remove sdio usb scsi
